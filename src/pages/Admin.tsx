@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "@/hooks/useAuth";
-import { useCasinos, useCreateCasino, useDeleteCasino, type CasinoInsert } from "@/hooks/useCasinos";
+import { useCasinos, useCreateCasino, useUpdateCasino, useDeleteCasino, type Casino, type CasinoInsert } from "@/hooks/useCasinos";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -26,7 +26,7 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
-import { Plus, Trash2, LogOut, Star, Loader2 } from "lucide-react";
+import { Plus, Trash2, LogOut, Star, Loader2, Pencil } from "lucide-react";
 
 function AdminLoginForm() {
   const { signIn, signUp } = useAuth();
@@ -302,12 +302,214 @@ function AddCasinoForm({ onClose }: { onClose: () => void }) {
   );
 }
 
+function EditCasinoForm({ casino, onClose }: { casino: Casino; onClose: () => void }) {
+  const updateCasino = useUpdateCasino();
+  const [formData, setFormData] = useState({
+    name: casino.name,
+    slug: casino.slug,
+    rating: casino.rating.toString(),
+    bonus_title: casino.bonus_title,
+    bonus_amount: casino.bonus_amount,
+    bonus_type: casino.bonus_type,
+    wagering_requirements: casino.wagering_requirements,
+    validity: casino.validity,
+    min_deposit: casino.min_deposit,
+    payout_time: casino.payout_time,
+    features: casino.features?.join(", ") || "",
+    pros: casino.pros?.join(", ") || "",
+    cons: casino.cons?.join(", ") || "",
+    description: casino.description || "",
+    is_active: casino.is_active,
+  });
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    
+    await updateCasino.mutateAsync({
+      id: casino.id,
+      name: formData.name,
+      slug: formData.slug || formData.name.toLowerCase().replace(/\s+/g, "-"),
+      rating: parseFloat(formData.rating),
+      bonus_title: formData.bonus_title,
+      bonus_amount: formData.bonus_amount,
+      bonus_type: formData.bonus_type,
+      wagering_requirements: formData.wagering_requirements,
+      validity: formData.validity,
+      min_deposit: formData.min_deposit,
+      payout_time: formData.payout_time,
+      features: formData.features.split(",").map((s) => s.trim()).filter(Boolean),
+      pros: formData.pros.split(",").map((s) => s.trim()).filter(Boolean),
+      cons: formData.cons.split(",").map((s) => s.trim()).filter(Boolean),
+      description: formData.description || null,
+      is_active: formData.is_active,
+    });
+    onClose();
+  };
+
+  return (
+    <form onSubmit={handleSubmit} className="space-y-4 max-h-[70vh] overflow-y-auto pr-2">
+      <div className="grid gap-4 md:grid-cols-2">
+        <div className="space-y-2">
+          <Label htmlFor="edit-name">Casino Navn *</Label>
+          <Input
+            id="edit-name"
+            value={formData.name}
+            onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+            required
+          />
+        </div>
+        <div className="space-y-2">
+          <Label htmlFor="edit-slug">Slug</Label>
+          <Input
+            id="edit-slug"
+            value={formData.slug}
+            onChange={(e) => setFormData({ ...formData, slug: e.target.value })}
+          />
+        </div>
+      </div>
+
+      <div className="grid gap-4 md:grid-cols-2">
+        <div className="space-y-2">
+          <Label htmlFor="edit-bonus_title">Bonus Titel *</Label>
+          <Input
+            id="edit-bonus_title"
+            value={formData.bonus_title}
+            onChange={(e) => setFormData({ ...formData, bonus_title: e.target.value })}
+            required
+          />
+        </div>
+        <div className="space-y-2">
+          <Label htmlFor="edit-bonus_amount">Bonusbeløb *</Label>
+          <Input
+            id="edit-bonus_amount"
+            value={formData.bonus_amount}
+            onChange={(e) => setFormData({ ...formData, bonus_amount: e.target.value })}
+            required
+          />
+        </div>
+      </div>
+
+      <div className="grid gap-4 md:grid-cols-3">
+        <div className="space-y-2">
+          <Label htmlFor="edit-rating">Vurdering (0-5)</Label>
+          <Input
+            id="edit-rating"
+            type="number"
+            step="0.1"
+            min="0"
+            max="5"
+            value={formData.rating}
+            onChange={(e) => setFormData({ ...formData, rating: e.target.value })}
+          />
+        </div>
+        <div className="space-y-2">
+          <Label htmlFor="edit-bonus_type">Bonustype</Label>
+          <Input
+            id="edit-bonus_type"
+            value={formData.bonus_type}
+            onChange={(e) => setFormData({ ...formData, bonus_type: e.target.value })}
+          />
+        </div>
+        <div className="space-y-2">
+          <Label htmlFor="edit-wagering">Gennemspil</Label>
+          <Input
+            id="edit-wagering"
+            value={formData.wagering_requirements}
+            onChange={(e) => setFormData({ ...formData, wagering_requirements: e.target.value })}
+          />
+        </div>
+      </div>
+
+      <div className="grid gap-4 md:grid-cols-3">
+        <div className="space-y-2">
+          <Label htmlFor="edit-validity">Gyldighed</Label>
+          <Input
+            id="edit-validity"
+            value={formData.validity}
+            onChange={(e) => setFormData({ ...formData, validity: e.target.value })}
+          />
+        </div>
+        <div className="space-y-2">
+          <Label htmlFor="edit-min_deposit">Min. Indbetaling</Label>
+          <Input
+            id="edit-min_deposit"
+            value={formData.min_deposit}
+            onChange={(e) => setFormData({ ...formData, min_deposit: e.target.value })}
+          />
+        </div>
+        <div className="space-y-2">
+          <Label htmlFor="edit-payout_time">Udbetalingstid</Label>
+          <Input
+            id="edit-payout_time"
+            value={formData.payout_time}
+            onChange={(e) => setFormData({ ...formData, payout_time: e.target.value })}
+          />
+        </div>
+      </div>
+
+      <div className="space-y-2">
+        <Label htmlFor="edit-features">Funktioner (kommasepareret)</Label>
+        <Input
+          id="edit-features"
+          value={formData.features}
+          onChange={(e) => setFormData({ ...formData, features: e.target.value })}
+        />
+      </div>
+
+      <div className="space-y-2">
+        <Label htmlFor="edit-pros">Fordele (kommasepareret)</Label>
+        <Input
+          id="edit-pros"
+          value={formData.pros}
+          onChange={(e) => setFormData({ ...formData, pros: e.target.value })}
+        />
+      </div>
+
+      <div className="space-y-2">
+        <Label htmlFor="edit-cons">Ulemper (kommasepareret)</Label>
+        <Input
+          id="edit-cons"
+          value={formData.cons}
+          onChange={(e) => setFormData({ ...formData, cons: e.target.value })}
+        />
+      </div>
+
+      <div className="space-y-2">
+        <Label htmlFor="edit-description">Beskrivelse</Label>
+        <Textarea
+          id="edit-description"
+          value={formData.description}
+          onChange={(e) => setFormData({ ...formData, description: e.target.value })}
+          rows={3}
+        />
+      </div>
+
+      <div className="flex items-center gap-2">
+        <input
+          type="checkbox"
+          id="edit-is_active"
+          checked={formData.is_active}
+          onChange={(e) => setFormData({ ...formData, is_active: e.target.checked })}
+          className="h-4 w-4"
+        />
+        <Label htmlFor="edit-is_active">Aktiv</Label>
+      </div>
+
+      <Button type="submit" className="w-full" disabled={updateCasino.isPending}>
+        {updateCasino.isPending && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
+        Gem Ændringer
+      </Button>
+    </form>
+  );
+}
+
 function AdminDashboard() {
   const { user, isAdmin, signOut, loading: authLoading } = useAuth();
   const { data: casinos, isLoading } = useCasinos(true);
   const deleteCasino = useDeleteCasino();
   const navigate = useNavigate();
   const [dialogOpen, setDialogOpen] = useState(false);
+  const [editingCasino, setEditingCasino] = useState<Casino | null>(null);
 
   useEffect(() => {
     if (!authLoading && user && !isAdmin) {
@@ -408,30 +610,39 @@ function AdminDashboard() {
                       </div>
                     </div>
                   </div>
-                  <AlertDialog>
-                    <AlertDialogTrigger asChild>
-                      <Button variant="destructive" size="icon">
-                        <Trash2 className="h-4 w-4" />
-                      </Button>
-                    </AlertDialogTrigger>
-                    <AlertDialogContent>
-                      <AlertDialogHeader>
-                        <AlertDialogTitle>Slet Casino</AlertDialogTitle>
-                        <AlertDialogDescription>
-                          Er du sikker på, at du vil slette "{casino.name}"? Denne handling kan ikke fortrydes.
-                        </AlertDialogDescription>
-                      </AlertDialogHeader>
-                      <AlertDialogFooter>
-                        <AlertDialogCancel>Annuller</AlertDialogCancel>
-                        <AlertDialogAction
-                          onClick={() => deleteCasino.mutate(casino.id)}
-                          className="bg-destructive text-destructive-foreground hover:bg-destructive/90"
-                        >
-                          Slet
-                        </AlertDialogAction>
-                      </AlertDialogFooter>
-                    </AlertDialogContent>
-                  </AlertDialog>
+                  <div className="flex items-center gap-2">
+                    <Button
+                      variant="outline"
+                      size="icon"
+                      onClick={() => setEditingCasino(casino)}
+                    >
+                      <Pencil className="h-4 w-4" />
+                    </Button>
+                    <AlertDialog>
+                      <AlertDialogTrigger asChild>
+                        <Button variant="destructive" size="icon">
+                          <Trash2 className="h-4 w-4" />
+                        </Button>
+                      </AlertDialogTrigger>
+                      <AlertDialogContent>
+                        <AlertDialogHeader>
+                          <AlertDialogTitle>Slet Casino</AlertDialogTitle>
+                          <AlertDialogDescription>
+                            Er du sikker på, at du vil slette "{casino.name}"? Denne handling kan ikke fortrydes.
+                          </AlertDialogDescription>
+                        </AlertDialogHeader>
+                        <AlertDialogFooter>
+                          <AlertDialogCancel>Annuller</AlertDialogCancel>
+                          <AlertDialogAction
+                            onClick={() => deleteCasino.mutate(casino.id)}
+                            className="bg-destructive text-destructive-foreground hover:bg-destructive/90"
+                          >
+                            Slet
+                          </AlertDialogAction>
+                        </AlertDialogFooter>
+                      </AlertDialogContent>
+                    </AlertDialog>
+                  </div>
                 </CardContent>
               </Card>
             ))}
@@ -445,6 +656,18 @@ function AdminDashboard() {
             )}
           </div>
         )}
+
+        {/* Edit Casino Dialog */}
+        <Dialog open={!!editingCasino} onOpenChange={(open) => !open && setEditingCasino(null)}>
+          <DialogContent className="max-w-2xl">
+            <DialogHeader>
+              <DialogTitle>Rediger Casino</DialogTitle>
+            </DialogHeader>
+            {editingCasino && (
+              <EditCasinoForm casino={editingCasino} onClose={() => setEditingCasino(null)} />
+            )}
+          </DialogContent>
+        </Dialog>
       </main>
     </div>
   );
