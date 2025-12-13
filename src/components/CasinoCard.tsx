@@ -3,7 +3,24 @@ import { Star, Clock, Gift, CreditCard, Timer } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
-import type { Casino } from "@/data/casinos";
+
+export interface Casino {
+  id: string;
+  name: string;
+  slug: string;
+  rating: number;
+  bonusTitle: string;
+  bonusAmount: string;
+  bonusType: string;
+  wageringRequirements: string;
+  validity: string;
+  minDeposit: string;
+  payoutTime: string;
+  features: string[];
+  pros: string[];
+  cons: string[];
+  description: string;
+}
 
 interface CasinoCardProps {
   casino: Casino;
