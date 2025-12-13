@@ -26,6 +26,7 @@ export type Database = {
           id: string
           is_active: boolean
           is_recommended: boolean
+          logo_url: string | null
           min_deposit: string
           name: string
           payout_time: string
@@ -48,6 +49,7 @@ export type Database = {
           id?: string
           is_active?: boolean
           is_recommended?: boolean
+          logo_url?: string | null
           min_deposit?: string
           name: string
           payout_time?: string
@@ -70,6 +72,7 @@ export type Database = {
           id?: string
           is_active?: boolean
           is_recommended?: boolean
+          logo_url?: string | null
           min_deposit?: string
           name?: string
           payout_time?: string
