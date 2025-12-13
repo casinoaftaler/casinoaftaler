@@ -20,6 +20,7 @@ export interface Casino {
   pros: string[];
   cons: string[];
   description: string;
+  isRecommended?: boolean;
 }
 
 interface CasinoCardProps {
@@ -50,7 +51,12 @@ export function CasinoCard({ casino, rank }: CasinoCardProps) {
           <div className="flex flex-1 flex-col p-6">
             <div className="mb-4 flex flex-wrap items-start justify-between gap-4">
               <div>
-                <h3 className="text-xl font-bold">{casino.name}</h3>
+                <div className="flex items-center gap-2">
+                  <h3 className="text-xl font-bold">{casino.name}</h3>
+                  {casino.isRecommended && (
+                    <Badge className="bg-destructive text-destructive-foreground">Anbefalet</Badge>
+                  )}
+                </div>
                 <div className="mt-1 flex items-center gap-2">
                   <div className="flex items-center gap-1">
                     {[...Array(5)].map((_, i) => (

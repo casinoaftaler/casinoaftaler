@@ -141,6 +141,7 @@ function AddCasinoForm({ onClose }: { onClose: () => void }) {
     cons: "",
     description: "",
     is_active: true,
+    is_recommended: false,
   });
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -162,6 +163,7 @@ function AddCasinoForm({ onClose }: { onClose: () => void }) {
       cons: formData.cons.split(",").map((s) => s.trim()).filter(Boolean),
       description: formData.description || null,
       is_active: formData.is_active,
+      is_recommended: formData.is_recommended,
     };
 
     await createCasino.mutateAsync(casinoData);
@@ -311,6 +313,19 @@ function AddCasinoForm({ onClose }: { onClose: () => void }) {
         />
       </div>
 
+      <div className="flex items-center gap-4">
+        <div className="flex items-center gap-2">
+          <input
+            type="checkbox"
+            id="is_recommended"
+            checked={formData.is_recommended}
+            onChange={(e) => setFormData({ ...formData, is_recommended: e.target.checked })}
+            className="h-4 w-4"
+          />
+          <Label htmlFor="is_recommended">Anbefalet</Label>
+        </div>
+      </div>
+
       <Button type="submit" className="w-full" disabled={createCasino.isPending}>
         {createCasino.isPending && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
         Tilføj Casino
@@ -337,6 +352,7 @@ function EditCasinoForm({ casino, onClose }: { casino: Casino; onClose: () => vo
     cons: casino.cons?.join(", ") || "",
     description: casino.description || "",
     is_active: casino.is_active,
+    is_recommended: casino.is_recommended,
   });
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -359,6 +375,7 @@ function EditCasinoForm({ casino, onClose }: { casino: Casino; onClose: () => vo
       cons: formData.cons.split(",").map((s) => s.trim()).filter(Boolean),
       description: formData.description || null,
       is_active: formData.is_active,
+      is_recommended: formData.is_recommended,
     });
     onClose();
   };
@@ -501,15 +518,27 @@ function EditCasinoForm({ casino, onClose }: { casino: Casino; onClose: () => vo
         />
       </div>
 
-      <div className="flex items-center gap-2">
-        <input
-          type="checkbox"
-          id="edit-is_active"
-          checked={formData.is_active}
-          onChange={(e) => setFormData({ ...formData, is_active: e.target.checked })}
-          className="h-4 w-4"
-        />
-        <Label htmlFor="edit-is_active">Aktiv</Label>
+      <div className="flex items-center gap-4">
+        <div className="flex items-center gap-2">
+          <input
+            type="checkbox"
+            id="edit-is_active"
+            checked={formData.is_active}
+            onChange={(e) => setFormData({ ...formData, is_active: e.target.checked })}
+            className="h-4 w-4"
+          />
+          <Label htmlFor="edit-is_active">Aktiv</Label>
+        </div>
+        <div className="flex items-center gap-2">
+          <input
+            type="checkbox"
+            id="edit-is_recommended"
+            checked={formData.is_recommended}
+            onChange={(e) => setFormData({ ...formData, is_recommended: e.target.checked })}
+            className="h-4 w-4"
+          />
+          <Label htmlFor="edit-is_recommended">Anbefalet</Label>
+        </div>
       </div>
 
       <Button type="submit" className="w-full" disabled={updateCasino.isPending}>
@@ -561,6 +590,9 @@ function SortableCasinoCard({
           <div>
             <div className="flex items-center gap-2">
               <h3 className="font-semibold">{casino.name}</h3>
+              {casino.is_recommended && (
+                <Badge className="bg-destructive text-destructive-foreground">Anbefalet</Badge>
+              )}
               {!casino.is_active && (
                 <Badge variant="secondary">Inaktiv</Badge>
               )}

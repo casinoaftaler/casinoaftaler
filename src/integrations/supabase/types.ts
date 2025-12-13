@@ -25,6 +25,7 @@ export type Database = {
           features: string[] | null
           id: string
           is_active: boolean
+          is_recommended: boolean
           min_deposit: string
           name: string
           payout_time: string
@@ -46,6 +47,7 @@ export type Database = {
           features?: string[] | null
           id?: string
           is_active?: boolean
+          is_recommended?: boolean
           min_deposit?: string
           name: string
           payout_time?: string
@@ -67,6 +69,7 @@ export type Database = {
           features?: string[] | null
           id?: string
           is_active?: boolean
+          is_recommended?: boolean
           min_deposit?: string
           name?: string
           payout_time?: string
