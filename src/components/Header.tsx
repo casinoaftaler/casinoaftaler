@@ -1,0 +1,118 @@
+import { Link } from "react-router-dom";
+import { ThemeToggle } from "./ThemeToggle";
+import { Button } from "@/components/ui/button";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+import { ChevronDown, Gamepad2, Menu, X } from "lucide-react";
+import { useState } from "react";
+
+export function Header() {
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
+  return (
+    <header className="sticky top-0 z-50 w-full border-b border-border bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+      <div className="container flex h-16 items-center justify-between">
+        <Link to="/" className="flex items-center gap-2">
+          <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-primary">
+            <Gamepad2 className="h-6 w-6 text-primary-foreground" />
+          </div>
+          <span className="text-xl font-bold">Casino Bonus Hub</span>
+        </Link>
+
+        {/* Desktop Navigation */}
+        <nav className="hidden items-center gap-6 md:flex">
+          <Link
+            to="/"
+            className="text-sm font-medium transition-colors hover:text-primary"
+          >
+            Casinos
+          </Link>
+          <DropdownMenu>
+            <DropdownMenuTrigger className="flex items-center gap-1 text-sm font-medium transition-colors hover:text-primary">
+              Bonus Guide <ChevronDown className="h-4 w-4" />
+            </DropdownMenuTrigger>
+            <DropdownMenuContent align="center" className="bg-popover">
+              <DropdownMenuItem asChild>
+                <Link to="/bonus-guide">All Bonus Types</Link>
+              </DropdownMenuItem>
+              <DropdownMenuItem asChild>
+                <Link to="/bonus-guide#no-sticky">No-Sticky Bonuses</Link>
+              </DropdownMenuItem>
+              <DropdownMenuItem asChild>
+                <Link to="/bonus-guide#sticky">Sticky Bonuses</Link>
+              </DropdownMenuItem>
+            </DropdownMenuContent>
+          </DropdownMenu>
+          <Link
+            to="/about"
+            className="text-sm font-medium transition-colors hover:text-primary"
+          >
+            About Us
+          </Link>
+          <Link
+            to="/responsible-gaming"
+            className="text-sm font-medium transition-colors hover:text-primary"
+          >
+            Responsible Gaming
+          </Link>
+        </nav>
+
+        <div className="flex items-center gap-2">
+          <ThemeToggle />
+          <Button
+            variant="ghost"
+            size="icon"
+            className="md:hidden"
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+          >
+            {mobileMenuOpen ? (
+              <X className="h-5 w-5" />
+            ) : (
+              <Menu className="h-5 w-5" />
+            )}
+          </Button>
+        </div>
+      </div>
+
+      {/* Mobile Navigation */}
+      {mobileMenuOpen && (
+        <div className="border-t border-border bg-background md:hidden">
+          <nav className="container flex flex-col gap-4 py-4">
+            <Link
+              to="/"
+              className="text-sm font-medium transition-colors hover:text-primary"
+              onClick={() => setMobileMenuOpen(false)}
+            >
+              Casinos
+            </Link>
+            <Link
+              to="/bonus-guide"
+              className="text-sm font-medium transition-colors hover:text-primary"
+              onClick={() => setMobileMenuOpen(false)}
+            >
+              Bonus Guide
+            </Link>
+            <Link
+              to="/about"
+              className="text-sm font-medium transition-colors hover:text-primary"
+              onClick={() => setMobileMenuOpen(false)}
+            >
+              About Us
+            </Link>
+            <Link
+              to="/responsible-gaming"
+              className="text-sm font-medium transition-colors hover:text-primary"
+              onClick={() => setMobileMenuOpen(false)}
+            >
+              Responsible Gaming
+            </Link>
+          </nav>
+        </div>
+      )}
+    </header>
+  );
+}
