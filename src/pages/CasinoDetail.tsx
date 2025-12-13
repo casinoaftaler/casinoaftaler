@@ -1,13 +1,22 @@
 import { useParams, Link } from "react-router-dom";
-import { Star, Clock, Gift, CreditCard, Timer, Check, X, ArrowLeft } from "lucide-react";
+import { Star, Clock, Gift, CreditCard, Timer, Check, X, ArrowLeft, Loader2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { casinos } from "@/data/casinos";
+import { useCasinos } from "@/hooks/useCasinos";
 
 const CasinoDetail = () => {
   const { slug } = useParams();
-  const casino = casinos.find((c) => c.slug === slug);
+  const { data: casinos, isLoading } = useCasinos();
+  const casino = casinos?.find((c) => c.slug === slug);
+
+  if (isLoading) {
+    return (
+      <div className="container flex items-center justify-center py-16">
+        <Loader2 className="h-8 w-8 animate-spin text-primary" />
+      </div>
+    );
+  }
 
   if (!casino) {
     return (
@@ -48,7 +57,7 @@ const CasinoDetail = () => {
                           <Star
                             key={i}
                             className={`h-5 w-5 ${
-                              i < Math.floor(casino.rating)
+                              i < Math.floor(Number(casino.rating))
                                 ? "fill-primary text-primary"
                                 : "text-muted"
                             }`}
@@ -61,18 +70,18 @@ const CasinoDetail = () => {
                     </div>
                     <Badge
                       variant={
-                        casino.bonusType === "No-sticky" ? "default" : "secondary"
+                        casino.bonus_type === "No-sticky" ? "default" : "secondary"
                       }
                     >
-                      {casino.bonusType}
+                      {casino.bonus_type}
                     </Badge>
                   </div>
                 </div>
 
                 <div className="mb-8 rounded-lg bg-primary/10 p-6">
-                  <p className="mb-2 text-lg font-medium">{casino.bonusTitle}</p>
+                  <p className="mb-2 text-lg font-medium">{casino.bonus_title}</p>
                   <p className="text-3xl font-bold text-primary">
-                    {casino.bonusAmount}
+                    {casino.bonus_amount}
                   </p>
                 </div>
 
@@ -88,7 +97,7 @@ const CasinoDetail = () => {
                     </CardHeader>
                     <CardContent>
                       <ul className="space-y-2">
-                        {casino.pros.map((pro) => (
+                        {casino.pros?.map((pro) => (
                           <li key={pro} className="flex items-center gap-2">
                             <Check className="h-4 w-4 text-primary" />
                             <span>{pro}</span>
@@ -106,7 +115,7 @@ const CasinoDetail = () => {
                     </CardHeader>
                     <CardContent>
                       <ul className="space-y-2">
-                        {casino.cons.map((con) => (
+                        {casino.cons?.map((con) => (
                           <li key={con} className="flex items-center gap-2">
                             <X className="h-4 w-4 text-destructive" />
                             <span>{con}</span>
@@ -132,7 +141,7 @@ const CasinoDetail = () => {
                     <Gift className="h-4 w-4 text-muted-foreground" />
                     <span className="text-muted-foreground">Wagering</span>
                   </div>
-                  <span className="font-medium">{casino.wageringRequirements}</span>
+                  <span className="font-medium">{casino.wagering_requirements}</span>
                 </div>
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-2">
@@ -146,14 +155,14 @@ const CasinoDetail = () => {
                     <CreditCard className="h-4 w-4 text-muted-foreground" />
                     <span className="text-muted-foreground">Min. Deposit</span>
                   </div>
-                  <span className="font-medium">{casino.minDeposit}</span>
+                  <span className="font-medium">{casino.min_deposit}</span>
                 </div>
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-2">
                     <Clock className="h-4 w-4 text-muted-foreground" />
                     <span className="text-muted-foreground">Payout Time</span>
                   </div>
-                  <span className="font-medium">{casino.payoutTime}</span>
+                  <span className="font-medium">{casino.payout_time}</span>
                 </div>
 
                 <Button size="lg" className="w-full">
@@ -172,7 +181,7 @@ const CasinoDetail = () => {
               </CardHeader>
               <CardContent>
                 <div className="flex flex-wrap gap-2">
-                  {casino.features.map((feature) => (
+                  {casino.features?.map((feature) => (
                     <Badge key={feature} variant="outline">
                       {feature}
                     </Badge>
