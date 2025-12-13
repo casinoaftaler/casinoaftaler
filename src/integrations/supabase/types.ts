@@ -28,6 +28,7 @@ export type Database = {
           min_deposit: string
           name: string
           payout_time: string
+          position: number
           pros: string[] | null
           rating: number
           slug: string
@@ -48,6 +49,7 @@ export type Database = {
           min_deposit?: string
           name: string
           payout_time?: string
+          position?: number
           pros?: string[] | null
           rating?: number
           slug: string
@@ -68,6 +70,7 @@ export type Database = {
           min_deposit?: string
           name?: string
           payout_time?: string
+          position?: number
           pros?: string[] | null
           rating?: number
           slug?: string
