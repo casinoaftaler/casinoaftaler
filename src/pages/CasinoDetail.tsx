@@ -21,10 +21,10 @@ const CasinoDetail = () => {
   if (!casino) {
     return (
       <div className="container py-16 text-center">
-        <h1 className="mb-4 text-2xl font-bold">Casino Not Found</h1>
+        <h1 className="mb-4 text-2xl font-bold">Casino Ikke Fundet</h1>
         <Button asChild>
           <Link to="/">
-            <ArrowLeft className="mr-2 h-4 w-4" /> Back to Home
+            <ArrowLeft className="mr-2 h-4 w-4" /> Tilbage til Forsiden
           </Link>
         </Button>
       </div>
@@ -36,7 +36,7 @@ const CasinoDetail = () => {
       <div className="container">
         <Button variant="ghost" asChild className="mb-6">
           <Link to="/">
-            <ArrowLeft className="mr-2 h-4 w-4" /> Back to All Casinos
+            <ArrowLeft className="mr-2 h-4 w-4" /> Tilbage til Alle Casinoer
           </Link>
         </Button>
 
@@ -73,7 +73,7 @@ const CasinoDetail = () => {
                         casino.bonus_type === "No-sticky" ? "default" : "secondary"
                       }
                     >
-                      {casino.bonus_type}
+                      {casino.bonus_type === "No-sticky" ? "Ikke-klæbende" : casino.bonus_type}
                     </Badge>
                   </div>
                 </div>
@@ -85,14 +85,14 @@ const CasinoDetail = () => {
                   </p>
                 </div>
 
-                <h2 className="mb-4 text-xl font-semibold">About {casino.name}</h2>
+                <h2 className="mb-4 text-xl font-semibold">Om {casino.name}</h2>
                 <p className="mb-6 text-muted-foreground">{casino.description}</p>
 
                 <div className="grid gap-6 md:grid-cols-2">
                   <Card>
                     <CardHeader>
                       <CardTitle className="flex items-center gap-2 text-lg">
-                        <Check className="h-5 w-5 text-primary" /> Pros
+                        <Check className="h-5 w-5 text-primary" /> Fordele
                       </CardTitle>
                     </CardHeader>
                     <CardContent>
@@ -110,7 +110,7 @@ const CasinoDetail = () => {
                   <Card>
                     <CardHeader>
                       <CardTitle className="flex items-center gap-2 text-lg">
-                        <X className="h-5 w-5 text-destructive" /> Cons
+                        <X className="h-5 w-5 text-destructive" /> Ulemper
                       </CardTitle>
                     </CardHeader>
                     <CardContent>
@@ -133,51 +133,51 @@ const CasinoDetail = () => {
           <div className="space-y-6">
             <Card>
               <CardHeader>
-                <CardTitle>Bonus Details</CardTitle>
+                <CardTitle>Bonusdetaljer</CardTitle>
               </CardHeader>
               <CardContent className="space-y-4">
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-2">
                     <Gift className="h-4 w-4 text-muted-foreground" />
-                    <span className="text-muted-foreground">Wagering</span>
+                    <span className="text-muted-foreground">Gennemspil</span>
                   </div>
                   <span className="font-medium">{casino.wagering_requirements}</span>
                 </div>
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-2">
                     <Timer className="h-4 w-4 text-muted-foreground" />
-                    <span className="text-muted-foreground">Validity</span>
+                    <span className="text-muted-foreground">Gyldighed</span>
                   </div>
                   <span className="font-medium">{casino.validity}</span>
                 </div>
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-2">
                     <CreditCard className="h-4 w-4 text-muted-foreground" />
-                    <span className="text-muted-foreground">Min. Deposit</span>
+                    <span className="text-muted-foreground">Min. Indbetaling</span>
                   </div>
                   <span className="font-medium">{casino.min_deposit}</span>
                 </div>
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-2">
                     <Clock className="h-4 w-4 text-muted-foreground" />
-                    <span className="text-muted-foreground">Payout Time</span>
+                    <span className="text-muted-foreground">Udbetalingstid</span>
                   </div>
                   <span className="font-medium">{casino.payout_time}</span>
                 </div>
 
                 <Button size="lg" className="w-full">
-                  Get Bonus Now
+                  Få Bonus Nu
                 </Button>
 
                 <p className="text-center text-xs text-muted-foreground">
-                  * Terms and conditions apply. 18+
+                  * Vilkår og betingelser gælder. 18+
                 </p>
               </CardContent>
             </Card>
 
             <Card>
               <CardHeader>
-                <CardTitle>Features</CardTitle>
+                <CardTitle>Funktioner</CardTitle>
               </CardHeader>
               <CardContent>
                 <div className="flex flex-wrap gap-2">

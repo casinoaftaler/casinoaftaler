@@ -56,7 +56,7 @@ function AdminLoginForm() {
       <Card className="w-full max-w-md">
         <CardHeader>
           <CardTitle className="text-center text-2xl">
-            {isLogin ? "Admin Login" : "Create Admin Account"}
+            {isLogin ? "Admin Login" : "Opret Admin Konto"}
           </CardTitle>
         </CardHeader>
         <CardContent>
@@ -68,12 +68,12 @@ function AdminLoginForm() {
                 type="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                placeholder="admin@example.com"
+                placeholder="admin@eksempel.dk"
                 required
               />
             </div>
             <div className="space-y-2">
-              <Label htmlFor="password">Password</Label>
+              <Label htmlFor="password">Adgangskode</Label>
               <Input
                 id="password"
                 type="password"
@@ -89,7 +89,7 @@ function AdminLoginForm() {
             )}
             <Button type="submit" className="w-full" disabled={loading}>
               {loading && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
-              {isLogin ? "Sign In" : "Sign Up"}
+              {isLogin ? "Log Ind" : "Opret Konto"}
             </Button>
             <Button
               type="button"
@@ -97,7 +97,7 @@ function AdminLoginForm() {
               className="w-full"
               onClick={() => setIsLogin(!isLogin)}
             >
-              {isLogin ? "Need an account? Sign up" : "Have an account? Sign in"}
+              {isLogin ? "Har du ikke en konto? Opret en" : "Har du en konto? Log ind"}
             </Button>
           </form>
         </CardContent>
@@ -116,9 +116,9 @@ function AddCasinoForm({ onClose }: { onClose: () => void }) {
     bonus_amount: "",
     bonus_type: "No-sticky",
     wagering_requirements: "35x",
-    validity: "30 days",
-    min_deposit: "$20",
-    payout_time: "24 hours",
+    validity: "30 dage",
+    min_deposit: "100 kr.",
+    payout_time: "24 timer",
     features: "",
     pros: "",
     cons: "",
@@ -155,7 +155,7 @@ function AddCasinoForm({ onClose }: { onClose: () => void }) {
     <form onSubmit={handleSubmit} className="space-y-4 max-h-[70vh] overflow-y-auto pr-2">
       <div className="grid gap-4 md:grid-cols-2">
         <div className="space-y-2">
-          <Label htmlFor="name">Casino Name *</Label>
+          <Label htmlFor="name">Casino Navn *</Label>
           <Input
             id="name"
             value={formData.name}
@@ -169,14 +169,14 @@ function AddCasinoForm({ onClose }: { onClose: () => void }) {
             id="slug"
             value={formData.slug}
             onChange={(e) => setFormData({ ...formData, slug: e.target.value })}
-            placeholder="auto-generated from name"
+            placeholder="auto-genereret fra navn"
           />
         </div>
       </div>
 
       <div className="grid gap-4 md:grid-cols-2">
         <div className="space-y-2">
-          <Label htmlFor="bonus_title">Bonus Title *</Label>
+          <Label htmlFor="bonus_title">Bonus Titel *</Label>
           <Input
             id="bonus_title"
             value={formData.bonus_title}
@@ -185,12 +185,12 @@ function AddCasinoForm({ onClose }: { onClose: () => void }) {
           />
         </div>
         <div className="space-y-2">
-          <Label htmlFor="bonus_amount">Bonus Amount *</Label>
+          <Label htmlFor="bonus_amount">Bonusbeløb *</Label>
           <Input
             id="bonus_amount"
             value={formData.bonus_amount}
             onChange={(e) => setFormData({ ...formData, bonus_amount: e.target.value })}
-            placeholder="100% up to $1,000"
+            placeholder="100% op til 1.000 kr."
             required
           />
         </div>
@@ -198,7 +198,7 @@ function AddCasinoForm({ onClose }: { onClose: () => void }) {
 
       <div className="grid gap-4 md:grid-cols-3">
         <div className="space-y-2">
-          <Label htmlFor="rating">Rating (0-5)</Label>
+          <Label htmlFor="rating">Vurdering (0-5)</Label>
           <Input
             id="rating"
             type="number"
@@ -210,7 +210,7 @@ function AddCasinoForm({ onClose }: { onClose: () => void }) {
           />
         </div>
         <div className="space-y-2">
-          <Label htmlFor="bonus_type">Bonus Type</Label>
+          <Label htmlFor="bonus_type">Bonustype</Label>
           <Input
             id="bonus_type"
             value={formData.bonus_type}
@@ -218,7 +218,7 @@ function AddCasinoForm({ onClose }: { onClose: () => void }) {
           />
         </div>
         <div className="space-y-2">
-          <Label htmlFor="wagering">Wagering</Label>
+          <Label htmlFor="wagering">Gennemspil</Label>
           <Input
             id="wagering"
             value={formData.wagering_requirements}
@@ -229,7 +229,7 @@ function AddCasinoForm({ onClose }: { onClose: () => void }) {
 
       <div className="grid gap-4 md:grid-cols-3">
         <div className="space-y-2">
-          <Label htmlFor="validity">Validity</Label>
+          <Label htmlFor="validity">Gyldighed</Label>
           <Input
             id="validity"
             value={formData.validity}
@@ -237,7 +237,7 @@ function AddCasinoForm({ onClose }: { onClose: () => void }) {
           />
         </div>
         <div className="space-y-2">
-          <Label htmlFor="min_deposit">Min Deposit</Label>
+          <Label htmlFor="min_deposit">Min. Indbetaling</Label>
           <Input
             id="min_deposit"
             value={formData.min_deposit}
@@ -245,7 +245,7 @@ function AddCasinoForm({ onClose }: { onClose: () => void }) {
           />
         </div>
         <div className="space-y-2">
-          <Label htmlFor="payout_time">Payout Time</Label>
+          <Label htmlFor="payout_time">Udbetalingstid</Label>
           <Input
             id="payout_time"
             value={formData.payout_time}
@@ -255,37 +255,37 @@ function AddCasinoForm({ onClose }: { onClose: () => void }) {
       </div>
 
       <div className="space-y-2">
-        <Label htmlFor="features">Features (comma-separated)</Label>
+        <Label htmlFor="features">Funktioner (kommasepareret)</Label>
         <Input
           id="features"
           value={formData.features}
           onChange={(e) => setFormData({ ...formData, features: e.target.value })}
-          placeholder="Live betting, Popular slots, Mobile friendly"
+          placeholder="Live betting, Populære slots, Mobilvenlig"
         />
       </div>
 
       <div className="space-y-2">
-        <Label htmlFor="pros">Pros (comma-separated)</Label>
+        <Label htmlFor="pros">Fordele (kommasepareret)</Label>
         <Input
           id="pros"
           value={formData.pros}
           onChange={(e) => setFormData({ ...formData, pros: e.target.value })}
-          placeholder="Fast withdrawals, Great support"
+          placeholder="Hurtige udbetalinger, God support"
         />
       </div>
 
       <div className="space-y-2">
-        <Label htmlFor="cons">Cons (comma-separated)</Label>
+        <Label htmlFor="cons">Ulemper (kommasepareret)</Label>
         <Input
           id="cons"
           value={formData.cons}
           onChange={(e) => setFormData({ ...formData, cons: e.target.value })}
-          placeholder="High wagering, Limited games"
+          placeholder="Højt gennemspil, Begrænsede spil"
         />
       </div>
 
       <div className="space-y-2">
-        <Label htmlFor="description">Description</Label>
+        <Label htmlFor="description">Beskrivelse</Label>
         <Textarea
           id="description"
           value={formData.description}
@@ -296,7 +296,7 @@ function AddCasinoForm({ onClose }: { onClose: () => void }) {
 
       <Button type="submit" className="w-full" disabled={createCasino.isPending}>
         {createCasino.isPending && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
-        Add Casino
+        Tilføj Casino
       </Button>
     </form>
   );
@@ -325,15 +325,15 @@ function AdminDashboard() {
       <div className="flex min-h-screen flex-col items-center justify-center bg-background p-4">
         <Card className="max-w-md text-center">
           <CardContent className="pt-6">
-            <h2 className="mb-4 text-xl font-bold">Access Denied</h2>
+            <h2 className="mb-4 text-xl font-bold">Adgang Nægtet</h2>
             <p className="mb-4 text-muted-foreground">
-              You don't have admin privileges. Please contact an administrator to get access.
+              Du har ikke administratorrettigheder. Kontakt venligst en administrator for at få adgang.
             </p>
             <p className="mb-4 text-sm text-muted-foreground">
-              Logged in as: {user?.email}
+              Logget ind som: {user?.email}
             </p>
             <Button onClick={handleSignOut} variant="outline">
-              <LogOut className="mr-2 h-4 w-4" /> Sign Out
+              <LogOut className="mr-2 h-4 w-4" /> Log Ud
             </Button>
           </CardContent>
         </Card>
@@ -349,7 +349,7 @@ function AdminDashboard() {
           <div className="flex items-center gap-4">
             <span className="text-sm text-muted-foreground">{user?.email}</span>
             <Button onClick={handleSignOut} variant="outline" size="sm">
-              <LogOut className="mr-2 h-4 w-4" /> Sign Out
+              <LogOut className="mr-2 h-4 w-4" /> Log Ud
             </Button>
           </div>
         </div>
@@ -358,18 +358,18 @@ function AdminDashboard() {
       <main className="container py-8">
         <div className="mb-8 flex items-center justify-between">
           <div>
-            <h2 className="text-2xl font-bold">Casino Deals</h2>
-            <p className="text-muted-foreground">Manage casino bonuses and offers</p>
+            <h2 className="text-2xl font-bold">Casino Tilbud</h2>
+            <p className="text-muted-foreground">Administrer casinobonusser og tilbud</p>
           </div>
           <Dialog open={dialogOpen} onOpenChange={setDialogOpen}>
             <DialogTrigger asChild>
               <Button>
-                <Plus className="mr-2 h-4 w-4" /> Add Casino
+                <Plus className="mr-2 h-4 w-4" /> Tilføj Casino
               </Button>
             </DialogTrigger>
             <DialogContent className="max-w-2xl">
               <DialogHeader>
-                <DialogTitle>Add New Casino</DialogTitle>
+                <DialogTitle>Tilføj Nyt Casino</DialogTitle>
               </DialogHeader>
               <AddCasinoForm onClose={() => setDialogOpen(false)} />
             </DialogContent>
@@ -393,10 +393,10 @@ function AdminDashboard() {
                       <div className="flex items-center gap-2">
                         <h3 className="font-semibold">{casino.name}</h3>
                         {!casino.is_active && (
-                          <Badge variant="secondary">Inactive</Badge>
+                          <Badge variant="secondary">Inaktiv</Badge>
                         )}
                         <Badge variant={casino.bonus_type === "No-sticky" ? "default" : "outline"}>
-                          {casino.bonus_type}
+                          {casino.bonus_type === "No-sticky" ? "Ikke-klæbende" : casino.bonus_type}
                         </Badge>
                       </div>
                       <p className="text-sm text-muted-foreground">
@@ -416,18 +416,18 @@ function AdminDashboard() {
                     </AlertDialogTrigger>
                     <AlertDialogContent>
                       <AlertDialogHeader>
-                        <AlertDialogTitle>Delete Casino</AlertDialogTitle>
+                        <AlertDialogTitle>Slet Casino</AlertDialogTitle>
                         <AlertDialogDescription>
-                          Are you sure you want to delete "{casino.name}"? This action cannot be undone.
+                          Er du sikker på, at du vil slette "{casino.name}"? Denne handling kan ikke fortrydes.
                         </AlertDialogDescription>
                       </AlertDialogHeader>
                       <AlertDialogFooter>
-                        <AlertDialogCancel>Cancel</AlertDialogCancel>
+                        <AlertDialogCancel>Annuller</AlertDialogCancel>
                         <AlertDialogAction
                           onClick={() => deleteCasino.mutate(casino.id)}
                           className="bg-destructive text-destructive-foreground hover:bg-destructive/90"
                         >
-                          Delete
+                          Slet
                         </AlertDialogAction>
                       </AlertDialogFooter>
                     </AlertDialogContent>
@@ -439,7 +439,7 @@ function AdminDashboard() {
             {casinos?.length === 0 && (
               <Card>
                 <CardContent className="py-12 text-center">
-                  <p className="text-muted-foreground">No casinos found. Add your first casino!</p>
+                  <p className="text-muted-foreground">Ingen casinoer fundet. Tilføj dit første casino!</p>
                 </CardContent>
               </Card>
             )}

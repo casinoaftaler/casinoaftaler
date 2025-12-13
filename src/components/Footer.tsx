@@ -14,19 +14,19 @@ export function Footer() {
               <span className="text-xl font-bold">Casino Bonus Hub</span>
             </Link>
             <p className="text-sm text-muted-foreground">
-              Your trusted source for casino bonus comparisons and reviews.
+              Din pålidelige kilde til sammenligning af casinobonusser og anmeldelser.
             </p>
           </div>
 
           <div>
-            <h4 className="mb-4 text-sm font-semibold">Quick Links</h4>
+            <h4 className="mb-4 text-sm font-semibold">Hurtige Links</h4>
             <ul className="space-y-2 text-sm">
               <li>
                 <Link
                   to="/"
                   className="text-muted-foreground transition-colors hover:text-foreground"
                 >
-                  Top Casinos
+                  Top Casinoer
                 </Link>
               </li>
               <li>
@@ -42,55 +42,55 @@ export function Footer() {
                   to="/about"
                   className="text-muted-foreground transition-colors hover:text-foreground"
                 >
-                  About Us
+                  Om Os
                 </Link>
               </li>
             </ul>
           </div>
 
           <div>
-            <h4 className="mb-4 text-sm font-semibold">Responsible Gaming</h4>
+            <h4 className="mb-4 text-sm font-semibold">Ansvarligt Spil</h4>
             <ul className="space-y-2 text-sm">
               <li>
                 <Link
                   to="/responsible-gaming"
                   className="text-muted-foreground transition-colors hover:text-foreground"
                 >
-                  Play Responsibly
+                  Spil Ansvarligt
                 </Link>
               </li>
               <li>
                 <a
-                  href="https://www.gamcare.org.uk/"
+                  href="https://www.stopspillet.dk/"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-muted-foreground transition-colors hover:text-foreground"
                 >
-                  GamCare
+                  StopSpillet
                 </a>
               </li>
               <li>
                 <a
-                  href="https://www.begambleaware.org/"
+                  href="https://www.spillemyndigheden.dk/"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-muted-foreground transition-colors hover:text-foreground"
                 >
-                  BeGambleAware
+                  Spillemyndigheden
                 </a>
               </li>
             </ul>
           </div>
 
           <div>
-            <h4 className="mb-4 text-sm font-semibold">Legal</h4>
+            <h4 className="mb-4 text-sm font-semibold">Juridisk</h4>
             <ul className="space-y-2 text-sm">
               <li>
                 <Link
                   to="/privacy"
                   className="text-muted-foreground transition-colors hover:text-foreground"
                 >
-                  Privacy Policy
+                  Privatlivspolitik
                 </Link>
               </li>
               <li>
@@ -98,7 +98,7 @@ export function Footer() {
                   to="/terms"
                   className="text-muted-foreground transition-colors hover:text-foreground"
                 >
-                  Terms of Service
+                  Vilkår og Betingelser
                 </Link>
               </li>
               <li>
@@ -106,7 +106,7 @@ export function Footer() {
                   to="/cookies"
                   className="text-muted-foreground transition-colors hover:text-foreground"
                 >
-                  Cookie Policy
+                  Cookiepolitik
                 </Link>
               </li>
             </ul>
@@ -115,8 +115,8 @@ export function Footer() {
 
         <div className="mt-8 border-t border-border pt-8">
           <p className="text-center text-xs text-muted-foreground">
-            © {new Date().getFullYear()} Casino Bonus Hub. All rights reserved.
-            Gambling can be addictive. Please play responsibly. 18+
+            © {new Date().getFullYear()} Casino Bonus Hub. Alle rettigheder forbeholdes.
+            Spil kan være vanedannende. Spil venligst ansvarligt. 18+
           </p>
         </div>
       </div>

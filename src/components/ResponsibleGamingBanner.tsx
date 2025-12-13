@@ -7,14 +7,14 @@ export function ResponsibleGamingBanner() {
         <AlertTriangle className="h-4 w-4" />
         <span className="font-medium">18+</span>
         <span className="hidden md:inline">|</span>
-        <span>Gambling can be addictive. Please play responsibly.</span>
+        <span>Spil kan være vanedannende. Spil venligst ansvarligt.</span>
         <a
-          href="https://www.begambleaware.org/"
+          href="https://www.stopspillet.dk/"
           target="_blank"
           rel="noopener noreferrer"
           className="underline hover:no-underline"
         >
-          BeGambleAware.org
+          StopSpillet.dk
         </a>
       </div>
     </div>
