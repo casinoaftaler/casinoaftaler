@@ -29,7 +29,7 @@ export function Header() {
             to="/"
             className="text-sm font-medium transition-colors hover:text-primary"
           >
-            Casinos
+            Casinoer
           </Link>
           <DropdownMenu>
             <DropdownMenuTrigger className="flex items-center gap-1 text-sm font-medium transition-colors hover:text-primary">
@@ -37,13 +37,13 @@ export function Header() {
             </DropdownMenuTrigger>
             <DropdownMenuContent align="center" className="bg-popover">
               <DropdownMenuItem asChild>
-                <Link to="/bonus-guide">All Bonus Types</Link>
+                <Link to="/bonus-guide">Alle Bonustyper</Link>
               </DropdownMenuItem>
               <DropdownMenuItem asChild>
-                <Link to="/bonus-guide#no-sticky">No-Sticky Bonuses</Link>
+                <Link to="/bonus-guide#no-sticky">Ikke-klæbende Bonusser</Link>
               </DropdownMenuItem>
               <DropdownMenuItem asChild>
-                <Link to="/bonus-guide#sticky">Sticky Bonuses</Link>
+                <Link to="/bonus-guide#sticky">Klæbende Bonusser</Link>
               </DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>
@@ -51,13 +51,13 @@ export function Header() {
             to="/about"
             className="text-sm font-medium transition-colors hover:text-primary"
           >
-            About Us
+            Om Os
           </Link>
           <Link
             to="/responsible-gaming"
             className="text-sm font-medium transition-colors hover:text-primary"
           >
-            Responsible Gaming
+            Ansvarligt Spil
           </Link>
         </nav>
 
@@ -87,7 +87,7 @@ export function Header() {
               className="text-sm font-medium transition-colors hover:text-primary"
               onClick={() => setMobileMenuOpen(false)}
             >
-              Casinos
+              Casinoer
             </Link>
             <Link
               to="/bonus-guide"
@@ -101,14 +101,14 @@ export function Header() {
               className="text-sm font-medium transition-colors hover:text-primary"
               onClick={() => setMobileMenuOpen(false)}
             >
-              About Us
+              Om Os
             </Link>
             <Link
               to="/responsible-gaming"
               className="text-sm font-medium transition-colors hover:text-primary"
               onClick={() => setMobileMenuOpen(false)}
             >
-              Responsible Gaming
+              Ansvarligt Spil
             </Link>
           </nav>
         </div>

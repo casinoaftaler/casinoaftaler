@@ -34,10 +34,10 @@ const Index = () => {
       <section id="top-casinos" className="py-16">
         <div className="container">
           <div className="mb-8">
-            <h2 className="mb-4 text-3xl font-bold">Top Casino Bonuses</h2>
+            <h2 className="mb-4 text-3xl font-bold">Top Casinobonusser</h2>
             <p className="mb-6 text-muted-foreground">
-              Hand-picked casinos with the best welcome bonuses, vetted by our
-              expert team.
+              Håndplukkede casinoer med de bedste velkomstbonusser, gennemgået af
+              vores ekspertteam.
             </p>
             <FilterTabs
               activeFilter={activeFilter}
@@ -79,7 +79,7 @@ const Index = () => {
 
           {!isLoading && filteredCasinos.length === 0 && (
             <p className="py-12 text-center text-muted-foreground">
-              No casinos match this filter. Try another category.
+              Ingen casinoer matcher dette filter. Prøv en anden kategori.
             </p>
           )}
         </div>

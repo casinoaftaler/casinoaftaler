@@ -8,10 +8,10 @@ export function BonusTypeCards() {
     <section className="py-16">
       <div className="container">
         <div className="mb-12 text-center">
-          <h2 className="mb-4 text-3xl font-bold">Understanding Bonus Types</h2>
+          <h2 className="mb-4 text-3xl font-bold">Forstå Bonustyper</h2>
           <p className="mx-auto max-w-2xl text-muted-foreground">
-            Not all casino bonuses are created equal. Learn the difference
-            between the main bonus types to make informed decisions.
+            Ikke alle casinobonusser er skabt lige. Lær forskellen mellem de
+            vigtigste bonustyper for at træffe informerede beslutninger.
           </p>
         </div>
 
@@ -20,33 +20,33 @@ export function BonusTypeCards() {
           <Card className="border-primary/50">
             <CardHeader>
               <div className="mb-2 inline-flex rounded-full bg-primary/10 px-3 py-1 text-sm font-medium text-primary">
-                Recommended
+                Anbefalet
               </div>
-              <CardTitle className="text-2xl">No-Sticky Bonus</CardTitle>
+              <CardTitle className="text-2xl">Ikke-klæbende Bonus</CardTitle>
             </CardHeader>
             <CardContent className="space-y-4">
               <p className="text-muted-foreground">
-                With a no-sticky bonus, your real money and bonus funds are kept
-                separate. You can withdraw your real money winnings at any time
-                without forfeiting the bonus.
+                Med en ikke-klæbende bonus holdes dine rigtige penge og
+                bonusmidler adskilt. Du kan hæve dine rigtige pengegevinster
+                når som helst uden at miste bonussen.
               </p>
               <ul className="space-y-2">
                 <li className="flex items-center gap-2">
                   <Check className="h-5 w-5 text-primary" />
-                  <span>Withdraw real money anytime</span>
+                  <span>Hæv rigtige penge når som helst</span>
                 </li>
                 <li className="flex items-center gap-2">
                   <Check className="h-5 w-5 text-primary" />
-                  <span>Lower risk for players</span>
+                  <span>Lavere risiko for spillere</span>
                 </li>
                 <li className="flex items-center gap-2">
                   <Check className="h-5 w-5 text-primary" />
-                  <span>Bonus used after real money</span>
+                  <span>Bonus bruges efter rigtige penge</span>
                 </li>
               </ul>
               <Button asChild variant="outline" className="w-full">
                 <Link to="/bonus-guide#no-sticky">
-                  Learn More <ArrowRight className="ml-2 h-4 w-4" />
+                  Læs Mere <ArrowRight className="ml-2 h-4 w-4" />
                 </Link>
               </Button>
             </CardContent>
@@ -56,33 +56,33 @@ export function BonusTypeCards() {
           <Card>
             <CardHeader>
               <div className="mb-2 inline-flex rounded-full bg-muted px-3 py-1 text-sm font-medium">
-                Traditional
+                Traditionel
               </div>
-              <CardTitle className="text-2xl">Sticky Bonus</CardTitle>
+              <CardTitle className="text-2xl">Klæbende Bonus</CardTitle>
             </CardHeader>
             <CardContent className="space-y-4">
               <p className="text-muted-foreground">
-                A sticky bonus combines your deposit and bonus into one balance.
-                You must meet wagering requirements before any withdrawals are
-                possible.
+                En klæbende bonus kombinerer din indbetaling og bonus til én
+                saldo. Du skal opfylde gennemspilskravene, før udbetalinger er
+                mulige.
               </p>
               <ul className="space-y-2">
                 <li className="flex items-center gap-2">
                   <X className="h-5 w-5 text-destructive" />
-                  <span>Cannot withdraw until wagering complete</span>
+                  <span>Kan ikke hæve før gennemspil er fuldført</span>
                 </li>
                 <li className="flex items-center gap-2">
                   <Check className="h-5 w-5 text-primary" />
-                  <span>Often larger bonus amounts</span>
+                  <span>Ofte større bonusbeløb</span>
                 </li>
                 <li className="flex items-center gap-2">
                   <Check className="h-5 w-5 text-primary" />
-                  <span>Good for extended play sessions</span>
+                  <span>God til længere spillesessioner</span>
                 </li>
               </ul>
               <Button asChild variant="outline" className="w-full">
                 <Link to="/bonus-guide#sticky">
-                  Learn More <ArrowRight className="ml-2 h-4 w-4" />
+                  Læs Mere <ArrowRight className="ml-2 h-4 w-4" />
                 </Link>
               </Button>
             </CardContent>

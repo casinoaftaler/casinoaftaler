@@ -11,46 +11,46 @@ const BonusGuide = () => {
         <div className="mb-16 text-center">
           <h1 className="mb-4 text-4xl font-bold">Casino Bonus Guide</h1>
           <p className="mx-auto max-w-2xl text-lg text-muted-foreground">
-            Everything you need to know about casino bonuses, how they work, and
-            how to choose the right one for you.
+            Alt du behøver at vide om casinobonusser, hvordan de fungerer, og
+            hvordan du vælger den rigtige til dig.
           </p>
         </div>
 
         {/* Table of Contents */}
         <Card className="mx-auto mb-16 max-w-2xl">
           <CardHeader>
-            <CardTitle>In This Guide</CardTitle>
+            <CardTitle>I Denne Guide</CardTitle>
           </CardHeader>
           <CardContent>
             <ul className="space-y-2">
               <li>
                 <a href="#what-is-bonus" className="text-primary hover:underline">
-                  What is a Casino Bonus?
+                  Hvad er en Casinobonus?
                 </a>
               </li>
               <li>
                 <a href="#bonus-types" className="text-primary hover:underline">
-                  Types of Casino Bonuses
+                  Typer af Casinobonusser
                 </a>
               </li>
               <li>
                 <a href="#no-sticky" className="text-primary hover:underline">
-                  No-Sticky Bonuses Explained
+                  Ikke-klæbende Bonusser Forklaret
                 </a>
               </li>
               <li>
                 <a href="#sticky" className="text-primary hover:underline">
-                  Sticky Bonuses Explained
+                  Klæbende Bonusser Forklaret
                 </a>
               </li>
               <li>
                 <a href="#wagering" className="text-primary hover:underline">
-                  Understanding Wagering Requirements
+                  Forståelse af Gennemspilskrav
                 </a>
               </li>
               <li>
                 <a href="#tips" className="text-primary hover:underline">
-                  Tips for Choosing Bonuses
+                  Tips til Valg af Bonusser
                 </a>
               </li>
             </ul>
@@ -61,59 +61,58 @@ const BonusGuide = () => {
         <div className="mx-auto max-w-3xl space-y-16">
           {/* What is a Bonus */}
           <section id="what-is-bonus">
-            <h2 className="mb-4 text-2xl font-bold">What is a Casino Bonus?</h2>
+            <h2 className="mb-4 text-2xl font-bold">Hvad er en Casinobonus?</h2>
             <p className="mb-4 text-muted-foreground">
-              A casino bonus is a promotional incentive offered by online
-              casinos to attract new players or reward loyal customers. These
-              bonuses typically come in the form of extra money, free spins, or
-              other perks that give players more value when they play.
+              En casinobonus er et kampagneincitament, der tilbydes af online
+              casinoer for at tiltrække nye spillere eller belønne loyale kunder.
+              Disse bonusser kommer typisk i form af ekstra penge, gratis spins
+              eller andre fordele, der giver spillere mere værdi, når de spiller.
             </p>
             <p className="text-muted-foreground">
-              While bonuses can provide significant value, they always come with
-              terms and conditions that you should understand before accepting.
-              The most important of these are wagering requirements, which
-              determine how much you need to bet before you can withdraw any
-              winnings.
+              Selvom bonusser kan give betydelig værdi, kommer de altid med
+              vilkår og betingelser, som du bør forstå, før du accepterer.
+              De vigtigste af disse er gennemspilskrav, som bestemmer, hvor meget
+              du skal spille for, før du kan hæve eventuelle gevinster.
             </p>
           </section>
 
           {/* Bonus Types */}
           <section id="bonus-types">
-            <h2 className="mb-4 text-2xl font-bold">Types of Casino Bonuses</h2>
+            <h2 className="mb-4 text-2xl font-bold">Typer af Casinobonusser</h2>
             <div className="grid gap-4 md:grid-cols-2">
               <Card>
                 <CardContent className="pt-6">
-                  <h3 className="mb-2 font-semibold">Welcome Bonus</h3>
+                  <h3 className="mb-2 font-semibold">Velkomstbonus</h3>
                   <p className="text-sm text-muted-foreground">
-                    Offered to new players upon registration, often matching
-                    your first deposit by 100% or more.
+                    Tilbydes til nye spillere ved registrering, ofte med match
+                    af din første indbetaling med 100% eller mere.
                   </p>
                 </CardContent>
               </Card>
               <Card>
                 <CardContent className="pt-6">
-                  <h3 className="mb-2 font-semibold">No-Deposit Bonus</h3>
+                  <h3 className="mb-2 font-semibold">Bonus Uden Indbetaling</h3>
                   <p className="text-sm text-muted-foreground">
-                    Free bonus given without requiring a deposit, usually
-                    smaller but with no financial risk.
+                    Gratis bonus givet uden krav om indbetaling, normalt mindre
+                    men uden finansiel risiko.
                   </p>
                 </CardContent>
               </Card>
               <Card>
                 <CardContent className="pt-6">
-                  <h3 className="mb-2 font-semibold">Free Spins</h3>
+                  <h3 className="mb-2 font-semibold">Gratis Spins</h3>
                   <p className="text-sm text-muted-foreground">
-                    Complimentary spins on slot games, often included with
-                    welcome packages or as standalone offers.
+                    Gratis omgange på spilleautomater, ofte inkluderet i
+                    velkomstpakker eller som selvstændige tilbud.
                   </p>
                 </CardContent>
               </Card>
               <Card>
                 <CardContent className="pt-6">
-                  <h3 className="mb-2 font-semibold">Reload Bonus</h3>
+                  <h3 className="mb-2 font-semibold">Genindbetalingsbonus</h3>
                   <p className="text-sm text-muted-foreground">
-                    Bonus for existing players when making additional deposits,
-                    typically smaller than welcome bonuses.
+                    Bonus til eksisterende spillere ved yderligere indbetalinger,
+                    typisk mindre end velkomstbonusser.
                   </p>
                 </CardContent>
               </Card>
@@ -122,38 +121,39 @@ const BonusGuide = () => {
 
           {/* No-Sticky */}
           <section id="no-sticky">
-            <h2 className="mb-4 text-2xl font-bold">No-Sticky Bonuses Explained</h2>
+            <h2 className="mb-4 text-2xl font-bold">Ikke-klæbende Bonusser Forklaret</h2>
             <Card className="border-primary/50">
               <CardContent className="pt-6">
                 <p className="mb-4 text-muted-foreground">
-                  A no-sticky bonus (also called a "parachute" or "forfeitable"
-                  bonus) keeps your real money deposit separate from the bonus
-                  funds. You play with your real money first, and the bonus only
-                  kicks in if you lose your deposit.
+                  En ikke-klæbende bonus (også kaldet "faldskærms" eller "fortabelig"
+                  bonus) holder din rigtige pengeindbetaling adskilt fra
+                  bonusmidlerne. Du spiller med dine rigtige penge først, og
+                  bonussen træder kun i kraft, hvis du mister din indbetaling.
                 </p>
-                <h4 className="mb-2 font-semibold">Key Benefits:</h4>
+                <h4 className="mb-2 font-semibold">Vigtigste Fordele:</h4>
                 <ul className="mb-4 space-y-2">
                   <li className="flex items-center gap-2">
                     <Check className="h-4 w-4 text-primary" />
-                    <span>Withdraw your real money winnings at any time</span>
+                    <span>Hæv dine rigtige pengegevinster når som helst</span>
                   </li>
                   <li className="flex items-center gap-2">
                     <Check className="h-4 w-4 text-primary" />
-                    <span>Lower risk - you only use bonus if deposit is lost</span>
+                    <span>Lavere risiko - du bruger kun bonus, hvis indbetaling er tabt</span>
                   </li>
                   <li className="flex items-center gap-2">
                     <Check className="h-4 w-4 text-primary" />
-                    <span>Bonus acts as a "safety net" for bad sessions</span>
+                    <span>Bonus fungerer som et "sikkerhedsnet" ved dårlige sessioner</span>
                   </li>
                 </ul>
-                <h4 className="mb-2 font-semibold">How It Works:</h4>
+                <h4 className="mb-2 font-semibold">Sådan Fungerer Det:</h4>
                 <p className="text-sm text-muted-foreground">
-                  Example: You deposit $100 and receive a $100 no-sticky bonus.
-                  You play with your $100 deposit first. If you win $500, you
-                  can withdraw the $500 (minus your original $100 that was
-                  played) without touching the bonus. The bonus is forfeited
-                  when you withdraw. If you lose your deposit, the $100 bonus
-                  activates and you can continue playing.
+                  Eksempel: Du indbetaler 500 kr. og modtager en 500 kr.
+                  ikke-klæbende bonus. Du spiller med din indbetaling på 500 kr.
+                  først. Hvis du vinder 2.500 kr., kan du hæve de 2.500 kr.
+                  (minus dine oprindelige 500 kr., der blev spillet) uden at røre
+                  bonussen. Bonussen fortabes, når du hæver. Hvis du mister din
+                  indbetaling, aktiveres bonussen på 500 kr., og du kan fortsætte
+                  med at spille.
                 </p>
               </CardContent>
             </Card>
@@ -161,39 +161,38 @@ const BonusGuide = () => {
 
           {/* Sticky */}
           <section id="sticky">
-            <h2 className="mb-4 text-2xl font-bold">Sticky Bonuses Explained</h2>
+            <h2 className="mb-4 text-2xl font-bold">Klæbende Bonusser Forklaret</h2>
             <Card>
               <CardContent className="pt-6">
                 <p className="mb-4 text-muted-foreground">
-                  A sticky bonus (also called a "standard" or "integrated"
-                  bonus) combines your deposit and bonus funds into a single
-                  balance. You cannot withdraw anything until you've completed
-                  the wagering requirements.
+                  En klæbende bonus (også kaldet "standard" eller "integreret"
+                  bonus) kombinerer din indbetaling og bonusmidler til én saldo.
+                  Du kan ikke hæve noget, før du har opfyldt gennemspilskravene.
                 </p>
-                <h4 className="mb-2 font-semibold">Considerations:</h4>
+                <h4 className="mb-2 font-semibold">Overvejelser:</h4>
                 <ul className="mb-4 space-y-2">
                   <li className="flex items-center gap-2">
                     <X className="h-4 w-4 text-destructive" />
-                    <span>Cannot withdraw until wagering is complete</span>
+                    <span>Kan ikke hæve, før gennemspil er fuldført</span>
                   </li>
                   <li className="flex items-center gap-2">
                     <Check className="h-4 w-4 text-primary" />
-                    <span>Often larger bonus percentages available</span>
+                    <span>Ofte større bonusprocenter tilgængelige</span>
                   </li>
                   <li className="flex items-center gap-2">
                     <Check className="h-4 w-4 text-primary" />
-                    <span>Good for extended play sessions</span>
+                    <span>God til længere spillesessioner</span>
                   </li>
                 </ul>
                 <div className="rounded-lg bg-muted/50 p-4">
                   <div className="flex items-start gap-2">
                     <AlertTriangle className="h-5 w-5 shrink-0 text-primary" />
                     <p className="text-sm text-muted-foreground">
-                      <strong>Important:</strong> With sticky bonuses, if you
-                      win big early, you still need to complete the wagering
-                      requirements before withdrawing. This means you could
-                      potentially lose those winnings while trying to meet the
-                      requirements.
+                      <strong>Vigtigt:</strong> Med klæbende bonusser, hvis du
+                      vinder stort tidligt, skal du stadig opfylde
+                      gennemspilskravene, før du kan hæve. Det betyder, at du
+                      potentielt kan miste disse gevinster, mens du prøver at
+                      opfylde kravene.
                     </p>
                   </div>
                 </div>
@@ -204,87 +203,87 @@ const BonusGuide = () => {
           {/* Wagering */}
           <section id="wagering">
             <h2 className="mb-4 text-2xl font-bold">
-              Understanding Wagering Requirements
+              Forståelse af Gennemspilskrav
             </h2>
             <p className="mb-4 text-muted-foreground">
-              Wagering requirements (also called playthrough requirements)
-              specify how many times you must bet the bonus amount before you
-              can withdraw any winnings. This is the most important factor when
-              evaluating a bonus.
+              Gennemspilskrav (også kaldet omsætningskrav) specificerer, hvor
+              mange gange du skal spille for bonusbeløbet, før du kan hæve
+              eventuelle gevinster. Dette er den vigtigste faktor, når du
+              vurderer en bonus.
             </p>
             <Card className="mb-6 bg-muted/30">
               <CardContent className="pt-6">
-                <h4 className="mb-2 font-semibold">Calculation Example:</h4>
+                <h4 className="mb-2 font-semibold">Beregningseksempel:</h4>
                 <p className="text-muted-foreground">
-                  $100 bonus with 35x wagering requirement = $3,500 in total bets
-                  required before withdrawal.
+                  500 kr. bonus med 35x gennemspilskrav = 17.500 kr. i samlede
+                  væddemål krævet før udbetaling.
                 </p>
               </CardContent>
             </Card>
-            <h4 className="mb-2 font-semibold">Wagering Requirement Guide:</h4>
+            <h4 className="mb-2 font-semibold">Guide til Gennemspilskrav:</h4>
             <ul className="space-y-2 text-muted-foreground">
               <li>
-                <strong className="text-foreground">Under 30x:</strong> Excellent
-                - very player-friendly
+                <strong className="text-foreground">Under 30x:</strong> Fremragende
+                - meget spillervenligt
               </li>
               <li>
-                <strong className="text-foreground">30x - 40x:</strong> Good -
-                industry average
+                <strong className="text-foreground">30x - 40x:</strong> Godt -
+                branchegennemsnit
               </li>
               <li>
-                <strong className="text-foreground">40x - 50x:</strong> High -
-                harder to complete
+                <strong className="text-foreground">40x - 50x:</strong> Højt -
+                sværere at fuldføre
               </li>
               <li>
-                <strong className="text-foreground">Over 50x:</strong> Very high
-                - proceed with caution
+                <strong className="text-foreground">Over 50x:</strong> Meget højt
+                - vær forsigtig
               </li>
             </ul>
           </section>
 
           {/* Tips */}
           <section id="tips">
-            <h2 className="mb-4 text-2xl font-bold">Tips for Choosing Bonuses</h2>
+            <h2 className="mb-4 text-2xl font-bold">Tips til Valg af Bonusser</h2>
             <div className="space-y-4">
               <Card>
                 <CardContent className="pt-6">
                   <h4 className="mb-2 font-semibold">
-                    1. Prefer No-Sticky Over Sticky
+                    1. Foretruk Ikke-klæbende Frem for Klæbende
                   </h4>
                   <p className="text-sm text-muted-foreground">
-                    No-sticky bonuses give you more flexibility and lower risk.
-                    You can always walk away with your winnings.
+                    Ikke-klæbende bonusser giver dig mere fleksibilitet og lavere
+                    risiko. Du kan altid gå med dine gevinster.
                   </p>
                 </CardContent>
               </Card>
               <Card>
                 <CardContent className="pt-6">
                   <h4 className="mb-2 font-semibold">
-                    2. Look for Low Wagering Requirements
+                    2. Kig Efter Lave Gennemspilskrav
                   </h4>
                   <p className="text-sm text-muted-foreground">
-                    Bonuses with 30x or lower wagering are much easier to clear
-                    and offer better real value.
+                    Bonusser med 30x eller lavere gennemspil er meget nemmere at
+                    gennemføre og tilbyder bedre reel værdi.
                   </p>
                 </CardContent>
               </Card>
               <Card>
                 <CardContent className="pt-6">
-                  <h4 className="mb-2 font-semibold">3. Check the Validity Period</h4>
+                  <h4 className="mb-2 font-semibold">3. Tjek Gyldighedsperioden</h4>
                   <p className="text-sm text-muted-foreground">
-                    Make sure you have enough time to complete the wagering
-                    requirements. Look for 30 days or more.
+                    Sørg for, at du har tid nok til at opfylde gennemspilskravene.
+                    Kig efter 30 dage eller mere.
                   </p>
                 </CardContent>
               </Card>
               <Card>
                 <CardContent className="pt-6">
                   <h4 className="mb-2 font-semibold">
-                    4. Read the Game Contributions
+                    4. Læs Spilbidragene
                   </h4>
                   <p className="text-sm text-muted-foreground">
-                    Slots usually count 100% towards wagering, while table games
-                    may only count 10-20% or be excluded entirely.
+                    Spilleautomater tæller normalt 100% mod gennemspil, mens
+                    bordspil kun kan tælle 10-20% eller være helt udelukket.
                   </p>
                 </CardContent>
               </Card>
@@ -293,14 +292,14 @@ const BonusGuide = () => {
 
           {/* CTA */}
           <div className="rounded-lg bg-primary/10 p-8 text-center">
-            <h2 className="mb-4 text-2xl font-bold">Ready to Find Your Bonus?</h2>
+            <h2 className="mb-4 text-2xl font-bold">Klar til at Finde Din Bonus?</h2>
             <p className="mb-6 text-muted-foreground">
-              Browse our hand-picked selection of top casino bonuses with fair
-              terms and conditions.
+              Gennemse vores håndplukkede udvalg af top casinobonusser med fair
+              vilkår og betingelser.
             </p>
             <Button size="lg" asChild>
               <Link to="/#top-casinos">
-                View Top Bonuses <ArrowRight className="ml-2 h-4 w-4" />
+                Se Top Bonusser <ArrowRight className="ml-2 h-4 w-4" />
               </Link>
             </Button>
           </div>

@@ -1,11 +1,11 @@
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 const filters = [
-  { id: "all", label: "All Bonuses" },
-  { id: "no-sticky", label: "No-Sticky" },
-  { id: "free-spins", label: "Free Spins" },
-  { id: "fast-payout", label: "Fast Payout" },
-  { id: "mobile", label: "Mobile" },
+  { id: "all", label: "Alle Bonusser" },
+  { id: "no-sticky", label: "Ikke-klæbende" },
+  { id: "free-spins", label: "Gratis Spins" },
+  { id: "fast-payout", label: "Hurtig Udbetaling" },
+  { id: "mobile", label: "Mobil" },
 ];
 
 interface FilterTabsProps {

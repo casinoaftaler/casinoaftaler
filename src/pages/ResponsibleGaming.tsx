@@ -11,10 +11,11 @@ const ResponsibleGaming = () => {
           <div className="mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-full bg-primary/10">
             <Shield className="h-8 w-8 text-primary" />
           </div>
-          <h1 className="mb-4 text-4xl font-bold">Responsible Gaming</h1>
+          <h1 className="mb-4 text-4xl font-bold">Ansvarligt Spil</h1>
           <p className="mx-auto max-w-2xl text-lg text-muted-foreground">
-            Gambling should be fun and entertaining. If it stops being enjoyable,
-            it's time to stop. Here's how to stay in control.
+            Spil bør være sjovt og underholdende. Hvis det holder op med at være
+            fornøjeligt, er det tid til at stoppe. Her er, hvordan du holder styr
+            på tingene.
           </p>
         </div>
 
@@ -23,34 +24,34 @@ const ResponsibleGaming = () => {
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
               <AlertTriangle className="h-5 w-5 text-destructive" />
-              Warning Signs of Problem Gambling
+              Advarselstegn på Problematisk Spil
             </CardTitle>
           </CardHeader>
           <CardContent>
             <ul className="space-y-3 text-muted-foreground">
               <li className="flex items-start gap-2">
                 <span className="mt-1 h-2 w-2 shrink-0 rounded-full bg-destructive" />
-                Spending more money than you can afford to lose
+                Bruger flere penge, end du har råd til at tabe
               </li>
               <li className="flex items-start gap-2">
                 <span className="mt-1 h-2 w-2 shrink-0 rounded-full bg-destructive" />
-                Chasing losses by betting more to win back what you've lost
+                Jager tab ved at spille for mere for at vinde det tabte tilbage
               </li>
               <li className="flex items-start gap-2">
                 <span className="mt-1 h-2 w-2 shrink-0 rounded-full bg-destructive" />
-                Borrowing money or selling possessions to gamble
+                Låner penge eller sælger ejendele for at spille
               </li>
               <li className="flex items-start gap-2">
                 <span className="mt-1 h-2 w-2 shrink-0 rounded-full bg-destructive" />
-                Neglecting work, family, or other responsibilities
+                Forsømmer arbejde, familie eller andre ansvar
               </li>
               <li className="flex items-start gap-2">
                 <span className="mt-1 h-2 w-2 shrink-0 rounded-full bg-destructive" />
-                Feeling anxious, depressed, or irritable when not gambling
+                Føler dig ængstelig, deprimeret eller irritabel, når du ikke spiller
               </li>
               <li className="flex items-start gap-2">
                 <span className="mt-1 h-2 w-2 shrink-0 rounded-full bg-destructive" />
-                Hiding your gambling activities from family and friends
+                Skjuler dine spilleaktiviteter for familie og venner
               </li>
             </ul>
           </CardContent>
@@ -59,7 +60,7 @@ const ResponsibleGaming = () => {
         {/* Tips Grid */}
         <div className="mb-16">
           <h2 className="mb-8 text-center text-2xl font-bold">
-            Tips for Staying in Control
+            Tips til at Bevare Kontrollen
           </h2>
           <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
             <Card>
@@ -67,12 +68,12 @@ const ResponsibleGaming = () => {
                 <div className="mb-2 flex h-12 w-12 items-center justify-center rounded-lg bg-primary/10">
                   <Clock className="h-6 w-6 text-primary" />
                 </div>
-                <CardTitle>Set Time Limits</CardTitle>
+                <CardTitle>Sæt Tidsgrænser</CardTitle>
               </CardHeader>
               <CardContent>
                 <p className="text-muted-foreground">
-                  Decide how long you'll play before you start. Use the casino's
-                  session time reminders and stick to your limit.
+                  Beslut, hvor længe du vil spille, før du starter. Brug
+                  casinoets påmindelser om sessionstid og hold dig til din grænse.
                 </p>
               </CardContent>
             </Card>
@@ -82,12 +83,12 @@ const ResponsibleGaming = () => {
                 <div className="mb-2 flex h-12 w-12 items-center justify-center rounded-lg bg-primary/10">
                   <Shield className="h-6 w-6 text-primary" />
                 </div>
-                <CardTitle>Set Budget Limits</CardTitle>
+                <CardTitle>Sæt Budgetgrænser</CardTitle>
               </CardHeader>
               <CardContent>
                 <p className="text-muted-foreground">
-                  Only gamble with money you can afford to lose. Set deposit
-                  limits and never try to win back losses.
+                  Spil kun med penge, du har råd til at tabe. Sæt
+                  indbetalingsgrænser og forsøg aldrig at vinde tab tilbage.
                 </p>
               </CardContent>
             </Card>
@@ -97,12 +98,12 @@ const ResponsibleGaming = () => {
                 <div className="mb-2 flex h-12 w-12 items-center justify-center rounded-lg bg-primary/10">
                   <Users className="h-6 w-6 text-primary" />
                 </div>
-                <CardTitle>Talk to Someone</CardTitle>
+                <CardTitle>Tal med Nogen</CardTitle>
               </CardHeader>
               <CardContent>
                 <p className="text-muted-foreground">
-                  If you're worried about your gambling, talk to friends, family,
-                  or professional support services.
+                  Hvis du er bekymret over dit spil, så tal med venner, familie
+                  eller professionelle støttetjenester.
                 </p>
               </CardContent>
             </Card>
@@ -111,56 +112,56 @@ const ResponsibleGaming = () => {
 
         {/* Self-Exclusion */}
         <div className="mx-auto mb-16 max-w-3xl">
-          <h2 className="mb-4 text-2xl font-bold">Self-Exclusion Options</h2>
+          <h2 className="mb-4 text-2xl font-bold">Selvudelukkelsesmuligheder</h2>
           <p className="mb-6 text-muted-foreground">
-            If you need a break from gambling, most reputable online casinos
-            offer self-exclusion options. You can typically:
+            Hvis du har brug for en pause fra spil, tilbyder de fleste anerkendte
+            online casinoer selvudelukkelsesmuligheder. Du kan typisk:
           </p>
           <ul className="mb-6 space-y-2 text-muted-foreground">
             <li className="flex items-center gap-2">
-              • Take a cool-off period (24 hours to 30 days)
+              • Tage en afkølingsperiode (24 timer til 30 dage)
             </li>
             <li className="flex items-center gap-2">
-              • Self-exclude for a longer period (6 months to 5 years)
+              • Selvudelukke i en længere periode (6 måneder til 5 år)
             </li>
             <li className="flex items-center gap-2">
-              • Permanently close your account
+              • Permanent lukke din konto
             </li>
             <li className="flex items-center gap-2">
-              • Use national self-exclusion schemes like GAMSTOP (UK)
+              • Bruge nationale selvudelukkelsesordninger som ROFUS (Danmark)
             </li>
           </ul>
           <p className="text-muted-foreground">
-            Contact the casino's customer support to learn about their specific
-            responsible gaming tools and options.
+            Kontakt casinoets kundesupport for at lære om deres specifikke
+            værktøjer og muligheder for ansvarligt spil.
           </p>
         </div>
 
         {/* Help Resources */}
         <div className="mb-16">
           <h2 className="mb-8 text-center text-2xl font-bold">
-            Get Help & Support
+            Få Hjælp & Støtte
           </h2>
           <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
             <Card>
               <CardHeader>
                 <div className="flex items-center gap-3">
                   <Globe className="h-6 w-6 text-primary" />
-                  <CardTitle>BeGambleAware</CardTitle>
+                  <CardTitle>StopSpillet</CardTitle>
                 </div>
               </CardHeader>
               <CardContent>
                 <p className="mb-4 text-sm text-muted-foreground">
-                  Free, confidential help and support for anyone who is worried
-                  about their or someone else's gambling.
+                  Gratis, fortrolig hjælp og støtte til alle, der er bekymrede
+                  over deres eget eller andres spil.
                 </p>
                 <Button variant="outline" asChild className="w-full">
                   <a
-                    href="https://www.begambleaware.org/"
+                    href="https://www.stopspillet.dk/"
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    Visit Website
+                    Besøg Hjemmeside
                   </a>
                 </Button>
               </CardContent>
@@ -170,21 +171,21 @@ const ResponsibleGaming = () => {
               <CardHeader>
                 <div className="flex items-center gap-3">
                   <Phone className="h-6 w-6 text-primary" />
-                  <CardTitle>GamCare</CardTitle>
+                  <CardTitle>ROFUS</CardTitle>
                 </div>
               </CardHeader>
               <CardContent>
                 <p className="mb-4 text-sm text-muted-foreground">
-                  Provides information, advice, and support for anyone affected
-                  by gambling. Free helpline available 24/7.
+                  Register Over Frivilligt Udelukkede Spillere. Udeluk dig selv
+                  fra alle danske online casinoer.
                 </p>
                 <Button variant="outline" asChild className="w-full">
                   <a
-                    href="https://www.gamcare.org.uk/"
+                    href="https://www.spillemyndigheden.dk/rofus"
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    Visit Website
+                    Besøg Hjemmeside
                   </a>
                 </Button>
               </CardContent>
@@ -194,21 +195,21 @@ const ResponsibleGaming = () => {
               <CardHeader>
                 <div className="flex items-center gap-3">
                   <HelpCircle className="h-6 w-6 text-primary" />
-                  <CardTitle>Gamblers Anonymous</CardTitle>
+                  <CardTitle>Ludomani</CardTitle>
                 </div>
               </CardHeader>
               <CardContent>
                 <p className="mb-4 text-sm text-muted-foreground">
-                  A fellowship of men and women who have joined together to do
-                  something about their gambling problem.
+                  Center for Ludomani tilbyder gratis behandling og rådgivning
+                  til personer med spilleproblemer.
                 </p>
                 <Button variant="outline" asChild className="w-full">
                   <a
-                    href="https://www.gamblersanonymous.org.uk/"
+                    href="https://ludomani.dk/"
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    Visit Website
+                    Besøg Hjemmeside
                   </a>
                 </Button>
               </CardContent>
@@ -219,12 +220,12 @@ const ResponsibleGaming = () => {
         {/* Final Message */}
         <Card className="mx-auto max-w-3xl bg-muted/50">
           <CardContent className="p-8 text-center">
-            <h3 className="mb-4 text-xl font-bold">Remember</h3>
+            <h3 className="mb-4 text-xl font-bold">Husk</h3>
             <p className="text-muted-foreground">
-              Gambling should always be a form of entertainment, not a way to
-              make money. The house always has an edge, and in the long run,
-              most players will lose. If gambling ever stops being fun, take a
-              break. There's no shame in asking for help.
+              Spil bør altid være en form for underholdning, ikke en måde at
+              tjene penge på. Huset har altid en fordel, og på lang sigt vil de
+              fleste spillere tabe. Hvis spil nogensinde holder op med at være
+              sjovt, så tag en pause. Der er ingen skam i at bede om hjælp.
             </p>
           </CardContent>
         </Card>

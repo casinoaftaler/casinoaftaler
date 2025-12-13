@@ -8,24 +8,24 @@ export function HeroSection() {
       <div className="container relative z-10">
         <div className="mx-auto max-w-3xl text-center">
           <h1 className="mb-6 text-4xl font-bold tracking-tight md:text-5xl lg:text-6xl">
-            Find the Best Casino Bonuses in 2024
+            Find de Bedste Casinobonusser i 2024
           </h1>
           <p className="mb-8 text-lg text-secondary-foreground/80 md:text-xl">
-            Compare welcome bonuses, no-deposit offers, and free spins from
-            top-rated online casinos. We help you find the perfect bonus for
-            your playing style.
+            Sammenlign velkomstbonusser, gratis spins og eksklusive tilbud fra
+            de bedste online casinoer. Vi hjælper dig med at finde den perfekte
+            bonus til din spillestil.
           </p>
           <div className="flex flex-wrap justify-center gap-4">
             <Button size="lg" asChild>
               <a href="#top-casinos">
                 <Award className="mr-2 h-5 w-5" />
-                View Best Bonuses
+                Se Bedste Bonusser
               </a>
             </Button>
             <Button size="lg" variant="outline" asChild className="bg-transparent border-secondary-foreground/30 hover:bg-secondary-foreground/10">
               <Link to="/bonus-guide">
                 <BookOpen className="mr-2 h-5 w-5" />
-                Read Bonus Guide
+                Læs Bonus Guide
               </Link>
             </Button>
           </div>

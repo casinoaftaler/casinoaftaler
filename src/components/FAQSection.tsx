@@ -7,29 +7,29 @@ import {
 
 const faqs = [
   {
-    question: "What is a casino bonus?",
+    question: "Hvad er en casinobonus?",
     answer:
-      "A casino bonus is a promotional offer from online casinos designed to attract new players or reward existing ones. Common types include welcome bonuses, deposit matches, free spins, and no-deposit bonuses. These bonuses give you extra funds or free plays to use on casino games.",
+      "En casinobonus er et kampagnetilbud fra online casinoer designet til at tiltrække nye spillere eller belønne eksisterende. Almindelige typer inkluderer velkomstbonusser, indbetalingsmatch, gratis spins og bonusser uden indbetaling. Disse bonusser giver dig ekstra midler eller gratis spil til brug på casinospil.",
   },
   {
-    question: "What are wagering requirements?",
+    question: "Hvad er gennemspilskrav?",
     answer:
-      "Wagering requirements (also called playthrough requirements) specify how many times you must bet the bonus amount before you can withdraw any winnings. For example, a $100 bonus with 35x wagering means you need to place $3,500 worth of bets before withdrawing.",
+      "Gennemspilskrav (også kaldet omsætningskrav) specificerer, hvor mange gange du skal spille for bonusbeløbet, før du kan hæve eventuelle gevinster. For eksempel betyder en bonus på 1.000 kr. med 35x gennemspil, at du skal placere væddemål for 35.000 kr., før du kan hæve.",
   },
   {
-    question: "What is the difference between sticky and non-sticky bonuses?",
+    question: "Hvad er forskellen mellem klæbende og ikke-klæbende bonusser?",
     answer:
-      "With a non-sticky (or parachute) bonus, your real money is played first, and you can withdraw it at any time. The bonus is only used after your deposit is gone. With a sticky bonus, your deposit and bonus are combined, and you cannot withdraw anything until wagering is complete.",
+      "Med en ikke-klæbende (eller faldskærms) bonus spilles dine rigtige penge først, og du kan hæve dem når som helst. Bonussen bruges kun, når din indbetaling er brugt. Med en klæbende bonus kombineres din indbetaling og bonus, og du kan ikke hæve noget, før gennemspilskravene er opfyldt.",
   },
   {
-    question: "Are online casino bonuses worth it?",
+    question: "Er online casinobonusser det værd?",
     answer:
-      "Casino bonuses can be worth it if you understand the terms and conditions. Look for bonuses with lower wagering requirements (under 40x), reasonable validity periods, and fair game contribution rates. Non-sticky bonuses generally offer better value for players.",
+      "Casinobonusser kan være det værd, hvis du forstår vilkår og betingelser. Kig efter bonusser med lavere gennemspilskrav (under 40x), rimelige gyldighedsperioder og fair spilbidragsprocenter. Ikke-klæbende bonusser tilbyder generelt bedre værdi for spillere.",
   },
   {
-    question: "How do I claim a casino bonus?",
+    question: "Hvordan gør jeg krav på en casinobonus?",
     answer:
-      "To claim a bonus, you typically need to register at the casino, make a qualifying deposit, and either enter a bonus code or opt-in through your account. Some bonuses are automatically credited, while others require you to contact customer support. Always read the terms first!",
+      "For at gøre krav på en bonus skal du typisk registrere dig på casinoet, foretage en kvalificerende indbetaling og enten indtaste en bonuskode eller tilmelde dig via din konto. Nogle bonusser krediteres automatisk, mens andre kræver, at du kontakter kundeservice. Læs altid vilkårene først!",
   },
 ];
 
@@ -39,10 +39,10 @@ export function FAQSection() {
       <div className="container">
         <div className="mb-12 text-center">
           <h2 className="mb-4 text-3xl font-bold">
-            Frequently Asked Questions
+            Ofte Stillede Spørgsmål
           </h2>
           <p className="mx-auto max-w-2xl text-muted-foreground">
-            Everything you need to know about casino bonuses and how they work.
+            Alt du behøver at vide om casinobonusser og hvordan de fungerer.
           </p>
         </div>
 

@@ -70,7 +70,7 @@ export function CasinoCard({ casino, rank }: CasinoCardProps) {
               <Badge
                 variant={casino.bonusType === "No-sticky" ? "default" : "secondary"}
               >
-                {casino.bonusType}
+                {casino.bonusType === "No-sticky" ? "Ikke-klæbende" : casino.bonusType}
               </Badge>
             </div>
 
@@ -84,28 +84,28 @@ export function CasinoCard({ casino, rank }: CasinoCardProps) {
               <div className="flex items-center gap-2">
                 <Gift className="h-4 w-4 text-muted-foreground" />
                 <div>
-                  <p className="text-muted-foreground">Wagering</p>
+                  <p className="text-muted-foreground">Gennemspil</p>
                   <p className="font-medium">{casino.wageringRequirements}</p>
                 </div>
               </div>
               <div className="flex items-center gap-2">
                 <Timer className="h-4 w-4 text-muted-foreground" />
                 <div>
-                  <p className="text-muted-foreground">Validity</p>
+                  <p className="text-muted-foreground">Gyldighed</p>
                   <p className="font-medium">{casino.validity}</p>
                 </div>
               </div>
               <div className="flex items-center gap-2">
                 <CreditCard className="h-4 w-4 text-muted-foreground" />
                 <div>
-                  <p className="text-muted-foreground">Min. Deposit</p>
+                  <p className="text-muted-foreground">Min. Indbetaling</p>
                   <p className="font-medium">{casino.minDeposit}</p>
                 </div>
               </div>
               <div className="flex items-center gap-2">
                 <Clock className="h-4 w-4 text-muted-foreground" />
                 <div>
-                  <p className="text-muted-foreground">Payout Time</p>
+                  <p className="text-muted-foreground">Udbetalingstid</p>
                   <p className="font-medium">{casino.payoutTime}</p>
                 </div>
               </div>
@@ -124,17 +124,17 @@ export function CasinoCard({ casino, rank }: CasinoCardProps) {
             <div className="mt-auto flex flex-wrap gap-3">
               <Button asChild size="lg">
                 <a href="#" target="_blank" rel="noopener noreferrer">
-                  Get Bonus
+                  Få Bonus
                 </a>
               </Button>
               <Button variant="outline" size="lg" asChild>
-                <Link to={`/casino/${casino.slug}`}>Read Review</Link>
+                <Link to={`/casino/${casino.slug}`}>Læs Anmeldelse</Link>
               </Button>
             </div>
 
             <p className="mt-3 text-xs text-muted-foreground">
-              * Terms and conditions apply. New customers only. 18+. Please
-              gamble responsibly.
+              * Vilkår og betingelser gælder. Kun nye kunder. 18+. Spil venligst
+              ansvarligt.
             </p>
           </div>
         </div>
