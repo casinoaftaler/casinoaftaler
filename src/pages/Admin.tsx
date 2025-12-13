@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "@/hooks/useAuth";
-import { useCasinos, useCreateCasino, useUpdateCasino, useDeleteCasino, type Casino, type CasinoInsert } from "@/hooks/useCasinos";
+import { useCasinos, useCreateCasino, useUpdateCasino, useDeleteCasino, useUpdateCasinoPositions, type Casino, type CasinoInsert } from "@/hooks/useCasinos";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -26,7 +26,24 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
-import { Plus, Trash2, LogOut, Star, Loader2, Pencil } from "lucide-react";
+import { Plus, Trash2, LogOut, Star, Loader2, Pencil, GripVertical } from "lucide-react";
+import {
+  DndContext,
+  closestCenter,
+  KeyboardSensor,
+  PointerSensor,
+  useSensor,
+  useSensors,
+  DragEndEvent,
+} from "@dnd-kit/core";
+import {
+  arrayMove,
+  SortableContext,
+  sortableKeyboardCoordinates,
+  useSortable,
+  verticalListSortingStrategy,
+} from "@dnd-kit/sortable";
+import { CSS } from "@dnd-kit/utilities";
 
 function AdminLoginForm() {
   const { signIn, signUp } = useAuth();
@@ -503,13 +520,123 @@ function EditCasinoForm({ casino, onClose }: { casino: Casino; onClose: () => vo
   );
 }
 
+function SortableCasinoCard({
+  casino,
+  onEdit,
+  onDelete,
+}: {
+  casino: Casino;
+  onEdit: (casino: Casino) => void;
+  onDelete: (id: string) => void;
+}) {
+  const {
+    attributes,
+    listeners,
+    setNodeRef,
+    transform,
+    transition,
+    isDragging,
+  } = useSortable({ id: casino.id });
+
+  const style = {
+    transform: CSS.Transform.toString(transform),
+    transition,
+    opacity: isDragging ? 0.5 : 1,
+  };
+
+  return (
+    <Card ref={setNodeRef} style={style}>
+      <CardContent className="flex items-center justify-between p-4">
+        <div className="flex items-center gap-4">
+          <button
+            {...attributes}
+            {...listeners}
+            className="cursor-grab touch-none rounded p-1 hover:bg-muted active:cursor-grabbing"
+          >
+            <GripVertical className="h-5 w-5 text-muted-foreground" />
+          </button>
+          <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-muted text-lg font-bold text-primary">
+            {casino.name.substring(0, 2).toUpperCase()}
+          </div>
+          <div>
+            <div className="flex items-center gap-2">
+              <h3 className="font-semibold">{casino.name}</h3>
+              {!casino.is_active && (
+                <Badge variant="secondary">Inaktiv</Badge>
+              )}
+              <Badge variant={casino.bonus_type === "No-sticky" ? "default" : "outline"}>
+                {casino.bonus_type === "No-sticky" ? "Ikke-klæbende" : casino.bonus_type}
+              </Badge>
+            </div>
+            <p className="text-sm text-muted-foreground">
+              {casino.bonus_amount}
+            </p>
+            <div className="flex items-center gap-1 text-sm">
+              <Star className="h-3 w-3 fill-primary text-primary" />
+              <span>{casino.rating}</span>
+            </div>
+          </div>
+        </div>
+        <div className="flex items-center gap-2">
+          <Button
+            variant="outline"
+            size="icon"
+            onClick={() => onEdit(casino)}
+          >
+            <Pencil className="h-4 w-4" />
+          </Button>
+          <AlertDialog>
+            <AlertDialogTrigger asChild>
+              <Button variant="destructive" size="icon">
+                <Trash2 className="h-4 w-4" />
+              </Button>
+            </AlertDialogTrigger>
+            <AlertDialogContent>
+              <AlertDialogHeader>
+                <AlertDialogTitle>Slet Casino</AlertDialogTitle>
+                <AlertDialogDescription>
+                  Er du sikker på, at du vil slette "{casino.name}"? Denne handling kan ikke fortrydes.
+                </AlertDialogDescription>
+              </AlertDialogHeader>
+              <AlertDialogFooter>
+                <AlertDialogCancel>Annuller</AlertDialogCancel>
+                <AlertDialogAction
+                  onClick={() => onDelete(casino.id)}
+                  className="bg-destructive text-destructive-foreground hover:bg-destructive/90"
+                >
+                  Slet
+                </AlertDialogAction>
+              </AlertDialogFooter>
+            </AlertDialogContent>
+          </AlertDialog>
+        </div>
+      </CardContent>
+    </Card>
+  );
+}
+
 function AdminDashboard() {
   const { user, isAdmin, signOut, loading: authLoading } = useAuth();
   const { data: casinos, isLoading } = useCasinos(true);
   const deleteCasino = useDeleteCasino();
+  const updatePositions = useUpdateCasinoPositions();
   const navigate = useNavigate();
   const [dialogOpen, setDialogOpen] = useState(false);
   const [editingCasino, setEditingCasino] = useState<Casino | null>(null);
+  const [orderedCasinos, setOrderedCasinos] = useState<Casino[]>([]);
+
+  const sensors = useSensors(
+    useSensor(PointerSensor),
+    useSensor(KeyboardSensor, {
+      coordinateGetter: sortableKeyboardCoordinates,
+    })
+  );
+
+  useEffect(() => {
+    if (casinos) {
+      setOrderedCasinos(casinos);
+    }
+  }, [casinos]);
 
   useEffect(() => {
     if (!authLoading && user && !isAdmin) {
@@ -520,6 +647,27 @@ function AdminDashboard() {
   const handleSignOut = async () => {
     await signOut();
     navigate("/admin");
+  };
+
+  const handleDragEnd = (event: DragEndEvent) => {
+    const { active, over } = event;
+
+    if (over && active.id !== over.id) {
+      setOrderedCasinos((items) => {
+        const oldIndex = items.findIndex((item) => item.id === active.id);
+        const newIndex = items.findIndex((item) => item.id === over.id);
+        const newItems = arrayMove(items, oldIndex, newIndex);
+        
+        // Update positions in database
+        const updates = newItems.map((item, index) => ({
+          id: item.id,
+          position: index + 1,
+        }));
+        updatePositions.mutate(updates);
+        
+        return newItems;
+      });
+    }
   };
 
   if (!isAdmin) {
@@ -561,7 +709,7 @@ function AdminDashboard() {
         <div className="mb-8 flex items-center justify-between">
           <div>
             <h2 className="text-2xl font-bold">Casino Tilbud</h2>
-            <p className="text-muted-foreground">Administrer casinobonusser og tilbud</p>
+            <p className="text-muted-foreground">Administrer casinobonusser og tilbud. Træk for at ændre rækkefølge.</p>
           </div>
           <Dialog open={dialogOpen} onOpenChange={setDialogOpen}>
             <DialogTrigger asChild>
@@ -583,78 +731,35 @@ function AdminDashboard() {
             <Loader2 className="h-8 w-8 animate-spin text-primary" />
           </div>
         ) : (
-          <div className="space-y-4">
-            {casinos?.map((casino) => (
-              <Card key={casino.id}>
-                <CardContent className="flex items-center justify-between p-4">
-                  <div className="flex items-center gap-4">
-                    <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-muted text-lg font-bold text-primary">
-                      {casino.name.substring(0, 2).toUpperCase()}
-                    </div>
-                    <div>
-                      <div className="flex items-center gap-2">
-                        <h3 className="font-semibold">{casino.name}</h3>
-                        {!casino.is_active && (
-                          <Badge variant="secondary">Inaktiv</Badge>
-                        )}
-                        <Badge variant={casino.bonus_type === "No-sticky" ? "default" : "outline"}>
-                          {casino.bonus_type === "No-sticky" ? "Ikke-klæbende" : casino.bonus_type}
-                        </Badge>
-                      </div>
-                      <p className="text-sm text-muted-foreground">
-                        {casino.bonus_amount}
-                      </p>
-                      <div className="flex items-center gap-1 text-sm">
-                        <Star className="h-3 w-3 fill-primary text-primary" />
-                        <span>{casino.rating}</span>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <Button
-                      variant="outline"
-                      size="icon"
-                      onClick={() => setEditingCasino(casino)}
-                    >
-                      <Pencil className="h-4 w-4" />
-                    </Button>
-                    <AlertDialog>
-                      <AlertDialogTrigger asChild>
-                        <Button variant="destructive" size="icon">
-                          <Trash2 className="h-4 w-4" />
-                        </Button>
-                      </AlertDialogTrigger>
-                      <AlertDialogContent>
-                        <AlertDialogHeader>
-                          <AlertDialogTitle>Slet Casino</AlertDialogTitle>
-                          <AlertDialogDescription>
-                            Er du sikker på, at du vil slette "{casino.name}"? Denne handling kan ikke fortrydes.
-                          </AlertDialogDescription>
-                        </AlertDialogHeader>
-                        <AlertDialogFooter>
-                          <AlertDialogCancel>Annuller</AlertDialogCancel>
-                          <AlertDialogAction
-                            onClick={() => deleteCasino.mutate(casino.id)}
-                            className="bg-destructive text-destructive-foreground hover:bg-destructive/90"
-                          >
-                            Slet
-                          </AlertDialogAction>
-                        </AlertDialogFooter>
-                      </AlertDialogContent>
-                    </AlertDialog>
-                  </div>
-                </CardContent>
-              </Card>
-            ))}
+          <DndContext
+            sensors={sensors}
+            collisionDetection={closestCenter}
+            onDragEnd={handleDragEnd}
+          >
+            <SortableContext
+              items={orderedCasinos.map((c) => c.id)}
+              strategy={verticalListSortingStrategy}
+            >
+              <div className="space-y-4">
+                {orderedCasinos.map((casino) => (
+                  <SortableCasinoCard
+                    key={casino.id}
+                    casino={casino}
+                    onEdit={setEditingCasino}
+                    onDelete={(id) => deleteCasino.mutate(id)}
+                  />
+                ))}
 
-            {casinos?.length === 0 && (
-              <Card>
-                <CardContent className="py-12 text-center">
-                  <p className="text-muted-foreground">Ingen casinoer fundet. Tilføj dit første casino!</p>
-                </CardContent>
-              </Card>
-            )}
-          </div>
+                {orderedCasinos.length === 0 && (
+                  <Card>
+                    <CardContent className="py-12 text-center">
+                      <p className="text-muted-foreground">Ingen casinoer fundet. Tilføj dit første casino!</p>
+                    </CardContent>
+                  </Card>
+                )}
+              </div>
+            </SortableContext>
+          </DndContext>
         )}
 
         {/* Edit Casino Dialog */}

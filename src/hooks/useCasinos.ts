@@ -19,17 +19,18 @@ export interface Casino {
   cons: string[];
   description: string | null;
   is_active: boolean;
+  position: number;
   created_at: string;
   updated_at: string;
 }
 
-export type CasinoInsert = Omit<Casino, "id" | "created_at" | "updated_at">;
+export type CasinoInsert = Omit<Casino, "id" | "created_at" | "updated_at" | "position">;
 
 export function useCasinos(includeInactive = false) {
   return useQuery({
     queryKey: ["casinos", includeInactive],
     queryFn: async () => {
-      let query = supabase.from("casinos").select("*").order("rating", { ascending: false });
+      let query = supabase.from("casinos").select("*").order("position", { ascending: true });
       
       if (!includeInactive) {
         query = query.eq("is_active", true);
@@ -39,6 +40,37 @@ export function useCasinos(includeInactive = false) {
       
       if (error) throw error;
       return data as Casino[];
+    },
+  });
+}
+
+export function useUpdateCasinoPositions() {
+  const queryClient = useQueryClient();
+
+  return useMutation({
+    mutationFn: async (updates: { id: string; position: number }[]) => {
+      const promises = updates.map(({ id, position }) =>
+        supabase.from("casinos").update({ position }).eq("id", id)
+      );
+      
+      const results = await Promise.all(promises);
+      const error = results.find((r) => r.error)?.error;
+      
+      if (error) throw error;
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["casinos"] });
+      toast({
+        title: "Rækkefølge opdateret",
+        description: "Casino rækkefølgen er gemt.",
+      });
+    },
+    onError: (error) => {
+      toast({
+        title: "Fejl",
+        description: error.message,
+        variant: "destructive",
+      });
     },
   });
 }
