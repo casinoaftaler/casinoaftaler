@@ -21,11 +21,12 @@ export interface Casino {
   is_active: boolean;
   is_recommended: boolean;
   position: number;
+  logo_url: string | null;
   created_at: string;
   updated_at: string;
 }
 
-export type CasinoInsert = Omit<Casino, "id" | "created_at" | "updated_at" | "position" | "is_recommended"> & { is_recommended?: boolean };
+export type CasinoInsert = Omit<Casino, "id" | "created_at" | "updated_at" | "position" | "is_recommended" | "logo_url"> & { is_recommended?: boolean; logo_url?: string | null };
 
 export function useCasinos(includeInactive = false) {
   return useQuery({

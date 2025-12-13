@@ -71,6 +71,7 @@ const Index = () => {
                     cons: casino.cons ?? [],
                     description: casino.description ?? "",
                     isRecommended: casino.is_recommended,
+                    logoUrl: casino.logo_url,
                   }}
                   rank={index + 1}
                 />

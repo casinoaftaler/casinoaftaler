@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "@/hooks/useAuth";
 import { useCasinos, useCreateCasino, useUpdateCasino, useDeleteCasino, useUpdateCasinoPositions, type Casino, type CasinoInsert } from "@/hooks/useCasinos";
+import { LogoUpload } from "@/components/LogoUpload";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -336,6 +337,7 @@ function AddCasinoForm({ onClose }: { onClose: () => void }) {
 
 function EditCasinoForm({ casino, onClose }: { casino: Casino; onClose: () => void }) {
   const updateCasino = useUpdateCasino();
+  const [logoUrl, setLogoUrl] = useState<string | null>(casino.logo_url);
   const [formData, setFormData] = useState({
     name: casino.name,
     slug: casino.slug,
@@ -376,12 +378,22 @@ function EditCasinoForm({ casino, onClose }: { casino: Casino; onClose: () => vo
       description: formData.description || null,
       is_active: formData.is_active,
       is_recommended: formData.is_recommended,
+      logo_url: logoUrl,
     });
     onClose();
   };
 
   return (
     <form onSubmit={handleSubmit} className="space-y-4 max-h-[70vh] overflow-y-auto pr-2">
+      <div className="space-y-2">
+        <Label>Logo</Label>
+        <LogoUpload
+          currentLogoUrl={logoUrl}
+          onLogoChange={setLogoUrl}
+          casinoSlug={formData.slug || formData.name.toLowerCase().replace(/\s+/g, "-")}
+        />
+      </div>
+
       <div className="grid gap-4 md:grid-cols-2">
         <div className="space-y-2">
           <Label htmlFor="edit-name">Casino Navn *</Label>
@@ -584,9 +596,17 @@ function SortableCasinoCard({
           >
             <GripVertical className="h-5 w-5 text-muted-foreground" />
           </button>
-          <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-muted text-lg font-bold text-primary">
-            {casino.name.substring(0, 2).toUpperCase()}
-          </div>
+          {casino.logo_url ? (
+            <img
+              src={casino.logo_url}
+              alt={casino.name}
+              className="h-12 w-12 rounded-lg object-cover"
+            />
+          ) : (
+            <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-muted text-lg font-bold text-primary">
+              {casino.name.substring(0, 2).toUpperCase()}
+            </div>
+          )}
           <div>
             <div className="flex items-center gap-2">
               <h3 className="font-semibold">{casino.name}</h3>

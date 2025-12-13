@@ -21,6 +21,7 @@ export interface Casino {
   cons: string[];
   description: string;
   isRecommended?: boolean;
+  logoUrl?: string | null;
 }
 
 interface CasinoCardProps {
@@ -41,9 +42,17 @@ export function CasinoCard({ casino, rank }: CasinoCardProps) {
                   #{rank}
                 </div>
               )}
-              <div className="flex h-24 w-24 items-center justify-center rounded-lg bg-card text-2xl font-bold text-primary">
-                {casino.name.substring(0, 2).toUpperCase()}
-              </div>
+              {casino.logoUrl ? (
+                <img
+                  src={casino.logoUrl}
+                  alt={casino.name}
+                  className="h-24 w-24 rounded-lg object-cover"
+                />
+              ) : (
+                <div className="flex h-24 w-24 items-center justify-center rounded-lg bg-card text-2xl font-bold text-primary">
+                  {casino.name.substring(0, 2).toUpperCase()}
+                </div>
+              )}
             </div>
           </div>
 
