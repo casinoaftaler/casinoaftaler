@@ -72,6 +72,7 @@ const Index = () => {
                     description: casino.description ?? "",
                     isRecommended: casino.is_recommended,
                     logoUrl: casino.logo_url,
+                    affiliateUrl: casino.affiliate_url,
                   }}
                   rank={index + 1}
                 />
