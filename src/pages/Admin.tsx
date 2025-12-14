@@ -2,7 +2,9 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "@/hooks/useAuth";
 import { useCasinos, useCreateCasino, useUpdateCasino, useDeleteCasino, useUpdateCasinoPositions, type Casino, type CasinoInsert } from "@/hooks/useCasinos";
+import { useSiteSettings } from "@/hooks/useSiteSettings";
 import { LogoUpload } from "@/components/LogoUpload";
+import { HeaderIconUpload } from "@/components/HeaderIconUpload";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -29,6 +31,7 @@ import {
 } from "@/components/ui/alert-dialog";
 import { Plus, Trash2, LogOut, Star, Loader2, Pencil, GripVertical } from "lucide-react";
 import { ThemeToggle } from "@/components/ThemeToggle";
+import { useQueryClient } from "@tanstack/react-query";
 import {
   DndContext,
   closestCenter,
@@ -697,13 +700,21 @@ function SortableCasinoCard({
 function AdminDashboard() {
   const { user, isAdmin, signOut, loading: authLoading } = useAuth();
   const { data: casinos, isLoading } = useCasinos(true);
+  const { data: siteSettings } = useSiteSettings();
   const deleteCasino = useDeleteCasino();
   const updatePositions = useUpdateCasinoPositions();
   const navigate = useNavigate();
+  const queryClient = useQueryClient();
   const [dialogOpen, setDialogOpen] = useState(false);
   const [editingCasino, setEditingCasino] = useState<Casino | null>(null);
   const [orderedCasinos, setOrderedCasinos] = useState<Casino[]>([]);
+  const [headerIconUrl, setHeaderIconUrl] = useState<string | null>(null);
 
+  useEffect(() => {
+    if (siteSettings?.header_icon) {
+      setHeaderIconUrl(siteSettings.header_icon);
+    }
+  }, [siteSettings]);
   const sensors = useSensors(
     useSensor(PointerSensor),
     useSensor(KeyboardSensor, {
@@ -786,6 +797,22 @@ function AdminDashboard() {
       </header>
 
       <main className="container py-8">
+        {/* Site Settings Section */}
+        <Card className="mb-8">
+          <CardHeader>
+            <CardTitle>Site Indstillinger</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <HeaderIconUpload
+              currentIconUrl={headerIconUrl}
+              onIconChange={(url) => {
+                setHeaderIconUrl(url);
+                queryClient.invalidateQueries({ queryKey: ["site-settings"] });
+              }}
+            />
+          </CardContent>
+        </Card>
+
         <div className="mb-8 flex items-center justify-between">
           <div>
             <h2 className="text-2xl font-bold">Casino Tilbud</h2>
