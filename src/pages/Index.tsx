@@ -50,8 +50,8 @@ const Index = () => {
               <Loader2 className="h-8 w-8 animate-spin text-primary" />
             </div>
           ) : (
-            <div className="space-y-6">
-              {filteredCasinos.map((casino, index) => (
+            <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+              {filteredCasinos.map((casino) => (
                 <CasinoCard
                   key={casino.id}
                   casino={{
@@ -74,7 +74,6 @@ const Index = () => {
                     logoUrl: casino.logo_url,
                     affiliateUrl: casino.affiliate_url,
                   }}
-                  rank={index + 1}
                 />
               ))}
             </div>

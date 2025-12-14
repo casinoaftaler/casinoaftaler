@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { Star, Clock, Gift, CreditCard, Timer } from "lucide-react";
+import { Star, Clock } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
@@ -30,127 +30,132 @@ interface CasinoCardProps {
   rank?: number;
 }
 
-export function CasinoCard({ casino, rank }: CasinoCardProps) {
+export function CasinoCard({ casino }: CasinoCardProps) {
   return (
-    <Card className="overflow-hidden">
+    <Card className="overflow-hidden border-border">
       <CardContent className="p-0">
-        <div className="flex flex-col lg:flex-row">
-          {/* Logo Section */}
-          <div className="flex items-center justify-center bg-muted p-6 lg:w-48">
-            <div className="relative">
-              {rank && (
-                <div className="absolute -left-2 -top-2 flex h-8 w-8 items-center justify-center rounded-full bg-primary text-sm font-bold text-primary-foreground">
-                  #{rank}
-                </div>
-              )}
+        <div className="flex flex-col">
+          {/* Top Badges */}
+          <div className="flex items-center justify-center gap-2 p-4 pb-0">
+            {casino.isRecommended && (
+              <Badge variant="secondary" className="rounded-full px-4 py-1">
+                Annonceret
+              </Badge>
+            )}
+            <Badge variant="secondary" className="rounded-full px-4 py-1">
+              {casino.bonusType === "No-sticky" ? "No-sticky" : casino.bonusType}
+            </Badge>
+          </div>
+
+          {/* Logo and Name Section */}
+          <div className="flex items-center gap-4 p-6 pb-4">
+            <div className="flex-shrink-0">
               {casino.logoUrl ? (
                 <img
                   src={casino.logoUrl}
                   alt={casino.name}
-                  className="h-24 w-24 rounded-lg object-cover"
+                  className="h-16 w-24 rounded-lg border border-primary/50 object-cover"
                 />
               ) : (
-                <div className="flex h-24 w-24 items-center justify-center rounded-lg bg-card text-2xl font-bold text-primary">
+                <div className="flex h-16 w-24 items-center justify-center rounded-lg border border-primary/50 bg-card text-lg font-bold text-primary">
                   {casino.name.substring(0, 2).toUpperCase()}
                 </div>
               )}
             </div>
+            <div>
+              <h3 className="text-lg font-bold text-foreground">{casino.name}</h3>
+              <div className="mt-1 flex items-center gap-1">
+                {[...Array(5)].map((_, i) => (
+                  <Star
+                    key={i}
+                    className={`h-4 w-4 ${
+                      i < Math.floor(casino.rating)
+                        ? "fill-accent text-accent"
+                        : "text-muted"
+                    }`}
+                  />
+                ))}
+                <span className="ml-1 text-sm text-muted-foreground">{casino.rating.toFixed(2)}</span>
+              </div>
+            </div>
           </div>
 
-          {/* Main Content */}
-          <div className="flex flex-1 flex-col p-6">
-            <div className="mb-4 flex flex-wrap items-start justify-between gap-4">
-              <div>
-                <div className="flex items-center gap-2">
-                  <h3 className="text-xl font-bold">{casino.name}</h3>
-                  {casino.isRecommended && (
-                    <Badge className="bg-destructive text-destructive-foreground">Anbefalet</Badge>
-                  )}
-                </div>
-                <div className="mt-1 flex items-center gap-2">
-                  <div className="flex items-center gap-1">
-                    {[...Array(5)].map((_, i) => (
-                      <Star
-                        key={i}
-                        className={`h-4 w-4 ${
-                          i < Math.floor(casino.rating)
-                            ? "fill-primary text-primary"
-                            : "text-muted"
-                        }`}
-                      />
-                    ))}
-                  </div>
-                  <span className="text-sm font-medium">{casino.rating}/5</span>
-                </div>
-              </div>
-              <Badge
-                variant={casino.bonusType === "No-sticky" ? "default" : "secondary"}
-              >
-                {casino.bonusType === "No-sticky" ? "Ikke-klæbende" : casino.bonusType}
+          {/* Bonus Amount */}
+          <div className="px-6 pb-2 text-center">
+            <p className="text-2xl font-bold text-accent">{casino.bonusAmount}</p>
+          </div>
+
+          {/* Bonus Type Badge */}
+          <div className="flex justify-center pb-4">
+            <Badge className="bg-primary/20 text-primary hover:bg-primary/30 rounded-full px-4 py-1">
+              {casino.bonusType === "No-sticky" ? "No-sticky bonus" : `${casino.bonusType} bonus`}
+            </Badge>
+          </div>
+
+          {/* Details Grid */}
+          <div className="mx-6 mb-4 grid grid-cols-2 gap-x-4 gap-y-2 text-sm">
+            <div className="flex justify-between">
+              <span className="text-muted-foreground">Omsætningskrav</span>
+              <span className="font-medium text-foreground">{casino.wageringRequirements}</span>
+            </div>
+            <div className="flex justify-between">
+              <span className="text-muted-foreground">Max indsats</span>
+              <span className="font-medium text-foreground">{casino.minDeposit}</span>
+            </div>
+            <div className="flex justify-between">
+              <span className="text-muted-foreground">Gyldighed</span>
+              <span className="font-medium text-foreground">{casino.validity}</span>
+            </div>
+            <div className="flex items-center justify-between">
+              <span className="text-muted-foreground">Udbetalingstid</span>
+              <span className="flex items-center gap-1 font-medium text-foreground">
+                <Clock className="h-3 w-3" />
+                {casino.payoutTime}
+              </span>
+            </div>
+            <div className="flex justify-between">
+              <span className="text-muted-foreground">Min. indskud</span>
+              <span className="font-medium text-foreground">{casino.minDeposit}</span>
+            </div>
+            <div className="flex justify-between">
+              <span className="text-muted-foreground">Bonus type</span>
+              <span className="font-medium text-foreground">{casino.bonusType === "No-sticky" ? "No-sticky" : casino.bonusType}</span>
+            </div>
+          </div>
+
+          {/* Features */}
+          <div className="mx-6 mb-4 flex flex-wrap gap-2">
+            {casino.features.slice(0, 3).map((feature) => (
+              <Badge key={feature} variant="outline" className="rounded-full text-xs">
+                {feature}
               </Badge>
-            </div>
+            ))}
+          </div>
 
-            <div className="mb-4 rounded-lg bg-primary/10 p-4">
-              <p className="text-sm text-muted-foreground">{casino.bonusTitle}</p>
-              <p className="text-2xl font-bold text-primary">{casino.bonusAmount}</p>
-            </div>
+          {/* Actions */}
+          <div className="flex flex-col gap-2 p-6 pt-0">
+            <Button asChild size="lg" className="w-full">
+              <a href={casino.affiliateUrl || "#"} target="_blank" rel="noopener noreferrer">
+                Hent bonus
+              </a>
+            </Button>
+            <Button variant="outline" size="lg" className="w-full" asChild>
+              <Link to={`/casino/${casino.slug}`}>Læs anmeldelse</Link>
+            </Button>
+          </div>
 
-            {/* Details Grid */}
-            <div className="mb-4 grid grid-cols-2 gap-4 text-sm md:grid-cols-4">
-              <div className="flex items-center gap-2">
-                <Gift className="h-4 w-4 text-muted-foreground" />
-                <div>
-                  <p className="text-muted-foreground">Gennemspil</p>
-                  <p className="font-medium">{casino.wageringRequirements}</p>
-                </div>
-              </div>
-              <div className="flex items-center gap-2">
-                <Timer className="h-4 w-4 text-muted-foreground" />
-                <div>
-                  <p className="text-muted-foreground">Gyldighed</p>
-                  <p className="font-medium">{casino.validity}</p>
-                </div>
-              </div>
-              <div className="flex items-center gap-2">
-                <CreditCard className="h-4 w-4 text-muted-foreground" />
-                <div>
-                  <p className="text-muted-foreground">Min. Indbetaling</p>
-                  <p className="font-medium">{casino.minDeposit}</p>
-                </div>
-              </div>
-              <div className="flex items-center gap-2">
-                <Clock className="h-4 w-4 text-muted-foreground" />
-                <div>
-                  <p className="text-muted-foreground">Udbetalingstid</p>
-                  <p className="font-medium">{casino.payoutTime}</p>
-                </div>
-              </div>
-            </div>
-
-            {/* Features */}
-            <div className="mb-4 flex flex-wrap gap-2">
-              {casino.features.map((feature) => (
-                <Badge key={feature} variant="outline">
-                  {feature}
-                </Badge>
-              ))}
-            </div>
-
-            {/* Actions */}
-            <div className="mt-auto flex flex-wrap gap-3">
-              <Button asChild size="lg">
-                <a href={casino.affiliateUrl || "#"} target="_blank" rel="noopener noreferrer">
-                  Få Bonus
-                </a>
-              </Button>
-              <Button variant="outline" size="lg" asChild>
-                <Link to={`/casino/${casino.slug}`}>Læs Anmeldelse</Link>
-              </Button>
-            </div>
-
-            <p className="mt-3 text-xs text-muted-foreground">
-              * Vilkår og betingelser gælder. Kun nye kunder. 18+. Spil venligst
-              ansvarligt.
+          {/* Disclaimer */}
+          <div className="border-t border-border p-4">
+            <p className="text-xs text-muted-foreground leading-relaxed">
+              Min. +18 år • Hjælpelinje:{" "}
+              <a href="https://stopspillet.dk" className="text-primary underline" target="_blank" rel="noopener noreferrer">
+                Stopspillet.dk
+              </a>{" "}
+              • Selvudelukkelse:{" "}
+              <a href="https://rofus.nu" className="text-primary underline" target="_blank" rel="noopener noreferrer">
+                ROFUS.nu
+              </a>{" "}
+              • Reklame • Betingelser og vilkår gælder.
             </p>
           </div>
         </div>
