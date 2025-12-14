@@ -5,6 +5,7 @@ import { useCasinos, useCreateCasino, useUpdateCasino, useDeleteCasino, useUpdat
 import { useSiteSettings } from "@/hooks/useSiteSettings";
 import { LogoUpload } from "@/components/LogoUpload";
 import { HeaderIconUpload } from "@/components/HeaderIconUpload";
+import { SiteNameInput } from "@/components/SiteNameInput";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -802,7 +803,8 @@ function AdminDashboard() {
           <CardHeader>
             <CardTitle>Site Indstillinger</CardTitle>
           </CardHeader>
-          <CardContent>
+          <CardContent className="space-y-6">
+            <SiteNameInput />
             <HeaderIconUpload
               currentIconUrl={headerIconUrl}
               onIconChange={(url) => {

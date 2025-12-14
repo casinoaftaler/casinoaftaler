@@ -15,6 +15,7 @@ export function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const { data: siteSettings } = useSiteSettings();
   const headerIconUrl = siteSettings?.header_icon;
+  const siteName = siteSettings?.site_name || "Casinoaftaler.dk";
 
   return (
     <header className="sticky top-0 z-50 w-full border-b border-border bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
@@ -27,7 +28,7 @@ export function Header() {
               <Gamepad2 className="h-6 w-6 text-primary-foreground" />
             )}
           </div>
-          <span className="text-xl font-bold">Casinoaftaler.dk</span>
+          <span className="text-xl font-bold">{siteName}</span>
         </Link>
 
         {/* Desktop Navigation */}
