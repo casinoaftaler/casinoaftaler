@@ -28,6 +28,7 @@ import {
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
 import { Plus, Trash2, LogOut, Star, Loader2, Pencil, GripVertical } from "lucide-react";
+import { ThemeToggle } from "@/components/ThemeToggle";
 import {
   DndContext,
   closestCenter,
@@ -776,6 +777,7 @@ function AdminDashboard() {
           <h1 className="text-xl font-bold">Admin Dashboard</h1>
           <div className="flex items-center gap-4">
             <span className="text-sm text-muted-foreground">{user?.email}</span>
+            <ThemeToggle />
             <Button onClick={handleSignOut} variant="outline" size="sm">
               <LogOut className="mr-2 h-4 w-4" /> Log Ud
             </Button>
