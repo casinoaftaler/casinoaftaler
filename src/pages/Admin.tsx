@@ -6,6 +6,7 @@ import { useSiteSettings } from "@/hooks/useSiteSettings";
 import { LogoUpload } from "@/components/LogoUpload";
 import { HeaderIconUpload } from "@/components/HeaderIconUpload";
 import { SiteNameInput } from "@/components/SiteNameInput";
+import { HeroSettingsInput } from "@/components/HeroSettingsInput";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -812,6 +813,16 @@ function AdminDashboard() {
                 queryClient.invalidateQueries({ queryKey: ["site-settings"] });
               }}
             />
+          </CardContent>
+        </Card>
+
+        {/* Hero Section Settings */}
+        <Card className="mb-8">
+          <CardHeader>
+            <CardTitle>Hero Sektion</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <HeroSettingsInput />
           </CardContent>
         </Card>
 
