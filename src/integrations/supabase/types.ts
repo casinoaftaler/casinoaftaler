@@ -16,6 +16,7 @@ export type Database = {
     Tables: {
       casinos: {
         Row: {
+          affiliate_url: string | null
           bonus_amount: string
           bonus_title: string
           bonus_type: string
@@ -39,6 +40,7 @@ export type Database = {
           wagering_requirements: string
         }
         Insert: {
+          affiliate_url?: string | null
           bonus_amount: string
           bonus_title: string
           bonus_type?: string
@@ -62,6 +64,7 @@ export type Database = {
           wagering_requirements?: string
         }
         Update: {
+          affiliate_url?: string | null
           bonus_amount?: string
           bonus_title?: string
           bonus_type?: string

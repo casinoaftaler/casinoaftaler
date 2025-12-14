@@ -143,6 +143,7 @@ function AddCasinoForm({ onClose }: { onClose: () => void }) {
     description: "",
     is_active: true,
     is_recommended: false,
+    affiliate_url: "",
   });
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -165,6 +166,7 @@ function AddCasinoForm({ onClose }: { onClose: () => void }) {
       description: formData.description || null,
       is_active: formData.is_active,
       is_recommended: formData.is_recommended,
+      affiliate_url: formData.affiliate_url || null,
     };
 
     await createCasino.mutateAsync(casinoData);
@@ -314,6 +316,17 @@ function AddCasinoForm({ onClose }: { onClose: () => void }) {
         />
       </div>
 
+      <div className="space-y-2">
+        <Label htmlFor="affiliate_url">Affiliate Link</Label>
+        <Input
+          id="affiliate_url"
+          type="url"
+          value={formData.affiliate_url}
+          onChange={(e) => setFormData({ ...formData, affiliate_url: e.target.value })}
+          placeholder="https://..."
+        />
+      </div>
+
       <div className="flex items-center gap-4">
         <div className="flex items-center gap-2">
           <input
@@ -355,6 +368,7 @@ function EditCasinoForm({ casino, onClose }: { casino: Casino; onClose: () => vo
     description: casino.description || "",
     is_active: casino.is_active,
     is_recommended: casino.is_recommended,
+    affiliate_url: casino.affiliate_url || "",
   });
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -379,6 +393,7 @@ function EditCasinoForm({ casino, onClose }: { casino: Casino; onClose: () => vo
       is_active: formData.is_active,
       is_recommended: formData.is_recommended,
       logo_url: logoUrl,
+      affiliate_url: formData.affiliate_url || null,
     });
     onClose();
   };
@@ -527,6 +542,17 @@ function EditCasinoForm({ casino, onClose }: { casino: Casino; onClose: () => vo
           value={formData.description}
           onChange={(e) => setFormData({ ...formData, description: e.target.value })}
           rows={3}
+        />
+      </div>
+
+      <div className="space-y-2">
+        <Label htmlFor="edit-affiliate_url">Affiliate Link</Label>
+        <Input
+          id="edit-affiliate_url"
+          type="url"
+          value={formData.affiliate_url}
+          onChange={(e) => setFormData({ ...formData, affiliate_url: e.target.value })}
+          placeholder="https://..."
         />
       </div>
 

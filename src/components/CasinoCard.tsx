@@ -22,6 +22,7 @@ export interface Casino {
   description: string;
   isRecommended?: boolean;
   logoUrl?: string | null;
+  affiliateUrl?: string | null;
 }
 
 interface CasinoCardProps {
@@ -138,7 +139,7 @@ export function CasinoCard({ casino, rank }: CasinoCardProps) {
             {/* Actions */}
             <div className="mt-auto flex flex-wrap gap-3">
               <Button asChild size="lg">
-                <a href="#" target="_blank" rel="noopener noreferrer">
+                <a href={casino.affiliateUrl || "#"} target="_blank" rel="noopener noreferrer">
                   Få Bonus
                 </a>
               </Button>
