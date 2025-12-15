@@ -101,22 +101,22 @@ export function CasinoCard({ casino }: CasinoCardProps) {
           </div>
 
           {/* Stats Grid */}
-          <div className="grid grid-cols-2 gap-x-8 gap-y-2 px-4 pb-4">
-            <div>
-              <p className="text-xs text-muted-foreground">Procent</p>
-              <p className="text-lg font-bold text-foreground">100%</p>
+          <div className="grid grid-cols-2 gap-x-4 gap-y-3 px-4 pb-4">
+            <div className="min-w-0">
+              <p className="text-xs text-muted-foreground mb-0.5">Procent</p>
+              <p className="text-base font-bold text-foreground truncate">100%</p>
             </div>
-            <div>
-              <p className="text-xs text-muted-foreground">Op til</p>
-              <p className="text-lg font-bold text-foreground">{casino.bonusAmount}</p>
+            <div className="min-w-0">
+              <p className="text-xs text-muted-foreground mb-0.5">Op til</p>
+              <p className="text-base font-bold text-foreground truncate">{casino.bonusAmount}</p>
             </div>
-            <div>
-              <p className="text-xs text-muted-foreground">Gratis spins</p>
-              <p className="text-lg font-bold text-foreground">{casino.freeSpins}</p>
+            <div className="min-w-0">
+              <p className="text-xs text-muted-foreground mb-0.5">Gratis spins</p>
+              <p className="text-base font-bold text-foreground truncate">{casino.freeSpins}</p>
             </div>
-            <div>
-              <p className="text-xs text-muted-foreground">Omsætningskrav</p>
-              <p className="text-lg font-bold text-foreground">{casino.wageringRequirements}</p>
+            <div className="min-w-0">
+              <p className="text-xs text-muted-foreground mb-0.5">Omsætningskrav</p>
+              <p className="text-base font-bold text-foreground truncate">{casino.wageringRequirements}</p>
             </div>
           </div>
 
