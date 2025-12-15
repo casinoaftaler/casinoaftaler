@@ -82,15 +82,15 @@ const Index = () => {
             </p>
           ) : filteredCasinos.length === 1 ? (
             <div className="max-w-2xl mx-auto">
-              <CasinoCard casino={mapCasino(filteredCasinos[0])} size="large" />
+              <CasinoCard casino={mapCasino(filteredCasinos[0])} size="large" rank={1} />
             </div>
           ) : filteredCasinos.length === 2 ? (
             <div className="grid gap-6 lg:grid-cols-3">
               <div className="lg:col-span-2">
-                <CasinoCard casino={mapCasino(filteredCasinos[0])} size="large" />
+                <CasinoCard casino={mapCasino(filteredCasinos[0])} size="large" rank={1} />
               </div>
               <div className="lg:col-span-1">
-                <CasinoCard casino={mapCasino(filteredCasinos[1])} size="medium" />
+                <CasinoCard casino={mapCasino(filteredCasinos[1])} size="medium" rank={2} />
               </div>
             </div>
           ) : (
@@ -98,20 +98,21 @@ const Index = () => {
               {/* First row: Large + Medium cards */}
               <div className="grid gap-6 lg:grid-cols-3">
                 <div className="lg:col-span-2">
-                  <CasinoCard casino={mapCasino(filteredCasinos[0])} size="large" />
+                  <CasinoCard casino={mapCasino(filteredCasinos[0])} size="large" rank={1} />
                 </div>
                 <div className="lg:col-span-1">
-                  <CasinoCard casino={mapCasino(filteredCasinos[1])} size="medium" />
+                  <CasinoCard casino={mapCasino(filteredCasinos[1])} size="medium" rank={2} />
                 </div>
               </div>
 
               {/* Remaining cards in equal columns */}
               <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-                {filteredCasinos.slice(2).map((casino) => (
+                {filteredCasinos.slice(2).map((casino, index) => (
                   <CasinoCard
                     key={casino.id}
                     casino={mapCasino(casino)}
                     size="small"
+                    rank={index + 3}
                   />
                 ))}
               </div>
