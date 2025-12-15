@@ -24,32 +24,50 @@ const BonusGuide = () => {
           <CardContent>
             <ul className="space-y-2">
               <li>
-                <a href="#what-is-bonus" className="text-primary hover:underline">
+                <a 
+                  href="#what-is-bonus" 
+                  className="block rounded-lg px-3 py-2 text-primary hover:bg-primary/10 active:scale-[0.98] active:bg-primary/20 transition-all duration-150"
+                >
                   Hvad er en Casinobonus?
                 </a>
               </li>
               <li>
-                <a href="#bonus-types" className="text-primary hover:underline">
+                <a 
+                  href="#bonus-types" 
+                  className="block rounded-lg px-3 py-2 text-primary hover:bg-primary/10 active:scale-[0.98] active:bg-primary/20 transition-all duration-150"
+                >
                   Typer af Casinobonusser
                 </a>
               </li>
               <li>
-                <a href="#no-sticky" className="text-primary hover:underline">
+                <a 
+                  href="#no-sticky" 
+                  className="block rounded-lg px-3 py-2 text-primary hover:bg-primary/10 active:scale-[0.98] active:bg-primary/20 transition-all duration-150"
+                >
                   Ikke-klæbende Bonusser Forklaret
                 </a>
               </li>
               <li>
-                <a href="#sticky" className="text-primary hover:underline">
+                <a 
+                  href="#sticky" 
+                  className="block rounded-lg px-3 py-2 text-primary hover:bg-primary/10 active:scale-[0.98] active:bg-primary/20 transition-all duration-150"
+                >
                   Klæbende Bonusser Forklaret
                 </a>
               </li>
               <li>
-                <a href="#wagering" className="text-primary hover:underline">
+                <a 
+                  href="#wagering" 
+                  className="block rounded-lg px-3 py-2 text-primary hover:bg-primary/10 active:scale-[0.98] active:bg-primary/20 transition-all duration-150"
+                >
                   Forståelse af Gennemspilskrav
                 </a>
               </li>
               <li>
-                <a href="#tips" className="text-primary hover:underline">
+                <a 
+                  href="#tips" 
+                  className="block rounded-lg px-3 py-2 text-primary hover:bg-primary/10 active:scale-[0.98] active:bg-primary/20 transition-all duration-150"
+                >
                   Tips til Valg af Bonusser
                 </a>
               </li>
@@ -297,7 +315,7 @@ const BonusGuide = () => {
               Gennemse vores håndplukkede udvalg af top casinobonusser med fair
               vilkår og betingelser.
             </p>
-            <Button size="lg" asChild>
+            <Button size="lg" asChild className="active:scale-95 transition-transform duration-150">
               <Link to="/#top-casinos">
                 Se Top Bonusser <ArrowRight className="ml-2 h-4 w-4" />
               </Link>
