@@ -1,5 +1,6 @@
+import { useState } from "react";
 import { Link } from "react-router-dom";
-import { Star, Clock } from "lucide-react";
+import { Star, ChevronDown, ChevronUp, Flame } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
@@ -31,131 +32,146 @@ interface CasinoCardProps {
 }
 
 export function CasinoCard({ casino }: CasinoCardProps) {
+  const [showFeatures, setShowFeatures] = useState(false);
+
   return (
-    <Card className="overflow-hidden border-border">
+    <Card className="overflow-hidden border-border bg-card">
       <CardContent className="p-0">
         <div className="flex flex-col">
-          {/* Top Badges */}
-          <div className="flex items-center justify-center gap-2 p-4 pb-0">
-            {casino.isRecommended && (
-              <Badge variant="secondary" className="rounded-full px-4 py-1">
-                Annonceret
-              </Badge>
-            )}
-            <Badge variant="secondary" className="rounded-full px-4 py-1">
-              {casino.bonusType === "No-sticky" ? "No-sticky" : casino.bonusType}
-            </Badge>
-          </div>
-
-          {/* Logo and Name Section */}
-          <div className="flex items-center gap-4 p-6 pb-4">
+          {/* Header Section */}
+          <div className="flex items-start gap-4 p-4 pb-3">
+            {/* Logo */}
             <div className="flex-shrink-0">
               {casino.logoUrl ? (
                 <img
                   src={casino.logoUrl}
                   alt={casino.name}
-                  className="h-16 w-24 rounded-lg border border-primary/50 object-cover"
+                  className="h-16 w-16 rounded-xl object-cover"
                 />
               ) : (
-                <div className="flex h-16 w-24 items-center justify-center rounded-lg border border-primary/50 bg-card text-lg font-bold text-primary">
+                <div className="flex h-16 w-16 items-center justify-center rounded-xl bg-muted text-lg font-bold text-foreground">
                   {casino.name.substring(0, 2).toUpperCase()}
                 </div>
               )}
             </div>
-            <div>
+
+            {/* Name and Rating */}
+            <div className="flex-1">
               <h3 className="text-lg font-bold text-foreground">{casino.name}</h3>
-              <div className="mt-1 flex items-center gap-1">
+              <div className="flex items-center gap-0.5">
                 {[...Array(5)].map((_, i) => (
                   <Star
                     key={i}
                     className={`h-4 w-4 ${
                       i < Math.floor(casino.rating)
                         ? "fill-accent text-accent"
-                        : "text-muted"
+                        : "fill-muted text-muted"
                     }`}
                   />
                 ))}
-                <span className="ml-1 text-sm text-muted-foreground">{casino.rating.toFixed(2)}</span>
               </div>
             </div>
+
+            {/* Extra Hot Badge */}
+            {casino.isRecommended && (
+              <div className="flex flex-col items-center rounded bg-destructive px-2 py-1">
+                <Flame className="h-4 w-4 text-destructive-foreground" />
+                <span className="text-[10px] font-bold leading-tight text-destructive-foreground">EXTRA</span>
+                <span className="text-[10px] font-bold leading-tight text-destructive-foreground">HOT</span>
+              </div>
+            )}
           </div>
 
-          {/* Bonus Amount */}
-          <div className="px-6 pb-2 text-center">
-            <p className="text-2xl font-bold text-accent">{casino.bonusAmount}</p>
-          </div>
-
-          {/* Bonus Type Badge */}
-          <div className="flex justify-center pb-4">
-            <Badge className="bg-primary/20 text-primary hover:bg-primary/30 rounded-full px-4 py-1">
-              {casino.bonusType === "No-sticky" ? "No-sticky bonus" : `${casino.bonusType} bonus`}
+          {/* Feature Badges */}
+          <div className="flex flex-wrap gap-2 px-4 pb-3">
+            <Badge variant="secondary" className="rounded-md bg-secondary/80 text-xs">
+              {casino.bonusType === "No-sticky" ? "NO-STICKY BONUS" : casino.bonusType.toUpperCase()}
             </Badge>
-          </div>
-
-          {/* Details Grid */}
-          <div className="mx-6 mb-4 grid grid-cols-2 gap-x-4 gap-y-2 text-sm">
-            <div className="flex justify-between">
-              <span className="text-muted-foreground">Omsætningskrav</span>
-              <span className="font-medium text-foreground">{casino.wageringRequirements}</span>
-            </div>
-            <div className="flex justify-between">
-              <span className="text-muted-foreground">Max indsats</span>
-              <span className="font-medium text-foreground">{casino.minDeposit}</span>
-            </div>
-            <div className="flex justify-between">
-              <span className="text-muted-foreground">Gyldighed</span>
-              <span className="font-medium text-foreground">{casino.validity}</span>
-            </div>
-            <div className="flex items-center justify-between">
-              <span className="text-muted-foreground">Udbetalingstid</span>
-              <span className="flex items-center gap-1 font-medium text-foreground">
-                <Clock className="h-3 w-3" />
-                {casino.payoutTime}
-              </span>
-            </div>
-            <div className="flex justify-between">
-              <span className="text-muted-foreground">Min. indskud</span>
-              <span className="font-medium text-foreground">{casino.minDeposit}</span>
-            </div>
-            <div className="flex justify-between">
-              <span className="text-muted-foreground">Bonus type</span>
-              <span className="font-medium text-foreground">{casino.bonusType === "No-sticky" ? "No-sticky" : casino.bonusType}</span>
-            </div>
-          </div>
-
-          {/* Features */}
-          <div className="mx-6 mb-4 flex flex-wrap gap-2">
-            {casino.features.slice(0, 3).map((feature) => (
-              <Badge key={feature} variant="outline" className="rounded-full text-xs">
-                {feature}
+            {casino.features.slice(0, 2).map((feature) => (
+              <Badge key={feature} variant="secondary" className="rounded-md bg-secondary/80 text-xs">
+                {feature.toUpperCase()}
               </Badge>
             ))}
+            {casino.isRecommended && (
+              <Badge variant="secondary" className="rounded-md bg-secondary/80 text-xs">
+                ANBEFALET
+              </Badge>
+            )}
           </div>
 
-          {/* Actions */}
-          <div className="flex flex-col gap-2 p-6 pt-0">
-            <Button asChild size="lg" className="w-full">
+          {/* Stats Grid */}
+          <div className="grid grid-cols-2 gap-x-8 gap-y-2 px-4 pb-4">
+            <div>
+              <p className="text-xs text-muted-foreground">Procent</p>
+              <p className="text-lg font-bold text-foreground">100%</p>
+            </div>
+            <div>
+              <p className="text-xs text-muted-foreground">Op til</p>
+              <p className="text-lg font-bold text-foreground">{casino.bonusAmount}</p>
+            </div>
+            <div>
+              <p className="text-xs text-muted-foreground">Gratis spins</p>
+              <p className="text-lg font-bold text-foreground">N/A</p>
+            </div>
+            <div>
+              <p className="text-xs text-muted-foreground">Omsætningskrav</p>
+              <p className="text-lg font-bold text-foreground">{casino.wageringRequirements}</p>
+            </div>
+          </div>
+
+          {/* Toggle Features and Review Link */}
+          <div className="flex items-center justify-between px-4 pb-3">
+            <button
+              onClick={() => setShowFeatures(!showFeatures)}
+              className="flex items-center gap-1 text-sm text-foreground hover:text-primary"
+            >
+              Vis Funktioner
+              {showFeatures ? (
+                <ChevronUp className="h-4 w-4" />
+              ) : (
+                <ChevronDown className="h-4 w-4" />
+              )}
+            </button>
+            <Link
+              to={`/casino/${casino.slug}`}
+              className="text-sm text-primary hover:underline"
+            >
+              Læs Anmeldelse
+            </Link>
+          </div>
+
+          {/* Expandable Features */}
+          {showFeatures && (
+            <div className="flex flex-wrap gap-2 px-4 pb-3">
+              {casino.features.map((feature) => (
+                <Badge key={feature} variant="outline" className="rounded-full text-xs">
+                  {feature}
+                </Badge>
+              ))}
+            </div>
+          )}
+
+          {/* CTA Button */}
+          <div className="px-4 pb-4">
+            <Button asChild size="lg" className="w-full bg-accent text-accent-foreground hover:bg-accent/90 font-bold text-base">
               <a href={casino.affiliateUrl || "#"} target="_blank" rel="noopener noreferrer">
-                Hent bonus
+                FÅ BONUS
               </a>
-            </Button>
-            <Button variant="outline" size="lg" className="w-full" asChild>
-              <Link to={`/casino/${casino.slug}`}>Læs anmeldelse</Link>
             </Button>
           </div>
 
           {/* Disclaimer */}
-          <div className="border-t border-border p-4">
-            <p className="text-xs text-muted-foreground leading-relaxed">
-              Min. +18 år • Hjælpelinje:{" "}
-              <a href="https://stopspillet.dk" className="text-primary underline" target="_blank" rel="noopener noreferrer">
-                Stopspillet.dk
+          <div className="border-t border-border bg-muted/30 p-3">
+            <p className="text-[10px] text-muted-foreground leading-relaxed text-center">
+              Annoncering | 18+ | Spil ansvarligt | Selvudelukkelse via{" "}
+              <a href="https://rofus.nu" className="text-primary hover:underline" target="_blank" rel="noopener noreferrer">
+                Rofus.nu
               </a>{" "}
-              • Selvudelukkelse:{" "}
-              <a href="https://rofus.nu" className="text-primary underline" target="_blank" rel="noopener noreferrer">
-                ROFUS.nu
+              | Kontakt Spillemyndighedens hjælpelinje på{" "}
+              <a href="https://stopspillet.dk" className="text-primary hover:underline" target="_blank" rel="noopener noreferrer">
+                StopSpillet.dk
               </a>{" "}
-              • Reklame • Betingelser og vilkår gælder.
+              – rådgivning om
             </p>
           </div>
         </div>
