@@ -100,23 +100,48 @@ export function CasinoCard({ casino }: CasinoCardProps) {
             )}
           </div>
 
-          {/* Stats Grid */}
-          <div className="grid grid-cols-2 gap-x-4 gap-y-3 px-4 pb-4">
-            <div className="min-w-0">
-              <p className="text-xs text-muted-foreground mb-0.5">Procent</p>
-              <p className="text-base font-bold text-foreground truncate">100%</p>
+          {/* Stats Section */}
+          <div className="px-4 pb-4">
+            {/* Prominent Bonus Amount on Mobile */}
+            <div className="text-center mb-4 md:hidden">
+              <p className="text-xs text-muted-foreground mb-1">Op til</p>
+              <p className="text-3xl font-bold text-amber-500">{casino.bonusAmount}</p>
             </div>
-            <div className="min-w-0">
-              <p className="text-xs text-muted-foreground mb-0.5">Op til</p>
-              <p className="text-base font-bold text-foreground truncate">{casino.bonusAmount}</p>
+            
+            {/* Secondary Stats Row on Mobile */}
+            <div className="grid grid-cols-3 gap-2 md:hidden text-center">
+              <div className="min-w-0">
+                <p className="text-xs text-muted-foreground mb-0.5">Procent</p>
+                <p className="text-sm font-bold text-foreground">100%</p>
+              </div>
+              <div className="min-w-0">
+                <p className="text-xs text-muted-foreground mb-0.5">Gratis spins</p>
+                <p className="text-sm font-bold text-foreground truncate">{casino.freeSpins}</p>
+              </div>
+              <div className="min-w-0">
+                <p className="text-xs text-muted-foreground mb-0.5">Omsætningskrav</p>
+                <p className="text-sm font-bold text-foreground truncate">{casino.wageringRequirements}</p>
+              </div>
             </div>
-            <div className="min-w-0">
-              <p className="text-xs text-muted-foreground mb-0.5">Gratis spins</p>
-              <p className="text-base font-bold text-foreground truncate">{casino.freeSpins}</p>
-            </div>
-            <div className="min-w-0">
-              <p className="text-xs text-muted-foreground mb-0.5">Omsætningskrav</p>
-              <p className="text-base font-bold text-foreground truncate">{casino.wageringRequirements}</p>
+            
+            {/* Original 2x2 Grid for Desktop */}
+            <div className="hidden md:grid grid-cols-2 gap-x-4 gap-y-3">
+              <div className="min-w-0">
+                <p className="text-xs text-muted-foreground mb-0.5">Procent</p>
+                <p className="text-base font-bold text-foreground truncate">100%</p>
+              </div>
+              <div className="min-w-0">
+                <p className="text-xs text-muted-foreground mb-0.5">Op til</p>
+                <p className="text-base font-bold text-foreground truncate">{casino.bonusAmount}</p>
+              </div>
+              <div className="min-w-0">
+                <p className="text-xs text-muted-foreground mb-0.5">Gratis spins</p>
+                <p className="text-base font-bold text-foreground truncate">{casino.freeSpins}</p>
+              </div>
+              <div className="min-w-0">
+                <p className="text-xs text-muted-foreground mb-0.5">Omsætningskrav</p>
+                <p className="text-base font-bold text-foreground truncate">{casino.wageringRequirements}</p>
+              </div>
             </div>
           </div>
 
