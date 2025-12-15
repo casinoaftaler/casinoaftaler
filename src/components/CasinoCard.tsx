@@ -1,9 +1,16 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { Star, ChevronDown, ChevronUp, Flame, Trophy, Medal, Gift } from "lucide-react";
+import { Star, ChevronDown, ChevronUp, Flame, Trophy, Medal, Gift, Info, Check, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
 
 export interface Casino {
   id: string;
@@ -141,6 +148,118 @@ export function CasinoCard({ casino, rank, size = "small" }: CasinoCardProps) {
                 ))}
               </div>
             </div>
+
+            {/* Info Button */}
+            <Dialog>
+              <DialogTrigger asChild>
+                <button className="p-1.5 rounded-full bg-muted/50 hover:bg-muted text-muted-foreground hover:text-foreground transition-colors">
+                  <Info className="h-4 w-4" />
+                </button>
+              </DialogTrigger>
+              <DialogContent className="max-w-md max-h-[80vh] overflow-y-auto">
+                <DialogHeader>
+                  <DialogTitle className="flex items-center gap-3">
+                    {casino.logoUrl ? (
+                      <img src={casino.logoUrl} alt={casino.name} className="h-10 w-10 rounded-lg object-cover" />
+                    ) : (
+                      <div className="h-10 w-10 rounded-lg bg-muted flex items-center justify-center font-bold">
+                        {casino.name.substring(0, 2).toUpperCase()}
+                      </div>
+                    )}
+                    {casino.name}
+                  </DialogTitle>
+                </DialogHeader>
+                <div className="space-y-4 mt-4">
+                  {/* Rating */}
+                  <div className="flex items-center gap-2">
+                    <span className="text-sm text-muted-foreground">Bedømmelse:</span>
+                    <div className="flex items-center gap-0.5">
+                      {[...Array(5)].map((_, i) => (
+                        <Star
+                          key={i}
+                          className={`h-4 w-4 ${i < Math.floor(casino.rating) ? "fill-accent text-accent" : "fill-muted text-muted"}`}
+                        />
+                      ))}
+                      <span className="ml-1 text-sm font-medium">{casino.rating}/5</span>
+                    </div>
+                  </div>
+
+                  {/* Bonus Info */}
+                  <div className="bg-muted/50 rounded-lg p-3 space-y-2">
+                    <h4 className="font-semibold text-foreground">{casino.bonusTitle}</h4>
+                    <p className="text-2xl font-bold text-amber-500">{casino.bonusAmount}</p>
+                    <div className="grid grid-cols-2 gap-2 text-sm">
+                      <div><span className="text-muted-foreground">Type:</span> {casino.bonusType}</div>
+                      <div><span className="text-muted-foreground">Gratis spins:</span> {casino.freeSpins}</div>
+                      <div><span className="text-muted-foreground">Omsætningskrav:</span> {casino.wageringRequirements}</div>
+                      <div><span className="text-muted-foreground">Gyldighed:</span> {casino.validity}</div>
+                      <div><span className="text-muted-foreground">Min. indbetaling:</span> {casino.minDeposit}</div>
+                      <div><span className="text-muted-foreground">Udbetalingstid:</span> {casino.payoutTime}</div>
+                    </div>
+                  </div>
+
+                  {/* Description */}
+                  {casino.description && (
+                    <div>
+                      <h4 className="font-semibold text-foreground mb-1">Beskrivelse</h4>
+                      <p className="text-sm text-muted-foreground">{casino.description}</p>
+                    </div>
+                  )}
+
+                  {/* Features */}
+                  {casino.features.length > 0 && (
+                    <div>
+                      <h4 className="font-semibold text-foreground mb-2">Funktioner</h4>
+                      <div className="flex flex-wrap gap-2">
+                        {casino.features.map((feature) => (
+                          <Badge key={feature} variant="secondary" className="text-xs">
+                            {feature}
+                          </Badge>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+
+                  {/* Pros */}
+                  {casino.pros.length > 0 && (
+                    <div>
+                      <h4 className="font-semibold text-foreground mb-2">Fordele</h4>
+                      <ul className="space-y-1">
+                        {casino.pros.map((pro, index) => (
+                          <li key={index} className="flex items-center gap-2 text-sm">
+                            <Check className="h-4 w-4 text-emerald-500 flex-shrink-0" />
+                            <span>{pro}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  )}
+
+                  {/* Cons */}
+                  {casino.cons.length > 0 && (
+                    <div>
+                      <h4 className="font-semibold text-foreground mb-2">Ulemper</h4>
+                      <ul className="space-y-1">
+                        {casino.cons.map((con, index) => (
+                          <li key={index} className="flex items-center gap-2 text-sm">
+                            <X className="h-4 w-4 text-destructive flex-shrink-0" />
+                            <span>{con}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  )}
+
+                  {/* CTA Button */}
+                  <Button asChild className="w-full bg-accent text-accent-foreground hover:bg-accent/90 font-bold">
+                    <a href={casino.affiliateUrl || "#"} target="_blank" rel="noopener noreferrer" className="flex items-center justify-center gap-2">
+                      <Gift className="h-4 w-4" />
+                      HENT BONUS HER
+                    </a>
+                  </Button>
+                </div>
+              </DialogContent>
+            </Dialog>
 
             {/* Extra Hot Badge */}
             {casino.isRecommended && (
