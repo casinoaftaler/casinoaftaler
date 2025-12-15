@@ -35,6 +35,7 @@ interface CasinoCardProps {
 
 export function CasinoCard({ casino, rank, size = "small" }: CasinoCardProps) {
   const [showFeatures, setShowFeatures] = useState(false);
+  const [showStats, setShowStats] = useState(false);
 
   const sizeStyles = {
     large: {
@@ -170,44 +171,62 @@ export function CasinoCard({ casino, rank, size = "small" }: CasinoCardProps) {
           </div>
 
           {/* Stats Section */}
-          <div className={`px-${size === "large" ? "6" : size === "medium" ? "5" : "4"} pb-4 flex-1`}>
+          <div className={`px-${size === "large" ? "6" : size === "medium" ? "5" : "4"} pb-2 flex-1`}>
             {/* Prominent Bonus Amount */}
             <div className="text-center mb-3">
               <p className={`${styles.statsLabel} text-muted-foreground mb-1`}>Op til</p>
               <p className={`${styles.bonus} font-bold text-amber-500`}>{casino.bonusAmount}</p>
             </div>
             
-            {/* Secondary Stats Row */}
-            <div className={`grid grid-cols-3 gap-2 bg-muted/50 rounded-lg py-3 px-2 mb-2`}>
-              <div className="text-center">
-                <p className={`${styles.statsLabel} text-muted-foreground mb-0.5`}>Procent</p>
-                <p className={`${styles.stats} font-bold text-foreground`}>100%</p>
+            {/* Toggle Stats Button */}
+            <button
+              onClick={() => setShowStats(!showStats)}
+              className="w-full flex items-center justify-center gap-1 text-sm text-muted-foreground hover:text-primary py-2 mb-2 rounded-lg bg-muted/30 hover:bg-muted/50 transition-colors"
+            >
+              {showStats ? "Skjul detaljer" : "Vis detaljer"}
+              {showStats ? (
+                <ChevronUp className="h-4 w-4" />
+              ) : (
+                <ChevronDown className="h-4 w-4" />
+              )}
+            </button>
+
+            {/* Collapsible Stats */}
+            {showStats && (
+              <div className="space-y-2 animate-fade-in">
+                {/* Secondary Stats Row */}
+                <div className={`grid grid-cols-3 gap-2 bg-muted/50 rounded-lg py-3 px-2`}>
+                  <div className="text-center">
+                    <p className={`${styles.statsLabel} text-muted-foreground mb-0.5`}>Procent</p>
+                    <p className={`${styles.stats} font-bold text-foreground`}>100%</p>
+                  </div>
+                  <div className="text-center border-x border-border">
+                    <p className={`${styles.statsLabel} text-muted-foreground mb-0.5`}>Gratis spins</p>
+                    <p className={`${styles.stats} font-bold text-foreground`}>{casino.freeSpins}</p>
+                  </div>
+                  <div className="text-center">
+                    <p className={`${styles.statsLabel} text-muted-foreground mb-0.5`}>Omsætningskrav</p>
+                    <p className={`${styles.stats} font-bold text-foreground`}>{casino.wageringRequirements}</p>
+                  </div>
+                </div>
+                
+                {/* Additional Stats Row */}
+                <div className={`grid grid-cols-3 gap-2 bg-muted/30 rounded-lg py-2 px-2`}>
+                  <div className="text-center">
+                    <p className={`${styles.statsLabel} text-muted-foreground mb-0.5`}>Gyldighed</p>
+                    <p className={`${styles.stats} font-semibold text-foreground`}>{casino.validity}</p>
+                  </div>
+                  <div className="text-center border-x border-border">
+                    <p className={`${styles.statsLabel} text-muted-foreground mb-0.5`}>Min. indbetaling</p>
+                    <p className={`${styles.stats} font-semibold text-foreground`}>{casino.minDeposit}</p>
+                  </div>
+                  <div className="text-center">
+                    <p className={`${styles.statsLabel} text-muted-foreground mb-0.5`}>Udbetalingstid</p>
+                    <p className={`${styles.stats} font-semibold text-foreground`}>{casino.payoutTime}</p>
+                  </div>
+                </div>
               </div>
-              <div className="text-center border-x border-border">
-                <p className={`${styles.statsLabel} text-muted-foreground mb-0.5`}>Gratis spins</p>
-                <p className={`${styles.stats} font-bold text-foreground`}>{casino.freeSpins}</p>
-              </div>
-              <div className="text-center">
-                <p className={`${styles.statsLabel} text-muted-foreground mb-0.5`}>Omsætningskrav</p>
-                <p className={`${styles.stats} font-bold text-foreground`}>{casino.wageringRequirements}</p>
-              </div>
-            </div>
-            
-            {/* Additional Stats Row */}
-            <div className={`grid grid-cols-3 gap-2 bg-muted/30 rounded-lg py-2 px-2`}>
-              <div className="text-center">
-                <p className={`${styles.statsLabel} text-muted-foreground mb-0.5`}>Gyldighed</p>
-                <p className={`${styles.stats} font-semibold text-foreground`}>{casino.validity}</p>
-              </div>
-              <div className="text-center border-x border-border">
-                <p className={`${styles.statsLabel} text-muted-foreground mb-0.5`}>Min. indbetaling</p>
-                <p className={`${styles.stats} font-semibold text-foreground`}>{casino.minDeposit}</p>
-              </div>
-              <div className="text-center">
-                <p className={`${styles.statsLabel} text-muted-foreground mb-0.5`}>Udbetalingstid</p>
-                <p className={`${styles.stats} font-semibold text-foreground`}>{casino.payoutTime}</p>
-              </div>
-            </div>
+            )}
           </div>
 
           {/* Toggle Features and Review Link */}
