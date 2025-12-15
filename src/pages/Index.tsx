@@ -66,6 +66,7 @@ const Index = () => {
                     validity: casino.validity,
                     minDeposit: casino.min_deposit,
                     payoutTime: casino.payout_time,
+                    freeSpins: casino.free_spins,
                     features: casino.features ?? [],
                     pros: casino.pros ?? [],
                     cons: casino.cons ?? [],
