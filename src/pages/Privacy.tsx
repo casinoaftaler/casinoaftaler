@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { Shield, Lock, Eye, FileText, Mail, Calendar } from "lucide-react";
+import { Shield, Lock, Eye, FileText, Calendar } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 
 const Privacy = () => {
@@ -282,31 +282,10 @@ const Privacy = () => {
               </CardContent>
             </Card>
 
-            {/* Contact */}
-            <Card className="border-border bg-card">
-              <CardContent className="p-6 md:p-8">
-                <div className="flex items-start gap-4">
-                  <div className="rounded-lg bg-primary/10 p-3">
-                    <Mail className="h-6 w-6 text-primary" />
-                  </div>
-                  <div>
-                    <h2 className="mb-3 text-2xl font-bold">9. Kontakt os</h2>
-                    <p className="mb-4 text-muted-foreground leading-relaxed">
-                      Hvis du har spørgsmål om denne privatlivspolitik eller vil udøve dine rettigheder, kan du kontakte os:
-                    </p>
-                    <div className="space-y-2 text-muted-foreground">
-                      <p><strong className="text-foreground">Email:</strong> privatliv@casinoaftaler.dk</p>
-                      <p><strong className="text-foreground">Adresse:</strong> Casinoaftaler.dk, København, Danmark</p>
-                    </div>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-
             {/* Changes */}
             <Card className="border-border bg-card">
               <CardContent className="p-6 md:p-8">
-                <h2 className="mb-4 text-2xl font-bold">10. Ændringer</h2>
+                <h2 className="mb-4 text-2xl font-bold">9. Ændringer</h2>
                 <p className="text-muted-foreground leading-relaxed">
                   Vi kan opdatere denne privatlivspolitik fra tid til anden. Ændringer vil blive offentliggjort på denne side med en opdateret dato. Vi opfordrer dig til regelmæssigt at gennemgå denne politik.
                 </p>
