@@ -30,13 +30,13 @@ export function HeroSection() {
             {heroSubtitle}
           </p>
           <div className="flex flex-wrap justify-center gap-4">
-            <Button size="lg" asChild>
+            <Button size="lg" asChild className="transition-all duration-300 hover:scale-105 hover:shadow-lg">
               <a href="#top-casinos">
                 <Award className="mr-2 h-5 w-5" />
                 Se Bedste Bonusser
               </a>
             </Button>
-            <Button size="lg" variant="outline" asChild className="bg-transparent border-white/30 text-white hover:bg-white/10">
+            <Button size="lg" variant="outline" asChild className="bg-transparent border-white/30 text-white hover:bg-white/10 transition-all duration-300 hover:scale-105 hover:shadow-lg">
               <Link to="/bonus-guide">
                 <BookOpen className="mr-2 h-5 w-5" />
                 Læs Bonus Guide
