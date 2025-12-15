@@ -4,6 +4,13 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Check, X, AlertTriangle, ArrowRight } from "lucide-react";
 
 const BonusGuide = () => {
+  const scrollToSection = (e: React.MouseEvent<HTMLAnchorElement>, id: string) => {
+    e.preventDefault();
+    const element = document.getElementById(id);
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+  };
   return (
     <div className="py-16">
       <div className="container">
@@ -25,7 +32,8 @@ const BonusGuide = () => {
             <ul className="space-y-2">
               <li>
                 <a 
-                  href="#what-is-bonus" 
+                  href="#what-is-bonus"
+                  onClick={(e) => scrollToSection(e, "what-is-bonus")}
                   className="block rounded-lg px-3 py-2 text-primary hover:bg-primary/10 active:scale-[0.98] active:bg-primary/20 transition-all duration-150"
                 >
                   Hvad er en Casinobonus?
@@ -33,7 +41,8 @@ const BonusGuide = () => {
               </li>
               <li>
                 <a 
-                  href="#bonus-types" 
+                  href="#bonus-types"
+                  onClick={(e) => scrollToSection(e, "bonus-types")}
                   className="block rounded-lg px-3 py-2 text-primary hover:bg-primary/10 active:scale-[0.98] active:bg-primary/20 transition-all duration-150"
                 >
                   Typer af Casinobonusser
@@ -41,7 +50,8 @@ const BonusGuide = () => {
               </li>
               <li>
                 <a 
-                  href="#no-sticky" 
+                  href="#no-sticky"
+                  onClick={(e) => scrollToSection(e, "no-sticky")}
                   className="block rounded-lg px-3 py-2 text-primary hover:bg-primary/10 active:scale-[0.98] active:bg-primary/20 transition-all duration-150"
                 >
                   Ikke-klæbende Bonusser Forklaret
@@ -49,7 +59,8 @@ const BonusGuide = () => {
               </li>
               <li>
                 <a 
-                  href="#sticky" 
+                  href="#sticky"
+                  onClick={(e) => scrollToSection(e, "sticky")}
                   className="block rounded-lg px-3 py-2 text-primary hover:bg-primary/10 active:scale-[0.98] active:bg-primary/20 transition-all duration-150"
                 >
                   Klæbende Bonusser Forklaret
@@ -57,7 +68,8 @@ const BonusGuide = () => {
               </li>
               <li>
                 <a 
-                  href="#wagering" 
+                  href="#wagering"
+                  onClick={(e) => scrollToSection(e, "wagering")}
                   className="block rounded-lg px-3 py-2 text-primary hover:bg-primary/10 active:scale-[0.98] active:bg-primary/20 transition-all duration-150"
                 >
                   Forståelse af Gennemspilskrav
@@ -65,7 +77,8 @@ const BonusGuide = () => {
               </li>
               <li>
                 <a 
-                  href="#tips" 
+                  href="#tips"
+                  onClick={(e) => scrollToSection(e, "tips")}
                   className="block rounded-lg px-3 py-2 text-primary hover:bg-primary/10 active:scale-[0.98] active:bg-primary/20 transition-all duration-150"
                 >
                   Tips til Valg af Bonusser
