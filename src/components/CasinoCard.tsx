@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { Star, ChevronDown, ChevronUp, Flame, Trophy, Medal } from "lucide-react";
+import { Star, ChevronDown, ChevronUp, Flame, Trophy, Medal, Gift } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
@@ -272,8 +272,9 @@ export function CasinoCard({ casino, rank, size = "small" }: CasinoCardProps) {
           {/* CTA Button */}
           <div className={`px-${size === "large" ? "6" : size === "medium" ? "5" : "4"} pb-4`}>
             <Button asChild size={size === "large" ? "lg" : "default"} className="w-full bg-accent text-accent-foreground hover:bg-accent/90 font-bold text-base">
-              <a href={casino.affiliateUrl || "#"} target="_blank" rel="noopener noreferrer">
-                FÅ BONUS
+              <a href={casino.affiliateUrl || "#"} target="_blank" rel="noopener noreferrer" className="flex items-center justify-center gap-2">
+                <Gift className={`${size === "large" ? "h-5 w-5" : "h-4 w-4"}`} />
+                HENT BONUS HER
               </a>
             </Button>
           </div>
