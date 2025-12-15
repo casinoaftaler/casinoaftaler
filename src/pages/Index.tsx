@@ -80,43 +80,49 @@ const Index = () => {
             <p className="py-12 text-center text-muted-foreground">
               Ingen casinoer matcher dette filter. Prøv en anden kategori.
             </p>
-          ) : filteredCasinos.length === 1 ? (
-            <div className="max-w-2xl mx-auto">
-              <CasinoCard casino={mapCasino(filteredCasinos[0])} size="large" rank={1} />
-            </div>
-          ) : filteredCasinos.length === 2 ? (
-            <div className="grid gap-6 lg:grid-cols-3">
-              <div className="lg:col-span-2">
-                <CasinoCard casino={mapCasino(filteredCasinos[0])} size="large" rank={1} />
-              </div>
-              <div className="lg:col-span-1">
-                <CasinoCard casino={mapCasino(filteredCasinos[1])} size="medium" rank={2} />
-              </div>
-            </div>
           ) : (
-            <div className="space-y-6">
-              {/* First row: Large + Medium cards */}
-              <div className="grid gap-6 lg:grid-cols-3">
-                <div className="lg:col-span-2">
-                  <CasinoCard casino={mapCasino(filteredCasinos[0])} size="large" rank={1} />
-                </div>
-                <div className="lg:col-span-1">
-                  <CasinoCard casino={mapCasino(filteredCasinos[1])} size="medium" rank={2} />
-                </div>
-              </div>
-
-              {/* Remaining cards in equal columns */}
-              <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-                {filteredCasinos.slice(2).map((casino, index) => (
+            <>
+              {/* Mobile: All cards same size in single column */}
+              <div className="grid gap-6 md:hidden">
+                {filteredCasinos.map((casino, index) => (
                   <CasinoCard
                     key={casino.id}
                     casino={mapCasino(casino)}
                     size="small"
-                    rank={index + 3}
+                    rank={index + 1}
                   />
                 ))}
               </div>
-            </div>
+
+              {/* Tablet/Desktop: Tiered layout */}
+              <div className="hidden md:block space-y-6">
+                {/* First row: Large + Medium cards */}
+                <div className="grid gap-6 lg:grid-cols-3">
+                  <div className="lg:col-span-2">
+                    <CasinoCard casino={mapCasino(filteredCasinos[0])} size="large" rank={1} />
+                  </div>
+                  {filteredCasinos.length > 1 && (
+                    <div className="lg:col-span-1">
+                      <CasinoCard casino={mapCasino(filteredCasinos[1])} size="medium" rank={2} />
+                    </div>
+                  )}
+                </div>
+
+                {/* Remaining cards in equal columns */}
+                {filteredCasinos.length > 2 && (
+                  <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+                    {filteredCasinos.slice(2).map((casino, index) => (
+                      <CasinoCard
+                        key={casino.id}
+                        casino={mapCasino(casino)}
+                        size="small"
+                        rank={index + 3}
+                      />
+                    ))}
+                  </div>
+                )}
+              </div>
+            </>
           )}
         </div>
       </section>
