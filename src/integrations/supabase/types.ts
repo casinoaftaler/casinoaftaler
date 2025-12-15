@@ -14,6 +14,35 @@ export type Database = {
   }
   public: {
     Tables: {
+      casino_owners: {
+        Row: {
+          casino_id: string
+          created_at: string
+          id: string
+          user_id: string
+        }
+        Insert: {
+          casino_id: string
+          created_at?: string
+          id?: string
+          user_id: string
+        }
+        Update: {
+          casino_id?: string
+          created_at?: string
+          id?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "casino_owners_casino_id_fkey"
+            columns: ["casino_id"]
+            isOneToOne: false
+            referencedRelation: "casinos"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       casinos: {
         Row: {
           affiliate_url: string | null
