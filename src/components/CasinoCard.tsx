@@ -33,7 +33,7 @@ interface CasinoCardProps {
   size?: "large" | "medium" | "small";
 }
 
-export function CasinoCard({ casino, size = "small" }: CasinoCardProps) {
+export function CasinoCard({ casino, rank, size = "small" }: CasinoCardProps) {
   const [showFeatures, setShowFeatures] = useState(false);
 
   const sizeStyles = {
@@ -74,9 +74,16 @@ export function CasinoCard({ casino, size = "small" }: CasinoCardProps) {
   return (
     <Card className="overflow-hidden border-border bg-card rounded-2xl shadow-md hover:shadow-xl hover:-translate-y-1 transition-all duration-300 h-full">
       <CardContent className="p-0 h-full flex flex-col">
-        <div className="flex flex-col flex-1">
+        <div className="flex flex-col flex-1 relative">
+          {/* Rank Badge */}
+          {rank && (
+            <div className={`absolute top-0 left-0 ${size === "large" ? "w-12 h-12 text-xl" : size === "medium" ? "w-10 h-10 text-lg" : "w-8 h-8 text-base"} bg-primary text-primary-foreground font-bold flex items-center justify-center rounded-br-xl rounded-tl-xl z-10`}>
+              {rank}
+            </div>
+          )}
+          
           {/* Header Section */}
-          <div className={`flex items-start gap-4 ${styles.padding} pb-3`}>
+          <div className={`flex items-start gap-4 ${styles.padding} pb-3 ${rank ? "pt-6" : ""}`}>
             {/* Logo */}
             <div className="flex-shrink-0">
               {casino.logoUrl ? (
