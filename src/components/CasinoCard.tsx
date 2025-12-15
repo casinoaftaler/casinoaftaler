@@ -72,13 +72,21 @@ export function CasinoCard({ casino, rank, size = "small" }: CasinoCardProps) {
   const styles = sizeStyles[size];
 
   const isTopRanked = rank === 1;
+  const isSecondRanked = rank === 2;
+
+  // Background colors for top ranked cards
+  const getCardBackground = () => {
+    if (isTopRanked) return "bg-gradient-to-br from-amber-500/10 via-card to-amber-600/5";
+    if (isSecondRanked) return "bg-gradient-to-br from-slate-400/10 via-card to-slate-500/5";
+    return "bg-card";
+  };
 
   return (
     <div className="relative group">
       {/* Glow gradient background */}
-      <div className="absolute -inset-0.5 bg-gradient-to-r from-primary/20 via-accent/20 to-primary/20 rounded-2xl blur-sm opacity-60 group-hover:opacity-100 transition-opacity duration-300" />
+      <div className={`absolute -inset-0.5 rounded-2xl blur-sm opacity-60 group-hover:opacity-100 transition-opacity duration-300 ${isTopRanked ? "bg-gradient-to-r from-amber-500/30 via-amber-400/20 to-amber-500/30" : isSecondRanked ? "bg-gradient-to-r from-slate-400/30 via-slate-300/20 to-slate-400/30" : "bg-gradient-to-r from-primary/20 via-accent/20 to-primary/20"}`} />
       
-      <Card className={`relative overflow-hidden bg-card rounded-2xl shadow-md hover:shadow-xl hover:-translate-y-1 transition-all duration-300 h-full ${isTopRanked ? "border-2 border-amber-500 ring-2 ring-amber-500/30" : "border-border"}`}>
+      <Card className={`relative overflow-hidden ${getCardBackground()} rounded-2xl shadow-md hover:shadow-xl hover:-translate-y-1 transition-all duration-300 h-full ${isTopRanked ? "border-2 border-amber-500 ring-2 ring-amber-500/30" : isSecondRanked ? "border-2 border-slate-400 ring-2 ring-slate-400/30" : "border-border"}`}>
       <CardContent className="p-0 h-full flex flex-col">
         <div className="flex flex-col flex-1 relative">
           {/* Rank Badge */}
@@ -160,20 +168,34 @@ export function CasinoCard({ casino, rank, size = "small" }: CasinoCardProps) {
             </div>
             
             {/* Secondary Stats Row */}
-            <div className={`flex justify-center gap-4 bg-muted/50 rounded-lg py-3 px-2`}>
-              <div className="text-center flex-1">
+            <div className={`grid grid-cols-3 gap-2 bg-muted/50 rounded-lg py-3 px-2 mb-2`}>
+              <div className="text-center">
                 <p className={`${styles.statsLabel} text-muted-foreground mb-0.5`}>Procent</p>
                 <p className={`${styles.stats} font-bold text-foreground`}>100%</p>
               </div>
-              <div className="w-px bg-border" />
-              <div className="text-center flex-1">
+              <div className="text-center border-x border-border">
                 <p className={`${styles.statsLabel} text-muted-foreground mb-0.5`}>Gratis spins</p>
                 <p className={`${styles.stats} font-bold text-foreground`}>{casino.freeSpins}</p>
               </div>
-              <div className="w-px bg-border" />
-              <div className="text-center flex-1">
+              <div className="text-center">
                 <p className={`${styles.statsLabel} text-muted-foreground mb-0.5`}>Omsætningskrav</p>
                 <p className={`${styles.stats} font-bold text-foreground`}>{casino.wageringRequirements}</p>
+              </div>
+            </div>
+            
+            {/* Additional Stats Row */}
+            <div className={`grid grid-cols-3 gap-2 bg-muted/30 rounded-lg py-2 px-2`}>
+              <div className="text-center">
+                <p className={`${styles.statsLabel} text-muted-foreground mb-0.5`}>Gyldighed</p>
+                <p className={`${styles.stats} font-semibold text-foreground`}>{casino.validity}</p>
+              </div>
+              <div className="text-center border-x border-border">
+                <p className={`${styles.statsLabel} text-muted-foreground mb-0.5`}>Min. indbetaling</p>
+                <p className={`${styles.stats} font-semibold text-foreground`}>{casino.minDeposit}</p>
+              </div>
+              <div className="text-center">
+                <p className={`${styles.statsLabel} text-muted-foreground mb-0.5`}>Udbetalingstid</p>
+                <p className={`${styles.stats} font-semibold text-foreground`}>{casino.payoutTime}</p>
               </div>
             </div>
           </div>
