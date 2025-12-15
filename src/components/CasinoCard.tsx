@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { Star, ChevronDown, ChevronUp, Flame } from "lucide-react";
+import { Star, ChevronDown, ChevronUp, Flame, Trophy, Medal } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
@@ -91,7 +91,9 @@ export function CasinoCard({ casino, rank, size = "small" }: CasinoCardProps) {
         <div className="flex flex-col flex-1 relative">
           {/* Rank Badge */}
           {rank && (
-            <div className={`absolute top-0 left-0 ${size === "large" ? "w-12 h-12 text-xl" : size === "medium" ? "w-10 h-10 text-lg" : "w-8 h-8 text-base"} bg-primary text-primary-foreground font-bold flex items-center justify-center rounded-br-xl rounded-tl-xl z-10`}>
+            <div className={`absolute top-0 left-0 flex flex-col items-center justify-center ${size === "large" ? "w-12 h-14 text-xl" : size === "medium" ? "w-10 h-12 text-lg" : "w-8 h-10 text-base"} ${isTopRanked ? "bg-gradient-to-b from-amber-500 to-amber-600" : isSecondRanked ? "bg-gradient-to-b from-slate-400 to-slate-500" : "bg-primary"} text-primary-foreground font-bold rounded-br-xl rounded-tl-xl z-10`}>
+              {isTopRanked && <Trophy className={`${size === "large" ? "h-4 w-4" : "h-3 w-3"} mb-0.5`} />}
+              {isSecondRanked && <Medal className={`${size === "large" ? "h-4 w-4" : "h-3 w-3"} mb-0.5`} />}
               {rank}
             </div>
           )}
