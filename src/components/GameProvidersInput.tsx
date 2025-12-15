@@ -2,14 +2,44 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Plus, Trash2, Upload } from "lucide-react";
+import { Plus, Trash2, Upload, ChevronDown } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "@/hooks/use-toast";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 
 export interface GameProvider {
   name: string;
   logo_url: string;
 }
+
+// Popular game provider presets
+const PROVIDER_PRESETS: GameProvider[] = [
+  { name: "NetEnt", logo_url: "" },
+  { name: "Microgaming", logo_url: "" },
+  { name: "Evolution Gaming", logo_url: "" },
+  { name: "Pragmatic Play", logo_url: "" },
+  { name: "Play'n GO", logo_url: "" },
+  { name: "Red Tiger", logo_url: "" },
+  { name: "Yggdrasil", logo_url: "" },
+  { name: "Quickspin", logo_url: "" },
+  { name: "Thunderkick", logo_url: "" },
+  { name: "Relax Gaming", logo_url: "" },
+  { name: "Push Gaming", logo_url: "" },
+  { name: "Nolimit City", logo_url: "" },
+  { name: "Hacksaw Gaming", logo_url: "" },
+  { name: "Big Time Gaming", logo_url: "" },
+  { name: "ELK Studios", logo_url: "" },
+  { name: "Wazdan", logo_url: "" },
+  { name: "Betsoft", logo_url: "" },
+  { name: "iSoftBet", logo_url: "" },
+  { name: "Playtech", logo_url: "" },
+  { name: "Blueprint Gaming", logo_url: "" },
+];
 
 interface GameProvidersInputProps {
   providers: GameProvider[];
@@ -26,6 +56,19 @@ export function GameProvidersInput({ providers, onChange, casinoSlug }: GameProv
       onChange([...providers, { name: newProviderName.trim(), logo_url: "" }]);
       setNewProviderName("");
     }
+  };
+
+  const handleAddPreset = (preset: GameProvider) => {
+    // Check if provider already exists
+    if (providers.some(p => p.name.toLowerCase() === preset.name.toLowerCase())) {
+      toast({
+        title: "Allerede tilføjet",
+        description: `${preset.name} er allerede på listen.`,
+        variant: "destructive",
+      });
+      return;
+    }
+    onChange([...providers, { ...preset }]);
   };
 
   const handleRemoveProvider = (index: number) => {
@@ -76,9 +119,32 @@ export function GameProvidersInput({ providers, onChange, casinoSlug }: GameProv
     }
   };
 
+  // Filter out already added providers from presets
+  const availablePresets = PROVIDER_PRESETS.filter(
+    preset => !providers.some(p => p.name.toLowerCase() === preset.name.toLowerCase())
+  );
+
   return (
     <div className="space-y-3">
-      <Label>Spiludbydere</Label>
+      <div className="flex items-center justify-between">
+        <Label>Spiludbydere</Label>
+        <DropdownMenu>
+          <DropdownMenuTrigger asChild>
+            <Button type="button" variant="outline" size="sm" disabled={availablePresets.length === 0}>
+              <Plus className="h-4 w-4 mr-1" />
+              Tilføj populær
+              <ChevronDown className="h-4 w-4 ml-1" />
+            </Button>
+          </DropdownMenuTrigger>
+          <DropdownMenuContent align="end" className="max-h-64 overflow-y-auto">
+            {availablePresets.map((preset) => (
+              <DropdownMenuItem key={preset.name} onClick={() => handleAddPreset(preset)}>
+                {preset.name}
+              </DropdownMenuItem>
+            ))}
+          </DropdownMenuContent>
+        </DropdownMenu>
+      </div>
       
       {providers.map((provider, index) => (
         <div key={index} className="flex items-center gap-2 p-2 bg-muted/50 rounded-lg">
