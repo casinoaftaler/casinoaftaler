@@ -97,47 +97,47 @@ All colors MUST be HSL.
   }
 
   .dark {
-    --background: 180 15% 8%;
-    --foreground: 180 10% 95%;
+    --background: 250 30% 8%;
+    --foreground: 220 20% 95%;
 
-    --card: 180 12% 12%;
-    --card-foreground: 180 10% 95%;
+    --card: 250 25% 12%;
+    --card-foreground: 220 20% 95%;
 
-    --popover: 180 12% 14%;
-    --popover-foreground: 180 10% 95%;
+    --popover: 250 25% 14%;
+    --popover-foreground: 220 20% 95%;
 
-    --primary: 168 76% 42%;
-    --primary-foreground: 180 15% 8%;
+    --primary: 260 70% 60%;
+    --primary-foreground: 250 30% 8%;
 
-    --secondary: 180 10% 20%;
-    --secondary-foreground: 180 10% 95%;
+    --secondary: 250 20% 20%;
+    --secondary-foreground: 220 20% 95%;
 
-    --muted: 180 8% 35%;
-    --muted-foreground: 180 8% 70%;
+    --muted: 250 15% 30%;
+    --muted-foreground: 250 15% 65%;
 
-    --accent: 45 92% 55%;
-    --accent-foreground: 180 15% 8%;
+    --accent: 210 90% 55%;
+    --accent-foreground: 220 20% 98%;
 
     --destructive: 0 84% 60%;
     --destructive-foreground: 0 85% 97%;
 
-    --border: 180 10% 20%;
-    --input: 180 10% 20%;
-    --ring: 168 76% 42%;
-    --sidebar-background: 180 15% 6%;
-    --sidebar-foreground: 180 10% 95%;
-    --sidebar-primary: 168 76% 42%;
-    --sidebar-primary-foreground: 180 15% 8%;
-    --sidebar-accent: 180 10% 20%;
-    --sidebar-accent-foreground: 180 10% 95%;
-    --sidebar-border: 180 10% 20%;
-    --sidebar-ring: 168 76% 42%;
-    --chart-1: 168 76% 52%;
-    --chart-2: 168 60% 60%;
-    --chart-3: 180 8% 50%;
-    --chart-4: 180 8% 40%;
-    --chart-5: 180 8% 30%;
-    --sidebar: 180 12% 12%;
+    --border: 250 20% 22%;
+    --input: 250 20% 22%;
+    --ring: 260 70% 60%;
+    --sidebar-background: 250 30% 6%;
+    --sidebar-foreground: 220 20% 95%;
+    --sidebar-primary: 260 70% 60%;
+    --sidebar-primary-foreground: 250 30% 8%;
+    --sidebar-accent: 250 20% 20%;
+    --sidebar-accent-foreground: 220 20% 95%;
+    --sidebar-border: 250 20% 22%;
+    --sidebar-ring: 260 70% 60%;
+    --chart-1: 260 70% 60%;
+    --chart-2: 210 80% 60%;
+    --chart-3: 250 15% 50%;
+    --chart-4: 250 15% 40%;
+    --chart-5: 250 15% 30%;
+    --sidebar: 250 25% 12%;
     --shadow-2xs: 0 1px 3px 0px hsl(0 0% 0% / 0.2);
     --shadow-xs: 0 1px 3px 0px hsl(0 0% 0% / 0.2);
     --shadow-sm: 0 1px 3px 0px hsl(0 0% 0% / 0.25), 0 1px 2px -1px hsl(0 0% 0% / 0.2);
