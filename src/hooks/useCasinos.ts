@@ -45,18 +45,34 @@ export function useCasinos(includeInactive = false) {
   return useQuery({
     queryKey: ["casinos", includeInactive],
     queryFn: async () => {
-      let query = supabase.from("casinos").select("*").order("position", { ascending: true });
+      // Check if user is authenticated (admin or casino owner)
+      const { data: { session } } = await supabase.auth.getSession();
       
-      if (!includeInactive) {
-        query = query.eq("is_active", true);
+      if (includeInactive && session) {
+        // Authenticated users (admin/casino owner) get full data from casinos table
+        const { data, error } = await supabase
+          .from("casinos")
+          .select("*")
+          .order("position", { ascending: true });
+        
+        if (error) throw error;
+        return (data || []).map(casino => ({
+          ...casino,
+          game_providers: (casino.game_providers as unknown as GameProvider[]) || []
+        })) as Casino[];
       }
       
-      const { data, error } = await query;
+      // Public users get data from the view (excludes affiliate_url)
+      const { data, error } = await supabase
+        .from("casinos_public")
+        .select("*")
+        .order("position", { ascending: true });
       
       if (error) throw error;
-      // Map game_providers from JSON to typed array
+      // Map game_providers from JSON to typed array and add null affiliate_url
       return (data || []).map(casino => ({
         ...casino,
+        affiliate_url: null, // Not exposed in public view
         game_providers: (casino.game_providers as unknown as GameProvider[]) || []
       })) as Casino[];
     },
