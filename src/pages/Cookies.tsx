@@ -248,20 +248,6 @@ const Cookies = () => {
               </CardContent>
             </Card>
 
-            {/* Contact */}
-            <Card className="border-border bg-card">
-              <CardContent className="p-6 md:p-8">
-                <h2 className="mb-4 text-2xl font-bold">8. Kontakt os</h2>
-                <p className="mb-4 text-muted-foreground leading-relaxed">
-                  Hvis du har spørgsmål om vores brug af cookies, kan du kontakte os:
-                </p>
-                <div className="space-y-2 text-muted-foreground">
-                  <p><strong className="text-foreground">Email:</strong> cookies@casinoaftaler.dk</p>
-                  <p><strong className="text-foreground">Adresse:</strong> Casinoaftaler.dk, København, Danmark</p>
-                </div>
-              </CardContent>
-            </Card>
-
             {/* Back Link */}
             <div className="text-center pt-4">
               <Link 
