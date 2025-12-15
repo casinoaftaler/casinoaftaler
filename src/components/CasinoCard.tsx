@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { Star, ChevronDown, ChevronUp } from "lucide-react";
+import { Star, ChevronDown, ChevronUp, Flame } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
@@ -79,6 +79,15 @@ export function CasinoCard({ casino }: CasinoCardProps) {
                 ))}
               </div>
             </div>
+
+            {/* Extra Hot Badge */}
+            {casino.isRecommended && (
+              <div className="flex flex-col items-center rounded bg-destructive px-2 py-1">
+                <Flame className="h-4 w-4 text-destructive-foreground" />
+                <span className="text-[10px] font-bold leading-tight text-destructive-foreground">EXTRA</span>
+                <span className="text-[10px] font-bold leading-tight text-destructive-foreground">HOT</span>
+              </div>
+            )}
           </div>
 
           {/* Feature Badges */}
