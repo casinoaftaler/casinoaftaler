@@ -30,27 +30,63 @@ export interface Casino {
 interface CasinoCardProps {
   casino: Casino;
   rank?: number;
+  size?: "large" | "medium" | "small";
 }
 
-export function CasinoCard({ casino }: CasinoCardProps) {
+export function CasinoCard({ casino, size = "small" }: CasinoCardProps) {
   const [showFeatures, setShowFeatures] = useState(false);
 
+  const sizeStyles = {
+    large: {
+      logo: "h-24 w-24",
+      name: "text-2xl",
+      bonus: "text-5xl",
+      padding: "p-6",
+      star: "h-5 w-5",
+      badge: "text-sm",
+      stats: "text-base",
+      statsLabel: "text-xs",
+    },
+    medium: {
+      logo: "h-20 w-20",
+      name: "text-xl",
+      bonus: "text-4xl",
+      padding: "p-5",
+      star: "h-4 w-4",
+      badge: "text-xs",
+      stats: "text-sm",
+      statsLabel: "text-[11px]",
+    },
+    small: {
+      logo: "h-16 w-16",
+      name: "text-lg",
+      bonus: "text-3xl",
+      padding: "p-4",
+      star: "h-4 w-4",
+      badge: "text-xs",
+      stats: "text-sm",
+      statsLabel: "text-[10px]",
+    },
+  };
+
+  const styles = sizeStyles[size];
+
   return (
-    <Card className="overflow-hidden border-border bg-card rounded-2xl shadow-md hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
-      <CardContent className="p-0">
-        <div className="flex flex-col">
+    <Card className="overflow-hidden border-border bg-card rounded-2xl shadow-md hover:shadow-xl hover:-translate-y-1 transition-all duration-300 h-full">
+      <CardContent className="p-0 h-full flex flex-col">
+        <div className="flex flex-col flex-1">
           {/* Header Section */}
-          <div className="flex items-start gap-4 p-4 pb-3">
+          <div className={`flex items-start gap-4 ${styles.padding} pb-3`}>
             {/* Logo */}
             <div className="flex-shrink-0">
               {casino.logoUrl ? (
                 <img
                   src={casino.logoUrl}
                   alt={casino.name}
-                  className="h-16 w-16 rounded-xl object-cover"
+                  className={`${styles.logo} rounded-xl object-cover`}
                 />
               ) : (
-                <div className="flex h-16 w-16 items-center justify-center rounded-xl bg-muted text-lg font-bold text-foreground">
+                <div className={`flex ${styles.logo} items-center justify-center rounded-xl bg-muted text-lg font-bold text-foreground`}>
                   {casino.name.substring(0, 2).toUpperCase()}
                 </div>
               )}
@@ -58,10 +94,10 @@ export function CasinoCard({ casino }: CasinoCardProps) {
 
             {/* Name and Rating */}
             <div className="flex-1">
-              <div className="flex items-center gap-2">
-                <h3 className="text-lg font-bold text-foreground">{casino.name}</h3>
+              <div className="flex items-center gap-2 flex-wrap">
+                <h3 className={`${styles.name} font-bold text-foreground`}>{casino.name}</h3>
                 {casino.isRecommended && (
-                  <Badge className="bg-destructive text-destructive-foreground text-xs">
+                  <Badge className={`bg-destructive text-destructive-foreground ${styles.badge}`}>
                     ANBEFALET
                   </Badge>
                 )}
@@ -70,7 +106,7 @@ export function CasinoCard({ casino }: CasinoCardProps) {
                 {[...Array(5)].map((_, i) => (
                   <Star
                     key={i}
-                    className={`h-4 w-4 ${
+                    className={`${styles.star} ${
                       i < Math.floor(casino.rating)
                         ? "fill-accent text-accent"
                         : "fill-muted text-muted"
@@ -83,54 +119,54 @@ export function CasinoCard({ casino }: CasinoCardProps) {
             {/* Extra Hot Badge */}
             {casino.isRecommended && (
               <div className="flex flex-col items-center rounded bg-destructive px-2 py-1">
-                <Flame className="h-4 w-4 text-destructive-foreground" />
-                <span className="text-[10px] font-bold leading-tight text-destructive-foreground">EXTRA</span>
-                <span className="text-[10px] font-bold leading-tight text-destructive-foreground">HOT</span>
+                <Flame className={`${size === "large" ? "h-5 w-5" : "h-4 w-4"} text-destructive-foreground`} />
+                <span className={`${size === "large" ? "text-xs" : "text-[10px]"} font-bold leading-tight text-destructive-foreground`}>EXTRA</span>
+                <span className={`${size === "large" ? "text-xs" : "text-[10px]"} font-bold leading-tight text-destructive-foreground`}>HOT</span>
               </div>
             )}
           </div>
 
           {/* Feature Badges */}
-          <div className="flex flex-wrap gap-2 px-4 pb-3">
-            <Badge variant="secondary" className="rounded-md bg-secondary/80 text-xs">
+          <div className={`flex flex-wrap gap-2 px-${size === "large" ? "6" : size === "medium" ? "5" : "4"} pb-3`}>
+            <Badge variant="secondary" className={`rounded-md bg-secondary/80 ${styles.badge}`}>
               {casino.bonusType === "No-sticky" ? "NO-STICKY BONUS" : casino.bonusType.toUpperCase()}
             </Badge>
-            {casino.features.slice(0, 2).map((feature) => (
-              <Badge key={feature} variant="secondary" className="rounded-md bg-secondary/80 text-xs">
+            {casino.features.slice(0, size === "large" ? 4 : 2).map((feature) => (
+              <Badge key={feature} variant="secondary" className={`rounded-md bg-secondary/80 ${styles.badge}`}>
                 {feature.toUpperCase()}
               </Badge>
             ))}
           </div>
 
           {/* Stats Section */}
-          <div className="px-4 pb-4">
+          <div className={`px-${size === "large" ? "6" : size === "medium" ? "5" : "4"} pb-4 flex-1`}>
             {/* Prominent Bonus Amount */}
             <div className="text-center mb-3">
-              <p className="text-xs text-muted-foreground mb-1">Op til</p>
-              <p className="text-3xl font-bold text-amber-500">{casino.bonusAmount}</p>
+              <p className={`${styles.statsLabel} text-muted-foreground mb-1`}>Op til</p>
+              <p className={`${styles.bonus} font-bold text-amber-500`}>{casino.bonusAmount}</p>
             </div>
             
             {/* Secondary Stats Row */}
-            <div className="flex justify-center gap-4 bg-muted/50 rounded-lg py-3 px-2">
+            <div className={`flex justify-center gap-4 bg-muted/50 rounded-lg py-3 px-2`}>
               <div className="text-center flex-1">
-                <p className="text-[10px] text-muted-foreground mb-0.5">Procent</p>
-                <p className="text-sm font-bold text-foreground">100%</p>
+                <p className={`${styles.statsLabel} text-muted-foreground mb-0.5`}>Procent</p>
+                <p className={`${styles.stats} font-bold text-foreground`}>100%</p>
               </div>
               <div className="w-px bg-border" />
               <div className="text-center flex-1">
-                <p className="text-[10px] text-muted-foreground mb-0.5">Gratis spins</p>
-                <p className="text-sm font-bold text-foreground">{casino.freeSpins}</p>
+                <p className={`${styles.statsLabel} text-muted-foreground mb-0.5`}>Gratis spins</p>
+                <p className={`${styles.stats} font-bold text-foreground`}>{casino.freeSpins}</p>
               </div>
               <div className="w-px bg-border" />
               <div className="text-center flex-1">
-                <p className="text-[10px] text-muted-foreground mb-0.5">Omsætningskrav</p>
-                <p className="text-sm font-bold text-foreground">{casino.wageringRequirements}</p>
+                <p className={`${styles.statsLabel} text-muted-foreground mb-0.5`}>Omsætningskrav</p>
+                <p className={`${styles.stats} font-bold text-foreground`}>{casino.wageringRequirements}</p>
               </div>
             </div>
           </div>
 
           {/* Toggle Features and Review Link */}
-          <div className="flex items-center justify-between px-4 pb-3">
+          <div className={`flex items-center justify-between px-${size === "large" ? "6" : size === "medium" ? "5" : "4"} pb-3`}>
             <button
               onClick={() => setShowFeatures(!showFeatures)}
               className="flex items-center gap-1 text-sm text-foreground hover:text-primary"
@@ -152,7 +188,7 @@ export function CasinoCard({ casino }: CasinoCardProps) {
 
           {/* Expandable Features */}
           {showFeatures && (
-            <div className="flex flex-wrap gap-2 px-4 pb-3">
+            <div className={`flex flex-wrap gap-2 px-${size === "large" ? "6" : size === "medium" ? "5" : "4"} pb-3`}>
               {casino.features.map((feature) => (
                 <Badge key={feature} variant="outline" className="rounded-full text-xs">
                   {feature}
@@ -162,8 +198,8 @@ export function CasinoCard({ casino }: CasinoCardProps) {
           )}
 
           {/* CTA Button */}
-          <div className="px-4 pb-4">
-            <Button asChild size="lg" className="w-full bg-accent text-accent-foreground hover:bg-accent/90 font-bold text-base">
+          <div className={`px-${size === "large" ? "6" : size === "medium" ? "5" : "4"} pb-4`}>
+            <Button asChild size={size === "large" ? "lg" : "default"} className="w-full bg-accent text-accent-foreground hover:bg-accent/90 font-bold text-base">
               <a href={casino.affiliateUrl || "#"} target="_blank" rel="noopener noreferrer">
                 FÅ BONUS
               </a>
@@ -171,7 +207,7 @@ export function CasinoCard({ casino }: CasinoCardProps) {
           </div>
 
           {/* Disclaimer */}
-          <div className="border-t border-border bg-muted/30 p-3">
+          <div className="border-t border-border bg-muted/30 p-3 mt-auto">
             <p className="text-[10px] text-muted-foreground leading-relaxed text-center">
               Annoncering | 18+ | Spil ansvarligt | Selvudelukkelse via{" "}
               <a href="https://rofus.nu" className="text-primary hover:underline" target="_blank" rel="noopener noreferrer">

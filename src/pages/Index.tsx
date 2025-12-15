@@ -31,6 +31,28 @@ const Index = () => {
     return 0;
   }) ?? [];
 
+  const mapCasino = (casino: typeof filteredCasinos[0]) => ({
+    id: casino.id,
+    name: casino.name,
+    slug: casino.slug,
+    rating: Number(casino.rating),
+    bonusTitle: casino.bonus_title,
+    bonusAmount: casino.bonus_amount,
+    bonusType: casino.bonus_type,
+    wageringRequirements: casino.wagering_requirements,
+    validity: casino.validity,
+    minDeposit: casino.min_deposit,
+    payoutTime: casino.payout_time,
+    freeSpins: casino.free_spins,
+    features: casino.features ?? [],
+    pros: casino.pros ?? [],
+    cons: casino.cons ?? [],
+    description: casino.description ?? "",
+    isRecommended: casino.is_recommended,
+    logoUrl: casino.logo_url,
+    affiliateUrl: casino.affiliate_url,
+  });
+
   return (
     <>
       <HeroSection />
@@ -54,41 +76,46 @@ const Index = () => {
             <div className="flex items-center justify-center py-12">
               <Loader2 className="h-8 w-8 animate-spin text-primary" />
             </div>
-          ) : (
-            <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-              {filteredCasinos.map((casino) => (
-                <CasinoCard
-                  key={casino.id}
-                  casino={{
-                    id: casino.id,
-                    name: casino.name,
-                    slug: casino.slug,
-                    rating: Number(casino.rating),
-                    bonusTitle: casino.bonus_title,
-                    bonusAmount: casino.bonus_amount,
-                    bonusType: casino.bonus_type,
-                    wageringRequirements: casino.wagering_requirements,
-                    validity: casino.validity,
-                    minDeposit: casino.min_deposit,
-                    payoutTime: casino.payout_time,
-                    freeSpins: casino.free_spins,
-                    features: casino.features ?? [],
-                    pros: casino.pros ?? [],
-                    cons: casino.cons ?? [],
-                    description: casino.description ?? "",
-                    isRecommended: casino.is_recommended,
-                    logoUrl: casino.logo_url,
-                    affiliateUrl: casino.affiliate_url,
-                  }}
-                />
-              ))}
-            </div>
-          )}
-
-          {!isLoading && filteredCasinos.length === 0 && (
+          ) : filteredCasinos.length === 0 ? (
             <p className="py-12 text-center text-muted-foreground">
               Ingen casinoer matcher dette filter. Prøv en anden kategori.
             </p>
+          ) : filteredCasinos.length === 1 ? (
+            <div className="max-w-2xl mx-auto">
+              <CasinoCard casino={mapCasino(filteredCasinos[0])} size="large" />
+            </div>
+          ) : filteredCasinos.length === 2 ? (
+            <div className="grid gap-6 lg:grid-cols-3">
+              <div className="lg:col-span-2">
+                <CasinoCard casino={mapCasino(filteredCasinos[0])} size="large" />
+              </div>
+              <div className="lg:col-span-1">
+                <CasinoCard casino={mapCasino(filteredCasinos[1])} size="medium" />
+              </div>
+            </div>
+          ) : (
+            <div className="space-y-6">
+              {/* First row: Large + Medium cards */}
+              <div className="grid gap-6 lg:grid-cols-3">
+                <div className="lg:col-span-2">
+                  <CasinoCard casino={mapCasino(filteredCasinos[0])} size="large" />
+                </div>
+                <div className="lg:col-span-1">
+                  <CasinoCard casino={mapCasino(filteredCasinos[1])} size="medium" />
+                </div>
+              </div>
+
+              {/* Remaining cards in equal columns */}
+              <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+                {filteredCasinos.slice(2).map((casino) => (
+                  <CasinoCard
+                    key={casino.id}
+                    casino={mapCasino(casino)}
+                    size="small"
+                  />
+                ))}
+              </div>
+            </div>
           )}
         </div>
       </section>
