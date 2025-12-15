@@ -17,6 +17,7 @@ export interface Casino {
   validity: string;
   minDeposit: string;
   payoutTime: string;
+  freeSpins: string;
   features: string[];
   pros: string[];
   cons: string[];
@@ -111,7 +112,7 @@ export function CasinoCard({ casino }: CasinoCardProps) {
             </div>
             <div>
               <p className="text-xs text-muted-foreground">Gratis spins</p>
-              <p className="text-lg font-bold text-foreground">N/A</p>
+              <p className="text-lg font-bold text-foreground">{casino.freeSpins}</p>
             </div>
             <div>
               <p className="text-xs text-muted-foreground">Omsætningskrav</p>

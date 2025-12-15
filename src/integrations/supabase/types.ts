@@ -24,6 +24,7 @@ export type Database = {
           created_at: string
           description: string | null
           features: string[] | null
+          free_spins: string | null
           id: string
           is_active: boolean
           is_recommended: boolean
@@ -48,6 +49,7 @@ export type Database = {
           created_at?: string
           description?: string | null
           features?: string[] | null
+          free_spins?: string | null
           id?: string
           is_active?: boolean
           is_recommended?: boolean
@@ -72,6 +74,7 @@ export type Database = {
           created_at?: string
           description?: string | null
           features?: string[] | null
+          free_spins?: string | null
           id?: string
           is_active?: boolean
           is_recommended?: boolean

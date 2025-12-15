@@ -143,6 +143,7 @@ function AddCasinoForm({ onClose }: { onClose: () => void }) {
     validity: "30 dage",
     min_deposit: "100 kr.",
     payout_time: "24 timer",
+    free_spins: "N/A",
     features: "",
     pros: "",
     cons: "",
@@ -166,6 +167,7 @@ function AddCasinoForm({ onClose }: { onClose: () => void }) {
       validity: formData.validity,
       min_deposit: formData.min_deposit,
       payout_time: formData.payout_time,
+      free_spins: formData.free_spins,
       features: formData.features.split(",").map((s) => s.trim()).filter(Boolean),
       pros: formData.pros.split(",").map((s) => s.trim()).filter(Boolean),
       cons: formData.cons.split(",").map((s) => s.trim()).filter(Boolean),
@@ -283,6 +285,15 @@ function AddCasinoForm({ onClose }: { onClose: () => void }) {
       </div>
 
       <div className="space-y-2">
+        <Label htmlFor="free_spins">Gratis Spins</Label>
+        <Input
+          id="free_spins"
+          value={formData.free_spins}
+          onChange={(e) => setFormData({ ...formData, free_spins: e.target.value })}
+          placeholder="N/A eller fx 100"
+        />
+      </div>
+      <div className="space-y-2">
         <Label htmlFor="features">Funktioner (kommasepareret)</Label>
         <Input
           id="features"
@@ -368,6 +379,7 @@ function EditCasinoForm({ casino, onClose }: { casino: Casino; onClose: () => vo
     validity: casino.validity,
     min_deposit: casino.min_deposit,
     payout_time: casino.payout_time,
+    free_spins: casino.free_spins,
     features: casino.features?.join(", ") || "",
     pros: casino.pros?.join(", ") || "",
     cons: casino.cons?.join(", ") || "",
@@ -392,6 +404,7 @@ function EditCasinoForm({ casino, onClose }: { casino: Casino; onClose: () => vo
       validity: formData.validity,
       min_deposit: formData.min_deposit,
       payout_time: formData.payout_time,
+      free_spins: formData.free_spins,
       features: formData.features.split(",").map((s) => s.trim()).filter(Boolean),
       pros: formData.pros.split(",").map((s) => s.trim()).filter(Boolean),
       cons: formData.cons.split(",").map((s) => s.trim()).filter(Boolean),
@@ -512,6 +525,16 @@ function EditCasinoForm({ casino, onClose }: { casino: Casino; onClose: () => vo
             onChange={(e) => setFormData({ ...formData, payout_time: e.target.value })}
           />
         </div>
+      </div>
+
+      <div className="space-y-2">
+        <Label htmlFor="edit-free_spins">Gratis Spins</Label>
+        <Input
+          id="edit-free_spins"
+          value={formData.free_spins}
+          onChange={(e) => setFormData({ ...formData, free_spins: e.target.value })}
+          placeholder="N/A eller fx 100"
+        />
       </div>
 
       <div className="space-y-2">

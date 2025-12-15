@@ -14,6 +14,7 @@ export interface Casino {
   validity: string;
   min_deposit: string;
   payout_time: string;
+  free_spins: string;
   features: string[];
   pros: string[];
   cons: string[];
