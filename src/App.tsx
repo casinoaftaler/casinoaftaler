@@ -13,6 +13,7 @@ import Privacy from "./pages/Privacy";
 import Terms from "./pages/Terms";
 import Cookies from "./pages/Cookies";
 import Admin from "./pages/Admin";
+import CasinoOwner from "./pages/CasinoOwner";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -35,6 +36,7 @@ const App = () => (
             <Route path="/cookies" element={<Cookies />} />
           </Route>
           <Route path="/admin" element={<Admin />} />
+          <Route path="/casino-owner" element={<CasinoOwner />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
