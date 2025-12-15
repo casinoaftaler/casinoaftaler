@@ -830,7 +830,7 @@ function AdminDashboard() {
           </CardHeader>
           <CardContent className="space-y-4">
             {/* Site Name Section */}
-            <Collapsible defaultOpen>
+            <Collapsible>
               <CollapsibleTrigger className="flex w-full items-center justify-between rounded-lg border border-border bg-muted/50 px-4 py-3 font-medium hover:bg-muted transition-colors [&[data-state=open]>svg]:rotate-180">
                 Site Navn
                 <ChevronDown className="h-4 w-4 transition-transform duration-200" />
@@ -841,7 +841,7 @@ function AdminDashboard() {
             </Collapsible>
 
             {/* Header Icon Section */}
-            <Collapsible defaultOpen>
+            <Collapsible>
               <CollapsibleTrigger className="flex w-full items-center justify-between rounded-lg border border-border bg-muted/50 px-4 py-3 font-medium hover:bg-muted transition-colors [&[data-state=open]>svg]:rotate-180">
                 Header Ikon
                 <ChevronDown className="h-4 w-4 transition-transform duration-200" />
@@ -858,7 +858,7 @@ function AdminDashboard() {
             </Collapsible>
 
             {/* Hero Section */}
-            <Collapsible defaultOpen>
+            <Collapsible>
               <CollapsibleTrigger className="flex w-full items-center justify-between rounded-lg border border-border bg-muted/50 px-4 py-3 font-medium hover:bg-muted transition-colors [&[data-state=open]>svg]:rotate-180">
                 Hero Sektion
                 <ChevronDown className="h-4 w-4 transition-transform duration-200" />
