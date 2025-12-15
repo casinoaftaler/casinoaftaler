@@ -19,5 +19,7 @@ export function useSiteSettings() {
 
       return settings;
     },
+    staleTime: 0, // Always refetch to ensure fresh data
+    refetchOnWindowFocus: true,
   });
 }
