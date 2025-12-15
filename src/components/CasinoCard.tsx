@@ -103,23 +103,25 @@ export function CasinoCard({ casino }: CasinoCardProps) {
           {/* Stats Section */}
           <div className="px-4 pb-4">
             {/* Prominent Bonus Amount */}
-            <div className="text-center mb-4">
+            <div className="text-center mb-3">
               <p className="text-xs text-muted-foreground mb-1">Op til</p>
               <p className="text-3xl font-bold text-amber-500">{casino.bonusAmount}</p>
             </div>
             
             {/* Secondary Stats Row */}
-            <div className="flex justify-center gap-6">
-              <div className="text-center">
-                <p className="text-xs text-muted-foreground mb-0.5">Procent</p>
+            <div className="flex justify-center gap-4 bg-muted/50 rounded-lg py-3 px-2">
+              <div className="text-center flex-1">
+                <p className="text-[10px] text-muted-foreground mb-0.5">Procent</p>
                 <p className="text-sm font-bold text-foreground">100%</p>
               </div>
-              <div className="text-center">
-                <p className="text-xs text-muted-foreground mb-0.5">Gratis spins</p>
+              <div className="w-px bg-border" />
+              <div className="text-center flex-1">
+                <p className="text-[10px] text-muted-foreground mb-0.5">Gratis spins</p>
                 <p className="text-sm font-bold text-foreground">{casino.freeSpins}</p>
               </div>
-              <div className="text-center">
-                <p className="text-xs text-muted-foreground mb-0.5">Omsætningskrav</p>
+              <div className="w-px bg-border" />
+              <div className="text-center flex-1">
+                <p className="text-[10px] text-muted-foreground mb-0.5">Omsætningskrav</p>
                 <p className="text-sm font-bold text-foreground">{casino.wageringRequirements}</p>
               </div>
             </div>
