@@ -3,6 +3,7 @@ import { Header } from "./Header";
 import { Footer } from "./Footer";
 import { ResponsibleGamingBanner } from "./ResponsibleGamingBanner";
 import { CookieConsent } from "./CookieConsent";
+import { BackToTop } from "./BackToTop";
 
 export function Layout() {
   return (
@@ -14,6 +15,7 @@ export function Layout() {
       </main>
       <Footer />
       <CookieConsent />
+      <BackToTop />
     </div>
   );
 }
