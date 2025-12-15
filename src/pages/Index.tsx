@@ -24,6 +24,11 @@ const Index = () => {
         casino.features?.includes("Mobile app")
       );
     return true;
+  })?.sort((a, b) => {
+    // Recommended casinos first
+    if (a.is_recommended && !b.is_recommended) return -1;
+    if (!a.is_recommended && b.is_recommended) return 1;
+    return 0;
   }) ?? [];
 
   return (
