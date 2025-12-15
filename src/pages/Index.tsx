@@ -96,27 +96,32 @@ const Index = () => {
 
               {/* Tablet/Desktop: Tiered layout */}
               <div className="hidden md:block space-y-6">
-                {/* First row: Large + Medium cards */}
-                <div className="grid gap-6 lg:grid-cols-3">
+                {/* First row: #1 Large card */}
+                <div className="grid gap-6 lg:grid-cols-2">
                   <div className="lg:col-span-2">
                     <CasinoCard casino={mapCasino(filteredCasinos[0])} size="large" rank={1} />
                   </div>
-                  {filteredCasinos.length > 1 && (
-                    <div className="lg:col-span-1">
-                      <CasinoCard casino={mapCasino(filteredCasinos[1])} size="medium" rank={2} />
-                    </div>
-                  )}
                 </div>
 
-                {/* Remaining cards in equal columns */}
-                {filteredCasinos.length > 2 && (
+                {/* Second row: #2 and #3 Medium cards */}
+                {filteredCasinos.length > 1 && (
+                  <div className="grid gap-6 md:grid-cols-2">
+                    <CasinoCard casino={mapCasino(filteredCasinos[1])} size="medium" rank={2} />
+                    {filteredCasinos.length > 2 && (
+                      <CasinoCard casino={mapCasino(filteredCasinos[2])} size="medium" rank={3} />
+                    )}
+                  </div>
+                )}
+
+                {/* Remaining cards in smaller equal columns */}
+                {filteredCasinos.length > 3 && (
                   <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-                    {filteredCasinos.slice(2).map((casino, index) => (
+                    {filteredCasinos.slice(3).map((casino, index) => (
                       <CasinoCard
                         key={casino.id}
                         casino={mapCasino(casino)}
                         size="small"
-                        rank={index + 3}
+                        rank={index + 4}
                       />
                     ))}
                   </div>
