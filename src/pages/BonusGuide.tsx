@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Check, X, AlertTriangle, ArrowRight } from "lucide-react";
+import { Check, X, AlertTriangle, ArrowRight, BookOpen, Gift, Sparkles, RefreshCw, Percent, Calendar, Gamepad2, ListChecks } from "lucide-react";
 
 const BonusGuide = () => {
   const scrollToSection = (e: React.MouseEvent<HTMLAnchorElement>, id: string) => {
@@ -16,7 +16,10 @@ const BonusGuide = () => {
       <div className="container">
         {/* Hero */}
         <div className="mb-16 text-center">
-          <h1 className="mb-4 text-4xl font-bold">Casino Bonus Guide</h1>
+          <div className="flex items-center justify-center gap-3 mb-4">
+            <BookOpen className="h-10 w-10 text-primary" />
+            <h1 className="text-4xl font-bold">Casino Bonus Guide</h1>
+          </div>
           <p className="mx-auto max-w-2xl text-lg text-muted-foreground">
             Alt du behøver at vide om casinobonusser, hvordan de fungerer, og
             hvordan du vælger den rigtige til dig.
@@ -26,7 +29,10 @@ const BonusGuide = () => {
         {/* Table of Contents */}
         <Card className="mx-auto mb-16 max-w-2xl">
           <CardHeader>
-            <CardTitle>I Denne Guide</CardTitle>
+            <CardTitle className="flex items-center gap-2">
+              <ListChecks className="h-5 w-5 text-primary" />
+              I Denne Guide
+            </CardTitle>
           </CardHeader>
           <CardContent>
             <ul className="space-y-2">
@@ -113,7 +119,10 @@ const BonusGuide = () => {
             <div className="grid gap-4 md:grid-cols-2">
               <Card>
                 <CardContent className="pt-6">
-                  <h3 className="mb-2 font-semibold">Velkomstbonus</h3>
+                  <div className="flex items-center gap-2 mb-2">
+                    <Gift className="h-5 w-5 text-primary" />
+                    <h3 className="font-semibold">Velkomstbonus</h3>
+                  </div>
                   <p className="text-sm text-muted-foreground">
                     Tilbydes til nye spillere ved registrering, ofte med match
                     af din første indbetaling med 100% eller mere.
@@ -122,7 +131,10 @@ const BonusGuide = () => {
               </Card>
               <Card>
                 <CardContent className="pt-6">
-                  <h3 className="mb-2 font-semibold">Bonus Uden Indbetaling</h3>
+                  <div className="flex items-center gap-2 mb-2">
+                    <Sparkles className="h-5 w-5 text-amber-500" />
+                    <h3 className="font-semibold">Bonus Uden Indbetaling</h3>
+                  </div>
                   <p className="text-sm text-muted-foreground">
                     Gratis bonus givet uden krav om indbetaling, normalt mindre
                     men uden finansiel risiko.
@@ -131,7 +143,10 @@ const BonusGuide = () => {
               </Card>
               <Card>
                 <CardContent className="pt-6">
-                  <h3 className="mb-2 font-semibold">Gratis Spins</h3>
+                  <div className="flex items-center gap-2 mb-2">
+                    <Gamepad2 className="h-5 w-5 text-emerald-500" />
+                    <h3 className="font-semibold">Gratis Spins</h3>
+                  </div>
                   <p className="text-sm text-muted-foreground">
                     Gratis omgange på spilleautomater, ofte inkluderet i
                     velkomstpakker eller som selvstændige tilbud.
@@ -140,7 +155,10 @@ const BonusGuide = () => {
               </Card>
               <Card>
                 <CardContent className="pt-6">
-                  <h3 className="mb-2 font-semibold">Genindbetalingsbonus</h3>
+                  <div className="flex items-center gap-2 mb-2">
+                    <RefreshCw className="h-5 w-5 text-sky-500" />
+                    <h3 className="font-semibold">Genindbetalingsbonus</h3>
+                  </div>
                   <p className="text-sm text-muted-foreground">
                     Bonus til eksisterende spillere ved yderligere indbetalinger,
                     typisk mindre end velkomstbonusser.

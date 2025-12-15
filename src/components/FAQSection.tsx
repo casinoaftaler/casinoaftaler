@@ -4,6 +4,7 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
+import { HelpCircle } from "lucide-react";
 
 const faqs = [
   {
@@ -38,9 +39,12 @@ export function FAQSection() {
     <section className="bg-muted/30 py-16">
       <div className="container">
         <div className="mb-12 text-center">
-          <h2 className="mb-4 text-3xl font-bold">
-            Ofte Stillede Spørgsmål
-          </h2>
+          <div className="flex items-center justify-center gap-2 mb-4">
+            <HelpCircle className="h-8 w-8 text-primary" />
+            <h2 className="text-3xl font-bold">
+              Ofte Stillede Spørgsmål
+            </h2>
+          </div>
           <p className="mx-auto max-w-2xl text-muted-foreground">
             Alt du behøver at vide om casinobonusser og hvordan de fungerer.
           </p>
