@@ -10,6 +10,8 @@ import About from "./pages/About";
 import BonusGuide from "./pages/BonusGuide";
 import ResponsibleGaming from "./pages/ResponsibleGaming";
 import Privacy from "./pages/Privacy";
+import Terms from "./pages/Terms";
+import Cookies from "./pages/Cookies";
 import Admin from "./pages/Admin";
 import NotFound from "./pages/NotFound";
 
@@ -29,6 +31,8 @@ const App = () => (
             <Route path="/bonus-guide" element={<BonusGuide />} />
             <Route path="/responsible-gaming" element={<ResponsibleGaming />} />
             <Route path="/privacy" element={<Privacy />} />
+            <Route path="/terms" element={<Terms />} />
+            <Route path="/cookies" element={<Cookies />} />
           </Route>
           <Route path="/admin" element={<Admin />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
