@@ -71,8 +71,10 @@ export function CasinoCard({ casino, rank, size = "small" }: CasinoCardProps) {
 
   const styles = sizeStyles[size];
 
+  const isTopRanked = rank === 1;
+
   return (
-    <Card className="overflow-hidden border-border bg-card rounded-2xl shadow-md hover:shadow-xl hover:-translate-y-1 transition-all duration-300 h-full">
+    <Card className={`overflow-hidden bg-card rounded-2xl shadow-md hover:shadow-xl hover:-translate-y-1 transition-all duration-300 h-full ${isTopRanked ? "border-2 border-amber-500 ring-2 ring-amber-500/30" : "border-border"}`}>
       <CardContent className="p-0 h-full flex flex-col">
         <div className="flex flex-col flex-1 relative">
           {/* Rank Badge */}
