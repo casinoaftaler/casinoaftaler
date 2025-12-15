@@ -41,6 +41,13 @@ export type Database = {
             referencedRelation: "casinos"
             referencedColumns: ["id"]
           },
+          {
+            foreignKeyName: "casino_owners_casino_id_fkey"
+            columns: ["casino_id"]
+            isOneToOne: false
+            referencedRelation: "casinos_public"
+            referencedColumns: ["id"]
+          },
         ]
       }
       casinos: {
@@ -171,7 +178,84 @@ export type Database = {
       }
     }
     Views: {
-      [_ in never]: never
+      casinos_public: {
+        Row: {
+          bonus_amount: string | null
+          bonus_title: string | null
+          bonus_type: string | null
+          cons: string[] | null
+          created_at: string | null
+          description: string | null
+          features: string[] | null
+          free_spins: string | null
+          game_providers: Json | null
+          id: string | null
+          is_active: boolean | null
+          is_recommended: boolean | null
+          logo_url: string | null
+          min_deposit: string | null
+          name: string | null
+          payout_time: string | null
+          position: number | null
+          pros: string[] | null
+          rating: number | null
+          slug: string | null
+          updated_at: string | null
+          validity: string | null
+          wagering_requirements: string | null
+        }
+        Insert: {
+          bonus_amount?: string | null
+          bonus_title?: string | null
+          bonus_type?: string | null
+          cons?: string[] | null
+          created_at?: string | null
+          description?: string | null
+          features?: string[] | null
+          free_spins?: string | null
+          game_providers?: Json | null
+          id?: string | null
+          is_active?: boolean | null
+          is_recommended?: boolean | null
+          logo_url?: string | null
+          min_deposit?: string | null
+          name?: string | null
+          payout_time?: string | null
+          position?: number | null
+          pros?: string[] | null
+          rating?: number | null
+          slug?: string | null
+          updated_at?: string | null
+          validity?: string | null
+          wagering_requirements?: string | null
+        }
+        Update: {
+          bonus_amount?: string | null
+          bonus_title?: string | null
+          bonus_type?: string | null
+          cons?: string[] | null
+          created_at?: string | null
+          description?: string | null
+          features?: string[] | null
+          free_spins?: string | null
+          game_providers?: Json | null
+          id?: string | null
+          is_active?: boolean | null
+          is_recommended?: boolean | null
+          logo_url?: string | null
+          min_deposit?: string | null
+          name?: string | null
+          payout_time?: string | null
+          position?: number | null
+          pros?: string[] | null
+          rating?: number | null
+          slug?: string | null
+          updated_at?: string | null
+          validity?: string | null
+          wagering_requirements?: string | null
+        }
+        Relationships: []
+      }
     }
     Functions: {
       has_role: {
@@ -183,7 +267,7 @@ export type Database = {
       }
     }
     Enums: {
-      app_role: "admin" | "user"
+      app_role: "admin" | "user" | "casino_owner"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -311,7 +395,7 @@ export type CompositeTypes<
 export const Constants = {
   public: {
     Enums: {
-      app_role: ["admin", "user"],
+      app_role: ["admin", "user", "casino_owner"],
     },
   },
 } as const
