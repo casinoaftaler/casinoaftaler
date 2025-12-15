@@ -47,10 +47,10 @@ export function CasinoCard({ casino }: CasinoCardProps) {
                 <img
                   src={casino.logoUrl}
                   alt={casino.name}
-                  className="h-16 w-16 rounded-full object-cover"
+                  className="h-16 w-16 rounded-xl object-cover"
                 />
               ) : (
-                <div className="flex h-16 w-16 items-center justify-center rounded-full bg-muted text-lg font-bold text-foreground">
+                <div className="flex h-16 w-16 items-center justify-center rounded-xl bg-muted text-lg font-bold text-foreground">
                   {casino.name.substring(0, 2).toUpperCase()}
                 </div>
               )}
