@@ -109,18 +109,18 @@ export function CasinoCard({ casino }: CasinoCardProps) {
             </div>
             
             {/* Secondary Stats Row on Mobile */}
-            <div className="grid grid-cols-3 gap-2 md:hidden text-center">
-              <div className="min-w-0">
+            <div className="flex justify-center gap-6 md:hidden">
+              <div className="text-center">
                 <p className="text-xs text-muted-foreground mb-0.5">Procent</p>
                 <p className="text-sm font-bold text-foreground">100%</p>
               </div>
-              <div className="min-w-0">
+              <div className="text-center">
                 <p className="text-xs text-muted-foreground mb-0.5">Gratis spins</p>
-                <p className="text-sm font-bold text-foreground truncate">{casino.freeSpins}</p>
+                <p className="text-sm font-bold text-foreground">{casino.freeSpins}</p>
               </div>
-              <div className="min-w-0">
+              <div className="text-center">
                 <p className="text-xs text-muted-foreground mb-0.5">Omsætningskrav</p>
-                <p className="text-sm font-bold text-foreground truncate">{casino.wageringRequirements}</p>
+                <p className="text-sm font-bold text-foreground">{casino.wageringRequirements}</p>
               </div>
             </div>
             
