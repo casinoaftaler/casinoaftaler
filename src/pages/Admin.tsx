@@ -137,7 +137,6 @@ function AddCasinoForm({ onClose }: { onClose: () => void }) {
     name: "",
     slug: "",
     rating: "4.5",
-    bonus_title: "",
     bonus_amount: "",
     bonus_type: "No-sticky",
     wagering_requirements: "35x",
@@ -152,6 +151,7 @@ function AddCasinoForm({ onClose }: { onClose: () => void }) {
     is_active: true,
     is_recommended: false,
     affiliate_url: "",
+    logo_url: null as string | null,
   });
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -161,8 +161,9 @@ function AddCasinoForm({ onClose }: { onClose: () => void }) {
       name: formData.name,
       slug: formData.slug || formData.name.toLowerCase().replace(/\s+/g, "-"),
       rating: parseFloat(formData.rating),
-      bonus_title: formData.bonus_title,
+      bonus_title: formData.bonus_amount,
       bonus_amount: formData.bonus_amount,
+      logo_url: formData.logo_url,
       bonus_type: formData.bonus_type,
       wagering_requirements: formData.wagering_requirements,
       validity: formData.validity,
@@ -205,26 +206,24 @@ function AddCasinoForm({ onClose }: { onClose: () => void }) {
         </div>
       </div>
 
-      <div className="grid gap-4 md:grid-cols-2">
-        <div className="space-y-2">
-          <Label htmlFor="bonus_title">Bonus Titel *</Label>
-          <Input
-            id="bonus_title"
-            value={formData.bonus_title}
-            onChange={(e) => setFormData({ ...formData, bonus_title: e.target.value })}
-            required
-          />
-        </div>
-        <div className="space-y-2">
-          <Label htmlFor="bonus_amount">Bonusbeløb *</Label>
-          <Input
-            id="bonus_amount"
-            value={formData.bonus_amount}
-            onChange={(e) => setFormData({ ...formData, bonus_amount: e.target.value })}
-            placeholder="100% op til 1.000 kr."
-            required
-          />
-        </div>
+      <div className="space-y-2">
+        <Label>Casino Logo (valgfrit)</Label>
+        <LogoUpload
+          currentLogoUrl={formData.logo_url}
+          onLogoChange={(url) => setFormData({ ...formData, logo_url: url })}
+          casinoSlug={formData.slug || formData.name.toLowerCase().replace(/\s+/g, "-") || `new-casino-${Date.now()}`}
+        />
+      </div>
+
+      <div className="space-y-2">
+        <Label htmlFor="bonus_amount">Bonusbeløb *</Label>
+        <Input
+          id="bonus_amount"
+          value={formData.bonus_amount}
+          onChange={(e) => setFormData({ ...formData, bonus_amount: e.target.value })}
+          placeholder="100% op til 1.000 kr."
+          required
+        />
       </div>
 
       <div className="grid gap-4 md:grid-cols-3">
