@@ -31,7 +31,8 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
-import { Plus, Trash2, LogOut, Star, Loader2, Pencil, GripVertical } from "lucide-react";
+import { Plus, Trash2, LogOut, Star, Loader2, Pencil, GripVertical, ChevronDown } from "lucide-react";
+import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
 import { ThemeToggle } from "@/components/ThemeToggle";
 import { useQueryClient } from "@tanstack/react-query";
 import {
@@ -827,19 +828,45 @@ function AdminDashboard() {
           <CardHeader>
             <CardTitle>Site Indstillinger</CardTitle>
           </CardHeader>
-          <CardContent className="space-y-6">
-            <SiteNameInput />
-            <HeaderIconUpload
-              currentIconUrl={headerIconUrl}
-              onIconChange={(url) => {
-                setHeaderIconUrl(url);
-                queryClient.invalidateQueries({ queryKey: ["site-settings"] });
-              }}
-            />
-            <div className="pt-4 border-t border-border">
-              <h3 className="text-lg font-semibold mb-4">Hero Sektion</h3>
-              <HeroSettingsInput />
-            </div>
+          <CardContent className="space-y-4">
+            {/* Site Name Section */}
+            <Collapsible defaultOpen>
+              <CollapsibleTrigger className="flex w-full items-center justify-between rounded-lg border border-border bg-muted/50 px-4 py-3 font-medium hover:bg-muted transition-colors [&[data-state=open]>svg]:rotate-180">
+                Site Navn
+                <ChevronDown className="h-4 w-4 transition-transform duration-200" />
+              </CollapsibleTrigger>
+              <CollapsibleContent className="pt-4 px-1">
+                <SiteNameInput />
+              </CollapsibleContent>
+            </Collapsible>
+
+            {/* Header Icon Section */}
+            <Collapsible defaultOpen>
+              <CollapsibleTrigger className="flex w-full items-center justify-between rounded-lg border border-border bg-muted/50 px-4 py-3 font-medium hover:bg-muted transition-colors [&[data-state=open]>svg]:rotate-180">
+                Header Ikon
+                <ChevronDown className="h-4 w-4 transition-transform duration-200" />
+              </CollapsibleTrigger>
+              <CollapsibleContent className="pt-4 px-1">
+                <HeaderIconUpload
+                  currentIconUrl={headerIconUrl}
+                  onIconChange={(url) => {
+                    setHeaderIconUrl(url);
+                    queryClient.invalidateQueries({ queryKey: ["site-settings"] });
+                  }}
+                />
+              </CollapsibleContent>
+            </Collapsible>
+
+            {/* Hero Section */}
+            <Collapsible defaultOpen>
+              <CollapsibleTrigger className="flex w-full items-center justify-between rounded-lg border border-border bg-muted/50 px-4 py-3 font-medium hover:bg-muted transition-colors [&[data-state=open]>svg]:rotate-180">
+                Hero Sektion
+                <ChevronDown className="h-4 w-4 transition-transform duration-200" />
+              </CollapsibleTrigger>
+              <CollapsibleContent className="pt-4 px-1">
+                <HeroSettingsInput />
+              </CollapsibleContent>
+            </Collapsible>
           </CardContent>
         </Card>
 
