@@ -7,6 +7,7 @@ import { LogoUpload } from "@/components/LogoUpload";
 import { HeaderIconUpload } from "@/components/HeaderIconUpload";
 import { SiteNameInput } from "@/components/SiteNameInput";
 import { HeroSettingsInput } from "@/components/HeroSettingsInput";
+import { SocialLinksInput } from "@/components/SocialLinksInput";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -850,6 +851,10 @@ function AdminDashboard() {
                 <div className="pt-4 border-t border-border">
                   <h3 className="text-sm font-medium mb-3">Hero Sektion</h3>
                   <HeroSettingsInput />
+                </div>
+                <div className="pt-4 border-t border-border">
+                  <h3 className="text-sm font-medium mb-3">Sociale Medier Links</h3>
+                  <SocialLinksInput />
                 </div>
               </CardContent>
             </CollapsibleContent>
