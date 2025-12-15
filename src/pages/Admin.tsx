@@ -836,16 +836,10 @@ function AdminDashboard() {
                 queryClient.invalidateQueries({ queryKey: ["site-settings"] });
               }}
             />
-          </CardContent>
-        </Card>
-
-        {/* Hero Section Settings */}
-        <Card className="mb-8">
-          <CardHeader>
-            <CardTitle>Hero Sektion</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <HeroSettingsInput />
+            <div className="pt-4 border-t border-border">
+              <h3 className="text-lg font-semibold mb-4">Hero Sektion</h3>
+              <HeroSettingsInput />
+            </div>
           </CardContent>
         </Card>
 
