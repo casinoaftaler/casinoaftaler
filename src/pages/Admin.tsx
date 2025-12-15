@@ -55,12 +55,11 @@ import {
 import { CSS } from "@dnd-kit/utilities";
 
 function AdminLoginForm() {
-  const { signIn, signUp, signInWithTwitch } = useAuth();
+  const { signIn, signUp } = useAuth();
   const [isLogin, setIsLogin] = useState(true);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
-  const [twitchLoading, setTwitchLoading] = useState(false);
   const [error, setError] = useState("");
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -125,37 +124,6 @@ function AdminLoginForm() {
               onClick={() => setIsLogin(!isLogin)}
             >
               {isLogin ? "Har du ikke en konto? Opret en" : "Har du en konto? Log ind"}
-            </Button>
-
-            <div className="relative my-4">
-              <div className="absolute inset-0 flex items-center">
-                <span className="w-full border-t border-border" />
-              </div>
-              <div className="relative flex justify-center text-xs uppercase">
-                <span className="bg-card px-2 text-muted-foreground">eller</span>
-              </div>
-            </div>
-
-            <Button
-              type="button"
-              variant="outline"
-              className="w-full bg-[#9146FF] hover:bg-[#7c3aed] text-white border-[#9146FF] hover:border-[#7c3aed]"
-              onClick={async () => {
-                setTwitchLoading(true);
-                setError("");
-                const { error } = await signInWithTwitch();
-                if (error) {
-                  setError(error.message);
-                }
-                setTwitchLoading(false);
-              }}
-              disabled={twitchLoading}
-            >
-              {twitchLoading && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
-              <svg className="mr-2 h-4 w-4" viewBox="0 0 24 24" fill="currentColor">
-                <path d="M11.571 4.714h1.715v5.143H11.57zm4.715 0H18v5.143h-1.714zM6 0L1.714 4.286v15.428h5.143V24l4.286-4.286h3.428L22.286 12V0zm14.571 11.143l-3.428 3.428h-3.429l-3 3v-3H6.857V1.714h13.714Z"/>
-              </svg>
-              Log ind med Twitch
             </Button>
           </form>
         </CardContent>

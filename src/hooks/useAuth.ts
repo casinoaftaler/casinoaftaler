@@ -79,16 +79,6 @@ export function useAuth() {
     return { error };
   };
 
-  const signInWithTwitch = async () => {
-    const { data, error } = await supabase.auth.signInWithOAuth({
-      provider: 'twitch',
-      options: {
-        redirectTo: `${window.location.origin}/admin`,
-      },
-    });
-    return { data, error };
-  };
-
   return {
     user,
     session,
@@ -97,6 +87,5 @@ export function useAuth() {
     signIn,
     signUp,
     signOut,
-    signInWithTwitch,
   };
 }
