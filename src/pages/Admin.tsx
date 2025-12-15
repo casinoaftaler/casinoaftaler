@@ -8,6 +8,7 @@ import { HeaderIconUpload } from "@/components/HeaderIconUpload";
 import { SiteNameInput } from "@/components/SiteNameInput";
 import { HeroSettingsInput } from "@/components/HeroSettingsInput";
 import { SocialLinksInput } from "@/components/SocialLinksInput";
+import { GameProvidersInput, type GameProvider } from "@/components/GameProvidersInput";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -153,6 +154,7 @@ function AddCasinoForm({ onClose }: { onClose: () => void }) {
     is_recommended: false,
     affiliate_url: "",
     logo_url: null as string | null,
+    game_providers: [] as GameProvider[],
   });
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -178,6 +180,7 @@ function AddCasinoForm({ onClose }: { onClose: () => void }) {
       is_active: formData.is_active,
       is_recommended: formData.is_recommended,
       affiliate_url: formData.affiliate_url || null,
+      game_providers: formData.game_providers,
     };
 
     await createCasino.mutateAsync(casinoData);
@@ -334,6 +337,12 @@ function AddCasinoForm({ onClose }: { onClose: () => void }) {
         />
       </div>
 
+      <GameProvidersInput
+        providers={formData.game_providers}
+        onChange={(providers) => setFormData({ ...formData, game_providers: providers })}
+        casinoSlug={formData.slug || formData.name.toLowerCase().replace(/\s+/g, "-") || `new-casino-${Date.now()}`}
+      />
+
       <div className="space-y-2">
         <Label htmlFor="affiliate_url">Affiliate Link</Label>
         <Input
@@ -388,6 +397,7 @@ function EditCasinoForm({ casino, onClose }: { casino: Casino; onClose: () => vo
     is_active: casino.is_active,
     is_recommended: casino.is_recommended,
     affiliate_url: casino.affiliate_url || "",
+    game_providers: casino.game_providers || [],
   });
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -414,6 +424,7 @@ function EditCasinoForm({ casino, onClose }: { casino: Casino; onClose: () => vo
       is_recommended: formData.is_recommended,
       logo_url: logoUrl,
       affiliate_url: formData.affiliate_url || null,
+      game_providers: formData.game_providers,
     });
     onClose();
   };
@@ -574,6 +585,12 @@ function EditCasinoForm({ casino, onClose }: { casino: Casino; onClose: () => vo
           rows={3}
         />
       </div>
+
+      <GameProvidersInput
+        providers={formData.game_providers}
+        onChange={(providers) => setFormData({ ...formData, game_providers: providers })}
+        casinoSlug={formData.slug || formData.name.toLowerCase().replace(/\s+/g, "-")}
+      />
 
       <div className="space-y-2">
         <Label htmlFor="edit-affiliate_url">Affiliate Link</Label>

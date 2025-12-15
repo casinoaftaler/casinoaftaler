@@ -25,6 +25,7 @@ export type Database = {
           description: string | null
           features: string[] | null
           free_spins: string | null
+          game_providers: Json | null
           id: string
           is_active: boolean
           is_recommended: boolean
@@ -50,6 +51,7 @@ export type Database = {
           description?: string | null
           features?: string[] | null
           free_spins?: string | null
+          game_providers?: Json | null
           id?: string
           is_active?: boolean
           is_recommended?: boolean
@@ -75,6 +77,7 @@ export type Database = {
           description?: string | null
           features?: string[] | null
           free_spins?: string | null
+          game_providers?: Json | null
           id?: string
           is_active?: boolean
           is_recommended?: boolean

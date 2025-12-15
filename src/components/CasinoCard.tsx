@@ -12,6 +12,11 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 
+export interface GameProvider {
+  name: string;
+  logo_url: string;
+}
+
 export interface Casino {
   id: string;
   name: string;
@@ -32,6 +37,7 @@ export interface Casino {
   isRecommended?: boolean;
   logoUrl?: string | null;
   affiliateUrl?: string | null;
+  gameProviders?: GameProvider[];
 }
 
 interface CasinoCardProps {
@@ -265,13 +271,35 @@ export function CasinoCard({ casino, rank, size = "small" }: CasinoCardProps) {
 
                 {/* Features */}
                 {casino.features.length > 0 && (
-                  <div className="mb-6">
+                  <div className="mb-4">
                     <h4 className="text-sm font-bold text-foreground mb-2 uppercase tracking-wide">Funktioner</h4>
                     <div className="flex flex-wrap gap-2">
                       {casino.features.map((feature) => (
                         <Badge key={feature} variant="outline" className="text-xs text-muted-foreground">
                           {feature}
                         </Badge>
+                      ))}
+                    </div>
+                  </div>
+                )}
+
+                {/* Game Providers */}
+                {casino.gameProviders && casino.gameProviders.length > 0 && (
+                  <div className="mb-6">
+                    <h4 className="text-sm font-bold text-foreground mb-3 uppercase tracking-wide">Spiludbydere</h4>
+                    <div className="flex flex-wrap gap-3 items-center">
+                      {casino.gameProviders.map((provider, index) => (
+                        <div key={index} className="flex flex-col items-center">
+                          {provider.logo_url ? (
+                            <img 
+                              src={provider.logo_url} 
+                              alt={provider.name} 
+                              className="h-8 w-auto max-w-[80px] object-contain"
+                            />
+                          ) : (
+                            <span className="text-xs text-muted-foreground">{provider.name}</span>
+                          )}
+                        </div>
                       ))}
                     </div>
                   </div>

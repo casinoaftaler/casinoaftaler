@@ -175,6 +175,31 @@ const CasinoDetail = () => {
               </CardContent>
             </Card>
 
+            {casino.game_providers && casino.game_providers.length > 0 && (
+              <Card>
+                <CardHeader>
+                  <CardTitle>Spiludbydere</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <div className="flex flex-wrap gap-4 items-center">
+                    {casino.game_providers.map((provider: { name: string; logo_url: string }, index: number) => (
+                      <div key={index} className="flex flex-col items-center">
+                        {provider.logo_url ? (
+                          <img 
+                            src={provider.logo_url} 
+                            alt={provider.name} 
+                            className="h-10 w-auto max-w-[100px] object-contain"
+                          />
+                        ) : (
+                          <span className="text-sm text-muted-foreground">{provider.name}</span>
+                        )}
+                      </div>
+                    ))}
+                  </div>
+                </CardContent>
+              </Card>
+            )}
+
             <Card>
               <CardHeader>
                 <CardTitle>Funktioner</CardTitle>
