@@ -319,8 +319,8 @@ export function CasinoCard({ casino, rank, size = "small" }: CasinoCardProps) {
               </DialogContent>
             </Dialog>
 
-            {/* Extra Hot Badge */}
-            {casino.isRecommended && (
+            {/* Extra Hot Badge - Only for #1 ranked */}
+            {rank === 1 && (
               <div className="flex flex-col items-center rounded bg-destructive px-2 py-1">
                 <Flame className={`${size === "large" ? "h-5 w-5" : "h-4 w-4"} text-destructive-foreground`} />
                 <span className={`${size === "large" ? "text-xs" : "text-[10px]"} font-bold leading-tight text-destructive-foreground`}>EXTRA</span>
