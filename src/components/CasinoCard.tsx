@@ -36,7 +36,7 @@ export function CasinoCard({ casino }: CasinoCardProps) {
   const [showFeatures, setShowFeatures] = useState(false);
 
   return (
-    <Card className="overflow-hidden border-border bg-card">
+    <Card className="overflow-hidden border-border bg-card rounded-2xl">
       <CardContent className="p-0">
         <div className="flex flex-col">
           {/* Header Section */}
