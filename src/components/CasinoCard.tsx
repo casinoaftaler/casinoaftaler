@@ -84,8 +84,10 @@ export function CasinoCard({ casino, rank, size = "small" }: CasinoCardProps) {
 
   return (
     <div className="relative group">
-      {/* Glow gradient background */}
-      <div className={`absolute -inset-0.5 rounded-2xl blur-md opacity-70 group-hover:opacity-100 transition-opacity duration-300 ${isTopRanked ? "bg-gradient-to-r from-amber-500/50 via-orange-400/40 to-yellow-500/50" : isSecondRanked ? "bg-gradient-to-r from-slate-400/40 via-blue-400/30 to-slate-400/40" : "bg-gradient-to-r from-emerald-500/30 via-primary/40 to-violet-500/30"}`} />
+      {/* Glow gradient background - only for top 3 */}
+      {rank && rank <= 3 && (
+        <div className={`absolute -inset-0.5 rounded-2xl blur-md opacity-70 group-hover:opacity-100 transition-opacity duration-300 ${rank === 1 ? "bg-gradient-to-r from-amber-500/50 via-orange-400/40 to-yellow-500/50" : rank === 2 ? "bg-gradient-to-r from-slate-400/40 via-blue-400/30 to-slate-400/40" : "bg-gradient-to-r from-emerald-500/30 via-primary/40 to-violet-500/30"}`} />
+      )}
       
       <Card className={`relative overflow-hidden ${getCardBackground()} rounded-2xl shadow-md hover:shadow-xl hover:-translate-y-1 transition-all duration-300 h-full ${isTopRanked ? "border-2 border-amber-500 ring-2 ring-amber-500/30" : isSecondRanked ? "border-2 border-slate-400 ring-2 ring-slate-400/30" : "border-border"}`}>
       <CardContent className="p-0 h-full flex flex-col">
