@@ -2,6 +2,11 @@ import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "@/hooks/use-toast";
 
+export interface GameProvider {
+  name: string;
+  logo_url: string;
+}
+
 export interface Casino {
   id: string;
   name: string;
@@ -24,11 +29,17 @@ export interface Casino {
   position: number;
   logo_url: string | null;
   affiliate_url: string | null;
+  game_providers: GameProvider[];
   created_at: string;
   updated_at: string;
 }
 
-export type CasinoInsert = Omit<Casino, "id" | "created_at" | "updated_at" | "position" | "is_recommended" | "logo_url" | "affiliate_url"> & { is_recommended?: boolean; logo_url?: string | null; affiliate_url?: string | null };
+export type CasinoInsert = Omit<Casino, "id" | "created_at" | "updated_at" | "position" | "is_recommended" | "logo_url" | "affiliate_url" | "game_providers"> & { 
+  is_recommended?: boolean; 
+  logo_url?: string | null; 
+  affiliate_url?: string | null;
+  game_providers?: GameProvider[];
+};
 
 export function useCasinos(includeInactive = false) {
   return useQuery({
@@ -43,7 +54,11 @@ export function useCasinos(includeInactive = false) {
       const { data, error } = await query;
       
       if (error) throw error;
-      return data as Casino[];
+      // Map game_providers from JSON to typed array
+      return (data || []).map(casino => ({
+        ...casino,
+        game_providers: (casino.game_providers as unknown as GameProvider[]) || []
+      })) as Casino[];
     },
   });
 }
@@ -84,9 +99,14 @@ export function useCreateCasino() {
 
   return useMutation({
     mutationFn: async (casino: CasinoInsert) => {
+      const { game_providers, ...rest } = casino;
+      const insertData = {
+        ...rest,
+        game_providers: game_providers ? JSON.parse(JSON.stringify(game_providers)) : []
+      };
       const { data, error } = await supabase
         .from("casinos")
-        .insert(casino)
+        .insert(insertData)
         .select()
         .single();
       
@@ -114,10 +134,14 @@ export function useUpdateCasino() {
   const queryClient = useQueryClient();
 
   return useMutation({
-    mutationFn: async ({ id, ...updates }: Partial<Casino> & { id: string }) => {
+    mutationFn: async ({ id, game_providers, ...updates }: Partial<Casino> & { id: string }) => {
+      const updateData = {
+        ...updates,
+        ...(game_providers !== undefined ? { game_providers: JSON.parse(JSON.stringify(game_providers)) } : {})
+      };
       const { data, error } = await supabase
         .from("casinos")
-        .update(updates)
+        .update(updateData)
         .eq("id", id)
         .select()
         .single();
