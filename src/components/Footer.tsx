@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { Gamepad2, Instagram, MessageCircle } from "lucide-react";
+import { Gamepad2, Instagram, MessageCircle, Trophy, BookOpen, Users, Shield, Scale, FileText, Cookie, ExternalLink } from "lucide-react";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
 
 export function Footer() {
@@ -75,24 +75,27 @@ export function Footer() {
               <li>
                 <Link
                   to="/"
-                  className="text-muted-foreground transition-colors hover:text-foreground"
+                  className="flex items-center gap-2 text-muted-foreground transition-colors hover:text-foreground"
                 >
+                  <Trophy className="h-4 w-4" />
                   Top Casinoer
                 </Link>
               </li>
               <li>
                 <Link
                   to="/bonus-guide"
-                  className="text-muted-foreground transition-colors hover:text-foreground"
+                  className="flex items-center gap-2 text-muted-foreground transition-colors hover:text-foreground"
                 >
+                  <BookOpen className="h-4 w-4" />
                   Bonus Guide
                 </Link>
               </li>
               <li>
                 <Link
                   to="/about"
-                  className="text-muted-foreground transition-colors hover:text-foreground"
+                  className="flex items-center gap-2 text-muted-foreground transition-colors hover:text-foreground"
                 >
+                  <Users className="h-4 w-4" />
                   Om Os
                 </Link>
               </li>
@@ -105,8 +108,9 @@ export function Footer() {
               <li>
                 <Link
                   to="/responsible-gaming"
-                  className="text-muted-foreground transition-colors hover:text-foreground"
+                  className="flex items-center gap-2 text-muted-foreground transition-colors hover:text-foreground"
                 >
+                  <Shield className="h-4 w-4" />
                   Spil Ansvarligt
                 </Link>
               </li>
@@ -115,8 +119,9 @@ export function Footer() {
                   href="https://www.stopspillet.dk/"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-muted-foreground transition-colors hover:text-foreground"
+                  className="flex items-center gap-2 text-muted-foreground transition-colors hover:text-foreground"
                 >
+                  <ExternalLink className="h-4 w-4" />
                   StopSpillet
                 </a>
               </li>
@@ -125,8 +130,9 @@ export function Footer() {
                   href="https://www.spillemyndigheden.dk/"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-muted-foreground transition-colors hover:text-foreground"
+                  className="flex items-center gap-2 text-muted-foreground transition-colors hover:text-foreground"
                 >
+                  <Scale className="h-4 w-4" />
                   Spillemyndigheden
                 </a>
               </li>
@@ -139,24 +145,27 @@ export function Footer() {
               <li>
                 <Link
                   to="/privacy"
-                  className="text-muted-foreground transition-colors hover:text-foreground"
+                  className="flex items-center gap-2 text-muted-foreground transition-colors hover:text-foreground"
                 >
+                  <Shield className="h-4 w-4" />
                   Privatlivspolitik
                 </Link>
               </li>
               <li>
                 <Link
                   to="/terms"
-                  className="text-muted-foreground transition-colors hover:text-foreground"
+                  className="flex items-center gap-2 text-muted-foreground transition-colors hover:text-foreground"
                 >
+                  <FileText className="h-4 w-4" />
                   Vilkår og Betingelser
                 </Link>
               </li>
               <li>
                 <Link
                   to="/cookies"
-                  className="text-muted-foreground transition-colors hover:text-foreground"
+                  className="flex items-center gap-2 text-muted-foreground transition-colors hover:text-foreground"
                 >
+                  <Cookie className="h-4 w-4" />
                   Cookiepolitik
                 </Link>
               </li>

@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { Star, ChevronDown, ChevronUp, Flame, Trophy, Medal, Gift, Info, Check, X } from "lucide-react";
+import { Star, ChevronDown, ChevronUp, Flame, Trophy, Medal, Gift, Info, Check, X, Percent, Clock, Wallet, Calendar, Zap, ExternalLink, RefreshCw } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
@@ -376,14 +376,17 @@ export function CasinoCard({ casino, rank, size = "small" }: CasinoCardProps) {
                 {/* Secondary Stats Row */}
                 <div className={`grid grid-cols-3 gap-2 bg-muted/50 rounded-lg py-3 px-2`}>
                   <div className="text-center">
+                    <Percent className="h-3.5 w-3.5 mx-auto mb-1 text-primary" />
                     <p className={`${styles.statsLabel} text-muted-foreground mb-0.5`}>Procent</p>
                     <p className={`${styles.stats} font-bold text-foreground`}>100%</p>
                   </div>
                   <div className="text-center border-x border-border">
+                    <Zap className="h-3.5 w-3.5 mx-auto mb-1 text-amber-500" />
                     <p className={`${styles.statsLabel} text-muted-foreground mb-0.5`}>Gratis spins</p>
                     <p className={`${styles.stats} font-bold text-foreground`}>{casino.freeSpins}</p>
                   </div>
                   <div className="text-center">
+                    <RefreshCw className="h-3.5 w-3.5 mx-auto mb-1 text-sky-500" />
                     <p className={`${styles.statsLabel} text-muted-foreground mb-0.5`}>Omsætningskrav</p>
                     <p className={`${styles.stats} font-bold text-foreground`}>{casino.wageringRequirements}</p>
                   </div>
@@ -392,14 +395,17 @@ export function CasinoCard({ casino, rank, size = "small" }: CasinoCardProps) {
                 {/* Additional Stats Row */}
                 <div className={`grid grid-cols-3 gap-2 bg-muted/30 rounded-lg py-2 px-2`}>
                   <div className="text-center">
+                    <Calendar className="h-3.5 w-3.5 mx-auto mb-1 text-violet-500" />
                     <p className={`${styles.statsLabel} text-muted-foreground mb-0.5`}>Gyldighed</p>
                     <p className={`${styles.stats} font-semibold text-foreground`}>{casino.validity}</p>
                   </div>
                   <div className="text-center border-x border-border">
+                    <Wallet className="h-3.5 w-3.5 mx-auto mb-1 text-emerald-500" />
                     <p className={`${styles.statsLabel} text-muted-foreground mb-0.5`}>Min. indbetaling</p>
                     <p className={`${styles.stats} font-semibold text-foreground`}>{casino.minDeposit}</p>
                   </div>
                   <div className="text-center">
+                    <Clock className="h-3.5 w-3.5 mx-auto mb-1 text-orange-500" />
                     <p className={`${styles.statsLabel} text-muted-foreground mb-0.5`}>Udbetalingstid</p>
                     <p className={`${styles.stats} font-semibold text-foreground`}>{casino.payoutTime}</p>
                   </div>
@@ -423,9 +429,10 @@ export function CasinoCard({ casino, rank, size = "small" }: CasinoCardProps) {
             </button>
             <Link
               to={`/casino/${casino.slug}`}
-              className="text-sm text-primary hover:underline"
+              className="flex items-center gap-1 text-sm text-primary hover:underline"
             >
               Læs Anmeldelse
+              <ExternalLink className="h-3 w-3" />
             </Link>
           </div>
 
