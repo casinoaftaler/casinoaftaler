@@ -638,10 +638,14 @@ function SortableCasinoCard({
   casino,
   onEdit,
   onDelete,
+  canDelete = true,
+  canReorder = true,
 }: {
   casino: Casino;
   onEdit: (casino: Casino) => void;
   onDelete: (id: string) => void;
+  canDelete?: boolean;
+  canReorder?: boolean;
 }) {
   const {
     attributes,
@@ -650,7 +654,7 @@ function SortableCasinoCard({
     transform,
     transition,
     isDragging,
-  } = useSortable({ id: casino.id });
+  } = useSortable({ id: casino.id, disabled: !canReorder });
 
   const style = {
     transform: CSS.Transform.toString(transform),
@@ -662,13 +666,15 @@ function SortableCasinoCard({
     <Card ref={setNodeRef} style={style}>
       <CardContent className="flex items-center justify-between p-4">
         <div className="flex items-center gap-4">
-          <button
-            {...attributes}
-            {...listeners}
-            className="cursor-grab touch-none rounded p-1 hover:bg-muted active:cursor-grabbing"
-          >
-            <GripVertical className="h-5 w-5 text-muted-foreground" />
-          </button>
+          {canReorder && (
+            <button
+              {...attributes}
+              {...listeners}
+              className="cursor-grab touch-none rounded p-1 hover:bg-muted active:cursor-grabbing"
+            >
+              <GripVertical className="h-5 w-5 text-muted-foreground" />
+            </button>
+          )}
           {casino.logo_url ? (
             <img
               src={casino.logo_url}
@@ -710,30 +716,32 @@ function SortableCasinoCard({
           >
             <Pencil className="h-4 w-4" />
           </Button>
-          <AlertDialog>
-            <AlertDialogTrigger asChild>
-              <Button variant="destructive" size="icon">
-                <Trash2 className="h-4 w-4" />
-              </Button>
-            </AlertDialogTrigger>
-            <AlertDialogContent>
-              <AlertDialogHeader>
-                <AlertDialogTitle>Slet Casino</AlertDialogTitle>
-                <AlertDialogDescription>
-                  Er du sikker på, at du vil slette "{casino.name}"? Denne handling kan ikke fortrydes.
-                </AlertDialogDescription>
-              </AlertDialogHeader>
-              <AlertDialogFooter>
-                <AlertDialogCancel>Annuller</AlertDialogCancel>
-                <AlertDialogAction
-                  onClick={() => onDelete(casino.id)}
-                  className="bg-destructive text-destructive-foreground hover:bg-destructive/90"
-                >
-                  Slet
-                </AlertDialogAction>
-              </AlertDialogFooter>
-            </AlertDialogContent>
-          </AlertDialog>
+          {canDelete && (
+            <AlertDialog>
+              <AlertDialogTrigger asChild>
+                <Button variant="destructive" size="icon">
+                  <Trash2 className="h-4 w-4" />
+                </Button>
+              </AlertDialogTrigger>
+              <AlertDialogContent>
+                <AlertDialogHeader>
+                  <AlertDialogTitle>Slet Casino</AlertDialogTitle>
+                  <AlertDialogDescription>
+                    Er du sikker på, at du vil slette "{casino.name}"? Denne handling kan ikke fortrydes.
+                  </AlertDialogDescription>
+                </AlertDialogHeader>
+                <AlertDialogFooter>
+                  <AlertDialogCancel>Annuller</AlertDialogCancel>
+                  <AlertDialogAction
+                    onClick={() => onDelete(casino.id)}
+                    className="bg-destructive text-destructive-foreground hover:bg-destructive/90"
+                  >
+                    Slet
+                  </AlertDialogAction>
+                </AlertDialogFooter>
+              </AlertDialogContent>
+            </AlertDialog>
+          )}
         </div>
       </CardContent>
     </Card>
@@ -741,7 +749,7 @@ function SortableCasinoCard({
 }
 
 function AdminDashboard() {
-  const { user, isAdmin, signOut, loading: authLoading } = useAuth();
+  const { user, isAdmin, isCasinoOwner, ownedCasinoIds, signOut, loading: authLoading } = useAuth();
   const { data: casinos, isLoading } = useCasinos(true);
   const { data: siteSettings } = useSiteSettings();
   const deleteCasino = useDeleteCasino();
@@ -758,6 +766,12 @@ function AdminDashboard() {
       setHeaderIconUrl(siteSettings.header_icon);
     }
   }, [siteSettings]);
+
+  // Filter casinos for casino owners (they only see their own casinos)
+  const filteredCasinos = isAdmin 
+    ? casinos 
+    : casinos?.filter(c => ownedCasinoIds.includes(c.id));
+
   const sensors = useSensors(
     useSensor(PointerSensor),
     useSensor(KeyboardSensor, {
@@ -766,16 +780,10 @@ function AdminDashboard() {
   );
 
   useEffect(() => {
-    if (casinos) {
-      setOrderedCasinos(casinos);
+    if (filteredCasinos) {
+      setOrderedCasinos(filteredCasinos);
     }
-  }, [casinos]);
-
-  useEffect(() => {
-    if (!authLoading && user && !isAdmin) {
-      // User is logged in but not admin - show message
-    }
-  }, [authLoading, user, isAdmin]);
+  }, [filteredCasinos]);
 
   const handleSignOut = async () => {
     await signOut();
@@ -791,44 +799,30 @@ function AdminDashboard() {
         const newIndex = items.findIndex((item) => item.id === over.id);
         const newItems = arrayMove(items, oldIndex, newIndex);
         
-        // Update positions in database
-        const updates = newItems.map((item, index) => ({
-          id: item.id,
-          position: index + 1,
-        }));
-        updatePositions.mutate(updates);
+        // Update positions in database (only admins can reorder)
+        if (isAdmin) {
+          const updates = newItems.map((item, index) => ({
+            id: item.id,
+            position: index + 1,
+          }));
+          updatePositions.mutate(updates);
+        }
         
         return newItems;
       });
     }
   };
 
-  if (!isAdmin) {
-    return (
-      <div className="flex min-h-screen flex-col items-center justify-center bg-background p-4">
-        <Card className="max-w-md text-center">
-          <CardContent className="pt-6">
-            <h2 className="mb-4 text-xl font-bold">Adgang Nægtet</h2>
-            <p className="mb-4 text-muted-foreground">
-              Du har ikke administratorrettigheder. Kontakt venligst en administrator for at få adgang.
-            </p>
-            <p className="mb-4 text-sm text-muted-foreground">
-              Logget ind som: {user?.email}
-            </p>
-            <Button onClick={handleSignOut} variant="outline">
-              <LogOut className="mr-2 h-4 w-4" /> Log Ud
-            </Button>
-          </CardContent>
-        </Card>
-      </div>
-    );
+  // Access check is now done in the parent Admin component
+  if (!isAdmin && !isCasinoOwner) {
+    return null;
   }
 
   return (
     <div className="min-h-screen bg-background">
       <header className="border-b border-border bg-card">
         <div className="container flex h-16 items-center justify-between">
-          <h1 className="text-xl font-bold">Admin Dashboard</h1>
+          <h1 className="text-xl font-bold">{isAdmin ? "Admin Dashboard" : "Casino Ejer Dashboard"}</h1>
           <div className="flex items-center gap-4">
             <span className="text-sm text-muted-foreground">{user?.email}</span>
             <ThemeToggle />
@@ -840,62 +834,70 @@ function AdminDashboard() {
       </header>
 
       <main className="container py-8">
-        {/* Site Settings Section */}
-        <Collapsible>
-          <Card className="mb-8">
-            <CollapsibleTrigger className="w-full">
-              <CardHeader className="flex flex-row items-center justify-between cursor-pointer hover:bg-muted/50 transition-colors [&[data-state=open]>svg]:rotate-180">
-                <CardTitle>Site Indstillinger</CardTitle>
-                <ChevronDown className="h-5 w-5 transition-transform duration-200" />
-              </CardHeader>
-            </CollapsibleTrigger>
-            <CollapsibleContent>
-              <CardContent className="space-y-6">
-                <div>
-                  <h3 className="text-sm font-medium mb-3">Site Navn</h3>
-                  <SiteNameInput />
-                </div>
-                <div className="pt-4 border-t border-border">
-                  <h3 className="text-sm font-medium mb-3">Header Ikon</h3>
-                  <HeaderIconUpload
-                    currentIconUrl={headerIconUrl}
-                    onIconChange={(url) => {
-                      setHeaderIconUrl(url);
-                      queryClient.invalidateQueries({ queryKey: ["site-settings"] });
-                    }}
-                  />
-                </div>
-                <div className="pt-4 border-t border-border">
-                  <h3 className="text-sm font-medium mb-3">Hero Sektion</h3>
-                  <HeroSettingsInput />
-                </div>
-                <div className="pt-4 border-t border-border">
-                  <h3 className="text-sm font-medium mb-3">Sociale Medier Links</h3>
-                  <SocialLinksInput />
-                </div>
-              </CardContent>
-            </CollapsibleContent>
-          </Card>
-        </Collapsible>
+        {/* Site Settings Section - Only visible to admins */}
+        {isAdmin && (
+          <Collapsible>
+            <Card className="mb-8">
+              <CollapsibleTrigger className="w-full">
+                <CardHeader className="flex flex-row items-center justify-between cursor-pointer hover:bg-muted/50 transition-colors [&[data-state=open]>svg]:rotate-180">
+                  <CardTitle>Site Indstillinger</CardTitle>
+                  <ChevronDown className="h-5 w-5 transition-transform duration-200" />
+                </CardHeader>
+              </CollapsibleTrigger>
+              <CollapsibleContent>
+                <CardContent className="space-y-6">
+                  <div>
+                    <h3 className="text-sm font-medium mb-3">Site Navn</h3>
+                    <SiteNameInput />
+                  </div>
+                  <div className="pt-4 border-t border-border">
+                    <h3 className="text-sm font-medium mb-3">Header Ikon</h3>
+                    <HeaderIconUpload
+                      currentIconUrl={headerIconUrl}
+                      onIconChange={(url) => {
+                        setHeaderIconUrl(url);
+                        queryClient.invalidateQueries({ queryKey: ["site-settings"] });
+                      }}
+                    />
+                  </div>
+                  <div className="pt-4 border-t border-border">
+                    <h3 className="text-sm font-medium mb-3">Hero Sektion</h3>
+                    <HeroSettingsInput />
+                  </div>
+                  <div className="pt-4 border-t border-border">
+                    <h3 className="text-sm font-medium mb-3">Sociale Medier Links</h3>
+                    <SocialLinksInput />
+                  </div>
+                </CardContent>
+              </CollapsibleContent>
+            </Card>
+          </Collapsible>
+        )}
 
         <div className="mb-8 flex items-center justify-between">
           <div>
-            <h2 className="text-2xl font-bold">Casino Tilbud</h2>
-            <p className="text-muted-foreground">Administrer casinobonusser og tilbud. Træk for at ændre rækkefølge.</p>
+            <h2 className="text-2xl font-bold">{isAdmin ? "Casino Tilbud" : "Dine Casinoer"}</h2>
+            <p className="text-muted-foreground">
+              {isAdmin 
+                ? "Administrer casinobonusser og tilbud. Træk for at ændre rækkefølge."
+                : "Rediger dine tildelte casinoer."}
+            </p>
           </div>
-          <Dialog open={dialogOpen} onOpenChange={setDialogOpen}>
-            <DialogTrigger asChild>
-              <Button>
-                <Plus className="mr-2 h-4 w-4" /> Tilføj Casino
-              </Button>
-            </DialogTrigger>
-            <DialogContent className="max-w-2xl">
-              <DialogHeader>
-                <DialogTitle>Tilføj Nyt Casino</DialogTitle>
-              </DialogHeader>
-              <AddCasinoForm onClose={() => setDialogOpen(false)} />
-            </DialogContent>
-          </Dialog>
+          {isAdmin && (
+            <Dialog open={dialogOpen} onOpenChange={setDialogOpen}>
+              <DialogTrigger asChild>
+                <Button>
+                  <Plus className="mr-2 h-4 w-4" /> Tilføj Casino
+                </Button>
+              </DialogTrigger>
+              <DialogContent className="max-w-2xl">
+                <DialogHeader>
+                  <DialogTitle>Tilføj Nyt Casino</DialogTitle>
+                </DialogHeader>
+                <AddCasinoForm onClose={() => setDialogOpen(false)} />
+              </DialogContent>
+            </Dialog>
+          )}
         </div>
 
         {isLoading ? (
@@ -919,13 +921,19 @@ function AdminDashboard() {
                     casino={casino}
                     onEdit={setEditingCasino}
                     onDelete={(id) => deleteCasino.mutate(id)}
+                    canDelete={isAdmin}
+                    canReorder={isAdmin}
                   />
                 ))}
 
                 {orderedCasinos.length === 0 && (
                   <Card>
                     <CardContent className="py-12 text-center">
-                      <p className="text-muted-foreground">Ingen casinoer fundet. Tilføj dit første casino!</p>
+                      <p className="text-muted-foreground">
+                        {isAdmin 
+                          ? "Ingen casinoer fundet. Tilføj dit første casino!"
+                          : "Du har ingen tildelte casinoer endnu."}
+                      </p>
                     </CardContent>
                   </Card>
                 )}
@@ -951,7 +959,7 @@ function AdminDashboard() {
 }
 
 export default function Admin() {
-  const { user, loading } = useAuth();
+  const { user, loading, isAdmin, isCasinoOwner } = useAuth();
 
   if (loading) {
     return (
@@ -963,6 +971,25 @@ export default function Admin() {
 
   if (!user) {
     return <AdminLoginForm />;
+  }
+
+  // Allow access for admins or casino owners
+  if (!isAdmin && !isCasinoOwner) {
+    return (
+      <div className="flex min-h-screen flex-col items-center justify-center bg-background p-4">
+        <Card className="max-w-md text-center">
+          <CardContent className="pt-6">
+            <h2 className="mb-4 text-xl font-bold">Adgang Nægtet</h2>
+            <p className="mb-4 text-muted-foreground">
+              Du har ikke adgangsrettigheder til denne side. Kontakt venligst en administrator.
+            </p>
+            <p className="mb-4 text-sm text-muted-foreground">
+              Logget ind som: {user?.email}
+            </p>
+          </CardContent>
+        </Card>
+      </div>
+    );
   }
 
   return <AdminDashboard />;
