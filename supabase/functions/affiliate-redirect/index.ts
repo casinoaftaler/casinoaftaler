@@ -29,16 +29,39 @@ Deno.serve(async (req) => {
 
     const { data: casino, error } = await supabaseAdmin
       .from("casinos")
-      .select("affiliate_url, name")
+      .select("id, affiliate_url, name")
       .eq("slug", slug)
       .eq("is_active", true)
       .single();
 
     if (error || !casino) {
+      console.error("Casino not found:", slug, error);
       return new Response(
         JSON.stringify({ error: "Casino not found" }),
         { status: 404, headers: { ...corsHeaders, "Content-Type": "application/json" } }
       );
+    }
+
+    // Log the click event
+    const userAgent = req.headers.get("user-agent") || null;
+    const referrer = req.headers.get("referer") || null;
+
+    const { error: insertError } = await supabaseAdmin
+      .from("click_events")
+      .insert({
+        casino_id: casino.id,
+        casino_slug: slug,
+        casino_name: casino.name,
+        event_type: "affiliate_click",
+        user_agent: userAgent,
+        referrer: referrer,
+      });
+
+    if (insertError) {
+      console.error("Failed to log click event:", insertError);
+      // Don't fail the request if logging fails
+    } else {
+      console.log("Click logged for casino:", casino.name);
     }
 
     if (!casino.affiliate_url) {

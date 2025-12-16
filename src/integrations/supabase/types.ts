@@ -131,6 +131,54 @@ export type Database = {
         }
         Relationships: []
       }
+      click_events: {
+        Row: {
+          casino_id: string | null
+          casino_name: string
+          casino_slug: string
+          created_at: string
+          event_type: string
+          id: string
+          referrer: string | null
+          user_agent: string | null
+        }
+        Insert: {
+          casino_id?: string | null
+          casino_name: string
+          casino_slug: string
+          created_at?: string
+          event_type?: string
+          id?: string
+          referrer?: string | null
+          user_agent?: string | null
+        }
+        Update: {
+          casino_id?: string | null
+          casino_name?: string
+          casino_slug?: string
+          created_at?: string
+          event_type?: string
+          id?: string
+          referrer?: string | null
+          user_agent?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "click_events_casino_id_fkey"
+            columns: ["casino_id"]
+            isOneToOne: false
+            referencedRelation: "casinos"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "click_events_casino_id_fkey"
+            columns: ["casino_id"]
+            isOneToOne: false
+            referencedRelation: "casinos_public"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       site_settings: {
         Row: {
           created_at: string
