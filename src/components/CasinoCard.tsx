@@ -199,7 +199,7 @@ export function CasinoCard({ casino, rank, size = "small" }: CasinoCardProps) {
                   </div>
                   <div>
                     <p className="text-[10px] text-muted-foreground uppercase tracking-wider mb-1">Beløb</p>
-                    <p className="text-lg font-bold text-foreground">{casino.bonusAmount.replace(/[^0-9]/g, '')}</p>
+                    <p className="text-lg font-bold text-foreground">{casino.bonusAmount}</p>
                   </div>
                   <div>
                     <p className="text-[10px] text-muted-foreground uppercase tracking-wider mb-1">Gratis Spins</p>
