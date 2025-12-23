@@ -333,11 +333,11 @@ export function CasinoCard({ casino, rank, size = "small" }: CasinoCardProps) {
 
           {/* Feature Badges */}
           <div className={`flex flex-wrap gap-2 px-${size === "large" ? "6" : size === "medium" ? "5" : "4"} pb-3`}>
-            <Badge className={`rounded-md bg-primary/20 text-primary border-primary/30 ${styles.badge}`}>
+            <Badge className={`rounded-md bg-muted text-foreground border-border ${styles.badge}`}>
               {casino.bonusType === "No-sticky" ? "NO-STICKY BONUS" : casino.bonusType.toUpperCase()}
             </Badge>
             {casino.features.slice(0, size === "large" ? 4 : 2).map((feature) => (
-              <Badge key={feature} className={`rounded-md bg-primary/20 text-primary border-primary/30 ${styles.badge}`}>
+              <Badge key={feature} className={`rounded-md bg-muted text-foreground border-border ${styles.badge}`}>
                 {feature.toUpperCase()}
               </Badge>
             ))}
