@@ -337,7 +337,7 @@ export function CasinoCard({ casino, rank, size = "small" }: CasinoCardProps) {
               {casino.bonusType === "No-sticky" ? "NO-STICKY BONUS" : casino.bonusType.toUpperCase()}
             </Badge>
             {casino.features.slice(0, size === "large" ? 4 : 2).map((feature) => (
-              <Badge key={feature} className={`rounded-md bg-slate-400/20 text-blue-400 border-slate-400/30 ${styles.badge}`}>
+              <Badge key={feature} className={`rounded-md bg-primary/20 text-primary border-primary/30 ${styles.badge}`}>
                 {feature.toUpperCase()}
               </Badge>
             ))}
@@ -434,7 +434,7 @@ export function CasinoCard({ casino, rank, size = "small" }: CasinoCardProps) {
           {showFeatures && (
             <div className={`flex flex-wrap gap-2 px-${size === "large" ? "6" : size === "medium" ? "5" : "4"} pb-3`}>
               {casino.features.map((feature) => (
-                <Badge key={feature} className="rounded-full text-xs bg-slate-400/20 text-blue-400 border-slate-400/30">
+                <Badge key={feature} className="rounded-full text-xs bg-primary/20 text-primary border-primary/30">
                   {feature}
                 </Badge>
               ))}
