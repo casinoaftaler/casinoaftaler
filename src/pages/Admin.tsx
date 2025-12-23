@@ -67,8 +67,7 @@ interface CasinoOwnerUser {
 }
 
 function AdminLoginForm() {
-  const { signIn, signUp } = useAuth();
-  const [isLogin, setIsLogin] = useState(true);
+  const { signIn } = useAuth();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
@@ -79,9 +78,7 @@ function AdminLoginForm() {
     setLoading(true);
     setError("");
 
-    const { error } = isLogin
-      ? await signIn(email, password)
-      : await signUp(email, password);
+    const { error } = await signIn(email, password);
 
     if (error) {
       setError(error.message);
@@ -94,7 +91,7 @@ function AdminLoginForm() {
       <Card className="w-full max-w-md">
         <CardHeader>
           <CardTitle className="text-center text-2xl">
-            {isLogin ? "Admin Login" : "Opret Admin Konto"}
+            Admin Login
           </CardTitle>
         </CardHeader>
         <CardContent>
@@ -127,15 +124,7 @@ function AdminLoginForm() {
             )}
             <Button type="submit" className="w-full" disabled={loading}>
               {loading && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
-              {isLogin ? "Log Ind" : "Opret Konto"}
-            </Button>
-            <Button
-              type="button"
-              variant="ghost"
-              className="w-full"
-              onClick={() => setIsLogin(!isLogin)}
-            >
-              {isLogin ? "Har du ikke en konto? Opret en" : "Har du en konto? Log ind"}
+              Log Ind
             </Button>
           </form>
         </CardContent>
