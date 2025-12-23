@@ -336,19 +336,11 @@ export function CasinoCard({ casino, rank, size = "small" }: CasinoCardProps) {
             <Badge className={`rounded-md bg-primary/20 text-primary border-primary/30 ${styles.badge}`}>
               {casino.bonusType === "No-sticky" ? "NO-STICKY BONUS" : casino.bonusType.toUpperCase()}
             </Badge>
-            {casino.features.slice(0, size === "large" ? 4 : 2).map((feature, index) => {
-              const colors = [
-                "bg-emerald-500/20 text-emerald-400 border-emerald-500/30",
-                "bg-sky-500/20 text-sky-400 border-sky-500/30",
-                "bg-violet-500/20 text-violet-400 border-violet-500/30",
-                "bg-amber-500/20 text-amber-400 border-amber-500/30",
-              ];
-              return (
-                <Badge key={feature} className={`rounded-md ${colors[index % colors.length]} ${styles.badge}`}>
-                  {feature.toUpperCase()}
-                </Badge>
-              );
-            })}
+            {casino.features.slice(0, size === "large" ? 4 : 2).map((feature) => (
+              <Badge key={feature} className={`rounded-md bg-slate-400/20 text-blue-400 border-slate-400/30 ${styles.badge}`}>
+                {feature.toUpperCase()}
+              </Badge>
+            ))}
           </div>
 
           {/* Stats Section */}
@@ -441,19 +433,11 @@ export function CasinoCard({ casino, rank, size = "small" }: CasinoCardProps) {
           {/* Expandable Features */}
           {showFeatures && (
             <div className={`flex flex-wrap gap-2 px-${size === "large" ? "6" : size === "medium" ? "5" : "4"} pb-3`}>
-              {casino.features.map((feature, index) => {
-                const colors = [
-                  "bg-emerald-500/20 text-emerald-400 border-emerald-500/30",
-                  "bg-sky-500/20 text-sky-400 border-sky-500/30",
-                  "bg-violet-500/20 text-violet-400 border-violet-500/30",
-                  "bg-amber-500/20 text-amber-400 border-amber-500/30",
-                ];
-                return (
-                  <Badge key={feature} className={`rounded-full text-xs ${colors[index % colors.length]}`}>
-                    {feature}
-                  </Badge>
-                );
-              })}
+              {casino.features.map((feature) => (
+                <Badge key={feature} className="rounded-full text-xs bg-slate-400/20 text-blue-400 border-slate-400/30">
+                  {feature}
+                </Badge>
+              ))}
             </div>
           )}
 
