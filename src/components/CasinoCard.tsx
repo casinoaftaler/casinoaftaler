@@ -348,7 +348,7 @@ export function CasinoCard({ casino, rank, size = "small" }: CasinoCardProps) {
             {/* Prominent Bonus Amount */}
             <div className="text-center mb-3">
               <p className={`${styles.statsLabel} text-muted-foreground mb-1`}>Op til</p>
-              <p className={`${styles.bonus} font-bold text-gray-900 dark:text-gray-900`}>{casino.bonusAmount}</p>
+              <p className={`${styles.bonus} font-bold text-gray-900 dark:text-white`}>{casino.bonusAmount}</p>
             </div>
             
             {/* Toggle Stats Button */}
