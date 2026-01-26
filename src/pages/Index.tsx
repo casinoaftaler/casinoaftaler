@@ -82,53 +82,29 @@ const Index = () => {
               Ingen casinoer matcher dette filter. Prøv en anden kategori.
             </p>
           ) : (
-            <>
-              {/* Mobile: All cards same size in single column */}
-              <div className="grid gap-6 md:hidden">
-                {filteredCasinos.map((casino, index) => (
-                  <CasinoCard
-                    key={casino.id}
-                    casino={mapCasino(casino)}
-                    size="small"
-                    rank={index + 1}
-                  />
-                ))}
-              </div>
+            <div className="space-y-4">
+              {/* Featured Cards (Rank 1-2) */}
+              {filteredCasinos.slice(0, 2).map((casino, index) => (
+                <CasinoCard
+                  key={casino.id}
+                  casino={mapCasino(casino)}
+                  rank={index + 1}
+                />
+              ))}
 
-              {/* Tablet/Desktop: Tiered layout */}
-              <div className="hidden md:block space-y-6">
-                {/* First row: #1 Large card */}
-                <div className="grid gap-6 lg:grid-cols-2">
-                  <div className="lg:col-span-2">
-                    <CasinoCard casino={mapCasino(filteredCasinos[0])} size="large" rank={1} />
-                  </div>
+              {/* Regular Cards (Rank 3+) */}
+              {filteredCasinos.length > 2 && (
+                <div className="space-y-3">
+                  {filteredCasinos.slice(2).map((casino, index) => (
+                    <CasinoCard
+                      key={casino.id}
+                      casino={mapCasino(casino)}
+                      rank={index + 3}
+                    />
+                  ))}
                 </div>
-
-                {/* Second row: #2 and #3 Medium cards */}
-                {filteredCasinos.length > 1 && (
-                  <div className="grid gap-6 md:grid-cols-2">
-                    <CasinoCard casino={mapCasino(filteredCasinos[1])} size="medium" rank={2} />
-                    {filteredCasinos.length > 2 && (
-                      <CasinoCard casino={mapCasino(filteredCasinos[2])} size="medium" rank={3} />
-                    )}
-                  </div>
-                )}
-
-                {/* Remaining cards in smaller equal columns */}
-                {filteredCasinos.length > 3 && (
-                  <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-                    {filteredCasinos.slice(3).map((casino, index) => (
-                      <CasinoCard
-                        key={casino.id}
-                        casino={mapCasino(casino)}
-                        size="small"
-                        rank={index + 4}
-                      />
-                    ))}
-                  </div>
-                )}
-              </div>
-            </>
+              )}
+            </div>
           )}
         </div>
       </section>
