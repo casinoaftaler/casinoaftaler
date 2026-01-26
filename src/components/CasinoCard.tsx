@@ -3,6 +3,7 @@ import { Star, Flame, Info, Check, ExternalLink } from "lucide-react";
 import { getAffiliateRedirect } from "@/lib/affiliateRedirect";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
+import { useLogoColor } from "@/hooks/useLogoColor";
 import {
   Dialog,
   DialogContent,
@@ -222,31 +223,42 @@ function FeaturedCard({ casino, rank }: { casino: Casino; rank: number }) {
   // Extract bonus percentage from bonusTitle or use default
   const bonusPercentage = casino.bonusTitle?.match(/(\d+)%/)?.[1] || "100";
 
-  // Generate a consistent hash from casino name for gradient selection
-  const nameHash = casino.name.split('').reduce((acc, char) => acc + char.charCodeAt(0), 0);
+  // Extract dominant color from logo
+  const logoColor = useLogoColor(casino.logoUrl);
   
-  // Different gradient colors for variety - more diverse color palette
-  const gradientClasses = [
-    "bg-gradient-to-br from-violet-900/90 via-purple-800/80 to-indigo-900/90",   // Purple
-    "bg-gradient-to-br from-indigo-900/90 via-blue-800/80 to-purple-900/90",     // Indigo-Blue
-    "bg-gradient-to-br from-blue-900/90 via-cyan-800/80 to-blue-900/90",         // Blue-Cyan
-    "bg-gradient-to-br from-emerald-900/90 via-teal-800/80 to-cyan-900/90",      // Teal-Green
-    "bg-gradient-to-br from-rose-900/90 via-pink-800/80 to-fuchsia-900/90",      // Pink-Rose
-    "bg-gradient-to-br from-amber-900/90 via-orange-800/80 to-red-900/90",       // Orange-Amber
-    "bg-gradient-to-br from-slate-800/90 via-zinc-700/80 to-slate-900/90",       // Slate-Gray
-    "bg-gradient-to-br from-fuchsia-900/90 via-purple-800/80 to-pink-900/90",    // Fuchsia
-  ];
-  const gradientClass = gradientClasses[nameHash % gradientClasses.length];
+  // Create gradient style based on extracted color or fallback
+  const gradientStyle = logoColor
+    ? {
+        background: `linear-gradient(to bottom right, 
+          hsl(${logoColor} / 0.95) 0%, 
+          hsl(${logoColor} / 0.8) 50%, 
+          hsl(${logoColor} / 0.95) 100%)`
+      }
+    : undefined;
+
+  // Fallback gradient classes if no logo color extracted
+  const fallbackGradientClass = !logoColor 
+    ? "bg-gradient-to-br from-violet-900/90 via-purple-800/80 to-indigo-900/90" 
+    : "";
 
   return (
     <div className={`relative group h-full ${isTopRow ? "col-span-1" : ""}`}>
       {/* Subtle glow for #1 ranked card */}
       {isTopRanked && (
-        <div className="absolute -inset-1 rounded-2xl bg-gradient-to-r from-primary/40 via-accent/30 to-primary/40 blur-lg opacity-60 group-hover:opacity-80 transition-opacity duration-300" />
+        <div 
+          className="absolute -inset-1 rounded-2xl blur-lg opacity-60 group-hover:opacity-80 transition-opacity duration-300"
+          style={logoColor 
+            ? { background: `linear-gradient(to right, hsl(${logoColor} / 0.5), hsl(${logoColor} / 0.3), hsl(${logoColor} / 0.5))` }
+            : { background: 'linear-gradient(to right, hsl(var(--primary) / 0.4), hsl(var(--accent) / 0.3), hsl(var(--primary) / 0.4))' }
+          }
+        />
       )}
       
       {/* Card with colorful gradient background */}
-      <div className={`relative h-full overflow-hidden rounded-2xl ${gradientClass} border ${isTopRanked ? "border-primary/50" : "border-white/10"}`}>
+      <div 
+        className={`relative h-full overflow-hidden rounded-2xl ${fallbackGradientClass} border ${isTopRanked ? "border-white/30" : "border-white/10"}`}
+        style={gradientStyle}
+      >
         {/* Top right badges */}
         <div className="absolute top-3 right-3 z-10 flex items-center gap-2">
           {isTopRanked && (
