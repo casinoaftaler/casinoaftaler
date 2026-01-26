@@ -74,7 +74,21 @@ export function AdminUserManagement({ embedded = false }: AdminUserManagementPro
         body: { email, password },
       });
 
-      if (error) throw error;
+      if (error) {
+        // Supabase functions errors often hide the response body behind `context`.
+        // Extract it so the UI can show the real reason (e.g. duplicate email).
+        const anyErr = error as any;
+        const body = anyErr?.context?.body;
+        if (typeof body === "string") {
+          try {
+            const parsed = JSON.parse(body);
+            if (parsed?.error) throw new Error(parsed.error);
+          } catch {
+            // ignore JSON parse errors and fall back to generic message
+          }
+        }
+        throw new Error(anyErr?.message || "Kunne ikke oprette admin bruger");
+      }
       if (data?.error) throw new Error(data.error);
       return data;
     },
