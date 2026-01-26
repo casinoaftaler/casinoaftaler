@@ -20,6 +20,7 @@ const Index = () => {
       return casino.features?.includes("Fast payout");
     if (activeFilter === "mobile")
       return (
+        casino.features?.includes("Mobil App") ||
         casino.features?.includes("Mobile friendly") ||
         casino.features?.includes("Mobile app")
       );
