@@ -34,8 +34,7 @@ import {
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
 import { Plus, Trash2, LogOut, Star, Loader2, Pencil, GripVertical, ChevronDown } from "lucide-react";
-import { AnalyticsDashboard } from "@/components/AnalyticsDashboard";
-import { ClickAnalyticsDashboard } from "@/components/ClickAnalyticsDashboard";
+import { CombinedAnalyticsDashboard } from "@/components/CombinedAnalyticsDashboard";
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
 import { ThemeToggle } from "@/components/ThemeToggle";
 import { useQueryClient } from "@tanstack/react-query";
@@ -815,12 +814,8 @@ function CasinoOwnerDashboard() {
       </header>
 
       <main className="container py-8">
-        {/* Analytics Section */}
-        <AnalyticsDashboard />
-        
-        {/* Click Analytics Section */}
-        <ClickAnalyticsDashboard />
-
+        {/* Combined Analytics Section */}
+        <CombinedAnalyticsDashboard />
         {/* Site Settings Section */}
         <Collapsible>
           <Card className="mb-8">
