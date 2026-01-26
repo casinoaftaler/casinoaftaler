@@ -16,7 +16,7 @@ export function ShopItemCard({ item }: ShopItemCardProps) {
   };
 
   return (
-    <Card className="overflow-hidden border-primary/50 bg-card hover:border-primary transition-colors">
+    <Card className="overflow-hidden border-primary/30 bg-gradient-to-br from-primary/10 via-accent/10 to-primary/10 hover:border-primary/50 hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
       <AspectRatio ratio={16 / 9}>
         {item.image_url ? (
           <img
@@ -25,7 +25,7 @@ export function ShopItemCard({ item }: ShopItemCardProps) {
             className="h-full w-full object-cover"
           />
         ) : (
-          <div className="flex h-full w-full items-center justify-center bg-muted">
+          <div className="flex h-full w-full items-center justify-center bg-muted/50">
             <ShoppingCart className="h-12 w-12 text-muted-foreground" />
           </div>
         )}
