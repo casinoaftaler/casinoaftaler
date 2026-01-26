@@ -9,6 +9,7 @@ import { SiteNameInput } from "@/components/SiteNameInput";
 import { HeroSettingsInput } from "@/components/HeroSettingsInput";
 import { SocialLinksInput } from "@/components/SocialLinksInput";
 import { GameProvidersInput, type GameProvider } from "@/components/GameProvidersInput";
+import { FeatureSelector } from "@/components/FeatureSelector";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -146,7 +147,7 @@ function AddCasinoForm({ onClose }: { onClose: () => void }) {
     min_deposit: "100 kr.",
     payout_time: "24 timer",
     free_spins: "N/A",
-    features: "",
+    features: [] as string[],
     pros: "",
     cons: "",
     description: "",
@@ -173,7 +174,7 @@ function AddCasinoForm({ onClose }: { onClose: () => void }) {
       min_deposit: formData.min_deposit,
       payout_time: formData.payout_time,
       free_spins: formData.free_spins,
-      features: formData.features.split(",").map((s) => s.trim()).filter(Boolean),
+      features: formData.features,
       pros: formData.pros.split(",").map((s) => s.trim()).filter(Boolean),
       cons: formData.cons.split(",").map((s) => s.trim()).filter(Boolean),
       description: formData.description || null,
@@ -297,15 +298,10 @@ function AddCasinoForm({ onClose }: { onClose: () => void }) {
           placeholder="N/A eller fx 100"
         />
       </div>
-      <div className="space-y-2">
-        <Label htmlFor="features">Funktioner (kommasepareret)</Label>
-        <Input
-          id="features"
-          value={formData.features}
-          onChange={(e) => setFormData({ ...formData, features: e.target.value })}
-          placeholder="Live betting, Populære slots, Mobilvenlig"
-        />
-      </div>
+      <FeatureSelector
+        selectedFeatures={formData.features}
+        onChange={(features) => setFormData({ ...formData, features })}
+      />
 
       <div className="space-y-2">
         <Label htmlFor="pros">Fordele (kommasepareret)</Label>
@@ -390,7 +386,7 @@ function EditCasinoForm({ casino, onClose }: { casino: Casino; onClose: () => vo
     min_deposit: casino.min_deposit,
     payout_time: casino.payout_time,
     free_spins: casino.free_spins,
-    features: casino.features?.join(", ") || "",
+    features: casino.features || [],
     pros: casino.pros?.join(", ") || "",
     cons: casino.cons?.join(", ") || "",
     description: casino.description || "",
@@ -416,7 +412,7 @@ function EditCasinoForm({ casino, onClose }: { casino: Casino; onClose: () => vo
       min_deposit: formData.min_deposit,
       payout_time: formData.payout_time,
       free_spins: formData.free_spins,
-      features: formData.features.split(",").map((s) => s.trim()).filter(Boolean),
+      features: formData.features,
       pros: formData.pros.split(",").map((s) => s.trim()).filter(Boolean),
       cons: formData.cons.split(",").map((s) => s.trim()).filter(Boolean),
       description: formData.description || null,
@@ -549,14 +545,10 @@ function EditCasinoForm({ casino, onClose }: { casino: Casino; onClose: () => vo
         />
       </div>
 
-      <div className="space-y-2">
-        <Label htmlFor="edit-features">Funktioner (kommasepareret)</Label>
-        <Input
-          id="edit-features"
-          value={formData.features}
-          onChange={(e) => setFormData({ ...formData, features: e.target.value })}
-        />
-      </div>
+      <FeatureSelector
+        selectedFeatures={formData.features}
+        onChange={(features) => setFormData({ ...formData, features })}
+      />
 
       <div className="space-y-2">
         <Label htmlFor="edit-pros">Fordele (kommasepareret)</Label>
