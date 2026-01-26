@@ -159,7 +159,11 @@ function SortableItem({ item, onEdit, onDelete }: SortableItemProps) {
   );
 }
 
-export function ShopAdminSection() {
+interface ShopAdminSectionProps {
+  embedded?: boolean;
+}
+
+export function ShopAdminSection({ embedded = false }: ShopAdminSectionProps) {
   const [isOpen, setIsOpen] = useState(false);
   const [dialogOpen, setDialogOpen] = useState(false);
   const [editingItem, setEditingItem] = useState<ShopItem | null>(null);
@@ -247,6 +251,173 @@ export function ShopAdminSection() {
     setDialogOpen(true);
   };
 
+  const content = (
+    <div className="space-y-4">
+      <Dialog open={dialogOpen} onOpenChange={setDialogOpen}>
+        <DialogTrigger asChild>
+          <Button onClick={openAddDialog} className="w-full">
+            <Plus className="h-4 w-4 mr-2" />
+            Tilføj Produkt
+          </Button>
+        </DialogTrigger>
+        <DialogContent className="max-w-md max-h-[90vh] overflow-y-auto">
+          <DialogHeader>
+            <DialogTitle>
+              {editingItem ? "Rediger Produkt" : "Tilføj Nyt Produkt"}
+            </DialogTitle>
+          </DialogHeader>
+          <form onSubmit={handleSubmit} className="space-y-4">
+            <div className="space-y-2">
+              <Label htmlFor="name">Produkt Navn</Label>
+              <Input
+                id="name"
+                value={formData.name}
+                onChange={(e) => handleNameChange(e.target.value)}
+                required
+              />
+            </div>
+
+            <div className="space-y-2">
+              <Label htmlFor="slug">Slug</Label>
+              <Input
+                id="slug"
+                value={formData.slug}
+                onChange={(e) =>
+                  setFormData((prev) => ({ ...prev, slug: e.target.value }))
+                }
+                required
+              />
+            </div>
+
+            <div className="space-y-2">
+              <Label htmlFor="description">Beskrivelse</Label>
+              <Textarea
+                id="description"
+                value={formData.description}
+                onChange={(e) =>
+                  setFormData((prev) => ({
+                    ...prev,
+                    description: e.target.value,
+                  }))
+                }
+                rows={3}
+              />
+            </div>
+
+            <ShopImageUpload
+              currentImageUrl={formData.image_url}
+              onImageUploaded={(url) =>
+                setFormData((prev) => ({ ...prev, image_url: url }))
+              }
+              onImageRemoved={() =>
+                setFormData((prev) => ({ ...prev, image_url: null }))
+              }
+            />
+
+            <div className="grid grid-cols-2 gap-4">
+              <div className="space-y-2">
+                <Label htmlFor="price">Pris</Label>
+                <Input
+                  id="price"
+                  value={formData.price}
+                  onChange={(e) =>
+                    setFormData((prev) => ({ ...prev, price: e.target.value }))
+                  }
+                  placeholder="40000 Points"
+                  required
+                />
+              </div>
+              <div className="space-y-2">
+                <Label htmlFor="stock">Lager</Label>
+                <Input
+                  id="stock"
+                  value={formData.stock}
+                  onChange={(e) =>
+                    setFormData((prev) => ({ ...prev, stock: e.target.value }))
+                  }
+                  placeholder="20 STK"
+                  required
+                />
+              </div>
+            </div>
+
+            <div className="space-y-2">
+              <Label htmlFor="external_url">Ekstern Link (Køb URL)</Label>
+              <Input
+                id="external_url"
+                type="url"
+                value={formData.external_url}
+                onChange={(e) =>
+                  setFormData((prev) => ({
+                    ...prev,
+                    external_url: e.target.value,
+                  }))
+                }
+                placeholder="https://example.com/buy"
+              />
+            </div>
+
+            <div className="flex items-center justify-between">
+              <Label htmlFor="is_active">Aktiv</Label>
+              <Switch
+                id="is_active"
+                checked={formData.is_active}
+                onCheckedChange={(checked) =>
+                  setFormData((prev) => ({ ...prev, is_active: checked }))
+                }
+              />
+            </div>
+
+            <Button
+              type="submit"
+              className="w-full"
+              disabled={createItem.isPending || updateItem.isPending}
+            >
+              {(createItem.isPending || updateItem.isPending) && (
+                <Loader2 className="h-4 w-4 mr-2 animate-spin" />
+              )}
+              {editingItem ? "Gem Ændringer" : "Opret Produkt"}
+            </Button>
+          </form>
+        </DialogContent>
+      </Dialog>
+
+      {isLoading ? (
+        <div className="flex justify-center py-4">
+          <Loader2 className="h-6 w-6 animate-spin" />
+        </div>
+      ) : items && items.length > 0 ? (
+        <DndContext
+          sensors={sensors}
+          collisionDetection={closestCenter}
+          onDragEnd={handleDragEnd}
+        >
+          <SortableContext
+            items={items.map((item) => item.id)}
+            strategy={verticalListSortingStrategy}
+          >
+            {items.map((item) => (
+              <SortableItem
+                key={item.id}
+                item={item}
+                onEdit={handleEdit}
+                onDelete={handleDelete}
+              />
+            ))}
+          </SortableContext>
+        </DndContext>
+      ) : (
+        <p className="text-center text-muted-foreground py-4">
+          Ingen produkter endnu. Tilføj dit første produkt ovenfor.
+        </p>
+      )}
+    </div>
+  );
+
+  if (embedded) {
+    return <Card><CardContent className="pt-6">{content}</CardContent></Card>;
+  }
+
   return (
     <Collapsible open={isOpen} onOpenChange={setIsOpen}>
       <CollapsibleTrigger asChild>
@@ -262,165 +433,8 @@ export function ShopAdminSection() {
           )}
         </Button>
       </CollapsibleTrigger>
-      <CollapsibleContent className="px-4 pb-4 space-y-4">
-        <Dialog open={dialogOpen} onOpenChange={setDialogOpen}>
-          <DialogTrigger asChild>
-            <Button onClick={openAddDialog} className="w-full">
-              <Plus className="h-4 w-4 mr-2" />
-              Tilføj Produkt
-            </Button>
-          </DialogTrigger>
-          <DialogContent className="max-w-md max-h-[90vh] overflow-y-auto">
-            <DialogHeader>
-              <DialogTitle>
-                {editingItem ? "Rediger Produkt" : "Tilføj Nyt Produkt"}
-              </DialogTitle>
-            </DialogHeader>
-            <form onSubmit={handleSubmit} className="space-y-4">
-              <div className="space-y-2">
-                <Label htmlFor="name">Produkt Navn</Label>
-                <Input
-                  id="name"
-                  value={formData.name}
-                  onChange={(e) => handleNameChange(e.target.value)}
-                  required
-                />
-              </div>
-
-              <div className="space-y-2">
-                <Label htmlFor="slug">Slug</Label>
-                <Input
-                  id="slug"
-                  value={formData.slug}
-                  onChange={(e) =>
-                    setFormData((prev) => ({ ...prev, slug: e.target.value }))
-                  }
-                  required
-                />
-              </div>
-
-              <div className="space-y-2">
-                <Label htmlFor="description">Beskrivelse</Label>
-                <Textarea
-                  id="description"
-                  value={formData.description}
-                  onChange={(e) =>
-                    setFormData((prev) => ({
-                      ...prev,
-                      description: e.target.value,
-                    }))
-                  }
-                  rows={3}
-                />
-              </div>
-
-              <ShopImageUpload
-                currentImageUrl={formData.image_url}
-                onImageUploaded={(url) =>
-                  setFormData((prev) => ({ ...prev, image_url: url }))
-                }
-                onImageRemoved={() =>
-                  setFormData((prev) => ({ ...prev, image_url: null }))
-                }
-              />
-
-              <div className="grid grid-cols-2 gap-4">
-                <div className="space-y-2">
-                  <Label htmlFor="price">Pris</Label>
-                  <Input
-                    id="price"
-                    value={formData.price}
-                    onChange={(e) =>
-                      setFormData((prev) => ({ ...prev, price: e.target.value }))
-                    }
-                    placeholder="40000 Points"
-                    required
-                  />
-                </div>
-                <div className="space-y-2">
-                  <Label htmlFor="stock">Lager</Label>
-                  <Input
-                    id="stock"
-                    value={formData.stock}
-                    onChange={(e) =>
-                      setFormData((prev) => ({ ...prev, stock: e.target.value }))
-                    }
-                    placeholder="20 STK"
-                    required
-                  />
-                </div>
-              </div>
-
-              <div className="space-y-2">
-                <Label htmlFor="external_url">Ekstern Link (Køb URL)</Label>
-                <Input
-                  id="external_url"
-                  type="url"
-                  value={formData.external_url}
-                  onChange={(e) =>
-                    setFormData((prev) => ({
-                      ...prev,
-                      external_url: e.target.value,
-                    }))
-                  }
-                  placeholder="https://example.com/buy"
-                />
-              </div>
-
-              <div className="flex items-center justify-between">
-                <Label htmlFor="is_active">Aktiv</Label>
-                <Switch
-                  id="is_active"
-                  checked={formData.is_active}
-                  onCheckedChange={(checked) =>
-                    setFormData((prev) => ({ ...prev, is_active: checked }))
-                  }
-                />
-              </div>
-
-              <Button
-                type="submit"
-                className="w-full"
-                disabled={createItem.isPending || updateItem.isPending}
-              >
-                {(createItem.isPending || updateItem.isPending) && (
-                  <Loader2 className="h-4 w-4 mr-2 animate-spin" />
-                )}
-                {editingItem ? "Gem Ændringer" : "Opret Produkt"}
-              </Button>
-            </form>
-          </DialogContent>
-        </Dialog>
-
-        {isLoading ? (
-          <div className="flex justify-center py-4">
-            <Loader2 className="h-6 w-6 animate-spin" />
-          </div>
-        ) : items && items.length > 0 ? (
-          <DndContext
-            sensors={sensors}
-            collisionDetection={closestCenter}
-            onDragEnd={handleDragEnd}
-          >
-            <SortableContext
-              items={items.map((item) => item.id)}
-              strategy={verticalListSortingStrategy}
-            >
-              {items.map((item) => (
-                <SortableItem
-                  key={item.id}
-                  item={item}
-                  onEdit={handleEdit}
-                  onDelete={handleDelete}
-                />
-              ))}
-            </SortableContext>
-          </DndContext>
-        ) : (
-          <p className="text-center text-muted-foreground py-4">
-            Ingen produkter endnu. Tilføj dit første produkt ovenfor.
-          </p>
-        )}
+      <CollapsibleContent className="px-4 pb-4">
+        {content}
       </CollapsibleContent>
     </Collapsible>
   );
