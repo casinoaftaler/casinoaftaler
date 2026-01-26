@@ -1,12 +1,11 @@
-import { serve } from "https://deno.land/std@0.190.0/http/server.ts";
-import { createClient } from "https://esm.sh/@supabase/supabase-js@2.39.3";
+import { createClient } from "npm:@supabase/supabase-js@^2.87.1";
 
 const corsHeaders = {
   "Access-Control-Allow-Origin": "*",
   "Access-Control-Allow-Headers": "authorization, x-client-info, apikey, content-type",
 };
 
-serve(async (req) => {
+Deno.serve(async (req) => {
   // Handle CORS preflight requests
   if (req.method === "OPTIONS") {
     return new Response(null, { headers: corsHeaders });
@@ -28,34 +27,50 @@ serve(async (req) => {
       },
     });
 
-    // Create regular client to verify the requesting user is an admin
-    const authHeader = req.headers.get("Authorization");
-    if (!authHeader) {
+    // Validate caller auth
+    const authHeader = req.headers.get("authorization") ?? req.headers.get("Authorization");
+    if (!authHeader?.startsWith("Bearer ")) {
+      console.log("Missing/invalid Authorization header");
       return new Response(
         JSON.stringify({ error: "Ikke autoriseret" }),
         { status: 401, headers: { ...corsHeaders, "Content-Type": "application/json" } }
       );
     }
 
-    const supabaseClient = createClient(supabaseUrl, Deno.env.get("SUPABASE_ANON_KEY") || "", {
+    const token = authHeader.replace("Bearer ", "").trim();
+
+    const anonKey = Deno.env.get("SUPABASE_ANON_KEY");
+    if (!anonKey) {
+      console.error("Missing SUPABASE_ANON_KEY env var");
+      return new Response(
+        JSON.stringify({ error: "Server konfiguration mangler" }),
+        { status: 500, headers: { ...corsHeaders, "Content-Type": "application/json" } }
+      );
+    }
+
+    const supabaseClient = createClient(supabaseUrl, anonKey, {
       global: { headers: { Authorization: authHeader } },
+      auth: { persistSession: false, autoRefreshToken: false },
     });
 
-    // Verify the requesting user is an admin
-    const { data: { user }, error: userError } = await supabaseClient.auth.getUser();
-    if (userError || !user) {
+    // Verify JWT and get user id from claims
+    const { data: claimsData, error: claimsError } = await supabaseClient.auth.getClaims(token);
+    if (claimsError || !claimsData?.claims?.sub) {
+      console.log("JWT claims verification failed", claimsError);
       return new Response(
         JSON.stringify({ error: "Ikke autoriseret" }),
         { status: 401, headers: { ...corsHeaders, "Content-Type": "application/json" } }
       );
     }
+
+    const requesterUserId = claimsData.claims.sub;
 
     // Check if user is admin using the has_role function
     const { data: isAdmin, error: roleError } = await supabaseAdmin
-      .rpc("has_role", { _user_id: user.id, _role: "admin" });
+      .rpc("has_role", { _user_id: requesterUserId, _role: "admin" });
 
     if (roleError || !isAdmin) {
-      console.log("Role check failed:", roleError, isAdmin);
+      console.log("Role check failed:", { roleError, isAdmin, requesterUserId });
       return new Response(
         JSON.stringify({ error: "Kun administratorer kan oprette admin brugere" }),
         { status: 403, headers: { ...corsHeaders, "Content-Type": "application/json" } }
