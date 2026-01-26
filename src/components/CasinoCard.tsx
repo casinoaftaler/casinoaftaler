@@ -288,16 +288,8 @@ function FeaturedCard({ casino, rank }: { casino: Casino; rank: number }) {
 
           {/* Stats Box */}
           <div className="bg-black/40 rounded-xl p-3 mb-4 border border-white/10">
-            <div className={`grid grid-cols-3 gap-2 text-center`}>
+            <div className="grid grid-cols-2 gap-2 text-center">
               <div>
-                <p className="text-[10px] text-white/70 uppercase tracking-wider mb-0.5">
-                  {bonusPercentage}% OP TIL
-                </p>
-                <p className={`font-bold text-white ${isTopRow ? "text-lg" : "text-base"}`}>
-                  {casino.bonusAmount}
-                </p>
-              </div>
-              <div className="border-l border-white/20">
                 <p className="text-[10px] text-white/70 uppercase tracking-wider mb-0.5">
                   GRATIS SPINS
                 </p>
@@ -307,10 +299,10 @@ function FeaturedCard({ casino, rank }: { casino: Casino; rank: number }) {
               </div>
               <div className="border-l border-white/20">
                 <p className="text-[10px] text-white/70 uppercase tracking-wider mb-0.5">
-                  -
+                  OMSÆTNING
                 </p>
                 <p className={`font-bold text-white ${isTopRow ? "text-lg" : "text-base"}`}>
-                  -
+                  {casino.wageringRequirements}
                 </p>
               </div>
             </div>
