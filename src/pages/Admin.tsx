@@ -35,7 +35,7 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
-import { Plus, Trash2, LogOut, Star, Loader2, Pencil, GripVertical, ChevronDown, Users, UserPlus } from "lucide-react";
+import { Plus, Trash2, LogOut, Star, Loader2, Pencil, GripVertical, ChevronDown } from "lucide-react";
 import { CombinedAnalyticsDashboard } from "@/components/CombinedAnalyticsDashboard";
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
 import { ThemeToggle } from "@/components/ThemeToggle";
@@ -60,12 +60,6 @@ import {
 } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
 
-interface CasinoOwnerUser {
-  id: string;
-  user_id: string;
-  email: string;
-  created_at: string;
-}
 
 function AdminLoginForm() {
   const { signIn } = useAuth();
@@ -732,203 +726,6 @@ function SortableCasinoCard({
   );
 }
 
-// Casino Owner Management Section
-function CasinoOwnerManagement() {
-  const queryClient = useQueryClient();
-  const [addOwnerDialogOpen, setAddOwnerDialogOpen] = useState(false);
-  const [newOwnerEmail, setNewOwnerEmail] = useState("");
-  const [newOwnerPassword, setNewOwnerPassword] = useState("");
-
-  // Fetch all casino owners with their emails
-  const { data: casinoOwners, isLoading: ownersLoading } = useQuery({
-    queryKey: ["casino-owners-list"],
-    queryFn: async () => {
-      const { data, error } = await supabase
-        .from("user_roles")
-        .select("id, user_id, created_at")
-        .eq("role", "casino_owner" as any);
-      
-      if (error) throw error;
-      return data as { id: string; user_id: string; created_at: string }[];
-    },
-  });
-
-  // Create casino owner mutation
-  const createOwnerMutation = useMutation({
-    mutationFn: async ({ email, password }: { email: string; password: string }) => {
-      // First, sign up the user
-      const { data: authData, error: signUpError } = await supabase.auth.signUp({
-        email,
-        password,
-        options: {
-          emailRedirectTo: `${window.location.origin}/casino-owner`,
-        },
-      });
-
-      if (signUpError) throw signUpError;
-      if (!authData.user) throw new Error("Bruger blev ikke oprettet");
-
-      // Add casino_owner role
-      const { error: roleError } = await supabase
-        .from("user_roles")
-        .insert({
-          user_id: authData.user.id,
-          role: "casino_owner" as any,
-        });
-
-      if (roleError) throw roleError;
-
-      return authData.user;
-    },
-    onSuccess: () => {
-      toast.success("Casino ejer oprettet");
-      setAddOwnerDialogOpen(false);
-      setNewOwnerEmail("");
-      setNewOwnerPassword("");
-      queryClient.invalidateQueries({ queryKey: ["casino-owners-list"] });
-    },
-    onError: (error: any) => {
-      toast.error(error.message || "Fejl ved oprettelse af casino ejer");
-    },
-  });
-
-  // Delete casino owner mutation
-  const deleteOwnerMutation = useMutation({
-    mutationFn: async (roleId: string) => {
-      const { error } = await supabase
-        .from("user_roles")
-        .delete()
-        .eq("id", roleId);
-      
-      if (error) throw error;
-    },
-    onSuccess: () => {
-      toast.success("Casino ejer rolle fjernet");
-      queryClient.invalidateQueries({ queryKey: ["casino-owners-list"] });
-    },
-    onError: (error: any) => {
-      toast.error(error.message || "Fejl ved fjernelse af casino ejer");
-    },
-  });
-
-  const handleCreateOwner = async (e: React.FormEvent) => {
-    e.preventDefault();
-    createOwnerMutation.mutate({ email: newOwnerEmail, password: newOwnerPassword });
-  };
-
-  return (
-    <Collapsible>
-      <Card className="mb-8">
-        <CollapsibleTrigger className="w-full">
-          <CardHeader className="flex flex-row items-center justify-between cursor-pointer hover:bg-muted/50 transition-colors [&[data-state=open]>svg]:rotate-180">
-            <div className="flex items-center gap-2">
-              <Users className="h-5 w-5" />
-              <CardTitle>Casino Ejer Administration</CardTitle>
-            </div>
-            <ChevronDown className="h-5 w-5 transition-transform duration-200" />
-          </CardHeader>
-        </CollapsibleTrigger>
-        <CollapsibleContent>
-          <CardContent className="space-y-4">
-            <div className="flex items-center justify-between">
-              <p className="text-sm text-muted-foreground">
-                Administrer casino ejere der kan redigere siden via /casino-owner
-              </p>
-              <Dialog open={addOwnerDialogOpen} onOpenChange={setAddOwnerDialogOpen}>
-                <DialogTrigger asChild>
-                  <Button size="sm">
-                    <UserPlus className="mr-2 h-4 w-4" /> Tilføj Casino Ejer
-                  </Button>
-                </DialogTrigger>
-                <DialogContent>
-                  <DialogHeader>
-                    <DialogTitle>Opret Ny Casino Ejer</DialogTitle>
-                  </DialogHeader>
-                  <form onSubmit={handleCreateOwner} className="space-y-4">
-                    <div className="space-y-2">
-                      <Label htmlFor="owner-email">Email</Label>
-                      <Input
-                        id="owner-email"
-                        type="email"
-                        value={newOwnerEmail}
-                        onChange={(e) => setNewOwnerEmail(e.target.value)}
-                        placeholder="ejer@eksempel.dk"
-                        required
-                      />
-                    </div>
-                    <div className="space-y-2">
-                      <Label htmlFor="owner-password">Adgangskode</Label>
-                      <Input
-                        id="owner-password"
-                        type="password"
-                        value={newOwnerPassword}
-                        onChange={(e) => setNewOwnerPassword(e.target.value)}
-                        placeholder="••••••••"
-                        required
-                        minLength={6}
-                      />
-                    </div>
-                    <Button type="submit" className="w-full" disabled={createOwnerMutation.isPending}>
-                      {createOwnerMutation.isPending && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
-                      Opret Casino Ejer
-                    </Button>
-                  </form>
-                </DialogContent>
-              </Dialog>
-            </div>
-
-            {ownersLoading ? (
-              <div className="flex justify-center py-4">
-                <Loader2 className="h-6 w-6 animate-spin text-primary" />
-              </div>
-            ) : casinoOwners && casinoOwners.length > 0 ? (
-              <div className="space-y-2">
-                {casinoOwners.map((owner) => (
-                  <div key={owner.id} className="flex items-center justify-between rounded-lg border border-border p-3">
-                    <div>
-                      <p className="font-medium text-sm">Bruger ID: {owner.user_id.substring(0, 8)}...</p>
-                      <p className="text-xs text-muted-foreground">
-                        Oprettet: {new Date(owner.created_at).toLocaleDateString("da-DK")}
-                      </p>
-                    </div>
-                    <AlertDialog>
-                      <AlertDialogTrigger asChild>
-                        <Button variant="destructive" size="sm">
-                          <Trash2 className="h-4 w-4" />
-                        </Button>
-                      </AlertDialogTrigger>
-                      <AlertDialogContent>
-                        <AlertDialogHeader>
-                          <AlertDialogTitle>Fjern Casino Ejer</AlertDialogTitle>
-                          <AlertDialogDescription>
-                            Er du sikker på, at du vil fjerne denne brugers casino ejer rettigheder?
-                          </AlertDialogDescription>
-                        </AlertDialogHeader>
-                        <AlertDialogFooter>
-                          <AlertDialogCancel>Annuller</AlertDialogCancel>
-                          <AlertDialogAction
-                            onClick={() => deleteOwnerMutation.mutate(owner.id)}
-                            className="bg-destructive text-destructive-foreground hover:bg-destructive/90"
-                          >
-                            Fjern
-                          </AlertDialogAction>
-                        </AlertDialogFooter>
-                      </AlertDialogContent>
-                    </AlertDialog>
-                  </div>
-                ))}
-              </div>
-            ) : (
-              <p className="text-center py-4 text-muted-foreground">
-                Ingen casino ejere fundet
-              </p>
-            )}
-          </CardContent>
-        </CollapsibleContent>
-      </Card>
-    </Collapsible>
-  );
-}
 
 function AdminDashboard() {
   const { user, isAdmin, signOut } = useAuth();
@@ -1005,8 +802,6 @@ function AdminDashboard() {
       <main className="container py-8">
         {/* Combined Analytics Section */}
         <CombinedAnalyticsDashboard />
-        {/* Casino Owner Management Section - Admin Only */}
-        <CasinoOwnerManagement />
 
         {/* Site Settings Section */}
         <Collapsible>
@@ -1150,7 +945,7 @@ export default function Admin() {
           <CardContent className="pt-6">
             <h2 className="mb-4 text-xl font-bold">Adgang Nægtet</h2>
             <p className="mb-4 text-muted-foreground">
-              Du har ikke admin rettigheder. Er du casino ejer? Brug /casino-owner i stedet.
+              Du har ikke admin rettigheder.
             </p>
             <p className="mb-4 text-sm text-muted-foreground">
               Logget ind som: {user?.email}

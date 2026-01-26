@@ -3,7 +3,7 @@
 # Butik (Shop) Feature Implementation Plan
 
 ## Overview
-This plan adds a complete "Butik" (Shop) feature allowing admins and casino owners to create and manage shop items that visitors can browse. Each item will have a "KØB" (Buy) button that redirects to an external website, similar to the reference design at casinoholdet.com/butik.
+This plan adds a complete "Butik" (Shop) feature allowing admins to create and manage shop items that visitors can browse. Each item will have a "KØB" (Buy) button that redirects to an external website, similar to the reference design at casinoholdet.com/butik.
 
 ## Database Changes
 
@@ -30,7 +30,7 @@ Create a new `shop-item-images` storage bucket (public) for product images.
 
 ### RLS Policies
 - Public can read active items (via a `shop_items_public` view that excludes `external_url`)
-- Authenticated admins/casino owners can CRUD all items
+- Authenticated admins can CRUD all items
 
 ## Frontend Components
 
@@ -54,7 +54,7 @@ Product card component styled to match the reference:
 ### 4. New Component: `src/components/ShopImageUpload.tsx`
 Reusable image upload component for shop items (similar to LogoUpload but using the new bucket).
 
-### 5. Admin Panel Updates (`src/pages/Admin.tsx` and `src/pages/CasinoOwner.tsx`)
+### 5. Admin Panel Updates (`src/pages/Admin.tsx`)
 Add new collapsible section "Butik Administration" containing:
 - "Tilføj Produkt" dialog with form fields:
   - Produkt Navn (name)
@@ -127,12 +127,9 @@ ALTER TABLE public.shop_items ENABLE ROW LEVEL SECURITY;
 CREATE POLICY "Anyone can view active shop items" ON public.shop_items
   FOR SELECT USING (is_active = true);
 
--- Admin/casino owner full access
+-- Admin full access
 CREATE POLICY "Admins can manage shop items" ON public.shop_items
-  FOR ALL USING (
-    has_role(auth.uid(), 'admin'::app_role) OR 
-    has_role(auth.uid(), 'casino_owner'::app_role)
-  );
+  FOR ALL USING (has_role(auth.uid(), 'admin'::app_role));
 
 -- Trigger for updated_at
 CREATE TRIGGER update_shop_items_updated_at
@@ -144,7 +141,7 @@ CREATE TRIGGER update_shop_items_updated_at
 ### Storage Bucket Configuration
 Create bucket `shop-item-images` with:
 - Public access for viewing
-- Authenticated upload for admins/casino owners
+- Authenticated upload for admins
 
 ### Files to Create
 1. `src/pages/Shop.tsx` - Public shop page
@@ -156,5 +153,4 @@ Create bucket `shop-item-images` with:
 1. `src/App.tsx` - Add /butik route
 2. `src/components/Header.tsx` - Add Butik nav link
 3. `src/pages/Admin.tsx` - Add shop management section
-4. `src/pages/CasinoOwner.tsx` - Add shop management section
 

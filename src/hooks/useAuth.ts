@@ -7,8 +7,6 @@ export function useAuth() {
   const [session, setSession] = useState<Session | null>(null);
   const [loading, setLoading] = useState(true);
   const [isAdmin, setIsAdmin] = useState(false);
-  const [isCasinoOwner, setIsCasinoOwner] = useState(false);
-  const [ownedCasinoIds, setOwnedCasinoIds] = useState<string[]>([]);
 
   useEffect(() => {
     // Set up auth state listener FIRST
@@ -21,12 +19,9 @@ export function useAuth() {
         if (session?.user) {
           setTimeout(() => {
             checkAdminRole(session.user.id);
-            checkCasinoOwnerRole(session.user.id);
           }, 0);
         } else {
           setIsAdmin(false);
-          setIsCasinoOwner(false);
-          setOwnedCasinoIds([]);
         }
       }
     );
@@ -37,7 +32,6 @@ export function useAuth() {
       setUser(session?.user ?? null);
       if (session?.user) {
         checkAdminRole(session.user.id);
-        checkCasinoOwnerRole(session.user.id);
       }
       setLoading(false);
     });
@@ -57,33 +51,6 @@ export function useAuth() {
       setIsAdmin(true);
     } else {
       setIsAdmin(false);
-    }
-  };
-
-  const checkCasinoOwnerRole = async (userId: string) => {
-    // Check if user has casino_owner role (using type assertion since types may not be regenerated yet)
-    const { data: roleData } = await supabase
-      .from("user_roles")
-      .select("role")
-      .eq("user_id", userId)
-      .eq("role", "casino_owner" as any)
-      .maybeSingle();
-
-    if (roleData) {
-      setIsCasinoOwner(true);
-      
-      // Fetch owned casino IDs
-      const { data: ownershipData } = await supabase
-        .from("casino_owners" as any)
-        .select("casino_id")
-        .eq("user_id", userId);
-      
-      if (ownershipData) {
-        setOwnedCasinoIds((ownershipData as any[]).map(o => o.casino_id));
-      }
-    } else {
-      setIsCasinoOwner(false);
-      setOwnedCasinoIds([]);
     }
   };
 
@@ -117,8 +84,6 @@ export function useAuth() {
     session,
     loading,
     isAdmin,
-    isCasinoOwner,
-    ownedCasinoIds,
     signIn,
     signUp,
     signOut,

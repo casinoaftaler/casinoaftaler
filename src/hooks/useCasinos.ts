@@ -45,11 +45,11 @@ export function useCasinos(includeInactive = false) {
   return useQuery({
     queryKey: ["casinos", includeInactive],
     queryFn: async () => {
-      // Check if user is authenticated (admin or casino owner)
+      // Check if user is authenticated (admin)
       const { data: { session } } = await supabase.auth.getSession();
       
       if (includeInactive && session) {
-        // Authenticated users (admin/casino owner) get full data from casinos table
+        // Authenticated admins get full data from casinos table
         const { data, error } = await supabase
           .from("casinos")
           .select("*")
