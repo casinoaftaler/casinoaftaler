@@ -222,6 +222,16 @@ function FeaturedCard({ casino, rank }: { casino: Casino; rank: number }) {
   // Extract bonus percentage from bonusTitle or use default
   const bonusPercentage = casino.bonusTitle?.match(/(\d+)%/)?.[1] || "100";
 
+  // Different gradient colors for variety
+  const gradientClasses = [
+    "bg-gradient-to-br from-violet-900/90 via-purple-800/80 to-indigo-900/90", // #1
+    "bg-gradient-to-br from-indigo-900/90 via-blue-800/80 to-purple-900/90",   // #2
+    "bg-gradient-to-br from-blue-900/90 via-cyan-800/80 to-blue-900/90",       // #3
+    "bg-gradient-to-br from-slate-800/90 via-blue-900/80 to-slate-800/90",     // #4
+    "bg-gradient-to-br from-purple-900/90 via-indigo-800/80 to-violet-900/90", // #5
+  ];
+  const gradientClass = gradientClasses[(rank - 1) % gradientClasses.length];
+
   return (
     <div className={`relative group h-full ${isTopRow ? "col-span-1" : ""}`}>
       {/* Subtle glow for #1 ranked card */}
@@ -229,8 +239,8 @@ function FeaturedCard({ casino, rank }: { casino: Casino; rank: number }) {
         <div className="absolute -inset-1 rounded-2xl bg-gradient-to-r from-primary/40 via-accent/30 to-primary/40 blur-lg opacity-60 group-hover:opacity-80 transition-opacity duration-300" />
       )}
       
-      {/* Card with dark gradient background */}
-      <div className={`relative h-full overflow-hidden rounded-2xl bg-gradient-to-br from-[hsl(var(--card))] via-[hsl(var(--muted))] to-[hsl(var(--card))] border ${isTopRanked ? "border-primary/50" : "border-border"}`}>
+      {/* Card with colorful gradient background */}
+      <div className={`relative h-full overflow-hidden rounded-2xl ${gradientClass} border ${isTopRanked ? "border-primary/50" : "border-white/10"}`}>
         {/* Top right badges */}
         <div className="absolute top-3 right-3 z-10 flex items-center gap-2">
           {isTopRanked && (
@@ -265,36 +275,36 @@ function FeaturedCard({ casino, rank }: { casino: Casino; rank: number }) {
           <div className="flex flex-wrap justify-center gap-x-4 gap-y-1 mb-4">
             {casino.features.slice(0, 3).map((feature) => (
               <div key={feature} className="flex items-center gap-1.5">
-                <Check className="h-4 w-4 text-emerald-500 flex-shrink-0" />
-                <span className="text-sm text-foreground">{feature}</span>
+                <Check className="h-4 w-4 text-emerald-400 flex-shrink-0" />
+                <span className="text-sm text-white">{feature}</span>
               </div>
             ))}
           </div>
 
           {/* Stats Box */}
-          <div className="bg-background/60 rounded-xl p-3 mb-4 border border-border/50">
+          <div className="bg-black/40 rounded-xl p-3 mb-4 border border-white/10">
             <div className={`grid ${isTopRow ? "grid-cols-3" : "grid-cols-3"} gap-2 text-center`}>
               <div>
-                <p className="text-[10px] text-muted-foreground uppercase tracking-wider mb-0.5">
+                <p className="text-[10px] text-white/70 uppercase tracking-wider mb-0.5">
                   {bonusPercentage}% UP TO
                 </p>
-                <p className={`font-bold text-foreground ${isTopRow ? "text-lg" : "text-base"}`}>
+                <p className={`font-bold text-white ${isTopRow ? "text-lg" : "text-base"}`}>
                   {casino.bonusAmount}
                 </p>
               </div>
-              <div className="border-l border-border/50">
-                <p className="text-[10px] text-muted-foreground uppercase tracking-wider mb-0.5">
+              <div className="border-l border-white/20">
+                <p className="text-[10px] text-white/70 uppercase tracking-wider mb-0.5">
                   FREE SPINS
                 </p>
-                <p className={`font-bold text-foreground ${isTopRow ? "text-lg" : "text-base"}`}>
+                <p className={`font-bold text-white ${isTopRow ? "text-lg" : "text-base"}`}>
                   {casino.freeSpins || '-'}
                 </p>
               </div>
-              <div className="border-l border-border/50">
-                <p className="text-[10px] text-muted-foreground uppercase tracking-wider mb-0.5">
+              <div className="border-l border-white/20">
+                <p className="text-[10px] text-white/70 uppercase tracking-wider mb-0.5">
                   -
                 </p>
-                <p className={`font-bold text-foreground ${isTopRow ? "text-lg" : "text-base"}`}>
+                <p className={`font-bold text-white ${isTopRow ? "text-lg" : "text-base"}`}>
                   -
                 </p>
               </div>
@@ -307,7 +317,7 @@ function FeaturedCard({ casino, rank }: { casino: Casino; rank: number }) {
           {/* CTA Button */}
           <Button 
             onClick={() => getAffiliateRedirect(casino.slug)} 
-            className={`w-full rounded-full border-2 border-foreground bg-background text-foreground hover:bg-foreground hover:text-background font-bold transition-all ${
+            className={`w-full rounded-full border-2 border-white bg-white/10 text-white hover:bg-white hover:text-gray-900 font-bold transition-all ${
               isTopRow ? "py-5 text-base" : "py-4 text-sm"
             }`}
           >
@@ -315,7 +325,7 @@ function FeaturedCard({ casino, rank }: { casino: Casino; rank: number }) {
           </Button>
 
           {/* Disclaimer */}
-          <p className="text-[10px] text-muted-foreground text-center mt-3">
+          <p className="text-[10px] text-white/60 text-center mt-3">
             18+ | T&C APPLY
           </p>
         </div>
