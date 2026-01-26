@@ -224,8 +224,13 @@ function FeaturedCard({ casino, rank }: { casino: Casino; rank: number }) {
 
   return (
     <div className={`relative group h-full ${isTopRow ? "col-span-1" : ""}`}>
+      {/* Subtle glow for #1 ranked card */}
+      {isTopRanked && (
+        <div className="absolute -inset-1 rounded-2xl bg-gradient-to-r from-amber-500/40 via-orange-400/30 to-yellow-500/40 blur-lg opacity-60 group-hover:opacity-80 transition-opacity duration-300" />
+      )}
+      
       {/* Card with dark gradient background */}
-      <div className={`relative h-full overflow-hidden rounded-2xl bg-gradient-to-br from-[hsl(var(--card))] via-[hsl(var(--muted))] to-[hsl(var(--card))] border ${isTopRanked ? "border-primary/50" : "border-border"}`}>
+      <div className={`relative h-full overflow-hidden rounded-2xl bg-gradient-to-br from-[hsl(var(--card))] via-[hsl(var(--muted))] to-[hsl(var(--card))] border ${isTopRanked ? "border-amber-500/50" : "border-border"}`}>
         {/* Top right badges */}
         <div className="absolute top-3 right-3 z-10 flex items-center gap-2">
           {isTopRanked && (
