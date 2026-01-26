@@ -12,6 +12,7 @@ import ResponsibleGaming from "./pages/ResponsibleGaming";
 import Privacy from "./pages/Privacy";
 import Terms from "./pages/Terms";
 import Cookies from "./pages/Cookies";
+import Shop from "./pages/Shop";
 import Admin from "./pages/Admin";
 import CasinoOwner from "./pages/CasinoOwner";
 import NotFound from "./pages/NotFound";
@@ -34,6 +35,7 @@ const App = () => (
             <Route path="/privacy" element={<Privacy />} />
             <Route path="/terms" element={<Terms />} />
             <Route path="/cookies" element={<Cookies />} />
+            <Route path="/butik" element={<Shop />} />
           </Route>
           <Route path="/admin" element={<Admin />} />
           <Route path="/casino-owner" element={<CasinoOwner />} />
