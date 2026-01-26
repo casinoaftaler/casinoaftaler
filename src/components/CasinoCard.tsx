@@ -222,15 +222,21 @@ function FeaturedCard({ casino, rank }: { casino: Casino; rank: number }) {
   // Extract bonus percentage from bonusTitle or use default
   const bonusPercentage = casino.bonusTitle?.match(/(\d+)%/)?.[1] || "100";
 
-  // Different gradient colors for variety
+  // Generate a consistent hash from casino name for gradient selection
+  const nameHash = casino.name.split('').reduce((acc, char) => acc + char.charCodeAt(0), 0);
+  
+  // Different gradient colors for variety - more diverse color palette
   const gradientClasses = [
-    "bg-gradient-to-br from-violet-900/90 via-purple-800/80 to-indigo-900/90", // #1
-    "bg-gradient-to-br from-indigo-900/90 via-blue-800/80 to-purple-900/90",   // #2
-    "bg-gradient-to-br from-blue-900/90 via-cyan-800/80 to-blue-900/90",       // #3
-    "bg-gradient-to-br from-slate-800/90 via-blue-900/80 to-slate-800/90",     // #4
-    "bg-gradient-to-br from-purple-900/90 via-indigo-800/80 to-violet-900/90", // #5
+    "bg-gradient-to-br from-violet-900/90 via-purple-800/80 to-indigo-900/90",   // Purple
+    "bg-gradient-to-br from-indigo-900/90 via-blue-800/80 to-purple-900/90",     // Indigo-Blue
+    "bg-gradient-to-br from-blue-900/90 via-cyan-800/80 to-blue-900/90",         // Blue-Cyan
+    "bg-gradient-to-br from-emerald-900/90 via-teal-800/80 to-cyan-900/90",      // Teal-Green
+    "bg-gradient-to-br from-rose-900/90 via-pink-800/80 to-fuchsia-900/90",      // Pink-Rose
+    "bg-gradient-to-br from-amber-900/90 via-orange-800/80 to-red-900/90",       // Orange-Amber
+    "bg-gradient-to-br from-slate-800/90 via-zinc-700/80 to-slate-900/90",       // Slate-Gray
+    "bg-gradient-to-br from-fuchsia-900/90 via-purple-800/80 to-pink-900/90",    // Fuchsia
   ];
-  const gradientClass = gradientClasses[(rank - 1) % gradientClasses.length];
+  const gradientClass = gradientClasses[nameHash % gradientClasses.length];
 
   return (
     <div className={`relative group h-full ${isTopRow ? "col-span-1" : ""}`}>
