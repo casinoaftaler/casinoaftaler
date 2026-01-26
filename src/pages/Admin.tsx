@@ -35,12 +35,12 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
-import { Plus, Trash2, LogOut, Star, Loader2, Pencil, GripVertical, ChevronDown } from "lucide-react";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Plus, Trash2, LogOut, Star, Loader2, Pencil, GripVertical, Gift, ShoppingBag, BarChart3, Settings, Users } from "lucide-react";
 import { AdminUserManagement } from "@/components/AdminUserManagement";
 import { CombinedAnalyticsDashboard } from "@/components/CombinedAnalyticsDashboard";
-import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
 import { ThemeToggle } from "@/components/ThemeToggle";
-import { useQueryClient, useQuery, useMutation } from "@tanstack/react-query";
+import { useQueryClient } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
 import {
@@ -801,20 +801,127 @@ function AdminDashboard() {
       </header>
 
       <main className="container py-8">
-        {/* Combined Analytics Section */}
-        <CombinedAnalyticsDashboard />
+        <Tabs defaultValue="casinos" className="w-full">
+          <TabsList className="grid w-full grid-cols-5 mb-8 h-auto">
+            <TabsTrigger value="casinos" className="flex items-center gap-2 py-3">
+              <Gift className="h-4 w-4" />
+              <span className="hidden sm:inline">Casino Tilbud</span>
+            </TabsTrigger>
+            <TabsTrigger value="shop" className="flex items-center gap-2 py-3">
+              <ShoppingBag className="h-4 w-4" />
+              <span className="hidden sm:inline">Butik</span>
+            </TabsTrigger>
+            <TabsTrigger value="analytics" className="flex items-center gap-2 py-3">
+              <BarChart3 className="h-4 w-4" />
+              <span className="hidden sm:inline">Analytics</span>
+            </TabsTrigger>
+            <TabsTrigger value="settings" className="flex items-center gap-2 py-3">
+              <Settings className="h-4 w-4" />
+              <span className="hidden sm:inline">Indstillinger</span>
+            </TabsTrigger>
+            <TabsTrigger value="users" className="flex items-center gap-2 py-3">
+              <Users className="h-4 w-4" />
+              <span className="hidden sm:inline">Brugere</span>
+            </TabsTrigger>
+          </TabsList>
 
-        {/* Site Settings Section */}
-        <Collapsible>
-          <Card className="mb-8">
-            <CollapsibleTrigger className="w-full">
-              <CardHeader className="flex flex-row items-center justify-between cursor-pointer hover:bg-muted/50 transition-colors [&[data-state=open]>svg]:rotate-180">
-                <CardTitle>Site Indstillinger</CardTitle>
-                <ChevronDown className="h-5 w-5 transition-transform duration-200" />
-              </CardHeader>
-            </CollapsibleTrigger>
-            <CollapsibleContent>
-              <CardContent className="space-y-6">
+          {/* Casino Tilbud Tab */}
+          <TabsContent value="casinos">
+            <div className="mb-8 flex items-center justify-between">
+              <div>
+                <h2 className="text-2xl font-bold">Casino Tilbud</h2>
+                <p className="text-muted-foreground">
+                  Administrer casinobonusser og tilbud. Træk for at ændre rækkefølge.
+                </p>
+              </div>
+              <Dialog open={dialogOpen} onOpenChange={setDialogOpen}>
+                <DialogTrigger asChild>
+                  <Button>
+                    <Plus className="mr-2 h-4 w-4" /> Tilføj Casino
+                  </Button>
+                </DialogTrigger>
+                <DialogContent className="max-w-2xl">
+                  <DialogHeader>
+                    <DialogTitle>Tilføj Nyt Casino</DialogTitle>
+                  </DialogHeader>
+                  <AddCasinoForm onClose={() => setDialogOpen(false)} />
+                </DialogContent>
+              </Dialog>
+            </div>
+
+            {isLoading ? (
+              <div className="flex items-center justify-center py-12">
+                <Loader2 className="h-8 w-8 animate-spin text-primary" />
+              </div>
+            ) : (
+              <DndContext
+                sensors={sensors}
+                collisionDetection={closestCenter}
+                onDragEnd={handleDragEnd}
+              >
+                <SortableContext
+                  items={orderedCasinos.map((c) => c.id)}
+                  strategy={verticalListSortingStrategy}
+                >
+                  <div className="space-y-4">
+                    {orderedCasinos.map((casino) => (
+                      <SortableCasinoCard
+                        key={casino.id}
+                        casino={casino}
+                        onEdit={setEditingCasino}
+                        onDelete={(id) => deleteCasino.mutate(id)}
+                      />
+                    ))}
+
+                    {orderedCasinos.length === 0 && (
+                      <Card>
+                        <CardContent className="py-12 text-center">
+                          <p className="text-muted-foreground">
+                            Ingen casinoer fundet. Tilføj dit første casino!
+                          </p>
+                        </CardContent>
+                      </Card>
+                    )}
+                  </div>
+                </SortableContext>
+              </DndContext>
+            )}
+
+            {/* Edit Casino Dialog */}
+            <Dialog open={!!editingCasino} onOpenChange={(open) => !open && setEditingCasino(null)}>
+              <DialogContent className="max-w-2xl">
+                <DialogHeader>
+                  <DialogTitle>Rediger Casino</DialogTitle>
+                </DialogHeader>
+                {editingCasino && (
+                  <EditCasinoForm casino={editingCasino} onClose={() => setEditingCasino(null)} />
+                )}
+              </DialogContent>
+            </Dialog>
+          </TabsContent>
+
+          {/* Butik Tab */}
+          <TabsContent value="shop">
+            <div className="mb-6">
+              <h2 className="text-2xl font-bold">Butik Administration</h2>
+              <p className="text-muted-foreground">Administrer produkter i butikken.</p>
+            </div>
+            <ShopAdminSection embedded />
+          </TabsContent>
+
+          {/* Analytics Tab */}
+          <TabsContent value="analytics">
+            <CombinedAnalyticsDashboard />
+          </TabsContent>
+
+          {/* Indstillinger Tab */}
+          <TabsContent value="settings">
+            <div className="mb-6">
+              <h2 className="text-2xl font-bold">Site Indstillinger</h2>
+              <p className="text-muted-foreground">Tilpas hjemmesidens udseende og indhold.</p>
+            </div>
+            <Card>
+              <CardContent className="space-y-6 pt-6">
                 <div>
                   <h3 className="text-sm font-medium mb-3">Site Navn</h3>
                   <SiteNameInput />
@@ -838,89 +945,18 @@ function AdminDashboard() {
                   <SocialLinksInput />
                 </div>
               </CardContent>
-            </CollapsibleContent>
-          </Card>
-        </Collapsible>
+            </Card>
+          </TabsContent>
 
-        {/* Admin User Management Section */}
-        <AdminUserManagement />
-
-        {/* Shop Administration Section */}
-        <Card className="mb-8">
-          <ShopAdminSection />
-        </Card>
-
-        <div className="mb-8 flex items-center justify-between">
-          <div>
-            <h2 className="text-2xl font-bold">Casino Tilbud</h2>
-            <p className="text-muted-foreground">
-              Administrer casinobonusser og tilbud. Træk for at ændre rækkefølge.
-            </p>
-          </div>
-          <Dialog open={dialogOpen} onOpenChange={setDialogOpen}>
-            <DialogTrigger asChild>
-              <Button>
-                <Plus className="mr-2 h-4 w-4" /> Tilføj Casino
-              </Button>
-            </DialogTrigger>
-            <DialogContent className="max-w-2xl">
-              <DialogHeader>
-                <DialogTitle>Tilføj Nyt Casino</DialogTitle>
-              </DialogHeader>
-              <AddCasinoForm onClose={() => setDialogOpen(false)} />
-            </DialogContent>
-          </Dialog>
-        </div>
-
-        {isLoading ? (
-          <div className="flex items-center justify-center py-12">
-            <Loader2 className="h-8 w-8 animate-spin text-primary" />
-          </div>
-        ) : (
-          <DndContext
-            sensors={sensors}
-            collisionDetection={closestCenter}
-            onDragEnd={handleDragEnd}
-          >
-            <SortableContext
-              items={orderedCasinos.map((c) => c.id)}
-              strategy={verticalListSortingStrategy}
-            >
-              <div className="space-y-4">
-                {orderedCasinos.map((casino) => (
-                  <SortableCasinoCard
-                    key={casino.id}
-                    casino={casino}
-                    onEdit={setEditingCasino}
-                    onDelete={(id) => deleteCasino.mutate(id)}
-                  />
-                ))}
-
-                {orderedCasinos.length === 0 && (
-                  <Card>
-                    <CardContent className="py-12 text-center">
-                      <p className="text-muted-foreground">
-                        Ingen casinoer fundet. Tilføj dit første casino!
-                      </p>
-                    </CardContent>
-                  </Card>
-                )}
-              </div>
-            </SortableContext>
-          </DndContext>
-        )}
-
-        {/* Edit Casino Dialog */}
-        <Dialog open={!!editingCasino} onOpenChange={(open) => !open && setEditingCasino(null)}>
-          <DialogContent className="max-w-2xl">
-            <DialogHeader>
-              <DialogTitle>Rediger Casino</DialogTitle>
-            </DialogHeader>
-            {editingCasino && (
-              <EditCasinoForm casino={editingCasino} onClose={() => setEditingCasino(null)} />
-            )}
-          </DialogContent>
-        </Dialog>
+          {/* Brugere Tab */}
+          <TabsContent value="users">
+            <div className="mb-6">
+              <h2 className="text-2xl font-bold">Admin Brugere</h2>
+              <p className="text-muted-foreground">Opret og administrer admin brugere.</p>
+            </div>
+            <AdminUserManagement embedded />
+          </TabsContent>
+        </Tabs>
       </main>
     </div>
   );
