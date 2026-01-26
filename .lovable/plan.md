@@ -1,156 +1,189 @@
 
-
-# Butik (Shop) Feature Implementation Plan
+# Admin Page Navigation Redesign
 
 ## Overview
-This plan adds a complete "Butik" (Shop) feature allowing admins to create and manage shop items that visitors can browse. Each item will have a "KØB" (Buy) button that redirects to an external website, similar to the reference design at casinoholdet.com/butik.
+Transform the admin dashboard from a vertically stacked collapsible card layout to a tabbed navigation interface with a persistent navigation bar at the top. The "Casino Tilbud" section will be the default/main view.
 
-## Database Changes
+## Current Structure
+The admin page currently displays sections as stacked collapsible cards:
+1. CombinedAnalyticsDashboard (Analytics)
+2. Site Settings (Collapsible card)
+3. Admin User Management (Collapsible card)
+4. Shop Administration (Collapsible card inside a Card)
+5. Casino Tilbud (Main content area - casinos list with drag-and-drop)
 
-### New Table: `shop_items`
-Create a new table to store shop items with fields matching the reference design:
+## Proposed Structure
 
-| Column | Type | Description |
-|--------|------|-------------|
-| `id` | uuid | Primary key |
-| `name` | text | Item name (required) |
-| `slug` | text | URL-friendly identifier |
-| `description` | text | Item description |
-| `image_url` | text | Product image URL |
-| `price` | text | Price display (e.g., "40000 Points") |
-| `stock` | text | Stock display (e.g., "20 STK") |
-| `external_url` | text | Redirect URL when buying |
-| `position` | integer | Display order |
-| `is_active` | boolean | Visibility toggle |
-| `created_at` | timestamp | Auto-generated |
-| `updated_at` | timestamp | Auto-updated |
-
-### Storage Bucket
-Create a new `shop-item-images` storage bucket (public) for product images.
-
-### RLS Policies
-- Public can read active items (via a `shop_items_public` view that excludes `external_url`)
-- Authenticated admins can CRUD all items
-
-## Frontend Components
-
-### 1. Header Update (`src/components/Header.tsx`)
-Add "Butik" navigation link in both desktop and mobile menus, positioned after "Ansvarligt Spil".
-
-### 2. New Page: `src/pages/Shop.tsx`
-Public-facing shop page featuring:
-- Dark-themed grid layout (3 columns on desktop, 1 on mobile)
-- Product cards with orange/amber border styling
-- Each card displays: image, name, description, "PRIS" (price), "LAGER" (stock), and "KØB" button
-
-### 3. New Component: `src/components/ShopItemCard.tsx`
-Product card component styled to match the reference:
-- Dark card with thin orange border
-- Large rectangular product image at top
-- White text for title, light gray for description
-- "PRIS" and "LAGER" fields in uppercase bold
-- Rounded orange "KØB" button that opens external URL in new tab
-
-### 4. New Component: `src/components/ShopImageUpload.tsx`
-Reusable image upload component for shop items (similar to LogoUpload but using the new bucket).
-
-### 5. Admin Panel Updates (`src/pages/Admin.tsx`)
-Add new collapsible section "Butik Administration" containing:
-- "Tilføj Produkt" dialog with form fields:
-  - Produkt Navn (name)
-  - Slug (auto-generated)
-  - Beskrivelse (description)
-  - Produkt Billede (image upload)
-  - Pris (price text)
-  - Lager (stock text)
-  - Ekstern Link (external URL)
-  - Aktiv (is_active toggle)
-- Product list with drag-and-drop reordering
-- Edit and delete functionality per item
-
-### 6. New Hook: `src/hooks/useShopItems.ts`
-React Query hook providing:
-- `useShopItems()` - Fetch all items (respects public/admin visibility)
-- `useCreateShopItem()` - Create new item
-- `useUpdateShopItem()` - Update existing item
-- `useDeleteShopItem()` - Delete item
-- `useUpdateShopItemPositions()` - Reorder items
-
-## Routing
-Add new route in `src/App.tsx`:
-```
-<Route path="/butik" element={<Shop />} />
+```text
++----------------------------------------------------------+
+|  Super Admin Dashboard          [user@email] [Theme] [Logout] |
++----------------------------------------------------------+
+| [Casino Tilbud] [Butik] [Analytics] [Indstillinger] [Brugere] |
++----------------------------------------------------------+
+|                                                          |
+|   (Active Tab Content)                                   |
+|                                                          |
++----------------------------------------------------------+
 ```
 
-## Visual Design (Matching Reference)
+## Navigation Tabs
+| Tab Name | Danish Label | Content |
+|----------|--------------|---------|
+| casinos | Casino Tilbud | Casino management with drag-and-drop ordering (DEFAULT) |
+| shop | Butik | Shop administration section |
+| analytics | Analytics | Combined analytics dashboard |
+| settings | Indstillinger | Site settings (name, header icon, hero, social links) |
+| users | Brugere | Admin user management |
 
-The shop cards will feature:
-- Dark background with thin amber/orange border
-- Large product image (aspect ratio ~16:9)
-- White title text, gray description
-- Stats section showing PRIS and LAGER in uppercase
-- Rounded orange "KØB" button with hover effect
-- Responsive grid: 3 columns on desktop, 2 on tablet, 1 on mobile
+## Implementation Details
+
+### 1. Add Tab State Management
+- Add a `useState` hook to track the active tab
+- Default value: `"casinos"` (Casino Tilbud as main page)
+
+### 2. Create Navigation Bar
+- Use the existing Tabs component from `@/components/ui/tabs`
+- Place TabsList below the header, inside the main container
+- Style tabs to be visually prominent and easy to navigate
+
+### 3. Refactor Content Sections
+Each section will be wrapped in a `TabsContent` component:
+
+**Casino Tilbud Tab:**
+- Contains the "Casino Tilbud" header with "Tilfoej Casino" button
+- Casino list with DndContext for drag-and-drop reordering
+- Edit casino dialog
+
+**Butik Tab:**
+- ShopAdminSection component (remove outer Card wrapper)
+- Remove Collapsible wrapper since it's now in its own tab
+
+**Analytics Tab:**
+- CombinedAnalyticsDashboard component
+
+**Indstillinger Tab:**
+- Site name input
+- Header icon upload
+- Hero settings input
+- Social links input
+- Remove Collapsible wrapper
+
+**Brugere Tab:**
+- AdminUserManagement component
+- Remove Collapsible wrapper
+
+### 4. Component Modifications
+
+**ShopAdminSection:**
+- Create a variant or modify to work without the Collapsible wrapper when used in tabs
+- Keep internal functionality (drag-and-drop, add/edit dialogs)
+
+**AdminUserManagement:**
+- Remove the Collapsible/Card wrapper
+- Keep the content and functionality
+
+### 5. Visual Design
+- Tabs will use the existing shadcn Tabs component styling
+- Add icons to each tab for better visual identification:
+  - Casino Tilbud: `Dice` or `Gift` icon
+  - Butik: `ShoppingBag` icon
+  - Analytics: `BarChart3` icon
+  - Indstillinger: `Settings` icon
+  - Brugere: `Users` icon
 
 ---
 
-## Technical Details
-
-### Database Migration SQL
-```sql
--- Create shop_items table
-CREATE TABLE public.shop_items (
-  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
-  name TEXT NOT NULL,
-  slug TEXT UNIQUE NOT NULL,
-  description TEXT,
-  image_url TEXT,
-  price TEXT NOT NULL DEFAULT '0 Points',
-  stock TEXT NOT NULL DEFAULT '0 STK',
-  external_url TEXT,
-  position INTEGER NOT NULL DEFAULT 0,
-  is_active BOOLEAN NOT NULL DEFAULT true,
-  created_at TIMESTAMPTZ NOT NULL DEFAULT now(),
-  updated_at TIMESTAMPTZ NOT NULL DEFAULT now()
-);
-
--- Create public view (excludes external_url for security)
-CREATE VIEW public.shop_items_public AS
-SELECT id, name, slug, description, image_url, price, stock, position, is_active, created_at, updated_at
-FROM public.shop_items
-WHERE is_active = true;
-
--- Enable RLS
-ALTER TABLE public.shop_items ENABLE ROW LEVEL SECURITY;
-
--- Public read policy via view
-CREATE POLICY "Anyone can view active shop items" ON public.shop_items
-  FOR SELECT USING (is_active = true);
-
--- Admin full access
-CREATE POLICY "Admins can manage shop items" ON public.shop_items
-  FOR ALL USING (has_role(auth.uid(), 'admin'::app_role));
-
--- Trigger for updated_at
-CREATE TRIGGER update_shop_items_updated_at
-  BEFORE UPDATE ON public.shop_items
-  FOR EACH ROW
-  EXECUTE FUNCTION update_updated_at_column();
-```
-
-### Storage Bucket Configuration
-Create bucket `shop-item-images` with:
-- Public access for viewing
-- Authenticated upload for admins
-
-### Files to Create
-1. `src/pages/Shop.tsx` - Public shop page
-2. `src/components/ShopItemCard.tsx` - Product card component
-3. `src/components/ShopImageUpload.tsx` - Image upload for products
-4. `src/hooks/useShopItems.ts` - Data fetching hook
+## Technical Section
 
 ### Files to Modify
-1. `src/App.tsx` - Add /butik route
-2. `src/components/Header.tsx` - Add Butik nav link
-3. `src/pages/Admin.tsx` - Add shop management section
 
+**src/pages/Admin.tsx:**
+- Import Tabs components and additional icons
+- Add `activeTab` state with default "casinos"
+- Restructure `AdminDashboard` component:
+  - Keep header as-is
+  - Add Tabs wrapper around main content
+  - Create TabsList with 5 TabsTrigger elements
+  - Wrap each section in appropriate TabsContent
+
+### Code Structure (AdminDashboard)
+
+```typescript
+function AdminDashboard() {
+  // ... existing state and hooks
+  
+  return (
+    <div className="min-h-screen bg-background">
+      <header>...</header>
+      
+      <main className="container py-8">
+        <Tabs defaultValue="casinos" className="w-full">
+          <TabsList className="grid w-full grid-cols-5 mb-8">
+            <TabsTrigger value="casinos">
+              <Gift className="mr-2 h-4 w-4" />
+              Casino Tilbud
+            </TabsTrigger>
+            <TabsTrigger value="shop">
+              <ShoppingBag className="mr-2 h-4 w-4" />
+              Butik
+            </TabsTrigger>
+            <TabsTrigger value="analytics">
+              <BarChart3 className="mr-2 h-4 w-4" />
+              Analytics
+            </TabsTrigger>
+            <TabsTrigger value="settings">
+              <Settings className="mr-2 h-4 w-4" />
+              Indstillinger
+            </TabsTrigger>
+            <TabsTrigger value="users">
+              <Users className="mr-2 h-4 w-4" />
+              Brugere
+            </TabsTrigger>
+          </TabsList>
+          
+          <TabsContent value="casinos">
+            {/* Casino management section */}
+          </TabsContent>
+          
+          <TabsContent value="shop">
+            {/* Shop admin without Collapsible */}
+          </TabsContent>
+          
+          <TabsContent value="analytics">
+            <CombinedAnalyticsDashboard />
+          </TabsContent>
+          
+          <TabsContent value="settings">
+            {/* Site settings content without Collapsible */}
+          </TabsContent>
+          
+          <TabsContent value="users">
+            {/* Admin user management without Collapsible */}
+          </TabsContent>
+        </Tabs>
+      </main>
+    </div>
+  );
+}
+```
+
+### Component Modifications
+
+**AdminUserManagement.tsx:**
+- Add optional `embedded` prop to control wrapper rendering
+- When `embedded={true}`, render content without Card/Collapsible wrappers
+
+**ShopAdminSection.tsx:**
+- Add optional `embedded` prop
+- When `embedded={true}`, render content directly without Collapsible wrapper
+
+### New Imports Needed
+```typescript
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Gift, ShoppingBag, BarChart3, Settings, Users } from "lucide-react";
+```
+
+### Responsive Considerations
+- On smaller screens, the 5-column grid may be too cramped
+- Consider using `grid-cols-5` on desktop and scrollable horizontal tabs on mobile
+- Alternative: Stack tabs vertically on mobile with icons only
