@@ -15,12 +15,21 @@ const Index = () => {
     if (activeFilter === "all") return true;
     if (activeFilter === "no-sticky") return casino.bonus_type === "No-sticky";
     if (activeFilter === "free-spins")
-      return casino.features?.includes("Free spins");
+      return (
+        casino.features?.includes("Gratis Spins") ||
+        casino.features?.includes("Free spins") ||
+        casino.features?.includes("Free Spins")
+      );
     if (activeFilter === "fast-payout")
-      return casino.features?.includes("Fast payout");
+      return (
+        casino.features?.includes("Hurtig Udbetaling") ||
+        casino.features?.includes("Fast payout") ||
+        casino.features?.includes("Fast Payout")
+      );
     if (activeFilter === "mobile")
       return (
         casino.features?.includes("Mobil App") ||
+        casino.features?.includes("Mobil Venlig") ||
         casino.features?.includes("Mobile friendly") ||
         casino.features?.includes("Mobile app")
       );
