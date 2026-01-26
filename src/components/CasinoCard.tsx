@@ -217,6 +217,7 @@ function CasinoInfoDialog({ casino }: { casino: Casino }) {
 // Featured Card (Rank 1-5) - Roshtein-style grid cards
 function FeaturedCard({ casino, rank }: { casino: Casino; rank: number }) {
   const isTopRow = rank <= 2;
+  const isTopRanked = rank === 1;
 
   // Extract bonus percentage from bonusTitle or use default
   const bonusPercentage = casino.bonusTitle?.match(/(\d+)%/)?.[1] || "100";
@@ -224,9 +225,15 @@ function FeaturedCard({ casino, rank }: { casino: Casino; rank: number }) {
   return (
     <div className={`relative group h-full ${isTopRow ? "col-span-1" : ""}`}>
       {/* Card with dark gradient background */}
-      <div className="relative h-full overflow-hidden rounded-2xl bg-gradient-to-br from-[hsl(var(--card))] via-[hsl(var(--muted))] to-[hsl(var(--card))] border border-border">
-        {/* Info button in top right */}
-        <div className="absolute top-3 right-3 z-10">
+      <div className={`relative h-full overflow-hidden rounded-2xl bg-gradient-to-br from-[hsl(var(--card))] via-[hsl(var(--muted))] to-[hsl(var(--card))] border ${isTopRanked ? "border-primary/50" : "border-border"}`}>
+        {/* Top right badges */}
+        <div className="absolute top-3 right-3 z-10 flex items-center gap-2">
+          {isTopRanked && (
+            <div className="flex items-center gap-1 rounded-full bg-destructive px-3 py-1.5">
+              <Flame className="h-4 w-4 text-destructive-foreground" />
+              <span className="text-xs font-bold text-destructive-foreground">HOT</span>
+            </div>
+          )}
           <CasinoInfoDialog casino={casino} />
         </div>
 
