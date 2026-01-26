@@ -214,142 +214,97 @@ function CasinoInfoDialog({ casino }: { casino: Casino }) {
   );
 }
 
-// Featured Card (Rank 1-2) - Hero style layout
+// Featured Card (Rank 1-5) - Roshtein-style grid cards
 function FeaturedCard({ casino, rank }: { casino: Casino; rank: number }) {
-  const isTopRanked = rank === 1;
+  const isTopRow = rank <= 2;
+
+  // Extract bonus percentage from bonusTitle or use default
+  const bonusPercentage = casino.bonusTitle?.match(/(\d+)%/)?.[1] || "100";
 
   return (
-    <div className="relative group">
-      {/* Subtle glow */}
-      <div className={`absolute -inset-1 rounded-2xl blur-lg opacity-50 group-hover:opacity-70 transition-opacity duration-300 ${
-        isTopRanked 
-          ? "bg-gradient-to-r from-primary/30 via-accent/20 to-primary/30" 
-          : "bg-gradient-to-r from-secondary/40 via-muted/30 to-secondary/40"
-      }`} />
-      
-      <div className={`relative overflow-hidden rounded-2xl border bg-card ${
-        isTopRanked ? "border-primary/50" : "border-border"
-      }`}>
-        {/* Header with rank, logo, badges, and actions */}
-        <div className="p-6 pb-4">
-          <div className="flex items-start gap-4">
-            {/* Rank Number */}
-            <div className={`flex items-center justify-center w-10 h-10 rounded-full font-bold text-lg ${
-              isTopRanked 
-                ? "bg-primary text-primary-foreground" 
-                : "bg-secondary text-secondary-foreground"
-            }`}>
-              {rank}
-            </div>
-
-            {/* Logo */}
-            <div className="flex-shrink-0">
-              {casino.logoUrl ? (
-                <img
-                  src={casino.logoUrl}
-                  alt={casino.name}
-                  className="h-16 w-16 rounded-xl object-cover"
-                />
-              ) : (
-                <div className="flex h-16 w-16 items-center justify-center rounded-xl bg-muted text-xl font-bold text-foreground">
-                  {casino.name.substring(0, 2).toUpperCase()}
-                </div>
-              )}
-            </div>
-
-            {/* Name and Rating */}
-            <div className="flex-1 min-w-0">
-              <div className="flex items-center gap-2 flex-wrap mb-1">
-                <h3 className="text-xl font-bold text-foreground truncate">{casino.name}</h3>
-                {casino.isRecommended && (
-                  <Badge className="bg-primary text-primary-foreground text-xs">
-                    ANBEFALET
-                  </Badge>
-                )}
-              </div>
-              <div className="flex items-center gap-0.5">
-                {[...Array(5)].map((_, i) => (
-                  <Star
-                    key={i}
-                    className={`h-4 w-4 ${
-                      i < Math.floor(casino.rating)
-                        ? "fill-accent text-accent"
-                        : "fill-muted text-muted"
-                    }`}
-                  />
-                ))}
-                <span className="ml-2 text-sm text-muted-foreground">{casino.rating.toFixed(1)}</span>
-              </div>
-            </div>
-
-            {/* Actions */}
-            <div className="flex items-center gap-2">
-              <CasinoInfoDialog casino={casino} />
-              {isTopRanked && (
-                <div className="flex items-center gap-1 rounded-full bg-destructive px-3 py-1.5">
-                  <Flame className="h-4 w-4 text-destructive-foreground" />
-                  <span className="text-xs font-bold text-destructive-foreground">HOT</span>
-                </div>
-              )}
-            </div>
-          </div>
+    <div className={`relative group h-full ${isTopRow ? "col-span-1" : ""}`}>
+      {/* Card with dark gradient background */}
+      <div className="relative h-full overflow-hidden rounded-2xl bg-gradient-to-br from-[hsl(var(--card))] via-[hsl(var(--muted))] to-[hsl(var(--card))] border border-border">
+        {/* Info button in top right */}
+        <div className="absolute top-3 right-3 z-10">
+          <CasinoInfoDialog casino={casino} />
         </div>
 
-        {/* Features with checkmarks */}
-        <div className="px-6 pb-4">
-          <div className="flex flex-wrap gap-x-4 gap-y-1">
-            {casino.features.slice(0, 4).map((feature) => (
+        {/* Content */}
+        <div className="flex flex-col h-full p-5 pt-8">
+          {/* Centered Logo */}
+          <div className="flex justify-center mb-4">
+            {casino.logoUrl ? (
+              <img
+                src={casino.logoUrl}
+                alt={casino.name}
+                className={`object-contain ${isTopRow ? "h-16 max-w-[180px]" : "h-12 max-w-[140px]"}`}
+              />
+            ) : (
+              <div className={`flex items-center justify-center rounded-xl bg-muted font-bold text-foreground ${
+                isTopRow ? "h-16 w-32 text-xl" : "h-12 w-24 text-lg"
+              }`}>
+                {casino.name}
+              </div>
+            )}
+          </div>
+
+          {/* Features with green checkmarks */}
+          <div className="flex flex-wrap justify-center gap-x-4 gap-y-1 mb-4">
+            {casino.features.slice(0, 3).map((feature) => (
               <div key={feature} className="flex items-center gap-1.5">
-                <Check className="h-4 w-4 text-emerald-500" />
+                <Check className="h-4 w-4 text-emerald-500 flex-shrink-0" />
                 <span className="text-sm text-foreground">{feature}</span>
               </div>
             ))}
           </div>
-        </div>
 
-        {/* Stats Row */}
-        <div className="px-6 pb-4">
-          <div className="grid grid-cols-4 gap-4 bg-muted/50 rounded-xl p-4">
-            <div className="text-center">
-              <p className="text-xs text-muted-foreground uppercase tracking-wider mb-1">Bonus</p>
-              <p className="text-xl font-bold text-foreground">100%</p>
-            </div>
-            <div className="text-center border-l border-border">
-              <p className="text-xs text-muted-foreground uppercase tracking-wider mb-1">Op til</p>
-              <p className="text-xl font-bold text-foreground">{casino.bonusAmount}</p>
-            </div>
-            <div className="text-center border-l border-border">
-              <p className="text-xs text-muted-foreground uppercase tracking-wider mb-1">Gratis Spins</p>
-              <p className="text-xl font-bold text-foreground">{casino.freeSpins || '-'}</p>
-            </div>
-            <div className="text-center border-l border-border">
-              <p className="text-xs text-muted-foreground uppercase tracking-wider mb-1">Omsætning</p>
-              <p className="text-xl font-bold text-foreground">{casino.wageringRequirements}</p>
+          {/* Stats Box */}
+          <div className="bg-background/60 rounded-xl p-3 mb-4 border border-border/50">
+            <div className={`grid ${isTopRow ? "grid-cols-3" : "grid-cols-3"} gap-2 text-center`}>
+              <div>
+                <p className="text-[10px] text-muted-foreground uppercase tracking-wider mb-0.5">
+                  {bonusPercentage}% UP TO
+                </p>
+                <p className={`font-bold text-foreground ${isTopRow ? "text-lg" : "text-base"}`}>
+                  {casino.bonusAmount}
+                </p>
+              </div>
+              <div className="border-l border-border/50">
+                <p className="text-[10px] text-muted-foreground uppercase tracking-wider mb-0.5">
+                  FREE SPINS
+                </p>
+                <p className={`font-bold text-foreground ${isTopRow ? "text-lg" : "text-base"}`}>
+                  {casino.freeSpins || '-'}
+                </p>
+              </div>
+              <div className="border-l border-border/50">
+                <p className="text-[10px] text-muted-foreground uppercase tracking-wider mb-0.5">
+                  -
+                </p>
+                <p className={`font-bold text-foreground ${isTopRow ? "text-lg" : "text-base"}`}>
+                  -
+                </p>
+              </div>
             </div>
           </div>
-        </div>
 
-        {/* CTA Button and Review Link */}
-        <div className="px-6 pb-4 flex items-center gap-4">
+          {/* Spacer to push CTA to bottom */}
+          <div className="flex-1" />
+
+          {/* CTA Button */}
           <Button 
             onClick={() => getAffiliateRedirect(casino.slug)} 
-            className="flex-1 rounded-full border-2 border-primary bg-transparent text-primary hover:bg-primary hover:text-primary-foreground font-bold text-base py-5 transition-all"
+            className={`w-full rounded-full border-2 border-foreground bg-background text-foreground hover:bg-foreground hover:text-background font-bold transition-all ${
+              isTopRow ? "py-5 text-base" : "py-4 text-sm"
+            }`}
           >
             CLAIM BONUS
           </Button>
-          <Link
-            to={`/casino/${casino.slug}`}
-            className="flex items-center gap-1 text-sm text-primary hover:underline whitespace-nowrap"
-          >
-            Læs Anmeldelse
-            <ExternalLink className="h-3 w-3" />
-          </Link>
-        </div>
 
-        {/* Disclaimer */}
-        <div className="border-t border-border bg-muted/30 px-6 py-3">
-          <p className="text-[10px] text-muted-foreground text-center">
-            18+ | Vilkår gælder | Spil ansvarligt | <a href="https://rofus.nu" className="text-primary hover:underline" target="_blank" rel="noopener noreferrer">Rofus.nu</a>
+          {/* Disclaimer */}
+          <p className="text-[10px] text-muted-foreground text-center mt-3">
+            18+ | T&C APPLY
           </p>
         </div>
       </div>
