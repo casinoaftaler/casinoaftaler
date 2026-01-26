@@ -9,6 +9,7 @@ import { SiteNameInput } from "@/components/SiteNameInput";
 import { HeroSettingsInput } from "@/components/HeroSettingsInput";
 import { SocialLinksInput } from "@/components/SocialLinksInput";
 import { GameProvidersInput, type GameProvider } from "@/components/GameProvidersInput";
+import { ShopAdminSection } from "@/components/ShopAdminSection";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -853,6 +854,11 @@ function CasinoOwnerDashboard() {
             </CollapsibleContent>
           </Card>
         </Collapsible>
+
+        {/* Shop Administration Section */}
+        <Card className="mb-8">
+          <ShopAdminSection />
+        </Card>
 
         <div className="mb-8 flex items-center justify-between">
           <div>

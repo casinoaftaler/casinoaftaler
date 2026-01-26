@@ -67,6 +67,12 @@ export function Header() {
           >
             Ansvarligt Spil
           </Link>
+          <Link
+            to="/butik"
+            className="text-sm font-medium transition-colors hover:text-primary"
+          >
+            Butik
+          </Link>
         </nav>
 
         <div className="flex items-center gap-2">
@@ -117,6 +123,13 @@ export function Header() {
               onClick={() => setMobileMenuOpen(false)}
             >
               Ansvarligt Spil
+            </Link>
+            <Link
+              to="/butik"
+              className="text-sm font-medium transition-colors hover:text-primary"
+              onClick={() => setMobileMenuOpen(false)}
+            >
+              Butik
             </Link>
           </nav>
         </div>

@@ -10,6 +10,7 @@ import { HeroSettingsInput } from "@/components/HeroSettingsInput";
 import { SocialLinksInput } from "@/components/SocialLinksInput";
 import { GameProvidersInput, type GameProvider } from "@/components/GameProvidersInput";
 import { FeatureSelector } from "@/components/FeatureSelector";
+import { ShopAdminSection } from "@/components/ShopAdminSection";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -1044,6 +1045,11 @@ function AdminDashboard() {
             </CollapsibleContent>
           </Card>
         </Collapsible>
+
+        {/* Shop Administration Section */}
+        <Card className="mb-8">
+          <ShopAdminSection />
+        </Card>
 
         <div className="mb-8 flex items-center justify-between">
           <div>
