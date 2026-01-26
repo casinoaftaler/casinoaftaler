@@ -83,8 +83,8 @@ const Index = () => {
             </p>
           ) : (
             <div className="space-y-4">
-              {/* Featured Cards (Rank 1-2) */}
-              {filteredCasinos.slice(0, 2).map((casino, index) => (
+            {/* Featured Cards (Rank 1-5) */}
+              {filteredCasinos.slice(0, 5).map((casino, index) => (
                 <CasinoCard
                   key={casino.id}
                   casino={mapCasino(casino)}
@@ -92,14 +92,14 @@ const Index = () => {
                 />
               ))}
 
-              {/* Regular Cards (Rank 3+) */}
-              {filteredCasinos.length > 2 && (
+              {/* Regular Cards (Rank 6+) */}
+              {filteredCasinos.length > 5 && (
                 <div className="space-y-3">
-                  {filteredCasinos.slice(2).map((casino, index) => (
+                  {filteredCasinos.slice(5).map((casino, index) => (
                     <CasinoCard
                       key={casino.id}
                       casino={mapCasino(casino)}
-                      rank={index + 3}
+                      rank={index + 6}
                     />
                   ))}
                 </div>

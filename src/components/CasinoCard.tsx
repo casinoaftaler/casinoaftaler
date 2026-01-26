@@ -477,8 +477,8 @@ function RegularCard({ casino, rank }: { casino: Casino; rank?: number }) {
 
 // Main CasinoCard component that decides which variant to render
 export function CasinoCard({ casino, rank, size = "small" }: CasinoCardProps) {
-  // Featured cards for rank 1-2, regular for others
-  const isFeatured = rank && rank <= 2;
+  // Featured cards for rank 1-5, regular for others
+  const isFeatured = rank && rank <= 5;
 
   if (isFeatured) {
     return <FeaturedCard casino={casino} rank={rank} />;
