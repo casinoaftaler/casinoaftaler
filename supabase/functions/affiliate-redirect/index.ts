@@ -71,14 +71,15 @@ Deno.serve(async (req) => {
       );
     }
 
-    // Return redirect URL (client will handle the redirect)
-    return new Response(
-      JSON.stringify({ url: casino.affiliate_url }),
-      { 
-        status: 200, 
-        headers: { ...corsHeaders, "Content-Type": "application/json" } 
-      }
-    );
+    // Perform an actual redirect so the client can simply open this endpoint in a new tab
+    // without ever exposing the affiliate URL in client code/HTML.
+    return new Response(null, {
+      status: 302,
+      headers: {
+        ...corsHeaders,
+        Location: casino.affiliate_url,
+      },
+    });
   } catch (error) {
     console.error("Affiliate redirect error:", error);
     return new Response(
