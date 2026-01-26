@@ -323,7 +323,7 @@ function FeaturedCard({ casino, rank }: { casino: Casino; rank: number }) {
 
           {/* Disclaimer */}
           <p className="text-[10px] text-white/60 text-center mt-3">
-            18+ | T&C APPLY
+            18+ | Vilkår gælder | Spil ansvarligt | <a href="https://rofus.nu" className="hover:underline" target="_blank" rel="noopener noreferrer">Rofus.nu</a>
           </p>
         </div>
       </div>
