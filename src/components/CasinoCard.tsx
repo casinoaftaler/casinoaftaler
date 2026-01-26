@@ -283,7 +283,7 @@ function FeaturedCard({ casino, rank }: { casino: Casino; rank: number }) {
 
           {/* Prominent Bonus Headline */}
           <p className={`text-center font-bold text-white mb-3 ${isTopRow ? "text-xl" : "text-lg"}`}>
-            {bonusPercentage}% op til {casino.bonusAmount}
+            {casino.bonusTitle || `${bonusPercentage}% op til ${casino.bonusAmount}`}
           </p>
 
           {/* Stats Box */}
