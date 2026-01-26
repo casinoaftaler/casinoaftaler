@@ -318,7 +318,7 @@ function FeaturedCard({ casino, rank }: { casino: Casino; rank: number }) {
               isTopRow ? "py-5 text-base" : "py-4 text-sm"
             }`}
           >
-            CLAIM BONUS
+            HENT BONUS
           </Button>
 
           {/* Disclaimer */}
@@ -410,7 +410,7 @@ function RegularCard({ casino, rank }: { casino: Casino; rank?: number }) {
               size="sm"
               className="rounded-full border border-primary bg-transparent text-primary hover:bg-primary hover:text-primary-foreground font-semibold text-xs px-4 transition-all"
             >
-              CLAIM BONUS
+              HENT BONUS
             </Button>
             <CasinoInfoDialog casino={casino} />
           </div>
