@@ -3,14 +3,9 @@ import { toast } from "@/hooks/use-toast";
 
 export async function getAffiliateRedirect(slug: string): Promise<void> {
   try {
-    const { data, error } = await supabase.functions.invoke("affiliate-redirect", {
-      body: null,
-      method: "GET",
-    });
-    
-    // Use fetch directly since we need query params
+    const projectId = import.meta.env.VITE_SUPABASE_PROJECT_ID;
     const response = await fetch(
-      `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/affiliate-redirect?slug=${encodeURIComponent(slug)}`,
+      `https://${projectId}.supabase.co/functions/v1/affiliate-redirect?slug=${encodeURIComponent(slug)}`,
       {
         method: "GET",
         headers: {
@@ -20,7 +15,9 @@ export async function getAffiliateRedirect(slug: string): Promise<void> {
     );
 
     if (!response.ok) {
-      throw new Error("Could not get affiliate link");
+      const errorData = await response.json().catch(() => ({}));
+      console.error("Affiliate redirect error:", errorData);
+      throw new Error(errorData.error || "Could not get affiliate link");
     }
 
     const result = await response.json();
