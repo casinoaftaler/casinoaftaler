@@ -2,3 +2,9 @@ project_id = "zhpbqqhtgnblaugrqhqi"
 
 [functions.affiliate-redirect]
 verify_jwt = false
+
+[functions.create-admin-user]
+verify_jwt = false
+
+[functions.delete-admin-user]
+verify_jwt = false

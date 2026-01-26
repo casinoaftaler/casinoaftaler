@@ -36,6 +36,7 @@ import {
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
 import { Plus, Trash2, LogOut, Star, Loader2, Pencil, GripVertical, ChevronDown } from "lucide-react";
+import { AdminUserManagement } from "@/components/AdminUserManagement";
 import { CombinedAnalyticsDashboard } from "@/components/CombinedAnalyticsDashboard";
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
 import { ThemeToggle } from "@/components/ThemeToggle";
@@ -840,6 +841,9 @@ function AdminDashboard() {
             </CollapsibleContent>
           </Card>
         </Collapsible>
+
+        {/* Admin User Management Section */}
+        <AdminUserManagement />
 
         {/* Shop Administration Section */}
         <Card className="mb-8">
