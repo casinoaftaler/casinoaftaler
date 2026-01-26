@@ -272,7 +272,7 @@ function FeaturedCard({ casino, rank }: { casino: Casino; rank: number }) {
           </div>
 
           {/* Features with green checkmarks */}
-          <div className="flex flex-wrap justify-center gap-x-4 gap-y-1 mb-4">
+          <div className="flex flex-wrap justify-center gap-x-4 gap-y-1 mb-3">
             {casino.features.slice(0, 3).map((feature) => (
               <div key={feature} className="flex items-center gap-1.5">
                 <Check className="h-4 w-4 text-emerald-400 flex-shrink-0" />
@@ -281,12 +281,17 @@ function FeaturedCard({ casino, rank }: { casino: Casino; rank: number }) {
             ))}
           </div>
 
+          {/* Prominent Bonus Headline */}
+          <p className={`text-center font-bold text-white mb-3 ${isTopRow ? "text-xl" : "text-lg"}`}>
+            {bonusPercentage}% op til {casino.bonusAmount}
+          </p>
+
           {/* Stats Box */}
           <div className="bg-black/40 rounded-xl p-3 mb-4 border border-white/10">
-            <div className={`grid ${isTopRow ? "grid-cols-3" : "grid-cols-3"} gap-2 text-center`}>
+            <div className={`grid grid-cols-3 gap-2 text-center`}>
               <div>
                 <p className="text-[10px] text-white/70 uppercase tracking-wider mb-0.5">
-                  {bonusPercentage}% UP TO
+                  {bonusPercentage}% OP TIL
                 </p>
                 <p className={`font-bold text-white ${isTopRow ? "text-lg" : "text-base"}`}>
                   {casino.bonusAmount}
@@ -294,7 +299,7 @@ function FeaturedCard({ casino, rank }: { casino: Casino; rank: number }) {
               </div>
               <div className="border-l border-white/20">
                 <p className="text-[10px] text-white/70 uppercase tracking-wider mb-0.5">
-                  FREE SPINS
+                  GRATIS SPINS
                 </p>
                 <p className={`font-bold text-white ${isTopRow ? "text-lg" : "text-base"}`}>
                   {casino.freeSpins || '-'}
