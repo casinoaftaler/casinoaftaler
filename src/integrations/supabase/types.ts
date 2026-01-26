@@ -179,6 +179,51 @@ export type Database = {
           },
         ]
       }
+      shop_items: {
+        Row: {
+          created_at: string
+          description: string | null
+          external_url: string | null
+          id: string
+          image_url: string | null
+          is_active: boolean
+          name: string
+          position: number
+          price: string
+          slug: string
+          stock: string
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          description?: string | null
+          external_url?: string | null
+          id?: string
+          image_url?: string | null
+          is_active?: boolean
+          name: string
+          position?: number
+          price?: string
+          slug: string
+          stock?: string
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          description?: string | null
+          external_url?: string | null
+          id?: string
+          image_url?: string | null
+          is_active?: boolean
+          name?: string
+          position?: number
+          price?: string
+          slug?: string
+          stock?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
       site_settings: {
         Row: {
           created_at: string
@@ -301,6 +346,48 @@ export type Database = {
           updated_at?: string | null
           validity?: string | null
           wagering_requirements?: string | null
+        }
+        Relationships: []
+      }
+      shop_items_public: {
+        Row: {
+          created_at: string | null
+          description: string | null
+          id: string | null
+          image_url: string | null
+          is_active: boolean | null
+          name: string | null
+          position: number | null
+          price: string | null
+          slug: string | null
+          stock: string | null
+          updated_at: string | null
+        }
+        Insert: {
+          created_at?: string | null
+          description?: string | null
+          id?: string | null
+          image_url?: string | null
+          is_active?: boolean | null
+          name?: string | null
+          position?: number | null
+          price?: string | null
+          slug?: string | null
+          stock?: string | null
+          updated_at?: string | null
+        }
+        Update: {
+          created_at?: string | null
+          description?: string | null
+          id?: string | null
+          image_url?: string | null
+          is_active?: boolean | null
+          name?: string | null
+          position?: number | null
+          price?: string | null
+          slug?: string | null
+          stock?: string | null
+          updated_at?: string | null
         }
         Relationships: []
       }
