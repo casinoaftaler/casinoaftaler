@@ -42,6 +42,9 @@ interface CasinoCardProps {
   casino: Casino;
   rank?: number;
   size?: "large" | "medium" | "small";
+  /** Controlled mode (optional): parent decides which card is open */
+  open?: boolean;
+  onOpenChange?: (open: boolean) => void;
 }
 
 // Collapsible Info Content Component
@@ -183,8 +186,24 @@ function CasinoInfoContent({ casino, variant }: { casino: Casino; variant: "feat
 }
 
 // Featured Card (Rank 1-5) - Roshtein-style grid cards
-function FeaturedCard({ casino, rank }: { casino: Casino; rank: number }) {
-  const [isOpen, setIsOpen] = useState(false);
+function FeaturedCard({
+  casino,
+  rank,
+  open,
+  onOpenChange,
+}: {
+  casino: Casino;
+  rank: number;
+  open?: boolean;
+  onOpenChange?: (open: boolean) => void;
+}) {
+  const [uncontrolledOpen, setUncontrolledOpen] = useState(false);
+  const isControlled = typeof open === "boolean";
+  const isOpen = isControlled ? open : uncontrolledOpen;
+  const setIsOpen = (next: boolean) => {
+    if (isControlled) onOpenChange?.(next);
+    else setUncontrolledOpen(next);
+  };
   const isTopRow = rank <= 2;
   const isTopRanked = rank === 1;
 
@@ -335,8 +354,24 @@ function FeaturedCard({ casino, rank }: { casino: Casino; rank: number }) {
 }
 
 // Regular Card (Rank 3+) - Horizontal row layout
-function RegularCard({ casino, rank }: { casino: Casino; rank?: number }) {
-  const [isOpen, setIsOpen] = useState(false);
+function RegularCard({
+  casino,
+  rank,
+  open,
+  onOpenChange,
+}: {
+  casino: Casino;
+  rank?: number;
+  open?: boolean;
+  onOpenChange?: (open: boolean) => void;
+}) {
+  const [uncontrolledOpen, setUncontrolledOpen] = useState(false);
+  const isControlled = typeof open === "boolean";
+  const isOpen = isControlled ? open : uncontrolledOpen;
+  const setIsOpen = (next: boolean) => {
+    if (isControlled) onOpenChange?.(next);
+    else setUncontrolledOpen(next);
+  };
 
   return (
     <Collapsible open={isOpen} onOpenChange={setIsOpen}>
@@ -467,13 +502,28 @@ function RegularCard({ casino, rank }: { casino: Casino; rank?: number }) {
 }
 
 // Main CasinoCard component that decides which variant to render
-export function CasinoCard({ casino, rank, size = "small" }: CasinoCardProps) {
+export function CasinoCard({
+  casino,
+  rank,
+  size = "small",
+  open,
+  onOpenChange,
+}: CasinoCardProps) {
   // Featured cards for rank 1-5, regular for others
   const isFeatured = rank && rank <= 5;
 
   if (isFeatured) {
-    return <FeaturedCard casino={casino} rank={rank} />;
+    return (
+      <FeaturedCard
+        casino={casino}
+        rank={rank}
+        open={open}
+        onOpenChange={onOpenChange}
+      />
+    );
   }
 
-  return <RegularCard casino={casino} rank={rank} />;
+  return (
+    <RegularCard casino={casino} rank={rank} open={open} onOpenChange={onOpenChange} />
+  );
 }
