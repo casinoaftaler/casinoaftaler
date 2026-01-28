@@ -294,6 +294,11 @@ function FeaturedCard({
           {/* Content */}
           <div className={`flex flex-col p-5 ${isTopRow ? "pt-32" : "pt-28"}`}>
 
+            {/* Casino Name */}
+            <h3 className={`text-center font-bold text-white mb-2 ${isTopRow ? "text-xl" : "text-lg"}`}>
+              {casino.name}
+            </h3>
+
             {/* Features with green checkmarks */}
             <div className="flex flex-wrap justify-center gap-x-4 gap-y-1 mb-3">
               {casino.features.slice(0, 3).map((feature) => (
