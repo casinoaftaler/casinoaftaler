@@ -266,12 +266,12 @@ function FeaturedCard({
                   src={casino.logoUrl}
                   alt={casino.name}
                   className={`object-cover rounded-xl border-2 border-white/30 shadow-lg ${
-                    isTopRow ? "h-20 w-20" : "h-16 w-16"
+                    isTopRow ? "h-24 w-24" : "h-20 w-20"
                   }`}
                 />
               ) : (
                 <div className={`flex items-center justify-center rounded-xl bg-white/20 backdrop-blur-sm font-bold text-white border-2 border-white/30 ${
-                  isTopRow ? "h-20 w-20 text-xl" : "h-16 w-16 text-lg"
+                  isTopRow ? "h-24 w-24 text-2xl" : "h-20 w-20 text-xl"
                 }`}>
                   {casino.name.substring(0, 2).toUpperCase()}
                 </div>
@@ -412,10 +412,10 @@ function RegularCard({
                 <img
                   src={casino.logoUrl}
                   alt={casino.name}
-                  className="h-20 w-20 rounded-xl object-cover"
+                  className="h-24 w-24 rounded-xl object-cover"
                 />
               ) : (
-                <div className="flex h-20 w-20 items-center justify-center rounded-xl bg-muted text-lg font-bold text-foreground">
+                <div className="flex h-24 w-24 items-center justify-center rounded-xl bg-muted text-xl font-bold text-foreground">
                   {casino.name.substring(0, 2).toUpperCase()}
                 </div>
               )}
