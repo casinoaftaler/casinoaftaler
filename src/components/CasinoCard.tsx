@@ -264,20 +264,35 @@ function FeaturedCard({
                 src={casino.logoUrl}
                 alt={casino.name}
                 className={`object-cover rounded-xl border-2 border-white/30 shadow-lg ${
-                  isTopRow ? "h-20 w-20" : "h-16 w-16"
+                  isTopRow ? "h-28 w-28" : "h-24 w-24"
                 }`}
               />
             ) : (
               <div className={`flex items-center justify-center rounded-xl bg-white/20 backdrop-blur-sm font-bold text-white border-2 border-white/30 ${
-                isTopRow ? "h-20 w-20 text-xl" : "h-16 w-16 text-lg"
+                isTopRow ? "h-28 w-28 text-2xl" : "h-24 w-24 text-xl"
               }`}>
                 {casino.name.substring(0, 2).toUpperCase()}
               </div>
             )}
           </div>
 
+          {/* Star Rating - Top Right below HOT badge */}
+          <div className="absolute top-14 right-3 z-10 flex items-center gap-0.5 bg-black/40 rounded-full px-2 py-1">
+            {[...Array(5)].map((_, i) => (
+              <Star
+                key={i}
+                className={`h-3.5 w-3.5 ${
+                  i < Math.floor(casino.rating)
+                    ? "fill-accent text-accent"
+                    : "fill-white/20 text-white/20"
+                }`}
+              />
+            ))}
+            <span className="text-xs text-white ml-1 font-medium">{casino.rating.toFixed(1)}</span>
+          </div>
+
           {/* Content */}
-          <div className={`flex flex-col p-5 ${isTopRow ? "pt-28" : "pt-24"}`}>
+          <div className={`flex flex-col p-5 ${isTopRow ? "pt-32" : "pt-28"}`}>
 
             {/* Features with green checkmarks */}
             <div className="flex flex-wrap justify-center gap-x-4 gap-y-1 mb-3">
@@ -389,10 +404,10 @@ function RegularCard({
                 <img
                   src={casino.logoUrl}
                   alt={casino.name}
-                  className="h-16 w-16 rounded-xl object-cover"
+                  className="h-20 w-20 rounded-xl object-cover"
                 />
               ) : (
-                <div className="flex h-16 w-16 items-center justify-center rounded-xl bg-muted text-base font-bold text-foreground">
+                <div className="flex h-20 w-20 items-center justify-center rounded-xl bg-muted text-lg font-bold text-foreground">
                   {casino.name.substring(0, 2).toUpperCase()}
                 </div>
               )}
