@@ -1,189 +1,108 @@
 
-# Admin Page Navigation Redesign
+# Change Casino Card Info Icon to "Read More" Dropdown
 
 ## Overview
-Transform the admin dashboard from a vertically stacked collapsible card layout to a tabbed navigation interface with a persistent navigation bar at the top. The "Casino Tilbud" section will be the default/main view.
+Replace the info icon button that opens a modal dialog with a "Læs mere" (Read more) text button that expands a collapsible dropdown section directly within the card.
 
-## Current Structure
-The admin page currently displays sections as stacked collapsible cards:
-1. CombinedAnalyticsDashboard (Analytics)
-2. Site Settings (Collapsible card)
-3. Admin User Management (Collapsible card)
-4. Shop Administration (Collapsible card inside a Card)
-5. Casino Tilbud (Main content area - casinos list with drag-and-drop)
+## Current Behavior
+- An info icon button (circular, with `Info` icon) opens a Dialog modal
+- The modal contains detailed casino information (stats, description, pros/cons, features, game providers)
 
-## Proposed Structure
+## New Behavior
+- A "Læs mere" text link with a chevron icon toggles a collapsible section
+- The expanded section appears below the main card content
+- Clicking again collapses the section ("Vis mindre")
+- No modal overlay - content stays inline with the card
 
+## Visual Design
+
+**Collapsed State:**
 ```text
-+----------------------------------------------------------+
-|  Super Admin Dashboard          [user@email] [Theme] [Logout] |
-+----------------------------------------------------------+
-| [Casino Tilbud] [Butik] [Analytics] [Indstillinger] [Brugere] |
-+----------------------------------------------------------+
-|                                                          |
-|   (Active Tab Content)                                   |
-|                                                          |
-+----------------------------------------------------------+
++--------------------------------------------------+
+|  [Logo]  Casino Name  [Stats]  [HENT BONUS]      |
+|                                    Læs mere ▼    |
++--------------------------------------------------+
 ```
 
-## Navigation Tabs
-| Tab Name | Danish Label | Content |
-|----------|--------------|---------|
-| casinos | Casino Tilbud | Casino management with drag-and-drop ordering (DEFAULT) |
-| shop | Butik | Shop administration section |
-| analytics | Analytics | Combined analytics dashboard |
-| settings | Indstillinger | Site settings (name, header icon, hero, social links) |
-| users | Brugere | Admin user management |
-
-## Implementation Details
-
-### 1. Add Tab State Management
-- Add a `useState` hook to track the active tab
-- Default value: `"casinos"` (Casino Tilbud as main page)
-
-### 2. Create Navigation Bar
-- Use the existing Tabs component from `@/components/ui/tabs`
-- Place TabsList below the header, inside the main container
-- Style tabs to be visually prominent and easy to navigate
-
-### 3. Refactor Content Sections
-Each section will be wrapped in a `TabsContent` component:
-
-**Casino Tilbud Tab:**
-- Contains the "Casino Tilbud" header with "Tilfoej Casino" button
-- Casino list with DndContext for drag-and-drop reordering
-- Edit casino dialog
-
-**Butik Tab:**
-- ShopAdminSection component (remove outer Card wrapper)
-- Remove Collapsible wrapper since it's now in its own tab
-
-**Analytics Tab:**
-- CombinedAnalyticsDashboard component
-
-**Indstillinger Tab:**
-- Site name input
-- Header icon upload
-- Hero settings input
-- Social links input
-- Remove Collapsible wrapper
-
-**Brugere Tab:**
-- AdminUserManagement component
-- Remove Collapsible wrapper
-
-### 4. Component Modifications
-
-**ShopAdminSection:**
-- Create a variant or modify to work without the Collapsible wrapper when used in tabs
-- Keep internal functionality (drag-and-drop, add/edit dialogs)
-
-**AdminUserManagement:**
-- Remove the Collapsible/Card wrapper
-- Keep the content and functionality
-
-### 5. Visual Design
-- Tabs will use the existing shadcn Tabs component styling
-- Add icons to each tab for better visual identification:
-  - Casino Tilbud: `Dice` or `Gift` icon
-  - Butik: `ShoppingBag` icon
-  - Analytics: `BarChart3` icon
-  - Indstillinger: `Settings` icon
-  - Brugere: `Users` icon
+**Expanded State:**
+```text
++--------------------------------------------------+
+|  [Logo]  Casino Name  [Stats]  [HENT BONUS]      |
+|                                    Vis mindre ▲  |
++--------------------------------------------------+
+|  Description, Pros/Cons, Features, Providers...  |
++--------------------------------------------------+
+```
 
 ---
 
-## Technical Section
+## Technical Details
 
 ### Files to Modify
+- `src/components/CasinoCard.tsx`
 
-**src/pages/Admin.tsx:**
-- Import Tabs components and additional icons
-- Add `activeTab` state with default "casinos"
-- Restructure `AdminDashboard` component:
-  - Keep header as-is
-  - Add Tabs wrapper around main content
-  - Create TabsList with 5 TabsTrigger elements
-  - Wrap each section in appropriate TabsContent
+### Implementation Steps
 
-### Code Structure (AdminDashboard)
+1. **Replace Dialog with Collapsible**
+   - Remove Dialog import and add Collapsible imports
+   - Import `ChevronDown` icon for the toggle indicator
 
+2. **Create New CasinoInfoDropdown Component**
+   - Replace `CasinoInfoDialog` with a new `CasinoInfoDropdown` component
+   - Use `Collapsible` from `@radix-ui/react-collapsible` 
+   - Add local state to track open/closed status
+   - The trigger will be a text button "Læs mere" / "Vis mindre" with animated chevron
+
+3. **Update FeaturedCard (Rank 1-5)**
+   - Replace `<CasinoInfoDialog casino={casino} />` in top-right badges area
+   - Move the dropdown trigger to a more natural position (bottom of card, after disclaimer)
+   - The collapsible content appears below the card content
+
+4. **Update RegularCard (Rank 6+)**
+   - Replace the info dialog in the actions area
+   - Add the "Læs mere" link next to or below the CTA button
+   - Collapsible content expands below the main row
+
+### Code Structure
+
+**New CasinoInfoDropdown Component:**
 ```typescript
-function AdminDashboard() {
-  // ... existing state and hooks
+function CasinoInfoDropdown({ casino }: { casino: Casino }) {
+  const [isOpen, setIsOpen] = useState(false);
   
   return (
-    <div className="min-h-screen bg-background">
-      <header>...</header>
-      
-      <main className="container py-8">
-        <Tabs defaultValue="casinos" className="w-full">
-          <TabsList className="grid w-full grid-cols-5 mb-8">
-            <TabsTrigger value="casinos">
-              <Gift className="mr-2 h-4 w-4" />
-              Casino Tilbud
-            </TabsTrigger>
-            <TabsTrigger value="shop">
-              <ShoppingBag className="mr-2 h-4 w-4" />
-              Butik
-            </TabsTrigger>
-            <TabsTrigger value="analytics">
-              <BarChart3 className="mr-2 h-4 w-4" />
-              Analytics
-            </TabsTrigger>
-            <TabsTrigger value="settings">
-              <Settings className="mr-2 h-4 w-4" />
-              Indstillinger
-            </TabsTrigger>
-            <TabsTrigger value="users">
-              <Users className="mr-2 h-4 w-4" />
-              Brugere
-            </TabsTrigger>
-          </TabsList>
-          
-          <TabsContent value="casinos">
-            {/* Casino management section */}
-          </TabsContent>
-          
-          <TabsContent value="shop">
-            {/* Shop admin without Collapsible */}
-          </TabsContent>
-          
-          <TabsContent value="analytics">
-            <CombinedAnalyticsDashboard />
-          </TabsContent>
-          
-          <TabsContent value="settings">
-            {/* Site settings content without Collapsible */}
-          </TabsContent>
-          
-          <TabsContent value="users">
-            {/* Admin user management without Collapsible */}
-          </TabsContent>
-        </Tabs>
-      </main>
-    </div>
+    <Collapsible open={isOpen} onOpenChange={setIsOpen}>
+      <CollapsibleTrigger asChild>
+        <button className="flex items-center gap-1 text-sm text-primary hover:underline">
+          {isOpen ? "Vis mindre" : "Læs mere"}
+          <ChevronDown className={`h-4 w-4 transition-transform ${isOpen ? "rotate-180" : ""}`} />
+        </button>
+      </CollapsibleTrigger>
+      <CollapsibleContent className="overflow-hidden data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down">
+        {/* Reuse existing dialog content structure */}
+        <div className="pt-4 space-y-4">
+          {/* Feature Badges, Description, Pros/Cons, Features, Game Providers */}
+        </div>
+      </CollapsibleContent>
+    </Collapsible>
   );
 }
 ```
 
-### Component Modifications
-
-**AdminUserManagement.tsx:**
-- Add optional `embedded` prop to control wrapper rendering
-- When `embedded={true}`, render content without Card/Collapsible wrappers
-
-**ShopAdminSection.tsx:**
-- Add optional `embedded` prop
-- When `embedded={true}`, render content directly without Collapsible wrapper
-
-### New Imports Needed
+### Import Changes
 ```typescript
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Gift, ShoppingBag, BarChart3, Settings, Users } from "lucide-react";
+// Remove
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
+import { Info } from "lucide-react";
+
+// Add
+import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
+import { ChevronDown } from "lucide-react";
+import { useState } from "react";
 ```
 
-### Responsive Considerations
-- On smaller screens, the 5-column grid may be too cramped
-- Consider using `grid-cols-5` on desktop and scrollable horizontal tabs on mobile
-- Alternative: Stack tabs vertically on mobile with icons only
+### Styling Considerations
+- **FeaturedCard**: The dropdown content will have a dark semi-transparent background to match the card's gradient style (`bg-black/40 rounded-xl p-4`)
+- **RegularCard**: The dropdown content will use the card's background with a top border separator (`border-t border-border`)
+- Smooth accordion animation using existing tailwind animations
+- The chevron rotates 180 degrees when expanded
