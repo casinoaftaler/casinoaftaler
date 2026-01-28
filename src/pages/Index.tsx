@@ -101,7 +101,7 @@ const Index = () => {
             <div className="space-y-4">
               {/* Featured Cards Grid - Top 2 cards (large) */}
               {filteredCasinos.length > 0 && (
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 items-start">
                   {filteredCasinos.slice(0, 2).map((casino, index) => (
                     <CasinoCard
                       key={casino.id}
@@ -116,7 +116,7 @@ const Index = () => {
 
               {/* Featured Cards Grid - Next 3 cards (smaller) */}
               {filteredCasinos.length > 2 && (
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-4 items-start">
                   {filteredCasinos.slice(2, 5).map((casino, index) => (
                     <CasinoCard
                       key={casino.id}

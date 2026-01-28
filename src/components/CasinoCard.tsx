@@ -230,7 +230,7 @@ function FeaturedCard({
 
   return (
     <Collapsible open={isOpen} onOpenChange={setIsOpen}>
-      <div className={`relative group h-full ${isTopRow ? "col-span-1" : ""}`}>
+      <div className={`relative group ${isTopRow ? "col-span-1" : ""}`}>
         {/* Subtle glow for #1 ranked card */}
         {isTopRanked && (
           <div 
@@ -244,7 +244,7 @@ function FeaturedCard({
         
         {/* Card with colorful gradient background */}
         <div 
-          className={`relative h-full overflow-hidden rounded-2xl ${fallbackGradientClass} border ${isTopRanked ? "border-white/30" : "border-white/10"}`}
+          className={`relative overflow-hidden rounded-2xl ${fallbackGradientClass} border ${isTopRanked ? "border-white/30" : "border-white/10"}`}
           style={gradientStyle}
         >
           {/* Top right badges */}
@@ -277,7 +277,7 @@ function FeaturedCard({
           </div>
 
           {/* Content */}
-          <div className={`flex flex-col h-full p-5 ${isTopRow ? "pt-28" : "pt-24"}`}>
+          <div className={`flex flex-col p-5 ${isTopRow ? "pt-28" : "pt-24"}`}>
 
             {/* Features with green checkmarks */}
             <div className="flex flex-wrap justify-center gap-x-4 gap-y-1 mb-3">
@@ -316,13 +316,10 @@ function FeaturedCard({
               </div>
             </div>
 
-            {/* Spacer to push CTA to bottom */}
-            <div className="flex-1" />
-
             {/* CTA Button */}
             <Button 
               onClick={() => getAffiliateRedirect(casino.slug)} 
-              className={`w-full rounded-full border-2 border-white bg-white/10 text-white hover:bg-white hover:text-gray-900 font-bold transition-all ${
+              className={`mt-auto w-full rounded-full border-2 border-white bg-white/10 text-white hover:bg-white hover:text-gray-900 font-bold transition-all ${
                 isTopRow ? "py-5 text-base" : "py-4 text-sm"
               }`}
             >
