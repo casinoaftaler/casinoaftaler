@@ -1,108 +1,119 @@
 
-# Change Casino Card Info Icon to "Read More" Dropdown
+# Make Casino Logo Bigger with Rounded Edges in Top Left Corner
 
 ## Overview
-Replace the info icon button that opens a modal dialog with a "Læs mere" (Read more) text button that expands a collapsible dropdown section directly within the card.
+Update the casino card logos to be larger, have rounded edges (rounded-xl), and position them in the top left corner instead of centered.
 
-## Current Behavior
-- An info icon button (circular, with `Info` icon) opens a Dialog modal
-- The modal contains detailed casino information (stats, description, pros/cons, features, game providers)
+## Current State
+- **FeaturedCard (Rank 1-5)**: Logo is centered, sizes are `h-16 max-w-[180px]` for top row and `h-12 max-w-[140px]` for others
+- **RegularCard (Rank 6+)**: Logo is `h-12 w-12` with `rounded-lg`
 
-## New Behavior
-- A "Læs mere" text link with a chevron icon toggles a collapsible section
-- The expanded section appears below the main card content
-- Clicking again collapses the section ("Vis mindre")
-- No modal overlay - content stays inline with the card
+## Changes
 
-## Visual Design
+### FeaturedCard Updates
+1. Move logo from centered to top-left absolute positioning
+2. Increase logo size: `h-20 w-20` for top row, `h-16 w-16` for rank 3-5
+3. Add `rounded-xl` for more rounded corners
+4. Add white border and shadow for visibility on gradient backgrounds
 
-**Collapsed State:**
-```text
-+--------------------------------------------------+
-|  [Logo]  Casino Name  [Stats]  [HENT BONUS]      |
-|                                    Læs mere ▼    |
-+--------------------------------------------------+
-```
-
-**Expanded State:**
-```text
-+--------------------------------------------------+
-|  [Logo]  Casino Name  [Stats]  [HENT BONUS]      |
-|                                    Vis mindre ▲  |
-+--------------------------------------------------+
-|  Description, Pros/Cons, Features, Providers...  |
-+--------------------------------------------------+
-```
+### RegularCard Updates  
+1. Increase logo size from `h-12 w-12` to `h-16 w-16`
+2. Change from `rounded-lg` to `rounded-xl`
+3. Logo already in left position, just needs sizing update
 
 ---
 
 ## Technical Details
 
-### Files to Modify
+### File to Modify
 - `src/components/CasinoCard.tsx`
 
-### Implementation Steps
+### FeaturedCard Logo Changes (Lines 243-258)
 
-1. **Replace Dialog with Collapsible**
-   - Remove Dialog import and add Collapsible imports
-   - Import `ChevronDown` icon for the toggle indicator
-
-2. **Create New CasinoInfoDropdown Component**
-   - Replace `CasinoInfoDialog` with a new `CasinoInfoDropdown` component
-   - Use `Collapsible` from `@radix-ui/react-collapsible` 
-   - Add local state to track open/closed status
-   - The trigger will be a text button "Læs mere" / "Vis mindre" with animated chevron
-
-3. **Update FeaturedCard (Rank 1-5)**
-   - Replace `<CasinoInfoDialog casino={casino} />` in top-right badges area
-   - Move the dropdown trigger to a more natural position (bottom of card, after disclaimer)
-   - The collapsible content appears below the card content
-
-4. **Update RegularCard (Rank 6+)**
-   - Replace the info dialog in the actions area
-   - Add the "Læs mere" link next to or below the CTA button
-   - Collapsible content expands below the main row
-
-### Code Structure
-
-**New CasinoInfoDropdown Component:**
-```typescript
-function CasinoInfoDropdown({ casino }: { casino: Casino }) {
-  const [isOpen, setIsOpen] = useState(false);
-  
-  return (
-    <Collapsible open={isOpen} onOpenChange={setIsOpen}>
-      <CollapsibleTrigger asChild>
-        <button className="flex items-center gap-1 text-sm text-primary hover:underline">
-          {isOpen ? "Vis mindre" : "Læs mere"}
-          <ChevronDown className={`h-4 w-4 transition-transform ${isOpen ? "rotate-180" : ""}`} />
-        </button>
-      </CollapsibleTrigger>
-      <CollapsibleContent className="overflow-hidden data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down">
-        {/* Reuse existing dialog content structure */}
-        <div className="pt-4 space-y-4">
-          {/* Feature Badges, Description, Pros/Cons, Features, Game Providers */}
-        </div>
-      </CollapsibleContent>
-    </Collapsible>
-  );
-}
+**Before:**
+```jsx
+<div className="flex justify-center mb-4">
+  {casino.logoUrl ? (
+    <img
+      src={casino.logoUrl}
+      alt={casino.name}
+      className={`object-contain ${isTopRow ? "h-16 max-w-[180px]" : "h-12 max-w-[140px]"}`}
+    />
+  ) : (
+    <div className={`flex items-center justify-center rounded-xl bg-muted font-bold text-foreground ${
+      isTopRow ? "h-16 w-32 text-xl" : "h-12 w-24 text-lg"
+    }`}>
+      {casino.name}
+    </div>
+  )}
+</div>
 ```
 
-### Import Changes
-```typescript
-// Remove
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
-import { Info } from "lucide-react";
-
-// Add
-import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
-import { ChevronDown } from "lucide-react";
-import { useState } from "react";
+**After:**
+```jsx
+{/* Top-left Logo */}
+<div className="absolute top-4 left-4 z-10">
+  {casino.logoUrl ? (
+    <img
+      src={casino.logoUrl}
+      alt={casino.name}
+      className={`object-cover rounded-xl border-2 border-white/30 shadow-lg ${
+        isTopRow ? "h-20 w-20" : "h-16 w-16"
+      }`}
+    />
+  ) : (
+    <div className={`flex items-center justify-center rounded-xl bg-white/20 backdrop-blur-sm font-bold text-white border-2 border-white/30 ${
+      isTopRow ? "h-20 w-20 text-xl" : "h-16 w-16 text-lg"
+    }`}>
+      {casino.name.substring(0, 2).toUpperCase()}
+    </div>
+  )}
+</div>
 ```
 
-### Styling Considerations
-- **FeaturedCard**: The dropdown content will have a dark semi-transparent background to match the card's gradient style (`bg-black/40 rounded-xl p-4`)
-- **RegularCard**: The dropdown content will use the card's background with a top border separator (`border-t border-border`)
-- Smooth accordion animation using existing tailwind animations
-- The chevron rotates 180 degrees when expanded
+### FeaturedCard Content Padding
+- Adjust content container padding to account for logo: `pt-8` becomes `pt-28` (for top row) or `pt-24` (for rank 3-5)
+
+### RegularCard Logo Changes (Lines 351-364)
+
+**Before:**
+```jsx
+<div className="flex-shrink-0">
+  {casino.logoUrl ? (
+    <img
+      src={casino.logoUrl}
+      alt={casino.name}
+      className="h-12 w-12 rounded-lg object-cover"
+    />
+  ) : (
+    <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-muted text-sm font-bold text-foreground">
+      {casino.name.substring(0, 2).toUpperCase()}
+    </div>
+  )}
+</div>
+```
+
+**After:**
+```jsx
+<div className="flex-shrink-0">
+  {casino.logoUrl ? (
+    <img
+      src={casino.logoUrl}
+      alt={casino.name}
+      className="h-16 w-16 rounded-xl object-cover"
+    />
+  ) : (
+    <div className="flex h-16 w-16 items-center justify-center rounded-xl bg-muted text-base font-bold text-foreground">
+      {casino.name.substring(0, 2).toUpperCase()}
+    </div>
+  )}
+</div>
+```
+
+### Summary of Size Changes
+
+| Card Type | Current Size | New Size | Corner Radius |
+|-----------|-------------|----------|---------------|
+| Featured (Rank 1-2) | h-16 | h-20 w-20 | rounded-xl |
+| Featured (Rank 3-5) | h-12 | h-16 w-16 | rounded-xl |
+| Regular (Rank 6+) | h-12 w-12 | h-16 w-16 | rounded-xl |
