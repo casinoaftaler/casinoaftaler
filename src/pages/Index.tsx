@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { HeroSection } from "@/components/HeroSection";
 import { CasinoCard } from "@/components/CasinoCard";
 import { BonusTypeCards } from "@/components/BonusTypeCards";
@@ -9,7 +9,13 @@ import { Loader2 } from "lucide-react";
 
 const Index = () => {
   const [activeFilter, setActiveFilter] = useState("all");
+  const [openCasinoId, setOpenCasinoId] = useState<string | null>(null);
   const { data: casinos, isLoading } = useCasinos();
+
+  useEffect(() => {
+    // If the list changes due to filtering, close any open card to avoid mismatches.
+    setOpenCasinoId(null);
+  }, [activeFilter]);
 
   const filteredCasinos = casinos?.filter((casino) => {
     if (activeFilter === "all") return true;
@@ -101,6 +107,8 @@ const Index = () => {
                       key={casino.id}
                       casino={mapCasino(casino)}
                       rank={index + 1}
+                      open={openCasinoId === casino.id}
+                      onOpenChange={(open) => setOpenCasinoId(open ? casino.id : null)}
                     />
                   ))}
                 </div>
@@ -114,6 +122,8 @@ const Index = () => {
                       key={casino.id}
                       casino={mapCasino(casino)}
                       rank={index + 3}
+                      open={openCasinoId === casino.id}
+                      onOpenChange={(open) => setOpenCasinoId(open ? casino.id : null)}
                     />
                   ))}
                 </div>
@@ -127,6 +137,8 @@ const Index = () => {
                       key={casino.id}
                       casino={mapCasino(casino)}
                       rank={index + 6}
+                      open={openCasinoId === casino.id}
+                      onOpenChange={(open) => setOpenCasinoId(open ? casino.id : null)}
                     />
                   ))}
                 </div>
