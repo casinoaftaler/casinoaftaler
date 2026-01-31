@@ -8,6 +8,7 @@ import { HeaderIconUpload } from "@/components/HeaderIconUpload";
 import { SiteNameInput } from "@/components/SiteNameInput";
 import { HeroSettingsInput } from "@/components/HeroSettingsInput";
 import { SocialLinksInput } from "@/components/SocialLinksInput";
+import { DisclaimerInput } from "@/components/DisclaimerInput";
 import { GameProvidersInput, type GameProvider } from "@/components/GameProvidersInput";
 import { FeatureSelector } from "@/components/FeatureSelector";
 import { ShopAdminSection } from "@/components/ShopAdminSection";
@@ -943,6 +944,10 @@ function AdminDashboard() {
                 <div className="pt-4 border-t border-border">
                   <h3 className="text-sm font-medium mb-3">Sociale Medier Links</h3>
                   <SocialLinksInput />
+                </div>
+                <div className="pt-4 border-t border-border">
+                  <h3 className="text-sm font-medium mb-3">Casino Kort Disclaimer</h3>
+                  <DisclaimerInput />
                 </div>
               </CardContent>
             </Card>
