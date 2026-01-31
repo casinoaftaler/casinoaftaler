@@ -249,6 +249,11 @@ function FeaturedCard({
         >
           {/* Top right badges */}
           <div className="absolute top-3 right-3 z-10 flex items-center gap-2">
+            {casino.isRecommended && (
+              <Badge className="bg-destructive text-destructive-foreground hover:bg-destructive/90 text-xs font-bold px-2 py-1">
+                Anbefalet
+              </Badge>
+            )}
             {isTopRanked && (
               <div className="flex items-center gap-1 rounded-full bg-destructive px-3 py-1.5">
                 <Flame className="h-4 w-4 text-destructive-foreground" />
@@ -397,6 +402,14 @@ function RegularCard({
     <Collapsible open={isOpen} onOpenChange={setIsOpen}>
       <div className="relative group">
         <div className="relative overflow-hidden rounded-xl border border-border bg-card hover:border-primary/30 transition-colors">
+          {/* Recommended Badge */}
+          {casino.isRecommended && (
+            <div className="absolute top-3 right-3 z-10">
+              <Badge className="bg-destructive text-destructive-foreground hover:bg-destructive/90 text-xs font-bold px-2 py-1">
+                Anbefalet
+              </Badge>
+            </div>
+          )}
           {/* Main Content Row */}
           <div className="flex items-center gap-4 p-4">
             {/* Rank Badge */}
