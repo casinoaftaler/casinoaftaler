@@ -13,11 +13,6 @@ export async function getAffiliateRedirect(slug: string): Promise<void> {
     const opened = window.open(redirectUrl, "_blank", "noopener,noreferrer");
 
     if (!opened) {
-    toast({
-      title: "Popup blokeret",
-      description: "Tillad venligst popups for denne side og prøv igen",
-      variant: "destructive",
-    });
       return;
     }
   } catch (error) {
