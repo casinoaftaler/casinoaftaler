@@ -3,7 +3,6 @@ import { Star, Flame, Check, ChevronDown } from "lucide-react";
 import { getAffiliateRedirect } from "@/lib/affiliateRedirect";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { useLogoColor } from "@/hooks/useLogoColor";
 import {
   Collapsible,
   CollapsibleContent,
@@ -210,23 +209,8 @@ function FeaturedCard({
   // Extract bonus percentage from bonusTitle or use default
   const bonusPercentage = casino.bonusTitle?.match(/(\d+)%/)?.[1] || "100";
 
-  // Extract dominant color from logo
-  const logoColor = useLogoColor(casino.logoUrl);
-  
-  // Create gradient style based on extracted color or fallback
-  const gradientStyle = logoColor
-    ? {
-        background: `linear-gradient(to bottom right, 
-          hsl(${logoColor} / 0.95) 0%, 
-          hsl(${logoColor} / 0.8) 50%, 
-          hsl(${logoColor} / 0.95) 100%)`
-      }
-    : undefined;
-
-  // Fallback gradient classes if no logo color extracted
-  const fallbackGradientClass = !logoColor 
-    ? "bg-gradient-to-br from-violet-900/90 via-purple-800/80 to-indigo-900/90" 
-    : "";
+  // Unified site-themed gradient for all featured cards
+  const gradientClass = "bg-gradient-to-br from-primary/90 via-accent/70 to-primary/90";
 
   return (
     <Collapsible open={isOpen} onOpenChange={setIsOpen}>
@@ -234,18 +218,13 @@ function FeaturedCard({
         {/* Subtle glow for #1 ranked card */}
         {isTopRanked && (
           <div 
-            className="absolute -inset-1 rounded-2xl blur-lg opacity-60 group-hover:opacity-80 transition-opacity duration-300"
-            style={logoColor 
-              ? { background: `linear-gradient(to right, hsl(${logoColor} / 0.5), hsl(${logoColor} / 0.3), hsl(${logoColor} / 0.5))` }
-              : { background: 'linear-gradient(to right, hsl(var(--primary) / 0.4), hsl(var(--accent) / 0.3), hsl(var(--primary) / 0.4))' }
-            }
+            className="absolute -inset-1 rounded-2xl blur-lg opacity-60 group-hover:opacity-80 transition-opacity duration-300 bg-gradient-to-r from-primary/40 via-accent/30 to-primary/40"
           />
         )}
         
-        {/* Card with colorful gradient background */}
+        {/* Card with unified site-themed gradient background */}
         <div 
-          className={`relative overflow-hidden rounded-2xl ${fallbackGradientClass} border ${isTopRanked ? "border-white/30" : "border-white/10"}`}
-          style={gradientStyle}
+          className={`relative overflow-hidden rounded-2xl ${gradientClass} border ${isTopRanked ? "border-white/30" : "border-white/10"}`}
         >
           {/* Top right badges */}
           <div className="absolute top-3 right-3 z-10 flex items-center gap-2">
