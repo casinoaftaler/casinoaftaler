@@ -2,7 +2,6 @@ import { Outlet } from "react-router-dom";
 import { Header } from "./Header";
 import { Footer } from "./Footer";
 import { ResponsibleGamingBanner } from "./ResponsibleGamingBanner";
-import { CookieConsent } from "./CookieConsent";
 import { BackToTop } from "./BackToTop";
 
 export function Layout() {
@@ -14,7 +13,6 @@ export function Layout() {
         <Outlet />
       </main>
       <Footer />
-      <CookieConsent />
       <BackToTop />
     </div>
   );
