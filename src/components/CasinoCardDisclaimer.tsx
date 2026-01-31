@@ -1,5 +1,6 @@
+import { useState } from "react";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
-import { ScrollArea } from "@/components/ui/scroll-area";
+import { ChevronDown } from "lucide-react";
 
 const DEFAULT_DISCLAIMER = `Annoncering | 18+ | Spil ansvarligt | Selvudelukkelse via Rofus.nu | Kontakt Spillemyndighedens hjælpelinje på StopSpillet.dk – rådgivning om spilafhængighed | spillemyndigheden.dk |
 
@@ -60,6 +61,7 @@ function renderWithLinks(text: string) {
 }
 
 export function CasinoCardDisclaimer() {
+  const [isExpanded, setIsExpanded] = useState(false);
   const { data: settings } = useSiteSettings();
   const disclaimerText = settings?.casino_card_disclaimer || DEFAULT_DISCLAIMER;
 
@@ -73,7 +75,7 @@ export function CasinoCardDisclaimer() {
   // Check if there's additional text after the pipe-separated segments
   const hasRemainingContent = remainingSegments.length > 0;
 
-  const visibleText = visibleSegments.join(' | ') + (hasRemainingContent ? ' |' : '');
+  const visibleText = visibleSegments.join(' | ');
   const remainingText = remainingSegments.join(' | ');
 
   return (
@@ -83,13 +85,27 @@ export function CasinoCardDisclaimer() {
         {renderWithLinks(visibleText)}
       </div>
       
-      {/* Scrollable area for remaining content */}
+      {/* Expandable area for remaining content */}
       {hasRemainingContent && (
-        <ScrollArea className="max-h-[60px] mt-1">
-          <div className="leading-relaxed opacity-80 px-1">
-            {renderWithLinks(remainingText)}
+        <>
+          <div 
+            className={`overflow-hidden transition-all duration-300 ${
+              isExpanded ? 'max-h-[200px] opacity-100' : 'max-h-0 opacity-0'
+            }`}
+          >
+            <div className="leading-relaxed opacity-80 px-1 pt-1">
+              {renderWithLinks(remainingText)}
+            </div>
           </div>
-        </ScrollArea>
+          
+          <button
+            onClick={() => setIsExpanded(!isExpanded)}
+            className="flex items-center justify-center gap-0.5 mx-auto mt-1 text-[9px] text-white/50 hover:text-white/70 transition-colors"
+          >
+            {isExpanded ? 'Vis mindre' : 'Vis vilkår'}
+            <ChevronDown className={`h-3 w-3 transition-transform duration-200 ${isExpanded ? 'rotate-180' : ''}`} />
+          </button>
+        </>
       )}
     </div>
   );
