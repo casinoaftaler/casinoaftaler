@@ -513,7 +513,7 @@ function RegularCard({
   );
 }
 
-// Main CasinoCard component that decides which variant to render
+// Main CasinoCard component - all cards use FeaturedCard style
 export function CasinoCard({
   casino,
   rank,
@@ -521,21 +521,12 @@ export function CasinoCard({
   open,
   onOpenChange,
 }: CasinoCardProps) {
-  // Featured cards for rank 1-5, regular for others
-  const isFeatured = rank && rank <= 5;
-
-  if (isFeatured) {
-    return (
-      <FeaturedCard
-        casino={casino}
-        rank={rank}
-        open={open}
-        onOpenChange={onOpenChange}
-      />
-    );
-  }
-
   return (
-    <RegularCard casino={casino} rank={rank} open={open} onOpenChange={onOpenChange} />
+    <FeaturedCard
+      casino={casino}
+      rank={rank || 99}
+      open={open}
+      onOpenChange={onOpenChange}
+    />
   );
 }
