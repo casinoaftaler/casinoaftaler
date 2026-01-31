@@ -68,9 +68,9 @@ export function CasinoCardDisclaimer() {
   // Split by | separator to get segments
   const segments = disclaimerText.split('|').map(s => s.trim()).filter(Boolean);
   
-  // First 3 segments shown prominently
-  const visibleSegments = segments.slice(0, 3);
-  const remainingSegments = segments.slice(3);
+  // First 6 segments shown prominently
+  const visibleSegments = segments.slice(0, 6);
+  const remainingSegments = segments.slice(6);
   
   // Check if there's additional text after the pipe-separated segments
   const hasRemainingContent = remainingSegments.length > 0;
