@@ -129,9 +129,9 @@ const Index = () => {
                 </div>
               )}
 
-              {/* Regular Cards (Rank 6+) */}
+              {/* Remaining Cards Grid (Rank 6+) */}
               {filteredCasinos.length > 5 && (
-                <div className="space-y-3">
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-4 items-start">
                   {filteredCasinos.slice(5).map((casino, index) => (
                     <CasinoCard
                       key={casino.id}
