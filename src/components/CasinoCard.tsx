@@ -78,8 +78,8 @@ function CasinoInfoContent({ casino, variant }: { casino: Casino; variant: "feat
           <p className={`text-lg font-bold ${variant === "featured" ? "text-white" : "text-foreground"}`}>{casino.bonusAmount}</p>
         </div>
         <div>
-          <p className={`text-[10px] uppercase tracking-wider mb-1 ${variant === "featured" ? "text-white/70" : "text-muted-foreground"}`}>Gratis Spins</p>
-          <p className={`text-lg font-bold ${variant === "featured" ? "text-white" : "text-foreground"}`}>{casino.freeSpins || 'N/A'}</p>
+          <p className={`text-[10px] uppercase tracking-wider mb-1 ${variant === "featured" ? "text-white/70" : "text-muted-foreground"}`}>Bonus Type</p>
+          <p className={`text-lg font-bold ${variant === "featured" ? "text-white" : "text-foreground"}`}>{casino.bonusType === "No-sticky" ? "No-Sticky" : "Sticky"}</p>
         </div>
         <div>
           <p className={`text-[10px] uppercase tracking-wider mb-1 ${variant === "featured" ? "text-white/70" : "text-muted-foreground"}`}>Omsætning</p>
@@ -307,10 +307,10 @@ function FeaturedCard({
               <div className="grid grid-cols-2 gap-2 text-center">
                 <div>
                   <p className="text-[10px] text-white/70 uppercase tracking-wider mb-0.5">
-                    GRATIS SPINS
+                    BONUS TYPE
                   </p>
                   <p className={`font-bold text-white ${isTopRow ? "text-lg" : "text-base"}`}>
-                    {casino.freeSpins || '-'}
+                    {casino.bonusType === "No-sticky" ? "No-Sticky" : "Sticky"}
                   </p>
                 </div>
                 <div className="border-l border-white/20">
