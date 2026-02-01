@@ -678,7 +678,7 @@ function SortableCasinoCard({
                 <Badge variant="secondary">Inaktiv</Badge>
               )}
               <Badge variant={casino.bonus_type === "No-sticky" ? "default" : "outline"}>
-                {casino.bonus_type === "No-sticky" ? "Ikke-klæbende" : casino.bonus_type}
+                {casino.bonus_type === "No-sticky" ? "No-Sticky Bonus" : casino.bonus_type}
               </Badge>
             </div>
             <p className="text-sm text-muted-foreground">

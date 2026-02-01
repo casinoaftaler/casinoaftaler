@@ -22,11 +22,11 @@ export function BonusTypeCards() {
               <div className="mb-2 inline-flex rounded-full bg-primary/10 px-3 py-1 text-sm font-medium text-primary">
                 Anbefalet
               </div>
-              <CardTitle className="text-2xl">Ikke-klæbende Bonus</CardTitle>
+              <CardTitle className="text-2xl">No-Sticky Bonus</CardTitle>
             </CardHeader>
             <CardContent className="space-y-4">
               <p className="text-muted-foreground">
-                Med en ikke-klæbende bonus holdes dine rigtige penge og
+                Med en no-sticky bonus holdes dine rigtige penge og
                 bonusmidler adskilt. Du kan hæve dine rigtige pengegevinster
                 når som helst uden at miste bonussen.
               </p>
@@ -58,11 +58,11 @@ export function BonusTypeCards() {
               <div className="mb-2 inline-flex rounded-full bg-muted px-3 py-1 text-sm font-medium">
                 Traditionel
               </div>
-              <CardTitle className="text-2xl">Klæbende Bonus</CardTitle>
+              <CardTitle className="text-2xl">Sticky Bonus</CardTitle>
             </CardHeader>
             <CardContent className="space-y-4">
               <p className="text-muted-foreground">
-                En klæbende bonus kombinerer din indbetaling og bonus til én
+                En sticky bonus kombinerer din indbetaling og bonus til én
                 saldo. Du skal opfylde gennemspilskravene, før udbetalinger er
                 mulige.
               </p>
