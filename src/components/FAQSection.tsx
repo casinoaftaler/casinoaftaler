@@ -18,14 +18,14 @@ const faqs = [
       "Gennemspilskrav (også kaldet omsætningskrav) specificerer, hvor mange gange du skal spille for bonusbeløbet, før du kan hæve eventuelle gevinster. For eksempel betyder en bonus på 1.000 kr. med 35x gennemspil, at du skal placere væddemål for 35.000 kr., før du kan hæve.",
   },
   {
-    question: "Hvad er forskellen mellem klæbende og ikke-klæbende bonusser?",
+    question: "Hvad er forskellen mellem sticky og no-sticky bonusser?",
     answer:
-      "Med en ikke-klæbende (eller faldskærms) bonus spilles dine rigtige penge først, og du kan hæve dem når som helst. Bonussen bruges kun, når din indbetaling er brugt. Med en klæbende bonus kombineres din indbetaling og bonus, og du kan ikke hæve noget, før gennemspilskravene er opfyldt.",
+      "Med en no-sticky (eller faldskærms) bonus spilles dine rigtige penge først, og du kan hæve dem når som helst. Bonussen bruges kun, når din indbetaling er brugt. Med en sticky bonus kombineres din indbetaling og bonus, og du kan ikke hæve noget, før gennemspilskravene er opfyldt.",
   },
   {
     question: "Er online casinobonusser det værd?",
     answer:
-      "Casinobonusser kan være det værd, hvis du forstår vilkår og betingelser. Kig efter bonusser med lavere gennemspilskrav (under 40x), rimelige gyldighedsperioder og fair spilbidragsprocenter. Ikke-klæbende bonusser tilbyder generelt bedre værdi for spillere.",
+      "Casinobonusser kan være det værd, hvis du forstår vilkår og betingelser. Kig efter bonusser med lavere gennemspilskrav (under 40x), rimelige gyldighedsperioder og fair spilbidragsprocenter. No-sticky bonusser tilbyder generelt bedre værdi for spillere.",
   },
   {
     question: "Hvordan gør jeg krav på en casinobonus?",

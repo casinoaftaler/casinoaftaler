@@ -48,10 +48,10 @@ export function Header() {
                 <Link to="/bonus-guide">Alle Bonustyper</Link>
               </DropdownMenuItem>
               <DropdownMenuItem asChild>
-                <Link to="/bonus-guide#no-sticky">Ikke-klæbende Bonusser</Link>
+                <Link to="/bonus-guide#no-sticky">No-Sticky Bonusser</Link>
               </DropdownMenuItem>
               <DropdownMenuItem asChild>
-                <Link to="/bonus-guide#sticky">Klæbende Bonusser</Link>
+                <Link to="/bonus-guide#sticky">Sticky Bonusser</Link>
               </DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>

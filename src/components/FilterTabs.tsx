@@ -2,7 +2,7 @@ import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 const filters = [
   { id: "all", label: "Alle Bonusser" },
-  { id: "no-sticky", label: "Ikke-klæbende" },
+  { id: "no-sticky", label: "No-Sticky" },
   { id: "free-spins", label: "Gratis Spins" },
   { id: "fast-payout", label: "Hurtig Udbetaling" },
   { id: "mobile", label: "Mobil" },

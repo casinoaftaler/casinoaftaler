@@ -77,7 +77,7 @@ const BonusGuide = () => {
                   onClick={(e) => scrollToSection(e, "no-sticky")}
                   className="block rounded-lg px-3 py-2 text-primary hover:bg-primary/10 active:scale-[0.98] active:bg-primary/20 transition-all duration-150"
                 >
-                  Ikke-klæbende Bonusser Forklaret
+                  No-Sticky Bonusser Forklaret
                 </a>
               </li>
               <li>
@@ -86,7 +86,7 @@ const BonusGuide = () => {
                   onClick={(e) => scrollToSection(e, "sticky")}
                   className="block rounded-lg px-3 py-2 text-primary hover:bg-primary/10 active:scale-[0.98] active:bg-primary/20 transition-all duration-150"
                 >
-                  Klæbende Bonusser Forklaret
+                  Sticky Bonusser Forklaret
                 </a>
               </li>
               <li>
@@ -187,11 +187,11 @@ const BonusGuide = () => {
 
           {/* No-Sticky */}
           <section id="no-sticky">
-            <h2 className="mb-4 text-2xl font-bold">Ikke-klæbende Bonusser Forklaret</h2>
+            <h2 className="mb-4 text-2xl font-bold">No-Sticky Bonusser Forklaret</h2>
             <Card className="border-primary/50">
               <CardContent className="pt-6">
                 <p className="mb-4 text-muted-foreground">
-                  En ikke-klæbende bonus (også kaldet "faldskærms" eller "fortabelig"
+                  En no-sticky bonus (også kaldet "faldskærms" eller "fortabelig"
                   bonus) holder din rigtige pengeindbetaling adskilt fra
                   bonusmidlerne. Du spiller med dine rigtige penge først, og
                   bonussen træder kun i kraft, hvis du mister din indbetaling.
@@ -214,7 +214,7 @@ const BonusGuide = () => {
                 <h4 className="mb-2 font-semibold">Sådan Fungerer Det:</h4>
                 <p className="text-sm text-muted-foreground">
                   Eksempel: Du indbetaler 500 kr. og modtager en 500 kr.
-                  ikke-klæbende bonus. Du spiller med din indbetaling på 500 kr.
+                  no-sticky bonus. Du spiller med din indbetaling på 500 kr.
                   først. Hvis du vinder 2.500 kr., kan du hæve de 2.500 kr.
                   (minus dine oprindelige 500 kr., der blev spillet) uden at røre
                   bonussen. Bonussen fortabes, når du hæver. Hvis du mister din
@@ -227,11 +227,11 @@ const BonusGuide = () => {
 
           {/* Sticky */}
           <section id="sticky">
-            <h2 className="mb-4 text-2xl font-bold">Klæbende Bonusser Forklaret</h2>
+            <h2 className="mb-4 text-2xl font-bold">Sticky Bonusser Forklaret</h2>
             <Card>
               <CardContent className="pt-6">
                 <p className="mb-4 text-muted-foreground">
-                  En klæbende bonus (også kaldet "standard" eller "integreret"
+                  En sticky bonus (også kaldet "standard" eller "integreret"
                   bonus) kombinerer din indbetaling og bonusmidler til én saldo.
                   Du kan ikke hæve noget, før du har opfyldt gennemspilskravene.
                 </p>
@@ -254,7 +254,7 @@ const BonusGuide = () => {
                   <div className="flex items-start gap-2">
                     <AlertTriangle className="h-5 w-5 shrink-0 text-primary" />
                     <p className="text-sm text-muted-foreground">
-                      <strong>Vigtigt:</strong> Med klæbende bonusser, hvis du
+                      <strong>Vigtigt:</strong> Med sticky bonusser, hvis du
                       vinder stort tidligt, skal du stadig opfylde
                       gennemspilskravene, før du kan hæve. Det betyder, at du
                       potentielt kan miste disse gevinster, mens du prøver at
@@ -314,10 +314,10 @@ const BonusGuide = () => {
               <Card>
                 <CardContent className="pt-6">
                   <h4 className="mb-2 font-semibold">
-                    1. Foretruk Ikke-klæbende Frem for Klæbende
+                    1. Foretruk No-Sticky Frem for Sticky
                   </h4>
                   <p className="text-sm text-muted-foreground">
-                    Ikke-klæbende bonusser giver dig mere fleksibilitet og lavere
+                    No-sticky bonusser giver dig mere fleksibilitet og lavere
                     risiko. Du kan altid gå med dine gevinster.
                   </p>
                 </CardContent>
