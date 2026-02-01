@@ -298,7 +298,7 @@ function FeaturedCard({
             </div>
 
             {/* Prominent Bonus Headline */}
-            <p className={`text-center font-bold text-white mb-3 ${isTopRow ? "text-xl" : "text-lg"}`}>
+            <p className={`text-center font-bold text-white mb-3 ${isTopRow ? "text-3xl" : "text-2xl"}`}>
               {casino.bonusTitle || `${bonusPercentage}% op til ${casino.bonusAmount}`}
             </p>
 
