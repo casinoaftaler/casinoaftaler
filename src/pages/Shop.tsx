@@ -26,7 +26,7 @@ function ShopHero() {
             </div>
           </div>
           <h1 className="mb-4 text-4xl font-bold md:text-5xl">Butik</h1>
-          <p className="text-lg text-white/80">
+          <p className="text-base text-white/80">
             {description}
           </p>
         </div>
