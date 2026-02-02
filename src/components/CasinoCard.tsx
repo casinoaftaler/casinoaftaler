@@ -337,6 +337,7 @@ function FeaturedCard({
                 isTopRow ? "py-5 text-base" : "py-4 text-sm"
               }`}
             >
+              <Gift className={isTopRow ? "h-5 w-5" : "h-4 w-4"} />
               HENT BONUS
             </Button>
 
@@ -469,6 +470,7 @@ function RegularCard({
                 size="sm"
                 className="rounded-full border border-primary bg-transparent text-primary hover:bg-primary hover:text-primary-foreground font-semibold text-xs px-4 transition-all"
               >
+                <Gift className="h-4 w-4" />
                 HENT BONUS
               </Button>
               <CollapsibleTrigger asChild>
