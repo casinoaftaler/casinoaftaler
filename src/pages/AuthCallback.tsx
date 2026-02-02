@@ -99,7 +99,7 @@ export default function AuthCallback() {
         const { error: verifyError } = await supabase.auth.verifyOtp({
           email: data.email,
           token: data.token_hash,
-          type: "email",
+          type: "magiclink",
         });
 
         if (verifyError) {
