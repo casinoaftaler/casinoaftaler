@@ -348,7 +348,7 @@ function FeaturedCard({
             <CasinoCardDisclaimer />
 
             {/* Collapsible Content */}
-            <CollapsibleContent className="overflow-hidden data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down">
+            <CollapsibleContent className="overflow-hidden data-[state=closed]:animate-collapsible-up data-[state=open]:animate-collapsible-down">
               <CasinoInfoContent casino={casino} variant="featured" />
             </CollapsibleContent>
           </div>
@@ -499,7 +499,7 @@ function RegularCard({
           </div>
 
           {/* Collapsible Content */}
-          <CollapsibleContent className="overflow-hidden data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down">
+          <CollapsibleContent className="overflow-hidden data-[state=closed]:animate-collapsible-up data-[state=open]:animate-collapsible-down">
             <CasinoInfoContent casino={casino} variant="regular" />
           </CollapsibleContent>
 
