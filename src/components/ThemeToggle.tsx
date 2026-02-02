@@ -3,21 +3,25 @@ import { Button } from "@/components/ui/button";
 import { useEffect, useState } from "react";
 
 export function ThemeToggle() {
-  const [isDark, setIsDark] = useState(false);
+  const [isDark, setIsDark] = useState(() => {
+    // Check localStorage for saved preference, default to light mode
+    const saved = localStorage.getItem("theme");
+    return saved === "dark";
+  });
 
   useEffect(() => {
-    // Set light mode as default
-    const isDarkMode = document.documentElement.classList.contains("dark");
-    if (isDarkMode) {
-      document.documentElement.classList.remove("dark");
-    }
-    setIsDark(false);
+    // Apply saved theme on mount
+    const saved = localStorage.getItem("theme");
+    const shouldBeDark = saved === "dark";
+    document.documentElement.classList.toggle("dark", shouldBeDark);
+    setIsDark(shouldBeDark);
   }, []);
 
   const toggleTheme = () => {
     const newIsDark = !isDark;
     setIsDark(newIsDark);
     document.documentElement.classList.toggle("dark", newIsDark);
+    localStorage.setItem("theme", newIsDark ? "dark" : "light");
   };
 
   return (
