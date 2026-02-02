@@ -39,6 +39,7 @@ import {
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Plus, Trash2, LogOut, Star, Loader2, Pencil, GripVertical, Gift, ShoppingBag, BarChart3, Settings, Users, Video } from "lucide-react";
 import { AdminUserManagement } from "@/components/AdminUserManagement";
+import { TwitchUsersSection } from "@/components/TwitchUsersSection";
 import { HighlightsAdminSection } from "@/components/HighlightsAdminSection";
 import { CombinedAnalyticsDashboard } from "@/components/CombinedAnalyticsDashboard";
 import { ThemeToggle } from "@/components/ThemeToggle";
@@ -969,11 +970,23 @@ function AdminDashboard() {
 
           {/* Brugere Tab */}
           <TabsContent value="users">
-            <div className="mb-6">
-              <h2 className="text-2xl font-bold">Admin Brugere</h2>
-              <p className="text-muted-foreground">Opret og administrer admin brugere.</p>
+            <div className="space-y-8">
+              <div>
+                <div className="mb-6">
+                  <h2 className="text-2xl font-bold">Admin Brugere</h2>
+                  <p className="text-muted-foreground">Opret og administrer admin brugere.</p>
+                </div>
+                <AdminUserManagement embedded />
+              </div>
+              
+              <div className="pt-4 border-t border-border">
+                <div className="mb-6">
+                  <h2 className="text-2xl font-bold">Twitch Brugere</h2>
+                  <p className="text-muted-foreground">Alle brugere der har logget ind med Twitch.</p>
+                </div>
+                <TwitchUsersSection />
+              </div>
             </div>
-            <AdminUserManagement embedded />
           </TabsContent>
         </Tabs>
       </main>
