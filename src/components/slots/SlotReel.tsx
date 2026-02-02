@@ -191,8 +191,11 @@ export function SlotReel({
             <div
               key={`final-${rowIndex}-${symbolId}`}
               className={cn(
-                spinState === "stopped" && "animate-[bounce_0.3s_ease-out]"
+                spinState === "stopped" && "animate-[slot-land_0.4s_cubic-bezier(0.34,1.56,0.64,1)]"
               )}
+              style={{
+                animationFillMode: spinState === "stopped" ? "both" : undefined
+              }}
             >
               <SlotSymbol
                 symbol={symbol}
