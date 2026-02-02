@@ -470,7 +470,7 @@ export function SlotGame() {
       <div 
         className={cn(
           "overflow-hidden",
-          bonusState.isActive && "shadow-[0_0_30px_rgba(168,85,247,0.2)]"
+          bonusState.isActive && "shadow-[0_0_30px_rgba(251,191,36,0.3)]"
         )}
       >
         <div className="p-4 sm:p-6 space-y-6">
@@ -523,6 +523,7 @@ export function SlotGame() {
                       winningPositions={getWinningPositions(colIndex)}
                       isExpanded={isReelExpanded(colIndex)}
                       isNewlyExpanded={newlyExpandedReels.includes(colIndex)}
+                      expandingSymbolId={bonusState.expandingSymbol?.id}
                       delay={colIndex}
                     />
                   ))}

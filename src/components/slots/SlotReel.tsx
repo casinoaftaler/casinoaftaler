@@ -10,6 +10,7 @@ interface SlotReelProps {
   winningPositions?: number[];
   isExpanded?: boolean;
   isNewlyExpanded?: boolean;
+  expandingSymbolId?: string;  // Only symbols matching this ID show expansion effect
   delay?: number;
 }
 
@@ -24,6 +25,7 @@ export function SlotReel({
   winningPositions = [],
   isExpanded = false,
   isNewlyExpanded = false,
+  expandingSymbolId,
   delay = 0,
 }: SlotReelProps) {
   const symbolsById = new Map(symbols.map(s => [s.id, s]));
@@ -160,17 +162,30 @@ export function SlotReel({
     }
   }, [isSpinning, spinState]);
 
+  // Helper to check if a symbol should show expansion effect
+  const shouldShowExpansion = (symbolId: string): boolean => {
+    // Only show expansion if:
+    // 1. This reel is marked as expanded
+    // 2. We have an expanding symbol ID
+    // 3. The symbol matches the expanding symbol
+    return isExpanded && !!expandingSymbolId && symbolId === expandingSymbolId;
+  };
+
+  const shouldShowNewlyExpanded = (symbolId: string): boolean => {
+    return isNewlyExpanded && !!expandingSymbolId && symbolId === expandingSymbolId;
+  };
+
   // When idle, show just the final symbols (same as spinning at offset 0)
   // When stopped, also show final symbols with a small bounce animation
   if (spinState === "idle" || spinState === "stopped") {
     return (
-      <div className={cn(
-        "flex flex-col gap-[6px] xs:gap-[8px] sm:gap-[10px] md:gap-[14px] lg:gap-[18px]",
-        isExpanded && "animate-pulse"
-      )}>
+      <div className="flex flex-col gap-[6px] xs:gap-[8px] sm:gap-[10px] md:gap-[14px] lg:gap-[18px]">
         {displayedSymbolIds.map((symbolId, rowIndex) => {
           const symbol = symbolsById.get(symbolId);
           if (!symbol) return null;
+
+          const symbolIsExpanded = shouldShowExpansion(symbolId);
+          const symbolIsNewlyExpanded = shouldShowNewlyExpanded(symbolId);
 
           return (
             <div
@@ -183,8 +198,8 @@ export function SlotReel({
                 symbol={symbol}
                 isWinning={winningPositions.includes(rowIndex)}
                 isSpinning={false}
-                isExpanded={isExpanded}
-                isNewlyExpanded={isNewlyExpanded}
+                isExpanded={symbolIsExpanded}
+                isNewlyExpanded={symbolIsNewlyExpanded}
               />
             </div>
           );
