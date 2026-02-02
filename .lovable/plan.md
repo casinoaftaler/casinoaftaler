@@ -1,72 +1,72 @@
 
-
-# Plan: Reducer spillemaskine-symboler på mobil
+# Plan: Skjul/Vis Rangliste på Mobil
 
 ## Oversigt
-Gør spillemaskine-symbolerne mindre på de mindste skærmstørrelser for at sikre at hele spillemaskinen (5 hjul × 3 rækker) passer på mobilskærme uden at blive skåret af.
+Tilføj en toggle-knap på mobil/tablet der gør det muligt at skjule ranglisten, så spillemaskinen får mere plads på skærmen.
 
-## Nuværende størrelser vs. Nye størrelser
+## Design
 
-| Breakpoint | Skærmbredde | Nuværende | Ny størrelse |
-|------------|-------------|-----------|--------------|
-| Base       | < 400px     | 80px      | **64px**     |
-| xs         | ≥ 400px     | 96px      | **76px**     |
-| sm         | ≥ 640px     | 112px     | 96px         |
-| md         | ≥ 768px     | 128px     | 112px        |
-| lg         | ≥ 1024px    | 160px     | 140px        |
-| xl         | ≥ 1280px    | 176-180px | 160px        |
+```text
+┌──────────────────────────┐
+│    Spillemaskine         │
+│                          │
+├──────────────────────────┤
+│   🏆 Vis rangliste ▼     │  ← Toggle knap (når skjult)
+└──────────────────────────┘
 
-Gap mellem symboler reduceres også tilsvarende:
-- Base: 6px → **4px**
-- xs: 8px → **6px**
-- sm: 10px → **8px**
+┌──────────────────────────┐
+│    Spillemaskine         │
+│                          │
+├──────────────────────────┤
+│   🏆 Skjul rangliste ▲   │  ← Toggle knap (når synlig)
+├──────────────────────────┤
+│   [Rangliste indhold]    │
+└──────────────────────────┘
+```
 
-## Beregning: Passer det på mobil?
-Med de nye størrelser:
-- **5 symboler × 64px + 4 gaps × 4px = 336px** bredde (passer på 360px skærm)
-- **3 symboler × 64px + 2 gaps × 4px = 200px** højde
+## Funktionalitet
+- Toggle-knap vises **kun på mobil/tablet** (under xl breakpoint)
+- Standard: Ranglisten er **skjult** for at give plads til spillemaskinen
+- Brugerens valg gemmes i `localStorage` så det huskes mellem besøg
+- Desktop (xl+): Ranglisten forbliver altid synlig i sidepanelet
 
-## Filer der skal opdateres
+## Tekniske ændringer
+
+### SlotMachine.tsx
+1. Tilføj state: `showLeaderboard` (default: `false`)
+2. Brug `localStorage` til at gemme/hente præference
+3. Erstat den faste leaderboard-visning med en collapsible sektion:
+   - Toggle-knap med ikon og tekst
+   - Animeret åbne/lukke effekt
+
+### UI-elementer
+- **Knap stil**: Matcher egyptisk tema (amber farver, semi-transparent baggrund)
+- **Ikon**: Trophy + ChevronDown/ChevronUp
+- **Tekst**: "Vis rangliste" / "Skjul rangliste"
+
+## Fil-ændringer
 
 | Fil | Ændring |
 |-----|---------|
-| `src/components/slots/SlotSymbol.tsx` | Opdater responsive Tailwind klasser til mindre størrelser |
-| `src/components/slots/SlotReel.tsx` | Opdater `SYMBOL_SIZE` og `GAP` konstanterne |
-| `src/components/slots/SlotGame.tsx` | Opdater `SYMBOL_SIZE` og `GAP` konstanterne (skal matche SlotReel) |
+| `src/pages/SlotMachine.tsx` | Tilføj toggle state, localStorage, og collapsible leaderboard UI |
 
-## Tekniske detaljer
+## Kodestruktur
 
-### SlotSymbol.tsx
-Ændre symbol container og billede størrelser:
-```
-Container: 64px → 76px → 96px → 112px → 140px → 160px
-Billede:   52px → 64px → 80px → 96px  → 124px → 144px
-```
-
-### SlotReel.tsx & SlotGame.tsx
-Opdater konstanterne:
 ```typescript
-const SYMBOL_SIZE = { 
-  xs: 64,      // var 80
-  mobile: 76,  // var 96
-  sm: 96,      // var 112
-  md: 112,     // var 128
-  lg: 140,     // var 160
-  xl: 160      // var 176-180
-};
+// State med localStorage
+const [showLeaderboard, setShowLeaderboard] = useState(() => {
+  return localStorage.getItem('slot-show-leaderboard') === 'true';
+});
 
-const GAP = { 
-  xs: 4,      // var 6
-  mobile: 6,  // var 8
-  sm: 8,      // var 10
-  md: 12,     // var 14
-  lg: 16      // var 18
+// Toggle handler
+const toggleLeaderboard = () => {
+  const newValue = !showLeaderboard;
+  setShowLeaderboard(newValue);
+  localStorage.setItem('slot-show-leaderboard', String(newValue));
 };
 ```
 
 ## Resultat
-- Hele spillemaskinen passer nu på skærme ned til 360px bredde
-- Bevarer proportionerne og det visuelle design
-- WinLines og animationer forbliver synkroniserede
-- Symbolbilleder forbliver skarpe og læsbare
-
+- Brugere på mobil kan skjule ranglisten for mere fokus på spillet
+- Valget huskes mellem besøg
+- Desktop-oplevelsen forbliver uændret
