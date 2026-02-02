@@ -116,13 +116,39 @@ export default {
 				'0%': { transform: 'translateX(-100%)' },
 				'50%': { transform: 'translateX(100%)' },
 				'100%': { transform: 'translateX(100%)' }
+			},
+			'expansion-flash': {
+				'0%': { 
+					boxShadow: '0 0 0 0 rgba(168, 85, 247, 0.8), inset 0 0 30px rgba(168, 85, 247, 0.5)',
+					transform: 'scale(0.9)'
+				},
+				'50%': { 
+					boxShadow: '0 0 40px 10px rgba(168, 85, 247, 0.6), inset 0 0 20px rgba(168, 85, 247, 0.3)',
+					transform: 'scale(1.15)'
+				},
+				'100%': { 
+					boxShadow: '0 0 25px 0 rgba(168, 85, 247, 0.4), inset 0 0 0 rgba(168, 85, 247, 0)',
+					transform: 'scale(1.1)'
+				}
+			},
+			'symbol-expand': {
+				'0%': { transform: 'scale(0.5)', opacity: '0.5' },
+				'50%': { transform: 'scale(1.3)' },
+				'100%': { transform: 'scale(1.1)', opacity: '1' }
+			},
+			'expand-ring': {
+				'0%': { transform: 'scale(0.8)', opacity: '1' },
+				'100%': { transform: 'scale(1.5)', opacity: '0' }
 			}
 		},
 		animation: {
 			'accordion-down': 'accordion-down 0.2s ease-out',
 			'accordion-up': 'accordion-up 0.2s ease-out',
 			'collapsible-down': 'collapsible-down 0.3s ease-out',
-			'collapsible-up': 'collapsible-up 0.3s ease-out'
+			'collapsible-up': 'collapsible-up 0.3s ease-out',
+			'expansion-flash': 'expansion-flash 0.6s ease-out',
+			'symbol-expand': 'symbol-expand 0.5s ease-out',
+			'expand-ring': 'expand-ring 0.6s ease-out forwards'
 		},
   		fontFamily: {
   			sans: [

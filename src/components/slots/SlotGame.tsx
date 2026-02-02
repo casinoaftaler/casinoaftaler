@@ -58,6 +58,7 @@ export function SlotGame() {
   const [winAmount, setWinAmount] = useState(0);
   const [isWinAnimating, setIsWinAnimating] = useState(false);
   const [expandedReels, setExpandedReels] = useState<number[]>([]);
+  const [newlyExpandedReels, setNewlyExpandedReels] = useState<number[]>([]);
   const [showWinLines, setShowWinLines] = useState(false);
   const [isFullscreen, setIsFullscreen] = useState(false);
   
@@ -208,6 +209,9 @@ export function SlotGame() {
         
         if (bonusResult.didExpand) {
           setExpandedReels(reelsExpanded);
+          setNewlyExpandedReels(reelsExpanded);
+          // Clear the "newly expanded" state after animation completes
+          setTimeout(() => setNewlyExpandedReels([]), 700);
         }
       } else {
         result = calculateSpinResult(originalGrid, symbols, bet);
@@ -534,6 +538,7 @@ export function SlotGame() {
                     isSpinning={isSpinning}
                     winningPositions={getWinningPositions(colIndex)}
                     isExpanded={isReelExpanded(colIndex)}
+                    isNewlyExpanded={newlyExpandedReels.includes(colIndex)}
                     delay={colIndex}
                   />
                 ))}
