@@ -16,6 +16,7 @@ import { PayTable } from "./PayTable";
 import { BonusOverlay } from "./BonusOverlay";
 import { BonusStatusBar } from "./BonusStatusBar";
 import { VolumeControl } from "./VolumeControl";
+import { WinCelebration } from "./WinCelebration";
 import { useSlotSymbols } from "@/hooks/useSlotSymbols";
 import { useSlotSpins } from "@/hooks/useSlotSpins";
 import { useSlotSettings } from "@/hooks/useSlotSettings";
@@ -534,6 +535,13 @@ export function SlotGame() {
                 isSpinning && !bonusState.isActive && "shadow-[0_0_30px_rgba(251,191,36,0.3)]"
               )}
             >
+              {/* Win Celebration Effects */}
+              <WinCelebration
+                isActive={isWinAnimating}
+                winAmount={winAmount}
+                bet={bet}
+              />
+              
               {/* Reel container */}
               <div className="relative flex gap-1 xs:gap-2 sm:gap-3 md:gap-4">
                 {grid?.map((column, colIndex) => (
