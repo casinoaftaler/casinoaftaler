@@ -15,16 +15,16 @@ export function SlotSymbol({ symbol, isWinning, isSpinning, isExpanded, isNewlyE
   return (
     <div
       className={cn(
-        "relative flex items-center justify-center rounded-lg bg-gradient-to-br from-amber-900/80 to-amber-950 border-2 transition-all duration-300 overflow-hidden shadow-[0_4px_20px_rgba(0,0,0,0.5)]",
+        "relative flex items-center justify-center rounded-lg border-2 transition-all duration-300 overflow-hidden",
         // Symbol container sizes matching SYMBOL_SIZE constants
         "w-[80px] h-[80px] xs:w-[96px] xs:h-[96px] sm:w-[112px] sm:h-[112px] md:w-[128px] md:h-[128px] lg:w-[160px] lg:h-[160px] xl:w-[176px] xl:h-[176px]",
         isWinning
-          ? "border-amber-400 shadow-[0_0_20px_rgba(251,191,36,0.5)] scale-105"
-          : "border-amber-700/50",
+          ? "border-amber-400 shadow-[0_0_20px_rgba(251,191,36,0.5)] scale-105 bg-amber-900/30"
+          : "border-transparent",
         isSpinning && "animate-pulse",
-        isExpanded && "border-purple-400 shadow-[0_0_25px_rgba(168,85,247,0.6)] scale-110",
+        isExpanded && "scale-110 border-amber-400/50",
         isNewlyExpanded && "animate-[expansion-flash_0.6s_ease-out]",
-        symbol.is_scatter && "ring-2 ring-purple-500/50"
+        symbol.is_scatter && "ring-2 ring-amber-500/50"
       )}
     >
       {symbol.image_url ? (
@@ -55,21 +55,21 @@ export function SlotSymbol({ symbol, isWinning, isSpinning, isExpanded, isNewlyE
       
       {/* Expanded glow effect */}
       {isExpanded && (
-        <div className="absolute inset-0 rounded-lg bg-purple-400/30 animate-pulse" />
+        <div className="absolute inset-0 rounded-lg bg-amber-400/20 animate-pulse" />
       )}
       
       {/* Expansion burst effect */}
       {isNewlyExpanded && (
         <>
-          <div className="absolute inset-0 rounded-lg bg-gradient-to-r from-purple-500/0 via-purple-400/50 to-purple-500/0 animate-[shine_0.6s_ease-out]" />
-          <div className="absolute inset-[-4px] rounded-xl border-2 border-purple-300 animate-[expand-ring_0.6s_ease-out] opacity-0" />
+          <div className="absolute inset-0 rounded-lg bg-gradient-to-r from-amber-500/0 via-amber-400/50 to-amber-500/0 animate-[shine_0.6s_ease-out]" />
+          <div className="absolute inset-[-4px] rounded-xl border-2 border-amber-300 animate-[expand-ring_0.6s_ease-out] opacity-0" />
         </>
       )}
       
       {/* Scatter indicator */}
       {symbol.is_scatter && (
-        <div className="absolute -top-1 -right-1 w-4 h-4 bg-purple-500 rounded-full flex items-center justify-center">
-          <span className="text-[8px] text-white font-bold">W</span>
+        <div className="absolute -top-1 -right-1 w-4 h-4 bg-amber-500 rounded-full flex items-center justify-center">
+          <span className="text-[8px] text-white font-bold">S</span>
         </div>
       )}
     </div>
