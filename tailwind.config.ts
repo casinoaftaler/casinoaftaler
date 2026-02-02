@@ -139,6 +139,14 @@ export default {
 			'expand-ring': {
 				'0%': { transform: 'scale(0.8)', opacity: '1' },
 				'100%': { transform: 'scale(1.5)', opacity: '0' }
+			},
+			'glow': {
+				'0%, 100%': { 
+					filter: 'drop-shadow(0 0 20px rgba(251,191,36,0.5)) drop-shadow(0 0 40px rgba(251,191,36,0.3)) drop-shadow(0 0 60px rgba(251,191,36,0.2))'
+				},
+				'50%': { 
+					filter: 'drop-shadow(0 0 30px rgba(251,191,36,0.8)) drop-shadow(0 0 60px rgba(251,191,36,0.5)) drop-shadow(0 0 90px rgba(251,191,36,0.3))'
+				}
 			}
 		},
 		animation: {

@@ -66,12 +66,15 @@ export default function SlotMachine() {
       <div className="fixed inset-0 bg-gradient-to-b from-background/70 via-background/50 to-background/80 -z-10" />
       
       <div className="container py-8 space-y-8">
-        {/* Title Image */}
+        {/* Title Image with glow animation */}
         <div className="flex justify-center">
           <img 
             src={bookOfFedesvinTitle} 
             alt="Book of Fedesvin" 
-            className="w-full max-w-xl h-auto drop-shadow-[0_0_30px_rgba(251,191,36,0.4)]"
+            className="w-full max-w-xl h-auto animate-[glow_3s_ease-in-out_infinite]"
+            style={{
+              filter: 'drop-shadow(0 0 20px rgba(251,191,36,0.5)) drop-shadow(0 0 40px rgba(251,191,36,0.3)) drop-shadow(0 0 60px rgba(251,191,36,0.2))'
+            }}
           />
         </div>
 
