@@ -5,7 +5,7 @@ import { useSiteSettings } from "@/hooks/useSiteSettings";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { Gamepad2 } from "lucide-react";
-import slotBackground from "@/assets/slots/slot-background.jpg";
+import defaultSlotBackground from "@/assets/slots/slot-background.jpg";
 import defaultTitleImage from "@/assets/slots/book-of-fedesvin-title.png";
 
 export default function SlotMachine() {
@@ -13,6 +13,7 @@ export default function SlotMachine() {
   const { data: siteSettings } = useSiteSettings();
   
   const titleImage = siteSettings?.slot_title_image || defaultTitleImage;
+  const backgroundImage = siteSettings?.slot_background_image || defaultSlotBackground;
 
   if (loading) {
     return (
@@ -20,7 +21,7 @@ export default function SlotMachine() {
         {/* Full page background */}
         <div 
           className="fixed inset-0 bg-cover bg-center bg-no-repeat -z-10"
-          style={{ backgroundImage: `url(${slotBackground})` }}
+          style={{ backgroundImage: `url(${backgroundImage})` }}
         />
         <div className="fixed inset-0 bg-gradient-to-b from-background/80 via-background/60 to-background/90 -z-10" />
         
@@ -37,7 +38,7 @@ export default function SlotMachine() {
         {/* Full page background */}
         <div 
           className="fixed inset-0 bg-cover bg-center bg-no-repeat -z-10"
-          style={{ backgroundImage: `url(${slotBackground})` }}
+          style={{ backgroundImage: `url(${backgroundImage})` }}
         />
         <div className="fixed inset-0 bg-gradient-to-b from-background/80 via-background/60 to-background/90 -z-10" />
         
@@ -64,7 +65,7 @@ export default function SlotMachine() {
       {/* Full page Egyptian temple background */}
       <div 
         className="fixed inset-0 bg-cover bg-center bg-no-repeat -z-10"
-        style={{ backgroundImage: `url(${slotBackground})` }}
+        style={{ backgroundImage: `url(${backgroundImage})` }}
       />
       {/* Gradient overlay for readability */}
       <div className="fixed inset-0 bg-gradient-to-b from-background/70 via-background/50 to-background/80 -z-10" />
