@@ -23,15 +23,15 @@ export function TwitchAuthButton({ className, linkMode = false }: TwitchAuthButt
       
       // Generate random state for CSRF protection
       const state = crypto.randomUUID();
-      sessionStorage.setItem("twitch_auth_state", state);
+      localStorage.setItem("twitch_auth_state", state);
       
       // If linking mode and user is logged in, store their ID
       if (linkMode && user) {
-        sessionStorage.setItem("twitch_link_mode", "true");
-        sessionStorage.setItem("twitch_link_user_id", user.id);
+        localStorage.setItem("twitch_link_mode", "true");
+        localStorage.setItem("twitch_link_user_id", user.id);
       } else {
-        sessionStorage.removeItem("twitch_link_mode");
-        sessionStorage.removeItem("twitch_link_user_id");
+        localStorage.removeItem("twitch_link_mode");
+        localStorage.removeItem("twitch_link_user_id");
       }
       
       // Get the auth URL from the edge function
