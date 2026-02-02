@@ -73,6 +73,12 @@ export function Header() {
           >
             Butik
           </Link>
+          <Link
+            to="/highlights"
+            className="text-sm font-medium transition-colors hover:text-primary"
+          >
+            Highlights
+          </Link>
         </nav>
 
         <div className="flex items-center gap-2">
@@ -148,6 +154,13 @@ export function Header() {
               onClick={() => setMobileMenuOpen(false)}
             >
               Butik
+            </Link>
+            <Link
+              to="/highlights"
+              className="text-sm font-medium transition-colors hover:text-primary"
+              onClick={() => setMobileMenuOpen(false)}
+            >
+              Highlights
             </Link>
           </nav>
         </div>

@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { Gamepad2, Instagram, MessageCircle, Trophy, BookOpen, Users, Shield, Scale, FileText, Cookie, ExternalLink } from "lucide-react";
+import { Gamepad2, Instagram, MessageCircle, Trophy, BookOpen, Users, Shield, Scale, FileText, Cookie, ExternalLink, Video } from "lucide-react";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
 
 export function Footer() {
@@ -88,6 +88,15 @@ export function Footer() {
                 >
                   <BookOpen className="h-4 w-4" />
                   Bonus Guide
+                </Link>
+              </li>
+              <li>
+                <Link
+                  to="/highlights"
+                  className="flex items-center gap-2 text-muted-foreground transition-colors hover:text-foreground"
+                >
+                  <Video className="h-4 w-4" />
+                  Highlights
                 </Link>
               </li>
               <li>

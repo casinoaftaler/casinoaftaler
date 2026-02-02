@@ -37,8 +37,9 @@ import {
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Plus, Trash2, LogOut, Star, Loader2, Pencil, GripVertical, Gift, ShoppingBag, BarChart3, Settings, Users } from "lucide-react";
+import { Plus, Trash2, LogOut, Star, Loader2, Pencil, GripVertical, Gift, ShoppingBag, BarChart3, Settings, Users, Video } from "lucide-react";
 import { AdminUserManagement } from "@/components/AdminUserManagement";
+import { HighlightsAdminSection } from "@/components/HighlightsAdminSection";
 import { CombinedAnalyticsDashboard } from "@/components/CombinedAnalyticsDashboard";
 import { ThemeToggle } from "@/components/ThemeToggle";
 import { useQueryClient } from "@tanstack/react-query";
@@ -803,7 +804,7 @@ function AdminDashboard() {
 
       <main className="container py-8">
         <Tabs defaultValue="casinos" className="w-full">
-          <TabsList className="grid w-full grid-cols-5 mb-8 h-auto">
+          <TabsList className="grid w-full grid-cols-6 mb-8 h-auto">
             <TabsTrigger value="casinos" className="flex items-center gap-2 py-3">
               <Gift className="h-4 w-4" />
               <span className="hidden sm:inline">Casino Tilbud</span>
@@ -811,6 +812,10 @@ function AdminDashboard() {
             <TabsTrigger value="shop" className="flex items-center gap-2 py-3">
               <ShoppingBag className="h-4 w-4" />
               <span className="hidden sm:inline">Butik</span>
+            </TabsTrigger>
+            <TabsTrigger value="highlights" className="flex items-center gap-2 py-3">
+              <Video className="h-4 w-4" />
+              <span className="hidden sm:inline">Highlights</span>
             </TabsTrigger>
             <TabsTrigger value="analytics" className="flex items-center gap-2 py-3">
               <BarChart3 className="h-4 w-4" />
@@ -908,6 +913,15 @@ function AdminDashboard() {
               <p className="text-muted-foreground">Administrer produkter i butikken.</p>
             </div>
             <ShopAdminSection embedded />
+          </TabsContent>
+
+          {/* Highlights Tab */}
+          <TabsContent value="highlights">
+            <div className="mb-6">
+              <h2 className="text-2xl font-bold">Highlights Administration</h2>
+              <p className="text-muted-foreground">Administrer Twitch clips og YouTube videoer.</p>
+            </div>
+            <HighlightsAdminSection />
           </TabsContent>
 
           {/* Analytics Tab */}

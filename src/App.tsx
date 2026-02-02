@@ -13,6 +13,7 @@ import Privacy from "./pages/Privacy";
 import Terms from "./pages/Terms";
 import Cookies from "./pages/Cookies";
 import Shop from "./pages/Shop";
+import Highlights from "./pages/Highlights";
 import Admin from "./pages/Admin";
 
 import NotFound from "./pages/NotFound";
@@ -36,6 +37,7 @@ const App = () => (
             <Route path="/terms" element={<Terms />} />
             <Route path="/cookies" element={<Cookies />} />
             <Route path="/butik" element={<Shop />} />
+            <Route path="/highlights" element={<Highlights />} />
           </Route>
           <Route path="/admin" element={<Admin />} />
           
