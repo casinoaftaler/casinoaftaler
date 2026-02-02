@@ -1,4 +1,4 @@
-import { useState, useCallback } from "react";
+import { useState, useCallback, useRef } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { SlotReel } from "./SlotReel";
@@ -12,7 +12,8 @@ import { useSlotSettings } from "@/hooks/useSlotSettings";
 import { useAuth } from "@/hooks/useAuth";
 import { supabase } from "@/integrations/supabase/client";
 import { generateGrid, calculateSpinResult, PAY_LINES, type SpinResult } from "@/lib/slotGameLogic";
-import { Gamepad2, Loader2 } from "lucide-react";
+import { slotSounds } from "@/lib/slotSoundEffects";
+import { Gamepad2, Loader2, Volume2, VolumeX } from "lucide-react";
 import { toast } from "sonner";
 import { cn } from "@/lib/utils";
 
@@ -28,6 +29,9 @@ export function SlotGame() {
   const [lastResult, setLastResult] = useState<SpinResult | null>(null);
   const [winAmount, setWinAmount] = useState(0);
   const [isWinAnimating, setIsWinAnimating] = useState(false);
+  const [soundEnabled, setSoundEnabled] = useState(true);
+  
+  const stopSpinSound = useRef<(() => void) | null>(null);
 
   // Initialize grid with random symbols
   const initializeGrid = useCallback(() => {
@@ -41,6 +45,15 @@ export function SlotGame() {
     initializeGrid();
   }
 
+  const toggleSound = () => {
+    const newEnabled = !soundEnabled;
+    setSoundEnabled(newEnabled);
+    slotSounds.setEnabled(newEnabled);
+    if (newEnabled) {
+      slotSounds.playButtonClick();
+    }
+  };
+
   const handleSpin = async () => {
     if (!symbols || symbols.length === 0 || !user || !canSpin || isSpinning) return;
 
@@ -48,6 +61,10 @@ export function SlotGame() {
     setWinAmount(0);
     setLastResult(null);
     setIsWinAnimating(false);
+
+    // Play spin start sound and start continuous spin sound
+    slotSounds.playSpinStart();
+    stopSpinSound.current = slotSounds.playReelSpin();
 
     try {
       // Decrement spin count
@@ -62,6 +79,13 @@ export function SlotGame() {
         await new Promise(resolve => setTimeout(resolve, spinInterval));
         setGrid(generateGrid(symbols));
       }
+
+      // Stop spin sound and play reel stop
+      if (stopSpinSound.current) {
+        stopSpinSound.current();
+        stopSpinSound.current = null;
+      }
+      slotSounds.playReelStop();
 
       // Generate final result
       const finalGrid = generateGrid(symbols);
@@ -79,28 +103,45 @@ export function SlotGame() {
         bonus_win_amount: result.bonusTriggered ? result.totalWin : 0,
       });
 
-      // Animate win if any
-      if (result.totalWin > 0) {
-        setIsWinAnimating(true);
-        setWinAmount(result.totalWin);
-        
-        if (result.totalWin >= bet * 50) {
-          toast.success(`🎉 STOR GEVINST! ${result.totalWin} point!`);
-        } else {
-          toast.success(`Gevinst: ${result.totalWin} point`);
-        }
+      // Small delay before win sounds
+      await new Promise(resolve => setTimeout(resolve, 300));
 
-        setTimeout(() => setIsWinAnimating(false), 2000);
-      }
-
+      // Play appropriate sound based on result
       if (result.bonusTriggered) {
+        slotSounds.playBonusTrigger();
         toast.info("📖 BONUS! 3+ Books - Free spins kommer snart!", {
           duration: 4000,
         });
+      } else if (result.totalWin >= bet * 50) {
+        slotSounds.playBigWin();
+        setIsWinAnimating(true);
+        setWinAmount(result.totalWin);
+        toast.success(`🎉 STOR GEVINST! ${result.totalWin} point!`);
+        setTimeout(() => setIsWinAnimating(false), 2000);
+      } else if (result.totalWin >= bet * 10) {
+        slotSounds.playMediumWin();
+        setIsWinAnimating(true);
+        setWinAmount(result.totalWin);
+        toast.success(`Gevinst: ${result.totalWin} point`);
+        setTimeout(() => setIsWinAnimating(false), 2000);
+      } else if (result.totalWin > 0) {
+        slotSounds.playSmallWin();
+        setIsWinAnimating(true);
+        setWinAmount(result.totalWin);
+        toast.success(`Gevinst: ${result.totalWin} point`);
+        setTimeout(() => setIsWinAnimating(false), 2000);
+      } else {
+        slotSounds.playNoWin();
       }
     } catch (error) {
       console.error("Spin error:", error);
       toast.error("Der opstod en fejl. Prøv igen.");
+      
+      // Stop sounds on error
+      if (stopSpinSound.current) {
+        stopSpinSound.current();
+        stopSpinSound.current = null;
+      }
     } finally {
       setIsSpinning(false);
     }
@@ -148,9 +189,24 @@ export function SlotGame() {
       <div className="h-2 bg-gradient-to-r from-amber-500 via-amber-400 to-amber-500" />
       
       <CardContent className="p-4 sm:p-6 space-y-6">
-        {/* Spins remaining */}
-        <div className="flex justify-center">
+        {/* Header with spins and sound toggle */}
+        <div className="flex items-center justify-between">
+          <div className="flex-1" />
           <SpinsRemaining />
+          <div className="flex-1 flex justify-end">
+            <Button
+              variant="ghost"
+              size="icon"
+              onClick={toggleSound}
+              className="text-muted-foreground hover:text-foreground"
+            >
+              {soundEnabled ? (
+                <Volume2 className="h-5 w-5" />
+              ) : (
+                <VolumeX className="h-5 w-5" />
+              )}
+            </Button>
+          </div>
         </div>
 
         {/* Slot machine reels */}
