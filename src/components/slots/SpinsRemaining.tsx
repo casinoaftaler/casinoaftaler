@@ -1,8 +1,24 @@
 import { Sparkles } from "lucide-react";
 import { useSlotSpins } from "@/hooks/useSlotSpins";
+import { useAuth } from "@/hooks/useAuth";
+import { Link } from "react-router-dom";
 
 export function SpinsRemaining() {
+  const { user } = useAuth();
   const { spinsRemaining, maxSpins, isLoading } = useSlotSpins();
+
+  // Don't show anything for non-logged-in users
+  if (!user) {
+    return (
+      <Link 
+        to="/auth"
+        className="flex items-center gap-2 px-4 py-2 rounded-full bg-[#9146FF]/20 border border-[#9146FF]/30 hover:bg-[#9146FF]/30 transition-colors"
+      >
+        <Sparkles className="h-4 w-4 text-[#9146FF]" />
+        <span className="text-sm font-medium text-[#9146FF]">Log ind for at spille</span>
+      </Link>
+    );
+  }
 
   if (isLoading) {
     return (
