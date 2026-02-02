@@ -149,7 +149,8 @@ export function calculateBonusSpinResult(
   const didExpand = expandedReels.length > 0;
   
   // Calculate wins on the expanded grid
-  const wins = calculateWins(expandedGrid, symbols, betAmount, expandingSymbol);
+  // Pass expandedReels to enable scatter-style payout for expanding symbols
+  const wins = calculateWins(expandedGrid, symbols, betAmount, expandingSymbol, expandedReels);
   
   // Count scatters for potential retrigger
   const scatterSymbol = symbols.find(s => s.is_scatter);
@@ -186,22 +187,50 @@ export function calculateBonusSpinResult(
   };
 }
 
+/**
+ * Calculate wins on the grid.
+ * When an expanding symbol is present and has expanded to fill 3+ reels,
+ * it pays on ALL lines as a scatter-style win (based on reel count, not consecutive from left).
+ */
 function calculateWins(
   grid: string[][],
   symbols: SlotSymbol[],
   betAmount: number,
-  expandingSymbol?: SlotSymbol
+  expandingSymbol?: SlotSymbol,
+  expandedReels?: number[]
 ): LineWin[] {
   const wins: LineWin[] = [];
   const symbolsById = new Map(symbols.map(s => [s.id, s]));
   
+  // Check if we have a scatter-style expanding symbol win
+  // If expanding symbol fills 3+ reels, it pays on ALL lines based on reel count
+  if (expandingSymbol && expandedReels && expandedReels.length >= 3) {
+    const reelCount = expandedReels.length;
+    let multiplier = 0;
+    if (reelCount === 3) multiplier = expandingSymbol.multiplier_3;
+    else if (reelCount === 4) multiplier = expandingSymbol.multiplier_4;
+    else if (reelCount === 5) multiplier = expandingSymbol.multiplier_5;
+    
+    // Pay on ALL 10 lines since the expanded symbol fills entire reels
+    for (let lineIndex = 0; lineIndex < PAY_LINES.length; lineIndex++) {
+      wins.push({
+        lineIndex,
+        symbolId: expandingSymbol.id,
+        count: reelCount,
+        payout: multiplier * betAmount,
+      });
+    }
+    
+    return wins;
+  }
+  
+  // Standard win calculation (consecutive from left)
   for (let lineIndex = 0; lineIndex < PAY_LINES.length; lineIndex++) {
     const linePattern = PAY_LINES[lineIndex];
     const lineSymbols = linePattern.map((row, col) => grid[col][row]);
     const lineSymbolData = lineSymbols.map(id => symbolsById.get(id)!);
     
     // Find the first non-wild symbol to use as base
-    // Note: expanding symbol is NOT a wild - it only matches with itself
     let baseSymbol = lineSymbolData.find(s => !s.is_wild);
     
     // If all symbols are wild, use the first one
@@ -210,7 +239,6 @@ function calculateWins(
     }
     
     // Count consecutive matching symbols from left
-    // Expanding symbol only matches with itself, not as a wild
     let count = 0;
     for (let i = 0; i < 5; i++) {
       const current = lineSymbolData[i];

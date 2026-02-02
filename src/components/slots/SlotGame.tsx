@@ -155,9 +155,10 @@ export function SlotGame() {
     // This ensures SlotReel knows what symbols to land on
     const originalGrid = generateGrid(symbols);
     let result: SpinResult;
-    let finalGrid = originalGrid;
+    let expandedGrid = originalGrid;
     let reelsExpanded: number[] = [];
 
+    // For bonus spins, we need to calculate the result but show original grid first
     if (isBonusSpin && bonusState.expandingSymbol) {
       // Apply expanding symbol logic during bonus
       const bonusResult = calculateBonusSpinResult(
@@ -167,20 +168,21 @@ export function SlotGame() {
         bonusState.expandingSymbol
       );
       result = bonusResult.result;
-      finalGrid = bonusResult.expandedGrid;
+      expandedGrid = bonusResult.expandedGrid;
       reelsExpanded = bonusResult.expandedReels;
     } else {
       result = calculateSpinResult(originalGrid, symbols, bet);
-      finalGrid = originalGrid;
+      expandedGrid = originalGrid;
     }
 
-    // Set the final grid BEFORE starting spin animation
-    // SlotReel will use these as the landing symbols
-    setGrid(finalGrid);
+    // Set the ORIGINAL grid for spinning (not the expanded one yet)
+    // This creates the first phase where symbols land naturally
+    setGrid(originalGrid);
     setLastResult(null); // Clear last result during spin
     setWinAmount(0);
     setIsWinAnimating(false);
     setExpandedReels([]);
+    setNewlyExpandedReels([]);
     setShowWinLines(false);
     
     // Now start the spin animation
@@ -216,17 +218,32 @@ export function SlotGame() {
       }
       slotSounds.playReelStop();
 
-      // Now set the result and handle expanded reels
-      setLastResult(result);
-      
+      // Phase 1: Show original grid with symbols landed (already set above)
+      // Wait a moment to let player see the original symbols
       if (isBonusSpin && reelsExpanded.length > 0) {
+        // Brief pause to show original symbols before expansion
+        await new Promise(resolve => setTimeout(resolve, 500));
+        
+        // Phase 2: Animate expansion
+        // First update the grid to the expanded version
+        setGrid(expandedGrid);
+        
+        // Then trigger the expansion animation state
         setExpandedReels(reelsExpanded);
         setNewlyExpandedReels(reelsExpanded);
+        
         // Play expansion sound
         slotSounds.playSymbolExpand();
+        
+        // Wait for expansion animation to complete
+        await new Promise(resolve => setTimeout(resolve, 600));
+        
         // Clear the "newly expanded" state after animation completes
-        setTimeout(() => setNewlyExpandedReels([]), 700);
+        setNewlyExpandedReels([]);
       }
+
+      // Now set the result to show wins
+      setLastResult(result);
 
       // Record the spin result
       await supabase.from("slot_game_results").insert({
