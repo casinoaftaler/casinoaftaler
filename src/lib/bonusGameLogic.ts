@@ -3,7 +3,10 @@ import { PAY_LINES } from "./slotGameLogic";
 
 /**
  * Apply expanding symbol logic to the grid.
- * When the expanding symbol appears and can create a win, it expands to fill the entire reel.
+ * In Book of Ra style bonus: when the expanding symbol appears on ANY reel,
+ * it expands to fill the entire reel. Wins are then calculated.
+ * The key difference: expanded symbols count as matches regardless of position,
+ * so having the expanding symbol on reels 1, 3, and 5 still creates a 3-of-a-kind win.
  */
 export function applyExpandingSymbol(
   grid: string[][],
@@ -25,10 +28,18 @@ export function applyExpandingSymbol(
     }
   }
   
-  // If we have expanding symbols on at least 3 reels (or 2 with potential), expand them
-  if (reelsWithExpanding.length >= 1) {
-    // Check if expanding would create a win
-    const wouldCreateWin = checkIfExpandingCreatesWin(
+  // If expanding symbol appears on at least 3 reels, always expand (Book of Ra rules)
+  // Even if not consecutive, 3 reels with the symbol = guaranteed win
+  if (reelsWithExpanding.length >= 3) {
+    // Expand the symbol on all reels where it appears
+    for (const col of reelsWithExpanding) {
+      for (let row = 0; row < 3; row++) {
+        expandedGrid[col][row] = expandingSymbol.id;
+      }
+    }
+  } else if (reelsWithExpanding.length >= 1) {
+    // For 1-2 reels, only expand if it helps create a win on pay lines
+    const wouldCreateWin = checkIfExpandingCreatesPaylineWin(
       grid,
       reelsWithExpanding,
       expandingSymbol,
@@ -36,7 +47,6 @@ export function applyExpandingSymbol(
     );
     
     if (wouldCreateWin) {
-      // Expand the symbol on all reels where it appears
       for (const col of reelsWithExpanding) {
         for (let row = 0; row < 3; row++) {
           expandedGrid[col][row] = expandingSymbol.id;
@@ -49,10 +59,9 @@ export function applyExpandingSymbol(
 }
 
 /**
- * Check if expanding the symbol would create at least one winning line.
- * The expanding symbol can contribute to wins on ANY reel position.
+ * Check if expanding would create a win on standard pay lines (consecutive from left)
  */
-function checkIfExpandingCreatesWin(
+function checkIfExpandingCreatesPaylineWin(
   grid: string[][],
   reelsWithExpanding: number[],
   expandingSymbol: SlotSymbol,
@@ -60,7 +69,7 @@ function checkIfExpandingCreatesWin(
 ): boolean {
   const symbolsById = new Map(symbols.map(s => [s.id, s]));
   
-  // Create a hypothetical expanded grid - expand on ALL reels where the symbol appears
+  // Create a hypothetical expanded grid
   const hypotheticalGrid = grid.map(col => [...col]);
   for (const col of reelsWithExpanding) {
     for (let row = 0; row < 3; row++) {
@@ -70,29 +79,21 @@ function checkIfExpandingCreatesWin(
   
   // Check each pay line for wins
   for (const linePattern of PAY_LINES) {
-    // Get all symbols on this line
     const lineSymbols = linePattern.map((row, col) => {
       const symbolId = hypotheticalGrid[col][row];
       return symbolsById.get(symbolId);
     });
     
-    // Find the first non-wild, non-expanding symbol to use as base
-    // If all are expanding/wild, use the expanding symbol as base
     let baseSymbol = lineSymbols.find(s => s && !s.is_wild && s.id !== expandingSymbol.id);
     if (!baseSymbol) {
       baseSymbol = expandingSymbol;
     }
     
-    // Count consecutive matches from the left
     let consecutiveMatches = 0;
     for (let col = 0; col < 5; col++) {
       const symbol = lineSymbols[col];
       if (!symbol) break;
       
-      // Symbol matches if:
-      // 1. It's the base symbol
-      // 2. It's the expanding symbol (which acts like wild in bonus)
-      // 3. It's a wild symbol
       const isMatch = 
         symbol.id === baseSymbol.id || 
         symbol.id === expandingSymbol.id ||
@@ -105,7 +106,6 @@ function checkIfExpandingCreatesWin(
       }
     }
     
-    // A win requires at least 3 consecutive matches from the left
     if (consecutiveMatches >= 3) {
       return true;
     }
@@ -144,7 +144,7 @@ export function calculateBonusSpinResult(
   const didExpand = expandedReels.length > 0;
   
   // Calculate wins on the expanded grid
-  const wins = calculateWins(expandedGrid, symbols, betAmount);
+  const wins = calculateWins(expandedGrid, symbols, betAmount, expandingSymbol);
   
   // Count scatters for potential retrigger
   const scatterSymbol = symbols.find(s => s.is_scatter);
@@ -184,27 +184,42 @@ export function calculateBonusSpinResult(
 function calculateWins(
   grid: string[][],
   symbols: SlotSymbol[],
-  betAmount: number
+  betAmount: number,
+  expandingSymbol?: SlotSymbol
 ): LineWin[] {
   const wins: LineWin[] = [];
   const symbolsById = new Map(symbols.map(s => [s.id, s]));
-  const wildSymbol = symbols.find(s => s.is_wild);
   
   for (let lineIndex = 0; lineIndex < PAY_LINES.length; lineIndex++) {
     const linePattern = PAY_LINES[lineIndex];
     const lineSymbols = linePattern.map((row, col) => grid[col][row]);
     const lineSymbolData = lineSymbols.map(id => symbolsById.get(id)!);
     
-    // Find the first non-wild symbol
-    let baseSymbol = lineSymbolData.find(s => !s.is_wild) || lineSymbolData[0];
+    // Find the first non-wild symbol (expanding symbol acts as wild during bonus)
+    let baseSymbol = lineSymbolData.find(s => 
+      !s.is_wild && (!expandingSymbol || s.id !== expandingSymbol.id)
+    );
     
-    // Count consecutive matching symbols
+    // If all symbols are wild/expanding, use the expanding symbol as base
+    if (!baseSymbol) {
+      baseSymbol = expandingSymbol || lineSymbolData[0];
+    }
+    
+    // Count consecutive matching symbols from left
     let count = 0;
     for (let i = 0; i < 5; i++) {
       const current = lineSymbolData[i];
-      if (current.id === baseSymbol.id || current.is_wild || baseSymbol.is_wild) {
+      const isMatch = 
+        current.id === baseSymbol.id || 
+        current.is_wild ||
+        (expandingSymbol && current.id === expandingSymbol.id);
+      
+      if (isMatch) {
         count++;
-        if (baseSymbol.is_wild && !current.is_wild) {
+        // Update base if we started with wild/expanding
+        if ((baseSymbol.is_wild || (expandingSymbol && baseSymbol.id === expandingSymbol.id)) && 
+            !current.is_wild && 
+            (!expandingSymbol || current.id !== expandingSymbol.id)) {
           baseSymbol = current;
         }
       } else {
@@ -213,14 +228,19 @@ function calculateWins(
     }
     
     if (count >= 3) {
+      // Use expanding symbol's multipliers if that's what we're paying
+      const payingSymbol = (expandingSymbol && baseSymbol.id === expandingSymbol.id) 
+        ? expandingSymbol 
+        : baseSymbol;
+      
       let multiplier = 0;
-      if (count === 3) multiplier = baseSymbol.multiplier_3;
-      else if (count === 4) multiplier = baseSymbol.multiplier_4;
-      else if (count === 5) multiplier = baseSymbol.multiplier_5;
+      if (count === 3) multiplier = payingSymbol.multiplier_3;
+      else if (count === 4) multiplier = payingSymbol.multiplier_4;
+      else if (count === 5) multiplier = payingSymbol.multiplier_5;
       
       wins.push({
         lineIndex,
-        symbolId: baseSymbol.id,
+        symbolId: payingSymbol.id,
         count,
         payout: multiplier * betAmount,
       });
