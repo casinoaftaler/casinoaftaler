@@ -78,7 +78,7 @@ export default function SlotMachine() {
           <img 
             src={titleImage} 
             alt="Book of Fedesvin" 
-            className="w-full max-w-md sm:max-w-lg h-auto animate-[glow_3s_ease-in-out_infinite]"
+            className="w-full max-w-xl sm:max-w-2xl h-auto animate-[title-entrance_0.8s_ease-out_forwards,glow_3s_ease-in-out_0.8s_infinite]"
             style={{
               filter: 'drop-shadow(0 0 20px rgba(251,191,36,0.5)) drop-shadow(0 0 40px rgba(251,191,36,0.3)) drop-shadow(0 0 60px rgba(251,191,36,0.2))'
             }}
