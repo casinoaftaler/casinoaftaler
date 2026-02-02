@@ -50,8 +50,43 @@ export const SYMBOL_WEIGHTS: Record<string, number> = {
   'A': 25,
   'K': 30,
   'Q': 35,
-  'Book': 12, // Scatter/Wild - slightly rarer
+  'Book': 5, // Scatter/Wild - very rare (same as Pharaoh)
 };
+
+// Count scatters per reel column
+export function countScattersPerReel(grid: string[][], symbols: SlotSymbol[]): number[] {
+  const scatterSymbol = symbols.find(s => s.is_scatter);
+  if (!scatterSymbol) return [0, 0, 0, 0, 0];
+  
+  return grid.map(column => 
+    column.filter(symbolId => symbolId === scatterSymbol.id).length
+  );
+}
+
+// Get which reels should have tease (slow) animation
+export function getScatterTeaseReels(grid: string[][], symbols: SlotSymbol[]): number[] {
+  const scattersPerReel = countScattersPerReel(grid, symbols);
+  
+  // Count total scatters in first N reels
+  let scatterCount = 0;
+  let teaseStartReel = -1;
+  
+  for (let i = 0; i < 5; i++) {
+    if (scattersPerReel[i] > 0) {
+      scatterCount += scattersPerReel[i];
+    }
+    // If we have 2+ scatters in the first 1-3 reels, tease on remaining reels
+    if (scatterCount >= 2 && teaseStartReel === -1 && i < 3) {
+      teaseStartReel = i + 1; // Tease starts on the next reel
+    }
+  }
+  
+  // Return indices of reels that should be teased
+  if (teaseStartReel > 0) {
+    return Array.from({ length: 5 - teaseStartReel }, (_, i) => teaseStartReel + i);
+  }
+  return [];
+}
 
 export function getRandomSymbol(symbols: SlotSymbol[], excludeIds: string[] = []): SlotSymbol {
   const availableSymbols = symbols.filter(s => !excludeIds.includes(s.id));

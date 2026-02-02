@@ -13,6 +13,7 @@ interface SlotReelProps {
   expandingSymbolId?: string;  // Only symbols matching this ID show expansion effect
   delay?: number;
   onReelStop?: (reelIndex: number) => void;  // Callback when reel stops
+  teaseMode?: boolean;  // Whether this reel should tease (slow reveal)
 }
 
 // Match the responsive symbol sizes from SlotSymbol - REDUCED FOR MOBILE
@@ -29,6 +30,7 @@ export function SlotReel({
   expandingSymbolId,
   delay = 0,
   onReelStop,
+  teaseMode = false,
 }: SlotReelProps) {
   const symbolsById = new Map(symbols.map(s => [s.id, s]));
   const [spinState, setSpinState] = useState<"idle" | "spinning" | "stopping" | "stopped">("idle");
@@ -106,18 +108,20 @@ export function SlotReel({
         setSpinState("spinning");
         
         const startTime = performance.now();
-        // Base spin duration - same for all reels
-        const baseSpinDuration = 1000;
-        // Each reel stops 350ms after the previous
-        const reelStopDelay = delay * 350;
+        // Base spin duration - longer for tease mode
+        const baseSpinDuration = teaseMode ? 1800 : 1000;
+        // Each reel stops with stagger - slower for tease mode
+        const reelStopDelay = teaseMode ? delay * 550 : delay * 350;
         const spinDuration = baseSpinDuration + reelStopDelay;
         
         const animate = (currentTime: number) => {
           const elapsed = currentTime - startTime;
           const progress = Math.min(elapsed / spinDuration, 1);
           
-          // Smooth easing - ease out for natural deceleration
-          const easeOutQuad = 1 - Math.pow(1 - progress, 2);
+          // Smooth easing - slower ease out for tease mode
+          const easeOutQuad = teaseMode 
+            ? 1 - Math.pow(1 - progress, 4)  // Slower deceleration for tease
+            : 1 - Math.pow(1 - progress, 2); // Normal ease out
           
           // Animate from startOffset down to 0 (symbols move UP on screen)
           const currentOffset = startOffset * (1 - easeOutQuad);
