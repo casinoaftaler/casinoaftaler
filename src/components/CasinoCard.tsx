@@ -234,13 +234,13 @@ function FeaturedCard({
           {/* Top right badges */}
           <div className="absolute top-3 right-3 z-10 flex items-center gap-2">
             {casino.isRecommended && (
-              <Badge className="bg-destructive text-destructive-foreground hover:bg-destructive/90 text-xs font-bold px-2 py-1 animate-pulse">
+              <Badge className="bg-destructive text-destructive-foreground hover:bg-destructive/90 text-xs font-bold px-2 py-1">
                 Anbefalet
               </Badge>
             )}
             {isTopRanked && (
-              <div className="flex items-center gap-1 rounded-full bg-destructive px-3 py-1.5 animate-pulse">
-                <Flame className="h-4 w-4 text-destructive-foreground animate-[pulse_1s_ease-in-out_infinite]" />
+              <div className="flex items-center gap-1 rounded-full bg-destructive px-3 py-1.5">
+                <Flame className="h-4 w-4 text-destructive-foreground" />
                 <span className="text-xs font-bold text-destructive-foreground">HOT</span>
               </div>
             )}
