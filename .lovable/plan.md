@@ -1,120 +1,144 @@
 
-
-## StreamElements Points Integration
-
-This plan adds the display of user's StreamElements points on the Shop page. StreamElements provides a public API to fetch points for a specific user on a channel.
-
----
+# Track Logged-In Twitch Users' Deal Clicks
 
 ## Overview
+Add user tracking to the affiliate click system so you can see which Twitch users clicked on which casino deals. This will show the user's Twitch username in the admin analytics dashboard.
 
-When a user is logged in via Twitch, we'll display their current StreamElements points prominently on the shop page. This requires:
-1. Storing the StreamElements channel ID in admin settings
-2. Creating a hook to fetch points from StreamElements API
-3. Displaying the points on the shop page
+## Current State
+- Click events are tracked in the `click_events` table with casino info and timestamp
+- No user information is currently stored with clicks
+- The admin dashboard shows "Recent Clicks" with Casino and Time columns only
 
----
-
-## Implementation Steps
-
-### Step 1: Add StreamElements Channel ID Setting
-
-**Database Migration**
-- No migration needed - we'll use the existing `site_settings` table with a new key `streamelements_channel_id`
-
-**File: `src/components/SocialLinksInput.tsx`**
-- Add a new input field for "StreamElements Channel ID"
-- Save it to site_settings with key `streamelements_channel_id`
+## What You'll Get
+- A new "Bruger" (User) column in the Recent Clicks table showing the Twitch username
+- Anonymous clicks will show "Anonym" (Anonymous)
+- Ability to see which of your Twitch viewers are most engaged with casino deals
 
 ---
 
-### Step 2: Create StreamElements Points Hook
+## Technical Implementation
 
-**New File: `src/hooks/useStreamElementsPoints.ts`**
+### 1. Database Migration
+Add a `user_id` column to the `click_events` table to store which user made the click.
 
-This hook will:
-1. Get the `streamelements_channel_id` from site settings
-2. Get the current user's `twitch_username` from their profile
-3. Call the StreamElements public API: `https://api.streamelements.com/kappa/v2/points/{channel_id}/{username}`
-4. Return the points value, loading state, and error state
+```sql
+ALTER TABLE public.click_events
+ADD COLUMN user_id uuid REFERENCES auth.users(id) ON DELETE SET NULL;
 
-```text
-API Response Example:
-{
-  "channel": "channel_id",
-  "username": "username",
-  "points": 1500,
-  "rank": 42
+-- Create index for faster user-based queries
+CREATE INDEX idx_click_events_user_id ON public.click_events(user_id);
+```
+
+### 2. Update Edge Function (affiliate-redirect)
+Modify the edge function to accept and store the user ID when provided.
+
+**Changes:**
+- Accept optional `userId` query parameter
+- Include `user_id` in the database insert
+
+```typescript
+// Parse userId from query params
+const userId = url.searchParams.get("userId");
+
+// Insert with user_id
+await supabaseAdmin.from("click_events").insert({
+  casino_id: casino.id,
+  casino_slug: slug,
+  casino_name: casino.name,
+  event_type: "affiliate_click",
+  user_agent: userAgent,
+  referrer: referrer,
+  user_id: userId || null,  // New field
+});
+```
+
+### 3. Update Frontend Redirect Function
+Pass the current user's ID when calling the affiliate redirect.
+
+**File: `src/lib/affiliateRedirect.ts`**
+- Add optional `userId` parameter
+- Include in the redirect URL
+
+```typescript
+export async function getAffiliateRedirect(
+  slug: string,
+  userId?: string
+): Promise<void> {
+  let redirectUrl = `https://${projectId}.supabase.co/functions/v1/affiliate-redirect?slug=${encodeURIComponent(slug)}`;
+  
+  if (userId) {
+    redirectUrl += `&userId=${encodeURIComponent(userId)}`;
+  }
+  
+  window.open(redirectUrl, "_blank", "noopener,noreferrer");
 }
 ```
 
----
+### 4. Update CasinoCard Component
+Get the current user and pass their ID to the redirect function.
 
-### Step 3: Display Points on Shop Page
+**File: `src/components/CasinoCard.tsx`**
+- Import `useAuth` hook
+- Pass `user.id` to `getAffiliateRedirect`
 
-**File: `src/pages/Shop.tsx`**
+```typescript
+import { useAuth } from "@/hooks/useAuth";
 
-Add a points display section below the hero that shows:
-- The user's current points balance
-- A message prompting login if not authenticated
-- Loading state while fetching points
+// In FeaturedCard and RegularCard:
+const { user } = useAuth();
 
-UI Design:
-```text
-┌─────────────────────────────────────┐
-│  💰 Dine Point: 1,500              │
-│  Watch streams to earn more!        │
-└─────────────────────────────────────┘
+// Button onClick:
+onClick={() => getAffiliateRedirect(casino.slug, user?.id)}
 ```
 
----
+### 5. Update Admin Dashboard
+Join click events with profiles to show Twitch usernames.
 
-## Files to Create/Modify
+**File: `src/components/CombinedAnalyticsDashboard.tsx`**
+- Update the ClickEvent interface to include user info
+- Modify the query to fetch profile data
+- Add "Bruger" column to the Recent Clicks table
 
-| File | Action | Description |
-|------|--------|-------------|
-| `src/hooks/useStreamElementsPoints.ts` | Create | Hook to fetch points from StreamElements API |
-| `src/components/SocialLinksInput.tsx` | Modify | Add StreamElements Channel ID input field |
-| `src/pages/Shop.tsx` | Modify | Display user's points balance |
+```typescript
+// Updated interface
+interface ClickEvent {
+  id: string;
+  casino_name: string;
+  created_at: string;
+  user_id: string | null;
+  profiles: { twitch_username: string | null } | null;
+}
 
----
+// Query with profile join
+const { data } = await supabase
+  .from("click_events")
+  .select(`
+    id, casino_name, created_at, user_id,
+    profiles:user_id (twitch_username)
+  `)
+  .gte("created_at", start.toISOString())
+  .order("created_at", { ascending: false });
 
-## Technical Details
-
-### StreamElements API
-
-The public API endpoint does not require authentication:
-```
-GET https://api.streamelements.com/kappa/v2/points/{channel_id}/{username}
-```
-
-- `channel_id`: The StreamElements account/channel ID (found in StreamElements dashboard)
-- `username`: The Twitch username (lowercase)
-
-### Data Flow
-
-```text
-1. User visits /butik (Shop page)
-2. useStreamElementsPoints hook:
-   a. Fetches streamelements_channel_id from site_settings
-   b. Gets twitch_username from user's profile
-   c. Calls StreamElements API
-3. Points displayed in UI
+// Table column
+<th>Bruger</th>
+<td>{event.profiles?.twitch_username || "Anonym"}</td>
 ```
 
-### Error Handling
-
-- If user not logged in: Show "Log ind for at se dine point"
-- If no channel ID configured: Hide points section
-- If API fails: Show "Kunne ikke hente point"
-- If user has no points/not found: Show "0 point"
+### 6. Update ClickAnalyticsDashboard (if used separately)
+Apply the same changes to `src/components/ClickAnalyticsDashboard.tsx` for consistency.
 
 ---
 
-## Admin Configuration
+## Files to Modify
 
-The admin will need to:
-1. Go to Admin panel > Site Settings
-2. Enter their StreamElements Channel ID (found at streamelements.com/dashboard)
-3. Save
+| File | Change |
+|------|--------|
+| `supabase/functions/affiliate-redirect/index.ts` | Accept and store `userId` |
+| `src/lib/affiliateRedirect.ts` | Pass `userId` to edge function |
+| `src/components/CasinoCard.tsx` | Get user and pass ID to redirect |
+| `src/components/CombinedAnalyticsDashboard.tsx` | Display Twitch username in table |
+| `src/components/ClickAnalyticsDashboard.tsx` | Display Twitch username in table |
 
+## Database Changes
+- Add `user_id` column to `click_events` table
+- Add index for performance
