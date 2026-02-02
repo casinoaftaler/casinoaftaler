@@ -37,11 +37,12 @@ import {
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Plus, Trash2, LogOut, Star, Loader2, Pencil, GripVertical, Gift, ShoppingBag, BarChart3, Settings, Users, Video } from "lucide-react";
+import { Plus, Trash2, LogOut, Star, Loader2, Pencil, GripVertical, Gift, ShoppingBag, BarChart3, Settings, Users, Video, Gamepad2 } from "lucide-react";
 import { AdminUserManagement } from "@/components/AdminUserManagement";
 import { TwitchUsersSection } from "@/components/TwitchUsersSection";
 import { HighlightsAdminSection } from "@/components/HighlightsAdminSection";
 import { CombinedAnalyticsDashboard } from "@/components/CombinedAnalyticsDashboard";
+import { SlotMachineAdminSection } from "@/components/SlotMachineAdminSection";
 import { ThemeToggle } from "@/components/ThemeToggle";
 import { useQueryClient } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
@@ -796,7 +797,7 @@ function AdminDashboard() {
 
       <main className="container py-8">
         <Tabs defaultValue="casinos" className="w-full">
-          <TabsList className="grid w-full grid-cols-6 mb-8 h-auto">
+          <TabsList className="grid w-full grid-cols-7 mb-8 h-auto">
             <TabsTrigger value="casinos" className="flex items-center gap-2 py-3">
               <Gift className="h-4 w-4" />
               <span className="hidden sm:inline">Casino Tilbud</span>
@@ -808,6 +809,10 @@ function AdminDashboard() {
             <TabsTrigger value="highlights" className="flex items-center gap-2 py-3">
               <Video className="h-4 w-4" />
               <span className="hidden sm:inline">Highlights</span>
+            </TabsTrigger>
+            <TabsTrigger value="slotmachine" className="flex items-center gap-2 py-3">
+              <Gamepad2 className="h-4 w-4" />
+              <span className="hidden sm:inline">Spillemaskine</span>
             </TabsTrigger>
             <TabsTrigger value="analytics" className="flex items-center gap-2 py-3">
               <BarChart3 className="h-4 w-4" />
@@ -919,6 +924,11 @@ function AdminDashboard() {
           {/* Analytics Tab */}
           <TabsContent value="analytics">
             <CombinedAnalyticsDashboard />
+          </TabsContent>
+
+          {/* Spillemaskine Tab */}
+          <TabsContent value="slotmachine">
+            <SlotMachineAdminSection />
           </TabsContent>
 
           {/* Indstillinger Tab */}
