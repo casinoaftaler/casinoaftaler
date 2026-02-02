@@ -61,12 +61,12 @@ export function WinLines({ wins, symbolSize, gap, isVisible }: WinLinesProps) {
   };
 
   // Generate SVG path for a winning line
-  const generateLinePath = (lineIndex: number, count: number) => {
+  const generateLinePath = (lineIndex: number, _count: number) => {
     const pattern = PAY_LINES[lineIndex];
     const points: { x: number; y: number }[] = [];
 
-    // Only draw for the winning symbol count
-    for (let col = 0; col < count; col++) {
+    // Always draw the full line (all 5 positions)
+    for (let col = 0; col < 5; col++) {
       const row = pattern[col];
       points.push(getSymbolCenter(col, row));
     }
