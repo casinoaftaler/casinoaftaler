@@ -9,8 +9,8 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { ChevronDown, Gamepad2, LogOut, Menu, User, X, Dices, Gift, BookOpen, Users, ShoppingBag, Video, ShieldCheck, Sparkles, Layers } from "lucide-react";
-import { useState } from "react";
+import { ChevronDown, Gamepad2, LogOut, Menu, User, X, Dices, Gift, BookOpen, Users, ShoppingBag, Video, ShieldCheck, Sparkles, Layers, Moon, Sun } from "lucide-react";
+import { useState, useEffect } from "react";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
 import { useTwitchStatus } from "@/hooks/useTwitchStatus";
 import { useAuth } from "@/hooks/useAuth";
@@ -18,6 +18,10 @@ import { useQuery } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
 export function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [isDark, setIsDark] = useState(() => {
+    const saved = localStorage.getItem("theme");
+    return saved === "dark";
+  });
   const { data: siteSettings } = useSiteSettings();
   const { data: twitchStatus } = useTwitchStatus(siteSettings?.twitch_url);
   const { user, loading: authLoading, signOut } = useAuth();
@@ -35,6 +39,20 @@ export function Header() {
     },
     enabled: !!user?.id,
   });
+
+  useEffect(() => {
+    const saved = localStorage.getItem("theme");
+    const shouldBeDark = saved === "dark";
+    document.documentElement.classList.toggle("dark", shouldBeDark);
+    setIsDark(shouldBeDark);
+  }, []);
+
+  const toggleTheme = () => {
+    const newIsDark = !isDark;
+    setIsDark(newIsDark);
+    document.documentElement.classList.toggle("dark", newIsDark);
+    localStorage.setItem("theme", newIsDark ? "dark" : "light");
+  };
 
   const headerIconUrl = siteSettings?.header_icon;
   const siteName = siteSettings?.site_name || "Casinoaftaler.dk";
@@ -144,7 +162,10 @@ export function Header() {
               )}
             </a>
           )}
-          <ThemeToggle />
+          {/* Hide on mobile when logged in - theme toggle moves to profile dropdown */}
+          <div className={user ? "hidden sm:block" : ""}>
+            <ThemeToggle />
+          </div>
           
           {/* User menu / Login button */}
           {!authLoading && (
@@ -179,6 +200,20 @@ export function Header() {
                     </div>
                   </div>
                   <DropdownMenuSeparator />
+                  <DropdownMenuItem onClick={toggleTheme} className="cursor-pointer sm:hidden">
+                    {isDark ? (
+                      <>
+                        <Sun className="mr-2 h-4 w-4" />
+                        Lys tilstand
+                      </>
+                    ) : (
+                      <>
+                        <Moon className="mr-2 h-4 w-4" />
+                        Mørk tilstand
+                      </>
+                    )}
+                  </DropdownMenuItem>
+                  <DropdownMenuSeparator className="sm:hidden" />
                   <DropdownMenuItem onClick={handleSignOut} className="cursor-pointer text-destructive">
                     <LogOut className="mr-2 h-4 w-4" />
                     Log ud
