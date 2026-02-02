@@ -14,18 +14,16 @@ export default function SlotMachine() {
   const { data: siteSettings } = useSiteSettings();
   
   const titleImage = siteSettings?.slot_title_image || defaultTitleImage;
-  // Use AI-generated background if available, otherwise fall back to default
-  const backgroundImage = siteSettings?.slot_background_image || siteSettings?.slot_background_image || defaultSlotBackground;
+  const backgroundImage = siteSettings?.slot_background_image || defaultSlotBackground;
 
   if (loading) {
     return (
-      <div className="min-h-screen relative">
-        {/* Full page background */}
+      <div className="min-h-[calc(100vh-4rem)] relative">
         <div 
-          className="fixed inset-0 bg-cover bg-center bg-no-repeat -z-10"
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat -z-10"
           style={{ backgroundImage: `url(${backgroundImage})` }}
         />
-        <div className="fixed inset-0 bg-gradient-to-b from-background/80 via-background/60 to-background/90 -z-10" />
+        <div className="absolute inset-0 bg-gradient-to-b from-background/80 via-background/60 to-background/90 -z-10" />
         
         <div className="container py-8 flex items-center justify-center min-h-[60vh]">
           <div className="animate-pulse text-muted-foreground">Indlæser...</div>
@@ -36,13 +34,12 @@ export default function SlotMachine() {
 
   if (!user) {
     return (
-      <div className="min-h-screen relative">
-        {/* Full page background */}
+      <div className="min-h-[calc(100vh-4rem)] relative">
         <div 
-          className="fixed inset-0 bg-cover bg-center bg-no-repeat -z-10"
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat -z-10"
           style={{ backgroundImage: `url(${backgroundImage})` }}
         />
-        <div className="fixed inset-0 bg-gradient-to-b from-background/80 via-background/60 to-background/90 -z-10" />
+        <div className="absolute inset-0 bg-gradient-to-b from-background/80 via-background/60 to-background/90 -z-10" />
         
         <div className="container py-16">
           <div className="max-w-md mx-auto text-center space-y-6 bg-card/80 backdrop-blur-sm p-8 rounded-xl border border-amber-500/20">
@@ -63,22 +60,21 @@ export default function SlotMachine() {
   }
 
   return (
-    <div className="min-h-screen relative">
-      {/* Full page Egyptian temple background - AI generated or default */}
+    <div className="min-h-[calc(100vh-4rem)] relative overflow-x-hidden">
+      {/* Background - absolute instead of fixed to not overlap header */}
       <div 
-        className="fixed inset-0 bg-cover bg-center bg-no-repeat -z-10"
+        className="absolute inset-0 bg-cover bg-center bg-no-repeat -z-10"
         style={{ backgroundImage: `url(${backgroundImage})` }}
       />
-      {/* Gradient overlay for readability - slightly reduced opacity to show more background */}
-      <div className="fixed inset-0 bg-gradient-to-b from-background/60 via-background/40 to-background/70 -z-10" />
+      <div className="absolute inset-0 bg-gradient-to-b from-background/60 via-background/40 to-background/70 -z-10" />
       
-      <div className="container px-2 sm:px-4 py-0 space-y-0">
-        {/* Title Image with glow animation - LARGER */}
-        <div className="flex justify-center -mt-2 sm:-mt-6">
+      <div className="container px-2 sm:px-4 py-2 sm:py-4">
+        {/* Title Image with glow animation */}
+        <div className="flex justify-center">
           <img 
             src={titleImage} 
             alt="Book of Fedesvin" 
-            className="w-full max-w-xs xs:max-w-sm sm:max-w-xl md:max-w-2xl h-auto animate-[title-entrance_0.8s_ease-out_forwards,glow_3s_ease-in-out_0.8s_infinite]"
+            className="w-full max-w-[200px] xs:max-w-[280px] sm:max-w-md md:max-w-xl h-auto animate-[title-entrance_0.8s_ease-out_forwards,glow_3s_ease-in-out_0.8s_infinite]"
             style={{
               filter: 'drop-shadow(0 0 20px rgba(251,191,36,0.5)) drop-shadow(0 0 40px rgba(251,191,36,0.3)) drop-shadow(0 0 60px rgba(251,191,36,0.2))'
             }}
@@ -86,17 +82,17 @@ export default function SlotMachine() {
         </div>
 
         {/* Main content: Leaderboard left, Slot machine center */}
-        <div className="flex justify-center items-start gap-4 -mt-2 sm:-mt-4">
+        <div className="flex justify-center items-start gap-4 mt-2">
           {/* Desktop: Leaderboard on the left */}
           <div className="hidden xl:block w-64 flex-shrink-0 max-h-[calc(100vh-12rem)] overflow-y-auto">
             <SlotLeaderboard />
           </div>
           
           {/* Slot machine and mobile leaderboard */}
-          <div className="flex flex-col items-center gap-1 sm:gap-2">
+          <div className="flex flex-col items-center gap-2">
             <SlotGame />
             
-            {/* Spins remaining - moved to bottom */}
+            {/* Spins remaining */}
             <div className="w-full max-w-sm flex justify-center">
               <SpinsRemaining />
             </div>
