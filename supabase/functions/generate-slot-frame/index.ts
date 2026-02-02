@@ -26,10 +26,22 @@ serve(async (req) => {
       throw new Error("Supabase configuration missing");
     }
 
-    console.log("Starting Egyptian slot frame generation...");
+    // Parse request body to get generation type
+    let generationType = "background"; // default to background
+    try {
+      const body = await req.json();
+      if (body?.type === "frame") {
+        generationType = "frame";
+      }
+    } catch {
+      // No body or invalid JSON, use default
+    }
 
-    // Generate the Egyptian slot machine frame using AI
-    const prompt = `Create an ornate Egyptian slot machine frame with a completely transparent center area for slot reels.
+    console.log(`Starting Egyptian slot ${generationType} generation...`);
+
+    // Different prompts for background vs frame
+    const prompt = generationType === "frame" 
+      ? `Create an ornate Egyptian slot machine frame with a completely transparent center area for slot reels.
 
 The frame should feature:
 - Golden hieroglyph-decorated borders on all sides with ancient Egyptian symbols
@@ -45,7 +57,23 @@ Style: Ancient Egyptian temple architecture aesthetic, rich gold and amber tones
 
 The frame should have an aspect ratio of approximately 5:3 (width:height) suitable for a 5-column by 3-row slot machine grid.
 
-IMPORTANT: The center must be completely transparent/empty - only generate the decorative frame border around the edges.`;
+IMPORTANT: The center must be completely transparent/empty - only generate the decorative frame border around the edges.`
+      : `Create an immersive Egyptian temple interior background for a slot machine game.
+
+The scene should feature:
+- A grand ancient Egyptian temple hall with massive stone columns decorated with hieroglyphics
+- Golden torches with flickering flames along the walls casting warm amber light
+- Mysterious hieroglyphics and ancient carvings on the sandstone walls
+- A sacred altar or shrine in the background with golden artifacts
+- Subtle rays of light filtering through the temple ceiling
+- Egyptian statues of Anubis or Pharaohs guarding the sides
+- Rich warm color palette: deep amber, gold, burnt orange, with hints of turquoise accents
+- Atmospheric dust particles floating in the light beams
+- A sense of mystery and ancient treasure
+
+Style: Cinematic, high-quality game art, detailed textures, atmospheric lighting with golden hour warmth, mystical ancient Egyptian aesthetic. Ultra high resolution. 16:9 aspect ratio.
+
+This should be a full background image with NO transparent areas - it will be used as the background for a slot machine game.`;
 
     const response = await fetch(
       "https://ai.gateway.lovable.dev/v1/chat/completions",
@@ -110,7 +138,7 @@ IMPORTANT: The center must be completely transparent/empty - only generate the d
 
     // Generate unique filename
     const timestamp = Date.now();
-    const filename = `egyptian-frame-${timestamp}.png`;
+    const filename = `egyptian-${generationType}-${timestamp}.png`;
 
     // Upload to storage
     const { data: uploadData, error: uploadError } = await supabase.storage
@@ -135,11 +163,15 @@ IMPORTANT: The center must be completely transparent/empty - only generate the d
     const publicUrl = publicUrlData.publicUrl;
     console.log("Public URL:", publicUrl);
 
-    // Save the URL to site_settings
+    // Save the URL to site_settings based on type
+    const settingsKey = generationType === "frame" 
+      ? "slot_machine_frame_image" 
+      : "slot_background_image";
+      
     const { error: settingsError } = await supabase
       .from("site_settings")
       .upsert(
-        { key: "slot_machine_frame_image", value: publicUrl },
+        { key: settingsKey, value: publicUrl },
         { onConflict: "key" }
       );
 
@@ -152,7 +184,8 @@ IMPORTANT: The center must be completely transparent/empty - only generate the d
       JSON.stringify({
         success: true,
         imageUrl: publicUrl,
-        message: "Egyptian slot frame generated successfully!",
+        type: generationType,
+        message: `Egyptian slot ${generationType} generated successfully!`,
       }),
       {
         status: 200,
@@ -160,7 +193,7 @@ IMPORTANT: The center must be completely transparent/empty - only generate the d
       }
     );
   } catch (error) {
-    console.error("Error generating slot frame:", error);
+    console.error("Error generating slot image:", error);
     return new Response(
       JSON.stringify({
         error: error instanceof Error ? error.message : "Unknown error occurred",

@@ -13,7 +13,8 @@ export default function SlotMachine() {
   const { data: siteSettings } = useSiteSettings();
   
   const titleImage = siteSettings?.slot_title_image || defaultTitleImage;
-  const backgroundImage = siteSettings?.slot_background_image || defaultSlotBackground;
+  // Use AI-generated background if available, otherwise fall back to default
+  const backgroundImage = siteSettings?.slot_background_image || siteSettings?.slot_background_image || defaultSlotBackground;
 
   if (loading) {
     return (
@@ -62,13 +63,13 @@ export default function SlotMachine() {
 
   return (
     <div className="min-h-screen relative">
-      {/* Full page Egyptian temple background */}
+      {/* Full page Egyptian temple background - AI generated or default */}
       <div 
         className="fixed inset-0 bg-cover bg-center bg-no-repeat -z-10"
         style={{ backgroundImage: `url(${backgroundImage})` }}
       />
-      {/* Gradient overlay for readability */}
-      <div className="fixed inset-0 bg-gradient-to-b from-background/70 via-background/50 to-background/80 -z-10" />
+      {/* Gradient overlay for readability - slightly reduced opacity to show more background */}
+      <div className="fixed inset-0 bg-gradient-to-b from-background/60 via-background/40 to-background/70 -z-10" />
       
       <div className="container py-2 space-y-2">
         {/* Title Image with glow animation */}
