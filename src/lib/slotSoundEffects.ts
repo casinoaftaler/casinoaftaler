@@ -873,6 +873,107 @@ class SlotSoundEffects {
     osc.start(now);
     osc.stop(now + 0.35);
   }
+
+  // Tease mode drumroll - building anticipation when 2 scatters land
+  playTeaseStart(): () => void {
+    if (!this.enabled) return () => {};
+    
+    const ctx = this.getContext();
+    const now = ctx.currentTime;
+    
+    // Create master gain for tease sounds
+    const masterGain = ctx.createGain();
+    masterGain.gain.value = 0.25 * this.volume;
+    masterGain.connect(ctx.destination);
+    
+    // Deep heartbeat-like pulse
+    const heartbeatInterval = setInterval(() => {
+      if (!this.enabled) return;
+      
+      const currentTime = ctx.currentTime;
+      
+      // First beat (stronger)
+      const beat1 = ctx.createOscillator();
+      const beat1Gain = ctx.createGain();
+      beat1.connect(beat1Gain);
+      beat1Gain.connect(masterGain);
+      
+      beat1.frequency.setValueAtTime(60, currentTime);
+      beat1.frequency.exponentialRampToValueAtTime(30, currentTime + 0.15);
+      beat1.type = 'sine';
+      
+      beat1Gain.gain.setValueAtTime(0.8, currentTime);
+      beat1Gain.gain.exponentialRampToValueAtTime(0.001, currentTime + 0.2);
+      
+      beat1.start(currentTime);
+      beat1.stop(currentTime + 0.2);
+      
+      // Second beat (softer, delayed)
+      const beat2 = ctx.createOscillator();
+      const beat2Gain = ctx.createGain();
+      beat2.connect(beat2Gain);
+      beat2Gain.connect(masterGain);
+      
+      beat2.frequency.setValueAtTime(50, currentTime + 0.2);
+      beat2.frequency.exponentialRampToValueAtTime(25, currentTime + 0.35);
+      beat2.type = 'sine';
+      
+      beat2Gain.gain.setValueAtTime(0.5, currentTime + 0.2);
+      beat2Gain.gain.exponentialRampToValueAtTime(0.001, currentTime + 0.35);
+      
+      beat2.start(currentTime + 0.2);
+      beat2.stop(currentTime + 0.35);
+    }, 600); // Heartbeat rhythm
+    
+    // Tension drone
+    const drone = ctx.createOscillator();
+    const droneGain = ctx.createGain();
+    const droneFilter = ctx.createBiquadFilter();
+    
+    drone.connect(droneFilter);
+    droneFilter.connect(droneGain);
+    droneGain.connect(masterGain);
+    
+    drone.frequency.value = 55; // Low A
+    drone.type = 'sawtooth';
+    
+    droneFilter.type = 'lowpass';
+    droneFilter.frequency.value = 150;
+    
+    droneGain.gain.setValueAtTime(0.3, now);
+    
+    drone.start(now);
+    
+    // Tremolo/shimmer effect
+    const tremolo = ctx.createOscillator();
+    const tremoloGain = ctx.createGain();
+    
+    tremolo.connect(tremoloGain);
+    tremoloGain.connect(droneGain.gain);
+    
+    tremolo.frequency.value = 8; // 8Hz tremolo
+    tremoloGain.gain.value = 0.15;
+    
+    tremolo.start(now);
+    
+    // Return stop function
+    return () => {
+      clearInterval(heartbeatInterval);
+      
+      const stopTime = ctx.currentTime;
+      droneGain.gain.linearRampToValueAtTime(0.001, stopTime + 0.3);
+      masterGain.gain.linearRampToValueAtTime(0.001, stopTime + 0.3);
+      
+      setTimeout(() => {
+        try {
+          drone.stop();
+          tremolo.stop();
+        } catch (e) {
+          // Already stopped
+        }
+      }, 350);
+    };
+  }
 }
 
 // Singleton instance

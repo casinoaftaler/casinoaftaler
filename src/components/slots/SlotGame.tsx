@@ -79,6 +79,7 @@ export function SlotGame() {
   const [bonusTotalWinnings, setBonusTotalWinnings] = useState(0);
   
   const stopSpinSound = useRef<(() => void) | null>(null);
+  const stopTeaseSound = useRef<(() => void) | null>(null);
 
   // Initialize grid with random symbols
   const initializeGrid = useCallback(() => {
@@ -105,6 +106,9 @@ export function SlotGame() {
       slotSounds.stopMusic();
       if (stopSpinSound.current) {
         stopSpinSound.current();
+      }
+      if (stopTeaseSound.current) {
+        stopTeaseSound.current();
       }
     };
   }, []);
@@ -203,6 +207,11 @@ export function SlotGame() {
     // Play spin start sound and start continuous spin sound
     slotSounds.playSpinStart();
     stopSpinSound.current = slotSounds.playReelSpin();
+    
+    // Start tease sound if we have tease reels
+    if (teaseReelIndices.length > 0) {
+      stopTeaseSound.current = slotSounds.playTeaseStart();
+    }
 
     try {
       // Decrement spin count (only for non-bonus spins)
@@ -223,6 +232,12 @@ export function SlotGame() {
       if (stopSpinSound.current) {
         stopSpinSound.current();
         stopSpinSound.current = null;
+      }
+      
+      // Stop tease sound
+      if (stopTeaseSound.current) {
+        stopTeaseSound.current();
+        stopTeaseSound.current = null;
       }
 
       // Phase 1: Show original grid with symbols landed (already set above)
