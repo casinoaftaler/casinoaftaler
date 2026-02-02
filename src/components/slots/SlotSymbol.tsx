@@ -19,10 +19,10 @@ export function SlotSymbol({ symbol, isWinning, isSpinning, isExpanded, isNewlyE
         // Symbol container sizes matching SYMBOL_SIZE constants
         "w-[80px] h-[80px] xs:w-[96px] xs:h-[96px] sm:w-[112px] sm:h-[112px] md:w-[128px] md:h-[128px] lg:w-[160px] lg:h-[160px] xl:w-[176px] xl:h-[176px]",
         isWinning
-          ? "border-amber-400 shadow-[0_0_20px_rgba(251,191,36,0.5)] scale-105"
+          ? "border-amber-400 scale-105"
           : "border-amber-700/50",
         isSpinning && "animate-pulse",
-        isExpanded && "border-purple-400 shadow-[0_0_25px_rgba(168,85,247,0.6)] scale-110",
+        isExpanded && "border-purple-400 scale-110",
         isNewlyExpanded && "animate-[expansion-flash_0.6s_ease-out]",
         symbol.is_scatter && "ring-2 ring-purple-500/50"
       )}
@@ -48,15 +48,6 @@ export function SlotSymbol({ symbol, isWinning, isSpinning, isExpanded, isNewlyE
         </span>
       )}
       
-      {/* Glow effect for winning */}
-      {isWinning && (
-        <div className="absolute inset-0 rounded-lg bg-amber-400/20 animate-pulse" />
-      )}
-      
-      {/* Expanded glow effect */}
-      {isExpanded && (
-        <div className="absolute inset-0 rounded-lg bg-purple-400/30 animate-pulse" />
-      )}
       
       {/* Expansion burst effect */}
       {isNewlyExpanded && (
