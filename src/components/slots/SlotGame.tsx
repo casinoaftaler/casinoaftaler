@@ -40,7 +40,7 @@ type AutoSpinCount = 10 | 25 | 50 | 100 | "infinite";
 export function SlotGame() {
   const { user } = useAuth();
   const { data: symbols, isLoading: symbolsLoading } = useSlotSymbols();
-  const { spinsRemaining, maxSpins, canSpin, decrementSpin } = useSlotSpins();
+  const { spinsRemaining, maxSpins, canSpin, decrementSpin, hasEnoughSpins } = useSlotSpins();
   const { settings: slotSettings } = useSlotSettings();
   const { 
     bonusState, 
@@ -150,7 +150,8 @@ export function SlotGame() {
     
     // Check if we can spin (either normal spin or bonus free spin)
     const isBonusSpin = bonusState.isActive && bonusState.freeSpinsRemaining > 0;
-    if (!isBonusSpin && !canSpin) return;
+    // For normal spins, check if we have enough spins for the current bet
+    if (!isBonusSpin && !hasEnoughSpins(bet)) return;
 
     // Generate final result BEFORE starting the animation
     // This ensures SlotReel knows what symbols to land on
@@ -201,8 +202,9 @@ export function SlotGame() {
 
     try {
       // Decrement spin count (only for non-bonus spins)
+      // Bet amount determines how many spins are used
       if (!isBonusSpin) {
-        await decrementSpin.mutateAsync();
+        await decrementSpin.mutateAsync(bet);
       } else {
         decrementFreeSpin();
       }
@@ -446,7 +448,7 @@ export function SlotGame() {
     );
   }
 
-  const canSpinNow = bonusState.isActive ? bonusState.freeSpinsRemaining > 0 : canSpin;
+  const canSpinNow = bonusState.isActive ? bonusState.freeSpinsRemaining > 0 : hasEnoughSpins(bet);
 
   return (
     <div className="transition-all duration-300">
