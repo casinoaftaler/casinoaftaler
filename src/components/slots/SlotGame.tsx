@@ -530,19 +530,16 @@ export function SlotGame() {
             </SlotMachineFrame>
           </div>
 
-          {/* Controls */}
-          <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-4">
+          {/* All controls on one line */}
+          <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-3 mt-2">
+            {/* Bet Controls */}
             <BetControls bet={bet} onBetChange={setBet} disabled={isSpinning || bonusState.isActive} minBet={slotSettings.minBet} maxBet={slotSettings.maxBet} />
-            <WinDisplay amount={bonusState.isActive ? bonusState.bonusWinnings : winAmount} isAnimating={isWinAnimating} />
-          </div>
-
-          {/* Spin buttons */}
-          <div className="flex flex-wrap justify-center gap-2 sm:gap-4">
+            
             {/* Main Spin button */}
             <Button
               size="lg"
               className={cn(
-                "px-4 sm:px-8 md:px-12 py-4 sm:py-6 text-base sm:text-xl font-bold transition-all",
+                "px-4 sm:px-8 py-3 sm:py-5 text-base sm:text-lg font-bold transition-all",
                 bonusState.isActive
                   ? "bg-gradient-to-r from-purple-500 to-purple-600 hover:from-purple-600 hover:to-purple-700 shadow-[0_4px_20px_rgba(168,85,247,0.4)]"
                   : "bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 shadow-[0_4px_20px_rgba(251,191,36,0.4)]",
@@ -553,43 +550,43 @@ export function SlotGame() {
             >
               {isSpinning ? (
                 <>
-                  <Loader2 className="mr-1 sm:mr-2 h-4 w-4 sm:h-6 sm:w-6 animate-spin" />
+                  <Loader2 className="mr-1 sm:mr-2 h-4 w-4 sm:h-5 sm:w-5 animate-spin" />
                   <span className="hidden xs:inline">SPINNER...</span>
                   <span className="xs:hidden">...</span>
                 </>
               ) : !canSpinNow ? (
-                <span className="text-xs sm:text-base">INGEN SPINS</span>
+                <span className="text-xs sm:text-sm">INGEN SPINS</span>
               ) : bonusState.isActive ? (
                 <>
-                  <Gamepad2 className="mr-1 sm:mr-2 h-4 w-4 sm:h-6 sm:w-6" />
+                  <Gamepad2 className="mr-1 sm:mr-2 h-4 w-4 sm:h-5 sm:w-5" />
                   <span className="hidden xs:inline">FREE SPIN</span>
                   <span className="xs:hidden">FREE</span>
                 </>
               ) : (
                 <>
-                  <Gamepad2 className="mr-1 sm:mr-2 h-4 w-4 sm:h-6 sm:w-6" />
+                  <Gamepad2 className="mr-1 sm:mr-2 h-4 w-4 sm:h-5 sm:w-5" />
                   SPIN
                 </>
               )}
             </Button>
 
             {/* Autospin controls */}
-            <div className="flex items-center gap-1 sm:gap-2">
+            <div className="flex items-center gap-1">
               {/* Autospin count selector */}
               {!isAutoSpinning && (
                 <DropdownMenu>
                   <DropdownMenuTrigger asChild>
                     <Button
                       variant="outline"
-                      className="px-2 sm:px-3 py-4 sm:py-6 text-sm sm:text-lg font-bold border-amber-500/50 hover:bg-amber-500/10 text-amber-500"
+                      className="px-2 sm:px-3 py-3 sm:py-5 text-sm sm:text-base font-bold border-amber-500/50 hover:bg-amber-500/10 text-amber-500"
                       disabled={!canSpinNow || showBonusTrigger}
                     >
                       {autoSpinCount === "infinite" ? (
-                        <Infinity className="h-5 w-5" />
+                        <Infinity className="h-4 w-4" />
                       ) : (
                         autoSpinCount
                       )}
-                      <ChevronDown className="ml-1 h-4 w-4" />
+                      <ChevronDown className="ml-1 h-3 w-3" />
                     </Button>
                   </DropdownMenuTrigger>
                   <DropdownMenuContent className="bg-background border-amber-500/30">
@@ -620,7 +617,7 @@ export function SlotGame() {
                 size="lg"
                 variant={isAutoSpinning ? "destructive" : "outline"}
                 className={cn(
-                  "px-3 sm:px-6 py-4 sm:py-6 text-sm sm:text-lg font-bold transition-all",
+                  "px-3 sm:px-4 py-3 sm:py-5 text-sm sm:text-base font-bold transition-all",
                   isAutoSpinning 
                     ? "bg-red-500 hover:bg-red-600 text-white"
                     : "border-amber-500/50 hover:bg-amber-500/10 text-amber-500"
@@ -630,18 +627,21 @@ export function SlotGame() {
               >
                 {isAutoSpinning ? (
                   <>
-                    <Square className="mr-1 sm:mr-2 h-4 w-4 sm:h-5 sm:w-5" />
+                    <Square className="mr-1 h-4 w-4" />
                     <span className="hidden xs:inline">{autoSpinsRemaining !== null ? `STOP (${autoSpinsRemaining})` : "STOP"}</span>
                     <span className="xs:hidden">{autoSpinsRemaining !== null ? autoSpinsRemaining : "■"}</span>
                   </>
                 ) : (
                   <>
-                    <Play className="mr-1 sm:mr-2 h-4 w-4 sm:h-5 sm:w-5" />
+                    <Play className="mr-1 h-4 w-4" />
                     AUTO
                   </>
                 )}
               </Button>
             </div>
+            
+            {/* Win Display */}
+            <WinDisplay amount={bonusState.isActive ? bonusState.bonusWinnings : winAmount} isAnimating={isWinAnimating} />
           </div>
 
           {/* Pay table button */}
