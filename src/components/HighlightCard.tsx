@@ -120,9 +120,18 @@ export function HighlightCard({ highlight, isPlaying, onPlay }: HighlightCardPro
       <CardContent className="p-4">
         <div className="flex items-start justify-between gap-2">
           <h3 className="font-semibold line-clamp-2">{highlight.title}</h3>
-          <Badge variant={platform === "youtube" ? "destructive" : "secondary"} className="shrink-0">
-            {platform === "youtube" ? "YouTube" : "Twitch"}
-          </Badge>
+          <div className="flex flex-wrap gap-1 shrink-0">
+            <Badge variant={platform === "youtube" ? "destructive" : "secondary"}>
+              {platform === "youtube" ? "YouTube" : "Twitch"}
+            </Badge>
+            {highlight.categories && highlight.categories.length > 0 && (
+              highlight.categories.map((cat) => (
+                <Badge key={cat.id} variant="outline">
+                  {cat.name}
+                </Badge>
+              ))
+            )}
+          </div>
         </div>
         {highlight.description && (
           <p className="mt-2 text-sm text-muted-foreground line-clamp-2">

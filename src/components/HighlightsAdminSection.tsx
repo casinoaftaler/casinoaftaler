@@ -4,6 +4,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Switch } from "@/components/ui/switch";
 import { Textarea } from "@/components/ui/textarea";
+import { Checkbox } from "@/components/ui/checkbox";
 import {
   Dialog,
   DialogContent,
@@ -11,13 +12,6 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import {
@@ -71,6 +65,7 @@ interface HighlightFormData {
   thumbnail_url: string;
   is_active: boolean;
   category_id: string | null;
+  categoryIds: string[];
 }
 
 const defaultFormData: HighlightFormData = {
@@ -81,6 +76,7 @@ const defaultFormData: HighlightFormData = {
   thumbnail_url: "",
   is_active: true,
   category_id: null,
+  categoryIds: [],
 };
 
 interface SortableItemProps {
@@ -117,11 +113,17 @@ function SortableItem({ item, onEdit, onDelete }: SortableItemProps) {
           </div>
           <div className="flex-1 min-w-0">
             <p className="font-medium truncate">{item.title}</p>
-            <div className="flex items-center gap-2 mt-1">
+          <div className="flex items-center gap-2 mt-1">
               <Badge variant={platform === "youtube" ? "destructive" : "secondary"} className="text-xs">
                 {platform === "youtube" ? "YouTube" : "Twitch"}
               </Badge>
-              {item.highlight_categories && (
+              {item.categories && item.categories.length > 0 ? (
+                item.categories.map((cat) => (
+                  <Badge key={cat.id} variant="outline" className="text-xs">
+                    {cat.name}
+                  </Badge>
+                ))
+              ) : item.highlight_categories && (
                 <Badge variant="outline" className="text-xs">
                   {item.highlight_categories.name}
                 </Badge>
@@ -196,7 +198,8 @@ export function HighlightsAdminSection() {
       description: formData.description || null,
       thumbnail_url: formData.thumbnail_url || null,
       is_active: formData.is_active,
-      category_id: formData.category_id,
+      category_id: formData.categoryIds.length > 0 ? formData.categoryIds[0] : null, // Legacy field
+      categoryIds: formData.categoryIds,
     };
 
     if (editingItem) {
@@ -215,6 +218,10 @@ export function HighlightsAdminSection() {
 
   const handleEdit = (item: Highlight) => {
     setEditingItem(item);
+    // Get category IDs from the new categories array or fall back to legacy category_id
+    const categoryIds = item.categories?.map(c => c.id) || 
+      (item.category_id ? [item.category_id] : []);
+    
     setFormData({
       title: item.title,
       url: item.url,
@@ -223,6 +230,7 @@ export function HighlightsAdminSection() {
       thumbnail_url: item.thumbnail_url || "",
       is_active: item.is_active,
       category_id: item.category_id,
+      categoryIds,
     });
     setDialogOpen(true);
   };
@@ -306,28 +314,37 @@ export function HighlightsAdminSection() {
                 </div>
 
                 <div className="space-y-2">
-                  <Label htmlFor="category">Kategori (valgfrit)</Label>
-                  <Select
-                    value={formData.category_id || "none"}
-                    onValueChange={(val) =>
-                      setFormData((prev) => ({
-                        ...prev,
-                        category_id: val === "none" ? null : val,
-                      }))
-                    }
-                  >
-                    <SelectTrigger>
-                      <SelectValue placeholder="Vælg kategori" />
-                    </SelectTrigger>
-                    <SelectContent>
-                      <SelectItem value="none">Ingen kategori</SelectItem>
-                      {categories?.map((cat) => (
-                        <SelectItem key={cat.id} value={cat.id}>
-                          {cat.name}
-                        </SelectItem>
-                      ))}
-                    </SelectContent>
-                  </Select>
+                  <Label>Kategorier (valgfrit)</Label>
+                  <div className="border rounded-md p-3 space-y-2 max-h-40 overflow-y-auto">
+                    {categories && categories.length > 0 ? (
+                      categories.map((cat) => (
+                        <div key={cat.id} className="flex items-center space-x-2">
+                          <Checkbox
+                            id={`cat-${cat.id}`}
+                            checked={formData.categoryIds.includes(cat.id)}
+                            onCheckedChange={(checked) => {
+                              setFormData((prev) => ({
+                                ...prev,
+                                categoryIds: checked
+                                  ? [...prev.categoryIds, cat.id]
+                                  : prev.categoryIds.filter((id) => id !== cat.id),
+                              }));
+                            }}
+                          />
+                          <label
+                            htmlFor={`cat-${cat.id}`}
+                            className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 cursor-pointer"
+                          >
+                            {cat.name}
+                          </label>
+                        </div>
+                      ))
+                    ) : (
+                      <p className="text-sm text-muted-foreground">
+                        Ingen kategorier oprettet endnu
+                      </p>
+                    )}
+                  </div>
                 </div>
 
                 <div className="space-y-2">
