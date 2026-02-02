@@ -14,8 +14,8 @@ interface SlotReelProps {
 }
 
 // Symbol dimensions (should match SlotSymbol component)
-const SYMBOL_SIZE = { xs: 56, mobile: 64, sm: 80, md: 96, lg: 112 };
-const GAP = { xs: 4, mobile: 6, sm: 8, md: 12 };
+const SYMBOL_SIZE = { xs: 56, mobile: 64, sm: 80, md: 96, lg: 128, xl: 144 };
+const GAP = { xs: 4, mobile: 6, sm: 8, md: 12, lg: 16 };
 
 export function SlotReel({
   symbols,
@@ -57,22 +57,24 @@ export function SlotReel({
 
   // Get responsive dimensions
   const getSymbolHeight = () => {
-    if (typeof window === "undefined") return SYMBOL_SIZE.lg;
+    if (typeof window === "undefined") return SYMBOL_SIZE.xl;
     const width = window.innerWidth;
     if (width < 400) return SYMBOL_SIZE.xs;
     if (width < 640) return SYMBOL_SIZE.mobile;
     if (width < 768) return SYMBOL_SIZE.sm;
     if (width < 1024) return SYMBOL_SIZE.md;
-    return SYMBOL_SIZE.lg;
+    if (width < 1280) return SYMBOL_SIZE.lg;
+    return SYMBOL_SIZE.xl;
   };
 
   const getGap = () => {
-    if (typeof window === "undefined") return GAP.md;
+    if (typeof window === "undefined") return GAP.lg;
     const width = window.innerWidth;
     if (width < 400) return GAP.xs;
     if (width < 640) return GAP.mobile;
     if (width < 768) return GAP.sm;
-    return GAP.md;
+    if (width < 1024) return GAP.md;
+    return GAP.lg;
   };
 
   // Start spinning when isSpinning becomes true
