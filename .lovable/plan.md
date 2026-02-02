@@ -1,64 +1,136 @@
 
-# Plan: Større titel-billede med indlæsningsanimation
+# Plan: Slot Machine Page Lock med Password-adgang
 
 ## Oversigt
-Gør titel-billedet endnu større og tilføj en flot "fade-in + scale-up" animation når siden indlæses.
+Implementer en låsefunktion til slot machine-siden, hvor:
+1. Admin kan låse/oplåse siden fra admin-panelet
+2. Når siden er låst, skal brugere indtaste et password for at få adgang
+3. Password er "bookoffedesvin2026"
 
-## Ændringer
+## Sikkerhedsovervejelser
 
-### 1. Større titel-billede
-- Øg `max-w-md` til `max-w-xl` på mobil
-- Øg `sm:max-w-lg` til `sm:max-w-2xl` på større skærme
-- Dette giver et markant større titel-billede
-
-### 2. Indlæsningsanimation
-Tilføj en ny `title-entrance` keyframe animation der kombinerer:
-- **Fade-in**: Starter usynlig (`opacity: 0`) og fader ind
-- **Scale-up**: Starter lidt mindre (`scale(0.8)`) og vokser til fuld størrelse
-- **Slide-down**: Starter lidt over position (`translateY(-20px)`) og glider ned
-- **Smooth easing**: Bruger `ease-out` for et naturligt finish
+Password-adgangen bruges som en ekstra "pre-access" gate til at holde siden privat under udvikling/test. Det er IKKE et sikkerheds-login, men en simpel adgangskontrol der gemmes i brugerens session (sessionStorage) så de ikke skal indtaste det igen ved hver sidebesøg.
 
 ---
 
-## Tekniske detaljer
+## Tekniske Ændringer
 
-### tailwind.config.ts
-Tilføj ny keyframe og animation:
-```typescript
-'title-entrance': {
-  '0%': { 
-    opacity: '0',
-    transform: 'scale(0.8) translateY(-20px)'
-  },
-  '100%': { 
-    opacity: '1',
-    transform: 'scale(1) translateY(0)'
-  }
-}
+### 1. Database Migration
+Tilføj to nye site_settings nøgler:
+- `slot_page_locked` - "true" eller "false" (standard: "true")
+- `slot_page_password` - Krypteret/hashed password (standard: hashed version af "bookoffedesvin2026")
 
-animation: {
-  'title-entrance': 'title-entrance 0.8s ease-out forwards'
-}
+```text
+┌─────────────────────────────┐
+│      site_settings          │
+├─────────────────────────────┤
+│ slot_page_locked: "true"    │
+│ slot_page_password: "..."   │
+└─────────────────────────────┘
 ```
 
-### src/pages/SlotMachine.tsx
-Opdater titel-billedet:
-```tsx
-<img 
-  src={titleImage} 
-  alt="Book of Fedesvin" 
-  className="w-full max-w-xl sm:max-w-2xl h-auto animate-title-entrance"
-  style={{
-    filter: 'drop-shadow(0 0 20px rgba(251,191,36,0.5)) ...'
-  }}
-/>
-```
+### 2. Ny Hook: useSlotPageAccess
+Opretter `src/hooks/useSlotPageAccess.ts`:
+- Henter `slot_page_locked` status fra databasen
+- Tjekker om brugeren har indtastet korrekt password (gemt i sessionStorage)
+- Admin-brugere får automatisk adgang (bypass password)
+- Eksponerer: `isLocked`, `hasAccess`, `verifyPassword()`, `isAdmin`
 
-Den eksisterende glow-animation kan kombineres med den nye entrance-animation via CSS.
+### 3. Opdater SlotMachine.tsx
+Tilføj en "password gate" komponent der vises når:
+- Siden er låst OG
+- Brugeren ikke er admin OG
+- Brugeren ikke har indtastet korrekt password
+
+UI for låst side:
+- Egyptisk tema baggrund (samme som slot-maskinen)
+- Ikon med lås eller lignende
+- Titel: "Spillemaskinen er midlertidigt lukket"
+- Password input felt
+- Knap: "Få adgang"
+- Fejlbesked ved forkert password
+
+### 4. Admin Panel Udvidelse
+Tilføj i `SlotMachineAdminSection.tsx` under "Indstillinger":
+- Switch/toggle: "Lås spillemaskine-siden"
+- Beskrivelse: "Når aktiveret, skal brugere indtaste et password for at få adgang"
+- Mulighed for at ændre password (valgfrit)
 
 ---
 
-## Resultat
-- Titlen er nu ~50% større end før
-- Når siden indlæses, vil titlen fade ind og vokse elegant
-- Glow-effekten fortsætter efter indlæsningen
+## Implementation Flow
+
+```text
+Bruger besøger /community/slots
+         │
+         ▼
+┌─────────────────────────┐
+│ Er siden låst?          │
+│ (slot_page_locked)      │
+└─────────────────────────┘
+         │
+    Ja   │   Nej
+         ▼         ──────────────► Vis slot-maskinen
+┌─────────────────────────┐
+│ Er brugeren admin?      │
+└─────────────────────────┘
+         │
+    Ja   │   Nej
+         │         ──────────────► Vis password-gate
+         ▼
+   Vis slot-maskinen
+```
+
+---
+
+## Fil-ændringer
+
+| Fil | Ændring |
+|-----|---------|
+| `src/hooks/useSlotPageAccess.ts` | **NY** - Hook til at tjekke låse-status og password |
+| `src/pages/SlotMachine.tsx` | Tilføj password-gate UI og adgangskontrol |
+| `src/components/SlotMachineAdminSection.tsx` | Tilføj lock toggle i admin panel |
+| `src/hooks/useSlotSettings.ts` | Udvid med lock/password settings |
+
+---
+
+## Database Migration SQL
+
+```sql
+-- Tilføj slot page lock setting
+INSERT INTO site_settings (key, value)
+VALUES ('slot_page_locked', 'true')
+ON CONFLICT (key) DO NOTHING;
+
+-- Tilføj slot page password setting
+INSERT INTO site_settings (key, value)
+VALUES ('slot_page_password', 'bookoffedesvin2026')
+ON CONFLICT (key) DO NOTHING;
+```
+
+---
+
+## Brugeroplevelse
+
+### For almindelige brugere (når låst):
+1. Besøger `/community/slots`
+2. Ser egyptisk-tema baggrund med lås-ikon
+3. Indtaster password "bookoffedesvin2026"
+4. Får adgang til spillemaskinen
+5. Password huskes i session (behøver ikke indtaste igen)
+
+### For admin:
+1. Besøger `/community/slots` - får automatisk adgang
+2. Kan gå til Admin → Spillemaskine → Indstillinger
+3. Toggle "Lås spillemaskine-siden" for at låse/oplåse
+4. Kan ændre password hvis nødvendigt
+
+---
+
+## Sikkerhed
+
+- Password sammenlignes på klient-siden (acceptabelt da dette er en simpel "preview gate", ikke ægte sikkerhed)
+- Admin-status tjekkes via eksisterende `useAuth` hook der validerer mod `user_roles` tabellen
+- SessionStorage bruges så password ikke skal indtastes ved hver navigation
+- Password gemmes i databasen så admin kan ændre det
+
