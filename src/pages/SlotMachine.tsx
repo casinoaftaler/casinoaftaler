@@ -1,22 +1,26 @@
 import { SlotGame } from "@/components/slots/SlotGame";
 import { SlotLeaderboard } from "@/components/slots/SlotLeaderboard";
 import { SpinsRemaining } from "@/components/slots/SpinsRemaining";
+import { SlotPageLockGate } from "@/components/slots/SlotPageLockGate";
 import { useAuth } from "@/hooks/useAuth";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
+import { useSlotPageAccess } from "@/hooks/useSlotPageAccess";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
-import { Gamepad2 } from "lucide-react";
+import { Gamepad2, Loader2 } from "lucide-react";
 import defaultSlotBackground from "@/assets/slots/slot-background.jpg";
 import defaultTitleImage from "@/assets/slots/book-of-fedesvin-title.png";
 
 export default function SlotMachine() {
   const { user, loading } = useAuth();
   const { data: siteSettings } = useSiteSettings();
+  const { isLocked, hasAccess, isLoading: accessLoading, error, verifyPassword } = useSlotPageAccess();
   
   const titleImage = siteSettings?.slot_title_image || defaultTitleImage;
   const backgroundImage = siteSettings?.slot_background_image || defaultSlotBackground;
 
-  if (loading) {
+  // Show loading while checking auth and access
+  if (loading || accessLoading) {
     return (
       <div className="min-h-[calc(100vh-4rem)] relative">
         <div 
@@ -29,6 +33,17 @@ export default function SlotMachine() {
           <div className="animate-pulse text-muted-foreground">Indlæser...</div>
         </div>
       </div>
+    );
+  }
+
+  // Show password gate if page is locked and user doesn't have access
+  if (isLocked && !hasAccess) {
+    return (
+      <SlotPageLockGate 
+        backgroundImage={backgroundImage}
+        onVerify={verifyPassword}
+        error={error}
+      />
     );
   }
 
