@@ -358,6 +358,93 @@ class SlotSoundEffects {
     }, 500);
   }
 
+  // Symbol expansion sound - powerful magical burst
+  playSymbolExpand() {
+    if (!this.enabled) return;
+    const ctx = this.getContext();
+    const now = ctx.currentTime;
+    
+    // Deep power surge
+    const surge = ctx.createOscillator();
+    const surgeGain = ctx.createGain();
+    const surgeFilter = ctx.createBiquadFilter();
+    
+    surge.connect(surgeFilter);
+    surgeFilter.connect(surgeGain);
+    surgeGain.connect(ctx.destination);
+    
+    surge.frequency.setValueAtTime(60, now);
+    surge.frequency.exponentialRampToValueAtTime(120, now + 0.3);
+    surge.type = 'sine';
+    
+    surgeFilter.type = 'lowpass';
+    surgeFilter.frequency.value = 200;
+    
+    surgeGain.gain.setValueAtTime(0.35 * this.volume, now);
+    surgeGain.gain.exponentialRampToValueAtTime(0.001, now + 0.5);
+    
+    surge.start(now);
+    surge.stop(now + 0.5);
+
+    // Magical whoosh - rising sweep
+    const whoosh = ctx.createOscillator();
+    const whooshGain = ctx.createGain();
+    
+    whoosh.connect(whooshGain);
+    whooshGain.connect(ctx.destination);
+    
+    whoosh.frequency.setValueAtTime(150, now);
+    whoosh.frequency.exponentialRampToValueAtTime(800, now + 0.25);
+    whoosh.frequency.exponentialRampToValueAtTime(400, now + 0.4);
+    whoosh.type = 'triangle';
+    
+    whooshGain.gain.setValueAtTime(0.2 * this.volume, now);
+    whooshGain.gain.linearRampToValueAtTime(0.25 * this.volume, now + 0.15);
+    whooshGain.gain.exponentialRampToValueAtTime(0.001, now + 0.4);
+    
+    whoosh.start(now);
+    whoosh.stop(now + 0.4);
+
+    // Crystalline shimmer
+    for (let i = 0; i < 8; i++) {
+      const shimmer = ctx.createOscillator();
+      const shimmerGain = ctx.createGain();
+      
+      shimmer.connect(shimmerGain);
+      shimmerGain.connect(ctx.destination);
+      
+      shimmer.frequency.value = 1000 + i * 200 + Math.random() * 300;
+      shimmer.type = 'sine';
+      
+      const shimmerTime = now + 0.05 + i * 0.03;
+      shimmerGain.gain.setValueAtTime(0.1 * this.volume, shimmerTime);
+      shimmerGain.gain.exponentialRampToValueAtTime(0.001, shimmerTime + 0.2);
+      
+      shimmer.start(shimmerTime);
+      shimmer.stop(shimmerTime + 0.2);
+    }
+
+    // Power chord - purple/mystical feeling
+    const chordNotes = [220, 277, 330, 440]; // A minor chord
+    chordNotes.forEach((freq, i) => {
+      const osc = ctx.createOscillator();
+      const gain = ctx.createGain();
+      
+      osc.connect(gain);
+      gain.connect(ctx.destination);
+      
+      osc.frequency.value = freq;
+      osc.type = 'triangle';
+      
+      const chordTime = now + 0.1;
+      gain.gain.setValueAtTime(0.12 * this.volume, chordTime);
+      gain.gain.exponentialRampToValueAtTime(0.001, chordTime + 0.6);
+      
+      osc.start(chordTime);
+      osc.stop(chordTime + 0.6);
+    });
+  }
+
   // Button click sound
   playButtonClick() {
     if (!this.enabled) return;
