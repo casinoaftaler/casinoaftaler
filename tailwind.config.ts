@@ -103,6 +103,11 @@ export default {
 					height: '0',
 					opacity: '0'
 				}
+			},
+			'shine': {
+				'0%': { transform: 'translateX(-100%)' },
+				'50%': { transform: 'translateX(100%)' },
+				'100%': { transform: 'translateX(100%)' }
 			}
 		},
 		animation: {
