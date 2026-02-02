@@ -51,6 +51,7 @@ export function SlotReel({
   };
 
   const [reelStrip, setReelStrip] = useState<SlotSymbolType[]>([]);
+  const hasStartedSpinRef = useRef(false);
 
   // Get responsive dimensions
   const getSymbolHeight = () => {
@@ -70,8 +71,11 @@ export function SlotReel({
     return GAP.md;
   };
 
+  // Start spinning when isSpinning becomes true
   useEffect(() => {
-    if (isSpinning && spinState === "idle") {
+    if (isSpinning && !hasStartedSpinRef.current) {
+      hasStartedSpinRef.current = true;
+      
       // Build new reel strip with final symbols
       const strip = buildReelStrip();
       setReelStrip(strip);
@@ -101,7 +105,6 @@ export function SlotReel({
           const progress = Math.min(elapsed / spinDuration, 1);
           
           // Custom easing: starts very fast, then gradually slows down
-          // Using a combination of ease-out expo for realistic slot feel
           let easeProgress: number;
           if (progress < 0.7) {
             // Fast spinning phase (70% of duration)
@@ -125,6 +128,12 @@ export function SlotReel({
             // Small settle effect at the end
             setTimeout(() => {
               setSpinState("stopped");
+              // Reset for next spin after showing result
+              setTimeout(() => {
+                setSpinState("idle");
+                setOffset(0);
+                hasStartedSpinRef.current = false;
+              }, 100);
             }, 50);
           }
         };
@@ -138,15 +147,19 @@ export function SlotReel({
           cancelAnimationFrame(animationRef.current);
         }
       };
-    } else if (!isSpinning && spinState !== "idle") {
-      // Reset when spinning stops
-      setSpinState("idle");
+    }
+  }, [isSpinning, delay]);
+
+  // Reset when isSpinning goes false AND we're done animating
+  useEffect(() => {
+    if (!isSpinning && spinState === "idle" && hasStartedSpinRef.current) {
+      hasStartedSpinRef.current = false;
       setOffset(0);
       if (animationRef.current) {
         cancelAnimationFrame(animationRef.current);
       }
     }
-  }, [isSpinning, spinState, delay, displayedSymbolIds]);
+  }, [isSpinning, spinState]);
 
   // When idle or fully stopped, show just the final symbols
   if (spinState === "idle" || spinState === "stopped") {
