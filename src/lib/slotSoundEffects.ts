@@ -282,7 +282,56 @@ class SlotSoundEffects {
     };
   }
 
-  // Reel stop sound - stone tablet landing with golden chime
+  // Individual reel stop sound - plays when each reel lands (with pitch variation per reel)
+  playReelStopSingle(reelIndex: number = 0) {
+    if (!this.enabled) return;
+    const ctx = this.getContext();
+    const now = ctx.currentTime;
+
+    // Base frequency increases slightly for each reel (creates ascending effect)
+    const basePitch = 100 + reelIndex * 15;
+    const chimePitch = 660 + reelIndex * 110; // Golden chime goes up for each reel
+
+    // Heavy stone impact
+    const impact = ctx.createOscillator();
+    const impactGain = ctx.createGain();
+    const impactFilter = ctx.createBiquadFilter();
+    
+    impact.connect(impactFilter);
+    impactFilter.connect(impactGain);
+    impactGain.connect(ctx.destination);
+    
+    impact.frequency.setValueAtTime(basePitch, now);
+    impact.frequency.exponentialRampToValueAtTime(40, now + 0.1);
+    impact.type = 'sine';
+    
+    impactFilter.type = 'lowpass';
+    impactFilter.frequency.value = 300;
+    
+    impactGain.gain.setValueAtTime(0.3 * this.volume, now);
+    impactGain.gain.exponentialRampToValueAtTime(0.001, now + 0.15);
+    
+    impact.start(now);
+    impact.stop(now + 0.15);
+
+    // Golden chime accent - ascending pitch per reel
+    const chime = ctx.createOscillator();
+    const chimeGain = ctx.createGain();
+    
+    chime.connect(chimeGain);
+    chimeGain.connect(ctx.destination);
+    
+    chime.frequency.value = chimePitch;
+    chime.type = 'sine';
+    
+    chimeGain.gain.setValueAtTime(0.1 * this.volume, now);
+    chimeGain.gain.exponentialRampToValueAtTime(0.001, now + 0.12);
+    
+    chime.start(now);
+    chime.stop(now + 0.12);
+  }
+
+  // Reel stop sound - stone tablet landing with golden chime (legacy - plays for all reels at once)
   playReelStop() {
     if (!this.enabled) return;
     const ctx = this.getContext();

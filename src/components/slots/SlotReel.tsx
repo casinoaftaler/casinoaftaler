@@ -12,6 +12,7 @@ interface SlotReelProps {
   isNewlyExpanded?: boolean;
   expandingSymbolId?: string;  // Only symbols matching this ID show expansion effect
   delay?: number;
+  onReelStop?: (reelIndex: number) => void;  // Callback when reel stops
 }
 
 // Match the responsive symbol sizes from SlotSymbol - LARGER
@@ -27,6 +28,7 @@ export function SlotReel({
   isNewlyExpanded = false,
   expandingSymbolId,
   delay = 0,
+  onReelStop,
 }: SlotReelProps) {
   const symbolsById = new Map(symbols.map(s => [s.id, s]));
   const [spinState, setSpinState] = useState<"idle" | "spinning" | "stopping" | "stopped">("idle");
@@ -127,6 +129,8 @@ export function SlotReel({
             // Ensure we land exactly at 0
             setOffset(0);
             setSpinState("stopping");
+            // Trigger the reel stop callback
+            onReelStop?.(delay);
             // Small settle effect at the end
             setTimeout(() => {
               setSpinState("stopped");
