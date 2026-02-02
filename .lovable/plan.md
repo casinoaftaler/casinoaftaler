@@ -1,161 +1,77 @@
 
-# Plan: Scatter Rarity & Tease System
+# Fejlrettelse: Ekspanderende Symbol Udvider Fejlagtigt
 
-## Overview
-This plan implements two features:
-1. **Rarer Scatters**: Reduce the probability of the Book (scatter) symbol appearing
-2. **Tease System**: When 2 scatters land on the first reels, the remaining reels slow down to build anticipation
+## Problem
+Under bonusrunder udvider det ekspanderende symbol sig på hjulene, selvom der kun er ét af symbolet på skærmen, og det ikke er del af gevinstkombinationen. 
 
----
+Dette sker fordi koden tjekker om **nogen** gevinstlinje vinder efter udvidelse, men verificerer ikke at det **ekspanderende symbol selv** er del af gevinsten.
 
-## Changes
+## Årsag
+I `checkIfExpandingCreatesPaylineWin()` funktionen:
+1. Koden skaber en hypotetisk udvidet grid
+2. Den tjekker derefter hver gevinstlinje for gevinster
+3. **Fejlen:** Den bruger det første ikke-wild symbol som base - dette kan være ETHVERT symbol, ikke nødvendigvis det ekspanderende symbol
+4. Så hvis der er 3+ af samme symbol på en linje (f.eks. A, A, A), returnerer funktionen `true` selvom det ekspanderende symbol ikke bidrog til gevinsten
 
-### 1. Make Scatters More Rare
-**File: `src/lib/slotGameLogic.ts`**
+## Løsning
+Ret `checkIfExpandingCreatesPaylineWin()` funktionen til kun at returnere `true` hvis det ekspanderende symbol faktisk er del af gevinstkombinationen.
 
-Reduce the Book symbol weight from 12 to 5-6 (making it as rare as the Pharaoh, the rarest non-scatter symbol).
+### Ændringer i `src/lib/bonusGameLogic.ts`
 
-```typescript
-// Current
-'Book': 12, // Scatter/Wild - slightly rarer
+Ret logikken (linjer 64-113) til at:
 
-// Changed to
-'Book': 5,  // Scatter/Wild - very rare
+1. For hvert hjul med det ekspanderende symbol, tjek om det er blandt de første N positioner på en gevinstlinje hvor N er antallet af sammenhængende matches
+2. Kun tæl som gevinst hvis det ekspanderende symbol er base-symbolet for linjen
+
+```text
+NUVÆRENDE LOGIK (forkert):
+- Tjek om NOGEN kombination vinder på den udvidede grid
+- Returnér true hvis 3+ symboler matcher fra venstre
+
+NY LOGIK (korrekt):
+- Tjek kun om det EKSPANDERENDE SYMBOL selv skaber en gevinst
+- Base-symbolet skal være det ekspanderende symbol
+- Tæl kun sammenhængende matches af det ekspanderende symbol
 ```
 
 ---
 
-### 2. Add Scatter Counting Per Reel
-**File: `src/lib/slotGameLogic.ts`**
+## Tekniske Detaljer
 
-Add a new function to count scatters per column, which will be used to detect "tease" situations:
+### Fil: `src/lib/bonusGameLogic.ts`
 
+**Funktion `checkIfExpandingCreatesPaylineWin` (linje 64-113):**
+
+Erstat den nuværende logik med:
+- Sæt `baseSymbol` til `expandingSymbol` i stedet for at finde det første ikke-wild symbol
+- Tjek kun om det ekspanderende symbol skaber sammenhængende matches fra venstre
+- Returner kun `true` hvis det ekspanderende symbol matcher 3+ gange i træk fra venstre
+
+Specifik ændring:
 ```typescript
-export function countScattersPerReel(grid: string[][], symbols: SlotSymbol[]): number[] {
-  const scatterSymbol = symbols.find(s => s.is_scatter);
-  if (!scatterSymbol) return [0, 0, 0, 0, 0];
-  
-  return grid.map(column => 
-    column.filter(symbolId => symbolId === scatterSymbol.id).length
-  );
+// NUVÆRENDE (forkert - linje 87-92):
+let baseSymbol = lineSymbols.find(s => s && !s.is_wild);
+if (!baseSymbol) {
+  baseSymbol = lineSymbols[0];
 }
 
-export function getScatterTeaseReels(grid: string[][], symbols: SlotSymbol[]): number[] {
-  const scattersPerReel = countScattersPerReel(grid, symbols);
-  
-  // Count total scatters in first N reels
-  let scatterCount = 0;
-  let teaseStartReel = -1;
-  
-  for (let i = 0; i < 5; i++) {
-    if (scattersPerReel[i] > 0) {
-      scatterCount += scattersPerReel[i];
-    }
-    // If we have 2+ scatters in the first 1-3 reels, tease on remaining reels
-    if (scatterCount >= 2 && teaseStartReel === -1 && i < 3) {
-      teaseStartReel = i + 1; // Tease starts on the next reel
-    }
-  }
-  
-  // Return indices of reels that should be teased
-  if (teaseStartReel > 0) {
-    return Array.from({ length: 5 - teaseStartReel }, (_, i) => teaseStartReel + i);
-  }
-  return [];
-}
+// NY (korrekt):
+// For expanding symbol check, we ONLY care about wins 
+// where the expanding symbol is the base
+const baseSymbol = symbolsById.get(expandingSymbol.id);
+if (!baseSymbol) continue;
 ```
 
----
-
-### 3. Pass Tease Information to Reels
-**File: `src/components/slots/SlotGame.tsx`**
-
-- After generating the grid but before spinning, calculate which reels should tease
-- Pass a `teaseMode` prop to `SlotReel` components
-
+Og opdater match-logikken (linje 94-106):
 ```typescript
-// In handleSpin(), after generating the grid:
-const teaseReels = getScatterTeaseReels(originalGrid, symbols);
+// NUVÆRENDE (forkert):
+const isMatch = symbol.id === baseSymbol?.id;
 
-// When rendering SlotReel:
-<SlotReel
-  key={colIndex}
-  symbols={symbols}
-  displayedSymbolIds={column}
-  isSpinning={isSpinning}
-  teaseMode={teaseReels.includes(colIndex)}
-  delay={colIndex}
-  // ... other props
-/>
+// NY (korrekt - kun ekspanderende symbol eller wild tæller):
+const isMatch = symbol?.id === expandingSymbol.id || symbol?.is_wild;
 ```
 
----
+Dette sikrer at:
+- Udvidelse kun sker hvis det ekspanderende symbol selv bidrager til en gevinst
+- Andre gevinstkombinationer (A, A, A osv.) ikke udløser forkert udvidelse
 
-### 4. Implement Tease Animation in SlotReel
-**File: `src/components/slots/SlotReel.tsx`**
-
-When `teaseMode` is true:
-- Increase the spin duration significantly (e.g., 2x-3x longer)
-- Use a different easing curve for more dramatic slowdown
-- Optionally add visual effects (glow, shake) during tease
-
-```typescript
-interface SlotReelProps {
-  // ... existing props
-  teaseMode?: boolean;  // NEW: Whether this reel should tease (slow reveal)
-}
-
-// In the animation logic:
-const baseSpinDuration = teaseMode ? 1800 : 1000; // Longer base duration for tease
-const reelStopDelay = teaseMode ? delay * 550 : delay * 350; // Slower stagger for tease
-
-// Use different easing for tease - slower deceleration
-const easing = teaseMode 
-  ? 1 - Math.pow(1 - progress, 4)  // Slower ease out
-  : 1 - Math.pow(1 - progress, 2); // Normal ease out
-```
-
----
-
-### 5. Update Spin Duration in SlotGame
-**File: `src/components/slots/SlotGame.tsx`**
-
-Account for the longer tease animation when calculating total spin duration:
-
-```typescript
-// Calculate total spin duration based on whether we have a tease
-const hasTeaseReels = teaseReels.length > 0;
-const spinDuration = hasTeaseReels ? 4000 : 2500; // Longer wait for tease spins
-```
-
----
-
-## Technical Details
-
-### Timing Breakdown (Normal Spin)
-- Base duration: 1000ms
-- Per-reel stagger: 350ms
-- Total for 5 reels: 1000 + (4 × 350) = 2400ms
-
-### Timing Breakdown (Tease Spin)
-- Base duration: 1800ms (80% longer)
-- Per-reel stagger: 550ms (57% longer)
-- Total for 5 reels: 1800 + (4 × 550) = 4000ms
-
-### Visual Tease Effects (Optional)
-- Amber glow around teasing reels
-- Slight "shake" animation when slowing down
-- Heartbeat sound effect for tension
-
----
-
-## Files Modified
-1. `src/lib/slotGameLogic.ts` - Scatter weight + helper functions
-2. `src/components/slots/SlotReel.tsx` - Tease mode animation
-3. `src/components/slots/SlotGame.tsx` - Detect tease & pass props
-
----
-
-## Result
-- Scatter symbols (Book) will appear approximately 2.4x less frequently
-- When 2 scatters land in the first 3 reels, the remaining reels will spin noticeably slower, building anticipation for a potential bonus trigger
