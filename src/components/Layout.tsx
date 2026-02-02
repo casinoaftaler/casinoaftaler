@@ -3,8 +3,11 @@ import { Header } from "./Header";
 import { Footer } from "./Footer";
 import { CookieConsent } from "./CookieConsent";
 import { BackToTop } from "./BackToTop";
+import { usePageTracking } from "@/hooks/usePageTracking";
 
 export function Layout() {
+  usePageTracking();
+
   return (
     <div className="flex min-h-screen flex-col">
       <Header />

@@ -91,25 +91,53 @@ export function CombinedAnalyticsDashboard() {
     };
   };
 
-  // Page Analytics Query
-  const { data: analyticsData, isLoading: analyticsLoading } = useQuery({
-    queryKey: ["analytics", dateRange],
+  // Page Analytics Query - fetch from page_views table
+  const { data: pageViewsData, isLoading: analyticsLoading } = useQuery({
+    queryKey: ["page-analytics", dateRange],
     queryFn: async () => {
-      const { startDate, endDate, granularity } = getDateRange();
+      const { start } = getDateRange();
       
-      const response = await fetch(
-        `/api/analytics?start=${startDate}&end=${endDate}&granularity=${granularity}`
-      ).catch(() => null);
-      
-      if (!response || !response.ok) {
-        return [] as AnalyticsData[];
+      const { data, error } = await supabase
+        .from("page_views")
+        .select("id, path, created_at")
+        .gte("created_at", start.toISOString())
+        .order("created_at", { ascending: true });
+
+      if (error) throw error;
+      return data || [];
+    },
+  });
+
+  // Process page views into daily/hourly analytics data
+  const analyticsData = useMemo(() => {
+    if (!pageViewsData || pageViewsData.length === 0) return [];
+
+    const groupedData: Record<string, { visitors: Set<string>; pageViews: number }> = {};
+
+    pageViewsData.forEach((view) => {
+      const date = new Date(view.created_at);
+      const key = dateRange === "7d" 
+        ? date.toISOString().split("T")[0] + "T" + date.getHours().toString().padStart(2, "0") + ":00"
+        : date.toISOString().split("T")[0];
+
+      if (!groupedData[key]) {
+        groupedData[key] = { visitors: new Set(), pageViews: 0 };
       }
       
-      return response.json() as Promise<AnalyticsData[]>;
-    },
-    staleTime: 5 * 60 * 1000,
-    retry: false,
-  });
+      // Use a simple hash of path + hour as visitor approximation
+      const visitorKey = `${view.path}-${date.getHours()}`;
+      groupedData[key].visitors.add(visitorKey);
+      groupedData[key].pageViews++;
+    });
+
+    return Object.entries(groupedData)
+      .sort(([a], [b]) => a.localeCompare(b))
+      .map(([date, data]) => ({
+        date,
+        visitors: data.visitors.size,
+        pageViews: data.pageViews,
+      }));
+  }, [pageViewsData, dateRange]);
 
   // Click Analytics Query
   const { data: clickEvents, isLoading: clicksLoading } = useQuery({
