@@ -1,161 +1,60 @@
 
-# Plan: Book of Dead-style Slot Machine with Community Tab
+# Plan: Slot Machine Admin Section
 
 ## Overview
-Build a fully-featured slot machine game inspired by "Book of Dead" with a bonus game feature, 10 pay lines, AI-generated symbols, leaderboard, and a daily spin allowance system. The game will be placed under a new "Community" dropdown in the navigation, which will also include Highlights.
+Add a new "Spillemaskine" (Slot Machine) tab to the admin panel that allows administrators to manage all slot machine parameters including symbols, payouts, daily spin limits, bet limits, and view game statistics.
 
 ---
 
-## Navigation Changes
+## Admin Tab Structure
 
-### Desktop Navigation
-- Replace the standalone "Highlights" link with a "Community" dropdown menu
-- The dropdown will contain:
-  - **Slot Machine** - Links to `/community/slots`
-  - **Highlights** - Links to `/highlights`
+A new tab will be added to the admin dashboard with three sub-sections:
 
-### Mobile Navigation  
-- Add "Community" as a parent item
-- Sub-items: Slot Machine and Highlights
+1. **Symboler (Symbols)** - Manage slot symbols, images, and payout multipliers
+2. **Indstillinger (Settings)** - Configure daily spins, bet limits, and game parameters
+3. **Statistik (Statistics)** - View aggregated game data and player activity
 
 ---
 
-## Database Schema
+## Configurable Parameters
 
-### New Tables
+### Symbol Management
+For each of the 10 slot symbols, admins can modify:
+- **Name** - Symbol display name (e.g., "Pharaoh", "Book")
+- **Image** - Upload custom symbol image to `slot-symbols` storage bucket
+- **Multiplier 3x** - Payout for 3 matching symbols
+- **Multiplier 4x** - Payout for 4 matching symbols
+- **Multiplier 5x** - Payout for 5 matching symbols
+- **Is Scatter** - Mark as scatter symbol (pays anywhere)
+- **Is Wild** - Mark as wild symbol (substitutes other symbols)
+- **Position** - Display order in paytable (drag to reorder)
 
-**1. `slot_symbols`** - Store AI-generated symbol data
-| Column | Type | Description |
-|--------|------|-------------|
-| id | uuid | Primary key |
-| name | text | Symbol name (e.g., "Pharaoh", "Scarab") |
-| image_url | text | URL to stored image |
-| multiplier_3 | integer | Payout for 3 matching (× bet) |
-| multiplier_4 | integer | Payout for 4 matching |
-| multiplier_5 | integer | Payout for 5 matching |
-| is_scatter | boolean | Is this the Book/scatter symbol |
-| is_wild | boolean | Wild symbol capability |
-| position | integer | Display order |
-| created_at | timestamp | Creation time |
+### Game Settings (stored in `site_settings` table)
+- **Daily Spins** - Number of free spins per user per day (default: 100)
+- **Min Bet** - Minimum bet amount (default: 1)
+- **Max Bet** - Maximum bet amount (default: 10)
 
-**2. `slot_spins`** - Track daily spin allowances
-| Column | Type | Description |
-|--------|------|-------------|
-| id | uuid | Primary key |
-| user_id | uuid | References profiles |
-| date | date | The date (resets at midnight) |
-| spins_remaining | integer | Spins left (starts at 100) |
-| created_at | timestamp | Creation time |
-
-**3. `slot_game_results`** - Record each spin for leaderboard
-| Column | Type | Description |
-|--------|------|-------------|
-| id | uuid | Primary key |
-| user_id | uuid | Player |
-| bet_amount | integer | Amount wagered |
-| win_amount | integer | Amount won |
-| is_bonus_triggered | boolean | Did bonus game trigger |
-| bonus_win_amount | integer | Winnings from bonus |
-| created_at | timestamp | When played |
-
-**4. `slot_leaderboard`** - Aggregated leaderboard view
-- This will be a PostgreSQL VIEW that aggregates total winnings per user
-- Includes daily, weekly, and all-time rankings
+### Statistics View (read-only)
+- Total spins today
+- Total winnings today
+- Average win per spin
+- Top 10 winners today
 
 ---
 
-## Slot Machine Game Mechanics
+## Database Changes
 
-### Core Features
+### New Site Settings Keys
+Add the following keys to the `site_settings` table:
+- `slot_daily_spins` (default: "100")
+- `slot_min_bet` (default: "1")
+- `slot_max_bet` (default: "10")
 
-**Reel Configuration**
-- 5 reels × 3 rows = 15 visible symbols
-- 10 fixed pay lines (like classic Book of Dead)
-
-**Pay Lines Pattern (10 lines)**
-```text
-Line 1:  [1][1][1][1][1]  (middle row)
-Line 2:  [0][0][0][0][0]  (top row)
-Line 3:  [2][2][2][2][2]  (bottom row)
-Line 4:  [0][1][2][1][0]  (V shape)
-Line 5:  [2][1][0][1][2]  (inverted V)
-Line 6:  [0][0][1][2][2]  (top to bottom)
-Line 7:  [2][2][1][0][0]  (bottom to top)
-Line 8:  [1][0][0][0][1]  (U shape top)
-Line 9:  [1][2][2][2][1]  (U shape bottom)
-Line 10: [0][1][1][1][0]  (mild V)
-```
-
-### Symbols (10 total, AI-generated)
-1. **Pharaoh** - Highest value symbol
-2. **Anubis** - High value
-3. **Horus** - High value
-4. **Scarab** - Medium value
-5. **Isis** - Medium value
-6. **Ankh** - Medium value
-7. **A (Ace)** - Low value
-8. **K (King)** - Low value
-9. **Q (Queen)** - Low value
-10. **Book of Ra** - SCATTER/WILD (triggers bonus)
-
-### Payout Table
-| Symbol | 3× | 4× | 5× |
-|--------|-----|------|------|
-| Pharaoh | 30× | 100× | 500× |
-| Anubis | 20× | 60× | 200× |
-| Horus | 15× | 40× | 125× |
-| Scarab | 10× | 30× | 100× |
-| Isis | 10× | 25× | 75× |
-| Ankh | 5× | 15× | 50× |
-| A | 5× | 10× | 40× |
-| K | 5× | 10× | 30× |
-| Q | 5× | 10× | 25× |
-| Book | 2× | 20× | 200× |
-
----
-
-## Bonus Game Feature
-
-### Trigger Condition
-- 3+ Book symbols anywhere on reels triggers 10 free spins
-- During bonus, one random symbol is selected as "expanding symbol"
-
-### Bonus Mechanics
-1. **Symbol Selection**: Random symbol chosen before free spins
-2. **Expanding Symbols**: When the special symbol appears on any winning line, it expands to fill the entire reel
-3. **Retrigger**: 3+ Books during free spins adds +10 more spins
-4. **All wins during bonus are added to bonus_win_amount**
-
----
-
-## Daily Spin System
-
-### Reset Logic
-- Each user gets 100 spins per day
-- Resets at midnight (server time, UTC)
-- Database trigger or edge function checks date on each spin request
-- If `slot_spins.date !== today`, reset to 100
-
-### Spin Deduction Flow
-1. User clicks "SPIN"
-2. Check if `spins_remaining > 0`
-3. If yes, decrement by 1 and proceed
-4. If no, show "Come back tomorrow!" message
-
----
-
-## Leaderboard
-
-### Display Sections
-- **Daily Top 10** - Today's biggest winners
-- **Weekly Top 10** - This week's leaders
-- **All-Time Top 10** - Hall of fame
-
-### Data Points per Entry
-- Rank position
-- User avatar + display name
-- Total winnings
-- Biggest single win
+### Update RLS Policy
+Add the new settings keys to the public whitelist for reading:
+- `slot_daily_spins`
+- `slot_min_bet`
+- `slot_max_bet`
 
 ---
 
@@ -163,145 +62,151 @@ Line 10: [0][1][1][1][0]  (mild V)
 
 ### New Files
 ```text
-src/pages/Community.tsx              - Community landing/redirect
-src/pages/SlotMachine.tsx            - Main slot game page
-src/components/slots/
-  ├── SlotGame.tsx                   - Main game container
-  ├── SlotReel.tsx                   - Individual reel with spin animation
-  ├── SlotSymbol.tsx                 - Symbol display component
-  ├── PayTable.tsx                   - Paytable popup/modal
-  ├── BonusGame.tsx                  - Free spins bonus round
-  ├── SpinButton.tsx                 - Main spin control
-  ├── BetControls.tsx                - Bet amount selector
-  ├── WinDisplay.tsx                 - Win amount animations
-  ├── SpinsRemaining.tsx             - Daily spins counter
-  ├── SlotLeaderboard.tsx            - Leaderboard display
-  └── PayLineOverlay.tsx             - Visual pay line indicators
-src/hooks/useSlotMachine.ts          - Game state and logic hook
-src/hooks/useSlotSpins.ts            - Daily spins management
-src/hooks/useSlotLeaderboard.ts      - Leaderboard data fetching
-src/lib/slotGameLogic.ts             - Pure functions for game math
+src/components/SlotMachineAdminSection.tsx  - Main admin component with tabs
+src/components/SlotSymbolImageUpload.tsx    - Image upload for slot symbols
+src/hooks/useSlotSettings.ts                - Hook for slot game settings
+src/hooks/useSlotStatistics.ts              - Hook for game statistics
 ```
 
----
-
-## UI/UX Design
-
-### Slot Machine Page Layout
+### Modified Files
 ```text
-+------------------------------------------+
-|        COMMUNITY SLOT MACHINE            |
-|          [Spins: 87/100 today]           |
-+------------------------------------------+
-|   +-------------------------------+      |
-|   |  [Reel 1] [Reel 2] [Reel 3]  |      |
-|   |  [Reel 4] [Reel 5]           |      |
-|   |                              |      |
-|   |  [  5 × 3 Symbol Grid  ]     |      |
-|   |                              |      |
-|   +-------------------------------+      |
-|                                          |
-|   [Bet: 1-10]  [💰 WIN: 0]  [SPIN 🎰]   |
-|                                          |
-|   [📊 Paytable]  [🏆 Leaderboard]        |
-+------------------------------------------+
+src/pages/Admin.tsx                         - Add new "Spillemaskine" tab
+src/hooks/useSlotSpins.ts                   - Read daily spins from settings
+src/components/slots/SlotGame.tsx           - Read bet limits from settings
+src/components/slots/BetControls.tsx        - Use dynamic min/max bet
+src/components/slots/SpinsRemaining.tsx     - Display dynamic max spins
 ```
 
-### Visual Style
-- Egyptian gold/amber theme matching the casino site aesthetic
-- Smooth reel spinning animations (CSS transforms)
-- Win line highlighting with glowing effects
-- Celebratory animations for big wins
-- Dark background with gold accents
+---
+
+## Implementation Details
+
+### SlotMachineAdminSection Component
+The admin section will use a sub-tab layout similar to existing patterns:
+
+```text
++--------------------------------------------------+
+|  SPILLEMASKINE ADMINISTRATION                    |
+|  [Symboler] [Indstillinger] [Statistik]          |
++--------------------------------------------------+
+|                                                  |
+|  Symboler Tab:                                   |
+|  +--------------------------------------------+  |
+|  | [Drag] [Image] Pharaoh    30x  100x  500x  |  |
+|  | [Drag] [Image] Anubis     20x   60x  200x  |  |
+|  | [Drag] [Image] Book (W/S)  2x   20x  200x  |  |
+|  |  ...                                       |  |
+|  +--------------------------------------------+  |
+|                                                  |
+|  Indstillinger Tab:                              |
+|  +--------------------------------------------+  |
+|  | Daglige Spins:     [100]                   |  |
+|  | Minimum Indsats:   [1]                     |  |
+|  | Maximum Indsats:   [10]                    |  |
+|  +--------------------------------------------+  |
+|                                                  |
++--------------------------------------------------+
+```
+
+### Symbol Edit Dialog
+When clicking edit on a symbol:
+- Input for name
+- Image upload component
+- Three number inputs for multipliers (3x, 4x, 5x)
+- Toggle switches for is_scatter and is_wild
+- Save/Cancel buttons
+
+### Symbol Image Upload
+Similar to ShopImageUpload but uploading to `slot-symbols` bucket:
+- Accept image files (jpg, png, webp)
+- Preview current image
+- Upload new image
+- Remove image option
+
+### useSlotSettings Hook
+```typescript
+// Fetches and updates slot game settings
+export function useSlotSettings() {
+  // Queries for: slot_daily_spins, slot_min_bet, slot_max_bet
+  // Returns: { dailySpins, minBet, maxBet, updateSettings }
+}
+```
+
+### useSlotStatistics Hook
+```typescript
+// Fetches aggregated game statistics for admin view
+export function useSlotStatistics() {
+  // Queries slot_game_results for today's data
+  // Returns: { totalSpins, totalWinnings, avgWin, topWinners }
+}
+```
+
+### Hook for Managing Symbols
+Create a `useSlotSymbolsAdmin` hook for CRUD operations:
+- `updateSymbol(id, data)` - Update symbol properties
+- `updateSymbolPositions(positions)` - Reorder symbols
 
 ---
 
-## Technical Details
+## UI/UX Considerations
 
-### Symbol Generation (AI)
-- Use Lovable AI (gemini-2.5-flash-image) to generate the 10 symbols
-- Store generated images in a storage bucket `slot-symbols`
-- Admin can regenerate symbols if needed
+### Tab Icon
+Use `Gamepad2` (lucide-react) icon for the Spillemaskine tab
 
-### Game State Management
-- React state for current spin
-- Optimistic UI updates
-- Server validates all wins via edge function
+### Symbol List
+- Drag-and-drop reordering (like Shop and Casino lists)
+- Visual indicator for Wild/Scatter symbols
+- Quick edit button for each symbol
+- Image preview or emoji fallback
 
-### RNG and Fairness
-- All randomization happens server-side in edge function
-- Each spin request returns the final grid state
-- Client only handles display/animation
+### Settings Form
+- Number inputs with validation
+- Min/max constraints
+- Real-time preview of changes
+- Toast notification on save
 
-### Edge Function: `slot-spin`
-- Validates user has spins remaining
-- Generates random grid
-- Calculates wins across all 10 lines
-- Checks for bonus trigger
-- Updates database
-- Returns result to client
+### Statistics Dashboard
+- Cards showing key metrics
+- Today/This Week/All Time filters
+- Mini leaderboard of top winners
 
 ---
 
-## Security Considerations
+## Security
 
-### RLS Policies
-- Users can only read their own spin records
-- Users can only read their own daily spins count
-- Leaderboard view is public (aggregated data only)
-- Only authenticated users can play
-- Game results insert only via edge function (service role)
+### RLS Updates
+The new site_settings keys need to be added to the public whitelist so the game can read them. The migration will update the existing RLS policy.
 
-### Anti-Cheat
-- All game logic runs server-side
-- Client sends only: "spin" command + bet amount
-- No client-side RNG or win calculation
+### Admin-Only Write Access
+Symbol updates and settings changes are protected by the existing `has_role(auth.uid(), 'admin')` RLS policies on `slot_symbols` and `site_settings` tables.
 
 ---
 
 ## Implementation Order
 
-1. **Database Setup**
-   - Create tables: slot_symbols, slot_spins, slot_game_results
-   - Create leaderboard view
-   - Set up RLS policies
+1. **Database Migration**
+   - Insert default slot settings into site_settings
+   - Update RLS policy to whitelist new keys
 
-2. **Navigation Update**
-   - Add Community dropdown to Header
-   - Move Highlights under Community
-   - Add routes to App.tsx
+2. **Create Hooks**
+   - useSlotSettings for reading/updating game config
+   - useSlotSymbolsAdmin for symbol CRUD
+   - useSlotStatistics for admin stats view
 
-3. **Symbol Generation**
-   - Create admin tool or script to generate symbols via AI
-   - Store in storage bucket
-   - Seed slot_symbols table
+3. **Create Components**
+   - SlotSymbolImageUpload component
+   - SlotMachineAdminSection with three tabs
 
-4. **Core Game UI**
-   - Build SlotGame component with reels
-   - Implement spin animations
-   - Create pay line overlay
+4. **Update Admin.tsx**
+   - Add new tab trigger with Gamepad2 icon
+   - Add TabsContent with SlotMachineAdminSection
 
-5. **Game Logic Edge Function**
-   - Create slot-spin edge function
-   - Implement RNG, win calculation, bonus trigger
-   - Handle daily spins logic
+5. **Update Game Components**
+   - Modify useSlotSpins to read dailySpins from settings
+   - Update BetControls to use dynamic min/max
+   - Update SpinsRemaining to show dynamic max
 
-6. **Daily Spins System**
-   - Build useSlotSpins hook
-   - Display remaining spins
-   - Handle midnight reset
-
-7. **Bonus Game**
-   - Implement free spins mode
-   - Expanding symbol logic
-   - Retrigger capability
-
-8. **Leaderboard**
-   - Create database view
-   - Build leaderboard component
-   - Daily/weekly/all-time tabs
-
-9. **Polish**
-   - Win animations
-   - Sound effects (optional)
-   - Mobile responsiveness
+6. **Testing**
+   - Verify symbol editing works
+   - Test settings changes reflect in game
+   - Confirm statistics display correctly
