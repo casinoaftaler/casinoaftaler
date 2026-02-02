@@ -1,5 +1,6 @@
 import { cn } from "@/lib/utils";
 import { Coins } from "lucide-react";
+import { useAnimatedCounter } from "@/hooks/useAnimatedCounter";
 
 interface WinDisplayProps {
   amount: number;
@@ -7,6 +8,10 @@ interface WinDisplayProps {
 }
 
 export function WinDisplay({ amount, isAnimating }: WinDisplayProps) {
+  // Animate the counter - duration scales with win size for dramatic effect
+  const duration = Math.min(500 + amount * 10, 2000); // 500ms to 2000ms based on win size
+  const displayAmount = useAnimatedCounter(amount, { duration, startFrom: 0 });
+
   return (
     <div
       className={cn(
@@ -24,7 +29,7 @@ export function WinDisplay({ amount, isAnimating }: WinDisplayProps) {
           amount > 0 ? "text-amber-500" : "text-muted-foreground"
         )}
       >
-        {amount}
+        {displayAmount}
       </span>
     </div>
   );
