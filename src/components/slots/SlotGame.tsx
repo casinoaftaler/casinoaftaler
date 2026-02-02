@@ -8,6 +8,7 @@ import { WinDisplay } from "./WinDisplay";
 import { PayTable } from "./PayTable";
 import { BonusOverlay } from "./BonusOverlay";
 import { BonusStatusBar } from "./BonusStatusBar";
+import { VolumeControl } from "./VolumeControl";
 import { useSlotSymbols } from "@/hooks/useSlotSymbols";
 import { useSlotSpins } from "@/hooks/useSlotSpins";
 import { useSlotSettings } from "@/hooks/useSlotSettings";
@@ -17,7 +18,7 @@ import { supabase } from "@/integrations/supabase/client";
 import { generateGrid, calculateSpinResult, PAY_LINES, type SpinResult } from "@/lib/slotGameLogic";
 import { calculateBonusSpinResult } from "@/lib/bonusGameLogic";
 import { slotSounds } from "@/lib/slotSoundEffects";
-import { Gamepad2, Loader2, Volume2, VolumeX } from "lucide-react";
+import { Gamepad2, Loader2 } from "lucide-react";
 import { toast } from "sonner";
 import { cn } from "@/lib/utils";
 
@@ -29,7 +30,7 @@ export function SlotGame() {
   const { 
     bonusState, 
     triggerBonus, 
-    decrementFreeSpin, 
+    decrementFreeSpin,
     addBonusWinnings, 
     retriggerBonus, 
     endBonus,
@@ -42,7 +43,6 @@ export function SlotGame() {
   const [lastResult, setLastResult] = useState<SpinResult | null>(null);
   const [winAmount, setWinAmount] = useState(0);
   const [isWinAnimating, setIsWinAnimating] = useState(false);
-  const [soundEnabled, setSoundEnabled] = useState(true);
   const [expandedReels, setExpandedReels] = useState<number[]>([]);
   
   // Bonus overlay states
@@ -64,15 +64,6 @@ export function SlotGame() {
   if (!grid && symbols && symbols.length > 0) {
     initializeGrid();
   }
-
-  const toggleSound = () => {
-    const newEnabled = !soundEnabled;
-    setSoundEnabled(newEnabled);
-    slotSounds.setEnabled(newEnabled);
-    if (newEnabled) {
-      slotSounds.playButtonClick();
-    }
-  };
 
   const handleSpin = async () => {
     if (!symbols || symbols.length === 0 || !user || isSpinning) return;
@@ -320,43 +311,21 @@ export function SlotGame() {
             bonusWinnings={bonusState.bonusWinnings}
           />
 
-          {/* Header with spins and sound toggle */}
+          {/* Header with spins and volume control */}
           {!bonusState.isActive && (
             <div className="flex items-center justify-between">
               <div className="flex-1" />
               <SpinsRemaining />
               <div className="flex-1 flex justify-end">
-                <Button
-                  variant="ghost"
-                  size="icon"
-                  onClick={toggleSound}
-                  className="text-muted-foreground hover:text-foreground"
-                >
-                  {soundEnabled ? (
-                    <Volume2 className="h-5 w-5" />
-                  ) : (
-                    <VolumeX className="h-5 w-5" />
-                  )}
-                </Button>
+                <VolumeControl />
               </div>
             </div>
           )}
 
-          {/* Sound toggle during bonus (compact) */}
+          {/* Volume control during bonus (compact) */}
           {bonusState.isActive && (
             <div className="flex justify-end">
-              <Button
-                variant="ghost"
-                size="icon"
-                onClick={toggleSound}
-                className="text-muted-foreground hover:text-foreground"
-              >
-                {soundEnabled ? (
-                  <Volume2 className="h-5 w-5" />
-                ) : (
-                  <VolumeX className="h-5 w-5" />
-                )}
-              </Button>
+              <VolumeControl />
             </div>
           )}
 
