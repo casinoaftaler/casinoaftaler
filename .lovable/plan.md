@@ -1,136 +1,72 @@
 
-# Plan: Slot Machine Page Lock med Password-adgang
+
+# Plan: Reducer spillemaskine-symboler på mobil
 
 ## Oversigt
-Implementer en låsefunktion til slot machine-siden, hvor:
-1. Admin kan låse/oplåse siden fra admin-panelet
-2. Når siden er låst, skal brugere indtaste et password for at få adgang
-3. Password er "bookoffedesvin2026"
+Gør spillemaskine-symbolerne mindre på de mindste skærmstørrelser for at sikre at hele spillemaskinen (5 hjul × 3 rækker) passer på mobilskærme uden at blive skåret af.
 
-## Sikkerhedsovervejelser
+## Nuværende størrelser vs. Nye størrelser
 
-Password-adgangen bruges som en ekstra "pre-access" gate til at holde siden privat under udvikling/test. Det er IKKE et sikkerheds-login, men en simpel adgangskontrol der gemmes i brugerens session (sessionStorage) så de ikke skal indtaste det igen ved hver sidebesøg.
+| Breakpoint | Skærmbredde | Nuværende | Ny størrelse |
+|------------|-------------|-----------|--------------|
+| Base       | < 400px     | 80px      | **64px**     |
+| xs         | ≥ 400px     | 96px      | **76px**     |
+| sm         | ≥ 640px     | 112px     | 96px         |
+| md         | ≥ 768px     | 128px     | 112px        |
+| lg         | ≥ 1024px    | 160px     | 140px        |
+| xl         | ≥ 1280px    | 176-180px | 160px        |
 
----
+Gap mellem symboler reduceres også tilsvarende:
+- Base: 6px → **4px**
+- xs: 8px → **6px**
+- sm: 10px → **8px**
 
-## Tekniske Ændringer
+## Beregning: Passer det på mobil?
+Med de nye størrelser:
+- **5 symboler × 64px + 4 gaps × 4px = 336px** bredde (passer på 360px skærm)
+- **3 symboler × 64px + 2 gaps × 4px = 200px** højde
 
-### 1. Database Migration
-Tilføj to nye site_settings nøgler:
-- `slot_page_locked` - "true" eller "false" (standard: "true")
-- `slot_page_password` - Krypteret/hashed password (standard: hashed version af "bookoffedesvin2026")
-
-```text
-┌─────────────────────────────┐
-│      site_settings          │
-├─────────────────────────────┤
-│ slot_page_locked: "true"    │
-│ slot_page_password: "..."   │
-└─────────────────────────────┘
-```
-
-### 2. Ny Hook: useSlotPageAccess
-Opretter `src/hooks/useSlotPageAccess.ts`:
-- Henter `slot_page_locked` status fra databasen
-- Tjekker om brugeren har indtastet korrekt password (gemt i sessionStorage)
-- Admin-brugere får automatisk adgang (bypass password)
-- Eksponerer: `isLocked`, `hasAccess`, `verifyPassword()`, `isAdmin`
-
-### 3. Opdater SlotMachine.tsx
-Tilføj en "password gate" komponent der vises når:
-- Siden er låst OG
-- Brugeren ikke er admin OG
-- Brugeren ikke har indtastet korrekt password
-
-UI for låst side:
-- Egyptisk tema baggrund (samme som slot-maskinen)
-- Ikon med lås eller lignende
-- Titel: "Spillemaskinen er midlertidigt lukket"
-- Password input felt
-- Knap: "Få adgang"
-- Fejlbesked ved forkert password
-
-### 4. Admin Panel Udvidelse
-Tilføj i `SlotMachineAdminSection.tsx` under "Indstillinger":
-- Switch/toggle: "Lås spillemaskine-siden"
-- Beskrivelse: "Når aktiveret, skal brugere indtaste et password for at få adgang"
-- Mulighed for at ændre password (valgfrit)
-
----
-
-## Implementation Flow
-
-```text
-Bruger besøger /community/slots
-         │
-         ▼
-┌─────────────────────────┐
-│ Er siden låst?          │
-│ (slot_page_locked)      │
-└─────────────────────────┘
-         │
-    Ja   │   Nej
-         ▼         ──────────────► Vis slot-maskinen
-┌─────────────────────────┐
-│ Er brugeren admin?      │
-└─────────────────────────┘
-         │
-    Ja   │   Nej
-         │         ──────────────► Vis password-gate
-         ▼
-   Vis slot-maskinen
-```
-
----
-
-## Fil-ændringer
+## Filer der skal opdateres
 
 | Fil | Ændring |
 |-----|---------|
-| `src/hooks/useSlotPageAccess.ts` | **NY** - Hook til at tjekke låse-status og password |
-| `src/pages/SlotMachine.tsx` | Tilføj password-gate UI og adgangskontrol |
-| `src/components/SlotMachineAdminSection.tsx` | Tilføj lock toggle i admin panel |
-| `src/hooks/useSlotSettings.ts` | Udvid med lock/password settings |
+| `src/components/slots/SlotSymbol.tsx` | Opdater responsive Tailwind klasser til mindre størrelser |
+| `src/components/slots/SlotReel.tsx` | Opdater `SYMBOL_SIZE` og `GAP` konstanterne |
+| `src/components/slots/SlotGame.tsx` | Opdater `SYMBOL_SIZE` og `GAP` konstanterne (skal matche SlotReel) |
 
----
+## Tekniske detaljer
 
-## Database Migration SQL
-
-```sql
--- Tilføj slot page lock setting
-INSERT INTO site_settings (key, value)
-VALUES ('slot_page_locked', 'true')
-ON CONFLICT (key) DO NOTHING;
-
--- Tilføj slot page password setting
-INSERT INTO site_settings (key, value)
-VALUES ('slot_page_password', 'bookoffedesvin2026')
-ON CONFLICT (key) DO NOTHING;
+### SlotSymbol.tsx
+Ændre symbol container og billede størrelser:
+```
+Container: 64px → 76px → 96px → 112px → 140px → 160px
+Billede:   52px → 64px → 80px → 96px  → 124px → 144px
 ```
 
----
+### SlotReel.tsx & SlotGame.tsx
+Opdater konstanterne:
+```typescript
+const SYMBOL_SIZE = { 
+  xs: 64,      // var 80
+  mobile: 76,  // var 96
+  sm: 96,      // var 112
+  md: 112,     // var 128
+  lg: 140,     // var 160
+  xl: 160      // var 176-180
+};
 
-## Brugeroplevelse
+const GAP = { 
+  xs: 4,      // var 6
+  mobile: 6,  // var 8
+  sm: 8,      // var 10
+  md: 12,     // var 14
+  lg: 16      // var 18
+};
+```
 
-### For almindelige brugere (når låst):
-1. Besøger `/community/slots`
-2. Ser egyptisk-tema baggrund med lås-ikon
-3. Indtaster password "bookoffedesvin2026"
-4. Får adgang til spillemaskinen
-5. Password huskes i session (behøver ikke indtaste igen)
-
-### For admin:
-1. Besøger `/community/slots` - får automatisk adgang
-2. Kan gå til Admin → Spillemaskine → Indstillinger
-3. Toggle "Lås spillemaskine-siden" for at låse/oplåse
-4. Kan ændre password hvis nødvendigt
-
----
-
-## Sikkerhed
-
-- Password sammenlignes på klient-siden (acceptabelt da dette er en simpel "preview gate", ikke ægte sikkerhed)
-- Admin-status tjekkes via eksisterende `useAuth` hook der validerer mod `user_roles` tabellen
-- SessionStorage bruges så password ikke skal indtastes ved hver navigation
-- Password gemmes i databasen så admin kan ændre det
+## Resultat
+- Hele spillemaskinen passer nu på skærme ned til 360px bredde
+- Bevarer proportionerne og det visuelle design
+- WinLines og animationer forbliver synkroniserede
+- Symbolbilleder forbliver skarpe og læsbare
 
