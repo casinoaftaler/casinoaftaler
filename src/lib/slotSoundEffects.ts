@@ -56,13 +56,13 @@ class SlotSoundEffects {
     }
   }
 
-  // Egyptian pentatonic scale notes (ancient Egyptian-inspired)
+  // Egyptian/Arabic scale (Hijaz maqam - very characteristic Middle Eastern sound)
   private getEgyptianScale(): number[] {
-    // D minor pentatonic with added augmented notes for exotic feel
-    return [146.83, 174.61, 196.00, 220.00, 261.63, 293.66, 349.23, 392.00, 440.00];
+    // D Hijaz scale: D, Eb, F#, G, A, Bb, C, D (with augmented second interval)
+    return [146.83, 155.56, 185.00, 196.00, 220.00, 233.08, 261.63, 293.66, 311.13, 370.00, 392.00, 440.00];
   }
 
-  // Start ambient Egyptian background music
+  // Start ambient Egyptian background music with oud, ney flute, and darbuka rhythms
   startMusic() {
     if (!this.enabled || !this.musicEnabled) return;
     if (this.musicInterval) return; // Already playing
@@ -71,10 +71,10 @@ class SlotSoundEffects {
     
     // Create master gain for music
     this.musicGainNode = ctx.createGain();
-    this.musicGainNode.gain.value = 0.08 * this.volume;
+    this.musicGainNode.gain.value = 0.1 * this.volume;
     this.musicGainNode.connect(ctx.destination);
 
-    // Low drone - the foundation
+    // Deep drone on D (like a low oud string)
     const drone = ctx.createOscillator();
     const droneGain = ctx.createGain();
     const droneFilter = ctx.createBiquadFilter();
@@ -84,15 +84,15 @@ class SlotSoundEffects {
     droneGain.connect(this.musicGainNode);
     
     drone.frequency.value = 73.42; // D2
-    drone.type = 'sine';
+    drone.type = 'triangle';
     droneFilter.type = 'lowpass';
-    droneFilter.frequency.value = 200;
-    droneGain.gain.value = 0.6;
+    droneFilter.frequency.value = 250;
+    droneGain.gain.value = 0.5;
     
     drone.start();
     this.currentMusic.push(drone);
 
-    // Second drone - fifth above for depth
+    // Fifth drone for harmonic richness
     const drone2 = ctx.createOscillator();
     const drone2Gain = ctx.createGain();
     
@@ -100,68 +100,151 @@ class SlotSoundEffects {
     drone2Gain.connect(this.musicGainNode);
     
     drone2.frequency.value = 110; // A2
-    drone2.type = 'sine';
-    drone2Gain.gain.value = 0.3;
+    drone2.type = 'triangle';
+    drone2Gain.gain.value = 0.25;
     
     drone2.start();
     this.currentMusic.push(drone2);
 
-    // Melodic pattern - Egyptian scale arpeggios
     const scale = this.getEgyptianScale();
     let noteIndex = 0;
-    let ascending = true;
+    let patternStep = 0;
+    
+    // Darbuka-style rhythm pattern (Egyptian percussion)
+    const playDarbuka = () => {
+      if (!this.enabled || !this.musicEnabled) return;
+      
+      const now = ctx.currentTime;
+      
+      // Doum (low hit) - using filtered noise
+      const doum = ctx.createOscillator();
+      const doumGain = ctx.createGain();
+      const doumFilter = ctx.createBiquadFilter();
+      
+      doum.connect(doumFilter);
+      doumFilter.connect(doumGain);
+      doumGain.connect(this.musicGainNode!);
+      
+      doum.frequency.setValueAtTime(80, now);
+      doum.frequency.exponentialRampToValueAtTime(40, now + 0.1);
+      doum.type = 'sine';
+      doumFilter.type = 'lowpass';
+      doumFilter.frequency.value = 200;
+      
+      doumGain.gain.setValueAtTime(0.4, now);
+      doumGain.gain.exponentialRampToValueAtTime(0.001, now + 0.15);
+      
+      doum.start(now);
+      doum.stop(now + 0.15);
+    };
+    
+    const playTek = (delay: number = 0) => {
+      if (!this.enabled || !this.musicEnabled) return;
+      
+      const now = ctx.currentTime + delay;
+      
+      // Tek (high hit)
+      const tek = ctx.createOscillator();
+      const tekGain = ctx.createGain();
+      
+      tek.connect(tekGain);
+      tekGain.connect(this.musicGainNode!);
+      
+      tek.frequency.setValueAtTime(400, now);
+      tek.frequency.exponentialRampToValueAtTime(200, now + 0.05);
+      tek.type = 'triangle';
+      
+      tekGain.gain.setValueAtTime(0.2, now);
+      tekGain.gain.exponentialRampToValueAtTime(0.001, now + 0.08);
+      
+      tek.start(now);
+      tek.stop(now + 0.08);
+    };
 
+    // Main music loop - combines ney-like melody with darbuka rhythm
     this.musicInterval = setInterval(() => {
       if (!this.enabled || !this.musicEnabled) return;
       
-      const melodyOsc = ctx.createOscillator();
-      const melodyGain = ctx.createGain();
-      const melodyFilter = ctx.createBiquadFilter();
-      
-      melodyOsc.connect(melodyFilter);
-      melodyFilter.connect(melodyGain);
-      melodyGain.connect(this.musicGainNode!);
-      
-      melodyOsc.frequency.value = scale[noteIndex];
-      melodyOsc.type = 'triangle';
-      
-      melodyFilter.type = 'lowpass';
-      melodyFilter.frequency.value = 1500;
-      
       const now = ctx.currentTime;
-      melodyGain.gain.setValueAtTime(0.4, now);
-      melodyGain.gain.exponentialRampToValueAtTime(0.001, now + 1.8);
       
-      melodyOsc.start(now);
-      melodyOsc.stop(now + 2);
-
-      // Add shimmer/bell tone
-      if (Math.random() > 0.5) {
-        const shimmer = ctx.createOscillator();
-        const shimmerGain = ctx.createGain();
+      // Maqsoum rhythm pattern (classic Egyptian): Doum tek tek Doum tek
+      const rhythmPattern = [
+        { type: 'doum', delay: 0 },
+        { type: 'tek', delay: 0.25 },
+        { type: 'tek', delay: 0.5 },
+        { type: 'doum', delay: 0.75 },
+        { type: 'tek', delay: 1.0 },
+      ];
+      
+      rhythmPattern.forEach(hit => {
+        if (hit.type === 'doum') {
+          setTimeout(() => playDarbuka(), hit.delay * 1000);
+        } else {
+          setTimeout(() => playTek(), hit.delay * 1000);
+        }
+      });
+      
+      // Ney flute-like melody (breathy, ornamental)
+      const neyOsc = ctx.createOscillator();
+      const neyGain = ctx.createGain();
+      const neyFilter = ctx.createBiquadFilter();
+      
+      neyOsc.connect(neyFilter);
+      neyFilter.connect(neyGain);
+      neyGain.connect(this.musicGainNode!);
+      
+      // Add slight vibrato for ney authenticity
+      const vibrato = ctx.createOscillator();
+      const vibratoGain = ctx.createGain();
+      vibrato.connect(vibratoGain);
+      vibratoGain.connect(neyOsc.frequency);
+      vibrato.frequency.value = 5;
+      vibratoGain.gain.value = 8;
+      
+      neyOsc.frequency.value = scale[noteIndex];
+      neyOsc.type = 'sine';
+      
+      neyFilter.type = 'lowpass';
+      neyFilter.frequency.value = 2000;
+      
+      neyGain.gain.setValueAtTime(0, now);
+      neyGain.gain.linearRampToValueAtTime(0.35, now + 0.1);
+      neyGain.gain.setValueAtTime(0.35, now + 0.8);
+      neyGain.gain.exponentialRampToValueAtTime(0.001, now + 1.5);
+      
+      vibrato.start(now);
+      neyOsc.start(now);
+      neyOsc.stop(now + 1.6);
+      vibrato.stop(now + 1.6);
+      
+      // Oud-like pluck (string instrument)
+      if (patternStep % 2 === 0) {
+        const oud = ctx.createOscillator();
+        const oudGain = ctx.createGain();
+        const oudFilter = ctx.createBiquadFilter();
         
-        shimmer.connect(shimmerGain);
-        shimmerGain.connect(this.musicGainNode!);
+        oud.connect(oudFilter);
+        oudFilter.connect(oudGain);
+        oudGain.connect(this.musicGainNode!);
         
-        shimmer.frequency.value = scale[noteIndex] * 2;
-        shimmer.type = 'sine';
+        oud.frequency.value = scale[(noteIndex + 4) % scale.length] / 2;
+        oud.type = 'sawtooth';
         
-        shimmerGain.gain.setValueAtTime(0.15, now + 0.1);
-        shimmerGain.gain.exponentialRampToValueAtTime(0.001, now + 1.5);
+        oudFilter.type = 'lowpass';
+        oudFilter.frequency.setValueAtTime(1500, now);
+        oudFilter.frequency.exponentialRampToValueAtTime(400, now + 0.8);
         
-        shimmer.start(now + 0.1);
-        shimmer.stop(now + 1.5);
+        oudGain.gain.setValueAtTime(0.25, now);
+        oudGain.gain.exponentialRampToValueAtTime(0.001, now + 1.0);
+        
+        oud.start(now);
+        oud.stop(now + 1.0);
       }
 
-      // Move through scale
-      if (ascending) {
-        noteIndex++;
-        if (noteIndex >= scale.length - 1) ascending = false;
-      } else {
-        noteIndex--;
-        if (noteIndex <= 0) ascending = true;
-      }
-    }, 2000);
+      // Move through scale with characteristic Egyptian intervals
+      noteIndex = (noteIndex + [1, 2, 1, -1, 2, -2, 1, 3][patternStep % 8] + scale.length) % scale.length;
+      patternStep++;
+    }, 1500);
   }
 
   stopMusic() {
@@ -235,13 +318,14 @@ class SlotSoundEffects {
     }
   }
 
-  // Reel spinning loop - mystical humming with desert wind
+  // Reel spinning loop - mystical Egyptian whirl with sistrum shimmer
   playReelSpin(): () => void {
     if (!this.enabled) return () => {};
     
     const ctx = this.getContext();
+    const now = ctx.currentTime;
     
-    // Main spinning hum
+    // Main spinning sound - like a spinning ankh/artifact
     const osc = ctx.createOscillator();
     const gain = ctx.createGain();
     const filter = ctx.createBiquadFilter();
@@ -250,35 +334,104 @@ class SlotSoundEffects {
     filter.connect(gain);
     gain.connect(ctx.destination);
     
-    osc.type = 'sawtooth';
-    osc.frequency.value = 110;
+    osc.type = 'triangle';
+    osc.frequency.value = 146.83; // D3 - Egyptian root note
     
-    filter.type = 'lowpass';
-    filter.frequency.value = 400;
+    filter.type = 'bandpass';
+    filter.frequency.value = 500;
+    filter.Q.value = 2;
     
-    gain.gain.value = 0.06 * this.volume;
+    gain.gain.value = 0.08 * this.volume;
     
     osc.start();
 
-    // Add modulation for mystical wavering
+    // Mystical wavering modulation
     const modulator = ctx.createOscillator();
     const modGain = ctx.createGain();
     
     modulator.connect(modGain);
     modGain.connect(osc.frequency);
     
-    modulator.frequency.value = 6;
-    modGain.gain.value = 15;
+    modulator.frequency.value = 8;
+    modGain.gain.value = 20;
     
     modulator.start();
     
+    // Sistrum-like shimmer layer (high metallic rattling)
+    const shimmer = ctx.createOscillator();
+    const shimmerGain = ctx.createGain();
+    const shimmerFilter = ctx.createBiquadFilter();
+    
+    shimmer.connect(shimmerFilter);
+    shimmerFilter.connect(shimmerGain);
+    shimmerGain.connect(ctx.destination);
+    
+    shimmer.type = 'square';
+    shimmer.frequency.value = 2200;
+    
+    shimmerFilter.type = 'highpass';
+    shimmerFilter.frequency.value = 3000;
+    
+    shimmerGain.gain.value = 0.015 * this.volume;
+    
+    // Rapid tremolo for sistrum rattle effect
+    const shimmerMod = ctx.createOscillator();
+    const shimmerModGain = ctx.createGain();
+    shimmerMod.connect(shimmerModGain);
+    shimmerModGain.connect(shimmerGain.gain);
+    shimmerMod.frequency.value = 25;
+    shimmerModGain.gain.value = 0.01 * this.volume;
+    
+    shimmer.start();
+    shimmerMod.start();
+    
+    // Desert wind undertone
+    const wind = ctx.createOscillator();
+    const windGain = ctx.createGain();
+    const windFilter = ctx.createBiquadFilter();
+    
+    wind.connect(windFilter);
+    windFilter.connect(windGain);
+    windGain.connect(ctx.destination);
+    
+    wind.type = 'sawtooth';
+    wind.frequency.value = 80;
+    
+    windFilter.type = 'lowpass';
+    windFilter.frequency.value = 200;
+    
+    windGain.gain.value = 0.04 * this.volume;
+    
+    // Slow wind modulation
+    const windMod = ctx.createOscillator();
+    const windModGain = ctx.createGain();
+    windMod.connect(windModGain);
+    windModGain.connect(wind.frequency);
+    windMod.frequency.value = 0.5;
+    windModGain.gain.value = 30;
+    
+    wind.start();
+    windMod.start();
+    
     // Return stop function
     return () => {
-      gain.gain.linearRampToValueAtTime(0.001, ctx.currentTime + 0.15);
+      const stopTime = ctx.currentTime;
+      gain.gain.linearRampToValueAtTime(0.001, stopTime + 0.2);
+      shimmerGain.gain.linearRampToValueAtTime(0.001, stopTime + 0.2);
+      windGain.gain.linearRampToValueAtTime(0.001, stopTime + 0.2);
+      
       setTimeout(() => {
-        osc.stop();
-        modulator.stop();
-      }, 200);
+        try {
+          osc.stop();
+          modulator.stop();
+          shimmer.stop();
+          shimmerMod.stop();
+          wind.stop();
+          windMod.stop();
+        } catch (e) {
+          // Already stopped
+        }
+      }, 250);
     };
   }
 
