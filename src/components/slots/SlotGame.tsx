@@ -473,7 +473,7 @@ export function SlotGame() {
           bonusState.isActive && "shadow-[0_0_30px_rgba(251,191,36,0.3)]"
         )}
       >
-        <div className="p-2 xs:p-3 sm:p-4 md:p-6 space-y-2 sm:space-y-4">
+        <div className="p-1 xs:p-2 sm:p-3 md:p-4 space-y-1 sm:space-y-2">
           {/* Bonus Status Bar */}
           <BonusStatusBar
             isActive={bonusState.isActive}
@@ -483,13 +483,8 @@ export function SlotGame() {
             bonusWinnings={bonusState.bonusWinnings}
           />
 
-          {/* Header with volume control */}
-          <div className="flex items-center justify-end">
-            <VolumeControl />
-          </div>
-
-          {/* Slot machine reels with Egyptian frame */}
-          <div className="flex justify-center py-1 sm:py-2">
+          {/* Slot machine reels with Egyptian frame - volume control moved inline */}
+          <div className="flex justify-center relative">
             <SlotMachineFrame isBonus={bonusState.isActive} isSpinning={isSpinning}>
               <div className="relative p-1 xs:p-2 sm:p-4 md:p-6 rounded-xl">
                 {/* Win Celebration Effects */}
@@ -642,6 +637,9 @@ export function SlotGame() {
             
             {/* Win Display */}
             <WinDisplay amount={bonusState.isActive ? bonusState.bonusWinnings : winAmount} isAnimating={isWinAnimating} />
+            
+            {/* Volume Control */}
+            <VolumeControl />
           </div>
 
           {/* Pay table button */}
