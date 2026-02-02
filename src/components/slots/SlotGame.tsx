@@ -283,7 +283,7 @@ export function SlotGame() {
       let shouldStopAuto = false;
       if (result.bonusTriggered) {
         slotSounds.playBonusTrigger();
-        shouldStopAuto = true; // Stop autospin on bonus
+        shouldStopAuto = true; // Only stop autospin on bonus trigger
         
         if (isBonusSpin) {
           // Retrigger during bonus
@@ -297,11 +297,8 @@ export function SlotGame() {
         }
       }
 
-      // Stop autospin on big wins
-      if (result.totalWin >= bet * 50) {
-        shouldStopAuto = true;
-      }
-
+      // Autospin only stops on bonus triggers or when spins run out
+      // Regular wins (even big wins) should NOT stop autospin
       if (isAutoSpinning) {
         if (shouldStopAuto) {
           stopAutoSpin();
