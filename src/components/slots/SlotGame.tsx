@@ -172,15 +172,10 @@ export function SlotGame() {
         decrementFreeSpin();
       }
 
-      // Simulate spinning animation with multiple grid changes
-      const spinDuration = 2000;
-      const spinInterval = 100;
-      const spinCount = spinDuration / spinInterval;
-
-      for (let i = 0; i < spinCount; i++) {
-        await new Promise(resolve => setTimeout(resolve, spinInterval));
-        setGrid(generateGrid(symbols));
-      }
+      // Wait for reel animation to complete
+      // The SlotReel component handles the visual animation internally
+      const spinDuration = 2500; // Base duration + stagger for 5 reels (1000 + 4*350 = 2400ms, add buffer)
+      await new Promise(resolve => setTimeout(resolve, spinDuration));
 
       // Stop spin sound and play reel stop
       if (stopSpinSound.current) {
