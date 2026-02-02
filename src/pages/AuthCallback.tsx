@@ -93,7 +93,7 @@ export default function AuthCallback() {
           throw new Error(data.error || "Authentication failed");
         }
 
-        // If this was a linking operation, no need to verify OTP - just redirect
+        // If this was a linking operation, no need to establish session - just redirect
         if (isLinking && data.linked) {
           toast({
             title: "Twitch tilknyttet!",
@@ -103,35 +103,16 @@ export default function AuthCallback() {
           return;
         }
 
-        // Use the token hash to verify the OTP and get a session
-        const { error: verifyError } = await supabase.auth.verifyOtp({
-          email: data.email,
-          token: data.token_hash,
-          type: "magiclink",
-        });
-
-        if (verifyError) {
-          console.error("Verify OTP error:", verifyError);
-          throw new Error(verifyError.message || "Kunne ikke verificere login");
+        // Redirect to the magic link action URL to establish the session
+        // The action_link will verify the token and create a session, then redirect to site root
+        if (data.action_link) {
+          console.log("[AuthCallback] Redirecting to action link to establish session");
+          window.location.href = data.action_link;
+          return;
         }
 
-        // Sanity check: ensure a session exists after verification
-        const { data: sessionData } = await supabase.auth.getSession();
-        console.log("[AuthCallback] session after verifyOtp", {
-          hasSession: Boolean(sessionData.session),
-          userId: sessionData.session?.user?.id,
-        });
-
-        if (!sessionData.session) {
-          throw new Error("Login blev verificeret, men der blev ikke oprettet en session. Prøv igen.");
-        }
-
-        toast({
-          title: "Velkommen!",
-          description: `Du er nu logget ind som ${data.user.display_name}`,
-        });
-
-        navigate("/");
+        // Fallback error if no action link
+        throw new Error("Ingen login-link modtaget fra serveren");
       } catch (err) {
         console.error("Auth callback error:", err);
         const message = err instanceof Error ? err.message : "Der opstod en fejl";

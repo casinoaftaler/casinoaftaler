@@ -298,7 +298,7 @@ serve(async (req) => {
       }
     }
 
-    // Generate a session for the user using a magic link token approach
+    // Generate a magic link for the user to establish a session
     const { data: linkData, error: linkError } = await supabaseAdmin.auth.admin.generateLink({
       type: "magiclink",
       email: twitchUser.email || `${twitchUser.id}@twitch.placeholder`,
@@ -312,18 +312,14 @@ serve(async (req) => {
       );
     }
 
-    // Extract token from the magic link
-    const magicLinkUrl = new URL(linkData.properties.action_link);
-    const token = magicLinkUrl.searchParams.get("token");
-    const tokenHash = linkData.properties.hashed_token;
-
+    // Return the full action link - frontend will redirect to it
+    const actionLink = linkData.properties.action_link;
     console.log("Login successful for:", twitchUser.login);
 
     return new Response(
       JSON.stringify({
         success: true,
-        token_hash: tokenHash,
-        email: twitchUser.email || `${twitchUser.id}@twitch.placeholder`,
+        action_link: actionLink,
         user: {
           id: userId,
           twitch_id: twitchUser.id,
