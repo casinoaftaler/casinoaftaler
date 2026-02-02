@@ -1,18 +1,21 @@
 import { useState, useEffect, useRef } from "react";
+import { slotSounds } from "@/lib/slotSoundEffects";
 
 interface UseAnimatedCounterOptions {
   duration?: number; // Duration in ms
   startFrom?: number;
+  playSound?: boolean;
 }
 
 export function useAnimatedCounter(
   targetValue: number,
   options: UseAnimatedCounterOptions = {}
 ) {
-  const { duration = 1000, startFrom = 0 } = options;
+  const { duration = 1000, startFrom = 0, playSound = true } = options;
   const [displayValue, setDisplayValue] = useState(targetValue);
   const animationRef = useRef<number | null>(null);
   const previousTargetRef = useRef(targetValue);
+  const stopSoundRef = useRef<(() => void) | null>(null);
 
   useEffect(() => {
     // Only animate if target increased (new win)
@@ -26,6 +29,11 @@ export function useAnimatedCounter(
     const end = targetValue;
     const range = end - start;
     const startTime = performance.now();
+
+    // Start coin counting sound
+    if (playSound) {
+      stopSoundRef.current = slotSounds.playCoinCount();
+    }
 
     const animate = (currentTime: number) => {
       const elapsed = currentTime - startTime;
@@ -41,6 +49,11 @@ export function useAnimatedCounter(
         animationRef.current = requestAnimationFrame(animate);
       } else {
         setDisplayValue(end);
+        // Stop sound when animation completes
+        if (stopSoundRef.current) {
+          stopSoundRef.current();
+          stopSoundRef.current = null;
+        }
       }
     };
 
@@ -51,8 +64,13 @@ export function useAnimatedCounter(
       if (animationRef.current) {
         cancelAnimationFrame(animationRef.current);
       }
+      // Stop sound on cleanup
+      if (stopSoundRef.current) {
+        stopSoundRef.current();
+        stopSoundRef.current = null;
+      }
     };
-  }, [targetValue, duration, startFrom]);
+  }, [targetValue, duration, startFrom, playSound]);
 
   return displayValue;
 }
