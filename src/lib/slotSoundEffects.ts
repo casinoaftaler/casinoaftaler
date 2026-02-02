@@ -1129,6 +1129,73 @@ class SlotSoundEffects {
       }, 350);
     };
   }
+
+  // Coin counting sound - plays while win amount ticks up
+  playCoinCount(): () => void {
+    if (!this.enabled) return () => {};
+    
+    const ctx = this.getContext();
+    let isPlaying = true;
+    let tickCount = 0;
+    
+    const playTick = () => {
+      if (!isPlaying || !this.enabled) return;
+      
+      const now = ctx.currentTime;
+      
+      // Egyptian coin clink with varying pitch
+      const coin = ctx.createOscillator();
+      const coinGain = ctx.createGain();
+      const coinFilter = ctx.createBiquadFilter();
+      
+      coin.connect(coinFilter);
+      coinFilter.connect(coinGain);
+      coinGain.connect(ctx.destination);
+      
+      // Vary pitch slightly for natural feel
+      const basePitch = 1800 + Math.random() * 400;
+      coin.frequency.setValueAtTime(basePitch, now);
+      coin.frequency.exponentialRampToValueAtTime(basePitch * 0.7, now + 0.06);
+      coin.type = 'triangle';
+      
+      coinFilter.type = 'highpass';
+      coinFilter.frequency.value = 1200;
+      
+      coinGain.gain.setValueAtTime(0.12 * this.volume, now);
+      coinGain.gain.exponentialRampToValueAtTime(0.001, now + 0.08);
+      
+      coin.start(now);
+      coin.stop(now + 0.08);
+      
+      // Secondary shimmer layer (golden sparkle)
+      const shimmer = ctx.createOscillator();
+      const shimmerGain = ctx.createGain();
+      
+      shimmer.connect(shimmerGain);
+      shimmerGain.connect(ctx.destination);
+      
+      shimmer.frequency.value = 3000 + Math.random() * 500;
+      shimmer.type = 'sine';
+      
+      shimmerGain.gain.setValueAtTime(0.04 * this.volume, now);
+      shimmerGain.gain.exponentialRampToValueAtTime(0.001, now + 0.05);
+      
+      shimmer.start(now);
+      shimmer.stop(now + 0.05);
+      
+      tickCount++;
+    };
+    
+    // Play ticks at a fast rate (every 30ms for rapid counting feel)
+    const interval = setInterval(playTick, 30);
+    playTick(); // Play first tick immediately
+    
+    // Return stop function
+    return () => {
+      isPlaying = false;
+      clearInterval(interval);
+    };
+  }
 }
 
 // Singleton instance
