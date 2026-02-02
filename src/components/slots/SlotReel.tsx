@@ -13,8 +13,8 @@ interface SlotReelProps {
 }
 
 // Symbol dimensions (should match SlotSymbol component)
-const SYMBOL_SIZE = { mobile: 80, sm: 96, md: 112, lg: 128 };
-const GAP = { mobile: 8, sm: 12, md: 16 };
+const SYMBOL_SIZE = { xs: 56, mobile: 64, sm: 80, md: 96, lg: 112 };
+const GAP = { xs: 4, mobile: 6, sm: 8, md: 12 };
 
 export function SlotReel({
   symbols,
@@ -57,6 +57,7 @@ export function SlotReel({
   const getSymbolHeight = () => {
     if (typeof window === "undefined") return SYMBOL_SIZE.lg;
     const width = window.innerWidth;
+    if (width < 400) return SYMBOL_SIZE.xs;
     if (width < 640) return SYMBOL_SIZE.mobile;
     if (width < 768) return SYMBOL_SIZE.sm;
     if (width < 1024) return SYMBOL_SIZE.md;
@@ -66,6 +67,7 @@ export function SlotReel({
   const getGap = () => {
     if (typeof window === "undefined") return GAP.md;
     const width = window.innerWidth;
+    if (width < 400) return GAP.xs;
     if (width < 640) return GAP.mobile;
     if (width < 768) return GAP.sm;
     return GAP.md;
@@ -166,7 +168,7 @@ export function SlotReel({
   if (spinState === "idle" || spinState === "stopped") {
     return (
       <div className={cn(
-        "flex flex-col gap-2 sm:gap-3 md:gap-4",
+        "flex flex-col gap-1 xs:gap-1.5 sm:gap-2 md:gap-3",
         isExpanded && "animate-pulse"
       )}>
         {displayedSymbolIds.map((symbolId, rowIndex) => {

@@ -30,8 +30,8 @@ import { toast } from "sonner";
 import { cn } from "@/lib/utils";
 
 // Symbol dimensions for responsive design
-const SYMBOL_SIZE = { mobile: 80, sm: 96, md: 112, lg: 128 };
-const GAP = { mobile: 8, sm: 12, md: 16 };
+const SYMBOL_SIZE = { xs: 56, mobile: 64, sm: 80, md: 96, lg: 112 };
+const GAP = { xs: 4, mobile: 6, sm: 8, md: 12 };
 
 type AutoSpinCount = 10 | 25 | 50 | 100 | "infinite";
 
@@ -384,6 +384,7 @@ export function SlotGame() {
   const getSymbolDimensions = () => {
     if (typeof window === "undefined") return { size: SYMBOL_SIZE.lg, gap: GAP.md };
     const width = window.innerWidth;
+    if (width < 400) return { size: SYMBOL_SIZE.xs, gap: GAP.xs };
     if (width < 640) return { size: SYMBOL_SIZE.mobile, gap: GAP.mobile };
     if (width < 768) return { size: SYMBOL_SIZE.sm, gap: GAP.sm };
     if (width < 1024) return { size: SYMBOL_SIZE.md, gap: GAP.md };
@@ -475,10 +476,10 @@ export function SlotGame() {
           )}
 
           {/* Slot machine reels */}
-          <div className="flex justify-center overflow-x-auto py-4">
+          <div className="flex justify-center overflow-x-auto py-2 sm:py-4">
             <div
               className={cn(
-                "relative p-6 sm:p-8 md:p-10 rounded-xl bg-gradient-to-b from-amber-950/80 to-background border-4",
+                "relative p-3 xs:p-4 sm:p-6 md:p-8 rounded-xl bg-gradient-to-b from-amber-950/80 to-background border-2 sm:border-4",
                 bonusState.isActive
                   ? "border-purple-500/50 shadow-[0_0_40px_rgba(168,85,247,0.3)]"
                   : "border-amber-600/50",
@@ -486,7 +487,7 @@ export function SlotGame() {
               )}
             >
               {/* Reel container */}
-              <div className="relative flex gap-3 sm:gap-4 md:gap-6">
+              <div className="relative flex gap-1 xs:gap-2 sm:gap-3 md:gap-4">
                 {grid?.map((column, colIndex) => (
                   <SlotReel
                     key={colIndex}
@@ -510,39 +511,39 @@ export function SlotGame() {
                 )}
               </div>
 
-              {/* Decorative frame elements */}
+              {/* Decorative frame elements - hidden on very small screens */}
               <div className={cn(
-                "absolute -top-3 -left-3 w-8 h-8 border-t-4 border-l-4 rounded-tl-lg",
+                "absolute -top-2 -left-2 sm:-top-3 sm:-left-3 w-5 h-5 sm:w-8 sm:h-8 border-t-2 border-l-2 sm:border-t-4 sm:border-l-4 rounded-tl-lg hidden xs:block",
                 bonusState.isActive ? "border-purple-400" : "border-amber-400"
               )} />
               <div className={cn(
-                "absolute -top-3 -right-3 w-8 h-8 border-t-4 border-r-4 rounded-tr-lg",
+                "absolute -top-2 -right-2 sm:-top-3 sm:-right-3 w-5 h-5 sm:w-8 sm:h-8 border-t-2 border-r-2 sm:border-t-4 sm:border-r-4 rounded-tr-lg hidden xs:block",
                 bonusState.isActive ? "border-purple-400" : "border-amber-400"
               )} />
               <div className={cn(
-                "absolute -bottom-3 -left-3 w-8 h-8 border-b-4 border-l-4 rounded-bl-lg",
+                "absolute -bottom-2 -left-2 sm:-bottom-3 sm:-left-3 w-5 h-5 sm:w-8 sm:h-8 border-b-2 border-l-2 sm:border-b-4 sm:border-l-4 rounded-bl-lg hidden xs:block",
                 bonusState.isActive ? "border-purple-400" : "border-amber-400"
               )} />
               <div className={cn(
-                "absolute -bottom-3 -right-3 w-8 h-8 border-b-4 border-r-4 rounded-br-lg",
+                "absolute -bottom-2 -right-2 sm:-bottom-3 sm:-right-3 w-5 h-5 sm:w-8 sm:h-8 border-b-2 border-r-2 sm:border-b-4 sm:border-r-4 rounded-br-lg hidden xs:block",
                 bonusState.isActive ? "border-purple-400" : "border-amber-400"
               )} />
             </div>
           </div>
 
           {/* Controls */}
-          <div className="flex flex-wrap items-center justify-center gap-4">
+          <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-4">
             <BetControls bet={bet} onBetChange={setBet} disabled={isSpinning || bonusState.isActive} minBet={slotSettings.minBet} maxBet={slotSettings.maxBet} />
             <WinDisplay amount={bonusState.isActive ? bonusState.bonusWinnings : winAmount} isAnimating={isWinAnimating} />
           </div>
 
           {/* Spin buttons */}
-          <div className="flex justify-center gap-4">
+          <div className="flex flex-wrap justify-center gap-2 sm:gap-4">
             {/* Main Spin button */}
             <Button
               size="lg"
               className={cn(
-                "px-8 sm:px-12 py-6 text-xl font-bold transition-all",
+                "px-4 sm:px-8 md:px-12 py-4 sm:py-6 text-base sm:text-xl font-bold transition-all",
                 bonusState.isActive
                   ? "bg-gradient-to-r from-purple-500 to-purple-600 hover:from-purple-600 hover:to-purple-700 shadow-[0_4px_20px_rgba(168,85,247,0.4)]"
                   : "bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 shadow-[0_4px_20px_rgba(251,191,36,0.4)]",
@@ -553,33 +554,35 @@ export function SlotGame() {
             >
               {isSpinning ? (
                 <>
-                  <Loader2 className="mr-2 h-6 w-6 animate-spin" />
-                  SPINNER...
+                  <Loader2 className="mr-1 sm:mr-2 h-4 w-4 sm:h-6 sm:w-6 animate-spin" />
+                  <span className="hidden xs:inline">SPINNER...</span>
+                  <span className="xs:hidden">...</span>
                 </>
               ) : !canSpinNow ? (
-                "INGEN SPINS TILBAGE"
+                <span className="text-xs sm:text-base">INGEN SPINS</span>
               ) : bonusState.isActive ? (
                 <>
-                  <Gamepad2 className="mr-2 h-6 w-6" />
-                  FREE SPIN
+                  <Gamepad2 className="mr-1 sm:mr-2 h-4 w-4 sm:h-6 sm:w-6" />
+                  <span className="hidden xs:inline">FREE SPIN</span>
+                  <span className="xs:hidden">FREE</span>
                 </>
               ) : (
                 <>
-                  <Gamepad2 className="mr-2 h-6 w-6" />
+                  <Gamepad2 className="mr-1 sm:mr-2 h-4 w-4 sm:h-6 sm:w-6" />
                   SPIN
                 </>
               )}
             </Button>
 
             {/* Autospin controls */}
-            <div className="flex items-center gap-2">
+            <div className="flex items-center gap-1 sm:gap-2">
               {/* Autospin count selector */}
               {!isAutoSpinning && (
                 <DropdownMenu>
                   <DropdownMenuTrigger asChild>
                     <Button
                       variant="outline"
-                      className="px-3 py-6 text-lg font-bold border-amber-500/50 hover:bg-amber-500/10 text-amber-500"
+                      className="px-2 sm:px-3 py-4 sm:py-6 text-sm sm:text-lg font-bold border-amber-500/50 hover:bg-amber-500/10 text-amber-500"
                       disabled={!canSpinNow || showBonusTrigger}
                     >
                       {autoSpinCount === "infinite" ? (
@@ -618,7 +621,7 @@ export function SlotGame() {
                 size="lg"
                 variant={isAutoSpinning ? "destructive" : "outline"}
                 className={cn(
-                  "px-6 py-6 text-lg font-bold transition-all",
+                  "px-3 sm:px-6 py-4 sm:py-6 text-sm sm:text-lg font-bold transition-all",
                   isAutoSpinning 
                     ? "bg-red-500 hover:bg-red-600 text-white"
                     : "border-amber-500/50 hover:bg-amber-500/10 text-amber-500"
@@ -628,12 +631,13 @@ export function SlotGame() {
               >
                 {isAutoSpinning ? (
                   <>
-                    <Square className="mr-2 h-5 w-5" />
-                    {autoSpinsRemaining !== null ? `STOP (${autoSpinsRemaining})` : "STOP"}
+                    <Square className="mr-1 sm:mr-2 h-4 w-4 sm:h-5 sm:w-5" />
+                    <span className="hidden xs:inline">{autoSpinsRemaining !== null ? `STOP (${autoSpinsRemaining})` : "STOP"}</span>
+                    <span className="xs:hidden">{autoSpinsRemaining !== null ? autoSpinsRemaining : "■"}</span>
                   </>
                 ) : (
                   <>
-                    <Play className="mr-2 h-5 w-5" />
+                    <Play className="mr-1 sm:mr-2 h-4 w-4 sm:h-5 sm:w-5" />
                     AUTO
                   </>
                 )}
