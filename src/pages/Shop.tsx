@@ -2,11 +2,12 @@ import { useShopItems } from "@/hooks/useShopItems";
 import { ShopItemCard } from "@/components/ShopItemCard";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Card, CardContent } from "@/components/ui/card";
-import { ShoppingBag, Coins, LogIn, Loader2 } from "lucide-react";
+import { ShoppingBag, Coins, LogIn, Loader2, ExternalLink } from "lucide-react";
 import { useStreamElementsPoints } from "@/hooks/useStreamElementsPoints";
 import { useAuth } from "@/hooks/useAuth";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
+import { useSiteSettings } from "@/hooks/useSiteSettings";
 
 const description = "Her kan du shoppe eksklusive varer, men der er en lille twist – alt her kan kun købes med point, som du optjener ved at se vores streams på Twitch! Det betyder, at jo mere du ser, desto flere point tjener du, og desto flere fede produkter kan du få fat i. Så det er bare at sætte dig godt til rette, nyde vores streams, og se pointene rulle ind. Gå på opdagelse i vores udvalg og start din rejse mod de unikke præmier i dag!";
 
@@ -43,6 +44,8 @@ function ShopHero() {
 function PointsDisplay() {
   const { points, isLoading, isConfigured, isLoggedIn, hasTwitchUsername } = useStreamElementsPoints();
   const { isAdmin } = useAuth();
+  const { data: settings } = useSiteSettings();
+  const twitchUrl = settings?.twitch_url;
 
   // Don't show anything if user is admin
   if (isAdmin) {
@@ -172,6 +175,19 @@ function PointsDisplay() {
               <span><strong>Vær aktiv:</strong> Jo mere du engagerer dig i chatten, jo flere point kan du optjene</span>
             </li>
           </ul>
+          {twitchUrl && (
+            <div className="mt-3 pt-3 border-t border-muted">
+              <a 
+                href={twitchUrl} 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1.5 text-xs font-medium text-primary hover:underline"
+              >
+                <ExternalLink className="h-3.5 w-3.5" />
+                Gå til Twitch-kanalen
+              </a>
+            </div>
+          )}
         </CardContent>
       </Card>
     </div>
