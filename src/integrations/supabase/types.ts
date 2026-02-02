@@ -105,6 +105,7 @@ export type Database = {
           id: string
           referrer: string | null
           user_agent: string | null
+          user_id: string | null
         }
         Insert: {
           casino_id?: string | null
@@ -115,6 +116,7 @@ export type Database = {
           id?: string
           referrer?: string | null
           user_agent?: string | null
+          user_id?: string | null
         }
         Update: {
           casino_id?: string | null
@@ -125,6 +127,7 @@ export type Database = {
           id?: string
           referrer?: string | null
           user_agent?: string | null
+          user_id?: string | null
         }
         Relationships: [
           {

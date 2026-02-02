@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Star, Flame, Check, ChevronDown } from "lucide-react";
 import { getAffiliateRedirect } from "@/lib/affiliateRedirect";
+import { useAuth } from "@/hooks/useAuth";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import {
@@ -198,6 +199,7 @@ function FeaturedCard({
   onOpenChange?: (open: boolean) => void;
 }) {
   const [uncontrolledOpen, setUncontrolledOpen] = useState(false);
+  const { user } = useAuth();
   const isControlled = typeof open === "boolean";
   const isOpen = isControlled ? open : uncontrolledOpen;
   const setIsOpen = (next: boolean) => {
@@ -326,7 +328,7 @@ function FeaturedCard({
 
             {/* CTA Button */}
             <Button 
-              onClick={() => getAffiliateRedirect(casino.slug)} 
+              onClick={() => getAffiliateRedirect(casino.slug, user?.id)} 
               className={`mt-auto w-full rounded-full border-2 border-white bg-white/10 text-white hover:bg-white hover:text-gray-900 font-bold transition-all ${
                 isTopRow ? "py-5 text-base" : "py-4 text-sm"
               }`}
@@ -369,6 +371,7 @@ function RegularCard({
   onOpenChange?: (open: boolean) => void;
 }) {
   const [uncontrolledOpen, setUncontrolledOpen] = useState(false);
+  const { user } = useAuth();
   const isControlled = typeof open === "boolean";
   const isOpen = isControlled ? open : uncontrolledOpen;
   const setIsOpen = (next: boolean) => {
@@ -458,7 +461,7 @@ function RegularCard({
             {/* Actions */}
             <div className="flex items-center gap-2 ml-auto">
               <Button 
-                onClick={() => getAffiliateRedirect(casino.slug)} 
+                onClick={() => getAffiliateRedirect(casino.slug, user?.id)} 
                 size="sm"
                 className="rounded-full border border-primary bg-transparent text-primary hover:bg-primary hover:text-primary-foreground font-semibold text-xs px-4 transition-all"
               >

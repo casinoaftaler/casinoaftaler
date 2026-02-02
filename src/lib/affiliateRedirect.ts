@@ -1,11 +1,16 @@
 import { toast } from "@/hooks/use-toast";
 
-export async function getAffiliateRedirect(slug: string): Promise<void> {
+export async function getAffiliateRedirect(slug: string, userId?: string): Promise<void> {
   try {
     const projectId = import.meta.env.VITE_SUPABASE_PROJECT_ID;
-    const redirectUrl = `https://${projectId}.supabase.co/functions/v1/affiliate-redirect?slug=${encodeURIComponent(
+    let redirectUrl = `https://${projectId}.supabase.co/functions/v1/affiliate-redirect?slug=${encodeURIComponent(
       slug
     )}`;
+
+    // Add userId if provided (for tracking logged-in users)
+    if (userId) {
+      redirectUrl += `&userId=${encodeURIComponent(userId)}`;
+    }
 
     // Open immediately (sync) so browsers treat it as a user-initiated navigation.
     // The backend will respond with a 302 redirect to the real affiliate URL,
