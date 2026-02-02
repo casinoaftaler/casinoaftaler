@@ -23,7 +23,7 @@ import { useSlotSettings } from "@/hooks/useSlotSettings";
 import { useBonusGame } from "@/hooks/useBonusGame";
 import { useAuth } from "@/hooks/useAuth";
 import { supabase } from "@/integrations/supabase/client";
-import { generateGrid, calculateSpinResult, PAY_LINES, type SpinResult } from "@/lib/slotGameLogic";
+import { generateGrid, calculateSpinResult, PAY_LINES, getScatterTeaseReels, type SpinResult } from "@/lib/slotGameLogic";
 import { calculateBonusSpinResult } from "@/lib/bonusGameLogic";
 import { slotSounds } from "@/lib/slotSoundEffects";
 import { Gamepad2, Loader2, Play, Square, ChevronDown, Infinity } from "lucide-react";
@@ -61,6 +61,7 @@ export function SlotGame() {
   const [expandedReels, setExpandedReels] = useState<number[]>([]);
   const [newlyExpandedReels, setNewlyExpandedReels] = useState<number[]>([]);
   const [showWinLines, setShowWinLines] = useState(false);
+  const [teaseReels, setTeaseReels] = useState<number[]>([]);
   
   const winLinesTimeoutRef = useRef<NodeJS.Timeout | null>(null);
   
@@ -176,6 +177,10 @@ export function SlotGame() {
       expandedGrid = originalGrid;
     }
 
+    // Calculate which reels should tease (slow down) based on scatter positions
+    const teaseReelIndices = getScatterTeaseReels(originalGrid, symbols);
+    setTeaseReels(teaseReelIndices);
+
     // Set the ORIGINAL grid for spinning (not the expanded one yet)
     // This creates the first phase where symbols land naturally
     setGrid(originalGrid);
@@ -209,8 +214,9 @@ export function SlotGame() {
       }
 
       // Wait for reel animation to complete
-      // The SlotReel component handles the visual animation internally
-      const spinDuration = 2500; // Base duration + stagger for 5 reels (1000 + 4*350 = 2400ms, add buffer)
+      // Adjust duration based on whether we have tease reels
+      const hasTeaseReels = teaseReelIndices.length > 0;
+      const spinDuration = hasTeaseReels ? 4000 : 2500; // Longer wait for tease spins
       await new Promise(resolve => setTimeout(resolve, spinDuration));
 
       // Stop spin sound (individual reel stop sounds are handled by SlotReel callbacks)
@@ -345,6 +351,7 @@ export function SlotGame() {
       }
     } finally {
       setIsSpinning(false);
+      setTeaseReels([]); // Clear tease reels after spin completes
     }
   };
 
@@ -513,6 +520,7 @@ export function SlotGame() {
                       expandingSymbolId={bonusState.expandingSymbol?.id}
                       delay={colIndex}
                       onReelStop={(reelIndex) => slotSounds.playReelStopSingle(reelIndex)}
+                      teaseMode={teaseReels.includes(colIndex)}
                     />
                   ))}
                   
