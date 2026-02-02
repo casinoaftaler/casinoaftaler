@@ -333,12 +333,13 @@ function FeaturedCard({
             {/* CTA Button */}
             <Button 
               onClick={() => getAffiliateRedirect(casino.slug, user?.id)} 
-              className={`mt-auto w-full rounded-full border-2 border-white bg-white/10 text-white hover:bg-white hover:text-gray-900 font-bold transition-all ${
+              className={`group/btn relative mt-auto w-full rounded-full border-2 border-white bg-white/10 text-white hover:bg-white hover:text-gray-900 font-bold transition-all overflow-hidden ${
                 isTopRow ? "py-5 text-base" : "py-4 text-sm"
               }`}
             >
-              <Gift className={isTopRow ? "h-5 w-5" : "h-4 w-4"} />
-              HENT BONUS
+              <span className="absolute inset-0 -translate-x-full animate-[shine_3s_ease-in-out_infinite] bg-gradient-to-r from-transparent via-white/20 to-transparent" />
+              <Gift className={`relative z-10 ${isTopRow ? "h-5 w-5" : "h-4 w-4"}`} />
+              <span className="relative z-10">HENT BONUS</span>
             </Button>
 
             {/* Read More Toggle */}
@@ -468,10 +469,11 @@ function RegularCard({
               <Button 
                 onClick={() => getAffiliateRedirect(casino.slug, user?.id)} 
                 size="sm"
-                className="rounded-full border border-primary bg-transparent text-primary hover:bg-primary hover:text-primary-foreground font-semibold text-xs px-4 transition-all"
+                className="group/btn relative rounded-full border border-primary bg-transparent text-primary hover:bg-primary hover:text-primary-foreground font-semibold text-xs px-4 transition-all overflow-hidden"
               >
-                <Gift className="h-4 w-4" />
-                HENT BONUS
+                <span className="absolute inset-0 -translate-x-full animate-[shine_3s_ease-in-out_infinite] bg-gradient-to-r from-transparent via-primary/20 to-transparent" />
+                <Gift className="relative z-10 h-4 w-4" />
+                <span className="relative z-10">HENT BONUS</span>
               </Button>
               <CollapsibleTrigger asChild>
                 <button className="flex items-center gap-1 text-sm text-primary hover:underline">
