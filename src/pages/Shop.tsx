@@ -43,14 +43,8 @@ function ShopHero() {
 
 function PointsDisplay() {
   const { points, isLoading, isConfigured, isLoggedIn, hasTwitchUsername } = useStreamElementsPoints();
-  const { isAdmin } = useAuth();
   const { data: settings } = useSiteSettings();
   const twitchUrl = settings?.twitch_url;
-
-  // Don't show anything if user is admin
-  if (isAdmin) {
-    return null;
-  }
 
   // If points system isn't configured yet, still show a friendly info box for users
   if (!isConfigured) {
