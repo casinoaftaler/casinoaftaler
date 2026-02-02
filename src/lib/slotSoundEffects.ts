@@ -68,10 +68,12 @@ class SlotSoundEffects {
     if (this.musicInterval) return; // Already playing
 
     const ctx = this.getContext();
+    const now = ctx.currentTime;
     
-    // Create master gain for music
+    // Create master gain for music with fade-in
     this.musicGainNode = ctx.createGain();
-    this.musicGainNode.gain.value = 0.1 * this.volume;
+    this.musicGainNode.gain.setValueAtTime(0, now);
+    this.musicGainNode.gain.linearRampToValueAtTime(0.1 * this.volume, now + 3); // 3 second fade-in
     this.musicGainNode.connect(ctx.destination);
 
     // Deep drone on D (like a low oud string)
