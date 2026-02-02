@@ -98,6 +98,40 @@ function PointsDisplay() {
             </Button>
           </CardContent>
         </Card>
+        
+        {/* Points earning explanation for non-logged in users */}
+        <Card className="mx-auto mt-4 max-w-2xl border-muted/50 bg-muted/30">
+          <CardContent className="p-4">
+            <h4 className="mb-2 text-sm font-semibold text-foreground">Hvordan optjener jeg point?</h4>
+            <ul className="space-y-1 text-xs text-muted-foreground">
+              <li className="flex items-start gap-2">
+                <span className="text-primary">•</span>
+                <span><strong>Se streams:</strong> Du optjener automatisk point mens du ser live streams på Twitch</span>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="text-primary">•</span>
+                <span><strong>Deltag i raffles:</strong> Vind ekstra point ved at deltage i raffles under streams</span>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="text-primary">•</span>
+                <span><strong>Vær aktiv:</strong> Jo mere du engagerer dig i chatten, jo flere point kan du optjene</span>
+              </li>
+            </ul>
+            {twitchUrl && (
+              <div className="mt-3 pt-3 border-t border-muted">
+                <a 
+                  href={twitchUrl} 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1.5 text-xs font-medium text-primary hover:underline"
+                >
+                  <ExternalLink className="h-3.5 w-3.5" />
+                  Gå til Twitch-kanalen
+                </a>
+              </div>
+            )}
+          </CardContent>
+        </Card>
       </div>
     );
   }
