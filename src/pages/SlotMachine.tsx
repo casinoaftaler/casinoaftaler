@@ -1,5 +1,6 @@
 import { SlotGame } from "@/components/slots/SlotGame";
 import { SlotLeaderboard } from "@/components/slots/SlotLeaderboard";
+import { SpinsRemaining } from "@/components/slots/SpinsRemaining";
 import { useAuth } from "@/hooks/useAuth";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
 import { Button } from "@/components/ui/button";
@@ -72,12 +73,12 @@ export default function SlotMachine() {
       <div className="fixed inset-0 bg-gradient-to-b from-background/60 via-background/40 to-background/70 -z-10" />
       
       <div className="container py-2 space-y-2">
-        {/* Title Image with glow animation */}
+        {/* Title Image with glow animation - LARGER */}
         <div className="flex justify-center -mt-2">
           <img 
             src={titleImage} 
             alt="Book of Fedesvin" 
-            className="w-full max-w-xs h-auto animate-[glow_3s_ease-in-out_infinite]"
+            className="w-full max-w-md sm:max-w-lg h-auto animate-[glow_3s_ease-in-out_infinite]"
             style={{
               filter: 'drop-shadow(0 0 20px rgba(251,191,36,0.5)) drop-shadow(0 0 40px rgba(251,191,36,0.3)) drop-shadow(0 0 60px rgba(251,191,36,0.2))'
             }}
@@ -91,6 +92,12 @@ export default function SlotMachine() {
         {/* Centered slot machine with leaderboard below on mobile, side on desktop */}
         <div className="flex flex-col items-center gap-4">
           <SlotGame />
+          
+          {/* Spins remaining - moved to bottom */}
+          <div className="w-full max-w-sm flex justify-center">
+            <SpinsRemaining />
+          </div>
+          
           <div className="w-full max-w-sm lg:hidden">
             <SlotLeaderboard />
           </div>
