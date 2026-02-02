@@ -39,9 +39,12 @@ function HighlightsHero() {
 
 export default function Highlights() {
   const [activeCategory, setActiveCategory] = useState("all");
-  const categoryId = activeCategory === "all" ? undefined : activeCategory;
+  const [activePlatform, setActivePlatform] = useState("all");
   
-  const { data: highlights, isLoading, error } = useHighlights(false, categoryId);
+  const categoryId = activeCategory === "all" ? undefined : activeCategory;
+  const platform = activePlatform === "all" ? undefined : activePlatform;
+  
+  const { data: highlights, isLoading, error } = useHighlights(false, categoryId, platform);
 
   if (isLoading) {
     return (
@@ -87,8 +90,10 @@ export default function Highlights() {
         <div className="container">
           <div className="mb-8">
             <HighlightFilterTabs
-              activeFilter={activeCategory}
-              onFilterChange={setActiveCategory}
+              activeCategory={activeCategory}
+              activePlatform={activePlatform}
+              onCategoryChange={setActiveCategory}
+              onPlatformChange={setActivePlatform}
             />
           </div>
           {highlights && highlights.length > 0 ? (
@@ -101,7 +106,7 @@ export default function Highlights() {
             <div className="flex flex-col items-center justify-center py-16 text-muted-foreground">
               <Video className="h-16 w-16 mb-4" />
               <p className="text-lg">
-                {categoryId 
+                {(categoryId || platform)
                   ? "Der er ingen highlights i denne kategori." 
                   : "Der er ingen highlights endnu."}
               </p>

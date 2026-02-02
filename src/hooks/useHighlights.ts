@@ -25,9 +25,9 @@ export interface Highlight {
 export type HighlightInsert = Omit<Highlight, "id" | "created_at" | "updated_at" | "highlight_categories">;
 export type HighlightUpdate = Partial<HighlightInsert> & { id: string };
 
-export function useHighlights(adminView = false, categoryId?: string) {
+export function useHighlights(adminView = false, categoryId?: string, platform?: string) {
   return useQuery({
-    queryKey: ["highlights", adminView, categoryId],
+    queryKey: ["highlights", adminView, categoryId, platform],
     queryFn: async () => {
       let query = supabase
         .from("highlights")
@@ -40,6 +40,10 @@ export function useHighlights(adminView = false, categoryId?: string) {
 
       if (categoryId) {
         query = query.eq("category_id", categoryId);
+      }
+
+      if (platform) {
+        query = query.eq("platform", platform);
       }
 
       const { data, error } = await query;
