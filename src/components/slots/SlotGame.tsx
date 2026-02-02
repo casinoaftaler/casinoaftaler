@@ -31,7 +31,7 @@ import { toast } from "sonner";
 import { cn } from "@/lib/utils";
 
 // Symbol dimensions for responsive design
-const SYMBOL_SIZE = { xs: 56, mobile: 64, sm: 80, md: 96, lg: 128, xl: 144 };
+const SYMBOL_SIZE = { xs: 64, mobile: 80, sm: 96, md: 112, lg: 144, xl: 160 };
 const GAP = { xs: 4, mobile: 6, sm: 8, md: 12, lg: 16 };
 
 type AutoSpinCount = 10 | 25 | 50 | 100 | "infinite";

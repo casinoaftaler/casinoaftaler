@@ -76,7 +76,7 @@ export default function SlotMachine() {
           <img 
             src={titleImage} 
             alt="Book of Fedesvin" 
-            className="w-full max-w-sm h-auto animate-[glow_3s_ease-in-out_infinite]"
+            className="w-full max-w-xs h-auto animate-[glow_3s_ease-in-out_infinite]"
             style={{
               filter: 'drop-shadow(0 0 20px rgba(251,191,36,0.5)) drop-shadow(0 0 40px rgba(251,191,36,0.3)) drop-shadow(0 0 60px rgba(251,191,36,0.2))'
             }}
@@ -87,9 +87,17 @@ export default function SlotMachine() {
           100 gratis spins dagligt • Ekspanderende symboler i bonus
         </p>
 
-        <div className="grid gap-4 lg:grid-cols-[280px,1fr]">
-          <SlotLeaderboard />
+        {/* Centered slot machine with leaderboard below on mobile, side on desktop */}
+        <div className="flex flex-col items-center gap-4">
           <SlotGame />
+          <div className="w-full max-w-sm lg:hidden">
+            <SlotLeaderboard />
+          </div>
+        </div>
+        
+        {/* Desktop: Floating leaderboard on the side */}
+        <div className="hidden lg:block fixed left-4 top-1/2 -translate-y-1/2 w-72 z-40">
+          <SlotLeaderboard />
         </div>
       </div>
     </div>
