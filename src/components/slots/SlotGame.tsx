@@ -30,8 +30,8 @@ import { toast } from "sonner";
 import { cn } from "@/lib/utils";
 
 // Symbol dimensions for responsive design
-const SYMBOL_SIZE = { xs: 56, mobile: 64, sm: 80, md: 96, lg: 112 };
-const GAP = { xs: 4, mobile: 6, sm: 8, md: 12 };
+const SYMBOL_SIZE = { xs: 56, mobile: 64, sm: 80, md: 96, lg: 128, xl: 144 };
+const GAP = { xs: 4, mobile: 6, sm: 8, md: 12, lg: 16 };
 
 type AutoSpinCount = 10 | 25 | 50 | 100 | "infinite";
 
@@ -388,13 +388,14 @@ export function SlotGame() {
 
   // Get responsive symbol dimensions for WinLines
   const getSymbolDimensions = () => {
-    if (typeof window === "undefined") return { size: SYMBOL_SIZE.lg, gap: GAP.md };
+    if (typeof window === "undefined") return { size: SYMBOL_SIZE.xl, gap: GAP.lg };
     const width = window.innerWidth;
     if (width < 400) return { size: SYMBOL_SIZE.xs, gap: GAP.xs };
     if (width < 640) return { size: SYMBOL_SIZE.mobile, gap: GAP.mobile };
     if (width < 768) return { size: SYMBOL_SIZE.sm, gap: GAP.sm };
     if (width < 1024) return { size: SYMBOL_SIZE.md, gap: GAP.md };
-    return { size: SYMBOL_SIZE.lg, gap: GAP.md };
+    if (width < 1280) return { size: SYMBOL_SIZE.lg, gap: GAP.lg };
+    return { size: SYMBOL_SIZE.xl, gap: GAP.lg };
   };
 
   const symbolDimensions = getSymbolDimensions();

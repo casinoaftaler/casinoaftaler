@@ -14,7 +14,7 @@ export function SlotSymbol({ symbol, isWinning, isSpinning, isExpanded, isNewlyE
   return (
     <div
       className={cn(
-        "relative flex items-center justify-center w-14 h-14 xs:w-16 xs:h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 lg:w-28 lg:h-28 rounded-lg bg-gradient-to-br from-amber-900/80 to-amber-950 border-2 transition-all duration-300 overflow-hidden",
+        "relative flex items-center justify-center w-14 h-14 xs:w-16 xs:h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 lg:w-32 lg:h-32 xl:w-36 xl:h-36 rounded-lg bg-gradient-to-br from-amber-900/80 to-amber-950 border-2 transition-all duration-300 overflow-hidden",
         isWinning
           ? "border-amber-400 shadow-[0_0_20px_rgba(251,191,36,0.5)] scale-105"
           : "border-amber-700/50",
@@ -29,14 +29,14 @@ export function SlotSymbol({ symbol, isWinning, isSpinning, isExpanded, isNewlyE
           src={symbol.image_url}
           alt={symbol.name}
           className={cn(
-            "w-10 h-10 xs:w-12 xs:h-12 sm:w-14 sm:h-14 md:w-18 md:h-18 lg:w-20 lg:h-20 object-contain transition-transform duration-300",
+            "w-10 h-10 xs:w-12 xs:h-12 sm:w-14 sm:h-14 md:w-18 md:h-18 lg:w-24 lg:h-24 xl:w-28 xl:h-28 object-contain transition-transform duration-300",
             isExpanded && "scale-110",
             isNewlyExpanded && "animate-[symbol-expand_0.5s_ease-out]"
           )}
         />
       ) : (
         <span className={cn(
-          "text-2xl xs:text-3xl sm:text-4xl md:text-5xl transition-transform duration-300",
+          "text-2xl xs:text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl transition-transform duration-300",
           isExpanded && "scale-110",
           isNewlyExpanded && "animate-[symbol-expand_0.5s_ease-out]"
         )}>
