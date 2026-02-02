@@ -163,6 +163,16 @@ export default {
 					transform: 'translateY(0)',
 					opacity: '1'
 				}
+			},
+			'title-entrance': {
+				'0%': { 
+					opacity: '0',
+					transform: 'scale(0.8) translateY(-20px)'
+				},
+				'100%': { 
+					opacity: '1',
+					transform: 'scale(1) translateY(0)'
+				}
 			}
 		},
 		animation: {
