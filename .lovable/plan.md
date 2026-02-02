@@ -1,66 +1,134 @@
 
-# Fix: Expanding Symbol Should NOT Act as Wild in Bonus Game
+# Create Egyptian Slot Machine Interface with AI-Generated Image
 
-## Problem
-In the bonus game, the win calculation still treats symbols with `is_wild: true` as substitutes for other symbols. This means if the "Book" symbol (which is both scatter and wild) appears, it incorrectly substitutes for other symbols when calculating line wins.
+## Summary
+Generate an Egyptian-themed slot machine frame/interface using AI image generation, then integrate it into the slot game component to create an immersive visual experience.
 
-The expanding symbol should only pay based on its OWN multipliers when it expands - it should not act as a wild that can substitute for other symbols.
+---
 
-## Current Behavior
-- When calculating wins in bonus mode, symbols marked as `is_wild` can substitute for any other symbol
-- This creates incorrect payouts where the expanding symbol is treated like a wildcard
+## Current State
+- The slot game already has Egyptian-themed symbols (Pharaoh, Anubis, Horus, Scarab, etc.)
+- The interface uses basic CSS styling with amber/gold accents
+- Background is an Egyptian temple image (`slot-background.jpg`)
+- Title logo is `book-of-fedesvin-title.png`
+- Frame elements are simple CSS borders with corner decorations
 
-## Expected Behavior
-- In bonus mode, the expanding symbol should ONLY match with itself
-- Standard wilds should NOT substitute for other symbols during bonus spins
-- Expanding symbols pay on all 10 lines when they expand to 3+ reels, using their own symbol multipliers
+---
 
-## Solution
+## What We Will Generate
 
-### File: `src/lib/bonusGameLogic.ts`
+### Egyptian Slot Machine Frame
+An ornate Egyptian-themed slot machine frame with:
+- Golden hieroglyph-decorated borders
+- Pharaoh head sculptures on the sides
+- Lotus flower and scarab ornaments
+- Ancient stone/gold texture
+- Eye of Horus symbols
+- Transparent center area for the reels
 
-**Change 1: Update `checkIfExpandingCreatesPaylineWin` function (lines 94-112)**
-Remove the wild substitution logic. A match should only occur when:
-- Symbol IDs are identical, OR
-- The current symbol IS the expanding symbol
+---
 
-**Change 2: Update `calculateWins` function (lines 243-257)**
-In the standard win calculation section, remove the wild substitution logic. Matches should only be:
-- Exact symbol ID matches (no wild substitution)
-- This ensures expanding symbols only pay when they actually match
+## Technical Implementation
 
-### Specific Code Changes
+### File: `supabase/functions/generate-slot-frame/index.ts` (New)
 
-**In `checkIfExpandingCreatesPaylineWin`:**
-```typescript
-// Before (line 99-101):
-const isMatch = 
-  symbol.id === baseSymbol?.id || 
-  symbol.is_wild;
+Create an edge function to generate the slot machine frame image:
+- Use the Lovable AI gateway with `google/gemini-2.5-flash-image` model
+- Generate a PNG image with transparent center for reels
+- Upload the generated image to Supabase storage
+- Return the public URL
 
-// After:
-const isMatch = symbol.id === baseSymbol?.id;
+### File: `src/components/slots/SlotGame.tsx`
+
+Integrate the generated frame:
+- Add an overlay image around the reel container
+- Position the frame as an absolute element behind/around the reels
+- Keep the reels visible through the transparent center
+- Remove the current CSS corner decorations (replace with the frame image)
+
+### File: `src/hooks/useSiteSettings.ts`
+
+Add support for a new setting:
+- `slot_machine_frame_image` - URL to the generated Egyptian frame
+
+---
+
+## Generation Prompt
+
+The AI will be asked to generate:
+
+```text
+"Create an ornate Egyptian slot machine frame with transparent center. 
+The frame should feature:
+- Golden hieroglyph-decorated borders on all sides
+- Pharaoh head sculptures on the left and right pillars
+- Lotus flowers and scarab beetles as ornamental details
+- Ancient Egyptian stone texture with gold leaf accents
+- Eye of Horus symbols at the corners
+- The center must be completely transparent (for reels)
+- Aspect ratio suitable for a 5x3 slot grid
+Style: ancient Egyptian temple aesthetic, rich gold and amber tones, 
+detailed stone carvings, mystical glow effects"
 ```
 
-**In `calculateWins`:**
-```typescript
-// Before (line 245-247):
-const isMatch = 
-  current.id === baseSymbol.id || 
-  current.is_wild;
+---
 
-// After:
-const isMatch = current.id === baseSymbol.id;
+## Integration Approach
+
+The frame will be positioned as an absolute overlay:
+
+```text
++------------------------------------------+
+|  [Pharaoh]   EGYPTIAN FRAME    [Pharaoh] |
+|     |                              |     |
+|     |   +--------------------+     |     |
+|     |   |                    |     |     |
+|     |   |   SLOT REELS       |     |     |
+|     |   |   (transparent)    |     |     |
+|     |   |                    |     |     |
+|     |   +--------------------+     |     |
+|     |                              |     |
+|  [Lotus]                      [Scarab]   |
++------------------------------------------+
 ```
 
-Also remove the logic that updates the base symbol when starting with a wild (lines 251-254), since we no longer have wild substitution in bonus mode.
+---
 
-## Why This Works
-- The expanding symbol win calculation (lines 207-225) is already correct - it pays based on the expanding symbol's own multipliers on all 10 lines
-- By removing wild substitution from the standard line calculation, we ensure no symbol can act as a wildcard in bonus mode
-- Example: If "A" is the expanding symbol and appears on reels 1, 3, 5, it will expand and pay the "A" multiplier × 10 lines
+## Files to Create/Modify
 
-## Technical Details
-- Lines 94-112: Remove `symbol.is_wild` from match condition
-- Lines 233-254: Remove wild symbol handling entirely from bonus standard wins
-- Lines 251-254: Remove base symbol update logic for wilds
+1. **`supabase/functions/generate-slot-frame/index.ts`** (New)
+   - Edge function to call AI image generation
+   - Upload result to storage
+   - Return image URL
+
+2. **`src/components/slots/SlotMachineFrame.tsx`** (New)
+   - Component to render the Egyptian frame overlay
+   - Handles loading state with fallback to current styling
+   - Positions frame around the reel container
+
+3. **`src/components/slots/SlotGame.tsx`**
+   - Import and use `SlotMachineFrame` component
+   - Remove old CSS corner decorations
+   - Adjust padding to accommodate frame
+
+4. **Database Migration**
+   - Add `slot_machine_frame_image` column to site_settings table
+
+---
+
+## Fallback Behavior
+
+If the frame image fails to load:
+- Fall back to the current CSS-based corner decorations
+- Show a subtle loading indicator while generating
+- Cache the generated image URL in site settings
+
+---
+
+## Admin Panel Integration
+
+Add an option in the slot machine admin section to:
+- Generate a new frame image
+- Preview the current frame
+- Reset to default (CSS styling)
+
