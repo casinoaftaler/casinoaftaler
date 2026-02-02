@@ -136,7 +136,6 @@ function AddCasinoForm({ onClose }: { onClose: () => void }) {
   const createCasino = useCreateCasino();
   const [formData, setFormData] = useState({
     name: "",
-    slug: "",
     rating: "4.5",
     bonus_amount: "",
     bonus_type: "No-sticky",
@@ -161,7 +160,7 @@ function AddCasinoForm({ onClose }: { onClose: () => void }) {
     
     const casinoData: CasinoInsert = {
       name: formData.name,
-      slug: formData.slug || formData.name.toLowerCase().replace(/\s+/g, "-"),
+      slug: formData.name.toLowerCase().replace(/\s+/g, "-"),
       rating: parseFloat(formData.rating),
       bonus_title: formData.bonus_amount,
       bonus_amount: formData.bonus_amount,
@@ -188,25 +187,14 @@ function AddCasinoForm({ onClose }: { onClose: () => void }) {
 
   return (
     <form onSubmit={handleSubmit} className="space-y-4 max-h-[70vh] overflow-y-auto pr-2">
-      <div className="grid gap-4 md:grid-cols-2">
-        <div className="space-y-2">
-          <Label htmlFor="name">Casino Navn *</Label>
-          <Input
-            id="name"
-            value={formData.name}
-            onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-            required
-          />
-        </div>
-        <div className="space-y-2">
-          <Label htmlFor="slug">Slug</Label>
-          <Input
-            id="slug"
-            value={formData.slug}
-            onChange={(e) => setFormData({ ...formData, slug: e.target.value })}
-            placeholder="auto-genereret fra navn"
-          />
-        </div>
+      <div className="space-y-2">
+        <Label htmlFor="name">Casino Navn *</Label>
+        <Input
+          id="name"
+          value={formData.name}
+          onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+          required
+        />
       </div>
 
       <div className="space-y-2">
@@ -214,7 +202,7 @@ function AddCasinoForm({ onClose }: { onClose: () => void }) {
         <LogoUpload
           currentLogoUrl={formData.logo_url}
           onLogoChange={(url) => setFormData({ ...formData, logo_url: url })}
-          casinoSlug={formData.slug || formData.name.toLowerCase().replace(/\s+/g, "-") || `new-casino-${Date.now()}`}
+          casinoSlug={formData.name.toLowerCase().replace(/\s+/g, "-") || `new-casino-${Date.now()}`}
         />
       </div>
 
@@ -334,7 +322,7 @@ function AddCasinoForm({ onClose }: { onClose: () => void }) {
       <GameProvidersInput
         providers={formData.game_providers}
         onChange={(providers) => setFormData({ ...formData, game_providers: providers })}
-        casinoSlug={formData.slug || formData.name.toLowerCase().replace(/\s+/g, "-") || `new-casino-${Date.now()}`}
+        casinoSlug={formData.name.toLowerCase().replace(/\s+/g, "-") || `new-casino-${Date.now()}`}
       />
 
       <div className="space-y-2">
@@ -433,24 +421,14 @@ function EditCasinoForm({ casino, onClose }: { casino: Casino; onClose: () => vo
         />
       </div>
 
-      <div className="grid gap-4 md:grid-cols-2">
-        <div className="space-y-2">
-          <Label htmlFor="edit-name">Casino Navn *</Label>
-          <Input
-            id="edit-name"
-            value={formData.name}
-            onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-            required
-          />
-        </div>
-        <div className="space-y-2">
-          <Label htmlFor="edit-slug">Slug</Label>
-          <Input
-            id="edit-slug"
-            value={formData.slug}
-            onChange={(e) => setFormData({ ...formData, slug: e.target.value })}
-          />
-        </div>
+      <div className="space-y-2">
+        <Label htmlFor="edit-name">Casino Navn *</Label>
+        <Input
+          id="edit-name"
+          value={formData.name}
+          onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+          required
+        />
       </div>
 
       <div className="space-y-2">
