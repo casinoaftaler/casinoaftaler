@@ -147,12 +147,40 @@ export function SlotGame() {
     const isBonusSpin = bonusState.isActive && bonusState.freeSpinsRemaining > 0;
     if (!isBonusSpin && !canSpin) return;
 
-    setIsSpinning(true);
+    // Generate final result BEFORE starting the animation
+    // This ensures SlotReel knows what symbols to land on
+    const originalGrid = generateGrid(symbols);
+    let result: SpinResult;
+    let finalGrid = originalGrid;
+    let reelsExpanded: number[] = [];
+
+    if (isBonusSpin && bonusState.expandingSymbol) {
+      // Apply expanding symbol logic during bonus
+      const bonusResult = calculateBonusSpinResult(
+        originalGrid,
+        symbols,
+        bet,
+        bonusState.expandingSymbol
+      );
+      result = bonusResult.result;
+      finalGrid = bonusResult.expandedGrid;
+      reelsExpanded = bonusResult.expandedReels;
+    } else {
+      result = calculateSpinResult(originalGrid, symbols, bet);
+      finalGrid = originalGrid;
+    }
+
+    // Set the final grid BEFORE starting spin animation
+    // SlotReel will use these as the landing symbols
+    setGrid(finalGrid);
+    setLastResult(null); // Clear last result during spin
     setWinAmount(0);
-    setLastResult(null);
     setIsWinAnimating(false);
     setExpandedReels([]);
     setShowWinLines(false);
+    
+    // Now start the spin animation
+    setIsSpinning(true);
     
     // Clear any existing win lines timeout
     if (winLinesTimeoutRef.current) {
@@ -184,39 +212,17 @@ export function SlotGame() {
       }
       slotSounds.playReelStop();
 
-      // Generate final result
-      const originalGrid = generateGrid(symbols);
-      let result: SpinResult;
-      let finalGrid = originalGrid;
-      let reelsExpanded: number[] = [];
-
-      if (isBonusSpin && bonusState.expandingSymbol) {
-        // Apply expanding symbol logic during bonus
-        const bonusResult = calculateBonusSpinResult(
-          originalGrid,
-          symbols,
-          bet,
-          bonusState.expandingSymbol
-        );
-        result = bonusResult.result;
-        finalGrid = bonusResult.expandedGrid;
-        reelsExpanded = bonusResult.expandedReels;
-        
-        if (bonusResult.didExpand) {
-          setExpandedReels(reelsExpanded);
-          setNewlyExpandedReels(reelsExpanded);
-          // Play expansion sound
-          slotSounds.playSymbolExpand();
-          // Clear the "newly expanded" state after animation completes
-          setTimeout(() => setNewlyExpandedReels([]), 700);
-        }
-      } else {
-        result = calculateSpinResult(originalGrid, symbols, bet);
-        finalGrid = originalGrid;
-      }
-
-      setGrid(finalGrid);
+      // Now set the result and handle expanded reels
       setLastResult(result);
+      
+      if (isBonusSpin && reelsExpanded.length > 0) {
+        setExpandedReels(reelsExpanded);
+        setNewlyExpandedReels(reelsExpanded);
+        // Play expansion sound
+        slotSounds.playSymbolExpand();
+        // Clear the "newly expanded" state after animation completes
+        setTimeout(() => setNewlyExpandedReels([]), 700);
+      }
 
       // Record the spin result
       await supabase.from("slot_game_results").insert({
