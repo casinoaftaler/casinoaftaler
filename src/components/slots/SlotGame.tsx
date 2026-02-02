@@ -213,12 +213,11 @@ export function SlotGame() {
       const spinDuration = 2500; // Base duration + stagger for 5 reels (1000 + 4*350 = 2400ms, add buffer)
       await new Promise(resolve => setTimeout(resolve, spinDuration));
 
-      // Stop spin sound and play reel stop
+      // Stop spin sound (individual reel stop sounds are handled by SlotReel callbacks)
       if (stopSpinSound.current) {
         stopSpinSound.current();
         stopSpinSound.current = null;
       }
-      slotSounds.playReelStop();
 
       // Phase 1: Show original grid with symbols landed (already set above)
       // Wait a moment to let player see the original symbols
@@ -513,6 +512,7 @@ export function SlotGame() {
                       isNewlyExpanded={newlyExpandedReels.includes(colIndex)}
                       expandingSymbolId={bonusState.expandingSymbol?.id}
                       delay={colIndex}
+                      onReelStop={(reelIndex) => slotSounds.playReelStopSingle(reelIndex)}
                     />
                   ))}
                   
