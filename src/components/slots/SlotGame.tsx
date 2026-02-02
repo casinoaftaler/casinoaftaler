@@ -28,7 +28,6 @@ import { slotSounds } from "@/lib/slotSoundEffects";
 import { Gamepad2, Loader2, Play, Square, ChevronDown, Infinity, Maximize2, Minimize2 } from "lucide-react";
 import { toast } from "sonner";
 import { cn } from "@/lib/utils";
-import slotBackground from "@/assets/slots/slot-background.jpg";
 
 // Symbol dimensions for responsive design
 const SYMBOL_SIZE = { xs: 56, mobile: 64, sm: 80, md: 96, lg: 128, xl: 144 };
@@ -453,29 +452,21 @@ export function SlotGame() {
 
       <Card 
         className={cn(
-          "border-amber-500/20 overflow-hidden relative",
+          "border-amber-500/20 overflow-hidden bg-card/80 backdrop-blur-sm",
           bonusState.isActive && "border-purple-500/50 shadow-[0_0_30px_rgba(168,85,247,0.2)]",
-          isFullscreen && "flex-1 rounded-none border-0 flex flex-col"
+          isFullscreen && "flex-1 rounded-none border-0 flex flex-col bg-background/90"
         )}
       >
-        {/* Egyptian temple background */}
-        <div 
-          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-          style={{ backgroundImage: `url(${slotBackground})` }}
-        />
-        {/* Dark overlay for readability */}
-        <div className="absolute inset-0 bg-gradient-to-b from-background/70 via-background/50 to-background/80" />
-        
         {/* Egyptian-themed header gradient */}
         <div className={cn(
-          "h-2 relative z-10",
+          "h-2",
           bonusState.isActive
             ? "bg-gradient-to-r from-purple-500 via-amber-400 to-purple-500"
             : "bg-gradient-to-r from-amber-500 via-amber-400 to-amber-500"
         )} />
         
         <CardContent className={cn(
-          "p-4 sm:p-6 space-y-6 relative z-10",
+          "p-4 sm:p-6 space-y-6",
           isFullscreen && "flex-1 flex flex-col justify-center"
         )}>
           {/* Bonus Status Bar */}
