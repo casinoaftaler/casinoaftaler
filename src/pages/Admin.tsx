@@ -225,7 +225,7 @@ function AddCasinoForm({ onClose }: { onClose: () => void }) {
           <Input
             id="rating"
             type="number"
-            step="0.1"
+            step="0.5"
             min="0"
             max="5"
             value={formData.rating}
@@ -462,7 +462,7 @@ function EditCasinoForm({ casino, onClose }: { casino: Casino; onClose: () => vo
           <Input
             id="edit-rating"
             type="number"
-            step="0.1"
+            step="0.5"
             min="0"
             max="5"
             value={formData.rating}
