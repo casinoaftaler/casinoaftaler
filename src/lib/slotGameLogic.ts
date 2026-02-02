@@ -53,16 +53,21 @@ export const SYMBOL_WEIGHTS: Record<string, number> = {
   'Book': 12, // Scatter/Wild - slightly rarer
 };
 
-export function getRandomSymbol(symbols: SlotSymbol[]): SlotSymbol {
-  const totalWeight = symbols.reduce((sum, s) => sum + (SYMBOL_WEIGHTS[s.name] || 10), 0);
+export function getRandomSymbol(symbols: SlotSymbol[], excludeIds: string[] = []): SlotSymbol {
+  const availableSymbols = symbols.filter(s => !excludeIds.includes(s.id));
+  
+  // If all symbols are excluded, fall back to full list (shouldn't happen normally)
+  const symbolPool = availableSymbols.length > 0 ? availableSymbols : symbols;
+  
+  const totalWeight = symbolPool.reduce((sum, s) => sum + (SYMBOL_WEIGHTS[s.name] || 10), 0);
   let random = Math.random() * totalWeight;
   
-  for (const symbol of symbols) {
+  for (const symbol of symbolPool) {
     random -= SYMBOL_WEIGHTS[symbol.name] || 10;
     if (random <= 0) return symbol;
   }
   
-  return symbols[symbols.length - 1];
+  return symbolPool[symbolPool.length - 1];
 }
 
 export function generateGrid(symbols: SlotSymbol[]): string[][] {
@@ -70,8 +75,12 @@ export function generateGrid(symbols: SlotSymbol[]): string[][] {
   
   for (let col = 0; col < 5; col++) {
     const column: string[] = [];
+    const usedIds: string[] = [];
+    
     for (let row = 0; row < 3; row++) {
-      column.push(getRandomSymbol(symbols).id);
+      const symbol = getRandomSymbol(symbols, usedIds);
+      column.push(symbol.id);
+      usedIds.push(symbol.id);
     }
     grid.push(column);
   }
