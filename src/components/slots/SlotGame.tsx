@@ -11,6 +11,7 @@ import { SlotReel } from "./SlotReel";
 import { SpinsRemaining } from "./SpinsRemaining";
 import { BetControls } from "./BetControls";
 import { WinDisplay } from "./WinDisplay";
+import { WinLines } from "./WinLines";
 import { PayTable } from "./PayTable";
 import { BonusOverlay } from "./BonusOverlay";
 import { BonusStatusBar } from "./BonusStatusBar";
@@ -27,6 +28,10 @@ import { slotSounds } from "@/lib/slotSoundEffects";
 import { Gamepad2, Loader2, Play, Square, ChevronDown, Infinity } from "lucide-react";
 import { toast } from "sonner";
 import { cn } from "@/lib/utils";
+
+// Symbol dimensions for responsive design
+const SYMBOL_SIZE = { mobile: 80, sm: 96, md: 112, lg: 128 };
+const GAP = { mobile: 8, sm: 12, md: 16 };
 
 type AutoSpinCount = 10 | 25 | 50 | 100 | "infinite";
 
@@ -53,6 +58,9 @@ export function SlotGame() {
   const [winAmount, setWinAmount] = useState(0);
   const [isWinAnimating, setIsWinAnimating] = useState(false);
   const [expandedReels, setExpandedReels] = useState<number[]>([]);
+  const [showWinLines, setShowWinLines] = useState(false);
+  
+  const winLinesTimeoutRef = useRef<NodeJS.Timeout | null>(null);
   
   // Autospin state
   const [isAutoSpinning, setIsAutoSpinning] = useState(false);
@@ -81,11 +89,14 @@ export function SlotGame() {
     initializeGrid();
   }
 
-  // Cleanup autospin on unmount
+  // Cleanup timeouts on unmount
   useEffect(() => {
     return () => {
       if (autoSpinTimeoutRef.current) {
         clearTimeout(autoSpinTimeoutRef.current);
+      }
+      if (winLinesTimeoutRef.current) {
+        clearTimeout(winLinesTimeoutRef.current);
       }
     };
   }, []);
@@ -138,6 +149,13 @@ export function SlotGame() {
     setLastResult(null);
     setIsWinAnimating(false);
     setExpandedReels([]);
+    setShowWinLines(false);
+    
+    // Clear any existing win lines timeout
+    if (winLinesTimeoutRef.current) {
+      clearTimeout(winLinesTimeoutRef.current);
+      winLinesTimeoutRef.current = null;
+    }
 
     // Play spin start sound and start continuous spin sound
     slotSounds.playSpinStart();
@@ -275,6 +293,16 @@ export function SlotGame() {
           slotSounds.playNoWin();
         }
       }
+      
+      // Show win lines if there are wins
+      if (result.wins.length > 0) {
+        setShowWinLines(true);
+        // Hide win lines after a delay (shorter during autospin)
+        const displayDuration = isAutoSpinning ? 2000 : 3500;
+        winLinesTimeoutRef.current = setTimeout(() => {
+          setShowWinLines(false);
+        }, displayDuration);
+      }
     } catch (error) {
       console.error("Spin error:", error);
       toast.error("Der opstod en fejl. Prøv igen.");
@@ -351,6 +379,18 @@ export function SlotGame() {
   const isReelExpanded = (reelIndex: number): boolean => {
     return expandedReels.includes(reelIndex);
   };
+
+  // Get responsive symbol dimensions for WinLines
+  const getSymbolDimensions = () => {
+    if (typeof window === "undefined") return { size: SYMBOL_SIZE.lg, gap: GAP.md };
+    const width = window.innerWidth;
+    if (width < 640) return { size: SYMBOL_SIZE.mobile, gap: GAP.mobile };
+    if (width < 768) return { size: SYMBOL_SIZE.sm, gap: GAP.sm };
+    if (width < 1024) return { size: SYMBOL_SIZE.md, gap: GAP.md };
+    return { size: SYMBOL_SIZE.lg, gap: GAP.md };
+  };
+
+  const symbolDimensions = getSymbolDimensions();
 
   if (symbolsLoading) {
     return (
@@ -446,7 +486,7 @@ export function SlotGame() {
               )}
             >
               {/* Reel container */}
-              <div className="flex gap-3 sm:gap-4 md:gap-6">
+              <div className="relative flex gap-3 sm:gap-4 md:gap-6">
                 {grid?.map((column, colIndex) => (
                   <SlotReel
                     key={colIndex}
@@ -458,6 +498,16 @@ export function SlotGame() {
                     delay={colIndex}
                   />
                 ))}
+                
+                {/* Win Lines Overlay */}
+                {lastResult && lastResult.wins.length > 0 && (
+                  <WinLines
+                    wins={lastResult.wins}
+                    symbolSize={symbolDimensions.size}
+                    gap={symbolDimensions.gap}
+                    isVisible={showWinLines && !isSpinning}
+                  />
+                )}
               </div>
 
               {/* Decorative frame elements */}
