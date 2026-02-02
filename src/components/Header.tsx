@@ -9,7 +9,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { ChevronDown, Gamepad2, LogOut, Menu, User, X } from "lucide-react";
+import { ChevronDown, Gamepad2, LogOut, Menu, User, X, Dices, Gift, BookOpen, Users, ShoppingBag, Video, ShieldCheck, Sparkles, Layers } from "lucide-react";
 import { useState } from "react";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
 import { useTwitchStatus } from "@/hooks/useTwitchStatus";
@@ -62,46 +62,63 @@ export function Header() {
         <nav className="hidden items-center gap-6 md:flex">
           <Link
             to="/"
-            className="text-sm font-medium transition-colors hover:text-primary"
+            className="flex items-center gap-1.5 text-sm font-medium transition-colors hover:text-primary"
           >
+            <Dices className="h-4 w-4" />
             Casinoer
           </Link>
           <DropdownMenu>
-            <DropdownMenuTrigger className="flex items-center gap-1 text-sm font-medium transition-colors hover:text-primary">
+            <DropdownMenuTrigger className="flex items-center gap-1.5 text-sm font-medium transition-colors hover:text-primary">
+              <BookOpen className="h-4 w-4" />
               Bonus Guide <ChevronDown className="h-4 w-4" />
             </DropdownMenuTrigger>
             <DropdownMenuContent align="center" className="bg-popover">
               <DropdownMenuItem asChild>
-                <Link to="/bonus-guide">Alle Bonustyper</Link>
+                <Link to="/bonus-guide" className="flex items-center gap-2">
+                  <Layers className="h-4 w-4" />
+                  Alle Bonustyper
+                </Link>
               </DropdownMenuItem>
               <DropdownMenuItem asChild>
-                <Link to="/bonus-guide#no-sticky">No-Sticky Bonusser</Link>
+                <Link to="/bonus-guide#no-sticky" className="flex items-center gap-2">
+                  <Sparkles className="h-4 w-4" />
+                  No-Sticky Bonusser
+                </Link>
               </DropdownMenuItem>
               <DropdownMenuItem asChild>
-                <Link to="/bonus-guide#sticky">Sticky Bonusser</Link>
+                <Link to="/bonus-guide#sticky" className="flex items-center gap-2">
+                  <Gift className="h-4 w-4" />
+                  Sticky Bonusser
+                </Link>
               </DropdownMenuItem>
               <DropdownMenuSeparator />
               <DropdownMenuItem asChild>
-                <Link to="/responsible-gaming">Ansvarligt Spil</Link>
+                <Link to="/responsible-gaming" className="flex items-center gap-2">
+                  <ShieldCheck className="h-4 w-4" />
+                  Ansvarligt Spil
+                </Link>
               </DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>
           <Link
             to="/about"
-            className="text-sm font-medium transition-colors hover:text-primary"
+            className="flex items-center gap-1.5 text-sm font-medium transition-colors hover:text-primary"
           >
+            <Users className="h-4 w-4" />
             Om Os
           </Link>
           <Link
             to="/butik"
-            className="text-sm font-medium transition-colors hover:text-primary"
+            className="flex items-center gap-1.5 text-sm font-medium transition-colors hover:text-primary"
           >
+            <ShoppingBag className="h-4 w-4" />
             Butik
           </Link>
           <Link
             to="/highlights"
-            className="text-sm font-medium transition-colors hover:text-primary"
+            className="flex items-center gap-1.5 text-sm font-medium transition-colors hover:text-primary"
           >
+            <Video className="h-4 w-4" />
             Highlights
           </Link>
         </nav>
@@ -196,52 +213,59 @@ export function Header() {
           <nav className="container flex flex-col gap-4 py-4">
             <Link
               to="/"
-              className="text-sm font-medium transition-colors hover:text-primary"
+              className="flex items-center gap-2 text-sm font-medium transition-colors hover:text-primary"
               onClick={() => setMobileMenuOpen(false)}
             >
+              <Dices className="h-4 w-4" />
               Casinoer
             </Link>
             <Link
               to="/bonus-guide"
-              className="text-sm font-medium transition-colors hover:text-primary"
+              className="flex items-center gap-2 text-sm font-medium transition-colors hover:text-primary"
               onClick={() => setMobileMenuOpen(false)}
             >
+              <BookOpen className="h-4 w-4" />
               Bonus Guide
             </Link>
             <Link
               to="/responsible-gaming"
-              className="ml-4 text-sm text-muted-foreground transition-colors hover:text-primary"
+              className="ml-6 flex items-center gap-2 text-sm text-muted-foreground transition-colors hover:text-primary"
               onClick={() => setMobileMenuOpen(false)}
             >
+              <ShieldCheck className="h-4 w-4" />
               Ansvarligt Spil
             </Link>
             <Link
               to="/about"
-              className="text-sm font-medium transition-colors hover:text-primary"
+              className="flex items-center gap-2 text-sm font-medium transition-colors hover:text-primary"
               onClick={() => setMobileMenuOpen(false)}
             >
+              <Users className="h-4 w-4" />
               Om Os
             </Link>
             <Link
               to="/butik"
-              className="text-sm font-medium transition-colors hover:text-primary"
+              className="flex items-center gap-2 text-sm font-medium transition-colors hover:text-primary"
               onClick={() => setMobileMenuOpen(false)}
             >
+              <ShoppingBag className="h-4 w-4" />
               Butik
             </Link>
             <Link
               to="/highlights"
-              className="text-sm font-medium transition-colors hover:text-primary"
+              className="flex items-center gap-2 text-sm font-medium transition-colors hover:text-primary"
               onClick={() => setMobileMenuOpen(false)}
             >
+              <Video className="h-4 w-4" />
               Highlights
             </Link>
             {!authLoading && !user && (
               <Link
                 to="/auth"
-                className="text-sm font-medium text-primary transition-colors hover:text-primary/80"
+                className="flex items-center gap-2 text-sm font-medium text-primary transition-colors hover:text-primary/80"
                 onClick={() => setMobileMenuOpen(false)}
               >
+                <User className="h-4 w-4" />
                 Log ind
               </Link>
             )}
