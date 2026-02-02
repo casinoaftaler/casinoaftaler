@@ -9,8 +9,9 @@ interface WinDisplayProps {
 
 export function WinDisplay({ amount, isAnimating }: WinDisplayProps) {
   // Animate the counter - duration scales with win size for dramatic effect
+  // Don't play sound here - WinCelebration handles big win sounds
   const duration = Math.min(500 + amount * 10, 2000); // 500ms to 2000ms based on win size
-  const displayAmount = useAnimatedCounter(amount, { duration, startFrom: 0 });
+  const displayAmount = useAnimatedCounter(amount, { duration, startFrom: 0, playSound: false });
 
   return (
     <div
