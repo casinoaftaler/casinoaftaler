@@ -96,7 +96,7 @@ export default function SlotMachine() {
         </div>
         
         {/* Desktop: Floating leaderboard on the left side */}
-        <div className="hidden lg:block fixed left-4 top-24 w-72 z-40">
+        <div className="hidden xl:block fixed left-4 top-32 w-64 z-40 max-h-[calc(100vh-10rem)] overflow-y-auto">
           <SlotLeaderboard />
         </div>
       </div>
