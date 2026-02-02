@@ -1,5 +1,5 @@
-import { useState, useEffect } from "react";
-import { X, Minus, Plus, Eye } from "lucide-react";
+import { useState, useEffect, useRef, useCallback } from "react";
+import { X, Minus, Plus, Eye, GripVertical } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
 import { useTwitchStatus } from "@/hooks/useTwitchStatus";
@@ -7,6 +7,11 @@ import { useIsMobile } from "@/hooks/use-mobile";
 import { cn } from "@/lib/utils";
 
 type PlayerState = "expanded" | "minimized" | "closed";
+
+interface Position {
+  x: number;
+  y: number;
+}
 
 function extractChannelName(twitchUrl: string): string | null {
   try {
@@ -26,6 +31,10 @@ export function TwitchLivePlayer() {
   
   const [playerState, setPlayerState] = useState<PlayerState>("expanded");
   const [wasLive, setWasLive] = useState(false);
+  const [position, setPosition] = useState<Position | null>(null);
+  const [isDragging, setIsDragging] = useState(false);
+  const dragRef = useRef<HTMLDivElement>(null);
+  const dragStartRef = useRef<{ x: number; y: number; posX: number; posY: number } | null>(null);
 
   const isLive = twitchStatus?.isLive ?? false;
   const streamInfo = twitchStatus?.stream;
@@ -46,6 +55,80 @@ export function TwitchLivePlayer() {
     }
   }, [isMobile, isLive, wasLive]);
 
+  const handleMouseDown = useCallback((e: React.MouseEvent) => {
+    if (!dragRef.current) return;
+    e.preventDefault();
+    
+    const rect = dragRef.current.getBoundingClientRect();
+    dragStartRef.current = {
+      x: e.clientX,
+      y: e.clientY,
+      posX: rect.left,
+      posY: rect.top,
+    };
+    setIsDragging(true);
+  }, []);
+
+  const handleTouchStart = useCallback((e: React.TouchEvent) => {
+    if (!dragRef.current || e.touches.length !== 1) return;
+    
+    const touch = e.touches[0];
+    const rect = dragRef.current.getBoundingClientRect();
+    dragStartRef.current = {
+      x: touch.clientX,
+      y: touch.clientY,
+      posX: rect.left,
+      posY: rect.top,
+    };
+    setIsDragging(true);
+  }, []);
+
+  useEffect(() => {
+    if (!isDragging) return;
+
+    const handleMouseMove = (e: MouseEvent) => {
+      if (!dragStartRef.current) return;
+      
+      const deltaX = e.clientX - dragStartRef.current.x;
+      const deltaY = e.clientY - dragStartRef.current.y;
+      
+      const newX = Math.max(0, Math.min(window.innerWidth - 100, dragStartRef.current.posX + deltaX));
+      const newY = Math.max(0, Math.min(window.innerHeight - 50, dragStartRef.current.posY + deltaY));
+      
+      setPosition({ x: newX, y: newY });
+    };
+
+    const handleTouchMove = (e: TouchEvent) => {
+      if (!dragStartRef.current || e.touches.length !== 1) return;
+      
+      const touch = e.touches[0];
+      const deltaX = touch.clientX - dragStartRef.current.x;
+      const deltaY = touch.clientY - dragStartRef.current.y;
+      
+      const newX = Math.max(0, Math.min(window.innerWidth - 100, dragStartRef.current.posX + deltaX));
+      const newY = Math.max(0, Math.min(window.innerHeight - 50, dragStartRef.current.posY + deltaY));
+      
+      setPosition({ x: newX, y: newY });
+    };
+
+    const handleEnd = () => {
+      setIsDragging(false);
+      dragStartRef.current = null;
+    };
+
+    document.addEventListener("mousemove", handleMouseMove);
+    document.addEventListener("mouseup", handleEnd);
+    document.addEventListener("touchmove", handleTouchMove, { passive: false });
+    document.addEventListener("touchend", handleEnd);
+
+    return () => {
+      document.removeEventListener("mousemove", handleMouseMove);
+      document.removeEventListener("mouseup", handleEnd);
+      document.removeEventListener("touchmove", handleTouchMove);
+      document.removeEventListener("touchend", handleEnd);
+    };
+  }, [isDragging]);
+
   // Don't render anything if not live, still loading, or no channel configured
   if (isLoading || !isLive || !channelName) {
     return null;
@@ -62,15 +145,31 @@ export function TwitchLivePlayer() {
   const handleExpand = () => setPlayerState("expanded");
   const handleClose = () => setPlayerState("closed");
 
+  const positionStyles = position
+    ? { left: position.x, top: position.y, bottom: "auto", right: "auto" }
+    : {};
+
   // Minimized pill view
   if (playerState === "minimized") {
     return (
       <div
+        ref={dragRef}
+        style={positionStyles}
         className={cn(
-          "fixed bottom-20 left-4 z-40 flex items-center gap-2 rounded-full bg-card border border-border px-3 py-2 shadow-lg transition-all duration-300 animate-in slide-in-from-left-4",
-          isMobile && "left-2 right-2 bottom-16"
+          "fixed z-40 flex items-center gap-2 rounded-full bg-card border border-border px-3 py-2 shadow-lg transition-shadow duration-300",
+          !position && "bottom-20 left-4",
+          !position && isMobile && "left-2 right-2 bottom-16",
+          isDragging ? "shadow-2xl cursor-grabbing" : "cursor-default"
         )}
       >
+        <div
+          onMouseDown={handleMouseDown}
+          onTouchStart={handleTouchStart}
+          className="cursor-grab active:cursor-grabbing p-1 -ml-1 hover:bg-muted rounded"
+          aria-label="Træk for at flytte"
+        >
+          <GripVertical className="h-3.5 w-3.5 text-muted-foreground" />
+        </div>
         <span className="relative flex h-2.5 w-2.5">
           <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-destructive opacity-75" />
           <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-destructive" />
@@ -107,14 +206,26 @@ export function TwitchLivePlayer() {
   // Expanded player view
   return (
     <div
+      ref={dragRef}
+      style={positionStyles}
       className={cn(
-        "fixed bottom-20 left-4 z-40 w-80 overflow-hidden rounded-lg bg-card border border-border shadow-xl transition-all duration-300 animate-in slide-in-from-left-4",
-        isMobile && "left-2 right-2 w-auto bottom-16"
+        "fixed z-40 w-80 overflow-hidden rounded-lg bg-card border border-border shadow-xl transition-shadow duration-300",
+        !position && "bottom-20 left-4",
+        !position && isMobile && "left-2 right-2 w-auto bottom-16",
+        isDragging && "shadow-2xl"
       )}
     >
       {/* Header */}
-      <div className="flex items-center justify-between bg-muted/50 px-3 py-2">
+      <div className="flex items-center justify-between bg-muted/50 px-2 py-2">
         <div className="flex items-center gap-2 min-w-0">
+          <div
+            onMouseDown={handleMouseDown}
+            onTouchStart={handleTouchStart}
+            className="cursor-grab active:cursor-grabbing p-1 hover:bg-muted rounded shrink-0"
+            aria-label="Træk for at flytte"
+          >
+            <GripVertical className="h-4 w-4 text-muted-foreground" />
+          </div>
           <span className="relative flex h-2 w-2 shrink-0">
             <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-destructive opacity-75" />
             <span className="relative inline-flex h-2 w-2 rounded-full bg-destructive" />
