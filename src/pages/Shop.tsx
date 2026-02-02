@@ -44,9 +44,30 @@ function PointsDisplay() {
   const { points, isLoading, isConfigured, isLoggedIn, hasTwitchUsername } = useStreamElementsPoints();
   const { isAdmin } = useAuth();
 
-  // Don't show anything if StreamElements is not configured or if user is admin
-  if (!isConfigured || isAdmin) {
+  // Don't show anything if user is admin
+  if (isAdmin) {
     return null;
+  }
+
+  // If points system isn't configured yet, still show a friendly info box for users
+  if (!isConfigured) {
+    return (
+      <div className="container py-8">
+        <Card className="mx-auto max-w-2xl border-muted bg-muted/50">
+          <CardContent className="flex flex-col items-center gap-3 p-6 text-center sm:flex-row sm:text-left">
+            <div className="rounded-full bg-muted p-3">
+              <Coins className="h-6 w-6 text-muted-foreground" />
+            </div>
+            <div>
+              <h3 className="text-lg font-semibold">Point er på vej</h3>
+              <p className="text-sm text-muted-foreground">
+                Points-systemet er ikke sat op endnu. Når det er klar, kan du logge ind og se dine point her.
+              </p>
+            </div>
+          </CardContent>
+        </Card>
+      </div>
+    );
   }
 
   // Show login prompt if not logged in
