@@ -3,83 +3,64 @@ import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
 
 export interface HighlightCategory {
+  id: string;
   name: string;
   slug: string;
-}
-
-export interface Highlight {
-  id: string;
-  title: string;
-  url: string;
-  platform: string;
-  description: string | null;
-  thumbnail_url: string | null;
   position: number;
-  is_active: boolean;
-  category_id: string | null;
   created_at: string;
-  updated_at: string;
-  highlight_categories?: HighlightCategory | null;
 }
 
-export type HighlightInsert = Omit<Highlight, "id" | "created_at" | "updated_at" | "highlight_categories">;
-export type HighlightUpdate = Partial<HighlightInsert> & { id: string };
-
-export function useHighlights(adminView = false, categoryId?: string) {
+export function useHighlightCategories() {
   return useQuery({
-    queryKey: ["highlights", adminView, categoryId],
+    queryKey: ["highlight-categories"],
     queryFn: async () => {
-      let query = supabase
-        .from("highlights")
-        .select("*, highlight_categories(name, slug)")
+      const { data, error } = await supabase
+        .from("highlight_categories")
+        .select("*")
         .order("position", { ascending: true });
 
-      if (!adminView) {
-        query = query.eq("is_active", true);
-      }
-
-      if (categoryId) {
-        query = query.eq("category_id", categoryId);
-      }
-
-      const { data, error } = await query;
-
       if (error) throw error;
-      return data as unknown as Highlight[];
+      return data as HighlightCategory[];
     },
   });
 }
 
-export function useCreateHighlight() {
+export function useCreateCategory() {
   const queryClient = useQueryClient();
   const { toast } = useToast();
 
   return useMutation({
-    mutationFn: async (item: Omit<HighlightInsert, "position">) => {
+    mutationFn: async (name: string) => {
+      const slug = name
+        .toLowerCase()
+        .replace(/\s+/g, "-")
+        .replace(/[^a-z0-9-]/g, "");
+
       const { data: existingItems } = await supabase
-        .from("highlights")
+        .from("highlight_categories")
         .select("position")
         .order("position", { ascending: false })
         .limit(1);
 
-      const nextPosition = existingItems && existingItems.length > 0
-        ? (existingItems[0] as unknown as { position: number }).position + 1
-        : 0;
+      const nextPosition =
+        existingItems && existingItems.length > 0
+          ? (existingItems[0] as { position: number }).position + 1
+          : 0;
 
       const { data, error } = await supabase
-        .from("highlights")
-        .insert({ ...item, position: nextPosition } as any)
+        .from("highlight_categories")
+        .insert({ name, slug, position: nextPosition })
         .select()
         .single();
 
       if (error) throw error;
-      return data as unknown as Highlight;
+      return data as HighlightCategory;
     },
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["highlights"] });
+      queryClient.invalidateQueries({ queryKey: ["highlight-categories"] });
       toast({
-        title: "Highlight oprettet",
-        description: "Det nye highlight er blevet tilføjet.",
+        title: "Kategori oprettet",
+        description: "Den nye kategori er blevet tilføjet.",
       });
     },
     onError: (error: Error) => {
@@ -92,27 +73,32 @@ export function useCreateHighlight() {
   });
 }
 
-export function useUpdateHighlight() {
+export function useUpdateCategory() {
   const queryClient = useQueryClient();
   const { toast } = useToast();
 
   return useMutation({
-    mutationFn: async ({ id, ...updates }: HighlightUpdate) => {
+    mutationFn: async ({ id, name }: { id: string; name: string }) => {
+      const slug = name
+        .toLowerCase()
+        .replace(/\s+/g, "-")
+        .replace(/[^a-z0-9-]/g, "");
+
       const { data, error } = await supabase
-        .from("highlights")
-        .update(updates as any)
+        .from("highlight_categories")
+        .update({ name, slug })
         .eq("id", id)
         .select()
         .single();
 
       if (error) throw error;
-      return data as unknown as Highlight;
+      return data as HighlightCategory;
     },
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["highlights"] });
+      queryClient.invalidateQueries({ queryKey: ["highlight-categories"] });
       toast({
-        title: "Highlight opdateret",
-        description: "Highlightet er blevet opdateret.",
+        title: "Kategori opdateret",
+        description: "Kategorien er blevet opdateret.",
       });
     },
     onError: (error: Error) => {
@@ -125,24 +111,25 @@ export function useUpdateHighlight() {
   });
 }
 
-export function useDeleteHighlight() {
+export function useDeleteCategory() {
   const queryClient = useQueryClient();
   const { toast } = useToast();
 
   return useMutation({
     mutationFn: async (id: string) => {
       const { error } = await supabase
-        .from("highlights")
+        .from("highlight_categories")
         .delete()
         .eq("id", id);
 
       if (error) throw error;
     },
     onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["highlight-categories"] });
       queryClient.invalidateQueries({ queryKey: ["highlights"] });
       toast({
-        title: "Highlight slettet",
-        description: "Highlightet er blevet fjernet.",
+        title: "Kategori slettet",
+        description: "Kategorien er blevet fjernet.",
       });
     },
     onError: (error: Error) => {
@@ -155,7 +142,7 @@ export function useDeleteHighlight() {
   });
 }
 
-export function useUpdateHighlightPositions() {
+export function useUpdateCategoryPositions() {
   const queryClient = useQueryClient();
   const { toast } = useToast();
 
@@ -163,8 +150,8 @@ export function useUpdateHighlightPositions() {
     mutationFn: async (items: { id: string; position: number }[]) => {
       const updates = items.map(({ id, position }) =>
         supabase
-          .from("highlights")
-          .update({ position } as any)
+          .from("highlight_categories")
+          .update({ position })
           .eq("id", id)
       );
 
@@ -176,7 +163,7 @@ export function useUpdateHighlightPositions() {
       }
     },
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["highlights"] });
+      queryClient.invalidateQueries({ queryKey: ["highlight-categories"] });
     },
     onError: (error: Error) => {
       toast({

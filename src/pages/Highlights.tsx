@@ -1,5 +1,7 @@
+import { useState } from "react";
 import { useHighlights } from "@/hooks/useHighlights";
 import { HighlightCard } from "@/components/HighlightCard";
+import { HighlightFilterTabs } from "@/components/HighlightFilterTabs";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Video } from "lucide-react";
 
@@ -36,7 +38,10 @@ function HighlightsHero() {
 }
 
 export default function Highlights() {
-  const { data: highlights, isLoading, error } = useHighlights(false);
+  const [activeCategory, setActiveCategory] = useState("all");
+  const categoryId = activeCategory === "all" ? undefined : activeCategory;
+  
+  const { data: highlights, isLoading, error } = useHighlights(false, categoryId);
 
   if (isLoading) {
     return (
@@ -44,6 +49,9 @@ export default function Highlights() {
         <HighlightsHero />
         <div className="py-16">
           <div className="container">
+            <div className="mb-8">
+              <Skeleton className="mx-auto h-10 w-64" />
+            </div>
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
               {[...Array(6)].map((_, i) => (
                 <div key={i} className="space-y-4">
@@ -77,6 +85,12 @@ export default function Highlights() {
       <HighlightsHero />
       <div className="py-16">
         <div className="container">
+          <div className="mb-8">
+            <HighlightFilterTabs
+              activeFilter={activeCategory}
+              onFilterChange={setActiveCategory}
+            />
+          </div>
           {highlights && highlights.length > 0 ? (
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
               {highlights.map((highlight) => (
@@ -86,7 +100,11 @@ export default function Highlights() {
           ) : (
             <div className="flex flex-col items-center justify-center py-16 text-muted-foreground">
               <Video className="h-16 w-16 mb-4" />
-              <p className="text-lg">Der er ingen highlights endnu.</p>
+              <p className="text-lg">
+                {categoryId 
+                  ? "Der er ingen highlights i denne kategori." 
+                  : "Der er ingen highlights endnu."}
+              </p>
             </div>
           )}
         </div>
