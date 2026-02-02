@@ -1,9 +1,10 @@
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import { useHighlights } from "@/hooks/useHighlights";
 import { HighlightCard } from "@/components/HighlightCard";
 import { HighlightFilterTabs } from "@/components/HighlightFilterTabs";
 import { Skeleton } from "@/components/ui/skeleton";
-import { Video } from "lucide-react";
+import { Input } from "@/components/ui/input";
+import { Video, Search } from "lucide-react";
 
 const description = "Se de bedste øjeblikke fra vores streams! Her finder du de fedeste Twitch clips og YouTube videoer, håndplukket til dig.";
 
@@ -40,11 +41,24 @@ function HighlightsHero() {
 export default function Highlights() {
   const [activeCategory, setActiveCategory] = useState("all");
   const [activePlatform, setActivePlatform] = useState("all");
+  const [searchQuery, setSearchQuery] = useState("");
   
   const categoryId = activeCategory === "all" ? undefined : activeCategory;
   const platform = activePlatform === "all" ? undefined : activePlatform;
   
   const { data: highlights, isLoading, error } = useHighlights(false, categoryId, platform);
+
+  // Filter highlights by search query
+  const filteredHighlights = useMemo(() => {
+    if (!highlights) return [];
+    if (!searchQuery.trim()) return highlights;
+    
+    const query = searchQuery.toLowerCase().trim();
+    return highlights.filter((highlight) =>
+      highlight.title.toLowerCase().includes(query) ||
+      (highlight.description && highlight.description.toLowerCase().includes(query))
+    );
+  }, [highlights, searchQuery]);
 
   if (isLoading) {
     return (
@@ -83,11 +97,28 @@ export default function Highlights() {
     );
   }
 
+  const hasFilters = categoryId || platform || searchQuery.trim();
+
   return (
     <div className="min-h-screen">
       <HighlightsHero />
       <div className="py-16">
         <div className="container">
+          {/* Search Field */}
+          <div className="mb-6 max-w-md mx-auto">
+            <div className="relative">
+              <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+              <Input
+                type="text"
+                placeholder="Søg efter highlights..."
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                className="pl-10"
+              />
+            </div>
+          </div>
+
+          {/* Filter Tabs */}
           <div className="mb-8">
             <HighlightFilterTabs
               activeCategory={activeCategory}
@@ -96,9 +127,11 @@ export default function Highlights() {
               onPlatformChange={setActivePlatform}
             />
           </div>
-          {highlights && highlights.length > 0 ? (
+
+          {/* Results */}
+          {filteredHighlights.length > 0 ? (
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-              {highlights.map((highlight) => (
+              {filteredHighlights.map((highlight) => (
                 <HighlightCard key={highlight.id} highlight={highlight} />
               ))}
             </div>
@@ -106,10 +139,18 @@ export default function Highlights() {
             <div className="flex flex-col items-center justify-center py-16 text-muted-foreground">
               <Video className="h-16 w-16 mb-4" />
               <p className="text-lg">
-                {(categoryId || platform)
-                  ? "Der er ingen highlights i denne kategori." 
+                {hasFilters
+                  ? "Ingen highlights matcher din søgning."
                   : "Der er ingen highlights endnu."}
               </p>
+              {searchQuery.trim() && (
+                <button
+                  onClick={() => setSearchQuery("")}
+                  className="mt-2 text-sm text-primary hover:underline"
+                >
+                  Ryd søgning
+                </button>
+              )}
             </div>
           )}
         </div>
