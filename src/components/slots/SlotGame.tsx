@@ -330,10 +330,10 @@ export function SlotGame() {
           )}
 
           {/* Slot machine reels */}
-          <div className="flex justify-center">
+          <div className="flex justify-center overflow-x-auto py-4">
             <div
               className={cn(
-                "relative p-4 sm:p-6 rounded-xl bg-gradient-to-b from-amber-950/80 to-background border-4",
+                "relative p-6 sm:p-8 md:p-10 rounded-xl bg-gradient-to-b from-amber-950/80 to-background border-4",
                 bonusState.isActive
                   ? "border-purple-500/50 shadow-[0_0_40px_rgba(168,85,247,0.3)]"
                   : "border-amber-600/50",
@@ -341,7 +341,7 @@ export function SlotGame() {
               )}
             >
               {/* Reel container */}
-              <div className="flex gap-2 sm:gap-4">
+              <div className="flex gap-3 sm:gap-4 md:gap-6">
                 {grid?.map((column, colIndex) => (
                   <SlotReel
                     key={colIndex}
@@ -357,19 +357,19 @@ export function SlotGame() {
 
               {/* Decorative frame elements */}
               <div className={cn(
-                "absolute -top-2 -left-2 w-6 h-6 border-t-4 border-l-4 rounded-tl-lg",
+                "absolute -top-3 -left-3 w-8 h-8 border-t-4 border-l-4 rounded-tl-lg",
                 bonusState.isActive ? "border-purple-400" : "border-amber-400"
               )} />
               <div className={cn(
-                "absolute -top-2 -right-2 w-6 h-6 border-t-4 border-r-4 rounded-tr-lg",
+                "absolute -top-3 -right-3 w-8 h-8 border-t-4 border-r-4 rounded-tr-lg",
                 bonusState.isActive ? "border-purple-400" : "border-amber-400"
               )} />
               <div className={cn(
-                "absolute -bottom-2 -left-2 w-6 h-6 border-b-4 border-l-4 rounded-bl-lg",
+                "absolute -bottom-3 -left-3 w-8 h-8 border-b-4 border-l-4 rounded-bl-lg",
                 bonusState.isActive ? "border-purple-400" : "border-amber-400"
               )} />
               <div className={cn(
-                "absolute -bottom-2 -right-2 w-6 h-6 border-b-4 border-r-4 rounded-br-lg",
+                "absolute -bottom-3 -right-3 w-8 h-8 border-b-4 border-r-4 rounded-br-lg",
                 bonusState.isActive ? "border-purple-400" : "border-amber-400"
               )} />
             </div>
