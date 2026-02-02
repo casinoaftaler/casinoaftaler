@@ -34,6 +34,7 @@ export interface Casino {
   cons: string[];
   description: string;
   isRecommended?: boolean;
+  isHot?: boolean;
   logoUrl?: string | null;
   affiliateUrl?: string | null;
   gameProviders?: GameProvider[];
@@ -238,7 +239,7 @@ function FeaturedCard({
                 Anbefalet
               </Badge>
             )}
-            {isTopRanked && (
+            {casino.isHot && (
               <div className="flex items-center gap-1 rounded-full bg-destructive px-3 py-1.5">
                 <Flame className="h-4 w-4 text-destructive-foreground" />
                 <span className="text-xs font-bold text-destructive-foreground">HOT</span>

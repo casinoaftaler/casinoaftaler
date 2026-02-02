@@ -65,6 +65,7 @@ const Index = () => {
     cons: casino.cons ?? [],
     description: casino.description ?? "",
     isRecommended: casino.is_recommended,
+    isHot: casino.is_hot,
     logoUrl: casino.logo_url,
     affiliateUrl: casino.affiliate_url,
     gameProviders: casino.game_providers ?? [],
