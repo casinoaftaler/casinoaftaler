@@ -6,6 +6,8 @@ interface SlotSettings {
   dailySpins: number;
   minBet: number;
   maxBet: number;
+  pageLocked: boolean;
+  pagePassword: string;
 }
 
 export function useSlotSettings() {
@@ -17,7 +19,7 @@ export function useSlotSettings() {
       const { data, error } = await supabase
         .from("site_settings")
         .select("key, value")
-        .in("key", ["slot_daily_spins", "slot_min_bet", "slot_max_bet"]);
+        .in("key", ["slot_daily_spins", "slot_min_bet", "slot_max_bet", "slot_page_locked", "slot_page_password"]);
 
       if (error) throw error;
 
@@ -30,6 +32,8 @@ export function useSlotSettings() {
         dailySpins: parseInt(settingsMap.slot_daily_spins || "100", 10),
         minBet: parseInt(settingsMap.slot_min_bet || "1", 10),
         maxBet: parseInt(settingsMap.slot_max_bet || "10", 10),
+        pageLocked: settingsMap.slot_page_locked === "true",
+        pagePassword: settingsMap.slot_page_password || "bookoffedesvin2026",
       };
     },
   });
@@ -46,6 +50,12 @@ export function useSlotSettings() {
       }
       if (newSettings.maxBet !== undefined) {
         updates.push({ key: "slot_max_bet", value: String(newSettings.maxBet) });
+      }
+      if (newSettings.pageLocked !== undefined) {
+        updates.push({ key: "slot_page_locked", value: String(newSettings.pageLocked) });
+      }
+      if (newSettings.pagePassword !== undefined) {
+        updates.push({ key: "slot_page_password", value: newSettings.pagePassword });
       }
 
       for (const update of updates) {
@@ -67,7 +77,7 @@ export function useSlotSettings() {
   });
 
   return {
-    settings: settings ?? { dailySpins: 100, minBet: 1, maxBet: 10 },
+    settings: settings ?? { dailySpins: 100, minBet: 1, maxBet: 10, pageLocked: true, pagePassword: "bookoffedesvin2026" },
     isLoading,
     updateSettings,
   };

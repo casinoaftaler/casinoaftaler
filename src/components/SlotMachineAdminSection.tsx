@@ -22,7 +22,7 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
-import { GripVertical, Pencil, Loader2, Trophy, Sparkles, TrendingUp, BarChart3 } from "lucide-react";
+import { GripVertical, Pencil, Loader2, Trophy, Sparkles, TrendingUp, BarChart3, Lock } from "lucide-react";
 import {
   DndContext,
   closestCenter,
@@ -321,6 +321,8 @@ function SettingsTab() {
     dailySpins: 100,
     minBet: 1,
     maxBet: 10,
+    pageLocked: true,
+    pagePassword: "",
   });
 
   useEffect(() => {
@@ -329,12 +331,18 @@ function SettingsTab() {
         dailySpins: settings.dailySpins,
         minBet: settings.minBet,
         maxBet: settings.maxBet,
+        pageLocked: settings.pageLocked,
+        pagePassword: settings.pagePassword,
       });
     }
   }, [settings]);
 
   const handleSave = () => {
     updateSettings.mutate(formData);
+  };
+
+  const handleLockToggle = (checked: boolean) => {
+    setFormData({ ...formData, pageLocked: checked });
   };
 
   if (isLoading) {
@@ -347,6 +355,47 @@ function SettingsTab() {
 
   return (
     <div className="space-y-6">
+      {/* Page Access Control */}
+      <Card>
+        <CardHeader>
+          <CardTitle className="flex items-center gap-2">
+            <Lock className="h-5 w-5" />
+            Adgangskontrol
+          </CardTitle>
+        </CardHeader>
+        <CardContent className="space-y-6">
+          <div className="flex items-center justify-between">
+            <div className="space-y-1">
+              <Label htmlFor="page-locked" className="font-medium">Lås Spillemaskine-siden</Label>
+              <p className="text-sm text-muted-foreground">
+                Når aktiveret, skal brugere indtaste et password for at få adgang til siden.
+              </p>
+            </div>
+            <Switch
+              id="page-locked"
+              checked={formData.pageLocked}
+              onCheckedChange={handleLockToggle}
+            />
+          </div>
+
+          {formData.pageLocked && (
+            <div className="space-y-2 pt-2 border-t">
+              <Label htmlFor="page-password">Adgangskode</Label>
+              <Input
+                id="page-password"
+                type="text"
+                value={formData.pagePassword}
+                onChange={(e) => setFormData({ ...formData, pagePassword: e.target.value })}
+                placeholder="Indtast adgangskode..."
+              />
+              <p className="text-sm text-muted-foreground">
+                Brugere skal indtaste denne adgangskode for at få adgang til spillemaskinen.
+              </p>
+            </div>
+          )}
+        </CardContent>
+      </Card>
+
       {/* Egyptian Frame Generator */}
       <SlotFrameAdminControls />
 
