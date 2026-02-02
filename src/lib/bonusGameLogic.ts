@@ -84,19 +84,18 @@ function checkIfExpandingCreatesPaylineWin(
       return symbolsById.get(symbolId);
     });
     
-    // Find the first non-wild symbol as base
-    // Expanding symbol is NOT a wild - it only matches itself
-    let baseSymbol = lineSymbols.find(s => s && !s.is_wild);
-    if (!baseSymbol) {
-      baseSymbol = lineSymbols[0];
-    }
+    // For expanding symbol check, we ONLY care about wins 
+    // where the expanding symbol is the base
+    const baseSymbol = symbolsById.get(expandingSymbol.id);
+    if (!baseSymbol) continue;
     
     let consecutiveMatches = 0;
     for (let col = 0; col < 5; col++) {
       const symbol = lineSymbols[col];
       if (!symbol) break;
       
-      const isMatch = symbol.id === baseSymbol?.id;
+      // Only count as match if it's the expanding symbol or a wild
+      const isMatch = symbol.id === expandingSymbol.id || symbol.is_wild;
       
       if (isMatch) {
         consecutiveMatches++;
