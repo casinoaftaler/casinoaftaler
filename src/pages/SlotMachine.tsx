@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { Gamepad2 } from "lucide-react";
 import slotBackground from "@/assets/slots/slot-background.jpg";
+import bookOfFedesvinTitle from "@/assets/slots/book-of-fedesvin-title.png";
 
 export default function SlotMachine() {
   const { user, loading } = useAuth();
@@ -65,12 +66,18 @@ export default function SlotMachine() {
       <div className="fixed inset-0 bg-gradient-to-b from-background/70 via-background/50 to-background/80 -z-10" />
       
       <div className="container py-8 space-y-8">
-        <div className="text-center space-y-2">
-          <h1 className="text-3xl font-bold bg-gradient-to-r from-amber-400 to-amber-600 bg-clip-text text-transparent drop-shadow-lg">
-            Community Slot Machine
-          </h1>
+        {/* Title Image */}
+        <div className="flex justify-center">
+          <img 
+            src={bookOfFedesvinTitle} 
+            alt="Book of Fedesvin" 
+            className="w-full max-w-xl h-auto drop-shadow-[0_0_30px_rgba(251,191,36,0.4)]"
+          />
+        </div>
+
+        <div className="text-center">
           <p className="text-muted-foreground">
-            Book of Ra-inspireret spillemaskine • 100 gratis spins dagligt
+            100 gratis spins dagligt • Ekspanderende symboler i bonus
           </p>
         </div>
 
