@@ -28,6 +28,7 @@ export type Database = {
           game_providers: Json | null
           id: string
           is_active: boolean
+          is_hot: boolean
           is_recommended: boolean
           logo_url: string | null
           min_deposit: string
@@ -54,6 +55,7 @@ export type Database = {
           game_providers?: Json | null
           id?: string
           is_active?: boolean
+          is_hot?: boolean
           is_recommended?: boolean
           logo_url?: string | null
           min_deposit?: string
@@ -80,6 +82,7 @@ export type Database = {
           game_providers?: Json | null
           id?: string
           is_active?: boolean
+          is_hot?: boolean
           is_recommended?: boolean
           logo_url?: string | null
           min_deposit?: string
@@ -382,6 +385,7 @@ export type Database = {
           game_providers: Json | null
           id: string | null
           is_active: boolean | null
+          is_hot: boolean | null
           is_recommended: boolean | null
           logo_url: string | null
           min_deposit: string | null
@@ -407,6 +411,7 @@ export type Database = {
           game_providers?: Json | null
           id?: string | null
           is_active?: boolean | null
+          is_hot?: boolean | null
           is_recommended?: boolean | null
           logo_url?: string | null
           min_deposit?: string | null
@@ -432,6 +437,7 @@ export type Database = {
           game_providers?: Json | null
           id?: string | null
           is_active?: boolean | null
+          is_hot?: boolean | null
           is_recommended?: boolean | null
           logo_url?: string | null
           min_deposit?: string | null

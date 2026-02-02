@@ -150,6 +150,7 @@ function AddCasinoForm({ onClose }: { onClose: () => void }) {
     description: "",
     is_active: true,
     is_recommended: false,
+    is_hot: false,
     affiliate_url: "",
     logo_url: null as string | null,
     game_providers: [] as GameProvider[],
@@ -177,6 +178,7 @@ function AddCasinoForm({ onClose }: { onClose: () => void }) {
       description: formData.description || null,
       is_active: formData.is_active,
       is_recommended: formData.is_recommended,
+      is_hot: formData.is_hot,
       affiliate_url: formData.affiliate_url || null,
       game_providers: formData.game_providers,
     };
@@ -347,6 +349,16 @@ function AddCasinoForm({ onClose }: { onClose: () => void }) {
           />
           <Label htmlFor="is_recommended">Anbefalet</Label>
         </div>
+        <div className="flex items-center gap-2">
+          <input
+            type="checkbox"
+            id="is_hot"
+            checked={formData.is_hot}
+            onChange={(e) => setFormData({ ...formData, is_hot: e.target.checked })}
+            className="h-4 w-4"
+          />
+          <Label htmlFor="is_hot">Hot 🔥</Label>
+        </div>
       </div>
 
       <Button type="submit" className="w-full" disabled={createCasino.isPending}>
@@ -377,6 +389,7 @@ function EditCasinoForm({ casino, onClose }: { casino: Casino; onClose: () => vo
     description: casino.description || "",
     is_active: casino.is_active,
     is_recommended: casino.is_recommended,
+    is_hot: casino.is_hot,
     affiliate_url: casino.affiliate_url || "",
     game_providers: casino.game_providers || [],
   });
@@ -403,6 +416,7 @@ function EditCasinoForm({ casino, onClose }: { casino: Casino; onClose: () => vo
       description: formData.description || null,
       is_active: formData.is_active,
       is_recommended: formData.is_recommended,
+      is_hot: formData.is_hot,
       logo_url: logoUrl,
       affiliate_url: formData.affiliate_url || null,
       game_providers: formData.game_providers,
@@ -580,6 +594,16 @@ function EditCasinoForm({ casino, onClose }: { casino: Casino; onClose: () => vo
             className="h-4 w-4"
           />
           <Label htmlFor="edit-is_recommended">Anbefalet</Label>
+        </div>
+        <div className="flex items-center gap-2">
+          <input
+            type="checkbox"
+            id="edit-is_hot"
+            checked={formData.is_hot}
+            onChange={(e) => setFormData({ ...formData, is_hot: e.target.checked })}
+            className="h-4 w-4"
+          />
+          <Label htmlFor="edit-is_hot">Hot 🔥</Label>
         </div>
       </div>
 

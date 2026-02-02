@@ -26,6 +26,7 @@ export interface Casino {
   description: string | null;
   is_active: boolean;
   is_recommended: boolean;
+  is_hot: boolean;
   position: number;
   logo_url: string | null;
   affiliate_url: string | null;
@@ -34,8 +35,9 @@ export interface Casino {
   updated_at: string;
 }
 
-export type CasinoInsert = Omit<Casino, "id" | "created_at" | "updated_at" | "position" | "is_recommended" | "logo_url" | "affiliate_url" | "game_providers"> & { 
-  is_recommended?: boolean; 
+export type CasinoInsert = Omit<Casino, "id" | "created_at" | "updated_at" | "position" | "is_recommended" | "is_hot" | "logo_url" | "affiliate_url" | "game_providers"> & { 
+  is_recommended?: boolean;
+  is_hot?: boolean;
   logo_url?: string | null; 
   affiliate_url?: string | null;
   game_providers?: GameProvider[];
