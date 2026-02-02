@@ -1,144 +1,254 @@
 
-# Track Logged-In Twitch Users' Deal Clicks
+# Add Category Filtering to Highlights
 
 ## Overview
-Add user tracking to the affiliate click system so you can see which Twitch users clicked on which casino deals. This will show the user's Twitch username in the admin analytics dashboard.
-
-## Current State
-- Click events are tracked in the `click_events` table with casino info and timestamp
-- No user information is currently stored with clicks
-- The admin dashboard shows "Recent Clicks" with Casino and Time columns only
+Add a category/tag system to highlights so users can filter videos by type (e.g., "Big Wins", "Bonus Hunts", "Funny Moments") on the public page. Admins will be able to create, edit, and delete categories, and assign categories to each highlight.
 
 ## What You'll Get
-- A new "Bruger" (User) column in the Recent Clicks table showing the Twitch username
-- Anonymous clicks will show "Anonym" (Anonymous)
-- Ability to see which of your Twitch viewers are most engaged with casino deals
+
+### Public Highlights Page
+- Filter tabs at the top (similar to the casino page filters)
+- "Alle" (All) option to show all highlights
+- Click a category to filter highlights by that tag
+- Smooth filtering without page reload
+
+### Admin Panel
+- New "Kategorier" (Categories) section in the Highlights admin tab
+- Create, rename, and delete categories
+- Category selector when adding/editing highlights
+- Visual category badge displayed on each highlight in the admin list
 
 ---
 
 ## Technical Implementation
 
-### 1. Database Migration
-Add a `user_id` column to the `click_events` table to store which user made the click.
+### 1. Database: Create Categories Table
 
 ```sql
-ALTER TABLE public.click_events
-ADD COLUMN user_id uuid REFERENCES auth.users(id) ON DELETE SET NULL;
+CREATE TABLE public.highlight_categories (
+  id uuid PRIMARY KEY DEFAULT gen_random_uuid(),
+  name text NOT NULL UNIQUE,
+  slug text NOT NULL UNIQUE,
+  position integer NOT NULL DEFAULT 0,
+  created_at timestamptz NOT NULL DEFAULT now()
+);
 
--- Create index for faster user-based queries
-CREATE INDEX idx_click_events_user_id ON public.click_events(user_id);
+-- Enable RLS
+ALTER TABLE public.highlight_categories ENABLE ROW LEVEL SECURITY;
+
+-- Public read access
+CREATE POLICY "Anyone can view categories"
+  ON public.highlight_categories FOR SELECT
+  USING (true);
+
+-- Admin write access
+CREATE POLICY "Admins can manage categories"
+  ON public.highlight_categories FOR ALL
+  TO authenticated
+  USING (public.has_role(auth.uid(), 'admin'))
+  WITH CHECK (public.has_role(auth.uid(), 'admin'));
 ```
 
-### 2. Update Edge Function (affiliate-redirect)
-Modify the edge function to accept and store the user ID when provided.
+### 2. Database: Add Category to Highlights
 
-**Changes:**
-- Accept optional `userId` query parameter
-- Include `user_id` in the database insert
+```sql
+ALTER TABLE public.highlights
+ADD COLUMN category_id uuid REFERENCES public.highlight_categories(id) ON DELETE SET NULL;
 
-```typescript
-// Parse userId from query params
-const userId = url.searchParams.get("userId");
-
-// Insert with user_id
-await supabaseAdmin.from("click_events").insert({
-  casino_id: casino.id,
-  casino_slug: slug,
-  casino_name: casino.name,
-  event_type: "affiliate_click",
-  user_agent: userAgent,
-  referrer: referrer,
-  user_id: userId || null,  // New field
-});
+-- Index for faster filtering
+CREATE INDEX idx_highlights_category ON public.highlights(category_id);
 ```
 
-### 3. Update Frontend Redirect Function
-Pass the current user's ID when calling the affiliate redirect.
+### 3. Create useHighlightCategories Hook
 
-**File: `src/lib/affiliateRedirect.ts`**
-- Add optional `userId` parameter
-- Include in the redirect URL
+New file: `src/hooks/useHighlightCategories.ts`
+
+Provides:
+- `useHighlightCategories()` - fetch all categories
+- `useCreateCategory()` - create new category
+- `useUpdateCategory()` - rename category
+- `useDeleteCategory()` - delete category
+- `useUpdateCategoryPositions()` - reorder categories
+
+### 4. Update useHighlights Hook
+
+Modify `src/hooks/useHighlights.ts`:
+- Add `category_id` to the Highlight interface
+- Update `useHighlights` to accept optional `categoryId` filter parameter
+- Include category data in queries
 
 ```typescript
-export async function getAffiliateRedirect(
-  slug: string,
-  userId?: string
-): Promise<void> {
-  let redirectUrl = `https://${projectId}.supabase.co/functions/v1/affiliate-redirect?slug=${encodeURIComponent(slug)}`;
-  
-  if (userId) {
-    redirectUrl += `&userId=${encodeURIComponent(userId)}`;
-  }
-  
-  window.open(redirectUrl, "_blank", "noopener,noreferrer");
+export function useHighlights(adminView = false, categoryId?: string) {
+  return useQuery({
+    queryKey: ["highlights", adminView, categoryId],
+    queryFn: async () => {
+      let query = supabase
+        .from("highlights")
+        .select("*, highlight_categories(name, slug)")
+        .order("position", { ascending: true });
+
+      if (!adminView) {
+        query = query.eq("is_active", true);
+      }
+      
+      if (categoryId) {
+        query = query.eq("category_id", categoryId);
+      }
+
+      const { data, error } = await query;
+      if (error) throw error;
+      return data;
+    },
+  });
 }
 ```
 
-### 4. Update CasinoCard Component
-Get the current user and pass their ID to the redirect function.
+### 5. Create HighlightFilterTabs Component
 
-**File: `src/components/CasinoCard.tsx`**
-- Import `useAuth` hook
-- Pass `user.id` to `getAffiliateRedirect`
+New file: `src/components/HighlightFilterTabs.tsx`
 
-```typescript
-import { useAuth } from "@/hooks/useAuth";
-
-// In FeaturedCard and RegularCard:
-const { user } = useAuth();
-
-// Button onClick:
-onClick={() => getAffiliateRedirect(casino.slug, user?.id)}
-```
-
-### 5. Update Admin Dashboard
-Join click events with profiles to show Twitch usernames.
-
-**File: `src/components/CombinedAnalyticsDashboard.tsx`**
-- Update the ClickEvent interface to include user info
-- Modify the query to fetch profile data
-- Add "Bruger" column to the Recent Clicks table
+Similar to the existing FilterTabs component but dynamic:
+- Fetches categories from database
+- Shows "Alle" (All) as first option
+- Displays category names as filter buttons
+- Calls `onFilterChange` when clicked
 
 ```typescript
-// Updated interface
-interface ClickEvent {
-  id: string;
-  casino_name: string;
-  created_at: string;
-  user_id: string | null;
-  profiles: { twitch_username: string | null } | null;
+import { useHighlightCategories } from "@/hooks/useHighlightCategories";
+import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Filter } from "lucide-react";
+
+interface HighlightFilterTabsProps {
+  activeFilter: string;
+  onFilterChange: (categoryId: string) => void;
 }
 
-// Query with profile join
-const { data } = await supabase
-  .from("click_events")
-  .select(`
-    id, casino_name, created_at, user_id,
-    profiles:user_id (twitch_username)
-  `)
-  .gte("created_at", start.toISOString())
-  .order("created_at", { ascending: false });
+export function HighlightFilterTabs({ activeFilter, onFilterChange }: HighlightFilterTabsProps) {
+  const { data: categories } = useHighlightCategories();
 
-// Table column
-<th>Bruger</th>
-<td>{event.profiles?.twitch_username || "Anonym"}</td>
+  return (
+    <Tabs value={activeFilter} onValueChange={onFilterChange}>
+      <TabsList className="flex h-auto flex-wrap justify-center gap-2 bg-transparent p-0">
+        <TabsTrigger value="all" className="rounded-full border ...">
+          <Filter className="h-4 w-4 mr-1.5" />
+          Alle
+        </TabsTrigger>
+        {categories?.map((cat) => (
+          <TabsTrigger key={cat.id} value={cat.id} className="rounded-full border ...">
+            {cat.name}
+          </TabsTrigger>
+        ))}
+      </TabsList>
+    </Tabs>
+  );
+}
 ```
 
-### 6. Update ClickAnalyticsDashboard (if used separately)
-Apply the same changes to `src/components/ClickAnalyticsDashboard.tsx` for consistency.
+### 6. Update Highlights Page
+
+Modify `src/pages/Highlights.tsx`:
+- Add filter state: `const [activeCategory, setActiveCategory] = useState("all")`
+- Pass category filter to `useHighlights`
+- Render `HighlightFilterTabs` below the hero section
+
+```typescript
+export default function Highlights() {
+  const [activeCategory, setActiveCategory] = useState("all");
+  const categoryId = activeCategory === "all" ? undefined : activeCategory;
+  
+  const { data: highlights, isLoading, error } = useHighlights(false, categoryId);
+
+  return (
+    <div className="min-h-screen">
+      <HighlightsHero />
+      <div className="py-16">
+        <div className="container">
+          <div className="mb-8">
+            <HighlightFilterTabs 
+              activeFilter={activeCategory} 
+              onFilterChange={setActiveCategory} 
+            />
+          </div>
+          {/* Existing highlights grid */}
+        </div>
+      </div>
+    </div>
+  );
+}
+```
+
+### 7. Add Category Management to Admin
+
+Update `src/components/HighlightsAdminSection.tsx`:
+
+**A) Add Category Manager UI**
+- Collapsible section at the top for managing categories
+- Input field + button to add new category
+- List of existing categories with edit/delete buttons
+- Drag-and-drop to reorder categories
+
+**B) Add Category Selector to Highlight Form**
+- Dropdown/select in the add/edit highlight dialog
+- Shows all available categories
+- Optional (highlight can have no category)
+
+```typescript
+// In the form
+<div className="space-y-2">
+  <Label htmlFor="category">Kategori (valgfrit)</Label>
+  <Select
+    value={formData.category_id || "none"}
+    onValueChange={(val) => setFormData(prev => ({ 
+      ...prev, 
+      category_id: val === "none" ? null : val 
+    }))}
+  >
+    <SelectTrigger>
+      <SelectValue placeholder="Vælg kategori" />
+    </SelectTrigger>
+    <SelectContent>
+      <SelectItem value="none">Ingen kategori</SelectItem>
+      {categories?.map(cat => (
+        <SelectItem key={cat.id} value={cat.id}>{cat.name}</SelectItem>
+      ))}
+    </SelectContent>
+  </Select>
+</div>
+```
+
+**C) Show Category Badge in Item List**
+Display the assigned category as a badge next to each highlight in the admin list.
 
 ---
+
+## Files to Create
+
+| File | Purpose |
+|------|---------|
+| `src/hooks/useHighlightCategories.ts` | Category CRUD hooks |
+| `src/components/HighlightFilterTabs.tsx` | Filter UI for public page |
+| `src/components/HighlightCategoryManager.tsx` | Admin category management UI |
 
 ## Files to Modify
 
 | File | Change |
 |------|--------|
-| `supabase/functions/affiliate-redirect/index.ts` | Accept and store `userId` |
-| `src/lib/affiliateRedirect.ts` | Pass `userId` to edge function |
-| `src/components/CasinoCard.tsx` | Get user and pass ID to redirect |
-| `src/components/CombinedAnalyticsDashboard.tsx` | Display Twitch username in table |
-| `src/components/ClickAnalyticsDashboard.tsx` | Display Twitch username in table |
+| `src/hooks/useHighlights.ts` | Add category_id to interface, add filter param |
+| `src/pages/Highlights.tsx` | Add filter state and HighlightFilterTabs |
+| `src/components/HighlightsAdminSection.tsx` | Add category selector and manager |
+| `src/components/HighlightCard.tsx` | Optionally show category badge |
 
 ## Database Changes
-- Add `user_id` column to `click_events` table
-- Add index for performance
+- Create `highlight_categories` table with RLS policies
+- Add `category_id` column to `highlights` table
+
+---
+
+## Example Category Ideas
+Once implemented, you can add categories like:
+- Big Wins
+- Bonus Hunts
+- Funny Moments
+- Slots
+- Live Casino
+- Collabs
