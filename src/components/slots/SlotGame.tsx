@@ -1,4 +1,4 @@
-import { useState, useCallback, useRef } from "react";
+import { useState, useCallback, useRef, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { SlotReel } from "./SlotReel";
@@ -18,7 +18,7 @@ import { supabase } from "@/integrations/supabase/client";
 import { generateGrid, calculateSpinResult, PAY_LINES, type SpinResult } from "@/lib/slotGameLogic";
 import { calculateBonusSpinResult } from "@/lib/bonusGameLogic";
 import { slotSounds } from "@/lib/slotSoundEffects";
-import { Gamepad2, Loader2 } from "lucide-react";
+import { Gamepad2, Loader2, Play, Square } from "lucide-react";
 import { toast } from "sonner";
 import { cn } from "@/lib/utils";
 
@@ -29,13 +29,14 @@ export function SlotGame() {
   const { settings: slotSettings } = useSlotSettings();
   const { 
     bonusState, 
+    isLoaded: bonusLoaded,
     triggerBonus, 
     decrementFreeSpin,
     addBonusWinnings, 
     retriggerBonus, 
     endBonus,
     shouldEndBonus 
-  } = useBonusGame();
+  } = useBonusGame(symbols);
   
   const [bet, setBet] = useState(1);
   const [isSpinning, setIsSpinning] = useState(false);
@@ -44,6 +45,11 @@ export function SlotGame() {
   const [winAmount, setWinAmount] = useState(0);
   const [isWinAnimating, setIsWinAnimating] = useState(false);
   const [expandedReels, setExpandedReels] = useState<number[]>([]);
+  
+  // Autospin state
+  const [isAutoSpinning, setIsAutoSpinning] = useState(false);
+  const autoSpinTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+  const shouldStopAutoSpinRef = useRef(false);
   
   // Bonus overlay states
   const [showBonusTrigger, setShowBonusTrigger] = useState(false);
@@ -64,6 +70,34 @@ export function SlotGame() {
   if (!grid && symbols && symbols.length > 0) {
     initializeGrid();
   }
+
+  // Cleanup autospin on unmount
+  useEffect(() => {
+    return () => {
+      if (autoSpinTimeoutRef.current) {
+        clearTimeout(autoSpinTimeoutRef.current);
+      }
+    };
+  }, []);
+
+  // Stop autospin when out of spins or on big win/bonus
+  const stopAutoSpin = useCallback(() => {
+    setIsAutoSpinning(false);
+    shouldStopAutoSpinRef.current = true;
+    if (autoSpinTimeoutRef.current) {
+      clearTimeout(autoSpinTimeoutRef.current);
+      autoSpinTimeoutRef.current = null;
+    }
+  }, []);
+
+  const toggleAutoSpin = useCallback(() => {
+    if (isAutoSpinning) {
+      stopAutoSpin();
+    } else {
+      setIsAutoSpinning(true);
+      shouldStopAutoSpinRef.current = false;
+    }
+  }, [isAutoSpinning, stopAutoSpin]);
 
   const handleSpin = async () => {
     if (!symbols || symbols.length === 0 || !user || isSpinning) return;
@@ -149,8 +183,10 @@ export function SlotGame() {
       await new Promise(resolve => setTimeout(resolve, 300));
 
       // Handle bonus trigger or retrigger
+      let shouldStopAuto = false;
       if (result.bonusTriggered) {
         slotSounds.playBonusTrigger();
+        shouldStopAuto = true; // Stop autospin on bonus
         
         if (isBonusSpin) {
           // Retrigger during bonus
@@ -162,6 +198,15 @@ export function SlotGame() {
           setPendingExpandingSymbol(expanding);
           setShowBonusTrigger(true);
         }
+      }
+
+      // Stop autospin on big wins
+      if (result.totalWin >= bet * 50) {
+        shouldStopAuto = true;
+      }
+
+      if (shouldStopAuto && isAutoSpinning) {
+        stopAutoSpin();
       }
 
       // Handle winnings during bonus
@@ -226,6 +271,35 @@ export function SlotGame() {
   if (shouldEndBonus && !isSpinning && !showBonusComplete) {
     handleBonusEnd();
   }
+
+  // Autospin effect - trigger next spin after current one completes
+  useEffect(() => {
+    if (!isAutoSpinning || isSpinning || shouldStopAutoSpinRef.current) return;
+    
+    const isBonusSpin = bonusState.isActive && bonusState.freeSpinsRemaining > 0;
+    const hasSpins = isBonusSpin || canSpin;
+    
+    if (!hasSpins) {
+      stopAutoSpin();
+      return;
+    }
+
+    // Don't auto-spin if bonus overlay is showing
+    if (showBonusTrigger || showBonusComplete) return;
+
+    // Schedule next spin with a delay
+    autoSpinTimeoutRef.current = setTimeout(() => {
+      if (!shouldStopAutoSpinRef.current) {
+        handleSpin();
+      }
+    }, 1500); // 1.5 second delay between spins
+
+    return () => {
+      if (autoSpinTimeoutRef.current) {
+        clearTimeout(autoSpinTimeoutRef.current);
+      }
+    };
+  }, [isAutoSpinning, isSpinning, canSpin, bonusState.isActive, bonusState.freeSpinsRemaining, showBonusTrigger, showBonusComplete]);
 
   // Find winning positions for each reel
   const getWinningPositions = (reelIndex: number): number[] => {
@@ -381,19 +455,20 @@ export function SlotGame() {
             <WinDisplay amount={bonusState.isActive ? bonusState.bonusWinnings : winAmount} isAnimating={isWinAnimating} />
           </div>
 
-          {/* Spin button */}
-          <div className="flex justify-center">
+          {/* Spin buttons */}
+          <div className="flex justify-center gap-4">
+            {/* Main Spin button */}
             <Button
               size="lg"
               className={cn(
-                "px-12 py-6 text-xl font-bold transition-all",
+                "px-8 sm:px-12 py-6 text-xl font-bold transition-all",
                 bonusState.isActive
                   ? "bg-gradient-to-r from-purple-500 to-purple-600 hover:from-purple-600 hover:to-purple-700 shadow-[0_4px_20px_rgba(168,85,247,0.4)]"
                   : "bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 shadow-[0_4px_20px_rgba(251,191,36,0.4)]",
                 "disabled:opacity-50 disabled:cursor-not-allowed"
               )}
               onClick={handleSpin}
-              disabled={isSpinning || !canSpinNow || showBonusTrigger}
+              disabled={isSpinning || !canSpinNow || showBonusTrigger || isAutoSpinning}
             >
               {isSpinning ? (
                 <>
@@ -411,6 +486,32 @@ export function SlotGame() {
                 <>
                   <Gamepad2 className="mr-2 h-6 w-6" />
                   SPIN
+                </>
+              )}
+            </Button>
+
+            {/* Autospin button */}
+            <Button
+              size="lg"
+              variant={isAutoSpinning ? "destructive" : "outline"}
+              className={cn(
+                "px-6 py-6 text-lg font-bold transition-all",
+                isAutoSpinning 
+                  ? "bg-red-500 hover:bg-red-600 text-white"
+                  : "border-amber-500/50 hover:bg-amber-500/10 text-amber-500"
+              )}
+              onClick={toggleAutoSpin}
+              disabled={!canSpinNow || showBonusTrigger}
+            >
+              {isAutoSpinning ? (
+                <>
+                  <Square className="mr-2 h-5 w-5" />
+                  STOP
+                </>
+              ) : (
+                <>
+                  <Play className="mr-2 h-5 w-5" />
+                  AUTO
                 </>
               )}
             </Button>
