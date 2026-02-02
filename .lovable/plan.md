@@ -1,47 +1,36 @@
 
+# Remove Dark Box Background from Slot Machine
 
-## Plan: Allow Non-Logged-In Users to View Slot Machine Page
+## Summary
+Remove the dark card background and container box styling from the slot machine, allowing the Egyptian temple background from the page to show through.
 
-### Overview
-Currently, non-logged-in users see a blocking screen asking them to log in. We'll modify the page so everyone can see the slot machine, title, and leaderboard, but only logged-in users can actually spin.
+## What Will Change
 
-### Changes
+The slot machine currently has two layers of dark backgrounds:
+1. An outer Card component with a semi-transparent dark background
+2. An inner container around the reels with an amber-950 gradient
 
-#### 1. Update SlotMachine.tsx Page
-- Remove the `if (!user)` block that shows the login prompt
-- Always render the full slot machine page with title, SlotGame component, and SlotLeaderboard
-- Keep the loading state check as-is
+Both will be removed to create a transparent, floating appearance that lets the beautiful background image show through.
 
-#### 2. Update SlotGame.tsx Component
-The spin functionality already checks for user authentication (line 144: `if (!symbols || symbols.length === 0 || !user || isSpinning) return;`), but we need to:
-- Show a clear "Log in to spin" message when the user is not authenticated
-- Disable spin buttons for non-logged-in users with an appropriate visual indicator
-- Conditionally render the SpinsRemaining component (only show for logged-in users)
-- Update the button states and "no spins" message to handle the unauthenticated case
+---
 
-#### 3. Update SpinsRemaining.tsx Component
-- Add handling for when user is not logged in (currently it relies on useSlotSpins which requires auth)
-- Show a message prompting users to log in, or hide the component for non-authenticated users
+## Technical Implementation
 
-### Technical Details
+### File: `src/components/slots/SlotGame.tsx`
 
-**SlotMachine.tsx:**
-```tsx
-// Remove lines 30-56 (the !user check and login prompt)
-// The page will always show the full slot machine UI
-```
+**Change 1: Remove Card wrapper background (lines 447-452)**
+- Current: Uses Card with `bg-card/80 backdrop-blur-sm` and amber border
+- Change: Replace Card with a simple div, remove background styling while keeping overflow and bonus effects
 
-**SlotGame.tsx:**
-- Add a login prompt overlay or message when `!user`
-- Modify spin buttons to show "Log ind for at spille" when not authenticated
-- Add a Link to "/auth" on the disabled spin button for easy navigation
+**Change 2: Remove Egyptian header gradient bar (lines 453-459)**
+- This decorative bar at the top of the card will be removed as part of removing the card styling
 
-**SpinsRemaining.tsx:**
-- Import `useAuth` hook
-- Return null or a "Log in" prompt when user is not logged in
+**Change 3: Remove reel container background (lines 491-498)**
+- Current: Dark gradient `bg-gradient-to-b from-amber-950/80 to-background` with thick borders
+- Change: Remove background gradient, reduce or remove borders, keep only functional padding and glow effects during spinning/bonus
 
-### Files to Modify
-1. `src/pages/SlotMachine.tsx` - Remove login gate, always show full content
-2. `src/components/slots/SlotGame.tsx` - Add login prompts on controls when not authenticated
-3. `src/components/slots/SpinsRemaining.tsx` - Handle unauthenticated state gracefully
-
+### Expected Result
+- Slot machine reels will appear to float on the page background
+- Individual symbol boxes still have their own styling (amber/gold theme)
+- Bonus mode glow effects and spinning effects will still be visible
+- The overall look will be cleaner and more integrated with the Egyptian temple background
