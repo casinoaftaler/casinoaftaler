@@ -34,8 +34,8 @@ export function SlotReel({
   const buildReelStrip = () => {
     const strip: SlotSymbolType[] = [];
     
-    // Add random symbols for spinning - more for later reels
-    const spinSymbolCount = 20 + delay * 8;
+    // Use consistent number of spin symbols for smooth animation
+    const spinSymbolCount = 30;
     for (let i = 0; i < spinSymbolCount; i++) {
       const randomSymbol = symbols[Math.floor(Math.random() * symbols.length)];
       strip.push(randomSymbol);
@@ -97,31 +97,22 @@ export function SlotReel({
         setSpinState("spinning");
         
         const startTime = performance.now();
-        // All reels spin for the same base time, but STOP sequentially
-        // Each reel waits for the previous one to stop before stopping
-        const baseSpinDuration = 1200; // Base spin time
-        const reelStopDelay = delay * 400; // 400ms between each reel stopping
+        // Base spin duration - same for all reels
+        const baseSpinDuration = 1000;
+        // Each reel stops 350ms after the previous
+        const reelStopDelay = delay * 350;
         const spinDuration = baseSpinDuration + reelStopDelay;
         
         const animate = (currentTime: number) => {
           const elapsed = currentTime - startTime;
           const progress = Math.min(elapsed / spinDuration, 1);
           
-          // Custom easing: starts very fast, then gradually slows down
-          let easeProgress: number;
-          if (progress < 0.7) {
-            // Fast spinning phase (70% of duration)
-            easeProgress = (progress / 0.7) * 0.5;
-          } else {
-            // Deceleration phase (30% of duration)
-            const decelProgress = (progress - 0.7) / 0.3;
-            // Ease-out cubic for smooth deceleration
-            const easeOutCubic = 1 - Math.pow(1 - decelProgress, 3);
-            easeProgress = 0.5 + easeOutCubic * 0.5;
-          }
+          // Smooth easing that maintains consistent visual speed
+          // Use ease-out quad for the entire duration
+          const easeOutQuad = 1 - Math.pow(1 - progress, 2);
           
           // Calculate current offset
-          const currentOffset = easeProgress * targetOffset;
+          const currentOffset = easeOutQuad * targetOffset;
           setOffset(currentOffset);
           
           if (progress < 1) {
