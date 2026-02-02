@@ -197,6 +197,20 @@ export function SlotReel({
   const totalSymbolHeight = symbolHeight + gap;
   const viewportHeight = 3 * symbolHeight + 2 * gap;
 
+  // Calculate blur amount based on spin speed (stronger at start, fades as it slows)
+  const getBlurAmount = () => {
+    if (spinState !== "spinning") return 0;
+    const symbolHeight = getSymbolHeight();
+    const gap = getGap();
+    const totalSymbolHeight = symbolHeight + gap;
+    const targetOffset = (reelStrip.length - 3) * totalSymbolHeight;
+    const progress = offset / targetOffset;
+    // Blur is strongest at the start (8px) and fades out as the reel slows
+    return Math.max(0, 8 * (1 - progress * progress));
+  };
+
+  const blurAmount = getBlurAmount();
+
   return (
     <div 
       ref={containerRef}
@@ -211,6 +225,8 @@ export function SlotReel({
         style={{ 
           transform: `translateY(-${offset}px)`,
           gap: `${gap}px`,
+          filter: blurAmount > 0 ? `blur(${blurAmount}px)` : 'none',
+          transition: spinState === "stopping" ? 'filter 0.2s ease-out' : 'none',
         }}
       >
         {reelStrip.map((symbol, index) => (
@@ -222,12 +238,12 @@ export function SlotReel({
         ))}
       </div>
       
-      {/* Speed blur effect - stronger at the start, fades as it slows */}
+      {/* Speed blur overlay effect - enhances motion blur perception */}
       <div 
         className="absolute inset-0 pointer-events-none transition-opacity duration-300"
         style={{
           background: spinState === "spinning" 
-            ? "linear-gradient(to bottom, hsl(var(--background) / 0.4), transparent 20%, transparent 80%, hsl(var(--background) / 0.4))"
+            ? "linear-gradient(to bottom, hsl(var(--background) / 0.5), transparent 25%, transparent 75%, hsl(var(--background) / 0.5))"
             : "none",
           opacity: spinState === "stopping" ? 0 : 1,
         }}
