@@ -88,17 +88,18 @@ export function SlotReel({
       // Target offset: scroll to show the last 3 symbols (the actual result)
       const targetOffset = (strip.length - 3) * totalSymbolHeight;
       
-      // Start spinning after delay - shorter delay for snappier feel
-      const startDelay = delay * 120;
+      // All reels start at the same time for visual sync
+      const startDelay = 50;
       
       const startTimeout = setTimeout(() => {
         setSpinState("spinning");
         
         const startTime = performance.now();
-        // Base duration + staggered stop times for each reel
-        const baseDuration = 800;
-        const reelDelay = delay * 250;
-        const spinDuration = baseDuration + reelDelay;
+        // All reels spin for the same base time, but STOP sequentially
+        // Each reel waits for the previous one to stop before stopping
+        const baseSpinDuration = 1200; // Base spin time
+        const reelStopDelay = delay * 400; // 400ms between each reel stopping
+        const spinDuration = baseSpinDuration + reelStopDelay;
         
         const animate = (currentTime: number) => {
           const elapsed = currentTime - startTime;
