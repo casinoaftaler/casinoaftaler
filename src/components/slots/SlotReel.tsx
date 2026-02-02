@@ -7,6 +7,7 @@ interface SlotReelProps {
   displayedSymbolIds: string[];
   isSpinning: boolean;
   winningPositions?: number[];
+  isExpanded?: boolean;
   delay?: number;
 }
 
@@ -15,12 +16,16 @@ export function SlotReel({
   displayedSymbolIds,
   isSpinning,
   winningPositions = [],
+  isExpanded = false,
   delay = 0,
 }: SlotReelProps) {
   const symbolsById = new Map(symbols.map(s => [s.id, s]));
 
   return (
-    <div className="flex flex-col gap-1 sm:gap-2">
+    <div className={cn(
+      "flex flex-col gap-1 sm:gap-2",
+      isExpanded && "animate-pulse"
+    )}>
       {displayedSymbolIds.map((symbolId, rowIndex) => {
         const symbol = symbolsById.get(symbolId);
         if (!symbol) return null;
@@ -40,6 +45,7 @@ export function SlotReel({
               symbol={symbol}
               isWinning={winningPositions.includes(rowIndex)}
               isSpinning={isSpinning}
+              isExpanded={isExpanded}
             />
           </div>
         );
