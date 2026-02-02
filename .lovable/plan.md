@@ -1,96 +1,66 @@
 
-# Add Expanding Symbol Animation and Scatter-Style Payout
+# Fix: Expanding Symbol Should NOT Act as Wild in Bonus Game
 
-## Summary
-Fix two issues with the bonus game:
-1. Add a visual animation that shows the expanding symbol expanding AFTER the reels stop
-2. Make expanding symbols pay based on total count across all reels (like scatter pays) rather than requiring consecutive reels from the left
+## Problem
+In the bonus game, the win calculation still treats symbols with `is_wild: true` as substitutes for other symbols. This means if the "Book" symbol (which is both scatter and wild) appears, it incorrectly substitutes for other symbols when calculating line wins.
 
----
+The expanding symbol should only pay based on its OWN multipliers when it expands - it should not act as a wild that can substitute for other symbols.
 
-## Current Behavior vs Expected
+## Current Behavior
+- When calculating wins in bonus mode, symbols marked as `is_wild` can substitute for any other symbol
+- This creates incorrect payouts where the expanding symbol is treated like a wildcard
 
-### Animation
-- **Current**: The expanded grid is set before showing results, so symbols appear already expanded
-- **Expected**: Reels stop with original symbols, then the expanding symbol visually expands to fill the reel with a clear animation sequence
+## Expected Behavior
+- In bonus mode, the expanding symbol should ONLY match with itself
+- Standard wilds should NOT substitute for other symbols during bonus spins
+- Expanding symbols pay on all 10 lines when they expand to 3+ reels, using their own symbol multipliers
 
-### Payout Logic  
-- **Current**: Only pays if expanding symbols appear consecutively starting from reel 1
-- **Expected (Book of Ra style)**: Pays based on total number of reels with expanding symbol, regardless of position (e.g., reels 2, 3, 5 = 3-of-a-kind win)
-
----
-
-## Technical Implementation
-
-### File: `src/components/slots/SlotGame.tsx`
-
-**Change 1: Two-phase grid display**
-- Store both `originalGrid` and `expandedGrid` separately
-- After spin completes, first show `originalGrid` for ~500ms
-- Then animate transition to `expandedGrid` with the expansion effects
-- This creates a clear "symbols land → symbols expand" sequence
-
-**Change 2: Add expansion animation timing**
-- Delay setting `expandedReels` and `newlyExpandedReels` until after initial result display
-- Play expansion sound during this delayed phase
-- Update the grid to the expanded version during animation
+## Solution
 
 ### File: `src/lib/bonusGameLogic.ts`
 
-**Change 3: Add scatter-style payout calculation for expanding symbols**
-- Create new function `calculateExpandingSymbolWins` that pays based on total reel count
-- When expanding symbol appears on 3+ reels (regardless of which reels), calculate payout using the symbol's multipliers
-- For each payline that could contain the expanding symbol, check all positions rather than just consecutive from left
+**Change 1: Update `checkIfExpandingCreatesPaylineWin` function (lines 94-112)**
+Remove the wild substitution logic. A match should only occur when:
+- Symbol IDs are identical, OR
+- The current symbol IS the expanding symbol
 
-**Change 4: Update `calculateBonusSpinResult`**
-- Include scatter-style expanding symbol wins in addition to standard line wins
-- Ensure expanding symbols on non-consecutive reels (e.g., 1, 3, 5) still create valid wins
+**Change 2: Update `calculateWins` function (lines 243-257)**
+In the standard win calculation section, remove the wild substitution logic. Matches should only be:
+- Exact symbol ID matches (no wild substitution)
+- This ensures expanding symbols only pay when they actually match
 
-### Example Scenario
-If expanding symbol is "Pharaoh" and appears on reels 1, 3, and 5:
-- Before fix: No win (not consecutive from reel 1)
-- After fix: 3-of-a-kind win on all 10 paylines (since expanded symbols fill entire reels)
+### Specific Code Changes
 
----
+**In `checkIfExpandingCreatesPaylineWin`:**
+```typescript
+// Before (line 99-101):
+const isMatch = 
+  symbol.id === baseSymbol?.id || 
+  symbol.is_wild;
 
-## Animation Sequence
-
-```text
-Timeline (after reels stop):
-
-0ms     → Show original grid with expanding symbol visible
-500ms   → Start expansion animation
-         - Play expansion sound
-         - Symbol grows to fill entire reel
-         - Purple glow effect activates
-         - Flash animation plays
-1100ms  → Expansion complete
-         - Calculate and show wins
-         - Display win lines on expanded grid
+// After:
+const isMatch = symbol.id === baseSymbol?.id;
 ```
 
----
+**In `calculateWins`:**
+```typescript
+// Before (line 245-247):
+const isMatch = 
+  current.id === baseSymbol.id || 
+  current.is_wild;
 
-## Files to Modify
+// After:
+const isMatch = current.id === baseSymbol.id;
+```
 
-1. **`src/components/slots/SlotGame.tsx`**
-   - Add state for pre-expansion grid display
-   - Implement delayed expansion animation sequence
-   - Coordinate timing between grid update and visual effects
+Also remove the logic that updates the base symbol when starting with a wild (lines 251-254), since we no longer have wild substitution in bonus mode.
 
-2. **`src/lib/bonusGameLogic.ts`**
-   - Modify `calculateWins` to handle expanding symbol scatter-pay logic
-   - When the expanding symbol is present, calculate based on reel count rather than consecutive position
-   - Pay on all 10 lines when 3+ reels have the expanding symbol
+## Why This Works
+- The expanding symbol win calculation (lines 207-225) is already correct - it pays based on the expanding symbol's own multipliers on all 10 lines
+- By removing wild substitution from the standard line calculation, we ensure no symbol can act as a wildcard in bonus mode
+- Example: If "A" is the expanding symbol and appears on reels 1, 3, 5, it will expand and pay the "A" multiplier × 10 lines
 
-3. **`src/components/slots/SlotReel.tsx`** (minor)
-   - May need adjustment to support showing original symbols first, then transitioning
-
----
-
-## Edge Cases Handled
-
-- Expanding symbol on only 1-2 reels: No expansion animation, no scatter-style pay
-- Expanding symbol on 3+ non-consecutive reels: Full expansion, pays on all lines
-- Retrigger during bonus: Animation plays before adding extra spins
-- Autospin: Animation still plays but may be slightly faster
+## Technical Details
+- Lines 94-112: Remove `symbol.is_wild` from match condition
+- Lines 233-254: Remove wild symbol handling entirely from bonus standard wins
+- Lines 251-254: Remove base symbol update logic for wilds
