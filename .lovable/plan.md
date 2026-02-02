@@ -1,47 +1,66 @@
 
-# Plan: Clean Up Duplicate "Funktioner" (Features) Display on Casino Cards
+# Plan: Add YouTube Shorts/Reels Support to Highlights
 
-## Current Issue
+## Overview
+The current highlights system only supports standard YouTube video URLs. This update will add full support for YouTube Shorts (also known as Reels) which use a different URL format.
 
-The casino card currently displays features in **three separate places**, creating visual redundancy:
+## Current Limitation
+YouTube Shorts URLs look like:
+- `https://www.youtube.com/shorts/ABC123xyz`
 
-1. **Main Card Body** (always visible): Features with green checkmarks (showing first 3 features)
-2. **Expanded Section - Top Badges**: Feature badges at the very top of the collapsible content (showing first 3 features)
-3. **Expanded Section - "Funktioner" Section**: A dedicated section with the header "Funktioner" listing all features as outline badges
+The current code only recognizes:
+- `https://www.youtube.com/watch?v=ABC123xyz`
+- `https://youtu.be/ABC123xyz`
+- `https://www.youtube.com/embed/ABC123xyz`
 
-## Proposed Solution
+## Solution
 
-Consolidate the feature display by:
+### File Changes
 
-1. **Keep the main card body features** (with green checkmarks) - These provide a quick overview before expanding
-2. **Remove the duplicate feature badges** from the top of the expanded section (Lines 60-69 in `CasinoInfoContent`)
-3. **Keep the "Funktioner" section** in the expanded details - but only show features that weren't already displayed in the main card (i.e., features 4+)
+**1. src/components/HighlightCard.tsx**
 
-This approach:
-- Eliminates redundancy while preserving all feature information
-- Maintains the visual hierarchy (quick preview on card, full details when expanded)
-- Only shows the "Funktioner" section if there are additional features beyond the first 3
+Update two helper functions to also match YouTube Shorts URLs:
 
-## Technical Changes
+- `getYouTubeEmbedUrl()` - Add `shorts/` to the regex pattern
+- `getYouTubeThumbnail()` - Add `shorts/` to the regex pattern
 
-**File: `src/components/CasinoCard.tsx`**
-
-1. **Remove the Feature Badges block** (Lines 59-69) from `CasinoInfoContent` that shows the bonus type and first 3 features as badges at the top of the expanded section
-
-2. **Update the "Funktioner" section** (Lines 163-175) to only display features starting from index 3 (the 4th feature onwards), and only render the section if there are more than 3 features
-
-### Code Changes Summary
-
+The updated regex will be:
 ```text
-CasinoInfoContent component modifications:
-├── Remove: Feature badges block (bonus type badge + first 3 features)
-└── Update: "Funktioner" section
-    ├── Only show features[3+] (skip first 3 already shown on card)
-    └── Only render section if features.length > 3
+/(?:youtube\.com\/(?:watch\?v=|embed\/|shorts\/)|youtu\.be\/)([^&?/]+)/
 ```
 
-## Result
+This adds `shorts\/` as an additional matching option, extracting the video ID the same way.
 
-- Users see the top 3 features with checkmarks on the card (always visible)
-- When expanded, they see additional features (4+) in the "Funktioner" section if any exist
-- No more duplicate display of the same features
+**2. src/components/HighlightsAdminSection.tsx**
+
+Update the URL placeholder text in the admin form to indicate that YouTube Shorts are also supported:
+```text
+"https://www.youtube.com/watch?v=... , /shorts/... eller https://clips.twitch.tv/..."
+```
+
+---
+
+## Technical Details
+
+### Regex Breakdown
+The pattern `(?:youtube\.com\/(?:watch\?v=|embed\/|shorts\/)|youtu\.be\/)` matches:
+- `youtube.com/watch?v=` (standard videos)
+- `youtube.com/embed/` (embed URLs)
+- `youtube.com/shorts/` (Shorts/Reels) **NEW**
+- `youtu.be/` (short share links)
+
+The `([^&?/]+)` captures the video ID that follows.
+
+### Embedding
+YouTube Shorts can be embedded using the same standard embed URL format:
+`https://www.youtube.com/embed/VIDEO_ID?autoplay=1`
+
+### Thumbnails
+YouTube Shorts thumbnails work with the same thumbnail API:
+`https://img.youtube.com/vi/VIDEO_ID/hqdefault.jpg`
+
+---
+
+## Files to Modify
+1. `src/components/HighlightCard.tsx` - Update regex patterns
+2. `src/components/HighlightsAdminSection.tsx` - Update placeholder text
