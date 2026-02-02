@@ -38,7 +38,7 @@ export default function AuthCallback() {
       }
 
       // Verify state for CSRF protection
-      const savedState = sessionStorage.getItem("twitch_auth_state");
+      const savedState = localStorage.getItem("twitch_auth_state");
       console.log("[AuthCallback] state check", { state, savedState });
       if (state !== savedState) {
         console.error("State mismatch - possible CSRF attack");
@@ -53,13 +53,13 @@ export default function AuthCallback() {
       }
 
       // Check if this is a linking operation (user was already logged in)
-      const isLinking = sessionStorage.getItem("twitch_link_mode") === "true";
-      const linkToUserId = sessionStorage.getItem("twitch_link_user_id");
+      const isLinking = localStorage.getItem("twitch_link_mode") === "true";
+      const linkToUserId = localStorage.getItem("twitch_link_user_id");
 
       // Clear the stored state and link info
-      sessionStorage.removeItem("twitch_auth_state");
-      sessionStorage.removeItem("twitch_link_mode");
-      sessionStorage.removeItem("twitch_link_user_id");
+      localStorage.removeItem("twitch_auth_state");
+      localStorage.removeItem("twitch_link_mode");
+      localStorage.removeItem("twitch_link_user_id");
 
       if (!code) {
         setError("Ingen autorisationskode modtaget");
