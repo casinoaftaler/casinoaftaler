@@ -1,7 +1,8 @@
+import { useState } from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { AspectRatio } from "@/components/ui/aspect-ratio";
-import { ShoppingCart } from "lucide-react";
+import { ShoppingCart, ChevronDown, ChevronUp } from "lucide-react";
 import type { ShopItem } from "@/hooks/useShopItems";
 
 interface ShopItemCardProps {
@@ -9,11 +10,15 @@ interface ShopItemCardProps {
 }
 
 export function ShopItemCard({ item }: ShopItemCardProps) {
+  const [isExpanded, setIsExpanded] = useState(false);
+
   const handleBuyClick = () => {
     if (item.external_url) {
       window.open(item.external_url, "_blank", "noopener,noreferrer");
     }
   };
+
+  const shouldShowReadMore = item.description && item.description.length > 80;
 
   return (
     <Card className="overflow-hidden border-primary/30 bg-gradient-to-br from-primary/10 via-accent/10 to-primary/10 hover:border-primary/50 hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
@@ -33,9 +38,27 @@ export function ShopItemCard({ item }: ShopItemCardProps) {
       <CardContent className="p-4 space-y-3">
         <h3 className="text-lg font-bold text-foreground">{item.name}</h3>
         {item.description && (
-          <p className="text-sm text-muted-foreground">
-            {item.description}
-          </p>
+          <div className="space-y-1">
+            <p className={`text-sm text-muted-foreground ${!isExpanded && shouldShowReadMore ? 'line-clamp-2' : ''}`}>
+              {item.description}
+            </p>
+            {shouldShowReadMore && (
+              <button
+                onClick={() => setIsExpanded(!isExpanded)}
+                className="text-xs text-primary hover:text-primary/80 flex items-center gap-0.5 transition-colors"
+              >
+                {isExpanded ? (
+                  <>
+                    Vis mindre <ChevronUp className="h-3 w-3" />
+                  </>
+                ) : (
+                  <>
+                    Læs mere <ChevronDown className="h-3 w-3" />
+                  </>
+                )}
+              </button>
+            )}
+          </div>
         )}
         <div className="flex justify-between items-center text-sm">
           <div>
