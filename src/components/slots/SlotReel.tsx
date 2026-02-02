@@ -9,6 +9,7 @@ interface SlotReelProps {
   isSpinning: boolean;
   winningPositions?: number[];
   isExpanded?: boolean;
+  isNewlyExpanded?: boolean;
   delay?: number;
 }
 
@@ -22,6 +23,7 @@ export function SlotReel({
   isSpinning,
   winningPositions = [],
   isExpanded = false,
+  isNewlyExpanded = false,
   delay = 0,
 }: SlotReelProps) {
   const symbolsById = new Map(symbols.map(s => [s.id, s]));
@@ -178,6 +180,7 @@ export function SlotReel({
                 isWinning={winningPositions.includes(rowIndex)}
                 isSpinning={false}
                 isExpanded={isExpanded}
+                isNewlyExpanded={isNewlyExpanded}
               />
             </div>
           );
