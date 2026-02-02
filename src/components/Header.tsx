@@ -77,7 +77,7 @@ export function Header() {
         </Link>
 
         {/* Desktop Navigation */}
-        <nav className="hidden items-center gap-6 md:flex">
+        <nav className="hidden items-center gap-6 lg:flex">
           <Link
             to="/"
             className="flex items-center gap-1.5 text-sm font-medium transition-colors hover:text-primary"
@@ -143,7 +143,7 @@ export function Header() {
 
         <div className="flex items-center gap-2">
           {/* Theme toggle - hidden on mobile, shown on desktop */}
-          <div className="hidden md:block">
+          <div className="hidden lg:block">
             <ThemeToggle />
           </div>
           
@@ -215,7 +215,7 @@ export function Header() {
           <Button
             variant="ghost"
             size="icon"
-            className="md:hidden"
+            className="lg:hidden"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
           >
             {mobileMenuOpen ? (
@@ -229,7 +229,7 @@ export function Header() {
 
       {/* Mobile Navigation */}
       {mobileMenuOpen && (
-        <div className="border-t border-border bg-background md:hidden">
+        <div className="border-t border-border bg-background lg:hidden">
           <nav className="container flex flex-col gap-4 py-4">
             <Link
               to="/"
