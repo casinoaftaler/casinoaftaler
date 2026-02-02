@@ -1,7 +1,11 @@
 import { useShopItems } from "@/hooks/useShopItems";
 import { ShopItemCard } from "@/components/ShopItemCard";
 import { Skeleton } from "@/components/ui/skeleton";
-import { ShoppingBag } from "lucide-react";
+import { Card, CardContent } from "@/components/ui/card";
+import { ShoppingBag, Coins, LogIn, Loader2 } from "lucide-react";
+import { useStreamElementsPoints } from "@/hooks/useStreamElementsPoints";
+import { Link } from "react-router-dom";
+import { Button } from "@/components/ui/button";
 
 const description = "Her kan du shoppe eksklusive varer, men der er en lille twist – alt her kan kun købes med point, som du optjener ved at se vores streams på Twitch! Det betyder, at jo mere du ser, desto flere point tjener du, og desto flere fede produkter kan du få fat i. Så det er bare at sætte dig godt til rette, nyde vores streams, og se pointene rulle ind. Gå på opdagelse i vores udvalg og start din rejse mod de unikke præmier i dag!";
 
@@ -35,6 +39,98 @@ function ShopHero() {
   );
 }
 
+function PointsDisplay() {
+  const { points, isLoading, isConfigured, isLoggedIn, hasTwitchUsername } = useStreamElementsPoints();
+
+  // Don't show anything if StreamElements is not configured
+  if (!isConfigured) {
+    return null;
+  }
+
+  // Show login prompt if not logged in
+  if (!isLoggedIn) {
+    return (
+      <div className="container py-6">
+        <Card className="mx-auto max-w-md border-primary/20 bg-primary/5">
+          <CardContent className="flex items-center justify-between gap-4 p-4">
+            <div className="flex items-center gap-3">
+              <div className="rounded-full bg-primary/10 p-2">
+                <Coins className="h-5 w-5 text-primary" />
+              </div>
+              <p className="text-sm text-muted-foreground">
+                Log ind for at se dine point
+              </p>
+            </div>
+            <Button asChild size="sm" variant="outline">
+              <Link to="/auth">
+                <LogIn className="mr-2 h-4 w-4" />
+                Log ind
+              </Link>
+            </Button>
+          </CardContent>
+        </Card>
+      </div>
+    );
+  }
+
+  // Show message if logged in but no Twitch username
+  if (!hasTwitchUsername) {
+    return (
+      <div className="container py-6">
+        <Card className="mx-auto max-w-md border-muted bg-muted/50">
+          <CardContent className="flex items-center gap-3 p-4">
+            <div className="rounded-full bg-muted p-2">
+              <Coins className="h-5 w-5 text-muted-foreground" />
+            </div>
+            <p className="text-sm text-muted-foreground">
+              Log ind med Twitch for at se dine point
+            </p>
+          </CardContent>
+        </Card>
+      </div>
+    );
+  }
+
+  // Show loading state
+  if (isLoading) {
+    return (
+      <div className="container py-6">
+        <Card className="mx-auto max-w-md border-primary/20 bg-primary/5">
+          <CardContent className="flex items-center gap-3 p-4">
+            <div className="rounded-full bg-primary/10 p-2">
+              <Loader2 className="h-5 w-5 animate-spin text-primary" />
+            </div>
+            <p className="text-sm text-muted-foreground">Henter dine point...</p>
+          </CardContent>
+        </Card>
+      </div>
+    );
+  }
+
+  // Show points
+  return (
+    <div className="container py-6">
+      <Card className="mx-auto max-w-md border-primary/20 bg-gradient-to-r from-primary/10 to-accent/10">
+        <CardContent className="flex items-center justify-between gap-4 p-4">
+          <div className="flex items-center gap-3">
+            <div className="rounded-full bg-primary/20 p-2">
+              <Coins className="h-5 w-5 text-primary" />
+            </div>
+            <div>
+              <p className="text-lg font-bold">
+                {points?.toLocaleString("da-DK") ?? 0} point
+              </p>
+              <p className="text-xs text-muted-foreground">
+                Se streams for at optjene flere!
+              </p>
+            </div>
+          </div>
+        </CardContent>
+      </Card>
+    </div>
+  );
+}
+
 export default function Shop() {
   const { data: items, isLoading, error } = useShopItems(false);
 
@@ -42,6 +138,7 @@ export default function Shop() {
     return (
       <div className="min-h-screen">
         <ShopHero />
+        <PointsDisplay />
         <div className="py-16">
           <div className="container">
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -64,6 +161,7 @@ export default function Shop() {
     return (
       <div className="min-h-screen">
         <ShopHero />
+        <PointsDisplay />
         <div className="py-16">
           <div className="container">
             <p className="text-destructive">Der opstod en fejl ved indlæsning af produkter.</p>
@@ -76,6 +174,7 @@ export default function Shop() {
   return (
     <div className="min-h-screen">
       <ShopHero />
+      <PointsDisplay />
       <div className="py-16">
         <div className="container">
           {items && items.length > 0 ? (

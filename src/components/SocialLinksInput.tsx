@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
-import { Loader2, Save, Instagram, MessageCircle } from "lucide-react";
+import { Loader2, Save, Instagram, MessageCircle, Coins } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { useQueryClient } from "@tanstack/react-query";
 import { toast } from "@/hooks/use-toast";
@@ -14,6 +14,7 @@ export function SocialLinksInput() {
   const [discordUrl, setDiscordUrl] = useState("");
   const [instagramUrl, setInstagramUrl] = useState("");
   const [twitchUrl, setTwitchUrl] = useState("");
+  const [streamElementsChannelId, setStreamElementsChannelId] = useState("");
   const [saving, setSaving] = useState(false);
 
   useEffect(() => {
@@ -21,6 +22,7 @@ export function SocialLinksInput() {
       setDiscordUrl(siteSettings.discord_url || "");
       setInstagramUrl(siteSettings.instagram_url || "");
       setTwitchUrl(siteSettings.twitch_url || "");
+      setStreamElementsChannelId(siteSettings.streamelements_channel_id || "");
     }
   }, [siteSettings]);
 
@@ -50,6 +52,7 @@ export function SocialLinksInput() {
         saveSetting("discord_url", discordUrl),
         saveSetting("instagram_url", instagramUrl),
         saveSetting("twitch_url", twitchUrl),
+        saveSetting("streamelements_channel_id", streamElementsChannelId),
       ]);
       
       queryClient.invalidateQueries({ queryKey: ["site-settings"] });
@@ -109,6 +112,22 @@ export function SocialLinksInput() {
           onChange={(e) => setTwitchUrl(e.target.value)}
           placeholder="https://twitch.tv/..."
         />
+      </div>
+
+      <div className="space-y-2">
+        <Label htmlFor="streamelements_channel_id" className="flex items-center gap-2">
+          <Coins className="h-4 w-4" />
+          StreamElements Channel ID
+        </Label>
+        <Input
+          id="streamelements_channel_id"
+          value={streamElementsChannelId}
+          onChange={(e) => setStreamElementsChannelId(e.target.value)}
+          placeholder="Dit StreamElements channel ID"
+        />
+        <p className="text-xs text-muted-foreground">
+          Find dit channel ID på streamelements.com/dashboard under Account Settings
+        </p>
       </div>
 
       <Button onClick={handleSave} disabled={saving} className="w-full">
