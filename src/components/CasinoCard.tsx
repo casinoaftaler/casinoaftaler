@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Star, Flame, Check, ChevronDown } from "lucide-react";
+import { Star, Flame, Check, ChevronDown, Gift, RotateCcw, Clock, Wallet, Calendar, Percent, Coins, Zap } from "lucide-react";
 import { getAffiliateRedirect } from "@/lib/affiliateRedirect";
 import { useAuth } from "@/hooks/useAuth";
 import { Button } from "@/components/ui/button";
@@ -70,19 +70,23 @@ function CasinoInfoContent({ casino, variant }: { casino: Casino; variant: "feat
 
       {/* Main Stats Row */}
       <div className="grid grid-cols-4 gap-2 mb-4 text-center">
-        <div>
+        <div className="flex flex-col items-center">
+          <Percent className={`h-4 w-4 mb-1 ${variant === "featured" ? "text-accent" : "text-primary"}`} />
           <p className={`text-[10px] uppercase tracking-wider mb-1 ${variant === "featured" ? "text-white/70" : "text-muted-foreground"}`}>Bonus</p>
           <p className={`text-lg font-bold ${variant === "featured" ? "text-white" : "text-foreground"}`}>100%</p>
         </div>
-        <div>
+        <div className="flex flex-col items-center">
+          <Coins className={`h-4 w-4 mb-1 ${variant === "featured" ? "text-accent" : "text-primary"}`} />
           <p className={`text-[10px] uppercase tracking-wider mb-1 ${variant === "featured" ? "text-white/70" : "text-muted-foreground"}`}>Beløb</p>
           <p className={`text-lg font-bold ${variant === "featured" ? "text-white" : "text-foreground"}`}>{casino.bonusAmount}</p>
         </div>
-        <div>
+        <div className="flex flex-col items-center">
+          <Gift className={`h-4 w-4 mb-1 ${variant === "featured" ? "text-accent" : "text-primary"}`} />
           <p className={`text-[10px] uppercase tracking-wider mb-1 ${variant === "featured" ? "text-white/70" : "text-muted-foreground"}`}>Bonus Type</p>
           <p className={`text-lg font-bold ${variant === "featured" ? "text-white" : "text-foreground"}`}>{casino.bonusType === "No-sticky" ? "No-Sticky" : "Sticky"}</p>
         </div>
-        <div>
+        <div className="flex flex-col items-center">
+          <RotateCcw className={`h-4 w-4 mb-1 ${variant === "featured" ? "text-accent" : "text-primary"}`} />
           <p className={`text-[10px] uppercase tracking-wider mb-1 ${variant === "featured" ? "text-white/70" : "text-muted-foreground"}`}>Omsætning</p>
           <p className={`text-lg font-bold ${variant === "featured" ? "text-white" : "text-foreground"}`}>{casino.wageringRequirements}</p>
         </div>
@@ -92,17 +96,26 @@ function CasinoInfoContent({ casino, variant }: { casino: Casino; variant: "feat
       <div className="mb-4">
         <h4 className={`text-sm font-bold mb-3 uppercase tracking-wide ${variant === "featured" ? "text-white" : "text-foreground"}`}>Casino Info</h4>
         <div className="grid grid-cols-3 gap-x-4 gap-y-3">
-          <div>
-            <p className={`text-xs mb-0.5 ${variant === "featured" ? "text-white/70" : "text-muted-foreground"}`}>Min. indbetaling</p>
-            <p className={`text-sm font-medium ${variant === "featured" ? "text-white" : "text-foreground"}`}>{casino.minDeposit}</p>
+          <div className="flex items-start gap-2">
+            <Wallet className={`h-4 w-4 mt-0.5 flex-shrink-0 ${variant === "featured" ? "text-accent" : "text-primary"}`} />
+            <div>
+              <p className={`text-xs mb-0.5 ${variant === "featured" ? "text-white/70" : "text-muted-foreground"}`}>Min. indbetaling</p>
+              <p className={`text-sm font-medium ${variant === "featured" ? "text-white" : "text-foreground"}`}>{casino.minDeposit}</p>
+            </div>
           </div>
-          <div>
-            <p className={`text-xs mb-0.5 ${variant === "featured" ? "text-white/70" : "text-muted-foreground"}`}>Udbetalingstid</p>
-            <p className={`text-sm font-medium ${variant === "featured" ? "text-white" : "text-foreground"}`}>{casino.payoutTime}</p>
+          <div className="flex items-start gap-2">
+            <Zap className={`h-4 w-4 mt-0.5 flex-shrink-0 ${variant === "featured" ? "text-accent" : "text-primary"}`} />
+            <div>
+              <p className={`text-xs mb-0.5 ${variant === "featured" ? "text-white/70" : "text-muted-foreground"}`}>Udbetalingstid</p>
+              <p className={`text-sm font-medium ${variant === "featured" ? "text-white" : "text-foreground"}`}>{casino.payoutTime}</p>
+            </div>
           </div>
-          <div>
-            <p className={`text-xs mb-0.5 ${variant === "featured" ? "text-white/70" : "text-muted-foreground"}`}>Gyldighed</p>
-            <p className={`text-sm font-medium ${variant === "featured" ? "text-white" : "text-foreground"}`}>{casino.validity}</p>
+          <div className="flex items-start gap-2">
+            <Calendar className={`h-4 w-4 mt-0.5 flex-shrink-0 ${variant === "featured" ? "text-accent" : "text-primary"}`} />
+            <div>
+              <p className={`text-xs mb-0.5 ${variant === "featured" ? "text-white/70" : "text-muted-foreground"}`}>Gyldighed</p>
+              <p className={`text-sm font-medium ${variant === "featured" ? "text-white" : "text-foreground"}`}>{casino.validity}</p>
+            </div>
           </div>
         </div>
       </div>
@@ -307,7 +320,8 @@ function FeaturedCard({
             {/* Stats Box */}
             <div className="bg-black/40 rounded-xl p-3 mb-4 border border-white/10">
               <div className="grid grid-cols-2 gap-2 text-center">
-                <div>
+                <div className="flex flex-col items-center">
+                  <Gift className="h-5 w-5 text-accent mb-1" />
                   <p className="text-[10px] text-white/70 uppercase tracking-wider mb-0.5">
                     BONUS TYPE
                   </p>
@@ -315,7 +329,8 @@ function FeaturedCard({
                     {casino.bonusType === "No-sticky" ? "No-Sticky" : "Sticky"}
                   </p>
                 </div>
-                <div className="border-l border-white/20">
+                <div className="flex flex-col items-center border-l border-white/20">
+                  <RotateCcw className="h-5 w-5 text-accent mb-1" />
                   <p className="text-[10px] text-white/70 uppercase tracking-wider mb-0.5">
                     OMSÆTNING
                   </p>
