@@ -1,72 +1,123 @@
 
-# Plan: Skjul/Vis Rangliste på Mobil
+# Plan: Fix Bonus Game Mechanics and Win Line Display
 
-## Oversigt
-Tilføj en toggle-knap på mobil/tablet der gør det muligt at skjule ranglisten, så spillemaskinen får mere plads på skærmen.
+## Overview
+This plan addresses three issues with the slot machine bonus game and win visualization.
 
-## Design
+## Issues to Fix
 
-```text
-┌──────────────────────────┐
-│    Spillemaskine         │
-│                          │
-├──────────────────────────┤
-│   🏆 Vis rangliste ▼     │  ← Toggle knap (når skjult)
-└──────────────────────────┘
+### 1. Scatter as Wild in Bonus (Only Without Expanding Win)
+Currently, during bonus rounds, the scatter/Book symbol doesn't act as a wild. It should substitute for other symbols ONLY when there isn't an expanding symbol win on that spin.
 
-┌──────────────────────────┐
-│    Spillemaskine         │
-│                          │
-├──────────────────────────┤
-│   🏆 Skjul rangliste ▲   │  ← Toggle knap (når synlig)
-├──────────────────────────┤
-│   [Rangliste indhold]    │
-└──────────────────────────┘
-```
+**File:** `src/lib/bonusGameLogic.ts`
 
-## Funktionalitet
-- Toggle-knap vises **kun på mobil/tablet** (under xl breakpoint)
-- Standard: Ranglisten er **skjult** for at give plads til spillemaskinen
-- Brugerens valg gemmes i `localStorage` så det huskes mellem besøg
-- Desktop (xl+): Ranglisten forbliver altid synlig i sidepanelet
+**Changes:**
+- Modify `calculateWins` function to accept a new parameter `hasExpandingWin`
+- When `hasExpandingWin` is false, allow scatter/wild substitution (same logic as normal game)
+- When `hasExpandingWin` is true, keep current behavior (no wild substitution)
+- Update `calculateBonusSpinResult` to determine if an expanding win occurred and pass that to `calculateWins`
 
-## Tekniske ændringer
+### 2. Only Expanded Reels Should Animate
+When an expanding win occurs, only the reels that contain the expanding symbol should show the winning animation. Other reels should remain static.
 
-### SlotMachine.tsx
-1. Tilføj state: `showLeaderboard` (default: `false`)
-2. Brug `localStorage` til at gemme/hente præference
-3. Erstat den faste leaderboard-visning med en collapsible sektion:
-   - Toggle-knap med ikon og tekst
-   - Animeret åbne/lukke effekt
+**File:** `src/components/slots/SlotGame.tsx`
 
-### UI-elementer
-- **Knap stil**: Matcher egyptisk tema (amber farver, semi-transparent baggrund)
-- **Ikon**: Trophy + ChevronDown/ChevronUp
-- **Tekst**: "Vis rangliste" / "Skjul rangliste"
+**Changes:**
+- Modify `getWinningPositions` function to check if we have an expanding win
+- If there's an expanding win (`expandedReels.length > 0`), only return winning positions for reels that are in the `expandedReels` array
+- Other reels won't get the pulsing/glowing animation
 
-## Fil-ændringer
+### 3. Win Lines Show Complete Payline (All 5 Positions)
+Currently, win lines only draw up to the winning symbol count (3, 4, or 5). They should always show the entire line across all 5 reels.
 
-| Fil | Ændring |
-|-----|---------|
-| `src/pages/SlotMachine.tsx` | Tilføj toggle state, localStorage, og collapsible leaderboard UI |
+**File:** `src/components/slots/WinLines.tsx`
 
-## Kodestruktur
+**Changes:**
+- Modify `generateLinePath` function to always draw all 5 positions
+- Remove the `count` parameter limitation and always iterate through all 5 columns
+- The line will show the full payline shape regardless of how many symbols matched
+
+## Technical Details
+
+### bonusGameLogic.ts Changes
 
 ```typescript
-// State med localStorage
-const [showLeaderboard, setShowLeaderboard] = useState(() => {
-  return localStorage.getItem('slot-show-leaderboard') === 'true';
-});
+// Updated function signature
+function calculateWins(
+  grid: string[][],
+  symbols: SlotSymbol[],
+  betAmount: number,
+  expandingSymbol?: SlotSymbol,
+  expandedReels?: number[],
+  hasExpandingWin?: boolean  // NEW parameter
+): LineWin[]
 
-// Toggle handler
-const toggleLeaderboard = () => {
-  const newValue = !showLeaderboard;
-  setShowLeaderboard(newValue);
-  localStorage.setItem('slot-show-leaderboard', String(newValue));
+// In calculateBonusSpinResult:
+// Check if expanding win happened first
+const hasExpandingWin = expandedReels.length >= 3;
+
+// Pass to calculateWins - wild substitution only when no expanding win
+const wins = calculateWins(
+  expandedGrid, 
+  symbols, 
+  betAmount, 
+  expandingSymbol, 
+  expandedReels,
+  hasExpandingWin
+);
+```
+
+### SlotGame.tsx Changes
+
+```typescript
+const getWinningPositions = (reelIndex: number): number[] => {
+  if (!lastResult || lastResult.wins.length === 0) return [];
+  
+  // If we have an expanding win, only show animation on expanded reels
+  if (expandedReels.length > 0 && !expandedReels.includes(reelIndex)) {
+    return []; // Don't highlight non-expanded reels
+  }
+  
+  const positions: number[] = [];
+  for (const win of lastResult.wins) {
+    const linePattern = PAY_LINES[win.lineIndex];
+    if (reelIndex < win.count) {
+      positions.push(linePattern[reelIndex]);
+    }
+  }
+  return [...new Set(positions)];
 };
 ```
 
-## Resultat
-- Brugere på mobil kan skjule ranglisten for mere fokus på spillet
-- Valget huskes mellem besøg
-- Desktop-oplevelsen forbliver uændret
+### WinLines.tsx Changes
+
+```typescript
+// In generateLinePath function
+const generateLinePath = (lineIndex: number, count: number) => {
+  const pattern = PAY_LINES[lineIndex];
+  const points: { x: number; y: number }[] = [];
+
+  // Always draw the full line (all 5 positions)
+  for (let col = 0; col < 5; col++) {
+    const row = pattern[col];
+    points.push(getSymbolCenter(col, row));
+  }
+  // ... rest remains the same
+};
+```
+
+## Expected Behavior After Changes
+
+| Scenario | Before | After |
+|----------|--------|-------|
+| Bonus spin with expanding symbol on 3+ reels | All winning reels animate | Only expanded reels animate |
+| Bonus spin without expanding win | Wild doesn't substitute | Scatter acts as wild for line wins |
+| Any winning line | Shows partial line (3-5 symbols) | Shows complete line (all 5 positions) |
+
+## Files to Modify
+
+| File | Changes |
+|------|---------|
+| `src/lib/bonusGameLogic.ts` | Add wild substitution when no expanding win |
+| `src/components/slots/SlotGame.tsx` | Filter winning positions to only expanded reels |
+| `src/components/slots/WinLines.tsx` | Draw complete 5-position paylines |
