@@ -13,6 +13,7 @@ Deno.serve(async (req) => {
   try {
     const url = new URL(req.url);
     const slug = url.searchParams.get("slug");
+    const userId = url.searchParams.get("userId");
 
     if (!slug) {
       return new Response(
@@ -55,6 +56,7 @@ Deno.serve(async (req) => {
         event_type: "affiliate_click",
         user_agent: userAgent,
         referrer: referrer,
+        user_id: userId || null,
       });
 
     if (insertError) {

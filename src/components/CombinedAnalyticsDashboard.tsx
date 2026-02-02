@@ -27,6 +27,8 @@ interface ClickEvent {
   casino_name: string;
   event_type: string;
   created_at: string;
+  user_id: string | null;
+  profiles: { twitch_username: string | null } | null;
 }
 
 interface CasinoClickStats {
@@ -145,14 +147,39 @@ export function CombinedAnalyticsDashboard() {
     queryFn: async () => {
       const { start } = getDateRange();
       
-      const { data, error } = await supabase
+      // First fetch click events
+      const { data: clicks, error: clicksError } = await supabase
         .from("click_events")
-        .select("*")
+        .select("id, casino_id, casino_slug, casino_name, event_type, created_at, user_id")
         .gte("created_at", start.toISOString())
         .order("created_at", { ascending: false });
 
-      if (error) throw error;
-      return data as ClickEvent[];
+      if (clicksError) throw clicksError;
+      
+      // Get unique user IDs that are not null
+      const userIds = [...new Set(clicks?.filter(c => c.user_id).map(c => c.user_id) || [])];
+      
+      // Fetch profiles for those users
+      let profilesMap: Record<string, string | null> = {};
+      if (userIds.length > 0) {
+        const { data: profiles } = await supabase
+          .from("profiles")
+          .select("user_id, twitch_username")
+          .in("user_id", userIds);
+        
+        if (profiles) {
+          profilesMap = profiles.reduce((acc, p) => {
+            acc[p.user_id] = p.twitch_username;
+            return acc;
+          }, {} as Record<string, string | null>);
+        }
+      }
+      
+      // Merge profiles into click events
+      return (clicks || []).map(click => ({
+        ...click,
+        profiles: click.user_id ? { twitch_username: profilesMap[click.user_id] || null } : null
+      })) as ClickEvent[];
     },
   });
 
@@ -500,6 +527,7 @@ export function CombinedAnalyticsDashboard() {
                           <thead className="bg-muted/50">
                             <tr>
                               <th className="text-left p-3 font-medium">Casino</th>
+                              <th className="text-left p-3 font-medium">Bruger</th>
                               <th className="text-left p-3 font-medium">Tidspunkt</th>
                             </tr>
                           </thead>
@@ -507,6 +535,9 @@ export function CombinedAnalyticsDashboard() {
                             {clickEvents?.slice(0, 10).map((event) => (
                               <tr key={event.id} className="border-t border-border">
                                 <td className="p-3">{event.casino_name}</td>
+                                <td className="p-3 text-muted-foreground">
+                                  {event.profiles?.twitch_username || "Anonym"}
+                                </td>
                                 <td className="p-3 text-muted-foreground">
                                   {new Date(event.created_at).toLocaleString("da-DK", {
                                     day: "numeric",
