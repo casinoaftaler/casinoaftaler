@@ -1,7 +1,9 @@
+import { useState, useEffect } from "react";
 import { AspectRatio } from "@/components/ui/aspect-ratio";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Play } from "lucide-react";
+import { Play, Loader2 } from "lucide-react";
+import { supabase } from "@/integrations/supabase/client";
 import type { Highlight } from "@/hooks/useHighlights";
 
 function getYouTubeEmbedUrl(url: string): string | null {
@@ -25,12 +27,6 @@ function getTwitchClipEmbedUrl(url: string): string | null {
   return slug ? `https://clips.twitch.tv/embed?clip=${slug}&parent=${window.location.hostname}&autoplay=true` : null;
 }
 
-function getTwitchClipThumbnail(url: string): string | null {
-  const slug = getTwitchClipSlug(url);
-  // Twitch clip thumbnails follow this pattern
-  return slug ? `https://clips-media-assets2.twitch.tv/${slug}-preview-480x272.jpg` : null;
-}
-
 function detectPlatform(url: string): "youtube" | "twitch" {
   if (url.includes("youtube.com") || url.includes("youtu.be")) {
     return "youtube";
@@ -45,17 +41,38 @@ interface HighlightCardProps {
 }
 
 export function HighlightCard({ highlight, isPlaying, onPlay }: HighlightCardProps) {
+  const [twitchThumbnail, setTwitchThumbnail] = useState<string | null>(null);
+  const [loadingThumbnail, setLoadingThumbnail] = useState(false);
+  
   const platform = detectPlatform(highlight.url);
   const embedUrl =
     platform === "youtube"
       ? getYouTubeEmbedUrl(highlight.url)
       : getTwitchClipEmbedUrl(highlight.url);
-  
-  // For thumbnails: use manual thumbnail_url if provided, otherwise auto-generate
-  const autoThumbnail = platform === "youtube" 
-    ? getYouTubeThumbnail(highlight.url) 
-    : getTwitchClipThumbnail(highlight.url);
-  const thumbnail = highlight.thumbnail_url || autoThumbnail;
+
+  // Fetch Twitch thumbnail from API if needed
+  useEffect(() => {
+    if (platform === "twitch" && !highlight.thumbnail_url) {
+      const clipSlug = getTwitchClipSlug(highlight.url);
+      if (clipSlug) {
+        setLoadingThumbnail(true);
+        supabase.functions
+          .invoke("twitch-clip-thumbnail", {
+            body: { clipSlug },
+          })
+          .then(({ data, error }) => {
+            if (!error && data?.thumbnail_url) {
+              setTwitchThumbnail(data.thumbnail_url);
+            }
+          })
+          .finally(() => setLoadingThumbnail(false));
+      }
+    }
+  }, [highlight.url, highlight.thumbnail_url, platform]);
+
+  // Determine thumbnail: manual > fetched twitch > youtube auto
+  const thumbnail = highlight.thumbnail_url || 
+    (platform === "twitch" ? twitchThumbnail : getYouTubeThumbnail(highlight.url));
 
   const handleClick = () => {
     onPlay(highlight.id);
@@ -77,7 +94,11 @@ export function HighlightCard({ highlight, isPlaying, onPlay }: HighlightCardPro
             onClick={handleClick}
             className="relative h-full w-full group cursor-pointer bg-muted"
           >
-            {thumbnail ? (
+            {loadingThumbnail ? (
+              <div className="flex h-full w-full items-center justify-center bg-muted">
+                <Loader2 className="h-8 w-8 animate-spin text-muted-foreground" />
+              </div>
+            ) : thumbnail ? (
               <img
                 src={thumbnail}
                 alt={highlight.title}
