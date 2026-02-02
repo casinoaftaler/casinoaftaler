@@ -153,6 +153,27 @@ function PointsDisplay() {
           </div>
         </CardContent>
       </Card>
+      
+      {/* Points earning explanation */}
+      <Card className="mx-auto mt-4 max-w-2xl border-muted/50 bg-muted/30">
+        <CardContent className="p-4">
+          <h4 className="mb-2 text-sm font-semibold text-foreground">Hvordan optjener jeg point?</h4>
+          <ul className="space-y-1 text-xs text-muted-foreground">
+            <li className="flex items-start gap-2">
+              <span className="text-primary">•</span>
+              <span><strong>Se streams:</strong> Du optjener automatisk point mens du ser live streams på Twitch</span>
+            </li>
+            <li className="flex items-start gap-2">
+              <span className="text-primary">•</span>
+              <span><strong>Deltag i raffles:</strong> Vind ekstra point ved at deltage i raffles under streams</span>
+            </li>
+            <li className="flex items-start gap-2">
+              <span className="text-primary">•</span>
+              <span><strong>Vær aktiv:</strong> Jo mere du engagerer dig i chatten, jo flere point kan du optjene</span>
+            </li>
+          </ul>
+        </CardContent>
+      </Card>
     </div>
   );
 }
