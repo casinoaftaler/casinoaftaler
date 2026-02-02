@@ -22,8 +22,8 @@ const COLORS = [
   "hsl(45, 100%, 50%)",   // Gold
   "hsl(36, 100%, 50%)",   // Orange gold
   "hsl(51, 100%, 60%)",   // Light gold
-  "hsl(280, 70%, 60%)",   // Purple
-  "hsl(200, 100%, 60%)",  // Blue
+  // Keep the celebration strictly in a gold spectrum (no purple/blue accents)
+  "hsl(42, 95%, 55%)",    // Warm gold
 ];
 
 export function WinCelebration({ isActive, winAmount, bet }: WinCelebrationProps) {

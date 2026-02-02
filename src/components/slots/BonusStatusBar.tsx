@@ -24,24 +24,25 @@ export function BonusStatusBar({
     <div
       className={cn(
         "w-full p-3 rounded-xl mb-4",
-        "bg-gradient-to-r from-amber-900/80 via-amber-800/80 to-amber-900/80",
-        "border-2 border-amber-400/50",
-        "shadow-[0_0_20px_rgba(251,191,36,0.3)]"
+        // Use theme tokens to avoid any unintended purple tint across modes
+        "bg-card/70 backdrop-blur-sm",
+        "border border-border/60",
+        "shadow-sm"
       )}
     >
       <div className="flex flex-wrap items-center justify-between gap-4">
         {/* Bonus indicator */}
         <div className="flex items-center gap-2">
-          <Sparkles className="h-5 w-5 text-amber-400 animate-pulse" />
-          <span className="text-lg font-bold text-amber-300">
+          <Sparkles className="h-5 w-5 text-primary animate-pulse" />
+          <span className="text-lg font-bold text-foreground">
             FREE SPINS
           </span>
         </div>
 
         {/* Spins remaining */}
         <div className="flex items-center gap-2">
-          <span className="text-amber-200">Spins:</span>
-          <span className="text-xl font-bold text-amber-300">
+          <span className="text-muted-foreground">Spins:</span>
+          <span className="text-xl font-bold text-foreground">
             {freeSpinsRemaining} / {totalFreeSpins}
           </span>
         </div>
@@ -49,8 +50,8 @@ export function BonusStatusBar({
         {/* Expanding symbol */}
         {expandingSymbol && (
           <div className="flex items-center gap-2">
-            <span className="text-amber-200 text-sm">Expanding:</span>
-            <div className="flex items-center gap-1 px-2 py-1 bg-black/30 rounded-lg">
+            <span className="text-muted-foreground text-sm">Expanding:</span>
+            <div className="flex items-center gap-1 px-2 py-1 bg-background/40 rounded-lg border border-border/50">
               {expandingSymbol.image_url ? (
                 <img
                   src={expandingSymbol.image_url}
@@ -62,7 +63,7 @@ export function BonusStatusBar({
                   {getSymbolEmoji(expandingSymbol.name)}
                 </span>
               )}
-              <span className="text-amber-300 font-medium text-sm">
+              <span className="text-foreground font-medium text-sm">
                 {expandingSymbol.name}
               </span>
             </div>
@@ -71,8 +72,8 @@ export function BonusStatusBar({
 
         {/* Bonus winnings */}
         <div className="flex items-center gap-2">
-          <span className="text-amber-200">Gevinst:</span>
-          <span className="text-xl font-bold text-green-400">
+          <span className="text-muted-foreground">Gevinst:</span>
+          <span className="text-xl font-bold text-primary">
             {bonusWinnings}
           </span>
         </div>

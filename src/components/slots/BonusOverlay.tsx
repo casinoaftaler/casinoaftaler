@@ -31,18 +31,19 @@ export function BonusOverlay({
       <div
         className={cn(
           "relative p-8 rounded-2xl text-center max-w-md mx-4",
-          "bg-gradient-to-b from-purple-900/90 to-amber-900/90",
-          "border-4 border-amber-400",
-          "shadow-[0_0_60px_rgba(251,191,36,0.5)]",
+          // Remove purple styling; keep it themed and readable
+          "bg-card/90 backdrop-blur",
+          "border-4 border-border",
+          "shadow-lg",
           "animate-in zoom-in-95 duration-500"
         )}
         onClick={(e) => e.stopPropagation()}
       >
         {/* Decorative corners */}
-        <div className="absolute -top-3 -left-3 w-8 h-8 border-t-4 border-l-4 border-amber-300 rounded-tl-xl" />
-        <div className="absolute -top-3 -right-3 w-8 h-8 border-t-4 border-r-4 border-amber-300 rounded-tr-xl" />
-        <div className="absolute -bottom-3 -left-3 w-8 h-8 border-b-4 border-l-4 border-amber-300 rounded-bl-xl" />
-        <div className="absolute -bottom-3 -right-3 w-8 h-8 border-b-4 border-r-4 border-amber-300 rounded-br-xl" />
+        <div className="absolute -top-3 -left-3 w-8 h-8 border-t-4 border-l-4 border-primary/70 rounded-tl-xl" />
+        <div className="absolute -top-3 -right-3 w-8 h-8 border-t-4 border-r-4 border-primary/70 rounded-tr-xl" />
+        <div className="absolute -bottom-3 -left-3 w-8 h-8 border-b-4 border-l-4 border-primary/70 rounded-bl-xl" />
+        <div className="absolute -bottom-3 -right-3 w-8 h-8 border-b-4 border-r-4 border-primary/70 rounded-br-xl" />
 
         {type === "trigger" ? (
           <>
