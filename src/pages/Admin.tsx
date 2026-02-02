@@ -376,7 +376,6 @@ function EditCasinoForm({ casino, onClose }: { casino: Casino; onClose: () => vo
     name: casino.name,
     slug: casino.slug,
     rating: casino.rating.toString(),
-    bonus_title: casino.bonus_title,
     bonus_amount: casino.bonus_amount,
     bonus_type: casino.bonus_type,
     wagering_requirements: casino.wagering_requirements,
@@ -402,7 +401,7 @@ function EditCasinoForm({ casino, onClose }: { casino: Casino; onClose: () => vo
       name: formData.name,
       slug: formData.slug || formData.name.toLowerCase().replace(/\s+/g, "-"),
       rating: parseFloat(formData.rating),
-      bonus_title: formData.bonus_title,
+      bonus_title: formData.bonus_amount,
       bonus_amount: formData.bonus_amount,
       bonus_type: formData.bonus_type,
       wagering_requirements: formData.wagering_requirements,
@@ -454,25 +453,15 @@ function EditCasinoForm({ casino, onClose }: { casino: Casino; onClose: () => vo
         </div>
       </div>
 
-      <div className="grid gap-4 md:grid-cols-2">
-        <div className="space-y-2">
-          <Label htmlFor="edit-bonus_title">Bonus Titel *</Label>
-          <Input
-            id="edit-bonus_title"
-            value={formData.bonus_title}
-            onChange={(e) => setFormData({ ...formData, bonus_title: e.target.value })}
-            required
-          />
-        </div>
-        <div className="space-y-2">
-          <Label htmlFor="edit-bonus_amount">Bonusbeløb *</Label>
-          <Input
-            id="edit-bonus_amount"
-            value={formData.bonus_amount}
-            onChange={(e) => setFormData({ ...formData, bonus_amount: e.target.value })}
-            required
-          />
-        </div>
+      <div className="space-y-2">
+        <Label htmlFor="edit-bonus_amount">Bonusbeløb *</Label>
+        <Input
+          id="edit-bonus_amount"
+          value={formData.bonus_amount}
+          onChange={(e) => setFormData({ ...formData, bonus_amount: e.target.value })}
+          placeholder="100% op til 1.000 kr."
+          required
+        />
       </div>
 
       <div className="grid gap-4 md:grid-cols-3">
