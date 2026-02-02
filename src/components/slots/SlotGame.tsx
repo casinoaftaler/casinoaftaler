@@ -8,7 +8,6 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { SlotReel } from "./SlotReel";
-import { SpinsRemaining } from "./SpinsRemaining";
 import { BetControls } from "./BetControls";
 import { WinDisplay } from "./WinDisplay";
 import { WinLines } from "./WinLines";
@@ -485,23 +484,10 @@ export function SlotGame() {
             bonusWinnings={bonusState.bonusWinnings}
           />
 
-          {/* Header with spins and volume control */}
-          {!bonusState.isActive && (
-            <div className="flex items-center justify-between">
-              <div className="flex-1" />
-              <SpinsRemaining />
-              <div className="flex-1 flex justify-end">
-                <VolumeControl />
-              </div>
-            </div>
-          )}
-
-          {/* Volume control during bonus (compact) */}
-          {bonusState.isActive && (
-            <div className="flex justify-end">
-              <VolumeControl />
-            </div>
-          )}
+          {/* Header with volume control */}
+          <div className="flex items-center justify-end">
+            <VolumeControl />
+          </div>
 
           {/* Slot machine reels with Egyptian frame */}
           <div className="flex justify-center py-2 sm:py-4">
