@@ -217,7 +217,7 @@ function FeaturedCard({
 
   return (
     <Collapsible open={isOpen} onOpenChange={setIsOpen}>
-      <div className={`relative group ${isTopRow ? "col-span-1" : ""}`}>
+      <div className={`relative group ${isTopRow ? "col-span-1" : ""} transition-transform duration-300 hover:-translate-y-1 hover:scale-[1.02]`}>
         {/* Subtle glow for #1 ranked card */}
         {isTopRanked && (
           <div 
@@ -381,8 +381,8 @@ function RegularCard({
 
   return (
     <Collapsible open={isOpen} onOpenChange={setIsOpen}>
-      <div className="relative group">
-        <div className="relative overflow-hidden rounded-xl border border-border bg-card hover:border-primary/30 transition-colors">
+      <div className="relative group transition-transform duration-300 hover:-translate-y-1 hover:scale-[1.01]">
+        <div className="relative overflow-hidden rounded-xl border border-border bg-card hover:border-primary/30 hover:shadow-lg transition-all duration-300">
           {/* Recommended Badge */}
           {casino.isRecommended && (
             <div className="absolute top-3 right-3 z-10">
