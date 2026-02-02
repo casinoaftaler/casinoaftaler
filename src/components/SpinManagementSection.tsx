@@ -4,7 +4,7 @@ import { supabase } from "@/integrations/supabase/client";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Coins, Loader2, Search, Plus, Minus } from "lucide-react";
+import { Coins, Loader2, Search, Plus, Minus, Users } from "lucide-react";
 import { toast } from "sonner";
 
 interface UserWithSpins {
@@ -20,6 +20,7 @@ interface UserWithSpins {
 export function SpinManagementSection() {
   const [searchTerm, setSearchTerm] = useState("");
   const [spinAmounts, setSpinAmounts] = useState<Record<string, number>>({});
+  const [bulkSpinAmount, setBulkSpinAmount] = useState(10);
   const queryClient = useQueryClient();
   const today = new Date().toISOString().split("T")[0];
 
@@ -104,6 +105,45 @@ export function SpinManagementSection() {
     },
   });
 
+  // Mutation to give spins to all users
+  const giveSpinsToAll = useMutation({
+    mutationFn: async (amount: number) => {
+      if (!users || users.length === 0) throw new Error("No users found");
+
+      const operations = users.map(async (user) => {
+        const newSpins = Math.max(0, user.spins_remaining + amount);
+
+        if (user.spin_record_id) {
+          return supabase
+            .from("slot_spins")
+            .update({ spins_remaining: newSpins })
+            .eq("id", user.spin_record_id);
+        } else {
+          return supabase.from("slot_spins").insert({
+            user_id: user.user_id,
+            date: today,
+            spins_remaining: newSpins,
+          });
+        }
+      });
+
+      const results = await Promise.all(operations);
+      const errors = results.filter((r) => r.error);
+      if (errors.length > 0) {
+        throw new Error(`${errors.length} fejl ved opdatering`);
+      }
+
+      return { count: users.length, amount };
+    },
+    onSuccess: (data) => {
+      toast.success(`Gav ${data.amount} spins til ${data.count} brugere`);
+      queryClient.invalidateQueries({ queryKey: ["admin-user-spins"] });
+    },
+    onError: (error: Error) => {
+      toast.error(`Fejl: ${error.message}`);
+    },
+  });
+
   const handleSpinChange = (
     userId: string,
     amount: number,
@@ -133,6 +173,32 @@ export function SpinManagementSection() {
         <p className="text-sm text-muted-foreground">
           Giv eller fjern spins fra brugere. Ændringer gælder for dagens dato.
         </p>
+
+        {/* Bulk give spins */}
+        <div className="flex items-center gap-3 p-4 rounded-lg border border-border bg-muted/50">
+          <Users className="h-5 w-5 text-primary" />
+          <span className="text-sm font-medium">Giv til alle:</span>
+          <Input
+            type="number"
+            min="1"
+            value={bulkSpinAmount}
+            onChange={(e) => setBulkSpinAmount(parseInt(e.target.value) || 10)}
+            className="w-24 text-center"
+          />
+          <span className="text-sm text-muted-foreground">spins</span>
+          <Button
+            onClick={() => giveSpinsToAll.mutate(bulkSpinAmount)}
+            disabled={giveSpinsToAll.isPending || !users || users.length === 0}
+            className="ml-auto"
+          >
+            {giveSpinsToAll.isPending ? (
+              <Loader2 className="h-4 w-4 animate-spin mr-2" />
+            ) : (
+              <Plus className="h-4 w-4 mr-2" />
+            )}
+            Giv til alle ({users?.length ?? 0})
+          </Button>
+        </div>
 
         {/* Search */}
         <div className="relative">
