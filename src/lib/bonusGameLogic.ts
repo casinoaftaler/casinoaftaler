@@ -49,7 +49,8 @@ export function applyExpandingSymbol(
 }
 
 /**
- * Check if expanding the symbol would create at least one winning line
+ * Check if expanding the symbol would create at least one winning line.
+ * The expanding symbol can contribute to wins on ANY reel position.
  */
 function checkIfExpandingCreatesWin(
   grid: string[][],
@@ -58,9 +59,8 @@ function checkIfExpandingCreatesWin(
   symbols: SlotSymbol[]
 ): boolean {
   const symbolsById = new Map(symbols.map(s => [s.id, s]));
-  const wildSymbol = symbols.find(s => s.is_wild);
   
-  // Create a hypothetical expanded grid
+  // Create a hypothetical expanded grid - expand on ALL reels where the symbol appears
   const hypotheticalGrid = grid.map(col => [...col]);
   for (const col of reelsWithExpanding) {
     for (let row = 0; row < 3; row++) {
@@ -68,22 +68,35 @@ function checkIfExpandingCreatesWin(
     }
   }
   
-  // Check each pay line
+  // Check each pay line for wins
   for (const linePattern of PAY_LINES) {
-    let consecutiveMatches = 0;
-    
-    for (let col = 0; col < 5; col++) {
-      const row = linePattern[col];
+    // Get all symbols on this line
+    const lineSymbols = linePattern.map((row, col) => {
       const symbolId = hypotheticalGrid[col][row];
-      const symbol = symbolsById.get(symbolId);
-      
+      return symbolsById.get(symbolId);
+    });
+    
+    // Find the first non-wild, non-expanding symbol to use as base
+    // If all are expanding/wild, use the expanding symbol as base
+    let baseSymbol = lineSymbols.find(s => s && !s.is_wild && s.id !== expandingSymbol.id);
+    if (!baseSymbol) {
+      baseSymbol = expandingSymbol;
+    }
+    
+    // Count consecutive matches from the left
+    let consecutiveMatches = 0;
+    for (let col = 0; col < 5; col++) {
+      const symbol = lineSymbols[col];
       if (!symbol) break;
       
-      // Check if this symbol matches (including wild)
+      // Symbol matches if:
+      // 1. It's the base symbol
+      // 2. It's the expanding symbol (which acts like wild in bonus)
+      // 3. It's a wild symbol
       const isMatch = 
-        symbol.id === expandingSymbol.id || 
-        symbol.is_wild || 
-        expandingSymbol.is_wild;
+        symbol.id === baseSymbol.id || 
+        symbol.id === expandingSymbol.id ||
+        symbol.is_wild;
       
       if (isMatch) {
         consecutiveMatches++;
@@ -92,7 +105,7 @@ function checkIfExpandingCreatesWin(
       }
     }
     
-    // A win requires at least 3 consecutive matches
+    // A win requires at least 3 consecutive matches from the left
     if (consecutiveMatches >= 3) {
       return true;
     }
