@@ -345,6 +345,25 @@ export function HighlightsAdminSection() {
                   />
                 </div>
 
+                <div className="space-y-2">
+                  <Label htmlFor="thumbnail_url">Thumbnail URL (valgfrit)</Label>
+                  <Input
+                    id="thumbnail_url"
+                    type="url"
+                    value={formData.thumbnail_url}
+                    onChange={(e) =>
+                      setFormData((prev) => ({
+                        ...prev,
+                        thumbnail_url: e.target.value,
+                      }))
+                    }
+                    placeholder="Efterlad tom for automatisk thumbnail"
+                  />
+                  <p className="text-xs text-muted-foreground">
+                    Efterlad tom for automatisk generering fra YouTube/Twitch
+                  </p>
+                </div>
+
                 <div className="flex items-center justify-between">
                   <Label htmlFor="is_active">Aktiv</Label>
                   <Switch

@@ -14,11 +14,21 @@ function getYouTubeThumbnail(url: string): string | null {
   return match ? `https://img.youtube.com/vi/${match[1]}/hqdefault.jpg` : null;
 }
 
-function getTwitchClipEmbedUrl(url: string): string | null {
+function getTwitchClipSlug(url: string): string | null {
   const clipMatch = url.match(/clips\.twitch\.tv\/([^?]+)/);
   const channelClipMatch = url.match(/twitch\.tv\/[^/]+\/clip\/([^?]+)/);
-  const slug = clipMatch?.[1] || channelClipMatch?.[1];
+  return clipMatch?.[1] || channelClipMatch?.[1] || null;
+}
+
+function getTwitchClipEmbedUrl(url: string): string | null {
+  const slug = getTwitchClipSlug(url);
   return slug ? `https://clips.twitch.tv/embed?clip=${slug}&parent=${window.location.hostname}&autoplay=true` : null;
+}
+
+function getTwitchClipThumbnail(url: string): string | null {
+  const slug = getTwitchClipSlug(url);
+  // Twitch clip thumbnails follow this pattern
+  return slug ? `https://clips-media-assets2.twitch.tv/${slug}-preview-480x272.jpg` : null;
 }
 
 function detectPlatform(url: string): "youtube" | "twitch" {
@@ -40,7 +50,12 @@ export function HighlightCard({ highlight, isPlaying, onPlay }: HighlightCardPro
     platform === "youtube"
       ? getYouTubeEmbedUrl(highlight.url)
       : getTwitchClipEmbedUrl(highlight.url);
-  const thumbnail = platform === "youtube" ? getYouTubeThumbnail(highlight.url) : highlight.thumbnail_url;
+  
+  // For thumbnails: use manual thumbnail_url if provided, otherwise auto-generate
+  const autoThumbnail = platform === "youtube" 
+    ? getYouTubeThumbnail(highlight.url) 
+    : getTwitchClipThumbnail(highlight.url);
+  const thumbnail = highlight.thumbnail_url || autoThumbnail;
 
   const handleClick = () => {
     onPlay(highlight.id);
