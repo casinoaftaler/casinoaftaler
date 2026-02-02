@@ -56,17 +56,6 @@ function CasinoInfoContent({ casino, variant }: { casino: Casino; variant: "feat
 
   return (
     <div className={bgClass}>
-      {/* Feature Badges */}
-      <div className="flex flex-wrap gap-2 mb-4">
-        <Badge className="rounded bg-muted text-foreground text-xs font-medium px-2 py-1">
-          {casino.bonusType === "No-sticky" ? "NO-STICKY" : casino.bonusType.toUpperCase()}
-        </Badge>
-        {casino.features.slice(0, 3).map((feature) => (
-          <Badge key={feature} className="rounded bg-muted text-foreground text-xs font-medium px-2 py-1">
-            {feature.toUpperCase()}
-          </Badge>
-        ))}
-      </div>
 
       {/* Main Stats Row */}
       <div className="grid grid-cols-4 gap-2 mb-4 text-center">
@@ -160,12 +149,12 @@ function CasinoInfoContent({ casino, variant }: { casino: Casino; variant: "feat
         </div>
       )}
 
-      {/* Features */}
-      {casino.features.length > 0 && (
+      {/* Additional Features (4+) - first 3 are shown on main card */}
+      {casino.features.length > 3 && (
         <div className="mb-4">
-          <h4 className={`text-sm font-bold mb-2 uppercase tracking-wide ${variant === "featured" ? "text-white" : "text-foreground"}`}>Funktioner</h4>
+          <h4 className={`text-sm font-bold mb-2 uppercase tracking-wide ${variant === "featured" ? "text-white" : "text-foreground"}`}>Flere Funktioner</h4>
           <div className="flex flex-wrap gap-2">
-            {casino.features.map((feature) => (
+            {casino.features.slice(3).map((feature) => (
               <Badge key={feature} variant="outline" className={`text-xs ${variant === "featured" ? "text-white/80 border-white/30" : "text-muted-foreground"}`}>
                 {feature}
               </Badge>
