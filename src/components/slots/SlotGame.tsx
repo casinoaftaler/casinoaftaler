@@ -444,21 +444,13 @@ export function SlotGame() {
         }}
       />
 
-      <Card 
+      <div 
         className={cn(
-          "border-amber-500/20 overflow-hidden bg-card/80 backdrop-blur-sm",
-          bonusState.isActive && "border-purple-500/50 shadow-[0_0_30px_rgba(168,85,247,0.2)]"
+          "overflow-hidden",
+          bonusState.isActive && "shadow-[0_0_30px_rgba(168,85,247,0.2)]"
         )}
       >
-        {/* Egyptian-themed header gradient */}
-        <div className={cn(
-          "h-2",
-          bonusState.isActive
-            ? "bg-gradient-to-r from-purple-500 via-amber-400 to-purple-500"
-            : "bg-gradient-to-r from-amber-500 via-amber-400 to-amber-500"
-        )} />
-        
-        <CardContent className="p-4 sm:p-6 space-y-6">
+        <div className="p-4 sm:p-6 space-y-6">
           {/* Bonus Status Bar */}
           <BonusStatusBar
             isActive={bonusState.isActive}
@@ -490,10 +482,8 @@ export function SlotGame() {
           <div className="flex justify-center overflow-x-auto py-2 sm:py-4">
             <div
               className={cn(
-                "relative p-3 xs:p-4 sm:p-6 md:p-8 rounded-xl bg-gradient-to-b from-amber-950/80 to-background border-2 sm:border-4",
-                bonusState.isActive
-                  ? "border-purple-500/50 shadow-[0_0_40px_rgba(168,85,247,0.3)]"
-                  : "border-amber-600/50",
+                "relative p-3 xs:p-4 sm:p-6 md:p-8 rounded-xl",
+                bonusState.isActive && "shadow-[0_0_40px_rgba(168,85,247,0.3)]",
                 isSpinning && !bonusState.isActive && "shadow-[0_0_30px_rgba(251,191,36,0.3)]"
               )}
             >
@@ -677,8 +667,8 @@ export function SlotGame() {
               </p>
             </div>
           )}
-        </CardContent>
-      </Card>
+        </div>
+      </div>
     </div>
   );
 }
