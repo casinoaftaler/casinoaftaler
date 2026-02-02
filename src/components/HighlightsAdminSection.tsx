@@ -11,6 +11,13 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import {
@@ -21,6 +28,8 @@ import {
   useUpdateHighlightPositions,
   type Highlight,
 } from "@/hooks/useHighlights";
+import { useHighlightCategories } from "@/hooks/useHighlightCategories";
+import { HighlightCategoryManager } from "@/components/HighlightCategoryManager";
 import {
   Plus,
   Pencil,
@@ -61,6 +70,7 @@ interface HighlightFormData {
   description: string;
   thumbnail_url: string;
   is_active: boolean;
+  category_id: string | null;
 }
 
 const defaultFormData: HighlightFormData = {
@@ -70,6 +80,7 @@ const defaultFormData: HighlightFormData = {
   description: "",
   thumbnail_url: "",
   is_active: true,
+  category_id: null,
 };
 
 interface SortableItemProps {
@@ -106,9 +117,16 @@ function SortableItem({ item, onEdit, onDelete }: SortableItemProps) {
           </div>
           <div className="flex-1 min-w-0">
             <p className="font-medium truncate">{item.title}</p>
-            <Badge variant={platform === "youtube" ? "destructive" : "secondary"} className="text-xs">
-              {platform === "youtube" ? "YouTube" : "Twitch"}
-            </Badge>
+            <div className="flex items-center gap-2 mt-1">
+              <Badge variant={platform === "youtube" ? "destructive" : "secondary"} className="text-xs">
+                {platform === "youtube" ? "YouTube" : "Twitch"}
+              </Badge>
+              {item.highlight_categories && (
+                <Badge variant="outline" className="text-xs">
+                  {item.highlight_categories.name}
+                </Badge>
+              )}
+            </div>
           </div>
           <div className="flex items-center gap-1">
             <span
@@ -147,6 +165,7 @@ export function HighlightsAdminSection() {
   const [formData, setFormData] = useState<HighlightFormData>(defaultFormData);
 
   const { data: items, isLoading } = useHighlights(true);
+  const { data: categories } = useHighlightCategories();
   const createItem = useCreateHighlight();
   const updateItem = useUpdateHighlight();
   const deleteItem = useDeleteHighlight();
@@ -177,6 +196,7 @@ export function HighlightsAdminSection() {
       description: formData.description || null,
       thumbnail_url: formData.thumbnail_url || null,
       is_active: formData.is_active,
+      category_id: formData.category_id,
     };
 
     if (editingItem) {
@@ -202,6 +222,7 @@ export function HighlightsAdminSection() {
       description: item.description || "",
       thumbnail_url: item.thumbnail_url || "",
       is_active: item.is_active,
+      category_id: item.category_id,
     });
     setDialogOpen(true);
   };
@@ -236,121 +257,150 @@ export function HighlightsAdminSection() {
   };
 
   return (
-    <Card>
-      <CardContent className="pt-6 space-y-4">
-        <Dialog open={dialogOpen} onOpenChange={setDialogOpen}>
-          <DialogTrigger asChild>
-            <Button onClick={openAddDialog} className="w-full">
-              <Plus className="h-4 w-4 mr-2" />
-              Tilføj Highlight
-            </Button>
-          </DialogTrigger>
-          <DialogContent className="max-w-md max-h-[90vh] overflow-y-auto">
-            <DialogHeader>
-              <DialogTitle>
-                {editingItem ? "Rediger Highlight" : "Tilføj Nyt Highlight"}
-              </DialogTitle>
-            </DialogHeader>
-            <form onSubmit={handleSubmit} className="space-y-4">
-              <div className="space-y-2">
-                <Label htmlFor="title">Titel</Label>
-                <Input
-                  id="title"
-                  value={formData.title}
-                  onChange={(e) =>
-                    setFormData((prev) => ({ ...prev, title: e.target.value }))
-                  }
-                  required
-                />
-              </div>
-
-              <div className="space-y-2">
-                <Label htmlFor="url">Video URL</Label>
-                <Input
-                  id="url"
-                  type="url"
-                  value={formData.url}
-                  onChange={(e) => handleUrlChange(e.target.value)}
-                  placeholder="https://www.youtube.com/watch?v=... eller https://clips.twitch.tv/..."
-                  required
-                />
-                {formData.url && (
-                  <Badge variant={detectPlatform(formData.url) === "youtube" ? "destructive" : "secondary"}>
-                    {detectPlatform(formData.url) === "youtube" ? "YouTube" : "Twitch"}
-                  </Badge>
-                )}
-              </div>
-
-              <div className="space-y-2">
-                <Label htmlFor="description">Beskrivelse (valgfrit)</Label>
-                <Textarea
-                  id="description"
-                  value={formData.description}
-                  onChange={(e) =>
-                    setFormData((prev) => ({
-                      ...prev,
-                      description: e.target.value,
-                    }))
-                  }
-                  rows={3}
-                />
-              </div>
-
-              <div className="flex items-center justify-between">
-                <Label htmlFor="is_active">Aktiv</Label>
-                <Switch
-                  id="is_active"
-                  checked={formData.is_active}
-                  onCheckedChange={(checked) =>
-                    setFormData((prev) => ({ ...prev, is_active: checked }))
-                  }
-                />
-              </div>
-
-              <Button
-                type="submit"
-                className="w-full"
-                disabled={createItem.isPending || updateItem.isPending}
-              >
-                {(createItem.isPending || updateItem.isPending) && (
-                  <Loader2 className="h-4 w-4 mr-2 animate-spin" />
-                )}
-                {editingItem ? "Gem Ændringer" : "Opret Highlight"}
+    <div className="space-y-4">
+      <HighlightCategoryManager />
+      
+      <Card>
+        <CardContent className="pt-6 space-y-4">
+          <Dialog open={dialogOpen} onOpenChange={setDialogOpen}>
+            <DialogTrigger asChild>
+              <Button onClick={openAddDialog} className="w-full">
+                <Plus className="h-4 w-4 mr-2" />
+                Tilføj Highlight
               </Button>
-            </form>
-          </DialogContent>
-        </Dialog>
+            </DialogTrigger>
+            <DialogContent className="max-w-md max-h-[90vh] overflow-y-auto">
+              <DialogHeader>
+                <DialogTitle>
+                  {editingItem ? "Rediger Highlight" : "Tilføj Nyt Highlight"}
+                </DialogTitle>
+              </DialogHeader>
+              <form onSubmit={handleSubmit} className="space-y-4">
+                <div className="space-y-2">
+                  <Label htmlFor="title">Titel</Label>
+                  <Input
+                    id="title"
+                    value={formData.title}
+                    onChange={(e) =>
+                      setFormData((prev) => ({ ...prev, title: e.target.value }))
+                    }
+                    required
+                  />
+                </div>
 
-        {isLoading ? (
-          <div className="flex justify-center py-4">
-            <Loader2 className="h-6 w-6 animate-spin" />
-          </div>
-        ) : items && items.length > 0 ? (
-          <DndContext
-            sensors={sensors}
-            collisionDetection={closestCenter}
-            onDragEnd={handleDragEnd}
-          >
-            <SortableContext
-              items={items.map((item) => item.id)}
-              strategy={verticalListSortingStrategy}
+                <div className="space-y-2">
+                  <Label htmlFor="url">Video URL</Label>
+                  <Input
+                    id="url"
+                    type="url"
+                    value={formData.url}
+                    onChange={(e) => handleUrlChange(e.target.value)}
+                    placeholder="https://www.youtube.com/watch?v=... eller https://clips.twitch.tv/..."
+                    required
+                  />
+                  {formData.url && (
+                    <Badge variant={detectPlatform(formData.url) === "youtube" ? "destructive" : "secondary"}>
+                      {detectPlatform(formData.url) === "youtube" ? "YouTube" : "Twitch"}
+                    </Badge>
+                  )}
+                </div>
+
+                <div className="space-y-2">
+                  <Label htmlFor="category">Kategori (valgfrit)</Label>
+                  <Select
+                    value={formData.category_id || "none"}
+                    onValueChange={(val) =>
+                      setFormData((prev) => ({
+                        ...prev,
+                        category_id: val === "none" ? null : val,
+                      }))
+                    }
+                  >
+                    <SelectTrigger>
+                      <SelectValue placeholder="Vælg kategori" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="none">Ingen kategori</SelectItem>
+                      {categories?.map((cat) => (
+                        <SelectItem key={cat.id} value={cat.id}>
+                          {cat.name}
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                </div>
+
+                <div className="space-y-2">
+                  <Label htmlFor="description">Beskrivelse (valgfrit)</Label>
+                  <Textarea
+                    id="description"
+                    value={formData.description}
+                    onChange={(e) =>
+                      setFormData((prev) => ({
+                        ...prev,
+                        description: e.target.value,
+                      }))
+                    }
+                    rows={3}
+                  />
+                </div>
+
+                <div className="flex items-center justify-between">
+                  <Label htmlFor="is_active">Aktiv</Label>
+                  <Switch
+                    id="is_active"
+                    checked={formData.is_active}
+                    onCheckedChange={(checked) =>
+                      setFormData((prev) => ({ ...prev, is_active: checked }))
+                    }
+                  />
+                </div>
+
+                <Button
+                  type="submit"
+                  className="w-full"
+                  disabled={createItem.isPending || updateItem.isPending}
+                >
+                  {(createItem.isPending || updateItem.isPending) && (
+                    <Loader2 className="h-4 w-4 mr-2 animate-spin" />
+                  )}
+                  {editingItem ? "Gem Ændringer" : "Opret Highlight"}
+                </Button>
+              </form>
+            </DialogContent>
+          </Dialog>
+
+          {isLoading ? (
+            <div className="flex justify-center py-4">
+              <Loader2 className="h-6 w-6 animate-spin" />
+            </div>
+          ) : items && items.length > 0 ? (
+            <DndContext
+              sensors={sensors}
+              collisionDetection={closestCenter}
+              onDragEnd={handleDragEnd}
             >
-              {items.map((item) => (
-                <SortableItem
-                  key={item.id}
-                  item={item}
-                  onEdit={handleEdit}
-                  onDelete={handleDelete}
-                />
-              ))}
-            </SortableContext>
-          </DndContext>
-        ) : (
-          <p className="text-center text-muted-foreground py-4">
-            Ingen highlights endnu. Tilføj dit første highlight ovenfor.
-          </p>
-        )}
-      </CardContent>
-    </Card>
+              <SortableContext
+                items={items.map((item) => item.id)}
+                strategy={verticalListSortingStrategy}
+              >
+                {items.map((item) => (
+                  <SortableItem
+                    key={item.id}
+                    item={item}
+                    onEdit={handleEdit}
+                    onDelete={handleDelete}
+                  />
+                ))}
+              </SortableContext>
+            </DndContext>
+          ) : (
+            <p className="text-center text-muted-foreground py-4">
+              Ingen highlights endnu. Tilføj dit første highlight ovenfor.
+            </p>
+          )}
+        </CardContent>
+      </Card>
+    </div>
   );
 }

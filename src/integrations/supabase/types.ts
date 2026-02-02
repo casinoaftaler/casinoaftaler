@@ -146,8 +146,33 @@ export type Database = {
           },
         ]
       }
+      highlight_categories: {
+        Row: {
+          created_at: string
+          id: string
+          name: string
+          position: number
+          slug: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          name: string
+          position?: number
+          slug: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          name?: string
+          position?: number
+          slug?: string
+        }
+        Relationships: []
+      }
       highlights: {
         Row: {
+          category_id: string | null
           created_at: string
           description: string | null
           id: string
@@ -160,6 +185,7 @@ export type Database = {
           url: string
         }
         Insert: {
+          category_id?: string | null
           created_at?: string
           description?: string | null
           id?: string
@@ -172,6 +198,7 @@ export type Database = {
           url: string
         }
         Update: {
+          category_id?: string | null
           created_at?: string
           description?: string | null
           id?: string
@@ -183,7 +210,15 @@ export type Database = {
           updated_at?: string
           url?: string
         }
-        Relationships: []
+        Relationships: [
+          {
+            foreignKeyName: "highlights_category_id_fkey"
+            columns: ["category_id"]
+            isOneToOne: false
+            referencedRelation: "highlight_categories"
+            referencedColumns: ["id"]
+          },
+        ]
       }
       page_views: {
         Row: {
