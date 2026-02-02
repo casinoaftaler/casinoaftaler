@@ -4,6 +4,7 @@ import { Skeleton } from "@/components/ui/skeleton";
 import { Card, CardContent } from "@/components/ui/card";
 import { ShoppingBag, Coins, LogIn, Loader2 } from "lucide-react";
 import { useStreamElementsPoints } from "@/hooks/useStreamElementsPoints";
+import { useAuth } from "@/hooks/useAuth";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 
@@ -41,9 +42,10 @@ function ShopHero() {
 
 function PointsDisplay() {
   const { points, isLoading, isConfigured, isLoggedIn, hasTwitchUsername } = useStreamElementsPoints();
+  const { isAdmin } = useAuth();
 
-  // Don't show anything if StreamElements is not configured
-  if (!isConfigured) {
+  // Don't show anything if StreamElements is not configured or if user is admin
+  if (!isConfigured || isAdmin) {
     return null;
   }
 
