@@ -15,7 +15,8 @@ import Cookies from "./pages/Cookies";
 import Shop from "./pages/Shop";
 import Highlights from "./pages/Highlights";
 import Admin from "./pages/Admin";
-
+import Auth from "./pages/Auth";
+import AuthCallback from "./pages/AuthCallback";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -38,6 +39,8 @@ const App = () => (
             <Route path="/cookies" element={<Cookies />} />
             <Route path="/butik" element={<Shop />} />
             <Route path="/highlights" element={<Highlights />} />
+            <Route path="/auth" element={<Auth />} />
+            <Route path="/auth/callback" element={<AuthCallback />} />
           </Route>
           <Route path="/admin" element={<Admin />} />
           
