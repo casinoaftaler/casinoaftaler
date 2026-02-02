@@ -24,16 +24,16 @@ export function BonusStatusBar({
     <div
       className={cn(
         "w-full p-3 rounded-xl mb-4",
-        "bg-gradient-to-r from-purple-900/80 via-amber-900/80 to-purple-900/80",
+        "bg-gradient-to-r from-amber-900/80 via-amber-800/80 to-amber-900/80",
         "border-2 border-amber-400/50",
-        "shadow-[0_0_20px_rgba(168,85,247,0.3)]"
+        "shadow-[0_0_20px_rgba(251,191,36,0.3)]"
       )}
     >
       <div className="flex flex-wrap items-center justify-between gap-4">
         {/* Bonus indicator */}
         <div className="flex items-center gap-2">
-          <Sparkles className="h-5 w-5 text-purple-400 animate-pulse" />
-          <span className="text-lg font-bold text-purple-300">
+          <Sparkles className="h-5 w-5 text-amber-400 animate-pulse" />
+          <span className="text-lg font-bold text-amber-300">
             FREE SPINS
           </span>
         </div>
