@@ -995,7 +995,7 @@ function AdminDashboard() {
 }
 
 export default function Admin() {
-  const { user, loading, isAdmin } = useAuth();
+  const { user, loading, isAdmin, signOut } = useAuth();
 
   if (loading) {
     return (
@@ -1022,6 +1022,14 @@ export default function Admin() {
             <p className="mb-4 text-sm text-muted-foreground">
               Logget ind som: {user?.email}
             </p>
+            <Button
+              onClick={async () => {
+                await signOut();
+              }}
+              className="w-full"
+            >
+              Log ud og log ind som admin
+            </Button>
           </CardContent>
         </Card>
       </div>
