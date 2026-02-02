@@ -13,7 +13,7 @@ export function SlotSymbol({ symbol, isWinning, isSpinning, isExpanded }: SlotSy
   return (
     <div
       className={cn(
-        "relative flex items-center justify-center w-20 h-20 sm:w-24 sm:h-24 md:w-28 md:h-28 lg:w-32 lg:h-32 rounded-lg bg-gradient-to-br from-amber-900/80 to-amber-950 border-2 transition-all duration-300",
+        "relative flex items-center justify-center w-14 h-14 xs:w-16 xs:h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 lg:w-28 lg:h-28 rounded-lg bg-gradient-to-br from-amber-900/80 to-amber-950 border-2 transition-all duration-300",
         isWinning
           ? "border-amber-400 shadow-[0_0_20px_rgba(251,191,36,0.5)] scale-105"
           : "border-amber-700/50",
@@ -27,12 +27,12 @@ export function SlotSymbol({ symbol, isWinning, isSpinning, isExpanded }: SlotSy
           src={symbol.image_url}
           alt={symbol.name}
           className={cn(
-            "w-14 h-14 sm:w-18 sm:h-18 md:w-22 md:h-22 lg:w-24 lg:h-24 object-contain",
+            "w-10 h-10 xs:w-12 xs:h-12 sm:w-14 sm:h-14 md:w-18 md:h-18 lg:w-20 lg:h-20 object-contain",
             isExpanded && "animate-pulse"
           )}
         />
       ) : (
-        <span className="text-4xl sm:text-5xl md:text-6xl">{getSymbolEmoji(symbol.name)}</span>
+        <span className="text-2xl xs:text-3xl sm:text-4xl md:text-5xl">{getSymbolEmoji(symbol.name)}</span>
       )}
       
       {/* Glow effect for winning */}
