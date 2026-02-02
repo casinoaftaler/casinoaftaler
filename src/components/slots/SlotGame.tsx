@@ -501,7 +501,7 @@ export function SlotGame() {
                 />
                 
                 {/* Reel container */}
-                <div className="relative flex gap-1 xs:gap-2 sm:gap-3 md:gap-4">
+                <div className="relative flex gap-0.5 xs:gap-1 sm:gap-1.5 md:gap-2">
                   {grid?.map((column, colIndex) => (
                     <SlotReel
                       key={colIndex}
