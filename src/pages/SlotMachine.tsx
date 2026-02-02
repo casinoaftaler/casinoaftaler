@@ -96,62 +96,65 @@ export default function SlotMachine() {
       />
       <div className="absolute inset-0 bg-gradient-to-b from-background/60 via-background/40 to-background/70 -z-10" />
       
-      <div className="container px-2 sm:px-4 py-2 sm:py-4">
-        {/* Title Image with glow animation */}
-        <div className="flex justify-center">
+      <div className="container px-2 sm:px-4 py-1">
+        {/* Title Image with glow animation - reduced margin */}
+        <div className="flex justify-center mb-1">
           <img 
             src={titleImage} 
             alt="Book of Fedesvin" 
-            className="w-full max-w-[200px] xs:max-w-[280px] sm:max-w-md md:max-w-xl h-auto animate-[title-entrance_0.8s_ease-out_forwards,glow_3s_ease-in-out_0.8s_infinite]"
+            className="w-full max-w-[180px] xs:max-w-[240px] sm:max-w-sm md:max-w-md h-auto animate-[title-entrance_0.8s_ease-out_forwards,glow_3s_ease-in-out_0.8s_infinite]"
             style={{
               filter: 'drop-shadow(0 0 20px rgba(251,191,36,0.5)) drop-shadow(0 0 40px rgba(251,191,36,0.3)) drop-shadow(0 0 60px rgba(251,191,36,0.2))'
             }}
           />
         </div>
 
-        {/* Main content: Centered layout with optional leaderboard */}
-        <div className="flex justify-center items-start gap-6 mt-2">
-          {/* Desktop: Leaderboard on the left - positioned absolutely to not affect centering */}
-          <div className="hidden xl:block w-64 flex-shrink-0 max-h-[calc(100vh-12rem)] overflow-y-auto absolute left-4 top-32">
-            <SlotLeaderboard />
-          </div>
-          
-          {/* Slot machine and mobile leaderboard */}
-          <div className="flex flex-col items-center gap-2">
-            <SlotGame />
-            
-            {/* Spins remaining */}
-            <div className="w-full max-w-sm flex justify-center">
-              <SpinsRemaining />
+        {/* Main content: Centered layout with leaderboard beside slot machine */}
+        <div className="flex justify-center">
+          {/* Wrapper that contains both leaderboard and slot - centers as a unit */}
+          <div className="relative flex items-start gap-4">
+            {/* Desktop: Leaderboard on the left - positioned relative to this wrapper */}
+            <div className="hidden xl:block w-64 flex-shrink-0 max-h-[calc(100vh-10rem)] overflow-y-auto sticky top-4">
+              <SlotLeaderboard />
             </div>
             
-            {/* Mobile/Tablet: Collapsible Leaderboard */}
-            <Collapsible 
-              open={showLeaderboard} 
-              onOpenChange={setShowLeaderboard}
-              className="w-full max-w-sm xl:hidden"
-            >
-              <CollapsibleTrigger asChild>
-                <Button
-                  variant="ghost"
-                  onClick={toggleLeaderboard}
-                  className="w-full flex items-center justify-center gap-2 py-3 bg-amber-500/10 hover:bg-amber-500/20 border border-amber-500/30 rounded-lg text-amber-500"
-                >
-                  <Trophy className="h-4 w-4" />
-                  <span>{showLeaderboard ? "Skjul rangliste" : "Vis rangliste"}</span>
-                  {showLeaderboard ? (
-                    <ChevronUp className="h-4 w-4" />
-                  ) : (
-                    <ChevronDown className="h-4 w-4" />
-                  )}
-                </Button>
-              </CollapsibleTrigger>
-              <CollapsibleContent className="overflow-hidden data-[state=open]:animate-collapsible-down data-[state=closed]:animate-collapsible-up">
-                <div className="pt-2">
-                  <SlotLeaderboard />
-                </div>
-              </CollapsibleContent>
-            </Collapsible>
+            {/* Slot machine and mobile leaderboard */}
+            <div className="flex flex-col items-center gap-2">
+              <SlotGame />
+              
+              {/* Spins remaining */}
+              <div className="w-full max-w-sm flex justify-center">
+                <SpinsRemaining />
+              </div>
+              
+              {/* Mobile/Tablet: Collapsible Leaderboard */}
+              <Collapsible 
+                open={showLeaderboard} 
+                onOpenChange={setShowLeaderboard}
+                className="w-full max-w-sm xl:hidden"
+              >
+                <CollapsibleTrigger asChild>
+                  <Button
+                    variant="ghost"
+                    onClick={toggleLeaderboard}
+                    className="w-full flex items-center justify-center gap-2 py-3 bg-amber-500/10 hover:bg-amber-500/20 border border-amber-500/30 rounded-lg text-amber-500"
+                  >
+                    <Trophy className="h-4 w-4" />
+                    <span>{showLeaderboard ? "Skjul rangliste" : "Vis rangliste"}</span>
+                    {showLeaderboard ? (
+                      <ChevronUp className="h-4 w-4" />
+                    ) : (
+                      <ChevronDown className="h-4 w-4" />
+                    )}
+                  </Button>
+                </CollapsibleTrigger>
+                <CollapsibleContent className="overflow-hidden data-[state=open]:animate-collapsible-down data-[state=closed]:animate-collapsible-up">
+                  <div className="pt-2">
+                    <SlotLeaderboard />
+                  </div>
+                </CollapsibleContent>
+              </Collapsible>
+            </div>
           </div>
         </div>
       </div>
