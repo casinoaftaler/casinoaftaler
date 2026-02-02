@@ -53,13 +53,13 @@ export function useSlotSpins() {
   });
 
   const decrementSpin = useMutation({
-    mutationFn: async () => {
+    mutationFn: async (count: number = 1) => {
       if (!user?.id || !spinsData) throw new Error("No user or spins data");
-      if (spinsData.spins_remaining <= 0) throw new Error("No spins remaining");
+      if (spinsData.spins_remaining < count) throw new Error("Not enough spins remaining");
 
       const { data, error } = await supabase
         .from("slot_spins")
-        .update({ spins_remaining: spinsData.spins_remaining - 1 })
+        .update({ spins_remaining: spinsData.spins_remaining - count })
         .eq("id", spinsData.id)
         .select()
         .single();
@@ -72,11 +72,17 @@ export function useSlotSpins() {
     },
   });
 
+  // Function to check if user has enough spins for a given bet
+  const hasEnoughSpins = (betAmount: number): boolean => {
+    return (spinsData?.spins_remaining ?? 0) >= betAmount;
+  };
+
   return {
     spinsRemaining: spinsData?.spins_remaining ?? 0,
     maxSpins: settings.dailySpins,
     isLoading,
     decrementSpin,
     canSpin: (spinsData?.spins_remaining ?? 0) > 0,
+    hasEnoughSpins,
   };
 }
