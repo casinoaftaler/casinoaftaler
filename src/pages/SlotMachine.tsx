@@ -72,13 +72,13 @@ export default function SlotMachine() {
       {/* Gradient overlay for readability - slightly reduced opacity to show more background */}
       <div className="fixed inset-0 bg-gradient-to-b from-background/60 via-background/40 to-background/70 -z-10" />
       
-      <div className="container py-0 space-y-0">
+      <div className="container px-2 sm:px-4 py-0 space-y-0">
         {/* Title Image with glow animation - LARGER */}
-        <div className="flex justify-center -mt-6">
+        <div className="flex justify-center -mt-2 sm:-mt-6">
           <img 
             src={titleImage} 
             alt="Book of Fedesvin" 
-            className="w-full max-w-xl sm:max-w-2xl h-auto animate-[title-entrance_0.8s_ease-out_forwards,glow_3s_ease-in-out_0.8s_infinite]"
+            className="w-full max-w-xs xs:max-w-sm sm:max-w-xl md:max-w-2xl h-auto animate-[title-entrance_0.8s_ease-out_forwards,glow_3s_ease-in-out_0.8s_infinite]"
             style={{
               filter: 'drop-shadow(0 0 20px rgba(251,191,36,0.5)) drop-shadow(0 0 40px rgba(251,191,36,0.3)) drop-shadow(0 0 60px rgba(251,191,36,0.2))'
             }}
@@ -86,7 +86,7 @@ export default function SlotMachine() {
         </div>
 
         {/* Centered slot machine with leaderboard below on mobile, side on desktop */}
-        <div className="flex flex-col items-center gap-2 -mt-4">
+        <div className="flex flex-col items-center gap-1 sm:gap-2 -mt-2 sm:-mt-4">
           <SlotGame />
           
           {/* Spins remaining - moved to bottom */}
