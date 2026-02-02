@@ -95,8 +95,8 @@ export default function SlotMachine() {
           </div>
         </div>
         
-        {/* Desktop: Floating leaderboard on the right side */}
-        <div className="hidden lg:block fixed right-4 top-24 w-72 z-40">
+        {/* Desktop: Floating leaderboard on the left side */}
+        <div className="hidden lg:block fixed left-4 top-24 w-72 z-40">
           <SlotLeaderboard />
         </div>
       </div>
