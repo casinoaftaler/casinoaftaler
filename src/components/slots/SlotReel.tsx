@@ -23,7 +23,7 @@ export function SlotReel({
 
   return (
     <div className={cn(
-      "flex flex-col gap-1 sm:gap-2",
+      "flex flex-col gap-2 sm:gap-3 md:gap-4",
       isExpanded && "animate-pulse"
     )}>
       {displayedSymbolIds.map((symbolId, rowIndex) => {
