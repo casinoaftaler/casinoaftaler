@@ -243,7 +243,10 @@ export function SlotReel({
   return (
     <div 
       ref={containerRef}
-      className="relative overflow-hidden rounded-lg bg-amber-950/50"
+      className={cn(
+        "relative overflow-hidden rounded-lg bg-amber-950/50 transition-shadow duration-300",
+        teaseMode && spinState === "spinning" && "shadow-[0_0_20px_rgba(251,191,36,0.6),0_0_40px_rgba(251,191,36,0.3)] animate-pulse"
+      )}
       style={{ 
         height: `${viewportHeight}px`,
         width: `${symbolHeight}px`
