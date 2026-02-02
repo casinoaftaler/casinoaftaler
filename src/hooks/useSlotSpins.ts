@@ -1,6 +1,7 @@
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
 import { useAuth } from "@/hooks/useAuth";
+import { useSlotSettings } from "@/hooks/useSlotSettings";
 
 interface SlotSpins {
   id: string;
@@ -11,6 +12,7 @@ interface SlotSpins {
 
 export function useSlotSpins() {
   const { user } = useAuth();
+  const { settings } = useSlotSettings();
   const queryClient = useQueryClient();
   const today = new Date().toISOString().split("T")[0];
 
@@ -29,14 +31,14 @@ export function useSlotSpins() {
 
       if (error) throw error;
 
-      // If no record for today, create one
+      // If no record for today, create one with configured daily spins
       if (!data) {
         const { data: newData, error: insertError } = await supabase
           .from("slot_spins")
           .insert({
             user_id: user.id,
             date: today,
-            spins_remaining: 100,
+            spins_remaining: settings.dailySpins,
           })
           .select()
           .single();
@@ -72,6 +74,7 @@ export function useSlotSpins() {
 
   return {
     spinsRemaining: spinsData?.spins_remaining ?? 0,
+    maxSpins: settings.dailySpins,
     isLoading,
     decrementSpin,
     canSpin: (spinsData?.spins_remaining ?? 0) > 0,

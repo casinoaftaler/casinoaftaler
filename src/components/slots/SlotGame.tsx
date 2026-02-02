@@ -8,6 +8,7 @@ import { WinDisplay } from "./WinDisplay";
 import { PayTable } from "./PayTable";
 import { useSlotSymbols } from "@/hooks/useSlotSymbols";
 import { useSlotSpins } from "@/hooks/useSlotSpins";
+import { useSlotSettings } from "@/hooks/useSlotSettings";
 import { useAuth } from "@/hooks/useAuth";
 import { supabase } from "@/integrations/supabase/client";
 import { generateGrid, calculateSpinResult, PAY_LINES, type SpinResult } from "@/lib/slotGameLogic";
@@ -18,7 +19,8 @@ import { cn } from "@/lib/utils";
 export function SlotGame() {
   const { user } = useAuth();
   const { data: symbols, isLoading: symbolsLoading } = useSlotSymbols();
-  const { spinsRemaining, canSpin, decrementSpin } = useSlotSpins();
+  const { spinsRemaining, maxSpins, canSpin, decrementSpin } = useSlotSpins();
+  const { settings: slotSettings } = useSlotSettings();
   
   const [bet, setBet] = useState(1);
   const [isSpinning, setIsSpinning] = useState(false);
@@ -183,7 +185,7 @@ export function SlotGame() {
 
         {/* Controls */}
         <div className="flex flex-wrap items-center justify-center gap-4">
-          <BetControls bet={bet} onBetChange={setBet} disabled={isSpinning} />
+          <BetControls bet={bet} onBetChange={setBet} disabled={isSpinning} minBet={slotSettings.minBet} maxBet={slotSettings.maxBet} />
           <WinDisplay amount={winAmount} isAnimating={isWinAnimating} />
         </div>
 
@@ -225,7 +227,7 @@ export function SlotGame() {
         {!canSpin && (
           <div className="text-center p-4 bg-muted/50 rounded-lg">
             <p className="text-muted-foreground">
-              Du har brugt alle dine spins i dag. Kom tilbage i morgen for 100 nye!
+              Du har brugt alle dine spins i dag. Kom tilbage i morgen for {maxSpins} nye!
             </p>
           </div>
         )}
