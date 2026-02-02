@@ -13,9 +13,9 @@ interface SlotReelProps {
   delay?: number;
 }
 
-// Symbol dimensions (should match SlotSymbol component)
-const SYMBOL_SIZE = { xs: 64, mobile: 80, sm: 96, md: 112, lg: 144, xl: 160 };
-const GAP = { xs: 4, mobile: 6, sm: 8, md: 12, lg: 16 };
+// Match the responsive symbol sizes from SlotSymbol - LARGER
+const SYMBOL_SIZE = { xs: 80, mobile: 96, sm: 112, md: 128, lg: 160, xl: 176 };
+const GAP = { xs: 6, mobile: 8, sm: 10, md: 14, lg: 18 };
 
 export function SlotReel({
   symbols,
