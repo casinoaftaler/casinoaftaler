@@ -3,6 +3,7 @@ import { Header } from "./Header";
 import { Footer } from "./Footer";
 import { CookieConsent } from "./CookieConsent";
 import { BackToTop } from "./BackToTop";
+import { TwitchLivePlayer } from "./TwitchLivePlayer";
 import { usePageTracking } from "@/hooks/usePageTracking";
 
 export function Layout() {
@@ -17,6 +18,7 @@ export function Layout() {
       <Footer />
       <CookieConsent />
       <BackToTop />
+      <TwitchLivePlayer />
     </div>
   );
 }
