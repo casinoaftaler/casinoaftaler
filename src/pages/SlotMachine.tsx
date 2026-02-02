@@ -87,9 +87,9 @@ export default function SlotMachine() {
           100 gratis spins dagligt • Ekspanderende symboler i bonus
         </p>
 
-        <div className="grid gap-6 lg:grid-cols-[1fr,320px]">
-          <SlotGame />
+        <div className="grid gap-6 lg:grid-cols-[320px,1fr]">
           <SlotLeaderboard />
+          <SlotGame />
         </div>
       </div>
     </div>
