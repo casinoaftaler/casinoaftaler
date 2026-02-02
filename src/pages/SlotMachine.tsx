@@ -72,9 +72,9 @@ export default function SlotMachine() {
       {/* Gradient overlay for readability - slightly reduced opacity to show more background */}
       <div className="fixed inset-0 bg-gradient-to-b from-background/60 via-background/40 to-background/70 -z-10" />
       
-      <div className="container py-1 space-y-1">
+      <div className="container py-0 space-y-0">
         {/* Title Image with glow animation - LARGER */}
-        <div className="flex justify-center -mt-4">
+        <div className="flex justify-center -mt-6">
           <img 
             src={titleImage} 
             alt="Book of Fedesvin" 
@@ -85,12 +85,8 @@ export default function SlotMachine() {
           />
         </div>
 
-        <p className="text-center text-xs text-muted-foreground">
-          100 gratis spins dagligt • Ekspanderende symboler i bonus
-        </p>
-
         {/* Centered slot machine with leaderboard below on mobile, side on desktop */}
-        <div className="flex flex-col items-center gap-4">
+        <div className="flex flex-col items-center gap-2 -mt-4">
           <SlotGame />
           
           {/* Spins remaining - moved to bottom */}
