@@ -50,21 +50,24 @@ function PointsDisplay() {
   // Show login prompt if not logged in
   if (!isLoggedIn) {
     return (
-      <div className="container py-6">
-        <Card className="mx-auto max-w-md border-primary/20 bg-primary/5">
-          <CardContent className="flex items-center justify-between gap-4 p-4">
-            <div className="flex items-center gap-3">
-              <div className="rounded-full bg-primary/10 p-2">
-                <Coins className="h-5 w-5 text-primary" />
+      <div className="container py-8">
+        <Card className="mx-auto max-w-2xl border-2 border-primary/30 bg-gradient-to-r from-primary/10 via-accent/10 to-primary/10 shadow-lg">
+          <CardContent className="flex flex-col items-center gap-4 p-6 text-center sm:flex-row sm:justify-between sm:text-left">
+            <div className="flex flex-col items-center gap-3 sm:flex-row">
+              <div className="rounded-full bg-primary/20 p-3">
+                <Coins className="h-8 w-8 text-primary" />
               </div>
-              <p className="text-sm text-muted-foreground">
-                Log ind for at se dine point
-              </p>
+              <div>
+                <h3 className="text-lg font-semibold">Se dine point</h3>
+                <p className="text-sm text-muted-foreground">
+                  Log ind med Twitch for at se hvor mange point du har optjent
+                </p>
+              </div>
             </div>
-            <Button asChild size="sm" variant="outline">
+            <Button asChild size="lg" className="w-full sm:w-auto">
               <Link to="/auth">
-                <LogIn className="mr-2 h-4 w-4" />
-                Log ind
+                <LogIn className="mr-2 h-5 w-5" />
+                Log ind med Twitch
               </Link>
             </Button>
           </CardContent>
