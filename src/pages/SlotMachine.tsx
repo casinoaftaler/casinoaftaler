@@ -109,10 +109,10 @@ export default function SlotMachine() {
           />
         </div>
 
-        {/* Main content: Leaderboard left, Slot machine center */}
-        <div className="flex justify-center items-start gap-4 mt-2">
-          {/* Desktop: Leaderboard on the left */}
-          <div className="hidden xl:block w-64 flex-shrink-0 max-h-[calc(100vh-12rem)] overflow-y-auto">
+        {/* Main content: Centered layout with optional leaderboard */}
+        <div className="flex justify-center items-start gap-6 mt-2">
+          {/* Desktop: Leaderboard on the left - positioned absolutely to not affect centering */}
+          <div className="hidden xl:block w-64 flex-shrink-0 max-h-[calc(100vh-12rem)] overflow-y-auto absolute left-4 top-32">
             <SlotLeaderboard />
           </div>
           

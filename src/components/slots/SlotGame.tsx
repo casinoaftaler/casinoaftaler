@@ -30,9 +30,9 @@ import { Gamepad2, Loader2, Play, Square, ChevronDown, Infinity } from "lucide-r
 import { toast } from "sonner";
 import { cn } from "@/lib/utils";
 
-// Symbol dimensions for responsive design - REDUCED FOR MOBILE
-const SYMBOL_SIZE = { xs: 64, mobile: 76, sm: 96, md: 112, lg: 140, xl: 160 };
-const GAP = { xs: 4, mobile: 6, sm: 8, md: 12, lg: 16 };
+// Symbol dimensions for responsive design - INCREASED FOR DESKTOP
+const SYMBOL_SIZE = { xs: 64, mobile: 76, sm: 96, md: 120, lg: 160, xl: 180 };
+const GAP = { xs: 4, mobile: 6, sm: 8, md: 12, lg: 16, xl: 20 };
 
 type AutoSpinCount = 10 | 25 | 50 | 100 | "infinite";
 
@@ -413,14 +413,14 @@ export function SlotGame() {
 
   // Get responsive symbol dimensions for WinLines
   const getSymbolDimensions = () => {
-    if (typeof window === "undefined") return { size: SYMBOL_SIZE.xl, gap: GAP.lg };
+    if (typeof window === "undefined") return { size: SYMBOL_SIZE.xl, gap: GAP.xl };
     const width = window.innerWidth;
     if (width < 400) return { size: SYMBOL_SIZE.xs, gap: GAP.xs };
     if (width < 640) return { size: SYMBOL_SIZE.mobile, gap: GAP.mobile };
     if (width < 768) return { size: SYMBOL_SIZE.sm, gap: GAP.sm };
     if (width < 1024) return { size: SYMBOL_SIZE.md, gap: GAP.md };
     if (width < 1280) return { size: SYMBOL_SIZE.lg, gap: GAP.lg };
-    return { size: SYMBOL_SIZE.xl, gap: GAP.lg };
+    return { size: SYMBOL_SIZE.xl, gap: GAP.xl };
   };
 
   const symbolDimensions = getSymbolDimensions();
