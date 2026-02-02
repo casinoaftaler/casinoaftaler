@@ -2,7 +2,8 @@ import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Slider } from "@/components/ui/slider";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
-import { Volume2, VolumeX, Volume1 } from "lucide-react";
+import { Switch } from "@/components/ui/switch";
+import { Volume2, VolumeX, Volume1, Music } from "lucide-react";
 import { slotSounds } from "@/lib/slotSoundEffects";
 import { cn } from "@/lib/utils";
 
@@ -13,6 +14,7 @@ interface VolumeControlProps {
 export function VolumeControl({ className }: VolumeControlProps) {
   const [enabled, setEnabled] = useState(slotSounds.isEnabled());
   const [volume, setVolume] = useState(slotSounds.getVolume() * 100);
+  const [musicEnabled, setMusicEnabled] = useState(slotSounds.isMusicEnabled());
 
   useEffect(() => {
     slotSounds.setEnabled(enabled);
@@ -22,10 +24,21 @@ export function VolumeControl({ className }: VolumeControlProps) {
     slotSounds.setVolume(volume / 100);
   }, [volume]);
 
+  useEffect(() => {
+    slotSounds.setMusicEnabled(musicEnabled);
+  }, [musicEnabled]);
+
   const handleToggle = () => {
     const newEnabled = !enabled;
     setEnabled(newEnabled);
     if (newEnabled && volume > 0) {
+      slotSounds.playButtonClick();
+    }
+  };
+
+  const handleMusicToggle = (checked: boolean) => {
+    setMusicEnabled(checked);
+    if (checked) {
       slotSounds.playButtonClick();
     }
   };
@@ -67,7 +80,7 @@ export function VolumeControl({ className }: VolumeControlProps) {
           {getVolumeIcon()}
         </Button>
       </PopoverTrigger>
-      <PopoverContent className="w-48 p-4" align="end">
+      <PopoverContent className="w-56 p-4" align="end">
         <div className="space-y-4">
           <div className="flex items-center justify-between">
             <span className="text-sm font-medium">Lydstyrke</span>
@@ -94,10 +107,28 @@ export function VolumeControl({ className }: VolumeControlProps) {
             <Volume2 className="h-4 w-4 text-muted-foreground" />
           </div>
           
-          <div className="text-center">
+          <div className="text-center mb-2">
             <span className="text-sm text-muted-foreground">
               {enabled ? `${Math.round(volume)}%` : "Slukket"}
             </span>
+          </div>
+
+          {/* Music toggle */}
+          <div className="pt-2 border-t border-border">
+            <div className="flex items-center justify-between">
+              <div className="flex items-center gap-2">
+                <Music className="h-4 w-4 text-amber-500" />
+                <span className="text-sm font-medium">Egyptisk musik</span>
+              </div>
+              <Switch
+                checked={musicEnabled && enabled}
+                onCheckedChange={handleMusicToggle}
+                disabled={!enabled}
+              />
+            </div>
+            <p className="text-xs text-muted-foreground mt-1">
+              Ambient baggrundsmusik
+            </p>
           </div>
         </div>
       </PopoverContent>
