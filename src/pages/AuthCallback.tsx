@@ -17,6 +17,13 @@ export default function AuthCallback() {
       const errorParam = searchParams.get("error");
       const errorDescription = searchParams.get("error_description");
 
+      console.log("[AuthCallback] searchParams", {
+        code_present: Boolean(code),
+        state,
+        errorParam,
+        errorDescription,
+      });
+
       // Check for Twitch errors
       if (errorParam) {
         console.error("Twitch auth error:", errorParam, errorDescription);
@@ -32,6 +39,7 @@ export default function AuthCallback() {
 
       // Verify state for CSRF protection
       const savedState = sessionStorage.getItem("twitch_auth_state");
+      console.log("[AuthCallback] state check", { state, savedState });
       if (state !== savedState) {
         console.error("State mismatch - possible CSRF attack");
         setError("Sikkerhedsfejl. Prøv igen.");
@@ -104,7 +112,18 @@ export default function AuthCallback() {
 
         if (verifyError) {
           console.error("Verify OTP error:", verifyError);
-          throw new Error("Kunne ikke verificere login");
+          throw new Error(verifyError.message || "Kunne ikke verificere login");
+        }
+
+        // Sanity check: ensure a session exists after verification
+        const { data: sessionData } = await supabase.auth.getSession();
+        console.log("[AuthCallback] session after verifyOtp", {
+          hasSession: Boolean(sessionData.session),
+          userId: sessionData.session?.user?.id,
+        });
+
+        if (!sessionData.session) {
+          throw new Error("Login blev verificeret, men der blev ikke oprettet en session. Prøv igen.");
         }
 
         toast({
