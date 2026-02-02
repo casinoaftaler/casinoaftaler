@@ -1,123 +1,161 @@
 
-# Plan: Fix Bonus Game Mechanics and Win Line Display
+# Plan: Scatter Rarity & Tease System
 
 ## Overview
-This plan addresses three issues with the slot machine bonus game and win visualization.
+This plan implements two features:
+1. **Rarer Scatters**: Reduce the probability of the Book (scatter) symbol appearing
+2. **Tease System**: When 2 scatters land on the first reels, the remaining reels slow down to build anticipation
 
-## Issues to Fix
+---
 
-### 1. Scatter as Wild in Bonus (Only Without Expanding Win)
-Currently, during bonus rounds, the scatter/Book symbol doesn't act as a wild. It should substitute for other symbols ONLY when there isn't an expanding symbol win on that spin.
+## Changes
 
-**File:** `src/lib/bonusGameLogic.ts`
+### 1. Make Scatters More Rare
+**File: `src/lib/slotGameLogic.ts`**
 
-**Changes:**
-- Modify `calculateWins` function to accept a new parameter `hasExpandingWin`
-- When `hasExpandingWin` is false, allow scatter/wild substitution (same logic as normal game)
-- When `hasExpandingWin` is true, keep current behavior (no wild substitution)
-- Update `calculateBonusSpinResult` to determine if an expanding win occurred and pass that to `calculateWins`
+Reduce the Book symbol weight from 12 to 5-6 (making it as rare as the Pharaoh, the rarest non-scatter symbol).
 
-### 2. Only Expanded Reels Should Animate
-When an expanding win occurs, only the reels that contain the expanding symbol should show the winning animation. Other reels should remain static.
+```typescript
+// Current
+'Book': 12, // Scatter/Wild - slightly rarer
 
-**File:** `src/components/slots/SlotGame.tsx`
+// Changed to
+'Book': 5,  // Scatter/Wild - very rare
+```
 
-**Changes:**
-- Modify `getWinningPositions` function to check if we have an expanding win
-- If there's an expanding win (`expandedReels.length > 0`), only return winning positions for reels that are in the `expandedReels` array
-- Other reels won't get the pulsing/glowing animation
+---
 
-### 3. Win Lines Show Complete Payline (All 5 Positions)
-Currently, win lines only draw up to the winning symbol count (3, 4, or 5). They should always show the entire line across all 5 reels.
+### 2. Add Scatter Counting Per Reel
+**File: `src/lib/slotGameLogic.ts`**
 
-**File:** `src/components/slots/WinLines.tsx`
+Add a new function to count scatters per column, which will be used to detect "tease" situations:
 
-**Changes:**
-- Modify `generateLinePath` function to always draw all 5 positions
-- Remove the `count` parameter limitation and always iterate through all 5 columns
-- The line will show the full payline shape regardless of how many symbols matched
+```typescript
+export function countScattersPerReel(grid: string[][], symbols: SlotSymbol[]): number[] {
+  const scatterSymbol = symbols.find(s => s.is_scatter);
+  if (!scatterSymbol) return [0, 0, 0, 0, 0];
+  
+  return grid.map(column => 
+    column.filter(symbolId => symbolId === scatterSymbol.id).length
+  );
+}
+
+export function getScatterTeaseReels(grid: string[][], symbols: SlotSymbol[]): number[] {
+  const scattersPerReel = countScattersPerReel(grid, symbols);
+  
+  // Count total scatters in first N reels
+  let scatterCount = 0;
+  let teaseStartReel = -1;
+  
+  for (let i = 0; i < 5; i++) {
+    if (scattersPerReel[i] > 0) {
+      scatterCount += scattersPerReel[i];
+    }
+    // If we have 2+ scatters in the first 1-3 reels, tease on remaining reels
+    if (scatterCount >= 2 && teaseStartReel === -1 && i < 3) {
+      teaseStartReel = i + 1; // Tease starts on the next reel
+    }
+  }
+  
+  // Return indices of reels that should be teased
+  if (teaseStartReel > 0) {
+    return Array.from({ length: 5 - teaseStartReel }, (_, i) => teaseStartReel + i);
+  }
+  return [];
+}
+```
+
+---
+
+### 3. Pass Tease Information to Reels
+**File: `src/components/slots/SlotGame.tsx`**
+
+- After generating the grid but before spinning, calculate which reels should tease
+- Pass a `teaseMode` prop to `SlotReel` components
+
+```typescript
+// In handleSpin(), after generating the grid:
+const teaseReels = getScatterTeaseReels(originalGrid, symbols);
+
+// When rendering SlotReel:
+<SlotReel
+  key={colIndex}
+  symbols={symbols}
+  displayedSymbolIds={column}
+  isSpinning={isSpinning}
+  teaseMode={teaseReels.includes(colIndex)}
+  delay={colIndex}
+  // ... other props
+/>
+```
+
+---
+
+### 4. Implement Tease Animation in SlotReel
+**File: `src/components/slots/SlotReel.tsx`**
+
+When `teaseMode` is true:
+- Increase the spin duration significantly (e.g., 2x-3x longer)
+- Use a different easing curve for more dramatic slowdown
+- Optionally add visual effects (glow, shake) during tease
+
+```typescript
+interface SlotReelProps {
+  // ... existing props
+  teaseMode?: boolean;  // NEW: Whether this reel should tease (slow reveal)
+}
+
+// In the animation logic:
+const baseSpinDuration = teaseMode ? 1800 : 1000; // Longer base duration for tease
+const reelStopDelay = teaseMode ? delay * 550 : delay * 350; // Slower stagger for tease
+
+// Use different easing for tease - slower deceleration
+const easing = teaseMode 
+  ? 1 - Math.pow(1 - progress, 4)  // Slower ease out
+  : 1 - Math.pow(1 - progress, 2); // Normal ease out
+```
+
+---
+
+### 5. Update Spin Duration in SlotGame
+**File: `src/components/slots/SlotGame.tsx`**
+
+Account for the longer tease animation when calculating total spin duration:
+
+```typescript
+// Calculate total spin duration based on whether we have a tease
+const hasTeaseReels = teaseReels.length > 0;
+const spinDuration = hasTeaseReels ? 4000 : 2500; // Longer wait for tease spins
+```
+
+---
 
 ## Technical Details
 
-### bonusGameLogic.ts Changes
+### Timing Breakdown (Normal Spin)
+- Base duration: 1000ms
+- Per-reel stagger: 350ms
+- Total for 5 reels: 1000 + (4 × 350) = 2400ms
 
-```typescript
-// Updated function signature
-function calculateWins(
-  grid: string[][],
-  symbols: SlotSymbol[],
-  betAmount: number,
-  expandingSymbol?: SlotSymbol,
-  expandedReels?: number[],
-  hasExpandingWin?: boolean  // NEW parameter
-): LineWin[]
+### Timing Breakdown (Tease Spin)
+- Base duration: 1800ms (80% longer)
+- Per-reel stagger: 550ms (57% longer)
+- Total for 5 reels: 1800 + (4 × 550) = 4000ms
 
-// In calculateBonusSpinResult:
-// Check if expanding win happened first
-const hasExpandingWin = expandedReels.length >= 3;
+### Visual Tease Effects (Optional)
+- Amber glow around teasing reels
+- Slight "shake" animation when slowing down
+- Heartbeat sound effect for tension
 
-// Pass to calculateWins - wild substitution only when no expanding win
-const wins = calculateWins(
-  expandedGrid, 
-  symbols, 
-  betAmount, 
-  expandingSymbol, 
-  expandedReels,
-  hasExpandingWin
-);
-```
+---
 
-### SlotGame.tsx Changes
+## Files Modified
+1. `src/lib/slotGameLogic.ts` - Scatter weight + helper functions
+2. `src/components/slots/SlotReel.tsx` - Tease mode animation
+3. `src/components/slots/SlotGame.tsx` - Detect tease & pass props
 
-```typescript
-const getWinningPositions = (reelIndex: number): number[] => {
-  if (!lastResult || lastResult.wins.length === 0) return [];
-  
-  // If we have an expanding win, only show animation on expanded reels
-  if (expandedReels.length > 0 && !expandedReels.includes(reelIndex)) {
-    return []; // Don't highlight non-expanded reels
-  }
-  
-  const positions: number[] = [];
-  for (const win of lastResult.wins) {
-    const linePattern = PAY_LINES[win.lineIndex];
-    if (reelIndex < win.count) {
-      positions.push(linePattern[reelIndex]);
-    }
-  }
-  return [...new Set(positions)];
-};
-```
+---
 
-### WinLines.tsx Changes
-
-```typescript
-// In generateLinePath function
-const generateLinePath = (lineIndex: number, count: number) => {
-  const pattern = PAY_LINES[lineIndex];
-  const points: { x: number; y: number }[] = [];
-
-  // Always draw the full line (all 5 positions)
-  for (let col = 0; col < 5; col++) {
-    const row = pattern[col];
-    points.push(getSymbolCenter(col, row));
-  }
-  // ... rest remains the same
-};
-```
-
-## Expected Behavior After Changes
-
-| Scenario | Before | After |
-|----------|--------|-------|
-| Bonus spin with expanding symbol on 3+ reels | All winning reels animate | Only expanded reels animate |
-| Bonus spin without expanding win | Wild doesn't substitute | Scatter acts as wild for line wins |
-| Any winning line | Shows partial line (3-5 symbols) | Shows complete line (all 5 positions) |
-
-## Files to Modify
-
-| File | Changes |
-|------|---------|
-| `src/lib/bonusGameLogic.ts` | Add wild substitution when no expanding win |
-| `src/components/slots/SlotGame.tsx` | Filter winning positions to only expanded reels |
-| `src/components/slots/WinLines.tsx` | Draw complete 5-position paylines |
+## Result
+- Scatter symbols (Book) will appear approximately 2.4x less frequently
+- When 2 scatters land in the first 3 reels, the remaining reels will spin noticeably slower, building anticipation for a potential bonus trigger
