@@ -1,78 +1,70 @@
 
+# Plan: Floating Twitch Live Stream Player
 
-# Plan: Fix "Side Analytik" - Connect to Real Analytics Data
+## Overview
+Add a floating, minimizable Twitch player that automatically appears when the stream is live and hides when offline. The player will be positioned in the bottom-left corner (to avoid overlap with the BackToTop button in the bottom-right).
 
-## Problem
-The "Side Analytik" (Page Analytics) tab in the admin dashboard shows no data because it tries to fetch from `/api/analytics` - an endpoint that doesn't exist. The request always fails, returning an empty array.
+## Features
+- **Auto-show/hide**: Player only appears when stream is live
+- **Minimizable**: Users can collapse the player to a small pill showing "LIVE" with viewer count
+- **Dismissible**: Users can close the player entirely (stays closed until page refresh or stream restarts)
+- **Draggable position** (optional): Could allow users to move the player
+- **Responsive**: Smaller on mobile, larger on desktop
 
-## Solution Options
-
-There are two approaches to fix this:
-
-### Option A: Use Lovable's Built-in Analytics (Recommended)
-
-Lovable provides built-in analytics for published projects. We can create an edge function that fetches this data and exposes it to the admin dashboard.
-
-**Implementation:**
-
-1. **Create Edge Function**: `supabase/functions/get-analytics/index.ts`
-   - Receives date range parameters (start, end, granularity)
-   - Uses Lovable's internal analytics system
-   - Returns visitor and page view data
-   - Requires admin authentication
-
-2. **Update Dashboard Query**: Modify `CombinedAnalyticsDashboard.tsx` to call the edge function instead of the non-existent `/api/analytics` endpoint
-
-### Option B: Track Page Views in Database
-
-Create a custom page view tracking system using Supabase.
-
-**Implementation:**
-
-1. **Create `page_views` table** with columns:
-   - `id`, `path`, `user_agent`, `referrer`, `created_at`
-
-2. **Create tracking component** that logs page views on each navigation
-
-3. **Update dashboard** to query the `page_views` table
-
----
-
-## Recommended: Option A
-
-Since Lovable has built-in analytics for production sites, connecting to that data source is cleaner and requires no additional tracking code on the frontend.
+## Technical Implementation
 
 ### Files to Create
-1. `supabase/functions/get-analytics/index.ts` - Edge function to fetch analytics
+1. **`src/components/TwitchLivePlayer.tsx`** - The floating player component
 
-### Files to Modify
-1. `src/components/CombinedAnalyticsDashboard.tsx` - Update fetch to use edge function
+### Files to Modify  
+1. **`src/components/Layout.tsx`** - Add the floating player to the global layout
 
-### Edge Function Implementation
+### Component Design
 
-```typescript
-// supabase/functions/get-analytics/index.ts
-import { serve } from "https://deno.land/std@0.168.0/http/server.ts"
-import { createClient } from "https://esm.sh/@supabase/supabase-js@2"
+```text
+┌─────────────────────────────────────┐
+│ 🔴 LIVE: Playing Slots!    [_] [X] │
+├─────────────────────────────────────┤
+│                                     │
+│         Twitch Embed Player         │
+│           (16:9 aspect)             │
+│                                     │
+└─────────────────────────────────────┘
 
-serve(async (req) => {
-  // Verify admin authentication
-  // Fetch analytics data from Lovable's analytics system
-  // Return formatted data for the dashboard
-})
+When minimized:
+┌─────────────────────┐
+│ 🔴 LIVE • 234 👁 [+]│
+└─────────────────────┘
 ```
 
-### Dashboard Query Update
+### Implementation Details
 
-Replace the failing fetch call with:
-```typescript
-const { data, error } = await supabase.functions.invoke('get-analytics', {
-  body: { startDate, endDate, granularity }
-});
+**TwitchLivePlayer.tsx:**
+- Uses the existing `useTwitchStatus` hook to detect live status
+- Uses `useSiteSettings` to get the Twitch channel URL
+- Embeds Twitch player using iframe with `player.twitch.tv`
+- States: `expanded` (full player) | `minimized` (small pill) | `closed` (hidden)
+- Smooth enter/exit animations
+- Local state for minimize/close (resets on live status change)
+
+**Twitch Embed URL format:**
+```
+https://player.twitch.tv/?channel={channelName}&parent={hostname}&muted=true
 ```
 
----
+**Positioning:**
+- Fixed position: `bottom-20 left-4` (above footer area, left side)
+- Z-index: 40 (below header but above most content)
+- Width: ~320px desktop, full-width on mobile with padding
 
-## Note
-The "Klik Analytik" tab already works correctly because it fetches from the `click_events` table in Supabase. Only the "Side Analytik" tab needs to be fixed.
+**Mobile Behavior:**
+- Starts minimized on mobile to avoid blocking content
+- Expands to near full-width when opened
 
+### User Experience Flow
+1. User visits site
+2. If stream is offline: Nothing shown
+3. If stream is live: Floating player appears (minimized on mobile, expanded on desktop)
+4. User can minimize player to small pill
+5. User can close player entirely
+6. If user closes, player stays closed until they refresh or the stream goes offline and comes back online
