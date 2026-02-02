@@ -141,10 +141,12 @@ export function calculateBonusSpinResult(
   }
   
   const didExpand = expandedReels.length > 0;
+  const hasExpandingWin = expandedReels.length >= 3;
   
   // Calculate wins on the expanded grid
   // Pass expandedReels to enable scatter-style payout for expanding symbols
-  const wins = calculateWins(expandedGrid, symbols, betAmount, expandingSymbol, expandedReels);
+  // Pass hasExpandingWin to control wild substitution behavior
+  const wins = calculateWins(expandedGrid, symbols, betAmount, expandingSymbol, expandedReels, hasExpandingWin);
   
   // Count scatters for potential retrigger
   const scatterSymbol = symbols.find(s => s.is_scatter);
@@ -185,13 +187,15 @@ export function calculateBonusSpinResult(
  * Calculate wins on the grid.
  * When an expanding symbol is present and has expanded to fill 3+ reels,
  * it pays on ALL lines as a scatter-style win (based on reel count, not consecutive from left).
+ * When there is NO expanding win, the scatter/wild substitutes for other symbols.
  */
 function calculateWins(
   grid: string[][],
   symbols: SlotSymbol[],
   betAmount: number,
   expandingSymbol?: SlotSymbol,
-  expandedReels?: number[]
+  expandedReels?: number[],
+  hasExpandingWin?: boolean
 ): LineWin[] {
   const wins: LineWin[] = [];
   const symbolsById = new Map(symbols.map(s => [s.id, s]));
@@ -218,20 +222,33 @@ function calculateWins(
     return wins;
   }
   
+  // Find the scatter/wild symbol for substitution (only when no expanding win)
+  const scatterSymbol = symbols.find(s => s.is_scatter);
+  const allowWildSubstitution = !hasExpandingWin && scatterSymbol;
+  
   // Standard win calculation (consecutive from left)
   for (let lineIndex = 0; lineIndex < PAY_LINES.length; lineIndex++) {
     const linePattern = PAY_LINES[lineIndex];
     const lineSymbols = linePattern.map((row, col) => grid[col][row]);
     const lineSymbolData = lineSymbols.map(id => symbolsById.get(id)!);
     
-    // Use the first symbol as base (no wild substitution in bonus mode)
-    const baseSymbol = lineSymbolData[0];
+    // Find the first non-scatter symbol as base (scatter acts as wild when allowed)
+    let baseSymbol = lineSymbolData[0];
+    if (allowWildSubstitution && baseSymbol.is_scatter) {
+      // Find first non-scatter to use as base
+      const nonScatter = lineSymbolData.find(s => !s.is_scatter);
+      if (nonScatter) {
+        baseSymbol = nonScatter;
+      }
+    }
     
-    // Count consecutive matching symbols from left (exact matches only)
+    // Count consecutive matching symbols from left
     let count = 0;
     for (let i = 0; i < 5; i++) {
       const current = lineSymbolData[i];
-      const isMatch = current.id === baseSymbol.id;
+      // Match if same symbol OR if scatter acts as wild (when allowed)
+      const isMatch = current.id === baseSymbol.id || 
+        (allowWildSubstitution && current.is_scatter);
       
       if (isMatch) {
         count++;

@@ -395,6 +395,11 @@ export function SlotGame() {
   const getWinningPositions = (reelIndex: number): number[] => {
     if (!lastResult || lastResult.wins.length === 0) return [];
     
+    // If we have an expanding win, only show animation on expanded reels
+    if (expandedReels.length > 0 && !expandedReels.includes(reelIndex)) {
+      return []; // Don't highlight non-expanded reels
+    }
+    
     const positions: number[] = [];
     for (const win of lastResult.wins) {
       const linePattern = PAY_LINES[win.lineIndex];
