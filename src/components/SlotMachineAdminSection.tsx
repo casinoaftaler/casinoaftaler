@@ -5,6 +5,7 @@ import { useSlotStatistics } from "@/hooks/useSlotStatistics";
 import { useSlotSymbolsAdmin } from "@/hooks/useSlotSymbolsAdmin";
 import { SlotSymbolImageUpload } from "@/components/SlotSymbolImageUpload";
 import { SlotTitleImageUpload } from "@/components/SlotTitleImageUpload";
+import { SlotBackgroundImageUpload } from "@/components/SlotBackgroundImageUpload";
 import { SpinManagementSection } from "@/components/SpinManagementSection";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -347,10 +348,11 @@ function SettingsTab() {
     <div className="space-y-6">
       <Card>
         <CardHeader>
-          <CardTitle>Titelbillede</CardTitle>
+          <CardTitle>Billeder</CardTitle>
         </CardHeader>
-        <CardContent>
+        <CardContent className="space-y-6">
           <SlotTitleImageUpload />
+          <SlotBackgroundImageUpload />
         </CardContent>
       </Card>
 
