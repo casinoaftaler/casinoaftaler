@@ -15,9 +15,9 @@ interface SlotReelProps {
   onReelStop?: (reelIndex: number) => void;  // Callback when reel stops
 }
 
-// Match the responsive symbol sizes from SlotSymbol - LARGER
-const SYMBOL_SIZE = { xs: 80, mobile: 96, sm: 112, md: 128, lg: 160, xl: 176 };
-const GAP = { xs: 6, mobile: 8, sm: 10, md: 14, lg: 18 };
+// Match the responsive symbol sizes from SlotSymbol - REDUCED FOR MOBILE
+const SYMBOL_SIZE = { xs: 64, mobile: 76, sm: 96, md: 112, lg: 140, xl: 160 };
+const GAP = { xs: 4, mobile: 6, sm: 8, md: 12, lg: 16 };
 
 export function SlotReel({
   symbols,
@@ -183,7 +183,7 @@ export function SlotReel({
   // When stopped, also show final symbols with a small bounce animation
   if (spinState === "idle" || spinState === "stopped") {
     return (
-      <div className="flex flex-col gap-[6px] xs:gap-[8px] sm:gap-[10px] md:gap-[14px] lg:gap-[18px]">
+      <div className="flex flex-col gap-[4px] xs:gap-[6px] sm:gap-[8px] md:gap-[12px] lg:gap-[16px]">
         {displayedSymbolIds.map((symbolId, rowIndex) => {
           const symbol = symbolsById.get(symbolId);
           if (!symbol) return null;

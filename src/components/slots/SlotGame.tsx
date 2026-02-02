@@ -30,9 +30,9 @@ import { Gamepad2, Loader2, Play, Square, ChevronDown, Infinity } from "lucide-r
 import { toast } from "sonner";
 import { cn } from "@/lib/utils";
 
-// Symbol dimensions for responsive design - LARGER sizes
-const SYMBOL_SIZE = { xs: 80, mobile: 96, sm: 112, md: 128, lg: 160, xl: 180 };
-const GAP = { xs: 6, mobile: 8, sm: 10, md: 14, lg: 18 };
+// Symbol dimensions for responsive design - REDUCED FOR MOBILE
+const SYMBOL_SIZE = { xs: 64, mobile: 76, sm: 96, md: 112, lg: 140, xl: 160 };
+const GAP = { xs: 4, mobile: 6, sm: 8, md: 12, lg: 16 };
 
 type AutoSpinCount = 10 | 25 | 50 | 100 | "infinite";
 
