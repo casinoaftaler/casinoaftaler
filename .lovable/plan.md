@@ -1,134 +1,64 @@
 
-# Create Egyptian Slot Machine Interface with AI-Generated Image
+# Plan: Større titel-billede med indlæsningsanimation
 
-## Summary
-Generate an Egyptian-themed slot machine frame/interface using AI image generation, then integrate it into the slot game component to create an immersive visual experience.
+## Oversigt
+Gør titel-billedet endnu større og tilføj en flot "fade-in + scale-up" animation når siden indlæses.
 
----
+## Ændringer
 
-## Current State
-- The slot game already has Egyptian-themed symbols (Pharaoh, Anubis, Horus, Scarab, etc.)
-- The interface uses basic CSS styling with amber/gold accents
-- Background is an Egyptian temple image (`slot-background.jpg`)
-- Title logo is `book-of-fedesvin-title.png`
-- Frame elements are simple CSS borders with corner decorations
+### 1. Større titel-billede
+- Øg `max-w-md` til `max-w-xl` på mobil
+- Øg `sm:max-w-lg` til `sm:max-w-2xl` på større skærme
+- Dette giver et markant større titel-billede
 
----
-
-## What We Will Generate
-
-### Egyptian Slot Machine Frame
-An ornate Egyptian-themed slot machine frame with:
-- Golden hieroglyph-decorated borders
-- Pharaoh head sculptures on the sides
-- Lotus flower and scarab ornaments
-- Ancient stone/gold texture
-- Eye of Horus symbols
-- Transparent center area for the reels
+### 2. Indlæsningsanimation
+Tilføj en ny `title-entrance` keyframe animation der kombinerer:
+- **Fade-in**: Starter usynlig (`opacity: 0`) og fader ind
+- **Scale-up**: Starter lidt mindre (`scale(0.8)`) og vokser til fuld størrelse
+- **Slide-down**: Starter lidt over position (`translateY(-20px)`) og glider ned
+- **Smooth easing**: Bruger `ease-out` for et naturligt finish
 
 ---
 
-## Technical Implementation
+## Tekniske detaljer
 
-### File: `supabase/functions/generate-slot-frame/index.ts` (New)
+### tailwind.config.ts
+Tilføj ny keyframe og animation:
+```typescript
+'title-entrance': {
+  '0%': { 
+    opacity: '0',
+    transform: 'scale(0.8) translateY(-20px)'
+  },
+  '100%': { 
+    opacity: '1',
+    transform: 'scale(1) translateY(0)'
+  }
+}
 
-Create an edge function to generate the slot machine frame image:
-- Use the Lovable AI gateway with `google/gemini-2.5-flash-image` model
-- Generate a PNG image with transparent center for reels
-- Upload the generated image to Supabase storage
-- Return the public URL
-
-### File: `src/components/slots/SlotGame.tsx`
-
-Integrate the generated frame:
-- Add an overlay image around the reel container
-- Position the frame as an absolute element behind/around the reels
-- Keep the reels visible through the transparent center
-- Remove the current CSS corner decorations (replace with the frame image)
-
-### File: `src/hooks/useSiteSettings.ts`
-
-Add support for a new setting:
-- `slot_machine_frame_image` - URL to the generated Egyptian frame
-
----
-
-## Generation Prompt
-
-The AI will be asked to generate:
-
-```text
-"Create an ornate Egyptian slot machine frame with transparent center. 
-The frame should feature:
-- Golden hieroglyph-decorated borders on all sides
-- Pharaoh head sculptures on the left and right pillars
-- Lotus flowers and scarab beetles as ornamental details
-- Ancient Egyptian stone texture with gold leaf accents
-- Eye of Horus symbols at the corners
-- The center must be completely transparent (for reels)
-- Aspect ratio suitable for a 5x3 slot grid
-Style: ancient Egyptian temple aesthetic, rich gold and amber tones, 
-detailed stone carvings, mystical glow effects"
+animation: {
+  'title-entrance': 'title-entrance 0.8s ease-out forwards'
+}
 ```
 
----
-
-## Integration Approach
-
-The frame will be positioned as an absolute overlay:
-
-```text
-+------------------------------------------+
-|  [Pharaoh]   EGYPTIAN FRAME    [Pharaoh] |
-|     |                              |     |
-|     |   +--------------------+     |     |
-|     |   |                    |     |     |
-|     |   |   SLOT REELS       |     |     |
-|     |   |   (transparent)    |     |     |
-|     |   |                    |     |     |
-|     |   +--------------------+     |     |
-|     |                              |     |
-|  [Lotus]                      [Scarab]   |
-+------------------------------------------+
+### src/pages/SlotMachine.tsx
+Opdater titel-billedet:
+```tsx
+<img 
+  src={titleImage} 
+  alt="Book of Fedesvin" 
+  className="w-full max-w-xl sm:max-w-2xl h-auto animate-title-entrance"
+  style={{
+    filter: 'drop-shadow(0 0 20px rgba(251,191,36,0.5)) ...'
+  }}
+/>
 ```
 
----
-
-## Files to Create/Modify
-
-1. **`supabase/functions/generate-slot-frame/index.ts`** (New)
-   - Edge function to call AI image generation
-   - Upload result to storage
-   - Return image URL
-
-2. **`src/components/slots/SlotMachineFrame.tsx`** (New)
-   - Component to render the Egyptian frame overlay
-   - Handles loading state with fallback to current styling
-   - Positions frame around the reel container
-
-3. **`src/components/slots/SlotGame.tsx`**
-   - Import and use `SlotMachineFrame` component
-   - Remove old CSS corner decorations
-   - Adjust padding to accommodate frame
-
-4. **Database Migration**
-   - Add `slot_machine_frame_image` column to site_settings table
+Den eksisterende glow-animation kan kombineres med den nye entrance-animation via CSS.
 
 ---
 
-## Fallback Behavior
-
-If the frame image fails to load:
-- Fall back to the current CSS-based corner decorations
-- Show a subtle loading indicator while generating
-- Cache the generated image URL in site settings
-
----
-
-## Admin Panel Integration
-
-Add an option in the slot machine admin section to:
-- Generate a new frame image
-- Preview the current frame
-- Reset to default (CSS styling)
-
+## Resultat
+- Titlen er nu ~50% større end før
+- Når siden indlæses, vil titlen fade ind og vokse elegant
+- Glow-effekten fortsætter efter indlæsningen
