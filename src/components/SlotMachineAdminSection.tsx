@@ -4,6 +4,7 @@ import { useSlotSettings } from "@/hooks/useSlotSettings";
 import { useSlotStatistics } from "@/hooks/useSlotStatistics";
 import { useSlotSymbolsAdmin } from "@/hooks/useSlotSymbolsAdmin";
 import { SlotSymbolImageUpload } from "@/components/SlotSymbolImageUpload";
+import { SlotTitleImageUpload } from "@/components/SlotTitleImageUpload";
 import { SpinManagementSection } from "@/components/SpinManagementSection";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -343,52 +344,66 @@ function SettingsTab() {
   }
 
   return (
-    <Card>
-      <CardContent className="pt-6 space-y-6">
-        <div className="space-y-2">
-          <Label htmlFor="daily-spins">Daglige Spins per Bruger</Label>
-          <Input
-            id="daily-spins"
-            type="number"
-            min="1"
-            max="1000"
-            value={formData.dailySpins}
-            onChange={(e) => setFormData({ ...formData, dailySpins: parseInt(e.target.value) || 100 })}
-          />
-          <p className="text-sm text-muted-foreground">
-            Antal gratis spins hver bruger får per dag. Nulstilles ved midnat.
-          </p>
-        </div>
+    <div className="space-y-6">
+      <Card>
+        <CardHeader>
+          <CardTitle>Titelbillede</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <SlotTitleImageUpload />
+        </CardContent>
+      </Card>
 
-        <div className="grid grid-cols-2 gap-4">
+      <Card>
+        <CardHeader>
+          <CardTitle>Spil Indstillinger</CardTitle>
+        </CardHeader>
+        <CardContent className="space-y-6">
           <div className="space-y-2">
-            <Label htmlFor="min-bet">Minimum Indsats</Label>
+            <Label htmlFor="daily-spins">Daglige Spins per Bruger</Label>
             <Input
-              id="min-bet"
+              id="daily-spins"
               type="number"
               min="1"
-              value={formData.minBet}
-              onChange={(e) => setFormData({ ...formData, minBet: parseInt(e.target.value) || 1 })}
+              max="1000"
+              value={formData.dailySpins}
+              onChange={(e) => setFormData({ ...formData, dailySpins: parseInt(e.target.value) || 100 })}
             />
+            <p className="text-sm text-muted-foreground">
+              Antal gratis spins hver bruger får per dag. Nulstilles ved midnat.
+            </p>
           </div>
-          <div className="space-y-2">
-            <Label htmlFor="max-bet">Maximum Indsats</Label>
-            <Input
-              id="max-bet"
-              type="number"
-              min="1"
-              value={formData.maxBet}
-              onChange={(e) => setFormData({ ...formData, maxBet: parseInt(e.target.value) || 10 })}
-            />
-          </div>
-        </div>
 
-        <Button onClick={handleSave} disabled={updateSettings.isPending}>
-          {updateSettings.isPending && <Loader2 className="h-4 w-4 mr-2 animate-spin" />}
-          Gem Indstillinger
-        </Button>
-      </CardContent>
-    </Card>
+          <div className="grid grid-cols-2 gap-4">
+            <div className="space-y-2">
+              <Label htmlFor="min-bet">Minimum Indsats</Label>
+              <Input
+                id="min-bet"
+                type="number"
+                min="1"
+                value={formData.minBet}
+                onChange={(e) => setFormData({ ...formData, minBet: parseInt(e.target.value) || 1 })}
+              />
+            </div>
+            <div className="space-y-2">
+              <Label htmlFor="max-bet">Maximum Indsats</Label>
+              <Input
+                id="max-bet"
+                type="number"
+                min="1"
+                value={formData.maxBet}
+                onChange={(e) => setFormData({ ...formData, maxBet: parseInt(e.target.value) || 10 })}
+              />
+            </div>
+          </div>
+
+          <Button onClick={handleSave} disabled={updateSettings.isPending}>
+            {updateSettings.isPending && <Loader2 className="h-4 w-4 mr-2 animate-spin" />}
+            Gem Indstillinger
+          </Button>
+        </CardContent>
+      </Card>
+    </div>
   );
 }
 

@@ -1,14 +1,18 @@
 import { SlotGame } from "@/components/slots/SlotGame";
 import { SlotLeaderboard } from "@/components/slots/SlotLeaderboard";
 import { useAuth } from "@/hooks/useAuth";
+import { useSiteSettings } from "@/hooks/useSiteSettings";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { Gamepad2 } from "lucide-react";
 import slotBackground from "@/assets/slots/slot-background.jpg";
-import bookOfFedesvinTitle from "@/assets/slots/book-of-fedesvin-title.png";
+import defaultTitleImage from "@/assets/slots/book-of-fedesvin-title.png";
 
 export default function SlotMachine() {
   const { user, loading } = useAuth();
+  const { data: siteSettings } = useSiteSettings();
+  
+  const titleImage = siteSettings?.slot_title_image || defaultTitleImage;
 
   if (loading) {
     return (
@@ -69,7 +73,7 @@ export default function SlotMachine() {
         {/* Title Image with glow animation */}
         <div className="flex justify-center">
           <img 
-            src={bookOfFedesvinTitle} 
+            src={titleImage} 
             alt="Book of Fedesvin" 
             className="w-full max-w-xl h-auto animate-[glow_3s_ease-in-out_infinite]"
             style={{
