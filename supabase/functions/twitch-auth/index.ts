@@ -177,7 +177,7 @@ serve(async (req) => {
     }
 
     // NORMAL LOGIN MODE: Check if user already exists by looking up profile with twitch_id
-    const { data: existingProfile } = await supabaseAdmin
+    const { data: existingProfileByTwitch } = await supabaseAdmin
       .from("profiles")
       .select("user_id")
       .eq("twitch_id", twitchUser.id)
@@ -185,11 +185,12 @@ serve(async (req) => {
 
     let userId: string;
     let isNewUser = false;
+    const email = twitchUser.email || `${twitchUser.id}@twitch.placeholder`;
 
-    if (existingProfile) {
-      // User exists, get their ID
-      userId = existingProfile.user_id;
-      console.log("Found existing user:", userId);
+    if (existingProfileByTwitch) {
+      // User already logged in with this Twitch account before
+      userId = existingProfileByTwitch.user_id;
+      console.log("Found existing user by Twitch ID:", userId);
 
       // Update their profile with latest Twitch data
       await supabaseAdmin
@@ -201,66 +202,99 @@ serve(async (req) => {
         })
         .eq("user_id", userId);
     } else {
-      // Create new user
-      isNewUser = true;
-      const email = twitchUser.email || `${twitchUser.id}@twitch.placeholder`;
-      
-      // Try to create user with Twitch email or placeholder
-      const { data: newUser, error: createError } = await supabaseAdmin.auth.admin.createUser({
-        email: email,
-        email_confirm: true,
-        user_metadata: {
-          twitch_id: twitchUser.id,
-          twitch_username: twitchUser.login,
-          display_name: twitchUser.display_name,
-          avatar_url: twitchUser.profile_image_url,
-        },
-      });
+      // No profile with this Twitch ID - check if user exists by email first
+      const { data: existingUsers } = await supabaseAdmin.auth.admin.listUsers();
+      const existingUserByEmail = existingUsers?.users.find(u => u.email === email);
 
-      if (createError) {
-        // If email already exists, try to find by email
-        if (createError.message.includes("already been registered")) {
-          const { data: existingUsers } = await supabaseAdmin.auth.admin.listUsers();
-          const existingUser = existingUsers?.users.find(u => u.email === email);
-          
-          if (existingUser) {
-            userId = existingUser.id;
-            console.log("Found existing user by email:", userId);
+      if (existingUserByEmail) {
+        // User exists (e.g., admin account) - link Twitch to this existing user
+        userId = existingUserByEmail.id;
+        console.log("Found existing user by email (linking Twitch):", userId, email);
+
+        // Check if this user already has a profile
+        const { data: existingUserProfile } = await supabaseAdmin
+          .from("profiles")
+          .select("id")
+          .eq("user_id", userId)
+          .maybeSingle();
+
+        if (existingUserProfile) {
+          // Update existing profile with Twitch data
+          const { error: updateError } = await supabaseAdmin
+            .from("profiles")
+            .update({
+              twitch_id: twitchUser.id,
+              twitch_username: twitchUser.login,
+              display_name: twitchUser.display_name,
+              avatar_url: twitchUser.profile_image_url,
+            })
+            .eq("user_id", userId);
+
+          if (updateError) {
+            console.error("Profile update error:", updateError);
           } else {
-            console.error("Create user error:", createError);
-            return new Response(
-              JSON.stringify({ error: "Failed to create user account" }),
-              { status: 500, headers: { ...corsHeaders, "Content-Type": "application/json" } }
-            );
+            console.log("Updated existing profile with Twitch data for user:", userId);
           }
         } else {
+          // Create new profile for existing user
+          const { error: insertError } = await supabaseAdmin
+            .from("profiles")
+            .insert({
+              user_id: userId,
+              twitch_id: twitchUser.id,
+              twitch_username: twitchUser.login,
+              display_name: twitchUser.display_name,
+              avatar_url: twitchUser.profile_image_url,
+            });
+
+          if (insertError) {
+            console.error("Profile insert error:", insertError);
+          } else {
+            console.log("Created profile for existing user:", userId);
+          }
+        }
+      } else {
+        // Completely new user - create auth user and profile
+        isNewUser = true;
+        console.log("Creating new user with email:", email);
+
+        const { data: newUser, error: createError } = await supabaseAdmin.auth.admin.createUser({
+          email: email,
+          email_confirm: true,
+          user_metadata: {
+            twitch_id: twitchUser.id,
+            twitch_username: twitchUser.login,
+            display_name: twitchUser.display_name,
+            avatar_url: twitchUser.profile_image_url,
+          },
+        });
+
+        if (createError) {
           console.error("Create user error:", createError);
           return new Response(
             JSON.stringify({ error: "Failed to create user account" }),
             { status: 500, headers: { ...corsHeaders, "Content-Type": "application/json" } }
           );
         }
-      } else {
+
         userId = newUser.user.id;
         console.log("Created new user:", userId);
-      }
 
-      // Create profile for new user
-      const { error: profileError } = await supabaseAdmin
-        .from("profiles")
-        .upsert({
-          user_id: userId,
-          twitch_id: twitchUser.id,
-          twitch_username: twitchUser.login,
-          display_name: twitchUser.display_name,
-          avatar_url: twitchUser.profile_image_url,
-        }, {
-          onConflict: "user_id",
-        });
+        // Create profile for new user
+        const { error: profileError } = await supabaseAdmin
+          .from("profiles")
+          .insert({
+            user_id: userId,
+            twitch_id: twitchUser.id,
+            twitch_username: twitchUser.login,
+            display_name: twitchUser.display_name,
+            avatar_url: twitchUser.profile_image_url,
+          });
 
-      if (profileError) {
-        console.error("Profile creation error:", profileError);
-        // Non-fatal, continue with login
+        if (profileError) {
+          console.error("Profile creation error:", profileError);
+          // Non-fatal, continue with login
+        }
       }
     }
 
