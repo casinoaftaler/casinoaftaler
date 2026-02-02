@@ -3,6 +3,7 @@ import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
 
 export interface HighlightCategory {
+  id: string;
   name: string;
   slug: string;
 }
@@ -16,40 +17,125 @@ export interface Highlight {
   thumbnail_url: string | null;
   position: number;
   is_active: boolean;
-  category_id: string | null;
+  category_id: string | null; // Legacy field, kept for backwards compatibility
   created_at: string;
   updated_at: string;
-  highlight_categories?: HighlightCategory | null;
+  highlight_categories?: HighlightCategory | null; // Legacy single category relation
+  categories?: HighlightCategory[]; // New: multiple categories
 }
 
-export type HighlightInsert = Omit<Highlight, "id" | "created_at" | "updated_at" | "highlight_categories">;
+export type HighlightInsert = Omit<Highlight, "id" | "created_at" | "updated_at" | "highlight_categories" | "categories">;
 export type HighlightUpdate = Partial<HighlightInsert> & { id: string };
 
 export function useHighlights(adminView = false, categoryId?: string, platform?: string) {
   return useQuery({
     queryKey: ["highlights", adminView, categoryId, platform],
     queryFn: async () => {
+      // First fetch highlights
       let query = supabase
         .from("highlights")
-        .select("*, highlight_categories(name, slug)")
+        .select("*, highlight_categories(id, name, slug)")
         .order("position", { ascending: true });
 
       if (!adminView) {
         query = query.eq("is_active", true);
       }
 
-      if (categoryId) {
-        query = query.eq("category_id", categoryId);
-      }
-
       if (platform) {
         query = query.eq("platform", platform);
       }
 
-      const { data, error } = await query;
+      const { data: highlightsData, error: highlightsError } = await query;
+      if (highlightsError) throw highlightsError;
+
+      // Fetch all category assignments with category details
+      const { data: assignments, error: assignmentsError } = await supabase
+        .from("highlight_category_assignments")
+        .select("highlight_id, category_id, highlight_categories(id, name, slug)");
+
+      if (assignmentsError) throw assignmentsError;
+
+      // Map assignments to highlights
+      const highlightsWithCategories = (highlightsData || []).map((highlight: any) => {
+        const highlightAssignments = (assignments || []).filter(
+          (a: any) => a.highlight_id === highlight.id
+        );
+        const categories = highlightAssignments
+          .map((a: any) => a.highlight_categories)
+          .filter(Boolean);
+
+        return {
+          ...highlight,
+          categories,
+        };
+      });
+
+      // Filter by category if specified
+      if (categoryId) {
+        return highlightsWithCategories.filter((h: Highlight) =>
+          h.categories?.some((c) => c.id === categoryId)
+        );
+      }
+
+      return highlightsWithCategories as Highlight[];
+    },
+  });
+}
+
+export function useHighlightCategoryAssignments(highlightId: string) {
+  return useQuery({
+    queryKey: ["highlight-category-assignments", highlightId],
+    queryFn: async () => {
+      const { data, error } = await supabase
+        .from("highlight_category_assignments")
+        .select("category_id")
+        .eq("highlight_id", highlightId);
 
       if (error) throw error;
-      return data as unknown as Highlight[];
+      return (data || []).map((a: any) => a.category_id as string);
+    },
+    enabled: !!highlightId,
+  });
+}
+
+export function useUpdateHighlightCategories() {
+  const queryClient = useQueryClient();
+  const { toast } = useToast();
+
+  return useMutation({
+    mutationFn: async ({ highlightId, categoryIds }: { highlightId: string; categoryIds: string[] }) => {
+      // Delete existing assignments
+      const { error: deleteError } = await supabase
+        .from("highlight_category_assignments")
+        .delete()
+        .eq("highlight_id", highlightId);
+
+      if (deleteError) throw deleteError;
+
+      // Insert new assignments
+      if (categoryIds.length > 0) {
+        const assignments = categoryIds.map((categoryId) => ({
+          highlight_id: highlightId,
+          category_id: categoryId,
+        }));
+
+        const { error: insertError } = await supabase
+          .from("highlight_category_assignments")
+          .insert(assignments);
+
+        if (insertError) throw insertError;
+      }
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["highlights"] });
+      queryClient.invalidateQueries({ queryKey: ["highlight-category-assignments"] });
+    },
+    onError: (error: Error) => {
+      toast({
+        title: "Fejl",
+        description: error.message,
+        variant: "destructive",
+      });
     },
   });
 }
@@ -59,7 +145,9 @@ export function useCreateHighlight() {
   const { toast } = useToast();
 
   return useMutation({
-    mutationFn: async (item: Omit<HighlightInsert, "position">) => {
+    mutationFn: async (item: Omit<HighlightInsert, "position"> & { categoryIds?: string[] }) => {
+      const { categoryIds, ...highlightData } = item;
+
       const { data: existingItems } = await supabase
         .from("highlights")
         .select("position")
@@ -72,11 +160,26 @@ export function useCreateHighlight() {
 
       const { data, error } = await supabase
         .from("highlights")
-        .insert({ ...item, position: nextPosition } as any)
+        .insert({ ...highlightData, position: nextPosition } as any)
         .select()
         .single();
 
       if (error) throw error;
+
+      // Insert category assignments
+      if (categoryIds && categoryIds.length > 0) {
+        const assignments = categoryIds.map((categoryId) => ({
+          highlight_id: (data as any).id,
+          category_id: categoryId,
+        }));
+
+        const { error: assignmentError } = await supabase
+          .from("highlight_category_assignments")
+          .insert(assignments);
+
+        if (assignmentError) throw assignmentError;
+      }
+
       return data as unknown as Highlight;
     },
     onSuccess: () => {
@@ -101,7 +204,7 @@ export function useUpdateHighlight() {
   const { toast } = useToast();
 
   return useMutation({
-    mutationFn: async ({ id, ...updates }: HighlightUpdate) => {
+    mutationFn: async ({ id, categoryIds, ...updates }: HighlightUpdate & { categoryIds?: string[] }) => {
       const { data, error } = await supabase
         .from("highlights")
         .update(updates as any)
@@ -110,10 +213,37 @@ export function useUpdateHighlight() {
         .single();
 
       if (error) throw error;
+
+      // Update category assignments if provided
+      if (categoryIds !== undefined) {
+        // Delete existing assignments
+        const { error: deleteError } = await supabase
+          .from("highlight_category_assignments")
+          .delete()
+          .eq("highlight_id", id);
+
+        if (deleteError) throw deleteError;
+
+        // Insert new assignments
+        if (categoryIds.length > 0) {
+          const assignments = categoryIds.map((categoryId) => ({
+            highlight_id: id,
+            category_id: categoryId,
+          }));
+
+          const { error: insertError } = await supabase
+            .from("highlight_category_assignments")
+            .insert(assignments);
+
+          if (insertError) throw insertError;
+        }
+      }
+
       return data as unknown as Highlight;
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["highlights"] });
+      queryClient.invalidateQueries({ queryKey: ["highlight-category-assignments"] });
       toast({
         title: "Highlight opdateret",
         description: "Highlightet er blevet opdateret.",

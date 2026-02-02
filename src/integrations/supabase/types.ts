@@ -173,6 +173,42 @@ export type Database = {
         }
         Relationships: []
       }
+      highlight_category_assignments: {
+        Row: {
+          category_id: string
+          created_at: string
+          highlight_id: string
+          id: string
+        }
+        Insert: {
+          category_id: string
+          created_at?: string
+          highlight_id: string
+          id?: string
+        }
+        Update: {
+          category_id?: string
+          created_at?: string
+          highlight_id?: string
+          id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "highlight_category_assignments_category_id_fkey"
+            columns: ["category_id"]
+            isOneToOne: false
+            referencedRelation: "highlight_categories"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "highlight_category_assignments_highlight_id_fkey"
+            columns: ["highlight_id"]
+            isOneToOne: false
+            referencedRelation: "highlights"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       highlights: {
         Row: {
           category_id: string | null
