@@ -295,7 +295,7 @@ export function HighlightsAdminSection() {
                     type="url"
                     value={formData.url}
                     onChange={(e) => handleUrlChange(e.target.value)}
-                    placeholder="https://www.youtube.com/watch?v=... eller https://clips.twitch.tv/..."
+                    placeholder="https://www.youtube.com/watch?v=... , /shorts/... eller https://clips.twitch.tv/..."
                     required
                   />
                   {formData.url && (
