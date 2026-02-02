@@ -479,7 +479,7 @@ export function SlotGame() {
           )}
 
           {/* Slot machine reels */}
-          <div className="flex justify-center overflow-x-auto py-2 sm:py-4">
+          <div className="flex justify-center py-2 sm:py-4">
             <div
               className={cn(
                 "relative p-3 xs:p-4 sm:p-6 md:p-8 rounded-xl",
