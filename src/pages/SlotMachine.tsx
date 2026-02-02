@@ -109,16 +109,16 @@ export default function SlotMachine() {
           />
         </div>
 
-        {/* Main content: Centered layout with leaderboard beside slot machine */}
+        {/* Main content: Slot machine centered, leaderboard positioned beside it */}
         <div className="flex justify-center">
-          {/* Wrapper that contains both leaderboard and slot - centers as a unit */}
-          <div className="relative flex items-start gap-4">
-            {/* Desktop: Leaderboard on the left - positioned relative to this wrapper */}
-            <div className="hidden xl:block w-64 flex-shrink-0 max-h-[calc(100vh-10rem)] overflow-y-auto sticky top-4">
+          {/* Centered wrapper for slot machine with relative positioning for leaderboard */}
+          <div className="relative">
+            {/* Desktop: Leaderboard positioned to the left of the centered slot */}
+            <div className="hidden xl:block absolute right-full mr-4 top-0 w-64 max-h-[calc(100vh-10rem)] overflow-y-auto">
               <SlotLeaderboard />
             </div>
             
-            {/* Slot machine and mobile leaderboard */}
+            {/* Slot machine - the true center piece */}
             <div className="flex flex-col items-center gap-2">
               <SlotGame />
               
