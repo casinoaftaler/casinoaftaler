@@ -27,6 +27,33 @@ export default function SlotMachine() {
     );
   }
 
+  if (!user) {
+    return (
+      <div className="min-h-screen relative">
+        {/* Full page background */}
+        <div 
+          className="fixed inset-0 bg-cover bg-center bg-no-repeat -z-10"
+          style={{ backgroundImage: `url(${slotBackground})` }}
+        />
+        <div className="fixed inset-0 bg-gradient-to-b from-background/80 via-background/60 to-background/90 -z-10" />
+        
+        <div className="container py-16">
+          <div className="max-w-md mx-auto text-center space-y-6 bg-card/80 backdrop-blur-sm p-8 rounded-xl border border-amber-500/20">
+            <div className="h-20 w-20 mx-auto rounded-full bg-amber-500/20 flex items-center justify-center">
+              <Gamepad2 className="h-10 w-10 text-amber-500" />
+            </div>
+            <h1 className="text-2xl font-bold">Log ind for at spille</h1>
+            <p className="text-muted-foreground">
+              Du skal være logget ind for at spille på spillemaskinen og optjene point til ranglisten.
+            </p>
+            <Button asChild size="lg" className="bg-[#9146FF] hover:bg-[#772ce8]">
+              <Link to="/auth">Log ind med Twitch</Link>
+            </Button>
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen relative">
