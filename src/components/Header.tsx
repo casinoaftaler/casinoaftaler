@@ -65,15 +65,15 @@ export function Header() {
   return (
     <header className="sticky top-0 z-50 w-full border-b border-border bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="container flex h-16 items-center justify-between">
-        <Link to="/" className="flex items-center gap-2">
-          <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-primary overflow-hidden">
+        <Link to="/" className="flex items-center gap-2 min-w-0">
+          <div className="flex h-8 w-8 sm:h-10 sm:w-10 flex-shrink-0 items-center justify-center rounded-lg bg-primary overflow-hidden">
             {headerIconUrl ? (
               <img src={headerIconUrl} alt="Site icon" className="h-full w-full object-cover" />
             ) : (
-              <Gamepad2 className="h-6 w-6 text-primary-foreground" />
+              <Gamepad2 className="h-5 w-5 sm:h-6 sm:w-6 text-primary-foreground" />
             )}
           </div>
-          <span className="text-xl font-bold">{siteName}</span>
+          <span className="text-base sm:text-xl font-bold truncate hidden xs:inline">{siteName}</span>
         </Link>
 
         {/* Desktop Navigation */}
@@ -221,7 +221,7 @@ export function Header() {
                 </DropdownMenuContent>
               </DropdownMenu>
             ) : (
-              <Button asChild variant="outline" size="sm" className="hidden sm:flex">
+              <Button asChild variant="outline" size="sm">
                 <Link to="/auth">Log ind</Link>
               </Button>
             )
