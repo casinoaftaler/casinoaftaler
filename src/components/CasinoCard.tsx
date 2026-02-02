@@ -58,33 +58,33 @@ function CasinoInfoContent({ casino, variant }: { casino: Casino; variant: "feat
     <div className={bgClass}>
 
       {/* Main Stats Row */}
-      <div className="grid grid-cols-4 gap-2 mb-4 text-center">
+      <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-2 mb-4 text-center">
         <div className="flex flex-col items-center">
           <Percent className={`h-4 w-4 mb-1 ${variant === "featured" ? "text-accent" : "text-primary"}`} />
           <p className={`text-[10px] uppercase tracking-wider mb-1 ${variant === "featured" ? "text-white/70" : "text-muted-foreground"}`}>Bonus</p>
-          <p className={`text-lg font-bold ${variant === "featured" ? "text-white" : "text-foreground"}`}>100%</p>
+          <p className={`text-base sm:text-lg font-bold ${variant === "featured" ? "text-white" : "text-foreground"}`}>100%</p>
         </div>
         <div className="flex flex-col items-center">
           <Coins className={`h-4 w-4 mb-1 ${variant === "featured" ? "text-accent" : "text-primary"}`} />
           <p className={`text-[10px] uppercase tracking-wider mb-1 ${variant === "featured" ? "text-white/70" : "text-muted-foreground"}`}>Beløb</p>
-          <p className={`text-lg font-bold ${variant === "featured" ? "text-white" : "text-foreground"}`}>{casino.bonusAmount}</p>
+          <p className={`text-base sm:text-lg font-bold ${variant === "featured" ? "text-white" : "text-foreground"}`}>{casino.bonusAmount}</p>
         </div>
         <div className="flex flex-col items-center">
           <Gift className={`h-4 w-4 mb-1 ${variant === "featured" ? "text-accent" : "text-primary"}`} />
           <p className={`text-[10px] uppercase tracking-wider mb-1 ${variant === "featured" ? "text-white/70" : "text-muted-foreground"}`}>Bonus Type</p>
-          <p className={`text-lg font-bold ${variant === "featured" ? "text-white" : "text-foreground"}`}>{casino.bonusType === "No-sticky" ? "No-Sticky" : "Sticky"}</p>
+          <p className={`text-base sm:text-lg font-bold ${variant === "featured" ? "text-white" : "text-foreground"}`}>{casino.bonusType === "No-sticky" ? "No-Sticky" : "Sticky"}</p>
         </div>
         <div className="flex flex-col items-center">
           <RotateCcw className={`h-4 w-4 mb-1 ${variant === "featured" ? "text-accent" : "text-primary"}`} />
           <p className={`text-[10px] uppercase tracking-wider mb-1 ${variant === "featured" ? "text-white/70" : "text-muted-foreground"}`}>Omsætning</p>
-          <p className={`text-lg font-bold ${variant === "featured" ? "text-white" : "text-foreground"}`}>{casino.wageringRequirements}</p>
+          <p className={`text-base sm:text-lg font-bold ${variant === "featured" ? "text-white" : "text-foreground"}`}>{casino.wageringRequirements}</p>
         </div>
       </div>
 
       {/* Casino Info Section */}
       <div className="mb-4">
         <h4 className={`text-sm font-bold mb-3 uppercase tracking-wide ${variant === "featured" ? "text-white" : "text-foreground"}`}>Casino Info</h4>
-        <div className="grid grid-cols-3 gap-x-4 gap-y-3">
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-x-4 sm:gap-y-3">
           <div className="flex items-start gap-2">
             <Wallet className={`h-4 w-4 mt-0.5 flex-shrink-0 ${variant === "featured" ? "text-accent" : "text-primary"}`} />
             <div>
@@ -119,7 +119,7 @@ function CasinoInfoContent({ casino, variant }: { casino: Casino; variant: "feat
 
       {/* Pros & Cons */}
       {(casino.pros.length > 0 || casino.cons.length > 0) && (
-        <div className="mb-4 grid grid-cols-2 gap-4">
+        <div className="mb-4 grid grid-cols-1 sm:grid-cols-2 gap-4">
           {casino.pros.length > 0 && (
             <div>
               <h4 className={`text-sm font-bold mb-2 uppercase tracking-wide ${variant === "featured" ? "text-white" : "text-foreground"}`}>Fordele</h4>
