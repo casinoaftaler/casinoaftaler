@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { cn } from "@/lib/utils";
+import { useAnimatedCounter } from "@/hooks/useAnimatedCounter";
 
 interface Particle {
   id: number;
@@ -34,6 +35,14 @@ export function WinCelebration({ isActive, winAmount, bet }: WinCelebrationProps
   const isBigWin = winMultiplier >= 10;
   const isMegaWin = winMultiplier >= 50;
   const isEpicWin = winMultiplier >= 100;
+
+  // Animated counter for big win display - longer duration for dramatic effect
+  const duration = isEpicWin ? 2500 : isMegaWin ? 2000 : 1500;
+  const displayAmount = useAnimatedCounter(showBigWin ? winAmount : 0, { 
+    duration, 
+    startFrom: 0,
+    playSound: showBigWin // Only play sound when big win is showing
+  });
 
   useEffect(() => {
     if (!isActive || winAmount <= 0) {
@@ -161,7 +170,7 @@ export function WinCelebration({ isActive, winAmount, bet }: WinCelebrationProps
                 textShadow: "0 0 20px rgba(255, 215, 0, 0.8), 0 0 40px rgba(255, 215, 0, 0.4)",
               }}
             >
-              {winAmount} POINT!
+              {displayAmount} POINT!
             </div>
           </div>
         </div>
