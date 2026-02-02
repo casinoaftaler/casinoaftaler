@@ -7,6 +7,7 @@ import { SlotSymbolImageUpload } from "@/components/SlotSymbolImageUpload";
 import { SlotTitleImageUpload } from "@/components/SlotTitleImageUpload";
 import { SlotBackgroundImageUpload } from "@/components/SlotBackgroundImageUpload";
 import { SpinManagementSection } from "@/components/SpinManagementSection";
+import { SlotFrameAdminControls } from "@/components/slots/SlotFrameAdminControls";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -346,6 +347,9 @@ function SettingsTab() {
 
   return (
     <div className="space-y-6">
+      {/* Egyptian Frame Generator */}
+      <SlotFrameAdminControls />
+
       <Card>
         <CardHeader>
           <CardTitle>Billeder</CardTitle>
