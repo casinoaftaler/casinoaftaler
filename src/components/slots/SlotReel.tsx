@@ -32,22 +32,22 @@ export function SlotReel({
   const animationRef = useRef<number | null>(null);
   const containerRef = useRef<HTMLDivElement>(null);
 
-  // Build the reel strip: random symbols + final 3 symbols at the end
+  // Build the reel strip: final symbols at start, then random symbols for spinning effect
   const buildReelStrip = () => {
     const strip: SlotSymbolType[] = [];
     
-    // Use consistent number of spin symbols for smooth animation
+    // Add the final landing symbols at the START (these will be visible at offset 0)
+    displayedSymbolIds.forEach(id => {
+      const symbol = symbolsById.get(id);
+      if (symbol) strip.push(symbol);
+    });
+    
+    // Add random symbols after for the spin animation
     const spinSymbolCount = 30;
     for (let i = 0; i < spinSymbolCount; i++) {
       const randomSymbol = symbols[Math.floor(Math.random() * symbols.length)];
       strip.push(randomSymbol);
     }
-    
-    // Add the final landing symbols at the end
-    displayedSymbolIds.forEach(id => {
-      const symbol = symbolsById.get(id);
-      if (symbol) strip.push(symbol);
-    });
     
     return strip;
   };
@@ -82,17 +82,18 @@ export function SlotReel({
     if (isSpinning && !hasStartedSpinRef.current) {
       hasStartedSpinRef.current = true;
       
-      // Build new reel strip with final symbols
+      // Build new reel strip with final symbols at start
       const strip = buildReelStrip();
       setReelStrip(strip);
       
-      // Calculate the target offset to land on the final 3 symbols
+      // Calculate the target offset (we start high and animate to 0)
       const symbolHeight = getSymbolHeight();
       const gap = getGap();
       const totalSymbolHeight = symbolHeight + gap;
       
-      // Target offset: scroll to show the last 3 symbols (the actual result)
-      const targetOffset = (strip.length - 3) * totalSymbolHeight;
+      // Start offset: we show random symbols first, then animate down to show final symbols at position 0
+      const startOffset = (strip.length - 3) * totalSymbolHeight;
+      setOffset(startOffset);
       
       // All reels start at the same time for visual sync
       const startDelay = 50;
@@ -111,17 +112,18 @@ export function SlotReel({
           const elapsed = currentTime - startTime;
           const progress = Math.min(elapsed / spinDuration, 1);
           
-          // Smooth easing that maintains consistent visual speed
-          // Use ease-out quad for the entire duration
+          // Smooth easing - ease out for natural deceleration
           const easeOutQuad = 1 - Math.pow(1 - progress, 2);
           
-          // Calculate current offset
-          const currentOffset = easeOutQuad * targetOffset;
+          // Animate from startOffset down to 0 (symbols move UP on screen)
+          const currentOffset = startOffset * (1 - easeOutQuad);
           setOffset(currentOffset);
           
           if (progress < 1) {
             animationRef.current = requestAnimationFrame(animate);
           } else {
+            // Ensure we land exactly at 0
+            setOffset(0);
             setSpinState("stopping");
             // Small settle effect at the end
             setTimeout(() => {
@@ -129,7 +131,6 @@ export function SlotReel({
               // Reset for next spin after showing result
               setTimeout(() => {
                 setSpinState("idle");
-                setOffset(0);
                 hasStartedSpinRef.current = false;
               }, 100);
             }, 50);
@@ -159,7 +160,8 @@ export function SlotReel({
     }
   }, [isSpinning, spinState]);
 
-  // When idle or fully stopped, show just the final symbols
+  // When idle, show just the final symbols (same as spinning at offset 0)
+  // When stopped, also show final symbols with a small bounce animation
   if (spinState === "idle" || spinState === "stopped") {
     return (
       <div className={cn(
@@ -197,14 +199,15 @@ export function SlotReel({
   const totalSymbolHeight = symbolHeight + gap;
   const viewportHeight = 3 * symbolHeight + 2 * gap;
 
-  // Calculate blur amount based on spin speed (stronger at start, fades as it slows)
+  // Calculate blur amount based on current speed (higher offset = faster spin)
   const getBlurAmount = () => {
     if (spinState !== "spinning") return 0;
     const symbolHeight = getSymbolHeight();
     const gap = getGap();
     const totalSymbolHeight = symbolHeight + gap;
-    const targetOffset = (reelStrip.length - 3) * totalSymbolHeight;
-    const progress = offset / targetOffset;
+    const maxOffset = (reelStrip.length - 3) * totalSymbolHeight;
+    // Blur is proportional to how far we are from the final position
+    const progress = 1 - (offset / maxOffset);
     // Blur is strongest at the start (8px) and fades out as the reel slows
     return Math.max(0, 8 * (1 - progress * progress));
   };
