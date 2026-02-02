@@ -80,6 +80,10 @@ export function Header() {
               <DropdownMenuItem asChild>
                 <Link to="/bonus-guide#sticky">Sticky Bonusser</Link>
               </DropdownMenuItem>
+              <DropdownMenuSeparator />
+              <DropdownMenuItem asChild>
+                <Link to="/responsible-gaming">Ansvarligt Spil</Link>
+              </DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>
           <Link
@@ -87,12 +91,6 @@ export function Header() {
             className="text-sm font-medium transition-colors hover:text-primary"
           >
             Om Os
-          </Link>
-          <Link
-            to="/responsible-gaming"
-            className="text-sm font-medium transition-colors hover:text-primary"
-          >
-            Ansvarligt Spil
           </Link>
           <Link
             to="/butik"
@@ -211,18 +209,18 @@ export function Header() {
               Bonus Guide
             </Link>
             <Link
+              to="/responsible-gaming"
+              className="ml-4 text-sm text-muted-foreground transition-colors hover:text-primary"
+              onClick={() => setMobileMenuOpen(false)}
+            >
+              Ansvarligt Spil
+            </Link>
+            <Link
               to="/about"
               className="text-sm font-medium transition-colors hover:text-primary"
               onClick={() => setMobileMenuOpen(false)}
             >
               Om Os
-            </Link>
-            <Link
-              to="/responsible-gaming"
-              className="text-sm font-medium transition-colors hover:text-primary"
-              onClick={() => setMobileMenuOpen(false)}
-            >
-              Ansvarligt Spil
             </Link>
             <Link
               to="/butik"
