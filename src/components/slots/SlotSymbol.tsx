@@ -15,7 +15,7 @@ export function SlotSymbol({ symbol, isWinning, isSpinning, isExpanded, isNewlyE
   return (
     <div
       className={cn(
-        "relative flex items-center justify-center rounded-lg bg-gradient-to-br from-amber-900/80 to-amber-950 border-2 transition-all duration-300 overflow-hidden",
+        "relative flex items-center justify-center rounded-lg bg-gradient-to-br from-amber-900/80 to-amber-950 border-2 transition-all duration-300 overflow-hidden shadow-[0_4px_20px_rgba(0,0,0,0.5)]",
         // Symbol container sizes matching SYMBOL_SIZE constants
         "w-[80px] h-[80px] xs:w-[96px] xs:h-[96px] sm:w-[112px] sm:h-[112px] md:w-[128px] md:h-[128px] lg:w-[160px] lg:h-[160px] xl:w-[176px] xl:h-[176px]",
         isWinning
