@@ -42,6 +42,7 @@ export default function Highlights() {
   const [activeCategory, setActiveCategory] = useState("all");
   const [activePlatform, setActivePlatform] = useState("all");
   const [searchQuery, setSearchQuery] = useState("");
+  const [playingVideoId, setPlayingVideoId] = useState<string | null>(null);
   
   const categoryId = activeCategory === "all" ? undefined : activeCategory;
   const platform = activePlatform === "all" ? undefined : activePlatform;
@@ -59,6 +60,10 @@ export default function Highlights() {
       (highlight.description && highlight.description.toLowerCase().includes(query))
     );
   }, [highlights, searchQuery]);
+
+  const handlePlayVideo = (id: string) => {
+    setPlayingVideoId(id);
+  };
 
   if (isLoading) {
     return (
@@ -132,7 +137,12 @@ export default function Highlights() {
           {filteredHighlights.length > 0 ? (
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
               {filteredHighlights.map((highlight) => (
-                <HighlightCard key={highlight.id} highlight={highlight} />
+                <HighlightCard
+                  key={highlight.id}
+                  highlight={highlight}
+                  isPlaying={playingVideoId === highlight.id}
+                  onPlay={handlePlayVideo}
+                />
               ))}
             </div>
           ) : (
