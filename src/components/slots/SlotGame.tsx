@@ -210,6 +210,8 @@ export function SlotGame() {
         if (bonusResult.didExpand) {
           setExpandedReels(reelsExpanded);
           setNewlyExpandedReels(reelsExpanded);
+          // Play expansion sound
+          slotSounds.playSymbolExpand();
           // Clear the "newly expanded" state after animation completes
           setTimeout(() => setNewlyExpandedReels([]), 700);
         }
