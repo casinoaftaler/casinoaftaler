@@ -1,99 +1,94 @@
 
-# Plan: Add Twitch Login
+# Plan: Separate Admin and Twitch Login Experiences
 
-## Overview
-Add the ability for users to log in with their Twitch account using OAuth. Since the project already has `TWITCH_CLIENT_ID` and `TWITCH_CLIENT_SECRET` configured, we can implement Twitch OAuth flow with an edge function that handles the token exchange securely.
+## Current Situation
 
-## How It Will Work
+Right now:
+- **Admin login** at `/admin` uses email/password
+- **Twitch login** at `/auth` uses Twitch OAuth
+- Both share the same authentication session
+- The `/auth` page redirects logged-in users away, even admins
 
-1. User clicks "Login with Twitch" button
-2. User is redirected to Twitch's authorization page
-3. After approval, Twitch redirects back with an authorization code
-4. Our edge function exchanges the code for tokens and creates/signs in the user
-5. User is logged in and redirected to the app
+## The Problem
 
-## Files to Create
+When an admin is logged in via email/password, they cannot access the Twitch login page because it automatically redirects them. This means admins cannot:
+- Link their Twitch account to their admin profile
+- Use Twitch features on the front page
 
-### 1. `supabase/functions/twitch-auth/index.ts`
-Edge function that handles the Twitch OAuth callback:
-- Receives the authorization code from Twitch
-- Exchanges it for access token using `TWITCH_CLIENT_ID` and `TWITCH_CLIENT_SECRET`
-- Fetches user info from Twitch API
-- Creates or signs in the user via Supabase Auth (using admin client)
-- Returns a session token to the frontend
+## Solution Overview
 
-### 2. `src/pages/Auth.tsx`
-New authentication page with:
-- "Login with Twitch" button (primary option)
-- Email/password login as fallback
-- Handles OAuth callback (reads code from URL, calls edge function)
-- Redirects authenticated users to home page
-- Styled to match the site's design
+Keep both login systems completely separate:
+1. **Admin login** (`/admin`) - Remains unchanged with email/password
+2. **Twitch login** (`/auth`) - Allow logged-in users to link their Twitch account
 
-### 3. `src/components/TwitchAuthButton.tsx`
-Reusable Twitch login button component:
-- Twitch-branded purple button with Twitch icon
-- Initiates OAuth flow by redirecting to Twitch authorization URL
-- Loading state while processing
+## Changes to Make
+
+### 1. Update `/auth` page behavior
+
+**Current:** Redirects away if user is logged in
+**New:** Show different content based on user state:
+- **Not logged in:** Show Twitch login button (current behavior)
+- **Logged in but no Twitch linked:** Show "Link Twitch Account" button
+- **Logged in with Twitch linked:** Show profile info and option to unlink
+
+### 2. Update Twitch OAuth edge function
+
+Modify `twitch-auth` to handle account linking:
+- If user is already authenticated, link Twitch to their existing account
+- If not authenticated, create new account or sign in (current behavior)
+
+### 3. Update Auth Callback
+
+Pass the current user's session to the edge function so it knows whether to create a new account or link to existing.
 
 ## Files to Modify
 
-### 1. `src/hooks/useAuth.ts`
-Add:
-- `signInWithTwitch()` function to initiate OAuth redirect
-- `handleTwitchCallback()` function to process the callback code
-- Handle Twitch user session from the edge function response
-
-### 2. `src/components/Header.tsx`
-Add:
-- User avatar/profile button when logged in
-- Login button when logged out (links to `/auth`)
-
-### 3. `src/App.tsx`
-Add:
-- Route for `/auth` page
-- Route for `/auth/callback` (Twitch OAuth callback)
-
-### 4. `supabase/config.toml`
-Add configuration for the new `twitch-auth` edge function with `verify_jwt = false` (since unauthenticated users need to use it)
-
-## OAuth Flow Details
-
-**Authorization URL:**
-```
-https://id.twitch.tv/oauth2/authorize?
-  client_id={TWITCH_CLIENT_ID}&
-  redirect_uri={callback_url}&
-  response_type=code&
-  scope=user:read:email
-```
-
-**Token Exchange (in edge function):**
-- POST to `https://id.twitch.tv/oauth2/token`
-- Exchange code for access_token
-- Use token to fetch user info from `https://api.twitch.tv/helix/users`
-
-**User Creation:**
-- Use Supabase Admin client to create/update user with Twitch ID as identifier
-- Store Twitch profile data (username, avatar) for display
-
-## Database Changes
-Optional: Create a `profiles` table to store additional user information like Twitch username and avatar for display purposes (will ask for confirmation before proceeding).
+| File | Changes |
+|------|---------|
+| `src/pages/Auth.tsx` | Show different UI based on login and Twitch link status |
+| `src/pages/AuthCallback.tsx` | Pass current session info to edge function |
+| `supabase/functions/twitch-auth/index.ts` | Support linking Twitch to existing accounts |
 
 ## Technical Details
 
-**Redirect URIs to configure in Twitch Developer Console:**
-- Preview: `https://id-preview--ecb4eda6-8d78-47e6-a9ce-38dfcc2dcd6a.lovable.app/auth/callback`
-- Published: `https://bonushuset-buddy.lovable.app/auth/callback`
+### Auth.tsx Changes
 
-**Security Considerations:**
-- All token exchange happens server-side in the edge function
-- Client only sees the final session token
-- PKCE flow not strictly required but could be added for extra security
-- State parameter to prevent CSRF attacks
+```text
+If user is logged in:
+  - Check if profile has twitch_id
+  - If no twitch_id: Show "Link din Twitch-konto" button
+  - If has twitch_id: Show Twitch profile info with unlink option
+Else:
+  - Show current Twitch login flow
+```
+
+### Edge Function Changes
+
+The edge function will accept an optional `link_to_user_id` parameter:
+- If provided: Update that user's profile with Twitch data (linking)
+- If not provided: Create new user or find existing (current behavior)
+
+### AuthCallback Changes
+
+When processing callback, check if user is already logged in and pass their user ID to the edge function for linking.
 
 ## User Experience
-- Prominent "Login with Twitch" button with Twitch branding
-- Seamless redirect flow
-- User avatar appears in header when logged in
-- Dropdown menu with logout option
+
+**For regular visitors:**
+- No change - click "Log ind" → Twitch OAuth → logged in
+
+**For admins:**
+1. Log in at `/admin` with email/password
+2. Navigate to front page
+3. Click user dropdown or go to `/auth`
+4. See "Link din Twitch-konto" option
+5. Click to authorize with Twitch
+6. Twitch profile data is added to their account
+7. Their Twitch avatar and username now appear in the header
+
+## What Stays the Same
+
+- Admin login at `/admin` remains email/password only
+- Admin role checks unchanged
+- Regular users can still log in with just Twitch
+- All security measures remain in place
