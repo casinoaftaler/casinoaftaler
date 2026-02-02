@@ -1,6 +1,12 @@
 import { useState, useCallback, useRef, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 import { SlotReel } from "./SlotReel";
 import { SpinsRemaining } from "./SpinsRemaining";
 import { BetControls } from "./BetControls";
@@ -18,9 +24,11 @@ import { supabase } from "@/integrations/supabase/client";
 import { generateGrid, calculateSpinResult, PAY_LINES, type SpinResult } from "@/lib/slotGameLogic";
 import { calculateBonusSpinResult } from "@/lib/bonusGameLogic";
 import { slotSounds } from "@/lib/slotSoundEffects";
-import { Gamepad2, Loader2, Play, Square } from "lucide-react";
+import { Gamepad2, Loader2, Play, Square, ChevronDown, Infinity } from "lucide-react";
 import { toast } from "sonner";
 import { cn } from "@/lib/utils";
+
+type AutoSpinCount = 10 | 25 | 50 | 100 | "infinite";
 
 export function SlotGame() {
   const { user } = useAuth();
@@ -48,6 +56,8 @@ export function SlotGame() {
   
   // Autospin state
   const [isAutoSpinning, setIsAutoSpinning] = useState(false);
+  const [autoSpinCount, setAutoSpinCount] = useState<AutoSpinCount>(10);
+  const [autoSpinsRemaining, setAutoSpinsRemaining] = useState<number | null>(null);
   const autoSpinTimeoutRef = useRef<NodeJS.Timeout | null>(null);
   const shouldStopAutoSpinRef = useRef(false);
   
@@ -83,6 +93,7 @@ export function SlotGame() {
   // Stop autospin when out of spins or on big win/bonus
   const stopAutoSpin = useCallback(() => {
     setIsAutoSpinning(false);
+    setAutoSpinsRemaining(null);
     shouldStopAutoSpinRef.current = true;
     if (autoSpinTimeoutRef.current) {
       clearTimeout(autoSpinTimeoutRef.current);
@@ -90,14 +101,30 @@ export function SlotGame() {
     }
   }, []);
 
+  const startAutoSpin = useCallback(() => {
+    setIsAutoSpinning(true);
+    setAutoSpinsRemaining(autoSpinCount === "infinite" ? null : autoSpinCount);
+    shouldStopAutoSpinRef.current = false;
+  }, [autoSpinCount]);
+
+  const decrementAutoSpins = useCallback(() => {
+    if (autoSpinsRemaining !== null) {
+      const newCount = autoSpinsRemaining - 1;
+      setAutoSpinsRemaining(newCount);
+      if (newCount <= 0) {
+        stopAutoSpin();
+        toast.info("Autospin afsluttet");
+      }
+    }
+  }, [autoSpinsRemaining, stopAutoSpin]);
+
   const toggleAutoSpin = useCallback(() => {
     if (isAutoSpinning) {
       stopAutoSpin();
     } else {
-      setIsAutoSpinning(true);
-      shouldStopAutoSpinRef.current = false;
+      startAutoSpin();
     }
-  }, [isAutoSpinning, stopAutoSpin]);
+  }, [isAutoSpinning, stopAutoSpin, startAutoSpin]);
 
   const handleSpin = async () => {
     if (!symbols || symbols.length === 0 || !user || isSpinning) return;
@@ -205,8 +232,12 @@ export function SlotGame() {
         shouldStopAuto = true;
       }
 
-      if (shouldStopAuto && isAutoSpinning) {
-        stopAutoSpin();
+      if (isAutoSpinning) {
+        if (shouldStopAuto) {
+          stopAutoSpin();
+        } else {
+          decrementAutoSpins();
+        }
       }
 
       // Handle winnings during bonus
@@ -490,31 +521,74 @@ export function SlotGame() {
               )}
             </Button>
 
-            {/* Autospin button */}
-            <Button
-              size="lg"
-              variant={isAutoSpinning ? "destructive" : "outline"}
-              className={cn(
-                "px-6 py-6 text-lg font-bold transition-all",
-                isAutoSpinning 
-                  ? "bg-red-500 hover:bg-red-600 text-white"
-                  : "border-amber-500/50 hover:bg-amber-500/10 text-amber-500"
+            {/* Autospin controls */}
+            <div className="flex items-center gap-2">
+              {/* Autospin count selector */}
+              {!isAutoSpinning && (
+                <DropdownMenu>
+                  <DropdownMenuTrigger asChild>
+                    <Button
+                      variant="outline"
+                      className="px-3 py-6 text-lg font-bold border-amber-500/50 hover:bg-amber-500/10 text-amber-500"
+                      disabled={!canSpinNow || showBonusTrigger}
+                    >
+                      {autoSpinCount === "infinite" ? (
+                        <Infinity className="h-5 w-5" />
+                      ) : (
+                        autoSpinCount
+                      )}
+                      <ChevronDown className="ml-1 h-4 w-4" />
+                    </Button>
+                  </DropdownMenuTrigger>
+                  <DropdownMenuContent className="bg-background border-amber-500/30">
+                    {([10, 25, 50, 100, "infinite"] as AutoSpinCount[]).map((count) => (
+                      <DropdownMenuItem
+                        key={count}
+                        onClick={() => setAutoSpinCount(count)}
+                        className={cn(
+                          "text-lg cursor-pointer",
+                          autoSpinCount === count && "bg-amber-500/20"
+                        )}
+                      >
+                        {count === "infinite" ? (
+                          <span className="flex items-center gap-2">
+                            <Infinity className="h-4 w-4" /> Uendelig
+                          </span>
+                        ) : (
+                          `${count} spins`
+                        )}
+                      </DropdownMenuItem>
+                    ))}
+                  </DropdownMenuContent>
+                </DropdownMenu>
               )}
-              onClick={toggleAutoSpin}
-              disabled={!canSpinNow || showBonusTrigger}
-            >
-              {isAutoSpinning ? (
-                <>
-                  <Square className="mr-2 h-5 w-5" />
-                  STOP
-                </>
-              ) : (
-                <>
-                  <Play className="mr-2 h-5 w-5" />
-                  AUTO
-                </>
-              )}
-            </Button>
+
+              {/* Autospin button */}
+              <Button
+                size="lg"
+                variant={isAutoSpinning ? "destructive" : "outline"}
+                className={cn(
+                  "px-6 py-6 text-lg font-bold transition-all",
+                  isAutoSpinning 
+                    ? "bg-red-500 hover:bg-red-600 text-white"
+                    : "border-amber-500/50 hover:bg-amber-500/10 text-amber-500"
+                )}
+                onClick={toggleAutoSpin}
+                disabled={!canSpinNow || showBonusTrigger}
+              >
+                {isAutoSpinning ? (
+                  <>
+                    <Square className="mr-2 h-5 w-5" />
+                    {autoSpinsRemaining !== null ? `STOP (${autoSpinsRemaining})` : "STOP"}
+                  </>
+                ) : (
+                  <>
+                    <Play className="mr-2 h-5 w-5" />
+                    AUTO
+                  </>
+                )}
+              </Button>
+            </div>
           </div>
 
           {/* Pay table button */}
