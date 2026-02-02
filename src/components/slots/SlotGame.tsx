@@ -16,6 +16,7 @@ import { PayTable } from "./PayTable";
 import { BonusOverlay } from "./BonusOverlay";
 import { BonusStatusBar } from "./BonusStatusBar";
 import { VolumeControl } from "./VolumeControl";
+import { SlotMachineFrame } from "./SlotMachineFrame";
 import { WinCelebration } from "./WinCelebration";
 import { useSlotSymbols } from "@/hooks/useSlotSymbols";
 import { useSlotSpins } from "@/hooks/useSlotSpins";
@@ -500,66 +501,44 @@ export function SlotGame() {
             </div>
           )}
 
-          {/* Slot machine reels */}
+          {/* Slot machine reels with Egyptian frame */}
           <div className="flex justify-center py-2 sm:py-4">
-            <div
-              className={cn(
-                "relative p-3 xs:p-4 sm:p-6 md:p-8 rounded-xl",
-                bonusState.isActive && "shadow-[0_0_40px_rgba(168,85,247,0.3)]",
-                isSpinning && !bonusState.isActive && "shadow-[0_0_30px_rgba(251,191,36,0.3)]"
-              )}
-            >
-              {/* Win Celebration Effects */}
-              <WinCelebration
-                isActive={isWinAnimating}
-                winAmount={winAmount}
-                bet={bet}
-              />
-              
-              {/* Reel container */}
-              <div className="relative flex gap-1 xs:gap-2 sm:gap-3 md:gap-4">
-                {grid?.map((column, colIndex) => (
-                  <SlotReel
-                    key={colIndex}
-                    symbols={symbols}
-                    displayedSymbolIds={column}
-                    isSpinning={isSpinning}
-                    winningPositions={getWinningPositions(colIndex)}
-                    isExpanded={isReelExpanded(colIndex)}
-                    isNewlyExpanded={newlyExpandedReels.includes(colIndex)}
-                    delay={colIndex}
-                  />
-                ))}
+            <SlotMachineFrame isBonus={bonusState.isActive} isSpinning={isSpinning}>
+              <div className="relative p-3 xs:p-4 sm:p-6 md:p-8 rounded-xl">
+                {/* Win Celebration Effects */}
+                <WinCelebration
+                  isActive={isWinAnimating}
+                  winAmount={winAmount}
+                  bet={bet}
+                />
                 
-                {/* Win Lines Overlay */}
-                {lastResult && lastResult.wins.length > 0 && (
-                  <WinLines
-                    wins={lastResult.wins}
-                    symbolSize={symbolDimensions.size}
-                    gap={symbolDimensions.gap}
-                    isVisible={showWinLines && !isSpinning}
-                  />
-                )}
+                {/* Reel container */}
+                <div className="relative flex gap-1 xs:gap-2 sm:gap-3 md:gap-4">
+                  {grid?.map((column, colIndex) => (
+                    <SlotReel
+                      key={colIndex}
+                      symbols={symbols}
+                      displayedSymbolIds={column}
+                      isSpinning={isSpinning}
+                      winningPositions={getWinningPositions(colIndex)}
+                      isExpanded={isReelExpanded(colIndex)}
+                      isNewlyExpanded={newlyExpandedReels.includes(colIndex)}
+                      delay={colIndex}
+                    />
+                  ))}
+                  
+                  {/* Win Lines Overlay */}
+                  {lastResult && lastResult.wins.length > 0 && (
+                    <WinLines
+                      wins={lastResult.wins}
+                      symbolSize={symbolDimensions.size}
+                      gap={symbolDimensions.gap}
+                      isVisible={showWinLines && !isSpinning}
+                    />
+                  )}
+                </div>
               </div>
-
-              {/* Decorative frame elements - hidden on very small screens */}
-              <div className={cn(
-                "absolute -top-2 -left-2 sm:-top-3 sm:-left-3 w-5 h-5 sm:w-8 sm:h-8 border-t-2 border-l-2 sm:border-t-4 sm:border-l-4 rounded-tl-lg hidden xs:block",
-                bonusState.isActive ? "border-purple-400" : "border-amber-400"
-              )} />
-              <div className={cn(
-                "absolute -top-2 -right-2 sm:-top-3 sm:-right-3 w-5 h-5 sm:w-8 sm:h-8 border-t-2 border-r-2 sm:border-t-4 sm:border-r-4 rounded-tr-lg hidden xs:block",
-                bonusState.isActive ? "border-purple-400" : "border-amber-400"
-              )} />
-              <div className={cn(
-                "absolute -bottom-2 -left-2 sm:-bottom-3 sm:-left-3 w-5 h-5 sm:w-8 sm:h-8 border-b-2 border-l-2 sm:border-b-4 sm:border-l-4 rounded-bl-lg hidden xs:block",
-                bonusState.isActive ? "border-purple-400" : "border-amber-400"
-              )} />
-              <div className={cn(
-                "absolute -bottom-2 -right-2 sm:-bottom-3 sm:-right-3 w-5 h-5 sm:w-8 sm:h-8 border-b-2 border-r-2 sm:border-b-4 sm:border-r-4 rounded-br-lg hidden xs:block",
-                bonusState.isActive ? "border-purple-400" : "border-amber-400"
-              )} />
-            </div>
+            </SlotMachineFrame>
           </div>
 
           {/* Controls */}
