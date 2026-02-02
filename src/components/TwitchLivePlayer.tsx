@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef, useCallback } from "react";
-import { X, Minus, Plus, Eye, GripVertical } from "lucide-react";
+import { X, Minus, Plus, Eye, GripVertical, Volume2, VolumeX } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
 import { useTwitchStatus } from "@/hooks/useTwitchStatus";
@@ -33,6 +33,7 @@ export function TwitchLivePlayer() {
   const [wasLive, setWasLive] = useState(false);
   const [position, setPosition] = useState<Position | null>(null);
   const [isDragging, setIsDragging] = useState(false);
+  const [isMuted, setIsMuted] = useState(true);
   const dragRef = useRef<HTMLDivElement>(null);
   const dragStartRef = useRef<{ x: number; y: number; posX: number; posY: number } | null>(null);
 
@@ -135,7 +136,7 @@ export function TwitchLivePlayer() {
   }
 
   const hostname = typeof window !== "undefined" ? window.location.hostname : "localhost";
-  const embedUrl = `https://player.twitch.tv/?channel=${channelName}&parent=${hostname}&muted=true`;
+  const embedUrl = `https://player.twitch.tv/?channel=${channelName}&parent=${hostname}&muted=${isMuted}`;
 
   if (playerState === "closed") {
     return null;
@@ -144,6 +145,7 @@ export function TwitchLivePlayer() {
   const handleMinimize = () => setPlayerState("minimized");
   const handleExpand = () => setPlayerState("expanded");
   const handleClose = () => setPlayerState("closed");
+  const toggleMute = () => setIsMuted(!isMuted);
 
   const positionStyles = position
     ? { left: position.x, top: position.y, bottom: "auto", right: "auto" }
@@ -236,11 +238,24 @@ export function TwitchLivePlayer() {
         </div>
         <div className="flex items-center gap-1 shrink-0">
           {streamInfo?.viewerCount !== undefined && (
-            <span className="flex items-center gap-1 text-xs text-muted-foreground mr-2">
+            <span className="flex items-center gap-1 text-xs text-muted-foreground mr-1">
               <Eye className="h-3 w-3" />
               {streamInfo.viewerCount.toLocaleString()}
             </span>
           )}
+          <Button
+            variant="ghost"
+            size="icon"
+            className="h-6 w-6"
+            onClick={toggleMute}
+            aria-label={isMuted ? "Slå lyd til" : "Slå lyd fra"}
+          >
+            {isMuted ? (
+              <VolumeX className="h-3.5 w-3.5" />
+            ) : (
+              <Volume2 className="h-3.5 w-3.5" />
+            )}
+          </Button>
           <Button
             variant="ghost"
             size="icon"
@@ -265,6 +280,7 @@ export function TwitchLivePlayer() {
       {/* Player iframe */}
       <div className="aspect-video w-full">
         <iframe
+          key={isMuted ? "muted" : "unmuted"}
           src={embedUrl}
           className="h-full w-full"
           allowFullScreen
