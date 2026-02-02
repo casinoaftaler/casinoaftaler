@@ -85,23 +85,27 @@ export default function SlotMachine() {
           />
         </div>
 
-        {/* Centered slot machine with leaderboard below on mobile, side on desktop */}
-        <div className="flex flex-col items-center gap-1 sm:gap-2 -mt-2 sm:-mt-4">
-          <SlotGame />
-          
-          {/* Spins remaining - moved to bottom */}
-          <div className="w-full max-w-sm flex justify-center">
-            <SpinsRemaining />
-          </div>
-          
-          <div className="w-full max-w-sm lg:hidden">
+        {/* Main content: Leaderboard left, Slot machine center */}
+        <div className="flex justify-center items-start gap-4 -mt-2 sm:-mt-4">
+          {/* Desktop: Leaderboard on the left */}
+          <div className="hidden xl:block w-64 flex-shrink-0 max-h-[calc(100vh-12rem)] overflow-y-auto">
             <SlotLeaderboard />
           </div>
-        </div>
-        
-        {/* Desktop: Floating leaderboard on the left side */}
-        <div className="hidden xl:block fixed left-4 top-32 w-64 z-40 max-h-[calc(100vh-10rem)] overflow-y-auto">
-          <SlotLeaderboard />
+          
+          {/* Slot machine and mobile leaderboard */}
+          <div className="flex flex-col items-center gap-1 sm:gap-2">
+            <SlotGame />
+            
+            {/* Spins remaining - moved to bottom */}
+            <div className="w-full max-w-sm flex justify-center">
+              <SpinsRemaining />
+            </div>
+            
+            {/* Mobile/Tablet: Leaderboard below */}
+            <div className="w-full max-w-sm xl:hidden">
+              <SlotLeaderboard />
+            </div>
+          </div>
         </div>
       </div>
     </div>
