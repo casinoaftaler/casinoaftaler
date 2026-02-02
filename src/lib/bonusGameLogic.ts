@@ -84,9 +84,11 @@ function checkIfExpandingCreatesPaylineWin(
       return symbolsById.get(symbolId);
     });
     
-    let baseSymbol = lineSymbols.find(s => s && !s.is_wild && s.id !== expandingSymbol.id);
+    // Find the first non-wild symbol as base
+    // Expanding symbol is NOT a wild - it only matches itself
+    let baseSymbol = lineSymbols.find(s => s && !s.is_wild);
     if (!baseSymbol) {
-      baseSymbol = expandingSymbol;
+      baseSymbol = lineSymbols[0];
     }
     
     let consecutiveMatches = 0;
@@ -95,12 +97,15 @@ function checkIfExpandingCreatesPaylineWin(
       if (!symbol) break;
       
       const isMatch = 
-        symbol.id === baseSymbol.id || 
-        symbol.id === expandingSymbol.id ||
+        symbol.id === baseSymbol?.id || 
         symbol.is_wild;
       
       if (isMatch) {
         consecutiveMatches++;
+        // Update base if we started with wild
+        if (baseSymbol?.is_wild && !symbol.is_wild) {
+          baseSymbol = symbol;
+        }
       } else {
         break;
       }
@@ -195,31 +200,28 @@ function calculateWins(
     const lineSymbols = linePattern.map((row, col) => grid[col][row]);
     const lineSymbolData = lineSymbols.map(id => symbolsById.get(id)!);
     
-    // Find the first non-wild symbol (expanding symbol acts as wild during bonus)
-    let baseSymbol = lineSymbolData.find(s => 
-      !s.is_wild && (!expandingSymbol || s.id !== expandingSymbol.id)
-    );
+    // Find the first non-wild symbol to use as base
+    // Note: expanding symbol is NOT a wild - it only matches with itself
+    let baseSymbol = lineSymbolData.find(s => !s.is_wild);
     
-    // If all symbols are wild/expanding, use the expanding symbol as base
+    // If all symbols are wild, use the first one
     if (!baseSymbol) {
-      baseSymbol = expandingSymbol || lineSymbolData[0];
+      baseSymbol = lineSymbolData[0];
     }
     
     // Count consecutive matching symbols from left
+    // Expanding symbol only matches with itself, not as a wild
     let count = 0;
     for (let i = 0; i < 5; i++) {
       const current = lineSymbolData[i];
       const isMatch = 
         current.id === baseSymbol.id || 
-        current.is_wild ||
-        (expandingSymbol && current.id === expandingSymbol.id);
+        current.is_wild;
       
       if (isMatch) {
         count++;
-        // Update base if we started with wild/expanding
-        if ((baseSymbol.is_wild || (expandingSymbol && baseSymbol.id === expandingSymbol.id)) && 
-            !current.is_wild && 
-            (!expandingSymbol || current.id !== expandingSymbol.id)) {
+        // Update base if we started with wild
+        if (baseSymbol.is_wild && !current.is_wild) {
           baseSymbol = current;
         }
       } else {
@@ -228,19 +230,14 @@ function calculateWins(
     }
     
     if (count >= 3) {
-      // Use expanding symbol's multipliers if that's what we're paying
-      const payingSymbol = (expandingSymbol && baseSymbol.id === expandingSymbol.id) 
-        ? expandingSymbol 
-        : baseSymbol;
-      
       let multiplier = 0;
-      if (count === 3) multiplier = payingSymbol.multiplier_3;
-      else if (count === 4) multiplier = payingSymbol.multiplier_4;
-      else if (count === 5) multiplier = payingSymbol.multiplier_5;
+      if (count === 3) multiplier = baseSymbol.multiplier_3;
+      else if (count === 4) multiplier = baseSymbol.multiplier_4;
+      else if (count === 5) multiplier = baseSymbol.multiplier_5;
       
       wins.push({
         lineIndex,
-        symbolId: payingSymbol.id,
+        symbolId: baseSymbol.id,
         count,
         payout: multiplier * betAmount,
       });
