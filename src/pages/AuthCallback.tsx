@@ -44,8 +44,14 @@ export default function AuthCallback() {
         return;
       }
 
-      // Clear the state
+      // Check if this is a linking operation (user was already logged in)
+      const isLinking = sessionStorage.getItem("twitch_link_mode") === "true";
+      const linkToUserId = sessionStorage.getItem("twitch_link_user_id");
+
+      // Clear the stored state and link info
       sessionStorage.removeItem("twitch_auth_state");
+      sessionStorage.removeItem("twitch_link_mode");
+      sessionStorage.removeItem("twitch_link_user_id");
 
       if (!code) {
         setError("Ingen autorisationskode modtaget");
@@ -65,6 +71,8 @@ export default function AuthCallback() {
             code,
             redirect_uri: `${window.location.origin}/auth/callback`,
             state,
+            // Pass link_to_user_id if this is a linking operation
+            ...(isLinking && linkToUserId ? { link_to_user_id: linkToUserId } : {}),
           },
         });
 
@@ -75,6 +83,16 @@ export default function AuthCallback() {
 
         if (!data.success) {
           throw new Error(data.error || "Authentication failed");
+        }
+
+        // If this was a linking operation, no need to verify OTP - just redirect
+        if (isLinking && data.linked) {
+          toast({
+            title: "Twitch tilknyttet!",
+            description: `Din Twitch-konto (${data.user.display_name}) er nu tilknyttet din profil`,
+          });
+          navigate("/auth");
+          return;
         }
 
         // Use the token hash to verify the OTP and get a session

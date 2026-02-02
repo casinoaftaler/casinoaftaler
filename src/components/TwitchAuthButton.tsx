@@ -2,14 +2,18 @@ import { Button } from "@/components/ui/button";
 import { useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
+import { useAuth } from "@/hooks/useAuth";
+import { Link2 } from "lucide-react";
 
 interface TwitchAuthButtonProps {
   className?: string;
+  linkMode?: boolean;
 }
 
-export function TwitchAuthButton({ className }: TwitchAuthButtonProps) {
+export function TwitchAuthButton({ className, linkMode = false }: TwitchAuthButtonProps) {
   const [isLoading, setIsLoading] = useState(false);
   const { toast } = useToast();
+  const { user } = useAuth();
 
   const handleTwitchLogin = async () => {
     setIsLoading(true);
@@ -20,6 +24,15 @@ export function TwitchAuthButton({ className }: TwitchAuthButtonProps) {
       // Generate random state for CSRF protection
       const state = crypto.randomUUID();
       sessionStorage.setItem("twitch_auth_state", state);
+      
+      // If linking mode and user is logged in, store their ID
+      if (linkMode && user) {
+        sessionStorage.setItem("twitch_link_mode", "true");
+        sessionStorage.setItem("twitch_link_user_id", user.id);
+      } else {
+        sessionStorage.removeItem("twitch_link_mode");
+        sessionStorage.removeItem("twitch_link_user_id");
+      }
       
       // Get the auth URL from the edge function
       const { data, error } = await supabase.functions.invoke("twitch-auth-url", {
@@ -50,6 +63,9 @@ export function TwitchAuthButton({ className }: TwitchAuthButtonProps) {
     }
   };
 
+  const buttonText = linkMode ? "Tilknyt Twitch-konto" : "Log ind med Twitch";
+  const loadingText = linkMode ? "Tilknytter..." : "Logger ind...";
+
   return (
     <Button
       onClick={handleTwitchLogin}
@@ -62,14 +78,18 @@ export function TwitchAuthButton({ className }: TwitchAuthButtonProps) {
             <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
             <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" />
           </svg>
-          Logger ind...
+          {loadingText}
         </span>
       ) : (
         <span className="flex items-center gap-2">
-          <svg className="h-5 w-5" viewBox="0 0 24 24" fill="currentColor">
-            <path d="M11.571 4.714h1.715v5.143H11.57zm4.715 0H18v5.143h-1.714zM6 0L1.714 4.286v15.428h5.143V24l4.286-4.286h3.428L22.286 12V0zm14.571 11.143l-3.428 3.428h-3.429l-3 3v-3H6.857V1.714h13.714Z"/>
-          </svg>
-          Log ind med Twitch
+          {linkMode ? (
+            <Link2 className="h-5 w-5" />
+          ) : (
+            <svg className="h-5 w-5" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M11.571 4.714h1.715v5.143H11.57zm4.715 0H18v5.143h-1.714zM6 0L1.714 4.286v15.428h5.143V24l4.286-4.286h3.428L22.286 12V0zm14.571 11.143l-3.428 3.428h-3.429l-3 3v-3H6.857V1.714h13.714Z"/>
+            </svg>
+          )}
+          {buttonText}
         </span>
       )}
     </Button>

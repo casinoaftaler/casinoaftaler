@@ -29,7 +29,7 @@ serve(async (req) => {
   }
 
   try {
-    const { code, redirect_uri, state } = await req.json();
+    const { code, redirect_uri, state, link_to_user_id } = await req.json();
 
     if (!code) {
       return new Response(
@@ -60,6 +60,7 @@ serve(async (req) => {
     }
 
     console.log("Exchanging code for token...");
+    console.log("Link mode:", link_to_user_id ? `linking to user ${link_to_user_id}` : "normal login");
 
     // Exchange code for access token
     const tokenResponse = await fetch("https://id.twitch.tv/oauth2/token", {
@@ -117,7 +118,65 @@ serve(async (req) => {
       },
     });
 
-    // Check if user already exists by looking up profile with twitch_id
+    // LINKING MODE: If link_to_user_id is provided, just update the profile
+    if (link_to_user_id) {
+      console.log("Linking Twitch to existing user:", link_to_user_id);
+
+      // Check if this Twitch account is already linked to another user
+      const { data: existingTwitchProfile } = await supabaseAdmin
+        .from("profiles")
+        .select("user_id")
+        .eq("twitch_id", twitchUser.id)
+        .maybeSingle();
+
+      if (existingTwitchProfile && existingTwitchProfile.user_id !== link_to_user_id) {
+        console.error("Twitch account already linked to another user");
+        return new Response(
+          JSON.stringify({ error: "Denne Twitch-konto er allerede tilknyttet en anden bruger" }),
+          { status: 400, headers: { ...corsHeaders, "Content-Type": "application/json" } }
+        );
+      }
+
+      // Update or create profile for the existing user
+      const { error: profileError } = await supabaseAdmin
+        .from("profiles")
+        .upsert({
+          user_id: link_to_user_id,
+          twitch_id: twitchUser.id,
+          twitch_username: twitchUser.login,
+          display_name: twitchUser.display_name,
+          avatar_url: twitchUser.profile_image_url,
+        }, {
+          onConflict: "user_id",
+        });
+
+      if (profileError) {
+        console.error("Profile update error:", profileError);
+        return new Response(
+          JSON.stringify({ error: "Failed to link Twitch account" }),
+          { status: 500, headers: { ...corsHeaders, "Content-Type": "application/json" } }
+        );
+      }
+
+      console.log("Successfully linked Twitch to user:", link_to_user_id);
+
+      return new Response(
+        JSON.stringify({
+          success: true,
+          linked: true,
+          user: {
+            id: link_to_user_id,
+            twitch_id: twitchUser.id,
+            twitch_username: twitchUser.login,
+            display_name: twitchUser.display_name,
+            avatar_url: twitchUser.profile_image_url,
+          },
+        }),
+        { status: 200, headers: { ...corsHeaders, "Content-Type": "application/json" } }
+      );
+    }
+
+    // NORMAL LOGIN MODE: Check if user already exists by looking up profile with twitch_id
     const { data: existingProfile } = await supabaseAdmin
       .from("profiles")
       .select("user_id")
@@ -206,7 +265,6 @@ serve(async (req) => {
     }
 
     // Generate a session for the user using a magic link token approach
-    // We'll use signInWithPassword with a generated password, or generate link
     const { data: linkData, error: linkError } = await supabaseAdmin.auth.admin.generateLink({
       type: "magiclink",
       email: twitchUser.email || `${twitchUser.id}@twitch.placeholder`,
