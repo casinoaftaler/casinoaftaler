@@ -165,7 +165,7 @@ export function SlotReel({
   if (spinState === "idle" || spinState === "stopped") {
     return (
       <div className={cn(
-        "flex flex-col gap-1 xs:gap-1.5 sm:gap-2 md:gap-3",
+        "flex flex-col gap-[6px] xs:gap-[8px] sm:gap-[10px] md:gap-[14px] lg:gap-[18px]",
         isExpanded && "animate-pulse"
       )}>
         {displayedSymbolIds.map((symbolId, rowIndex) => {
