@@ -337,7 +337,7 @@ function FeaturedCard({
                 isTopRow ? "py-5 text-base" : "py-4 text-sm"
               }`}
             >
-              <span className="absolute inset-0 -translate-x-full animate-[shine_3s_ease-in-out_infinite] bg-gradient-to-r from-transparent via-white/20 to-transparent" />
+              <span className="absolute inset-0 -translate-x-full group-hover/btn:animate-[shine_0.6s_ease-in-out] bg-gradient-to-r from-transparent via-white/30 to-transparent" />
               <Gift className={`relative z-10 ${isTopRow ? "h-5 w-5" : "h-4 w-4"}`} />
               <span className="relative z-10">HENT BONUS</span>
             </Button>
@@ -471,7 +471,7 @@ function RegularCard({
                 size="sm"
                 className="group/btn relative rounded-full border border-primary bg-transparent text-primary hover:bg-primary hover:text-primary-foreground font-semibold text-xs px-4 transition-all overflow-hidden"
               >
-                <span className="absolute inset-0 -translate-x-full animate-[shine_3s_ease-in-out_infinite] bg-gradient-to-r from-transparent via-primary/20 to-transparent" />
+                <span className="absolute inset-0 -translate-x-full group-hover/btn:animate-[shine_0.6s_ease-in-out] bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
                 <Gift className="relative z-10 h-4 w-4" />
                 <span className="relative z-10">HENT BONUS</span>
               </Button>
