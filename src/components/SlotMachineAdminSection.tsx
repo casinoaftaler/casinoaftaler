@@ -4,6 +4,7 @@ import { useSlotSettings } from "@/hooks/useSlotSettings";
 import { useSlotStatistics } from "@/hooks/useSlotStatistics";
 import { useSlotSymbolsAdmin } from "@/hooks/useSlotSymbolsAdmin";
 import { SlotSymbolImageUpload } from "@/components/SlotSymbolImageUpload";
+import { SpinManagementSection } from "@/components/SpinManagementSection";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -490,6 +491,7 @@ export function SlotMachineAdminSection() {
         <TabsList className="mb-4">
           <TabsTrigger value="symbols">Symboler</TabsTrigger>
           <TabsTrigger value="settings">Indstillinger</TabsTrigger>
+          <TabsTrigger value="spins">Spins</TabsTrigger>
           <TabsTrigger value="statistics">Statistik</TabsTrigger>
         </TabsList>
 
@@ -499,6 +501,10 @@ export function SlotMachineAdminSection() {
 
         <TabsContent value="settings">
           <SettingsTab />
+        </TabsContent>
+
+        <TabsContent value="spins">
+          <SpinManagementSection />
         </TabsContent>
 
         <TabsContent value="statistics">
