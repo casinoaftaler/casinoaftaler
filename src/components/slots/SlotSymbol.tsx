@@ -10,11 +10,12 @@ interface SlotSymbolProps {
   isNewlyExpanded?: boolean;
 }
 
+// Larger symbol sizes for bigger slot machine
 export function SlotSymbol({ symbol, isWinning, isSpinning, isExpanded, isNewlyExpanded }: SlotSymbolProps) {
   return (
     <div
       className={cn(
-        "relative flex items-center justify-center w-16 h-16 xs:w-20 xs:h-20 sm:w-24 sm:h-24 md:w-28 md:h-28 lg:w-36 lg:h-36 xl:w-40 xl:h-40 rounded-lg bg-gradient-to-br from-amber-900/80 to-amber-950 border-2 transition-all duration-300 overflow-hidden",
+        "relative flex items-center justify-center w-20 h-20 xs:w-24 xs:h-24 sm:w-28 sm:h-28 md:w-32 md:h-32 lg:w-40 lg:h-40 xl:w-44 xl:h-44 rounded-lg bg-gradient-to-br from-amber-900/80 to-amber-950 border-2 transition-all duration-300 overflow-hidden",
         isWinning
           ? "border-amber-400 shadow-[0_0_20px_rgba(251,191,36,0.5)] scale-105"
           : "border-amber-700/50",
@@ -28,8 +29,8 @@ export function SlotSymbol({ symbol, isWinning, isSpinning, isExpanded, isNewlyE
         <img
           src={symbol.image_url}
           alt={symbol.name}
-          className={cn(
-            "w-12 h-12 xs:w-16 xs:h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 lg:w-28 lg:h-28 xl:w-32 xl:h-32 object-contain transition-transform duration-300",
+            className={cn(
+              "w-16 h-16 xs:w-20 xs:h-20 sm:w-24 sm:h-24 md:w-28 md:h-28 lg:w-32 lg:h-32 xl:w-36 xl:h-36 object-contain transition-transform duration-300",
             isExpanded && "scale-110",
             isNewlyExpanded && "animate-[symbol-expand_0.5s_ease-out]"
           )}

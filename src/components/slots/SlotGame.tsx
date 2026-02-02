@@ -26,13 +26,13 @@ import { supabase } from "@/integrations/supabase/client";
 import { generateGrid, calculateSpinResult, PAY_LINES, type SpinResult } from "@/lib/slotGameLogic";
 import { calculateBonusSpinResult } from "@/lib/bonusGameLogic";
 import { slotSounds } from "@/lib/slotSoundEffects";
-import { Gamepad2, Loader2, Play, Square, ChevronDown, Infinity, Maximize2, Minimize2 } from "lucide-react";
+import { Gamepad2, Loader2, Play, Square, ChevronDown, Infinity } from "lucide-react";
 import { toast } from "sonner";
 import { cn } from "@/lib/utils";
 
-// Symbol dimensions for responsive design
-const SYMBOL_SIZE = { xs: 64, mobile: 80, sm: 96, md: 112, lg: 144, xl: 160 };
-const GAP = { xs: 4, mobile: 6, sm: 8, md: 12, lg: 16 };
+// Symbol dimensions for responsive design - LARGER sizes
+const SYMBOL_SIZE = { xs: 80, mobile: 96, sm: 112, md: 128, lg: 160, xl: 180 };
+const GAP = { xs: 6, mobile: 8, sm: 10, md: 14, lg: 18 };
 
 type AutoSpinCount = 10 | 25 | 50 | 100 | "infinite";
 
@@ -61,10 +61,8 @@ export function SlotGame() {
   const [expandedReels, setExpandedReels] = useState<number[]>([]);
   const [newlyExpandedReels, setNewlyExpandedReels] = useState<number[]>([]);
   const [showWinLines, setShowWinLines] = useState(false);
-  const [isFullscreen, setIsFullscreen] = useState(false);
   
   const winLinesTimeoutRef = useRef<NodeJS.Timeout | null>(null);
-  const containerRef = useRef<HTMLDivElement>(null);
   
   // Autospin state
   const [isAutoSpinning, setIsAutoSpinning] = useState(false);
@@ -428,13 +426,7 @@ export function SlotGame() {
   const canSpinNow = bonusState.isActive ? bonusState.freeSpinsRemaining > 0 : canSpin;
 
   return (
-    <div
-      ref={containerRef}
-      className={cn(
-        "transition-all duration-300",
-        isFullscreen && "fixed inset-0 z-50 bg-background overflow-auto flex flex-col"
-      )}
-    >
+    <div className="transition-all duration-300">
       {/* Bonus Overlays */}
       <BonusOverlay
         isVisible={showBonusTrigger}
@@ -455,8 +447,7 @@ export function SlotGame() {
       <Card 
         className={cn(
           "border-amber-500/20 overflow-hidden bg-card/80 backdrop-blur-sm",
-          bonusState.isActive && "border-purple-500/50 shadow-[0_0_30px_rgba(168,85,247,0.2)]",
-          isFullscreen && "flex-1 rounded-none border-0 flex flex-col bg-background/90"
+          bonusState.isActive && "border-purple-500/50 shadow-[0_0_30px_rgba(168,85,247,0.2)]"
         )}
       >
         {/* Egyptian-themed header gradient */}
@@ -467,10 +458,7 @@ export function SlotGame() {
             : "bg-gradient-to-r from-amber-500 via-amber-400 to-amber-500"
         )} />
         
-        <CardContent className={cn(
-          "p-4 sm:p-6 space-y-6",
-          isFullscreen && "flex-1 flex flex-col justify-center"
-        )}>
+        <CardContent className="p-4 sm:p-6 space-y-6">
           {/* Bonus Status Bar */}
           <BonusStatusBar
             isActive={bonusState.isActive}
@@ -483,21 +471,7 @@ export function SlotGame() {
           {/* Header with spins and volume control */}
           {!bonusState.isActive && (
             <div className="flex items-center justify-between">
-              <div className="flex-1">
-                {/* Fullscreen toggle */}
-                <Button
-                  variant="ghost"
-                  size="icon"
-                  onClick={() => setIsFullscreen(!isFullscreen)}
-                  className="text-amber-500 hover:text-amber-400 hover:bg-amber-500/10"
-                >
-                  {isFullscreen ? (
-                    <Minimize2 className="h-5 w-5" />
-                  ) : (
-                    <Maximize2 className="h-5 w-5" />
-                  )}
-                </Button>
-              </div>
+              <div className="flex-1" />
               <SpinsRemaining />
               <div className="flex-1 flex justify-end">
                 <VolumeControl />
@@ -507,19 +481,7 @@ export function SlotGame() {
 
           {/* Volume control during bonus (compact) */}
           {bonusState.isActive && (
-            <div className="flex justify-between">
-              <Button
-                variant="ghost"
-                size="icon"
-                onClick={() => setIsFullscreen(!isFullscreen)}
-                className="text-purple-400 hover:text-purple-300 hover:bg-purple-500/10"
-              >
-                {isFullscreen ? (
-                  <Minimize2 className="h-5 w-5" />
-                ) : (
-                  <Maximize2 className="h-5 w-5" />
-                )}
-              </Button>
+            <div className="flex justify-end">
               <VolumeControl />
             </div>
           )}
