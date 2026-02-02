@@ -34,8 +34,8 @@ export function SlotReel({
   const buildReelStrip = () => {
     const strip: SlotSymbolType[] = [];
     
-    // Add random symbols for spinning (enough to fill several rotations)
-    const spinSymbolCount = 30 + delay * 5;
+    // Add random symbols for spinning - more for later reels
+    const spinSymbolCount = 20 + delay * 8;
     for (let i = 0; i < spinSymbolCount; i++) {
       const randomSymbol = symbols[Math.floor(Math.random() * symbols.length)];
       strip.push(randomSymbol);
@@ -84,34 +84,48 @@ export function SlotReel({
       // Target offset: scroll to show the last 3 symbols (the actual result)
       const targetOffset = (strip.length - 3) * totalSymbolHeight;
       
-      // Start spinning after delay
-      const startDelay = delay * 200;
+      // Start spinning after delay - shorter delay for snappier feel
+      const startDelay = delay * 120;
       
       const startTimeout = setTimeout(() => {
         setSpinState("spinning");
         
         const startTime = performance.now();
-        const spinDuration = 1500 + delay * 300; // Staggered stop times
+        // Base duration + staggered stop times for each reel
+        const baseDuration = 800;
+        const reelDelay = delay * 250;
+        const spinDuration = baseDuration + reelDelay;
         
         const animate = (currentTime: number) => {
           const elapsed = currentTime - startTime;
           const progress = Math.min(elapsed / spinDuration, 1);
           
-          // Easing function: fast start, slow end (ease-out cubic)
-          const easeOutCubic = 1 - Math.pow(1 - progress, 3);
+          // Custom easing: starts very fast, then gradually slows down
+          // Using a combination of ease-out expo for realistic slot feel
+          let easeProgress: number;
+          if (progress < 0.7) {
+            // Fast spinning phase (70% of duration)
+            easeProgress = (progress / 0.7) * 0.5;
+          } else {
+            // Deceleration phase (30% of duration)
+            const decelProgress = (progress - 0.7) / 0.3;
+            // Ease-out cubic for smooth deceleration
+            const easeOutCubic = 1 - Math.pow(1 - decelProgress, 3);
+            easeProgress = 0.5 + easeOutCubic * 0.5;
+          }
           
           // Calculate current offset
-          const currentOffset = easeOutCubic * targetOffset;
+          const currentOffset = easeProgress * targetOffset;
           setOffset(currentOffset);
           
           if (progress < 1) {
             animationRef.current = requestAnimationFrame(animate);
           } else {
             setSpinState("stopping");
-            // Small bounce effect at the end
+            // Small settle effect at the end
             setTimeout(() => {
               setSpinState("stopped");
-            }, 100);
+            }, 50);
           }
         };
         
