@@ -10,12 +10,14 @@ interface SlotSymbolProps {
   isNewlyExpanded?: boolean;
 }
 
-// Larger symbol sizes for bigger slot machine
+// Symbol sizes: xs=80, mobile=96, sm=112, md=128, lg=160, xl=176
 export function SlotSymbol({ symbol, isWinning, isSpinning, isExpanded, isNewlyExpanded }: SlotSymbolProps) {
   return (
     <div
       className={cn(
-        "relative flex items-center justify-center w-20 h-20 xs:w-24 xs:h-24 sm:w-28 sm:h-28 md:w-32 md:h-32 lg:w-40 lg:h-40 xl:w-44 xl:h-44 rounded-lg bg-gradient-to-br from-amber-900/80 to-amber-950 border-2 transition-all duration-300 overflow-hidden",
+        "relative flex items-center justify-center rounded-lg bg-gradient-to-br from-amber-900/80 to-amber-950 border-2 transition-all duration-300 overflow-hidden",
+        // Symbol container sizes matching SYMBOL_SIZE constants
+        "w-[80px] h-[80px] xs:w-[96px] xs:h-[96px] sm:w-[112px] sm:h-[112px] md:w-[128px] md:h-[128px] lg:w-[160px] lg:h-[160px] xl:w-[176px] xl:h-[176px]",
         isWinning
           ? "border-amber-400 shadow-[0_0_20px_rgba(251,191,36,0.5)] scale-105"
           : "border-amber-700/50",
@@ -29,8 +31,9 @@ export function SlotSymbol({ symbol, isWinning, isSpinning, isExpanded, isNewlyE
         <img
           src={symbol.image_url}
           alt={symbol.name}
-            className={cn(
-              "w-16 h-16 xs:w-20 xs:h-20 sm:w-24 sm:h-24 md:w-28 md:h-28 lg:w-32 lg:h-32 xl:w-36 xl:h-36 object-contain transition-transform duration-300",
+          className={cn(
+            // Image fills most of the container
+            "w-[64px] h-[64px] xs:w-[80px] xs:h-[80px] sm:w-[96px] sm:h-[96px] md:w-[112px] md:h-[112px] lg:w-[140px] lg:h-[140px] xl:w-[156px] xl:h-[156px] object-contain transition-transform duration-300",
             isExpanded && "scale-110",
             isNewlyExpanded && "animate-[symbol-expand_0.5s_ease-out]"
           )}
