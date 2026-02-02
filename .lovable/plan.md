@@ -1,44 +1,78 @@
 
 
-# Plan: Make Video Playback Bigger on Highlights Page
+# Plan: Fix "Side Analytik" - Connect to Real Analytics Data
 
-## Overview
-Increase the size of video cards on the Highlights page by reducing the number of columns in the grid layout, giving each video more screen real estate.
+## Problem
+The "Side Analytik" (Page Analytics) tab in the admin dashboard shows no data because it tries to fetch from `/api/analytics` - an endpoint that doesn't exist. The request always fails, returning an empty array.
 
-## Changes Required
+## Solution Options
 
-### File: src/pages/Highlights.tsx
+There are two approaches to fix this:
 
-Update the grid layout to show fewer columns, making each video card larger:
+### Option A: Use Lovable's Built-in Analytics (Recommended)
 
-**Current layout:**
-- Mobile: 1 column
-- Tablet (md): 2 columns  
-- Desktop (lg): 3 columns
+Lovable provides built-in analytics for published projects. We can create an edge function that fetches this data and exposes it to the admin dashboard.
 
-**New layout:**
-- Mobile: 1 column
-- Desktop (lg): 2 columns
+**Implementation:**
 
-This change will make each video approximately 50% larger on desktop screens.
+1. **Create Edge Function**: `supabase/functions/get-analytics/index.ts`
+   - Receives date range parameters (start, end, granularity)
+   - Uses Lovable's internal analytics system
+   - Returns visitor and page view data
+   - Requires admin authentication
 
-**Code changes:**
+2. **Update Dashboard Query**: Modify `CombinedAnalyticsDashboard.tsx` to call the edge function instead of the non-existent `/api/analytics` endpoint
 
-1. **Line 47** (loading skeleton grid):
-```tsx
-<div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+### Option B: Track Page Views in Database
+
+Create a custom page view tracking system using Supabase.
+
+**Implementation:**
+
+1. **Create `page_views` table** with columns:
+   - `id`, `path`, `user_agent`, `referrer`, `created_at`
+
+2. **Create tracking component** that logs page views on each navigation
+
+3. **Update dashboard** to query the `page_views` table
+
+---
+
+## Recommended: Option A
+
+Since Lovable has built-in analytics for production sites, connecting to that data source is cleaner and requires no additional tracking code on the frontend.
+
+### Files to Create
+1. `supabase/functions/get-analytics/index.ts` - Edge function to fetch analytics
+
+### Files to Modify
+1. `src/components/CombinedAnalyticsDashboard.tsx` - Update fetch to use edge function
+
+### Edge Function Implementation
+
+```typescript
+// supabase/functions/get-analytics/index.ts
+import { serve } from "https://deno.land/std@0.168.0/http/server.ts"
+import { createClient } from "https://esm.sh/@supabase/supabase-js@2"
+
+serve(async (req) => {
+  // Verify admin authentication
+  // Fetch analytics data from Lovable's analytics system
+  // Return formatted data for the dashboard
+})
 ```
 
-2. **Line 81** (main highlights grid):
-```tsx
-<div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+### Dashboard Query Update
+
+Replace the failing fetch call with:
+```typescript
+const { data, error } = await supabase.functions.invoke('get-analytics', {
+  body: { startDate, endDate, granularity }
+});
 ```
 
-Also increasing the gap from `gap-6` to `gap-8` for better spacing between larger cards.
+---
 
-## Visual Result
-- Videos will be significantly larger and easier to watch
-- Better viewing experience especially on desktop monitors
-- Maintains single column on mobile for optimal mobile viewing
-- More breathing room between video cards
+## Note
+The "Klik Analytik" tab already works correctly because it fetches from the `click_events` table in Supabase. Only the "Side Analytik" tab needs to be fixed.
 
