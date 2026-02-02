@@ -385,6 +385,99 @@ export type Database = {
         }
         Relationships: []
       }
+      slot_game_results: {
+        Row: {
+          bet_amount: number
+          bonus_win_amount: number
+          created_at: string
+          id: string
+          is_bonus_triggered: boolean
+          user_id: string
+          win_amount: number
+        }
+        Insert: {
+          bet_amount?: number
+          bonus_win_amount?: number
+          created_at?: string
+          id?: string
+          is_bonus_triggered?: boolean
+          user_id: string
+          win_amount?: number
+        }
+        Update: {
+          bet_amount?: number
+          bonus_win_amount?: number
+          created_at?: string
+          id?: string
+          is_bonus_triggered?: boolean
+          user_id?: string
+          win_amount?: number
+        }
+        Relationships: []
+      }
+      slot_spins: {
+        Row: {
+          created_at: string
+          date: string
+          id: string
+          spins_remaining: number
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          date?: string
+          id?: string
+          spins_remaining?: number
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          date?: string
+          id?: string
+          spins_remaining?: number
+          user_id?: string
+        }
+        Relationships: []
+      }
+      slot_symbols: {
+        Row: {
+          created_at: string
+          id: string
+          image_url: string | null
+          is_scatter: boolean
+          is_wild: boolean
+          multiplier_3: number
+          multiplier_4: number
+          multiplier_5: number
+          name: string
+          position: number
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          image_url?: string | null
+          is_scatter?: boolean
+          is_wild?: boolean
+          multiplier_3?: number
+          multiplier_4?: number
+          multiplier_5?: number
+          name: string
+          position?: number
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          image_url?: string | null
+          is_scatter?: boolean
+          is_wild?: boolean
+          multiplier_3?: number
+          multiplier_4?: number
+          multiplier_5?: number
+          name?: string
+          position?: number
+        }
+        Relationships: []
+      }
       user_roles: {
         Row: {
           created_at: string
@@ -528,6 +621,17 @@ export type Database = {
           slug?: string | null
           stock?: string | null
           updated_at?: string | null
+        }
+        Relationships: []
+      }
+      slot_leaderboard: {
+        Row: {
+          biggest_win: number | null
+          daily_winnings: number | null
+          total_spins: number | null
+          total_winnings: number | null
+          user_id: string | null
+          weekly_winnings: number | null
         }
         Relationships: []
       }

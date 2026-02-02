@@ -9,7 +9,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { ChevronDown, Gamepad2, LogOut, Menu, User, X, Dices, Gift, BookOpen, Users, ShoppingBag, Video, ShieldCheck, Sparkles, Layers, Moon, Sun } from "lucide-react";
+import { ChevronDown, Gamepad2, LogOut, Menu, User, X, Dices, Gift, BookOpen, Users, ShoppingBag, Video, ShieldCheck, Sparkles, Layers, Moon, Sun, Coins } from "lucide-react";
 import { useState, useEffect } from "react";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
 import { useTwitchStatus } from "@/hooks/useTwitchStatus";
@@ -119,25 +119,38 @@ export function Header() {
             </DropdownMenuContent>
           </DropdownMenu>
           <Link
-            to="/about"
-            className="flex items-center gap-1.5 text-sm font-medium transition-colors hover:text-primary"
-          >
-            <Users className="h-4 w-4" />
-            Om Os
-          </Link>
-          <Link
             to="/butik"
             className="flex items-center gap-1.5 text-sm font-medium transition-colors hover:text-primary"
           >
             <ShoppingBag className="h-4 w-4" />
             Butik
           </Link>
+          <DropdownMenu>
+            <DropdownMenuTrigger className="flex items-center gap-1.5 text-sm font-medium transition-colors hover:text-primary">
+              <Users className="h-4 w-4" />
+              Community <ChevronDown className="h-4 w-4" />
+            </DropdownMenuTrigger>
+            <DropdownMenuContent align="center" className="bg-popover">
+              <DropdownMenuItem asChild>
+                <Link to="/community/slots" className="flex items-center gap-2">
+                  <Coins className="h-4 w-4" />
+                  Slot Machine
+                </Link>
+              </DropdownMenuItem>
+              <DropdownMenuItem asChild>
+                <Link to="/highlights" className="flex items-center gap-2">
+                  <Video className="h-4 w-4" />
+                  Highlights
+                </Link>
+              </DropdownMenuItem>
+            </DropdownMenuContent>
+          </DropdownMenu>
           <Link
-            to="/highlights"
+            to="/about"
             className="flex items-center gap-1.5 text-sm font-medium transition-colors hover:text-primary"
           >
-            <Video className="h-4 w-4" />
-            Highlights
+            <Users className="h-4 w-4" />
+            Om Os
           </Link>
         </nav>
 
@@ -271,9 +284,23 @@ export function Header() {
               <ShoppingBag className="h-4 w-4" />
               Butik
             </Link>
+            
+            {/* Community section */}
+            <div className="flex items-center gap-2 text-sm font-medium text-muted-foreground">
+              <Users className="h-4 w-4" />
+              Community
+            </div>
+            <Link
+              to="/community/slots"
+              className="ml-6 flex items-center gap-2 text-sm text-muted-foreground transition-colors hover:text-primary"
+              onClick={() => setMobileMenuOpen(false)}
+            >
+              <Coins className="h-4 w-4" />
+              Slot Machine
+            </Link>
             <Link
               to="/highlights"
-              className="flex items-center gap-2 text-sm font-medium transition-colors hover:text-primary"
+              className="ml-6 flex items-center gap-2 text-sm text-muted-foreground transition-colors hover:text-primary"
               onClick={() => setMobileMenuOpen(false)}
             >
               <Video className="h-4 w-4" />
