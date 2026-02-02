@@ -44,7 +44,7 @@ export default function Highlights() {
         <HighlightsHero />
         <div className="py-16">
           <div className="container">
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
               {[...Array(6)].map((_, i) => (
                 <div key={i} className="space-y-4">
                   <Skeleton className="aspect-video w-full" />
@@ -78,7 +78,7 @@ export default function Highlights() {
       <div className="py-16">
         <div className="container">
           {highlights && highlights.length > 0 ? (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
               {highlights.map((highlight) => (
                 <HighlightCard key={highlight.id} highlight={highlight} />
               ))}
