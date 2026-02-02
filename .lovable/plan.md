@@ -1,212 +1,71 @@
 
-# Plan: Slot Machine Admin Section
+# Visning af Gevinstlinjer på Spillemaskinen
 
-## Overview
-Add a new "Spillemaskine" (Slot Machine) tab to the admin panel that allows administrators to manage all slot machine parameters including symbols, payouts, daily spin limits, bet limits, and view game statistics.
+## Overblik
+Tilføjer en visuel overlay til spillemaskinen der viser de gevinstlinjer der blev ramt efter et spin. Linjerne vil blive tegnet som farvede linjer/kurver der forbinder de vindende symboler på tværs af hjulene.
 
----
+## Implementeringsplan
 
-## Admin Tab Structure
+### 1. Ny Komponent: WinLines.tsx
+Opretter en ny komponent der tegner SVG-linjer hen over hjulene for at visualisere gevinstlinjerne.
 
-A new tab will be added to the admin dashboard with three sub-sections:
+**Funktioner:**
+- Modtager liste af vundne linjer fra `SpinResult`
+- Tegner farvede linjer baseret på PAY_LINES mønstrene
+- Animerer linjerne sekventielt (én ad gangen eller alle på én gang)
+- Hver linje får en unik farve for at skelne mellem flere gevinster
+- Viser linjenummer og gevinst ved siden af linjen
 
-1. **Symboler (Symbols)** - Manage slot symbols, images, and payout multipliers
-2. **Indstillinger (Settings)** - Configure daily spins, bet limits, and game parameters
-3. **Statistik (Statistics)** - View aggregated game data and player activity
+### 2. Opdatering af SlotGame.tsx
+- Tilføjer state til at tracke hvilke linjer der skal vises
+- Viser WinLines overlay efter spin er færdigt
+- Aktiverer visningen når der er gevinster
+- Timer til at skjule linjerne efter et par sekunder
 
----
-
-## Configurable Parameters
-
-### Symbol Management
-For each of the 10 slot symbols, admins can modify:
-- **Name** - Symbol display name (e.g., "Pharaoh", "Book")
-- **Image** - Upload custom symbol image to `slot-symbols` storage bucket
-- **Multiplier 3x** - Payout for 3 matching symbols
-- **Multiplier 4x** - Payout for 4 matching symbols
-- **Multiplier 5x** - Payout for 5 matching symbols
-- **Is Scatter** - Mark as scatter symbol (pays anywhere)
-- **Is Wild** - Mark as wild symbol (substitutes other symbols)
-- **Position** - Display order in paytable (drag to reorder)
-
-### Game Settings (stored in `site_settings` table)
-- **Daily Spins** - Number of free spins per user per day (default: 100)
-- **Min Bet** - Minimum bet amount (default: 1)
-- **Max Bet** - Maximum bet amount (default: 10)
-
-### Statistics View (read-only)
-- Total spins today
-- Total winnings today
-- Average win per spin
-- Top 10 winners today
-
----
-
-## Database Changes
-
-### New Site Settings Keys
-Add the following keys to the `site_settings` table:
-- `slot_daily_spins` (default: "100")
-- `slot_min_bet` (default: "1")
-- `slot_max_bet` (default: "10")
-
-### Update RLS Policy
-Add the new settings keys to the public whitelist for reading:
-- `slot_daily_spins`
-- `slot_min_bet`
-- `slot_max_bet`
-
----
-
-## File Structure
-
-### New Files
+### 3. Linje-Farver og Styling
 ```text
-src/components/SlotMachineAdminSection.tsx  - Main admin component with tabs
-src/components/SlotSymbolImageUpload.tsx    - Image upload for slot symbols
-src/hooks/useSlotSettings.ts                - Hook for slot game settings
-src/hooks/useSlotStatistics.ts              - Hook for game statistics
+Linje 1 (midt): Gul (#FFD700)
+Linje 2 (top): Rød (#FF4444)
+Linje 3 (bund): Grøn (#44FF44)
+Linje 4 (V-form): Blå (#4444FF)
+Linje 5 (omvendt V): Orange (#FF8800)
+Linje 6-10: Andre distinkte farver
 ```
 
-### Modified Files
-```text
-src/pages/Admin.tsx                         - Add new "Spillemaskine" tab
-src/hooks/useSlotSpins.ts                   - Read daily spins from settings
-src/components/slots/SlotGame.tsx           - Read bet limits from settings
-src/components/slots/BetControls.tsx        - Use dynamic min/max bet
-src/components/slots/SpinsRemaining.tsx     - Display dynamic max spins
-```
+### 4. SVG Linje-Beregning
+- Beregner midtpunktet af hvert symbol baseret på PAY_LINES mønster
+- Tegner en linje/kurve der forbinder punkterne
+- Kun tegner linjen for de symboler der er del af gevinsten (baseret på `count`)
 
 ---
 
-## Implementation Details
+## Tekniske Detaljer
 
-### SlotMachineAdminSection Component
-The admin section will use a sub-tab layout similar to existing patterns:
-
-```text
-+--------------------------------------------------+
-|  SPILLEMASKINE ADMINISTRATION                    |
-|  [Symboler] [Indstillinger] [Statistik]          |
-+--------------------------------------------------+
-|                                                  |
-|  Symboler Tab:                                   |
-|  +--------------------------------------------+  |
-|  | [Drag] [Image] Pharaoh    30x  100x  500x  |  |
-|  | [Drag] [Image] Anubis     20x   60x  200x  |  |
-|  | [Drag] [Image] Book (W/S)  2x   20x  200x  |  |
-|  |  ...                                       |  |
-|  +--------------------------------------------+  |
-|                                                  |
-|  Indstillinger Tab:                              |
-|  +--------------------------------------------+  |
-|  | Daglige Spins:     [100]                   |  |
-|  | Minimum Indsats:   [1]                     |  |
-|  | Maximum Indsats:   [10]                    |  |
-|  +--------------------------------------------+  |
-|                                                  |
-+--------------------------------------------------+
-```
-
-### Symbol Edit Dialog
-When clicking edit on a symbol:
-- Input for name
-- Image upload component
-- Three number inputs for multipliers (3x, 4x, 5x)
-- Toggle switches for is_scatter and is_wild
-- Save/Cancel buttons
-
-### Symbol Image Upload
-Similar to ShopImageUpload but uploading to `slot-symbols` bucket:
-- Accept image files (jpg, png, webp)
-- Preview current image
-- Upload new image
-- Remove image option
-
-### useSlotSettings Hook
+### WinLines Komponent Props
 ```typescript
-// Fetches and updates slot game settings
-export function useSlotSettings() {
-  // Queries for: slot_daily_spins, slot_min_bet, slot_max_bet
-  // Returns: { dailySpins, minBet, maxBet, updateSettings }
+interface WinLinesProps {
+  wins: LineWin[];
+  symbolSize: { width: number; height: number };
+  gap: number;
+  isVisible: boolean;
 }
 ```
 
-### useSlotStatistics Hook
-```typescript
-// Fetches aggregated game statistics for admin view
-export function useSlotStatistics() {
-  // Queries slot_game_results for today's data
-  // Returns: { totalSpins, totalWinnings, avgWin, topWinners }
-}
-```
+### Responsive Dimensioner
+Komponenten genbruger de samme dimensionsberegninger som SlotReel for at sikre korrekt placering:
+- Mobile: 80x80px symboler, 8px gap
+- SM: 96x96px, 12px gap
+- MD: 112x112px, 16px gap
+- LG: 128x128px, 16px gap
 
-### Hook for Managing Symbols
-Create a `useSlotSymbolsAdmin` hook for CRUD operations:
-- `updateSymbol(id, data)` - Update symbol properties
-- `updateSymbolPositions(positions)` - Reorder symbols
+### Animation
+- Linjerne fader ind efter spin stopper
+- Hver linje pulserer for at tiltrække opmærksomhed
+- Linjer vises i 3-4 sekunder før de fader ud
+- Under autospin vises linjerne i kortere tid
 
----
-
-## UI/UX Considerations
-
-### Tab Icon
-Use `Gamepad2` (lucide-react) icon for the Spillemaskine tab
-
-### Symbol List
-- Drag-and-drop reordering (like Shop and Casino lists)
-- Visual indicator for Wild/Scatter symbols
-- Quick edit button for each symbol
-- Image preview or emoji fallback
-
-### Settings Form
-- Number inputs with validation
-- Min/max constraints
-- Real-time preview of changes
-- Toast notification on save
-
-### Statistics Dashboard
-- Cards showing key metrics
-- Today/This Week/All Time filters
-- Mini leaderboard of top winners
-
----
-
-## Security
-
-### RLS Updates
-The new site_settings keys need to be added to the public whitelist so the game can read them. The migration will update the existing RLS policy.
-
-### Admin-Only Write Access
-Symbol updates and settings changes are protected by the existing `has_role(auth.uid(), 'admin')` RLS policies on `slot_symbols` and `site_settings` tables.
-
----
-
-## Implementation Order
-
-1. **Database Migration**
-   - Insert default slot settings into site_settings
-   - Update RLS policy to whitelist new keys
-
-2. **Create Hooks**
-   - useSlotSettings for reading/updating game config
-   - useSlotSymbolsAdmin for symbol CRUD
-   - useSlotStatistics for admin stats view
-
-3. **Create Components**
-   - SlotSymbolImageUpload component
-   - SlotMachineAdminSection with three tabs
-
-4. **Update Admin.tsx**
-   - Add new tab trigger with Gamepad2 icon
-   - Add TabsContent with SlotMachineAdminSection
-
-5. **Update Game Components**
-   - Modify useSlotSpins to read dailySpins from settings
-   - Update BetControls to use dynamic min/max
-   - Update SpinsRemaining to show dynamic max
-
-6. **Testing**
-   - Verify symbol editing works
-   - Test settings changes reflect in game
-   - Confirm statistics display correctly
+### SlotGame Ændringer
+1. Tilføjer `showWinLines` state
+2. Aktiverer når `lastResult.wins.length > 0`
+3. Timer der deaktiverer efter 3 sekunder
+4. WinLines overlay placeres absolut over reel-containeren
