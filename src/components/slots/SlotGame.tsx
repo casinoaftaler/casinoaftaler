@@ -473,7 +473,7 @@ export function SlotGame() {
           bonusState.isActive && "shadow-[0_0_30px_rgba(251,191,36,0.3)]"
         )}
       >
-        <div className="p-4 sm:p-6 space-y-6">
+        <div className="p-2 xs:p-3 sm:p-4 md:p-6 space-y-2 sm:space-y-4">
           {/* Bonus Status Bar */}
           <BonusStatusBar
             isActive={bonusState.isActive}
@@ -489,9 +489,9 @@ export function SlotGame() {
           </div>
 
           {/* Slot machine reels with Egyptian frame */}
-          <div className="flex justify-center py-2 sm:py-4">
+          <div className="flex justify-center py-1 sm:py-2">
             <SlotMachineFrame isBonus={bonusState.isActive} isSpinning={isSpinning}>
-              <div className="relative p-3 xs:p-4 sm:p-6 md:p-8 rounded-xl">
+              <div className="relative p-1 xs:p-2 sm:p-4 md:p-6 rounded-xl">
                 {/* Win Celebration Effects */}
                 <WinCelebration
                   isActive={isWinAnimating}
@@ -531,7 +531,7 @@ export function SlotGame() {
           </div>
 
           {/* All controls on one line */}
-          <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-3 mt-2">
+          <div className="flex flex-wrap items-center justify-center gap-1 xs:gap-2 sm:gap-3 mt-1 sm:mt-2">
             {/* Bet Controls */}
             <BetControls bet={bet} onBetChange={setBet} disabled={isSpinning || bonusState.isActive} minBet={slotSettings.minBet} maxBet={slotSettings.maxBet} />
             
