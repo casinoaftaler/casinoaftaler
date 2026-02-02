@@ -72,9 +72,9 @@ export default function SlotMachine() {
       {/* Gradient overlay for readability - slightly reduced opacity to show more background */}
       <div className="fixed inset-0 bg-gradient-to-b from-background/60 via-background/40 to-background/70 -z-10" />
       
-      <div className="container py-2 space-y-2">
+      <div className="container py-1 space-y-1">
         {/* Title Image with glow animation - LARGER */}
-        <div className="flex justify-center -mt-2">
+        <div className="flex justify-center -mt-4">
           <img 
             src={titleImage} 
             alt="Book of Fedesvin" 
