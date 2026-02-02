@@ -1,4 +1,4 @@
-import { useState, useEffect, useMemo } from "react";
+import { useState, useEffect, useRef } from "react";
 import { cn } from "@/lib/utils";
 import { SlotSymbol } from "./SlotSymbol";
 import type { SlotSymbol as SlotSymbolType } from "@/lib/slotGameLogic";
@@ -12,6 +12,10 @@ interface SlotReelProps {
   delay?: number;
 }
 
+// Symbol dimensions (should match SlotSymbol component)
+const SYMBOL_SIZE = { mobile: 80, sm: 96, md: 112, lg: 128 };
+const GAP = { mobile: 8, sm: 12, md: 16 };
+
 export function SlotReel({
   symbols,
   displayedSymbolIds,
@@ -21,108 +25,187 @@ export function SlotReel({
   delay = 0,
 }: SlotReelProps) {
   const symbolsById = new Map(symbols.map(s => [s.id, s]));
-  const [spinOffset, setSpinOffset] = useState(0);
-  const [isAnimating, setIsAnimating] = useState(false);
+  const [spinState, setSpinState] = useState<"idle" | "spinning" | "stopping" | "stopped">("idle");
+  const [offset, setOffset] = useState(0);
+  const animationRef = useRef<number | null>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
 
-  // Create an extended list of symbols for the spinning effect
-  const extendedSymbols = useMemo(() => {
-    // Repeat symbols multiple times for smooth looping
-    const repeated: SlotSymbolType[] = [];
-    for (let i = 0; i < 10; i++) {
-      symbols.forEach(s => repeated.push(s));
+  // Build the reel strip: random symbols + final 3 symbols at the end
+  const buildReelStrip = () => {
+    const strip: SlotSymbolType[] = [];
+    
+    // Add random symbols for spinning (enough to fill several rotations)
+    const spinSymbolCount = 30 + delay * 5;
+    for (let i = 0; i < spinSymbolCount; i++) {
+      const randomSymbol = symbols[Math.floor(Math.random() * symbols.length)];
+      strip.push(randomSymbol);
     }
-    return repeated;
-  }, [symbols]);
+    
+    // Add the final landing symbols at the end
+    displayedSymbolIds.forEach(id => {
+      const symbol = symbolsById.get(id);
+      if (symbol) strip.push(symbol);
+    });
+    
+    return strip;
+  };
 
-  // Symbol height calculation (matches the CSS sizes)
-  const symbolHeight = 128; // lg size
-  const gap = 16; // gap between symbols
-  const totalSymbolHeight = symbolHeight + gap;
+  const [reelStrip, setReelStrip] = useState<SlotSymbolType[]>([]);
+
+  // Get responsive dimensions
+  const getSymbolHeight = () => {
+    if (typeof window === "undefined") return SYMBOL_SIZE.lg;
+    const width = window.innerWidth;
+    if (width < 640) return SYMBOL_SIZE.mobile;
+    if (width < 768) return SYMBOL_SIZE.sm;
+    if (width < 1024) return SYMBOL_SIZE.md;
+    return SYMBOL_SIZE.lg;
+  };
+
+  const getGap = () => {
+    if (typeof window === "undefined") return GAP.md;
+    const width = window.innerWidth;
+    if (width < 640) return GAP.mobile;
+    if (width < 768) return GAP.sm;
+    return GAP.md;
+  };
 
   useEffect(() => {
-    if (isSpinning) {
-      // Start spinning with delay per reel
-      const startDelay = delay * 150;
+    if (isSpinning && spinState === "idle") {
+      // Build new reel strip with final symbols
+      const strip = buildReelStrip();
+      setReelStrip(strip);
+      
+      // Calculate the target offset to land on the final 3 symbols
+      const symbolHeight = getSymbolHeight();
+      const gap = getGap();
+      const totalSymbolHeight = symbolHeight + gap;
+      
+      // Target offset: scroll to show the last 3 symbols (the actual result)
+      const targetOffset = (strip.length - 3) * totalSymbolHeight;
+      
+      // Start spinning after delay
+      const startDelay = delay * 200;
       
       const startTimeout = setTimeout(() => {
-        setIsAnimating(true);
+        setSpinState("spinning");
         
-        // Animate the spin
-        let currentOffset = 0;
-        const spinSpeed = 50; // pixels per frame
-        const targetSpins = 20 + delay * 5; // More spins for later reels
-        const targetOffset = targetSpins * totalSymbolHeight;
+        const startTime = performance.now();
+        const spinDuration = 1500 + delay * 300; // Staggered stop times
         
-        const animate = () => {
-          currentOffset += spinSpeed;
-          setSpinOffset(currentOffset % (extendedSymbols.length * totalSymbolHeight / 2));
+        const animate = (currentTime: number) => {
+          const elapsed = currentTime - startTime;
+          const progress = Math.min(elapsed / spinDuration, 1);
           
-          if (currentOffset < targetOffset) {
-            requestAnimationFrame(animate);
+          // Easing function: fast start, slow end (ease-out cubic)
+          const easeOutCubic = 1 - Math.pow(1 - progress, 3);
+          
+          // Calculate current offset
+          const currentOffset = easeOutCubic * targetOffset;
+          setOffset(currentOffset);
+          
+          if (progress < 1) {
+            animationRef.current = requestAnimationFrame(animate);
+          } else {
+            setSpinState("stopping");
+            // Small bounce effect at the end
+            setTimeout(() => {
+              setSpinState("stopped");
+            }, 100);
           }
         };
         
-        requestAnimationFrame(animate);
+        animationRef.current = requestAnimationFrame(animate);
       }, startDelay);
 
-      return () => clearTimeout(startTimeout);
-    } else {
-      // Reset when not spinning
-      setIsAnimating(false);
-      setSpinOffset(0);
+      return () => {
+        clearTimeout(startTimeout);
+        if (animationRef.current) {
+          cancelAnimationFrame(animationRef.current);
+        }
+      };
+    } else if (!isSpinning && spinState !== "idle") {
+      // Reset when spinning stops
+      setSpinState("idle");
+      setOffset(0);
+      if (animationRef.current) {
+        cancelAnimationFrame(animationRef.current);
+      }
     }
-  }, [isSpinning, delay, extendedSymbols.length, totalSymbolHeight]);
+  }, [isSpinning, spinState, delay, displayedSymbolIds]);
 
-  // When spinning, show the extended symbol strip
-  if (isAnimating) {
+  // When idle or fully stopped, show just the final symbols
+  if (spinState === "idle" || spinState === "stopped") {
     return (
-      <div 
-        className="relative overflow-hidden rounded-lg"
-        style={{ 
-          height: `${3 * totalSymbolHeight - gap}px`,
-          width: `${symbolHeight}px`
-        }}
-      >
-        <div 
-          className="absolute left-0 right-0 flex flex-col gap-4 transition-none"
-          style={{ 
-            transform: `translateY(-${spinOffset}px)`,
-          }}
-        >
-          {extendedSymbols.map((symbol, index) => (
-            <SlotSymbol
-              key={`spin-${index}`}
-              symbol={symbol}
-              isSpinning={true}
-            />
-          ))}
-        </div>
-        {/* Blur overlay for speed effect */}
-        <div className="absolute inset-0 bg-gradient-to-b from-background/30 via-transparent to-background/30 pointer-events-none" />
+      <div className={cn(
+        "flex flex-col gap-2 sm:gap-3 md:gap-4",
+        isExpanded && "animate-pulse"
+      )}>
+        {displayedSymbolIds.map((symbolId, rowIndex) => {
+          const symbol = symbolsById.get(symbolId);
+          if (!symbol) return null;
+
+          return (
+            <div
+              key={`final-${rowIndex}-${symbolId}`}
+              className={cn(
+                spinState === "stopped" && "animate-[bounce_0.3s_ease-out]"
+              )}
+            >
+              <SlotSymbol
+                symbol={symbol}
+                isWinning={winningPositions.includes(rowIndex)}
+                isSpinning={false}
+                isExpanded={isExpanded}
+              />
+            </div>
+          );
+        })}
       </div>
     );
   }
 
-  // When stopped, show the final symbols
-  return (
-    <div className={cn(
-      "flex flex-col gap-2 sm:gap-3 md:gap-4",
-      isExpanded && "animate-pulse"
-    )}>
-      {displayedSymbolIds.map((symbolId, rowIndex) => {
-        const symbol = symbolsById.get(symbolId);
-        if (!symbol) return null;
+  // During spinning, show the animated reel strip
+  const symbolHeight = getSymbolHeight();
+  const gap = getGap();
+  const totalSymbolHeight = symbolHeight + gap;
+  const viewportHeight = 3 * symbolHeight + 2 * gap;
 
-        return (
+  return (
+    <div 
+      ref={containerRef}
+      className="relative overflow-hidden rounded-lg bg-amber-950/50"
+      style={{ 
+        height: `${viewportHeight}px`,
+        width: `${symbolHeight}px`
+      }}
+    >
+      <div 
+        className="absolute left-0 right-0 flex flex-col"
+        style={{ 
+          transform: `translateY(-${offset}px)`,
+          gap: `${gap}px`,
+        }}
+      >
+        {reelStrip.map((symbol, index) => (
           <SlotSymbol
-            key={`${rowIndex}-${symbolId}`}
+            key={`reel-${index}-${symbol.id}`}
             symbol={symbol}
-            isWinning={winningPositions.includes(rowIndex)}
-            isSpinning={false}
-            isExpanded={isExpanded}
+            isSpinning={true}
           />
-        );
-      })}
+        ))}
+      </div>
+      
+      {/* Speed blur effect - stronger at the start, fades as it slows */}
+      <div 
+        className="absolute inset-0 pointer-events-none transition-opacity duration-300"
+        style={{
+          background: spinState === "spinning" 
+            ? "linear-gradient(to bottom, hsl(var(--background) / 0.4), transparent 20%, transparent 80%, hsl(var(--background) / 0.4))"
+            : "none",
+          opacity: spinState === "stopping" ? 0 : 1,
+        }}
+      />
     </div>
   );
 }
