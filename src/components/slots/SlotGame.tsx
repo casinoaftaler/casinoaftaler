@@ -91,7 +91,7 @@ export function SlotGame() {
     initializeGrid();
   }
 
-  // Cleanup timeouts on unmount
+  // Cleanup timeouts and sounds on unmount
   useEffect(() => {
     return () => {
       if (autoSpinTimeoutRef.current) {
@@ -99,6 +99,11 @@ export function SlotGame() {
       }
       if (winLinesTimeoutRef.current) {
         clearTimeout(winLinesTimeoutRef.current);
+      }
+      // Stop all slot sounds and music when leaving the page
+      slotSounds.stopMusic();
+      if (stopSpinSound.current) {
+        stopSpinSound.current();
       }
     };
   }, []);
