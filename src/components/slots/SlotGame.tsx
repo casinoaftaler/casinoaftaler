@@ -413,7 +413,7 @@ export function SlotGame() {
       />
 
       {/* Bonus Status Bar - positioned above the frame */}
-      <div className="max-w-fit mx-auto mb-1 sm:mb-2 -mt-8 sm:-mt-10">
+      <div className="max-w-fit mx-auto mb-1 sm:mb-2">
         <BonusStatusBar
           isActive={bonusState.isActive}
           freeSpinsRemaining={bonusState.freeSpinsRemaining}
