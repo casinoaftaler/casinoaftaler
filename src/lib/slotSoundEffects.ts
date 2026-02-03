@@ -118,7 +118,7 @@ class SlotSoundEffects {
     return [146.83, 155.56, 185.00, 196.00, 220.00, 233.08, 261.63, 293.66, 311.13, 370.00, 392.00, 440.00];
   }
 
-  // Start ambient Egyptian background music with oud, ney flute, and darbuka rhythms
+  // Book of Dead style dramatic Egyptian music
   startMusic() {
     if (!this.enabled || !this.musicEnabled) return;
     if (this.musicInterval) return; // Already playing
@@ -129,10 +129,28 @@ class SlotSoundEffects {
     // Create master gain for music with fade-in
     this.musicGainNode = ctx.createGain();
     this.musicGainNode.gain.setValueAtTime(0, now);
-    this.musicGainNode.gain.linearRampToValueAtTime(0.1 * this.volume, now + 3); // 3 second fade-in
+    this.musicGainNode.gain.linearRampToValueAtTime(0.12 * this.volume, now + 3);
     this.musicGainNode.connect(ctx.destination);
 
-    // Deep drone on D (like a low oud string)
+    // Deep sub-bass drone on D (cinematic foundation)
+    const subBass = ctx.createOscillator();
+    const subBassGain = ctx.createGain();
+    const subBassFilter = ctx.createBiquadFilter();
+    
+    subBass.connect(subBassFilter);
+    subBassFilter.connect(subBassGain);
+    subBassGain.connect(this.musicGainNode);
+    
+    subBass.frequency.value = 36.71; // D1 - very deep
+    subBass.type = 'sine';
+    subBassFilter.type = 'lowpass';
+    subBassFilter.frequency.value = 80;
+    subBassGain.gain.value = 0.6;
+    
+    subBass.start();
+    this.currentMusic.push(subBass);
+
+    // Primary drone on D2 with rich harmonics
     const drone = ctx.createOscillator();
     const droneGain = ctx.createGain();
     const droneFilter = ctx.createBiquadFilter();
@@ -142,167 +160,325 @@ class SlotSoundEffects {
     droneGain.connect(this.musicGainNode);
     
     drone.frequency.value = 73.42; // D2
-    drone.type = 'triangle';
+    drone.type = 'sawtooth';
     droneFilter.type = 'lowpass';
-    droneFilter.frequency.value = 250;
-    droneGain.gain.value = 0.5;
+    droneFilter.frequency.value = 300;
+    droneGain.gain.value = 0.35;
     
     drone.start();
     this.currentMusic.push(drone);
 
-    // Fifth drone for harmonic richness
+    // Fifth drone for harmonic richness (A2)
     const drone2 = ctx.createOscillator();
     const drone2Gain = ctx.createGain();
+    const drone2Filter = ctx.createBiquadFilter();
     
-    drone2.connect(drone2Gain);
+    drone2.connect(drone2Filter);
+    drone2Filter.connect(drone2Gain);
     drone2Gain.connect(this.musicGainNode);
     
     drone2.frequency.value = 110; // A2
     drone2.type = 'triangle';
+    drone2Filter.type = 'lowpass';
+    drone2Filter.frequency.value = 400;
     drone2Gain.gain.value = 0.25;
     
     drone2.start();
     this.currentMusic.push(drone2);
 
+    // Mysterious choir pad (ethereal, mystical)
+    const choirOsc1 = ctx.createOscillator();
+    const choirOsc2 = ctx.createOscillator();
+    const choirGain = ctx.createGain();
+    const choirFilter = ctx.createBiquadFilter();
+    
+    choirOsc1.connect(choirFilter);
+    choirOsc2.connect(choirFilter);
+    choirFilter.connect(choirGain);
+    choirGain.connect(this.musicGainNode);
+    
+    choirOsc1.frequency.value = 293.66; // D4
+    choirOsc2.frequency.value = 440; // A4
+    choirOsc1.type = 'sine';
+    choirOsc2.type = 'sine';
+    
+    // Slow LFO for choir movement
+    const choirLFO = ctx.createOscillator();
+    const choirLFOGain = ctx.createGain();
+    choirLFO.connect(choirLFOGain);
+    choirLFOGain.connect(choirOsc1.frequency);
+    choirLFO.frequency.value = 0.3;
+    choirLFOGain.gain.value = 3;
+    
+    choirFilter.type = 'lowpass';
+    choirFilter.frequency.value = 800;
+    choirFilter.Q.value = 2;
+    choirGain.gain.value = 0.08;
+    
+    choirOsc1.start();
+    choirOsc2.start();
+    choirLFO.start();
+    this.currentMusic.push(choirOsc1);
+    this.currentMusic.push(choirOsc2);
+    this.currentMusic.push(choirLFO);
+
+    // String pad layer (cinematic tension)
+    const stringOsc = ctx.createOscillator();
+    const stringOsc2 = ctx.createOscillator();
+    const stringGain = ctx.createGain();
+    const stringFilter = ctx.createBiquadFilter();
+    
+    stringOsc.connect(stringFilter);
+    stringOsc2.connect(stringFilter);
+    stringFilter.connect(stringGain);
+    stringGain.connect(this.musicGainNode);
+    
+    stringOsc.frequency.value = 146.83; // D3
+    stringOsc2.frequency.value = 220; // A3
+    stringOsc.type = 'sawtooth';
+    stringOsc2.type = 'sawtooth';
+    
+    stringFilter.type = 'lowpass';
+    stringFilter.frequency.value = 1200;
+    stringFilter.Q.value = 0.5;
+    stringGain.gain.value = 0.06;
+    
+    // Slow string tremolo
+    const stringTremolo = ctx.createOscillator();
+    const stringTremoloGain = ctx.createGain();
+    stringTremolo.connect(stringTremoloGain);
+    stringTremoloGain.connect(stringGain.gain);
+    stringTremolo.frequency.value = 4;
+    stringTremoloGain.gain.value = 0.02;
+    
+    stringOsc.start();
+    stringOsc2.start();
+    stringTremolo.start();
+    this.currentMusic.push(stringOsc);
+    this.currentMusic.push(stringOsc2);
+    this.currentMusic.push(stringTremolo);
+
     const scale = this.getEgyptianScale();
     let noteIndex = 0;
     let patternStep = 0;
+    let measureCount = 0;
     
-    // Darbuka-style rhythm pattern (Egyptian percussion)
-    const playDarbuka = () => {
+    // Frame drum (deep, resonant)
+    const playFrameDrum = (time: number, intensity: number = 1) => {
       if (!this.enabled || !this.musicEnabled) return;
       
-      const now = ctx.currentTime;
+      const drumOsc = ctx.createOscillator();
+      const drumOsc2 = ctx.createOscillator();
+      const drumGain = ctx.createGain();
+      const drumFilter = ctx.createBiquadFilter();
       
-      // Doum (low hit) - using filtered noise
-      const doum = ctx.createOscillator();
-      const doumGain = ctx.createGain();
-      const doumFilter = ctx.createBiquadFilter();
+      drumOsc.connect(drumFilter);
+      drumOsc2.connect(drumFilter);
+      drumFilter.connect(drumGain);
+      drumGain.connect(this.musicGainNode!);
       
-      doum.connect(doumFilter);
-      doumFilter.connect(doumGain);
-      doumGain.connect(this.musicGainNode!);
+      drumOsc.frequency.setValueAtTime(100 * intensity, time);
+      drumOsc.frequency.exponentialRampToValueAtTime(35, time + 0.15);
+      drumOsc.type = 'sine';
       
-      doum.frequency.setValueAtTime(80, now);
-      doum.frequency.exponentialRampToValueAtTime(40, now + 0.1);
-      doum.type = 'sine';
-      doumFilter.type = 'lowpass';
-      doumFilter.frequency.value = 200;
+      drumOsc2.frequency.setValueAtTime(60 * intensity, time);
+      drumOsc2.frequency.exponentialRampToValueAtTime(25, time + 0.2);
+      drumOsc2.type = 'triangle';
       
-      doumGain.gain.setValueAtTime(0.4, now);
-      doumGain.gain.exponentialRampToValueAtTime(0.001, now + 0.15);
+      drumFilter.type = 'lowpass';
+      drumFilter.frequency.value = 200;
       
-      doum.start(now);
-      doum.stop(now + 0.15);
+      drumGain.gain.setValueAtTime(0.5 * intensity, time);
+      drumGain.gain.exponentialRampToValueAtTime(0.001, time + 0.25);
+      
+      drumOsc.start(time);
+      drumOsc2.start(time);
+      drumOsc.stop(time + 0.3);
+      drumOsc2.stop(time + 0.3);
     };
     
-    const playTek = (delay: number = 0) => {
+    // Darbuka tek (high, sharp)
+    const playTek = (time: number, pitch: number = 1) => {
       if (!this.enabled || !this.musicEnabled) return;
       
-      const now = ctx.currentTime + delay;
-      
-      // Tek (high hit)
       const tek = ctx.createOscillator();
       const tekGain = ctx.createGain();
+      const tekFilter = ctx.createBiquadFilter();
       
-      tek.connect(tekGain);
+      tek.connect(tekFilter);
+      tekFilter.connect(tekGain);
       tekGain.connect(this.musicGainNode!);
       
-      tek.frequency.setValueAtTime(400, now);
-      tek.frequency.exponentialRampToValueAtTime(200, now + 0.05);
+      tek.frequency.setValueAtTime(500 * pitch, time);
+      tek.frequency.exponentialRampToValueAtTime(150, time + 0.04);
       tek.type = 'triangle';
       
-      tekGain.gain.setValueAtTime(0.2, now);
-      tekGain.gain.exponentialRampToValueAtTime(0.001, now + 0.08);
+      tekFilter.type = 'highpass';
+      tekFilter.frequency.value = 200;
       
-      tek.start(now);
-      tek.stop(now + 0.08);
+      tekGain.gain.setValueAtTime(0.25, time);
+      tekGain.gain.exponentialRampToValueAtTime(0.001, time + 0.06);
+      
+      tek.start(time);
+      tek.stop(time + 0.08);
+    };
+    
+    // Sistrum shake (metallic shimmer)
+    const playSistrum = (time: number) => {
+      if (!this.enabled || !this.musicEnabled) return;
+      
+      for (let i = 0; i < 3; i++) {
+        const sisOsc = ctx.createOscillator();
+        const sisGain = ctx.createGain();
+        
+        sisOsc.connect(sisGain);
+        sisGain.connect(this.musicGainNode!);
+        
+        sisOsc.frequency.value = 2000 + i * 800 + Math.random() * 200;
+        sisOsc.type = 'sine';
+        
+        const startTime = time + i * 0.02;
+        sisGain.gain.setValueAtTime(0.03, startTime);
+        sisGain.gain.exponentialRampToValueAtTime(0.001, startTime + 0.1);
+        
+        sisOsc.start(startTime);
+        sisOsc.stop(startTime + 0.12);
+      }
     };
 
-    // Main music loop - combines ney-like melody with darbuka rhythm
+    // Main music loop - Book of Dead style dramatic phrasing
     this.musicInterval = setInterval(() => {
       if (!this.enabled || !this.musicEnabled) return;
       
       const now = ctx.currentTime;
+      const beatDuration = 0.3; // ~100 BPM feel
       
-      // Maqsoum rhythm pattern (classic Egyptian): Doum tek tek Doum tek
-      const rhythmPattern = [
-        { type: 'doum', delay: 0 },
-        { type: 'tek', delay: 0.25 },
-        { type: 'tek', delay: 0.5 },
-        { type: 'doum', delay: 0.75 },
-        { type: 'tek', delay: 1.0 },
-      ];
+      // Complex rhythm pattern based on measure
+      const isIntenseMeasure = measureCount % 4 === 3;
       
-      rhythmPattern.forEach(hit => {
-        if (hit.type === 'doum') {
-          setTimeout(() => playDarbuka(), hit.delay * 1000);
-        } else {
-          setTimeout(() => playTek(), hit.delay * 1000);
-        }
-      });
+      // Main downbeat
+      playFrameDrum(now, isIntenseMeasure ? 1.2 : 1);
       
-      // Ney flute-like melody (breathy, ornamental)
+      // Offbeat teks
+      playTek(now + beatDuration * 1, 1);
+      playTek(now + beatDuration * 2, 0.8);
+      
+      // Second frame drum on beat 3
+      playFrameDrum(now + beatDuration * 3, 0.8);
+      
+      // Fill teks
+      playTek(now + beatDuration * 4, 1.1);
+      
+      // Sistrum accent on intense measures
+      if (isIntenseMeasure) {
+        playSistrum(now + beatDuration * 2.5);
+        playTek(now + beatDuration * 5, 0.9);
+      }
+      
+      // Ney flute melody with ornaments
       const neyOsc = ctx.createOscillator();
+      const neyOsc2 = ctx.createOscillator();
       const neyGain = ctx.createGain();
       const neyFilter = ctx.createBiquadFilter();
       
       neyOsc.connect(neyFilter);
+      neyOsc2.connect(neyFilter);
       neyFilter.connect(neyGain);
       neyGain.connect(this.musicGainNode!);
       
-      // Add slight vibrato for ney authenticity
+      // Vibrato for authentic ney sound
       const vibrato = ctx.createOscillator();
       const vibratoGain = ctx.createGain();
       vibrato.connect(vibratoGain);
       vibratoGain.connect(neyOsc.frequency);
-      vibrato.frequency.value = 5;
-      vibratoGain.gain.value = 8;
+      vibrato.frequency.value = 5.5;
+      vibratoGain.gain.value = 10;
       
-      neyOsc.frequency.value = scale[noteIndex];
+      const melodyNote = scale[noteIndex];
+      neyOsc.frequency.value = melodyNote;
+      neyOsc2.frequency.value = melodyNote * 1.002; // Slight detune for richness
       neyOsc.type = 'sine';
+      neyOsc2.type = 'triangle';
       
-      neyFilter.type = 'lowpass';
-      neyFilter.frequency.value = 2000;
+      neyFilter.type = 'bandpass';
+      neyFilter.frequency.value = 1500;
+      neyFilter.Q.value = 1;
       
-      neyGain.gain.setValueAtTime(0, now);
-      neyGain.gain.linearRampToValueAtTime(0.35, now + 0.1);
-      neyGain.gain.setValueAtTime(0.35, now + 0.8);
-      neyGain.gain.exponentialRampToValueAtTime(0.001, now + 1.5);
+      // Expressive envelope
+      neyGain.gain.setValueAtTime(0, now + beatDuration);
+      neyGain.gain.linearRampToValueAtTime(0.3, now + beatDuration + 0.08);
+      neyGain.gain.setValueAtTime(0.3, now + beatDuration * 3);
+      neyGain.gain.exponentialRampToValueAtTime(0.001, now + beatDuration * 5);
       
-      vibrato.start(now);
-      neyOsc.start(now);
-      neyOsc.stop(now + 1.6);
-      vibrato.stop(now + 1.6);
+      vibrato.start(now + beatDuration);
+      neyOsc.start(now + beatDuration);
+      neyOsc2.start(now + beatDuration);
+      vibrato.stop(now + beatDuration * 5.5);
+      neyOsc.stop(now + beatDuration * 5.5);
+      neyOsc2.stop(now + beatDuration * 5.5);
       
-      // Oud-like pluck (string instrument)
+      // Oud bass line (plucked, resonant)
       if (patternStep % 2 === 0) {
         const oud = ctx.createOscillator();
+        const oud2 = ctx.createOscillator();
         const oudGain = ctx.createGain();
         const oudFilter = ctx.createBiquadFilter();
         
         oud.connect(oudFilter);
+        oud2.connect(oudFilter);
         oudFilter.connect(oudGain);
         oudGain.connect(this.musicGainNode!);
         
-        oud.frequency.value = scale[(noteIndex + 4) % scale.length] / 2;
+        const oudNote = scale[(noteIndex + 4) % scale.length] / 2;
+        oud.frequency.value = oudNote;
+        oud2.frequency.value = oudNote * 2; // Octave harmonic
         oud.type = 'sawtooth';
+        oud2.type = 'triangle';
         
         oudFilter.type = 'lowpass';
-        oudFilter.frequency.setValueAtTime(1500, now);
-        oudFilter.frequency.exponentialRampToValueAtTime(400, now + 0.8);
+        oudFilter.frequency.setValueAtTime(1800, now);
+        oudFilter.frequency.exponentialRampToValueAtTime(300, now + 1.2);
         
         oudGain.gain.setValueAtTime(0.25, now);
-        oudGain.gain.exponentialRampToValueAtTime(0.001, now + 1.0);
+        oudGain.gain.exponentialRampToValueAtTime(0.001, now + 1.4);
         
         oud.start(now);
-        oud.stop(now + 1.0);
+        oud2.start(now);
+        oud.stop(now + 1.5);
+        oud2.stop(now + 1.5);
+      }
+      
+      // Mysterious harmonic accents on certain beats
+      if (patternStep % 8 === 0) {
+        const harmOsc = ctx.createOscillator();
+        const harmGain = ctx.createGain();
+        const harmFilter = ctx.createBiquadFilter();
+        
+        harmOsc.connect(harmFilter);
+        harmFilter.connect(harmGain);
+        harmGain.connect(this.musicGainNode!);
+        
+        harmOsc.frequency.value = scale[(noteIndex + 7) % scale.length] * 2;
+        harmOsc.type = 'sine';
+        
+        harmFilter.type = 'bandpass';
+        harmFilter.frequency.value = 2500;
+        harmFilter.Q.value = 5;
+        
+        harmGain.gain.setValueAtTime(0, now + beatDuration * 2);
+        harmGain.gain.linearRampToValueAtTime(0.08, now + beatDuration * 2.5);
+        harmGain.gain.exponentialRampToValueAtTime(0.001, now + beatDuration * 5);
+        
+        harmOsc.start(now + beatDuration * 2);
+        harmOsc.stop(now + beatDuration * 5.5);
       }
 
-      // Move through scale with characteristic Egyptian intervals
-      noteIndex = (noteIndex + [1, 2, 1, -1, 2, -2, 1, 3][patternStep % 8] + scale.length) % scale.length;
+      // Move through scale with Book of Dead style phrasing
+      const phrasePattern = [1, 2, -1, 1, 3, -2, 1, -1, 2, 1, -3, 2];
+      noteIndex = (noteIndex + phrasePattern[patternStep % phrasePattern.length] + scale.length) % scale.length;
       patternStep++;
-    }, 1500);
+      measureCount++;
+    }, 1800); // Slightly slower, more dramatic pacing
   }
 
   stopMusic() {
