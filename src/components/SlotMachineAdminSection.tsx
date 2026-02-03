@@ -25,7 +25,7 @@ import {
 } from "@/components/ui/dialog";
 import { ChartContainer, ChartTooltip, ChartTooltipContent } from "@/components/ui/chart";
 import { AreaChart, Area, XAxis, YAxis, CartesianGrid, ResponsiveContainer, BarChart, Bar } from "recharts";
-import { GripVertical, Pencil, Loader2, Trophy, Sparkles, TrendingUp, BarChart3, Lock, Wand2, Users, Calendar } from "lucide-react";
+import { GripVertical, Pencil, Loader2, Trophy, Sparkles, TrendingUp, BarChart3, Lock, Wand2, Users, Calendar, Percent, Calculator } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
 import {
@@ -585,7 +585,7 @@ function StatisticsTab() {
       </div>
 
       {/* Stats Cards */}
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
         <Card>
           <CardHeader className="pb-2">
             <CardTitle className="text-sm font-medium flex items-center gap-2">
@@ -631,6 +631,35 @@ function StatisticsTab() {
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold">{stats?.uniquePlayers || 0}</div>
+          </CardContent>
+        </Card>
+
+        <Card>
+          <CardHeader className="pb-2">
+            <CardTitle className="text-sm font-medium flex items-center gap-2">
+              <Calculator className="h-4 w-4 text-purple-500" />
+              Gns. Gevinst/Spin
+            </CardTitle>
+          </CardHeader>
+          <CardContent>
+            <div className="text-2xl font-bold">{(stats?.avgWinPerSpin || 0).toFixed(1)} pts</div>
+          </CardContent>
+        </Card>
+
+        <Card>
+          <CardHeader className="pb-2">
+            <CardTitle className="text-sm font-medium flex items-center gap-2">
+              <Percent className="h-4 w-4 text-orange-500" />
+              RTP
+            </CardTitle>
+          </CardHeader>
+          <CardContent>
+            <div className="text-2xl font-bold">
+              {stats?.totalBets && stats.totalBets > 0
+                ? ((stats.totalWinnings / stats.totalBets) * 100).toFixed(1)
+                : "0.0"}%
+            </div>
+            <p className="text-xs text-muted-foreground mt-1">Return to Player</p>
           </CardContent>
         </Card>
       </div>
