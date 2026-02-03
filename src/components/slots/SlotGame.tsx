@@ -1,5 +1,4 @@
 import React, { useState, useCallback, useRef, useEffect } from "react";
-import { flushSync } from "react-dom";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import {
@@ -200,8 +199,10 @@ export function SlotGame() {
     setTeaseReels(teaseReelIndices);
     setActiveTeaseReelIndex(null); // Reset active tease reel for new spin
 
-    // Reset state for new spin - clear results and animations
-    setLastResult(null);
+    // Set the ORIGINAL grid for spinning (not the expanded one yet)
+    // This creates the first phase where symbols land naturally
+    setGrid(originalGrid);
+    setLastResult(null); // Clear last result during spin
     setWinAmount(0);
     setIsWinAnimating(false);
     setExpandedReels([]);
@@ -215,16 +216,8 @@ export function SlotGame() {
     pendingExpandedReelsRef.current = reelsExpanded;
     isBonusSpinRef.current = isBonusSpin;
     
-    // CRITICAL: Use flushSync to ensure isSpinning is true BEFORE grid updates
-    // This prevents the "flash" where SlotReel shows the outcome in idle state
-    // before the spin animation starts
-    flushSync(() => {
-      setIsSpinning(true);
-    });
-    
-    // Now safely set the grid - SlotReel is already in spinning mode
-    // so it won't render the outcome symbols in idle state
-    setGrid(originalGrid);
+    // Now start the spin animation
+    setIsSpinning(true);
     
     // Clear any existing win lines timeout
     if (winLinesTimeoutRef.current) {
