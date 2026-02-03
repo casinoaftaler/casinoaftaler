@@ -120,9 +120,9 @@ function EditSymbolDialog({ symbol, open, onClose }: EditSymbolDialogProps) {
   const [formData, setFormData] = useState({
     name: "",
     image_url: null as string | null,
-    multiplier_3: 5,
-    multiplier_4: 10,
-    multiplier_5: 25,
+    multiplier_3: 5 as number,
+    multiplier_4: 10 as number,
+    multiplier_5: 25 as number,
     is_scatter: false,
     is_wild: false,
   });
@@ -239,9 +239,10 @@ function EditSymbolDialog({ symbol, open, onClose }: EditSymbolDialogProps) {
               <Input
                 id="mult-3"
                 type="number"
-                min="1"
+                step="0.1"
+                min="0.1"
                 value={formData.multiplier_3}
-                onChange={(e) => setFormData({ ...formData, multiplier_3: parseInt(e.target.value) || 1 })}
+                onChange={(e) => setFormData({ ...formData, multiplier_3: parseFloat(e.target.value) || 0.1 })}
               />
             </div>
             <div className="space-y-2">
@@ -249,9 +250,10 @@ function EditSymbolDialog({ symbol, open, onClose }: EditSymbolDialogProps) {
               <Input
                 id="mult-4"
                 type="number"
-                min="1"
+                step="0.1"
+                min="0.1"
                 value={formData.multiplier_4}
-                onChange={(e) => setFormData({ ...formData, multiplier_4: parseInt(e.target.value) || 1 })}
+                onChange={(e) => setFormData({ ...formData, multiplier_4: parseFloat(e.target.value) || 0.1 })}
               />
             </div>
             <div className="space-y-2">
@@ -259,9 +261,10 @@ function EditSymbolDialog({ symbol, open, onClose }: EditSymbolDialogProps) {
               <Input
                 id="mult-5"
                 type="number"
-                min="1"
+                step="0.1"
+                min="0.1"
                 value={formData.multiplier_5}
-                onChange={(e) => setFormData({ ...formData, multiplier_5: parseInt(e.target.value) || 1 })}
+                onChange={(e) => setFormData({ ...formData, multiplier_5: parseFloat(e.target.value) || 0.1 })}
               />
             </div>
           </div>
