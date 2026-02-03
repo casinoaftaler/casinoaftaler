@@ -1,42 +1,18 @@
 
-# Fix Tease-Mode Gevinst-Timing og Badge-Placering
+# Centrér Spin-Knappen Under Spillemaskinen
 
 ## Oversigt
-Rettelse af to problemer med gevinstvisning:
-1. Gevinster vises før tease-spin er færdig
-2. Point-badges vises ved det sidste matchende symbol i stedet for i enden af linjen
+Spin-knappen skal centreres direkte under spillemaskinens runde spin-cirkel på alle skærmstørrelser, i stedet for at være højre-justeret på desktop.
 
-## Problem 1: Gevinst vises for tidligt under tease
+## Nuværende Layout
+- Spin-knappen bruger `flex justify-center md:justify-end` 
+- På desktop flyttes knappen til højre side med `md:pr-8 lg:pr-16` padding
+- Dette gør at knappen ikke er alignet med spillemaskinens centrum
 
-**Nuværende adfærd:**
-- SpinGame bruger en fast timeout (4000ms) til at vente på spin-animation
-- Men tease-hjul har 3000ms nedbremsning HVER, og de er sekventielle
-- Med 3 tease-hjul (hjul 3, 4, 5) kan den samlede tid være op til 9+ sekunder
-- Resultatet sættes og gevinster vises før alle hjul er stoppet
-
-**Løsning:**
-- Tilføj en `allReelsStopped` callback-mekanisme i SlotGame
-- Track hvilke hjul der er stoppet via en ref
-- Først når alle 5 hjul har kaldt `onReelStop`, vises gevinsten
-- Fjern den faste spinDuration timeout og brug i stedet callback-baseret flow
-
-## Problem 2: Point-badge placering
-
-**Nuværende adfærd (WinLines.tsx linje 191-193):**
-```typescript
-const lastCol = win.count - 1;  // Placeres ved sidste matchende symbol
-const center = getSymbolCenter(lastCol, pattern[lastCol]);
-```
-
-**Ønsket adfærd:**
-- Point-badge skal altid være i slutningen af linjen (position 4, dvs. 5. hjul)
-- Uanset om gevinsten er 3, 4 eller 5 matchende symboler
-
-**Løsning:**
-```typescript
-const lastCol = 4;  // Altid position 4 (5. hjul / ende af linjen)
-const center = getSymbolCenter(lastCol, pattern[lastCol]);
-```
+## Nyt Layout
+- Spin-knappen skal bruge `flex justify-center` på alle skærmstørrelser
+- Fjern padding til højre (`md:pr-8 lg:pr-16`)
+- Knappen vil nu være perfekt centreret under slot-rammen
 
 ---
 
@@ -44,61 +20,16 @@ const center = getSymbolCenter(lastCol, pattern[lastCol]);
 
 ### Fil: `src/components/slots/SlotGame.tsx`
 
-**Tilføj state til at tracke stoppede hjul:**
+**Linje 684 - Opdater spin-knap container:**
+
+Fra:
 ```typescript
-const stoppedReelsRef = useRef<Set<number>>(new Set());
-const [allReelsStopped, setAllReelsStopped] = useState(false);
+<div className="flex justify-center md:justify-end my-3 sm:my-4 md:pr-8 lg:pr-16">
 ```
 
-**Opdater handleSpin flow:**
-1. Reset `stoppedReelsRef` og `allReelsStopped` ved spin start
-2. Fjern den faste `spinDuration` timeout der venter på animation
-3. Brug en `useEffect` der lytter på `allReelsStopped` for at fortsætte flowet
-
-**Opdater onReelStop callback:**
+Til:
 ```typescript
-onReelStop={(reelIndex) => {
-  slotSounds.playReelStopSingle(reelIndex);
-  
-  // Track stopped reel
-  stoppedReelsRef.current.add(reelIndex);
-  
-  // Check if all 5 reels have stopped
-  if (stoppedReelsRef.current.size === 5) {
-    setAllReelsStopped(true);
-  }
-  
-  // Handle tease activation (eksisterende logik)
-  ...
-}}
-```
-
-**Nyt useEffect for gevinst-visning:**
-```typescript
-useEffect(() => {
-  if (allReelsStopped && pendingResultRef.current) {
-    // Nu er alle hjul stoppet - vis resultatet
-    setLastResult(pendingResultRef.current);
-    setShowWinLines(true);
-    // ... resten af gevinst-håndtering
-  }
-}, [allReelsStopped]);
-```
-
-### Fil: `src/components/slots/WinLines.tsx`
-
-**Opdater badge-placering (linje 191-193):**
-
-Nuværende:
-```typescript
-const lastCol = win.count - 1;
-const center = getSymbolCenter(lastCol, pattern[lastCol]);
-```
-
-Ny:
-```typescript
-const lastCol = 4;  // Altid i enden af linjen (5. hjul)
-const center = getSymbolCenter(lastCol, pattern[lastCol]);
+<div className="flex justify-center my-3 sm:my-4">
 ```
 
 ---
@@ -107,12 +38,22 @@ const center = getSymbolCenter(lastCol, pattern[lastCol]);
 
 | Fil | Ændring |
 |-----|---------|
-| `src/components/slots/SlotGame.tsx` | Tilføj reel-stop tracking, fjern fast spinDuration, brug callback-baseret flow for gevinst-visning |
-| `src/components/slots/WinLines.tsx` | Flyt point-badge til slutningen af linjen (position 4) |
+| `src/components/slots/SlotGame.tsx` | Ændre spin-knap container fra højre-justeret til centreret |
 
-## Test Scenarier
-1. Spin med tease-mode (2+ scatters) - verificer at gevinst først vises når ALLE hjul er stoppet
-2. Spin med 3-symbol gevinst - verificer at badge vises ved 5. hjul, ikke ved 3. hjul
-3. Spin med 4-symbol gevinst - verificer at badge vises ved 5. hjul, ikke ved 4. hjul
-4. Spin med 5-symbol gevinst - verificer at badge vises ved 5. hjul (uændret)
-5. Normal spin uden tease - verificer at timing stadig fungerer korrekt
+## Visuelt Resultat
+```
+          ╔═══════════════════════════════════╗
+          ║                                   ║
+          ║      [  SPILLEMASKINE REELS  ]    ║
+          ║                                   ║
+          ╚═══════════════════════════════════╝
+                    
+             [Bet] [Auto] [Win] [🔊]
+                         
+                  ╭─────────────╮
+                  │             │
+                  │     🎰      │  ← Perfekt centreret
+                  │    SPIN     │     under maskinen
+                  │             │
+                  ╰─────────────╯
+```
