@@ -22,7 +22,13 @@ export function SlotMachineFrame({
   const hasFrame = !!frameImageUrl && !imageError;
 
   return (
-    <div className="relative">
+    <div 
+      className="relative"
+      style={{
+        // Add margin to prevent frame from being clipped
+        margin: hasFrame && imageLoaded ? `${frameSize}px` : undefined,
+      }}
+    >
       {/* Egyptian Frame Image Overlay */}
       {hasFrame && (
         <div 
