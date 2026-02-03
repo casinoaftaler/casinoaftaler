@@ -1,71 +1,89 @@
 
-# Support Decimal Multipliers in Paytable
+# Fix: Allow Decimal Input in Admin Multiplier Fields
 
-## Overview
-Currently the slot machine paytable only supports whole number multipliers (e.g., 5×, 10×, 25×). This change will allow decimal values like 1.5×, 2.5×, etc.
+## Problem
+When trying to type a decimal number like "1.5" in the multiplier fields, the input jumps back to a whole number. This happens because:
 
-## What Changes
+1. User types "1" → value becomes `1`
+2. User types "." → `parseFloat("1.")` = `1` → value stays `1`, the "." disappears
+3. User can never reach "1.5"
 
-### 1. Database Update
-The multiplier columns are currently stored as integers. We need to change them to decimal numbers.
+## Solution
+Change the input to work with strings during editing, only converting to numbers when saving. This allows intermediate states like "1." to exist.
 
-| Column | Current | After |
-|--------|---------|-------|
-| multiplier_3 | integer | decimal |
-| multiplier_4 | integer | decimal |
-| multiplier_5 | integer | decimal |
+## Changes Required
 
-### 2. Admin Panel Changes
-The edit dialog for symbols will be updated to accept decimal values:
-- Change input step from "1" to "0.1" to allow smooth decimal entry
-- Change parsing from whole numbers to decimals
-- Allow minimum value of 0.1 instead of 1
+### File: `src/components/SlotMachineAdminSection.tsx`
 
-### 3. Paytable Display
-Format multipliers to show decimals only when needed:
-- "5×" stays as "5×" (not "5.0×")
-- "1.5×" displays as "1.5×"
-
-## Files Changed
-
-| File | Change |
-|------|--------|
-| Database migration | Change column types from `integer` to `numeric(10,2)` |
-| `src/components/SlotMachineAdminSection.tsx` | Update inputs to accept decimals with `parseFloat()` and `step="0.1"` |
-| `src/components/slots/PayTable.tsx` | Add formatting function to clean up decimal display |
-
-## Technical Details
-
-**Database Migration:**
-```sql
-ALTER TABLE slot_symbols 
-  ALTER COLUMN multiplier_3 TYPE numeric(10,2),
-  ALTER COLUMN multiplier_4 TYPE numeric(10,2),
-  ALTER COLUMN multiplier_5 TYPE numeric(10,2);
+**1. Update formData state to use strings for multipliers:**
+```tsx
+const [formData, setFormData] = useState({
+  name: "",
+  image_url: null as string | null,
+  multiplier_3: "5",
+  multiplier_4: "10", 
+  multiplier_5: "25",
+  is_scatter: false,
+  is_wild: false,
+});
 ```
 
-**Admin Input Example:**
+**2. Update useEffect to convert numbers to strings when loading:**
+```tsx
+useEffect(() => {
+  if (symbol) {
+    setFormData({
+      name: symbol.name,
+      image_url: symbol.image_url,
+      multiplier_3: String(symbol.multiplier_3),
+      multiplier_4: String(symbol.multiplier_4),
+      multiplier_5: String(symbol.multiplier_5),
+      is_scatter: symbol.is_scatter,
+      is_wild: symbol.is_wild,
+    });
+  }
+}, [symbol]);
+```
+
+**3. Update input onChange to work with strings (no parsing during typing):**
 ```tsx
 <Input
+  id="mult-3"
   type="number"
   step="0.1"
   min="0.1"
   value={formData.multiplier_3}
-  onChange={(e) => setFormData({ 
-    ...formData, 
-    multiplier_3: parseFloat(e.target.value) || 0.1 
-  })}
+  onChange={(e) => setFormData({ ...formData, multiplier_3: e.target.value })}
 />
 ```
+(Same for multiplier_4 and multiplier_5)
 
-**Display Formatting:**
+**4. Convert strings to numbers when saving:**
 ```tsx
-// Format 1.50 as "1.5×", 5.00 as "5×"
-const formatMultiplier = (value: number) => {
-  return Number.isInteger(value) ? `${value}×` : `${value}×`;
+const handleSave = () => {
+  if (!symbol) return;
+  updateSymbol.mutate({
+    id: symbol.id,
+    name: formData.name,
+    image_url: formData.image_url,
+    multiplier_3: parseFloat(formData.multiplier_3) || 0.1,
+    multiplier_4: parseFloat(formData.multiplier_4) || 0.1,
+    multiplier_5: parseFloat(formData.multiplier_5) || 0.1,
+    is_scatter: formData.is_scatter,
+    is_wild: formData.is_wild,
+  }, {
+    onSuccess: () => onClose(),
+  });
 };
 ```
 
-## No Changes Required
-- The game logic in `slotGameLogic.ts` and `bonusGameLogic.ts` already works with numbers and doesn't care if they're whole or decimal
-- Win calculations will automatically work with decimal multipliers
+## Summary
+
+| Location | Change |
+|----------|--------|
+| `formData` state | Multipliers stored as strings |
+| `useEffect` | Convert from number to string on load |
+| Input `onChange` | Store raw string value (no parsing) |
+| `handleSave` | Parse to float when submitting |
+
+This allows typing intermediate values like "1." while still saving proper decimal numbers to the database.
