@@ -1,30 +1,31 @@
 
-# Plan: Fjern Gevinst-Notifikationer
+# Plan: Fjern "Gevinst" Visning i Bunden
 
 ## Oversigt
-Fjern de små toast-notifikationer i hjørnet der vises når du vinder point på spillemaskinen. De visuelle gevinst-animationer (WinCelebration, WinDisplay) og lydeffekter bevares.
+Fjern `WinDisplay` komponenten fra kontrol-rækken i bunden af spillemaskinen. Denne viser det aktuelle gevinstbeløb med en mønt-ikon.
 
 ---
 
-## Ændringer
+## Ændring
 
 ### Fil: `src/components/slots/SlotGame.tsx`
 
-Fjern de 3 toast-kald for gevinster:
+**Linje 845-849 - Nuværende:**
+```tsx
+{/* BOTTOM ROW ON MOBILE: Win Display + Volume */}
+<div className="flex items-center gap-2 order-3 sm:order-3">
+  <WinDisplay amount={bonusState.isActive ? bonusState.bonusWinnings : winAmount} isAnimating={isWinAnimating} />
+  <VolumeControl />
+</div>
+```
 
-| Linje | Nuværende kode | Handling |
-|-------|----------------|----------|
-| 644-646 | `if (!isBonusSpin) { toast.success(\`🎉 STOR GEVINST! ${result.totalWin} point!\`); }` | **FJERN** |
-| 652-654 | `if (!isBonusSpin) { toast.success(\`Gevinst: ${result.totalWin} point\`); }` | **FJERN** |
-| 660-662 | `if (!isBonusSpin) { toast.success(\`Gevinst: ${result.totalWin} point\`); }` | **FJERN** |
-
----
-
-## Bevares
-
-Disse notifikationer bevares da de ikke handler om gevinster:
-- **Autospin afsluttet** (linje 185) - informerer når autospin stopper
-- **Fejlbesked** (linje 287) - informerer ved fejl under spin
+**Efter ændring:**
+```tsx
+{/* BOTTOM ROW ON MOBILE: Volume */}
+<div className="flex items-center gap-2 order-3 sm:order-3">
+  <VolumeControl />
+</div>
+```
 
 ---
 
@@ -32,14 +33,13 @@ Disse notifikationer bevares da de ikke handler om gevinster:
 
 | Element | Status |
 |---------|--------|
-| Toast-notifikationer for gevinster | ❌ Fjernet |
-| WinCelebration animation (Big Win overlay) | ✅ Bevaret |
-| WinDisplay (gevinst-tæller i kontrolpanel) | ✅ Bevaret |
-| Lydeffekter for gevinster | ✅ Bevaret |
-| WinLines visualisering | ✅ Bevaret |
+| WinDisplay (gevinst-tæller med mønt) | ❌ Fjernet |
+| VolumeControl (lydkontrol) | ✅ Bevaret |
+| WinCelebration (Big Win overlay) | ✅ Bevaret |
+| Gevinstlinjer visualisering | ✅ Bevaret |
 
 ---
 
 ## Import cleanup
 
-`toast` fra `sonner` bruges stadig til autospin og fejlbeskeder, så importen bevares.
+`WinDisplay` importen kan eventuelt fjernes hvis den ikke bruges andre steder, men det påvirker ikke funktionaliteten.
