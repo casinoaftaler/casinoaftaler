@@ -720,17 +720,26 @@ export function SlotGame() {
               disabled={isSpinning || !canSpinNow || showBonusTrigger || isAutoSpinning}
             >
               {isSpinning ? (
-                <Loader2 className="h-8 w-8 sm:h-10 sm:w-10 md:h-12 md:w-12 animate-spin" />
+                <div className="relative">
+                  {/* Outer rotating ring */}
+                  <div className="absolute inset-0 rounded-full border-4 border-transparent border-t-white/80 border-r-white/40 animate-spin" 
+                       style={{ animationDuration: '0.8s' }} />
+                  {/* Inner spinning icon */}
+                  <Gamepad2 
+                    className="h-8 w-8 sm:h-10 sm:w-10 md:h-12 md:w-12 animate-spin drop-shadow-[0_0_8px_rgba(255,255,255,0.8)]" 
+                    style={{ animationDuration: '1.5s', animationDirection: 'reverse' }}
+                  />
+                </div>
               ) : !canSpinNow ? (
                 <span className="text-xs sm:text-sm text-center leading-tight">INGEN<br/>SPINS</span>
               ) : bonusState.isActive ? (
                 <>
-                  <Gamepad2 className="h-6 w-6 sm:h-8 sm:w-8 md:h-10 md:w-10 mb-1" />
+                  <Gamepad2 className="h-6 w-6 sm:h-8 sm:w-8 md:h-10 md:w-10 mb-1 transition-transform group-hover:rotate-12" />
                   <span className="text-xs sm:text-sm">FREE</span>
                 </>
               ) : (
                 <>
-                  <Gamepad2 className="h-6 w-6 sm:h-8 sm:w-8 md:h-10 md:w-10 mb-1" />
+                  <Gamepad2 className="h-6 w-6 sm:h-8 sm:w-8 md:h-10 md:w-10 mb-1 transition-transform hover:rotate-12" />
                   <span className="text-sm sm:text-base">SPIN</span>
                 </>
               )}
