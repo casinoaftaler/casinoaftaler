@@ -329,7 +329,7 @@ export function SlotReel({
                 isExpanded={symbolIsExpanded}
                 isNewlyExpanded={symbolIsNewlyExpanded}
                 hasLanded={spinState === "stopped"}
-                isTeasing={symbol.is_scatter && (hasLandedScatter || globalTeaseActive || scatterLandedOnPreviousReel) && spinState !== "stopped"}
+                isTeasing={false}
               />
             </div>
           );
