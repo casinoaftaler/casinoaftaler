@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
-import type { SlotSymbol } from "@/lib/slotGameLogic";
+import type { SlotSymbol, SymbolRarity } from "@/lib/slotGameLogic";
 
 export function useSlotSymbols() {
   return useQuery({
@@ -12,7 +12,12 @@ export function useSlotSymbols() {
         .order("position", { ascending: true });
 
       if (error) throw error;
-      return data || [];
+      
+      // Cast rarity to proper type since DB returns string
+      return (data || []).map(symbol => ({
+        ...symbol,
+        rarity: symbol.rarity as SymbolRarity
+      }));
     },
   });
 }

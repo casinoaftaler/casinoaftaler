@@ -451,6 +451,7 @@ export type Database = {
           multiplier_5: number
           name: string
           position: number
+          rarity: string
         }
         Insert: {
           created_at?: string
@@ -463,6 +464,7 @@ export type Database = {
           multiplier_5?: number
           name: string
           position?: number
+          rarity?: string
         }
         Update: {
           created_at?: string
@@ -475,6 +477,7 @@ export type Database = {
           multiplier_5?: number
           name?: string
           position?: number
+          rarity?: string
         }
         Relationships: []
       }
