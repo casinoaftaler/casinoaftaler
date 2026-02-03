@@ -1,160 +1,78 @@
 
-# Null Safety Checks for Slot Game Logic
+# Scatter Tease Glow Not Working - Bug Fix Plan
 
-## Problem
-Both `slotGameLogic.ts` and `bonusGameLogic.ts` use non-null assertions (`!`) when retrieving symbols from a Map. If a symbol ID in the grid doesn't exist in the symbols array (due to database changes, stale data, or race conditions), the code will crash when trying to access properties on `undefined`.
+## Problem Identified
+When 2 scatters have landed, the scatter symbols don't glow because the `isTeasing` prop is **always hardcoded to `false`** in `SlotReel.tsx`, despite the parent component (`SlotGame.tsx`) correctly calculating and passing the necessary information.
 
-## Affected Locations
-
-### 1. `src/lib/slotGameLogic.ts`
-**Line 183** - `checkLineWin` function:
-```typescript
-const lineSymbolData = lineSymbols.map(id => symbolsById.get(id)!);
+## Root Cause Analysis
+```text
+SlotGame.tsx                           SlotReel.tsx                        SlotSymbol.tsx
++---------------------------+          +---------------------------+       +------------------+
+| Calculates:               |          | Receives props but        |       | Shows glow when: |
+| - scatterReelsLanded      | -------> | NEVER USES THEM:          | ----> | isTeasing=true   |
+| - globalTeaseActive       |          | - globalTeaseActive       |       | AND              |
+| - hasLandedScatter        |          | - hasLandedScatter        |       | symbol.is_scatter|
++---------------------------+          | Always passes:            |       +------------------+
+                                       | isTeasing={false}         |
+                                       +---------------------------+
 ```
-- Later accesses `lineSymbolData[i].id`, `lineSymbolData[i].is_wild`, etc.
-- Will crash if any symbol ID is not found in the Map
-
-### 2. `src/lib/bonusGameLogic.ts`
-**Line 232** - `calculateWins` function:
-```typescript
-const lineSymbolData = lineSymbols.map(id => symbolsById.get(id)!);
-```
-- Later accesses `lineSymbolData[0].is_scatter`, `current.id`, `baseSymbol.multiplier_3`, etc.
-- Will crash if any symbol ID is not found in the Map
 
 ## Solution
 
-### Approach: Filter out invalid symbols and skip lines with missing data
+### 1. Update Idle/Stopped State Render (SlotReel.tsx lines 305-338)
+When a reel has stopped but tease mode is still globally active, we need to show the scatter glow on landed scatter symbols.
 
-Rather than crashing, we'll:
-1. Filter out any `undefined` values when mapping symbol IDs to symbol data
-2. Return early (skip the line) if we don't have all 5 symbols resolved
-3. Add console warnings in development to help debug data mismatches
-
----
-
-## Implementation Details
-
-### Changes to `slotGameLogic.ts`
-
-**`checkLineWin` function (lines 172-217):**
-```typescript
-export function checkLineWin(
-  grid: string[][],
-  linePattern: number[],
-  symbols: SlotSymbol[],
-  betAmount: number
-): LineWin | null {
-  const symbolsById = new Map(symbols.map(s => [s.id, s]));
-  const wildSymbol = symbols.find(s => s.is_wild);
-  
-  // Get symbols on this line
-  const lineSymbols = linePattern.map((row, col) => grid[col][row]);
-  const lineSymbolData = lineSymbols.map(id => symbolsById.get(id));
-  
-  // Safety check: if any symbol is missing, skip this line
-  if (lineSymbolData.some(s => !s)) {
-    console.warn('[SlotGame] Missing symbol data for line, skipping win check');
-    return null;
-  }
-  
-  // Now we know all symbols exist, cast to non-null array
-  const validSymbols = lineSymbolData as SlotSymbol[];
-  
-  // Find the first non-wild symbol (or wild if all wilds)
-  let baseSymbol = validSymbols.find(s => !s.is_wild) || validSymbols[0];
-  
-  // Count consecutive matching symbols from left
-  let count = 0;
-  for (let i = 0; i < 5; i++) {
-    const current = validSymbols[i];
-    if (current.id === baseSymbol.id || current.is_wild || baseSymbol.is_wild) {
-      count++;
-      if (baseSymbol.is_wild && !current.is_wild) {
-        baseSymbol = current;
-      }
-    } else {
-      break;
-    }
-  }
-  
-  // ... rest unchanged
-}
+**Current code:**
+```tsx
+<SlotSymbol
+  symbol={symbol}
+  ...
+  isTeasing={false}  // Always false
+/>
 ```
 
-### Changes to `bonusGameLogic.ts`
-
-**`calculateWins` function (lines 191-275):**
-```typescript
-function calculateWins(
-  grid: string[][],
-  symbols: SlotSymbol[],
-  betAmount: number,
-  expandingSymbol?: SlotSymbol,
-  expandedReels?: number[],
-  hasExpandingWin?: boolean
-): LineWin[] {
-  const wins: LineWin[] = [];
-  const symbolsById = new Map(symbols.map(s => [s.id, s]));
-  
-  // ... expanding symbol win logic unchanged ...
-  
-  // Standard win calculation (consecutive from left)
-  for (let lineIndex = 0; lineIndex < PAY_LINES.length; lineIndex++) {
-    const linePattern = PAY_LINES[lineIndex];
-    const lineSymbols = linePattern.map((row, col) => grid[col][row]);
-    const lineSymbolData = lineSymbols.map(id => symbolsById.get(id));
-    
-    // Safety check: if any symbol is missing, skip this line
-    if (lineSymbolData.some(s => !s)) {
-      console.warn('[BonusGame] Missing symbol data for line, skipping win check');
-      continue;
-    }
-    
-    // Now we know all symbols exist
-    const validSymbols = lineSymbolData as SlotSymbol[];
-    
-    // Find the first non-scatter symbol as base
-    let baseSymbol = validSymbols[0];
-    if (allowWildSubstitution && baseSymbol.is_scatter) {
-      const nonScatter = validSymbols.find(s => !s.is_scatter);
-      if (nonScatter) {
-        baseSymbol = nonScatter;
-      }
-    }
-    
-    // Count consecutive matching symbols from left
-    let count = 0;
-    for (let i = 0; i < 5; i++) {
-      const current = validSymbols[i];
-      const isMatch = current.id === baseSymbol.id || 
-        (allowWildSubstitution && current.is_scatter);
-      
-      if (isMatch) {
-        count++;
-      } else {
-        break;
-      }
-    }
-    
-    // ... rest unchanged
-  }
-  
-  return wins;
-}
+**Fixed code:**
+```tsx
+<SlotSymbol
+  symbol={symbol}
+  ...
+  isTeasing={globalTeaseActive && hasLandedScatter && symbol.is_scatter}
+/>
 ```
 
----
+### 2. Update Spinning State Render (SlotReel.tsx lines 388-395)
+During spinning, the blur makes individual symbols invisible anyway, but for consistency we should handle this case too. However, since the reels are blurred during spinning, this is less critical. The main issue is the idle/stopped state.
 
-## Summary of Changes
+**The scatter glow should show when:**
+- `globalTeaseActive` is true (tease reels are still spinning)
+- `hasLandedScatter` is true (this reel has a scatter and is one of the landed ones)
+- The symbol is a scatter
 
-| File | Function | Change |
+### Technical Changes
+
+| File | Location | Change |
 |------|----------|--------|
-| `slotGameLogic.ts` | `checkLineWin` | Add null check before processing line, return `null` if symbols missing |
-| `bonusGameLogic.ts` | `calculateWins` | Add null check before processing line, `continue` to skip if symbols missing |
+| `src/components/slots/SlotReel.tsx` | Lines 324-333 (idle/stopped render) | Pass calculated `isTeasing` based on `globalTeaseActive`, `hasLandedScatter`, and whether the symbol is a scatter |
 
-## Benefits
-- **Prevents crashes**: Game continues running even if symbol data is inconsistent
-- **Graceful degradation**: Missing symbols result in no win for that line (rather than crash)
-- **Debugging support**: Console warnings help identify data sync issues during development
-- **Type safety**: Proper TypeScript narrowing after the null check
+### Implementation Details
+
+The fix is straightforward - we need to calculate and pass the `isTeasing` prop correctly:
+
+```tsx
+// In the idle/stopped render section (around line 325)
+<SlotSymbol
+  symbol={symbol}
+  isWinning={winningPositions.includes(rowIndex)}
+  isSpinning={false}
+  isExpanded={symbolIsExpanded}
+  isNewlyExpanded={symbolIsNewlyExpanded}
+  hasLanded={spinState === "stopped"}
+  isTeasing={globalTeaseActive && hasLandedScatter && symbol.is_scatter}
+/>
+```
+
+This ensures:
+- Scatter symbols glow only when global tease is active (other reels still teasing)
+- Only on reels that have a landed scatter (tracked via `hasLandedScatter`)
+- Only if the specific symbol being rendered is a scatter
+- The glow stops when all reels have stopped (`globalTeaseActive` becomes false)
