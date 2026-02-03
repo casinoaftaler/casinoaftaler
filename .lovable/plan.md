@@ -1,9 +1,9 @@
 
 
-# Plan: Scatter Lyd på Reel 1-4
+# Plan: Scatter Lyd Kun Med Mindst Én Scatter på Reel 1-3
 
 ## Problem
-Lyden afspilles kun på reel 1-3 + reel 4 (kun hvis det er 2. scatter). Brugeren ønsker at lyden skal afspilles på reel 1, 2, 3 **og** 4 generelt (ikke kun for 2. scatter på reel 4).
+Hvis scatters **kun** lander på reel 4 og 5, skal der hverken afspilles lyd eller vises glow. Lyden skal kun afspilles hvis der er mindst én scatter på reel 1, 2 eller 3.
 
 ---
 
@@ -11,14 +11,14 @@ Lyden afspilles kun på reel 1-3 + reel 4 (kun hvis det er 2. scatter). Brugeren
 
 ```text
 NUVÆRENDE:
-- Reel 1-3: Lyd afspilles altid
-- Reel 4: Lyd afspilles KUN hvis det er 2. scatter
+- Reel 1-4: Lyd afspilles altid
 - Reel 5: Ingen lyd
 
 ØNSKET:
-- Reel 1-4: Lyd afspilles altid
+- Reel 1-3: Lyd afspilles altid
+- Reel 4: Lyd afspilles KUN hvis der allerede er scatter på reel 1-3
 - Reel 5: Ingen lyd
-- Glow: Kun når 2+ scatters (tease mode)
+- Glow: Kun når 2+ scatters OG mindst én er på reel 1-3
 ```
 
 ---
@@ -27,28 +27,34 @@ NUVÆRENDE:
 
 ### Opdater Scatter Lyd Logik i SlotGame.tsx
 
-**Fil:** `src/components/slots/SlotGame.tsx` (linje 480-488)
-
-Ændre betingelsen fra `reelIndex <= 2` til `reelIndex <= 3`:
+**Fil:** `src/components/slots/SlotGame.tsx` (linje 480-486)
 
 ```typescript
-// NUVÆRENDE (linje 480-488):
-// Play sound if:
-// 1. Scatter is on reel 1-3 (index 0-2), OR
-// 2. This is the 2nd scatter AND it's on reel 4 (index 3) - triggers tease mode
-const isOnReels123 = reelIndex <= 2;
-const is2ndScatterOnReel4 = scattersLanded === 2 && reelIndex === 3;
+// NUVÆRENDE:
+const isOnReels1234 = reelIndex <= 3;
 
-if (isOnReels123 || is2ndScatterOnReel4) {
+if (isOnReels1234) {
   slotSounds.playScatterLand(scattersLanded);
 }
 
 // NY LOGIK:
-// Play sound if scatter is on reel 1-4 (index 0-3)
-// Reel 5 is too late for sound
-const isOnReels1234 = reelIndex <= 3;
+// Count scatters specifically on reels 1-3 (index 0-2)
+let scattersOnReels123 = 0;
+for (let r = 0; r <= Math.min(reelIndex, 2); r++) {
+  const reelHasScatter = grid?.[r]?.some(symbolId => {
+    const symbol = symbols?.find(s => s.id === symbolId);
+    return symbol?.is_scatter;
+  });
+  if (reelHasScatter) scattersOnReels123++;
+}
 
-if (isOnReels1234) {
+// Play sound if:
+// 1. Scatter is on reel 1-3 (index 0-2), OR
+// 2. Scatter is on reel 4 AND there's already a scatter on reel 1-3
+const isOnReels123 = reelIndex <= 2;
+const isOnReel4WithPriorScatter = reelIndex === 3 && scattersOnReels123 > 0;
+
+if (isOnReels123 || isOnReel4WithPriorScatter) {
   slotSounds.playScatterLand(scattersLanded);
 }
 ```
@@ -59,33 +65,31 @@ if (isOnReels1234) {
 
 ### Scenarie: Scatter på reel 1, så reel 4
 ```text
-Reel 1 lander:    📖 → 🔊 Lyd (1. scatter på reel 1-4)
+Reel 1 lander:    📖 → 🔊 Lyd (scatter på reel 1-3)
                        ❌ Ingen glow endnu
                        
-Reel 4 lander:    📖 → 🔊 Lyd (2. scatter på reel 1-4)
-                       ✨ Glow aktiveres på BEGGE scatters
-                       ✨ Tease mode starter på reel 5
+Reel 4 lander:    📖 → 🔊 Lyd (reel 4 + prior scatter på reel 1)
+                       ✨ Glow aktiveres på BEGGE
 ```
 
 ### Scenarie: Første scatter på reel 4
 ```text
-Reel 4 lander:    📖 → 🔊 Lyd (1. scatter på reel 1-4)
+Reel 4 lander:    📖 → 🔇 Ingen lyd (ingen prior scatter på 1-3)
                        ❌ Ingen glow (kun 1 scatter)
 ```
 
 ### Scenarie: Scatter på reel 4, så reel 5
 ```text
-Reel 4 lander:    📖 → 🔊 Lyd (1. scatter på reel 1-4)
-                       ❌ Ingen glow endnu
-                       
-Reel 5 lander:    📖 → 🔇 Ingen lyd (reel 5 er uden for 1-4)
-                       ✨ Glow aktiveres på BEGGE scatters
+Reel 4 lander:    📖 → 🔇 Ingen lyd (ingen prior scatter)
+Reel 5 lander:    📖 → 🔇 Ingen lyd
+                       ❌ Ingen glow (ingen scatter på 1-3)
 ```
 
-### Scenarie: Første scatter på reel 5
+### Scenarie: Scatter på reel 2, så reel 5
 ```text
-Reel 5 lander:    📖 → 🔇 Ingen lyd
-                       ❌ Ingen glow (kun 1 scatter)
+Reel 2 lander:    📖 → 🔊 Lyd (scatter på reel 1-3)
+Reel 5 lander:    📖 → 🔇 Ingen lyd (reel 5)
+                       ✨ Glow aktiveres (har scatter på 1-3)
 ```
 
 ---
@@ -94,18 +98,18 @@ Reel 5 lander:    📖 → 🔇 Ingen lyd
 
 | Fil | Ændring |
 |-----|---------|
-| `src/components/slots/SlotGame.tsx` | Ændre `reelIndex <= 2` til `reelIndex <= 3` og fjern den separate 2. scatter betingelse |
+| `src/components/slots/SlotGame.tsx` | Tilføj check for scatters på reel 1-3 før lyd på reel 4 |
 
 ---
 
 ## Tekniske Detaljer
 
 ### Scatter Lyd Regler:
-- Lyd afspilles hvis scatter lander på reel 1, 2, 3, eller 4 (index 0-3)
-- Progressiv lyd tæller alle scatters op til nuværende reel
-- Scatters på reel 5 udløser aldrig lyd
+- **Reel 1-3**: Lyd afspilles altid
+- **Reel 4**: Lyd afspilles KUN hvis der er mindst én scatter på reel 1-3
+- **Reel 5**: Aldrig lyd
 
 ### Scatter Glow Regler:
-- Uændret: Glow kræver tease mode (2+ scatters)
-- Når tease mode aktiveres, glower ALLE landede scatters
+- Glow kræver tease mode (2+ scatters)
+- Glow vises på alle landede scatters når tease aktiveres
 
