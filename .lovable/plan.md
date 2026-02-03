@@ -1,68 +1,96 @@
 
-# Plan: Tilføj Retrigger Lydeffekt
+
+# Plan: Pulserende Glow-effekt og Flyt Bonus Status Bar
 
 ## Oversigt
-Tilføj en unik lydeffekt for retriggere der adskiller sig fra den normale bonus trigger-lyd. Retrigger-lyden skal føles som en "forstærkning" af den igangværende bonus snarere end en helt ny start.
-
----
-
-## Lyddesign: Retrigger vs. Bonus Trigger
-
-| Element | Bonus Trigger | Retrigger |
-|---------|---------------|-----------|
-| Karakter | Dyb, mystisk opvågnen | Hurtig, triumferende forstærkning |
-| Tempo | Langsom opbygning (0.8s sweep) | Hurtig burst (0.4s) |
-| Frekvenser | Lave toner der stiger | Høje, glimtende toner |
-| Følelse | "Bogen åbner" | "Bogen lyser endnu stærkere!" |
+Tilføj en pulserende gylden glow-animation rundt om bonus-status baren under free spins, og flyt baren højere op så den ikke dækker over rammen.
 
 ---
 
 ## Filer der skal ændres
 
-### 1. `src/lib/slotSoundEffects.ts`
-Tilføj ny `playRetrigger()` metode med følgende lyddesign:
+### 1. `src/index.css`
+Tilføj ny keyframe animation for pulserende glow:
 
-**Lydkomponenter:**
-- Hurtig power surge (burst i stedet for langsom opbygning)
-- Ascending sparkle cascade (flere og hurtigere sparkles)
-- Triumferende fanfare-akkord (højere og mere strålende)
-- "Book glow" shimmer (vedvarende glimmer-effekt)
-- Bonus-forstærkende "whoosh" effekt
-
-**Teknisk implementering:**
-```text
-playRetrigger():
-- Power burst: 80-400 Hz over 0.3s (hurtigere end trigger)
-- Sparkle cascade: 25 sparkles, tættere intervaller
-- Triumphant chord: E major med høje overtoner
-- Shimmer layer: Høje frekvenser (2000-5000 Hz) med tremolo
-- Total varighed: ~1.5 sekunder
+```css
+@keyframes bonus-bar-glow {
+  0%, 100% {
+    box-shadow: 
+      0 0 10px rgba(251,191,36,0.4),
+      0 0 20px rgba(251,191,36,0.2),
+      0 0 30px rgba(251,191,36,0.1);
+  }
+  50% {
+    box-shadow: 
+      0 0 20px rgba(251,191,36,0.6),
+      0 0 40px rgba(251,191,36,0.4),
+      0 0 60px rgba(251,191,36,0.2);
+  }
+}
 ```
 
-### 2. `src/components/slots/SlotGame.tsx`
-Kald `slotSounds.playRetrigger()` når retrigger detekteres (ved linje 520).
+---
+
+### 2. `src/components/slots/BonusStatusBar.tsx`
+Tilføj den pulserende glow-effekt til containerens styling:
+
+**Nuværende styling (linje 25-30):**
+```tsx
+className={cn(
+  "w-full p-2 sm:p-3 rounded-xl",
+  "bg-card/70 backdrop-blur-sm",
+  "border border-border/60",
+  "shadow-sm"
+)}
+```
+
+**Ny styling:**
+```tsx
+className={cn(
+  "w-full p-2 sm:p-3 rounded-xl",
+  "bg-card/70 backdrop-blur-sm",
+  "border border-amber-400/50",
+  "animate-[bonus-bar-glow_2s_ease-in-out_infinite]"
+)}
+```
+
+**Ændringer:**
+- Ændret border fra `border-border/60` til `border-amber-400/50` for gylden kant
+- Erstattet `shadow-sm` med den nye pulserende glow-animation
 
 ---
 
-## Lydkarakteristik
+### 3. `src/components/slots/SlotGame.tsx`
+Flyt bonus-status baren højere op ved at øge den negative margin:
 
-**Retrigger-lyden skal kommunikere:**
-- "Mere af det gode!"
-- Forøget spænding og momentum
-- Kontinuitet med bonus-tilstand
-- Triumf og belønning
+**Nuværende (linje 410):**
+```tsx
+<div className="max-w-fit mx-auto mb-1 sm:mb-2 -mt-5">
+```
 
-**Forskel fra bonus trigger:**
-- Kortere og mere punchy
-- Højere frekvensområde (mere strålende)
-- Hurtigere tempo
-- Mere "celebration" end "awakening"
+**Ny:**
+```tsx
+<div className="max-w-fit mx-auto mb-1 sm:mb-2 -mt-8 sm:-mt-10">
+```
+
+Dette flytter baren 8-10 rem højere op (responsivt) så den ikke overlapper rammen.
 
 ---
 
-## Opsummering
+## Visuel Resultat
 
-| Fil | Ændring |
-|-----|---------|
-| `src/lib/slotSoundEffects.ts` | Tilføj `playRetrigger()` metode |
-| `src/components/slots/SlotGame.tsx` | Kald `playRetrigger()` ved retrigger |
+| Element | Før | Efter |
+|---------|-----|-------|
+| Bonus bar kant | Grå (`border-border/60`) | Gylden (`border-amber-400/50`) |
+| Bonus bar skygge | Statisk (`shadow-sm`) | Pulserende gylden glow (2s cyklus) |
+| Bonus bar position | `-mt-5` (alle skærme) | `-mt-8` mobil, `-mt-10` desktop |
+
+---
+
+## Animation Karakteristik
+
+- **Varighed:** 2 sekunder per cyklus
+- **Timing:** `ease-in-out` for blød overgang
+- **Intensitet:** Pulserer mellem svag og stærk gylden glow
+- **Farve:** Amber/guld (rgba(251,191,36)) for konsistens med temaet
+
