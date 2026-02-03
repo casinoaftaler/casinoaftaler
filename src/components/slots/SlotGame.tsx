@@ -614,6 +614,7 @@ export function SlotGame() {
                       isActiveTeaseReel={teaseReels.includes(colIndex) && activeTeaseReelIndex === colIndex}
                       scatterLandedOnPreviousReel={scatterReelsLanded.has(teaseInfo.lastScatterReel)}
                       extendedFakeLoop={teaseInfo.lateScatter && colIndex === 4}
+                      globalTeaseActive={teaseReels.length > 0 && isSpinning && activeTeaseReelIndex !== null}
                     />
                     {/* Separator line between reels */}
                     {colIndex < 4 && (
