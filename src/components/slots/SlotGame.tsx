@@ -62,6 +62,7 @@ export function SlotGame() {
   const [newlyExpandedReels, setNewlyExpandedReels] = useState<number[]>([]);
   const [showWinLines, setShowWinLines] = useState(false);
   const [teaseReels, setTeaseReels] = useState<number[]>([]);
+  const [activeTeaseReelIndex, setActiveTeaseReelIndex] = useState<number | null>(null);
   
   const winLinesTimeoutRef = useRef<NodeJS.Timeout | null>(null);
   
@@ -184,6 +185,7 @@ export function SlotGame() {
     // Calculate which reels should tease (slow down) based on scatter positions
     const teaseReelIndices = getScatterTeaseReels(originalGrid, symbols);
     setTeaseReels(teaseReelIndices);
+    setActiveTeaseReelIndex(null); // Reset active tease reel for new spin
 
     // Set the ORIGINAL grid for spinning (not the expanded one yet)
     // This creates the first phase where symbols land naturally
@@ -362,8 +364,9 @@ export function SlotGame() {
         stopSpinSound.current = null;
       }
     } finally {
-      setIsSpinning(false);
+    setIsSpinning(false);
       setTeaseReels([]); // Clear tease reels after spin completes
+      setActiveTeaseReelIndex(null); // Reset active tease reel
     }
   };
 
@@ -531,8 +534,25 @@ export function SlotGame() {
                       isNewlyExpanded={newlyExpandedReels.includes(colIndex)}
                       expandingSymbolId={bonusState.expandingSymbol?.id}
                       delay={colIndex}
-                      onReelStop={(reelIndex) => slotSounds.playReelStopSingle(reelIndex)}
+                      onReelStop={(reelIndex) => {
+                        slotSounds.playReelStopSingle(reelIndex);
+                        // Handle sequential tease reel activation
+                        if (teaseReels.includes(reelIndex)) {
+                          // Current tease reel stopped, activate next tease reel
+                          const currentTeaseIndex = teaseReels.indexOf(reelIndex);
+                          if (currentTeaseIndex < teaseReels.length - 1) {
+                            setActiveTeaseReelIndex(teaseReels[currentTeaseIndex + 1]);
+                          }
+                        } else if (teaseReels.length > 0) {
+                          // Non-tease reel stopped, check if next reel is tease
+                          const nextReel = reelIndex + 1;
+                          if (teaseReels.includes(nextReel)) {
+                            setActiveTeaseReelIndex(nextReel);
+                          }
+                        }
+                      }}
                       teaseMode={teaseReels.includes(colIndex)}
+                      isActiveTeaseReel={teaseReels.includes(colIndex) && activeTeaseReelIndex === colIndex}
                     />
                   ))}
                   
