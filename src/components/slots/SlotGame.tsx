@@ -465,7 +465,7 @@ export function SlotGame() {
                           return symbol?.is_scatter;
                         });
                         
-                        // Always play scatter land sound for ANY scatter (not just tease mode)
+                        // Play scatter land sound with specific rules
                         if (hasScatterOnReel) {
                           // Count how many scatters have landed up to and including this reel
                           let scattersLanded = 0;
@@ -476,9 +476,18 @@ export function SlotGame() {
                             });
                             if (reelHasScatter) scattersLanded++;
                           }
-                          slotSounds.playScatterLand(scattersLanded);
                           
-                          // Track ALL scatter reels for glow effect (not just last one)
+                          // Play sound if:
+                          // 1. Scatter is on reel 1-3 (index 0-2), OR
+                          // 2. This is the 2nd scatter AND it's on reel 4 (index 3) - triggers tease mode
+                          const isOnReels123 = reelIndex <= 2;
+                          const is2ndScatterOnReel4 = scattersLanded === 2 && reelIndex === 3;
+                          
+                          if (isOnReels123 || is2ndScatterOnReel4) {
+                            slotSounds.playScatterLand(scattersLanded);
+                          }
+                          
+                          // Track ALL scatter reels for glow effect
                           setScatterReelsLanded(prev => new Set([...prev, reelIndex]));
                         }
                         
