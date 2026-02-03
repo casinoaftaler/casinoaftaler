@@ -26,8 +26,13 @@ export function BonusStatusBar({
         "w-full p-2 sm:p-3 rounded-xl",
         "bg-card/70 backdrop-blur-sm",
         "border border-amber-400/50",
-        "animate-[bonus-bar-glow_2s_ease-in-out_infinite]"
+        "animate-[bonus-bar-glow_2s_ease-in-out_infinite]",
+        "animate-fade-in"
       )}
+      style={{
+        animationDuration: "0.4s",
+        animationTimingFunction: "cubic-bezier(0.34, 1.56, 0.64, 1)",
+      }}
     >
       {/* Mobile: 2x2 grid, Desktop: horizontal flex */}
       <div className="grid grid-cols-2 sm:flex sm:flex-wrap sm:items-center sm:justify-between gap-2 sm:gap-4">
