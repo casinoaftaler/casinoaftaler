@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { cn } from "@/lib/utils";
 import { useAnimatedCounter } from "@/hooks/useAnimatedCounter";
 
@@ -17,6 +17,7 @@ interface WinCelebrationProps {
   isActive: boolean;
   winAmount: number;
   bet: number;
+  onAnimationComplete?: () => void;
 }
 
 const COLORS = [
@@ -27,9 +28,11 @@ const COLORS = [
   "hsl(42, 95%, 55%)",    // Warm gold
 ];
 
-export function WinCelebration({ isActive, winAmount, bet }: WinCelebrationProps) {
+export function WinCelebration({ isActive, winAmount, bet, onAnimationComplete }: WinCelebrationProps) {
   const [particles, setParticles] = useState<Particle[]>([]);
   const [showBigWin, setShowBigWin] = useState(false);
+  const [isPulsing, setIsPulsing] = useState(false);
+  const hasTriggeredCompleteRef = useRef(false);
   
   const winMultiplier = bet > 0 ? winAmount / bet : 0;
   const isBigWin = winMultiplier >= 10;
@@ -45,10 +48,30 @@ export function WinCelebration({ isActive, winAmount, bet }: WinCelebrationProps
     isBigWin: true // Use dramatic big win counting sound
   });
 
+  // Detect when counting is done and start pulse animation
+  useEffect(() => {
+    if (showBigWin && displayAmount === winAmount && winAmount > 0 && !hasTriggeredCompleteRef.current) {
+      setIsPulsing(true);
+      
+      // Pulse for 750ms (3 pulses at 0.25s each), then fade out
+      const pulseTimeout = setTimeout(() => {
+        setIsPulsing(false);
+        setShowBigWin(false);
+        setParticles([]);
+        hasTriggeredCompleteRef.current = true;
+        onAnimationComplete?.();
+      }, 750);
+      
+      return () => clearTimeout(pulseTimeout);
+    }
+  }, [displayAmount, winAmount, showBigWin, onAnimationComplete]);
+
   useEffect(() => {
     if (!isActive || winAmount <= 0) {
       setParticles([]);
       setShowBigWin(false);
+      setIsPulsing(false);
+      hasTriggeredCompleteRef.current = false;
       return;
     }
 
@@ -69,18 +92,18 @@ export function WinCelebration({ isActive, winAmount, bet }: WinCelebrationProps
       });
     }
     setParticles(newParticles);
+    hasTriggeredCompleteRef.current = false;
     
     if (isBigWin) {
       setShowBigWin(true);
+    } else {
+      // For non-big wins, complete immediately after a short delay
+      const timeout = setTimeout(() => {
+        setParticles([]);
+        onAnimationComplete?.();
+      }, 2000);
+      return () => clearTimeout(timeout);
     }
-
-    // Clean up after animation
-    const timeout = setTimeout(() => {
-      setParticles([]);
-      setShowBigWin(false);
-    }, 3000);
-
-    return () => clearTimeout(timeout);
   }, [isActive, winAmount, bet]);
 
   if (!isActive || winAmount <= 0) return null;
@@ -132,46 +155,50 @@ export function WinCelebration({ isActive, winAmount, bet }: WinCelebrationProps
       {/* Big Win Text Overlay */}
       {showBigWin && (
         <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-30">
-          <div
-            className={cn(
-              "text-center animate-[big-win-pop_0.6s_ease-out_forwards]",
-              isEpicWin && "animate-[epic-win-shake_0.1s_ease-in-out_infinite]"
-            )}
-          >
+          {/* Semi-transparent background */}
+          <div className="bg-black/70 backdrop-blur-sm rounded-2xl px-6 sm:px-10 py-4 sm:py-8 border-2 border-amber-500/40 shadow-[0_0_40px_rgba(251,191,36,0.3)]">
             <div
               className={cn(
-                "font-bold tracking-wider",
-                isEpicWin ? "text-4xl sm:text-6xl" : isMegaWin ? "text-3xl sm:text-5xl" : "text-2xl sm:text-4xl"
+                "text-center animate-[big-win-pop_0.6s_ease-out_forwards]",
+                isEpicWin && "animate-[epic-win-shake_0.1s_ease-in-out_infinite]"
               )}
-              style={{
-                background: isEpicWin 
-                  ? "linear-gradient(135deg, #ffd700, #ff6b6b, #ffd700, #ff6b6b)"
-                  : isMegaWin
-                  ? "linear-gradient(135deg, #ffd700, #ff8c00, #ffd700)"
-                  : "linear-gradient(135deg, #ffd700, #ffb347)",
-                backgroundSize: isEpicWin ? "300% 300%" : "200% 200%",
-                WebkitBackgroundClip: "text",
-                WebkitTextFillColor: "transparent",
-                animation: isEpicWin 
-                  ? "gradient-shift 0.5s ease infinite" 
-                  : "gradient-shift 1s ease infinite",
-                textShadow: "0 0 30px rgba(255, 215, 0, 0.8)",
-                filter: "drop-shadow(0 0 20px rgba(255, 215, 0, 0.6))",
-              }}
             >
-              {isEpicWin ? "🔥 EPIC WIN! 🔥" : isMegaWin ? "💎 MEGA WIN! 💎" : "⭐ BIG WIN! ⭐"}
-            </div>
-            <div
-              className={cn(
-                "mt-2 font-bold",
-                isEpicWin ? "text-3xl sm:text-5xl" : isMegaWin ? "text-2xl sm:text-4xl" : "text-xl sm:text-3xl"
-              )}
-              style={{
-                color: "#ffd700",
-                textShadow: "0 0 20px rgba(255, 215, 0, 0.8), 0 0 40px rgba(255, 215, 0, 0.4)",
-              }}
-            >
-              {displayAmount} POINT!
+              <div
+                className={cn(
+                  "font-bold tracking-wider",
+                  isEpicWin ? "text-4xl sm:text-6xl" : isMegaWin ? "text-3xl sm:text-5xl" : "text-2xl sm:text-4xl"
+                )}
+                style={{
+                  background: isEpicWin 
+                    ? "linear-gradient(135deg, #ffd700, #ff6b6b, #ffd700, #ff6b6b)"
+                    : isMegaWin
+                    ? "linear-gradient(135deg, #ffd700, #ff8c00, #ffd700)"
+                    : "linear-gradient(135deg, #ffd700, #ffb347)",
+                  backgroundSize: isEpicWin ? "300% 300%" : "200% 200%",
+                  WebkitBackgroundClip: "text",
+                  WebkitTextFillColor: "transparent",
+                  animation: isEpicWin 
+                    ? "gradient-shift 0.5s ease infinite" 
+                    : "gradient-shift 1s ease infinite",
+                  textShadow: "0 0 30px rgba(255, 215, 0, 0.8)",
+                  filter: "drop-shadow(0 0 20px rgba(255, 215, 0, 0.6))",
+                }}
+              >
+                {isEpicWin ? "🔥 EPIC WIN! 🔥" : isMegaWin ? "💎 MEGA WIN! 💎" : "⭐ BIG WIN! ⭐"}
+              </div>
+              <div
+                className={cn(
+                  "mt-2 font-bold",
+                  isEpicWin ? "text-3xl sm:text-5xl" : isMegaWin ? "text-2xl sm:text-4xl" : "text-xl sm:text-3xl",
+                  isPulsing && "animate-[win-amount-pulse_0.25s_ease-in-out_3]"
+                )}
+                style={{
+                  color: "#ffd700",
+                  textShadow: "0 0 20px rgba(255, 215, 0, 0.8), 0 0 40px rgba(255, 215, 0, 0.4)",
+                }}
+              >
+                {displayAmount} POINT!
+              </div>
             </div>
           </div>
         </div>
