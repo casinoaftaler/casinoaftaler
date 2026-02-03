@@ -166,8 +166,10 @@ export function WinCelebration({ isActive, winAmount, bet, onAnimationComplete }
       {showBigWin && (
         <div 
           className={cn(
-            "absolute inset-0 flex items-center justify-center pointer-events-none z-30 transition-all duration-400",
-            isFadingOut ? "opacity-0 scale-75" : "opacity-100 scale-100"
+            "absolute inset-0 flex items-center justify-center pointer-events-none z-30",
+            isFadingOut 
+              ? "opacity-0 scale-75 transition-all duration-400" 
+              : "animate-[big-win-entry_0.4s_cubic-bezier(0.34,1.56,0.64,1)_forwards]"
           )}
         >
           {/* Semi-transparent background */}
