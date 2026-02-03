@@ -125,24 +125,33 @@ export function getScatterTeaseReels(grid: string[][], symbols: SlotSymbol[]): T
   return { reels: [], lateScatter: false, lastScatterReel: -1 };
 }
 
-export function getRandomSymbol(symbols: SlotSymbol[], excludeIds: string[] = []): SlotSymbol {
+export function getRandomSymbol(symbols: SlotSymbol[], excludeIds: string[] = [], isBonusSpin: boolean = false): SlotSymbol {
   const availableSymbols = symbols.filter(s => !excludeIds.includes(s.id));
   
   // If all symbols are excluded, fall back to full list (shouldn't happen normally)
   const symbolPool = availableSymbols.length > 0 ? availableSymbols : symbols;
   
-  const totalWeight = symbolPool.reduce((sum, s) => sum + (SYMBOL_WEIGHTS[s.name] || 10), 0);
+  // During bonus spins, reduce scatter weight significantly to make retriggering much harder
+  const getWeight = (s: SlotSymbol) => {
+    const baseWeight = SYMBOL_WEIGHTS[s.name] || 10;
+    if (isBonusSpin && s.is_scatter) {
+      return baseWeight * 0.1; // 10x harder to get scatters during bonus
+    }
+    return baseWeight;
+  };
+  
+  const totalWeight = symbolPool.reduce((sum, s) => sum + getWeight(s), 0);
   let random = Math.random() * totalWeight;
   
   for (const symbol of symbolPool) {
-    random -= SYMBOL_WEIGHTS[symbol.name] || 10;
+    random -= getWeight(symbol);
     if (random <= 0) return symbol;
   }
   
   return symbolPool[symbolPool.length - 1];
 }
 
-export function generateGrid(symbols: SlotSymbol[]): string[][] {
+export function generateGrid(symbols: SlotSymbol[], isBonusSpin: boolean = false): string[][] {
   const grid: string[][] = [];
   
   for (let col = 0; col < 5; col++) {
@@ -150,7 +159,7 @@ export function generateGrid(symbols: SlotSymbol[]): string[][] {
     const usedIds: string[] = [];
     
     for (let row = 0; row < 3; row++) {
-      const symbol = getRandomSymbol(symbols, usedIds);
+      const symbol = getRandomSymbol(symbols, usedIds, isBonusSpin);
       column.push(symbol.id);
       usedIds.push(symbol.id);
     }

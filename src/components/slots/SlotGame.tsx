@@ -205,7 +205,8 @@ export function SlotGame() {
 
     // Generate final result BEFORE starting the animation
     // This ensures SlotReel knows what symbols to land on
-    const originalGrid = generateGrid(symbols);
+    // Pass isBonusSpin to reduce scatter weight during bonus rounds
+    const originalGrid = generateGrid(symbols, isBonusSpin);
     let result: SpinResult;
     let expandedGrid = originalGrid;
     let reelsExpanded: number[] = [];
