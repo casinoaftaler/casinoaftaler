@@ -61,18 +61,20 @@ export const RARITY_LABELS: Record<SymbolRarity, string> = {
 // Scatter probability tuned for ~1 bonus per 100 spins
 export const SYMBOL_WEIGHTS: Record<string, number> = {
   // Premium symbols (rare)
-  'Pharaoh': 5,   // Most rare premium
-  'Anubis': 8,
-  'Horus': 12,
-  'Scarab': 15,
-  // Common symbols (frequent)
-  'Isis': 40,
-  'Ankh': 45,
-  'A': 50,
-  'K': 55,
-  'Q': 60,
+  'Pharaoh': 2,   // Most rare premium (~0.6%)
+  'Anubis': 4,    // (~1.3%)
+  'Horus': 6,     // (~1.9%)
+  'Scarab': 8,    // (~2.5%)
+  // Common symbols - K and A slightly less common
+  'A': 45,        // (~14%)
+  'K': 50,        // (~16%)
+  // Common symbols - Q, J, 10 most common
+  'Q': 60,        // (~19%)
+  'J': 70,        // (~22%)
+  '10': 70,       // (~22%)
   // Scatter (extremely rare)
-  'Book': 1,
+  'Book': 1,      // (~0.3%)
+  'Fedesvins Book': 1,  // Alternative scatter name
 };
 
 // Count scatters per reel column
