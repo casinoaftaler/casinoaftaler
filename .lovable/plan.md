@@ -1,175 +1,160 @@
 
-# Plan: Forbedret Big Win Notifikation
+# Null Safety Checks for Slot Game Logic
 
-## Oversigt
-Tilføj en semi-transparent baggrund omkring Big Win teksten, en pulserende animation på gevinstbeløbet når tælleranimationen er færdig, og blokér spinning indtil hele animationen er afsluttet.
+## Problem
+Both `slotGameLogic.ts` and `bonusGameLogic.ts` use non-null assertions (`!`) when retrieving symbols from a Map. If a symbol ID in the grid doesn't exist in the symbols array (due to database changes, stale data, or race conditions), the code will crash when trying to access properties on `undefined`.
+
+## Affected Locations
+
+### 1. `src/lib/slotGameLogic.ts`
+**Line 183** - `checkLineWin` function:
+```typescript
+const lineSymbolData = lineSymbols.map(id => symbolsById.get(id)!);
+```
+- Later accesses `lineSymbolData[i].id`, `lineSymbolData[i].is_wild`, etc.
+- Will crash if any symbol ID is not found in the Map
+
+### 2. `src/lib/bonusGameLogic.ts`
+**Line 232** - `calculateWins` function:
+```typescript
+const lineSymbolData = lineSymbols.map(id => symbolsById.get(id)!);
+```
+- Later accesses `lineSymbolData[0].is_scatter`, `current.id`, `baseSymbol.multiplier_3`, etc.
+- Will crash if any symbol ID is not found in the Map
+
+## Solution
+
+### Approach: Filter out invalid symbols and skip lines with missing data
+
+Rather than crashing, we'll:
+1. Filter out any `undefined` values when mapping symbol IDs to symbol data
+2. Return early (skip the line) if we don't have all 5 symbols resolved
+3. Add console warnings in development to help debug data mismatches
 
 ---
 
-## Ændringer
+## Implementation Details
 
-### 1. Fil: `src/components/slots/WinCelebration.tsx`
+### Changes to `slotGameLogic.ts`
 
-**Tilføj baggrund og puls-animation:**
-
-| Ændring | Beskrivelse |
-|---------|-------------|
-| Ny state | `isPulsing` - tracker om tælleren er færdig og pulserer |
-| Ny state | `countingDone` - tracker om tælleren har nået målet |
-| Baggrund | Semi-transparent mørk baggrund med blur-effekt og gylden kant omkring Big Win overlay |
-| Puls-animation | Når `displayAmount === winAmount`, start 3-4 pulser før forsvinden |
-| Callback prop | Ny `onAnimationComplete` callback der kaldes når hele animationen er færdig |
-
-**Struktur efter ændring:**
-```tsx
-// Ny baggrund wrapper omkring Big Win text
-<div className="bg-black/70 backdrop-blur-sm rounded-2xl px-8 py-6 border-2 border-amber-500/50">
-  {/* BIG WIN! tekst */}
-  {/* Point tekst med puls-animation når counting done */}
-</div>
+**`checkLineWin` function (lines 172-217):**
+```typescript
+export function checkLineWin(
+  grid: string[][],
+  linePattern: number[],
+  symbols: SlotSymbol[],
+  betAmount: number
+): LineWin | null {
+  const symbolsById = new Map(symbols.map(s => [s.id, s]));
+  const wildSymbol = symbols.find(s => s.is_wild);
+  
+  // Get symbols on this line
+  const lineSymbols = linePattern.map((row, col) => grid[col][row]);
+  const lineSymbolData = lineSymbols.map(id => symbolsById.get(id));
+  
+  // Safety check: if any symbol is missing, skip this line
+  if (lineSymbolData.some(s => !s)) {
+    console.warn('[SlotGame] Missing symbol data for line, skipping win check');
+    return null;
+  }
+  
+  // Now we know all symbols exist, cast to non-null array
+  const validSymbols = lineSymbolData as SlotSymbol[];
+  
+  // Find the first non-wild symbol (or wild if all wilds)
+  let baseSymbol = validSymbols.find(s => !s.is_wild) || validSymbols[0];
+  
+  // Count consecutive matching symbols from left
+  let count = 0;
+  for (let i = 0; i < 5; i++) {
+    const current = validSymbols[i];
+    if (current.id === baseSymbol.id || current.is_wild || baseSymbol.is_wild) {
+      count++;
+      if (baseSymbol.is_wild && !current.is_wild) {
+        baseSymbol = current;
+      }
+    } else {
+      break;
+    }
+  }
+  
+  // ... rest unchanged
+}
 ```
 
----
+### Changes to `bonusGameLogic.ts`
 
-### 2. Fil: `src/index.css`
-
-**Tilføj ny keyframe animation:**
-
-```css
-@keyframes win-amount-pulse {
-  0%, 100% {
-    transform: scale(1);
+**`calculateWins` function (lines 191-275):**
+```typescript
+function calculateWins(
+  grid: string[][],
+  symbols: SlotSymbol[],
+  betAmount: number,
+  expandingSymbol?: SlotSymbol,
+  expandedReels?: number[],
+  hasExpandingWin?: boolean
+): LineWin[] {
+  const wins: LineWin[] = [];
+  const symbolsById = new Map(symbols.map(s => [s.id, s]));
+  
+  // ... expanding symbol win logic unchanged ...
+  
+  // Standard win calculation (consecutive from left)
+  for (let lineIndex = 0; lineIndex < PAY_LINES.length; lineIndex++) {
+    const linePattern = PAY_LINES[lineIndex];
+    const lineSymbols = linePattern.map((row, col) => grid[col][row]);
+    const lineSymbolData = lineSymbols.map(id => symbolsById.get(id));
+    
+    // Safety check: if any symbol is missing, skip this line
+    if (lineSymbolData.some(s => !s)) {
+      console.warn('[BonusGame] Missing symbol data for line, skipping win check');
+      continue;
+    }
+    
+    // Now we know all symbols exist
+    const validSymbols = lineSymbolData as SlotSymbol[];
+    
+    // Find the first non-scatter symbol as base
+    let baseSymbol = validSymbols[0];
+    if (allowWildSubstitution && baseSymbol.is_scatter) {
+      const nonScatter = validSymbols.find(s => !s.is_scatter);
+      if (nonScatter) {
+        baseSymbol = nonScatter;
+      }
+    }
+    
+    // Count consecutive matching symbols from left
+    let count = 0;
+    for (let i = 0; i < 5; i++) {
+      const current = validSymbols[i];
+      const isMatch = current.id === baseSymbol.id || 
+        (allowWildSubstitution && current.is_scatter);
+      
+      if (isMatch) {
+        count++;
+      } else {
+        break;
+      }
+    }
+    
+    // ... rest unchanged
   }
-  50% {
-    transform: scale(1.15);
-  }
+  
+  return wins;
 }
 ```
 
 ---
 
-### 3. Fil: `src/components/slots/SlotGame.tsx`
+## Summary of Changes
 
-**Opdater WinCelebration props og timing:**
+| File | Function | Change |
+|------|----------|--------|
+| `slotGameLogic.ts` | `checkLineWin` | Add null check before processing line, return `null` if symbols missing |
+| `bonusGameLogic.ts` | `calculateWins` | Add null check before processing line, `continue` to skip if symbols missing |
 
-| Ændring | Beskrivelse |
-|---------|-------------|
-| Ny prop | `onAnimationComplete` callback til WinCelebration |
-| Timing | Erstat `setTimeout(() => setIsWinAnimating(false), 2000)` med callback-baseret logik |
-| Blokering | `isWinAnimating` bruges allerede til at blokere spinning - dette sikrer animationen fuldføres |
-
----
-
-## Animationsflow
-
-```text
-[Spin resultat]
-     │
-     ▼
-[Big Win overlay vises med baggrund]
-     │
-     ▼
-[Tal tæller op: 0 → 1500 (1.5-2.5s)]
-     │
-     ▼
-[Tæller færdig → Puls animation starter (0.8s)]
-     │
-     ▼
-[3 pulser → Fade out → onAnimationComplete]
-     │
-     ▼
-[isWinAnimating = false → Spin tilladt]
-```
-
----
-
-## Tekniske detaljer
-
-### WinCelebration.tsx ændringer:
-
-1. **Ny interface prop:**
-```tsx
-interface WinCelebrationProps {
-  isActive: boolean;
-  winAmount: number;
-  bet: number;
-  onAnimationComplete?: () => void; // NY
-}
-```
-
-2. **Nye states:**
-```tsx
-const [countingDone, setCountingDone] = useState(false);
-const [isPulsing, setIsPulsing] = useState(false);
-```
-
-3. **Detekter når tælleren er færdig:**
-```tsx
-useEffect(() => {
-  if (showBigWin && displayAmount === winAmount && winAmount > 0) {
-    setCountingDone(true);
-    setIsPulsing(true);
-    
-    // Puls i 800ms, derefter forsvind
-    const pulseTimeout = setTimeout(() => {
-      setIsPulsing(false);
-      setShowBigWin(false);
-      onAnimationComplete?.();
-    }, 800);
-    
-    return () => clearTimeout(pulseTimeout);
-  }
-}, [displayAmount, winAmount, showBigWin]);
-```
-
-4. **Baggrund styling:**
-```tsx
-<div className="bg-black/70 backdrop-blur-sm rounded-2xl px-6 sm:px-10 py-4 sm:py-8 border-2 border-amber-500/40 shadow-[0_0_40px_rgba(251,191,36,0.3)]">
-```
-
-5. **Pulserende beløb:**
-```tsx
-<div
-  className={cn(
-    "mt-2 font-bold",
-    isPulsing && "animate-[win-amount-pulse_0.25s_ease-in-out_3]"
-  )}
->
-  {displayAmount} POINT!
-</div>
-```
-
-### SlotGame.tsx ændringer:
-
-1. **Callback handler:**
-```tsx
-const handleWinAnimationComplete = useCallback(() => {
-  setIsWinAnimating(false);
-}, []);
-```
-
-2. **Fjern setTimeout:**
-Erstat `setTimeout(() => setIsWinAnimating(false), 2000)` med ingenting (callback håndterer det)
-
-3. **Opdater WinCelebration:**
-```tsx
-<WinCelebration
-  isActive={isWinAnimating}
-  winAmount={winAmount}
-  bet={bet}
-  onAnimationComplete={handleWinAnimationComplete}
-/>
-```
-
----
-
-## Resultat
-
-| Element | Status |
-|---------|--------|
-| Semi-transparent baggrund med blur | ✅ Tilføjet |
-| Gylden kant omkring overlay | ✅ Tilføjet |
-| Puls-animation efter counting | ✅ Tilføjet (3 pulser) |
-| Spin blokeret under animation | ✅ Virker (callback-baseret) |
-| Korrekt timing for alle win-typer | ✅ Skalerer med win-størrelse |
-
+## Benefits
+- **Prevents crashes**: Game continues running even if symbol data is inconsistent
+- **Graceful degradation**: Missing symbols result in no win for that line (rather than crash)
+- **Debugging support**: Console warnings help identify data sync issues during development
+- **Type safety**: Proper TypeScript narrowing after the null check
