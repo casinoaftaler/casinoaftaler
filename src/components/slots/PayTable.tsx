@@ -12,6 +12,11 @@ import { useSlotSymbols } from "@/hooks/useSlotSymbols";
 import { getSymbolEmoji, RARITY_LABELS } from "@/lib/slotGameLogic";
 import { cn } from "@/lib/utils";
 
+// Format multiplier: show "5×" for whole numbers, "1.5×" for decimals
+const formatMultiplier = (value: number): string => {
+  return Number.isInteger(value) ? `${value}×` : `${parseFloat(value.toFixed(2))}×`;
+};
+
 export function PayTable() {
   const { data: symbols } = useSlotSymbols();
 
@@ -32,9 +37,9 @@ export function PayTable() {
           <span>{symbol.name}</span>
         </div>
       </TableCell>
-      <TableCell className="text-right">{symbol.multiplier_3}×</TableCell>
-      <TableCell className="text-right">{symbol.multiplier_4}×</TableCell>
-      <TableCell className="text-right">{symbol.multiplier_5}×</TableCell>
+      <TableCell className="text-right">{formatMultiplier(symbol.multiplier_3)}</TableCell>
+      <TableCell className="text-right">{formatMultiplier(symbol.multiplier_4)}</TableCell>
+      <TableCell className="text-right">{formatMultiplier(symbol.multiplier_5)}</TableCell>
     </TableRow>
   );
 
@@ -131,9 +136,9 @@ export function PayTable() {
                         <span>{scatterSymbol.name}</span>
                       </div>
                     </TableCell>
-                    <TableCell className="text-right">{scatterSymbol.multiplier_3}×</TableCell>
-                    <TableCell className="text-right">{scatterSymbol.multiplier_4}×</TableCell>
-                    <TableCell className="text-right">{scatterSymbol.multiplier_5}×</TableCell>
+                    <TableCell className="text-right">{formatMultiplier(scatterSymbol.multiplier_3)}</TableCell>
+                    <TableCell className="text-right">{formatMultiplier(scatterSymbol.multiplier_4)}</TableCell>
+                    <TableCell className="text-right">{formatMultiplier(scatterSymbol.multiplier_5)}</TableCell>
                   </TableRow>
                 </TableBody>
               </Table>
