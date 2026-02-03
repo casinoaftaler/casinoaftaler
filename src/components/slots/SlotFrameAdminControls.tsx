@@ -5,7 +5,7 @@ import { supabase } from "@/integrations/supabase/client";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Loader2, Wand2, Trash2, ImageIcon, RefreshCw, Sparkles } from "lucide-react";
+import { Loader2, Wand2, Trash2, ImageIcon, RefreshCw, Sparkles, Download } from "lucide-react";
 import { toast } from "sonner";
 
 export function SlotFrameAdminControls() {
@@ -111,6 +111,25 @@ export function SlotFrameAdminControls() {
 
   const displayBackgroundUrl = backgroundPreviewUrl || currentBackgroundUrl;
   const displayFrameUrl = framePreviewUrl || currentFrameUrl;
+
+  const handleDownload = async (url: string, filename: string) => {
+    try {
+      const response = await fetch(url);
+      const blob = await response.blob();
+      const downloadUrl = window.URL.createObjectURL(blob);
+      const link = document.createElement('a');
+      link.href = downloadUrl;
+      link.download = filename;
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      window.URL.revokeObjectURL(downloadUrl);
+      toast.success(`${filename} downloadet!`);
+    } catch (error) {
+      console.error('Download error:', error);
+      toast.error('Kunne ikke downloade filen');
+    }
+  };
 
   const ImagePreview = ({ url, label, onError }: { url: string | null; label: string; onError: () => void }) => {
     if (!url) {
@@ -257,19 +276,30 @@ export function SlotFrameAdminControls() {
               </Button>
 
               {currentFrameUrl && (
-                <Button
-                  variant="outline"
-                  onClick={() => resetFrame.mutate()}
-                  disabled={resetFrame.isPending}
-                  className="border-destructive/50 text-destructive hover:bg-destructive/10"
-                >
-                  {resetFrame.isPending ? (
-                    <Loader2 className="h-4 w-4 mr-2 animate-spin" />
-                  ) : (
-                    <Trash2 className="h-4 w-4 mr-2" />
-                  )}
-                  Nulstil til Standard
-                </Button>
+                <>
+                  <Button
+                    variant="outline"
+                    onClick={() => handleDownload(currentFrameUrl, 'slot-frame.png')}
+                    className="border-amber-500/50 text-amber-500 hover:bg-amber-500/10"
+                  >
+                    <Download className="h-4 w-4 mr-2" />
+                    Download Ramme
+                  </Button>
+                  
+                  <Button
+                    variant="outline"
+                    onClick={() => resetFrame.mutate()}
+                    disabled={resetFrame.isPending}
+                    className="border-destructive/50 text-destructive hover:bg-destructive/10"
+                  >
+                    {resetFrame.isPending ? (
+                      <Loader2 className="h-4 w-4 mr-2 animate-spin" />
+                    ) : (
+                      <Trash2 className="h-4 w-4 mr-2" />
+                    )}
+                    Nulstil til Standard
+                  </Button>
+                </>
               )}
             </div>
 
