@@ -168,7 +168,15 @@ export function WinCelebration({ isActive, winAmount, bet, onAnimationComplete }
           className={cn(
             "absolute inset-0 flex items-center justify-center pointer-events-none z-30",
             isFadingOut 
-              ? "opacity-0 scale-75 transition-all duration-400" 
+              ? isEpicWin 
+                ? "opacity-0 scale-50 transition-all duration-500"
+                : isMegaWin
+                ? "opacity-0 scale-60 transition-all duration-450"
+                : "opacity-0 scale-75 transition-all duration-400"
+              : isEpicWin
+              ? "animate-[epic-win-entry_0.8s_cubic-bezier(0.34,1.56,0.64,1)_forwards]"
+              : isMegaWin
+              ? "animate-[mega-win-entry_0.6s_cubic-bezier(0.34,1.56,0.64,1)_forwards]"
               : "animate-[big-win-entry_0.4s_cubic-bezier(0.34,1.56,0.64,1)_forwards]"
           )}
         >
