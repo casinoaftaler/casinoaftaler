@@ -97,7 +97,7 @@ function SortableSymbolRow({ symbol, onEdit }: SortableSymbolRowProps) {
           {symbol.is_scatter && <Badge variant="outline" className="text-xs">Scatter</Badge>}
         </div>
         <div className="text-sm text-muted-foreground">
-          3×: {symbol.multiplier_3}x | 4×: {symbol.multiplier_4}x | 5×: {symbol.multiplier_5}x
+          {symbol.rarity === 'premium' && `2×: ${symbol.multiplier_2}x | `}3×: {symbol.multiplier_3}x | 4×: {symbol.multiplier_4}x | 5×: {symbol.multiplier_5}x
         </div>
       </div>
 
@@ -120,6 +120,7 @@ function EditSymbolDialog({ symbol, open, onClose }: EditSymbolDialogProps) {
   const [formData, setFormData] = useState({
     name: "",
     image_url: null as string | null,
+    multiplier_2: "0",
     multiplier_3: "5",
     multiplier_4: "10",
     multiplier_5: "25",
@@ -132,6 +133,7 @@ function EditSymbolDialog({ symbol, open, onClose }: EditSymbolDialogProps) {
       setFormData({
         name: symbol.name,
         image_url: symbol.image_url,
+        multiplier_2: String(symbol.multiplier_2),
         multiplier_3: String(symbol.multiplier_3),
         multiplier_4: String(symbol.multiplier_4),
         multiplier_5: String(symbol.multiplier_5),
@@ -147,6 +149,7 @@ function EditSymbolDialog({ symbol, open, onClose }: EditSymbolDialogProps) {
       id: symbol.id,
       name: formData.name,
       image_url: formData.image_url,
+      multiplier_2: parseFloat(formData.multiplier_2) || 0,
       multiplier_3: parseFloat(formData.multiplier_3) || 0.1,
       multiplier_4: parseFloat(formData.multiplier_4) || 0.1,
       multiplier_5: parseFloat(formData.multiplier_5) || 0.1,
@@ -239,7 +242,19 @@ function EditSymbolDialog({ symbol, open, onClose }: EditSymbolDialogProps) {
             )}
           </Button>
 
-          <div className="grid grid-cols-3 gap-4">
+          <div className="grid grid-cols-4 gap-4">
+            <div className="space-y-2">
+              <Label htmlFor="mult-2">2× Multiplier</Label>
+              <Input
+                id="mult-2"
+                type="number"
+                step="0.1"
+                min="0"
+                value={formData.multiplier_2}
+                onChange={(e) => setFormData({ ...formData, multiplier_2: e.target.value })}
+              />
+              <p className="text-xs text-muted-foreground">Kun premium</p>
+            </div>
             <div className="space-y-2">
               <Label htmlFor="mult-3">3× Multiplier</Label>
               <Input

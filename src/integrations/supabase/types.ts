@@ -446,6 +446,7 @@ export type Database = {
           image_url: string | null
           is_scatter: boolean
           is_wild: boolean
+          multiplier_2: number | null
           multiplier_3: number
           multiplier_4: number
           multiplier_5: number
@@ -459,6 +460,7 @@ export type Database = {
           image_url?: string | null
           is_scatter?: boolean
           is_wild?: boolean
+          multiplier_2?: number | null
           multiplier_3?: number
           multiplier_4?: number
           multiplier_5?: number
@@ -472,6 +474,7 @@ export type Database = {
           image_url?: string | null
           is_scatter?: boolean
           is_wild?: boolean
+          multiplier_2?: number | null
           multiplier_3?: number
           multiplier_4?: number
           multiplier_5?: number

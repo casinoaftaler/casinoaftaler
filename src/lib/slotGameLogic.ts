@@ -16,6 +16,7 @@ export interface SlotSymbol {
   id: string;
   name: string;
   image_url: string | null;
+  multiplier_2: number;
   multiplier_3: number;
   multiplier_4: number;
   multiplier_5: number;
@@ -208,18 +209,29 @@ export function checkLineWin(
     }
   }
   
-  if (count >= 3) {
+  // Premium symbols can win with 2+ matches, common symbols need 3+
+  const minMatches = baseSymbol.rarity === 'premium' ? 2 : 3;
+  
+  if (count >= minMatches) {
     let multiplier = 0;
-    if (count === 3) multiplier = baseSymbol.multiplier_3;
-    else if (count === 4) multiplier = baseSymbol.multiplier_4;
-    else if (count === 5) multiplier = baseSymbol.multiplier_5;
+    if (count === 2 && baseSymbol.rarity === 'premium') {
+      multiplier = baseSymbol.multiplier_2;
+    } else if (count === 3) {
+      multiplier = baseSymbol.multiplier_3;
+    } else if (count === 4) {
+      multiplier = baseSymbol.multiplier_4;
+    } else if (count === 5) {
+      multiplier = baseSymbol.multiplier_5;
+    }
     
-    return {
-      lineIndex: PAY_LINES.indexOf(linePattern),
-      symbolId: baseSymbol.id,
-      count,
-      payout: multiplier * betAmount,
-    };
+    if (multiplier > 0) {
+      return {
+        lineIndex: PAY_LINES.indexOf(linePattern),
+        symbolId: baseSymbol.id,
+        count,
+        payout: multiplier * betAmount,
+      };
+    }
   }
   
   return null;
