@@ -18,6 +18,7 @@ export function SlotMachineFrame({
   const [imageError, setImageError] = useState(false);
   
   const frameImageUrl = settings?.slot_machine_frame_image;
+  const frameSize = parseInt(settings?.slot_frame_size || "90", 10);
   const hasFrame = !!frameImageUrl && !imageError;
 
   return (
@@ -31,10 +32,10 @@ export function SlotMachineFrame({
           )}
           style={{
             // Extend beyond the content to create frame effect
-            top: "-90px",
-            left: "-90px",
-            right: "-90px",
-            bottom: "-90px",
+            top: `-${frameSize}px`,
+            left: `-${frameSize}px`,
+            right: `-${frameSize}px`,
+            bottom: `-${frameSize}px`,
           }}
         >
           <img

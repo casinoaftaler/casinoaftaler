@@ -5,6 +5,8 @@ import { supabase } from "@/integrations/supabase/client";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Slider } from "@/components/ui/slider";
+import { Label } from "@/components/ui/label";
 import { Loader2, Wand2, Trash2, ImageIcon, RefreshCw, Sparkles, Download } from "lucide-react";
 import { toast } from "sonner";
 
@@ -16,6 +18,27 @@ export function SlotFrameAdminControls() {
   
   const currentBackgroundUrl = settings?.slot_background_image || null;
   const currentFrameUrl = settings?.slot_machine_frame_image || null;
+  const currentFrameSize = parseInt(settings?.slot_frame_size || "90", 10);
+
+  const updateFrameSize = useMutation({
+    mutationFn: async (size: number) => {
+      const { error } = await supabase
+        .from("site_settings")
+        .upsert(
+          { key: "slot_frame_size", value: String(size) },
+          { onConflict: "key" }
+        );
+      
+      if (error) throw error;
+    },
+    onSuccess: () => {
+      toast.success("Rammestørrelse opdateret!");
+      queryClient.invalidateQueries({ queryKey: ["site-settings"] });
+    },
+    onError: (error: Error) => {
+      toast.error(`Kunne ikke opdatere størrelse: ${error.message}`);
+    },
+  });
 
   const generateBackground = useMutation({
     mutationFn: async () => {
@@ -249,6 +272,27 @@ export function SlotFrameAdminControls() {
                 label="ramme" 
                 onError={() => setFramePreviewUrl(null)}
               />
+            )}
+
+            {/* Frame Size Slider */}
+            {currentFrameUrl && (
+              <div className="space-y-3 p-4 rounded-lg bg-muted/30 border border-border/50">
+                <div className="flex items-center justify-between">
+                  <Label className="text-sm font-medium">Rammestørrelse</Label>
+                  <span className="text-sm text-muted-foreground">{currentFrameSize}px</span>
+                </div>
+                <Slider
+                  value={[currentFrameSize]}
+                  onValueChange={(values) => updateFrameSize.mutate(values[0])}
+                  min={40}
+                  max={150}
+                  step={5}
+                  className="w-full"
+                />
+                <p className="text-xs text-muted-foreground">
+                  Justér hvor meget rammen strækker sig ud over spillemaskinens indhold.
+                </p>
+              </div>
             )}
 
             <div className="flex flex-wrap gap-2">
