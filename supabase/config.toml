@@ -23,3 +23,6 @@ verify_jwt = false
 
 [functions.generate-slot-symbol]
 verify_jwt = false
+
+[functions.cleanup-unused-images]
+verify_jwt = false
