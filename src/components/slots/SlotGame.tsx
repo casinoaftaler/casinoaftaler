@@ -842,9 +842,8 @@ export function SlotGame() {
               )}
             </Button>
 
-            {/* BOTTOM ROW ON MOBILE: Win Display + Volume */}
+            {/* BOTTOM ROW ON MOBILE: Volume */}
             <div className="flex items-center gap-2 order-3 sm:order-3">
-              <WinDisplay amount={bonusState.isActive ? bonusState.bonusWinnings : winAmount} isAnimating={isWinAnimating} />
               <VolumeControl />
             </div>
           </div>
