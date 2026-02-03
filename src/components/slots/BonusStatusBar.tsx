@@ -25,8 +25,8 @@ export function BonusStatusBar({
       className={cn(
         "w-full p-2 sm:p-3 rounded-xl",
         "bg-card/70 backdrop-blur-sm",
-        "border border-border/60",
-        "shadow-sm"
+        "border border-amber-400/50",
+        "animate-[bonus-bar-glow_2s_ease-in-out_infinite]"
       )}
     >
       {/* Mobile: 2x2 grid, Desktop: horizontal flex */}
