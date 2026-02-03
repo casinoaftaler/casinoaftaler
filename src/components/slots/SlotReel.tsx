@@ -319,6 +319,7 @@ export function SlotReel({
                 isSpinning={false}
                 isExpanded={symbolIsExpanded}
                 isNewlyExpanded={symbolIsNewlyExpanded}
+                hasLanded={spinState === "stopped"}
               />
             </div>
           );
