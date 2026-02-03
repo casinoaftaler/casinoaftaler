@@ -397,12 +397,7 @@ export function SlotGame() {
         }}
       />
 
-      <div 
-        className={cn(
-          "max-w-fit mx-auto",
-          bonusState.isActive && "shadow-[0_0_30px_rgba(251,191,36,0.3)]"
-        )}
-      >
+      <div className="max-w-fit mx-auto">
         <div className="p-1 xs:p-2 sm:p-3 md:p-4 space-y-1 sm:space-y-2">
           {/* Bonus Status Bar */}
           <BonusStatusBar
