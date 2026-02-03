@@ -19,6 +19,7 @@ interface SlotReelProps {
   scatterLandedOnPreviousReel?: boolean;  // Whether the scatter on previous reel has landed
   extendedFakeLoop?: boolean;  // Whether to extend the fake loop duration (for late scatter)
   globalTeaseActive?: boolean;  // Whether any tease reel is still spinning (for landed scatter glow)
+  hasLandedScatter?: boolean;  // Whether this reel has a scatter that has landed (for glow)
 }
 
 // Match the responsive symbol sizes from SlotSymbol - REDUCED FOR MOBILE
@@ -40,6 +41,7 @@ export function SlotReel({
   scatterLandedOnPreviousReel = false,
   extendedFakeLoop = false,
   globalTeaseActive = false,
+  hasLandedScatter = false,
 }: SlotReelProps) {
   const symbolsById = new Map(symbols.map(s => [s.id, s]));
   const [spinState, setSpinState] = useState<"idle" | "spinning" | "stopping" | "stopped">("idle");
@@ -327,7 +329,7 @@ export function SlotReel({
                 isExpanded={symbolIsExpanded}
                 isNewlyExpanded={symbolIsNewlyExpanded}
                 hasLanded={spinState === "stopped"}
-                isTeasing={symbol.is_scatter && (globalTeaseActive || (scatterLandedOnPreviousReel && spinState !== "stopped"))}
+                isTeasing={symbol.is_scatter && (hasLandedScatter || globalTeaseActive || scatterLandedOnPreviousReel) && spinState !== "stopped"}
               />
             </div>
           );
