@@ -1,83 +1,78 @@
 
-# Plan: Stop Scatter Glow Når 3. Scatter Ikke Lander
 
-## Problem
-Når en tease sker (2 scatters på hjul 1-4) og hjul 5 lander UDEN en scatter, så fortsætter de allerede landede scatter-symboler med at glowe. De burde stoppe med at glowe når det er klart, at der ikke kommer en 3. scatter.
+# Plan: Spacebar Spin Support
+
+## Oversigt
+Tilføj mulighed for at spinne spillemaskinen ved tryk på mellemrumstasten, og forhindre at siden scroller ned (standard browser-opførsel for spacebar).
 
 ---
 
-## Analyse
+## Teknisk Løsning
 
-Scatter glow kontrolleres via `hasLandedScatter` prop som sendes til SlotReel:
+### Fil: `src/components/slots/SlotGame.tsx`
+
+Tilføj en keyboard event listener der lytter efter spacebar-tryk og trigger spin:
 
 ```typescript
-// SlotGame.tsx linje 662
-hasLandedScatter={scatterReelsLanded.has(colIndex) && teaseReels.length > 0}
-```
+// Tilføj useEffect til keyboard handling (efter linje ~130)
+useEffect(() => {
+  const handleKeyDown = (e: KeyboardEvent) => {
+    // Kun spacebar
+    if (e.code !== "Space") return;
+    
+    // Forhindre scroll (standard browser opførsel)
+    e.preventDefault();
+    
+    // Ignorer hvis fokus er på et input element
+    if (
+      document.activeElement?.tagName === "INPUT" ||
+      document.activeElement?.tagName === "TEXTAREA" ||
+      document.activeElement?.tagName === "SELECT"
+    ) return;
+    
+    // Tjek om vi kan spinne
+    const canSpinNow = bonusState.isActive 
+      ? bonusState.freeSpinsRemaining > 0 
+      : hasEnoughSpins(bet);
+    
+    if (!isSpinning && canSpinNow && !showBonusTrigger && !isAutoSpinning) {
+      handleSpin();
+    }
+  };
 
-**Problemet:** Denne prop er stadig `true` for hjul med scatters, selv efter hjul 5 har stoppet uden scatter, fordi:
-1. `scatterReelsLanded` cleares kun ved næste spin-start
-2. `teaseReels.length > 0` er stadig sand mens hjul 5 spinner
-
----
-
-## Løsning
-
-Tilføj en ekstra betingelse så glow kun vises mens der stadig ER aktiv tease (dvs. hjul spinner endnu):
-
-**Nuværende:**
-```typescript
-hasLandedScatter={scatterReelsLanded.has(colIndex) && teaseReels.length > 0}
-```
-
-**Ny:**
-```typescript
-hasLandedScatter={scatterReelsLanded.has(colIndex) && teaseReels.length > 0 && isSpinning}
-```
-
-Ved at tilføje `&& isSpinning` stopper glow automatisk når alle hjul er stoppet, uanset om bonus triggedes eller ej.
-
----
-
-## Visuel Effekt
-
-```text
-NUVÆRENDE:
-Scatter reel1 ✨ → Scatter reel3 ✨ → Reel5 stopper (ingen scatter) → Alle stoppet
-                                                                     ✨ Glow fortsætter!
-
-MED FIX:
-Scatter reel1 ✨ → Scatter reel3 ✨ → Reel5 stopper (ingen scatter) → Alle stoppet  
-                                                                     ❌ Glow stopper
+  window.addEventListener("keydown", handleKeyDown);
+  return () => window.removeEventListener("keydown", handleKeyDown);
+}, [isSpinning, bonusState, bet, hasEnoughSpins, showBonusTrigger, isAutoSpinning]);
 ```
 
 ---
 
-## Glow Regler (opdateret)
+## Opførsel
 
-| Scenarie | Glow på scatter? |
-|----------|------------------|
-| 2 scatters lander, hjul 5 spinner | ✅ Ja |
-| 2 scatters, hjul 5 stoppet UDEN scatter | ❌ Nej |
-| 2 scatters, hjul 5 stoppet MED scatter (bonus!) | ❌ Nej (bonus overlay vises i stedet) |
-| Efter spin er helt afsluttet | ❌ Nej |
+| Scenarie | Spacebar handling |
+|----------|-------------------|
+| Normalt spin | ✅ Trigger spin |
+| Under spinning | ❌ Ignoreret |
+| Under autospin | ❌ Ignoreret |
+| Ved bonus overlay | ❌ Ignoreret |
+| Ingen spins tilbage | ❌ Ignoreret |
+| Fokus på input/tekstfelt | ❌ Standard opførsel (skriver mellemrum) |
+| Scroll | ❌ Forhindret med preventDefault |
+
+---
+
+## Brugeroplevelse
+
+- Tryk på **mellemrum** for at spinne
+- Siden scroller **ikke** ned når man trykker spacebar
+- Input-felter fungerer stadig normalt
+- Virker både på desktop og når man har tastatur tilsluttet
 
 ---
 
 ## Fil der ændres
 
-| Fil | Linje | Ændring |
-|-----|-------|---------|
-| `src/components/slots/SlotGame.tsx` | 662 | Tilføj `&& isSpinning` til hasLandedScatter betingelsen |
+| Fil | Ændring |
+|-----|---------|
+| `src/components/slots/SlotGame.tsx` | Tilføj keyboard event listener i useEffect |
 
----
-
-## Kodeændring
-
-```typescript
-// Linje 662 - FØR:
-hasLandedScatter={scatterReelsLanded.has(colIndex) && teaseReels.length > 0}
-
-// Linje 662 - EFTER:
-hasLandedScatter={scatterReelsLanded.has(colIndex) && teaseReels.length > 0 && isSpinning}
-```
