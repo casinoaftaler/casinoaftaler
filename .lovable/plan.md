@@ -1,40 +1,59 @@
 
 
-## Plan: Fjern glow og "S"-ikon fra scatter-symboler
+## Plan: Flyt spin-knappen til midten med kontroller på hver side
 
-### Baggrund
-Scatter-symboler har to visuelle indikatorer der skal fjernes:
-1. En amber/guld ring (glow) rundt om symbolet
-2. Et lille "S"-badge i øverste højre hjørne
-
-### Ændringer
-
-**Fil: `src/components/slots/SlotSymbol.tsx`**
-
-**1. Fjern scatter ring/glow (linje 27)**
-
-Før:
-```tsx
-symbol.is_scatter && "ring-2 ring-amber-500/50"
+### Nuværende layout
+```
+[Indsats] [Auto Count] [Auto] [Gevinst] [Lyd]
+             ⬇️
+         [SPIN BUTTON]
 ```
 
-Efter: Fjern denne linje helt fra className
+### Nyt layout
+```
+[Indsats]  [Auto Count] [Auto]  ────  [SPIN]  ────  [Gevinst]  [Lyd]
+```
+
+Spin-knappen placeres centralt i en enkelt række, med bet/autospin kontroller til venstre og gevinst/lyd kontroller til højre.
 
 ---
 
-**2. Fjern "S" badge (linje 69-74)**
+### Tekniske ændringer
 
-Fjern hele denne sektion:
+**Fil: `src/components/slots/SlotGame.tsx`**
+
+Sammenflet kontrolrækken (linje 601-681) og spin-knap sektionen (linje 683-747) til én linje:
+
+**Ny struktur:**
 ```tsx
-{/* Scatter indicator */}
-{symbol.is_scatter && (
-  <div className="absolute -top-1 -right-1 w-4 h-4 bg-amber-500 rounded-full flex items-center justify-center">
-    <span className="text-[8px] text-white font-bold">S</span>
+{/* Controls row with spin button in center */}
+<div className="flex flex-wrap items-center justify-center gap-2 sm:gap-3 md:gap-4 mt-1 sm:mt-2">
+  {/* LEFT SIDE: Bet Controls + Autospin */}
+  <div className="flex items-center gap-1 xs:gap-2">
+    <BetControls ... />
+    {/* Autospin controls */}
+    <div className="flex items-center gap-1">
+      {/* Autospin count selector */}
+      ...
+      {/* Autospin button */}
+      ...
+    </div>
   </div>
-)}
+  
+  {/* CENTER: Spin button */}
+  <Button className="rounded-full w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 lg:w-28 lg:h-28 ..." ...>
+    SPIN
+  </Button>
+  
+  {/* RIGHT SIDE: Win Display + Volume */}
+  <div className="flex items-center gap-1 xs:gap-2">
+    <WinDisplay ... />
+    <VolumeControl />
+  </div>
+</div>
 ```
 
-### Resultat
-- Scatter-symboler vises nu uden ekstra visuel markering
-- De fungerer stadig som scatters i spilmekanikken, men ser ud som normale symboler visuelt
+**Justeringer til spin-knappen:**
+- Reduceret størrelse for at passe i en inline række
+- Fjerner den separate wrapper `<div className="flex justify-center my-3 sm:my-4">`
 
