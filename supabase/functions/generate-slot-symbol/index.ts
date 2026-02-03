@@ -27,24 +27,26 @@ FORMAT: Square 1:1 aspect ratio, suitable for a slot machine symbol.
 `;
 
 const PREMIUM_FRAME = `
-FRAME/BORDER REQUIREMENTS (MANDATORY FOR PREMIUM SYMBOLS):
-- Add an ornate golden Egyptian-style frame/border around the entire image
-- The frame should be approximately 5-8% of the image width on each side
+FRAME/BORDER REQUIREMENTS (MANDATORY):
+- Add an ornate golden Egyptian-style frame/border around the ENTIRE image
+- The frame MUST touch ALL FOUR EDGES of the image (no gaps at edges)
+- Frame width: approximately 5-8% of the image on each side
 - Frame design: Intricate golden border with hieroglyphic patterns
 - Corner decorations: Small golden lotus flowers or scarab motifs
 - The frame should have depth and dimension (3D appearance)
 - Inner edge of frame: subtle golden glow effect
 - The artwork must extend FULLY to the inner edge of the frame (no gaps)
+- CRITICAL: The outer edge of the frame must be FLUSH with the image boundary
 `;
 
 function getPromptForSymbol(name: string, isScatter: boolean): string {
   const normalizedName = name.toLowerCase().trim();
 
-  // Scatter symbol - the cat on a book
+  // Scatter symbol - the cat on a book (PREMIUM STYLE)
   if (isScatter || normalizedName.includes("fedesvin") || normalizedName.includes("book")) {
     return `Create a slot machine symbol for an Egyptian-themed game called "Book of Fedesvin".
 
-MAIN SUBJECT:
+MAIN SUBJECT (MUST KEEP EXACTLY AS DESCRIBED):
 - A CHUBBY/FAT gray and white cat (similar to British Shorthair) sitting comfortably
 - The cat has green eyes and a sweet, slightly smug expression
 - The cat wears an Egyptian pharaoh headdress (nemes) in gold and blue stripes
@@ -54,9 +56,12 @@ MAIN SUBJECT:
 - A red bookmark ribbon visible from the book
 
 COMPOSITION:
-- Cat and book centered, filling most of the frame
-- The cat should be the main focus with the book as a pedestal
+- FULL ART: The cat and book must fill the ENTIRE frame edge-to-edge
+- Cat and book centered as the main focus
 - Golden divine light emanating from behind
+- NO empty space - the artwork extends to all edges
+
+${PREMIUM_FRAME}
 
 ${BASE_STYLE}
 
