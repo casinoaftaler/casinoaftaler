@@ -1,80 +1,60 @@
 
 
-## Plan: Ændre spinning-lyden til at ligne Book of Dead
+## Plan: Tilføj mørke linjer mellem hjulene
 
 ### Baggrund
-Book of Dead har en karakteristisk mekanisk hjul-spinning lyd, der simulerer fysiske hjul, som drejer rundt. Lyden er kendetegnet ved:
-- Hurtige, rytmiske "klik" der simulerer symboler, som flyver forbi
-- En mekanisk, næsten "ticker-tape" lignende lyd
-- Et konstant tempo under spinning
-- Subtil undertone der giver dybde
-
-Den nuværende implementering bruger en mystisk, egyptisk stil med:
-- Triangelbølge-drone
-- Sistrum shimmer (høje metalrangle)
-- Ørken-vind undertone
-- Langsom, svævende modulation
+For at gøre det nemmere at skelne mellem de individuelle hjul på spillemaskinen, tilføjes mørke vertikale linjer som separatorer mellem hvert hjul.
 
 ### Teknisk løsning
+Opdatere `SlotGame.tsx` til at rendere mørke separator-linjer mellem de 5 hjul i reel-containeren.
 
-Ændre `playReelSpin()` funktionen i `src/lib/slotSoundEffects.ts` til at bruge en mekanisk klik-baseret tilgang:
+**Implementeringsdetaljer:**
+- Tilføj en semi-transparent mørk linje (divider) efter hvert hjul undtagen det sidste
+- Brug betinget rendering: vis kun separator hvis `colIndex < 4`
+- Separator-styling: smal bredde (~1-2px), mørk amber/brun farve, fuld højde
+- Responsiv: juster tykkelse efter skærmstørrelse
 
-1. **Primær klik-lyd (Symbol Click)**
-   - Hurtige, korte pulser (~20-25 pr. sekund) for at simulere symboler der flyver forbi
-   - Bruger oscillator med hurtig attack/decay envelope
-   - Lav-mid frekvens (200-400Hz) for mekanisk "thunk" karakter
+### Visuel repræsentation
 
-2. **Sekundær ticker-lyd (Reel Mechanism)**
-   - Højere frekvens clicks (~800-1200Hz)
-   - Simulerer selve hjulmekanikken
-   - Lettere volumen end primær klik
-
-3. **Subtil brum-undertone (Motor Hum)**
-   - Lav frekvens drone (~80-120Hz)
-   - Simulerer motor/mekanisk bevægelse
-   - Meget lavt volumen for dybde
-
-4. **Interval-baseret klik-system**
-   - Bruger `setInterval` til at generere rytmiske clicks
-   - Fast tempo (~50ms mellem clicks)
-   - Stop function rydder interval og fader ud
+```text
+┌─────┬─────┬─────┬─────┬─────┐
+│     │     │     │     │     │
+│ Hjul│ Hjul│ Hjul│ Hjul│ Hjul│
+│  1  │  2  │  3  │  4  │  5  │
+│     │     │     │     │     │
+└─────┴─────┴─────┴─────┴─────┘
+      ↑     ↑     ↑     ↑
+   Mørke linjer mellem hjul
+```
 
 ### Fil der ændres
 
-**`src/lib/slotSoundEffects.ts`** - Modificer `playReelSpin()` metoden (linje 323-438)
+**`src/components/slots/SlotGame.tsx`** - Linje 428-440
 
-### Tekniske detaljer
+Ændring i reel-containeren:
+- Wrap hvert hjul + separator i et React Fragment
+- Tilføj en `div` med mørk baggrund efter hvert hjul (undtagen det sidste)
+- Separator bruger `bg-amber-950/80` eller lignende mørk farve for at passe til det egyptiske tema
 
-Den nye `playReelSpin()` vil:
+### Kode-ændring
 
-```text
-┌─────────────────────────────────────────────────────────┐
-│                    Ny Spinning Lyd                       │
-├─────────────────────────────────────────────────────────┤
-│                                                          │
-│  1. Symbol Clicks (hovedlyd)                            │
-│     ├── Frekvens: 280Hz → 180Hz (pitch sweep ned)       │
-│     ├── Type: Sine wave                                  │
-│     ├── Varighed: 15ms per klik                         │
-│     └── Interval: 45ms (ca. 22 clicks/sek)              │
-│                                                          │
-│  2. Mechanism Ticker (accent)                           │
-│     ├── Frekvens: 1000Hz                                │
-│     ├── Type: Square wave (filtered)                    │
-│     ├── Varighed: 8ms per tick                          │
-│     └── Interval: 90ms (alternerer med clicks)          │
-│                                                          │
-│  3. Motor Hum (undertone)                               │
-│     ├── Frekvens: 100Hz med let modulation              │
-│     ├── Type: Sawtooth (lowpass filtered)               │
-│     └── Konstant, lavt volumen                          │
-│                                                          │
-└─────────────────────────────────────────────────────────┘
+```tsx
+{grid?.map((column, colIndex) => (
+  <React.Fragment key={colIndex}>
+    <SlotReel
+      // ... existing props
+    />
+    {/* Separator line between reels */}
+    {colIndex < 4 && (
+      <div className="w-[1px] sm:w-[2px] bg-amber-950/70 self-stretch" />
+    )}
+  </React.Fragment>
+))}
 ```
 
 ### Forventet resultat
-- Lyden vil minde meget mere om den klassiske Book of Dead spinning-lyd
-- Mekanisk, rhythmisk karakter i stedet for mystisk/eterisk
-- Hurtige clicks der simulerer hjul-symboler der flyver forbi
-- Stadig passer til det egyptiske tema, men med mere "ægte" slot-maskine følelse
+- Tydelige mørke linjer mellem alle 5 hjul
+- Matcher det egyptiske tema med amber/brun farvetone
+- Responsiv bredde (tyndere på mobil, tykkere på desktop)
+- Semi-transparent for at undgå at være for dominerende
 
