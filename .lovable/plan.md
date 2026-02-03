@@ -1,122 +1,85 @@
 
+# Plan: Fix Title og Frame Overlap på Mobil
 
-# Plan: Fjern Ubrugte Billeder fra Storage
+## Problem
+På mobile enheder overlapper titel-billedet og spillemaskinens ramme hinanden. Dette skyldes en kombination af:
+1. Titel-billedet har negativ top-margin (`-mt-4` på mobil)
+2. Rammen strækker sig 90px ud over indholds-boksen (via `top: -90px`)
+3. Ramme-wrapperens top-margin er kun 30px (begrænsning), hvilket ikke giver nok plads
 
-## Oversigt
-Opretter en admin-funktion (edge function) til at identificere og slette billeder i storage buckets, som ikke længere er refereret i databasen.
-
----
-
-## Analyse af Billeder i Brug
-
-### Billeder refereret i databasen:
-
-| Bucket | Kilde | Antal |
-|--------|-------|-------|
-| `casino-logos` | site_settings (header_icon, slot_background, slot_frame, slot_title) | 4 |
-| `casino-logos` | casinos.logo_url | 7 |
-| `shop-item-images` | shop_items.image_url | 8 |
-| `slot-symbols` | slot_symbols.image_url | 10 |
-| `slot-frames` | Muligvis genererede frames (tjekkes) | ? |
-
-### Strategi
-1. Hent alle filer fra hver storage bucket
-2. Hent alle billed-URLs fra databasen
-3. Sammenlign og identificer filer der IKKE er refereret
-4. Slet de ubrugte filer
+## Løsning
+Fjern den negative top-margin fra titel-billedet og tilføj responsive margin-top til rammen, så der altid er nok plads mellem titel og ramme - især på mobil.
 
 ---
 
-## Implementation
+## Filer der ændres
 
-### 1. Opret Edge Function: `cleanup-unused-images`
+### 1. `src/pages/SlotMachine.tsx`
 
-Ny edge function der:
-- Lister alle filer i alle buckets (`casino-logos`, `shop-item-images`, `slot-symbols`, `slot-frames`)
-- Henter alle billed-referencer fra:
-  - `site_settings` (header_icon, slot_background_image, slot_machine_frame_image, slot_title_image, hero_background_image)
-  - `casinos.logo_url`
-  - `shop_items.image_url`
-  - `slot_symbols.image_url`
-- Matcher storage-filer mod database-referencer
-- Returnerer liste over ubrugte filer (dry-run) eller sletter dem
+**Ændring:** Fjern negativ margin på titel-billedet og tilføj minimal positiv spacing
 
-**Fil:** `supabase/functions/cleanup-unused-images/index.ts`
+```tsx
+// Fra (linje 132):
+<div className="flex justify-center -mt-4 sm:-mt-2">
 
-```typescript
-// Pseudokode struktur:
-serve(async (req) => {
-  // Verificer admin
-  
-  // Hent alle filer fra buckets
-  const casinoLogosFiles = await listBucket("casino-logos");
-  const shopImagesFiles = await listBucket("shop-item-images");
-  const slotSymbolsFiles = await listBucket("slot-symbols");
-  const slotFramesFiles = await listBucket("slot-frames");
-  
-  // Hent alle referencer fra database
-  const usedUrls = new Set([
-    ...siteSettingsImageUrls,
-    ...casinoLogoUrls,
-    ...shopItemImageUrls,
-    ...slotSymbolImageUrls,
-  ]);
-  
-  // Find ubrugte filer
-  const unusedFiles = allFiles.filter(file => !usedUrls.has(file.publicUrl));
-  
-  // Slet ubrugte filer (hvis ikke dry-run)
-  if (!dryRun) {
-    await deleteBucketFiles(bucket, unusedFiles);
-  }
-  
-  return { deleted: unusedFiles, count: unusedFiles.length };
-});
+// Til:
+<div className="flex justify-center pt-2 sm:pt-4">
 ```
 
-### 2. Opdater Admin Panel (valgfrit)
+Dette sikrer at titlen altid har lidt positiv afstand fra toppen.
 
-Tilføj en "Ryd op i billeder" knap i admin panelet der:
-- Kalder edge function med `dryRun: true` først for at vise hvad der vil blive slettet
-- Bekræftelsesdialog før sletning
-- Kalder edge function med `dryRun: false` for at udføre sletning
+### 2. `src/components/slots/SlotMachineFrame.tsx`
+
+**Ændring:** Gør top-margin responsiv og større på mobil for at undgå overlap
+
+```tsx
+// Fra (linje 30):
+marginTop: hasFrame && imageLoaded ? `${Math.min(frameSize * 0.3, 30)}px` : undefined,
+
+// Til - responsive margin der tager højde for ramme-størrelse:
+marginTop: hasFrame && imageLoaded ? `${Math.max(frameSize * 0.1, 8)}px` : undefined,
+```
+
+Reducér top-margin da titel-billedet nu har positiv spacing, men behold en minimal margin for visuel separation.
+
+### 3. `src/components/slots/SlotGame.tsx`
+
+**Ændring:** Reducér negativ margin på BonusStatusBar da titlen nu har korrekt spacing
+
+```tsx
+// Fra (linje 416):
+<div className="max-w-fit mx-auto mb-1 sm:mb-2 -mt-8 sm:-mt-10">
+
+// Til:
+<div className="max-w-fit mx-auto mb-1 sm:mb-2">
+```
+
+Fjern negativ top-margin da titel-positionen nu er korrekt.
 
 ---
 
-## Sikkerhed
+## Visuelt Resultat
 
-- Edge function kræver admin-rolle
-- Dry-run som standard for at undgå utilsigtet sletning
-- Logger alle slettede filer
-
----
-
-## Filer der oprettes/ændres
-
-| Fil | Ændring |
-|-----|---------|
-| `supabase/functions/cleanup-unused-images/index.ts` | Ny edge function til oprydning |
-| `supabase/config.toml` | Tilføj function konfiguration |
+```text
+┌─────────────────────────────┐
+│                             │
+│     [Titel Billede]         │  ← Positiv top-padding
+│                             │
+│     ┌───────────────┐       │  ← Rammen starter under titlen
+│ ╔═══╪═══════════════╪═══╗   │
+│ ║   │  Slot Reels   │   ║   │
+│ ╚═══╪═══════════════╪═══╝   │
+│     └───────────────┘       │
+└─────────────────────────────┘
+```
 
 ---
 
 ## Tekniske Detaljer
 
-**Bucket listing:**
-```typescript
-const { data: files } = await supabase.storage
-  .from(bucketName)
-  .list("", { limit: 1000 });
-```
+| Breakpoint | Titel Spacing | Forventet Afstand |
+|------------|---------------|-------------------|
+| xs (<400px) | `pt-2` (8px) | Titel helt adskilt fra ramme |
+| sm (640px+) | `pt-4` (16px) | Mere luft på større skærme |
 
-**URL matching:**
-- Ekstraher filnavn fra URL: `url.split("/").pop().split("?")[0]`
-- Match mod bucket-filer
-
-**Sletning:**
-```typescript
-await supabase.storage
-  .from(bucketName)
-  .remove([...filenames]);
-```
-
+Ramme-marginerne justeres automatisk baseret på `slot_frame_size` indstillingen, med en minimum på 8px for at undgå at rammen trækkes helt op i titlen.
