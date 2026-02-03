@@ -41,11 +41,14 @@ export function SlotMachineFrame({
             imageLoaded ? "opacity-100" : "opacity-0"
           )}
           style={{
-            // Extend beyond the content to create frame effect
             top: `-${frameSize}px`,
             left: `-${frameSize}px`,
             right: `-${frameSize}px`,
             bottom: `-${frameSize}px`,
+            filter: `drop-shadow(0 0 20px rgba(0,0,0,0.6)) 
+                     drop-shadow(0 0 40px rgba(0,0,0,0.4)) 
+                     drop-shadow(0 0 80px rgba(0,0,0,0.3))
+                     drop-shadow(0 4px 30px rgba(251,191,36,0.15))`,
           }}
         >
           <img
