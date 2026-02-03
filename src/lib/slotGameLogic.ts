@@ -65,28 +65,44 @@ export function countScattersPerReel(grid: string[][], symbols: SlotSymbol[]): n
 }
 
 // Get which reels should have tease (slow) animation
-export function getScatterTeaseReels(grid: string[][], symbols: SlotSymbol[]): number[] {
+export interface TeaseInfo {
+  reels: number[];
+  lateScatter: boolean; // true if 2nd scatter is on reel 4 (needs extended fake loop)
+  lastScatterReel: number; // The reel index where the 2nd scatter lands
+}
+
+export function getScatterTeaseReels(grid: string[][], symbols: SlotSymbol[]): TeaseInfo {
   const scattersPerReel = countScattersPerReel(grid, symbols);
   
   // Count total scatters in first N reels
   let scatterCount = 0;
   let teaseStartReel = -1;
+  let secondScatterReel = -1;
   
   for (let i = 0; i < 5; i++) {
     if (scattersPerReel[i] > 0) {
       scatterCount += scattersPerReel[i];
+      // Track where the 2nd scatter lands
+      if (scatterCount >= 2 && secondScatterReel === -1) {
+        secondScatterReel = i;
+      }
     }
-    // If we have 2+ scatters in the first 1-3 reels, tease on remaining reels
-    if (scatterCount >= 2 && teaseStartReel === -1 && i < 3) {
+    // If we have 2+ scatters in the first 1-4 reels, tease on remaining reels
+    // Extended to include reel 4 (i < 4)
+    if (scatterCount >= 2 && teaseStartReel === -1 && i < 4) {
       teaseStartReel = i + 1; // Tease starts on the next reel
     }
   }
   
-  // Return indices of reels that should be teased
+  // Return info about tease reels
   if (teaseStartReel > 0) {
-    return Array.from({ length: 5 - teaseStartReel }, (_, i) => teaseStartReel + i);
+    return {
+      reels: Array.from({ length: 5 - teaseStartReel }, (_, i) => teaseStartReel + i),
+      lateScatter: secondScatterReel === 3, // Reel 4 is index 3
+      lastScatterReel: secondScatterReel
+    };
   }
-  return [];
+  return { reels: [], lateScatter: false, lastScatterReel: -1 };
 }
 
 export function getRandomSymbol(symbols: SlotSymbol[], excludeIds: string[] = []): SlotSymbol {

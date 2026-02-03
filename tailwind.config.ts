@@ -150,14 +150,8 @@ export default {
 			},
 			'slot-land': {
 				'0%': { 
-					transform: 'translateY(-8px)',
-					opacity: '0.8'
-				},
-				'60%': { 
-					transform: 'translateY(3px)'
-				},
-				'80%': { 
-					transform: 'translateY(-1px)'
+					transform: 'translateY(-4px)',
+					opacity: '0.9'
 				},
 				'100%': { 
 					transform: 'translateY(0)',

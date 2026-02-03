@@ -24,7 +24,7 @@ import { useBonusGame } from "@/hooks/useBonusGame";
 import { useAuth } from "@/hooks/useAuth";
 import { useQueryClient } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
-import { generateGrid, calculateSpinResult, PAY_LINES, getScatterTeaseReels, type SpinResult } from "@/lib/slotGameLogic";
+import { generateGrid, calculateSpinResult, PAY_LINES, getScatterTeaseReels, type SpinResult, type TeaseInfo } from "@/lib/slotGameLogic";
 import { calculateBonusSpinResult } from "@/lib/bonusGameLogic";
 import { slotSounds } from "@/lib/slotSoundEffects";
 import { Gamepad2, Loader2, Play, Square, ChevronDown, Infinity } from "lucide-react";
@@ -65,6 +65,8 @@ export function SlotGame() {
   const [showWinLines, setShowWinLines] = useState(false);
   const [teaseReels, setTeaseReels] = useState<number[]>([]);
   const [activeTeaseReelIndex, setActiveTeaseReelIndex] = useState<number | null>(null);
+  const [teaseInfo, setTeaseInfo] = useState<TeaseInfo>({ reels: [], lateScatter: false, lastScatterReel: -1 });
+  const [scatterReelsLanded, setScatterReelsLanded] = useState<Set<number>>(new Set());
   
   const winLinesTimeoutRef = useRef<NodeJS.Timeout | null>(null);
   
@@ -195,9 +197,11 @@ export function SlotGame() {
     }
 
     // Calculate which reels should tease (slow down) based on scatter positions
-    const teaseReelIndices = getScatterTeaseReels(originalGrid, symbols);
-    setTeaseReels(teaseReelIndices);
+    const teaseResult = getScatterTeaseReels(originalGrid, symbols);
+    setTeaseReels(teaseResult.reels);
+    setTeaseInfo(teaseResult);
     setActiveTeaseReelIndex(null); // Reset active tease reel for new spin
+    setScatterReelsLanded(new Set()); // Reset scatter reel landing tracking
 
     // Set the ORIGINAL grid for spinning (not the expanded one yet)
     // This creates the first phase where symbols land naturally
@@ -230,7 +234,7 @@ export function SlotGame() {
     stopSpinSound.current = slotSounds.playReelSpin();
     
     // Start tease sound if we have tease reels
-    if (teaseReelIndices.length > 0) {
+    if (teaseResult.reels.length > 0) {
       stopTeaseSound.current = slotSounds.playTeaseStart();
     }
 
@@ -455,6 +459,12 @@ export function SlotGame() {
                         // Track this reel as stopped
                         stoppedReelsRef.current.add(reelIndex);
                         
+                        // Track if this reel contains a scatter (for glow timing)
+                        // Check if this is the reel where the last scatter lands (teaseInfo.lastScatterReel)
+                        if (reelIndex === teaseInfo.lastScatterReel) {
+                          setScatterReelsLanded(prev => new Set([...prev, reelIndex]));
+                        }
+                        
                         // Handle sequential tease reel activation
                         if (teaseReels.includes(reelIndex)) {
                           // Current tease reel stopped, activate next tease reel
@@ -601,6 +611,8 @@ export function SlotGame() {
                       }}
                       teaseMode={teaseReels.includes(colIndex)}
                       isActiveTeaseReel={teaseReels.includes(colIndex) && activeTeaseReelIndex === colIndex}
+                      scatterLandedOnPreviousReel={scatterReelsLanded.has(teaseInfo.lastScatterReel)}
+                      extendedFakeLoop={teaseInfo.lateScatter && colIndex === 4}
                     />
                     {/* Separator line between reels */}
                     {colIndex < 4 && (

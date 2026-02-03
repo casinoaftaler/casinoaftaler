@@ -16,6 +16,8 @@ interface SlotReelProps {
   onReelStop?: (reelIndex: number) => void;  // Callback when reel stops
   teaseMode?: boolean;  // Whether this reel should tease (slow reveal)
   isActiveTeaseReel?: boolean;  // Whether this tease reel should currently slow down
+  scatterLandedOnPreviousReel?: boolean;  // Whether the scatter on previous reel has landed
+  extendedFakeLoop?: boolean;  // Whether to extend the fake loop duration (for late scatter)
 }
 
 // Match the responsive symbol sizes from SlotSymbol - REDUCED FOR MOBILE
@@ -34,6 +36,8 @@ export function SlotReel({
   onReelStop,
   teaseMode = false,
   isActiveTeaseReel = false,
+  scatterLandedOnPreviousReel = false,
+  extendedFakeLoop = false,
 }: SlotReelProps) {
   const symbolsById = new Map(symbols.map(s => [s.id, s]));
   const [spinState, setSpinState] = useState<"idle" | "spinning" | "stopping" | "stopped">("idle");
@@ -125,7 +129,8 @@ export function SlotReel({
           fakeLoopStartTimeRef.current = startTime;
           
           // Fake loop animation - constant speed, loops back
-          const loopDuration = 600; // Time for one full loop cycle
+          // Extended duration when 2nd scatter is on reel 4 (late scatter)
+          const loopDuration = extendedFakeLoop ? 2600 : 600; // Time for one full loop cycle
           
           const fakeLoopAnimate = (currentTime: number) => {
             if (!hasStartedSpinRef.current) return;
@@ -354,8 +359,8 @@ export function SlotReel({
       ref={containerRef}
       className={cn(
         "relative overflow-hidden rounded-lg bg-amber-950/50 transition-shadow duration-300",
-        // Fake looping: Dimmed amber glow
-        isFakeLooping && !isActiveTeaseReel && spinState === "spinning" && 
+        // Fake looping: Dimmed amber glow - ONLY show when scatter has landed on previous reel
+        isFakeLooping && !isActiveTeaseReel && spinState === "spinning" && scatterLandedOnPreviousReel &&
         "shadow-[0_0_15px_rgba(251,191,36,0.3),0_0_25px_rgba(251,191,36,0.15)] animate-pulse",
         // Active tease: Intense glow with faster animation
         isActiveTeaseReel && spinState === "spinning" && 
