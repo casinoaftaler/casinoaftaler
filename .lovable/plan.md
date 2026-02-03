@@ -1,18 +1,16 @@
 
-# Centrér Spin-Knappen Under Spillemaskinen
+# Tilføj Max-Width til SlotGame Komponenten
 
 ## Oversigt
-Spin-knappen skal centreres direkte under spillemaskinens runde spin-cirkel på alle skærmstørrelser, i stedet for at være højre-justeret på desktop.
+For at sikre at spin-knappen centreres inden for samme bredde som slot-maskinens hjul, skal der tilføjes en `max-width` begrænsning til SlotGame komponentens ydre container.
 
-## Nuværende Layout
-- Spin-knappen bruger `flex justify-center md:justify-end` 
-- På desktop flyttes knappen til højre side med `md:pr-8 lg:pr-16` padding
-- Dette gør at knappen ikke er alignet med spillemaskinens centrum
+## Problemet
+- Spin-knappen bruger `flex justify-center` og centreres inden for hele den overordnede container
+- Slot-maskinen (SlotMachineFrame) har en naturlig bredde baseret på hjulene
+- Da der ikke er nogen max-width, kan spin-knappen centreres i et bredere område end selve slot-maskinen
 
-## Nyt Layout
-- Spin-knappen skal bruge `flex justify-center` på alle skærmstørrelser
-- Fjern padding til højre (`md:pr-8 lg:pr-16`)
-- Knappen vil nu være perfekt centreret under slot-rammen
+## Løsningen
+Tilføj en `max-width` og `mx-auto` klasse til den ydre wrapper-div i SlotGame, så alle elementer (inklusive spin-knappen) centreres inden for samme bredde som slot-maskinen.
 
 ---
 
@@ -20,40 +18,60 @@ Spin-knappen skal centreres direkte under spillemaskinens runde spin-cirkel på 
 
 ### Fil: `src/components/slots/SlotGame.tsx`
 
-**Linje 684 - Opdater spin-knap container:**
+**Linje 400-406 - Opdater container div:**
 
 Fra:
 ```typescript
-<div className="flex justify-center md:justify-end my-3 sm:my-4 md:pr-8 lg:pr-16">
+<div 
+  className={cn(
+    "overflow-hidden",
+    bonusState.isActive && "shadow-[0_0_30px_rgba(251,191,36,0.3)]"
+  )}
+>
+  <div className="p-1 xs:p-2 sm:p-3 md:p-4 space-y-1 sm:space-y-2">
 ```
 
 Til:
 ```typescript
-<div className="flex justify-center my-3 sm:my-4">
+<div 
+  className={cn(
+    "overflow-hidden max-w-fit mx-auto",
+    bonusState.isActive && "shadow-[0_0_30px_rgba(251,191,36,0.3)]"
+  )}
+>
+  <div className="p-1 xs:p-2 sm:p-3 md:p-4 space-y-1 sm:space-y-2">
 ```
 
 ---
+
+## Hvad `max-w-fit` gør
+- `max-w-fit` begrænser containerens bredde til at matche dens indhold (slot-maskinen)
+- `mx-auto` centrerer denne container på siden
+- Dette sikrer at spin-knappen, controls og andre elementer alle centreres inden for slot-maskinens bredde
+
+## Visuelt Resultat
+```
+              ╭────────────────────────────╮
+              │                            │
+              │   [SLOT MACHINE FRAME]     │
+              │   [●][●][●][●][●]          │
+              │   [●][●][●][●][●]          │
+              │   [●][●][●][●][●]          │
+              │                            │
+              ├────────────────────────────┤
+              │  [Bet] [Auto] [Win] [🔊]   │  ← Centreret i samme bredde
+              ├────────────────────────────┤
+              │                            │
+              │      ╭─────────────╮       │
+              │      │     🎰      │       │  ← Perfekt centreret
+              │      │    SPIN     │       │     under maskinen
+              │      ╰─────────────╯       │
+              │                            │
+              ╰────────────────────────────╯
+```
 
 ## Forventede Ændringer
 
 | Fil | Ændring |
 |-----|---------|
-| `src/components/slots/SlotGame.tsx` | Ændre spin-knap container fra højre-justeret til centreret |
-
-## Visuelt Resultat
-```
-          ╔═══════════════════════════════════╗
-          ║                                   ║
-          ║      [  SPILLEMASKINE REELS  ]    ║
-          ║                                   ║
-          ╚═══════════════════════════════════╝
-                    
-             [Bet] [Auto] [Win] [🔊]
-                         
-                  ╭─────────────╮
-                  │             │
-                  │     🎰      │  ← Perfekt centreret
-                  │    SPIN     │     under maskinen
-                  │             │
-                  ╰─────────────╯
-```
+| `src/components/slots/SlotGame.tsx` | Tilføj `max-w-fit mx-auto` til ydre container |
