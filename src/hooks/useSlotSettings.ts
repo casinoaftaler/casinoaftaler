@@ -71,8 +71,7 @@ export function useSlotSettings() {
       for (const update of updates) {
         const { error } = await supabase
           .from("site_settings")
-          .update({ value: update.value })
-          .eq("key", update.key);
+          .upsert({ key: update.key, value: update.value }, { onConflict: 'key' });
 
         if (error) throw error;
       }
