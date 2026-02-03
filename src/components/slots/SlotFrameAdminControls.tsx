@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
 import { supabase } from "@/integrations/supabase/client";
@@ -7,7 +7,7 @@ import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Slider } from "@/components/ui/slider";
 import { Label } from "@/components/ui/label";
-import { Loader2, Wand2, Trash2, ImageIcon, RefreshCw, Sparkles, Download } from "lucide-react";
+import { Loader2, Wand2, Trash2, ImageIcon, RefreshCw, Sparkles, Download, Upload } from "lucide-react";
 import { toast } from "sonner";
 
 export function SlotFrameAdminControls() {
@@ -15,6 +15,8 @@ export function SlotFrameAdminControls() {
   const { data: settings, isLoading: settingsLoading } = useSiteSettings();
   const [backgroundPreviewUrl, setBackgroundPreviewUrl] = useState<string | null>(null);
   const [framePreviewUrl, setFramePreviewUrl] = useState<string | null>(null);
+  const [uploadingFrame, setUploadingFrame] = useState(false);
+  const frameInputRef = useRef<HTMLInputElement>(null);
   
   const currentBackgroundUrl = settings?.slot_background_image || null;
   const currentFrameUrl = settings?.slot_machine_frame_image || null;
@@ -151,6 +153,60 @@ export function SlotFrameAdminControls() {
     } catch (error) {
       console.error('Download error:', error);
       toast.error('Kunne ikke downloade filen');
+    }
+  };
+
+  const handleFrameUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+
+    if (!file.type.startsWith("image/")) {
+      toast.error("Upload venligst en billedfil (JPG, PNG, etc.)");
+      return;
+    }
+
+    if (file.size > 5 * 1024 * 1024) {
+      toast.error("Maksimal filstørrelse er 5MB");
+      return;
+    }
+
+    setUploadingFrame(true);
+
+    try {
+      const fileExt = file.name.split(".").pop();
+      const fileName = `slot-frame-${Date.now()}.${fileExt}`;
+
+      const { error: uploadError } = await supabase.storage
+        .from("casino-logos")
+        .upload(fileName, file, { upsert: true });
+
+      if (uploadError) throw uploadError;
+
+      const { data: { publicUrl } } = supabase.storage
+        .from("casino-logos")
+        .getPublicUrl(fileName);
+
+      // Save to site_settings
+      const { error: settingsError } = await supabase
+        .from("site_settings")
+        .upsert(
+          { key: "slot_machine_frame_image", value: publicUrl },
+          { onConflict: "key" }
+        );
+
+      if (settingsError) throw settingsError;
+
+      setFramePreviewUrl(publicUrl);
+      queryClient.invalidateQueries({ queryKey: ["site-settings"] });
+      toast.success("Ramme uploadet!");
+    } catch (error: any) {
+      console.error("Frame upload error:", error);
+      toast.error(`Upload fejlede: ${error.message}`);
+    } finally {
+      setUploadingFrame(false);
+      if (frameInputRef.current) {
+        frameInputRef.current.value = "";
+      }
     }
   };
 
@@ -296,6 +352,34 @@ export function SlotFrameAdminControls() {
             )}
 
             <div className="flex flex-wrap gap-2">
+              {/* Hidden file input for upload */}
+              <input
+                ref={frameInputRef}
+                type="file"
+                accept="image/*"
+                onChange={handleFrameUpload}
+                className="hidden"
+              />
+              
+              <Button
+                variant="outline"
+                onClick={() => frameInputRef.current?.click()}
+                disabled={uploadingFrame}
+                className="border-amber-500/50 text-amber-500 hover:bg-amber-500/10"
+              >
+                {uploadingFrame ? (
+                  <>
+                    <Loader2 className="h-4 w-4 mr-2 animate-spin" />
+                    Uploader...
+                  </>
+                ) : (
+                  <>
+                    <Upload className="h-4 w-4 mr-2" />
+                    Upload Egen Ramme
+                  </>
+                )}
+              </Button>
+
               <Button
                 onClick={() => generateFrame.mutate()}
                 disabled={generateFrame.isPending}
