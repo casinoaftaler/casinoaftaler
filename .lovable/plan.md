@@ -1,131 +1,133 @@
 
-# Tease Mode: Sekventiel Hjul-Bremsning
+# Tilføj Intens Lyd og Visuel Effekt til Aktivt Tease-Hjul
 
 ## Oversigt
-Opdater tease-mode adfærden så kun det næste hjul i rækken bremser ned og stopper ad gangen, mens de resterende hjul fortsætter med at spinne i fuld hastighed ("fake loop") indtil det er deres tur.
+Når et tease-hjul aktivt bremser ned (skifter fra fake loop til 3-sekunders nedbremsning), tilføjes en mere dramatisk lyd og visuel effekt for at fremhæve spændingen.
 
-## Nuværende vs. Ny Adfærd
+## Nuværende Implementation
+- **Lyd**: Der spilles en generel `playTeaseStart()` lyd med heartbeat og drone når tease-mode starter, men ingen specifik lyd når hvert hjul aktivt bremser ned
+- **Visuel**: Tease-hjul har en amber glow og pulse-animation, men den samme effekt bruges til både fake-looping og aktivt bremsende hjul
 
-| Nuværende | Ny |
-|-----------|-----|
-| Alle tease-hjul bremser langsomt ned sammen | Kun det næste hjul bremser ned |
-| Staggered stop baseret på delay | Hvert hjul venter på at det forrige stopper før det begynder at bremse |
-| Alle tease-hjul har længere varighed | Kun det aktive hjul har lang varighed, resten looper |
+## Nye Effekter
 
-## Implementeringsplan
+### Lyd: `playActiveTeaseSlowdown()`
+- **Stigende crescendo**: En intens opbyggende lyd der crescendoer over nedbremsningsperioden
+- **Accelererende trommer**: Egyptisk darbuka-rytme der starter langsomt og accelererer
+- **Dramatisk drone**: Stigende pitch for at bygge spænding
+- **Metallisk shimmer**: Sistrum-lignende raslen der intensiveres
 
-### 1. Tilføj ny prop til SlotReel: `activeTeaseReel`
-- SlotGame skal tracke hvilket tease-hjul der aktuelt er ved at stoppe
-- Ny state: `activeTeaseReelIndex` der opdateres når hvert hjul stopper
-
-### 2. Opdater SlotReel Animation Logic
-- Tre tilstande for tease-hjul:
-  1. **Venter på tur**: Spinner i fake loop (uendeligt loop af tilfældige symboler)
-  2. **Aktivt tease**: Bremser langsomt ned over 3 sekunder
-  3. **Stoppet**: Viser endelige symboler
-
-### 3. Fake Loop Implementation
-- Når et hjul er i tease-mode men ikke er det aktive tease-hjul:
-  - Fortsæt med at animere symbolerne i et loop
-  - Generer nye tilfældige symboler løbende for at opretholde illusionen
-  - Ingen deceleration - konstant høj hastighed
-
-### 4. Sekventiel Stop Mekanisme
-- Når et tease-hjul stopper, trigger `onReelStop` callback
-- SlotGame bruger dette til at aktivere det næste tease-hjul i rækken
-- Det næste hjul begynder så sin 3-sekunders nedbremsning
+### Visuel: Forbedret Glow-Effekt
+- **Intensere glow**: Større, lysere amber glow specifikt for det aktive tease-hjul
+- **Pulserende border**: Animeret kant der pulserer hurtigere end fake-looping hjul
+- **Partikler/gnister**: Subtile amber partikler omkring det aktive hjul
+- **Differentier visuelt**: Fake-looping hjul har dæmpet glow, aktivt hjul har intens glow
 
 ---
 
 ## Tekniske Detaljer
 
-### Fil: `src/components/slots/SlotGame.tsx`
+### Fil: `src/lib/slotSoundEffects.ts`
 
-**Ny state:**
-```typescript
-const [activeTeaseReelIndex, setActiveTeaseReelIndex] = useState<number | null>(null);
+**Ny metode `playActiveTeaseSlowdown()` (tilføjes efter linje 1130):**
+
+```text
+playActiveTeaseSlowdown(reelIndex: number): () => void {
+  // Returnerer stop-funktion
+  // Opretter accelererende drumroll med egyptisk tema
+  // Stigende pitch drone over 3 sekunder
+  // Intensiverende sistrum shimmer
+}
 ```
 
-**Opdateret onReelStop callback:**
-- Når et ikke-tease hjul stopper: normal adfærd
-- Når et tease-hjul stopper: sæt næste tease-hjul som aktivt
-
-**Ny prop til SlotReel:**
-```typescript
-isActiveTeaseReel={teaseReels.includes(colIndex) && activeTeaseReelIndex === colIndex}
-```
+Lyddesign:
+- **Accelererende rytme**: Starter med 300ms interval, accelererer til 80ms
+- **Stigende drone**: Starter på 80Hz, ramper op til 200Hz over 3 sekunder
+- **Intensiverende shimmer**: Høje frekvenser (2500-4000Hz) der bliver stærkere
+- **Pitch baseret på reel-index**: Senere hjul har højere basis-pitch for progression
 
 ### Fil: `src/components/slots/SlotReel.tsx`
 
-**Nye props:**
+**Opdater glow-effekten (linje 339-343):**
+
+Nuværende:
 ```typescript
-interface SlotReelProps {
-  // ... eksisterende props
-  isActiveTeaseReel?: boolean;  // Om dette hjul skal bremse ned nu
-}
+(isActiveTeaseReel || isFakeLooping) && spinState === "spinning" && 
+"shadow-[0_0_20px_rgba(251,191,36,0.6),0_0_40px_rgba(251,191,36,0.3)] animate-pulse"
 ```
 
-**Opdateret animation logik:**
-
-**Fase 1: Fake Loop Mode**
-- Når `teaseMode=true` og `isActiveTeaseReel=false`
-- Kontinuerlig animation uden slutpunkt
-- Bruger CSS animation eller requestAnimationFrame loop
-- Konstant offset-cycling gennem symbol-strippen
-
-**Fase 2: Active Tease Mode**
-- Når `teaseMode=true` og `isActiveTeaseReel=true`
-- Start 3-sekunders nedbremsning med langsom easing
-- Brug `baseSpinDuration = 3000` for ekstra dramatik
-- Kraftigere deceleration easing: `1 - Math.pow(1 - progress, 5)`
-
-**Fase 3: Stopped**
-- Normal stop-animation med bounce
-- Trigger `onReelStop` callback
-
-**Loop Animation Implementation:**
+Ny differentieret effekt:
 ```typescript
-// I spinning useEffect - når i fake loop mode:
-if (teaseMode && !isActiveTeaseReel) {
-  // Loop kontinuerligt - reset offset når vi når bunden
-  const loopAnimate = (currentTime: number) => {
-    // Beregn offset der looper tilbage til start
-    const elapsed = (currentTime - startTime) % loopDuration;
-    const loopProgress = elapsed / loopDuration;
-    const loopOffset = startOffset * (1 - loopProgress);
-    setOffset(loopOffset);
-    animationRef.current = requestAnimationFrame(loopAnimate);
-  };
-}
+// Fake looping: Dæmpet glow
+isFakeLooping && !isActiveTeaseReel && spinState === "spinning" && 
+"shadow-[0_0_15px_rgba(251,191,36,0.3),0_0_25px_rgba(251,191,36,0.15)] animate-pulse"
+
+// Active tease: Intens glow med hurtigere animation
+isActiveTeaseReel && spinState === "spinning" && 
+"shadow-[0_0_30px_rgba(251,191,36,0.9),0_0_60px_rgba(251,191,36,0.6),0_0_90px_rgba(251,191,36,0.3)] 
+ animate-[glow-intense_0.5s_ease-in-out_infinite]"
 ```
 
-### Fil: `src/components/slots/SlotGame.tsx` - Opdateret spin flow
+**Tilføj lyd-hook ved aktiv tease-start (linje 198-250):**
 
-**I handleSpin:**
-1. Beregn teaseReels som normalt
-2. Første tease-hjul sættes som aktivt når det forrige ikke-tease hjul stopper
-3. Opdater activeTeaseReelIndex i onReelStop callback
+```text
+// Når isActiveTeaseReel bliver true:
+// 1. Start playActiveTeaseSlowdown() lyd
+// 2. Gem stop-funktion i ref
+// 3. Stop lyden i cleanup eller når animation slutter
+```
 
-**Ny callback handler:**
-```typescript
-const handleReelStop = useCallback((reelIndex: number) => {
-  slotSounds.playReelStopSingle(reelIndex);
-  
-  // Hvis det var et tease-hjul der stoppede
-  if (teaseReels.includes(reelIndex)) {
-    // Find næste tease-hjul
-    const currentTeaseIndex = teaseReels.indexOf(reelIndex);
-    if (currentTeaseIndex < teaseReels.length - 1) {
-      setActiveTeaseReelIndex(teaseReels[currentTeaseIndex + 1]);
-    }
-  } else {
-    // Tjek om det næste hjul er et tease-hjul
-    const nextReel = reelIndex + 1;
-    if (teaseReels.includes(nextReel)) {
-      setActiveTeaseReelIndex(nextReel);
-    }
+### Fil: `src/index.css`
+
+**Tilføj ny keyframe animation (efter eksisterende glow animation):**
+
+```text
+@keyframes glow-intense {
+  0%, 100% {
+    box-shadow: 
+      0 0 30px rgba(251,191,36,0.9),
+      0 0 60px rgba(251,191,36,0.6),
+      0 0 90px rgba(251,191,36,0.3);
   }
-}, [teaseReels]);
+  50% {
+    box-shadow: 
+      0 0 40px rgba(251,191,36,1),
+      0 0 80px rgba(251,191,36,0.8),
+      0 0 120px rgba(251,191,36,0.5);
+  }
+}
+```
+
+### Fil: `src/components/slots/SlotGame.tsx`
+
+**Tilføj lyd-trigger for aktivt tease (opdater handleReelStop callback):**
+
+Når det næste tease-hjul aktiveres, start den nye lyd:
+```text
+// I handleReelStop callback:
+// Når et tease-hjul aktiveres, spil playActiveTeaseSlowdown(reelIndex)
+```
+
+---
+
+## Flow
+
+```text
+Spin Start
+    │
+    ├── Hjul 1-2 stopper normalt
+    │
+    └── Hjul 3 er første tease-hjul
+            │
+            ├── Fake-looping (dæmpet glow)
+            │
+            └── Bliver aktivt når Hjul 2 stopper
+                    │
+                    ├── Intens glow aktiveres
+                    ├── playActiveTeaseSlowdown() starter
+                    │
+                    └── 3 sekunders nedbremsning
+                            │
+                            └── Hjul 3 stopper → Hjul 4 bliver aktivt → Gentag
 ```
 
 ---
@@ -134,12 +136,14 @@ const handleReelStop = useCallback((reelIndex: number) => {
 
 | Fil | Ændring |
 |-----|---------|
-| `src/components/slots/SlotReel.tsx` | Tilføj `isActiveTeaseReel` prop, implementer fake loop animation, opdater tease logic |
-| `src/components/slots/SlotGame.tsx` | Tilføj `activeTeaseReelIndex` state, opdater `onReelStop` callback til sekventiel aktivering |
+| `src/lib/slotSoundEffects.ts` | Tilføj `playActiveTeaseSlowdown()` metode med accelererende lyd |
+| `src/components/slots/SlotReel.tsx` | Differentiér glow for fake-loop vs aktiv tease, tilføj lyd-hook |
+| `src/index.css` | Tilføj `glow-intense` keyframe animation |
+| `src/components/slots/SlotGame.tsx` | Trigger lyd når tease-hjul aktiveres |
 
 ## Test Scenarier
 - Spin med 2+ scatters på de første 3 hjul
-- Verificer at hjul 1-2 (eller 1-3) stopper normalt
-- Verificer at tease-hjul 3-5 fortsætter med at spinne i fuld hastighed
-- Verificer at hvert tease-hjul bremser ned individuelt efter det forrige stopper
-- Verificer 3-sekunders nedbremsning per tease-hjul
+- Verificer at fake-looping hjul har dæmpet glow
+- Verificer at det aktive tease-hjul har intens glow når det bremser
+- Lyt efter den accelererende lyd under nedbremsning
+- Tjek at lyden stopper når hjulet lander
