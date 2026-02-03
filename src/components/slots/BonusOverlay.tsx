@@ -4,9 +4,11 @@ import { getSymbolEmoji } from "@/lib/slotGameLogic";
 
 interface BonusOverlayProps {
   isVisible: boolean;
-  type: "trigger" | "complete";
+  type: "trigger" | "complete" | "retrigger";
   expandingSymbol?: SlotSymbol | null;
   totalWinnings?: number;
+  retriggerSpins?: number;
+  totalFreeSpins?: number;
   onClose?: () => void;
 }
 
@@ -15,6 +17,8 @@ export function BonusOverlay({
   type,
   expandingSymbol,
   totalWinnings = 0,
+  retriggerSpins = 10,
+  totalFreeSpins = 0,
   onClose,
 }: BonusOverlayProps) {
   if (!isVisible) return null;
@@ -85,6 +89,30 @@ export function BonusOverlay({
 
             <p className="text-amber-200/60 text-sm mt-4">
               Klik for at starte
+            </p>
+          </>
+        ) : type === "retrigger" ? (
+          <>
+            {/* Retrigger content */}
+            <div className="mb-4">
+              <span className="text-6xl animate-bounce inline-block">📖</span>
+            </div>
+            <h2 className="text-3xl sm:text-4xl font-bold text-amber-300 mb-2 animate-pulse">
+              RETRIGGER!
+            </h2>
+            <p className="text-xl text-amber-100 mb-4">
+              +{retriggerSpins} GRATIS SPINS!
+            </p>
+            
+            <div className="mt-4 p-4 bg-black/30 rounded-xl">
+              <p className="text-amber-200 mb-2">Total Free Spins:</p>
+              <div className="text-4xl font-bold text-amber-400">
+                {totalFreeSpins}
+              </div>
+            </div>
+
+            <p className="text-amber-200/60 text-sm mt-6">
+              Klik for at fortsætte
             </p>
           </>
         ) : (

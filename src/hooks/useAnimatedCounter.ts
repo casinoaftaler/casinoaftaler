@@ -5,13 +5,14 @@ interface UseAnimatedCounterOptions {
   duration?: number; // Duration in ms
   startFrom?: number;
   playSound?: boolean;
+  isBigWin?: boolean; // Use dramatic big win sound instead of standard coin count
 }
 
 export function useAnimatedCounter(
   targetValue: number,
   options: UseAnimatedCounterOptions = {}
 ) {
-  const { duration = 1000, startFrom = 0, playSound = true } = options;
+  const { duration = 1000, startFrom = 0, playSound = true, isBigWin = false } = options;
   const [displayValue, setDisplayValue] = useState(targetValue);
   const animationRef = useRef<number | null>(null);
   const previousTargetRef = useRef(targetValue);
@@ -30,9 +31,11 @@ export function useAnimatedCounter(
     const range = end - start;
     const startTime = performance.now();
 
-    // Start coin counting sound
+    // Start coin counting sound (use big win sound for dramatic effect)
     if (playSound) {
-      stopSoundRef.current = slotSounds.playCoinCount();
+      stopSoundRef.current = isBigWin 
+        ? slotSounds.playBigWinCount() 
+        : slotSounds.playCoinCount();
     }
 
     const animate = (currentTime: number) => {
@@ -70,7 +73,7 @@ export function useAnimatedCounter(
         stopSoundRef.current = null;
       }
     };
-  }, [targetValue, duration, startFrom, playSound]);
+  }, [targetValue, duration, startFrom, playSound, isBigWin]);
 
   return displayValue;
 }
