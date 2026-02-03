@@ -1,4 +1,4 @@
-import { useState, useCallback } from "react";
+import { useState, useCallback, useEffect } from "react";
 import { SlotGame } from "@/components/slots/SlotGame";
 import { SlotLeaderboard } from "@/components/slots/SlotLeaderboard";
 import { SpinsRemaining } from "@/components/slots/SpinsRemaining";
@@ -22,13 +22,13 @@ export default function SlotMachine() {
   const { data: siteSettings } = useSiteSettings();
   const { isLocked, hasAccess, isLoading: accessLoading, error, verifyPassword } = useSlotPageAccess();
   
-  // Loading phase state with session persistence
-  const [loadingPhase, setLoadingPhase] = useState<LoadingPhase>(() => {
-    if (sessionStorage.getItem('slot_initialized')) {
-      return 'ready';
-    }
-    return 'loading';
-  });
+  // Loading phase state - always start fresh (no session persistence)
+  const [loadingPhase, setLoadingPhase] = useState<LoadingPhase>('loading');
+  
+  // Clear session flag on mount to ensure fresh start
+  useEffect(() => {
+    sessionStorage.removeItem('slot_initialized');
+  }, []);
   
   // Leaderboard toggle state with localStorage persistence
   const [showLeaderboard, setShowLeaderboard] = useState(() => {
