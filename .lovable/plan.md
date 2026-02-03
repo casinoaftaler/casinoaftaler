@@ -1,148 +1,81 @@
 
+# Fix Spin Button Spam and Reel Timing Predictability
 
-# Add RTP Calculation to Admin Panel and Ensure Weight Changes Apply to Game
+## Problems Identified
 
-## Overview
+### Problem 1: Spin Button Can Be Spammed
+The current spin lock releases after 300ms, but this is too short. Users can rapidly click and break reel 5 timing. The user wants a 500ms delay after:
+1. Reel 5 has completely landed
+2. Any win animation has been shown
 
-Add a theoretical RTP (Return to Player) calculation in the admin panel that updates in real-time as symbol weights are changed, and verify that weight changes from the admin panel are already being applied to the game.
+### Problem 2: Reel Slowdown Is Predictable
+Tease reels (those that slow down for scatter tension) may start slowing before the previous reel has fully stopped. This makes it possible to predict if a scatter tease will happen by watching reel behavior.
 
-## Current State Analysis
-
-### How the Game Uses Weights
-
-The slot machine already correctly uses weights from the database:
-
-1. **useSlotSymbols hook** fetches symbols from `slot_symbols` table including `weight` column
-2. **slotGameLogic.ts** uses `symbol.weight` in `getRandomSymbol()` to determine spawn probability
-3. **useSlotSymbolsAdmin hook** updates weights in the database via `updateSymbol.mutate()`
-4. **React Query** invalidates the `slot-symbols` query after updates, causing the game to use new weights
-
-**The weight changes already apply to the game** - when an admin saves a new weight, React Query refetches the symbols, and subsequent spins use the updated weights.
-
-### RTP Calculation
-
-RTP (Return to Player) is a theoretical percentage calculated as:
-
-```text
-RTP = (Expected Winnings / Total Wagered) × 100
-```
-
-For a slot machine, this requires simulating all possible outcomes weighted by their probability.
+The issue is in the coordination between:
+- When a non-tease reel stops
+- When the next tease reel should transition from "fake loop" to "active slowdown"
 
 ## Solution
 
-### 1. Create RTP Calculation Utility
+### Fix 1: Extend Spin Lock Delay to 500ms
 
-Add a new function to calculate theoretical RTP based on:
-- Symbol weights (probability of appearing)
-- Symbol multipliers (payouts)
-- Pay line patterns
-- Bet amount (normalized to 1)
+Change the spin lock release timing from 300ms to 500ms after spin completion. Additionally, ensure the lock is only released AFTER win animations complete.
 
-The calculation will:
-1. For each pay line, calculate the probability of each winning combination (2x, 3x, 4x, 5x matches)
-2. Multiply probability by payout
-3. Sum all expected returns
-4. Calculate as percentage of total wagered
+**File: `src/components/slots/SlotGame.tsx`**
+- Increase the spin lock release delay from 300ms to 500ms (line 726)
+- Add a check to wait for win animation completion before releasing the lock
 
-### 2. Add RTP Display to Admin Panel
+### Fix 2: Fix Reel Timing to Prevent Prediction
 
-Add an RTP card to the probability overview section showing:
-- Calculated theoretical RTP percentage
-- Color-coded indicator (green if healthy 90-96%, yellow if outside range)
-- Brief explanation of what RTP means
+The tease reel should only start its slowdown animation AFTER the previous reel has completely stopped. Currently, the fake loop runs continuously, but the transition to active tease might happen prematurely.
 
-### 3. Update Edit Dialog
+**File: `src/components/slots/SlotReel.tsx`**
+- Ensure tease reels maintain constant speed in fake loop until explicitly activated
+- Only transition to slowdown when `isActiveTeaseReel` becomes true AND the previous reel has confirmed stopped
+- Remove any visual cues that could telegraph the upcoming tease
 
-Show how changing a symbol's weight or multipliers affects the overall RTP in real-time.
+**Key Changes:**
+1. Make fake loop animation speed completely constant (no variation)
+2. Only trigger the slowdown transition when `isActiveTeaseReel` prop changes to true
+3. Ensure the transition is instantaneous - no "pre-slowdown" hints
 
-## Technical Implementation
+## Technical Details
 
-### New File: src/lib/slotRTPCalculation.ts
+### SlotGame.tsx Changes
 
 ```text
-Purpose: Calculate theoretical RTP based on symbol configuration
+Current (line 726-732):
+setTimeout(() => {
+  spinLockRef.current = false;
+  ...
+}, 300);
+
+New:
+Wait for isWinAnimating to be false, then wait 500ms before releasing lock
 ```
 
-Key functions:
-- `calculateSymbolProbability()` - Calculate chance of a symbol appearing in a position
-- `calculateLineProbability()` - Calculate probability of getting N consecutive symbols
-- `calculateTheoreticalRTP()` - Main function to compute overall RTP
+### SlotReel.tsx Changes
 
-### Calculation Formula
-
-For each symbol and each pay line:
-
-```text
-P(symbol appears) = symbol.weight / totalWeight
-P(N consecutive matches) = P(symbol)^N × (1 - P(symbol)) for interrupted chains
-                          + P(symbol)^5 for 5-of-a-kind
-
-Expected payout = Σ (probability × multiplier × bet)
-RTP = (Expected payout / Total bet) × 100
-```
-
-Premium symbols (2+ wins) and scatter mechanics will be factored in.
-
-### Changes to SlotMachineAdminSection.tsx
-
-1. Import the RTP calculation utility
-2. Add an RTP display card in the `SymbolsTab` component
-3. Show real-time RTP updates when viewing probability overview
-4. Add RTP preview to the `EditSymbolDialog` when changing weights/multipliers
+The fake loop animation should:
+1. Run at a consistent speed with no variation
+2. Only respond to `isActiveTeaseReel` when the previous reel has definitively stopped
+3. Have the same visual appearance as a normal spinning reel (no anticipatory glow or slowdown)
 
 ## Files Changed
 
 | File | Change |
 |------|--------|
-| `src/lib/slotRTPCalculation.ts` | NEW - RTP calculation logic |
-| `src/components/SlotMachineAdminSection.tsx` | Add RTP display card and real-time updates |
+| `src/components/slots/SlotGame.tsx` | Increase spin lock delay to 500ms, ensure lock waits for win animation |
+| `src/components/slots/SlotReel.tsx` | Make fake loop speed constant, ensure no premature slowdown signals |
 
-## UI Design
+## Expected Behavior After Fix
 
-### RTP Overview Card (in SymbolsTab)
-
-```text
-┌─────────────────────────────────────────┐
-│ 📊 Teoretisk RTP                        │
-├─────────────────────────────────────────┤
-│                                         │
-│    ┌─────────────────┐                  │
-│    │     94.52%      │  ← Large number  │
-│    │  Return to Player│                 │
-│    └─────────────────┘                  │
-│                                         │
-│  Dette er den forventede tilbagebe-     │
-│  talingsprocent baseret på symbolernes  │
-│  vægte og multiplikatorer.              │
-│                                         │
-│  Industri standard: 92-96%              │
-└─────────────────────────────────────────┘
-```
-
-### RTP in Edit Dialog
-
-When editing a symbol, show:
-- Current theoretical RTP
-- Projected RTP if changes are saved
-- Delta (increase/decrease)
-
-## Verification: Weights Apply to Game
-
-To confirm weights are already being applied:
-
-1. `useSlotSymbols` hook (line 1-20) fetches symbols with weights from database
-2. `slotGameLogic.ts getRandomSymbol()` (lines 114-138) uses `symbol.weight` for probability
-3. `useSlotSymbolsAdmin.updateSymbol` (lines 17-30) updates database and invalidates query
-4. Query invalidation causes `useSlotSymbols` to refetch, updating game
-
-**The system already works correctly** - no changes needed for weight application.
+1. **Spin Button**: Cannot be clicked for 500ms after reel 5 lands and any win is displayed
+2. **Reel Timing**: All reels spin at identical speeds until their designated stop time - no early slowdown that telegraphs scatter teases
+3. **Tease Transition**: Slowdown only begins the exact moment the previous reel fully stops
 
 ## Summary
 
-This implementation adds a theoretical RTP calculator that:
-1. Shows admins the expected return percentage based on current configuration
-2. Updates in real-time as weights and multipliers are changed
-3. Helps balance the game by showing the impact of configuration changes
-4. Confirms the existing weight system is working correctly
-
+Two targeted fixes to improve game integrity:
+1. Longer spin lock (500ms post-completion) prevents button spam that breaks reel 5
+2. Consistent reel speeds until explicit activation prevents players from predicting scatter teases
