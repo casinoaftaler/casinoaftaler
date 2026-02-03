@@ -1,63 +1,72 @@
 
-# Fix Decimal Win Storage in Leaderboard
+# Make Slot Frame Smaller on Mobile
 
 ## The Problem
 
-The database columns for storing wins are defined as **integer**, which truncates decimal values:
-
-| Column | Current Type | Problem |
-|--------|--------------|---------|
-| win_amount | integer | 1.5 becomes 1 |
-| bet_amount | integer | OK (usually whole numbers) |
-| bonus_win_amount | integer | 1.5 becomes 1 |
-
-When a player wins 1.5 points (from a 0.5× multiplier with bet 3), it gets saved as 1, losing 0.5 points from the leaderboard.
+The slot machine frame uses the same size (set in admin panel, default 90px) on all devices. On mobile screens, this creates an oversized frame that takes up too much space relative to the slot machine content.
 
 ## Solution
 
-Change the `win_amount` and `bonus_win_amount` columns from `integer` to `numeric(10,2)` to support 2 decimal places.
+Apply responsive scaling to the frame size based on screen width. The admin-configured size will be treated as the desktop size, and smaller screens will use proportionally reduced sizes.
+
+## Responsive Scaling Strategy
+
+| Screen Size | Breakpoint | Scale Factor | Example (if admin sets 90px) |
+|-------------|------------|--------------|------------------------------|
+| Extra Small | < 400px | 35% | 32px |
+| Mobile | < 640px | 45% | 40px |
+| Small | < 768px | 60% | 54px |
+| Medium | < 1024px | 80% | 72px |
+| Large+ | >= 1024px | 100% | 90px (full size) |
 
 ## Changes Required
 
-### 1. Database Migration
+### 1. Update SlotMachineFrame Component
 
-Alter the `slot_game_results` table to use decimal types:
+Add responsive scaling logic using window width detection:
 
-```sql
--- Change win_amount from integer to numeric
-ALTER TABLE slot_game_results 
-  ALTER COLUMN win_amount TYPE numeric(10,2) USING win_amount::numeric(10,2);
-
--- Change bonus_win_amount from integer to numeric  
-ALTER TABLE slot_game_results 
-  ALTER COLUMN bonus_win_amount TYPE numeric(10,2) USING bonus_win_amount::numeric(10,2);
+```text
+src/components/slots/SlotMachineFrame.tsx
 ```
 
-### 2. Update the Leaderboard View
+- Add a state for the effective frame size based on screen width
+- Listen for resize events to update the size dynamically
+- Apply the scaled frame size to all frame-related styles
 
-The `slot_leaderboard` view needs to be recreated to handle the new numeric types (it will automatically work with the new column types, no changes needed to the view definition).
+### 2. Key Changes
+
+**Before:**
+- `frameSize` is a fixed value from settings (e.g., 90px)
+- All margins and positioning use this single value
+
+**After:**
+- `effectiveFrameSize` is calculated based on screen width
+- Mobile screens get a significantly smaller frame
+- The transition is smooth across breakpoints
+
+## Technical Details
+
+The component will:
+1. Read the admin-configured `slot_frame_size` as the base (desktop) size
+2. Calculate an `effectiveFrameSize` based on current window width
+3. Apply this scaled size to:
+   - Container margins (top, left, right, bottom)
+   - Frame image positioning (top, left, right, bottom offsets)
+   - Content padding (p-2 on mobile vs p-4/p-6/p-8 on larger screens)
 
 ## Files Changed
 
-| Location | Change |
-|----------|--------|
-| Database migration | Alter column types to numeric(10,2) |
-| No code changes needed | The existing code already passes decimal values |
+| File | Change |
+|------|--------|
+| `src/components/slots/SlotMachineFrame.tsx` | Add responsive frame size calculation with resize listener |
 
-## What This Fixes
+## User Experience
 
-| Scenario | Before | After |
-|----------|--------|-------|
-| Win 1.5 points | Saved as 1 | Saved as 1.50 |
-| Win 0.75 points | Saved as 0 | Saved as 0.75 |
-| Total winnings display | Missing decimals | Accurate totals |
-
-## Impact on Existing Data
-
-- Existing integer values will be converted to decimals (1 → 1.00)
-- No data loss for existing records
-- All future wins will be recorded accurately
+- Admin-configured frame size remains the "desktop" reference size
+- Mobile users see a proportionally smaller frame that fits their screen
+- Frame automatically adjusts when rotating device or resizing browser
+- No changes needed to the admin panel
 
 ## Summary
 
-This is a simple database schema change that converts integer columns to numeric columns, allowing decimal win amounts to be stored correctly. The leaderboard totals will then accurately reflect all wins including those with decimal multipliers.
+A single component update adds responsive frame sizing. The frame will automatically scale down on mobile devices while keeping the full size on desktop, making the slot machine look properly proportioned on all screen sizes.
