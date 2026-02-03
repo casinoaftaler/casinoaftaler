@@ -1,59 +1,78 @@
 
+## Plan: Tilføj loading screen og introduktionsbillede til spillemaskinen
 
-## Plan: Flyt spin-knappen til midten med kontroller på hver side
+### Oversigt
+Når brugere besøger spillemaskinens side, vil de nu se:
+1. **Loading screen** - Med titel-billedet øverst og en animeret loading bar
+2. **Introduktionsbillede** - Det uploadede billede vises efter loading, og brugeren skal klikke "FORTSÆT" for at se spillemaskinen
 
-### Nuværende layout
+### Flow
+```text
+┌─────────────────────────────────────────┐
+│         LOADING SCREEN                  │
+│                                         │
+│    [Book of Fedesvin Title Art]         │
+│                                         │
+│    ████████░░░░░░░░░░░  45%            │
+│    "Indlæser spillemaskine..."          │
+│                                         │
+└─────────────────────────────────────────┘
+                   ↓
+                   ↓ (efter ~2-3 sek)
+                   ↓
+┌─────────────────────────────────────────┐
+│       INTRODUKTIONSBILLEDE              │
+│                                         │
+│    [Det uploadede intro-billede]        │
+│                                         │
+│         [ FORTSÆT KNAP ]                │
+│                                         │
+└─────────────────────────────────────────┘
+                   ↓
+                   ↓ (bruger klikker)
+                   ↓
+┌─────────────────────────────────────────┐
+│        SPILLEMASKINEN                   │
+│   (den normale slot machine visning)    │
+└─────────────────────────────────────────┘
 ```
-[Indsats] [Auto Count] [Auto] [Gevinst] [Lyd]
-             ⬇️
-         [SPIN BUTTON]
-```
-
-### Nyt layout
-```
-[Indsats]  [Auto Count] [Auto]  ────  [SPIN]  ────  [Gevinst]  [Lyd]
-```
-
-Spin-knappen placeres centralt i en enkelt række, med bet/autospin kontroller til venstre og gevinst/lyd kontroller til højre.
 
 ---
 
 ### Tekniske ændringer
 
-**Fil: `src/components/slots/SlotGame.tsx`**
+**1. Kopiér intro-billedet til projektet**
+- Placering: `src/assets/slots/slot-intro-screen.jpg`
 
-Sammenflet kontrolrækken (linje 601-681) og spin-knap sektionen (linje 683-747) til én linje:
+**2. Ny komponent: `src/components/slots/SlotLoadingScreen.tsx`**
+- Viser titel-billedet centreret øverst
+- Animeret progress bar med egyptisk styling (guld/amber farver)
+- Loading tekst: "Indlæser spillemaskine..."
+- Simuleret loading progress over ca. 2-3 sekunder
+- Callback når loading er færdig
 
-**Ny struktur:**
-```tsx
-{/* Controls row with spin button in center */}
-<div className="flex flex-wrap items-center justify-center gap-2 sm:gap-3 md:gap-4 mt-1 sm:mt-2">
-  {/* LEFT SIDE: Bet Controls + Autospin */}
-  <div className="flex items-center gap-1 xs:gap-2">
-    <BetControls ... />
-    {/* Autospin controls */}
-    <div className="flex items-center gap-1">
-      {/* Autospin count selector */}
-      ...
-      {/* Autospin button */}
-      ...
-    </div>
-  </div>
-  
-  {/* CENTER: Spin button */}
-  <Button className="rounded-full w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 lg:w-28 lg:h-28 ..." ...>
-    SPIN
-  </Button>
-  
-  {/* RIGHT SIDE: Win Display + Volume */}
-  <div className="flex items-center gap-1 xs:gap-2">
-    <WinDisplay ... />
-    <VolumeControl />
-  </div>
-</div>
-```
+**3. Ny komponent: `src/components/slots/SlotIntroScreen.tsx`**
+- Viser det uploadede intro-billede i fuld størrelse (responsivt)
+- "FORTSÆT" knap i egyptisk stil (guld gradient)
+- Callback når bruger klikker for at fortsætte
+- Subtil fade-in animation
 
-**Justeringer til spin-knappen:**
-- Reduceret størrelse for at passe i en inline række
-- Fjerner den separate wrapper `<div className="flex justify-center my-3 sm:my-4">`
+**4. Opdater `src/pages/SlotMachine.tsx`**
+- Tilføj tre nye states:
+  - `loadingPhase`: "loading" | "intro" | "ready"
+- Vis `SlotLoadingScreen` når `loadingPhase === "loading"`
+- Vis `SlotIntroScreen` når `loadingPhase === "intro"`
+- Vis den normale spillemaskine kun når `loadingPhase === "ready"`
+- Session persistence: Gem i sessionStorage så brugeren ikke ser loading igen ved navigation tilbage
 
+**5. CSS animationer i `src/index.css`**
+- `@keyframes loading-progress` - Animerer progress baren
+- `@keyframes intro-fade-in` - Fade-in for intro screen
+
+---
+
+### Brugeroplevelse
+- Loading tager ca. 2-3 sekunder med en smooth progress animation
+- Intro-billedet vises derefter med en fade-in effekt
+- Brugeren skal aktivt klikke "FORTSÆT" for at se spillemaskinen
+- Ved navigation tilbage til siden (i samme session) springes loading/intro over
