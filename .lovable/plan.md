@@ -1,96 +1,68 @@
 
-
-# Plan: Pulserende Glow-effekt og Flyt Bonus Status Bar
+# Plan: Tilføj Skygge Rundt Om Rammen
 
 ## Oversigt
-Tilføj en pulserende gylden glow-animation rundt om bonus-status baren under free spins, og flyt baren højere op så den ikke dækker over rammen.
+Tilføj en dybdeskabende skygge rundt om hele spillemaskinens ramme for at give et mere tredimensionelt look.
 
 ---
 
-## Filer der skal ændres
+## Fil der skal ændres
 
-### 1. `src/index.css`
-Tilføj ny keyframe animation for pulserende glow:
+### `src/components/slots/SlotMachineFrame.tsx`
 
-```css
-@keyframes bonus-bar-glow {
-  0%, 100% {
-    box-shadow: 
-      0 0 10px rgba(251,191,36,0.4),
-      0 0 20px rgba(251,191,36,0.2),
-      0 0 30px rgba(251,191,36,0.1);
-  }
-  50% {
-    box-shadow: 
-      0 0 20px rgba(251,191,36,0.6),
-      0 0 40px rgba(251,191,36,0.4),
-      0 0 60px rgba(251,191,36,0.2);
-  }
-}
-```
+**Tilføj skygge til ramme-containeren (linje 37-58):**
 
----
+Den nuværende ramme-div har ingen skygge. Vi tilføjer en layered box-shadow med varme amber/gyldne toner for at matche det egyptiske tema, samt en mørkere ydre skygge for dybde.
 
-### 2. `src/components/slots/BonusStatusBar.tsx`
-Tilføj den pulserende glow-effekt til containerens styling:
-
-**Nuværende styling (linje 25-30):**
+**Nuværende styling:**
 ```tsx
-className={cn(
-  "w-full p-2 sm:p-3 rounded-xl",
-  "bg-card/70 backdrop-blur-sm",
-  "border border-border/60",
-  "shadow-sm"
-)}
+<div 
+  className={cn(
+    "absolute pointer-events-none -z-10 transition-opacity duration-500",
+    imageLoaded ? "opacity-100" : "opacity-0"
+  )}
+  style={{...}}
+>
 ```
 
 **Ny styling:**
 ```tsx
-className={cn(
-  "w-full p-2 sm:p-3 rounded-xl",
-  "bg-card/70 backdrop-blur-sm",
-  "border border-amber-400/50",
-  "animate-[bonus-bar-glow_2s_ease-in-out_infinite]"
-)}
+<div 
+  className={cn(
+    "absolute pointer-events-none -z-10 transition-opacity duration-500",
+    imageLoaded ? "opacity-100" : "opacity-0"
+  )}
+  style={{
+    top: `-${frameSize}px`,
+    left: `-${frameSize}px`,
+    right: `-${frameSize}px`,
+    bottom: `-${frameSize}px`,
+    filter: `drop-shadow(0 0 20px rgba(0,0,0,0.6)) 
+             drop-shadow(0 0 40px rgba(0,0,0,0.4)) 
+             drop-shadow(0 0 80px rgba(0,0,0,0.3))
+             drop-shadow(0 4px 30px rgba(251,191,36,0.15))`,
+  }}
+>
 ```
-
-**Ændringer:**
-- Ændret border fra `border-border/60` til `border-amber-400/50` for gylden kant
-- Erstattet `shadow-sm` med den nye pulserende glow-animation
 
 ---
 
-### 3. `src/components/slots/SlotGame.tsx`
-Flyt bonus-status baren højere op ved at øge den negative margin:
+## Skygge-design
 
-**Nuværende (linje 410):**
-```tsx
-<div className="max-w-fit mx-auto mb-1 sm:mb-2 -mt-5">
-```
+| Layer | Effekt | Formål |
+|-------|--------|--------|
+| `drop-shadow(0 0 20px rgba(0,0,0,0.6))` | Tæt mørk skygge | Definerer kanten skarpt |
+| `drop-shadow(0 0 40px rgba(0,0,0,0.4))` | Medium diffus skygge | Skaber mellemlag |
+| `drop-shadow(0 0 80px rgba(0,0,0,0.3))` | Bred blød skygge | Giver atmosfærisk dybde |
+| `drop-shadow(0 4px 30px rgba(251,191,36,0.15))` | Subtil gylden glow | Tilføjer varme og matcher tema |
 
-**Ny:**
-```tsx
-<div className="max-w-fit mx-auto mb-1 sm:mb-2 -mt-8 sm:-mt-10">
-```
-
-Dette flytter baren 8-10 rem højere op (responsivt) så den ikke overlapper rammen.
+**Note:** Vi bruger `filter: drop-shadow()` i stedet for `box-shadow` fordi ramme-billedet kan have gennemsigtige områder, og drop-shadow følger billedets faktiske form.
 
 ---
 
 ## Visuel Resultat
 
-| Element | Før | Efter |
-|---------|-----|-------|
-| Bonus bar kant | Grå (`border-border/60`) | Gylden (`border-amber-400/50`) |
-| Bonus bar skygge | Statisk (`shadow-sm`) | Pulserende gylden glow (2s cyklus) |
-| Bonus bar position | `-mt-5` (alle skærme) | `-mt-8` mobil, `-mt-10` desktop |
-
----
-
-## Animation Karakteristik
-
-- **Varighed:** 2 sekunder per cyklus
-- **Timing:** `ease-in-out` for blød overgang
-- **Intensitet:** Pulserer mellem svag og stærk gylden glow
-- **Farve:** Amber/guld (rgba(251,191,36)) for konsistens med temaet
-
+- Rammen vil "løfte sig" fra baggrunden med naturlig skygge
+- Lagdelt skygge giver realistisk dybdefornemmelse
+- Subtil gylden undertone matcher det egyptiske tema
+- Effekten er synlig på alle skærmstørrelser
