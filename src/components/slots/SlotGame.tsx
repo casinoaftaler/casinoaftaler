@@ -274,20 +274,22 @@ export function SlotGame() {
     }
   };
 
-  // Check if bonus should end after spin completes
+  // Check if bonus should end after spin completes - wait for win animation
   const handleBonusEnd = useCallback(() => {
-    if (shouldEndBonus && !isSpinning) {
+    if (shouldEndBonus && !isSpinning && !isWinAnimating) {
       const { winnings, spins } = endBonus();
       setBonusTotalWinnings(winnings);
       setBonusTotalSpinsUsed(spins);
       setShowBonusComplete(true);
     }
-  }, [shouldEndBonus, isSpinning, endBonus]);
+  }, [shouldEndBonus, isSpinning, isWinAnimating, endBonus]);
 
-  // Trigger bonus end check after spin
-  if (shouldEndBonus && !isSpinning && !showBonusComplete) {
-    handleBonusEnd();
-  }
+  // Trigger bonus end check after spin and win animation complete
+  useEffect(() => {
+    if (shouldEndBonus && !isSpinning && !isWinAnimating && !showBonusComplete) {
+      handleBonusEnd();
+    }
+  }, [shouldEndBonus, isSpinning, isWinAnimating, showBonusComplete, handleBonusEnd]);
 
   // Autospin effect - trigger next spin after current one completes
   useEffect(() => {
@@ -456,6 +458,25 @@ export function SlotGame() {
                       delay={colIndex}
                       onReelStop={async (reelIndex) => {
                         slotSounds.playReelStopSingle(reelIndex);
+                        
+                        // Check if this reel has a scatter and play progressive scatter land sound
+                        const hasScatterOnReel = grid?.[reelIndex]?.some(symbolId => {
+                          const symbol = symbols?.find(s => s.id === symbolId);
+                          return symbol?.is_scatter;
+                        });
+                        
+                        if (hasScatterOnReel && teaseReels.length > 0) {
+                          // Count how many scatters have landed up to and including this reel
+                          let scattersLanded = 0;
+                          for (let r = 0; r <= reelIndex; r++) {
+                            const reelHasScatter = grid?.[r]?.some(symbolId => {
+                              const symbol = symbols?.find(s => s.id === symbolId);
+                              return symbol?.is_scatter;
+                            });
+                            if (reelHasScatter) scattersLanded++;
+                          }
+                          slotSounds.playScatterLand(scattersLanded);
+                        }
                         
                         // Track this reel as stopped
                         stoppedReelsRef.current.add(reelIndex);

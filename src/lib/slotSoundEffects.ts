@@ -1847,6 +1847,130 @@ class SlotSoundEffects {
       clearInterval(interval);
     };
   }
+
+  // Progressive scatter land sound - builds tension as more scatters land
+  playScatterLand(scatterNumber: number) {
+    if (!this.enabled) return;
+    const ctx = this.getContext();
+    const now = ctx.currentTime;
+    
+    // Progressive settings based on scatter number
+    // 1st scatter: Mystisk gylden klang (0.3s), subtle
+    // 2nd scatter: More intense, rising sweep (0.5s)
+    // 3rd scatter: Triumphant burst with sparkles (0.6s)
+    
+    const baseFreq = 400 + (scatterNumber - 1) * 200; // 400Hz → 600Hz → 800Hz
+    const duration = 0.3 + (scatterNumber - 1) * 0.15; // 0.3s → 0.45s → 0.6s
+    const volume = 0.15 + (scatterNumber - 1) * 0.08; // Gradual volume increase
+    
+    // Primary golden tone
+    const primary = ctx.createOscillator();
+    const primaryGain = ctx.createGain();
+    const primaryFilter = ctx.createBiquadFilter();
+    
+    primary.connect(primaryFilter);
+    primaryFilter.connect(primaryGain);
+    primaryGain.connect(ctx.destination);
+    
+    primary.frequency.setValueAtTime(baseFreq, now);
+    primary.frequency.exponentialRampToValueAtTime(baseFreq * 1.5, now + duration * 0.3);
+    primary.frequency.exponentialRampToValueAtTime(baseFreq * 1.2, now + duration);
+    primary.type = 'triangle';
+    
+    primaryFilter.type = 'bandpass';
+    primaryFilter.frequency.value = baseFreq * 2;
+    primaryFilter.Q.value = 2;
+    
+    primaryGain.gain.setValueAtTime(volume * this.volume, now);
+    primaryGain.gain.linearRampToValueAtTime(volume * 1.2 * this.volume, now + duration * 0.2);
+    primaryGain.gain.exponentialRampToValueAtTime(0.001, now + duration);
+    
+    primary.start(now);
+    primary.stop(now + duration + 0.1);
+    
+    // Harmonic overtone for richness
+    const harmonic = ctx.createOscillator();
+    const harmonicGain = ctx.createGain();
+    
+    harmonic.connect(harmonicGain);
+    harmonicGain.connect(ctx.destination);
+    
+    harmonic.frequency.value = baseFreq * 2;
+    harmonic.type = 'sine';
+    
+    harmonicGain.gain.setValueAtTime(volume * 0.4 * this.volume, now);
+    harmonicGain.gain.exponentialRampToValueAtTime(0.001, now + duration * 0.8);
+    
+    harmonic.start(now);
+    harmonic.stop(now + duration);
+    
+    // Add sparkle effects for 2nd+ scatter
+    if (scatterNumber >= 2) {
+      const sparkleCount = scatterNumber === 2 ? 5 : 10;
+      for (let i = 0; i < sparkleCount; i++) {
+        const sparkle = ctx.createOscillator();
+        const sparkleGain = ctx.createGain();
+        
+        sparkle.connect(sparkleGain);
+        sparkleGain.connect(ctx.destination);
+        
+        sparkle.frequency.value = 1500 + Math.random() * 2500;
+        sparkle.type = 'sine';
+        
+        const sparkleTime = now + 0.05 + i * 0.03;
+        const sparkleVol = scatterNumber === 3 ? 0.08 : 0.05;
+        sparkleGain.gain.setValueAtTime(sparkleVol * this.volume, sparkleTime);
+        sparkleGain.gain.exponentialRampToValueAtTime(0.001, sparkleTime + 0.1);
+        
+        sparkle.start(sparkleTime);
+        sparkle.stop(sparkleTime + 0.12);
+      }
+    }
+    
+    // Add power sweep for 3rd scatter (near bonus trigger)
+    if (scatterNumber >= 3) {
+      const sweep = ctx.createOscillator();
+      const sweepGain = ctx.createGain();
+      const sweepFilter = ctx.createBiquadFilter();
+      
+      sweep.connect(sweepFilter);
+      sweepFilter.connect(sweepGain);
+      sweepGain.connect(ctx.destination);
+      
+      sweep.frequency.setValueAtTime(100, now);
+      sweep.frequency.exponentialRampToValueAtTime(500, now + 0.3);
+      sweep.type = 'sine';
+      
+      sweepFilter.type = 'lowpass';
+      sweepFilter.frequency.value = 400;
+      
+      sweepGain.gain.setValueAtTime(0.2 * this.volume, now);
+      sweepGain.gain.exponentialRampToValueAtTime(0.001, now + 0.4);
+      
+      sweep.start(now);
+      sweep.stop(now + 0.45);
+      
+      // Mystisk chord undertone for 3rd scatter
+      const chordNotes = [146.83, 174.61, 220.00]; // D minor subset
+      chordNotes.forEach((freq, i) => {
+        const osc = ctx.createOscillator();
+        const gain = ctx.createGain();
+        
+        osc.connect(gain);
+        gain.connect(ctx.destination);
+        
+        osc.frequency.value = freq;
+        osc.type = 'triangle';
+        
+        const chordTime = now + 0.15;
+        gain.gain.setValueAtTime(0.06 * this.volume, chordTime);
+        gain.gain.exponentialRampToValueAtTime(0.001, chordTime + 0.5);
+        
+        osc.start(chordTime);
+        osc.stop(chordTime + 0.55);
+      });
+    }
+  }
 }
 
 // Singleton instance
