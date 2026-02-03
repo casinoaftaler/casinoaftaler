@@ -123,9 +123,10 @@ export function useBonusGame(symbols?: SlotSymbol[]) {
 
   const endBonus = useCallback(() => {
     const finalWinnings = bonusState.bonusWinnings;
+    const totalSpins = bonusState.totalFreeSpins;
     setBonusState(INITIAL_STATE);
-    return finalWinnings;
-  }, [bonusState.bonusWinnings]);
+    return { winnings: finalWinnings, spins: totalSpins };
+  }, [bonusState.bonusWinnings, bonusState.totalFreeSpins]);
 
   const shouldEndBonus = bonusState.isActive && bonusState.freeSpinsRemaining === 0;
 

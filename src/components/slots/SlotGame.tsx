@@ -89,6 +89,7 @@ export function SlotGame() {
   const [retriggerSpinsAdded, setRetriggerSpinsAdded] = useState(10);
   const [pendingExpandingSymbol, setPendingExpandingSymbol] = useState<typeof bonusState.expandingSymbol>(null);
   const [bonusTotalWinnings, setBonusTotalWinnings] = useState(0);
+  const [bonusTotalSpinsUsed, setBonusTotalSpinsUsed] = useState(0);
   
   const stopSpinSound = useRef<(() => void) | null>(null);
   const stopTeaseSound = useRef<(() => void) | null>(null);
@@ -271,8 +272,9 @@ export function SlotGame() {
   // Check if bonus should end after spin completes
   const handleBonusEnd = useCallback(() => {
     if (shouldEndBonus && !isSpinning) {
-      const totalWin = endBonus();
-      setBonusTotalWinnings(totalWin);
+      const { winnings, spins } = endBonus();
+      setBonusTotalWinnings(winnings);
+      setBonusTotalSpinsUsed(spins);
       setShowBonusComplete(true);
     }
   }, [shouldEndBonus, isSpinning, endBonus]);
@@ -402,9 +404,11 @@ export function SlotGame() {
         isVisible={showBonusComplete}
         type="complete"
         totalWinnings={bonusTotalWinnings}
+        totalFreeSpins={bonusTotalSpinsUsed}
         onClose={() => {
           setShowBonusComplete(false);
           setBonusTotalWinnings(0);
+          setBonusTotalSpinsUsed(0);
         }}
       />
 
