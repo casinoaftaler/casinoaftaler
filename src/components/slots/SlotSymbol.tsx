@@ -36,6 +36,8 @@ export function SlotSymbol({ symbol, isWinning, isSpinning, isExpanded, isNewlyE
         <img
           src={symbol.image_url}
           alt={symbol.name}
+          loading="eager"
+          decoding="async"
           className={cn(
             // Image fills most of the container with shadow for depth
             "w-[52px] h-[52px] xs:w-[64px] xs:h-[64px] sm:w-[80px] sm:h-[80px] md:w-[96px] md:h-[96px] lg:w-[124px] lg:h-[124px] xl:w-[144px] xl:h-[144px] object-cover rounded-lg transition-transform duration-300",

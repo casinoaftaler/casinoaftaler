@@ -3,37 +3,42 @@ import { Progress } from "@/components/ui/progress";
 import defaultTitleImage from "@/assets/slots/book-of-fedesvin-title.png";
 import defaultSlotBackground from "@/assets/slots/slot-background.jpg";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
+import { useSlotSymbols } from "@/hooks/useSlotSymbols";
+import { useSlotSymbolPreloader } from "@/hooks/useSlotSymbolPreloader";
 
 interface SlotLoadingScreenProps {
   onComplete: () => void;
 }
 
 export function SlotLoadingScreen({ onComplete }: SlotLoadingScreenProps) {
-  const [progress, setProgress] = useState(0);
+  const [minTimeElapsed, setMinTimeElapsed] = useState(false);
   const { data: siteSettings } = useSiteSettings();
+  const { data: symbols } = useSlotSymbols();
+  const { isLoaded: symbolsLoaded, progress: symbolProgress } = useSlotSymbolPreloader(symbols);
   
   const titleImage = siteSettings?.slot_title_image || defaultTitleImage;
   const backgroundImage = siteSettings?.slot_background_image || defaultSlotBackground;
 
+  // Minimum display time for loading screen
   useEffect(() => {
-    const duration = 2500; // 2.5 seconds
-    const interval = 50; // Update every 50ms
-    const increment = 100 / (duration / interval);
-    
-    const timer = setInterval(() => {
-      setProgress((prev) => {
-        const next = prev + increment;
-        if (next >= 100) {
-          clearInterval(timer);
-          setTimeout(onComplete, 200); // Small delay after reaching 100%
-          return 100;
-        }
-        return next;
-      });
-    }, interval);
+    const timer = setTimeout(() => {
+      setMinTimeElapsed(true);
+    }, 1500); // Reduced to 1.5s since we're actually preloading now
 
-    return () => clearInterval(timer);
-  }, [onComplete]);
+    return () => clearTimeout(timer);
+  }, []);
+
+  // Complete when both minimum time has passed AND symbols are loaded
+  useEffect(() => {
+    if (minTimeElapsed && symbolsLoaded) {
+      setTimeout(onComplete, 200); // Small delay after complete
+    }
+  }, [minTimeElapsed, symbolsLoaded, onComplete]);
+
+  // Combined progress: 50% for time, 50% for symbols
+  const timeProgress = minTimeElapsed ? 50 : 0;
+  const symbolProgressScaled = (symbolProgress / 100) * 50;
+  const totalProgress = Math.min(timeProgress + symbolProgressScaled, 100);
 
   return (
     <div className="min-h-[calc(100vh-4rem)] relative flex flex-col items-center justify-center">
@@ -60,7 +65,7 @@ export function SlotLoadingScreen({ onComplete }: SlotLoadingScreenProps) {
         <div className="w-full max-w-xs sm:max-w-sm space-y-3">
           <div className="relative">
             <Progress 
-              value={progress} 
+              value={totalProgress} 
               className="h-4 bg-amber-950/50 border border-amber-500/30 rounded-full overflow-hidden"
             />
             {/* Golden overlay effect */}
@@ -73,7 +78,7 @@ export function SlotLoadingScreen({ onComplete }: SlotLoadingScreenProps) {
           </div>
           
           <p className="text-center text-amber-500/80 text-sm font-medium">
-            Indlæser spillemaskine... {Math.round(progress)}%
+            {symbolsLoaded ? "Klar!" : "Indlæser symboler..."} {Math.round(totalProgress)}%
           </p>
         </div>
       </div>
