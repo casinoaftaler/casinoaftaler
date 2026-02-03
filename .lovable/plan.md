@@ -1,61 +1,49 @@
 
 
-# Plan: Scatter Lyd Kun Med Mindst Én Scatter på Reel 1-3
+# Plan: Glow Kun Ved Aktiv Tease Mode
 
 ## Problem
-Hvis scatters **kun** lander på reel 4 og 5, skal der hverken afspilles lyd eller vises glow. Lyden skal kun afspilles hvis der er mindst én scatter på reel 1, 2 eller 3.
+Glow vises når 2. scatter lander på reel 5, men dette er ikke en tease-situation. Glow skal **kun** vises når tease mode faktisk aktiveres - dvs. når 2. scatter lander på reel 4 eller tidligere.
 
 ---
 
-## Nuværende Logik vs. Ønsket Logik
+## Nuværende vs. Ønsket Logik
 
 ```text
 NUVÆRENDE:
-- Reel 1-4: Lyd afspilles altid
-- Reel 5: Ingen lyd
+- Glow: Vises for ALLE landede scatters når der er 2+
+- Problem: Scatter på reel 2 + reel 5 = glow (forkert!)
 
 ØNSKET:
-- Reel 1-3: Lyd afspilles altid
-- Reel 4: Lyd afspilles KUN hvis der allerede er scatter på reel 1-3
-- Reel 5: Ingen lyd
-- Glow: Kun når 2+ scatters OG mindst én er på reel 1-3
+- Glow: Kun når 2+ scatters OG 2. scatter lander på reel 1-4
+- Scatter på reel 2 + reel 5 = INGEN glow (korrekt!)
 ```
 
 ---
 
 ## Løsning
 
-### Opdater Scatter Lyd Logik i SlotGame.tsx
+### Opdater Scatter Tracking i SlotGame.tsx
 
-**Fil:** `src/components/slots/SlotGame.tsx` (linje 480-486)
+**Fil:** `src/components/slots/SlotGame.tsx` (linje 500-501)
 
 ```typescript
-// NUVÆRENDE:
-const isOnReels1234 = reelIndex <= 3;
-
-if (isOnReels1234) {
-  slotSounds.playScatterLand(scattersLanded);
-}
+// NUVÆRENDE (linje 500-501):
+// Track ALL scatter reels for glow effect
+setScatterReelsLanded(prev => new Set([...prev, reelIndex]));
 
 // NY LOGIK:
-// Count scatters specifically on reels 1-3 (index 0-2)
-let scattersOnReels123 = 0;
-for (let r = 0; r <= Math.min(reelIndex, 2); r++) {
-  const reelHasScatter = grid?.[r]?.some(symbolId => {
-    const symbol = symbols?.find(s => s.id === symbolId);
-    return symbol?.is_scatter;
-  });
-  if (reelHasScatter) scattersOnReels123++;
-}
+// Only track scatter reels for glow when tease mode is possible
+// Tease requires 2nd scatter to land on reel 1-4 (not reel 5)
+// So only add to glow tracking if:
+// 1. This scatter is on reel 1-3 (can build toward tease), OR
+// 2. This is the 2nd+ scatter on reel 4 (activates tease), OR
+// 3. There's already a scatter on reel 1-3 AND this is on reel 4 (tease activated)
+// Reel 5 scatters NEVER trigger glow (even with prior scatter on 1-3)
+const canTriggerTease = isOnReels123 || isOnReel4WithPriorScatter;
 
-// Play sound if:
-// 1. Scatter is on reel 1-3 (index 0-2), OR
-// 2. Scatter is on reel 4 AND there's already a scatter on reel 1-3
-const isOnReels123 = reelIndex <= 2;
-const isOnReel4WithPriorScatter = reelIndex === 3 && scattersOnReels123 > 0;
-
-if (isOnReels123 || isOnReel4WithPriorScatter) {
-  slotSounds.playScatterLand(scattersLanded);
+if (canTriggerTease) {
+  setScatterReelsLanded(prev => new Set([...prev, reelIndex]));
 }
 ```
 
@@ -63,33 +51,40 @@ if (isOnReels123 || isOnReel4WithPriorScatter) {
 
 ## Visuelt Resultat
 
+### Scenarie: Scatter på reel 2, så reel 5
+```text
+Reel 2 lander:    📖 → 🔊 Lyd (scatter på reel 1-3)
+                       ❌ Ingen glow endnu (kun 1 scatter)
+                       
+Reel 5 lander:    📖 → 🔇 Ingen lyd (reel 5)
+                       ❌ INGEN glow (reel 5 kan ikke trigge tease)
+```
+
 ### Scenarie: Scatter på reel 1, så reel 4
 ```text
 Reel 1 lander:    📖 → 🔊 Lyd (scatter på reel 1-3)
                        ❌ Ingen glow endnu
                        
-Reel 4 lander:    📖 → 🔊 Lyd (reel 4 + prior scatter på reel 1)
-                       ✨ Glow aktiveres på BEGGE
-```
-
-### Scenarie: Første scatter på reel 4
-```text
-Reel 4 lander:    📖 → 🔇 Ingen lyd (ingen prior scatter på 1-3)
-                       ❌ Ingen glow (kun 1 scatter)
+Reel 4 lander:    📖 → 🔊 Lyd (reel 4 + prior scatter)
+                       ✨ Glow aktiveres på BEGGE (tease mode!)
 ```
 
 ### Scenarie: Scatter på reel 4, så reel 5
 ```text
-Reel 4 lander:    📖 → 🔇 Ingen lyd (ingen prior scatter)
+Reel 4 lander:    📖 → 🔇 Ingen lyd (ingen prior scatter på 1-3)
+                       ❌ Ingen glow
+                       
 Reel 5 lander:    📖 → 🔇 Ingen lyd
-                       ❌ Ingen glow (ingen scatter på 1-3)
+                       ❌ Ingen glow
 ```
 
-### Scenarie: Scatter på reel 2, så reel 5
+### Scenarie: Scatter på reel 2, så reel 4
 ```text
 Reel 2 lander:    📖 → 🔊 Lyd (scatter på reel 1-3)
-Reel 5 lander:    📖 → 🔇 Ingen lyd (reel 5)
-                       ✨ Glow aktiveres (har scatter på 1-3)
+                       ❌ Ingen glow endnu
+                       
+Reel 4 lander:    📖 → 🔊 Lyd (reel 4 + prior scatter)
+                       ✨ Glow aktiveres på BEGGE (tease mode!)
 ```
 
 ---
@@ -98,18 +93,20 @@ Reel 5 lander:    📖 → 🔇 Ingen lyd (reel 5)
 
 | Fil | Ændring |
 |-----|---------|
-| `src/components/slots/SlotGame.tsx` | Tilføj check for scatters på reel 1-3 før lyd på reel 4 |
+| `src/components/slots/SlotGame.tsx` | Tilføj betingelse for scatter tracking - kun når tease er mulig |
 
 ---
 
 ## Tekniske Detaljer
 
-### Scatter Lyd Regler:
+### Scatter Lyd Regler (uændret):
 - **Reel 1-3**: Lyd afspilles altid
 - **Reel 4**: Lyd afspilles KUN hvis der er mindst én scatter på reel 1-3
 - **Reel 5**: Aldrig lyd
 
-### Scatter Glow Regler:
-- Glow kræver tease mode (2+ scatters)
-- Glow vises på alle landede scatters når tease aktiveres
+### Scatter Glow Regler (opdateret):
+- **Reel 1-3**: Altid tracked for glow
+- **Reel 4**: Kun tracked hvis der allerede er scatter på reel 1-3
+- **Reel 5**: ALDRIG tracked for glow
+- Glow vises først når 2+ scatters er tracked
 
