@@ -9,10 +9,11 @@ interface SlotSymbolProps {
   isExpanded?: boolean;
   isNewlyExpanded?: boolean;
   hasLanded?: boolean;
+  isTeasing?: boolean;  // Scatter tease glow during tease mode
 }
 
 // Symbol sizes: xs=64, mobile=76, sm=96, md=112, lg=140, xl=160
-export function SlotSymbol({ symbol, isWinning, isSpinning, isExpanded, isNewlyExpanded, hasLanded }: SlotSymbolProps) {
+export function SlotSymbol({ symbol, isWinning, isSpinning, isExpanded, isNewlyExpanded, hasLanded, isTeasing }: SlotSymbolProps) {
   return (
     <div
       className={cn(
@@ -26,7 +27,9 @@ export function SlotSymbol({ symbol, isWinning, isSpinning, isExpanded, isNewlyE
         isExpanded && "scale-110 border-amber-400/50",
         isNewlyExpanded && "animate-[expansion-flash_0.6s_ease-out]",
         // Scatter land animation
-        symbol.is_scatter && hasLanded && !isSpinning && "animate-[scatter-land_0.5s_ease-out]"
+        symbol.is_scatter && hasLanded && !isSpinning && "animate-[scatter-land_0.5s_ease-out]",
+        // Scatter tease glow - golden animated border during tease mode
+        isTeasing && symbol.is_scatter && "border-amber-400 animate-[scatter-tease-glow_1s_ease-in-out_infinite]"
       )}
     >
       {symbol.image_url ? (
