@@ -1,134 +1,100 @@
 
-# Tilføj Intens Lyd og Visuel Effekt til Aktivt Tease-Hjul
+# Stor Rund Spin-Knap med Guld-Tema
 
 ## Oversigt
-Når et tease-hjul aktivt bremser ned (skifter fra fake loop til 3-sekunders nedbremsning), tilføjes en mere dramatisk lyd og visuel effekt for at fremhæve spændingen.
+Omdesign spin-knappen til at være en stor, rund knap centreret under spillemaskinen, der matcher det gyldne egyptiske tema.
 
-## Nuværende Implementation
-- **Lyd**: Der spilles en generel `playTeaseStart()` lyd med heartbeat og drone når tease-mode starter, men ingen specifik lyd når hvert hjul aktivt bremser ned
-- **Visuel**: Tease-hjul har en amber glow og pulse-animation, men den samme effekt bruges til både fake-looping og aktivt bremsende hjul
+## Nuværende Design
+- Rektangulær knap på samme linje som bet-kontroller og autospin
+- Størrelse: `px-4 sm:px-8 py-3 sm:py-5`
+- Gradient: `from-amber-500 to-amber-600`
+- Placering: Inline med andre kontroller i en flex-row
 
-## Nye Effekter
+## Nyt Design
 
-### Lyd: `playActiveTeaseSlowdown()`
-- **Stigende crescendo**: En intens opbyggende lyd der crescendoer over nedbremsningsperioden
-- **Accelererende trommer**: Egyptisk darbuka-rytme der starter langsomt og accelererer
-- **Dramatisk drone**: Stigende pitch for at bygge spænding
-- **Metallisk shimmer**: Sistrum-lignende raslen der intensiveres
+### Visuel Stil
+- **Form**: Perfekt cirkel (`rounded-full`)
+- **Størrelse**: 80px på mobil, 96px på tablet, 120px på desktop
+- **Gradient**: Radialt guld-gradient med 3D-effekt (lysere i midten)
+- **Border**: Tynd guld-kant for ekstra definition
+- **Skygge**: Dyb amber glow-effekt
+- **Ikon**: Stort Gamepad2 eller Play-ikon centreret
 
-### Visuel: Forbedret Glow-Effekt
-- **Intensere glow**: Større, lysere amber glow specifikt for det aktive tease-hjul
-- **Pulserende border**: Animeret kant der pulserer hurtigere end fake-looping hjul
-- **Partikler/gnister**: Subtile amber partikler omkring det aktive hjul
-- **Differentier visuelt**: Fake-looping hjul har dæmpet glow, aktivt hjul har intens glow
+### Interaktive Effekter
+- **Hover**: Lysere gradient + større glow + subtle scale-up
+- **Active/Press**: Inward shadow for 3D-tryk effekt
+- **Spinning**: Pulserende glow-animation + Loader-ikon
+- **Disabled**: Dæmpet farve + ingen glow
+
+### Layout-ændring
+Reorganiser kontrollinjen:
+```
+[Bet Controls] | [Autospin] | [Win Display] | [Volume]
+                    ↓
+            [ 🎰 STOR RUND SPIN ]
+```
 
 ---
 
 ## Tekniske Detaljer
 
-### Fil: `src/lib/slotSoundEffects.ts`
-
-**Ny metode `playActiveTeaseSlowdown()` (tilføjes efter linje 1130):**
-
-```text
-playActiveTeaseSlowdown(reelIndex: number): () => void {
-  // Returnerer stop-funktion
-  // Opretter accelererende drumroll med egyptisk tema
-  // Stigende pitch drone over 3 sekunder
-  // Intensiverende sistrum shimmer
-}
-```
-
-Lyddesign:
-- **Accelererende rytme**: Starter med 300ms interval, accelererer til 80ms
-- **Stigende drone**: Starter på 80Hz, ramper op til 200Hz over 3 sekunder
-- **Intensiverende shimmer**: Høje frekvenser (2500-4000Hz) der bliver stærkere
-- **Pitch baseret på reel-index**: Senere hjul har højere basis-pitch for progression
-
-### Fil: `src/components/slots/SlotReel.tsx`
-
-**Opdater glow-effekten (linje 339-343):**
-
-Nuværende:
-```typescript
-(isActiveTeaseReel || isFakeLooping) && spinState === "spinning" && 
-"shadow-[0_0_20px_rgba(251,191,36,0.6),0_0_40px_rgba(251,191,36,0.3)] animate-pulse"
-```
-
-Ny differentieret effekt:
-```typescript
-// Fake looping: Dæmpet glow
-isFakeLooping && !isActiveTeaseReel && spinState === "spinning" && 
-"shadow-[0_0_15px_rgba(251,191,36,0.3),0_0_25px_rgba(251,191,36,0.15)] animate-pulse"
-
-// Active tease: Intens glow med hurtigere animation
-isActiveTeaseReel && spinState === "spinning" && 
-"shadow-[0_0_30px_rgba(251,191,36,0.9),0_0_60px_rgba(251,191,36,0.6),0_0_90px_rgba(251,191,36,0.3)] 
- animate-[glow-intense_0.5s_ease-in-out_infinite]"
-```
-
-**Tilføj lyd-hook ved aktiv tease-start (linje 198-250):**
-
-```text
-// Når isActiveTeaseReel bliver true:
-// 1. Start playActiveTeaseSlowdown() lyd
-// 2. Gem stop-funktion i ref
-// 3. Stop lyden i cleanup eller når animation slutter
-```
-
-### Fil: `src/index.css`
-
-**Tilføj ny keyframe animation (efter eksisterende glow animation):**
-
-```text
-@keyframes glow-intense {
-  0%, 100% {
-    box-shadow: 
-      0 0 30px rgba(251,191,36,0.9),
-      0 0 60px rgba(251,191,36,0.6),
-      0 0 90px rgba(251,191,36,0.3);
-  }
-  50% {
-    box-shadow: 
-      0 0 40px rgba(251,191,36,1),
-      0 0 80px rgba(251,191,36,0.8),
-      0 0 120px rgba(251,191,36,0.5);
-  }
-}
-```
-
 ### Fil: `src/components/slots/SlotGame.tsx`
 
-**Tilføj lyd-trigger for aktivt tease (opdater handleReelStop callback):**
+**Opdater kontrolsektionen (linje 573-688):**
 
-Når det næste tease-hjul aktiveres, start den nye lyd:
-```text
-// I handleReelStop callback:
-// Når et tease-hjul aktiveres, spil playActiveTeaseSlowdown(reelIndex)
+1. Fjern spin-knappen fra den inline flex-row
+2. Opret ny centreret sektion til spin-knappen under andre kontroller
+3. Opdater knappens styling til rund form med guld-tema
+
+**Ny spin-knap styling:**
+```typescript
+<Button
+  className={cn(
+    // Rund form
+    "rounded-full aspect-square",
+    // Responsive størrelse
+    "w-20 h-20 sm:w-24 sm:h-24 md:w-28 md:h-28",
+    // Guld-gradient med 3D-effekt
+    bonusState.isActive
+      ? "bg-gradient-to-br from-purple-400 via-purple-500 to-purple-700"
+      : "bg-gradient-to-br from-amber-300 via-amber-500 to-amber-700",
+    // Guld border
+    "border-2 border-amber-400/60",
+    // Dyb glow-skygge
+    bonusState.isActive
+      ? "shadow-[0_0_30px_rgba(168,85,247,0.5),0_4px_20px_rgba(0,0,0,0.3)]"
+      : "shadow-[0_0_30px_rgba(251,191,36,0.5),0_4px_20px_rgba(0,0,0,0.3)]",
+    // Hover effekter
+    "hover:shadow-[0_0_50px_rgba(251,191,36,0.7),0_6px_25px_rgba(0,0,0,0.4)]",
+    "hover:scale-105 transition-all duration-200",
+    // Active/tryk effekt
+    "active:scale-95 active:shadow-[inset_0_4px_10px_rgba(0,0,0,0.3)]",
+    // Tekst
+    "text-white font-bold text-lg sm:text-xl"
+  )}
+/>
 ```
 
----
-
-## Flow
-
+**Opdateret layout-struktur:**
 ```text
-Spin Start
-    │
-    ├── Hjul 1-2 stopper normalt
-    │
-    └── Hjul 3 er første tease-hjul
-            │
-            ├── Fake-looping (dæmpet glow)
-            │
-            └── Bliver aktivt når Hjul 2 stopper
-                    │
-                    ├── Intens glow aktiveres
-                    ├── playActiveTeaseSlowdown() starter
-                    │
-                    └── 3 sekunders nedbremsning
-                            │
-                            └── Hjul 3 stopper → Hjul 4 bliver aktivt → Gentag
+{/* Kontrol-række UDEN spin-knap */}
+<div className="flex flex-wrap items-center justify-center gap-2 sm:gap-3">
+  <BetControls ... />
+  <AutospinControls ... />
+  <WinDisplay ... />
+  <VolumeControl />
+</div>
+
+{/* Centreret stor spin-knap */}
+<div className="flex justify-center my-3 sm:my-4">
+  <Button className="...rund guld knap..." />
+</div>
 ```
+
+**Spinning-tilstand animation:**
+- Tilføj pulserende glow-animation under spinning
+- Brug `animate-pulse` eller custom keyframe
+- Vis Loader2-ikon centreret i cirklen
 
 ---
 
@@ -136,14 +102,18 @@ Spin Start
 
 | Fil | Ændring |
 |-----|---------|
-| `src/lib/slotSoundEffects.ts` | Tilføj `playActiveTeaseSlowdown()` metode med accelererende lyd |
-| `src/components/slots/SlotReel.tsx` | Differentiér glow for fake-loop vs aktiv tease, tilføj lyd-hook |
-| `src/index.css` | Tilføj `glow-intense` keyframe animation |
-| `src/components/slots/SlotGame.tsx` | Trigger lyd når tease-hjul aktiveres |
+| `src/components/slots/SlotGame.tsx` | Flyt spin-knap til egen centreret sektion, opdater til rund form med guld-gradient og glow-effekter |
 
-## Test Scenarier
-- Spin med 2+ scatters på de første 3 hjul
-- Verificer at fake-looping hjul har dæmpet glow
-- Verificer at det aktive tease-hjul har intens glow når det bremser
-- Lyt efter den accelererende lyd under nedbremsning
-- Tjek at lyden stopper når hjulet lander
+## Visuelt Resultat
+```
+     ┌─────────────────────────────────────┐
+     │       [Bet] [Auto] [Win] [🔊]       │
+     └─────────────────────────────────────┘
+                      ↓
+              ╭─────────────╮
+              │             │
+              │     🎰      │  ← Stor rund guld knap
+              │    SPIN     │     med glow-effekt
+              │             │
+              ╰─────────────╯
+```
