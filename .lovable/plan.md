@@ -1,68 +1,105 @@
 
 
-# Plan: Opdater Scatter og Premium Symboler Stil
+# Plan: Gylden Glødende Stroke på Scatter Under Tease
 
 ## Problem
-1. **Scatter symbolet** (katten på bogen) mangler premium-stilen med ramme
-2. **Premium symbolerne** skal have rammen helt ud til kanten af billedet
+Når spillemaskinen teaser (bygger op til en mulig bonus), skal scatter-symbolerne have en synlig gylden glødende ramme/stroke for at fremhæve dem og øge spændingen.
 
 ---
 
 ## Løsning
 
-### Opdater `supabase/functions/generate-slot-symbol/index.ts`
+### Tilføj en ny tease-tilstand til SlotSymbol komponenten
+
+Når scatter-symboler er synlige under tease-mode, skal de have en animeret gylden glødende ramme rundt om sig.
 
 ---
 
 ## Ændringer
 
-### 1. Opdater `PREMIUM_FRAME` konstanten
+### 1. Opdater SlotSymbol.tsx
 
-Gør det tydeligt at rammen skal gå helt ud til billedets kant:
+Tilføj ny prop `isTeasing` for at indikere at symbolet er i tease-tilstand:
 
 ```typescript
-const PREMIUM_FRAME = `
-FRAME/BORDER REQUIREMENTS (MANDATORY):
-- Add an ornate golden Egyptian-style frame/border around the ENTIRE image
-- The frame MUST touch ALL FOUR EDGES of the image (no gaps at edges)
-- Frame width: approximately 5-8% of the image on each side
-- Frame design: Intricate golden border with hieroglyphic patterns
-- Corner decorations: Small golden lotus flowers or scarab motifs
-- The frame should have depth and dimension (3D appearance)
-- Inner edge of frame: subtle golden glow effect
-- The artwork must extend FULLY to the inner edge of the frame (no gaps)
-- CRITICAL: The outer edge of the frame must be FLUSH with the image boundary
-`;
+interface SlotSymbolProps {
+  symbol: SlotSymbolType;
+  isWinning?: boolean;
+  isSpinning?: boolean;
+  isExpanded?: boolean;
+  isNewlyExpanded?: boolean;
+  hasLanded?: boolean;
+  isTeasing?: boolean;  // NY: Scatter tease glow
+}
 ```
 
-### 2. Opdater Scatter Symbol Prompt
-
-Tilføj premium-stil og ramme, men behold den eksisterende kat og bog beskrivelse:
+Tilføj gylden glødende ramme styling når `isTeasing` er true og symbolet er scatter:
 
 ```typescript
-if (isScatter || normalizedName.includes("fedesvin") || normalizedName.includes("book")) {
-  return `Create a slot machine symbol for an Egyptian-themed game called "Book of Fedesvin".
+<div
+  className={cn(
+    "relative flex items-center justify-center rounded-lg border-2 transition-all duration-300 overflow-hidden",
+    // ... existing classes ...
+    // Scatter tease glow - golden animated border
+    isTeasing && symbol.is_scatter && 
+    "border-amber-400 animate-[scatter-tease-glow_1s_ease-in-out_infinite]"
+  )}
+>
+```
 
-MAIN SUBJECT (MUST KEEP EXACTLY AS DESCRIBED):
-- A CHUBBY/FAT gray and white cat (similar to British Shorthair) sitting comfortably
-- The cat has green eyes and a sweet, slightly smug expression
-- The cat wears an Egyptian pharaoh headdress (nemes) in gold and blue stripes
-- A decorative golden collar with blue gems around the cat's neck
-- The cat is sitting ON TOP of an ancient Egyptian golden book
-- The book has ornate golden decorations with winged scarab and gems on the spine/cover
-- A red bookmark ribbon visible from the book
+### 2. Opdater SlotReel.tsx
 
-COMPOSITION:
-- FULL ART: The cat and book must fill the ENTIRE frame edge-to-edge
-- Cat and book centered as the main focus
-- Golden divine light emanating from behind
-- NO empty space - the artwork extends to all edges
+Pass `isTeasing` prop til SlotSymbol baseret på tease-tilstand:
 
-${PREMIUM_FRAME}
+- Når hjulet er i fake loop mode OG scatter er landet på et tidligere hjul
+- Når hjulet er i active tease mode
 
-${BASE_STYLE}
+```typescript
+<SlotSymbol
+  symbol={symbol}
+  isSpinning={true}
+  isTeasing={
+    (isFakeLooping && scatterLandedOnPreviousReel) || 
+    isActiveTeaseReel
+  }
+/>
+```
 
-This is a "Book of the Dead" themed scatter/wild symbol for a slot game.`;
+For idle/stopped tilstand skal scatter-symboler også vise tease-glow hvis scatter allerede er landet:
+
+```typescript
+<SlotSymbol
+  symbol={symbol}
+  isWinning={winningPositions.includes(rowIndex)}
+  isSpinning={false}
+  isExpanded={symbolIsExpanded}
+  isNewlyExpanded={symbolIsNewlyExpanded}
+  hasLanded={spinState === "stopped"}
+  isTeasing={symbol.is_scatter && scatterLandedOnPreviousReel && spinState !== "stopped"}
+/>
+```
+
+### 3. Tilføj CSS Animation til index.css
+
+Tilføj en ny keyframes animation for scatter tease glow:
+
+```css
+@keyframes scatter-tease-glow {
+  0%, 100% {
+    border-color: rgba(251, 191, 36, 0.6);
+    box-shadow: 
+      0 0 10px rgba(251, 191, 36, 0.5),
+      0 0 20px rgba(251, 191, 36, 0.3),
+      inset 0 0 10px rgba(251, 191, 36, 0.1);
+  }
+  50% {
+    border-color: rgba(251, 191, 36, 1);
+    box-shadow: 
+      0 0 20px rgba(251, 191, 36, 0.8),
+      0 0 40px rgba(251, 191, 36, 0.5),
+      0 0 60px rgba(251, 191, 36, 0.3),
+      inset 0 0 15px rgba(251, 191, 36, 0.2);
+  }
 }
 ```
 
@@ -71,43 +108,45 @@ This is a "Book of the Dead" themed scatter/wild symbol for a slot game.`;
 ## Visuelt Resultat
 
 ```text
-┌─────────────────────────────────────────────────────┐
-│  SCATTER SYMBOL (nu med premium ramme)              │
-│                                                     │
-│  ╔═══════════════════════════════════════════════╗  │
-│  ║  🌿     GOLDEN FRAME (til kanten)      🌿     ║  │
-│  ║ ┌─────────────────────────────────────────┐   ║  │
-│  ║ │                                         │   ║  │
-│  ║ │      🐱 FEDESVIN CAT (uændret)         │   ║  │
-│  ║ │           på golden bog                 │   ║  │
-│  ║ │         (fylder hele rammen)            │   ║  │
-│  ║ │                                         │   ║  │
-│  ║ └─────────────────────────────────────────┘   ║  │
-│  ║  🪷       HIEROGLYFFER (til kanten)    🪷    ║  │
-│  ╚═══════════════════════════════════════════════╝  │
-│       ↑ Rammen rører alle 4 kanter af billedet     │
-└─────────────────────────────────────────────────────┘
+Normal spinning:
+┌─────────┐  ┌─────────┐  ┌─────────┐  ┌─────────┐  ┌─────────┐
+│   🎴   │  │   🐺   │  │   📖   │  │ SPINNING│  │ SPINNING│
+│   🦅   │  │   👑   │  │   🅰️   │  │ SPINNING│  │ SPINNING│
+│   🪲   │  │   ☥   │  │   👸   │  │ SPINNING│  │ SPINNING│
+└─────────┘  └─────────┘  └─────────┘  └─────────┘  └─────────┘
+
+Tease mode (2 scatters landed, reels 4-5 slowing):
+┌─────────┐  ┌─────────┐  ╔═════════╗  ┌─────────┐  ┌─────────┐
+│   🎴   │  │   🐺   │  ║ ✨📖✨  ║  │ TEASING │  │ TEASING │
+│   🦅   │  │   👑   │  ║ GYLDEN  ║  │   ✨    │  │   ✨    │
+│   🪲   │  │   ☥   │  ║  GLOW   ║  │  GLOW   │  │  GLOW   │
+└─────────┘  └─────────┘  ╚═════════╝  └─────────┘  └─────────┘
+                              ↑
+                    Scatter med gylden glødende stroke
 ```
 
 ---
 
-## Fil der ændres
+## Filer der ændres
 
 | Fil | Ændring |
 |-----|---------|
-| `supabase/functions/generate-slot-symbol/index.ts` | Opdater PREMIUM_FRAME og scatter prompt |
+| `src/components/slots/SlotSymbol.tsx` | Tilføj `isTeasing` prop og gylden glow styling |
+| `src/components/slots/SlotReel.tsx` | Pass `isTeasing` prop til scatter-symboler under tease |
+| `src/index.css` | Tilføj `scatter-tease-glow` keyframes animation |
 
 ---
 
 ## Tekniske Detaljer
 
-### Frame til kanten:
-- Tilføj "MUST touch ALL FOUR EDGES" instruktion
-- Tilføj "outer edge FLUSH with image boundary" for klarhed
-- Fjerner enhver mulighed for hvide kanter
+### Tease Glow Effekt:
+- **Border**: Animeret gylden (amber-400) kant der pulserer
+- **Box-shadow**: Multi-layer glow effekt med outer og inner glow
+- **Animation**: 1 sekund loop med ease-in-out timing
+- **Intensitet**: Pulserer mellem 60% og 100% opacity
 
-### Scatter symbol bevarelse:
-- Alle beskrivelser af katten forbliver identiske
-- Alle beskrivelser af bogen forbliver identiske
-- Kun COMPOSITION og ramme/stil tilføjes
+### Hvornår vises glow:
+1. Når scatter-symboler allerede er landet og flere hjul teaser
+2. Kun på scatter-symboler (ikke almindelige symboler)
+3. Stopper når alle hjul er stoppet
 
