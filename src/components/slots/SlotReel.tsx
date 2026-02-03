@@ -162,8 +162,8 @@ export function SlotReel({
       setOffset(startOffset);
       
       const startTime = performance.now();
-      // Tease reels get longer slowdown (3s), normal reels get 1.5s
-      const spinDuration = teaseMode ? 3000 : 1500;
+      // Tease reels get longer slowdown (3s), normal reels get fast 600ms
+      const spinDuration = teaseMode ? 3000 : 600;
       
       const animate = (currentTime: number) => {
         const elapsed = currentTime - startTime;
