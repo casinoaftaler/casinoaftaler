@@ -1,4 +1,4 @@
-import { useState, useCallback, useRef, useEffect } from "react";
+import React, { useState, useCallback, useRef, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import {
@@ -425,10 +425,10 @@ export function SlotGame() {
                 />
                 
                 {/* Reel container */}
-                <div className="relative flex gap-0.5 xs:gap-1 sm:gap-1.5 md:gap-2">
+                <div className="relative flex gap-0">
                   {grid?.map((column, colIndex) => (
+                    <React.Fragment key={colIndex}>
                     <SlotReel
-                      key={colIndex}
                       symbols={symbols}
                       displayedSymbolIds={column}
                       isSpinning={isSpinning}
@@ -582,6 +582,11 @@ export function SlotGame() {
                       teaseMode={teaseReels.includes(colIndex)}
                       isActiveTeaseReel={teaseReels.includes(colIndex) && activeTeaseReelIndex === colIndex}
                     />
+                    {/* Separator line between reels */}
+                    {colIndex < 4 && (
+                      <div className="w-[1px] sm:w-[2px] bg-amber-950/70 self-stretch" />
+                    )}
+                    </React.Fragment>
                   ))}
                   
                   {/* Win Lines Overlay */}
