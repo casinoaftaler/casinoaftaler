@@ -680,8 +680,8 @@ export function SlotGame() {
             <VolumeControl />
           </div>
 
-          {/* Large round spin button - centered on mobile, right-aligned on desktop */}
-          <div className="flex justify-center md:justify-end my-3 sm:my-4 md:pr-8 lg:pr-16">
+          {/* Large round spin button - centered under the slot machine */}
+          <div className="flex justify-center my-3 sm:my-4">
             <Button
               className={cn(
                 // Round shape
