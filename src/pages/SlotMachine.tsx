@@ -1,7 +1,6 @@
 import { useState, useCallback, useEffect } from "react";
 import { SlotGame } from "@/components/slots/SlotGame";
 import { SlotLeaderboard } from "@/components/slots/SlotLeaderboard";
-import { SpinsRemaining } from "@/components/slots/SpinsRemaining";
 import { SlotPageLockGate } from "@/components/slots/SlotPageLockGate";
 import { SlotLoadingScreen } from "@/components/slots/SlotLoadingScreen";
 import { SlotIntroScreen } from "@/components/slots/SlotIntroScreen";
@@ -152,11 +151,6 @@ export default function SlotMachine() {
             {/* Slot machine - the true center piece */}
             <div className="flex flex-col items-center gap-1">
               <SlotGame />
-              
-              {/* Spins remaining */}
-              <div className="w-full max-w-sm flex justify-center">
-                <SpinsRemaining />
-              </div>
               
               {/* Mobile/Tablet: Collapsible Leaderboard */}
               <Collapsible 
