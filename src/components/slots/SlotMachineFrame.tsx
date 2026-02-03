@@ -71,13 +71,6 @@ export function SlotMachineFrame({
           </>
         )}
 
-        {/* Glow effects */}
-        <div className={cn(
-          "absolute inset-0 rounded-xl transition-shadow duration-300 pointer-events-none",
-          isBonus && "shadow-[0_0_40px_rgba(251,191,36,0.4)]",
-          isSpinning && !isBonus && "shadow-[0_0_30px_rgba(251,191,36,0.3)]"
-        )} />
-
         {/* Actual slot content */}
         {children}
       </div>
