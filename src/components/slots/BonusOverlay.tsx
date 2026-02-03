@@ -1,6 +1,7 @@
 import { cn } from "@/lib/utils";
 import type { SlotSymbol } from "@/lib/slotGameLogic";
 import { getSymbolEmoji } from "@/lib/slotGameLogic";
+import { BonusCompleteScreen } from "./BonusCompleteScreen";
 
 interface BonusOverlayProps {
   isVisible: boolean;
@@ -21,6 +22,18 @@ export function BonusOverlay({
   totalFreeSpins = 0,
   onClose,
 }: BonusOverlayProps) {
+  // Use dedicated BonusCompleteScreen for completion
+  if (type === "complete") {
+    return (
+      <BonusCompleteScreen
+        isVisible={isVisible}
+        totalWinnings={totalWinnings}
+        totalSpinsUsed={totalFreeSpins}
+        onClose={onClose}
+      />
+    );
+  }
+
   if (!isVisible) return null;
 
   return (
