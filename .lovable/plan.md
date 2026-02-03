@@ -1,143 +1,109 @@
 
+# Plan: Scatter Glow og Lyd på Alle Hjul
 
-# Plan: Scatter Land Lyd og Bonus End Timing Fix
-
-## Problem 1: Scatter Land Lyd
-Når et scatter-symbol lander under tease mode, skal der afspilles en progressiv lydeffekt der bygger op spændingen.
-
-## Problem 2: Bonus End Screen Overlapper med Win
-Når bonus slutter, vises bonus completion screen samtidig med win-animationen. Vi skal vente på at win-visningen er færdig før bonus end screen popper op.
+## Problem
+Scatter land lyd og glow-effekt vises kun når der er 2+ scatters (tease mode). Brugeren ønsker at:
+1. **Lyd** skal altid afspilles når et scatter lander (også selvom det er det første/eneste scatter)
+2. **Glow** skal vises på scatter-symboler på ALLE hjul når de lander
 
 ---
 
 ## Løsning
 
-### 1. Tilføj Scatter Land Lyd i `slotSoundEffects.ts`
+### 1. Fjern `teaseReels.length > 0` betingelsen for scatter lyd
 
-Opret en ny `playScatterLand(scatterCount: number)` metode der afspiller en progressiv lyd baseret på hvor mange scatters der er landet (1, 2, eller 3+):
+**Fil:** `src/components/slots/SlotGame.tsx` (linje 468-479)
+
+Ændre logikken så scatter land lyd afspilles for ALLE scatters:
 
 ```typescript
-playScatterLand(scatterNumber: number) {
-  // scatterNumber: 1 = første scatter, 2 = anden scatter, 3 = tredje scatter
-  // Progressiv lyd: starter lavt og bygger op til en kraftigere lyd for hver scatter
-  
-  // 1. scatter: Kort mystisk "ding" med gylden klang
-  // 2. scatter: Længere, mere intens lyd med stigende pitch
-  // 3. scatter: Kraftig triumferende lyd (bonus trigger-lignende)
+// NUVÆRENDE KODE (kun når tease mode):
+if (hasScatterOnReel && teaseReels.length > 0) {
+  // ... scatter lyd
+}
+
+// NY KODE (altid):
+if (hasScatterOnReel) {
+  // Count how many scatters have landed up to and including this reel
+  let scattersLanded = 0;
+  for (let r = 0; r <= reelIndex; r++) {
+    const reelHasScatter = grid?.[r]?.some(symbolId => {
+      const symbol = symbols?.find(s => s.id === symbolId);
+      return symbol?.is_scatter;
+    });
+    if (reelHasScatter) scattersLanded++;
+  }
+  slotSounds.playScatterLand(scattersLanded);
 }
 ```
 
-**Lyddesign:**
-- **1. Scatter**: Mystisk klang (ca. 0.3s), lavt volumen, gylden tone
-- **2. Scatter**: Mere intens, stigende sweep, længere varighed (ca. 0.5s)
-- **3. Scatter**: Kraftig, næsten som en mini bonus-trigger, med sparkles
+### 2. Tilføj ny prop til SlotReel for at tracke landede scatters
 
-### 2. Kald Lydeffekten fra SlotGame.tsx
+**Fil:** `src/components/slots/SlotReel.tsx`
 
-Opdater `onReelStop` callback til at detektere når en scatter lander:
+Tilføj en ny prop `hasLandedScatter` der indikerer at dette hjul indeholder et scatter der har landet:
 
 ```typescript
-onReelStop={async (reelIndex) => {
-  slotSounds.playReelStopSingle(reelIndex);
-  
-  // Check if this reel has a scatter symbol
-  const hasScatterOnReel = grid?.[reelIndex]?.some(symbolId => {
-    const symbol = symbols.find(s => s.id === symbolId);
-    return symbol?.is_scatter;
-  });
-  
-  // Play scatter land sound if this reel has a scatter
-  if (hasScatterOnReel) {
-    // Count how many scatters have landed so far
-    const scattersLandedSoFar = countScattersLandedUpToReel(reelIndex);
-    slotSounds.playScatterLand(scattersLandedSoFar);
-  }
-  
-  // ... rest of existing code
+interface SlotReelProps {
+  // ... eksisterende props
+  hasLandedScatter?: boolean;  // NY: Om dette hjul har et scatter der har landet
 }
 ```
 
-### 3. Fix Bonus End Timing i SlotGame.tsx
+Opdater `isTeasing` logikken for landede symboler til også at inkludere `hasLandedScatter`:
 
-Ændr `handleBonusEnd` logikken til at vente på win-animation:
-
-**Før (linje 277-290):**
 ```typescript
-const handleBonusEnd = useCallback(() => {
-  if (shouldEndBonus && !isSpinning) {
-    const { winnings, spins } = endBonus();
-    // ... shows immediately
-  }
-}, [shouldEndBonus, isSpinning, endBonus]);
+// NUVÆRENDE KODE (linje 330):
+isTeasing={symbol.is_scatter && (globalTeaseActive || (scatterLandedOnPreviousReel && spinState !== "stopped"))}
 
-if (shouldEndBonus && !isSpinning && !showBonusComplete) {
-  handleBonusEnd();
+// NY KODE:
+isTeasing={symbol.is_scatter && (hasLandedScatter || globalTeaseActive || scatterLandedOnPreviousReel) && spinState !== "stopped"}
+```
+
+### 3. Track landede scatter reels i SlotGame
+
+**Fil:** `src/components/slots/SlotGame.tsx`
+
+Opdater `scatterReelsLanded` state til at tracke ALLE hjul med scatters (ikke kun sidste):
+
+```typescript
+// I onReelStop callback, tilføj tracking for alle scatter reels:
+if (hasScatterOnReel) {
+  setScatterReelsLanded(prev => new Set([...prev, reelIndex]));
 }
 ```
 
-**Efter:**
-```typescript
-const handleBonusEnd = useCallback(() => {
-  if (shouldEndBonus && !isSpinning && !isWinAnimating) {
-    // Only show when win animation is complete
-    const { winnings, spins } = endBonus();
-    setBonusTotalWinnings(winnings);
-    setBonusTotalSpinsUsed(spins);
-    setShowBonusComplete(true);
-  }
-}, [shouldEndBonus, isSpinning, isWinAnimating, endBonus]);
+Pass den nye prop til SlotReel:
 
-// Trigger check when conditions change
-useEffect(() => {
-  if (shouldEndBonus && !isSpinning && !isWinAnimating && !showBonusComplete) {
-    handleBonusEnd();
-  }
-}, [shouldEndBonus, isSpinning, isWinAnimating, showBonusComplete, handleBonusEnd]);
+```typescript
+<SlotReel
+  // ... eksisterende props
+  hasLandedScatter={scatterReelsLanded.has(colIndex)}
+/>
 ```
 
 ---
 
 ## Visuelt Resultat
 
-### Scatter Land Lyd Progression:
 ```text
-┌─────────────────────────────────────────────────────┐
-│  Scatter #1 lander                                  │
-│  🔊 "ding" - mystisk gylden klang (0.3s)           │
-├─────────────────────────────────────────────────────┤
-│  Scatter #2 lander                                  │
-│  🔊🔊 Stigende sweep + sparkles (0.5s)              │
-├─────────────────────────────────────────────────────┤
-│  Scatter #3 lander                                  │
-│  🔊🔊🔊 Triumferende burst + kraftig glow (0.6s)    │
-│  → Bonus trigger lyd afspilles separat bagefter    │
-└─────────────────────────────────────────────────────┘
-```
+BEFORE (kun tease mode):
+┌─────────┐  ┌─────────┐  ┌─────────┐  ┌─────────┐  ┌─────────┐
+│   📖   │  │   🐺   │  │   📖   │  │ SPINNING│  │ SPINNING│
+│  (NO   │  │   👑   │  │ ✨GLOW✨│  │   ✨    │  │   ✨    │
+│  GLOW) │  │   ☥   │  │         │  │  GLOW   │  │  GLOW   │
+└─────────┘  └─────────┘  └─────────┘  └─────────┘  └─────────┘
+  🔇 intet      ---       🔊 lyd        ---         ---
+    lyd
 
-### Bonus End Timing Fix:
-```text
-BEFORE (overlapping):
-┌─────────────────────────────────────────────────────┐
-│ ┌─────────────────┐  ┌─────────────────────────┐   │
-│ │  WIN: 500 pts   │  │    TILLYKKE!           │   │
-│ │  (counting...)  │  │    Total: 2500         │   │
-│ └─────────────────┘  └─────────────────────────┘   │
-│        ↑ Both showing at the same time ↑          │
-└─────────────────────────────────────────────────────┘
-
-AFTER (sequential):
-┌─────────────────────────────────────────────────────┐
-│  Step 1: Win display counts up                      │
-│  ┌─────────────────┐                               │
-│  │  WIN: 500 pts   │  ← Counter animation          │
-│  └─────────────────┘                               │
-├─────────────────────────────────────────────────────┤
-│  Step 2: After win animation completes              │
-│                     ┌─────────────────────────┐     │
-│                     │    TILLYKKE!           │     │
-│                     │    Total: 2500         │     │
-│                     └─────────────────────────┘     │
-└─────────────────────────────────────────────────────┘
+AFTER (alle scatter hjul):
+╔═════════╗  ┌─────────┐  ╔═════════╗  ┌─────────┐  ┌─────────┐
+║ ✨📖✨  ║  │   🐺   │  ║ ✨📖✨  ║  │ SPINNING│  │ SPINNING│
+║  GLOW!  ║  │   👑   │  ║  GLOW!  ║  │   ✨    │  │   ✨    │
+║         ║  │   ☥   │  ║         ║  │  GLOW   │  │  GLOW   │
+╚═════════╝  └─────────┘  ╚═════════╝  └─────────┘  └─────────┘
+  🔊 lyd        ---       🔊 lyd        ---         ---
+  (1st)                   (2nd)
 ```
 
 ---
@@ -146,23 +112,19 @@ AFTER (sequential):
 
 | Fil | Ændring |
 |-----|---------|
-| `src/lib/slotSoundEffects.ts` | Tilføj `playScatterLand(scatterNumber)` metode |
-| `src/components/slots/SlotGame.tsx` | Kald scatter lyd i `onReelStop`, fix bonus end timing |
+| `src/components/slots/SlotGame.tsx` | Fjern `teaseReels.length > 0` check, track alle scatter reels, pass `hasLandedScatter` prop |
+| `src/components/slots/SlotReel.tsx` | Tilføj `hasLandedScatter` prop og opdater glow-logik |
 
 ---
 
 ## Tekniske Detaljer
 
-### Scatter Land Lyd Design:
-- **Frekvenser**: Starter på 400Hz (1. scatter), stigende til 800Hz (2.) og 1200Hz (3.)
-- **Varighed**: 0.3s → 0.5s → 0.6s (progressiv længere)
-- **Volumen**: Gradvist stigende for hver scatter
-- **Ekstra effekter**: 
-  - 2. scatter: Tilføjer sparkle-lyde
-  - 3. scatter: Tilføjer power sweep + mystisk chord
+### Scatter Land Lyd:
+- Afspilles for **ALLE** scatters der lander (1., 2., 3., osv.)
+- Progressiv lyd bibeholdes (stigende intensitet for hver scatter)
+- Fungerer uafhængigt af tease mode
 
-### Bonus End Timing:
-- Tilføjer `!isWinAnimating` som condition
-- Konverterer inline check til `useEffect` for proper reaktivitet
-- Win animation varer typisk 2000ms for store gevinster
-
+### Scatter Glow:
+- Vises når scatter symbolet har landet OG hjulet ikke er idle
+- Forbliver aktiv mens andre hjul stadig spinner
+- Forsvinder når alle hjul er stoppet (normal tilstand)
