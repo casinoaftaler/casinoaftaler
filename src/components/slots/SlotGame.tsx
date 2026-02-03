@@ -69,6 +69,10 @@ export function SlotGame() {
   const [teaseInfo, setTeaseInfo] = useState<TeaseInfo>({ reels: [], lateScatter: false, lastScatterReel: -1 });
   const [scatterReelsLanded, setScatterReelsLanded] = useState<Set<number>>(new Set());
   
+  // Spin lock to prevent rapid clicking
+  const spinLockRef = useRef(false);
+  const spinLockTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+  
   const winLinesTimeoutRef = useRef<NodeJS.Timeout | null>(null);
   
   // Track stopped reels for tease-mode timing
@@ -117,6 +121,9 @@ export function SlotGame() {
       }
       if (winLinesTimeoutRef.current) {
         clearTimeout(winLinesTimeoutRef.current);
+      }
+      if (spinLockTimeoutRef.current) {
+        clearTimeout(spinLockTimeoutRef.current);
       }
       // Stop all slot sounds and music when leaving the page
       slotSounds.stopMusic();
@@ -196,12 +203,28 @@ export function SlotGame() {
   }, [isAutoSpinning, stopAutoSpin, startAutoSpin]);
 
   const handleSpin = async () => {
+    // Prevent rapid clicking with a spin lock
+    if (spinLockRef.current) return;
+    
     if (!symbols || symbols.length === 0 || !user || isSpinning) return;
     
     // Check if we can spin (either normal spin or bonus free spin)
     const isBonusSpin = bonusState.isActive && bonusState.freeSpinsRemaining > 0;
     // For normal spins, check if we have enough spins for the current bet
     if (!isBonusSpin && !hasEnoughSpins(bet)) return;
+
+    // Set spin lock immediately to prevent double-clicks
+    spinLockRef.current = true;
+    
+    // Clear any existing lock timeout
+    if (spinLockTimeoutRef.current) {
+      clearTimeout(spinLockTimeoutRef.current);
+    }
+    
+    // Safety timeout to release lock in case something goes wrong (5 seconds max)
+    spinLockTimeoutRef.current = setTimeout(() => {
+      spinLockRef.current = false;
+    }, 5000);
 
     // Generate final result BEFORE starting the animation
     // This ensures SlotReel knows what symbols to land on
@@ -302,6 +325,13 @@ export function SlotGame() {
       setTeaseReels([]);
       setActiveTeaseReelIndex(null);
       pendingResultRef.current = null;
+      
+      // Release spin lock on error
+      spinLockRef.current = false;
+      if (spinLockTimeoutRef.current) {
+        clearTimeout(spinLockTimeoutRef.current);
+        spinLockTimeoutRef.current = null;
+      }
     }
   };
 
@@ -675,6 +705,15 @@ export function SlotGame() {
                           setIsSpinning(false);
                           setTeaseReels([]);
                           setActiveTeaseReelIndex(null);
+                          
+                          // Release spin lock after a short delay to prevent immediate re-spin
+                          setTimeout(() => {
+                            spinLockRef.current = false;
+                            if (spinLockTimeoutRef.current) {
+                              clearTimeout(spinLockTimeoutRef.current);
+                              spinLockTimeoutRef.current = null;
+                            }
+                          }, 300);
                         }
                       }}
                       teaseMode={teaseReels.includes(colIndex)}
