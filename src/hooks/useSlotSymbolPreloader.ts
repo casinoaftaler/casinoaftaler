@@ -4,38 +4,56 @@ import type { SlotSymbol } from "@/lib/slotGameLogic";
 // Cache for preloaded images
 const imageCache = new Map<string, HTMLImageElement>();
 
-export function useSlotSymbolPreloader(symbols: SlotSymbol[] | undefined) {
+interface PreloaderOptions {
+  symbols?: SlotSymbol[];
+  additionalUrls?: (string | undefined | null)[];
+}
+
+export function useSlotSymbolPreloader(symbols: SlotSymbol[] | undefined, additionalUrls?: (string | undefined | null)[]) {
   const [isLoaded, setIsLoaded] = useState(false);
   const [loadedCount, setLoadedCount] = useState(0);
   const [totalCount, setTotalCount] = useState(0);
 
   useEffect(() => {
-    if (!symbols || symbols.length === 0) {
-      setIsLoaded(true);
-      return;
-    }
-
-    // Filter symbols that have image URLs and aren't already cached
-    const symbolsWithImages = symbols.filter(s => s.image_url && !imageCache.has(s.image_url));
+    // Collect all URLs to preload
+    const urlsToPreload: string[] = [];
     
-    // If all images are cached, we're done
-    if (symbolsWithImages.length === 0) {
+    // Add symbol image URLs
+    if (symbols) {
+      symbols.forEach(s => {
+        if (s.image_url && !imageCache.has(s.image_url)) {
+          urlsToPreload.push(s.image_url);
+        }
+      });
+    }
+    
+    // Add additional URLs (frame, background, title, etc.)
+    if (additionalUrls) {
+      additionalUrls.forEach(url => {
+        if (url && !imageCache.has(url)) {
+          urlsToPreload.push(url);
+        }
+      });
+    }
+
+    // If nothing to preload, we're done
+    if (urlsToPreload.length === 0) {
       setIsLoaded(true);
-      setLoadedCount(symbols.filter(s => s.image_url).length);
-      setTotalCount(symbols.filter(s => s.image_url).length);
+      const cachedSymbolCount = symbols?.filter(s => s.image_url && imageCache.has(s.image_url)).length || 0;
+      const cachedAdditionalCount = additionalUrls?.filter(url => url && imageCache.has(url)).length || 0;
+      setLoadedCount(cachedSymbolCount + cachedAdditionalCount);
+      setTotalCount(cachedSymbolCount + cachedAdditionalCount);
       return;
     }
 
-    setTotalCount(symbolsWithImages.length);
+    setTotalCount(urlsToPreload.length);
     setLoadedCount(0);
     setIsLoaded(false);
 
     let loadedImages = 0;
     const imagePromises: Promise<void>[] = [];
 
-    symbolsWithImages.forEach(symbol => {
-      if (!symbol.image_url) return;
-
+    urlsToPreload.forEach(url => {
       const promise = new Promise<void>((resolve) => {
         const img = new Image();
         
@@ -43,7 +61,7 @@ export function useSlotSymbolPreloader(symbols: SlotSymbol[] | undefined) {
         img.decoding = "async";
         
         img.onload = () => {
-          imageCache.set(symbol.image_url!, img);
+          imageCache.set(url, img);
           loadedImages++;
           setLoadedCount(loadedImages);
           resolve();
@@ -51,14 +69,14 @@ export function useSlotSymbolPreloader(symbols: SlotSymbol[] | undefined) {
         
         img.onerror = () => {
           // Still resolve on error to not block loading
-          console.warn(`Failed to preload symbol image: ${symbol.name}`);
+          console.warn(`Failed to preload image: ${url}`);
           loadedImages++;
           setLoadedCount(loadedImages);
           resolve();
         };
 
         // Start loading
-        img.src = symbol.image_url;
+        img.src = url;
       });
 
       imagePromises.push(promise);
@@ -68,7 +86,7 @@ export function useSlotSymbolPreloader(symbols: SlotSymbol[] | undefined) {
     Promise.all(imagePromises).then(() => {
       setIsLoaded(true);
     });
-  }, [symbols]);
+  }, [symbols, additionalUrls?.join(",")]); // Join additionalUrls for stable dependency
 
   return {
     isLoaded,

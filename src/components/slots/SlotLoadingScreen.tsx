@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useMemo } from "react";
 import { Progress } from "@/components/ui/progress";
 import defaultTitleImage from "@/assets/slots/book-of-fedesvin-title.png";
 import defaultSlotBackground from "@/assets/slots/slot-background.jpg";
@@ -14,10 +14,19 @@ export function SlotLoadingScreen({ onComplete }: SlotLoadingScreenProps) {
   const [minTimeElapsed, setMinTimeElapsed] = useState(false);
   const { data: siteSettings } = useSiteSettings();
   const { data: symbols } = useSlotSymbols();
-  const { isLoaded: symbolsLoaded, progress: symbolProgress } = useSlotSymbolPreloader(symbols);
   
   const titleImage = siteSettings?.slot_title_image || defaultTitleImage;
   const backgroundImage = siteSettings?.slot_background_image || defaultSlotBackground;
+  const frameImage = siteSettings?.slot_machine_frame_image;
+  
+  // Preload symbols AND frame/background/title images together
+  const additionalImages = useMemo(() => [
+    frameImage,
+    siteSettings?.slot_title_image,
+    siteSettings?.slot_background_image,
+  ], [frameImage, siteSettings?.slot_title_image, siteSettings?.slot_background_image]);
+  
+  const { isLoaded: assetsLoaded, progress: assetProgress } = useSlotSymbolPreloader(symbols, additionalImages);
 
   // Minimum display time for loading screen
   useEffect(() => {
@@ -28,17 +37,17 @@ export function SlotLoadingScreen({ onComplete }: SlotLoadingScreenProps) {
     return () => clearTimeout(timer);
   }, []);
 
-  // Complete when both minimum time has passed AND symbols are loaded
+  // Complete when both minimum time has passed AND assets are loaded
   useEffect(() => {
-    if (minTimeElapsed && symbolsLoaded) {
+    if (minTimeElapsed && assetsLoaded) {
       setTimeout(onComplete, 200); // Small delay after complete
     }
-  }, [minTimeElapsed, symbolsLoaded, onComplete]);
+  }, [minTimeElapsed, assetsLoaded, onComplete]);
 
-  // Combined progress: 50% for time, 50% for symbols
+  // Combined progress: 50% for time, 50% for assets
   const timeProgress = minTimeElapsed ? 50 : 0;
-  const symbolProgressScaled = (symbolProgress / 100) * 50;
-  const totalProgress = Math.min(timeProgress + symbolProgressScaled, 100);
+  const assetProgressScaled = (assetProgress / 100) * 50;
+  const totalProgress = Math.min(timeProgress + assetProgressScaled, 100);
 
   return (
     <div className="min-h-[calc(100vh-4rem)] relative flex flex-col items-center justify-center">
@@ -78,7 +87,7 @@ export function SlotLoadingScreen({ onComplete }: SlotLoadingScreenProps) {
           </div>
           
           <p className="text-center text-amber-500/80 text-sm font-medium">
-            {symbolsLoaded ? "Klar!" : "Indlæser symboler..."} {Math.round(totalProgress)}%
+            {assetsLoaded ? "Klar!" : "Indlæser..."} {Math.round(totalProgress)}%
           </p>
         </div>
       </div>
