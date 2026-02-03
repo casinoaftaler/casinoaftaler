@@ -129,6 +129,36 @@ export function SlotGame() {
     };
   }, []);
 
+  // Spacebar keyboard handler for spinning
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      // Only handle spacebar
+      if (e.code !== "Space") return;
+      
+      // Prevent scroll (default browser behavior)
+      e.preventDefault();
+      
+      // Ignore if focus is on an input element
+      if (
+        document.activeElement?.tagName === "INPUT" ||
+        document.activeElement?.tagName === "TEXTAREA" ||
+        document.activeElement?.tagName === "SELECT"
+      ) return;
+      
+      // Check if we can spin
+      const canSpinNow = bonusState.isActive 
+        ? bonusState.freeSpinsRemaining > 0 
+        : hasEnoughSpins(bet);
+      
+      if (!isSpinning && canSpinNow && !showBonusTrigger && !isAutoSpinning) {
+        handleSpin();
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [isSpinning, bonusState.isActive, bonusState.freeSpinsRemaining, bet, hasEnoughSpins, showBonusTrigger, isAutoSpinning]);
+
   // Stop autospin when out of spins or on big win/bonus
   const stopAutoSpin = useCallback(() => {
     setIsAutoSpinning(false);
