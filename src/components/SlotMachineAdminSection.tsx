@@ -431,6 +431,12 @@ function SymbolsTab() {
     }
   }, [symbols]);
 
+  // Calculate RTP - MUST be called before any early returns to respect rules of hooks
+  const rtpResult = useMemo(() => {
+    if (orderedSymbols.length === 0) return null;
+    return calculateTheoreticalRTP(orderedSymbols);
+  }, [orderedSymbols]);
+
   const handleDragEnd = (event: DragEndEvent) => {
     const { active, over } = event;
     if (over && active.id !== over.id) {
@@ -460,12 +466,6 @@ function SymbolsTab() {
 
   // Calculate total weight for percentage calculation
   const totalWeight = orderedSymbols.reduce((sum, s) => sum + (s.weight || 0), 0);
-
-  // Calculate RTP
-  const rtpResult = useMemo(() => {
-    if (orderedSymbols.length === 0) return null;
-    return calculateTheoreticalRTP(orderedSymbols);
-  }, [orderedSymbols]);
 
   // Separate symbols by rarity for the overview
   const premiumSymbols = orderedSymbols.filter(s => s.rarity === 'premium');
