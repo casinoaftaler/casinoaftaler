@@ -1,118 +1,61 @@
 
 
-# Adjust Symbol Weights to Achieve 96% RTP (Including Bonus)
+# Adjustable Reel Spin & Landing Speed
 
-## Current Situation
-
-The current RTP calculation in `slotRTPCalculation.ts` only considers:
-- Line win RTP (based on consecutive symbol matches on 10 paylines)
-- Scatter direct payout RTP (3/4/5 scatters pay multipliers)
-
-**It does NOT include the bonus round's expected value**, which is a significant contributor to the overall RTP in Book of Ra-style slots.
-
-### Current Symbol Configuration
-
-| Symbol | Weight | Rarity | 2× | 3× | 4× | 5× |
-|--------|--------|--------|-----|-----|------|------|
-| Pharaoh | 8 | premium | 1.00 | 10.00 | 100.00 | 500.00 |
-| Anubis | 15 | premium | 0.50 | 4.00 | 40.00 | 200.00 |
-| Horus | 10 | premium | 0.50 | 3.00 | 10.00 | 75.00 |
-| Scarab | 15 | premium | 0.50 | 3.00 | 10.00 | 75.00 |
-| A | 50 | common | 0 | 0.50 | 4.00 | 15.00 |
-| K | 50 | common | 0 | 0.50 | 4.00 | 15.00 |
-| Q | 60 | common | 0 | 0.50 | 2.50 | 10.00 |
-| J | 60 | common | 0 | 0.50 | 2.50 | 10.00 |
-| 10 | 60 | common | 0 | 0.50 | 2.50 | 10.00 |
-| Book (Scatter) | 9 | scatter | 0 | 0.20 | 2.00 | 20.00 |
-
-**Total Weight: 337**
-
-## Solution Overview
-
-To achieve 96% RTP including bonus, I will:
-
-1. **Enhance the RTP calculation** to include bonus round contribution
-2. **Update the database** with optimized symbol weights that yield ~96% total RTP
-
-### Bonus RTP Calculation (Missing Piece)
-
-The bonus contribution to RTP is calculated as:
-
-```text
-Bonus RTP = P(trigger bonus) × Expected Bonus Value
-
-Where:
-- P(trigger bonus) = P(3+ scatters on 15 positions)
-- Expected Bonus Value = 10 spins × Average win per spin during bonus
-```
-
-The bonus is more valuable than base game spins because:
-1. No bet is deducted (free spins)
-2. Expanding symbol mechanic increases win frequency and size
-
-A typical Book of Ra-style bonus contributes **25-40%** of total RTP.
-
-## Proposed Weight Changes
-
-To target 96% RTP including bonus, here's a balanced configuration:
-
-| Symbol | Current Weight | New Weight | Rationale |
-|--------|----------------|------------|-----------|
-| Pharaoh | 8 | 6 | Slightly rarer (high payout) |
-| Anubis | 15 | 10 | Moderate rarity |
-| Horus | 10 | 8 | Moderate rarity |
-| Scarab | 15 | 10 | Moderate rarity |
-| A | 50 | 55 | Slightly more common |
-| K | 50 | 55 | Slightly more common |
-| Q | 60 | 65 | Common symbol |
-| J | 60 | 65 | Common symbol |
-| 10 | 60 | 65 | Common symbol |
-| Book (Scatter) | 9 | 8 | Slightly harder to trigger bonus |
-
-**New Total Weight: 347**
+## Overview
+Add two new admin-adjustable settings to control the slot machine's visual timing:
+1. **Fake Loop Speed** - How fast the reels spin during the constant-speed phase (currently too fast at 600ms per cycle)
+2. **Reel Landing Delay** - How quickly each reel lands after the previous one (currently 0ms - they trigger immediately)
 
 ## Technical Implementation
 
-### Step 1: Enhance RTP Calculation
+### Step 1: Add New Settings to `useSlotSettings.ts`
+Extend the settings interface with two new timing parameters:
 
-Update `slotRTPCalculation.ts` to include bonus contribution:
+| Setting | Key | Default | Range | Description |
+|---------|-----|---------|-------|-------------|
+| Spin Loop Speed | `slot_spin_loop_ms` | 400 | 200-800ms | Duration of one spin cycle (higher = slower) |
+| Reel Landing Delay | `slot_reel_stagger_ms` | 150 | 0-500ms | Delay between each reel stopping |
+
+### Step 2: Pass Settings to SlotReel Component
+Modify `SlotGame.tsx` to:
+- Read the new settings from `useSlotSettings()`
+- Pass `spinLoopMs` to each `SlotReel` component
+- Use `reelStaggerMs` when triggering the next reel to slow down (add a `setTimeout` delay)
+
+### Step 3: Update `SlotReel.tsx` to Use Dynamic Speed
+- Accept new prop `spinLoopMs` (default: 400)
+- Replace hardcoded `loopDuration = 600` with the prop value
+
+### Step 4: Add Admin UI Controls
+In `SlotMachineAdminSection.tsx` SettingsTab, add a new "Animation Timing" card with two sliders:
 
 ```text
-New RTP Result interface:
-- totalRTP (line + scatter + bonus)
-- lineRTP
-- scatterRTP  
-- bonusRTP (new!)
-- symbolBreakdown
-
-New calculation:
-1. Calculate P(3 scatters), P(4 scatters), P(5 scatters)
-2. Estimate average bonus spin value (using base RTP + expanding symbol boost)
-3. Bonus RTP = trigger_probability × 10 × average_bonus_spin_value
+┌─────────────────────────────────────────┐
+│ Animation Timing                        │
+├─────────────────────────────────────────┤
+│ Spin Hastighed                          │
+│ [======●==================] 400ms       │
+│ Lavere = hurtigere spinning             │
+│                                         │
+│ Hjul Landing Forsinkelse                │
+│ [=========●===============] 150ms       │
+│ Tid mellem hvert hjul stopper           │
+└─────────────────────────────────────────┘
 ```
-
-### Step 2: Update Database Weights
-
-Execute SQL UPDATE to change symbol weights to the proposed values.
-
-### Step 3: Fine-tune with Admin Panel
-
-After implementing the enhanced RTP display, use the admin panel to fine-tune weights in real-time while watching the projected RTP.
 
 ## Files to Change
 
 | File | Changes |
 |------|---------|
-| `src/lib/slotRTPCalculation.ts` | Add `calculateBonusRTP()` function and include in total RTP |
-| Database (slot_symbols table) | UPDATE weights to new values |
+| `src/hooks/useSlotSettings.ts` | Add `spinLoopMs` and `reelStaggerMs` to interface and query |
+| `src/components/slots/SlotReel.tsx` | Accept `spinLoopMs` prop, use it for `loopDuration` |
+| `src/components/slots/SlotGame.tsx` | Pass settings to reels, add delay when triggering next reel slowdown |
+| `src/components/SlotMachineAdminSection.tsx` | Add slider controls in SettingsTab |
 
-## Expected Outcome
+## Expected Behavior After Implementation
 
-After implementation:
-- **Base game RTP**: ~58-62%
-- **Scatter direct payout RTP**: ~0.01%
-- **Bonus RTP contribution**: ~34-38%
-- **Total RTP**: ~96%
-
-The admin panel will show a complete breakdown including bonus contribution, allowing for future fine-tuning.
+- **Slower fake loop**: Increasing `spinLoopMs` from 600 to 400-500 makes the spinning animation more visually readable
+- **Faster sequential landing**: Setting `reelStaggerMs` to 100-200ms gives a satisfying cascade effect where reels land quickly one after another
+- **Admin control**: Admins can fine-tune these values in real-time via sliders in the Settings tab
 
