@@ -37,7 +37,7 @@ export function SlotIntroScreen({ onStart }: SlotIntroScreenProps) {
           <img 
             src={introImage} 
             alt="Book of Fedesvin - Klik for at fortsætte" 
-            className="w-full max-w-[320px] sm:max-w-md md:max-w-lg lg:max-w-xl h-auto rounded-lg shadow-2xl transition-transform duration-300 group-hover:scale-[1.02]"
+            className="w-full max-w-[640px] sm:max-w-2xl md:max-w-3xl lg:max-w-4xl h-auto rounded-lg shadow-2xl transition-transform duration-300 group-hover:scale-[1.02]"
             style={{
               boxShadow: '0 0 40px rgba(251,191,36,0.3), 0 0 80px rgba(251,191,36,0.15)'
             }}
