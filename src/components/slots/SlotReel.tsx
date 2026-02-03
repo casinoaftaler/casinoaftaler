@@ -325,6 +325,7 @@ export function SlotReel({
                 isExpanded={symbolIsExpanded}
                 isNewlyExpanded={symbolIsNewlyExpanded}
                 hasLanded={spinState === "stopped"}
+                isTeasing={symbol.is_scatter && scatterLandedOnPreviousReel && spinState !== "stopped"}
               />
             </div>
           );
@@ -385,6 +386,7 @@ export function SlotReel({
             key={`reel-${index}-${symbol.id}`}
             symbol={symbol}
             isSpinning={true}
+            isTeasing={(isFakeLooping && scatterLandedOnPreviousReel) || isActiveTeaseReel}
           />
         ))}
       </div>
