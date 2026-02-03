@@ -23,7 +23,9 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
-import { GripVertical, Pencil, Loader2, Trophy, Sparkles, TrendingUp, BarChart3, Lock } from "lucide-react";
+import { GripVertical, Pencil, Loader2, Trophy, Sparkles, TrendingUp, BarChart3, Lock, Wand2 } from "lucide-react";
+import { supabase } from "@/integrations/supabase/client";
+import { toast } from "sonner";
 import {
   DndContext,
   closestCenter,
@@ -112,6 +114,7 @@ interface EditSymbolDialogProps {
 
 function EditSymbolDialog({ symbol, open, onClose }: EditSymbolDialogProps) {
   const { updateSymbol } = useSlotSymbolsAdmin();
+  const [isGeneratingAI, setIsGeneratingAI] = useState(false);
   const [formData, setFormData] = useState({
     name: "",
     image_url: null as string | null,
@@ -146,6 +149,44 @@ function EditSymbolDialog({ symbol, open, onClose }: EditSymbolDialogProps) {
     });
   };
 
+  const handleGenerateAI = async () => {
+    if (!symbol) return;
+    setIsGeneratingAI(true);
+    
+    try {
+      const { data, error } = await supabase.functions.invoke("generate-slot-symbol", {
+        body: { symbolId: symbol.id },
+      });
+
+      if (error) {
+        console.error("Edge function error:", error);
+        toast.error("Kunne ikke generere symbol: " + error.message);
+        return;
+      }
+
+      if (data?.error) {
+        if (data.error.includes("Rate limit")) {
+          toast.error("Rate limit nået. Prøv igen senere.");
+        } else if (data.error.includes("Payment required")) {
+          toast.error("Ikke nok kreditter. Tilføj kreditter til din workspace.");
+        } else {
+          toast.error(data.error);
+        }
+        return;
+      }
+
+      if (data?.imageUrl) {
+        setFormData({ ...formData, image_url: data.imageUrl });
+        toast.success("AI-symbol genereret!");
+      }
+    } catch (err) {
+      console.error("AI generation error:", err);
+      toast.error("Der opstod en fejl under generering");
+    } finally {
+      setIsGeneratingAI(false);
+    }
+  };
+
   if (!symbol) return null;
 
   return (
@@ -170,6 +211,25 @@ function EditSymbolDialog({ symbol, open, onClose }: EditSymbolDialogProps) {
             onImageRemoved={() => setFormData({ ...formData, image_url: null })}
             symbolId={symbol.id}
           />
+
+          <Button
+            variant="outline"
+            onClick={handleGenerateAI}
+            disabled={isGeneratingAI}
+            className="w-full"
+          >
+            {isGeneratingAI ? (
+              <>
+                <Loader2 className="h-4 w-4 mr-2 animate-spin" />
+                Genererer med AI... (10-30 sek)
+              </>
+            ) : (
+              <>
+                <Wand2 className="h-4 w-4 mr-2" />
+                Generer nyt billede med AI
+              </>
+            )}
+          </Button>
 
           <div className="grid grid-cols-3 gap-4">
             <div className="space-y-2">
