@@ -1146,6 +1146,132 @@ class SlotSoundEffects {
     }, 800);
   }
 
+  // Retrigger - triumphant power boost during bonus
+  playRetrigger() {
+    if (!this.enabled) return;
+    const ctx = this.getContext();
+    const now = ctx.currentTime;
+    
+    // Quick power burst (faster than bonus trigger)
+    const burst = ctx.createOscillator();
+    const burstGain = ctx.createGain();
+    const burstFilter = ctx.createBiquadFilter();
+    
+    burst.connect(burstFilter);
+    burstFilter.connect(burstGain);
+    burstGain.connect(ctx.destination);
+    
+    burst.frequency.setValueAtTime(80, now);
+    burst.frequency.exponentialRampToValueAtTime(400, now + 0.3);
+    burst.type = 'sine';
+    
+    burstFilter.type = 'lowpass';
+    burstFilter.frequency.value = 500;
+    
+    burstGain.gain.setValueAtTime(0.35 * this.volume, now);
+    burstGain.gain.exponentialRampToValueAtTime(0.001, now + 0.4);
+    
+    burst.start(now);
+    burst.stop(now + 0.4);
+
+    // Ascending sparkle cascade (faster and more numerous than trigger)
+    for (let i = 0; i < 25; i++) {
+      const sparkle = ctx.createOscillator();
+      const sparkleGain = ctx.createGain();
+      
+      sparkle.connect(sparkleGain);
+      sparkleGain.connect(ctx.destination);
+      
+      // Higher frequencies for more "brilliant" feel
+      sparkle.frequency.value = 1800 + Math.random() * 4000;
+      sparkle.type = 'sine';
+      
+      // Tighter intervals for faster cascade
+      const sparkleTime = now + 0.05 + i * 0.025;
+      sparkleGain.gain.setValueAtTime(0.12 * this.volume, sparkleTime);
+      sparkleGain.gain.exponentialRampToValueAtTime(0.001, sparkleTime + 0.12);
+      
+      sparkle.start(sparkleTime);
+      sparkle.stop(sparkleTime + 0.12);
+    }
+
+    // Triumphant E major chord (brighter than D minor trigger)
+    const triumphNotes = [164.81, 207.65, 246.94, 329.63, 415.30]; // E3, G#3, B3, E4, G#4
+    triumphNotes.forEach((freq) => {
+      const osc = ctx.createOscillator();
+      const gain = ctx.createGain();
+      
+      osc.connect(gain);
+      gain.connect(ctx.destination);
+      
+      osc.frequency.value = freq;
+      osc.type = 'triangle';
+      
+      gain.gain.setValueAtTime(0.16 * this.volume, now + 0.15);
+      gain.gain.exponentialRampToValueAtTime(0.001, now + 1.2);
+      
+      osc.start(now + 0.15);
+      osc.stop(now + 1.2);
+    });
+
+    // High shimmer layer with tremolo (book glow effect)
+    const shimmer1 = ctx.createOscillator();
+    const shimmer2 = ctx.createOscillator();
+    const shimmerGain = ctx.createGain();
+    const shimmerFilter = ctx.createBiquadFilter();
+    const tremolo = ctx.createOscillator();
+    const tremoloGain = ctx.createGain();
+    
+    shimmer1.connect(shimmerFilter);
+    shimmer2.connect(shimmerFilter);
+    shimmerFilter.connect(shimmerGain);
+    shimmerGain.connect(ctx.destination);
+    
+    tremolo.connect(tremoloGain);
+    tremoloGain.connect(shimmerGain.gain);
+    
+    shimmer1.frequency.value = 2500;
+    shimmer2.frequency.value = 3200;
+    shimmer1.type = 'sine';
+    shimmer2.type = 'sine';
+    
+    shimmerFilter.type = 'bandpass';
+    shimmerFilter.frequency.value = 3000;
+    shimmerFilter.Q.value = 3;
+    
+    tremolo.frequency.value = 12; // Fast tremolo
+    tremoloGain.gain.value = 0.04 * this.volume;
+    
+    shimmerGain.gain.setValueAtTime(0.08 * this.volume, now + 0.1);
+    shimmerGain.gain.exponentialRampToValueAtTime(0.001, now + 1.4);
+    
+    shimmer1.start(now + 0.1);
+    shimmer2.start(now + 0.1);
+    tremolo.start(now + 0.1);
+    shimmer1.stop(now + 1.5);
+    shimmer2.stop(now + 1.5);
+    tremolo.stop(now + 1.5);
+
+    // Bonus-reinforcing whoosh
+    const whoosh = ctx.createOscillator();
+    const whooshGain = ctx.createGain();
+    
+    whoosh.connect(whooshGain);
+    whooshGain.connect(ctx.destination);
+    
+    whoosh.frequency.setValueAtTime(200, now);
+    whoosh.frequency.exponentialRampToValueAtTime(1200, now + 0.2);
+    whoosh.frequency.exponentialRampToValueAtTime(600, now + 0.35);
+    whoosh.type = 'triangle';
+    
+    whooshGain.gain.setValueAtTime(0.2 * this.volume, now);
+    whooshGain.gain.linearRampToValueAtTime(0.25 * this.volume, now + 0.1);
+    whooshGain.gain.exponentialRampToValueAtTime(0.001, now + 0.4);
+    
+    whoosh.start(now);
+    whoosh.stop(now + 0.4);
+  }
+
   // Symbol expansion - ancient power surge
   playSymbolExpand() {
     if (!this.enabled) return;

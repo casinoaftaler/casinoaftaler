@@ -509,16 +509,18 @@ export function SlotGame() {
                           // Handle bonus trigger or retrigger
                           let shouldStopAuto = false;
                           if (result.bonusTriggered) {
-                            slotSounds.playBonusTrigger();
                             shouldStopAuto = true;
                             
                             if (isBonusSpin) {
-                              // Retrigger during bonus - show dramatic overlay
+                              // Retrigger during bonus - play retrigger sound and show overlay
+                              slotSounds.playRetrigger();
                               const spinsToAdd = 10;
                               retriggerBonus(spinsToAdd);
                               setRetriggerSpinsAdded(spinsToAdd);
                               setShowRetrigger(true);
                             } else {
+                              // Initial bonus trigger
+                              slotSounds.playBonusTrigger();
                               const expanding = triggerBonus(symbols || []);
                               setPendingExpandingSymbol(expanding);
                               setShowBonusTrigger(true);
