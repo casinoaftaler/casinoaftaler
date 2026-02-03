@@ -27,6 +27,8 @@ The symbol MUST feature:
 - Background with subtle Egyptian temple elements (columns, hieroglyphics, Anubis statues)
 - Warm golden color palette with rich amber tones
 
+CRITICAL: The image must fill the ENTIRE square canvas edge-to-edge. NO white borders, NO white edges, NO margins. The Egyptian temple background must extend all the way to every edge of the image.
+
 ${BASE_STYLE}
 
 This is a "Book of the Dead" themed scatter/wild symbol for a slot game.`;
