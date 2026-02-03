@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
 import { cn } from "@/lib/utils";
 
@@ -6,6 +6,15 @@ interface SlotMachineFrameProps {
   children: React.ReactNode;
   isBonus?: boolean;
   isSpinning?: boolean;
+}
+
+// Calculate responsive frame size based on screen width
+function getEffectiveFrameSize(windowWidth: number, baseSize: number): number {
+  if (windowWidth < 400) return Math.round(baseSize * 0.35);  // Extra small
+  if (windowWidth < 640) return Math.round(baseSize * 0.45);  // Mobile
+  if (windowWidth < 768) return Math.round(baseSize * 0.60);  // Small tablet
+  if (windowWidth < 1024) return Math.round(baseSize * 0.80); // Tablet/medium
+  return baseSize; // Desktop - full size
 }
 
 export function SlotMachineFrame({ 
@@ -16,9 +25,20 @@ export function SlotMachineFrame({
   const { data: settings } = useSiteSettings();
   const [imageLoaded, setImageLoaded] = useState(false);
   const [imageError, setImageError] = useState(false);
+  const [windowWidth, setWindowWidth] = useState(() => 
+    typeof window !== 'undefined' ? window.innerWidth : 1024
+  );
+
+  // Listen for window resize
+  useEffect(() => {
+    const handleResize = () => setWindowWidth(window.innerWidth);
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
   
   const frameImageUrl = settings?.slot_machine_frame_image;
-  const frameSize = parseInt(settings?.slot_frame_size || "90", 10);
+  const baseFrameSize = parseInt(settings?.slot_frame_size || "90", 10);
+  const effectiveFrameSize = getEffectiveFrameSize(windowWidth, baseFrameSize);
   const hasFrame = !!frameImageUrl && !imageError;
 
   return (
@@ -27,10 +47,10 @@ export function SlotMachineFrame({
       style={{
         // Add margin to prevent frame from being clipped
         // Minimal top margin to reduce space between title and slot
-        marginTop: hasFrame && imageLoaded ? `${Math.max(frameSize * 0.1, 8)}px` : undefined,
-        marginLeft: hasFrame && imageLoaded ? `${frameSize}px` : undefined,
-        marginRight: hasFrame && imageLoaded ? `${frameSize}px` : undefined,
-        marginBottom: hasFrame && imageLoaded ? `${frameSize}px` : undefined,
+        marginTop: hasFrame && imageLoaded ? `${Math.max(effectiveFrameSize * 0.1, 8)}px` : undefined,
+        marginLeft: hasFrame && imageLoaded ? `${effectiveFrameSize}px` : undefined,
+        marginRight: hasFrame && imageLoaded ? `${effectiveFrameSize}px` : undefined,
+        marginBottom: hasFrame && imageLoaded ? `${effectiveFrameSize}px` : undefined,
       }}
     >
       {/* Egyptian Frame Image Overlay */}
@@ -41,10 +61,10 @@ export function SlotMachineFrame({
             imageLoaded ? "opacity-100" : "opacity-0"
           )}
           style={{
-            top: `-${frameSize}px`,
-            left: `-${frameSize}px`,
-            right: `-${frameSize}px`,
-            bottom: `-${frameSize}px`,
+            top: `-${effectiveFrameSize}px`,
+            left: `-${effectiveFrameSize}px`,
+            right: `-${effectiveFrameSize}px`,
+            bottom: `-${effectiveFrameSize}px`,
             filter: `drop-shadow(0 0 20px rgba(0,0,0,0.6)) 
                      drop-shadow(0 0 40px rgba(0,0,0,0.4)) 
                      drop-shadow(0 0 80px rgba(0,0,0,0.3))
