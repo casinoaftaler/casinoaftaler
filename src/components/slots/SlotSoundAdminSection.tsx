@@ -2,11 +2,12 @@ import { useState, useEffect } from "react";
 import { useSlotSoundSettings, type SlotSoundSettings } from "@/hooks/useSlotSoundSettings";
 import { slotSounds } from "@/lib/slotSoundEffects";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
 import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
 import { Slider } from "@/components/ui/slider";
 import { Switch } from "@/components/ui/switch";
-import { Loader2, Volume2, RotateCcw, Play, Music, Trophy, Coins, Crown } from "lucide-react";
+import { Loader2, Volume2, RotateCcw, Play, Music, Trophy, Coins, Crown, ChevronDown } from "lucide-react";
 
 export function SlotSoundAdminSection() {
   const { settings, isLoading, updateSettings, resetToDefaults, DEFAULT_SETTINGS } = useSlotSoundSettings();
@@ -83,14 +84,19 @@ export function SlotSoundAdminSection() {
   }
 
   return (
-    <Card>
-      <CardHeader>
-        <CardTitle className="flex items-center gap-2">
-          <Music className="h-5 w-5 text-amber-500" />
-          Lydindstillinger
-        </CardTitle>
-      </CardHeader>
-      <CardContent className="space-y-6">
+    <Collapsible>
+      <Card>
+        <CollapsibleTrigger className="w-full">
+          <CardHeader className="flex flex-row items-center justify-between cursor-pointer hover:bg-muted/50 transition-colors [&[data-state=open]>svg]:rotate-180">
+            <CardTitle className="flex items-center gap-2">
+              <Music className="h-5 w-5 text-amber-500" />
+              Lydindstillinger
+            </CardTitle>
+            <ChevronDown className="h-5 w-5 transition-transform duration-200" />
+          </CardHeader>
+        </CollapsibleTrigger>
+        <CollapsibleContent>
+          <CardContent className="space-y-6">
         {/* Spinning Sound Section */}
         <div className="space-y-4">
           <h4 className="font-medium flex items-center gap-2">
@@ -456,7 +462,9 @@ export function SlotSoundAdminSection() {
             Gem Lydindstillinger
           </Button>
         </div>
-      </CardContent>
-    </Card>
+          </CardContent>
+        </CollapsibleContent>
+      </Card>
+    </Collapsible>
   );
 }
