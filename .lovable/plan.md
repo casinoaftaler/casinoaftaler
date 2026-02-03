@@ -1,115 +1,37 @@
 
 
-# Plan: Fix Scatter Symbol Sizing + Generate New AI Symbol
+# Plan: Add Rounded Edges to Slot Symbols
 
 ## Overview
-Fix the scatter symbol sizing issue and create an AI-powered symbol generator that produces a new scatter symbol matching the **exact current design**: a fat gray/white cat wearing an Egyptian pharaoh headdress, sitting on a golden Book of the Dead.
+Add rounded corners to the symbol images so they have softer, more polished edges that match the overall slot machine aesthetic.
 
----
+## Current State
+- The container already has `rounded-lg` (8px border-radius)
+- The image inside does **not** have any border-radius, so it appears with sharp edges
+- The container has `overflow-hidden` which will clip the image to the container's rounded corners
 
-## Part 1: Fix Symbol Auto-Sizing
+## Solution
+Add `rounded-lg` class to the `<img>` element so the symbol images themselves have rounded corners. This creates a more polished look where the image edges match the container.
 
-### Problem
-The scatter symbol appears with inconsistent sizing because images with different aspect ratios or internal whitespace don't fill the container properly when using `object-contain`.
-
-### Solution
-Update the image styling in `SlotSymbol.tsx` to use `object-cover` which ensures all symbols fill their container consistently, regardless of their original proportions.
+## Changes
 
 **File:** `src/components/slots/SlotSymbol.tsx`
-- Change `object-contain` to `object-cover`
-- This ensures symbols with different aspect ratios (like the cat+book combo) scale to fill the space properly
 
----
+Add `rounded-lg` to the image className (line 38):
 
-## Part 2: Create AI Symbol Generation Edge Function
+```tsx
+// Before
+"w-[52px] h-[52px] xs:w-[64px] xs:h-[64px] ... object-cover transition-transform duration-300"
 
-### New Edge Function
-**File:** `supabase/functions/generate-slot-symbol/index.ts`
-
-The function will:
-1. Accept a symbol ID in the request
-2. Use Lovable AI (`google/gemini-3-pro-image-preview`) with a detailed prompt matching the current design
-3. Upload the generated image to the `slot-symbols` storage bucket
-4. Update the symbol's `image_url` in the database
-5. Return the public URL
-
-### AI Prompt (Matching Current Design)
-The prompt will describe the **exact** current scatter symbol design:
-
-```text
-Create a slot machine symbol icon for an Egyptian-themed game called "Book of Fedesvin".
-
-The symbol MUST feature:
-- A CHUBBY/FAT gray and white cat (similar to British Shorthair) sitting comfortably
-- The cat has green eyes and a sweet, slightly smug expression
-- The cat wears an Egyptian pharaoh headdress (nemes) in gold and blue stripes
-- A decorative golden collar with blue gems around the cat's neck
-- The cat is sitting ON TOP of an ancient Egyptian golden book
-- The book has ornate golden decorations with winged scarab and gems on the spine/cover
-- A red bookmark ribbon visible from the book
-- Background with subtle Egyptian temple elements (columns, hieroglyphics, Anubis statues)
-- Warm golden color palette with rich amber tones
-
-Style: High-quality cartoon/game art style, clean lines, vibrant colors, detailed but stylized. The composition should be square (1:1 aspect ratio) suitable for a slot machine symbol. The cat should be the central focus, looking regal and content.
-
-This is a "Book of the Dead" themed scatter/wild symbol for a slot game.
+// After
+"w-[52px] h-[52px] xs:w-[64px] xs:h-[64px] ... object-cover rounded-lg transition-transform duration-300"
 ```
 
----
+This applies an 8px border-radius to all symbol images, creating smooth rounded corners.
 
-## Part 3: Add Admin UI for AI Generation
+## Files to Modify
 
-### Update Config
-**File:** `supabase/config.toml`
-- Add the new `generate-slot-symbol` function
-
-### Update Admin Symbol Dialog
-**File:** `src/components/SlotMachineAdminSection.tsx`
-
-Add a "Generate with AI" button in the `EditSymbolDialog` that:
-1. Shows a loading state during generation (can take 10-30 seconds)
-2. Calls the new edge function with the symbol ID
-3. Automatically updates the form with the new image URL on success
-4. Shows appropriate error messages for rate limits (429) or credit issues (402)
-
----
-
-## Technical Details
-
-### Edge Function Structure
-```text
-supabase/functions/generate-slot-symbol/
-└── index.ts
-```
-
-### API Contract
-```text
-POST /functions/v1/generate-slot-symbol
-Body: { symbolId: string }
-Response: { success: true, imageUrl: string, symbolId: string }
-```
-
-### Storage
-- Uses existing `slot-symbols` bucket (already public)
-- Filename pattern: `ai-generated-{symbolId}-{timestamp}.png`
-
----
-
-## Files to Create/Modify
-
-| Action | File |
-|--------|------|
-| Modify | `src/components/slots/SlotSymbol.tsx` |
-| Create | `supabase/functions/generate-slot-symbol/index.ts` |
-| Modify | `supabase/config.toml` |
-| Modify | `src/components/SlotMachineAdminSection.tsx` |
-
----
-
-## Execution Order
-
-1. Fix the `SlotSymbol` component sizing (change to `object-cover`)
-2. Create the edge function for AI symbol generation
-3. Update `config.toml` with the new function
-4. Add the AI generation button to the admin symbol edit dialog
+| File | Change |
+|------|--------|
+| `src/components/slots/SlotSymbol.tsx` | Add `rounded-lg` to image element |
 
