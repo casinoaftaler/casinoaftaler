@@ -1,89 +1,135 @@
 
-# Fix: Allow Decimal Input in Admin Multiplier Fields
+# Add 2-Symbol Wins for Premium Symbols
 
-## Problem
-When trying to type a decimal number like "1.5" in the multiplier fields, the input jumps back to a whole number. This happens because:
+## Overview
+Premium symbols (Pharaoh, Anubis, Horus, Scarab) will be able to trigger wins with just 2 matching symbols in a row, while common symbols still require 3+ matching symbols.
 
-1. User types "1" → value becomes `1`
-2. User types "." → `parseFloat("1.")` = `1` → value stays `1`, the "." disappears
-3. User can never reach "1.5"
+## What Changes
 
-## Solution
-Change the input to work with strings during editing, only converting to numbers when saving. This allows intermediate states like "1." to exist.
+### 1. Database Update
+Add a new column for 2-symbol multipliers:
 
-## Changes Required
+| Column | Type | Default |
+|--------|------|---------|
+| multiplier_2 | numeric(10,2) | 0 |
 
-### File: `src/components/SlotMachineAdminSection.tsx`
+### 2. Game Logic Changes
+Modify the win detection to check symbol rarity:
+- **Premium symbols**: Win with 2, 3, 4, or 5 matching symbols
+- **Common symbols**: Win only with 3, 4, or 5 matching symbols
+- **Scatter**: Unchanged (pays anywhere with 3+)
 
-**1. Update formData state to use strings for multipliers:**
-```tsx
-const [formData, setFormData] = useState({
-  name: "",
-  image_url: null as string | null,
-  multiplier_3: "5",
-  multiplier_4: "10", 
-  multiplier_5: "25",
-  is_scatter: false,
-  is_wild: false,
-});
+### 3. PayTable Display
+Update the paytable to show 2× column only for premium symbols:
+
+| Symbol | 2× | 3× | 4× | 5× |
+|--------|----|----|----|----|
+| Pharaoh | 2× | 25× | 100× | 750× |
+| Anubis | 1× | 15× | 75× | 500× |
+| ... | | | | |
+
+### 4. Admin Panel
+Add a new input field for the 2× multiplier when editing symbols.
+
+## Files Changed
+
+| File | Change |
+|------|--------|
+| Database migration | Add `multiplier_2` column with default 0 |
+| `src/lib/slotGameLogic.ts` | Update `SlotSymbol` interface and `checkLineWin` function |
+| `src/lib/bonusGameLogic.ts` | Update `calculateWins` function for bonus spins |
+| `src/components/slots/PayTable.tsx` | Add 2× column for premium symbols |
+| `src/components/SlotMachineAdminSection.tsx` | Add multiplier_2 input field |
+| `src/hooks/useSlotSymbolsAdmin.ts` | Include multiplier_2 in update mutation |
+
+## Technical Details
+
+**Database Migration:**
+```sql
+ALTER TABLE slot_symbols 
+ADD COLUMN multiplier_2 numeric(10,2) DEFAULT 0;
+
+-- Set sensible defaults for premium symbols
+UPDATE slot_symbols SET multiplier_2 = 2 WHERE rarity = 'premium';
 ```
 
-**2. Update useEffect to convert numbers to strings when loading:**
-```tsx
-useEffect(() => {
-  if (symbol) {
-    setFormData({
-      name: symbol.name,
-      image_url: symbol.image_url,
-      multiplier_3: String(symbol.multiplier_3),
-      multiplier_4: String(symbol.multiplier_4),
-      multiplier_5: String(symbol.multiplier_5),
-      is_scatter: symbol.is_scatter,
-      is_wild: symbol.is_wild,
-    });
+**Updated SlotSymbol Interface:**
+```typescript
+export interface SlotSymbol {
+  id: string;
+  name: string;
+  image_url: string | null;
+  multiplier_2: number;  // New field
+  multiplier_3: number;
+  multiplier_4: number;
+  multiplier_5: number;
+  is_scatter: boolean;
+  is_wild: boolean;
+  position: number;
+  rarity: 'premium' | 'common' | 'scatter';
+}
+```
+
+**Win Detection Logic (checkLineWin):**
+```typescript
+// Determine minimum required matches based on rarity
+const minMatches = baseSymbol.rarity === 'premium' ? 2 : 3;
+
+if (count >= minMatches) {
+  let multiplier = 0;
+  if (count === 2 && baseSymbol.rarity === 'premium') {
+    multiplier = baseSymbol.multiplier_2;
+  } else if (count === 3) {
+    multiplier = baseSymbol.multiplier_3;
+  } else if (count === 4) {
+    multiplier = baseSymbol.multiplier_4;
+  } else if (count === 5) {
+    multiplier = baseSymbol.multiplier_5;
   }
-}, [symbol]);
+  
+  if (multiplier > 0) {
+    return { lineIndex, symbolId: baseSymbol.id, count, payout: multiplier * betAmount };
+  }
+}
 ```
 
-**3. Update input onChange to work with strings (no parsing during typing):**
+**PayTable Premium Section:**
 ```tsx
-<Input
-  id="mult-3"
-  type="number"
-  step="0.1"
-  min="0.1"
-  value={formData.multiplier_3}
-  onChange={(e) => setFormData({ ...formData, multiplier_3: e.target.value })}
-/>
+<Table>
+  <TableHeader>
+    <TableRow>
+      <TableHead>Symbol</TableHead>
+      <TableHead className="text-right">2×</TableHead>
+      <TableHead className="text-right">3×</TableHead>
+      <TableHead className="text-right">4×</TableHead>
+      <TableHead className="text-right">5×</TableHead>
+    </TableRow>
+  </TableHeader>
+  <TableBody>
+    {premiumSymbols.map(symbol => (
+      <TableRow key={symbol.id}>
+        <TableCell>...</TableCell>
+        <TableCell className="text-right">{formatMultiplier(symbol.multiplier_2)}</TableCell>
+        <TableCell className="text-right">{formatMultiplier(symbol.multiplier_3)}</TableCell>
+        ...
+      </TableRow>
+    ))}
+  </TableBody>
+</Table>
 ```
-(Same for multiplier_4 and multiplier_5)
 
-**4. Convert strings to numbers when saving:**
-```tsx
-const handleSave = () => {
-  if (!symbol) return;
-  updateSymbol.mutate({
-    id: symbol.id,
-    name: formData.name,
-    image_url: formData.image_url,
-    multiplier_3: parseFloat(formData.multiplier_3) || 0.1,
-    multiplier_4: parseFloat(formData.multiplier_4) || 0.1,
-    multiplier_5: parseFloat(formData.multiplier_5) || 0.1,
-    is_scatter: formData.is_scatter,
-    is_wild: formData.is_wild,
-  }, {
-    onSuccess: () => onClose(),
-  });
-};
-```
+## Suggested Default Values
+
+| Premium Symbol | 2× | 3× | 4× | 5× |
+|----------------|----|----|----|----|
+| Pharaoh | 2× | 25× | 100× | 750× |
+| Anubis | 1.5× | 15× | 75× | 500× |
+| Horus | 1× | 10× | 50× | 250× |
+| Scarab | 0.5× | 5× | 25× | 125× |
 
 ## Summary
 
-| Location | Change |
-|----------|--------|
-| `formData` state | Multipliers stored as strings |
-| `useEffect` | Convert from number to string on load |
-| Input `onChange` | Store raw string value (no parsing) |
-| `handleSave` | Parse to float when submitting |
-
-This allows typing intermediate values like "1." while still saving proper decimal numbers to the database.
+This feature makes premium symbols more valuable and exciting by rewarding players for getting just 2 matching premium symbols on a payline. The balance is maintained by:
+- Only premium symbols can win with 2 matches
+- 2-symbol multipliers are much lower than 3-symbol multipliers
+- Common symbols and scatters work exactly as before
