@@ -1,78 +1,88 @@
 
-## Plan: Tilføj loading screen og introduktionsbillede til spillemaskinen
+## Fix: Expanding Symbol Only Expands When It Creates the Win
 
-### Oversigt
-Når brugere besøger spillemaskinens side, vil de nu se:
-1. **Loading screen** - Med titel-billedet øverst og en animeret loading bar
-2. **Introduktionsbillede** - Det uploadede billede vises efter loading, og brugeren skal klikke "FORTSÆT" for at se spillemaskinen
+### Problem
+In bonus rounds, the expanding symbol incorrectly expands even when a different symbol creates the winning combination. For example, if Anubis is the expanding symbol but Pharaoh lands 3-in-a-row, Anubis still expands visually.
 
-### Flow
-```text
-┌─────────────────────────────────────────┐
-│         LOADING SCREEN                  │
-│                                         │
-│    [Book of Fedesvin Title Art]         │
-│                                         │
-│    ████████░░░░░░░░░░░  45%            │
-│    "Indlæser spillemaskine..."          │
-│                                         │
-└─────────────────────────────────────────┘
-                   ↓
-                   ↓ (efter ~2-3 sek)
-                   ↓
-┌─────────────────────────────────────────┐
-│       INTRODUKTIONSBILLEDE              │
-│                                         │
-│    [Det uploadede intro-billede]        │
-│                                         │
-│         [ FORTSÆT KNAP ]                │
-│                                         │
-└─────────────────────────────────────────┘
-                   ↓
-                   ↓ (bruger klikker)
-                   ↓
-┌─────────────────────────────────────────┐
-│        SPILLEMASKINEN                   │
-│   (den normale slot machine visning)    │
-└─────────────────────────────────────────┘
+### Root Cause
+The `checkIfExpandingCreatesPaylineWin` function checks if any payline has 3+ consecutive matching symbols after expansion, but doesn't verify that the **winning symbol is the expanding symbol itself**.
+
+**Current buggy logic (line 108-109):**
+```typescript
+if (consecutiveMatches >= 3) {
+  return true;  // ❌ Returns true for ANY win, not just expanding symbol wins
+}
 ```
 
----
+### Solution
+Update the function to only return `true` when the expanding symbol itself is the base symbol that creates the win.
 
-### Tekniske ændringer
+### Technical Changes
 
-**1. Kopiér intro-billedet til projektet**
-- Placering: `src/assets/slots/slot-intro-screen.jpg`
+**File: `src/lib/bonusGameLogic.ts`**
 
-**2. Ny komponent: `src/components/slots/SlotLoadingScreen.tsx`**
-- Viser titel-billedet centreret øverst
-- Animeret progress bar med egyptisk styling (guld/amber farver)
-- Loading tekst: "Indlæser spillemaskine..."
-- Simuleret loading progress over ca. 2-3 sekunder
-- Callback når loading er færdig
+Update the `checkIfExpandingCreatesPaylineWin` function to add a check that the winning symbol is the expanding symbol:
 
-**3. Ny komponent: `src/components/slots/SlotIntroScreen.tsx`**
-- Viser det uploadede intro-billede i fuld størrelse (responsivt)
-- "FORTSÆT" knap i egyptisk stil (guld gradient)
-- Callback når bruger klikker for at fortsætte
-- Subtil fade-in animation
+```typescript
+function checkIfExpandingCreatesPaylineWin(
+  grid: string[][],
+  reelsWithExpanding: number[],
+  expandingSymbol: SlotSymbol,
+  symbols: SlotSymbol[]
+): boolean {
+  const symbolsById = new Map(symbols.map(s => [s.id, s]));
+  
+  // Create a hypothetical expanded grid
+  const hypotheticalGrid = grid.map(col => [...col]);
+  for (const col of reelsWithExpanding) {
+    for (let row = 0; row < 3; row++) {
+      hypotheticalGrid[col][row] = expandingSymbol.id;
+    }
+  }
+  
+  // Check each pay line for wins WITH THE EXPANDING SYMBOL
+  for (const linePattern of PAY_LINES) {
+    const lineSymbols = linePattern.map((row, col) => {
+      const symbolId = hypotheticalGrid[col][row];
+      return symbolsById.get(symbolId);
+    });
+    
+    // Only check if the EXPANDING SYMBOL creates a win
+    // The first symbol on the line must be the expanding symbol
+    // for the expansion to be worthwhile
+    if (lineSymbols[0]?.id !== expandingSymbol.id) {
+      continue; // Skip - not an expanding symbol win
+    }
+    
+    let consecutiveMatches = 0;
+    for (let col = 0; col < 5; col++) {
+      const symbol = lineSymbols[col];
+      if (!symbol) break;
+      
+      // Only match if it's the expanding symbol
+      if (symbol.id === expandingSymbol.id) {
+        consecutiveMatches++;
+      } else {
+        break;
+      }
+    }
+    
+    if (consecutiveMatches >= 3) {
+      return true; // ✓ Expanding symbol itself creates a win
+    }
+  }
+  
+  return false;
+}
+```
 
-**4. Opdater `src/pages/SlotMachine.tsx`**
-- Tilføj tre nye states:
-  - `loadingPhase`: "loading" | "intro" | "ready"
-- Vis `SlotLoadingScreen` når `loadingPhase === "loading"`
-- Vis `SlotIntroScreen` når `loadingPhase === "intro"`
-- Vis den normale spillemaskine kun når `loadingPhase === "ready"`
-- Session persistence: Gem i sessionStorage så brugeren ikke ser loading igen ved navigation tilbage
+### Key Logic Change
+- **Before**: Check if ANY symbol creates a 3+ match after expansion → triggers expansion
+- **After**: Check if the EXPANDING SYMBOL starts the line AND creates a 3+ match → triggers expansion
 
-**5. CSS animationer i `src/index.css`**
-- `@keyframes loading-progress` - Animerer progress baren
-- `@keyframes intro-fade-in` - Fade-in for intro screen
+### Result
+The expanding symbol will now only expand when:
+1. It appears on 3+ reels (automatic expansion, guaranteed win)
+2. It appears on 1-2 reels AND would create a winning line starting with itself
 
----
-
-### Brugeroplevelse
-- Loading tager ca. 2-3 sekunder med en smooth progress animation
-- Intro-billedet vises derefter med en fade-in effekt
-- Brugeren skal aktivt klikke "FORTSÆT" for at se spillemaskinen
-- Ved navigation tilbage til siden (i samme session) springes loading/intro over
+Wins from other symbols (Pharaoh, Anubis, etc.) will no longer incorrectly trigger the expansion animation.
