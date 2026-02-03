@@ -16,81 +16,57 @@ export function useSlotLeaderboard(period: "daily" | "weekly" | "alltime" = "all
   return useQuery({
     queryKey: ["slot-leaderboard", period],
     queryFn: async (): Promise<LeaderboardEntry[]> => {
-      // Query game results with profile info
-      const { data: results, error } = await supabase
-        .from("slot_game_results")
+      // Fetch from slot_leaderboard view (pre-aggregated)
+      const { data, error } = await supabase
+        .from("slot_leaderboard")
         .select(`
           user_id,
-          win_amount,
-          created_at
+          total_winnings,
+          biggest_win,
+          total_spins,
+          daily_winnings,
+          weekly_winnings
         `);
 
       if (error) throw error;
 
-      // Aggregate by user
-      const userStats = new Map<string, {
-        total_winnings: number;
-        biggest_win: number;
-        total_spins: number;
-        daily_winnings: number;
-        weekly_winnings: number;
-      }>();
+      // Fetch profiles for display names (now allowed by RLS policy)
+      const userIds = (data || []).map(d => d.user_id).filter(Boolean) as string[];
+      
+      let profileMap = new Map<string, { display_name: string | null; avatar_url: string | null; twitch_username: string | null }>();
+      
+      if (userIds.length > 0) {
+        const { data: profiles } = await supabase
+          .from("profiles")
+          .select("user_id, display_name, avatar_url, twitch_username")
+          .in("user_id", userIds);
 
-      const today = new Date();
-      today.setHours(0, 0, 0, 0);
-      const weekStart = new Date(today);
-      weekStart.setDate(weekStart.getDate() - weekStart.getDay());
-
-      for (const result of results || []) {
-        const stats = userStats.get(result.user_id) || {
-          total_winnings: 0,
-          biggest_win: 0,
-          total_spins: 0,
-          daily_winnings: 0,
-          weekly_winnings: 0,
-        };
-
-        stats.total_winnings += result.win_amount;
-        stats.biggest_win = Math.max(stats.biggest_win, result.win_amount);
-        stats.total_spins++;
-
-        const createdAt = new Date(result.created_at);
-        if (createdAt >= today) {
-          stats.daily_winnings += result.win_amount;
-        }
-        if (createdAt >= weekStart) {
-          stats.weekly_winnings += result.win_amount;
-        }
-
-        userStats.set(result.user_id, stats);
+        profileMap = new Map(profiles?.map(p => [p.user_id, p]) || []);
       }
 
-      // Get profiles for display
-      const userIds = Array.from(userStats.keys());
-      const { data: profiles } = await supabase
-        .from("profiles")
-        .select("user_id, display_name, avatar_url, twitch_username")
-        .in("user_id", userIds);
-
-      const profileMap = new Map(profiles?.map(p => [p.user_id, p]) || []);
-
-      // Build leaderboard entries
-      const entries: LeaderboardEntry[] = Array.from(userStats.entries()).map(([user_id, stats]) => {
-        const profile = profileMap.get(user_id);
+      const entries: LeaderboardEntry[] = (data || []).map(row => {
+        const profile = row.user_id ? profileMap.get(row.user_id) : null;
         return {
-          user_id,
-          ...stats,
+          user_id: row.user_id || "",
+          total_winnings: row.total_winnings || 0,
+          biggest_win: row.biggest_win || 0,
+          total_spins: row.total_spins || 0,
+          daily_winnings: row.daily_winnings || 0,
+          weekly_winnings: row.weekly_winnings || 0,
           display_name: profile?.display_name || profile?.twitch_username || "Anonym",
           avatar_url: profile?.avatar_url || undefined,
         };
       });
 
       // Sort by period
-      const sortKey = period === "daily" ? "daily_winnings" : period === "weekly" ? "weekly_winnings" : "total_winnings";
-      entries.sort((a, b) => b[sortKey] - a[sortKey]);
+      const sortKey = period === "daily" ? "daily_winnings" 
+                    : period === "weekly" ? "weekly_winnings" 
+                    : "total_winnings";
+      entries.sort((a, b) => (b[sortKey] as number) - (a[sortKey] as number));
 
-      return entries.slice(0, 10); // Top 10
+      return entries.slice(0, 10);
     },
-    staleTime: 30000, // 30 seconds
+    staleTime: 10000, // 10 seconds for fresher data
+    refetchInterval: 30000, // Auto-refresh every 30 seconds
   });
 }
