@@ -342,16 +342,6 @@ export function SlotReel({
         ))}
       </div>
       
-      {/* Speed blur overlay effect */}
-      <div 
-        className="absolute inset-0 pointer-events-none transition-opacity duration-300"
-        style={{
-          background: spinState === "spinning" 
-            ? "linear-gradient(to bottom, hsl(var(--background) / 0.5), transparent 25%, transparent 75%, hsl(var(--background) / 0.5))"
-            : "none",
-          opacity: spinState === "stopping" ? 0 : 1,
-        }}
-      />
     </div>
   );
 }
