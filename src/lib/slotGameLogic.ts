@@ -40,17 +40,18 @@ export interface LineWin {
 }
 
 // Symbol weights for RNG (higher = more common)
+// Scatter probability tuned for ~1 bonus per 100 spins
 export const SYMBOL_WEIGHTS: Record<string, number> = {
-  'Pharaoh': 5,
-  'Anubis': 8,
-  'Horus': 10,
-  'Scarab': 15,
-  'Isis': 15,
-  'Ankh': 20,
-  'A': 25,
-  'K': 30,
-  'Q': 35,
-  'Book': 5, // Scatter/Wild - very rare (same as Pharaoh)
+  'Pharaoh': 8,
+  'Anubis': 12,
+  'Horus': 15,
+  'Scarab': 20,
+  'Isis': 20,
+  'Ankh': 25,
+  'A': 30,
+  'K': 35,
+  'Q': 40,
+  'Book': 1, // Scatter/Wild - extremely rare for ~1 bonus per 100 spins
 };
 
 // Count scatters per reel column
