@@ -1,58 +1,68 @@
 
-# Plan: Change Bonus Mode Colors from Purple to Golden/Amber
+# Plan: Tilføj Retrigger Lydeffekt
 
-## Overview
-Replace all purple/primary color usage during bonus mode with the consistent golden/amber Egyptian theme colors already used throughout the slot machine.
+## Oversigt
+Tilføj en unik lydeffekt for retriggere der adskiller sig fra den normale bonus trigger-lyd. Retrigger-lyden skal føles som en "forstærkning" af den igangværende bonus snarere end en helt ny start.
+
+---
+
+## Lyddesign: Retrigger vs. Bonus Trigger
+
+| Element | Bonus Trigger | Retrigger |
+|---------|---------------|-----------|
+| Karakter | Dyb, mystisk opvågnen | Hurtig, triumferende forstærkning |
+| Tempo | Langsom opbygning (0.8s sweep) | Hurtig burst (0.4s) |
+| Frekvenser | Lave toner der stiger | Høje, glimtende toner |
+| Følelse | "Bogen åbner" | "Bogen lyser endnu stærkere!" |
 
 ---
 
-## Files to Modify
+## Filer der skal ændres
 
-### 1. `src/components/slots/BonusOverlay.tsx`
-**Issue:** Decorative corner borders use `border-primary/70` (purple)
+### 1. `src/lib/slotSoundEffects.ts`
+Tilføj ny `playRetrigger()` metode med følgende lyddesign:
 
-**Change:** Replace with amber/golden color
-- Lines 47-50: Change all four corner divs from `border-primary/70` to `border-amber-400/70`
+**Lydkomponenter:**
+- Hurtig power surge (burst i stedet for langsom opbygning)
+- Ascending sparkle cascade (flere og hurtigere sparkles)
+- Triumferende fanfare-akkord (højere og mere strålende)
+- "Book glow" shimmer (vedvarende glimmer-effekt)
+- Bonus-forstærkende "whoosh" effekt
 
----
+**Teknisk implementering:**
+```text
+playRetrigger():
+- Power burst: 80-400 Hz over 0.3s (hurtigere end trigger)
+- Sparkle cascade: 25 sparkles, tættere intervaller
+- Triumphant chord: E major med høje overtoner
+- Shimmer layer: Høje frekvenser (2000-5000 Hz) med tremolo
+- Total varighed: ~1.5 sekunder
+```
 
 ### 2. `src/components/slots/SlotGame.tsx`
-**Issue:** Spin button has purple gradient and glow during bonus mode
-
-**Changes:**
-- Lines 699-716: Remove all purple styling conditionals and use amber consistently:
-  - Gradient: `from-amber-300 via-amber-500 to-amber-700` (no conditional)
-  - Border: `border-amber-400/60` (no conditional)
-  - Shadow: amber glow with `rgba(251,191,36,...)` (no conditional)
-  - Hover: amber glow (no conditional)
+Kald `slotSounds.playRetrigger()` når retrigger detekteres (ved linje 520).
 
 ---
 
-### 3. `src/components/slots/BonusStatusBar.tsx`
-**Issue:** Uses `text-primary` (purple) for Sparkles icon and bonus winnings
+## Lydkarakteristik
 
-**Changes:**
-- Line 36: Change Sparkles icon from `text-primary` to `text-amber-400`
-- Line 76: Change bonus winnings from `text-primary` to `text-amber-400`
+**Retrigger-lyden skal kommunikere:**
+- "Mere af det gode!"
+- Forøget spænding og momentum
+- Kontinuitet med bonus-tilstand
+- Triumf og belønning
 
----
-
-## Summary of Color Changes
-
-| Component | Element | Before (Purple) | After (Golden) |
-|-----------|---------|-----------------|----------------|
-| BonusOverlay | Corner borders | `border-primary/70` | `border-amber-400/70` |
-| SlotGame | Spin button gradient | Conditional purple/amber | Always `from-amber-300 via-amber-500 to-amber-700` |
-| SlotGame | Spin button border | Conditional purple/amber | Always `border-amber-400/60` |
-| SlotGame | Spin button glow | Conditional purple/amber | Always amber rgba |
-| BonusStatusBar | Sparkles icon | `text-primary` | `text-amber-400` |
-| BonusStatusBar | Bonus winnings | `text-primary` | `text-amber-400` |
+**Forskel fra bonus trigger:**
+- Kortere og mere punchy
+- Højere frekvensområde (mere strålende)
+- Hurtigere tempo
+- Mere "celebration" end "awakening"
 
 ---
 
-## Visual Result
-All bonus mode UI elements will use the consistent golden/amber Egyptian theme:
-- Bonus trigger overlay with golden corner accents
-- Retrigger overlay with golden corner accents
-- Spin button maintains golden glow during free spins
-- Bonus status bar uses golden accents for indicators
+## Opsummering
+
+| Fil | Ændring |
+|-----|---------|
+| `src/lib/slotSoundEffects.ts` | Tilføj `playRetrigger()` metode |
+| `src/components/slots/SlotGame.tsx` | Kald `playRetrigger()` ved retrigger |
