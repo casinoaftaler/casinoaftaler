@@ -26,21 +26,21 @@ export function SlotMachineFrame({
       {hasFrame && (
         <div 
           className={cn(
-            "absolute inset-0 pointer-events-none -z-10 transition-opacity duration-500",
+            "absolute pointer-events-none z-10 transition-opacity duration-500",
             imageLoaded ? "opacity-100" : "opacity-0"
           )}
           style={{
             // Extend beyond the content to create frame effect
-            top: "-40px",
-            left: "-40px",
-            right: "-40px",
-            bottom: "-40px",
+            top: "-60px",
+            left: "-60px",
+            right: "-60px",
+            bottom: "-60px",
           }}
         >
           <img
             src={frameImageUrl}
             alt="Egyptian Slot Frame"
-            className="w-full h-full object-contain"
+            className="w-full h-full object-fill"
             onLoad={() => setImageLoaded(true)}
             onError={() => setImageError(true)}
           />
