@@ -497,8 +497,14 @@ export function SlotGame() {
                             slotSounds.playScatterLand(scattersLanded);
                           }
                           
-                          // Track ALL scatter reels for glow effect
-                          setScatterReelsLanded(prev => new Set([...prev, reelIndex]));
+                          // Only track scatter reels for glow when tease mode is possible
+                          // Tease requires 2nd scatter to land on reel 1-4 (not reel 5)
+                          // Reel 5 scatters NEVER trigger glow
+                          const canTriggerTease = isOnReels123 || isOnReel4WithPriorScatter;
+                          
+                          if (canTriggerTease) {
+                            setScatterReelsLanded(prev => new Set([...prev, reelIndex]));
+                          }
                         }
                         
                         // Track this reel as stopped
