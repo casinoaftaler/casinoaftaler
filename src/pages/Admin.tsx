@@ -43,6 +43,7 @@ import { TwitchUsersSection } from "@/components/TwitchUsersSection";
 import { HighlightsAdminSection } from "@/components/HighlightsAdminSection";
 import { CombinedAnalyticsDashboard } from "@/components/CombinedAnalyticsDashboard";
 import { SlotMachineAdminSection } from "@/components/SlotMachineAdminSection";
+import { StorageCleanupSection } from "@/components/StorageCleanupSection";
 import { ThemeToggle } from "@/components/ThemeToggle";
 import { useQueryClient } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
@@ -964,6 +965,10 @@ function AdminDashboard() {
                 <div className="pt-4 border-t border-border">
                   <h3 className="text-sm font-medium mb-3">Casino Kort Disclaimer</h3>
                   <DisclaimerInput />
+                </div>
+                <div className="pt-4 border-t border-border">
+                  <h3 className="text-sm font-medium mb-3">Storage Oprydning</h3>
+                  <StorageCleanupSection />
                 </div>
               </CardContent>
             </Card>
