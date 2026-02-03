@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
 import { Slider } from "@/components/ui/slider";
 import { Switch } from "@/components/ui/switch";
-import { Loader2, Volume2, RotateCcw, Play, Music } from "lucide-react";
+import { Loader2, Volume2, RotateCcw, Play, Music, Trophy, Coins, Crown } from "lucide-react";
 
 export function SlotSoundAdminSection() {
   const { settings, isLoading, updateSettings, resetToDefaults, DEFAULT_SETTINGS } = useSlotSoundSettings();
@@ -20,7 +20,6 @@ export function SlotSoundAdminSection() {
 
   const handleSave = () => {
     updateSettings.mutate(formData);
-    // Update the sound system with new settings
     slotSounds.updateSoundSettings(formData);
   };
 
@@ -34,7 +33,6 @@ export function SlotSoundAdminSection() {
   };
 
   const handleTestSpin = () => {
-    // Temporarily apply settings and play test
     slotSounds.updateSoundSettings(formData);
     slotSounds.setEnabled(true);
     slotSounds.setVolume(0.5);
@@ -51,6 +49,27 @@ export function SlotSoundAdminSection() {
     slotSounds.setEnabled(true);
     slotSounds.setVolume(0.5);
     slotSounds.playReelStopSingle(2);
+  };
+
+  const handleTestSmallWin = () => {
+    slotSounds.updateSoundSettings(formData);
+    slotSounds.setEnabled(true);
+    slotSounds.setVolume(0.5);
+    slotSounds.playSmallWin();
+  };
+
+  const handleTestMediumWin = () => {
+    slotSounds.updateSoundSettings(formData);
+    slotSounds.setEnabled(true);
+    slotSounds.setVolume(0.5);
+    slotSounds.playMediumWin();
+  };
+
+  const handleTestBigWin = () => {
+    slotSounds.updateSoundSettings(formData);
+    slotSounds.setEnabled(true);
+    slotSounds.setVolume(0.5);
+    slotSounds.playBigWin();
   };
 
   if (isLoading) {
@@ -80,7 +99,6 @@ export function SlotSoundAdminSection() {
           </h4>
           
           <div className="space-y-4 pl-6">
-            {/* Click Interval */}
             <div className="space-y-2">
               <div className="flex items-center justify-between">
                 <Label>Klik-interval (ms)</Label>
@@ -98,7 +116,6 @@ export function SlotSoundAdminSection() {
               </p>
             </div>
 
-            {/* Click Frequency Start */}
             <div className="space-y-2">
               <div className="flex items-center justify-between">
                 <Label>Klik start-frekvens (Hz)</Label>
@@ -113,7 +130,6 @@ export function SlotSoundAdminSection() {
               />
             </div>
 
-            {/* Click Frequency End */}
             <div className="space-y-2">
               <div className="flex items-center justify-between">
                 <Label>Klik slut-frekvens (Hz)</Label>
@@ -131,7 +147,6 @@ export function SlotSoundAdminSection() {
               </p>
             </div>
 
-            {/* Click Volume */}
             <div className="space-y-2">
               <div className="flex items-center justify-between">
                 <Label>Klik-volumen</Label>
@@ -146,7 +161,6 @@ export function SlotSoundAdminSection() {
               />
             </div>
 
-            {/* Motor Volume */}
             <div className="space-y-2">
               <div className="flex items-center justify-between">
                 <Label>Motor-hum volumen</Label>
@@ -161,7 +175,6 @@ export function SlotSoundAdminSection() {
               />
             </div>
 
-            {/* Ticker Toggle */}
             <div className="flex items-center justify-between">
               <div className="space-y-0.5">
                 <Label>Mekanisme-ticker</Label>
@@ -199,7 +212,6 @@ export function SlotSoundAdminSection() {
           </h4>
           
           <div className="space-y-4 pl-6">
-            {/* Impact Volume */}
             <div className="space-y-2">
               <div className="flex items-center justify-between">
                 <Label>Impact-volumen</Label>
@@ -214,7 +226,6 @@ export function SlotSoundAdminSection() {
               />
             </div>
 
-            {/* Chime Toggle */}
             <div className="flex items-center justify-between">
               <div className="space-y-0.5">
                 <Label>Gylden klokke</Label>
@@ -244,6 +255,162 @@ export function SlotSoundAdminSection() {
           </div>
         </div>
 
+        {/* Small Win Sound Section */}
+        <div className="space-y-4 pt-4 border-t">
+          <h4 className="font-medium flex items-center gap-2">
+            <Coins className="h-4 w-4 text-amber-400" />
+            Lille Gevinst Lyd
+          </h4>
+          
+          <div className="space-y-4 pl-6">
+            <div className="space-y-2">
+              <div className="flex items-center justify-between">
+                <Label>Volumen</Label>
+                <span className="text-sm text-muted-foreground">{Math.round(formData.winSmallVolume * 100)}%</span>
+              </div>
+              <Slider
+                value={[formData.winSmallVolume * 100]}
+                onValueChange={(v) => setFormData({ ...formData, winSmallVolume: v[0] / 100 })}
+                min={0}
+                max={50}
+                step={1}
+              />
+            </div>
+
+            <div className="space-y-2">
+              <div className="flex items-center justify-between">
+                <Label>Arpeggio-hastighed (ms)</Label>
+                <span className="text-sm text-muted-foreground">{formData.winSmallArpeggioSpeed}ms</span>
+              </div>
+              <Slider
+                value={[formData.winSmallArpeggioSpeed]}
+                onValueChange={(v) => setFormData({ ...formData, winSmallArpeggioSpeed: v[0] })}
+                min={40}
+                max={150}
+                step={10}
+              />
+              <p className="text-xs text-muted-foreground">
+                Lavere = hurtigere melodiafspilning
+              </p>
+            </div>
+
+            <div className="space-y-2">
+              <div className="flex items-center justify-between">
+                <Label>Antal møntklik</Label>
+                <span className="text-sm text-muted-foreground">{formData.winSmallCoinCount}</span>
+              </div>
+              <Slider
+                value={[formData.winSmallCoinCount]}
+                onValueChange={(v) => setFormData({ ...formData, winSmallCoinCount: v[0] })}
+                min={0}
+                max={15}
+                step={1}
+              />
+            </div>
+          </div>
+        </div>
+
+        {/* Medium Win Sound Section */}
+        <div className="space-y-4 pt-4 border-t">
+          <h4 className="font-medium flex items-center gap-2">
+            <Trophy className="h-4 w-4 text-amber-500" />
+            Medium Gevinst Lyd
+          </h4>
+          
+          <div className="space-y-4 pl-6">
+            <div className="space-y-2">
+              <div className="flex items-center justify-between">
+                <Label>Volumen</Label>
+                <span className="text-sm text-muted-foreground">{Math.round(formData.winMediumVolume * 100)}%</span>
+              </div>
+              <Slider
+                value={[formData.winMediumVolume * 100]}
+                onValueChange={(v) => setFormData({ ...formData, winMediumVolume: v[0] / 100 })}
+                min={0}
+                max={50}
+                step={1}
+              />
+            </div>
+
+            <div className="space-y-2">
+              <div className="flex items-center justify-between">
+                <Label>Antal sistrum-rystelser</Label>
+                <span className="text-sm text-muted-foreground">{formData.winMediumSistrumCount}</span>
+              </div>
+              <Slider
+                value={[formData.winMediumSistrumCount]}
+                onValueChange={(v) => setFormData({ ...formData, winMediumSistrumCount: v[0] })}
+                min={0}
+                max={25}
+                step={1}
+              />
+              <p className="text-xs text-muted-foreground">
+                Egyptisk raslelyd (sistrum)
+              </p>
+            </div>
+
+            <div className="space-y-2">
+              <div className="flex items-center justify-between">
+                <Label>Antal guldmønter</Label>
+                <span className="text-sm text-muted-foreground">{formData.winMediumCoinCount}</span>
+              </div>
+              <Slider
+                value={[formData.winMediumCoinCount]}
+                onValueChange={(v) => setFormData({ ...formData, winMediumCoinCount: v[0] })}
+                min={0}
+                max={30}
+                step={1}
+              />
+            </div>
+          </div>
+        </div>
+
+        {/* Big Win Sound Section */}
+        <div className="space-y-4 pt-4 border-t">
+          <h4 className="font-medium flex items-center gap-2">
+            <Crown className="h-4 w-4 text-yellow-500" />
+            Stor Gevinst Lyd
+          </h4>
+          
+          <div className="space-y-4 pl-6">
+            <div className="space-y-2">
+              <div className="flex items-center justify-between">
+                <Label>Volumen</Label>
+                <span className="text-sm text-muted-foreground">{Math.round(formData.winBigVolume * 100)}%</span>
+              </div>
+              <Slider
+                value={[formData.winBigVolume * 100]}
+                onValueChange={(v) => setFormData({ ...formData, winBigVolume: v[0] / 100 })}
+                min={0}
+                max={60}
+                step={1}
+              />
+            </div>
+
+            <div className="flex items-center justify-between">
+              <div className="space-y-0.5">
+                <Label>Episk fanfare</Label>
+                <p className="text-xs text-muted-foreground">Triumferende egyptisk melodi</p>
+              </div>
+              <Switch
+                checked={formData.winBigFanfareEnabled}
+                onCheckedChange={(v) => setFormData({ ...formData, winBigFanfareEnabled: v })}
+              />
+            </div>
+
+            <div className="flex items-center justify-between">
+              <div className="space-y-0.5">
+                <Label>Dybe trommer</Label>
+                <p className="text-xs text-muted-foreground">Kraftige trommeslag</p>
+              </div>
+              <Switch
+                checked={formData.winBigDrumEnabled}
+                onCheckedChange={(v) => setFormData({ ...formData, winBigDrumEnabled: v })}
+              />
+            </div>
+          </div>
+        </div>
+
         {/* Test and Save Buttons */}
         <div className="flex flex-wrap gap-2 pt-4 border-t">
           <Button variant="outline" onClick={handleTestSpin} className="gap-2">
@@ -253,6 +420,18 @@ export function SlotSoundAdminSection() {
           <Button variant="outline" onClick={handleTestStop} className="gap-2">
             <Play className="h-4 w-4" />
             Test Stop
+          </Button>
+          <Button variant="outline" onClick={handleTestSmallWin} className="gap-2">
+            <Coins className="h-4 w-4 text-amber-400" />
+            Lille
+          </Button>
+          <Button variant="outline" onClick={handleTestMediumWin} className="gap-2">
+            <Trophy className="h-4 w-4 text-amber-500" />
+            Medium
+          </Button>
+          <Button variant="outline" onClick={handleTestBigWin} className="gap-2">
+            <Crown className="h-4 w-4 text-yellow-500" />
+            Stor
           </Button>
           <div className="flex-1" />
           <Button 

@@ -16,6 +16,19 @@ export interface SlotSoundSettings {
   stopImpactVolume: number;     // 0-1 (default: 0.3)
   stopChimeEnabled: boolean;    // golden chime (default: true)
   stopChimeVolume: number;      // 0-1 (default: 0.1)
+  
+  // Win sound settings
+  winSmallVolume: number;       // 0-1 (default: 0.22)
+  winSmallArpeggioSpeed: number; // ms between notes (default: 80)
+  winSmallCoinCount: number;    // number of coin sounds (default: 5)
+  
+  winMediumVolume: number;      // 0-1 (default: 0.18)
+  winMediumSistrumCount: number; // number of sistrum shakes (default: 12)
+  winMediumCoinCount: number;   // number of coins (default: 15)
+  
+  winBigVolume: number;         // 0-1 (default: 0.25)
+  winBigFanfareEnabled: boolean; // epic fanfare (default: true)
+  winBigDrumEnabled: boolean;   // deep drums (default: true)
 }
 
 const DEFAULT_SETTINGS: SlotSoundSettings = {
@@ -29,6 +42,16 @@ const DEFAULT_SETTINGS: SlotSoundSettings = {
   stopImpactVolume: 0.3,
   stopChimeEnabled: true,
   stopChimeVolume: 0.1,
+  // Win sounds
+  winSmallVolume: 0.22,
+  winSmallArpeggioSpeed: 80,
+  winSmallCoinCount: 5,
+  winMediumVolume: 0.18,
+  winMediumSistrumCount: 12,
+  winMediumCoinCount: 15,
+  winBigVolume: 0.25,
+  winBigFanfareEnabled: true,
+  winBigDrumEnabled: true,
 };
 
 export function useSlotSoundSettings() {
@@ -48,6 +71,16 @@ export function useSlotSoundSettings() {
         "slot_sound_stop_impact_volume",
         "slot_sound_stop_chime_enabled",
         "slot_sound_stop_chime_volume",
+        // Win sounds
+        "slot_sound_win_small_volume",
+        "slot_sound_win_small_arpeggio_speed",
+        "slot_sound_win_small_coin_count",
+        "slot_sound_win_medium_volume",
+        "slot_sound_win_medium_sistrum_count",
+        "slot_sound_win_medium_coin_count",
+        "slot_sound_win_big_volume",
+        "slot_sound_win_big_fanfare_enabled",
+        "slot_sound_win_big_drum_enabled",
       ];
 
       const { data, error } = await supabase
@@ -73,6 +106,16 @@ export function useSlotSoundSettings() {
         stopImpactVolume: parseFloat(settingsMap.slot_sound_stop_impact_volume || String(DEFAULT_SETTINGS.stopImpactVolume)),
         stopChimeEnabled: settingsMap.slot_sound_stop_chime_enabled !== "false",
         stopChimeVolume: parseFloat(settingsMap.slot_sound_stop_chime_volume || String(DEFAULT_SETTINGS.stopChimeVolume)),
+        // Win sounds
+        winSmallVolume: parseFloat(settingsMap.slot_sound_win_small_volume || String(DEFAULT_SETTINGS.winSmallVolume)),
+        winSmallArpeggioSpeed: parseInt(settingsMap.slot_sound_win_small_arpeggio_speed || String(DEFAULT_SETTINGS.winSmallArpeggioSpeed), 10),
+        winSmallCoinCount: parseInt(settingsMap.slot_sound_win_small_coin_count || String(DEFAULT_SETTINGS.winSmallCoinCount), 10),
+        winMediumVolume: parseFloat(settingsMap.slot_sound_win_medium_volume || String(DEFAULT_SETTINGS.winMediumVolume)),
+        winMediumSistrumCount: parseInt(settingsMap.slot_sound_win_medium_sistrum_count || String(DEFAULT_SETTINGS.winMediumSistrumCount), 10),
+        winMediumCoinCount: parseInt(settingsMap.slot_sound_win_medium_coin_count || String(DEFAULT_SETTINGS.winMediumCoinCount), 10),
+        winBigVolume: parseFloat(settingsMap.slot_sound_win_big_volume || String(DEFAULT_SETTINGS.winBigVolume)),
+        winBigFanfareEnabled: settingsMap.slot_sound_win_big_fanfare_enabled !== "false",
+        winBigDrumEnabled: settingsMap.slot_sound_win_big_drum_enabled !== "false",
       };
     },
   });
@@ -111,6 +154,34 @@ export function useSlotSoundSettings() {
       if (newSettings.stopChimeVolume !== undefined) {
         updates.push({ key: "slot_sound_stop_chime_volume", value: String(newSettings.stopChimeVolume) });
       }
+      // Win sounds
+      if (newSettings.winSmallVolume !== undefined) {
+        updates.push({ key: "slot_sound_win_small_volume", value: String(newSettings.winSmallVolume) });
+      }
+      if (newSettings.winSmallArpeggioSpeed !== undefined) {
+        updates.push({ key: "slot_sound_win_small_arpeggio_speed", value: String(newSettings.winSmallArpeggioSpeed) });
+      }
+      if (newSettings.winSmallCoinCount !== undefined) {
+        updates.push({ key: "slot_sound_win_small_coin_count", value: String(newSettings.winSmallCoinCount) });
+      }
+      if (newSettings.winMediumVolume !== undefined) {
+        updates.push({ key: "slot_sound_win_medium_volume", value: String(newSettings.winMediumVolume) });
+      }
+      if (newSettings.winMediumSistrumCount !== undefined) {
+        updates.push({ key: "slot_sound_win_medium_sistrum_count", value: String(newSettings.winMediumSistrumCount) });
+      }
+      if (newSettings.winMediumCoinCount !== undefined) {
+        updates.push({ key: "slot_sound_win_medium_coin_count", value: String(newSettings.winMediumCoinCount) });
+      }
+      if (newSettings.winBigVolume !== undefined) {
+        updates.push({ key: "slot_sound_win_big_volume", value: String(newSettings.winBigVolume) });
+      }
+      if (newSettings.winBigFanfareEnabled !== undefined) {
+        updates.push({ key: "slot_sound_win_big_fanfare_enabled", value: String(newSettings.winBigFanfareEnabled) });
+      }
+      if (newSettings.winBigDrumEnabled !== undefined) {
+        updates.push({ key: "slot_sound_win_big_drum_enabled", value: String(newSettings.winBigDrumEnabled) });
+      }
 
       for (const update of updates) {
         const { error } = await supabase
@@ -145,6 +216,15 @@ export function useSlotSoundSettings() {
         "slot_sound_stop_impact_volume",
         "slot_sound_stop_chime_enabled",
         "slot_sound_stop_chime_volume",
+        "slot_sound_win_small_volume",
+        "slot_sound_win_small_arpeggio_speed",
+        "slot_sound_win_small_coin_count",
+        "slot_sound_win_medium_volume",
+        "slot_sound_win_medium_sistrum_count",
+        "slot_sound_win_medium_coin_count",
+        "slot_sound_win_big_volume",
+        "slot_sound_win_big_fanfare_enabled",
+        "slot_sound_win_big_drum_enabled",
       ];
 
       const { error } = await supabase
