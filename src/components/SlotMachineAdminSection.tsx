@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useSlotSymbols } from "@/hooks/useSlotSymbols";
 import { useSlotSettings } from "@/hooks/useSlotSettings";
-import { useSlotStatistics } from "@/hooks/useSlotStatistics";
+import { useSlotAdminStatistics, type StatPeriod } from "@/hooks/useSlotAdminStatistics";
 import { useSlotSymbolsAdmin } from "@/hooks/useSlotSymbolsAdmin";
 import { SlotSymbolImageUpload } from "@/components/SlotSymbolImageUpload";
 import { SlotTitleImageUpload } from "@/components/SlotTitleImageUpload";
@@ -23,7 +23,9 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
-import { GripVertical, Pencil, Loader2, Trophy, Sparkles, TrendingUp, BarChart3, Lock, Wand2 } from "lucide-react";
+import { ChartContainer, ChartTooltip, ChartTooltipContent } from "@/components/ui/chart";
+import { AreaChart, Area, XAxis, YAxis, CartesianGrid, ResponsiveContainer, BarChart, Bar } from "recharts";
+import { GripVertical, Pencil, Loader2, Trophy, Sparkles, TrendingUp, BarChart3, Lock, Wand2, Users, Calendar } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
 import {
@@ -526,8 +528,36 @@ function SettingsTab() {
   );
 }
 
+const periodLabels: Record<StatPeriod, string> = {
+  today: "I dag",
+  week: "Denne uge",
+  month: "Denne måned",
+  alltime: "Alt tid",
+};
+
+const chartConfig = {
+  spins: {
+    label: "Spins",
+    color: "hsl(var(--chart-1))",
+  },
+  winnings: {
+    label: "Gevinster",
+    color: "hsl(var(--chart-2))",
+  },
+  players: {
+    label: "Spillere",
+    color: "hsl(var(--chart-3))",
+  },
+};
+
 function StatisticsTab() {
-  const { data: stats, isLoading } = useSlotStatistics();
+  const [period, setPeriod] = useState<StatPeriod>("today");
+  const { data: stats, isLoading } = useSlotAdminStatistics(period);
+
+  const formatDate = (dateStr: string) => {
+    const date = new Date(dateStr);
+    return date.toLocaleDateString("da-DK", { day: "numeric", month: "short" });
+  };
 
   if (isLoading) {
     return (
@@ -539,16 +569,32 @@ function StatisticsTab() {
 
   return (
     <div className="space-y-6">
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+      {/* Period Selector */}
+      <div className="flex flex-wrap gap-2">
+        {(["today", "week", "month", "alltime"] as StatPeriod[]).map((p) => (
+          <Button
+            key={p}
+            variant={period === p ? "default" : "outline"}
+            size="sm"
+            onClick={() => setPeriod(p)}
+          >
+            <Calendar className="h-4 w-4 mr-1" />
+            {periodLabels[p]}
+          </Button>
+        ))}
+      </div>
+
+      {/* Stats Cards */}
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
         <Card>
           <CardHeader className="pb-2">
             <CardTitle className="text-sm font-medium flex items-center gap-2">
               <Sparkles className="h-4 w-4 text-amber-500" />
-              Spins i Dag
+              Total Spins
             </CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">{stats?.totalSpinsToday || 0}</div>
+            <div className="text-2xl font-bold">{(stats?.totalSpins || 0).toLocaleString()}</div>
           </CardContent>
         </Card>
 
@@ -556,38 +602,120 @@ function StatisticsTab() {
           <CardHeader className="pb-2">
             <CardTitle className="text-sm font-medium flex items-center gap-2">
               <TrendingUp className="h-4 w-4 text-green-500" />
-              Gevinster i Dag
+              Total Gevinster
             </CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">{stats?.totalWinningsToday || 0} pts</div>
+            <div className="text-2xl font-bold">{(stats?.totalWinnings || 0).toLocaleString()} pts</div>
           </CardContent>
         </Card>
 
         <Card>
           <CardHeader className="pb-2">
             <CardTitle className="text-sm font-medium flex items-center gap-2">
-              <BarChart3 className="h-4 w-4 text-blue-500" />
-              Gns. Gevinst/Spin
+              <Trophy className="h-4 w-4 text-amber-500" />
+              Største Gevinst
             </CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">{(stats?.avgWinPerSpin || 0).toFixed(1)} pts</div>
+            <div className="text-2xl font-bold">{(stats?.biggestWin || 0).toLocaleString()} pts</div>
+          </CardContent>
+        </Card>
+
+        <Card>
+          <CardHeader className="pb-2">
+            <CardTitle className="text-sm font-medium flex items-center gap-2">
+              <Users className="h-4 w-4 text-blue-500" />
+              Unikke Spillere
+            </CardTitle>
+          </CardHeader>
+          <CardContent>
+            <div className="text-2xl font-bold">{stats?.uniquePlayers || 0}</div>
           </CardContent>
         </Card>
       </div>
 
+      {/* Charts */}
+      {stats?.dailyStats && stats.dailyStats.length > 1 && (
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          {/* Spins Over Time */}
+          <Card>
+            <CardHeader>
+              <CardTitle className="text-base flex items-center gap-2">
+                <BarChart3 className="h-4 w-4" />
+                Spins Over Tid
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              <ChartContainer config={chartConfig} className="h-[250px] w-full">
+                <BarChart data={stats.dailyStats}>
+                  <CartesianGrid strokeDasharray="3 3" className="stroke-muted" />
+                  <XAxis
+                    dataKey="date"
+                    tickFormatter={formatDate}
+                    tick={{ fontSize: 12 }}
+                    className="text-muted-foreground"
+                  />
+                  <YAxis tick={{ fontSize: 12 }} className="text-muted-foreground" />
+                  <ChartTooltip
+                    content={<ChartTooltipContent />}
+                    labelFormatter={(label) => formatDate(label as string)}
+                  />
+                  <Bar dataKey="spins" fill="var(--color-spins)" radius={[4, 4, 0, 0]} />
+                </BarChart>
+              </ChartContainer>
+            </CardContent>
+          </Card>
+
+          {/* Winnings Over Time */}
+          <Card>
+            <CardHeader>
+              <CardTitle className="text-base flex items-center gap-2">
+                <TrendingUp className="h-4 w-4" />
+                Gevinster Over Tid
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              <ChartContainer config={chartConfig} className="h-[250px] w-full">
+                <AreaChart data={stats.dailyStats}>
+                  <CartesianGrid strokeDasharray="3 3" className="stroke-muted" />
+                  <XAxis
+                    dataKey="date"
+                    tickFormatter={formatDate}
+                    tick={{ fontSize: 12 }}
+                    className="text-muted-foreground"
+                  />
+                  <YAxis tick={{ fontSize: 12 }} className="text-muted-foreground" />
+                  <ChartTooltip
+                    content={<ChartTooltipContent />}
+                    labelFormatter={(label) => formatDate(label as string)}
+                  />
+                  <Area
+                    type="monotone"
+                    dataKey="winnings"
+                    stroke="var(--color-winnings)"
+                    fill="var(--color-winnings)"
+                    fillOpacity={0.3}
+                  />
+                </AreaChart>
+              </ChartContainer>
+            </CardContent>
+          </Card>
+        </div>
+      )}
+
+      {/* Top Winners */}
       <Card>
         <CardHeader>
           <CardTitle className="flex items-center gap-2">
             <Trophy className="h-5 w-5 text-amber-500" />
-            Top 10 Vindere i Dag
+            Top 10 Vindere - {periodLabels[period]}
           </CardTitle>
         </CardHeader>
         <CardContent>
-          {stats?.topWinnersToday && stats.topWinnersToday.length > 0 ? (
+          {stats?.topWinners && stats.topWinners.length > 0 ? (
             <div className="space-y-3">
-              {stats.topWinnersToday.map((winner, index) => (
+              {stats.topWinners.map((winner, index) => (
                 <div
                   key={winner.user_id}
                   className="flex items-center gap-3 p-2 rounded-lg bg-muted/50"
@@ -598,13 +726,13 @@ function StatisticsTab() {
                     <AvatarFallback>{winner.display_name?.charAt(0) || "?"}</AvatarFallback>
                   </Avatar>
                   <span className="flex-1 font-medium">{winner.display_name}</span>
-                  <span className="font-bold text-amber-500">{winner.total_winnings} pts</span>
+                  <span className="font-bold text-amber-500">{winner.total_winnings.toLocaleString()} pts</span>
                 </div>
               ))}
             </div>
           ) : (
             <p className="text-muted-foreground text-center py-4">
-              Ingen spins endnu i dag
+              Ingen spins i denne periode
             </p>
           )}
         </CardContent>
