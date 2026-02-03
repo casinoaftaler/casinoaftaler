@@ -570,46 +570,11 @@ export function SlotGame() {
             </SlotMachineFrame>
           </div>
 
-          {/* All controls on one line */}
+          {/* Controls row without spin button */}
           <div className="flex flex-wrap items-center justify-center gap-1 xs:gap-2 sm:gap-3 mt-1 sm:mt-2">
             {/* Bet Controls */}
             <BetControls bet={bet} onBetChange={setBet} disabled={isSpinning || bonusState.isActive} minBet={slotSettings.minBet} maxBet={slotSettings.maxBet} />
             
-            {/* Main Spin button */}
-            <Button
-              size="lg"
-              className={cn(
-                "px-4 sm:px-8 py-3 sm:py-5 text-base sm:text-lg font-bold transition-all",
-                bonusState.isActive
-                  ? "bg-gradient-to-r from-purple-500 to-purple-600 hover:from-purple-600 hover:to-purple-700 shadow-[0_4px_20px_rgba(168,85,247,0.4)]"
-                  : "bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 shadow-[0_4px_20px_rgba(251,191,36,0.4)]",
-                "disabled:opacity-50 disabled:cursor-not-allowed"
-              )}
-              onClick={handleSpin}
-              disabled={isSpinning || !canSpinNow || showBonusTrigger || isAutoSpinning}
-            >
-              {isSpinning ? (
-                <>
-                  <Loader2 className="mr-1 sm:mr-2 h-4 w-4 sm:h-5 sm:w-5 animate-spin" />
-                  <span className="hidden xs:inline">SPINNER...</span>
-                  <span className="xs:hidden">...</span>
-                </>
-              ) : !canSpinNow ? (
-                <span className="text-xs sm:text-sm">INGEN SPINS</span>
-              ) : bonusState.isActive ? (
-                <>
-                  <Gamepad2 className="mr-1 sm:mr-2 h-4 w-4 sm:h-5 sm:w-5" />
-                  <span className="hidden xs:inline">FREE SPIN</span>
-                  <span className="xs:hidden">FREE</span>
-                </>
-              ) : (
-                <>
-                  <Gamepad2 className="mr-1 sm:mr-2 h-4 w-4 sm:h-5 sm:w-5" />
-                  SPIN
-                </>
-              )}
-            </Button>
-
             {/* Autospin controls */}
             <div className="flex items-center gap-1">
               {/* Autospin count selector */}
@@ -685,6 +650,63 @@ export function SlotGame() {
             
             {/* Volume Control */}
             <VolumeControl />
+          </div>
+
+          {/* Centered large round spin button */}
+          <div className="flex justify-center my-3 sm:my-4">
+            <Button
+              className={cn(
+                // Round shape
+                "rounded-full aspect-square",
+                // Responsive sizing
+                "w-20 h-20 sm:w-24 sm:h-24 md:w-28 md:h-28",
+                // Golden gradient with 3D effect
+                bonusState.isActive
+                  ? "bg-gradient-to-br from-purple-400 via-purple-500 to-purple-700"
+                  : "bg-gradient-to-br from-amber-300 via-amber-500 to-amber-700",
+                // Golden border
+                bonusState.isActive
+                  ? "border-2 border-purple-400/60"
+                  : "border-2 border-amber-400/60",
+                // Deep glow shadow
+                bonusState.isActive
+                  ? "shadow-[0_0_30px_rgba(168,85,247,0.5),0_4px_20px_rgba(0,0,0,0.3)]"
+                  : "shadow-[0_0_30px_rgba(251,191,36,0.5),0_4px_20px_rgba(0,0,0,0.3)]",
+                // Hover effects
+                !isSpinning && canSpinNow && !isAutoSpinning && (
+                  bonusState.isActive
+                    ? "hover:shadow-[0_0_50px_rgba(168,85,247,0.7),0_6px_25px_rgba(0,0,0,0.4)]"
+                    : "hover:shadow-[0_0_50px_rgba(251,191,36,0.7),0_6px_25px_rgba(0,0,0,0.4)]"
+                ),
+                "hover:scale-105 transition-all duration-200",
+                // Active/press effect
+                "active:scale-95 active:shadow-[inset_0_4px_10px_rgba(0,0,0,0.3)]",
+                // Spinning animation
+                isSpinning && "animate-pulse",
+                // Disabled state
+                "disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100",
+                // Text styling
+                "text-white font-bold text-lg sm:text-xl flex flex-col items-center justify-center"
+              )}
+              onClick={handleSpin}
+              disabled={isSpinning || !canSpinNow || showBonusTrigger || isAutoSpinning}
+            >
+              {isSpinning ? (
+                <Loader2 className="h-8 w-8 sm:h-10 sm:w-10 md:h-12 md:w-12 animate-spin" />
+              ) : !canSpinNow ? (
+                <span className="text-xs sm:text-sm text-center leading-tight">INGEN<br/>SPINS</span>
+              ) : bonusState.isActive ? (
+                <>
+                  <Gamepad2 className="h-6 w-6 sm:h-8 sm:w-8 md:h-10 md:w-10 mb-1" />
+                  <span className="text-xs sm:text-sm">FREE</span>
+                </>
+              ) : (
+                <>
+                  <Gamepad2 className="h-6 w-6 sm:h-8 sm:w-8 md:h-10 md:w-10 mb-1" />
+                  <span className="text-sm sm:text-base">SPIN</span>
+                </>
+              )}
+            </Button>
           </div>
 
           {/* Pay table button */}
