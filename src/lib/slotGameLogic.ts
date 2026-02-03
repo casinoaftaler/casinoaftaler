@@ -180,15 +180,24 @@ export function checkLineWin(
   
   // Get symbols on this line
   const lineSymbols = linePattern.map((row, col) => grid[col][row]);
-  const lineSymbolData = lineSymbols.map(id => symbolsById.get(id)!);
+  const lineSymbolData = lineSymbols.map(id => symbolsById.get(id));
+  
+  // Safety check: if any symbol is missing, skip this line
+  if (lineSymbolData.some(s => !s)) {
+    console.warn('[SlotGame] Missing symbol data for line, skipping win check');
+    return null;
+  }
+  
+  // Now we know all symbols exist, cast to non-null array
+  const validSymbols = lineSymbolData as SlotSymbol[];
   
   // Find the first non-wild symbol (or wild if all wilds)
-  let baseSymbol = lineSymbolData.find(s => !s.is_wild) || lineSymbolData[0];
+  let baseSymbol = validSymbols.find(s => !s.is_wild) || validSymbols[0];
   
   // Count consecutive matching symbols from left
   let count = 0;
   for (let i = 0; i < 5; i++) {
-    const current = lineSymbolData[i];
+    const current = validSymbols[i];
     if (current.id === baseSymbol.id || current.is_wild || baseSymbol.is_wild) {
       count++;
       if (baseSymbol.is_wild && !current.is_wild) {

@@ -229,13 +229,22 @@ function calculateWins(
   for (let lineIndex = 0; lineIndex < PAY_LINES.length; lineIndex++) {
     const linePattern = PAY_LINES[lineIndex];
     const lineSymbols = linePattern.map((row, col) => grid[col][row]);
-    const lineSymbolData = lineSymbols.map(id => symbolsById.get(id)!);
+    const lineSymbolData = lineSymbols.map(id => symbolsById.get(id));
+    
+    // Safety check: if any symbol is missing, skip this line
+    if (lineSymbolData.some(s => !s)) {
+      console.warn('[BonusGame] Missing symbol data for line, skipping win check');
+      continue;
+    }
+    
+    // Now we know all symbols exist
+    const validSymbols = lineSymbolData as SlotSymbol[];
     
     // Find the first non-scatter symbol as base (scatter acts as wild when allowed)
-    let baseSymbol = lineSymbolData[0];
+    let baseSymbol = validSymbols[0];
     if (allowWildSubstitution && baseSymbol.is_scatter) {
       // Find first non-scatter to use as base
-      const nonScatter = lineSymbolData.find(s => !s.is_scatter);
+      const nonScatter = validSymbols.find(s => !s.is_scatter);
       if (nonScatter) {
         baseSymbol = nonScatter;
       }
@@ -244,7 +253,7 @@ function calculateWins(
     // Count consecutive matching symbols from left
     let count = 0;
     for (let i = 0; i < 5; i++) {
-      const current = lineSymbolData[i];
+      const current = validSymbols[i];
       // Match if same symbol OR if scatter acts as wild (when allowed)
       const isMatch = current.id === baseSymbol.id || 
         (allowWildSubstitution && current.is_scatter);
