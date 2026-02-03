@@ -22,6 +22,7 @@ import { useSlotSpins } from "@/hooks/useSlotSpins";
 import { useSlotSettings } from "@/hooks/useSlotSettings";
 import { useBonusGame } from "@/hooks/useBonusGame";
 import { useAuth } from "@/hooks/useAuth";
+import { useQueryClient } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
 import { generateGrid, calculateSpinResult, PAY_LINES, getScatterTeaseReels, type SpinResult } from "@/lib/slotGameLogic";
 import { calculateBonusSpinResult } from "@/lib/bonusGameLogic";
@@ -38,6 +39,7 @@ type AutoSpinCount = 10 | 25 | 50 | 100 | "infinite";
 
 export function SlotGame() {
   const { user } = useAuth();
+  const queryClient = useQueryClient();
   const { data: symbols, isLoading: symbolsLoading } = useSlotSymbols();
   const { spinsRemaining, maxSpins, canSpin, decrementSpin, hasEnoughSpins } = useSlotSpins();
   const { settings: slotSettings } = useSlotSettings();
@@ -503,6 +505,9 @@ export function SlotGame() {
                               win_amount: result.totalWin,
                               is_bonus_triggered: result.bonusTriggered && !isBonusSpin,
                               bonus_win_amount: isBonusSpin ? result.totalWin : 0,
+                            }).then(() => {
+                              // Invalidate leaderboard to show updated data
+                              queryClient.invalidateQueries({ queryKey: ["slot-leaderboard"] });
                             });
                           }
                           
