@@ -598,10 +598,10 @@ export function SlotGame() {
             </SlotMachineFrame>
           </div>
 
-          {/* Controls row with spin button in center */}
-          <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-4 md:gap-6 mt-2 sm:mt-3">
-            {/* LEFT SIDE: Bet Controls + Autospin */}
-            <div className="flex items-center gap-1 sm:gap-2">
+          {/* Controls row with spin button in center - stacks on mobile */}
+          <div className="flex flex-col sm:flex-row flex-wrap items-center justify-center gap-3 sm:gap-4 md:gap-6 mt-2 sm:mt-3">
+            {/* TOP ROW ON MOBILE: Bet Controls + Autospin */}
+            <div className="flex items-center gap-2 order-1 sm:order-1">
               <BetControls bet={bet} onBetChange={setBet} disabled={isSpinning || bonusState.isActive} minBet={slotSettings.minBet} maxBet={slotSettings.maxBet} />
               
               {/* Autospin controls */}
@@ -675,13 +675,13 @@ export function SlotGame() {
               </div>
             </div>
 
-            {/* CENTER: Spin button */}
+            {/* CENTER: Spin button - always in middle */}
             <Button
               className={cn(
                 // Round shape
                 "rounded-full aspect-square",
-                // Responsive sizing - inline but still prominent
-                "w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 lg:w-28 lg:h-28",
+                // Responsive sizing - larger on mobile when stacked
+                "w-20 h-20 sm:w-20 sm:h-20 md:w-24 md:h-24 lg:w-28 lg:h-28",
                 // Golden gradient with 3D effect
                 bonusState.isActive
                   ? "bg-gradient-to-br from-purple-400 via-purple-500 to-purple-700"
@@ -708,7 +708,9 @@ export function SlotGame() {
                 // Disabled state
                 "disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100",
                 // Text styling
-                "text-white font-bold text-base sm:text-lg md:text-xl lg:text-2xl flex flex-col items-center justify-center"
+                "text-white font-bold text-base sm:text-lg md:text-xl lg:text-2xl flex flex-col items-center justify-center",
+                // Order for stacking
+                "order-2 sm:order-2"
               )}
               onClick={handleSpin}
               disabled={isSpinning || !canSpinNow || showBonusTrigger || isAutoSpinning}
@@ -739,8 +741,8 @@ export function SlotGame() {
               )}
             </Button>
 
-            {/* RIGHT SIDE: Win Display + Volume */}
-            <div className="flex items-center gap-1 sm:gap-2">
+            {/* BOTTOM ROW ON MOBILE: Win Display + Volume */}
+            <div className="flex items-center gap-2 order-3 sm:order-3">
               <WinDisplay amount={bonusState.isActive ? bonusState.bonusWinnings : winAmount} isAnimating={isWinAnimating} />
               <VolumeControl />
             </div>
