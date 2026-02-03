@@ -477,11 +477,23 @@ export function SlotGame() {
                             if (reelHasScatter) scattersLanded++;
                           }
                           
-                          // Play sound if scatter is on reel 1-4 (index 0-3)
-                          // Reel 5 is too late for sound
-                          const isOnReels1234 = reelIndex <= 3;
+                          // Count scatters specifically on reels 1-3 (index 0-2)
+                          let scattersOnReels123 = 0;
+                          for (let r = 0; r <= Math.min(reelIndex, 2); r++) {
+                            const reelHasScatter123 = grid?.[r]?.some(symbolId => {
+                              const symbol = symbols?.find(s => s.id === symbolId);
+                              return symbol?.is_scatter;
+                            });
+                            if (reelHasScatter123) scattersOnReels123++;
+                          }
                           
-                          if (isOnReels1234) {
+                          // Play sound if:
+                          // 1. Scatter is on reel 1-3 (index 0-2), OR
+                          // 2. Scatter is on reel 4 AND there's already a scatter on reel 1-3
+                          const isOnReels123 = reelIndex <= 2;
+                          const isOnReel4WithPriorScatter = reelIndex === 3 && scattersOnReels123 > 0;
+                          
+                          if (isOnReels123 || isOnReel4WithPriorScatter) {
                             slotSounds.playScatterLand(scattersLanded);
                           }
                           
