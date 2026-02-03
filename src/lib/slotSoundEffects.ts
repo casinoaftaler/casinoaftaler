@@ -24,6 +24,15 @@ export interface SlotSoundSettings {
   winBigDrumEnabled: boolean;
 }
 
+// localStorage key for persisting audio settings
+const AUDIO_SETTINGS_KEY = 'slot-audio-settings';
+
+interface PersistedAudioSettings {
+  enabled: boolean;
+  volume: number;
+  musicEnabled: boolean;
+}
+
 class SlotSoundEffects {
   private audioContext: AudioContext | null = null;
   private enabled: boolean = true;
@@ -57,6 +66,38 @@ class SlotSoundEffects {
     winBigDrumEnabled: true,
   };
 
+  constructor() {
+    // Load persisted settings on initialization
+    this.loadPersistedSettings();
+  }
+
+  private loadPersistedSettings() {
+    try {
+      const saved = localStorage.getItem(AUDIO_SETTINGS_KEY);
+      if (saved) {
+        const settings: PersistedAudioSettings = JSON.parse(saved);
+        this.enabled = settings.enabled ?? true;
+        this.volume = settings.volume ?? 0.5;
+        this.musicEnabled = settings.musicEnabled ?? true;
+      }
+    } catch (e) {
+      // Ignore parse errors, use defaults
+    }
+  }
+
+  private persistSettings() {
+    try {
+      const settings: PersistedAudioSettings = {
+        enabled: this.enabled,
+        volume: this.volume,
+        musicEnabled: this.musicEnabled,
+      };
+      localStorage.setItem(AUDIO_SETTINGS_KEY, JSON.stringify(settings));
+    } catch (e) {
+      // Ignore storage errors
+    }
+  }
+
   private getContext(): AudioContext {
     if (!this.audioContext) {
       this.audioContext = new (window.AudioContext || (window as any).webkitAudioContext)();
@@ -82,6 +123,7 @@ class SlotSoundEffects {
     if (!enabled) {
       this.stopMusic();
     }
+    this.persistSettings();
   }
 
   setVolume(volume: number) {
@@ -89,6 +131,7 @@ class SlotSoundEffects {
     if (this.musicGainNode) {
       this.musicGainNode.gain.value = 0.08 * this.volume;
     }
+    this.persistSettings();
   }
 
   isEnabled() {
@@ -110,6 +153,7 @@ class SlotSoundEffects {
     } else {
       this.stopMusic();
     }
+    this.persistSettings();
   }
 
   // Egyptian/Arabic scale (Hijaz maqam - very characteristic Middle Eastern sound)
