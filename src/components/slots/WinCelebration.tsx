@@ -32,6 +32,7 @@ export function WinCelebration({ isActive, winAmount, bet, onAnimationComplete }
   const [particles, setParticles] = useState<Particle[]>([]);
   const [showBigWin, setShowBigWin] = useState(false);
   const [isPulsing, setIsPulsing] = useState(false);
+  const [isFadingOut, setIsFadingOut] = useState(false);
   const hasTriggeredCompleteRef = useRef(false);
   
   const winMultiplier = bet > 0 ? winAmount / bet : 0;
@@ -53,13 +54,21 @@ export function WinCelebration({ isActive, winAmount, bet, onAnimationComplete }
     if (showBigWin && displayAmount === winAmount && winAmount > 0 && !hasTriggeredCompleteRef.current) {
       setIsPulsing(true);
       
-      // Pulse for 750ms (3 pulses at 0.25s each), then fade out
+      // Pulse for 750ms (3 pulses at 0.25s each), then start fade out
       const pulseTimeout = setTimeout(() => {
         setIsPulsing(false);
-        setShowBigWin(false);
-        setParticles([]);
-        hasTriggeredCompleteRef.current = true;
-        onAnimationComplete?.();
+        setIsFadingOut(true);
+        
+        // Fade out for 400ms, then complete
+        const fadeTimeout = setTimeout(() => {
+          setShowBigWin(false);
+          setParticles([]);
+          setIsFadingOut(false);
+          hasTriggeredCompleteRef.current = true;
+          onAnimationComplete?.();
+        }, 400);
+        
+        return () => clearTimeout(fadeTimeout);
       }, 750);
       
       return () => clearTimeout(pulseTimeout);
@@ -70,6 +79,7 @@ export function WinCelebration({ isActive, winAmount, bet, onAnimationComplete }
     if (!isActive || winAmount <= 0) {
       setParticles([]);
       setShowBigWin(false);
+      setIsFadingOut(false);
       setIsPulsing(false);
       hasTriggeredCompleteRef.current = false;
       return;
@@ -154,7 +164,12 @@ export function WinCelebration({ isActive, winAmount, bet, onAnimationComplete }
 
       {/* Big Win Text Overlay */}
       {showBigWin && (
-        <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-30">
+        <div 
+          className={cn(
+            "absolute inset-0 flex items-center justify-center pointer-events-none z-30 transition-opacity duration-400",
+            isFadingOut ? "opacity-0" : "opacity-100"
+          )}
+        >
           {/* Semi-transparent background */}
           <div className="bg-black/70 backdrop-blur-sm rounded-2xl px-6 sm:px-10 py-4 sm:py-8 border-2 border-amber-500/40 shadow-[0_0_40px_rgba(251,191,36,0.3)]">
             <div
