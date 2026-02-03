@@ -282,6 +282,9 @@ export function SlotGame() {
   useEffect(() => {
     if (!isAutoSpinning || isSpinning || shouldStopAutoSpinRef.current) return;
     
+    // Wait for win animation to complete before spinning again
+    if (isWinAnimating) return;
+    
     const isBonusSpin = bonusState.isActive && bonusState.freeSpinsRemaining > 0;
     const hasSpins = isBonusSpin || canSpin;
     
@@ -293,19 +296,25 @@ export function SlotGame() {
     // Don't auto-spin if bonus overlay is showing
     if (showBonusTrigger || showBonusComplete) return;
 
+    // Calculate delay based on whether there was a win
+    // If there was a win, add extra time for the counter animation
+    // Counter animation duration: Math.min(500 + amount * 10, 2000)
+    const counterAnimationBuffer = winAmount > 0 ? 500 : 0; // Extra buffer after counter finishes
+    const baseDelay = 800; // Reduced base delay since we now wait for animation
+    
     // Schedule next spin with a delay
     autoSpinTimeoutRef.current = setTimeout(() => {
       if (!shouldStopAutoSpinRef.current) {
         handleSpin();
       }
-    }, 1500); // 1.5 second delay between spins
+    }, baseDelay + counterAnimationBuffer);
 
     return () => {
       if (autoSpinTimeoutRef.current) {
         clearTimeout(autoSpinTimeoutRef.current);
       }
     };
-  }, [isAutoSpinning, isSpinning, canSpin, bonusState.isActive, bonusState.freeSpinsRemaining, showBonusTrigger, showBonusComplete]);
+  }, [isAutoSpinning, isSpinning, isWinAnimating, winAmount, canSpin, bonusState.isActive, bonusState.freeSpinsRemaining, showBonusTrigger, showBonusComplete]);
 
   // Find winning positions for each reel
   const getWinningPositions = (reelIndex: number): number[] => {
