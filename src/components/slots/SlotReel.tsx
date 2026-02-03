@@ -390,7 +390,7 @@ export function SlotReel({
             key={`reel-${index}-${symbol.id}`}
             symbol={symbol}
             isSpinning={true}
-            isTeasing={(isFakeLooping && scatterLandedOnPreviousReel) || isActiveTeaseReel}
+            isTeasing={false}
           />
         ))}
       </div>
