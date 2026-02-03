@@ -420,8 +420,88 @@ function SymbolsTab() {
   // Calculate total weight for percentage calculation
   const totalWeight = orderedSymbols.reduce((sum, s) => sum + (s.weight || 0), 0);
 
+  // Separate symbols by rarity for the overview
+  const premiumSymbols = orderedSymbols.filter(s => s.rarity === 'premium');
+  const commonSymbols = orderedSymbols.filter(s => s.rarity === 'common');
+  const scatterSymbols = orderedSymbols.filter(s => s.is_scatter);
+
   return (
-    <>
+    <div className="space-y-6">
+      {/* Probability Overview Card */}
+      <Card>
+        <CardHeader className="pb-3">
+          <CardTitle className="flex items-center gap-2 text-lg">
+            <Percent className="h-5 w-5 text-primary" />
+            Sandsynlighedsoversigt
+          </CardTitle>
+        </CardHeader>
+        <CardContent>
+          <div className="grid gap-4">
+            {/* Visual bar chart */}
+            <div className="space-y-2">
+              {orderedSymbols.map((symbol) => {
+                const percentage = totalWeight > 0 ? ((symbol.weight || 0) / totalWeight) * 100 : 0;
+                const barColor = symbol.is_scatter 
+                  ? 'bg-purple-500' 
+                  : symbol.rarity === 'premium' 
+                    ? 'bg-amber-500' 
+                    : 'bg-primary';
+                
+                return (
+                  <div key={symbol.id} className="flex items-center gap-3">
+                    <div className="w-8 h-8 flex-shrink-0 flex items-center justify-center bg-muted rounded overflow-hidden">
+                      {symbol.image_url ? (
+                        <img src={symbol.image_url} alt={symbol.name} className="w-full h-full object-contain" />
+                      ) : (
+                        <span className="text-sm">🎰</span>
+                      )}
+                    </div>
+                    <div className="w-20 text-sm font-medium truncate">{symbol.name}</div>
+                    <div className="flex-1 h-6 bg-muted rounded-full overflow-hidden">
+                      <div 
+                        className={`h-full ${barColor} transition-all duration-300`}
+                        style={{ width: `${Math.max(percentage, 1)}%` }}
+                      />
+                    </div>
+                    <div className="w-20 text-right">
+                      <span className="text-sm font-medium">{percentage.toFixed(2)}%</span>
+                      <span className="text-xs text-muted-foreground ml-1">({symbol.weight})</span>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+
+            {/* Summary stats */}
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 pt-4 border-t">
+              <div className="text-center p-3 bg-muted/50 rounded-lg">
+                <p className="text-2xl font-bold text-primary">{totalWeight}</p>
+                <p className="text-xs text-muted-foreground">Total Vægt</p>
+              </div>
+              <div className="text-center p-3 bg-muted/50 rounded-lg">
+                <p className="text-2xl font-bold text-amber-500">
+                  {premiumSymbols.reduce((sum, s) => sum + ((s.weight || 0) / totalWeight) * 100, 0).toFixed(1)}%
+                </p>
+                <p className="text-xs text-muted-foreground">Premium Symboler</p>
+              </div>
+              <div className="text-center p-3 bg-muted/50 rounded-lg">
+                <p className="text-2xl font-bold">
+                  {commonSymbols.reduce((sum, s) => sum + ((s.weight || 0) / totalWeight) * 100, 0).toFixed(1)}%
+                </p>
+                <p className="text-xs text-muted-foreground">Almindelige Symboler</p>
+              </div>
+              <div className="text-center p-3 bg-muted/50 rounded-lg">
+                <p className="text-2xl font-bold text-purple-500">
+                  {scatterSymbols.reduce((sum, s) => sum + ((s.weight || 0) / totalWeight) * 100, 0).toFixed(2)}%
+                </p>
+                <p className="text-xs text-muted-foreground">Scatter (Bonus)</p>
+              </div>
+            </div>
+          </div>
+        </CardContent>
+      </Card>
+
+      {/* Symbol list */}
       <DndContext
         sensors={sensors}
         collisionDetection={closestCenter}
@@ -450,7 +530,7 @@ function SymbolsTab() {
         onClose={() => setEditingSymbol(null)}
         allSymbols={orderedSymbols}
       />
-    </>
+    </div>
   );
 }
 
