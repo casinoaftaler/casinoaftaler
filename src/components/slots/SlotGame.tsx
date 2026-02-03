@@ -397,18 +397,20 @@ export function SlotGame() {
         }}
       />
 
+      {/* Bonus Status Bar - positioned above the frame */}
+      <div className="max-w-fit mx-auto mb-1 sm:mb-2">
+        <BonusStatusBar
+          isActive={bonusState.isActive}
+          freeSpinsRemaining={bonusState.freeSpinsRemaining}
+          totalFreeSpins={bonusState.totalFreeSpins}
+          expandingSymbol={bonusState.expandingSymbol}
+          bonusWinnings={bonusState.bonusWinnings}
+        />
+      </div>
+
       <div className="max-w-fit mx-auto">
         <div className="p-1 xs:p-2 sm:p-3 md:p-4 space-y-1 sm:space-y-2">
-          {/* Bonus Status Bar */}
-          <BonusStatusBar
-            isActive={bonusState.isActive}
-            freeSpinsRemaining={bonusState.freeSpinsRemaining}
-            totalFreeSpins={bonusState.totalFreeSpins}
-            expandingSymbol={bonusState.expandingSymbol}
-            bonusWinnings={bonusState.bonusWinnings}
-          />
-
-          {/* Slot machine reels with Egyptian frame - volume control moved inline */}
+          {/* Slot machine reels with Egyptian frame */}
           <div className="flex justify-center relative">
             <SlotMachineFrame isBonus={bonusState.isActive} isSpinning={isSpinning}>
               <div className="relative p-1 xs:p-2 sm:p-4 md:p-6 rounded-xl">
