@@ -71,6 +71,10 @@ export function SlotGame() {
   const [teaseInfo, setTeaseInfo] = useState<TeaseInfo>({ reels: [], lateScatter: false, lastScatterReel: -1 });
   const [scatterReelsLanded, setScatterReelsLanded] = useState<Set<number>>(new Set());
   
+  // Sequential reel stopping - which reel should currently slow down (-1 = none yet)
+  const [activeSlowdownReel, setActiveSlowdownReel] = useState(-1);
+  const initialSpinTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+  
   // Spin lock to prevent rapid clicking
   const spinLockRef = useRef(false);
   const spinLockTimeoutRef = useRef<NodeJS.Timeout | null>(null);
@@ -126,6 +130,9 @@ export function SlotGame() {
       }
       if (spinLockTimeoutRef.current) {
         clearTimeout(spinLockTimeoutRef.current);
+      }
+      if (initialSpinTimeoutRef.current) {
+        clearTimeout(initialSpinTimeoutRef.current);
       }
       // Stop all slot sounds and music when leaving the page
       slotSounds.stopMusic();
@@ -291,6 +298,9 @@ export function SlotGame() {
     pendingExpandedReelsRef.current = reelsExpanded;
     isBonusSpinRef.current = isBonusSpin;
     
+    // Reset sequential reel stopping
+    setActiveSlowdownReel(-1);
+    
     // Now start the spin animation
     setIsSpinning(true);
     
@@ -308,6 +318,14 @@ export function SlotGame() {
     if (teaseResult.reels.length > 0) {
       stopTeaseSound.current = slotSounds.playTeaseStart();
     }
+    
+    // After 500ms initial spin, start reel 0 slowing down
+    if (initialSpinTimeoutRef.current) {
+      clearTimeout(initialSpinTimeoutRef.current);
+    }
+    initialSpinTimeoutRef.current = setTimeout(() => {
+      setActiveSlowdownReel(0);
+    }, 500);
 
     try {
       // Decrement spin count (only for non-bonus spins)
@@ -534,8 +552,14 @@ export function SlotGame() {
                       isNewlyExpanded={newlyExpandedReels.includes(colIndex)}
                       expandingSymbolId={bonusState.expandingSymbol?.id}
                       delay={colIndex}
+                      shouldSlowDown={activeSlowdownReel >= colIndex}
                       onReelStop={async (reelIndex) => {
                         slotSounds.playReelStopSingle(reelIndex);
+                        
+                        // SEQUENTIAL: Trigger the next reel to slow down
+                        if (reelIndex < 4) {
+                          setActiveSlowdownReel(reelIndex + 1);
+                        }
                         
                         // Check if this reel has a scatter and play progressive scatter land sound
                         const hasScatterOnReel = grid?.[reelIndex]?.some(symbolId => {
@@ -684,21 +708,25 @@ export function SlotGame() {
                           }
                           
                           // Play appropriate sound based on result
+                          let hasWinAnimation = false;
                           if (!result.bonusTriggered) {
                             if (result.totalWin >= bet * 50) {
                               slotSounds.playBigWin();
                               setIsWinAnimating(true);
                               setWinAmount(result.totalWin);
+                              hasWinAnimation = true;
                               setTimeout(() => setIsWinAnimating(false), 2000);
                             } else if (result.totalWin >= bet * 10) {
                               slotSounds.playMediumWin();
                               setIsWinAnimating(true);
                               setWinAmount(result.totalWin);
+                              hasWinAnimation = true;
                               setTimeout(() => setIsWinAnimating(false), 2000);
                             } else if (result.totalWin > 0) {
                               slotSounds.playSmallWin();
                               setIsWinAnimating(true);
                               setWinAmount(result.totalWin);
+                              hasWinAnimation = true;
                               setTimeout(() => setIsWinAnimating(false), 2000);
                             } else {
                               slotSounds.playNoWin();
@@ -721,15 +749,17 @@ export function SlotGame() {
                           setIsSpinning(false);
                           setTeaseReels([]);
                           setActiveTeaseReelIndex(null);
+                          setActiveSlowdownReel(-1);
                           
-                          // Release spin lock after a short delay to prevent immediate re-spin
+                          // Release spin lock after 500ms delay (wait for win animation if present)
+                          const spinLockDelay = hasWinAnimation ? 2500 : 500;
                           setTimeout(() => {
                             spinLockRef.current = false;
                             if (spinLockTimeoutRef.current) {
                               clearTimeout(spinLockTimeoutRef.current);
                               spinLockTimeoutRef.current = null;
                             }
-                          }, 300);
+                          }, spinLockDelay);
                         }
                       }}
                       teaseMode={teaseReels.includes(colIndex)}

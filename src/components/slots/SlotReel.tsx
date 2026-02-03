@@ -11,18 +11,19 @@ interface SlotReelProps {
   winningPositions?: number[];
   isExpanded?: boolean;
   isNewlyExpanded?: boolean;
-  expandingSymbolId?: string;  // Only symbols matching this ID show expansion effect
+  expandingSymbolId?: string;
   delay?: number;
-  onReelStop?: (reelIndex: number) => void;  // Callback when reel stops
-  teaseMode?: boolean;  // Whether this reel should tease (slow reveal)
-  isActiveTeaseReel?: boolean;  // Whether this tease reel should currently slow down
-  scatterLandedOnPreviousReel?: boolean;  // Whether the scatter on previous reel has landed
-  extendedFakeLoop?: boolean;  // Whether to extend the fake loop duration (for late scatter)
-  globalTeaseActive?: boolean;  // Whether any tease reel is still spinning (for landed scatter glow)
-  hasLandedScatter?: boolean;  // Whether this reel has a scatter that has landed (for glow)
+  shouldSlowDown?: boolean;  // NEW: Whether this reel should start slowing down
+  onReelStop?: (reelIndex: number) => void;
+  teaseMode?: boolean;
+  isActiveTeaseReel?: boolean;
+  scatterLandedOnPreviousReel?: boolean;
+  extendedFakeLoop?: boolean;
+  globalTeaseActive?: boolean;
+  hasLandedScatter?: boolean;
 }
 
-// Match the responsive symbol sizes from SlotSymbol - REDUCED FOR MOBILE
+// Match the responsive symbol sizes from SlotSymbol
 const SYMBOL_SIZE = { xs: 64, mobile: 76, sm: 96, md: 112, lg: 140, xl: 160 };
 const GAP = { xs: 4, mobile: 6, sm: 8, md: 12, lg: 16 };
 
@@ -35,6 +36,7 @@ export function SlotReel({
   isNewlyExpanded = false,
   expandingSymbolId,
   delay = 0,
+  shouldSlowDown = false,
   onReelStop,
   teaseMode = false,
   isActiveTeaseReel = false,
@@ -48,18 +50,23 @@ export function SlotReel({
   const [offset, setOffset] = useState(0);
   const animationRef = useRef<number | null>(null);
   const containerRef = useRef<HTMLDivElement>(null);
+  const hasStartedSpinRef = useRef(false);
+  const hasStartedSlowdownRef = useRef(false);
+  const stopTeaseSoundRef = useRef<(() => void) | null>(null);
+
+  const [reelStrip, setReelStrip] = useState<SlotSymbolType[]>([]);
 
   // Build the reel strip: final symbols at start, then random symbols for spinning effect
   const buildReelStrip = () => {
     const strip: SlotSymbolType[] = [];
     
-    // Add the final landing symbols at the START (these will be visible at offset 0)
+    // Add the final landing symbols at the START
     displayedSymbolIds.forEach(id => {
       const symbol = symbolsById.get(id);
       if (symbol) strip.push(symbol);
     });
     
-    // Add random symbols after for the spin animation
+    // Add random symbols for the spin animation
     const spinSymbolCount = 30;
     for (let i = 0; i < spinSymbolCount; i++) {
       const randomSymbol = symbols[Math.floor(Math.random() * symbols.length)];
@@ -68,9 +75,6 @@ export function SlotReel({
     
     return strip;
   };
-
-  const [reelStrip, setReelStrip] = useState<SlotSymbolType[]>([]);
-  const hasStartedSpinRef = useRef(false);
 
   // Get responsive dimensions
   const getSymbolHeight = () => {
@@ -94,133 +98,60 @@ export function SlotReel({
     return GAP.lg;
   };
 
-  // Track if we're in fake loop mode for tease reels waiting their turn
-  const [isFakeLooping, setIsFakeLooping] = useState(false);
-  const fakeLoopStartTimeRef = useRef<number>(0);
-  const activeTeaseStartedRef = useRef(false);
-  const stopTeaseSoundRef = useRef<(() => void) | null>(null);
-
-  // Start spinning when isSpinning becomes true
+  // Start fake loop when spinning begins - ALL reels use this now
   useEffect(() => {
     if (isSpinning && !hasStartedSpinRef.current) {
       hasStartedSpinRef.current = true;
-      activeTeaseStartedRef.current = false;
+      hasStartedSlowdownRef.current = false;
       
-      // Build new reel strip with final symbols at start
+      // Build reel strip
       const strip = buildReelStrip();
       setReelStrip(strip);
       
-      // Calculate the target offset (we start high and animate to 0)
       const symbolHeight = getSymbolHeight();
       const gap = getGap();
       const totalSymbolHeight = symbolHeight + gap;
-      
-      // Start offset: we show random symbols first, then animate down to show final symbols at position 0
       const startOffset = (strip.length - 3) * totalSymbolHeight;
       setOffset(startOffset);
       
-      // All reels start at the same time for visual sync
-      const startDelay = 50;
+      // Start fake loop immediately
+      setSpinState("spinning");
       
-      const startTimeout = setTimeout(() => {
-        setSpinState("spinning");
+      const loopDuration = 600; // Constant speed loop cycle
+      const fakeLoopStartTime = performance.now();
+      
+      const fakeLoopAnimate = (currentTime: number) => {
+        if (!hasStartedSpinRef.current || hasStartedSlowdownRef.current) return;
         
-        const startTime = performance.now();
+        const elapsed = (currentTime - fakeLoopStartTime) % loopDuration;
+        const loopProgress = elapsed / loopDuration;
+        // Constant speed - linear motion, no easing
+        const loopOffset = startOffset * (1 - loopProgress);
+        setOffset(loopOffset);
         
-        // For tease reels that aren't active yet, start fake loop
-        if (teaseMode && !isActiveTeaseReel) {
-          setIsFakeLooping(true);
-          fakeLoopStartTimeRef.current = startTime;
-          
-          // Fake loop animation - constant speed, loops back
-          // Extended duration when 2nd scatter is on reel 4 (late scatter)
-          const loopDuration = extendedFakeLoop ? 2600 : 600; // Time for one full loop cycle
-          
-          const fakeLoopAnimate = (currentTime: number) => {
-            if (!hasStartedSpinRef.current) return;
-            
-            const elapsed = (currentTime - fakeLoopStartTimeRef.current) % loopDuration;
-            const loopProgress = elapsed / loopDuration;
-            // Loop from startOffset back to startOffset (creates seamless loop illusion)
-            const loopOffset = startOffset * (1 - loopProgress);
-            setOffset(loopOffset);
-            
-            animationRef.current = requestAnimationFrame(fakeLoopAnimate);
-          };
-          
-          animationRef.current = requestAnimationFrame(fakeLoopAnimate);
-          return; // Don't proceed with normal stop logic
-        }
-        
-        // Normal spin or active tease reel - calculate duration
-        // Base spin duration - much longer for active tease (3 seconds slowdown)
-        const baseSpinDuration = (teaseMode && isActiveTeaseReel) ? 3000 : 1000;
-        // Each reel stops with stagger for non-tease reels
-        const reelStopDelay = teaseMode ? 0 : delay * 350;
-        const spinDuration = baseSpinDuration + reelStopDelay;
-        
-        const animate = (currentTime: number) => {
-          const elapsed = currentTime - startTime;
-          const progress = Math.min(elapsed / spinDuration, 1);
-          
-          // Smooth easing - much slower ease out for active tease mode
-          const easeOutQuad = (teaseMode && isActiveTeaseReel)
-            ? 1 - Math.pow(1 - progress, 5)  // Very slow deceleration for tease
-            : 1 - Math.pow(1 - progress, 2); // Normal ease out
-          
-          // Animate from startOffset down to 0 (symbols move UP on screen)
-          const currentOffset = startOffset * (1 - easeOutQuad);
-          setOffset(currentOffset);
-          
-          if (progress < 1) {
-            animationRef.current = requestAnimationFrame(animate);
-          } else {
-            // Ensure we land exactly at 0
-            setOffset(0);
-            setSpinState("stopping");
-            setIsFakeLooping(false);
-            // Trigger the reel stop callback
-            onReelStop?.(delay);
-            // Small settle effect at the end
-            setTimeout(() => {
-              setSpinState("stopped");
-              // Reset for next spin after showing result
-              setTimeout(() => {
-                setSpinState("idle");
-                hasStartedSpinRef.current = false;
-                activeTeaseStartedRef.current = false;
-              }, 100);
-            }, 50);
-          }
-        };
-        
-        animationRef.current = requestAnimationFrame(animate);
-      }, startDelay);
-
-      return () => {
-        clearTimeout(startTimeout);
-        if (animationRef.current) {
-          cancelAnimationFrame(animationRef.current);
-        }
+        animationRef.current = requestAnimationFrame(fakeLoopAnimate);
       };
+      
+      animationRef.current = requestAnimationFrame(fakeLoopAnimate);
     }
-  }, [isSpinning, delay, teaseMode, isActiveTeaseReel]);
+  }, [isSpinning]);
 
-  // Handle transition from fake loop to active tease slowdown
+  // Handle transition from fake loop to slowdown when shouldSlowDown becomes true
   useEffect(() => {
-    if (isFakeLooping && isActiveTeaseReel && !activeTeaseStartedRef.current) {
-      activeTeaseStartedRef.current = true;
-      setIsFakeLooping(false);
+    if (shouldSlowDown && hasStartedSpinRef.current && !hasStartedSlowdownRef.current && spinState === "spinning") {
+      hasStartedSlowdownRef.current = true;
       
-      // Start intense tease slowdown sound
-      stopTeaseSoundRef.current = slotSounds.playActiveTeaseSlowdown(delay);
-      
-      // Cancel the fake loop animation
+      // Cancel fake loop animation
       if (animationRef.current) {
         cancelAnimationFrame(animationRef.current);
       }
       
-      // Rebuild reel strip with fresh random symbols for the slowdown
+      // For tease reels, play the tease sound
+      if (teaseMode && isActiveTeaseReel) {
+        stopTeaseSoundRef.current = slotSounds.playActiveTeaseSlowdown(delay);
+      }
+      
+      // Rebuild reel strip with fresh symbols for the slowdown
       const strip = buildReelStrip();
       setReelStrip(strip);
       
@@ -231,14 +162,17 @@ export function SlotReel({
       setOffset(startOffset);
       
       const startTime = performance.now();
-      const spinDuration = 3000; // 3 second slowdown for tease
+      // Tease reels get longer slowdown (3s), normal reels get 1.5s
+      const spinDuration = teaseMode ? 3000 : 1500;
       
       const animate = (currentTime: number) => {
         const elapsed = currentTime - startTime;
         const progress = Math.min(elapsed / spinDuration, 1);
         
-        // Very slow deceleration for dramatic effect
-        const easeOut = 1 - Math.pow(1 - progress, 5);
+        // Easing: slower for tease, normal for regular
+        const easeOut = teaseMode
+          ? 1 - Math.pow(1 - progress, 5)  // Very slow deceleration for tease
+          : 1 - Math.pow(1 - progress, 2); // Normal ease out
         
         const currentOffset = startOffset * (1 - easeOut);
         setOffset(currentOffset);
@@ -246,20 +180,25 @@ export function SlotReel({
         if (progress < 1) {
           animationRef.current = requestAnimationFrame(animate);
         } else {
-          // Stop the tease sound when reel lands
+          // Stop tease sound when reel lands
           if (stopTeaseSoundRef.current) {
             stopTeaseSoundRef.current();
             stopTeaseSoundRef.current = null;
           }
+          
           setOffset(0);
           setSpinState("stopping");
+          
+          // Trigger the reel stop callback
           onReelStop?.(delay);
+          
+          // Small settle effect
           setTimeout(() => {
             setSpinState("stopped");
             setTimeout(() => {
               setSpinState("idle");
               hasStartedSpinRef.current = false;
-              activeTeaseStartedRef.current = false;
+              hasStartedSlowdownRef.current = false;
             }, 100);
           }, 50);
         }
@@ -267,19 +206,17 @@ export function SlotReel({
       
       animationRef.current = requestAnimationFrame(animate);
     }
-  }, [isFakeLooping, isActiveTeaseReel, delay, onReelStop]);
+  }, [shouldSlowDown, spinState, teaseMode, isActiveTeaseReel, delay, onReelStop]);
 
-  // Reset when isSpinning goes false AND we're done animating
+  // Reset when isSpinning goes false
   useEffect(() => {
     if (!isSpinning && spinState === "idle" && hasStartedSpinRef.current) {
       hasStartedSpinRef.current = false;
-      activeTeaseStartedRef.current = false;
-      setIsFakeLooping(false);
+      hasStartedSlowdownRef.current = false;
       setOffset(0);
       if (animationRef.current) {
         cancelAnimationFrame(animationRef.current);
       }
-      // Stop tease sound if still playing
       if (stopTeaseSoundRef.current) {
         stopTeaseSoundRef.current();
         stopTeaseSoundRef.current = null;
@@ -287,12 +224,25 @@ export function SlotReel({
     }
   }, [isSpinning, spinState]);
 
+  // Force cleanup if isSpinning goes false while still animating
+  useEffect(() => {
+    if (!isSpinning && spinState !== "idle") {
+      if (animationRef.current) {
+        cancelAnimationFrame(animationRef.current);
+      }
+      if (stopTeaseSoundRef.current) {
+        stopTeaseSoundRef.current();
+        stopTeaseSoundRef.current = null;
+      }
+      setSpinState("idle");
+      setOffset(0);
+      hasStartedSpinRef.current = false;
+      hasStartedSlowdownRef.current = false;
+    }
+  }, [isSpinning, spinState]);
+
   // Helper to check if a symbol should show expansion effect
   const shouldShowExpansion = (symbolId: string): boolean => {
-    // Only show expansion if:
-    // 1. This reel is marked as expanded
-    // 2. We have an expanding symbol ID
-    // 3. The symbol matches the expanding symbol
     return isExpanded && !!expandingSymbolId && symbolId === expandingSymbolId;
   };
 
@@ -300,8 +250,7 @@ export function SlotReel({
     return isNewlyExpanded && !!expandingSymbolId && symbolId === expandingSymbolId;
   };
 
-  // When idle, show just the final symbols (same as spinning at offset 0)
-  // When stopped, also show final symbols with a small bounce animation
+  // When idle or stopped, show just the final symbols
   if (spinState === "idle" || spinState === "stopped") {
     return (
       <div className="flex flex-col gap-[4px] xs:gap-[6px] sm:gap-[8px] md:gap-[12px] lg:gap-[16px]">
@@ -344,16 +293,12 @@ export function SlotReel({
   const totalSymbolHeight = symbolHeight + gap;
   const viewportHeight = 3 * symbolHeight + 2 * gap;
 
-  // Calculate blur amount based on current speed (higher offset = faster spin)
+  // Calculate blur amount based on speed
   const getBlurAmount = () => {
     if (spinState !== "spinning") return 0;
-    const symbolHeight = getSymbolHeight();
-    const gap = getGap();
-    const totalSymbolHeight = symbolHeight + gap;
     const maxOffset = (reelStrip.length - 3) * totalSymbolHeight;
-    // Blur is proportional to how far we are from the final position
     const progress = 1 - (offset / maxOffset);
-    // Blur is strongest at the start (8px) and fades out as the reel slows
+    // Blur is strongest at the start and fades as reel slows
     return Math.max(0, 8 * (1 - progress * progress));
   };
 
@@ -364,11 +309,11 @@ export function SlotReel({
       ref={containerRef}
       className={cn(
         "relative overflow-hidden rounded-lg bg-amber-950/50 transition-shadow duration-300",
-        // Fake looping: Dimmed amber glow - ONLY show when scatter has landed on previous reel
-        isFakeLooping && !isActiveTeaseReel && spinState === "spinning" && scatterLandedOnPreviousReel &&
+        // Fake looping glow - only show when scatter has landed on previous reel
+        !hasStartedSlowdownRef.current && scatterLandedOnPreviousReel &&
         "shadow-[0_0_15px_rgba(251,191,36,0.3),0_0_25px_rgba(251,191,36,0.15)] animate-pulse",
-        // Active tease: Intense glow with faster animation
-        isActiveTeaseReel && spinState === "spinning" && 
+        // Active tease: Intense glow
+        hasStartedSlowdownRef.current && teaseMode && 
         "shadow-[0_0_30px_rgba(251,191,36,0.9),0_0_60px_rgba(251,191,36,0.6),0_0_90px_rgba(251,191,36,0.3)] animate-[glow-intense_0.5s_ease-in-out_infinite]"
       )}
       style={{ 
@@ -395,7 +340,7 @@ export function SlotReel({
         ))}
       </div>
       
-      {/* Speed blur overlay effect - enhances motion blur perception */}
+      {/* Speed blur overlay effect */}
       <div 
         className="absolute inset-0 pointer-events-none transition-opacity duration-300"
         style={{
