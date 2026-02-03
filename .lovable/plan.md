@@ -1,78 +1,71 @@
 
-# Scatter Tease Glow Not Working - Bug Fix Plan
+# Support Decimal Multipliers in Paytable
 
-## Problem Identified
-When 2 scatters have landed, the scatter symbols don't glow because the `isTeasing` prop is **always hardcoded to `false`** in `SlotReel.tsx`, despite the parent component (`SlotGame.tsx`) correctly calculating and passing the necessary information.
+## Overview
+Currently the slot machine paytable only supports whole number multipliers (e.g., 5×, 10×, 25×). This change will allow decimal values like 1.5×, 2.5×, etc.
 
-## Root Cause Analysis
-```text
-SlotGame.tsx                           SlotReel.tsx                        SlotSymbol.tsx
-+---------------------------+          +---------------------------+       +------------------+
-| Calculates:               |          | Receives props but        |       | Shows glow when: |
-| - scatterReelsLanded      | -------> | NEVER USES THEM:          | ----> | isTeasing=true   |
-| - globalTeaseActive       |          | - globalTeaseActive       |       | AND              |
-| - hasLandedScatter        |          | - hasLandedScatter        |       | symbol.is_scatter|
-+---------------------------+          | Always passes:            |       +------------------+
-                                       | isTeasing={false}         |
-                                       +---------------------------+
+## What Changes
+
+### 1. Database Update
+The multiplier columns are currently stored as integers. We need to change them to decimal numbers.
+
+| Column | Current | After |
+|--------|---------|-------|
+| multiplier_3 | integer | decimal |
+| multiplier_4 | integer | decimal |
+| multiplier_5 | integer | decimal |
+
+### 2. Admin Panel Changes
+The edit dialog for symbols will be updated to accept decimal values:
+- Change input step from "1" to "0.1" to allow smooth decimal entry
+- Change parsing from whole numbers to decimals
+- Allow minimum value of 0.1 instead of 1
+
+### 3. Paytable Display
+Format multipliers to show decimals only when needed:
+- "5×" stays as "5×" (not "5.0×")
+- "1.5×" displays as "1.5×"
+
+## Files Changed
+
+| File | Change |
+|------|--------|
+| Database migration | Change column types from `integer` to `numeric(10,2)` |
+| `src/components/SlotMachineAdminSection.tsx` | Update inputs to accept decimals with `parseFloat()` and `step="0.1"` |
+| `src/components/slots/PayTable.tsx` | Add formatting function to clean up decimal display |
+
+## Technical Details
+
+**Database Migration:**
+```sql
+ALTER TABLE slot_symbols 
+  ALTER COLUMN multiplier_3 TYPE numeric(10,2),
+  ALTER COLUMN multiplier_4 TYPE numeric(10,2),
+  ALTER COLUMN multiplier_5 TYPE numeric(10,2);
 ```
 
-## Solution
-
-### 1. Update Idle/Stopped State Render (SlotReel.tsx lines 305-338)
-When a reel has stopped but tease mode is still globally active, we need to show the scatter glow on landed scatter symbols.
-
-**Current code:**
+**Admin Input Example:**
 ```tsx
-<SlotSymbol
-  symbol={symbol}
-  ...
-  isTeasing={false}  // Always false
+<Input
+  type="number"
+  step="0.1"
+  min="0.1"
+  value={formData.multiplier_3}
+  onChange={(e) => setFormData({ 
+    ...formData, 
+    multiplier_3: parseFloat(e.target.value) || 0.1 
+  })}
 />
 ```
 
-**Fixed code:**
+**Display Formatting:**
 ```tsx
-<SlotSymbol
-  symbol={symbol}
-  ...
-  isTeasing={globalTeaseActive && hasLandedScatter && symbol.is_scatter}
-/>
+// Format 1.50 as "1.5×", 5.00 as "5×"
+const formatMultiplier = (value: number) => {
+  return Number.isInteger(value) ? `${value}×` : `${value}×`;
+};
 ```
 
-### 2. Update Spinning State Render (SlotReel.tsx lines 388-395)
-During spinning, the blur makes individual symbols invisible anyway, but for consistency we should handle this case too. However, since the reels are blurred during spinning, this is less critical. The main issue is the idle/stopped state.
-
-**The scatter glow should show when:**
-- `globalTeaseActive` is true (tease reels are still spinning)
-- `hasLandedScatter` is true (this reel has a scatter and is one of the landed ones)
-- The symbol is a scatter
-
-### Technical Changes
-
-| File | Location | Change |
-|------|----------|--------|
-| `src/components/slots/SlotReel.tsx` | Lines 324-333 (idle/stopped render) | Pass calculated `isTeasing` based on `globalTeaseActive`, `hasLandedScatter`, and whether the symbol is a scatter |
-
-### Implementation Details
-
-The fix is straightforward - we need to calculate and pass the `isTeasing` prop correctly:
-
-```tsx
-// In the idle/stopped render section (around line 325)
-<SlotSymbol
-  symbol={symbol}
-  isWinning={winningPositions.includes(rowIndex)}
-  isSpinning={false}
-  isExpanded={symbolIsExpanded}
-  isNewlyExpanded={symbolIsNewlyExpanded}
-  hasLanded={spinState === "stopped"}
-  isTeasing={globalTeaseActive && hasLandedScatter && symbol.is_scatter}
-/>
-```
-
-This ensures:
-- Scatter symbols glow only when global tease is active (other reels still teasing)
-- Only on reels that have a landed scatter (tracked via `hasLandedScatter`)
-- Only if the specific symbol being rendered is a scatter
-- The glow stops when all reels have stopped (`globalTeaseActive` becomes false)
+## No Changes Required
+- The game logic in `slotGameLogic.ts` and `bonusGameLogic.ts` already works with numbers and doesn't care if they're whole or decimal
+- Win calculations will automatically work with decimal multipliers
