@@ -19,6 +19,7 @@ import { SlotMachineFrame } from "./SlotMachineFrame";
 import { WinCelebration } from "./WinCelebration";
 import { SpinsRemaining } from "./SpinsRemaining";
 import { useSlotSymbols } from "@/hooks/useSlotSymbols";
+import { useSlotSymbolPreloader } from "@/hooks/useSlotSymbolPreloader";
 import { useSlotSpins } from "@/hooks/useSlotSpins";
 import { useSlotSettings } from "@/hooks/useSlotSettings";
 import { useBonusGame } from "@/hooks/useBonusGame";
@@ -42,6 +43,7 @@ export function SlotGame() {
   const { user } = useAuth();
   const queryClient = useQueryClient();
   const { data: symbols, isLoading: symbolsLoading } = useSlotSymbols();
+  const { validateSymbols } = useSlotSymbolPreloader(symbols);
   const { spinsRemaining, maxSpins, canSpin, decrementSpin, hasEnoughSpins } = useSlotSpins();
   const { settings: slotSettings } = useSlotSettings();
   const { 
@@ -207,6 +209,20 @@ export function SlotGame() {
     if (spinLockRef.current) return;
     
     if (!symbols || symbols.length === 0 || !user || isSpinning) return;
+    
+    // Validate that all symbol images are loaded correctly
+    const symbolValidation = validateSymbols();
+    if (!symbolValidation.isValid) {
+      if (symbolValidation.failedUrls.length > 0) {
+        console.warn('[SlotGame] Some symbol images failed to load:', symbolValidation.failedUrls);
+        toast.error(`Symbol-billeder kunne ikke indlæses: ${symbolValidation.failedUrls.join(', ')}`);
+      } else if (symbolValidation.missingSymbols.length > 0) {
+        console.warn('[SlotGame] Some symbols are missing images:', symbolValidation.missingSymbols);
+        toast.error(`Manglende symbol-billeder: ${symbolValidation.missingSymbols.join(', ')}`);
+      }
+      spinLockRef.current = false;
+      return;
+    }
     
     // Check if we can spin (either normal spin or bonus free spin)
     const isBonusSpin = bonusState.isActive && bonusState.freeSpinsRemaining > 0;
