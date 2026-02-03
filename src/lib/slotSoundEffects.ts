@@ -1130,6 +1130,138 @@ class SlotSoundEffects {
     };
   }
 
+  // Active tease slowdown sound - intense crescendo when tease reel starts slowing down
+  playActiveTeaseSlowdown(reelIndex: number): () => void {
+    if (!this.enabled) return () => {};
+    
+    const ctx = this.getContext();
+    const now = ctx.currentTime;
+    let isPlaying = true;
+    
+    // Master gain for this effect
+    const masterGain = ctx.createGain();
+    masterGain.gain.setValueAtTime(0.15 * this.volume, now);
+    masterGain.connect(ctx.destination);
+    
+    // Base pitch increases for later reels (builds progression)
+    const basePitchOffset = reelIndex * 20;
+    
+    // Rising drone that increases in pitch over 3 seconds
+    const drone = ctx.createOscillator();
+    const droneGain = ctx.createGain();
+    const droneFilter = ctx.createBiquadFilter();
+    
+    drone.connect(droneFilter);
+    droneFilter.connect(droneGain);
+    droneGain.connect(masterGain);
+    
+    drone.type = 'sawtooth';
+    drone.frequency.setValueAtTime(80 + basePitchOffset, now);
+    drone.frequency.exponentialRampToValueAtTime(200 + basePitchOffset, now + 3);
+    
+    droneFilter.type = 'lowpass';
+    droneFilter.frequency.setValueAtTime(200, now);
+    droneFilter.frequency.exponentialRampToValueAtTime(800, now + 3);
+    
+    droneGain.gain.setValueAtTime(0.3, now);
+    droneGain.gain.exponentialRampToValueAtTime(0.6, now + 2.5);
+    droneGain.gain.exponentialRampToValueAtTime(0.2, now + 3);
+    
+    drone.start(now);
+    
+    // Intensifying sistrum shimmer - gets louder over time
+    const shimmer = ctx.createOscillator();
+    const shimmerGain = ctx.createGain();
+    const shimmerFilter = ctx.createBiquadFilter();
+    
+    shimmer.connect(shimmerFilter);
+    shimmerFilter.connect(shimmerGain);
+    shimmerGain.connect(masterGain);
+    
+    shimmer.type = 'square';
+    shimmer.frequency.setValueAtTime(2500, now);
+    shimmer.frequency.linearRampToValueAtTime(4000, now + 3);
+    
+    shimmerFilter.type = 'highpass';
+    shimmerFilter.frequency.value = 2000;
+    
+    shimmerGain.gain.setValueAtTime(0.02, now);
+    shimmerGain.gain.exponentialRampToValueAtTime(0.15, now + 2.5);
+    shimmerGain.gain.exponentialRampToValueAtTime(0.05, now + 3);
+    
+    // Tremolo for shimmer
+    const shimmerTremolo = ctx.createOscillator();
+    const shimmerTremoloGain = ctx.createGain();
+    shimmerTremolo.connect(shimmerTremoloGain);
+    shimmerTremoloGain.connect(shimmerGain.gain);
+    shimmerTremolo.frequency.setValueAtTime(15, now);
+    shimmerTremolo.frequency.linearRampToValueAtTime(30, now + 3);
+    shimmerTremoloGain.gain.value = 0.05;
+    
+    shimmer.start(now);
+    shimmerTremolo.start(now);
+    
+    // Accelerating darbuka rhythm - starts slow, speeds up
+    let drumInterval = 300; // Start at 300ms
+    const minInterval = 80; // End at 80ms
+    const accelerationRate = 0.92; // Multiply interval by this each hit
+    
+    const playDrum = () => {
+      if (!isPlaying || !this.enabled) return;
+      
+      const hitTime = ctx.currentTime;
+      
+      // Doum hit
+      const drum = ctx.createOscillator();
+      const drumGain = ctx.createGain();
+      const drumFilter = ctx.createBiquadFilter();
+      
+      drum.connect(drumFilter);
+      drumFilter.connect(drumGain);
+      drumGain.connect(masterGain);
+      
+      drum.frequency.setValueAtTime(120 + basePitchOffset, hitTime);
+      drum.frequency.exponentialRampToValueAtTime(60, hitTime + 0.08);
+      drum.type = 'sine';
+      
+      drumFilter.type = 'lowpass';
+      drumFilter.frequency.value = 300;
+      
+      drumGain.gain.setValueAtTime(0.5, hitTime);
+      drumGain.gain.exponentialRampToValueAtTime(0.001, hitTime + 0.12);
+      
+      drum.start(hitTime);
+      drum.stop(hitTime + 0.12);
+      
+      // Schedule next hit with accelerating rhythm
+      drumInterval = Math.max(minInterval, drumInterval * accelerationRate);
+      setTimeout(playDrum, drumInterval);
+    };
+    
+    // Start drum pattern after small delay
+    setTimeout(playDrum, 100);
+    
+    // Return stop function
+    return () => {
+      isPlaying = false;
+      
+      const stopTime = ctx.currentTime;
+      masterGain.gain.linearRampToValueAtTime(0.001, stopTime + 0.2);
+      droneGain.gain.linearRampToValueAtTime(0.001, stopTime + 0.2);
+      shimmerGain.gain.linearRampToValueAtTime(0.001, stopTime + 0.2);
+      
+      setTimeout(() => {
+        try {
+          drone.stop();
+          shimmer.stop();
+          shimmerTremolo.stop();
+        } catch (e) {
+          // Already stopped
+        }
+      }, 250);
+    };
+  }
+
   // Coin counting sound - plays while win amount ticks up
   playCoinCount(): () => void {
     if (!this.enabled) return () => {};
