@@ -23,8 +23,7 @@ export function SlotSymbol({ symbol, isWinning, isSpinning, isExpanded, isNewlyE
           : "border-transparent",
         isSpinning && "animate-pulse",
         isExpanded && "scale-110 border-amber-400/50",
-        isNewlyExpanded && "animate-[expansion-flash_0.6s_ease-out]",
-        symbol.is_scatter && "ring-2 ring-amber-500/50"
+        isNewlyExpanded && "animate-[expansion-flash_0.6s_ease-out]"
       )}
     >
       {symbol.image_url ? (
@@ -66,12 +65,6 @@ export function SlotSymbol({ symbol, isWinning, isSpinning, isExpanded, isNewlyE
         </>
       )}
       
-      {/* Scatter indicator */}
-      {symbol.is_scatter && (
-        <div className="absolute -top-1 -right-1 w-4 h-4 bg-amber-500 rounded-full flex items-center justify-center">
-          <span className="text-[8px] text-white font-bold">S</span>
-        </div>
-      )}
     </div>
   );
 }
