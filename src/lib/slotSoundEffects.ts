@@ -1,6 +1,19 @@
 // Slot Machine Sound Effects using Web Audio API
 // Egyptian-themed synthesized sounds inspired by ancient Egypt
 
+export interface SlotSoundSettings {
+  spinClickInterval: number;
+  spinClickFreqStart: number;
+  spinClickFreqEnd: number;
+  spinClickVolume: number;
+  spinMotorVolume: number;
+  spinTickerEnabled: boolean;
+  spinTickerFrequency: number;
+  stopImpactVolume: number;
+  stopChimeEnabled: boolean;
+  stopChimeVolume: number;
+}
+
 class SlotSoundEffects {
   private audioContext: AudioContext | null = null;
   private enabled: boolean = true;
@@ -9,6 +22,20 @@ class SlotSoundEffects {
   private musicGainNode: GainNode | null = null;
   private currentMusic: OscillatorNode[] = [];
   private musicInterval: NodeJS.Timeout | null = null;
+
+  // Configurable sound settings
+  private soundSettings: SlotSoundSettings = {
+    spinClickInterval: 45,
+    spinClickFreqStart: 280,
+    spinClickFreqEnd: 180,
+    spinClickVolume: 0.12,
+    spinMotorVolume: 0.03,
+    spinTickerEnabled: true,
+    spinTickerFrequency: 1000,
+    stopImpactVolume: 0.3,
+    stopChimeEnabled: true,
+    stopChimeVolume: 0.1,
+  };
 
   private getContext(): AudioContext {
     if (!this.audioContext) {
@@ -19,6 +46,15 @@ class SlotSoundEffects {
       this.audioContext.resume();
     }
     return this.audioContext;
+  }
+
+  // Update sound settings from admin panel
+  updateSoundSettings(settings: Partial<SlotSoundSettings>) {
+    this.soundSettings = { ...this.soundSettings, ...settings };
+  }
+
+  getSoundSettings(): SlotSoundSettings {
+    return { ...this.soundSettings };
   }
 
   setEnabled(enabled: boolean) {
@@ -328,6 +364,17 @@ class SlotSoundEffects {
     let isRunning = true;
     let clickCount = 0;
     
+    // Get configurable settings
+    const {
+      spinClickInterval,
+      spinClickFreqStart,
+      spinClickFreqEnd,
+      spinClickVolume,
+      spinMotorVolume,
+      spinTickerEnabled,
+      spinTickerFrequency,
+    } = this.soundSettings;
+    
     // Motor hum undertone - continuous low drone
     const motorOsc = ctx.createOscillator();
     const motorGain = ctx.createGain();
@@ -343,7 +390,7 @@ class SlotSoundEffects {
     motorFilter.type = 'lowpass';
     motorFilter.frequency.value = 150;
     
-    motorGain.gain.value = 0.03 * this.volume;
+    motorGain.gain.value = spinMotorVolume * this.volume;
     
     // Slight motor modulation for realism
     const motorMod = ctx.createOscillator();
@@ -371,16 +418,16 @@ class SlotSoundEffects {
       clickFilter.connect(clickGain);
       clickGain.connect(ctx.destination);
       
-      // Pitch sweep from 280Hz to 180Hz for mechanical "thunk"
-      click.frequency.setValueAtTime(280, now);
-      click.frequency.exponentialRampToValueAtTime(180, now + 0.015);
+      // Pitch sweep from start to end frequency for mechanical "thunk"
+      click.frequency.setValueAtTime(spinClickFreqStart, now);
+      click.frequency.exponentialRampToValueAtTime(spinClickFreqEnd, now + 0.015);
       click.type = 'sine';
       
       clickFilter.type = 'lowpass';
       clickFilter.frequency.value = 800;
       
       // Quick attack and decay
-      clickGain.gain.setValueAtTime(0.12 * this.volume, now);
+      clickGain.gain.setValueAtTime(spinClickVolume * this.volume, now);
       clickGain.gain.exponentialRampToValueAtTime(0.001, now + 0.02);
       
       click.start(now);
@@ -389,7 +436,7 @@ class SlotSoundEffects {
     
     // Function to play mechanism ticker (higher pitched accent)
     const playMechanismTick = () => {
-      if (!isRunning || !this.enabled) return;
+      if (!isRunning || !this.enabled || !spinTickerEnabled) return;
       
       const now = ctx.currentTime;
       
@@ -402,7 +449,7 @@ class SlotSoundEffects {
       tickFilter.connect(tickGain);
       tickGain.connect(ctx.destination);
       
-      tick.frequency.value = 1000;
+      tick.frequency.value = spinTickerFrequency;
       tick.type = 'square';
       
       // Filter to soften the square wave
@@ -416,7 +463,7 @@ class SlotSoundEffects {
       tick.stop(now + 0.015);
     };
     
-    // Interval-based clicking system - 45ms between clicks (~22 clicks/sec)
+    // Interval-based clicking system - configurable interval
     const clickInterval = setInterval(() => {
       if (!isRunning) return;
       
@@ -428,7 +475,7 @@ class SlotSoundEffects {
       }
       
       clickCount++;
-    }, 45);
+    }, spinClickInterval);
     
     // Return stop function
     return () => {
@@ -455,6 +502,9 @@ class SlotSoundEffects {
     const ctx = this.getContext();
     const now = ctx.currentTime;
 
+    // Get configurable settings
+    const { stopImpactVolume, stopChimeEnabled, stopChimeVolume } = this.soundSettings;
+
     // Base frequency increases slightly for each reel (creates ascending effect)
     const basePitch = 100 + reelIndex * 15;
     const chimePitch = 660 + reelIndex * 110; // Golden chime goes up for each reel
@@ -475,27 +525,29 @@ class SlotSoundEffects {
     impactFilter.type = 'lowpass';
     impactFilter.frequency.value = 300;
     
-    impactGain.gain.setValueAtTime(0.3 * this.volume, now);
+    impactGain.gain.setValueAtTime(stopImpactVolume * this.volume, now);
     impactGain.gain.exponentialRampToValueAtTime(0.001, now + 0.15);
     
     impact.start(now);
     impact.stop(now + 0.15);
 
-    // Golden chime accent - ascending pitch per reel
-    const chime = ctx.createOscillator();
-    const chimeGain = ctx.createGain();
-    
-    chime.connect(chimeGain);
-    chimeGain.connect(ctx.destination);
-    
-    chime.frequency.value = chimePitch;
-    chime.type = 'sine';
-    
-    chimeGain.gain.setValueAtTime(0.1 * this.volume, now);
-    chimeGain.gain.exponentialRampToValueAtTime(0.001, now + 0.12);
-    
-    chime.start(now);
-    chime.stop(now + 0.12);
+    // Golden chime accent - ascending pitch per reel (if enabled)
+    if (stopChimeEnabled) {
+      const chime = ctx.createOscillator();
+      const chimeGain = ctx.createGain();
+      
+      chime.connect(chimeGain);
+      chimeGain.connect(ctx.destination);
+      
+      chime.frequency.value = chimePitch;
+      chime.type = 'sine';
+      
+      chimeGain.gain.setValueAtTime(stopChimeVolume * this.volume, now);
+      chimeGain.gain.exponentialRampToValueAtTime(0.001, now + 0.12);
+      
+      chime.start(now);
+      chime.stop(now + 0.12);
+    }
   }
 
   // Reel stop sound - stone tablet landing with golden chime (legacy - plays for all reels at once)

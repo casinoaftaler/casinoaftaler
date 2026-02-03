@@ -8,6 +8,7 @@ import { SlotTitleImageUpload } from "@/components/SlotTitleImageUpload";
 import { SlotBackgroundImageUpload } from "@/components/SlotBackgroundImageUpload";
 import { SpinManagementSection } from "@/components/SpinManagementSection";
 import { SlotFrameAdminControls } from "@/components/slots/SlotFrameAdminControls";
+import { SlotSoundAdminSection } from "@/components/slots/SlotSoundAdminSection";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -398,6 +399,9 @@ function SettingsTab() {
 
       {/* Egyptian Frame Generator */}
       <SlotFrameAdminControls />
+
+      {/* Sound Settings */}
+      <SlotSoundAdminSection />
 
       <Card>
         <CardHeader>
