@@ -477,13 +477,11 @@ export function SlotGame() {
                             if (reelHasScatter) scattersLanded++;
                           }
                           
-                          // Play sound if:
-                          // 1. Scatter is on reel 1-3 (index 0-2), OR
-                          // 2. This is the 2nd scatter AND it's on reel 4 (index 3) - triggers tease mode
-                          const isOnReels123 = reelIndex <= 2;
-                          const is2ndScatterOnReel4 = scattersLanded === 2 && reelIndex === 3;
+                          // Play sound if scatter is on reel 1-4 (index 0-3)
+                          // Reel 5 is too late for sound
+                          const isOnReels1234 = reelIndex <= 3;
                           
-                          if (isOnReels123 || is2ndScatterOnReel4) {
+                          if (isOnReels1234) {
                             slotSounds.playScatterLand(scattersLanded);
                           }
                           
