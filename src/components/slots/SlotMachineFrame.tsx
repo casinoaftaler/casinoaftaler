@@ -31,10 +31,10 @@ export function SlotMachineFrame({
           )}
           style={{
             // Extend beyond the content to create frame effect
-            top: "-80px",
-            left: "-80px",
-            right: "-80px",
-            bottom: "-80px",
+            top: "-90px",
+            left: "-90px",
+            right: "-90px",
+            bottom: "-90px",
           }}
         >
           <img
