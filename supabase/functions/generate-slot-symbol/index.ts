@@ -26,6 +26,17 @@ BACKGROUND REQUIREMENTS (MANDATORY):
 FORMAT: Square 1:1 aspect ratio, suitable for a slot machine symbol.
 `;
 
+const PREMIUM_FRAME = `
+FRAME/BORDER REQUIREMENTS (MANDATORY FOR PREMIUM SYMBOLS):
+- Add an ornate golden Egyptian-style frame/border around the entire image
+- The frame should be approximately 5-8% of the image width on each side
+- Frame design: Intricate golden border with hieroglyphic patterns
+- Corner decorations: Small golden lotus flowers or scarab motifs
+- The frame should have depth and dimension (3D appearance)
+- Inner edge of frame: subtle golden glow effect
+- The artwork must extend FULLY to the inner edge of the frame (no gaps)
+`;
+
 function getPromptForSymbol(name: string, isScatter: boolean): string {
   const normalizedName = name.toLowerCase().trim();
 
@@ -66,9 +77,12 @@ MAIN SUBJECT:
 - Skin with a warm, bronze tone
 
 COMPOSITION:
-- Centered portrait filling most of the frame
+- FULL ART: The Pharaoh must fill the ENTIRE frame edge-to-edge
 - Subject facing slightly to the side (3/4 view) for dramatic effect
 - Golden divine light emanating from behind the subject
+- NO empty space - the artwork extends to all edges
+
+${PREMIUM_FRAME}
 
 ${BASE_STYLE}`;
   }
@@ -87,9 +101,12 @@ MAIN SUBJECT:
 - Noble, powerful, and slightly menacing expression
 
 COMPOSITION:
-- Centered portrait filling most of the frame
+- FULL ART: Anubis must fill the ENTIRE frame edge-to-edge
 - Subject facing slightly to the side (3/4 view) for dramatic effect
 - Golden divine light emanating from behind the subject
+- NO empty space - the artwork extends to all edges
+
+${PREMIUM_FRAME}
 
 ${BASE_STYLE}`;
   }
@@ -107,9 +124,12 @@ MAIN SUBJECT:
 - Regal and divine appearance befitting the sky god
 
 COMPOSITION:
-- Centered portrait filling most of the frame
+- FULL ART: Horus must fill the ENTIRE frame edge-to-edge
 - Subject facing slightly to the side (3/4 view) for dramatic effect
 - Golden divine light emanating from behind the subject
+- NO empty space - the artwork extends to all edges
+
+${PREMIUM_FRAME}
 
 ${BASE_STYLE}`;
   }
@@ -127,9 +147,12 @@ MAIN SUBJECT:
 - Polished, reflective gold surface with depth
 
 COMPOSITION:
-- Scarab centered and filling approximately 75% of the frame
-- Wings spread symmetrically
+- FULL ART: The scarab must fill the ENTIRE frame edge-to-edge
+- Wings spread symmetrically touching the frame edges
 - Sun disk creating a golden glow above
+- NO empty space - the artwork extends to all edges
+
+${PREMIUM_FRAME}
 
 ${BASE_STYLE}`;
   }
