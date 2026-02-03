@@ -7,7 +7,14 @@ const corsHeaders = {
     "authorization, x-client-info, apikey, content-type, x-supabase-client-platform, x-supabase-client-platform-version, x-supabase-client-runtime, x-supabase-client-runtime-version",
 };
 
-const AI_PROMPT = `Create a slot machine symbol icon for an Egyptian-themed game called "Book of Fedesvin".
+const BASE_STYLE = `Style: High-quality cartoon/game art style, clean lines, vibrant colors, detailed but stylized. Square 1:1 aspect ratio suitable for a slot machine symbol. Egyptian temple background with subtle columns and hieroglyphics. Warm golden color palette with rich amber tones.`;
+
+function getPromptForSymbol(name: string, isScatter: boolean): string {
+  const normalizedName = name.toLowerCase().trim();
+
+  // Scatter symbol - the cat on a book
+  if (isScatter || normalizedName.includes("fedesvin") || normalizedName.includes("book")) {
+    return `Create a slot machine symbol icon for an Egyptian-themed game called "Book of Fedesvin".
 
 The symbol MUST feature:
 - A CHUBBY/FAT gray and white cat (similar to British Shorthair) sitting comfortably
@@ -20,9 +27,188 @@ The symbol MUST feature:
 - Background with subtle Egyptian temple elements (columns, hieroglyphics, Anubis statues)
 - Warm golden color palette with rich amber tones
 
-Style: High-quality cartoon/game art style, clean lines, vibrant colors, detailed but stylized. The composition should be square (1:1 aspect ratio) suitable for a slot machine symbol. The cat should be the central focus, looking regal and content.
+${BASE_STYLE}
 
 This is a "Book of the Dead" themed scatter/wild symbol for a slot game.`;
+  }
+
+  // Pharaoh symbol
+  if (normalizedName.includes("pharaoh") || normalizedName.includes("farao")) {
+    return `Create a slot machine symbol icon for an Egyptian-themed game.
+
+The symbol features:
+- A majestic Egyptian Pharaoh bust/portrait
+- Golden nemes headdress with blue and gold stripes
+- Royal uraeus cobra on the forehead
+- Golden collar/pectoral with lapis lazuli and turquoise gems
+- Regal, powerful expression with kohl-lined eyes
+- Warm golden lighting with subtle glow
+
+${BASE_STYLE}`;
+  }
+
+  // Anubis symbol
+  if (normalizedName.includes("anubis")) {
+    return `Create a slot machine symbol icon for an Egyptian-themed game.
+
+The symbol features:
+- The Egyptian god Anubis (jackal-headed deity)
+- Sleek black jackal head with pointed ears
+- Golden Egyptian collar and ceremonial adornments
+- Piercing golden or amber eyes
+- Mysterious and noble appearance
+- Holding an ankh or was-scepter
+
+${BASE_STYLE}`;
+  }
+
+  // Horus symbol
+  if (normalizedName.includes("horus")) {
+    return `Create a slot machine symbol icon for an Egyptian-themed game.
+
+The symbol features:
+- The Egyptian god Horus (falcon-headed deity)
+- Majestic falcon head with detailed feathers
+- Golden and blue headdress with sun disk
+- The Eye of Horus symbolism incorporated
+- Regal and divine appearance
+- Golden collar with precious gems
+
+${BASE_STYLE}`;
+  }
+
+  // Scarab symbol
+  if (normalizedName.includes("scarab")) {
+    return `Create a slot machine symbol icon for an Egyptian-themed game.
+
+The symbol features:
+- A golden jeweled scarab beetle
+- Ornate wings spread outward
+- Encrusted with turquoise, lapis lazuli, and ruby gems
+- Holding the sun disk above its head
+- Intricate golden filigree details
+- Sacred Egyptian symbolism
+
+${BASE_STYLE}`;
+  }
+
+  // Isis symbol
+  if (normalizedName.includes("isis")) {
+    return `Create a slot machine symbol icon for an Egyptian-themed game.
+
+The symbol features:
+- The Egyptian goddess Isis
+- Elegant feminine face with kohl-lined eyes
+- Throne-shaped crown (hieroglyph of her name)
+- Golden wings spread gracefully
+- Ornate golden jewelry and collar
+- Serene and powerful expression
+
+${BASE_STYLE}`;
+  }
+
+  // Ankh symbol
+  if (normalizedName.includes("ankh")) {
+    return `Create a slot machine symbol icon for an Egyptian-themed game.
+
+The symbol features:
+- An ornate golden ankh (key of life)
+- Encrusted with turquoise and lapis lazuli gems
+- Intricate hieroglyphic engravings
+- Glowing with divine golden light
+- Surrounded by subtle rays of power
+- Sacred Egyptian symbolism
+
+${BASE_STYLE}`;
+  }
+
+  // Letter A
+  if (normalizedName === "a" || normalizedName.includes("letter a")) {
+    return `Create a slot machine symbol icon for an Egyptian-themed game.
+
+The symbol features:
+- A stylized letter "A" in golden Egyptian style
+- Decorated with hieroglyphic patterns
+- Adorned with small turquoise and gold gems
+- Egyptian lotus or papyrus motifs incorporated
+- Elegant serif font with Egyptian flair
+- Subtle golden glow effect
+
+${BASE_STYLE}`;
+  }
+
+  // Letter K
+  if (normalizedName === "k" || normalizedName.includes("letter k")) {
+    return `Create a slot machine symbol icon for an Egyptian-themed game.
+
+The symbol features:
+- A stylized letter "K" in golden Egyptian style
+- Decorated with hieroglyphic patterns
+- Adorned with small turquoise and gold gems
+- Egyptian scarab or eye motifs incorporated
+- Elegant serif font with Egyptian flair
+- Subtle golden glow effect
+
+${BASE_STYLE}`;
+  }
+
+  // Letter Q
+  if (normalizedName === "q" || normalizedName.includes("letter q")) {
+    return `Create a slot machine symbol icon for an Egyptian-themed game.
+
+The symbol features:
+- A stylized letter "Q" in golden Egyptian style
+- Decorated with hieroglyphic patterns
+- Adorned with small turquoise and gold gems
+- Egyptian snake or cobra motifs incorporated
+- Elegant serif font with Egyptian flair
+- Subtle golden glow effect
+
+${BASE_STYLE}`;
+  }
+
+  // Letter J
+  if (normalizedName === "j" || normalizedName.includes("letter j")) {
+    return `Create a slot machine symbol icon for an Egyptian-themed game.
+
+The symbol features:
+- A stylized letter "J" in golden Egyptian style
+- Decorated with hieroglyphic patterns
+- Adorned with small turquoise and gold gems
+- Egyptian feather or reed motifs incorporated
+- Elegant serif font with Egyptian flair
+- Subtle golden glow effect
+
+${BASE_STYLE}`;
+  }
+
+  // Number 10
+  if (normalizedName === "10" || normalizedName.includes("ten")) {
+    return `Create a slot machine symbol icon for an Egyptian-themed game.
+
+The symbol features:
+- A stylized number "10" in golden Egyptian style
+- Decorated with hieroglyphic patterns
+- Adorned with small turquoise and gold gems
+- Egyptian pyramid or obelisk motifs incorporated
+- Elegant serif font with Egyptian flair
+- Subtle golden glow effect
+
+${BASE_STYLE}`;
+  }
+
+  // Default fallback - generic Egyptian symbol
+  return `Create a slot machine symbol icon for an Egyptian-themed game.
+
+The symbol features:
+- A ${name} themed icon in ancient Egyptian style
+- Rich golden colors with blue and turquoise accents
+- Ornate decorative details
+- Egyptian hieroglyphic background elements
+- Warm, glowing golden lighting
+
+${BASE_STYLE}`;
+}
 
 serve(async (req) => {
   // Handle CORS preflight
@@ -42,6 +228,32 @@ serve(async (req) => {
 
     console.log(`Generating AI symbol for symbolId: ${symbolId}`);
 
+    // Initialize Supabase client
+    const supabaseUrl = Deno.env.get("SUPABASE_URL")!;
+    const supabaseServiceKey = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!;
+    const supabase = createClient(supabaseUrl, supabaseServiceKey);
+
+    // Fetch the symbol to get its name and type
+    const { data: symbol, error: fetchError } = await supabase
+      .from("slot_symbols")
+      .select("name, is_scatter")
+      .eq("id", symbolId)
+      .single();
+
+    if (fetchError || !symbol) {
+      console.error("Failed to fetch symbol:", fetchError);
+      return new Response(
+        JSON.stringify({ error: "Symbol not found" }),
+        { status: 404, headers: { ...corsHeaders, "Content-Type": "application/json" } }
+      );
+    }
+
+    console.log(`Generating symbol for: ${symbol.name} (is_scatter: ${symbol.is_scatter})`);
+
+    // Generate dynamic prompt based on symbol type
+    const prompt = getPromptForSymbol(symbol.name, symbol.is_scatter);
+    console.log(`Using prompt for: ${symbol.name}`);
+
     const LOVABLE_API_KEY = Deno.env.get("LOVABLE_API_KEY");
     if (!LOVABLE_API_KEY) {
       throw new Error("LOVABLE_API_KEY is not configured");
@@ -59,7 +271,7 @@ serve(async (req) => {
         messages: [
           {
             role: "user",
-            content: AI_PROMPT,
+            content: prompt,
           },
         ],
         modalities: ["image", "text"],
@@ -111,11 +323,6 @@ serve(async (req) => {
     for (let i = 0; i < binaryString.length; i++) {
       bytes[i] = binaryString.charCodeAt(i);
     }
-
-    // Initialize Supabase client
-    const supabaseUrl = Deno.env.get("SUPABASE_URL")!;
-    const supabaseServiceKey = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!;
-    const supabase = createClient(supabaseUrl, supabaseServiceKey);
 
     // Generate unique filename
     const timestamp = Date.now();
