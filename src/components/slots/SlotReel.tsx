@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import { cn } from "@/lib/utils";
 import { SlotSymbol } from "./SlotSymbol";
+import { slotSounds } from "@/lib/slotSoundEffects";
 import type { SlotSymbol as SlotSymbolType } from "@/lib/slotGameLogic";
 
 interface SlotReelProps {
@@ -89,6 +90,7 @@ export function SlotReel({
   const [isFakeLooping, setIsFakeLooping] = useState(false);
   const fakeLoopStartTimeRef = useRef<number>(0);
   const activeTeaseStartedRef = useRef(false);
+  const stopTeaseSoundRef = useRef<(() => void) | null>(null);
 
   // Start spinning when isSpinning becomes true
   useEffect(() => {
@@ -201,6 +203,9 @@ export function SlotReel({
       activeTeaseStartedRef.current = true;
       setIsFakeLooping(false);
       
+      // Start intense tease slowdown sound
+      stopTeaseSoundRef.current = slotSounds.playActiveTeaseSlowdown(delay);
+      
       // Cancel the fake loop animation
       if (animationRef.current) {
         cancelAnimationFrame(animationRef.current);
@@ -232,6 +237,11 @@ export function SlotReel({
         if (progress < 1) {
           animationRef.current = requestAnimationFrame(animate);
         } else {
+          // Stop the tease sound when reel lands
+          if (stopTeaseSoundRef.current) {
+            stopTeaseSoundRef.current();
+            stopTeaseSoundRef.current = null;
+          }
           setOffset(0);
           setSpinState("stopping");
           onReelStop?.(delay);
@@ -259,6 +269,11 @@ export function SlotReel({
       setOffset(0);
       if (animationRef.current) {
         cancelAnimationFrame(animationRef.current);
+      }
+      // Stop tease sound if still playing
+      if (stopTeaseSoundRef.current) {
+        stopTeaseSoundRef.current();
+        stopTeaseSoundRef.current = null;
       }
     }
   }, [isSpinning, spinState]);
@@ -338,8 +353,12 @@ export function SlotReel({
       ref={containerRef}
       className={cn(
         "relative overflow-hidden rounded-lg bg-amber-950/50 transition-shadow duration-300",
-        // Only show glow for active tease reel OR fake looping reels
-        (isActiveTeaseReel || isFakeLooping) && spinState === "spinning" && "shadow-[0_0_20px_rgba(251,191,36,0.6),0_0_40px_rgba(251,191,36,0.3)] animate-pulse"
+        // Fake looping: Dimmed amber glow
+        isFakeLooping && !isActiveTeaseReel && spinState === "spinning" && 
+        "shadow-[0_0_15px_rgba(251,191,36,0.3),0_0_25px_rgba(251,191,36,0.15)] animate-pulse",
+        // Active tease: Intense glow with faster animation
+        isActiveTeaseReel && spinState === "spinning" && 
+        "shadow-[0_0_30px_rgba(251,191,36,0.9),0_0_60px_rgba(251,191,36,0.6),0_0_90px_rgba(251,191,36,0.3)] animate-[glow-intense_0.5s_ease-in-out_infinite]"
       )}
       style={{ 
         height: `${viewportHeight}px`,
