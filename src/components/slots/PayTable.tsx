@@ -25,7 +25,26 @@ export function PayTable() {
   const commonSymbols = symbols?.filter(s => s.rarity === 'common') || [];
   const scatterSymbol = symbols?.find(s => s.is_scatter);
 
-  const renderSymbolRow = (symbol: typeof symbols extends (infer T)[] | undefined ? T : never) => (
+  const renderPremiumSymbolRow = (symbol: typeof symbols extends (infer T)[] | undefined ? T : never) => (
+    <TableRow key={symbol.id}>
+      <TableCell className="font-medium">
+        <div className="flex items-center gap-2">
+          {symbol.image_url ? (
+            <img src={symbol.image_url} alt={symbol.name} className="w-6 h-6" />
+          ) : (
+            <span>{getSymbolEmoji(symbol.name)}</span>
+          )}
+          <span>{symbol.name}</span>
+        </div>
+      </TableCell>
+      <TableCell className="text-right">{formatMultiplier(symbol.multiplier_2)}</TableCell>
+      <TableCell className="text-right">{formatMultiplier(symbol.multiplier_3)}</TableCell>
+      <TableCell className="text-right">{formatMultiplier(symbol.multiplier_4)}</TableCell>
+      <TableCell className="text-right">{formatMultiplier(symbol.multiplier_5)}</TableCell>
+    </TableRow>
+  );
+
+  const renderCommonSymbolRow = (symbol: typeof symbols extends (infer T)[] | undefined ? T : never) => (
     <TableRow key={symbol.id}>
       <TableCell className="font-medium">
         <div className="flex items-center gap-2">
@@ -67,19 +86,20 @@ export function PayTable() {
               <div className="flex items-center gap-2 text-amber-400">
                 <Crown className="h-4 w-4" />
                 <span className="text-sm font-semibold">{RARITY_LABELS.premium} Symboler</span>
-                <span className="text-xs bg-amber-500/20 px-2 py-0.5 rounded">Sjælden</span>
+                <span className="text-xs bg-amber-500/20 px-2 py-0.5 rounded">Vinder fra 2×</span>
               </div>
               <Table>
                 <TableHeader>
                   <TableRow>
                     <TableHead>Symbol</TableHead>
+                    <TableHead className="text-right">2×</TableHead>
                     <TableHead className="text-right">3×</TableHead>
                     <TableHead className="text-right">4×</TableHead>
                     <TableHead className="text-right">5×</TableHead>
                   </TableRow>
                 </TableHeader>
                 <TableBody>
-                  {premiumSymbols.map(renderSymbolRow)}
+                  {premiumSymbols.map(renderPremiumSymbolRow)}
                 </TableBody>
               </Table>
             </div>
@@ -101,7 +121,7 @@ export function PayTable() {
                   </TableRow>
                 </TableHeader>
                 <TableBody>
-                  {commonSymbols.map(renderSymbolRow)}
+                  {commonSymbols.map(renderCommonSymbolRow)}
                 </TableBody>
               </Table>
             </div>

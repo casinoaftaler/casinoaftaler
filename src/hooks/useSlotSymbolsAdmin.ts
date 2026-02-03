@@ -6,6 +6,7 @@ interface SymbolUpdate {
   id: string;
   name?: string;
   image_url?: string | null;
+  multiplier_2?: number;
   multiplier_3?: number;
   multiplier_4?: number;
   multiplier_5?: number;
