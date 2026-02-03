@@ -7,16 +7,33 @@ const corsHeaders = {
     "authorization, x-client-info, apikey, content-type, x-supabase-client-platform, x-supabase-client-platform-version, x-supabase-client-runtime, x-supabase-client-runtime-version",
 };
 
-const BASE_STYLE = `Style: High-quality cartoon/game art style, clean lines, vibrant colors, detailed but stylized. Square 1:1 aspect ratio suitable for a slot machine symbol. Egyptian temple background with subtle columns and hieroglyphics. Warm golden color palette with rich amber tones.`;
+const BASE_STYLE = `
+STYLE REQUIREMENTS (MANDATORY - MUST FOLLOW EXACTLY):
+- Art style: High-quality digital painting, semi-realistic with stylized elements
+- Rendering: Smooth gradients, soft shadows, polished game art quality
+- Color palette: Warm golden and amber tones, with accents of deep blue, turquoise, and rich browns
+- Lighting: Dramatic golden rim lighting from behind, creating a divine glow effect
+- Detail level: High detail on the main subject, slightly softer background
+
+BACKGROUND REQUIREMENTS (MANDATORY):
+- Egyptian temple interior background
+- Stone columns with hieroglyphic carvings visible on both sides
+- Subtle torch light creating warm ambient glow
+- Slightly blurred/depth-of-field background to make the symbol pop
+- The background must fill the ENTIRE canvas edge-to-edge
+- NO white borders, NO white edges, NO margins anywhere
+
+FORMAT: Square 1:1 aspect ratio, suitable for a slot machine symbol.
+`;
 
 function getPromptForSymbol(name: string, isScatter: boolean): string {
   const normalizedName = name.toLowerCase().trim();
 
   // Scatter symbol - the cat on a book
   if (isScatter || normalizedName.includes("fedesvin") || normalizedName.includes("book")) {
-    return `Create a slot machine symbol icon for an Egyptian-themed game called "Book of Fedesvin".
+    return `Create a slot machine symbol for an Egyptian-themed game called "Book of Fedesvin".
 
-The symbol MUST feature:
+MAIN SUBJECT:
 - A CHUBBY/FAT gray and white cat (similar to British Shorthair) sitting comfortably
 - The cat has green eyes and a sweet, slightly smug expression
 - The cat wears an Egyptian pharaoh headdress (nemes) in gold and blue stripes
@@ -24,190 +41,247 @@ The symbol MUST feature:
 - The cat is sitting ON TOP of an ancient Egyptian golden book
 - The book has ornate golden decorations with winged scarab and gems on the spine/cover
 - A red bookmark ribbon visible from the book
-- Background with subtle Egyptian temple elements (columns, hieroglyphics, Anubis statues)
-- Warm golden color palette with rich amber tones
 
-CRITICAL: The image must fill the ENTIRE square canvas edge-to-edge. NO white borders, NO white edges, NO margins. The Egyptian temple background must extend all the way to every edge of the image.
+COMPOSITION:
+- Cat and book centered, filling most of the frame
+- The cat should be the main focus with the book as a pedestal
+- Golden divine light emanating from behind
 
 ${BASE_STYLE}
 
 This is a "Book of the Dead" themed scatter/wild symbol for a slot game.`;
   }
 
-  // Pharaoh symbol
+  // Pharaoh symbol (Premium - most rare)
   if (normalizedName.includes("pharaoh") || normalizedName.includes("farao")) {
-    return `Create a slot machine symbol icon for an Egyptian-themed game.
+    return `Create a slot machine symbol for an Egyptian-themed game.
 
-The symbol features:
-- A majestic Egyptian Pharaoh bust/portrait
+MAIN SUBJECT:
+- A majestic Egyptian Pharaoh depicted as a bust/portrait
 - Golden nemes headdress with blue and gold stripes
-- Royal uraeus cobra on the forehead
-- Golden collar/pectoral with lapis lazuli and turquoise gems
-- Regal, powerful expression with kohl-lined eyes
-- Warm golden lighting with subtle glow
+- Royal uraeus cobra prominently on the forehead
+- Strong, regal face with kohl-lined eyes
+- Golden usekh collar (broad collar) with lapis lazuli, turquoise, and carnelian gems
+- Powerful, commanding expression befitting a god-king
+- Skin with a warm, bronze tone
+
+COMPOSITION:
+- Centered portrait filling most of the frame
+- Subject facing slightly to the side (3/4 view) for dramatic effect
+- Golden divine light emanating from behind the subject
 
 ${BASE_STYLE}`;
   }
 
-  // Anubis symbol
+  // Anubis symbol (Premium)
   if (normalizedName.includes("anubis")) {
-    return `Create a slot machine symbol icon for an Egyptian-themed game.
+    return `Create a slot machine symbol for an Egyptian-themed game.
 
-The symbol features:
-- The Egyptian god Anubis (jackal-headed deity)
-- Sleek black jackal head with pointed ears
-- Golden Egyptian collar and ceremonial adornments
-- Piercing golden or amber eyes
-- Mysterious and noble appearance
-- Holding an ankh or was-scepter
+MAIN SUBJECT:
+- The Egyptian god Anubis depicted as a bust/portrait
+- Sleek black jackal head with elegant pointed ears
+- Fur rendered with subtle sheen and detail
+- Piercing golden/amber eyes with an intense, mysterious gaze
+- Golden Egyptian usekh collar (broad collar) with lapis lazuli and turquoise inlays
+- Golden earrings and ceremonial headdress elements
+- Noble, powerful, and slightly menacing expression
+
+COMPOSITION:
+- Centered portrait filling most of the frame
+- Subject facing slightly to the side (3/4 view) for dramatic effect
+- Golden divine light emanating from behind the subject
 
 ${BASE_STYLE}`;
   }
 
-  // Horus symbol
+  // Horus symbol (Premium)
   if (normalizedName.includes("horus")) {
-    return `Create a slot machine symbol icon for an Egyptian-themed game.
+    return `Create a slot machine symbol for an Egyptian-themed game.
 
-The symbol features:
-- The Egyptian god Horus (falcon-headed deity)
-- Majestic falcon head with detailed feathers
-- Golden and blue headdress with sun disk
-- The Eye of Horus symbolism incorporated
-- Regal and divine appearance
-- Golden collar with precious gems
+MAIN SUBJECT:
+- The Egyptian god Horus depicted as a bust/portrait
+- Majestic falcon head with detailed feathers in brown, gold, and white
+- Sharp, piercing golden eyes with divine intensity
+- Golden and blue pschent (double crown) or sun disk headdress
+- Golden usekh collar with Eye of Horus motifs
+- Regal and divine appearance befitting the sky god
+
+COMPOSITION:
+- Centered portrait filling most of the frame
+- Subject facing slightly to the side (3/4 view) for dramatic effect
+- Golden divine light emanating from behind the subject
 
 ${BASE_STYLE}`;
   }
 
-  // Scarab symbol
+  // Scarab symbol (Premium)
   if (normalizedName.includes("scarab")) {
-    return `Create a slot machine symbol icon for an Egyptian-themed game.
+    return `Create a slot machine symbol for an Egyptian-themed game.
 
-The symbol features:
-- A golden jeweled scarab beetle
-- Ornate wings spread outward
-- Encrusted with turquoise, lapis lazuli, and ruby gems
+MAIN SUBJECT:
+- A sacred golden scarab beetle, highly detailed
+- Wings spread outward in a majestic display
+- Body encrusted with turquoise, lapis lazuli, and ruby gems
 - Holding the sun disk above its head
-- Intricate golden filigree details
-- Sacred Egyptian symbolism
+- Intricate golden filigree and hieroglyphic patterns on the wings
+- Polished, reflective gold surface with depth
+
+COMPOSITION:
+- Scarab centered and filling approximately 75% of the frame
+- Wings spread symmetrically
+- Sun disk creating a golden glow above
 
 ${BASE_STYLE}`;
   }
 
-  // Isis symbol
+  // Isis symbol (Common)
   if (normalizedName.includes("isis")) {
-    return `Create a slot machine symbol icon for an Egyptian-themed game.
+    return `Create a slot machine symbol for an Egyptian-themed game.
 
-The symbol features:
-- The Egyptian goddess Isis
-- Elegant feminine face with kohl-lined eyes
-- Throne-shaped crown (hieroglyph of her name)
-- Golden wings spread gracefully
-- Ornate golden jewelry and collar
-- Serene and powerful expression
+MAIN SUBJECT:
+- The Egyptian goddess Isis depicted as a bust/portrait
+- Elegant feminine face with kohl-lined eyes and warm bronze skin
+- Throne-shaped hieroglyph crown (her namesake) in gold
+- Golden wings gracefully framing her shoulders
+- Ornate golden usekh collar with lapis lazuli and turquoise
+- Serene, wise, and powerful expression
+
+COMPOSITION:
+- Centered portrait filling most of the frame
+- Subject facing slightly to the side (3/4 view) for dramatic effect
+- Golden divine light emanating from behind the subject
 
 ${BASE_STYLE}`;
   }
 
-  // Ankh symbol
+  // Ankh symbol (Common)
   if (normalizedName.includes("ankh")) {
-    return `Create a slot machine symbol icon for an Egyptian-themed game.
+    return `Create a slot machine symbol for an Egyptian-themed game.
 
-The symbol features:
-- An ornate golden ankh (key of life)
-- Encrusted with turquoise and lapis lazuli gems
-- Intricate hieroglyphic engravings
-- Glowing with divine golden light
-- Surrounded by subtle rays of power
-- Sacred Egyptian symbolism
+MAIN SUBJECT:
+- An ornate golden ankh (key of life), large and detailed
+- Made of polished gold with a metallic sheen
+- Encrusted with turquoise and lapis lazuli gems at key points
+- Intricate hieroglyphic engravings carved into the gold
+- Subtle divine glow emanating from within
+- 3D appearance with depth and dimension
+
+COMPOSITION:
+- Ankh centered and filling approximately 70% of the frame
+- Slight angle to show depth and dimension
+- Golden rays of light behind it
 
 ${BASE_STYLE}`;
   }
 
-  // Letter A
+  // Letter A (Common)
   if (normalizedName === "a" || normalizedName.includes("letter a")) {
-    return `Create a slot machine symbol icon for an Egyptian-themed game.
+    return `Create a slot machine symbol for an Egyptian-themed game.
 
-The symbol features:
-- A stylized letter "A" in golden Egyptian style
-- Decorated with hieroglyphic patterns
-- Adorned with small turquoise and gold gems
-- Egyptian lotus or papyrus motifs incorporated
-- Elegant serif font with Egyptian flair
-- Subtle golden glow effect
+MAIN SUBJECT:
+- A large, ornate letter "A" as the central focus
+- Made of polished gold with a metallic sheen
+- Decorated with subtle hieroglyphic engravings carved into the gold
+- Small turquoise and lapis lazuli gem accents at key points
+- 3D appearance with depth and dimension
+- Elegant serif font style with Egyptian decorative flourishes
+
+COMPOSITION:
+- Letter centered and filling approximately 70% of the frame
+- Letter should appear to be a golden artifact/treasure
 
 ${BASE_STYLE}`;
   }
 
-  // Letter K
+  // Letter K (Common)
   if (normalizedName === "k" || normalizedName.includes("letter k")) {
-    return `Create a slot machine symbol icon for an Egyptian-themed game.
+    return `Create a slot machine symbol for an Egyptian-themed game.
 
-The symbol features:
-- A stylized letter "K" in golden Egyptian style
-- Decorated with hieroglyphic patterns
-- Adorned with small turquoise and gold gems
-- Egyptian scarab or eye motifs incorporated
-- Elegant serif font with Egyptian flair
-- Subtle golden glow effect
+MAIN SUBJECT:
+- A large, ornate letter "K" as the central focus
+- Made of polished gold with a metallic sheen
+- Decorated with subtle hieroglyphic engravings carved into the gold
+- Small turquoise and lapis lazuli gem accents at key points
+- 3D appearance with depth and dimension
+- Elegant serif font style with Egyptian decorative flourishes
+
+COMPOSITION:
+- Letter centered and filling approximately 70% of the frame
+- Letter should appear to be a golden artifact/treasure
 
 ${BASE_STYLE}`;
   }
 
-  // Letter Q
+  // Letter Q (Common)
   if (normalizedName === "q" || normalizedName.includes("letter q")) {
-    return `Create a slot machine symbol icon for an Egyptian-themed game.
+    return `Create a slot machine symbol for an Egyptian-themed game.
 
-The symbol features:
-- A stylized letter "Q" in golden Egyptian style
-- Decorated with hieroglyphic patterns
-- Adorned with small turquoise and gold gems
-- Egyptian snake or cobra motifs incorporated
-- Elegant serif font with Egyptian flair
-- Subtle golden glow effect
+MAIN SUBJECT:
+- A large, ornate letter "Q" as the central focus
+- Made of polished gold with a metallic sheen
+- Decorated with subtle hieroglyphic engravings carved into the gold
+- Small turquoise and lapis lazuli gem accents at key points
+- 3D appearance with depth and dimension
+- Elegant serif font style with Egyptian decorative flourishes
+
+COMPOSITION:
+- Letter centered and filling approximately 70% of the frame
+- Letter should appear to be a golden artifact/treasure
 
 ${BASE_STYLE}`;
   }
 
-  // Letter J
+  // Letter J (Common)
   if (normalizedName === "j" || normalizedName.includes("letter j")) {
-    return `Create a slot machine symbol icon for an Egyptian-themed game.
+    return `Create a slot machine symbol for an Egyptian-themed game.
 
-The symbol features:
-- A stylized letter "J" in golden Egyptian style
-- Decorated with hieroglyphic patterns
-- Adorned with small turquoise and gold gems
-- Egyptian feather or reed motifs incorporated
-- Elegant serif font with Egyptian flair
-- Subtle golden glow effect
+MAIN SUBJECT:
+- A large, ornate letter "J" as the central focus
+- Made of polished gold with a metallic sheen
+- Decorated with subtle hieroglyphic engravings carved into the gold
+- Small turquoise and lapis lazuli gem accents at key points
+- 3D appearance with depth and dimension
+- Elegant serif font style with Egyptian decorative flourishes
+
+COMPOSITION:
+- Letter centered and filling approximately 70% of the frame
+- Letter should appear to be a golden artifact/treasure
 
 ${BASE_STYLE}`;
   }
 
-  // Number 10
+  // Number 10 (Common)
   if (normalizedName === "10" || normalizedName.includes("ten")) {
-    return `Create a slot machine symbol icon for an Egyptian-themed game.
+    return `Create a slot machine symbol for an Egyptian-themed game.
 
-The symbol features:
-- A stylized number "10" in golden Egyptian style
-- Decorated with hieroglyphic patterns
-- Adorned with small turquoise and gold gems
-- Egyptian pyramid or obelisk motifs incorporated
-- Elegant serif font with Egyptian flair
-- Subtle golden glow effect
+MAIN SUBJECT:
+- A large, ornate number "10" as the central focus
+- Made of polished gold with a metallic sheen
+- Decorated with subtle hieroglyphic engravings carved into the gold
+- Small turquoise and lapis lazuli gem accents at key points
+- 3D appearance with depth and dimension
+- Elegant serif font style with Egyptian decorative flourishes
+
+COMPOSITION:
+- Number centered and filling approximately 70% of the frame
+- Number should appear to be a golden artifact/treasure
 
 ${BASE_STYLE}`;
   }
 
   // Default fallback - generic Egyptian symbol
-  return `Create a slot machine symbol icon for an Egyptian-themed game.
+  return `Create a slot machine symbol for an Egyptian-themed game.
 
-The symbol features:
-- A ${name} themed icon in ancient Egyptian style
-- Rich golden colors with blue and turquoise accents
-- Ornate decorative details
-- Egyptian hieroglyphic background elements
-- Warm, glowing golden lighting
+MAIN SUBJECT:
+- A ${name} themed icon rendered in ancient Egyptian style
+- Made of or decorated with polished gold
+- Rich details with turquoise and lapis lazuli accents
+- Hieroglyphic decorative elements
+- 3D appearance with depth and dimension
+
+COMPOSITION:
+- Subject centered and filling approximately 70% of the frame
+- Should appear as a precious Egyptian artifact
 
 ${BASE_STYLE}`;
 }
