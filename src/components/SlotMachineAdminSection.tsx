@@ -50,9 +50,10 @@ import type { SlotSymbol } from "@/lib/slotGameLogic";
 interface SortableSymbolRowProps {
   symbol: SlotSymbol;
   onEdit: (symbol: SlotSymbol) => void;
+  spawnPercentage: number;
 }
 
-function SortableSymbolRow({ symbol, onEdit }: SortableSymbolRowProps) {
+function SortableSymbolRow({ symbol, onEdit, spawnPercentage }: SortableSymbolRowProps) {
   const {
     attributes,
     listeners,
@@ -98,6 +99,7 @@ function SortableSymbolRow({ symbol, onEdit }: SortableSymbolRowProps) {
         </div>
         <div className="text-sm text-muted-foreground">
           <span className="text-amber-500 font-medium">Vægt: {symbol.weight}</span>
+          <span className="text-primary font-medium ml-2">({spawnPercentage.toFixed(2)}%)</span>
           {" | "}
           {symbol.rarity === 'premium' && `2×: ${symbol.multiplier_2}x | `}3×: {symbol.multiplier_3}x | 4×: {symbol.multiplier_4}x | 5×: {symbol.multiplier_5}x
         </div>
@@ -114,9 +116,10 @@ interface EditSymbolDialogProps {
   symbol: SlotSymbol | null;
   open: boolean;
   onClose: () => void;
+  allSymbols: SlotSymbol[];
 }
 
-function EditSymbolDialog({ symbol, open, onClose }: EditSymbolDialogProps) {
+function EditSymbolDialog({ symbol, open, onClose, allSymbols }: EditSymbolDialogProps) {
   const { updateSymbol } = useSlotSymbolsAdmin();
   const [isGeneratingAI, setIsGeneratingAI] = useState(false);
   const [formData, setFormData] = useState({
@@ -246,6 +249,30 @@ function EditSymbolDialog({ symbol, open, onClose }: EditSymbolDialogProps) {
               </>
             )}
           </Button>
+
+          {/* Spawn percentage preview */}
+          {(() => {
+            const currentWeight = parseFloat(formData.weight) || 0;
+            const otherSymbolsWeight = allSymbols
+              .filter(s => s.id !== symbol?.id)
+              .reduce((sum, s) => sum + (s.weight || 0), 0);
+            const totalWeight = otherSymbolsWeight + currentWeight;
+            const percentage = totalWeight > 0 ? (currentWeight / totalWeight) * 100 : 0;
+            
+            return (
+              <div className="flex items-center gap-3 p-3 bg-muted/50 rounded-lg border">
+                <Percent className="h-5 w-5 text-primary" />
+                <div>
+                  <p className="text-sm font-medium">
+                    Spawn sandsynlighed: <span className="text-primary">{percentage.toFixed(2)}%</span>
+                  </p>
+                  <p className="text-xs text-muted-foreground">
+                    Baseret på total vægt: {totalWeight} (dette symbol: {currentWeight})
+                  </p>
+                </div>
+              </div>
+            );
+          })()}
 
           <div className="grid grid-cols-5 gap-4">
             <div className="space-y-2">
@@ -390,6 +417,9 @@ function SymbolsTab() {
     );
   }
 
+  // Calculate total weight for percentage calculation
+  const totalWeight = orderedSymbols.reduce((sum, s) => sum + (s.weight || 0), 0);
+
   return (
     <>
       <DndContext
@@ -407,6 +437,7 @@ function SymbolsTab() {
                 key={symbol.id}
                 symbol={symbol}
                 onEdit={setEditingSymbol}
+                spawnPercentage={totalWeight > 0 ? ((symbol.weight || 0) / totalWeight) * 100 : 0}
               />
             ))}
           </div>
@@ -417,6 +448,7 @@ function SymbolsTab() {
         symbol={editingSymbol}
         open={!!editingSymbol}
         onClose={() => setEditingSymbol(null)}
+        allSymbols={orderedSymbols}
       />
     </>
   );
