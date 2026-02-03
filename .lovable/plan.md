@@ -1,87 +1,63 @@
 
-# Fix Symbol Weights: 10 and J Are Too Rare
+# Fix Decimal Win Storage in Leaderboard
 
-## The Bug
+## The Problem
 
-The `SYMBOL_WEIGHTS` configuration in `slotGameLogic.ts` is missing entries for **J** and **10** symbols. When a symbol name isn't found, the code defaults to weight 10:
+The database columns for storing wins are defined as **integer**, which truncates decimal values:
 
-```typescript
-const baseWeight = SYMBOL_WEIGHTS[s.name] || 10;  // Default of 10 is very low!
-```
+| Column | Current Type | Problem |
+|--------|--------------|---------|
+| win_amount | integer | 1.5 becomes 1 |
+| bet_amount | integer | OK (usually whole numbers) |
+| bonus_win_amount | integer | 1.5 becomes 1 |
 
-This means J and 10 have the same spawn rate as premium symbols like Horus and Scarab.
+When a player wins 1.5 points (from a 0.5× multiplier with bet 3), it gets saved as 1, losing 0.5 points from the leaderboard.
 
-## Current vs Desired Probabilities
+## Solution
 
-### Current (Broken)
-
-| Symbol | Weight | Chance | Status |
-|--------|--------|--------|--------|
-| 10 | 10 (default) | ~4% | Too rare |
-| J | 10 (default) | ~4% | Too rare |
-| Q | 60 | ~27% | OK |
-| K | 55 | ~24% | OK |
-| A | 50 | ~22% | OK |
-| Scarab | 15 | ~7% | OK |
-| Horus | 12 | ~5% | OK |
-| Anubis | 8 | ~4% | OK |
-| Pharaoh | 5 | ~2% | OK |
-| Scatter | 1 | ~0.4% | OK |
-
-### Corrected Weights
-
-Based on your requirements (10 and J most common, K and A slightly less common, premiums rare):
-
-| Symbol | New Weight | New Chance | Category |
-|--------|------------|------------|----------|
-| **10** | 70 | ~22% | Most common |
-| **J** | 70 | ~22% | Most common |
-| Q | 60 | ~19% | Common |
-| K | 50 | ~16% | Slightly less common |
-| A | 45 | ~14% | Slightly less common |
-| Scarab | 8 | ~2.5% | Premium (rare) |
-| Horus | 6 | ~1.9% | Premium (rare) |
-| Anubis | 4 | ~1.3% | Premium (rare) |
-| Pharaoh | 2 | ~0.6% | Premium (most rare) |
-| Scatter | 1 | ~0.3% | Scatter |
-
-**Total: 316 weight units**
+Change the `win_amount` and `bonus_win_amount` columns from `integer` to `numeric(10,2)` to support 2 decimal places.
 
 ## Changes Required
 
-### File: `src/lib/slotGameLogic.ts`
+### 1. Database Migration
 
-Update the `SYMBOL_WEIGHTS` object to:
-1. Remove Isis and Ankh (not in database)
-2. Add J and 10 with highest weights
-3. Rebalance all weights for desired distribution
+Alter the `slot_game_results` table to use decimal types:
 
-```typescript
-export const SYMBOL_WEIGHTS: Record<string, number> = {
-  // Premium symbols (rare)
-  'Pharaoh': 2,   // Most rare premium (~0.6%)
-  'Anubis': 4,    // (~1.3%)
-  'Horus': 6,     // (~1.9%)
-  'Scarab': 8,    // (~2.5%)
-  // Common symbols - K and A slightly less common
-  'A': 45,        // (~14%)
-  'K': 50,        // (~16%)
-  // Common symbols - Q, J, 10 most common
-  'Q': 60,        // (~19%)
-  'J': 70,        // (~22%)
-  '10': 70,       // (~22%)
-  // Scatter (extremely rare)
-  'Book': 1,      // (~0.3%)
-  'Fedesvins Book': 1,  // Alternative scatter name
-};
+```sql
+-- Change win_amount from integer to numeric
+ALTER TABLE slot_game_results 
+  ALTER COLUMN win_amount TYPE numeric(10,2) USING win_amount::numeric(10,2);
+
+-- Change bonus_win_amount from integer to numeric  
+ALTER TABLE slot_game_results 
+  ALTER COLUMN bonus_win_amount TYPE numeric(10,2) USING bonus_win_amount::numeric(10,2);
 ```
+
+### 2. Update the Leaderboard View
+
+The `slot_leaderboard` view needs to be recreated to handle the new numeric types (it will automatically work with the new column types, no changes needed to the view definition).
+
+## Files Changed
+
+| Location | Change |
+|----------|--------|
+| Database migration | Alter column types to numeric(10,2) |
+| No code changes needed | The existing code already passes decimal values |
+
+## What This Fixes
+
+| Scenario | Before | After |
+|----------|--------|-------|
+| Win 1.5 points | Saved as 1 | Saved as 1.50 |
+| Win 0.75 points | Saved as 0 | Saved as 0.75 |
+| Total winnings display | Missing decimals | Accurate totals |
+
+## Impact on Existing Data
+
+- Existing integer values will be converted to decimals (1 → 1.00)
+- No data loss for existing records
+- All future wins will be recorded accurately
 
 ## Summary
 
-| Issue | Fix |
-|-------|-----|
-| J missing from weights | Add with weight 70 |
-| 10 missing from weights | Add with weight 70 |
-| Isis/Ankh in weights but not in DB | Remove |
-| Premium symbols too common relative to fix | Reduce weights to 2-8 |
-| Scatter name mismatch | Add "Fedesvins Book" as alias |
+This is a simple database schema change that converts integer columns to numeric columns, allowing decimal win amounts to be stored correctly. The leaderboard totals will then accurately reflect all wins including those with decimal multipliers.
