@@ -35,7 +35,7 @@ export function SlotSymbol({ symbol, isWinning, isSpinning, isExpanded, isNewlyE
           alt={symbol.name}
           className={cn(
             // Image fills most of the container
-            "w-[52px] h-[52px] xs:w-[64px] xs:h-[64px] sm:w-[80px] sm:h-[80px] md:w-[96px] md:h-[96px] lg:w-[124px] lg:h-[124px] xl:w-[144px] xl:h-[144px] object-cover transition-transform duration-300",
+            "w-[52px] h-[52px] xs:w-[64px] xs:h-[64px] sm:w-[80px] sm:h-[80px] md:w-[96px] md:h-[96px] lg:w-[124px] lg:h-[124px] xl:w-[144px] xl:h-[144px] object-cover rounded-lg transition-transform duration-300",
             isExpanded && "scale-110",
             isNewlyExpanded && "animate-[symbol-expand_0.5s_ease-out]"
           )}
