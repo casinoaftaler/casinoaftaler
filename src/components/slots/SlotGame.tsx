@@ -722,24 +722,14 @@ export function SlotGame() {
                           setTeaseReels([]);
                           setActiveTeaseReelIndex(null);
                           
-                          // Release spin lock after 500ms delay AFTER win animation completes
-                          const releaseSpinLock = () => {
-                            setTimeout(() => {
-                              spinLockRef.current = false;
-                              if (spinLockTimeoutRef.current) {
-                                clearTimeout(spinLockTimeoutRef.current);
-                                spinLockTimeoutRef.current = null;
-                              }
-                            }, 500);
-                          };
-                          
-                          // If there's a win animation, wait for it to complete first
-                          if (result.totalWin > 0) {
-                            // Win animation takes 2000ms, release lock 500ms after that
-                            setTimeout(releaseSpinLock, 2000);
-                          } else {
-                            releaseSpinLock();
-                          }
+                          // Release spin lock after a short delay to prevent immediate re-spin
+                          setTimeout(() => {
+                            spinLockRef.current = false;
+                            if (spinLockTimeoutRef.current) {
+                              clearTimeout(spinLockTimeoutRef.current);
+                              spinLockTimeoutRef.current = null;
+                            }
+                          }, 300);
                         }
                       }}
                       teaseMode={teaseReels.includes(colIndex)}
