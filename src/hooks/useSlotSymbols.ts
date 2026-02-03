@@ -13,11 +13,15 @@ export function useSlotSymbols() {
 
       if (error) throw error;
       
-      // Cast rarity to proper type since DB returns string and ensure weight is a number
+      // Cast rarity to proper type and ensure all numeric fields are numbers with defaults
       return (data || []).map(symbol => ({
         ...symbol,
         rarity: symbol.rarity as SymbolRarity,
-        weight: Number(symbol.weight) || 10
+        weight: Number(symbol.weight) || 10,
+        multiplier_2: Number(symbol.multiplier_2) || 0,
+        multiplier_3: Number(symbol.multiplier_3) || 0,
+        multiplier_4: Number(symbol.multiplier_4) || 0,
+        multiplier_5: Number(symbol.multiplier_5) || 0,
       }));
     },
   });
