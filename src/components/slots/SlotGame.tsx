@@ -641,25 +641,16 @@ export function SlotGame() {
                               slotSounds.playBigWin();
                               setIsWinAnimating(true);
                               setWinAmount(result.totalWin);
-                              if (!isBonusSpin) {
-                                toast.success(`🎉 STOR GEVINST! ${result.totalWin} point!`);
-                              }
                               setTimeout(() => setIsWinAnimating(false), 2000);
                             } else if (result.totalWin >= bet * 10) {
                               slotSounds.playMediumWin();
                               setIsWinAnimating(true);
                               setWinAmount(result.totalWin);
-                              if (!isBonusSpin) {
-                                toast.success(`Gevinst: ${result.totalWin} point`);
-                              }
                               setTimeout(() => setIsWinAnimating(false), 2000);
                             } else if (result.totalWin > 0) {
                               slotSounds.playSmallWin();
                               setIsWinAnimating(true);
                               setWinAmount(result.totalWin);
-                              if (!isBonusSpin) {
-                                toast.success(`Gevinst: ${result.totalWin} point`);
-                              }
                               setTimeout(() => setIsWinAnimating(false), 2000);
                             } else {
                               slotSounds.playNoWin();
