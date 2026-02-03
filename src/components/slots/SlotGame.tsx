@@ -680,31 +680,31 @@ export function SlotGame() {
             <VolumeControl />
           </div>
 
-          {/* Centered large round spin button */}
-          <div className="flex justify-center my-3 sm:my-4">
+          {/* Large round spin button - centered on mobile, right-aligned on desktop */}
+          <div className="flex justify-center md:justify-end my-3 sm:my-4 md:pr-8 lg:pr-16">
             <Button
               className={cn(
                 // Round shape
                 "rounded-full aspect-square",
-                // Responsive sizing
-                "w-20 h-20 sm:w-24 sm:h-24 md:w-28 md:h-28",
+                // Responsive sizing - MUCH larger on desktop
+                "w-20 h-20 sm:w-24 sm:h-24 md:w-32 md:h-32 lg:w-40 lg:h-40 xl:w-44 xl:h-44",
                 // Golden gradient with 3D effect
                 bonusState.isActive
                   ? "bg-gradient-to-br from-purple-400 via-purple-500 to-purple-700"
                   : "bg-gradient-to-br from-amber-300 via-amber-500 to-amber-700",
-                // Golden border
+                // Golden border - thicker on desktop
                 bonusState.isActive
-                  ? "border-2 border-purple-400/60"
-                  : "border-2 border-amber-400/60",
-                // Deep glow shadow
+                  ? "border-2 md:border-4 border-purple-400/60"
+                  : "border-2 md:border-4 border-amber-400/60",
+                // Deep glow shadow - larger on desktop
                 bonusState.isActive
-                  ? "shadow-[0_0_30px_rgba(168,85,247,0.5),0_4px_20px_rgba(0,0,0,0.3)]"
-                  : "shadow-[0_0_30px_rgba(251,191,36,0.5),0_4px_20px_rgba(0,0,0,0.3)]",
+                  ? "shadow-[0_0_30px_rgba(168,85,247,0.5),0_4px_20px_rgba(0,0,0,0.3)] md:shadow-[0_0_50px_rgba(168,85,247,0.6),0_8px_30px_rgba(0,0,0,0.4)]"
+                  : "shadow-[0_0_30px_rgba(251,191,36,0.5),0_4px_20px_rgba(0,0,0,0.3)] md:shadow-[0_0_50px_rgba(251,191,36,0.6),0_8px_30px_rgba(0,0,0,0.4)]",
                 // Hover effects
                 !isSpinning && canSpinNow && !isAutoSpinning && (
                   bonusState.isActive
-                    ? "hover:shadow-[0_0_50px_rgba(168,85,247,0.7),0_6px_25px_rgba(0,0,0,0.4)]"
-                    : "hover:shadow-[0_0_50px_rgba(251,191,36,0.7),0_6px_25px_rgba(0,0,0,0.4)]"
+                    ? "hover:shadow-[0_0_60px_rgba(168,85,247,0.8),0_10px_40px_rgba(0,0,0,0.5)]"
+                    : "hover:shadow-[0_0_60px_rgba(251,191,36,0.8),0_10px_40px_rgba(0,0,0,0.5)]"
                 ),
                 "hover:scale-105 transition-all duration-200",
                 // Active/press effect
@@ -714,7 +714,7 @@ export function SlotGame() {
                 // Disabled state
                 "disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100",
                 // Text styling
-                "text-white font-bold text-lg sm:text-xl flex flex-col items-center justify-center"
+                "text-white font-bold text-lg sm:text-xl md:text-2xl lg:text-3xl flex flex-col items-center justify-center"
               )}
               onClick={handleSpin}
               disabled={isSpinning || !canSpinNow || showBonusTrigger || isAutoSpinning}
@@ -722,25 +722,25 @@ export function SlotGame() {
               {isSpinning ? (
                 <div className="relative">
                   {/* Outer rotating ring */}
-                  <div className="absolute inset-0 rounded-full border-4 border-transparent border-t-white/80 border-r-white/40 animate-spin" 
+                  <div className="absolute inset-0 rounded-full border-4 md:border-6 border-transparent border-t-white/80 border-r-white/40 animate-spin" 
                        style={{ animationDuration: '0.8s' }} />
                   {/* Inner spinning icon */}
                   <Gamepad2 
-                    className="h-8 w-8 sm:h-10 sm:w-10 md:h-12 md:w-12 animate-spin drop-shadow-[0_0_8px_rgba(255,255,255,0.8)]" 
+                    className="h-8 w-8 sm:h-10 sm:w-10 md:h-14 md:w-14 lg:h-16 lg:w-16 xl:h-20 xl:w-20 animate-spin drop-shadow-[0_0_8px_rgba(255,255,255,0.8)]" 
                     style={{ animationDuration: '1.5s', animationDirection: 'reverse' }}
                   />
                 </div>
               ) : !canSpinNow ? (
-                <span className="text-xs sm:text-sm text-center leading-tight">INGEN<br/>SPINS</span>
+                <span className="text-xs sm:text-sm md:text-base lg:text-lg text-center leading-tight">INGEN<br/>SPINS</span>
               ) : bonusState.isActive ? (
                 <>
-                  <Gamepad2 className="h-6 w-6 sm:h-8 sm:w-8 md:h-10 md:w-10 mb-1 transition-transform group-hover:rotate-12" />
-                  <span className="text-xs sm:text-sm">FREE</span>
+                  <Gamepad2 className="h-6 w-6 sm:h-8 sm:w-8 md:h-12 md:w-12 lg:h-14 lg:w-14 xl:h-16 xl:w-16 mb-1 transition-transform group-hover:rotate-12" />
+                  <span className="text-xs sm:text-sm md:text-base lg:text-xl">FREE</span>
                 </>
               ) : (
                 <>
-                  <Gamepad2 className="h-6 w-6 sm:h-8 sm:w-8 md:h-10 md:w-10 mb-1 transition-transform hover:rotate-12" />
-                  <span className="text-sm sm:text-base">SPIN</span>
+                  <Gamepad2 className="h-6 w-6 sm:h-8 sm:w-8 md:h-12 md:w-12 lg:h-14 lg:w-14 xl:h-16 xl:w-16 mb-1 transition-transform hover:rotate-12" />
+                  <span className="text-sm sm:text-base md:text-lg lg:text-2xl">SPIN</span>
                 </>
               )}
             </Button>
