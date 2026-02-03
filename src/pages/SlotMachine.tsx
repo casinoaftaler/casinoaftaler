@@ -96,9 +96,9 @@ export default function SlotMachine() {
       />
       <div className="absolute inset-0 bg-gradient-to-b from-background/60 via-background/40 to-background/70 -z-10" />
       
-      <div className="container px-2 sm:px-4">
-        {/* Title Image with glow animation - reduced margin */}
-        <div className="flex justify-center">
+      <div className="container px-2 sm:px-4 pt-1 sm:pt-2">
+        {/* Title Image with glow animation - minimal top spacing */}
+        <div className="flex justify-center -mt-2 sm:-mt-1">
           <img 
             src={titleImage} 
             alt="Book of Fedesvin" 
