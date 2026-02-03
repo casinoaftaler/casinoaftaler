@@ -1,8 +1,10 @@
-import { useState } from "react";
+import { useState, useCallback } from "react";
 import { SlotGame } from "@/components/slots/SlotGame";
 import { SlotLeaderboard } from "@/components/slots/SlotLeaderboard";
 import { SpinsRemaining } from "@/components/slots/SpinsRemaining";
 import { SlotPageLockGate } from "@/components/slots/SlotPageLockGate";
+import { SlotLoadingScreen } from "@/components/slots/SlotLoadingScreen";
+import { SlotIntroScreen } from "@/components/slots/SlotIntroScreen";
 import { useAuth } from "@/hooks/useAuth";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
 import { useSlotPageAccess } from "@/hooks/useSlotPageAccess";
@@ -13,10 +15,20 @@ import { Gamepad2, Trophy, ChevronDown, ChevronUp } from "lucide-react";
 import defaultSlotBackground from "@/assets/slots/slot-background.jpg";
 import defaultTitleImage from "@/assets/slots/book-of-fedesvin-title.png";
 
+type LoadingPhase = 'loading' | 'intro' | 'ready';
+
 export default function SlotMachine() {
   const { user, loading } = useAuth();
   const { data: siteSettings } = useSiteSettings();
   const { isLocked, hasAccess, isLoading: accessLoading, error, verifyPassword } = useSlotPageAccess();
+  
+  // Loading phase state with session persistence
+  const [loadingPhase, setLoadingPhase] = useState<LoadingPhase>(() => {
+    if (sessionStorage.getItem('slot_initialized')) {
+      return 'ready';
+    }
+    return 'loading';
+  });
   
   // Leaderboard toggle state with localStorage persistence
   const [showLeaderboard, setShowLeaderboard] = useState(() => {
@@ -28,9 +40,28 @@ export default function SlotMachine() {
     setShowLeaderboard(newValue);
     localStorage.setItem('slot-show-leaderboard', String(newValue));
   };
+
+  const handleLoadingComplete = useCallback(() => {
+    setLoadingPhase('intro');
+  }, []);
+
+  const handleIntroComplete = useCallback(() => {
+    sessionStorage.setItem('slot_initialized', 'true');
+    setLoadingPhase('ready');
+  }, []);
   
   const titleImage = siteSettings?.slot_title_image || defaultTitleImage;
   const backgroundImage = siteSettings?.slot_background_image || defaultSlotBackground;
+
+  // Show loading screen first (before auth check)
+  if (loadingPhase === 'loading') {
+    return <SlotLoadingScreen onComplete={handleLoadingComplete} />;
+  }
+
+  // Show intro screen
+  if (loadingPhase === 'intro') {
+    return <SlotIntroScreen onStart={handleIntroComplete} />;
+  }
 
   // Show loading while checking auth and access
   if (loading || accessLoading) {
