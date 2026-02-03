@@ -467,11 +467,12 @@ export function SlotGame() {
           <div className="flex justify-center relative">
             <SlotMachineFrame isBonus={bonusState.isActive} isSpinning={isSpinning}>
               <div className="relative p-1 xs:p-2 sm:p-4 md:p-6 rounded-xl">
-                {/* Win Celebration Effects */}
+              {/* Win Celebration Effects */}
                 <WinCelebration
                   isActive={isWinAnimating}
                   winAmount={winAmount}
                   bet={bet}
+                  onAnimationComplete={() => setIsWinAnimating(false)}
                 />
                 
                 {/* Reel container */}

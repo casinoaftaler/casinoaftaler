@@ -298,6 +298,15 @@ All colors MUST be HSL.
   }
 }
 
+@keyframes win-amount-pulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.15);
+  }
+}
+
 @keyframes scatter-tease-glow {
   0%, 100% {
     border-color: rgba(251, 191, 36, 0.6);
