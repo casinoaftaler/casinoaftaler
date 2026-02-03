@@ -26,7 +26,7 @@ export function SlotMachineFrame({
       {hasFrame && (
         <div 
           className={cn(
-            "absolute inset-0 pointer-events-none z-10 transition-opacity duration-500",
+            "absolute inset-0 pointer-events-none -z-10 transition-opacity duration-500",
             imageLoaded ? "opacity-100" : "opacity-0"
           )}
           style={{
