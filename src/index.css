@@ -307,6 +307,21 @@ All colors MUST be HSL.
   }
 }
 
+@keyframes big-win-entry {
+  0% {
+    opacity: 0;
+    transform: scale(0.5);
+  }
+  70% {
+    opacity: 1;
+    transform: scale(1.1);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
 @keyframes scatter-tease-glow {
   0%, 100% {
     border-color: rgba(251, 191, 36, 0.6);
