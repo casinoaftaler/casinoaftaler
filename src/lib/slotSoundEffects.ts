@@ -12,6 +12,16 @@ export interface SlotSoundSettings {
   stopImpactVolume: number;
   stopChimeEnabled: boolean;
   stopChimeVolume: number;
+  // Win sounds
+  winSmallVolume: number;
+  winSmallArpeggioSpeed: number;
+  winSmallCoinCount: number;
+  winMediumVolume: number;
+  winMediumSistrumCount: number;
+  winMediumCoinCount: number;
+  winBigVolume: number;
+  winBigFanfareEnabled: boolean;
+  winBigDrumEnabled: boolean;
 }
 
 class SlotSoundEffects {
@@ -35,6 +45,16 @@ class SlotSoundEffects {
     stopImpactVolume: 0.3,
     stopChimeEnabled: true,
     stopChimeVolume: 0.1,
+    // Win sounds
+    winSmallVolume: 0.22,
+    winSmallArpeggioSpeed: 80,
+    winSmallCoinCount: 5,
+    winMediumVolume: 0.18,
+    winMediumSistrumCount: 12,
+    winMediumCoinCount: 15,
+    winBigVolume: 0.25,
+    winBigFanfareEnabled: true,
+    winBigDrumEnabled: true,
   };
 
   private getContext(): AudioContext {
@@ -622,8 +642,11 @@ class SlotSoundEffects {
     const ctx = this.getContext();
     const now = ctx.currentTime;
     
+    const { winSmallVolume, winSmallArpeggioSpeed, winSmallCoinCount } = this.soundSettings;
+    
     // Egyptian harp arpeggio (D minor pentatonic)
     const notes = [293.66, 349.23, 440.00, 523.25]; // D4, F4, A4, C5
+    const arpeggioMs = winSmallArpeggioSpeed / 1000; // Convert to seconds
     
     notes.forEach((freq, i) => {
       const osc = ctx.createOscillator();
@@ -635,9 +658,9 @@ class SlotSoundEffects {
       osc.frequency.value = freq;
       osc.type = 'triangle';
       
-      const noteTime = now + i * 0.08;
+      const noteTime = now + i * arpeggioMs;
       gain.gain.setValueAtTime(0, noteTime);
-      gain.gain.linearRampToValueAtTime(0.22 * this.volume, noteTime + 0.02);
+      gain.gain.linearRampToValueAtTime(winSmallVolume * this.volume, noteTime + 0.02);
       gain.gain.exponentialRampToValueAtTime(0.001, noteTime + 0.4);
       
       osc.start(noteTime);
@@ -645,7 +668,7 @@ class SlotSoundEffects {
     });
 
     // Golden coin tinkle
-    for (let i = 0; i < 5; i++) {
+    for (let i = 0; i < winSmallCoinCount; i++) {
       const coin = ctx.createOscillator();
       const coinGain = ctx.createGain();
       
@@ -670,6 +693,8 @@ class SlotSoundEffects {
     const ctx = this.getContext();
     const now = ctx.currentTime;
     
+    const { winMediumVolume, winMediumSistrumCount, winMediumCoinCount } = this.soundSettings;
+    
     // Triumphant Egyptian chord
     const chord = [293.66, 349.23, 440.00, 587.33]; // D, F, A, D (D minor)
     
@@ -683,7 +708,7 @@ class SlotSoundEffects {
       osc.frequency.value = freq;
       osc.type = 'triangle';
       
-      gain.gain.setValueAtTime(0.18 * this.volume, now);
+      gain.gain.setValueAtTime(winMediumVolume * this.volume, now);
       gain.gain.exponentialRampToValueAtTime(0.001, now + 1);
       
       osc.start(now);
@@ -691,7 +716,7 @@ class SlotSoundEffects {
     });
 
     // Sistrum shakes (Egyptian rattle)
-    for (let i = 0; i < 12; i++) {
+    for (let i = 0; i < winMediumSistrumCount; i++) {
       const shake = ctx.createOscillator();
       const shakeGain = ctx.createGain();
       
@@ -710,7 +735,7 @@ class SlotSoundEffects {
     }
 
     // Golden coins cascade
-    for (let i = 0; i < 15; i++) {
+    for (let i = 0; i < winMediumCoinCount; i++) {
       const coin = ctx.createOscillator();
       const coinGain = ctx.createGain();
       
@@ -735,53 +760,59 @@ class SlotSoundEffects {
     const ctx = this.getContext();
     const now = ctx.currentTime;
     
-    // Epic ascending Egyptian fanfare
-    const melody = [
-      { freq: 196.00, time: 0 },      // G3
-      { freq: 233.08, time: 0.12 },   // Bb3
-      { freq: 293.66, time: 0.24 },   // D4
-      { freq: 349.23, time: 0.36 },   // F4
-      { freq: 392.00, time: 0.48 },   // G4
-      { freq: 466.16, time: 0.60 },   // Bb4
-      { freq: 587.33, time: 0.72 },   // D5
-    ];
+    const { winBigVolume, winBigFanfareEnabled, winBigDrumEnabled } = this.soundSettings;
     
-    melody.forEach(({ freq, time }) => {
-      const osc = ctx.createOscillator();
-      const gain = ctx.createGain();
+    // Epic ascending Egyptian fanfare
+    if (winBigFanfareEnabled) {
+      const melody = [
+        { freq: 196.00, time: 0 },      // G3
+        { freq: 233.08, time: 0.12 },   // Bb3
+        { freq: 293.66, time: 0.24 },   // D4
+        { freq: 349.23, time: 0.36 },   // F4
+        { freq: 392.00, time: 0.48 },   // G4
+        { freq: 466.16, time: 0.60 },   // Bb4
+        { freq: 587.33, time: 0.72 },   // D5
+      ];
       
-      osc.connect(gain);
-      gain.connect(ctx.destination);
-      
-      osc.frequency.value = freq;
-      osc.type = 'triangle';
-      
-      const noteTime = now + time;
-      gain.gain.setValueAtTime(0.28 * this.volume, noteTime);
-      gain.gain.exponentialRampToValueAtTime(0.001, noteTime + 0.5);
-      
-      osc.start(noteTime);
-      osc.stop(noteTime + 0.5);
-    });
+      melody.forEach(({ freq, time }) => {
+        const osc = ctx.createOscillator();
+        const gain = ctx.createGain();
+        
+        osc.connect(gain);
+        gain.connect(ctx.destination);
+        
+        osc.frequency.value = freq;
+        osc.type = 'triangle';
+        
+        const noteTime = now + time;
+        gain.gain.setValueAtTime(winBigVolume * this.volume, noteTime);
+        gain.gain.exponentialRampToValueAtTime(0.001, noteTime + 0.5);
+        
+        osc.start(noteTime);
+        osc.stop(noteTime + 0.5);
+      });
+    }
 
     // Deep ceremonial drum
-    for (let i = 0; i < 4; i++) {
-      const drum = ctx.createOscillator();
-      const drumGain = ctx.createGain();
-      
-      drum.connect(drumGain);
-      drumGain.connect(ctx.destination);
-      
-      const drumTime = now + i * 0.25;
-      drum.frequency.setValueAtTime(80, drumTime);
-      drum.frequency.exponentialRampToValueAtTime(40, drumTime + 0.15);
-      drum.type = 'sine';
-      
-      drumGain.gain.setValueAtTime(0.3 * this.volume, drumTime);
-      drumGain.gain.exponentialRampToValueAtTime(0.001, drumTime + 0.2);
-      
-      drum.start(drumTime);
-      drum.stop(drumTime + 0.2);
+    if (winBigDrumEnabled) {
+      for (let i = 0; i < 4; i++) {
+        const drum = ctx.createOscillator();
+        const drumGain = ctx.createGain();
+        
+        drum.connect(drumGain);
+        drumGain.connect(ctx.destination);
+        
+        const drumTime = now + i * 0.25;
+        drum.frequency.setValueAtTime(80, drumTime);
+        drum.frequency.exponentialRampToValueAtTime(40, drumTime + 0.15);
+        drum.type = 'sine';
+        
+        drumGain.gain.setValueAtTime(0.3 * this.volume, drumTime);
+        drumGain.gain.exponentialRampToValueAtTime(0.001, drumTime + 0.2);
+        
+        drum.start(drumTime);
+        drum.stop(drumTime + 0.2);
+      }
     }
 
     // Triumphant Pharaoh chord
@@ -797,7 +828,7 @@ class SlotSoundEffects {
         osc.frequency.value = freq;
         osc.type = 'triangle';
         
-        gain.gain.setValueAtTime(0.15 * this.volume, ctx.currentTime);
+        gain.gain.setValueAtTime((winBigVolume * 0.6) * this.volume, ctx.currentTime);
         gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 2);
         
         osc.start();
