@@ -1,135 +1,87 @@
 
-# Add 2-Symbol Wins for Premium Symbols
+# Fix Symbol Weights: 10 and J Are Too Rare
 
-## Overview
-Premium symbols (Pharaoh, Anubis, Horus, Scarab) will be able to trigger wins with just 2 matching symbols in a row, while common symbols still require 3+ matching symbols.
+## The Bug
 
-## What Changes
+The `SYMBOL_WEIGHTS` configuration in `slotGameLogic.ts` is missing entries for **J** and **10** symbols. When a symbol name isn't found, the code defaults to weight 10:
 
-### 1. Database Update
-Add a new column for 2-symbol multipliers:
-
-| Column | Type | Default |
-|--------|------|---------|
-| multiplier_2 | numeric(10,2) | 0 |
-
-### 2. Game Logic Changes
-Modify the win detection to check symbol rarity:
-- **Premium symbols**: Win with 2, 3, 4, or 5 matching symbols
-- **Common symbols**: Win only with 3, 4, or 5 matching symbols
-- **Scatter**: Unchanged (pays anywhere with 3+)
-
-### 3. PayTable Display
-Update the paytable to show 2× column only for premium symbols:
-
-| Symbol | 2× | 3× | 4× | 5× |
-|--------|----|----|----|----|
-| Pharaoh | 2× | 25× | 100× | 750× |
-| Anubis | 1× | 15× | 75× | 500× |
-| ... | | | | |
-
-### 4. Admin Panel
-Add a new input field for the 2× multiplier when editing symbols.
-
-## Files Changed
-
-| File | Change |
-|------|--------|
-| Database migration | Add `multiplier_2` column with default 0 |
-| `src/lib/slotGameLogic.ts` | Update `SlotSymbol` interface and `checkLineWin` function |
-| `src/lib/bonusGameLogic.ts` | Update `calculateWins` function for bonus spins |
-| `src/components/slots/PayTable.tsx` | Add 2× column for premium symbols |
-| `src/components/SlotMachineAdminSection.tsx` | Add multiplier_2 input field |
-| `src/hooks/useSlotSymbolsAdmin.ts` | Include multiplier_2 in update mutation |
-
-## Technical Details
-
-**Database Migration:**
-```sql
-ALTER TABLE slot_symbols 
-ADD COLUMN multiplier_2 numeric(10,2) DEFAULT 0;
-
--- Set sensible defaults for premium symbols
-UPDATE slot_symbols SET multiplier_2 = 2 WHERE rarity = 'premium';
-```
-
-**Updated SlotSymbol Interface:**
 ```typescript
-export interface SlotSymbol {
-  id: string;
-  name: string;
-  image_url: string | null;
-  multiplier_2: number;  // New field
-  multiplier_3: number;
-  multiplier_4: number;
-  multiplier_5: number;
-  is_scatter: boolean;
-  is_wild: boolean;
-  position: number;
-  rarity: 'premium' | 'common' | 'scatter';
-}
+const baseWeight = SYMBOL_WEIGHTS[s.name] || 10;  // Default of 10 is very low!
 ```
 
-**Win Detection Logic (checkLineWin):**
+This means J and 10 have the same spawn rate as premium symbols like Horus and Scarab.
+
+## Current vs Desired Probabilities
+
+### Current (Broken)
+
+| Symbol | Weight | Chance | Status |
+|--------|--------|--------|--------|
+| 10 | 10 (default) | ~4% | Too rare |
+| J | 10 (default) | ~4% | Too rare |
+| Q | 60 | ~27% | OK |
+| K | 55 | ~24% | OK |
+| A | 50 | ~22% | OK |
+| Scarab | 15 | ~7% | OK |
+| Horus | 12 | ~5% | OK |
+| Anubis | 8 | ~4% | OK |
+| Pharaoh | 5 | ~2% | OK |
+| Scatter | 1 | ~0.4% | OK |
+
+### Corrected Weights
+
+Based on your requirements (10 and J most common, K and A slightly less common, premiums rare):
+
+| Symbol | New Weight | New Chance | Category |
+|--------|------------|------------|----------|
+| **10** | 70 | ~22% | Most common |
+| **J** | 70 | ~22% | Most common |
+| Q | 60 | ~19% | Common |
+| K | 50 | ~16% | Slightly less common |
+| A | 45 | ~14% | Slightly less common |
+| Scarab | 8 | ~2.5% | Premium (rare) |
+| Horus | 6 | ~1.9% | Premium (rare) |
+| Anubis | 4 | ~1.3% | Premium (rare) |
+| Pharaoh | 2 | ~0.6% | Premium (most rare) |
+| Scatter | 1 | ~0.3% | Scatter |
+
+**Total: 316 weight units**
+
+## Changes Required
+
+### File: `src/lib/slotGameLogic.ts`
+
+Update the `SYMBOL_WEIGHTS` object to:
+1. Remove Isis and Ankh (not in database)
+2. Add J and 10 with highest weights
+3. Rebalance all weights for desired distribution
+
 ```typescript
-// Determine minimum required matches based on rarity
-const minMatches = baseSymbol.rarity === 'premium' ? 2 : 3;
-
-if (count >= minMatches) {
-  let multiplier = 0;
-  if (count === 2 && baseSymbol.rarity === 'premium') {
-    multiplier = baseSymbol.multiplier_2;
-  } else if (count === 3) {
-    multiplier = baseSymbol.multiplier_3;
-  } else if (count === 4) {
-    multiplier = baseSymbol.multiplier_4;
-  } else if (count === 5) {
-    multiplier = baseSymbol.multiplier_5;
-  }
-  
-  if (multiplier > 0) {
-    return { lineIndex, symbolId: baseSymbol.id, count, payout: multiplier * betAmount };
-  }
-}
+export const SYMBOL_WEIGHTS: Record<string, number> = {
+  // Premium symbols (rare)
+  'Pharaoh': 2,   // Most rare premium (~0.6%)
+  'Anubis': 4,    // (~1.3%)
+  'Horus': 6,     // (~1.9%)
+  'Scarab': 8,    // (~2.5%)
+  // Common symbols - K and A slightly less common
+  'A': 45,        // (~14%)
+  'K': 50,        // (~16%)
+  // Common symbols - Q, J, 10 most common
+  'Q': 60,        // (~19%)
+  'J': 70,        // (~22%)
+  '10': 70,       // (~22%)
+  // Scatter (extremely rare)
+  'Book': 1,      // (~0.3%)
+  'Fedesvins Book': 1,  // Alternative scatter name
+};
 ```
-
-**PayTable Premium Section:**
-```tsx
-<Table>
-  <TableHeader>
-    <TableRow>
-      <TableHead>Symbol</TableHead>
-      <TableHead className="text-right">2×</TableHead>
-      <TableHead className="text-right">3×</TableHead>
-      <TableHead className="text-right">4×</TableHead>
-      <TableHead className="text-right">5×</TableHead>
-    </TableRow>
-  </TableHeader>
-  <TableBody>
-    {premiumSymbols.map(symbol => (
-      <TableRow key={symbol.id}>
-        <TableCell>...</TableCell>
-        <TableCell className="text-right">{formatMultiplier(symbol.multiplier_2)}</TableCell>
-        <TableCell className="text-right">{formatMultiplier(symbol.multiplier_3)}</TableCell>
-        ...
-      </TableRow>
-    ))}
-  </TableBody>
-</Table>
-```
-
-## Suggested Default Values
-
-| Premium Symbol | 2× | 3× | 4× | 5× |
-|----------------|----|----|----|----|
-| Pharaoh | 2× | 25× | 100× | 750× |
-| Anubis | 1.5× | 15× | 75× | 500× |
-| Horus | 1× | 10× | 50× | 250× |
-| Scarab | 0.5× | 5× | 25× | 125× |
 
 ## Summary
 
-This feature makes premium symbols more valuable and exciting by rewarding players for getting just 2 matching premium symbols on a payline. The balance is maintained by:
-- Only premium symbols can win with 2 matches
-- 2-symbol multipliers are much lower than 3-symbol multipliers
-- Common symbols and scatters work exactly as before
+| Issue | Fix |
+|-------|-----|
+| J missing from weights | Add with weight 70 |
+| 10 missing from weights | Add with weight 70 |
+| Isis/Ankh in weights but not in DB | Remove |
+| Premium symbols too common relative to fix | Reduce weights to 2-8 |
+| Scatter name mismatch | Add "Fedesvins Book" as alias |
