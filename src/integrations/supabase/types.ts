@@ -453,6 +453,7 @@ export type Database = {
           name: string
           position: number
           rarity: string
+          weight: number
         }
         Insert: {
           created_at?: string
@@ -467,6 +468,7 @@ export type Database = {
           name: string
           position?: number
           rarity?: string
+          weight?: number
         }
         Update: {
           created_at?: string
@@ -481,6 +483,7 @@ export type Database = {
           name?: string
           position?: number
           rarity?: string
+          weight?: number
         }
         Relationships: []
       }

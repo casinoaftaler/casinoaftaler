@@ -24,6 +24,7 @@ export interface SlotSymbol {
   is_wild: boolean;
   position: number;
   rarity: 'premium' | 'common' | 'scatter';
+  weight: number;
 }
 
 export interface SpinResult {
@@ -56,26 +57,8 @@ export const RARITY_LABELS: Record<SymbolRarity, string> = {
   scatter: 'Scatter'
 };
 
-// Symbol weights for RNG (higher = more common)
-// Premium symbols are rarer than common symbols
-// Scatter probability tuned for ~1 bonus per 100 spins
-export const SYMBOL_WEIGHTS: Record<string, number> = {
-  // Premium symbols (rare)
-  'Pharaoh': 2,   // Most rare premium (~0.6%)
-  'Anubis': 4,    // (~1.3%)
-  'Horus': 6,     // (~1.9%)
-  'Scarab': 8,    // (~2.5%)
-  // Common symbols - K and A slightly less common
-  'A': 45,        // (~14%)
-  'K': 50,        // (~16%)
-  // Common symbols - Q, J, 10 most common
-  'Q': 60,        // (~19%)
-  'J': 70,        // (~22%)
-  '10': 70,       // (~22%)
-  // Scatter (extremely rare)
-  'Book': 1,      // (~0.3%)
-  'Fedesvins Book': 1,  // Alternative scatter name
-};
+// Default fallback weight if not set in database
+const DEFAULT_SYMBOL_WEIGHT = 10;
 
 // Count scatters per reel column
 export function countScattersPerReel(grid: string[][], symbols: SlotSymbol[]): number[] {
@@ -134,9 +117,9 @@ export function getRandomSymbol(symbols: SlotSymbol[], excludeIds: string[] = []
   // If all symbols are excluded, fall back to full list (shouldn't happen normally)
   const symbolPool = availableSymbols.length > 0 ? availableSymbols : symbols;
   
-  // During bonus spins, reduce scatter weight significantly to make retriggering much harder
+  // Use weight from database, with fallback to default
   const getWeight = (s: SlotSymbol) => {
-    const baseWeight = SYMBOL_WEIGHTS[s.name] || 10;
+    const baseWeight = s.weight || DEFAULT_SYMBOL_WEIGHT;
     if (isBonusSpin && s.is_scatter) {
       return baseWeight * 0.1; // 10x harder to get scatters during bonus
     }

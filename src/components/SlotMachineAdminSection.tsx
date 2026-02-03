@@ -97,6 +97,8 @@ function SortableSymbolRow({ symbol, onEdit }: SortableSymbolRowProps) {
           {symbol.is_scatter && <Badge variant="outline" className="text-xs">Scatter</Badge>}
         </div>
         <div className="text-sm text-muted-foreground">
+          <span className="text-amber-500 font-medium">Vægt: {symbol.weight}</span>
+          {" | "}
           {symbol.rarity === 'premium' && `2×: ${symbol.multiplier_2}x | `}3×: {symbol.multiplier_3}x | 4×: {symbol.multiplier_4}x | 5×: {symbol.multiplier_5}x
         </div>
       </div>
@@ -126,6 +128,7 @@ function EditSymbolDialog({ symbol, open, onClose }: EditSymbolDialogProps) {
     multiplier_5: "25",
     is_scatter: false,
     is_wild: false,
+    weight: "10",
   });
 
   useEffect(() => {
@@ -139,6 +142,7 @@ function EditSymbolDialog({ symbol, open, onClose }: EditSymbolDialogProps) {
         multiplier_5: String(symbol.multiplier_5),
         is_scatter: symbol.is_scatter,
         is_wild: symbol.is_wild,
+        weight: String(symbol.weight || 10),
       });
     }
   }, [symbol]);
@@ -155,6 +159,7 @@ function EditSymbolDialog({ symbol, open, onClose }: EditSymbolDialogProps) {
       multiplier_5: parseFloat(formData.multiplier_5) || 0.1,
       is_scatter: formData.is_scatter,
       is_wild: formData.is_wild,
+      weight: parseFloat(formData.weight) || 10,
     }, {
       onSuccess: () => onClose(),
     });
@@ -242,7 +247,22 @@ function EditSymbolDialog({ symbol, open, onClose }: EditSymbolDialogProps) {
             )}
           </Button>
 
-          <div className="grid grid-cols-4 gap-4">
+          <div className="grid grid-cols-5 gap-4">
+            <div className="space-y-2">
+              <Label htmlFor="weight" className="flex items-center gap-1">
+                <Sparkles className="h-3 w-3 text-amber-500" />
+                Vægt (Odds)
+              </Label>
+              <Input
+                id="weight"
+                type="number"
+                step="1"
+                min="1"
+                value={formData.weight}
+                onChange={(e) => setFormData({ ...formData, weight: e.target.value })}
+              />
+              <p className="text-xs text-muted-foreground">Højere = oftere</p>
+            </div>
             <div className="space-y-2">
               <Label htmlFor="mult-2">2× Multiplier</Label>
               <Input
