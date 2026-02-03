@@ -26,7 +26,11 @@ export function SlotMachineFrame({
       className="relative"
       style={{
         // Add margin to prevent frame from being clipped
-        margin: hasFrame && imageLoaded ? `${frameSize}px` : undefined,
+        // Minimal top margin to reduce space between title and slot
+        marginTop: hasFrame && imageLoaded ? `${Math.min(frameSize * 0.3, 30)}px` : undefined,
+        marginLeft: hasFrame && imageLoaded ? `${frameSize}px` : undefined,
+        marginRight: hasFrame && imageLoaded ? `${frameSize}px` : undefined,
+        marginBottom: hasFrame && imageLoaded ? `${frameSize}px` : undefined,
       }}
     >
       {/* Egyptian Frame Image Overlay */}
