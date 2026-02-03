@@ -24,7 +24,7 @@ import {
   DialogTitle,
 } from "@/components/ui/dialog";
 import { ChartContainer, ChartTooltip, ChartTooltipContent } from "@/components/ui/chart";
-import { AreaChart, Area, XAxis, YAxis, CartesianGrid, ResponsiveContainer, BarChart, Bar } from "recharts";
+import { AreaChart, Area, XAxis, YAxis, CartesianGrid, ResponsiveContainer, BarChart, Bar, LineChart, Line } from "recharts";
 import { GripVertical, Pencil, Loader2, Trophy, Sparkles, TrendingUp, BarChart3, Lock, Wand2, Users, Calendar, Percent, Calculator } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
@@ -548,6 +548,10 @@ const chartConfig = {
     label: "Spillere",
     color: "hsl(var(--chart-3))",
   },
+  rtp: {
+    label: "RTP %",
+    color: "hsl(var(--chart-4))",
+  },
 };
 
 function StatisticsTab() {
@@ -727,6 +731,48 @@ function StatisticsTab() {
                     fillOpacity={0.3}
                   />
                 </AreaChart>
+              </ChartContainer>
+            </CardContent>
+          </Card>
+
+          {/* RTP Over Time */}
+          <Card className="lg:col-span-2">
+            <CardHeader>
+              <CardTitle className="text-base flex items-center gap-2">
+                <Percent className="h-4 w-4" />
+                RTP Over Tid
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              <ChartContainer config={chartConfig} className="h-[250px] w-full">
+                <LineChart data={stats.dailyStats}>
+                  <CartesianGrid strokeDasharray="3 3" className="stroke-muted" />
+                  <XAxis
+                    dataKey="date"
+                    tickFormatter={formatDate}
+                    tick={{ fontSize: 12 }}
+                    className="text-muted-foreground"
+                  />
+                  <YAxis
+                    tick={{ fontSize: 12 }}
+                    className="text-muted-foreground"
+                    domain={[0, 'auto']}
+                    tickFormatter={(value) => `${value.toFixed(0)}%`}
+                  />
+                  <ChartTooltip
+                    content={<ChartTooltipContent />}
+                    labelFormatter={(label) => formatDate(label as string)}
+                    formatter={(value: number) => [`${value.toFixed(1)}%`, "RTP"]}
+                  />
+                  <Line
+                    type="monotone"
+                    dataKey="rtp"
+                    stroke="var(--color-rtp)"
+                    strokeWidth={2}
+                    dot={{ fill: "var(--color-rtp)", strokeWidth: 2, r: 4 }}
+                    activeDot={{ r: 6 }}
+                  />
+                </LineChart>
               </ChartContainer>
             </CardContent>
           </Card>

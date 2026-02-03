@@ -7,6 +7,8 @@ interface DailyStats {
   date: string;
   spins: number;
   winnings: number;
+  bets: number;
+  rtp: number;
   players: number;
 }
 
@@ -77,14 +79,15 @@ export function useSlotAdminStatistics(period: StatPeriod) {
       const avgWinPerSpin = totalSpins > 0 ? totalWinnings / totalSpins : 0;
 
       // Aggregate by date for dailyStats
-      const byDate: Record<string, { spins: number; winnings: number; players: Set<string> }> = {};
+      const byDate: Record<string, { spins: number; winnings: number; bets: number; players: Set<string> }> = {};
       records.forEach((r) => {
         const date = r.created_at.split("T")[0];
         if (!byDate[date]) {
-          byDate[date] = { spins: 0, winnings: 0, players: new Set() };
+          byDate[date] = { spins: 0, winnings: 0, bets: 0, players: new Set() };
         }
         byDate[date].spins++;
         byDate[date].winnings += r.win_amount;
+        byDate[date].bets += r.bet_amount;
         byDate[date].players.add(r.user_id);
       });
 
@@ -93,6 +96,8 @@ export function useSlotAdminStatistics(period: StatPeriod) {
           date,
           spins: data.spins,
           winnings: data.winnings,
+          bets: data.bets,
+          rtp: data.bets > 0 ? (data.winnings / data.bets) * 100 : 0,
           players: data.players.size,
         }))
         .sort((a, b) => a.date.localeCompare(b.date));
