@@ -1,132 +1,250 @@
 
-# Plan: Løs "Flash" af Spin-Resultat i Auto-Spin
 
-## Problemet
+# Plan: Slot Statistik Dashboard til Admin
 
-Når auto-spin er aktivt, vises det endelige spin-resultat kortvarigt (et split-sekund) før animationen starter. Dette sker fordi:
+## Oversigt
+Opret et udvidet statistik-dashboard i admin-panelet der viser slot-maskine statistikker for forskellige tidsperioder: I dag, Denne uge, Denne måned, og Alt tid.
 
-1. `setGrid(originalGrid)` kaldes **før** `setIsSpinning(true)`
-2. React opdaterer state asynkront - så der er et øjeblik hvor den nye grid er sat, men `isSpinning` stadig er `false`
-3. `SlotReel` i "idle" tilstand renderer `displayedSymbolIds` direkte (det endelige resultat)
-4. Brugeren ser derfor resultatet før hjulene begynder at spinne
+---
+
+## Funktioner
+
+### Tidsperiode Selector
+| Periode | Beskrivelse |
+|---------|-------------|
+| I dag | Data fra dagens start (00:00) til nu |
+| Denne uge | Data fra mandag denne uge |
+| Denne måned | Data fra den 1. i denne måned |
+| Alt tid | Al historisk data |
+
+### Statistik Kort (4 kort)
+- **Total Spins** - Antal spins i perioden
+- **Total Gevinster** - Samlet gevinst-points udbetalt
+- **Største Gevinst** - Den højeste enkelt-gevinst
+- **Unikke Spillere** - Antal forskellige brugere der har spillet
+
+### Grafer
+1. **Spins Over Tid** - Line chart der viser antal spins per dag
+2. **Gevinster Over Tid** - Area chart med daglige gevinster
+3. **Top 10 Vindere** - Liste med avatar, navn og total gevinst i perioden
+
+---
+
+## Filer der skal ændres/oprettes
+
+### 1. Opret ny hook: `src/hooks/useSlotAdminStatistics.ts`
+
+Ny hook med periode-parameter der henter aggregeret data:
+
+```typescript
+interface SlotAdminStats {
+  totalSpins: number;
+  totalWinnings: number;
+  biggestWin: number;
+  uniquePlayers: number;
+  totalBets: number;
+  avgWinPerSpin: number;
+  dailyStats: DailyStats[];
+  topWinners: TopWinner[];
+}
+
+interface DailyStats {
+  date: string;
+  spins: number;
+  winnings: number;
+  players: number;
+}
+
+interface TopWinner {
+  user_id: string;
+  total_winnings: number;
+  display_name: string | null;
+  avatar_url: string | null;
+}
+```
+
+Hooket beregner datogrænser baseret på valgt periode:
+- "today": Fra i dag kl. 00:00
+- "week": Fra mandag i denne uge
+- "month": Fra den 1. i denne måned
+- "alltime": Ingen startdato-filter
+
+### 2. Opdater `src/components/SlotMachineAdminSection.tsx`
+
+Udvid `StatisticsTab` komponenten med:
+
+**Import af nye komponenter:**
+- Tabs for periode-valg
+- Recharts for grafer (allerede installeret)
+- ChartContainer fra ui/chart
+
+**Struktur:**
+```tsx
+function StatisticsTab() {
+  const [period, setPeriod] = useState<"today" | "week" | "month" | "alltime">("today");
+  const { data: stats, isLoading } = useSlotAdminStatistics(period);
+
+  return (
+    <div className="space-y-6">
+      {/* Periode Selector */}
+      <div className="flex gap-2">
+        <Button variant={...} onClick={() => setPeriod("today")}>I dag</Button>
+        <Button variant={...} onClick={() => setPeriod("week")}>Denne uge</Button>
+        <Button variant={...} onClick={() => setPeriod("month")}>Denne måned</Button>
+        <Button variant={...} onClick={() => setPeriod("alltime")}>Alt tid</Button>
+      </div>
+
+      {/* Statistik Kort */}
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+        <StatCard icon={Sparkles} label="Total Spins" value={stats.totalSpins} />
+        <StatCard icon={TrendingUp} label="Total Gevinster" value={stats.totalWinnings} suffix="pts" />
+        <StatCard icon={Trophy} label="Største Gevinst" value={stats.biggestWin} suffix="pts" />
+        <StatCard icon={Users} label="Unikke Spillere" value={stats.uniquePlayers} />
+      </div>
+
+      {/* Grafer */}
+      <Card>
+        <CardHeader>
+          <CardTitle>Aktivitet Over Tid</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <ChartContainer config={...} className="h-[300px]">
+            <AreaChart data={stats.dailyStats}>
+              ...
+            </AreaChart>
+          </ChartContainer>
+        </CardContent>
+      </Card>
+
+      {/* Top Vindere */}
+      <Card>
+        <CardHeader>
+          <CardTitle>Top 10 Vindere</CardTitle>
+        </CardHeader>
+        <CardContent>
+          {stats.topWinners.map(...)}
+        </CardContent>
+      </Card>
+    </div>
+  );
+}
+```
+
+---
+
+## Data Flow
 
 ```text
-Timing problem:
-setGrid(newOutcome)  →  [FLASH: outcome visible]  →  setIsSpinning(true)  →  Animation starts
+Admin vælger periode → useSlotAdminStatistics(period) → 
+Supabase query med dato-filter → 
+Aggreger data client-side → 
+Vis i kort, grafer og top-liste
 ```
 
 ---
 
-## Løsningen
+## SQL Query Strategi
 
-Adskil "visuel grid" fra "spin-outcome grid" så SlotReel altid viser den forrige tilstand under idle, mens den nye outcome kun bruges til at bygge reel-strip under animation.
-
-### Tilgang: Batch State Updates + Delayed Grid Display
-
-**Ændringer i `src/components/slots/SlotGame.tsx`:**
-
-1. **Tilføj en `pendingGrid` ref** der holder den næste outcome grid
-2. **Behold den gamle grid synlig** indtil spinning faktisk starter
-3. **Brug `flushSync`** eller batch state updates korrekt så `isSpinning` og `grid` opdateres atomisk
-
-```tsx
-// Ny ref til at holde pending grid
-const pendingGridRef = useRef<string[][] | null>(null);
-
-// I handleSpin():
-// GEM outcome i ref FØRST (vises ikke endnu)
-pendingGridRef.current = originalGrid;
-
-// Start spinning FØRST - grid opdateres først når SlotReel læser den
-setIsSpinning(true);
-
-// DEREFTER opdater grid (vil blive læst af SlotReel efter spinning er sat)
-// Men vent til næste tick så React kan batch disse
-requestAnimationFrame(() => {
-  setGrid(originalGrid);
-});
+**Hovedquery for periode-data:**
+```sql
+SELECT 
+  COUNT(*) as total_spins,
+  SUM(win_amount) as total_winnings,
+  MAX(win_amount) as biggest_win,
+  SUM(bet_amount) as total_bets,
+  COUNT(DISTINCT user_id) as unique_players
+FROM slot_game_results
+WHERE created_at >= [period_start]
 ```
 
-**Alternativ (renere):** Brug React 18's automatic batching:
-
-```tsx
-// Wrap i startTransition eller brug flushSync for at sikre atomisk opdatering
-import { flushSync } from 'react-dom';
-
-// I handleSpin:
-flushSync(() => {
-  setIsSpinning(true);
-});
-// Nu er isSpinning garanteret true før vi sætter grid
-setGrid(originalGrid);
+**Daglig statistik:**
+```sql
+SELECT 
+  DATE(created_at) as date,
+  COUNT(*) as spins,
+  SUM(win_amount) as winnings,
+  COUNT(DISTINCT user_id) as players
+FROM slot_game_results
+WHERE created_at >= [period_start]
+GROUP BY DATE(created_at)
+ORDER BY date
 ```
+
+**Top vindere:**
+```sql
+SELECT 
+  user_id,
+  SUM(win_amount) as total_winnings
+FROM slot_game_results
+WHERE created_at >= [period_start]
+GROUP BY user_id
+ORDER BY total_winnings DESC
+LIMIT 10
+```
+
+Da vi bruger Supabase JS client, vil disse queries blive implementeret med `.select()`, `.gte()` og client-side aggregering.
 
 ---
 
-## Implementation
+## UI Komponenter
 
-### Fil: `src/components/slots/SlotGame.tsx`
+### Periode Buttons
+- Samme styling som CombinedAnalyticsDashboard
+- Active state med `variant="default"`, inactive med `variant="outline"`
 
-**Ændring 1: Tilføj import**
+### Statistik Kort
 ```tsx
-import { flushSync } from 'react-dom';
+<Card>
+  <CardHeader className="pb-2">
+    <CardTitle className="text-sm font-medium flex items-center gap-2">
+      <Icon className="h-4 w-4 text-amber-500" />
+      Label
+    </CardTitle>
+  </CardHeader>
+  <CardContent>
+    <div className="text-2xl font-bold">{value.toLocaleString()}</div>
+  </CardContent>
+</Card>
 ```
 
-**Ændring 2: Opdater handleSpin rækkefølge**
+### Line/Area Chart
+- Brug ChartContainer fra ui/chart
+- X-akse: Datoer formateret med da-DK locale
+- Y-akse: Værdier
+- Farver: amber-500 for slot-tema konsistens
 
-I `handleSpin()` funktionen, ændr fra:
-```tsx
-// NUVÆRENDE (problematisk):
-setGrid(originalGrid);           // ← Grid sat først
-// ... andre state updates
-setIsSpinning(true);             // ← Spinning sat bagefter
-```
-
-Til:
-```tsx
-// NY (korrekt):
-// Sæt isSpinning FØRST så SlotReel ved den skal spinne
-flushSync(() => {
-  setIsSpinning(true);
-});
-
-// NU kan vi sikkert opdatere grid - SlotReel vil ikke vise den i idle
-setGrid(originalGrid);
-```
-
-**Ændring 3: Alternativ - Brug displayedGrid state**
-
-En mere robust løsning er at have to separate grids:
-```tsx
-const [displayedGrid, setDisplayedGrid] = useState<string[][] | null>(null); // Hvad der VISES i idle
-const [targetGrid, setTargetGrid] = useState<string[][] | null>(null); // Hvad hjulene lander på
-
-// I SlotReel: Brug displayedGrid når idle, targetGrid til reel strip
-```
+### Top Vindere Liste
+- Avatar + display_name + total gevinst
+- Rangnummer badge
+- Samme styling som nuværende topWinnersToday
 
 ---
 
-## Valgt Løsning: flushSync Approach
+## Tekniske Detaljer
 
-Den simpleste og mest direkte løsning er at bruge `flushSync` til at sikre `isSpinning` er sat før grid opdateres:
-
-| Linje | Nuværende | Ny |
-|-------|-----------|-----|
-| ~202-220 | `setGrid()` før `setIsSpinning()` | `flushSync(() => setIsSpinning(true))` før `setGrid()` |
-
----
-
-## Teknisk Forklaring
-
-**Hvorfor flushSync virker:**
-- `flushSync` tvinger React til at flushe state updates synkront
-- Når vi wrapper `setIsSpinning(true)` i `flushSync`, er DOM opdateret med `isSpinning=true` før næste linje kører
-- Når `setGrid()` så kører, vil SlotReel allerede være i "spinning" mode og ikke vise idle-tilstand
+**Dato beregning:**
+```typescript
+const getPeriodStart = (period: string): Date | null => {
+  const now = new Date();
+  switch (period) {
+    case "today":
+      return new Date(now.getFullYear(), now.getMonth(), now.getDate());
+    case "week":
+      const dayOfWeek = now.getDay();
+      const diff = now.getDate() - dayOfWeek + (dayOfWeek === 0 ? -6 : 1);
+      return new Date(now.setDate(diff));
+    case "month":
+      return new Date(now.getFullYear(), now.getMonth(), 1);
+    case "alltime":
+      return null; // No filter
+  }
+};
+```
 
 **Performance:**
-- `flushSync` kan påvirke performance ved at forhindre batching
-- I dette tilfælde er det kun ét state-kald, så impact er minimal
-- Alternativer som `requestAnimationFrame` eller `useLayoutEffect` er mere komplekse
+- `staleTime: 30000` (30 sekunder cache)
+- `refetchInterval: 60000` (auto-refresh hvert minut)
+- Client-side aggregering for fleksibilitet
 
 ---
 
@@ -134,14 +252,6 @@ Den simpleste og mest direkte løsning er at bruge `flushSync` til at sikre `isS
 
 | Fil | Ændring |
 |-----|---------|
-| `src/components/slots/SlotGame.tsx` | Import `flushSync`, omrokér state updates i `handleSpin()` |
+| `src/hooks/useSlotAdminStatistics.ts` | Opret ny hook med periode-baseret data-fetching |
+| `src/components/SlotMachineAdminSection.tsx` | Udvid StatisticsTab med periode-selector, flere kort, grafer og forbedret top-liste |
 
----
-
-## Test
-
-Efter implementering:
-1. Aktiver auto-spin
-2. Observer at der ikke længere er et "flash" af resultatet før spin-animation starter
-3. Verificer at normal spin stadig fungerer korrekt
-4. Verificer at bonus-spins stadig fungerer korrekt
