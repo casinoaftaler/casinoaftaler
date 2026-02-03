@@ -1,152 +1,175 @@
 
-# Plan: Tilføj Rarity System til Symboler
 
-## Oversigt
-Tilføjer et sjældenhedssystem til slot-symbolerne hvor:
-- **Premium** (sjældne): Pharaoh (mest sjælden), Anubis, Horus, Scarab
-- **Common** (almindelige): A, K, Q, J, 10
-- **Scatter**: Beholder sin nuværende ekstremt sjældne vægt
+# Plan: Ensret AI Symbol Generering Stil
 
----
-
-## Database Ændring
-
-### Ny kolonne i `slot_symbols` tabel
-
-Tilføj en `rarity` kolonne med enum-værdier:
-
-```sql
--- Tilføj rarity kolonne
-ALTER TABLE slot_symbols 
-ADD COLUMN rarity text NOT NULL DEFAULT 'common' 
-CHECK (rarity IN ('premium', 'common', 'scatter'));
-
--- Opdater eksisterende symboler med deres rarity
-UPDATE slot_symbols SET rarity = 'premium' WHERE name = 'Pharaoh';
-UPDATE slot_symbols SET rarity = 'premium' WHERE name = 'Anubis';
-UPDATE slot_symbols SET rarity = 'premium' WHERE name = 'Horus';
-UPDATE slot_symbols SET rarity = 'premium' WHERE name = 'Scarab';
-UPDATE slot_symbols SET rarity = 'scatter' WHERE is_scatter = true;
--- Resten forbliver 'common' (default)
-```
+## Problem
+Symbolerne genereres med forskellige stilarter og baggrunde, hvilket skaber visuel inkonsistens. Brugeren ønsker at alle symboler genereres med:
+1. Samme kunststil som Anubis-symbolet
+2. Samme baggrundstype som K/A bogstaverne (egyptisk tempel baggrund)
 
 ---
 
-## Kodeændringer
+## Løsning
 
-### 1. `src/lib/slotGameLogic.ts`
+### Opdater `supabase/functions/generate-slot-symbol/index.ts`
 
-Opdater `SYMBOL_WEIGHTS` med justerede vægte:
+Omskriv `BASE_STYLE` konstanten til at være mere detaljeret og konsistent, og opdater alle symbol-prompts til at følge samme struktur.
 
-| Symbol | Nuværende | Ny Vægt | Rarity |
-|--------|-----------|---------|--------|
-| Pharaoh | 8 | 5 | Premium (mest sjælden) |
-| Anubis | 12 | 8 | Premium |
-| Horus | 15 | 12 | Premium |
-| Scarab | 20 | 15 | Premium |
-| A | 30 | 40 | Common |
-| K | 35 | 45 | Common |
-| Q | 40 | 50 | Common |
-| J | - | 55 | Common |
-| 10 | - | 60 | Common |
-| Book | 1 | 1 | Scatter (uændret) |
+---
 
-Tilføj også rarity-hjælpefunktioner:
+## Ændringer
+
+### 1. Opdater `BASE_STYLE` konstanten
 
 ```typescript
-export type SymbolRarity = 'premium' | 'common' | 'scatter';
+// Fra (linje 10):
+const BASE_STYLE = `Style: High-quality cartoon/game art style, clean lines, vibrant colors, detailed but stylized. Square 1:1 aspect ratio suitable for a slot machine symbol. Egyptian temple background with subtle columns and hieroglyphics. Warm golden color palette with rich amber tones.`;
 
-export const RARITY_COLORS: Record<SymbolRarity, string> = {
-  premium: 'text-amber-400',
-  common: 'text-gray-400',
-  scatter: 'text-purple-400'
-};
+// Til:
+const BASE_STYLE = `
+STYLE REQUIREMENTS (MANDATORY - MUST FOLLOW EXACTLY):
+- Art style: High-quality digital painting, semi-realistic with stylized elements
+- Rendering: Smooth gradients, soft shadows, polished game art quality
+- Color palette: Warm golden and amber tones, with accents of deep blue, turquoise, and rich browns
+- Lighting: Dramatic golden rim lighting from behind, creating a divine glow effect
+- Detail level: High detail on the main subject, slightly softer background
 
-export const RARITY_LABELS: Record<SymbolRarity, string> = {
-  premium: 'Premium',
-  common: 'Almindelig',
-  scatter: 'Scatter'
-};
+BACKGROUND REQUIREMENTS (MANDATORY):
+- Egyptian temple interior background
+- Stone columns with hieroglyphic carvings visible on both sides
+- Subtle torch light creating warm ambient glow
+- Slightly blurred/depth-of-field background to make the symbol pop
+- The background must fill the ENTIRE canvas edge-to-edge
+- NO white borders, NO white edges, NO margins anywhere
+
+FORMAT: Square 1:1 aspect ratio, suitable for a slot machine symbol.
+`;
 ```
 
-### 2. `src/integrations/supabase/types.ts`
+### 2. Opdater Premium Symbol Prompts (Anubis-stil)
 
-Tilføj `rarity` felt til `slot_symbols` interface (auto-genereret efter migration).
+Alle premium symboler (Pharaoh, Anubis, Horus, Scarab) får samme detaljerede stilbeskrivelse:
 
-### 3. `src/components/slots/PayTable.tsx`
+```typescript
+// Anubis (reference stil)
+if (normalizedName.includes("anubis")) {
+  return `Create a slot machine symbol for an Egyptian-themed game.
 
-Opdater gevinsttabellen til at vise rarity med farve-kodning:
+MAIN SUBJECT:
+- The Egyptian god Anubis depicted as a bust/portrait
+- Sleek black jackal head with elegant pointed ears
+- Fur rendered with subtle sheen and detail
+- Piercing golden/amber eyes with an intense, mysterious gaze
+- Golden Egyptian usekh collar (broad collar) with lapis lazuli and turquoise inlays
+- Golden earrings and ceremonial headdress elements
+- Noble, powerful, and slightly menacing expression
 
-```tsx
-// Gruppér symboler efter rarity
-const premiumSymbols = symbols?.filter(s => s.rarity === 'premium');
-const commonSymbols = symbols?.filter(s => s.rarity === 'common');
-const scatterSymbol = symbols?.find(s => s.is_scatter);
+COMPOSITION:
+- Centered portrait filling most of the frame
+- Subject facing slightly to the side (3/4 view) for dramatic effect
+- Golden divine light emanating from behind the subject
 
-// Vis med rarity badge
-<span className={cn(
-  "text-xs px-1 rounded",
-  symbol.rarity === 'premium' && "bg-amber-500/20 text-amber-400",
-  symbol.rarity === 'common' && "bg-gray-500/20 text-gray-400",
-  symbol.rarity === 'scatter' && "bg-purple-500/20 text-purple-400"
-)}>
-  {RARITY_LABELS[symbol.rarity]}
-</span>
+${BASE_STYLE}`;
+}
+
+// Pharaoh (samme stil som Anubis)
+if (normalizedName.includes("pharaoh") || normalizedName.includes("farao")) {
+  return `Create a slot machine symbol for an Egyptian-themed game.
+
+MAIN SUBJECT:
+- A majestic Egyptian Pharaoh depicted as a bust/portrait
+- Golden nemes headdress with blue and gold stripes
+- Royal uraeus cobra prominently on the forehead
+- Strong, regal face with kohl-lined eyes
+- Golden usekh collar with lapis lazuli, turquoise, and carnelian gems
+- Powerful, commanding expression befitting a god-king
+
+COMPOSITION:
+- Centered portrait filling most of the frame
+- Subject facing slightly to the side (3/4 view) for dramatic effect
+- Golden divine light emanating from behind the subject
+
+${BASE_STYLE}`;
+}
+```
+
+### 3. Opdater Common Symbol Prompts (K/A baggrund stil)
+
+Alle bogstav/tal symboler får en mere simpel men konsistent stil:
+
+```typescript
+// Letter A (og lignende for K, Q, J, 10)
+if (normalizedName === "a" || normalizedName.includes("letter a")) {
+  return `Create a slot machine symbol for an Egyptian-themed game.
+
+MAIN SUBJECT:
+- A large, ornate letter "A" as the central focus
+- The letter is made of polished gold with a metallic sheen
+- Decorated with subtle hieroglyphic engravings carved into the gold
+- Small turquoise and lapis lazuli gem accents at key points
+- The letter has depth and dimension (3D appearance)
+- Elegant serif font style with Egyptian decorative flourishes
+
+COMPOSITION:
+- Letter centered and filling approximately 70% of the frame
+- Letter should appear to be a golden artifact/treasure
+
+${BASE_STYLE}`;
+}
 ```
 
 ---
 
-## Visuelt Resultat i Gevinsttabellen
+## Komplet Prompt Struktur
+
+Alle prompts følger nu denne struktur:
 
 ```text
-┌─────────────────────────────────────────────────┐
-│  GEVINSTTABEL                                   │
-├─────────────────────────────────────────────────┤
-│  🏆 PREMIUM SYMBOLER                            │
-│  ┌──────────────────────────────────────────┐   │
-│  │ 👑 Pharaoh [Premium]   30×  100×  500×   │   │
-│  │ 🐺 Anubis [Premium]    20×   60×  200×   │   │
-│  │ 🦅 Horus [Premium]     15×   40×  125×   │   │
-│  │ 🪲 Scarab [Premium]    10×   30×  100×   │   │
-│  └──────────────────────────────────────────┘   │
-│                                                 │
-│  📝 ALMINDELIGE SYMBOLER                        │
-│  ┌──────────────────────────────────────────┐   │
-│  │ A [Almindelig]          5×   10×   40×   │   │
-│  │ K [Almindelig]          5×   10×   30×   │   │
-│  │ Q [Almindelig]          5×   10×   25×   │   │
-│  │ J [Almindelig]          5×   15×   50×   │   │
-│  │ 10 [Almindelig]        10×   25×   75×   │   │
-│  └──────────────────────────────────────────┘   │
-│                                                 │
-│  ✨ SCATTER                                     │
-│  ┌──────────────────────────────────────────┐   │
-│  │ 📖 Fedesvins Book [Wild/Scatter]         │   │
-│  │     2×   20×  200× + Bonus Spins!        │   │
-│  └──────────────────────────────────────────┘   │
-└─────────────────────────────────────────────────┘
+┌─────────────────────────────────────────────────────────────┐
+│  1. INTRO: "Create a slot machine symbol for an Egyptian-  │
+│            themed game."                                    │
+├─────────────────────────────────────────────────────────────┤
+│  2. MAIN SUBJECT: Detaljeret beskrivelse af symbolet       │
+│     - Fysiske detaljer                                      │
+│     - Materialer og teksturer                               │
+│     - Farver og effekter                                    │
+├─────────────────────────────────────────────────────────────┤
+│  3. COMPOSITION: Placering og vinkel                        │
+│     - Centreret, 3/4 view for karakterer                    │
+│     - Fylder 70-80% af rammen                               │
+├─────────────────────────────────────────────────────────────┤
+│  4. BASE_STYLE: Fælles stil- og baggrundskrav              │
+│     - Art style (semi-realistisk digital painting)          │
+│     - Farvepalette (guld, amber, turkis, blå)               │
+│     - Belysning (dramatisk gyldent rim light)               │
+│     - Baggrund (egyptisk tempel, søjler, hieroglyffer)      │
+│     - Format (1:1, ingen hvide kanter)                      │
+└─────────────────────────────────────────────────────────────┘
 ```
 
 ---
 
-## Filer der ændres
+## Fil der ændres
 
 | Fil | Ændring |
 |-----|---------|
-| Database | Migration: Tilføj `rarity` kolonne |
-| `src/lib/slotGameLogic.ts` | Opdater SYMBOL_WEIGHTS, tilføj rarity typer og farver |
-| `src/components/slots/PayTable.tsx` | Vis symboler grupperet efter rarity med farve-kodning |
+| `supabase/functions/generate-slot-symbol/index.ts` | Opdater BASE_STYLE og alle symbol-prompts for konsistent stil |
 
 ---
 
-## Tekniske Detaljer
+## Eksempel på Før/Efter
 
-### Sandsynlighedsfordeling efter ændringer:
+### Før (inkonsistent):
+- Anubis: "Sleek black jackal head..."
+- K: "Stylized letter K in golden Egyptian style..."
+- Pharaoh: "Majestic Egyptian Pharaoh bust..."
 
-| Rarity | Symboler | Total Vægt | Ca. Sandsynlighed |
-|--------|----------|------------|-------------------|
-| Premium | 4 stk | 40 (5+8+12+15) | ~13% |
-| Common | 5 stk | 250 (40+45+50+55+60) | ~86% |
-| Scatter | 1 stk | 1 | ~0.3% |
+Hver har forskellige detaljeniveauer og ingen fælles struktur.
 
-Dette giver premium symboler en væsentligt lavere frekvens, hvilket matcher deres højere udbetalinger.
+### Efter (konsistent):
+Alle symboler har:
+- Samme intro
+- MAIN SUBJECT sektion med detaljerede beskrivelser
+- COMPOSITION sektion
+- Identisk BASE_STYLE med baggrunds- og stilkrav
+
