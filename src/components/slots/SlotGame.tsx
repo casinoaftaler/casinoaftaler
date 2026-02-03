@@ -598,113 +598,107 @@ export function SlotGame() {
             </SlotMachineFrame>
           </div>
 
-          {/* Controls row without spin button */}
-          <div className="flex flex-wrap items-center justify-center gap-1 xs:gap-2 sm:gap-3 mt-1 sm:mt-2">
-            {/* Bet Controls */}
-            <BetControls bet={bet} onBetChange={setBet} disabled={isSpinning || bonusState.isActive} minBet={slotSettings.minBet} maxBet={slotSettings.maxBet} />
-            
-            {/* Autospin controls */}
-            <div className="flex items-center gap-1">
-              {/* Autospin count selector */}
-              {!isAutoSpinning && (
-                <DropdownMenu>
-                  <DropdownMenuTrigger asChild>
-                    <Button
-                      variant="outline"
-                      className="px-2 sm:px-3 py-3 sm:py-5 text-sm sm:text-base font-bold border-amber-500/50 hover:bg-amber-500/10 text-amber-500"
-                      disabled={!canSpinNow || showBonusTrigger}
-                    >
-                      {autoSpinCount === "infinite" ? (
-                        <Infinity className="h-4 w-4" />
-                      ) : (
-                        autoSpinCount
-                      )}
-                      <ChevronDown className="ml-1 h-3 w-3" />
-                    </Button>
-                  </DropdownMenuTrigger>
-                  <DropdownMenuContent className="bg-background border-amber-500/30">
-                    {([10, 25, 50, 100, "infinite"] as AutoSpinCount[]).map((count) => (
-                      <DropdownMenuItem
-                        key={count}
-                        onClick={() => setAutoSpinCount(count)}
-                        className={cn(
-                          "text-lg cursor-pointer",
-                          autoSpinCount === count && "bg-amber-500/20"
-                        )}
+          {/* Controls row with spin button in center */}
+          <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-4 md:gap-6 mt-2 sm:mt-3">
+            {/* LEFT SIDE: Bet Controls + Autospin */}
+            <div className="flex items-center gap-1 sm:gap-2">
+              <BetControls bet={bet} onBetChange={setBet} disabled={isSpinning || bonusState.isActive} minBet={slotSettings.minBet} maxBet={slotSettings.maxBet} />
+              
+              {/* Autospin controls */}
+              <div className="flex items-center gap-1">
+                {/* Autospin count selector */}
+                {!isAutoSpinning && (
+                  <DropdownMenu>
+                    <DropdownMenuTrigger asChild>
+                      <Button
+                        variant="outline"
+                        className="px-2 sm:px-3 py-3 sm:py-5 text-sm sm:text-base font-bold border-amber-500/50 hover:bg-amber-500/10 text-amber-500"
+                        disabled={!canSpinNow || showBonusTrigger}
                       >
-                        {count === "infinite" ? (
-                          <span className="flex items-center gap-2">
-                            <Infinity className="h-4 w-4" /> Uendelig
-                          </span>
+                        {autoSpinCount === "infinite" ? (
+                          <Infinity className="h-4 w-4" />
                         ) : (
-                          `${count} spins`
+                          autoSpinCount
                         )}
-                      </DropdownMenuItem>
-                    ))}
-                  </DropdownMenuContent>
-                </DropdownMenu>
-              )}
+                        <ChevronDown className="ml-1 h-3 w-3" />
+                      </Button>
+                    </DropdownMenuTrigger>
+                    <DropdownMenuContent className="bg-background border-amber-500/30">
+                      {([10, 25, 50, 100, "infinite"] as AutoSpinCount[]).map((count) => (
+                        <DropdownMenuItem
+                          key={count}
+                          onClick={() => setAutoSpinCount(count)}
+                          className={cn(
+                            "text-lg cursor-pointer",
+                            autoSpinCount === count && "bg-amber-500/20"
+                          )}
+                        >
+                          {count === "infinite" ? (
+                            <span className="flex items-center gap-2">
+                              <Infinity className="h-4 w-4" /> Uendelig
+                            </span>
+                          ) : (
+                            `${count} spins`
+                          )}
+                        </DropdownMenuItem>
+                      ))}
+                    </DropdownMenuContent>
+                  </DropdownMenu>
+                )}
 
-              {/* Autospin button */}
-              <Button
-                size="lg"
-                variant={isAutoSpinning ? "destructive" : "outline"}
-                className={cn(
-                  "px-3 sm:px-4 py-3 sm:py-5 text-sm sm:text-base font-bold transition-all",
-                  isAutoSpinning 
-                    ? "bg-red-500 hover:bg-red-600 text-white"
-                    : "border-amber-500/50 hover:bg-amber-500/10 text-amber-500"
-                )}
-                onClick={toggleAutoSpin}
-                disabled={!canSpinNow || showBonusTrigger}
-              >
-                {isAutoSpinning ? (
-                  <>
-                    <Square className="mr-1 h-4 w-4" />
-                    <span className="hidden xs:inline">{autoSpinsRemaining !== null ? `STOP (${autoSpinsRemaining})` : "STOP"}</span>
-                    <span className="xs:hidden">{autoSpinsRemaining !== null ? autoSpinsRemaining : "■"}</span>
-                  </>
-                ) : (
-                  <>
-                    <Play className="mr-1 h-4 w-4" />
-                    AUTO
-                  </>
-                )}
-              </Button>
+                {/* Autospin button */}
+                <Button
+                  size="lg"
+                  variant={isAutoSpinning ? "destructive" : "outline"}
+                  className={cn(
+                    "px-3 sm:px-4 py-3 sm:py-5 text-sm sm:text-base font-bold transition-all",
+                    isAutoSpinning 
+                      ? "bg-red-500 hover:bg-red-600 text-white"
+                      : "border-amber-500/50 hover:bg-amber-500/10 text-amber-500"
+                  )}
+                  onClick={toggleAutoSpin}
+                  disabled={!canSpinNow || showBonusTrigger}
+                >
+                  {isAutoSpinning ? (
+                    <>
+                      <Square className="mr-1 h-4 w-4" />
+                      <span className="hidden xs:inline">{autoSpinsRemaining !== null ? `STOP (${autoSpinsRemaining})` : "STOP"}</span>
+                      <span className="xs:hidden">{autoSpinsRemaining !== null ? autoSpinsRemaining : "■"}</span>
+                    </>
+                  ) : (
+                    <>
+                      <Play className="mr-1 h-4 w-4" />
+                      AUTO
+                    </>
+                  )}
+                </Button>
+              </div>
             </div>
-            
-            {/* Win Display */}
-            <WinDisplay amount={bonusState.isActive ? bonusState.bonusWinnings : winAmount} isAnimating={isWinAnimating} />
-            
-            {/* Volume Control */}
-            <VolumeControl />
-          </div>
 
-          {/* Large round spin button - centered under the slot machine */}
-          <div className="flex justify-center my-3 sm:my-4">
+            {/* CENTER: Spin button */}
             <Button
               className={cn(
                 // Round shape
                 "rounded-full aspect-square",
-                // Responsive sizing - MUCH larger on desktop
-                "w-20 h-20 sm:w-24 sm:h-24 md:w-32 md:h-32 lg:w-40 lg:h-40 xl:w-44 xl:h-44",
+                // Responsive sizing - inline but still prominent
+                "w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 lg:w-28 lg:h-28",
                 // Golden gradient with 3D effect
                 bonusState.isActive
                   ? "bg-gradient-to-br from-purple-400 via-purple-500 to-purple-700"
                   : "bg-gradient-to-br from-amber-300 via-amber-500 to-amber-700",
-                // Golden border - thicker on desktop
+                // Golden border
                 bonusState.isActive
                   ? "border-2 md:border-4 border-purple-400/60"
                   : "border-2 md:border-4 border-amber-400/60",
-                // Deep glow shadow - larger on desktop
+                // Deep glow shadow
                 bonusState.isActive
-                  ? "shadow-[0_0_30px_rgba(168,85,247,0.5),0_4px_20px_rgba(0,0,0,0.3)] md:shadow-[0_0_50px_rgba(168,85,247,0.6),0_8px_30px_rgba(0,0,0,0.4)]"
-                  : "shadow-[0_0_30px_rgba(251,191,36,0.5),0_4px_20px_rgba(0,0,0,0.3)] md:shadow-[0_0_50px_rgba(251,191,36,0.6),0_8px_30px_rgba(0,0,0,0.4)]",
+                  ? "shadow-[0_0_20px_rgba(168,85,247,0.5),0_4px_15px_rgba(0,0,0,0.3)] md:shadow-[0_0_30px_rgba(168,85,247,0.6),0_6px_20px_rgba(0,0,0,0.4)]"
+                  : "shadow-[0_0_20px_rgba(251,191,36,0.5),0_4px_15px_rgba(0,0,0,0.3)] md:shadow-[0_0_30px_rgba(251,191,36,0.6),0_6px_20px_rgba(0,0,0,0.4)]",
                 // Hover effects
                 !isSpinning && canSpinNow && !isAutoSpinning && (
                   bonusState.isActive
-                    ? "hover:shadow-[0_0_60px_rgba(168,85,247,0.8),0_10px_40px_rgba(0,0,0,0.5)]"
-                    : "hover:shadow-[0_0_60px_rgba(251,191,36,0.8),0_10px_40px_rgba(0,0,0,0.5)]"
+                    ? "hover:shadow-[0_0_40px_rgba(168,85,247,0.8),0_8px_30px_rgba(0,0,0,0.5)]"
+                    : "hover:shadow-[0_0_40px_rgba(251,191,36,0.8),0_8px_30px_rgba(0,0,0,0.5)]"
                 ),
                 "hover:scale-105 transition-all duration-200",
                 // Active/press effect
@@ -714,7 +708,7 @@ export function SlotGame() {
                 // Disabled state
                 "disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100",
                 // Text styling
-                "text-white font-bold text-lg sm:text-xl md:text-2xl lg:text-3xl flex flex-col items-center justify-center"
+                "text-white font-bold text-base sm:text-lg md:text-xl lg:text-2xl flex flex-col items-center justify-center"
               )}
               onClick={handleSpin}
               disabled={isSpinning || !canSpinNow || showBonusTrigger || isAutoSpinning}
@@ -722,28 +716,34 @@ export function SlotGame() {
               {isSpinning ? (
                 <div className="relative">
                   {/* Outer rotating ring */}
-                  <div className="absolute inset-0 rounded-full border-4 md:border-6 border-transparent border-t-white/80 border-r-white/40 animate-spin" 
+                  <div className="absolute inset-0 rounded-full border-4 border-transparent border-t-white/80 border-r-white/40 animate-spin" 
                        style={{ animationDuration: '0.8s' }} />
                   {/* Inner spinning icon */}
                   <Gamepad2 
-                    className="h-8 w-8 sm:h-10 sm:w-10 md:h-14 md:w-14 lg:h-16 lg:w-16 xl:h-20 xl:w-20 animate-spin drop-shadow-[0_0_8px_rgba(255,255,255,0.8)]" 
+                    className="h-6 w-6 sm:h-8 sm:w-8 md:h-10 md:w-10 lg:h-12 lg:h-12 animate-spin drop-shadow-[0_0_8px_rgba(255,255,255,0.8)]" 
                     style={{ animationDuration: '1.5s', animationDirection: 'reverse' }}
                   />
                 </div>
               ) : !canSpinNow ? (
-                <span className="text-xs sm:text-sm md:text-base lg:text-lg text-center leading-tight">INGEN<br/>SPINS</span>
+                <span className="text-[10px] sm:text-xs md:text-sm text-center leading-tight">INGEN<br/>SPINS</span>
               ) : bonusState.isActive ? (
                 <>
-                  <Gamepad2 className="h-6 w-6 sm:h-8 sm:w-8 md:h-12 md:w-12 lg:h-14 lg:w-14 xl:h-16 xl:w-16 mb-1 transition-transform group-hover:rotate-12" />
-                  <span className="text-xs sm:text-sm md:text-base lg:text-xl">FREE</span>
+                  <Gamepad2 className="h-5 w-5 sm:h-6 sm:w-6 md:h-8 md:h-8 lg:h-10 lg:w-10 mb-0.5" />
+                  <span className="text-xs sm:text-sm md:text-base">FREE</span>
                 </>
               ) : (
                 <>
-                  <Gamepad2 className="h-6 w-6 sm:h-8 sm:w-8 md:h-12 md:w-12 lg:h-14 lg:w-14 xl:h-16 xl:w-16 mb-1 transition-transform hover:rotate-12" />
-                  <span className="text-sm sm:text-base md:text-lg lg:text-2xl">SPIN</span>
+                  <Gamepad2 className="h-5 w-5 sm:h-6 sm:w-6 md:h-8 md:h-8 lg:h-10 lg:w-10 mb-0.5" />
+                  <span className="text-xs sm:text-sm md:text-base lg:text-lg">SPIN</span>
                 </>
               )}
             </Button>
+
+            {/* RIGHT SIDE: Win Display + Volume */}
+            <div className="flex items-center gap-1 sm:gap-2">
+              <WinDisplay amount={bonusState.isActive ? bonusState.bonusWinnings : winAmount} isAnimating={isWinAnimating} />
+              <VolumeControl />
+            </div>
           </div>
 
           {/* Pay table button */}
