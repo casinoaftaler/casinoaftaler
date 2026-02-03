@@ -1,55 +1,40 @@
 
 
-## Plan: Fjern glow-effekter fra spillemaskinen
+## Plan: Fjern glow og "S"-ikon fra scatter-symboler
 
 ### Baggrund
-Der er to steder i koden, hvor der tilføjes en "glow"-effekt (lysende skygge) omkring spillemaskinen:
-
-1. **SlotMachineFrame.tsx** - Linje 74-79: En `shadow`-effekt der aktiveres under spinning og bonus
-2. **SlotGame.tsx** - Linje 400-405: En wrapper-div med `shadow` under bonus-tilstand
+Scatter-symboler har to visuelle indikatorer der skal fjernes:
+1. En amber/guld ring (glow) rundt om symbolet
+2. Et lille "S"-badge i øverste højre hjørne
 
 ### Ændringer
 
-**1. `src/components/slots/SlotMachineFrame.tsx`**
+**Fil: `src/components/slots/SlotSymbol.tsx`**
 
-Fjern glow-effekt div'en (linje 74-79):
+**1. Fjern scatter ring/glow (linje 27)**
 
 Før:
 ```tsx
-{/* Glow effects */}
-<div className={cn(
-  "absolute inset-0 rounded-xl transition-shadow duration-300 pointer-events-none",
-  isBonus && "shadow-[0_0_40px_rgba(251,191,36,0.4)]",
-  isSpinning && !isBonus && "shadow-[0_0_30px_rgba(251,191,36,0.3)]"
-)} />
+symbol.is_scatter && "ring-2 ring-amber-500/50"
 ```
 
-Efter:
-- Fjern hele denne div-sektion
+Efter: Fjern denne linje helt fra className
 
 ---
 
-**2. `src/components/slots/SlotGame.tsx`**
+**2. Fjern "S" badge (linje 69-74)**
 
-Fjern glow på wrapper-div (linje 400-405):
-
-Før:
+Fjern hele denne sektion:
 ```tsx
-<div 
-  className={cn(
-    "max-w-fit mx-auto",
-    bonusState.isActive && "shadow-[0_0_30px_rgba(251,191,36,0.3)]"
-  )}
->
-```
-
-Efter:
-```tsx
-<div className="max-w-fit mx-auto">
+{/* Scatter indicator */}
+{symbol.is_scatter && (
+  <div className="absolute -top-1 -right-1 w-4 h-4 bg-amber-500 rounded-full flex items-center justify-center">
+    <span className="text-[8px] text-white font-bold">S</span>
+  </div>
+)}
 ```
 
 ### Resultat
-- Ingen glow-effekt under normal spinning
-- Ingen glow-effekt under bonus-runder
-- Renere, mere minimalistisk look
+- Scatter-symboler vises nu uden ekstra visuel markering
+- De fungerer stadig som scatters i spilmekanikken, men ser ud som normale symboler visuelt
 
