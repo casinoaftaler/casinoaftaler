@@ -120,9 +120,9 @@ function EditSymbolDialog({ symbol, open, onClose }: EditSymbolDialogProps) {
   const [formData, setFormData] = useState({
     name: "",
     image_url: null as string | null,
-    multiplier_3: 5 as number,
-    multiplier_4: 10 as number,
-    multiplier_5: 25 as number,
+    multiplier_3: "5",
+    multiplier_4: "10",
+    multiplier_5: "25",
     is_scatter: false,
     is_wild: false,
   });
@@ -132,9 +132,9 @@ function EditSymbolDialog({ symbol, open, onClose }: EditSymbolDialogProps) {
       setFormData({
         name: symbol.name,
         image_url: symbol.image_url,
-        multiplier_3: symbol.multiplier_3,
-        multiplier_4: symbol.multiplier_4,
-        multiplier_5: symbol.multiplier_5,
+        multiplier_3: String(symbol.multiplier_3),
+        multiplier_4: String(symbol.multiplier_4),
+        multiplier_5: String(symbol.multiplier_5),
         is_scatter: symbol.is_scatter,
         is_wild: symbol.is_wild,
       });
@@ -145,7 +145,13 @@ function EditSymbolDialog({ symbol, open, onClose }: EditSymbolDialogProps) {
     if (!symbol) return;
     updateSymbol.mutate({
       id: symbol.id,
-      ...formData,
+      name: formData.name,
+      image_url: formData.image_url,
+      multiplier_3: parseFloat(formData.multiplier_3) || 0.1,
+      multiplier_4: parseFloat(formData.multiplier_4) || 0.1,
+      multiplier_5: parseFloat(formData.multiplier_5) || 0.1,
+      is_scatter: formData.is_scatter,
+      is_wild: formData.is_wild,
     }, {
       onSuccess: () => onClose(),
     });
@@ -242,7 +248,7 @@ function EditSymbolDialog({ symbol, open, onClose }: EditSymbolDialogProps) {
                 step="0.1"
                 min="0.1"
                 value={formData.multiplier_3}
-                onChange={(e) => setFormData({ ...formData, multiplier_3: parseFloat(e.target.value) || 0.1 })}
+                onChange={(e) => setFormData({ ...formData, multiplier_3: e.target.value })}
               />
             </div>
             <div className="space-y-2">
@@ -253,7 +259,7 @@ function EditSymbolDialog({ symbol, open, onClose }: EditSymbolDialogProps) {
                 step="0.1"
                 min="0.1"
                 value={formData.multiplier_4}
-                onChange={(e) => setFormData({ ...formData, multiplier_4: parseFloat(e.target.value) || 0.1 })}
+                onChange={(e) => setFormData({ ...formData, multiplier_4: e.target.value })}
               />
             </div>
             <div className="space-y-2">
@@ -264,7 +270,7 @@ function EditSymbolDialog({ symbol, open, onClose }: EditSymbolDialogProps) {
                 step="0.1"
                 min="0.1"
                 value={formData.multiplier_5}
-                onChange={(e) => setFormData({ ...formData, multiplier_5: parseFloat(e.target.value) || 0.1 })}
+                onChange={(e) => setFormData({ ...formData, multiplier_5: e.target.value })}
               />
             </div>
           </div>
