@@ -465,7 +465,8 @@ export function SlotGame() {
                           return symbol?.is_scatter;
                         });
                         
-                        if (hasScatterOnReel && teaseReels.length > 0) {
+                        // Always play scatter land sound for ANY scatter (not just tease mode)
+                        if (hasScatterOnReel) {
                           // Count how many scatters have landed up to and including this reel
                           let scattersLanded = 0;
                           for (let r = 0; r <= reelIndex; r++) {
@@ -476,16 +477,13 @@ export function SlotGame() {
                             if (reelHasScatter) scattersLanded++;
                           }
                           slotSounds.playScatterLand(scattersLanded);
+                          
+                          // Track ALL scatter reels for glow effect (not just last one)
+                          setScatterReelsLanded(prev => new Set([...prev, reelIndex]));
                         }
                         
                         // Track this reel as stopped
                         stoppedReelsRef.current.add(reelIndex);
-                        
-                        // Track if this reel contains a scatter (for glow timing)
-                        // Check if this is the reel where the last scatter lands (teaseInfo.lastScatterReel)
-                        if (reelIndex === teaseInfo.lastScatterReel) {
-                          setScatterReelsLanded(prev => new Set([...prev, reelIndex]));
-                        }
                         
                         // Handle sequential tease reel activation
                         if (teaseReels.includes(reelIndex)) {
@@ -636,6 +634,7 @@ export function SlotGame() {
                       scatterLandedOnPreviousReel={scatterReelsLanded.has(teaseInfo.lastScatterReel)}
                       extendedFakeLoop={teaseInfo.lateScatter && colIndex === 4}
                       globalTeaseActive={teaseReels.length > 0 && isSpinning && activeTeaseReelIndex !== null}
+                      hasLandedScatter={scatterReelsLanded.has(colIndex)}
                     />
                     {/* Separator line between reels */}
                     {colIndex < 4 && (
