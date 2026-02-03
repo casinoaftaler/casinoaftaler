@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import { useSlotSymbols } from "@/hooks/useSlotSymbols";
 import { useSlotSettings } from "@/hooks/useSlotSettings";
 import { useSlotAdminStatistics, type StatPeriod } from "@/hooks/useSlotAdminStatistics";
@@ -10,7 +10,7 @@ import { SpinManagementSection } from "@/components/SpinManagementSection";
 import { SlotFrameAdminControls } from "@/components/slots/SlotFrameAdminControls";
 import { SlotSoundAdminSection } from "@/components/slots/SlotSoundAdminSection";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -25,7 +25,7 @@ import {
 } from "@/components/ui/dialog";
 import { ChartContainer, ChartTooltip, ChartTooltipContent } from "@/components/ui/chart";
 import { AreaChart, Area, XAxis, YAxis, CartesianGrid, ResponsiveContainer, BarChart, Bar, LineChart, Line } from "recharts";
-import { GripVertical, Pencil, Loader2, Trophy, Sparkles, TrendingUp, BarChart3, Lock, Wand2, Users, Calendar, Percent, Calculator } from "lucide-react";
+import { GripVertical, Pencil, Loader2, Trophy, Sparkles, TrendingUp, BarChart3, Lock, Wand2, Users, Calendar, Percent, Calculator, ArrowUp, ArrowDown } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
 import {
@@ -46,6 +46,7 @@ import {
 } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
 import type { SlotSymbol } from "@/lib/slotGameLogic";
+import { calculateTheoreticalRTP, calculateRTPWithModifiedSymbol } from "@/lib/slotRTPCalculation";
 
 interface SortableSymbolRowProps {
   symbol: SlotSymbol;
@@ -274,6 +275,46 @@ function EditSymbolDialog({ symbol, open, onClose, allSymbols }: EditSymbolDialo
             );
           })()}
 
+          {/* RTP Impact Preview */}
+          {(() => {
+            const currentRTP = calculateTheoreticalRTP(allSymbols);
+            const modifiedSymbol = {
+              id: symbol.id,
+              weight: parseFloat(formData.weight) || 0,
+              multiplier_2: parseFloat(formData.multiplier_2) || 0,
+              multiplier_3: parseFloat(formData.multiplier_3) || 0,
+              multiplier_4: parseFloat(formData.multiplier_4) || 0,
+              multiplier_5: parseFloat(formData.multiplier_5) || 0,
+            };
+            const projectedRTP = calculateRTPWithModifiedSymbol(allSymbols, modifiedSymbol);
+            const rtpDelta = projectedRTP.totalRTP - currentRTP.totalRTP;
+            
+            return (
+              <div className="flex items-center gap-3 p-3 bg-muted/50 rounded-lg border">
+                <Calculator className="h-5 w-5 text-amber-500" />
+                <div className="flex-1">
+                  <p className="text-sm font-medium flex items-center gap-2">
+                    RTP Effekt: 
+                    <span className="text-muted-foreground">{currentRTP.totalRTP.toFixed(2)}%</span>
+                    <span className="text-muted-foreground">→</span>
+                    <span className={projectedRTP.totalRTP >= 90 && projectedRTP.totalRTP <= 96 ? 'text-green-500' : 'text-amber-500'}>
+                      {projectedRTP.totalRTP.toFixed(2)}%
+                    </span>
+                    {rtpDelta !== 0 && (
+                      <span className={`flex items-center text-xs ${rtpDelta > 0 ? 'text-green-500' : 'text-red-500'}`}>
+                        {rtpDelta > 0 ? <ArrowUp className="h-3 w-3" /> : <ArrowDown className="h-3 w-3" />}
+                        {Math.abs(rtpDelta).toFixed(2)}%
+                      </span>
+                    )}
+                  </p>
+                  <p className="text-xs text-muted-foreground">
+                    Forventet tilbagebetalingsprocent ved ændringer
+                  </p>
+                </div>
+              </div>
+            );
+          })()}
+
           <div className="grid grid-cols-5 gap-4">
             <div className="space-y-2">
               <Label htmlFor="weight" className="flex items-center gap-1">
@@ -420,13 +461,81 @@ function SymbolsTab() {
   // Calculate total weight for percentage calculation
   const totalWeight = orderedSymbols.reduce((sum, s) => sum + (s.weight || 0), 0);
 
+  // Calculate RTP
+  const rtpResult = useMemo(() => {
+    if (orderedSymbols.length === 0) return null;
+    return calculateTheoreticalRTP(orderedSymbols);
+  }, [orderedSymbols]);
+
   // Separate symbols by rarity for the overview
   const premiumSymbols = orderedSymbols.filter(s => s.rarity === 'premium');
   const commonSymbols = orderedSymbols.filter(s => s.rarity === 'common');
   const scatterSymbols = orderedSymbols.filter(s => s.is_scatter);
 
+  // Determine RTP health status
+  const getRTPStatus = (rtp: number) => {
+    if (rtp >= 92 && rtp <= 96) return { color: 'text-green-500', status: 'Optimal' };
+    if (rtp >= 88 && rtp < 92) return { color: 'text-amber-500', status: 'Lav' };
+    if (rtp > 96 && rtp <= 98) return { color: 'text-amber-500', status: 'Høj' };
+    return { color: 'text-red-500', status: 'Advarsel' };
+  };
+
   return (
     <div className="space-y-6">
+      {/* RTP Overview Card */}
+      {rtpResult && (
+        <Card className="border-2 border-primary/20">
+          <CardHeader className="pb-3">
+            <CardTitle className="flex items-center gap-2 text-lg">
+              <Calculator className="h-5 w-5 text-amber-500" />
+              Teoretisk RTP (Return to Player)
+            </CardTitle>
+            <CardDescription>
+              Den forventede tilbagebetalingsprocent baseret på symbolernes vægte og multiplikatorer
+            </CardDescription>
+          </CardHeader>
+          <CardContent>
+            <div className="grid gap-6">
+              {/* Main RTP Display */}
+              <div className="flex items-center justify-center">
+                <div className="text-center p-6 bg-muted/50 rounded-xl border-2 border-primary/10">
+                  <p className={`text-5xl font-bold ${getRTPStatus(rtpResult.totalRTP).color}`}>
+                    {rtpResult.totalRTP.toFixed(2)}%
+                  </p>
+                  <p className="text-sm text-muted-foreground mt-2">
+                    Return to Player
+                  </p>
+                  <Badge 
+                    variant={getRTPStatus(rtpResult.totalRTP).status === 'Optimal' ? 'default' : 'secondary'}
+                    className="mt-2"
+                  >
+                    {getRTPStatus(rtpResult.totalRTP).status}
+                  </Badge>
+                </div>
+              </div>
+
+              {/* RTP Breakdown */}
+              <div className="grid grid-cols-2 gap-4">
+                <div className="text-center p-3 bg-muted/50 rounded-lg">
+                  <p className="text-xl font-bold text-primary">{rtpResult.lineRTP.toFixed(2)}%</p>
+                  <p className="text-xs text-muted-foreground">Linje-gevinster</p>
+                </div>
+                <div className="text-center p-3 bg-muted/50 rounded-lg">
+                  <p className="text-xl font-bold text-purple-500">{rtpResult.scatterRTP.toFixed(4)}%</p>
+                  <p className="text-xs text-muted-foreground">Scatter-gevinster</p>
+                </div>
+              </div>
+
+              {/* Industry Standard Reference */}
+              <div className="text-center text-sm text-muted-foreground border-t pt-4">
+                <p>Industri standard: <span className="font-medium text-foreground">92-96%</span></p>
+                <p className="text-xs mt-1">Lavere RTP = mere profit for huset, højere RTP = mere til spilleren</p>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
+      )}
+
       {/* Probability Overview Card */}
       <Card>
         <CardHeader className="pb-3">
