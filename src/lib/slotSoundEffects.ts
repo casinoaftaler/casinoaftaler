@@ -320,120 +320,132 @@ class SlotSoundEffects {
     }
   }
 
-  // Reel spinning loop - mystical Egyptian whirl with sistrum shimmer
+  // Reel spinning loop - Book of Dead style mechanical clicking
   playReelSpin(): () => void {
     if (!this.enabled) return () => {};
     
     const ctx = this.getContext();
-    const now = ctx.currentTime;
+    let isRunning = true;
+    let clickCount = 0;
     
-    // Main spinning sound - like a spinning ankh/artifact
-    const osc = ctx.createOscillator();
-    const gain = ctx.createGain();
-    const filter = ctx.createBiquadFilter();
+    // Motor hum undertone - continuous low drone
+    const motorOsc = ctx.createOscillator();
+    const motorGain = ctx.createGain();
+    const motorFilter = ctx.createBiquadFilter();
     
-    osc.connect(filter);
-    filter.connect(gain);
-    gain.connect(ctx.destination);
+    motorOsc.connect(motorFilter);
+    motorFilter.connect(motorGain);
+    motorGain.connect(ctx.destination);
     
-    osc.type = 'triangle';
-    osc.frequency.value = 146.83; // D3 - Egyptian root note
+    motorOsc.type = 'sawtooth';
+    motorOsc.frequency.value = 100;
     
-    filter.type = 'bandpass';
-    filter.frequency.value = 500;
-    filter.Q.value = 2;
+    motorFilter.type = 'lowpass';
+    motorFilter.frequency.value = 150;
     
-    gain.gain.value = 0.08 * this.volume;
+    motorGain.gain.value = 0.03 * this.volume;
     
-    osc.start();
-
-    // Mystical wavering modulation
-    const modulator = ctx.createOscillator();
-    const modGain = ctx.createGain();
+    // Slight motor modulation for realism
+    const motorMod = ctx.createOscillator();
+    const motorModGain = ctx.createGain();
+    motorMod.connect(motorModGain);
+    motorModGain.connect(motorOsc.frequency);
+    motorMod.frequency.value = 3;
+    motorModGain.gain.value = 5;
     
-    modulator.connect(modGain);
-    modGain.connect(osc.frequency);
+    motorOsc.start();
+    motorMod.start();
     
-    modulator.frequency.value = 8;
-    modGain.gain.value = 20;
+    // Function to play a single mechanical click (symbol flying by)
+    const playSymbolClick = () => {
+      if (!isRunning || !this.enabled) return;
+      
+      const now = ctx.currentTime;
+      
+      // Main click - sine wave with quick pitch drop
+      const click = ctx.createOscillator();
+      const clickGain = ctx.createGain();
+      const clickFilter = ctx.createBiquadFilter();
+      
+      click.connect(clickFilter);
+      clickFilter.connect(clickGain);
+      clickGain.connect(ctx.destination);
+      
+      // Pitch sweep from 280Hz to 180Hz for mechanical "thunk"
+      click.frequency.setValueAtTime(280, now);
+      click.frequency.exponentialRampToValueAtTime(180, now + 0.015);
+      click.type = 'sine';
+      
+      clickFilter.type = 'lowpass';
+      clickFilter.frequency.value = 800;
+      
+      // Quick attack and decay
+      clickGain.gain.setValueAtTime(0.12 * this.volume, now);
+      clickGain.gain.exponentialRampToValueAtTime(0.001, now + 0.02);
+      
+      click.start(now);
+      click.stop(now + 0.025);
+    };
     
-    modulator.start();
+    // Function to play mechanism ticker (higher pitched accent)
+    const playMechanismTick = () => {
+      if (!isRunning || !this.enabled) return;
+      
+      const now = ctx.currentTime;
+      
+      // High frequency tick
+      const tick = ctx.createOscillator();
+      const tickGain = ctx.createGain();
+      const tickFilter = ctx.createBiquadFilter();
+      
+      tick.connect(tickFilter);
+      tickFilter.connect(tickGain);
+      tickGain.connect(ctx.destination);
+      
+      tick.frequency.value = 1000;
+      tick.type = 'square';
+      
+      // Filter to soften the square wave
+      tickFilter.type = 'lowpass';
+      tickFilter.frequency.value = 1500;
+      
+      tickGain.gain.setValueAtTime(0.04 * this.volume, now);
+      tickGain.gain.exponentialRampToValueAtTime(0.001, now + 0.012);
+      
+      tick.start(now);
+      tick.stop(now + 0.015);
+    };
     
-    // Sistrum-like shimmer layer (high metallic rattling)
-    const shimmer = ctx.createOscillator();
-    const shimmerGain = ctx.createGain();
-    const shimmerFilter = ctx.createBiquadFilter();
-    
-    shimmer.connect(shimmerFilter);
-    shimmerFilter.connect(shimmerGain);
-    shimmerGain.connect(ctx.destination);
-    
-    shimmer.type = 'square';
-    shimmer.frequency.value = 2200;
-    
-    shimmerFilter.type = 'highpass';
-    shimmerFilter.frequency.value = 3000;
-    
-    shimmerGain.gain.value = 0.015 * this.volume;
-    
-    // Rapid tremolo for sistrum rattle effect
-    const shimmerMod = ctx.createOscillator();
-    const shimmerModGain = ctx.createGain();
-    shimmerMod.connect(shimmerModGain);
-    shimmerModGain.connect(shimmerGain.gain);
-    shimmerMod.frequency.value = 25;
-    shimmerModGain.gain.value = 0.01 * this.volume;
-    
-    shimmer.start();
-    shimmerMod.start();
-    
-    // Desert wind undertone
-    const wind = ctx.createOscillator();
-    const windGain = ctx.createGain();
-    const windFilter = ctx.createBiquadFilter();
-    
-    wind.connect(windFilter);
-    windFilter.connect(windGain);
-    windGain.connect(ctx.destination);
-    
-    wind.type = 'sawtooth';
-    wind.frequency.value = 80;
-    
-    windFilter.type = 'lowpass';
-    windFilter.frequency.value = 200;
-    
-    windGain.gain.value = 0.04 * this.volume;
-    
-    // Slow wind modulation
-    const windMod = ctx.createOscillator();
-    const windModGain = ctx.createGain();
-    windMod.connect(windModGain);
-    windModGain.connect(wind.frequency);
-    windMod.frequency.value = 0.5;
-    windModGain.gain.value = 30;
-    
-    wind.start();
-    windMod.start();
+    // Interval-based clicking system - 45ms between clicks (~22 clicks/sec)
+    const clickInterval = setInterval(() => {
+      if (!isRunning) return;
+      
+      playSymbolClick();
+      
+      // Play mechanism tick every other click
+      if (clickCount % 2 === 0) {
+        playMechanismTick();
+      }
+      
+      clickCount++;
+    }, 45);
     
     // Return stop function
     return () => {
+      isRunning = false;
+      clearInterval(clickInterval);
+      
       const stopTime = ctx.currentTime;
-      gain.gain.linearRampToValueAtTime(0.001, stopTime + 0.2);
-      shimmerGain.gain.linearRampToValueAtTime(0.001, stopTime + 0.2);
-      windGain.gain.linearRampToValueAtTime(0.001, stopTime + 0.2);
+      motorGain.gain.linearRampToValueAtTime(0.001, stopTime + 0.15);
       
       setTimeout(() => {
         try {
-          osc.stop();
-          modulator.stop();
-          shimmer.stop();
-          shimmerMod.stop();
-          wind.stop();
-          windMod.stop();
+          motorOsc.stop();
+          motorMod.stop();
         } catch (e) {
           // Already stopped
         }
-      }, 250);
+      }, 200);
     };
   }
 
