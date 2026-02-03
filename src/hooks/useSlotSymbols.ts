@@ -13,10 +13,11 @@ export function useSlotSymbols() {
 
       if (error) throw error;
       
-      // Cast rarity to proper type since DB returns string
+      // Cast rarity to proper type since DB returns string and ensure weight is a number
       return (data || []).map(symbol => ({
         ...symbol,
-        rarity: symbol.rarity as SymbolRarity
+        rarity: symbol.rarity as SymbolRarity,
+        weight: Number(symbol.weight) || 10
       }));
     },
   });
