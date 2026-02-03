@@ -13,7 +13,8 @@ interface SlotReelProps {
   isNewlyExpanded?: boolean;
   expandingSymbolId?: string;
   delay?: number;
-  shouldSlowDown?: boolean;  // NEW: Whether this reel should start slowing down
+  shouldSlowDown?: boolean;
+  spinLoopMs?: number;  // NEW: Configurable spin loop speed
   onReelStop?: (reelIndex: number) => void;
   teaseMode?: boolean;
   isActiveTeaseReel?: boolean;
@@ -37,6 +38,7 @@ export function SlotReel({
   expandingSymbolId,
   delay = 0,
   shouldSlowDown = false,
+  spinLoopMs = 400,
   onReelStop,
   teaseMode = false,
   isActiveTeaseReel = false,
@@ -117,7 +119,7 @@ export function SlotReel({
       // Start fake loop immediately
       setSpinState("spinning");
       
-      const loopDuration = 600; // Constant speed loop cycle
+      const loopDuration = spinLoopMs; // Use configurable speed
       const fakeLoopStartTime = performance.now();
       
       const fakeLoopAnimate = (currentTime: number) => {

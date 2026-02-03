@@ -15,6 +15,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Switch } from "@/components/ui/switch";
+import { Slider } from "@/components/ui/slider";
 import { Badge } from "@/components/ui/badge";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import {
@@ -25,7 +26,7 @@ import {
 } from "@/components/ui/dialog";
 import { ChartContainer, ChartTooltip, ChartTooltipContent } from "@/components/ui/chart";
 import { AreaChart, Area, XAxis, YAxis, CartesianGrid, ResponsiveContainer, BarChart, Bar, LineChart, Line } from "recharts";
-import { GripVertical, Pencil, Loader2, Trophy, Sparkles, TrendingUp, BarChart3, Lock, Wand2, Users, Calendar, Percent, Calculator, ArrowUp, ArrowDown } from "lucide-react";
+import { GripVertical, Pencil, Loader2, Trophy, Sparkles, TrendingUp, BarChart3, Lock, Wand2, Users, Calendar, Percent, Calculator, ArrowUp, ArrowDown, Timer } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
 import {
@@ -651,6 +652,8 @@ function SettingsTab() {
     maxBet: 10,
     pageLocked: true,
     pagePassword: "",
+    spinLoopMs: 400,
+    reelStaggerMs: 150,
   });
 
   useEffect(() => {
@@ -661,6 +664,8 @@ function SettingsTab() {
         maxBet: settings.maxBet,
         pageLocked: settings.pageLocked,
         pagePassword: settings.pagePassword,
+        spinLoopMs: settings.spinLoopMs,
+        reelStaggerMs: settings.reelStaggerMs,
       });
     }
   }, [settings]);
@@ -721,6 +726,68 @@ function SettingsTab() {
               </p>
             </div>
           )}
+        </CardContent>
+      </Card>
+
+      {/* Animation Timing */}
+      <Card>
+        <CardHeader>
+          <CardTitle className="flex items-center gap-2">
+            <Timer className="h-5 w-5" />
+            Animation Timing
+          </CardTitle>
+          <CardDescription>
+            Juster hastigheden på hjulenes rotation og landing.
+          </CardDescription>
+        </CardHeader>
+        <CardContent className="space-y-6">
+          <div className="space-y-4">
+            <div className="space-y-2">
+              <div className="flex items-center justify-between">
+                <Label htmlFor="spin-loop-ms">Spin Hastighed</Label>
+                <span className="text-sm text-muted-foreground font-mono">{formData.spinLoopMs}ms</span>
+              </div>
+              <Slider
+                id="spin-loop-ms"
+                min={200}
+                max={800}
+                step={50}
+                value={[formData.spinLoopMs]}
+                onValueChange={(value) => setFormData({ ...formData, spinLoopMs: value[0] })}
+              />
+              <p className="text-xs text-muted-foreground">
+                Lavere værdi = hurtigere spinning. Standard: 400ms
+              </p>
+            </div>
+
+            <div className="space-y-2">
+              <div className="flex items-center justify-between">
+                <Label htmlFor="reel-stagger-ms">Hjul Landing Forsinkelse</Label>
+                <span className="text-sm text-muted-foreground font-mono">{formData.reelStaggerMs}ms</span>
+              </div>
+              <Slider
+                id="reel-stagger-ms"
+                min={0}
+                max={500}
+                step={25}
+                value={[formData.reelStaggerMs]}
+                onValueChange={(value) => setFormData({ ...formData, reelStaggerMs: value[0] })}
+              />
+              <p className="text-xs text-muted-foreground">
+                Tid mellem hvert hjul stopper. 0 = samtidigt, 150ms = kaskade effekt
+              </p>
+            </div>
+          </div>
+
+          <Button 
+            onClick={handleSave} 
+            disabled={updateSettings.isPending}
+            variant="outline"
+            className="w-full"
+          >
+            {updateSettings.isPending && <Loader2 className="h-4 w-4 mr-2 animate-spin" />}
+            Gem Animation Indstillinger
+          </Button>
         </CardContent>
       </Card>
 

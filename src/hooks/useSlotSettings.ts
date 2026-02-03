@@ -8,6 +8,8 @@ interface SlotSettings {
   maxBet: number;
   pageLocked: boolean;
   pagePassword: string;
+  spinLoopMs: number;
+  reelStaggerMs: number;
 }
 
 export function useSlotSettings() {
@@ -19,7 +21,7 @@ export function useSlotSettings() {
       const { data, error } = await supabase
         .from("site_settings")
         .select("key, value")
-        .in("key", ["slot_daily_spins", "slot_min_bet", "slot_max_bet", "slot_page_locked", "slot_page_password"]);
+        .in("key", ["slot_daily_spins", "slot_min_bet", "slot_max_bet", "slot_page_locked", "slot_page_password", "slot_spin_loop_ms", "slot_reel_stagger_ms"]);
 
       if (error) throw error;
 
@@ -34,6 +36,8 @@ export function useSlotSettings() {
         maxBet: parseInt(settingsMap.slot_max_bet || "10", 10),
         pageLocked: settingsMap.slot_page_locked === "true",
         pagePassword: settingsMap.slot_page_password || "bookoffedesvin2026",
+        spinLoopMs: parseInt(settingsMap.slot_spin_loop_ms || "400", 10),
+        reelStaggerMs: parseInt(settingsMap.slot_reel_stagger_ms || "150", 10),
       };
     },
   });
@@ -57,6 +61,12 @@ export function useSlotSettings() {
       if (newSettings.pagePassword !== undefined) {
         updates.push({ key: "slot_page_password", value: newSettings.pagePassword });
       }
+      if (newSettings.spinLoopMs !== undefined) {
+        updates.push({ key: "slot_spin_loop_ms", value: String(newSettings.spinLoopMs) });
+      }
+      if (newSettings.reelStaggerMs !== undefined) {
+        updates.push({ key: "slot_reel_stagger_ms", value: String(newSettings.reelStaggerMs) });
+      }
 
       for (const update of updates) {
         const { error } = await supabase
@@ -77,7 +87,7 @@ export function useSlotSettings() {
   });
 
   return {
-    settings: settings ?? { dailySpins: 100, minBet: 1, maxBet: 10, pageLocked: true, pagePassword: "bookoffedesvin2026" },
+    settings: settings ?? { dailySpins: 100, minBet: 1, maxBet: 10, pageLocked: true, pagePassword: "bookoffedesvin2026", spinLoopMs: 400, reelStaggerMs: 150 },
     isLoading,
     updateSettings,
   };
