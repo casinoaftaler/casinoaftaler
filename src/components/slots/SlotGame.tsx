@@ -553,12 +553,15 @@ export function SlotGame() {
                       expandingSymbolId={bonusState.expandingSymbol?.id}
                       delay={colIndex}
                       shouldSlowDown={activeSlowdownReel >= colIndex}
+                      spinLoopMs={slotSettings.spinLoopMs}
                       onReelStop={async (reelIndex) => {
                         slotSounds.playReelStopSingle(reelIndex);
                         
-                        // SEQUENTIAL: Trigger the next reel to slow down
+                        // SEQUENTIAL: Trigger the next reel to slow down with configurable delay
                         if (reelIndex < 4) {
-                          setActiveSlowdownReel(reelIndex + 1);
+                          setTimeout(() => {
+                            setActiveSlowdownReel(reelIndex + 1);
+                          }, slotSettings.reelStaggerMs);
                         }
                         
                         // Check if this reel has a scatter and play progressive scatter land sound
