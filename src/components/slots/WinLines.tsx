@@ -189,7 +189,8 @@ export function WinLines({ wins, symbolSize, gap, isVisible }: WinLinesProps) {
                   {/* Position badge at the last winning symbol */}
                   {(() => {
                     const pattern = PAY_LINES[win.lineIndex];
-                    const lastCol = win.count - 1;
+                    // Always place badge at the end of the line (5th reel / position 4)
+                    const lastCol = 4;
                     const center = getSymbolCenter(lastCol, pattern[lastCol]);
                     
                     return (
