@@ -1,64 +1,107 @@
 
-# Plan: Make Audio Settings Collapsible
+# Plan: Enhanced Big Win Sound & Retrigger Overlay
 
 ## Overview
-Wrap the audio settings section in a collapsible component, following the same pattern used by the Admin User Management section.
+Implement two improvements to make the slot machine experience more exciting:
+1. A special "big win counting sound" that plays during big/mega/epic win celebrations instead of the standard coin counting sound
+2. A dramatic visual overlay for bonus retriggers (similar to the initial bonus trigger overlay)
 
-## Current State
-- `SlotSoundAdminSection` is a simple `Card` component that's always expanded
-- `AdminUserManagement` already has a working collapsible pattern we can follow
+---
 
-## Solution
-Apply the same `Collapsible` pattern from `AdminUserManagement` to the `SlotSoundAdminSection`:
-- Wrap the Card in a `Collapsible` component
-- Make the `CardHeader` a `CollapsibleTrigger`
-- Wrap the `CardContent` in `CollapsibleContent`
-- Add a chevron icon that rotates when expanded
+## Part 1: Big Win Counting Sound
 
-## Changes
+### Current Behavior
+The `playCoinCount()` function plays rapid coin clinks during all win counter animations - the same sound whether it's a 5-point win or a 500-point epic win.
 
-**File:** `src/components/slots/SlotSoundAdminSection.tsx`
+### New Behavior
+Add a separate `playBigWinCount()` function that plays a more dramatic, triumphant sound with:
+- Deeper, more resonant coin sounds
+- Egyptian fanfare elements layered in
+- Rising tension/excitement feel
+- Larger, more impactful audio presence
 
-1. Import `Collapsible`, `CollapsibleContent`, and `CollapsibleTrigger` from UI components
-2. Import `ChevronDown` icon from lucide-react
-3. Wrap the entire Card in a `Collapsible` component
-4. Convert CardHeader to a CollapsibleTrigger with hover styling and rotating chevron
-5. Wrap CardContent in CollapsibleContent
+### Changes
 
-### Key Code Changes
+**File: `src/lib/slotSoundEffects.ts`**
+- Add new `playBigWinCount(): () => void` method to the `SlotSoundEffects` class
+- Sound design:
+  - Deeper coin impacts (lower frequency range)
+  - Layered golden chimes ascending in pitch
+  - Subtle triumphant brass-like undertones
+  - Faster tempo for more excitement
 
-Add imports:
-```tsx
-import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
-import { ChevronDown } from "lucide-react"; // Add to existing lucide imports
+**File: `src/hooks/useAnimatedCounter.ts`**
+- Add `isBigWin?: boolean` option to the hook
+- When `isBigWin` is true, call `slotSounds.playBigWinCount()` instead of `playCoinCount()`
+
+**File: `src/components/slots/WinCelebration.tsx`**
+- Pass `isBigWin` flag to `useAnimatedCounter` based on win multiplier
+
+---
+
+## Part 2: Retrigger Overlay
+
+### Current Behavior
+When 3+ scatter symbols appear during bonus free spins (retrigger), only a toast notification appears: "📖 RETRIGGER! +10 Free Spins!"
+
+### New Behavior
+Display a dramatic full-screen overlay similar to the initial bonus trigger:
+- Book animation
+- "RETRIGGER!" text with glow effect
+- "+10 FREE SPINS!" message
+- Click to dismiss (same as bonus trigger overlay)
+
+### Changes
+
+**File: `src/components/slots/BonusOverlay.tsx`**
+- Add a new type: `"retrigger"` alongside existing `"trigger"` and `"complete"`
+- Display retrigger-specific content:
+  - Book emoji/animation
+  - "RETRIGGER!" header
+  - "+10 GRATIS SPINS!" message
+  - "Klik for at fortsætte" instruction
+
+**File: `src/components/slots/SlotGame.tsx`**
+- Add state: `showRetrigger` for the retrigger overlay
+- Add state: `retriggerSpins` to track how many spins were added
+- When a retrigger occurs:
+  - Show the retrigger overlay instead of just a toast
+  - Stop autospin (already happening)
+  - Wait for user to click before continuing
+
+---
+
+## Technical Details
+
+### New Sound: `playBigWinCount()`
+```text
+Design elements:
+- Base: Deep coin impacts at 60ms intervals (slower, more impactful)
+- Layer 1: Ascending golden chimes (Egyptian harp style)
+- Layer 2: Subtle triumphant brass-like sustained notes
+- Layer 3: Mystical shimmer/sparkle overlay
+- Overall: More volume, more drama, more celebration
 ```
 
-Updated structure:
-```tsx
-return (
-  <Collapsible>
-    <Card>
-      <CollapsibleTrigger className="w-full">
-        <CardHeader className="flex flex-row items-center justify-between cursor-pointer hover:bg-muted/50 transition-colors [&[data-state=open]>svg]:rotate-180">
-          <CardTitle className="flex items-center gap-2">
-            <Music className="h-5 w-5 text-amber-500" />
-            Lydindstillinger
-          </CardTitle>
-          <ChevronDown className="h-5 w-5 transition-transform duration-200" />
-        </CardHeader>
-      </CollapsibleTrigger>
-      <CollapsibleContent>
-        <CardContent className="space-y-6">
-          {/* All existing content stays the same */}
-        </CardContent>
-      </CollapsibleContent>
-    </Card>
-  </Collapsible>
-);
+### Retrigger Overlay Content
+```text
+Visual elements:
+- Same modal structure as trigger/complete overlays
+- Book emoji with bounce animation
+- "RETRIGGER!" in amber/gold with glow
+- "+10 GRATIS SPINS!" message
+- Current total free spins count
+- "Klik for at fortsætte" instruction
 ```
+
+---
 
 ## Files to Modify
 
 | File | Change |
 |------|--------|
-| `src/components/slots/SlotSoundAdminSection.tsx` | Add collapsible wrapper with trigger and content |
+| `src/lib/slotSoundEffects.ts` | Add `playBigWinCount()` method |
+| `src/hooks/useAnimatedCounter.ts` | Add `isBigWin` option to select sound |
+| `src/components/slots/WinCelebration.tsx` | Pass `isBigWin` flag to counter hook |
+| `src/components/slots/BonusOverlay.tsx` | Add "retrigger" type with appropriate content |
+| `src/components/slots/SlotGame.tsx` | Add retrigger overlay state and display logic |
