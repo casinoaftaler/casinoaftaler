@@ -132,19 +132,26 @@ export function SlotReel({
           setIsFakeLooping(true);
           fakeLoopStartTimeRef.current = startTime;
           
-          // Fake loop animation - constant speed, loops back
+          // Fake loop animation - CONSTANT speed, loops back seamlessly
           // Extended duration when 2nd scatter is on reel 4 (late scatter)
           const loopDuration = extendedFakeLoop ? 2600 : 600; // Time for one full loop cycle
+          // Use a fixed speed that matches normal spin speed - no variation
+          const CONSTANT_LOOP_SPEED = 15; // pixels per frame - consistent speed
           
-          const fakeLoopAnimate = (currentTime: number) => {
+          let fakeLoopOffset = startOffset;
+          
+          const fakeLoopAnimate = () => {
             if (!hasStartedSpinRef.current) return;
             
-            const elapsed = (currentTime - fakeLoopStartTimeRef.current) % loopDuration;
-            const loopProgress = elapsed / loopDuration;
-            // Loop from startOffset back to startOffset (creates seamless loop illusion)
-            const loopOffset = startOffset * (1 - loopProgress);
-            setOffset(loopOffset);
+            // Move at constant speed - no easing, no variation
+            fakeLoopOffset -= CONSTANT_LOOP_SPEED;
             
+            // Seamless loop: reset to start when we've traveled too far
+            if (fakeLoopOffset <= 0) {
+              fakeLoopOffset = startOffset;
+            }
+            
+            setOffset(fakeLoopOffset);
             animationRef.current = requestAnimationFrame(fakeLoopAnimate);
           };
           
