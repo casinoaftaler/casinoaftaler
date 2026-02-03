@@ -399,7 +399,7 @@ export function SlotGame() {
 
       <div 
         className={cn(
-          "overflow-hidden max-w-fit mx-auto",
+          "max-w-fit mx-auto",
           bonusState.isActive && "shadow-[0_0_30px_rgba(251,191,36,0.3)]"
         )}
       >
