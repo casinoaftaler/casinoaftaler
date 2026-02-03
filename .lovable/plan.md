@@ -1,60 +1,55 @@
 
 
-## Plan: Tilføj mørke linjer mellem hjulene
+## Plan: Fjern glow-effekter fra spillemaskinen
 
 ### Baggrund
-For at gøre det nemmere at skelne mellem de individuelle hjul på spillemaskinen, tilføjes mørke vertikale linjer som separatorer mellem hvert hjul.
+Der er to steder i koden, hvor der tilføjes en "glow"-effekt (lysende skygge) omkring spillemaskinen:
 
-### Teknisk løsning
-Opdatere `SlotGame.tsx` til at rendere mørke separator-linjer mellem de 5 hjul i reel-containeren.
+1. **SlotMachineFrame.tsx** - Linje 74-79: En `shadow`-effekt der aktiveres under spinning og bonus
+2. **SlotGame.tsx** - Linje 400-405: En wrapper-div med `shadow` under bonus-tilstand
 
-**Implementeringsdetaljer:**
-- Tilføj en semi-transparent mørk linje (divider) efter hvert hjul undtagen det sidste
-- Brug betinget rendering: vis kun separator hvis `colIndex < 4`
-- Separator-styling: smal bredde (~1-2px), mørk amber/brun farve, fuld højde
-- Responsiv: juster tykkelse efter skærmstørrelse
+### Ændringer
 
-### Visuel repræsentation
+**1. `src/components/slots/SlotMachineFrame.tsx`**
 
-```text
-┌─────┬─────┬─────┬─────┬─────┐
-│     │     │     │     │     │
-│ Hjul│ Hjul│ Hjul│ Hjul│ Hjul│
-│  1  │  2  │  3  │  4  │  5  │
-│     │     │     │     │     │
-└─────┴─────┴─────┴─────┴─────┘
-      ↑     ↑     ↑     ↑
-   Mørke linjer mellem hjul
-```
+Fjern glow-effekt div'en (linje 74-79):
 
-### Fil der ændres
-
-**`src/components/slots/SlotGame.tsx`** - Linje 428-440
-
-Ændring i reel-containeren:
-- Wrap hvert hjul + separator i et React Fragment
-- Tilføj en `div` med mørk baggrund efter hvert hjul (undtagen det sidste)
-- Separator bruger `bg-amber-950/80` eller lignende mørk farve for at passe til det egyptiske tema
-
-### Kode-ændring
-
+Før:
 ```tsx
-{grid?.map((column, colIndex) => (
-  <React.Fragment key={colIndex}>
-    <SlotReel
-      // ... existing props
-    />
-    {/* Separator line between reels */}
-    {colIndex < 4 && (
-      <div className="w-[1px] sm:w-[2px] bg-amber-950/70 self-stretch" />
-    )}
-  </React.Fragment>
-))}
+{/* Glow effects */}
+<div className={cn(
+  "absolute inset-0 rounded-xl transition-shadow duration-300 pointer-events-none",
+  isBonus && "shadow-[0_0_40px_rgba(251,191,36,0.4)]",
+  isSpinning && !isBonus && "shadow-[0_0_30px_rgba(251,191,36,0.3)]"
+)} />
 ```
 
-### Forventet resultat
-- Tydelige mørke linjer mellem alle 5 hjul
-- Matcher det egyptiske tema med amber/brun farvetone
-- Responsiv bredde (tyndere på mobil, tykkere på desktop)
-- Semi-transparent for at undgå at være for dominerende
+Efter:
+- Fjern hele denne div-sektion
+
+---
+
+**2. `src/components/slots/SlotGame.tsx`**
+
+Fjern glow på wrapper-div (linje 400-405):
+
+Før:
+```tsx
+<div 
+  className={cn(
+    "max-w-fit mx-auto",
+    bonusState.isActive && "shadow-[0_0_30px_rgba(251,191,36,0.3)]"
+  )}
+>
+```
+
+Efter:
+```tsx
+<div className="max-w-fit mx-auto">
+```
+
+### Resultat
+- Ingen glow-effekt under normal spinning
+- Ingen glow-effekt under bonus-runder
+- Renere, mere minimalistisk look
 
