@@ -17,6 +17,7 @@ import { BonusStatusBar } from "./BonusStatusBar";
 import { VolumeControl } from "./VolumeControl";
 import { SlotMachineFrame } from "./SlotMachineFrame";
 import { WinCelebration } from "./WinCelebration";
+import { SpinsRemaining } from "./SpinsRemaining";
 import { useSlotSymbols } from "@/hooks/useSlotSymbols";
 import { useSlotSpins } from "@/hooks/useSlotSpins";
 import { useSlotSettings } from "@/hooks/useSlotSettings";
@@ -637,12 +638,13 @@ export function SlotGame() {
 
           {/* Controls row with spin button in center - stacks on mobile */}
           <div className="flex flex-col sm:flex-row flex-wrap items-center justify-center gap-3 sm:gap-4 md:gap-6 mt-2 sm:mt-3">
-            {/* TOP ROW ON MOBILE: Bet Controls + Autospin */}
-            <div className="flex items-center gap-2 order-1 sm:order-1">
-              <BetControls bet={bet} onBetChange={setBet} disabled={isSpinning || bonusState.isActive} minBet={slotSettings.minBet} maxBet={slotSettings.maxBet} />
-              
-              {/* Autospin controls */}
-              <div className="flex items-center gap-1">
+            {/* TOP ROW ON MOBILE: Bet Controls + Autospin + Spins Remaining */}
+            <div className="flex flex-col items-center gap-1 order-1 sm:order-1">
+              <div className="flex items-center gap-2">
+                <BetControls bet={bet} onBetChange={setBet} disabled={isSpinning || bonusState.isActive} minBet={slotSettings.minBet} maxBet={slotSettings.maxBet} />
+                
+                {/* Autospin controls */}
+                <div className="flex items-center gap-1">
                 {/* Autospin count selector */}
                 {!isAutoSpinning && (
                   <DropdownMenu>
@@ -709,7 +711,11 @@ export function SlotGame() {
                     </>
                   )}
                 </Button>
+                </div>
               </div>
+              
+              {/* Spins remaining - directly under bet controls */}
+              {!bonusState.isActive && <SpinsRemaining />}
             </div>
 
             {/* CENTER: Spin button - always in middle */}
