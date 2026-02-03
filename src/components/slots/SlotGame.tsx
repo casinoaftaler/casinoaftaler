@@ -696,24 +696,14 @@ export function SlotGame() {
                 "rounded-full aspect-square",
                 // Responsive sizing - larger on mobile when stacked
                 "w-20 h-20 sm:w-20 sm:h-20 md:w-24 md:h-24 lg:w-28 lg:h-28",
-                // Golden gradient with 3D effect
-                bonusState.isActive
-                  ? "bg-gradient-to-br from-purple-400 via-purple-500 to-purple-700"
-                  : "bg-gradient-to-br from-amber-300 via-amber-500 to-amber-700",
+                // Golden gradient with 3D effect - consistent amber theme
+                "bg-gradient-to-br from-amber-300 via-amber-500 to-amber-700",
                 // Golden border
-                bonusState.isActive
-                  ? "border-2 md:border-4 border-purple-400/60"
-                  : "border-2 md:border-4 border-amber-400/60",
-                // Deep glow shadow
-                bonusState.isActive
-                  ? "shadow-[0_0_20px_rgba(168,85,247,0.5),0_4px_15px_rgba(0,0,0,0.3)] md:shadow-[0_0_30px_rgba(168,85,247,0.6),0_6px_20px_rgba(0,0,0,0.4)]"
-                  : "shadow-[0_0_20px_rgba(251,191,36,0.5),0_4px_15px_rgba(0,0,0,0.3)] md:shadow-[0_0_30px_rgba(251,191,36,0.6),0_6px_20px_rgba(0,0,0,0.4)]",
-                // Hover effects
-                !isSpinning && canSpinNow && !isAutoSpinning && (
-                  bonusState.isActive
-                    ? "hover:shadow-[0_0_40px_rgba(168,85,247,0.8),0_8px_30px_rgba(0,0,0,0.5)]"
-                    : "hover:shadow-[0_0_40px_rgba(251,191,36,0.8),0_8px_30px_rgba(0,0,0,0.5)]"
-                ),
+                "border-2 md:border-4 border-amber-400/60",
+                // Deep glow shadow - amber glow
+                "shadow-[0_0_20px_rgba(251,191,36,0.5),0_4px_15px_rgba(0,0,0,0.3)] md:shadow-[0_0_30px_rgba(251,191,36,0.6),0_6px_20px_rgba(0,0,0,0.4)]",
+                // Hover effects - amber glow
+                !isSpinning && canSpinNow && !isAutoSpinning && "hover:shadow-[0_0_40px_rgba(251,191,36,0.8),0_8px_30px_rgba(0,0,0,0.5)]",
                 "hover:scale-105 transition-all duration-200",
                 // Active/press effect
                 "active:scale-95 active:shadow-[inset_0_4px_10px_rgba(0,0,0,0.3)]",

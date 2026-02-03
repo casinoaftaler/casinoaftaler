@@ -33,7 +33,7 @@ export function BonusStatusBar({
       <div className="grid grid-cols-2 sm:flex sm:flex-wrap sm:items-center sm:justify-between gap-2 sm:gap-4">
         {/* Bonus indicator */}
         <div className="flex items-center gap-1 sm:gap-2">
-          <Sparkles className="h-4 w-4 sm:h-5 sm:w-5 text-primary animate-pulse" />
+          <Sparkles className="h-4 w-4 sm:h-5 sm:w-5 text-amber-400 animate-pulse" />
           <span className="text-sm sm:text-lg font-bold text-foreground">
             FREE SPINS
           </span>
@@ -73,7 +73,7 @@ export function BonusStatusBar({
         {/* Bonus winnings */}
         <div className="flex items-center gap-1 sm:gap-2 justify-end sm:justify-start">
           <span className="text-muted-foreground text-xs sm:text-base">Gevinst:</span>
-          <span className="text-base sm:text-xl font-bold text-primary">
+          <span className="text-base sm:text-xl font-bold text-amber-400">
             {bonusWinnings}
           </span>
         </div>
