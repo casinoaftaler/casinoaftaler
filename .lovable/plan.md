@@ -1,94 +1,80 @@
 
 
-# Reducer Afstanden Mellem Titel og Spillemaskine
+## Plan: Ændre spinning-lyden til at ligne Book of Dead
 
-## Oversigt
-Reducer padding og mellemrum mellem navigationen, titelbilledet og spillemaskinen for at skabe et mere kompakt layout.
+### Baggrund
+Book of Dead har en karakteristisk mekanisk hjul-spinning lyd, der simulerer fysiske hjul, som drejer rundt. Lyden er kendetegnet ved:
+- Hurtige, rytmiske "klik" der simulerer symboler, som flyver forbi
+- En mekanisk, næsten "ticker-tape" lignende lyd
+- Et konstant tempo under spinning
+- Subtil undertone der giver dybde
 
-## Nuværende Spacing
-- Container: `py-1` (4px top/bottom padding)
-- Titelbillede: `mb-1` (4px margin-bottom)
-- Slot wrapper: `gap-2` (8px gap)
+Den nuværende implementering bruger en mystisk, egyptisk stil med:
+- Triangelbølge-drone
+- Sistrum shimmer (høje metalrangle)
+- Ørken-vind undertone
+- Langsom, svævende modulation
 
-Selvom værdierne allerede er ret små, kan vi reducere dem yderligere eller helt fjerne dem.
+### Teknisk løsning
 
----
+Ændre `playReelSpin()` funktionen i `src/lib/slotSoundEffects.ts` til at bruge en mekanisk klik-baseret tilgang:
 
-## Tekniske Detaljer
+1. **Primær klik-lyd (Symbol Click)**
+   - Hurtige, korte pulser (~20-25 pr. sekund) for at simulere symboler der flyver forbi
+   - Bruger oscillator med hurtig attack/decay envelope
+   - Lav-mid frekvens (200-400Hz) for mekanisk "thunk" karakter
 
-### Fil: `src/pages/SlotMachine.tsx`
+2. **Sekundær ticker-lyd (Reel Mechanism)**
+   - Højere frekvens clicks (~800-1200Hz)
+   - Simulerer selve hjulmekanikken
+   - Lettere volumen end primær klik
 
-**Ændring 1 - Linje 99: Fjern vertikal padding fra container**
+3. **Subtil brum-undertone (Motor Hum)**
+   - Lav frekvens drone (~80-120Hz)
+   - Simulerer motor/mekanisk bevægelse
+   - Meget lavt volumen for dybde
 
-| Fra | Til |
-|-----|-----|
-| `py-1` | (fjernes helt) |
+4. **Interval-baseret klik-system**
+   - Bruger `setInterval` til at generere rytmiske clicks
+   - Fast tempo (~50ms mellem clicks)
+   - Stop function rydder interval og fader ud
 
-```typescript
-// Fra:
-<div className="container px-2 sm:px-4 py-1">
+### Fil der ændres
 
-// Til:
-<div className="container px-2 sm:px-4">
-```
+**`src/lib/slotSoundEffects.ts`** - Modificer `playReelSpin()` metoden (linje 323-438)
 
-**Ændring 2 - Linje 101: Fjern margin under titelbilledet**
+### Tekniske detaljer
 
-| Fra | Til |
-|-----|-----|
-| `mb-1` | (fjernes helt) |
-
-```typescript
-// Fra:
-<div className="flex justify-center mb-1">
-
-// Til:
-<div className="flex justify-center">
-```
-
-**Ændring 3 - Linje 122: Reducer gap mellem elementer**
-
-| Fra | Til |
-|-----|-----|
-| `gap-2` | `gap-1` |
-
-```typescript
-// Fra:
-<div className="flex flex-col items-center gap-2">
-
-// Til:
-<div className="flex flex-col items-center gap-1">
-```
-
----
-
-## Visuelt Resultat
+Den nye `playReelSpin()` vil:
 
 ```text
-Før:                          Efter:
-┌─────────────────────┐       ┌─────────────────────┐
-│     NAVIGATION      │       │     NAVIGATION      │
-├─────────────────────┤       ├─────────────────────┤
-│                     │       │  ☥ BOOK OF FEDESVIN │
-│  ☥ BOOK OF FEDESVIN │       ├─────────────────────┤
-│                     │       │   [SLOT MACHINE]    │
-├─────────────────────┤       │   [●][●][●][●][●]   │
-│                     │       │   [●][●][●][●][●]   │
-│   [SLOT MACHINE]    │       │   [●][●][●][●][●]   │
-│   [●][●][●][●][●]   │       ├─────────────────────┤
-│   [●][●][●][●][●]   │       │      [SPIN 🎰]      │
-│   [●][●][●][●][●]   │       └─────────────────────┘
-│                     │
-├─────────────────────┤           ↑ Meget mere
-│      [SPIN 🎰]      │             kompakt!
-└─────────────────────┘
+┌─────────────────────────────────────────────────────────┐
+│                    Ny Spinning Lyd                       │
+├─────────────────────────────────────────────────────────┤
+│                                                          │
+│  1. Symbol Clicks (hovedlyd)                            │
+│     ├── Frekvens: 280Hz → 180Hz (pitch sweep ned)       │
+│     ├── Type: Sine wave                                  │
+│     ├── Varighed: 15ms per klik                         │
+│     └── Interval: 45ms (ca. 22 clicks/sek)              │
+│                                                          │
+│  2. Mechanism Ticker (accent)                           │
+│     ├── Frekvens: 1000Hz                                │
+│     ├── Type: Square wave (filtered)                    │
+│     ├── Varighed: 8ms per tick                          │
+│     └── Interval: 90ms (alternerer med clicks)          │
+│                                                          │
+│  3. Motor Hum (undertone)                               │
+│     ├── Frekvens: 100Hz med let modulation              │
+│     ├── Type: Sawtooth (lowpass filtered)               │
+│     └── Konstant, lavt volumen                          │
+│                                                          │
+└─────────────────────────────────────────────────────────┘
 ```
 
-## Forventede Ændringer
-
-| Fil | Linje | Ændring |
-|-----|-------|---------|
-| `src/pages/SlotMachine.tsx` | 99 | Fjern `py-1` fra container |
-| `src/pages/SlotMachine.tsx` | 101 | Fjern `mb-1` fra titel-wrapper |
-| `src/pages/SlotMachine.tsx` | 122 | Ændre `gap-2` til `gap-1` |
+### Forventet resultat
+- Lyden vil minde meget mere om den klassiske Book of Dead spinning-lyd
+- Mekanisk, rhythmisk karakter i stedet for mystisk/eterisk
+- Hurtige clicks der simulerer hjul-symboler der flyver forbi
+- Stadig passer til det egyptiske tema, men med mere "ægte" slot-maskine følelse
 
