@@ -1599,6 +1599,128 @@ class SlotSoundEffects {
       clearInterval(interval);
     };
   }
+
+  // Big win counting sound - more dramatic, triumphant sound for big/mega/epic wins
+  playBigWinCount(): () => void {
+    if (!this.enabled) return () => {};
+    
+    const ctx = this.getContext();
+    let isPlaying = true;
+    let tickCount = 0;
+    
+    // Egyptian scale notes for ascending chimes
+    const chimeNotes = [293.66, 329.63, 392.00, 440.00, 523.25, 587.33, 659.26, 783.99]; // D4 to G5
+    
+    const playTick = () => {
+      if (!isPlaying || !this.enabled) return;
+      
+      const now = ctx.currentTime;
+      
+      // Deep coin impact (lower, more impactful)
+      const coin = ctx.createOscillator();
+      const coinGain = ctx.createGain();
+      const coinFilter = ctx.createBiquadFilter();
+      
+      coin.connect(coinFilter);
+      coinFilter.connect(coinGain);
+      coinGain.connect(ctx.destination);
+      
+      // Lower pitch for more impact
+      const basePitch = 800 + Math.random() * 200;
+      coin.frequency.setValueAtTime(basePitch, now);
+      coin.frequency.exponentialRampToValueAtTime(basePitch * 0.5, now + 0.1);
+      coin.type = 'triangle';
+      
+      coinFilter.type = 'lowpass';
+      coinFilter.frequency.value = 2000;
+      
+      coinGain.gain.setValueAtTime(0.18 * this.volume, now);
+      coinGain.gain.exponentialRampToValueAtTime(0.001, now + 0.12);
+      
+      coin.start(now);
+      coin.stop(now + 0.12);
+      
+      // Ascending golden chimes (Egyptian harp style)
+      const chimeNote = chimeNotes[tickCount % chimeNotes.length];
+      const chime = ctx.createOscillator();
+      const chimeGain = ctx.createGain();
+      const chimeFilter = ctx.createBiquadFilter();
+      
+      chime.connect(chimeFilter);
+      chimeFilter.connect(chimeGain);
+      chimeGain.connect(ctx.destination);
+      
+      chime.frequency.value = chimeNote;
+      chime.type = 'sine';
+      
+      chimeFilter.type = 'bandpass';
+      chimeFilter.frequency.value = chimeNote;
+      chimeFilter.Q.value = 2;
+      
+      chimeGain.gain.setValueAtTime(0.1 * this.volume, now);
+      chimeGain.gain.exponentialRampToValueAtTime(0.001, now + 0.3);
+      
+      chime.start(now);
+      chime.stop(now + 0.35);
+      
+      // Golden shimmer sparkle (more intense)
+      const shimmer = ctx.createOscillator();
+      const shimmerGain = ctx.createGain();
+      
+      shimmer.connect(shimmerGain);
+      shimmerGain.connect(ctx.destination);
+      
+      shimmer.frequency.value = 2500 + Math.random() * 800;
+      shimmer.type = 'sine';
+      
+      shimmerGain.gain.setValueAtTime(0.08 * this.volume, now);
+      shimmerGain.gain.exponentialRampToValueAtTime(0.001, now + 0.15);
+      
+      shimmer.start(now);
+      shimmer.stop(now + 0.15);
+      
+      // Subtle triumphant undertone every 4 ticks
+      if (tickCount % 4 === 0) {
+        const brass = ctx.createOscillator();
+        const brass2 = ctx.createOscillator();
+        const brassGain = ctx.createGain();
+        const brassFilter = ctx.createBiquadFilter();
+        
+        brass.connect(brassFilter);
+        brass2.connect(brassFilter);
+        brassFilter.connect(brassGain);
+        brassGain.connect(ctx.destination);
+        
+        brass.frequency.value = 146.83; // D3
+        brass2.frequency.value = 220; // A3
+        brass.type = 'sawtooth';
+        brass2.type = 'sawtooth';
+        
+        brassFilter.type = 'lowpass';
+        brassFilter.frequency.value = 600;
+        
+        brassGain.gain.setValueAtTime(0.06 * this.volume, now);
+        brassGain.gain.exponentialRampToValueAtTime(0.001, now + 0.2);
+        
+        brass.start(now);
+        brass2.start(now);
+        brass.stop(now + 0.25);
+        brass2.stop(now + 0.25);
+      }
+      
+      tickCount++;
+    };
+    
+    // Slightly slower interval for more impactful feel (60ms)
+    const interval = setInterval(playTick, 60);
+    playTick(); // Play first tick immediately
+    
+    // Return stop function
+    return () => {
+      isPlaying = false;
+      clearInterval(interval);
+    };
+  }
 }
 
 // Singleton instance

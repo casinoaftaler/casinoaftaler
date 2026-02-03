@@ -83,6 +83,8 @@ export function SlotGame() {
   // Bonus overlay states
   const [showBonusTrigger, setShowBonusTrigger] = useState(false);
   const [showBonusComplete, setShowBonusComplete] = useState(false);
+  const [showRetrigger, setShowRetrigger] = useState(false);
+  const [retriggerSpinsAdded, setRetriggerSpinsAdded] = useState(10);
   const [pendingExpandingSymbol, setPendingExpandingSymbol] = useState<typeof bonusState.expandingSymbol>(null);
   const [bonusTotalWinnings, setBonusTotalWinnings] = useState(0);
   
@@ -294,7 +296,7 @@ export function SlotGame() {
     }
 
     // Don't auto-spin if bonus overlay is showing
-    if (showBonusTrigger || showBonusComplete) return;
+    if (showBonusTrigger || showBonusComplete || showRetrigger) return;
 
     // Calculate delay based on whether there was a win
     // If there was a win, add extra time for the counter animation
@@ -314,7 +316,7 @@ export function SlotGame() {
         clearTimeout(autoSpinTimeoutRef.current);
       }
     };
-  }, [isAutoSpinning, isSpinning, isWinAnimating, winAmount, canSpin, bonusState.isActive, bonusState.freeSpinsRemaining, showBonusTrigger, showBonusComplete]);
+  }, [isAutoSpinning, isSpinning, isWinAnimating, winAmount, canSpin, bonusState.isActive, bonusState.freeSpinsRemaining, showBonusTrigger, showBonusComplete, showRetrigger]);
 
   // Find winning positions for each reel
   const getWinningPositions = (reelIndex: number): number[] => {
@@ -381,6 +383,13 @@ export function SlotGame() {
   return (
     <div className="transition-all duration-300">
       {/* Bonus Overlays */}
+      <BonusOverlay
+        isVisible={showRetrigger}
+        type="retrigger"
+        retriggerSpins={retriggerSpinsAdded}
+        totalFreeSpins={bonusState.freeSpinsRemaining}
+        onClose={() => setShowRetrigger(false)}
+      />
       <BonusOverlay
         isVisible={showBonusTrigger}
         type="trigger"
@@ -504,8 +513,11 @@ export function SlotGame() {
                             shouldStopAuto = true;
                             
                             if (isBonusSpin) {
-                              retriggerBonus(10);
-                              toast.info("📖 RETRIGGER! +10 Free Spins!", { duration: 3000 });
+                              // Retrigger during bonus - show dramatic overlay
+                              const spinsToAdd = 10;
+                              retriggerBonus(spinsToAdd);
+                              setRetriggerSpinsAdded(spinsToAdd);
+                              setShowRetrigger(true);
                             } else {
                               const expanding = triggerBonus(symbols || []);
                               setPendingExpandingSymbol(expanding);

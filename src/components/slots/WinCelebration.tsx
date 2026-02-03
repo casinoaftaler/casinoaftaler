@@ -41,7 +41,8 @@ export function WinCelebration({ isActive, winAmount, bet }: WinCelebrationProps
   const displayAmount = useAnimatedCounter(showBigWin ? winAmount : 0, { 
     duration, 
     startFrom: 0,
-    playSound: showBigWin // Only play sound when big win is showing
+    playSound: showBigWin, // Only play sound when big win is showing
+    isBigWin: true // Use dramatic big win counting sound
   });
 
   useEffect(() => {
