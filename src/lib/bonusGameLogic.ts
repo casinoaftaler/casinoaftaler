@@ -77,18 +77,18 @@ function checkIfExpandingCreatesPaylineWin(
     }
   }
   
-  // Check each pay line for wins
+  // Check each pay line for wins WITH THE EXPANDING SYMBOL
   for (const linePattern of PAY_LINES) {
     const lineSymbols = linePattern.map((row, col) => {
       const symbolId = hypotheticalGrid[col][row];
       return symbolsById.get(symbolId);
     });
     
-    // Find the first non-wild symbol as base
-    // Expanding symbol is NOT a wild - it only matches itself
-    let baseSymbol = lineSymbols.find(s => s && !s.is_wild);
-    if (!baseSymbol) {
-      baseSymbol = lineSymbols[0];
+    // Only check if the EXPANDING SYMBOL creates a win
+    // The first symbol on the line must be the expanding symbol
+    // for the expansion to be worthwhile
+    if (lineSymbols[0]?.id !== expandingSymbol.id) {
+      continue; // Skip - not an expanding symbol win
     }
     
     let consecutiveMatches = 0;
@@ -96,9 +96,8 @@ function checkIfExpandingCreatesPaylineWin(
       const symbol = lineSymbols[col];
       if (!symbol) break;
       
-      const isMatch = symbol.id === baseSymbol?.id;
-      
-      if (isMatch) {
+      // Only match if it's the expanding symbol
+      if (symbol.id === expandingSymbol.id) {
         consecutiveMatches++;
       } else {
         break;
@@ -106,7 +105,7 @@ function checkIfExpandingCreatesPaylineWin(
     }
     
     if (consecutiveMatches >= 3) {
-      return true;
+      return true; // ✓ Expanding symbol itself creates a win
     }
   }
   
