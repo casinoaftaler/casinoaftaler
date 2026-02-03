@@ -22,6 +22,7 @@ export interface SlotSymbol {
   is_scatter: boolean;
   is_wild: boolean;
   position: number;
+  rarity: 'premium' | 'common' | 'scatter';
 }
 
 export interface SpinResult {
@@ -39,19 +40,38 @@ export interface LineWin {
   payout: number;
 }
 
+// Rarity system types
+export type SymbolRarity = 'premium' | 'common' | 'scatter';
+
+export const RARITY_COLORS: Record<SymbolRarity, string> = {
+  premium: 'text-amber-400',
+  common: 'text-gray-400',
+  scatter: 'text-purple-400'
+};
+
+export const RARITY_LABELS: Record<SymbolRarity, string> = {
+  premium: 'Premium',
+  common: 'Almindelig',
+  scatter: 'Scatter'
+};
+
 // Symbol weights for RNG (higher = more common)
+// Premium symbols are rarer than common symbols
 // Scatter probability tuned for ~1 bonus per 100 spins
 export const SYMBOL_WEIGHTS: Record<string, number> = {
-  'Pharaoh': 8,
-  'Anubis': 12,
-  'Horus': 15,
-  'Scarab': 20,
-  'Isis': 20,
-  'Ankh': 25,
-  'A': 30,
-  'K': 35,
-  'Q': 40,
-  'Book': 1, // Scatter/Wild - extremely rare for ~1 bonus per 100 spins
+  // Premium symbols (rare)
+  'Pharaoh': 5,   // Most rare premium
+  'Anubis': 8,
+  'Horus': 12,
+  'Scarab': 15,
+  // Common symbols (frequent)
+  'Isis': 40,
+  'Ankh': 45,
+  'A': 50,
+  'K': 55,
+  'Q': 60,
+  // Scatter (extremely rare)
+  'Book': 1,
 };
 
 // Count scatters per reel column
