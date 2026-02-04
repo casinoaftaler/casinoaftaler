@@ -12,6 +12,7 @@ import { useSlotSymbols } from "@/hooks/useSlotSymbols";
 import { useSlotSymbolPreloader } from "@/hooks/useSlotSymbolPreloader";
 import { useSlotSpins } from "@/hooks/useSlotSpins";
 import { useSlotSettings } from "@/hooks/useSlotSettings";
+import { useSlotSoundLoader } from "@/hooks/useSlotSoundLoader";
 import { useBonusGame } from "@/hooks/useBonusGame";
 import { useAuth } from "@/hooks/useAuth";
 import { useQueryClient } from "@tanstack/react-query";
@@ -36,6 +37,9 @@ export function SlotGame() {
   const { validateSymbols } = useSlotSymbolPreloader(symbols);
   const { spinsRemaining, maxSpins, canSpin, decrementSpin, hasEnoughSpins } = useSlotSpins();
   const { settings: slotSettings } = useSlotSettings();
+  
+  // Load custom sound files from site_settings
+  useSlotSoundLoader();
   const { 
     bonusState, 
     isLoaded: bonusLoaded,

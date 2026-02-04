@@ -1,5 +1,6 @@
 // Slot Machine Sound Effects using Web Audio API
 // Egyptian-themed synthesized sounds inspired by ancient Egypt
+// Supports custom uploaded sound files with fallback to synthesized sounds
 
 export interface SlotSoundSettings {
   spinClickInterval: number;
@@ -24,6 +25,17 @@ export interface SlotSoundSettings {
   winBigDrumEnabled: boolean;
 }
 
+export interface CustomSoundFiles {
+  backgroundMusic?: string | null;
+  spinSound?: string | null;
+  stopSound?: string | null;
+  smallWinSound?: string | null;
+  mediumWinSound?: string | null;
+  bigWinSound?: string | null;
+  bonusTriggerSound?: string | null;
+  bonusWinSound?: string | null;
+}
+
 // localStorage key for persisting audio settings
 const AUDIO_SETTINGS_KEY = 'slot-audio-settings';
 
@@ -41,6 +53,11 @@ class SlotSoundEffects {
   private musicGainNode: GainNode | null = null;
   private currentMusic: OscillatorNode[] = [];
   private musicInterval: NodeJS.Timeout | null = null;
+
+  // Custom uploaded sound files
+  private customSoundFiles: CustomSoundFiles = {};
+  private customAudioElements: Map<string, HTMLAudioElement> = new Map();
+  private backgroundMusicAudio: HTMLAudioElement | null = null;
 
   // Configurable sound settings
   private soundSettings: SlotSoundSettings = {
@@ -69,6 +86,67 @@ class SlotSoundEffects {
   constructor() {
     // Load persisted settings on initialization
     this.loadPersistedSettings();
+  }
+
+  // Set custom sound file URLs from admin settings
+  setCustomSoundFiles(files: CustomSoundFiles) {
+    this.customSoundFiles = files;
+    
+    // Preload custom audio files
+    this.preloadCustomAudio();
+  }
+
+  private preloadCustomAudio() {
+    // Clear existing cached audio elements
+    this.customAudioElements.forEach(audio => {
+      audio.pause();
+      audio.src = '';
+    });
+    this.customAudioElements.clear();
+
+    // Preload each sound file
+    const soundKeys: (keyof CustomSoundFiles)[] = [
+      'spinSound', 'stopSound', 'smallWinSound', 'mediumWinSound', 
+      'bigWinSound', 'bonusTriggerSound', 'bonusWinSound'
+    ];
+
+    soundKeys.forEach(key => {
+      const url = this.customSoundFiles[key];
+      if (url) {
+        const audio = new Audio();
+        audio.preload = 'auto';
+        audio.src = url;
+        this.customAudioElements.set(key, audio);
+      }
+    });
+
+    // Handle background music separately
+    if (this.customSoundFiles.backgroundMusic) {
+      if (this.backgroundMusicAudio) {
+        this.backgroundMusicAudio.pause();
+      }
+      this.backgroundMusicAudio = new Audio();
+      this.backgroundMusicAudio.preload = 'auto';
+      this.backgroundMusicAudio.loop = true;
+      this.backgroundMusicAudio.src = this.customSoundFiles.backgroundMusic;
+    }
+  }
+
+  // Play a custom sound file if available, returns true if played
+  private playCustomSound(key: keyof CustomSoundFiles): boolean {
+    if (!this.enabled) return false;
+    
+    const audio = this.customAudioElements.get(key);
+    if (audio) {
+      // Clone the audio element for overlapping playback
+      const clone = audio.cloneNode() as HTMLAudioElement;
+      clone.volume = this.volume;
+      clone.play().catch(() => {
+        // Ignore autoplay errors
+      });
+      return true;
+    }
+    return false;
   }
 
   private loadPersistedSettings() {
@@ -131,6 +209,10 @@ class SlotSoundEffects {
     if (this.musicGainNode) {
       this.musicGainNode.gain.value = 0.08 * this.volume;
     }
+    // Update custom background music volume
+    if (this.backgroundMusicAudio) {
+      this.backgroundMusicAudio.volume = this.volume * 0.5;
+    }
     this.persistSettings();
   }
 
@@ -165,6 +247,25 @@ class SlotSoundEffects {
   // Book of Dead style dramatic Egyptian music
   startMusic() {
     if (!this.enabled || !this.musicEnabled) return;
+    
+    // Try custom background music first
+    if (this.backgroundMusicAudio && this.customSoundFiles.backgroundMusic) {
+      if (this.backgroundMusicAudio.paused) {
+        this.backgroundMusicAudio.volume = this.volume * 0.5;
+        this.backgroundMusicAudio.play().catch(() => {
+          // Ignore autoplay errors, fall back to synthesized music
+          this.startSynthesizedMusic();
+        });
+      }
+      return;
+    }
+    
+    // Fall back to synthesized music
+    this.startSynthesizedMusic();
+  }
+
+  // Synthesized Egyptian music (fallback)
+  private startSynthesizedMusic() {
     if (this.musicInterval) return; // Already playing
 
     const ctx = this.getContext();
@@ -526,6 +627,12 @@ class SlotSoundEffects {
   }
 
   stopMusic() {
+    // Stop custom background music
+    if (this.backgroundMusicAudio) {
+      this.backgroundMusicAudio.pause();
+      this.backgroundMusicAudio.currentTime = 0;
+    }
+
     if (this.musicInterval) {
       clearInterval(this.musicInterval);
       this.musicInterval = null;
@@ -549,6 +656,10 @@ class SlotSoundEffects {
   // Egyptian-themed spinning reel sound - mystical whoosh with ancient percussion
   playSpinStart() {
     if (!this.enabled) return;
+    
+    // Try custom spin sound first
+    if (this.playCustomSound('spinSound')) return;
+    
     const ctx = this.getContext();
     const now = ctx.currentTime;
 
@@ -793,6 +904,10 @@ class SlotSoundEffects {
   // Reel stop sound - stone tablet landing with golden chime (legacy - plays for all reels at once)
   playReelStop() {
     if (!this.enabled) return;
+    
+    // Try custom stop sound first
+    if (this.playCustomSound('stopSound')) return;
+    
     const ctx = this.getContext();
     const now = ctx.currentTime;
 
@@ -859,6 +974,10 @@ class SlotSoundEffects {
   // Small win - golden coins with Egyptian harp
   playSmallWin() {
     if (!this.enabled) return;
+    
+    // Try custom small win sound first
+    if (this.playCustomSound('smallWinSound')) return;
+    
     const ctx = this.getContext();
     const now = ctx.currentTime;
     
@@ -910,6 +1029,10 @@ class SlotSoundEffects {
   // Medium win - treasure discovery with sistrum
   playMediumWin() {
     if (!this.enabled) return;
+    
+    // Try custom medium win sound first
+    if (this.playCustomSound('mediumWinSound')) return;
+    
     const ctx = this.getContext();
     const now = ctx.currentTime;
     
@@ -977,6 +1100,10 @@ class SlotSoundEffects {
   // Big win - Pharaoh's treasure fanfare
   playBigWin() {
     if (!this.enabled) return;
+    
+    // Try custom big win sound first
+    if (this.playCustomSound('bigWinSound')) return;
+    
     const ctx = this.getContext();
     const now = ctx.currentTime;
     
@@ -1080,6 +1207,10 @@ class SlotSoundEffects {
   // Bonus trigger - Book of Dead opens with ancient power
   playBonusTrigger() {
     if (!this.enabled) return;
+    
+    // Try custom bonus trigger sound first
+    if (this.playCustomSound('bonusTriggerSound')) return;
+    
     const ctx = this.getContext();
     const now = ctx.currentTime;
     
