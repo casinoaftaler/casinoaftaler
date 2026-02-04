@@ -62,31 +62,28 @@ export function SlotControlPanel({
     : canSpin;
 
   return (
-    <div className="w-full flex flex-col items-center gap-2 sm:gap-3">
-      {/* Small Win Bar - centered above controls */}
-      <SmallWinBar amount={winAmount} />
+    <div className="w-full flex flex-row items-center justify-center gap-2 sm:gap-4 flex-wrap sm:flex-nowrap">
+      {/* Volume */}
+      <VolumeControl className="text-amber-400 hover:text-amber-300 flex-shrink-0" />
       
-      {/* Horizontal row on all devices */}
-      <div className="flex flex-row items-center justify-center gap-2 sm:gap-4 w-full flex-wrap sm:flex-nowrap">
-        
-        {/* Volume */}
-        <VolumeControl className="text-amber-400 hover:text-amber-300 flex-shrink-0" />
-        
-        {/* Bet Controls */}
-        <BetControls
-          bet={bet}
-          onBetChange={onBetChange}
-          disabled={disabled || isSpinning || bonusState.isActive}
-          minBet={minBet}
-          maxBet={maxBet}
-          showSpins={!bonusState.isActive}
-          spinsRemaining={spinsRemaining}
-          maxSpins={maxSpins}
-          spinsLoading={spinsLoading}
-        />
+      {/* Bet Controls */}
+      <BetControls
+        bet={bet}
+        onBetChange={onBetChange}
+        disabled={disabled || isSpinning || bonusState.isActive}
+        minBet={minBet}
+        maxBet={maxBet}
+        showSpins={!bonusState.isActive}
+        spinsRemaining={spinsRemaining}
+        maxSpins={maxSpins}
+        spinsLoading={spinsLoading}
+      />
 
-        {/* Center: Spin Button */}
-        <Button
+      {/* Win Box */}
+      <SmallWinBar amount={winAmount} />
+
+      {/* Center: Spin Button */}
+      <Button
           className={cn(
             // Round shape
             "rounded-full aspect-square flex-shrink-0",
@@ -167,10 +164,9 @@ export function SlotControlPanel({
           disabled={!canSpinNow || showBonusTrigger}
         />
 
-        {/* PayTable */}
-        <div className="flex-shrink-0">
-          <PayTable />
-        </div>
+      {/* PayTable */}
+      <div className="flex-shrink-0">
+        <PayTable />
       </div>
     </div>
   );
