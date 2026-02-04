@@ -1,24 +1,14 @@
 import React, { useState, useCallback, useRef, useEffect } from "react";
-import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
 import { SlotReel } from "./SlotReel";
-import { BetControls } from "./BetControls";
 import { WinDisplay } from "./WinDisplay";
 import { WinLines } from "./WinLines";
-import { PayTable } from "./PayTable";
 import { BonusOverlay } from "./BonusOverlay";
 import { BonusStatusBar } from "./BonusStatusBar";
-import { VolumeControl } from "./VolumeControl";
 import { SlotMachineFrame } from "./SlotMachineFrame";
 import { WinCelebration } from "./WinCelebration";
-import { SpinsRemaining } from "./SpinsRemaining";
 import { SmallWinBar } from "./SmallWinBar";
+import { SlotControlPanel } from "./SlotControlPanel";
 import { useSlotSymbols } from "@/hooks/useSlotSymbols";
 import { useSlotSymbolPreloader } from "@/hooks/useSlotSymbolPreloader";
 import { useSlotSpins } from "@/hooks/useSlotSpins";
@@ -30,7 +20,7 @@ import { supabase } from "@/integrations/supabase/client";
 import { generateGrid, calculateSpinResult, PAY_LINES, getScatterTeaseReels, type SpinResult, type TeaseInfo } from "@/lib/slotGameLogic";
 import { calculateBonusSpinResult } from "@/lib/bonusGameLogic";
 import { slotSounds } from "@/lib/slotSoundEffects";
-import { Gamepad2, Loader2, Play, Square, ChevronDown, Infinity } from "lucide-react";
+import { Loader2, Gamepad2 } from "lucide-react";
 import { toast } from "sonner";
 import { cn } from "@/lib/utils";
 
@@ -798,158 +788,33 @@ export function SlotGame() {
             <SmallWinBar amount={winAmount} />
           </div>
 
-          {/* Controls row with spin button in center - stacks on mobile */}
-          <div className="flex flex-col sm:flex-row flex-wrap items-center justify-center gap-3 sm:gap-4 md:gap-6 mt-2 sm:mt-3">
-            {/* TOP ROW ON MOBILE: Bet Controls + Autospin + Spins Remaining */}
-            <div className="flex flex-col items-center gap-1 order-1 sm:order-1">
-              <div className="flex items-center gap-2">
-                <BetControls bet={bet} onBetChange={setBet} disabled={isSpinning || bonusState.isActive} minBet={slotSettings.minBet} maxBet={slotSettings.maxBet} />
-                
-                {/* Autospin controls */}
-                <div className="flex items-center gap-1">
-                {/* Autospin count selector */}
-                {!isAutoSpinning && (
-                  <DropdownMenu>
-                    <DropdownMenuTrigger asChild>
-                      <Button
-                        variant="outline"
-                        className="px-2 sm:px-3 py-3 sm:py-5 text-sm sm:text-base font-bold border-amber-500/50 hover:bg-amber-500/10 text-amber-500"
-                        disabled={!canSpinNow || showBonusTrigger}
-                      >
-                        {autoSpinCount === "infinite" ? (
-                          <Infinity className="h-4 w-4" />
-                        ) : (
-                          autoSpinCount
-                        )}
-                        <ChevronDown className="ml-1 h-3 w-3" />
-                      </Button>
-                    </DropdownMenuTrigger>
-                    <DropdownMenuContent className="bg-background border-amber-500/30">
-                      {([10, 25, 50, 100, "infinite"] as AutoSpinCount[]).map((count) => (
-                        <DropdownMenuItem
-                          key={count}
-                          onClick={() => setAutoSpinCount(count)}
-                          className={cn(
-                            "text-lg cursor-pointer",
-                            autoSpinCount === count && "bg-amber-500/20"
-                          )}
-                        >
-                          {count === "infinite" ? (
-                            <span className="flex items-center gap-2">
-                              <Infinity className="h-4 w-4" /> Uendelig
-                            </span>
-                          ) : (
-                            `${count} spins`
-                          )}
-                        </DropdownMenuItem>
-                      ))}
-                    </DropdownMenuContent>
-                  </DropdownMenu>
-                )}
-
-                {/* Autospin button */}
-                <Button
-                  size="lg"
-                  variant={isAutoSpinning ? "destructive" : "outline"}
-                  className={cn(
-                    "px-3 sm:px-4 py-3 sm:py-5 text-sm sm:text-base font-bold transition-all",
-                    isAutoSpinning 
-                      ? "bg-red-500 hover:bg-red-600 text-white"
-                      : "border-amber-500/50 hover:bg-amber-500/10 text-amber-500"
-                  )}
-                  onClick={toggleAutoSpin}
-                  disabled={!canSpinNow || showBonusTrigger}
-                >
-                  {isAutoSpinning ? (
-                    <>
-                      <Square className="mr-1 h-4 w-4" />
-                      <span className="hidden xs:inline">{autoSpinsRemaining !== null ? `STOP (${autoSpinsRemaining})` : "STOP"}</span>
-                      <span className="xs:hidden">{autoSpinsRemaining !== null ? autoSpinsRemaining : "■"}</span>
-                    </>
-                  ) : (
-                    <>
-                      <Play className="mr-1 h-4 w-4" />
-                      AUTO
-                    </>
-                  )}
-                </Button>
-                </div>
-              </div>
-              
-              {/* Spins remaining - directly under bet controls */}
-              {!bonusState.isActive && <SpinsRemaining />}
-            </div>
-
-            {/* CENTER: Spin button - always in middle */}
-            <Button
-              className={cn(
-                // Round shape
-                "rounded-full aspect-square",
-                // Responsive sizing - larger on mobile when stacked
-                "w-20 h-20 sm:w-20 sm:h-20 md:w-24 md:h-24 lg:w-28 lg:h-28",
-                // Golden gradient with 3D effect - consistent amber theme
-                "bg-gradient-to-br from-amber-300 via-amber-500 to-amber-700",
-                // Golden border
-                "border-2 md:border-4 border-amber-400/60",
-                // Deep glow shadow - amber glow
-                "shadow-[0_0_20px_rgba(251,191,36,0.5),0_4px_15px_rgba(0,0,0,0.3)] md:shadow-[0_0_30px_rgba(251,191,36,0.6),0_6px_20px_rgba(0,0,0,0.4)]",
-                // Hover effects - amber glow
-                !isSpinning && canSpinNow && !isAutoSpinning && "hover:shadow-[0_0_40px_rgba(251,191,36,0.8),0_8px_30px_rgba(0,0,0,0.5)]",
-                "hover:scale-105 transition-all duration-200",
-                // Active/press effect
-                "active:scale-95 active:shadow-[inset_0_4px_10px_rgba(0,0,0,0.3)]",
-                // Spinning animation
-                isSpinning && "animate-pulse",
-                // Disabled state
-                "disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100",
-                // Text styling
-                "text-white font-bold text-base sm:text-lg md:text-xl lg:text-2xl flex flex-col items-center justify-center",
-                // Order for stacking
-                "order-2 sm:order-2"
-              )}
-              onClick={handleSpin}
-              disabled={isSpinning || !canSpinNow || showBonusTrigger || isAutoSpinning}
-            >
-              {isSpinning ? (
-                <div className="relative">
-                  {/* Outer rotating ring */}
-                  <div className="absolute inset-0 rounded-full border-4 border-transparent border-t-white/80 border-r-white/40 animate-spin" 
-                       style={{ animationDuration: '0.8s' }} />
-                  {/* Inner spinning icon */}
-                  <Gamepad2 
-                    className="h-6 w-6 sm:h-8 sm:w-8 md:h-10 md:w-10 lg:h-12 lg:h-12 animate-spin drop-shadow-[0_0_8px_rgba(255,255,255,0.8)]" 
-                    style={{ animationDuration: '1.5s', animationDirection: 'reverse' }}
-                  />
-                </div>
-              ) : !canSpinNow ? (
-                <span className="text-[10px] sm:text-xs md:text-sm text-center leading-tight">INGEN<br/>SPINS</span>
-              ) : bonusState.isActive ? (
-                <>
-                  <Gamepad2 className="h-5 w-5 sm:h-6 sm:w-6 md:h-8 md:h-8 lg:h-10 lg:w-10 mb-0.5" />
-                  <span className="text-xs sm:text-sm md:text-base">FREE</span>
-                </>
-              ) : (
-                <>
-                  <Gamepad2 className="h-5 w-5 sm:h-6 sm:w-6 md:h-8 md:h-8 lg:h-10 lg:w-10 mb-0.5" />
-                  <span className="text-xs sm:text-sm md:text-base lg:text-lg">SPIN</span>
-                </>
-              )}
-            </Button>
-
-            {/* BOTTOM ROW ON MOBILE: Volume */}
-            <div className="flex items-center gap-2 order-3 sm:order-3">
-              <VolumeControl />
-            </div>
-          </div>
-
-          {/* Pay table button */}
-          <div className="flex justify-center">
-            <PayTable />
+          {/* Redesigned Control Panel */}
+          <div className="mt-2 sm:mt-3">
+            <SlotControlPanel
+              bet={bet}
+              onBetChange={setBet}
+              onSpin={handleSpin}
+              onAutoSpinToggle={toggleAutoSpin}
+              isSpinning={isSpinning}
+              canSpin={canSpin}
+              isAutoSpinning={isAutoSpinning}
+              autoSpinCount={autoSpinCount}
+              onAutoSpinCountChange={setAutoSpinCount}
+              autoSpinsRemaining={autoSpinsRemaining}
+              bonusState={bonusState}
+              disabled={isSpinning}
+              minBet={slotSettings.minBet}
+              maxBet={slotSettings.maxBet}
+              spinsRemaining={spinsRemaining}
+              maxSpins={maxSpins}
+              spinsLoading={false}
+              showBonusTrigger={showBonusTrigger}
+            />
           </div>
 
           {/* No spins message */}
           {!canSpinNow && !bonusState.isActive && (
-            <div className="text-center p-4 bg-muted/50 rounded-lg">
+            <div className="text-center p-4 bg-muted/50 rounded-lg mt-3">
               <p className="text-muted-foreground">
                 Du har brugt alle dine spins i dag. Kom tilbage i morgen for {maxSpins} nye!
               </p>
