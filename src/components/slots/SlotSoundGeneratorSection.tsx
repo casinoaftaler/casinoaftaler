@@ -19,6 +19,7 @@ const SOUND_TYPE_OPTIONS = [
   { value: "mediumWinSound", label: "Medium Gevinst", key: SLOT_SOUND_SETTING_KEYS.mediumWinSound },
   { value: "bigWinSound", label: "Stor Gevinst", key: SLOT_SOUND_SETTING_KEYS.bigWinSound },
   { value: "bonusTriggerSound", label: "Bonus Trigger", key: SLOT_SOUND_SETTING_KEYS.bonusTriggerSound },
+  { value: "bonusSymbolScrollSound", label: "Symbol Scroll", key: SLOT_SOUND_SETTING_KEYS.bonusSymbolScrollSound },
   { value: "bonusWinSound", label: "Bonus Afslutning", key: SLOT_SOUND_SETTING_KEYS.bonusWinSound },
 ];
 

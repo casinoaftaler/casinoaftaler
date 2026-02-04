@@ -2,6 +2,7 @@ import { useState, useEffect, useRef } from "react";
 import type { SlotSymbol } from "@/lib/slotGameLogic";
 import { getSymbolEmoji } from "@/lib/slotGameLogic";
 import { cn } from "@/lib/utils";
+import { slotSounds } from "@/lib/slotSoundEffects";
 
 interface BonusSymbolPickerProps {
   isVisible: boolean;
@@ -21,6 +22,7 @@ export function BonusSymbolPicker({
   const intervalRef = useRef<NodeJS.Timeout | null>(null);
   const phaseTimeoutRef = useRef<NodeJS.Timeout | null>(null);
   const slowdownTimeoutsRef = useRef<NodeJS.Timeout[]>([]);
+  const stopScrollSoundRef = useRef<(() => void) | null>(null);
 
   // Filter to only non-scatter symbols (same as bonus eligibility)
   const eligibleSymbols = symbols.filter(s => !s.is_scatter);
@@ -33,6 +35,9 @@ export function BonusSymbolPicker({
     // Reset state
     setPhase("spinning");
     setCurrentSymbol(eligibleSymbols[0]);
+
+    // Start the scroll sound
+    stopScrollSoundRef.current = slotSounds.playBonusSymbolScroll();
 
     // Phase 1: Fast spinning (100ms intervals for 1.5s)
     let spinIndex = 0;
@@ -60,6 +65,11 @@ export function BonusSymbolPicker({
           if (i === delays.length - 1) {
             setCurrentSymbol(selectedSymbol);
             setPhase("landed");
+            // Stop the scroll sound when landed
+            if (stopScrollSoundRef.current) {
+              stopScrollSoundRef.current();
+              stopScrollSoundRef.current = null;
+            }
           } else {
             const randomIndex = Math.floor(Math.random() * eligibleSymbols.length);
             setCurrentSymbol(eligibleSymbols[randomIndex]);
@@ -74,6 +84,11 @@ export function BonusSymbolPicker({
       if (phaseTimeoutRef.current) clearTimeout(phaseTimeoutRef.current);
       slowdownTimeoutsRef.current.forEach(t => clearTimeout(t));
       slowdownTimeoutsRef.current = [];
+      // Stop scroll sound on cleanup
+      if (stopScrollSoundRef.current) {
+        stopScrollSoundRef.current();
+        stopScrollSoundRef.current = null;
+      }
     };
   }, [isVisible, eligibleSymbols.length, selectedSymbol?.id]);
 
