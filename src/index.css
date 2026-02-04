@@ -408,3 +408,12 @@ All colors MUST be HSL.
     opacity: 0.3;
   }
 }
+
+@keyframes line-shimmer {
+  0% {
+    stroke-dashoffset: 100%;
+  }
+  100% {
+    stroke-dashoffset: -100%;
+  }
+}
