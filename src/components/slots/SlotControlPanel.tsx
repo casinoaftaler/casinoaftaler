@@ -27,6 +27,7 @@ interface SlotControlPanelProps {
   autoSpinsRemaining: number | null;
   bonusState: BonusState;
   disabled?: boolean;
+  isSpinLocked?: boolean;
   minBet?: number;
   maxBet?: number;
   spinsRemaining: number;
@@ -49,6 +50,7 @@ export function SlotControlPanel({
   autoSpinsRemaining,
   bonusState,
   disabled,
+  isSpinLocked,
   minBet = 1,
   maxBet = 10,
   spinsRemaining,
@@ -98,12 +100,14 @@ export function SlotControlPanel({
             "md:shadow-[inset_0_3px_6px_rgba(255,230,150,0.6),inset_0_-4px_8px_rgba(120,80,20,0.4),0_0_35px_rgba(251,191,36,0.6),0_8px_25px_rgba(0,0,0,0.5)]",
             // Idle pulsing glow animation when ready to spin
             !isSpinning &&
+              !isSpinLocked &&
               canSpinNow &&
               !isAutoSpinning &&
               !showBonusTrigger &&
               "animate-[spin-glow_4s_ease-in-out_infinite]",
             // Hover effects - intensify glow
             !isSpinning &&
+              !isSpinLocked &&
               canSpinNow &&
               !isAutoSpinning &&
               "hover:shadow-[inset_0_2px_4px_rgba(255,230,150,0.8),inset_0_-3px_6px_rgba(120,80,20,0.3),0_0_50px_rgba(251,191,36,0.8),0_8px_30px_rgba(0,0,0,0.5)] hover:border-amber-300",
@@ -120,7 +124,7 @@ export function SlotControlPanel({
             "[text-shadow:0_1px_0_rgba(255,230,150,0.8),0_-1px_0_rgba(120,80,20,0.3)]"
           )}
           onClick={onSpin}
-          disabled={isSpinning || !canSpinNow || showBonusTrigger || isAutoSpinning}
+          disabled={isSpinning || isSpinLocked || !canSpinNow || showBonusTrigger || isAutoSpinning}
         >
           {isSpinning ? (
             <div className="relative">
