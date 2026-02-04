@@ -37,7 +37,7 @@ export function SlotPageLockGate({ backgroundImage, onVerify, error }: SlotPageL
         className="absolute inset-0 bg-cover bg-center bg-no-repeat -z-10"
         style={{ backgroundImage: `url(${backgroundImage})` }}
       />
-      <div className="absolute inset-0 bg-gradient-to-b from-background/90 via-background/80 to-background/95 -z-10" />
+      <div className="absolute inset-0 bg-gradient-to-b from-black/90 via-black/80 to-black/95 -z-10" />
       
       <div className="w-full max-w-md mx-4">
         <div className="bg-card/90 backdrop-blur-md border border-amber-500/30 rounded-2xl p-8 shadow-2xl">
