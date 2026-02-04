@@ -1,6 +1,8 @@
 import { useState, useEffect, useCallback, useRef } from "react";
+import { useNavigate } from "react-router-dom";
 import { supabase } from "@/integrations/supabase/client";
 import { useAuth } from "@/hooks/useAuth";
+import { toast } from "sonner";
 
 // Generate device info from user agent
 const getDeviceInfo = (): string => {
@@ -51,8 +53,10 @@ interface SlotSessionState {
 
 export function useSlotSession() {
   const { user } = useAuth();
+  const navigate = useNavigate();
   const sessionId = useRef(getOrCreateSessionId());
   const heartbeatIntervalRef = useRef<NodeJS.Timeout | null>(null);
+  const channelRef = useRef<ReturnType<typeof supabase.channel> | null>(null);
   const [state, setState] = useState<SlotSessionState>({
     isSessionActive: false,
     isBlockedByOtherDevice: false,
@@ -227,10 +231,49 @@ export function useSlotSession() {
     }
   }, [user?.id]);
 
-  // Initialize session check when user is available
+  // Initialize session check and realtime subscription when user is available
   useEffect(() => {
     if (user?.id) {
       checkSession();
+
+      // Subscribe to realtime changes to detect when another device takes over
+      channelRef.current = supabase
+        .channel(`session_takeover_${user.id}`)
+        .on(
+          "postgres_changes",
+          {
+            event: "UPDATE",
+            schema: "public",
+            table: "slot_active_sessions",
+            filter: `user_id=eq.${user.id}`,
+          },
+          (payload) => {
+            const newData = payload.new as any;
+            // If session was taken over by another device, redirect to home
+            if (newData.session_id !== sessionId.current && state.isSessionActive) {
+              // Stop heartbeat
+              if (heartbeatIntervalRef.current) {
+                clearInterval(heartbeatIntervalRef.current);
+                heartbeatIntervalRef.current = null;
+              }
+              
+              // Update state
+              setState(prev => ({
+                ...prev,
+                isSessionActive: false,
+                isBlockedByOtherDevice: true,
+                otherDeviceInfo: newData.device_info,
+              }));
+              
+              // Show toast and redirect
+              toast.info("Spillet blev overtaget af en anden enhed", {
+                description: newData.device_info || "En anden enhed",
+              });
+              navigate("/");
+            }
+          }
+        )
+        .subscribe();
     } else {
       setState({
         isSessionActive: false,
@@ -241,7 +284,13 @@ export function useSlotSession() {
         error: null,
       });
     }
-  }, [user?.id, checkSession]);
+
+    return () => {
+      if (channelRef.current) {
+        supabase.removeChannel(channelRef.current);
+      }
+    };
+  }, [user?.id, checkSession, state.isSessionActive, navigate]);
 
   // Cleanup on unmount
   useEffect(() => {
