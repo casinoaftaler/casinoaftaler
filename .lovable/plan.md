@@ -1,73 +1,91 @@
 
 
-# Plan: Add 1-Day Analytics Filter & Fix Statistics Accuracy
+# Plan: Implementer Ægte Unik Bruger-Tracking
 
-## Problem Analysis
+## Oversigt
 
-I verified the actual data in your database:
-- **Total page views:** 3,045 (today: 732)
-- **Total spins:** 3,749 (today: 3,122)
+Denne plan implementerer ægte unik bruger-tracking ved at:
+1. Generere en anonym session-ID (UUID) for hver ny besøgende og gemme den i localStorage
+2. Tilføje `visitor_id` og `user_id` kolonner til `page_views` tabellen
+3. Opdatere tracking-hook'en til at inkludere disse identifikatorer
+4. Opdatere dashboard'et til at vise ægte unikke besøgende
 
-The dashboard is showing 1,000 for both because **Supabase has a default query limit of 1,000 rows**. When fetching all records to calculate statistics, the queries are being capped at 1,000 rows, giving inaccurate results.
+## Hvad Er Forskellen?
 
-## Solution
+| Nuværende | Ny Løsning |
+|-----------|------------|
+| Estimat baseret på path+time | Ægte unik ID per browser |
+| Ingen forbindelse til loggede brugere | Kobler anonyme besøg med bruger-konti |
+| Kan ikke spore returbesøg | Kan se om samme person vender tilbage |
 
-Instead of fetching all records and counting them in JavaScript (which hits the 1,000 row limit), we should use **database-side aggregation** with SQL COUNT functions. This is both more accurate and more efficient.
+## Tekniske Ændringer
 
-## Implementation Details
+### 1. Database Migration
 
-### 1. Add "1 dag" (1 day) Option to Analytics Dashboard
+Tilføjer to nye kolonner til `page_views` tabellen:
 
-**File: `src/components/CombinedAnalyticsDashboard.tsx`**
-
-- Add `"1d"` to the dateRange type: `"1d" | "7d" | "30d" | "90d"`
-- Add new button for "1 dag" in the date range selector
-- Update `getDateRange()` function to handle the 1-day case
-
-### 2. Fix Page Views Query (Use COUNT instead of fetching all rows)
-
-**File: `src/components/CombinedAnalyticsDashboard.tsx`**
-
-Instead of:
-```typescript
-const { data } = await supabase
-  .from("page_views")
-  .select("id, path, created_at")
-  .gte("created_at", start.toISOString());
-// Then counting in JS: data.length (capped at 1000)
+```sql
+ALTER TABLE page_views 
+ADD COLUMN visitor_id text,
+ADD COLUMN user_id uuid REFERENCES auth.users(id);
 ```
 
-Use database aggregation by fetching with a higher limit or using count:
-```typescript
-const { count } = await supabase
-  .from("page_views")
-  .select("*", { count: "exact", head: true })
-  .gte("created_at", start.toISOString());
+- `visitor_id`: Anonymt UUID gemt i localStorage (f.eks. `"anon_abc123"`)
+- `user_id`: Auth bruger-ID hvis logget ind (null for anonyme)
+
+### 2. Hook Opdatering (`src/hooks/usePageTracking.ts`)
+
+```text
+Ændringer:
+- Generér/hent visitor_id fra localStorage ved første besøg
+- Hent nuværende auth session (hvis logget ind)
+- Inkluder begge ID'er i page_views insert
 ```
 
-For daily breakdown, we can batch fetch in smaller date chunks or use RPC functions.
+Logik:
+1. Tjek localStorage for `visitor_id`
+2. Hvis ikke findes, generer ny UUID og gem
+3. Tjek om bruger er logget ind via Supabase auth
+4. Send begge værdier med hver page view
 
-### 3. Fix Slot Statistics Query
+### 3. Dashboard Opdatering (`src/components/CombinedAnalyticsDashboard.tsx`)
 
-**File: `src/hooks/useSlotAdminStatistics.ts`**
+```text
+Ændringer:
+- Inkluder visitor_id i data fetch
+- Beregn unikke besøgende via Set af visitor_id'er
+- Vis ægte unik bruger-tal i stedet for estimat
+```
 
-Similar fix - use database-side aggregation:
-- Get total count using `{ count: "exact" }`
-- Use SUM aggregations for totals where possible
-- For daily breakdown, aggregate server-side if possible
+Ny statistik-logik:
+```typescript
+// Ægte unikke besøgende = antal unikke visitor_id'er
+const uniqueVisitors = new Set(pageViewsData.map(v => v.visitor_id)).size;
 
-## Technical Changes Summary
+// Nye vs. tilbagevendende besøgende
+const newVisitors = // visitor_id'er set første gang i perioden
+const returningVisitors = // visitor_id'er set før perioden
+```
 
-| File | Change |
-|------|--------|
-| `src/components/CombinedAnalyticsDashboard.tsx` | Add "1d" option, fix page views counting |
-| `src/hooks/useSlotAdminStatistics.ts` | Fix spin counting to use proper pagination or COUNT |
+## Fil-Ændringer
 
-## Result
+| Fil | Ændring |
+|-----|---------|
+| Database migration | Tilføj `visitor_id` og `user_id` kolonner |
+| `src/hooks/usePageTracking.ts` | Generer/hent visitor_id, inkluder i tracking |
+| `src/components/CombinedAnalyticsDashboard.tsx` | Beregn ægte unikke besøgende |
 
-After these changes:
-- **Page views** will show accurate 3,045 total (not 1,000)
-- **Spins** will show accurate 3,749 total (not 1,000)
-- New "1 dag" filter option will be available
-- Statistics will be accurate regardless of data volume
+## Privacy & Cookie Consent
+
+- Visitor ID genereres kun hvis cookie consent er accepteret (`localStorage.getItem("cookie-consent") === "accepted"`)
+- Hvis cookies afvist, tracking fortsætter uden visitor_id (sidevisninger logges stadig)
+- Ingen personlige data gemmes - kun tilfældigt UUID
+
+## Resultat
+
+Efter implementering vil dashboardet vise:
+- **Unikke Besøgende**: Ægte antal forskellige browsere/enheder
+- **Sidevisninger**: Total antal sidevisninger (som nu)
+- **Nye vs. Tilbagevendende**: Fordeling af nye og tilbagevendende brugere
+- **Logget ind brugere**: Antal page views fra autentificerede brugere
 
