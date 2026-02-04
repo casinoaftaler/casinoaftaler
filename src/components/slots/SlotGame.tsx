@@ -95,6 +95,13 @@ export function SlotGame() {
   const [bonusTotalWinnings, setBonusTotalWinnings] = useState(0);
   const [bonusTotalSpinsUsed, setBonusTotalSpinsUsed] = useState(0);
   
+  // Pending bonus trigger - to show win animation before bonus overlay
+  const [pendingBonusTrigger, setPendingBonusTrigger] = useState<{
+    isRetrigger: boolean;
+    spinsToAdd?: number;
+    expandingSymbol?: typeof bonusState.expandingSymbol;
+  } | null>(null);
+  
   const stopTeaseSound = useRef<(() => void) | null>(null);
 
   // Initialize grid with random symbols
@@ -370,6 +377,25 @@ export function SlotGame() {
       handleBonusEnd();
     }
   }, [shouldEndBonus, isSpinning, isWinAnimating, showBonusComplete, handleBonusEnd]);
+
+  // Show pending bonus trigger after win animation completes
+  useEffect(() => {
+    if (pendingBonusTrigger && !isWinAnimating && !isSpinning) {
+      // Short delay to let user see the win
+      const timer = setTimeout(() => {
+        if (pendingBonusTrigger.isRetrigger) {
+          slotSounds.playRetrigger();
+          setShowRetrigger(true);
+        } else {
+          slotSounds.playBonusTrigger();
+          setShowBonusTrigger(true);
+        }
+        setPendingBonusTrigger(null);
+      }, 500); // Short delay after win animation
+      
+      return () => clearTimeout(timer);
+    }
+  }, [pendingBonusTrigger, isWinAnimating, isSpinning]);
 
   // Autospin effect - trigger next spin after current one completes
   useEffect(() => {
@@ -683,18 +709,32 @@ export function SlotGame() {
                             shouldStopAuto = true;
                             
                             if (isBonusSpin) {
-                              // Retrigger during bonus - play retrigger sound and show overlay
-                              slotSounds.playRetrigger();
+                              // Retrigger during bonus
                               const spinsToAdd = 10;
                               retriggerBonus(spinsToAdd);
                               setRetriggerSpinsAdded(spinsToAdd);
-                              setShowRetrigger(true);
+                              
+                              if (result.totalWin > 0) {
+                                // Defer overlay until win animation completes
+                                setPendingBonusTrigger({ isRetrigger: true, spinsToAdd });
+                              } else {
+                                // No win, show immediately
+                                slotSounds.playRetrigger();
+                                setShowRetrigger(true);
+                              }
                             } else {
                               // Initial bonus trigger
-                              slotSounds.playBonusTrigger();
                               const expanding = triggerBonus(symbols || []);
                               setPendingExpandingSymbol(expanding);
-                              setShowBonusTrigger(true);
+                              
+                              if (result.totalWin > 0) {
+                                // Defer overlay until win animation completes
+                                setPendingBonusTrigger({ isRetrigger: false, expandingSymbol: expanding });
+                              } else {
+                                // No win, show immediately
+                                slotSounds.playBonusTrigger();
+                                setShowBonusTrigger(true);
+                              }
                             }
                           }
                           
