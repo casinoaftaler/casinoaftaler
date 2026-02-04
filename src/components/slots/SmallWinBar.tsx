@@ -22,9 +22,9 @@ export function SmallWinBar({ amount }: SmallWinBarProps) {
         "bg-gradient-to-b from-amber-950/90 via-amber-900/70 to-amber-950/90",
         "border-2 border-amber-600/50",
         "shadow-[inset_0_1px_0_rgba(251,191,36,0.3),0_0_20px_rgba(251,191,36,0.3),0_4px_12px_rgba(0,0,0,0.4)]",
-        "backdrop-blur-sm",
-        // Glow effect when there's a win
-        amount > 0 && "shadow-[inset_0_1px_0_rgba(251,191,36,0.4),0_0_30px_rgba(251,191,36,0.5),0_4px_12px_rgba(0,0,0,0.4)]"
+        "backdrop-blur-sm transition-shadow duration-300",
+        // Glow effect + subtle pulse when there's a win
+        amount > 0 && "shadow-[inset_0_1px_0_rgba(251,191,36,0.4),0_0_30px_rgba(251,191,36,0.5),0_4px_12px_rgba(0,0,0,0.4)] animate-[bonus-bar-glow_2s_ease-in-out_infinite]"
       )}
     >
       <Coins className="h-4 w-4 text-amber-400 drop-shadow-[0_0_4px_rgba(251,191,36,0.5)]" />
