@@ -24,6 +24,8 @@ interface SlotReelProps {
   globalTeaseActive?: boolean;
   hasLandedScatter?: boolean;
   isScatterCelebrating?: boolean;
+  isDarkenedForTease?: boolean;
+  isDarkenedForExpansion?: boolean;
 }
 
 // Match the responsive symbol sizes from SlotSymbol
@@ -50,6 +52,8 @@ export function SlotReel({
   globalTeaseActive = false,
   hasLandedScatter = false,
   isScatterCelebrating = false,
+  isDarkenedForTease = false,
+  isDarkenedForExpansion = false,
 }: SlotReelProps) {
   const symbolsById = new Map(symbols.map(s => [s.id, s]));
   const [spinState, setSpinState] = useState<"idle" | "spinning" | "stopping" | "stopped">("idle");
@@ -260,10 +264,22 @@ export function SlotReel({
   if (spinState === "idle" || spinState === "stopped") {
     const symbolHeight = getSymbolHeight();
     
+    // Calculate if entire reel should be darkened
+    const isReelDarkened = isDarkenedForTease || isDarkenedForExpansion;
+    
     return (
       <div 
-        className="flex flex-col gap-[4px] xs:gap-[6px] sm:gap-[8px] md:gap-[12px] lg:gap-[16px]"
-        style={{ width: `${symbolHeight}px` }}
+        className={cn(
+          "flex flex-col gap-[4px] xs:gap-[6px] sm:gap-[8px] md:gap-[12px] lg:gap-[16px]",
+          // Darken entire reel during expansion
+          isDarkenedForExpansion && "opacity-50"
+        )}
+        style={{ 
+          width: `${symbolHeight}px`,
+          // Apply brightness filter for expansion darkening
+          filter: isDarkenedForExpansion ? 'brightness(0.5)' : undefined,
+          transition: 'filter 0.3s ease, opacity 0.3s ease'
+        }}
       >
         {displayedSymbolIds.map((symbolId, rowIndex) => {
           const symbol = symbolsById.get(symbolId);
@@ -271,6 +287,9 @@ export function SlotReel({
 
           const symbolIsExpanded = shouldShowExpansion(symbolId);
           const symbolIsNewlyExpanded = shouldShowNewlyExpanded(symbolId);
+          
+          // During tease, darken non-scatter symbols individually
+          const shouldDarkenSymbol = isDarkenedForTease && !symbol.is_scatter;
 
           return (
             <div
@@ -291,6 +310,7 @@ export function SlotReel({
                 hasLanded={spinState === "stopped"}
                 isTeasing={globalTeaseActive && hasLandedScatter && symbol.is_scatter}
                 isScatterCelebrating={isScatterCelebrating && symbol.is_scatter}
+                isDarkened={shouldDarkenSymbol}
               />
             </div>
           );
