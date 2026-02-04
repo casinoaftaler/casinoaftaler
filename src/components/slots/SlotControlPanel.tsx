@@ -98,13 +98,13 @@ export function SlotControlPanel({
             // Multi-layer shadow for 3D depth + outer glow
             "shadow-[inset_0_2px_4px_rgba(255,230,150,0.6),inset_0_-3px_6px_rgba(120,80,20,0.4),0_0_25px_rgba(251,191,36,0.5),0_6px_20px_rgba(0,0,0,0.5)]",
             "md:shadow-[inset_0_3px_6px_rgba(255,230,150,0.6),inset_0_-4px_8px_rgba(120,80,20,0.4),0_0_35px_rgba(251,191,36,0.6),0_8px_25px_rgba(0,0,0,0.5)]",
-            // Idle pulsing glow animation when ready to spin
+            // Idle pulsing glow animation when ready to spin - slow 6s for calm effect
             !isSpinning &&
               !isSpinLocked &&
               canSpinNow &&
               !isAutoSpinning &&
               !showBonusTrigger &&
-              "animate-[spin-glow_4s_ease-in-out_infinite]",
+              "animate-[spin-glow_6s_ease-in-out_infinite]",
             // Hover effects - intensify glow
             !isSpinning &&
               !isSpinLocked &&
