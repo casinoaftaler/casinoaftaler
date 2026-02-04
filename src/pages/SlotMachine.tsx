@@ -149,12 +149,12 @@ export default function SlotMachine() {
       />
       <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black/70 -z-10" />
       
-      {/* Fullscreen toggle button - hidden on mobile */}
+      {/* Fullscreen toggle button */}
       <Button
         variant="ghost"
         size="icon"
         onClick={toggleFullscreen}
-        className="hidden sm:flex fixed top-4 right-4 z-50 bg-black/50 hover:bg-black/70 text-white/80 hover:text-white"
+        className="fixed top-4 right-4 z-50 bg-black/50 hover:bg-black/70 text-white/80 hover:text-white"
         title={isFullscreen ? "Forlad fuldskærm (ESC)" : "Gå i fuldskærm"}
       >
         {isFullscreen ? <Minimize2 className="h-5 w-5" /> : <Maximize2 className="h-5 w-5" />}
