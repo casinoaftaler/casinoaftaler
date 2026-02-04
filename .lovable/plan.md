@@ -1,120 +1,83 @@
 
-# Plan: Omrokér Kontrolpanelet til Én Horisontal Række
+# Plan: Fix BetControls og Nyt Mobil-Layout
 
-## Overblik
-Omstrukturér kontrolpanelet så alle elementer (Bet, Spin, Autospin, Volume og PayTable) vises i én sammenhængende horisontal linje på desktop, med mobil-stacking bevaret.
+## Problem 1: BetControls knapper udenfor boksen (PC)
 
----
+BetControls har `sm:w-auto` som gør at containerens bredde kollapser, men indholdet har ikke nok padding. Vi skal sikre at containeren har en minimum bredde der passer til indholdet.
 
-## Nuværende Layout vs. Nyt Layout
+## Problem 2: Mobil-layout skal være 2 rækker
 
+Ønsket layout på mobil:
 ```text
-NUVÆRENDE:
-┌─────────────┐   ┌─────────┐   ┌─────────────┐
-│ Bet + Spins │   │  SPIN   │   │ Vol + Auto  │
-└─────────────┘   └─────────┘   └─────────────┘
-           ┌──────────────┐
-           │   PayTable   │
-           └──────────────┘
-
-NYT:
-┌─────┐ ┌──────────┐ ┌─────────┐ ┌──────────┐ ┌─────┐
-│ Vol │ │   Bet    │ │  SPIN   │ │ Autospin │ │ Pay │
-└─────┘ └──────────┘ └─────────┘ └──────────┘ └─────┘
-           ↓ Spins vises under Bet ↓
+┌─────────────────────────────────────────┐
+│  [Vol] [Bet] [Pay]  │ [SPIN] │ [Auto]  │
+│      VENSTRE        │ MIDT   │ HØJRE   │
+└─────────────────────────────────────────┘
 ```
 
 ---
 
-## Tekniske Detaljer
+## Tekniske Ændringer
+
+### Fil: `src/components/slots/BetControls.tsx`
+
+**Ændring (linje 28)**: Tilføj minimum bredde for at sikre knapperne er indenfor boksen
+
+```tsx
+// Fra:
+<div className="flex flex-col gap-1.5 w-full sm:w-auto bg-gradient-to-b...">
+
+// Til:
+<div className="flex flex-col gap-1.5 w-auto min-w-fit bg-gradient-to-b...">
+```
 
 ### Fil: `src/components/slots/SlotControlPanel.tsx`
 
-**Ændring 1: Ny layout-struktur (linje 62-174)**
-
-Erstatter den eksisterende trekolonne-struktur med en enkelt-række layout:
+**Ændring (linje 62-174)**: Omstrukturér til grid-baseret 2-række layout på mobil
 
 ```tsx
 <div className="w-full flex flex-col items-center gap-3 sm:gap-4">
-  {/* Single row layout - all controls in one line */}
-  <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 w-full flex-wrap">
+  {/* Mobile: 2-row grid layout | Desktop: single row */}
+  <div className="grid grid-cols-[1fr_auto_1fr] sm:flex sm:flex-row items-center justify-center gap-3 sm:gap-4 w-full">
     
-    {/* Volume (leftmost on desktop) */}
-    <div className="order-4 sm:order-1 flex-shrink-0">
-      <VolumeControl className="..." />
+    {/* Left section on mobile (Vol, Bet, Pay) */}
+    <div className="flex items-center justify-end gap-2 sm:contents">
+      <VolumeControl ... />
+      <BetControls ... />  {/* På mobil: kompakt version */}
+      <PayTable ... />     {/* Kun på mobil i venstre */}
     </div>
-    
-    {/* Bet Controls (second from left) */}
-    <div className="order-1 sm:order-2 w-full sm:w-auto">
-      <BetControls ... />
-    </div>
-    
-    {/* Spin Button (center) */}
-    <Button ... order-2 sm:order-3 />
-    
-    {/* Autospin (second from right) */}
-    <div className="order-3 sm:order-4 w-full sm:w-auto">
+
+    {/* Center: Spin Button */}
+    <Button ... />
+
+    {/* Right section on mobile (Autospin) */}
+    <div className="flex items-center justify-start sm:contents">
       <AutospinRow ... />
     </div>
     
-    {/* PayTable (rightmost on desktop) */}
-    <div className="order-5 sm:order-5 flex-shrink-0">
+    {/* Desktop only: PayTable rightmost */}
+    <div className="hidden sm:block">
       <PayTable />
     </div>
   </div>
 </div>
 ```
 
-**Ændring 2: Fjern separate wrapper-bokse**
+**Desktop rækkefølge** (venstre til højre):
+Volume → Bet → Spin → Autospin → PayTable
 
-Fjern de egyptiske container-styles fra AutospinRow's wrapper (det bliver nu standalone-knapper), og flyt Volume ud af sin boks.
-
-### Fil: `src/components/slots/BetControls.tsx`
-
-**Ændring: Gør komponenten mere kompakt (linje 28)**
-
-Fjern `w-full` og tilføj en fast bredde så den passer i én række:
-
-```tsx
-// Fra
-<div className="flex flex-col gap-1.5 w-full bg-gradient-to-b...">
-
-// Til
-<div className="flex flex-col gap-1.5 w-full sm:w-auto bg-gradient-to-b...">
-```
-
-### Fil: `src/components/slots/AutospinRow.tsx`
-
-**Ændring: Fjern flex-wrap da den nu har mere plads**
-
-Knapperne vil nu have tilstrækkelig plads i det nye layout.
-
----
-
-## Mobil-opførsel
-
-På mobil (< sm breakpoint) vil elementerne stadig stacke vertikalt i følgende rækkefølge:
-1. Bet Controls (øverst)
-2. Spin Button
-3. Autospin
-4. Volume
-5. PayTable (nederst)
-
----
-
-## Fordele
-
-| Aspekt | Før | Efter |
-|--------|-----|-------|
-| Rækker | 2 rækker | 1 række |
-| Visuelt fokus | Spredt | Samlet kontrollinje |
-| PayTable | Separat række | Integreret i hovedrække |
-| Volume | Delt boks med Autospin | Standalone ikon |
+**Mobil layout** (én horisontal linje med 3 sektioner):
+- Venstre: Volume, Bet (kompakt), PayTable
+- Midt: Spin-knap (centreret)
+- Højre: Autospin
 
 ---
 
 ## Forventet Resultat
-- Alle kontroller i én sammenhængende horisontal linje på desktop
-- Spin-knappen forbliver central og fremtrædende
-- Mere kompakt og professionelt udseende
-- Mobil-layout forbliver brugervenligt med vertikal stacking
+
+| Platform | Layout |
+|----------|--------|
+| Desktop | Én horisontal række: Vol → Bet → Spin → Auto → Pay |
+| Mobil | Grid med 3 kolonner: [Vol+Bet+Pay] [SPIN] [Auto] |
+
+BetControls vil have korrekt minimum bredde så +/- knapperne altid er indenfor den egyptiske boks.
