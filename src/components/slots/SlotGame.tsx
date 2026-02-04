@@ -64,6 +64,7 @@ export function SlotGame() {
   const [activeTeaseReelIndex, setActiveTeaseReelIndex] = useState<number | null>(null);
   const [teaseInfo, setTeaseInfo] = useState<TeaseInfo>({ reels: [], lateScatter: false, lastScatterReel: -1 });
   const [scatterReelsLanded, setScatterReelsLanded] = useState<Set<number>>(new Set());
+  const [showExpansionDarken, setShowExpansionDarken] = useState(false);
   
   // Sequential reel stopping - which reel should currently slow down (-1 = none yet)
   const [activeSlowdownReel, setActiveSlowdownReel] = useState(-1);
@@ -676,6 +677,7 @@ export function SlotGame() {
                           
                           // Handle bonus expansion animation
                           if (isBonusSpin && reelsExpanded.length > 0 && expandedGrid) {
+                            setShowExpansionDarken(true); // Enable darkening for non-expanded reels
                             await new Promise(resolve => setTimeout(resolve, 500));
                             setGrid(expandedGrid);
                             setExpandedReels(reelsExpanded);
@@ -683,6 +685,7 @@ export function SlotGame() {
                             slotSounds.playSymbolExpand();
                             await new Promise(resolve => setTimeout(resolve, 600));
                             setNewlyExpandedReels([]);
+                            setShowExpansionDarken(false); // Disable darkening after animation
                           }
                           
                           // Now show the result
@@ -821,6 +824,8 @@ export function SlotGame() {
                       globalTeaseActive={teaseReels.length > 0 && isSpinning && activeTeaseReelIndex !== null}
                       hasLandedScatter={scatterReelsLanded.has(colIndex) && scatterReelsLanded.size >= 2 && isSpinning}
                       isScatterCelebrating={showScatterCelebration}
+                      isDarkenedForTease={scatterReelsLanded.size >= 1 && !scatterReelsLanded.has(colIndex)}
+                      isDarkenedForExpansion={showExpansionDarken && !expandedReels.includes(colIndex)}
                     />
                     {/* Separator line between reels */}
                     {colIndex < 4 && (
