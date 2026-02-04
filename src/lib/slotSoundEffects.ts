@@ -274,15 +274,16 @@ class SlotSoundEffects {
   startMusic() {
     if (!this.enabled || !this.musicEnabled) return;
     
+    // Stop any currently playing music first to prevent overlap
+    this.stopMusic();
+    
     // Try custom background music first (from admin upload)
     if (this.backgroundMusicAudio && this.customSoundFiles.backgroundMusic) {
-      if (this.backgroundMusicAudio.paused) {
-        this.backgroundMusicAudio.volume = this.volume * 0.5;
-        this.backgroundMusicAudio.play().catch(() => {
-          // Ignore autoplay errors, try default music
-          this.playDefaultMusic();
-        });
-      }
+      this.backgroundMusicAudio.volume = this.volume * 0.5;
+      this.backgroundMusicAudio.play().catch(() => {
+        // Ignore autoplay errors, try default music
+        this.playDefaultMusic();
+      });
       return;
     }
     
