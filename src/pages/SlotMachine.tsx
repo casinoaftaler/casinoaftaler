@@ -1,6 +1,7 @@
 import { useState, useCallback, useEffect } from "react";
 import { SlotGame } from "@/components/slots/SlotGame";
 import { SlotLeaderboard } from "@/components/slots/SlotLeaderboard";
+import { SlotCasinoCard } from "@/components/slots/SlotCasinoCard";
 import { SlotPageLockGate } from "@/components/slots/SlotPageLockGate";
 import { SlotLoadingScreen } from "@/components/slots/SlotLoadingScreen";
 import { SlotIntroScreen } from "@/components/slots/SlotIntroScreen";
@@ -9,18 +10,21 @@ import { useAuth } from "@/hooks/useAuth";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
 import { useSlotPageAccess } from "@/hooks/useSlotPageAccess";
 import { useSlotSession } from "@/hooks/useSlotSession";
+import { useCasinos } from "@/hooks/useCasinos";
 import { Button } from "@/components/ui/button";
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
 import { Link } from "react-router-dom";
 import { Gamepad2, Trophy, ChevronDown, ChevronUp } from "lucide-react";
 import defaultSlotBackground from "@/assets/slots/slot-background.jpg";
 import defaultTitleImage from "@/assets/slots/book-of-fedesvin-title.png";
+import slotCasinoCardBg from "@/assets/slots/slot-casino-card-bg.png";
 
 type LoadingPhase = 'loading' | 'intro' | 'ready';
 
 export default function SlotMachine() {
   const { user, loading } = useAuth();
   const { data: siteSettings } = useSiteSettings();
+  const { data: casinos } = useCasinos();
   const { isLocked, hasAccess, isLoading: accessLoading, error, verifyPassword } = useSlotPageAccess();
   const { 
     isSessionActive, 
@@ -62,6 +66,9 @@ export default function SlotMachine() {
   
   const titleImage = siteSettings?.slot_title_image || defaultTitleImage;
   const backgroundImage = siteSettings?.slot_background_image || defaultSlotBackground;
+  
+  // Get the #1 ranked casino (first active casino by position)
+  const topCasino = casinos?.find(c => c.is_active) || null;
 
   // Show loading screen first (before auth check)
   if (loadingPhase === 'loading') {
@@ -185,9 +192,14 @@ export default function SlotMachine() {
               </Button>
               
               {showLeaderboard && (
-                <div className="max-h-[calc(100vh-14rem)] overflow-y-auto">
+                <div className="max-h-[calc(100vh-14rem)] overflow-y-auto mb-3">
                   <SlotLeaderboard />
                 </div>
+              )}
+              
+              {/* #1 Casino Card - Desktop */}
+              {topCasino && (
+                <SlotCasinoCard casino={topCasino} backgroundImage={slotCasinoCardBg} />
               )}
             </div>
             
@@ -222,6 +234,13 @@ export default function SlotMachine() {
                   </div>
                 </CollapsibleContent>
               </Collapsible>
+              
+              {/* #1 Casino Card - Mobile/Tablet */}
+              {topCasino && (
+                <div className="w-full max-w-sm xl:hidden mt-3">
+                  <SlotCasinoCard casino={topCasino} backgroundImage={slotCasinoCardBg} />
+                </div>
+              )}
             </div>
           </div>
         </div>
