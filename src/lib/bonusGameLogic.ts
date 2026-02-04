@@ -28,9 +28,11 @@ export function applyExpandingSymbol(
     }
   }
   
-  // If expanding symbol appears on at least 3 reels, always expand (Book of Ra rules)
-  // Even if not consecutive, 3 reels with the symbol = guaranteed win
-  if (reelsWithExpanding.length >= 3) {
+  // Premium symbols expand with 2+ reels, common symbols need 3+
+  const minReelsForExpand = expandingSymbol.rarity === 'premium' ? 2 : 3;
+  
+  // If expanding symbol appears on enough reels, always expand (Book of Ra rules)
+  if (reelsWithExpanding.length >= minReelsForExpand) {
     // Expand the symbol on all reels where it appears
     for (const col of reelsWithExpanding) {
       for (let row = 0; row < 3; row++) {
@@ -104,7 +106,9 @@ function checkIfExpandingCreatesPaylineWin(
       }
     }
     
-    if (consecutiveMatches >= 3) {
+    // Premium symbols can win with 2+ matches, common need 3+
+    const minMatches = expandingSymbol.rarity === 'premium' ? 2 : 3;
+    if (consecutiveMatches >= minMatches) {
       return true; // ✓ Expanding symbol itself creates a win
     }
   }
@@ -140,7 +144,8 @@ export function calculateBonusSpinResult(
   }
   
   const didExpand = expandedReels.length > 0;
-  const hasExpandingWin = expandedReels.length >= 3;
+  const minReelsForWin = expandingSymbol.rarity === 'premium' ? 2 : 3;
+  const hasExpandingWin = expandedReels.length >= minReelsForWin;
   
   // Calculate wins on the expanded grid
   // Pass expandedReels to enable scatter-style payout for expanding symbols
@@ -200,13 +205,20 @@ function calculateWins(
   const symbolsById = new Map(symbols.map(s => [s.id, s]));
   
   // Check if we have a scatter-style expanding symbol win
-  // If expanding symbol fills 3+ reels, it pays on ALL lines based on reel count
-  if (expandingSymbol && expandedReels && expandedReels.length >= 3) {
+  // Premium symbols pay with 2+ reels, common symbols need 3+ reels
+  const minReelsForScatterPay = expandingSymbol?.rarity === 'premium' ? 2 : 3;
+  if (expandingSymbol && expandedReels && expandedReels.length >= minReelsForScatterPay) {
     const reelCount = expandedReels.length;
     let multiplier = 0;
-    if (reelCount === 3) multiplier = expandingSymbol.multiplier_3;
-    else if (reelCount === 4) multiplier = expandingSymbol.multiplier_4;
-    else if (reelCount === 5) multiplier = expandingSymbol.multiplier_5;
+    if (reelCount === 2 && expandingSymbol.rarity === 'premium') {
+      multiplier = expandingSymbol.multiplier_2;
+    } else if (reelCount === 3) {
+      multiplier = expandingSymbol.multiplier_3;
+    } else if (reelCount === 4) {
+      multiplier = expandingSymbol.multiplier_4;
+    } else if (reelCount === 5) {
+      multiplier = expandingSymbol.multiplier_5;
+    }
     
     // Pay on ALL 10 lines since the expanded symbol fills entire reels
     for (let lineIndex = 0; lineIndex < PAY_LINES.length; lineIndex++) {
