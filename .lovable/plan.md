@@ -1,72 +1,70 @@
 
-# Plan: Fix Slot Machine Light Mode Overlay
+# Plan: Fix Leaderboard Visibility and Control Bar Centering
 
-## Problem
-The slot machine page uses gradient overlays with `bg-gradient-to-b from-background/60 via-background/40 to-background/70` which creates a bright white overlay in light mode, washing out the Egyptian background.
+## Problem 1: Leaderboard Names Not Visible
+The leaderboard uses theme-dependent colors and Card component which have light backgrounds in light mode. Since the slot machine page uses a dark Egyptian theme, the leaderboard card looks washed out and text is hard to read.
 
-The `background` CSS variable is light in light mode (`250 30% 97%` = almost white), so the overlay becomes a white semi-transparent layer instead of a dark cinematic effect.
-
-## Solution
-Replace the theme-dependent `background` color with a fixed dark color (`black`) for all slot machine overlays. This ensures the Egyptian/cinematic atmosphere is preserved in both light and dark modes.
+## Problem 2: Control Bar Off-Center
+The three control elements (BetControls, Spin Button, Volume+Autospin) are in a flex row with `justify-center`, but the left and right panels have different widths. This causes the spin button to not be perfectly centered visually.
 
 ---
 
-## Technical Details
+## Solution 1: Fix Leaderboard for Dark Theme
 
-### Files to Modify
+### File: `src/components/slots/SlotLeaderboard.tsx`
 
-#### 1. `src/pages/SlotMachine.tsx`
+Apply a dark Egyptian theme to match the slot machine:
 
-**Lines 73, 100, 127** - Change the overlay gradient from `from-background/X` to `from-black/X`:
+1. **Card styling (line 52)**: Add dark background with amber border
+   - Current: `className="border-amber-500/20"`
+   - Updated: `className="border-amber-500/30 bg-gradient-to-b from-amber-950/95 via-black/90 to-amber-950/95 backdrop-blur-sm"`
 
-| Location | Current | Updated |
-|----------|---------|---------|
-| Line 73 (loading state) | `bg-gradient-to-b from-background/80 via-background/60 to-background/90` | `bg-gradient-to-b from-black/80 via-black/60 to-black/90` |
-| Line 100 (not logged in) | `bg-gradient-to-b from-background/80 via-background/60 to-background/90` | `bg-gradient-to-b from-black/80 via-black/60 to-black/90` |
-| Line 127 (main game) | `bg-gradient-to-b from-background/60 via-background/40 to-background/70` | `bg-gradient-to-b from-black/60 via-black/40 to-black/70` |
+2. **CardTitle styling (line 54)**: Ensure light text
+   - Current: `className="flex items-center gap-2 text-lg"`
+   - Updated: `className="flex items-center gap-2 text-lg text-amber-100"`
 
----
+3. **TabsList styling (line 61)**: Dark background for tabs
+   - Current: `className="grid w-full grid-cols-3 mb-4"`
+   - Updated: `className="grid w-full grid-cols-3 mb-4 bg-amber-950/50"`
 
-#### 2. `src/components/slots/SlotIntroScreen.tsx`
+4. **Display name styling (line 34)**: Make names visible with light color
+   - Current: `<p className="font-medium truncate">`
+   - Updated: `<p className="font-medium truncate text-amber-100">`
 
-**Line 20** - Change the overlay gradient:
-
-| Location | Current | Updated |
-|----------|---------|---------|
-| Line 20 | `bg-gradient-to-b from-background/80 via-background/60 to-background/90` | `bg-gradient-to-b from-black/80 via-black/60 to-black/90` |
-
----
-
-#### 3. `src/components/slots/SlotLoadingScreen.tsx`
-
-**Line 59** - Change the overlay gradient:
-
-| Location | Current | Updated |
-|----------|---------|---------|
-| Line 59 | `bg-gradient-to-b from-background/80 via-background/70 to-background/90` | `bg-gradient-to-b from-black/80 via-black/70 to-black/90` |
+5. **Empty state text (lines 88-89)**: Light text for empty state
+   - Current: `<p>Ingen gevinster endnu</p>`
+   - Updated: `<p className="text-amber-100/80">Ingen gevinster endnu</p>`
+   - And update the smaller text similarly
 
 ---
 
-#### 4. `src/components/slots/SlotPageLockGate.tsx`
+## Solution 2: Center the Control Bar
 
-**Line 40** - Change the overlay gradient:
+### File: `src/components/slots/SlotControlPanel.tsx`
 
-| Location | Current | Updated |
-|----------|---------|---------|
-| Line 40 | `bg-gradient-to-b from-background/90 via-background/80 to-background/95` | `bg-gradient-to-b from-black/90 via-black/80 to-black/95` |
+Force equal widths on left and right panels to ensure the spin button is truly centered:
+
+1. **Left Panel (line 66)**: Add fixed width
+   - Current: `<div className="order-1 sm:order-1">`
+   - Updated: `<div className="order-1 sm:order-1 sm:w-40 md:w-44 lg:w-48">`
+
+2. **Right Panel (line 156)**: Add matching fixed width
+   - Current: `<div className="flex items-center gap-2 order-3 bg-gradient-to-b...`
+   - Updated: `<div className="flex items-center gap-2 order-3 sm:w-40 md:w-44 lg:w-48 justify-center bg-gradient-to-b...`
+
+This ensures both side panels have equal width, keeping the spin button perfectly centered.
 
 ---
 
 ## Summary
 
-| File | Lines Changed | Change |
-|------|---------------|--------|
-| `SlotMachine.tsx` | 73, 100, 127 | `background` to `black` in 3 overlays |
-| `SlotIntroScreen.tsx` | 20 | `background` to `black` in 1 overlay |
-| `SlotLoadingScreen.tsx` | 59 | `background` to `black` in 1 overlay |
-| `SlotPageLockGate.tsx` | 40 | `background` to `black` in 1 overlay |
+| Component | Issue | Fix |
+|-----------|-------|-----|
+| SlotLeaderboard | Light card/text on dark background | Apply dark Egyptian theme with amber accents |
+| SlotControlPanel | Spin button off-center | Equal fixed widths on left/right panels |
 
 ---
 
 ## Expected Result
-The slot machine will maintain its dark, cinematic Egyptian atmosphere in both light and dark modes, with no more white overlay washing out the background imagery.
+- Leaderboard will have a dark Egyptian-themed appearance with clearly visible amber/gold text
+- Control bar will have the spin button perfectly centered between equally-sized side panels
