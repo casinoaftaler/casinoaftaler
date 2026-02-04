@@ -60,7 +60,7 @@ export function WinLines({ wins, symbolSize, gap, isVisible }: WinLinesProps) {
     return { x, y };
   };
 
-  // Generate SVG path for a winning line
+  // Generate SVG path for a winning line (straight lines)
   const generateLinePath = (lineIndex: number, _count: number) => {
     const pattern = PAY_LINES[lineIndex];
     const points: { x: number; y: number }[] = [];
@@ -73,17 +73,10 @@ export function WinLines({ wins, symbolSize, gap, isVisible }: WinLinesProps) {
 
     if (points.length < 2) return "";
 
-    // Create a smooth curve through the points
+    // Use straight lines between symbol centers
     let path = `M ${points[0].x} ${points[0].y}`;
-    
     for (let i = 1; i < points.length; i++) {
-      const prev = points[i - 1];
-      const curr = points[i];
-      
-      // Use bezier curves for smooth lines
-      const midX = (prev.x + curr.x) / 2;
-      path += ` Q ${midX} ${prev.y}, ${midX} ${(prev.y + curr.y) / 2}`;
-      path += ` Q ${midX} ${curr.y}, ${curr.x} ${curr.y}`;
+      path += ` L ${points[i].x} ${points[i].y}`;
     }
 
     return path;
@@ -108,7 +101,7 @@ export function WinLines({ wins, symbolSize, gap, isVisible }: WinLinesProps) {
         className="overflow-visible"
         style={{ position: "absolute" }}
       >
-        {/* Define glow filter for lines */}
+        {/* Define glow filter and shimmer gradients for lines */}
         <defs>
           {LINE_COLORS.map((color, index) => (
             <filter key={index} id={`glow-${index}`} x="-50%" y="-50%" width="200%" height="200%">
@@ -118,6 +111,29 @@ export function WinLines({ wins, symbolSize, gap, isVisible }: WinLinesProps) {
                 <feMergeNode in="SourceGraphic" />
               </feMerge>
             </filter>
+          ))}
+          
+          {/* Shimmer gradient for each line */}
+          {LINE_COLORS.map((_, index) => (
+            <linearGradient 
+              key={`shimmer-${index}`} 
+              id={`shimmer-gradient-${index}`}
+              x1="0%" y1="0%" x2="100%" y2="0%"
+            >
+              <stop offset="0%" stopColor="transparent" />
+              <stop offset="40%" stopColor="transparent" />
+              <stop offset="50%" stopColor="rgba(255,255,255,0.9)" />
+              <stop offset="60%" stopColor="transparent" />
+              <stop offset="100%" stopColor="transparent" />
+              <animateTransform
+                attributeName="gradientTransform"
+                type="translate"
+                from="-1 0"
+                to="1 0"
+                dur="1.5s"
+                repeatCount="indefinite"
+              />
+            </linearGradient>
           ))}
         </defs>
 
@@ -183,6 +199,19 @@ export function WinLines({ wins, symbolSize, gap, isVisible }: WinLinesProps) {
                   style={{
                     animation: "line-blink 0.5s ease-in-out infinite",
                   }}
+                />
+              )}
+
+              {/* Shimmer effect moving along the line */}
+              {isLineVisible && (
+                <path
+                  d={path}
+                  fill="none"
+                  stroke={`url(#shimmer-gradient-${win.lineIndex})`}
+                  strokeWidth={6}
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  style={{ opacity: 0.7 }}
                 />
               )}
 
