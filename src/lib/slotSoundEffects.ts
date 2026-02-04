@@ -730,11 +730,11 @@ class SlotSoundEffects {
     if (!this.canPlayEffect()) return;
     
     // Try custom spin sound first (from admin upload) - use reduced volume
-    if (this.playCustomSound('spinSound', 0.3)) return;
+    if (this.playCustomSound('spinSound', 0.1)) return;
     
     // Play default bundled spin sound at reduced volume
     const audio = new Audio(DEFAULT_SPIN_SOUND);
-    audio.volume = this.volume * 0.3;
+    audio.volume = this.volume * 0.1;
     audio.play().catch(() => {
       // Ignore autoplay errors
     });
