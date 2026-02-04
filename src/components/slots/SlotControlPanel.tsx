@@ -60,36 +60,32 @@ export function SlotControlPanel({
 
   return (
     <div className="w-full flex flex-col items-center gap-3 sm:gap-4">
-      {/* Mobile: 3-column grid | Desktop: single flex row */}
-      <div className="grid grid-cols-[1fr_auto_1fr] sm:flex sm:flex-row items-center justify-center gap-3 sm:gap-4 w-full">
+      {/* Horizontal row on all devices */}
+      <div className="flex flex-row items-center justify-center gap-2 sm:gap-4 w-full flex-wrap sm:flex-nowrap">
         
-        {/* Left section on mobile (Vol, Bet, Pay) | Desktop: individual items */}
-        <div className="flex items-center justify-end gap-2 sm:contents">
-          <VolumeControl className="text-amber-400 hover:text-amber-300" />
-          <BetControls
-            bet={bet}
-            onBetChange={onBetChange}
-            disabled={disabled || isSpinning || bonusState.isActive}
-            minBet={minBet}
-            maxBet={maxBet}
-            showSpins={!bonusState.isActive}
-            spinsRemaining={spinsRemaining}
-            maxSpins={maxSpins}
-            spinsLoading={spinsLoading}
-          />
-          {/* PayTable - mobile only in left section */}
-          <div className="sm:hidden">
-            <PayTable />
-          </div>
-        </div>
+        {/* Volume */}
+        <VolumeControl className="text-amber-400 hover:text-amber-300 flex-shrink-0" />
+        
+        {/* Bet Controls */}
+        <BetControls
+          bet={bet}
+          onBetChange={onBetChange}
+          disabled={disabled || isSpinning || bonusState.isActive}
+          minBet={minBet}
+          maxBet={maxBet}
+          showSpins={!bonusState.isActive}
+          spinsRemaining={spinsRemaining}
+          maxSpins={maxSpins}
+          spinsLoading={spinsLoading}
+        />
 
         {/* Center: Spin Button */}
         <Button
           className={cn(
             // Round shape
-            "rounded-full aspect-square",
+            "rounded-full aspect-square flex-shrink-0",
             // Responsive sizing
-            "w-20 h-20 sm:w-20 sm:h-20 md:w-24 md:h-24 lg:w-28 lg:h-28",
+            "w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 lg:w-28 lg:h-28",
             // Rich Egyptian gold gradient with metallic feel
             "bg-[radial-gradient(ellipse_at_30%_20%,_hsl(45,100%,70%)_0%,_hsl(43,96%,56%)_25%,_hsl(38,92%,45%)_50%,_hsl(30,85%,35%)_75%,_hsl(25,80%,25%)_100%)]",
             // Ornate golden border with inner glow
@@ -132,7 +128,7 @@ export function SlotControlPanel({
               />
               {/* Inner spinning icon */}
               <Gamepad2
-                className="h-6 w-6 sm:h-8 sm:w-8 md:h-10 md:w-10 lg:h-12 lg:h-12 animate-spin text-amber-900 drop-shadow-[0_1px_0_rgba(255,230,150,0.8)]"
+                className="h-5 w-5 sm:h-8 sm:w-8 md:h-10 md:w-10 lg:h-12 lg:h-12 animate-spin text-amber-900 drop-shadow-[0_1px_0_rgba(255,230,150,0.8)]"
                 style={{ animationDuration: "1.5s", animationDirection: "reverse" }}
               />
             </div>
@@ -144,31 +140,29 @@ export function SlotControlPanel({
             </span>
           ) : bonusState.isActive ? (
             <>
-              <Gamepad2 className="h-5 w-5 sm:h-6 sm:w-6 md:h-8 md:h-8 lg:h-10 lg:w-10 mb-0.5 text-amber-900" />
-              <span className="text-xs sm:text-sm md:text-base text-amber-900">FREE</span>
+              <Gamepad2 className="h-4 w-4 sm:h-6 sm:w-6 md:h-8 md:h-8 lg:h-10 lg:w-10 mb-0.5 text-amber-900" />
+              <span className="text-[10px] sm:text-sm md:text-base text-amber-900">FREE</span>
             </>
           ) : (
             <>
-              <Gamepad2 className="h-5 w-5 sm:h-6 sm:w-6 md:h-8 md:h-8 lg:h-10 lg:w-10 mb-0.5 text-amber-900" />
-              <span className="text-xs sm:text-sm md:text-base lg:text-lg text-amber-900">SPIN</span>
+              <Gamepad2 className="h-4 w-4 sm:h-6 sm:w-6 md:h-8 md:h-8 lg:h-10 lg:w-10 mb-0.5 text-amber-900" />
+              <span className="text-[10px] sm:text-sm md:text-base lg:text-lg text-amber-900">SPIN</span>
             </>
           )}
         </Button>
 
-        {/* Right section on mobile (Autospin) | Desktop: individual item */}
-        <div className="flex items-center justify-start sm:contents">
-          <AutospinRow
-            isAutoSpinning={isAutoSpinning}
-            autoSpinCount={autoSpinCount}
-            onAutoSpinCountChange={onAutoSpinCountChange}
-            onToggle={onAutoSpinToggle}
-            autoSpinsRemaining={autoSpinsRemaining}
-            disabled={!canSpinNow || showBonusTrigger}
-          />
-        </div>
+        {/* Autospin */}
+        <AutospinRow
+          isAutoSpinning={isAutoSpinning}
+          autoSpinCount={autoSpinCount}
+          onAutoSpinCountChange={onAutoSpinCountChange}
+          onToggle={onAutoSpinToggle}
+          autoSpinsRemaining={autoSpinsRemaining}
+          disabled={!canSpinNow || showBonusTrigger}
+        />
 
-        {/* PayTable - desktop only (rightmost) */}
-        <div className="hidden sm:block flex-shrink-0">
+        {/* PayTable */}
+        <div className="flex-shrink-0">
           <PayTable />
         </div>
       </div>
