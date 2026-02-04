@@ -1,83 +1,120 @@
 
-# Plan: Fix Slot Control Bar Alignment
+# Plan: Omrokér Kontrolpanelet til Én Horisontal Række
 
-## Problem
-The left and right panels in the control bar are not aligning properly within their designated boxes:
-1. **Left Panel (BetControls)**: The component doesn't fill its container width
-2. **Right Panel (Volume+Autospin)**: The AutospinRow content can overflow the container because it has variable-width elements (dropdown selector + button with dynamic text like "STOP (25)")
+## Overblik
+Omstrukturér kontrolpanelet så alle elementer (Bet, Spin, Autospin, Volume og PayTable) vises i én sammenhængende horisontal linje på desktop, med mobil-stacking bevaret.
 
 ---
 
-## Solution
+## Nuværende Layout vs. Nyt Layout
 
-### File: `src/components/slots/SlotControlPanel.tsx`
+```text
+NUVÆRENDE:
+┌─────────────┐   ┌─────────┐   ┌─────────────┐
+│ Bet + Spins │   │  SPIN   │   │ Vol + Auto  │
+└─────────────┘   └─────────┘   └─────────────┘
+           ┌──────────────┐
+           │   PayTable   │
+           └──────────────┘
 
-**Change 1: Make BetControls fill its container (line 66)**
-Add `w-full` to the wrapper so BetControls stretches to fill the container width consistently.
-
-```tsx
-// Before
-<div className="order-1 sm:order-1 sm:w-40 md:w-44 lg:w-48">
-
-// After  
-<div className="order-1 sm:order-1 w-full sm:w-40 md:w-44 lg:w-48">
+NYT:
+┌─────┐ ┌──────────┐ ┌─────────┐ ┌──────────┐ ┌─────┐
+│ Vol │ │   Bet    │ │  SPIN   │ │ Autospin │ │ Pay │
+└─────┘ └──────────┘ └─────────┘ └──────────┘ └─────┘
+           ↓ Spins vises under Bet ↓
 ```
-
-**Change 2: Fix right panel overflow and improve layout (line 155-156)**
-- Add `flex-shrink-0` to prevent the panel from shrinking
-- Use `w-full` on mobile for consistency
-- Add `overflow-hidden` to prevent content overflow
-
-```tsx
-// Before
-<div className="flex items-center gap-2 order-3 sm:w-40 md:w-44 lg:w-48 justify-center bg-gradient-to-b...">
-
-// After
-<div className="flex items-center gap-2 order-3 w-full sm:w-40 md:w-44 lg:w-48 flex-shrink-0 justify-center bg-gradient-to-b...">
-```
-
-### File: `src/components/slots/BetControls.tsx`
-
-**Change: Make component fill container (line 28)**
-Add `w-full` so the component stretches to fill whatever container width is given.
-
-```tsx
-// Before
-<div className="flex flex-col gap-1.5 bg-gradient-to-b from-amber-950/90...">
-
-// After
-<div className="flex flex-col gap-1.5 w-full bg-gradient-to-b from-amber-950/90...">
-```
-
-### File: `src/components/slots/AutospinRow.tsx`
-
-**Change: Prevent overflow with flex-shrink (line 33)**
-Add `flex-shrink-0` to buttons to prevent them from being squished.
-
-```tsx
-// Before
-<div className="flex items-center justify-center gap-2">
-
-// After
-<div className="flex items-center justify-center gap-1 sm:gap-2 flex-wrap">
-```
-
-Also reduce button sizes slightly on the autospin buttons to fit better in the container.
 
 ---
 
-## Summary
+## Tekniske Detaljer
 
-| Component | Issue | Fix |
-|-----------|-------|-----|
-| SlotControlPanel | Wrapper doesn't enforce width on children | Add `w-full` on mobile, fixed widths on desktop |
-| BetControls | Doesn't fill container | Add `w-full` to root element |
-| AutospinRow | Content can overflow | Add `flex-wrap` and reduce gaps |
+### Fil: `src/components/slots/SlotControlPanel.tsx`
+
+**Ændring 1: Ny layout-struktur (linje 62-174)**
+
+Erstatter den eksisterende trekolonne-struktur med en enkelt-række layout:
+
+```tsx
+<div className="w-full flex flex-col items-center gap-3 sm:gap-4">
+  {/* Single row layout - all controls in one line */}
+  <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 w-full flex-wrap">
+    
+    {/* Volume (leftmost on desktop) */}
+    <div className="order-4 sm:order-1 flex-shrink-0">
+      <VolumeControl className="..." />
+    </div>
+    
+    {/* Bet Controls (second from left) */}
+    <div className="order-1 sm:order-2 w-full sm:w-auto">
+      <BetControls ... />
+    </div>
+    
+    {/* Spin Button (center) */}
+    <Button ... order-2 sm:order-3 />
+    
+    {/* Autospin (second from right) */}
+    <div className="order-3 sm:order-4 w-full sm:w-auto">
+      <AutospinRow ... />
+    </div>
+    
+    {/* PayTable (rightmost on desktop) */}
+    <div className="order-5 sm:order-5 flex-shrink-0">
+      <PayTable />
+    </div>
+  </div>
+</div>
+```
+
+**Ændring 2: Fjern separate wrapper-bokse**
+
+Fjern de egyptiske container-styles fra AutospinRow's wrapper (det bliver nu standalone-knapper), og flyt Volume ud af sin boks.
+
+### Fil: `src/components/slots/BetControls.tsx`
+
+**Ændring: Gør komponenten mere kompakt (linje 28)**
+
+Fjern `w-full` og tilføj en fast bredde så den passer i én række:
+
+```tsx
+// Fra
+<div className="flex flex-col gap-1.5 w-full bg-gradient-to-b...">
+
+// Til
+<div className="flex flex-col gap-1.5 w-full sm:w-auto bg-gradient-to-b...">
+```
+
+### Fil: `src/components/slots/AutospinRow.tsx`
+
+**Ændring: Fjern flex-wrap da den nu har mere plads**
+
+Knapperne vil nu have tilstrækkelig plads i det nye layout.
 
 ---
 
-## Expected Result
-- Both left and right panels will have consistent, matching widths
-- Content will properly fill the container boxes
-- The spin button will remain perfectly centered
-- No overflow or misalignment issues on any screen size
+## Mobil-opførsel
+
+På mobil (< sm breakpoint) vil elementerne stadig stacke vertikalt i følgende rækkefølge:
+1. Bet Controls (øverst)
+2. Spin Button
+3. Autospin
+4. Volume
+5. PayTable (nederst)
+
+---
+
+## Fordele
+
+| Aspekt | Før | Efter |
+|--------|-----|-------|
+| Rækker | 2 rækker | 1 række |
+| Visuelt fokus | Spredt | Samlet kontrollinje |
+| PayTable | Separat række | Integreret i hovedrække |
+| Volume | Delt boks med Autospin | Standalone ikon |
+
+---
+
+## Forventet Resultat
+- Alle kontroller i én sammenhængende horisontal linje på desktop
+- Spin-knappen forbliver central og fremtrædende
+- Mere kompakt og professionelt udseende
+- Mobil-layout forbliver brugervenligt med vertikal stacking
