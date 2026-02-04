@@ -1,116 +1,62 @@
 
-# Plan: Vis gevinst-animation før bonus-trigger overlay
+# Plan: Flyt BonusStatusBar til lige over kontrolpanelet
 
-## Problem
-Når en bonus lander (3+ scatters) OG der også er en linjegevinst, vises bonus-overlayet øjeblikkeligt - før gevinstanimationen når at spille. Brugeren ser ikke deres gevinst, før bonussen aktiveres.
+## Nuværende layout
+1. Overlays (Bonus trigger, Retrigger, Complete)
+2. **BonusStatusBar** ← Nuværende placering (over spillemaskinen)
+3. SlotMachineFrame med hjul
+4. SlotControlPanel
 
-## Løsning
-Forsink visningen af bonus-trigger overlayet, så gevinstanimationen og gevinstlinjerne vises først. Efter gevinstanimationen er færdig, vises bonus-overlayet.
+## Nyt layout
+1. Overlays (Bonus trigger, Retrigger, Complete)
+2. SlotMachineFrame med hjul
+3. **BonusStatusBar** ← Ny placering (lige over kontrolpanelet)
+4. SlotControlPanel
 
-## Teknisk implementering
+## Tekniske ændringer
 
 ### Fil: `src/components/slots/SlotGame.tsx`
 
-**1. Tilføj en pending bonus state (omkring linje 94-96)**
+**1. Fjern BonusStatusBar fra dens nuværende placering (linje 548-557)**
 
-Gem bonus-trigger data i state, så vi kan vise det efter gevinstanimationen:
-
+Slet denne blok:
 ```tsx
-const [pendingBonusTrigger, setPendingBonusTrigger] = useState<{
-  isRetrigger: boolean;
-  spinsToAdd?: number;
-  expandingSymbol?: SlotSymbol;
-} | null>(null);
+{/* Bonus Status Bar - positioned above the frame */}
+<div className="max-w-fit mx-auto mb-1 sm:mb-2">
+  <BonusStatusBar
+    isActive={bonusState.isActive}
+    freeSpinsRemaining={bonusState.freeSpinsRemaining}
+    totalFreeSpins={bonusState.totalFreeSpins}
+    expandingSymbol={bonusState.expandingSymbol}
+    bonusWinnings={bonusState.bonusWinnings}
+  />
+</div>
 ```
 
-**2. Modificer bonus-trigger logikken (linje 680-699)**
+**2. Tilføj BonusStatusBar lige før kontrolpanelet (linje 838-839)**
 
-I stedet for at vise bonus-overlayet øjeblikkeligt, gem det til senere:
-
-Før:
+Indsæt BonusStatusBar i wrapper-div'en sammen med kontrolpanelet:
 ```tsx
-if (result.bonusTriggered) {
-  shouldStopAuto = true;
-  
-  if (isBonusSpin) {
-    slotSounds.playRetrigger();
-    const spinsToAdd = 10;
-    retriggerBonus(spinsToAdd);
-    setRetriggerSpinsAdded(spinsToAdd);
-    setShowRetrigger(true);  // Vises med det samme
-  } else {
-    slotSounds.playBonusTrigger();
-    const expanding = triggerBonus(symbols || []);
-    setPendingExpandingSymbol(expanding);
-    setShowBonusTrigger(true);  // Vises med det samme
-  }
-}
-```
-
-Efter:
-```tsx
-if (result.bonusTriggered) {
-  shouldStopAuto = true;
-  
-  if (isBonusSpin) {
-    // Retrigger - gem til senere hvis der er gevinst
-    const spinsToAdd = 10;
-    retriggerBonus(spinsToAdd);
-    setRetriggerSpinsAdded(spinsToAdd);
-    
-    if (result.totalWin > 0) {
-      // Gem til efter gevinstanimation
-      setPendingBonusTrigger({ isRetrigger: true, spinsToAdd });
-    } else {
-      // Ingen gevinst, vis med det samme
-      slotSounds.playRetrigger();
-      setShowRetrigger(true);
-    }
-  } else {
-    // Initial bonus trigger - gem til senere hvis der er gevinst
-    const expanding = triggerBonus(symbols || []);
-    setPendingExpandingSymbol(expanding);
-    
-    if (result.totalWin > 0) {
-      // Gem til efter gevinstanimation
-      setPendingBonusTrigger({ isRetrigger: false, expandingSymbol: expanding });
-    } else {
-      // Ingen gevinst, vis med det samme
-      slotSounds.playBonusTrigger();
-      setShowBonusTrigger(true);
-    }
-  }
-}
-```
-
-**3. Tilføj useEffect til at vise pending bonus efter animation (efter linje 372)**
-
-```tsx
-// Show pending bonus trigger after win animation completes
-useEffect(() => {
-  if (pendingBonusTrigger && !isWinAnimating && !isSpinning) {
-    // Short delay to let user see the win
-    const timer = setTimeout(() => {
-      if (pendingBonusTrigger.isRetrigger) {
-        slotSounds.playRetrigger();
-        setShowRetrigger(true);
-      } else {
-        slotSounds.playBonusTrigger();
-        setShowBonusTrigger(true);
-      }
-      setPendingBonusTrigger(null);
-    }, 500); // Kort forsinkelse efter gevinst
-    
-    return () => clearTimeout(timer);
-  }
-}, [pendingBonusTrigger, isWinAnimating, isSpinning]);
+{/* Control Panel with Bonus Status Bar above */}
+<div className="mt-2 sm:-mt-12 md:-mt-16 lg:-mt-[200px]">
+  {/* Bonus Status Bar - positioned just above controls */}
+  <div className="max-w-fit mx-auto mb-1 sm:mb-2">
+    <BonusStatusBar
+      isActive={bonusState.isActive}
+      freeSpinsRemaining={bonusState.freeSpinsRemaining}
+      totalFreeSpins={bonusState.totalFreeSpins}
+      expandingSymbol={bonusState.expandingSymbol}
+      bonusWinnings={bonusState.bonusWinnings}
+    />
+  </div>
+  <SlotControlPanel ... />
+</div>
 ```
 
 ## Resultat
-- Gevinstanimation og gevinstlinjer vises først
-- Efter animationen er færdig (2 sekunder) + kort pause (500ms)
-- Bonus-trigger overlay vises med lyd
-- Brugeren ser tydeligt deres gevinst før bonussen starter
+- BonusStatusBar vises nu direkte over kontrollerne under bonus-runder
+- Baren følger kontrolpanelets responsive positionering
+- Spilleren kan se bonus-status (free spins remaining, expanding symbol, gevinst) tættere på handlingsknapperne
 
-## Filer der ændres
+## Fil der ændres
 - `src/components/slots/SlotGame.tsx`
