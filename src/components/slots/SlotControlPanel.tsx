@@ -60,16 +60,12 @@ export function SlotControlPanel({
 
   return (
     <div className="w-full flex flex-col items-center gap-3 sm:gap-4">
-      {/* Single row layout - all controls in one line on desktop */}
-      <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 w-full flex-wrap">
+      {/* Mobile: 3-column grid | Desktop: single flex row */}
+      <div className="grid grid-cols-[1fr_auto_1fr] sm:flex sm:flex-row items-center justify-center gap-3 sm:gap-4 w-full">
         
-        {/* Volume (leftmost on desktop, near bottom on mobile) */}
-        <div className="order-4 sm:order-1 flex-shrink-0">
+        {/* Left section on mobile (Vol, Bet, Pay) | Desktop: individual items */}
+        <div className="flex items-center justify-end gap-2 sm:contents">
           <VolumeControl className="text-amber-400 hover:text-amber-300" />
-        </div>
-
-        {/* Bet Controls (second from left on desktop, top on mobile) */}
-        <div className="order-1 sm:order-2 w-full sm:w-auto">
           <BetControls
             bet={bet}
             onBetChange={onBetChange}
@@ -81,13 +77,17 @@ export function SlotControlPanel({
             maxSpins={maxSpins}
             spinsLoading={spinsLoading}
           />
+          {/* PayTable - mobile only in left section */}
+          <div className="sm:hidden">
+            <PayTable />
+          </div>
         </div>
 
         {/* Center: Spin Button */}
         <Button
           className={cn(
             // Round shape
-            "rounded-full aspect-square order-2 sm:order-3",
+            "rounded-full aspect-square",
             // Responsive sizing
             "w-20 h-20 sm:w-20 sm:h-20 md:w-24 md:h-24 lg:w-28 lg:h-28",
             // Rich Egyptian gold gradient with metallic feel
@@ -155,8 +155,8 @@ export function SlotControlPanel({
           )}
         </Button>
 
-        {/* Autospin (second from right on desktop) */}
-        <div className="order-3 sm:order-4 w-full sm:w-auto">
+        {/* Right section on mobile (Autospin) | Desktop: individual item */}
+        <div className="flex items-center justify-start sm:contents">
           <AutospinRow
             isAutoSpinning={isAutoSpinning}
             autoSpinCount={autoSpinCount}
@@ -167,8 +167,8 @@ export function SlotControlPanel({
           />
         </div>
 
-        {/* PayTable (rightmost on desktop, bottom on mobile) */}
-        <div className="order-5 sm:order-5 flex-shrink-0">
+        {/* PayTable - desktop only (rightmost) */}
+        <div className="hidden sm:block flex-shrink-0">
           <PayTable />
         </div>
       </div>
