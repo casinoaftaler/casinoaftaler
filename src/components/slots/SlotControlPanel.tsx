@@ -101,7 +101,7 @@ export function SlotControlPanel({
               canSpinNow &&
               !isAutoSpinning &&
               !showBonusTrigger &&
-              "animate-[spin-glow_2s_ease-in-out_infinite]",
+              "animate-[spin-glow_4s_ease-in-out_infinite]",
             // Hover effects - intensify glow
             !isSpinning &&
               canSpinNow &&
