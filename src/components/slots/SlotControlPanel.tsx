@@ -3,6 +3,7 @@ import { BetControls } from "./BetControls";
 import { AutospinRow } from "./AutospinRow";
 import { VolumeControl } from "./VolumeControl";
 import { PayTable } from "./PayTable";
+import { SmallWinBar } from "./SmallWinBar";
 import { Gamepad2 } from "lucide-react";
 import { cn } from "@/lib/utils";
 
@@ -32,6 +33,7 @@ interface SlotControlPanelProps {
   maxSpins: number;
   spinsLoading?: boolean;
   showBonusTrigger?: boolean;
+  winAmount: number;
 }
 
 export function SlotControlPanel({
@@ -53,13 +55,17 @@ export function SlotControlPanel({
   maxSpins,
   spinsLoading,
   showBonusTrigger,
+  winAmount,
 }: SlotControlPanelProps) {
   const canSpinNow = bonusState.isActive
     ? bonusState.freeSpinsRemaining > 0
     : canSpin;
 
   return (
-    <div className="w-full flex flex-col items-center gap-3 sm:gap-4">
+    <div className="w-full flex flex-col items-center gap-2 sm:gap-3">
+      {/* Small Win Bar - centered above controls */}
+      <SmallWinBar amount={winAmount} />
+      
       {/* Horizontal row on all devices */}
       <div className="flex flex-row items-center justify-center gap-2 sm:gap-4 w-full flex-wrap sm:flex-nowrap">
         
