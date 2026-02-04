@@ -25,12 +25,33 @@ const INITIAL_STATE: BonusGameState = {
   bonusWinnings: 0,
 };
 
+// Get session ID from sessionStorage (same as useSlotSession)
+const getSessionId = (): string | null => {
+  return sessionStorage.getItem("slot_session_id");
+};
+
 export function useBonusGame(symbols?: SlotSymbol[]) {
   const { user } = useAuth();
   const [bonusState, setBonusState] = useState<BonusGameState>(INITIAL_STATE);
   const [isLoaded, setIsLoaded] = useState(false);
   const isUpdatingRef = useRef(false);
   const channelRef = useRef<ReturnType<typeof supabase.channel> | null>(null);
+
+  // Check if this device is the active session before performing any action
+  const isActiveSession = useCallback(async (): Promise<boolean> => {
+    if (!user?.id) return false;
+    
+    const currentSessionId = getSessionId();
+    if (!currentSessionId) return false;
+    
+    const { data } = await supabase
+      .from("slot_active_sessions")
+      .select("session_id")
+      .eq("user_id", user.id)
+      .maybeSingle();
+    
+    return data?.session_id === currentSessionId;
+  }, [user?.id]);
 
   // Load bonus state from database on mount
   useEffect(() => {
@@ -170,7 +191,14 @@ export function useBonusGame(symbols?: SlotSymbol[]) {
     return expandingSymbol;
   }, [saveBonusState]);
 
-  const decrementFreeSpin = useCallback(() => {
+  const decrementFreeSpin = useCallback(async () => {
+    // Validate this is the active session before decrementing
+    const isActive = await isActiveSession();
+    if (!isActive) {
+      console.log("Not the active session - ignoring bonus spin");
+      return;
+    }
+
     setBonusState(prev => {
       const newState = {
         ...prev,
@@ -179,9 +207,16 @@ export function useBonusGame(symbols?: SlotSymbol[]) {
       saveBonusState(newState);
       return newState;
     });
-  }, [saveBonusState]);
+  }, [saveBonusState, isActiveSession]);
 
-  const addBonusWinnings = useCallback((amount: number) => {
+  const addBonusWinnings = useCallback(async (amount: number) => {
+    // Validate this is the active session before adding winnings
+    const isActive = await isActiveSession();
+    if (!isActive) {
+      console.log("Not the active session - ignoring bonus winnings");
+      return;
+    }
+
     setBonusState(prev => {
       const newState = {
         ...prev,
@@ -190,9 +225,16 @@ export function useBonusGame(symbols?: SlotSymbol[]) {
       saveBonusState(newState);
       return newState;
     });
-  }, [saveBonusState]);
+  }, [saveBonusState, isActiveSession]);
 
-  const retriggerBonus = useCallback((additionalSpins: number = 10) => {
+  const retriggerBonus = useCallback(async (additionalSpins: number = 10) => {
+    // Validate this is the active session before retriggering
+    const isActive = await isActiveSession();
+    if (!isActive) {
+      console.log("Not the active session - ignoring bonus retrigger");
+      return;
+    }
+
     setBonusState(prev => {
       const newState = {
         ...prev,
@@ -202,7 +244,7 @@ export function useBonusGame(symbols?: SlotSymbol[]) {
       saveBonusState(newState);
       return newState;
     });
-  }, [saveBonusState]);
+  }, [saveBonusState, isActiveSession]);
 
   const endBonus = useCallback(() => {
     const finalWinnings = bonusState.bonusWinnings;
