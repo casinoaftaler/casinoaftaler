@@ -43,6 +43,7 @@ interface PersistedAudioSettings {
   enabled: boolean;
   volume: number;
   musicEnabled: boolean;
+  effectsEnabled: boolean;
 }
 
 // Default bundled background music
@@ -53,6 +54,7 @@ class SlotSoundEffects {
   private enabled: boolean = true;
   private volume: number = 0.5;
   private musicEnabled: boolean = true;
+  private effectsEnabled: boolean = true;
   private musicGainNode: GainNode | null = null;
   private currentMusic: OscillatorNode[] = [];
   private musicInterval: NodeJS.Timeout | null = null;
@@ -138,7 +140,7 @@ class SlotSoundEffects {
 
   // Play a custom sound file if available, returns true if played
   private playCustomSound(key: keyof CustomSoundFiles): boolean {
-    if (!this.enabled) return false;
+    if (!this.enabled || !this.effectsEnabled) return false;
     
     const audio = this.customAudioElements.get(key);
     if (audio) {
@@ -153,6 +155,11 @@ class SlotSoundEffects {
     return false;
   }
 
+  // Check if effects are enabled (for synthesized sounds)
+  private canPlayEffect(): boolean {
+    return this.enabled && this.effectsEnabled;
+  }
+
   private loadPersistedSettings() {
     try {
       const saved = localStorage.getItem(AUDIO_SETTINGS_KEY);
@@ -161,6 +168,7 @@ class SlotSoundEffects {
         this.enabled = settings.enabled ?? true;
         this.volume = settings.volume ?? 0.5;
         this.musicEnabled = settings.musicEnabled ?? true;
+        this.effectsEnabled = settings.effectsEnabled ?? true;
       }
     } catch (e) {
       // Ignore parse errors, use defaults
@@ -173,6 +181,7 @@ class SlotSoundEffects {
         enabled: this.enabled,
         volume: this.volume,
         musicEnabled: this.musicEnabled,
+        effectsEnabled: this.effectsEnabled,
       };
       localStorage.setItem(AUDIO_SETTINGS_KEY, JSON.stringify(settings));
     } catch (e) {
@@ -243,6 +252,15 @@ class SlotSoundEffects {
     } else {
       this.stopMusic();
     }
+    this.persistSettings();
+  }
+
+  isEffectsEnabled() {
+    return this.effectsEnabled;
+  }
+
+  setEffectsEnabled(enabled: boolean) {
+    this.effectsEnabled = enabled;
     this.persistSettings();
   }
 
@@ -686,7 +704,7 @@ class SlotSoundEffects {
 
   // Egyptian-themed spinning reel sound - mystical whoosh with ancient percussion
   playSpinStart() {
-    if (!this.enabled) return;
+    if (!this.canPlayEffect()) return;
     
     // Try custom spin sound first
     if (this.playCustomSound('spinSound')) return;
@@ -740,7 +758,7 @@ class SlotSoundEffects {
 
   // Reel spinning loop - Book of Dead style mechanical clicking
   playReelSpin(): () => void {
-    if (!this.enabled) return () => {};
+    if (!this.canPlayEffect()) return () => {};
     
     const ctx = this.getContext();
     let isRunning = true;
@@ -880,7 +898,7 @@ class SlotSoundEffects {
 
   // Individual reel stop sound - plays when each reel lands (with pitch variation per reel)
   playReelStopSingle(reelIndex: number = 0) {
-    if (!this.enabled) return;
+    if (!this.canPlayEffect()) return;
     
     // Try custom stop sound first (only for first reel to avoid overlapping custom sounds)
     if (reelIndex === 0 && this.playCustomSound('stopSound')) return;
@@ -938,7 +956,7 @@ class SlotSoundEffects {
 
   // Reel stop sound - stone tablet landing with golden chime (legacy - plays for all reels at once)
   playReelStop() {
-    if (!this.enabled) return;
+    if (!this.canPlayEffect()) return;
     
     // Try custom stop sound first
     if (this.playCustomSound('stopSound')) return;
@@ -1008,7 +1026,7 @@ class SlotSoundEffects {
 
   // Small win - golden coins with Egyptian harp
   playSmallWin() {
-    if (!this.enabled) return;
+    if (!this.canPlayEffect()) return;
     
     // Try custom small win sound first
     if (this.playCustomSound('smallWinSound')) return;
@@ -1063,7 +1081,7 @@ class SlotSoundEffects {
 
   // Medium win - treasure discovery with sistrum
   playMediumWin() {
-    if (!this.enabled) return;
+    if (!this.canPlayEffect()) return;
     
     // Try custom medium win sound first
     if (this.playCustomSound('mediumWinSound')) return;
@@ -1134,7 +1152,7 @@ class SlotSoundEffects {
 
   // Big win - Pharaoh's treasure fanfare
   playBigWin() {
-    if (!this.enabled) return;
+    if (!this.canPlayEffect()) return;
     
     // Try custom big win sound first
     if (this.playCustomSound('bigWinSound')) return;
@@ -1241,7 +1259,7 @@ class SlotSoundEffects {
 
   // Bonus trigger - Book of Dead opens with ancient power
   playBonusTrigger() {
-    if (!this.enabled) return;
+    if (!this.canPlayEffect()) return;
     
     // Try custom bonus trigger sound first
     if (this.playCustomSound('bonusTriggerSound')) return;
@@ -1358,7 +1376,7 @@ class SlotSoundEffects {
 
   // Retrigger - triumphant power boost during bonus
   playRetrigger() {
-    if (!this.enabled) return;
+    if (!this.canPlayEffect()) return;
     const ctx = this.getContext();
     const now = ctx.currentTime;
     
@@ -1484,7 +1502,7 @@ class SlotSoundEffects {
 
   // Bonus complete - triumphant ancient victory
   playBonusWin() {
-    if (!this.enabled) return;
+    if (!this.canPlayEffect()) return;
     
     // Try custom bonus win sound first
     if (this.playCustomSound('bonusWinSound')) return;
@@ -1582,7 +1600,7 @@ class SlotSoundEffects {
 
   // Symbol expansion - ancient power surge
   playSymbolExpand() {
-    if (!this.enabled) return;
+    if (!this.canPlayEffect()) return;
     const ctx = this.getContext();
     const now = ctx.currentTime;
     
@@ -1669,7 +1687,7 @@ class SlotSoundEffects {
 
   // Button click - golden tap
   playButtonClick() {
-    if (!this.enabled) return;
+    if (!this.canPlayEffect()) return;
     const ctx = this.getContext();
     const now = ctx.currentTime;
     
@@ -1707,7 +1725,7 @@ class SlotSoundEffects {
 
   // No win - mysterious sand whisper
   playNoWin() {
-    if (!this.enabled) return;
+    if (!this.canPlayEffect()) return;
     const ctx = this.getContext();
     const now = ctx.currentTime;
     
@@ -1736,7 +1754,7 @@ class SlotSoundEffects {
 
   // Tease mode drumroll - building anticipation when 2 scatters land
   playTeaseStart(): () => void {
-    if (!this.enabled) return () => {};
+    if (!this.canPlayEffect()) return () => {};
     
     const ctx = this.getContext();
     const now = ctx.currentTime;
@@ -1748,7 +1766,7 @@ class SlotSoundEffects {
     
     // Deep heartbeat-like pulse
     const heartbeatInterval = setInterval(() => {
-      if (!this.enabled) return;
+      if (!this.canPlayEffect()) return;
       
       const currentTime = ctx.currentTime;
       
@@ -1837,7 +1855,7 @@ class SlotSoundEffects {
 
   // Active tease slowdown sound - intense crescendo when tease reel starts slowing down
   playActiveTeaseSlowdown(reelIndex: number): () => void {
-    if (!this.enabled) return () => {};
+    if (!this.canPlayEffect()) return () => {};
     
     const ctx = this.getContext();
     const now = ctx.currentTime;
@@ -1969,7 +1987,7 @@ class SlotSoundEffects {
 
   // Coin counting sound - plays while win amount ticks up
   playCoinCount(): () => void {
-    if (!this.enabled) return () => {};
+    if (!this.canPlayEffect()) return () => {};
     
     const ctx = this.getContext();
     let isPlaying = true;
@@ -2036,7 +2054,7 @@ class SlotSoundEffects {
 
   // Big win counting sound - more dramatic, triumphant sound for big/mega/epic wins
   playBigWinCount(): () => void {
-    if (!this.enabled) return () => {};
+    if (!this.canPlayEffect()) return () => {};
     
     const ctx = this.getContext();
     let isPlaying = true;
@@ -2158,7 +2176,7 @@ class SlotSoundEffects {
 
   // Progressive scatter land sound - builds tension as more scatters land
   playScatterLand(scatterNumber: number) {
-    if (!this.enabled) return;
+    if (!this.canPlayEffect()) return;
     const ctx = this.getContext();
     const now = ctx.currentTime;
     

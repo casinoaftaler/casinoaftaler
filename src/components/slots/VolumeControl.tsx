@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Slider } from "@/components/ui/slider";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { Switch } from "@/components/ui/switch";
-import { Volume2, VolumeX, Volume1, Music } from "lucide-react";
+import { Volume2, VolumeX, Volume1, Music, Sparkles } from "lucide-react";
 import { slotSounds } from "@/lib/slotSoundEffects";
 import { cn } from "@/lib/utils";
 
@@ -15,6 +15,7 @@ export function VolumeControl({ className }: VolumeControlProps) {
   const [enabled, setEnabled] = useState(slotSounds.isEnabled());
   const [volume, setVolume] = useState(slotSounds.getVolume() * 100);
   const [musicEnabled, setMusicEnabled] = useState(slotSounds.isMusicEnabled());
+  const [effectsEnabled, setEffectsEnabled] = useState(slotSounds.isEffectsEnabled());
 
   useEffect(() => {
     slotSounds.setEnabled(enabled);
@@ -28,6 +29,10 @@ export function VolumeControl({ className }: VolumeControlProps) {
     slotSounds.setMusicEnabled(musicEnabled);
   }, [musicEnabled]);
 
+  useEffect(() => {
+    slotSounds.setEffectsEnabled(effectsEnabled);
+  }, [effectsEnabled]);
+
   const handleToggle = () => {
     const newEnabled = !enabled;
     setEnabled(newEnabled);
@@ -38,6 +43,10 @@ export function VolumeControl({ className }: VolumeControlProps) {
 
   const handleMusicToggle = (checked: boolean) => {
     setMusicEnabled(checked);
+  };
+
+  const handleEffectsToggle = (checked: boolean) => {
+    setEffectsEnabled(checked);
     if (checked) {
       slotSounds.playButtonClick();
     }
@@ -80,7 +89,7 @@ export function VolumeControl({ className }: VolumeControlProps) {
           {getVolumeIcon()}
         </Button>
       </PopoverTrigger>
-      <PopoverContent className="w-56 p-4" align="end">
+      <PopoverContent className="w-64 p-4" align="end">
         <div className="space-y-4">
           <div className="flex items-center justify-between">
             <span className="text-sm font-medium">Lydstyrke</span>
@@ -90,7 +99,7 @@ export function VolumeControl({ className }: VolumeControlProps) {
               className="h-8 px-2"
               onClick={handleToggle}
             >
-              {enabled ? "Sluk" : "Tænd"}
+              {enabled ? "Sluk alt" : "Tænd"}
             </Button>
           </div>
           
@@ -118,7 +127,7 @@ export function VolumeControl({ className }: VolumeControlProps) {
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-2">
                 <Music className="h-4 w-4 text-amber-500" />
-                <span className="text-sm font-medium">Egyptisk musik</span>
+                <span className="text-sm font-medium">Musik</span>
               </div>
               <Switch
                 checked={musicEnabled && enabled}
@@ -127,7 +136,25 @@ export function VolumeControl({ className }: VolumeControlProps) {
               />
             </div>
             <p className="text-xs text-muted-foreground mt-1">
-              Ambient baggrundsmusik
+              Egyptisk baggrundsmusik
+            </p>
+          </div>
+
+          {/* Effects toggle */}
+          <div className="pt-2 border-t border-border">
+            <div className="flex items-center justify-between">
+              <div className="flex items-center gap-2">
+                <Sparkles className="h-4 w-4 text-amber-500" />
+                <span className="text-sm font-medium">Lydeffekter</span>
+              </div>
+              <Switch
+                checked={effectsEnabled && enabled}
+                onCheckedChange={handleEffectsToggle}
+                disabled={!enabled}
+              />
+            </div>
+            <p className="text-xs text-muted-foreground mt-1">
+              Spin, gevinst og bonus lyde
             </p>
           </div>
         </div>
