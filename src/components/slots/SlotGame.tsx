@@ -406,6 +406,25 @@ export function SlotGame() {
     };
   }, [isAutoSpinning, isSpinning, isWinAnimating, winAmount, canSpin, bonusState.isActive, bonusState.freeSpinsRemaining, showBonusTrigger, showBonusComplete, showRetrigger]);
 
+  // Auto-spin during bonus mode - spins automatically without user clicking
+  useEffect(() => {
+    // Only run during active bonus with remaining spins
+    if (!bonusState.isActive || bonusState.freeSpinsRemaining === 0) return;
+    
+    // Don't trigger if already spinning or animating
+    if (isSpinning || isWinAnimating) return;
+    
+    // Don't trigger if any overlay is showing
+    if (showBonusTrigger || showBonusComplete || showRetrigger) return;
+    
+    // Wait a moment before auto-spinning
+    const timer = setTimeout(() => {
+      handleSpin();
+    }, 1000);
+    
+    return () => clearTimeout(timer);
+  }, [bonusState.isActive, bonusState.freeSpinsRemaining, isSpinning, isWinAnimating, showBonusTrigger, showBonusComplete, showRetrigger]);
+
   // Find winning positions for each reel
   const getWinningPositions = (reelIndex: number): number[] => {
     if (!lastResult || lastResult.wins.length === 0) return [];
@@ -482,6 +501,7 @@ export function SlotGame() {
         isVisible={showBonusTrigger}
         type="trigger"
         expandingSymbol={pendingExpandingSymbol}
+        allSymbols={symbols || []}
         onClose={() => setShowBonusTrigger(false)}
       />
       <BonusOverlay

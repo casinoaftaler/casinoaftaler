@@ -1,12 +1,13 @@
 import { cn } from "@/lib/utils";
 import type { SlotSymbol } from "@/lib/slotGameLogic";
-import { getSymbolEmoji } from "@/lib/slotGameLogic";
 import { BonusCompleteScreen } from "./BonusCompleteScreen";
+import { BonusSymbolPicker } from "./BonusSymbolPicker";
 
 interface BonusOverlayProps {
   isVisible: boolean;
   type: "trigger" | "complete" | "retrigger";
   expandingSymbol?: SlotSymbol | null;
+  allSymbols?: SlotSymbol[];
   totalWinnings?: number;
   retriggerSpins?: number;
   totalFreeSpins?: number;
@@ -17,6 +18,7 @@ export function BonusOverlay({
   isVisible,
   type,
   expandingSymbol,
+  allSymbols = [],
   totalWinnings = 0,
   retriggerSpins = 10,
   totalFreeSpins = 0,
@@ -43,15 +45,15 @@ export function BonusOverlay({
         "bg-black/80 backdrop-blur-sm",
         "animate-in fade-in duration-300"
       )}
-      onClick={onClose}
+      onClick={type === "retrigger" ? onClose : undefined}
     >
       <div
         className={cn(
           "relative p-8 rounded-2xl text-center max-w-md mx-4",
-          // Remove purple styling; keep it themed and readable
-          "bg-card/90 backdrop-blur",
-          "border-4 border-border",
-          "shadow-lg",
+          // Egyptian gold theme matching BonusStatusBar and controls
+          "bg-gradient-to-b from-amber-950/95 via-amber-900/90 to-amber-950/95 backdrop-blur",
+          "border-2 border-amber-600/50",
+          "shadow-[0_0_40px_rgba(251,191,36,0.4),0_8px_32px_rgba(0,0,0,0.6)]",
           "animate-in zoom-in-95 duration-500"
         )}
         onClick={(e) => e.stopPropagation()}
@@ -64,45 +66,24 @@ export function BonusOverlay({
 
         {type === "trigger" ? (
           <>
-            {/* Bonus trigger content */}
+            {/* Bonus trigger content with symbol picker */}
             <div className="mb-4">
               <span className="text-6xl animate-bounce inline-block">📖</span>
             </div>
             <h2 className="text-3xl sm:text-4xl font-bold text-amber-300 mb-2 animate-pulse">
               BONUS AKTIVERET!
             </h2>
-            <p className="text-xl text-amber-100 mb-4">
+            <p className="text-xl text-amber-100 mb-6">
               10 GRATIS SPINS!
             </p>
             
-            {expandingSymbol && (
-              <div className="mt-4 p-4 bg-black/30 rounded-xl">
-                <p className="text-amber-200 mb-2">Expanding Symbol:</p>
-                <div className="flex items-center justify-center gap-3">
-                  {expandingSymbol.image_url ? (
-                    <img
-                      src={expandingSymbol.image_url}
-                      alt={expandingSymbol.name}
-                      className="w-16 h-16 object-contain"
-                    />
-                  ) : (
-                    <span className="text-5xl">
-                      {getSymbolEmoji(expandingSymbol.name)}
-                    </span>
-                  )}
-                  <span className="text-2xl font-bold text-amber-300">
-                    {expandingSymbol.name}
-                  </span>
-                </div>
-                <p className="text-sm text-amber-200/70 mt-2">
-                  Ekspanderer til hele hjulet ved gevinst!
-                </p>
-              </div>
-            )}
-
-            <p className="text-amber-200/60 text-sm mt-4">
-              Klik for at starte
-            </p>
+            {/* Symbol Picker Animation */}
+            <BonusSymbolPicker
+              isVisible={isVisible}
+              symbols={allSymbols}
+              selectedSymbol={expandingSymbol || null}
+              onComplete={() => onClose?.()}
+            />
           </>
         ) : type === "retrigger" ? (
           <>
@@ -128,28 +109,7 @@ export function BonusOverlay({
               Klik for at fortsætte
             </p>
           </>
-        ) : (
-          <>
-            {/* Bonus complete content */}
-            <div className="mb-4">
-              <span className="text-6xl">🎉</span>
-            </div>
-            <h2 className="text-3xl sm:text-4xl font-bold text-amber-300 mb-2">
-              BONUS FÆRDIG!
-            </h2>
-            <p className="text-xl text-amber-100 mb-4">
-              Total Gevinst:
-            </p>
-            <div className="text-5xl font-bold text-amber-400 animate-pulse">
-              {totalWinnings}
-            </div>
-            <p className="text-amber-200/70 mt-2">point</p>
-
-            <p className="text-amber-200/60 text-sm mt-6">
-              Klik for at fortsætte
-            </p>
-          </>
-        )}
+        ) : null}
       </div>
     </div>
   );
