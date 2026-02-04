@@ -26,7 +26,7 @@ interface SlotReelProps {
 }
 
 // Match the responsive symbol sizes from SlotSymbol
-const SYMBOL_SIZE = { xs: 64, mobile: 76, sm: 96, md: 112, lg: 140, xl: 160 };
+const SYMBOL_SIZE = { xs: 72, mobile: 84, sm: 108, md: 128, lg: 156, xl: 176 };
 const GAP = { xs: 4, mobile: 6, sm: 8, md: 12, lg: 16 };
 
 export function SlotReel({
