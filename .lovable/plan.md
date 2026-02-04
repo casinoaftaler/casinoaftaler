@@ -1,60 +1,72 @@
 
-# Plan: Red Egyptian Frame for Scatter Symbol
+# Plan: Fix Slot Machine Light Mode Overlay
 
-## Overview
-Update the AI symbol generation to give scatter symbols (Book of Fedesvin / cat on book) a distinctive red Egyptian-style frame instead of the golden frame used by premium symbols.
+## Problem
+The slot machine page uses gradient overlays with `bg-gradient-to-b from-background/60 via-background/40 to-background/70` which creates a bright white overlay in light mode, washing out the Egyptian background.
+
+The `background` CSS variable is light in light mode (`250 30% 97%` = almost white), so the overlay becomes a white semi-transparent layer instead of a dark cinematic effect.
+
+## Solution
+Replace the theme-dependent `background` color with a fixed dark color (`black`) for all slot machine overlays. This ensures the Egyptian/cinematic atmosphere is preserved in both light and dark modes.
 
 ---
 
 ## Technical Details
 
-### File: `supabase/functions/generate-slot-symbol/index.ts`
+### Files to Modify
 
-#### Change 1: Add SCATTER_FRAME constant (after line 40)
-Create a new constant specifically for scatter symbols with a red Egyptian frame:
+#### 1. `src/pages/SlotMachine.tsx`
 
-```typescript
-const SCATTER_FRAME = `
-FRAME/BORDER REQUIREMENTS (MANDATORY):
-- Add an ornate RED Egyptian-style frame/border around the ENTIRE image
-- The frame MUST touch ALL FOUR EDGES of the image (no gaps at edges)
-- Frame width: approximately 5-8% of the image on each side
-- Frame design: Intricate deep ruby red border with hieroglyphic patterns carved into it
-- Frame color: Rich crimson/ruby red with subtle golden trim on the edges
-- Corner decorations: Small scarab motifs with ruby red gems and golden accents
-- The frame should have depth and dimension (3D appearance)
-- Inner edge of frame: subtle red glow effect with golden highlights
-- The artwork must extend FULLY to the inner edge of the frame (no gaps)
-- CRITICAL: The outer edge of the frame must be FLUSH with the image boundary
-`;
-```
+**Lines 73, 100, 127** - Change the overlay gradient from `from-background/X` to `from-black/X`:
 
-#### Change 2: Update scatter symbol prompt (line 64)
-Replace `${PREMIUM_FRAME}` with `${SCATTER_FRAME}` in the scatter/Book of Fedesvin generation section:
-
-**Current (line 64):**
-```typescript
-${PREMIUM_FRAME}
-```
-
-**Updated:**
-```typescript
-${SCATTER_FRAME}
-```
+| Location | Current | Updated |
+|----------|---------|---------|
+| Line 73 (loading state) | `bg-gradient-to-b from-background/80 via-background/60 to-background/90` | `bg-gradient-to-b from-black/80 via-black/60 to-black/90` |
+| Line 100 (not logged in) | `bg-gradient-to-b from-background/80 via-background/60 to-background/90` | `bg-gradient-to-b from-black/80 via-black/60 to-black/90` |
+| Line 127 (main game) | `bg-gradient-to-b from-background/60 via-background/40 to-background/70` | `bg-gradient-to-b from-black/60 via-black/40 to-black/70` |
 
 ---
 
-## Visual Comparison
+#### 2. `src/components/slots/SlotIntroScreen.tsx`
 
-| Frame Aspect | Premium (Golden) | Scatter (Red) |
-|--------------|------------------|---------------|
-| Primary color | Golden | Ruby red/crimson |
-| Trim accents | Gold only | Golden trim on red |
-| Corner gems | Golden lotus/scarab | Scarab with ruby gems |
-| Inner glow | Golden | Red with gold highlights |
-| Hieroglyphics | Golden carved | Red carved |
+**Line 20** - Change the overlay gradient:
+
+| Location | Current | Updated |
+|----------|---------|---------|
+| Line 20 | `bg-gradient-to-b from-background/80 via-background/60 to-background/90` | `bg-gradient-to-b from-black/80 via-black/60 to-black/90` |
 
 ---
 
-## Result
-When generating a scatter symbol, the AI will create a distinctive red Egyptian-style frame that maintains the same ornate hieroglyphic and scarab patterns but in a rich ruby/crimson color scheme, making it immediately recognizable as the special scatter symbol.
+#### 3. `src/components/slots/SlotLoadingScreen.tsx`
+
+**Line 59** - Change the overlay gradient:
+
+| Location | Current | Updated |
+|----------|---------|---------|
+| Line 59 | `bg-gradient-to-b from-background/80 via-background/70 to-background/90` | `bg-gradient-to-b from-black/80 via-black/70 to-black/90` |
+
+---
+
+#### 4. `src/components/slots/SlotPageLockGate.tsx`
+
+**Line 40** - Change the overlay gradient:
+
+| Location | Current | Updated |
+|----------|---------|---------|
+| Line 40 | `bg-gradient-to-b from-background/90 via-background/80 to-background/95` | `bg-gradient-to-b from-black/90 via-black/80 to-black/95` |
+
+---
+
+## Summary
+
+| File | Lines Changed | Change |
+|------|---------------|--------|
+| `SlotMachine.tsx` | 73, 100, 127 | `background` to `black` in 3 overlays |
+| `SlotIntroScreen.tsx` | 20 | `background` to `black` in 1 overlay |
+| `SlotLoadingScreen.tsx` | 59 | `background` to `black` in 1 overlay |
+| `SlotPageLockGate.tsx` | 40 | `background` to `black` in 1 overlay |
+
+---
+
+## Expected Result
+The slot machine will maintain its dark, cinematic Egyptian atmosphere in both light and dark modes, with no more white overlay washing out the background imagery.
