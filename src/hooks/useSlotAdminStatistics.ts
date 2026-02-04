@@ -54,20 +54,39 @@ export function useSlotAdminStatistics(period: StatPeriod) {
     queryFn: async (): Promise<SlotAdminStats> => {
       const periodStart = getPeriodStart(period);
 
-      // Build query
-      let query = supabase
+      // First get total count to handle pagination
+      let countQuery = supabase
         .from("slot_game_results")
-        .select("user_id, bet_amount, win_amount, created_at");
+        .select("*", { count: "exact", head: true });
 
       if (periodStart) {
-        query = query.gte("created_at", periodStart.toISOString());
+        countQuery = countQuery.gte("created_at", periodStart.toISOString());
       }
 
-      const { data: results, error: resultsError } = await query;
+      const { count: totalCount, error: countError } = await countQuery;
+      if (countError) throw countError;
 
-      if (resultsError) throw resultsError;
+      // Fetch all records using pagination to bypass 1000 limit
+      const allRecords: { user_id: string; bet_amount: number; win_amount: number; created_at: string }[] = [];
+      const pageSize = 1000;
+      const totalPages = Math.ceil((totalCount || 0) / pageSize);
 
-      const records = results || [];
+      for (let page = 0; page < totalPages; page++) {
+        let query = supabase
+          .from("slot_game_results")
+          .select("user_id, bet_amount, win_amount, created_at")
+          .range(page * pageSize, (page + 1) * pageSize - 1);
+
+        if (periodStart) {
+          query = query.gte("created_at", periodStart.toISOString());
+        }
+
+        const { data, error } = await query;
+        if (error) throw error;
+        if (data) allRecords.push(...data);
+      }
+
+      const records = allRecords;
 
       // Calculate aggregate stats
       const totalSpins = records.length;

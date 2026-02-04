@@ -66,13 +66,16 @@ const clickChartConfig = {
 } satisfies ChartConfig;
 
 export function CombinedAnalyticsDashboard() {
-  const [dateRange, setDateRange] = useState<"7d" | "30d" | "90d">("7d");
+  const [dateRange, setDateRange] = useState<"1d" | "7d" | "30d" | "90d">("7d");
 
   const getDateRange = () => {
     const end = new Date();
     const start = new Date();
     
     switch (dateRange) {
+      case "1d":
+        start.setDate(end.getDate() - 1);
+        break;
       case "7d":
         start.setDate(end.getDate() - 7);
         break;
@@ -89,24 +92,42 @@ export function CombinedAnalyticsDashboard() {
       end,
       startDate: start.toISOString().split("T")[0],
       endDate: end.toISOString().split("T")[0],
-      granularity: dateRange === "7d" ? "hourly" : "daily",
+      granularity: dateRange === "1d" || dateRange === "7d" ? "hourly" : "daily",
     };
   };
 
-  // Page Analytics Query - fetch from page_views table
+  // Page Analytics Query - fetch accurate counts using pagination to bypass 1000 limit
   const { data: pageViewsData, isLoading: analyticsLoading } = useQuery({
     queryKey: ["page-analytics", dateRange],
     queryFn: async () => {
       const { start } = getDateRange();
       
-      const { data, error } = await supabase
+      // Get total count first
+      const { count: totalCount, error: countError } = await supabase
         .from("page_views")
-        .select("id, path, created_at")
-        .gte("created_at", start.toISOString())
-        .order("created_at", { ascending: true });
+        .select("*", { count: "exact", head: true })
+        .gte("created_at", start.toISOString());
 
-      if (error) throw error;
-      return data || [];
+      if (countError) throw countError;
+
+      // Fetch all data using pagination (1000 rows per page)
+      const allData: { id: string; path: string; created_at: string }[] = [];
+      const pageSize = 1000;
+      const totalPages = Math.ceil((totalCount || 0) / pageSize);
+
+      for (let page = 0; page < totalPages; page++) {
+        const { data, error } = await supabase
+          .from("page_views")
+          .select("id, path, created_at")
+          .gte("created_at", start.toISOString())
+          .order("created_at", { ascending: true })
+          .range(page * pageSize, (page + 1) * pageSize - 1);
+
+        if (error) throw error;
+        if (data) allData.push(...data);
+      }
+
+      return allData;
     },
   });
 
@@ -118,7 +139,7 @@ export function CombinedAnalyticsDashboard() {
 
     pageViewsData.forEach((view) => {
       const date = new Date(view.created_at);
-      const key = dateRange === "7d" 
+      const key = dateRange === "1d" || dateRange === "7d" 
         ? date.toISOString().split("T")[0] + "T" + date.getHours().toString().padStart(2, "0") + ":00"
         : date.toISOString().split("T")[0];
 
@@ -141,23 +162,39 @@ export function CombinedAnalyticsDashboard() {
       }));
   }, [pageViewsData, dateRange]);
 
-  // Click Analytics Query
+  // Click Analytics Query - with pagination to bypass 1000 limit
   const { data: clickEvents, isLoading: clicksLoading } = useQuery({
     queryKey: ["click-events", dateRange],
     queryFn: async () => {
       const { start } = getDateRange();
       
-      // First fetch click events
-      const { data: clicks, error: clicksError } = await supabase
+      // Get total count first
+      const { count: totalCount, error: countError } = await supabase
         .from("click_events")
-        .select("id, casino_id, casino_slug, casino_name, event_type, created_at, user_id")
-        .gte("created_at", start.toISOString())
-        .order("created_at", { ascending: false });
+        .select("*", { count: "exact", head: true })
+        .gte("created_at", start.toISOString());
 
-      if (clicksError) throw clicksError;
+      if (countError) throw countError;
+
+      // Fetch all clicks using pagination
+      const allClicks: { id: string; casino_id: string | null; casino_slug: string; casino_name: string; event_type: string; created_at: string; user_id: string | null }[] = [];
+      const pageSize = 1000;
+      const totalPages = Math.ceil((totalCount || 0) / pageSize);
+
+      for (let page = 0; page < totalPages; page++) {
+        const { data, error } = await supabase
+          .from("click_events")
+          .select("id, casino_id, casino_slug, casino_name, event_type, created_at, user_id")
+          .gte("created_at", start.toISOString())
+          .order("created_at", { ascending: false })
+          .range(page * pageSize, (page + 1) * pageSize - 1);
+
+        if (error) throw error;
+        if (data) allClicks.push(...data);
+      }
       
       // Get unique user IDs that are not null
-      const userIds = [...new Set(clicks?.filter(c => c.user_id).map(c => c.user_id) || [])];
+      const userIds = [...new Set(allClicks.filter(c => c.user_id).map(c => c.user_id) || [])];
       
       // Fetch profiles for those users
       let profilesMap: Record<string, string | null> = {};
@@ -176,7 +213,7 @@ export function CombinedAnalyticsDashboard() {
       }
       
       // Merge profiles into click events
-      return (clicks || []).map(click => ({
+      return allClicks.map(click => ({
         ...click,
         profiles: click.user_id ? { twitch_username: profilesMap[click.user_id] || null } : null
       })) as ClickEvent[];
@@ -265,7 +302,14 @@ export function CombinedAnalyticsDashboard() {
         <CollapsibleContent>
           <CardContent className="space-y-6">
             {/* Date Range Selector */}
-            <div className="flex gap-2">
+            <div className="flex gap-2 flex-wrap">
+              <Button
+                variant={dateRange === "1d" ? "default" : "outline"}
+                size="sm"
+                onClick={() => setDateRange("1d")}
+              >
+                1 dag
+              </Button>
               <Button
                 variant={dateRange === "7d" ? "default" : "outline"}
                 size="sm"
