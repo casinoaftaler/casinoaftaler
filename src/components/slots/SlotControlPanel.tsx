@@ -91,6 +91,12 @@ export function SlotControlPanel({
             // Multi-layer shadow for 3D depth + outer glow
             "shadow-[inset_0_2px_4px_rgba(255,230,150,0.6),inset_0_-3px_6px_rgba(120,80,20,0.4),0_0_25px_rgba(251,191,36,0.5),0_6px_20px_rgba(0,0,0,0.5)]",
             "md:shadow-[inset_0_3px_6px_rgba(255,230,150,0.6),inset_0_-4px_8px_rgba(120,80,20,0.4),0_0_35px_rgba(251,191,36,0.6),0_8px_25px_rgba(0,0,0,0.5)]",
+            // Idle pulsing glow animation when ready to spin
+            !isSpinning &&
+              canSpinNow &&
+              !isAutoSpinning &&
+              !showBonusTrigger &&
+              "animate-[spin-glow_2s_ease-in-out_infinite]",
             // Hover effects - intensify glow
             !isSpinning &&
               canSpinNow &&
@@ -99,15 +105,18 @@ export function SlotControlPanel({
             "hover:scale-105 transition-all duration-200",
             // Active/press effect
             "active:scale-95 active:shadow-[inset_0_4px_12px_rgba(80,50,10,0.5),0_0_20px_rgba(251,191,36,0.4)]",
-            // Spinning animation
+            // Spinning animation - override idle glow
             isSpinning && "animate-pulse",
             // Disabled state
-            "disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100",
+            "disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100 disabled:animate-none",
             // Text styling - embossed gold text
             "text-amber-950 font-bold text-base sm:text-lg md:text-xl lg:text-2xl flex flex-col items-center justify-center",
             // Text shadow for embossed effect
             "[text-shadow:0_1px_0_rgba(255,230,150,0.8),0_-1px_0_rgba(120,80,20,0.3)]"
           )}
+          style={{
+            // Define the spin-glow keyframes inline for the pulsing effect
+          }}
           onClick={onSpin}
           disabled={isSpinning || !canSpinNow || showBonusTrigger || isAutoSpinning}
         >
