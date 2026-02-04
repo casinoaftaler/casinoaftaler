@@ -10,6 +10,7 @@ interface SlotSettings {
   pagePassword: string;
   spinLoopMs: number;
   reelStaggerMs: number;
+  reelSlowdownMs: number;
 }
 
 export function useSlotSettings() {
@@ -21,7 +22,7 @@ export function useSlotSettings() {
       const { data, error } = await supabase
         .from("site_settings")
         .select("key, value")
-        .in("key", ["slot_daily_spins", "slot_min_bet", "slot_max_bet", "slot_page_locked", "slot_page_password", "slot_spin_loop_ms", "slot_reel_stagger_ms"]);
+        .in("key", ["slot_daily_spins", "slot_min_bet", "slot_max_bet", "slot_page_locked", "slot_page_password", "slot_spin_loop_ms", "slot_reel_stagger_ms", "slot_reel_slowdown_ms"]);
 
       if (error) throw error;
 
@@ -38,6 +39,7 @@ export function useSlotSettings() {
         pagePassword: settingsMap.slot_page_password || "bookoffedesvin2026",
         spinLoopMs: parseInt(settingsMap.slot_spin_loop_ms || "600", 10),
         reelStaggerMs: parseInt(settingsMap.slot_reel_stagger_ms || "20", 10),
+        reelSlowdownMs: parseInt(settingsMap.slot_reel_slowdown_ms || "300", 10),
       };
     },
   });
@@ -67,6 +69,9 @@ export function useSlotSettings() {
       if (newSettings.reelStaggerMs !== undefined) {
         updates.push({ key: "slot_reel_stagger_ms", value: String(newSettings.reelStaggerMs) });
       }
+      if (newSettings.reelSlowdownMs !== undefined) {
+        updates.push({ key: "slot_reel_slowdown_ms", value: String(newSettings.reelSlowdownMs) });
+      }
 
       for (const update of updates) {
         const { error } = await supabase
@@ -86,7 +91,7 @@ export function useSlotSettings() {
   });
 
   return {
-    settings: settings ?? { dailySpins: 100, minBet: 1, maxBet: 10, pageLocked: true, pagePassword: "bookoffedesvin2026", spinLoopMs: 600, reelStaggerMs: 20 },
+    settings: settings ?? { dailySpins: 100, minBet: 1, maxBet: 10, pageLocked: true, pagePassword: "bookoffedesvin2026", spinLoopMs: 600, reelStaggerMs: 20, reelSlowdownMs: 300 },
     isLoading,
     updateSettings,
   };

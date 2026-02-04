@@ -14,7 +14,8 @@ interface SlotReelProps {
   expandingSymbolId?: string;
   delay?: number;
   shouldSlowDown?: boolean;
-  spinLoopMs?: number;  // NEW: Configurable spin loop speed
+  spinLoopMs?: number;
+  reelSlowdownMs?: number;
   onReelStop?: (reelIndex: number) => void;
   teaseMode?: boolean;
   isActiveTeaseReel?: boolean;
@@ -39,6 +40,7 @@ export function SlotReel({
   delay = 0,
   shouldSlowDown = false,
   spinLoopMs = 400,
+  reelSlowdownMs = 300,
   onReelStop,
   teaseMode = false,
   isActiveTeaseReel = false,
@@ -164,8 +166,8 @@ export function SlotReel({
       setOffset(startOffset);
       
       const startTime = performance.now();
-      // Tease reels get longer slowdown (3s), normal reels get fast 300ms
-      const spinDuration = teaseMode ? 3000 : 300;
+      // Tease reels get longer slowdown (3s), normal reels use configurable speed
+      const spinDuration = teaseMode ? 3000 : reelSlowdownMs;
       
       const animate = (currentTime: number) => {
         const elapsed = currentTime - startTime;
