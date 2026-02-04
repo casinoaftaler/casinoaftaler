@@ -1,82 +1,83 @@
 
-# Plan: Add Toggle Button for Desktop Leaderboard
+# Plan: Fix Slot Control Bar Alignment
 
-## Overview
-Replace the always-visible desktop leaderboard with a toggle button that shows/hides it, matching the mobile experience but with desktop-appropriate positioning.
+## Problem
+The left and right panels in the control bar are not aligning properly within their designated boxes:
+1. **Left Panel (BetControls)**: The component doesn't fill its container width
+2. **Right Panel (Volume+Autospin)**: The AutospinRow content can overflow the container because it has variable-width elements (dropdown selector + button with dynamic text like "STOP (25)")
 
 ---
 
-## Technical Details
+## Solution
 
-### File: `src/pages/SlotMachine.tsx`
+### File: `src/components/slots/SlotControlPanel.tsx`
 
-#### Change 1: Remove the always-visible desktop leaderboard (lines 146-149)
-Delete the unconditional desktop leaderboard that's always shown on xl screens.
-
-#### Change 2: Update the Collapsible to work on all screen sizes (lines 155-181)
-Remove the `xl:hidden` class so the toggle button and collapsible leaderboard work on all screen sizes.
-
-#### Change 3: Add desktop-specific toggle button positioning
-On desktop (xl), position the toggle button and leaderboard to the left of the slot machine using absolute positioning. On mobile/tablet, keep it below the slot machine.
-
-**Updated structure:**
+**Change 1: Make BetControls fill its container (line 66)**
+Add `w-full` to the wrapper so BetControls stretches to fill the container width consistently.
 
 ```tsx
-{/* Main content: Slot machine centered */}
-<div className="flex justify-center">
-  <div className="relative">
-    {/* Desktop: Leaderboard positioned to the left - conditionally shown */}
-    <div className="hidden xl:block absolute right-full mr-4 top-0 w-64">
-      {/* Toggle button */}
-      <Button
-        variant="ghost"
-        onClick={toggleLeaderboard}
-        className="w-full flex items-center justify-center gap-2 py-3 mb-2 bg-amber-500/10 hover:bg-amber-500/20 border border-amber-500/30 rounded-lg text-amber-500"
-      >
-        <Trophy className="h-4 w-4" />
-        <span>{showLeaderboard ? "Skjul rangliste" : "Vis rangliste"}</span>
-        {showLeaderboard ? <ChevronUp /> : <ChevronDown />}
-      </Button>
-      
-      {/* Conditionally render leaderboard */}
-      {showLeaderboard && (
-        <div className="max-h-[calc(100vh-14rem)] overflow-y-auto">
-          <SlotLeaderboard />
-        </div>
-      )}
-    </div>
-    
-    {/* Slot machine */}
-    <div className="flex flex-col items-center gap-1">
-      <SlotGame />
-      
-      {/* Mobile/Tablet: Collapsible Leaderboard (below slot) */}
-      <Collapsible 
-        open={showLeaderboard} 
-        onOpenChange={setShowLeaderboard}
-        className="w-full max-w-sm xl:hidden"
-      >
-        {/* ... existing mobile collapsible content ... */}
-      </Collapsible>
-    </div>
-  </div>
-</div>
+// Before
+<div className="order-1 sm:order-1 sm:w-40 md:w-44 lg:w-48">
+
+// After  
+<div className="order-1 sm:order-1 w-full sm:w-40 md:w-44 lg:w-48">
 ```
+
+**Change 2: Fix right panel overflow and improve layout (line 155-156)**
+- Add `flex-shrink-0` to prevent the panel from shrinking
+- Use `w-full` on mobile for consistency
+- Add `overflow-hidden` to prevent content overflow
+
+```tsx
+// Before
+<div className="flex items-center gap-2 order-3 sm:w-40 md:w-44 lg:w-48 justify-center bg-gradient-to-b...">
+
+// After
+<div className="flex items-center gap-2 order-3 w-full sm:w-40 md:w-44 lg:w-48 flex-shrink-0 justify-center bg-gradient-to-b...">
+```
+
+### File: `src/components/slots/BetControls.tsx`
+
+**Change: Make component fill container (line 28)**
+Add `w-full` so the component stretches to fill whatever container width is given.
+
+```tsx
+// Before
+<div className="flex flex-col gap-1.5 bg-gradient-to-b from-amber-950/90...">
+
+// After
+<div className="flex flex-col gap-1.5 w-full bg-gradient-to-b from-amber-950/90...">
+```
+
+### File: `src/components/slots/AutospinRow.tsx`
+
+**Change: Prevent overflow with flex-shrink (line 33)**
+Add `flex-shrink-0` to buttons to prevent them from being squished.
+
+```tsx
+// Before
+<div className="flex items-center justify-center gap-2">
+
+// After
+<div className="flex items-center justify-center gap-1 sm:gap-2 flex-wrap">
+```
+
+Also reduce button sizes slightly on the autospin buttons to fit better in the container.
 
 ---
 
 ## Summary
 
-| Aspect | Before | After |
-|--------|--------|-------|
-| Desktop (xl) | Always visible leaderboard | Toggle button + conditional leaderboard |
-| Mobile/Tablet | Collapsible toggle below slot | No change |
-| State persistence | localStorage | No change (uses existing state) |
+| Component | Issue | Fix |
+|-----------|-------|-----|
+| SlotControlPanel | Wrapper doesn't enforce width on children | Add `w-full` on mobile, fixed widths on desktop |
+| BetControls | Doesn't fill container | Add `w-full` to root element |
+| AutospinRow | Content can overflow | Add `flex-wrap` and reduce gaps |
 
 ---
 
 ## Expected Result
-- Desktop users will see a "Vis rangliste" / "Skjul rangliste" button to the left of the slot machine
-- Clicking the button toggles the leaderboard visibility
-- State is persisted across page refreshes via localStorage (already implemented)
-- Mobile/tablet experience remains unchanged
+- Both left and right panels will have consistent, matching widths
+- Content will properly fill the container boxes
+- The spin button will remain perfectly centered
+- No overflow or misalignment issues on any screen size
