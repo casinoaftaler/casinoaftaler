@@ -757,7 +757,7 @@ export function SlotGame() {
                           setActiveSlowdownReel(-1);
                           
                           // Release spin lock after 500ms delay (wait for win animation if present)
-                          const spinLockDelay = hasWinAnimation ? 2500 : 500;
+                          const spinLockDelay = hasWinAnimation ? 2000 : 500;
                           setTimeout(() => {
                             spinLockRef.current = false;
                             setIsSpinLocked(false);
