@@ -11,7 +11,7 @@ export function SlotIntroScreen({ onStart }: SlotIntroScreenProps) {
   const backgroundImage = siteSettings?.slot_background_image || defaultSlotBackground;
 
   return (
-    <div className="min-h-[calc(100vh-4rem)] relative flex flex-col items-center justify-center px-4">
+    <div className="min-h-[calc(100vh-4rem)] relative flex flex-col items-center justify-start pt-4 sm:pt-6 px-4">
       {/* Background */}
       <div 
         className="absolute inset-0 bg-cover bg-center bg-no-repeat -z-10"
@@ -21,7 +21,7 @@ export function SlotIntroScreen({ onStart }: SlotIntroScreenProps) {
       
       {/* Content */}
       <div 
-        className="flex flex-col items-center gap-6 animate-fade-in cursor-pointer"
+        className="flex flex-col items-center gap-4 animate-fade-in cursor-pointer"
         onClick={onStart}
         role="button"
         tabIndex={0}
