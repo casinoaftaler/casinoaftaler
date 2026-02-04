@@ -901,8 +901,8 @@ class SlotSoundEffects {
   playReelStopSingle(reelIndex: number = 0) {
     if (!this.canPlayEffect()) return;
     
-    // Try custom stop sound first (only for first reel to avoid overlapping custom sounds)
-    if (reelIndex === 0 && this.playCustomSound('stopSound')) return;
+    // Try custom stop sound first - plays for each reel
+    if (this.playCustomSound('stopSound')) return;
     
     const ctx = this.getContext();
     const now = ctx.currentTime;
