@@ -1,72 +1,141 @@
 
-# Plan: Juster Mobil-Layout for Casino Card og Leaderboard
 
-## Oversigt
+# Add "Bonus Sounds Only" Option to Volume Settings
 
-Ændrer rækkefølgen på mobil/tablet-visningen, så casino kortet vises **over** leaderboard i stedet for under.
+## Overview
 
-## Nuværende Layout (Mobil)
+Add a new toggle option in the volume control popover that enables only scatter, tease, and bonus trigger sound effects while muting all other sounds (spin, stop, win sounds, etc.). This allows players to focus on the exciting bonus-related audio cues without the continuous mechanical sounds.
 
-```text
-┌─────────────────┐
-│   SlotGame      │
-├─────────────────┤
-│   Leaderboard   │  ← Vises først
-├─────────────────┤
-│   Casino Card   │  ← Vises sidst
-└─────────────────┘
+## What Will Change
+
+The volume settings popover will get a new "Bonus lyde kun" (Bonus Sounds Only) toggle that, when enabled, will:
+- Play scatter land sounds (cat meow effects)
+- Play tease mode sounds (drumroll/heartbeat when 2+ scatters land)
+- Play bonus trigger sounds (book opening effect)
+- Mute spin start, reel spinning, reel stop, small/medium/big win, and bonus complete sounds
+
+## User Experience
+
+When enabled:
+- The game will feel quieter during normal play
+- Excitement sounds will play when scatter symbols land
+- Tension-building tease sounds will play with 2+ scatters
+- The bonus trigger fanfare will play when entering free spins
+- All other mechanical and win sounds remain silent
+
+---
+
+## Technical Details
+
+### Files to Modify
+
+**1. `src/lib/slotSoundEffects.ts`**
+
+Add new state and methods for "bonus sounds only" mode:
+
+```typescript
+// Update PersistedAudioSettings interface
+interface PersistedAudioSettings {
+  enabled: boolean;
+  volume: number;
+  musicEnabled: boolean;
+  effectsEnabled: boolean;
+  bonusSoundsOnly: boolean; // NEW
+}
+
+// Add new private property
+private bonusSoundsOnly: boolean = false;
+
+// Add getter/setter methods
+isBonusSoundsOnly(): boolean {
+  return this.bonusSoundsOnly;
+}
+
+setBonusSoundsOnly(enabled: boolean): void {
+  this.bonusSoundsOnly = enabled;
+  this.persistSettings();
+}
 ```
 
-## Nyt Layout (Mobil)
+Update the helper method for checking if effects can play:
 
-```text
-┌─────────────────┐
-│   SlotGame      │
-├─────────────────┤
-│   Casino Card   │  ← Flyttes op
-├─────────────────┤
-│   Leaderboard   │  ← Flyttes ned
-└─────────────────┘
+```typescript
+// Add new method for checking bonus sounds specifically
+private canPlayBonusSound(): boolean {
+  return this.enabled && this.effectsEnabled;
+}
+
+// Update canPlayEffect to consider bonusSoundsOnly mode
+private canPlayEffect(): boolean {
+  return this.enabled && this.effectsEnabled && !this.bonusSoundsOnly;
+}
 ```
 
-## Kodeændring
+Update sound methods to use appropriate checks:
+- `playScatterLand()` - Use `canPlayBonusSound()` 
+- `playTeaseStart()` - Use `canPlayBonusSound()`
+- `playActiveTeaseSlowdown()` - Use `canPlayBonusSound()`
+- `playBonusTrigger()` - Use `canPlayBonusSound()`
+- All other sound methods continue using `canPlayEffect()`
 
-**Fil:** `src/pages/SlotMachine.tsx`
+**2. `src/components/slots/VolumeControl.tsx`**
 
-Bytter rundt på rækkefølgen af de to mobil-elementer (linje 196-206):
+Add the new toggle to the UI:
 
 ```tsx
-// Fra (nuværende):
-{/* Mobile/Tablet: Leaderboard */}
-<div className="w-full max-w-sm xl:hidden">
-  <SlotLeaderboard />
-</div>
+// Add state for bonusSoundsOnly
+const [bonusSoundsOnly, setBonusSoundsOnly] = useState(slotSounds.isBonusSoundsOnly());
 
-{/* #1 Casino Card - Mobile/Tablet */}
-{topCasino && (
-  <div className="w-full max-w-sm xl:hidden mt-3">
-    <SlotCasinoCard ... />
+// Add effect to sync with slotSounds
+useEffect(() => {
+  slotSounds.setBonusSoundsOnly(bonusSoundsOnly);
+}, [bonusSoundsOnly]);
+
+// Add handler
+const handleBonusSoundsOnlyToggle = (checked: boolean) => {
+  setBonusSoundsOnly(checked);
+};
+```
+
+Add new UI section in the popover (after the Effects toggle):
+
+```tsx
+{/* Bonus sounds only toggle */}
+<div className="pt-2 border-t border-border">
+  <div className="flex items-center justify-between">
+    <div className="flex items-center gap-2">
+      <Cat className="h-4 w-4 text-amber-500" />
+      <span className="text-sm font-medium">Kun bonus lyde</span>
+    </div>
+    <Switch
+      checked={bonusSoundsOnly && enabled && effectsEnabled}
+      onCheckedChange={handleBonusSoundsOnlyToggle}
+      disabled={!enabled || !effectsEnabled}
+    />
   </div>
-)}
-
-// Til (nyt):
-{/* #1 Casino Card - Mobile/Tablet */}
-{topCasino && (
-  <div className="w-full max-w-sm xl:hidden mt-3">
-    <SlotCasinoCard ... />
-  </div>
-)}
-
-{/* Mobile/Tablet: Leaderboard */}
-<div className="w-full max-w-sm xl:hidden mt-3">
-  <SlotLeaderboard />
+  <p className="text-xs text-muted-foreground mt-1">
+    Kun scatter, tease og bonus lyde
+  </p>
 </div>
 ```
 
-Note: Tilføjer `mt-3` til leaderboard for at matche spacing.
+### Sound Method Categorization
 
-## Resultat
+**Bonus sounds (always play when effects enabled):**
+- `playScatterLand()`
+- `playTeaseStart()`
+- `playActiveTeaseSlowdown()`
+- `playBonusTrigger()`
 
-- Casino card vises nu over leaderboard på mobil/tablet
-- Spacing mellem elementer forbliver konsistent
-- Desktop-layout er uændret
+**Regular sounds (muted in bonus-only mode):**
+- `playSpinStart()`
+- `playReelSpin()`
+- `playReelStopSingle()`
+- `playSmallWin()`
+- `playMediumWin()`
+- `playBigWin()`
+- `playBonusWin()` (completion sound, not trigger)
+- `playSymbolExpand()`
+- `playButtonClick()`
+- And other UI/game sounds
+
