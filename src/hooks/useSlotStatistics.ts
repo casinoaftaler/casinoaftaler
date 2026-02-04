@@ -45,19 +45,19 @@ export function useSlotStatistics() {
         .sort(([, a], [, b]) => b - a)
         .slice(0, 10);
 
-      // Fetch profile info for top winners
+      // Fetch profile info for top winners using public leaderboard view (limited fields for security)
       const topWinnerIds = sortedUsers.map(([id]) => id);
       let profilesMap: Record<string, { display_name: string | null; avatar_url: string | null }> = {};
 
       if (topWinnerIds.length > 0) {
         const { data: profiles } = await supabase
-          .from("profiles")
-          .select("user_id, display_name, avatar_url, twitch_username")
+          .from("profiles_leaderboard")
+          .select("user_id, display_name, avatar_url")
           .in("user_id", topWinnerIds);
 
         profiles?.forEach((p) => {
           profilesMap[p.user_id] = { 
-            display_name: p.display_name || p.twitch_username, 
+            display_name: p.display_name, 
             avatar_url: p.avatar_url 
           };
         });

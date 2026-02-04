@@ -30,15 +30,15 @@ export function useSlotLeaderboard(period: "daily" | "weekly" | "alltime" = "all
 
       if (error) throw error;
 
-      // Fetch profiles for display names (now allowed by RLS policy)
+      // Fetch profiles for display names using the public leaderboard view (limited fields for security)
       const userIds = (data || []).map(d => d.user_id).filter(Boolean) as string[];
       
-      let profileMap = new Map<string, { display_name: string | null; avatar_url: string | null; twitch_username: string | null }>();
+      let profileMap = new Map<string, { display_name: string | null; avatar_url: string | null }>();
       
       if (userIds.length > 0) {
         const { data: profiles } = await supabase
-          .from("profiles")
-          .select("user_id, display_name, avatar_url, twitch_username")
+          .from("profiles_leaderboard")
+          .select("user_id, display_name, avatar_url")
           .in("user_id", userIds);
 
         profileMap = new Map(profiles?.map(p => [p.user_id, p]) || []);
@@ -53,7 +53,7 @@ export function useSlotLeaderboard(period: "daily" | "weekly" | "alltime" = "all
           total_spins: row.total_spins || 0,
           daily_winnings: row.daily_winnings || 0,
           weekly_winnings: row.weekly_winnings || 0,
-          display_name: profile?.display_name || profile?.twitch_username || "Anonym",
+          display_name: profile?.display_name || "Anonym",
           avatar_url: profile?.avatar_url || undefined,
         };
       });
