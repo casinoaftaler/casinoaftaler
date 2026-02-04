@@ -740,7 +740,7 @@ export function SlotGame() {
                                   slotSounds.playBonusTrigger();
                                   setShowBonusTrigger(true);
                                 }
-                              }, 1000); // 1 second celebration
+                              }, 1500); // 1.5 second celebration
                             }
                           }
                           
