@@ -451,8 +451,8 @@ export function SlotGame() {
     // Don't trigger if already spinning or animating
     if (isSpinning || isWinAnimating) return;
     
-    // Don't trigger if any overlay is showing
-    if (showBonusTrigger || showBonusComplete || showRetrigger) return;
+    // Don't trigger if any overlay is showing OR scatter celebration is active
+    if (showBonusTrigger || showBonusComplete || showRetrigger || showScatterCelebration) return;
     
     // Wait a moment before auto-spinning
     const timer = setTimeout(() => {
@@ -460,7 +460,7 @@ export function SlotGame() {
     }, 1000);
     
     return () => clearTimeout(timer);
-  }, [bonusState.isActive, bonusState.freeSpinsRemaining, isSpinning, isWinAnimating, showBonusTrigger, showBonusComplete, showRetrigger]);
+  }, [bonusState.isActive, bonusState.freeSpinsRemaining, isSpinning, isWinAnimating, showBonusTrigger, showBonusComplete, showRetrigger, showScatterCelebration]);
 
   // Find winning positions for each reel
   const getWinningPositions = (reelIndex: number): number[] => {
