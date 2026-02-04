@@ -10,6 +10,7 @@ import { SpinManagementSection } from "@/components/SpinManagementSection";
 import { SlotFrameAdminControls } from "@/components/slots/SlotFrameAdminControls";
 import { SlotSoundAdminSection } from "@/components/slots/SlotSoundAdminSection";
 import { SlotSoundFilesSection } from "@/components/slots/SlotSoundFilesSection";
+import { SlotSoundGeneratorSection } from "@/components/slots/SlotSoundGeneratorSection";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -817,6 +818,9 @@ function SettingsTab() {
 
       {/* Sound Settings */}
       <SlotSoundAdminSection />
+
+      {/* AI Sound Generator */}
+      <SlotSoundGeneratorSection />
 
       {/* Custom Sound Files */}
       <SlotSoundFilesSection />
