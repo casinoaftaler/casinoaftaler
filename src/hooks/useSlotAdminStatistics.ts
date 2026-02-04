@@ -135,6 +135,7 @@ export function useSlotAdminStatistics(period: StatPeriod) {
       let profilesMap: Record<string, { display_name: string | null; avatar_url: string | null }> = {};
 
       if (topWinnerIds.length > 0) {
+        // Admin stats can still use profiles table due to admin RLS policy
         const { data: profiles } = await supabase
           .from("profiles")
           .select("user_id, display_name, avatar_url, twitch_username")

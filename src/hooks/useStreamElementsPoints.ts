@@ -16,12 +16,13 @@ export function useStreamElementsPoints() {
 
   const channelId = siteSettings?.streamelements_channel_id;
 
-  // Fetch user's twitch_username from profile
+  // Fetch user's twitch_username from their own profile (allowed by RLS)
   const { data: profile } = useQuery({
     queryKey: ["user-profile", user?.id],
     queryFn: async () => {
       if (!user?.id) return null;
       
+      // User can read their own profile via RLS policy
       const { data, error } = await supabase
         .from("profiles")
         .select("twitch_username")
