@@ -30,7 +30,7 @@ export function AutospinRow({
   const counts: AutoSpinCount[] = [10, 25, 50, 100, "infinite"];
 
   return (
-    <div className="flex items-center justify-center gap-1 sm:gap-2 flex-wrap">
+    <div className="flex items-center justify-center gap-2 bg-gradient-to-b from-amber-950/90 via-amber-900/70 to-amber-950/90 backdrop-blur-sm border-2 border-amber-600/50 rounded-xl px-3 py-2 shadow-[inset_0_1px_0_rgba(251,191,36,0.3),0_4px_12px_rgba(0,0,0,0.4)]">
       {/* Autospin count selector - only show when not spinning */}
       {!isAutoSpinning && (
         <DropdownMenu>

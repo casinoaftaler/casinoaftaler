@@ -60,10 +60,16 @@ export function SlotControlPanel({
 
   return (
     <div className="w-full flex flex-col items-center gap-3 sm:gap-4">
-      {/* Main control row - responsive layout */}
-      <div className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6 w-full">
-        {/* Left Panel: Bet + Spins (stacks first on mobile) */}
-        <div className="order-1 sm:order-1 w-full sm:w-40 md:w-44 lg:w-48">
+      {/* Single row layout - all controls in one line on desktop */}
+      <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 w-full flex-wrap">
+        
+        {/* Volume (leftmost on desktop, near bottom on mobile) */}
+        <div className="order-4 sm:order-1 flex-shrink-0">
+          <VolumeControl className="text-amber-400 hover:text-amber-300" />
+        </div>
+
+        {/* Bet Controls (second from left on desktop, top on mobile) */}
+        <div className="order-1 sm:order-2 w-full sm:w-auto">
           <BetControls
             bet={bet}
             onBetChange={onBetChange}
@@ -81,7 +87,7 @@ export function SlotControlPanel({
         <Button
           className={cn(
             // Round shape
-            "rounded-full aspect-square order-2",
+            "rounded-full aspect-square order-2 sm:order-3",
             // Responsive sizing
             "w-20 h-20 sm:w-20 sm:h-20 md:w-24 md:h-24 lg:w-28 lg:h-28",
             // Rich Egyptian gold gradient with metallic feel
@@ -114,9 +120,6 @@ export function SlotControlPanel({
             // Text shadow for embossed effect
             "[text-shadow:0_1px_0_rgba(255,230,150,0.8),0_-1px_0_rgba(120,80,20,0.3)]"
           )}
-          style={{
-            // Define the spin-glow keyframes inline for the pulsing effect
-          }}
           onClick={onSpin}
           disabled={isSpinning || !canSpinNow || showBonusTrigger || isAutoSpinning}
         >
@@ -152,10 +155,8 @@ export function SlotControlPanel({
           )}
         </Button>
 
-        {/* Right Panel: Volume + Autospin (swapped from PayTable) */}
-        <div className="flex items-center gap-2 order-3 w-full sm:w-40 md:w-44 lg:w-48 flex-shrink-0 justify-center bg-gradient-to-b from-amber-950/90 via-amber-900/70 to-amber-950/90 backdrop-blur-sm border-2 border-amber-600/50 rounded-xl px-3 py-2 shadow-[inset_0_1px_0_rgba(251,191,36,0.3),0_4px_12px_rgba(0,0,0,0.4)]">
-          <VolumeControl className="text-amber-400 hover:text-amber-300" />
-          <div className="w-px h-6 bg-amber-600/40" />
+        {/* Autospin (second from right on desktop) */}
+        <div className="order-3 sm:order-4 w-full sm:w-auto">
           <AutospinRow
             isAutoSpinning={isAutoSpinning}
             autoSpinCount={autoSpinCount}
@@ -165,11 +166,11 @@ export function SlotControlPanel({
             disabled={!canSpinNow || showBonusTrigger}
           />
         </div>
-      </div>
 
-      {/* PayTable Row - dedicated row below controls (swapped from Autospin) */}
-      <div className="flex justify-center">
-        <PayTable />
+        {/* PayTable (rightmost on desktop, bottom on mobile) */}
+        <div className="order-5 sm:order-5 flex-shrink-0">
+          <PayTable />
+        </div>
       </div>
     </div>
   );
