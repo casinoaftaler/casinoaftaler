@@ -792,12 +792,12 @@ export function SlotGame() {
             </SlotMachineFrame>
           </div>
           {/* Small Win Display Bar - adjusted to match control panel position */}
-          <div className="relative z-10 flex justify-center mt-2 sm:-mt-16 md:-mt-20 lg:-mt-24">
+          <div className="relative z-10 flex justify-center mt-2 sm:-mt-16 md:-mt-20 lg:-mt-[216px]">
             <SmallWinBar amount={winAmount} />
           </div>
 
           {/* Redesigned Control Panel - responsive positioning */}
-          <div className="mt-2 sm:-mt-12 md:-mt-16 lg:-mt-20">
+          <div className="mt-2 sm:-mt-12 md:-mt-16 lg:-mt-[200px]">
             <SlotControlPanel
               bet={bet}
               onBetChange={setBet}
