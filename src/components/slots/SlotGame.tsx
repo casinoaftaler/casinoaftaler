@@ -792,12 +792,12 @@ export function SlotGame() {
             </SlotMachineFrame>
           </div>
           {/* Small Win Display Bar - always visible, overlapping frame bottom */}
-          <div className="relative z-10 -mt-6 flex justify-center">
+          <div className="relative z-10 flex justify-center" style={{ marginTop: '-30px' }}>
             <SmallWinBar amount={winAmount} />
           </div>
 
-          {/* Redesigned Control Panel - moved up 25px */}
-          <div className="sm:mt-3" style={{ marginTop: '-25px' }}>
+          {/* Redesigned Control Panel - moved up 50px */}
+          <div className="sm:mt-3" style={{ marginTop: '-50px' }}>
             <SlotControlPanel
               bet={bet}
               onBetChange={setBet}
