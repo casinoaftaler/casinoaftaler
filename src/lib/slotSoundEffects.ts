@@ -45,6 +45,9 @@ interface PersistedAudioSettings {
   musicEnabled: boolean;
 }
 
+// Default bundled background music
+const DEFAULT_BACKGROUND_MUSIC = '/sounds/egyptianmusic.mp3';
+
 class SlotSoundEffects {
   private audioContext: AudioContext | null = null;
   private enabled: boolean = true;
@@ -58,6 +61,7 @@ class SlotSoundEffects {
   private customSoundFiles: CustomSoundFiles = {};
   private customAudioElements: Map<string, HTMLAudioElement> = new Map();
   private backgroundMusicAudio: HTMLAudioElement | null = null;
+  private defaultMusicAudio: HTMLAudioElement | null = null;
 
   // Configurable sound settings
   private soundSettings: SlotSoundSettings = {
@@ -213,6 +217,10 @@ class SlotSoundEffects {
     if (this.backgroundMusicAudio) {
       this.backgroundMusicAudio.volume = this.volume * 0.5;
     }
+    // Update default background music volume
+    if (this.defaultMusicAudio) {
+      this.defaultMusicAudio.volume = this.volume * 0.5;
+    }
     this.persistSettings();
   }
 
@@ -248,20 +256,37 @@ class SlotSoundEffects {
   startMusic() {
     if (!this.enabled || !this.musicEnabled) return;
     
-    // Try custom background music first
+    // Try custom background music first (from admin upload)
     if (this.backgroundMusicAudio && this.customSoundFiles.backgroundMusic) {
       if (this.backgroundMusicAudio.paused) {
         this.backgroundMusicAudio.volume = this.volume * 0.5;
         this.backgroundMusicAudio.play().catch(() => {
-          // Ignore autoplay errors, fall back to synthesized music
-          this.startSynthesizedMusic();
+          // Ignore autoplay errors, try default music
+          this.playDefaultMusic();
         });
       }
       return;
     }
     
-    // Fall back to synthesized music
-    this.startSynthesizedMusic();
+    // Try default bundled Egyptian music
+    this.playDefaultMusic();
+  }
+
+  // Play the default bundled Egyptian music
+  private playDefaultMusic() {
+    if (!this.defaultMusicAudio) {
+      this.defaultMusicAudio = new Audio(DEFAULT_BACKGROUND_MUSIC);
+      this.defaultMusicAudio.loop = true;
+      this.defaultMusicAudio.preload = 'auto';
+    }
+    
+    if (this.defaultMusicAudio.paused) {
+      this.defaultMusicAudio.volume = this.volume * 0.5;
+      this.defaultMusicAudio.play().catch(() => {
+        // If default music fails, fall back to synthesized
+        this.startSynthesizedMusic();
+      });
+    }
   }
 
   // Synthesized Egyptian music (fallback)
@@ -631,6 +656,12 @@ class SlotSoundEffects {
     if (this.backgroundMusicAudio) {
       this.backgroundMusicAudio.pause();
       this.backgroundMusicAudio.currentTime = 0;
+    }
+
+    // Stop default background music
+    if (this.defaultMusicAudio) {
+      this.defaultMusicAudio.pause();
+      this.defaultMusicAudio.currentTime = 0;
     }
 
     if (this.musicInterval) {
