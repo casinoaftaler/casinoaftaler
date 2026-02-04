@@ -202,97 +202,102 @@ COMPOSITION:
 ${BASE_STYLE}`;
   }
 
-  // Letter A (Common)
+  // Letter A (Common) - RED
   if (normalizedName === "a" || normalizedName.includes("letter a")) {
     return `Create a slot machine symbol for an Egyptian-themed game.
 
 MAIN SUBJECT:
 - A large, ornate letter "A" as the central focus
-- Made of polished gold with a metallic sheen
-- Decorated with subtle hieroglyphic engravings carved into the gold
-- Small turquoise and lapis lazuli gem accents at key points
+- Made of polished RED ruby/carnelian gemstone material with golden accents
+- The letter should have a rich, deep RED color as the primary color
+- Decorated with subtle hieroglyphic engravings carved into the surface
+- Small golden and turquoise gem accents at key points
 - 3D appearance with depth and dimension
 - Elegant serif font style with Egyptian decorative flourishes
 
 COMPOSITION:
 - Letter centered and filling approximately 70% of the frame
-- Letter should appear to be a golden artifact/treasure
+- Letter should appear to be a precious RED gemstone artifact
 
 ${BASE_STYLE}`;
   }
 
-  // Letter K (Common)
+  // Letter K (Common) - LIGHT BLUE
   if (normalizedName === "k" || normalizedName.includes("letter k")) {
     return `Create a slot machine symbol for an Egyptian-themed game.
 
 MAIN SUBJECT:
 - A large, ornate letter "K" as the central focus
-- Made of polished gold with a metallic sheen
-- Decorated with subtle hieroglyphic engravings carved into the gold
-- Small turquoise and lapis lazuli gem accents at key points
+- Made of polished LIGHT BLUE aquamarine gemstone material with golden accents
+- The letter should have a bright, LIGHT BLUE color as the primary color
+- Decorated with subtle hieroglyphic engravings carved into the surface
+- Small golden and turquoise gem accents at key points
 - 3D appearance with depth and dimension
 - Elegant serif font style with Egyptian decorative flourishes
 
 COMPOSITION:
 - Letter centered and filling approximately 70% of the frame
-- Letter should appear to be a golden artifact/treasure
+- Letter should appear to be a precious LIGHT BLUE gemstone artifact
 
 ${BASE_STYLE}`;
   }
 
-  // Letter Q (Common)
+  // Letter Q (Common) - PINK
   if (normalizedName === "q" || normalizedName.includes("letter q")) {
     return `Create a slot machine symbol for an Egyptian-themed game.
 
 MAIN SUBJECT:
 - A large, ornate letter "Q" as the central focus
-- Made of polished gold with a metallic sheen
-- Decorated with subtle hieroglyphic engravings carved into the gold
-- Small turquoise and lapis lazuli gem accents at key points
+- Made of polished PINK rose quartz gemstone material with golden accents
+- The letter should have a vibrant PINK color as the primary color
+- Decorated with subtle hieroglyphic engravings carved into the surface
+- Small golden and turquoise gem accents at key points
 - 3D appearance with depth and dimension
 - Elegant serif font style with Egyptian decorative flourishes
 
 COMPOSITION:
 - Letter centered and filling approximately 70% of the frame
-- Letter should appear to be a golden artifact/treasure
+- Letter should appear to be a precious PINK gemstone artifact
 
 ${BASE_STYLE}`;
   }
 
-  // Letter J (Common)
+  // Letter J (Common) - GREEN
   if (normalizedName === "j" || normalizedName.includes("letter j")) {
     return `Create a slot machine symbol for an Egyptian-themed game.
 
 MAIN SUBJECT:
 - A large, ornate letter "J" as the central focus
-- Made of polished gold with a metallic sheen
-- Decorated with subtle hieroglyphic engravings carved into the gold
-- Small turquoise and lapis lazuli gem accents at key points
+- Made of polished GREEN emerald gemstone material with golden accents
+- The letter should have a rich, vibrant GREEN color as the primary color
+- Decorated with subtle hieroglyphic engravings carved into the surface
+- Small golden and turquoise gem accents at key points
 - 3D appearance with depth and dimension
 - Elegant serif font style with Egyptian decorative flourishes
 
 COMPOSITION:
 - Letter centered and filling approximately 70% of the frame
-- Letter should appear to be a golden artifact/treasure
+- Letter should appear to be a precious GREEN gemstone artifact
 
 ${BASE_STYLE}`;
   }
 
-  // Number 10 (Common)
+  // Number 10 (Common) - BLUE
   if (normalizedName === "10" || normalizedName.includes("ten")) {
     return `Create a slot machine symbol for an Egyptian-themed game.
 
 MAIN SUBJECT:
 - A large, ornate number "10" as the central focus
-- Made of polished gold with a metallic sheen
-- Decorated with subtle hieroglyphic engravings carved into the gold
-- Small turquoise and lapis lazuli gem accents at key points
+- Made of polished BLUE sapphire gemstone material with golden accents
+- The number should have a rich, deep BLUE color as the primary color
+- Decorated with subtle hieroglyphic engravings carved into the surface
+- Small golden and turquoise gem accents at key points
 - 3D appearance with depth and dimension
 - Elegant serif font style with Egyptian decorative flourishes
 
 COMPOSITION:
 - Number centered and filling approximately 70% of the frame
-- Number should appear to be a golden artifact/treasure
+- Number should appear to be a precious BLUE gemstone artifact
 
 ${BASE_STYLE}`;
   }
