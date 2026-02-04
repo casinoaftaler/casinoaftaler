@@ -12,9 +12,8 @@ import { useSlotPageAccess } from "@/hooks/useSlotPageAccess";
 import { useSlotSession } from "@/hooks/useSlotSession";
 import { useCasinos } from "@/hooks/useCasinos";
 import { Button } from "@/components/ui/button";
-import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
 import { Link } from "react-router-dom";
-import { Gamepad2, Trophy, ChevronDown, ChevronUp } from "lucide-react";
+import { Gamepad2 } from "lucide-react";
 import defaultSlotBackground from "@/assets/slots/slot-background.jpg";
 import defaultTitleImage from "@/assets/slots/book-of-fedesvin-title.png";
 import slotCasinoCardBg from "@/assets/slots/slot-casino-card-bg.png";
@@ -44,16 +43,6 @@ export default function SlotMachine() {
     sessionStorage.removeItem('slot_initialized');
   }, []);
   
-  // Leaderboard toggle state with localStorage persistence
-  const [showLeaderboard, setShowLeaderboard] = useState(() => {
-    return localStorage.getItem('slot-show-leaderboard') === 'true';
-  });
-
-  const toggleLeaderboard = () => {
-    const newValue = !showLeaderboard;
-    setShowLeaderboard(newValue);
-    localStorage.setItem('slot-show-leaderboard', String(newValue));
-  };
 
   const handleLoadingComplete = useCallback(() => {
     setLoadingPhase('intro');
@@ -175,27 +164,11 @@ export default function SlotMachine() {
         <div className="flex justify-center">
           {/* Centered wrapper for slot machine with relative positioning for leaderboard */}
           <div className="relative">
-            {/* Desktop: Leaderboard positioned to the left - toggle button + conditional */}
+            {/* Desktop: Leaderboard positioned to the left */}
             <div className="hidden xl:block absolute right-full mr-4 top-0 w-80" style={{ marginTop: '-80px' }}>
-              <Button
-                variant="ghost"
-                onClick={toggleLeaderboard}
-                className="w-full flex items-center justify-center gap-2 py-3 mb-2 bg-amber-500/10 hover:bg-amber-500/20 border border-amber-500/30 rounded-lg text-amber-500"
-              >
-                <Trophy className="h-4 w-4" />
-                <span>{showLeaderboard ? "Skjul rangliste" : "Vis rangliste"}</span>
-                {showLeaderboard ? (
-                  <ChevronUp className="h-4 w-4" />
-                ) : (
-                  <ChevronDown className="h-4 w-4" />
-                )}
-              </Button>
-              
-              {showLeaderboard && (
-                <div className="max-h-[calc(100vh-14rem)] overflow-y-auto mb-3">
-                  <SlotLeaderboard />
-                </div>
-              )}
+              <div className="mb-3">
+                <SlotLeaderboard />
+              </div>
               
               {/* #1 Casino Card - Desktop */}
               {topCasino && (
@@ -207,33 +180,10 @@ export default function SlotMachine() {
             <div className="flex flex-col items-center gap-1" style={{ marginTop: '-5px' }}>
               <SlotGame />
               
-              {/* Mobile/Tablet: Collapsible Leaderboard */}
-              <Collapsible 
-                open={showLeaderboard} 
-                onOpenChange={setShowLeaderboard}
-                className="w-full max-w-sm xl:hidden"
-              >
-                <CollapsibleTrigger asChild>
-                  <Button
-                    variant="ghost"
-                    onClick={toggleLeaderboard}
-                    className="w-full flex items-center justify-center gap-2 py-3 bg-amber-500/10 hover:bg-amber-500/20 border border-amber-500/30 rounded-lg text-amber-500"
-                  >
-                    <Trophy className="h-4 w-4" />
-                    <span>{showLeaderboard ? "Skjul rangliste" : "Vis rangliste"}</span>
-                    {showLeaderboard ? (
-                      <ChevronUp className="h-4 w-4" />
-                    ) : (
-                      <ChevronDown className="h-4 w-4" />
-                    )}
-                  </Button>
-                </CollapsibleTrigger>
-                <CollapsibleContent className="overflow-hidden data-[state=open]:animate-collapsible-down data-[state=closed]:animate-collapsible-up">
-                  <div className="pt-2">
-                    <SlotLeaderboard />
-                  </div>
-                </CollapsibleContent>
-              </Collapsible>
+              {/* Mobile/Tablet: Leaderboard */}
+              <div className="w-full max-w-sm xl:hidden">
+                <SlotLeaderboard />
+              </div>
               
               {/* #1 Casino Card - Mobile/Tablet */}
               {topCasino && (
