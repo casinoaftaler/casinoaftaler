@@ -65,14 +65,32 @@ export function PayTable() {
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <Button variant="outline" size="sm" className="gap-2">
-          <BookOpen className="h-4 w-4" />
+        <Button 
+          variant="ghost" 
+          size="sm" 
+          className={cn(
+            "gap-2 px-3 py-2",
+            "bg-gradient-to-b from-amber-800/60 to-amber-950/60",
+            "border border-amber-500/40",
+            "text-amber-300 hover:text-amber-200",
+            "hover:bg-gradient-to-b hover:from-amber-700/70 hover:to-amber-900/70",
+            "hover:border-amber-400/60",
+            "shadow-[inset_0_1px_0_rgba(251,191,36,0.2)]",
+            "transition-all duration-200"
+          )}
+        >
+          <BookOpen className="h-4 w-4 drop-shadow-[0_0_4px_rgba(251,191,36,0.4)]" />
           Gevinsttabel
         </Button>
       </DialogTrigger>
-      <DialogContent className="max-w-md max-h-[80vh] overflow-y-auto">
+      <DialogContent className={cn(
+        "max-w-md max-h-[80vh] overflow-y-auto",
+        "bg-gradient-to-b from-amber-950 via-amber-900/95 to-amber-950",
+        "border-2 border-amber-600/50",
+        "shadow-[0_0_40px_rgba(251,191,36,0.3),0_8px_32px_rgba(0,0,0,0.5)]"
+      )}>
         <DialogHeader>
-          <DialogTitle>Gevinsttabel</DialogTitle>
+          <DialogTitle className="text-amber-300 drop-shadow-[0_0_8px_rgba(251,191,36,0.4)]">Gevinsttabel</DialogTitle>
         </DialogHeader>
         
         <div className="space-y-4">
