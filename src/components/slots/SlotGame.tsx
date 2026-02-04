@@ -371,6 +371,7 @@ export function SlotGame() {
       const { winnings, spins } = endBonus();
       setBonusTotalWinnings(winnings);
       setBonusTotalSpinsUsed(spins);
+      slotSounds.playBonusWin(); // Play bonus complete sound
       setShowBonusComplete(true);
     }
   }, [shouldEndBonus, isSpinning, isWinAnimating, endBonus]);
