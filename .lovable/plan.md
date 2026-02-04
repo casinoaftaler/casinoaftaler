@@ -1,52 +1,81 @@
 
-# Plan: Fix Reel Width Shift on Landing
+# Plan: Reducer Spillemaskine og Ramme med 15%
 
-## Problem
+## Oversigt
 
-When a reel transitions from the spinning state to the landed/idle state, there's a slight horizontal shift to the left. This happens because:
+Spillemaskinen og dens ramme skal reduceres med 15%. Dette kræver ændringer i to filer:
+- **SlotSymbol.tsx** - Container- og billedstørrelser
+- **SlotReel.tsx** - SYMBOL_SIZE konstanter (bruges til spinning animation)
 
-1. **During spinning**: The reel container has an explicit inline width: `width: ${symbolHeight}px` (lines 323-326 in SlotReel.tsx)
-2. **When landed/idle**: The container switches to a simple flex column with NO explicit width - it just wraps the SlotSymbol components
+Rammen skalerer automatisk proportionelt med symbolerne, så den behøver ikke direkte ændringer.
 
-This causes a layout shift because the two containers have different width behaviors even though the symbols inside are the same size.
+## Beregning af Nye Størrelser
 
-## Solution
+Nuværende → Ny (85% af original):
 
-Add an explicit width to the idle/stopped state container that matches the spinning container width. This ensures consistent sizing across all states.
+| Breakpoint | Nuværende | Ny (afrundet) |
+|------------|-----------|---------------|
+| xs         | 72px      | 61px          |
+| mobile     | 84px      | 71px          |
+| sm         | 108px     | 92px          |
+| md         | 128px     | 109px         |
+| lg         | 156px     | 133px         |
+| xl         | 176px     | 150px         |
 
-## Technical Changes
+Billede-størrelser (inde i containeren):
 
-### File: `src/components/slots/SlotReel.tsx`
+| Breakpoint | Nuværende | Ny (afrundet) |
+|------------|-----------|---------------|
+| xs         | 60px      | 51px          |
+| mobile     | 72px      | 61px          |
+| sm         | 92px      | 78px          |
+| md         | 112px     | 95px          |
+| lg         | 140px     | 119px         |
+| xl         | 160px     | 136px         |
 
-**Current code (lines 259-260):**
-```tsx
-if (spinState === "idle" || spinState === "stopped") {
-  return (
-    <div className="flex flex-col gap-[4px] xs:gap-[6px] sm:gap-[8px] md:gap-[12px] lg:gap-[16px]">
+## Tekniske Ændringer
+
+### Fil 1: `src/components/slots/SlotSymbol.tsx`
+
+**Container-størrelser (linje 22):**
+```
+Nuværende: "w-[72px] h-[72px] xs:w-[84px] xs:h-[84px] sm:w-[108px] sm:h-[108px] md:w-[128px] md:h-[128px] lg:w-[156px] lg:h-[156px] xl:w-[176px] xl:h-[176px]"
+
+Ny: "w-[61px] h-[61px] xs:w-[71px] xs:h-[71px] sm:w-[92px] sm:h-[92px] md:w-[109px] md:h-[109px] lg:w-[133px] lg:h-[133px] xl:w-[150px] xl:h-[150px]"
 ```
 
-**Updated code:**
-```tsx
-if (spinState === "idle" || spinState === "stopped") {
-  const symbolHeight = getSymbolHeight();
-  
-  return (
-    <div 
-      className="flex flex-col gap-[4px] xs:gap-[6px] sm:gap-[8px] md:gap-[12px] lg:gap-[16px]"
-      style={{ width: `${symbolHeight}px` }}
-    >
+**Billed-størrelser (linje 43):**
+```
+Nuværende: "w-[60px] h-[60px] xs:w-[72px] xs:h-[72px] sm:w-[92px] sm:h-[92px] md:w-[112px] md:h-[112px] lg:w-[140px] lg:h-[140px] xl:w-[160px] xl:h-[160px]"
+
+Ny: "w-[51px] h-[51px] xs:w-[61px] xs:h-[61px] sm:w-[78px] sm:h-[78px] md:w-[95px] md:h-[95px] lg:w-[119px] lg:h-[119px] xl:w-[136px] xl:h-[136px]"
 ```
 
-This adds the same width calculation that the spinning state uses, ensuring the container maintains a consistent width during the transition from spinning to stopped/idle.
+**Kommentar opdatering (linje 15):**
+```
+Nuværende: // Symbol sizes: xs=72, mobile=84, sm=108, md=128, lg=156, xl=176
+Ny: // Symbol sizes: xs=61, mobile=71, sm=92, md=109, lg=133, xl=150
+```
 
-## Why This Works
+### Fil 2: `src/components/slots/SlotReel.tsx`
 
-- The `getSymbolHeight()` function already exists and returns the correct responsive size based on viewport width
-- By using the same width value in both states (spinning and idle), we eliminate the layout shift
-- The symbols inside will remain the same size - we're just ensuring their parent container has a consistent width
+**SYMBOL_SIZE konstant (linje 29):**
+```javascript
+Nuværende: const SYMBOL_SIZE = { xs: 72, mobile: 84, sm: 108, md: 128, lg: 156, xl: 176 };
 
-## Files to Modify
+Ny: const SYMBOL_SIZE = { xs: 61, mobile: 71, sm: 92, md: 109, lg: 133, xl: 150 };
+```
 
-| File | Change |
-|------|--------|
-| `src/components/slots/SlotReel.tsx` | Add explicit `width` style to the idle/stopped state container |
+## Hvorfor Dette Virker
+
+- Symbol-containerne og billederne reduceres proportionelt
+- `SYMBOL_SIZE` i SlotReel.tsx synkroniseres med de nye værdier (bruges til spinning animation width)
+- Rammen i `SlotMachineFrame.tsx` tilpasser sig automatisk, da den baseres på `slot_frame_size` setting og skalerer med indholdet
+- Alle gaps og marginer forbliver uændrede, så layout-proportionerne bevares
+
+## Filer der Ændres
+
+| Fil | Ændring |
+|-----|---------|
+| `src/components/slots/SlotSymbol.tsx` | Reducer container og billede størrelser med 15% |
+| `src/components/slots/SlotReel.tsx` | Opdater SYMBOL_SIZE konstanter til at matche |
