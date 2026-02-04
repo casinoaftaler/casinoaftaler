@@ -4,9 +4,11 @@ import { SlotLeaderboard } from "@/components/slots/SlotLeaderboard";
 import { SlotPageLockGate } from "@/components/slots/SlotPageLockGate";
 import { SlotLoadingScreen } from "@/components/slots/SlotLoadingScreen";
 import { SlotIntroScreen } from "@/components/slots/SlotIntroScreen";
+import { SlotSessionGate } from "@/components/slots/SlotSessionGate";
 import { useAuth } from "@/hooks/useAuth";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
 import { useSlotPageAccess } from "@/hooks/useSlotPageAccess";
+import { useSlotSession } from "@/hooks/useSlotSession";
 import { Button } from "@/components/ui/button";
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
 import { Link } from "react-router-dom";
@@ -20,6 +22,15 @@ export default function SlotMachine() {
   const { user, loading } = useAuth();
   const { data: siteSettings } = useSiteSettings();
   const { isLocked, hasAccess, isLoading: accessLoading, error, verifyPassword } = useSlotPageAccess();
+  const { 
+    isSessionActive, 
+    isBlockedByOtherDevice, 
+    otherDeviceInfo, 
+    timeSinceOtherActive,
+    isLoading: sessionLoading,
+    takeOverSession,
+    refreshSession 
+  } = useSlotSession();
   
   // Loading phase state - always start fresh (no session persistence)
   const [loadingPhase, setLoadingPhase] = useState<LoadingPhase>('loading');
@@ -62,8 +73,8 @@ export default function SlotMachine() {
     return <SlotIntroScreen onStart={handleIntroComplete} />;
   }
 
-  // Show loading while checking auth and access
-  if (loading || accessLoading) {
+  // Show loading while checking auth, access, and session
+  if (loading || accessLoading || (user && sessionLoading)) {
     return (
       <div className="min-h-[calc(100vh-4rem)] relative">
         <div 
@@ -86,6 +97,20 @@ export default function SlotMachine() {
         backgroundImage={backgroundImage}
         onVerify={verifyPassword}
         error={error}
+      />
+    );
+  }
+
+  // Show session gate if another device is actively playing
+  if (user && isBlockedByOtherDevice) {
+    return (
+      <SlotSessionGate
+        backgroundImage={backgroundImage}
+        otherDeviceInfo={otherDeviceInfo}
+        timeSinceActive={timeSinceOtherActive}
+        isLoading={sessionLoading}
+        onTakeOver={takeOverSession}
+        onRefresh={refreshSession}
       />
     );
   }

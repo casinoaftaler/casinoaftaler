@@ -385,6 +385,72 @@ export type Database = {
         }
         Relationships: []
       }
+      slot_active_sessions: {
+        Row: {
+          created_at: string
+          device_info: string | null
+          id: string
+          last_heartbeat: string
+          session_id: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          device_info?: string | null
+          id?: string
+          last_heartbeat?: string
+          session_id: string
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          device_info?: string | null
+          id?: string
+          last_heartbeat?: string
+          session_id?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
+      slot_bonus_state: {
+        Row: {
+          bonus_winnings: number
+          created_at: string
+          expanding_symbol_id: string | null
+          expanding_symbol_name: string | null
+          free_spins_remaining: number
+          id: string
+          is_active: boolean
+          total_free_spins: number
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          bonus_winnings?: number
+          created_at?: string
+          expanding_symbol_id?: string | null
+          expanding_symbol_name?: string | null
+          free_spins_remaining?: number
+          id?: string
+          is_active?: boolean
+          total_free_spins?: number
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          bonus_winnings?: number
+          created_at?: string
+          expanding_symbol_id?: string | null
+          expanding_symbol_name?: string | null
+          free_spins_remaining?: number
+          id?: string
+          is_active?: boolean
+          total_free_spins?: number
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
       slot_game_results: {
         Row: {
           bet_amount: number

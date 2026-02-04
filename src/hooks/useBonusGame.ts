@@ -1,6 +1,7 @@
-import { useState, useCallback, useEffect } from "react";
+import { useState, useCallback, useEffect, useRef } from "react";
 import type { SlotSymbol } from "@/lib/slotGameLogic";
 import { useAuth } from "@/hooks/useAuth";
+import { supabase } from "@/integrations/supabase/client";
 
 export interface BonusGameState {
   isActive: boolean;
@@ -24,55 +25,124 @@ const INITIAL_STATE: BonusGameState = {
   bonusWinnings: 0,
 };
 
-const STORAGE_KEY = "slot_bonus_state";
-
 export function useBonusGame(symbols?: SlotSymbol[]) {
   const { user } = useAuth();
   const [bonusState, setBonusState] = useState<BonusGameState>(INITIAL_STATE);
   const [isLoaded, setIsLoaded] = useState(false);
+  const isUpdatingRef = useRef(false);
+  const channelRef = useRef<ReturnType<typeof supabase.channel> | null>(null);
 
-  // Load bonus state from localStorage on mount
+  // Load bonus state from database on mount
   useEffect(() => {
     if (!user?.id) {
       setIsLoaded(true);
       return;
     }
 
-    const storageKey = `${STORAGE_KEY}_${user.id}`;
-    try {
-      const saved = localStorage.getItem(storageKey);
-      if (saved) {
-        const parsed = JSON.parse(saved) as BonusGameState;
-        // Only restore if bonus is still active
-        if (parsed.isActive && parsed.freeSpinsRemaining > 0) {
-          setBonusState(parsed);
-        } else {
-          // Clear stale data
-          localStorage.removeItem(storageKey);
+    const loadBonusState = async () => {
+      try {
+        const { data, error } = await supabase
+          .from("slot_bonus_state")
+          .select("*")
+          .eq("user_id", user.id)
+          .maybeSingle();
+
+        if (error) throw error;
+
+        if (data && data.is_active && data.free_spins_remaining > 0) {
+          setBonusState({
+            isActive: data.is_active,
+            freeSpinsRemaining: data.free_spins_remaining,
+            totalFreeSpins: data.total_free_spins,
+            expandingSymbolId: data.expanding_symbol_id,
+            expandingSymbolName: data.expanding_symbol_name,
+            bonusWinnings: Number(data.bonus_winnings),
+          });
         }
+      } catch (error) {
+        console.error("Failed to load bonus state from database:", error);
       }
-    } catch (error) {
-      console.error("Failed to load bonus state:", error);
-    }
-    setIsLoaded(true);
+      setIsLoaded(true);
+    };
+
+    loadBonusState();
+
+    // Subscribe to realtime updates for bonus state sync across devices
+    channelRef.current = supabase
+      .channel(`bonus_state_${user.id}`)
+      .on(
+        "postgres_changes",
+        {
+          event: "*",
+          schema: "public",
+          table: "slot_bonus_state",
+          filter: `user_id=eq.${user.id}`,
+        },
+        (payload) => {
+          // Don't process if we initiated the update
+          if (isUpdatingRef.current) return;
+
+          if (payload.eventType === "DELETE") {
+            setBonusState(INITIAL_STATE);
+          } else if (payload.new) {
+            const newData = payload.new as any;
+            setBonusState({
+              isActive: newData.is_active,
+              freeSpinsRemaining: newData.free_spins_remaining,
+              totalFreeSpins: newData.total_free_spins,
+              expandingSymbolId: newData.expanding_symbol_id,
+              expandingSymbolName: newData.expanding_symbol_name,
+              bonusWinnings: Number(newData.bonus_winnings),
+            });
+          }
+        }
+      )
+      .subscribe();
+
+    return () => {
+      if (channelRef.current) {
+        supabase.removeChannel(channelRef.current);
+      }
+    };
   }, [user?.id]);
 
-  // Save bonus state to localStorage whenever it changes
-  useEffect(() => {
-    if (!user?.id || !isLoaded) return;
+  // Save bonus state to database whenever it changes
+  const saveBonusState = useCallback(async (newState: BonusGameState) => {
+    if (!user?.id) return;
 
-    const storageKey = `${STORAGE_KEY}_${user.id}`;
-    if (bonusState.isActive) {
-      try {
-        localStorage.setItem(storageKey, JSON.stringify(bonusState));
-      } catch (error) {
-        console.error("Failed to save bonus state:", error);
+    isUpdatingRef.current = true;
+
+    try {
+      if (newState.isActive) {
+        await supabase
+          .from("slot_bonus_state")
+          .upsert({
+            user_id: user.id,
+            is_active: newState.isActive,
+            free_spins_remaining: newState.freeSpinsRemaining,
+            total_free_spins: newState.totalFreeSpins,
+            expanding_symbol_id: newState.expandingSymbolId,
+            expanding_symbol_name: newState.expandingSymbolName,
+            bonus_winnings: newState.bonusWinnings,
+          }, {
+            onConflict: "user_id",
+          });
+      } else {
+        // Delete when bonus ends
+        await supabase
+          .from("slot_bonus_state")
+          .delete()
+          .eq("user_id", user.id);
       }
-    } else {
-      // Clear when bonus ends
-      localStorage.removeItem(storageKey);
+    } catch (error) {
+      console.error("Failed to save bonus state to database:", error);
     }
-  }, [bonusState, user?.id, isLoaded]);
+
+    // Small delay before allowing realtime updates again
+    setTimeout(() => {
+      isUpdatingRef.current = false;
+    }, 100);
+  }, [user?.id]);
 
   // Get the actual expanding symbol object from ID
   const getExpandingSymbol = useCallback((): SlotSymbol | null => {
@@ -96,37 +166,51 @@ export function useBonusGame(symbols?: SlotSymbol[]) {
     };
     
     setBonusState(newState);
+    saveBonusState(newState);
     return expandingSymbol;
-  }, []);
+  }, [saveBonusState]);
 
   const decrementFreeSpin = useCallback(() => {
-    setBonusState(prev => ({
-      ...prev,
-      freeSpinsRemaining: Math.max(0, prev.freeSpinsRemaining - 1),
-    }));
-  }, []);
+    setBonusState(prev => {
+      const newState = {
+        ...prev,
+        freeSpinsRemaining: Math.max(0, prev.freeSpinsRemaining - 1),
+      };
+      saveBonusState(newState);
+      return newState;
+    });
+  }, [saveBonusState]);
 
   const addBonusWinnings = useCallback((amount: number) => {
-    setBonusState(prev => ({
-      ...prev,
-      bonusWinnings: prev.bonusWinnings + amount,
-    }));
-  }, []);
+    setBonusState(prev => {
+      const newState = {
+        ...prev,
+        bonusWinnings: prev.bonusWinnings + amount,
+      };
+      saveBonusState(newState);
+      return newState;
+    });
+  }, [saveBonusState]);
 
   const retriggerBonus = useCallback((additionalSpins: number = 10) => {
-    setBonusState(prev => ({
-      ...prev,
-      freeSpinsRemaining: prev.freeSpinsRemaining + additionalSpins,
-      totalFreeSpins: prev.totalFreeSpins + additionalSpins,
-    }));
-  }, []);
+    setBonusState(prev => {
+      const newState = {
+        ...prev,
+        freeSpinsRemaining: prev.freeSpinsRemaining + additionalSpins,
+        totalFreeSpins: prev.totalFreeSpins + additionalSpins,
+      };
+      saveBonusState(newState);
+      return newState;
+    });
+  }, [saveBonusState]);
 
   const endBonus = useCallback(() => {
     const finalWinnings = bonusState.bonusWinnings;
     const totalSpins = bonusState.totalFreeSpins;
     setBonusState(INITIAL_STATE);
+    saveBonusState(INITIAL_STATE);
     return { winnings: finalWinnings, spins: totalSpins };
-  }, [bonusState.bonusWinnings, bonusState.totalFreeSpins]);
+  }, [bonusState.bonusWinnings, bonusState.totalFreeSpins, saveBonusState]);
 
   const shouldEndBonus = bonusState.isActive && bonusState.freeSpinsRemaining === 0;
 
