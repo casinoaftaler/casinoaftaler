@@ -793,15 +793,10 @@ export function SlotGame() {
               </div>
             </SlotMachineFrame>
           </div>
-
-          {/* Small Win Display Bar - shows for wins below big win threshold */}
-          <SmallWinBar
-            amount={winAmount}
-            isActive={isWinAnimating && winAmount > 0 && (winAmount / bet) < 10}
-            onAnimationComplete={() => {
-              // Small win animation complete - this allows autospin to continue
-            }}
-          />
+          {/* Small Win Display Bar - always visible, overlapping frame bottom */}
+          <div className="relative z-10 -mt-6 flex justify-center">
+            <SmallWinBar amount={winAmount} />
+          </div>
 
           {/* Controls row with spin button in center - stacks on mobile */}
           <div className="flex flex-col sm:flex-row flex-wrap items-center justify-center gap-3 sm:gap-4 md:gap-6 mt-2 sm:mt-3">
