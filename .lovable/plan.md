@@ -1,45 +1,52 @@
 
-# Plan: Synkroniser Fake Loop Størrelse og Flyt Spillemaskinen Op
+# Plan: Fix Reel Width Shift on Landing
 
 ## Problem
 
-1. **Symbol-størrelse mismatch**: `SlotReel.tsx` bruger forældede `SYMBOL_SIZE` konstanter, mens `SlotSymbol.tsx` blev opdateret til større størrelser. Dette får spinning-hjulene til at vise mindre symboler end de landede symboler.
+When a reel transitions from the spinning state to the landed/idle state, there's a slight horizontal shift to the left. This happens because:
 
-2. **Spillemaskinens position**: Spillemaskinen skal flyttes 5px op.
+1. **During spinning**: The reel container has an explicit inline width: `width: ${symbolHeight}px` (lines 323-326 in SlotReel.tsx)
+2. **When landed/idle**: The container switches to a simple flex column with NO explicit width - it just wraps the SlotSymbol components
 
-## Løsning
+This causes a layout shift because the two containers have different width behaviors even though the symbols inside are the same size.
 
-### 1. Opdater SYMBOL_SIZE i SlotReel.tsx
+## Solution
 
-Ændre linje 29 fra:
-```javascript
-const SYMBOL_SIZE = { xs: 64, mobile: 76, sm: 96, md: 112, lg: 140, xl: 160 };
+Add an explicit width to the idle/stopped state container that matches the spinning container width. This ensures consistent sizing across all states.
+
+## Technical Changes
+
+### File: `src/components/slots/SlotReel.tsx`
+
+**Current code (lines 259-260):**
+```tsx
+if (spinState === "idle" || spinState === "stopped") {
+  return (
+    <div className="flex flex-col gap-[4px] xs:gap-[6px] sm:gap-[8px] md:gap-[12px] lg:gap-[16px]">
 ```
 
-Til:
-```javascript
-const SYMBOL_SIZE = { xs: 72, mobile: 84, sm: 108, md: 128, lg: 156, xl: 176 };
+**Updated code:**
+```tsx
+if (spinState === "idle" || spinState === "stopped") {
+  const symbolHeight = getSymbolHeight();
+  
+  return (
+    <div 
+      className="flex flex-col gap-[4px] xs:gap-[6px] sm:gap-[8px] md:gap-[12px] lg:gap-[16px]"
+      style={{ width: `${symbolHeight}px` }}
+    >
 ```
 
-Dette matcher de nye størrelser i `SlotSymbol.tsx`.
+This adds the same width calculation that the spinning state uses, ensuring the container maintains a consistent width during the transition from spinning to stopped/idle.
 
-### 2. Flyt spillemaskinen 5px op
+## Why This Works
 
-I `SlotMachine.tsx`, tilføj en negativ top-margin til slot machine containeren (linje 195):
+- The `getSymbolHeight()` function already exists and returns the correct responsive size based on viewport width
+- By using the same width value in both states (spinning and idle), we eliminate the layout shift
+- The symbols inside will remain the same size - we're just ensuring their parent container has a consistent width
 
-```javascript
-<div className="flex flex-col items-center gap-1" style={{ marginTop: '-5px' }}>
-```
+## Files to Modify
 
-## Filer der skal ændres
-
-| Fil | Ændring |
-|-----|---------|
-| `src/components/slots/SlotReel.tsx` | Opdater `SYMBOL_SIZE` konstanter til at matche `SlotSymbol.tsx` |
-| `src/pages/SlotMachine.tsx` | Tilføj `marginTop: -5px` til slot machine containeren |
-
-## Tekniske Detaljer
-
-- Spinning-hjulene beregner viewport-højde og symbol-positioner baseret på `SYMBOL_SIZE`
-- Når disse værdier ikke matcher de faktiske CSS-størrelser i `SlotSymbol`, får vi en visuel mismatch
-- Ved at synkronisere konstanterne sikrer vi at fake loop og landede symboler har samme dimensioner
+| File | Change |
+|------|--------|
+| `src/components/slots/SlotReel.tsx` | Add explicit `width` style to the idle/stopped state container |
