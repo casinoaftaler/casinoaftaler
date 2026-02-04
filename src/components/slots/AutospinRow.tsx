@@ -37,7 +37,7 @@ export function AutospinRow({
           <DropdownMenuTrigger asChild>
             <Button
               variant="outline"
-              className="h-10 px-3 text-sm font-bold border-amber-500/30 bg-amber-950/50 hover:bg-amber-500/20 text-amber-500"
+              className="h-10 px-3 text-sm font-bold border-2 border-amber-600/50 bg-gradient-to-b from-amber-950/90 to-amber-900/70 hover:from-amber-900/90 hover:to-amber-800/70 text-amber-300 shadow-[inset_0_1px_0_rgba(251,191,36,0.2),0_4px_12px_rgba(0,0,0,0.3)]"
               disabled={disabled}
             >
               {autoSpinCount === "infinite" ? (
@@ -75,10 +75,10 @@ export function AutospinRow({
       <Button
         variant={isAutoSpinning ? "destructive" : "outline"}
         className={cn(
-          "h-10 px-4 text-sm font-bold transition-all",
+          "h-10 px-4 text-sm font-bold transition-all shadow-[0_4px_12px_rgba(0,0,0,0.3)]",
           isAutoSpinning
-            ? "bg-red-500 hover:bg-red-600 text-white"
-            : "border-amber-500/30 bg-amber-950/50 hover:bg-amber-500/20 text-amber-500"
+            ? "bg-gradient-to-b from-red-500 to-red-700 hover:from-red-400 hover:to-red-600 text-white border-2 border-red-400/50"
+            : "border-2 border-amber-600/50 bg-gradient-to-b from-amber-950/90 to-amber-900/70 hover:from-amber-900/90 hover:to-amber-800/70 text-amber-300 shadow-[inset_0_1px_0_rgba(251,191,36,0.2)]"
         )}
         onClick={onToggle}
         disabled={disabled}

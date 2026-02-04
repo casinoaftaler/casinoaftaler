@@ -140,10 +140,10 @@ export function SlotControlPanel({
           )}
         </Button>
 
-        {/* Right Panel: Volume + PayTable (stacks last on mobile) */}
-        <div className="flex items-center gap-2 order-3 bg-gradient-to-r from-amber-950/60 to-amber-900/40 backdrop-blur-sm border border-amber-500/20 rounded-xl px-3 py-2">
-          <VolumeControl />
-          <div className="w-px h-6 bg-amber-500/20" />
+        {/* Right Panel: Volume + PayTable */}
+        <div className="flex items-center gap-2 order-3 bg-gradient-to-b from-amber-950/90 via-amber-900/70 to-amber-950/90 backdrop-blur-sm border-2 border-amber-600/50 rounded-xl px-3 py-2 shadow-[inset_0_1px_0_rgba(251,191,36,0.3),0_4px_12px_rgba(0,0,0,0.4)]">
+          <VolumeControl className="text-amber-400 hover:text-amber-300" />
+          <div className="w-px h-6 bg-amber-600/40" />
           <PayTable />
         </div>
       </div>
