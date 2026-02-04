@@ -1,61 +1,82 @@
 
-
-# Adjustable Reel Spin & Landing Speed
+# Add Small Win Display Bar
 
 ## Overview
-Add two new admin-adjustable settings to control the slot machine's visual timing:
-1. **Fake Loop Speed** - How fast the reels spin during the constant-speed phase (currently too fast at 600ms per cycle)
-2. **Reel Landing Delay** - How quickly each reel lands after the previous one (currently 0ms - they trigger immediately)
+Add a centered win bar that appears for small wins (below big win threshold) underneath the slot machine frame but above the control row. It will display the win amount with the existing count-up animation.
+
+## What Qualifies as a "Small Win"
+Based on the current implementation in `WinCelebration.tsx`:
+- **Big Win**: >= 10x bet multiplier (shows overlay)
+- **Small Win**: < 10x bet multiplier (currently only shows particles, no amount display)
+
+The new bar will show for all wins where `winAmount > 0` and `winMultiplier < 10`.
 
 ## Technical Implementation
 
-### Step 1: Add New Settings to `useSlotSettings.ts`
-Extend the settings interface with two new timing parameters:
+### Create New Component: `SmallWinBar.tsx`
+A compact, centered bar that:
+- Shows win amount with counting animation (using existing `useAnimatedCounter`)
+- Has amber/golden theme matching the slot machine
+- Appears with a subtle fade-in animation
+- Disappears after the count animation completes
 
-| Setting | Key | Default | Range | Description |
-|---------|-----|---------|-------|-------------|
-| Spin Loop Speed | `slot_spin_loop_ms` | 400 | 200-800ms | Duration of one spin cycle (higher = slower) |
-| Reel Landing Delay | `slot_reel_stagger_ms` | 150 | 0-500ms | Delay between each reel stopping |
-
-### Step 2: Pass Settings to SlotReel Component
-Modify `SlotGame.tsx` to:
-- Read the new settings from `useSlotSettings()`
-- Pass `spinLoopMs` to each `SlotReel` component
-- Use `reelStaggerMs` when triggering the next reel to slow down (add a `setTimeout` delay)
-
-### Step 3: Update `SlotReel.tsx` to Use Dynamic Speed
-- Accept new prop `spinLoopMs` (default: 400)
-- Replace hardcoded `loopDuration = 600` with the prop value
-
-### Step 4: Add Admin UI Controls
-In `SlotMachineAdminSection.tsx` SettingsTab, add a new "Animation Timing" card with two sliders:
-
-```text
-┌─────────────────────────────────────────┐
-│ Animation Timing                        │
-├─────────────────────────────────────────┤
-│ Spin Hastighed                          │
-│ [======●==================] 400ms       │
-│ Lavere = hurtigere spinning             │
-│                                         │
-│ Hjul Landing Forsinkelse                │
-│ [=========●===============] 150ms       │
-│ Tid mellem hvert hjul stopper           │
-└─────────────────────────────────────────┘
+**Component props:**
+```typescript
+interface SmallWinBarProps {
+  amount: number;
+  isActive: boolean;
+  onAnimationComplete?: () => void;
+}
 ```
 
-## Files to Change
+### Modify `SlotGame.tsx`
+1. Import the new `SmallWinBar` component
+2. Add it between the `SlotMachineFrame` closing div and the controls row
+3. Pass `winAmount`, determine visibility based on:
+   - `winAmount > 0`
+   - `isWinAnimating === true`  
+   - Win is NOT a big win (multiplier < 10)
+
+### Layout Position
+```text
+┌─────────────────────────────────┐
+│      [Slot Machine Reels]       │
+└─────────────────────────────────┘
+         ┌─────────────┐
+         │ 💰 125      │  ← New SmallWinBar (centered)
+         └─────────────┘
+   [Bet] [Auto] [SPIN] [Volume]   ← Existing controls
+```
+
+## Files to Create/Modify
 
 | File | Changes |
 |------|---------|
-| `src/hooks/useSlotSettings.ts` | Add `spinLoopMs` and `reelStaggerMs` to interface and query |
-| `src/components/slots/SlotReel.tsx` | Accept `spinLoopMs` prop, use it for `loopDuration` |
-| `src/components/slots/SlotGame.tsx` | Pass settings to reels, add delay when triggering next reel slowdown |
-| `src/components/SlotMachineAdminSection.tsx` | Add slider controls in SettingsTab |
+| `src/components/slots/SmallWinBar.tsx` | **New** - Compact centered win display with counting animation |
+| `src/components/slots/SlotGame.tsx` | Add SmallWinBar between frame and controls, pass win state |
 
-## Expected Behavior After Implementation
+## Component Design
 
-- **Slower fake loop**: Increasing `spinLoopMs` from 600 to 400-500 makes the spinning animation more visually readable
-- **Faster sequential landing**: Setting `reelStaggerMs` to 100-200ms gives a satisfying cascade effect where reels land quickly one after another
-- **Admin control**: Admins can fine-tune these values in real-time via sliders in the Settings tab
+```text
+┌─────────────────────────────────────────┐
+│     🪙  125                             │
+│  (amber gradient bg, rounded, centered) │
+└─────────────────────────────────────────┘
+```
 
+- Background: Semi-transparent amber gradient (`from-amber-500/20 to-amber-600/20`)
+- Border: Golden border (`border-amber-500/40`)
+- Icon: Coins icon in amber
+- Text: Bold amber text with count-up animation
+- Animation: Fade-in on appear, fade-out after counting completes
+- Size: Compact width, centered horizontally, small vertical margin
+
+## Expected Behavior
+
+1. Player spins and lands a small win (e.g., 3x bet = 15 points)
+2. Win lines display on reels
+3. SmallWinBar fades in below the slot machine
+4. Counter animates from 0 → 15
+5. Bar holds for 500ms after counting completes
+6. Bar fades out
+7. Next spin can begin (autospin waits for this)
