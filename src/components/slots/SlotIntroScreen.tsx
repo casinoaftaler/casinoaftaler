@@ -1,7 +1,6 @@
 import introImage from "@/assets/slots/slot-intro-screen.jpg";
 import defaultSlotBackground from "@/assets/slots/slot-background.jpg";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
-import { useFullscreen } from "@/hooks/useFullscreen";
 
 interface SlotIntroScreenProps {
   onStart: () => void;
@@ -9,15 +8,7 @@ interface SlotIntroScreenProps {
 
 export function SlotIntroScreen({ onStart }: SlotIntroScreenProps) {
   const { data: siteSettings } = useSiteSettings();
-  const { enterFullscreen } = useFullscreen();
   const backgroundImage = siteSettings?.slot_background_image || defaultSlotBackground;
-
-  const handleStart = async () => {
-    // Request fullscreen (requires user interaction)
-    await enterFullscreen();
-    // Start the game regardless of fullscreen success
-    onStart();
-  };
 
   return (
     <div className="min-h-[calc(100vh-4rem)] relative flex flex-col items-center justify-center px-4">
@@ -31,12 +22,12 @@ export function SlotIntroScreen({ onStart }: SlotIntroScreenProps) {
       {/* Content */}
       <div 
         className="flex flex-col items-center gap-4 animate-fade-in cursor-pointer"
-        onClick={handleStart}
+        onClick={onStart}
         role="button"
         tabIndex={0}
         onKeyDown={(e) => {
           if (e.key === 'Enter' || e.key === ' ') {
-            handleStart();
+            onStart();
           }
         }}
       >
