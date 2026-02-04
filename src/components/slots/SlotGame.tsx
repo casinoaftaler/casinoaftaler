@@ -7,7 +7,6 @@ import { BonusOverlay } from "./BonusOverlay";
 import { BonusStatusBar } from "./BonusStatusBar";
 import { SlotMachineFrame } from "./SlotMachineFrame";
 import { WinCelebration } from "./WinCelebration";
-import { SmallWinBar } from "./SmallWinBar";
 import { SlotControlPanel } from "./SlotControlPanel";
 import { useSlotSymbols } from "@/hooks/useSlotSymbols";
 import { useSlotSymbolPreloader } from "@/hooks/useSlotSymbolPreloader";
@@ -791,12 +790,7 @@ export function SlotGame() {
               </div>
             </SlotMachineFrame>
           </div>
-          {/* Small Win Display Bar - adjusted to match control panel position */}
-          <div className="relative z-10 flex justify-center mt-2 sm:-mt-16 md:-mt-20 lg:-mt-[216px]">
-            <SmallWinBar amount={winAmount} />
-          </div>
-
-          {/* Redesigned Control Panel - responsive positioning */}
+          {/* Control Panel with integrated Small Win Bar - responsive positioning */}
           <div className="mt-2 sm:-mt-12 md:-mt-16 lg:-mt-[200px]">
             <SlotControlPanel
               bet={bet}
@@ -817,6 +811,7 @@ export function SlotGame() {
               maxSpins={maxSpins}
               spinsLoading={false}
               showBonusTrigger={showBonusTrigger}
+              winAmount={winAmount}
             />
           </div>
 
