@@ -796,8 +796,8 @@ export function SlotGame() {
             <SmallWinBar amount={winAmount} />
           </div>
 
-          {/* Redesigned Control Panel */}
-          <div className="mt-2 sm:mt-3">
+          {/* Redesigned Control Panel - moved up 25px */}
+          <div className="sm:mt-3" style={{ marginTop: '-25px' }}>
             <SlotControlPanel
               bet={bet}
               onBetChange={setBet}
