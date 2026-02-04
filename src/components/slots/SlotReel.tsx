@@ -256,8 +256,13 @@ export function SlotReel({
 
   // When idle or stopped, show just the final symbols
   if (spinState === "idle" || spinState === "stopped") {
+    const symbolHeight = getSymbolHeight();
+    
     return (
-      <div className="flex flex-col gap-[4px] xs:gap-[6px] sm:gap-[8px] md:gap-[12px] lg:gap-[16px]">
+      <div 
+        className="flex flex-col gap-[4px] xs:gap-[6px] sm:gap-[8px] md:gap-[12px] lg:gap-[16px]"
+        style={{ width: `${symbolHeight}px` }}
+      >
         {displayedSymbolIds.map((symbolId, rowIndex) => {
           const symbol = symbolsById.get(symbolId);
           if (!symbol) return null;
