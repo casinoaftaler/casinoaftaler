@@ -165,7 +165,7 @@ export default function SlotMachine() {
           {/* Centered wrapper for slot machine with relative positioning for leaderboard */}
           <div className="relative">
             {/* Desktop: Leaderboard positioned to the left */}
-            <div className="hidden xl:block absolute right-full mr-4 top-0 w-80" style={{ marginTop: '-80px' }}>
+            <div className="hidden xl:block absolute right-full mr-4 top-0 w-80" style={{ marginTop: '-75px' }}>
               <div className="mb-3">
                 <SlotLeaderboard />
               </div>
