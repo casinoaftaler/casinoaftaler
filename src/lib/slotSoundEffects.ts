@@ -144,7 +144,7 @@ class SlotSoundEffects {
   }
 
   // Play a custom sound file if available, returns true if played
-  private playCustomSound(key: keyof CustomSoundFiles): boolean {
+  private playCustomSound(key: keyof CustomSoundFiles, volumeMultiplier: number = 1): boolean {
     if (!this.enabled || !this.effectsEnabled) return false;
     
     // Get the URL directly from customSoundFiles to create fresh Audio instances
@@ -152,7 +152,7 @@ class SlotSoundEffects {
     if (url) {
       // Create a new Audio instance each time for reliable overlapping playback
       const audio = new Audio(url);
-      audio.volume = this.volume;
+      audio.volume = this.volume * volumeMultiplier;
       audio.play().catch(() => {
         // Ignore autoplay errors
       });
@@ -729,12 +729,12 @@ class SlotSoundEffects {
   playSpinStart() {
     if (!this.canPlayEffect()) return;
     
-    // Try custom spin sound first (from admin upload)
-    if (this.playCustomSound('spinSound')) return;
+    // Try custom spin sound first (from admin upload) - use reduced volume
+    if (this.playCustomSound('spinSound', 0.3)) return;
     
-    // Play default bundled spin sound
+    // Play default bundled spin sound at reduced volume
     const audio = new Audio(DEFAULT_SPIN_SOUND);
-    audio.volume = this.volume;
+    audio.volume = this.volume * 0.3;
     audio.play().catch(() => {
       // Ignore autoplay errors
     });
