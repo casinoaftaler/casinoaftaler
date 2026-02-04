@@ -1,91 +1,109 @@
 
-
-# Plan: Implementer Ægte Unik Bruger-Tracking
+# Plan: Automatisk Fuldskærm ved Spillemaskinens Start
 
 ## Oversigt
 
-Denne plan implementerer ægte unik bruger-tracking ved at:
-1. Generere en anonym session-ID (UUID) for hver ny besøgende og gemme den i localStorage
-2. Tilføje `visitor_id` og `user_id` kolonner til `page_views` tabellen
-3. Opdatere tracking-hook'en til at inkludere disse identifikatorer
-4. Opdatere dashboard'et til at vise ægte unikke besøgende
+Når brugeren klikker på intro-skærmen for at starte spillet, går siden automatisk i fuldskærmstilstand (ligesom F11). Dette giver en mere immersiv spiloplevelse uden header, browser-UI osv.
 
-## Hvad Er Forskellen?
+## Hvad Ændres?
 
-| Nuværende | Ny Løsning |
-|-----------|------------|
-| Estimat baseret på path+time | Ægte unik ID per browser |
-| Ingen forbindelse til loggede brugere | Kobler anonyme besøg med bruger-konti |
-| Kan ikke spore returbesøg | Kan se om samme person vender tilbage |
+| Før | Efter |
+|-----|-------|
+| Spillet starter i normalt browser-vindue | Spillet starter automatisk i fuldskærm |
+| Header er altid synlig | Header skjules i fuldskærm |
+| Ingen måde at forlade fuldskærm udover ESC | Knap til at forlade fuldskærm vises |
 
-## Tekniske Ændringer
+## Implementering
 
-### 1. Database Migration
+### 1. Opret Fuldskærms-Hook (`src/hooks/useFullscreen.ts`)
 
-Tilføjer to nye kolonner til `page_views` tabellen:
-
-```sql
-ALTER TABLE page_views 
-ADD COLUMN visitor_id text,
-ADD COLUMN user_id uuid REFERENCES auth.users(id);
-```
-
-- `visitor_id`: Anonymt UUID gemt i localStorage (f.eks. `"anon_abc123"`)
-- `user_id`: Auth bruger-ID hvis logget ind (null for anonyme)
-
-### 2. Hook Opdatering (`src/hooks/usePageTracking.ts`)
+En genbrugelig hook til at håndtere fuldskærmsfunktionalitet:
 
 ```text
-Ændringer:
-- Generér/hent visitor_id fra localStorage ved første besøg
-- Hent nuværende auth session (hvis logget ind)
-- Inkluder begge ID'er i page_views insert
+Funktioner:
+- isFullscreen: Boolean der angiver om vi er i fuldskærm
+- enterFullscreen(): Anmoder om fuldskærm
+- exitFullscreen(): Forlader fuldskærm
+- toggleFullscreen(): Skifter mellem tilstande
 ```
 
-Logik:
-1. Tjek localStorage for `visitor_id`
-2. Hvis ikke findes, generer ny UUID og gem
-3. Tjek om bruger er logget ind via Supabase auth
-4. Send begge værdier med hver page view
+Understøtter forskellige browser-varianter af Fullscreen API.
 
-### 3. Dashboard Opdatering (`src/components/CombinedAnalyticsDashboard.tsx`)
+### 2. Opdater SlotIntroScreen (`src/components/slots/SlotIntroScreen.tsx`)
 
-```text
-Ændringer:
-- Inkluder visitor_id i data fetch
-- Beregn unikke besøgende via Set af visitor_id'er
-- Vis ægte unik bruger-tal i stedet for estimat
-```
+Når brugeren klikker for at starte:
+1. Kald `onStart()` som normalt (skifter til 'ready' fase)
+2. Anmod om fuldskærm via `document.documentElement.requestFullscreen()`
 
-Ny statistik-logik:
+Note: Fuldskærm kræver brugerinteraktion (klik), så det passer perfekt med intro-skærmen.
+
+### 3. Tilføj Fuldskærms-Knap i SlotMachine (`src/pages/SlotMachine.tsx`)
+
+Vis en lille knap når spillet er i gang:
+- Hvis i fuldskærm: Vis "Forlad fuldskærm" knap (med `Minimize2` ikon)
+- Hvis ikke i fuldskærm: Vis "Gå i fuldskærm" knap (med `Maximize2` ikon)
+
+Placering: Øverste højre hjørne af spillets container (diskret men tilgængelig).
+
+### 4. Håndter Escape-Tast
+
+Browseren håndterer ESC automatisk for at forlade fuldskærm - dette behøver ingen ekstra kode.
+
+## Teknisk Detaljer
+
+### Fullscreen API Browser-Support
+
 ```typescript
-// Ægte unikke besøgende = antal unikke visitor_id'er
-const uniqueVisitors = new Set(pageViewsData.map(v => v.visitor_id)).size;
+// Hook kode (useFullscreen.ts)
+const enterFullscreen = async () => {
+  try {
+    const el = document.documentElement;
+    if (el.requestFullscreen) {
+      await el.requestFullscreen();
+    } else if ((el as any).webkitRequestFullscreen) {
+      await (el as any).webkitRequestFullscreen(); // Safari
+    } else if ((el as any).msRequestFullscreen) {
+      await (el as any).msRequestFullscreen(); // IE/Edge
+    }
+  } catch (err) {
+    console.warn('Fullscreen not supported:', err);
+  }
+};
+```
 
-// Nye vs. tilbagevendende besøgende
-const newVisitors = // visitor_id'er set første gang i perioden
-const returningVisitors = // visitor_id'er set før perioden
+### Event Listeners
+
+Lyt efter `fullscreenchange` events for at holde `isFullscreen` state synkroniseret:
+
+```typescript
+useEffect(() => {
+  const handler = () => {
+    setIsFullscreen(!!document.fullscreenElement);
+  };
+  document.addEventListener('fullscreenchange', handler);
+  return () => document.removeEventListener('fullscreenchange', handler);
+}, []);
 ```
 
 ## Fil-Ændringer
 
 | Fil | Ændring |
 |-----|---------|
-| Database migration | Tilføj `visitor_id` og `user_id` kolonner |
-| `src/hooks/usePageTracking.ts` | Generer/hent visitor_id, inkluder i tracking |
-| `src/components/CombinedAnalyticsDashboard.tsx` | Beregn ægte unikke besøgende |
+| `src/hooks/useFullscreen.ts` | **Ny fil** - Hook til fuldskærmsstyring |
+| `src/components/slots/SlotIntroScreen.tsx` | Anmod fuldskærm ved klik |
+| `src/pages/SlotMachine.tsx` | Tilføj fuldskærms-knap i øverste hjørne |
 
-## Privacy & Cookie Consent
+## Brugeroplevelse
 
-- Visitor ID genereres kun hvis cookie consent er accepteret (`localStorage.getItem("cookie-consent") === "accepted"`)
-- Hvis cookies afvist, tracking fortsætter uden visitor_id (sidevisninger logges stadig)
-- Ingen personlige data gemmes - kun tilfældigt UUID
+1. Bruger navigerer til `/community/slots`
+2. Loading-skærm vises → derefter intro-skærm
+3. Bruger klikker på intro-billedet
+4. **Browseren går i fuldskærm** + spillet starter
+5. Lille knap i hjørnet tillader at forlade fuldskærm (eller tryk ESC)
+6. Når bruger navigerer væk, afsluttes fuldskærm automatisk
 
-## Resultat
+## Vigtige Bemærkninger
 
-Efter implementering vil dashboardet vise:
-- **Unikke Besøgende**: Ægte antal forskellige browsere/enheder
-- **Sidevisninger**: Total antal sidevisninger (som nu)
-- **Nye vs. Tilbagevendende**: Fordeling af nye og tilbagevendende brugere
-- **Logget ind brugere**: Antal page views fra autentificerede brugere
-
+- **Mobil**: Fuldskærm fungerer anderledes på mobil - nogle enheder understøtter det ikke. Vi viser ikke fejl, bare ignorerer det stille.
+- **Bruger Afvisning**: Hvis bruger afviser fuldskærms-prompten, fortsætter spillet normalt.
+- **Ikke blokerende**: Hvis fuldskærm fejler, starter spillet stadig.
