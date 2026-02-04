@@ -56,7 +56,7 @@ export function SlotLoadingScreen({ onComplete }: SlotLoadingScreenProps) {
         className="absolute inset-0 bg-cover bg-center bg-no-repeat -z-10"
         style={{ backgroundImage: `url(${backgroundImage})` }}
       />
-      <div className="absolute inset-0 bg-gradient-to-b from-background/80 via-background/70 to-background/90 -z-10" />
+      <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-black/70 to-black/90 -z-10" />
       
       {/* Content */}
       <div className="flex flex-col items-center gap-8 px-4 animate-fade-in">
