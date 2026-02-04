@@ -39,6 +39,20 @@ FRAME/BORDER REQUIREMENTS (MANDATORY):
 - CRITICAL: The outer edge of the frame must be FLUSH with the image boundary
 `;
 
+const SCATTER_FRAME = `
+FRAME/BORDER REQUIREMENTS (MANDATORY):
+- Add an ornate RED Egyptian-style frame/border around the ENTIRE image
+- The frame MUST touch ALL FOUR EDGES of the image (no gaps at edges)
+- Frame width: approximately 5-8% of the image on each side
+- Frame design: Intricate deep ruby red border with hieroglyphic patterns carved into it
+- Frame color: Rich crimson/ruby red with subtle golden trim on the edges
+- Corner decorations: Small scarab motifs with ruby red gems and golden accents
+- The frame should have depth and dimension (3D appearance)
+- Inner edge of frame: subtle red glow effect with golden highlights
+- The artwork must extend FULLY to the inner edge of the frame (no gaps)
+- CRITICAL: The outer edge of the frame must be FLUSH with the image boundary
+`;
+
 function getPromptForSymbol(name: string, isScatter: boolean): string {
   const normalizedName = name.toLowerCase().trim();
 
@@ -61,7 +75,7 @@ COMPOSITION:
 - Golden divine light emanating from behind
 - NO empty space - the artwork extends to all edges
 
-${PREMIUM_FRAME}
+${SCATTER_FRAME}
 
 ${BASE_STYLE}
 
