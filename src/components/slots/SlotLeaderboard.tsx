@@ -1,12 +1,13 @@
+import { useState } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { Trophy, Medal, Award, User } from "lucide-react";
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
+import { Button } from "@/components/ui/button";
+import { Trophy, Medal, Award, User, Users } from "lucide-react";
 import { useSlotLeaderboard, type LeaderboardEntry } from "@/hooks/useSlotLeaderboard";
 import { cn } from "@/lib/utils";
 
-function LeaderboardRow({ entry, rank, period }: { entry: LeaderboardEntry; rank: number; period: string }) {
-  const winnings = period === "daily" ? entry.daily_winnings : period === "weekly" ? entry.weekly_winnings : entry.total_winnings;
-
+function LeaderboardRow({ entry, rank }: { entry: LeaderboardEntry; rank: number }) {
   const getRankIcon = () => {
     if (rank === 1) return <Trophy className="h-5 w-5 text-amber-500" />;
     if (rank === 2) return <Medal className="h-5 w-5 text-gray-400" />;
@@ -33,7 +34,7 @@ function LeaderboardRow({ entry, rank, period }: { entry: LeaderboardEntry; rank
         <p className="text-xs text-muted-foreground">{entry.total_spins} spins</p>
       </div>
       <div className="text-right">
-        <p className="font-bold text-amber-500">{winnings.toLocaleString()}</p>
+        <p className="font-bold text-amber-500">{entry.total_winnings.toLocaleString()}</p>
         {entry.biggest_win > 0 && (
           <p className="text-xs text-muted-foreground">Max: {entry.biggest_win}</p>
         )}
@@ -43,6 +44,7 @@ function LeaderboardRow({ entry, rank, period }: { entry: LeaderboardEntry; rank
 }
 
 export function SlotLeaderboard() {
+  const [showFullList, setShowFullList] = useState(false);
   const { data: entries, isLoading } = useSlotLeaderboard("alltime");
 
   return (
@@ -61,16 +63,47 @@ export function SlotLeaderboard() {
             ))}
           </div>
         ) : entries && entries.length > 0 ? (
-          <div className="space-y-1">
-            {entries.slice(0, 3).map((entry, index) => (
-              <LeaderboardRow
-                key={entry.user_id}
-                entry={entry}
-                rank={index + 1}
-                period="alltime"
-              />
-            ))}
-          </div>
+          <>
+            <div className="space-y-1">
+              {entries.slice(0, 3).map((entry, index) => (
+                <LeaderboardRow
+                  key={entry.user_id}
+                  entry={entry}
+                  rank={index + 1}
+                />
+              ))}
+            </div>
+            {entries.length > 3 && (
+              <Dialog open={showFullList} onOpenChange={setShowFullList}>
+                <DialogTrigger asChild>
+                  <Button
+                    variant="ghost"
+                    className="w-full mt-3 text-amber-500 hover:text-amber-400 hover:bg-amber-500/10 border border-amber-500/30"
+                  >
+                    <Users className="h-4 w-4 mr-2" />
+                    Vis alle ({entries.length})
+                  </Button>
+                </DialogTrigger>
+                <DialogContent className="max-w-md border-amber-500/30 bg-gradient-to-b from-amber-950/98 via-black/95 to-amber-950/98">
+                  <DialogHeader>
+                    <DialogTitle className="flex items-center gap-2 text-amber-100">
+                      <Trophy className="h-5 w-5 text-amber-500" />
+                      Fuld Rangliste
+                    </DialogTitle>
+                  </DialogHeader>
+                  <div className="space-y-1 max-h-[60vh] overflow-y-auto">
+                    {entries.map((entry, index) => (
+                      <LeaderboardRow
+                        key={entry.user_id}
+                        entry={entry}
+                        rank={index + 1}
+                      />
+                    ))}
+                  </div>
+                </DialogContent>
+              </Dialog>
+            )}
+          </>
         ) : (
           <div className="text-center py-8">
             <Trophy className="h-10 w-10 mx-auto mb-2 opacity-50 text-amber-500/50" />
