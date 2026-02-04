@@ -152,7 +152,8 @@ export function SlotGame() {
         ? bonusState.freeSpinsRemaining > 0 
         : hasEnoughSpins(bet);
       
-      if (!isSpinning && canSpinNow && !showBonusTrigger && !isAutoSpinning) {
+      // Also check spinLockRef to prevent spinning before reel 5 has landed
+      if (!isSpinning && !spinLockRef.current && canSpinNow && !showBonusTrigger && !isAutoSpinning) {
         handleSpin();
       }
     };
