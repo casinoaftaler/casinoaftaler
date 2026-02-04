@@ -169,7 +169,7 @@ export default function SlotMachine() {
           {/* Centered wrapper for slot machine with relative positioning for leaderboard */}
           <div className="relative">
             {/* Desktop: Leaderboard positioned to the left - toggle button + conditional */}
-            <div className="hidden xl:block absolute right-full mr-4 top-0 w-80" style={{ marginTop: '-20px' }}>
+            <div className="hidden xl:block absolute right-full mr-4 top-0 w-80" style={{ marginTop: '-50px' }}>
               <Button
                 variant="ghost"
                 onClick={toggleLeaderboard}
