@@ -67,6 +67,7 @@ export function SlotGame() {
   
   // Spin lock to prevent rapid clicking
   const spinLockRef = useRef(false);
+  const [isSpinLocked, setIsSpinLocked] = useState(false);
   const spinLockTimeoutRef = useRef<NodeJS.Timeout | null>(null);
   
   const winLinesTimeoutRef = useRef<NodeJS.Timeout | null>(null);
@@ -225,6 +226,7 @@ export function SlotGame() {
 
     // Set spin lock immediately to prevent double-clicks
     spinLockRef.current = true;
+    setIsSpinLocked(true);
     
     // Clear any existing lock timeout
     if (spinLockTimeoutRef.current) {
@@ -344,6 +346,7 @@ export function SlotGame() {
       
       // Release spin lock on error
       spinLockRef.current = false;
+      setIsSpinLocked(false);
       if (spinLockTimeoutRef.current) {
         clearTimeout(spinLockTimeoutRef.current);
         spinLockTimeoutRef.current = null;
@@ -757,6 +760,7 @@ export function SlotGame() {
                           const spinLockDelay = hasWinAnimation ? 2500 : 500;
                           setTimeout(() => {
                             spinLockRef.current = false;
+                            setIsSpinLocked(false);
                             if (spinLockTimeoutRef.current) {
                               clearTimeout(spinLockTimeoutRef.current);
                               spinLockTimeoutRef.current = null;
@@ -805,7 +809,8 @@ export function SlotGame() {
               onAutoSpinCountChange={setAutoSpinCount}
               autoSpinsRemaining={autoSpinsRemaining}
               bonusState={bonusState}
-              disabled={isSpinning}
+              disabled={isSpinning || isSpinLocked}
+              isSpinLocked={isSpinLocked}
               minBet={slotSettings.minBet}
               maxBet={slotSettings.maxBet}
               spinsRemaining={spinsRemaining}
