@@ -652,7 +652,7 @@ function SettingsTab() {
     maxBet: 10,
     pageLocked: true,
     pagePassword: "",
-    spinLoopMs: 400,
+    spinLoopMs: 600,
     reelStaggerMs: 150,
   });
 
