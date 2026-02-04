@@ -143,9 +143,27 @@ export default function SlotMachine() {
         <div className="flex justify-center">
           {/* Centered wrapper for slot machine with relative positioning for leaderboard */}
           <div className="relative">
-            {/* Desktop: Leaderboard positioned to the left of the centered slot */}
-            <div className="hidden xl:block absolute right-full mr-4 top-0 w-64 max-h-[calc(100vh-10rem)] overflow-y-auto">
-              <SlotLeaderboard />
+            {/* Desktop: Leaderboard positioned to the left - toggle button + conditional */}
+            <div className="hidden xl:block absolute right-full mr-4 top-0 w-64">
+              <Button
+                variant="ghost"
+                onClick={toggleLeaderboard}
+                className="w-full flex items-center justify-center gap-2 py-3 mb-2 bg-amber-500/10 hover:bg-amber-500/20 border border-amber-500/30 rounded-lg text-amber-500"
+              >
+                <Trophy className="h-4 w-4" />
+                <span>{showLeaderboard ? "Skjul rangliste" : "Vis rangliste"}</span>
+                {showLeaderboard ? (
+                  <ChevronUp className="h-4 w-4" />
+                ) : (
+                  <ChevronDown className="h-4 w-4" />
+                )}
+              </Button>
+              
+              {showLeaderboard && (
+                <div className="max-h-[calc(100vh-14rem)] overflow-y-auto">
+                  <SlotLeaderboard />
+                </div>
+              )}
             </div>
             
             {/* Slot machine - the true center piece */}
