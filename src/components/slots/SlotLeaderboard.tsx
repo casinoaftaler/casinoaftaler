@@ -31,7 +31,7 @@ function LeaderboardRow({ entry, rank, period }: { entry: LeaderboardEntry; rank
         </AvatarFallback>
       </Avatar>
       <div className="flex-1 min-w-0">
-        <p className="font-medium truncate text-amber-100">{entry.display_name}</p>
+        <p className="font-medium text-amber-100 break-words">{entry.display_name}</p>
         <p className="text-xs text-muted-foreground">{entry.total_spins} spins</p>
       </div>
       <div className="text-right">
