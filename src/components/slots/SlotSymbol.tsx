@@ -12,14 +12,14 @@ interface SlotSymbolProps {
   isTeasing?: boolean;  // Scatter tease glow during tease mode
 }
 
-// Symbol sizes: xs=64, mobile=76, sm=96, md=112, lg=140, xl=160
+// Symbol sizes: xs=72, mobile=84, sm=108, md=128, lg=156, xl=176
 export function SlotSymbol({ symbol, isWinning, isSpinning, isExpanded, isNewlyExpanded, hasLanded, isTeasing }: SlotSymbolProps) {
   return (
     <div
       className={cn(
         "relative flex items-center justify-center rounded-lg border-2 transition-all duration-300 overflow-hidden",
         // Symbol container sizes matching SYMBOL_SIZE constants
-        "w-[64px] h-[64px] xs:w-[76px] xs:h-[76px] sm:w-[96px] sm:h-[96px] md:w-[112px] md:h-[112px] lg:w-[140px] lg:h-[140px] xl:w-[160px] xl:h-[160px]",
+        "w-[72px] h-[72px] xs:w-[84px] xs:h-[84px] sm:w-[108px] sm:h-[108px] md:w-[128px] md:h-[128px] lg:w-[156px] lg:h-[156px] xl:w-[176px] xl:h-[176px]",
         isWinning
           ? "border-amber-400 shadow-[0_0_20px_rgba(251,191,36,0.5)] scale-105 bg-amber-900/30"
           : "border-transparent",
@@ -40,7 +40,7 @@ export function SlotSymbol({ symbol, isWinning, isSpinning, isExpanded, isNewlyE
           decoding="async"
           className={cn(
             // Image fills most of the container with shadow for depth
-            "w-[52px] h-[52px] xs:w-[64px] xs:h-[64px] sm:w-[80px] sm:h-[80px] md:w-[96px] md:h-[96px] lg:w-[124px] lg:h-[124px] xl:w-[144px] xl:h-[144px] object-cover rounded-lg transition-transform duration-300",
+            "w-[60px] h-[60px] xs:w-[72px] xs:h-[72px] sm:w-[92px] sm:h-[92px] md:w-[112px] md:h-[112px] lg:w-[140px] lg:h-[140px] xl:w-[160px] xl:h-[160px] object-cover rounded-lg transition-transform duration-300",
             "shadow-[0_4px_12px_rgba(0,0,0,0.5),0_2px_4px_rgba(0,0,0,0.3)]",
             isExpanded && "scale-110",
             isNewlyExpanded && "animate-[symbol-expand_0.5s_ease-out]"
