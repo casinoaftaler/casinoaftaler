@@ -881,6 +881,10 @@ class SlotSoundEffects {
   // Individual reel stop sound - plays when each reel lands (with pitch variation per reel)
   playReelStopSingle(reelIndex: number = 0) {
     if (!this.enabled) return;
+    
+    // Try custom stop sound first (only for first reel to avoid overlapping custom sounds)
+    if (reelIndex === 0 && this.playCustomSound('stopSound')) return;
+    
     const ctx = this.getContext();
     const now = ctx.currentTime;
 
@@ -1476,6 +1480,104 @@ class SlotSoundEffects {
     
     whoosh.start(now);
     whoosh.stop(now + 0.4);
+  }
+
+  // Bonus complete - triumphant ancient victory
+  playBonusWin() {
+    if (!this.enabled) return;
+    
+    // Try custom bonus win sound first
+    if (this.playCustomSound('bonusWinSound')) return;
+    
+    const ctx = this.getContext();
+    const now = ctx.currentTime;
+    
+    // Triumphant fanfare with Egyptian scale
+    const fanfareNotes = [
+      { freq: 293.66, time: 0 },      // D4
+      { freq: 349.23, time: 0.15 },   // F4
+      { freq: 440.00, time: 0.30 },   // A4
+      { freq: 523.25, time: 0.45 },   // C5
+      { freq: 587.33, time: 0.60 },   // D5 - high triumphant note
+    ];
+    
+    fanfareNotes.forEach(({ freq, time }) => {
+      const osc = ctx.createOscillator();
+      const gain = ctx.createGain();
+      
+      osc.connect(gain);
+      gain.connect(ctx.destination);
+      
+      osc.frequency.value = freq;
+      osc.type = 'triangle';
+      
+      const noteTime = now + time;
+      gain.gain.setValueAtTime(0.25 * this.volume, noteTime);
+      gain.gain.exponentialRampToValueAtTime(0.001, noteTime + 0.5);
+      
+      osc.start(noteTime);
+      osc.stop(noteTime + 0.5);
+    });
+    
+    // Massive gold coin cascade
+    for (let i = 0; i < 40; i++) {
+      const coin = ctx.createOscillator();
+      const coinGain = ctx.createGain();
+      
+      coin.connect(coinGain);
+      coinGain.connect(ctx.destination);
+      
+      coin.frequency.value = 1800 + Math.random() * 3500;
+      coin.type = 'sine';
+      
+      const coinTime = now + 0.4 + i * 0.04;
+      coinGain.gain.setValueAtTime(0.07 * this.volume, coinTime);
+      coinGain.gain.exponentialRampToValueAtTime(0.001, coinTime + 0.15);
+      
+      coin.start(coinTime);
+      coin.stop(coinTime + 0.15);
+    }
+    
+    // Deep ceremonial drums
+    for (let i = 0; i < 6; i++) {
+      const drum = ctx.createOscillator();
+      const drumGain = ctx.createGain();
+      
+      drum.connect(drumGain);
+      drumGain.connect(ctx.destination);
+      
+      const drumTime = now + i * 0.3;
+      drum.frequency.setValueAtTime(90, drumTime);
+      drum.frequency.exponentialRampToValueAtTime(35, drumTime + 0.2);
+      drum.type = 'sine';
+      
+      drumGain.gain.setValueAtTime(0.35 * this.volume, drumTime);
+      drumGain.gain.exponentialRampToValueAtTime(0.001, drumTime + 0.25);
+      
+      drum.start(drumTime);
+      drum.stop(drumTime + 0.3);
+    }
+    
+    // Triumphant D major chord with shimmer
+    setTimeout(() => {
+      const victoryChord = [293.66, 369.99, 440.00, 587.33, 739.99]; // D major
+      victoryChord.forEach((freq) => {
+        const osc = ctx.createOscillator();
+        const gain = ctx.createGain();
+        
+        osc.connect(gain);
+        gain.connect(ctx.destination);
+        
+        osc.frequency.value = freq;
+        osc.type = 'triangle';
+        
+        gain.gain.setValueAtTime(0.2 * this.volume, ctx.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 2.5);
+        
+        osc.start();
+        osc.stop(ctx.currentTime + 2.5);
+      });
+    }, 800);
   }
 
   // Symbol expansion - ancient power surge
