@@ -1,6 +1,8 @@
+import { useEffect } from "react";
 import introImage from "@/assets/slots/slot-intro-screen.jpg";
 import defaultSlotBackground from "@/assets/slots/slot-background.jpg";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
+import { slotSounds } from "@/lib/slotSoundEffects";
 
 interface SlotIntroScreenProps {
   onStart: () => void;
@@ -9,6 +11,11 @@ interface SlotIntroScreenProps {
 export function SlotIntroScreen({ onStart }: SlotIntroScreenProps) {
   const { data: siteSettings } = useSiteSettings();
   const backgroundImage = siteSettings?.slot_background_image || defaultSlotBackground;
+
+  // Start background music when intro screen opens
+  useEffect(() => {
+    slotSounds.startMusic();
+  }, []);
 
   return (
     <div className="min-h-[calc(100vh-4rem)] relative flex flex-col items-center justify-center px-4">
