@@ -1,131 +1,104 @@
 
-# Plan: Forbedret Bonus Trigger Animation & UI Justeringer
+# Plan: Support 2-Match Expansion for Premium Symbols in Bonus Game
 
-## Oversigt
-
-Denne plan implementerer fire hovedændringer:
-1. **Tema-konsistens**: Bonus trigger overlay får samme guld/amber tema som BonusStatusBar og kontrol-panelet
-2. **Layout-swap**: Bytter positionerne af autospin-kontroller og gevinsttabel-knappen
-3. **Auto-spin under bonus**: Bonus spins kører automatisk uden at brugeren skal klikke på spin
-4. **Symbol-roulette animation**: Når bonus udløses, vises en spændende animation hvor tilfældige symboler skifter hurtigt før det valgte expanding symbol "lander"
+## Overview
+When the expanding symbol is a **premium** symbol (Pharaoh, Anubis, Horus, Scarab), it should expand even when only 2 of the symbol land on consecutive reels from the left. Currently, expansion only triggers for 3+ matches regardless of rarity.
 
 ---
 
-## Tekniske Detaljer
+## Technical Details
 
-### 1. Tema-opdatering af BonusOverlay
+### File: `src/lib/bonusGameLogic.ts`
 
-**Fil: `src/components/slots/BonusOverlay.tsx`**
+#### Change 1: Update `applyExpandingSymbol` function
+Add logic to check if the expanding symbol is premium and allow expansion for 2+ reels:
 
-Ændrer baggrundsfarver og styling fra `bg-card/90` til det egyptiske guld-tema:
-- `bg-gradient-to-b from-amber-950/95 via-amber-900/90 to-amber-950/95` 
-- `border-2 border-amber-600/50`
-- `shadow-[0_0_40px_rgba(251,191,36,0.4),0_8px_32px_rgba(0,0,0,0.6)]`
+```typescript
+// Current: Lines 31-33
+if (reelsWithExpanding.length >= 3) {
 
----
-
-### 2. Layout-swap i SlotControlPanel
-
-**Fil: `src/components/slots/SlotControlPanel.tsx`**
-
-Bytter om på elementerne i højre panel og autospin-rækken:
-
-**Nuværende layout:**
-```text
-[Indsats] [SPIN] [Volume | Gevinsttabel]
-         [Autospin-kontroller]
+// Update to:
+const minReelsForExpand = expandingSymbol.rarity === 'premium' ? 2 : 3;
+if (reelsWithExpanding.length >= minReelsForExpand) {
 ```
 
-**Nyt layout:**
-```text
-[Indsats] [SPIN] [Volume | Autospin]
-         [Gevinsttabel-knap]
-```
+#### Change 2: Update `checkIfExpandingCreatesPaylineWin` function
+Pass the expanding symbol's rarity into the payline check and adjust minimum matches:
 
-Konkrete ændringer:
-- Flytter `AutospinRow` ind i højre panel (ved siden af VolumeControl)
-- Flytter `PayTable` til en dedikeret række under kontrolpanelet
-- Omdøber rækkefølgen for bedre flow
+```typescript
+// Current: Lines 107-109
+if (consecutiveMatches >= 3) {
+  return true;
+}
 
----
-
-### 3. Auto-spin under Bonus
-
-**Fil: `src/components/slots/SlotGame.tsx`**
-
-Tilføjer automatisk spin-logik når bonus er aktiveret:
-- Når `showBonusTrigger` lukkes, starter automatisk spin efter en kort forsinkelse
-- Når et bonus-spin afsluttes og der er flere free spins tilbage, startes næste spin automatisk
-- Brugeren behøver aldrig at klikke på spin-knappen under bonus
-
-Ny useEffect hook:
-```tsx
-// Auto-spin during bonus mode
-useEffect(() => {
-  if (!bonusState.isActive || bonusState.freeSpinsRemaining === 0) return;
-  if (isSpinning || isWinAnimating) return;
-  if (showBonusTrigger || showBonusComplete || showRetrigger) return;
-  
-  const timer = setTimeout(() => {
-    handleSpin();
-  }, 1000);
-  
-  return () => clearTimeout(timer);
-}, [bonusState.isActive, bonusState.freeSpinsRemaining, isSpinning, isWinAnimating, showBonusTrigger, showBonusComplete, showRetrigger]);
-```
-
----
-
-### 4. Symbol-roulette Animation ved Bonus Trigger
-
-**Ny fil: `src/components/slots/BonusSymbolPicker.tsx`**
-
-En ny komponent der viser en spændende "roulette" animation:
-- Viser et stort symbol-felt i midten
-- Symboler skifter hurtigt (100-150ms) i starten
-- Hastigheden aftager gradvist ("ease-out" effekt)
-- Efter 3-4 sekunder "lander" det valgte expanding symbol
-- Først når symbolet har landet kan brugeren fortsætte
-
-**Props:**
-```tsx
-interface BonusSymbolPickerProps {
-  isVisible: boolean;
-  symbols: SlotSymbol[];
-  selectedSymbol: SlotSymbol | null;
-  onComplete: () => void;
+// Update to:
+const minMatches = expandingSymbol.rarity === 'premium' ? 2 : 3;
+if (consecutiveMatches >= minMatches) {
+  return true;
 }
 ```
 
-**Animationsflow:**
-1. Fase 1 (0-1.5s): Hurtig skift mellem symboler (100ms interval)
-2. Fase 2 (1.5-3s): Langsom nedbremsning (interval øges til 500ms)
-3. Fase 3 (3s+): Det valgte symbol lander med en "zoom-bounce" animation
-4. "Fortsæt" knap vises først efter symbolet har landed
+#### Change 3: Update `calculateWins` function - Scatter-style payout
+Handle 2-reel premium expanding wins with the scatter-style payout (pays on all 10 lines):
 
-**Opdateret BonusOverlay:**
-- Integrerer BonusSymbolPicker i "trigger" tilstanden
-- Fjerner det statiske symbol-display
-- Tilføjer `onSymbolPicked` callback der tillader fortsættelse
+```typescript
+// Current: Lines 203-204
+if (expandingSymbol && expandedReels && expandedReels.length >= 3) {
+
+// Update to:
+const minReelsForScatterPay = expandingSymbol?.rarity === 'premium' ? 2 : 3;
+if (expandingSymbol && expandedReels && expandedReels.length >= minReelsForScatterPay) {
+```
+
+Also update the multiplier selection to include `multiplier_2`:
+
+```typescript
+// Current: Lines 206-209
+let multiplier = 0;
+if (reelCount === 3) multiplier = expandingSymbol.multiplier_3;
+else if (reelCount === 4) multiplier = expandingSymbol.multiplier_4;
+else if (reelCount === 5) multiplier = expandingSymbol.multiplier_5;
+
+// Update to:
+let multiplier = 0;
+if (reelCount === 2 && expandingSymbol.rarity === 'premium') {
+  multiplier = expandingSymbol.multiplier_2;
+} else if (reelCount === 3) {
+  multiplier = expandingSymbol.multiplier_3;
+} else if (reelCount === 4) {
+  multiplier = expandingSymbol.multiplier_4;
+} else if (reelCount === 5) {
+  multiplier = expandingSymbol.multiplier_5;
+}
+```
+
+#### Change 4: Update `calculateBonusSpinResult` function
+Adjust the `hasExpandingWin` check to account for premium 2-reel wins:
+
+```typescript
+// Current: Line 143
+const hasExpandingWin = expandedReels.length >= 3;
+
+// Update to:
+const minReelsForWin = expandingSymbol.rarity === 'premium' ? 2 : 3;
+const hasExpandingWin = expandedReels.length >= minReelsForWin;
+```
 
 ---
 
-## Ændringsoversigt
+## Summary of Changes
 
-| Fil | Ændring |
-|-----|---------|
-| `src/components/slots/BonusOverlay.tsx` | Nyt guld-tema + symbol-picker integration |
-| `src/components/slots/BonusSymbolPicker.tsx` | **Ny fil** - Symbol roulette animation |
-| `src/components/slots/SlotControlPanel.tsx` | Swap autospin og gevinsttabel |
-| `src/components/slots/SlotGame.tsx` | Auto-spin logik under bonus |
-| `src/index.css` | Eventuelt nye keyframe animationer |
+| Location | Current Logic | New Logic |
+|----------|---------------|-----------|
+| Expansion threshold | 3+ reels always | Premium: 2+ reels, Common: 3+ reels |
+| Payline win check | 3+ consecutive | Premium: 2+ consecutive, Common: 3+ |
+| Scatter-style payout | 3+ reels | Premium: 2+ reels, Common: 3+ reels |
+| Multiplier selection | Only 3/4/5 | Includes 2× for premium symbols |
 
 ---
 
-## Resultat
+## Expected Behavior After Implementation
 
-- Bonus trigger overlay matcher nu det gyldne egyptiske tema
-- Gevinsttabel-knappen er mere fremtrædende i sin egen række
-- Autospin-kontrollerne er integreret i kontrolpanelet
-- Bonus-runder kører automatisk uden brugerinput
-- En spændende symbol-roulette animation øger spændingen ved bonus-trigger
+- **Premium expanding symbol** (e.g., Pharaoh): Expands when landing on 2+ reels from the left, paying on all 10 lines using `multiplier_2`
+- **Common expanding symbol** (e.g., K, Q): Still requires 3+ reels to expand (unchanged)
+- Maintains consistency with the base game where premium symbols win with 2+ matches
