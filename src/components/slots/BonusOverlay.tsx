@@ -24,6 +24,9 @@ export function BonusOverlay({
   totalFreeSpins = 0,
   onClose,
 }: BonusOverlayProps) {
+  // Find the scatter symbol for display
+  const scatterSymbol = allSymbols.find(s => s.is_scatter);
+  
   // Use dedicated BonusCompleteScreen for completion
   if (type === "complete") {
     return (
@@ -31,6 +34,7 @@ export function BonusOverlay({
         isVisible={isVisible}
         totalWinnings={totalWinnings}
         totalSpinsUsed={totalFreeSpins}
+        scatterImageUrl={scatterSymbol?.image_url || null}
         onClose={onClose}
       />
     );
@@ -68,7 +72,15 @@ export function BonusOverlay({
           <>
             {/* Bonus trigger content with symbol picker */}
             <div className="mb-4">
-              <span className="text-6xl animate-bounce inline-block">📖</span>
+              {scatterSymbol?.image_url ? (
+                <img 
+                  src={scatterSymbol.image_url} 
+                  alt="Scatter" 
+                  className="w-20 h-20 object-cover rounded-lg animate-bounce inline-block shadow-[0_0_20px_rgba(251,191,36,0.5)]"
+                />
+              ) : (
+                <span className="text-6xl animate-bounce inline-block">📖</span>
+              )}
             </div>
             <h2 className="text-3xl sm:text-4xl font-bold text-amber-300 mb-2 animate-pulse">
               BONUS AKTIVERET!
@@ -89,7 +101,15 @@ export function BonusOverlay({
           <>
             {/* Retrigger content */}
             <div className="mb-4">
-              <span className="text-6xl animate-bounce inline-block">📖</span>
+              {scatterSymbol?.image_url ? (
+                <img 
+                  src={scatterSymbol.image_url} 
+                  alt="Scatter" 
+                  className="w-20 h-20 object-cover rounded-lg animate-bounce inline-block shadow-[0_0_20px_rgba(251,191,36,0.5)]"
+                />
+              ) : (
+                <span className="text-6xl animate-bounce inline-block">📖</span>
+              )}
             </div>
             <h2 className="text-3xl sm:text-4xl font-bold text-amber-300 mb-2 animate-pulse">
               RETRIGGER!

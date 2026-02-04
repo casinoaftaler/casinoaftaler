@@ -6,6 +6,7 @@ interface BonusCompleteScreenProps {
   isVisible: boolean;
   totalWinnings: number;
   totalSpinsUsed: number;
+  scatterImageUrl?: string | null;
   onClose?: () => void;
 }
 
@@ -24,6 +25,7 @@ export function BonusCompleteScreen({
   isVisible,
   totalWinnings,
   totalSpinsUsed,
+  scatterImageUrl,
   onClose,
 }: BonusCompleteScreenProps) {
   const [showContent, setShowContent] = useState(false);
@@ -158,14 +160,23 @@ export function BonusCompleteScreen({
           🪲
         </span>
 
-        {/* Celebration emoji */}
+        {/* Scatter symbol celebration */}
         <div className="mb-4">
-          <span 
-            className="text-6xl sm:text-7xl inline-block"
-            style={{ animation: "sparkle 1.5s ease-in-out infinite" }}
-          >
-            🎉
-          </span>
+          {scatterImageUrl ? (
+            <img 
+              src={scatterImageUrl} 
+              alt="Scatter" 
+              className="w-20 h-20 sm:w-24 sm:h-24 object-cover rounded-lg inline-block shadow-[0_0_30px_rgba(251,191,36,0.6)]"
+              style={{ animation: "sparkle 1.5s ease-in-out infinite" }}
+            />
+          ) : (
+            <span 
+              className="text-6xl sm:text-7xl inline-block"
+              style={{ animation: "sparkle 1.5s ease-in-out infinite" }}
+            >
+              🎉
+            </span>
+          )}
         </div>
 
         {/* Title - TILLYKKE! */}
