@@ -63,7 +63,7 @@ export function SlotControlPanel({
       {/* Main control row - responsive layout */}
       <div className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6 w-full">
         {/* Left Panel: Bet + Spins (stacks first on mobile) */}
-        <div className="order-1 sm:order-1">
+        <div className="order-1 sm:order-1 sm:w-40 md:w-44 lg:w-48">
           <BetControls
             bet={bet}
             onBetChange={onBetChange}
@@ -153,7 +153,7 @@ export function SlotControlPanel({
         </Button>
 
         {/* Right Panel: Volume + Autospin (swapped from PayTable) */}
-        <div className="flex items-center gap-2 order-3 bg-gradient-to-b from-amber-950/90 via-amber-900/70 to-amber-950/90 backdrop-blur-sm border-2 border-amber-600/50 rounded-xl px-3 py-2 shadow-[inset_0_1px_0_rgba(251,191,36,0.3),0_4px_12px_rgba(0,0,0,0.4)]">
+        <div className="flex items-center gap-2 order-3 sm:w-40 md:w-44 lg:w-48 justify-center bg-gradient-to-b from-amber-950/90 via-amber-900/70 to-amber-950/90 backdrop-blur-sm border-2 border-amber-600/50 rounded-xl px-3 py-2 shadow-[inset_0_1px_0_rgba(251,191,36,0.3),0_4px_12px_rgba(0,0,0,0.4)]">
           <VolumeControl className="text-amber-400 hover:text-amber-300" />
           <div className="w-px h-6 bg-amber-600/40" />
           <AutospinRow
