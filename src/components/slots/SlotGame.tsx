@@ -106,6 +106,9 @@ export function SlotGame() {
     expandingSymbol?: typeof bonusState.expandingSymbol;
   } | null>(null);
   
+  // Scatter celebration state - pulse/glow before bonus screen
+  const [showScatterCelebration, setShowScatterCelebration] = useState(false);
+  
   const stopTeaseSound = useRef<(() => void) | null>(null);
 
   // Initialize grid with random symbols
@@ -620,11 +623,13 @@ export function SlotGame() {
                           
                           // Play sound if:
                           // 1. Scatter is on reel 1-3 (index 0-2), OR
-                          // 2. Scatter is on reel 4 AND there's already a scatter on reel 1-3
+                          // 2. Scatter is on reel 4 AND there's already a scatter on reel 1-3, OR
+                          // 3. Scatter is on reel 5 AND we already have 3+ scatters (triggers bonus sound)
                           const isOnReels123 = reelIndex <= 2;
                           const isOnReel4WithPriorScatter = reelIndex === 3 && scattersOnReels123 > 0;
+                          const isOnReel5WithBonusScatters = reelIndex === 4 && scattersLanded >= 3;
                           
-                          if (isOnReels123 || isOnReel4WithPriorScatter) {
+                          if (isOnReels123 || isOnReel4WithPriorScatter || isOnReel5WithBonusScatters) {
                             slotSounds.playScatterLand(scattersLanded);
                           }
                           
@@ -721,14 +726,21 @@ export function SlotGame() {
                               const expanding = triggerBonus(symbols || []);
                               setPendingExpandingSymbol(expanding);
                               
-                              if (result.totalWin > 0) {
-                                // Defer overlay until win animation completes
-                                setPendingBonusTrigger({ isRetrigger: false, expandingSymbol: expanding });
-                              } else {
-                                // No win, show immediately
-                                slotSounds.playBonusTrigger();
-                                setShowBonusTrigger(true);
-                              }
+                              // Always show scatter celebration first, then bonus overlay
+                              setShowScatterCelebration(true);
+                              
+                              // Delay bonus trigger to allow celebration animation
+                              setTimeout(() => {
+                                setShowScatterCelebration(false);
+                                if (result.totalWin > 0) {
+                                  // Defer overlay until win animation completes
+                                  setPendingBonusTrigger({ isRetrigger: false, expandingSymbol: expanding });
+                                } else {
+                                  // No win, show immediately after celebration
+                                  slotSounds.playBonusTrigger();
+                                  setShowBonusTrigger(true);
+                                }
+                              }, 1000); // 1 second celebration
                             }
                           }
                           
@@ -808,6 +820,7 @@ export function SlotGame() {
                       extendedFakeLoop={teaseInfo.lateScatter && colIndex === 4}
                       globalTeaseActive={teaseReels.length > 0 && isSpinning && activeTeaseReelIndex !== null}
                       hasLandedScatter={scatterReelsLanded.has(colIndex) && scatterReelsLanded.size >= 2 && isSpinning}
+                      isScatterCelebrating={showScatterCelebration}
                     />
                     {/* Separator line between reels */}
                     {colIndex < 4 && (
