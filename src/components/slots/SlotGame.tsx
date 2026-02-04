@@ -556,6 +556,7 @@ export function SlotGame() {
                       delay={colIndex}
                       shouldSlowDown={activeSlowdownReel >= colIndex}
                       spinLoopMs={slotSettings.spinLoopMs}
+                      reelSlowdownMs={slotSettings.reelSlowdownMs}
                       onReelStop={async (reelIndex) => {
                         slotSounds.playReelStopSingle(reelIndex);
                         

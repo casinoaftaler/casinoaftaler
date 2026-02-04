@@ -654,6 +654,7 @@ function SettingsTab() {
     pagePassword: "",
     spinLoopMs: 600,
     reelStaggerMs: 150,
+    reelSlowdownMs: 300,
   });
 
   useEffect(() => {
@@ -666,6 +667,7 @@ function SettingsTab() {
         pagePassword: settings.pagePassword,
         spinLoopMs: settings.spinLoopMs,
         reelStaggerMs: settings.reelStaggerMs,
+        reelSlowdownMs: settings.reelSlowdownMs,
       });
     }
   }, [settings]);
@@ -775,6 +777,24 @@ function SettingsTab() {
               />
               <p className="text-xs text-muted-foreground">
                 Tid mellem hvert hjul stopper. 0 = samtidigt, 150ms = kaskade effekt
+              </p>
+            </div>
+
+            <div className="space-y-2">
+              <div className="flex items-center justify-between">
+                <Label htmlFor="reel-slowdown-ms">Hjul Slowdown Hastighed</Label>
+                <span className="text-sm text-muted-foreground font-mono">{formData.reelSlowdownMs}ms</span>
+              </div>
+              <Slider
+                id="reel-slowdown-ms"
+                min={100}
+                max={800}
+                step={50}
+                value={[formData.reelSlowdownMs]}
+                onValueChange={(value) => setFormData({ ...formData, reelSlowdownMs: value[0] })}
+              />
+              <p className="text-xs text-muted-foreground">
+                Hvor lang tid hvert hjul bruger på at bremse ned. Lavere = hurtigere landing.
               </p>
             </div>
           </div>
