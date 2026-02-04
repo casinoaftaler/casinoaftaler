@@ -1,102 +1,82 @@
 
+# Plan: Add #1 Casino Card with Custom Background Below Leaderboard
 
-# Plan: Rangliste - Vis kun 3 brugere + "Vis alle" overlay
+## Overview
+Add the #1 ranked casino card underneath the leaderboard on the slot machine page, using the uploaded Egyptian cat image as the card background instead of the current gradient. The card will match the leaderboard width (w-80).
 
-## Ændringer
+## Implementation Steps
 
-### 1. Flyt ranglisten 20 pixels op
-Tilføj `style={{ marginTop: '-20px' }}` til rangliste-containeren på desktop i `SlotMachine.tsx`.
+### 1. Save the Background Image
+Copy the uploaded Egyptian cat image to the project assets folder for use as the casino card background.
 
-### 2. Modificer SlotLeaderboard.tsx til kun at vise 3 brugere
-- Begræns visningen til de første 3 entries i hovedvisningen
-- Tilføj en "Vis alle" knap nederst
+**File:** `src/assets/slots/slot-casino-card-bg.png`
 
-### 3. Tilføj Dialog overlay til fuld rangliste
-- Importer Dialog komponent
-- Tilføj state til at styre overlay åbning
-- Vis hele listen (op til 10 brugere) i overlayet
+### 2. Create a Specialized Casino Card Component for Slots
+Create a new component `SlotCasinoCard` that renders a casino card with a custom background image instead of the gradient.
 
-## Teknisk implementering
+**File:** `src/components/slots/SlotCasinoCard.tsx`
 
-### Fil: `src/pages/SlotMachine.tsx`
+Key features:
+- Accept a `backgroundImage` prop to display the Egyptian cat image
+- Render the #1 casino data in a compact format matching the leaderboard width
+- Maintain the Egyptian/amber theme to match the slot machine page
+- Include the "HENT BONUS" button with affiliate link functionality
 
-**Desktop rangliste container (linje 172)**
-```tsx
-<div className="hidden xl:block absolute right-full mr-4 top-0 w-80" style={{ marginTop: '-20px' }}>
+### 3. Update SlotMachine Page
+Modify the slot machine page to:
+- Fetch the #1 ranked casino using `useCasinos` hook
+- Display the `SlotCasinoCard` component below the leaderboard toggle/content on desktop
+- On mobile, show it below the collapsible leaderboard section
+
+**File:** `src/pages/SlotMachine.tsx`
+
+Changes:
+- Import the new `SlotCasinoCard` component and background image
+- Add casino data fetching
+- Position the card below the leaderboard in the left sidebar (desktop) and below collapsible leaderboard (mobile)
+
+## Visual Layout
+
+```text
+Desktop (xl+):
++------------------+     +-------------------+
+|  Toggle Button   |     |                   |
++------------------+     |                   |
+|  Leaderboard     |     |   Slot Machine    |
+|  (if visible)    |     |                   |
++------------------+     |                   |
+|  #1 Casino Card  |     |                   |
+|  (with cat bg)   |     |                   |
++------------------+     +-------------------+
+
+Mobile:
++-------------------------+
+|     Slot Machine        |
++-------------------------+
+|   Toggle Leaderboard    |
++-------------------------+
+|   Leaderboard (if open) |
++-------------------------+
+|   #1 Casino Card        |
++-------------------------+
 ```
 
-### Fil: `src/components/slots/SlotLeaderboard.tsx`
+## Technical Details
 
-**1. Tilføj imports**
-```tsx
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
-import { Button } from "@/components/ui/button";
-import { Users } from "lucide-react";
-```
+### SlotCasinoCard Component Structure
+- Background: Egyptian cat image with dark overlay for text readability
+- Logo: Casino logo (h-16 w-16, smaller than standard cards)
+- Name and rating: Compact header
+- Bonus headline: Prominent display
+- Key stats: Bonus type and wagering requirements
+- CTA button: "HENT BONUS" with affiliate redirect
+- Amber/gold themed borders and accents to match slot page
 
-**2. Tilføj state til dialog**
-```tsx
-const [showFullList, setShowFullList] = useState(false);
-```
+### Data Flow
+1. Use existing `useCasinos()` hook to get all active casinos
+2. Filter for the #1 ranked casino (position = 1 or first in sorted array)
+3. Pass casino data and background image to `SlotCasinoCard`
 
-**3. Opdater hovedvisning til kun 3 brugere + "Vis alle" knap**
-```tsx
-{entries && entries.length > 0 ? (
-  <>
-    <div className="space-y-1">
-      {entries.slice(0, 3).map((entry, index) => (
-        <LeaderboardRow
-          key={entry.user_id}
-          entry={entry}
-          rank={index + 1}
-          period={period}
-        />
-      ))}
-    </div>
-    {entries.length > 3 && (
-      <Dialog open={showFullList} onOpenChange={setShowFullList}>
-        <DialogTrigger asChild>
-          <Button
-            variant="ghost"
-            className="w-full mt-2 text-amber-500 hover:text-amber-400 hover:bg-amber-500/10 border border-amber-500/30"
-          >
-            <Users className="h-4 w-4 mr-2" />
-            Vis alle ({entries.length})
-          </Button>
-        </DialogTrigger>
-        <DialogContent className="max-w-md border-amber-500/30 bg-gradient-to-b from-amber-950/98 via-black/95 to-amber-950/98">
-          <DialogHeader>
-            <DialogTitle className="flex items-center gap-2 text-amber-100">
-              <Trophy className="h-5 w-5 text-amber-500" />
-              Fuld Rangliste
-            </DialogTitle>
-          </DialogHeader>
-          <div className="space-y-1 max-h-[60vh] overflow-y-auto">
-            {entries.map((entry, index) => (
-              <LeaderboardRow
-                key={entry.user_id}
-                entry={entry}
-                rank={index + 1}
-                period={period}
-              />
-            ))}
-          </div>
-        </DialogContent>
-      </Dialog>
-    )}
-  </>
-) : (
-  // empty state...
-)}
-```
-
-## Resultat
-- Ranglisten vises 20px højere på desktop
-- Kun top 3 brugere vises i den kompakte visning
-- "Vis alle" knap åbner et overlay med hele listen (op til 10)
-- Overlayet matcher det egyptiske tema med amber/guld farver
-
-## Filer der ændres
-- `src/pages/SlotMachine.tsx`
-- `src/components/slots/SlotLeaderboard.tsx`
-
+### Responsive Behavior
+- Desktop (xl+): Card in left sidebar, full w-80 width, below leaderboard
+- Mobile/Tablet: Card below collapsible leaderboard, max-w-sm width
