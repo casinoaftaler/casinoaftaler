@@ -31,12 +31,7 @@ export function useAnimatedCounter(
     const range = end - start;
     const startTime = performance.now();
 
-    // Start coin counting sound (use big win sound for dramatic effect)
-    if (playSound) {
-      stopSoundRef.current = isBigWin 
-        ? slotSounds.playBigWinCount() 
-        : slotSounds.playCoinCount();
-    }
+    // Counting sound disabled - win sounds are played separately
 
     const animate = (currentTime: number) => {
       const elapsed = currentTime - startTime;
