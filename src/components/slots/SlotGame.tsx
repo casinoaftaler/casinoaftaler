@@ -791,8 +791,8 @@ export function SlotGame() {
               </div>
             </SlotMachineFrame>
           </div>
-          {/* Small Win Display Bar - always visible, overlapping frame bottom */}
-          <div className="relative z-10 flex justify-center" style={{ marginTop: '-30px' }}>
+          {/* Small Win Display Bar - adjusted to match control panel position */}
+          <div className="relative z-10 flex justify-center" style={{ marginTop: '-100px' }}>
             <SmallWinBar amount={winAmount} />
           </div>
 
