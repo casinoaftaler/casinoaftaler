@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Slider } from "@/components/ui/slider";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { Switch } from "@/components/ui/switch";
-import { Volume2, VolumeX, Volume1, Music, Sparkles } from "lucide-react";
+import { Volume2, VolumeX, Volume1, Music, Sparkles, Cat } from "lucide-react";
 import { slotSounds } from "@/lib/slotSoundEffects";
 import { cn } from "@/lib/utils";
 
@@ -16,6 +16,7 @@ export function VolumeControl({ className }: VolumeControlProps) {
   const [volume, setVolume] = useState(slotSounds.getVolume() * 100);
   const [musicEnabled, setMusicEnabled] = useState(slotSounds.isMusicEnabled());
   const [effectsEnabled, setEffectsEnabled] = useState(slotSounds.isEffectsEnabled());
+  const [bonusSoundsOnly, setBonusSoundsOnly] = useState(slotSounds.isBonusSoundsOnly());
 
   useEffect(() => {
     slotSounds.setEnabled(enabled);
@@ -32,6 +33,10 @@ export function VolumeControl({ className }: VolumeControlProps) {
   useEffect(() => {
     slotSounds.setEffectsEnabled(effectsEnabled);
   }, [effectsEnabled]);
+
+  useEffect(() => {
+    slotSounds.setBonusSoundsOnly(bonusSoundsOnly);
+  }, [bonusSoundsOnly]);
 
   const handleToggle = () => {
     const newEnabled = !enabled;
@@ -50,6 +55,10 @@ export function VolumeControl({ className }: VolumeControlProps) {
     if (checked) {
       slotSounds.playButtonClick();
     }
+  };
+
+  const handleBonusSoundsOnlyToggle = (checked: boolean) => {
+    setBonusSoundsOnly(checked);
   };
 
   const handleVolumeChange = (value: number[]) => {
@@ -155,6 +164,24 @@ export function VolumeControl({ className }: VolumeControlProps) {
             </div>
             <p className="text-xs text-muted-foreground mt-1">
               Spin, gevinst og bonus lyde
+            </p>
+          </div>
+
+          {/* Bonus sounds only toggle */}
+          <div className="pt-2 border-t border-border">
+            <div className="flex items-center justify-between">
+              <div className="flex items-center gap-2">
+                <Cat className="h-4 w-4 text-amber-500" />
+                <span className="text-sm font-medium">Kun bonus lyde</span>
+              </div>
+              <Switch
+                checked={bonusSoundsOnly && enabled && effectsEnabled}
+                onCheckedChange={handleBonusSoundsOnlyToggle}
+                disabled={!enabled || !effectsEnabled}
+              />
+            </div>
+            <p className="text-xs text-muted-foreground mt-1">
+              Kun scatter, tease og bonus lyde
             </p>
           </div>
         </div>

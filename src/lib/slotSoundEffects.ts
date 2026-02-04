@@ -44,6 +44,7 @@ interface PersistedAudioSettings {
   volume: number;
   musicEnabled: boolean;
   effectsEnabled: boolean;
+  bonusSoundsOnly: boolean;
 }
 
 // Default bundled background music
@@ -57,6 +58,7 @@ class SlotSoundEffects {
   private volume: number = 0.5;
   private musicEnabled: boolean = true;
   private effectsEnabled: boolean = true;
+  private bonusSoundsOnly: boolean = false;
   private musicGainNode: GainNode | null = null;
   private currentMusic: OscillatorNode[] = [];
   private musicInterval: NodeJS.Timeout | null = null;
@@ -158,8 +160,13 @@ class SlotSoundEffects {
     return false;
   }
 
-  // Check if effects are enabled (for synthesized sounds)
+  // Check if regular effects can play (muted in bonus-only mode)
   private canPlayEffect(): boolean {
+    return this.enabled && this.effectsEnabled && !this.bonusSoundsOnly;
+  }
+
+  // Check if bonus sounds can play (scatter, tease, bonus trigger)
+  private canPlayBonusSound(): boolean {
     return this.enabled && this.effectsEnabled;
   }
 
@@ -172,6 +179,7 @@ class SlotSoundEffects {
         this.volume = settings.volume ?? 0.5;
         this.musicEnabled = settings.musicEnabled ?? true;
         this.effectsEnabled = settings.effectsEnabled ?? true;
+        this.bonusSoundsOnly = settings.bonusSoundsOnly ?? false;
       }
     } catch (e) {
       // Ignore parse errors, use defaults
@@ -185,6 +193,7 @@ class SlotSoundEffects {
         volume: this.volume,
         musicEnabled: this.musicEnabled,
         effectsEnabled: this.effectsEnabled,
+        bonusSoundsOnly: this.bonusSoundsOnly,
       };
       localStorage.setItem(AUDIO_SETTINGS_KEY, JSON.stringify(settings));
     } catch (e) {
@@ -264,6 +273,15 @@ class SlotSoundEffects {
 
   setEffectsEnabled(enabled: boolean) {
     this.effectsEnabled = enabled;
+    this.persistSettings();
+  }
+
+  isBonusSoundsOnly() {
+    return this.bonusSoundsOnly;
+  }
+
+  setBonusSoundsOnly(enabled: boolean) {
+    this.bonusSoundsOnly = enabled;
     this.persistSettings();
   }
 
@@ -1224,7 +1242,7 @@ class SlotSoundEffects {
 
   // Bonus trigger - Book of Dead opens with ancient power
   playBonusTrigger() {
-    if (!this.canPlayEffect()) return;
+    if (!this.canPlayBonusSound()) return;
     
     // Try custom bonus trigger sound first
     if (this.playCustomSound('bonusTriggerSound')) return;
@@ -1719,7 +1737,7 @@ class SlotSoundEffects {
 
   // Tease mode drumroll - building anticipation when 2 scatters land
   playTeaseStart(): () => void {
-    if (!this.canPlayEffect()) return () => {};
+    if (!this.canPlayBonusSound()) return () => {};
     
     const ctx = this.getContext();
     const now = ctx.currentTime;
@@ -1820,7 +1838,7 @@ class SlotSoundEffects {
 
   // Active tease slowdown sound - intense crescendo when tease reel starts slowing down
   playActiveTeaseSlowdown(reelIndex: number): () => void {
-    if (!this.canPlayEffect()) return () => {};
+    if (!this.canPlayBonusSound()) return () => {};
     
     const ctx = this.getContext();
     const now = ctx.currentTime;
@@ -2141,7 +2159,7 @@ class SlotSoundEffects {
 
   // Progressive scatter land sound - cat meow sounds that build in intensity
   playScatterLand(scatterNumber: number) {
-    if (!this.canPlayEffect()) return;
+    if (!this.canPlayBonusSound()) return;
     const ctx = this.getContext();
     const now = ctx.currentTime;
     
