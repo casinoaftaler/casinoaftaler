@@ -18,6 +18,7 @@ import { VolumeControl } from "./VolumeControl";
 import { SlotMachineFrame } from "./SlotMachineFrame";
 import { WinCelebration } from "./WinCelebration";
 import { SpinsRemaining } from "./SpinsRemaining";
+import { SmallWinBar } from "./SmallWinBar";
 import { useSlotSymbols } from "@/hooks/useSlotSymbols";
 import { useSlotSymbolPreloader } from "@/hooks/useSlotSymbolPreloader";
 import { useSlotSpins } from "@/hooks/useSlotSpins";
@@ -792,6 +793,15 @@ export function SlotGame() {
               </div>
             </SlotMachineFrame>
           </div>
+
+          {/* Small Win Display Bar - shows for wins below big win threshold */}
+          <SmallWinBar
+            amount={winAmount}
+            isActive={isWinAnimating && winAmount > 0 && (winAmount / bet) < 10}
+            onAnimationComplete={() => {
+              // Small win animation complete - this allows autospin to continue
+            }}
+          />
 
           {/* Controls row with spin button in center - stacks on mobile */}
           <div className="flex flex-col sm:flex-row flex-wrap items-center justify-center gap-3 sm:gap-4 md:gap-6 mt-2 sm:mt-3">
