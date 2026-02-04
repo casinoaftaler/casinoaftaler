@@ -1,82 +1,33 @@
 
-# Plan: Add #1 Casino Card with Custom Background Below Leaderboard
+# Plan: Add CasinoCardDisclaimer Footer to SlotCasinoCard
 
 ## Overview
-Add the #1 ranked casino card underneath the leaderboard on the slot machine page, using the uploaded Egyptian cat image as the card background instead of the current gradient. The card will match the leaderboard width (w-80).
+Add the same legal disclaimer footer from the main casino cards to the SlotCasinoCard component on the slot machine page.
 
-## Implementation Steps
+## Implementation
 
-### 1. Save the Background Image
-Copy the uploaded Egyptian cat image to the project assets folder for use as the casino card background.
+### File: `src/components/slots/SlotCasinoCard.tsx`
 
-**File:** `src/assets/slots/slot-casino-card-bg.png`
+**Changes:**
+1. Import the `CasinoCardDisclaimer` component
+2. Add the disclaimer below the "HENT BONUS" button
 
-### 2. Create a Specialized Casino Card Component for Slots
-Create a new component `SlotCasinoCard` that renders a casino card with a custom background image instead of the gradient.
+The disclaimer will display:
+- First 6 segments of the legal text (18+, Spil ansvarligt, links to Rofus.nu, StopSpillet.dk, etc.)
+- Expandable "Vis vilkår" toggle for full terms
+- Clickable links for legal domains
 
-**File:** `src/components/slots/SlotCasinoCard.tsx`
+### Code Changes
 
-Key features:
-- Accept a `backgroundImage` prop to display the Egyptian cat image
-- Render the #1 casino data in a compact format matching the leaderboard width
-- Maintain the Egyptian/amber theme to match the slot machine page
-- Include the "HENT BONUS" button with affiliate link functionality
+```tsx
+// Add import
+import { CasinoCardDisclaimer } from "@/components/CasinoCardDisclaimer";
 
-### 3. Update SlotMachine Page
-Modify the slot machine page to:
-- Fetch the #1 ranked casino using `useCasinos` hook
-- Display the `SlotCasinoCard` component below the leaderboard toggle/content on desktop
-- On mobile, show it below the collapsible leaderboard section
-
-**File:** `src/pages/SlotMachine.tsx`
-
-Changes:
-- Import the new `SlotCasinoCard` component and background image
-- Add casino data fetching
-- Position the card below the leaderboard in the left sidebar (desktop) and below collapsible leaderboard (mobile)
-
-## Visual Layout
-
-```text
-Desktop (xl+):
-+------------------+     +-------------------+
-|  Toggle Button   |     |                   |
-+------------------+     |                   |
-|  Leaderboard     |     |   Slot Machine    |
-|  (if visible)    |     |                   |
-+------------------+     |                   |
-|  #1 Casino Card  |     |                   |
-|  (with cat bg)   |     |                   |
-+------------------+     +-------------------+
-
-Mobile:
-+-------------------------+
-|     Slot Machine        |
-+-------------------------+
-|   Toggle Leaderboard    |
-+-------------------------+
-|   Leaderboard (if open) |
-+-------------------------+
-|   #1 Casino Card        |
-+-------------------------+
+// Add after the CTA Button (before closing </div> of content)
+<CasinoCardDisclaimer />
 ```
 
-## Technical Details
-
-### SlotCasinoCard Component Structure
-- Background: Egyptian cat image with dark overlay for text readability
-- Logo: Casino logo (h-16 w-16, smaller than standard cards)
-- Name and rating: Compact header
-- Bonus headline: Prominent display
-- Key stats: Bonus type and wagering requirements
-- CTA button: "HENT BONUS" with affiliate redirect
-- Amber/gold themed borders and accents to match slot page
-
-### Data Flow
-1. Use existing `useCasinos()` hook to get all active casinos
-2. Filter for the #1 ranked casino (position = 1 or first in sorted array)
-3. Pass casino data and background image to `SlotCasinoCard`
-
-### Responsive Behavior
-- Desktop (xl+): Card in left sidebar, full w-80 width, below leaderboard
-- Mobile/Tablet: Card below collapsible leaderboard, max-w-sm width
+The disclaimer component already has styling that works well with the dark/amber theme:
+- `text-[10px] text-white/60` for subtle appearance
+- Centered text alignment
+- Expandable toggle for full terms
