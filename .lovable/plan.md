@@ -1,83 +1,184 @@
 
-# Plan: Fix BetControls og Nyt Mobil-Layout
+# Plan: Enkel-enhed Spilbegrænsning og Bonus-synkronisering
 
-## Problem 1: BetControls knapper udenfor boksen (PC)
+## Overblik
 
-BetControls har `sm:w-auto` som gør at containerens bredde kollapser, men indholdet har ikke nok padding. Vi skal sikre at containeren har en minimum bredde der passer til indholdet.
+Implementer et system der sikrer at brugere kun kan spille på én enhed ad gangen, samtidig med at bonus-tilstanden synkroniseres på tværs af enheder.
 
-## Problem 2: Mobil-layout skal være 2 rækker
+## Arkitektur
 
-Ønsket layout på mobil:
+### Ny Database-tabel: `slot_active_sessions`
+
+| Kolonne | Type | Beskrivelse |
+|---------|------|-------------|
+| id | UUID | Primær nøgle |
+| user_id | UUID | Reference til brugeren |
+| session_id | TEXT | Unik session-identifikator per browser/enhed |
+| last_heartbeat | TIMESTAMP | Seneste aktivitetstidspunkt |
+| device_info | TEXT | Browser/enhed info (til visning) |
+| created_at | TIMESTAMP | Oprettelsestidspunkt |
+
+### Ny Database-tabel: `slot_bonus_state`
+
+| Kolonne | Type | Beskrivelse |
+|---------|------|-------------|
+| id | UUID | Primær nøgle |
+| user_id | UUID | Reference til brugeren (UNIQUE) |
+| is_active | BOOLEAN | Om bonus er aktiv |
+| free_spins_remaining | INTEGER | Resterende gratis spins |
+| total_free_spins | INTEGER | Totale gratis spins tildelt |
+| expanding_symbol_id | UUID | ID på det udvidende symbol |
+| expanding_symbol_name | TEXT | Navn på symbolet |
+| bonus_winnings | NUMERIC | Akkumulerede gevinster i bonus |
+| updated_at | TIMESTAMP | Seneste opdateringstidspunkt |
+
+## Implementeringsplan
+
+### 1. Database Migration
+
+Opret de to nye tabeller med passende RLS-policies:
+- Brugere kan kun se/redigere deres egen session og bonus-tilstand
+- Session-låsning baseret på heartbeat (timeout efter 30 sekunder)
+
+### 2. Ny Hook: `useSlotSession`
+
+Håndterer enhedssession og låsning:
+
+- Genererer unik `session_id` ved første indlæsning (gemmes i `sessionStorage`)
+- Sender heartbeat hvert 10. sekund mens spillet er åbent
+- Tjekker om anden enhed er aktiv før spins tillades
+- Giver mulighed for at "overtage" session fra inaktiv enhed
+
 ```text
-┌─────────────────────────────────────────┐
-│  [Vol] [Bet] [Pay]  │ [SPIN] │ [Auto]  │
-│      VENSTRE        │ MIDT   │ HØJRE   │
-└─────────────────────────────────────────┘
+┌─────────────────────────────────────────────────────────┐
+│                  useSlotSession Flow                     │
+├─────────────────────────────────────────────────────────┤
+│  1. Generer/hent session_id fra sessionStorage          │
+│  2. Tjek database for eksisterende aktiv session        │
+│  3. Hvis anden session aktiv (heartbeat < 30s):         │
+│     → Vis "Aktiv på anden enhed" besked                 │
+│     → Tilbyd "Overtag session" knap                     │
+│  4. Hvis ingen anden aktiv session:                     │
+│     → Registrer denne enhed som aktiv                   │
+│     → Start heartbeat interval (10s)                    │
+│  5. Ved unmount: Stop heartbeat                         │
+└─────────────────────────────────────────────────────────┘
 ```
 
----
+### 3. Opdateret Hook: `useBonusGame`
 
-## Tekniske Ændringer
+Migreres fra localStorage til database:
 
-### Fil: `src/components/slots/BetControls.tsx`
+- Hent bonus-tilstand fra `slot_bonus_state` tabel
+- Synkroniser ændringer til database i realtid
+- Brug Supabase realtime til at lytte på ændringer (så anden enhed ser opdateringer)
 
-**Ændring (linje 28)**: Tilføj minimum bredde for at sikre knapperne er indenfor boksen
-
-```tsx
-// Fra:
-<div className="flex flex-col gap-1.5 w-full sm:w-auto bg-gradient-to-b...">
-
-// Til:
-<div className="flex flex-col gap-1.5 w-auto min-w-fit bg-gradient-to-b...">
+```text
+┌─────────────────────────────────────────────────────────┐
+│              Bonus Sync Flow                             │
+├─────────────────────────────────────────────────────────┤
+│  Mobil starter bonus:                                   │
+│  1. triggerBonus() → Gem til database                   │
+│  2. Database opdateres med expanding symbol             │
+│                                                         │
+│  Bruger skifter til PC:                                 │
+│  1. PC overtager session                                │
+│  2. Henter bonus-tilstand fra database                  │
+│  3. Fortsætter med samme expanding symbol               │
+│  4. Opdaterer database efter hvert free spin            │
+└─────────────────────────────────────────────────────────┘
 ```
 
-### Fil: `src/components/slots/SlotControlPanel.tsx`
+### 4. Ny Komponent: `SlotSessionGate`
 
-**Ændring (linje 62-174)**: Omstrukturér til grid-baseret 2-række layout på mobil
+UI-komponent der vises når anden enhed er aktiv:
 
-```tsx
-<div className="w-full flex flex-col items-center gap-3 sm:gap-4">
-  {/* Mobile: 2-row grid layout | Desktop: single row */}
-  <div className="grid grid-cols-[1fr_auto_1fr] sm:flex sm:flex-row items-center justify-center gap-3 sm:gap-4 w-full">
-    
-    {/* Left section on mobile (Vol, Bet, Pay) */}
-    <div className="flex items-center justify-end gap-2 sm:contents">
-      <VolumeControl ... />
-      <BetControls ... />  {/* På mobil: kompakt version */}
-      <PayTable ... />     {/* Kun på mobil i venstre */}
-    </div>
-
-    {/* Center: Spin Button */}
-    <Button ... />
-
-    {/* Right section on mobile (Autospin) */}
-    <div className="flex items-center justify-start sm:contents">
-      <AutospinRow ... />
-    </div>
-    
-    {/* Desktop only: PayTable rightmost */}
-    <div className="hidden sm:block">
-      <PayTable />
-    </div>
-  </div>
-</div>
+```text
+┌────────────────────────────────────────┐
+│      🎰 Aktiv på anden enhed           │
+│                                        │
+│  Du spiller allerede på:               │
+│  "Chrome på Windows"                   │
+│                                        │
+│  Sidst aktiv: for 5 sekunder siden     │
+│                                        │
+│  ┌────────────────────────────────┐    │
+│  │   🔄 Overtag her               │    │
+│  └────────────────────────────────┘    │
+│                                        │
+│  (Stopper spillet på den anden enhed)  │
+└────────────────────────────────────────┘
 ```
 
-**Desktop rækkefølge** (venstre til højre):
-Volume → Bet → Spin → Autospin → PayTable
+### 5. Integration i SlotGame
 
-**Mobil layout** (én horisontal linje med 3 sektioner):
-- Venstre: Volume, Bet (kompakt), PayTable
-- Midt: Spin-knap (centreret)
-- Højre: Autospin
+Opdater `SlotGame.tsx` til at bruge de nye hooks:
 
----
+```text
+SlotGame
+├── useSlotSession()      ← NY: Tjekker enhedslåsning
+├── useBonusGame()        ← OPDATERET: Database i stedet for localStorage  
+├── useSlotSpins()        ← Uændret
+└── useSlotSettings()     ← Uændret
+```
 
-## Forventet Resultat
+## Filer der skal oprettes
 
-| Platform | Layout |
-|----------|--------|
-| Desktop | Én horisontal række: Vol → Bet → Spin → Auto → Pay |
-| Mobil | Grid med 3 kolonner: [Vol+Bet+Pay] [SPIN] [Auto] |
+| Fil | Formål |
+|-----|--------|
+| `src/hooks/useSlotSession.ts` | Session-håndtering og heartbeat |
+| `src/components/slots/SlotSessionGate.tsx` | UI for "anden enhed aktiv" |
 
-BetControls vil have korrekt minimum bredde så +/- knapperne altid er indenfor den egyptiske boks.
+## Filer der skal opdateres
+
+| Fil | Ændringer |
+|-----|-----------|
+| `src/hooks/useBonusGame.ts` | Migrer fra localStorage til database |
+| `src/components/slots/SlotGame.tsx` | Integrer session-tjek |
+| `src/pages/SlotMachine.tsx` | Tilføj session gate wrapper |
+
+## Tekniske Detaljer
+
+### Session Timeout Logik
+
+- Heartbeat sendes hvert **10 sekunder**
+- Session betragtes som inaktiv efter **30 sekunder** uden heartbeat
+- Ved overtag: Gammel session markeres som ugyldig
+- Ny session registreres med frisk heartbeat
+
+### RLS Policies
+
+```sql
+-- slot_active_sessions
+CREATE POLICY "Users can manage own sessions"
+  ON slot_active_sessions
+  FOR ALL
+  USING (auth.uid() = user_id);
+
+-- slot_bonus_state  
+CREATE POLICY "Users can manage own bonus state"
+  ON slot_bonus_state
+  FOR ALL
+  USING (auth.uid() = user_id);
+```
+
+### Enhedsinfo Generering
+
+Bruger `navigator.userAgent` til at generere en brugervenlig enhedsbeskrivelse:
+- "Chrome på Windows"
+- "Safari på iPhone"
+- "Firefox på MacOS"
+
+## Fordele
+
+1. **Enkel-enhed sikkerhed**: Forhindrer misbrug via flere samtidige sessioner
+2. **Sømløs bonus-oplevelse**: Start på mobil, fortsæt på PC
+3. **Realtime synkronisering**: Bonus-tilstand opdateres øjeblikkeligt
+4. **Brugervenlig overtag**: Nem måde at skifte enhed på
+
+## Edge Cases Håndteret
+
+- Browser lukkes uden clean unmount → Heartbeat timeout
+- Internet forbindelse tabes → Heartbeat stopper, session frigives
+- Bruger logger ud → Session slettes
+- Multiple tabs på samme enhed → Deler sessionStorage ID
