@@ -1,27 +1,27 @@
 
-# Plan: Fjern mellemrum mellem header og titel
+# Plan: Flyt titel-billede tættere på top-navigation
 
 ## Problem
-Der er et stort mellemrum mellem navigationsheaderen og "Book of Fedesvin" titel-kunsten på intro-skærmen. Dette skyldes top-padding i containeren.
+Titel-billedet ("Book of Fedesvin") har for meget afstand til navigationsheaderen.
 
 ## Løsning
-Fjern top-padding fra `SlotIntroScreen`-komponenten så titel-billedet starter direkte under headeren.
+Tilføj negativ top-margin til titel-containeren for at flytte billedet tættere på navigationen.
 
 ## Ændring
 
-### Fil: `src/components/slots/SlotIntroScreen.tsx`
+### Fil: `src/pages/SlotMachine.tsx`
 
-**Linje 14 - Ændre container-styling:**
+**Linje 156 - Tilføj negativ margin til titel-containeren:**
 
 Før:
 ```tsx
-<div className="min-h-[calc(100vh-4rem)] relative flex flex-col items-center justify-start pt-4 sm:pt-6 px-4">
+<div className="flex justify-center">
 ```
 
 Efter:
 ```tsx
-<div className="min-h-[calc(100vh-4rem)] relative flex flex-col items-center justify-start pt-0 px-4">
+<div className="flex justify-center -mt-2 sm:-mt-4">
 ```
 
 ## Resultat
-Titel-kunsten vil nu vises direkte under headeren uden noget mellemrum.
+Titel-billedet vil nu vises tættere på navigationsheaderen uden unødvendigt mellemrum.
