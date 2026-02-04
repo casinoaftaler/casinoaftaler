@@ -399,3 +399,12 @@ All colors MUST be HSL.
       0 6px 20px rgba(0, 0, 0, 0.5);
   }
 }
+
+@keyframes line-blink {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.3;
+  }
+}
