@@ -152,23 +152,25 @@ export function SlotControlPanel({
           )}
         </Button>
 
-        {/* Right Panel: Volume + PayTable */}
+        {/* Right Panel: Volume + Autospin (swapped from PayTable) */}
         <div className="flex items-center gap-2 order-3 bg-gradient-to-b from-amber-950/90 via-amber-900/70 to-amber-950/90 backdrop-blur-sm border-2 border-amber-600/50 rounded-xl px-3 py-2 shadow-[inset_0_1px_0_rgba(251,191,36,0.3),0_4px_12px_rgba(0,0,0,0.4)]">
           <VolumeControl className="text-amber-400 hover:text-amber-300" />
           <div className="w-px h-6 bg-amber-600/40" />
-          <PayTable />
+          <AutospinRow
+            isAutoSpinning={isAutoSpinning}
+            autoSpinCount={autoSpinCount}
+            onAutoSpinCountChange={onAutoSpinCountChange}
+            onToggle={onAutoSpinToggle}
+            autoSpinsRemaining={autoSpinsRemaining}
+            disabled={!canSpinNow || showBonusTrigger}
+          />
         </div>
       </div>
 
-      {/* Autospin Row - below spin button */}
-      <AutospinRow
-        isAutoSpinning={isAutoSpinning}
-        autoSpinCount={autoSpinCount}
-        onAutoSpinCountChange={onAutoSpinCountChange}
-        onToggle={onAutoSpinToggle}
-        autoSpinsRemaining={autoSpinsRemaining}
-        disabled={!canSpinNow || showBonusTrigger}
-      />
+      {/* PayTable Row - dedicated row below controls (swapped from Autospin) */}
+      <div className="flex justify-center">
+        <PayTable />
+      </div>
     </div>
   );
 }
