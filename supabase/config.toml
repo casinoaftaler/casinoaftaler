@@ -26,3 +26,6 @@ verify_jwt = false
 
 [functions.cleanup-unused-images]
 verify_jwt = false
+
+[functions.elevenlabs-sfx]
+verify_jwt = false
