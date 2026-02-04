@@ -31,7 +31,7 @@ function LeaderboardRow({ entry, rank, period }: { entry: LeaderboardEntry; rank
         </AvatarFallback>
       </Avatar>
       <div className="flex-1 min-w-0">
-        <p className="font-medium truncate">{entry.display_name}</p>
+        <p className="font-medium truncate text-amber-100">{entry.display_name}</p>
         <p className="text-xs text-muted-foreground">{entry.total_spins} spins</p>
       </div>
       <div className="text-right">
@@ -49,16 +49,16 @@ export function SlotLeaderboard() {
   const { data: entries, isLoading } = useSlotLeaderboard(period);
 
   return (
-    <Card className="border-amber-500/20">
+    <Card className="border-amber-500/30 bg-gradient-to-b from-amber-950/95 via-black/90 to-amber-950/95 backdrop-blur-sm">
       <CardHeader className="pb-2">
-        <CardTitle className="flex items-center gap-2 text-lg">
+        <CardTitle className="flex items-center gap-2 text-lg text-amber-100">
           <Trophy className="h-5 w-5 text-amber-500" />
           Rangliste
         </CardTitle>
       </CardHeader>
       <CardContent>
         <Tabs value={period} onValueChange={(v) => setPeriod(v as typeof period)}>
-          <TabsList className="grid w-full grid-cols-3 mb-4">
+          <TabsList className="grid w-full grid-cols-3 mb-4 bg-amber-950/50">
             <TabsTrigger value="daily">I dag</TabsTrigger>
             <TabsTrigger value="weekly">Uge</TabsTrigger>
             <TabsTrigger value="alltime">Alt</TabsTrigger>
@@ -83,10 +83,10 @@ export function SlotLeaderboard() {
                 ))}
               </div>
             ) : (
-              <div className="text-center py-8 text-muted-foreground">
-                <Trophy className="h-10 w-10 mx-auto mb-2 opacity-50" />
-                <p>Ingen gevinster endnu</p>
-                <p className="text-sm">Vær den første på ranglisten!</p>
+              <div className="text-center py-8">
+                <Trophy className="h-10 w-10 mx-auto mb-2 opacity-50 text-amber-500/50" />
+                <p className="text-amber-100/80">Ingen gevinster endnu</p>
+                <p className="text-sm text-amber-100/60">Vær den første på ranglisten!</p>
               </div>
             )}
           </TabsContent>
