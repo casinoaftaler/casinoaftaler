@@ -9,18 +9,18 @@ interface WinLinesProps {
   isVisible: boolean;
 }
 
-// Colors for each pay line (10 lines)
+// Egyptian gold/amber colors for each pay line (10 lines)
 const LINE_COLORS = [
-  "#FFD700", // Line 1 (middle) - Gold
-  "#FF4444", // Line 2 (top) - Red
-  "#44FF44", // Line 3 (bottom) - Green
-  "#4444FF", // Line 4 (V shape) - Blue
-  "#FF8800", // Line 5 (inverted V) - Orange
-  "#FF44FF", // Line 6 - Magenta
-  "#44FFFF", // Line 7 - Cyan
-  "#FFFF44", // Line 8 - Yellow
-  "#FF6B6B", // Line 9 - Coral
-  "#6B6BFF", // Line 10 - Light Blue
+  "#FFD700", // Line 1 - Bright Gold
+  "#FFC107", // Line 2 - Amber
+  "#F59E0B", // Line 3 - Orange Gold
+  "#D97706", // Line 4 - Dark Amber
+  "#FBBF24", // Line 5 - Yellow Gold
+  "#EAB308", // Line 6 - Golden Yellow
+  "#CA8A04", // Line 7 - Bronze Gold
+  "#FFB300", // Line 8 - Warm Gold
+  "#FF8F00", // Line 9 - Deep Amber
+  "#FFA000", // Line 10 - Rich Amber
 ];
 
 export function WinLines({ wins, symbolSize, gap, isVisible }: WinLinesProps) {
@@ -129,8 +129,8 @@ export function WinLines({ wins, symbolSize, gap, isVisible }: WinLinesProps) {
 
           if (!path) return null;
 
-          return (
-            <g key={win.lineIndex}>
+            return (
+            <g key={win.lineIndex} className={isLineVisible ? "animate-line-blink" : ""}>
               {/* Background glow line */}
               <path
                 d={path}
@@ -142,7 +142,7 @@ export function WinLines({ wins, symbolSize, gap, isVisible }: WinLinesProps) {
                 filter={`url(#glow-${win.lineIndex})`}
                 className={cn(
                   "transition-all duration-500",
-                  isLineVisible ? "opacity-50" : "opacity-0"
+                  isLineVisible ? "opacity-60" : "opacity-0"
                 )}
                 style={{
                   strokeDasharray: 1000,
@@ -151,7 +151,7 @@ export function WinLines({ wins, symbolSize, gap, isVisible }: WinLinesProps) {
                 }}
               />
               
-              {/* Main line */}
+              {/* Main line with blinking effect */}
               <path
                 d={path}
                 fill="none"
@@ -167,19 +167,22 @@ export function WinLines({ wins, symbolSize, gap, isVisible }: WinLinesProps) {
                   strokeDasharray: 1000,
                   strokeDashoffset: isLineVisible ? 0 : 1000,
                   transition: "stroke-dashoffset 0.5s ease-out, opacity 0.3s ease-out",
+                  animation: isLineVisible ? "line-blink 0.5s ease-in-out infinite" : "none",
                 }}
               />
 
-              {/* Pulsing animation overlay */}
+              {/* Inner bright core line */}
               {isLineVisible && (
                 <path
                   d={path}
                   fill="none"
-                  stroke="white"
+                  stroke="#FFFACD"
                   strokeWidth={2}
                   strokeLinecap="round"
                   strokeLinejoin="round"
-                  className="animate-pulse opacity-60"
+                  style={{
+                    animation: "line-blink 0.5s ease-in-out infinite",
+                  }}
                 />
               )}
 
