@@ -48,6 +48,8 @@ interface PersistedAudioSettings {
 
 // Default bundled background music
 const DEFAULT_BACKGROUND_MUSIC = '/sounds/egyptianmusic.mp3';
+// Default bundled spin start sound
+const DEFAULT_SPIN_SOUND = '/sounds/spin-start.mp3';
 
 class SlotSoundEffects {
   private audioContext: AudioContext | null = null;
@@ -704,58 +706,19 @@ class SlotSoundEffects {
     }
   }
 
-  // Egyptian-themed spinning reel sound - mystical whoosh with ancient percussion
+  // Spin start sound effect
   playSpinStart() {
     if (!this.canPlayEffect()) return;
     
-    // Try custom spin sound first
+    // Try custom spin sound first (from admin upload)
     if (this.playCustomSound('spinSound')) return;
     
-    const ctx = this.getContext();
-    const now = ctx.currentTime;
-
-    // Mystical whoosh sweep
-    const sweep = ctx.createOscillator();
-    const sweepGain = ctx.createGain();
-    const sweepFilter = ctx.createBiquadFilter();
-    
-    sweep.connect(sweepFilter);
-    sweepFilter.connect(sweepGain);
-    sweepGain.connect(ctx.destination);
-    
-    sweep.frequency.setValueAtTime(100, now);
-    sweep.frequency.exponentialRampToValueAtTime(600, now + 0.3);
-    sweep.type = 'sawtooth';
-    
-    sweepFilter.type = 'lowpass';
-    sweepFilter.frequency.setValueAtTime(300, now);
-    sweepFilter.frequency.exponentialRampToValueAtTime(1500, now + 0.3);
-    
-    sweepGain.gain.setValueAtTime(0.15 * this.volume, now);
-    sweepGain.gain.exponentialRampToValueAtTime(0.001, now + 0.4);
-    
-    sweep.start(now);
-    sweep.stop(now + 0.4);
-
-    // Ancient drum hits (like a sistrum or frame drum)
-    for (let i = 0; i < 6; i++) {
-      const drum = ctx.createOscillator();
-      const drumGain = ctx.createGain();
-      
-      drum.connect(drumGain);
-      drumGain.connect(ctx.destination);
-      
-      const hitTime = now + i * 0.06;
-      drum.frequency.setValueAtTime(180 - i * 10, hitTime);
-      drum.frequency.exponentialRampToValueAtTime(60, hitTime + 0.05);
-      drum.type = 'sine';
-      
-      drumGain.gain.setValueAtTime(0.12 * this.volume, hitTime);
-      drumGain.gain.exponentialRampToValueAtTime(0.001, hitTime + 0.08);
-      
-      drum.start(hitTime);
-      drum.stop(hitTime + 0.08);
-    }
+    // Play default bundled spin sound
+    const audio = new Audio(DEFAULT_SPIN_SOUND);
+    audio.volume = this.volume;
+    audio.play().catch(() => {
+      // Ignore autoplay errors
+    });
   }
 
   // Reel spinning loop - Book of Dead style mechanical clicking
