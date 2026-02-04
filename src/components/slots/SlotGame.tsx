@@ -545,17 +545,6 @@ export function SlotGame() {
         }}
       />
 
-      {/* Bonus Status Bar - positioned above the frame */}
-      <div className="max-w-fit mx-auto mb-1 sm:mb-2">
-        <BonusStatusBar
-          isActive={bonusState.isActive}
-          freeSpinsRemaining={bonusState.freeSpinsRemaining}
-          totalFreeSpins={bonusState.totalFreeSpins}
-          expandingSymbol={bonusState.expandingSymbol}
-          bonusWinnings={bonusState.bonusWinnings}
-        />
-      </div>
-
       <div className="max-w-fit mx-auto">
         <div className="p-1 xs:p-2 sm:p-3 md:p-4 space-y-1 sm:space-y-2">
           {/* Slot machine reels with Egyptian frame */}
@@ -835,8 +824,18 @@ export function SlotGame() {
               </div>
             </SlotMachineFrame>
           </div>
-          {/* Control Panel with integrated Small Win Bar - responsive positioning */}
+          {/* Bonus Status Bar + Control Panel - responsive positioning */}
           <div className="mt-2 sm:-mt-12 md:-mt-16 lg:-mt-[200px]">
+            {/* Bonus Status Bar - positioned just above controls */}
+            <div className="max-w-fit mx-auto mb-1 sm:mb-2">
+              <BonusStatusBar
+                isActive={bonusState.isActive}
+                freeSpinsRemaining={bonusState.freeSpinsRemaining}
+                totalFreeSpins={bonusState.totalFreeSpins}
+                expandingSymbol={bonusState.expandingSymbol}
+                bonusWinnings={bonusState.bonusWinnings}
+              />
+            </div>
             <SlotControlPanel
               bet={bet}
               onBetChange={setBet}
