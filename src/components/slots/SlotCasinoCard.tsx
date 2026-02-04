@@ -2,6 +2,7 @@ import { Star, Gift } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { getAffiliateRedirect } from "@/lib/affiliateRedirect";
 import { useAuth } from "@/hooks/useAuth";
+import { CasinoCardDisclaimer } from "@/components/CasinoCardDisclaimer";
 import type { Casino } from "@/hooks/useCasinos";
 
 interface SlotCasinoCardProps {
@@ -90,6 +91,9 @@ export function SlotCasinoCard({ casino, backgroundImage }: SlotCasinoCardProps)
           <Gift className="h-4 w-4 mr-2" />
           HENT BONUS
         </Button>
+
+        {/* Legal Disclaimer */}
+        <CasinoCardDisclaimer />
       </div>
     </div>
   );
