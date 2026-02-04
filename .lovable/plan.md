@@ -1,73 +1,27 @@
 
-# Plan: Ændre kontrolpanel-layout
+# Plan: Fjern mellemrum mellem header og titel
 
-## Oversigt
-Denne ændring vil omorganisere kontrolpanelet til én enkelt horisontal række med følgende rækkefølge:
+## Problem
+Der er et stort mellemrum mellem navigationsheaderen og "Book of Fedesvin" titel-kunsten på intro-skærmen. Dette skyldes top-padding i containeren.
 
-**Volume → Bet → Win Box → Spin → Autospin → Gevinsttabel**
+## Løsning
+Fjern top-padding fra `SlotIntroScreen`-komponenten så titel-billedet starter direkte under headeren.
 
-## Nuværende layout
-```text
-┌─────────────────────────────────────────────────┐
-│             [ Small Win Bar ]                   │  ← Separat række
-├─────────────────────────────────────────────────┤
-│ Volume | Bet | [SPIN] | Autospin | PayTable     │  ← Horisontal række
-└─────────────────────────────────────────────────┘
-```
+## Ændring
 
-## Nyt layout
-```text
-┌──────────────────────────────────────────────────────────────┐
-│ Volume | Bet | Win Box | [SPIN] | Autospin | Gevinsttabel    │
-└──────────────────────────────────────────────────────────────┘
-```
+### Fil: `src/components/slots/SlotIntroScreen.tsx`
 
-## Ændringer
+**Linje 14 - Ændre container-styling:**
 
-### Fil: `src/components/slots/SlotControlPanel.tsx`
-
-1. **Fjern separat SmallWinBar-række** (linje 66-67)
-   - Fjern den separate `<SmallWinBar amount={winAmount} />` linje over kontrolrækken
-
-2. **Indsæt SmallWinBar i den horisontale række**
-   - Placer SmallWinBar mellem BetControls og Spin-knappen
-   - Tilføj `flex-shrink-0` for at bevare størrelsen
-
-3. **Opdater container-strukturen**
-   - Ændre fra to-række layout til én enkelt horisontal række
-   - Fjern den ydre flex-col container da den ikke længere er nødvendig
-
-### Tekniske detaljer
-
-**Før:**
+Før:
 ```tsx
-<div className="w-full flex flex-col items-center gap-2 sm:gap-3">
-  <SmallWinBar amount={winAmount} />
-  
-  <div className="flex flex-row items-center justify-center gap-2 sm:gap-4 ...">
-    <VolumeControl />
-    <BetControls />
-    <Button>SPIN</Button>
-    <AutospinRow />
-    <PayTable />
-  </div>
-</div>
+<div className="min-h-[calc(100vh-4rem)] relative flex flex-col items-center justify-start pt-4 sm:pt-6 px-4">
 ```
 
-**Efter:**
+Efter:
 ```tsx
-<div className="w-full flex flex-row items-center justify-center gap-2 sm:gap-4 flex-wrap sm:flex-nowrap">
-  <VolumeControl />
-  <BetControls />
-  <SmallWinBar amount={winAmount} />
-  <Button>SPIN</Button>
-  <AutospinRow />
-  <PayTable />
-</div>
+<div className="min-h-[calc(100vh-4rem)] relative flex flex-col items-center justify-start pt-0 px-4">
 ```
 
-## Fordele
-- Mere kompakt layout med alle elementer på én linje
-- Win Box er synligt placeret ved siden af Spin-knappen
-- Naturlig visuel flow fra venstre mod højre
-- Bedre udnyttelse af horisontal plads på desktop
+## Resultat
+Titel-kunsten vil nu vises direkte under headeren uden noget mellemrum.
