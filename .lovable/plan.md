@@ -1,70 +1,82 @@
 
-# Plan: Fix Leaderboard Visibility and Control Bar Centering
+# Plan: Add Toggle Button for Desktop Leaderboard
 
-## Problem 1: Leaderboard Names Not Visible
-The leaderboard uses theme-dependent colors and Card component which have light backgrounds in light mode. Since the slot machine page uses a dark Egyptian theme, the leaderboard card looks washed out and text is hard to read.
-
-## Problem 2: Control Bar Off-Center
-The three control elements (BetControls, Spin Button, Volume+Autospin) are in a flex row with `justify-center`, but the left and right panels have different widths. This causes the spin button to not be perfectly centered visually.
+## Overview
+Replace the always-visible desktop leaderboard with a toggle button that shows/hides it, matching the mobile experience but with desktop-appropriate positioning.
 
 ---
 
-## Solution 1: Fix Leaderboard for Dark Theme
+## Technical Details
 
-### File: `src/components/slots/SlotLeaderboard.tsx`
+### File: `src/pages/SlotMachine.tsx`
 
-Apply a dark Egyptian theme to match the slot machine:
+#### Change 1: Remove the always-visible desktop leaderboard (lines 146-149)
+Delete the unconditional desktop leaderboard that's always shown on xl screens.
 
-1. **Card styling (line 52)**: Add dark background with amber border
-   - Current: `className="border-amber-500/20"`
-   - Updated: `className="border-amber-500/30 bg-gradient-to-b from-amber-950/95 via-black/90 to-amber-950/95 backdrop-blur-sm"`
+#### Change 2: Update the Collapsible to work on all screen sizes (lines 155-181)
+Remove the `xl:hidden` class so the toggle button and collapsible leaderboard work on all screen sizes.
 
-2. **CardTitle styling (line 54)**: Ensure light text
-   - Current: `className="flex items-center gap-2 text-lg"`
-   - Updated: `className="flex items-center gap-2 text-lg text-amber-100"`
+#### Change 3: Add desktop-specific toggle button positioning
+On desktop (xl), position the toggle button and leaderboard to the left of the slot machine using absolute positioning. On mobile/tablet, keep it below the slot machine.
 
-3. **TabsList styling (line 61)**: Dark background for tabs
-   - Current: `className="grid w-full grid-cols-3 mb-4"`
-   - Updated: `className="grid w-full grid-cols-3 mb-4 bg-amber-950/50"`
+**Updated structure:**
 
-4. **Display name styling (line 34)**: Make names visible with light color
-   - Current: `<p className="font-medium truncate">`
-   - Updated: `<p className="font-medium truncate text-amber-100">`
-
-5. **Empty state text (lines 88-89)**: Light text for empty state
-   - Current: `<p>Ingen gevinster endnu</p>`
-   - Updated: `<p className="text-amber-100/80">Ingen gevinster endnu</p>`
-   - And update the smaller text similarly
-
----
-
-## Solution 2: Center the Control Bar
-
-### File: `src/components/slots/SlotControlPanel.tsx`
-
-Force equal widths on left and right panels to ensure the spin button is truly centered:
-
-1. **Left Panel (line 66)**: Add fixed width
-   - Current: `<div className="order-1 sm:order-1">`
-   - Updated: `<div className="order-1 sm:order-1 sm:w-40 md:w-44 lg:w-48">`
-
-2. **Right Panel (line 156)**: Add matching fixed width
-   - Current: `<div className="flex items-center gap-2 order-3 bg-gradient-to-b...`
-   - Updated: `<div className="flex items-center gap-2 order-3 sm:w-40 md:w-44 lg:w-48 justify-center bg-gradient-to-b...`
-
-This ensures both side panels have equal width, keeping the spin button perfectly centered.
+```tsx
+{/* Main content: Slot machine centered */}
+<div className="flex justify-center">
+  <div className="relative">
+    {/* Desktop: Leaderboard positioned to the left - conditionally shown */}
+    <div className="hidden xl:block absolute right-full mr-4 top-0 w-64">
+      {/* Toggle button */}
+      <Button
+        variant="ghost"
+        onClick={toggleLeaderboard}
+        className="w-full flex items-center justify-center gap-2 py-3 mb-2 bg-amber-500/10 hover:bg-amber-500/20 border border-amber-500/30 rounded-lg text-amber-500"
+      >
+        <Trophy className="h-4 w-4" />
+        <span>{showLeaderboard ? "Skjul rangliste" : "Vis rangliste"}</span>
+        {showLeaderboard ? <ChevronUp /> : <ChevronDown />}
+      </Button>
+      
+      {/* Conditionally render leaderboard */}
+      {showLeaderboard && (
+        <div className="max-h-[calc(100vh-14rem)] overflow-y-auto">
+          <SlotLeaderboard />
+        </div>
+      )}
+    </div>
+    
+    {/* Slot machine */}
+    <div className="flex flex-col items-center gap-1">
+      <SlotGame />
+      
+      {/* Mobile/Tablet: Collapsible Leaderboard (below slot) */}
+      <Collapsible 
+        open={showLeaderboard} 
+        onOpenChange={setShowLeaderboard}
+        className="w-full max-w-sm xl:hidden"
+      >
+        {/* ... existing mobile collapsible content ... */}
+      </Collapsible>
+    </div>
+  </div>
+</div>
+```
 
 ---
 
 ## Summary
 
-| Component | Issue | Fix |
-|-----------|-------|-----|
-| SlotLeaderboard | Light card/text on dark background | Apply dark Egyptian theme with amber accents |
-| SlotControlPanel | Spin button off-center | Equal fixed widths on left/right panels |
+| Aspect | Before | After |
+|--------|--------|-------|
+| Desktop (xl) | Always visible leaderboard | Toggle button + conditional leaderboard |
+| Mobile/Tablet | Collapsible toggle below slot | No change |
+| State persistence | localStorage | No change (uses existing state) |
 
 ---
 
 ## Expected Result
-- Leaderboard will have a dark Egyptian-themed appearance with clearly visible amber/gold text
-- Control bar will have the spin button perfectly centered between equally-sized side panels
+- Desktop users will see a "Vis rangliste" / "Skjul rangliste" button to the left of the slot machine
+- Clicking the button toggles the leaderboard visibility
+- State is persisted across page refreshes via localStorage (already implemented)
+- Mobile/tablet experience remains unchanged
