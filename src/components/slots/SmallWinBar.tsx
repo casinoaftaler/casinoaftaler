@@ -18,15 +18,22 @@ export function SmallWinBar({ amount }: SmallWinBarProps) {
   return (
     <div 
       className={cn(
-        "flex items-center justify-center gap-2 px-4 py-1.5 rounded-lg",
-        "bg-gradient-to-r from-amber-900/60 to-amber-950/70",
-        "border border-amber-500/40",
-        "shadow-[0_0_15px_rgba(251,191,36,0.2)]",
-        "backdrop-blur-sm"
+        "flex items-center justify-center gap-2 px-5 py-2 rounded-xl",
+        "bg-gradient-to-b from-amber-950/90 via-amber-900/70 to-amber-950/90",
+        "border-2 border-amber-600/50",
+        "shadow-[inset_0_1px_0_rgba(251,191,36,0.3),0_0_20px_rgba(251,191,36,0.3),0_4px_12px_rgba(0,0,0,0.4)]",
+        "backdrop-blur-sm",
+        // Glow effect when there's a win
+        amount > 0 && "shadow-[inset_0_1px_0_rgba(251,191,36,0.4),0_0_30px_rgba(251,191,36,0.5),0_4px_12px_rgba(0,0,0,0.4)]"
       )}
     >
-      <Coins className="h-4 w-4 text-amber-500" />
-      <span className="font-bold text-base text-amber-500 tabular-nums">
+      <Coins className="h-4 w-4 text-amber-400 drop-shadow-[0_0_4px_rgba(251,191,36,0.5)]" />
+      <span className={cn(
+        "font-bold text-base tabular-nums",
+        amount > 0 
+          ? "text-amber-300 drop-shadow-[0_0_8px_rgba(251,191,36,0.6)]" 
+          : "text-amber-500/70"
+      )}>
         {displayAmount}
       </span>
     </div>
