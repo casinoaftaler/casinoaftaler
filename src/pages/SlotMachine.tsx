@@ -192,7 +192,7 @@ export default function SlotMachine() {
             </div>
             
             {/* Slot machine - the true center piece */}
-            <div className="flex flex-col items-center gap-1">
+            <div className="flex flex-col items-center gap-1" style={{ marginTop: '-5px' }}>
               <SlotGame />
               
               {/* Mobile/Tablet: Collapsible Leaderboard */}
