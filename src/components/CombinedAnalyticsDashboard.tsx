@@ -111,14 +111,14 @@ export function CombinedAnalyticsDashboard() {
       if (countError) throw countError;
 
       // Fetch all data using pagination (1000 rows per page)
-      const allData: { id: string; path: string; created_at: string }[] = [];
+      const allData: { id: string; path: string; created_at: string; visitor_id: string | null; user_id: string | null }[] = [];
       const pageSize = 1000;
       const totalPages = Math.ceil((totalCount || 0) / pageSize);
 
       for (let page = 0; page < totalPages; page++) {
         const { data, error } = await supabase
           .from("page_views")
-          .select("id, path, created_at")
+          .select("id, path, created_at, visitor_id, user_id")
           .gte("created_at", start.toISOString())
           .order("created_at", { ascending: true })
           .range(page * pageSize, (page + 1) * pageSize - 1);
@@ -147,8 +147,9 @@ export function CombinedAnalyticsDashboard() {
         groupedData[key] = { visitors: new Set(), pageViews: 0 };
       }
       
-      // Use a simple hash of path + hour as visitor approximation
-      const visitorKey = `${view.path}-${date.getHours()}`;
+      // Use actual visitor_id for unique visitor tracking
+      // Fall back to path+hour hash for old data without visitor_id
+      const visitorKey = view.visitor_id || `legacy_${view.path}-${date.getHours()}`;
       groupedData[key].visitors.add(visitorKey);
       groupedData[key].pageViews++;
     });
@@ -221,26 +222,36 @@ export function CombinedAnalyticsDashboard() {
   });
 
   const pageStats = useMemo(() => {
-    if (!analyticsData || analyticsData.length === 0) {
+    if (!pageViewsData || pageViewsData.length === 0) {
       return {
-        totalVisitors: 0,
+        uniqueVisitors: 0,
         totalPageViews: 0,
-        avgVisitorsPerDay: 0,
+        loggedInViews: 0,
         trend: 0,
       };
     }
 
-    const totalVisitors = analyticsData.reduce((sum, d) => sum + d.visitors, 0);
-    const totalPageViews = analyticsData.reduce((sum, d) => sum + d.pageViews, 0);
-    const avgVisitorsPerDay = Math.round(totalVisitors / analyticsData.length);
+    // Calculate true unique visitors using visitor_id
+    const uniqueVisitorIds = new Set(
+      pageViewsData
+        .filter(v => v.visitor_id)
+        .map(v => v.visitor_id)
+    );
+    const uniqueVisitors = uniqueVisitorIds.size;
+
+    const totalPageViews = pageViewsData.length;
     
+    // Count page views from logged-in users
+    const loggedInViews = pageViewsData.filter(v => v.user_id).length;
+    
+    // Calculate trend based on chart data
     const midpoint = Math.floor(analyticsData.length / 2);
     const firstHalf = analyticsData.slice(0, midpoint).reduce((sum, d) => sum + d.visitors, 0);
     const secondHalf = analyticsData.slice(midpoint).reduce((sum, d) => sum + d.visitors, 0);
     const trend = firstHalf > 0 ? Math.round(((secondHalf - firstHalf) / firstHalf) * 100) : 0;
 
-    return { totalVisitors, totalPageViews, avgVisitorsPerDay, trend };
-  }, [analyticsData]);
+    return { uniqueVisitors, totalPageViews, loggedInViews, trend };
+  }, [pageViewsData, analyticsData]);
 
   const clickStats = useMemo(() => {
     if (!clickEvents || clickEvents.length === 0) {
@@ -369,9 +380,9 @@ export function CombinedAnalyticsDashboard() {
                         <CardContent className="pt-4">
                           <div className="flex items-center gap-2 text-muted-foreground mb-1">
                             <Users className="h-4 w-4" />
-                            <span className="text-xs">Besøgende</span>
+                            <span className="text-xs">Unikke Besøgende</span>
                           </div>
-                          <p className="text-2xl font-bold">{pageStats.totalVisitors.toLocaleString()}</p>
+                          <p className="text-2xl font-bold">{pageStats.uniqueVisitors.toLocaleString()}</p>
                         </CardContent>
                       </Card>
                       <Card>
@@ -386,10 +397,10 @@ export function CombinedAnalyticsDashboard() {
                       <Card>
                         <CardContent className="pt-4">
                           <div className="flex items-center gap-2 text-muted-foreground mb-1">
-                            <BarChart3 className="h-4 w-4" />
-                            <span className="text-xs">Gns. Per Dag</span>
+                            <Users className="h-4 w-4" />
+                            <span className="text-xs">Loggede Brugere</span>
                           </div>
-                          <p className="text-2xl font-bold">{pageStats.avgVisitorsPerDay.toLocaleString()}</p>
+                          <p className="text-2xl font-bold">{pageStats.loggedInViews.toLocaleString()}</p>
                         </CardContent>
                       </Card>
                       <Card>
