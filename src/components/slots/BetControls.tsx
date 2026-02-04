@@ -25,7 +25,7 @@ export function BetControls({
   spinsLoading = false,
 }: BetControlsProps) {
   return (
-    <div className="flex flex-col gap-1.5 bg-gradient-to-b from-amber-950/90 via-amber-900/70 to-amber-950/90 backdrop-blur-sm border-2 border-amber-600/50 rounded-xl px-3 py-2 sm:px-4 sm:py-3 shadow-[inset_0_1px_0_rgba(251,191,36,0.3),0_4px_12px_rgba(0,0,0,0.4)]">
+    <div className="flex flex-col gap-1.5 w-full bg-gradient-to-b from-amber-950/90 via-amber-900/70 to-amber-950/90 backdrop-blur-sm border-2 border-amber-600/50 rounded-xl px-3 py-2 sm:px-4 sm:py-3 shadow-[inset_0_1px_0_rgba(251,191,36,0.3),0_4px_12px_rgba(0,0,0,0.4)]">
       {/* Bet controls row */}
       <div className="flex items-center gap-2 sm:gap-3">
         <span className="text-xs sm:text-sm font-semibold text-amber-400 uppercase tracking-wider drop-shadow-[0_0_4px_rgba(251,191,36,0.5)]">

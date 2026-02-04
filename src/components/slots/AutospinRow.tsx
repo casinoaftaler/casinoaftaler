@@ -30,7 +30,7 @@ export function AutospinRow({
   const counts: AutoSpinCount[] = [10, 25, 50, 100, "infinite"];
 
   return (
-    <div className="flex items-center justify-center gap-2">
+    <div className="flex items-center justify-center gap-1 sm:gap-2 flex-wrap">
       {/* Autospin count selector - only show when not spinning */}
       {!isAutoSpinning && (
         <DropdownMenu>
