@@ -2176,178 +2176,159 @@ class SlotSoundEffects {
     };
   }
 
-  // Progressive scatter land sound - builds tension as more scatters land
+  // Progressive scatter land sound - cat meow sounds that build in intensity
   playScatterLand(scatterNumber: number) {
     if (!this.canPlayEffect()) return;
     const ctx = this.getContext();
     const now = ctx.currentTime;
     
-    // Refined progressive settings - more dramatic progression
-    // 1st scatter: Subtle mystical chime (0.4s)
-    // 2nd scatter: Rising tension with shimmer (0.5s)
-    // 3rd scatter: Powerful pre-bonus burst (0.7s)
+    // Progressive cat sound settings
+    // 1st scatter: Soft curious meow
+    // 2nd scatter: Louder, more excited meow
+    // 3rd scatter: Powerful triumphant meow/yowl
     
-    const baseFreq = 520 + (scatterNumber - 1) * 180; // 520Hz → 700Hz → 880Hz (higher, clearer)
-    const duration = 0.4 + (scatterNumber - 1) * 0.15; // 0.4s → 0.55s → 0.7s
-    const volume = 0.18 + (scatterNumber - 1) * 0.1; // 0.18 → 0.28 → 0.38 (clearer progression)
+    const basePitch = 300 + (scatterNumber - 1) * 100; // 300Hz → 400Hz → 500Hz
+    const duration = 0.3 + (scatterNumber - 1) * 0.15; // 0.3s → 0.45s → 0.6s
+    const volume = 0.25 + (scatterNumber - 1) * 0.12; // 0.25 → 0.37 → 0.49
     
-    // Primary golden bell tone
-    const primary = ctx.createOscillator();
-    const primaryGain = ctx.createGain();
-    const primaryFilter = ctx.createBiquadFilter();
+    // Main meow formant - vocal tract simulation
+    const meow1 = ctx.createOscillator();
+    const meow1Gain = ctx.createGain();
+    const meow1Filter = ctx.createBiquadFilter();
     
-    primary.connect(primaryFilter);
-    primaryFilter.connect(primaryGain);
-    primaryGain.connect(ctx.destination);
+    meow1.connect(meow1Filter);
+    meow1Filter.connect(meow1Gain);
+    meow1Gain.connect(ctx.destination);
     
-    // More musical pitch bend - rises then settles
-    primary.frequency.setValueAtTime(baseFreq * 0.9, now);
-    primary.frequency.exponentialRampToValueAtTime(baseFreq * 1.3, now + duration * 0.25);
-    primary.frequency.exponentialRampToValueAtTime(baseFreq, now + duration * 0.7);
-    primary.type = 'sine'; // Cleaner sine for bell-like quality
+    // Cat meow pitch contour - rises then falls (characteristic "mee-ow")
+    meow1.frequency.setValueAtTime(basePitch * 0.8, now);
+    meow1.frequency.exponentialRampToValueAtTime(basePitch * 1.5, now + duration * 0.3);
+    meow1.frequency.exponentialRampToValueAtTime(basePitch * 0.6, now + duration * 0.9);
+    meow1.type = 'sawtooth'; // Rich harmonics for vocal quality
     
-    primaryFilter.type = 'bandpass';
-    primaryFilter.frequency.value = baseFreq * 1.8;
-    primaryFilter.Q.value = 1.5;
+    // Formant filter for "ee" to "ow" transition
+    meow1Filter.type = 'bandpass';
+    meow1Filter.frequency.setValueAtTime(800, now);
+    meow1Filter.frequency.exponentialRampToValueAtTime(400, now + duration * 0.7);
+    meow1Filter.Q.value = 2 + scatterNumber; // Sharper resonance for later scatters
     
-    primaryGain.gain.setValueAtTime(0, now);
-    primaryGain.gain.linearRampToValueAtTime(volume * this.volume, now + 0.02);
-    primaryGain.gain.setValueAtTime(volume * this.volume, now + duration * 0.3);
-    primaryGain.gain.exponentialRampToValueAtTime(0.001, now + duration);
+    // Volume envelope - attack, sustain, decay
+    meow1Gain.gain.setValueAtTime(0, now);
+    meow1Gain.gain.linearRampToValueAtTime(volume * this.volume, now + 0.03);
+    meow1Gain.gain.setValueAtTime(volume * this.volume * 0.8, now + duration * 0.4);
+    meow1Gain.gain.exponentialRampToValueAtTime(0.001, now + duration);
     
-    primary.start(now);
-    primary.stop(now + duration + 0.1);
+    meow1.start(now);
+    meow1.stop(now + duration + 0.1);
     
-    // Warm harmonic overtone
-    const harmonic = ctx.createOscillator();
-    const harmonicGain = ctx.createGain();
+    // Second formant for richer meow sound
+    const meow2 = ctx.createOscillator();
+    const meow2Gain = ctx.createGain();
+    const meow2Filter = ctx.createBiquadFilter();
     
-    harmonic.connect(harmonicGain);
-    harmonicGain.connect(ctx.destination);
+    meow2.connect(meow2Filter);
+    meow2Filter.connect(meow2Gain);
+    meow2Gain.connect(ctx.destination);
     
-    harmonic.frequency.value = baseFreq * 2.5; // Higher harmonic for shimmer
-    harmonic.type = 'sine';
+    meow2.frequency.setValueAtTime(basePitch * 1.6, now);
+    meow2.frequency.exponentialRampToValueAtTime(basePitch * 2.4, now + duration * 0.25);
+    meow2.frequency.exponentialRampToValueAtTime(basePitch * 1.2, now + duration * 0.85);
+    meow2.type = 'triangle';
     
-    harmonicGain.gain.setValueAtTime(0, now);
-    harmonicGain.gain.linearRampToValueAtTime(volume * 0.25 * this.volume, now + 0.03);
-    harmonicGain.gain.exponentialRampToValueAtTime(0.001, now + duration * 0.6);
+    meow2Filter.type = 'bandpass';
+    meow2Filter.frequency.setValueAtTime(1200, now);
+    meow2Filter.frequency.exponentialRampToValueAtTime(600, now + duration * 0.6);
+    meow2Filter.Q.value = 3;
     
-    harmonic.start(now);
-    harmonic.stop(now + duration);
+    meow2Gain.gain.setValueAtTime(0, now);
+    meow2Gain.gain.linearRampToValueAtTime(volume * 0.4 * this.volume, now + 0.04);
+    meow2Gain.gain.exponentialRampToValueAtTime(0.001, now + duration * 0.8);
     
-    // Sub-bass resonance for weight
-    const subBass = ctx.createOscillator();
-    const subGain = ctx.createGain();
-    const subFilter = ctx.createBiquadFilter();
+    meow2.start(now);
+    meow2.stop(now + duration);
     
-    subBass.connect(subFilter);
-    subFilter.connect(subGain);
-    subGain.connect(ctx.destination);
+    // Nasal resonance (cats have a nasal quality)
+    const nasal = ctx.createOscillator();
+    const nasalGain = ctx.createGain();
+    const nasalFilter = ctx.createBiquadFilter();
     
-    subBass.frequency.value = baseFreq / 4; // Low resonance
-    subBass.type = 'sine';
+    nasal.connect(nasalFilter);
+    nasalFilter.connect(nasalGain);
+    nasalGain.connect(ctx.destination);
     
-    subFilter.type = 'lowpass';
-    subFilter.frequency.value = 200;
+    nasal.frequency.setValueAtTime(basePitch * 3, now);
+    nasal.frequency.exponentialRampToValueAtTime(basePitch * 2, now + duration * 0.5);
+    nasal.type = 'sine';
     
-    const subVol = 0.12 + (scatterNumber - 1) * 0.06;
-    subGain.gain.setValueAtTime(subVol * this.volume, now);
-    subGain.gain.exponentialRampToValueAtTime(0.001, now + duration * 0.8);
+    nasalFilter.type = 'bandpass';
+    nasalFilter.frequency.value = 2500;
+    nasalFilter.Q.value = 5;
     
-    subBass.start(now);
-    subBass.stop(now + duration);
+    nasalGain.gain.setValueAtTime(volume * 0.15 * this.volume, now + 0.02);
+    nasalGain.gain.exponentialRampToValueAtTime(0.001, now + duration * 0.5);
     
-    // Golden sparkle cascade for all scatters (scaled by number)
-    const sparkleCount = 3 + scatterNumber * 3; // 6, 9, 12 sparkles
-    for (let i = 0; i < sparkleCount; i++) {
-      const sparkle = ctx.createOscillator();
-      const sparkleGain = ctx.createGain();
-      
-      sparkle.connect(sparkleGain);
-      sparkleGain.connect(ctx.destination);
-      
-      // Higher frequencies for magical shimmer
-      sparkle.frequency.value = 2000 + Math.random() * 2000 + scatterNumber * 500;
-      sparkle.type = 'sine';
-      
-      const sparkleTime = now + 0.02 + i * 0.025;
-      const sparkleVol = (0.04 + scatterNumber * 0.015) * this.volume;
-      sparkleGain.gain.setValueAtTime(sparkleVol, sparkleTime);
-      sparkleGain.gain.exponentialRampToValueAtTime(0.001, sparkleTime + 0.08);
-      
-      sparkle.start(sparkleTime);
-      sparkle.stop(sparkleTime + 0.1);
-    }
+    nasal.start(now);
+    nasal.stop(now + duration);
     
-    // Rising tension sweep for 2nd+ scatter
+    // Add vibrato for 2nd+ scatter (more expressive meow)
     if (scatterNumber >= 2) {
-      const sweep = ctx.createOscillator();
-      const sweepGain = ctx.createGain();
+      const vibrato = ctx.createOscillator();
+      const vibratoGain = ctx.createGain();
       
-      sweep.connect(sweepGain);
-      sweepGain.connect(ctx.destination);
+      vibrato.frequency.value = 6 + scatterNumber * 2; // 8Hz, 10Hz vibrato
+      vibratoGain.gain.value = 15 + scatterNumber * 10; // Deeper vibrato for later scatters
       
-      sweep.frequency.setValueAtTime(200, now);
-      sweep.frequency.exponentialRampToValueAtTime(600 + scatterNumber * 200, now + 0.25);
-      sweep.type = 'triangle';
+      vibrato.connect(vibratoGain);
+      vibratoGain.connect(meow1.frequency);
       
-      const sweepVol = scatterNumber === 3 ? 0.15 : 0.1;
-      sweepGain.gain.setValueAtTime(sweepVol * this.volume, now);
-      sweepGain.gain.exponentialRampToValueAtTime(0.001, now + 0.35);
-      
-      sweep.start(now);
-      sweep.stop(now + 0.4);
+      vibrato.start(now + duration * 0.2);
+      vibrato.stop(now + duration);
     }
     
-    // Powerful pre-bonus effect for 3rd scatter
+    // Triumphant yowl effect for 3rd scatter
     if (scatterNumber >= 3) {
-      // Deep power impact
-      const impact = ctx.createOscillator();
-      const impactGain = ctx.createGain();
-      const impactFilter = ctx.createBiquadFilter();
+      // Extended yowl with multiple peaks
+      const yowl = ctx.createOscillator();
+      const yowlGain = ctx.createGain();
+      const yowlFilter = ctx.createBiquadFilter();
       
-      impact.connect(impactFilter);
-      impactFilter.connect(impactGain);
-      impactGain.connect(ctx.destination);
+      yowl.connect(yowlFilter);
+      yowlFilter.connect(yowlGain);
+      yowlGain.connect(ctx.destination);
       
-      impact.frequency.setValueAtTime(80, now);
-      impact.frequency.exponentialRampToValueAtTime(40, now + 0.3);
-      impact.type = 'sine';
+      // More dramatic pitch contour
+      yowl.frequency.setValueAtTime(basePitch * 0.5, now + 0.1);
+      yowl.frequency.exponentialRampToValueAtTime(basePitch * 2, now + 0.25);
+      yowl.frequency.exponentialRampToValueAtTime(basePitch * 1.5, now + 0.4);
+      yowl.frequency.exponentialRampToValueAtTime(basePitch * 0.4, now + 0.7);
+      yowl.type = 'sawtooth';
       
-      impactFilter.type = 'lowpass';
-      impactFilter.frequency.value = 150;
+      yowlFilter.type = 'lowpass';
+      yowlFilter.frequency.value = 1500;
+      yowlFilter.Q.value = 2;
       
-      impactGain.gain.setValueAtTime(0.25 * this.volume, now);
-      impactGain.gain.exponentialRampToValueAtTime(0.001, now + 0.4);
+      yowlGain.gain.setValueAtTime(0, now + 0.1);
+      yowlGain.gain.linearRampToValueAtTime(0.3 * this.volume, now + 0.15);
+      yowlGain.gain.exponentialRampToValueAtTime(0.001, now + 0.75);
       
-      impact.start(now);
-      impact.stop(now + 0.45);
+      yowl.start(now + 0.1);
+      yowl.stop(now + 0.8);
       
-      // Triumphant chord preview (hints at bonus)
-      const chordNotes = [293.66, 369.99, 440.00]; // D4, F#4, A4 (D major - triumphant)
-      chordNotes.forEach((freq) => {
-        const osc = ctx.createOscillator();
-        const gain = ctx.createGain();
-        const filter = ctx.createBiquadFilter();
-        
-        osc.connect(filter);
-        filter.connect(gain);
-        gain.connect(ctx.destination);
-        
-        osc.frequency.value = freq;
-        osc.type = 'triangle';
-        
-        filter.type = 'lowpass';
-        filter.frequency.value = 1200;
-        
-        const chordTime = now + 0.1;
-        gain.gain.setValueAtTime(0, chordTime);
-        gain.gain.linearRampToValueAtTime(0.08 * this.volume, chordTime + 0.05);
-        gain.gain.exponentialRampToValueAtTime(0.001, chordTime + 0.6);
-        
-        osc.start(chordTime);
-        osc.stop(chordTime + 0.65);
-      });
+      // Purr undertone for satisfaction
+      const purr = ctx.createOscillator();
+      const purrGain = ctx.createGain();
+      
+      purr.connect(purrGain);
+      purrGain.connect(ctx.destination);
+      
+      purr.frequency.value = 25; // Cat purr frequency ~25Hz
+      purr.type = 'sine';
+      
+      purrGain.gain.setValueAtTime(0.15 * this.volume, now + 0.2);
+      purrGain.gain.exponentialRampToValueAtTime(0.001, now + 0.8);
+      
+      purr.start(now + 0.2);
+      purr.stop(now + 0.85);
     }
   }
 }
