@@ -23,6 +23,7 @@ interface SlotReelProps {
   extendedFakeLoop?: boolean;
   globalTeaseActive?: boolean;
   hasLandedScatter?: boolean;
+  isScatterCelebrating?: boolean;
 }
 
 // Match the responsive symbol sizes from SlotSymbol
@@ -48,6 +49,7 @@ export function SlotReel({
   extendedFakeLoop = false,
   globalTeaseActive = false,
   hasLandedScatter = false,
+  isScatterCelebrating = false,
 }: SlotReelProps) {
   const symbolsById = new Map(symbols.map(s => [s.id, s]));
   const [spinState, setSpinState] = useState<"idle" | "spinning" | "stopping" | "stopped">("idle");
@@ -288,6 +290,7 @@ export function SlotReel({
                 isNewlyExpanded={symbolIsNewlyExpanded}
                 hasLanded={spinState === "stopped"}
                 isTeasing={globalTeaseActive && hasLandedScatter && symbol.is_scatter}
+                isScatterCelebrating={isScatterCelebrating && symbol.is_scatter}
               />
             </div>
           );

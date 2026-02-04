@@ -10,10 +10,11 @@ interface SlotSymbolProps {
   isNewlyExpanded?: boolean;
   hasLanded?: boolean;
   isTeasing?: boolean;  // Scatter tease glow during tease mode
+  isScatterCelebrating?: boolean;  // Scatter pulse/glow before bonus screen
 }
 
 // Symbol sizes: xs=61, mobile=71, sm=92, md=109, lg=133, xl=150
-export function SlotSymbol({ symbol, isWinning, isSpinning, isExpanded, isNewlyExpanded, hasLanded, isTeasing }: SlotSymbolProps) {
+export function SlotSymbol({ symbol, isWinning, isSpinning, isExpanded, isNewlyExpanded, hasLanded, isTeasing, isScatterCelebrating }: SlotSymbolProps) {
   return (
     <div
       className={cn(
@@ -29,8 +30,13 @@ export function SlotSymbol({ symbol, isWinning, isSpinning, isExpanded, isNewlyE
         // Scatter land animation
         symbol.is_scatter && hasLanded && !isSpinning && "animate-[scatter-land_0.5s_ease-out]",
         // Scatter tease glow - golden animated border during tease mode
-        isTeasing && symbol.is_scatter && "border-amber-400 animate-[scatter-tease-glow_1s_ease-in-out_infinite]"
+        isTeasing && symbol.is_scatter && "border-amber-400 animate-[scatter-tease-glow_1s_ease-in-out_infinite]",
+        // Scatter celebration - pulse and glow before bonus screen appears
+        isScatterCelebrating && "border-amber-400 animate-[scatter-celebration_0.4s_ease-in-out_infinite]"
       )}
+      style={isScatterCelebrating ? {
+        boxShadow: '0 0 30px rgba(251,191,36,0.8), 0 0 60px rgba(251,191,36,0.4)'
+      } : undefined}
     >
       {symbol.image_url ? (
         <img

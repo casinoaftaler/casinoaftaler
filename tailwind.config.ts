@@ -167,6 +167,16 @@ export default {
 					opacity: '1',
 					transform: 'scale(1) translateY(0)'
 				}
+			},
+			'scatter-celebration': {
+				'0%, 100%': { 
+					transform: 'scale(1)',
+					filter: 'brightness(1)'
+				},
+				'50%': { 
+					transform: 'scale(1.1)',
+					filter: 'brightness(1.4)'
+				}
 			}
 		},
 		animation: {
@@ -177,7 +187,8 @@ export default {
 			'expansion-flash': 'expansion-flash 0.6s ease-out',
 			'symbol-expand': 'symbol-expand 0.5s ease-out',
 			'expand-ring': 'expand-ring 0.6s ease-out forwards',
-			'slot-land': 'slot-land 0.4s cubic-bezier(0.34, 1.56, 0.64, 1)'
+			'slot-land': 'slot-land 0.4s cubic-bezier(0.34, 1.56, 0.64, 1)',
+			'scatter-celebration': 'scatter-celebration 0.4s ease-in-out infinite'
 		},
   		fontFamily: {
   			sans: [
