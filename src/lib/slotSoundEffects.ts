@@ -142,12 +142,13 @@ class SlotSoundEffects {
   private playCustomSound(key: keyof CustomSoundFiles): boolean {
     if (!this.enabled || !this.effectsEnabled) return false;
     
-    const audio = this.customAudioElements.get(key);
-    if (audio) {
-      // Clone the audio element for overlapping playback
-      const clone = audio.cloneNode() as HTMLAudioElement;
-      clone.volume = this.volume;
-      clone.play().catch(() => {
+    // Get the URL directly from customSoundFiles to create fresh Audio instances
+    const url = this.customSoundFiles[key];
+    if (url) {
+      // Create a new Audio instance each time for reliable overlapping playback
+      const audio = new Audio(url);
+      audio.volume = this.volume;
+      audio.play().catch(() => {
         // Ignore autoplay errors
       });
       return true;
