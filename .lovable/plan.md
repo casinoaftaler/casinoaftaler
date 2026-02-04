@@ -1,127 +1,60 @@
 
-# Plan: Rette gevinstlinjer med shimmer-effekt
 
-## Oversigt
+# Plan: Fjern konstant spin-lyd og afspil kun en kort startlyd
 
-Denne plan ændrer gevinstlinjerne fra kurvede til rette linjer og tilføjer en animeret shimmer-effekt der glider langs linjen.
+## Nuværende adfærd
+
+Spillemaskinen afspiller to lyde når hjulene spinner:
+1. **`playSpinStart()`** – En hurtig "whoosh" og tromme-effekt (~0.4 sekunder) ved spinets start
+2. **`playReelSpin()`** – En **kontinuerlig** klikkende/motor-lyd der looper indtil alle hjul er stoppet
+
+## Ønsket ændring
+
+Fjern den kontinuerlige spin-lyd og behold kun den korte startlyd.
+
+---
 
 ## Ændringer
 
-### 1. Rette linjer i stedet for kurver
+### Fil: `src/components/slots/SlotGame.tsx`
 
-Ændrer `generateLinePath` funktionen til at bruge simple lige linjer (`L` kommandoer) i stedet for bezier-kurver (`Q` kommandoer):
+**Ændring 1 - Fjern opstart af kontinuerlig spin-lyd (linje 304-306):**
 
-```text
-Før:  M start Q kontrol1, midt Q kontrol2, slut  (kurvet)
-Efter: M start L punkt2 L punkt3 L punkt4 L slut  (ret)
+```tsx
+// Før
+// Play spin start sound and start continuous spin sound
+slotSounds.playSpinStart();
+stopSpinSound.current = slotSounds.playReelSpin();
+
+// Efter
+// Play quick spin start sound only (no continuous loop)
+slotSounds.playSpinStart();
 ```
 
-### 2. Shimmer-effekt med SVG gradient animation
+**Ændring 2 - Fjern stop-kald for spin-lyd (linje 339-341):**
 
-Tilføjer en animeret linear gradient der bevæger sig langs linjen:
+Fjern referencerne til `stopSpinSound.current()` da der ikke længere er en kontinuerlig lyd at stoppe.
 
-- Opretter en `linearGradient` i SVG defs med en hvid/gennemsigtig overgang
-- Animerer gradientens position med `animateTransform`
-- Lægger shimmer-effekten oven på de eksisterende linjer
+**Ændring 3 - Fjern stop-kald ved reel-landing (linje 627-629):**
 
-### 3. CSS animation for shimmer
+Samme fjernelse af `stopSpinSound.current()` kald.
 
-Tilføjer en ny `@keyframes line-shimmer` animation i `src/index.css` der flytter en lysende stribe langs linjen.
+**Ændring 4 - Fjern/simplificer `stopSpinSound` ref (linje 98):**
+
+Da den ikke længere bruges, kan refen fjernes eller bare efterlades (ingen funktionel ændring).
 
 ---
 
 ## Tekniske detaljer
 
-### Fil: `src/components/slots/WinLines.tsx`
-
-**Ændring 1 - Ret linje-generering (linje 63-90):**
-```tsx
-const generateLinePath = (lineIndex: number, _count: number) => {
-  const pattern = PAY_LINES[lineIndex];
-  const points: { x: number; y: number }[] = [];
-
-  for (let col = 0; col < 5; col++) {
-    const row = pattern[col];
-    points.push(getSymbolCenter(col, row));
-  }
-
-  if (points.length < 2) return "";
-
-  // Brug rette linjer i stedet for kurver
-  let path = `M ${points[0].x} ${points[0].y}`;
-  for (let i = 1; i < points.length; i++) {
-    path += ` L ${points[i].x} ${points[i].y}`;
-  }
-
-  return path;
-};
-```
-
-**Ændring 2 - Tilføj shimmer gradient i defs (linje 112-122):**
-```tsx
-<defs>
-  {/* Eksisterende glow filters... */}
-  
-  {/* Shimmer gradient til hver linje */}
-  {LINE_COLORS.map((color, index) => (
-    <linearGradient 
-      key={`shimmer-${index}`} 
-      id={`shimmer-gradient-${index}`}
-      x1="0%" y1="0%" x2="100%" y2="0%"
-    >
-      <stop offset="0%" stopColor="transparent" />
-      <stop offset="40%" stopColor="transparent" />
-      <stop offset="50%" stopColor="rgba(255,255,255,0.8)" />
-      <stop offset="60%" stopColor="transparent" />
-      <stop offset="100%" stopColor="transparent" />
-      <animateTransform
-        attributeName="gradientTransform"
-        type="translate"
-        from="-1 0"
-        to="1 0"
-        dur="1.5s"
-        repeatCount="indefinite"
-      />
-    </linearGradient>
-  ))}
-</defs>
-```
-
-**Ændring 3 - Tilføj shimmer overlay linje (efter inner core line, ca. linje 186):**
-```tsx
-{/* Shimmer effect moving along the line */}
-{isLineVisible && (
-  <path
-    d={path}
-    fill="none"
-    stroke={`url(#shimmer-gradient-${win.lineIndex})`}
-    strokeWidth={6}
-    strokeLinecap="round"
-    strokeLinejoin="round"
-    style={{ opacity: 0.7 }}
-  />
-)}
-```
-
-### Fil: `src/index.css`
-
-Tilføj fallback shimmer keyframes animation (valgfri, som backup):
-```css
-@keyframes line-shimmer {
-  0% {
-    stroke-dashoffset: 100%;
-  }
-  100% {
-    stroke-dashoffset: -100%;
-  }
-}
-```
-
----
+Ændringerne er minimale:
+- Fjern `stopSpinSound.current = slotSounds.playReelSpin();` linjen
+- Fjern alle `stopSpinSound.current()` kald (3 steder: cleanup useEffect, error handler, og onReelStop callback)
+- Behold `slotSounds.playSpinStart()` som det eneste spin-lyd
 
 ## Resultat
 
-- Gevinstlinjer tegnes nu som rette streger mellem symbol-centrene
-- En gylden shimmer-effekt glider kontinuerligt langs hver synlig gevinstlinje
-- Den eksisterende blinkende animation bevares
-- Alle linjer bruger stadig det egyptiske guld/rav farvetema
+- Kun én kort, punchy lyd afspilles ved spin-start
+- Ingen konstant loop-lyd under spinning
+- Reel-stop lyde (`playReelStopSingle`) fortsætter som normalt
+
