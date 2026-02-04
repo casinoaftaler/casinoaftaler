@@ -1,0 +1,42 @@
+-- Update the public read policy to include the new sound file settings
+DROP POLICY IF EXISTS "Public can read whitelisted display settings" ON public.site_settings;
+
+CREATE POLICY "Public can read whitelisted display settings"
+ON public.site_settings
+FOR SELECT
+USING (
+  key = ANY (ARRAY[
+    'site_name',
+    'header_icon',
+    'hero_title',
+    'hero_subtitle',
+    'hero_background_image',
+    'discord_url',
+    'instagram_url',
+    'twitch_url',
+    'streamelements_channel_id',
+    'casino_card_disclaimer',
+    'slot_daily_spins',
+    'slot_min_bet',
+    'slot_max_bet',
+    'slot_title_image',
+    'slot_background_image',
+    'slot_page_locked',
+    'slot_page_password',
+    'slot_machine_frame_image',
+    'slot_frame_size',
+    'slot_spin_loop_ms',
+    'slot_reel_stagger_ms',
+    'slot_reel_slowdown_ms',
+    -- New sound file settings
+    'slot_sound_file_background_music',
+    'slot_sound_file_spin',
+    'slot_sound_file_stop',
+    'slot_sound_file_small_win',
+    'slot_sound_file_medium_win',
+    'slot_sound_file_big_win',
+    'slot_sound_file_bonus_trigger',
+    'slot_sound_file_bonus_win'
+  ])
+  OR has_role(auth.uid(), 'admin'::app_role)
+);
