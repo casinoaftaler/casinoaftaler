@@ -1,62 +1,102 @@
 
-# Plan: Flyt BonusStatusBar til lige over kontrolpanelet
 
-## Nuværende layout
-1. Overlays (Bonus trigger, Retrigger, Complete)
-2. **BonusStatusBar** ← Nuværende placering (over spillemaskinen)
-3. SlotMachineFrame med hjul
-4. SlotControlPanel
+# Plan: Rangliste - Vis kun 3 brugere + "Vis alle" overlay
 
-## Nyt layout
-1. Overlays (Bonus trigger, Retrigger, Complete)
-2. SlotMachineFrame med hjul
-3. **BonusStatusBar** ← Ny placering (lige over kontrolpanelet)
-4. SlotControlPanel
+## Ændringer
 
-## Tekniske ændringer
+### 1. Flyt ranglisten 20 pixels op
+Tilføj `style={{ marginTop: '-20px' }}` til rangliste-containeren på desktop i `SlotMachine.tsx`.
 
-### Fil: `src/components/slots/SlotGame.tsx`
+### 2. Modificer SlotLeaderboard.tsx til kun at vise 3 brugere
+- Begræns visningen til de første 3 entries i hovedvisningen
+- Tilføj en "Vis alle" knap nederst
 
-**1. Fjern BonusStatusBar fra dens nuværende placering (linje 548-557)**
+### 3. Tilføj Dialog overlay til fuld rangliste
+- Importer Dialog komponent
+- Tilføj state til at styre overlay åbning
+- Vis hele listen (op til 10 brugere) i overlayet
 
-Slet denne blok:
+## Teknisk implementering
+
+### Fil: `src/pages/SlotMachine.tsx`
+
+**Desktop rangliste container (linje 172)**
 ```tsx
-{/* Bonus Status Bar - positioned above the frame */}
-<div className="max-w-fit mx-auto mb-1 sm:mb-2">
-  <BonusStatusBar
-    isActive={bonusState.isActive}
-    freeSpinsRemaining={bonusState.freeSpinsRemaining}
-    totalFreeSpins={bonusState.totalFreeSpins}
-    expandingSymbol={bonusState.expandingSymbol}
-    bonusWinnings={bonusState.bonusWinnings}
-  />
-</div>
+<div className="hidden xl:block absolute right-full mr-4 top-0 w-80" style={{ marginTop: '-20px' }}>
 ```
 
-**2. Tilføj BonusStatusBar lige før kontrolpanelet (linje 838-839)**
+### Fil: `src/components/slots/SlotLeaderboard.tsx`
 
-Indsæt BonusStatusBar i wrapper-div'en sammen med kontrolpanelet:
+**1. Tilføj imports**
 ```tsx
-{/* Control Panel with Bonus Status Bar above */}
-<div className="mt-2 sm:-mt-12 md:-mt-16 lg:-mt-[200px]">
-  {/* Bonus Status Bar - positioned just above controls */}
-  <div className="max-w-fit mx-auto mb-1 sm:mb-2">
-    <BonusStatusBar
-      isActive={bonusState.isActive}
-      freeSpinsRemaining={bonusState.freeSpinsRemaining}
-      totalFreeSpins={bonusState.totalFreeSpins}
-      expandingSymbol={bonusState.expandingSymbol}
-      bonusWinnings={bonusState.bonusWinnings}
-    />
-  </div>
-  <SlotControlPanel ... />
-</div>
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
+import { Button } from "@/components/ui/button";
+import { Users } from "lucide-react";
+```
+
+**2. Tilføj state til dialog**
+```tsx
+const [showFullList, setShowFullList] = useState(false);
+```
+
+**3. Opdater hovedvisning til kun 3 brugere + "Vis alle" knap**
+```tsx
+{entries && entries.length > 0 ? (
+  <>
+    <div className="space-y-1">
+      {entries.slice(0, 3).map((entry, index) => (
+        <LeaderboardRow
+          key={entry.user_id}
+          entry={entry}
+          rank={index + 1}
+          period={period}
+        />
+      ))}
+    </div>
+    {entries.length > 3 && (
+      <Dialog open={showFullList} onOpenChange={setShowFullList}>
+        <DialogTrigger asChild>
+          <Button
+            variant="ghost"
+            className="w-full mt-2 text-amber-500 hover:text-amber-400 hover:bg-amber-500/10 border border-amber-500/30"
+          >
+            <Users className="h-4 w-4 mr-2" />
+            Vis alle ({entries.length})
+          </Button>
+        </DialogTrigger>
+        <DialogContent className="max-w-md border-amber-500/30 bg-gradient-to-b from-amber-950/98 via-black/95 to-amber-950/98">
+          <DialogHeader>
+            <DialogTitle className="flex items-center gap-2 text-amber-100">
+              <Trophy className="h-5 w-5 text-amber-500" />
+              Fuld Rangliste
+            </DialogTitle>
+          </DialogHeader>
+          <div className="space-y-1 max-h-[60vh] overflow-y-auto">
+            {entries.map((entry, index) => (
+              <LeaderboardRow
+                key={entry.user_id}
+                entry={entry}
+                rank={index + 1}
+                period={period}
+              />
+            ))}
+          </div>
+        </DialogContent>
+      </Dialog>
+    )}
+  </>
+) : (
+  // empty state...
+)}
 ```
 
 ## Resultat
-- BonusStatusBar vises nu direkte over kontrollerne under bonus-runder
-- Baren følger kontrolpanelets responsive positionering
-- Spilleren kan se bonus-status (free spins remaining, expanding symbol, gevinst) tættere på handlingsknapperne
+- Ranglisten vises 20px højere på desktop
+- Kun top 3 brugere vises i den kompakte visning
+- "Vis alle" knap åbner et overlay med hele listen (op til 10)
+- Overlayet matcher det egyptiske tema med amber/guld farver
 
-## Fil der ændres
-- `src/components/slots/SlotGame.tsx`
+## Filer der ændres
+- `src/pages/SlotMachine.tsx`
+- `src/components/slots/SlotLeaderboard.tsx`
+
