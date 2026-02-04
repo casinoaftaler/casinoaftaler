@@ -95,7 +95,6 @@ export function SlotGame() {
   const [bonusTotalWinnings, setBonusTotalWinnings] = useState(0);
   const [bonusTotalSpinsUsed, setBonusTotalSpinsUsed] = useState(0);
   
-  const stopSpinSound = useRef<(() => void) | null>(null);
   const stopTeaseSound = useRef<(() => void) | null>(null);
 
   // Initialize grid with random symbols
@@ -127,9 +126,6 @@ export function SlotGame() {
       }
       // Stop all slot sounds and music when leaving the page
       slotSounds.stopMusic();
-      if (stopSpinSound.current) {
-        stopSpinSound.current();
-      }
       if (stopTeaseSound.current) {
         stopTeaseSound.current();
       }
@@ -301,9 +297,8 @@ export function SlotGame() {
       winLinesTimeoutRef.current = null;
     }
 
-    // Play spin start sound and start continuous spin sound
+    // Play quick spin start sound only (no continuous loop)
     slotSounds.playSpinStart();
-    stopSpinSound.current = slotSounds.playReelSpin();
     
     // Start tease sound if we have tease reels
     if (teaseResult.reels.length > 0) {
@@ -335,11 +330,7 @@ export function SlotGame() {
       console.error("Spin error:", error);
       toast.error("Der opstod en fejl. Prøv igen.");
       
-      // Stop sounds on error
-      if (stopSpinSound.current) {
-        stopSpinSound.current();
-        stopSpinSound.current = null;
-      }
+      // Stop tease sound on error
       if (stopTeaseSound.current) {
         stopTeaseSound.current();
         stopTeaseSound.current = null;
@@ -623,11 +614,7 @@ export function SlotGame() {
                         
                         // Check if ALL 5 reels have stopped - only then process the result
                         if (stoppedReelsRef.current.size === 5 && pendingResultRef.current) {
-                          // Stop spin and tease sounds
-                          if (stopSpinSound.current) {
-                            stopSpinSound.current();
-                            stopSpinSound.current = null;
-                          }
+                          // Stop tease sound when all reels have landed
                           if (stopTeaseSound.current) {
                             stopTeaseSound.current();
                             stopTeaseSound.current = null;
