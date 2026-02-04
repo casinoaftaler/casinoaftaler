@@ -1,72 +1,73 @@
 
-# Plan: Flytte Small Win Bar ind i kontrolpanelet
+# Plan: Ændre kontrolpanel-layout
 
 ## Oversigt
-Denne ændring vil integrere Small Win Bar-komponenten direkte i SlotControlPanel, så den vises som en del af kontrolpanelets layout i stedet for at være et separat element ovenfor.
+Denne ændring vil omorganisere kontrolpanelet til én enkelt horisontal række med følgende rækkefølge:
 
-## Ændringer
+**Volume → Bet → Win Box → Spin → Autospin → Gevinsttabel**
 
-### 1. Opdater SlotControlPanel-komponenten
-**Fil:** `src/components/slots/SlotControlPanel.tsx`
-
-- Tilføj en ny prop `winAmount: number` til interface
-- Importer `SmallWinBar`-komponenten
-- Placer SmallWinBar i en række over de eksisterende kontroller
-- Juster layoutet så Small Win Bar er centreret over spin-knappen
-
-**Nyt layout:**
+## Nuværende layout
 ```text
 ┌─────────────────────────────────────────────────┐
-│             [ Small Win Bar ]                   │  ← Ny række
+│             [ Small Win Bar ]                   │  ← Separat række
 ├─────────────────────────────────────────────────┤
-│ Volume | Bet | [SPIN] | Autospin | PayTable     │  ← Eksisterende række
+│ Volume | Bet | [SPIN] | Autospin | PayTable     │  ← Horisontal række
 └─────────────────────────────────────────────────┘
 ```
 
-### 2. Opdater SlotGame-komponenten
-**Fil:** `src/components/slots/SlotGame.tsx`
+## Nyt layout
+```text
+┌──────────────────────────────────────────────────────────────┐
+│ Volume | Bet | Win Box | [SPIN] | Autospin | Gevinsttabel    │
+└──────────────────────────────────────────────────────────────┘
+```
 
-- Fjern den separate SmallWinBar-sektion (linje 794-797)
-- Tilføj `winAmount`-prop til SlotControlPanel-kaldet
-- Fjern SmallWinBar import (da den nu bruges inde i SlotControlPanel)
-- Forenkl positioneringen da der kun er ét element at placere
+## Ændringer
 
-## Tekniske detaljer
+### Fil: `src/components/slots/SlotControlPanel.tsx`
 
-### SlotControlPanel ændringer:
+1. **Fjern separat SmallWinBar-række** (linje 66-67)
+   - Fjern den separate `<SmallWinBar amount={winAmount} />` linje over kontrolrækken
+
+2. **Indsæt SmallWinBar i den horisontale række**
+   - Placer SmallWinBar mellem BetControls og Spin-knappen
+   - Tilføj `flex-shrink-0` for at bevare størrelsen
+
+3. **Opdater container-strukturen**
+   - Ændre fra to-række layout til én enkelt horisontal række
+   - Fjern den ydre flex-col container da den ikke længere er nødvendig
+
+### Tekniske detaljer
+
+**Før:**
 ```tsx
-// Tilføj til props interface:
-winAmount: number;
-
-// Nyt layout i return:
 <div className="w-full flex flex-col items-center gap-2 sm:gap-3">
-  {/* Small Win Bar - centreret over kontrollerne */}
   <SmallWinBar amount={winAmount} />
   
-  {/* Eksisterende horizontal row */}
   <div className="flex flex-row items-center justify-center gap-2 sm:gap-4 ...">
-    ...eksisterende kontroller...
+    <VolumeControl />
+    <BetControls />
+    <Button>SPIN</Button>
+    <AutospinRow />
+    <PayTable />
   </div>
 </div>
 ```
 
-### SlotGame ændringer:
+**Efter:**
 ```tsx
-// Fjern denne sektion:
-{/* Small Win Display Bar - adjusted to match control panel position */}
-<div className="relative z-10 flex justify-center mt-2 sm:-mt-16 md:-mt-20 lg:-mt-[216px]">
+<div className="w-full flex flex-row items-center justify-center gap-2 sm:gap-4 flex-wrap sm:flex-nowrap">
+  <VolumeControl />
+  <BetControls />
   <SmallWinBar amount={winAmount} />
+  <Button>SPIN</Button>
+  <AutospinRow />
+  <PayTable />
 </div>
-
-// Opdater SlotControlPanel kaldet:
-<SlotControlPanel
-  ...eksisterende props...
-  winAmount={winAmount}  // ← Tilføj denne
-/>
 ```
 
 ## Fordele
-- Enklere positionering - kun ét element at justere
-- Bedre sammenhæng i kontrolpanelet
-- Eliminerer separate responsive margin-justeringer
-- Mere intuitiv komponentstruktur
+- Mere kompakt layout med alle elementer på én linje
+- Win Box er synligt placeret ved siden af Spin-knappen
+- Naturlig visuel flow fra venstre mod højre
+- Bedre udnyttelse af horisontal plads på desktop
