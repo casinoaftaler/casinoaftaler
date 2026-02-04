@@ -10,6 +10,7 @@ export interface SlotSoundFiles {
   bigWinSound: string | null;
   bonusTriggerSound: string | null;
   bonusWinSound: string | null;
+  bonusSymbolScrollSound: string | null;
 }
 
 const SOUND_KEYS = [
@@ -21,6 +22,7 @@ const SOUND_KEYS = [
   "slot_sound_file_big_win",
   "slot_sound_file_bonus_trigger",
   "slot_sound_file_bonus_win",
+  "slot_sound_file_bonus_symbol_scroll",
 ] as const;
 
 export function useSlotSoundFiles() {
@@ -48,6 +50,7 @@ export function useSlotSoundFiles() {
         bigWinSound: settingsMap.slot_sound_file_big_win || null,
         bonusTriggerSound: settingsMap.slot_sound_file_bonus_trigger || null,
         bonusWinSound: settingsMap.slot_sound_file_bonus_win || null,
+        bonusSymbolScrollSound: settingsMap.slot_sound_file_bonus_symbol_scroll || null,
       };
     },
   });
@@ -62,4 +65,5 @@ export const SLOT_SOUND_SETTING_KEYS = {
   bigWinSound: "slot_sound_file_big_win",
   bonusTriggerSound: "slot_sound_file_bonus_trigger",
   bonusWinSound: "slot_sound_file_bonus_win",
+  bonusSymbolScrollSound: "slot_sound_file_bonus_symbol_scroll",
 } as const;

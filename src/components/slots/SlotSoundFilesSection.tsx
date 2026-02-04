@@ -16,6 +16,7 @@ export function SlotSoundFilesSection() {
     bigWinSound: null,
     bonusTriggerSound: null,
     bonusWinSound: null,
+    bonusSymbolScrollSound: null,
   });
 
   useEffect(() => {
@@ -142,6 +143,13 @@ export function SlotSoundFilesSection() {
                   settingKey={SLOT_SOUND_SETTING_KEYS.bonusTriggerSound}
                   currentUrl={localFiles.bonusTriggerSound}
                   onUrlChange={handleUrlChange("bonusTriggerSound")}
+                />
+                <SlotSoundUpload
+                  label="Symbol Scroll"
+                  description="Afspilles mens symbolerne scroller på bonus trigger skærmen."
+                  settingKey={SLOT_SOUND_SETTING_KEYS.bonusSymbolScrollSound}
+                  currentUrl={localFiles.bonusSymbolScrollSound}
+                  onUrlChange={handleUrlChange("bonusSymbolScrollSound")}
                 />
                 <SlotSoundUpload
                   label="Bonus Afslutning"

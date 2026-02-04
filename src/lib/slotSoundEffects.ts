@@ -34,6 +34,7 @@ export interface CustomSoundFiles {
   bigWinSound?: string | null;
   bonusTriggerSound?: string | null;
   bonusWinSound?: string | null;
+  bonusSymbolScrollSound?: string | null;
 }
 
 // localStorage key for persisting audio settings
@@ -1355,6 +1356,84 @@ class SlotSoundEffects {
         osc.stop(ctx.currentTime + 2);
       });
     }, 800);
+  }
+
+  // Bonus symbol scroll - mystical scrolling sound during symbol picker
+  playBonusSymbolScroll(): () => void {
+    if (!this.canPlayBonusSound()) return () => {};
+    
+    // Try custom bonus symbol scroll sound first
+    const customAudio = this.customSoundFiles.bonusSymbolScrollSound;
+    if (customAudio) {
+      const audio = new Audio(customAudio);
+      audio.volume = this.volume;
+      audio.loop = true;
+      audio.play().catch(() => {});
+      return () => {
+        audio.pause();
+        audio.currentTime = 0;
+      };
+    }
+    
+    // Fallback to synthesized sound
+    const ctx = this.getContext();
+    const now = ctx.currentTime;
+    
+    // Create oscillators for mystical whoosh effect
+    const whooshOsc = ctx.createOscillator();
+    const whooshGain = ctx.createGain();
+    const whooshFilter = ctx.createBiquadFilter();
+    
+    whooshOsc.connect(whooshFilter);
+    whooshFilter.connect(whooshGain);
+    whooshGain.connect(ctx.destination);
+    
+    whooshOsc.type = 'sawtooth';
+    whooshOsc.frequency.setValueAtTime(100, now);
+    
+    whooshFilter.type = 'bandpass';
+    whooshFilter.frequency.setValueAtTime(400, now);
+    whooshFilter.Q.value = 2;
+    
+    // LFO for frequency modulation (scrolling effect)
+    const lfo = ctx.createOscillator();
+    const lfoGain = ctx.createGain();
+    lfo.connect(lfoGain);
+    lfoGain.connect(whooshOsc.frequency);
+    lfo.frequency.value = 8; // Fast modulation for scroll feel
+    lfoGain.gain.value = 50;
+    
+    whooshGain.gain.setValueAtTime(0.15 * this.volume, now);
+    
+    whooshOsc.start(now);
+    lfo.start(now);
+    
+    // Sparkle overlay
+    const sparkleInterval = setInterval(() => {
+      const sparkle = ctx.createOscillator();
+      const sparkleGain = ctx.createGain();
+      
+      sparkle.connect(sparkleGain);
+      sparkleGain.connect(ctx.destination);
+      
+      sparkle.frequency.value = 1500 + Math.random() * 2500;
+      sparkle.type = 'sine';
+      
+      sparkleGain.gain.setValueAtTime(0.08 * this.volume, ctx.currentTime);
+      sparkleGain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.1);
+      
+      sparkle.start();
+      sparkle.stop(ctx.currentTime + 0.1);
+    }, 120);
+    
+    // Return stop function
+    return () => {
+      clearInterval(sparkleInterval);
+      const stopTime = ctx.currentTime;
+      whooshGain.gain.exponentialRampToValueAtTime(0.001, stopTime + 0.3);
+      whooshOsc.stop(stopTime + 0.3);
+      lfo.stop(stopTime + 0.3);
+    };
   }
 
   // Retrigger - triumphant power boost during bonus
