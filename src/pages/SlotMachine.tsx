@@ -11,9 +11,10 @@ import { useSiteSettings } from "@/hooks/useSiteSettings";
 import { useSlotPageAccess } from "@/hooks/useSlotPageAccess";
 import { useSlotSession } from "@/hooks/useSlotSession";
 import { useCasinos } from "@/hooks/useCasinos";
+import { useFullscreen } from "@/hooks/useFullscreen";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
-import { Gamepad2 } from "lucide-react";
+import { Gamepad2, Maximize2, Minimize2 } from "lucide-react";
 import defaultSlotBackground from "@/assets/slots/slot-background.jpg";
 import defaultTitleImage from "@/assets/slots/book-of-fedesvin-title.png";
 import slotCasinoCardBg from "@/assets/slots/slot-casino-card-bg.png";
@@ -34,6 +35,7 @@ export default function SlotMachine() {
     takeOverSession,
     refreshSession 
   } = useSlotSession();
+  const { isFullscreen, toggleFullscreen } = useFullscreen();
   
   // Loading phase state - always start fresh (no session persistence)
   const [loadingPhase, setLoadingPhase] = useState<LoadingPhase>('loading');
@@ -139,13 +141,24 @@ export default function SlotMachine() {
   }
 
   return (
-    <div className="min-h-[calc(100vh-4rem)] relative overflow-x-hidden">
+    <div className={`${isFullscreen ? 'min-h-screen' : 'min-h-[calc(100vh-4rem)]'} relative overflow-x-hidden`}>
       {/* Background - absolute instead of fixed to not overlap header */}
       <div 
         className="absolute inset-0 bg-cover bg-center bg-no-repeat -z-10"
         style={{ backgroundImage: `url(${backgroundImage})` }}
       />
       <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black/70 -z-10" />
+      
+      {/* Fullscreen toggle button */}
+      <Button
+        variant="ghost"
+        size="icon"
+        onClick={toggleFullscreen}
+        className="fixed top-4 right-4 z-50 bg-black/50 hover:bg-black/70 text-white/80 hover:text-white"
+        title={isFullscreen ? "Forlad fuldskærm (ESC)" : "Gå i fuldskærm"}
+      >
+        {isFullscreen ? <Minimize2 className="h-5 w-5" /> : <Maximize2 className="h-5 w-5" />}
+      </Button>
       
       <div className="container px-2 sm:px-4">
         {/* Title Image with glow animation - no top spacing */}
