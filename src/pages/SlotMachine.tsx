@@ -7,6 +7,7 @@ import { SlotPageLockGate } from "@/components/slots/SlotPageLockGate";
 import { SlotLoadingScreen } from "@/components/slots/SlotLoadingScreen";
 import { SlotIntroScreen } from "@/components/slots/SlotIntroScreen";
 import { SlotSessionGate } from "@/components/slots/SlotSessionGate";
+import { SlotPageLayout } from "@/components/slots/SlotPageLayout";
 import { useAuth } from "@/hooks/useAuth";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
 import { useSlotPageAccess } from "@/hooks/useSlotPageAccess";
@@ -38,11 +39,8 @@ export default function SlotMachine() {
   } = useSlotSession();
   const { scale, shouldScale } = useViewportScaling();
   
-  
-  // Loading phase state - always start fresh (no session persistence)
   const [loadingPhase, setLoadingPhase] = useState<LoadingPhase>('loading');
   
-  // Clear session flag on mount to ensure fresh start
   useEffect(() => {
     sessionStorage.removeItem('slot_initialized');
   }, []);
@@ -59,26 +57,30 @@ export default function SlotMachine() {
   const titleImage = siteSettings?.slot_title_image || defaultTitleImage;
   const backgroundImage = siteSettings?.slot_background_image || defaultSlotBackground;
   
-  // Get the #1 ranked casino (first active casino by position)
   const topCasino = casinos?.find(c => c.is_active) || null;
 
-  // Cleanup: Stop music when leaving the slot machine page
   useEffect(() => {
     return () => {
       slotSounds.stopMusic();
     };
   }, []);
 
+  // Background component for reuse
+  const PageBackground = () => (
+    <>
+      <div 
+        className="absolute inset-0 bg-cover bg-center bg-no-repeat -z-10"
+        style={{ backgroundImage: `url(${backgroundImage})` }}
+      />
+      <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-black/60 to-black/90 -z-10" />
+    </>
+  );
+
   // 1. Show loading while checking auth and access
   if (loading || accessLoading) {
     return (
       <div className="min-h-[calc(100vh-4rem)] relative">
-        <div 
-          className="absolute inset-0 bg-cover bg-center bg-no-repeat -z-10"
-          style={{ backgroundImage: `url(${backgroundImage})` }}
-        />
-        <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-black/60 to-black/90 -z-10" />
-        
+        <PageBackground />
         <div className="container py-8 flex items-center justify-center min-h-[60vh]">
           <div className="animate-pulse text-muted-foreground">Indlæser...</div>
         </div>
@@ -86,7 +88,7 @@ export default function SlotMachine() {
     );
   }
 
-  // 2. Show password gate if locked (before loading/intro)
+  // 2. Show password gate if locked
   if (isLocked && !hasAccess) {
     return (
       <SlotPageLockGate 
@@ -97,16 +99,11 @@ export default function SlotMachine() {
     );
   }
 
-  // 3. Show login prompt if not logged in (before loading/intro)
+  // 3. Show login prompt if not logged in
   if (!user) {
     return (
       <div className="min-h-[calc(100vh-4rem)] relative">
-        <div 
-          className="absolute inset-0 bg-cover bg-center bg-no-repeat -z-10"
-          style={{ backgroundImage: `url(${backgroundImage})` }}
-        />
-        <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-black/60 to-black/90 -z-10" />
-        
+        <PageBackground />
         <div className="container py-16">
           <div className="max-w-md mx-auto text-center space-y-6 bg-card/80 backdrop-blur-sm p-8 rounded-xl border border-amber-500/20">
             <div className="h-20 w-20 mx-auto rounded-full bg-amber-500/20 flex items-center justify-center">
@@ -129,12 +126,7 @@ export default function SlotMachine() {
   if (sessionLoading) {
     return (
       <div className="min-h-[calc(100vh-4rem)] relative">
-        <div 
-          className="absolute inset-0 bg-cover bg-center bg-no-repeat -z-10"
-          style={{ backgroundImage: `url(${backgroundImage})` }}
-        />
-        <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-black/60 to-black/90 -z-10" />
-        
+        <PageBackground />
         <div className="container py-8 flex items-center justify-center min-h-[60vh]">
           <div className="animate-pulse text-muted-foreground">Indlæser...</div>
         </div>
@@ -165,10 +157,20 @@ export default function SlotMachine() {
     return <SlotIntroScreen onStart={handleIntroComplete} />;
   }
 
+  // Side panel content for desktop
+  const sidePanelContent = (
+    <>
+      <SlotLeaderboard />
+      {topCasino && (
+        <SlotPromoSlider casino={topCasino} backgroundImage={slotCasinoCardBg} />
+      )}
+    </>
+  );
+
   // 7. Show the game
   return (
     <div className="h-[calc(100vh-4rem)] relative overflow-hidden">
-      {/* Background - absolute instead of fixed to not overlap header */}
+      {/* Background */}
       <div 
         className="absolute inset-0 bg-cover bg-center bg-no-repeat -z-10"
         style={{ backgroundImage: `url(${backgroundImage})` }}
@@ -177,58 +179,36 @@ export default function SlotMachine() {
       
       {/* Scaled game container */}
       <div 
-        className="slot-viewport-container h-full"
+        className="slot-viewport-container h-full py-2 sm:py-4"
         style={{
           transform: shouldScale ? `scale(${scale})` : undefined,
         }}
       >
-        <div className="container px-2 sm:px-4">
-          {/* Title Image with glow animation - no top spacing */}
-          <div className="flex justify-center -mt-8 sm:-mt-10 md:-mt-12">
-            <img 
-              src={titleImage} 
-              alt="Book of Fedesvin" 
-              className="w-full max-w-[180px] xs:max-w-[240px] sm:max-w-sm md:max-w-md h-auto animate-[title-entrance_0.8s_ease-out_forwards,glow_3s_ease-in-out_0.8s_infinite]"
-              style={{
-                filter: 'drop-shadow(0 0 20px rgba(251,191,36,0.5)) drop-shadow(0 0 40px rgba(251,191,36,0.3)) drop-shadow(0 0 60px rgba(251,191,36,0.2))'
-              }}
-            />
-          </div>
-
-          {/* Main content: Slot machine centered, leaderboard positioned beside it */}
-          <div className="flex justify-center">
-            {/* Centered wrapper for slot machine with relative positioning for leaderboard */}
-            <div className="relative">
-              {/* Desktop: Leaderboard positioned to the left */}
-              <div className="hidden xl:block absolute right-full mr-4 top-0 w-80" style={{ marginTop: '-73px' }}>
-                <div style={{ marginBottom: '10px' }}>
-                  <SlotLeaderboard />
-                </div>
-                
-                {/* #1 Casino Card + Giveaway Slider - Desktop */}
-                {topCasino && (
-                  <SlotPromoSlider casino={topCasino} backgroundImage={slotCasinoCardBg} />
-                )}
-              </div>
-              
-              {/* Slot machine - the true center piece */}
-              <div className="flex flex-col items-center gap-1" style={{ marginTop: '-5px' }}>
-                <SlotGame />
-                
-                {/* #1 Casino Card + Giveaway Slider - Mobile/Tablet */}
-                {topCasino && (
-                  <div className="w-full max-w-sm xl:hidden mt-3">
-                    <SlotPromoSlider casino={topCasino} backgroundImage={slotCasinoCardBg} />
-                  </div>
-                )}
-                
-                {/* Mobile/Tablet: Leaderboard */}
-                <div className="w-full max-w-sm xl:hidden mt-3">
-                  <SlotLeaderboard />
-                </div>
-              </div>
+        <div className="container px-2 sm:px-4 h-full">
+          <SlotPageLayout sidePanel={sidePanelContent}>
+            {/* Title Image */}
+            <div className="flex justify-center mb-2">
+              <img 
+                src={titleImage} 
+                alt="Book of Fedesvin" 
+                className="w-full max-w-[160px] xs:max-w-[200px] sm:max-w-[280px] md:max-w-[320px] h-auto animate-[title-entrance_0.8s_ease-out_forwards,glow_3s_ease-in-out_0.8s_infinite]"
+                style={{
+                  filter: 'drop-shadow(0 0 20px rgba(251,191,36,0.5)) drop-shadow(0 0 40px rgba(251,191,36,0.3)) drop-shadow(0 0 60px rgba(251,191,36,0.2))'
+                }}
+              />
             </div>
-          </div>
+
+            {/* Slot Game */}
+            <SlotGame />
+            
+            {/* Mobile/Tablet: Side content below game */}
+            <div className="w-full max-w-sm xl:hidden mt-4 space-y-4">
+              {topCasino && (
+                <SlotPromoSlider casino={topCasino} backgroundImage={slotCasinoCardBg} />
+              )}
+              <SlotLeaderboard />
+            </div>
+          </SlotPageLayout>
         </div>
       </div>
     </div>

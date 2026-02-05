@@ -958,10 +958,10 @@ export function SlotGame() {
               </div>
             </SlotMachineFrame>
           </div>
-          {/* Bonus Status Bar + Control Panel - responsive positioning */}
-          <div className="mt-2 sm:-mt-12 md:-mt-16 lg:-mt-[200px]">
+          {/* Bonus Status Bar + Control Panel - clean responsive layout */}
+          <div className="mt-3 sm:mt-4">
             {/* Bonus Status Bar - positioned just above controls */}
-            <div className="max-w-fit mx-auto mb-1 sm:mb-2">
+            <div className="max-w-fit mx-auto mb-2 sm:mb-3">
               <BonusStatusBar
                 isActive={bonusState.isActive}
                 freeSpinsRemaining={bonusState.freeSpinsRemaining}
@@ -970,28 +970,31 @@ export function SlotGame() {
                 bonusWinnings={bonusState.bonusWinnings}
               />
             </div>
-            <SlotControlPanel
-              bet={bet}
-              onBetChange={setBet}
-              onSpin={handleSpin}
-              onAutoSpinToggle={toggleAutoSpin}
-              isSpinning={isSpinning}
-              canSpin={canSpin}
-              isAutoSpinning={isAutoSpinning}
-              autoSpinCount={autoSpinCount}
-              onAutoSpinCountChange={setAutoSpinCount}
-              autoSpinsRemaining={autoSpinsRemaining}
-              bonusState={bonusState}
-              disabled={isSpinning || isSpinLocked}
-              isSpinLocked={isSpinLocked}
-              minBet={slotSettings.minBet}
-              maxBet={slotSettings.maxBet}
-              spinsRemaining={spinsRemaining}
-              maxSpins={maxSpins}
-              spinsLoading={false}
-              showBonusTrigger={showBonusTrigger}
-              winAmount={winAmount}
-            />
+            {/* Control Panel with glass effect */}
+            <div className="rounded-xl backdrop-blur-md bg-amber-950/40 border border-amber-500/20 p-2 sm:p-3 shadow-lg">
+              <SlotControlPanel
+                bet={bet}
+                onBetChange={setBet}
+                onSpin={handleSpin}
+                onAutoSpinToggle={toggleAutoSpin}
+                isSpinning={isSpinning}
+                canSpin={canSpin}
+                isAutoSpinning={isAutoSpinning}
+                autoSpinCount={autoSpinCount}
+                onAutoSpinCountChange={setAutoSpinCount}
+                autoSpinsRemaining={autoSpinsRemaining}
+                bonusState={bonusState}
+                disabled={isSpinning || isSpinLocked}
+                isSpinLocked={isSpinLocked}
+                minBet={slotSettings.minBet}
+                maxBet={slotSettings.maxBet}
+                spinsRemaining={spinsRemaining}
+                maxSpins={maxSpins}
+                spinsLoading={false}
+                showBonusTrigger={showBonusTrigger}
+                winAmount={winAmount}
+              />
+            </div>
           </div>
 
           {/* No spins message */}

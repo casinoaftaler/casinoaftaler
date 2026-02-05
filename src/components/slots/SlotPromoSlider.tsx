@@ -22,9 +22,9 @@ export function SlotPromoSlider({ casino, backgroundImage }: SlotPromoSliderProp
   }, []);
 
   return (
-    <div className="w-full">
-      {/* Slider container */}
-      <div className="overflow-hidden rounded-xl aspect-[3/4]">
+    <div className="w-full animate-fade-in">
+      {/* Slider container with glass effect */}
+      <div className="overflow-hidden rounded-xl aspect-[3/4] border border-amber-500/20 shadow-[0_0_20px_rgba(251,191,36,0.08)]">
         <div 
           className="flex h-full transition-transform duration-600 ease-in-out"
           style={{ 
