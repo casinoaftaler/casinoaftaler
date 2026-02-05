@@ -1,46 +1,54 @@
 
-# Fully Responsive Viewport-Aware Slot Machine Layout
+# Always-Visible Slot Machine with Adaptive Title
 
 ## Problem Analysis
 
-The current implementation has a viewport scaling hook (`useViewportScaling.ts`) but it's not working optimally because:
+The current viewport scaling system has a fixed baseline height calculation that includes the title art. On very short screens (like 1366×768 or smaller), even with scaling down to the minimum 0.45, the total content height (title + frame + reels + controls + mobile content) can still exceed the available viewport height, causing scrolling.
 
-1. **Baseline height is fixed at 950px** - This doesn't account for different content configurations (with/without frame, different symbol sizes)
-2. **Scaling is only applied when scale < 1** - This means on larger screens (ultrawide, 27"+) the game stays at fixed size rather than filling available space
-3. **Mobile content below game breaks scaling** - On mobile/tablet, the side content (promo slider, leaderboard) is rendered below the game outside the scaled container, which can still cause scrolling
-4. **Frame margins add unpredictable height** - The `SlotMachineFrame` adds dynamic margins based on frame size, which aren't factored into height calculations
-5. **Symbol sizes are width-based only** - The `useResponsiveSlotDimensions` hook only considers width breakpoints, not available height
+**Current height budget includes:**
+- Title: ~80-100px
+- Frame margins: ~90px top + 90px bottom (180px total on desktop)
+- Reels: 3×180 + 2×20 = 580px at full size
+- Controls: ~90-100px
+- Total baseline: 950px (desktop) / 730px (mobile)
+
+**The issue:** When `availableHeight / baseline` produces a scale factor below 0.45 (the current minimum), the content still overflows. For example:
+- 1366×768 screen: Available = 768 - 64 - 16 = 688px
+- Required scale for 950px baseline: 688/950 = 0.72 ✓ (works)
+- But add frame + extra content: could need 0.5-0.6 which may still overflow with title
 
 ## Solution Overview
 
-Create a robust viewport-aware scaling system that:
-1. Calculates the actual content height dynamically
-2. Scales the entire game container (including mobile content) to fit within `100dvh - header`
-3. Works across all resolutions: 1366×768, 1440×900, 1680×1050, 1920×1080, 2560×1440, ultrawide
-4. Uses `dvh` (dynamic viewport height) for better mobile compatibility
-5. Preserves all animations, interactions, and clickable areas
+Create an adaptive system that:
+1. **Prioritizes visibility of game + controls** - These must ALWAYS be visible
+2. **Progressively hides title** when viewport is too short
+3. **Reduces minimum scale** for extreme cases
+4. **Uses dynamic height measurement** based on what's actually visible
+
+The title will smoothly fade out and collapse when space is too tight, ensuring the slot machine reels and controls are always 100% visible without scrolling.
 
 ## Technical Approach
 
-### Strategy: Enhanced CSS Transform Scaling with Dynamic Height Measurement
-
 ```text
 ┌─────────────────────────────────────────────────────────────┐
-│                    Calculation Flow                         │
+│                  Adaptive Layout Logic                      │
 ├─────────────────────────────────────────────────────────────┤
-│  1. Measure available viewport height:                      │
-│     availableHeight = 100dvh - headerHeight - padding       │
+│  1. Calculate available height:                             │
+│     availableHeight = 100dvh - header - padding             │
 │                                                             │
-│  2. Calculate content height at base scale:                 │
-│     baseContentHeight = title + frame + reels + controls    │
-│     (Different calculations for mobile vs desktop)          │
+│  2. Calculate content heights:                              │
+│     coreHeight = reels + controls + frame (essential)       │
+│     titleHeight = 80-100px (optional)                       │
 │                                                             │
-│  3. Calculate scale factor:                                 │
-│     scale = availableHeight / baseContentHeight             │
-│     scale = clamp(scale, 0.45, 1.2)                         │
+│  3. Determine if title should show:                         │
+│     showTitle = availableHeight >= coreHeight * 1.15        │
+│     (Show title only if there's 15% extra headroom)         │
 │                                                             │
-│  4. Apply transform: scale(scaleFactor)                     │
-│     transform-origin: top center                            │
+│  4. Calculate scale:                                        │
+│     baseline = showTitle ? fullBaseline : coreBaseline      │
+│     scale = clamp(availableHeight / baseline, 0.35, 1.0)    │
+│                                                             │
+│  5. Apply smooth transitions for title visibility           │
 └─────────────────────────────────────────────────────────────┘
 ```
 
@@ -48,167 +56,179 @@ Create a robust viewport-aware scaling system that:
 
 ## Implementation Plan
 
-### Phase 1: Enhance useViewportScaling Hook
+### Step 1: Enhance useViewportScaling Hook
 
 **File:** `src/hooks/useViewportScaling.ts`
 
-Major improvements:
-- Use both `innerHeight` and `innerWidth` for responsive calculations
-- Add breakpoint-aware baseline heights (different for desktop vs mobile)
-- Use `dvh` units for better mobile browser support
-- Add upscaling capability (scale > 1.0) for larger screens
-- Account for frame margins in height calculations
-- Debounced resize with immediate first calculation
+Changes:
+- Add separate baseline calculations for with/without title
+- Add `showTitle` boolean to return value based on available space
+- Reduce minimum scale from 0.45 to 0.35 for extreme cases
+- Calculate more accurate baselines:
 
 ```text
-Desktop (xl+): Baseline ~950px
-- Title: 100px
-- Frame: 180px (90 top + 90 bottom)
-- Reels: 3×180 + 2×20 = 580px
-- Controls: 90px
+Desktop baselines:
+- With title: ~950px (current)
+- Without title (core only): ~850px (frame + reels + controls)
 
-Mobile (<xl): Baseline ~700px (estimated)
-- Title: 80px
-- Reels (smaller): 3×96 + 2×8 = 304px
-- Controls: 80px
-- Mobile side content: ~200px
+Mobile baselines:
+- With title: ~730px (current)  
+- Without title (core only): ~620px (reels + controls + side content)
 ```
 
-### Phase 2: Update SlotMachine.tsx Page Layout
+New return interface:
+```typescript
+interface ViewportScaling {
+  scale: number;
+  availableHeight: number;
+  shouldScale: boolean;
+  isDesktop: boolean;
+  showTitle: boolean;  // NEW: Whether to show title art
+}
+```
+
+### Step 2: Update SlotMachine Page
 
 **File:** `src/pages/SlotMachine.tsx`
 
 Changes:
-- Wrap entire game content (including mobile side content) in scaled container
-- Use `100dvh` instead of `100vh` for better mobile compatibility
-- Add `overflow-hidden` container with proper flex centering
-- Apply `transform: scale()` with smooth transitions
-- Add container height tracking for dynamic scaling
+- Consume the new `showTitle` value from hook
+- Conditionally render title with smooth transition (opacity + max-height)
+- Apply CSS classes for smooth collapse animation
+- Remove title from DOM entirely when hidden (after transition) to save layout space
 
-### Phase 3: Refine SlotPageLayout Component
-
-**File:** `src/components/slots/SlotPageLayout.tsx`
-
-Changes:
-- Add layout measurement capabilities
-- Ensure side panel doesn't affect center calculation
-- Add prop for scale factor to pass to children if needed
-- Improve mobile stacking behavior within scaled container
-
-### Phase 4: Update SlotGame Component
-
-**File:** `src/components/slots/SlotGame.tsx`
-
-Changes:
-- Remove any conflicting fixed heights
-- Ensure control panel uses relative sizing
-- Make sure bonus overlays scale correctly
-- Verify win celebrations work at all scales
-
-### Phase 5: CSS Enhancements
+### Step 3: Add CSS Transitions for Title
 
 **File:** `src/index.css`
 
 Add:
-- Smooth scaling transitions
-- GPU acceleration hints for transforms
-- Container queries as fallback/enhancement
-- Dynamic viewport unit support
+- Smooth opacity and max-height transitions for title collapse
+- Utility classes for title visibility states
+- GPU-accelerated transitions for smooth animation
 
 ---
 
 ## Files to Modify
 
-| File | Type | Changes |
-|------|------|---------|
-| `src/hooks/useViewportScaling.ts` | EDIT | Complete rewrite with dynamic calculations, upscaling support |
-| `src/pages/SlotMachine.tsx` | EDIT | Restructure layout with full-content scaling |
-| `src/components/slots/SlotPageLayout.tsx` | EDIT | Improve measurement and mobile handling |
-| `src/components/slots/SlotGame.tsx` | EDIT | Remove fixed heights, ensure relative sizing |
-| `src/index.css` | EDIT | Add scaling utilities and transitions |
+| File | Changes |
+|------|---------|
+| `src/hooks/useViewportScaling.ts` | Add `showTitle` calculation, reduce MIN_SCALE to 0.35, add core-only baselines |
+| `src/pages/SlotMachine.tsx` | Conditional title rendering with smooth transitions |
+| `src/index.css` | Add title collapse animation classes |
 
 ---
 
-## Scaling Behavior by Resolution
+## Scaling Behavior Matrix
 
-| Resolution | Viewport Height | Available | Scale | Result |
-|------------|----------------|-----------|-------|--------|
-| 1366×768 (Laptop) | 768px | 688px | 0.72 | Compact, no scroll |
-| 1440×900 (MacBook 13") | 900px | 820px | 0.86 | Slight shrink |
-| 1680×1050 (22") | 1050px | 970px | 1.0 | Full size |
-| 1920×1080 (24") | 1080px | 1000px | 1.0 | Full size |
-| 2560×1440 (27") | 1440px | 1360px | 1.0 | Full size (capped) |
-| 3440×1440 (Ultrawide) | 1440px | 1360px | 1.0 | Full size (capped) |
+| Screen Size | Available | Scale | Title | Result |
+|-------------|-----------|-------|-------|--------|
+| 1920×1080 | 1000px | 1.0 | ✓ Show | Full experience |
+| 1680×1050 | 970px | 1.0 | ✓ Show | Full experience |
+| 1440×900 | 820px | 0.86 | ✓ Show | Slight shrink |
+| 1366×768 | 688px | 0.72 | ✗ Hide | Core fits perfectly |
+| 1280×720 | 640px | 0.67 | ✗ Hide | Compact but usable |
+| 1024×768 | 688px | 0.72 | ✗ Hide | Tablet landscape |
+| Mobile 390×844 | 764px | ~0.95 | ✓ Show | Near full |
+| Mobile 375×667 | 587px | ~0.78 | ✗ Hide | Compact |
+| Small 320×568 | 488px | ~0.56 | ✗ Hide | Very compact |
+
+---
+
+## Code Changes Summary
+
+### useViewportScaling.ts
+
+```typescript
+// New constants
+const BASELINE_DESKTOP_WITH_TITLE = 950;
+const BASELINE_DESKTOP_CORE = 850;  // Without title
+const BASELINE_MOBILE_WITH_TITLE = 730;
+const BASELINE_MOBILE_CORE = 620;   // Without title
+
+const MIN_SCALE = 0.35;  // Reduced from 0.45
+const TITLE_HEADROOM_FACTOR = 1.12; // Need 12% extra to show title
+
+// New calculation logic
+const coreBaseline = isDesktop ? BASELINE_DESKTOP_CORE : BASELINE_MOBILE_CORE;
+const fullBaseline = isDesktop ? BASELINE_DESKTOP_WITH_TITLE : BASELINE_MOBILE_WITH_TITLE;
+
+// Show title only if we have enough headroom above core requirements
+const coreScale = availableHeight / coreBaseline;
+const showTitle = coreScale >= TITLE_HEADROOM_FACTOR;
+
+// Use appropriate baseline for final scale calculation
+const baseline = showTitle ? fullBaseline : coreBaseline;
+const scale = Math.min(MAX_SCALE, Math.max(MIN_SCALE, availableHeight / baseline));
+```
+
+### SlotMachine.tsx
+
+```tsx
+const { scale, shouldScale, showTitle } = useViewportScaling();
+
+// In render:
+{showTitle && (
+  <div className="slot-title-container">
+    <img src={titleImage} ... />
+  </div>
+)}
+```
+
+### index.css
+
+```css
+/* Title container with smooth collapse */
+.slot-title-container {
+  transition: opacity 0.3s ease-out, max-height 0.3s ease-out;
+  overflow: hidden;
+}
+
+.slot-title-hidden {
+  opacity: 0;
+  max-height: 0;
+  margin-bottom: 0;
+}
+```
 
 ---
 
 ## Key Design Decisions
 
-### 1. Dynamic Baseline Calculation
-Instead of a fixed 950px baseline, calculate based on actual component sizes at the current breakpoint. This ensures accurate scaling for both desktop and mobile layouts.
+### 1. Title is Sacrificed First
+The title art is decorative and non-essential for gameplay. Hiding it ensures the actual game (reels) and controls (spin button, bet) are always accessible.
 
-### 2. Scale Range: 0.45 to 1.0
-- **Minimum 0.45**: Below this, symbols become too small to read. For very small viewports, we accept some scrolling rather than unusable UI.
-- **Maximum 1.0**: Don't upscale beyond designed size to prevent pixelation and maintain crisp visuals. The 27" experience at 1080p is the "ideal" baseline.
+### 2. Headroom Factor (1.12)
+We only show the title if there's at least 12% extra space after fitting the core game. This prevents the title from flickering in/out on borderline heights.
 
-### 3. Transform Origin: Top Center
-Keeps the title and game header visible at all scales. Users see the top of the game first.
+### 3. Minimum Scale Reduced to 0.35
+On extremely small viewports (like embedded widgets or very old small monitors), allowing scale to go to 0.35 ensures the game still fits. At 0.35 scale:
+- Desktop 950px → 332px effective
+- This is very small but still functional
 
-### 4. dvh Units
-Using `dvh` (dynamic viewport height) instead of `vh` for the container. This accounts for mobile browser chrome (address bar, navigation) that changes the actual visible height.
+### 4. Smooth Transitions
+The title doesn't just pop in/out - it smoothly fades and collapses. This prevents jarring layout shifts during window resize.
 
-### 5. All Content Scaled Together
-The mobile side content (leaderboard, promo slider) must be inside the scaled container to prevent overflow. This means the scale factor accounts for this additional content on mobile.
-
----
-
-## Animation Preservation
-
-All existing animations will continue to work:
-- **CSS transforms stack** - Scaling a spinning reel still spins correctly
-- **Keyframe animations** - All @keyframes work within scaled containers
-- **Win celebrations** - Particles and effects scale proportionally
-- **Bonus overlays** - Full-screen overlays work outside the scaled container
+### 5. No Scrolling Ever
+With this system, the slot machine + controls will ALWAYS fit in view. The only thing that may be hidden is the decorative title.
 
 ---
 
-## Click Area Preservation
+## Mobile Considerations
 
-CSS `transform: scale()` automatically adjusts hit testing:
-- All buttons remain clickable at their scaled positions
-- No pointer-events adjustments needed
-- Touch targets scale proportionally (may become smaller, but still accurate)
+On mobile, the side content (leaderboard, promo slider) appears below the game. The mobile baseline accounts for this:
+- Core: 620px = Reels (320) + Controls (80) + Side content (220)
+- With title: 730px = Core + Title (80) + spacing
 
----
-
-## Performance Considerations
-
-1. **GPU Acceleration**: `transform` is hardware-accelerated
-2. **Single transform**: One scale transform on container, not multiple
-3. **Debounced resize**: 100ms debounce prevents excessive recalculations
-4. **No layout thrashing**: Transform doesn't trigger layout recalculations
-5. **will-change hint**: Applied to scaled container for browser optimization
-
----
-
-## Mobile-Specific Handling
-
-On mobile (<xl breakpoints):
-- Include leaderboard and promo slider in height calculation
-- Account for potential navigation bar space
-- Use more aggressive scaling if needed (0.45 minimum)
-- Ensure touch targets remain at least 44×44px effective size
+If viewport is too short, title hides first. If still too short, scaling goes down to 0.35 minimum.
 
 ---
 
 ## Testing Recommendations
 
-After implementation, verify on:
-1. **1366×768** - Common laptop resolution, should fit without scroll
-2. **1440×900** - MacBook Pro 13", should scale to ~0.86
-3. **1920×1080** - Standard desktop, should be full size
-4. **2560×1440** - 27" monitor, full size
-5. **Ultrawide (3440×1440)** - Should be centered and full size
-6. **iPhone (390×844)** - Mobile should fit without scroll
-7. **iPad (1024×1366)** - Tablet should fit without scroll
-
+After implementation, test on:
+1. **1366×768** - Common laptop, title should hide, game fits
+2. **1280×720** - HD, title should hide, game fits
+3. **1920×1080** - Standard, full experience with title
+4. **Resize browser** - Title should smoothly appear/disappear
+5. **Mobile devices** - Various heights, verify no scrolling
+6. **DevTools device mode** - Test all standard device presets
