@@ -763,28 +763,28 @@ export function SlotGame() {
                           
                           // Play appropriate sound based on result
                           let hasWinAnimation = false;
-                          if (!result.bonusTriggered) {
-                            if (result.totalWin >= bet * 50) {
-                              slotSounds.playBigWin();
-                              setIsWinAnimating(true);
-                              setWinAmount(result.totalWin);
-                              hasWinAnimation = true;
-                              setTimeout(() => setIsWinAnimating(false), 2000);
-                            } else if (result.totalWin >= bet * 10) {
-                              slotSounds.playMediumWin();
-                              setIsWinAnimating(true);
-                              setWinAmount(result.totalWin);
-                              hasWinAnimation = true;
-                              setTimeout(() => setIsWinAnimating(false), 2000);
-                            } else if (result.totalWin > 0) {
-                              slotSounds.playSmallWin();
-                              setIsWinAnimating(true);
-                              setWinAmount(result.totalWin);
-                              hasWinAnimation = true;
-                              setTimeout(() => setIsWinAnimating(false), 2000);
-                            } else {
-                              slotSounds.playNoWin();
-                            }
+                          // Play win sounds regardless of bonus trigger
+                          if (result.totalWin >= bet * 50) {
+                            slotSounds.playBigWin();
+                            setIsWinAnimating(true);
+                            setWinAmount(result.totalWin);
+                            hasWinAnimation = true;
+                            setTimeout(() => setIsWinAnimating(false), 2000);
+                          } else if (result.totalWin >= bet * 10) {
+                            slotSounds.playMediumWin();
+                            setIsWinAnimating(true);
+                            setWinAmount(result.totalWin);
+                            hasWinAnimation = true;
+                            setTimeout(() => setIsWinAnimating(false), 2000);
+                          } else if (result.totalWin > 0) {
+                            slotSounds.playSmallWin();
+                            setIsWinAnimating(true);
+                            setWinAmount(result.totalWin);
+                            hasWinAnimation = true;
+                            setTimeout(() => setIsWinAnimating(false), 2000);
+                          } else if (!result.bonusTriggered) {
+                            // Only play no-win sound if no bonus triggered
+                            slotSounds.playNoWin();
                           }
                           
                           // Show win lines if there are wins
