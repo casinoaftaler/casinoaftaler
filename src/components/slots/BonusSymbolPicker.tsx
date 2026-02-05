@@ -70,6 +70,8 @@ export function BonusSymbolPicker({
               stopScrollSoundRef.current();
               stopScrollSoundRef.current = null;
             }
+            // Play the symbol selected sound
+            slotSounds.playBonusSymbolSelected();
           } else {
             const randomIndex = Math.floor(Math.random() * eligibleSymbols.length);
             setCurrentSymbol(eligibleSymbols[randomIndex]);
