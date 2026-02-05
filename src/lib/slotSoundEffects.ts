@@ -36,6 +36,9 @@ export interface CustomSoundFiles {
   bonusWinSound?: string | null;
   bonusSymbolScrollSound?: string | null;
   bonusSymbolSelectedSound?: string | null;
+  scatterSound1?: string | null;
+  scatterSound2?: string | null;
+  scatterSound3?: string | null;
 }
 
 // localStorage key for persisting audio settings
@@ -2320,6 +2323,14 @@ class SlotSoundEffects {
   // Progressive scatter land sound - cat meow sounds that build in intensity
   playScatterLand(scatterNumber: number) {
     if (!this.canPlayBonusSound()) return;
+    
+    // Try to play custom scatter sound based on scatter number
+    const scatterKey = `scatterSound${scatterNumber}` as keyof CustomSoundFiles;
+    if (this.playCustomSound(scatterKey, 1)) {
+      return; // Custom sound played successfully
+    }
+    
+    // Fallback to synthesized meow
     const ctx = this.getContext();
     const now = ctx.currentTime;
     
