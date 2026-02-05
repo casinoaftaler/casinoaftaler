@@ -7,9 +7,10 @@ interface SlotPageLockGateProps {
   backgroundImage: string;
   onVerify: (password: string) => boolean;
   error: string | null;
+  promo?: React.ReactNode;
 }
 
-export function SlotPageLockGate({ backgroundImage, onVerify, error }: SlotPageLockGateProps) {
+export function SlotPageLockGate({ backgroundImage, onVerify, error, promo }: SlotPageLockGateProps) {
   const [password, setPassword] = useState("");
   const [localError, setLocalError] = useState<string | null>(null);
 
@@ -39,7 +40,7 @@ export function SlotPageLockGate({ backgroundImage, onVerify, error }: SlotPageL
       />
       <div className="absolute inset-0 bg-gradient-to-b from-black/90 via-black/80 to-black/95 -z-10" />
       
-      <div className="w-full max-w-md mx-4">
+      <div className="w-full max-w-md mx-4 space-y-4">
         <div className="bg-card/90 backdrop-blur-md border border-amber-500/30 rounded-2xl p-8 shadow-2xl">
           {/* Lock Icon */}
           <div className="flex justify-center mb-6">
@@ -95,6 +96,8 @@ export function SlotPageLockGate({ backgroundImage, onVerify, error }: SlotPageL
             <span className="text-2xl">𓆣</span>
           </div>
         </div>
+
+        {promo}
       </div>
     </div>
   );
