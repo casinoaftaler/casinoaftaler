@@ -5,13 +5,14 @@
  * This function ONLY resets user-facing gameplay data:
  * ✅ RESETS: slot_game_results (user leaderboard/winnings)
  * ✅ RESETS: slot_spins (user spin counters)
+ * ✅ ARCHIVES: Aggregates current stats to slot_statistics_archive before reset
  * 
  * ⚠️ NEVER TOUCH ADMIN ANALYTICS - These are PRESERVED:
  * ❌ page_views (page tracking analytics)
  * ❌ click_events (affiliate click tracking)
  * ❌ Any other analytics/tracking tables
  * 
- * PRINCIPLE: Only reset user-facing gameplay data, never admin analytics.
+ * PRINCIPLE: Archive stats before reset, then only reset user-facing gameplay data.
  */
 
 import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
@@ -26,6 +27,8 @@ interface ResetRequest {
   target?: "leaderboard" | "spins" | "all";
   source?: "cron" | "admin";
 }
+
+const ARCHIVE_ID = "00000000-0000-0000-0000-000000000001";
 
 Deno.serve(async (req) => {
   // Handle CORS preflight
@@ -93,8 +96,65 @@ Deno.serve(async (req) => {
     let leaderboardDeleted = 0;
     let spinsDeleted = 0;
 
-    // Delete from slot_game_results (leaderboard)
+    // Archive current stats before resetting leaderboard
     if (target === "leaderboard" || target === "all") {
+      console.log("Archiving current statistics before reset...");
+
+      // Fetch current aggregates from slot_game_results
+      const { data: currentResults, error: fetchError } = await supabase
+        .from("slot_game_results")
+        .select("user_id, bet_amount, win_amount, bonus_win_amount, is_bonus_triggered");
+
+      if (fetchError) {
+        console.error("Error fetching current results:", fetchError);
+        throw new Error(`Failed to fetch current results: ${fetchError.message}`);
+      }
+
+      if (currentResults && currentResults.length > 0) {
+        // Calculate aggregates
+        const totalSpins = currentResults.length;
+        const totalWinnings = currentResults.reduce((sum, r) => sum + Number(r.win_amount) + Number(r.bonus_win_amount), 0);
+        const totalBets = currentResults.reduce((sum, r) => sum + Number(r.bet_amount), 0);
+        const biggestWin = currentResults.reduce((max, r) => Math.max(max, Number(r.win_amount) + Number(r.bonus_win_amount)), 0);
+        const totalBonuses = currentResults.filter(r => r.is_bonus_triggered).length;
+        const uniquePlayers = new Set(currentResults.map(r => r.user_id)).size;
+
+        // Fetch current archive
+        const { data: archive, error: archiveError } = await supabase
+          .from("slot_statistics_archive")
+          .select("*")
+          .eq("id", ARCHIVE_ID)
+          .single();
+
+        if (archiveError) {
+          console.error("Error fetching archive:", archiveError);
+          throw new Error(`Failed to fetch archive: ${archiveError.message}`);
+        }
+
+        // Update archive with accumulated totals
+        const { error: updateError } = await supabase
+          .from("slot_statistics_archive")
+          .update({
+            total_spins: (archive?.total_spins || 0) + totalSpins,
+            total_winnings: Number(archive?.total_winnings || 0) + totalWinnings,
+            total_bets: Number(archive?.total_bets || 0) + totalBets,
+            biggest_win: Math.max(Number(archive?.biggest_win || 0), biggestWin),
+            total_bonuses: (archive?.total_bonuses || 0) + totalBonuses,
+            unique_players: (archive?.unique_players || 0) + uniquePlayers, // Approximate, may have overlap
+            last_reset_at: new Date().toISOString(),
+            reset_count: (archive?.reset_count || 0) + 1,
+          })
+          .eq("id", ARCHIVE_ID);
+
+        if (updateError) {
+          console.error("Error updating archive:", updateError);
+          throw new Error(`Failed to update archive: ${updateError.message}`);
+        }
+
+        console.log(`Archived stats: ${totalSpins} spins, ${totalWinnings} winnings, ${totalBonuses} bonuses`);
+      }
+
+      // Delete from slot_game_results (leaderboard)
       const { data: resultsData, error: resultsError } = await supabase
         .from("slot_game_results")
         .delete()
@@ -129,7 +189,7 @@ Deno.serve(async (req) => {
 
     const result = {
       success: true,
-      message: `Stats reset complete`,
+      message: `Stats reset complete (archived before deletion)`,
       target,
       leaderboardDeleted,
       spinsDeleted,
