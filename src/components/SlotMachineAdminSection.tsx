@@ -8,6 +8,7 @@ import { SlotTitleImageUpload } from "@/components/SlotTitleImageUpload";
 import { SlotBackgroundImageUpload } from "@/components/SlotBackgroundImageUpload";
 import { SpinManagementSection } from "@/components/SpinManagementSection";
 import { SlotFrameAdminControls } from "@/components/slots/SlotFrameAdminControls";
+import { SlotStatsResetSection } from "@/components/slots/SlotStatsResetSection";
 import { SlotSoundAdminSection } from "@/components/slots/SlotSoundAdminSection";
 import { SlotSoundFilesSection } from "@/components/slots/SlotSoundFilesSection";
 import { SlotSoundGeneratorSection } from "@/components/slots/SlotSoundGeneratorSection";
@@ -1225,7 +1226,10 @@ export function SlotMachineAdminSection() {
         </TabsContent>
 
         <TabsContent value="statistics">
-          <StatisticsTab />
+          <div className="space-y-6">
+            <SlotStatsResetSection />
+            <StatisticsTab />
+          </div>
         </TabsContent>
       </Tabs>
     </div>
