@@ -186,9 +186,9 @@ useEffect(() => {
 
 Start with the highest-impact, lowest-effort optimizations:
 
-1. **Add `React.memo()` to SlotSymbol and SlotReel** - Immediate performance gain
-2. **Create `useResponsiveSlotDimensions` hook** - Eliminates repeated window queries
-3. **Wrap callbacks in useCallback** - Prevents child re-renders
-4. **Add skeleton loading state** - Better perceived performance
+1. ✅ **Add `React.memo()` to SlotSymbol, SlotReel, and WinLines** - Implemented
+2. ✅ **Create `useResponsiveSlotDimensions` hook** - Implemented (caches dimensions with debounced resize)
+3. ✅ **Add skeleton loading state** - Implemented (SlotGameSkeleton component)
+4. **Wrap callbacks in useCallback** - Remaining optimization for SlotGame.tsx
 
 These can be done incrementally without breaking existing functionality.

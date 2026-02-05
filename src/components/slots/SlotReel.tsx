@@ -1,8 +1,9 @@
-import { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, useMemo } from "react";
 import { cn } from "@/lib/utils";
 import { SlotSymbol } from "./SlotSymbol";
 import { slotSounds } from "@/lib/slotSoundEffects";
 import type { SlotSymbol as SlotSymbolType } from "@/lib/slotGameLogic";
+import { useResponsiveSlotDimensions } from "@/hooks/useResponsiveSlotDimensions";
 
 interface SlotReelProps {
   symbols: SlotSymbolType[];
@@ -28,11 +29,7 @@ interface SlotReelProps {
   isDarkenedForExpansion?: boolean;
 }
 
-// Match the responsive symbol sizes from SlotSymbol
-const SYMBOL_SIZE = { xs: 61, mobile: 71, sm: 92, md: 109, lg: 133, xl: 150 };
-const GAP = { xs: 4, mobile: 6, sm: 8, md: 12, lg: 16 };
-
-export function SlotReel({
+export const SlotReel = React.memo(function SlotReel({
   symbols,
   displayedSymbolIds,
   isSpinning,
@@ -55,7 +52,10 @@ export function SlotReel({
   isDarkenedForTease = false,
   isDarkenedForExpansion = false,
 }: SlotReelProps) {
-  const symbolsById = new Map(symbols.map(s => [s.id, s]));
+  // Use cached responsive dimensions
+  const { symbolSize: symbolHeight, gap } = useResponsiveSlotDimensions();
+  
+  const symbolsById = useMemo(() => new Map(symbols.map(s => [s.id, s])), [symbols]);
   const [spinState, setSpinState] = useState<"idle" | "spinning" | "stopping" | "stopped">("idle");
   const [offset, setOffset] = useState(0);
   const animationRef = useRef<number | null>(null);
@@ -86,27 +86,6 @@ export function SlotReel({
     return strip;
   };
 
-  // Get responsive dimensions
-  const getSymbolHeight = () => {
-    if (typeof window === "undefined") return SYMBOL_SIZE.xl;
-    const width = window.innerWidth;
-    if (width < 400) return SYMBOL_SIZE.xs;
-    if (width < 640) return SYMBOL_SIZE.mobile;
-    if (width < 768) return SYMBOL_SIZE.sm;
-    if (width < 1024) return SYMBOL_SIZE.md;
-    if (width < 1280) return SYMBOL_SIZE.lg;
-    return SYMBOL_SIZE.xl;
-  };
-
-  const getGap = () => {
-    if (typeof window === "undefined") return GAP.lg;
-    const width = window.innerWidth;
-    if (width < 400) return GAP.xs;
-    if (width < 640) return GAP.mobile;
-    if (width < 768) return GAP.sm;
-    if (width < 1024) return GAP.md;
-    return GAP.lg;
-  };
 
   // Start fake loop when spinning begins - ALL reels use this now
   useEffect(() => {
@@ -129,8 +108,6 @@ export function SlotReel({
       const strip = buildReelStrip();
       setReelStrip(strip);
       
-      const symbolHeight = getSymbolHeight();
-      const gap = getGap();
       const totalSymbolHeight = symbolHeight + gap;
       const startOffset = (strip.length - 3) * totalSymbolHeight;
       setOffset(startOffset);
@@ -176,8 +153,6 @@ export function SlotReel({
       const strip = buildReelStrip();
       setReelStrip(strip);
       
-      const symbolHeight = getSymbolHeight();
-      const gap = getGap();
       const totalSymbolHeight = symbolHeight + gap;
       const startOffset = (strip.length - 3) * totalSymbolHeight;
       setOffset(startOffset);
@@ -273,10 +248,8 @@ export function SlotReel({
 
   // When idle or stopped, show just the final symbols
   if (spinState === "idle" || spinState === "stopped") {
-    const symbolHeight = getSymbolHeight();
-    
     return (
-      <div 
+      <div
         className="flex flex-col gap-[4px] xs:gap-[6px] sm:gap-[8px] md:gap-[12px] lg:gap-[16px]"
         style={{ 
           width: `${symbolHeight}px`
@@ -323,8 +296,6 @@ export function SlotReel({
   }
 
   // During spinning, show the animated reel strip
-  const symbolHeight = getSymbolHeight();
-  const gap = getGap();
   const totalSymbolHeight = symbolHeight + gap;
   const viewportHeight = 3 * symbolHeight + 2 * gap;
 
@@ -377,4 +348,4 @@ export function SlotReel({
       
     </div>
   );
-}
+});

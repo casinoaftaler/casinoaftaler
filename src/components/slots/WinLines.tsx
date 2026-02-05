@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { PAY_LINES, type LineWin } from "@/lib/slotGameLogic";
 import { cn } from "@/lib/utils";
 
@@ -23,7 +23,7 @@ const LINE_COLORS = [
   "#FFA000", // Line 10 - Rich Amber
 ];
 
-export function WinLines({ wins, symbolSize, gap, isVisible }: WinLinesProps) {
+export const WinLines = React.memo(function WinLines({ wins, symbolSize, gap, isVisible }: WinLinesProps) {
   const [visibleLines, setVisibleLines] = useState<number[]>([]);
 
   // Animate lines appearing one by one
@@ -257,4 +257,4 @@ export function WinLines({ wins, symbolSize, gap, isVisible }: WinLinesProps) {
       </svg>
     </div>
   );
-}
+});

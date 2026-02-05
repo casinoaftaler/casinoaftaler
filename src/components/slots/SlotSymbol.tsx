@@ -1,3 +1,4 @@
+import React from "react";
 import { cn } from "@/lib/utils";
 import { getSymbolEmoji } from "@/lib/slotGameLogic";
 import type { SlotSymbol as SlotSymbolType } from "@/lib/slotGameLogic";
@@ -15,7 +16,7 @@ interface SlotSymbolProps {
 }
 
 // Symbol sizes: xs=61, mobile=71, sm=92, md=109, lg=133, xl=150
-export function SlotSymbol({ symbol, isWinning, isSpinning, isExpanded, isNewlyExpanded, hasLanded, isTeasing, isScatterCelebrating, isDarkened }: SlotSymbolProps) {
+export const SlotSymbol = React.memo(function SlotSymbol({ symbol, isWinning, isSpinning, isExpanded, isNewlyExpanded, hasLanded, isTeasing, isScatterCelebrating, isDarkened }: SlotSymbolProps) {
   return (
     <div
       className={cn(
@@ -87,4 +88,4 @@ export function SlotSymbol({ symbol, isWinning, isSpinning, isExpanded, isNewlyE
       
     </div>
   );
-}
+});
