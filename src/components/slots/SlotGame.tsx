@@ -585,7 +585,17 @@ export function SlotGame() {
                       spinLoopMs={slotSettings.spinLoopMs}
                       reelSlowdownMs={slotSettings.reelSlowdownMs}
                       onReelStop={async (reelIndex) => {
-                        slotSounds.playReelStopSingle(reelIndex);
+                        // Check if this reel has a scatter
+                        const hasScatterOnReel = grid?.[reelIndex]?.some(symbolId => {
+                          const symbol = symbols?.find(s => s.id === symbolId);
+                          return symbol?.is_scatter;
+                        });
+                        
+                        // Only play normal reel stop sound if NO scatter on this reel
+                        // Scatters have their own distinctive sound, so we don't want overlapping bips
+                        if (!hasScatterOnReel) {
+                          slotSounds.playReelStopSingle(reelIndex);
+                        }
                         
                         // SEQUENTIAL: Trigger the next reel to slow down with configurable delay
                         if (reelIndex < 4) {
@@ -593,12 +603,6 @@ export function SlotGame() {
                             setActiveSlowdownReel(reelIndex + 1);
                           }, slotSettings.reelStaggerMs);
                         }
-                        
-                        // Check if this reel has a scatter and play progressive scatter land sound
-                        const hasScatterOnReel = grid?.[reelIndex]?.some(symbolId => {
-                          const symbol = symbols?.find(s => s.id === symbolId);
-                          return symbol?.is_scatter;
-                        });
                         
                         // Play scatter land sound with specific rules
                         if (hasScatterOnReel) {
