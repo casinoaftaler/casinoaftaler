@@ -511,6 +511,48 @@ export type Database = {
         }
         Relationships: []
       }
+      slot_statistics_archive: {
+        Row: {
+          biggest_win: number
+          created_at: string
+          id: string
+          last_reset_at: string | null
+          reset_count: number
+          total_bets: number
+          total_bonuses: number
+          total_spins: number
+          total_winnings: number
+          unique_players: number
+          updated_at: string
+        }
+        Insert: {
+          biggest_win?: number
+          created_at?: string
+          id?: string
+          last_reset_at?: string | null
+          reset_count?: number
+          total_bets?: number
+          total_bonuses?: number
+          total_spins?: number
+          total_winnings?: number
+          unique_players?: number
+          updated_at?: string
+        }
+        Update: {
+          biggest_win?: number
+          created_at?: string
+          id?: string
+          last_reset_at?: string | null
+          reset_count?: number
+          total_bets?: number
+          total_bonuses?: number
+          total_spins?: number
+          total_winnings?: number
+          unique_players?: number
+          updated_at?: string
+        }
+        Relationships: []
+      }
       slot_symbols: {
         Row: {
           bonus_weight: number
