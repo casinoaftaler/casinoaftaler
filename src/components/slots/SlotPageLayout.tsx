@@ -8,27 +8,25 @@ interface SlotPageLayoutProps {
 }
 
 /**
- * Three-column layout for the slot machine page.
- * Desktop (xl+): Side panel on left, game in center, empty right for balance
- * Mobile/Tablet: Single column stack
+ * Layout for the slot machine page.
+ * Game is truly centered, side panel is positioned to the left without affecting center.
  */
 export function SlotPageLayout({ children, sidePanel, className }: SlotPageLayoutProps) {
   return (
     <div className={cn("w-full flex justify-center", className)}>
-      {/* Three-column grid for desktop */}
-      <div className="w-full max-w-[1600px] grid grid-cols-1 xl:grid-cols-[300px_1fr_300px] gap-4 xl:gap-6">
-        {/* Left column - Side panel (Leaderboard + Promo) */}
-        <aside className="hidden xl:flex flex-col gap-4 order-1">
-          {sidePanel}
-        </aside>
+      {/* Centered game container with relative positioning for side panel */}
+      <div className="relative flex justify-center w-full">
+        {/* Left side panel - absolutely positioned on desktop */}
+        {sidePanel && (
+          <aside className="hidden xl:flex flex-col gap-4 absolute right-full mr-6 top-0 w-[300px]">
+            {sidePanel}
+          </aside>
+        )}
 
-        {/* Center column - Main game area */}
-        <main className="flex flex-col items-center order-2">
+        {/* Center column - Main game area (truly centered) */}
+        <main className="flex flex-col items-center">
           {children}
         </main>
-
-        {/* Right column - Empty for visual balance on desktop */}
-        <div className="hidden xl:block order-3" aria-hidden="true" />
       </div>
     </div>
   );
