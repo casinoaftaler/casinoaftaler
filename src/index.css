@@ -432,3 +432,20 @@ All colors MUST be HSL.
     opacity: 1;
   }
 }
+
+/* Viewport scaling container for slot machine */
+.slot-viewport-container {
+  will-change: transform;
+  transform-origin: top center;
+}
+
+@keyframes title-entrance {
+  0% {
+    opacity: 0;
+    transform: translateY(-30px) scale(0.9);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}

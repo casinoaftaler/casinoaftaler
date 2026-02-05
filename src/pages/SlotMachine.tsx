@@ -12,6 +12,7 @@ import { useSiteSettings } from "@/hooks/useSiteSettings";
 import { useSlotPageAccess } from "@/hooks/useSlotPageAccess";
 import { useSlotSession } from "@/hooks/useSlotSession";
 import { useCasinos } from "@/hooks/useCasinos";
+import { useViewportScaling } from "@/hooks/useViewportScaling";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { Gamepad2 } from "lucide-react";
@@ -35,6 +36,7 @@ export default function SlotMachine() {
     takeOverSession,
     refreshSession 
   } = useSlotSession();
+  const { scale, shouldScale } = useViewportScaling();
   
   
   // Loading phase state - always start fresh (no session persistence)
@@ -165,7 +167,7 @@ export default function SlotMachine() {
 
   // 7. Show the game
   return (
-    <div className="min-h-[calc(100vh-4rem)] relative overflow-x-hidden">
+    <div className="h-[calc(100vh-4rem)] relative overflow-hidden">
       {/* Background - absolute instead of fixed to not overlap header */}
       <div 
         className="absolute inset-0 bg-cover bg-center bg-no-repeat -z-10"
@@ -173,49 +175,57 @@ export default function SlotMachine() {
       />
       <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black/70 -z-10" />
       
-      <div className="container px-2 sm:px-4">
-        {/* Title Image with glow animation - no top spacing */}
-        <div className="flex justify-center -mt-8 sm:-mt-10 md:-mt-12">
-          <img 
-            src={titleImage} 
-            alt="Book of Fedesvin" 
-            className="w-full max-w-[180px] xs:max-w-[240px] sm:max-w-sm md:max-w-md h-auto animate-[title-entrance_0.8s_ease-out_forwards,glow_3s_ease-in-out_0.8s_infinite]"
-            style={{
-              filter: 'drop-shadow(0 0 20px rgba(251,191,36,0.5)) drop-shadow(0 0 40px rgba(251,191,36,0.3)) drop-shadow(0 0 60px rgba(251,191,36,0.2))'
-            }}
-          />
-        </div>
+      {/* Scaled game container */}
+      <div 
+        className="slot-viewport-container h-full"
+        style={{
+          transform: shouldScale ? `scale(${scale})` : undefined,
+        }}
+      >
+        <div className="container px-2 sm:px-4">
+          {/* Title Image with glow animation - no top spacing */}
+          <div className="flex justify-center -mt-8 sm:-mt-10 md:-mt-12">
+            <img 
+              src={titleImage} 
+              alt="Book of Fedesvin" 
+              className="w-full max-w-[180px] xs:max-w-[240px] sm:max-w-sm md:max-w-md h-auto animate-[title-entrance_0.8s_ease-out_forwards,glow_3s_ease-in-out_0.8s_infinite]"
+              style={{
+                filter: 'drop-shadow(0 0 20px rgba(251,191,36,0.5)) drop-shadow(0 0 40px rgba(251,191,36,0.3)) drop-shadow(0 0 60px rgba(251,191,36,0.2))'
+              }}
+            />
+          </div>
 
-        {/* Main content: Slot machine centered, leaderboard positioned beside it */}
-        <div className="flex justify-center">
-          {/* Centered wrapper for slot machine with relative positioning for leaderboard */}
-          <div className="relative">
-            {/* Desktop: Leaderboard positioned to the left */}
-            <div className="hidden xl:block absolute right-full mr-4 top-0 w-80" style={{ marginTop: '-73px' }}>
-              <div style={{ marginBottom: '10px' }}>
-                <SlotLeaderboard />
+          {/* Main content: Slot machine centered, leaderboard positioned beside it */}
+          <div className="flex justify-center">
+            {/* Centered wrapper for slot machine with relative positioning for leaderboard */}
+            <div className="relative">
+              {/* Desktop: Leaderboard positioned to the left */}
+              <div className="hidden xl:block absolute right-full mr-4 top-0 w-80" style={{ marginTop: '-73px' }}>
+                <div style={{ marginBottom: '10px' }}>
+                  <SlotLeaderboard />
+                </div>
+                
+                {/* #1 Casino Card + Giveaway Slider - Desktop */}
+                {topCasino && (
+                  <SlotPromoSlider casino={topCasino} backgroundImage={slotCasinoCardBg} />
+                )}
               </div>
               
-              {/* #1 Casino Card + Giveaway Slider - Desktop */}
-              {topCasino && (
-                <SlotPromoSlider casino={topCasino} backgroundImage={slotCasinoCardBg} />
-              )}
-            </div>
-            
-            {/* Slot machine - the true center piece */}
-            <div className="flex flex-col items-center gap-1" style={{ marginTop: '-5px' }}>
-              <SlotGame />
-              
-              {/* #1 Casino Card + Giveaway Slider - Mobile/Tablet */}
-              {topCasino && (
+              {/* Slot machine - the true center piece */}
+              <div className="flex flex-col items-center gap-1" style={{ marginTop: '-5px' }}>
+                <SlotGame />
+                
+                {/* #1 Casino Card + Giveaway Slider - Mobile/Tablet */}
+                {topCasino && (
+                  <div className="w-full max-w-sm xl:hidden mt-3">
+                    <SlotPromoSlider casino={topCasino} backgroundImage={slotCasinoCardBg} />
+                  </div>
+                )}
+                
+                {/* Mobile/Tablet: Leaderboard */}
                 <div className="w-full max-w-sm xl:hidden mt-3">
-                  <SlotPromoSlider casino={topCasino} backgroundImage={slotCasinoCardBg} />
+                  <SlotLeaderboard />
                 </div>
-              )}
-              
-              {/* Mobile/Tablet: Leaderboard */}
-              <div className="w-full max-w-sm xl:hidden mt-3">
-                <SlotLeaderboard />
               </div>
             </div>
           </div>
