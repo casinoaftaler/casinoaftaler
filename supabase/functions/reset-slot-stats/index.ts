@@ -1,3 +1,19 @@
+/**
+ * RESET SLOT STATS EDGE FUNCTION
+ * ================================
+ * 
+ * This function ONLY resets user-facing gameplay data:
+ * ✅ RESETS: slot_game_results (user leaderboard/winnings)
+ * ✅ RESETS: slot_spins (user spin counters)
+ * 
+ * ⚠️ NEVER TOUCH ADMIN ANALYTICS - These are PRESERVED:
+ * ❌ page_views (page tracking analytics)
+ * ❌ click_events (affiliate click tracking)
+ * ❌ Any other analytics/tracking tables
+ * 
+ * PRINCIPLE: Only reset user-facing gameplay data, never admin analytics.
+ */
+
 import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
 
 const corsHeaders = {
