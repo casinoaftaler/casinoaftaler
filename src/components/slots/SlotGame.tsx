@@ -790,10 +790,7 @@ export function SlotGame() {
                           // Show win lines if there are wins
                           if (result.wins.length > 0) {
                             setShowWinLines(true);
-                            const displayDuration = isAutoSpinning ? 2000 : 3500;
-                            winLinesTimeoutRef.current = setTimeout(() => {
-                              setShowWinLines(false);
-                            }, displayDuration);
+                            // Win lines stay visible until next spin starts (cleared in handleSpin)
                           }
                           
                           // Clear pending result
