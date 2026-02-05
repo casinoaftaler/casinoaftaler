@@ -35,6 +35,7 @@ export interface CustomSoundFiles {
   bonusTriggerSound?: string | null;
   bonusWinSound?: string | null;
   bonusSymbolScrollSound?: string | null;
+  bonusSymbolSelectedSound?: string | null;
 }
 
 // localStorage key for persisting audio settings
@@ -1434,6 +1435,86 @@ class SlotSoundEffects {
       whooshOsc.stop(stopTime + 0.3);
       lfo.stop(stopTime + 0.3);
     };
+  }
+
+  // Bonus symbol selected - dramatic reveal sound when symbol is chosen
+  playBonusSymbolSelected() {
+    if (!this.canPlayBonusSound()) return;
+    
+    // Try custom sound first
+    if (this.playCustomSound('bonusSymbolSelectedSound')) return;
+    
+    // Fallback to synthesized dramatic reveal
+    const ctx = this.getContext();
+    const now = ctx.currentTime;
+    
+    // Deep impact hit
+    const impact = ctx.createOscillator();
+    const impactGain = ctx.createGain();
+    const impactFilter = ctx.createBiquadFilter();
+    
+    impact.connect(impactFilter);
+    impactFilter.connect(impactGain);
+    impactGain.connect(ctx.destination);
+    
+    impact.frequency.setValueAtTime(150, now);
+    impact.frequency.exponentialRampToValueAtTime(40, now + 0.3);
+    impact.type = 'sine';
+    
+    impactFilter.type = 'lowpass';
+    impactFilter.frequency.value = 200;
+    
+    impactGain.gain.setValueAtTime(0.4 * this.volume, now);
+    impactGain.gain.exponentialRampToValueAtTime(0.001, now + 0.5);
+    
+    impact.start(now);
+    impact.stop(now + 0.5);
+    
+    // Mystical shimmer chord (D major with Egyptian flavor)
+    const shimmerNotes = [293.66, 369.99, 440, 587.33]; // D4, F#4, A4, D5
+    shimmerNotes.forEach((freq, i) => {
+      const osc = ctx.createOscillator();
+      const gain = ctx.createGain();
+      const filter = ctx.createBiquadFilter();
+      
+      osc.connect(filter);
+      filter.connect(gain);
+      gain.connect(ctx.destination);
+      
+      osc.frequency.value = freq;
+      osc.type = 'sine';
+      
+      filter.type = 'lowpass';
+      filter.frequency.value = 2000;
+      
+      const startTime = now + 0.05 + (i * 0.03);
+      gain.gain.setValueAtTime(0, startTime);
+      gain.gain.linearRampToValueAtTime(0.15 * this.volume, startTime + 0.1);
+      gain.gain.exponentialRampToValueAtTime(0.001, startTime + 1.2);
+      
+      osc.start(startTime);
+      osc.stop(startTime + 1.2);
+    });
+    
+    // Sparkle burst
+    for (let i = 0; i < 8; i++) {
+      setTimeout(() => {
+        const sparkle = ctx.createOscillator();
+        const sparkleGain = ctx.createGain();
+        
+        sparkle.connect(sparkleGain);
+        sparkleGain.connect(ctx.destination);
+        
+        sparkle.frequency.value = 2000 + Math.random() * 3000;
+        sparkle.type = 'sine';
+        
+        sparkleGain.gain.setValueAtTime(0.1 * this.volume, ctx.currentTime);
+        sparkleGain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.15);
+        
+        sparkle.start();
+        sparkle.stop(ctx.currentTime + 0.15);
+      }, i * 40);
+    }
   }
 
   // Retrigger - triumphant power boost during bonus
