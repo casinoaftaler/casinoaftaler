@@ -1,129 +1,252 @@
 
-
-# Plan: Lazy Load Slot Machine for Better Website Performance
+# Plan: Fix Mobile Sound Effects & Page Exit Behavior
 
 ## Problem Summary
-Currently, when users visit any page on the website (like the homepage `/`), the following slot machine resources are loaded immediately:
 
-1. **JavaScript code**: The entire `SlotMachine.tsx` page and all its 29+ component dependencies (`SlotGame.tsx`, `SlotReel.tsx`, etc.) are bundled into the main bundle
-2. **Sound effects library**: The 2500+ line `slotSoundEffects.ts` is loaded on every page
-3. **Game logic**: `slotGameLogic.ts`, `bonusGameLogic.ts`, etc.
-4. **Static assets**: Default slot images imported at the top of files (via `import from "@/assets/slots/..."`)
-5. **Hooks**: Multiple slot-specific hooks like `useSlotSymbols`, `useSlotSpins`, `useBonusGame`, etc.
+### Issue 1: Custom Sound Effects Not Playing on Mobile
+The current implementation has several issues causing sound failures on mobile:
 
-This unnecessarily bloats the initial bundle size and slows down page load for users who never visit the slot machine.
+1. **`playCustomSound()` creates cloned audio elements** - While cloning is faster than creating new elements, cloned elements don't inherit the preloaded buffer on all mobile browsers
+2. **Missing `load()` call on clones** - Mobile browsers require explicit loading before playback
+3. **Some sound methods create new `Audio()` objects outside user gesture** - For example, `playBonusSymbolScroll()` at line 1430 creates a `new Audio()` which loses user gesture context
+4. **AudioContext may suspend after inactivity** - Mobile browsers aggressively suspend AudioContext when the page is backgrounded
+
+### Issue 2: Music Continues When Exiting Browser on Mobile
+Currently:
+- The only cleanup is in `SlotGame.tsx` `useEffect` return function
+- No handling for `visibilitychange` event (browser going to background)
+- No redirect to home page when user backgrounds the app
 
 ---
 
-## Solution: React Lazy Loading + Code Splitting
+## Solution Overview
 
-### Phase 1: Lazy Load the SlotMachine Page
+### Phase 1: Add Visibility Change Detection
+Detect when the user minimizes the browser, switches tabs, or closes the browser on mobile. Use the `visibilitychange` event which is the most reliable across mobile browsers.
 
-Use React's `lazy()` and `Suspense` to dynamically import the slot machine page only when the user navigates to `/community/slots`.
+**Changes to `src/pages/SlotMachine.tsx`:**
+- Add a `useEffect` that listens for `visibilitychange`
+- When `document.visibilityState === 'hidden'`:
+  - Stop all music via `slotSounds.stopMusic()`
+  - Navigate to home page (`/`)
+- Use `react-router-dom`'s `useNavigate` hook
 
-**Changes to `src/App.tsx`:**
-- Replace the static import `import SlotMachine from "./pages/SlotMachine"` with a lazy import
-- Wrap the lazy-loaded component in a `Suspense` boundary with a loading fallback
+### Phase 2: Fix Custom Sound Playback Reliability
+Improve the `playCustomSound()` method to work reliably on mobile.
 
-```typescript
-// Before
-import SlotMachine from "./pages/SlotMachine";
+**Changes to `src/lib/slotSoundEffects.ts`:**
+1. **Use pre-warmed audio pool** - Instead of cloning, use a pool of reusable HTMLAudioElement instances
+2. **Add `playWithPreloadedAudio()` helper** - Centralized method that properly handles mobile quirks
+3. **Resume AudioContext before each sound** - Ensure context isn't suspended
+4. **Fix `playBonusSymbolScroll()`** - Use preloaded audio instead of creating new Audio()
 
-// After
-const SlotMachine = lazy(() => import("./pages/SlotMachine"));
-```
+### Phase 3: Add Audio Resume on Visibility Return
+When the user returns to the page, resume the AudioContext if it was suspended.
 
-### Phase 2: Create a Lightweight Loading Fallback
-
-Create a simple loading fallback component that doesn't import any slot-related assets. This ensures users see a loading indicator while the slot machine code downloads.
-
-**New file: `src/components/slots/SlotPageLoading.tsx`**
-- A minimal loading spinner/skeleton with Egyptian styling
-- Uses only basic UI components (no slot-specific imports)
-- Displays "Loading..." text in Danish
-
-### Phase 3: Verify Asset Isolation
-
-Ensure no slot-related static assets are imported in shared components that load on all pages. Current analysis shows:
-- `src/pages/SlotMachine.tsx` imports 3 slot assets directly
-- `src/components/slots/SlotLoadingScreen.tsx` imports 2 slot assets
-- `src/components/slots/SlotIntroScreen.tsx` imports 2 slot assets
-
-All these are already within the slot machine page hierarchy, so they will be code-split automatically when we lazy load `SlotMachine.tsx`.
+**Changes to `src/lib/slotSoundEffects.ts`:**
+- Add `handleVisibilityChange()` method
+- Resume AudioContext when page becomes visible
+- **Don't** auto-restart music (user navigated away)
 
 ---
 
 ## Technical Implementation
 
-### File Changes
+### File 1: `src/pages/SlotMachine.tsx`
 
-**1. `src/App.tsx`** - Add lazy loading
+Add visibility change handling with navigation:
 
 ```typescript
-import { lazy, Suspense } from "react";
+import { useNavigate } from "react-router-dom";
 
-// Static imports for main pages (always loaded)
-import Index from "./pages/Index";
-import CasinoDetail from "./pages/CasinoDetail";
-// ... other frequently used pages
+// Inside component:
+const navigate = useNavigate();
 
-// Lazy import for slot machine (only loaded when needed)
-const SlotMachine = lazy(() => import("./pages/SlotMachine"));
-
-// In routes:
-<Route 
-  path="/community/slots" 
-  element={
-    <Suspense fallback={<SlotPageLoading />}>
-      <SlotMachine />
-    </Suspense>
-  } 
-/>
+// New useEffect for visibility change
+useEffect(() => {
+  const handleVisibilityChange = () => {
+    if (document.visibilityState === 'hidden') {
+      // Stop music when app is backgrounded
+      slotSounds.stopMusic();
+      // Navigate to home page
+      navigate('/');
+    }
+  };
+  
+  document.addEventListener('visibilitychange', handleVisibilityChange);
+  
+  return () => {
+    document.removeEventListener('visibilitychange', handleVisibilityChange);
+  };
+}, [navigate]);
 ```
 
-**2. `src/components/slots/SlotPageLoading.tsx`** - New minimal loading component
+### File 2: `src/lib/slotSoundEffects.ts`
+
+**Add audio pool for reliable mobile playback:**
 
 ```typescript
-export function SlotPageLoading() {
-  return (
-    <div className="min-h-[calc(100vh-4rem)] flex items-center justify-center bg-gradient-to-b from-amber-950 via-stone-950 to-black">
-      <div className="flex flex-col items-center gap-4">
-        <div className="animate-spin h-12 w-12 border-4 border-amber-500 border-t-transparent rounded-full" />
-        <p className="text-amber-500/80 text-lg">Indlæser spillemaskine...</p>
-      </div>
-    </div>
-  );
+// New properties
+private audioPool: Map<string, HTMLAudioElement[]> = new Map();
+private POOL_SIZE = 3; // Number of audio elements per sound
+
+// Initialize pool when custom sounds are set
+private initAudioPool() {
+  this.audioPool.clear();
+  
+  const soundKeys: (keyof CustomSoundFiles)[] = [
+    'spinSound', 'stopSound', 'smallWinSound', 'mediumWinSound', 
+    'bigWinSound', 'bonusTriggerSound', 'bonusWinSound',
+    'bonusSymbolScrollSound', 'bonusSymbolSelectedSound',
+    'scatterSound1', 'scatterSound2', 'scatterSound3'
+  ];
+  
+  soundKeys.forEach(key => {
+    const url = this.customSoundFiles[key];
+    if (url) {
+      const pool: HTMLAudioElement[] = [];
+      for (let i = 0; i < this.POOL_SIZE; i++) {
+        const audio = new Audio(url);
+        audio.preload = 'auto';
+        audio.load(); // Force buffer loading
+        pool.push(audio);
+      }
+      this.audioPool.set(key, pool);
+    }
+  });
+}
+```
+
+**Improved `playCustomSound()` using pool:**
+
+```typescript
+private playCustomSound(key: keyof CustomSoundFiles, volumeMultiplier: number = 1): boolean {
+  if (!this.enabled || !this.effectsEnabled) return false;
+  
+  // Ensure AudioContext is active
+  this.ensureAudioContextActive();
+  
+  // Get audio from pool
+  const pool = this.audioPool.get(key);
+  if (pool && pool.length > 0) {
+    // Find an available (not playing) audio element
+    const audio = pool.find(a => a.paused || a.ended) || pool[0];
+    
+    // Reset and play
+    audio.currentTime = 0;
+    audio.volume = this.volume * volumeMultiplier;
+    
+    // Use play promise for reliability
+    const playPromise = audio.play();
+    if (playPromise !== undefined) {
+      playPromise.catch(() => {
+        // Fallback: try with a fresh element
+        this.playFallbackAudio(key, volumeMultiplier);
+      });
+    }
+    return true;
+  }
+  
+  return false;
+}
+
+private ensureAudioContextActive() {
+  if (this.audioContext?.state === 'suspended') {
+    this.audioContext.resume().catch(() => {});
+  }
+}
+
+private playFallbackAudio(key: keyof CustomSoundFiles, volumeMultiplier: number) {
+  const url = this.customSoundFiles[key];
+  if (url) {
+    const audio = new Audio(url);
+    audio.volume = this.volume * volumeMultiplier;
+    audio.play().catch(() => {});
+  }
+}
+```
+
+**Update `preloadCustomAudio()` to use pool:**
+
+```typescript
+private preloadCustomAudio() {
+  // Clear existing
+  this.customAudioElements.forEach(audio => {
+    audio.pause();
+    audio.src = '';
+  });
+  this.customAudioElements.clear();
+  
+  // Initialize the audio pool (new)
+  this.initAudioPool();
+  
+  // ... rest of existing code for background music
+}
+```
+
+**Fix `playBonusSymbolScroll()` to use pool:**
+
+```typescript
+playBonusSymbolScroll(): () => void {
+  if (!this.canPlayBonusSound()) return () => {};
+  
+  // Use pooled audio for custom sound
+  const pool = this.audioPool.get('bonusSymbolScrollSound');
+  if (pool && pool.length > 0) {
+    const audio = pool[0];
+    audio.currentTime = 0;
+    audio.volume = this.volume;
+    audio.loop = true;
+    audio.play().catch(() => {});
+    return () => {
+      audio.pause();
+      audio.currentTime = 0;
+      audio.loop = false;
+    };
+  }
+  
+  // Fallback to synthesized (existing code)
+  // ...
 }
 ```
 
 ---
 
-## What This Achieves
-
-| Before | After |
-|--------|-------|
-| All slot code loaded on every page | Slot code only loads on `/community/slots` |
-| ~2500+ lines of sound effects in main bundle | Sound effects in separate chunk |
-| Slot assets (images, hooks, game logic) in main bundle | All slot-related code in dedicated chunk |
-| Slower initial page load | Faster initial page load for non-slot pages |
-
----
-
-## Bundle Impact Estimate
-
-**Code moved to lazy chunk:**
-- `SlotMachine.tsx` + 29 slot components
-- `slotSoundEffects.ts` (2500+ lines)
-- `slotGameLogic.ts` + `bonusGameLogic.ts` + `slotRTPCalculation.ts`
-- 7+ slot-specific hooks
-- Static slot assets (images)
-
-This will significantly reduce the main bundle size and improve First Contentful Paint (FCP) for users visiting non-slot pages.
-
----
-
 ## Files to Modify
 
-1. **`src/App.tsx`** - Add lazy import and Suspense wrapper for SlotMachine
-2. **`src/components/slots/SlotPageLoading.tsx`** (NEW) - Lightweight loading fallback
+1. **`src/pages/SlotMachine.tsx`**
+   - Add `useNavigate` import
+   - Add `visibilitychange` event listener in useEffect
+   - Stop music and redirect to `/` when page becomes hidden
 
+2. **`src/lib/slotSoundEffects.ts`**
+   - Add audio pool (`audioPool` Map and `POOL_SIZE`)
+   - Add `initAudioPool()` method
+   - Add `ensureAudioContextActive()` helper
+   - Add `playFallbackAudio()` fallback method
+   - Update `preloadCustomAudio()` to initialize pool
+   - Update `playCustomSound()` to use pool with retry logic
+   - Update `playBonusSymbolScroll()` to use pooled audio
+
+---
+
+## Expected Results
+
+After these changes:
+
+| Behavior | Before | After |
+|----------|--------|-------|
+| Custom sounds on mobile | Often fail/delayed | Play reliably from pre-loaded pool |
+| Exit browser on mobile | Music continues playing | Music stops, redirects to home |
+| Switch apps on mobile | Audio may break | AudioContext resumed on return |
+| Background tab | No handling | Stops music, redirects home |
+
+---
+
+## Mobile Audio Best Practices Applied
+
+1. **Audio Element Pool** - Pre-create multiple audio elements per sound to avoid new Audio() in timeouts
+2. **Explicit `load()` calls** - Force browsers to buffer audio data
+3. **AudioContext resume** - Always check and resume before playback
+4. **Visibility API** - Proper handling of app background/foreground states
+5. **Fallback chain** - Pool → Fresh Audio → Synthesized, ensuring something plays
