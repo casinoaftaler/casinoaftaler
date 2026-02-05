@@ -1,4 +1,3 @@
-import { Link } from "react-router-dom";
 import giveawayBannerImage from "@/assets/slots/giveaway-banner.png";
 
 interface GiveawayBannerProps {
@@ -7,9 +6,8 @@ interface GiveawayBannerProps {
 
 export function GiveawayBanner({ backgroundImage }: GiveawayBannerProps) {
   return (
-    <Link 
-      to="/shop"
-      className="block relative w-full overflow-hidden rounded-xl border border-amber-500/30 hover:border-amber-500/50 transition-colors"
+    <div 
+      className="block relative w-full overflow-hidden rounded-xl border border-amber-500/30"
       style={{
         backgroundImage: `url(${backgroundImage})`,
         backgroundSize: 'cover',
@@ -27,6 +25,6 @@ export function GiveawayBanner({ backgroundImage }: GiveawayBannerProps) {
           className="w-full h-auto max-h-[250px] object-contain drop-shadow-[0_0_20px_rgba(251,191,36,0.5)]"
         />
       </div>
-    </Link>
+    </div>
   );
 }
