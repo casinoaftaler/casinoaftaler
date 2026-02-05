@@ -245,7 +245,7 @@ export function SlotSoundGeneratorSection() {
               <Slider
                 value={[duration]}
                 onValueChange={(v) => setDuration(v[0])}
-                min={1}
+                min={0.5}
                 max={10}
                 step={0.5}
                 disabled={isGenerating}
