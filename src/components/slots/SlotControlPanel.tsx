@@ -117,7 +117,7 @@ export function SlotControlPanel({
             "[text-shadow:0_1px_0_rgba(255,230,150,0.8),0_-1px_0_rgba(120,80,20,0.3)]"
           )}
           onClick={onSpin}
-          disabled={isSpinning || isSpinLocked || !canSpinNow || showBonusTrigger || isAutoSpinning}
+          disabled={isSpinning || isSpinLocked || !canSpinNow || showBonusTrigger || isAutoSpinning || bonusState.isActive}
         >
           {isSpinning ? (
             <div className="relative">
