@@ -38,7 +38,7 @@ export function SlotPromoSlider({ casino, backgroundImage }: SlotPromoSliderProp
           
           {/* Slide 2: Giveaway Banner */}
           <div className="w-full flex-shrink-0">
-            <GiveawayBanner backgroundImage={backgroundImage} />
+            <GiveawayBanner />
           </div>
         </div>
       </div>
