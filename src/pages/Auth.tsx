@@ -8,6 +8,7 @@ import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
 import { Loader2, Unlink, ExternalLink } from "lucide-react";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Checkbox } from "@/components/ui/checkbox";
 
 interface Profile {
   twitch_id: string | null;
@@ -23,6 +24,7 @@ export default function Auth() {
   const [profile, setProfile] = useState<Profile | null>(null);
   const [profileLoading, setProfileLoading] = useState(false);
   const [unlinking, setUnlinking] = useState(false);
+  const [acceptsTermsAndAge, setAcceptsTermsAndAge] = useState(false);
 
   // Fetch profile when user is logged in
   useEffect(() => {
@@ -173,19 +175,38 @@ export default function Auth() {
           </CardDescription>
         </CardHeader>
         <CardContent className="flex flex-col items-center gap-4">
-          <TwitchAuthButton className="w-full" />
-          
-          <p className="text-center text-xs text-muted-foreground">
-            Ved at logge ind accepterer du vores{" "}
-            <a href="/terms" className="underline hover:text-primary">
-              vilkår og betingelser
-            </a>{" "}
-            og{" "}
-            <a href="/privacy" className="underline hover:text-primary">
-              privatlivspolitik
-            </a>
-            .
-          </p>
+          <div className="flex items-start gap-3 w-full">
+            <Checkbox
+              id="terms-acceptance"
+              checked={acceptsTermsAndAge}
+              onCheckedChange={(checked) => setAcceptsTermsAndAge(checked === true)}
+              className="mt-0.5"
+            />
+            <label htmlFor="terms-acceptance" className="text-sm leading-relaxed cursor-pointer text-muted-foreground">
+              Jeg bekræfter at jeg er 18+ år og accepterer{" "}
+              <a 
+                href="/terms" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="underline hover:text-primary"
+                onClick={(e) => e.stopPropagation()}
+              >
+                vilkår og betingelser
+              </a>{" "}
+              og{" "}
+              <a 
+                href="/privacy" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="underline hover:text-primary"
+                onClick={(e) => e.stopPropagation()}
+              >
+                privatlivspolitik
+              </a>
+            </label>
+          </div>
+
+          <TwitchAuthButton className="w-full" disabled={!acceptsTermsAndAge} />
         </CardContent>
       </Card>
     </div>

@@ -8,9 +8,10 @@ import { Link2 } from "lucide-react";
 interface TwitchAuthButtonProps {
   className?: string;
   linkMode?: boolean;
+  disabled?: boolean;
 }
 
-export function TwitchAuthButton({ className, linkMode = false }: TwitchAuthButtonProps) {
+export function TwitchAuthButton({ className, linkMode = false, disabled = false }: TwitchAuthButtonProps) {
   const [isLoading, setIsLoading] = useState(false);
   const { toast } = useToast();
   const { user } = useAuth();
@@ -69,8 +70,8 @@ export function TwitchAuthButton({ className, linkMode = false }: TwitchAuthButt
   return (
     <Button
       onClick={handleTwitchLogin}
-      disabled={isLoading}
-      className={`bg-[#9146FF] hover:bg-[#7C3AED] text-white ${className}`}
+      disabled={isLoading || disabled}
+      className={`bg-[#9146FF] hover:bg-[#7C3AED] text-white disabled:opacity-50 ${className}`}
     >
       {isLoading ? (
         <span className="flex items-center gap-2">
