@@ -65,6 +65,7 @@ export function SlotGame() {
   const [teaseInfo, setTeaseInfo] = useState<TeaseInfo>({ reels: [], lateScatter: false, lastScatterReel: -1 });
   const [scatterReelsLanded, setScatterReelsLanded] = useState<Set<number>>(new Set());
   const [showExpansionDarken, setShowExpansionDarken] = useState(false);
+  const [showConnectingWins, setShowConnectingWins] = useState(false);
   
   // Sequential reel stopping - which reel should currently slow down (-1 = none yet)
   const [activeSlowdownReel, setActiveSlowdownReel] = useState(-1);
@@ -762,6 +763,7 @@ export function SlotGame() {
                                 scatterCount: 0,
                               });
                               setShowWinLines(true);
+                              setShowConnectingWins(true); // Enable win lines visibility during this phase
                               
                               // Play win sound for connecting wins
                               if (connectingTotalWin > 0) {
@@ -773,6 +775,7 @@ export function SlotGame() {
                               
                               // Clear connecting wins display before expansion
                               setShowWinLines(false);
+                              setShowConnectingWins(false);
                               
                               // Wait 300ms before starting expansion for visual clarity
                               await new Promise(resolve => setTimeout(resolve, 300));
@@ -951,7 +954,7 @@ export function SlotGame() {
                       wins={lastResult.wins}
                       symbolSize={symbolDimensions.size}
                       gap={symbolDimensions.gap}
-                      isVisible={showWinLines && !isSpinning}
+                      isVisible={showWinLines && (!isSpinning || showConnectingWins)}
                     />
                   )}
                 </div>
