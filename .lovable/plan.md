@@ -1,252 +1,185 @@
 
-# Plan: Fix Mobile Sound Effects & Page Exit Behavior
+
+# Plan: Fix Auto-Spin Stopping Randomly in Base Game
 
 ## Problem Summary
 
-### Issue 1: Custom Sound Effects Not Playing on Mobile
-The current implementation has several issues causing sound failures on mobile:
-
-1. **`playCustomSound()` creates cloned audio elements** - While cloning is faster than creating new elements, cloned elements don't inherit the preloaded buffer on all mobile browsers
-2. **Missing `load()` call on clones** - Mobile browsers require explicit loading before playback
-3. **Some sound methods create new `Audio()` objects outside user gesture** - For example, `playBonusSymbolScroll()` at line 1430 creates a `new Audio()` which loses user gesture context
-4. **AudioContext may suspend after inactivity** - Mobile browsers aggressively suspend AudioContext when the page is backgrounded
-
-### Issue 2: Music Continues When Exiting Browser on Mobile
-Currently:
-- The only cleanup is in `SlotGame.tsx` `useEffect` return function
-- No handling for `visibilitychange` event (browser going to background)
-- No redirect to home page when user backgrounds the app
+The auto-spin feature in the base game randomly stops spinning before completing all auto-spins. The user enables auto-spin, but after a few spins it just stops without showing the "Autospin afsluttet" toast.
 
 ---
 
-## Solution Overview
+## Root Cause Analysis
 
-### Phase 1: Add Visibility Change Detection
-Detect when the user minimizes the browser, switches tabs, or closes the browser on mobile. Use the `visibilitychange` event which is the most reliable across mobile browsers.
+The autospin logic in `SlotGame.tsx` (lines 428-464) has a race condition bug:
 
-**Changes to `src/pages/SlotMachine.tsx`:**
-- Add a `useEffect` that listens for `visibilitychange`
-- When `document.visibilityState === 'hidden'`:
-  - Stop all music via `slotSounds.stopMusic()`
-  - Navigate to home page (`/`)
-- Use `react-router-dom`'s `useNavigate` hook
-
-### Phase 2: Fix Custom Sound Playback Reliability
-Improve the `playCustomSound()` method to work reliably on mobile.
-
-**Changes to `src/lib/slotSoundEffects.ts`:**
-1. **Use pre-warmed audio pool** - Instead of cloning, use a pool of reusable HTMLAudioElement instances
-2. **Add `playWithPreloadedAudio()` helper** - Centralized method that properly handles mobile quirks
-3. **Resume AudioContext before each sound** - Ensure context isn't suspended
-4. **Fix `playBonusSymbolScroll()`** - Use preloaded audio instead of creating new Audio()
-
-### Phase 3: Add Audio Resume on Visibility Return
-When the user returns to the page, resume the AudioContext if it was suspended.
-
-**Changes to `src/lib/slotSoundEffects.ts`:**
-- Add `handleVisibilityChange()` method
-- Resume AudioContext when page becomes visible
-- **Don't** auto-restart music (user navigated away)
-
----
-
-## Technical Implementation
-
-### File 1: `src/pages/SlotMachine.tsx`
-
-Add visibility change handling with navigation:
+### Issue 1: Effect Cleanup Cancels Scheduled Spins
 
 ```typescript
-import { useNavigate } from "react-router-dom";
-
-// Inside component:
-const navigate = useNavigate();
-
-// New useEffect for visibility change
 useEffect(() => {
-  const handleVisibilityChange = () => {
-    if (document.visibilityState === 'hidden') {
-      // Stop music when app is backgrounded
-      slotSounds.stopMusic();
-      // Navigate to home page
-      navigate('/');
-    }
-  };
-  
-  document.addEventListener('visibilitychange', handleVisibilityChange);
-  
+  // ... schedule next spin
+  autoSpinTimeoutRef.current = setTimeout(() => {
+    handleSpin();
+  }, baseDelay);
+
   return () => {
-    document.removeEventListener('visibilitychange', handleVisibilityChange);
+    if (autoSpinTimeoutRef.current) {
+      clearTimeout(autoSpinTimeoutRef.current);  // Cancels pending spin!
+    }
   };
-}, [navigate]);
+}, [isAutoSpinning, isSpinning, isWinAnimating, winAmount, canSpin, ...]);
 ```
 
-### File 2: `src/lib/slotSoundEffects.ts`
+**Problem**: When ANY dependency changes (like `winAmount` going from 0 → 150 → 0, or `canSpin` changing), the effect cleanup runs FIRST, canceling the scheduled timeout, then the effect runs again. If conditions aren't exactly right at that moment, no new timeout gets scheduled.
 
-**Add audio pool for reliable mobile playback:**
+### Issue 2: State Transition Timing
+
+The sequence of state changes after a spin completes:
+1. `isSpinning` → `false`
+2. `winAmount` → value (or 0)
+3. `isWinAnimating` → `true` (if win) then → `false` (after 2 seconds)
+4. `isSpinLocked` → `false` (after delay)
+
+Each state change can trigger effect re-runs, and if the timing is unlucky, the autospin timeout gets canceled and never rescheduled.
+
+### Issue 3: `isSpinLocked` Not in Dependencies
+
+The effect doesn't watch `isSpinLocked`, but `handleSpin` checks it. So when the effect schedules `handleSpin()`, if `isSpinLocked` is still `true`, the spin is silently rejected.
+
+---
+
+## Solution
+
+### Approach: Use a Stable Timer Pattern with Ref
+
+Instead of relying on useEffect cleanup, use a ref-based pattern that only schedules a new spin when one isn't already scheduled. This prevents the cleanup/reschedule race condition.
+
+### Changes to `src/components/slots/SlotGame.tsx`
+
+**1. Add a tracking ref for scheduled autospin:**
 
 ```typescript
-// New properties
-private audioPool: Map<string, HTMLAudioElement[]> = new Map();
-private POOL_SIZE = 3; // Number of audio elements per sound
+const autoSpinScheduledRef = useRef(false);
+```
 
-// Initialize pool when custom sounds are set
-private initAudioPool() {
-  this.audioPool.clear();
+**2. Rewrite autospin effect with stable scheduling:**
+
+```typescript
+// Autospin effect - trigger next spin after current one completes
+useEffect(() => {
+  // Don't do anything if autospin is off or explicitly stopped
+  if (!isAutoSpinning || shouldStopAutoSpinRef.current) {
+    autoSpinScheduledRef.current = false;
+    return;
+  }
   
-  const soundKeys: (keyof CustomSoundFiles)[] = [
-    'spinSound', 'stopSound', 'smallWinSound', 'mediumWinSound', 
-    'bigWinSound', 'bonusTriggerSound', 'bonusWinSound',
-    'bonusSymbolScrollSound', 'bonusSymbolSelectedSound',
-    'scatterSound1', 'scatterSound2', 'scatterSound3'
-  ];
+  // Can't schedule while spinning or animating
+  if (isSpinning || isWinAnimating || isSpinLocked) return;
   
-  soundKeys.forEach(key => {
-    const url = this.customSoundFiles[key];
-    if (url) {
-      const pool: HTMLAudioElement[] = [];
-      for (let i = 0; i < this.POOL_SIZE; i++) {
-        const audio = new Audio(url);
-        audio.preload = 'auto';
-        audio.load(); // Force buffer loading
-        pool.push(audio);
-      }
-      this.audioPool.set(key, pool);
+  // Don't schedule if overlays are showing
+  if (showBonusTrigger || showBonusComplete || showRetrigger) return;
+  
+  // Skip if in bonus mode (handled by separate effect)
+  if (bonusState.isActive) return;
+  
+  // Check if we can spin
+  if (!canSpin) {
+    stopAutoSpin();
+    return;
+  }
+  
+  // If already scheduled, don't double-schedule
+  if (autoSpinScheduledRef.current) return;
+  
+  // Mark as scheduled
+  autoSpinScheduledRef.current = true;
+  
+  // Schedule next spin
+  const delay = 1000; // Fixed delay for consistency
+  autoSpinTimeoutRef.current = setTimeout(() => {
+    autoSpinScheduledRef.current = false;
+    if (!shouldStopAutoSpinRef.current && isAutoSpinning) {
+      handleSpinRef.current();
     }
-  });
-}
+  }, delay);
+  
+  // NO cleanup function - let the timeout fire naturally
+  // The ref pattern prevents double-scheduling
+}, [
+  isAutoSpinning, 
+  isSpinning, 
+  isWinAnimating, 
+  isSpinLocked,  // Add this - critical!
+  canSpin, 
+  showBonusTrigger, 
+  showBonusComplete, 
+  showRetrigger,
+  bonusState.isActive
+]);
 ```
 
-**Improved `playCustomSound()` using pool:**
+**3. Reset the scheduled ref when autospin stops:**
 
+Update `stopAutoSpin`:
 ```typescript
-private playCustomSound(key: keyof CustomSoundFiles, volumeMultiplier: number = 1): boolean {
-  if (!this.enabled || !this.effectsEnabled) return false;
-  
-  // Ensure AudioContext is active
-  this.ensureAudioContextActive();
-  
-  // Get audio from pool
-  const pool = this.audioPool.get(key);
-  if (pool && pool.length > 0) {
-    // Find an available (not playing) audio element
-    const audio = pool.find(a => a.paused || a.ended) || pool[0];
-    
-    // Reset and play
-    audio.currentTime = 0;
-    audio.volume = this.volume * volumeMultiplier;
-    
-    // Use play promise for reliability
-    const playPromise = audio.play();
-    if (playPromise !== undefined) {
-      playPromise.catch(() => {
-        // Fallback: try with a fresh element
-        this.playFallbackAudio(key, volumeMultiplier);
-      });
-    }
-    return true;
+const stopAutoSpin = useCallback(() => {
+  setIsAutoSpinning(false);
+  setAutoSpinsRemaining(null);
+  shouldStopAutoSpinRef.current = true;
+  autoSpinScheduledRef.current = false;  // Add this
+  if (autoSpinTimeoutRef.current) {
+    clearTimeout(autoSpinTimeoutRef.current);
+    autoSpinTimeoutRef.current = null;
   }
-  
-  return false;
-}
-
-private ensureAudioContextActive() {
-  if (this.audioContext?.state === 'suspended') {
-    this.audioContext.resume().catch(() => {});
-  }
-}
-
-private playFallbackAudio(key: keyof CustomSoundFiles, volumeMultiplier: number) {
-  const url = this.customSoundFiles[key];
-  if (url) {
-    const audio = new Audio(url);
-    audio.volume = this.volume * volumeMultiplier;
-    audio.play().catch(() => {});
-  }
-}
+}, []);
 ```
 
-**Update `preloadCustomAudio()` to use pool:**
+**4. Reset scheduled ref on spin start:**
 
+At the start of `handleSpin`:
 ```typescript
-private preloadCustomAudio() {
-  // Clear existing
-  this.customAudioElements.forEach(audio => {
-    audio.pause();
-    audio.src = '';
-  });
-  this.customAudioElements.clear();
+const handleSpin = async () => {
+  // Reset autospin scheduled flag since we're spinning now
+  autoSpinScheduledRef.current = false;
   
-  // Initialize the audio pool (new)
-  this.initAudioPool();
-  
-  // ... rest of existing code for background music
-}
+  // ... rest of function
+};
 ```
 
-**Fix `playBonusSymbolScroll()` to use pool:**
+**5. Use handleSpinRef pattern (already exists):**
 
-```typescript
-playBonusSymbolScroll(): () => void {
-  if (!this.canPlayBonusSound()) return () => {};
-  
-  // Use pooled audio for custom sound
-  const pool = this.audioPool.get('bonusSymbolScrollSound');
-  if (pool && pool.length > 0) {
-    const audio = pool[0];
-    audio.currentTime = 0;
-    audio.volume = this.volume;
-    audio.loop = true;
-    audio.play().catch(() => {});
-    return () => {
-      audio.pause();
-      audio.currentTime = 0;
-      audio.loop = false;
-    };
-  }
-  
-  // Fallback to synthesized (existing code)
-  // ...
-}
-```
+The code already has `handleSpinRef` (line 468-469) for the bonus autospin. We'll use the same pattern for base game autospin to avoid stale closure issues.
+
+---
+
+## Key Improvements
+
+| Before | After |
+|--------|-------|
+| Effect cleanup cancels pending timeouts | No cleanup - ref prevents double-scheduling |
+| State changes cause timeout cancelation | Stable scheduling ignores intermediate state changes |
+| `isSpinLocked` not watched | Added to dependencies |
+| Race condition between state updates | Ref-based pattern is race-condition free |
+| Different delays based on win amount | Consistent 1s delay for predictability |
 
 ---
 
 ## Files to Modify
 
-1. **`src/pages/SlotMachine.tsx`**
-   - Add `useNavigate` import
-   - Add `visibilitychange` event listener in useEffect
-   - Stop music and redirect to `/` when page becomes hidden
-
-2. **`src/lib/slotSoundEffects.ts`**
-   - Add audio pool (`audioPool` Map and `POOL_SIZE`)
-   - Add `initAudioPool()` method
-   - Add `ensureAudioContextActive()` helper
-   - Add `playFallbackAudio()` fallback method
-   - Update `preloadCustomAudio()` to initialize pool
-   - Update `playCustomSound()` to use pool with retry logic
-   - Update `playBonusSymbolScroll()` to use pooled audio
+1. **`src/components/slots/SlotGame.tsx`**
+   - Add `autoSpinScheduledRef` ref
+   - Rewrite autospin effect without cleanup function
+   - Add `isSpinLocked` to dependency array
+   - Update `stopAutoSpin` to reset scheduled ref
+   - Update `handleSpin` to reset scheduled ref
+   - Use `handleSpinRef.current()` instead of `handleSpin()` in timeout
 
 ---
 
-## Expected Results
+## Expected Result
 
 After these changes:
+- Auto-spin will reliably fire every spin until the count is exhausted
+- No more random stopping mid-auto-spin sequence
+- Consistent 1-second delay between spins for predictable experience
+- Properly waits for spin lock to release before attempting next spin
 
-| Behavior | Before | After |
-|----------|--------|-------|
-| Custom sounds on mobile | Often fail/delayed | Play reliably from pre-loaded pool |
-| Exit browser on mobile | Music continues playing | Music stops, redirects to home |
-| Switch apps on mobile | Audio may break | AudioContext resumed on return |
-| Background tab | No handling | Stops music, redirects home |
-
----
-
-## Mobile Audio Best Practices Applied
-
-1. **Audio Element Pool** - Pre-create multiple audio elements per sound to avoid new Audio() in timeouts
-2. **Explicit `load()` calls** - Force browsers to buffer audio data
-3. **AudioContext resume** - Always check and resume before playback
-4. **Visibility API** - Proper handling of app background/foreground states
-5. **Fallback chain** - Pool → Fresh Audio → Synthesized, ensuring something plays
