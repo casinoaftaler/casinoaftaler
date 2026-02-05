@@ -444,6 +444,13 @@ All colors MUST be HSL.
   -webkit-font-smoothing: antialiased;
 }
 
+/* Slot title container with smooth collapse transition */
+.slot-title-container {
+  transition: opacity 0.3s ease-out, max-height 0.3s ease-out, margin 0.3s ease-out;
+  overflow: hidden;
+  will-change: opacity, max-height;
+}
+
 @keyframes title-entrance {
   0% {
     opacity: 0;
