@@ -90,6 +90,7 @@ export function SlotGame() {
   const [autoSpinsRemaining, setAutoSpinsRemaining] = useState<number | null>(null);
   const autoSpinTimeoutRef = useRef<NodeJS.Timeout | null>(null);
   const shouldStopAutoSpinRef = useRef(false);
+  const autoSpinScheduledRef = useRef(false);
   
   // Bonus overlay states
   const [showBonusTrigger, setShowBonusTrigger] = useState(false);
@@ -202,6 +203,7 @@ export function SlotGame() {
     setIsAutoSpinning(false);
     setAutoSpinsRemaining(null);
     shouldStopAutoSpinRef.current = true;
+    autoSpinScheduledRef.current = false;
     if (autoSpinTimeoutRef.current) {
       clearTimeout(autoSpinTimeoutRef.current);
       autoSpinTimeoutRef.current = null;
@@ -234,6 +236,9 @@ export function SlotGame() {
   }, [isAutoSpinning, stopAutoSpin, startAutoSpin]);
 
   const handleSpin = async () => {
+    // Reset autospin scheduled flag since we're spinning now
+    autoSpinScheduledRef.current = false;
+    
     // Prevent rapid clicking with a spin lock - use BOTH ref and state for safety
     if (spinLockRef.current || isSpinLocked) return;
     
@@ -426,42 +431,58 @@ export function SlotGame() {
   }, [pendingBonusTrigger, isWinAnimating, isSpinning]);
 
   // Autospin effect - trigger next spin after current one completes
+  // Uses ref-based scheduling to prevent race conditions from effect cleanup
   useEffect(() => {
-    if (!isAutoSpinning || isSpinning || shouldStopAutoSpinRef.current) return;
+    // Don't do anything if autospin is off or explicitly stopped
+    if (!isAutoSpinning || shouldStopAutoSpinRef.current) {
+      autoSpinScheduledRef.current = false;
+      return;
+    }
     
-    // Wait for win animation to complete before spinning again
-    if (isWinAnimating) return;
+    // Can't schedule while spinning, animating, or locked
+    if (isSpinning || isWinAnimating || isSpinLocked) return;
     
-    const isBonusSpin = bonusState.isActive && bonusState.freeSpinsRemaining > 0;
-    const hasSpins = isBonusSpin || canSpin;
+    // Don't schedule if overlays are showing
+    if (showBonusTrigger || showBonusComplete || showRetrigger) return;
     
-    if (!hasSpins) {
+    // Skip if in bonus mode (handled by separate effect)
+    if (bonusState.isActive) return;
+    
+    // Check if we can spin
+    if (!canSpin) {
       stopAutoSpin();
       return;
     }
-
-    // Don't auto-spin if bonus overlay is showing
-    if (showBonusTrigger || showBonusComplete || showRetrigger) return;
-
-    // Calculate delay based on whether there was a win
-    // If there was a win, add extra time for the counter animation
-    // Counter animation duration: Math.min(500 + amount * 10, 2000)
-    const counterAnimationBuffer = winAmount > 0 ? 500 : 0; // Extra buffer after counter finishes
-    const baseDelay = 800; // Reduced base delay since we now wait for animation
     
-    // Schedule next spin with a delay
+    // If already scheduled, don't double-schedule
+    if (autoSpinScheduledRef.current) return;
+    
+    // Mark as scheduled
+    autoSpinScheduledRef.current = true;
+    
+    // Schedule next spin with fixed delay for consistency
+    const delay = 1000;
     autoSpinTimeoutRef.current = setTimeout(() => {
-      if (!shouldStopAutoSpinRef.current) {
-        handleSpin();
+      autoSpinScheduledRef.current = false;
+      if (!shouldStopAutoSpinRef.current && isAutoSpinning) {
+        handleSpinRef.current();
       }
-    }, baseDelay + counterAnimationBuffer);
-
-    return () => {
-      if (autoSpinTimeoutRef.current) {
-        clearTimeout(autoSpinTimeoutRef.current);
-      }
-    };
-  }, [isAutoSpinning, isSpinning, isWinAnimating, winAmount, canSpin, bonusState.isActive, bonusState.freeSpinsRemaining, showBonusTrigger, showBonusComplete, showRetrigger]);
+    }, delay);
+    
+    // NO cleanup function - let the timeout fire naturally
+    // The ref pattern prevents double-scheduling
+  }, [
+    isAutoSpinning, 
+    isSpinning, 
+    isWinAnimating, 
+    isSpinLocked,
+    canSpin, 
+    showBonusTrigger, 
+    showBonusComplete, 
+    showRetrigger,
+    bonusState.isActive,
+    stopAutoSpin
+  ]);
 
   // Auto-spin during bonus mode - spins automatically without user clicking
   // Use a ref to track the latest handleSpin function to avoid stale closures
