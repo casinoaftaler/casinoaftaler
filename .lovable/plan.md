@@ -1,139 +1,161 @@
 
-# Plan: Fix Music Playback and Password Gate Order
+# Plan: Fix Mobile Sound Effects Reliability
 
 ## Problem Summary
-1. **Music continues playing when leaving slot page**: The background music starts on the intro screen but only stops when `SlotGame` unmounts. If users navigate away during loading/intro, music keeps playing on other pages.
+Sound effects on mobile devices fail to play or are delayed because mobile browsers require audio playback to be initiated directly within a user gesture context. The current implementation breaks this context by:
+- Creating new Audio elements inside setTimeout callbacks
+- Not preloading all sound files
+- Lacking a user gesture "unlock" mechanism for audio
 
-2. **Password gate appears after loading/intro**: Currently, all users see the loading screen (2.5s) and intro screen before the password gate or login prompt appears.
+---
 
-## Solution
+## Solution Overview
 
-### 1. Add Global Music Cleanup on Route Change
+### Phase 1: Add Audio Unlock on First User Interaction
+Create a mechanism to "warm up" audio playback on the first user tap. This establishes audio permission and creates a reusable audio pool.
 
-Create a cleanup effect in the main `SlotMachine` page component that stops music whenever the component unmounts (i.e., when leaving the route).
+**Changes to `src/lib/slotSoundEffects.ts`:**
+- Add an `unlockAudio()` method that plays silent audio to establish permissions
+- Add a method to pre-create a pool of reusable Audio elements
+- Track whether audio has been unlocked
 
-**File: `src/pages/SlotMachine.tsx`**
+### Phase 2: Pre-create and Pool Audio Elements
+Instead of creating new Audio elements when sounds need to play, pre-create a pool of elements that can be reused.
 
-Add a `useEffect` cleanup hook at the top level of the component:
+**Changes to `src/lib/slotSoundEffects.ts`:**
+- Create an audio pool with multiple pre-created Audio elements
+- When playing sounds, grab an available element from the pool
+- Reset and reuse elements instead of creating new ones
 
-```typescript
-import { slotSounds } from "@/lib/slotSoundEffects";
+### Phase 3: Preload ALL Custom Sound Files Including Scatters
+Currently scatter sounds are not being preloaded. Fix this.
 
-// Add near other effects
-useEffect(() => {
-  // Cleanup: Stop all music when leaving the slot machine page
-  return () => {
-    slotSounds.stopMusic();
-  };
-}, []);
-```
+**Changes to `src/lib/slotSoundEffects.ts`:**
+- Add scatter sounds to the preloading list
+- Add bonus symbol scroll/selected sounds to preloading
 
-This ensures that whenever the user navigates away from `/community/slots` (during loading, intro, game, or any state), the music stops.
+### Phase 4: Trigger Audio Unlock on Slot Page Load
+Add a click listener that triggers the audio unlock on the user's first interaction.
 
-### 2. Reorder Rendering Logic - Show Password Gate First
+**Changes to `src/components/slots/SlotGame.tsx`:**
+- Call `slotSounds.unlockAudio()` on the first user tap/click
+- This ensures audio is unlocked before the user tries to spin
 
-Change the conditional rendering order in `SlotMachine.tsx` to check access/auth BEFORE showing loading/intro screens.
+### Phase 5: Use Preloaded Audio for Faster Playback
+For custom sounds, clone preloaded audio elements instead of creating new ones.
 
-**New rendering order:**
-
-1. First check if still loading auth/access data - show a simple loading state
-2. Show password gate if locked and no access (before loading/intro)
-3. Show login prompt if not logged in (before loading/intro)  
-4. Show session gate if blocked by another device
-5. THEN show loading screen and intro screen for authenticated users with access
-6. Finally show the game
-
-**File: `src/pages/SlotMachine.tsx`**
-
-```typescript
-export default function SlotMachine() {
-  // ... existing hooks ...
-  
-  // Add music cleanup on unmount
-  useEffect(() => {
-    return () => {
-      slotSounds.stopMusic();
-    };
-  }, []);
-
-  // NEW ORDER: Check access FIRST before loading/intro screens
-  
-  // 1. Show loading while checking auth and access
-  if (loading || accessLoading) {
-    return (
-      <div className="min-h-[calc(100vh-4rem)] relative">
-        {/* Background and loading spinner */}
-      </div>
-    );
-  }
-
-  // 2. Show password gate if locked (before loading/intro)
-  if (isLocked && !hasAccess) {
-    return (
-      <SlotPageLockGate 
-        backgroundImage={backgroundImage}
-        onVerify={verifyPassword}
-        error={error}
-      />
-    );
-  }
-
-  // 3. Show login prompt if not logged in (before loading/intro)
-  if (!user) {
-    return (
-      <div className="min-h-[calc(100vh-4rem)] relative">
-        {/* Login prompt UI */}
-      </div>
-    );
-  }
-
-  // 4. Show session gate if blocked by another device
-  if (sessionLoading) {
-    return (/* Loading state */);
-  }
-  
-  if (isBlockedByOtherDevice) {
-    return (
-      <SlotSessionGate ... />
-    );
-  }
-
-  // 5. NOW show loading/intro for authenticated users with access
-  if (loadingPhase === 'loading') {
-    return <SlotLoadingScreen onComplete={handleLoadingComplete} />;
-  }
-
-  if (loadingPhase === 'intro') {
-    return <SlotIntroScreen onStart={handleIntroComplete} />;
-  }
-
-  // 6. Show the game
-  return (/* Main game UI */);
-}
-```
+**Changes to `src/lib/slotSoundEffects.ts`:**
+- Update `playCustomSound` to use preloaded elements or clone them
+- Ensure proper volume is set before playback
 
 ---
 
 ## Technical Details
 
-### Files to Modify
+### New `unlockAudio()` Method
+```typescript
+private audioUnlocked = false;
+private audioPool: HTMLAudioElement[] = [];
 
-| File | Changes |
-|------|---------|
-| `src/pages/SlotMachine.tsx` | Add music cleanup effect; Reorder conditional rendering |
+unlockAudio() {
+  if (this.audioUnlocked) return;
+  
+  // Resume AudioContext if suspended
+  if (this.audioContext?.state === 'suspended') {
+    this.audioContext.resume();
+  }
+  
+  // Play a silent sound to unlock audio on mobile
+  const silentAudio = new Audio();
+  silentAudio.volume = 0.001;
+  silentAudio.src = 'data:audio/mp3;base64,SUQzBAAAAAAAI1RTU0UAAAAPAAADTGF2ZjU4Ljc2LjEwMAAAAAAAAAAAAAAA/+M4wAAAAAAAAAAAAEluZm8AAAAPAAAAAgAAABIADw8PDw8PDw8PDw8PDw8PDw8PDw8PDw8PDw8PDw8PDw8PDw8P//8AAABQS0RSAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAP/jOMAAT0AALAAAAAFJS2YBCgAAmJiYmJiYmJiYmJiYmJiYmJiYmJiYmJiYmJiYmJiYmJiYmJj/4zjAAAAsAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAP/jOMABP/wAABpAAAAAAAANIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==';
+  silentAudio.play().then(() => {
+    this.audioUnlocked = true;
+  }).catch(() => {
+    // Ignore errors, we'll try again on next interaction
+  });
+  
+  // Pre-warm the AudioContext
+  this.getContext();
+}
+```
 
-### Key Changes
+### Updated Preload List
+```typescript
+const soundKeys: (keyof CustomSoundFiles)[] = [
+  'spinSound', 'stopSound', 'smallWinSound', 'mediumWinSound', 
+  'bigWinSound', 'bonusTriggerSound', 'bonusWinSound',
+  'bonusSymbolScrollSound', 'bonusSymbolSelectedSound',
+  'scatterSound1', 'scatterSound2', 'scatterSound3'  // ADD THESE
+];
+```
 
-1. Import `slotSounds` at the top of `SlotMachine.tsx`
-2. Add `useEffect` cleanup hook that calls `slotSounds.stopMusic()` on unmount
-3. Move the password gate check (`isLocked && !hasAccess`) BEFORE the loading phase checks
-4. Move the not-logged-in check (`!user`) BEFORE the loading phase checks
-5. Keep session checks after auth is confirmed but before loading/intro
+### Updated `playCustomSound` Method
+```typescript
+private playCustomSound(key: keyof CustomSoundFiles, volumeMultiplier: number = 1): boolean {
+  if (!this.enabled || !this.effectsEnabled) return false;
+  
+  // Use preloaded audio element if available (faster on mobile)
+  const preloadedAudio = this.customAudioElements.get(key);
+  if (preloadedAudio && preloadedAudio.src) {
+    // Clone the preloaded audio for overlapping playback
+    const audio = preloadedAudio.cloneNode() as HTMLAudioElement;
+    audio.volume = this.volume * volumeMultiplier;
+    audio.play().catch(() => {});
+    return true;
+  }
+  
+  // Fallback: create new audio from URL
+  const url = this.customSoundFiles[key];
+  if (url) {
+    const audio = new Audio(url);
+    audio.volume = this.volume * volumeMultiplier;
+    audio.play().catch(() => {});
+    return true;
+  }
+  return false;
+}
+```
 
-### Behavior After Changes
+### SlotGame Integration
+```typescript
+// In SlotGame.tsx, add unlock on first interaction
+useEffect(() => {
+  const handleFirstInteraction = () => {
+    slotSounds.unlockAudio();
+    // Remove listener after first trigger
+    document.removeEventListener('click', handleFirstInteraction);
+    document.removeEventListener('touchstart', handleFirstInteraction);
+  };
+  
+  document.addEventListener('click', handleFirstInteraction);
+  document.addEventListener('touchstart', handleFirstInteraction);
+  
+  return () => {
+    document.removeEventListener('click', handleFirstInteraction);
+    document.removeEventListener('touchstart', handleFirstInteraction);
+  };
+}, []);
+```
 
-- Navigating away from slot page at ANY point stops the music
-- Non-logged-in users see the login prompt immediately (no loading/intro)
-- Users without password access see the password gate immediately (no loading/intro)
-- Only authenticated users with access see the loading and intro screens
-- The cinematic loading/intro experience is preserved for users who can actually play
+---
+
+## Files to Modify
+
+1. **`src/lib/slotSoundEffects.ts`**
+   - Add `audioUnlocked` flag and `unlockAudio()` method
+   - Add all sound types to the preload list (including scatter sounds)
+   - Update `playCustomSound()` to use cloned preloaded audio
+   - Resume AudioContext in unlock method
+
+2. **`src/components/slots/SlotGame.tsx`**
+   - Add useEffect to call `unlockAudio()` on first user interaction
+   - This ensures audio is primed before user tries to spin
+
+---
+
+## Expected Results
+- Sound effects will play reliably on mobile devices
+- No more delayed or missing sounds
+- Audio will work immediately after the user's first tap
+- All custom uploaded sounds (including scatters) will be preloaded for faster playback
