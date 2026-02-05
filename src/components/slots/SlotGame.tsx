@@ -758,6 +758,9 @@ export function SlotGame() {
                               
                               // Clear connecting wins display before expansion
                               setShowWinLines(false);
+                              
+                              // Wait 300ms before starting expansion for visual clarity
+                              await new Promise(resolve => setTimeout(resolve, 300));
                             }
                             
                             // Step 3: Set expandedReels FIRST so darkening knows which reels to exclude
