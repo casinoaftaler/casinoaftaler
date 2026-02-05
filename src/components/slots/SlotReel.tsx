@@ -111,6 +111,17 @@ export function SlotReel({
   // Start fake loop when spinning begins - ALL reels use this now
   useEffect(() => {
     if (isSpinning && !hasStartedSpinRef.current) {
+      // Ensure we're in a clean idle state before starting
+      if (spinState !== "idle") {
+        // Force reset to idle first
+        if (animationRef.current) {
+          cancelAnimationFrame(animationRef.current);
+          animationRef.current = null;
+        }
+        setSpinState("idle");
+        setOffset(0);
+      }
+      
       hasStartedSpinRef.current = true;
       hasStartedSlowdownRef.current = false;
       

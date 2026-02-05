@@ -168,15 +168,15 @@ export function SlotGame() {
         ? bonusState.freeSpinsRemaining > 0 
         : hasEnoughSpins(bet);
       
-      // Also check spinLockRef to prevent spinning before reel 5 has landed
-      if (!isSpinning && !spinLockRef.current && canSpinNow && !showBonusTrigger && !isAutoSpinning) {
+      // Also check spinLockRef AND isSpinLocked to prevent spinning before reel 5 has landed
+      if (!isSpinning && !spinLockRef.current && !isSpinLocked && canSpinNow && !showBonusTrigger && !isAutoSpinning) {
         handleSpin();
       }
     };
 
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);
-  }, [isSpinning, bonusState.isActive, bonusState.freeSpinsRemaining, bet, hasEnoughSpins, showBonusTrigger, isAutoSpinning]);
+  }, [isSpinning, isSpinLocked, bonusState.isActive, bonusState.freeSpinsRemaining, bet, hasEnoughSpins, showBonusTrigger, isAutoSpinning]);
 
   // Stop autospin when out of spins or on big win/bonus
   const stopAutoSpin = useCallback(() => {
@@ -215,8 +215,8 @@ export function SlotGame() {
   }, [isAutoSpinning, stopAutoSpin, startAutoSpin]);
 
   const handleSpin = async () => {
-    // Prevent rapid clicking with a spin lock
-    if (spinLockRef.current) return;
+    // Prevent rapid clicking with a spin lock - use BOTH ref and state for safety
+    if (spinLockRef.current || isSpinLocked) return;
     
     if (!symbols || symbols.length === 0 || !user || isSpinning) return;
     
