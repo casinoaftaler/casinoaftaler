@@ -17,6 +17,9 @@ export interface SlotSoundSettings {
   stopChimeEnabled: boolean;    // golden chime (default: true)
   stopChimeVolume: number;      // 0-1 (default: 0.1)
   
+  // Scatter sound settings
+  scatterVolume: number;        // 0-1 (default: 0.35)
+  
   // Win sound settings
   winSmallVolume: number;       // 0-1 (default: 0.22)
   winSmallArpeggioSpeed: number; // ms between notes (default: 80)
@@ -42,6 +45,8 @@ const DEFAULT_SETTINGS: SlotSoundSettings = {
   stopImpactVolume: 0.3,
   stopChimeEnabled: true,
   stopChimeVolume: 0.1,
+  // Scatter sounds
+  scatterVolume: 0.35,
   // Win sounds
   winSmallVolume: 0.22,
   winSmallArpeggioSpeed: 80,
@@ -71,6 +76,8 @@ export function useSlotSoundSettings() {
         "slot_sound_stop_impact_volume",
         "slot_sound_stop_chime_enabled",
         "slot_sound_stop_chime_volume",
+        // Scatter sounds
+        "slot_sound_scatter_volume",
         // Win sounds
         "slot_sound_win_small_volume",
         "slot_sound_win_small_arpeggio_speed",
@@ -106,6 +113,8 @@ export function useSlotSoundSettings() {
         stopImpactVolume: parseFloat(settingsMap.slot_sound_stop_impact_volume || String(DEFAULT_SETTINGS.stopImpactVolume)),
         stopChimeEnabled: settingsMap.slot_sound_stop_chime_enabled !== "false",
         stopChimeVolume: parseFloat(settingsMap.slot_sound_stop_chime_volume || String(DEFAULT_SETTINGS.stopChimeVolume)),
+        // Scatter sounds
+        scatterVolume: parseFloat(settingsMap.slot_sound_scatter_volume || String(DEFAULT_SETTINGS.scatterVolume)),
         // Win sounds
         winSmallVolume: parseFloat(settingsMap.slot_sound_win_small_volume || String(DEFAULT_SETTINGS.winSmallVolume)),
         winSmallArpeggioSpeed: parseInt(settingsMap.slot_sound_win_small_arpeggio_speed || String(DEFAULT_SETTINGS.winSmallArpeggioSpeed), 10),
@@ -153,6 +162,10 @@ export function useSlotSoundSettings() {
       }
       if (newSettings.stopChimeVolume !== undefined) {
         updates.push({ key: "slot_sound_stop_chime_volume", value: String(newSettings.stopChimeVolume) });
+      }
+      // Scatter sounds
+      if (newSettings.scatterVolume !== undefined) {
+        updates.push({ key: "slot_sound_scatter_volume", value: String(newSettings.scatterVolume) });
       }
       // Win sounds
       if (newSettings.winSmallVolume !== undefined) {
@@ -216,6 +229,7 @@ export function useSlotSoundSettings() {
         "slot_sound_stop_impact_volume",
         "slot_sound_stop_chime_enabled",
         "slot_sound_stop_chime_volume",
+        "slot_sound_scatter_volume",
         "slot_sound_win_small_volume",
         "slot_sound_win_small_arpeggio_speed",
         "slot_sound_win_small_coin_count",

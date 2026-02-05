@@ -7,7 +7,7 @@ import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
 import { Slider } from "@/components/ui/slider";
 import { Switch } from "@/components/ui/switch";
-import { Loader2, Volume2, RotateCcw, Play, Music, Trophy, Coins, Crown, ChevronDown } from "lucide-react";
+import { Loader2, Volume2, RotateCcw, Play, Music, Trophy, Coins, Crown, ChevronDown, Cat } from "lucide-react";
 
 export function SlotSoundAdminSection() {
   const { settings, isLoading, updateSettings, resetToDefaults, DEFAULT_SETTINGS } = useSlotSoundSettings();
@@ -71,6 +71,16 @@ export function SlotSoundAdminSection() {
     slotSounds.setEnabled(true);
     slotSounds.setVolume(0.5);
     slotSounds.playBigWin();
+  };
+
+  const handleTestScatter = () => {
+    slotSounds.updateSoundSettings(formData);
+    slotSounds.setEnabled(true);
+    slotSounds.setVolume(0.5);
+    // Play all 3 scatter sounds with delays
+    slotSounds.playScatterLand(1);
+    setTimeout(() => slotSounds.playScatterLand(2), 600);
+    setTimeout(() => slotSounds.playScatterLand(3), 1200);
   };
 
   if (isLoading) {
@@ -261,6 +271,33 @@ export function SlotSoundAdminSection() {
           </div>
         </div>
 
+        {/* Scatter Sound Section */}
+        <div className="space-y-4 pt-4 border-t">
+          <h4 className="font-medium flex items-center gap-2">
+            <Cat className="h-4 w-4 text-pink-400" />
+            Scatter Lyd (Mjav)
+          </h4>
+          
+          <div className="space-y-4 pl-6">
+            <div className="space-y-2">
+              <div className="flex items-center justify-between">
+                <Label>Volumen</Label>
+                <span className="text-sm text-muted-foreground">{Math.round(formData.scatterVolume * 100)}%</span>
+              </div>
+              <Slider
+                value={[formData.scatterVolume * 100]}
+                onValueChange={(v) => setFormData({ ...formData, scatterVolume: v[0] / 100 })}
+                min={0}
+                max={100}
+                step={5}
+              />
+              <p className="text-xs text-muted-foreground">
+                Justerer lydstyrken for scatter-lyde (katte-mjav). Standard: 35%
+              </p>
+            </div>
+          </div>
+        </div>
+
         {/* Small Win Sound Section */}
         <div className="space-y-4 pt-4 border-t">
           <h4 className="font-medium flex items-center gap-2">
@@ -438,6 +475,10 @@ export function SlotSoundAdminSection() {
           <Button variant="outline" onClick={handleTestBigWin} className="gap-2">
             <Crown className="h-4 w-4 text-yellow-500" />
             Stor
+          </Button>
+          <Button variant="outline" onClick={handleTestScatter} className="gap-2">
+            <Cat className="h-4 w-4 text-pink-400" />
+            Scatter
           </Button>
           <div className="flex-1" />
           <Button 
