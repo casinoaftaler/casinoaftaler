@@ -67,7 +67,6 @@ export function SlotCasinoCard({ casino, backgroundImage }: SlotCasinoCardProps)
           <p className="text-amber-400 font-bold text-xl leading-tight">
             {casino.bonus_amount}
           </p>
-          <p className="text-white/80 text-sm mt-1">{casino.bonus_title}</p>
         </div>
 
         <div className="space-y-3">
