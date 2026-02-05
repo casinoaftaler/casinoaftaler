@@ -1,152 +1,119 @@
 
+# Fully Responsive Viewport-Aware Slot Machine Layout
 
-# Polished Slot Machine Page Layout Redesign
+## Problem Analysis
 
-## Current State Analysis
+The current implementation has a viewport scaling hook (`useViewportScaling.ts`) but it's not working optimally because:
 
-The slot machine page currently has a functional but somewhat fragmented layout:
+1. **Baseline height is fixed at 950px** - This doesn't account for different content configurations (with/without frame, different symbol sizes)
+2. **Scaling is only applied when scale < 1** - This means on larger screens (ultrawide, 27"+) the game stays at fixed size rather than filling available space
+3. **Mobile content below game breaks scaling** - On mobile/tablet, the side content (promo slider, leaderboard) is rendered below the game outside the scaled container, which can still cause scrolling
+4. **Frame margins add unpredictable height** - The `SlotMachineFrame` adds dynamic margins based on frame size, which aren't factored into height calculations
+5. **Symbol sizes are width-based only** - The `useResponsiveSlotDimensions` hook only considers width breakpoints, not available height
 
-**Current Issues:**
-1. **Inconsistent spacing** - Negative margins used extensively (e.g., `-mt-8`, `-mt-12`, `lg:-mt-[200px]`) creating brittle positioning
-2. **Side panel positioning** - Leaderboard and promo slider are absolutely positioned to the left, which breaks at certain viewport widths
-3. **Control panel overlap** - Uses large negative margins to overlap with the frame, causing layout issues on different screen sizes
-4. **Title image floating** - Positioned with negative top margin, disconnected from the game container
-5. **Mobile layout stacking** - Items stacked vertically without visual hierarchy or proper containment
-6. **No visual grouping** - Game elements feel disconnected rather than part of a cohesive interface
+## Solution Overview
 
-## Proposed Redesign
+Create a robust viewport-aware scaling system that:
+1. Calculates the actual content height dynamically
+2. Scales the entire game container (including mobile content) to fit within `100dvh - header`
+3. Works across all resolutions: 1366×768, 1440×900, 1680×1050, 1920×1080, 2560×1440, ultrawide
+4. Uses `dvh` (dynamic viewport height) for better mobile compatibility
+5. Preserves all animations, interactions, and clickable areas
 
-### Visual Concept
+## Technical Approach
 
-Create a more polished, immersive casino experience with:
-- Proper visual containment and grouping
-- Consistent Egyptian theme throughout
-- Better use of glassmorphism effects
-- Improved visual hierarchy
-- Smoother transitions and spacing
-
-### Layout Structure
+### Strategy: Enhanced CSS Transform Scaling with Dynamic Height Measurement
 
 ```text
-Desktop (XL+):
-┌──────────────────────────────────────────────────────────────┐
-│                     HEADER (64px)                            │
-├──────────────────────────────────────────────────────────────┤
-│                                                              │
-│   ┌─────────────┐  ┌───────────────────────┐  ┌───────────┐ │
-│   │ LEADERBOARD │  │     TITLE IMAGE       │  │           │ │
-│   │   (280px)   │  │                       │  │   EMPTY   │ │
-│   │             │  ├───────────────────────┤  │   SPACE   │ │
-│   ├─────────────┤  │                       │  │  (280px)  │ │
-│   │   PROMO     │  │   SLOT MACHINE REELS  │  │           │ │
-│   │   SLIDER    │  │      with Frame       │  │           │ │
-│   │             │  │                       │  │           │ │
-│   └─────────────┘  ├───────────────────────┤  └───────────┘ │
-│                    │   CONTROL PANEL       │                │
-│                    │   (Bet/Spin/Autospin) │                │
-│                    └───────────────────────┘                │
-│                                                              │
-└──────────────────────────────────────────────────────────────┘
-
-Mobile/Tablet (<XL):
-┌─────────────────────────┐
-│       HEADER (64px)     │
-├─────────────────────────┤
-│      TITLE IMAGE        │
-├─────────────────────────┤
-│                         │
-│   SLOT MACHINE REELS    │
-│      with Frame         │
-│                         │
-├─────────────────────────┤
-│    CONTROL PANEL        │
-├─────────────────────────┤
-│     PROMO SLIDER        │
-├─────────────────────────┤
-│     LEADERBOARD         │
-└─────────────────────────┘
+┌─────────────────────────────────────────────────────────────┐
+│                    Calculation Flow                         │
+├─────────────────────────────────────────────────────────────┤
+│  1. Measure available viewport height:                      │
+│     availableHeight = 100dvh - headerHeight - padding       │
+│                                                             │
+│  2. Calculate content height at base scale:                 │
+│     baseContentHeight = title + frame + reels + controls    │
+│     (Different calculations for mobile vs desktop)          │
+│                                                             │
+│  3. Calculate scale factor:                                 │
+│     scale = availableHeight / baseContentHeight             │
+│     scale = clamp(scale, 0.45, 1.2)                         │
+│                                                             │
+│  4. Apply transform: scale(scaleFactor)                     │
+│     transform-origin: top center                            │
+└─────────────────────────────────────────────────────────────┘
 ```
 
 ---
 
 ## Implementation Plan
 
-### Phase 1: New Layout Container Component
+### Phase 1: Enhance useViewportScaling Hook
 
-**File:** `src/components/slots/SlotPageLayout.tsx` (NEW)
+**File:** `src/hooks/useViewportScaling.ts`
 
-Create a dedicated layout component that manages the entire slot machine page structure:
-- Three-column grid layout for desktop (side panels + center game)
-- Single column stack for mobile
-- Proper flex alignment and spacing
-- CSS Grid for precise control
+Major improvements:
+- Use both `innerHeight` and `innerWidth` for responsive calculations
+- Add breakpoint-aware baseline heights (different for desktop vs mobile)
+- Use `dvh` units for better mobile browser support
+- Add upscaling capability (scale > 1.0) for larger screens
+- Account for frame margins in height calculations
+- Debounced resize with immediate first calculation
 
-### Phase 2: Refactor SlotMachine.tsx Page
+```text
+Desktop (xl+): Baseline ~950px
+- Title: 100px
+- Frame: 180px (90 top + 90 bottom)
+- Reels: 3×180 + 2×20 = 580px
+- Controls: 90px
+
+Mobile (<xl): Baseline ~700px (estimated)
+- Title: 80px
+- Reels (smaller): 3×96 + 2×8 = 304px
+- Controls: 80px
+- Mobile side content: ~200px
+```
+
+### Phase 2: Update SlotMachine.tsx Page Layout
 
 **File:** `src/pages/SlotMachine.tsx`
 
 Changes:
-- Remove hacky negative margins
-- Use the new layout component
-- Integrate title image into the game column header
-- Cleaner viewport scaling integration
-- Proper overflow handling
+- Wrap entire game content (including mobile side content) in scaled container
+- Use `100dvh` instead of `100vh` for better mobile compatibility
+- Add `overflow-hidden` container with proper flex centering
+- Apply `transform: scale()` with smooth transitions
+- Add container height tracking for dynamic scaling
 
-### Phase 3: Polish SlotGame.tsx Component
+### Phase 3: Refine SlotPageLayout Component
+
+**File:** `src/components/slots/SlotPageLayout.tsx`
+
+Changes:
+- Add layout measurement capabilities
+- Ensure side panel doesn't affect center calculation
+- Add prop for scale factor to pass to children if needed
+- Improve mobile stacking behavior within scaled container
+
+### Phase 4: Update SlotGame Component
 
 **File:** `src/components/slots/SlotGame.tsx`
 
 Changes:
-- Remove control panel negative margins
-- Create a dedicated game container with proper visual styling
-- Add subtle inner glow/border effects
-- Integrate bonus status bar naturally into the control area
-- Add decorative corner elements
+- Remove any conflicting fixed heights
+- Ensure control panel uses relative sizing
+- Make sure bonus overlays scale correctly
+- Verify win celebrations work at all scales
 
-### Phase 4: Enhanced Control Panel
-
-**File:** `src/components/slots/SlotControlPanel.tsx`
-
-Changes:
-- Create a unified control bar with glassmorphism styling
-- Better visual hierarchy between elements
-- Egyptian-themed decorative accents
-- Smoother visual flow between bet controls, spin button, and autospin
-- Responsive layout improvements for mobile
-
-### Phase 5: Side Panel Enhancements
-
-**Files:**
-- `src/components/slots/SlotLeaderboard.tsx`
-- `src/components/slots/SlotPromoSlider.tsx`
-
-Changes:
-- Add decorative header elements
-- Improve card styling with better shadows and borders
-- Add subtle entrance animations
-- Better visual integration with the overall theme
-
-### Phase 6: Loading and Intro Screen Polish
-
-**Files:**
-- `src/components/slots/SlotLoadingScreen.tsx`
-- `src/components/slots/SlotIntroScreen.tsx`
-
-Changes:
-- Enhanced loading bar with more Egyptian styling
-- Better particle/shimmer effects
-- Smoother transition to game
-- Add decorative border elements
-
-### Phase 7: CSS Enhancements
+### Phase 5: CSS Enhancements
 
 **File:** `src/index.css`
 
-Add new utility classes:
-- Decorative corner ornaments
-- Egyptian panel styling
-- Enhanced glassmorphism effects
-- Subtle entrance animations for panels
+Add:
+- Smooth scaling transitions
+- GPU acceleration hints for transforms
+- Container queries as fallback/enhancement
+- Dynamic viewport unit support
 
 ---
 
@@ -154,79 +121,94 @@ Add new utility classes:
 
 | File | Type | Changes |
 |------|------|---------|
-| `src/components/slots/SlotPageLayout.tsx` | NEW | Main layout container with grid structure |
-| `src/pages/SlotMachine.tsx` | EDIT | Use new layout, remove negative margins |
-| `src/components/slots/SlotGame.tsx` | EDIT | Clean up control positioning, add container styling |
-| `src/components/slots/SlotControlPanel.tsx` | EDIT | Unified control bar design |
-| `src/components/slots/SlotLeaderboard.tsx` | EDIT | Enhanced styling and decorations |
-| `src/components/slots/SlotPromoSlider.tsx` | EDIT | Better visual integration |
-| `src/components/slots/SlotLoadingScreen.tsx` | EDIT | Enhanced loading experience |
-| `src/components/slots/SlotIntroScreen.tsx` | EDIT | Polished intro with effects |
-| `src/index.css` | EDIT | New utility classes and animations |
+| `src/hooks/useViewportScaling.ts` | EDIT | Complete rewrite with dynamic calculations, upscaling support |
+| `src/pages/SlotMachine.tsx` | EDIT | Restructure layout with full-content scaling |
+| `src/components/slots/SlotPageLayout.tsx` | EDIT | Improve measurement and mobile handling |
+| `src/components/slots/SlotGame.tsx` | EDIT | Remove fixed heights, ensure relative sizing |
+| `src/index.css` | EDIT | Add scaling utilities and transitions |
 
 ---
 
-## Visual Design Improvements
+## Scaling Behavior by Resolution
 
-### Color Palette Refinement
-- Primary gold: `amber-500` (keep)
-- Dark backgrounds: Deeper gradients with `from-amber-950/95 via-stone-950 to-amber-950/95`
-- Accent glows: Subtle amber/gold glows on interactive elements
-- Glass panels: `backdrop-blur-md bg-black/40 border border-amber-500/20`
-
-### Typography
-- Title: Keep existing glow effect
-- Panel headers: Add subtle text shadow
-- Stats: Tabular numbers for alignment
-
-### Shadows and Depth
-- Multiple shadow layers for depth
-- Inner glows on containers
-- Drop shadows on floating elements
-
-### Borders
-- Subtle amber gradient borders
-- Decorative corner elements using pseudo-elements
-- Golden trim on key components
+| Resolution | Viewport Height | Available | Scale | Result |
+|------------|----------------|-----------|-------|--------|
+| 1366×768 (Laptop) | 768px | 688px | 0.72 | Compact, no scroll |
+| 1440×900 (MacBook 13") | 900px | 820px | 0.86 | Slight shrink |
+| 1680×1050 (22") | 1050px | 970px | 1.0 | Full size |
+| 1920×1080 (24") | 1080px | 1000px | 1.0 | Full size |
+| 2560×1440 (27") | 1440px | 1360px | 1.0 | Full size (capped) |
+| 3440×1440 (Ultrawide) | 1440px | 1360px | 1.0 | Full size (capped) |
 
 ---
 
-## Animation Additions
+## Key Design Decisions
 
-1. **Panel entrance** - Fade + slide from sides
-2. **Control bar** - Subtle shine sweep on load
-3. **Leaderboard rows** - Staggered fade-in
-4. **Promo slider** - Smoother slide transitions
-5. **Title** - Keep existing glow pulse
+### 1. Dynamic Baseline Calculation
+Instead of a fixed 950px baseline, calculate based on actual component sizes at the current breakpoint. This ensures accurate scaling for both desktop and mobile layouts.
+
+### 2. Scale Range: 0.45 to 1.0
+- **Minimum 0.45**: Below this, symbols become too small to read. For very small viewports, we accept some scrolling rather than unusable UI.
+- **Maximum 1.0**: Don't upscale beyond designed size to prevent pixelation and maintain crisp visuals. The 27" experience at 1080p is the "ideal" baseline.
+
+### 3. Transform Origin: Top Center
+Keeps the title and game header visible at all scales. Users see the top of the game first.
+
+### 4. dvh Units
+Using `dvh` (dynamic viewport height) instead of `vh` for the container. This accounts for mobile browser chrome (address bar, navigation) that changes the actual visible height.
+
+### 5. All Content Scaled Together
+The mobile side content (leaderboard, promo slider) must be inside the scaled container to prevent overflow. This means the scale factor accounts for this additional content on mobile.
 
 ---
 
-## Responsive Behavior
+## Animation Preservation
 
-| Breakpoint | Layout | Notes |
-|------------|--------|-------|
-| < 640px (Mobile) | Single column | Compact controls |
-| 640-1024px (Tablet) | Single column | Larger controls |
-| 1024-1280px (Desktop) | Centered game | No side panels |
-| 1280px+ (Large Desktop) | 3-column grid | Full experience |
+All existing animations will continue to work:
+- **CSS transforms stack** - Scaling a spinning reel still spins correctly
+- **Keyframe animations** - All @keyframes work within scaled containers
+- **Win celebrations** - Particles and effects scale proportionally
+- **Bonus overlays** - Full-screen overlays work outside the scaled container
 
 ---
 
-## Technical Considerations
+## Click Area Preservation
 
-### Viewport Scaling Integration
-- Scaling container wraps the entire game area including side panels
-- Transform origin remains `top center`
-- Scale factor calculations unchanged
+CSS `transform: scale()` automatically adjusts hit testing:
+- All buttons remain clickable at their scaled positions
+- No pointer-events adjustments needed
+- Touch targets scale proportionally (may become smaller, but still accurate)
 
-### Preserving Existing Features
-- All animations (spin, win, bonus) remain unchanged
-- Sound effects integration preserved
-- Keyboard shortcuts (spacebar) maintained
-- Autospin functionality intact
+---
 
-### Performance
-- No additional heavy computations
-- CSS-based effects (GPU accelerated)
-- Minimal DOM changes during gameplay
+## Performance Considerations
+
+1. **GPU Acceleration**: `transform` is hardware-accelerated
+2. **Single transform**: One scale transform on container, not multiple
+3. **Debounced resize**: 100ms debounce prevents excessive recalculations
+4. **No layout thrashing**: Transform doesn't trigger layout recalculations
+5. **will-change hint**: Applied to scaled container for browser optimization
+
+---
+
+## Mobile-Specific Handling
+
+On mobile (<xl breakpoints):
+- Include leaderboard and promo slider in height calculation
+- Account for potential navigation bar space
+- Use more aggressive scaling if needed (0.45 minimum)
+- Ensure touch targets remain at least 44×44px effective size
+
+---
+
+## Testing Recommendations
+
+After implementation, verify on:
+1. **1366×768** - Common laptop resolution, should fit without scroll
+2. **1440×900** - MacBook Pro 13", should scale to ~0.86
+3. **1920×1080** - Standard desktop, should be full size
+4. **2560×1440** - 27" monitor, full size
+5. **Ultrawide (3440×1440)** - Should be centered and full size
+6. **iPhone (390×844)** - Mobile should fit without scroll
+7. **iPad (1024×1366)** - Tablet should fit without scroll
 
