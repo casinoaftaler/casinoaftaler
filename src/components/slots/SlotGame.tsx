@@ -163,13 +163,10 @@ export function SlotGame() {
         document.activeElement?.tagName === "SELECT"
       ) return;
       
-      // Check if we can spin - but block manual spin during bonus (autospin only)
+      // Check if we can spin
       const canSpinNow = bonusState.isActive 
         ? bonusState.freeSpinsRemaining > 0 
         : hasEnoughSpins(bet);
-      
-      // Block keyboard spin during bonus mode - only autospin allowed
-      if (bonusState.isActive) return;
       
       // Also check spinLockRef AND isSpinLocked to prevent spinning before reel 5 has landed
       if (!isSpinning && !spinLockRef.current && !isSpinLocked && canSpinNow && !showBonusTrigger && !isAutoSpinning) {
@@ -375,15 +372,13 @@ export function SlotGame() {
   // Check if bonus should end after spin completes - wait for win animation
   const handleBonusEnd = useCallback(() => {
     if (shouldEndBonus && !isSpinning && !isWinAnimating) {
-      // Stop autospin when bonus ends
-      stopAutoSpin();
       const { winnings, spins } = endBonus();
       setBonusTotalWinnings(winnings);
       setBonusTotalSpinsUsed(spins);
       slotSounds.playBonusWin(); // Play bonus complete sound
       setShowBonusComplete(true);
     }
-  }, [shouldEndBonus, isSpinning, isWinAnimating, endBonus, stopAutoSpin]);
+  }, [shouldEndBonus, isSpinning, isWinAnimating, endBonus]);
 
   // Trigger bonus end check after spin and win animation complete
   useEffect(() => {
@@ -545,13 +540,7 @@ export function SlotGame() {
         type="trigger"
         expandingSymbol={pendingExpandingSymbol}
         allSymbols={symbols || []}
-        onClose={() => {
-          setShowBonusTrigger(false);
-          // Auto-start autospin in bonus mode
-          if (!isAutoSpinning) {
-            startAutoSpin();
-          }
-        }}
+        onClose={() => setShowBonusTrigger(false)}
       />
       <BonusOverlay
         isVisible={showBonusComplete}
