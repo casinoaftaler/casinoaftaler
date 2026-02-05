@@ -677,10 +677,11 @@ export function SlotGame() {
                           
                           // Handle bonus expansion animation
                           if (isBonusSpin && reelsExpanded.length > 0 && expandedGrid) {
+                            // Set expandedReels FIRST so darkening knows which reels to exclude
+                            setExpandedReels(reelsExpanded);
                             setShowExpansionDarken(true); // Enable darkening for non-expanded reels
                             await new Promise(resolve => setTimeout(resolve, 500));
                             setGrid(expandedGrid);
-                            setExpandedReels(reelsExpanded);
                             setNewlyExpandedReels(reelsExpanded);
                             slotSounds.playSymbolExpand();
                             await new Promise(resolve => setTimeout(resolve, 600));
