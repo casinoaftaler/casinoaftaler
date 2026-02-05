@@ -7,6 +7,7 @@ export interface LeaderboardEntry {
   biggest_win: number;
   biggest_multiplier: number;
   total_spins: number;
+  total_bonuses: number;
   daily_winnings: number;
   weekly_winnings: number;
   display_name?: string;
@@ -26,6 +27,7 @@ export function useSlotLeaderboard(period: "daily" | "weekly" | "alltime" = "all
           biggest_win,
           biggest_multiplier,
           total_spins,
+          total_bonuses,
           daily_winnings,
           weekly_winnings
         `);
@@ -46,20 +48,21 @@ export function useSlotLeaderboard(period: "daily" | "weekly" | "alltime" = "all
         profileMap = new Map(profiles?.map(p => [p.user_id, p]) || []);
       }
 
-      const entries: LeaderboardEntry[] = (data || []).map(row => {
-        const profile = row.user_id ? profileMap.get(row.user_id) : null;
-        return {
-          user_id: row.user_id || "",
-          total_winnings: row.total_winnings || 0,
-          biggest_win: row.biggest_win || 0,
-          biggest_multiplier: row.biggest_multiplier || 0,
-          total_spins: row.total_spins || 0,
-          daily_winnings: row.daily_winnings || 0,
-          weekly_winnings: row.weekly_winnings || 0,
-          display_name: profile?.display_name || "Anonym",
-          avatar_url: profile?.avatar_url || undefined,
-        };
-      });
+       const entries: LeaderboardEntry[] = (data || []).map(row => {
+         const profile = row.user_id ? profileMap.get(row.user_id) : null;
+         return {
+           user_id: row.user_id || "",
+           total_winnings: row.total_winnings || 0,
+           biggest_win: row.biggest_win || 0,
+           biggest_multiplier: row.biggest_multiplier || 0,
+           total_spins: row.total_spins || 0,
+           total_bonuses: row.total_bonuses || 0,
+           daily_winnings: row.daily_winnings || 0,
+           weekly_winnings: row.weekly_winnings || 0,
+           display_name: profile?.display_name || "Anonym",
+           avatar_url: profile?.avatar_url || undefined,
+         };
+       });
 
       // Sort by period
       const sortKey = period === "daily" ? "daily_winnings" 

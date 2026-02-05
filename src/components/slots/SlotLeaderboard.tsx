@@ -40,7 +40,7 @@ function LeaderboardRow({ entry, rank }: { entry: LeaderboardEntry; rank: number
         </p>
       </div>
       
-      {/* Bottom row: Stats in 3 columns */}
+      {/* Bottom row: Stats in 4 columns */}
       <div className="flex items-center justify-between text-sm pl-9">
         <div className="text-center">
           <p className="font-bold text-amber-500">{entry.total_winnings.toLocaleString()}</p>
@@ -49,6 +49,10 @@ function LeaderboardRow({ entry, rank }: { entry: LeaderboardEntry; rank: number
         <div className="text-center">
           <p className="font-medium text-amber-100">{entry.total_spins.toLocaleString()}</p>
           <p className="text-xs text-muted-foreground">spins</p>
+        </div>
+        <div className="text-center">
+          <p className="font-medium text-blue-400">{entry.total_bonuses.toLocaleString()}</p>
+          <p className="text-xs text-muted-foreground">bonusser</p>
         </div>
         <div className="text-center">
           <p className="font-bold text-green-400">{formattedMultiplier}</p>
