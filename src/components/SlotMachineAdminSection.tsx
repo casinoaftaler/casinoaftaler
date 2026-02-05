@@ -954,19 +954,81 @@ function StatisticsTab() {
 
   return (
     <div className="space-y-6">
+      {/* Historical Archive Card (Fixed totals) */}
+      {stats?.archived && stats.archived.reset_count > 0 && (
+        <Card className="border-amber-500/20 bg-amber-500/5">
+          <CardHeader className="pb-2">
+            <CardTitle className="text-lg font-bold flex items-center gap-2">
+              <Calendar className="h-5 w-5 text-amber-500" />
+              Historisk Arkiv (Alle tider)
+            </CardTitle>
+            <CardDescription>
+              Samlede statistikker bevaret gennem {stats.archived.reset_count} nulstillinger. 
+              Sidst nulstillet: {stats.archived.last_reset_at ? new Date(stats.archived.last_reset_at).toLocaleDateString("da-DK") : "Aldrig"}
+            </CardDescription>
+          </CardHeader>
+          <CardContent>
+            <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
+              <div className="space-y-1">
+                <p className="text-xs text-muted-foreground uppercase tracking-wider">Total Spins</p>
+                <p className="text-xl font-bold">{(stats.allTimeSpins).toLocaleString()}</p>
+              </div>
+              <div className="space-y-1">
+                <p className="text-xs text-muted-foreground uppercase tracking-wider">Total Gevinster</p>
+                <p className="text-xl font-bold">{(stats.allTimeWinnings).toLocaleString()} pts</p>
+              </div>
+              <div className="space-y-1">
+                <p className="text-xs text-muted-foreground uppercase tracking-wider">Største Gevinst</p>
+                <p className="text-xl font-bold">{(stats.allTimeBiggestWin).toLocaleString()} pts</p>
+              </div>
+              <div className="space-y-1">
+                <p className="text-xs text-muted-foreground uppercase tracking-wider">Total Bonusser</p>
+                <p className="text-xl font-bold">{(stats.allTimeBonuses).toLocaleString()}</p>
+              </div>
+              <div className="space-y-1">
+                <p className="text-xs text-muted-foreground uppercase tracking-wider">Total Indsats</p>
+                <p className="text-xl font-bold">{(stats.allTimeBets).toLocaleString()} pts</p>
+              </div>
+            </div>
+            <div className="mt-4 pt-4 border-t flex items-center justify-between text-sm">
+              <div className="flex items-center gap-2">
+                <Percent className="h-4 w-4 text-orange-500" />
+                <span className="text-muted-foreground">All-time RTP:</span>
+                <span className="font-bold">
+                  {stats.allTimeBets > 0 ? ((stats.allTimeWinnings / stats.allTimeBets) * 100).toFixed(2) : "0.00"}%
+                </span>
+              </div>
+              <div className="flex items-center gap-2">
+                <Users className="h-4 w-4 text-blue-500" />
+                <span className="text-muted-foreground">Anslået spillere:</span>
+                <span className="font-bold">{stats.archived.unique_players + stats.uniquePlayers}</span>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
+      )}
+
       {/* Period Selector */}
-      <div className="flex flex-wrap gap-2">
-        {(["today", "week", "month", "alltime"] as StatPeriod[]).map((p) => (
-          <Button
-            key={p}
-            variant={period === p ? "default" : "outline"}
-            size="sm"
-            onClick={() => setPeriod(p)}
-          >
-            <Calendar className="h-4 w-4 mr-1" />
-            {periodLabels[p]}
-          </Button>
-        ))}
+      <div className="flex flex-wrap items-center justify-between gap-4">
+        <div className="flex flex-wrap gap-2">
+          {(["today", "week", "month", "alltime"] as StatPeriod[]).map((p) => (
+            <Button
+              key={p}
+              variant={period === p ? "default" : "outline"}
+              size="sm"
+              onClick={() => setPeriod(p)}
+            >
+              <Calendar className="h-4 w-4 mr-1" />
+              {periodLabels[p]}
+            </Button>
+          ))}
+        </div>
+        
+        {period === "alltime" && (
+          <Badge variant="outline" className="text-xs py-1 px-3">
+            Viser data siden sidste nulstilling
+          </Badge>
+        )}
       </div>
 
       {/* Stats Cards */}
@@ -975,7 +1037,7 @@ function StatisticsTab() {
           <CardHeader className="pb-2">
             <CardTitle className="text-sm font-medium flex items-center gap-2">
               <Sparkles className="h-4 w-4 text-amber-500" />
-              Total Spins
+              Spins
             </CardTitle>
           </CardHeader>
           <CardContent>
@@ -987,7 +1049,7 @@ function StatisticsTab() {
           <CardHeader className="pb-2">
             <CardTitle className="text-sm font-medium flex items-center gap-2">
               <TrendingUp className="h-4 w-4 text-green-500" />
-              Total Gevinster
+              Gevinster
             </CardTitle>
           </CardHeader>
           <CardContent>
@@ -999,7 +1061,7 @@ function StatisticsTab() {
           <CardHeader className="pb-2">
             <CardTitle className="text-sm font-medium flex items-center gap-2">
               <Trophy className="h-4 w-4 text-amber-500" />
-              Største Gevinst
+              Største
             </CardTitle>
           </CardHeader>
           <CardContent>
@@ -1011,7 +1073,7 @@ function StatisticsTab() {
           <CardHeader className="pb-2">
             <CardTitle className="text-sm font-medium flex items-center gap-2">
               <Users className="h-4 w-4 text-blue-500" />
-              Unikke Spillere
+              Spillere
             </CardTitle>
           </CardHeader>
           <CardContent>
@@ -1023,7 +1085,7 @@ function StatisticsTab() {
           <CardHeader className="pb-2">
             <CardTitle className="text-sm font-medium flex items-center gap-2">
               <Calculator className="h-4 w-4 text-purple-500" />
-              Gns. Gevinst/Spin
+              Gns.
             </CardTitle>
           </CardHeader>
           <CardContent>
