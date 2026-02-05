@@ -20,6 +20,8 @@ export function useSlotSoundLoader() {
         bigWinSound: soundFiles.bigWinSound,
         bonusTriggerSound: soundFiles.bonusTriggerSound,
         bonusWinSound: soundFiles.bonusWinSound,
+        bonusSymbolScrollSound: soundFiles.bonusSymbolScrollSound,
+        bonusSymbolSelectedSound: soundFiles.bonusSymbolSelectedSound,
       };
       
       slotSounds.setCustomSoundFiles(customFiles);
