@@ -76,6 +76,9 @@ class SlotSoundEffects {
   private backgroundMusicAudio: HTMLAudioElement | null = null;
   private defaultMusicAudio: HTMLAudioElement | null = null;
 
+  // Mobile audio unlock tracking
+  private audioUnlocked: boolean = false;
+
   // Configurable sound settings
   private soundSettings: SlotSoundSettings = {
     spinClickInterval: 45,
@@ -123,10 +126,12 @@ class SlotSoundEffects {
     });
     this.customAudioElements.clear();
 
-    // Preload each sound file
+    // Preload each sound file (including scatter and bonus symbol sounds for mobile reliability)
     const soundKeys: (keyof CustomSoundFiles)[] = [
       'spinSound', 'stopSound', 'smallWinSound', 'mediumWinSound', 
-      'bigWinSound', 'bonusTriggerSound', 'bonusWinSound'
+      'bigWinSound', 'bonusTriggerSound', 'bonusWinSound',
+      'bonusSymbolScrollSound', 'bonusSymbolSelectedSound',
+      'scatterSound1', 'scatterSound2', 'scatterSound3'
     ];
 
     soundKeys.forEach(key => {
@@ -152,13 +157,25 @@ class SlotSoundEffects {
   }
 
   // Play a custom sound file if available, returns true if played
+  // Uses preloaded audio elements for faster/more reliable mobile playback
   private playCustomSound(key: keyof CustomSoundFiles, volumeMultiplier: number = 1): boolean {
     if (!this.enabled || !this.effectsEnabled) return false;
     
-    // Get the URL directly from customSoundFiles to create fresh Audio instances
+    // Use preloaded audio element if available (faster on mobile)
+    const preloadedAudio = this.customAudioElements.get(key);
+    if (preloadedAudio && preloadedAudio.src) {
+      // Clone the preloaded audio for overlapping playback
+      const audio = preloadedAudio.cloneNode() as HTMLAudioElement;
+      audio.volume = this.volume * volumeMultiplier;
+      audio.play().catch(() => {
+        // Ignore autoplay errors
+      });
+      return true;
+    }
+    
+    // Fallback: create new audio from URL (for sounds without preload)
     const url = this.customSoundFiles[key];
     if (url) {
-      // Create a new Audio instance each time for reliable overlapping playback
       const audio = new Audio(url);
       audio.volume = this.volume * volumeMultiplier;
       audio.play().catch(() => {
@@ -219,6 +236,43 @@ class SlotSoundEffects {
       this.audioContext.resume();
     }
     return this.audioContext;
+  }
+
+  // Unlock audio for mobile devices - call on first user interaction
+  // This establishes audio permission by playing silent audio within user gesture context
+  unlockAudio() {
+    if (this.audioUnlocked) return;
+    
+    // Resume AudioContext if suspended
+    if (this.audioContext?.state === 'suspended') {
+      this.audioContext.resume();
+    }
+    
+    // Pre-warm the AudioContext
+    this.getContext();
+    
+    // Play a silent sound to unlock audio on mobile
+    // This must happen within user gesture context (click/touch)
+    const silentAudio = new Audio();
+    silentAudio.volume = 0.001;
+    // Minimal valid MP3 data (silent)
+    silentAudio.src = 'data:audio/mp3;base64,SUQzBAAAAAAAI1RTU0UAAAAPAAADTGF2ZjU4Ljc2LjEwMAAAAAAAAAAAAAAA/+M4wAAAAAAAAAAAAEluZm8AAAAPAAAAAgAAABIADw8PDw8PDw8PDw8PDw8PDw8PDw8PDw8PDw8PDw8PDw8PDw8P//8AAABQS0RSAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAP/jOMAAT0AALAAAAAFJS2YBCgAAmJiYmJiYmJiYmJiYmJiYmJiYmJiYmJiYmJiYmJiYmJiYmJj/4zjAAAAsAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAP/jOMABP/wAABpAAAAAAAANIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==';
+    silentAudio.play().then(() => {
+      this.audioUnlocked = true;
+      console.log('[SlotSounds] Audio unlocked for mobile playback');
+    }).catch(() => {
+      // Ignore errors, we'll try again on next interaction
+    });
+    
+    // Also "warm up" preloaded audio elements by setting their volume
+    // This helps ensure they're ready for instant playback
+    this.customAudioElements.forEach((audio) => {
+      audio.load(); // Force reload to ensure buffer is ready
+    });
+  }
+
+  isAudioUnlocked(): boolean {
+    return this.audioUnlocked;
   }
 
   // Update sound settings from admin panel
