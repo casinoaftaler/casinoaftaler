@@ -18,7 +18,7 @@ import { useAuth } from "@/hooks/useAuth";
 import { useQueryClient } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
 import { generateGrid, calculateSpinResult, PAY_LINES, getScatterTeaseReels, type SpinResult, type TeaseInfo } from "@/lib/slotGameLogic";
-import { calculateBonusSpinResult } from "@/lib/bonusGameLogic";
+import { calculateBonusSpinResult, calculateConnectingWins } from "@/lib/bonusGameLogic";
 import { slotSounds } from "@/lib/slotSoundEffects";
 import { Loader2, Gamepad2 } from "lucide-react";
 import { toast } from "sonner";
@@ -726,12 +726,46 @@ export function SlotGame() {
                           const reelsExpanded = pendingExpandedReelsRef.current;
                           const isBonusSpin = isBonusSpinRef.current;
                           
-                          // Handle bonus expansion animation
-                          if (isBonusSpin && reelsExpanded.length > 0 && expandedGrid) {
-                            // Set expandedReels FIRST so darkening knows which reels to exclude
+                          // Handle bonus expansion animation with phased win display
+                          if (isBonusSpin && reelsExpanded.length > 0 && expandedGrid && bonusState.expandingSymbol) {
+                            // Step 1: Calculate connecting wins on ORIGINAL grid (before expansion)
+                            const connectingWins = calculateConnectingWins(
+                              grid!, // original grid
+                              symbols,
+                              bet,
+                              bonusState.expandingSymbol
+                            );
+                            
+                            // Step 2: If there are connecting wins, show them FIRST
+                            if (connectingWins.length > 0) {
+                              const connectingTotalWin = connectingWins.reduce((sum, w) => sum + w.payout, 0);
+                              setLastResult({
+                                grid: grid!,
+                                wins: connectingWins,
+                                totalWin: connectingTotalWin,
+                                bonusTriggered: false,
+                                scatterCount: 0,
+                              });
+                              setShowWinLines(true);
+                              
+                              // Play win sound for connecting wins
+                              if (connectingTotalWin > 0) {
+                                slotSounds.playSmallWin();
+                              }
+                              
+                              // Wait for user to see connecting wins
+                              await new Promise(resolve => setTimeout(resolve, 1000));
+                              
+                              // Clear connecting wins display before expansion
+                              setShowWinLines(false);
+                            }
+                            
+                            // Step 3: Set expandedReels FIRST so darkening knows which reels to exclude
                             setExpandedReels(reelsExpanded);
                             setShowExpansionDarken(true); // Enable darkening for non-expanded reels
                             await new Promise(resolve => setTimeout(resolve, 500));
+                            
+                            // Step 4: Apply expansion to grid
                             setGrid(expandedGrid);
                             setNewlyExpandedReels(reelsExpanded);
                             slotSounds.playSymbolExpand();
@@ -740,7 +774,7 @@ export function SlotGame() {
                             setShowExpansionDarken(false); // Disable darkening after animation
                           }
                           
-                          // Now show the result
+                          // Now show the final result (with expanding wins)
                           setLastResult(result);
                           
                           // Record the spin result
@@ -873,7 +907,10 @@ export function SlotGame() {
                       globalTeaseActive={teaseReels.length > 0 && isSpinning && activeTeaseReelIndex !== null}
                       hasLandedScatter={scatterReelsLanded.has(colIndex) && scatterReelsLanded.size >= 2 && isSpinning}
                       isScatterCelebrating={showScatterCelebration}
-                      isDarkenedForTease={scatterReelsLanded.size >= 2 && isSpinning}
+                      isDarkenedForTease={
+                        (scatterReelsLanded.size >= 2 && isSpinning) || 
+                        (bonusState.isActive && pendingExpandedReelsRef.current.length > 0 && !showExpansionDarken && expandedReels.length === 0 && !isSpinning)
+                      }
                       isDarkenedForExpansion={showExpansionDarken && !expandedReels.includes(colIndex)}
                     />
                     {/* Separator line between reels */}

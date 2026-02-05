@@ -275,21 +275,11 @@ export function SlotReel({
   if (spinState === "idle" || spinState === "stopped") {
     const symbolHeight = getSymbolHeight();
     
-    // Calculate if entire reel should be darkened
-    const isReelDarkened = isDarkenedForTease || isDarkenedForExpansion;
-    
     return (
       <div 
-        className={cn(
-          "flex flex-col gap-[4px] xs:gap-[6px] sm:gap-[8px] md:gap-[12px] lg:gap-[16px]",
-          // Darken entire reel during expansion
-          isDarkenedForExpansion && "opacity-50"
-        )}
+        className="flex flex-col gap-[4px] xs:gap-[6px] sm:gap-[8px] md:gap-[12px] lg:gap-[16px]"
         style={{ 
-          width: `${symbolHeight}px`,
-          // Apply brightness filter for expansion darkening
-          filter: isDarkenedForExpansion ? 'brightness(0.5)' : undefined,
-          transition: 'filter 0.3s ease, opacity 0.3s ease'
+          width: `${symbolHeight}px`
         }}
       >
         {displayedSymbolIds.map((symbolId, rowIndex) => {
@@ -300,7 +290,9 @@ export function SlotReel({
           const symbolIsNewlyExpanded = shouldShowNewlyExpanded(symbolId);
           
           // During tease, darken non-scatter symbols individually
-          const shouldDarkenSymbol = isDarkenedForTease && !symbol.is_scatter;
+          // During expansion, darken ALL symbols on non-expanded reels
+          // Both use same brightness(0.35) filter in SlotSymbol
+          const shouldDarkenSymbol = (isDarkenedForTease && !symbol.is_scatter) || isDarkenedForExpansion;
 
           return (
             <div
