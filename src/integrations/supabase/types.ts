@@ -728,6 +728,7 @@ export type Database = {
       }
       slot_leaderboard: {
         Row: {
+          biggest_multiplier: number | null
           biggest_win: number | null
           daily_winnings: number | null
           total_spins: number | null

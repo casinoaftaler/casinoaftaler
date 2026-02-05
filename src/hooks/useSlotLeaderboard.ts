@@ -5,6 +5,7 @@ export interface LeaderboardEntry {
   user_id: string;
   total_winnings: number;
   biggest_win: number;
+  biggest_multiplier: number;
   total_spins: number;
   daily_winnings: number;
   weekly_winnings: number;
@@ -23,6 +24,7 @@ export function useSlotLeaderboard(period: "daily" | "weekly" | "alltime" = "all
           user_id,
           total_winnings,
           biggest_win,
+          biggest_multiplier,
           total_spins,
           daily_winnings,
           weekly_winnings
@@ -50,6 +52,7 @@ export function useSlotLeaderboard(period: "daily" | "weekly" | "alltime" = "all
           user_id: row.user_id || "",
           total_winnings: row.total_winnings || 0,
           biggest_win: row.biggest_win || 0,
+          biggest_multiplier: row.biggest_multiplier || 0,
           total_spins: row.total_spins || 0,
           daily_winnings: row.daily_winnings || 0,
           weekly_winnings: row.weekly_winnings || 0,
