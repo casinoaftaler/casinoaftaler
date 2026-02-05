@@ -1,149 +1,194 @@
 
+# Plan: Slot Machine Performance & UX Optimizations
 
-# Plan: Redesign Leaderboard with Multiplier Display
+## Overview
 
-## Summary
-
-Redesign the leaderboard component with a new layout:
-- Name/avatar at the TOP of each entry
-- Stats (total winnings, spins, highest multiplier) at the BOTTOM
-- Replace "Max: 1500" with "1000x" multiplier format
+After analyzing the slot machine codebase, I've identified several optimization opportunities across performance, code architecture, user experience, and maintainability.
 
 ---
 
-## Current Layout
+## 1. Performance Optimizations
 
-```
-[Rank] [Avatar] [Name + Spins]     [Total Winnings]
-                                    Max: 1500
-```
+### 1.1 Memoization & Re-render Prevention
 
-## New Layout
+**Problem**: The `SlotGame` component is nearly 1000 lines with many state variables that can trigger unnecessary re-renders.
 
-```
-┌─────────────────────────────────────┐
-│ [Rank] [Avatar] [Name]              │
-│                                     │
-│ 16,544   │   2,751 spins  │  1000x  │
-│ (coins)     (total spins)  (best)   │
-└─────────────────────────────────────┘
-```
+**Solutions**:
+- Wrap expensive callback functions with `useCallback` that aren't already memoized (e.g., `getWinningPositions`, `getSymbolDimensions`)
+- Use `React.memo()` on `SlotReel`, `SlotSymbol`, and `WinLines` components to prevent re-renders when props haven't changed
+- Move `symbolDimensions` calculation into a `useMemo` hook instead of recalculating every render
 
----
+### 1.2 Responsive Dimension Caching
 
-## Changes Required
+**Problem**: `getSymbolHeight()` and `getGap()` in `SlotReel.tsx` are called multiple times per render and query `window.innerWidth` each time.
 
-### 1. Database: Add Biggest Multiplier to Leaderboard View
+**Solution**: Create a custom hook `useResponsiveSlotDimensions` that:
+- Caches dimensions based on current breakpoint
+- Only recalculates on window resize (debounced)
+- Shares dimensions via context to avoid prop drilling
 
-Create a new migration to update the `slot_leaderboard` view to include `biggest_multiplier`:
+### 1.3 Reel Strip Generation Optimization
 
-```sql
-CREATE OR REPLACE VIEW slot_leaderboard AS
-SELECT 
-  user_id,
-  SUM(win_amount) as total_winnings,
-  MAX(win_amount) as biggest_win,
-  MAX(win_amount / NULLIF(bet_amount, 0)) as biggest_multiplier,
-  COUNT(*) as total_spins,
-  -- daily/weekly winnings calculations...
-FROM slot_game_results
-GROUP BY user_id;
-```
+**Problem**: `buildReelStrip()` creates 30 random symbols every spin, using `Math.random()` in a loop.
 
-### 2. Hook: Update LeaderboardEntry Interface
+**Solution**: 
+- Pre-generate a pool of random symbol strips on component mount
+- Rotate through the pool instead of regenerating each spin
+- Use a more efficient shuffling algorithm
 
-**File: `src/hooks/useSlotLeaderboard.ts`**
+### 1.4 Animation Frame Cleanup
 
-Add `biggest_multiplier` to the interface and fetch it:
+**Problem**: Multiple `requestAnimationFrame` calls in `SlotReel` could accumulate if not properly cleaned up.
 
+**Solution**: Ensure all animation cleanup is robust by using a cleanup ref pattern:
 ```typescript
-export interface LeaderboardEntry {
-  user_id: string;
-  total_winnings: number;
-  biggest_win: number;
-  biggest_multiplier: number;  // NEW
-  total_spins: number;
-  daily_winnings: number;
-  weekly_winnings: number;
-  display_name?: string;
-  avatar_url?: string;
-}
+const cleanupRef = useRef(false);
+useEffect(() => {
+  cleanupRef.current = false;
+  return () => { cleanupRef.current = true; };
+}, []);
+// Check cleanupRef.current before calling setOffset in animation loops
 ```
 
-### 3. Component: Redesign LeaderboardRow
+---
 
-**File: `src/components/slots/SlotLeaderboard.tsx`**
+## 2. Code Architecture Improvements
 
-New layout for each leaderboard entry:
+### 2.1 Extract SlotGame Logic into Custom Hooks
 
+**Problem**: `SlotGame.tsx` is nearly 1000 lines with complex state management mixed with rendering.
+
+**Solution**: Split into focused hooks:
+- `useSlotGameState` - Core game state (grid, bet, isSpinning, etc.)
+- `useSlotReelSequencing` - Reel stop timing and tease mode logic  
+- `useSlotWinHandling` - Win calculation, animation, and sound coordination
+- `useSlotAutospin` - Autospin timer and control logic
+
+This would reduce `SlotGame.tsx` to ~300 lines of UI rendering.
+
+### 2.2 Consolidate Timeout/Ref Management
+
+**Problem**: Multiple timeout refs (`autoSpinTimeoutRef`, `winLinesTimeoutRef`, `spinLockTimeoutRef`, `initialSpinTimeoutRef`) managed separately.
+
+**Solution**: Create a `useTimeoutManager` hook:
 ```typescript
-function LeaderboardRow({ entry, rank }: { entry: LeaderboardEntry; rank: number }) {
-  const getRankIcon = () => {
-    if (rank === 1) return <Trophy className="h-5 w-5 text-amber-500" />;
-    if (rank === 2) return <Medal className="h-5 w-5 text-gray-400" />;
-    if (rank === 3) return <Award className="h-5 w-5 text-amber-700" />;
-    return <span className="w-5 text-center text-muted-foreground font-bold">{rank}</span>;
-  };
+const timeouts = useTimeoutManager();
+timeouts.set('autospin', () => handleSpin(), 1000);
+timeouts.clear('autospin');
+// Auto-cleanup on unmount
+```
 
-  // Format multiplier as "120x"
-  const formattedMultiplier = entry.biggest_multiplier > 0 
-    ? `${Math.round(entry.biggest_multiplier)}x` 
-    : "-";
+### 2.3 State Machine Pattern for Spin Lifecycle
 
-  return (
-    <div className={cn(
-      "p-3 rounded-lg",
-      rank <= 3 ? "bg-gradient-to-r from-amber-500/10 to-transparent" : "hover:bg-muted/50"
-    )}>
-      {/* Top row: Rank, Avatar, Name */}
-      <div className="flex items-center gap-3 mb-2">
-        <div className="w-6 flex justify-center">{getRankIcon()}</div>
-        <Avatar className="h-8 w-8">
-          <AvatarImage src={entry.avatar_url} alt={entry.display_name} />
-          <AvatarFallback><User className="h-4 w-4" /></AvatarFallback>
-        </Avatar>
-        <p className="font-medium text-amber-100 flex-1 truncate">
-          {entry.display_name}
-        </p>
-      </div>
-      
-      {/* Bottom row: Stats in 3 columns */}
-      <div className="flex items-center justify-between text-sm pl-9">
-        <div className="text-center">
-          <p className="font-bold text-amber-500">{entry.total_winnings.toLocaleString()}</p>
-          <p className="text-xs text-muted-foreground">point</p>
-        </div>
-        <div className="text-center">
-          <p className="font-medium text-amber-100">{entry.total_spins.toLocaleString()}</p>
-          <p className="text-xs text-muted-foreground">spins</p>
-        </div>
-        <div className="text-center">
-          <p className="font-bold text-green-400">{formattedMultiplier}</p>
-          <p className="text-xs text-muted-foreground">bedste</p>
-        </div>
-      </div>
-    </div>
-  );
-}
+**Problem**: Complex boolean state combinations (`isSpinning`, `isSpinLocked`, `isWinAnimating`, `showScatterCelebration`, etc.) make it hard to track game state.
+
+**Solution**: Implement a finite state machine:
+```typescript
+type SlotState = 
+  | 'idle' 
+  | 'spinning' 
+  | 'stopping' 
+  | 'showing-connecting-wins'
+  | 'expanding'
+  | 'showing-expansion-wins'
+  | 'celebrating-scatter'
+  | 'showing-bonus-overlay'
+  | 'animating-win';
 ```
 
 ---
 
-## Visual Design Notes
+## 3. Sound System Optimizations
 
-- **Name row**: Prominent at top with rank icon and avatar
-- **Stats row**: Three evenly-spaced columns below
-  - Left: Total winnings (amber/gold color)
-  - Center: Total spins (neutral color)
-  - Right: Best multiplier as "120x" (green to stand out)
-- Keep existing Egyptian theme colors (amber, gold gradients)
-- Same card styling and dialog for full list
+### 3.1 Lazy Load Synthesized Sound Code
+
+**Problem**: The `slotSoundEffects.ts` file is 2600+ lines with complex synthesis code that may never be used if custom sounds are uploaded.
+
+**Solution**:
+- Move synthesized fallback functions to a separate `slotSoundSynthesis.ts` file
+- Dynamically import only if needed (when no custom sound is available)
+- This reduces initial bundle parsing time
+
+### 3.2 Web Audio Worklet for Complex Sounds
+
+**Problem**: Synthesized sounds (Egyptian scale, drones) run on the main thread.
+
+**Solution**: Move complex audio synthesis to an AudioWorklet for background processing (lower priority optimization).
 
 ---
 
-## Files to Modify
+## 4. User Experience Improvements
 
-1. **Database migration** - Add `biggest_multiplier` column to `slot_leaderboard` view
-2. **`src/hooks/useSlotLeaderboard.ts`** - Add `biggest_multiplier` to interface and query
-3. **`src/components/slots/SlotLeaderboard.tsx`** - Redesign row layout with name on top, stats on bottom
+### 4.1 Smooth Skeleton Loading
 
+**Problem**: The loading state shows a basic spinner.
+
+**Solution**: Add a shimmer/skeleton that matches the slot machine layout:
+- 5 skeleton reel columns with pulsing animation
+- Skeleton control panel
+- Creates perception of faster loading
+
+### 4.2 Preload Next Spin During Win Animation
+
+**Problem**: After a win animation, there's a brief pause before next spin can start.
+
+**Solution**: Pre-generate the next grid during win animation:
+```typescript
+useEffect(() => {
+  if (isWinAnimating) {
+    nextGridRef.current = generateGrid(symbols);
+  }
+}, [isWinAnimating]);
+```
+
+### 4.3 Progressive Symbol Loading Indicator
+
+**Problem**: If symbol images are slow to load, users see nothing.
+
+**Solution**: Show loading progress with symbol names and checkmarks as each loads.
+
+---
+
+## 5. Database Query Optimizations
+
+### 5.1 Batch Leaderboard Queries
+
+**Problem**: Leaderboard fetches could be slow with many users.
+
+**Solution**: 
+- Add a database index on `slot_game_results(user_id, created_at)`
+- Consider materializing the leaderboard view for faster reads
+
+### 5.2 Debounce Game Result Inserts
+
+**Problem**: Each spin immediately inserts a row to `slot_game_results`.
+
+**Solution**: During autospin, batch results and insert every 5 spins to reduce database calls.
+
+---
+
+## Implementation Priority
+
+| Priority | Optimization | Impact | Effort |
+|----------|-------------|--------|--------|
+| High | Memoization & React.memo | Smoother animations | Low |
+| High | Extract hooks from SlotGame | Maintainability | Medium |
+| High | Responsive dimension caching | Performance | Low |
+| Medium | State machine pattern | Code clarity | Medium |
+| Medium | Skeleton loading states | UX perception | Low |
+| Medium | Lazy load sound synthesis | Bundle size | Low |
+| Low | Web Audio Worklet | CPU usage | High |
+| Low | Batch DB inserts | DB load | Medium |
+
+---
+
+## Recommended Starting Point
+
+Start with the highest-impact, lowest-effort optimizations:
+
+1. **Add `React.memo()` to SlotSymbol and SlotReel** - Immediate performance gain
+2. **Create `useResponsiveSlotDimensions` hook** - Eliminates repeated window queries
+3. **Wrap callbacks in useCallback** - Prevents child re-renders
+4. **Add skeleton loading state** - Better perceived performance
+
+These can be done incrementally without breaking existing functionality.
