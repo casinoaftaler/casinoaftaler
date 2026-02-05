@@ -7,8 +7,9 @@ import { supabase } from "@/integrations/supabase/client";
 const DEFAULT_SYMBOL_WEIGHT = 10;
 
 // Weighted random selection for expanding symbol
+// Uses bonus_weight for bonus-specific odds
 function getWeightedRandomSymbol(symbols: SlotSymbol[]): SlotSymbol {
-  const getWeight = (s: SlotSymbol) => s.weight || DEFAULT_SYMBOL_WEIGHT;
+  const getWeight = (s: SlotSymbol) => s.bonus_weight || s.weight || DEFAULT_SYMBOL_WEIGHT;
   const totalWeight = symbols.reduce((sum, s) => sum + getWeight(s), 0);
   let random = Math.random() * totalWeight;
   

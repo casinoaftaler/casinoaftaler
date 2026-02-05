@@ -18,6 +18,7 @@ export function useSlotSymbols() {
         ...symbol,
         rarity: symbol.rarity as SymbolRarity,
         weight: Number(symbol.weight) || 10,
+        bonus_weight: Number(symbol.bonus_weight) || Number(symbol.weight) || 10,
         multiplier_2: Number(symbol.multiplier_2) || 0,
         multiplier_3: Number(symbol.multiplier_3) || 0,
         multiplier_4: Number(symbol.multiplier_4) || 0,

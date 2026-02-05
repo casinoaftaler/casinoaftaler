@@ -513,6 +513,7 @@ export type Database = {
       }
       slot_symbols: {
         Row: {
+          bonus_weight: number
           created_at: string
           id: string
           image_url: string | null
@@ -528,6 +529,7 @@ export type Database = {
           weight: number
         }
         Insert: {
+          bonus_weight?: number
           created_at?: string
           id?: string
           image_url?: string | null
@@ -543,6 +545,7 @@ export type Database = {
           weight?: number
         }
         Update: {
+          bonus_weight?: number
           created_at?: string
           id?: string
           image_url?: string | null
