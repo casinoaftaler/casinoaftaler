@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
+import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Button } from "@/components/ui/button";
 import { Trophy, Medal, Award, User, Users, Zap } from "lucide-react";
 import { useSlotLeaderboard, type LeaderboardEntry } from "@/hooks/useSlotLeaderboard";
@@ -65,8 +66,13 @@ function LeaderboardRow({ entry, rank }: { entry: LeaderboardEntry; rank: number
 
 export function SlotLeaderboard() {
   const [showFullList, setShowFullList] = useState(false);
+  const [dialogPeriod, setDialogPeriod] = useState<"daily" | "weekly" | "alltime">("alltime");
   const [hasNewUpdate, setHasNewUpdate] = useState(false);
+  
+  // Main card always shows alltime
   const { data: entries, isLoading } = useSlotLeaderboard("alltime");
+  // Dialog shows selected period
+  const { data: dialogEntries, isLoading: dialogLoading } = useSlotLeaderboard(dialogPeriod);
 
   // Show update indicator when data changes
   useEffect(() => {
@@ -129,14 +135,42 @@ export function SlotLeaderboard() {
                       Fuld Rangliste
                     </DialogTitle>
                   </DialogHeader>
+                  
+                  <Tabs value={dialogPeriod} onValueChange={(v) => setDialogPeriod(v as typeof dialogPeriod)} className="w-full">
+                    <TabsList className="w-full grid grid-cols-3 bg-amber-950/50">
+                      <TabsTrigger value="daily" className="data-[state=active]:bg-amber-500/20 data-[state=active]:text-amber-100">
+                        I dag
+                      </TabsTrigger>
+                      <TabsTrigger value="weekly" className="data-[state=active]:bg-amber-500/20 data-[state=active]:text-amber-100">
+                        Uge
+                      </TabsTrigger>
+                      <TabsTrigger value="alltime" className="data-[state=active]:bg-amber-500/20 data-[state=active]:text-amber-100">
+                        Måned
+                      </TabsTrigger>
+                    </TabsList>
+                  </Tabs>
+                  
                   <div className="space-y-1 max-h-[60vh] overflow-y-auto">
-                    {entries.map((entry, index) => (
-                      <LeaderboardRow
-                        key={entry.user_id}
-                        entry={entry}
-                        rank={index + 1}
-                      />
-                    ))}
+                    {dialogLoading ? (
+                      <div className="space-y-2">
+                        {[1, 2, 3].map((i) => (
+                          <div key={i} className="h-16 bg-muted/50 rounded-lg animate-pulse" />
+                        ))}
+                      </div>
+                    ) : dialogEntries && dialogEntries.length > 0 ? (
+                      dialogEntries.map((entry, index) => (
+                        <LeaderboardRow
+                          key={entry.user_id}
+                          entry={entry}
+                          rank={index + 1}
+                        />
+                      ))
+                    ) : (
+                      <div className="text-center py-8">
+                        <Trophy className="h-10 w-10 mx-auto mb-2 opacity-50 text-amber-500/50" />
+                        <p className="text-amber-100/80">Ingen gevinster i denne periode</p>
+                      </div>
+                    )}
                   </div>
                 </DialogContent>
               </Dialog>
