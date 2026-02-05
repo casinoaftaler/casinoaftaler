@@ -1,5 +1,6 @@
-import { useQuery } from "@tanstack/react-query";
+import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
+import { useEffect } from "react";
 
 export interface LeaderboardEntry {
   user_id: string;
@@ -15,6 +16,31 @@ export interface LeaderboardEntry {
 }
 
 export function useSlotLeaderboard(period: "daily" | "weekly" | "alltime" = "alltime") {
+  const queryClient = useQueryClient();
+
+  // Subscribe to realtime changes on slot_game_results
+  useEffect(() => {
+    const channel = supabase
+      .channel('leaderboard-updates')
+      .on(
+        'postgres_changes',
+        {
+          event: 'INSERT',
+          schema: 'public',
+          table: 'slot_game_results',
+        },
+        () => {
+          // Invalidate the leaderboard query to refetch fresh data
+          queryClient.invalidateQueries({ queryKey: ["slot-leaderboard"] });
+        }
+      )
+      .subscribe();
+
+    return () => {
+      supabase.removeChannel(channel);
+    };
+  }, [queryClient]);
+
   return useQuery({
     queryKey: ["slot-leaderboard", period],
     queryFn: async (): Promise<LeaderboardEntry[]> => {
