@@ -445,6 +445,10 @@ export function SlotGame() {
   }, [isAutoSpinning, isSpinning, isWinAnimating, winAmount, canSpin, bonusState.isActive, bonusState.freeSpinsRemaining, showBonusTrigger, showBonusComplete, showRetrigger]);
 
   // Auto-spin during bonus mode - spins automatically without user clicking
+  // Use a ref to track the latest handleSpin function to avoid stale closures
+  const handleSpinRef = useRef(handleSpin);
+  handleSpinRef.current = handleSpin;
+  
   useEffect(() => {
     // Only run during active bonus with remaining spins
     if (!bonusState.isActive || bonusState.freeSpinsRemaining === 0) return;
@@ -452,16 +456,23 @@ export function SlotGame() {
     // Don't trigger if already spinning or animating
     if (isSpinning || isWinAnimating) return;
     
+    // Don't trigger if spin is locked (prevents race conditions)
+    if (isSpinLocked) return;
+    
     // Don't trigger if any overlay is showing OR scatter celebration is active
     if (showBonusTrigger || showBonusComplete || showRetrigger || showScatterCelebration) return;
     
     // Wait a moment before auto-spinning
     const timer = setTimeout(() => {
-      handleSpin();
+      try {
+        handleSpinRef.current();
+      } catch (error) {
+        console.error("[BonusAutoSpin] Error during auto-spin:", error);
+      }
     }, 1000);
     
     return () => clearTimeout(timer);
-  }, [bonusState.isActive, bonusState.freeSpinsRemaining, isSpinning, isWinAnimating, showBonusTrigger, showBonusComplete, showRetrigger, showScatterCelebration]);
+  }, [bonusState.isActive, bonusState.freeSpinsRemaining, isSpinning, isWinAnimating, isSpinLocked, showBonusTrigger, showBonusComplete, showRetrigger, showScatterCelebration]);
 
   // Find winning positions for each reel
   const getWinningPositions = (reelIndex: number): number[] => {
