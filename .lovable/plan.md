@@ -1,26 +1,22 @@
 
 
-## Update Giveaway Banner with New Background Image
+## Increase Slide Height for Disclaimer Visibility
 
-### Overview
-Replace the current giveaway banner background with the uploaded Egyptian-themed headset image and update the text overlays to match the requested content.
+### Problem
+The promo slider uses `aspect-[4/3]` which restricts the height, causing the legal disclaimer at the bottom of the SlotCasinoCard to be cut off.
 
-### Changes Required
+### Solution
+Change the aspect ratio to a taller proportion to accommodate all content including the expandable disclaimer.
 
-| File | Action |
+### Change Required
+
+| File | Change |
 |------|--------|
-| `src/assets/slots/giveaway-banner.png` | Replace with uploaded image |
-| `src/components/slots/GiveawayBanner.tsx` | Update text content |
+| `src/components/slots/SlotPromoSlider.tsx` | Change `aspect-[4/3]` to `aspect-[3/4]` for a taller container |
 
-### Implementation Details
-
-**1. Copy the uploaded image to assets**
-- Copy `user-uploads://image-17.png` → `src/assets/slots/giveaway-banner.png`
-
-**2. Update GiveawayBanner.tsx text overlays**
-- Top text: "Vind et gamer headset!"
-- Bottom text line 1: "Turneringen starter mandag d. 9 og slutter søndag d 19."
-- Bottom text line 2: "Værdi: 700kr"
-
-The component already has the correct structure with text overlays positioned at top and bottom with semi-transparent backgrounds - we just need to update the text content.
+### Technical Details
+- Line 27: Update from `aspect-[4/3]` to `aspect-[3/4]`
+- This changes the container from a landscape (1.33:1) to a portrait (0.75:1) orientation
+- The SlotCasinoCard already uses `h-full` with flex layout, so it will automatically fill the new space
+- The GiveawayBanner and third slide images will also adapt with `object-cover`
 
