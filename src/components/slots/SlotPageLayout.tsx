@@ -16,9 +16,9 @@ export function SlotPageLayout({ children, sidePanel, className }: SlotPageLayou
     <div className={cn("w-full flex justify-center", className)}>
       {/* Centered game container with relative positioning for side panel */}
       <div className="relative flex justify-center w-full">
-        {/* Left side panel - absolutely positioned on desktop */}
+        {/* Left side panel - absolutely positioned on desktop, vertically centered */}
         {sidePanel && (
-          <aside className="hidden xl:flex flex-col gap-4 absolute right-full mr-6 top-0 w-[300px]">
+          <aside className="hidden xl:flex flex-col gap-4 absolute right-full mr-6 top-1/2 -translate-y-1/2 w-[300px]">
             {sidePanel}
           </aside>
         )}
