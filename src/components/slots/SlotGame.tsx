@@ -824,7 +824,7 @@ export function SlotGame() {
                       globalTeaseActive={teaseReels.length > 0 && isSpinning && activeTeaseReelIndex !== null}
                       hasLandedScatter={scatterReelsLanded.has(colIndex) && scatterReelsLanded.size >= 2 && isSpinning}
                       isScatterCelebrating={showScatterCelebration}
-                      isDarkenedForTease={scatterReelsLanded.size >= 1 && !scatterReelsLanded.has(colIndex)}
+                      isDarkenedForTease={scatterReelsLanded.size >= 2 && isSpinning}
                       isDarkenedForExpansion={showExpansionDarken && !expandedReels.includes(colIndex)}
                     />
                     {/* Separator line between reels */}
