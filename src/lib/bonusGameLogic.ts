@@ -320,3 +320,84 @@ export function getExpandedPositions(
   }
   return positions;
 }
+
+/**
+ * Calculate connecting wins on the ORIGINAL grid before expansion.
+ * These are payline wins that DON'T involve the expanding symbol.
+ * Used to show connecting wins BEFORE the expansion animation.
+ */
+export function calculateConnectingWins(
+  originalGrid: string[][],
+  symbols: SlotSymbol[],
+  betAmount: number,
+  expandingSymbol: SlotSymbol
+): LineWin[] {
+  const wins: LineWin[] = [];
+  const symbolsById = new Map(symbols.map(s => [s.id, s]));
+  const scatterSymbol = symbols.find(s => s.is_scatter);
+  
+  // Standard win calculation (consecutive from left) - excluding expanding symbol wins
+  for (let lineIndex = 0; lineIndex < PAY_LINES.length; lineIndex++) {
+    const linePattern = PAY_LINES[lineIndex];
+    const lineSymbols = linePattern.map((row, col) => originalGrid[col][row]);
+    const lineSymbolData = lineSymbols.map(id => symbolsById.get(id));
+    
+    // Safety check: if any symbol is missing, skip this line
+    if (lineSymbolData.some(s => !s)) continue;
+    
+    const validSymbols = lineSymbolData as SlotSymbol[];
+    
+    // Find the first non-scatter symbol as base
+    let baseSymbol = validSymbols[0];
+    if (baseSymbol.is_scatter && scatterSymbol) {
+      const nonScatter = validSymbols.find(s => !s.is_scatter);
+      if (nonScatter) {
+        baseSymbol = nonScatter;
+      }
+    }
+    
+    // Skip if base symbol is the expanding symbol - we want non-expanding wins only
+    if (baseSymbol.id === expandingSymbol.id) continue;
+    
+    // Count consecutive matching symbols from left
+    let count = 0;
+    for (let i = 0; i < 5; i++) {
+      const current = validSymbols[i];
+      const isMatch = current.id === baseSymbol.id || 
+        (scatterSymbol && current.is_scatter && current.id !== expandingSymbol.id);
+      
+      if (isMatch) {
+        count++;
+      } else {
+        break;
+      }
+    }
+    
+    // Premium symbols can win with 2+ matches, common symbols need 3+
+    const minMatches = baseSymbol.rarity === 'premium' ? 2 : 3;
+    
+    if (count >= minMatches) {
+      let multiplier = 0;
+      if (count === 2 && baseSymbol.rarity === 'premium') {
+        multiplier = baseSymbol.multiplier_2;
+      } else if (count === 3) {
+        multiplier = baseSymbol.multiplier_3;
+      } else if (count === 4) {
+        multiplier = baseSymbol.multiplier_4;
+      } else if (count === 5) {
+        multiplier = baseSymbol.multiplier_5;
+      }
+      
+      if (multiplier > 0) {
+        wins.push({
+          lineIndex,
+          symbolId: baseSymbol.id,
+          count,
+          payout: multiplier * betAmount,
+        });
+      }
+    }
+  }
+  
+  return wins;
+}
