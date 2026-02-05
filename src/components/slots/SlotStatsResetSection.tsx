@@ -173,6 +173,10 @@ export function SlotStatsResetSection() {
               <strong className="text-destructive">Advarsel:</strong> Disse handlinger kan ikke fortrydes! Alle slettede data er permanent tabt.
             </p>
           </div>
+
+          <p className="text-xs text-muted-foreground">
+            <strong>Bemærk:</strong> Admin analytics (sidevisninger, klik-statistik) bevares altid og påvirkes ikke af nulstilling.
+          </p>
         </CardContent>
       </Card>
 
