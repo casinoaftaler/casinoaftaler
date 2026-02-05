@@ -13,6 +13,8 @@ export interface SlotSoundSettings {
   stopImpactVolume: number;
   stopChimeEnabled: boolean;
   stopChimeVolume: number;
+  // Scatter sounds
+  scatterVolume: number;
   // Win sounds
   winSmallVolume: number;
   winSmallArpeggioSpeed: number;
@@ -86,6 +88,8 @@ class SlotSoundEffects {
     stopImpactVolume: 0.3,
     stopChimeEnabled: true,
     stopChimeVolume: 0.1,
+    // Scatter sounds
+    scatterVolume: 0.35,
     // Win sounds
     winSmallVolume: 0.22,
     winSmallArpeggioSpeed: 80,
@@ -2324,9 +2328,12 @@ class SlotSoundEffects {
   playScatterLand(scatterNumber: number) {
     if (!this.canPlayBonusSound()) return;
     
+    // Get scatter volume from settings (default 0.35)
+    const scatterVolume = this.soundSettings.scatterVolume ?? 0.35;
+    
     // Try to play custom scatter sound based on scatter number
     const scatterKey = `scatterSound${scatterNumber}` as keyof CustomSoundFiles;
-    if (this.playCustomSound(scatterKey, 1)) {
+    if (this.playCustomSound(scatterKey, scatterVolume)) {
       return; // Custom sound played successfully
     }
     
@@ -2341,7 +2348,8 @@ class SlotSoundEffects {
     
     const basePitch = 300 + (scatterNumber - 1) * 100; // 300Hz → 400Hz → 500Hz
     const duration = 0.3 + (scatterNumber - 1) * 0.15; // 0.3s → 0.45s → 0.6s
-    const volume = 0.25 + (scatterNumber - 1) * 0.12; // 0.25 → 0.37 → 0.49
+    // Apply scatter volume setting with progressive scaling
+    const baseVolume = scatterVolume * (0.7 + (scatterNumber - 1) * 0.35); // Uses setting with progressive scaling
     
     // Main meow formant - vocal tract simulation
     const meow1 = ctx.createOscillator();
@@ -2366,8 +2374,9 @@ class SlotSoundEffects {
     
     // Volume envelope - attack, sustain, decay
     meow1Gain.gain.setValueAtTime(0, now);
-    meow1Gain.gain.linearRampToValueAtTime(volume * this.volume, now + 0.03);
-    meow1Gain.gain.setValueAtTime(volume * this.volume * 0.8, now + duration * 0.4);
+    meow1Gain.gain.linearRampToValueAtTime(baseVolume * this.volume, now + 0.03);
+    meow1Gain.gain.setValueAtTime(baseVolume * this.volume * 0.8, now + duration * 0.4);
+    meow1Gain.gain.exponentialRampToValueAtTime(0.001, now + duration);
     meow1Gain.gain.exponentialRampToValueAtTime(0.001, now + duration);
     
     meow1.start(now);
@@ -2393,7 +2402,7 @@ class SlotSoundEffects {
     meow2Filter.Q.value = 3;
     
     meow2Gain.gain.setValueAtTime(0, now);
-    meow2Gain.gain.linearRampToValueAtTime(volume * 0.4 * this.volume, now + 0.04);
+    meow2Gain.gain.linearRampToValueAtTime(baseVolume * 0.4 * this.volume, now + 0.04);
     meow2Gain.gain.exponentialRampToValueAtTime(0.001, now + duration * 0.8);
     
     meow2.start(now);
@@ -2416,7 +2425,7 @@ class SlotSoundEffects {
     nasalFilter.frequency.value = 2500;
     nasalFilter.Q.value = 5;
     
-    nasalGain.gain.setValueAtTime(volume * 0.15 * this.volume, now + 0.02);
+    nasalGain.gain.setValueAtTime(baseVolume * 0.15 * this.volume, now + 0.02);
     nasalGain.gain.exponentialRampToValueAtTime(0.001, now + duration * 0.5);
     
     nasal.start(now);
