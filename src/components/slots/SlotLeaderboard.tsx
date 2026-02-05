@@ -1,10 +1,10 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Button } from "@/components/ui/button";
-import { Trophy, Medal, Award, User, Users, Zap } from "lucide-react";
+import { Trophy, Medal, Award, User, Users } from "lucide-react";
 import { useSlotLeaderboard, type LeaderboardEntry } from "@/hooks/useSlotLeaderboard";
 import { cn } from "@/lib/utils";
 
@@ -67,32 +67,16 @@ function LeaderboardRow({ entry, rank }: { entry: LeaderboardEntry; rank: number
 export function SlotLeaderboard() {
   const [showFullList, setShowFullList] = useState(false);
   const [dialogPeriod, setDialogPeriod] = useState<"daily" | "weekly" | "alltime">("alltime");
-  const [hasNewUpdate, setHasNewUpdate] = useState(false);
+  
   
   // Main card always shows alltime
   const { data: entries, isLoading } = useSlotLeaderboard("alltime");
   // Dialog shows selected period
   const { data: dialogEntries, isLoading: dialogLoading } = useSlotLeaderboard(dialogPeriod);
 
-  // Show update indicator when data changes
-  useEffect(() => {
-    setHasNewUpdate(true);
-    const timer = setTimeout(() => setHasNewUpdate(false), 2000);
-    return () => clearTimeout(timer);
-  }, [entries?.length]);
-
   return (
     <div className="relative">
-      {hasNewUpdate && (
-        <div className="absolute -top-6 left-1/2 transform -translate-x-1/2 flex items-center gap-1.5 bg-emerald-500/90 text-white px-3 py-1 rounded-full text-xs font-medium animate-fade-in z-10">
-          <Zap className="h-3 w-3" />
-          Opdateret
-        </div>
-      )}
-      <Card className={cn(
-        "border-amber-500/30 bg-gradient-to-b from-amber-950/95 via-black/90 to-amber-950/95 backdrop-blur-sm transition-all duration-300",
-        hasNewUpdate && "ring-2 ring-emerald-500/50"
-      )}>
+      <Card className="border-amber-500/30 bg-gradient-to-b from-amber-950/95 via-black/90 to-amber-950/95 backdrop-blur-sm">
       <CardHeader className="pb-2">
         <CardTitle className="flex items-center gap-2 text-lg text-amber-100">
           <Trophy className="h-5 w-5 text-amber-500" />
