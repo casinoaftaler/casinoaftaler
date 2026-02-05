@@ -1,94 +1,100 @@
 
-# Plan: Win Lines Sequencing & Leaderboard Bonus Multiplier
+# Plan: Consolidate Bonus Results for Leaderboard
 
-## Summary
+## Overview
+Modify the slot game to record bonus rounds as a single entry instead of per-spin, and exclude free spins from the spin count.
 
-Two fixes requested:
-1. **Win Lines Sequencing**: Show connecting wins first, add 300ms delay, then show expanding symbol wins after expansion
-2. **Bonus Multiplier on Leaderboard**: Verify bonus spins correctly update the biggest multiplier
+## Current Behavior
+- Every spin (including bonus spins) inserts a separate row into `slot_game_results`
+- Each row has `win_amount` for that spin, causing leaderboard to update on every bonus spin
+- `total_spins` in the leaderboard view counts ALL rows, including bonus spins
 
----
+## Proposed Changes
 
-## Analysis
+### 1. Skip Recording Individual Bonus Spins
+**File**: `src/components/slots/SlotGame.tsx` (lines 783-795)
 
-### Issue 1: Win Lines Sequencing
+Change the spin result recording logic to:
+- Only record results for **regular spins** (not bonus spins)
+- Skip the database insert when `isBonusSpin` is true
 
-**Current behavior (lines 729-779 in SlotGame.tsx):**
-1. Connecting wins are calculated and shown
-2. Win lines are hidden after 1000ms
-3. Expansion animation happens
-4. Final result (with expanding wins) is set
-5. Win lines are shown for expanding wins
+### 2. Record Bonus Summary at End
+**File**: `src/components/slots/SlotGame.tsx` (in `handleBonusEnd` callback, lines 396-405)
 
-**Problem:** 
-- No explicit 300ms delay between connecting wins display and expansion start
-- The win lines for connecting wins are cleared BEFORE expansion, but expanding wins are shown at the end
+When the bonus ends, insert a single summary row:
+- `bet_amount`: The bet amount used when bonus was triggered
+- `win_amount`: 0 (no line win for this summary row)
+- `bonus_win_amount`: Total accumulated bonus winnings
+- `is_bonus_triggered`: false (we already counted the trigger on the initial spin)
 
-**Fix:**
-Add a 300ms delay after hiding connecting win lines before starting the expansion animation.
+### 3. Track Bet Amount for Bonus Summary
+**File**: `src/components/slots/SlotGame.tsx`
 
-### Issue 2: Bonus Multiplier Tracking
-
-**Current behavior:**
-- Each bonus spin is recorded to `slot_game_results` with `bet_amount` and `win_amount`
-- The leaderboard view calculates `biggest_multiplier = max(win_amount / bet_amount)` from ALL records
-- This already includes bonus spins
-
-**Verification from database:**
-- Bonus spins ARE being recorded (e.g., win_amount: 5.00, bet_amount: 1 = 5x multiplier)
-- The view already picks up max multiplier from all spins
-
-**Conclusion:** The bonus multiplier tracking is already working correctly. A 20x bonus win would be recorded as `win_amount: 20, bet_amount: 1` and the view would calculate `biggest_multiplier = 20`.
+Add state to capture the bet amount when bonus is triggered, so we can use it when recording the final bonus summary.
 
 ---
 
-## Implementation
+## Technical Details
 
-### File: `src/components/slots/SlotGame.tsx`
+### SlotGame.tsx Changes
 
-**Location: Lines 755-775**
-
-Modify the bonus expansion sequence to:
-1. Show connecting wins for 1000ms (already done)
-2. Hide connecting win lines
-3. **Add 300ms delay** (NEW)
-4. Start expansion darkening and animation
-5. After expansion completes, show win lines for expanding wins
-
-```text
-Current flow:
-- Show connecting wins -> wait 1000ms -> hide wins -> darken -> expand
-
-New flow:
-- Show connecting wins -> wait 1000ms -> hide wins -> wait 300ms -> darken -> expand -> show expanding wins
-```
-
-**Code change (pseudocode):**
+**Add state for bonus bet tracking**:
 ```typescript
-// Wait for user to see connecting wins
-await new Promise(resolve => setTimeout(resolve, 1000));
+const [bonusBetAmount, setBonusBetAmount] = useState<number>(1);
+```
 
-// Clear connecting wins display before expansion
-setShowWinLines(false);
+**Modify spin result recording (lines ~783-795)**:
+```typescript
+// Only record non-bonus spins to database
+if (user && !isBonusSpin) {
+  supabase.from("slot_game_results").insert({
+    user_id: user.id,
+    bet_amount: bet,
+    win_amount: result.totalWin,
+    is_bonus_triggered: result.bonusTriggered,
+    bonus_win_amount: 0, // Bonus wins recorded separately at end
+  }).then(() => {
+    queryClient.invalidateQueries({ queryKey: ["slot-leaderboard"] });
+  });
+  
+  // Capture bet amount when bonus triggers for later
+  if (result.bonusTriggered) {
+    setBonusBetAmount(bet);
+  }
+}
+```
 
-// ADD: Wait 300ms before starting expansion
-await new Promise(resolve => setTimeout(resolve, 300));
-
-// Continue with expansion...
+**Modify handleBonusEnd (lines ~396-405)**:
+```typescript
+const handleBonusEnd = useCallback(() => {
+  if (shouldEndBonus && !isSpinning && !isWinAnimating) {
+    const { winnings, spins } = endBonus();
+    
+    // Record the complete bonus result as a single entry
+    if (user && winnings > 0) {
+      supabase.from("slot_game_results").insert({
+        user_id: user.id,
+        bet_amount: bonusBetAmount,
+        win_amount: 0,
+        is_bonus_triggered: false,
+        bonus_win_amount: winnings,
+      }).then(() => {
+        queryClient.invalidateQueries({ queryKey: ["slot-leaderboard"] });
+      });
+    }
+    
+    setBonusTotalWinnings(winnings);
+    setBonusTotalSpinsUsed(spins);
+    slotSounds.playBonusWin();
+    setShowBonusComplete(true);
+  }
+}, [shouldEndBonus, isSpinning, isWinAnimating, endBonus, user, bonusBetAmount, queryClient]);
 ```
 
 ---
 
-## Files to Modify
-
-| File | Change |
-|------|--------|
-| `src/components/slots/SlotGame.tsx` | Add 300ms delay between connecting wins and expansion |
-
----
-
-## Notes
-
-- The bonus multiplier tracking is already working as designed - each bonus spin is recorded individually with its win and bet amounts, and the view correctly calculates the max multiplier across all spins
-- The 300ms delay gives visual clarity between the two win phases
-- Win lines for expanding symbols are already shown at the end of the expansion sequence (line 877-879)
+## Result
+- Leaderboard `total_spins` only counts regular spins (one per bonus round, not 10+)
+- Bonus winnings appear as one update at the end of the bonus round
+- The "biggest multiplier" calculation still works because it uses `(win_amount + bonus_win_amount) / bet_amount`
+- Existing leaderboard view requires no changes
