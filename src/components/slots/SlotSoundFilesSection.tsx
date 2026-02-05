@@ -21,6 +21,7 @@ export function SlotSoundFilesSection() {
     scatterSound1: null,
     scatterSound2: null,
     scatterSound3: null,
+    scatterCelebrationSound: null,
   });
 
   useEffect(() => {
@@ -147,6 +148,13 @@ export function SlotSoundFilesSection() {
                   settingKey={SLOT_SOUND_SETTING_KEYS.bonusTriggerSound}
                   currentUrl={localFiles.bonusTriggerSound}
                   onUrlChange={handleUrlChange("bonusTriggerSound")}
+                />
+                <SlotSoundUpload
+                  label="Scatter Celebration"
+                  description="Afspilles under scatter celebration (pulserende symboler) før bonus-skærmen vises."
+                  settingKey={SLOT_SOUND_SETTING_KEYS.scatterCelebrationSound}
+                  currentUrl={localFiles.scatterCelebrationSound}
+                  onUrlChange={handleUrlChange("scatterCelebrationSound")}
                 />
                 <SlotSoundUpload
                   label="Symbol Scroll"

@@ -25,6 +25,7 @@ export function useSlotSoundLoader() {
         scatterSound1: soundFiles.scatterSound1,
         scatterSound2: soundFiles.scatterSound2,
         scatterSound3: soundFiles.scatterSound3,
+        scatterCelebrationSound: soundFiles.scatterCelebrationSound,
       };
       
       slotSounds.setCustomSoundFiles(customFiles);
