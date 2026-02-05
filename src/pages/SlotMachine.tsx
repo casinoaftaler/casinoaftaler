@@ -1,4 +1,5 @@
 import { useState, useCallback, useEffect } from "react";
+import { slotSounds } from "@/lib/slotSoundEffects";
 import { SlotGame } from "@/components/slots/SlotGame";
 import { SlotLeaderboard } from "@/components/slots/SlotLeaderboard";
 import { SlotCasinoCard } from "@/components/slots/SlotCasinoCard";
@@ -60,18 +61,15 @@ export default function SlotMachine() {
   // Get the #1 ranked casino (first active casino by position)
   const topCasino = casinos?.find(c => c.is_active) || null;
 
-  // Show loading screen first (before auth check)
-  if (loadingPhase === 'loading') {
-    return <SlotLoadingScreen onComplete={handleLoadingComplete} />;
-  }
+  // Cleanup: Stop music when leaving the slot machine page
+  useEffect(() => {
+    return () => {
+      slotSounds.stopMusic();
+    };
+  }, []);
 
-  // Show intro screen
-  if (loadingPhase === 'intro') {
-    return <SlotIntroScreen onStart={handleIntroComplete} />;
-  }
-
-  // Show loading while checking auth, access, and session
-  if (loading || accessLoading || (user && sessionLoading)) {
+  // 1. Show loading while checking auth and access
+  if (loading || accessLoading) {
     return (
       <div className="min-h-[calc(100vh-4rem)] relative">
         <div 
@@ -87,7 +85,7 @@ export default function SlotMachine() {
     );
   }
 
-  // Show password gate if page is locked and user doesn't have access
+  // 2. Show password gate if locked (before loading/intro)
   if (isLocked && !hasAccess) {
     return (
       <SlotPageLockGate 
@@ -98,20 +96,7 @@ export default function SlotMachine() {
     );
   }
 
-  // Show session gate if another device is actively playing
-  if (user && isBlockedByOtherDevice) {
-    return (
-      <SlotSessionGate
-        backgroundImage={backgroundImage}
-        otherDeviceInfo={otherDeviceInfo}
-        timeSinceActive={timeSinceOtherActive}
-        isLoading={sessionLoading}
-        onTakeOver={takeOverSession}
-        onRefresh={refreshSession}
-      />
-    );
-  }
-
+  // 3. Show login prompt if not logged in (before loading/intro)
   if (!user) {
     return (
       <div className="min-h-[calc(100vh-4rem)] relative">
@@ -139,6 +124,47 @@ export default function SlotMachine() {
     );
   }
 
+  // 4. Show session loading/gate for authenticated users
+  if (sessionLoading) {
+    return (
+      <div className="min-h-[calc(100vh-4rem)] relative">
+        <div 
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat -z-10"
+          style={{ backgroundImage: `url(${backgroundImage})` }}
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-black/60 to-black/90 -z-10" />
+        
+        <div className="container py-8 flex items-center justify-center min-h-[60vh]">
+          <div className="animate-pulse text-muted-foreground">Indlæser...</div>
+        </div>
+      </div>
+    );
+  }
+
+  if (isBlockedByOtherDevice) {
+    return (
+      <SlotSessionGate
+        backgroundImage={backgroundImage}
+        otherDeviceInfo={otherDeviceInfo}
+        timeSinceActive={timeSinceOtherActive}
+        isLoading={sessionLoading}
+        onTakeOver={takeOverSession}
+        onRefresh={refreshSession}
+      />
+    );
+  }
+
+  // 5. Show loading screen for authenticated users with access
+  if (loadingPhase === 'loading') {
+    return <SlotLoadingScreen onComplete={handleLoadingComplete} />;
+  }
+
+  // 6. Show intro screen
+  if (loadingPhase === 'intro') {
+    return <SlotIntroScreen onStart={handleIntroComplete} />;
+  }
+
+  // 7. Show the game
   return (
     <div className="min-h-[calc(100vh-4rem)] relative overflow-x-hidden">
       {/* Background - absolute instead of fixed to not overlap header */}
