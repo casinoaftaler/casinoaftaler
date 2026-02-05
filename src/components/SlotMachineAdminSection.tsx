@@ -136,6 +136,7 @@ function EditSymbolDialog({ symbol, open, onClose, allSymbols }: EditSymbolDialo
     is_scatter: false,
     is_wild: false,
     weight: "10",
+    bonus_weight: "10",
   });
 
   useEffect(() => {
@@ -150,6 +151,7 @@ function EditSymbolDialog({ symbol, open, onClose, allSymbols }: EditSymbolDialo
         is_scatter: symbol.is_scatter,
         is_wild: symbol.is_wild,
         weight: String(symbol.weight || 10),
+        bonus_weight: String(symbol.bonus_weight || symbol.weight || 10),
       });
     }
   }, [symbol]);
@@ -167,6 +169,7 @@ function EditSymbolDialog({ symbol, open, onClose, allSymbols }: EditSymbolDialo
       is_scatter: formData.is_scatter,
       is_wild: formData.is_wild,
       weight: parseFloat(formData.weight) || 10,
+      bonus_weight: parseFloat(formData.bonus_weight) || 10,
     }, {
       onSuccess: () => onClose(),
     });
@@ -318,11 +321,11 @@ function EditSymbolDialog({ symbol, open, onClose, allSymbols }: EditSymbolDialo
             );
           })()}
 
-          <div className="grid grid-cols-5 gap-4">
+          <div className="grid grid-cols-3 gap-4">
             <div className="space-y-2">
               <Label htmlFor="weight" className="flex items-center gap-1">
                 <Sparkles className="h-3 w-3 text-amber-500" />
-                Vægt (Odds)
+                Base Vægt
               </Label>
               <Input
                 id="weight"
@@ -332,10 +335,25 @@ function EditSymbolDialog({ symbol, open, onClose, allSymbols }: EditSymbolDialo
                 value={formData.weight}
                 onChange={(e) => setFormData({ ...formData, weight: e.target.value })}
               />
-              <p className="text-xs text-muted-foreground">Højere = oftere</p>
+              <p className="text-xs text-muted-foreground">Normal spil</p>
             </div>
             <div className="space-y-2">
-              <Label htmlFor="mult-2">2× Multiplier</Label>
+              <Label htmlFor="bonus-weight" className="flex items-center gap-1">
+                <Sparkles className="h-3 w-3 text-purple-500" />
+                Bonus Vægt
+              </Label>
+              <Input
+                id="bonus-weight"
+                type="number"
+                step="1"
+                min="1"
+                value={formData.bonus_weight}
+                onChange={(e) => setFormData({ ...formData, bonus_weight: e.target.value })}
+              />
+              <p className="text-xs text-muted-foreground">I bonus runde</p>
+            </div>
+            <div className="space-y-2">
+              <Label htmlFor="mult-2">2× Multi</Label>
               <Input
                 id="mult-2"
                 type="number"
@@ -346,8 +364,10 @@ function EditSymbolDialog({ symbol, open, onClose, allSymbols }: EditSymbolDialo
               />
               <p className="text-xs text-muted-foreground">Kun premium</p>
             </div>
+          </div>
+          <div className="grid grid-cols-3 gap-4">
             <div className="space-y-2">
-              <Label htmlFor="mult-3">3× Multiplier</Label>
+              <Label htmlFor="mult-3">3× Multi</Label>
               <Input
                 id="mult-3"
                 type="number"
@@ -358,7 +378,7 @@ function EditSymbolDialog({ symbol, open, onClose, allSymbols }: EditSymbolDialo
               />
             </div>
             <div className="space-y-2">
-              <Label htmlFor="mult-4">4× Multiplier</Label>
+              <Label htmlFor="mult-4">4× Multi</Label>
               <Input
                 id="mult-4"
                 type="number"
@@ -369,7 +389,7 @@ function EditSymbolDialog({ symbol, open, onClose, allSymbols }: EditSymbolDialo
               />
             </div>
             <div className="space-y-2">
-              <Label htmlFor="mult-5">5× Multiplier</Label>
+              <Label htmlFor="mult-5">5× Multi</Label>
               <Input
                 id="mult-5"
                 type="number"

@@ -25,6 +25,7 @@ export interface SlotSymbol {
   position: number;
   rarity: 'premium' | 'common' | 'scatter';
   weight: number;
+  bonus_weight: number;
 }
 
 export interface SpinResult {
@@ -117,8 +118,14 @@ export function getRandomSymbol(symbols: SlotSymbol[], excludeIds: string[] = []
   // If all symbols are excluded, fall back to full list (shouldn't happen normally)
   const symbolPool = availableSymbols.length > 0 ? availableSymbols : symbols;
   
-  // Use weight from database, with fallback to default (same odds in base and bonus game)
-  const getWeight = (s: SlotSymbol) => s.weight || DEFAULT_SYMBOL_WEIGHT;
+  // Use weight from database, with fallback to default
+  // Bonus spins use bonus_weight for different odds (e.g., harder retriggering)
+  const getWeight = (s: SlotSymbol) => {
+    if (isBonusSpin) {
+      return s.bonus_weight || s.weight || DEFAULT_SYMBOL_WEIGHT;
+    }
+    return s.weight || DEFAULT_SYMBOL_WEIGHT;
+  };
   
   const totalWeight = symbolPool.reduce((sum, s) => sum + getWeight(s), 0);
   let random = Math.random() * totalWeight;

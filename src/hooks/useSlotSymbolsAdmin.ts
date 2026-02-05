@@ -13,6 +13,7 @@ interface SymbolUpdate {
   is_scatter?: boolean;
   is_wild?: boolean;
   weight?: number;
+  bonus_weight?: number;
 }
 
 interface PositionUpdate {
