@@ -1,4 +1,5 @@
 import { useState, useCallback, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import { slotSounds } from "@/lib/slotSoundEffects";
 import { SlotGame } from "@/components/slots/SlotGame";
 import { SlotLeaderboard } from "@/components/slots/SlotLeaderboard";
@@ -22,6 +23,7 @@ import slotCasinoCardBg from "@/assets/slots/slot-casino-card-bg.png";
 type LoadingPhase = 'loading' | 'intro' | 'ready';
 
 export default function SlotMachine() {
+  const navigate = useNavigate();
   const { user, loading } = useAuth();
   const { data: siteSettings } = useSiteSettings();
   const { data: casinos } = useCasinos();
@@ -44,6 +46,24 @@ export default function SlotMachine() {
   useEffect(() => {
     sessionStorage.removeItem('slot_initialized');
   }, []);
+
+  // Handle visibility change - stop music and redirect when app is backgrounded (mobile)
+  useEffect(() => {
+    const handleVisibilityChange = () => {
+      if (document.visibilityState === 'hidden') {
+        // Stop all music when app is backgrounded
+        slotSounds.stopMusic();
+        // Navigate to home page
+        navigate('/');
+      }
+    };
+    
+    document.addEventListener('visibilitychange', handleVisibilityChange);
+    
+    return () => {
+      document.removeEventListener('visibilitychange', handleVisibilityChange);
+    };
+  }, [navigate]);
   
 
   const handleLoadingComplete = useCallback(() => {

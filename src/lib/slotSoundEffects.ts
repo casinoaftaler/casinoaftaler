@@ -76,6 +76,10 @@ class SlotSoundEffects {
   private backgroundMusicAudio: HTMLAudioElement | null = null;
   private defaultMusicAudio: HTMLAudioElement | null = null;
 
+  // Audio pool for reliable mobile playback (multiple pre-warmed elements per sound)
+  private audioPool: Map<string, HTMLAudioElement[]> = new Map();
+  private readonly POOL_SIZE = 3;
+
   // Mobile audio unlock tracking
   private audioUnlocked: boolean = false;
 
@@ -126,6 +130,15 @@ class SlotSoundEffects {
     });
     this.customAudioElements.clear();
 
+    // Clear existing audio pool
+    this.audioPool.forEach(pool => {
+      pool.forEach(audio => {
+        audio.pause();
+        audio.src = '';
+      });
+    });
+    this.audioPool.clear();
+
     // Preload each sound file (including scatter and bonus symbol sounds for mobile reliability)
     const soundKeys: (keyof CustomSoundFiles)[] = [
       'spinSound', 'stopSound', 'smallWinSound', 'mediumWinSound', 
@@ -137,10 +150,21 @@ class SlotSoundEffects {
     soundKeys.forEach(key => {
       const url = this.customSoundFiles[key];
       if (url) {
+        // Create single preloaded element for compatibility
         const audio = new Audio();
         audio.preload = 'auto';
         audio.src = url;
         this.customAudioElements.set(key, audio);
+        
+        // Create audio pool for reliable mobile playback
+        const pool: HTMLAudioElement[] = [];
+        for (let i = 0; i < this.POOL_SIZE; i++) {
+          const poolAudio = new Audio(url);
+          poolAudio.preload = 'auto';
+          poolAudio.load(); // Force buffer loading for mobile
+          pool.push(poolAudio);
+        }
+        this.audioPool.set(key, pool);
       }
     });
 
@@ -156,31 +180,70 @@ class SlotSoundEffects {
     }
   }
 
-  // Play a custom sound file if available, returns true if played
-  // Uses preloaded audio elements for faster/more reliable mobile playback
-  private playCustomSound(key: keyof CustomSoundFiles, volumeMultiplier: number = 1): boolean {
-    if (!this.enabled || !this.effectsEnabled) return false;
-    
-    // Use preloaded audio element if available (faster on mobile)
-    const preloadedAudio = this.customAudioElements.get(key);
-    if (preloadedAudio && preloadedAudio.src) {
-      // Clone the preloaded audio for overlapping playback
-      const audio = preloadedAudio.cloneNode() as HTMLAudioElement;
-      audio.volume = this.volume * volumeMultiplier;
-      audio.play().catch(() => {
-        // Ignore autoplay errors
-      });
-      return true;
+  // Ensure AudioContext is active (resume if suspended by mobile browser)
+  private ensureAudioContextActive() {
+    if (this.audioContext?.state === 'suspended') {
+      this.audioContext.resume().catch(() => {});
     }
-    
-    // Fallback: create new audio from URL (for sounds without preload)
+  }
+
+  // Fallback audio playback for when pool fails
+  private playFallbackAudio(key: keyof CustomSoundFiles, volumeMultiplier: number) {
     const url = this.customSoundFiles[key];
     if (url) {
       const audio = new Audio(url);
       audio.volume = this.volume * volumeMultiplier;
+      audio.play().catch(() => {});
+    }
+  }
+
+  // Play a custom sound file if available, returns true if played
+  // Uses audio pool for reliable mobile playback
+  private playCustomSound(key: keyof CustomSoundFiles, volumeMultiplier: number = 1): boolean {
+    if (!this.enabled || !this.effectsEnabled) return false;
+    
+    // Ensure AudioContext is active (mobile browsers may suspend it)
+    this.ensureAudioContextActive();
+    
+    // Try to use audio pool first (most reliable on mobile)
+    const pool = this.audioPool.get(key);
+    if (pool && pool.length > 0) {
+      // Find an available (not playing) audio element
+      const audio = pool.find(a => a.paused || a.ended) || pool[0];
+      
+      // Reset and play
+      audio.currentTime = 0;
+      audio.volume = this.volume * volumeMultiplier;
+      
+      // Use play promise for reliability with fallback
+      const playPromise = audio.play();
+      if (playPromise !== undefined) {
+        playPromise.catch(() => {
+          // Fallback: try with a fresh audio element
+          this.playFallbackAudio(key, volumeMultiplier);
+        });
+      }
+      return true;
+    }
+    
+    // Fallback: use preloaded audio element (clone for overlapping playback)
+    const preloadedAudio = this.customAudioElements.get(key);
+    if (preloadedAudio && preloadedAudio.src) {
+      const audio = preloadedAudio.cloneNode() as HTMLAudioElement;
+      audio.volume = this.volume * volumeMultiplier;
       audio.play().catch(() => {
-        // Ignore autoplay errors
+        // Last resort fallback
+        this.playFallbackAudio(key, volumeMultiplier);
       });
+      return true;
+    }
+    
+    // Final fallback: create new audio from URL
+    const url = this.customSoundFiles[key];
+    if (url) {
+      const audio = new Audio(url);
+      audio.volume = this.volume * volumeMultiplier;
+      audio.play().catch(() => {});
       return true;
     }
     return false;
@@ -1424,7 +1487,25 @@ class SlotSoundEffects {
   playBonusSymbolScroll(): () => void {
     if (!this.canPlayBonusSound()) return () => {};
     
-    // Try custom bonus symbol scroll sound first
+    // Ensure AudioContext is active for mobile
+    this.ensureAudioContextActive();
+    
+    // Try pooled audio first (most reliable on mobile)
+    const pool = this.audioPool.get('bonusSymbolScrollSound');
+    if (pool && pool.length > 0) {
+      const audio = pool[0];
+      audio.currentTime = 0;
+      audio.volume = this.volume;
+      audio.loop = true;
+      audio.play().catch(() => {});
+      return () => {
+        audio.pause();
+        audio.currentTime = 0;
+        audio.loop = false;
+      };
+    }
+    
+    // Try custom bonus symbol scroll sound (fallback to preloaded)
     const customAudio = this.customSoundFiles.bonusSymbolScrollSound;
     if (customAudio) {
       const audio = new Audio(customAudio);
