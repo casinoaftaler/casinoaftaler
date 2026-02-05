@@ -2,7 +2,7 @@ import { useState, useCallback, useEffect } from "react";
 import { slotSounds } from "@/lib/slotSoundEffects";
 import { SlotGame } from "@/components/slots/SlotGame";
 import { SlotLeaderboard } from "@/components/slots/SlotLeaderboard";
-import { SlotCasinoCard } from "@/components/slots/SlotCasinoCard";
+import { SlotPromoSlider } from "@/components/slots/SlotPromoSlider";
 import { SlotPageLockGate } from "@/components/slots/SlotPageLockGate";
 import { SlotLoadingScreen } from "@/components/slots/SlotLoadingScreen";
 import { SlotIntroScreen } from "@/components/slots/SlotIntroScreen";
@@ -196,9 +196,9 @@ export default function SlotMachine() {
                 <SlotLeaderboard />
               </div>
               
-              {/* #1 Casino Card - Desktop */}
+              {/* #1 Casino Card + Giveaway Slider - Desktop */}
               {topCasino && (
-                <SlotCasinoCard casino={topCasino} backgroundImage={slotCasinoCardBg} />
+                <SlotPromoSlider casino={topCasino} backgroundImage={slotCasinoCardBg} />
               )}
             </div>
             
@@ -206,10 +206,10 @@ export default function SlotMachine() {
             <div className="flex flex-col items-center gap-1" style={{ marginTop: '-5px' }}>
               <SlotGame />
               
-              {/* #1 Casino Card - Mobile/Tablet */}
+              {/* #1 Casino Card + Giveaway Slider - Mobile/Tablet */}
               {topCasino && (
                 <div className="w-full max-w-sm xl:hidden mt-3">
-                  <SlotCasinoCard casino={topCasino} backgroundImage={slotCasinoCardBg} />
+                  <SlotPromoSlider casino={topCasino} backgroundImage={slotCasinoCardBg} />
                 </div>
               )}
               
