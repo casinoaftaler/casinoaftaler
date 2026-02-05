@@ -75,15 +75,17 @@ export function SlotLeaderboard() {
   const { data: dialogEntries, isLoading: dialogLoading } = useSlotLeaderboard(dialogPeriod);
 
   return (
-    <div className="relative">
-      <Card className="border-amber-500/30 bg-gradient-to-b from-amber-950/95 via-black/90 to-amber-950/95 backdrop-blur-sm">
-      <CardHeader className="pb-2">
-        <CardTitle className="flex items-center gap-2 text-lg text-amber-100">
-          <Trophy className="h-5 w-5 text-amber-500" />
-          Rangliste
-        </CardTitle>
-      </CardHeader>
-      <CardContent>
+    <div className="relative animate-fade-in">
+      <Card className="border-amber-500/30 bg-gradient-to-b from-amber-950/95 via-black/90 to-amber-950/95 backdrop-blur-md shadow-[0_0_30px_rgba(251,191,36,0.1)]">
+        <CardHeader className="pb-2 border-b border-amber-500/10">
+          <CardTitle className="flex items-center gap-2 text-lg text-amber-100">
+            <div className="p-1.5 rounded-lg bg-amber-500/20">
+              <Trophy className="h-5 w-5 text-amber-500" />
+            </div>
+            Rangliste
+          </CardTitle>
+        </CardHeader>
+        <CardContent className="pt-3">
         {isLoading ? (
           <div className="space-y-2">
             {[1, 2, 3].map((i) => (
@@ -166,9 +168,9 @@ export function SlotLeaderboard() {
             <p className="text-amber-100/80">Ingen gevinster endnu</p>
             <p className="text-sm text-amber-100/60">Vær den første på ranglisten!</p>
           </div>
-        )}
-      </CardContent>
-    </Card>
+          )}
+        </CardContent>
+      </Card>
     </div>
   );
 }

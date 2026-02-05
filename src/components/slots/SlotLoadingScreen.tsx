@@ -70,18 +70,18 @@ export function SlotLoadingScreen({ onComplete }: SlotLoadingScreenProps) {
           }}
         />
         
-        {/* Loading Bar */}
-        <div className="w-full max-w-xs sm:max-w-sm space-y-3">
-          <div className="relative">
+        {/* Loading Bar with Egyptian styling */}
+        <div className="w-full max-w-xs sm:max-w-sm space-y-4">
+          <div className="relative p-3 rounded-xl backdrop-blur-md bg-amber-950/40 border border-amber-500/20 shadow-[0_0_30px_rgba(251,191,36,0.15)]">
             <Progress 
               value={totalProgress} 
-              className="h-4 bg-amber-950/50 border border-amber-500/30 rounded-full overflow-hidden"
+              className="h-5 bg-amber-950/60 border border-amber-500/40 rounded-full overflow-hidden"
             />
-            {/* Golden overlay effect */}
+            {/* Golden shimmer overlay */}
             <div 
-              className="absolute inset-0 rounded-full pointer-events-none"
+              className="absolute inset-3 rounded-full pointer-events-none overflow-hidden"
               style={{
-                background: 'linear-gradient(180deg, rgba(255,255,255,0.1) 0%, transparent 50%, rgba(0,0,0,0.2) 100%)'
+                background: 'linear-gradient(180deg, rgba(255,255,255,0.15) 0%, transparent 50%, rgba(0,0,0,0.2) 100%)'
               }}
             />
           </div>

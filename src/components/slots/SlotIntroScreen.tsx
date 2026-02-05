@@ -38,16 +38,20 @@ export function SlotIntroScreen({ onStart }: SlotIntroScreenProps) {
           }
         }}
       >
-        {/* Intro Image */}
-        <div className="relative">
+        {/* Intro Image with enhanced styling */}
+        <div className="relative group">
           <img 
             src={introImage} 
             alt="Book of Fedesvin" 
-            className="w-full max-w-[640px] sm:max-w-2xl md:max-w-4xl lg:max-w-5xl xl:max-w-6xl h-auto rounded-lg shadow-2xl transition-transform duration-300 hover:scale-[1.02]"
+            className="w-full max-w-[640px] sm:max-w-2xl md:max-w-4xl lg:max-w-5xl xl:max-w-6xl h-auto rounded-xl border-2 border-amber-500/30 shadow-2xl transition-all duration-300 group-hover:scale-[1.02] group-hover:border-amber-500/50"
             style={{
-              boxShadow: '0 0 40px rgba(251,191,36,0.3), 0 0 80px rgba(251,191,36,0.15)'
+              boxShadow: '0 0 40px rgba(251,191,36,0.3), 0 0 80px rgba(251,191,36,0.15), 0 0 120px rgba(251,191,36,0.08)'
             }}
           />
+          {/* Click to play hint */}
+          <div className="absolute bottom-4 left-1/2 -translate-x-1/2 px-6 py-2 rounded-full bg-amber-500/20 backdrop-blur-md border border-amber-500/40 text-amber-100 text-sm font-medium animate-pulse">
+            Klik for at spille
+          </div>
         </div>
       </div>
     </div>
