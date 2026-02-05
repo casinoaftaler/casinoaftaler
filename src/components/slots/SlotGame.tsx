@@ -100,6 +100,7 @@ export function SlotGame() {
   const [pendingExpandingSymbol, setPendingExpandingSymbol] = useState<typeof bonusState.expandingSymbol>(null);
   const [bonusTotalWinnings, setBonusTotalWinnings] = useState(0);
   const [bonusTotalSpinsUsed, setBonusTotalSpinsUsed] = useState(0);
+  const [bonusBetAmount, setBonusBetAmount] = useState<number>(1);
   
   // Pending bonus trigger - to show win animation before bonus overlay
   const [pendingBonusTrigger, setPendingBonusTrigger] = useState<{
@@ -397,12 +398,26 @@ export function SlotGame() {
   const handleBonusEnd = useCallback(() => {
     if (shouldEndBonus && !isSpinning && !isWinAnimating) {
       const { winnings, spins } = endBonus();
+      
+      // Record the complete bonus result as a single entry
+      if (user && winnings > 0) {
+        supabase.from("slot_game_results").insert({
+          user_id: user.id,
+          bet_amount: bonusBetAmount,
+          win_amount: 0,
+          is_bonus_triggered: false,
+          bonus_win_amount: winnings,
+        }).then(() => {
+          queryClient.invalidateQueries({ queryKey: ["slot-leaderboard"] });
+        });
+      }
+      
       setBonusTotalWinnings(winnings);
       setBonusTotalSpinsUsed(spins);
       slotSounds.playBonusWin(); // Play bonus complete sound
       setShowBonusComplete(true);
     }
-  }, [shouldEndBonus, isSpinning, isWinAnimating, endBonus]);
+  }, [shouldEndBonus, isSpinning, isWinAnimating, endBonus, user, bonusBetAmount, queryClient]);
 
   // Trigger bonus end check after spin and win animation complete
   useEffect(() => {
@@ -780,18 +795,24 @@ export function SlotGame() {
                           // Now show the final result (with expanding wins)
                           setLastResult(result);
                           
-                          // Record the spin result
-                          if (user) {
+                          // Record the spin result - only for non-bonus spins
+                          // Bonus spins are consolidated into a single entry at bonus end
+                          if (user && !isBonusSpin) {
                             supabase.from("slot_game_results").insert({
                               user_id: user.id,
                               bet_amount: bet,
                               win_amount: result.totalWin,
-                              is_bonus_triggered: result.bonusTriggered && !isBonusSpin,
-                              bonus_win_amount: isBonusSpin ? result.totalWin : 0,
+                              is_bonus_triggered: result.bonusTriggered,
+                              bonus_win_amount: 0, // Bonus wins recorded separately at end
                             }).then(() => {
                               // Invalidate leaderboard to show updated data
                               queryClient.invalidateQueries({ queryKey: ["slot-leaderboard"] });
                             });
+                            
+                            // Capture bet amount when bonus triggers for later
+                            if (result.bonusTriggered) {
+                              setBonusBetAmount(bet);
+                            }
                           }
                           
                           // Handle bonus trigger or retrigger
