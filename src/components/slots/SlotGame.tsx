@@ -124,6 +124,25 @@ export function SlotGame() {
     initializeGrid();
   }
 
+  // Unlock audio for mobile on first user interaction
+  // This must happen within user gesture context (click/touch) to enable audio playback
+  useEffect(() => {
+    const handleFirstInteraction = () => {
+      slotSounds.unlockAudio();
+      // Remove listeners after first trigger - audio stays unlocked
+      document.removeEventListener('click', handleFirstInteraction);
+      document.removeEventListener('touchstart', handleFirstInteraction);
+    };
+    
+    document.addEventListener('click', handleFirstInteraction);
+    document.addEventListener('touchstart', handleFirstInteraction);
+    
+    return () => {
+      document.removeEventListener('click', handleFirstInteraction);
+      document.removeEventListener('touchstart', handleFirstInteraction);
+    };
+  }, []);
+
   // Cleanup timeouts and sounds on unmount
   useEffect(() => {
     return () => {
