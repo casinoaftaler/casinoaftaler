@@ -40,8 +40,7 @@ export function SlotSymbol({ symbol, isWinning, isSpinning, isExpanded, isNewlyE
           boxShadow: '0 0 30px rgba(251,191,36,0.8), 0 0 60px rgba(251,191,36,0.4)'
         } : {}),
         ...(isDarkened ? {
-          filter: 'brightness(0.4) grayscale(30%)',
-          opacity: 0.5,
+          filter: 'brightness(0.35)',
           transition: 'filter 0.3s ease, opacity 0.3s ease'
         } : {})
       }}
