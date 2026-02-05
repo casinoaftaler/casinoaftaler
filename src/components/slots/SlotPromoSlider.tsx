@@ -23,21 +23,21 @@ export function SlotPromoSlider({ casino, backgroundImage }: SlotPromoSliderProp
   return (
     <div className="w-full">
       {/* Slider container */}
-      <div className="overflow-hidden rounded-xl">
+      <div className="overflow-hidden rounded-xl aspect-[4/3]">
         <div 
-          className="flex transition-transform duration-600 ease-in-out"
+          className="flex h-full transition-transform duration-600 ease-in-out"
           style={{ 
             transform: `translateX(-${activeSlide * 100}%)`,
             transitionDuration: '600ms'
           }}
         >
           {/* Slide 1: Casino Card */}
-          <div className="w-full flex-shrink-0">
+          <div className="w-full h-full flex-shrink-0">
             <SlotCasinoCard casino={casino} backgroundImage={backgroundImage} />
           </div>
           
           {/* Slide 2: Giveaway Banner */}
-          <div className="w-full flex-shrink-0">
+          <div className="w-full h-full flex-shrink-0">
             <GiveawayBanner />
           </div>
         </div>
