@@ -190,7 +190,7 @@ export default function SlotMachine() {
             <SlotPageLayout sidePanel={sidePanelContent}>
               {/* Title Image - hidden when viewport is too short */}
               {showTitle && (
-                <div className="slot-title-container flex justify-center mb-4 -mt-5">
+                <div className="slot-title-container flex justify-center" style={{ marginBottom: '-20px' }}>
                   <img 
                     src={titleImage} 
                     alt="Book of Fedesvin" 
