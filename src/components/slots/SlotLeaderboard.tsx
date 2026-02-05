@@ -16,7 +16,7 @@ function LeaderboardRow({ entry, rank }: { entry: LeaderboardEntry; rank: number
   };
 
   const formattedMultiplier = entry.biggest_multiplier > 0 
-    ? `${Math.round(entry.biggest_multiplier)}x` 
+    ? `${Number(entry.biggest_multiplier.toFixed(1))}x` 
     : "-";
 
   return (
