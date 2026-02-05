@@ -169,7 +169,7 @@ export default function SlotMachine() {
 
   // 7. Show the game
   return (
-    <div className="h-[calc(100vh-4rem)] relative overflow-hidden">
+    <div className="h-[calc(100dvh-4rem)] relative overflow-hidden flex flex-col">
       {/* Background */}
       <div 
         className="absolute inset-0 bg-cover bg-center bg-no-repeat -z-10"
@@ -177,38 +177,41 @@ export default function SlotMachine() {
       />
       <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black/70 -z-10" />
       
-      {/* Scaled game container */}
-      <div 
-        className="slot-viewport-container h-full py-2 sm:py-4"
-        style={{
-          transform: shouldScale ? `scale(${scale})` : undefined,
-        }}
-      >
-        <div className="container px-2 sm:px-4 h-full">
-          <SlotPageLayout sidePanel={sidePanelContent}>
-            {/* Title Image */}
-            <div className="flex justify-center mb-2">
-              <img 
-                src={titleImage} 
-                alt="Book of Fedesvin" 
-                className="w-full max-w-[160px] xs:max-w-[200px] sm:max-w-[280px] md:max-w-[320px] h-auto animate-[title-entrance_0.8s_ease-out_forwards,glow_3s_ease-in-out_0.8s_infinite]"
-                style={{
-                  filter: 'drop-shadow(0 0 20px rgba(251,191,36,0.5)) drop-shadow(0 0 40px rgba(251,191,36,0.3)) drop-shadow(0 0 60px rgba(251,191,36,0.2))'
-                }}
-              />
-            </div>
+      {/* Outer container for centering the scaled content */}
+      <div className="flex-1 flex items-start justify-center overflow-hidden pt-2 sm:pt-4">
+        {/* Scaled game container - includes all content for proper scaling */}
+        <div 
+          className="slot-viewport-container"
+          style={{
+            transform: shouldScale ? `scale(${scale})` : undefined,
+          }}
+        >
+          <div className="px-2 sm:px-4">
+            <SlotPageLayout sidePanel={sidePanelContent}>
+              {/* Title Image */}
+              <div className="flex justify-center mb-2">
+                <img 
+                  src={titleImage} 
+                  alt="Book of Fedesvin" 
+                  className="w-full max-w-[160px] xs:max-w-[200px] sm:max-w-[280px] md:max-w-[320px] h-auto animate-[title-entrance_0.8s_ease-out_forwards,glow_3s_ease-in-out_0.8s_infinite]"
+                  style={{
+                    filter: 'drop-shadow(0 0 20px rgba(251,191,36,0.5)) drop-shadow(0 0 40px rgba(251,191,36,0.3)) drop-shadow(0 0 60px rgba(251,191,36,0.2))'
+                  }}
+                />
+              </div>
 
-            {/* Slot Game */}
-            <SlotGame />
-            
-            {/* Mobile/Tablet: Side content below game */}
-            <div className="w-full max-w-sm xl:hidden mt-4 space-y-4">
-              {topCasino && (
-                <SlotPromoSlider casino={topCasino} backgroundImage={slotCasinoCardBg} />
-              )}
-              <SlotLeaderboard />
-            </div>
-          </SlotPageLayout>
+              {/* Slot Game */}
+              <SlotGame />
+              
+              {/* Mobile/Tablet: Side content below game - INSIDE scaled container */}
+              <div className="w-full max-w-sm xl:hidden mt-4 space-y-4 pb-4">
+                {topCasino && (
+                  <SlotPromoSlider casino={topCasino} backgroundImage={slotCasinoCardBg} />
+                )}
+                <SlotLeaderboard />
+              </div>
+            </SlotPageLayout>
+          </div>
         </div>
       </div>
     </div>

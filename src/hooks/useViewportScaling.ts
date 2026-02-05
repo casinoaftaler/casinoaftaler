@@ -1,43 +1,53 @@
 import { useState, useEffect, useMemo } from "react";
 
-// Height budget at xl breakpoint (baseline for scaling)
-// Title: ~100px, Frame padding: ~180px, Reels: ~482px, Controls: ~130px, Bonus bar: ~40px
-const BASELINE_HEIGHT = 950;
+// Breakpoint thresholds (matching tailwind)
+const XL_BREAKPOINT = 1280;
 
-// Header height
+// Height budgets for different layouts
+// Desktop (xl+): Title ~100px, Frame ~180px, Reels ~580px, Controls ~90px = ~950px
+// Mobile (<xl): Title ~80px, Reels ~320px, Controls ~80px, Side content ~250px = ~730px
+const BASELINE_DESKTOP = 950;
+const BASELINE_MOBILE = 730;
+
+// Header height (fixed)
 const HEADER_HEIGHT = 64;
 
-// Safety margin
-const SAFETY_MARGIN = 16;
+// Safety padding (top + bottom)
+const SAFETY_PADDING = 16;
 
 // Scale constraints
-const MIN_SCALE = 0.5;
+const MIN_SCALE = 0.45;
 const MAX_SCALE = 1.0;
 
 export interface ViewportScaling {
   scale: number;
   availableHeight: number;
   shouldScale: boolean;
+  isDesktop: boolean;
 }
 
 /**
  * Hook that calculates optimal scale factor to fit slot machine within viewport height.
+ * Adapts baseline height calculation based on viewport width (desktop vs mobile layout).
  * Uses debounced resize listener for performance.
  */
 export function useViewportScaling(): ViewportScaling {
-  const [viewportHeight, setViewportHeight] = useState(() => {
-    if (typeof window === "undefined") return 1080;
-    return window.innerHeight;
+  const [viewport, setViewport] = useState(() => {
+    if (typeof window === "undefined") return { width: 1920, height: 1080 };
+    return { width: window.innerWidth, height: window.innerHeight };
   });
 
   useEffect(() => {
     let timeoutId: ReturnType<typeof setTimeout> | null = null;
+    
+    // Initial measurement (immediate)
+    setViewport({ width: window.innerWidth, height: window.innerHeight });
 
     const handleResize = () => {
       // Debounce resize handler (100ms)
       if (timeoutId) clearTimeout(timeoutId);
       timeoutId = setTimeout(() => {
-        setViewportHeight(window.innerHeight);
+        setViewport({ width: window.innerWidth, height: window.innerHeight });
       }, 100);
     };
 
@@ -49,10 +59,17 @@ export function useViewportScaling(): ViewportScaling {
   }, []);
 
   const scaling = useMemo<ViewportScaling>(() => {
-    const availableHeight = viewportHeight - HEADER_HEIGHT - SAFETY_MARGIN;
+    const { width, height } = viewport;
+    const isDesktop = width >= XL_BREAKPOINT;
+    
+    // Calculate available height (viewport minus header and padding)
+    const availableHeight = height - HEADER_HEIGHT - SAFETY_PADDING;
+    
+    // Use appropriate baseline based on layout
+    const baseline = isDesktop ? BASELINE_DESKTOP : BASELINE_MOBILE;
     
     // Calculate raw scale factor
-    const rawScale = availableHeight / BASELINE_HEIGHT;
+    const rawScale = availableHeight / baseline;
     
     // Clamp between min and max
     const scale = Math.min(MAX_SCALE, Math.max(MIN_SCALE, rawScale));
@@ -64,8 +81,9 @@ export function useViewportScaling(): ViewportScaling {
       scale,
       availableHeight,
       shouldScale,
+      isDesktop,
     };
-  }, [viewportHeight]);
+  }, [viewport]);
 
   return scaling;
 }

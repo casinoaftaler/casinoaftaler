@@ -437,6 +437,11 @@ All colors MUST be HSL.
 .slot-viewport-container {
   will-change: transform;
   transform-origin: top center;
+  /* Smooth transitions during window resize */
+  transition: transform 0.15s ease-out;
+  /* Prevent content from affecting layout when scaled */
+  backface-visibility: hidden;
+  -webkit-font-smoothing: antialiased;
 }
 
 @keyframes title-entrance {
