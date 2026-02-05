@@ -41,6 +41,7 @@ export interface CustomSoundFiles {
   scatterSound1?: string | null;
   scatterSound2?: string | null;
   scatterSound3?: string | null;
+  scatterCelebrationSound?: string | null;
 }
 
 // localStorage key for persisting audio settings
@@ -144,7 +145,8 @@ class SlotSoundEffects {
       'spinSound', 'stopSound', 'smallWinSound', 'mediumWinSound', 
       'bigWinSound', 'bonusTriggerSound', 'bonusWinSound',
       'bonusSymbolScrollSound', 'bonusSymbolSelectedSound',
-      'scatterSound1', 'scatterSound2', 'scatterSound3'
+      'scatterSound1', 'scatterSound2', 'scatterSound3',
+      'scatterCelebrationSound'
     ];
 
     soundKeys.forEach(key => {
@@ -1481,6 +1483,99 @@ class SlotSoundEffects {
         osc.stop(ctx.currentTime + 2);
       });
     }, 800);
+  }
+
+  // Scatter celebration - plays during the 1.5s pulsing animation before bonus overlay
+  playScatterCelebration() {
+    if (!this.canPlayBonusSound()) return;
+    
+    // Try custom scatter celebration sound first
+    if (this.playCustomSound('scatterCelebrationSound')) return;
+    
+    // Synthesized Egyptian celebration build-up (~1.5 seconds)
+    const ctx = this.getContext();
+    const now = ctx.currentTime;
+    
+    // Rising mystical shimmer
+    for (let i = 0; i < 15; i++) {
+      const shimmer = ctx.createOscillator();
+      const shimmerGain = ctx.createGain();
+      
+      shimmer.connect(shimmerGain);
+      shimmerGain.connect(ctx.destination);
+      
+      // Rising frequencies for build-up effect
+      shimmer.frequency.value = 800 + i * 150 + Math.random() * 200;
+      shimmer.type = 'sine';
+      
+      const shimmerTime = now + i * 0.1;
+      shimmerGain.gain.setValueAtTime(0.08 * this.volume, shimmerTime);
+      shimmerGain.gain.exponentialRampToValueAtTime(0.001, shimmerTime + 0.2);
+      
+      shimmer.start(shimmerTime);
+      shimmer.stop(shimmerTime + 0.2);
+    }
+    
+    // Deep mystical drone building tension
+    const drone = ctx.createOscillator();
+    const droneGain = ctx.createGain();
+    const droneFilter = ctx.createBiquadFilter();
+    
+    drone.connect(droneFilter);
+    droneFilter.connect(droneGain);
+    droneGain.connect(ctx.destination);
+    
+    drone.frequency.setValueAtTime(80, now);
+    drone.frequency.exponentialRampToValueAtTime(150, now + 1.3);
+    drone.type = 'sawtooth';
+    
+    droneFilter.type = 'lowpass';
+    droneFilter.frequency.setValueAtTime(200, now);
+    droneFilter.frequency.exponentialRampToValueAtTime(800, now + 1.3);
+    
+    droneGain.gain.setValueAtTime(0.15 * this.volume, now);
+    droneGain.gain.linearRampToValueAtTime(0.25 * this.volume, now + 1);
+    droneGain.gain.exponentialRampToValueAtTime(0.001, now + 1.5);
+    
+    drone.start(now);
+    drone.stop(now + 1.5);
+    
+    // Magical chime sequence (Egyptian scale)
+    const chimeNotes = [293.66, 349.23, 392.00, 440.00, 523.25]; // D minor ascending
+    chimeNotes.forEach((freq, i) => {
+      const chime = ctx.createOscillator();
+      const chimeGain = ctx.createGain();
+      
+      chime.connect(chimeGain);
+      chimeGain.connect(ctx.destination);
+      
+      chime.frequency.value = freq;
+      chime.type = 'triangle';
+      
+      const chimeTime = now + 0.2 + i * 0.2;
+      chimeGain.gain.setValueAtTime(0.12 * this.volume, chimeTime);
+      chimeGain.gain.exponentialRampToValueAtTime(0.001, chimeTime + 0.4);
+      
+      chime.start(chimeTime);
+      chime.stop(chimeTime + 0.4);
+    });
+    
+    // Final mystical sweep before bonus
+    const sweep = ctx.createOscillator();
+    const sweepGain = ctx.createGain();
+    
+    sweep.connect(sweepGain);
+    sweepGain.connect(ctx.destination);
+    
+    sweep.frequency.setValueAtTime(200, now + 1.1);
+    sweep.frequency.exponentialRampToValueAtTime(1200, now + 1.4);
+    sweep.type = 'sine';
+    
+    sweepGain.gain.setValueAtTime(0.18 * this.volume, now + 1.1);
+    sweepGain.gain.exponentialRampToValueAtTime(0.001, now + 1.5);
+    
+    sweep.start(now + 1.1);
+    sweep.stop(now + 1.5);
   }
 
   // Bonus symbol scroll - mystical scrolling sound during symbol picker

@@ -841,6 +841,7 @@ export function SlotGame() {
                               
                               // Always show scatter celebration first, then bonus overlay
                               setShowScatterCelebration(true);
+                              slotSounds.playScatterCelebration();
                               
                               // Delay bonus trigger to allow celebration animation
                               setTimeout(() => {
