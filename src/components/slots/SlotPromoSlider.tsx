@@ -24,7 +24,7 @@ export function SlotPromoSlider({ casino, backgroundImage }: SlotPromoSliderProp
   return (
     <div className="w-full">
       {/* Slider container */}
-      <div className="overflow-hidden rounded-xl aspect-[4/3]">
+      <div className="overflow-hidden rounded-xl aspect-[3/4]">
         <div 
           className="flex h-full transition-transform duration-600 ease-in-out"
           style={{ 
