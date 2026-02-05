@@ -1,207 +1,149 @@
 
-# Plan: Fix Win Display Order, Darkening Consistency, and Tease-to-Expansion Transition
+
+# Plan: Redesign Leaderboard with Multiplier Display
 
 ## Summary
 
-Three related issues need to be addressed in the slot bonus game:
-
-1. **Sequential Win Display** - Show connecting payline wins BEFORE expanding symbol wins
-2. **Consistent Darkening Effect** - Use same brightness filter (0.35) for both tease and expansion darkening  
-3. **Continuous Darkening During Tease-to-Expansion** - Keep non-expanded reels darkened throughout the transition
-
----
-
-## Problem Analysis
-
-### Issue 1: Win Display Order
-Currently in `SlotGame.tsx` lines 730-745, when a bonus spin has both regular payline wins AND an expanding symbol win, all wins are calculated together and shown simultaneously. The user wants to see the connecting payline win first (if any), then the expansion animation, then the expanding win.
-
-### Issue 2: Darkening Inconsistency
-- **Tease darkening** (base game): Uses `brightness(0.35)` filter on individual non-scatter symbols via `isDarkened` prop in `SlotSymbol.tsx` line 42
-- **Expansion darkening** (bonus): Uses `brightness(0.5)` filter AND `opacity-50` at the reel level in `SlotReel.tsx` lines 286-292
-
-These should match for visual consistency.
-
-### Issue 3: Tease-to-Expansion Gap
-The flow currently is:
-1. Tease mode activates when 2+ scatters land → `isDarkenedForTease = scatterReelsLanded.size >= 2 && isSpinning`
-2. All 5 reels stop → `isSpinning = false` → tease darkening ends
-3. Short delay (500ms) 
-4. `showExpansionDarken = true` → expansion darkening starts
-
-The problem: Between steps 2 and 4, there's a gap where darkening is removed, causing a visual flash.
+Redesign the leaderboard component with a new layout:
+- Name/avatar at the TOP of each entry
+- Stats (total winnings, spins, highest multiplier) at the BOTTOM
+- Replace "Max: 1500" with "1000x" multiplier format
 
 ---
 
-## Solution
+## Current Layout
 
-### File 1: `src/components/slots/SlotGame.tsx`
-
-**Part A: Add state for phased win display**
-
-Add a new state to track whether we're showing connecting wins vs expansion wins:
-```typescript
-const [showConnectingWinsFirst, setShowConnectingWinsFirst] = useState(false);
-const [connectingWins, setConnectingWins] = useState<LineWin[]>([]);
+```
+[Rank] [Avatar] [Name + Spins]     [Total Winnings]
+                                    Max: 1500
 ```
 
-**Part B: Modify win processing flow (around lines 730-745)**
+## New Layout
 
-When processing bonus spin results with both connecting wins AND expanding wins:
+```
+┌─────────────────────────────────────┐
+│ [Rank] [Avatar] [Name]              │
+│                                     │
+│ 16,544   │   2,751 spins  │  1000x  │
+│ (coins)     (total spins)  (best)   │
+└─────────────────────────────────────┘
+```
 
-1. First, calculate connecting wins (non-expanding symbol wins on the original grid BEFORE expansion)
-2. If there are connecting wins, show them first with a delay
-3. Then trigger expansion animation
-4. Then show expanding symbol wins
+---
 
-This requires:
-- Passing original grid to calculate connecting wins separately
-- Adding a timeout between connecting win display and expansion
+## Changes Required
 
-**Part C: Fix darkening transition gap**
+### 1. Database: Add Biggest Multiplier to Leaderboard View
 
-Change how `isDarkenedForTease` works to persist until expansion darkening takes over:
+Create a new migration to update the `slot_leaderboard` view to include `biggest_multiplier`:
+
+```sql
+CREATE OR REPLACE VIEW slot_leaderboard AS
+SELECT 
+  user_id,
+  SUM(win_amount) as total_winnings,
+  MAX(win_amount) as biggest_win,
+  MAX(win_amount / NULLIF(bet_amount, 0)) as biggest_multiplier,
+  COUNT(*) as total_spins,
+  -- daily/weekly winnings calculations...
+FROM slot_game_results
+GROUP BY user_id;
+```
+
+### 2. Hook: Update LeaderboardEntry Interface
+
+**File: `src/hooks/useSlotLeaderboard.ts`**
+
+Add `biggest_multiplier` to the interface and fetch it:
 
 ```typescript
-// Current (line 876):
-isDarkenedForTease={scatterReelsLanded.size >= 2 && isSpinning}
-
-// Fixed - keep tease darkening until expansion takes over:
-isDarkenedForTease={
-  (scatterReelsLanded.size >= 2 && isSpinning) || 
-  (bonusState.isActive && pendingExpandedReelsRef.current.length > 0 && !showExpansionDarken && expandedReels.length === 0)
+export interface LeaderboardEntry {
+  user_id: string;
+  total_winnings: number;
+  biggest_win: number;
+  biggest_multiplier: number;  // NEW
+  total_spins: number;
+  daily_winnings: number;
+  weekly_winnings: number;
+  display_name?: string;
+  avatar_url?: string;
 }
 ```
 
-This ensures:
-- Tease darkening stays active after reels stop
-- Until expansion darkening (`showExpansionDarken`) is enabled
+### 3. Component: Redesign LeaderboardRow
 
-### File 2: `src/components/slots/SlotReel.tsx`
+**File: `src/components/slots/SlotLeaderboard.tsx`**
 
-**Unify darkening effect**
-
-Change expansion darkening to match tease darkening style:
-
-Before (lines 279-294):
-```typescript
-const isReelDarkened = isDarkenedForTease || isDarkenedForExpansion;
-// ...
-isDarkenedForExpansion && "opacity-50"
-// ...
-filter: isDarkenedForExpansion ? 'brightness(0.5)' : undefined,
-```
-
-After:
-```typescript
-// Apply darkening via brightness filter at symbol level, not reel level
-// Remove opacity-50 and brightness(0.5) from reel level for expansion
-// Instead, pass isDarkenedForExpansion down to symbols like we do for tease
-```
-
-Then update the symbol rendering to include expansion darkening:
-```typescript
-const shouldDarkenSymbol = isDarkenedForTease && !symbol.is_scatter;
-// Change to:
-const shouldDarkenSymbol = (isDarkenedForTease || isDarkenedForExpansion) && !symbol.is_scatter;
-```
-
-Wait - for expansion, we want to darken ALL symbols on non-expanded reels (including scatters that aren't the expanding symbol). So the logic should be:
+New layout for each leaderboard entry:
 
 ```typescript
-// During tease, darken non-scatter symbols individually
-// During expansion, darken all symbols on non-expanded reels
-const shouldDarkenSymbol = (isDarkenedForTease && !symbol.is_scatter) || isDarkenedForExpansion;
-```
+function LeaderboardRow({ entry, rank }: { entry: LeaderboardEntry; rank: number }) {
+  const getRankIcon = () => {
+    if (rank === 1) return <Trophy className="h-5 w-5 text-amber-500" />;
+    if (rank === 2) return <Medal className="h-5 w-5 text-gray-400" />;
+    if (rank === 3) return <Award className="h-5 w-5 text-amber-700" />;
+    return <span className="w-5 text-center text-muted-foreground font-bold">{rank}</span>;
+  };
 
-And remove the reel-level brightness/opacity effects.
+  // Format multiplier as "120x"
+  const formattedMultiplier = entry.biggest_multiplier > 0 
+    ? `${Math.round(entry.biggest_multiplier)}x` 
+    : "-";
 
-### File 3: `src/lib/bonusGameLogic.ts`
-
-**Add function to calculate connecting wins separately**
-
-Add a new exported function `calculateConnectingWins` that:
-- Takes the ORIGINAL grid (before expansion)
-- Returns only the wins that DON'T involve the expanding symbol
-- These are wins from other symbols that happen to connect on paylines
-
-```typescript
-export function calculateConnectingWins(
-  originalGrid: string[][],
-  symbols: SlotSymbol[],
-  betAmount: number,
-  expandingSymbol: SlotSymbol
-): LineWin[] {
-  // Calculate wins on original grid, excluding expanding symbol wins
-  // This gives us "connecting wins" that exist independently of expansion
+  return (
+    <div className={cn(
+      "p-3 rounded-lg",
+      rank <= 3 ? "bg-gradient-to-r from-amber-500/10 to-transparent" : "hover:bg-muted/50"
+    )}>
+      {/* Top row: Rank, Avatar, Name */}
+      <div className="flex items-center gap-3 mb-2">
+        <div className="w-6 flex justify-center">{getRankIcon()}</div>
+        <Avatar className="h-8 w-8">
+          <AvatarImage src={entry.avatar_url} alt={entry.display_name} />
+          <AvatarFallback><User className="h-4 w-4" /></AvatarFallback>
+        </Avatar>
+        <p className="font-medium text-amber-100 flex-1 truncate">
+          {entry.display_name}
+        </p>
+      </div>
+      
+      {/* Bottom row: Stats in 3 columns */}
+      <div className="flex items-center justify-between text-sm pl-9">
+        <div className="text-center">
+          <p className="font-bold text-amber-500">{entry.total_winnings.toLocaleString()}</p>
+          <p className="text-xs text-muted-foreground">point</p>
+        </div>
+        <div className="text-center">
+          <p className="font-medium text-amber-100">{entry.total_spins.toLocaleString()}</p>
+          <p className="text-xs text-muted-foreground">spins</p>
+        </div>
+        <div className="text-center">
+          <p className="font-bold text-green-400">{formattedMultiplier}</p>
+          <p className="text-xs text-muted-foreground">bedste</p>
+        </div>
+      </div>
+    </div>
+  );
 }
 ```
 
 ---
 
-## Implementation Details
+## Visual Design Notes
 
-### SlotGame.tsx - Modified flow for bonus spins with expanding wins
-
-Current flow:
-```
-1. Reels stop
-2. Set expandedReels, showExpansionDarken
-3. Wait 500ms
-4. Set expanded grid
-5. Wait 600ms for animation
-6. Show result with all wins at once
-```
-
-New flow:
-```
-1. Reels stop
-2. Calculate connecting wins on ORIGINAL grid (wins not involving expanding symbol)
-3. If connecting wins exist:
-   a. Show connecting wins (set lastResult with just those wins)
-   b. Show win lines for those wins
-   c. Wait 1000ms for user to see them
-4. Set expandedReels, showExpansionDarken 
-5. Wait 500ms
-6. Set expanded grid
-7. Wait 600ms for animation  
-8. Calculate and show expanding wins (replace previous result)
-```
-
-### Darkening during transition
-
-The key is to keep reels darkened continuously from tease mode through expansion:
-
-1. **Tease darkening starts**: When 2+ scatters have landed during spin
-2. **Tease darkening persists**: After all reels stop, IF we're in bonus AND there are pending expanded reels
-3. **Expansion darkening takes over**: When `showExpansionDarken = true`
-4. **Both end**: When expansion animation completes
+- **Name row**: Prominent at top with rank icon and avatar
+- **Stats row**: Three evenly-spaced columns below
+  - Left: Total winnings (amber/gold color)
+  - Center: Total spins (neutral color)
+  - Right: Best multiplier as "120x" (green to stand out)
+- Keep existing Egyptian theme colors (amber, gold gradients)
+- Same card styling and dialog for full list
 
 ---
 
 ## Files to Modify
 
-1. **`src/components/slots/SlotGame.tsx`**
-   - Add state for phased win display
-   - Modify onReelStop handler to separate connecting vs expanding wins
-   - Add delays to show connecting wins first
-   - Fix `isDarkenedForTease` to persist until expansion takes over
+1. **Database migration** - Add `biggest_multiplier` column to `slot_leaderboard` view
+2. **`src/hooks/useSlotLeaderboard.ts`** - Add `biggest_multiplier` to interface and query
+3. **`src/components/slots/SlotLeaderboard.tsx`** - Redesign row layout with name on top, stats on bottom
 
-2. **`src/components/slots/SlotReel.tsx`**
-   - Remove reel-level opacity-50 and brightness(0.5) for expansion darkening
-   - Apply darkening at symbol level consistently with tease darkening
-   - Use same brightness(0.35) filter for both tease and expansion
-
-3. **`src/lib/bonusGameLogic.ts`**
-   - Add `calculateConnectingWins()` function to separate non-expanding wins
-
----
-
-## Expected Results
-
-| Scenario | Before | After |
-|----------|--------|-------|
-| Connecting + Expanding win | All wins shown together after expansion | Connecting wins shown first, then expansion, then expanding wins |
-| Tease darkening | brightness(0.35) on non-scatter symbols | Same |
-| Expansion darkening | brightness(0.5) + opacity(0.5) on whole reel | brightness(0.35) on all symbols (matches tease) |
-| Tease → Expansion transition | Brief flash of full brightness | Continuous darkening, no flash |
