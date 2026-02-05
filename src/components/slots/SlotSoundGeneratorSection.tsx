@@ -20,6 +20,7 @@ const SOUND_TYPE_OPTIONS = [
   { value: "bigWinSound", label: "Stor Gevinst", key: SLOT_SOUND_SETTING_KEYS.bigWinSound },
   { value: "bonusTriggerSound", label: "Bonus Trigger", key: SLOT_SOUND_SETTING_KEYS.bonusTriggerSound },
   { value: "bonusSymbolScrollSound", label: "Symbol Scroll", key: SLOT_SOUND_SETTING_KEYS.bonusSymbolScrollSound },
+  { value: "bonusSymbolSelectedSound", label: "Symbol Valgt", key: SLOT_SOUND_SETTING_KEYS.bonusSymbolSelectedSound },
   { value: "bonusWinSound", label: "Bonus Afslutning", key: SLOT_SOUND_SETTING_KEYS.bonusWinSound },
 ];
 
@@ -29,7 +30,7 @@ const PROMPT_SUGGESTIONS = [
   { label: "Guld Cascade", prompt: "Cascading gold coins with triumphant fanfare and celebration bells" },
   { label: "Pyramide Power", prompt: "Deep ancient pyramid power surge with mystical energy and stone grinding" },
   { label: "Scarab Buzz", prompt: "Golden scarab beetle buzzing with magical ancient Egyptian energy" },
-  { label: "Pharaoh Fanfare", prompt: "Royal Egyptian pharaoh fanfare with trumpets and celebration" },
+  { label: "Symbol Reveal", prompt: "Dramatic ancient Egyptian mystical reveal sound with golden chimes, magical energy surge, triumphant fanfare, and celestial sparkles - epic symbol selection moment" },
 ];
 
 export function SlotSoundGeneratorSection() {
