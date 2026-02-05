@@ -1,81 +1,32 @@
 
-# Plan: Slot Casino Card Slideshow with Giveaway Banner
+# Plan: Fix Giveaway Banner Image and Display
 
-## Overview
-Transform the `SlotCasinoCard` component into an auto-sliding carousel that alternates between the current casino card content and a new giveaway banner image every 10 seconds.
+## Changes Required
 
-## Implementation Steps
+### 1. Process Giveaway Image
+Use AI to remove the black corners/background from the uploaded image, creating a proper transparent PNG that preserves the Egyptian-themed card design with its rounded corners.
 
-### 1. Process and Add Giveaway Image
-- Use AI image generation to remove the black background from the uploaded giveaway banner image
-- Save the processed image to `src/assets/slots/giveaway-banner.png`
+### 2. Update GiveawayBanner Component
+Simplify the component to display the giveaway image directly as the full card:
+- Remove the `backgroundImage` prop (no longer needed)
+- Remove the casino card background styling
+- Remove the dark overlay
+- Display the giveaway image to fill the entire container
+- Keep the rounded corners and amber border styling
 
-### 2. Create New SlotPromoSlider Component
-Create a wrapper component that handles the slideshow logic:
-- **File**: `src/components/slots/SlotPromoSlider.tsx`
-- Contains two slides: Casino Card and Giveaway Banner
-- Uses `useState` with `useEffect` interval (10 seconds)
-- Implements horizontal slide animation using CSS transforms and transitions
-
-### 3. Update SlotCasinoCard
-Modify the existing component to work within the slider context:
-- Keep all existing casino card content intact
-- Ensure it fills its container properly for the slide animation
-
-### 4. Create GiveawayBanner Component
-- **File**: `src/components/slots/GiveawayBanner.tsx`
-- Simple component that displays the giveaway image
-- Matches the dimensions and border styling of the casino card
-- Clickable (could link to Twitch channel or shop page)
-
-### 5. Update SlotMachine.tsx
-Replace direct `SlotCasinoCard` usage with the new `SlotPromoSlider` component:
-- Desktop position (beside leaderboard)
-- Mobile position (below slot game)
-
----
-
-## Technical Details
-
-### Slide Animation CSS
-```css
-/* Container clips overflow, slides move via translateX */
-.slider-container {
-  overflow: hidden;
-}
-
-.slider-track {
-  display: flex;
-  transition: transform 0.6s ease-in-out;
-}
-
-/* Active slide 0: translateX(0) */
-/* Active slide 1: translateX(-100%) */
+**Before:**
+```
+Card with casino background → overlay → small centered giveaway image
 ```
 
-### Interval Logic
-```typescript
-const [activeSlide, setActiveSlide] = useState(0);
-
-useEffect(() => {
-  const interval = setInterval(() => {
-    setActiveSlide(prev => (prev + 1) % 2);
-  }, 10000);
-  return () => clearInterval(interval);
-}, []);
+**After:**
+```
+Giveaway image fills entire card (with transparent corners that blend)
 ```
 
-### Slide Indicator Dots
-- Two small dots below the slider
-- Amber color scheme to match Egyptian theme
-- Active dot is fully opaque, inactive is 30% opacity
-- Clickable for manual navigation
-
-### Files to Create/Modify
-
-| File | Action |
+### Files to Modify
+| File | Change |
 |------|--------|
-| `src/assets/slots/giveaway-banner.png` | Create (AI processed image) |
-| `src/components/slots/SlotPromoSlider.tsx` | Create new component |
-| `src/components/slots/GiveawayBanner.tsx` | Create new component |
-| `src/pages/SlotMachine.tsx` | Update to use SlotPromoSlider |
+| `src/assets/slots/giveaway-banner.png` | Re-process with transparent corners |
+| `src/components/slots/GiveawayBanner.tsx` | Remove background, make image fill card |
+| `src/components/slots/SlotPromoSlider.tsx` | Remove backgroundImage prop from GiveawayBanner |
