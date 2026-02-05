@@ -12,6 +12,9 @@ export interface SlotSoundFiles {
   bonusWinSound: string | null;
   bonusSymbolScrollSound: string | null;
   bonusSymbolSelectedSound: string | null;
+  scatterSound1: string | null;
+  scatterSound2: string | null;
+  scatterSound3: string | null;
 }
 
 const SOUND_KEYS = [
@@ -25,6 +28,9 @@ const SOUND_KEYS = [
   "slot_sound_file_bonus_win",
   "slot_sound_file_bonus_symbol_scroll",
   "slot_sound_file_bonus_symbol_selected",
+  "slot_sound_file_scatter_1",
+  "slot_sound_file_scatter_2",
+  "slot_sound_file_scatter_3",
 ] as const;
 
 export function useSlotSoundFiles() {
@@ -54,6 +60,9 @@ export function useSlotSoundFiles() {
         bonusWinSound: settingsMap.slot_sound_file_bonus_win || null,
         bonusSymbolScrollSound: settingsMap.slot_sound_file_bonus_symbol_scroll || null,
         bonusSymbolSelectedSound: settingsMap.slot_sound_file_bonus_symbol_selected || null,
+        scatterSound1: settingsMap.slot_sound_file_scatter_1 || null,
+        scatterSound2: settingsMap.slot_sound_file_scatter_2 || null,
+        scatterSound3: settingsMap.slot_sound_file_scatter_3 || null,
       };
     },
   });
@@ -70,4 +79,7 @@ export const SLOT_SOUND_SETTING_KEYS = {
   bonusWinSound: "slot_sound_file_bonus_win",
   bonusSymbolScrollSound: "slot_sound_file_bonus_symbol_scroll",
   bonusSymbolSelectedSound: "slot_sound_file_bonus_symbol_selected",
+  scatterSound1: "slot_sound_file_scatter_1",
+  scatterSound2: "slot_sound_file_scatter_2",
+  scatterSound3: "slot_sound_file_scatter_3",
 } as const;

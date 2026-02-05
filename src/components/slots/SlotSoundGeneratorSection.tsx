@@ -22,14 +22,17 @@ const SOUND_TYPE_OPTIONS = [
   { value: "bonusSymbolScrollSound", label: "Symbol Scroll", key: SLOT_SOUND_SETTING_KEYS.bonusSymbolScrollSound },
   { value: "bonusSymbolSelectedSound", label: "Symbol Valgt", key: SLOT_SOUND_SETTING_KEYS.bonusSymbolSelectedSound },
   { value: "bonusWinSound", label: "Bonus Afslutning", key: SLOT_SOUND_SETTING_KEYS.bonusWinSound },
+  { value: "scatterSound1", label: "Scatter 1 (Mjav)", key: SLOT_SOUND_SETTING_KEYS.scatterSound1 },
+  { value: "scatterSound2", label: "Scatter 2 (Mjav)", key: SLOT_SOUND_SETTING_KEYS.scatterSound2 },
+  { value: "scatterSound3", label: "Scatter 3 (Mjav)", key: SLOT_SOUND_SETTING_KEYS.scatterSound3 },
 ];
 
 const PROMPT_SUGGESTIONS = [
+  { label: "Mjav 1 (Blød)", prompt: "Soft curious cat meow, gentle Egyptian temple cat purring with subtle mystical echo, short and sweet" },
+  { label: "Mjav 2 (Spændt)", prompt: "Excited cat meow, louder Egyptian temple cat sound with magical sparkles and anticipation, medium intensity" },
+  { label: "Mjav 3 (Triumf)", prompt: "Triumphant powerful cat yowl, majestic Egyptian sacred cat roar with golden magical energy and celebration, epic climax sound" },
   { label: "Egyptisk Spin", prompt: "Ancient Egyptian slot machine spinning with golden coins and mystical chimes" },
-  { label: "Mystisk Kat", prompt: "Mysterious cat meow with Egyptian temple echo and magical sparkles" },
   { label: "Guld Cascade", prompt: "Cascading gold coins with triumphant fanfare and celebration bells" },
-  { label: "Pyramide Power", prompt: "Deep ancient pyramid power surge with mystical energy and stone grinding" },
-  { label: "Scarab Buzz", prompt: "Golden scarab beetle buzzing with magical ancient Egyptian energy" },
   { label: "Symbol Reveal", prompt: "Dramatic ancient Egyptian mystical reveal sound with golden chimes, magical energy surge, triumphant fanfare, and celestial sparkles - epic symbol selection moment" },
 ];
 

@@ -3,7 +3,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
 import { SlotSoundUpload } from "./SlotSoundUpload";
 import { useSlotSoundFiles, SLOT_SOUND_SETTING_KEYS, type SlotSoundFiles } from "@/hooks/useSlotSoundFiles";
-import { Loader2, FileAudio, ChevronDown, Music, Volume2, Coins, Trophy, Crown, Sparkles } from "lucide-react";
+import { Loader2, FileAudio, ChevronDown, Music, Volume2, Coins, Trophy, Crown, Sparkles, Cat } from "lucide-react";
 
 export function SlotSoundFilesSection() {
   const { data: soundFiles, isLoading } = useSlotSoundFiles();
@@ -18,6 +18,9 @@ export function SlotSoundFilesSection() {
     bonusWinSound: null,
     bonusSymbolScrollSound: null,
     bonusSymbolSelectedSound: null,
+    scatterSound1: null,
+    scatterSound2: null,
+    scatterSound3: null,
   });
 
   useEffect(() => {
@@ -165,6 +168,37 @@ export function SlotSoundFilesSection() {
                   settingKey={SLOT_SOUND_SETTING_KEYS.bonusWinSound}
                   currentUrl={localFiles.bonusWinSound}
                   onUrlChange={handleUrlChange("bonusWinSound")}
+                />
+              </div>
+            </div>
+
+            {/* Scatter Sounds */}
+            <div className="space-y-4 pt-4 border-t">
+              <h4 className="font-medium flex items-center gap-2">
+                <Cat className="h-4 w-4 text-pink-400" />
+                Scatter Lyde (Mjav)
+              </h4>
+              <div className="pl-6 space-y-4">
+                <SlotSoundUpload
+                  label="Scatter 1 - Blød Mjav"
+                  description="Afspilles når 1. scatter lander. Blød, nysgerrig katte-lyd."
+                  settingKey={SLOT_SOUND_SETTING_KEYS.scatterSound1}
+                  currentUrl={localFiles.scatterSound1}
+                  onUrlChange={handleUrlChange("scatterSound1")}
+                />
+                <SlotSoundUpload
+                  label="Scatter 2 - Spændt Mjav"
+                  description="Afspilles når 2. scatter lander. Mere intens, forventningsfuld."
+                  settingKey={SLOT_SOUND_SETTING_KEYS.scatterSound2}
+                  currentUrl={localFiles.scatterSound2}
+                  onUrlChange={handleUrlChange("scatterSound2")}
+                />
+                <SlotSoundUpload
+                  label="Scatter 3 - Triumf Mjav"
+                  description="Afspilles når 3. scatter lander. Kraftigt, sejrende katte-hyl!"
+                  settingKey={SLOT_SOUND_SETTING_KEYS.scatterSound3}
+                  currentUrl={localFiles.scatterSound3}
+                  onUrlChange={handleUrlChange("scatterSound3")}
                 />
               </div>
             </div>
