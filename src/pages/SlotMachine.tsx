@@ -94,13 +94,6 @@ export default function SlotMachine() {
         backgroundImage={backgroundImage}
         onVerify={verifyPassword}
         error={error}
-        promo={
-          topCasino ? (
-            <div className="w-full">
-              <SlotCasinoCard casino={topCasino} backgroundImage={slotCasinoCardBg} />
-            </div>
-          ) : null
-        }
       />
     );
   }
