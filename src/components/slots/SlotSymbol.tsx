@@ -39,10 +39,8 @@ export function SlotSymbol({ symbol, isWinning, isSpinning, isExpanded, isNewlyE
         ...(isScatterCelebrating ? {
           boxShadow: '0 0 30px rgba(251,191,36,0.8), 0 0 60px rgba(251,191,36,0.4)'
         } : {}),
-        ...(isDarkened ? {
-          filter: 'brightness(0.35)',
-          transition: 'filter 0.3s ease, opacity 0.3s ease'
-        } : {})
+        filter: isDarkened ? 'brightness(0.35)' : 'brightness(1)',
+        transition: 'filter 0.15s ease-out'
       }}
     >
       {symbol.image_url ? (
