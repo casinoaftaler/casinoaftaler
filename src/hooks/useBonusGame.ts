@@ -3,6 +3,23 @@ import type { SlotSymbol } from "@/lib/slotGameLogic";
 import { useAuth } from "@/hooks/useAuth";
 import { supabase } from "@/integrations/supabase/client";
 
+// Default weight if not set in database (matches slotGameLogic)
+const DEFAULT_SYMBOL_WEIGHT = 10;
+
+// Weighted random selection for expanding symbol
+function getWeightedRandomSymbol(symbols: SlotSymbol[]): SlotSymbol {
+  const getWeight = (s: SlotSymbol) => s.weight || DEFAULT_SYMBOL_WEIGHT;
+  const totalWeight = symbols.reduce((sum, s) => sum + getWeight(s), 0);
+  let random = Math.random() * totalWeight;
+  
+  for (const symbol of symbols) {
+    random -= getWeight(symbol);
+    if (random <= 0) return symbol;
+  }
+  
+  return symbols[symbols.length - 1];
+}
+
 export interface BonusGameState {
   isActive: boolean;
   freeSpinsRemaining: number;
@@ -172,10 +189,10 @@ export function useBonusGame(symbols?: SlotSymbol[]) {
   }, [bonusState.expandingSymbolId, symbols]);
 
   const triggerBonus = useCallback((availableSymbols: SlotSymbol[]) => {
-    // Select a random symbol to be the expanding symbol (excluding scatter)
+    // Select a weighted random symbol to be the expanding symbol (excluding scatter)
+    // Higher weight symbols are more likely to be selected
     const eligibleSymbols = availableSymbols.filter(s => !s.is_scatter);
-    const randomIndex = Math.floor(Math.random() * eligibleSymbols.length);
-    const expandingSymbol = eligibleSymbols[randomIndex];
+    const expandingSymbol = getWeightedRandomSymbol(eligibleSymbols);
 
     const newState: BonusGameState = {
       isActive: true,
