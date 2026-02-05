@@ -190,14 +190,11 @@ export default function SlotMachine() {
             <SlotPageLayout sidePanel={sidePanelContent}>
               {/* Title Image - hidden when viewport is too short */}
               {showTitle && (
-                <div className="slot-title-container flex justify-center mb-4">
+                <div className="slot-title-container flex justify-center mb-4 -mt-5">
                   <img 
                     src={titleImage} 
                     alt="Book of Fedesvin" 
-                    className="w-full max-w-[160px] xs:max-w-[200px] sm:max-w-[280px] md:max-w-[320px] h-auto animate-[title-entrance_0.8s_ease-out_forwards,glow_3s_ease-in-out_0.8s_infinite]"
-                    style={{
-                      filter: 'drop-shadow(0 0 20px rgba(251,191,36,0.5)) drop-shadow(0 0 40px rgba(251,191,36,0.3)) drop-shadow(0 0 60px rgba(251,191,36,0.2))'
-                    }}
+                    className="w-full max-w-[160px] xs:max-w-[200px] sm:max-w-[280px] md:max-w-[320px] h-auto animate-[title-entrance_0.8s_ease-out_forwards]"
                   />
                 </div>
               )}
