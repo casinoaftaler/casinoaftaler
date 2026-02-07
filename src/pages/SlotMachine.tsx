@@ -181,12 +181,12 @@ export default function SlotMachine() {
       <div className="flex-1 flex items-start justify-center overflow-hidden pt-2 sm:pt-4">
         {/* Scaled game container - includes all content for proper scaling */}
         <div 
-          className="slot-viewport-container"
+          className="slot-viewport-container w-full"
           style={{
             transform: shouldScale ? `scale(${scale})` : undefined,
           }}
         >
-          <div className="px-2 sm:px-4">
+          <div className="px-1 xs:px-2 sm:px-4 mx-auto w-fit">
             <SlotPageLayout sidePanel={sidePanelContent}>
               {/* Title Image - hidden when viewport is too short */}
               {showTitle && (

@@ -24,9 +24,9 @@ import { Loader2, Gamepad2 } from "lucide-react";
 import { toast } from "sonner";
 import { cn } from "@/lib/utils";
 
-// Symbol dimensions for responsive design - INCREASED FOR DESKTOP
-const SYMBOL_SIZE = { xs: 64, mobile: 76, sm: 96, md: 120, lg: 160, xl: 180 };
-const GAP = { xs: 4, mobile: 6, sm: 8, md: 12, lg: 16, xl: 20 };
+// Symbol dimensions - MUST match SlotSymbol Tailwind classes and useResponsiveSlotDimensions
+const SYMBOL_SIZE = { xs: 61, mobile: 71, sm: 92, md: 109, lg: 133, xl: 150 };
+const GAP = { xs: 4, mobile: 6, sm: 8, md: 12, lg: 16, xl: 16 };
 
 type AutoSpinCount = 10 | 25 | 50 | 100 | "infinite";
 
