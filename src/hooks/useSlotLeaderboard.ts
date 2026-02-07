@@ -129,7 +129,7 @@ export function useSlotLeaderboard(period: "daily" | "weekly" | "alltime" = "all
       }
 
       return {
-        entries: allEntries.slice(0, 10),
+        entries: allEntries,
         currentUser,
       };
     },
