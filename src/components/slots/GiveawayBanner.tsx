@@ -6,7 +6,7 @@ export function GiveawayBanner() {
       <img
         src={giveawayBannerImage}
         alt="Giveaway: Vind et gaming headset"
-        className="absolute inset-0 w-full h-full object-fill"
+        className="absolute inset-0 w-full h-full object-fill scale-110"
         loading="lazy"
       />
     </div>
