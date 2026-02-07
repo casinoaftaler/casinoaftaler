@@ -246,80 +246,33 @@ export const SlotReel = React.memo(function SlotReel({
     return isNewlyExpanded && !!expandingSymbolId && symbolId === expandingSymbolId;
   };
 
-  // When idle or stopped, show just the final symbols
-  if (spinState === "idle" || spinState === "stopped") {
-    return (
-      <div
-        className="flex flex-col gap-[4px] xs:gap-[6px] sm:gap-[8px] md:gap-[12px] lg:gap-[16px]"
-        style={{ 
-          width: `${symbolHeight}px`
-        }}
-      >
-        {displayedSymbolIds.map((symbolId, rowIndex) => {
-          const symbol = symbolsById.get(symbolId);
-          if (!symbol) return null;
-
-          const symbolIsExpanded = shouldShowExpansion(symbolId);
-          const symbolIsNewlyExpanded = shouldShowNewlyExpanded(symbolId);
-          
-          // During tease, darken non-scatter symbols individually
-          // During expansion, darken ALL symbols on non-expanded reels
-          // Both use same brightness(0.35) filter in SlotSymbol
-          const shouldDarkenSymbol = (isDarkenedForTease && !symbol.is_scatter) || isDarkenedForExpansion;
-
-          return (
-            <div
-              key={`final-${rowIndex}-${symbolId}`}
-              className={cn(
-                spinState === "stopped" && "animate-[slot-land_0.4s_cubic-bezier(0.34,1.56,0.64,1)]"
-              )}
-              style={{
-                animationFillMode: spinState === "stopped" ? "both" : undefined
-              }}
-            >
-              <SlotSymbol
-                symbol={symbol}
-                isWinning={winningPositions.includes(rowIndex)}
-                isSpinning={false}
-                isExpanded={symbolIsExpanded}
-                isNewlyExpanded={symbolIsNewlyExpanded}
-                hasLanded={spinState === "stopped"}
-                isTeasing={globalTeaseActive && hasLandedScatter && symbol.is_scatter}
-                isScatterCelebrating={isScatterCelebrating && symbol.is_scatter}
-                isDarkened={shouldDarkenSymbol}
-              />
-            </div>
-          );
-        })}
-      </div>
-    );
-  }
-
-  // During spinning, show the animated reel strip
+  // Compute viewport dimensions consistently for ALL states
   const totalSymbolHeight = symbolHeight + gap;
   const viewportHeight = 3 * symbolHeight + 2 * gap;
 
-  // Calculate blur amount based on speed
+  // Calculate blur amount based on speed (only during spinning)
   const getBlurAmount = () => {
     if (spinState !== "spinning") return 0;
     const maxOffset = (reelStrip.length - 3) * totalSymbolHeight;
+    if (maxOffset <= 0) return 0;
     const progress = 1 - (offset / maxOffset);
-    // Blur is strongest at the start and fades as reel slows
     return Math.max(0, 8 * (1 - progress * progress));
   };
 
   const blurAmount = getBlurAmount();
+  const isAnimating = spinState === "spinning" || spinState === "stopping";
 
   return (
     <div 
       ref={containerRef}
       className={cn(
-        "relative overflow-hidden rounded-lg bg-amber-950/50 transition-shadow duration-300",
+        "relative overflow-hidden rounded-lg transition-shadow duration-300",
+        isAnimating && "bg-amber-950/50",
         // Fake looping glow - only show when scatter has landed on previous reel
-        !hasStartedSlowdownRef.current && scatterLandedOnPreviousReel &&
+        !hasStartedSlowdownRef.current && scatterLandedOnPreviousReel && isAnimating &&
         "shadow-[0_0_15px_rgba(251,191,36,0.3),0_0_25px_rgba(251,191,36,0.15)] animate-pulse",
         // Active tease: Intense glow
-        hasStartedSlowdownRef.current && teaseMode && 
+        hasStartedSlowdownRef.current && teaseMode && isAnimating &&
         "shadow-[0_0_30px_rgba(251,191,36,0.9),0_0_60px_rgba(251,191,36,0.6),0_0_90px_rgba(251,191,36,0.3)] animate-[glow-intense_0.5s_ease-in-out_infinite]"
       )}
       style={{ 
@@ -327,25 +280,66 @@ export const SlotReel = React.memo(function SlotReel({
         width: `${symbolHeight}px`
       }}
     >
-      <div 
-        className="absolute left-0 right-0 flex flex-col"
-        style={{ 
-          transform: `translateY(-${offset}px)`,
-          gap: `${gap}px`,
-          filter: blurAmount > 0 ? `blur(${blurAmount}px)` : 'none',
-          transition: spinState === "stopping" ? 'filter 0.2s ease-out' : 'none',
-        }}
-      >
-        {reelStrip.map((symbol, index) => (
-          <SlotSymbol
-            key={`reel-${index}-${symbol.id}`}
-            symbol={symbol}
-            isSpinning={true}
-            isTeasing={false}
-          />
-        ))}
-      </div>
-      
+      {isAnimating ? (
+        /* Spinning/stopping: animated reel strip */
+        <div 
+          className="absolute left-0 right-0 flex flex-col"
+          style={{ 
+            transform: `translateY(-${offset}px)`,
+            gap: `${gap}px`,
+            filter: blurAmount > 0 ? `blur(${blurAmount}px)` : 'none',
+            transition: spinState === "stopping" ? 'filter 0.2s ease-out' : 'none',
+          }}
+        >
+          {reelStrip.map((symbol, index) => (
+            <SlotSymbol
+              key={`reel-${index}-${symbol.id}`}
+              symbol={symbol}
+              isSpinning={true}
+              isTeasing={false}
+            />
+          ))}
+        </div>
+      ) : (
+        /* Idle/stopped: final symbols in same container */
+        <div 
+          className="absolute left-0 right-0 flex flex-col"
+          style={{ gap: `${gap}px` }}
+        >
+          {displayedSymbolIds.map((symbolId, rowIndex) => {
+            const symbol = symbolsById.get(symbolId);
+            if (!symbol) return null;
+
+            const symbolIsExpanded = shouldShowExpansion(symbolId);
+            const symbolIsNewlyExpanded = shouldShowNewlyExpanded(symbolId);
+            const shouldDarkenSymbol = (isDarkenedForTease && !symbol.is_scatter) || isDarkenedForExpansion;
+
+            return (
+              <div
+                key={`final-${rowIndex}-${symbolId}`}
+                className={cn(
+                  spinState === "stopped" && "animate-[slot-land_0.4s_cubic-bezier(0.34,1.56,0.64,1)]"
+                )}
+                style={{
+                  animationFillMode: spinState === "stopped" ? "both" : undefined
+                }}
+              >
+                <SlotSymbol
+                  symbol={symbol}
+                  isWinning={winningPositions.includes(rowIndex)}
+                  isSpinning={false}
+                  isExpanded={symbolIsExpanded}
+                  isNewlyExpanded={symbolIsNewlyExpanded}
+                  hasLanded={spinState === "stopped"}
+                  isTeasing={globalTeaseActive && hasLandedScatter && symbol.is_scatter}
+                  isScatterCelebrating={isScatterCelebrating && symbol.is_scatter}
+                  isDarkened={shouldDarkenSymbol}
+                />
+              </div>
+            );
+          })}
+        </div>
+      )}
     </div>
   );
 });
