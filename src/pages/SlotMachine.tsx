@@ -169,7 +169,7 @@ export default function SlotMachine() {
 
   // 7. Show the game
   return (
-    <div className="h-[calc(100dvh-4rem)] relative overflow-hidden flex flex-col">
+    <div className="min-h-[calc(100dvh-4rem)] relative overflow-auto flex flex-col">
       {/* Background */}
       <div 
         className="absolute inset-0 bg-cover bg-center bg-no-repeat -z-10"
@@ -178,7 +178,7 @@ export default function SlotMachine() {
       <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black/70 -z-10" />
       
       {/* Outer container for centering the scaled content */}
-      <div className="flex-1 flex items-start justify-center overflow-hidden pt-2 sm:pt-4">
+      <div className="flex-1 flex items-start justify-center pt-2 sm:pt-4">
         {/* Scaled game container - includes all content for proper scaling */}
         <div 
           className="slot-viewport-container w-full"
