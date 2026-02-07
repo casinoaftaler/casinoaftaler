@@ -129,17 +129,7 @@ export function SlotLeaderboard() {
                 ))}
               </div>
 
-              {/* Pinned current user row if not in top 3 */}
-              {currentUser && !isCurrentUserInTop(currentUser.entry.user_id, entries.slice(0, 3)) && (
-                <>
-                  <Separator className="my-2 bg-amber-500/20" />
-                  <LeaderboardRow
-                    entry={currentUser.entry}
-                    rank={currentUser.rank}
-                    isCurrentUser
-                  />
-                </>
-              )}
+
 
               {entries.length > 3 && (
                 <Dialog open={showFullList} onOpenChange={setShowFullList}>
