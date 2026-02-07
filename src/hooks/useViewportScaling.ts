@@ -20,12 +20,32 @@ const HEADER_HEIGHT = 64;
 // Safety padding (top + bottom)
 const SAFETY_PADDING = 16;
 
-// Scale constraints - reduced minimum for extreme cases
+// Scale constraints
 const MIN_SCALE = 0.35;
 const MAX_SCALE = 1.0;
 
 // Show title only if we have at least 12% extra headroom after fitting core
 const TITLE_HEADROOM_FACTOR = 1.12;
+
+// Estimated content widths at each breakpoint (reels + gaps + frame + padding)
+// These are generous estimates including frame margins to prevent horizontal overflow
+const CONTENT_WIDTH: Record<string, number> = {
+  xs:     440,   // 5×61 + separators + frame(31×2) + padding
+  mobile: 510,   // 5×71 + separators + frame(40×2) + padding
+  sm:     680,   // 5×92 + separators + frame(54×2) + padding
+  md:     800,   // 5×109 + separators + frame(54×2) + padding
+  lg:     950,   // 5×133 + separators + frame(72×2) + padding
+  xl:    1070,   // 5×150 + separators + frame(90×2) + padding
+};
+
+function getContentWidth(viewportWidth: number): number {
+  if (viewportWidth >= XL_BREAKPOINT) return CONTENT_WIDTH.xl;
+  if (viewportWidth >= 1024) return CONTENT_WIDTH.lg;
+  if (viewportWidth >= 768) return CONTENT_WIDTH.md;
+  if (viewportWidth >= 640) return CONTENT_WIDTH.sm;
+  if (viewportWidth >= 400) return CONTENT_WIDTH.mobile;
+  return CONTENT_WIDTH.xs;
+}
 
 export interface ViewportScaling {
   scale: number;
@@ -36,8 +56,9 @@ export interface ViewportScaling {
 }
 
 /**
- * Hook that calculates optimal scale factor to fit slot machine within viewport height.
- * Adapts baseline height calculation based on viewport width (desktop vs mobile layout).
+ * Hook that calculates optimal scale factor to fit slot machine within viewport.
+ * Considers BOTH height and width constraints — uses the more restrictive one.
+ * Adapts baseline calculations based on viewport width (desktop vs mobile layout).
  * Uses debounced resize listener for performance.
  */
 export function useViewportScaling(): ViewportScaling {
@@ -71,24 +92,26 @@ export function useViewportScaling(): ViewportScaling {
     const { width, height } = viewport;
     const isDesktop = width >= XL_BREAKPOINT;
     
-    // Calculate available height (viewport minus header and padding)
+    // === HEIGHT-based scaling ===
     const availableHeight = height - HEADER_HEIGHT - SAFETY_PADDING;
     
-    // Get baselines for this layout mode
     const coreBaseline = isDesktop ? BASELINE_DESKTOP_CORE : BASELINE_MOBILE_CORE;
     const fullBaseline = isDesktop ? BASELINE_DESKTOP_WITH_TITLE : BASELINE_MOBILE_WITH_TITLE;
     
-    // Calculate how well the core (no title) fits
     const coreScale = availableHeight / coreBaseline;
-    
-    // Show title only if we have enough headroom (12% extra space above core requirements)
     const showTitle = coreScale >= TITLE_HEADROOM_FACTOR;
     
-    // Use appropriate baseline for final scale calculation
-    const baseline = showTitle ? fullBaseline : coreBaseline;
+    const heightBaseline = showTitle ? fullBaseline : coreBaseline;
+    const heightScale = availableHeight / heightBaseline;
     
-    // Calculate raw scale factor
-    const rawScale = availableHeight / baseline;
+    // === WIDTH-based scaling ===
+    const contentWidth = getContentWidth(width);
+    // Use full viewport width minus a small safety margin (8px each side)
+    const availableWidth = width - 16;
+    const widthScale = availableWidth / contentWidth;
+    
+    // === Combined: use the MORE restrictive constraint ===
+    const rawScale = Math.min(heightScale, widthScale);
     
     // Clamp between min and max
     const scale = Math.min(MAX_SCALE, Math.max(MIN_SCALE, rawScale));
