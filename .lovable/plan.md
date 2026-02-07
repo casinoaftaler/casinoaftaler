@@ -1,104 +1,37 @@
 
-# Simplify to Single Checkbox for Terms Acceptance
 
-## Overview
+## Show Your Own Position on the Leaderboard
 
-Instead of three separate checkboxes, consolidate into a single checkbox that confirms the user:
-- Is 18 years or older
-- Accepts the terms and conditions
-- Accepts the privacy policy
+### What changes
+The leaderboard will always show your own position at the bottom of the card, even if you're not in the top 3 (or top 10 in the full list). This way you always know where you stand.
 
-This reduces clutter and makes the login flow simpler while maintaining all legal requirements.
+### How it will look
+- On the **main card** (top 3): A separator line followed by your own row showing your rank (e.g. "#7") and stats, styled with a distinct highlight so it's easy to spot.
+- In the **full list dialog**: If you're not in the visible top 10, your row appears pinned at the bottom with a separator, showing your actual rank.
+- If you **are** already in the top 3/10, no duplicate row is shown — your row in the list is simply highlighted.
 
-## Technical Approach
+---
 
-**File:** `src/pages/Auth.tsx`
+### Technical Details
 
-Changes to the non-logged-in login section (lines 165-192):
-- Add one new state variable: `acceptsTermsAndAge` (boolean)
-- Replace the existing disclaimer paragraph with a checkbox group containing:
-  1. A checkbox input
-  2. Label text that reads: "Jeg bekræfter at jeg er 18+ år og accepterer [vilkår og betingelser] og [privatlivspolitik]"
-  3. Both links remain clickable and open in new tabs
-- Update the TwitchAuthButton to disable it when the checkbox is unchecked
-- The button remains enabled only when the single checkbox is checked
+**1. Update `useSlotLeaderboard` hook** (`src/hooks/useSlotLeaderboard.ts`)
 
-## Visual Layout
+- Get the current user's ID via `supabase.auth.getUser()`.
+- After sorting all entries, find the current user's rank in the full sorted list **before** slicing to top 10.
+- Return both the top 10 entries and a separate `currentUser` object containing the user's `LeaderboardEntry` + their `rank` (1-indexed position in the full list).
+- If the user has no entries yet, return `currentUser` as `null`.
 
-```text
-┌─────────────────────────────────────────────────────────┐
-│  Card Content:                                          │
-│                                                         │
-│  [Checkbox] Jeg bekræfter at jeg er 18+ år og         │
-│             accepterer vilkår og betingelser og       │
-│             privatlivspolitik                          │
-│                                                         │
-│  [Log ind med Twitch Button] (disabled until checked)  │
-└─────────────────────────────────────────────────────────┘
-```
+**2. Update `SlotLeaderboard` component** (`src/components/slots/SlotLeaderboard.tsx`)
 
-## Implementation Details
+- Accept the new `currentUser` data from the hook.
+- On the **main card**: After the top 3 rows, if the current user exists and is ranked 4th or lower, render a divider and a `LeaderboardRow` for the current user with a special highlight style (e.g. a subtle border or background glow).
+- In the **full dialog**: Same logic — if the user is ranked 11th or lower, pin their row at the bottom with a divider.
+- If the user is already visible in the list, highlight their row with a distinctive style (e.g. a ring or different background color) so they can easily find themselves.
+- Pass a `isCurrentUser` prop to `LeaderboardRow` for conditional styling.
 
-1. **Single State Variable:**
-   - `acceptsTermsAndAge: boolean` - tracks if user has checked the single checkbox
+**3. Update `LeaderboardRow` component**
 
-2. **Checkbox Component:**
-   - Import the existing `Checkbox` component from `@/components/ui/checkbox`
-   - Use it with a label that includes inline links to `/terms` and `/privacy`
-   - Label text: "Jeg bekræfter at jeg er 18+ år og accepterer vilkår og betingelser og privatlivspolitik"
-   - Links have `target="_blank" rel="noopener noreferrer"` to open in new tabs
-
-3. **Button Disable Logic:**
-   - Pass `disabled={!acceptsTermsAndAge}` to the TwitchAuthButton
-   - Or wrap the button in a div and conditionally disable based on state
-
-4. **Styling:**
-   - Use flexbox to align checkbox and label horizontally
-   - Add gap spacing between checkbox and label text
-   - Ensure text wraps properly on mobile
-   - Use `text-sm` for the label to match existing disclaimer text size
-
-## Code Structure
-
-```typescript
-const [acceptsTermsAndAge, setAcceptsTermsAndAge] = useState(false);
-
-// In CardContent:
-<div className="flex items-start gap-3">
-  <Checkbox
-    id="terms-acceptance"
-    checked={acceptsTermsAndAge}
-    onCheckedChange={(checked) => setAcceptsTermsAndAge(checked === true)}
-  />
-  <label htmlFor="terms-acceptance" className="text-sm leading-relaxed cursor-pointer">
-    Jeg bekræfter at jeg er 18+ år og accepterer{" "}
-    <a href="/terms" target="_blank" rel="noopener noreferrer" className="underline hover:text-primary">
-      vilkår og betingelser
-    </a>{" "}
-    og{" "}
-    <a href="/privacy" target="_blank" rel="noopener noreferrer" className="underline hover:text-primary">
-      privatlivspolitik
-    </a>
-  </label>
-</div>
-
-// Button
-<TwitchAuthButton className="w-full" disabled={!acceptsTermsAndAge} />
-```
-
-## Files to Modify
-
-| File | Changes |
-|------|---------|
-| `src/pages/Auth.tsx` | Replace three-checkbox approach with single checkbox accepting age + terms + privacy |
-
-## User Experience
-
-1. User navigates to `/auth`
-2. Sees login card with unchecked checkbox and disabled login button
-3. Checkbox text reads: "Jeg bekræfter at jeg er 18+ år og accepterer vilkår og betingelser og privatlivspolitik"
-4. User can click links in the checkbox label to read terms/privacy (opens in new tab)
-5. User checks the checkbox
-6. Login button becomes enabled
-7. User clicks "Log ind med Twitch"
+- Add an optional `isCurrentUser` prop.
+- When true, apply a distinct visual style: a border ring (`ring-1 ring-amber-500/50`) and a subtle background highlight to make the row stand out as "you".
+- Optionally show a small "Du" (You) badge next to the name.
 
