@@ -46,8 +46,7 @@ export function SlotMachineFrame({
       className="relative"
       style={{
         // Add margin to prevent frame from being clipped
-        // Minimal top margin to reduce space between title and slot
-        marginTop: hasFrame && imageLoaded ? `${Math.max(effectiveFrameSize * 0.05, 4)}px` : undefined,
+        marginTop: hasFrame && imageLoaded ? `${effectiveFrameSize}px` : undefined,
         marginLeft: hasFrame && imageLoaded ? `${effectiveFrameSize}px` : undefined,
         marginRight: hasFrame && imageLoaded ? `${effectiveFrameSize}px` : undefined,
         marginBottom: hasFrame && imageLoaded ? `${effectiveFrameSize}px` : undefined,
