@@ -3,14 +3,14 @@ import { slotSounds } from "@/lib/slotSoundEffects";
 import { SlotGame } from "@/components/slots/SlotGame";
 import { SlotLeaderboard } from "@/components/slots/SlotLeaderboard";
 import { SlotPromoSlider } from "@/components/slots/SlotPromoSlider";
-import { SlotPageLockGate } from "@/components/slots/SlotPageLockGate";
+
 import { SlotLoadingScreen } from "@/components/slots/SlotLoadingScreen";
 import { SlotIntroScreen } from "@/components/slots/SlotIntroScreen";
 import { SlotSessionGate } from "@/components/slots/SlotSessionGate";
 import { SlotPageLayout } from "@/components/slots/SlotPageLayout";
 import { useAuth } from "@/hooks/useAuth";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
-import { useSlotPageAccess } from "@/hooks/useSlotPageAccess";
+
 import { useSlotSession } from "@/hooks/useSlotSession";
 import { useCasinos } from "@/hooks/useCasinos";
 import { useViewportScaling } from "@/hooks/useViewportScaling";
@@ -27,7 +27,7 @@ export default function SlotMachine() {
   const { user, loading } = useAuth();
   const { data: siteSettings } = useSiteSettings();
   const { data: casinos } = useCasinos();
-  const { isLocked, hasAccess, isLoading: accessLoading, error, verifyPassword } = useSlotPageAccess();
+  
   const { 
     isSessionActive, 
     isBlockedByOtherDevice, 
@@ -76,8 +76,8 @@ export default function SlotMachine() {
     </>
   );
 
-  // 1. Show loading while checking auth and access
-  if (loading || accessLoading) {
+  // 1. Show loading while checking auth
+  if (loading) {
     return (
       <div className="min-h-[calc(100vh-4rem)] relative">
         <PageBackground />
@@ -88,18 +88,7 @@ export default function SlotMachine() {
     );
   }
 
-  // 2. Show password gate if locked
-  if (isLocked && !hasAccess) {
-    return (
-      <SlotPageLockGate 
-        backgroundImage={backgroundImage}
-        onVerify={verifyPassword}
-        error={error}
-      />
-    );
-  }
-
-  // 3. Show login prompt if not logged in
+  // 2. Show login prompt if not logged in
   if (!user) {
     return (
       <div className="min-h-[calc(100vh-4rem)] relative">
