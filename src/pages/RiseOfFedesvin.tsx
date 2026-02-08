@@ -136,7 +136,7 @@ export default function RiseOfFedesvin() {
   }
 
   if (loadingPhase === 'intro') {
-    return <SlotIntroScreen onStart={handleIntroComplete} />;
+    return <SlotIntroScreen onStart={handleIntroComplete} gameId={GAME_ID} />;
   }
 
   const sidePanelContent = (
