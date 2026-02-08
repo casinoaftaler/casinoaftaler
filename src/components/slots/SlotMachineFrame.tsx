@@ -21,6 +21,11 @@ const GAME_FRAME_VERTICAL_OFFSET: Record<string, number> = {
   "rise-of-fedesvin": -30,
 };
 
+// Per-game content (reels) vertical offset in px (positive = move down)
+const GAME_CONTENT_VERTICAL_OFFSET: Record<string, number> = {
+  "rise-of-fedesvin": 40,
+};
+
 // Calculate responsive frame size based on screen width
 function getEffectiveFrameSize(windowWidth: number, baseSize: number): number {
   if (windowWidth < 400) return Math.round(baseSize * 0.35);  // Extra small
@@ -60,6 +65,8 @@ export function SlotMachineFrame({
   const hasFrame = !!frameImageUrl && !imageError;
   const verticalOffset = GAME_FRAME_VERTICAL_OFFSET[gameId] ?? 0;
   const effectiveVerticalOffset = getEffectiveFrameSize(windowWidth, Math.abs(verticalOffset)) * Math.sign(verticalOffset);
+  const contentVerticalOffset = GAME_CONTENT_VERTICAL_OFFSET[gameId] ?? 0;
+  const effectiveContentOffset = getEffectiveFrameSize(windowWidth, contentVerticalOffset);
 
   return (
     <div 
@@ -107,6 +114,11 @@ export function SlotMachineFrame({
               : "p-4 sm:p-6 md:p-8"
           )
         )}
+        style={{
+          paddingTop: hasFrame && imageLoaded && effectiveContentOffset > 0
+            ? `${effectiveContentOffset + (gameId === "rise-of-fedesvin" ? 8 : 16)}px`
+            : undefined,
+        }}
       >
         {/* Fallback CSS frame corners when no image or loading */}
         {(!hasFrame || !imageLoaded) && (
