@@ -107,7 +107,7 @@ export default function AuthCallback() {
         // The action_link will verify the token and create a session, then redirect to site root
         if (data.action_link) {
           console.log("[AuthCallback] Redirecting to action link to establish session");
-          window.location.href = data.action_link;
+          (window.top ?? window).location.href = data.action_link;
           return;
         }
 
