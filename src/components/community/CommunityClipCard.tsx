@@ -78,32 +78,21 @@ export function CommunityClipCard({ clip, onOpenDetail }: CommunityClipCardProps
               />
             ) : (
               <div className="flex h-full w-full items-center justify-center bg-gradient-to-br from-primary/20 to-primary/5">
-                {isEmbeddable ? (
-                  <Play className="h-12 w-12 text-muted-foreground" />
-                ) : (
-                  <ExternalLink className="h-12 w-12 text-muted-foreground" />
-                )}
+                <Play className="h-12 w-12 text-muted-foreground" />
               </div>
             )}
-            {isEmbeddable ? (
-              <button
-                onClick={handlePlay}
-                className="absolute inset-0 flex items-center justify-center bg-black/30 opacity-0 transition-opacity group-hover:opacity-100"
-              >
-                <div className="rounded-full bg-primary p-4">
+            <button
+              onClick={isEmbeddable ? handlePlay : handleOpenExternal}
+              className="absolute inset-0 flex items-center justify-center bg-black/30 opacity-0 transition-opacity group-hover:opacity-100 cursor-pointer"
+            >
+              <div className="rounded-full bg-primary p-4">
+                {isEmbeddable ? (
                   <Play className="h-8 w-8 text-primary-foreground" fill="currentColor" />
-                </div>
-              </button>
-            ) : (
-              <button
-                onClick={handleOpenExternal}
-                className="absolute inset-0 flex items-center justify-center bg-black/30 opacity-0 transition-opacity group-hover:opacity-100"
-              >
-                <div className="rounded-full bg-primary p-4">
+                ) : (
                   <ExternalLink className="h-8 w-8 text-primary-foreground" />
-                </div>
-              </button>
-            )}
+                )}
+              </div>
+            </button>
             <div className="absolute left-2 top-2 flex gap-1">
               <Badge
                 variant="secondary"
@@ -113,7 +102,7 @@ export function CommunityClipCard({ clip, onOpenDetail }: CommunityClipCardProps
               </Badge>
               {!isEmbeddable && (
                 <Badge variant="outline" className="bg-background/80">
-                  Eksternt link
+                  Åbner i ny fane
                 </Badge>
               )}
             </div>

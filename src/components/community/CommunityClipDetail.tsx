@@ -114,7 +114,7 @@ export function CommunityClipDetail({
                   {clip.platform}
                 </Badge>
                 {!isEmbeddable && (
-                  <Badge variant="outline">Eksternt link</Badge>
+                  <Badge variant="outline">Åbner i ny fane</Badge>
                 )}
                 <span className="text-xs text-muted-foreground">{timeAgo}</span>
               </div>
