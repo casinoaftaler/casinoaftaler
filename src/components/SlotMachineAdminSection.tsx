@@ -30,7 +30,7 @@ import {
 } from "@/components/ui/dialog";
 import { ChartContainer, ChartTooltip, ChartTooltipContent } from "@/components/ui/chart";
 import { AreaChart, Area, XAxis, YAxis, CartesianGrid, ResponsiveContainer, BarChart, Bar, LineChart, Line } from "recharts";
-import { GripVertical, Pencil, Loader2, Trophy, Sparkles, TrendingUp, BarChart3, Lock, Wand2, Users, Calendar, Percent, Calculator, ArrowUp, ArrowDown, Timer } from "lucide-react";
+import { GripVertical, Pencil, Loader2, Trophy, Sparkles, TrendingUp, BarChart3, Lock, Wand2, Users, Calendar, Percent, Calculator, ArrowUp, ArrowDown, Timer, Gamepad2 } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
 import {
@@ -437,8 +437,8 @@ function EditSymbolDialog({ symbol, open, onClose, allSymbols }: EditSymbolDialo
   );
 }
 
-function SymbolsTab() {
-  const { data: symbols, isLoading } = useSlotSymbols();
+function SymbolsTab({ gameId = "book-of-fedesvin" }: { gameId?: string }) {
+  const { data: symbols, isLoading } = useSlotSymbols(gameId);
   const { updatePositions } = useSlotSymbolsAdmin();
   const [orderedSymbols, setOrderedSymbols] = useState<SlotSymbol[]>([]);
   const [editingSymbol, setEditingSymbol] = useState<SlotSymbol | null>(null);
@@ -936,9 +936,9 @@ const chartConfig = {
   },
 };
 
-function StatisticsTab() {
+function StatisticsTab({ gameId }: { gameId?: string }) {
   const [period, setPeriod] = useState<StatPeriod>("today");
-  const { data: stats, isLoading } = useSlotAdminStatistics(period);
+  const { data: stats, isLoading } = useSlotAdminStatistics(period, gameId);
 
   const formatDate = (dateStr: string) => {
     const date = new Date(dateStr);
@@ -1260,12 +1260,34 @@ function StatisticsTab() {
   );
 }
 
+const GAME_OPTIONS = [
+  { id: "book-of-fedesvin", label: "Book of Fedesvin" },
+  { id: "rise-of-fedesvin", label: "Rise of Fedesvin" },
+] as const;
+
 export function SlotMachineAdminSection() {
+  const [selectedGame, setSelectedGame] = useState("book-of-fedesvin");
+
   return (
     <div className="space-y-6">
       <div className="mb-6">
         <h2 className="text-2xl font-bold">Spillemaskine Administration</h2>
         <p className="text-muted-foreground">Administrer symboler, indstillinger og se statistik.</p>
+      </div>
+
+      {/* Game Selector */}
+      <div className="flex gap-2">
+        {GAME_OPTIONS.map((game) => (
+          <Button
+            key={game.id}
+            variant={selectedGame === game.id ? "default" : "outline"}
+            onClick={() => setSelectedGame(game.id)}
+            size="sm"
+          >
+            <Gamepad2 className="h-4 w-4 mr-1.5" />
+            {game.label}
+          </Button>
+        ))}
       </div>
 
       <Tabs defaultValue="symbols">
@@ -1278,7 +1300,7 @@ export function SlotMachineAdminSection() {
         </TabsList>
 
         <TabsContent value="symbols">
-          <SymbolsTab />
+          <SymbolsTab gameId={selectedGame} />
         </TabsContent>
 
         <TabsContent value="settings">
@@ -1296,7 +1318,7 @@ export function SlotMachineAdminSection() {
         <TabsContent value="statistics">
           <div className="space-y-6">
             <SlotStatsResetSection />
-            <StatisticsTab />
+            <StatisticsTab gameId={selectedGame} />
           </div>
         </TabsContent>
       </Tabs>
