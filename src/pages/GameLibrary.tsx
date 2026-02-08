@@ -131,7 +131,6 @@ export default function GameLibrary() {
                 href={game.href}
                 status={game.status}
                 badge={game.badge}
-                titleLogo={siteSettings?.[game.titleSettingsKey] || game.titleFallback}
               />
             </div>
           ))}
