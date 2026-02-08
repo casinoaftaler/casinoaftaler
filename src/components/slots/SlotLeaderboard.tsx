@@ -1,14 +1,14 @@
 import { useState } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
-import { Trophy, Medal, Award, User, Users, Search } from "lucide-react";
+import { Trophy, Medal, Award, Users, Search } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { useSlotLeaderboard, type LeaderboardEntry } from "@/hooks/useSlotLeaderboard";
+import { UserProfileLink } from "@/components/UserProfileLink";
 import { cn } from "@/lib/utils";
 
 function LeaderboardRow({
@@ -43,12 +43,12 @@ function LeaderboardRow({
       {/* Top row: Rank, Avatar, Name */}
       <div className="flex items-center gap-3 mb-2">
         <div className="w-6 flex justify-center">{getRankIcon()}</div>
-        <Avatar className="h-8 w-8">
-          <AvatarImage src={entry.avatar_url} alt={entry.display_name} />
-          <AvatarFallback>
-            <User className="h-4 w-4" />
-          </AvatarFallback>
-        </Avatar>
+        <UserProfileLink
+          userId={entry.user_id}
+          displayName={entry.display_name}
+          avatarUrl={entry.avatar_url}
+          avatarClassName="h-8 w-8"
+        />
         <p className="font-medium text-amber-100 flex-1 truncate">
           {entry.display_name}
         </p>
