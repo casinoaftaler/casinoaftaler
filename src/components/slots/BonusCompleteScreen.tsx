@@ -135,7 +135,6 @@ export function BonusCompleteScreen({
             ? "animate-in zoom-in-95 duration-500"
             : "opacity-0 scale-95"
         )}
-        onClick={(e) => e.stopPropagation()}
       >
         {/* Decorative corners */}
         <div className={cn("absolute -top-4 -left-4 w-12 h-12 border-t-4 border-l-4 rounded-tl-xl", theme.frameBorderColor)} />
