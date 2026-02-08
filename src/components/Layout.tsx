@@ -11,8 +11,8 @@ export function Layout() {
   usePageTracking();
   const location = useLocation();
   
-  // Hide footer on slot machine page
-  const hideFooter = location.pathname === "/community/slots";
+  // Hide footer on game pages (but show on library)
+  const hideFooter = location.pathname.startsWith("/community/slots/");
 
   return (
     <div className="flex min-h-screen flex-col">

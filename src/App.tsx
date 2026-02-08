@@ -24,7 +24,8 @@ import Profile from "./pages/Profile";
 import PublicProfile from "./pages/PublicProfile";
 import NotFound from "./pages/NotFound";
 
-// Lazy load the slot machine page for better initial load performance
+// Lazy load game pages for better initial load performance
+const GameLibrary = lazy(() => import("./pages/GameLibrary"));
 const SlotMachine = lazy(() => import("./pages/SlotMachine"));
 
 const queryClient = new QueryClient();
@@ -50,6 +51,14 @@ const App = () => (
             <Route path="/community/highlights" element={<CommunityHighlights />} />
             <Route 
               path="/community/slots" 
+              element={
+                <Suspense fallback={<SlotPageLoading />}>
+                  <GameLibrary />
+                </Suspense>
+              } 
+            />
+            <Route 
+              path="/community/slots/book-of-fedesvin" 
               element={
                 <Suspense fallback={<SlotPageLoading />}>
                   <SlotMachine />
