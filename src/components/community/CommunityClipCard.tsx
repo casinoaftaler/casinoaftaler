@@ -13,6 +13,7 @@ import { formatDistanceToNow } from "date-fns";
 import { da } from "date-fns/locale";
 import { useAuth } from "@/hooks/useAuth";
 import { cn } from "@/lib/utils";
+import { ClipCategoryBadges } from "./ClipCategoryBadges";
 
 interface CommunityClipCardProps {
   clip: CommunityClipWithStats;
@@ -121,6 +122,13 @@ export function CommunityClipCard({ clip, onOpenDetail }: CommunityClipCardProps
       </div>
 
       <CardContent className="p-4">
+        {/* Categories */}
+        {clip.categories && clip.categories.length > 0 && (
+          <div className="mb-2">
+            <ClipCategoryBadges categories={clip.categories} size="sm" />
+          </div>
+        )}
+
         {/* Title */}
         <h3 className="font-semibold line-clamp-1 mb-2">
           {clip.title || "Uden titel"}

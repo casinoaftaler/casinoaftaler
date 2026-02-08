@@ -217,6 +217,7 @@ export type Database = {
         Row: {
           approved_at: string | null
           approved_by: string | null
+          categories: string[] | null
           created_at: string
           description: string | null
           duration_seconds: number | null
@@ -237,6 +238,7 @@ export type Database = {
         Insert: {
           approved_at?: string | null
           approved_by?: string | null
+          categories?: string[] | null
           created_at?: string
           description?: string | null
           duration_seconds?: number | null
@@ -257,6 +259,7 @@ export type Database = {
         Update: {
           approved_at?: string | null
           approved_by?: string | null
+          categories?: string[] | null
           created_at?: string
           description?: string | null
           duration_seconds?: number | null

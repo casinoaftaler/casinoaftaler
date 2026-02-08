@@ -4,6 +4,12 @@ import { useToast } from "@/hooks/use-toast";
 
 export type ClipStatus = "pending" | "approved" | "rejected";
 export type PlaybackType = "embed" | "external";
+export type ClipCategory = "big_win" | "funny";
+
+export const CLIP_CATEGORIES: { value: ClipCategory; label: string; emoji: string }[] = [
+  { value: "big_win", label: "Big Win", emoji: "🏆" },
+  { value: "funny", label: "Funny Moment", emoji: "😂" },
+];
 
 export interface CommunityClip {
   id: string;
@@ -24,6 +30,7 @@ export interface CommunityClip {
   original_url: string | null;
   requires_manual_review: boolean | null;
   validation_notes: string | null;
+  categories: ClipCategory[];
 }
 
 export interface CommunityClipWithStats extends CommunityClip {
@@ -220,6 +227,7 @@ export function useApprovedClips() {
           ...clip,
           status: clip.status as ClipStatus,
           playback_type: (clip.playback_type as PlaybackType) || 'embed',
+          categories: (clip.categories as ClipCategory[]) || [],
           likes_count: likesCount.get(clip.id) || 0,
           comments_count: commentsCount.get(clip.id) || 0,
           user_has_liked: userLikes.includes(clip.id),
@@ -265,6 +273,7 @@ export function useAdminClips(statusFilter?: ClipStatus) {
           ...clip,
           status: clip.status as ClipStatus,
           playback_type: (clip.playback_type as PlaybackType) || 'embed',
+          categories: (clip.categories as ClipCategory[]) || [],
           likes_count: 0,
           comments_count: 0,
           user_has_liked: false,
@@ -295,6 +304,7 @@ export function useMyClips() {
         ...clip,
         status: clip.status as ClipStatus,
         playback_type: (clip.playback_type as PlaybackType) || 'embed',
+        categories: (clip.categories as ClipCategory[]) || [],
       }));
     },
   });
@@ -310,10 +320,12 @@ export function useSubmitClip() {
       url,
       title,
       description,
+      categories,
     }: {
       url: string;
       title?: string;
       description?: string;
+      categories: ClipCategory[];
     }) => {
       const { data: user } = await supabase.auth.getUser();
       if (!user?.user?.id) throw new Error("Du skal være logget ind");
@@ -344,6 +356,7 @@ export function useSubmitClip() {
           duration_seconds: validation.metadata.durationSeconds || null,
           requires_manual_review: requiresManualReview,
           validation_notes: validation.metadata.validationNotes || null,
+          categories: categories,
         })
         .select()
         .single();
