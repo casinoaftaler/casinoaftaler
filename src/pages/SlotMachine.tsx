@@ -158,17 +158,16 @@ export default function SlotMachine() {
 
   // 7. Show the game
   return (
-    <div className="min-h-[calc(100dvh-4rem)] relative overflow-auto flex flex-col">
+    <div className="min-h-[calc(100dvh-4rem)] relative flex flex-col">
       {/* Background */}
       <div 
-        className="absolute inset-0 bg-cover bg-center bg-no-repeat -z-10"
+        className="fixed inset-0 bg-cover bg-center bg-no-repeat -z-10"
         style={{ backgroundImage: `url(${backgroundImage})` }}
       />
-      <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black/70 -z-10" />
+      <div className="fixed inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black/70 -z-10" />
       
-      {/* Outer container for centering the scaled content */}
-      <div className="flex-1 flex items-start justify-center pt-2 sm:pt-4">
-        {/* Scaled game container - includes all content for proper scaling */}
+      {/* Scaled game area - only the game itself is scaled */}
+      <div className="flex items-start justify-center pt-2 sm:pt-4">
         <div 
           className="slot-viewport-container w-full"
           style={{
@@ -190,16 +189,18 @@ export default function SlotMachine() {
 
               {/* Slot Game */}
               <SlotGame />
-              
-              {/* Mobile/Tablet: Side content below game - INSIDE scaled container */}
-              <div className="w-full max-w-sm xl:hidden mt-4 space-y-4 pb-4">
-                {topCasino && (
-                  <SlotPromoSlider casino={topCasino} backgroundImage={slotCasinoCardBg} />
-                )}
-                <SlotLeaderboard />
-              </div>
             </SlotPageLayout>
           </div>
+        </div>
+      </div>
+
+      {/* Mobile/Tablet: Side content below game - OUTSIDE scaled container for proper scrolling */}
+      <div className="xl:hidden flex justify-center px-4 pb-6 pt-2">
+        <div className="w-full max-w-sm space-y-4">
+          {topCasino && (
+            <SlotPromoSlider casino={topCasino} backgroundImage={slotCasinoCardBg} />
+          )}
+          <SlotLeaderboard />
         </div>
       </div>
     </div>
