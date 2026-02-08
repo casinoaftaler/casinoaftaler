@@ -146,6 +146,12 @@ export function Header() {
                   Slot Machine
                 </Link>
               </DropdownMenuItem>
+              <DropdownMenuItem asChild>
+                <Link to="/community/highlights" className="flex items-center gap-2">
+                  <Sparkles className="h-4 w-4" />
+                  Community Highlights
+                </Link>
+              </DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>
           <Link
@@ -315,6 +321,14 @@ export function Header() {
             >
               <Coins className="h-4 w-4" />
               Slot Machine
+            </Link>
+            <Link
+              to="/community/highlights"
+              className="ml-6 flex items-center gap-2 text-sm text-muted-foreground transition-colors hover:text-primary"
+              onClick={() => setMobileMenuOpen(false)}
+            >
+              <Sparkles className="h-4 w-4" />
+              Community Highlights
             </Link>
             
             {/* Theme toggle in mobile menu */}

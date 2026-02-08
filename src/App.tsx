@@ -16,6 +16,7 @@ import Terms from "./pages/Terms";
 import Cookies from "./pages/Cookies";
 import Shop from "./pages/Shop";
 import Highlights from "./pages/Highlights";
+import CommunityHighlights from "./pages/CommunityHighlights";
 import Admin from "./pages/Admin";
 import Auth from "./pages/Auth";
 import AuthCallback from "./pages/AuthCallback";
@@ -46,6 +47,7 @@ const App = () => (
             <Route path="/cookies" element={<Cookies />} />
             <Route path="/butik" element={<Shop />} />
             <Route path="/highlights" element={<Highlights />} />
+            <Route path="/community/highlights" element={<CommunityHighlights />} />
             <Route 
               path="/community/slots" 
               element={
