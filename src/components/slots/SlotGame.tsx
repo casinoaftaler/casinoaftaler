@@ -1,7 +1,6 @@
 import React, { useState, useCallback, useRef, useEffect } from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { SlotReel } from "./SlotReel";
-import { WinDisplay } from "./WinDisplay";
 import { WinLines } from "./WinLines";
 import { BonusOverlay } from "./BonusOverlay";
 import { BonusStatusBar } from "./BonusStatusBar";
@@ -13,12 +12,12 @@ import { useSlotSymbolPreloader } from "@/hooks/useSlotSymbolPreloader";
 import { useSlotSpins } from "@/hooks/useSlotSpins";
 import { useSlotSettings } from "@/hooks/useSlotSettings";
 import { useSlotSoundLoader } from "@/hooks/useSlotSoundLoader";
-import { useBonusGame } from "@/hooks/useBonusGame";
+import { useBonusGameSync } from "@/hooks/useBonusGameSync";
+import { useServerSpin, type SpinResult, type BonusSpinResult } from "@/hooks/useServerSpin";
 import { useAuth } from "@/hooks/useAuth";
 import { useQueryClient } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
-import { generateGrid, calculateSpinResult, PAY_LINES, getScatterTeaseReels, type SpinResult, type TeaseInfo } from "@/lib/slotGameLogic";
-import { calculateBonusSpinResult, calculateConnectingWins } from "@/lib/bonusGameLogic";
+import { PAY_LINES, getScatterTeaseReels, type TeaseInfo, type SlotSymbol } from "@/lib/slotGameLogic";
 import { slotSounds } from "@/lib/slotSoundEffects";
 import { Loader2, Gamepad2 } from "lucide-react";
 import { toast } from "sonner";
@@ -30,26 +29,42 @@ const GAP = { xs: 4, mobile: 6, sm: 8, md: 12, lg: 16, xl: 16 };
 
 type AutoSpinCount = 10 | 25 | 50 | 100 | "infinite";
 
+// Helper to generate a display grid from symbols (for initial display only)
+function generateDisplayGrid(symbols: SlotSymbol[]): string[][] {
+  const grid: string[][] = [];
+  for (let col = 0; col < 5; col++) {
+    const column: string[] = [];
+    const usedIds: string[] = [];
+    for (let row = 0; row < 3; row++) {
+      // Simple random selection for display only (actual results come from server)
+      const availableSymbols = symbols.filter(s => !usedIds.includes(s.id));
+      const symbol = availableSymbols[Math.floor(Math.random() * availableSymbols.length)] || symbols[0];
+      column.push(symbol.id);
+      usedIds.push(symbol.id);
+    }
+    grid.push(column);
+  }
+  return grid;
+}
+
 export function SlotGame() {
   const { user } = useAuth();
   const queryClient = useQueryClient();
   const { data: symbols, isLoading: symbolsLoading } = useSlotSymbols();
   const { validateSymbols } = useSlotSymbolPreloader(symbols);
-  const { spinsRemaining, maxSpins, canSpin, decrementSpin, hasEnoughSpins } = useSlotSpins();
+  const { spinsRemaining, maxSpins, canSpin, hasEnoughSpins } = useSlotSpins();
   const { settings: slotSettings } = useSlotSettings();
+  const { spin: serverSpin } = useServerSpin();
   
   // Load custom sound files from site_settings
   useSlotSoundLoader();
   const { 
     bonusState, 
     isLoaded: bonusLoaded,
-    triggerBonus, 
-    decrementFreeSpin,
-    addBonusWinnings, 
-    retriggerBonus, 
+    updateFromServer: updateBonusFromServer,
     endBonus,
     shouldEndBonus 
-  } = useBonusGame(symbols);
+  } = useBonusGameSync(symbols);
   
   const [bet, setBet] = useState(1);
   const [isSpinning, setIsSpinning] = useState(false);
@@ -115,10 +130,10 @@ export function SlotGame() {
   
   const stopTeaseSound = useRef<(() => void) | null>(null);
 
-  // Initialize grid with random symbols
+  // Initialize grid with random symbols (display only)
   const initializeGrid = useCallback(() => {
     if (!symbols || symbols.length === 0) return;
-    const newGrid = generateGrid(symbols);
+    const newGrid = generateDisplayGrid(symbols);
     setGrid(newGrid);
   }, [symbols]);
 
@@ -128,11 +143,9 @@ export function SlotGame() {
   }
 
   // Unlock audio for mobile on first user interaction
-  // This must happen within user gesture context (click/touch) to enable audio playback
   useEffect(() => {
     const handleFirstInteraction = () => {
       slotSounds.unlockAudio();
-      // Remove listeners after first trigger - audio stays unlocked
       document.removeEventListener('click', handleFirstInteraction);
       document.removeEventListener('touchstart', handleFirstInteraction);
     };
@@ -161,44 +174,12 @@ export function SlotGame() {
       if (initialSpinTimeoutRef.current) {
         clearTimeout(initialSpinTimeoutRef.current);
       }
-      // Stop all slot sounds and music when leaving the page
       slotSounds.stopMusic();
       if (stopTeaseSound.current) {
         stopTeaseSound.current();
       }
     };
   }, []);
-
-  // Spacebar keyboard handler for spinning
-  useEffect(() => {
-    const handleKeyDown = (e: KeyboardEvent) => {
-      // Only handle spacebar
-      if (e.code !== "Space") return;
-      
-      // Prevent scroll (default browser behavior)
-      e.preventDefault();
-      
-      // Ignore if focus is on an input element
-      if (
-        document.activeElement?.tagName === "INPUT" ||
-        document.activeElement?.tagName === "TEXTAREA" ||
-        document.activeElement?.tagName === "SELECT"
-      ) return;
-      
-      // Check if we can spin
-      const canSpinNow = bonusState.isActive 
-        ? bonusState.freeSpinsRemaining > 0 
-        : hasEnoughSpins(bet);
-      
-      // Also check spinLockRef AND isSpinLocked to prevent spinning before reel 5 has landed
-      if (!isSpinning && !spinLockRef.current && !isSpinLocked && canSpinNow && !showBonusTrigger && !isAutoSpinning) {
-        handleSpin();
-      }
-    };
-
-    window.addEventListener("keydown", handleKeyDown);
-    return () => window.removeEventListener("keydown", handleKeyDown);
-  }, [isSpinning, isSpinLocked, bonusState.isActive, bonusState.freeSpinsRemaining, bet, hasEnoughSpins, showBonusTrigger, isAutoSpinning]);
 
   // Stop autospin when out of spins or on big win/bonus
   const stopAutoSpin = useCallback(() => {
@@ -237,11 +218,12 @@ export function SlotGame() {
     }
   }, [isAutoSpinning, stopAutoSpin, startAutoSpin]);
 
+  // Main spin handler - now calls server
   const handleSpin = async () => {
     // Reset autospin scheduled flag since we're spinning now
     autoSpinScheduledRef.current = false;
     
-    // Prevent rapid clicking with a spin lock - use BOTH ref and state for safety
+    // Prevent rapid clicking with a spin lock
     if (spinLockRef.current || isSpinLocked) return;
     
     if (!symbols || symbols.length === 0 || !user || isSpinning) return;
@@ -251,10 +233,7 @@ export function SlotGame() {
     if (!symbolValidation.isValid) {
       if (symbolValidation.failedUrls.length > 0) {
         console.warn('[SlotGame] Some symbol images failed to load:', symbolValidation.failedUrls);
-        toast.error(`Symbol-billeder kunne ikke indlæses: ${symbolValidation.failedUrls.join(', ')}`);
-      } else if (symbolValidation.missingSymbols.length > 0) {
-        console.warn('[SlotGame] Some symbols are missing images:', symbolValidation.missingSymbols);
-        toast.error(`Manglende symbol-billeder: ${symbolValidation.missingSymbols.join(', ')}`);
+        toast.error(`Symbol-billeder kunne ikke indlæses`);
       }
       spinLockRef.current = false;
       return;
@@ -262,7 +241,6 @@ export function SlotGame() {
     
     // Check if we can spin (either normal spin or bonus free spin)
     const isBonusSpin = bonusState.isActive && bonusState.freeSpinsRemaining > 0;
-    // For normal spins, check if we have enough spins for the current bet
     if (!isBonusSpin && !hasEnoughSpins(bet)) return;
 
     // Set spin lock immediately to prevent double-clicks
@@ -274,64 +252,30 @@ export function SlotGame() {
       clearTimeout(spinLockTimeoutRef.current);
     }
     
-    // Safety timeout to release lock in case something goes wrong (5 seconds max)
+    // Safety timeout to release lock in case something goes wrong (8 seconds max)
     spinLockTimeoutRef.current = setTimeout(() => {
       spinLockRef.current = false;
-    }, 5000);
+      setIsSpinLocked(false);
+    }, 8000);
 
-    // Generate final result BEFORE starting the animation
-    // This ensures SlotReel knows what symbols to land on
-    // Pass isBonusSpin to reduce scatter weight during bonus rounds
-    const originalGrid = generateGrid(symbols, isBonusSpin);
-    let result: SpinResult;
-    let expandedGrid = originalGrid;
-    let reelsExpanded: number[] = [];
-
-    // For bonus spins, we need to calculate the result but show original grid first
-    if (isBonusSpin && bonusState.expandingSymbol) {
-      // Apply expanding symbol logic during bonus
-      const bonusResult = calculateBonusSpinResult(
-        originalGrid,
-        symbols,
-        bet,
-        bonusState.expandingSymbol
-      );
-      result = bonusResult.result;
-      expandedGrid = bonusResult.expandedGrid;
-      reelsExpanded = bonusResult.expandedReels;
-    } else {
-      result = calculateSpinResult(originalGrid, symbols, bet);
-      expandedGrid = originalGrid;
+    // Store bonus bet amount for end tracking
+    if (!isBonusSpin) {
+      setBonusBetAmount(bet);
     }
 
-    // Calculate which reels should tease (slow down) based on scatter positions
-    const teaseResult = getScatterTeaseReels(originalGrid, symbols);
-    setTeaseReels(teaseResult.reels);
-    setTeaseInfo(teaseResult);
-    setActiveTeaseReelIndex(null); // Reset active tease reel for new spin
-    setScatterReelsLanded(new Set()); // Reset scatter reel landing tracking
-
-    // Set the ORIGINAL grid for spinning (not the expanded one yet)
-    // This creates the first phase where symbols land naturally
-    setGrid(originalGrid);
-    setLastResult(null); // Clear last result during spin
+    // Clear visual state for new spin
+    setLastResult(null);
     setWinAmount(0);
     setIsWinAnimating(false);
     setExpandedReels([]);
     setNewlyExpandedReels([]);
     setShowWinLines(false);
-    
-    // Reset reel tracking for tease-mode timing
     stoppedReelsRef.current = new Set();
-    pendingResultRef.current = result;
-    pendingExpandedGridRef.current = expandedGrid;
-    pendingExpandedReelsRef.current = reelsExpanded;
-    isBonusSpinRef.current = isBonusSpin;
     
     // Reset sequential reel stopping
     setActiveSlowdownReel(-1);
     
-    // Now start the spin animation
+    // Start the spin animation immediately for responsiveness
     setIsSpinning(true);
     
     // Clear any existing win lines timeout
@@ -340,38 +284,72 @@ export function SlotGame() {
       winLinesTimeoutRef.current = null;
     }
 
-    // Play quick spin start sound only (no continuous loop)
+    // Play quick spin start sound
     slotSounds.playSpinStart();
-    
-    // Start tease sound if we have tease reels
-    if (teaseResult.reels.length > 0) {
-      stopTeaseSound.current = slotSounds.playTeaseStart();
-    }
-    
-    // After 500ms initial spin, start reel 0 slowing down
-    if (initialSpinTimeoutRef.current) {
-      clearTimeout(initialSpinTimeoutRef.current);
-    }
-    initialSpinTimeoutRef.current = setTimeout(() => {
-      setActiveSlowdownReel(0);
-    }, 500);
 
     try {
-      // Decrement spin count (only for non-bonus spins)
-      // Bet amount determines how many spins are used
-      if (!isBonusSpin) {
-        await decrementSpin.mutateAsync(bet);
+      // Call server for spin result
+      const response = await serverSpin(bet, isBonusSpin);
+      
+      if (!response) {
+        throw new Error("Spin failed");
+      }
+
+      // Extract result from server response
+      const result = response.result as SpinResult;
+      const bonusResult = response.result as BonusSpinResult;
+      
+      // Update grid with server result
+      setGrid(result.grid);
+      
+      // Calculate tease reels based on server result
+      const teaseResult = getScatterTeaseReels(result.grid, symbols);
+      setTeaseReels(teaseResult.reels);
+      setTeaseInfo(teaseResult);
+      setActiveTeaseReelIndex(null);
+      setScatterReelsLanded(new Set());
+
+      // Start tease sound if we have tease reels
+      if (teaseResult.reels.length > 0) {
+        stopTeaseSound.current = slotSounds.playTeaseStart();
+      }
+
+      // Store result for reel stop callback
+      pendingResultRef.current = result;
+      isBonusSpinRef.current = isBonusSpin;
+      
+      // Handle bonus-specific data
+      if (isBonusSpin && 'expandedGrid' in bonusResult) {
+        pendingExpandedGridRef.current = bonusResult.expandedGrid;
+        pendingExpandedReelsRef.current = bonusResult.expandedReels || [];
       } else {
-        decrementFreeSpin();
+        pendingExpandedGridRef.current = null;
+        pendingExpandedReelsRef.current = [];
+      }
+
+      // Update bonus state from server response
+      if (response.bonusState) {
+        updateBonusFromServer(response.bonusState);
+        
+        // Set expanding symbol for trigger overlay
+        if (!isBonusSpin && result.bonusTriggered) {
+          const expandingSymbol = symbols.find(s => s.id === response.bonusState?.expandingSymbolId);
+          if (expandingSymbol) {
+            setPendingExpandingSymbol(expandingSymbol);
+          }
+        }
       }
       
-      // Result processing is now handled in onReelStop callback
-      // when all 5 reels have stopped - this ensures proper timing
-      // for tease-mode where reels stop sequentially with delays
-      
+      // After 500ms initial spin, start reel 0 slowing down
+      if (initialSpinTimeoutRef.current) {
+        clearTimeout(initialSpinTimeoutRef.current);
+      }
+      initialSpinTimeoutRef.current = setTimeout(() => {
+        setActiveSlowdownReel(0);
+      }, 500);
+
     } catch (error) {
       console.error("Spin error:", error);
-      toast.error("Der opstod en fejl. Prøv igen.");
       
       // Stop tease sound on error
       if (stopTeaseSound.current) {
@@ -395,10 +373,10 @@ export function SlotGame() {
     }
   };
 
-  // Check if bonus should end after spin completes - wait for win animation
-  const handleBonusEnd = useCallback(() => {
+  // Check if bonus should end after spin completes
+  const handleBonusEnd = useCallback(async () => {
     if (shouldEndBonus && !isSpinning && !isWinAnimating) {
-      const { winnings, spins } = endBonus();
+      const { winnings, spins } = await endBonus();
       
       // Record the complete bonus result as a single entry
       if (user && winnings > 0) {
@@ -415,7 +393,7 @@ export function SlotGame() {
       
       setBonusTotalWinnings(winnings);
       setBonusTotalSpinsUsed(spins);
-      slotSounds.playBonusWin(); // Play bonus complete sound
+      slotSounds.playBonusWin();
       setShowBonusComplete(true);
     }
   }, [shouldEndBonus, isSpinning, isWinAnimating, endBonus, user, bonusBetAmount, queryClient]);
@@ -430,7 +408,6 @@ export function SlotGame() {
   // Show pending bonus trigger after win animation completes
   useEffect(() => {
     if (pendingBonusTrigger && !isWinAnimating && !isSpinning) {
-      // Short delay to let user see the win
       const timer = setTimeout(() => {
         if (pendingBonusTrigger.isRetrigger) {
           slotSounds.playRetrigger();
@@ -440,43 +417,57 @@ export function SlotGame() {
           setShowBonusTrigger(true);
         }
         setPendingBonusTrigger(null);
-      }, 500); // Short delay after win animation
+      }, 500);
       
       return () => clearTimeout(timer);
     }
   }, [pendingBonusTrigger, isWinAnimating, isSpinning]);
 
-  // Autospin effect - trigger next spin after current one completes
-  // Uses ref-based scheduling to prevent race conditions from effect cleanup
+  // Spacebar keyboard handler for spinning
   useEffect(() => {
-    // Don't do anything if autospin is off or explicitly stopped
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.code !== "Space") return;
+      e.preventDefault();
+      
+      if (
+        document.activeElement?.tagName === "INPUT" ||
+        document.activeElement?.tagName === "TEXTAREA" ||
+        document.activeElement?.tagName === "SELECT"
+      ) return;
+      
+      const canSpinNow = bonusState.isActive 
+        ? bonusState.freeSpinsRemaining > 0 
+        : hasEnoughSpins(bet);
+      
+      if (!isSpinning && !spinLockRef.current && !isSpinLocked && canSpinNow && !showBonusTrigger && !isAutoSpinning) {
+        handleSpin();
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [isSpinning, isSpinLocked, bonusState.isActive, bonusState.freeSpinsRemaining, bet, hasEnoughSpins, showBonusTrigger, isAutoSpinning]);
+
+  // Autospin effect for normal spins
+  useEffect(() => {
     if (!isAutoSpinning || shouldStopAutoSpinRef.current) {
       autoSpinScheduledRef.current = false;
       return;
     }
     
-    // Can't schedule while spinning, animating, or locked
     if (isSpinning || isWinAnimating || isSpinLocked) return;
-    
-    // Don't schedule if overlays are showing
     if (showBonusTrigger || showBonusComplete || showRetrigger) return;
-    
-    // Skip if in bonus mode (handled by separate effect)
     if (bonusState.isActive) return;
     
-    // Check if we can spin
     if (!canSpin) {
       stopAutoSpin();
       return;
     }
     
-    // If already scheduled, don't double-schedule
     if (autoSpinScheduledRef.current) return;
     
-    // Mark as scheduled
     autoSpinScheduledRef.current = true;
     
-    // Schedule next spin with fixed delay for consistency
     const delay = 1000;
     autoSpinTimeoutRef.current = setTimeout(() => {
       autoSpinScheduledRef.current = false;
@@ -484,9 +475,6 @@ export function SlotGame() {
         handleSpinRef.current();
       }
     }, delay);
-    
-    // NO cleanup function - let the timeout fire naturally
-    // The ref pattern prevents double-scheduling
   }, [
     isAutoSpinning, 
     isSpinning, 
@@ -500,25 +488,16 @@ export function SlotGame() {
     stopAutoSpin
   ]);
 
-  // Auto-spin during bonus mode - spins automatically without user clicking
-  // Use a ref to track the latest handleSpin function to avoid stale closures
+  // Auto-spin during bonus mode
   const handleSpinRef = useRef(handleSpin);
   handleSpinRef.current = handleSpin;
   
   useEffect(() => {
-    // Only run during active bonus with remaining spins
     if (!bonusState.isActive || bonusState.freeSpinsRemaining === 0) return;
-    
-    // Don't trigger if already spinning or animating
     if (isSpinning || isWinAnimating) return;
-    
-    // Don't trigger if spin is locked (prevents race conditions)
     if (isSpinLocked) return;
-    
-    // Don't trigger if any overlay is showing OR scatter celebration is active
     if (showBonusTrigger || showBonusComplete || showRetrigger || showScatterCelebration) return;
     
-    // Wait a moment before auto-spinning
     const timer = setTimeout(() => {
       try {
         handleSpinRef.current();
@@ -534,15 +513,13 @@ export function SlotGame() {
   const getWinningPositions = (reelIndex: number): number[] => {
     if (!lastResult || lastResult.wins.length === 0) return [];
     
-    // If we have an expanding win, only show animation on expanded reels
     if (expandedReels.length > 0 && !expandedReels.includes(reelIndex)) {
-      return []; // Don't highlight non-expanded reels
+      return [];
     }
     
     const positions: number[] = [];
     for (const win of lastResult.wins) {
       const linePattern = PAY_LINES[win.lineIndex];
-      // Check if this position is part of the win (first N symbols where N = count)
       if (reelIndex < win.count) {
         positions.push(linePattern[reelIndex]);
       }
@@ -550,12 +527,10 @@ export function SlotGame() {
     return [...new Set(positions)];
   };
 
-  // Check if a position is expanded
   const isReelExpanded = (reelIndex: number): boolean => {
     return expandedReels.includes(reelIndex);
   };
 
-  // Get responsive symbol dimensions for WinLines
   const getSymbolDimensions = () => {
     if (typeof window === "undefined") return { size: SYMBOL_SIZE.xl, gap: GAP.xl };
     const width = window.innerWidth;
@@ -627,7 +602,7 @@ export function SlotGame() {
           <div className="flex justify-center relative">
             <SlotMachineFrame isBonus={bonusState.isActive} isSpinning={isSpinning}>
               <div className="relative p-1 xs:p-2 sm:p-4 md:p-6 rounded-xl">
-              {/* Win Celebration Effects */}
+                {/* Win Celebration Effects */}
                 <WinCelebration
                   isActive={isWinAnimating}
                   winAmount={winAmount}
@@ -639,312 +614,209 @@ export function SlotGame() {
                 <div className="relative flex gap-0">
                   {grid?.map((column, colIndex) => (
                     <React.Fragment key={colIndex}>
-                    <SlotReel
-                      symbols={symbols}
-                      displayedSymbolIds={column}
-                      isSpinning={isSpinning}
-                      winningPositions={getWinningPositions(colIndex)}
-                      isExpanded={isReelExpanded(colIndex)}
-                      isNewlyExpanded={newlyExpandedReels.includes(colIndex)}
-                      expandingSymbolId={bonusState.expandingSymbol?.id}
-                      delay={colIndex}
-                      shouldSlowDown={activeSlowdownReel >= colIndex}
-                      spinLoopMs={slotSettings.spinLoopMs}
-                      reelSlowdownMs={slotSettings.reelSlowdownMs}
-                      onReelStop={async (reelIndex) => {
-                        slotSounds.playReelStopSingle(reelIndex);
-                        
-                        // SEQUENTIAL: Trigger the next reel to slow down with configurable delay
-                        if (reelIndex < 4) {
-                          setTimeout(() => {
-                            setActiveSlowdownReel(reelIndex + 1);
-                          }, slotSettings.reelStaggerMs);
-                        }
-                        
-                        // Check if this reel has a scatter and play progressive scatter land sound
-                        const hasScatterOnReel = grid?.[reelIndex]?.some(symbolId => {
-                          const symbol = symbols?.find(s => s.id === symbolId);
-                          return symbol?.is_scatter;
-                        });
-                        
-                        // Play scatter land sound with specific rules
-                        if (hasScatterOnReel) {
-                          // Count how many scatters have landed up to and including this reel
-                          let scattersLanded = 0;
-                          for (let r = 0; r <= reelIndex; r++) {
-                            const reelHasScatter = grid?.[r]?.some(symbolId => {
-                              const symbol = symbols?.find(s => s.id === symbolId);
-                              return symbol?.is_scatter;
-                            });
-                            if (reelHasScatter) scattersLanded++;
+                      <SlotReel
+                        symbols={symbols}
+                        displayedSymbolIds={column}
+                        isSpinning={isSpinning}
+                        winningPositions={getWinningPositions(colIndex)}
+                        isExpanded={isReelExpanded(colIndex)}
+                        isNewlyExpanded={newlyExpandedReels.includes(colIndex)}
+                        expandingSymbolId={bonusState.expandingSymbol?.id}
+                        delay={colIndex}
+                        shouldSlowDown={activeSlowdownReel >= colIndex}
+                        spinLoopMs={slotSettings.spinLoopMs}
+                        reelSlowdownMs={slotSettings.reelSlowdownMs}
+                        onReelStop={async (reelIndex) => {
+                          slotSounds.playReelStopSingle(reelIndex);
+                          
+                          // Trigger the next reel to slow down
+                          if (reelIndex < 4) {
+                            setTimeout(() => {
+                              setActiveSlowdownReel(reelIndex + 1);
+                            }, slotSettings.reelStaggerMs);
                           }
                           
-                          // Count scatters specifically on reels 1-3 (index 0-2)
-                          let scattersOnReels123 = 0;
-                          for (let r = 0; r <= Math.min(reelIndex, 2); r++) {
-                            const reelHasScatter123 = grid?.[r]?.some(symbolId => {
-                              const symbol = symbols?.find(s => s.id === symbolId);
-                              return symbol?.is_scatter;
-                            });
-                            if (reelHasScatter123) scattersOnReels123++;
-                          }
+                          // Check for scatter sounds
+                          const hasScatterOnReel = grid?.[reelIndex]?.some(symbolId => {
+                            const symbol = symbols?.find(s => s.id === symbolId);
+                            return symbol?.is_scatter;
+                          });
                           
-                          // Play sound if:
-                          // 1. Scatter is on reel 1-3 (index 0-2), OR
-                          // 2. Scatter is on reel 4 AND there's already a scatter on reel 1-3, OR
-                          // 3. Scatter is on reel 5 AND we already have 3+ scatters (triggers bonus sound)
-                          const isOnReels123 = reelIndex <= 2;
-                          const isOnReel4WithPriorScatter = reelIndex === 3 && scattersOnReels123 > 0;
-                          const isOnReel5WithBonusScatters = reelIndex === 4 && scattersLanded >= 3;
-                          
-                          if (isOnReels123 || isOnReel4WithPriorScatter || isOnReel5WithBonusScatters) {
-                            slotSounds.playScatterLand(scattersLanded);
-                          }
-                          
-                          // Only track scatter reels for glow when tease mode is possible
-                          // Tease requires 2nd scatter to land on reel 1-4 (not reel 5)
-                          // Reel 5 scatters NEVER trigger glow
-                          const canTriggerTease = isOnReels123 || isOnReel4WithPriorScatter;
-                          
-                          if (canTriggerTease) {
-                            setScatterReelsLanded(prev => new Set([...prev, reelIndex]));
-                          }
-                        }
-                        
-                        // Track this reel as stopped
-                        stoppedReelsRef.current.add(reelIndex);
-                        
-                        // Handle sequential tease reel activation
-                        if (teaseReels.includes(reelIndex)) {
-                          // Current tease reel stopped, activate next tease reel
-                          const currentTeaseIndex = teaseReels.indexOf(reelIndex);
-                          if (currentTeaseIndex < teaseReels.length - 1) {
-                            setActiveTeaseReelIndex(teaseReels[currentTeaseIndex + 1]);
-                          }
-                        } else if (teaseReels.length > 0) {
-                          // Non-tease reel stopped, check if next reel is tease
-                          const nextReel = reelIndex + 1;
-                          if (teaseReels.includes(nextReel)) {
-                            setActiveTeaseReelIndex(nextReel);
-                          }
-                        }
-                        
-                        // Check if ALL 5 reels have stopped - only then process the result
-                        if (stoppedReelsRef.current.size === 5 && pendingResultRef.current) {
-                          // Stop tease sound when all reels have landed
-                          if (stopTeaseSound.current) {
-                            stopTeaseSound.current();
-                            stopTeaseSound.current = null;
-                          }
-                          
-                          const result = pendingResultRef.current;
-                          const expandedGrid = pendingExpandedGridRef.current;
-                          const reelsExpanded = pendingExpandedReelsRef.current;
-                          const isBonusSpin = isBonusSpinRef.current;
-                          
-                          // Handle bonus expansion animation with phased win display
-                          if (isBonusSpin && reelsExpanded.length > 0 && expandedGrid && bonusState.expandingSymbol) {
-                            // Step 1: Calculate connecting wins on ORIGINAL grid (before expansion)
-                            const connectingWins = calculateConnectingWins(
-                              grid!, // original grid
-                              symbols,
-                              bet,
-                              bonusState.expandingSymbol
-                            );
-                            
-                            // Step 2: If there are connecting wins, show them FIRST
-                            if (connectingWins.length > 0) {
-                              const connectingTotalWin = connectingWins.reduce((sum, w) => sum + w.payout, 0);
-                              setLastResult({
-                                grid: grid!,
-                                wins: connectingWins,
-                                totalWin: connectingTotalWin,
-                                bonusTriggered: false,
-                                scatterCount: 0,
+                          if (hasScatterOnReel) {
+                            let scattersLanded = 0;
+                            for (let r = 0; r <= reelIndex; r++) {
+                              const reelHasScatter = grid?.[r]?.some(symbolId => {
+                                const symbol = symbols?.find(s => s.id === symbolId);
+                                return symbol?.is_scatter;
                               });
-                              setShowWinLines(true);
-                              setShowConnectingWins(true); // Enable win lines visibility during this phase
-                              
-                              // Play win sound for connecting wins
-                              if (connectingTotalWin > 0) {
-                                slotSounds.playSmallWin();
-                              }
-                              
-                              // Wait for user to see connecting wins
-                              await new Promise(resolve => setTimeout(resolve, 1000));
-                              
-                              // Clear connecting wins display before expansion
-                              setShowWinLines(false);
-                              setShowConnectingWins(false);
-                              
-                              // Wait 300ms before starting expansion for visual clarity
-                              await new Promise(resolve => setTimeout(resolve, 300));
+                              if (reelHasScatter) scattersLanded++;
                             }
                             
-                            // Step 3: Set expandedReels FIRST so darkening knows which reels to exclude
-                            setExpandedReels(reelsExpanded);
-                            setShowExpansionDarken(true); // Enable darkening for non-expanded reels
-                            await new Promise(resolve => setTimeout(resolve, 500));
+                            let scattersOnReels123 = 0;
+                            for (let r = 0; r <= Math.min(reelIndex, 2); r++) {
+                              const reelHasScatter123 = grid?.[r]?.some(symbolId => {
+                                const symbol = symbols?.find(s => s.id === symbolId);
+                                return symbol?.is_scatter;
+                              });
+                              if (reelHasScatter123) scattersOnReels123++;
+                            }
                             
-                            // Step 4: Apply expansion to grid
-                            setGrid(expandedGrid);
-                            setNewlyExpandedReels(reelsExpanded);
-                            slotSounds.playSymbolExpand();
-                            await new Promise(resolve => setTimeout(resolve, 600));
-                            setNewlyExpandedReels([]);
-                            setShowExpansionDarken(false); // Disable darkening after animation
+                            const isOnReels123 = reelIndex <= 2;
+                            const isOnReel4WithPriorScatter = reelIndex === 3 && scattersOnReels123 > 0;
+                            const isOnReel5WithBonusScatters = reelIndex === 4 && scattersLanded >= 3;
+                            
+                            if (isOnReels123 || isOnReel4WithPriorScatter || isOnReel5WithBonusScatters) {
+                              slotSounds.playScatterLand(scattersLanded);
+                            }
+                            
+                            const canTriggerTease = isOnReels123 || isOnReel4WithPriorScatter;
+                            if (canTriggerTease) {
+                              setScatterReelsLanded(prev => new Set([...prev, reelIndex]));
+                            }
                           }
                           
-                          // Now show the final result (with expanding wins)
-                          setLastResult(result);
+                          stoppedReelsRef.current.add(reelIndex);
                           
-                          // Record the spin result - only for non-bonus spins
-                          // Bonus spins are consolidated into a single entry at bonus end
-                          if (user && !isBonusSpin) {
-                            supabase.from("slot_game_results").insert({
-                              user_id: user.id,
-                              bet_amount: bet,
-                              win_amount: result.totalWin,
-                              is_bonus_triggered: result.bonusTriggered,
-                              bonus_win_amount: 0, // Bonus wins recorded separately at end
-                            }).then(() => {
-                              // Invalidate leaderboard to show updated data
-                              queryClient.invalidateQueries({ queryKey: ["slot-leaderboard"] });
-                            });
+                          // Handle sequential tease reel activation
+                          if (teaseReels.includes(reelIndex)) {
+                            const currentTeaseIndex = teaseReels.indexOf(reelIndex);
+                            if (currentTeaseIndex < teaseReels.length - 1) {
+                              setActiveTeaseReelIndex(teaseReels[currentTeaseIndex + 1]);
+                            }
+                          } else if (teaseReels.length > 0) {
+                            const nextReel = reelIndex + 1;
+                            if (teaseReels.includes(nextReel)) {
+                              setActiveTeaseReelIndex(nextReel);
+                            }
+                          }
+                          
+                          // Process result when all reels have stopped
+                          if (stoppedReelsRef.current.size === 5 && pendingResultRef.current) {
+                            if (stopTeaseSound.current) {
+                              stopTeaseSound.current();
+                              stopTeaseSound.current = null;
+                            }
                             
-                            // Capture bet amount when bonus triggers for later
+                            const result = pendingResultRef.current;
+                            const expandedGrid = pendingExpandedGridRef.current;
+                            const reelsExpanded = pendingExpandedReelsRef.current;
+                            const isBonusSpin = isBonusSpinRef.current;
+                            
+                            // Handle bonus expansion animation
+                            if (isBonusSpin && reelsExpanded.length > 0 && expandedGrid) {
+                              setExpandedReels(reelsExpanded);
+                              setShowExpansionDarken(true);
+                              await new Promise(resolve => setTimeout(resolve, 500));
+                              
+                              setGrid(expandedGrid);
+                              setNewlyExpandedReels(reelsExpanded);
+                              slotSounds.playSymbolExpand();
+                              await new Promise(resolve => setTimeout(resolve, 600));
+                              setNewlyExpandedReels([]);
+                              setShowExpansionDarken(false);
+                            }
+                            
+                            setLastResult(result);
+                            
+                            // Handle bonus trigger or retrigger
+                            let shouldStopAuto = false;
                             if (result.bonusTriggered) {
-                              setBonusBetAmount(bet);
-                            }
-                          }
-                          
-                          // Handle bonus trigger or retrigger
-                          let shouldStopAuto = false;
-                          if (result.bonusTriggered) {
-                            shouldStopAuto = true;
-                            
-                            if (isBonusSpin) {
-                              // Retrigger during bonus
-                              const spinsToAdd = 10;
-                              retriggerBonus(spinsToAdd);
-                              setRetriggerSpinsAdded(spinsToAdd);
+                              shouldStopAuto = true;
                               
-                              if (result.totalWin > 0) {
-                                // Defer overlay until win animation completes
-                                setPendingBonusTrigger({ isRetrigger: true, spinsToAdd });
-                              } else {
-                                // No win, show immediately
-                                slotSounds.playRetrigger();
-                                setShowRetrigger(true);
-                              }
-                            } else {
-                              // Initial bonus trigger
-                              const expanding = triggerBonus(symbols || []);
-                              setPendingExpandingSymbol(expanding);
-                              
-                              // Always show scatter celebration first, then bonus overlay
-                              setShowScatterCelebration(true);
-                              slotSounds.playScatterCelebration();
-                              
-                              // Delay bonus trigger to allow celebration animation
-                              setTimeout(() => {
-                                setShowScatterCelebration(false);
+                              if (isBonusSpin) {
+                                setRetriggerSpinsAdded(10);
                                 if (result.totalWin > 0) {
-                                  // Defer overlay until win animation completes
-                                  setPendingBonusTrigger({ isRetrigger: false, expandingSymbol: expanding });
+                                  setPendingBonusTrigger({ isRetrigger: true, spinsToAdd: 10 });
                                 } else {
-                                  // No win, show immediately after celebration
-                                  slotSounds.playBonusTrigger();
-                                  setShowBonusTrigger(true);
+                                  slotSounds.playRetrigger();
+                                  setShowRetrigger(true);
                                 }
-                              }, 1500); // 1.5 second celebration
+                              } else {
+                                setShowScatterCelebration(true);
+                                slotSounds.playScatterCelebration();
+                                
+                                setTimeout(() => {
+                                  setShowScatterCelebration(false);
+                                  if (result.totalWin > 0) {
+                                    setPendingBonusTrigger({ isRetrigger: false, expandingSymbol: pendingExpandingSymbol });
+                                  } else {
+                                    slotSounds.playBonusTrigger();
+                                    setShowBonusTrigger(true);
+                                  }
+                                }, 1500);
+                              }
                             }
-                          }
-                          
-                          // Handle autospin
-                          if (isAutoSpinning) {
-                            if (shouldStopAuto) {
-                              stopAutoSpin();
-                            } else {
-                              decrementAutoSpins();
+                            
+                            if (isAutoSpinning) {
+                              if (shouldStopAuto) {
+                                stopAutoSpin();
+                              } else {
+                                decrementAutoSpins();
+                              }
                             }
-                          }
-                          
-                          // Handle winnings during bonus
-                          if (isBonusSpin && result.totalWin > 0) {
-                            addBonusWinnings(result.totalWin);
-                          }
-                          
-                          // Play appropriate sound based on result
-                          let hasWinAnimation = false;
-                          // Play win sounds regardless of bonus trigger
-                          if (result.totalWin >= bet * 50) {
-                            slotSounds.playBigWin();
-                            setIsWinAnimating(true);
-                            setWinAmount(result.totalWin);
-                            hasWinAnimation = true;
-                            setTimeout(() => setIsWinAnimating(false), 2000);
-                          } else if (result.totalWin >= bet * 10) {
-                            slotSounds.playMediumWin();
-                            setIsWinAnimating(true);
-                            setWinAmount(result.totalWin);
-                            hasWinAnimation = true;
-                            setTimeout(() => setIsWinAnimating(false), 2000);
-                          } else if (result.totalWin > 0) {
-                            slotSounds.playSmallWin();
-                            setIsWinAnimating(true);
-                            setWinAmount(result.totalWin);
-                            hasWinAnimation = true;
-                            setTimeout(() => setIsWinAnimating(false), 2000);
-                          } else if (!result.bonusTriggered) {
-                            // Only play no-win sound if no bonus triggered
-                            slotSounds.playNoWin();
-                          }
-                          
-                          // Show win lines if there are wins
-                          if (result.wins.length > 0) {
-                            setShowWinLines(true);
-                            // Win lines stay visible until next spin starts (cleared in handleSpin)
-                          }
-                          
-                          // Clear pending result
-                          pendingResultRef.current = null;
-                          
-                          // End spinning state
-                          setIsSpinning(false);
-                          setTeaseReels([]);
-                          setActiveTeaseReelIndex(null);
-                          setActiveSlowdownReel(-1);
-                          
-                          // Release spin lock after 500ms delay (wait for win animation if present)
-                          const spinLockDelay = hasWinAnimation ? 2000 : 500;
-                          setTimeout(() => {
-                            spinLockRef.current = false;
-                            setIsSpinLocked(false);
-                            if (spinLockTimeoutRef.current) {
-                              clearTimeout(spinLockTimeoutRef.current);
-                              spinLockTimeoutRef.current = null;
+                            
+                            // Play appropriate sound based on result
+                            let hasWinAnimation = false;
+                            if (result.totalWin >= bet * 50) {
+                              slotSounds.playBigWin();
+                              setIsWinAnimating(true);
+                              setWinAmount(result.totalWin);
+                              hasWinAnimation = true;
+                              setTimeout(() => setIsWinAnimating(false), 2000);
+                            } else if (result.totalWin >= bet * 10) {
+                              slotSounds.playMediumWin();
+                              setIsWinAnimating(true);
+                              setWinAmount(result.totalWin);
+                              hasWinAnimation = true;
+                              setTimeout(() => setIsWinAnimating(false), 2000);
+                            } else if (result.totalWin > 0) {
+                              slotSounds.playSmallWin();
+                              setIsWinAnimating(true);
+                              setWinAmount(result.totalWin);
+                              hasWinAnimation = true;
+                              setTimeout(() => setIsWinAnimating(false), 2000);
+                            } else if (!result.bonusTriggered) {
+                              slotSounds.playNoWin();
                             }
-                          }, spinLockDelay);
+                            
+                            if (result.wins.length > 0) {
+                              setShowWinLines(true);
+                            }
+                            
+                            pendingResultRef.current = null;
+                            
+                            setIsSpinning(false);
+                            setTeaseReels([]);
+                            setActiveTeaseReelIndex(null);
+                            setActiveSlowdownReel(-1);
+                            
+                            const spinLockDelay = hasWinAnimation ? 2000 : 500;
+                            setTimeout(() => {
+                              spinLockRef.current = false;
+                              setIsSpinLocked(false);
+                              if (spinLockTimeoutRef.current) {
+                                clearTimeout(spinLockTimeoutRef.current);
+                                spinLockTimeoutRef.current = null;
+                              }
+                            }, spinLockDelay);
+                          }
+                        }}
+                        teaseMode={teaseReels.includes(colIndex)}
+                        isActiveTeaseReel={teaseReels.includes(colIndex) && activeTeaseReelIndex === colIndex}
+                        scatterLandedOnPreviousReel={scatterReelsLanded.has(teaseInfo.lastScatterReel)}
+                        extendedFakeLoop={teaseInfo.lateScatter && colIndex === 4}
+                        globalTeaseActive={teaseReels.length > 0 && isSpinning && activeTeaseReelIndex !== null}
+                        hasLandedScatter={scatterReelsLanded.has(colIndex) && scatterReelsLanded.size >= 2 && isSpinning}
+                        isScatterCelebrating={showScatterCelebration}
+                        isDarkenedForTease={
+                          (scatterReelsLanded.size >= 2 && isSpinning) || 
+                          (bonusState.isActive && pendingExpandedReelsRef.current.length > 0 && !showExpansionDarken && expandedReels.length === 0 && !isSpinning)
                         }
-                      }}
-                      teaseMode={teaseReels.includes(colIndex)}
-                      isActiveTeaseReel={teaseReels.includes(colIndex) && activeTeaseReelIndex === colIndex}
-                      scatterLandedOnPreviousReel={scatterReelsLanded.has(teaseInfo.lastScatterReel)}
-                      extendedFakeLoop={teaseInfo.lateScatter && colIndex === 4}
-                      globalTeaseActive={teaseReels.length > 0 && isSpinning && activeTeaseReelIndex !== null}
-                      hasLandedScatter={scatterReelsLanded.has(colIndex) && scatterReelsLanded.size >= 2 && isSpinning}
-                      isScatterCelebrating={showScatterCelebration}
-                      isDarkenedForTease={
-                        (scatterReelsLanded.size >= 2 && isSpinning) || 
-                        (bonusState.isActive && pendingExpandedReelsRef.current.length > 0 && !showExpansionDarken && expandedReels.length === 0 && !isSpinning)
-                      }
-                      isDarkenedForExpansion={showExpansionDarken && !expandedReels.includes(colIndex)}
-                    />
-                    {/* Separator line between reels */}
-                    {colIndex < 4 && (
-                      <div className="w-[1px] sm:w-[2px] bg-amber-950/70 self-stretch" />
-                    )}
+                        isDarkenedForExpansion={showExpansionDarken && !expandedReels.includes(colIndex)}
+                      />
+                      {colIndex < 4 && (
+                        <div className="w-[1px] sm:w-[2px] bg-amber-950/70 self-stretch" />
+                      )}
                     </React.Fragment>
                   ))}
                   
@@ -961,9 +833,9 @@ export function SlotGame() {
               </div>
             </SlotMachineFrame>
           </div>
-          {/* Bonus Status Bar + Control Panel - clean responsive layout */}
+
+          {/* Bonus Status Bar + Control Panel */}
           <div className="mt-3 sm:mt-4">
-            {/* Bonus Status Bar - positioned just above controls */}
             <div className="max-w-fit mx-auto mb-2 sm:mb-3">
               <BonusStatusBar
                 isActive={bonusState.isActive}
@@ -973,7 +845,7 @@ export function SlotGame() {
                 bonusWinnings={bonusState.bonusWinnings}
               />
             </div>
-            {/* Control Panel with glass effect */}
+            
             <div className="rounded-xl backdrop-blur-md bg-amber-950/40 border border-amber-500/20 p-2 sm:p-3 shadow-lg">
               <SlotControlPanel
                 bet={bet}
