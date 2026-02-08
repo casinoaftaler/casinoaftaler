@@ -87,7 +87,7 @@ export function SlotMachineFrame({
 
   return (
     <div 
-      className="relative"
+      className="relative isolate"
       style={{
         marginTop: marginTop != null ? `${marginTop}px` : undefined,
         marginLeft: hasFrame && imageLoaded ? `${effectiveFrameSize}px` : undefined,
