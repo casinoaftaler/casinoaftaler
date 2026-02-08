@@ -186,6 +186,7 @@ Deno.serve(async (req) => {
     const { url } = await req.json();
 
     if (!url || typeof url !== 'string') {
+      // Return 200 with validation failure so client can read the message
       return new Response(
         JSON.stringify({ 
           valid: false, 
@@ -196,7 +197,7 @@ Deno.serve(async (req) => {
           clipId: null,
           metadata: { requiresManualReview: false },
         } as ValidationResult),
-        { status: 400, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
+        { headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
       );
     }
 
@@ -209,6 +210,7 @@ Deno.serve(async (req) => {
       const urlToValidate = originalUrl.startsWith('http') ? originalUrl : `https://${originalUrl}`;
       parsedUrl = new URL(urlToValidate);
     } catch {
+      // Return 200 with validation failure so client can read the message
       return new Response(
         JSON.stringify({ 
           valid: false, 
@@ -219,7 +221,7 @@ Deno.serve(async (req) => {
           clipId: null,
           metadata: { requiresManualReview: false },
         } as ValidationResult),
-        { status: 400, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
+        { headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
       );
     }
 
@@ -233,17 +235,18 @@ Deno.serve(async (req) => {
     const platform = detectPlatform(resolvedUrl);
     
     if (platform === 'unknown') {
+      // Return 200 with validation failure so client can read the message
       return new Response(
         JSON.stringify({ 
           valid: false, 
-          error: 'Only Twitch and YouTube clips are supported',
+          error: 'Kun Twitch og YouTube clips understøttes. Sørg for at linket fører til en Twitch eller YouTube video.',
           originalUrl,
           resolvedUrl,
           platform: 'unknown',
           clipId: null,
           metadata: { requiresManualReview: false },
         } as ValidationResult),
-        { status: 400, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
+        { headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
       );
     }
 
@@ -269,17 +272,18 @@ Deno.serve(async (req) => {
     
     if (metadata.durationSeconds !== undefined) {
       if (metadata.durationSeconds > maxDuration) {
+        // Return 200 with validation failure so client can read the message
         return new Response(
           JSON.stringify({ 
             valid: false, 
-            error: `Clip is too long (${Math.round(metadata.durationSeconds)}s). Maximum allowed is 2 minutes.`,
+            error: `Clip er for lang (${Math.round(metadata.durationSeconds)}s). Maksimalt tilladt er 2 minutter.`,
             originalUrl,
             resolvedUrl,
             platform,
             clipId,
             metadata: { ...metadata, requiresManualReview: false },
           } as ValidationResult),
-          { status: 400, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
+          { headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
         );
       }
     } else {
