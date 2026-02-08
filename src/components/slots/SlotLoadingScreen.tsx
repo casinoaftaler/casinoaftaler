@@ -6,6 +6,7 @@ import defaultSlotBackground from "@/assets/slots/slot-background.jpg";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
 import { useSlotSymbols } from "@/hooks/useSlotSymbols";
 import { useSlotSymbolPreloader } from "@/hooks/useSlotSymbolPreloader";
+import { useSlotSoundFiles } from "@/hooks/useSlotSoundFiles";
 import { cn } from "@/lib/utils";
 import { getSlotTheme } from "@/lib/slotTheme";
 
@@ -14,10 +15,59 @@ interface SlotLoadingScreenProps {
   gameId?: string;
 }
 
+/**
+ * Preload an array of audio URLs and return a readiness flag.
+ * Each URL creates an HTMLAudioElement whose `canplaythrough` (or error) event
+ * counts toward completion.
+ */
+function useAudioPreloader(urls: (string | null | undefined)[]) {
+  const [ready, setReady] = useState(false);
+
+  const key = urls.filter(Boolean).join(",");
+
+  useEffect(() => {
+    const validUrls = urls.filter(Boolean) as string[];
+    if (validUrls.length === 0) {
+      setReady(true);
+      return;
+    }
+
+    setReady(false);
+    let loaded = 0;
+
+    const done = () => {
+      loaded++;
+      if (loaded >= validUrls.length) setReady(true);
+    };
+
+    const elements: HTMLAudioElement[] = validUrls.map((url) => {
+      const a = new Audio();
+      a.preload = "auto";
+      a.addEventListener("canplaythrough", done, { once: true });
+      a.addEventListener("error", done, { once: true }); // don't block on errors
+      a.src = url;
+      return a;
+    });
+
+    return () => {
+      elements.forEach((a) => {
+        a.removeEventListener("canplaythrough", done);
+        a.removeEventListener("error", done);
+        a.pause();
+        a.src = "";
+      });
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [key]);
+
+  return ready;
+}
+
 export function SlotLoadingScreen({ onComplete, gameId = "book-of-fedesvin" }: SlotLoadingScreenProps) {
   const [minTimeElapsed, setMinTimeElapsed] = useState(false);
-  const { data: siteSettings } = useSiteSettings();
+  const { data: siteSettings, isLoading: settingsLoading } = useSiteSettings();
   const { data: symbols } = useSlotSymbols(gameId);
+  const { data: soundFiles } = useSlotSoundFiles(gameId);
   const theme = getSlotTheme(gameId);
   const isWizard = gameId === "rise-of-fedesvin";
   
@@ -30,14 +80,28 @@ export function SlotLoadingScreen({ onComplete, gameId = "book-of-fedesvin" }: S
   const frameKey = isWizard ? "rise_of_fedesvin_frame_image" : "slot_machine_frame_image";
   const frameImage = siteSettings?.[frameKey] || siteSettings?.slot_machine_frame_image;
   
-  // Preload symbols AND frame/background/title images together
-  const additionalImages = useMemo(() => [
-    frameImage,
-    siteSettings?.[titleKey],
-    siteSettings?.[bgKey],
-  ], [frameImage, siteSettings, titleKey, bgKey]);
+  // ── Image preloading ──────────────────────────────────────────────
+  // Only build the list once siteSettings has loaded so we don't
+  // accidentally preload an empty list and mark "done" instantly.
+  const additionalImages = useMemo(() => {
+    if (settingsLoading) return []; // settings not ready yet – keep list empty
+    return [frameImage, siteSettings?.[titleKey], siteSettings?.[bgKey]];
+  }, [frameImage, siteSettings, titleKey, bgKey, settingsLoading]);
   
   const { isLoaded: assetsLoaded, progress: assetProgress } = useSlotSymbolPreloader(symbols, additionalImages);
+
+  // ── Sound preloading ──────────────────────────────────────────────
+  const soundUrls = useMemo(() => {
+    if (!soundFiles) return [];
+    return Object.values(soundFiles).filter(Boolean) as string[];
+  }, [soundFiles]);
+
+  const soundsReady = useAudioPreloader(soundUrls);
+
+  // ── Gate: everything must be ready ────────────────────────────────
+  // Settings, symbols, images AND sounds must all be loaded.
+  const allDataReady = !settingsLoading && !!siteSettings && !!symbols;
+  const everythingLoaded = allDataReady && assetsLoaded && soundsReady;
 
   // Minimum display time for loading screen
   useEffect(() => {
@@ -48,17 +112,18 @@ export function SlotLoadingScreen({ onComplete, gameId = "book-of-fedesvin" }: S
     return () => clearTimeout(timer);
   }, []);
 
-  // Complete when both minimum time has passed AND assets are loaded
+  // Complete when both minimum time has passed AND everything is loaded
   useEffect(() => {
-    if (minTimeElapsed && assetsLoaded) {
+    if (minTimeElapsed && everythingLoaded) {
       setTimeout(onComplete, 200);
     }
-  }, [minTimeElapsed, assetsLoaded, onComplete]);
+  }, [minTimeElapsed, everythingLoaded, onComplete]);
 
-  // Combined progress: 50% for time, 50% for assets
-  const timeProgress = minTimeElapsed ? 50 : 0;
-  const assetProgressScaled = (assetProgress / 100) * 50;
-  const totalProgress = Math.min(timeProgress + assetProgressScaled, 100);
+  // Combined progress: 40% for time, 40% for images, 20% for sounds
+  const timeProgress = minTimeElapsed ? 40 : 0;
+  const assetProgressScaled = (assetProgress / 100) * 40;
+  const soundProgress = soundsReady ? 20 : (soundUrls.length > 0 ? 5 : 20); // small base while loading
+  const totalProgress = Math.min(timeProgress + assetProgressScaled + soundProgress, 100);
 
   return (
     <div className="min-h-[calc(100vh-4rem)] relative flex flex-col items-center justify-center overflow-hidden">
@@ -138,7 +203,7 @@ export function SlotLoadingScreen({ onComplete, gameId = "book-of-fedesvin" }: S
             "text-center text-sm font-medium",
             isWizard ? "text-purple-400/80" : "text-amber-500/80"
           )}>
-            {assetsLoaded ? "Klar!" : "Indlæser..."} {Math.round(totalProgress)}%
+            {everythingLoaded ? "Klar!" : "Indlæser..."} {Math.round(totalProgress)}%
           </p>
         </div>
       </div>
