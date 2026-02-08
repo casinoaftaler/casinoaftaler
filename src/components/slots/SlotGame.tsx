@@ -754,17 +754,10 @@ export function SlotGame({ gameId = "book-of-fedesvin" }: SlotGameProps) {
                             const reelsExpanded = pendingExpandedReelsRef.current;
                             const isBonusSpin = isBonusSpinRef.current;
                             
-                            // Apply bonus state update (after reels stopped)
-                            // For fresh bonus triggers, defer until the trigger overlay closes
-                            // so the BonusStatusBar doesn't spoil the expanding symbol
-                            if (pendingBonusStateRef.current) {
-                              if (!result.bonusTriggered) {
-                                // No bonus/retrigger - apply immediately
-                                updateBonusFromServer(pendingBonusStateRef.current);
-                                pendingBonusStateRef.current = null;
-                              }
-                              // Bonus trigger or retrigger - keep pending, applied when overlay closes
-                            }
+                            // Bonus state update is deferred until AFTER expansion animations
+                            // to prevent BonusStatusBar/BonusSymbolBar from spoiling results.
+                            // For retriggers/triggers, it's applied when overlay closes.
+                            // For regular bonus spins, it's applied below after animations.
                             
                             // Handle bonus expansion animation
                             if (isBonusSpin && reelsExpanded.length > 0 && expandedGrid) {
@@ -903,6 +896,13 @@ export function SlotGame({ gameId = "book-of-fedesvin" }: SlotGameProps) {
                             }
                             
                             pendingResultRef.current = null;
+                            
+                            // Apply deferred bonus state update for regular bonus spins
+                            // (retrigger/trigger overlays handle their own update on close)
+                            if (pendingBonusStateRef.current && !result.bonusTriggered) {
+                              updateBonusFromServer(pendingBonusStateRef.current);
+                              pendingBonusStateRef.current = null;
+                            }
                             
                             // NOW invalidate queries - reels have stopped and result is visible
                             queryClient.invalidateQueries({ queryKey: ["slot-leaderboard"] });
