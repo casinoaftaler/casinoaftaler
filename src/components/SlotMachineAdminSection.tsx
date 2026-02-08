@@ -887,8 +887,8 @@ function SettingsTab({ gameId }: { gameId?: string }) {
           <CardTitle>Billeder</CardTitle>
         </CardHeader>
         <CardContent className="space-y-6">
-          <SlotTitleImageUpload />
-          <SlotBackgroundImageUpload />
+          <SlotTitleImageUpload gameId={gameId} />
+          <SlotBackgroundImageUpload gameId={gameId} />
         </CardContent>
       </Card>
 

@@ -7,17 +7,26 @@ import { useSiteSettings } from "@/hooks/useSiteSettings";
 import { useQueryClient } from "@tanstack/react-query";
 import { Upload, X, Loader2 } from "lucide-react";
 
-export function SlotTitleImageUpload() {
+function getSettingsKey(gameId: string) {
+  if (gameId === "book-of-fedesvin") return "slot_title_image";
+  return `${gameId.replace(/-/g, "_")}_title_image`;
+}
+
+interface SlotTitleImageUploadProps {
+  gameId?: string;
+}
+
+export function SlotTitleImageUpload({ gameId = "book-of-fedesvin" }: SlotTitleImageUploadProps) {
   const { data: siteSettings } = useSiteSettings();
   const [titleImage, setTitleImage] = useState<string | null>(null);
   const [isUploading, setIsUploading] = useState(false);
   const queryClient = useQueryClient();
 
+  const settingsKey = getSettingsKey(gameId);
+
   useEffect(() => {
-    if (siteSettings?.slot_title_image) {
-      setTitleImage(siteSettings.slot_title_image);
-    }
-  }, [siteSettings]);
+    setTitleImage(siteSettings?.[settingsKey] || null);
+  }, [siteSettings, settingsKey]);
 
   const handleImageUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
@@ -26,7 +35,7 @@ export function SlotTitleImageUpload() {
     setIsUploading(true);
     try {
       const fileExt = file.name.split(".").pop();
-      const fileName = `slot-title-${Date.now()}.${fileExt}`;
+      const fileName = `slot-title-${gameId}-${Date.now()}.${fileExt}`;
 
       const { error: uploadError } = await supabase.storage
         .from("casino-logos")
@@ -43,7 +52,7 @@ export function SlotTitleImageUpload() {
 
       await supabase
         .from("site_settings")
-        .upsert({ key: "slot_title_image", value: imageUrl }, { onConflict: "key" });
+        .upsert({ key: settingsKey, value: imageUrl }, { onConflict: "key" });
 
       toast.success("Titelbillede uploadet");
       queryClient.invalidateQueries({ queryKey: ["site-settings"] });
@@ -60,7 +69,7 @@ export function SlotTitleImageUpload() {
       await supabase
         .from("site_settings")
         .update({ value: null })
-        .eq("key", "slot_title_image");
+        .eq("key", settingsKey);
 
       setTitleImage(null);
       toast.success("Titelbillede fjernet (standard billede bruges)");

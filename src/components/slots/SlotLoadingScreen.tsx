@@ -21,7 +21,8 @@ export function SlotLoadingScreen({ onComplete, gameId = "book-of-fedesvin" }: S
   const theme = getSlotTheme(gameId);
   const isWizard = gameId === "rise-of-fedesvin";
   
-  const titleImage = siteSettings?.slot_title_image || defaultTitleImage;
+  const titleKey = isWizard ? "rise_of_fedesvin_title_image" : "slot_title_image";
+  const titleImage = siteSettings?.[titleKey] || (isWizard ? riseTitleImage : defaultTitleImage);
 
   const bgKey = isWizard ? "rise_of_fedesvin_background_image" : "slot_background_image";
   const backgroundImage = siteSettings?.[bgKey] || siteSettings?.slot_background_image || defaultSlotBackground;
@@ -32,9 +33,9 @@ export function SlotLoadingScreen({ onComplete, gameId = "book-of-fedesvin" }: S
   // Preload symbols AND frame/background/title images together
   const additionalImages = useMemo(() => [
     frameImage,
-    siteSettings?.slot_title_image,
+    siteSettings?.[titleKey],
     siteSettings?.[bgKey],
-  ], [frameImage, siteSettings?.slot_title_image, siteSettings?.[bgKey]]);
+  ], [frameImage, siteSettings, titleKey, bgKey]);
   
   const { isLoaded: assetsLoaded, progress: assetProgress } = useSlotSymbolPreloader(symbols, additionalImages);
 
@@ -96,7 +97,7 @@ export function SlotLoadingScreen({ onComplete, gameId = "book-of-fedesvin" }: S
       <div className="flex flex-col items-center gap-8 px-4 animate-fade-in">
         {/* Title */}
         <img 
-          src={isWizard ? riseTitleImage : titleImage} 
+          src={titleImage} 
           alt={isWizard ? "Rise of Fedesvin" : "Book of Fedesvin"} 
           className="w-full max-w-[280px] sm:max-w-md md:max-w-lg h-auto"
           style={{
