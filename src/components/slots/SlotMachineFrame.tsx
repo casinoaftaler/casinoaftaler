@@ -19,7 +19,7 @@ const GAME_FRAME_DEFAULTS: Record<string, number> = {
 // Per-game vertical offset for the frame IMAGE only (negative = frame moves up, positive = down)
 // This moves the frame independently from the reels
 const GAME_FRAME_VERTICAL_OFFSET: Record<string, number> = {
-  "rise-of-fedesvin": -30,
+  "rise-of-fedesvin": -40,
 };
 
 // Per-game content (reels) vertical offset in px (positive = move reels down inside frame)
