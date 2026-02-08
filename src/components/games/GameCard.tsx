@@ -56,16 +56,31 @@ export function GameCard({ title, description, image, href, status, badge, title
           </div>
         )}
 
-        {/* Coming soon overlay */}
-        {!isActive && (
-          <div className="absolute inset-0 flex flex-col items-center justify-center bg-black/40 backdrop-blur-[1px] gap-4">
-            {titleLogo && (
+        {/* Title logo overlay - centered in image */}
+        {titleLogo && (
+          <div className={cn(
+            "absolute inset-0 flex items-center justify-center pointer-events-none",
+            !isActive && "bg-black/40 backdrop-blur-[1px]"
+          )}>
+            <div className="flex flex-col items-center gap-4">
               <img
                 src={titleLogo}
                 alt={title}
                 className="w-3/4 max-w-[280px] h-auto drop-shadow-[0_0_20px_rgba(251,191,36,0.4)]"
               />
-            )}
+              {!isActive && (
+                <Badge className="border-amber-500/30 bg-amber-500/20 text-amber-300 text-sm px-4 py-1.5 gap-1.5">
+                  <Clock className="h-3.5 w-3.5" />
+                  Kommer snart
+                </Badge>
+              )}
+            </div>
+          </div>
+        )}
+
+        {/* Coming soon overlay (no logo) */}
+        {!isActive && !titleLogo && (
+          <div className="absolute inset-0 flex items-center justify-center bg-black/50 backdrop-blur-[2px]">
             <Badge className="border-amber-500/30 bg-amber-500/20 text-amber-300 text-sm px-4 py-1.5 gap-1.5">
               <Clock className="h-3.5 w-3.5" />
               Kommer snart
