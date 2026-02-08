@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { useAuth } from "@/hooks/useAuth";
 import { useProfile, ProfileUpdateData } from "@/hooks/useProfile";
 import { useProfileRewards, getSectionCompletionStatus } from "@/hooks/useProfileRewards";
+import { useUserPoints } from "@/hooks/useUserPoints";
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { ProfileBasicSection } from "@/components/profile/ProfileBasicSection";
@@ -11,6 +12,7 @@ import { ProfileFavoritesSection } from "@/components/profile/ProfileFavoritesSe
 import { ProfilePlayStyleSection } from "@/components/profile/ProfilePlayStyleSection";
 import { ProfilePrivacySection } from "@/components/profile/ProfilePrivacySection";
 import { ProfileRewardsProgress } from "@/components/profile/ProfileRewardsProgress";
+import { PointsBalanceCard } from "@/components/PointsBalanceCard";
 import { Loader2, Save, User, Trophy, Heart, Zap, Shield } from "lucide-react";
 
 export default function Profile() {
@@ -18,6 +20,7 @@ export default function Profile() {
   const { user, loading: authLoading } = useAuth();
   const { profile, isLoading: profileLoading, updateProfile, isUpdating } = useProfile();
   const { claimReward, checkAndClaimRewards } = useProfileRewards();
+  const { data: pointsData, isLoading: pointsLoading } = useUserPoints(user?.id);
   
   const [formData, setFormData] = useState({
     display_name: "",
@@ -153,6 +156,14 @@ export default function Profile() {
           Administrer din gambling-persona og præferencer
         </p>
       </div>
+
+      {/* Points Balance */}
+      <PointsBalanceCard
+        points={pointsData?.total_winnings}
+        isLoading={pointsLoading}
+        variant="hero"
+        className="mb-6"
+      />
 
       {/* Rewards Progress */}
       <ProfileRewardsProgress
