@@ -95,11 +95,13 @@ export function useServerSpin(gameId: string = "book-of-fedesvin") {
       return data;
     },
     onSuccess: (data) => {
-      // Invalidate relevant queries to refresh state
-      queryClient.invalidateQueries({ queryKey: ["slot-spins"] });
-      queryClient.invalidateQueries({ queryKey: ["slot-leaderboard"] });
+      // IMPORTANT: Do NOT invalidate leaderboard or spins queries here!
+      // The server responds before the reels finish spinning, so invalidating
+      // these queries would reveal the win result (via leaderboard totals or
+      // spins count) before the player sees it. Invalidation is handled in
+      // SlotGame.tsx after all reels have stopped and the result is displayed.
       
-      // Update spins cache immediately for responsive UI
+      // Only update spins cache immediately (spending spins is expected UX)
       if (data.spinsRemaining !== undefined) {
         const today = new Date().toISOString().split("T")[0];
         queryClient.setQueryData(

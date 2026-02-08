@@ -904,6 +904,9 @@ export function SlotGame({ gameId = "book-of-fedesvin" }: SlotGameProps) {
                             
                             pendingResultRef.current = null;
                             
+                            // NOW invalidate queries - reels have stopped and result is visible
+                            queryClient.invalidateQueries({ queryKey: ["slot-leaderboard"] });
+                            
                             setIsSpinning(false);
                             setTeaseReels([]);
                             setActiveTeaseReelIndex(null);
