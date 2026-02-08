@@ -4,17 +4,33 @@ import { supabase } from "@/integrations/supabase/client";
 import { useAuth } from "@/hooks/useAuth";
 
 const SESSION_STORAGE_KEY = "slot_page_access_granted";
+const RISE_SESSION_STORAGE_KEY = "rise_slot_page_access_granted";
 
 interface SlotPageAccessSettings {
   isLocked: boolean;
   password: string;
 }
 
-export function useSlotPageAccess() {
+const GAME_SETTINGS_KEYS: Record<string, { lockedKey: string; passwordKey: string; sessionKey: string }> = {
+  "book-of-fedesvin": {
+    lockedKey: "slot_page_locked",
+    passwordKey: "slot_page_password",
+    sessionKey: SESSION_STORAGE_KEY,
+  },
+  "rise-of-fedesvin": {
+    lockedKey: "rise_of_fedesvin_locked",
+    passwordKey: "rise_of_fedesvin_password",
+    sessionKey: RISE_SESSION_STORAGE_KEY,
+  },
+};
+
+export function useSlotPageAccess(gameId: string = "book-of-fedesvin") {
   const { user } = useAuth();
   const [hasSessionAccess, setHasSessionAccess] = useState(false);
   const [isAdmin, setIsAdmin] = useState(false);
   const [error, setError] = useState<string | null>(null);
+
+  const gameKeys = GAME_SETTINGS_KEYS[gameId] || GAME_SETTINGS_KEYS["book-of-fedesvin"];
 
   // Check if user is admin
   useEffect(() => {
@@ -45,20 +61,20 @@ export function useSlotPageAccess() {
 
   // Check session storage for previous access
   useEffect(() => {
-    const stored = sessionStorage.getItem(SESSION_STORAGE_KEY);
+    const stored = sessionStorage.getItem(gameKeys.sessionKey);
     if (stored === "true") {
       setHasSessionAccess(true);
     }
-  }, []);
+  }, [gameKeys.sessionKey]);
 
   // Fetch lock settings from database
   const { data: settings, isLoading } = useQuery({
-    queryKey: ["slot-page-access-settings"],
+    queryKey: ["slot-page-access-settings", gameId],
     queryFn: async (): Promise<SlotPageAccessSettings> => {
       const { data, error } = await supabase
         .from("site_settings")
         .select("key, value")
-        .in("key", ["slot_page_locked", "slot_page_password"]);
+        .in("key", [gameKeys.lockedKey, gameKeys.passwordKey]);
 
       if (error) throw error;
 
@@ -68,8 +84,8 @@ export function useSlotPageAccess() {
       });
 
       return {
-        isLocked: settingsMap.slot_page_locked === "true",
-        password: settingsMap.slot_page_password || "",
+        isLocked: settingsMap[gameKeys.lockedKey] === "true",
+        password: settingsMap[gameKeys.passwordKey] || "",
       };
     },
   });
@@ -88,19 +104,19 @@ export function useSlotPageAccess() {
     }
 
     if (inputPassword === settings.password) {
-      sessionStorage.setItem(SESSION_STORAGE_KEY, "true");
+      sessionStorage.setItem(gameKeys.sessionKey, "true");
       setHasSessionAccess(true);
       return true;
     } else {
       setError("Forkert password");
       return false;
     }
-  }, [settings?.password]);
+  }, [settings?.password, gameKeys.sessionKey]);
 
   const clearAccess = useCallback(() => {
-    sessionStorage.removeItem(SESSION_STORAGE_KEY);
+    sessionStorage.removeItem(gameKeys.sessionKey);
     setHasSessionAccess(false);
-  }, []);
+  }, [gameKeys.sessionKey]);
 
   return {
     isLocked,

@@ -676,6 +676,8 @@ function SettingsTab({ gameId }: { gameId?: string }) {
     maxBet: 10,
     pageLocked: true,
     pagePassword: "",
+    riseLocked: true,
+    risePassword: "",
     spinLoopMs: 600,
     reelStaggerMs: 150,
     reelSlowdownMs: 300,
@@ -689,6 +691,8 @@ function SettingsTab({ gameId }: { gameId?: string }) {
         maxBet: settings.maxBet,
         pageLocked: settings.pageLocked,
         pagePassword: settings.pagePassword,
+        riseLocked: settings.riseLocked,
+        risePassword: settings.risePassword,
         spinLoopMs: settings.spinLoopMs,
         reelStaggerMs: settings.reelStaggerMs,
         reelSlowdownMs: settings.reelSlowdownMs,
@@ -698,10 +702,6 @@ function SettingsTab({ gameId }: { gameId?: string }) {
 
   const handleSave = () => {
     updateSettings.mutate(formData);
-  };
-
-  const handleLockToggle = (checked: boolean) => {
-    setFormData({ ...formData, pageLocked: checked });
   };
 
   if (isLoading) {
@@ -714,26 +714,26 @@ function SettingsTab({ gameId }: { gameId?: string }) {
 
   return (
     <div className="space-y-6">
-      {/* Page Access Control */}
+      {/* Page Access Control - Book of Fedesvin */}
       <Card>
         <CardHeader>
           <CardTitle className="flex items-center gap-2">
             <Lock className="h-5 w-5" />
-            Adgangskontrol
+            Adgangskontrol — Book of Fedesvin
           </CardTitle>
         </CardHeader>
         <CardContent className="space-y-6">
           <div className="flex items-center justify-between">
             <div className="space-y-1">
-              <Label htmlFor="page-locked" className="font-medium">Lås Spillemaskine-siden</Label>
+              <Label htmlFor="page-locked" className="font-medium">Lås Book of Fedesvin</Label>
               <p className="text-sm text-muted-foreground">
-                Når aktiveret, skal brugere indtaste et password for at få adgang til siden.
+                Når aktiveret, skal brugere indtaste et password for at få adgang.
               </p>
             </div>
             <Switch
               id="page-locked"
               checked={formData.pageLocked}
-              onCheckedChange={handleLockToggle}
+              onCheckedChange={(checked) => setFormData({ ...formData, pageLocked: checked })}
             />
           </div>
 
@@ -747,9 +747,44 @@ function SettingsTab({ gameId }: { gameId?: string }) {
                 onChange={(e) => setFormData({ ...formData, pagePassword: e.target.value })}
                 placeholder="Indtast adgangskode..."
               />
+            </div>
+          )}
+        </CardContent>
+      </Card>
+
+      {/* Page Access Control - Rise of Fedesvin */}
+      <Card>
+        <CardHeader>
+          <CardTitle className="flex items-center gap-2">
+            <Lock className="h-5 w-5" />
+            Adgangskontrol — Rise of Fedesvin
+          </CardTitle>
+        </CardHeader>
+        <CardContent className="space-y-6">
+          <div className="flex items-center justify-between">
+            <div className="space-y-1">
+              <Label htmlFor="rise-locked" className="font-medium">Lås Rise of Fedesvin</Label>
               <p className="text-sm text-muted-foreground">
-                Brugere skal indtaste denne adgangskode for at få adgang til spillemaskinen.
+                Når aktiveret, skal brugere indtaste et password for at få adgang.
               </p>
+            </div>
+            <Switch
+              id="rise-locked"
+              checked={formData.riseLocked}
+              onCheckedChange={(checked) => setFormData({ ...formData, riseLocked: checked })}
+            />
+          </div>
+
+          {formData.riseLocked && (
+            <div className="space-y-2 pt-2 border-t">
+              <Label htmlFor="rise-password">Adgangskode</Label>
+              <Input
+                id="rise-password"
+                type="text"
+                value={formData.risePassword}
+                onChange={(e) => setFormData({ ...formData, risePassword: e.target.value })}
+                placeholder="Indtast adgangskode..."
+              />
             </div>
           )}
         </CardContent>

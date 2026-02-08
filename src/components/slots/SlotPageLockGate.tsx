@@ -8,9 +8,10 @@ interface SlotPageLockGateProps {
   onVerify: (password: string) => boolean;
   error: string | null;
   promo?: React.ReactNode;
+  gameName?: string;
 }
 
-export function SlotPageLockGate({ backgroundImage, onVerify, error, promo }: SlotPageLockGateProps) {
+export function SlotPageLockGate({ backgroundImage, onVerify, error, promo, gameName = "Book of Fedesvin" }: SlotPageLockGateProps) {
   const [password, setPassword] = useState("");
   const [localError, setLocalError] = useState<string | null>(null);
 
@@ -58,7 +59,7 @@ export function SlotPageLockGate({ backgroundImage, onVerify, error, promo }: Sl
             Spillemaskinen er lukket
           </h1>
           <p className="text-muted-foreground text-center mb-6">
-            Indtast password for at få adgang til Book of Fedesvin
+            Indtast password for at få adgang til {gameName}
           </p>
 
           {/* Password Form */}
