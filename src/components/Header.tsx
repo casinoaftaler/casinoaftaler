@@ -16,6 +16,7 @@ import { useTwitchStatus } from "@/hooks/useTwitchStatus";
 import { useAuth } from "@/hooks/useAuth";
 import { useQuery } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
+import { NotificationDropdown } from "./NotificationDropdown";
 export function Header() {
   const navigate = useNavigate();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -160,6 +161,9 @@ export function Header() {
           <div className="hidden lg:block">
             <ThemeToggle />
           </div>
+          
+          {/* Notification bell for logged-in users */}
+          {!authLoading && user && <NotificationDropdown />}
           
           {/* User menu / Login button */}
           {!authLoading && (
