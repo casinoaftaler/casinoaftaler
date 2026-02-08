@@ -59,7 +59,9 @@ export function SlotMachineFrame({
   
   // Use game-specific frame/size if available, fallback to global
   const gamePrefix = gameId === "book-of-fedesvin" ? "" : gameId.replace(/-/g, "_") + "_";
-  const frameImageUrl = (gamePrefix ? settings?.[`${gamePrefix}frame_image`] : null) || settings?.slot_machine_frame_image;
+  const frameImageUrl = gamePrefix 
+    ? (settings?.[`${gamePrefix}frame_image`] || null)
+    : (settings?.slot_machine_frame_image || null);
   const frameSizeKey = gamePrefix ? `${gamePrefix}frame_size` : "slot_frame_size";
   const gameDefault = GAME_FRAME_DEFAULTS[gameId] ?? 90;
   const baseFrameSize = parseInt(settings?.[frameSizeKey] || settings?.slot_frame_size || String(gameDefault), 10);
@@ -82,13 +84,6 @@ export function SlotMachineFrame({
     ? effectiveFrameSize + Math.max(0, effectiveFrameOffset)
     : undefined;
 
-  // DEBUG: Log all computed values to verify they're applied
-  console.log(`[SlotMachineFrame] gameId=${gameId}, hasFrame=${hasFrame}, imageLoaded=${imageLoaded}, imageError=${imageError}`);
-  console.log(`[SlotMachineFrame] frameImageUrl=${frameImageUrl}`);
-  console.log(`[SlotMachineFrame] baseFrameSize=${baseFrameSize}, effectiveFrameSize=${effectiveFrameSize}`);
-  console.log(`[SlotMachineFrame] frameVerticalOffset=${frameVerticalOffset}, effectiveFrameOffset=${effectiveFrameOffset}`);
-  console.log(`[SlotMachineFrame] contentVerticalOffset=${contentVerticalOffset}, effectiveContentOffset=${effectiveContentOffset}`);
-  console.log(`[SlotMachineFrame] marginTop=${marginTop}, marginBottom=${marginBottom}`);
 
   return (
     <div 
