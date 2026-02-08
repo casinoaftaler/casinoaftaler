@@ -137,10 +137,9 @@ export default function GameLibrary() {
           ))}
         </div>
 
-        {/* Leaderboards */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 max-w-4xl mx-auto">
+        {/* Leaderboard */}
+        <div className="max-w-md mx-auto">
           <SlotLeaderboard gameId="book-of-fedesvin" />
-          <SlotLeaderboard gameId="rise-of-fedesvin" />
         </div>
       </div>
     </div>
