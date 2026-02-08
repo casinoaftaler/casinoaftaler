@@ -2,32 +2,28 @@ import { createClient } from "npm:@supabase/supabase-js@^2.87.1";
 
 const corsHeaders = {
   "Access-Control-Allow-Origin": "*",
-  "Access-Control-Allow-Headers": "authorization, x-client-info, apikey, content-type",
+  "Access-Control-Allow-Headers": "authorization, x-client-info, apikey, content-type, x-supabase-client-platform, x-supabase-client-platform-version, x-supabase-client-runtime, x-supabase-client-runtime-version",
 };
 
 Deno.serve(async (req) => {
-  // Handle CORS preflight requests
   if (req.method === "OPTIONS") {
-    return new Response(null, { headers: corsHeaders });
+    return new Response("ok", { headers: corsHeaders });
   }
 
   try {
     const supabaseUrl = Deno.env.get("SUPABASE_URL");
     const supabaseServiceRoleKey = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY");
+    const anonKey = Deno.env.get("SUPABASE_ANON_KEY");
 
-    if (!supabaseUrl || !supabaseServiceRoleKey) {
-      throw new Error("Missing environment variables");
+    if (!supabaseUrl || !supabaseServiceRoleKey || !anonKey) {
+      console.error("Missing environment variables");
+      return new Response(
+        JSON.stringify({ error: "Server konfiguration mangler" }),
+        { status: 500, headers: { ...corsHeaders, "Content-Type": "application/json" } }
+      );
     }
 
-    // Create admin client with service role
-    const supabaseAdmin = createClient(supabaseUrl, supabaseServiceRoleKey, {
-      auth: {
-        autoRefreshToken: false,
-        persistSession: false,
-      },
-    });
-
-    // Validate caller auth
+    // Validate auth header
     const authHeader = req.headers.get("authorization") ?? req.headers.get("Authorization");
     if (!authHeader?.startsWith("Bearer ")) {
       console.log("Missing/invalid Authorization header");
@@ -37,35 +33,31 @@ Deno.serve(async (req) => {
       );
     }
 
-    const token = authHeader.replace("Bearer ", "").trim();
-
-    const anonKey = Deno.env.get("SUPABASE_ANON_KEY");
-    if (!anonKey) {
-      console.error("Missing SUPABASE_ANON_KEY env var");
-      return new Response(
-        JSON.stringify({ error: "Server konfiguration mangler" }),
-        { status: 500, headers: { ...corsHeaders, "Content-Type": "application/json" } }
-      );
-    }
-
-    const supabaseClient = createClient(supabaseUrl, anonKey, {
+    // User-context client to validate the caller
+    const userClient = createClient(supabaseUrl, anonKey, {
       global: { headers: { Authorization: authHeader } },
       auth: { persistSession: false, autoRefreshToken: false },
     });
 
-    // Verify JWT and get user id from claims
-    const { data: claimsData, error: claimsError } = await supabaseClient.auth.getClaims(token);
-    if (claimsError || !claimsData?.claims?.sub) {
-      console.log("JWT claims verification failed", claimsError);
+    // Verify the caller's identity
+    const { data: userData, error: userError } = await userClient.auth.getUser();
+    if (userError || !userData?.user) {
+      console.log("User verification failed:", userError?.message);
       return new Response(
         JSON.stringify({ error: "Ikke autoriseret" }),
         { status: 401, headers: { ...corsHeaders, "Content-Type": "application/json" } }
       );
     }
 
-    const requesterUserId = claimsData.claims.sub;
+    const requesterUserId = userData.user.id;
+    console.log(`Request from user: ${requesterUserId}`);
 
-    // Check if user is admin using the has_role function
+    // Service-role client for admin operations
+    const supabaseAdmin = createClient(supabaseUrl, supabaseServiceRoleKey, {
+      auth: { autoRefreshToken: false, persistSession: false },
+    });
+
+    // Check if requester is admin
     const { data: isAdmin, error: roleError } = await supabaseAdmin
       .rpc("has_role", { _user_id: requesterUserId, _role: "admin" });
 
@@ -110,7 +102,7 @@ Deno.serve(async (req) => {
     const { data: newUser, error: createError } = await supabaseAdmin.auth.admin.createUser({
       email,
       password,
-      email_confirm: true, // Auto-confirm the email
+      email_confirm: true,
     });
 
     if (createError) {
@@ -130,17 +122,13 @@ Deno.serve(async (req) => {
 
     console.log(`User created: ${newUser.user.id}`);
 
-    // Assign admin role to the new user
+    // Assign admin role
     const { error: roleInsertError } = await supabaseAdmin
       .from("user_roles")
-      .insert({
-        user_id: newUser.user.id,
-        role: "admin",
-      });
+      .insert({ user_id: newUser.user.id, role: "admin" });
 
     if (roleInsertError) {
       console.error("Error assigning admin role:", roleInsertError);
-      // Try to delete the created user if role assignment fails
       await supabaseAdmin.auth.admin.deleteUser(newUser.user.id);
       return new Response(
         JSON.stringify({ error: "Kunne ikke tildele admin rolle" }),
@@ -151,11 +139,7 @@ Deno.serve(async (req) => {
     console.log(`Admin role assigned to user: ${newUser.user.id}`);
 
     return new Response(
-      JSON.stringify({ 
-        success: true, 
-        userId: newUser.user.id,
-        email: newUser.user.email 
-      }),
+      JSON.stringify({ success: true, userId: newUser.user.id, email: newUser.user.email }),
       { status: 200, headers: { ...corsHeaders, "Content-Type": "application/json" } }
     );
   } catch (error: unknown) {
