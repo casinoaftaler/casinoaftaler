@@ -8,6 +8,8 @@ interface SlotSettings {
   maxBet: number;
   pageLocked: boolean;
   pagePassword: string;
+  riseLocked: boolean;
+  risePassword: string;
   spinLoopMs: number;
   reelStaggerMs: number;
   reelSlowdownMs: number;
@@ -22,7 +24,7 @@ export function useSlotSettings() {
       const { data, error } = await supabase
         .from("site_settings")
         .select("key, value")
-        .in("key", ["slot_daily_spins", "slot_min_bet", "slot_max_bet", "slot_page_locked", "slot_page_password", "slot_spin_loop_ms", "slot_reel_stagger_ms", "slot_reel_slowdown_ms"]);
+        .in("key", ["slot_daily_spins", "slot_min_bet", "slot_max_bet", "slot_page_locked", "slot_page_password", "rise_of_fedesvin_locked", "rise_of_fedesvin_password", "slot_spin_loop_ms", "slot_reel_stagger_ms", "slot_reel_slowdown_ms"]);
 
       if (error) throw error;
 
@@ -37,6 +39,8 @@ export function useSlotSettings() {
         maxBet: parseInt(settingsMap.slot_max_bet || "10", 10),
         pageLocked: settingsMap.slot_page_locked === "true",
         pagePassword: settingsMap.slot_page_password || "bookoffedesvin2026",
+        riseLocked: settingsMap.rise_of_fedesvin_locked === "true",
+        risePassword: settingsMap.rise_of_fedesvin_password || "",
         spinLoopMs: parseInt(settingsMap.slot_spin_loop_ms || "600", 10),
         reelStaggerMs: parseInt(settingsMap.slot_reel_stagger_ms || "20", 10),
         reelSlowdownMs: parseInt(settingsMap.slot_reel_slowdown_ms || "300", 10),
@@ -63,6 +67,12 @@ export function useSlotSettings() {
       if (newSettings.pagePassword !== undefined) {
         updates.push({ key: "slot_page_password", value: newSettings.pagePassword });
       }
+      if (newSettings.riseLocked !== undefined) {
+        updates.push({ key: "rise_of_fedesvin_locked", value: String(newSettings.riseLocked) });
+      }
+      if (newSettings.risePassword !== undefined) {
+        updates.push({ key: "rise_of_fedesvin_password", value: newSettings.risePassword });
+      }
       if (newSettings.spinLoopMs !== undefined) {
         updates.push({ key: "slot_spin_loop_ms", value: String(newSettings.spinLoopMs) });
       }
@@ -83,6 +93,7 @@ export function useSlotSettings() {
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["slot-settings"] });
+      queryClient.invalidateQueries({ queryKey: ["slot-page-access-settings"] });
       toast.success("Indstillinger gemt");
     },
     onError: (error: Error) => {
@@ -91,7 +102,7 @@ export function useSlotSettings() {
   });
 
   return {
-    settings: settings ?? { dailySpins: 100, minBet: 1, maxBet: 10, pageLocked: true, pagePassword: "bookoffedesvin2026", spinLoopMs: 600, reelStaggerMs: 20, reelSlowdownMs: 300 },
+    settings: settings ?? { dailySpins: 100, minBet: 1, maxBet: 10, pageLocked: true, pagePassword: "bookoffedesvin2026", riseLocked: true, risePassword: "riseoffedesvin2026", spinLoopMs: 600, reelStaggerMs: 20, reelSlowdownMs: 300 },
     isLoading,
     updateSettings,
   };
