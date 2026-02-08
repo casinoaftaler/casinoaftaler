@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import {
   Dialog,
   DialogContent,
@@ -27,6 +27,7 @@ import { da } from "date-fns/locale";
 import { useAuth } from "@/hooks/useAuth";
 import { cn } from "@/lib/utils";
 import { ClipCategoryBadges } from "./ClipCategoryBadges";
+import { EmojiPicker } from "./EmojiPicker";
 
 interface CommunityClipDetailProps {
   clip: CommunityClipWithStats | null;
@@ -40,6 +41,7 @@ export function CommunityClipDetail({
   onOpenChange,
 }: CommunityClipDetailProps) {
   const [comment, setComment] = useState("");
+  const commentRef = useRef<HTMLTextAreaElement>(null);
   const { user } = useAuth();
   const toggleLike = useToggleLike();
   const { data: comments, isLoading: commentsLoading } = useClipComments(
@@ -47,6 +49,26 @@ export function CommunityClipDetail({
   );
   const addComment = useAddComment();
   const deleteComment = useDeleteComment();
+
+  const handleCommentEmojiSelect = (emoji: string) => {
+    const textarea = commentRef.current;
+    if (!textarea) {
+      setComment((prev) => prev + emoji);
+      return;
+    }
+
+    const start = textarea.selectionStart;
+    const end = textarea.selectionEnd;
+    const newValue = comment.slice(0, start) + emoji + comment.slice(end);
+    setComment(newValue);
+
+    // Restore cursor position after emoji insertion
+    requestAnimationFrame(() => {
+      textarea.focus();
+      const newPos = start + emoji.length;
+      textarea.setSelectionRange(newPos, newPos);
+    });
+  };
 
   if (!clip) return null;
   const isEmbeddable = clip.playback_type === 'embed';
@@ -233,26 +255,32 @@ export function CommunityClipDetail({
             {user ? (
               <form
                 onSubmit={handleSubmitComment}
-                className="p-4 pt-2 border-t flex gap-2"
+                className="p-4 pt-2 border-t space-y-2"
               >
-                <Textarea
-                  placeholder="Skriv en kommentar..."
-                  value={comment}
-                  onChange={(e) => setComment(e.target.value)}
-                  className="min-h-[60px] resize-none"
-                  maxLength={500}
-                />
-                <Button
-                  type="submit"
-                  size="icon"
-                  disabled={!comment.trim() || addComment.isPending}
-                >
-                  {addComment.isPending ? (
-                    <Loader2 className="h-4 w-4 animate-spin" />
-                  ) : (
-                    <Send className="h-4 w-4" />
-                  )}
-                </Button>
+                <div className="flex items-center justify-end">
+                  <EmojiPicker onEmojiSelect={handleCommentEmojiSelect} />
+                </div>
+                <div className="flex gap-2">
+                  <Textarea
+                    ref={commentRef}
+                    placeholder="Skriv en kommentar..."
+                    value={comment}
+                    onChange={(e) => setComment(e.target.value)}
+                    className="min-h-[60px] resize-none"
+                    maxLength={500}
+                  />
+                  <Button
+                    type="submit"
+                    size="icon"
+                    disabled={!comment.trim() || addComment.isPending}
+                  >
+                    {addComment.isPending ? (
+                      <Loader2 className="h-4 w-4 animate-spin" />
+                    ) : (
+                      <Send className="h-4 w-4" />
+                    )}
+                  </Button>
+                </div>
               </form>
             ) : (
               <div className="p-4 pt-2 border-t text-center text-sm text-muted-foreground">

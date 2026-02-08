@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -15,6 +15,7 @@ import {
 import { useSubmitClip, CLIP_CATEGORIES, ClipCategory } from "@/hooks/useCommunityClips";
 import { Plus, Link as LinkIcon, Loader2 } from "lucide-react";
 import { useAuth } from "@/hooks/useAuth";
+import { EmojiPicker } from "./EmojiPicker";
 
 interface ClipSubmitFormProps {
   trigger?: React.ReactNode;
@@ -28,6 +29,27 @@ export function ClipSubmitForm({ trigger }: ClipSubmitFormProps) {
   const [selectedCategories, setSelectedCategories] = useState<ClipCategory[]>([]);
   const [urlError, setUrlError] = useState<string | null>(null);
   const [categoryError, setCategoryError] = useState<string | null>(null);
+  const descriptionRef = useRef<HTMLTextAreaElement>(null);
+
+  const handleDescriptionEmojiSelect = (emoji: string) => {
+    const textarea = descriptionRef.current;
+    if (!textarea) {
+      setDescription((prev) => prev + emoji);
+      return;
+    }
+
+    const start = textarea.selectionStart;
+    const end = textarea.selectionEnd;
+    const newValue = description.slice(0, start) + emoji + description.slice(end);
+    setDescription(newValue);
+
+    // Restore cursor position after emoji insertion
+    requestAnimationFrame(() => {
+      textarea.focus();
+      const newPos = start + emoji.length;
+      textarea.setSelectionRange(newPos, newPos);
+    });
+  };
 
   const { user } = useAuth();
   const submitClip = useSubmitClip();
@@ -190,9 +212,13 @@ export function ClipSubmitForm({ trigger }: ClipSubmitFormProps) {
           </div>
 
           <div className="space-y-2">
-            <Label htmlFor="clip-description">Beskrivelse (valgfri)</Label>
+            <div className="flex items-center justify-between">
+              <Label htmlFor="clip-description">Beskrivelse (valgfri)</Label>
+              <EmojiPicker onEmojiSelect={handleDescriptionEmojiSelect} />
+            </div>
             <Textarea
               id="clip-description"
+              ref={descriptionRef}
               placeholder="Fortæl lidt om denne clip..."
               value={description}
               onChange={(e) => setDescription(e.target.value)}
