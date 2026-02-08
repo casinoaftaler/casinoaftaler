@@ -2,6 +2,7 @@ import { Progress } from "@/components/ui/progress";
 import { Sparkles, Check, X } from "lucide-react";
 import { SectionCompletionStatus, SPINS_PER_SECTION } from "@/hooks/useProfileRewards";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { cn } from "@/lib/utils";
 
 interface ProfileRewardsProgressProps {
   currentStatus: SectionCompletionStatus;
@@ -12,6 +13,7 @@ interface ProfileRewardsProgressProps {
     playstyle: boolean;
   };
   bonusSpinsPermanent: number;
+  className?: string;
 }
 
 const SECTIONS = [
@@ -25,6 +27,7 @@ export function ProfileRewardsProgress({
   currentStatus,
   rewardedSections,
   bonusSpinsPermanent,
+  className,
 }: ProfileRewardsProgressProps) {
   const totalSections = 4;
   const rewardedCount = Object.values(rewardedSections).filter(Boolean).length;
@@ -32,7 +35,7 @@ export function ProfileRewardsProgress({
   const progressPercent = (rewardedCount / totalSections) * 100;
 
   return (
-    <Card className="mb-6 overflow-hidden border-primary/20">
+    <Card className={cn("overflow-hidden border-primary/20", className)}>
       <CardHeader className="pb-3 bg-gradient-to-r from-primary/5 to-primary/10">
         <div className="flex items-center justify-between">
           <CardTitle className="flex items-center gap-2 text-lg">
