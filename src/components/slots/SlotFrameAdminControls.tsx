@@ -10,6 +10,12 @@ import { Label } from "@/components/ui/label";
 import { Loader2, Wand2, Trash2, ImageIcon, RefreshCw, Sparkles, Download, Upload } from "lucide-react";
 import { toast } from "sonner";
 
+// Default frame sizes per game (must match SlotMachineFrame.tsx)
+const GAME_FRAME_DEFAULTS: Record<string, number> = {
+  "book-of-fedesvin": 90,
+  "rise-of-fedesvin": 55,
+};
+
 // Helper to derive settings keys per game
 function getSettingsKeys(gameId: string) {
   if (gameId === "book-of-fedesvin") {
@@ -45,7 +51,8 @@ export function SlotFrameAdminControls({ gameId = "book-of-fedesvin" }: SlotFram
   
   const currentBackgroundUrl = settings?.[backgroundKey] || null;
   const currentFrameUrl = settings?.[frameKey] || null;
-  const currentFrameSize = parseInt(settings?.[frameSizeKey] || "90", 10);
+  const defaultFrameSize = GAME_FRAME_DEFAULTS[gameId] ?? 90;
+  const currentFrameSize = parseInt(settings?.[frameSizeKey] || String(defaultFrameSize), 10);
 
   const updateFrameSize = useMutation({
     mutationFn: async (size: number) => {
