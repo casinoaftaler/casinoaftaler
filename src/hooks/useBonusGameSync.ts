@@ -9,11 +9,14 @@ export interface BonusGameState {
   totalFreeSpins: number;
   expandingSymbolId: string | null;
   expandingSymbolName: string | null;
+  expandingSymbolIds: string[];
+  expandingSymbolNames: string[];
   bonusWinnings: number;
 }
 
-interface BonusGameStateWithSymbol extends Omit<BonusGameState, 'expandingSymbolId' | 'expandingSymbolName'> {
+interface BonusGameStateWithSymbol extends Omit<BonusGameState, 'expandingSymbolId' | 'expandingSymbolName' | 'expandingSymbolIds' | 'expandingSymbolNames'> {
   expandingSymbol: SlotSymbol | null;
+  expandingSymbols: SlotSymbol[];
 }
 
 const INITIAL_STATE: BonusGameState = {
@@ -22,10 +25,12 @@ const INITIAL_STATE: BonusGameState = {
   totalFreeSpins: 10,
   expandingSymbolId: null,
   expandingSymbolName: null,
+  expandingSymbolIds: [],
+  expandingSymbolNames: [],
   bonusWinnings: 0,
 };
 
-export function useBonusGameSync(symbols?: SlotSymbol[]) {
+export function useBonusGameSync(symbols?: SlotSymbol[], gameId: string = "book-of-fedesvin") {
   const { user } = useAuth();
   const [bonusState, setBonusState] = useState<BonusGameState>(INITIAL_STATE);
   const [isLoaded, setIsLoaded] = useState(false);
@@ -40,11 +45,13 @@ export function useBonusGameSync(symbols?: SlotSymbol[]) {
 
     const loadBonusState = async () => {
       try {
-        const { data, error } = await supabase
+        const query = supabase
           .from("slot_bonus_state")
           .select("*")
-          .eq("user_id", user.id)
-          .maybeSingle();
+          .eq("user_id", user.id);
+        
+        // Filter by game_id (column added via migration)
+        const { data, error } = await (query as any).eq("game_id", gameId).maybeSingle();
 
         if (error) throw error;
 
@@ -55,6 +62,8 @@ export function useBonusGameSync(symbols?: SlotSymbol[]) {
             totalFreeSpins: data.total_free_spins,
             expandingSymbolId: data.expanding_symbol_id,
             expandingSymbolName: data.expanding_symbol_name,
+            expandingSymbolIds: data.expanding_symbol_ids || [],
+            expandingSymbolNames: data.expanding_symbol_names || [],
             bonusWinnings: Number(data.bonus_winnings),
           });
         }
@@ -68,7 +77,7 @@ export function useBonusGameSync(symbols?: SlotSymbol[]) {
 
     // Subscribe to realtime updates for bonus state sync across devices
     channelRef.current = supabase
-      .channel(`bonus_state_${user.id}`)
+      .channel(`bonus_state_${user.id}_${gameId}`)
       .on(
         "postgres_changes",
         {
@@ -82,12 +91,16 @@ export function useBonusGameSync(symbols?: SlotSymbol[]) {
             setBonusState(INITIAL_STATE);
           } else if (payload.new) {
             const newData = payload.new as any;
+            // Only update if it's for our game
+            if (newData.game_id && newData.game_id !== gameId) return;
             setBonusState({
               isActive: newData.is_active,
               freeSpinsRemaining: newData.free_spins_remaining,
               totalFreeSpins: newData.total_free_spins,
               expandingSymbolId: newData.expanding_symbol_id,
               expandingSymbolName: newData.expanding_symbol_name,
+              expandingSymbolIds: newData.expanding_symbol_ids || [],
+              expandingSymbolNames: newData.expanding_symbol_names || [],
               bonusWinnings: Number(newData.bonus_winnings),
             });
           }
@@ -100,7 +113,7 @@ export function useBonusGameSync(symbols?: SlotSymbol[]) {
         supabase.removeChannel(channelRef.current);
       }
     };
-  }, [user?.id]);
+  }, [user?.id, gameId]);
 
   // Update local state from server response (called after successful spin)
   const updateFromServer = useCallback((serverBonusState: {
@@ -109,6 +122,8 @@ export function useBonusGameSync(symbols?: SlotSymbol[]) {
     totalFreeSpins: number;
     expandingSymbolId: string;
     expandingSymbolName: string;
+    expandingSymbolIds?: string[];
+    expandingSymbolNames?: string[];
     bonusWinnings: number;
   } | null) => {
     if (!serverBonusState) {
@@ -122,6 +137,8 @@ export function useBonusGameSync(symbols?: SlotSymbol[]) {
       totalFreeSpins: serverBonusState.totalFreeSpins,
       expandingSymbolId: serverBonusState.expandingSymbolId,
       expandingSymbolName: serverBonusState.expandingSymbolName,
+      expandingSymbolIds: serverBonusState.expandingSymbolIds || [],
+      expandingSymbolNames: serverBonusState.expandingSymbolNames || [],
       bonusWinnings: serverBonusState.bonusWinnings,
     });
   }, []);
@@ -131,33 +148,52 @@ export function useBonusGameSync(symbols?: SlotSymbol[]) {
     const finalWinnings = bonusState.bonusWinnings;
     const totalSpins = bonusState.totalFreeSpins;
     
-    // Delete bonus state on server
+    // Delete bonus state on server for this game
     if (user?.id) {
-      await supabase
+      const query = supabase
         .from("slot_bonus_state")
         .delete()
         .eq("user_id", user.id);
+      
+      await (query as any).eq("game_id", gameId);
     }
     
     setBonusState(INITIAL_STATE);
     return { winnings: finalWinnings, spins: totalSpins };
-  }, [bonusState.bonusWinnings, bonusState.totalFreeSpins, user?.id]);
+  }, [bonusState.bonusWinnings, bonusState.totalFreeSpins, user?.id, gameId]);
 
   const shouldEndBonus = bonusState.isActive && bonusState.freeSpinsRemaining === 0;
 
-  // Get the actual expanding symbol object from ID
+  // Get the actual expanding symbol object from ID (single - backward compat)
   const getExpandingSymbol = useCallback((): SlotSymbol | null => {
     if (!bonusState.expandingSymbolId || !symbols) return null;
     return symbols.find(s => s.id === bonusState.expandingSymbolId) || null;
   }, [bonusState.expandingSymbolId, symbols]);
 
-  // Build the state object with the resolved symbol
+  // Get all expanding symbols (multi - Rise of Fedesvin)
+  const getExpandingSymbols = useCallback((): SlotSymbol[] => {
+    if (!symbols) return [];
+    const ids = bonusState.expandingSymbolIds;
+    if (!ids || ids.length === 0) {
+      // Fallback to single symbol
+      const single = getExpandingSymbol();
+      return single ? [single] : [];
+    }
+    return ids
+      .map(id => symbols.find(s => s.id === id))
+      .filter(Boolean) as SlotSymbol[];
+  }, [bonusState.expandingSymbolIds, symbols, getExpandingSymbol]);
+
+  // Build the state object with the resolved symbols
   const expandingSymbol = getExpandingSymbol();
+  const expandingSymbols = getExpandingSymbols();
+
   const bonusStateWithSymbol: BonusGameStateWithSymbol = {
     isActive: bonusState.isActive,
     freeSpinsRemaining: bonusState.freeSpinsRemaining,
     totalFreeSpins: bonusState.totalFreeSpins,
     expandingSymbol,
+    expandingSymbols,
     bonusWinnings: bonusState.bonusWinnings,
   };
 

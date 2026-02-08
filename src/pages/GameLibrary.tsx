@@ -16,12 +16,13 @@ const GAMES = [
     badge: "POPULÆR",
   },
   {
-    id: "coming-soon-1",
-    title: "Nyt spil",
-    description: "Et helt nyt spil er på vej. Bliv klar til en ny oplevelse!",
+    id: "rise-of-fedesvin",
+    title: "Rise of Fedesvin",
+    description: "Merlins magi venter! Multi-expanding symbols i bonusrunden – jo flere retriggers, jo flere aktive symboler!",
     image: slotIntroImage,
-    href: "#",
-    status: "coming-soon" as const,
+    href: "/community/slots/rise-of-fedesvin",
+    status: "active" as const,
+    badge: "NY",
   },
 ];
 
