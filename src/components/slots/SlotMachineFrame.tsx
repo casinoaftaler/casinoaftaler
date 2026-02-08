@@ -10,6 +10,12 @@ interface SlotMachineFrameProps {
   gameId?: string;
 }
 
+// Default frame sizes per game (used when no DB setting exists)
+const GAME_FRAME_DEFAULTS: Record<string, number> = {
+  "book-of-fedesvin": 90,
+  "rise-of-fedesvin": 55,
+};
+
 // Calculate responsive frame size based on screen width
 function getEffectiveFrameSize(windowWidth: number, baseSize: number): number {
   if (windowWidth < 400) return Math.round(baseSize * 0.35);  // Extra small
@@ -43,7 +49,8 @@ export function SlotMachineFrame({
   const gamePrefix = gameId === "book-of-fedesvin" ? "" : gameId.replace(/-/g, "_") + "_";
   const frameImageUrl = (gamePrefix ? settings?.[`${gamePrefix}frame_image`] : null) || settings?.slot_machine_frame_image;
   const frameSizeKey = gamePrefix ? `${gamePrefix}frame_size` : "slot_frame_size";
-  const baseFrameSize = parseInt(settings?.[frameSizeKey] || settings?.slot_frame_size || "90", 10);
+  const gameDefault = GAME_FRAME_DEFAULTS[gameId] ?? 90;
+  const baseFrameSize = parseInt(settings?.[frameSizeKey] || settings?.slot_frame_size || String(gameDefault), 10);
   const effectiveFrameSize = getEffectiveFrameSize(windowWidth, baseFrameSize);
   const hasFrame = !!frameImageUrl && !imageError;
 
@@ -75,7 +82,7 @@ export function SlotMachineFrame({
         >
           <img
             src={frameImageUrl}
-            alt="Egyptian Slot Frame"
+            alt="Slot Frame"
             className="w-full h-full object-fill"
             onLoad={() => setImageLoaded(true)}
             onError={() => setImageError(true)}
@@ -87,7 +94,11 @@ export function SlotMachineFrame({
       <div 
         className={cn(
           "relative",
-          hasFrame && imageLoaded && "p-4 sm:p-6 md:p-8"
+          hasFrame && imageLoaded && (
+            gameId === "rise-of-fedesvin" 
+              ? "p-2 sm:p-3 md:p-4" 
+              : "p-4 sm:p-6 md:p-8"
+          )
         )}
       >
         {/* Fallback CSS frame corners when no image or loading */}
