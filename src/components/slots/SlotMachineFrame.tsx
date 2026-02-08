@@ -13,7 +13,12 @@ interface SlotMachineFrameProps {
 // Default frame sizes per game (used when no DB setting exists)
 const GAME_FRAME_DEFAULTS: Record<string, number> = {
   "book-of-fedesvin": 90,
-  "rise-of-fedesvin": 55,
+  "rise-of-fedesvin": 95,
+};
+
+// Per-game vertical offset for the frame (negative = move up)
+const GAME_FRAME_VERTICAL_OFFSET: Record<string, number> = {
+  "rise-of-fedesvin": -30,
 };
 
 // Calculate responsive frame size based on screen width
@@ -53,16 +58,18 @@ export function SlotMachineFrame({
   const baseFrameSize = parseInt(settings?.[frameSizeKey] || settings?.slot_frame_size || String(gameDefault), 10);
   const effectiveFrameSize = getEffectiveFrameSize(windowWidth, baseFrameSize);
   const hasFrame = !!frameImageUrl && !imageError;
+  const verticalOffset = GAME_FRAME_VERTICAL_OFFSET[gameId] ?? 0;
+  const effectiveVerticalOffset = getEffectiveFrameSize(windowWidth, Math.abs(verticalOffset)) * Math.sign(verticalOffset);
 
   return (
     <div 
       className="relative"
       style={{
         // Add margin to prevent frame from being clipped
-        marginTop: hasFrame && imageLoaded ? `${effectiveFrameSize}px` : undefined,
+        marginTop: hasFrame && imageLoaded ? `${effectiveFrameSize + effectiveVerticalOffset}px` : undefined,
         marginLeft: hasFrame && imageLoaded ? `${effectiveFrameSize}px` : undefined,
         marginRight: hasFrame && imageLoaded ? `${effectiveFrameSize}px` : undefined,
-        marginBottom: hasFrame && imageLoaded ? `${effectiveFrameSize}px` : undefined,
+        marginBottom: hasFrame && imageLoaded ? `${effectiveFrameSize - effectiveVerticalOffset}px` : undefined,
       }}
     >
       {/* Egyptian Frame Image Overlay */}
@@ -73,10 +80,10 @@ export function SlotMachineFrame({
             imageLoaded ? "opacity-100" : "opacity-0"
           )}
           style={{
-            top: `-${effectiveFrameSize}px`,
+            top: `-${effectiveFrameSize + effectiveVerticalOffset}px`,
             left: `-${effectiveFrameSize}px`,
             right: `-${effectiveFrameSize}px`,
-            bottom: `-${effectiveFrameSize}px`,
+            bottom: `-${effectiveFrameSize - effectiveVerticalOffset}px`,
             filter: getSlotTheme(gameId).frameDropShadow,
           }}
         >
