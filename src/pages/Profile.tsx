@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "@/hooks/useAuth";
 import { useProfile, ProfileUpdateData } from "@/hooks/useProfile";
+import { useProfileRewards, getSectionCompletionStatus } from "@/hooks/useProfileRewards";
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { ProfileBasicSection } from "@/components/profile/ProfileBasicSection";
@@ -9,12 +10,15 @@ import { ProfileStatsSection } from "@/components/profile/ProfileStatsSection";
 import { ProfileFavoritesSection } from "@/components/profile/ProfileFavoritesSection";
 import { ProfilePlayStyleSection } from "@/components/profile/ProfilePlayStyleSection";
 import { ProfilePrivacySection } from "@/components/profile/ProfilePrivacySection";
+import { ProfileSectionRewardIndicator } from "@/components/profile/ProfileSectionRewardIndicator";
+import { ProfileRewardsProgress } from "@/components/profile/ProfileRewardsProgress";
 import { Loader2, Save, User, Trophy, Heart, Zap, Shield } from "lucide-react";
 
 export default function Profile() {
   const navigate = useNavigate();
   const { user, loading: authLoading } = useAuth();
   const { profile, isLoading: profileLoading, updateProfile, isUpdating } = useProfile();
+  const { claimReward, checkAndClaimRewards } = useProfileRewards();
   
   const [formData, setFormData] = useState({
     display_name: "",
@@ -70,9 +74,11 @@ export default function Profile() {
     setFormData((prev) => ({ ...prev, [field]: value }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
+    if (!profile) return;
+
     const updates: ProfileUpdateData = {
       display_name: formData.display_name || null,
       bio: formData.bio || null,
@@ -92,7 +98,36 @@ export default function Profile() {
       hide_amounts: formData.hide_amounts,
     };
 
+    // First update the profile
     updateProfile(updates);
+
+    // Then check for new rewards to claim
+    const profileWithRewards = {
+      ...profile,
+      profile_section_completed: profile.profile_section_completed ?? false,
+      stats_section_completed: profile.stats_section_completed ?? false,
+      favorites_section_completed: profile.favorites_section_completed ?? false,
+      playstyle_section_completed: profile.playstyle_section_completed ?? false,
+      bonus_spins_permanent: profile.bonus_spins_permanent ?? 0,
+    };
+
+    const rewards = checkAndClaimRewards(formData, profileWithRewards);
+    
+    // Claim rewards sequentially to ensure correct bonus spin accumulation
+    for (const reward of rewards) {
+      await claimReward(reward);
+    }
+  };
+
+  // Get current section completion status
+  const currentStatus = getSectionCompletionStatus(formData);
+  
+  // Get rewarded sections from profile
+  const rewardedSections = {
+    profile: profile?.profile_section_completed ?? false,
+    stats: profile?.stats_section_completed ?? false,
+    favorites: profile?.favorites_section_completed ?? false,
+    playstyle: profile?.playstyle_section_completed ?? false,
   };
 
   if (authLoading || profileLoading) {
@@ -120,24 +155,51 @@ export default function Profile() {
         </p>
       </div>
 
+      {/* Rewards Progress */}
+      <ProfileRewardsProgress
+        currentStatus={currentStatus}
+        rewardedSections={rewardedSections}
+        bonusSpinsPermanent={profile.bonus_spins_permanent ?? 0}
+      />
+
       <form onSubmit={handleSubmit}>
         <Tabs defaultValue="profile" className="space-y-6">
           <TabsList className="grid w-full grid-cols-5 h-auto">
-            <TabsTrigger value="profile" className="flex flex-col sm:flex-row gap-1 sm:gap-2 py-2 text-xs sm:text-sm">
+            <TabsTrigger value="profile" className="flex flex-col sm:flex-row gap-1 sm:gap-2 py-2 text-xs sm:text-sm relative">
               <User className="h-4 w-4" />
               <span className="hidden sm:inline">Profil</span>
+              <ProfileSectionRewardIndicator
+                isCompleted={currentStatus.profile}
+                isRewarded={rewardedSections.profile}
+                className="absolute -top-2 -right-2 sm:static sm:ml-1"
+              />
             </TabsTrigger>
-            <TabsTrigger value="stats" className="flex flex-col sm:flex-row gap-1 sm:gap-2 py-2 text-xs sm:text-sm">
+            <TabsTrigger value="stats" className="flex flex-col sm:flex-row gap-1 sm:gap-2 py-2 text-xs sm:text-sm relative">
               <Trophy className="h-4 w-4" />
               <span className="hidden sm:inline">Stats</span>
+              <ProfileSectionRewardIndicator
+                isCompleted={currentStatus.stats}
+                isRewarded={rewardedSections.stats}
+                className="absolute -top-2 -right-2 sm:static sm:ml-1"
+              />
             </TabsTrigger>
-            <TabsTrigger value="favorites" className="flex flex-col sm:flex-row gap-1 sm:gap-2 py-2 text-xs sm:text-sm">
+            <TabsTrigger value="favorites" className="flex flex-col sm:flex-row gap-1 sm:gap-2 py-2 text-xs sm:text-sm relative">
               <Heart className="h-4 w-4" />
               <span className="hidden sm:inline">Favoritter</span>
+              <ProfileSectionRewardIndicator
+                isCompleted={currentStatus.favorites}
+                isRewarded={rewardedSections.favorites}
+                className="absolute -top-2 -right-2 sm:static sm:ml-1"
+              />
             </TabsTrigger>
-            <TabsTrigger value="playstyle" className="flex flex-col sm:flex-row gap-1 sm:gap-2 py-2 text-xs sm:text-sm">
+            <TabsTrigger value="playstyle" className="flex flex-col sm:flex-row gap-1 sm:gap-2 py-2 text-xs sm:text-sm relative">
               <Zap className="h-4 w-4" />
               <span className="hidden sm:inline">Spillestil</span>
+              <ProfileSectionRewardIndicator
+                isCompleted={currentStatus.playstyle}
+                isRewarded={rewardedSections.playstyle}
+                className="absolute -top-2 -right-2 sm:static sm:ml-1"
+              />
             </TabsTrigger>
             <TabsTrigger value="privacy" className="flex flex-col sm:flex-row gap-1 sm:gap-2 py-2 text-xs sm:text-sm">
               <Shield className="h-4 w-4" />

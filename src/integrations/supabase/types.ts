@@ -316,19 +316,24 @@ export type Database = {
           biggest_spin_win: number | null
           biggest_x_win: number | null
           bio: string | null
+          bonus_spins_permanent: number | null
           created_at: string
           display_name: string | null
           favorite_casino: string | null
           favorite_provider: string | null
           favorite_slot: string | null
+          favorites_section_completed: boolean | null
           hide_amounts: boolean | null
           highest_win_amount: number | null
           highest_win_casino: string | null
           highest_win_game: string | null
           id: string
           play_styles: string[] | null
+          playstyle_section_completed: boolean | null
           preferred_game_type: string | null
+          profile_section_completed: boolean | null
           stats_public: boolean | null
+          stats_section_completed: boolean | null
           twitch_id: string | null
           twitch_username: string | null
           typical_bet_size: string | null
@@ -341,19 +346,24 @@ export type Database = {
           biggest_spin_win?: number | null
           biggest_x_win?: number | null
           bio?: string | null
+          bonus_spins_permanent?: number | null
           created_at?: string
           display_name?: string | null
           favorite_casino?: string | null
           favorite_provider?: string | null
           favorite_slot?: string | null
+          favorites_section_completed?: boolean | null
           hide_amounts?: boolean | null
           highest_win_amount?: number | null
           highest_win_casino?: string | null
           highest_win_game?: string | null
           id?: string
           play_styles?: string[] | null
+          playstyle_section_completed?: boolean | null
           preferred_game_type?: string | null
+          profile_section_completed?: boolean | null
           stats_public?: boolean | null
+          stats_section_completed?: boolean | null
           twitch_id?: string | null
           twitch_username?: string | null
           typical_bet_size?: string | null
@@ -366,19 +376,24 @@ export type Database = {
           biggest_spin_win?: number | null
           biggest_x_win?: number | null
           bio?: string | null
+          bonus_spins_permanent?: number | null
           created_at?: string
           display_name?: string | null
           favorite_casino?: string | null
           favorite_provider?: string | null
           favorite_slot?: string | null
+          favorites_section_completed?: boolean | null
           hide_amounts?: boolean | null
           highest_win_amount?: number | null
           highest_win_casino?: string | null
           highest_win_game?: string | null
           id?: string
           play_styles?: string[] | null
+          playstyle_section_completed?: boolean | null
           preferred_game_type?: string | null
+          profile_section_completed?: boolean | null
           stats_public?: boolean | null
+          stats_section_completed?: boolean | null
           twitch_id?: string | null
           twitch_username?: string | null
           typical_bet_size?: string | null

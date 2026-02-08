@@ -25,6 +25,12 @@ export interface ProfileData {
   volatility_preference: string | null;
   stats_public: boolean | null;
   hide_amounts: boolean | null;
+  // Profile completion tracking
+  profile_section_completed: boolean | null;
+  stats_section_completed: boolean | null;
+  favorites_section_completed: boolean | null;
+  playstyle_section_completed: boolean | null;
+  bonus_spins_permanent: number | null;
   created_at: string;
   updated_at: string;
 }

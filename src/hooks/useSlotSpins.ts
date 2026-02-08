@@ -16,6 +16,26 @@ export function useSlotSpins() {
   const queryClient = useQueryClient();
   const today = new Date().toISOString().split("T")[0];
 
+  // Fetch permanent bonus spins from profile
+  const { data: bonusSpinsData } = useQuery({
+    queryKey: ["profile-bonus-spins", user?.id],
+    queryFn: async () => {
+      if (!user?.id) return 0;
+      
+      const { data, error } = await supabase
+        .from("profiles")
+        .select("bonus_spins_permanent")
+        .eq("user_id", user.id)
+        .maybeSingle();
+      
+      if (error) throw error;
+      return data?.bonus_spins_permanent || 0;
+    },
+    enabled: !!user?.id,
+  });
+
+  const bonusSpinsPermanent = bonusSpinsData || 0;
+
   const { data: spinsData, isLoading } = useQuery({
     queryKey: ["slot-spins", user?.id, today],
     queryFn: async (): Promise<SlotSpins | null> => {
@@ -31,14 +51,15 @@ export function useSlotSpins() {
 
       if (error) throw error;
 
-      // If no record for today, create one with configured daily spins
+      // If no record for today, create one with configured daily spins + permanent bonus spins
       if (!data) {
+        const totalDailySpins = settings.dailySpins + bonusSpinsPermanent;
         const { data: newData, error: insertError } = await supabase
           .from("slot_spins")
           .insert({
             user_id: user.id,
             date: today,
-            spins_remaining: settings.dailySpins,
+            spins_remaining: totalDailySpins,
           })
           .select()
           .single();
@@ -77,9 +98,13 @@ export function useSlotSpins() {
     return (spinsData?.spins_remaining ?? 0) >= betAmount;
   };
 
+  // Calculate max spins (daily + permanent bonus)
+  const maxSpins = settings.dailySpins + bonusSpinsPermanent;
+
   return {
     spinsRemaining: spinsData?.spins_remaining ?? 0,
-    maxSpins: settings.dailySpins,
+    maxSpins,
+    bonusSpinsPermanent,
     isLoading,
     decrementSpin,
     canSpin: (spinsData?.spins_remaining ?? 0) > 0,
