@@ -646,8 +646,11 @@ export type Database = {
           bonus_winnings: number
           created_at: string
           expanding_symbol_id: string | null
+          expanding_symbol_ids: string[] | null
           expanding_symbol_name: string | null
+          expanding_symbol_names: string[] | null
           free_spins_remaining: number
+          game_id: string
           id: string
           is_active: boolean
           total_free_spins: number
@@ -658,8 +661,11 @@ export type Database = {
           bonus_winnings?: number
           created_at?: string
           expanding_symbol_id?: string | null
+          expanding_symbol_ids?: string[] | null
           expanding_symbol_name?: string | null
+          expanding_symbol_names?: string[] | null
           free_spins_remaining?: number
+          game_id?: string
           id?: string
           is_active?: boolean
           total_free_spins?: number
@@ -670,8 +676,11 @@ export type Database = {
           bonus_winnings?: number
           created_at?: string
           expanding_symbol_id?: string | null
+          expanding_symbol_ids?: string[] | null
           expanding_symbol_name?: string | null
+          expanding_symbol_names?: string[] | null
           free_spins_remaining?: number
+          game_id?: string
           id?: string
           is_active?: boolean
           total_free_spins?: number
@@ -685,6 +694,7 @@ export type Database = {
           bet_amount: number
           bonus_win_amount: number
           created_at: string
+          game_id: string
           id: string
           is_bonus_triggered: boolean
           user_id: string
@@ -694,6 +704,7 @@ export type Database = {
           bet_amount?: number
           bonus_win_amount?: number
           created_at?: string
+          game_id?: string
           id?: string
           is_bonus_triggered?: boolean
           user_id: string
@@ -703,6 +714,7 @@ export type Database = {
           bet_amount?: number
           bonus_win_amount?: number
           created_at?: string
+          game_id?: string
           id?: string
           is_bonus_triggered?: boolean
           user_id?: string
@@ -813,6 +825,7 @@ export type Database = {
         Row: {
           bonus_weight: number
           created_at: string
+          game_id: string
           id: string
           image_url: string | null
           is_scatter: boolean
@@ -829,6 +842,7 @@ export type Database = {
         Insert: {
           bonus_weight?: number
           created_at?: string
+          game_id?: string
           id?: string
           image_url?: string | null
           is_scatter?: boolean
@@ -845,6 +859,7 @@ export type Database = {
         Update: {
           bonus_weight?: number
           created_at?: string
+          game_id?: string
           id?: string
           image_url?: string | null
           is_scatter?: boolean
