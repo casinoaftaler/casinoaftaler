@@ -568,6 +568,39 @@ export type Database = {
         }
         Relationships: []
       }
+      slot_points_audit_log: {
+        Row: {
+          action_type: string
+          admin_user_id: string
+          created_at: string
+          id: string
+          new_points: number
+          previous_points: number
+          reason: string | null
+          target_user_id: string
+        }
+        Insert: {
+          action_type: string
+          admin_user_id: string
+          created_at?: string
+          id?: string
+          new_points?: number
+          previous_points?: number
+          reason?: string | null
+          target_user_id: string
+        }
+        Update: {
+          action_type?: string
+          admin_user_id?: string
+          created_at?: string
+          id?: string
+          new_points?: number
+          previous_points?: number
+          reason?: string | null
+          target_user_id?: string
+        }
+        Relationships: []
+      }
       slot_spins: {
         Row: {
           created_at: string
