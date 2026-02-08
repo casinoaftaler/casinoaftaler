@@ -127,6 +127,13 @@ export function Header() {
             <ShoppingBag className="h-4 w-4" />
             Butik
           </Link>
+          <Link
+            to="/highlights"
+            className="flex items-center gap-1.5 text-sm font-medium transition-colors hover:text-primary"
+          >
+            <Video className="h-4 w-4" />
+            Highlights
+          </Link>
           <DropdownMenu>
             <DropdownMenuTrigger className="flex items-center gap-1.5 text-sm font-medium transition-colors hover:text-primary">
               <Users className="h-4 w-4" />
@@ -137,12 +144,6 @@ export function Header() {
                 <Link to="/community/slots" className="flex items-center gap-2">
                   <Coins className="h-4 w-4" />
                   Slot Machine
-                </Link>
-              </DropdownMenuItem>
-              <DropdownMenuItem asChild>
-                <Link to="/highlights" className="flex items-center gap-2">
-                  <Video className="h-4 w-4" />
-                  Highlights
                 </Link>
               </DropdownMenuItem>
             </DropdownMenuContent>
@@ -293,6 +294,14 @@ export function Header() {
               <ShoppingBag className="h-4 w-4" />
               Butik
             </Link>
+            <Link
+              to="/highlights"
+              className="flex items-center gap-2 text-sm font-medium transition-colors hover:text-primary"
+              onClick={() => setMobileMenuOpen(false)}
+            >
+              <Video className="h-4 w-4" />
+              Highlights
+            </Link>
             
             {/* Community section */}
             <div className="flex items-center gap-2 text-sm font-medium text-muted-foreground">
@@ -306,14 +315,6 @@ export function Header() {
             >
               <Coins className="h-4 w-4" />
               Slot Machine
-            </Link>
-            <Link
-              to="/highlights"
-              className="ml-6 flex items-center gap-2 text-sm text-muted-foreground transition-colors hover:text-primary"
-              onClick={() => setMobileMenuOpen(false)}
-            >
-              <Video className="h-4 w-4" />
-              Highlights
             </Link>
             
             {/* Theme toggle in mobile menu */}
