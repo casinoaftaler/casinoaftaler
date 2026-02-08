@@ -6,7 +6,8 @@ import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
-import { Trophy, Medal, Award, User, Users } from "lucide-react";
+import { Trophy, Medal, Award, User, Users, Search } from "lucide-react";
+import { Input } from "@/components/ui/input";
 import { useSlotLeaderboard, type LeaderboardEntry } from "@/hooks/useSlotLeaderboard";
 import { cn } from "@/lib/utils";
 
@@ -84,6 +85,7 @@ function LeaderboardRow({
 export function SlotLeaderboard() {
   const [showFullList, setShowFullList] = useState(false);
   const [dialogPeriod, setDialogPeriod] = useState<"daily" | "weekly" | "alltime">("alltime");
+  const [searchQuery, setSearchQuery] = useState("");
 
   // Main card always shows alltime
   const { data: alltimeData, isLoading } = useSlotLeaderboard("alltime");
@@ -94,6 +96,10 @@ export function SlotLeaderboard() {
   const currentUser = alltimeData?.currentUser;
   const dialogEntries = dialogData?.entries;
   const dialogCurrentUser = dialogData?.currentUser;
+
+  const filteredDialogEntries = dialogEntries?.filter(e =>
+    e.display_name?.toLowerCase().includes(searchQuery.toLowerCase())
+  );
 
   const isCurrentUserInTop = (userId: string | undefined, list: LeaderboardEntry[] | undefined) =>
     !!userId && !!list && list.some(e => e.user_id === userId);
@@ -132,7 +138,7 @@ export function SlotLeaderboard() {
 
 
               {entries.length > 3 && (
-                <Dialog open={showFullList} onOpenChange={setShowFullList}>
+                <Dialog open={showFullList} onOpenChange={(open) => { setShowFullList(open); if (!open) setSearchQuery(""); }}>
                   <DialogTrigger asChild>
                     <Button
                       variant="ghost"
@@ -164,26 +170,39 @@ export function SlotLeaderboard() {
                       </TabsList>
                     </Tabs>
 
-                    <div className="space-y-1 max-h-[60vh] overflow-y-auto">
+                    <div className="relative">
+                      <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+                      <Input
+                        placeholder="Søg efter spiller..."
+                        value={searchQuery}
+                        onChange={(e) => setSearchQuery(e.target.value)}
+                        className="pl-9 bg-amber-950/50 border-amber-500/20 text-amber-100 placeholder:text-amber-100/40 focus-visible:ring-amber-500/30"
+                      />
+                    </div>
+
+                    <div className="space-y-1 max-h-[50vh] overflow-y-auto">
                       {dialogLoading ? (
                         <div className="space-y-2">
                           {[1, 2, 3].map((i) => (
                             <div key={i} className="h-16 bg-muted/50 rounded-lg animate-pulse" />
                           ))}
                         </div>
-                      ) : dialogEntries && dialogEntries.length > 0 ? (
+                      ) : filteredDialogEntries && filteredDialogEntries.length > 0 ? (
                         <>
-                          {dialogEntries.map((entry, index) => (
-                            <LeaderboardRow
-                              key={entry.user_id}
-                              entry={entry}
-                              rank={index + 1}
-                              isCurrentUser={dialogCurrentUser?.entry.user_id === entry.user_id}
-                            />
-                          ))}
+                          {filteredDialogEntries.map((entry) => {
+                            const originalRank = dialogEntries!.indexOf(entry) + 1;
+                            return (
+                              <LeaderboardRow
+                                key={entry.user_id}
+                                entry={entry}
+                                rank={originalRank}
+                                isCurrentUser={dialogCurrentUser?.entry.user_id === entry.user_id}
+                              />
+                            );
+                          })}
 
-                          {/* Pinned current user if not in top 10 */}
-                          {dialogCurrentUser && !isCurrentUserInTop(dialogCurrentUser.entry.user_id, dialogEntries) && (
+                          {/* Pinned current user if not in filtered results */}
+                          {!searchQuery && dialogCurrentUser && !isCurrentUserInTop(dialogCurrentUser.entry.user_id, dialogEntries) && (
                             <>
                               <Separator className="my-2 bg-amber-500/20" />
                               <LeaderboardRow
@@ -197,7 +216,9 @@ export function SlotLeaderboard() {
                       ) : (
                         <div className="text-center py-8">
                           <Trophy className="h-10 w-10 mx-auto mb-2 opacity-50 text-amber-500/50" />
-                          <p className="text-amber-100/80">Ingen gevinster i denne periode</p>
+                          <p className="text-amber-100/80">
+                            {searchQuery ? "Ingen spillere matcher søgningen" : "Ingen gevinster i denne periode"}
+                          </p>
                         </div>
                       )}
                     </div>
