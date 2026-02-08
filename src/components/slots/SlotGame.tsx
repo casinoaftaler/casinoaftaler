@@ -125,7 +125,17 @@ export function SlotGame({ gameId = "book-of-fedesvin" }: SlotGameProps) {
   const [pendingExpandingSymbol, setPendingExpandingSymbol] = useState<typeof bonusState.expandingSymbol>(null);
   const [bonusTotalWinnings, setBonusTotalWinnings] = useState(0);
   const [bonusTotalSpinsUsed, setBonusTotalSpinsUsed] = useState(0);
+  
+  // Track whether the initial bonus symbol has been confirmed (trigger overlay dismissed)
+  const [bonusBarsReady, setBonusBarsReady] = useState(false);
   const [bonusBetAmount, setBonusBetAmount] = useState<number>(1);
+  
+  // When resuming an active bonus from DB (page refresh mid-bonus), bars should show immediately
+  useEffect(() => {
+    if (bonusLoaded && bonusState.isActive && !showBonusTrigger && !bonusBarsReady) {
+      setBonusBarsReady(true);
+    }
+  }, [bonusLoaded, bonusState.isActive, showBonusTrigger, bonusBarsReady]);
   
   // Pending bonus trigger - to show win animation before bonus overlay
   const [pendingBonusTrigger, setPendingBonusTrigger] = useState<{
@@ -613,6 +623,7 @@ export function SlotGame({ gameId = "book-of-fedesvin" }: SlotGameProps) {
         allSymbols={symbols || []}
         onClose={() => {
           setShowBonusTrigger(false);
+          setBonusBarsReady(true);
           resumeRealtimeUpdates();
           if (pendingBonusStateRef.current) {
             updateBonusFromServer(pendingBonusStateRef.current);
@@ -632,6 +643,7 @@ export function SlotGame({ gameId = "book-of-fedesvin" }: SlotGameProps) {
           setShowBonusComplete(false);
           setBonusTotalWinnings(0);
           setBonusTotalSpinsUsed(0);
+          setBonusBarsReady(false);
         }}
         gameId={gameId}
       />
@@ -945,7 +957,7 @@ export function SlotGame({ gameId = "book-of-fedesvin" }: SlotGameProps) {
           <div className="mt-3 sm:mt-4">
             <div className="max-w-fit mx-auto mb-2 sm:mb-3 space-y-2">
               <BonusStatusBar
-                isActive={bonusState.isActive}
+                isActive={bonusState.isActive && bonusBarsReady}
                 freeSpinsRemaining={bonusState.freeSpinsRemaining}
                 totalFreeSpins={bonusState.totalFreeSpins}
                 expandingSymbol={bonusState.expandingSymbol}
@@ -955,7 +967,7 @@ export function SlotGame({ gameId = "book-of-fedesvin" }: SlotGameProps) {
               />
               {gameId === "rise-of-fedesvin" && (
                 <BonusSymbolBar
-                  isVisible={bonusState.isActive}
+                  isVisible={bonusState.isActive && bonusBarsReady}
                   allSymbols={symbols || []}
                   expandingSymbols={bonusState.expandingSymbols}
                   gameId={gameId}
