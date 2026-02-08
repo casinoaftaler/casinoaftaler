@@ -10,6 +10,8 @@ interface SlotSpins {
   spins_remaining: number;
 }
 
+const MAX_SPINS_CAP = 220;
+
 export function useSlotSpins() {
   const { user } = useAuth();
   const { settings } = useSlotSettings();
@@ -53,7 +55,7 @@ export function useSlotSpins() {
 
       // If no record for today, create one with configured daily spins + permanent bonus spins
       if (!data) {
-        const totalDailySpins = settings.dailySpins + bonusSpinsPermanent;
+        const totalDailySpins = Math.min(settings.dailySpins + bonusSpinsPermanent, MAX_SPINS_CAP);
         const { data: newData, error: insertError } = await supabase
           .from("slot_spins")
           .insert({
@@ -98,8 +100,8 @@ export function useSlotSpins() {
     return (spinsData?.spins_remaining ?? 0) >= betAmount;
   };
 
-  // Calculate max spins (daily + permanent bonus)
-  const maxSpins = settings.dailySpins + bonusSpinsPermanent;
+  // Calculate max spins (daily + permanent bonus, capped at MAX_SPINS_CAP)
+  const maxSpins = Math.min(settings.dailySpins + bonusSpinsPermanent, MAX_SPINS_CAP);
 
   return {
     spinsRemaining: spinsData?.spins_remaining ?? 0,
