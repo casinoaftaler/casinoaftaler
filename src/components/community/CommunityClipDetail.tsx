@@ -109,15 +109,26 @@ export function CommunityClipDetail({
                 allow="autoplay; encrypted-media"
               />
             ) : (
-              <div className="flex w-full aspect-video flex-col items-center justify-center gap-4 text-muted-foreground p-4">
-                <ExternalLink className="h-12 w-12" />
-                <p className="text-center text-sm">
-                  Denne video kan ikke vises her.
+              <div 
+                className="flex w-full aspect-video flex-col items-center justify-center gap-4 text-muted-foreground p-4 cursor-pointer hover:bg-muted/10 transition-colors"
+                onClick={() => window.open(clip.url, '_blank', 'noopener,noreferrer')}
+                role="button"
+                tabIndex={0}
+                onKeyDown={(e) => {
+                  if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    window.open(clip.url, '_blank', 'noopener,noreferrer');
+                  }
+                }}
+              >
+                <ExternalLink className="h-12 w-12 pointer-events-none" />
+                <p className="text-center text-sm pointer-events-none">
+                  Klik for at åbne clip i ny fane
                 </p>
                 <Button
                   variant="secondary"
-                  className="gap-2"
-                  onClick={() => window.open(clip.url, '_blank', 'noopener,noreferrer')}
+                  className="gap-2 pointer-events-none"
+                  tabIndex={-1}
                 >
                   <ExternalLink className="h-4 w-4" />
                   Åbn Clip
