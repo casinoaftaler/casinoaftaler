@@ -1,11 +1,13 @@
 import { useParams, Link } from "react-router-dom";
 import { usePublicProfile } from "@/hooks/usePublicProfile";
 import { useUserPoints } from "@/hooks/useUserPoints";
+import { useTwitchBadges } from "@/hooks/useTwitchBadges";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Skeleton } from "@/components/ui/skeleton";
 import { PointsBalanceCard } from "@/components/PointsBalanceCard";
+import { TwitchBadges } from "@/components/TwitchBadges";
 import { 
   User, 
   Trophy, 
@@ -178,6 +180,7 @@ export default function PublicProfile() {
   const { username } = useParams<{ username: string }>();
   const { data: profile, isLoading, error } = usePublicProfile(username);
   const { data: pointsData, isLoading: pointsLoading } = useUserPoints(profile?.user_id);
+  const { data: badgesData, isLoading: badgesLoading } = useTwitchBadges(profile?.user_id);
 
   if (isLoading) {
     return <LoadingSkeleton />;
@@ -233,6 +236,15 @@ export default function PublicProfile() {
               {profile.bio && (
                 <p className="text-muted-foreground max-w-lg">{profile.bio}</p>
               )}
+              
+              {/* Twitch Badges */}
+              <TwitchBadges
+                userId={profile.user_id}
+                badges={badgesData?.badges}
+                isLoading={badgesLoading}
+                className="mt-3"
+                size="md"
+              />
               
               {/* Quick badges */}
               <div className="flex flex-wrap justify-center sm:justify-start gap-2 mt-4">

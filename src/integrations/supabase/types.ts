@@ -334,6 +334,9 @@ export type Database = {
           profile_section_completed: boolean | null
           stats_public: boolean | null
           stats_section_completed: boolean | null
+          twitch_badges: Json | null
+          twitch_badges_updated_at: string | null
+          twitch_follow_date: string | null
           twitch_id: string | null
           twitch_username: string | null
           typical_bet_size: string | null
@@ -364,6 +367,9 @@ export type Database = {
           profile_section_completed?: boolean | null
           stats_public?: boolean | null
           stats_section_completed?: boolean | null
+          twitch_badges?: Json | null
+          twitch_badges_updated_at?: string | null
+          twitch_follow_date?: string | null
           twitch_id?: string | null
           twitch_username?: string | null
           typical_bet_size?: string | null
@@ -394,6 +400,9 @@ export type Database = {
           profile_section_completed?: boolean | null
           stats_public?: boolean | null
           stats_section_completed?: boolean | null
+          twitch_badges?: Json | null
+          twitch_badges_updated_at?: string | null
+          twitch_follow_date?: string | null
           twitch_id?: string | null
           twitch_username?: string | null
           typical_bet_size?: string | null

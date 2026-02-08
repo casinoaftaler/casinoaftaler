@@ -39,5 +39,8 @@ verify_jwt = false
 [functions.slot-spin]
 verify_jwt = false
 
+[functions.twitch-badges]
+verify_jwt = false
+
 [functions.admin-manage-points]
 verify_jwt = false
