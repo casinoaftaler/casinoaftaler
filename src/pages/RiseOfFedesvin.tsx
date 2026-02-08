@@ -18,6 +18,7 @@ import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { ArrowLeft, Gamepad2 } from "lucide-react";
 import defaultSlotBackground from "@/assets/slots/slot-background.jpg";
+import defaultRiseTitleImage from "@/assets/slots/rise/title-logo.png";
 import slotCasinoCardBg from "@/assets/slots/slot-casino-card-bg.png";
 
 const GAME_ID = "rise-of-fedesvin";
@@ -56,7 +57,8 @@ export default function RiseOfFedesvin() {
     setLoadingPhase('ready');
   }, []);
   
-  const backgroundImage = siteSettings?.rise_of_fedesvin_background_image || siteSettings?.slot_background_image || defaultSlotBackground;
+  const backgroundImage = siteSettings?.rise_of_fedesvin_background_image || defaultSlotBackground;
+  const titleImage = siteSettings?.rise_of_fedesvin_title_image || defaultRiseTitleImage;
   const topCasino = casinos?.find(c => c.is_active) || null;
 
   useEffect(() => {
@@ -196,9 +198,11 @@ export default function RiseOfFedesvin() {
             <SlotPageLayout sidePanel={sidePanelContent}>
               {showTitle && (
                 <div className="slot-title-container flex justify-center -mt-14 mb-0">
-                  <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-300 via-purple-100 to-purple-300 drop-shadow-lg animate-[title-entrance_0.8s_ease-out_forwards]">
-                    Rise of Fedesvin
-                  </h1>
+                  <img 
+                    src={titleImage} 
+                    alt="Rise of Fedesvin" 
+                    className="w-full max-w-[160px] xs:max-w-[200px] sm:max-w-[280px] md:max-w-[320px] h-auto animate-[title-entrance_0.8s_ease-out_forwards]"
+                  />
                 </div>
               )}
 
