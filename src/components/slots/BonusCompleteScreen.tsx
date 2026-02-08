@@ -1,11 +1,14 @@
 import { useEffect, useState, useMemo } from "react";
 import { cn } from "@/lib/utils";
 import { useAnimatedCounter } from "@/hooks/useAnimatedCounter";
+import type { SlotSymbol } from "@/lib/slotGameLogic";
+import { getSymbolEmoji } from "@/lib/slotGameLogic";
 
 interface BonusCompleteScreenProps {
   isVisible: boolean;
   totalWinnings: number;
   totalSpinsUsed: number;
+  expandingSymbols?: SlotSymbol[];
   scatterImageUrl?: string | null;
   onClose?: () => void;
 }
@@ -25,6 +28,7 @@ export function BonusCompleteScreen({
   isVisible,
   totalWinnings,
   totalSpinsUsed,
+  expandingSymbols = [],
   scatterImageUrl,
   onClose,
 }: BonusCompleteScreenProps) {
@@ -226,9 +230,34 @@ export function BonusCompleteScreen({
         </div>
 
         {/* Free spins used */}
-        <p className="text-amber-100/80 text-base sm:text-lg mb-6">
+        <p className="text-amber-100/80 text-base sm:text-lg mb-2">
           I <span className="text-amber-400 font-bold text-xl">{totalSpinsUsed}</span> GRATIS SPINS
         </p>
+
+        {/* Expanding symbols used */}
+        {expandingSymbols.length > 0 && (
+          <div className="flex items-center justify-center gap-1.5 mb-6">
+            <span className="text-amber-200/60 text-sm mr-1">Expanding:</span>
+            {expandingSymbols.map((sym) => (
+              <div
+                key={sym.id}
+                className="flex items-center gap-1 px-1.5 py-0.5 bg-amber-800/40 rounded-lg border border-amber-500/30"
+              >
+                {sym.image_url ? (
+                  <img
+                    src={sym.image_url}
+                    alt={sym.name}
+                    className="w-5 h-5 sm:w-6 sm:h-6 object-contain"
+                  />
+                ) : (
+                  <span className="text-sm">{getSymbolEmoji(sym.name)}</span>
+                )}
+              </div>
+            ))}
+          </div>
+        )}
+
+        {expandingSymbols.length === 0 && <div className="mb-6" />}
 
         {/* Call to action */}
         <p 

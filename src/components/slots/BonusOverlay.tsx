@@ -1,5 +1,6 @@
 import { cn } from "@/lib/utils";
 import type { SlotSymbol } from "@/lib/slotGameLogic";
+import { getSymbolEmoji } from "@/lib/slotGameLogic";
 import { BonusCompleteScreen } from "./BonusCompleteScreen";
 import { BonusSymbolPicker } from "./BonusSymbolPicker";
 
@@ -7,10 +8,12 @@ interface BonusOverlayProps {
   isVisible: boolean;
   type: "trigger" | "complete" | "retrigger";
   expandingSymbol?: SlotSymbol | null;
+  expandingSymbols?: SlotSymbol[];
   allSymbols?: SlotSymbol[];
   totalWinnings?: number;
   retriggerSpins?: number;
   totalFreeSpins?: number;
+  newRetriggerSymbol?: SlotSymbol | null;
   onClose?: () => void;
 }
 
@@ -18,10 +21,12 @@ export function BonusOverlay({
   isVisible,
   type,
   expandingSymbol,
+  expandingSymbols = [],
   allSymbols = [],
   totalWinnings = 0,
   retriggerSpins = 10,
   totalFreeSpins = 0,
+  newRetriggerSymbol,
   onClose,
 }: BonusOverlayProps) {
   // Find the scatter symbol for display
@@ -34,6 +39,7 @@ export function BonusOverlay({
         isVisible={isVisible}
         totalWinnings={totalWinnings}
         totalSpinsUsed={totalFreeSpins}
+        expandingSymbols={expandingSymbols}
         scatterImageUrl={scatterSymbol?.image_url || null}
         onClose={onClose}
       />
@@ -101,7 +107,13 @@ export function BonusOverlay({
           <>
             {/* Retrigger content */}
             <div className="mb-4">
-              {scatterSymbol?.image_url ? (
+              {newRetriggerSymbol?.image_url ? (
+                <img 
+                  src={newRetriggerSymbol.image_url} 
+                  alt={newRetriggerSymbol.name} 
+                  className="w-20 h-20 object-cover rounded-lg animate-bounce inline-block shadow-[0_0_20px_rgba(251,191,36,0.5)]"
+                />
+              ) : scatterSymbol?.image_url ? (
                 <img 
                   src={scatterSymbol.image_url} 
                   alt="Scatter" 
@@ -114,12 +126,34 @@ export function BonusOverlay({
             <h2 className="text-3xl sm:text-4xl font-bold text-amber-300 mb-2 animate-pulse">
               RETRIGGER!
             </h2>
-            <p className="text-xl text-amber-100 mb-4">
-              +{retriggerSpins} GRATIS SPINS!
-            </p>
+            
+            {/* Show new expanding symbol if Rise of Fedesvin */}
+            {newRetriggerSymbol ? (
+              <div className="mb-4">
+                <p className="text-lg text-amber-100 mb-2">NYT EXPANDING SYMBOL!</p>
+                <div className="inline-flex items-center gap-2 px-4 py-2 bg-black/30 rounded-xl border border-amber-500/40">
+                  {newRetriggerSymbol.image_url ? (
+                    <img 
+                      src={newRetriggerSymbol.image_url} 
+                      alt={newRetriggerSymbol.name} 
+                      className="w-10 h-10 object-contain drop-shadow-[0_0_8px_rgba(251,191,36,0.5)]"
+                    />
+                  ) : (
+                    <span className="text-2xl">{getSymbolEmoji(newRetriggerSymbol.name)}</span>
+                  )}
+                  <span className="text-xl font-bold text-amber-300">{newRetriggerSymbol.name}</span>
+                </div>
+              </div>
+            ) : (
+              <p className="text-xl text-amber-100 mb-4">
+                +{retriggerSpins} GRATIS SPINS!
+              </p>
+            )}
             
             <div className="mt-4 p-4 bg-black/30 rounded-xl">
-              <p className="text-amber-200 mb-2">Total Free Spins:</p>
+              <p className="text-amber-200 mb-2">
+                {newRetriggerSymbol ? `+${retriggerSpins} Gratis Spins` : "Total Free Spins:"}
+              </p>
               <div className="text-4xl font-bold text-amber-400">
                 {totalFreeSpins}
               </div>
