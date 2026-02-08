@@ -82,6 +82,14 @@ export function SlotMachineFrame({
     ? effectiveFrameSize + Math.max(0, effectiveFrameOffset)
     : undefined;
 
+  // DEBUG: Log all computed values to verify they're applied
+  console.log(`[SlotMachineFrame] gameId=${gameId}, hasFrame=${hasFrame}, imageLoaded=${imageLoaded}, imageError=${imageError}`);
+  console.log(`[SlotMachineFrame] frameImageUrl=${frameImageUrl}`);
+  console.log(`[SlotMachineFrame] baseFrameSize=${baseFrameSize}, effectiveFrameSize=${effectiveFrameSize}`);
+  console.log(`[SlotMachineFrame] frameVerticalOffset=${frameVerticalOffset}, effectiveFrameOffset=${effectiveFrameOffset}`);
+  console.log(`[SlotMachineFrame] contentVerticalOffset=${contentVerticalOffset}, effectiveContentOffset=${effectiveContentOffset}`);
+  console.log(`[SlotMachineFrame] marginTop=${marginTop}, marginBottom=${marginBottom}`);
+
   return (
     <div 
       className="relative"
