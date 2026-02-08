@@ -8,7 +8,7 @@ import {
   getEmbedUrl,
   useToggleLike,
 } from "@/hooks/useCommunityClips";
-import { Heart, MessageCircle, Play, User } from "lucide-react";
+import { Heart, MessageCircle, Play, User, ExternalLink } from "lucide-react";
 import { formatDistanceToNow } from "date-fns";
 import { da } from "date-fns/locale";
 import { useAuth } from "@/hooks/useAuth";
@@ -24,7 +24,8 @@ export function CommunityClipCard({ clip, onOpenDetail }: CommunityClipCardProps
   const { user } = useAuth();
   const toggleLike = useToggleLike();
 
-  const embedUrl = getEmbedUrl(clip.url, clip.platform);
+  const isEmbeddable = clip.playback_type === 'embed';
+  const embedUrl = isEmbeddable ? getEmbedUrl(clip.url, clip.platform) : null;
   const timeAgo = formatDistanceToNow(new Date(clip.approved_at || clip.created_at), {
     addSuffix: true,
     locale: da,
@@ -38,7 +39,17 @@ export function CommunityClipCard({ clip, onOpenDetail }: CommunityClipCardProps
 
   const handlePlay = (e: React.MouseEvent) => {
     e.stopPropagation();
-    setIsPlaying(true);
+    if (isEmbeddable) {
+      setIsPlaying(true);
+    } else {
+      // External clips open in new tab
+      window.open(clip.url, '_blank', 'noopener,noreferrer');
+    }
+  };
+
+  const handleOpenExternal = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    window.open(clip.url, '_blank', 'noopener,noreferrer');
   };
 
   return (
@@ -48,7 +59,7 @@ export function CommunityClipCard({ clip, onOpenDetail }: CommunityClipCardProps
     >
       {/* Video/Thumbnail Area */}
       <div className="relative aspect-video bg-muted">
-        {isPlaying && embedUrl ? (
+        {isPlaying && isEmbeddable && embedUrl ? (
           <iframe
             src={embedUrl}
             className="absolute inset-0 h-full w-full"
@@ -66,23 +77,45 @@ export function CommunityClipCard({ clip, onOpenDetail }: CommunityClipCardProps
               />
             ) : (
               <div className="flex h-full w-full items-center justify-center bg-gradient-to-br from-primary/20 to-primary/5">
-                <Play className="h-12 w-12 text-muted-foreground" />
+                {isEmbeddable ? (
+                  <Play className="h-12 w-12 text-muted-foreground" />
+                ) : (
+                  <ExternalLink className="h-12 w-12 text-muted-foreground" />
+                )}
               </div>
             )}
-            <button
-              onClick={handlePlay}
-              className="absolute inset-0 flex items-center justify-center bg-black/30 opacity-0 transition-opacity group-hover:opacity-100"
-            >
-              <div className="rounded-full bg-primary p-4">
-                <Play className="h-8 w-8 text-primary-foreground" fill="currentColor" />
-              </div>
-            </button>
-            <Badge
-              variant="secondary"
-              className="absolute left-2 top-2 capitalize"
-            >
-              {clip.platform}
-            </Badge>
+            {isEmbeddable ? (
+              <button
+                onClick={handlePlay}
+                className="absolute inset-0 flex items-center justify-center bg-black/30 opacity-0 transition-opacity group-hover:opacity-100"
+              >
+                <div className="rounded-full bg-primary p-4">
+                  <Play className="h-8 w-8 text-primary-foreground" fill="currentColor" />
+                </div>
+              </button>
+            ) : (
+              <button
+                onClick={handleOpenExternal}
+                className="absolute inset-0 flex items-center justify-center bg-black/30 opacity-0 transition-opacity group-hover:opacity-100"
+              >
+                <div className="rounded-full bg-primary p-4">
+                  <ExternalLink className="h-8 w-8 text-primary-foreground" />
+                </div>
+              </button>
+            )}
+            <div className="absolute left-2 top-2 flex gap-1">
+              <Badge
+                variant="secondary"
+                className="capitalize"
+              >
+                {clip.platform}
+              </Badge>
+              {!isEmbeddable && (
+                <Badge variant="outline" className="bg-background/80">
+                  Eksternt link
+                </Badge>
+              )}
+            </div>
           </>
         )}
       </div>

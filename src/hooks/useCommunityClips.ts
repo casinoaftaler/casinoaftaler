@@ -3,6 +3,7 @@ import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
 
 export type ClipStatus = "pending" | "approved" | "rejected";
+export type PlaybackType = "embed" | "external";
 
 export interface CommunityClip {
   id: string;
@@ -11,6 +12,7 @@ export interface CommunityClip {
   title: string | null;
   description: string | null;
   platform: string;
+  playback_type: PlaybackType;
   thumbnail_url: string | null;
   duration_seconds: number | null;
   status: ClipStatus;
@@ -19,8 +21,9 @@ export interface CommunityClip {
   rejection_reason: string | null;
   created_at: string;
   updated_at: string;
-  original_url?: string | null;
-  requires_manual_review?: boolean | null;
+  original_url: string | null;
+  requires_manual_review: boolean | null;
+  validation_notes: string | null;
 }
 
 export interface CommunityClipWithStats extends CommunityClip {
@@ -37,6 +40,7 @@ export interface ClipValidationResult {
   originalUrl: string;
   resolvedUrl: string | null;
   platform: 'twitch' | 'youtube' | 'unknown';
+  playbackType: PlaybackType;
   clipId: string | null;
   metadata: {
     title?: string;
@@ -60,6 +64,7 @@ export async function validateClipUrl(url: string): Promise<ClipValidationResult
       originalUrl: url,
       resolvedUrl: null,
       platform: 'unknown',
+      playbackType: 'external',
       clipId: null,
       metadata: { requiresManualReview: false },
     };
@@ -214,6 +219,7 @@ export function useApprovedClips() {
         return {
           ...clip,
           status: clip.status as ClipStatus,
+          playback_type: (clip.playback_type as PlaybackType) || 'embed',
           likes_count: likesCount.get(clip.id) || 0,
           comments_count: commentsCount.get(clip.id) || 0,
           user_has_liked: userLikes.includes(clip.id),
@@ -258,6 +264,7 @@ export function useAdminClips(statusFilter?: ClipStatus) {
         return {
           ...clip,
           status: clip.status as ClipStatus,
+          playback_type: (clip.playback_type as PlaybackType) || 'embed',
           likes_count: 0,
           comments_count: 0,
           user_has_liked: false,
@@ -287,6 +294,7 @@ export function useMyClips() {
       return (data || []).map((clip) => ({
         ...clip,
         status: clip.status as ClipStatus,
+        playback_type: (clip.playback_type as PlaybackType) || 'embed',
       }));
     },
   });
@@ -331,6 +339,7 @@ export function useSubmitClip() {
           title: title || validation.metadata.title || null,
           description: description || null,
           platform: validation.platform,
+          playback_type: validation.playbackType,
           thumbnail_url: validation.metadata.thumbnailUrl || null,
           duration_seconds: validation.metadata.durationSeconds || null,
           requires_manual_review: requiresManualReview,

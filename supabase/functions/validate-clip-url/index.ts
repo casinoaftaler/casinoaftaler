@@ -9,6 +9,7 @@ interface ValidationResult {
   originalUrl: string;
   resolvedUrl: string | null;
   platform: 'twitch' | 'youtube' | 'unknown';
+  playbackType: 'embed' | 'external';
   clipId: string | null;
   metadata: {
     title?: string;
@@ -195,6 +196,7 @@ Deno.serve(async (req) => {
           originalUrl: url || '',
           resolvedUrl: null,
           platform: 'unknown',
+          playbackType: 'external',
           clipId: null,
           metadata: { requiresManualReview: false },
         } as ValidationResult),
@@ -219,6 +221,7 @@ Deno.serve(async (req) => {
           originalUrl,
           resolvedUrl: null,
           platform: 'unknown',
+          playbackType: 'external',
           clipId: null,
           metadata: { requiresManualReview: false },
         } as ValidationResult),
@@ -235,15 +238,16 @@ Deno.serve(async (req) => {
     // Detect platform from resolved URL
     const platform = detectPlatform(resolvedUrl);
     
-    // If platform is unknown, accept but mark for manual review
+    // If platform is unknown, accept but mark for manual review with external playback
     if (platform === 'unknown') {
-      console.log('Platform could not be determined, marking for manual review');
+      console.log('Platform could not be determined, marking for manual review with external playback');
       
       const result: ValidationResult = {
         valid: true, // Accept the submission
         originalUrl,
         resolvedUrl,
         platform: 'unknown',
+        playbackType: 'external', // Non-embeddable - opens in new tab
         clipId: null,
         metadata: {
           requiresManualReview: true,
@@ -287,6 +291,7 @@ Deno.serve(async (req) => {
             originalUrl,
             resolvedUrl,
             platform,
+            playbackType: 'embed', // It's a valid platform, just too long
             clipId,
             metadata: { ...metadata, requiresManualReview: false },
           } as ValidationResult),
@@ -310,6 +315,7 @@ Deno.serve(async (req) => {
       originalUrl,
       resolvedUrl,
       platform,
+      playbackType: 'embed', // Twitch/YouTube = embeddable
       clipId,
       metadata: {
         title: metadata.title,
@@ -335,6 +341,7 @@ Deno.serve(async (req) => {
         originalUrl: '',
         resolvedUrl: null,
         platform: 'unknown',
+        playbackType: 'external',
         clipId: null,
         metadata: { requiresManualReview: false },
       } as ValidationResult),
