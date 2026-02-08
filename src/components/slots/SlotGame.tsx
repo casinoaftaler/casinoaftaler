@@ -556,9 +556,9 @@ export function SlotGame({ gameId = "book-of-fedesvin" }: SlotGameProps) {
 
   if (symbolsLoading) {
     return (
-      <Card className="border-amber-500/20">
+      <Card className={cn("border-opacity-20", gameId === "rise-of-fedesvin" ? "border-purple-500/20" : "border-amber-500/20")}>
         <CardContent className="flex items-center justify-center min-h-[400px]">
-          <Loader2 className="h-8 w-8 animate-spin text-amber-500" />
+          <Loader2 className={cn("h-8 w-8 animate-spin", gameId === "rise-of-fedesvin" ? "text-purple-500" : "text-amber-500")} />
         </CardContent>
       </Card>
     );
@@ -566,7 +566,7 @@ export function SlotGame({ gameId = "book-of-fedesvin" }: SlotGameProps) {
 
   if (!symbols || symbols.length === 0) {
     return (
-      <Card className="border-amber-500/20">
+      <Card className={cn("border-opacity-20", gameId === "rise-of-fedesvin" ? "border-purple-500/20" : "border-amber-500/20")}>
         <CardContent className="flex flex-col items-center justify-center min-h-[400px] text-center">
           <Gamepad2 className="h-12 w-12 text-muted-foreground mb-4" />
           <p className="text-muted-foreground">Symboler indlæses...</p>
@@ -887,17 +887,24 @@ export function SlotGame({ gameId = "book-of-fedesvin" }: SlotGameProps) {
                 expandingSymbol={bonusState.expandingSymbol}
                 expandingSymbols={bonusState.expandingSymbols}
                 bonusWinnings={bonusState.bonusWinnings}
+                gameId={gameId}
               />
               {gameId === "rise-of-fedesvin" && (
                 <BonusSymbolBar
                   isVisible={bonusState.isActive}
                   allSymbols={symbols || []}
                   expandingSymbols={bonusState.expandingSymbols}
+                  gameId={gameId}
                 />
               )}
             </div>
             
-            <div className="rounded-xl backdrop-blur-md bg-amber-950/40 border border-amber-500/20 p-2 sm:p-3 shadow-lg">
+            <div className={cn(
+              "rounded-xl backdrop-blur-md border p-2 sm:p-3 shadow-lg",
+              gameId === "rise-of-fedesvin" 
+                ? "bg-purple-950/40 border-purple-500/20" 
+                : "bg-amber-950/40 border-amber-500/20"
+            )}>
               <SlotControlPanel
                 bet={bet}
                 onBetChange={setBet}
@@ -919,6 +926,7 @@ export function SlotGame({ gameId = "book-of-fedesvin" }: SlotGameProps) {
                 spinsLoading={false}
                 showBonusTrigger={showBonusTrigger}
                 winAmount={winAmount}
+                gameId={gameId}
               />
             </div>
           </div>
