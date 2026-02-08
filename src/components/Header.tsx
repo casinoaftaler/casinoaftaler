@@ -143,7 +143,7 @@ export function Header() {
               <DropdownMenuItem asChild>
                 <Link to="/community/slots" className="flex items-center gap-2">
                   <Coins className="h-4 w-4" />
-                  Slot Machine
+                  Spillehal
                 </Link>
               </DropdownMenuItem>
               <DropdownMenuItem asChild>
@@ -320,7 +320,7 @@ export function Header() {
               onClick={() => setMobileMenuOpen(false)}
             >
               <Coins className="h-4 w-4" />
-              Slot Machine
+              Spillehal
             </Link>
             <Link
               to="/community/highlights"

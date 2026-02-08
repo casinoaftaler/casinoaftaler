@@ -16,7 +16,7 @@ import { useCasinos } from "@/hooks/useCasinos";
 import { useViewportScaling } from "@/hooks/useViewportScaling";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
-import { Gamepad2 } from "lucide-react";
+import { ArrowLeft, Gamepad2 } from "lucide-react";
 import defaultSlotBackground from "@/assets/slots/slot-background.jpg";
 import defaultTitleImage from "@/assets/slots/book-of-fedesvin-title.png";
 import slotCasinoCardBg from "@/assets/slots/slot-casino-card-bg.png";
@@ -165,6 +165,21 @@ export default function SlotMachine() {
         style={{ backgroundImage: `url(${backgroundImage})` }}
       />
       <div className="fixed inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black/70 -z-10" />
+
+      {/* Back button */}
+      <div className="absolute top-3 left-3 z-20">
+        <Button
+          asChild
+          variant="ghost"
+          size="sm"
+          className="text-amber-300/80 hover:text-amber-300 hover:bg-amber-500/10 gap-1.5"
+        >
+          <Link to="/community/slots">
+            <ArrowLeft className="h-4 w-4" />
+            <span className="hidden sm:inline">Tilbage til spil</span>
+          </Link>
+        </Button>
+      </div>
       
       {/* Scaled game area - only the game itself is scaled */}
       <div className="flex items-start justify-center pt-2 sm:pt-4">
