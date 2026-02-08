@@ -586,7 +586,14 @@ export function SlotGame() {
         type="trigger"
         expandingSymbol={pendingExpandingSymbol}
         allSymbols={symbols || []}
-        onClose={() => setShowBonusTrigger(false)}
+        onClose={() => {
+          setShowBonusTrigger(false);
+          // Apply deferred bonus state now that the symbol has been revealed
+          if (pendingBonusStateRef.current) {
+            updateBonusFromServer(pendingBonusStateRef.current);
+            pendingBonusStateRef.current = null;
+          }
+        }}
       />
       <BonusOverlay
         isVisible={showBonusComplete}
@@ -706,10 +713,16 @@ export function SlotGame() {
                             const reelsExpanded = pendingExpandedReelsRef.current;
                             const isBonusSpin = isBonusSpinRef.current;
                             
-                            // NOW apply the bonus state update (after reels stopped)
+                            // Apply bonus state update (after reels stopped)
+                            // For fresh bonus triggers, defer until the trigger overlay closes
+                            // so the BonusStatusBar doesn't spoil the expanding symbol
                             if (pendingBonusStateRef.current) {
-                              updateBonusFromServer(pendingBonusStateRef.current);
-                              pendingBonusStateRef.current = null;
+                              if (isBonusSpin || !result.bonusTriggered) {
+                                // Ongoing bonus spin or no trigger - apply immediately
+                                updateBonusFromServer(pendingBonusStateRef.current);
+                                pendingBonusStateRef.current = null;
+                              }
+                              // Fresh bonus trigger - keep pending, applied when overlay closes
                             }
                             
                             // Handle bonus expansion animation
