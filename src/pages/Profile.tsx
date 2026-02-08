@@ -185,6 +185,13 @@ export default function Profile() {
         </div>
       )}
 
+      {/* Rewards Progress */}
+      <ProfileRewardsProgress
+        currentStatus={currentStatus}
+        rewardedSections={rewardedSections}
+        bonusSpinsPermanent={profile.bonus_spins_permanent ?? 0}
+      />
+
       <form onSubmit={handleSubmit}>
         <Tabs defaultValue="profile" className="space-y-6">
           <TabsList className="grid w-full grid-cols-4 h-auto">
@@ -250,15 +257,6 @@ export default function Profile() {
             />
           </TabsContent>
         </Tabs>
-
-        {/* Rewards Progress - Shown after form sections */}
-        <div className="mt-6">
-          <ProfileRewardsProgress
-            currentStatus={currentStatus}
-            rewardedSections={rewardedSections}
-            bonusSpinsPermanent={profile.bonus_spins_permanent ?? 0}
-          />
-        </div>
 
         {/* Save Button - Fixed at bottom on mobile */}
         <div className="mt-6 flex justify-end sticky bottom-4 sm:static">
