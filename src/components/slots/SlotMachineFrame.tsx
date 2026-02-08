@@ -38,10 +38,11 @@ export function SlotMachineFrame({
     return () => window.removeEventListener('resize', handleResize);
   }, []);
   
-  // Use game-specific frame if available, fallback to global
+  // Use game-specific frame/size if available, fallback to global
   const gamePrefix = gameId === "book-of-fedesvin" ? "" : gameId.replace(/-/g, "_") + "_";
   const frameImageUrl = (gamePrefix ? settings?.[`${gamePrefix}frame_image`] : null) || settings?.slot_machine_frame_image;
-  const baseFrameSize = parseInt(settings?.slot_frame_size || "90", 10);
+  const frameSizeKey = gamePrefix ? `${gamePrefix}frame_size` : "slot_frame_size";
+  const baseFrameSize = parseInt(settings?.[frameSizeKey] || settings?.slot_frame_size || "90", 10);
   const effectiveFrameSize = getEffectiveFrameSize(windowWidth, baseFrameSize);
   const hasFrame = !!frameImageUrl && !imageError;
 

@@ -668,7 +668,7 @@ function SymbolsTab({ gameId = "book-of-fedesvin" }: { gameId?: string }) {
   );
 }
 
-function SettingsTab() {
+function SettingsTab({ gameId }: { gameId?: string }) {
   const { settings, isLoading, updateSettings } = useSlotSettings();
   const [formData, setFormData] = useState({
     dailySpins: 100,
@@ -836,7 +836,7 @@ function SettingsTab() {
       </Card>
 
       {/* Egyptian Frame Generator */}
-      <SlotFrameAdminControls />
+      <SlotFrameAdminControls gameId={gameId} />
 
       {/* Sound Settings */}
       <SlotSoundAdminSection />
@@ -1304,7 +1304,7 @@ export function SlotMachineAdminSection() {
         </TabsContent>
 
         <TabsContent value="settings">
-          <SettingsTab />
+          <SettingsTab gameId={selectedGame} />
         </TabsContent>
 
         <TabsContent value="spins">
