@@ -223,6 +223,7 @@ export type Database = {
           id: string
           original_url: string | null
           platform: string
+          playback_type: string | null
           rejection_reason: string | null
           requires_manual_review: boolean | null
           status: Database["public"]["Enums"]["clip_status"]
@@ -242,6 +243,7 @@ export type Database = {
           id?: string
           original_url?: string | null
           platform?: string
+          playback_type?: string | null
           rejection_reason?: string | null
           requires_manual_review?: boolean | null
           status?: Database["public"]["Enums"]["clip_status"]
@@ -261,6 +263,7 @@ export type Database = {
           id?: string
           original_url?: string | null
           platform?: string
+          playback_type?: string | null
           rejection_reason?: string | null
           requires_manual_review?: boolean | null
           status?: Database["public"]["Enums"]["clip_status"]

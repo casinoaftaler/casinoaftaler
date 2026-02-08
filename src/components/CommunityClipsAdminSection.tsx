@@ -126,7 +126,8 @@ export function CommunityClipsAdminSection() {
             ) : clips && clips.length > 0 ? (
               <div className="space-y-4">
                 {clips.map((clip) => {
-                  const embedUrl = getEmbedUrl(clip.url, clip.platform);
+                  const isEmbeddable = clip.playback_type === 'embed';
+                  const embedUrl = isEmbeddable ? getEmbedUrl(clip.url, clip.platform) : null;
                   const isPreviewOpen = previewClipId === clip.id;
 
                   return (
@@ -135,7 +136,7 @@ export function CommunityClipsAdminSection() {
                         {/* Preview */}
                         <div className="lg:w-80 flex-shrink-0">
                           <div className="aspect-video bg-muted relative">
-                            {isPreviewOpen && embedUrl ? (
+                            {isPreviewOpen && isEmbeddable && embedUrl ? (
                               <iframe
                                 src={embedUrl}
                                 className="absolute inset-0 h-full w-full"
@@ -149,20 +150,35 @@ export function CommunityClipsAdminSection() {
                                   alt="Thumbnail"
                                   className="h-full w-full object-cover"
                                 />
-                                <button
-                                  onClick={() => setPreviewClipId(clip.id)}
-                                  className="absolute inset-0 flex items-center justify-center bg-black/40 hover:bg-black/50 transition-colors"
-                                >
-                                  <Play className="h-12 w-12 text-white" />
-                                </button>
+                                {isEmbeddable ? (
+                                  <button
+                                    onClick={() => setPreviewClipId(clip.id)}
+                                    className="absolute inset-0 flex items-center justify-center bg-black/40 hover:bg-black/50 transition-colors"
+                                  >
+                                    <Play className="h-12 w-12 text-white" />
+                                  </button>
+                                ) : (
+                                  <div className="absolute inset-0 flex items-center justify-center bg-black/40">
+                                    <ExternalLink className="h-12 w-12 text-white" />
+                                  </div>
+                                )}
                               </>
                             ) : (
-                              <button
-                                onClick={() => setPreviewClipId(clip.id)}
-                                className="flex h-full w-full items-center justify-center bg-muted hover:bg-muted/80"
-                              >
-                                <Play className="h-12 w-12 text-muted-foreground" />
-                              </button>
+                              <div className="flex h-full w-full flex-col items-center justify-center bg-muted gap-2">
+                                {isEmbeddable ? (
+                                  <button
+                                    onClick={() => setPreviewClipId(clip.id)}
+                                    className="flex h-full w-full items-center justify-center hover:bg-muted/80"
+                                  >
+                                    <Play className="h-12 w-12 text-muted-foreground" />
+                                  </button>
+                                ) : (
+                                  <>
+                                    <ExternalLink className="h-12 w-12 text-muted-foreground" />
+                                    <span className="text-xs text-muted-foreground">Eksternt link</span>
+                                  </>
+                                )}
+                              </div>
                             )}
                           </div>
                         </div>
@@ -176,7 +192,20 @@ export function CommunityClipsAdminSection() {
                                 <Badge variant="outline" className="capitalize">
                                   {clip.platform === "unknown" ? "Ukendt" : clip.platform}
                                 </Badge>
-                                {(clip as any).requires_manual_review && (
+                                <Badge variant={isEmbeddable ? "secondary" : "outline"} className="gap-1">
+                                  {isEmbeddable ? (
+                                    <>
+                                      <Play className="h-3 w-3" />
+                                      Embed
+                                    </>
+                                  ) : (
+                                    <>
+                                      <ExternalLink className="h-3 w-3" />
+                                      Eksternt
+                                    </>
+                                  )}
+                                </Badge>
+                                {clip.requires_manual_review && (
                                   <Badge variant="secondary" className="gap-1 bg-amber-500/20 text-amber-600 border-amber-500/30">
                                     <AlertTriangle className="h-3 w-3" />
                                     Kræver manuel gennemgang
@@ -195,11 +224,11 @@ export function CommunityClipsAdminSection() {
                               )}
 
                               {/* Validation notes for admin */}
-                              {(clip as any).validation_notes && (
+                              {clip.validation_notes && (
                                 <div className="bg-amber-500/10 border border-amber-500/20 rounded-md p-2 mb-2">
                                   <p className="text-xs text-amber-600">
                                     <AlertTriangle className="h-3 w-3 inline mr-1" />
-                                    {(clip as any).validation_notes}
+                                    {clip.validation_notes}
                                   </p>
                                 </div>
                               )}
@@ -244,16 +273,16 @@ export function CommunityClipsAdminSection() {
                                 )}
 
                               {/* Show original URL if different from resolved */}
-                              {(clip as any).original_url && (
+                              {clip.original_url && (
                                 <div className="mt-2 text-xs text-muted-foreground">
                                   <span className="font-medium">Original URL: </span>
                                   <a
-                                    href={(clip as any).original_url}
+                                    href={clip.original_url}
                                     target="_blank"
                                     rel="noopener noreferrer"
                                     className="text-primary hover:underline break-all"
                                   >
-                                    {(clip as any).original_url}
+                                    {clip.original_url}
                                   </a>
                                 </div>
                               )}
@@ -265,7 +294,7 @@ export function CommunityClipsAdminSection() {
                                 className="inline-flex items-center gap-1 text-xs text-primary hover:underline mt-2"
                               >
                                 <ExternalLink className="h-3 w-3" />
-                                {(clip as any).original_url ? "Åbn resolved URL" : "Åbn original"}
+                                {clip.original_url ? "Åbn resolved URL" : "Åbn original"}
                               </a>
                             </div>
 

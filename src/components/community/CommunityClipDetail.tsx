@@ -21,7 +21,7 @@ import {
   useAddComment,
   useDeleteComment,
 } from "@/hooks/useCommunityClipComments";
-import { Heart, MessageCircle, Send, Trash2, User, Loader2 } from "lucide-react";
+import { Heart, MessageCircle, Send, Trash2, User, Loader2, ExternalLink } from "lucide-react";
 import { formatDistanceToNow } from "date-fns";
 import { da } from "date-fns/locale";
 import { useAuth } from "@/hooks/useAuth";
@@ -48,8 +48,8 @@ export function CommunityClipDetail({
   const deleteComment = useDeleteComment();
 
   if (!clip) return null;
-
-  const embedUrl = getEmbedUrl(clip.url, clip.platform);
+  const isEmbeddable = clip.playback_type === 'embed';
+  const embedUrl = isEmbeddable ? getEmbedUrl(clip.url, clip.platform) : null;
   const timeAgo = formatDistanceToNow(
     new Date(clip.approved_at || clip.created_at),
     { addSuffix: true, locale: da }
@@ -79,7 +79,7 @@ export function CommunityClipDetail({
           {/* Video Section */}
           <div className="lg:col-span-3 bg-black">
             <div className="aspect-video">
-              {embedUrl ? (
+              {isEmbeddable && embedUrl ? (
                 <iframe
                   src={embedUrl}
                   className="h-full w-full"
@@ -87,8 +87,19 @@ export function CommunityClipDetail({
                   allow="autoplay; encrypted-media"
                 />
               ) : (
-                <div className="flex h-full w-full items-center justify-center text-muted-foreground">
-                  Video kunne ikke indlæses
+                <div className="flex h-full w-full flex-col items-center justify-center gap-4 text-muted-foreground p-4">
+                  <ExternalLink className="h-12 w-12" />
+                  <p className="text-center text-sm">
+                    Denne video kan ikke vises her.
+                  </p>
+                  <Button
+                    variant="secondary"
+                    className="gap-2"
+                    onClick={() => window.open(clip.url, '_blank', 'noopener,noreferrer')}
+                  >
+                    <ExternalLink className="h-4 w-4" />
+                    Åbn Clip
+                  </Button>
                 </div>
               )}
             </div>
@@ -97,10 +108,13 @@ export function CommunityClipDetail({
           {/* Details & Comments Section */}
           <div className="lg:col-span-2 flex flex-col max-h-[60vh] lg:max-h-[80vh]">
             <DialogHeader className="p-4 pb-2">
-              <div className="flex items-center gap-2 mb-2">
+              <div className="flex items-center gap-2 mb-2 flex-wrap">
                 <Badge variant="secondary" className="capitalize">
                   {clip.platform}
                 </Badge>
+                {!isEmbeddable && (
+                  <Badge variant="outline">Eksternt link</Badge>
+                )}
                 <span className="text-xs text-muted-foreground">{timeAgo}</span>
               </div>
               <DialogTitle className="text-lg">
