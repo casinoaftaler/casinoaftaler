@@ -4,6 +4,8 @@ import { Button } from "@/components/ui/button";
 import { GameCard } from "@/components/games/GameCard";
 import { Gamepad2 } from "lucide-react";
 import slotIntroImage from "@/assets/slots/slot-intro-screen.jpg";
+import bookTitle from "@/assets/slots/book-of-fedesvin-title.png";
+import riseTitle from "@/assets/slots/rise/title-logo.png";
 import riseIntroImage from "@/assets/slots/rise/intro-screen.jpg";
 import leFedesvinImage from "@/assets/slots/le-fedesvin-preview.jpg";
 import leFedesvinTitle from "@/assets/slots/le-fedesvin-title.png";
@@ -19,6 +21,7 @@ const GAMES = [
     href: "/community/slots/book-of-fedesvin",
     status: "active" as const,
     badge: "POPULÆR",
+    titleLogo: bookTitle,
   },
   {
     id: "rise-of-fedesvin",
@@ -28,6 +31,7 @@ const GAMES = [
     href: "/community/slots/rise-of-fedesvin",
     status: "active" as const,
     badge: "NY",
+    titleLogo: riseTitle,
   },
   {
     id: "le-fedesvin",
