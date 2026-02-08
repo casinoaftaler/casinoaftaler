@@ -9,10 +9,11 @@ const XL_BREAKPOINT = 1280;
 const BASELINE_DESKTOP_WITH_TITLE = 950;
 const BASELINE_DESKTOP_CORE = 850;
 
-// Mobile WITH title (<xl): Title ~80px, Reels ~320px, Controls ~80px, Side content ~250px = ~730px
-// Mobile CORE (no title): Reels ~320px, Controls ~80px, Side content ~220px = ~620px
-const BASELINE_MOBILE_WITH_TITLE = 730;
-const BASELINE_MOBILE_CORE = 620;
+// Mobile WITH title (<xl): Title ~80px, Reels ~320px, Controls ~80px = ~480px
+// Mobile CORE (no title): Reels ~320px, Controls ~80px = ~400px
+// Note: Side content (leaderboard/promo) is placed outside the scaled container on mobile
+const BASELINE_MOBILE_WITH_TITLE = 480;
+const BASELINE_MOBILE_CORE = 400;
 
 // Header height (fixed)
 const HEADER_HEIGHT = 64;
