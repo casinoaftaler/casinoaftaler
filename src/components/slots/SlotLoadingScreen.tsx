@@ -1,6 +1,7 @@
 import { useEffect, useState, useMemo } from "react";
 import { Progress } from "@/components/ui/progress";
 import defaultTitleImage from "@/assets/slots/book-of-fedesvin-title.png";
+import riseTitleImage from "@/assets/slots/rise/title-logo.png";
 import defaultSlotBackground from "@/assets/slots/slot-background.jpg";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
 import { useSlotSymbols } from "@/hooks/useSlotSymbols";
@@ -94,33 +95,17 @@ export function SlotLoadingScreen({ onComplete, gameId = "book-of-fedesvin" }: S
       {/* Content */}
       <div className="flex flex-col items-center gap-8 px-4 animate-fade-in">
         {/* Title */}
-        {isWizard ? (
-          <div className="text-center">
-            <h1 
-              className="text-4xl sm:text-5xl md:text-6xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-purple-300 via-purple-100 to-purple-300"
-              style={{
-                filter: 'drop-shadow(0 0 20px rgba(168,85,247,0.5)) drop-shadow(0 0 40px rgba(168,85,247,0.3))',
-                animation: 'wizard-title-glow 3s ease-in-out infinite',
-              }}
-            >
-              Rise of Fedesvin
-            </h1>
-            <div className="mt-3 flex justify-center gap-2 text-2xl" style={{ animation: 'sparkle 2s ease-in-out infinite' }}>
-              <span>🔮</span>
-              <span style={{ animationDelay: '0.3s', animation: 'sparkle 2s ease-in-out 0.3s infinite' }}>⚡</span>
-              <span style={{ animationDelay: '0.6s', animation: 'sparkle 2s ease-in-out 0.6s infinite' }}>🔮</span>
-            </div>
-          </div>
-        ) : (
-          <img 
-            src={titleImage} 
-            alt="Book of Fedesvin" 
-            className="w-full max-w-[200px] sm:max-w-sm md:max-w-md h-auto"
-            style={{
-              filter: 'drop-shadow(0 0 20px rgba(251,191,36,0.5)) drop-shadow(0 0 40px rgba(251,191,36,0.3))'
-            }}
-          />
-        )}
+        <img 
+          src={isWizard ? riseTitleImage : titleImage} 
+          alt={isWizard ? "Rise of Fedesvin" : "Book of Fedesvin"} 
+          className="w-full max-w-[280px] sm:max-w-md md:max-w-lg h-auto"
+          style={{
+            filter: isWizard
+              ? 'drop-shadow(0 0 20px rgba(168,85,247,0.5)) drop-shadow(0 0 40px rgba(168,85,247,0.3))'
+              : 'drop-shadow(0 0 20px rgba(251,191,36,0.5)) drop-shadow(0 0 40px rgba(251,191,36,0.3))',
+            animation: isWizard ? 'wizard-title-glow 3s ease-in-out infinite' : undefined,
+          }}
+        />
         
         {/* Loading Bar */}
         <div className="w-full max-w-xs sm:max-w-sm space-y-4">
