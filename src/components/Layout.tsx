@@ -4,6 +4,7 @@ import { Footer } from "./Footer";
 import { CookieConsent } from "./CookieConsent";
 import { BackToTop } from "./BackToTop";
 import { TwitchLivePlayer } from "./TwitchLivePlayer";
+import { ProfileCompletionPrompt } from "./ProfileCompletionPrompt";
 import { usePageTracking } from "@/hooks/usePageTracking";
 
 export function Layout() {
@@ -23,6 +24,7 @@ export function Layout() {
       <CookieConsent />
       <BackToTop />
       <TwitchLivePlayer />
+      <ProfileCompletionPrompt />
     </div>
   );
 }

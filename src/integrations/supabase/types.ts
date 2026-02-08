@@ -461,6 +461,7 @@ export type Database = {
           play_styles: string[] | null
           playstyle_section_completed: boolean | null
           preferred_game_type: string | null
+          profile_prompt_dismissed: boolean
           profile_section_completed: boolean | null
           stats_public: boolean | null
           stats_section_completed: boolean | null
@@ -494,6 +495,7 @@ export type Database = {
           play_styles?: string[] | null
           playstyle_section_completed?: boolean | null
           preferred_game_type?: string | null
+          profile_prompt_dismissed?: boolean
           profile_section_completed?: boolean | null
           stats_public?: boolean | null
           stats_section_completed?: boolean | null
@@ -527,6 +529,7 @@ export type Database = {
           play_styles?: string[] | null
           playstyle_section_completed?: boolean | null
           preferred_game_type?: string | null
+          profile_prompt_dismissed?: boolean
           profile_section_completed?: boolean | null
           stats_public?: boolean | null
           stats_section_completed?: boolean | null
