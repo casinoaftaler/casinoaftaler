@@ -10,15 +10,18 @@ import { Input } from "@/components/ui/input";
 import { useSlotLeaderboard, type LeaderboardEntry } from "@/hooks/useSlotLeaderboard";
 import { UserProfileLink } from "@/components/UserProfileLink";
 import { cn } from "@/lib/utils";
+import { getSlotTheme, type SlotTheme } from "@/lib/slotTheme";
 
 function LeaderboardRow({
   entry,
   rank,
   isCurrentUser = false,
+  theme,
 }: {
   entry: LeaderboardEntry;
   rank: number;
   isCurrentUser?: boolean;
+  theme: SlotTheme;
 }) {
   const getRankIcon = () => {
     if (rank === 1) return <Trophy className="h-5 w-5 text-amber-500" />;
@@ -35,9 +38,9 @@ function LeaderboardRow({
     <div
       className={cn(
         "p-3 rounded-lg",
-        rank <= 3 && !isCurrentUser && "bg-gradient-to-r from-amber-500/10 to-transparent",
+        rank <= 3 && !isCurrentUser && theme.leaderboardTopRowBg,
         rank > 3 && !isCurrentUser && "hover:bg-muted/50",
-        isCurrentUser && "ring-1 ring-amber-500/50 bg-amber-500/10"
+        isCurrentUser && `ring-1 ${theme.leaderboardUserRing} ${theme.leaderboardUserBg}`
       )}
     >
       {/* Top row: Rank, Avatar, Name */}
@@ -49,11 +52,11 @@ function LeaderboardRow({
           avatarUrl={entry.avatar_url}
           avatarClassName="h-8 w-8"
         />
-        <p className="font-medium text-amber-100 flex-1 truncate">
+        <p className={cn("font-medium flex-1 truncate", theme.leaderboardNameText)}>
           {entry.display_name}
         </p>
         {isCurrentUser && (
-          <Badge variant="outline" className="text-xs border-amber-500/50 text-amber-400 bg-amber-500/10">
+          <Badge variant="outline" className={cn("text-xs", theme.leaderboardUserBadgeBorder, theme.leaderboardUserBadgeText, theme.leaderboardUserBadgeBg)}>
             Du
           </Badge>
         )}
@@ -62,11 +65,11 @@ function LeaderboardRow({
       {/* Bottom row: Stats in 4 columns */}
       <div className="flex items-center justify-between text-sm pl-9">
         <div className="text-center">
-          <p className="font-bold text-amber-500">{entry.total_winnings.toLocaleString()}</p>
+          <p className={cn("font-bold", theme.leaderboardPointsText)}>{entry.total_winnings.toLocaleString()}</p>
           <p className="text-xs text-muted-foreground">point</p>
         </div>
         <div className="text-center">
-          <p className="font-medium text-amber-100">{entry.total_spins.toLocaleString()}</p>
+          <p className={cn("font-medium", theme.leaderboardSpinsText)}>{entry.total_spins.toLocaleString()}</p>
           <p className="text-xs text-muted-foreground">spins</p>
         </div>
         <div className="text-center">
@@ -82,7 +85,12 @@ function LeaderboardRow({
   );
 }
 
-export function SlotLeaderboard() {
+interface SlotLeaderboardProps {
+  gameId?: string;
+}
+
+export function SlotLeaderboard({ gameId = "book-of-fedesvin" }: SlotLeaderboardProps) {
+  const theme = getSlotTheme(gameId);
   const [showFullList, setShowFullList] = useState(false);
   const [dialogPeriod, setDialogPeriod] = useState<"daily" | "weekly" | "alltime">("alltime");
   const [searchQuery, setSearchQuery] = useState("");
@@ -106,11 +114,11 @@ export function SlotLeaderboard() {
 
   return (
     <div className="relative animate-fade-in">
-      <Card className="border-amber-500/30 bg-gradient-to-b from-amber-950/95 via-black/90 to-amber-950/95 backdrop-blur-md shadow-[0_0_30px_rgba(251,191,36,0.1)]">
-        <CardHeader className="pb-2 border-b border-amber-500/10">
-          <CardTitle className="flex items-center gap-2 text-lg text-amber-100">
-            <div className="p-1.5 rounded-lg bg-amber-500/20">
-              <Trophy className="h-5 w-5 text-amber-500" />
+      <Card className={cn(theme.leaderboardCardBorder, theme.leaderboardCardBg, "backdrop-blur-md", theme.leaderboardGlowShadow)}>
+        <CardHeader className={cn("pb-2 border-b", theme.leaderboardHeaderBorder)}>
+          <CardTitle className={cn("flex items-center gap-2 text-lg", theme.leaderboardTitleText)}>
+            <div className={cn("p-1.5 rounded-lg", theme.leaderboardIconBg)}>
+              <Trophy className={cn("h-5 w-5", theme.leaderboardIconColor)} />
             </div>
             Rangliste
           </CardTitle>
@@ -131,40 +139,39 @@ export function SlotLeaderboard() {
                     entry={entry}
                     rank={index + 1}
                     isCurrentUser={currentUser?.entry.user_id === entry.user_id}
+                    theme={theme}
                   />
                 ))}
               </div>
-
-
 
               {entries.length > 3 && (
                 <Dialog open={showFullList} onOpenChange={(open) => { setShowFullList(open); if (!open) setSearchQuery(""); }}>
                   <DialogTrigger asChild>
                     <Button
                       variant="ghost"
-                      className="w-full mt-3 text-amber-500 hover:text-amber-400 hover:bg-amber-500/10 border border-amber-500/30"
+                      className={cn("w-full mt-3 border", theme.leaderboardShowAllText, theme.leaderboardShowAllHoverText, theme.leaderboardShowAllHoverBg, theme.leaderboardShowAllBorder)}
                     >
                       <Users className="h-4 w-4 mr-2" />
                       Vis alle ({entries.length})
                     </Button>
                   </DialogTrigger>
-                  <DialogContent className="max-w-md border-amber-500/30 bg-gradient-to-b from-amber-950/98 via-black/95 to-amber-950/98">
+                  <DialogContent className={cn("max-w-md", theme.leaderboardDialogBorder, theme.leaderboardDialogBg)}>
                     <DialogHeader>
-                      <DialogTitle className="flex items-center gap-2 text-amber-100">
-                        <Trophy className="h-5 w-5 text-amber-500" />
+                      <DialogTitle className={cn("flex items-center gap-2", theme.leaderboardDialogTitleText)}>
+                        <Trophy className={cn("h-5 w-5", theme.leaderboardIconColor)} />
                         Fuld Rangliste
                       </DialogTitle>
                     </DialogHeader>
 
                     <Tabs value={dialogPeriod} onValueChange={(v) => setDialogPeriod(v as typeof dialogPeriod)} className="w-full">
-                      <TabsList className="w-full grid grid-cols-3 bg-amber-950/50">
-                        <TabsTrigger value="daily" className="data-[state=active]:bg-amber-500/20 data-[state=active]:text-amber-100">
+                      <TabsList className={cn("w-full grid grid-cols-3", theme.leaderboardTabsBg)}>
+                        <TabsTrigger value="daily" className={cn(theme.leaderboardTabActive, theme.leaderboardTabActiveText)}>
                           I dag
                         </TabsTrigger>
-                        <TabsTrigger value="weekly" className="data-[state=active]:bg-amber-500/20 data-[state=active]:text-amber-100">
+                        <TabsTrigger value="weekly" className={cn(theme.leaderboardTabActive, theme.leaderboardTabActiveText)}>
                           Uge
                         </TabsTrigger>
-                        <TabsTrigger value="alltime" className="data-[state=active]:bg-amber-500/20 data-[state=active]:text-amber-100">
+                        <TabsTrigger value="alltime" className={cn(theme.leaderboardTabActive, theme.leaderboardTabActiveText)}>
                           Måned
                         </TabsTrigger>
                       </TabsList>
@@ -176,7 +183,7 @@ export function SlotLeaderboard() {
                         placeholder="Søg efter spiller..."
                         value={searchQuery}
                         onChange={(e) => setSearchQuery(e.target.value)}
-                        className="pl-9 bg-amber-950/50 border-amber-500/20 text-amber-100 placeholder:text-amber-100/40 focus-visible:ring-amber-500/30"
+                        className={cn("pl-9", theme.leaderboardSearchBg, theme.leaderboardSearchBorder, theme.leaderboardSearchText, theme.leaderboardSearchPlaceholder, theme.leaderboardSearchRing)}
                       />
                     </div>
 
@@ -197,6 +204,7 @@ export function SlotLeaderboard() {
                                 entry={entry}
                                 rank={originalRank}
                                 isCurrentUser={dialogCurrentUser?.entry.user_id === entry.user_id}
+                                theme={theme}
                               />
                             );
                           })}
@@ -204,19 +212,20 @@ export function SlotLeaderboard() {
                           {/* Pinned current user if not in filtered results */}
                           {!searchQuery && dialogCurrentUser && !isCurrentUserInTop(dialogCurrentUser.entry.user_id, dialogEntries) && (
                             <>
-                              <Separator className="my-2 bg-amber-500/20" />
+                              <Separator className={cn("my-2", theme.leaderboardSeparator)} />
                               <LeaderboardRow
                                 entry={dialogCurrentUser.entry}
                                 rank={dialogCurrentUser.rank}
                                 isCurrentUser
+                                theme={theme}
                               />
                             </>
                           )}
                         </>
                       ) : (
                         <div className="text-center py-8">
-                          <Trophy className="h-10 w-10 mx-auto mb-2 opacity-50 text-amber-500/50" />
-                          <p className="text-amber-100/80">
+                          <Trophy className={cn("h-10 w-10 mx-auto mb-2 opacity-50", theme.leaderboardEmptyIconColor)} />
+                          <p className={theme.leaderboardEmptyText}>
                             {searchQuery ? "Ingen spillere matcher søgningen" : "Ingen gevinster i denne periode"}
                           </p>
                         </div>
@@ -228,9 +237,9 @@ export function SlotLeaderboard() {
             </>
           ) : (
             <div className="text-center py-8">
-              <Trophy className="h-10 w-10 mx-auto mb-2 opacity-50 text-amber-500/50" />
-              <p className="text-amber-100/80">Ingen gevinster endnu</p>
-              <p className="text-sm text-amber-100/60">Vær den første på ranglisten!</p>
+              <Trophy className={cn("h-10 w-10 mx-auto mb-2 opacity-50", theme.leaderboardEmptyIconColor)} />
+              <p className={theme.leaderboardEmptyText}>Ingen gevinster endnu</p>
+              <p className={cn("text-sm", theme.leaderboardEmptySubtext)}>Vær den første på ranglisten!</p>
             </div>
           )}
         </CardContent>

@@ -149,7 +149,7 @@ export default function SlotMachine() {
   // Side panel content for desktop
   const sidePanelContent = (
     <>
-      <SlotLeaderboard />
+      <SlotLeaderboard gameId="book-of-fedesvin" />
       {topCasino && (
         <SlotPromoSlider casino={topCasino} backgroundImage={slotCasinoCardBg} />
       )}
@@ -215,7 +215,7 @@ export default function SlotMachine() {
           {topCasino && (
             <SlotPromoSlider casino={topCasino} backgroundImage={slotCasinoCardBg} />
           )}
-          <SlotLeaderboard />
+          <SlotLeaderboard gameId="book-of-fedesvin" />
         </div>
       </div>
     </div>
