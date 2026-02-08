@@ -1,6 +1,8 @@
+import { useState } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
 import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import {
   Table,
@@ -10,7 +12,7 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { Loader2, Users, UserCheck, UserX, TrendingUp, Check, X } from "lucide-react";
+import { Loader2, Users, UserCheck, UserX, TrendingUp, Check, X, ChevronDown, ChevronUp } from "lucide-react";
 import { useProfileCompletionStats, UserProfileStatus } from "@/hooks/useProfileCompletionStats";
 
 function StatCard({
@@ -93,7 +95,10 @@ function UserProfileRow({ user }: { user: UserProfileStatus }) {
   );
 }
 
+const INITIAL_DISPLAY_COUNT = 10;
+
 export function ProfileCompletionStatsCard() {
+  const [showAll, setShowAll] = useState(false);
   const { data, isLoading, error } = useProfileCompletionStats();
 
   if (isLoading) {
@@ -192,16 +197,33 @@ export function ProfileCompletionStatsCard() {
                 <TableBody>
                   {users
                     .sort((a, b) => b.sections_completed - a.sections_completed)
-                    .slice(0, 50)
+                    .slice(0, showAll ? users.length : INITIAL_DISPLAY_COUNT)
                     .map((user) => (
                       <UserProfileRow key={user.user_id} user={user} />
                     ))}
                 </TableBody>
               </Table>
-              {users.length > 50 && (
-                <p className="text-center text-sm text-muted-foreground py-3 border-t">
-                  Viser de første 50 brugere af {users.length} total
-                </p>
+              {users.length > INITIAL_DISPLAY_COUNT && (
+                <div className="flex justify-center py-3 border-t">
+                  <Button
+                    variant="ghost"
+                    size="sm"
+                    onClick={() => setShowAll(!showAll)}
+                    className="gap-2"
+                  >
+                    {showAll ? (
+                      <>
+                        <ChevronUp className="h-4 w-4" />
+                        Vis færre
+                      </>
+                    ) : (
+                      <>
+                        <ChevronDown className="h-4 w-4" />
+                        Vis alle {users.length} brugere
+                      </>
+                    )}
+                  </Button>
+                </div>
               )}
             </div>
           )}
