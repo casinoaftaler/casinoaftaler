@@ -1,202 +1,99 @@
 
-# Rise of Fedesvin - Nyt spil med multi-expanding bonus
+# Sequential Multi-Expanding Symbol Animation for Rise of Fedesvin
 
-## Overblik
+## Problem
+When a bonus spin in "Rise of Fedesvin" results in multiple different expanding symbols qualifying (e.g., Symbol A on reels 1,3 and Symbol B on reels 2,4), they all expand simultaneously. The user wants each expanding symbol to be animated sequentially: expand Symbol A's reels, show its paylines, unexpand, then expand Symbol B's reels, show its paylines, unexpand, and so on.
 
-Tilfoej et helt nyt spil "Rise of Fedesvin" til spillehallen med Merlin/drage-tema, nye symboler og en unik bonus-mekanik: ved retrigger faar spilleren et ekstra expanding symbol (i stedet for bare flere spins). Spins deles paa tvaers af spil, og leaderboardet er faelles.
-
-Pga. omfanget af denne feature anbefales det at implementere i **flere faser** over flere beskeder.
-
----
-
-## Fase 1: Database-aendringer
-
-Tilfoej `game_id` kolonne til de relevante tabeller saa systemet kan skelne mellem spil.
-
-### Nye kolonner
-
-**`slot_symbols`**: Tilfoej `game_id text NOT NULL DEFAULT 'book-of-fedesvin'`
-- Eksisterende symboler faar automatisk `game_id = 'book-of-fedesvin'`
-- Nye Merlin-symboler indsaettes med `game_id = 'rise-of-fedesvin'`
-
-**`slot_bonus_state`**: Tilfoej:
-- `game_id text NOT NULL DEFAULT 'book-of-fedesvin'`
-- `expanding_symbol_ids uuid[] DEFAULT '{}'` (array af flere expanding symboler)
-- `expanding_symbol_names text[] DEFAULT '{}'` (navne paa expanding symboler)
-
-**`slot_game_results`**: Tilfoej `game_id text NOT NULL DEFAULT 'book-of-fedesvin'`
-
-### Nye symboler (Rise of Fedesvin - Merlin-tema)
-
-10 symboler indsaettes i databasen med `game_id = 'rise-of-fedesvin'`:
-
-**Premium (4 stk):**
-- **Merlin** - Troldmand, hoejeste multipliers (rarity: premium, weight: 20)
-- **Dragon** - Ildspyende drage (rarity: premium, weight: 25)
-- **Phoenix** - Genfodt fugl (rarity: premium, weight: 30)
-- **Crystal Ball** - Magisk krystalkugle (rarity: premium, weight: 30)
-
-**Common (5 stk):**
-- **A, K, Q, J, 10** - Samme kort-symboler men med mystisk/magisk tema (rarity: common, weight: 55-65)
-
-**Scatter/Wild (1 stk):**
-- **Spell Book** - Magisk trolddomsbog, scatter + wild (rarity: scatter, weight: 20)
-
-Multipliers kopieres fra Book of Fedesvin som udgangspunkt. Billederne genereres via AI i admin-panelet efter oprettelse.
+## Solution Overview
+This requires changes on both the server (to send per-reel symbol mapping) and the client (to orchestrate sequential expansion/payline animations).
 
 ---
 
-## Fase 2: Backend - Opdater slot-spin Edge Function
+## Technical Details
 
-Opdater `supabase/functions/slot-spin/index.ts` til at:
+### 1. Server: Include per-reel symbol mapping in response
+**File:** `supabase/functions/slot-spin/index.ts`
 
-### Modtag `gameId` parameter
-- Tilfoej `gameId` til request body (default: `'book-of-fedesvin'`)
-- Filtrer symboler med `.eq('game_id', gameId)`
+Currently, the `BonusSpinResult` returns `expandedReels` (an array of reel indices) but does NOT include which symbol expanded on each reel. The client needs this information to animate each symbol group separately.
 
-### Multi-expanding symbol logik (Rise of Fedesvin)
-Naar `gameId === 'rise-of-fedesvin'`:
+- Add a new field `expandedReelSymbolIds: Record<string, string>` to the bonus spin response (a JSON object mapping reel index to symbol ID, e.g., `{"0": "sym-abc", "2": "sym-abc", "1": "sym-xyz", "3": "sym-xyz"}`).
+- Also include per-symbol win groupings: `expandingWinGroups: Array<{ symbolId: string, reels: number[], wins: LineWin[] }>` so the client knows which paylines belong to which expanding symbol.
 
-**Bonus trigger (foerste gang):**
-- Vaelg 1 expanding symbol (praecis som nu)
-- Gem i baade `expanding_symbol_id` (bagudkompatibelt) og `expanding_symbol_ids` array
+### 2. Server: Separate wins by expanding symbol group
+**File:** `supabase/functions/slot-spin/index.ts`
 
-**Retrigger:**
-- Vaelg et NYT symbol (som ikke allerede er i `expanding_symbol_ids`)
-- Tilfoej det til `expanding_symbol_ids` arrayet
-- +10 free spins (som nu)
-- Det nye symbol er OGSAA expanding fra nu af
+Modify `calculateMultiExpandingBonusWins` to also return the wins grouped by expanding symbol, not just as a flat list. This allows the client to show the correct paylines during each symbol's expansion phase.
 
-**Bonus spin med flere expanding symbols:**
-- Tjek hvert expanding symbol i gridet
-- Expander ALLE tromler der indeholder MINDST ET af de expanding symboler
-- Beregn gevinster baseret paa det udvidede grid
+### 3. Client: Update `useServerSpin` types
+**File:** `src/hooks/useServerSpin.ts`
 
-### Book of Fedesvin
-- Ingen aendringer i logikken - fungerer praecis som foer
-- Bruger stadig det eksisterende `expanding_symbol_id` felt
+Add the new fields to the `BonusSpinResult` interface:
+- `expandedReelSymbolIds?: Record<string, string>` -- which symbol expanded on which reel
+- `expandingWinGroups?: Array<{ symbolId: string, reels: number[], wins: LineWin[] }>` -- wins grouped by symbol
 
----
+### 4. Client: Sequential expansion animation in SlotGame
+**File:** `src/components/slots/SlotGame.tsx`
 
-## Fase 3: Frontend Hooks
+This is the main change. The current code at the reel-stop handler (around line 751) does:
+1. Set all expanded reels at once
+2. Show the expanded grid
+3. Flash the newly expanded reels
+4. Done
 
-### `useSlotSymbols.ts`
-- Tilfoej `gameId` parameter: `useSlotSymbols(gameId: string = 'book-of-fedesvin')`
-- Filtrer med `.eq('game_id', gameId)`
+The new logic will:
+1. Detect if this is a Rise of Fedesvin bonus spin with multiple distinct expanding symbol groups.
+2. If yes, iterate through each symbol group sequentially:
+   a. **Expand phase**: Darken non-relevant reels, set the expanded grid for only this symbol's reels, play expand sound, show newly-expanded flash for 600ms.
+   b. **Payline phase**: Show only this symbol's wins/paylines for ~1000ms.
+   c. **Unexpand phase**: Reset the grid back to the original (un-expanded) state, hide paylines, wait 300ms.
+3. After all groups are shown, set the final expanded grid with all symbols and proceed to the combined win result.
+4. If there is only one expanding symbol group (or it's Book of Fedesvin), keep the current behavior unchanged.
 
-### `useServerSpin.ts`
-- Tilfoej `gameId` til spin request body
-- Send `gameId` med i `supabase.functions.invoke("slot-spin", { body: { ... gameId } })`
+New state variables needed:
+- `sequentialExpansionPhase: number` -- which symbol group is currently being shown (-1 = not active)
+- `currentExpansionWins: LineWin[]` -- the wins to show paylines for during the current phase
 
-### `useBonusGameSync.ts`
-- Tilfoej `gameId` parameter
-- Filtrer `slot_bonus_state` med `game_id`
-- Understot `expanding_symbol_ids` array (flere expanding symboler)
-- Returnerer `expandingSymbols: SlotSymbol[]` (array i stedet for enkelt symbol)
+### 5. Client: WinLines integration
+**File:** `src/components/slots/SlotGame.tsx`
 
-### `useSlotLeaderboard.ts`
-- Ingen aendringer (leaderboard er faelles paa tvaers af spil)
+During each sequential expansion phase, `lastResult.wins` will be temporarily set to only the current symbol's wins, so `WinLines` renders the correct paylines. After all phases complete, set the full win list.
 
-### `useSlotSpins.ts`
-- Ingen aendringer (spins deles paa tvaers af spil)
+### 6. Client: Darkening per-expansion phase
+**File:** `src/components/slots/SlotGame.tsx`
 
----
-
-## Fase 4: Frontend - Ny spilside
-
-### `src/pages/RiseOfFedesvin.tsx` (Nyt)
-- Kopi af `SlotMachine.tsx` med foelgende forskelle:
-  - `gameId = 'rise-of-fedesvin'` sendes til alle hooks
-  - Nyt baggrundsbillede (mystisk/magisk tema - kan genbruge default midlertidigt)
-  - Ny titel "Rise of Fedesvin"
-  - Tilbageknap peger paa `/community/slots`
-
-### `src/components/slots/SlotGameRise.tsx` (Nyt)
-- Variant af `SlotGame.tsx` med multi-expanding symbol support
-- Understotter `expandingSymbols` (array) i stedet for enkelt symbol
-- Viser den horisontale symbolbar i bonus-modus
-
-### Routing i `App.tsx`
-- Tilfoej: `/community/slots/rise-of-fedesvin` -> `RiseOfFedesvin`
-
-### Opdater `GameLibrary.tsx`
-- Tilfoej nyt spilkort for "Rise of Fedesvin" med passende beskrivelse og badge
+During each sequential phase, reels not belonging to the current expanding symbol should be darkened (reuse existing `isDarkenedForExpansion` prop on `SlotReel`).
 
 ---
 
-## Fase 5: Bonus Symbol Bar (Ny komponent)
+## Animation Sequence Diagram
 
-### `src/components/slots/BonusSymbolBar.tsx` (Nyt)
-En horisontal bar der vises under/over tromlerne under bonus-runden:
-
-- Viser ALLE spillets symboler i en raekke (undtagen scatter)
-- Symboler der ER expanding: Fuldt farvelagt med gylden ramme/glow
-- Symboler der IKKE er expanding: Grayscale filter + reduceret opacity (0.3-0.4)
-- Naar et nyt symbol bliver expanding (ved retrigger): Animeret overgang fra graa til farve
-- Responsivt layout: Symboler skalerer med skaermstorrelse
-
-Visuelt design:
-```
-[ Merlin* ] [ Dragon ] [ Phoenix ] [ Crystal ] [ A ] [ K ] [ Q ] [ J ] [ 10 ]
-   glow       grey       grey        grey      grey  grey  grey  grey  grey
-```
-(* = expanding, fuldt farvelagt med gylden glow)
-
-Ved retrigger: Dragon "oplaaeses" fra graa til fuld farve med animation.
-
----
-
-## Fase 6: Opdater Bonus Overlays
-
-### `BonusOverlay.tsx` - Retrigger for Rise of Fedesvin
-- Ved retrigger: Vis det NYE expanding symbol der tilfoerjes
-- Tekst: "NYT EXPANDING SYMBOL!" + symbolets navn og billede
-- Symbol-picker animation korer igen for det nye symbol
-
-### `BonusStatusBar.tsx` - Multi-symbol support
-- Vis alle expanding symboler i raekke (ikke kun 1)
-- F.eks. "Expanding: [Merlin] [Dragon]" med begge symbolers ikoner
-
-### `BonusCompleteScreen.tsx`
-- Vis alle expanding symboler der blev brugt i bonussen
-
----
-
-## Fase 7: Admin Panel Separation
-
-### `SlotMachineAdminSection.tsx`
-Tilfoej et spil-vaelder oeoverst:
-
-```
-[ Book of Fedesvin ] [ Rise of Fedesvin ]
+```text
+[All reels stopped with original grid]
+     |
+     v
+[Phase 1: Symbol A]
+  - Darken reels not in Symbol A's group
+  - Expand Symbol A's reels (replace grid cells)
+  - Flash newly expanded reels (600ms)
+  - Show Symbol A's paylines (1000ms)
+  - Unexpand (restore original grid)
+  - Hide paylines (300ms pause)
+     |
+     v
+[Phase 2: Symbol B]
+  - Same sequence as Phase 1 but for Symbol B
+     |
+     v
+[Final: Show combined expanded grid]
+  - Set final expandedGrid with all symbols
+  - Set lastResult with all wins
+  - Show all paylines
+  - Continue normal flow (win animation, etc.)
 ```
 
-- Hvert spil har sine egne under-tabs (Symboler, Indstillinger, Statistik)
-- Symboler-tabben filtrerer efter `game_id`
-- Statistik filtrerer `slot_game_results` efter `game_id`
-
-### Nye admin-features for Rise of Fedesvin
-- Samme symbol-redigering som Book of Fedesvin
-- AI-generering af symbolbilleder (genbruger eksisterende funktionalitet)
-- Mulighed for at justere multipliers og vaegt per spil
-
 ---
 
-## Implementeringsraekkefoelge
-
-Pga. omfanget anbefales foelgende opdeling:
-
-**Besked 1:** Database-migrationer + nye symboler (Fase 1)
-**Besked 2:** Backend edge function opdatering (Fase 2)
-**Besked 3:** Frontend hooks + ny spilside (Fase 3 + 4)
-**Besked 4:** Bonus symbol bar + overlay opdateringer (Fase 5 + 6)
-**Besked 5:** Admin panel separation (Fase 7)
-
----
-
-## Ingen breaking changes
-
-- Alle eksisterende data faar `game_id = 'book-of-fedesvin'` som default
-- Book of Fedesvin fungerer 100% som foer
-- Leaderboard og spins forbliver delt
-- Edge function er bagudkompatibel (default gameId = 'book-of-fedesvin')
+## Summary of files to modify
+1. `supabase/functions/slot-spin/index.ts` -- Add per-reel symbol mapping and grouped wins to response
+2. `src/hooks/useServerSpin.ts` -- Update types for new response fields
+3. `src/components/slots/SlotGame.tsx` -- Implement sequential expansion animation loop with per-phase paylines
