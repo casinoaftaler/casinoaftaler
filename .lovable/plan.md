@@ -1,57 +1,63 @@
 
 
-## Spin Cap: 220 Max with Profile Bonus, No Cap for Admin Grants
+# Spilbibliotek - Redesign af Slot-siden
 
-### What Changes
+## Overblik
 
-The spin system will enforce these rules:
+Den nuvaerende `/community/slots` side viser direkte "Book of Fedesvin" spillemaskinen. Vi omdanner denne side til et **spilbibliotek** (game library), hvor brugere kan se og vaelge mellem flere spil. "Book of Fedesvin" bliver det foerste spil i biblioteket, og det faktiske gameplay flyttes til en ny underside.
 
-- **New user (no profile completed):** 200 daily spins
-- **User with all 4 profile sections completed:** 200 + 20 = 220 daily spins
-- **Hard cap for daily reset:** 220 (daily setting + bonus spins)
-- **Admin grants:** No cap -- admins can push spins above 220
+## Brugeroplevelse
 
-This means when a new day starts, a user gets `min(dailySpins + bonusSpins, 220)` spins. But if an admin manually adds spins, those go on top without any limit.
+1. **Bibliotekssiden** (`/community/slots`) - En flot oversigtside der viser alle tilgaengelige spil som kort/tiles
+   - Hvert spil vises med et preview-billede, titel og kort beskrivelse
+   - "Book of Fedesvin" er det foerste (og foreloebig eneste) spil
+   - Designet matcher det eksisterende egyptiske/gyldne tema
+   - Et "Kommer snart"-kort vises for fremtidige spil (placeholder)
+   - Krav om login gaelder stadig - uloggede brugere ser login-prompten
 
-### Files to Change
+2. **Spilsiden** (`/community/slots/book-of-fedesvin`) - Den nuvaerende spillemaskine flyttes hertil
+   - Al eksisterende funktionalitet bevares 100% (loading screen, intro, gameplay, leaderboard, osv.)
+   - En "Tilbage til spil"-knap tilfojes oeverst saa brugere nemt kan vende tilbage til biblioteket
 
-#### 1. `src/hooks/useSlotSpins.ts` -- Cap daily initialization at 220
-- When creating a new day's spin record, cap at `Math.min(settings.dailySpins + bonusSpinsPermanent, 220)`
-- Update `maxSpins` to reflect the capped value
-- This only affects the daily reset, not admin-granted spins
+## Teknisk plan
 
-#### 2. `supabase/functions/slot-spin/index.ts` -- Server-side cap at 220
-- When the server creates a new daily spin record, cap `spins_remaining` at `Math.min(dailySpins + bonusSpinsPermanent, 220)`
-- This is the critical enforcement point since the server is the source of truth
+### 1. Ny side: `src/pages/GameLibrary.tsx`
+- Opretter en ny side der fungerer som spilbiblioteket
+- Viser spilkort i et responsivt grid
+- Login-gating fra den nuvaerende `SlotMachine.tsx` flyttes hertil
+- Baggrund med mork gradient (lignende det nuvaerende slot-tema)
+- Hvert spilkort inkluderer: thumbnail, titel, beskrivelse, og "Spil nu"-knap
 
-#### 3. `src/components/SpinManagementSection.tsx` -- No changes needed
-- Admin spin management will remain uncapped, so admins can freely grant any amount of spins above 220
+### 2. Ny komponent: `src/components/games/GameCard.tsx`
+- Et genbrugeligt kort-komponent til hvert spil
+- Props: titel, billede, beskrivelse, link, status (aktiv/kommer snart)
+- Hover-effekter og animationer der matcher det gyldne tema
+- "Kommer snart" varianten viser en nedtonet version med badge
 
-#### 4. `src/components/slots/SpinsRemaining.tsx` -- Display adjusts automatically
-- Already uses `maxSpins` from the hook, so the display will correctly show `/200` or `/220` depending on the user's profile completion
+### 3. Opdater routing i `src/App.tsx`
+- `/community/slots` peger nu paa `GameLibrary`
+- `/community/slots/book-of-fedesvin` peger paa `SlotMachine` (den nuvaerende spillemaskine)
+- Begge lazy-loaded med Suspense fallbacks
 
-### Technical Details
+### 4. Opdater `src/pages/SlotMachine.tsx`
+- Tilfoej en "Tilbage"-knap der linker til `/community/slots`
+- Al eksisterende logik og funktionalitet forbliver uaendret
 
-The constant `MAX_SPINS_CAP = 220` will be used in the client hook and the edge function:
+### 5. Opdater `src/components/Layout.tsx`
+- Udvid footer-hide logikken til ogsaa at gaelder `/community/slots/book-of-fedesvin`
+- Brug `startsWith` i stedet for eksakt match
 
-```text
-Daily reset logic:
-  totalDailySpins = dailySpins (200) + bonusSpinsPermanent (0-20)
-  cappedSpins = min(totalDailySpins, 220)
+### 6. Opdater navigation i `src/components/Header.tsx`
+- Community dropdown-links peger stadig paa `/community/slots` (som nu er biblioteket)
+- Eventuelt opdater teksten fra "Slot Machine" til "Spil" eller "Spillehal"
 
-Admin grants:
-  newSpins = max(0, currentSpins + amount)   // no upper cap
-```
+## Ingen database-aendringer
+- Denne aendring er rent frontend - ingen nye tabeller eller migrationer nødvendige
+- Al eksisterende slot-data og funktionalitet forbliver intakt
 
-Summary of cap behavior:
-
-```text
-Scenario                              | Spins Given
---------------------------------------|------------
-New user, no profile sections done    | 200
-User with 2 sections done (+10 bonus) | 210
-User with all 4 sections done (+20)   | 220
-Admin grants +50 to a user at 220     | 270 (no cap)
-Next day reset for user at 270        | 220 (capped)
-```
+## Fremtidig skalerbarhed
+Denne struktur goer det nemt at tilfoeje nye spil i fremtiden:
+- Tilfoej et nyt spilkort i `GameLibrary.tsx`
+- Opret en ny side under `/community/slots/[spil-navn]`
+- Hvert spil kan have sin egen logik, symboler og tema
 
