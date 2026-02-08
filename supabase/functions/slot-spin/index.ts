@@ -56,6 +56,8 @@ interface BonusSpinResult extends SpinResult {
   expandedGrid: string[][];
   expandedReels: number[];
   isRetrigger: boolean;
+  expandedReelSymbolIds?: Record<string, string>;
+  expandingWinGroups?: Array<{ symbolId: string; reels: number[]; wins: LineWin[] }>;
 }
 
 const DEFAULT_SYMBOL_WEIGHT = 10;
@@ -659,6 +661,8 @@ Deno.serve(async (req) => {
       let wins: LineWin[];
       let newExpandingSymbolIds = bonusData.expanding_symbol_ids || [];
       let newExpandingSymbolNames = bonusData.expanding_symbol_names || [];
+      let expandedReelSymbolIds: Record<string, string> | undefined;
+      let expandingWinGroups: Array<{ symbolId: string; reels: number[]; wins: LineWin[] }> | undefined;
 
       if (isRiseOfFedesvin) {
         // ===== RISE OF FEDESVIN: Multi-expanding symbol logic =====
@@ -703,6 +707,39 @@ Deno.serve(async (req) => {
           bet,
           expandingSymbols
         );
+
+        // Build per-reel symbol mapping and win groups for sequential animation
+        expandedReelSymbolIds = {};
+        expandingWinGroups = [];
+
+        if (expandedReels.length > 0) {
+          // Map each reel to its expanding symbol ID
+          for (const col of expandedReels) {
+            const sym = multiResult.expandedSymbolMap.get(col);
+            if (sym) {
+              expandedReelSymbolIds[String(col)] = sym.id;
+            }
+          }
+
+          // Group reels by symbol
+          const symbolReelGroups = new Map<string, number[]>();
+          for (const col of expandedReels) {
+            const sym = multiResult.expandedSymbolMap.get(col);
+            if (sym) {
+              const existing = symbolReelGroups.get(sym.id) || [];
+              existing.push(col);
+              symbolReelGroups.set(sym.id, existing);
+            }
+          }
+
+          // Build win groups per expanding symbol
+          for (const [symId, reels] of symbolReelGroups.entries()) {
+            const symbolWins = wins.filter(w => w.symbolId === symId);
+            expandingWinGroups.push({ symbolId: symId, reels, wins: symbolWins });
+          }
+
+          console.log(`[slot-spin] Rise expanding win groups: ${expandingWinGroups.length} groups, reelSymbolIds:`, expandedReelSymbolIds);
+        }
       } else {
         // ===== BOOK OF FEDESVIN: Single expanding symbol (original logic) =====
         const expandingSymbol = symbols.find((s: SlotSymbol) => s.id === bonusData.expanding_symbol_id);
@@ -774,6 +811,8 @@ Deno.serve(async (req) => {
         bonusTriggered: isRetrigger,
         scatterCount,
         isRetrigger,
+        expandedReelSymbolIds,
+        expandingWinGroups,
       };
 
       // Build bonus state response

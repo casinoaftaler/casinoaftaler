@@ -22,6 +22,8 @@ interface BonusSpinResult extends SpinResult {
   expandedGrid: string[][];
   expandedReels: number[];
   isRetrigger: boolean;
+  expandedReelSymbolIds?: Record<string, string>;
+  expandingWinGroups?: Array<{ symbolId: string; reels: number[]; wins: LineWin[] }>;
 }
 
 interface BonusState {

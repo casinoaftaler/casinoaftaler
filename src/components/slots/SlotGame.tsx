@@ -103,6 +103,7 @@ export function SlotGame({ gameId = "book-of-fedesvin" }: SlotGameProps) {
   const pendingResultRef = useRef<SpinResult | null>(null);
   const pendingExpandedGridRef = useRef<string[][] | null>(null);
   const pendingExpandedReelsRef = useRef<number[]>([]);
+  const pendingExpandingWinGroupsRef = useRef<Array<{ symbolId: string; reels: number[]; wins: any[] }>>([]);
   const isBonusSpinRef = useRef(false);
   const pendingBonusStateRef = useRef<any>(null);
   
@@ -328,9 +329,11 @@ export function SlotGame({ gameId = "book-of-fedesvin" }: SlotGameProps) {
       if (isBonusSpin && 'expandedGrid' in bonusResult) {
         pendingExpandedGridRef.current = bonusResult.expandedGrid;
         pendingExpandedReelsRef.current = bonusResult.expandedReels || [];
+        pendingExpandingWinGroupsRef.current = (bonusResult as any).expandingWinGroups || [];
       } else {
         pendingExpandedGridRef.current = null;
         pendingExpandedReelsRef.current = [];
+        pendingExpandingWinGroupsRef.current = [];
       }
 
       // Store bonus state to apply AFTER reels stop (prevents spoiling the symbol)
@@ -749,16 +752,69 @@ export function SlotGame({ gameId = "book-of-fedesvin" }: SlotGameProps) {
                             
                             // Handle bonus expansion animation
                             if (isBonusSpin && reelsExpanded.length > 0 && expandedGrid) {
-                              setExpandedReels(reelsExpanded);
-                              setShowExpansionDarken(true);
-                              await new Promise(resolve => setTimeout(resolve, 500));
+                              const winGroups = pendingExpandingWinGroupsRef.current;
+                              const hasMultipleGroups = winGroups && winGroups.length > 1;
                               
-                              setGrid(expandedGrid);
-                              setNewlyExpandedReels(reelsExpanded);
-                              slotSounds.playSymbolExpand();
-                              await new Promise(resolve => setTimeout(resolve, 600));
-                              setNewlyExpandedReels([]);
-                              setShowExpansionDarken(false);
+                              if (hasMultipleGroups) {
+                                // Sequential expansion: animate each expanding symbol group one at a time
+                                const originalGridCopy = result.grid.map((col: string[]) => [...col]);
+                                
+                                for (let groupIdx = 0; groupIdx < winGroups.length; groupIdx++) {
+                                  const group = winGroups[groupIdx];
+                                  
+                                  // Build partial grid with only this symbol's reels expanded
+                                  const partialGrid = originalGridCopy.map((col: string[]) => [...col]);
+                                  for (const col of group.reels) {
+                                    for (let row = 0; row < 3; row++) {
+                                      partialGrid[col][row] = group.symbolId;
+                                    }
+                                  }
+                                  
+                                  // Expand phase: darken other reels, expand this symbol's reels
+                                  setExpandedReels(group.reels);
+                                  setShowExpansionDarken(true);
+                                  await new Promise(resolve => setTimeout(resolve, 500));
+                                  
+                                  setGrid(partialGrid);
+                                  setNewlyExpandedReels(group.reels);
+                                  slotSounds.playSymbolExpand();
+                                  await new Promise(resolve => setTimeout(resolve, 600));
+                                  setNewlyExpandedReels([]);
+                                  
+                                  // Payline phase: show only this symbol's wins
+                                  if (group.wins.length > 0) {
+                                    setLastResult({ ...result, wins: group.wins, totalWin: group.wins.reduce((sum: number, w: any) => sum + w.payout, 0) });
+                                    setShowConnectingWins(true);
+                                    setShowWinLines(true);
+                                    await new Promise(resolve => setTimeout(resolve, 1200));
+                                    setShowWinLines(false);
+                                    setShowConnectingWins(false);
+                                    setLastResult(null);
+                                  }
+                                  
+                                  // Unexpand phase: restore original grid
+                                  setGrid(originalGridCopy);
+                                  setExpandedReels([]);
+                                  setShowExpansionDarken(false);
+                                  await new Promise(resolve => setTimeout(resolve, 300));
+                                }
+                                
+                                // Final: show combined expanded grid with all symbols
+                                setExpandedReels(reelsExpanded);
+                                setGrid(expandedGrid);
+                              } else {
+                                // Single expansion group or Book of Fedesvin: existing behavior
+                                setExpandedReels(reelsExpanded);
+                                setShowExpansionDarken(true);
+                                await new Promise(resolve => setTimeout(resolve, 500));
+                                
+                                setGrid(expandedGrid);
+                                setNewlyExpandedReels(reelsExpanded);
+                                slotSounds.playSymbolExpand();
+                                await new Promise(resolve => setTimeout(resolve, 600));
+                                setNewlyExpandedReels([]);
+                                setShowExpansionDarken(false);
+                              }
                             }
                             
                             setLastResult(result);
