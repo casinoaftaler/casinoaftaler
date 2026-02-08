@@ -6,7 +6,9 @@ import { Gamepad2 } from "lucide-react";
 import slotIntroImage from "@/assets/slots/slot-intro-screen.jpg";
 import riseIntroImage from "@/assets/slots/rise/intro-screen.jpg";
 import leFedesvinImage from "@/assets/slots/le-fedesvin-preview.jpg";
+import leFedesvinTitle from "@/assets/slots/le-fedesvin-title.png";
 import olympusImage from "@/assets/slots/fedesvin-of-olympus-preview.jpg";
+import olympusTitle from "@/assets/slots/fedesvin-of-olympus-title.png";
 
 const GAMES = [
   {
@@ -34,6 +36,7 @@ const GAMES = [
     image: leFedesvinImage,
     href: "#",
     status: "coming-soon" as const,
+    titleLogo: leFedesvinTitle,
   },
   {
     id: "fedesvin-of-olympus",
@@ -42,6 +45,7 @@ const GAMES = [
     image: olympusImage,
     href: "#",
     status: "coming-soon" as const,
+    titleLogo: olympusTitle,
   },
 ];
 
@@ -105,6 +109,7 @@ export default function GameLibrary() {
                 href={game.href}
                 status={game.status}
                 badge={game.badge}
+                titleLogo={game.titleLogo}
               />
             </div>
           ))}

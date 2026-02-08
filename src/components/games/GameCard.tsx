@@ -11,9 +11,10 @@ interface GameCardProps {
   href: string;
   status: "active" | "coming-soon";
   badge?: string;
+  titleLogo?: string;
 }
 
-export function GameCard({ title, description, image, href, status, badge }: GameCardProps) {
+export function GameCard({ title, description, image, href, status, badge, titleLogo }: GameCardProps) {
   const isActive = status === "active";
 
   return (
@@ -57,7 +58,14 @@ export function GameCard({ title, description, image, href, status, badge }: Gam
 
         {/* Coming soon overlay */}
         {!isActive && (
-          <div className="absolute inset-0 flex items-center justify-center bg-black/50 backdrop-blur-[2px]">
+          <div className="absolute inset-0 flex flex-col items-center justify-center bg-black/40 backdrop-blur-[1px] gap-4">
+            {titleLogo && (
+              <img
+                src={titleLogo}
+                alt={title}
+                className="w-3/4 max-w-[280px] h-auto drop-shadow-[0_0_20px_rgba(251,191,36,0.4)]"
+              />
+            )}
             <Badge className="border-amber-500/30 bg-amber-500/20 text-amber-300 text-sm px-4 py-1.5 gap-1.5">
               <Clock className="h-3.5 w-3.5" />
               Kommer snart
