@@ -58,6 +58,7 @@ interface BonusSpinResult extends SpinResult {
 }
 
 const DEFAULT_SYMBOL_WEIGHT = 10;
+const MAX_SPINS_CAP = 220;
 
 // Secure random number generator
 function secureRandom(): number {
@@ -554,7 +555,7 @@ Deno.serve(async (req) => {
       .maybeSingle();
 
     const dailySpins = parseInt(settingsData?.value || "100", 10);
-    const maxSpins = dailySpins + bonusSpinsPermanent;
+    const maxSpins = Math.min(dailySpins + bonusSpinsPermanent, MAX_SPINS_CAP);
 
     // Get or create today's spin record
     let { data: spinsData } = await supabase
