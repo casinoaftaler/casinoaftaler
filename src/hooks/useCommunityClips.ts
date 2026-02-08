@@ -19,6 +19,8 @@ export interface CommunityClip {
   rejection_reason: string | null;
   created_at: string;
   updated_at: string;
+  original_url?: string | null;
+  requires_manual_review?: boolean | null;
 }
 
 export interface CommunityClipWithStats extends CommunityClip {
@@ -29,16 +31,49 @@ export interface CommunityClipWithStats extends CommunityClip {
   submitter_avatar: string | null;
 }
 
-// Detect platform from URL
+export interface ClipValidationResult {
+  valid: boolean;
+  error?: string;
+  originalUrl: string;
+  resolvedUrl: string | null;
+  platform: 'twitch' | 'youtube' | 'unknown';
+  clipId: string | null;
+  metadata: {
+    title?: string;
+    thumbnailUrl?: string;
+    durationSeconds?: number;
+    requiresManualReview: boolean;
+  };
+}
+
+// Validate clip URL server-side (resolves redirects, validates platform)
+export async function validateClipUrl(url: string): Promise<ClipValidationResult> {
+  const { data, error } = await supabase.functions.invoke('validate-clip-url', {
+    body: { url },
+  });
+
+  if (error) {
+    return {
+      valid: false,
+      error: error.message || 'Failed to validate URL',
+      originalUrl: url,
+      resolvedUrl: null,
+      platform: 'unknown',
+      clipId: null,
+      metadata: { requiresManualReview: false },
+    };
+  }
+
+  return data as ClipValidationResult;
+}
+
+// Detect platform from URL (client-side for display purposes only)
 export function detectPlatform(url: string): string {
   if (url.includes("twitch.tv") || url.includes("clips.twitch.tv")) {
     return "twitch";
   }
   if (url.includes("youtube.com") || url.includes("youtu.be")) {
     return "youtube";
-  }
-  if (url.includes("kick.com")) {
-    return "kick";
   }
   return "unknown";
 }
@@ -74,6 +109,11 @@ export function getEmbedUrl(url: string, platform: string): string | null {
       if (embedMatch) {
         return `https://www.youtube.com/embed/${embedMatch[1]}`;
       }
+      // Handle youtube.com/shorts/ID format
+      const shortsMatch = url.match(/youtube\.com\/shorts\/([^?/]+)/);
+      if (shortsMatch) {
+        return `https://www.youtube.com/embed/${shortsMatch[1]}`;
+      }
     }
     return null;
   } catch {
@@ -81,7 +121,7 @@ export function getEmbedUrl(url: string, platform: string): string | null {
   }
 }
 
-// Get thumbnail URL
+// Get thumbnail URL (fallback for client-side)
 export function getThumbnailUrl(url: string, platform: string): string | null {
   try {
     if (platform === "youtube") {
@@ -93,8 +133,11 @@ export function getThumbnailUrl(url: string, platform: string): string | null {
       if (watchMatch) {
         return `https://img.youtube.com/vi/${watchMatch[1]}/maxresdefault.jpg`;
       }
+      const shortsMatch = url.match(/youtube\.com\/shorts\/([^?/]+)/);
+      if (shortsMatch) {
+        return `https://img.youtube.com/vi/${shortsMatch[1]}/maxresdefault.jpg`;
+      }
     }
-    // Twitch clips don't have easy thumbnail access without API
     return null;
   } catch {
     return null;
@@ -248,7 +291,7 @@ export function useMyClips() {
   });
 }
 
-// Submit a new clip
+// Submit a new clip with server-side URL validation
 export function useSubmitClip() {
   const queryClient = useQueryClient();
   const { toast } = useToast();
@@ -266,31 +309,49 @@ export function useSubmitClip() {
       const { data: user } = await supabase.auth.getUser();
       if (!user?.user?.id) throw new Error("Du skal være logget ind");
 
-      const platform = detectPlatform(url);
-      const thumbnailUrl = getThumbnailUrl(url, platform);
+      // Validate URL server-side (resolves redirects, validates platform, fetches metadata)
+      const validation = await validateClipUrl(url);
 
+      if (!validation.valid) {
+        throw new Error(validation.error || "Ugyldigt clip URL");
+      }
+
+      // Use the resolved URL and metadata from server
       const { data, error } = await supabase
         .from("community_clips")
         .insert({
           user_id: user.user.id,
-          url,
-          title: title || null,
+          url: validation.resolvedUrl || url, // Use resolved URL
+          title: title || validation.metadata.title || null,
           description: description || null,
-          platform,
-          thumbnail_url: thumbnailUrl,
+          platform: validation.platform,
+          thumbnail_url: validation.metadata.thumbnailUrl || null,
+          duration_seconds: validation.metadata.durationSeconds || null,
         })
         .select()
         .single();
 
       if (error) throw error;
-      return data;
+
+      return { 
+        clip: data, 
+        requiresManualReview: validation.metadata.requiresManualReview 
+      };
     },
-    onSuccess: () => {
+    onSuccess: (result) => {
       queryClient.invalidateQueries({ queryKey: ["community-clips"] });
-      toast({
-        title: "Clip indsendt!",
-        description: "Din clip afventer nu godkendelse fra en administrator.",
-      });
+      
+      if (result.requiresManualReview) {
+        toast({
+          title: "Clip indsendt!",
+          description: "Din clip kræver manuel gennemgang af varighed og afventer godkendelse.",
+        });
+      } else {
+        toast({
+          title: "Clip indsendt!",
+          description: "Din clip afventer nu godkendelse fra en administrator.",
+        });
+      }
     },
     onError: (error) => {
       toast({

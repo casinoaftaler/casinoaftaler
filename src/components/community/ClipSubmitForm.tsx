@@ -11,7 +11,7 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
-import { useSubmitClip, detectPlatform } from "@/hooks/useCommunityClips";
+import { useSubmitClip } from "@/hooks/useCommunityClips";
 import { Plus, Link as LinkIcon, Loader2 } from "lucide-react";
 import { useAuth } from "@/hooks/useAuth";
 
@@ -29,24 +29,21 @@ export function ClipSubmitForm({ trigger }: ClipSubmitFormProps) {
   const { user } = useAuth();
   const submitClip = useSubmitClip();
 
-  const validateUrl = (value: string): boolean => {
+  // Basic client-side validation (real validation happens server-side)
+  const validateUrlFormat = (value: string): boolean => {
     if (!value.trim()) {
       setUrlError("URL er påkrævet");
       return false;
     }
 
-    const platform = detectPlatform(value);
-    if (platform === "unknown") {
-      setUrlError("Kun Twitch og YouTube clips understøttes");
-      return false;
-    }
-
+    // Try to parse as URL (add protocol if missing)
     try {
-      new URL(value);
+      const urlToValidate = value.startsWith('http') ? value : `https://${value}`;
+      new URL(urlToValidate);
       setUrlError(null);
       return true;
     } catch {
-      setUrlError("Ugyldig URL");
+      setUrlError("Ugyldig URL format");
       return false;
     }
   };
@@ -54,19 +51,23 @@ export function ClipSubmitForm({ trigger }: ClipSubmitFormProps) {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    if (!validateUrl(url)) return;
+    if (!validateUrlFormat(url)) return;
 
-    await submitClip.mutateAsync({
-      url: url.trim(),
-      title: title.trim() || undefined,
-      description: description.trim() || undefined,
-    });
+    try {
+      await submitClip.mutateAsync({
+        url: url.trim(),
+        title: title.trim() || undefined,
+        description: description.trim() || undefined,
+      });
 
-    // Reset form and close
-    setUrl("");
-    setTitle("");
-    setDescription("");
-    setOpen(false);
+      // Reset form and close on success
+      setUrl("");
+      setTitle("");
+      setDescription("");
+      setOpen(false);
+    } catch {
+      // Error is handled by the mutation's onError
+    }
   };
 
   if (!user) {
@@ -106,9 +107,9 @@ export function ClipSubmitForm({ trigger }: ClipSubmitFormProps) {
                 value={url}
                 onChange={(e) => {
                   setUrl(e.target.value);
-                  if (urlError) validateUrl(e.target.value);
+                  if (urlError) validateUrlFormat(e.target.value);
                 }}
-                onBlur={() => url && validateUrl(url)}
+                onBlur={() => url && validateUrlFormat(url)}
                 className="pl-10"
                 required
               />
@@ -117,7 +118,7 @@ export function ClipSubmitForm({ trigger }: ClipSubmitFormProps) {
               <p className="text-sm text-destructive">{urlError}</p>
             )}
             <p className="text-xs text-muted-foreground">
-              Understøtter Twitch og YouTube clips
+              Understøtter Twitch og YouTube clips (inkl. korte URLs og redirects)
             </p>
           </div>
 
