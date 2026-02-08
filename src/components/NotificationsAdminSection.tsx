@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Bell, Send, Trash2, Loader2 } from "lucide-react";
+import { Bell, Send, Trash2, Loader2, Users, Eye, EyeOff } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -12,14 +12,6 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import {
-  Table,
-  TableBody,
-  TableCell,
-  TableHead,
-  TableHeader,
-  TableRow,
-} from "@/components/ui/table";
-import {
   AlertDialog,
   AlertDialogAction,
   AlertDialogCancel,
@@ -30,6 +22,7 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
+import { Progress } from "@/components/ui/progress";
 import { useAdminNotifications } from "@/hooks/useNotifications";
 import { toast } from "sonner";
 import { format } from "date-fns";
@@ -132,12 +125,12 @@ export function NotificationsAdminSection() {
         </CardContent>
       </Card>
 
-      {/* Notifications history */}
+      {/* Notifications history with stats */}
       <Card>
         <CardHeader>
           <CardTitle>Sendte notifikationer</CardTitle>
           <CardDescription>
-            Oversigt over alle sendte notifikationer
+            Oversigt over alle sendte notifikationer med læsestatistik
           </CardDescription>
         </CardHeader>
         <CardContent>
@@ -150,64 +143,95 @@ export function NotificationsAdminSection() {
               Ingen notifikationer sendt endnu
             </p>
           ) : (
-            <Table>
-              <TableHeader>
-                <TableRow>
-                  <TableHead>Titel</TableHead>
-                  <TableHead>Besked</TableHead>
-                  <TableHead>Sendt</TableHead>
-                  <TableHead className="w-16">Handling</TableHead>
-                </TableRow>
-              </TableHeader>
-              <TableBody>
-                {notifications.map((notif) => (
-                  <TableRow key={notif.id}>
-                    <TableCell className="font-medium">
-                      {notif.title || "-"}
-                    </TableCell>
-                    <TableCell className="max-w-xs truncate">
-                      {notif.message}
-                    </TableCell>
-                    <TableCell className="whitespace-nowrap">
-                      {format(new Date(notif.created_at), "d. MMM yyyy HH:mm", {
-                        locale: da,
-                      })}
-                    </TableCell>
-                    <TableCell>
-                      <AlertDialog>
-                        <AlertDialogTrigger asChild>
-                          <Button
-                            variant="ghost"
-                            size="icon"
-                            className="h-8 w-8 text-destructive hover:text-destructive"
-                          >
-                            <Trash2 className="h-4 w-4" />
-                          </Button>
-                        </AlertDialogTrigger>
-                        <AlertDialogContent>
-                          <AlertDialogHeader>
-                            <AlertDialogTitle>Slet notifikation?</AlertDialogTitle>
-                            <AlertDialogDescription>
-                              Er du sikker på at du vil slette denne notifikation? 
-                              Dette vil også fjerne den fra alle brugeres indbakke.
-                            </AlertDialogDescription>
-                          </AlertDialogHeader>
-                          <AlertDialogFooter>
-                            <AlertDialogCancel>Annuller</AlertDialogCancel>
-                            <AlertDialogAction
-                              onClick={() => handleDelete(notif.id)}
-                              className="bg-destructive text-destructive-foreground hover:bg-destructive/90"
+            <div className="space-y-4">
+              {notifications.map((notif) => {
+                const readPercentage =
+                  notif.total_users > 0
+                    ? Math.round((notif.read_count / notif.total_users) * 100)
+                    : 0;
+
+                return (
+                  <Card key={notif.id} className="border">
+                    <CardContent className="p-4">
+                      <div className="flex items-start justify-between gap-4">
+                        <div className="flex-1 min-w-0">
+                          <div className="flex items-center gap-2 mb-1">
+                            <h4 className="font-semibold truncate">
+                              {notif.title || "Uden titel"}
+                            </h4>
+                            <span className="text-xs text-muted-foreground whitespace-nowrap">
+                              {format(
+                                new Date(notif.created_at),
+                                "d. MMM yyyy HH:mm",
+                                { locale: da }
+                              )}
+                            </span>
+                          </div>
+                          <p className="text-sm text-muted-foreground line-clamp-2 mb-3">
+                            {notif.message}
+                          </p>
+
+                          {/* Read statistics */}
+                          <div className="space-y-2">
+                            <div className="flex items-center justify-between text-sm">
+                              <div className="flex items-center gap-4">
+                                <span className="flex items-center gap-1.5 text-primary">
+                                  <Eye className="h-4 w-4" />
+                                  Læst: {notif.read_count}
+                                </span>
+                                <span className="flex items-center gap-1.5 text-muted-foreground">
+                                  <EyeOff className="h-4 w-4" />
+                                  Ulæst: {notif.unread_count}
+                                </span>
+                                <span className="flex items-center gap-1.5 text-muted-foreground">
+                                  <Users className="h-4 w-4" />
+                                  Total: {notif.total_users}
+                                </span>
+                              </div>
+                              <span className="font-medium">{readPercentage}%</span>
+                            </div>
+                            <Progress value={readPercentage} className="h-2" />
+                          </div>
+                        </div>
+
+                        <AlertDialog>
+                          <AlertDialogTrigger asChild>
+                            <Button
+                              variant="ghost"
+                              size="icon"
+                              className="h-8 w-8 text-destructive hover:text-destructive shrink-0"
                             >
-                              Slet
-                            </AlertDialogAction>
-                          </AlertDialogFooter>
-                        </AlertDialogContent>
-                      </AlertDialog>
-                    </TableCell>
-                  </TableRow>
-                ))}
-              </TableBody>
-            </Table>
+                              <Trash2 className="h-4 w-4" />
+                            </Button>
+                          </AlertDialogTrigger>
+                          <AlertDialogContent>
+                            <AlertDialogHeader>
+                              <AlertDialogTitle>
+                                Slet notifikation?
+                              </AlertDialogTitle>
+                              <AlertDialogDescription>
+                                Er du sikker på at du vil slette denne
+                                notifikation? Dette vil også fjerne den fra alle
+                                brugeres indbakke.
+                              </AlertDialogDescription>
+                            </AlertDialogHeader>
+                            <AlertDialogFooter>
+                              <AlertDialogCancel>Annuller</AlertDialogCancel>
+                              <AlertDialogAction
+                                onClick={() => handleDelete(notif.id)}
+                                className="bg-destructive text-destructive-foreground hover:bg-destructive/90"
+                              >
+                                Slet
+                              </AlertDialogAction>
+                            </AlertDialogFooter>
+                          </AlertDialogContent>
+                        </AlertDialog>
+                      </div>
+                    </CardContent>
+                  </Card>
+                );
+              })}
+            </div>
           )}
         </CardContent>
       </Card>
