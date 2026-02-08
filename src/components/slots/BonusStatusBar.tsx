@@ -8,6 +8,7 @@ interface BonusStatusBarProps {
   freeSpinsRemaining: number;
   totalFreeSpins: number;
   expandingSymbol: SlotSymbol | null;
+  expandingSymbols?: SlotSymbol[];
   bonusWinnings: number;
 }
 
@@ -16,6 +17,7 @@ export function BonusStatusBar({
   freeSpinsRemaining,
   totalFreeSpins,
   expandingSymbol,
+  expandingSymbols = [],
   bonusWinnings,
 }: BonusStatusBarProps) {
   if (!isActive) return null;
@@ -50,25 +52,32 @@ export function BonusStatusBar({
           </span>
         </div>
 
-        {/* Expanding symbol */}
-        {expandingSymbol && (
+        {/* Expanding symbol(s) */}
+        {(expandingSymbols.length > 0 || expandingSymbol) && (
           <div className="flex items-center gap-1 sm:gap-2">
             <span className="text-amber-500/70 text-xs sm:text-sm">Expanding:</span>
-            <div className="flex items-center gap-1 px-1.5 sm:px-2 py-0.5 sm:py-1 bg-gradient-to-b from-amber-800/50 to-amber-950/50 rounded-lg border border-amber-500/40 shadow-[inset_0_1px_0_rgba(251,191,36,0.2)]">
-              {expandingSymbol.image_url ? (
-                <img
-                  src={expandingSymbol.image_url}
-                  alt={expandingSymbol.name}
-                  className="w-4 h-4 sm:w-6 sm:h-6 object-contain drop-shadow-[0_0_4px_rgba(251,191,36,0.4)]"
-                />
-              ) : (
-                <span className="text-sm sm:text-lg">
-                  {getSymbolEmoji(expandingSymbol.name)}
-                </span>
-              )}
-              <span className="text-amber-300 font-medium text-xs sm:text-sm">
-                {expandingSymbol.name}
-              </span>
+            <div className="flex items-center gap-1">
+              {(expandingSymbols.length > 0 ? expandingSymbols : (expandingSymbol ? [expandingSymbol] : [])).map((sym) => (
+                <div
+                  key={sym.id}
+                  className="flex items-center gap-0.5 px-1 sm:px-1.5 py-0.5 bg-gradient-to-b from-amber-800/50 to-amber-950/50 rounded-lg border border-amber-500/40 shadow-[inset_0_1px_0_rgba(251,191,36,0.2)]"
+                >
+                  {sym.image_url ? (
+                    <img
+                      src={sym.image_url}
+                      alt={sym.name}
+                      className="w-4 h-4 sm:w-6 sm:h-6 object-contain drop-shadow-[0_0_4px_rgba(251,191,36,0.4)]"
+                    />
+                  ) : (
+                    <span className="text-sm sm:text-lg">
+                      {getSymbolEmoji(sym.name)}
+                    </span>
+                  )}
+                  <span className="text-amber-300 font-medium text-xs sm:text-sm hidden sm:inline">
+                    {sym.name}
+                  </span>
+                </div>
+              ))}
             </div>
           </div>
         )}

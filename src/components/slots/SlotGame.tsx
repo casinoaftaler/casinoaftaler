@@ -4,6 +4,7 @@ import { SlotReel } from "./SlotReel";
 import { WinLines } from "./WinLines";
 import { BonusOverlay } from "./BonusOverlay";
 import { BonusStatusBar } from "./BonusStatusBar";
+import { BonusSymbolBar } from "./BonusSymbolBar";
 import { SlotMachineFrame } from "./SlotMachineFrame";
 import { WinCelebration } from "./WinCelebration";
 import { SlotControlPanel } from "./SlotControlPanel";
@@ -584,9 +585,14 @@ export function SlotGame({ gameId = "book-of-fedesvin" }: SlotGameProps) {
         type="retrigger"
         retriggerSpins={retriggerSpinsAdded}
         totalFreeSpins={bonusState.freeSpinsRemaining}
+        expandingSymbols={bonusState.expandingSymbols}
+        newRetriggerSymbol={
+          gameId === "rise-of-fedesvin" && bonusState.expandingSymbols.length > 0
+            ? bonusState.expandingSymbols[bonusState.expandingSymbols.length - 1]
+            : undefined
+        }
         onClose={() => {
           setShowRetrigger(false);
-          // Apply deferred bonus state after retrigger confirmed
           if (pendingBonusStateRef.current) {
             updateBonusFromServer(pendingBonusStateRef.current);
             pendingBonusStateRef.current = null;
@@ -612,6 +618,8 @@ export function SlotGame({ gameId = "book-of-fedesvin" }: SlotGameProps) {
         type="complete"
         totalWinnings={bonusTotalWinnings}
         totalFreeSpins={bonusTotalSpinsUsed}
+        expandingSymbols={bonusState.expandingSymbols}
+        allSymbols={symbols || []}
         onClose={() => {
           setShowBonusComplete(false);
           setBonusTotalWinnings(0);
@@ -871,14 +879,22 @@ export function SlotGame({ gameId = "book-of-fedesvin" }: SlotGameProps) {
 
           {/* Bonus Status Bar + Control Panel */}
           <div className="mt-3 sm:mt-4">
-            <div className="max-w-fit mx-auto mb-2 sm:mb-3">
+            <div className="max-w-fit mx-auto mb-2 sm:mb-3 space-y-2">
               <BonusStatusBar
                 isActive={bonusState.isActive}
                 freeSpinsRemaining={bonusState.freeSpinsRemaining}
                 totalFreeSpins={bonusState.totalFreeSpins}
                 expandingSymbol={bonusState.expandingSymbol}
+                expandingSymbols={bonusState.expandingSymbols}
                 bonusWinnings={bonusState.bonusWinnings}
               />
+              {gameId === "rise-of-fedesvin" && (
+                <BonusSymbolBar
+                  isVisible={bonusState.isActive}
+                  allSymbols={symbols || []}
+                  expandingSymbols={bonusState.expandingSymbols}
+                />
+              )}
             </div>
             
             <div className="rounded-xl backdrop-blur-md bg-amber-950/40 border border-amber-500/20 p-2 sm:p-3 shadow-lg">
