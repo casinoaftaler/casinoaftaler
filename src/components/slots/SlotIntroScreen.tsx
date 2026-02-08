@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import introImage from "@/assets/slots/slot-intro-screen.jpg";
 import riseIntroImage from "@/assets/slots/rise/intro-screen.jpg";
 import defaultSlotBackground from "@/assets/slots/slot-background.jpg";
+import riseSlotBackground from "@/assets/slots/rise/background.jpg";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
 import { slotSounds } from "@/lib/slotSoundEffects";
 import { cn } from "@/lib/utils";
@@ -21,13 +22,14 @@ export function SlotIntroScreen({ onStart, gameId = "book-of-fedesvin" }: SlotIn
   const { data: siteSettings } = useSiteSettings();
   const theme = getSlotTheme(gameId);
 
+  const isWizard = gameId === "rise-of-fedesvin";
+
   const bgKey = gameId === "book-of-fedesvin"
     ? "slot_background_image"
     : `${gameId.replace(/-/g, "_")}_background_image`;
-  const backgroundImage = siteSettings?.[bgKey] || siteSettings?.slot_background_image || defaultSlotBackground;
+  const gameDefaultBackground = isWizard ? riseSlotBackground : defaultSlotBackground;
+  const backgroundImage = siteSettings?.[bgKey] || gameDefaultBackground;
   const currentIntroImage = GAME_INTRO_IMAGES[gameId] || introImage;
-
-  const isWizard = gameId === "rise-of-fedesvin";
 
   // Set game ID and start background music when intro screen opens
   useEffect(() => {
