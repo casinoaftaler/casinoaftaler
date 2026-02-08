@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
+import { Checkbox } from "@/components/ui/checkbox";
 import {
   Dialog,
   DialogContent,
@@ -11,7 +12,7 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
-import { useSubmitClip } from "@/hooks/useCommunityClips";
+import { useSubmitClip, CLIP_CATEGORIES, ClipCategory } from "@/hooks/useCommunityClips";
 import { Plus, Link as LinkIcon, Loader2 } from "lucide-react";
 import { useAuth } from "@/hooks/useAuth";
 
@@ -24,7 +25,9 @@ export function ClipSubmitForm({ trigger }: ClipSubmitFormProps) {
   const [url, setUrl] = useState("");
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
+  const [selectedCategories, setSelectedCategories] = useState<ClipCategory[]>([]);
   const [urlError, setUrlError] = useState<string | null>(null);
+  const [categoryError, setCategoryError] = useState<string | null>(null);
 
   const { user } = useAuth();
   const submitClip = useSubmitClip();
@@ -48,22 +51,46 @@ export function ClipSubmitForm({ trigger }: ClipSubmitFormProps) {
     }
   };
 
+  const validateCategories = (): boolean => {
+    if (selectedCategories.length === 0) {
+      setCategoryError("Vælg mindst én kategori");
+      return false;
+    }
+    setCategoryError(null);
+    return true;
+  };
+
+  const toggleCategory = (category: ClipCategory) => {
+    setSelectedCategories((prev) => {
+      if (prev.includes(category)) {
+        return prev.filter((c) => c !== category);
+      }
+      return [...prev, category];
+    });
+    if (categoryError) setCategoryError(null);
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    if (!validateUrlFormat(url)) return;
+    const urlValid = validateUrlFormat(url);
+    const categoriesValid = validateCategories();
+
+    if (!urlValid || !categoriesValid) return;
 
     try {
       await submitClip.mutateAsync({
         url: url.trim(),
         title: title.trim() || undefined,
         description: description.trim() || undefined,
+        categories: selectedCategories,
       });
 
       // Reset form and close on success
       setUrl("");
       setTitle("");
       setDescription("");
+      setSelectedCategories([]);
       setOpen(false);
     } catch {
       // Error is handled by the mutation's onError
@@ -119,6 +146,35 @@ export function ClipSubmitForm({ trigger }: ClipSubmitFormProps) {
             )}
             <p className="text-xs text-muted-foreground">
               Understøtter Twitch og YouTube clips (inkl. korte URLs og redirects)
+            </p>
+          </div>
+
+          <div className="space-y-2">
+            <Label>
+              Kategori <span className="text-destructive">*</span>
+            </Label>
+            <div className="flex flex-col gap-3">
+              {CLIP_CATEGORIES.map((cat) => (
+                <div key={cat.value} className="flex items-center space-x-3">
+                  <Checkbox
+                    id={`category-${cat.value}`}
+                    checked={selectedCategories.includes(cat.value)}
+                    onCheckedChange={() => toggleCategory(cat.value)}
+                  />
+                  <label
+                    htmlFor={`category-${cat.value}`}
+                    className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 cursor-pointer"
+                  >
+                    {cat.emoji} {cat.label}
+                  </label>
+                </div>
+              ))}
+            </div>
+            {categoryError && (
+              <p className="text-sm text-destructive">{categoryError}</p>
+            )}
+            <p className="text-xs text-muted-foreground">
+              Vælg mindst én kategori. Du kan vælge begge hvis clip'en passer til flere.
             </p>
           </div>
 

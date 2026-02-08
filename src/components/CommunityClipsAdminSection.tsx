@@ -24,7 +24,10 @@ import {
   useDeleteClip,
   ClipStatus,
   getEmbedUrl,
+  CLIP_CATEGORIES,
+  ClipCategory,
 } from "@/hooks/useCommunityClips";
+import { ClipCategoryBadges } from "@/components/community/ClipCategoryBadges";
 import {
   Check,
   X,
@@ -216,6 +219,13 @@ export function CommunityClipsAdminSection() {
                               <h3 className="font-semibold mb-1">
                                 {clip.title || "Uden titel"}
                               </h3>
+
+                              {/* Categories */}
+                              {clip.categories && clip.categories.length > 0 && (
+                                <div className="mb-2">
+                                  <ClipCategoryBadges categories={clip.categories} size="sm" />
+                                </div>
+                              )}
 
                               {clip.description && (
                                 <p className="text-sm text-muted-foreground mb-2 line-clamp-2">

@@ -26,6 +26,7 @@ import { formatDistanceToNow } from "date-fns";
 import { da } from "date-fns/locale";
 import { useAuth } from "@/hooks/useAuth";
 import { cn } from "@/lib/utils";
+import { ClipCategoryBadges } from "./ClipCategoryBadges";
 
 interface CommunityClipDetailProps {
   clip: CommunityClipWithStats | null;
@@ -120,6 +121,11 @@ export function CommunityClipDetail({
               <DialogTitle className="text-lg">
                 {clip.title || "Uden titel"}
               </DialogTitle>
+              {clip.categories && clip.categories.length > 0 && (
+                <div className="mt-2">
+                  <ClipCategoryBadges categories={clip.categories} />
+                </div>
+              )}
               {clip.description && (
                 <p className="text-sm text-muted-foreground mt-1">
                   {clip.description}
