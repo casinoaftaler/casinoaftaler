@@ -292,33 +292,78 @@ export type Database = {
       profiles: {
         Row: {
           avatar_url: string | null
+          biggest_spin_win: number | null
+          biggest_x_win: number | null
+          bio: string | null
           created_at: string
           display_name: string | null
+          favorite_casino: string | null
+          favorite_provider: string | null
+          favorite_slot: string | null
+          hide_amounts: boolean | null
+          highest_win_amount: number | null
+          highest_win_casino: string | null
+          highest_win_game: string | null
           id: string
+          play_styles: string[] | null
+          preferred_game_type: string | null
+          stats_public: boolean | null
           twitch_id: string | null
           twitch_username: string | null
+          typical_bet_size: string | null
           updated_at: string
           user_id: string
+          volatility_preference: string | null
         }
         Insert: {
           avatar_url?: string | null
+          biggest_spin_win?: number | null
+          biggest_x_win?: number | null
+          bio?: string | null
           created_at?: string
           display_name?: string | null
+          favorite_casino?: string | null
+          favorite_provider?: string | null
+          favorite_slot?: string | null
+          hide_amounts?: boolean | null
+          highest_win_amount?: number | null
+          highest_win_casino?: string | null
+          highest_win_game?: string | null
           id?: string
+          play_styles?: string[] | null
+          preferred_game_type?: string | null
+          stats_public?: boolean | null
           twitch_id?: string | null
           twitch_username?: string | null
+          typical_bet_size?: string | null
           updated_at?: string
           user_id: string
+          volatility_preference?: string | null
         }
         Update: {
           avatar_url?: string | null
+          biggest_spin_win?: number | null
+          biggest_x_win?: number | null
+          bio?: string | null
           created_at?: string
           display_name?: string | null
+          favorite_casino?: string | null
+          favorite_provider?: string | null
+          favorite_slot?: string | null
+          hide_amounts?: boolean | null
+          highest_win_amount?: number | null
+          highest_win_casino?: string | null
+          highest_win_game?: string | null
           id?: string
+          play_styles?: string[] | null
+          preferred_game_type?: string | null
+          stats_public?: boolean | null
           twitch_id?: string | null
           twitch_username?: string | null
+          typical_bet_size?: string | null
           updated_at?: string
           user_id?: string
+          volatility_preference?: string | null
         }
         Relationships: []
       }

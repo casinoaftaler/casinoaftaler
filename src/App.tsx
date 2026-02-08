@@ -19,6 +19,7 @@ import Highlights from "./pages/Highlights";
 import Admin from "./pages/Admin";
 import Auth from "./pages/Auth";
 import AuthCallback from "./pages/AuthCallback";
+import Profile from "./pages/Profile";
 import NotFound from "./pages/NotFound";
 
 // Lazy load the slot machine page for better initial load performance
@@ -54,6 +55,7 @@ const App = () => (
             />
             <Route path="/auth" element={<Auth />} />
             <Route path="/auth/callback" element={<AuthCallback />} />
+            <Route path="/profil" element={<Profile />} />
           </Route>
           <Route path="/admin" element={<Admin />} />
           
