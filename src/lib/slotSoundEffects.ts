@@ -120,16 +120,60 @@ class SlotSoundEffects {
   }
 
   // Set the current game ID (affects default music fallback)
+  // When game changes, clear stale custom sounds from previous game
   setGameId(gameId: string) {
-    this.currentGameId = gameId;
+    if (this.currentGameId !== gameId) {
+      console.log(`[SlotSounds] Switching game from "${this.currentGameId}" to "${gameId}" — clearing stale sounds`);
+      this.currentGameId = gameId;
+      // Clear all custom sound state from the previous game to prevent bleed-through
+      this.clearAllCustomAudio();
+    } else {
+      this.currentGameId = gameId;
+    }
   }
 
   // Set custom sound file URLs from admin settings
   setCustomSoundFiles(files: CustomSoundFiles) {
     this.customSoundFiles = files;
     
+    const loadedKeys = Object.entries(files).filter(([, v]) => !!v).map(([k]) => k);
+    console.log(`[SlotSounds] Setting custom sounds for "${this.currentGameId}":`, loadedKeys);
+    
     // Preload custom audio files
     this.preloadCustomAudio();
+  }
+
+  // Clear all custom audio state (pools, elements, background music)
+  private clearAllCustomAudio() {
+    this.customSoundFiles = {};
+    
+    this.customAudioElements.forEach(audio => {
+      audio.pause();
+      audio.src = '';
+    });
+    this.customAudioElements.clear();
+
+    this.audioPool.forEach(pool => {
+      pool.forEach(audio => {
+        audio.pause();
+        audio.src = '';
+      });
+    });
+    this.audioPool.clear();
+
+    // Clear stale background music from previous game
+    if (this.backgroundMusicAudio) {
+      this.backgroundMusicAudio.pause();
+      this.backgroundMusicAudio.src = '';
+      this.backgroundMusicAudio = null;
+    }
+    
+    // Clear default music so it gets recreated with the new game's track
+    if (this.defaultMusicAudio) {
+      this.defaultMusicAudio.pause();
+      this.defaultMusicAudio.src = '';
+      this.defaultMusicAudio = null;
+    }
   }
 
   private preloadCustomAudio() {
@@ -179,7 +223,7 @@ class SlotSoundEffects {
       }
     });
 
-    // Handle background music separately
+    // Handle background music separately — clear old reference if new game has no custom music
     if (this.customSoundFiles.backgroundMusic) {
       if (this.backgroundMusicAudio) {
         this.backgroundMusicAudio.pause();
@@ -188,6 +232,13 @@ class SlotSoundEffects {
       this.backgroundMusicAudio.preload = 'auto';
       this.backgroundMusicAudio.loop = true;
       this.backgroundMusicAudio.src = this.customSoundFiles.backgroundMusic;
+    } else {
+      // No custom background music for this game — clear any stale reference
+      if (this.backgroundMusicAudio) {
+        this.backgroundMusicAudio.pause();
+        this.backgroundMusicAudio.src = '';
+        this.backgroundMusicAudio = null;
+      }
     }
   }
 

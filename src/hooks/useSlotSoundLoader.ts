@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import { useSlotSoundFiles } from "./useSlotSoundFiles";
 import { slotSounds, CustomSoundFiles } from "@/lib/slotSoundEffects";
 
@@ -9,11 +9,15 @@ import { slotSounds, CustomSoundFiles } from "@/lib/slotSoundEffects";
  */
 export function useSlotSoundLoader(gameId: string = "book-of-fedesvin") {
   const { data: soundFiles, isLoading } = useSlotSoundFiles(gameId);
+  const prevGameIdRef = useRef<string>(gameId);
 
+  // Set game ID first — this clears stale sounds from the previous game
   useEffect(() => {
     slotSounds.setGameId(gameId);
+    prevGameIdRef.current = gameId;
   }, [gameId]);
 
+  // Once sound files are loaded, push them to the singleton
   useEffect(() => {
     if (soundFiles) {
       const customFiles: CustomSoundFiles = {
@@ -35,7 +39,7 @@ export function useSlotSoundLoader(gameId: string = "book-of-fedesvin") {
       
       slotSounds.setCustomSoundFiles(customFiles);
     }
-  }, [soundFiles]);
+  }, [soundFiles, gameId]);
 
   return { isLoading };
 }
