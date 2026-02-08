@@ -10,6 +10,7 @@ import { SlotSessionGate } from "@/components/slots/SlotSessionGate";
 import { SlotPageLayout } from "@/components/slots/SlotPageLayout";
 import { useAuth } from "@/hooks/useAuth";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
+import { useSlotSoundLoader } from "@/hooks/useSlotSoundLoader";
 
 import { useSlotSession } from "@/hooks/useSlotSession";
 import { useCasinos } from "@/hooks/useCasinos";
@@ -27,6 +28,9 @@ export default function SlotMachine() {
   const { user, loading } = useAuth();
   const { data: siteSettings } = useSiteSettings();
   const { data: casinos } = useCasinos();
+  
+  // Load custom sound files at page level so they're ready for intro screen music
+  useSlotSoundLoader("book-of-fedesvin");
   
   const { 
     isSessionActive, 
