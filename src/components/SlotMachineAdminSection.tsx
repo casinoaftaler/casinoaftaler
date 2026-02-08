@@ -10,6 +10,7 @@ import { SpinManagementSection } from "@/components/SpinManagementSection";
 import { SlotFrameAdminControls } from "@/components/slots/SlotFrameAdminControls";
 import { SlotStatsResetSection } from "@/components/slots/SlotStatsResetSection";
 import { SlotSoundAdminSection } from "@/components/slots/SlotSoundAdminSection";
+import { SlotPointsManagement } from "@/components/slots/SlotPointsManagement";
 import { SlotSoundFilesSection } from "@/components/slots/SlotSoundFilesSection";
 import { SlotSoundGeneratorSection } from "@/components/slots/SlotSoundGeneratorSection";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
@@ -1272,6 +1273,7 @@ export function SlotMachineAdminSection() {
           <TabsTrigger value="symbols">Symboler</TabsTrigger>
           <TabsTrigger value="settings">Indstillinger</TabsTrigger>
           <TabsTrigger value="spins">Spins</TabsTrigger>
+          <TabsTrigger value="points">Points</TabsTrigger>
           <TabsTrigger value="statistics">Statistik</TabsTrigger>
         </TabsList>
 
@@ -1285,6 +1287,10 @@ export function SlotMachineAdminSection() {
 
         <TabsContent value="spins">
           <SpinManagementSection />
+        </TabsContent>
+
+        <TabsContent value="points">
+          <SlotPointsManagement />
         </TabsContent>
 
         <TabsContent value="statistics">
