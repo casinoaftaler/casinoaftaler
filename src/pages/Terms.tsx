@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { FileText, Scale, AlertTriangle, Ban, RefreshCw, Gavel } from "lucide-react";
+import { FileText, Scale, AlertTriangle, Ban, RefreshCw, Gavel, Coins, Gift, CircleDollarSign } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 
 const Terms = () => {
@@ -26,7 +26,7 @@ const Terms = () => {
             </div>
             <h1 className="mb-4 text-4xl font-bold md:text-5xl">Vilkår og Betingelser</h1>
             <p className="text-lg text-white/80">
-              Sidst opdateret: December 2025
+              Sidst opdateret: Februar 2026
             </p>
           </div>
         </div>
@@ -99,10 +99,100 @@ const Terms = () => {
               </CardContent>
             </Card>
 
+            {/* Points & Gevinster */}
+            <Card className="border-border bg-card">
+              <CardContent className="p-6 md:p-8">
+                <div className="flex items-start gap-4">
+                  <div className="rounded-lg bg-primary/10 p-3">
+                    <Coins className="h-6 w-6 text-primary" />
+                  </div>
+                  <div className="flex-1">
+                    <h2 className="mb-4 text-2xl font-bold">4. Points & Gevinster</h2>
+                    
+                    {/* Alderskrav subsection */}
+                    <div className="mb-6">
+                      <h3 className="mb-2 text-lg font-semibold flex items-center gap-2">
+                        <AlertTriangle className="h-4 w-4 text-destructive" />
+                        Alderskrav
+                      </h3>
+                      <div className="space-y-3 text-muted-foreground">
+                        <p className="leading-relaxed">
+                          For at kunne modtage gevinster, præmier eller andre belønninger via casinoaftaler.dk skal du være minimum 18 år. Dette krav gælder uden undtagelse og er i overensstemmelse med gældende dansk lovgivning om spil og gambling.
+                        </p>
+                        <p className="leading-relaxed">
+                          Casinoaftaler.dk forbeholder sig retten til at anmode om aldersverifikation, før eventuelle gevinster udbetales eller overdrages.
+                        </p>
+                      </div>
+                    </div>
+
+                    {/* Points subsection */}
+                    <div className="mb-6">
+                      <h3 className="mb-2 text-lg font-semibold flex items-center gap-2">
+                        <CircleDollarSign className="h-4 w-4 text-primary" />
+                        Points
+                      </h3>
+                      <p className="mb-3 text-muted-foreground leading-relaxed">
+                        Points på casinoaftaler.dk er en intern, fiktiv valuta, som udelukkende anvendes inden for platformen til ranglister, konkurrencer og belønningssystemer.
+                      </p>
+                      <ul className="space-y-2 text-muted-foreground">
+                        <li className="flex items-center gap-2">
+                          <span className="h-1.5 w-1.5 rounded-full bg-primary" />
+                          Points har ingen reel pengeværdi
+                        </li>
+                        <li className="flex items-center gap-2">
+                          <span className="h-1.5 w-1.5 rounded-full bg-primary" />
+                          Points kan ikke veksles til kontanter
+                        </li>
+                        <li className="flex items-center gap-2">
+                          <span className="h-1.5 w-1.5 rounded-full bg-primary" />
+                          Points kan ikke hæves, overføres eller sælges
+                        </li>
+                        <li className="flex items-center gap-2">
+                          <span className="h-1.5 w-1.5 rounded-full bg-primary" />
+                          Points kan kun bruges i de sammenhænge, der er beskrevet på casinoaftaler.dk
+                        </li>
+                      </ul>
+                      <p className="mt-3 text-muted-foreground leading-relaxed italic">
+                        Points er alene et underholdnings- og motivationsværktøj og må ikke opfattes som penge, kredit eller en finansiel værdi.
+                      </p>
+                    </div>
+
+                    {/* Gevinster subsection */}
+                    <div>
+                      <h3 className="mb-2 text-lg font-semibold flex items-center gap-2">
+                        <Gift className="h-4 w-4 text-primary" />
+                        Gevinster
+                      </h3>
+                      <p className="mb-3 text-muted-foreground leading-relaxed">
+                        Eventuelle gevinster, præmier eller belønninger, der tilbydes via casinoaftaler.dk, er underlagt:
+                      </p>
+                      <ul className="space-y-2 text-muted-foreground">
+                        <li className="flex items-center gap-2">
+                          <span className="h-1.5 w-1.5 rounded-full bg-primary" />
+                          Alderskravet på minimum 18 år
+                        </li>
+                        <li className="flex items-center gap-2">
+                          <span className="h-1.5 w-1.5 rounded-full bg-primary" />
+                          De gældende vilkår og betingelser
+                        </li>
+                        <li className="flex items-center gap-2">
+                          <span className="h-1.5 w-1.5 rounded-full bg-primary" />
+                          Eventuelle krav fra samarbejdspartnere og casinooperatører
+                        </li>
+                      </ul>
+                      <p className="mt-3 text-muted-foreground leading-relaxed">
+                        <strong className="text-foreground">Casinoaftaler.dk er ikke et online casino</strong>, men fungerer som en informations- og formidlingsplatform for casinoaftaler og kampagner.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+
             {/* Affiliate Disclosure */}
             <Card className="border-border bg-card">
               <CardContent className="p-6 md:p-8">
-                <h2 className="mb-4 text-2xl font-bold">4. Affiliate-oplysning</h2>
+                <h2 className="mb-4 text-2xl font-bold">5. Affiliate-oplysning</h2>
                 <p className="mb-4 text-muted-foreground leading-relaxed">
                   Casinoaftaler.dk er en affiliate-partner med de casinoer, vi anmelder og anbefaler. Dette betyder:
                 </p>
@@ -135,7 +225,7 @@ const Terms = () => {
                     <Ban className="h-6 w-6 text-primary" />
                   </div>
                   <div className="flex-1">
-                    <h2 className="mb-4 text-2xl font-bold">5. Ansvarsfraskrivelse</h2>
+                    <h2 className="mb-4 text-2xl font-bold">6. Ansvarsfraskrivelse</h2>
                     <div className="space-y-4 text-muted-foreground">
                       <p className="leading-relaxed">
                         Informationen på dette website er kun til generel vejledning. Vi gør vores bedste for at sikre nøjagtighed, men:
@@ -167,7 +257,7 @@ const Terms = () => {
             {/* Intellectual Property */}
             <Card className="border-border bg-card">
               <CardContent className="p-6 md:p-8">
-                <h2 className="mb-4 text-2xl font-bold">6. Immaterielle rettigheder</h2>
+                <h2 className="mb-4 text-2xl font-bold">7. Immaterielle rettigheder</h2>
                 <p className="text-muted-foreground leading-relaxed">
                   Alt indhold på Casinoaftaler.dk, herunder tekst, grafik, logoer, billeder og software, er beskyttet af ophavsret og tilhører Casinoaftaler.dk eller vores licensgivere. Du må ikke kopiere, distribuere, modificere eller gengive vores indhold uden skriftlig tilladelse.
                 </p>
@@ -177,7 +267,7 @@ const Terms = () => {
             {/* User Conduct */}
             <Card className="border-border bg-card">
               <CardContent className="p-6 md:p-8">
-                <h2 className="mb-4 text-2xl font-bold">7. Brugeradfærd</h2>
+                <h2 className="mb-4 text-2xl font-bold">8. Brugeradfærd</h2>
                 <p className="mb-4 text-muted-foreground leading-relaxed">
                   Ved brug af vores website accepterer du at:
                 </p>
@@ -205,7 +295,7 @@ const Terms = () => {
             {/* Third Party Links */}
             <Card className="border-border bg-card">
               <CardContent className="p-6 md:p-8">
-                <h2 className="mb-4 text-2xl font-bold">8. Tredjepartslinks</h2>
+                <h2 className="mb-4 text-2xl font-bold">9. Tredjepartslinks</h2>
                 <p className="text-muted-foreground leading-relaxed">
                   Vores website indeholder links til eksterne casinoer og andre tredjeparter. Vi er ikke ansvarlige for indholdet eller praksis på disse websites. Når du forlader Casinoaftaler.dk, opfordrer vi dig til at læse vilkårene for den pågældende side.
                 </p>
@@ -220,7 +310,7 @@ const Terms = () => {
                     <RefreshCw className="h-6 w-6 text-primary" />
                   </div>
                   <div>
-                    <h2 className="mb-3 text-2xl font-bold">9. Ændringer af vilkår</h2>
+                    <h2 className="mb-3 text-2xl font-bold">10. Ændringer af vilkår</h2>
                     <p className="text-muted-foreground leading-relaxed">
                       Vi forbeholder os retten til at ændre disse vilkår når som helst. Ændringer træder i kraft ved offentliggørelse på denne side. Din fortsatte brug af websitet efter ændringer udgør accept af de nye vilkår.
                     </p>
@@ -237,7 +327,7 @@ const Terms = () => {
                     <Gavel className="h-6 w-6 text-primary" />
                   </div>
                   <div>
-                    <h2 className="mb-3 text-2xl font-bold">10. Lovvalg og værneting</h2>
+                    <h2 className="mb-3 text-2xl font-bold">11. Lovvalg og værneting</h2>
                     <p className="text-muted-foreground leading-relaxed">
                       Disse vilkår er underlagt dansk ret. Eventuelle tvister skal afgøres ved de danske domstole. Ved at bruge dette website accepterer du denne jurisdiktion.
                     </p>
