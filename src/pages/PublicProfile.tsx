@@ -1,9 +1,11 @@
 import { useParams, Link } from "react-router-dom";
 import { usePublicProfile } from "@/hooks/usePublicProfile";
+import { useUserPoints } from "@/hooks/useUserPoints";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Skeleton } from "@/components/ui/skeleton";
+import { PointsBalanceCard } from "@/components/PointsBalanceCard";
 import { 
   User, 
   Trophy, 
@@ -175,6 +177,7 @@ function NotFound() {
 export default function PublicProfile() {
   const { username } = useParams<{ username: string }>();
   const { data: profile, isLoading, error } = usePublicProfile(username);
+  const { data: pointsData, isLoading: pointsLoading } = useUserPoints(profile?.user_id);
 
   if (isLoading) {
     return <LoadingSkeleton />;
@@ -187,6 +190,7 @@ export default function PublicProfile() {
   const hasStats = profile.highest_win_amount || profile.biggest_spin_win || profile.biggest_x_win;
   const hasFavorites = profile.favorite_slot || profile.favorite_provider || profile.favorite_casino;
   const hasPlayStyle = (profile.play_styles && profile.play_styles.length > 0) || profile.preferred_game_type || profile.volatility_preference;
+  const hasPoints = pointsData && pointsData.total_winnings > 0;
 
   return (
     <div className="min-h-screen bg-background">
@@ -252,6 +256,13 @@ export default function PublicProfile() {
       
       {/* Content */}
       <div className="container max-w-4xl mx-auto px-4 py-8 space-y-8">
+        {/* Points Section - shown for public profiles */}
+        <PointsBalanceCard
+          points={pointsData?.total_winnings}
+          isLoading={pointsLoading}
+          variant="hero"
+        />
+
         {/* Stats Section */}
         {hasStats && (
           <section>
