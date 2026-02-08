@@ -68,9 +68,9 @@ function getPeriodStart(period: StatPeriod): Date | null {
   }
 }
 
-export function useSlotAdminStatistics(period: StatPeriod) {
+export function useSlotAdminStatistics(period: StatPeriod, gameId?: string) {
   return useQuery({
-    queryKey: ["slot-admin-statistics", period],
+    queryKey: ["slot-admin-statistics", period, gameId],
     queryFn: async (): Promise<SlotAdminStats> => {
       const periodStart = getPeriodStart(period);
 
@@ -104,6 +104,9 @@ export function useSlotAdminStatistics(period: StatPeriod) {
       if (periodStart) {
         countQuery = countQuery.gte("created_at", periodStart.toISOString());
       }
+      if (gameId) {
+        countQuery = (countQuery as any).eq("game_id", gameId);
+      }
 
       const { count: totalCount, error: countError } = await countQuery;
       if (countError) throw countError;
@@ -121,6 +124,9 @@ export function useSlotAdminStatistics(period: StatPeriod) {
 
         if (periodStart) {
           query = query.gte("created_at", periodStart.toISOString());
+        }
+        if (gameId) {
+          query = (query as any).eq("game_id", gameId);
         }
 
         const { data, error } = await query;
