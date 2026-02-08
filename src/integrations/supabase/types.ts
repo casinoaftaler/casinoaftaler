@@ -149,6 +149,121 @@ export type Database = {
           },
         ]
       }
+      community_clip_comments: {
+        Row: {
+          clip_id: string
+          content: string
+          created_at: string
+          id: string
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          clip_id: string
+          content: string
+          created_at?: string
+          id?: string
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          clip_id?: string
+          content?: string
+          created_at?: string
+          id?: string
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "community_clip_comments_clip_id_fkey"
+            columns: ["clip_id"]
+            isOneToOne: false
+            referencedRelation: "community_clips"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      community_clip_likes: {
+        Row: {
+          clip_id: string
+          created_at: string
+          id: string
+          user_id: string
+        }
+        Insert: {
+          clip_id: string
+          created_at?: string
+          id?: string
+          user_id: string
+        }
+        Update: {
+          clip_id?: string
+          created_at?: string
+          id?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "community_clip_likes_clip_id_fkey"
+            columns: ["clip_id"]
+            isOneToOne: false
+            referencedRelation: "community_clips"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      community_clips: {
+        Row: {
+          approved_at: string | null
+          approved_by: string | null
+          created_at: string
+          description: string | null
+          duration_seconds: number | null
+          id: string
+          platform: string
+          rejection_reason: string | null
+          status: Database["public"]["Enums"]["clip_status"]
+          thumbnail_url: string | null
+          title: string | null
+          updated_at: string
+          url: string
+          user_id: string
+        }
+        Insert: {
+          approved_at?: string | null
+          approved_by?: string | null
+          created_at?: string
+          description?: string | null
+          duration_seconds?: number | null
+          id?: string
+          platform?: string
+          rejection_reason?: string | null
+          status?: Database["public"]["Enums"]["clip_status"]
+          thumbnail_url?: string | null
+          title?: string | null
+          updated_at?: string
+          url: string
+          user_id: string
+        }
+        Update: {
+          approved_at?: string | null
+          approved_by?: string | null
+          created_at?: string
+          description?: string | null
+          duration_seconds?: number | null
+          id?: string
+          platform?: string
+          rejection_reason?: string | null
+          status?: Database["public"]["Enums"]["clip_status"]
+          thumbnail_url?: string | null
+          title?: string | null
+          updated_at?: string
+          url?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
       highlight_categories: {
         Row: {
           created_at: string
@@ -1014,6 +1129,7 @@ export type Database = {
     }
     Enums: {
       app_role: "admin" | "user" | "casino_owner"
+      clip_status: "pending" | "approved" | "rejected"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -1142,6 +1258,7 @@ export const Constants = {
   public: {
     Enums: {
       app_role: ["admin", "user", "casino_owner"],
+      clip_status: ["pending", "approved", "rejected"],
     },
   },
 } as const
