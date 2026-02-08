@@ -10,7 +10,6 @@ import { ProfileStatsSection } from "@/components/profile/ProfileStatsSection";
 import { ProfileFavoritesSection } from "@/components/profile/ProfileFavoritesSection";
 import { ProfilePlayStyleSection } from "@/components/profile/ProfilePlayStyleSection";
 import { ProfilePrivacySection } from "@/components/profile/ProfilePrivacySection";
-import { ProfileSectionRewardIndicator } from "@/components/profile/ProfileSectionRewardIndicator";
 import { ProfileRewardsProgress } from "@/components/profile/ProfileRewardsProgress";
 import { Loader2, Save, User, Trophy, Heart, Zap, Shield } from "lucide-react";
 
@@ -165,43 +164,23 @@ export default function Profile() {
       <form onSubmit={handleSubmit}>
         <Tabs defaultValue="profile" className="space-y-6">
           <TabsList className="grid w-full grid-cols-5 h-auto">
-            <TabsTrigger value="profile" className="flex flex-col sm:flex-row gap-1 sm:gap-2 py-2 text-xs sm:text-sm relative">
+            <TabsTrigger value="profile" className="flex flex-col sm:flex-row gap-1 sm:gap-2 py-2.5 text-xs sm:text-sm">
               <User className="h-4 w-4" />
               <span className="hidden sm:inline">Profil</span>
-              <ProfileSectionRewardIndicator
-                isCompleted={currentStatus.profile}
-                isRewarded={rewardedSections.profile}
-                className="absolute -top-2 -right-2 sm:static sm:ml-1"
-              />
             </TabsTrigger>
-            <TabsTrigger value="stats" className="flex flex-col sm:flex-row gap-1 sm:gap-2 py-2 text-xs sm:text-sm relative">
+            <TabsTrigger value="stats" className="flex flex-col sm:flex-row gap-1 sm:gap-2 py-2.5 text-xs sm:text-sm">
               <Trophy className="h-4 w-4" />
               <span className="hidden sm:inline">Stats</span>
-              <ProfileSectionRewardIndicator
-                isCompleted={currentStatus.stats}
-                isRewarded={rewardedSections.stats}
-                className="absolute -top-2 -right-2 sm:static sm:ml-1"
-              />
             </TabsTrigger>
-            <TabsTrigger value="favorites" className="flex flex-col sm:flex-row gap-1 sm:gap-2 py-2 text-xs sm:text-sm relative">
+            <TabsTrigger value="favorites" className="flex flex-col sm:flex-row gap-1 sm:gap-2 py-2.5 text-xs sm:text-sm">
               <Heart className="h-4 w-4" />
               <span className="hidden sm:inline">Favoritter</span>
-              <ProfileSectionRewardIndicator
-                isCompleted={currentStatus.favorites}
-                isRewarded={rewardedSections.favorites}
-                className="absolute -top-2 -right-2 sm:static sm:ml-1"
-              />
             </TabsTrigger>
-            <TabsTrigger value="playstyle" className="flex flex-col sm:flex-row gap-1 sm:gap-2 py-2 text-xs sm:text-sm relative">
+            <TabsTrigger value="playstyle" className="flex flex-col sm:flex-row gap-1 sm:gap-2 py-2.5 text-xs sm:text-sm">
               <Zap className="h-4 w-4" />
               <span className="hidden sm:inline">Spillestil</span>
-              <ProfileSectionRewardIndicator
-                isCompleted={currentStatus.playstyle}
-                isRewarded={rewardedSections.playstyle}
-                className="absolute -top-2 -right-2 sm:static sm:ml-1"
-              />
             </TabsTrigger>
-            <TabsTrigger value="privacy" className="flex flex-col sm:flex-row gap-1 sm:gap-2 py-2 text-xs sm:text-sm">
+            <TabsTrigger value="privacy" className="flex flex-col sm:flex-row gap-1 sm:gap-2 py-2.5 text-xs sm:text-sm">
               <Shield className="h-4 w-4" />
               <span className="hidden sm:inline">Privatliv</span>
             </TabsTrigger>
