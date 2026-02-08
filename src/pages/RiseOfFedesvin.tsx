@@ -6,6 +6,8 @@ import { SlotPromoSlider } from "@/components/slots/SlotPromoSlider";
 import { SlotLoadingScreen } from "@/components/slots/SlotLoadingScreen";
 import { SlotIntroScreen } from "@/components/slots/SlotIntroScreen";
 import { SlotSessionGate } from "@/components/slots/SlotSessionGate";
+import { SlotPageLockGate } from "@/components/slots/SlotPageLockGate";
+import { useSlotPageAccess } from "@/hooks/useSlotPageAccess";
 import { SlotPageLayout } from "@/components/slots/SlotPageLayout";
 import { useAuth } from "@/hooks/useAuth";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
@@ -37,6 +39,7 @@ export default function RiseOfFedesvin() {
     refreshSession 
   } = useSlotSession();
   const { scale, shouldScale, showTitle } = useViewportScaling();
+  const { isLocked, hasAccess, isLoading: accessLoading, error: accessError, verifyPassword } = useSlotPageAccess();
   
   const [loadingPhase, setLoadingPhase] = useState<LoadingPhase>('loading');
   
@@ -74,7 +77,7 @@ export default function RiseOfFedesvin() {
     </>
   );
 
-  if (loading) {
+  if (loading || accessLoading) {
     return (
       <div className="min-h-[calc(100vh-4rem)] relative">
         <PageBackground />
@@ -82,6 +85,16 @@ export default function RiseOfFedesvin() {
           <div className="animate-pulse text-muted-foreground">Indlæser...</div>
         </div>
       </div>
+    );
+  }
+
+  if (isLocked && !hasAccess) {
+    return (
+      <SlotPageLockGate
+        backgroundImage={backgroundImage}
+        onVerify={verifyPassword}
+        error={accessError}
+      />
     );
   }
 
