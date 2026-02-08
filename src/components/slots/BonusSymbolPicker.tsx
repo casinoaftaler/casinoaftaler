@@ -3,12 +3,14 @@ import type { SlotSymbol } from "@/lib/slotGameLogic";
 import { getSymbolEmoji } from "@/lib/slotGameLogic";
 import { cn } from "@/lib/utils";
 import { slotSounds } from "@/lib/slotSoundEffects";
+import { getSlotTheme } from "@/lib/slotTheme";
 
 interface BonusSymbolPickerProps {
   isVisible: boolean;
   symbols: SlotSymbol[];
   selectedSymbol: SlotSymbol | null;
   onComplete: () => void;
+  gameId?: string;
 }
 
 export function BonusSymbolPicker({
@@ -16,7 +18,9 @@ export function BonusSymbolPicker({
   symbols,
   selectedSymbol,
   onComplete,
+  gameId,
 }: BonusSymbolPickerProps) {
+  const theme = getSlotTheme(gameId);
   const [currentSymbol, setCurrentSymbol] = useState<SlotSymbol | null>(null);
   const [phase, setPhase] = useState<"spinning" | "slowing" | "landed">("spinning");
   const intervalRef = useRef<NodeJS.Timeout | null>(null);
@@ -61,16 +65,13 @@ export function BonusSymbolPicker({
       delays.forEach((delay, i) => {
         cumulative += delay;
         const timeout = setTimeout(() => {
-          // Pick a random symbol, but ensure last one is the selected symbol
           if (i === delays.length - 1) {
             setCurrentSymbol(selectedSymbol);
             setPhase("landed");
-            // Stop the scroll sound when landed
             if (stopScrollSoundRef.current) {
               stopScrollSoundRef.current();
               stopScrollSoundRef.current = null;
             }
-            // Play the symbol selected sound
             slotSounds.playBonusSymbolSelected();
           } else {
             const randomIndex = Math.floor(Math.random() * eligibleSymbols.length);
@@ -86,7 +87,6 @@ export function BonusSymbolPicker({
       if (phaseTimeoutRef.current) clearTimeout(phaseTimeoutRef.current);
       slowdownTimeoutsRef.current.forEach(t => clearTimeout(t));
       slowdownTimeoutsRef.current = [];
-      // Stop scroll sound on cleanup
       if (stopScrollSoundRef.current) {
         stopScrollSoundRef.current();
         stopScrollSoundRef.current = null;
@@ -102,11 +102,10 @@ export function BonusSymbolPicker({
       <div
         className={cn(
           "relative w-32 h-32 sm:w-40 sm:h-40 flex items-center justify-center",
-          "rounded-xl bg-black/40 border-2 border-amber-500/50",
-          "shadow-[0_0_30px_rgba(251,191,36,0.3)]",
-          // Spinning blur effect
+          "rounded-xl bg-black/40 border-2",
+          theme.borderAccentStrong,
+          theme.winBarShadow,
           phase === "spinning" && "animate-pulse",
-          // Landing zoom-bounce animation
           phase === "landed" && "animate-[symbol-land_0.5s_ease-out]"
         )}
       >
@@ -134,15 +133,15 @@ export function BonusSymbolPicker({
         
         {/* Glow effect when landed */}
         {phase === "landed" && (
-          <div className="absolute inset-0 rounded-xl bg-amber-400/20 animate-pulse" />
+          <div className={cn("absolute inset-0 rounded-xl animate-pulse", theme.bgAccent)} />
         )}
       </div>
 
       {/* Symbol name - only show when landed */}
       {phase === "landed" && (
         <div className="mt-4 text-center animate-fade-in">
-          <p className="text-2xl font-bold text-amber-300">{currentSymbol.name}</p>
-          <p className="text-sm text-amber-200/70 mt-1">Ekspanderer til hele hjulet ved gevinst!</p>
+          <p className={cn("text-2xl font-bold", theme.accentLight)}>{currentSymbol.name}</p>
+          <p className="text-sm text-white/50 mt-1">Ekspanderer til hele hjulet ved gevinst!</p>
         </div>
       )}
 
@@ -152,10 +151,10 @@ export function BonusSymbolPicker({
           onClick={onComplete}
           className={cn(
             "mt-6 px-8 py-3 rounded-xl font-bold text-lg",
-            "bg-gradient-to-b from-amber-500 to-amber-700",
-            "hover:from-amber-400 hover:to-amber-600",
-            "text-amber-950 border-2 border-amber-400/50",
-            "shadow-[0_0_20px_rgba(251,191,36,0.4),0_4px_12px_rgba(0,0,0,0.3)]",
+            theme.spinBtnGradient,
+            theme.spinBtnText,
+            "border-2", theme.spinBtnBorder,
+            theme.spinBtnShadow,
             "transition-all hover:scale-105 active:scale-95",
             "animate-fade-in"
           )}

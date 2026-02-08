@@ -598,6 +598,7 @@ export function SlotGame({ gameId = "book-of-fedesvin" }: SlotGameProps) {
             pendingBonusStateRef.current = null;
           }
         }}
+        gameId={gameId}
       />
       <BonusOverlay
         isVisible={showBonusTrigger}
@@ -606,12 +607,12 @@ export function SlotGame({ gameId = "book-of-fedesvin" }: SlotGameProps) {
         allSymbols={symbols || []}
         onClose={() => {
           setShowBonusTrigger(false);
-          // Apply deferred bonus state now that the symbol has been revealed
           if (pendingBonusStateRef.current) {
             updateBonusFromServer(pendingBonusStateRef.current);
             pendingBonusStateRef.current = null;
           }
         }}
+        gameId={gameId}
       />
       <BonusOverlay
         isVisible={showBonusComplete}
@@ -625,6 +626,7 @@ export function SlotGame({ gameId = "book-of-fedesvin" }: SlotGameProps) {
           setBonusTotalWinnings(0);
           setBonusTotalSpinsUsed(0);
         }}
+        gameId={gameId}
       />
 
       <div className="max-w-fit mx-auto">
