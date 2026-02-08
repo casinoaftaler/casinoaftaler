@@ -1,4 +1,4 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
 import { supabase } from "@/integrations/supabase/client";
@@ -46,6 +46,12 @@ export function SlotFrameAdminControls({ gameId = "book-of-fedesvin" }: SlotFram
   const [uploadingBackground, setUploadingBackground] = useState(false);
   const frameInputRef = useRef<HTMLInputElement>(null);
   const backgroundInputRef = useRef<HTMLInputElement>(null);
+
+  // Reset preview state when switching games
+  useEffect(() => {
+    setBackgroundPreviewUrl(null);
+    setFramePreviewUrl(null);
+  }, [gameId]);
 
   const { backgroundKey, frameKey, frameSizeKey } = getSettingsKeys(gameId);
   
@@ -209,7 +215,7 @@ export function SlotFrameAdminControls({ gameId = "book-of-fedesvin" }: SlotFram
 
     try {
       const fileExt = file.name.split(".").pop();
-      const fileName = `slot-frame-${Date.now()}.${fileExt}`;
+      const fileName = `slot-frame-${gameId}-${Date.now()}.${fileExt}`;
 
       const { error: uploadError } = await supabase.storage
         .from("casino-logos")
