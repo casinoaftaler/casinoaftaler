@@ -6,6 +6,7 @@ import { PayTable } from "./PayTable";
 import { SmallWinBar } from "./SmallWinBar";
 import { Gamepad2 } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { getSlotTheme } from "@/lib/slotTheme";
 
 type AutoSpinCount = 10 | 25 | 50 | 100 | "infinite";
 
@@ -35,6 +36,7 @@ interface SlotControlPanelProps {
   spinsLoading?: boolean;
   showBonusTrigger?: boolean;
   winAmount: number;
+  gameId?: string;
 }
 
 export function SlotControlPanel({
@@ -58,7 +60,9 @@ export function SlotControlPanel({
   spinsLoading,
   showBonusTrigger,
   winAmount,
+  gameId,
 }: SlotControlPanelProps) {
+  const theme = getSlotTheme(gameId);
   const canSpinNow = bonusState.isActive
     ? bonusState.freeSpinsRemaining > 0
     : canSpin;
@@ -66,7 +70,7 @@ export function SlotControlPanel({
   return (
     <div className="w-full flex flex-row items-center justify-center gap-2 sm:gap-4 flex-wrap sm:flex-nowrap">
       {/* Volume */}
-      <VolumeControl className="text-amber-400 hover:text-amber-300 flex-shrink-0" />
+      <VolumeControl className={cn(theme.accent, "flex-shrink-0")} />
       
       {/* Bet Controls */}
       <BetControls
@@ -79,74 +83,58 @@ export function SlotControlPanel({
         spinsRemaining={spinsRemaining}
         maxSpins={maxSpins}
         spinsLoading={spinsLoading}
+        gameId={gameId}
       />
 
       {/* Win Box */}
-      <SmallWinBar amount={winAmount} />
+      <SmallWinBar amount={winAmount} gameId={gameId} />
 
       {/* Center: Spin Button */}
       <Button
           className={cn(
-            // Round shape
             "rounded-full aspect-square flex-shrink-0",
-            // Responsive sizing
             "w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 lg:w-28 lg:h-28",
-            // Rich Egyptian gold gradient with metallic feel
-            "bg-[radial-gradient(ellipse_at_30%_20%,_hsl(45,100%,70%)_0%,_hsl(43,96%,56%)_25%,_hsl(38,92%,45%)_50%,_hsl(30,85%,35%)_75%,_hsl(25,80%,25%)_100%)]",
-            // Ornate golden border with inner glow
-            "border-[3px] md:border-4 border-amber-400/80",
-            // Multi-layer shadow for 3D depth + outer glow
-            "shadow-[inset_0_2px_4px_rgba(255,230,150,0.6),inset_0_-3px_6px_rgba(120,80,20,0.4),0_0_25px_rgba(251,191,36,0.5),0_6px_20px_rgba(0,0,0,0.5)]",
-            "md:shadow-[inset_0_3px_6px_rgba(255,230,150,0.6),inset_0_-4px_8px_rgba(120,80,20,0.4),0_0_35px_rgba(251,191,36,0.6),0_8px_25px_rgba(0,0,0,0.5)]",
-            // Hover effects - intensify glow
-            !isSpinning &&
-              !isSpinLocked &&
-              canSpinNow &&
-              !isAutoSpinning &&
-              "hover:shadow-[inset_0_2px_4px_rgba(255,230,150,0.8),inset_0_-3px_6px_rgba(120,80,20,0.3),0_0_50px_rgba(251,191,36,0.8),0_8px_30px_rgba(0,0,0,0.5)] hover:border-amber-300",
+            theme.spinBtnGradient,
+            "border-[3px] md:border-4", theme.spinBtnBorder,
+            theme.spinBtnShadow,
+            theme.spinBtnShadowMd,
+            !isSpinning && !isSpinLocked && canSpinNow && !isAutoSpinning && theme.spinBtnHoverShadow,
             "hover:scale-105 transition-all duration-200",
-            // Active/press effect
-            "active:scale-95 active:shadow-[inset_0_4px_12px_rgba(80,50,10,0.5),0_0_20px_rgba(251,191,36,0.4)]",
-            // Spinning animation - override idle glow
+            theme.spinBtnActiveShadow,
             isSpinning && "animate-pulse",
-            // Disabled state
             "disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100 disabled:animate-none",
-            // Text styling - embossed gold text
-            "text-amber-950 font-bold text-base sm:text-lg md:text-xl lg:text-2xl flex flex-col items-center justify-center",
-            // Text shadow for embossed effect
-            "[text-shadow:0_1px_0_rgba(255,230,150,0.8),0_-1px_0_rgba(120,80,20,0.3)]"
+            theme.spinBtnText, "font-bold text-base sm:text-lg md:text-xl lg:text-2xl flex flex-col items-center justify-center",
+            theme.spinBtnTextShadow
           )}
           onClick={onSpin}
           disabled={isSpinning || isSpinLocked || !canSpinNow || showBonusTrigger || isAutoSpinning}
         >
           {isSpinning ? (
             <div className="relative">
-              {/* Outer rotating ring */}
               <div
-                className="absolute inset-0 rounded-full border-4 border-transparent border-t-amber-200/90 border-r-amber-400/50 animate-spin"
+                className={cn("absolute inset-0 rounded-full border-4 border-transparent animate-spin", theme.spinBtnRingBorder)}
                 style={{ animationDuration: "0.8s" }}
               />
-              {/* Inner spinning icon */}
               <Gamepad2
-                className="h-5 w-5 sm:h-8 sm:w-8 md:h-10 md:w-10 lg:h-12 lg:h-12 animate-spin text-amber-900 drop-shadow-[0_1px_0_rgba(255,230,150,0.8)]"
+                className={cn("h-5 w-5 sm:h-8 sm:w-8 md:h-10 md:w-10 lg:h-12 lg:h-12 animate-spin", theme.spinBtnIconColor)}
                 style={{ animationDuration: "1.5s", animationDirection: "reverse" }}
               />
             </div>
           ) : !canSpinNow ? (
-            <span className="text-[10px] sm:text-xs md:text-sm text-center leading-tight text-amber-900/80">
+            <span className={cn("text-[10px] sm:text-xs md:text-sm text-center leading-tight", theme.spinBtnIconColor, "opacity-80")}>
               INGEN
               <br />
               SPINS
             </span>
           ) : bonusState.isActive ? (
             <>
-              <Gamepad2 className="h-4 w-4 sm:h-6 sm:w-6 md:h-8 md:h-8 lg:h-10 lg:w-10 mb-0.5 text-amber-900" />
-              <span className="text-[10px] sm:text-sm md:text-base text-amber-900">FREE</span>
+              <Gamepad2 className={cn("h-4 w-4 sm:h-6 sm:w-6 md:h-8 md:h-8 lg:h-10 lg:w-10 mb-0.5", theme.spinBtnIconColor)} />
+              <span className={cn("text-[10px] sm:text-sm md:text-base", theme.spinBtnIconColor)}>FREE</span>
             </>
           ) : (
             <>
-              <Gamepad2 className="h-4 w-4 sm:h-6 sm:w-6 md:h-8 md:h-8 lg:h-10 lg:w-10 mb-0.5 text-amber-900" />
-              <span className="text-[10px] sm:text-sm md:text-base lg:text-lg text-amber-900">SPIN</span>
+              <Gamepad2 className={cn("h-4 w-4 sm:h-6 sm:w-6 md:h-8 md:h-8 lg:h-10 lg:w-10 mb-0.5", theme.spinBtnIconColor)} />
+              <span className={cn("text-[10px] sm:text-sm md:text-base lg:text-lg", theme.spinBtnIconColor)}>SPIN</span>
             </>
           )}
         </Button>
@@ -159,11 +147,12 @@ export function SlotControlPanel({
           onToggle={onAutoSpinToggle}
           autoSpinsRemaining={autoSpinsRemaining}
           disabled={!canSpinNow || showBonusTrigger}
+          gameId={gameId}
         />
 
       {/* PayTable */}
       <div className="flex-shrink-0">
-        <PayTable />
+        <PayTable gameId={gameId} />
       </div>
     </div>
   );

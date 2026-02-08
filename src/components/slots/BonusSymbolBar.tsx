@@ -1,21 +1,24 @@
 import { cn } from "@/lib/utils";
 import type { SlotSymbol } from "@/lib/slotGameLogic";
 import { getSymbolEmoji } from "@/lib/slotGameLogic";
+import { getSlotTheme } from "@/lib/slotTheme";
 
 interface BonusSymbolBarProps {
   isVisible: boolean;
   allSymbols: SlotSymbol[];
   expandingSymbols: SlotSymbol[];
+  gameId?: string;
 }
 
 export function BonusSymbolBar({
   isVisible,
   allSymbols,
   expandingSymbols,
+  gameId,
 }: BonusSymbolBarProps) {
   if (!isVisible || allSymbols.length === 0) return null;
 
-  // Only show non-scatter symbols
+  const theme = getSlotTheme(gameId);
   const displaySymbols = allSymbols.filter(s => !s.is_scatter);
   const expandingIds = new Set(expandingSymbols.map(s => s.id));
 
@@ -23,10 +26,10 @@ export function BonusSymbolBar({
     <div
       className={cn(
         "w-full p-2 sm:p-2.5 rounded-xl",
-        "bg-gradient-to-b from-amber-950/80 via-amber-900/60 to-amber-950/80",
+        "bg-gradient-to-b", theme.panelFrom, theme.panelVia, theme.panelTo,
         "backdrop-blur-sm",
-        "border border-amber-600/40",
-        "shadow-[inset_0_1px_0_rgba(251,191,36,0.2),0_0_15px_rgba(251,191,36,0.2)]",
+        "border", theme.borderAccent,
+        theme.winBarShadow,
         "animate-fade-in"
       )}
     >
@@ -43,13 +46,13 @@ export function BonusSymbolBar({
                 "rounded-lg border transition-all duration-500",
                 isExpanding
                   ? [
-                      "border-amber-400/70",
-                      "bg-gradient-to-b from-amber-800/50 to-amber-950/50",
-                      "shadow-[0_0_12px_rgba(251,191,36,0.5)]",
+                      theme.borderAccent,
+                      "bg-gradient-to-b", theme.btnFrom, theme.btnTo,
+                      theme.winBarGlowShadow,
                       "scale-110",
                     ]
                   : [
-                      "border-amber-800/30",
+                      "border-gray-800/30",
                       "bg-black/30",
                       "grayscale opacity-35",
                     ]
@@ -62,23 +65,17 @@ export function BonusSymbolBar({
                   className={cn(
                     "w-6 h-6 sm:w-7 sm:h-7 md:w-9 md:h-9 object-contain",
                     "transition-all duration-500",
-                    isExpanding && "drop-shadow-[0_0_6px_rgba(251,191,36,0.5)]"
+                    isExpanding && theme.dropShadowGlow
                   )}
                 />
               ) : (
-                <span
-                  className={cn(
-                    "text-sm sm:text-base md:text-lg",
-                    "transition-all duration-500"
-                  )}
-                >
+                <span className="text-sm sm:text-base md:text-lg transition-all duration-500">
                   {getSymbolEmoji(symbol.name)}
                 </span>
               )}
 
-              {/* Active glow pulse */}
               {isExpanding && (
-                <div className="absolute inset-0 rounded-lg bg-amber-400/15 animate-pulse" />
+                <div className={cn("absolute inset-0 rounded-lg animate-pulse", theme.bgAccent)} />
               )}
             </div>
           );

@@ -11,14 +11,20 @@ import { BookOpen, Crown, Sparkles } from "lucide-react";
 import { useSlotSymbols } from "@/hooks/useSlotSymbols";
 import { getSymbolEmoji, RARITY_LABELS } from "@/lib/slotGameLogic";
 import { cn } from "@/lib/utils";
+import { getSlotTheme } from "@/lib/slotTheme";
 
 // Format multiplier: show "5×" for whole numbers, "1.5×" for decimals
 const formatMultiplier = (value: number): string => {
   return Number.isInteger(value) ? `${value}×` : `${parseFloat(value.toFixed(2))}×`;
 };
 
-export function PayTable() {
-  const { data: symbols } = useSlotSymbols();
+interface PayTableProps {
+  gameId?: string;
+}
+
+export function PayTable({ gameId }: PayTableProps) {
+  const { data: symbols } = useSlotSymbols(gameId);
+  const theme = getSlotTheme(gameId);
 
   // Group symbols by rarity
   const premiumSymbols = symbols?.filter(s => s.rarity === 'premium') || [];
@@ -70,41 +76,38 @@ export function PayTable() {
           size="sm" 
           className={cn(
             "gap-2 px-3 py-2",
-            "bg-gradient-to-b from-amber-800/60 to-amber-950/60",
-            "border border-amber-500/40",
-            "text-amber-300 hover:text-amber-200",
-            "hover:bg-gradient-to-b hover:from-amber-700/70 hover:to-amber-900/70",
-            "hover:border-amber-400/60",
-            "shadow-[inset_0_1px_0_rgba(251,191,36,0.2)]",
+            "bg-gradient-to-b", theme.btnFrom, theme.btnTo,
+            "border", theme.borderAccent,
+            theme.accentLight,
+            "hover:bg-gradient-to-b", theme.btnHoverFrom, theme.btnHoverTo,
+            "shadow-[inset_0_1px_0_rgba(255,255,255,0.1)]",
             "transition-all duration-200"
           )}
         >
-          <BookOpen className="h-4 w-4 drop-shadow-[0_0_4px_rgba(251,191,36,0.4)]" />
+          <BookOpen className={cn("h-4 w-4", theme.dropShadowGlow)} />
           Gevinsttabel
         </Button>
       </DialogTrigger>
       <DialogContent className={cn(
         "max-w-md max-h-[80vh] overflow-y-auto",
-        "bg-gradient-to-b from-amber-950 via-amber-900/95 to-amber-950",
-        "border-2 border-amber-600/50",
-        "shadow-[0_0_40px_rgba(251,191,36,0.3),0_8px_32px_rgba(0,0,0,0.5)]"
+        theme.dialogBg, theme.dialogBorder, theme.dialogShadow
       )}>
         <DialogHeader>
-          <DialogTitle className="text-amber-300 drop-shadow-[0_0_8px_rgba(251,191,36,0.4)]">Gevinsttabel</DialogTitle>
+          <DialogTitle className={cn(theme.accentLight, theme.dropShadowGlowStrong)}>Gevinsttabel</DialogTitle>
         </DialogHeader>
         
         <div className="space-y-4">
           <p className="text-sm text-muted-foreground">
-            Gevinster multipliceres med din indsats. Book er både Wild og Scatter - 3+ Books udløser bonus!
+            Gevinster multipliceres med din indsats. Scatter er både Wild og Scatter - 3+ udløser bonus!
           </p>
           
           {/* Premium Symbols Section */}
           {premiumSymbols.length > 0 && (
             <div className="space-y-2">
-              <div className="flex items-center gap-2 text-amber-400">
+              <div className={cn("flex items-center gap-2", theme.accent)}>
                 <Crown className="h-4 w-4" />
                 <span className="text-sm font-semibold">{RARITY_LABELS.premium} Symboler</span>
-                <span className="text-xs bg-amber-500/20 px-2 py-0.5 rounded">Vinder fra 2×</span>
+                <span className={cn("text-xs px-2 py-0.5 rounded", theme.bgAccent)}>Vinder fra 2×</span>
               </div>
               <Table>
                 <TableHeader>
@@ -181,7 +184,7 @@ export function PayTable() {
                 </TableBody>
               </Table>
               <p className="text-xs text-purple-400/80">
-                3+ Books giver 10 gratis spins med et tilfældigt ekspanderende symbol!
+                3+ Scatter giver 10 gratis spins med et tilfældigt ekspanderende symbol!
               </p>
             </div>
           )}

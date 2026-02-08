@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
 import { cn } from "@/lib/utils";
+import { getSlotTheme } from "@/lib/slotTheme";
 
 interface SlotMachineFrameProps {
   children: React.ReactNode;
@@ -69,10 +70,7 @@ export function SlotMachineFrame({
             left: `-${effectiveFrameSize}px`,
             right: `-${effectiveFrameSize}px`,
             bottom: `-${effectiveFrameSize}px`,
-            filter: `drop-shadow(0 0 20px rgba(0,0,0,0.6)) 
-                     drop-shadow(0 0 40px rgba(0,0,0,0.4)) 
-                     drop-shadow(0 0 80px rgba(0,0,0,0.3))
-                     drop-shadow(0 4px 30px rgba(251,191,36,0.15))`,
+            filter: getSlotTheme(gameId).frameDropShadow,
           }}
         >
           <img
@@ -95,10 +93,10 @@ export function SlotMachineFrame({
         {/* Fallback CSS frame corners when no image or loading */}
         {(!hasFrame || !imageLoaded) && (
           <>
-            <div className="absolute -top-2 -left-2 sm:-top-3 sm:-left-3 w-5 h-5 sm:w-8 sm:h-8 border-t-2 border-l-2 sm:border-t-4 sm:border-l-4 rounded-tl-lg hidden xs:block border-amber-400" />
-            <div className="absolute -top-2 -right-2 sm:-top-3 sm:-right-3 w-5 h-5 sm:w-8 sm:h-8 border-t-2 border-r-2 sm:border-t-4 sm:border-r-4 rounded-tr-lg hidden xs:block border-amber-400" />
-            <div className="absolute -bottom-2 -left-2 sm:-bottom-3 sm:-left-3 w-5 h-5 sm:w-8 sm:h-8 border-b-2 border-l-2 sm:border-b-4 sm:border-l-4 rounded-bl-lg hidden xs:block border-amber-400" />
-            <div className="absolute -bottom-2 -right-2 sm:-bottom-3 sm:-right-3 w-5 h-5 sm:w-8 sm:h-8 border-b-2 border-r-2 sm:border-b-4 sm:border-r-4 rounded-br-lg hidden xs:block border-amber-400" />
+            <div className={cn("absolute -top-2 -left-2 sm:-top-3 sm:-left-3 w-5 h-5 sm:w-8 sm:h-8 border-t-2 border-l-2 sm:border-t-4 sm:border-l-4 rounded-tl-lg hidden xs:block", getSlotTheme(gameId).frameBorderColor)} />
+            <div className={cn("absolute -top-2 -right-2 sm:-top-3 sm:-right-3 w-5 h-5 sm:w-8 sm:h-8 border-t-2 border-r-2 sm:border-t-4 sm:border-r-4 rounded-tr-lg hidden xs:block", getSlotTheme(gameId).frameBorderColor)} />
+            <div className={cn("absolute -bottom-2 -left-2 sm:-bottom-3 sm:-left-3 w-5 h-5 sm:w-8 sm:h-8 border-b-2 border-l-2 sm:border-b-4 sm:border-l-4 rounded-bl-lg hidden xs:block", getSlotTheme(gameId).frameBorderColor)} />
+            <div className={cn("absolute -bottom-2 -right-2 sm:-bottom-3 sm:-right-3 w-5 h-5 sm:w-8 sm:h-8 border-b-2 border-r-2 sm:border-b-4 sm:border-r-4 rounded-br-lg hidden xs:block", getSlotTheme(gameId).frameBorderColor)} />
           </>
         )}
 
