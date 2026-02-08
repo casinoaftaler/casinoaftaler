@@ -157,7 +157,7 @@ export default function RiseOfFedesvin() {
 
   const sidePanelContent = (
     <>
-      <SlotLeaderboard />
+      <SlotLeaderboard gameId={GAME_ID} />
       {topCasino && (
         <SlotPromoSlider casino={topCasino} backgroundImage={slotCasinoCardBg} />
       )}
@@ -217,7 +217,7 @@ export default function RiseOfFedesvin() {
           {topCasino && (
             <SlotPromoSlider casino={topCasino} backgroundImage={slotCasinoCardBg} />
           )}
-          <SlotLeaderboard />
+          <SlotLeaderboard gameId={GAME_ID} />
         </div>
       </div>
     </div>

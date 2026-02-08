@@ -60,6 +60,43 @@ export interface SlotTheme {
   
   // Fallback corner border color
   frameBorderColor: string;
+  
+  // Leaderboard colors
+  leaderboardCardBorder: string;
+  leaderboardCardBg: string;
+  leaderboardHeaderBorder: string;
+  leaderboardTitleText: string;
+  leaderboardIconBg: string;
+  leaderboardIconColor: string;
+  leaderboardTopRowBg: string;
+  leaderboardUserRing: string;
+  leaderboardUserBg: string;
+  leaderboardUserBadgeBorder: string;
+  leaderboardUserBadgeText: string;
+  leaderboardUserBadgeBg: string;
+  leaderboardNameText: string;
+  leaderboardPointsText: string;
+  leaderboardSpinsText: string;
+  leaderboardShowAllText: string;
+  leaderboardShowAllHoverText: string;
+  leaderboardShowAllHoverBg: string;
+  leaderboardShowAllBorder: string;
+  leaderboardEmptyIconColor: string;
+  leaderboardEmptyText: string;
+  leaderboardEmptySubtext: string;
+  leaderboardDialogBg: string;
+  leaderboardDialogBorder: string;
+  leaderboardDialogTitleText: string;
+  leaderboardTabsBg: string;
+  leaderboardTabActive: string;
+  leaderboardTabActiveText: string;
+  leaderboardSearchBg: string;
+  leaderboardSearchBorder: string;
+  leaderboardSearchText: string;
+  leaderboardSearchPlaceholder: string;
+  leaderboardSearchRing: string;
+  leaderboardSeparator: string;
+  leaderboardGlowShadow: string;
 }
 
 const egyptianTheme: SlotTheme = {
@@ -111,6 +148,42 @@ const egyptianTheme: SlotTheme = {
                      drop-shadow(0 4px 30px rgba(251,191,36,0.15))`,
   
   frameBorderColor: "border-amber-400",
+  
+  leaderboardCardBorder: "border-amber-500/30",
+  leaderboardCardBg: "bg-gradient-to-b from-amber-950/95 via-black/90 to-amber-950/95",
+  leaderboardHeaderBorder: "border-amber-500/10",
+  leaderboardTitleText: "text-amber-100",
+  leaderboardIconBg: "bg-amber-500/20",
+  leaderboardIconColor: "text-amber-500",
+  leaderboardTopRowBg: "bg-gradient-to-r from-amber-500/10 to-transparent",
+  leaderboardUserRing: "ring-amber-500/50",
+  leaderboardUserBg: "bg-amber-500/10",
+  leaderboardUserBadgeBorder: "border-amber-500/50",
+  leaderboardUserBadgeText: "text-amber-400",
+  leaderboardUserBadgeBg: "bg-amber-500/10",
+  leaderboardNameText: "text-amber-100",
+  leaderboardPointsText: "text-amber-500",
+  leaderboardSpinsText: "text-amber-100",
+  leaderboardShowAllText: "text-amber-500",
+  leaderboardShowAllHoverText: "hover:text-amber-400",
+  leaderboardShowAllHoverBg: "hover:bg-amber-500/10",
+  leaderboardShowAllBorder: "border-amber-500/30",
+  leaderboardEmptyIconColor: "text-amber-500/50",
+  leaderboardEmptyText: "text-amber-100/80",
+  leaderboardEmptySubtext: "text-amber-100/60",
+  leaderboardDialogBg: "bg-gradient-to-b from-amber-950/98 via-black/95 to-amber-950/98",
+  leaderboardDialogBorder: "border-amber-500/30",
+  leaderboardDialogTitleText: "text-amber-100",
+  leaderboardTabsBg: "bg-amber-950/50",
+  leaderboardTabActive: "data-[state=active]:bg-amber-500/20",
+  leaderboardTabActiveText: "data-[state=active]:text-amber-100",
+  leaderboardSearchBg: "bg-amber-950/50",
+  leaderboardSearchBorder: "border-amber-500/20",
+  leaderboardSearchText: "text-amber-100",
+  leaderboardSearchPlaceholder: "placeholder:text-amber-100/40",
+  leaderboardSearchRing: "focus-visible:ring-amber-500/30",
+  leaderboardSeparator: "bg-amber-500/20",
+  leaderboardGlowShadow: "shadow-[0_0_30px_rgba(251,191,36,0.1)]",
 };
 
 const wizardTheme: SlotTheme = {
@@ -162,6 +235,42 @@ const wizardTheme: SlotTheme = {
                      drop-shadow(0 4px 30px rgba(168,85,247,0.15))`,
   
   frameBorderColor: "border-purple-400",
+  
+  leaderboardCardBorder: "border-purple-500/30",
+  leaderboardCardBg: "bg-gradient-to-b from-purple-950/95 via-black/90 to-purple-950/95",
+  leaderboardHeaderBorder: "border-purple-500/10",
+  leaderboardTitleText: "text-purple-100",
+  leaderboardIconBg: "bg-purple-500/20",
+  leaderboardIconColor: "text-purple-500",
+  leaderboardTopRowBg: "bg-gradient-to-r from-purple-500/10 to-transparent",
+  leaderboardUserRing: "ring-purple-500/50",
+  leaderboardUserBg: "bg-purple-500/10",
+  leaderboardUserBadgeBorder: "border-purple-500/50",
+  leaderboardUserBadgeText: "text-purple-400",
+  leaderboardUserBadgeBg: "bg-purple-500/10",
+  leaderboardNameText: "text-purple-100",
+  leaderboardPointsText: "text-purple-500",
+  leaderboardSpinsText: "text-purple-100",
+  leaderboardShowAllText: "text-purple-500",
+  leaderboardShowAllHoverText: "hover:text-purple-400",
+  leaderboardShowAllHoverBg: "hover:bg-purple-500/10",
+  leaderboardShowAllBorder: "border-purple-500/30",
+  leaderboardEmptyIconColor: "text-purple-500/50",
+  leaderboardEmptyText: "text-purple-100/80",
+  leaderboardEmptySubtext: "text-purple-100/60",
+  leaderboardDialogBg: "bg-gradient-to-b from-purple-950/98 via-black/95 to-purple-950/98",
+  leaderboardDialogBorder: "border-purple-500/30",
+  leaderboardDialogTitleText: "text-purple-100",
+  leaderboardTabsBg: "bg-purple-950/50",
+  leaderboardTabActive: "data-[state=active]:bg-purple-500/20",
+  leaderboardTabActiveText: "data-[state=active]:text-purple-100",
+  leaderboardSearchBg: "bg-purple-950/50",
+  leaderboardSearchBorder: "border-purple-500/20",
+  leaderboardSearchText: "text-purple-100",
+  leaderboardSearchPlaceholder: "placeholder:text-purple-100/40",
+  leaderboardSearchRing: "focus-visible:ring-purple-500/30",
+  leaderboardSeparator: "bg-purple-500/20",
+  leaderboardGlowShadow: "shadow-[0_0_30px_rgba(168,85,247,0.1)]",
 };
 
 const themes: Record<string, SlotTheme> = {
