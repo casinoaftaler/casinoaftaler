@@ -43,6 +43,7 @@ export interface ClipValidationResult {
     thumbnailUrl?: string;
     durationSeconds?: number;
     requiresManualReview: boolean;
+    validationNotes?: string;
   };
 }
 
@@ -316,17 +317,24 @@ export function useSubmitClip() {
         throw new Error(validation.error || "Ugyldigt clip URL");
       }
 
-      // Use the resolved URL and metadata from server
+      // Use the resolved URL if available, otherwise use original
+      const finalUrl = validation.resolvedUrl || url;
+      const requiresManualReview = validation.metadata.requiresManualReview;
+
+      // Insert the clip with validation metadata
       const { data, error } = await supabase
         .from("community_clips")
         .insert({
           user_id: user.user.id,
-          url: validation.resolvedUrl || url, // Use resolved URL
+          url: finalUrl,
+          original_url: url !== finalUrl ? url : null,
           title: title || validation.metadata.title || null,
           description: description || null,
           platform: validation.platform,
           thumbnail_url: validation.metadata.thumbnailUrl || null,
           duration_seconds: validation.metadata.durationSeconds || null,
+          requires_manual_review: requiresManualReview,
+          validation_notes: validation.metadata.validationNotes || null,
         })
         .select()
         .single();
@@ -335,23 +343,16 @@ export function useSubmitClip() {
 
       return { 
         clip: data, 
-        requiresManualReview: validation.metadata.requiresManualReview 
+        requiresManualReview,
       };
     },
-    onSuccess: (result) => {
+    onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["community-clips"] });
-      
-      if (result.requiresManualReview) {
-        toast({
-          title: "Clip indsendt!",
-          description: "Din clip kræver manuel gennemgang af varighed og afventer godkendelse.",
-        });
-      } else {
-        toast({
-          title: "Clip indsendt!",
-          description: "Din clip afventer nu godkendelse fra en administrator.",
-        });
-      }
+      // Always show neutral message - don't expose validation details
+      toast({
+        title: "Clip indsendt!",
+        description: "Din clip er indsendt og afventer gennemgang.",
+      });
     },
     onError: (error) => {
       toast({
