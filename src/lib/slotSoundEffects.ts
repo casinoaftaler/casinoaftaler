@@ -55,8 +55,11 @@ interface PersistedAudioSettings {
   bonusSoundsOnly: boolean;
 }
 
-// Default bundled background music
-const DEFAULT_BACKGROUND_MUSIC = '/sounds/egyptianmusic.mp3';
+// Default bundled background music per game
+const DEFAULT_BACKGROUND_MUSIC: Record<string, string> = {
+  'book-of-fedesvin': '/sounds/egyptianmusic.mp3',
+  'rise-of-fedesvin': '/sounds/riseoffedesvin.mp3',
+};
 // Default bundled spin start sound
 const DEFAULT_SPIN_SOUND = '/sounds/spin-start.mp3';
 
@@ -67,6 +70,7 @@ class SlotSoundEffects {
   private musicEnabled: boolean = true;
   private effectsEnabled: boolean = true;
   private bonusSoundsOnly: boolean = false;
+  private currentGameId: string = "book-of-fedesvin";
   private musicGainNode: GainNode | null = null;
   private currentMusic: OscillatorNode[] = [];
   private musicInterval: NodeJS.Timeout | null = null;
@@ -113,6 +117,11 @@ class SlotSoundEffects {
   constructor() {
     // Load persisted settings on initialization
     this.loadPersistedSettings();
+  }
+
+  // Set the current game ID (affects default music fallback)
+  setGameId(gameId: string) {
+    this.currentGameId = gameId;
   }
 
   // Set custom sound file URLs from admin settings
@@ -440,10 +449,18 @@ class SlotSoundEffects {
     this.playDefaultMusic();
   }
 
-  // Play the default bundled Egyptian music
+  // Play the default bundled music for the current game
   private playDefaultMusic() {
+    const defaultMusicUrl = DEFAULT_BACKGROUND_MUSIC[this.currentGameId] || DEFAULT_BACKGROUND_MUSIC['book-of-fedesvin'];
+    
+    // Recreate if the URL changed (game switch)
+    if (this.defaultMusicAudio && this.defaultMusicAudio.src !== new URL(defaultMusicUrl, window.location.origin).href) {
+      this.defaultMusicAudio.pause();
+      this.defaultMusicAudio = null;
+    }
+    
     if (!this.defaultMusicAudio) {
-      this.defaultMusicAudio = new Audio(DEFAULT_BACKGROUND_MUSIC);
+      this.defaultMusicAudio = new Audio(defaultMusicUrl);
       this.defaultMusicAudio.loop = true;
       this.defaultMusicAudio.preload = 'auto';
     }
