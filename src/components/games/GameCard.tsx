@@ -26,7 +26,7 @@ export function GameCard({ title, description, image, href, status, badge }: Gam
       )}
     >
       {/* Image section with overlay content */}
-      <div className="relative aspect-[16/9] overflow-hidden">
+      <div className="relative aspect-[4/3] overflow-hidden">
         <img
           src={image}
           alt={title}
@@ -66,10 +66,10 @@ export function GameCard({ title, description, image, href, status, badge }: Gam
         )}
 
         {/* Overlaid content at bottom */}
-        <div className="absolute bottom-0 left-0 right-0 p-5 space-y-3">
+        <div className="absolute bottom-0 left-0 right-0 p-5 sm:p-6 space-y-3">
           <div>
-            <h3 className="text-lg font-bold text-white">{title}</h3>
-            <p className="text-sm text-white/70 line-clamp-2 mt-1">{description}</p>
+            <h3 className="text-xl sm:text-2xl font-bold text-white">{title}</h3>
+            <p className="text-sm sm:text-base text-white/70 line-clamp-2 mt-1.5">{description}</p>
           </div>
 
           {isActive ? (
