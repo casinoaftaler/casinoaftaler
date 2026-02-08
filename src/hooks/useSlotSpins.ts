@@ -43,33 +43,31 @@ export function useSlotSpins() {
     queryFn: async (): Promise<SlotSpins | null> => {
       if (!user?.id) return null;
 
-      // Try to get today's record
+      // Upsert today's record - ignoreDuplicates prevents overwriting existing data
+      const totalDailySpins = Math.min(settings.dailySpins + bonusSpinsPermanent, MAX_SPINS_CAP);
+      await supabase
+        .from("slot_spins")
+        .upsert(
+          {
+            user_id: user.id,
+            date: today,
+            spins_remaining: totalDailySpins,
+          },
+          {
+            onConflict: "user_id,date",
+            ignoreDuplicates: true,
+          }
+        );
+
+      // Fetch the record (guaranteed to exist after upsert)
       const { data, error } = await supabase
         .from("slot_spins")
         .select("*")
         .eq("user_id", user.id)
         .eq("date", today)
-        .maybeSingle();
+        .single();
 
       if (error) throw error;
-
-      // If no record for today, create one with configured daily spins + permanent bonus spins
-      if (!data) {
-        const totalDailySpins = Math.min(settings.dailySpins + bonusSpinsPermanent, MAX_SPINS_CAP);
-        const { data: newData, error: insertError } = await supabase
-          .from("slot_spins")
-          .insert({
-            user_id: user.id,
-            date: today,
-            spins_remaining: totalDailySpins,
-          })
-          .select()
-          .single();
-
-        if (insertError) throw insertError;
-        return newData;
-      }
-
       return data;
     },
     enabled: !!user?.id,

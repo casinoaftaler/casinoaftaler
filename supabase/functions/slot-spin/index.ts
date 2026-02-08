@@ -862,31 +862,44 @@ Deno.serve(async (req) => {
     const maxSpins = Math.min(dailySpins + bonusSpinsPermanent, MAX_SPINS_CAP);
 
     // Get or create today's spin record (shared across games)
-    let { data: spinsData } = await supabase
+    // Use upsert with conflict handling to prevent race conditions
+    // when multiple requests try to create the same daily record simultaneously
+    const { error: upsertError } = await supabase
+      .from("slot_spins")
+      .upsert(
+        {
+          user_id: userId,
+          date: today,
+          spins_remaining: maxSpins,
+        },
+        {
+          onConflict: "user_id,date",
+          ignoreDuplicates: true, // Don't overwrite if record already exists
+        }
+      );
+
+    if (upsertError) {
+      console.error("Upsert error:", upsertError);
+      return new Response(
+        JSON.stringify({ error: "Failed to initialize spins" }),
+        { status: 500, headers: { ...corsHeaders, "Content-Type": "application/json" } }
+      );
+    }
+
+    // Now fetch the record (guaranteed to exist after upsert)
+    const { data: spinsData, error: fetchError } = await supabase
       .from("slot_spins")
       .select("*")
       .eq("user_id", userId)
       .eq("date", today)
-      .maybeSingle();
+      .single();
 
-    if (!spinsData) {
-      const { data: newSpins, error: insertError } = await supabase
-        .from("slot_spins")
-        .insert({
-          user_id: userId,
-          date: today,
-          spins_remaining: maxSpins,
-        })
-        .select()
-        .single();
-
-      if (insertError) {
-        return new Response(
-          JSON.stringify({ error: "Failed to initialize spins" }),
-          { status: 500, headers: { ...corsHeaders, "Content-Type": "application/json" } }
-        );
-      }
-      spinsData = newSpins;
+    if (fetchError || !spinsData) {
+      console.error("Failed to fetch spins after upsert:", fetchError);
+      return new Response(
+        JSON.stringify({ error: "Failed to read spins data" }),
+        { status: 500, headers: { ...corsHeaders, "Content-Type": "application/json" } }
+      );
     }
 
     // Validate user has enough spins
