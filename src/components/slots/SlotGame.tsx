@@ -579,7 +579,14 @@ export function SlotGame() {
         type="retrigger"
         retriggerSpins={retriggerSpinsAdded}
         totalFreeSpins={bonusState.freeSpinsRemaining}
-        onClose={() => setShowRetrigger(false)}
+        onClose={() => {
+          setShowRetrigger(false);
+          // Apply deferred bonus state after retrigger confirmed
+          if (pendingBonusStateRef.current) {
+            updateBonusFromServer(pendingBonusStateRef.current);
+            pendingBonusStateRef.current = null;
+          }
+        }}
       />
       <BonusOverlay
         isVisible={showBonusTrigger}
@@ -717,12 +724,12 @@ export function SlotGame() {
                             // For fresh bonus triggers, defer until the trigger overlay closes
                             // so the BonusStatusBar doesn't spoil the expanding symbol
                             if (pendingBonusStateRef.current) {
-                              if (isBonusSpin || !result.bonusTriggered) {
-                                // Ongoing bonus spin or no trigger - apply immediately
+                              if (!result.bonusTriggered) {
+                                // No bonus/retrigger - apply immediately
                                 updateBonusFromServer(pendingBonusStateRef.current);
                                 pendingBonusStateRef.current = null;
                               }
-                              // Fresh bonus trigger - keep pending, applied when overlay closes
+                              // Bonus trigger or retrigger - keep pending, applied when overlay closes
                             }
                             
                             // Handle bonus expansion animation
