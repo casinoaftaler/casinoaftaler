@@ -3,6 +3,7 @@ import { useAuth } from "@/hooks/useAuth";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
 import { Button } from "@/components/ui/button";
 import { GameCard } from "@/components/games/GameCard";
+import { SlotLeaderboard } from "@/components/slots/SlotLeaderboard";
 import { Gamepad2 } from "lucide-react";
 import slotIntroImage from "@/assets/slots/slot-intro-screen.jpg";
 import bookTitleFallback from "@/assets/slots/book-of-fedesvin-title.png";
@@ -134,6 +135,12 @@ export default function GameLibrary() {
               />
             </div>
           ))}
+        </div>
+
+        {/* Leaderboards */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 max-w-4xl mx-auto">
+          <SlotLeaderboard gameId="book-of-fedesvin" />
+          <SlotLeaderboard gameId="rise-of-fedesvin" />
         </div>
       </div>
     </div>
