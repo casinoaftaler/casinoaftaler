@@ -17,7 +17,7 @@ import { useViewportScaling } from "@/hooks/useViewportScaling";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { ArrowLeft, Gamepad2 } from "lucide-react";
-import defaultSlotBackground from "@/assets/slots/slot-background.jpg";
+import defaultSlotBackground from "@/assets/slots/rise/background.jpg";
 
 import slotCasinoCardBg from "@/assets/slots/slot-casino-card-bg.png";
 
