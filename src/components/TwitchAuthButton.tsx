@@ -51,7 +51,7 @@ export function TwitchAuthButton({ className, linkMode = false, disabled = false
         throw new Error("Ingen login-URL modtaget");
       }
 
-      (window.top ?? window).location.href = data.auth_url;
+      window.location.href = data.auth_url;
     } catch (err) {
       console.error("Twitch login error:", err);
       const message = err instanceof Error ? err.message : "Der opstod en fejl";
