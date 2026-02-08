@@ -25,7 +25,7 @@ const GAME_FRAME_VERTICAL_OFFSET: Record<string, number> = {
 // Per-game content (reels) vertical offset in px (positive = move reels down inside frame)
 // This moves the reels independently from the frame
 const GAME_CONTENT_VERTICAL_OFFSET: Record<string, number> = {
-  "rise-of-fedesvin": 90,
+  "rise-of-fedesvin": 120,
 };
 
 // Calculate responsive frame size based on screen width
