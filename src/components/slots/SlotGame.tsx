@@ -47,14 +47,18 @@ function generateDisplayGrid(symbols: SlotSymbol[]): string[][] {
   return grid;
 }
 
-export function SlotGame() {
+interface SlotGameProps {
+  gameId?: string;
+}
+
+export function SlotGame({ gameId = "book-of-fedesvin" }: SlotGameProps) {
   const { user } = useAuth();
   const queryClient = useQueryClient();
-  const { data: symbols, isLoading: symbolsLoading } = useSlotSymbols();
+  const { data: symbols, isLoading: symbolsLoading } = useSlotSymbols(gameId);
   const { validateSymbols } = useSlotSymbolPreloader(symbols);
   const { spinsRemaining, maxSpins, canSpin, hasEnoughSpins } = useSlotSpins();
   const { settings: slotSettings } = useSlotSettings();
-  const { spin: serverSpin } = useServerSpin();
+  const { spin: serverSpin } = useServerSpin(gameId);
   
   // Load custom sound files from site_settings
   useSlotSoundLoader();
@@ -64,7 +68,7 @@ export function SlotGame() {
     updateFromServer: updateBonusFromServer,
     endBonus,
     shouldEndBonus 
-  } = useBonusGameSync(symbols);
+  } = useBonusGameSync(symbols, gameId);
   
   const [bet, setBet] = useState(1);
   const [isSpinning, setIsSpinning] = useState(false);
@@ -390,7 +394,8 @@ export function SlotGame() {
           win_amount: 0,
           is_bonus_triggered: false,
           bonus_win_amount: winnings,
-        }).then(() => {
+          game_id: gameId,
+        } as any).then(() => {
           queryClient.invalidateQueries({ queryKey: ["slot-leaderboard"] });
         });
       }

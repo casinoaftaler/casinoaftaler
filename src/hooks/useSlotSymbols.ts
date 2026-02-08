@@ -2,14 +2,17 @@ import { useQuery } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
 import type { SlotSymbol, SymbolRarity } from "@/lib/slotGameLogic";
 
-export function useSlotSymbols() {
+export function useSlotSymbols(gameId: string = "book-of-fedesvin") {
   return useQuery({
-    queryKey: ["slot-symbols"],
+    queryKey: ["slot-symbols", gameId],
     queryFn: async (): Promise<SlotSymbol[]> => {
-      const { data, error } = await supabase
+      const query = supabase
         .from("slot_symbols")
         .select("*")
         .order("position", { ascending: true });
+
+      // Filter by game_id (column added via migration, not yet in types)
+      const { data, error } = await (query as any).eq("game_id", gameId);
 
       if (error) throw error;
       

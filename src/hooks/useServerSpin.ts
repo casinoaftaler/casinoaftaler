@@ -38,13 +38,17 @@ interface SpinResponse {
   result: SpinResult | BonusSpinResult;
   spinsRemaining?: number;
   maxSpins?: number;
-  bonusState?: BonusState | null;
+  bonusState?: BonusState & {
+    expandingSymbolIds?: string[];
+    expandingSymbolNames?: string[];
+  } | null;
 }
 
 interface SpinRequest {
   bet: number;
   sessionId: string;
   isBonusSpin: boolean;
+  gameId: string;
 }
 
 // Get session ID from sessionStorage
@@ -57,7 +61,7 @@ const getSessionId = (): string => {
   return sessionId;
 };
 
-export function useServerSpin() {
+export function useServerSpin(gameId: string = "book-of-fedesvin") {
   const { session } = useAuth();
   const queryClient = useQueryClient();
 
@@ -72,6 +76,7 @@ export function useServerSpin() {
           bet: request.bet,
           sessionId: request.sessionId,
           isBonusSpin: request.isBonusSpin,
+          gameId: request.gameId,
         },
       });
 
@@ -125,6 +130,7 @@ export function useServerSpin() {
         bet,
         sessionId,
         isBonusSpin,
+        gameId,
       });
       return result;
     } catch (error) {

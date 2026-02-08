@@ -27,6 +27,7 @@ import NotFound from "./pages/NotFound";
 // Lazy load game pages for better initial load performance
 const GameLibrary = lazy(() => import("./pages/GameLibrary"));
 const SlotMachine = lazy(() => import("./pages/SlotMachine"));
+const RiseOfFedesvin = lazy(() => import("./pages/RiseOfFedesvin"));
 
 const queryClient = new QueryClient();
 
@@ -62,6 +63,14 @@ const App = () => (
               element={
                 <Suspense fallback={<SlotPageLoading />}>
                   <SlotMachine />
+                </Suspense>
+              } 
+            />
+            <Route 
+              path="/community/slots/rise-of-fedesvin" 
+              element={
+                <Suspense fallback={<SlotPageLoading />}>
+                  <RiseOfFedesvin />
                 </Suspense>
               } 
             />
