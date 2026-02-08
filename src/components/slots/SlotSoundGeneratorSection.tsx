@@ -9,36 +9,51 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Loader2, Wand2, ChevronDown, Play, Save, Volume2 } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { supabase } from "@/integrations/supabase/client";
-import { SLOT_SOUND_SETTING_KEYS } from "@/hooks/useSlotSoundFiles";
+import { getSoundSettingKeys } from "@/hooks/useSlotSoundFiles";
 import { useQueryClient } from "@tanstack/react-query";
 
-const SOUND_TYPE_OPTIONS = [
-  { value: "spinSound", label: "Spinning Lyd", key: SLOT_SOUND_SETTING_KEYS.spinSound },
-  { value: "stopSound", label: "Stop Lyd", key: SLOT_SOUND_SETTING_KEYS.stopSound },
-  { value: "smallWinSound", label: "Lille Gevinst", key: SLOT_SOUND_SETTING_KEYS.smallWinSound },
-  { value: "mediumWinSound", label: "Medium Gevinst", key: SLOT_SOUND_SETTING_KEYS.mediumWinSound },
-  { value: "bigWinSound", label: "Stor Gevinst", key: SLOT_SOUND_SETTING_KEYS.bigWinSound },
-  { value: "bonusTriggerSound", label: "Bonus Trigger", key: SLOT_SOUND_SETTING_KEYS.bonusTriggerSound },
-  { value: "bonusSymbolScrollSound", label: "Symbol Scroll", key: SLOT_SOUND_SETTING_KEYS.bonusSymbolScrollSound },
-  { value: "bonusSymbolSelectedSound", label: "Symbol Valgt", key: SLOT_SOUND_SETTING_KEYS.bonusSymbolSelectedSound },
-  { value: "bonusWinSound", label: "Bonus Afslutning", key: SLOT_SOUND_SETTING_KEYS.bonusWinSound },
-  { value: "scatterSound1", label: "Scatter 1 (Mjav)", key: SLOT_SOUND_SETTING_KEYS.scatterSound1 },
-  { value: "scatterSound2", label: "Scatter 2 (Mjav)", key: SLOT_SOUND_SETTING_KEYS.scatterSound2 },
-  { value: "scatterSound3", label: "Scatter 3 (Mjav)", key: SLOT_SOUND_SETTING_KEYS.scatterSound3 },
-];
+interface SlotSoundGeneratorSectionProps {
+  gameId?: string;
+}
+
+const GAME_LABELS: Record<string, string> = {
+  "book-of-fedesvin": "Book of Fedesvin",
+  "rise-of-fedesvin": "Rise of Fedesvin",
+};
+
+function getSoundTypeOptions(gameId: string) {
+  const keys = getSoundSettingKeys(gameId);
+  return [
+    { value: "spinSound", label: "Spinning Lyd", key: keys.spinSound },
+    { value: "stopSound", label: "Stop Lyd", key: keys.stopSound },
+    { value: "smallWinSound", label: "Lille Gevinst", key: keys.smallWinSound },
+    { value: "mediumWinSound", label: "Medium Gevinst", key: keys.mediumWinSound },
+    { value: "bigWinSound", label: "Stor Gevinst", key: keys.bigWinSound },
+    { value: "bonusTriggerSound", label: "Bonus Trigger", key: keys.bonusTriggerSound },
+    { value: "bonusSymbolScrollSound", label: "Symbol Scroll", key: keys.bonusSymbolScrollSound },
+    { value: "bonusSymbolSelectedSound", label: "Symbol Valgt", key: keys.bonusSymbolSelectedSound },
+    { value: "bonusWinSound", label: "Bonus Afslutning", key: keys.bonusWinSound },
+    { value: "scatterSound1", label: "Scatter 1", key: keys.scatterSound1 },
+    { value: "scatterSound2", label: "Scatter 2", key: keys.scatterSound2 },
+    { value: "scatterSound3", label: "Scatter 3", key: keys.scatterSound3 },
+  ];
+}
 
 const PROMPT_SUGGESTIONS = [
   { label: "Mjav 1 (Blød)", prompt: "Soft curious cat meow, gentle Egyptian temple cat purring with subtle mystical echo, short and sweet" },
   { label: "Mjav 2 (Spændt)", prompt: "Excited cat meow, louder Egyptian temple cat sound with magical sparkles and anticipation, medium intensity" },
   { label: "Mjav 3 (Triumf)", prompt: "Triumphant powerful cat yowl, majestic Egyptian sacred cat roar with golden magical energy and celebration, epic climax sound" },
   { label: "Egyptisk Spin", prompt: "Ancient Egyptian slot machine spinning with golden coins and mystical chimes" },
+  { label: "Merlin Spell", prompt: "Wizard casting magical spell with arcane energy swirling, crystal chimes and ethereal whoosh" },
   { label: "Guld Cascade", prompt: "Cascading gold coins with triumphant fanfare and celebration bells" },
   { label: "Symbol Reveal", prompt: "Dramatic ancient Egyptian mystical reveal sound with golden chimes, magical energy surge, triumphant fanfare, and celestial sparkles - epic symbol selection moment" },
 ];
 
-export function SlotSoundGeneratorSection() {
+export function SlotSoundGeneratorSection({ gameId = "book-of-fedesvin" }: SlotSoundGeneratorSectionProps) {
   const { toast } = useToast();
   const queryClient = useQueryClient();
+  const gameName = GAME_LABELS[gameId] || gameId;
+  const soundTypeOptions = getSoundTypeOptions(gameId);
   
   const [prompt, setPrompt] = useState("");
   const [duration, setDuration] = useState(3);
@@ -125,12 +140,12 @@ export function SlotSoundGeneratorSection() {
     setIsSaving(true);
 
     try {
-      const selectedOption = SOUND_TYPE_OPTIONS.find((opt) => opt.value === selectedType);
+      const selectedOption = soundTypeOptions.find((opt) => opt.value === selectedType);
       if (!selectedOption) throw new Error("Ugyldig lydtype valgt");
 
       // Generate unique filename
       const timestamp = Date.now();
-      const filename = `generated-${selectedType}-${timestamp}.mp3`;
+      const filename = `generated-${gameId}-${selectedType}-${timestamp}.mp3`;
 
       // Upload to storage
       const { error: uploadError } = await supabase.storage
@@ -149,7 +164,7 @@ export function SlotSoundGeneratorSection() {
 
       if (!urlData?.publicUrl) throw new Error("Kunne ikke hente offentlig URL");
 
-      // Save to site_settings
+      // Save to site_settings using game-specific key
       const { error: settingsError } = await supabase
         .from("site_settings")
         .upsert(
@@ -160,11 +175,11 @@ export function SlotSoundGeneratorSection() {
       if (settingsError) throw settingsError;
 
       // Invalidate queries to refresh UI
-      await queryClient.invalidateQueries({ queryKey: ["slot-sound-files"] });
+      await queryClient.invalidateQueries({ queryKey: ["slot-sound-files", gameId] });
 
       toast({
         title: "Lyd gemt!",
-        description: `Lyden er nu gemt som "${selectedOption.label}"`,
+        description: `Lyden er nu gemt som "${selectedOption.label}" for ${gameName}`,
       });
 
       // Reset state
@@ -194,7 +209,7 @@ export function SlotSoundGeneratorSection() {
           <CardHeader className="flex flex-row items-center justify-between cursor-pointer hover:bg-muted/50 transition-colors [&[data-state=open]>svg]:rotate-180">
             <CardTitle className="flex items-center gap-2">
               <Wand2 className="h-5 w-5 text-violet-500" />
-              AI Lydgenerator
+              AI Lydgenerator — {gameName}
             </CardTitle>
             <ChevronDown className="h-5 w-5 transition-transform duration-200" />
           </CardHeader>
@@ -202,7 +217,7 @@ export function SlotSoundGeneratorSection() {
         <CollapsibleContent>
           <CardContent className="space-y-6">
             <p className="text-sm text-muted-foreground">
-              Generer unikke lydeffekter til dit slot spil ved hjælp af AI. Beskriv den lyd du ønsker, og gem den direkte.
+              Generer unikke lydeffekter til <strong>{gameName}</strong> ved hjælp af AI. Beskriv den lyd du ønsker, og gem den direkte.
             </p>
 
             {/* Prompt Input */}
@@ -297,7 +312,7 @@ export function SlotSoundGeneratorSection() {
                       <SelectValue placeholder="Vælg lydtype..." />
                     </SelectTrigger>
                     <SelectContent>
-                      {SOUND_TYPE_OPTIONS.map((option) => (
+                      {soundTypeOptions.map((option) => (
                         <SelectItem key={option.value} value={option.value}>
                           {option.label}
                         </SelectItem>
@@ -319,7 +334,7 @@ export function SlotSoundGeneratorSection() {
                   ) : (
                     <>
                       <Save className="h-4 w-4 mr-2" />
-                      Gem Lyd
+                      Gem Lyd til {gameName}
                     </>
                   )}
                 </Button>
