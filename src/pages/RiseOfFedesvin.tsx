@@ -132,7 +132,7 @@ export default function RiseOfFedesvin() {
   }
 
   if (loadingPhase === 'loading') {
-    return <SlotLoadingScreen onComplete={handleLoadingComplete} />;
+    return <SlotLoadingScreen onComplete={handleLoadingComplete} gameId={GAME_ID} />;
   }
 
   if (loadingPhase === 'intro') {
