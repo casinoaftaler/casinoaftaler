@@ -36,6 +36,7 @@ import {
   Loader2,
   Play,
   ExternalLink,
+  AlertTriangle,
 } from "lucide-react";
 import { formatDistanceToNow, format } from "date-fns";
 import { da } from "date-fns/locale";
@@ -170,11 +171,17 @@ export function CommunityClipsAdminSection() {
                         <div className="flex-1 p-4">
                           <div className="flex items-start justify-between gap-4">
                             <div className="flex-1">
-                              <div className="flex items-center gap-2 mb-2">
+                              <div className="flex items-center gap-2 mb-2 flex-wrap">
                                 {getStatusBadge(clip.status)}
                                 <Badge variant="outline" className="capitalize">
-                                  {clip.platform}
+                                  {clip.platform === "unknown" ? "Ukendt" : clip.platform}
                                 </Badge>
+                                {(clip as any).requires_manual_review && (
+                                  <Badge variant="secondary" className="gap-1 bg-amber-500/20 text-amber-600 border-amber-500/30">
+                                    <AlertTriangle className="h-3 w-3" />
+                                    Kræver manuel gennemgang
+                                  </Badge>
+                                )}
                               </div>
 
                               <h3 className="font-semibold mb-1">
@@ -185,6 +192,16 @@ export function CommunityClipsAdminSection() {
                                 <p className="text-sm text-muted-foreground mb-2 line-clamp-2">
                                   {clip.description}
                                 </p>
+                              )}
+
+                              {/* Validation notes for admin */}
+                              {(clip as any).validation_notes && (
+                                <div className="bg-amber-500/10 border border-amber-500/20 rounded-md p-2 mb-2">
+                                  <p className="text-xs text-amber-600">
+                                    <AlertTriangle className="h-3 w-3 inline mr-1" />
+                                    {(clip as any).validation_notes}
+                                  </p>
+                                </div>
                               )}
 
                               <div className="flex items-center gap-4 text-sm text-muted-foreground mb-2">
@@ -226,6 +243,21 @@ export function CommunityClipsAdminSection() {
                                   </p>
                                 )}
 
+                              {/* Show original URL if different from resolved */}
+                              {(clip as any).original_url && (
+                                <div className="mt-2 text-xs text-muted-foreground">
+                                  <span className="font-medium">Original URL: </span>
+                                  <a
+                                    href={(clip as any).original_url}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="text-primary hover:underline break-all"
+                                  >
+                                    {(clip as any).original_url}
+                                  </a>
+                                </div>
+                              )}
+
                               <a
                                 href={clip.url}
                                 target="_blank"
@@ -233,7 +265,7 @@ export function CommunityClipsAdminSection() {
                                 className="inline-flex items-center gap-1 text-xs text-primary hover:underline mt-2"
                               >
                                 <ExternalLink className="h-3 w-3" />
-                                Åbn original
+                                {(clip as any).original_url ? "Åbn resolved URL" : "Åbn original"}
                               </a>
                             </div>
 

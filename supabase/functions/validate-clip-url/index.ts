@@ -15,6 +15,7 @@ interface ValidationResult {
     thumbnailUrl?: string;
     durationSeconds?: number;
     requiresManualReview: boolean;
+    validationNotes?: string;
   };
 }
 
@@ -234,18 +235,24 @@ Deno.serve(async (req) => {
     // Detect platform from resolved URL
     const platform = detectPlatform(resolvedUrl);
     
+    // If platform is unknown, accept but mark for manual review
     if (platform === 'unknown') {
-      // Return 200 with validation failure so client can read the message
+      console.log('Platform could not be determined, marking for manual review');
+      
+      const result: ValidationResult = {
+        valid: true, // Accept the submission
+        originalUrl,
+        resolvedUrl,
+        platform: 'unknown',
+        clipId: null,
+        metadata: {
+          requiresManualReview: true,
+          validationNotes: 'Platform kunne ikke bekræftes automatisk. URL-opløsning returnerede ikke et genkendt Twitch eller YouTube link.',
+        },
+      };
+
       return new Response(
-        JSON.stringify({ 
-          valid: false, 
-          error: 'Kun Twitch og YouTube clips understøttes. Sørg for at linket fører til en Twitch eller YouTube video.',
-          originalUrl,
-          resolvedUrl,
-          platform: 'unknown',
-          clipId: null,
-          metadata: { requiresManualReview: false },
-        } as ValidationResult),
+        JSON.stringify(result),
         { headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
       );
     }
@@ -292,6 +299,12 @@ Deno.serve(async (req) => {
       console.log('Duration could not be determined, marking for manual review');
     }
 
+    // Build validation notes
+    let validationNotes: string | undefined;
+    if (requiresManualReview) {
+      validationNotes = 'Varighed kunne ikke verificeres automatisk.';
+    }
+
     const result: ValidationResult = {
       valid: true,
       originalUrl,
@@ -303,6 +316,7 @@ Deno.serve(async (req) => {
         thumbnailUrl: metadata.thumbnailUrl,
         durationSeconds: metadata.durationSeconds,
         requiresManualReview,
+        validationNotes,
       },
     };
 

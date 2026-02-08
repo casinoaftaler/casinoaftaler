@@ -221,14 +221,17 @@ export type Database = {
           description: string | null
           duration_seconds: number | null
           id: string
+          original_url: string | null
           platform: string
           rejection_reason: string | null
+          requires_manual_review: boolean | null
           status: Database["public"]["Enums"]["clip_status"]
           thumbnail_url: string | null
           title: string | null
           updated_at: string
           url: string
           user_id: string
+          validation_notes: string | null
         }
         Insert: {
           approved_at?: string | null
@@ -237,14 +240,17 @@ export type Database = {
           description?: string | null
           duration_seconds?: number | null
           id?: string
+          original_url?: string | null
           platform?: string
           rejection_reason?: string | null
+          requires_manual_review?: boolean | null
           status?: Database["public"]["Enums"]["clip_status"]
           thumbnail_url?: string | null
           title?: string | null
           updated_at?: string
           url: string
           user_id: string
+          validation_notes?: string | null
         }
         Update: {
           approved_at?: string | null
@@ -253,14 +259,17 @@ export type Database = {
           description?: string | null
           duration_seconds?: number | null
           id?: string
+          original_url?: string | null
           platform?: string
           rejection_reason?: string | null
+          requires_manual_review?: boolean | null
           status?: Database["public"]["Enums"]["clip_status"]
           thumbnail_url?: string | null
           title?: string | null
           updated_at?: string
           url?: string
           user_id?: string
+          validation_notes?: string | null
         }
         Relationships: []
       }
