@@ -1,10 +1,12 @@
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import { useAuth } from "@/hooks/useAuth";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
+import { useCasinos } from "@/hooks/useCasinos";
 import { Button } from "@/components/ui/button";
 import { GameCard } from "@/components/games/GameCard";
 import { SlotLeaderboard } from "@/components/slots/SlotLeaderboard";
-import { CasinoPromoBanner } from "@/components/games/CasinoPromoBanner";
+import { CasinoCard } from "@/components/CasinoCard";
 import { Gamepad2 } from "lucide-react";
 import slotIntroImage from "@/assets/slots/slot-intro-screen.jpg";
 import bookTitleFallback from "@/assets/slots/book-of-fedesvin-title.png";
@@ -72,9 +74,41 @@ const GAMES: GameDef[] = [
   },
 ];
 
+// Map casino from DB format to CasinoCard format
+function mapCasino(casino: ReturnType<typeof useCasinos>["data"] extends (infer T)[] | undefined ? T : never) {
+  return {
+    id: casino.id,
+    name: casino.name,
+    slug: casino.slug,
+    rating: Number(casino.rating),
+    bonusTitle: casino.bonus_title,
+    bonusAmount: casino.bonus_amount,
+    bonusType: casino.bonus_type,
+    wageringRequirements: casino.wagering_requirements,
+    validity: casino.validity,
+    minDeposit: casino.min_deposit,
+    payoutTime: casino.payout_time,
+    freeSpins: casino.free_spins,
+    features: casino.features ?? [],
+    pros: casino.pros ?? [],
+    cons: casino.cons ?? [],
+    description: casino.description ?? "",
+    isRecommended: casino.is_recommended,
+    isHot: casino.is_hot,
+    logoUrl: casino.logo_url,
+    affiliateUrl: casino.affiliate_url,
+    gameProviders: casino.game_providers ?? [],
+  };
+}
+
 export default function GameLibrary() {
   const { data: siteSettings } = useSiteSettings();
   const { user, loading } = useAuth();
+  const { data: casinos } = useCasinos();
+  const [openCasinoId, setOpenCasinoId] = useState<string | null>(null);
+
+  // Get the first two active casinos for the sidebar banners
+  const sidebarCasinos = casinos?.filter(c => c.is_active).slice(0, 2) ?? [];
 
   if (loading) {
     return (
@@ -114,55 +148,54 @@ export default function GameLibrary() {
     <div className="min-h-[calc(100vh-4rem)] relative">
       <PageBackground />
       <GameLibraryHero />
-      <div className="container py-10 space-y-8">
-        {/* Promotional banners */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 max-w-4xl mx-auto">
-          <CasinoPromoBanner
-            name="SpilDanskNu"
-            tagline="Dansk Casino"
-            bonusText="Få op til"
-            bonusHighlight="2.000 kr. i bonus + 100 free spins"
-            ctaText="Hent Bonus"
-            href="https://spildansknu.dk"
-            accentColor="green"
-          />
-          <CasinoPromoBanner
-            name="Spilleautomaten"
-            tagline="Nyt Casino"
-            bonusText="100% velkomstbonus op til"
-            bonusHighlight="1.000 kr. + 150 free spins"
-            ctaText="Hent Bonus"
-            href="https://spilleautomaten.dk"
-            accentColor="purple"
-          />
-        </div>
-
-        {/* Game grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 max-w-4xl mx-auto">
-          {GAMES.map((game, index) => (
-            <div
-              key={game.id}
-              className="animate-fade-in"
-              style={{
-                animationDelay: `${index * 150}ms`,
-                animationFillMode: "both",
-              }}
-            >
-              <GameCard
-                title={game.title}
-                description={game.description}
-                image={game.image}
-                href={game.href}
-                status={game.status}
-                badge={game.badge}
-              />
+      <div className="container py-10">
+        {/* 2-column layout: banners left, games right */}
+        <div className="flex flex-col lg:flex-row gap-8">
+          {/* Left sidebar: Casino banners (stacked) */}
+          <aside className="w-full lg:w-80 xl:w-96 shrink-0 order-1 lg:order-none">
+            <div className="space-y-4">
+              {sidebarCasinos.map((casino, index) => (
+                <CasinoCard
+                  key={casino.id}
+                  casino={mapCasino(casino)}
+                  rank={index + 1}
+                  open={openCasinoId === casino.id}
+                  onOpenChange={(open) => setOpenCasinoId(open ? casino.id : null)}
+                />
+              ))}
             </div>
-          ))}
-        </div>
+          </aside>
 
-        {/* Leaderboard */}
-        <div className="max-w-md mx-auto">
-          <SlotLeaderboard gameId="book-of-fedesvin" />
+          {/* Right content: Game grid + leaderboard */}
+          <div className="flex-1 space-y-8 order-2 lg:order-none">
+            {/* Game grid */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+              {GAMES.map((game, index) => (
+                <div
+                  key={game.id}
+                  className="animate-fade-in"
+                  style={{
+                    animationDelay: `${index * 150}ms`,
+                    animationFillMode: "both",
+                  }}
+                >
+                  <GameCard
+                    title={game.title}
+                    description={game.description}
+                    image={game.image}
+                    href={game.href}
+                    status={game.status}
+                    badge={game.badge}
+                  />
+                </div>
+              ))}
+            </div>
+
+            {/* Leaderboard */}
+            <div className="max-w-md mx-auto lg:mx-0">
+              <SlotLeaderboard gameId="book-of-fedesvin" />
+            </div>
+          </div>
         </div>
       </div>
     </div>
