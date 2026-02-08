@@ -20,6 +20,7 @@ import Admin from "./pages/Admin";
 import Auth from "./pages/Auth";
 import AuthCallback from "./pages/AuthCallback";
 import Profile from "./pages/Profile";
+import PublicProfile from "./pages/PublicProfile";
 import NotFound from "./pages/NotFound";
 
 // Lazy load the slot machine page for better initial load performance
@@ -56,6 +57,7 @@ const App = () => (
             <Route path="/auth" element={<Auth />} />
             <Route path="/auth/callback" element={<AuthCallback />} />
             <Route path="/profil" element={<Profile />} />
+            <Route path="/u/:username" element={<PublicProfile />} />
           </Route>
           <Route path="/admin" element={<Admin />} />
           
