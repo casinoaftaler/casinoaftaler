@@ -34,6 +34,7 @@ interface SlotSymbol {
   rarity: "premium" | "common" | "scatter";
   weight: number;
   bonus_weight: number;
+  game_id: string;
 }
 
 interface LineWin {
@@ -228,10 +229,11 @@ function calculateSpinResult(
   };
 }
 
+// Single expanding symbol (Book of Fedesvin)
 function applyExpandingSymbol(
   grid: string[][],
   expandingSymbol: SlotSymbol,
-  symbols: SlotSymbol[]
+  _symbols: SlotSymbol[]
 ): { expandedGrid: string[][]; expandedReels: number[] } {
   const expandedGrid = grid.map((col) => [...col]);
   const reelsWithExpanding: number[] = [];
@@ -257,6 +259,55 @@ function applyExpandingSymbol(
   }
 
   return { expandedGrid: grid, expandedReels: [] };
+}
+
+// Multi-expanding symbol (Rise of Fedesvin)
+// Each expanding symbol is checked independently. A reel expands if it contains
+// ANY of the expanding symbols. When a reel expands, ALL cells become the symbol
+// that was found in that reel. If multiple expanding symbols appear in the same
+// reel, the one with the highest multiplier_5 is chosen.
+function applyMultiExpandingSymbols(
+  grid: string[][],
+  expandingSymbols: SlotSymbol[],
+): { expandedGrid: string[][]; expandedReels: number[]; expandedSymbolMap: Map<number, SlotSymbol> } {
+  const expandedGrid = grid.map((col) => [...col]);
+  const expandedReels: number[] = [];
+  const expandedSymbolMap = new Map<number, SlotSymbol>();
+
+  // For each reel, check if any expanding symbol is present
+  for (let col = 0; col < 5; col++) {
+    const foundSymbols: SlotSymbol[] = [];
+    for (const expSym of expandingSymbols) {
+      if (grid[col].some((id) => id === expSym.id)) {
+        foundSymbols.push(expSym);
+      }
+    }
+    if (foundSymbols.length > 0) {
+      // Pick the best symbol (highest multiplier_5) to fill the reel
+      const bestSymbol = foundSymbols.reduce((best, s) =>
+        s.multiplier_5 > best.multiplier_5 ? s : best
+      );
+      expandedReels.push(col);
+      expandedSymbolMap.set(col, bestSymbol);
+    }
+  }
+
+  // Determine if we should expand: we need enough reels for ANY single symbol
+  // For multi-expanding: we always expand if at least 2 reels have expanding symbols
+  // (since the mechanic is inherently more powerful)
+  const minReelsForExpand = 2;
+
+  if (expandedReels.length >= minReelsForExpand) {
+    for (const col of expandedReels) {
+      const sym = expandedSymbolMap.get(col)!;
+      for (let row = 0; row < 3; row++) {
+        expandedGrid[col][row] = sym.id;
+      }
+    }
+    return { expandedGrid, expandedReels, expandedSymbolMap };
+  }
+
+  return { expandedGrid: grid, expandedReels: [], expandedSymbolMap: new Map() };
 }
 
 function calculateBonusWins(
@@ -349,6 +400,123 @@ function calculateBonusWins(
   return wins;
 }
 
+// Multi-expanding bonus wins: calculate for each expanding symbol group independently
+function calculateMultiExpandingBonusWins(
+  expandedGrid: string[][],
+  expandedReels: number[],
+  expandedSymbolMap: Map<number, SlotSymbol>,
+  symbols: SlotSymbol[],
+  betAmount: number,
+  expandingSymbols: SlotSymbol[]
+): LineWin[] {
+  if (expandedReels.length === 0) {
+    // No expansion - use standard line wins on original grid
+    return calculateStandardLineWins(expandedGrid, symbols, betAmount);
+  }
+
+  // Group expanded reels by symbol
+  const symbolReelGroups = new Map<string, number[]>();
+  for (const col of expandedReels) {
+    const sym = expandedSymbolMap.get(col)!;
+    const existing = symbolReelGroups.get(sym.id) || [];
+    existing.push(col);
+    symbolReelGroups.set(sym.id, existing);
+  }
+
+  const wins: LineWin[] = [];
+  const processedLines = new Set<number>();
+
+  // For each expanding symbol group, check if they form valid wins
+  for (const [symbolId, reels] of symbolReelGroups.entries()) {
+    const sym = expandingSymbols.find((s) => s.id === symbolId);
+    if (!sym) continue;
+
+    const minReels = sym.rarity === "premium" ? 2 : 3;
+    if (reels.length >= minReels) {
+      // All-reels expanding win: every pay line wins
+      let multiplier = 0;
+      if (reels.length === 2 && sym.rarity === "premium") multiplier = sym.multiplier_2;
+      else if (reels.length === 3) multiplier = sym.multiplier_3;
+      else if (reels.length === 4) multiplier = sym.multiplier_4;
+      else if (reels.length === 5) multiplier = sym.multiplier_5;
+
+      if (multiplier > 0) {
+        for (let lineIndex = 0; lineIndex < PAY_LINES.length; lineIndex++) {
+          if (!processedLines.has(lineIndex)) {
+            wins.push({
+              lineIndex,
+              symbolId: sym.id,
+              count: reels.length,
+              payout: multiplier * betAmount,
+            });
+            processedLines.add(lineIndex);
+          }
+        }
+      }
+    }
+  }
+
+  // For lines not covered by expanding wins, check standard wins
+  if (processedLines.size < PAY_LINES.length) {
+    const standardWins = calculateStandardLineWins(expandedGrid, symbols, betAmount);
+    for (const win of standardWins) {
+      if (!processedLines.has(win.lineIndex)) {
+        wins.push(win);
+      }
+    }
+  }
+
+  return wins;
+}
+
+function calculateStandardLineWins(
+  grid: string[][],
+  symbols: SlotSymbol[],
+  betAmount: number
+): LineWin[] {
+  const wins: LineWin[] = [];
+  const symbolsById = new Map(symbols.map((s) => [s.id, s]));
+
+  for (let lineIndex = 0; lineIndex < PAY_LINES.length; lineIndex++) {
+    const linePattern = PAY_LINES[lineIndex];
+    const lineSymbols = linePattern.map((row, col) => grid[col][row]);
+    const lineSymbolData = lineSymbols.map((id) => symbolsById.get(id));
+
+    if (lineSymbolData.some((s) => !s)) continue;
+
+    const validSymbols = lineSymbolData as SlotSymbol[];
+    let baseSymbol = validSymbols.find((s) => !s.is_wild && !s.is_scatter) || validSymbols[0];
+
+    let count = 0;
+    for (let i = 0; i < 5; i++) {
+      const current = validSymbols[i];
+      if (current.id === baseSymbol.id || current.is_wild || current.is_scatter) {
+        count++;
+        if ((baseSymbol.is_wild || baseSymbol.is_scatter) && !current.is_wild && !current.is_scatter) {
+          baseSymbol = current;
+        }
+      } else {
+        break;
+      }
+    }
+
+    const minMatches = baseSymbol.rarity === "premium" ? 2 : 3;
+    if (count >= minMatches) {
+      let multiplier = 0;
+      if (count === 2 && baseSymbol.rarity === "premium") multiplier = baseSymbol.multiplier_2;
+      else if (count === 3) multiplier = baseSymbol.multiplier_3;
+      else if (count === 4) multiplier = baseSymbol.multiplier_4;
+      else if (count === 5) multiplier = baseSymbol.multiplier_5;
+
+      if (multiplier > 0) {
+        wins.push({ lineIndex, symbolId: baseSymbol.id, count, payout: multiplier * betAmount });
+      }
+    }
+  }
+
+  return wins;
+}
+
 function getWeightedRandomSymbol(symbols: SlotSymbol[]): SlotSymbol {
   const getWeight = (s: SlotSymbol) =>
     s.bonus_weight || s.weight || DEFAULT_SYMBOL_WEIGHT;
@@ -399,7 +567,10 @@ Deno.serve(async (req) => {
 
     // Parse request body
     const body = await req.json();
-    const { bet, sessionId, isBonusSpin } = body;
+    const { bet, sessionId, isBonusSpin, gameId: rawGameId } = body;
+    const gameId = rawGameId || "book-of-fedesvin";
+
+    console.log(`[slot-spin] gameId=${gameId}, bet=${bet}, isBonusSpin=${isBonusSpin}, userId=${userId}`);
 
     // Validate bet amount
     if (typeof bet !== "number" || bet < 1 || bet > 100 || !Number.isInteger(bet)) {
@@ -423,26 +594,31 @@ Deno.serve(async (req) => {
       );
     }
 
-    // Fetch slot symbols from database
+    // Fetch slot symbols filtered by gameId
     const { data: symbols, error: symbolsError } = await supabase
       .from("slot_symbols")
       .select("*")
+      .eq("game_id", gameId)
       .order("position");
 
     if (symbolsError || !symbols || symbols.length === 0) {
+      console.error(`[slot-spin] Failed to load symbols for gameId=${gameId}:`, symbolsError);
       return new Response(
         JSON.stringify({ error: "Failed to load symbols" }),
         { status: 500, headers: { ...corsHeaders, "Content-Type": "application/json" } }
       );
     }
 
+    const isRiseOfFedesvin = gameId === "rise-of-fedesvin";
+
     // Handle bonus spin
     if (isBonusSpin) {
-      // Get bonus state
+      // Get bonus state filtered by game_id
       const { data: bonusData, error: bonusError } = await supabase
         .from("slot_bonus_state")
         .select("*")
         .eq("user_id", userId)
+        .eq("game_id", gameId)
         .maybeSingle();
 
       if (bonusError || !bonusData || !bonusData.is_active || bonusData.free_spins_remaining <= 0) {
@@ -452,30 +628,78 @@ Deno.serve(async (req) => {
         );
       }
 
-      const expandingSymbol = symbols.find((s: SlotSymbol) => s.id === bonusData.expanding_symbol_id);
-      if (!expandingSymbol) {
-        return new Response(
-          JSON.stringify({ error: "Expanding symbol not found" }),
-          { status: 500, headers: { ...corsHeaders, "Content-Type": "application/json" } }
-        );
-      }
-
       // Generate grid with bonus weights
       const originalGrid = generateGrid(symbols, true);
-      
-      // Apply expanding symbol
-      const { expandedGrid, expandedReels } = applyExpandingSymbol(
-        originalGrid,
-        expandingSymbol,
-        symbols
-      );
-
-      // Calculate wins
-      const wins = calculateBonusWins(expandedGrid, expandedReels, symbols, bet, expandingSymbol);
       
       // Count scatters for retrigger
       const scatterCount = countScatters(originalGrid, symbols);
       const isRetrigger = scatterCount >= 3;
+
+      let expandedGrid: string[][];
+      let expandedReels: number[];
+      let wins: LineWin[];
+      let newExpandingSymbolIds = bonusData.expanding_symbol_ids || [];
+      let newExpandingSymbolNames = bonusData.expanding_symbol_names || [];
+
+      if (isRiseOfFedesvin) {
+        // ===== RISE OF FEDESVIN: Multi-expanding symbol logic =====
+        
+        // Handle retrigger: pick a NEW expanding symbol
+        if (isRetrigger) {
+          const currentExpandingIds: string[] = newExpandingSymbolIds;
+          const eligibleForNew = symbols.filter(
+            (s: SlotSymbol) => !s.is_scatter && !currentExpandingIds.includes(s.id)
+          );
+          
+          if (eligibleForNew.length > 0) {
+            const newExpandSym = getWeightedRandomSymbol(eligibleForNew);
+            newExpandingSymbolIds = [...currentExpandingIds, newExpandSym.id];
+            newExpandingSymbolNames = [...(bonusData.expanding_symbol_names || []), newExpandSym.name];
+            console.log(`[slot-spin] Rise retrigger: added new expanding symbol ${newExpandSym.name} (${newExpandSym.id})`);
+          }
+        }
+
+        // Resolve all expanding symbols from IDs
+        const expandingSymbols = newExpandingSymbolIds
+          .map((id: string) => symbols.find((s: SlotSymbol) => s.id === id))
+          .filter(Boolean) as SlotSymbol[];
+
+        if (expandingSymbols.length === 0) {
+          // Fallback: use single symbol if array is empty (shouldn't happen)
+          const fallback = symbols.find((s: SlotSymbol) => s.id === bonusData.expanding_symbol_id);
+          if (fallback) expandingSymbols.push(fallback);
+        }
+
+        // Apply multi-expanding
+        const multiResult = applyMultiExpandingSymbols(originalGrid, expandingSymbols);
+        expandedGrid = multiResult.expandedGrid;
+        expandedReels = multiResult.expandedReels;
+
+        // Calculate wins with multi-expanding logic
+        wins = calculateMultiExpandingBonusWins(
+          expandedGrid,
+          expandedReels,
+          multiResult.expandedSymbolMap,
+          symbols,
+          bet,
+          expandingSymbols
+        );
+      } else {
+        // ===== BOOK OF FEDESVIN: Single expanding symbol (original logic) =====
+        const expandingSymbol = symbols.find((s: SlotSymbol) => s.id === bonusData.expanding_symbol_id);
+        if (!expandingSymbol) {
+          return new Response(
+            JSON.stringify({ error: "Expanding symbol not found" }),
+            { status: 500, headers: { ...corsHeaders, "Content-Type": "application/json" } }
+          );
+        }
+
+        const singleResult = applyExpandingSymbol(originalGrid, expandingSymbol, symbols);
+        expandedGrid = singleResult.expandedGrid;
+        expandedReels = singleResult.expandedReels;
+
+        wins = calculateBonusWins(expandedGrid, expandedReels, symbols, bet, expandingSymbol);
+      }
 
       // Calculate scatter payout
       const scatterSymbol = symbols.find((s: SlotSymbol) => s.is_scatter);
@@ -499,14 +723,28 @@ Deno.serve(async (req) => {
 
       const newBonusWinnings = Number(bonusData.bonus_winnings) + totalWin;
 
+      const updatePayload: Record<string, unknown> = {
+        free_spins_remaining: newFreeSpins,
+        total_free_spins: newTotalFreeSpins,
+        bonus_winnings: newBonusWinnings,
+      };
+
+      // For Rise: update expanding arrays on retrigger
+      if (isRiseOfFedesvin && isRetrigger) {
+        updatePayload.expanding_symbol_ids = newExpandingSymbolIds;
+        updatePayload.expanding_symbol_names = newExpandingSymbolNames;
+        // Keep single field in sync with first symbol for backward compat
+        if (newExpandingSymbolIds.length > 0) {
+          updatePayload.expanding_symbol_id = newExpandingSymbolIds[0];
+          updatePayload.expanding_symbol_name = newExpandingSymbolNames[0];
+        }
+      }
+
       await supabase
         .from("slot_bonus_state")
-        .update({
-          free_spins_remaining: newFreeSpins,
-          total_free_spins: newTotalFreeSpins,
-          bonus_winnings: newBonusWinnings,
-        })
-        .eq("user_id", userId);
+        .update(updatePayload)
+        .eq("user_id", userId)
+        .eq("game_id", gameId);
 
       const result: BonusSpinResult = {
         grid: originalGrid,
@@ -519,17 +757,25 @@ Deno.serve(async (req) => {
         isRetrigger,
       };
 
+      // Build bonus state response
+      const bonusStateResponse: Record<string, unknown> = {
+        freeSpinsRemaining: newFreeSpins,
+        totalFreeSpins: newTotalFreeSpins,
+        bonusWinnings: newBonusWinnings,
+        expandingSymbolId: bonusData.expanding_symbol_id,
+        expandingSymbolName: bonusData.expanding_symbol_name,
+      };
+
+      if (isRiseOfFedesvin) {
+        bonusStateResponse.expandingSymbolIds = newExpandingSymbolIds;
+        bonusStateResponse.expandingSymbolNames = newExpandingSymbolNames;
+      }
+
       return new Response(
         JSON.stringify({
           success: true,
           result,
-          bonusState: {
-            freeSpinsRemaining: newFreeSpins,
-            totalFreeSpins: newTotalFreeSpins,
-            bonusWinnings: newBonusWinnings,
-            expandingSymbolId: bonusData.expanding_symbol_id,
-            expandingSymbolName: bonusData.expanding_symbol_name,
-          },
+          bonusState: bonusStateResponse,
         }),
         { headers: { ...corsHeaders, "Content-Type": "application/json" } }
       );
@@ -557,7 +803,7 @@ Deno.serve(async (req) => {
     const dailySpins = parseInt(settingsData?.value || "100", 10);
     const maxSpins = Math.min(dailySpins + bonusSpinsPermanent, MAX_SPINS_CAP);
 
-    // Get or create today's spin record
+    // Get or create today's spin record (shared across games)
     let { data: spinsData } = await supabase
       .from("slot_spins")
       .select("*")
@@ -617,19 +863,33 @@ Deno.serve(async (req) => {
       const eligibleSymbols = symbols.filter((s: SlotSymbol) => !s.is_scatter);
       const expandingSymbol = getWeightedRandomSymbol(eligibleSymbols);
 
+      const bonusInsert: Record<string, unknown> = {
+        user_id: userId,
+        is_active: true,
+        free_spins_remaining: 10,
+        total_free_spins: 10,
+        expanding_symbol_id: expandingSymbol.id,
+        expanding_symbol_name: expandingSymbol.name,
+        bonus_winnings: 0,
+        game_id: gameId,
+      };
+
+      // For Rise of Fedesvin, also set the arrays
+      if (isRiseOfFedesvin) {
+        bonusInsert.expanding_symbol_ids = [expandingSymbol.id];
+        bonusInsert.expanding_symbol_names = [expandingSymbol.name];
+      }
+
+      // Delete any existing bonus state for this game first, then insert
       await supabase
         .from("slot_bonus_state")
-        .upsert({
-          user_id: userId,
-          is_active: true,
-          free_spins_remaining: 10,
-          total_free_spins: 10,
-          expanding_symbol_id: expandingSymbol.id,
-          expanding_symbol_name: expandingSymbol.name,
-          bonus_winnings: 0,
-        }, {
-          onConflict: "user_id",
-        });
+        .delete()
+        .eq("user_id", userId)
+        .eq("game_id", gameId);
+
+      await supabase
+        .from("slot_bonus_state")
+        .insert(bonusInsert);
 
       bonusState = {
         isActive: true,
@@ -638,16 +898,22 @@ Deno.serve(async (req) => {
         expandingSymbolId: expandingSymbol.id,
         expandingSymbolName: expandingSymbol.name,
         bonusWinnings: 0,
-      };
+      } as Record<string, unknown>;
+
+      if (isRiseOfFedesvin) {
+        bonusState.expandingSymbolIds = [expandingSymbol.id];
+        bonusState.expandingSymbolNames = [expandingSymbol.name];
+      }
     }
 
-    // Record game result
+    // Record game result with game_id
     await supabase.from("slot_game_results").insert({
       user_id: userId,
       bet_amount: bet,
       win_amount: result.totalWin,
       is_bonus_triggered: result.bonusTriggered,
       bonus_win_amount: 0,
+      game_id: gameId,
     });
 
     return new Response(
