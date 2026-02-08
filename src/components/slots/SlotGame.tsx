@@ -61,8 +61,8 @@ export function SlotGame({ gameId = "book-of-fedesvin" }: SlotGameProps) {
   const { settings: slotSettings } = useSlotSettings();
   const { spin: serverSpin } = useServerSpin(gameId);
   
-  // Load custom sound files from site_settings
-  useSlotSoundLoader();
+  // Load custom sound files from site_settings (game-specific)
+  useSlotSoundLoader(gameId);
   const { 
     bonusState, 
     isLoaded: bonusLoaded,

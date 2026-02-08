@@ -5,9 +5,10 @@ import { slotSounds, CustomSoundFiles } from "@/lib/slotSoundEffects";
 /**
  * Hook that loads custom sound files from site_settings and sets them on the slotSounds singleton.
  * Call this once at the top level of the slot machine component.
+ * Pass a gameId to load game-specific sounds (e.g., "rise-of-fedesvin").
  */
-export function useSlotSoundLoader() {
-  const { data: soundFiles, isLoading } = useSlotSoundFiles();
+export function useSlotSoundLoader(gameId: string = "book-of-fedesvin") {
+  const { data: soundFiles, isLoading } = useSlotSoundFiles(gameId);
 
   useEffect(() => {
     if (soundFiles) {

@@ -18,31 +18,53 @@ export interface SlotSoundFiles {
   scatterCelebrationSound: string | null;
 }
 
-const SOUND_KEYS = [
-  "slot_sound_file_background_music",
-  "slot_sound_file_spin",
-  "slot_sound_file_stop",
-  "slot_sound_file_small_win",
-  "slot_sound_file_medium_win",
-  "slot_sound_file_big_win",
-  "slot_sound_file_bonus_trigger",
-  "slot_sound_file_bonus_win",
-  "slot_sound_file_bonus_symbol_scroll",
-  "slot_sound_file_bonus_symbol_selected",
-  "slot_sound_file_scatter_1",
-  "slot_sound_file_scatter_2",
-  "slot_sound_file_scatter_3",
-  "slot_sound_file_scatter_celebration",
-] as const;
+export type SoundSettingKeys = Record<keyof SlotSoundFiles, string>;
 
-export function useSlotSoundFiles() {
+const SOUND_SUFFIXES: Record<keyof SlotSoundFiles, string> = {
+  backgroundMusic: "background_music",
+  spinSound: "spin",
+  stopSound: "stop",
+  smallWinSound: "small_win",
+  mediumWinSound: "medium_win",
+  bigWinSound: "big_win",
+  bonusTriggerSound: "bonus_trigger",
+  bonusWinSound: "bonus_win",
+  bonusSymbolScrollSound: "bonus_symbol_scroll",
+  bonusSymbolSelectedSound: "bonus_symbol_selected",
+  scatterSound1: "scatter_1",
+  scatterSound2: "scatter_2",
+  scatterSound3: "scatter_3",
+  scatterCelebrationSound: "scatter_celebration",
+};
+
+function getPrefix(gameId: string): string {
+  if (gameId === "book-of-fedesvin") return "slot_sound_file_";
+  return `${gameId.replace(/-/g, "_")}_sound_file_`;
+}
+
+export function getSoundSettingKeys(gameId: string = "book-of-fedesvin"): SoundSettingKeys {
+  const prefix = getPrefix(gameId);
+  const keys = {} as SoundSettingKeys;
+  for (const [prop, suffix] of Object.entries(SOUND_SUFFIXES)) {
+    keys[prop as keyof SlotSoundFiles] = `${prefix}${suffix}`;
+  }
+  return keys;
+}
+
+// Backward compatible export for existing admin components
+export const SLOT_SOUND_SETTING_KEYS = getSoundSettingKeys("book-of-fedesvin");
+
+export function useSlotSoundFiles(gameId: string = "book-of-fedesvin") {
+  const settingKeys = getSoundSettingKeys(gameId);
+  const keyValues = Object.values(settingKeys);
+
   return useQuery({
-    queryKey: ["slot-sound-files"],
+    queryKey: ["slot-sound-files", gameId],
     queryFn: async (): Promise<SlotSoundFiles> => {
       const { data, error } = await supabase
         .from("site_settings")
         .select("key, value")
-        .in("key", SOUND_KEYS);
+        .in("key", keyValues);
 
       if (error) throw error;
 
@@ -51,39 +73,11 @@ export function useSlotSoundFiles() {
         settingsMap[s.key] = s.value || null;
       });
 
-      return {
-        backgroundMusic: settingsMap.slot_sound_file_background_music || null,
-        spinSound: settingsMap.slot_sound_file_spin || null,
-        stopSound: settingsMap.slot_sound_file_stop || null,
-        smallWinSound: settingsMap.slot_sound_file_small_win || null,
-        mediumWinSound: settingsMap.slot_sound_file_medium_win || null,
-        bigWinSound: settingsMap.slot_sound_file_big_win || null,
-        bonusTriggerSound: settingsMap.slot_sound_file_bonus_trigger || null,
-        bonusWinSound: settingsMap.slot_sound_file_bonus_win || null,
-        bonusSymbolScrollSound: settingsMap.slot_sound_file_bonus_symbol_scroll || null,
-        bonusSymbolSelectedSound: settingsMap.slot_sound_file_bonus_symbol_selected || null,
-        scatterSound1: settingsMap.slot_sound_file_scatter_1 || null,
-        scatterSound2: settingsMap.slot_sound_file_scatter_2 || null,
-        scatterSound3: settingsMap.slot_sound_file_scatter_3 || null,
-        scatterCelebrationSound: settingsMap.slot_sound_file_scatter_celebration || null,
-      };
+      const result = {} as SlotSoundFiles;
+      for (const [prop, dbKey] of Object.entries(settingKeys)) {
+        result[prop as keyof SlotSoundFiles] = settingsMap[dbKey] || null;
+      }
+      return result;
     },
   });
 }
-
-export const SLOT_SOUND_SETTING_KEYS = {
-  backgroundMusic: "slot_sound_file_background_music",
-  spinSound: "slot_sound_file_spin",
-  stopSound: "slot_sound_file_stop",
-  smallWinSound: "slot_sound_file_small_win",
-  mediumWinSound: "slot_sound_file_medium_win",
-  bigWinSound: "slot_sound_file_big_win",
-  bonusTriggerSound: "slot_sound_file_bonus_trigger",
-  bonusWinSound: "slot_sound_file_bonus_win",
-  bonusSymbolScrollSound: "slot_sound_file_bonus_symbol_scroll",
-  bonusSymbolSelectedSound: "slot_sound_file_bonus_symbol_selected",
-  scatterSound1: "slot_sound_file_scatter_1",
-  scatterSound2: "slot_sound_file_scatter_2",
-  scatterSound3: "slot_sound_file_scatter_3",
-  scatterCelebrationSound: "slot_sound_file_scatter_celebration",
-} as const;
