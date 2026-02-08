@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import { useAuth } from "@/hooks/useAuth";
 import { Button } from "@/components/ui/button";
 import { GameCard } from "@/components/games/GameCard";
-import { Gamepad2, Sparkles } from "lucide-react";
+import { Gamepad2 } from "lucide-react";
 import slotIntroImage from "@/assets/slots/slot-intro-screen.jpg";
 
 const GAMES = [
@@ -13,6 +13,7 @@ const GAMES = [
     image: slotIntroImage,
     href: "/community/slots/book-of-fedesvin",
     status: "active" as const,
+    badge: "POPULÆR",
   },
   {
     id: "coming-soon-1",
@@ -27,7 +28,6 @@ const GAMES = [
 export default function GameLibrary() {
   const { user, loading } = useAuth();
 
-  // Loading state
   if (loading) {
     return (
       <div className="min-h-[calc(100vh-4rem)] relative">
@@ -39,11 +39,11 @@ export default function GameLibrary() {
     );
   }
 
-  // Login prompt
   if (!user) {
     return (
       <div className="min-h-[calc(100vh-4rem)] relative">
         <PageBackground />
+        <GameLibraryHero />
         <div className="container py-16">
           <div className="max-w-md mx-auto text-center space-y-6 bg-card/80 backdrop-blur-sm p-8 rounded-xl border border-amber-500/20">
             <div className="h-20 w-20 mx-auto rounded-full bg-amber-500/20 flex items-center justify-center">
@@ -62,34 +62,31 @@ export default function GameLibrary() {
     );
   }
 
-  // Game library
   return (
     <div className="min-h-[calc(100vh-4rem)] relative">
       <PageBackground />
+      <GameLibraryHero />
       <div className="container py-10 space-y-8">
-        {/* Header */}
-        <div className="text-center space-y-3">
-          <div className="flex items-center justify-center gap-2">
-            <Sparkles className="h-6 w-6 text-amber-500" />
-            <h1 className="text-3xl sm:text-4xl font-bold text-foreground">Spillehal</h1>
-            <Sparkles className="h-6 w-6 text-amber-500" />
-          </div>
-          <p className="text-muted-foreground max-w-lg mx-auto">
-            Vælg et spil og begynd at spille. Optjen point og kæmp om pladserne på ranglisten!
-          </p>
-        </div>
-
         {/* Game grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-4xl mx-auto">
-          {GAMES.map((game) => (
-            <GameCard
+          {GAMES.map((game, index) => (
+            <div
               key={game.id}
-              title={game.title}
-              description={game.description}
-              image={game.image}
-              href={game.href}
-              status={game.status}
-            />
+              className="animate-fade-in"
+              style={{
+                animationDelay: `${index * 150}ms`,
+                animationFillMode: "both",
+              }}
+            >
+              <GameCard
+                title={game.title}
+                description={game.description}
+                image={game.image}
+                href={game.href}
+                status={game.status}
+                badge={game.badge}
+              />
+            </div>
           ))}
         </div>
       </div>
@@ -97,11 +94,59 @@ export default function GameLibrary() {
   );
 }
 
+function GameLibraryHero() {
+  return (
+    <section
+      className="relative overflow-hidden py-14 md:py-20 text-foreground"
+      style={{
+        background: "linear-gradient(135deg, hsl(260 70% 25%), hsl(250 60% 20%) 40%, hsl(210 80% 25%))",
+      }}
+    >
+      <div className="container relative z-10">
+        <div className="mx-auto max-w-2xl text-center space-y-4">
+          <div className="mx-auto mb-4 h-20 w-20 rounded-full bg-amber-500/15 backdrop-blur-sm border border-amber-500/20 flex items-center justify-center">
+            <Gamepad2 className="h-10 w-10 text-amber-400" />
+          </div>
+          <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-white">
+            Spillehal
+          </h1>
+          <p className="text-white/70 text-base md:text-lg max-w-lg mx-auto">
+            Vælg et spil og begynd at spille. Optjen point og kæmp om pladserne på ranglisten!
+          </p>
+        </div>
+      </div>
+      {/* Decorative blur circles */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <div
+          className="absolute -left-10 top-10 h-40 w-40 rounded-full bg-[hsl(210_80%_60%)] opacity-15 blur-2xl"
+          style={{ animation: "float 6s ease-in-out infinite" }}
+        />
+        <div
+          className="absolute -bottom-10 -right-10 h-56 w-56 rounded-full bg-[hsl(260_70%_60%)] opacity-15 blur-2xl"
+          style={{ animation: "float 8s ease-in-out infinite 1s" }}
+        />
+        <div
+          className="absolute left-1/3 top-1/2 h-28 w-28 rounded-full bg-amber-500 opacity-10 blur-2xl"
+          style={{ animation: "float 7s ease-in-out infinite 0.5s" }}
+        />
+      </div>
+      <style>{`
+        @keyframes float {
+          0%, 100% { transform: translateY(0) translateX(0); }
+          25% { transform: translateY(-15px) translateX(5px); }
+          50% { transform: translateY(-8px) translateX(-5px); }
+          75% { transform: translateY(-20px) translateX(3px); }
+        }
+      `}</style>
+    </section>
+  );
+}
+
 function PageBackground() {
   return (
     <>
       <div className="absolute inset-0 bg-gradient-to-b from-background via-background to-background -z-10" />
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-amber-500/5 via-transparent to-transparent -z-10" />
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-amber-500/8 via-transparent to-transparent -z-10" />
     </>
   );
 }

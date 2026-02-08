@@ -10,9 +10,10 @@ interface GameCardProps {
   image: string;
   href: string;
   status: "active" | "coming-soon";
+  badge?: string;
 }
 
-export function GameCard({ title, description, image, href, status }: GameCardProps) {
+export function GameCard({ title, description, image, href, status, badge }: GameCardProps) {
   const isActive = status === "active";
 
   return (
@@ -20,54 +21,75 @@ export function GameCard({ title, description, image, href, status }: GameCardPr
       className={cn(
         "group relative overflow-hidden rounded-xl border border-amber-500/20 bg-card/80 backdrop-blur-sm transition-all duration-300",
         isActive
-          ? "hover:border-amber-500/50 hover:shadow-[0_0_30px_rgba(251,191,36,0.15)] cursor-pointer"
+          ? "hover:border-amber-500/50 hover:shadow-[0_0_30px_rgba(251,191,36,0.15)] hover:scale-[1.02] cursor-pointer"
           : "opacity-60 cursor-default"
       )}
     >
-      {/* Image */}
-      <div className="relative aspect-[16/10] overflow-hidden">
+      {/* Image section with overlay content */}
+      <div className="relative aspect-[16/9] overflow-hidden">
         <img
           src={image}
           alt={title}
           className={cn(
             "h-full w-full object-cover transition-transform duration-500",
-            isActive && "group-hover:scale-105"
+            isActive && "group-hover:scale-110"
           )}
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
 
-        {/* Status badge */}
+        {/* Gradient overlay */}
+        <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent" />
+
+        {/* Shine effect on hover */}
+        {isActive && (
+          <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 overflow-hidden pointer-events-none">
+            <div className="absolute inset-0 -translate-x-full group-hover:animate-shine bg-gradient-to-r from-transparent via-white/10 to-transparent -skew-x-12" />
+          </div>
+        )}
+
+        {/* Badge top-right */}
+        {isActive && badge && (
+          <div className="absolute top-3 right-3 z-10">
+            <Badge className="border-amber-500/30 bg-amber-500/20 text-amber-300 text-xs px-2.5 py-0.5 backdrop-blur-sm">
+              {badge}
+            </Badge>
+          </div>
+        )}
+
+        {/* Coming soon overlay */}
         {!isActive && (
-          <div className="absolute inset-0 flex items-center justify-center bg-black/40">
+          <div className="absolute inset-0 flex items-center justify-center bg-black/50 backdrop-blur-[2px]">
             <Badge className="border-amber-500/30 bg-amber-500/20 text-amber-300 text-sm px-4 py-1.5 gap-1.5">
               <Clock className="h-3.5 w-3.5" />
               Kommer snart
             </Badge>
           </div>
         )}
-      </div>
 
-      {/* Content */}
-      <div className="p-5 space-y-3">
-        <h3 className="text-lg font-bold text-foreground">{title}</h3>
-        <p className="text-sm text-muted-foreground line-clamp-2">{description}</p>
+        {/* Overlaid content at bottom */}
+        <div className="absolute bottom-0 left-0 right-0 p-5 space-y-3">
+          <div>
+            <h3 className="text-lg font-bold text-white">{title}</h3>
+            <p className="text-sm text-white/70 line-clamp-2 mt-1">{description}</p>
+          </div>
 
-        {isActive ? (
-          <Button
-            asChild
-            className="w-full bg-amber-500 hover:bg-amber-600 text-black font-semibold gap-2"
-          >
-            <Link to={href}>
-              <Play className="h-4 w-4" />
-              Spil nu
-            </Link>
-          </Button>
-        ) : (
-          <Button disabled className="w-full gap-2" variant="secondary">
-            <Clock className="h-4 w-4" />
-            Kommer snart
-          </Button>
-        )}
+          {isActive ? (
+            <Button
+              asChild
+              size="sm"
+              className="w-full bg-amber-500 hover:bg-amber-600 text-black font-semibold gap-2"
+            >
+              <Link to={href}>
+                <Play className="h-4 w-4" />
+                Spil nu
+              </Link>
+            </Button>
+          ) : (
+            <Button disabled size="sm" className="w-full gap-2" variant="secondary">
+              <Clock className="h-4 w-4" />
+              Kommer snart
+            </Button>
+          )}
+        </div>
       </div>
     </div>
   );
