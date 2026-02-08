@@ -150,21 +150,72 @@ export function useNotifications() {
   };
 }
 
+interface NotificationWithStats {
+  id: string;
+  title: string | null;
+  message: string;
+  created_at: string;
+  total_users: number;
+  read_count: number;
+  unread_count: number;
+}
+
 // Admin hook for managing notifications
 export function useAdminNotifications() {
   const queryClient = useQueryClient();
 
-  // Fetch all notifications for admin view
-  const { data: notifications = [], isLoading } = useQuery({
-    queryKey: ["admin-notifications"],
+  // Fetch total user count
+  const { data: totalUsers = 0 } = useQuery({
+    queryKey: ["total-users-count"],
     queryFn: async () => {
-      const { data, error } = await supabase
+      const { count, error } = await supabase
+        .from("profiles")
+        .select("*", { count: "exact", head: true });
+
+      if (error) throw error;
+      return count || 0;
+    },
+    staleTime: 60000, // 1 minute
+  });
+
+  // Fetch all notifications with read stats for admin view
+  const { data: notifications = [], isLoading } = useQuery({
+    queryKey: ["admin-notifications", totalUsers],
+    queryFn: async (): Promise<NotificationWithStats[]> => {
+      // Fetch all notifications
+      const { data: allNotifications, error: notifError } = await supabase
         .from("notifications")
         .select("*")
         .order("created_at", { ascending: false });
 
-      if (error) throw error;
-      return data;
+      if (notifError) throw notifError;
+      if (!allNotifications || allNotifications.length === 0) return [];
+
+      // Fetch read counts for each notification
+      const { data: readCounts, error: readError } = await supabase
+        .from("user_notifications")
+        .select("notification_id")
+        .eq("is_read", true);
+
+      if (readError) throw readError;
+
+      // Count reads per notification
+      const readCountMap = new Map<string, number>();
+      (readCounts || []).forEach((item) => {
+        const current = readCountMap.get(item.notification_id) || 0;
+        readCountMap.set(item.notification_id, current + 1);
+      });
+
+      // Map notifications with stats
+      return allNotifications.map((notif) => {
+        const readCount = readCountMap.get(notif.id) || 0;
+        return {
+          ...notif,
+          total_users: totalUsers,
+          read_count: readCount,
+          unread_count: totalUsers - readCount,
+        };
+      });
     },
   });
 
