@@ -140,6 +140,23 @@ export function useProfileRewards() {
         .single();
 
       if (error) throw error;
+
+      // Also add the spins to today's slot_spins record so they're usable immediately
+      const today = new Date().toISOString().split("T")[0];
+      const { data: todaySpins } = await supabase
+        .from("slot_spins")
+        .select("id, spins_remaining")
+        .eq("user_id", user.id)
+        .eq("date", today)
+        .maybeSingle();
+
+      if (todaySpins) {
+        await supabase
+          .from("slot_spins")
+          .update({ spins_remaining: todaySpins.spins_remaining + SPINS_PER_SECTION })
+          .eq("id", todaySpins.id);
+      }
+
       return { data, section, spinsEarned: SPINS_PER_SECTION };
     },
     onSuccess: ({ section, spinsEarned }) => {
