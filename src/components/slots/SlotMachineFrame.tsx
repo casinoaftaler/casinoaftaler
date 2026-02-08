@@ -13,7 +13,7 @@ interface SlotMachineFrameProps {
 // Default frame sizes per game (used when no DB setting exists)
 const GAME_FRAME_DEFAULTS: Record<string, number> = {
   "book-of-fedesvin": 90,
-  "rise-of-fedesvin": 95,
+  "rise-of-fedesvin": 115,
 };
 
 // Per-game vertical offset for the frame IMAGE only (negative = frame moves up, positive = down)
