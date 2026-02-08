@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { useAuth } from "@/hooks/useAuth";
 import { useProfile, ProfileUpdateData } from "@/hooks/useProfile";
 import { useProfileRewards, getSectionCompletionStatus } from "@/hooks/useProfileRewards";
-import { useUserPoints } from "@/hooks/useUserPoints";
+import { useStreamElementsPoints } from "@/hooks/useStreamElementsPoints";
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { ProfileBasicSection } from "@/components/profile/ProfileBasicSection";
@@ -12,15 +12,14 @@ import { ProfileFavoritesSection } from "@/components/profile/ProfileFavoritesSe
 import { ProfilePlayStyleSection } from "@/components/profile/ProfilePlayStyleSection";
 import { ProfilePrivacySection } from "@/components/profile/ProfilePrivacySection";
 import { ProfileRewardsProgress } from "@/components/profile/ProfileRewardsProgress";
-import { PointsBalanceCard } from "@/components/PointsBalanceCard";
-import { Loader2, Save, User, Trophy, Heart, Zap, Shield } from "lucide-react";
+import { Loader2, Save, User, Trophy, Heart, Zap, Shield, Coins } from "lucide-react";
 
 export default function Profile() {
   const navigate = useNavigate();
   const { user, loading: authLoading } = useAuth();
   const { profile, isLoading: profileLoading, updateProfile, isUpdating } = useProfile();
   const { claimReward, checkAndClaimRewards } = useProfileRewards();
-  const { data: pointsData, isLoading: pointsLoading } = useUserPoints(user?.id);
+  const { points: storePoints, isLoading: pointsLoading, hasTwitchUsername } = useStreamElementsPoints();
   
   const [formData, setFormData] = useState({
     display_name: "",
@@ -157,13 +156,24 @@ export default function Profile() {
         </p>
       </div>
 
-      {/* Points Balance */}
-      <PointsBalanceCard
-        points={pointsData?.total_winnings}
-        isLoading={pointsLoading}
-        variant="hero"
-        className="mb-6"
-      />
+      {/* Compact Points Display - Only show if user has Twitch linked */}
+      {hasTwitchUsername && (
+        <div className="mb-6 flex items-center gap-3 rounded-lg border border-border/50 bg-muted/30 px-4 py-3">
+          <div className="flex items-center justify-center rounded-full bg-primary/10 p-2">
+            <Coins className="h-4 w-4 text-primary" />
+          </div>
+          <div className="flex items-center gap-2">
+            <span className="text-sm text-muted-foreground">Butik Points:</span>
+            {pointsLoading ? (
+              <Loader2 className="h-4 w-4 animate-spin text-muted-foreground" />
+            ) : (
+              <span className="font-semibold">
+                {storePoints?.toLocaleString("da-DK") ?? 0}
+              </span>
+            )}
+          </div>
+        </div>
+      )}
 
       {/* Rewards Progress */}
       <ProfileRewardsProgress
