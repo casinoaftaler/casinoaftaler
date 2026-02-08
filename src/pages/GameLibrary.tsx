@@ -4,6 +4,7 @@ import { useSiteSettings } from "@/hooks/useSiteSettings";
 import { Button } from "@/components/ui/button";
 import { GameCard } from "@/components/games/GameCard";
 import { SlotLeaderboard } from "@/components/slots/SlotLeaderboard";
+import { CasinoPromoBanner } from "@/components/games/CasinoPromoBanner";
 import { Gamepad2 } from "lucide-react";
 import slotIntroImage from "@/assets/slots/slot-intro-screen.jpg";
 import bookTitleFallback from "@/assets/slots/book-of-fedesvin-title.png";
@@ -114,6 +115,28 @@ export default function GameLibrary() {
       <PageBackground />
       <GameLibraryHero />
       <div className="container py-10 space-y-8">
+        {/* Promotional banners */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 max-w-4xl mx-auto">
+          <CasinoPromoBanner
+            name="SpilDanskNu"
+            tagline="Dansk Casino"
+            bonusText="Få op til"
+            bonusHighlight="2.000 kr. i bonus + 100 free spins"
+            ctaText="Hent Bonus"
+            href="https://spildansknu.dk"
+            accentColor="green"
+          />
+          <CasinoPromoBanner
+            name="Spilleautomaten"
+            tagline="Nyt Casino"
+            bonusText="100% velkomstbonus op til"
+            bonusHighlight="1.000 kr. + 150 free spins"
+            ctaText="Hent Bonus"
+            href="https://spilleautomaten.dk"
+            accentColor="purple"
+          />
+        </div>
+
         {/* Game grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 max-w-4xl mx-auto">
           {GAMES.map((game, index) => (
