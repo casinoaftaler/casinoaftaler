@@ -53,7 +53,7 @@ export default function RiseOfFedesvin() {
     setLoadingPhase('ready');
   }, []);
   
-  const backgroundImage = siteSettings?.slot_background_image || defaultSlotBackground;
+  const backgroundImage = siteSettings?.rise_of_fedesvin_background_image || siteSettings?.slot_background_image || defaultSlotBackground;
   const topCasino = casinos?.find(c => c.is_active) || null;
 
   useEffect(() => {

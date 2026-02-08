@@ -6,6 +6,7 @@ interface SlotMachineFrameProps {
   children: React.ReactNode;
   isBonus?: boolean;
   isSpinning?: boolean;
+  gameId?: string;
 }
 
 // Calculate responsive frame size based on screen width
@@ -20,7 +21,8 @@ function getEffectiveFrameSize(windowWidth: number, baseSize: number): number {
 export function SlotMachineFrame({ 
   children, 
   isBonus = false, 
-  isSpinning = false 
+  isSpinning = false,
+  gameId = "book-of-fedesvin"
 }: SlotMachineFrameProps) {
   const { data: settings } = useSiteSettings();
   const [imageLoaded, setImageLoaded] = useState(false);
@@ -36,7 +38,9 @@ export function SlotMachineFrame({
     return () => window.removeEventListener('resize', handleResize);
   }, []);
   
-  const frameImageUrl = settings?.slot_machine_frame_image;
+  // Use game-specific frame if available, fallback to global
+  const gamePrefix = gameId === "book-of-fedesvin" ? "" : gameId.replace(/-/g, "_") + "_";
+  const frameImageUrl = (gamePrefix ? settings?.[`${gamePrefix}frame_image`] : null) || settings?.slot_machine_frame_image;
   const baseFrameSize = parseInt(settings?.slot_frame_size || "90", 10);
   const effectiveFrameSize = getEffectiveFrameSize(windowWidth, baseFrameSize);
   const hasFrame = !!frameImageUrl && !imageError;

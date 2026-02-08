@@ -631,7 +631,7 @@ export function SlotGame({ gameId = "book-of-fedesvin" }: SlotGameProps) {
         <div className="p-1 xs:p-2 sm:p-3 md:p-4 space-y-1 sm:space-y-2">
           {/* Slot machine reels with Egyptian frame */}
           <div className="flex justify-center relative">
-            <SlotMachineFrame isBonus={bonusState.isActive} isSpinning={isSpinning}>
+            <SlotMachineFrame isBonus={bonusState.isActive} isSpinning={isSpinning} gameId={gameId}>
               <div className="relative p-1 xs:p-2 sm:p-4 md:p-6 rounded-xl">
                 {/* Win Celebration Effects */}
                 <WinCelebration
