@@ -45,6 +45,7 @@ import { CombinedAnalyticsDashboard } from "@/components/CombinedAnalyticsDashbo
 import { SlotMachineAdminSection } from "@/components/SlotMachineAdminSection";
 import { StorageCleanupSection } from "@/components/StorageCleanupSection";
 import { NotificationsAdminSection } from "@/components/NotificationsAdminSection";
+import { ProfileCompletionStatsCard } from "@/components/ProfileCompletionStatsCard";
 import { ThemeToggle } from "@/components/ThemeToggle";
 import { useQueryClient } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
@@ -991,7 +992,16 @@ function AdminDashboard() {
           {/* Brugere Tab */}
           <TabsContent value="users">
             <div className="space-y-8">
+              {/* Profile Completion Statistics */}
               <div>
+                <div className="mb-6">
+                  <h2 className="text-2xl font-bold">Profilfuldførelse</h2>
+                  <p className="text-muted-foreground">Oversigt over brugerprofilers fuldførelsesgrad.</p>
+                </div>
+                <ProfileCompletionStatsCard />
+              </div>
+
+              <div className="pt-4 border-t border-border">
                 <div className="mb-6">
                   <h2 className="text-2xl font-bold">Admin Brugere</h2>
                   <p className="text-muted-foreground">Opret og administrer admin brugere.</p>
