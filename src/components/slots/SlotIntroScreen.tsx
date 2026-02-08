@@ -29,10 +29,11 @@ export function SlotIntroScreen({ onStart, gameId = "book-of-fedesvin" }: SlotIn
 
   const isWizard = gameId === "rise-of-fedesvin";
 
-  // Start background music when intro screen opens
+  // Set game ID and start background music when intro screen opens
   useEffect(() => {
+    slotSounds.setGameId(gameId);
     slotSounds.startMusic();
-  }, []);
+  }, [gameId]);
 
   return (
     <div className="min-h-[calc(100vh-4rem)] relative flex flex-col items-center justify-center px-4">
