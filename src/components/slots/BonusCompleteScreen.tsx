@@ -3,6 +3,7 @@ import { cn } from "@/lib/utils";
 import { useAnimatedCounter } from "@/hooks/useAnimatedCounter";
 import type { SlotSymbol } from "@/lib/slotGameLogic";
 import { getSymbolEmoji } from "@/lib/slotGameLogic";
+import { getSlotTheme } from "@/lib/slotTheme";
 
 interface BonusCompleteScreenProps {
   isVisible: boolean;
@@ -11,6 +12,7 @@ interface BonusCompleteScreenProps {
   expandingSymbols?: SlotSymbol[];
   scatterImageUrl?: string | null;
   onClose?: () => void;
+  gameId?: string;
 }
 
 interface Particle {
@@ -22,7 +24,8 @@ interface Particle {
   size: number;
 }
 
-const PARTICLE_EMOJIS = ["✨", "⭐", "🌟", "💫", "🪙", "☀️", "🔱", "☥"];
+const EGYPTIAN_EMOJIS = ["✨", "⭐", "🌟", "💫", "🪙", "☀️", "🔱", "☥"];
+const WIZARD_EMOJIS = ["✨", "⭐", "🌟", "💫", "🔮", "💎", "🧿", "⚡"];
 
 export function BonusCompleteScreen({
   isVisible,
@@ -31,7 +34,12 @@ export function BonusCompleteScreen({
   expandingSymbols = [],
   scatterImageUrl,
   onClose,
+  gameId,
 }: BonusCompleteScreenProps) {
+  const theme = getSlotTheme(gameId);
+  const isWizard = gameId === "rise-of-fedesvin";
+  const particleEmojis = isWizard ? WIZARD_EMOJIS : EGYPTIAN_EMOJIS;
+
   const [showContent, setShowContent] = useState(false);
   const [showCounter, setShowCounter] = useState(false);
 
@@ -53,19 +61,17 @@ export function BonusCompleteScreen({
     return Array.from({ length: count }, (_, i) => ({
       id: i,
       x: Math.random() * 100,
-      emoji: PARTICLE_EMOJIS[Math.floor(Math.random() * PARTICLE_EMOJIS.length)],
+      emoji: particleEmojis[Math.floor(Math.random() * particleEmojis.length)],
       delay: Math.random() * 2,
       duration: 3 + Math.random() * 3,
       size: 16 + Math.random() * 16,
     }));
-  }, [isVisible]);
+  }, [isVisible, particleEmojis]);
 
   // Staggered animation reveal
   useEffect(() => {
     if (isVisible) {
-      // Show content after overlay fades in
       const contentTimer = setTimeout(() => setShowContent(true), 300);
-      // Start counter after content appears
       const counterTimer = setTimeout(() => setShowCounter(true), 800);
       
       return () => {
@@ -110,12 +116,11 @@ export function BonusCompleteScreen({
         ))}
       </div>
 
-      {/* Golden glow effect behind card */}
+      {/* Glow effect behind card */}
       <div 
         className={cn(
-          "absolute w-[500px] h-[500px] rounded-full",
-          "bg-amber-500/20 blur-3xl",
-          "animate-pulse"
+          "absolute w-[500px] h-[500px] rounded-full animate-pulse",
+          theme.bgAccent, "blur-3xl"
         )}
       />
 
@@ -123,45 +128,45 @@ export function BonusCompleteScreen({
       <div
         className={cn(
           "relative p-6 sm:p-10 rounded-2xl text-center max-w-sm sm:max-w-md mx-4",
-          "bg-gradient-to-b from-amber-950/95 to-amber-900/90",
-          "border-4 border-amber-400/70",
-          "shadow-[0_0_60px_rgba(251,191,36,0.4)]",
+          theme.dialogBg,
+          "border-4", theme.frameBorderColor, "border-opacity-70",
+          theme.dialogShadow,
           showContent
             ? "animate-in zoom-in-95 duration-500"
             : "opacity-0 scale-95"
         )}
         onClick={(e) => e.stopPropagation()}
       >
-        {/* Decorative Egyptian corners */}
-        <div className="absolute -top-4 -left-4 w-12 h-12 border-t-4 border-l-4 border-amber-400 rounded-tl-xl" />
-        <div className="absolute -top-4 -right-4 w-12 h-12 border-t-4 border-r-4 border-amber-400 rounded-tr-xl" />
-        <div className="absolute -bottom-4 -left-4 w-12 h-12 border-b-4 border-l-4 border-amber-400 rounded-bl-xl" />
-        <div className="absolute -bottom-4 -right-4 w-12 h-12 border-b-4 border-r-4 border-amber-400 rounded-br-xl" />
+        {/* Decorative corners */}
+        <div className={cn("absolute -top-4 -left-4 w-12 h-12 border-t-4 border-l-4 rounded-tl-xl", theme.frameBorderColor)} />
+        <div className={cn("absolute -top-4 -right-4 w-12 h-12 border-t-4 border-r-4 rounded-tr-xl", theme.frameBorderColor)} />
+        <div className={cn("absolute -bottom-4 -left-4 w-12 h-12 border-b-4 border-l-4 rounded-bl-xl", theme.frameBorderColor)} />
+        <div className={cn("absolute -bottom-4 -right-4 w-12 h-12 border-b-4 border-r-4 rounded-br-xl", theme.frameBorderColor)} />
 
-        {/* Corner decorations - Egyptian symbols */}
+        {/* Corner decorations - themed symbols */}
         <span 
           className="absolute top-2 left-3 text-2xl opacity-60"
           style={{ animation: "sparkle 2s ease-in-out infinite" }}
         >
-          ☥
+          {isWizard ? "🔮" : "☥"}
         </span>
         <span 
           className="absolute top-2 right-3 text-2xl opacity-60"
           style={{ animation: "sparkle 2s ease-in-out 0.5s infinite" }}
         >
-          ☥
+          {isWizard ? "🔮" : "☥"}
         </span>
         <span 
           className="absolute bottom-2 left-3 text-2xl opacity-60"
           style={{ animation: "sparkle 2s ease-in-out 1s infinite" }}
         >
-          🪲
+          {isWizard ? "💎" : "🪲"}
         </span>
         <span 
           className="absolute bottom-2 right-3 text-2xl opacity-60"
           style={{ animation: "sparkle 2s ease-in-out 1.5s infinite" }}
         >
-          🪲
+          {isWizard ? "💎" : "🪲"}
         </span>
 
         {/* Scatter symbol celebration */}
@@ -170,7 +175,10 @@ export function BonusCompleteScreen({
             <img 
               src={scatterImageUrl} 
               alt="Scatter" 
-              className="w-20 h-20 sm:w-24 sm:h-24 object-cover rounded-lg inline-block shadow-[0_0_30px_rgba(251,191,36,0.6)]"
+              className={cn(
+                "w-20 h-20 sm:w-24 sm:h-24 object-cover rounded-lg inline-block",
+                theme.dropShadowGlowStrong
+              )}
               style={{ animation: "sparkle 1.5s ease-in-out infinite" }}
             />
           ) : (
@@ -186,14 +194,13 @@ export function BonusCompleteScreen({
         {/* Title - TILLYKKE! */}
         <h2 
           className={cn(
-            "text-4xl sm:text-5xl font-bold mb-2",
-            "bg-gradient-to-r from-amber-300 via-amber-400 to-amber-300 bg-clip-text text-transparent",
+            "text-4xl sm:text-5xl font-bold mb-2 bg-clip-text text-transparent",
+            isWizard
+              ? "bg-gradient-to-r from-purple-300 via-purple-400 to-purple-300"
+              : "bg-gradient-to-r from-amber-300 via-amber-400 to-amber-300",
             showContent ? "animate-in zoom-in duration-400" : "opacity-0"
           )}
-          style={{
-            textShadow: "0 0 30px rgba(251,191,36,0.6)",
-            animationDelay: "200ms",
-          }}
+          style={{ animationDelay: "200ms" }}
         >
           TILLYKKE!
         </h2>
@@ -201,7 +208,7 @@ export function BonusCompleteScreen({
         {/* Subtitle */}
         <p 
           className={cn(
-            "text-lg sm:text-xl text-amber-100/90 mb-6",
+            "text-lg sm:text-xl text-white/90 mb-6",
             showContent ? "animate-in fade-in duration-300" : "opacity-0"
           )}
           style={{ animationDelay: "400ms" }}
@@ -212,36 +219,39 @@ export function BonusCompleteScreen({
         {/* Winnings display */}
         <div 
           className={cn(
-            "py-4 px-6 rounded-xl mb-4",
-            "bg-gradient-to-r from-amber-900/50 via-amber-800/60 to-amber-900/50",
-            "border-2 border-amber-500/50"
+            "py-4 px-6 rounded-xl mb-4 border-2",
+            isWizard
+              ? "bg-gradient-to-r from-purple-900/50 via-purple-800/60 to-purple-900/50 border-purple-500/50"
+              : "bg-gradient-to-r from-amber-900/50 via-amber-800/60 to-amber-900/50 border-amber-500/50"
           )}
         >
           <div 
-            className="text-5xl sm:text-6xl font-bold text-amber-400"
+            className={cn("text-5xl sm:text-6xl font-bold", theme.accent)}
             style={{
-              textShadow: "0 0 20px rgba(251,191,36,0.8), 0 0 40px rgba(251,191,36,0.4)",
               animation: showCounter ? "glow-pulse 2s ease-in-out infinite" : "none",
             }}
           >
             {displayWinnings.toLocaleString("da-DK")}
           </div>
-          <p className="text-amber-200/70 text-sm mt-1">point</p>
+          <p className="text-white/50 text-sm mt-1">point</p>
         </div>
 
         {/* Free spins used */}
-        <p className="text-amber-100/80 text-base sm:text-lg mb-2">
-          I <span className="text-amber-400 font-bold text-xl">{totalSpinsUsed}</span> GRATIS SPINS
+        <p className="text-white/80 text-base sm:text-lg mb-2">
+          I <span className={cn("font-bold text-xl", theme.accent)}>{totalSpinsUsed}</span> GRATIS SPINS
         </p>
 
         {/* Expanding symbols used */}
         {expandingSymbols.length > 0 && (
           <div className="flex items-center justify-center gap-1.5 mb-6">
-            <span className="text-amber-200/60 text-sm mr-1">Expanding:</span>
+            <span className="text-white/40 text-sm mr-1">Expanding:</span>
             {expandingSymbols.map((sym) => (
               <div
                 key={sym.id}
-                className="flex items-center gap-1 px-1.5 py-0.5 bg-amber-800/40 rounded-lg border border-amber-500/30"
+                className={cn(
+                  "flex items-center gap-1 px-1.5 py-0.5 rounded-lg border",
+                  theme.bgAccent, theme.borderAccent
+                )}
               >
                 {sym.image_url ? (
                   <img
@@ -260,9 +270,7 @@ export function BonusCompleteScreen({
         {expandingSymbols.length === 0 && <div className="mb-6" />}
 
         {/* Call to action */}
-        <p 
-          className="text-amber-200/50 text-sm animate-pulse"
-        >
+        <p className="text-white/40 text-sm animate-pulse">
           Klik for at fortsætte
         </p>
       </div>

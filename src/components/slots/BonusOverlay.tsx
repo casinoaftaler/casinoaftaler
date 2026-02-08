@@ -3,6 +3,7 @@ import type { SlotSymbol } from "@/lib/slotGameLogic";
 import { getSymbolEmoji } from "@/lib/slotGameLogic";
 import { BonusCompleteScreen } from "./BonusCompleteScreen";
 import { BonusSymbolPicker } from "./BonusSymbolPicker";
+import { getSlotTheme } from "@/lib/slotTheme";
 
 interface BonusOverlayProps {
   isVisible: boolean;
@@ -15,6 +16,7 @@ interface BonusOverlayProps {
   totalFreeSpins?: number;
   newRetriggerSymbol?: SlotSymbol | null;
   onClose?: () => void;
+  gameId?: string;
 }
 
 export function BonusOverlay({
@@ -28,7 +30,9 @@ export function BonusOverlay({
   totalFreeSpins = 0,
   newRetriggerSymbol,
   onClose,
+  gameId,
 }: BonusOverlayProps) {
+  const theme = getSlotTheme(gameId);
   // Find the scatter symbol for display
   const scatterSymbol = allSymbols.find(s => s.is_scatter);
   
@@ -42,6 +46,7 @@ export function BonusOverlay({
         expandingSymbols={expandingSymbols}
         scatterImageUrl={scatterSymbol?.image_url || null}
         onClose={onClose}
+        gameId={gameId}
       />
     );
   }
@@ -60,19 +65,18 @@ export function BonusOverlay({
       <div
         className={cn(
           "relative p-8 rounded-2xl text-center max-w-md mx-4",
-          // Egyptian gold theme matching BonusStatusBar and controls
-          "bg-gradient-to-b from-amber-950/95 via-amber-900/90 to-amber-950/95 backdrop-blur",
-          "border-2 border-amber-600/50",
-          "shadow-[0_0_40px_rgba(251,191,36,0.4),0_8px_32px_rgba(0,0,0,0.6)]",
+          theme.dialogBg, "backdrop-blur",
+          theme.dialogBorder,
+          theme.dialogShadow,
           "animate-in zoom-in-95 duration-500"
         )}
         onClick={(e) => e.stopPropagation()}
       >
         {/* Decorative corners */}
-        <div className="absolute -top-3 -left-3 w-8 h-8 border-t-4 border-l-4 border-amber-400/70 rounded-tl-xl" />
-        <div className="absolute -top-3 -right-3 w-8 h-8 border-t-4 border-r-4 border-amber-400/70 rounded-tr-xl" />
-        <div className="absolute -bottom-3 -left-3 w-8 h-8 border-b-4 border-l-4 border-amber-400/70 rounded-bl-xl" />
-        <div className="absolute -bottom-3 -right-3 w-8 h-8 border-b-4 border-r-4 border-amber-400/70 rounded-br-xl" />
+        <div className={cn("absolute -top-3 -left-3 w-8 h-8 border-t-4 border-l-4 rounded-tl-xl", theme.frameBorderColor, "opacity-70")} />
+        <div className={cn("absolute -top-3 -right-3 w-8 h-8 border-t-4 border-r-4 rounded-tr-xl", theme.frameBorderColor, "opacity-70")} />
+        <div className={cn("absolute -bottom-3 -left-3 w-8 h-8 border-b-4 border-l-4 rounded-bl-xl", theme.frameBorderColor, "opacity-70")} />
+        <div className={cn("absolute -bottom-3 -right-3 w-8 h-8 border-b-4 border-r-4 rounded-br-xl", theme.frameBorderColor, "opacity-70")} />
 
         {type === "trigger" ? (
           <>
@@ -82,16 +86,19 @@ export function BonusOverlay({
                 <img 
                   src={scatterSymbol.image_url} 
                   alt="Scatter" 
-                  className="w-20 h-20 object-cover rounded-lg animate-bounce inline-block shadow-[0_0_20px_rgba(251,191,36,0.5)]"
+                  className={cn(
+                    "w-20 h-20 object-cover rounded-lg animate-bounce inline-block",
+                    theme.dropShadowGlowStrong
+                  )}
                 />
               ) : (
                 <span className="text-6xl animate-bounce inline-block">📖</span>
               )}
             </div>
-            <h2 className="text-3xl sm:text-4xl font-bold text-amber-300 mb-2 animate-pulse">
+            <h2 className={cn("text-3xl sm:text-4xl font-bold mb-2 animate-pulse", theme.accentLight)}>
               BONUS AKTIVERET!
             </h2>
-            <p className="text-xl text-amber-100 mb-6">
+            <p className="text-xl text-white/90 mb-6">
               10 GRATIS SPINS!
             </p>
             
@@ -101,6 +108,7 @@ export function BonusOverlay({
               symbols={allSymbols}
               selectedSymbol={expandingSymbol || null}
               onComplete={() => onClose?.()}
+              gameId={gameId}
             />
           </>
         ) : type === "retrigger" ? (
@@ -111,55 +119,58 @@ export function BonusOverlay({
                 <img 
                   src={newRetriggerSymbol.image_url} 
                   alt={newRetriggerSymbol.name} 
-                  className="w-20 h-20 object-cover rounded-lg animate-bounce inline-block shadow-[0_0_20px_rgba(251,191,36,0.5)]"
+                  className={cn("w-20 h-20 object-cover rounded-lg animate-bounce inline-block", theme.dropShadowGlowStrong)}
                 />
               ) : scatterSymbol?.image_url ? (
                 <img 
                   src={scatterSymbol.image_url} 
                   alt="Scatter" 
-                  className="w-20 h-20 object-cover rounded-lg animate-bounce inline-block shadow-[0_0_20px_rgba(251,191,36,0.5)]"
+                  className={cn("w-20 h-20 object-cover rounded-lg animate-bounce inline-block", theme.dropShadowGlowStrong)}
                 />
               ) : (
                 <span className="text-6xl animate-bounce inline-block">📖</span>
               )}
             </div>
-            <h2 className="text-3xl sm:text-4xl font-bold text-amber-300 mb-2 animate-pulse">
+            <h2 className={cn("text-3xl sm:text-4xl font-bold mb-2 animate-pulse", theme.accentLight)}>
               RETRIGGER!
             </h2>
             
             {/* Show new expanding symbol if Rise of Fedesvin */}
             {newRetriggerSymbol ? (
               <div className="mb-4">
-                <p className="text-lg text-amber-100 mb-2">NYT EXPANDING SYMBOL!</p>
-                <div className="inline-flex items-center gap-2 px-4 py-2 bg-black/30 rounded-xl border border-amber-500/40">
+                <p className="text-lg text-white/90 mb-2">NYT EXPANDING SYMBOL!</p>
+                <div className={cn(
+                  "inline-flex items-center gap-2 px-4 py-2 bg-black/30 rounded-xl border",
+                  theme.borderAccent
+                )}>
                   {newRetriggerSymbol.image_url ? (
                     <img 
                       src={newRetriggerSymbol.image_url} 
                       alt={newRetriggerSymbol.name} 
-                      className="w-10 h-10 object-contain drop-shadow-[0_0_8px_rgba(251,191,36,0.5)]"
+                      className={cn("w-10 h-10 object-contain", theme.dropShadowGlowStrong)}
                     />
                   ) : (
                     <span className="text-2xl">{getSymbolEmoji(newRetriggerSymbol.name)}</span>
                   )}
-                  <span className="text-xl font-bold text-amber-300">{newRetriggerSymbol.name}</span>
+                  <span className={cn("text-xl font-bold", theme.accentLight)}>{newRetriggerSymbol.name}</span>
                 </div>
               </div>
             ) : (
-              <p className="text-xl text-amber-100 mb-4">
+              <p className="text-xl text-white/90 mb-4">
                 +{retriggerSpins} GRATIS SPINS!
               </p>
             )}
             
             <div className="mt-4 p-4 bg-black/30 rounded-xl">
-              <p className="text-amber-200 mb-2">
+              <p className="text-white/80 mb-2">
                 {newRetriggerSymbol ? `+${retriggerSpins} Gratis Spins` : "Total Free Spins:"}
               </p>
-              <div className="text-4xl font-bold text-amber-400">
+              <div className={cn("text-4xl font-bold", theme.accent, theme.dropShadowGlowStrong)}>
                 {totalFreeSpins}
               </div>
             </div>
 
-            <p className="text-amber-200/60 text-sm mt-6">
+            <p className="text-white/40 text-sm mt-6">
               Klik for at fortsætte
             </p>
           </>
