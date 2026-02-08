@@ -262,42 +262,61 @@ function applyExpandingSymbol(
 }
 
 // Multi-expanding symbol (Rise of Fedesvin)
-// Each expanding symbol is checked independently. A reel expands if it contains
-// ANY of the expanding symbols. When a reel expands, ALL cells become the symbol
-// that was found in that reel. If multiple expanding symbols appear in the same
-// reel, the one with the highest multiplier_5 is chosen.
+// Each expanding symbol is evaluated INDEPENDENTLY based on its rarity:
+// - Premium symbols expand if they appear on 2+ reels
+// - Common symbols expand if they appear on 3+ reels
+// If multiple qualifying symbols appear on the same reel, the one with the
+// highest multiplier_5 is chosen to fill that reel.
 function applyMultiExpandingSymbols(
   grid: string[][],
   expandingSymbols: SlotSymbol[],
 ): { expandedGrid: string[][]; expandedReels: number[]; expandedSymbolMap: Map<number, SlotSymbol> } {
   const expandedGrid = grid.map((col) => [...col]);
-  const expandedReels: number[] = [];
   const expandedSymbolMap = new Map<number, SlotSymbol>();
 
-  // For each reel, check if any expanding symbol is present
-  for (let col = 0; col < 5; col++) {
-    const foundSymbols: SlotSymbol[] = [];
-    for (const expSym of expandingSymbols) {
+  // Step 1: For each expanding symbol, find which reels contain it
+  const symbolReelPresence = new Map<string, number[]>();
+  for (const expSym of expandingSymbols) {
+    const reelsWithSymbol: number[] = [];
+    for (let col = 0; col < 5; col++) {
       if (grid[col].some((id) => id === expSym.id)) {
-        foundSymbols.push(expSym);
+        reelsWithSymbol.push(col);
       }
     }
-    if (foundSymbols.length > 0) {
-      // Pick the best symbol (highest multiplier_5) to fill the reel
-      const bestSymbol = foundSymbols.reduce((best, s) =>
-        s.multiplier_5 > best.multiplier_5 ? s : best
-      );
-      expandedReels.push(col);
-      expandedSymbolMap.set(col, bestSymbol);
+    symbolReelPresence.set(expSym.id, reelsWithSymbol);
+  }
+
+  // Step 2: Determine which symbols qualify for expansion based on rarity
+  const qualifyingExpansions = new Map<number, SlotSymbol[]>(); // reel -> qualifying symbols
+  for (const expSym of expandingSymbols) {
+    const reels = symbolReelPresence.get(expSym.id) || [];
+    const minReels = expSym.rarity === "premium" ? 2 : 3;
+    
+    if (reels.length >= minReels) {
+      // This symbol qualifies - mark all its reels
+      for (const col of reels) {
+        const existing = qualifyingExpansions.get(col) || [];
+        existing.push(expSym);
+        qualifyingExpansions.set(col, existing);
+      }
     }
   }
 
-  // Determine if we should expand: we need enough reels for ANY single symbol
-  // For multi-expanding: we always expand if at least 2 reels have expanding symbols
-  // (since the mechanic is inherently more powerful)
-  const minReelsForExpand = 2;
+  // Step 3: For each reel that has qualifying expansions, pick the best symbol
+  const expandedReels: number[] = [];
+  for (const [col, qualifyingSymbols] of qualifyingExpansions.entries()) {
+    // Pick the symbol with the highest multiplier_5
+    const bestSymbol = qualifyingSymbols.reduce((best, s) =>
+      s.multiplier_5 > best.multiplier_5 ? s : best
+    );
+    expandedReels.push(col);
+    expandedSymbolMap.set(col, bestSymbol);
+  }
 
-  if (expandedReels.length >= minReelsForExpand) {
+  // Sort expanded reels for consistent ordering
+  expandedReels.sort((a, b) => a - b);
+
+  if (expandedReels.length > 0) {
     for (const col of expandedReels) {
       const sym = expandedSymbolMap.get(col)!;
       for (let row = 0; row < 3; row++) {
