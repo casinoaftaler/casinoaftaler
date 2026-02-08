@@ -1,27 +1,41 @@
 import { Link } from "react-router-dom";
 import { useAuth } from "@/hooks/useAuth";
+import { useSiteSettings } from "@/hooks/useSiteSettings";
 import { Button } from "@/components/ui/button";
 import { GameCard } from "@/components/games/GameCard";
 import { Gamepad2 } from "lucide-react";
 import slotIntroImage from "@/assets/slots/slot-intro-screen.jpg";
-import bookTitle from "@/assets/slots/book-of-fedesvin-title.png";
-import riseTitle from "@/assets/slots/rise/title-logo.png";
+import bookTitleFallback from "@/assets/slots/book-of-fedesvin-title.png";
+import riseTitleFallback from "@/assets/slots/rise/title-logo.png";
 import riseIntroImage from "@/assets/slots/rise/intro-screen.jpg";
 import leFedesvinImage from "@/assets/slots/le-fedesvin-preview.jpg";
-import leFedesvinTitle from "@/assets/slots/le-fedesvin-title.png";
+import leFedesvinTitleFallback from "@/assets/slots/le-fedesvin-title.png";
 import olympusImage from "@/assets/slots/fedesvin-of-olympus-preview.jpg";
-import olympusTitle from "@/assets/slots/fedesvin-of-olympus-title.png";
+import olympusTitleFallback from "@/assets/slots/fedesvin-of-olympus-title.png";
 
-const GAMES = [
+interface GameDef {
+  id: string;
+  title: string;
+  description: string;
+  image: string;
+  href: string;
+  status: "active" | "coming-soon";
+  badge?: string;
+  titleSettingsKey: string;
+  titleFallback: string;
+}
+
+const GAMES: GameDef[] = [
   {
     id: "book-of-fedesvin",
     title: "Book of Fedesvin",
     description: "Udforsk de gamle egyptiske skatte i denne spændende spillemaskine med expanding symbols og free spins.",
     image: slotIntroImage,
     href: "/community/slots/book-of-fedesvin",
-    status: "active" as const,
+    status: "active",
     badge: "POPULÆR",
-    titleLogo: bookTitle,
+    titleSettingsKey: "slot_title_image",
+    titleFallback: bookTitleFallback,
   },
   {
     id: "rise-of-fedesvin",
@@ -29,9 +43,10 @@ const GAMES = [
     description: "Merlins magi venter! Multi-expanding symbols i bonusrunden – jo flere retriggers, jo flere aktive symboler!",
     image: riseIntroImage,
     href: "/community/slots/rise-of-fedesvin",
-    status: "active" as const,
+    status: "active",
     badge: "NY",
-    titleLogo: riseTitle,
+    titleSettingsKey: "rise_of_fedesvin_title_image",
+    titleFallback: riseTitleFallback,
   },
   {
     id: "le-fedesvin",
@@ -39,8 +54,9 @@ const GAMES = [
     description: "Oplev den franske elegance med roulette-inspirerede bonusrunder og luksuriøse gevinster i Parisisk stil.",
     image: leFedesvinImage,
     href: "#",
-    status: "coming-soon" as const,
-    titleLogo: leFedesvinTitle,
+    status: "coming-soon",
+    titleSettingsKey: "le_fedesvin_title_image",
+    titleFallback: leFedesvinTitleFallback,
   },
   {
     id: "fedesvin-of-olympus",
@@ -48,12 +64,14 @@ const GAMES = [
     description: "Besteg Olympen og vind gudernes gunst! Cascading wins og multiplicerende lyn-gevinster venter.",
     image: olympusImage,
     href: "#",
-    status: "coming-soon" as const,
-    titleLogo: olympusTitle,
+    status: "coming-soon",
+    titleSettingsKey: "fedesvin_of_olympus_title_image",
+    titleFallback: olympusTitleFallback,
   },
 ];
 
 export default function GameLibrary() {
+  const { data: siteSettings } = useSiteSettings();
   const { user, loading } = useAuth();
 
   if (loading) {
@@ -113,7 +131,7 @@ export default function GameLibrary() {
                 href={game.href}
                 status={game.status}
                 badge={game.badge}
-                titleLogo={game.titleLogo}
+                titleLogo={siteSettings?.[game.titleSettingsKey] || game.titleFallback}
               />
             </div>
           ))}
