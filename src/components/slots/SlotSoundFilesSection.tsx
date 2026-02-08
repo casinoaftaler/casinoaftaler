@@ -2,11 +2,23 @@ import { useState, useEffect } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
 import { SlotSoundUpload } from "./SlotSoundUpload";
-import { useSlotSoundFiles, SLOT_SOUND_SETTING_KEYS, type SlotSoundFiles } from "@/hooks/useSlotSoundFiles";
+import { useSlotSoundFiles, getSoundSettingKeys, type SlotSoundFiles } from "@/hooks/useSlotSoundFiles";
 import { Loader2, FileAudio, ChevronDown, Music, Volume2, Coins, Trophy, Crown, Sparkles, Cat } from "lucide-react";
 
-export function SlotSoundFilesSection() {
-  const { data: soundFiles, isLoading } = useSlotSoundFiles();
+interface SlotSoundFilesSectionProps {
+  gameId?: string;
+}
+
+const GAME_LABELS: Record<string, string> = {
+  "book-of-fedesvin": "Book of Fedesvin",
+  "rise-of-fedesvin": "Rise of Fedesvin",
+};
+
+export function SlotSoundFilesSection({ gameId = "book-of-fedesvin" }: SlotSoundFilesSectionProps) {
+  const { data: soundFiles, isLoading } = useSlotSoundFiles(gameId);
+  const settingKeys = getSoundSettingKeys(gameId);
+  const gameName = GAME_LABELS[gameId] || gameId;
+
   const [localFiles, setLocalFiles] = useState<SlotSoundFiles>({
     backgroundMusic: null,
     spinSound: null,
@@ -51,7 +63,7 @@ export function SlotSoundFilesSection() {
           <CardHeader className="flex flex-row items-center justify-between cursor-pointer hover:bg-muted/50 transition-colors [&[data-state=open]>svg]:rotate-180">
             <CardTitle className="flex items-center gap-2">
               <FileAudio className="h-5 w-5 text-purple-500" />
-              Brugerdefinerede Lydfiler
+              Brugerdefinerede Lydfiler — {gameName}
             </CardTitle>
             <ChevronDown className="h-5 w-5 transition-transform duration-200" />
           </CardHeader>
@@ -59,7 +71,7 @@ export function SlotSoundFilesSection() {
         <CollapsibleContent>
           <CardContent className="space-y-6">
             <p className="text-sm text-muted-foreground">
-              Upload dine egne lydfiler til at erstatte de genererede lyde. 
+              Upload dine egne lydfiler til <strong>{gameName}</strong>. 
               Understøttede formater: MP3, WAV, OGG, WebM (maks 5MB).
             </p>
 
@@ -73,7 +85,7 @@ export function SlotSoundFilesSection() {
                 <SlotSoundUpload
                   label="Baggrundsmusik"
                   description="Loopende musik der afspilles under spil. Anbefalet: 30-120 sekunder."
-                  settingKey={SLOT_SOUND_SETTING_KEYS.backgroundMusic}
+                  settingKey={settingKeys.backgroundMusic}
                   currentUrl={localFiles.backgroundMusic}
                   onUrlChange={handleUrlChange("backgroundMusic")}
                 />
@@ -90,14 +102,14 @@ export function SlotSoundFilesSection() {
                 <SlotSoundUpload
                   label="Spinning Lyd"
                   description="Afspilles mens hjulene snurrer. Anbefalet: kort loop eller 2-3 sekunder."
-                  settingKey={SLOT_SOUND_SETTING_KEYS.spinSound}
+                  settingKey={settingKeys.spinSound}
                   currentUrl={localFiles.spinSound}
                   onUrlChange={handleUrlChange("spinSound")}
                 />
                 <SlotSoundUpload
                   label="Stop Lyd"
                   description="Afspilles når et hjul stopper. Anbefalet: kort impact lyd (0.5-1 sekund)."
-                  settingKey={SLOT_SOUND_SETTING_KEYS.stopSound}
+                  settingKey={settingKeys.stopSound}
                   currentUrl={localFiles.stopSound}
                   onUrlChange={handleUrlChange("stopSound")}
                 />
@@ -114,21 +126,21 @@ export function SlotSoundFilesSection() {
                 <SlotSoundUpload
                   label="Lille Gevinst"
                   description="Afspilles ved små gevinster (2-3 matchende symboler)."
-                  settingKey={SLOT_SOUND_SETTING_KEYS.smallWinSound}
+                  settingKey={settingKeys.smallWinSound}
                   currentUrl={localFiles.smallWinSound}
                   onUrlChange={handleUrlChange("smallWinSound")}
                 />
                 <SlotSoundUpload
                   label="Medium Gevinst"
                   description="Afspilles ved medium gevinster (4 matchende symboler)."
-                  settingKey={SLOT_SOUND_SETTING_KEYS.mediumWinSound}
+                  settingKey={settingKeys.mediumWinSound}
                   currentUrl={localFiles.mediumWinSound}
                   onUrlChange={handleUrlChange("mediumWinSound")}
                 />
                 <SlotSoundUpload
                   label="Stor Gevinst"
                   description="Afspilles ved store gevinster (5 matchende eller høj multiplikator)."
-                  settingKey={SLOT_SOUND_SETTING_KEYS.bigWinSound}
+                  settingKey={settingKeys.bigWinSound}
                   currentUrl={localFiles.bigWinSound}
                   onUrlChange={handleUrlChange("bigWinSound")}
                 />
@@ -145,35 +157,35 @@ export function SlotSoundFilesSection() {
                 <SlotSoundUpload
                   label="Bonus Trigger"
                   description="Afspilles når bonus-rundens aktiveres (3+ scatter symboler)."
-                  settingKey={SLOT_SOUND_SETTING_KEYS.bonusTriggerSound}
+                  settingKey={settingKeys.bonusTriggerSound}
                   currentUrl={localFiles.bonusTriggerSound}
                   onUrlChange={handleUrlChange("bonusTriggerSound")}
                 />
                 <SlotSoundUpload
                   label="Scatter Celebration"
                   description="Afspilles under scatter celebration (pulserende symboler) før bonus-skærmen vises."
-                  settingKey={SLOT_SOUND_SETTING_KEYS.scatterCelebrationSound}
+                  settingKey={settingKeys.scatterCelebrationSound}
                   currentUrl={localFiles.scatterCelebrationSound}
                   onUrlChange={handleUrlChange("scatterCelebrationSound")}
                 />
                 <SlotSoundUpload
                   label="Symbol Scroll"
                   description="Afspilles mens symbolerne scroller på bonus trigger skærmen."
-                  settingKey={SLOT_SOUND_SETTING_KEYS.bonusSymbolScrollSound}
+                  settingKey={settingKeys.bonusSymbolScrollSound}
                   currentUrl={localFiles.bonusSymbolScrollSound}
                   onUrlChange={handleUrlChange("bonusSymbolScrollSound")}
                 />
                 <SlotSoundUpload
                   label="Symbol Valgt"
                   description="Afspilles når det ekspanderende symbol er valgt."
-                  settingKey={SLOT_SOUND_SETTING_KEYS.bonusSymbolSelectedSound}
+                  settingKey={settingKeys.bonusSymbolSelectedSound}
                   currentUrl={localFiles.bonusSymbolSelectedSound}
                   onUrlChange={handleUrlChange("bonusSymbolSelectedSound")}
                 />
                 <SlotSoundUpload
                   label="Bonus Afslutning"
                   description="Afspilles når bonus-runden afsluttes med gevinst."
-                  settingKey={SLOT_SOUND_SETTING_KEYS.bonusWinSound}
+                  settingKey={settingKeys.bonusWinSound}
                   currentUrl={localFiles.bonusWinSound}
                   onUrlChange={handleUrlChange("bonusWinSound")}
                 />
@@ -184,27 +196,27 @@ export function SlotSoundFilesSection() {
             <div className="space-y-4 pt-4 border-t">
               <h4 className="font-medium flex items-center gap-2">
                 <Cat className="h-4 w-4 text-pink-400" />
-                Scatter Lyde (Mjav)
+                Scatter Lyde
               </h4>
               <div className="pl-6 space-y-4">
                 <SlotSoundUpload
-                  label="Scatter 1 - Blød Mjav"
-                  description="Afspilles når 1. scatter lander. Blød, nysgerrig katte-lyd."
-                  settingKey={SLOT_SOUND_SETTING_KEYS.scatterSound1}
+                  label="Scatter 1"
+                  description="Afspilles når 1. scatter lander."
+                  settingKey={settingKeys.scatterSound1}
                   currentUrl={localFiles.scatterSound1}
                   onUrlChange={handleUrlChange("scatterSound1")}
                 />
                 <SlotSoundUpload
-                  label="Scatter 2 - Spændt Mjav"
-                  description="Afspilles når 2. scatter lander. Mere intens, forventningsfuld."
-                  settingKey={SLOT_SOUND_SETTING_KEYS.scatterSound2}
+                  label="Scatter 2"
+                  description="Afspilles når 2. scatter lander. Mere intens."
+                  settingKey={settingKeys.scatterSound2}
                   currentUrl={localFiles.scatterSound2}
                   onUrlChange={handleUrlChange("scatterSound2")}
                 />
                 <SlotSoundUpload
-                  label="Scatter 3 - Triumf Mjav"
-                  description="Afspilles når 3. scatter lander. Kraftigt, sejrende katte-hyl!"
-                  settingKey={SLOT_SOUND_SETTING_KEYS.scatterSound3}
+                  label="Scatter 3"
+                  description="Afspilles når 3. scatter lander. Kraftigt og sejrende!"
+                  settingKey={settingKeys.scatterSound3}
                   currentUrl={localFiles.scatterSound3}
                   onUrlChange={handleUrlChange("scatterSound3")}
                 />

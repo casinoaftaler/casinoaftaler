@@ -877,10 +877,10 @@ function SettingsTab({ gameId }: { gameId?: string }) {
       <SlotSoundAdminSection />
 
       {/* AI Sound Generator */}
-      <SlotSoundGeneratorSection />
+      <SlotSoundGeneratorSection gameId={gameId} />
 
       {/* Custom Sound Files */}
-      <SlotSoundFilesSection />
+      <SlotSoundFilesSection gameId={gameId} />
 
       <Card>
         <CardHeader>
