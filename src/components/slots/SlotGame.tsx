@@ -99,6 +99,7 @@ export function SlotGame() {
   const pendingExpandedGridRef = useRef<string[][] | null>(null);
   const pendingExpandedReelsRef = useRef<number[]>([]);
   const isBonusSpinRef = useRef(false);
+  const pendingBonusStateRef = useRef<any>(null);
   
   // Autospin state
   const [isAutoSpinning, setIsAutoSpinning] = useState(false);
@@ -327,17 +328,19 @@ export function SlotGame() {
         pendingExpandedReelsRef.current = [];
       }
 
-      // Update bonus state from server response
+      // Store bonus state to apply AFTER reels stop (prevents spoiling the symbol)
       if (response.bonusState) {
-        updateBonusFromServer(response.bonusState);
+        pendingBonusStateRef.current = response.bonusState;
         
-        // Set expanding symbol for trigger overlay
+        // Set expanding symbol for trigger overlay (used later, not displayed yet)
         if (!isBonusSpin && result.bonusTriggered) {
           const expandingSymbol = symbols.find(s => s.id === response.bonusState?.expandingSymbolId);
           if (expandingSymbol) {
             setPendingExpandingSymbol(expandingSymbol);
           }
         }
+      } else {
+        pendingBonusStateRef.current = null;
       }
       
       // After 500ms initial spin, start reel 0 slowing down
@@ -362,6 +365,7 @@ export function SlotGame() {
       setTeaseReels([]);
       setActiveTeaseReelIndex(null);
       pendingResultRef.current = null;
+      pendingBonusStateRef.current = null;
       
       // Release spin lock on error
       spinLockRef.current = false;
@@ -701,6 +705,12 @@ export function SlotGame() {
                             const expandedGrid = pendingExpandedGridRef.current;
                             const reelsExpanded = pendingExpandedReelsRef.current;
                             const isBonusSpin = isBonusSpinRef.current;
+                            
+                            // NOW apply the bonus state update (after reels stopped)
+                            if (pendingBonusStateRef.current) {
+                              updateBonusFromServer(pendingBonusStateRef.current);
+                              pendingBonusStateRef.current = null;
+                            }
                             
                             // Handle bonus expansion animation
                             if (isBonusSpin && reelsExpanded.length > 0 && expandedGrid) {
