@@ -10,24 +10,49 @@ import { Label } from "@/components/ui/label";
 import { Loader2, Wand2, Trash2, ImageIcon, RefreshCw, Sparkles, Download, Upload } from "lucide-react";
 import { toast } from "sonner";
 
-export function SlotFrameAdminControls() {
+// Helper to derive settings keys per game
+function getSettingsKeys(gameId: string) {
+  if (gameId === "book-of-fedesvin") {
+    return {
+      backgroundKey: "slot_background_image",
+      frameKey: "slot_machine_frame_image",
+      frameSizeKey: "slot_frame_size",
+    };
+  }
+  const prefix = gameId.replace(/-/g, "_");
+  return {
+    backgroundKey: `${prefix}_background_image`,
+    frameKey: `${prefix}_frame_image`,
+    frameSizeKey: `${prefix}_frame_size`,
+  };
+}
+
+interface SlotFrameAdminControlsProps {
+  gameId?: string;
+}
+
+export function SlotFrameAdminControls({ gameId = "book-of-fedesvin" }: SlotFrameAdminControlsProps) {
   const queryClient = useQueryClient();
   const { data: settings, isLoading: settingsLoading } = useSiteSettings();
   const [backgroundPreviewUrl, setBackgroundPreviewUrl] = useState<string | null>(null);
   const [framePreviewUrl, setFramePreviewUrl] = useState<string | null>(null);
   const [uploadingFrame, setUploadingFrame] = useState(false);
+  const [uploadingBackground, setUploadingBackground] = useState(false);
   const frameInputRef = useRef<HTMLInputElement>(null);
+  const backgroundInputRef = useRef<HTMLInputElement>(null);
+
+  const { backgroundKey, frameKey, frameSizeKey } = getSettingsKeys(gameId);
   
-  const currentBackgroundUrl = settings?.slot_background_image || null;
-  const currentFrameUrl = settings?.slot_machine_frame_image || null;
-  const currentFrameSize = parseInt(settings?.slot_frame_size || "90", 10);
+  const currentBackgroundUrl = settings?.[backgroundKey] || null;
+  const currentFrameUrl = settings?.[frameKey] || null;
+  const currentFrameSize = parseInt(settings?.[frameSizeKey] || "90", 10);
 
   const updateFrameSize = useMutation({
     mutationFn: async (size: number) => {
       const { error } = await supabase
         .from("site_settings")
         .upsert(
-          { key: "slot_frame_size", value: String(size) },
+          { key: frameSizeKey, value: String(size) },
           { onConflict: "key" }
         );
       
@@ -101,7 +126,7 @@ export function SlotFrameAdminControls() {
       const { error } = await supabase
         .from("site_settings")
         .delete()
-        .eq("key", "slot_background_image");
+        .eq("key", backgroundKey);
       
       if (error) throw error;
     },
@@ -120,7 +145,7 @@ export function SlotFrameAdminControls() {
       const { error } = await supabase
         .from("site_settings")
         .delete()
-        .eq("key", "slot_machine_frame_image");
+        .eq("key", frameKey);
       
       if (error) throw error;
     },
@@ -190,7 +215,7 @@ export function SlotFrameAdminControls() {
       const { error: settingsError } = await supabase
         .from("site_settings")
         .upsert(
-          { key: "slot_machine_frame_image", value: publicUrl },
+          { key: frameKey, value: publicUrl },
           { onConflict: "key" }
         );
 
@@ -206,6 +231,59 @@ export function SlotFrameAdminControls() {
       setUploadingFrame(false);
       if (frameInputRef.current) {
         frameInputRef.current.value = "";
+      }
+    }
+  };
+
+  const handleBackgroundUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+
+    if (!file.type.startsWith("image/")) {
+      toast.error("Upload venligst en billedfil (JPG, PNG, etc.)");
+      return;
+    }
+
+    if (file.size > 5 * 1024 * 1024) {
+      toast.error("Maksimal filstørrelse er 5MB");
+      return;
+    }
+
+    setUploadingBackground(true);
+
+    try {
+      const fileExt = file.name.split(".").pop();
+      const fileName = `slot-bg-${gameId}-${Date.now()}.${fileExt}`;
+
+      const { error: uploadError } = await supabase.storage
+        .from("casino-logos")
+        .upload(fileName, file, { upsert: true });
+
+      if (uploadError) throw uploadError;
+
+      const { data: { publicUrl } } = supabase.storage
+        .from("casino-logos")
+        .getPublicUrl(fileName);
+
+      const { error: settingsError } = await supabase
+        .from("site_settings")
+        .upsert(
+          { key: backgroundKey, value: publicUrl },
+          { onConflict: "key" }
+        );
+
+      if (settingsError) throw settingsError;
+
+      setBackgroundPreviewUrl(publicUrl);
+      queryClient.invalidateQueries({ queryKey: ["site-settings"] });
+      toast.success("Baggrund uploadet!");
+    } catch (error: any) {
+      console.error("Background upload error:", error);
+      toast.error(`Upload fejlede: ${error.message}`);
+    } finally {
+      setUploadingBackground(false);
+      if (backgroundInputRef.current) {
+        backgroundInputRef.current.value = "";
       }
     }
   };
@@ -268,6 +346,34 @@ export function SlotFrameAdminControls() {
             )}
 
             <div className="flex flex-wrap gap-2">
+              {/* Hidden file input for background upload */}
+              <input
+                ref={backgroundInputRef}
+                type="file"
+                accept="image/*"
+                onChange={handleBackgroundUpload}
+                className="hidden"
+              />
+
+              <Button
+                variant="outline"
+                onClick={() => backgroundInputRef.current?.click()}
+                disabled={uploadingBackground}
+                className="border-amber-500/50 text-amber-500 hover:bg-amber-500/10"
+              >
+                {uploadingBackground ? (
+                  <>
+                    <Loader2 className="h-4 w-4 mr-2 animate-spin" />
+                    Uploader...
+                  </>
+                ) : (
+                  <>
+                    <Upload className="h-4 w-4 mr-2" />
+                    Upload Egen Baggrund
+                  </>
+                )}
+              </Button>
+
               <Button
                 onClick={() => generateBackground.mutate()}
                 disabled={generateBackground.isPending}
@@ -286,25 +392,36 @@ export function SlotFrameAdminControls() {
                 ) : (
                   <>
                     <Wand2 className="h-4 w-4 mr-2" />
-                    Generer Egyptisk Baggrund
+                    Generer Baggrund
                   </>
                 )}
               </Button>
 
               {currentBackgroundUrl && (
-                <Button
-                  variant="outline"
-                  onClick={() => resetBackground.mutate()}
-                  disabled={resetBackground.isPending}
-                  className="border-destructive/50 text-destructive hover:bg-destructive/10"
-                >
-                  {resetBackground.isPending ? (
-                    <Loader2 className="h-4 w-4 mr-2 animate-spin" />
-                  ) : (
-                    <Trash2 className="h-4 w-4 mr-2" />
-                  )}
-                  Nulstil til Standard
-                </Button>
+                <>
+                  <Button
+                    variant="outline"
+                    onClick={() => handleDownload(currentBackgroundUrl, `${gameId}-background.jpg`)}
+                    className="border-amber-500/50 text-amber-500 hover:bg-amber-500/10"
+                  >
+                    <Download className="h-4 w-4 mr-2" />
+                    Download
+                  </Button>
+                  
+                  <Button
+                    variant="outline"
+                    onClick={() => resetBackground.mutate()}
+                    disabled={resetBackground.isPending}
+                    className="border-destructive/50 text-destructive hover:bg-destructive/10"
+                  >
+                    {resetBackground.isPending ? (
+                      <Loader2 className="h-4 w-4 mr-2 animate-spin" />
+                    ) : (
+                      <Trash2 className="h-4 w-4 mr-2" />
+                    )}
+                    Nulstil til Standard
+                  </Button>
+                </>
               )}
             </div>
 
