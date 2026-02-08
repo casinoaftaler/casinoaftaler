@@ -11,6 +11,10 @@ export function useSlotSoundLoader(gameId: string = "book-of-fedesvin") {
   const { data: soundFiles, isLoading } = useSlotSoundFiles(gameId);
 
   useEffect(() => {
+    slotSounds.setGameId(gameId);
+  }, [gameId]);
+
+  useEffect(() => {
     if (soundFiles) {
       const customFiles: CustomSoundFiles = {
         backgroundMusic: soundFiles.backgroundMusic,
