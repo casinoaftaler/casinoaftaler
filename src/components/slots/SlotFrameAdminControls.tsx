@@ -74,10 +74,13 @@ export function SlotFrameAdminControls({ gameId = "book-of-fedesvin" }: SlotFram
     },
   });
 
+  const isRise = gameId === "rise-of-fedesvin";
+  const themeLabel = isRise ? "troldmands" : "egyptisk";
+
   const generateBackground = useMutation({
     mutationFn: async () => {
       const { data, error } = await supabase.functions.invoke("generate-slot-frame", {
-        body: { type: "background" }
+        body: { type: "background", gameId }
       });
       
       if (error) {
@@ -91,7 +94,7 @@ export function SlotFrameAdminControls({ gameId = "book-of-fedesvin" }: SlotFram
       return data;
     },
     onSuccess: (data) => {
-      toast.success("Egyptisk baggrund genereret!");
+      toast.success(`${isRise ? "Troldmands" : "Egyptisk"} baggrund genereret!`);
       setBackgroundPreviewUrl(data.imageUrl);
       queryClient.invalidateQueries({ queryKey: ["site-settings"] });
     },
@@ -104,7 +107,7 @@ export function SlotFrameAdminControls({ gameId = "book-of-fedesvin" }: SlotFram
   const generateFrame = useMutation({
     mutationFn: async () => {
       const { data, error } = await supabase.functions.invoke("generate-slot-frame", {
-        body: { type: "frame" }
+        body: { type: "frame", gameId }
       });
       
       if (error) {
@@ -118,7 +121,7 @@ export function SlotFrameAdminControls({ gameId = "book-of-fedesvin" }: SlotFram
       return data;
     },
     onSuccess: (data) => {
-      toast.success("Egyptisk ramme genereret!");
+      toast.success(`${isRise ? "Troldmands" : "Egyptisk"} ramme genereret!`);
       setFramePreviewUrl(data.imageUrl);
       queryClient.invalidateQueries({ queryKey: ["site-settings"] });
     },
@@ -340,8 +343,9 @@ export function SlotFrameAdminControls({ gameId = "book-of-fedesvin" }: SlotFram
 
           <TabsContent value="background" className="space-y-4 mt-4">
             <p className="text-sm text-muted-foreground">
-              Generer en AI-skabt egyptisk tempelbaggrund med hieroglyffer, 
-              fakler og mystisk atmosfære.
+              {isRise 
+                ? "Generer en AI-skabt troldmandstårn-baggrund med magiske runer, krystaller og mystisk atmosfære."
+                : "Generer en AI-skabt egyptisk tempelbaggrund med hieroglyffer, fakler og mystisk atmosfære."}
             </p>
 
             {!settingsLoading && (
@@ -435,15 +439,16 @@ export function SlotFrameAdminControls({ gameId = "book-of-fedesvin" }: SlotFram
             {generateBackground.isPending && (
               <div className="text-sm text-muted-foreground bg-amber-500/10 p-3 rounded-lg">
                 <p className="font-medium text-amber-400 mb-1">⏳ Genererer baggrund...</p>
-                <p>AI genererer en unik egyptisk baggrund. Dette kan tage op til 60 sekunder.</p>
+                <p>AI genererer en unik {themeLabel} baggrund. Dette kan tage op til 60 sekunder.</p>
               </div>
             )}
           </TabsContent>
 
           <TabsContent value="frame" className="space-y-4 mt-4">
             <p className="text-sm text-muted-foreground">
-              Generer en AI-skabt egyptisk ramme med gulddekorationer, 
-              faraoskulpturer og hieroglyffer.
+              {isRise
+                ? "Generer en AI-skabt troldmandsramme med sølv- og lilla runer, krystaller og magisk energi."
+                : "Generer en AI-skabt egyptisk ramme med gulddekorationer, faraoskulpturer og hieroglyffer."}
             </p>
 
             {!settingsLoading && (
@@ -522,7 +527,7 @@ export function SlotFrameAdminControls({ gameId = "book-of-fedesvin" }: SlotFram
                 ) : (
                   <>
                     <Wand2 className="h-4 w-4 mr-2" />
-                    Generer Egyptisk Ramme
+                    Generer {isRise ? "Troldmands" : "Egyptisk"} Ramme
                   </>
                 )}
               </Button>
@@ -558,7 +563,7 @@ export function SlotFrameAdminControls({ gameId = "book-of-fedesvin" }: SlotFram
             {generateFrame.isPending && (
               <div className="text-sm text-muted-foreground bg-amber-500/10 p-3 rounded-lg">
                 <p className="font-medium text-amber-400 mb-1">⏳ Genererer ramme...</p>
-                <p>AI genererer en unik egyptisk ramme. Dette kan tage op til 60 sekunder.</p>
+                <p>AI genererer en unik {themeLabel} ramme. Dette kan tage op til 60 sekunder.</p>
               </div>
             )}
           </TabsContent>
