@@ -4,6 +4,7 @@ import { useAuth } from "@/hooks/useAuth";
 import { useProfile, ProfileUpdateData } from "@/hooks/useProfile";
 import { useProfileRewards, getSectionCompletionStatus } from "@/hooks/useProfileRewards";
 import { useStreamElementsPoints } from "@/hooks/useStreamElementsPoints";
+import { useTwitchBadges } from "@/hooks/useTwitchBadges";
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { ProfileBasicSection } from "@/components/profile/ProfileBasicSection";
@@ -12,6 +13,7 @@ import { ProfileFavoritesSection } from "@/components/profile/ProfileFavoritesSe
 import { ProfilePlayStyleSection } from "@/components/profile/ProfilePlayStyleSection";
 import { ProfilePrivacySection } from "@/components/profile/ProfilePrivacySection";
 import { ProfileRewardsProgress } from "@/components/profile/ProfileRewardsProgress";
+import { TwitchBadges } from "@/components/TwitchBadges";
 import { Loader2, Save, User, Trophy, Heart, Zap, Shield, Coins } from "lucide-react";
 
 export default function Profile() {
@@ -20,6 +22,7 @@ export default function Profile() {
   const { profile, isLoading: profileLoading, updateProfile, isUpdating } = useProfile();
   const { claimReward, checkAndClaimRewards } = useProfileRewards();
   const { points: storePoints, isLoading: pointsLoading, hasTwitchUsername } = useStreamElementsPoints();
+  const { data: badgesData, isLoading: badgesLoading } = useTwitchBadges(user?.id);
   
   const [formData, setFormData] = useState({
     display_name: "",
@@ -156,13 +159,27 @@ export default function Profile() {
         </p>
       </div>
 
-      {/* Compact Points Display - Only show if user has Twitch linked */}
+      {/* Twitch Badges & Points Row */}
       {hasTwitchUsername && (
-        <div className="mb-6 flex items-center gap-3 rounded-lg border border-border/50 bg-muted/30 px-4 py-3">
-          <div className="flex items-center justify-center rounded-full bg-primary/10 p-2">
-            <Coins className="h-4 w-4 text-primary" />
-          </div>
+        <div className="mb-6 flex flex-wrap items-center gap-4 rounded-lg border border-border/50 bg-muted/30 px-4 py-3">
+          {/* Twitch Badges */}
+          <TwitchBadges 
+            userId={user?.id} 
+            badges={badgesData?.badges}
+            isLoading={badgesLoading}
+            size="md"
+          />
+          
+          {/* Divider - only show if badges exist */}
+          {badgesData?.badges && (
+            <div className="h-6 w-px bg-border/50" />
+          )}
+          
+          {/* Points */}
           <div className="flex items-center gap-2">
+            <div className="flex items-center justify-center rounded-full bg-primary/10 p-1.5">
+              <Coins className="h-3.5 w-3.5 text-primary" />
+            </div>
             <span className="text-sm text-muted-foreground">Butik Points:</span>
             {pointsLoading ? (
               <Loader2 className="h-4 w-4 animate-spin text-muted-foreground" />
