@@ -38,19 +38,14 @@ export function CommunityClipCard({ clip, onOpenDetail }: CommunityClipCardProps
     toggleLike.mutate({ clipId: clip.id, hasLiked: clip.user_has_liked });
   };
 
-  const handlePlay = (e: React.MouseEvent) => {
+  const handleThumbnailClick = (e: React.MouseEvent) => {
     e.stopPropagation();
     if (isEmbeddable) {
       setIsPlaying(true);
     } else {
-      // External clips open in new tab
+      // External clips always open in new tab
       window.open(clip.url, '_blank', 'noopener,noreferrer');
     }
-  };
-
-  const handleOpenExternal = (e: React.MouseEvent) => {
-    e.stopPropagation();
-    window.open(clip.url, '_blank', 'noopener,noreferrer');
   };
 
   return (
@@ -59,7 +54,18 @@ export function CommunityClipCard({ clip, onOpenDetail }: CommunityClipCardProps
       onClick={() => onOpenDetail(clip)}
     >
       {/* Video/Thumbnail Area */}
-      <div className="relative aspect-video bg-muted">
+      <div 
+        className="relative aspect-video bg-muted cursor-pointer"
+        onClick={handleThumbnailClick}
+        role="button"
+        tabIndex={0}
+        onKeyDown={(e) => {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            handleThumbnailClick(e as unknown as React.MouseEvent);
+          }
+        }}
+      >
         {isPlaying && isEmbeddable && embedUrl ? (
           <iframe
             src={embedUrl}
@@ -74,17 +80,19 @@ export function CommunityClipCard({ clip, onOpenDetail }: CommunityClipCardProps
               <img
                 src={clip.thumbnail_url}
                 alt={clip.title || "Clip thumbnail"}
-                className="h-full w-full object-cover"
+                className="h-full w-full object-cover pointer-events-none"
               />
             ) : (
-              <div className="flex h-full w-full items-center justify-center bg-gradient-to-br from-primary/20 to-primary/5">
-                <Play className="h-12 w-12 text-muted-foreground" />
+              <div className="flex h-full w-full items-center justify-center bg-gradient-to-br from-primary/20 to-primary/5 pointer-events-none">
+                {isEmbeddable ? (
+                  <Play className="h-12 w-12 text-muted-foreground" />
+                ) : (
+                  <ExternalLink className="h-12 w-12 text-muted-foreground" />
+                )}
               </div>
             )}
-            <button
-              onClick={isEmbeddable ? handlePlay : handleOpenExternal}
-              className="absolute inset-0 flex items-center justify-center bg-black/30 opacity-0 transition-opacity group-hover:opacity-100 cursor-pointer"
-            >
+            {/* Hover overlay with icon */}
+            <div className="absolute inset-0 flex items-center justify-center bg-black/30 opacity-0 transition-opacity group-hover:opacity-100 pointer-events-none">
               <div className="rounded-full bg-primary p-4">
                 {isEmbeddable ? (
                   <Play className="h-8 w-8 text-primary-foreground" fill="currentColor" />
@@ -92,8 +100,8 @@ export function CommunityClipCard({ clip, onOpenDetail }: CommunityClipCardProps
                   <ExternalLink className="h-8 w-8 text-primary-foreground" />
                 )}
               </div>
-            </button>
-            <div className="absolute left-2 top-2 flex gap-1">
+            </div>
+            <div className="absolute left-2 top-2 flex gap-1 pointer-events-none">
               <Badge
                 variant="secondary"
                 className="capitalize"
