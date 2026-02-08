@@ -5,6 +5,8 @@ import { GameCard } from "@/components/games/GameCard";
 import { Gamepad2 } from "lucide-react";
 import slotIntroImage from "@/assets/slots/slot-intro-screen.jpg";
 import riseIntroImage from "@/assets/slots/rise/intro-screen.jpg";
+import leFedesvinImage from "@/assets/slots/le-fedesvin-preview.jpg";
+import olympusImage from "@/assets/slots/fedesvin-of-olympus-preview.jpg";
 
 const GAMES = [
   {
@@ -24,6 +26,22 @@ const GAMES = [
     href: "/community/slots/rise-of-fedesvin",
     status: "active" as const,
     badge: "NY",
+  },
+  {
+    id: "le-fedesvin",
+    title: "Le Fedesvin",
+    description: "Oplev den franske elegance med roulette-inspirerede bonusrunder og luksuriøse gevinster i Parisisk stil.",
+    image: leFedesvinImage,
+    href: "#",
+    status: "coming-soon" as const,
+  },
+  {
+    id: "fedesvin-of-olympus",
+    title: "Fedesvin of Olympus",
+    description: "Besteg Olympen og vind gudernes gunst! Cascading wins og multiplicerende lyn-gevinster venter.",
+    image: olympusImage,
+    href: "#",
+    status: "coming-soon" as const,
   },
 ];
 
@@ -70,7 +88,7 @@ export default function GameLibrary() {
       <GameLibraryHero />
       <div className="container py-10 space-y-8">
         {/* Game grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 max-w-3xl mx-auto">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 max-w-4xl mx-auto">
           {GAMES.map((game, index) => (
             <div
               key={game.id}
