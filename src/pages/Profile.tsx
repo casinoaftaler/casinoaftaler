@@ -11,9 +11,10 @@ import { ProfileBasicSection } from "@/components/profile/ProfileBasicSection";
 import { ProfileStatsSection } from "@/components/profile/ProfileStatsSection";
 import { ProfileFavoritesSection } from "@/components/profile/ProfileFavoritesSection";
 import { ProfilePlayStyleSection } from "@/components/profile/ProfilePlayStyleSection";
+import { ProfilePrivacySection } from "@/components/profile/ProfilePrivacySection";
 import { ProfileRewardsProgress } from "@/components/profile/ProfileRewardsProgress";
 import { TwitchBadges } from "@/components/TwitchBadges";
-import { Loader2, Save, User, Trophy, Heart, Zap, Coins } from "lucide-react";
+import { Loader2, Save, User, Trophy, Heart, Zap, Shield, Coins } from "lucide-react";
 
 export default function Profile() {
   const navigate = useNavigate();
@@ -38,6 +39,8 @@ export default function Profile() {
     play_styles: [] as string[],
     preferred_game_type: "both",
     volatility_preference: "medium",
+    stats_public: false,
+    hide_amounts: false,
   });
 
   // Redirect if not logged in
@@ -65,6 +68,8 @@ export default function Profile() {
         play_styles: profile.play_styles || [],
         preferred_game_type: profile.preferred_game_type || "both",
         volatility_preference: profile.volatility_preference || "medium",
+        stats_public: profile.stats_public || false,
+        hide_amounts: profile.hide_amounts || false,
       });
     }
   }, [profile]);
@@ -93,6 +98,8 @@ export default function Profile() {
       play_styles: formData.play_styles.length > 0 ? formData.play_styles : null,
       preferred_game_type: formData.preferred_game_type || null,
       volatility_preference: formData.volatility_preference || null,
+      stats_public: formData.stats_public,
+      hide_amounts: formData.hide_amounts,
     };
 
     // First update the profile
@@ -194,7 +201,7 @@ export default function Profile() {
 
       <form onSubmit={handleSubmit}>
         <Tabs defaultValue="profile" className="space-y-6">
-          <TabsList className="grid w-full grid-cols-4 h-auto">
+          <TabsList className="grid w-full grid-cols-5 h-auto">
             <TabsTrigger value="profile" className="flex flex-col sm:flex-row gap-1 sm:gap-2 py-2.5 text-xs sm:text-sm">
               <User className="h-4 w-4" />
               <span className="hidden sm:inline">Profil</span>
@@ -210,6 +217,10 @@ export default function Profile() {
             <TabsTrigger value="playstyle" className="flex flex-col sm:flex-row gap-1 sm:gap-2 py-2.5 text-xs sm:text-sm">
               <Zap className="h-4 w-4" />
               <span className="hidden sm:inline">Spillestil</span>
+            </TabsTrigger>
+            <TabsTrigger value="privacy" className="flex flex-col sm:flex-row gap-1 sm:gap-2 py-2.5 text-xs sm:text-sm">
+              <Shield className="h-4 w-4" />
+              <span className="hidden sm:inline">Privatliv</span>
             </TabsTrigger>
           </TabsList>
 
@@ -252,6 +263,16 @@ export default function Profile() {
                 play_styles: formData.play_styles,
                 preferred_game_type: formData.preferred_game_type,
                 volatility_preference: formData.volatility_preference,
+              }}
+              onChange={handleChange}
+            />
+          </TabsContent>
+
+          <TabsContent value="privacy">
+            <ProfilePrivacySection
+              formData={{
+                stats_public: formData.stats_public,
+                hide_amounts: formData.hide_amounts,
               }}
               onChange={handleChange}
             />

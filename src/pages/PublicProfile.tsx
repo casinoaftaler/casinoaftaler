@@ -18,6 +18,7 @@ import {
   Building2, 
   Zap,
   Gauge,
+  Lock,
   ArrowLeft,
   Crown,
   Target,
@@ -127,6 +128,29 @@ function LoadingSkeleton() {
   );
 }
 
+function PrivateProfile() {
+  return (
+    <div className="min-h-screen bg-background flex items-center justify-center">
+      <Card className="max-w-md mx-4 bg-card/50 backdrop-blur-sm border-border/50">
+        <CardContent className="p-8 text-center">
+          <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-muted flex items-center justify-center">
+            <Lock className="h-8 w-8 text-muted-foreground" />
+          </div>
+          <h2 className="text-xl font-semibold mb-2">Privat Profil</h2>
+          <p className="text-muted-foreground mb-6">
+            Denne bruger har valgt at holde sin profil privat.
+          </p>
+          <Button asChild variant="outline">
+            <Link to="/">
+              <ArrowLeft className="h-4 w-4 mr-2" />
+              Tilbage til forsiden
+            </Link>
+          </Button>
+        </CardContent>
+      </Card>
+    </div>
+  );
+}
 
 function NotFound() {
   return (

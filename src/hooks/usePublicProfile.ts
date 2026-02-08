@@ -28,7 +28,7 @@ export function usePublicProfile(username: string | undefined) {
     queryFn: async (): Promise<PublicProfileData | null> => {
       if (!username) return null;
       
-      // Query the public view - returns profiles with display_name set
+      // Query the public view - it only returns profiles where stats_public = true
       const { data, error } = await supabase
         .from("profiles_public" as any)
         .select("*")
