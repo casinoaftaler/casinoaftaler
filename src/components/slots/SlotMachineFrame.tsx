@@ -16,12 +16,14 @@ const GAME_FRAME_DEFAULTS: Record<string, number> = {
   "rise-of-fedesvin": 95,
 };
 
-// Per-game vertical offset for the frame (negative = move up)
+// Per-game vertical offset for the frame IMAGE only (negative = frame moves up, positive = down)
+// This moves the frame independently from the reels
 const GAME_FRAME_VERTICAL_OFFSET: Record<string, number> = {
   "rise-of-fedesvin": -30,
 };
 
-// Per-game content (reels) vertical offset in px (positive = move down)
+// Per-game content (reels) vertical offset in px (positive = move reels down inside frame)
+// This moves the reels independently from the frame
 const GAME_CONTENT_VERTICAL_OFFSET: Record<string, number> = {
   "rise-of-fedesvin": 90,
 };
@@ -63,23 +65,34 @@ export function SlotMachineFrame({
   const baseFrameSize = parseInt(settings?.[frameSizeKey] || settings?.slot_frame_size || String(gameDefault), 10);
   const effectiveFrameSize = getEffectiveFrameSize(windowWidth, baseFrameSize);
   const hasFrame = !!frameImageUrl && !imageError;
-  const verticalOffset = GAME_FRAME_VERTICAL_OFFSET[gameId] ?? 0;
-  const effectiveVerticalOffset = getEffectiveFrameSize(windowWidth, Math.abs(verticalOffset)) * Math.sign(verticalOffset);
+  
+  // Frame offset (moves ONLY the frame image, not the reels)
+  const frameVerticalOffset = GAME_FRAME_VERTICAL_OFFSET[gameId] ?? 0;
+  const effectiveFrameOffset = getEffectiveFrameSize(windowWidth, Math.abs(frameVerticalOffset)) * Math.sign(frameVerticalOffset);
+  
+  // Content offset (moves ONLY the reels, not the frame)
   const contentVerticalOffset = GAME_CONTENT_VERTICAL_OFFSET[gameId] ?? 0;
   const effectiveContentOffset = getEffectiveFrameSize(windowWidth, contentVerticalOffset);
+
+  // Margins use the max extent to prevent clipping (frame size + whichever offset pushes further)
+  const marginTop = hasFrame && imageLoaded 
+    ? effectiveFrameSize + Math.max(0, -effectiveFrameOffset)
+    : undefined;
+  const marginBottom = hasFrame && imageLoaded 
+    ? effectiveFrameSize + Math.max(0, effectiveFrameOffset)
+    : undefined;
 
   return (
     <div 
       className="relative"
       style={{
-        // Add margin to prevent frame from being clipped
-        marginTop: hasFrame && imageLoaded ? `${effectiveFrameSize + effectiveVerticalOffset}px` : undefined,
+        marginTop: marginTop != null ? `${marginTop}px` : undefined,
         marginLeft: hasFrame && imageLoaded ? `${effectiveFrameSize}px` : undefined,
         marginRight: hasFrame && imageLoaded ? `${effectiveFrameSize}px` : undefined,
-        marginBottom: hasFrame && imageLoaded ? `${effectiveFrameSize - effectiveVerticalOffset}px` : undefined,
+        marginBottom: marginBottom != null ? `${marginBottom}px` : undefined,
       }}
     >
-      {/* Egyptian Frame Image Overlay */}
+      {/* Frame Image Overlay - moves independently from reels */}
       {hasFrame && (
         <div 
           className={cn(
@@ -87,10 +100,10 @@ export function SlotMachineFrame({
             imageLoaded ? "opacity-100" : "opacity-0"
           )}
           style={{
-            top: `-${effectiveFrameSize + effectiveVerticalOffset}px`,
+            top: `-${effectiveFrameSize + effectiveFrameOffset}px`,
             left: `-${effectiveFrameSize}px`,
             right: `-${effectiveFrameSize}px`,
-            bottom: `-${effectiveFrameSize - effectiveVerticalOffset}px`,
+            bottom: `-${effectiveFrameSize - effectiveFrameOffset}px`,
             filter: getSlotTheme(gameId).frameDropShadow,
           }}
         >
