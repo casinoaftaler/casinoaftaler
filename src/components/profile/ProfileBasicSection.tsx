@@ -44,18 +44,17 @@ export function ProfileBasicSection({ profile, formData, onChange }: ProfileBasi
           </div>
         </div>
 
-        {/* Display name */}
+        {/* Display name - read only from Twitch */}
         <div className="space-y-2">
-          <Label htmlFor="display_name">Gambling Alias</Label>
+          <Label htmlFor="display_name">Brugernavn</Label>
           <Input
             id="display_name"
-            value={formData.display_name}
-            onChange={(e) => onChange("display_name", e.target.value)}
-            placeholder="Dit gambling-navn"
-            maxLength={50}
+            value={profile.twitch_username || profile.display_name || ""}
+            disabled
+            className="bg-muted"
           />
           <p className="text-xs text-muted-foreground">
-            Dette navn vises på leaderboards og i fællesskabet
+            Dit brugernavn kommer fra din Twitch-konto og kan ikke ændres
           </p>
         </div>
 
