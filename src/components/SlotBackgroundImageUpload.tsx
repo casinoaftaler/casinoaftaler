@@ -7,17 +7,26 @@ import { useSiteSettings } from "@/hooks/useSiteSettings";
 import { useQueryClient } from "@tanstack/react-query";
 import { Upload, X, Loader2 } from "lucide-react";
 
-export function SlotBackgroundImageUpload() {
+function getSettingsKey(gameId: string) {
+  if (gameId === "book-of-fedesvin") return "slot_background_image";
+  return `${gameId.replace(/-/g, "_")}_background_image`;
+}
+
+interface SlotBackgroundImageUploadProps {
+  gameId?: string;
+}
+
+export function SlotBackgroundImageUpload({ gameId = "book-of-fedesvin" }: SlotBackgroundImageUploadProps) {
   const { data: siteSettings } = useSiteSettings();
   const [backgroundImage, setBackgroundImage] = useState<string | null>(null);
   const [isUploading, setIsUploading] = useState(false);
   const queryClient = useQueryClient();
 
+  const settingsKey = getSettingsKey(gameId);
+
   useEffect(() => {
-    if (siteSettings?.slot_background_image) {
-      setBackgroundImage(siteSettings.slot_background_image);
-    }
-  }, [siteSettings]);
+    setBackgroundImage(siteSettings?.[settingsKey] || null);
+  }, [siteSettings, settingsKey]);
 
   const handleImageUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
@@ -26,7 +35,7 @@ export function SlotBackgroundImageUpload() {
     setIsUploading(true);
     try {
       const fileExt = file.name.split(".").pop();
-      const fileName = `slot-background-${Date.now()}.${fileExt}`;
+      const fileName = `slot-background-${gameId}-${Date.now()}.${fileExt}`;
 
       const { error: uploadError } = await supabase.storage
         .from("casino-logos")
@@ -43,7 +52,7 @@ export function SlotBackgroundImageUpload() {
 
       await supabase
         .from("site_settings")
-        .upsert({ key: "slot_background_image", value: imageUrl }, { onConflict: "key" });
+        .upsert({ key: settingsKey, value: imageUrl }, { onConflict: "key" });
 
       toast.success("Baggrundsbillede uploadet");
       queryClient.invalidateQueries({ queryKey: ["site-settings"] });
@@ -60,7 +69,7 @@ export function SlotBackgroundImageUpload() {
       await supabase
         .from("site_settings")
         .update({ value: null })
-        .eq("key", "slot_background_image");
+        .eq("key", settingsKey);
 
       setBackgroundImage(null);
       toast.success("Baggrundsbillede fjernet (standard billede bruges)");
