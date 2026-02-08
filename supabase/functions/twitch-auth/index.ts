@@ -299,15 +299,9 @@ serve(async (req) => {
     }
 
     // Generate a magic link for the user to establish a session
-    // Extract the origin from redirect_uri to construct proper redirect
-    const redirectOrigin = redirect_uri ? new URL(redirect_uri).origin : undefined;
-    
     const { data: linkData, error: linkError } = await supabaseAdmin.auth.admin.generateLink({
       type: "magiclink",
       email: twitchUser.email || `${twitchUser.id}@twitch.placeholder`,
-      options: {
-        redirectTo: redirectOrigin ? `${redirectOrigin}/` : undefined,
-      },
     });
 
     if (linkError) {
