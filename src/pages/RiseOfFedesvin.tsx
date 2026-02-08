@@ -18,7 +18,7 @@ import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { ArrowLeft, Gamepad2 } from "lucide-react";
 import defaultSlotBackground from "@/assets/slots/slot-background.jpg";
-import defaultRiseTitleImage from "@/assets/slots/rise/title-logo.png";
+
 import slotCasinoCardBg from "@/assets/slots/slot-casino-card-bg.png";
 
 const GAME_ID = "rise-of-fedesvin";
@@ -39,7 +39,7 @@ export default function RiseOfFedesvin() {
     takeOverSession,
     refreshSession 
   } = useSlotSession();
-  const { scale, shouldScale, showTitle } = useViewportScaling();
+  const { scale, shouldScale } = useViewportScaling();
   const { isLocked, hasAccess, isLoading: accessLoading, error: accessError, verifyPassword } = useSlotPageAccess(GAME_ID);
   
   const [loadingPhase, setLoadingPhase] = useState<LoadingPhase>('loading');
@@ -58,7 +58,6 @@ export default function RiseOfFedesvin() {
   }, []);
   
   const backgroundImage = siteSettings?.rise_of_fedesvin_background_image || defaultSlotBackground;
-  const titleImage = siteSettings?.rise_of_fedesvin_title_image || defaultRiseTitleImage;
   const topCasino = casinos?.find(c => c.is_active) || null;
 
   useEffect(() => {
@@ -196,15 +195,6 @@ export default function RiseOfFedesvin() {
         >
           <div className="px-1 xs:px-2 sm:px-4">
             <SlotPageLayout sidePanel={sidePanelContent}>
-              {showTitle && (
-                <div className="slot-title-container flex justify-center -mt-14 mb-0">
-                  <img 
-                    src={titleImage} 
-                    alt="Rise of Fedesvin" 
-                    className="w-full max-w-[160px] xs:max-w-[200px] sm:max-w-[280px] md:max-w-[320px] h-auto animate-[title-entrance_0.8s_ease-out_forwards]"
-                  />
-                </div>
-              )}
 
               <SlotGame gameId={GAME_ID} />
             </SlotPageLayout>
