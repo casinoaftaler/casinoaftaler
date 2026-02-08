@@ -35,6 +35,7 @@ export function useBonusGameSync(symbols?: SlotSymbol[], gameId: string = "book-
   const [bonusState, setBonusState] = useState<BonusGameState>(INITIAL_STATE);
   const [isLoaded, setIsLoaded] = useState(false);
   const channelRef = useRef<ReturnType<typeof supabase.channel> | null>(null);
+  const suppressRealtimeRef = useRef(false);
 
   // Load bonus state from database on mount
   useEffect(() => {
@@ -87,6 +88,9 @@ export function useBonusGameSync(symbols?: SlotSymbol[], gameId: string = "book-
           filter: `user_id=eq.${user.id}`,
         },
         (payload) => {
+          // Skip realtime updates while bonus trigger/retrigger overlay is pending
+          if (suppressRealtimeRef.current) return;
+          
           if (payload.eventType === "DELETE") {
             setBonusState(INITIAL_STATE);
           } else if (payload.new) {
@@ -197,11 +201,22 @@ export function useBonusGameSync(symbols?: SlotSymbol[], gameId: string = "book-
     bonusWinnings: bonusState.bonusWinnings,
   };
 
+  // Suppress/resume realtime updates (used to prevent bars showing before overlay closes)
+  const suppressRealtimeUpdates = useCallback(() => {
+    suppressRealtimeRef.current = true;
+  }, []);
+
+  const resumeRealtimeUpdates = useCallback(() => {
+    suppressRealtimeRef.current = false;
+  }, []);
+
   return {
     bonusState: bonusStateWithSymbol,
     isLoaded,
     updateFromServer,
     endBonus,
     shouldEndBonus,
+    suppressRealtimeUpdates,
+    resumeRealtimeUpdates,
   };
 }

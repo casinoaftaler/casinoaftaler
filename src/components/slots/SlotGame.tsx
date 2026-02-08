@@ -68,7 +68,9 @@ export function SlotGame({ gameId = "book-of-fedesvin" }: SlotGameProps) {
     isLoaded: bonusLoaded,
     updateFromServer: updateBonusFromServer,
     endBonus,
-    shouldEndBonus 
+    shouldEndBonus,
+    suppressRealtimeUpdates,
+    resumeRealtimeUpdates,
   } = useBonusGameSync(symbols, gameId);
   
   const [bet, setBet] = useState(1);
@@ -596,6 +598,7 @@ export function SlotGame({ gameId = "book-of-fedesvin" }: SlotGameProps) {
         }
         onClose={() => {
           setShowRetrigger(false);
+          resumeRealtimeUpdates();
           if (pendingBonusStateRef.current) {
             updateBonusFromServer(pendingBonusStateRef.current);
             pendingBonusStateRef.current = null;
@@ -610,6 +613,7 @@ export function SlotGame({ gameId = "book-of-fedesvin" }: SlotGameProps) {
         allSymbols={symbols || []}
         onClose={() => {
           setShowBonusTrigger(false);
+          resumeRealtimeUpdates();
           if (pendingBonusStateRef.current) {
             updateBonusFromServer(pendingBonusStateRef.current);
             pendingBonusStateRef.current = null;
@@ -822,6 +826,8 @@ export function SlotGame({ gameId = "book-of-fedesvin" }: SlotGameProps) {
                             // Handle bonus trigger or retrigger
                             let shouldStopAuto = false;
                             if (result.bonusTriggered) {
+                              // Suppress realtime updates so bars don't appear before overlay closes
+                              suppressRealtimeUpdates();
                               shouldStopAuto = true;
                               
                               if (isBonusSpin) {
