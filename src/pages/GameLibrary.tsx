@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { GameCard } from "@/components/games/GameCard";
 import { Gamepad2 } from "lucide-react";
 import slotIntroImage from "@/assets/slots/slot-intro-screen.jpg";
+import riseIntroImage from "@/assets/slots/rise/intro-screen.jpg";
 
 const GAMES = [
   {
@@ -19,7 +20,7 @@ const GAMES = [
     id: "rise-of-fedesvin",
     title: "Rise of Fedesvin",
     description: "Merlins magi venter! Multi-expanding symbols i bonusrunden – jo flere retriggers, jo flere aktive symboler!",
-    image: slotIntroImage,
+    image: riseIntroImage,
     href: "/community/slots/rise-of-fedesvin",
     status: "active" as const,
     badge: "NY",
