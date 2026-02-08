@@ -11,6 +11,7 @@ import { useSlotPageAccess } from "@/hooks/useSlotPageAccess";
 import { SlotPageLayout } from "@/components/slots/SlotPageLayout";
 import { useAuth } from "@/hooks/useAuth";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
+import { useSlotSoundLoader } from "@/hooks/useSlotSoundLoader";
 import { useSlotSession } from "@/hooks/useSlotSession";
 import { useCasinos } from "@/hooks/useCasinos";
 import { useViewportScaling } from "@/hooks/useViewportScaling";
@@ -29,6 +30,9 @@ export default function RiseOfFedesvin() {
   const { user, loading } = useAuth();
   const { data: siteSettings } = useSiteSettings();
   const { data: casinos } = useCasinos();
+  
+  // Load custom sound files at page level so they're ready for intro screen music
+  useSlotSoundLoader(GAME_ID);
   
   const { 
     isSessionActive, 
