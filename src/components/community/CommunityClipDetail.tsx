@@ -100,32 +100,30 @@ export function CommunityClipDetail({
       <DialogContent className="max-w-4xl max-h-[90vh] p-0 overflow-hidden">
         <div className="grid grid-cols-1 lg:grid-cols-5">
           {/* Video Section */}
-          <div className="lg:col-span-3 bg-black">
-            <div className="aspect-video">
-              {isEmbeddable && embedUrl ? (
-                <iframe
-                  src={embedUrl}
-                  className="h-full w-full"
-                  allowFullScreen
-                  allow="autoplay; encrypted-media"
-                />
-              ) : (
-                <div className="flex h-full w-full flex-col items-center justify-center gap-4 text-muted-foreground p-4">
-                  <ExternalLink className="h-12 w-12" />
-                  <p className="text-center text-sm">
-                    Denne video kan ikke vises her.
-                  </p>
-                  <Button
-                    variant="secondary"
-                    className="gap-2"
-                    onClick={() => window.open(clip.url, '_blank', 'noopener,noreferrer')}
-                  >
-                    <ExternalLink className="h-4 w-4" />
-                    Åbn Clip
-                  </Button>
-                </div>
-              )}
-            </div>
+          <div className="lg:col-span-3 bg-black flex items-center justify-center">
+            {isEmbeddable && embedUrl ? (
+              <iframe
+                src={embedUrl}
+                className="w-full aspect-video"
+                allowFullScreen
+                allow="autoplay; encrypted-media"
+              />
+            ) : (
+              <div className="flex w-full aspect-video flex-col items-center justify-center gap-4 text-muted-foreground p-4">
+                <ExternalLink className="h-12 w-12" />
+                <p className="text-center text-sm">
+                  Denne video kan ikke vises her.
+                </p>
+                <Button
+                  variant="secondary"
+                  className="gap-2"
+                  onClick={() => window.open(clip.url, '_blank', 'noopener,noreferrer')}
+                >
+                  <ExternalLink className="h-4 w-4" />
+                  Åbn Clip
+                </Button>
+              </div>
+            )}
           </div>
 
           {/* Details & Comments Section */}
