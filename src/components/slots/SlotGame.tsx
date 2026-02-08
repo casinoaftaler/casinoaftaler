@@ -130,13 +130,6 @@ export function SlotGame({ gameId = "book-of-fedesvin" }: SlotGameProps) {
   const [bonusBarsReady, setBonusBarsReady] = useState(false);
   const [bonusBetAmount, setBonusBetAmount] = useState<number>(1);
   
-  // When resuming an active bonus from DB (page refresh mid-bonus), bars should show immediately
-  useEffect(() => {
-    if (bonusLoaded && bonusState.isActive && !showBonusTrigger && !bonusBarsReady) {
-      setBonusBarsReady(true);
-    }
-  }, [bonusLoaded, bonusState.isActive, showBonusTrigger, bonusBarsReady]);
-  
   // Pending bonus trigger - to show win animation before bonus overlay
   const [pendingBonusTrigger, setPendingBonusTrigger] = useState<{
     isRetrigger: boolean;
@@ -146,6 +139,18 @@ export function SlotGame({ gameId = "book-of-fedesvin" }: SlotGameProps) {
   
   // Scatter celebration state - pulse/glow before bonus screen
   const [showScatterCelebration, setShowScatterCelebration] = useState(false);
+  
+  // When resuming an active bonus from DB (page refresh mid-bonus), bars should show immediately
+  // BUT: guard against the race where realtime fires before the trigger overlay is shown
+  useEffect(() => {
+    if (
+      bonusLoaded && bonusState.isActive && !bonusBarsReady &&
+      !showBonusTrigger && !showScatterCelebration && !isSpinning &&
+      !pendingBonusTrigger
+    ) {
+      setBonusBarsReady(true);
+    }
+  }, [bonusLoaded, bonusState.isActive, showBonusTrigger, bonusBarsReady, showScatterCelebration, isSpinning, pendingBonusTrigger]);
   
   const stopTeaseSound = useRef<(() => void) | null>(null);
 
@@ -351,6 +356,12 @@ export function SlotGame({ gameId = "book-of-fedesvin" }: SlotGameProps) {
       // Store bonus state to apply AFTER reels stop (prevents spoiling the symbol)
       if (response.bonusState) {
         pendingBonusStateRef.current = response.bonusState;
+        
+        // Suppress realtime updates IMMEDIATELY when a bonus is triggered,
+        // so the DB update doesn't race ahead and show bars before the overlay
+        if (result.bonusTriggered) {
+          suppressRealtimeUpdates();
+        }
         
         // Set expanding symbol for trigger overlay (used later, not displayed yet)
         if (!isBonusSpin && result.bonusTriggered) {
