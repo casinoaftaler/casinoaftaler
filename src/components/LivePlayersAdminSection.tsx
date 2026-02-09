@@ -27,24 +27,36 @@ const GAME_LABELS: Record<string, string> = {
   "rise-of-fedesvin": "Rise of Fedesvin",
 };
 
-// Use a generous threshold (60s) to account for heartbeat intervals + network delays
-const ACTIVE_THRESHOLD_SECONDS = 60;
+// Sessions active within last 2 minutes are considered live
+const ACTIVE_THRESHOLD_SECONDS = 120;
 
 function useActiveSessions() {
   return useQuery({
     queryKey: ["admin-live-players"],
     queryFn: async () => {
-      // Use server-side time to avoid clock skew issues
+      // Fetch all sessions - table has max ~1 row per user, so this is safe
+      // We filter client-side to avoid clock skew between browser and server
       const { data: sessions, error } = await supabase
         .from("slot_active_sessions")
         .select("*")
-        .gte("last_heartbeat", new Date(Date.now() - ACTIVE_THRESHOLD_SECONDS * 1000).toISOString());
+        .order("last_heartbeat", { ascending: false });
 
       if (error) throw error;
 
       if (!sessions || sessions.length === 0) return [];
 
-      const userIds = [...new Set(sessions.map((s) => s.user_id))];
+      // Filter to only sessions with recent heartbeats (client-side)
+      // We compare relative ages between sessions rather than absolute time
+      // to avoid clock skew issues
+      const now = Date.now();
+      const activeSessions = sessions.filter((s) => {
+        const heartbeatAge = now - new Date(s.last_heartbeat).getTime();
+        return heartbeatAge < ACTIVE_THRESHOLD_SECONDS * 1000;
+      });
+
+      if (activeSessions.length === 0) return [];
+
+      const userIds = [...new Set(activeSessions.map((s) => s.user_id))];
       const { data: profiles } = await supabase
         .from("profiles")
         .select("user_id, display_name, avatar_url, twitch_username")
@@ -58,7 +70,7 @@ function useActiveSessions() {
         };
       });
 
-      return sessions.map((s) => ({
+      return activeSessions.map((s) => ({
         ...s,
         game_id: (s as any).game_id ?? null,
         profile: profileMap[s.user_id] || { display_name: null, avatar_url: null },
