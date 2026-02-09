@@ -2,11 +2,39 @@ import { useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Check, X, AlertTriangle, ArrowRight, BookOpen, Gift, Sparkles, RefreshCw, Percent, Calendar, Gamepad2, ListChecks } from "lucide-react";
+import { Check, X, AlertTriangle, ArrowRight, BookOpen, Gift, Sparkles, RefreshCw, Percent, Calendar, Gamepad2, ListChecks, Loader2 } from "lucide-react";
+import { useCasinos } from "@/hooks/useCasinos";
+import { CasinoCard } from "@/components/CasinoCard";
 
 const BonusGuide = () => {
   const location = useLocation();
+  const { data: casinos, isLoading: casinosLoading } = useCasinos();
 
+  const firstTwoCasinos = casinos?.slice(0, 2) ?? [];
+
+  const mapCasino = (casino: typeof firstTwoCasinos[0]) => ({
+    id: casino.id,
+    name: casino.name,
+    slug: casino.slug,
+    rating: Number(casino.rating),
+    bonusTitle: casino.bonus_title,
+    bonusAmount: casino.bonus_amount,
+    bonusType: casino.bonus_type,
+    wageringRequirements: casino.wagering_requirements,
+    validity: casino.validity,
+    minDeposit: casino.min_deposit,
+    payoutTime: casino.payout_time,
+    freeSpins: casino.free_spins,
+    features: casino.features ?? [],
+    pros: casino.pros ?? [],
+    cons: casino.cons ?? [],
+    description: casino.description ?? "",
+    isRecommended: casino.is_recommended,
+    isHot: casino.is_hot,
+    logoUrl: casino.logo_url,
+    affiliateUrl: casino.affiliate_url,
+    gameProviders: casino.game_providers ?? [],
+  });
   // Handle hash navigation when page loads or hash changes
   useEffect(() => {
     if (location.hash) {
@@ -241,6 +269,28 @@ const BonusGuide = () => {
                 </p>
               </CardContent>
             </Card>
+          </section>
+
+          {/* Partner Casino Cards */}
+          <section className="space-y-4">
+            <h3 className="text-lg font-semibold text-center text-muted-foreground">
+              Casinoer med No-Sticky Bonus
+            </h3>
+            {casinosLoading ? (
+              <div className="flex justify-center py-8">
+                <Loader2 className="h-6 w-6 animate-spin text-primary" />
+              </div>
+            ) : (
+              <div className="grid gap-4 md:grid-cols-2">
+                {firstTwoCasinos.map((casino, index) => (
+                  <CasinoCard
+                    key={casino.id}
+                    casino={mapCasino(casino)}
+                    rank={index + 1}
+                  />
+                ))}
+              </div>
+            )}
           </section>
 
           {/* Sticky */}
