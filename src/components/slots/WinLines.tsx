@@ -7,23 +7,25 @@ interface WinLinesProps {
   symbolSize: number;
   gap: number;
   isVisible: boolean;
+  gameId?: string;
 }
 
 // Egyptian gold/amber colors for each pay line (10 lines)
-const LINE_COLORS = [
-  "#FFD700", // Line 1 - Bright Gold
-  "#FFC107", // Line 2 - Amber
-  "#F59E0B", // Line 3 - Orange Gold
-  "#D97706", // Line 4 - Dark Amber
-  "#FBBF24", // Line 5 - Yellow Gold
-  "#EAB308", // Line 6 - Golden Yellow
-  "#CA8A04", // Line 7 - Bronze Gold
-  "#FFB300", // Line 8 - Warm Gold
-  "#FF8F00", // Line 9 - Deep Amber
-  "#FFA000", // Line 10 - Rich Amber
+const EGYPTIAN_LINE_COLORS = [
+  "#FFD700", "#FFC107", "#F59E0B", "#D97706", "#FBBF24",
+  "#EAB308", "#CA8A04", "#FFB300", "#FF8F00", "#FFA000",
 ];
 
-export const WinLines = React.memo(function WinLines({ wins, symbolSize, gap, isVisible }: WinLinesProps) {
+// Wizard purple/violet colors for each pay line (10 lines)
+const WIZARD_LINE_COLORS = [
+  "#A855F7", "#9333EA", "#7C3AED", "#8B5CF6", "#C084FC",
+  "#A78BFA", "#6D28D9", "#B57BFF", "#7E57C2", "#9F7AEA",
+];
+
+export const WinLines = React.memo(function WinLines({ wins, symbolSize, gap, isVisible, gameId }: WinLinesProps) {
+  const isWizard = gameId === "rise-of-fedesvin";
+  const LINE_COLORS = isWizard ? WIZARD_LINE_COLORS : EGYPTIAN_LINE_COLORS;
+  const coreLineColor = isWizard ? "#E9D5FF" : "#FFFACD";
   const [visibleLines, setVisibleLines] = useState<number[]>([]);
 
   // Animate lines appearing one by one
@@ -192,7 +194,7 @@ export const WinLines = React.memo(function WinLines({ wins, symbolSize, gap, is
                 <path
                   d={path}
                   fill="none"
-                  stroke="#FFFACD"
+                  stroke={coreLineColor}
                   strokeWidth={2}
                   strokeLinecap="round"
                   strokeLinejoin="round"

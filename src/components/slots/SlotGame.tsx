@@ -675,6 +675,7 @@ export function SlotGame({ gameId = "book-of-fedesvin" }: SlotGameProps) {
                   isActive={isWinAnimating}
                   winAmount={winAmount}
                   bet={bet}
+                  gameId={gameId}
                   onAnimationComplete={() => setIsWinAnimating(false)}
                 />
                 
@@ -978,6 +979,7 @@ export function SlotGame({ gameId = "book-of-fedesvin" }: SlotGameProps) {
                       symbolSize={symbolDimensions.size}
                       gap={symbolDimensions.gap}
                       isVisible={showWinLines && (!isSpinning || showConnectingWins)}
+                      gameId={gameId}
                     />
                   )}
                 </div>
