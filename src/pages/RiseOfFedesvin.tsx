@@ -191,7 +191,7 @@ export default function RiseOfFedesvin() {
       </div>
       
       {/* Game area - positioned directly under header */}
-      <div className="flex-1 flex items-center justify-center overflow-hidden">
+      <div className="flex-1 flex items-end justify-center overflow-hidden pb-4">
         <div 
           className="slot-viewport-container"
           style={{
