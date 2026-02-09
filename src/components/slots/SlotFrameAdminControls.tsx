@@ -50,6 +50,8 @@ export function SlotFrameAdminControls({ gameId = "book-of-fedesvin" }: SlotFram
   const [framePreviewUrl, setFramePreviewUrl] = useState<string | null>(null);
   const [uploadingFrame, setUploadingFrame] = useState(false);
   const [uploadingBackground, setUploadingBackground] = useState(false);
+  const [localSidepanelGap, setLocalSidepanelGap] = useState<number | null>(null);
+  const [localControlsGap, setLocalControlsGap] = useState<number | null>(null);
   const frameInputRef = useRef<HTMLInputElement>(null);
   const backgroundInputRef = useRef<HTMLInputElement>(null);
 
@@ -57,6 +59,8 @@ export function SlotFrameAdminControls({ gameId = "book-of-fedesvin" }: SlotFram
   useEffect(() => {
     setBackgroundPreviewUrl(null);
     setFramePreviewUrl(null);
+    setLocalSidepanelGap(null);
+    setLocalControlsGap(null);
   }, [gameId]);
 
   const { backgroundKey, frameKey, frameWidthKey, frameHeightKey, frameOffsetXKey, frameOffsetYKey, sidepanelGapKey, controlsGapKey } = getSettingsKeys(gameId);
@@ -584,11 +588,15 @@ export function SlotFrameAdminControls({ gameId = "book-of-fedesvin" }: SlotFram
               <div className="space-y-1.5">
                 <div className="flex items-center justify-between">
                   <Label className="text-xs text-muted-foreground">Sidepanel afstand (desktop)</Label>
-                  <span className="text-xs text-muted-foreground">{currentSidepanelGap}px</span>
+                  <span className="text-xs text-muted-foreground">{localSidepanelGap ?? currentSidepanelGap}px</span>
                 </div>
                 <Slider
-                  value={[currentSidepanelGap]}
-                  onValueChange={(v) => updateFrameSetting.mutate({ key: sidepanelGapKey, value: v[0] })}
+                  value={[localSidepanelGap ?? currentSidepanelGap]}
+                  onValueChange={(v) => setLocalSidepanelGap(v[0])}
+                  onValueCommit={(v) => {
+                    updateFrameSetting.mutate({ key: sidepanelGapKey, value: v[0] });
+                    setLocalSidepanelGap(null);
+                  }}
                   min={0}
                   max={400}
                   step={2}
@@ -600,11 +608,15 @@ export function SlotFrameAdminControls({ gameId = "book-of-fedesvin" }: SlotFram
               <div className="space-y-1.5">
                 <div className="flex items-center justify-between">
                   <Label className="text-xs text-muted-foreground">Kontrolpanel afstand</Label>
-                  <span className="text-xs text-muted-foreground">{currentControlsGap}px</span>
+                  <span className="text-xs text-muted-foreground">{localControlsGap ?? currentControlsGap}px</span>
                 </div>
                 <Slider
-                  value={[currentControlsGap]}
-                  onValueChange={(v) => updateFrameSetting.mutate({ key: controlsGapKey, value: v[0] })}
+                  value={[localControlsGap ?? currentControlsGap]}
+                  onValueChange={(v) => setLocalControlsGap(v[0])}
+                  onValueCommit={(v) => {
+                    updateFrameSetting.mutate({ key: controlsGapKey, value: v[0] });
+                    setLocalControlsGap(null);
+                  }}
                   min={0}
                   max={400}
                   step={1}
