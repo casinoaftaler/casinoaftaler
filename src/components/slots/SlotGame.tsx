@@ -258,6 +258,9 @@ export function SlotGame({ gameId = "book-of-fedesvin" }: SlotGameProps) {
     
     if (!symbols || symbols.length === 0 || !user || isSpinning) return;
     
+    // Block spins during any bonus overlay/celebration phase
+    if (showScatterCelebration || showBonusTrigger || showRetrigger || showBonusComplete || pendingBonusTrigger) return;
+    
     // Validate that all symbol images are loaded correctly
     const symbolValidation = validateSymbols();
     if (!symbolValidation.isValid) {
@@ -480,14 +483,14 @@ export function SlotGame({ gameId = "book-of-fedesvin" }: SlotGameProps) {
         ? bonusState.freeSpinsRemaining > 0 
         : hasEnoughSpins(bet);
       
-      if (!isSpinning && !spinLockRef.current && !isSpinLocked && canSpinNow && !showBonusTrigger && !isAutoSpinning) {
+      if (!isSpinning && !spinLockRef.current && !isSpinLocked && canSpinNow && !showBonusTrigger && !showScatterCelebration && !showRetrigger && !showBonusComplete && !pendingBonusTrigger && !isAutoSpinning) {
         handleSpin();
       }
     };
 
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);
-  }, [isSpinning, isSpinLocked, bonusState.isActive, bonusState.freeSpinsRemaining, bet, hasEnoughSpins, showBonusTrigger, isAutoSpinning]);
+  }, [isSpinning, isSpinLocked, bonusState.isActive, bonusState.freeSpinsRemaining, bet, hasEnoughSpins, showBonusTrigger, showScatterCelebration, showRetrigger, showBonusComplete, pendingBonusTrigger, isAutoSpinning]);
 
   // Autospin effect for normal spins
   useEffect(() => {
