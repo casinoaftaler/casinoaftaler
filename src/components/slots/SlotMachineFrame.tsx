@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
 import { cn } from "@/lib/utils";
 import { getSlotTheme } from "@/lib/slotTheme";
@@ -46,6 +46,7 @@ export function SlotMachineFrame({
   const { data: settings } = useSiteSettings();
   const [imageLoaded, setImageLoaded] = useState(false);
   const [imageError, setImageError] = useState(false);
+  const imgRef = useRef<HTMLImageElement>(null);
   const [windowWidth, setWindowWidth] = useState(() => 
     typeof window !== 'undefined' ? window.innerWidth : 1024
   );
@@ -67,6 +68,25 @@ export function SlotMachineFrame({
   const baseFrameSize = parseInt(settings?.[frameSizeKey] || settings?.slot_frame_size || String(gameDefault), 10);
   const effectiveFrameSize = getEffectiveFrameSize(windowWidth, baseFrameSize);
   const hasFrame = !!frameImageUrl && !imageError;
+
+  // Reset loaded/error state when the frame image URL changes
+  useEffect(() => {
+    setImageLoaded(false);
+    setImageError(false);
+  }, [frameImageUrl]);
+
+  // Handle cached images: if the browser already has the image cached,
+  // the onLoad event may fire before React attaches its handler.
+  // Check img.complete after mount to catch this case.
+  useEffect(() => {
+    const img = imgRef.current;
+    if (img && img.complete && img.naturalWidth > 0) {
+      setImageLoaded(true);
+    }
+  }, [frameImageUrl]);
+
+  const handleImageLoad = useCallback(() => setImageLoaded(true), []);
+  const handleImageError = useCallback(() => setImageError(true), []);
   
   // Frame offset (moves ONLY the frame image, not the reels)
   const frameVerticalOffset = GAME_FRAME_VERTICAL_OFFSET[gameId] ?? 0;
@@ -111,11 +131,12 @@ export function SlotMachineFrame({
           }}
         >
           <img
+            ref={imgRef}
             src={frameImageUrl}
             alt="Slot Frame"
             className="w-full h-full object-fill"
-            onLoad={() => setImageLoaded(true)}
-            onError={() => setImageError(true)}
+            onLoad={handleImageLoad}
+            onError={handleImageError}
           />
         </div>
       )}
