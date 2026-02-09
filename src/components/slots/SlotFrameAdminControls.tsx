@@ -590,7 +590,7 @@ export function SlotFrameAdminControls({ gameId = "book-of-fedesvin" }: SlotFram
                   value={[currentSidepanelGap]}
                   onValueChange={(v) => updateFrameSetting.mutate({ key: sidepanelGapKey, value: v[0] })}
                   min={0}
-                  max={80}
+                  max={400}
                   step={2}
                   className="w-full"
                 />
@@ -606,7 +606,7 @@ export function SlotFrameAdminControls({ gameId = "book-of-fedesvin" }: SlotFram
                   value={[currentControlsGap]}
                   onValueChange={(v) => updateFrameSetting.mutate({ key: controlsGapKey, value: v[0] })}
                   min={0}
-                  max={40}
+                  max={400}
                   step={1}
                   className="w-full"
                 />
