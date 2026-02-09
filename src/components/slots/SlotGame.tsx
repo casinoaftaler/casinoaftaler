@@ -112,6 +112,7 @@ export function SlotGame({ gameId = "book-of-fedesvin" }: SlotGameProps) {
   const pendingExpandedGridRef = useRef<string[][] | null>(null);
   const pendingExpandedReelsRef = useRef<number[]>([]);
   const pendingExpandingWinGroupsRef = useRef<Array<{ symbolId: string; reels: number[]; wins: any[] }>>([]);
+  const expandedReelSymbolMapRef = useRef<Record<number, string>>({});
   const isBonusSpinRef = useRef(false);
   const pendingBonusStateRef = useRef<any>(null);
   
@@ -303,6 +304,7 @@ export function SlotGame({ gameId = "book-of-fedesvin" }: SlotGameProps) {
     setIsWinAnimating(false);
     setExpandedReels([]);
     setNewlyExpandedReels([]);
+    expandedReelSymbolMapRef.current = {};
     setShowWinLines(false);
     stoppedReelsRef.current = new Set();
     
@@ -706,7 +708,7 @@ export function SlotGame({ gameId = "book-of-fedesvin" }: SlotGameProps) {
                         winningPositions={getWinningPositions(colIndex)}
                         isExpanded={isReelExpanded(colIndex)}
                         isNewlyExpanded={newlyExpandedReels.includes(colIndex)}
-                        expandingSymbolId={bonusState.expandingSymbol?.id}
+                        expandingSymbolId={expandedReelSymbolMapRef.current[colIndex] || bonusState.expandingSymbol?.id}
                         delay={colIndex}
                         shouldSlowDown={activeSlowdownReel >= colIndex}
                         spinLoopMs={slotSettings.spinLoopMs}
@@ -846,6 +848,19 @@ export function SlotGame({ gameId = "book-of-fedesvin" }: SlotGameProps) {
                                 // Final: show combined expanded grid with all symbols
                                 setExpandedReels(reelsExpanded);
                                 setGrid(expandedGrid);
+                                
+                                // Build per-reel symbol map for expansion styling (Problem 2)
+                                const reelSymbolMap: Record<number, string> = {};
+                                for (const group of winGroups) {
+                                  for (const reelIdx of group.reels) {
+                                    reelSymbolMap[reelIdx] = group.symbolId;
+                                  }
+                                }
+                                expandedReelSymbolMapRef.current = reelSymbolMap;
+                                
+                                // Clear pending refs to prevent stale darkening (Problem 3)
+                                pendingExpandedReelsRef.current = [];
+                                pendingExpandingWinGroupsRef.current = [];
                               } else {
                                 // Single expansion group or Book of Fedesvin: existing behavior
                                 setExpandedReels(reelsExpanded);
@@ -867,6 +882,10 @@ export function SlotGame({ gameId = "book-of-fedesvin" }: SlotGameProps) {
                                 setShowConnectingWins(false);
                                 setLastResult(null);
                                 setShowExpansionDarken(false);
+                                
+                                // Clear pending refs to prevent stale darkening (Problem 3)
+                                pendingExpandedReelsRef.current = [];
+                                pendingExpandingWinGroupsRef.current = [];
                               }
                             }
                             
@@ -997,8 +1016,7 @@ export function SlotGame({ gameId = "book-of-fedesvin" }: SlotGameProps) {
                         hasLandedScatter={scatterReelsLanded.has(colIndex) && scatterReelsLanded.size >= 2 && isSpinning}
                         isScatterCelebrating={showScatterCelebration}
                         isDarkenedForTease={
-                          (scatterReelsLanded.size >= 2 && isSpinning) || 
-                          (bonusState.isActive && pendingExpandedReelsRef.current.length > 0 && !showExpansionDarken && expandedReels.length === 0 && !isSpinning)
+                          (scatterReelsLanded.size >= 2 && isSpinning)
                         }
                         isDarkenedForExpansion={showExpansionDarken && !expandedReels.includes(colIndex)}
                         gameId={gameId}
