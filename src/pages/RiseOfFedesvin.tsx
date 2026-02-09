@@ -84,7 +84,7 @@ export default function RiseOfFedesvin() {
 
   if (loading || accessLoading) {
     return (
-      <div className="min-h-[calc(100vh-4rem)] relative">
+      <div className="min-h-screen w-screen relative">
         <PageBackground />
         <div className="container py-8 flex items-center justify-center min-h-[60vh]">
           <div className="animate-pulse text-muted-foreground">Indlæser...</div>
@@ -106,7 +106,7 @@ export default function RiseOfFedesvin() {
 
   if (!user) {
     return (
-      <div className="min-h-[calc(100vh-4rem)] relative">
+      <div className="min-h-screen w-screen relative">
         <PageBackground />
         <div className="container py-16">
           <div className="max-w-md mx-auto text-center space-y-6 bg-card/80 backdrop-blur-sm p-8 rounded-xl border border-purple-500/20">
@@ -128,7 +128,7 @@ export default function RiseOfFedesvin() {
 
   if (sessionLoading) {
     return (
-      <div className="min-h-[calc(100vh-4rem)] relative">
+      <div className="min-h-screen w-screen relative">
         <PageBackground />
         <div className="container py-8 flex items-center justify-center min-h-[60vh]">
           <div className="animate-pulse text-muted-foreground">Indlæser...</div>
@@ -168,7 +168,7 @@ export default function RiseOfFedesvin() {
   );
 
   return (
-    <div className="min-h-[calc(100dvh-4rem)] relative flex flex-col">
+    <div className="min-h-screen w-screen relative flex flex-col">
       <div 
         className="fixed inset-0 bg-cover bg-center bg-no-repeat -z-10"
         style={{ backgroundImage: `url(${backgroundImage})` }}
