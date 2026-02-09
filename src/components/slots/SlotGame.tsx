@@ -115,6 +115,8 @@ export function SlotGame({ gameId = "book-of-fedesvin" }: SlotGameProps) {
   const expandedReelSymbolMapRef = useRef<Record<number, string>>({});
   const isBonusSpinRef = useRef(false);
   const pendingBonusStateRef = useRef<any>(null);
+  const winCelebrationResolveRef = useRef<(() => void) | null>(null);
+  const skipEndCelebrationRef = useRef(false);
   
   // Autospin state
   const [isAutoSpinning, setIsAutoSpinning] = useState(false);
@@ -694,7 +696,13 @@ export function SlotGame({ gameId = "book-of-fedesvin" }: SlotGameProps) {
                   winAmount={winAmount}
                   bet={bet}
                   gameId={gameId}
-                  onAnimationComplete={() => setIsWinAnimating(false)}
+                  onAnimationComplete={() => {
+                    setIsWinAnimating(false);
+                    if (winCelebrationResolveRef.current) {
+                      winCelebrationResolveRef.current();
+                      winCelebrationResolveRef.current = null;
+                    }
+                  }}
                 />
                 
                 {/* Reel container */}
@@ -824,9 +832,20 @@ export function SlotGame({ gameId = "book-of-fedesvin" }: SlotGameProps) {
                               if (hasMultipleGroups) {
                                 // Sequential expansion: animate each expanding symbol group one at a time
                                 const originalGridCopy = result.grid.map((col: string[]) => [...col]);
+                                skipEndCelebrationRef.current = true;
                                 
                                 for (let groupIdx = 0; groupIdx < winGroups.length; groupIdx++) {
                                   const group = winGroups[groupIdx];
+                                  
+                                  // Clear expansion state from previous group for clean re-expansion
+                                  expandedReelSymbolMapRef.current = {};
+                                  
+                                  // Build per-reel symbol map for THIS group only
+                                  const groupReelSymbolMap: Record<number, string> = {};
+                                  for (const reelIdx of group.reels) {
+                                    groupReelSymbolMap[reelIdx] = group.symbolId;
+                                  }
+                                  expandedReelSymbolMapRef.current = groupReelSymbolMap;
                                   
                                   // Build partial grid with only this symbol's reels expanded
                                   const partialGrid = originalGridCopy.map((col: string[]) => [...col]);
@@ -848,39 +867,63 @@ export function SlotGame({ gameId = "book-of-fedesvin" }: SlotGameProps) {
                                   setNewlyExpandedReels([]);
                                   
                                   // Payline phase: show only this symbol's wins
+                                  const groupWin = group.wins.reduce((sum: number, w: any) => sum + w.payout, 0);
                                   if (group.wins.length > 0) {
-                                    setLastResult({ ...result, wins: group.wins, totalWin: group.wins.reduce((sum: number, w: any) => sum + w.payout, 0) });
+                                    setLastResult({ ...result, wins: group.wins, totalWin: groupWin });
                                     setShowConnectingWins(true);
                                     setShowWinLines(true);
                                     await new Promise(resolve => setTimeout(resolve, 1200));
                                     setShowWinLines(false);
                                     setShowConnectingWins(false);
-                                    setLastResult(null);
                                   }
                                   
-                                  // Turn off darken after paylines are done
+                                  // Per-group win celebration
+                                  if (groupWin > 0) {
+                                    // Play appropriate sound
+                                    if (groupWin >= bet * 50) {
+                                      slotSounds.playBigWin();
+                                    } else if (groupWin >= bet * 10) {
+                                      slotSounds.playMediumWin();
+                                    } else {
+                                      slotSounds.playSmallWin();
+                                    }
+                                    
+                                    // Await the win celebration
+                                    await new Promise<void>(resolve => {
+                                      if (groupWin >= bet * 10) {
+                                        // Big/mega win - WinCelebration handles timing via onAnimationComplete
+                                        winCelebrationResolveRef.current = resolve;
+                                        setWinAmount(groupWin);
+                                        setIsWinAnimating(true);
+                                      } else {
+                                        // Small win - use timeout
+                                        setWinAmount(groupWin);
+                                        setIsWinAnimating(true);
+                                        setTimeout(() => {
+                                          setIsWinAnimating(false);
+                                          resolve();
+                                        }, 2000);
+                                      }
+                                    });
+                                    
+                                    // Clear win state after celebration
+                                    setWinAmount(0);
+                                    setIsWinAnimating(false);
+                                  }
+                                  
+                                  setLastResult(null);
+                                  
+                                  // Turn off darken after celebration
                                   setShowExpansionDarken(false);
                                   
                                   // Unexpand phase: restore original grid
+                                  expandedReelSymbolMapRef.current = {};
                                   setGrid(originalGridCopy);
                                   setExpandedReels([]);
                                   await new Promise(resolve => setTimeout(resolve, 500));
                                 }
                                 
-                                // Final: show combined expanded grid with all symbols
-                                setExpandedReels(reelsExpanded);
-                                setGrid(expandedGrid);
-                                
-                                // Build per-reel symbol map for expansion styling (Problem 2)
-                                const reelSymbolMap: Record<number, string> = {};
-                                for (const group of winGroups) {
-                                  for (const reelIdx of group.reels) {
-                                    reelSymbolMap[reelIdx] = group.symbolId;
-                                  }
-                                }
-                                expandedReelSymbolMapRef.current = reelSymbolMap;
-                                
-                                // Clear pending refs to prevent stale darkening (Problem 3)
+                                // Clear pending refs to prevent stale darkening
                                 pendingExpandedReelsRef.current = [];
                                 pendingExpandingWinGroupsRef.current = [];
                               } else {
@@ -961,9 +1004,17 @@ export function SlotGame({ gameId = "book-of-fedesvin" }: SlotGameProps) {
                               }
                             }
                             
-                            // Play appropriate sound based on result
+                            // Play appropriate sound based on result (skip if multi-group already handled it)
                             let hasWinAnimation = false;
-                            if (result.totalWin >= bet * 50) {
+                            if (skipEndCelebrationRef.current) {
+                              skipEndCelebrationRef.current = false;
+                              // Multi-group already showed per-group celebrations
+                              // Still set winAmount for the total so SmallWinBar/display shows it
+                              if (result.totalWin > 0) {
+                                setWinAmount(result.totalWin);
+                                hasWinAnimation = true;
+                              }
+                            } else if (result.totalWin >= bet * 50) {
                               slotSounds.playBigWin();
                               setIsWinAnimating(true);
                               setWinAmount(result.totalWin);
