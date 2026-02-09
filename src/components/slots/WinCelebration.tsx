@@ -17,18 +17,27 @@ interface WinCelebrationProps {
   isActive: boolean;
   winAmount: number;
   bet: number;
+  gameId?: string;
   onAnimationComplete?: () => void;
 }
 
-const COLORS = [
-  "hsl(45, 100%, 50%)",   // Gold
-  "hsl(36, 100%, 50%)",   // Orange gold
-  "hsl(51, 100%, 60%)",   // Light gold
-  // Keep the celebration strictly in a gold spectrum (no purple/blue accents)
-  "hsl(42, 95%, 55%)",    // Warm gold
+const EGYPTIAN_COLORS = [
+  "hsl(45, 100%, 50%)",
+  "hsl(36, 100%, 50%)",
+  "hsl(51, 100%, 60%)",
+  "hsl(42, 95%, 55%)",
 ];
 
-export function WinCelebration({ isActive, winAmount, bet, onAnimationComplete }: WinCelebrationProps) {
+const WIZARD_COLORS = [
+  "hsl(270, 80%, 60%)",
+  "hsl(260, 90%, 55%)",
+  "hsl(280, 70%, 65%)",
+  "hsl(250, 75%, 60%)",
+];
+
+export function WinCelebration({ isActive, winAmount, bet, gameId, onAnimationComplete }: WinCelebrationProps) {
+  const isWizard = gameId === "rise-of-fedesvin";
+  const COLORS = isWizard ? WIZARD_COLORS : EGYPTIAN_COLORS;
   const [particles, setParticles] = useState<Particle[]>([]);
   const [showBigWin, setShowBigWin] = useState(false);
   const [isPulsing, setIsPulsing] = useState(false);
@@ -137,7 +146,7 @@ export function WinCelebration({ isActive, winAmount, bet, onAnimationComplete }
               <div
                 className="w-6 h-6 rounded-full animate-[coin-spin_0.5s_linear_infinite]"
                 style={{
-                  background: `radial-gradient(circle at 30% 30%, ${particle.color}, hsl(36, 80%, 30%))`,
+                  background: `radial-gradient(circle at 30% 30%, ${particle.color}, ${isWizard ? 'hsl(270, 60%, 25%)' : 'hsl(36, 80%, 30%)'})`,
                   boxShadow: `0 0 10px ${particle.color}`,
                 }}
               />
@@ -181,7 +190,12 @@ export function WinCelebration({ isActive, winAmount, bet, onAnimationComplete }
           )}
         >
           {/* Semi-transparent background */}
-          <div className="bg-black/70 backdrop-blur-sm rounded-2xl px-6 sm:px-10 py-4 sm:py-8 border-2 border-amber-500/40 shadow-[0_0_40px_rgba(251,191,36,0.3)]">
+           <div className={cn(
+              "bg-black/70 backdrop-blur-sm rounded-2xl px-6 sm:px-10 py-4 sm:py-8 border-2",
+              isWizard 
+                ? "border-purple-500/40 shadow-[0_0_40px_rgba(168,85,247,0.3)]"
+                : "border-amber-500/40 shadow-[0_0_40px_rgba(251,191,36,0.3)]"
+            )}>
             <div
               className={cn(
                 "text-center animate-[big-win-pop_0.6s_ease-out_forwards]",
@@ -194,22 +208,34 @@ export function WinCelebration({ isActive, winAmount, bet, onAnimationComplete }
                   isEpicWin ? "text-4xl sm:text-6xl" : isMegaWin ? "text-3xl sm:text-5xl" : "text-2xl sm:text-4xl"
                 )}
                 style={{
-                  background: isEpicWin 
-                    ? "linear-gradient(135deg, #ffd700, #ff6b6b, #ffd700, #ff6b6b)"
-                    : isMegaWin
-                    ? "linear-gradient(135deg, #ffd700, #ff8c00, #ffd700)"
-                    : "linear-gradient(135deg, #ffd700, #ffb347)",
+                  background: isWizard
+                    ? (isEpicWin 
+                        ? "linear-gradient(135deg, #a855f7, #ec4899, #a855f7, #ec4899)"
+                        : isMegaWin
+                        ? "linear-gradient(135deg, #a855f7, #7c3aed, #a855f7)"
+                        : "linear-gradient(135deg, #a855f7, #c084fc)")
+                    : (isEpicWin 
+                        ? "linear-gradient(135deg, #ffd700, #ff6b6b, #ffd700, #ff6b6b)"
+                        : isMegaWin
+                        ? "linear-gradient(135deg, #ffd700, #ff8c00, #ffd700)"
+                        : "linear-gradient(135deg, #ffd700, #ffb347)"),
                   backgroundSize: isEpicWin ? "300% 300%" : "200% 200%",
                   WebkitBackgroundClip: "text",
                   WebkitTextFillColor: "transparent",
                   animation: isEpicWin 
                     ? "gradient-shift 0.5s ease infinite" 
                     : "gradient-shift 1s ease infinite",
-                  textShadow: "0 0 30px rgba(255, 215, 0, 0.8)",
-                  filter: "drop-shadow(0 0 20px rgba(255, 215, 0, 0.6))",
+                  textShadow: isWizard
+                    ? "0 0 30px rgba(168, 85, 247, 0.8)"
+                    : "0 0 30px rgba(255, 215, 0, 0.8)",
+                  filter: isWizard
+                    ? "drop-shadow(0 0 20px rgba(168, 85, 247, 0.6))"
+                    : "drop-shadow(0 0 20px rgba(255, 215, 0, 0.6))",
                 }}
               >
-                {isEpicWin ? "🔥 EPIC WIN! 🔥" : isMegaWin ? "💎 MEGA WIN! 💎" : "⭐ BIG WIN! ⭐"}
+                {isWizard
+                  ? (isEpicWin ? "⚡ EPIC WIN! ⚡" : isMegaWin ? "🔮 MEGA WIN! 🔮" : "✨ BIG WIN! ✨")
+                  : (isEpicWin ? "🔥 EPIC WIN! 🔥" : isMegaWin ? "💎 MEGA WIN! 💎" : "⭐ BIG WIN! ⭐")}
               </div>
               <div
                 className={cn(
@@ -218,8 +244,10 @@ export function WinCelebration({ isActive, winAmount, bet, onAnimationComplete }
                   isPulsing && "animate-[win-amount-pulse_0.25s_ease-in-out_3]"
                 )}
                 style={{
-                  color: "#ffd700",
-                  textShadow: "0 0 20px rgba(255, 215, 0, 0.8), 0 0 40px rgba(255, 215, 0, 0.4)",
+                  color: isWizard ? "#c084fc" : "#ffd700",
+                  textShadow: isWizard
+                    ? "0 0 20px rgba(168, 85, 247, 0.8), 0 0 40px rgba(168, 85, 247, 0.4)"
+                    : "0 0 20px rgba(255, 215, 0, 0.8), 0 0 40px rgba(255, 215, 0, 0.4)",
                 }}
               >
                 {displayAmount} POINT!
@@ -237,11 +265,17 @@ export function WinCelebration({ isActive, winAmount, bet, onAnimationComplete }
             "animate-[flash_0.3s_ease-out]"
           )}
           style={{
-            background: isEpicWin
-              ? "radial-gradient(circle, rgba(255,107,107,0.4) 0%, transparent 70%)"
-              : isMegaWin
-              ? "radial-gradient(circle, rgba(255,215,0,0.4) 0%, transparent 70%)"
-              : "radial-gradient(circle, rgba(255,215,0,0.3) 0%, transparent 70%)",
+            background: isWizard
+              ? (isEpicWin
+                ? "radial-gradient(circle, rgba(236,72,153,0.4) 0%, transparent 70%)"
+                : isMegaWin
+                ? "radial-gradient(circle, rgba(168,85,247,0.4) 0%, transparent 70%)"
+                : "radial-gradient(circle, rgba(168,85,247,0.3) 0%, transparent 70%)")
+              : (isEpicWin
+                ? "radial-gradient(circle, rgba(255,107,107,0.4) 0%, transparent 70%)"
+                : isMegaWin
+                ? "radial-gradient(circle, rgba(255,215,0,0.4) 0%, transparent 70%)"
+                : "radial-gradient(circle, rgba(255,215,0,0.3) 0%, transparent 70%)"),
           }}
         />
       )}
@@ -253,13 +287,21 @@ export function WinCelebration({ isActive, winAmount, bet, onAnimationComplete }
           "animate-[glow-pulse_1s_ease-in-out_infinite]"
         )}
         style={{
-          boxShadow: isEpicWin
-            ? "inset 0 0 30px rgba(255, 107, 107, 0.5), 0 0 50px rgba(255, 215, 0, 0.5)"
-            : isMegaWin
-            ? "inset 0 0 25px rgba(255, 215, 0, 0.4), 0 0 40px rgba(255, 215, 0, 0.4)"
-            : isBigWin
-            ? "inset 0 0 20px rgba(255, 215, 0, 0.3), 0 0 30px rgba(255, 215, 0, 0.3)"
-            : "inset 0 0 15px rgba(255, 215, 0, 0.2), 0 0 20px rgba(255, 215, 0, 0.2)",
+          boxShadow: isWizard
+            ? (isEpicWin
+              ? "inset 0 0 30px rgba(236, 72, 153, 0.5), 0 0 50px rgba(168, 85, 247, 0.5)"
+              : isMegaWin
+              ? "inset 0 0 25px rgba(168, 85, 247, 0.4), 0 0 40px rgba(168, 85, 247, 0.4)"
+              : isBigWin
+              ? "inset 0 0 20px rgba(168, 85, 247, 0.3), 0 0 30px rgba(168, 85, 247, 0.3)"
+              : "inset 0 0 15px rgba(168, 85, 247, 0.2), 0 0 20px rgba(168, 85, 247, 0.2)")
+            : (isEpicWin
+              ? "inset 0 0 30px rgba(255, 107, 107, 0.5), 0 0 50px rgba(255, 215, 0, 0.5)"
+              : isMegaWin
+              ? "inset 0 0 25px rgba(255, 215, 0, 0.4), 0 0 40px rgba(255, 215, 0, 0.4)"
+              : isBigWin
+              ? "inset 0 0 20px rgba(255, 215, 0, 0.3), 0 0 30px rgba(255, 215, 0, 0.3)"
+              : "inset 0 0 15px rgba(255, 215, 0, 0.2), 0 0 20px rgba(255, 215, 0, 0.2)"),
         }}
       />
     </>
