@@ -21,9 +21,29 @@ const GAME_LABELS: Record<string, string> = {
 const MAX_WINS = 10;
 const MIN_MULTIPLIER = 100;
 const ANTI_SPAM_MS = 30_000;
+const WIN_TTL_MS = 1_200_000; // 20 minutes
+const STORAGE_KEY = "live_big_wins";
+
+function loadPersistedWins(): BigWin[] {
+  try {
+    const raw = sessionStorage.getItem(STORAGE_KEY);
+    if (!raw) return [];
+    const parsed: BigWin[] = JSON.parse(raw);
+    const now = Date.now();
+    return parsed.filter((w) => now - w.timestamp < WIN_TTL_MS);
+  } catch {
+    return [];
+  }
+}
+
+function persistWins(wins: BigWin[]) {
+  try {
+    sessionStorage.setItem(STORAGE_KEY, JSON.stringify(wins));
+  } catch { /* ignore */ }
+}
 
 export function useLiveBigWins() {
-  const [wins, setWins] = useState<BigWin[]>([]);
+  const [wins, setWins] = useState<BigWin[]>(() => loadPersistedWins());
   const lastUserTimestamp = useRef<Map<string, number>>(new Map());
 
   const addWin = useCallback((win: BigWin) => {
@@ -35,9 +55,17 @@ export function useLiveBigWins() {
 
     setWins((prev) => {
       const next = [...prev, win];
-      if (next.length > MAX_WINS) {
-        return next.slice(next.length - MAX_WINS);
-      }
+      const trimmed = next.length > MAX_WINS ? next.slice(next.length - MAX_WINS) : next;
+      persistWins(trimmed);
+      return trimmed;
+    });
+  }, []);
+
+  // Persist on remove too
+  const removeWin = useCallback((id: string) => {
+    setWins((prev) => {
+      const next = prev.filter((w) => w.id !== id);
+      persistWins(next);
       return next;
     });
   }, []);
@@ -99,10 +127,6 @@ export function useLiveBigWins() {
       supabase.removeChannel(channel);
     };
   }, [addWin]);
-
-  const removeWin = useCallback((id: string) => {
-    setWins((prev) => prev.filter((w) => w.id !== id));
-  }, []);
 
   return { wins, removeWin };
 }
