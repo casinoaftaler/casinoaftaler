@@ -149,6 +149,63 @@ export type Database = {
           },
         ]
       }
+      community_bonus_spins: {
+        Row: {
+          created_at: string
+          id: string
+          rewarded_clips_count: number
+          total_activated: number
+          total_earned: number
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          rewarded_clips_count?: number
+          total_activated?: number
+          total_earned?: number
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          rewarded_clips_count?: number
+          total_activated?: number
+          total_earned?: number
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
+      community_bonus_spins_log: {
+        Row: {
+          amount: number
+          clip_id: string | null
+          created_at: string
+          event_type: string
+          id: string
+          user_id: string
+        }
+        Insert: {
+          amount: number
+          clip_id?: string | null
+          created_at?: string
+          event_type: string
+          id?: string
+          user_id: string
+        }
+        Update: {
+          amount?: number
+          clip_id?: string | null
+          created_at?: string
+          event_type?: string
+          id?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
       community_clip_comments: {
         Row: {
           clip_id: string
