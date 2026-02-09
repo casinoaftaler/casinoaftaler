@@ -27,6 +27,7 @@ interface SlotReelProps {
   isScatterCelebrating?: boolean;
   isDarkenedForTease?: boolean;
   isDarkenedForExpansion?: boolean;
+  gameId?: string;
 }
 
 export const SlotReel = React.memo(function SlotReel({
@@ -51,7 +52,10 @@ export const SlotReel = React.memo(function SlotReel({
   isScatterCelebrating = false,
   isDarkenedForTease = false,
   isDarkenedForExpansion = false,
+  gameId,
 }: SlotReelProps) {
+  const isWizard = gameId === "rise-of-fedesvin";
+  
   // Use cached responsive dimensions
   const { symbolSize: symbolHeight, gap } = useResponsiveSlotDimensions();
   
@@ -70,13 +74,11 @@ export const SlotReel = React.memo(function SlotReel({
   const buildReelStrip = () => {
     const strip: SlotSymbolType[] = [];
     
-    // Add the final landing symbols at the START
     displayedSymbolIds.forEach(id => {
       const symbol = symbolsById.get(id);
       if (symbol) strip.push(symbol);
     });
     
-    // Add random symbols for the spin animation
     const spinSymbolCount = 30;
     for (let i = 0; i < spinSymbolCount; i++) {
       const randomSymbol = symbols[Math.floor(Math.random() * symbols.length)];
@@ -87,12 +89,10 @@ export const SlotReel = React.memo(function SlotReel({
   };
 
 
-  // Start fake loop when spinning begins - ALL reels use this now
+  // Start fake loop when spinning begins
   useEffect(() => {
     if (isSpinning && !hasStartedSpinRef.current) {
-      // Ensure we're in a clean idle state before starting
       if (spinState !== "idle") {
-        // Force reset to idle first
         if (animationRef.current) {
           cancelAnimationFrame(animationRef.current);
           animationRef.current = null;
@@ -104,7 +104,6 @@ export const SlotReel = React.memo(function SlotReel({
       hasStartedSpinRef.current = true;
       hasStartedSlowdownRef.current = false;
       
-      // Build reel strip
       const strip = buildReelStrip();
       setReelStrip(strip);
       
@@ -112,10 +111,9 @@ export const SlotReel = React.memo(function SlotReel({
       const startOffset = (strip.length - 3) * totalSymbolHeight;
       setOffset(startOffset);
       
-      // Start fake loop immediately
       setSpinState("spinning");
       
-      const loopDuration = spinLoopMs; // Use configurable speed
+      const loopDuration = spinLoopMs;
       const fakeLoopStartTime = performance.now();
       
       const fakeLoopAnimate = (currentTime: number) => {
@@ -123,7 +121,6 @@ export const SlotReel = React.memo(function SlotReel({
         
         const elapsed = (currentTime - fakeLoopStartTime) % loopDuration;
         const loopProgress = elapsed / loopDuration;
-        // Constant speed - linear motion, no easing
         const loopOffset = startOffset * (1 - loopProgress);
         setOffset(loopOffset);
         
@@ -134,22 +131,19 @@ export const SlotReel = React.memo(function SlotReel({
     }
   }, [isSpinning]);
 
-  // Handle transition from fake loop to slowdown when shouldSlowDown becomes true
+  // Handle transition from fake loop to slowdown
   useEffect(() => {
     if (shouldSlowDown && hasStartedSpinRef.current && !hasStartedSlowdownRef.current && spinState === "spinning") {
       hasStartedSlowdownRef.current = true;
       
-      // Cancel fake loop animation
       if (animationRef.current) {
         cancelAnimationFrame(animationRef.current);
       }
       
-      // For tease reels, play the tease sound
       if (teaseMode && isActiveTeaseReel) {
         stopTeaseSoundRef.current = slotSounds.playActiveTeaseSlowdown(delay);
       }
       
-      // Rebuild reel strip with fresh symbols for the slowdown
       const strip = buildReelStrip();
       setReelStrip(strip);
       
@@ -158,17 +152,15 @@ export const SlotReel = React.memo(function SlotReel({
       setOffset(startOffset);
       
       const startTime = performance.now();
-      // Tease reels get longer slowdown (3s), normal reels use configurable speed
       const spinDuration = teaseMode ? 3000 : reelSlowdownMs;
       
       const animate = (currentTime: number) => {
         const elapsed = currentTime - startTime;
         const progress = Math.min(elapsed / spinDuration, 1);
         
-        // Easing: slower for tease, normal for regular
         const easeOut = teaseMode
-          ? 1 - Math.pow(1 - progress, 5)  // Very slow deceleration for tease
-          : 1 - Math.pow(1 - progress, 2); // Normal ease out
+          ? 1 - Math.pow(1 - progress, 5)
+          : 1 - Math.pow(1 - progress, 2);
         
         const currentOffset = startOffset * (1 - easeOut);
         setOffset(currentOffset);
@@ -176,7 +168,6 @@ export const SlotReel = React.memo(function SlotReel({
         if (progress < 1) {
           animationRef.current = requestAnimationFrame(animate);
         } else {
-          // Stop tease sound when reel lands
           if (stopTeaseSoundRef.current) {
             stopTeaseSoundRef.current();
             stopTeaseSoundRef.current = null;
@@ -185,10 +176,8 @@ export const SlotReel = React.memo(function SlotReel({
           setOffset(0);
           setSpinState("stopping");
           
-          // Trigger the reel stop callback
           onReelStop?.(delay);
           
-          // Small settle effect
           setTimeout(() => {
             setSpinState("stopped");
             setTimeout(() => {
@@ -237,7 +226,6 @@ export const SlotReel = React.memo(function SlotReel({
     }
   }, [isSpinning, spinState]);
 
-  // Helper to check if a symbol should show expansion effect
   const shouldShowExpansion = (symbolId: string): boolean => {
     return isExpanded && !!expandingSymbolId && symbolId === expandingSymbolId;
   };
@@ -246,11 +234,9 @@ export const SlotReel = React.memo(function SlotReel({
     return isNewlyExpanded && !!expandingSymbolId && symbolId === expandingSymbolId;
   };
 
-  // Compute viewport dimensions consistently for ALL states
   const totalSymbolHeight = symbolHeight + gap;
   const viewportHeight = 3 * symbolHeight + 2 * gap;
 
-  // Calculate blur amount based on speed (only during spinning)
   const getBlurAmount = () => {
     if (spinState !== "spinning") return 0;
     const maxOffset = (reelStrip.length - 3) * totalSymbolHeight;
@@ -262,18 +248,22 @@ export const SlotReel = React.memo(function SlotReel({
   const blurAmount = getBlurAmount();
   const isAnimating = spinState === "spinning" || spinState === "stopping";
 
+  // Theme-aware glow colors
+  const fakeLoopGlow = isWizard
+    ? "shadow-[0_0_15px_rgba(168,85,247,0.3),0_0_25px_rgba(168,85,247,0.15)] animate-pulse"
+    : "shadow-[0_0_15px_rgba(251,191,36,0.3),0_0_25px_rgba(251,191,36,0.15)] animate-pulse";
+  const activeTeaseGlow = isWizard
+    ? "shadow-[0_0_30px_rgba(168,85,247,0.9),0_0_60px_rgba(168,85,247,0.6),0_0_90px_rgba(168,85,247,0.3)] animate-[glow-intense_0.5s_ease-in-out_infinite]"
+    : "shadow-[0_0_30px_rgba(251,191,36,0.9),0_0_60px_rgba(251,191,36,0.6),0_0_90px_rgba(251,191,36,0.3)] animate-[glow-intense_0.5s_ease-in-out_infinite]";
+
   return (
     <div 
       ref={containerRef}
       className={cn(
         "relative overflow-hidden rounded-lg transition-shadow duration-300",
-        isAnimating && "bg-amber-950/50",
-        // Fake looping glow - only show when scatter has landed on previous reel
-        !hasStartedSlowdownRef.current && scatterLandedOnPreviousReel && isAnimating &&
-        "shadow-[0_0_15px_rgba(251,191,36,0.3),0_0_25px_rgba(251,191,36,0.15)] animate-pulse",
-        // Active tease: Intense glow
-        hasStartedSlowdownRef.current && teaseMode && isAnimating &&
-        "shadow-[0_0_30px_rgba(251,191,36,0.9),0_0_60px_rgba(251,191,36,0.6),0_0_90px_rgba(251,191,36,0.3)] animate-[glow-intense_0.5s_ease-in-out_infinite]"
+        isAnimating && (isWizard ? "bg-purple-950/50" : "bg-amber-950/50"),
+        !hasStartedSlowdownRef.current && scatterLandedOnPreviousReel && isAnimating && fakeLoopGlow,
+        hasStartedSlowdownRef.current && teaseMode && isAnimating && activeTeaseGlow
       )}
       style={{ 
         height: `${viewportHeight}px`,
@@ -281,7 +271,6 @@ export const SlotReel = React.memo(function SlotReel({
       }}
     >
       {isAnimating ? (
-        /* Spinning/stopping: animated reel strip */
         <div 
           className="absolute left-0 right-0 flex flex-col"
           style={{ 
@@ -297,11 +286,11 @@ export const SlotReel = React.memo(function SlotReel({
               symbol={symbol}
               isSpinning={true}
               isTeasing={false}
+              gameId={gameId}
             />
           ))}
         </div>
       ) : (
-        /* Idle/stopped: final symbols in same container */
         <div 
           className="absolute left-0 right-0 flex flex-col"
           style={{ gap: `${gap}px` }}
@@ -334,6 +323,7 @@ export const SlotReel = React.memo(function SlotReel({
                   isTeasing={globalTeaseActive && hasLandedScatter && symbol.is_scatter}
                   isScatterCelebrating={isScatterCelebrating && symbol.is_scatter}
                   isDarkened={shouldDarkenSymbol}
+                  gameId={gameId}
                 />
               </div>
             );

@@ -9,8 +9,9 @@ interface Particle {
   rotation: number;
   scale: number;
   color: string;
-  type: "coin" | "sparkle" | "star";
+  type: "coin" | "sparkle" | "star" | "orb" | "rune";
   delay: number;
+  rising?: boolean; // For rising energy particles
 }
 
 interface WinCelebrationProps {
@@ -33,7 +34,11 @@ const WIZARD_COLORS = [
   "hsl(260, 90%, 55%)",
   "hsl(280, 70%, 65%)",
   "hsl(250, 75%, 60%)",
+  "hsl(290, 85%, 70%)",
+  "hsl(240, 70%, 55%)",
 ];
+
+const WIZARD_RUNES = ["᛭", "ᚹ", "ᛟ", "ᛏ", "ᚨ", "ᛗ", "ᚠ", "ᛉ"];
 
 export function WinCelebration({ isActive, winAmount, bet, gameId, onAnimationComplete }: WinCelebrationProps) {
   const isWizard = gameId === "rise-of-fedesvin";
@@ -49,13 +54,12 @@ export function WinCelebration({ isActive, winAmount, bet, gameId, onAnimationCo
   const isMegaWin = winMultiplier >= 50;
   const isEpicWin = winMultiplier >= 100;
 
-  // Animated counter for big win display - longer duration for dramatic effect
   const duration = isEpicWin ? 2500 : isMegaWin ? 2000 : 1500;
   const displayAmount = useAnimatedCounter(showBigWin ? winAmount : 0, { 
     duration, 
     startFrom: 0,
-    playSound: showBigWin, // Only play sound when big win is showing
-    isBigWin: true // Use dramatic big win counting sound
+    playSound: showBigWin,
+    isBigWin: true
   });
 
   // Detect when counting is done and start pulse animation
@@ -63,12 +67,10 @@ export function WinCelebration({ isActive, winAmount, bet, gameId, onAnimationCo
     if (showBigWin && displayAmount === winAmount && winAmount > 0 && !hasTriggeredCompleteRef.current) {
       setIsPulsing(true);
       
-      // Pulse for 750ms (3 pulses at 0.25s each), then start fade out
       const pulseTimeout = setTimeout(() => {
         setIsPulsing(false);
         setIsFadingOut(true);
         
-        // Fade out for 400ms, then complete
         const fadeTimeout = setTimeout(() => {
           setShowBigWin(false);
           setParticles([]);
@@ -94,11 +96,24 @@ export function WinCelebration({ isActive, winAmount, bet, gameId, onAnimationCo
       return;
     }
 
-    // Determine particle count based on win size
-    const particleCount = isMegaWin ? 60 : isBigWin ? 40 : 20;
+    // Wizard theme gets 30% more particles
+    const baseCount = isMegaWin ? 60 : isBigWin ? 40 : 20;
+    const particleCount = isWizard ? Math.round(baseCount * 1.3) : baseCount;
     
     const newParticles: Particle[] = [];
     for (let i = 0; i < particleCount; i++) {
+      const typeRoll = Math.random();
+      let type: Particle["type"];
+      if (isWizard) {
+        // Wizard: orbs, runes, sparkles, stars (no coins)
+        if (typeRoll > 0.7) type = "orb";
+        else if (typeRoll > 0.45) type = "rune";
+        else if (typeRoll > 0.2) type = "sparkle";
+        else type = "star";
+      } else {
+        type = typeRoll > 0.6 ? "coin" : typeRoll > 0.5 ? "sparkle" : "star";
+      }
+
       newParticles.push({
         id: i,
         x: Math.random() * 100,
@@ -106,17 +121,35 @@ export function WinCelebration({ isActive, winAmount, bet, gameId, onAnimationCo
         rotation: Math.random() * 360,
         scale: 0.5 + Math.random() * 1,
         color: COLORS[Math.floor(Math.random() * COLORS.length)],
-        type: Math.random() > 0.6 ? "coin" : Math.random() > 0.5 ? "sparkle" : "star",
+        type,
         delay: Math.random() * 0.5,
       });
     }
+
+    // Rising energy particles for wizard big wins
+    if (isWizard && isBigWin) {
+      const risingCount = isEpicWin ? 20 : isMegaWin ? 14 : 8;
+      for (let i = 0; i < risingCount; i++) {
+        newParticles.push({
+          id: particleCount + i,
+          x: Math.random() * 100,
+          y: 0,
+          rotation: Math.random() * 360,
+          scale: 0.3 + Math.random() * 0.8,
+          color: COLORS[Math.floor(Math.random() * COLORS.length)],
+          type: Math.random() > 0.5 ? "orb" : "sparkle",
+          delay: Math.random() * 1.5,
+          rising: true,
+        });
+      }
+    }
+
     setParticles(newParticles);
     hasTriggeredCompleteRef.current = false;
     
     if (isBigWin) {
       setShowBigWin(true);
     } else {
-      // For non-big wins, complete immediately after a short delay
       const timeout = setTimeout(() => {
         setParticles([]);
         onAnimationComplete?.();
@@ -134,10 +167,15 @@ export function WinCelebration({ isActive, winAmount, bet, gameId, onAnimationCo
         {particles.map((particle) => (
           <div
             key={particle.id}
-            className="absolute animate-[particle-fall_2s_ease-out_forwards]"
+            className={cn(
+              "absolute",
+              particle.rising
+                ? "animate-[particle-rise_2.5s_ease-out_forwards]"
+                : "animate-[particle-fall_2s_ease-out_forwards]"
+            )}
             style={{
               left: `${particle.x}%`,
-              top: `-10%`,
+              top: particle.rising ? `110%` : `-10%`,
               animationDelay: `${particle.delay}s`,
               transform: `rotate(${particle.rotation}deg) scale(${particle.scale})`,
             }}
@@ -146,10 +184,30 @@ export function WinCelebration({ isActive, winAmount, bet, gameId, onAnimationCo
               <div
                 className="w-6 h-6 rounded-full animate-[coin-spin_0.5s_linear_infinite]"
                 style={{
-                  background: `radial-gradient(circle at 30% 30%, ${particle.color}, ${isWizard ? 'hsl(270, 60%, 25%)' : 'hsl(36, 80%, 30%)'})`,
+                  background: `radial-gradient(circle at 30% 30%, ${particle.color}, hsl(36, 80%, 30%))`,
                   boxShadow: `0 0 10px ${particle.color}`,
                 }}
               />
+            )}
+            {particle.type === "orb" && (
+              <div
+                className="w-5 h-5 rounded-full animate-[sparkle_1.2s_ease-in-out_infinite]"
+                style={{
+                  background: `radial-gradient(circle at 35% 35%, hsl(280, 90%, 85%), ${particle.color}, hsl(270, 60%, 20%))`,
+                  boxShadow: `0 0 14px ${particle.color}, 0 0 28px ${particle.color}40, inset 0 0 8px hsl(280, 90%, 90%)`,
+                }}
+              />
+            )}
+            {particle.type === "rune" && (
+              <div
+                className="text-lg font-bold animate-[sparkle_0.9s_ease-in-out_infinite]"
+                style={{
+                  color: particle.color,
+                  textShadow: `0 0 10px ${particle.color}, 0 0 20px ${particle.color}60`,
+                }}
+              >
+                {WIZARD_RUNES[particle.id % WIZARD_RUNES.length]}
+              </div>
             )}
             {particle.type === "sparkle" && (
               <div

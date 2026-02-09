@@ -965,9 +965,10 @@ export function SlotGame({ gameId = "book-of-fedesvin" }: SlotGameProps) {
                           (bonusState.isActive && pendingExpandedReelsRef.current.length > 0 && !showExpansionDarken && expandedReels.length === 0 && !isSpinning)
                         }
                         isDarkenedForExpansion={showExpansionDarken && !expandedReels.includes(colIndex)}
+                        gameId={gameId}
                       />
                       {colIndex < 4 && (
-                        <div className="w-[1px] sm:w-[2px] bg-amber-950/70 self-stretch" />
+                        <div className={cn("w-[1px] sm:w-[2px] self-stretch", gameId === "rise-of-fedesvin" ? "bg-purple-950/70" : "bg-amber-950/70")} />
                       )}
                     </React.Fragment>
                   ))}
