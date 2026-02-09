@@ -37,7 +37,7 @@ import {
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Plus, Trash2, LogOut, Star, Loader2, Pencil, GripVertical, Gift, ShoppingBag, BarChart3, Settings, Users, Video, Gamepad2, Bell, Sparkles } from "lucide-react";
+import { Plus, Trash2, LogOut, Star, Loader2, Pencil, GripVertical, Gift, ShoppingBag, BarChart3, Settings, Users, Video, Gamepad2, Bell, Sparkles, Radio } from "lucide-react";
 import { AdminUserManagement } from "@/components/AdminUserManagement";
 import { TwitchUsersSection } from "@/components/TwitchUsersSection";
 import { HighlightsAdminSection } from "@/components/HighlightsAdminSection";
@@ -47,6 +47,7 @@ import { StorageCleanupSection } from "@/components/StorageCleanupSection";
 import { NotificationsAdminSection } from "@/components/NotificationsAdminSection";
 import { ProfileCompletionStatsCard } from "@/components/ProfileCompletionStatsCard";
 import { CommunityClipsAdminSection } from "@/components/CommunityClipsAdminSection";
+import { LivePlayersAdminSection } from "@/components/LivePlayersAdminSection";
 import { ThemeToggle } from "@/components/ThemeToggle";
 import { useQueryClient } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
@@ -801,7 +802,7 @@ function AdminDashboard() {
 
       <main className="container py-8">
         <Tabs defaultValue="casinos" className="w-full">
-          <TabsList className="grid w-full grid-cols-9 mb-8 h-auto">
+          <TabsList className="grid w-full grid-cols-10 mb-8 h-auto">
             <TabsTrigger value="casinos" className="flex items-center gap-2 py-3">
               <Gift className="h-4 w-4" />
               <span className="hidden sm:inline">Casino Tilbud</span>
@@ -821,6 +822,10 @@ function AdminDashboard() {
             <TabsTrigger value="slotmachine" className="flex items-center gap-2 py-3">
               <Gamepad2 className="h-4 w-4" />
               <span className="hidden sm:inline">Spillemaskine</span>
+            </TabsTrigger>
+            <TabsTrigger value="live-players" className="flex items-center gap-2 py-3">
+              <Radio className="h-4 w-4" />
+              <span className="hidden sm:inline">Live spillere</span>
             </TabsTrigger>
             <TabsTrigger value="notifications" className="flex items-center gap-2 py-3">
               <Bell className="h-4 w-4" />
@@ -950,6 +955,11 @@ function AdminDashboard() {
           {/* Spillemaskine Tab */}
           <TabsContent value="slotmachine">
             <SlotMachineAdminSection />
+          </TabsContent>
+
+          {/* Live Spillere Tab */}
+          <TabsContent value="live-players">
+            <LivePlayersAdminSection />
           </TabsContent>
 
           {/* Notifikationer Tab */}
