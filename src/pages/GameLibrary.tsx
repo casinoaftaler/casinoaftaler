@@ -130,8 +130,32 @@ export default function GameLibrary() {
       <GameLibraryHero />
       
       <div className="py-10">
-        {/* Mobile/Tablet: Banners above grid (normal flow) */}
-        <div className="xl:hidden container mb-8">
+        {/* Mobile/Tablet: Games FIRST, then banners */}
+        <div className="xl:hidden container">
+          {/* Game grid - appears first on mobile */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 max-w-[600px] mx-auto mb-8">
+            {GAMES.map((game, index) => (
+              <div
+                key={game.id}
+                className="animate-fade-in"
+                style={{
+                  animationDelay: `${index * 150}ms`,
+                  animationFillMode: "both",
+                }}
+              >
+                <GameCard
+                  title={game.title}
+                  description={game.description}
+                  image={game.image}
+                  href={game.href}
+                  status={game.status}
+                  badge={game.badge}
+                />
+              </div>
+            ))}
+          </div>
+          
+          {/* Banners - appear after games on mobile */}
           <div className="space-y-4 max-w-md mx-auto">
             {sidebarCasinos.map((casino, index) => (
               <CasinoCard
