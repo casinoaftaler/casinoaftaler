@@ -311,6 +311,9 @@ export function SlotGame({ gameId = "book-of-fedesvin" }: SlotGameProps) {
     // Start the spin animation immediately for responsiveness
     setIsSpinning(true);
     
+    // Start the minimum spin timer NOW (before server call) so server latency counts toward it
+    const spinStartTime = performance.now();
+    
     // Clear any existing win lines timeout
     if (winLinesTimeoutRef.current) {
       clearTimeout(winLinesTimeoutRef.current);
@@ -382,13 +385,17 @@ export function SlotGame({ gameId = "book-of-fedesvin" }: SlotGameProps) {
         pendingBonusStateRef.current = null;
       }
       
-      // After 500ms initial spin, start reel 0 slowing down
+      // Start first reel slowdown after a minimum spin time of 500ms
+      // Since the timer started before the server call, subtract elapsed time
+      const elapsed = performance.now() - spinStartTime;
+      const remainingDelay = Math.max(0, 500 - elapsed);
+      
       if (initialSpinTimeoutRef.current) {
         clearTimeout(initialSpinTimeoutRef.current);
       }
       initialSpinTimeoutRef.current = setTimeout(() => {
         setActiveSlowdownReel(0);
-      }, 500);
+      }, remainingDelay);
 
     } catch (error) {
       console.error("Spin error:", error);
