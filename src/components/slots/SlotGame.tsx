@@ -799,6 +799,25 @@ export function SlotGame({ gameId = "book-of-fedesvin" }: SlotGameProps) {
                               const winGroups = pendingExpandingWinGroupsRef.current;
                               const hasMultipleGroups = winGroups && winGroups.length > 1;
                               
+                              // Identify non-expanding "connecting" wins from the original grid
+                              const expandingWinSymbolIds = new Set(
+                                (winGroups || []).flatMap(g => g.wins.map((w: any) => `${w.lineIndex}-${w.symbolId}`))
+                              );
+                              const connectingWins = result.wins.filter((w: any) => 
+                                !expandingWinSymbolIds.has(`${w.lineIndex}-${w.symbolId}`)
+                              );
+                              
+                              // Show connecting wins FIRST (before any expansion)
+                              if (connectingWins.length > 0) {
+                                setLastResult({ ...result, wins: connectingWins, totalWin: connectingWins.reduce((sum: number, w: any) => sum + w.payout, 0) });
+                                setShowConnectingWins(true);
+                                setShowWinLines(true);
+                                await new Promise(resolve => setTimeout(resolve, 1200));
+                                setShowWinLines(false);
+                                setShowConnectingWins(false);
+                                setLastResult(null);
+                              }
+                              
                               if (hasMultipleGroups) {
                                 // Sequential expansion: animate each expanding symbol group one at a time
                                 const originalGridCopy = result.grid.map((col: string[]) => [...col]);
