@@ -1,66 +1,29 @@
 
-## Justerbar afstand mellem tromler, leaderboard og kontrolpanel
+
+## Fix: Mobile Layout Shift During Bonus on Rise of Fedesvin
 
 ### Problem
-Afstanden mellem tromlerne og leaderboardet (sidepanelet) samt mellem tromlerne og kontrolpanelet er hardcodet og kan ikke finjusteres uden kodeaendringer.
+When the bonus round activates on Rise of Fedesvin, the **BonusStatusBar** and **BonusSymbolBar** appear between the slot reels and the control panel. This pushes content upward in the scaled viewport container, causing the slot machine reels to become partially or fully invisible on mobile.
 
-### Losning
-Tilfoej to nye admin-indstillinger (sliders) i ramme-administrationspanelet:
-1. **Sidepanel-afstand** - afstand mellem tromlerne og leaderboardet (desktop)
-2. **Kontrolpanel-afstand** - afstand mellem tromlerne og kontrolpanelet nedenunder
+### Solution
+Reserve a fixed height for the bonus bars area so the layout doesn't shift when they appear/disappear. This way:
+- The slot machine stays in place at all times
+- The control panel stays in a consistent position
+- When bonus bars appear, they fill the already-reserved space
 
-Begge vaerdier gemmes i `site_settings` per spil og anvendes dynamisk.
+### Technical Changes
 
-### Tekniske aendringer
+**`src/components/slots/SlotGame.tsx`** (lines ~988-1008):
+- Wrap the BonusStatusBar + BonusSymbolBar section in a container with a fixed `min-height` that matches the combined height of both bars when visible
+- Use `min-h-0` when not in a Rise of Fedesvin bonus context, and a fixed `min-h-[...px]` when in Rise of Fedesvin game mode (since only this game has the BonusSymbolBar)
+- The bars will render inside this reserved space, preventing any layout shift
+- For non-Rise games (Book of Fedesvin), only BonusStatusBar needs space reserved, which is smaller
 
-**1. Nye site_settings nogler (per spil)**
+Specifically:
+1. The `<div className="max-w-fit mx-auto mb-2 sm:mb-3 space-y-2">` container (line 990) will get a conditional `min-h` class based on `gameId`
+2. For `rise-of-fedesvin`: reserve approximately `min-h-[88px] sm:min-h-[100px]` to accommodate both BonusStatusBar (~48px) and BonusSymbolBar (~48px) plus spacing
+3. For other games: reserve `min-h-[48px] sm:min-h-[56px]` for just the BonusStatusBar
+4. When bonus is not active, the container still takes up this space but remains empty, keeping layout stable
 
-Book of Fedesvin:
-- `slot_sidepanel_gap` (standard: 24px, dvs. nuvaerende `mr-6`)
-- `slot_controls_gap` (standard: 16px, dvs. nuvaerende `mt-4`)
+This approach ensures zero layout shift while keeping the visual appearance identical when bonus bars are shown.
 
-Rise of Fedesvin:
-- `rise_of_fedesvin_sidepanel_gap`
-- `rise_of_fedesvin_controls_gap`
-
-**2. RLS whitelist opdatering**
-
-Tilfoej de fire nye nogler til den eksisterende `Public can read whitelisted display settings` politik pa `site_settings` tabellen.
-
-**3. `src/components/slots/SlotFrameAdminControls.tsx`**
-
-- Tilfoej `sidepanelGapKey` og `controlsGapKey` til `getSettingsKeys()`
-- Tilfoej to nye sliders i ramme-positioneringssektionen:
-  - "Sidepanel afstand" (0-80px, standard 24)
-  - "Kontrolpanel afstand" (0-40px, standard 16)
-- Inkluder dem i reset-funktionen
-
-**4. `src/components/slots/SlotGame.tsx`**
-
-- Laes `controlsGap` fra `useSiteSettings()` (nogle afhaengig af `gameId`)
-- Anvend vaerdien som inline `style={{ marginTop: controlsGap }}` pa kontrolpanel-containeren (linje 983) i stedet for den hardcodede `mt-3 sm:mt-4`
-
-**5. `src/components/slots/SlotPageLayout.tsx`**
-
-- Tilfoej en ny `sidePanelGap` prop (number, default 24)
-- Anvend som `style={{ marginRight: sidePanelGap }}` pa aside-elementet i stedet for den hardcodede `mr-6`
-
-**6. `src/pages/SlotMachine.tsx` og `src/pages/RiseOfFedesvin.tsx`**
-
-- Laes den relevante `sidepanel_gap` vaerdi fra `useSiteSettings()`
-- Send den som prop til `SlotPageLayout`
-
-### Overblik over flow
-
-```text
-Admin Panel (Slider)
-    |
-    v
-site_settings tabel (per spil)
-    |
-    v
-useSiteSettings() hook
-    |
-    +---> SlotPageLayout (sidepanel gap)
-    +---> SlotGame (controls gap)
-```
