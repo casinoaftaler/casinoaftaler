@@ -675,6 +675,7 @@ export type Database = {
         Row: {
           created_at: string
           device_info: string | null
+          game_id: string | null
           id: string
           last_heartbeat: string
           session_id: string
@@ -683,6 +684,7 @@ export type Database = {
         Insert: {
           created_at?: string
           device_info?: string | null
+          game_id?: string | null
           id?: string
           last_heartbeat?: string
           session_id: string
@@ -691,6 +693,7 @@ export type Database = {
         Update: {
           created_at?: string
           device_info?: string | null
+          game_id?: string | null
           id?: string
           last_heartbeat?: string
           session_id?: string

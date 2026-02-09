@@ -13,6 +13,7 @@ interface ActiveSession {
   user_id: string;
   session_id: string;
   device_info: string | null;
+  game_id: string | null;
   last_heartbeat: string;
   created_at: string;
   profile?: {
@@ -26,8 +27,8 @@ const GAME_LABELS: Record<string, string> = {
   "rise-of-fedesvin": "Rise of Fedesvin",
 };
 
-// Sessions are considered active if heartbeat within last 2 minutes
-const ACTIVE_THRESHOLD_MS = 2 * 60 * 1000;
+// Match session timeout from useSlotSession (30 seconds)
+const ACTIVE_THRESHOLD_MS = 30_000;
 
 function useActiveSessions() {
   return useQuery({
@@ -44,7 +45,6 @@ function useActiveSessions() {
 
       if (!sessions || sessions.length === 0) return [];
 
-      // Fetch profiles for active users
       const userIds = [...new Set(sessions.map((s) => s.user_id))];
       const { data: profiles } = await supabase
         .from("profiles")
@@ -61,21 +61,23 @@ function useActiveSessions() {
 
       return sessions.map((s) => ({
         ...s,
+        game_id: (s as any).game_id ?? null,
         profile: profileMap[s.user_id] || { display_name: null, avatar_url: null },
       })) as ActiveSession[];
     },
-    refetchInterval: 10000, // Refresh every 10 seconds
+    refetchInterval: 5000, // Refresh every 5 seconds for real-time feel
   });
 }
 
 export function LivePlayersAdminSection() {
   const { data: sessions, isLoading, refetch } = useActiveSessions();
 
-  // Group by game (parse from device_info or just show all)
   const totalPlayers = sessions?.length ?? 0;
 
-  // Try to detect game from device_info patterns – fallback to "Ukendt"
-  // device_info typically stores browser/device, not game. We'll show per-user instead.
+  // Group by game
+  const bookPlayers = sessions?.filter((s) => s.game_id === "book-of-fedesvin") ?? [];
+  const risePlayers = sessions?.filter((s) => s.game_id === "rise-of-fedesvin") ?? [];
+  const unknownPlayers = sessions?.filter((s) => !s.game_id) ?? [];
 
   return (
     <div className="space-y-6">
@@ -94,16 +96,40 @@ export function LivePlayersAdminSection() {
       <div className="grid gap-4 md:grid-cols-3">
         <Card>
           <CardHeader className="pb-2">
-            <CardDescription>Aktive spillere nu</CardDescription>
+            <CardDescription>Total aktive</CardDescription>
             <CardTitle className="text-4xl flex items-center gap-2">
               <Users className="h-8 w-8 text-primary" />
               {isLoading ? "..." : totalPlayers}
             </CardTitle>
           </CardHeader>
           <CardContent>
-            <p className="text-xs text-muted-foreground">
-              Opdateres hvert 10. sekund
-            </p>
+            <p className="text-xs text-muted-foreground">Opdateres hvert 5. sekund</p>
+          </CardContent>
+        </Card>
+
+        <Card>
+          <CardHeader className="pb-2">
+            <CardDescription>Book of Fedesvin</CardDescription>
+            <CardTitle className="text-4xl flex items-center gap-2">
+              <Gamepad2 className="h-8 w-8 text-amber-500" />
+              {isLoading ? "..." : bookPlayers.length}
+            </CardTitle>
+          </CardHeader>
+          <CardContent>
+            <p className="text-xs text-muted-foreground">Aktive spillere på denne maskine</p>
+          </CardContent>
+        </Card>
+
+        <Card>
+          <CardHeader className="pb-2">
+            <CardDescription>Rise of Fedesvin</CardDescription>
+            <CardTitle className="text-4xl flex items-center gap-2">
+              <Gamepad2 className="h-8 w-8 text-purple-500" />
+              {isLoading ? "..." : risePlayers.length}
+            </CardTitle>
+          </CardHeader>
+          <CardContent>
+            <p className="text-xs text-muted-foreground">Aktive spillere på denne maskine</p>
           </CardContent>
         </Card>
       </div>
@@ -116,7 +142,7 @@ export function LivePlayersAdminSection() {
             Aktive sessioner
           </CardTitle>
           <CardDescription>
-            Viser spillere med heartbeat inden for de sidste 2 minutter.
+            Viser spillere der er inde på en spillemaskine lige nu.
           </CardDescription>
         </CardHeader>
         <CardContent>
@@ -148,12 +174,17 @@ export function LivePlayersAdminSection() {
                     </div>
                   </div>
 
-                  <div className="text-right text-sm">
-                    <Badge variant="outline" className="bg-green-500/10 text-green-600 border-green-500/20">
-                      <span className="inline-block w-2 h-2 rounded-full bg-green-500 mr-1.5 animate-pulse" />
-                      Live
+                  <div className="text-right text-sm space-y-1">
+                    <Badge variant="secondary" className="text-xs">
+                      {session.game_id ? GAME_LABELS[session.game_id] || session.game_id : "Ukendt spil"}
                     </Badge>
-                    <p className="text-xs text-muted-foreground mt-1">
+                    <div>
+                      <Badge variant="outline" className="border-primary/20 text-primary">
+                        <span className="inline-block w-2 h-2 rounded-full bg-primary mr-1.5 animate-pulse" />
+                        Live
+                      </Badge>
+                    </div>
+                    <p className="text-xs text-muted-foreground">
                       {formatDistanceToNow(new Date(session.last_heartbeat), {
                         addSuffix: true,
                         locale: da,

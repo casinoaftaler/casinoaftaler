@@ -43,7 +43,7 @@ export default function RiseOfFedesvin() {
     isLoading: sessionLoading,
     takeOverSession,
     refreshSession 
-  } = useSlotSession();
+  } = useSlotSession(GAME_ID);
   const { scale, shouldScale } = useViewportScaling();
   const { isLocked, hasAccess, isLoading: accessLoading, error: accessError, verifyPassword } = useSlotPageAccess(GAME_ID);
   

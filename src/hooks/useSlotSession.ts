@@ -51,7 +51,7 @@ interface SlotSessionState {
   error: string | null;
 }
 
-export function useSlotSession() {
+export function useSlotSession(gameId?: string) {
   const { user } = useAuth();
   const navigate = useNavigate();
   const sessionId = useRef(getOrCreateSessionId());
@@ -127,7 +127,8 @@ export function useSlotSession() {
           session_id: sessionId.current,
           device_info: deviceInfo,
           last_heartbeat: new Date().toISOString(),
-        }, {
+          game_id: gameId || null,
+        } as any, {
           onConflict: "user_id",
         });
 
