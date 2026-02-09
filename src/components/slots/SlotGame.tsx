@@ -794,6 +794,9 @@ export function SlotGame({ gameId = "book-of-fedesvin" }: SlotGameProps) {
                             // For retriggers/triggers, it's applied when overlay closes.
                             // For regular bonus spins, it's applied below after animations.
                             
+                            // Clear tease darkening before expansion begins
+                            setScatterReelsLanded(new Set());
+                            
                             // Handle bonus expansion animation
                             if (isBonusSpin && reelsExpanded.length > 0 && expandedGrid) {
                               const winGroups = pendingExpandingWinGroupsRef.current;
