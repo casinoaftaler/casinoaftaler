@@ -195,7 +195,9 @@ export default function RiseOfFedesvin() {
         <div 
           className="slot-viewport-container"
           style={{
-            transform: shouldScale ? `scale(${scale})` : undefined,
+            transform: shouldScale 
+              ? `translate(${parseInt(siteSettings?.['slot_offset_x_rise-of-fedesvin'] || '0', 10)}px, ${parseInt(siteSettings?.['slot_offset_y_rise-of-fedesvin'] || '0', 10)}px) scale(${scale})`
+              : `translate(${parseInt(siteSettings?.['slot_offset_x_rise-of-fedesvin'] || '0', 10)}px, ${parseInt(siteSettings?.['slot_offset_y_rise-of-fedesvin'] || '0', 10)}px)`,
           }}
         >
           <div className="px-1 xs:px-2 sm:px-4">

@@ -1,4 +1,5 @@
 import { useState, useEffect, useMemo } from "react";
+import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { useSlotSymbols } from "@/hooks/useSlotSymbols";
 import { useSlotSettings } from "@/hooks/useSlotSettings";
 import { useSlotAdminStatistics, type StatPeriod } from "@/hooks/useSlotAdminStatistics";
@@ -670,6 +671,57 @@ function SymbolsTab({ gameId = "book-of-fedesvin" }: { gameId?: string }) {
 
 function SettingsTab({ gameId }: { gameId?: string }) {
   const { settings, isLoading, updateSettings } = useSlotSettings();
+  const activeGameId = gameId || "book-of-fedesvin";
+  
+  // Per-game offset settings
+  const { data: siteSettings } = useQuery({
+    queryKey: ["slot-offset-settings", activeGameId],
+    queryFn: async () => {
+      const keys = [`slot_offset_x_${activeGameId}`, `slot_offset_y_${activeGameId}`];
+      const { data, error } = await supabase
+        .from("site_settings")
+        .select("key, value")
+        .in("key", keys);
+      if (error) throw error;
+      const map: Record<string, string> = {};
+      data?.forEach(s => { map[s.key] = s.value || "0"; });
+      return {
+        offsetX: parseInt(map[`slot_offset_x_${activeGameId}`] || "0", 10),
+        offsetY: parseInt(map[`slot_offset_y_${activeGameId}`] || "0", 10),
+      };
+    },
+  });
+  
+  const queryClient = useQueryClient();
+  const saveOffset = useMutation({
+    mutationFn: async (params: { key: string; value: string }) => {
+      const { error } = await supabase
+        .from("site_settings")
+        .upsert({ key: params.key, value: params.value }, { onConflict: "key" });
+      if (error) throw error;
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["slot-offset-settings"] });
+      queryClient.invalidateQueries({ queryKey: ["site-settings"] });
+      toast.success("Position gemt");
+    },
+  });
+
+  const [offsetX, setOffsetX] = useState(0);
+  const [offsetY, setOffsetY] = useState(0);
+
+  useEffect(() => {
+    if (siteSettings) {
+      setOffsetX(siteSettings.offsetX);
+      setOffsetY(siteSettings.offsetY);
+    }
+  }, [siteSettings]);
+
+  const handleSaveOffsets = () => {
+    saveOffset.mutate({ key: `slot_offset_x_${activeGameId}`, value: String(offsetX) });
+    saveOffset.mutate({ key: `slot_offset_y_${activeGameId}`, value: String(offsetY) });
+  };
+
   const [formData, setFormData] = useState({
     dailySpins: 100,
     minBet: 1,
@@ -866,6 +918,63 @@ function SettingsTab({ gameId }: { gameId?: string }) {
           >
             {updateSettings.isPending && <Loader2 className="h-4 w-4 mr-2 animate-spin" />}
             Gem Animation Indstillinger
+          </Button>
+        </CardContent>
+      </Card>
+
+      {/* Game Position Offset */}
+      <Card>
+        <CardHeader>
+          <CardTitle className="flex items-center gap-2">
+            <Gamepad2 className="h-5 w-5" />
+            Spil Position — {activeGameId === "book-of-fedesvin" ? "Book of Fedesvin" : "Rise of Fedesvin"}
+          </CardTitle>
+          <CardDescription>
+            Juster spillets horisontale og vertikale placering på siden. Sidepanel og kontrolbar følger med.
+          </CardDescription>
+        </CardHeader>
+        <CardContent className="space-y-6">
+          <div className="space-y-4">
+            <div className="space-y-2">
+              <div className="flex items-center justify-between">
+                <Label>Horisontal Forskydning (X)</Label>
+                <span className="text-sm text-muted-foreground font-mono">{offsetX}px</span>
+              </div>
+              <Slider
+                min={-500}
+                max={500}
+                step={5}
+                value={[offsetX]}
+                onValueChange={(v) => setOffsetX(v[0])}
+              />
+              <p className="text-xs text-muted-foreground">
+                Negativ = venstre, Positiv = højre. 0 = centreret.
+              </p>
+            </div>
+            <div className="space-y-2">
+              <div className="flex items-center justify-between">
+                <Label>Vertikal Forskydning (Y)</Label>
+                <span className="text-sm text-muted-foreground font-mono">{offsetY}px</span>
+              </div>
+              <Slider
+                min={-500}
+                max={500}
+                step={5}
+                value={[offsetY]}
+                onValueChange={(v) => setOffsetY(v[0])}
+              />
+              <p className="text-xs text-muted-foreground">
+                Negativ = op, Positiv = ned. 0 = centreret.
+              </p>
+            </div>
+          </div>
+          <Button 
+            onClick={handleSaveOffsets} 
+            disabled={saveOffset.isPending}
+            className="w-full"
+          >
+            {saveOffset.isPending && <Loader2 className="h-4 w-4 mr-2 animate-spin" />}
+            Gem Position
           </Button>
         </CardContent>
       </Card>
