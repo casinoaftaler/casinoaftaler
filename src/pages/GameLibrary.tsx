@@ -165,24 +165,26 @@ export default function GameLibrary() {
           </div>
         </div>
 
-        {/* Desktop: CSS Grid layout - banners in flow, not absolute */}
-        <div className="hidden xl:grid xl:grid-cols-[minmax(280px,320px)_1fr] 2xl:grid-cols-[minmax(320px,380px)_1fr] gap-6 max-w-[1400px] mx-auto px-6">
-          {/* Left column: Banners - in normal document flow */}
-          <aside className="space-y-4 self-start">
-            {sidebarCasinos.map((casino, index) => (
-              <CasinoCard
-                key={casino.id}
-                casino={mapCasino(casino)}
-                rank={index + 1}
-                open={openCasinoId === casino.id}
-                onOpenChange={(open) => setOpenCasinoId(open ? casino.id : null)}
-              />
-            ))}
-          </aside>
+        {/* Desktop: Full-width layout with viewport-centered game grid */}
+        <div className="hidden xl:flex xl:items-start w-full">
+          {/* Left spacer with banners - takes fixed width, banners aligned to right edge */}
+          <div className="flex-shrink-0 w-[calc(50vw-480px-24px)] min-w-[340px] 2xl:min-w-[400px] flex justify-end pr-6">
+            <aside className="w-80 2xl:w-96 space-y-4">
+              {sidebarCasinos.map((casino, index) => (
+                <CasinoCard
+                  key={casino.id}
+                  casino={mapCasino(casino)}
+                  rank={index + 1}
+                  open={openCasinoId === casino.id}
+                  onOpenChange={(open) => setOpenCasinoId(open ? casino.id : null)}
+                />
+              ))}
+            </aside>
+          </div>
 
-          {/* Center column: Game grid - uses remaining space, grid stays centered within */}
-          <div className="w-full max-w-[960px]">
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+          {/* Viewport-centered wrapper for the game grid - fixed width, centered */}
+          <div className="flex-shrink-0 w-[960px] px-4">
+            <div className="grid grid-cols-2 gap-6">
               {GAMES.map((game, index) => (
                 <div
                   key={game.id}
@@ -204,6 +206,9 @@ export default function GameLibrary() {
               ))}
             </div>
           </div>
+
+          {/* Right spacer to balance the layout */}
+          <div className="flex-shrink-0 w-[calc(50vw-480px-24px)] min-w-0" />
         </div>
       </div>
     </div>
