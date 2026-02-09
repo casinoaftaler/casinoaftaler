@@ -29,19 +29,37 @@ const BonusGuide = () => {
     }
   };
   return (
-    <div className="py-16">
-      <div className="container">
-        {/* Hero */}
-        <div className="mb-16 text-center">
-          <div className="flex items-center justify-center gap-3 mb-4">
-            <BookOpen className="h-10 w-10 text-primary" />
-            <h1 className="text-4xl font-bold">Casino Bonus Guide</h1>
-          </div>
-          <p className="mx-auto max-w-2xl text-lg text-muted-foreground">
-            Alt du behøver at vide om casinobonusser, hvordan de fungerer, og
-            hvordan du vælger den rigtige til dig.
-          </p>
+    <div className="min-h-screen">
+      {/* Hero Section */}
+      <section className="relative py-16 md:py-24 overflow-hidden">
+        <div 
+          className="absolute inset-0"
+          style={{
+            backgroundImage: 'linear-gradient(135deg, hsl(260 70% 25%), hsl(250 60% 20%) 40%, hsl(210 80% 25%))',
+          }}
+        />
+        <div className="absolute inset-0 opacity-20">
+          <div className="absolute left-10 top-10 h-32 w-32 rounded-full bg-[hsl(210_80%_60%)] blur-xl" />
+          <div className="absolute bottom-10 right-10 h-48 w-48 rounded-full bg-[hsl(260_70%_60%)] blur-xl" />
         </div>
+        <div className="container relative z-10">
+          <div className="mx-auto max-w-3xl text-center text-white">
+            <div className="mb-6 flex justify-center">
+              <div className="rounded-full bg-white/10 p-4">
+                <BookOpen className="h-12 w-12" />
+              </div>
+            </div>
+            <h1 className="mb-4 text-4xl font-bold md:text-5xl">Casino Bonus Guide</h1>
+            <p className="text-lg text-white/80">
+              Alt du behøver at vide om casinobonusser, hvordan de fungerer, og
+              hvordan du vælger den rigtige til dig.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <div className="py-16">
+        <div className="container">
 
         {/* Table of Contents */}
         <Card className="mx-auto mb-16 max-w-2xl">
@@ -370,6 +388,7 @@ const BonusGuide = () => {
             </Button>
           </div>
         </div>
+      </div>
       </div>
     </div>
   );

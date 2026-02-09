@@ -16,7 +16,7 @@ export default function RewardsProgram() {
 
       {/* Hero Section */}
       <section
-        className="relative overflow-hidden py-14 md:py-20"
+        className="relative overflow-hidden py-16 md:py-24"
         style={{
           background: "linear-gradient(135deg, hsl(260 70% 20%), hsl(250 60% 15%) 40%, hsl(210 80% 20%))",
         }}

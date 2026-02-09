@@ -81,7 +81,7 @@ export default function Contact() {
     <div className="min-h-screen">
       {/* Hero */}
       <section 
-        className="relative overflow-hidden py-8 text-white md:py-12"
+        className="relative overflow-hidden py-16 text-white md:py-24"
         style={{
           background: 'linear-gradient(135deg, hsl(260 70% 25%), hsl(250 60% 20%) 40%, hsl(210 80% 25%))',
         }}
