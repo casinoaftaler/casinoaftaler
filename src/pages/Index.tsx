@@ -76,7 +76,7 @@ const Index = () => {
       <HeroSection />
 
       {/* Top Casinos Section */}
-      <section id="top-casinos" className="py-16">
+      <section id="top-casinos" className="py-8 md:py-12">
         <div className="container">
           <div className="mb-8">
             <h2 className="mb-4 text-3xl font-bold">Top Casinobonusser</h2>
