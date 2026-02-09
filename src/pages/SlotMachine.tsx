@@ -19,7 +19,7 @@ import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { ArrowLeft, Gamepad2 } from "lucide-react";
 import defaultSlotBackground from "@/assets/slots/slot-background.jpg";
-import defaultTitleImage from "@/assets/slots/book-of-fedesvin-title.png";
+
 import slotCasinoCardBg from "@/assets/slots/slot-casino-card-bg.png";
 
 type LoadingPhase = 'loading' | 'intro' | 'ready';
@@ -41,7 +41,7 @@ export default function SlotMachine() {
     takeOverSession,
     refreshSession 
   } = useSlotSession();
-  const { scale, shouldScale, showTitle } = useViewportScaling();
+  const { scale, shouldScale } = useViewportScaling();
   
   const [loadingPhase, setLoadingPhase] = useState<LoadingPhase>('loading');
   
@@ -58,7 +58,7 @@ export default function SlotMachine() {
     setLoadingPhase('ready');
   }, []);
   
-  const titleImage = siteSettings?.slot_title_image || defaultTitleImage;
+  
   const backgroundImage = siteSettings?.slot_background_image || defaultSlotBackground;
   
   const topCasino = casinos?.find(c => c.is_active) || null;
@@ -197,16 +197,6 @@ export default function SlotMachine() {
         >
           <div className="px-1 xs:px-2 sm:px-4">
             <SlotPageLayout sidePanel={sidePanelContent} sidePanelGap={parseInt(siteSettings?.slot_sidepanel_gap || "24", 10)}>
-              {/* Title Image - hidden when viewport is too short */}
-              {showTitle && (
-                <div className="slot-title-container flex justify-center -mt-14 mb-0">
-                  <img 
-                    src={titleImage} 
-                    alt="Book of Fedesvin" 
-                    className="w-full max-w-[160px] xs:max-w-[200px] sm:max-w-[280px] md:max-w-[320px] h-auto animate-[title-entrance_0.8s_ease-out_forwards]"
-                  />
-                </div>
-              )}
 
               {/* Slot Game */}
               <SlotGame />
