@@ -64,9 +64,12 @@ export function useLiveBigWins() {
           };
 
           const totalWin = Number(row.win_amount) + Number(row.bonus_win_amount);
+          const bonusWin = Number(row.bonus_win_amount);
           const multiplier = row.bet_amount > 0 ? totalWin / row.bet_amount : 0;
+          const bonusMultiplier = row.bet_amount > 0 ? bonusWin / row.bet_amount : 0;
 
-          if (multiplier < MIN_MULTIPLIER) return;
+          // Show if total multiplier >= 100x OR bonus-only multiplier >= 200x
+          if (multiplier < MIN_MULTIPLIER && bonusMultiplier < 200) return;
 
           // Fetch profile info
           const { data: profile } = await supabase
