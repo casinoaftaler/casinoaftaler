@@ -171,22 +171,22 @@ export default function SlotMachine() {
       <div className="fixed inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black/70 -z-10" />
 
       {/* Back button */}
-      <div className="absolute top-3 left-3 z-20">
+      <div className="absolute top-1 left-1 sm:top-2 sm:left-2 z-20">
         <Button
           asChild
           variant="ghost"
           size="sm"
-          className="text-amber-300/80 hover:text-amber-300 hover:bg-amber-500/10 gap-1.5"
+          className="text-amber-300/80 hover:text-amber-300 hover:bg-amber-500/10 gap-1.5 h-7 px-2 text-xs sm:h-8 sm:px-3 sm:text-sm"
         >
           <Link to="/community/slots">
-            <ArrowLeft className="h-4 w-4" />
+            <ArrowLeft className="h-3 w-3 sm:h-4 sm:w-4" />
             <span className="hidden sm:inline">Tilbage til spil</span>
           </Link>
         </Button>
       </div>
       
-      {/* Scaled game area - only the game itself is scaled */}
-      <div className="flex items-start justify-center pt-2 sm:pt-4 overflow-hidden">
+      {/* Game area - top-aligned directly under header (no extra top padding) */}
+      <div className="flex items-start justify-center overflow-hidden flex-1 min-h-0">
         <div 
           className="slot-viewport-container"
           style={{
@@ -214,8 +214,8 @@ export default function SlotMachine() {
       </div>
 
       {/* Mobile/Tablet: Side content below game - OUTSIDE scaled container for proper scrolling */}
-      <div className="xl:hidden flex justify-center px-4 pb-6 pt-2">
-        <div className="w-full max-w-sm space-y-4">
+      <div className="xl:hidden flex justify-center px-4 pb-4 pt-1">
+        <div className="w-full max-w-sm space-y-3">
           {topCasino && (
             <SlotPromoSlider casino={topCasino} backgroundImage={slotCasinoCardBg} />
           )}
