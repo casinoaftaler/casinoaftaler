@@ -1152,6 +1152,16 @@ export type Database = {
       }
     }
     Functions: {
+      get_admin_users_with_email: {
+        Args: never
+        Returns: {
+          created_at: string
+          email: string
+          id: string
+          role: string
+          user_id: string
+        }[]
+      }
       get_user_id_by_email: { Args: { lookup_email: string }; Returns: string }
       has_role: {
         Args: {
