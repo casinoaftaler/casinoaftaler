@@ -27,7 +27,7 @@ function WinBubble({ win, onRemove }: { win: BigWin; onRemove: (id: string) => v
         ref.current.classList.add("animate-out");
         setTimeout(() => onRemove(win.id), 400);
       }
-    }, 15000);
+    }, 120000); // 2 minutes
     return () => clearTimeout(timer);
   }, [win.id, onRemove]);
 
