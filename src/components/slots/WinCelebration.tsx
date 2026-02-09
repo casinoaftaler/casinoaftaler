@@ -189,13 +189,7 @@ export function WinCelebration({ isActive, winAmount, bet, gameId, onAnimationCo
               : "animate-[big-win-entry_0.4s_cubic-bezier(0.34,1.56,0.64,1)_forwards]"
           )}
         >
-          {/* Semi-transparent background */}
-           <div className={cn(
-              "bg-black/70 backdrop-blur-sm rounded-2xl px-6 sm:px-10 py-4 sm:py-8 border-2",
-              isWizard 
-                ? "border-purple-500/40 shadow-[0_0_40px_rgba(168,85,247,0.3)]"
-                : "border-amber-500/40 shadow-[0_0_40px_rgba(251,191,36,0.3)]"
-            )}>
+          <div className="px-6 sm:px-10 py-4 sm:py-8">
             <div
               className={cn(
                 "text-center animate-[big-win-pop_0.6s_ease-out_forwards]",
