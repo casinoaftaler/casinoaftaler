@@ -58,7 +58,7 @@ export function BonusOverlay({
     <div
       className={cn(
         "fixed inset-0 z-50 flex items-center justify-center",
-        "bg-black/80 backdrop-blur-sm",
+        gameId === "rise-of-fedesvin" ? "bg-black/40 backdrop-blur-sm" : "bg-black/80 backdrop-blur-sm",
         "animate-in fade-in duration-300"
       )}
       onClick={undefined}
