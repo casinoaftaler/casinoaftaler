@@ -834,10 +834,12 @@ export function SlotGame({ gameId = "book-of-fedesvin" }: SlotGameProps) {
                                     setLastResult(null);
                                   }
                                   
+                                  // Turn off darken after paylines are done
+                                  setShowExpansionDarken(false);
+                                  
                                   // Unexpand phase: restore original grid
                                   setGrid(originalGridCopy);
                                   setExpandedReels([]);
-                                  setShowExpansionDarken(false);
                                   await new Promise(resolve => setTimeout(resolve, 500));
                                 }
                                 
@@ -855,6 +857,15 @@ export function SlotGame({ gameId = "book-of-fedesvin" }: SlotGameProps) {
                                 slotSounds.playSymbolExpand();
                                 await new Promise(resolve => setTimeout(resolve, 600));
                                 setNewlyExpandedReels([]);
+                                
+                                // Show paylines while still darkened, then turn off darken
+                                setLastResult(result);
+                                setShowConnectingWins(true);
+                                setShowWinLines(true);
+                                await new Promise(resolve => setTimeout(resolve, 1200));
+                                setShowWinLines(false);
+                                setShowConnectingWins(false);
+                                setLastResult(null);
                                 setShowExpansionDarken(false);
                               }
                             }
