@@ -65,7 +65,7 @@ export function SlotGame({ gameId = "book-of-fedesvin" }: SlotGameProps) {
 
   // Derive controls gap from site settings
   const controlsGapKey = gameId === "book-of-fedesvin" ? "slot_controls_gap" : `${gameId.replace(/-/g, "_")}_controls_gap`;
-  const controlsGap = parseInt(siteSettings?.[controlsGapKey] || "16", 10);
+  const controlsGap = parseInt(siteSettings?.[controlsGapKey] || "32", 10);
   
   // Load custom sound files from site_settings (game-specific)
   useSlotSoundLoader(gameId);
@@ -1116,7 +1116,7 @@ export function SlotGame({ gameId = "book-of-fedesvin" }: SlotGameProps) {
           </div>
 
           {/* Bonus Status Bar + Control Panel */}
-          <div style={{ marginTop: `${controlsGap}px` }}>
+          <div style={{ marginTop: `${controlsGap}px` }} className="w-full">
             <div className={cn(
               "max-w-fit mx-auto mb-2 sm:mb-3 space-y-2",
               gameId === "rise-of-fedesvin"
