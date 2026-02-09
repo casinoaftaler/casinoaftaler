@@ -41,7 +41,7 @@ export default function SlotMachine() {
     isLoading: sessionLoading,
     takeOverSession,
     refreshSession 
-  } = useSlotSession();
+  } = useSlotSession("book-of-fedesvin");
   const { scale, shouldScale } = useViewportScaling();
   
   const [loadingPhase, setLoadingPhase] = useState<LoadingPhase>('loading');
