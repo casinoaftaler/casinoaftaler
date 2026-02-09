@@ -109,29 +109,23 @@ Deno.serve(async (req) => {
     });
 
     if (createError) {
-      // If user already exists, look them up and assign admin role
+      // If user already exists, look them up via database function and assign admin role
       if (createError.message?.includes("already been registered") || (createError as any)?.code === "email_exists") {
-        console.log(`User ${email} already exists, looking up to assign admin role...`);
+        console.log(`User ${email} already exists, looking up via RPC...`);
 
-        const { data: listData, error: listError } = await supabaseAdmin.auth.admin.listUsers();
-        if (listError) {
-          console.error("Error listing users:", listError);
+        const { data: foundUserId, error: lookupError } = await supabaseAdmin
+          .rpc("get_user_id_by_email", { lookup_email: email });
+
+        if (lookupError || !foundUserId) {
+          console.error("Error looking up user by email:", lookupError);
           return new Response(
             JSON.stringify({ error: "Kunne ikke finde eksisterende bruger" }),
             { status: 500, headers: { ...corsHeaders, "Content-Type": "application/json" } }
           );
         }
 
-        const existingUser = listData.users.find((u) => u.email === email);
-        if (!existingUser) {
-          return new Response(
-            JSON.stringify({ error: "Bruger eksisterer men kunne ikke findes" }),
-            { status: 404, headers: { ...corsHeaders, "Content-Type": "application/json" } }
-          );
-        }
-
-        userId = existingUser.id;
-        userEmail = existingUser.email || email;
+        userId = foundUserId;
+        userEmail = email;
         console.log(`Found existing user: ${userId}`);
       } else {
         console.error("Error creating user:", createError);
