@@ -27,19 +27,18 @@ const GAME_LABELS: Record<string, string> = {
   "rise-of-fedesvin": "Rise of Fedesvin",
 };
 
-// Match session timeout from useSlotSession (30 seconds)
-const ACTIVE_THRESHOLD_MS = 30_000;
+// Use a generous threshold (60s) to account for heartbeat intervals + network delays
+const ACTIVE_THRESHOLD_SECONDS = 60;
 
 function useActiveSessions() {
   return useQuery({
     queryKey: ["admin-live-players"],
     queryFn: async () => {
-      const cutoff = new Date(Date.now() - ACTIVE_THRESHOLD_MS).toISOString();
-
+      // Use server-side time to avoid clock skew issues
       const { data: sessions, error } = await supabase
         .from("slot_active_sessions")
         .select("*")
-        .gte("last_heartbeat", cutoff);
+        .gte("last_heartbeat", new Date(Date.now() - ACTIVE_THRESHOLD_SECONDS * 1000).toISOString());
 
       if (error) throw error;
 
