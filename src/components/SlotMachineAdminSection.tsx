@@ -1409,8 +1409,13 @@ const GAME_OPTIONS = [
   { id: "rise-of-fedesvin", label: "Rise of Fedesvin" },
 ] as const;
 
+const GLOBAL_TABS = ["spins", "points", "combined-stats"] as const;
+
 export function SlotMachineAdminSection() {
   const [selectedGame, setSelectedGame] = useState("book-of-fedesvin");
+  const [activeTab, setActiveTab] = useState("symbols");
+
+  const isGlobalTab = (GLOBAL_TABS as readonly string[]).includes(activeTab);
 
   return (
     <div className="space-y-6">
@@ -1419,28 +1424,46 @@ export function SlotMachineAdminSection() {
         <p className="text-muted-foreground">Administrer symboler, indstillinger og se statistik.</p>
       </div>
 
-      {/* Game Selector */}
-      <div className="flex gap-2">
-        {GAME_OPTIONS.map((game) => (
-          <Button
-            key={game.id}
-            variant={selectedGame === game.id ? "default" : "outline"}
-            onClick={() => setSelectedGame(game.id)}
-            size="sm"
-          >
-            <Gamepad2 className="h-4 w-4 mr-1.5" />
-            {game.label}
-          </Button>
-        ))}
-      </div>
+      {/* Game Selector - only shown for per-game tabs */}
+      {!isGlobalTab && (
+        <div className="flex gap-2">
+          {GAME_OPTIONS.map((game) => (
+            <Button
+              key={game.id}
+              variant={selectedGame === game.id ? "default" : "outline"}
+              onClick={() => setSelectedGame(game.id)}
+              size="sm"
+            >
+              <Gamepad2 className="h-4 w-4 mr-1.5" />
+              {game.label}
+            </Button>
+          ))}
+        </div>
+      )}
 
-      <Tabs defaultValue="symbols">
-        <TabsList className="mb-4">
+      <Tabs value={activeTab} onValueChange={setActiveTab}>
+        <TabsList className="mb-4 flex-wrap h-auto gap-1">
+          {/* Per-game tabs */}
           <TabsTrigger value="symbols">Symboler</TabsTrigger>
           <TabsTrigger value="settings">Indstillinger</TabsTrigger>
-          <TabsTrigger value="spins">Spins</TabsTrigger>
-          <TabsTrigger value="points">Points</TabsTrigger>
           <TabsTrigger value="statistics">Statistik</TabsTrigger>
+
+          {/* Visual separator */}
+          <div className="w-px h-6 bg-border mx-1 self-center" />
+
+          {/* Global tabs */}
+          <TabsTrigger value="spins" className="gap-1">
+            <Users className="h-3.5 w-3.5" />
+            Spins
+          </TabsTrigger>
+          <TabsTrigger value="points" className="gap-1">
+            <Users className="h-3.5 w-3.5" />
+            Points
+          </TabsTrigger>
+          <TabsTrigger value="combined-stats" className="gap-1">
+            <BarChart3 className="h-3.5 w-3.5" />
+            Samlet Statistik
+          </TabsTrigger>
         </TabsList>
 
         <TabsContent value="symbols">
@@ -1451,6 +1474,13 @@ export function SlotMachineAdminSection() {
           <SettingsTab gameId={selectedGame} />
         </TabsContent>
 
+        <TabsContent value="statistics">
+          <div className="space-y-6">
+            <SlotStatsResetSection />
+            <StatisticsTab gameId={selectedGame} />
+          </div>
+        </TabsContent>
+
         <TabsContent value="spins">
           <SpinManagementSection />
         </TabsContent>
@@ -1459,10 +1489,10 @@ export function SlotMachineAdminSection() {
           <SlotPointsManagement />
         </TabsContent>
 
-        <TabsContent value="statistics">
+        <TabsContent value="combined-stats">
           <div className="space-y-6">
             <SlotStatsResetSection />
-            <StatisticsTab gameId={selectedGame} />
+            <StatisticsTab />
           </div>
         </TabsContent>
       </Tabs>
