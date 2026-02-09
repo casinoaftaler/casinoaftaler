@@ -165,10 +165,10 @@ export default function SlotMachine() {
     <div className="min-h-[calc(100dvh-4rem)] relative flex flex-col">
       {/* Background */}
       <div 
-        className="fixed inset-0 bg-cover bg-center bg-no-repeat -z-10"
+        className="absolute inset-0 bg-cover bg-center bg-no-repeat -z-10"
         style={{ backgroundImage: `url(${backgroundImage})` }}
       />
-      <div className="fixed inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black/70 -z-10" />
+      <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black/70 -z-10" />
 
       {/* Back button */}
       <div className="absolute top-3 left-3 z-20">
