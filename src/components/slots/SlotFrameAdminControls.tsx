@@ -23,6 +23,10 @@ function getSettingsKeys(gameId: string) {
       backgroundKey: "slot_background_image",
       frameKey: "slot_machine_frame_image",
       frameSizeKey: "slot_frame_size",
+      frameWidthKey: "slot_frame_width",
+      frameHeightKey: "slot_frame_height",
+      frameOffsetXKey: "slot_frame_offset_x",
+      frameOffsetYKey: "slot_frame_offset_y",
     };
   }
   const prefix = gameId.replace(/-/g, "_");
@@ -30,6 +34,10 @@ function getSettingsKeys(gameId: string) {
     backgroundKey: `${prefix}_background_image`,
     frameKey: `${prefix}_frame_image`,
     frameSizeKey: `${prefix}_frame_size`,
+    frameWidthKey: `${prefix}_frame_width`,
+    frameHeightKey: `${prefix}_frame_height`,
+    frameOffsetXKey: `${prefix}_frame_offset_x`,
+    frameOffsetYKey: `${prefix}_frame_offset_y`,
   };
 }
 
@@ -53,12 +61,16 @@ export function SlotFrameAdminControls({ gameId = "book-of-fedesvin" }: SlotFram
     setFramePreviewUrl(null);
   }, [gameId]);
 
-  const { backgroundKey, frameKey, frameSizeKey } = getSettingsKeys(gameId);
+  const { backgroundKey, frameKey, frameSizeKey, frameWidthKey, frameHeightKey, frameOffsetXKey, frameOffsetYKey } = getSettingsKeys(gameId);
   
   const currentBackgroundUrl = settings?.[backgroundKey] || null;
   const currentFrameUrl = settings?.[frameKey] || null;
   const defaultFrameSize = GAME_FRAME_DEFAULTS[gameId] ?? 90;
   const currentFrameSize = parseInt(settings?.[frameSizeKey] || String(defaultFrameSize), 10);
+  const currentFrameWidth = parseInt(settings?.[frameWidthKey] || "130", 10);
+  const currentFrameHeight = parseInt(settings?.[frameHeightKey] || "130", 10);
+  const currentFrameOffsetX = parseInt(settings?.[frameOffsetXKey] || "0", 10);
+  const currentFrameOffsetY = parseInt(settings?.[frameOffsetYKey] || "0", 10);
 
   const updateFrameSize = useMutation({
     mutationFn: async (size: number) => {
@@ -77,6 +89,40 @@ export function SlotFrameAdminControls({ gameId = "book-of-fedesvin" }: SlotFram
     },
     onError: (error: Error) => {
       toast.error(`Kunne ikke opdatere størrelse: ${error.message}`);
+    },
+  });
+
+  const updateFrameSetting = useMutation({
+    mutationFn: async ({ key, value }: { key: string; value: number }) => {
+      const { error } = await supabase
+        .from("site_settings")
+        .upsert(
+          { key, value: String(value) },
+          { onConflict: "key" }
+        );
+      if (error) throw error;
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["site-settings"] });
+    },
+    onError: (error: Error) => {
+      toast.error(`Kunne ikke opdatere: ${error.message}`);
+    },
+  });
+
+  const resetFramePosition = useMutation({
+    mutationFn: async () => {
+      const keysToDelete = [frameWidthKey, frameHeightKey, frameOffsetXKey, frameOffsetYKey];
+      for (const key of keysToDelete) {
+        await supabase.from("site_settings").delete().eq("key", key);
+      }
+    },
+    onSuccess: () => {
+      toast.success("Rammeposition nulstillet!");
+      queryClient.invalidateQueries({ queryKey: ["site-settings"] });
+    },
+    onError: (error: Error) => {
+      toast.error(`Kunne ikke nulstille: ${error.message}`);
     },
   });
 
@@ -465,23 +511,89 @@ export function SlotFrameAdminControls({ gameId = "book-of-fedesvin" }: SlotFram
               />
             )}
 
-            {/* Frame Size Slider */}
+            {/* Frame Position Controls */}
             {currentFrameUrl && (
-              <div className="space-y-3 p-4 rounded-lg bg-muted/30 border border-border/50">
+              <div className="space-y-4 p-4 rounded-lg bg-muted/30 border border-border/50">
                 <div className="flex items-center justify-between">
-                  <Label className="text-sm font-medium">Rammestørrelse</Label>
-                  <span className="text-sm text-muted-foreground">{currentFrameSize}px</span>
+                  <Label className="text-sm font-medium">Rammepositionering</Label>
+                  <Button
+                    variant="ghost"
+                    size="sm"
+                    onClick={() => resetFramePosition.mutate()}
+                    disabled={resetFramePosition.isPending}
+                    className="text-xs h-7"
+                  >
+                    <RefreshCw className="h-3 w-3 mr-1" />
+                    Nulstil position
+                  </Button>
                 </div>
-                <Slider
-                  value={[currentFrameSize]}
-                  onValueChange={(values) => updateFrameSize.mutate(values[0])}
-                  min={40}
-                  max={150}
-                  step={5}
-                  className="w-full"
-                />
+
+                {/* Width */}
+                <div className="space-y-1.5">
+                  <div className="flex items-center justify-between">
+                    <Label className="text-xs text-muted-foreground">Bredde</Label>
+                    <span className="text-xs text-muted-foreground">{currentFrameWidth}%</span>
+                  </div>
+                  <Slider
+                    value={[currentFrameWidth]}
+                    onValueChange={(v) => updateFrameSetting.mutate({ key: frameWidthKey, value: v[0] })}
+                    min={50}
+                    max={250}
+                    step={5}
+                    className="w-full"
+                  />
+                </div>
+
+                {/* Height */}
+                <div className="space-y-1.5">
+                  <div className="flex items-center justify-between">
+                    <Label className="text-xs text-muted-foreground">Højde</Label>
+                    <span className="text-xs text-muted-foreground">{currentFrameHeight}%</span>
+                  </div>
+                  <Slider
+                    value={[currentFrameHeight]}
+                    onValueChange={(v) => updateFrameSetting.mutate({ key: frameHeightKey, value: v[0] })}
+                    min={50}
+                    max={250}
+                    step={5}
+                    className="w-full"
+                  />
+                </div>
+
+                {/* Horizontal offset */}
+                <div className="space-y-1.5">
+                  <div className="flex items-center justify-between">
+                    <Label className="text-xs text-muted-foreground">Horisontal offset</Label>
+                    <span className="text-xs text-muted-foreground">{currentFrameOffsetX}px</span>
+                  </div>
+                  <Slider
+                    value={[currentFrameOffsetX]}
+                    onValueChange={(v) => updateFrameSetting.mutate({ key: frameOffsetXKey, value: v[0] })}
+                    min={-200}
+                    max={200}
+                    step={1}
+                    className="w-full"
+                  />
+                </div>
+
+                {/* Vertical offset */}
+                <div className="space-y-1.5">
+                  <div className="flex items-center justify-between">
+                    <Label className="text-xs text-muted-foreground">Vertikal offset</Label>
+                    <span className="text-xs text-muted-foreground">{currentFrameOffsetY}px</span>
+                  </div>
+                  <Slider
+                    value={[currentFrameOffsetY]}
+                    onValueChange={(v) => updateFrameSetting.mutate({ key: frameOffsetYKey, value: v[0] })}
+                    min={-200}
+                    max={200}
+                    step={1}
+                    className="w-full"
+                  />
+                </div>
+
                 <p className="text-xs text-muted-foreground">
-                  Justér hvor meget rammen strækker sig ud over spillemaskinens indhold.
+                  Justér rammens størrelse og position frit over tromlerne. Rammen er rent dekorativ og påvirker ikke spillets layout.
                 </p>
               </div>
             )}

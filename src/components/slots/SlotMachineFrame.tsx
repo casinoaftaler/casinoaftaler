@@ -10,31 +10,17 @@ interface SlotMachineFrameProps {
   gameId?: string;
 }
 
-// Default frame sizes per game (used when no DB setting exists)
-const GAME_FRAME_DEFAULTS: Record<string, number> = {
-  "book-of-fedesvin": 90,
-  "rise-of-fedesvin": 115,
-};
-
-// Per-game vertical offset for the frame IMAGE only (negative = frame moves up, positive = down)
-// This moves the frame independently from the reels
-const GAME_FRAME_VERTICAL_OFFSET: Record<string, number> = {
-  "rise-of-fedesvin": -40,
-};
-
-// Per-game content (reels) vertical offset in px (positive = move reels down inside frame)
-// This moves the reels independently from the frame
-const GAME_CONTENT_VERTICAL_OFFSET: Record<string, number> = {
-  "rise-of-fedesvin": 120,
-};
-
-// Calculate responsive frame size based on screen width
-function getEffectiveFrameSize(windowWidth: number, baseSize: number): number {
-  if (windowWidth < 400) return Math.round(baseSize * 0.35);  // Extra small
-  if (windowWidth < 640) return Math.round(baseSize * 0.45);  // Mobile
-  if (windowWidth < 768) return Math.round(baseSize * 0.60);  // Small tablet
-  if (windowWidth < 1024) return Math.round(baseSize * 0.80); // Tablet/medium
-  return baseSize; // Desktop - full size
+// Helper to derive settings keys per game
+function getFrameSettingsKeys(gameId: string) {
+  const prefix = gameId === "book-of-fedesvin" ? "slot" : gameId.replace(/-/g, "_");
+  const isDefault = gameId === "book-of-fedesvin";
+  return {
+    frameImageKey: isDefault ? "slot_machine_frame_image" : `${prefix}_frame_image`,
+    frameWidthKey: `${prefix}_frame_width`,
+    frameHeightKey: `${prefix}_frame_height`,
+    frameOffsetXKey: `${prefix}_frame_offset_x`,
+    frameOffsetYKey: `${prefix}_frame_offset_y`,
+  };
 }
 
 export function SlotMachineFrame({ 
@@ -47,26 +33,14 @@ export function SlotMachineFrame({
   const [imageLoaded, setImageLoaded] = useState(false);
   const [imageError, setImageError] = useState(false);
   const imgRef = useRef<HTMLImageElement>(null);
-  const [windowWidth, setWindowWidth] = useState(() => 
-    typeof window !== 'undefined' ? window.innerWidth : 1024
-  );
 
-  // Listen for window resize
-  useEffect(() => {
-    const handleResize = () => setWindowWidth(window.innerWidth);
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
-  }, []);
-  
-  // Use game-specific frame/size if available, fallback to global
-  const gamePrefix = gameId === "book-of-fedesvin" ? "" : gameId.replace(/-/g, "_") + "_";
-  const frameImageUrl = gamePrefix 
-    ? (settings?.[`${gamePrefix}frame_image`] || null)
-    : (settings?.slot_machine_frame_image || null);
-  const frameSizeKey = gamePrefix ? `${gamePrefix}frame_size` : "slot_frame_size";
-  const gameDefault = GAME_FRAME_DEFAULTS[gameId] ?? 90;
-  const baseFrameSize = parseInt(settings?.[frameSizeKey] || settings?.slot_frame_size || String(gameDefault), 10);
-  const effectiveFrameSize = getEffectiveFrameSize(windowWidth, baseFrameSize);
+  const { frameImageKey, frameWidthKey, frameHeightKey, frameOffsetXKey, frameOffsetYKey } = getFrameSettingsKeys(gameId);
+
+  const frameImageUrl = settings?.[frameImageKey] || null;
+  const frameWidth = parseInt(settings?.[frameWidthKey] || "130", 10);
+  const frameHeight = parseInt(settings?.[frameHeightKey] || "130", 10);
+  const frameOffsetX = parseInt(settings?.[frameOffsetXKey] || "0", 10);
+  const frameOffsetY = parseInt(settings?.[frameOffsetYKey] || "0", 10);
   const hasFrame = !!frameImageUrl && !imageError;
 
   // Reset loaded/error state when the frame image URL changes
@@ -75,9 +49,7 @@ export function SlotMachineFrame({
     setImageError(false);
   }, [frameImageUrl]);
 
-  // Handle cached images: if the browser already has the image cached,
-  // the onLoad event may fire before React attaches its handler.
-  // Check img.complete after mount to catch this case.
+  // Handle cached images
   useEffect(() => {
     const img = imgRef.current;
     if (img && img.complete && img.naturalWidth > 0) {
@@ -87,46 +59,22 @@ export function SlotMachineFrame({
 
   const handleImageLoad = useCallback(() => setImageLoaded(true), []);
   const handleImageError = useCallback(() => setImageError(true), []);
-  
-  // Frame offset (moves ONLY the frame image, not the reels)
-  const frameVerticalOffset = GAME_FRAME_VERTICAL_OFFSET[gameId] ?? 0;
-  const effectiveFrameOffset = getEffectiveFrameSize(windowWidth, Math.abs(frameVerticalOffset)) * Math.sign(frameVerticalOffset);
-  
-  // Content offset (moves ONLY the reels, not the frame)
-  const contentVerticalOffset = GAME_CONTENT_VERTICAL_OFFSET[gameId] ?? 0;
-  const effectiveContentOffset = getEffectiveFrameSize(windowWidth, contentVerticalOffset);
-
-  // Margins use the max extent to prevent clipping (frame size + whichever offset pushes further)
-  const marginTop = hasFrame && imageLoaded 
-    ? effectiveFrameSize + Math.max(0, -effectiveFrameOffset)
-    : undefined;
-  const marginBottom = hasFrame && imageLoaded 
-    ? effectiveFrameSize + Math.max(0, effectiveFrameOffset)
-    : undefined;
-
 
   return (
-    <div 
-      className="relative isolate"
-      style={{
-        marginTop: marginTop != null ? `${marginTop}px` : undefined,
-        marginLeft: hasFrame && imageLoaded ? `${effectiveFrameSize}px` : undefined,
-        marginRight: hasFrame && imageLoaded ? `${effectiveFrameSize}px` : undefined,
-        marginBottom: marginBottom != null ? `${marginBottom}px` : undefined,
-      }}
-    >
-      {/* Frame Image Overlay - moves independently from reels */}
+    <div className="relative" style={{ overflow: "visible" }}>
+      {/* Frame Image Overlay - freely positioned, purely decorative */}
       {hasFrame && (
         <div 
           className={cn(
-            "absolute pointer-events-none -z-10 transition-opacity duration-500",
+            "absolute pointer-events-none z-10 transition-opacity duration-500",
             imageLoaded ? "opacity-100" : "opacity-0"
           )}
           style={{
-            top: `-${effectiveFrameSize + effectiveFrameOffset}px`,
-            left: `-${effectiveFrameSize}px`,
-            right: `-${effectiveFrameSize}px`,
-            bottom: `-${effectiveFrameSize - effectiveFrameOffset}px`,
+            width: `${frameWidth}%`,
+            height: `${frameHeight}%`,
+            left: `calc(50% + ${frameOffsetX}px)`,
+            top: `calc(50% + ${frameOffsetY}px)`,
+            transform: "translate(-50%, -50%)",
             filter: getSlotTheme(gameId).frameDropShadow,
           }}
         >
@@ -134,29 +82,15 @@ export function SlotMachineFrame({
             ref={imgRef}
             src={frameImageUrl}
             alt="Slot Frame"
-            className="w-full h-full object-fill"
+            className="w-full h-full object-contain"
             onLoad={handleImageLoad}
             onError={handleImageError}
           />
         </div>
       )}
 
-      {/* Content wrapper with padding to account for frame */}
-      <div 
-        className={cn(
-          "relative",
-          hasFrame && imageLoaded && (
-            gameId === "rise-of-fedesvin" 
-              ? "p-2 sm:p-3 md:p-4" 
-              : "p-4 sm:p-6 md:p-8"
-          )
-        )}
-        style={{
-          paddingTop: hasFrame && imageLoaded && effectiveContentOffset > 0
-            ? `${effectiveContentOffset + (gameId === "rise-of-fedesvin" ? 8 : 16)}px`
-            : undefined,
-        }}
-      >
+      {/* Content wrapper */}
+      <div className="relative">
         {/* Fallback CSS frame corners when no image or loading */}
         {(!hasFrame || !imageLoaded) && (
           <>
