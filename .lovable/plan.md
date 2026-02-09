@@ -1,54 +1,72 @@
 
 
-## Plan: Rise of Fedesvin Symbol Generation with Frames and Consistent Backgrounds
+## Frit positionerbar spilleramme med admin-kontroller
 
 ### Problem
-The `generate-slot-symbol` edge function currently only contains Egyptian-themed prompts for "Book of Fedesvin". When generating symbols for "Rise of Fedesvin" (Merlin, Dragon, Phoenix, Crystal Ball, Spell Book, etc.), they all fall through to a generic Egyptian fallback -- resulting in wrong theme, no frames on premium/scatter symbols, and inconsistent backgrounds.
+Rammen er i dag bundet til reels-containeren via `absolute` positionering med symmetriske offsets (top/left/right/bottom). Det betyder at rammen altid strækkes til at fylde en rektangulær zone omkring tromlerne med `object-fill`, hvilket "squeezer" billedet hvis proportionerne ikke matcher.
 
-### Solution
-Update the edge function to:
-1. Fetch the `game_id` from the database alongside the symbol name
-2. Add a complete Rise of Fedesvin prompt set with a **wizard/fantasy theme**
-3. Add frames to premium and scatter symbols (purple/silver arcane frame for premium, glowing magical red frame for scatter)
-4. Add a consistent mystical background across all Rise of Fedesvin symbols
+### Losning
+Rammen frigores fra reel-containeren og placeres som et uafhaengigt overlay med individuel kontrol over position (X, Y), storrelse (bredde, hojde) via admin-panelet. Alle vaerdier gemmes i `site_settings` per spil.
 
-### Changes
+### Nye admin-kontroller (i SlotFrameAdminControls)
+Administratoren far 4 nye sliders under ramme-fanen (kun synlige nar en ramme er uploadet):
 
-#### 1. Edge Function: `supabase/functions/generate-slot-symbol/index.ts`
+| Kontrol | Beskrivelse | Standardvaerdi |
+|---------|-------------|----------------|
+| **Bredde (%)** | Rammens bredde relativt til reel-containeren | 130% |
+| **Hojde (%)** | Rammens hojde relativt til reel-containeren | 130% |
+| **Horisontal offset (px)** | Flyt rammen til venstre/hojre | 0 |
+| **Vertikal offset (px)** | Flyt rammen op/ned | 0 |
 
-**Fetch `game_id` from database** -- update the select query from `"name, is_scatter"` to `"name, is_scatter, game_id"` so we know which game the symbol belongs to.
+### Database-nogler (site_settings)
+Per spil gemmes op til 4 ekstra vaerdier:
+- `{prefix}frame_width` (default: 130)
+- `{prefix}frame_height` (default: 130)  
+- `{prefix}frame_offset_x` (default: 0)
+- `{prefix}frame_offset_y` (default: 0)
 
-**Add Rise of Fedesvin style constants:**
-- `RISE_BASE_STYLE` -- Mystical wizard tower background with purple/blue tones, arcane lighting, magical particle effects. Consistent across all symbols.
-- `RISE_PREMIUM_FRAME` -- Ornate silver and purple arcane frame with rune carvings, crystal corner decorations, and inner magical glow.
-- `RISE_SCATTER_FRAME` -- Glowing magical red/crimson frame with enchanted rune patterns and pulsing energy effects.
+Ingen databasemigrering noedvendig - vi bruger den eksisterende `site_settings` key-value tabel.
 
-**Add Rise of Fedesvin symbol prompts** (new function `getPromptForRiseSymbol`):
-- **Merlin** (Premium): Wise wizard with long beard, star-covered hat, magical staff, arcane energy
-- **Dragon** (Premium): Majestic fantasy dragon with scales, fiery breath, spread wings
-- **Phoenix** (Premium): Magnificent phoenix in flames, golden/red feathers, rebirth energy
-- **Crystal Ball** (Premium): Glowing crystal ball on ornate stand, swirling magical mists inside
-- **Spell Book** (Scatter): The Fedesvin cat sitting on a magical spell book with arcane symbols (red frame)
-- **Letter symbols** (A, K, Q, J, 10): Same gemstone letter style but with mystical/arcane backgrounds instead of Egyptian
+### Tekniske aendringer
 
-**Update routing logic** -- modify `getPromptForSymbol` to accept `game_id` parameter, and route to `getPromptForRiseSymbol` when `game_id === 'rise-of-fedesvin'`.
+**1. `src/components/slots/SlotMachineFrame.tsx`**
+- Fjern den nuvaerende logik med symmetriske `effectiveFrameSize` margins og offsets
+- Rammen placeres som et `absolute` overlay centreret over reel-containeren
+- Position og storrelse styres af de nye settings-vaerdier
+- Brug `object-contain` i stedet for `object-fill` sa rammen bevarer sine proportioner
+- Containeren far `overflow: visible` og ingen ekstra margins fra rammen
+- De hardcodede `GAME_FRAME_VERTICAL_OFFSET` og `GAME_CONTENT_VERTICAL_OFFSET` fjernes og erstattes af de dynamiske settings
 
-### Technical Details
+**2. `src/components/slots/SlotFrameAdminControls.tsx`**
+- Tilfoej 4 nye sliders under den eksisterende "Rammestorrelse" slider:
+  - Bredde: 50-250% (step 5)
+  - Hojde: 50-250% (step 5)
+  - Horisontal offset: -200 til 200px (step 1)
+  - Vertikal offset: -200 til 200px (step 1)
+- Hver slider gemmer vaerdien direkte til `site_settings` via upsert (samme pattern som eksisterende `updateFrameSize`)
+- Tilfoej en "Nulstil position" knap der sletter alle 4 nogler
 
-```text
-Current flow:
-  symbolId -> fetch(name, is_scatter) -> getPromptForSymbol(name, is_scatter) -> AI generate
+**3. Opdateret positioneringslogik i SlotMachineFrame**
 
-Updated flow:
-  symbolId -> fetch(name, is_scatter, game_id) -> route by game_id:
-    book-of-fedesvin -> getPromptForSymbol(name, is_scatter)     [existing, unchanged]
-    rise-of-fedesvin -> getPromptForRiseSymbol(name, is_scatter) [new]
+Den nuvaerende tilgang:
+```
+// Frame stretches around reels with fixed padding
+top: -effectiveFrameSize
+left: -effectiveFrameSize
+right: -effectiveFrameSize
+bottom: -effectiveFrameSize
 ```
 
-Key design decisions:
-- Premium symbols (Merlin, Dragon, Phoenix, Crystal Ball) get `RISE_PREMIUM_FRAME` (silver/purple arcane frame)
-- Scatter symbol (Spell Book) gets `RISE_SCATTER_FRAME` (red magical frame)
-- Common letter symbols (A, K, Q, J, 10) get no frame (consistent with Book of Fedesvin behavior)
-- All Rise of Fedesvin symbols share the same `RISE_BASE_STYLE` background (wizard tower interior) for visual cohesion
-- No changes to Book of Fedesvin prompts -- they remain exactly as they are
+Ny tilgang:
+```
+// Frame is freely positioned relative to reel center
+width: frameWidth%
+height: frameHeight%
+left: 50% + offsetX  (centered via transform)
+top: 50% + offsetY   (centered via transform)
+transform: translate(-50%, -50%)
+object-contain preserves aspect ratio
+```
+
+Rammen pavirker ikke laengere reel-containerens margins, sa tromlerne forbliver i deres naturlige position. Rammen er rent dekorativ og `pointer-events-none`.
 
