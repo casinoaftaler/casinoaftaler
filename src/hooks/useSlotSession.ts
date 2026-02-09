@@ -57,6 +57,7 @@ export function useSlotSession(gameId?: string) {
   const sessionId = useRef(getOrCreateSessionId());
   const heartbeatIntervalRef = useRef<NodeJS.Timeout | null>(null);
   const channelRef = useRef<ReturnType<typeof supabase.channel> | null>(null);
+  const isActiveRef = useRef(false);
   const [state, setState] = useState<SlotSessionState>({
     isSessionActive: false,
     isBlockedByOtherDevice: false,
@@ -87,6 +88,7 @@ export function useSlotSession(gameId?: string) {
 
         if (isOtherSession && isSessionAlive) {
           // Another device is actively using the slot
+          isActiveRef.current = false;
           setState(prev => ({
             ...prev,
             isSessionActive: false,
@@ -134,6 +136,7 @@ export function useSlotSession(gameId?: string) {
 
       if (error) throw error;
 
+      isActiveRef.current = true;
       setState(prev => ({
         ...prev,
         isSessionActive: true,
@@ -156,9 +159,9 @@ export function useSlotSession(gameId?: string) {
     }
   }, [user?.id]);
 
-  // Send heartbeat to keep session alive
+  // Send heartbeat to keep session alive - use ref to avoid stale closure
   const sendHeartbeat = useCallback(async () => {
-    if (!user?.id || !state.isSessionActive) return;
+    if (!user?.id || !isActiveRef.current) return;
 
     try {
       const { error } = await supabase
@@ -178,7 +181,7 @@ export function useSlotSession(gameId?: string) {
     } catch (error) {
       console.error("Heartbeat error:", error);
     }
-  }, [user?.id, state.isSessionActive]);
+  }, [user?.id]);
 
   // Start heartbeat interval
   const startHeartbeat = useCallback(() => {
@@ -259,6 +262,7 @@ export function useSlotSession(gameId?: string) {
               }
               
               // Update state
+              isActiveRef.current = false;
               setState(prev => ({
                 ...prev,
                 isSessionActive: false,
