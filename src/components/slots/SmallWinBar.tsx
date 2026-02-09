@@ -21,7 +21,7 @@ export function SmallWinBar({ amount, gameId }: SmallWinBarProps) {
   return (
     <div 
       className={cn(
-        "flex items-center justify-center gap-2 px-5 py-2 rounded-xl",
+        "flex items-center justify-center gap-2 px-5 py-2 rounded-xl min-w-[100px]",
         "bg-gradient-to-b", theme.panelFrom, theme.panelVia, theme.panelTo,
         "border-2", theme.borderAccentStrong,
         "backdrop-blur-sm transition-shadow duration-300",
