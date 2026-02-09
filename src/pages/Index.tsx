@@ -76,9 +76,6 @@ const Index = () => {
     <>
       <HeroSection />
 
-      {/* Spillehal Promo Section */}
-      <SpillehalPromoSection />
-
       {/* Top Casinos Section */}
       <section id="top-casinos" className="py-8 md:py-12">
         <div className="container">
@@ -153,6 +150,7 @@ const Index = () => {
         </div>
       </section>
 
+      <SpillehalPromoSection />
       <BonusTypeCards />
       <FAQSection />
     </>
