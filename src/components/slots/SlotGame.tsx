@@ -357,11 +357,10 @@ export function SlotGame({ gameId = "book-of-fedesvin" }: SlotGameProps) {
       if (response.bonusState) {
         pendingBonusStateRef.current = response.bonusState;
         
-        // Suppress realtime updates IMMEDIATELY when a bonus is triggered,
-        // so the DB update doesn't race ahead and show bars before the overlay
-        if (result.bonusTriggered) {
-          suppressRealtimeUpdates();
-        }
+        // Suppress realtime updates for ALL bonus spins (not just triggers),
+        // so the DB update doesn't race ahead and show winnings in the status bar
+        // before the win animation has played.
+        suppressRealtimeUpdates();
         
         // Set expanding symbol for trigger overlay (used later, not displayed yet)
         if (!isBonusSpin && result.bonusTriggered) {
@@ -910,9 +909,22 @@ export function SlotGame({ gameId = "book-of-fedesvin" }: SlotGameProps) {
                             
                             // Apply deferred bonus state update for regular bonus spins
                             // (retrigger/trigger overlays handle their own update on close)
+                            // IMPORTANT: Defer until AFTER win animation so "Gevinst" in BonusStatusBar
+                            // only updates once the win amount is visually shown to the player.
                             if (pendingBonusStateRef.current && !result.bonusTriggered) {
-                              updateBonusFromServer(pendingBonusStateRef.current);
+                              const deferredBonusState = pendingBonusStateRef.current;
                               pendingBonusStateRef.current = null;
+                              
+                              const applyDelay = hasWinAnimation ? 2000 : 0;
+                              if (applyDelay > 0) {
+                                setTimeout(() => {
+                                  updateBonusFromServer(deferredBonusState);
+                                  resumeRealtimeUpdates();
+                                }, applyDelay);
+                              } else {
+                                updateBonusFromServer(deferredBonusState);
+                                resumeRealtimeUpdates();
+                              }
                             }
                             
                             // NOW invalidate queries - reels have stopped and result is visible
