@@ -158,6 +158,12 @@ export function Header() {
                   Community Highlights
                 </Link>
               </DropdownMenuItem>
+              <DropdownMenuItem asChild>
+                <Link to="/community/rewards" className="flex items-center gap-2">
+                  <Gift className="h-4 w-4" />
+                  Rewards Program
+                </Link>
+              </DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>
           <Link
@@ -343,6 +349,14 @@ export function Header() {
             >
               <Sparkles className="h-4 w-4" />
               Community Highlights
+            </Link>
+            <Link
+              to="/community/rewards"
+              className="ml-6 flex items-center gap-2 text-sm text-muted-foreground transition-colors hover:text-primary"
+              onClick={() => setMobileMenuOpen(false)}
+            >
+              <Gift className="h-4 w-4" />
+              Rewards Program
             </Link>
             
             {/* Theme toggle in mobile menu */}
