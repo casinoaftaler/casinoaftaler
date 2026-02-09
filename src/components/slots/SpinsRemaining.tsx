@@ -1,5 +1,6 @@
 import { Sparkles, Gift } from "lucide-react";
 import { useSlotSpins } from "@/hooks/useSlotSpins";
+import { useCommunityBonusSpins } from "@/hooks/useCommunityBonusSpins";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 
 interface SpinsRemainingProps {
@@ -8,6 +9,7 @@ interface SpinsRemainingProps {
 
 export function SpinsRemaining({ gameId }: SpinsRemainingProps) {
   const { spinsRemaining, maxSpins, bonusSpinsPermanent, isLoading } = useSlotSpins();
+  const { remaining: communityRemaining } = useCommunityBonusSpins();
   const isWizard = gameId === "rise-of-fedesvin";
 
   if (isLoading) {
@@ -45,6 +47,9 @@ export function SpinsRemaining({ gameId }: SpinsRemainingProps) {
             <p>Daglige spins + profilbelønninger</p>
             {bonusSpinsPermanent > 0 && (
               <p className="text-primary">+{bonusSpinsPermanent} bonus spins fra profil</p>
+            )}
+            {communityRemaining > 0 && (
+              <p className="text-primary">{communityRemaining} community bonus spins tilgængelige</p>
             )}
           </div>
         </TooltipContent>
