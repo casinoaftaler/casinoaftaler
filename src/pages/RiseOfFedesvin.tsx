@@ -19,6 +19,7 @@ import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { ArrowLeft, Gamepad2 } from "lucide-react";
 import defaultSlotBackground from "@/assets/slots/rise/background.jpg";
+import { LiveBigWins } from "@/components/slots/LiveBigWins";
 
 import slotCasinoCardBg from "@/assets/slots/slot-casino-card-bg.png";
 
@@ -169,6 +170,7 @@ export default function RiseOfFedesvin() {
 
   return (
     <div className="min-h-[calc(100dvh-4rem)] relative overflow-x-hidden">
+      <LiveBigWins />
       <div 
         className="absolute inset-0 bg-cover bg-center bg-no-repeat -z-10"
         style={{ backgroundImage: `url(${backgroundImage})` }}
