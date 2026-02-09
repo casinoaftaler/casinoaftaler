@@ -162,7 +162,7 @@ export default function SlotMachine() {
 
   // 7. Show the game
   return (
-    <div className="min-h-screen w-screen relative flex flex-col">
+    <div className="min-h-[calc(100dvh-4rem)] relative flex flex-col">
       {/* Background */}
       <div 
         className="fixed inset-0 bg-cover bg-center bg-no-repeat -z-10"

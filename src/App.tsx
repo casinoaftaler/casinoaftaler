@@ -5,7 +5,6 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { Layout } from "./components/Layout";
-import { GameLayout } from "./components/GameLayout";
 import { SlotPageLoading } from "./components/slots/SlotPageLoading";
 import Index from "./pages/Index";
 import CasinoDetail from "./pages/CasinoDetail";
@@ -61,15 +60,6 @@ const App = () => (
                 </Suspense>
               } 
             />
-            <Route path="/auth" element={<Auth />} />
-            <Route path="/auth/callback" element={<AuthCallback />} />
-            <Route path="/profil" element={<Profile />} />
-            <Route path="/u/:username" element={<PublicProfile />} />
-          </Route>
-          <Route path="/admin" element={<Admin />} />
-          
-          {/* Game routes - use dedicated GameLayout for immersive experience */}
-          <Route element={<GameLayout />}>
             <Route 
               path="/community/slots/book-of-fedesvin" 
               element={
@@ -86,7 +76,12 @@ const App = () => (
                 </Suspense>
               } 
             />
+            <Route path="/auth" element={<Auth />} />
+            <Route path="/auth/callback" element={<AuthCallback />} />
+            <Route path="/profil" element={<Profile />} />
+            <Route path="/u/:username" element={<PublicProfile />} />
           </Route>
+          <Route path="/admin" element={<Admin />} />
           
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
