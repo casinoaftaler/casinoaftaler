@@ -253,7 +253,7 @@ export const SlotReel = React.memo(function SlotReel({
     ? "shadow-[0_0_15px_rgba(168,85,247,0.3),0_0_25px_rgba(168,85,247,0.15)] animate-pulse"
     : "shadow-[0_0_15px_rgba(251,191,36,0.3),0_0_25px_rgba(251,191,36,0.15)] animate-pulse";
   const activeTeaseGlow = isWizard
-    ? "shadow-[0_0_30px_rgba(168,85,247,0.9),0_0_60px_rgba(168,85,247,0.6),0_0_90px_rgba(168,85,247,0.3)] animate-[glow-intense_0.5s_ease-in-out_infinite]"
+    ? "shadow-[0_0_30px_rgba(168,85,247,0.9),0_0_60px_rgba(168,85,247,0.6),0_0_90px_rgba(168,85,247,0.3)] animate-[glow-intense-wizard_0.5s_ease-in-out_infinite]"
     : "shadow-[0_0_30px_rgba(251,191,36,0.9),0_0_60px_rgba(251,191,36,0.6),0_0_90px_rgba(251,191,36,0.3)] animate-[glow-intense_0.5s_ease-in-out_infinite]";
 
   return (
