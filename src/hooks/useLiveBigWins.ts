@@ -25,7 +25,7 @@ const STORAGE_KEY = "live_big_wins";
 
 function loadPersistedWins(): BigWin[] {
   try {
-    const raw = sessionStorage.getItem(STORAGE_KEY);
+    const raw = localStorage.getItem(STORAGE_KEY);
     if (!raw) return [];
     return JSON.parse(raw) as BigWin[];
   } catch {
@@ -35,7 +35,7 @@ function loadPersistedWins(): BigWin[] {
 
 function persistWins(wins: BigWin[]) {
   try {
-    sessionStorage.setItem(STORAGE_KEY, JSON.stringify(wins));
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(wins));
   } catch { /* ignore */ }
 }
 
