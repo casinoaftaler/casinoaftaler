@@ -601,23 +601,13 @@ Deno.serve(async (req) => {
       );
     }
 
-    // Parallelize all independent reads for maximum speed
-    const [sessionResult, symbolsResult] = await Promise.all([
-      // Validate session (anti-multi-device)
-      supabase
-        .from("slot_active_sessions")
-        .select("session_id")
-        .eq("user_id", userId)
-        .maybeSingle(),
-      // Fetch slot symbols filtered by gameId
-      supabase
-        .from("slot_symbols")
-        .select("*")
-        .eq("game_id", gameId)
-        .order("position"),
-    ]);
+    // Validate session (anti-multi-device)
+    const { data: sessionData } = await supabase
+      .from("slot_active_sessions")
+      .select("session_id")
+      .eq("user_id", userId)
+      .maybeSingle();
 
-    const { data: sessionData } = sessionResult;
     if (sessionData && sessionData.session_id !== sessionId) {
       return new Response(
         JSON.stringify({ error: "Session blocked - active on another device" }),
@@ -625,7 +615,13 @@ Deno.serve(async (req) => {
       );
     }
 
-    const { data: symbols, error: symbolsError } = symbolsResult;
+    // Fetch slot symbols filtered by gameId
+    const { data: symbols, error: symbolsError } = await supabase
+      .from("slot_symbols")
+      .select("*")
+      .eq("game_id", gameId)
+      .order("position");
+
     if (symbolsError || !symbols || symbols.length === 0) {
       console.error(`[slot-spin] Failed to load symbols for gameId=${gameId}:`, symbolsError);
       return new Response(
@@ -846,22 +842,23 @@ Deno.serve(async (req) => {
     // Normal spin - validate spins remaining
     const today = new Date().toISOString().split("T")[0];
     
-    // Parallelize profile + settings reads (both independent)
-    const [profileResult, settingsResult] = await Promise.all([
-      supabase
-        .from("profiles")
-        .select("bonus_spins_permanent")
-        .eq("user_id", userId)
-        .maybeSingle(),
-      supabase
-        .from("site_settings")
-        .select("value")
-        .eq("key", "slot_daily_spins")
-        .maybeSingle(),
-    ]);
+    // Get bonus spins permanent from profile
+    const { data: profileData } = await supabase
+      .from("profiles")
+      .select("bonus_spins_permanent")
+      .eq("user_id", userId)
+      .maybeSingle();
 
-    const bonusSpinsPermanent = profileResult.data?.bonus_spins_permanent || 0;
-    const dailySpins = parseInt(settingsResult.data?.value || "100", 10);
+    const bonusSpinsPermanent = profileData?.bonus_spins_permanent || 0;
+
+    // Get daily spins setting
+    const { data: settingsData } = await supabase
+      .from("site_settings")
+      .select("value")
+      .eq("key", "slot_daily_spins")
+      .maybeSingle();
+
+    const dailySpins = parseInt(settingsData?.value || "100", 10);
     const maxSpins = Math.min(dailySpins + bonusSpinsPermanent, MAX_SPINS_CAP);
 
     // Get or create today's spin record (shared across games)
@@ -980,16 +977,14 @@ Deno.serve(async (req) => {
       }
     }
 
-    // Record game result - fire and forget (don't block response)
-    supabase.from("slot_game_results").insert({
+    // Record game result with game_id
+    await supabase.from("slot_game_results").insert({
       user_id: userId,
       bet_amount: bet,
       win_amount: result.totalWin,
       is_bonus_triggered: result.bonusTriggered,
       bonus_win_amount: 0,
       game_id: gameId,
-    }).then(({ error }) => {
-      if (error) console.error("[slot-spin] Failed to record game result:", error);
     });
 
     return new Response(
