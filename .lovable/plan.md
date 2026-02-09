@@ -1,52 +1,46 @@
 
 
-## Omstrukturering af Spillemaskine Admin Panel
+## Fix: Retrigger Symbol Picker + Sekventiel Expansion Animation
 
-### Problem
-Aktuelt er "Spins" og "Points" tabs placeret inde i spillemaskine-sektionen, hvor de gentages for hver maskine selvom de er globale (deles på tvers af alle maskiner). Derudover viser statistik kun data per spil, men der mangler en samlet oversigt.
+### Problem 1: Retrigger viser gammelt symbol
+Nar en retrigger sker i Rise of Fedesvin, viser overlayet det FORRIGE expanding symbol i stedet for det NYE. Det skyldes at `bonusState.expandingSymbols` ikke opdateres for overlayet lukkes (det er bevidst forsinket), men overlayet bruger `bonusState.expandingSymbols[last]` som `newRetriggerSymbol`.
 
-### Ny Tab-struktur
+**Losning:** Gem det nye retrigger-symbol fra serverresponsen i en dedikeret state-variabel (`pendingRetriggerSymbol`), og brug det i retrigger-overlayet. Serveren returnerer allerede `expandingSymbolIds` med det nye symbol tilfojet sidst - vi kan udlede det nye symbol derfra.
 
-Den nuværende tab-struktur i spillemaskine admin:
+### Problem 2: Retrigger mangler symbol-picker animation
+Ved retrigger vises bare et statisk symbol. Det skal bruge samme roulette-animation som ved bonus-trigger (BonusSymbolPicker).
 
-```text
-[Symboler] [Indstillinger] [Spins] [Points] [Statistik]
-         ^--- per spil ---^  ^--- globale ---^  ^--- per spil ---^
-```
+**Losning:** Gendan retrigger-overlayet til at bruge `BonusSymbolPicker`-komponenten med det nye symbol som `selectedSymbol`. Overlayet far samme opbygning som trigger-overlayet men med "RETRIGGER!" tekst og "+10 GRATIS SPINS".
 
-Ny struktur:
+### Problem 3: Duplikerede expanding symbols
+Der er ingen klient-side validering mod at vise et allerede valgt symbol i pickeren.
 
-```text
-[Symboler] [Indstillinger] [Statistik] [Spins] [Points] [Samlet Statistik]
- ^--------- per spil (med game selector) ---------^  ^--- globale (uden game selector) ---^
-```
+**Losning:** Tilfoej en `excludeSymbolIds` prop til `BonusSymbolPicker` sa allerede aktive expanding symbols filtreres fra i animationen. Serveren haandterer allerede dette (linje 688-689 i slot-spin), men animationen skal matche.
 
-### Detaljeret Plan
+### Problem 4: Sekventiel expansion ved multiple gevinster
+Nar fx J og K begge ekspanderer, ser det rodet ud fordi animationerne overlapper. 
 
-**1. Omorganiser tabs i `SlotMachineAdminSection.tsx`**
-- Flyt "Spins" og "Points" tabs ud af den per-game kontekst
-- Tilf en ny "Samlet Statistik" tab der viser statistik for ALLE maskiner kombineret
-- Skjul game selector-knapperne nar globale tabs er aktive (Spins, Points, Samlet Statistik)
+**Losning:** Denne logik er allerede implementeret i `SlotGame.tsx` linje 794-836 (sekventiel expansion med `expandingWinGroups`). Problemet er sandsynligvis at der mangler en delay mellem unexpand og naeste expand. Delayet pa linje 835 er kun 300ms - det oges til 500ms for en tydeligere overgang. Desuden tilfojes en kort "flash" effekt nar et nyt symbol begynder at ekspandere.
 
-**2. Implementer "Samlet Statistik" tab**
-- Genbrug `StatisticsTab` komponenten men kald den UDEN `gameId` parameter
-- Tilfoej en `useSlotAdminStatistics` query uden gameId-filter der aggregerer data fra alle maskiner
-- Viser samlede spins, gevinster, spillere, RTP osv. pa tvers af alle maskiner
+---
 
-**3. UI-forbedringer**
-- Tilfoej en visuel separator mellem per-game tabs og globale tabs
-- Game selector vises kun nar en per-game tab er aktiv
-- Globale tabs far et andet ikon/styling sa det er tydeligt de er globale
+### Tekniske AEndringer
 
-### Tekniske Detaljer
+**1. `src/components/slots/SlotGame.tsx`**
+- Tilfoej ny state: `pendingRetriggerSymbol` (SlotSymbol | null)
+- Nar serveren returnerer en retrigger med `expandingSymbolIds`, find det nye symbol (sidste element i arrayet) og gem det i `pendingRetriggerSymbol`
+- Send `pendingRetriggerSymbol` som `newRetriggerSymbol` til retrigger-overlayet i stedet for `bonusState.expandingSymbols[last]`
+- Send nuvaerende expanding symbol IDs som `excludeSymbolIds` til overlayet
+- Nulstil `pendingRetriggerSymbol` nar retrigger-overlay lukkes
+- Oeg delay mellem sekventielle expansion-grupper fra 300ms til 500ms
 
-**Fil: `src/components/SlotMachineAdminSection.tsx`**
-- Opdater `SlotMachineAdminSection` eksport-komponenten (linje 1412-1471)
-- Flyt tabs-raekkefoelgen: Symboler, Indstillinger, Statistik (per spil), derefter Spins, Points, Samlet Statistik (globale)
-- Tilfoej state-logik til at tracke om aktiv tab er per-game eller global
-- Skjul/vis game selector baseret pa aktiv tab
+**2. `src/components/slots/BonusOverlay.tsx`**
+- AEndr retrigger-typen til at bruge `BonusSymbolPicker` med roulette-animation (ligesom trigger)
+- Tilfoej `excludeSymbolIds` prop der videregives til `BonusSymbolPicker`
+- Vis "RETRIGGER!" titel og "+10 GRATIS SPINS!" tekst
+- Knaptekst aendres til "FORTSAET FREE SPINS" i stedet for "START FREE SPINS"
 
-**Fil: `src/hooks/useSlotAdminStatistics.ts`**
-- Verificer at hook'en allerede understoetter at blive kaldt uden gameId (optional parameter)
-- Sikr at den aggregerer data korrekt nar intet gameId er angivet
-
+**3. `src/components/slots/BonusSymbolPicker.tsx`**
+- Tilfoej `excludeSymbolIds?: string[]` prop
+- Filtrer eligible symbols sa allerede aktive expanding symbols ikke kan vises i animationen
+- Tilfoej `buttonText?: string` prop sa knapteksten kan tilpasses (default: "START FREE SPINS")
