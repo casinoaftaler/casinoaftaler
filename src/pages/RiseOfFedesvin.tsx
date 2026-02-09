@@ -208,8 +208,8 @@ export default function RiseOfFedesvin() {
         </div>
       </div>
 
-      {/* Mobile side panels - reduced padding */}
-      <div className="xl:hidden flex justify-center px-4 pb-4 pt-1">
+      {/* Mobile side panels */}
+      <div className="xl:hidden flex justify-center px-4 pb-4 pt-6">
         <div className="w-full max-w-sm space-y-3">
           {topCasino && (
             <SlotPromoSlider casino={topCasino} backgroundImage={slotCasinoCardBg} />
