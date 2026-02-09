@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { HeroSection } from "@/components/HeroSection";
+import { SpillehalPromoSection } from "@/components/SpillehalPromoSection";
 import { CasinoCard } from "@/components/CasinoCard";
 import { BonusTypeCards } from "@/components/BonusTypeCards";
 import { FAQSection } from "@/components/FAQSection";
@@ -74,6 +75,9 @@ const Index = () => {
   return (
     <>
       <HeroSection />
+
+      {/* Spillehal Promo Section */}
+      <SpillehalPromoSection />
 
       {/* Top Casinos Section */}
       <section id="top-casinos" className="py-8 md:py-12">
