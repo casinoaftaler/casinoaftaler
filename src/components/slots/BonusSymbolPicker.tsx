@@ -11,6 +11,8 @@ interface BonusSymbolPickerProps {
   selectedSymbol: SlotSymbol | null;
   onComplete: () => void;
   gameId?: string;
+  excludeSymbolIds?: string[];
+  buttonText?: string;
 }
 
 export function BonusSymbolPicker({
@@ -19,6 +21,8 @@ export function BonusSymbolPicker({
   selectedSymbol,
   onComplete,
   gameId,
+  excludeSymbolIds = [],
+  buttonText = "START FREE SPINS",
 }: BonusSymbolPickerProps) {
   const theme = getSlotTheme(gameId);
   const [currentSymbol, setCurrentSymbol] = useState<SlotSymbol | null>(null);
@@ -28,8 +32,8 @@ export function BonusSymbolPicker({
   const slowdownTimeoutsRef = useRef<NodeJS.Timeout[]>([]);
   const stopScrollSoundRef = useRef<(() => void) | null>(null);
 
-  // Filter to only non-scatter symbols (same as bonus eligibility)
-  const eligibleSymbols = symbols.filter(s => !s.is_scatter);
+  // Filter to only non-scatter symbols, excluding already active expanding symbols
+  const eligibleSymbols = symbols.filter(s => !s.is_scatter && !excludeSymbolIds.includes(s.id));
 
   useEffect(() => {
     if (!isVisible || eligibleSymbols.length === 0 || !selectedSymbol) {
@@ -159,7 +163,7 @@ export function BonusSymbolPicker({
             "animate-fade-in"
           )}
         >
-          START FREE SPINS →
+          {buttonText} →
         </button>
       )}
     </div>
