@@ -96,9 +96,12 @@ Deno.serve(async (req) => {
       );
     }
 
-    console.log(`Creating admin user: ${email}`);
+    console.log(`Creating/promoting admin user: ${email}`);
 
-    // Create the user using admin API
+    let userId: string;
+    let userEmail: string;
+
+    // Try to create the user first
     const { data: newUser, error: createError } = await supabaseAdmin.auth.admin.createUser({
       email,
       password,
@@ -106,40 +109,81 @@ Deno.serve(async (req) => {
     });
 
     if (createError) {
-      console.error("Error creating user:", createError);
-      return new Response(
-        JSON.stringify({ error: createError.message }),
-        { status: 400, headers: { ...corsHeaders, "Content-Type": "application/json" } }
-      );
-    }
+      // If user already exists, look them up and assign admin role
+      if (createError.message?.includes("already been registered") || (createError as any)?.code === "email_exists") {
+        console.log(`User ${email} already exists, looking up to assign admin role...`);
 
-    if (!newUser.user) {
+        const { data: listData, error: listError } = await supabaseAdmin.auth.admin.listUsers();
+        if (listError) {
+          console.error("Error listing users:", listError);
+          return new Response(
+            JSON.stringify({ error: "Kunne ikke finde eksisterende bruger" }),
+            { status: 500, headers: { ...corsHeaders, "Content-Type": "application/json" } }
+          );
+        }
+
+        const existingUser = listData.users.find((u) => u.email === email);
+        if (!existingUser) {
+          return new Response(
+            JSON.stringify({ error: "Bruger eksisterer men kunne ikke findes" }),
+            { status: 404, headers: { ...corsHeaders, "Content-Type": "application/json" } }
+          );
+        }
+
+        userId = existingUser.id;
+        userEmail = existingUser.email || email;
+        console.log(`Found existing user: ${userId}`);
+      } else {
+        console.error("Error creating user:", createError);
+        return new Response(
+          JSON.stringify({ error: createError.message }),
+          { status: 400, headers: { ...corsHeaders, "Content-Type": "application/json" } }
+        );
+      }
+    } else if (!newUser.user) {
       return new Response(
         JSON.stringify({ error: "Kunne ikke oprette bruger" }),
         { status: 500, headers: { ...corsHeaders, "Content-Type": "application/json" } }
       );
+    } else {
+      userId = newUser.user.id;
+      userEmail = newUser.user.email || email;
+      console.log(`User created: ${userId}`);
     }
 
-    console.log(`User created: ${newUser.user.id}`);
+    // Check if user already has admin role
+    const { data: existingRole } = await supabaseAdmin
+      .from("user_roles")
+      .select("id")
+      .eq("user_id", userId)
+      .eq("role", "admin")
+      .maybeSingle();
+
+    if (existingRole) {
+      console.log(`User ${userId} is already an admin`);
+      return new Response(
+        JSON.stringify({ success: true, userId, email: userEmail, message: "Bruger er allerede admin" }),
+        { status: 200, headers: { ...corsHeaders, "Content-Type": "application/json" } }
+      );
+    }
 
     // Assign admin role
     const { error: roleInsertError } = await supabaseAdmin
       .from("user_roles")
-      .insert({ user_id: newUser.user.id, role: "admin" });
+      .insert({ user_id: userId, role: "admin" });
 
     if (roleInsertError) {
       console.error("Error assigning admin role:", roleInsertError);
-      await supabaseAdmin.auth.admin.deleteUser(newUser.user.id);
       return new Response(
         JSON.stringify({ error: "Kunne ikke tildele admin rolle" }),
         { status: 500, headers: { ...corsHeaders, "Content-Type": "application/json" } }
       );
     }
 
-    console.log(`Admin role assigned to user: ${newUser.user.id}`);
+    console.log(`Admin role assigned to user: ${userId}`);
 
     return new Response(
-      JSON.stringify({ success: true, userId: newUser.user.id, email: newUser.user.email }),
+      JSON.stringify({ success: true, userId, email: userEmail }),
       { status: 200, headers: { ...corsHeaders, "Content-Type": "application/json" } }
     );
   } catch (error: unknown) {
