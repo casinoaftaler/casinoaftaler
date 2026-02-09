@@ -168,7 +168,7 @@ export default function RiseOfFedesvin() {
   );
 
   return (
-    <div className="min-h-[calc(100dvh-4rem)] relative flex flex-col">
+    <div className="min-h-[calc(100dvh-4rem)] relative overflow-x-hidden">
       <div 
         className="absolute inset-0 bg-cover bg-center bg-no-repeat -z-10"
         style={{ backgroundImage: `url(${backgroundImage})` }}
@@ -190,8 +190,8 @@ export default function RiseOfFedesvin() {
         </Button>
       </div>
       
-      {/* Game area - positioned directly under header */}
-      <div className="flex-1 flex items-center justify-center overflow-x-hidden">
+      {/* Game area */}
+      <div className="flex items-center justify-center">
         <div 
           className="slot-viewport-container"
           style={{
