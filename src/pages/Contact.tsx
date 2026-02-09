@@ -26,17 +26,17 @@ import {
 import { useToast } from "@/hooks/use-toast";
 
 const INQUIRY_TYPES = [
-  "Casino Partnership",
-  "Affiliate / Commercial Cooperation",
-  "Press / Media",
-  "Other Commercial Inquiry",
+  "Casino Partnerskab",
+  "Affiliate / Kommercielt Samarbejde",
+  "Presse / Medier",
+  "Anden Kommerciel Henvendelse",
 ] as const;
 
 const COOPERATION_AREAS = [
-  { icon: Handshake, label: "Casino partnerships" },
-  { icon: Users, label: "Affiliate agreements" },
-  { icon: Megaphone, label: "Campaigns and promotions" },
-  { icon: Newspaper, label: "Press and media inquiries" },
+  { icon: Handshake, label: "Casino partnerskaber" },
+  { icon: Users, label: "Affiliate aftaler" },
+  { icon: Megaphone, label: "Kampagner og promotions" },
+  { icon: Newspaper, label: "Presse- og mediehenvendelser" },
 ];
 
 export default function Contact() {
@@ -58,10 +58,10 @@ export default function Contact() {
 
     // Build mailto link as fallback since we don't have a backend email service
     const subject = encodeURIComponent(
-      `[${inquiryType}] Inquiry from ${company}`
+      `[${inquiryType}] Henvendelse fra ${company}`
     );
     const body = encodeURIComponent(
-      `Company / Media: ${company}\nContact Person: ${contactPerson}\nEmail: ${email}\nInquiry Type: ${inquiryType}\n\nMessage:\n${message}`
+      `Virksomhed / Medie: ${company}\nKontaktperson: ${contactPerson}\nEmail: ${email}\nHenvendelsestype: ${inquiryType}\n\nBesked:\n${message}`
     );
 
     window.location.href = `mailto:info@casinoaftaler.dk?subject=${subject}&body=${body}`;
@@ -70,9 +70,9 @@ export default function Contact() {
       setSending(false);
       setSubmitted(true);
       toast({
-        title: "Thank you for your inquiry",
+        title: "Tak for din henvendelse",
         description:
-          "We will review your message and get back to you.",
+          "Vi gennemgår din besked og vender tilbage til dig.",
       });
     }, 500);
   };
@@ -85,17 +85,17 @@ export default function Contact() {
           <div className="mx-auto max-w-2xl space-y-4">
             <div className="inline-flex items-center gap-2 rounded-full border border-border bg-background px-4 py-1.5 text-sm text-muted-foreground">
               <Building2 className="h-4 w-4" />
-              Business & Press
+              Erhverv & Presse
             </div>
             <h1 className="text-4xl font-bold tracking-tight md:text-5xl">
-              Contact
+              Kontakt
             </h1>
             <p className="text-lg text-muted-foreground md:text-xl">
-              For casino partnerships, affiliate inquiries, commercial proposals,
-              and press requests.
+              For casino partnerskaber, affiliate henvendelser, kommercielle forslag
+              og presseforespørgsler.
             </p>
             <p className="text-sm text-muted-foreground/70">
-              This contact page is not intended for user support.
+              Denne kontaktside er ikke beregnet til brugersupport.
             </p>
           </div>
         </div>
@@ -113,47 +113,47 @@ export default function Contact() {
                       <CheckCircle2 className="h-8 w-8 text-primary" />
                     </div>
                     <h2 className="text-2xl font-semibold">
-                      Thank you for your inquiry
+                      Tak for din henvendelse
                     </h2>
                     <p className="max-w-sm text-muted-foreground">
-                      We will review your message and get back to you.
+                      Vi gennemgår din besked og vender tilbage til dig.
                     </p>
                     <Button
                       variant="outline"
                       onClick={() => setSubmitted(false)}
                       className="mt-4"
                     >
-                      Send another inquiry
+                      Send en ny henvendelse
                     </Button>
                   </div>
                 ) : (
                   <form onSubmit={handleSubmit} className="space-y-6">
                     <div className="space-y-1.5">
                       <h2 className="text-xl font-semibold">
-                        Send us an inquiry
+                        Send os en henvendelse
                       </h2>
                       <p className="text-sm text-muted-foreground">
-                        All fields are required.
+                        Alle felter er påkrævede.
                       </p>
                     </div>
 
                     <div className="grid gap-4 sm:grid-cols-2">
                       <div className="space-y-2">
-                        <Label htmlFor="company">Company / Media Name</Label>
+                        <Label htmlFor="company">Virksomhed / Medienavn</Label>
                         <Input
                           id="company"
                           name="company"
-                          placeholder="Your company name"
+                          placeholder="Dit virksomhedsnavn"
                           required
                           maxLength={100}
                         />
                       </div>
                       <div className="space-y-2">
-                        <Label htmlFor="contactPerson">Contact Person</Label>
+                        <Label htmlFor="contactPerson">Kontaktperson</Label>
                         <Input
                           id="contactPerson"
                           name="contactPerson"
-                          placeholder="Full name"
+                          placeholder="Fulde navn"
                           required
                           maxLength={100}
                         />
@@ -161,26 +161,26 @@ export default function Contact() {
                     </div>
 
                     <div className="space-y-2">
-                      <Label htmlFor="email">Email Address</Label>
+                      <Label htmlFor="email">E-mailadresse</Label>
                       <Input
                         id="email"
                         name="email"
                         type="email"
-                        placeholder="you@company.com"
+                        placeholder="dig@virksomhed.dk"
                         required
                         maxLength={255}
                       />
                     </div>
 
                     <div className="space-y-2">
-                      <Label>Inquiry Type</Label>
+                      <Label>Henvendelsestype</Label>
                       <Select
                         value={inquiryType}
                         onValueChange={setInquiryType}
                         required
                       >
                         <SelectTrigger>
-                          <SelectValue placeholder="Select inquiry type" />
+                          <SelectValue placeholder="Vælg henvendelsestype" />
                         </SelectTrigger>
                         <SelectContent>
                           {INQUIRY_TYPES.map((type) => (
@@ -193,11 +193,11 @@ export default function Contact() {
                     </div>
 
                     <div className="space-y-2">
-                      <Label htmlFor="message">Message</Label>
+                      <Label htmlFor="message">Besked</Label>
                       <Textarea
                         id="message"
                         name="message"
-                        placeholder="Describe your inquiry..."
+                        placeholder="Beskriv din henvendelse..."
                         rows={5}
                         required
                         maxLength={2000}
@@ -211,7 +211,7 @@ export default function Contact() {
                       disabled={sending || !inquiryType}
                     >
                       <Send className="h-4 w-4" />
-                      {sending ? "Sending..." : "Send Inquiry"}
+                      {sending ? "Sender..." : "Send Henvendelse"}
                     </Button>
                   </form>
                 )}
@@ -224,7 +224,7 @@ export default function Contact() {
             {/* Direct Contact */}
             <Card>
               <CardContent className="p-6 space-y-4">
-                <h3 className="font-semibold text-lg">Direct Contact</h3>
+                <h3 className="font-semibold text-lg">Direkte Kontakt</h3>
                 <a
                   href="mailto:info@casinoaftaler.dk"
                   className="flex items-center gap-3 text-primary hover:underline"
@@ -233,7 +233,7 @@ export default function Contact() {
                   info@casinoaftaler.dk
                 </a>
                 <p className="text-sm text-muted-foreground">
-                  All serious inquiries are reviewed and answered.
+                  Alle seriøse henvendelser bliver gennemgået og besvaret.
                 </p>
               </CardContent>
             </Card>
@@ -244,12 +244,12 @@ export default function Contact() {
                 <div className="flex items-center gap-2">
                   <BadgeCheck className="h-5 w-5 text-primary" />
                   <h3 className="font-semibold text-lg">
-                    Working with CasinOAftaler
+                    Samarbejde med CasinOAftaler
                   </h3>
                 </div>
                 <p className="text-sm text-muted-foreground">
-                  CasinOAftaler collaborates with licensed and responsible casino
-                  operators, affiliates, and media partners.
+                  CasinOAftaler samarbejder med licenserede og ansvarlige
+                  casinooperatører, affiliates og mediepartnere.
                 </p>
                 <ul className="space-y-3">
                   {COOPERATION_AREAS.map(({ icon: Icon, label }) => (
