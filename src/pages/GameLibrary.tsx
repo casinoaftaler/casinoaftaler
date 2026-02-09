@@ -148,11 +148,33 @@ export default function GameLibrary() {
     <div className="min-h-[calc(100vh-4rem)] relative">
       <PageBackground />
       <GameLibraryHero />
-      <div className="container py-10">
-        {/* 2-column layout: banners left, games right */}
-        <div className="flex flex-col lg:flex-row gap-8">
-          {/* Left sidebar: Casino banners (stacked) */}
-          <aside className="w-full lg:w-80 xl:w-96 shrink-0 order-1 lg:order-none">
+      
+      <div className="py-10">
+        {/* Mobile/Tablet: Banners above grid (normal flow) */}
+        <div className="xl:hidden container mb-8">
+          <div className="space-y-4 max-w-md mx-auto">
+            {sidebarCasinos.map((casino, index) => (
+              <CasinoCard
+                key={casino.id}
+                casino={mapCasino(casino)}
+                rank={index + 1}
+                open={openCasinoId === casino.id}
+                onOpenChange={(open) => setOpenCasinoId(open ? casino.id : null)}
+              />
+            ))}
+          </div>
+        </div>
+
+        {/* Desktop: Centered grid with absolutely positioned banners */}
+        <div className="relative flex justify-center">
+          {/* Banners - positioned to the left of the centered grid */}
+          <aside 
+            className="hidden xl:block absolute top-0 w-80 2xl:w-96"
+            style={{ 
+              // Position at the right edge of the centered grid, then offset further left
+              right: 'calc(50% + 400px + 100px)',
+            }}
+          >
             <div className="space-y-4">
               {sidebarCasinos.map((casino, index) => (
                 <CasinoCard
@@ -166,8 +188,8 @@ export default function GameLibrary() {
             </div>
           </aside>
 
-          {/* Right content: Game grid + leaderboard */}
-          <div className="flex-1 space-y-8 order-2 lg:order-none">
+          {/* Centered game grid - independent of banners */}
+          <div className="w-full max-w-[800px] px-4">
             {/* Game grid */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
               {GAMES.map((game, index) => (
@@ -192,7 +214,7 @@ export default function GameLibrary() {
             </div>
 
             {/* Leaderboard */}
-            <div className="max-w-md mx-auto lg:mx-0">
+            <div className="max-w-md mx-auto mt-8">
               <SlotLeaderboard gameId="book-of-fedesvin" />
             </div>
           </div>
