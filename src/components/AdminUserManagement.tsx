@@ -52,15 +52,12 @@ export function AdminUserManagement({ embedded = false }: AdminUserManagementPro
   const [error, setError] = useState("");
   const queryClient = useQueryClient();
 
-  // Fetch admin users
+  // Fetch admin users with email
   const { data: adminUsers, isLoading } = useQuery({
     queryKey: ["admin-users"],
     queryFn: async () => {
       const { data, error } = await supabase
-        .from("user_roles")
-        .select("*")
-        .eq("role", "admin")
-        .order("created_at", { ascending: false });
+        .rpc("get_admin_users_with_email");
 
       if (error) throw error;
       return data as AdminUser[];
