@@ -1,71 +1,69 @@
 
 
-## Theme Rise of Fedesvin: Win Lines, Win Celebrations, and Particles
+## Theme All Remaining Amber Colors for Rise of Fedesvin + Enhanced VFX
 
 ### Problem
-The WinLines, WinCelebration, and WinDisplay components all use hardcoded Egyptian gold/amber colors regardless of which slot game is active. On Rise of Fedesvin, these should use the purple/blue wizard theme instead.
+Multiple components still use hardcoded amber/gold colors that don't switch to the wizard purple theme for Rise of Fedesvin:
+- **SlotReel.tsx** - amber background during spin, amber glow during fake loop and tease
+- **SlotSymbol.tsx** - amber borders, shadows, and glow effects for winning, expanded, teasing, and scatter-celebrating states
+- **WinDisplay.tsx** - amber gradient background and text (no gameId prop at all)
+- **SpinsRemaining.tsx** - amber gradient background and text (no gameId prop)
+- **SlotGame.tsx** - amber reel divider color between columns
 
-### Changes Required
+Additionally, the particle/VFX system in WinCelebration could use more wizard-themed variety.
 
-**1. `src/components/slots/WinLines.tsx`**
-- Add `gameId` prop to the component interface
-- Create a second color palette for wizard theme (purple/violet/blue shades)
-- Select the color palette based on `gameId`
-- Update the inner core line color from gold (`#FFFACD`) to a light lavender for wizard theme
+### Files to Change (6 files)
 
-**2. `src/components/slots/WinCelebration.tsx`**
-- Add `gameId` prop to the component interface
-- Create wizard-themed `COLORS` array using purple/violet hues instead of gold
-- Theme the Big Win overlay: border color, shadow color, gradient text colors, glow effects
-- Theme the screen flash effect (purple radial gradient instead of gold)
-- Theme the pulsing border glow (purple instead of gold)
-- Update emoji decorations for Epic/Mega/Big win labels (e.g. use crystal ball, lightning, stars instead of fire/diamond/star)
+---
+
+**1. `src/components/slots/SlotSymbol.tsx`**
+- Add `gameId` prop to the interface
+- Replace all hardcoded amber references with conditional wizard/egyptian colors:
+  - `isWinning`: border from `border-amber-400` to `border-purple-400`, shadow from gold rgba to purple rgba, bg from `bg-amber-900/30` to `bg-purple-900/30`
+  - `isExpanded`: border from `border-amber-400/50` to `border-purple-400/50`
+  - `isTeasing`: border from `border-amber-400` to `border-purple-400`
+  - `isScatterCelebrating`: border and boxShadow from gold to purple
+  - Winning glow overlay: `bg-amber-400/20` to `bg-purple-400/20`
+  - Expanded glow overlay: same
+  - Expansion burst shine: `amber-500/0 via amber-400/50` to `purple-500/0 via purple-400/50`
+  - Expand ring: `border-amber-300` to `border-purple-300`
+
+**2. `src/components/slots/SlotReel.tsx`**
+- Add `gameId` prop to the interface
+- Replace:
+  - Spinning background: `bg-amber-950/50` to conditional `bg-purple-950/50`
+  - Fake loop scatter glow: gold rgba shadows to purple rgba
+  - Active tease glow: gold rgba shadows to purple rgba
 
 **3. `src/components/slots/WinDisplay.tsx`**
 - Add `gameId` prop
-- Use `getSlotTheme()` to pick accent colors instead of hardcoded `amber-500`
+- Use `getSlotTheme()` or conditional classes:
+  - Background gradient: `from-amber-500/30 to-amber-600/30` to `from-purple-500/30 to-purple-600/30`
+  - Border: `border-amber-500/50` to `border-purple-500/50`
+  - Icon/text color: `text-amber-500` to `text-purple-500`
 
-**4. `src/components/slots/SlotGame.tsx`**
-- Pass `gameId` to `<WinCelebration>` and `<WinLines>` components (currently not passed)
-- Pass `gameId` to `<WinDisplay>` if used
+**4. `src/components/slots/SpinsRemaining.tsx`**
+- Add `gameId` prop
+- Replace:
+  - Background gradient: `from-amber-500/20 to-amber-600/20` to `from-purple-500/20 to-purple-600/20`
+  - Border: `border-amber-500/30` to `border-purple-500/30`
+  - Icon/text: `text-amber-500` to `text-purple-500`
 
-### Technical Details
+**5. `src/components/slots/SlotGame.tsx`**
+- Pass `gameId` to `SlotReel`, `SlotSymbol` (via SlotReel), `WinDisplay`, and `SpinsRemaining`
+- Reel divider: change `bg-amber-950/70` to conditional `bg-purple-950/70`
 
-**Wizard line colors (replacing gold):**
-```
-"#A855F7" - Purple 500
-"#9333EA" - Purple 600
-"#7C3AED" - Violet 500
-"#8B5CF6" - Violet 400
-"#C084FC" - Purple 300
-"#A78BFA" - Violet 400
-"#6D28D9" - Purple 700
-"#B57BFF" - Custom light purple
-"#7E57C2" - Deep violet
-"#9F7AEA" - Soft violet
-```
+**6. `src/components/slots/WinCelebration.tsx`**
+- Add new particle types for wizard theme: `"orb"` and `"rune"` alongside existing coin/sparkle/star
+- Wizard orbs: glowing purple spheres with inner light animation
+- Wizard runes: magical rune characters (e.g. runic unicode chars like `᛭`, `ᚹ`, `ᛟ`) with purple glow
+- Increase particle count for wizard theme (30% more particles)
+- Add a secondary wave of rising particles from the bottom (magical energy rising effect) for big wins
 
-**Wizard core line color:** `#E9D5FF` (purple-200) instead of `#FFFACD`
-
-**Wizard celebration particle colors:**
-```
-"hsl(270, 80%, 60%)"  - Purple
-"hsl(260, 90%, 55%)"  - Deep purple
-"hsl(280, 70%, 65%)"  - Light purple
-"hsl(250, 75%, 60%)"  - Violet
-```
-
-**Wizard big win overlay theming:**
-- Border: `border-purple-500/40` instead of `border-amber-500/40`
-- Shadow: purple glow instead of gold glow
-- Text gradients: purple-to-violet instead of gold-to-orange
-- Epic win emojis: "lightning bolt EPIC WIN! lightning bolt" / "crystal ball MEGA WIN! crystal ball" / "star BIG WIN! star"
-- Flash effect: purple radial gradient instead of gold
-- Border glow: purple box-shadow instead of gold
-
-**Files modified:** 4 files
-- `src/components/slots/WinLines.tsx`
-- `src/components/slots/WinCelebration.tsx`
-- `src/components/slots/WinDisplay.tsx`
-- `src/components/slots/SlotGame.tsx`
-
+### Prop Passing Chain
+SlotGame passes `gameId` to:
+- SlotReel (new prop) which passes it to SlotSymbol (new prop)
+- WinDisplay (new prop)
+- SpinsRemaining (new prop)
+- WinCelebration (already done)
+- WinLines (already done)
