@@ -12,6 +12,7 @@ import { useSlotSymbols } from "@/hooks/useSlotSymbols";
 import { useSlotSymbolPreloader } from "@/hooks/useSlotSymbolPreloader";
 import { useSlotSpins } from "@/hooks/useSlotSpins";
 import { useSlotSettings } from "@/hooks/useSlotSettings";
+import { useSiteSettings } from "@/hooks/useSiteSettings";
 import { useSlotSoundLoader } from "@/hooks/useSlotSoundLoader";
 import { useBonusGameSync } from "@/hooks/useBonusGameSync";
 import { useServerSpin, type SpinResult, type BonusSpinResult } from "@/hooks/useServerSpin";
@@ -59,7 +60,12 @@ export function SlotGame({ gameId = "book-of-fedesvin" }: SlotGameProps) {
   const { validateSymbols } = useSlotSymbolPreloader(symbols);
   const { spinsRemaining, maxSpins, canSpin, hasEnoughSpins } = useSlotSpins();
   const { settings: slotSettings } = useSlotSettings();
+  const { data: siteSettings } = useSiteSettings();
   const { spin: serverSpin } = useServerSpin(gameId);
+
+  // Derive controls gap from site settings
+  const controlsGapKey = gameId === "book-of-fedesvin" ? "slot_controls_gap" : `${gameId.replace(/-/g, "_")}_controls_gap`;
+  const controlsGap = parseInt(siteSettings?.[controlsGapKey] || "16", 10);
   
   // Load custom sound files from site_settings (game-specific)
   useSlotSoundLoader(gameId);
@@ -980,7 +986,7 @@ export function SlotGame({ gameId = "book-of-fedesvin" }: SlotGameProps) {
           </div>
 
           {/* Bonus Status Bar + Control Panel */}
-          <div className="mt-3 sm:mt-4">
+          <div style={{ marginTop: `${controlsGap}px` }}>
             <div className="max-w-fit mx-auto mb-2 sm:mb-3 space-y-2">
               <BonusStatusBar
                 isActive={bonusState.isActive && bonusBarsReady}

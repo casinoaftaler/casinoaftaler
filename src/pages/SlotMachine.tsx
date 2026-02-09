@@ -194,7 +194,7 @@ export default function SlotMachine() {
           }}
         >
           <div className="px-1 xs:px-2 sm:px-4">
-            <SlotPageLayout sidePanel={sidePanelContent}>
+            <SlotPageLayout sidePanel={sidePanelContent} sidePanelGap={parseInt(siteSettings?.slot_sidepanel_gap || "24", 10)}>
               {/* Title Image - hidden when viewport is too short */}
               {showTitle && (
                 <div className="slot-title-container flex justify-center -mt-14 mb-0">

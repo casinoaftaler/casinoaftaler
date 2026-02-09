@@ -22,6 +22,8 @@ function getSettingsKeys(gameId: string) {
       frameHeightKey: "slot_frame_height",
       frameOffsetXKey: "slot_frame_offset_x",
       frameOffsetYKey: "slot_frame_offset_y",
+      sidepanelGapKey: "slot_sidepanel_gap",
+      controlsGapKey: "slot_controls_gap",
     };
   }
   const prefix = gameId.replace(/-/g, "_");
@@ -32,6 +34,8 @@ function getSettingsKeys(gameId: string) {
     frameHeightKey: `${prefix}_frame_height`,
     frameOffsetXKey: `${prefix}_frame_offset_x`,
     frameOffsetYKey: `${prefix}_frame_offset_y`,
+    sidepanelGapKey: `${prefix}_sidepanel_gap`,
+    controlsGapKey: `${prefix}_controls_gap`,
   };
 }
 
@@ -55,7 +59,7 @@ export function SlotFrameAdminControls({ gameId = "book-of-fedesvin" }: SlotFram
     setFramePreviewUrl(null);
   }, [gameId]);
 
-  const { backgroundKey, frameKey, frameWidthKey, frameHeightKey, frameOffsetXKey, frameOffsetYKey } = getSettingsKeys(gameId);
+  const { backgroundKey, frameKey, frameWidthKey, frameHeightKey, frameOffsetXKey, frameOffsetYKey, sidepanelGapKey, controlsGapKey } = getSettingsKeys(gameId);
   
   const currentBackgroundUrl = settings?.[backgroundKey] || null;
   const currentFrameUrl = settings?.[frameKey] || null;
@@ -63,6 +67,8 @@ export function SlotFrameAdminControls({ gameId = "book-of-fedesvin" }: SlotFram
   const currentFrameHeight = parseInt(settings?.[frameHeightKey] || "130", 10);
   const currentFrameOffsetX = parseInt(settings?.[frameOffsetXKey] || "0", 10);
   const currentFrameOffsetY = parseInt(settings?.[frameOffsetYKey] || "0", 10);
+  const currentSidepanelGap = parseInt(settings?.[sidepanelGapKey] || "24", 10);
+  const currentControlsGap = parseInt(settings?.[controlsGapKey] || "16", 10);
 
   const updateFrameSetting = useMutation({
     mutationFn: async ({ key, value }: { key: string; value: number }) => {
@@ -84,7 +90,7 @@ export function SlotFrameAdminControls({ gameId = "book-of-fedesvin" }: SlotFram
 
   const resetFramePosition = useMutation({
     mutationFn: async () => {
-      const keysToDelete = [frameWidthKey, frameHeightKey, frameOffsetXKey, frameOffsetYKey];
+      const keysToDelete = [frameWidthKey, frameHeightKey, frameOffsetXKey, frameOffsetYKey, sidepanelGapKey, controlsGapKey];
       for (const key of keysToDelete) {
         await supabase.from("site_settings").delete().eq("key", key);
       }
@@ -569,6 +575,47 @@ export function SlotFrameAdminControls({ gameId = "book-of-fedesvin" }: SlotFram
                 </p>
               </div>
             )}
+
+            {/* Layout Gap Controls - always visible */}
+            <div className="space-y-4 p-4 rounded-lg bg-muted/30 border border-border/50">
+              <Label className="text-sm font-medium">Layout-afstande</Label>
+
+              {/* Sidepanel gap */}
+              <div className="space-y-1.5">
+                <div className="flex items-center justify-between">
+                  <Label className="text-xs text-muted-foreground">Sidepanel afstand (desktop)</Label>
+                  <span className="text-xs text-muted-foreground">{currentSidepanelGap}px</span>
+                </div>
+                <Slider
+                  value={[currentSidepanelGap]}
+                  onValueChange={(v) => updateFrameSetting.mutate({ key: sidepanelGapKey, value: v[0] })}
+                  min={0}
+                  max={80}
+                  step={2}
+                  className="w-full"
+                />
+              </div>
+
+              {/* Controls gap */}
+              <div className="space-y-1.5">
+                <div className="flex items-center justify-between">
+                  <Label className="text-xs text-muted-foreground">Kontrolpanel afstand</Label>
+                  <span className="text-xs text-muted-foreground">{currentControlsGap}px</span>
+                </div>
+                <Slider
+                  value={[currentControlsGap]}
+                  onValueChange={(v) => updateFrameSetting.mutate({ key: controlsGapKey, value: v[0] })}
+                  min={0}
+                  max={40}
+                  step={1}
+                  className="w-full"
+                />
+              </div>
+
+              <p className="text-xs text-muted-foreground">
+                Justér afstanden mellem tromlerne og sidepanelet (leaderboard) samt kontrolpanelet nedenunder.
+              </p>
+            </div>
 
             <div className="flex flex-wrap gap-2">
               {/* Hidden file input for upload */}
