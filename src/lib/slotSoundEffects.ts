@@ -225,6 +225,11 @@ class SlotSoundEffects {
 
     // Handle background music separately — clear old reference if new game has no custom music
     if (this.customSoundFiles.backgroundMusic) {
+      // Stop default music if it was playing (prevents two tracks overlapping)
+      if (this.defaultMusicAudio && !this.defaultMusicAudio.paused) {
+        this.defaultMusicAudio.pause();
+        this.defaultMusicAudio.currentTime = 0;
+      }
       if (this.backgroundMusicAudio) {
         this.backgroundMusicAudio.pause();
       }
@@ -232,6 +237,11 @@ class SlotSoundEffects {
       this.backgroundMusicAudio.preload = 'auto';
       this.backgroundMusicAudio.loop = true;
       this.backgroundMusicAudio.src = this.customSoundFiles.backgroundMusic;
+      // Auto-start custom music if music was already playing
+      if (this.enabled && this.musicEnabled) {
+        this.backgroundMusicAudio.volume = this.volume * 0.5;
+        this.backgroundMusicAudio.play().catch(() => {});
+      }
     } else {
       // No custom background music for this game — clear any stale reference
       if (this.backgroundMusicAudio) {
