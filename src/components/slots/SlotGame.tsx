@@ -987,7 +987,12 @@ export function SlotGame({ gameId = "book-of-fedesvin" }: SlotGameProps) {
 
           {/* Bonus Status Bar + Control Panel */}
           <div style={{ marginTop: `${controlsGap}px` }}>
-            <div className="max-w-fit mx-auto mb-2 sm:mb-3 space-y-2">
+            <div className={cn(
+              "max-w-fit mx-auto mb-2 sm:mb-3 space-y-2",
+              gameId === "rise-of-fedesvin"
+                ? "min-h-[88px] sm:min-h-[100px]"
+                : "min-h-[48px] sm:min-h-[56px]"
+            )}>
               <BonusStatusBar
                 isActive={bonusState.isActive && bonusBarsReady}
                 freeSpinsRemaining={bonusState.freeSpinsRemaining}
