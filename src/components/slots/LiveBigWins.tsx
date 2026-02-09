@@ -21,15 +21,7 @@ function WinBubble({ win, onRemove }: { win: BigWin; onRemove: (id: string) => v
   const ref = useRef<HTMLDivElement>(null);
   const navigate = useNavigate();
 
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      if (ref.current) {
-        ref.current.classList.add("animate-out");
-        setTimeout(() => onRemove(win.id), 400);
-      }
-    }, 1_200_000); // 20 minutes
-    return () => clearTimeout(timer);
-  }, [win.id, onRemove]);
+  // No auto-remove timer — wins stay until replaced by newer ones (max 10)
 
   const accentClass = getAccentClass(win.winMultiplier);
   const emoji = getEmoji(win.winMultiplier);
