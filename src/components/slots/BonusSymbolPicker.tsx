@@ -35,8 +35,23 @@ export function BonusSymbolPicker({
   // Filter to only non-scatter symbols, excluding already active expanding symbols
   const eligibleSymbols = symbols.filter(s => !s.is_scatter && !excludeSymbolIds.includes(s.id));
 
+  // When no eligible symbols remain (all already active), skip roulette and show landed immediately
+  const skipRoulette = eligibleSymbols.length === 0 && !!selectedSymbol;
+
   useEffect(() => {
-    if (!isVisible || eligibleSymbols.length === 0 || !selectedSymbol) {
+    if (!isVisible || !selectedSymbol) {
+      return;
+    }
+    
+    // If no eligible symbols for roulette, jump straight to landed
+    if (skipRoulette) {
+      setCurrentSymbol(selectedSymbol);
+      setPhase("landed");
+      slotSounds.playBonusSymbolSelected();
+      return;
+    }
+    
+    if (eligibleSymbols.length === 0) {
       return;
     }
 
