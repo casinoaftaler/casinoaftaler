@@ -129,6 +129,7 @@ export function SlotGame({ gameId = "book-of-fedesvin" }: SlotGameProps) {
   const [showRetrigger, setShowRetrigger] = useState(false);
   const [retriggerSpinsAdded, setRetriggerSpinsAdded] = useState(10);
   const [pendingExpandingSymbol, setPendingExpandingSymbol] = useState<typeof bonusState.expandingSymbol>(null);
+  const [pendingRetriggerSymbol, setPendingRetriggerSymbol] = useState<SlotSymbol | null>(null);
   const [bonusTotalWinnings, setBonusTotalWinnings] = useState(0);
   const [bonusTotalSpinsUsed, setBonusTotalSpinsUsed] = useState(0);
   
@@ -627,13 +628,18 @@ export function SlotGame({ gameId = "book-of-fedesvin" }: SlotGameProps) {
         retriggerSpins={retriggerSpinsAdded}
         totalFreeSpins={bonusState.freeSpinsRemaining}
         expandingSymbols={bonusState.expandingSymbols}
+        allSymbols={symbols || []}
         newRetriggerSymbol={
-          gameId === "rise-of-fedesvin" && bonusState.expandingSymbols.length > 0
-            ? bonusState.expandingSymbols[bonusState.expandingSymbols.length - 1]
-            : undefined
+          gameId === "rise-of-fedesvin" ? pendingRetriggerSymbol : undefined
+        }
+        excludeSymbolIds={
+          gameId === "rise-of-fedesvin"
+            ? bonusState.expandingSymbols.map(s => s.id)
+            : []
         }
         onClose={() => {
           setShowRetrigger(false);
+          setPendingRetriggerSymbol(null);
           resumeRealtimeUpdates();
           if (pendingBonusStateRef.current) {
             updateBonusFromServer(pendingBonusStateRef.current);
@@ -832,7 +838,7 @@ export function SlotGame({ gameId = "book-of-fedesvin" }: SlotGameProps) {
                                   setGrid(originalGridCopy);
                                   setExpandedReels([]);
                                   setShowExpansionDarken(false);
-                                  await new Promise(resolve => setTimeout(resolve, 300));
+                                  await new Promise(resolve => setTimeout(resolve, 500));
                                 }
                                 
                                 // Final: show combined expanded grid with all symbols
@@ -862,14 +868,23 @@ export function SlotGame({ gameId = "book-of-fedesvin" }: SlotGameProps) {
                               suppressRealtimeUpdates();
                               shouldStopAuto = true;
                               
-                              if (isBonusSpin) {
-                                setRetriggerSpinsAdded(10);
-                                if (result.totalWin > 0) {
-                                  setPendingBonusTrigger({ isRetrigger: true, spinsToAdd: 10 });
-                                } else {
-                                  slotSounds.playRetrigger();
-                                  setShowRetrigger(true);
-                                }
+              if (isBonusSpin) {
+                setRetriggerSpinsAdded(10);
+                
+                // For Rise of Fedesvin, extract the NEW retrigger symbol from server response
+                if (gameId === "rise-of-fedesvin" && pendingBonusStateRef.current?.expandingSymbolIds) {
+                  const expandingIds = pendingBonusStateRef.current.expandingSymbolIds as string[];
+                  const newSymbolId = expandingIds[expandingIds.length - 1];
+                  const newSymbol = symbols?.find(s => s.id === newSymbolId) || null;
+                  setPendingRetriggerSymbol(newSymbol);
+                }
+                
+                if (result.totalWin > 0) {
+                  setPendingBonusTrigger({ isRetrigger: true, spinsToAdd: 10 });
+                } else {
+                  slotSounds.playRetrigger();
+                  setShowRetrigger(true);
+                }
                               } else {
                                 setShowScatterCelebration(true);
                                 slotSounds.playScatterCelebration();
