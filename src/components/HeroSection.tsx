@@ -15,7 +15,7 @@ export function HeroSection() {
 
   return (
     <section 
-      className="relative overflow-hidden py-16 text-white md:py-24"
+      className="relative overflow-hidden py-8 text-white md:py-12"
       style={{
         backgroundImage: heroBackgroundImage 
           ? `linear-gradient(135deg, hsl(260 70% 25% / 0.95), hsl(210 80% 30% / 0.9)), url(${heroBackgroundImage})`
@@ -51,10 +51,10 @@ export function HeroSection() {
             </a>
           )}
           
-          <h1 className="mb-6 text-4xl font-bold tracking-tight md:text-5xl lg:text-6xl">
+          <h1 className="mb-4 text-3xl font-bold tracking-tight md:text-4xl lg:text-5xl">
             {heroTitle}
           </h1>
-          <p className="mb-8 text-lg text-white/80 md:text-xl">
+          <p className="mb-6 text-base text-white/80 md:text-lg">
             {heroSubtitle}
           </p>
           <div className="flex flex-wrap justify-center gap-4">
