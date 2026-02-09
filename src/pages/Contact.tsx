@@ -80,7 +80,7 @@ export default function Contact() {
   return (
     <div className="min-h-screen">
       {/* Hero */}
-      <section className="relative overflow-hidden border-b border-border bg-muted/30">
+      <section className="relative overflow-hidden border-b border-border bg-primary/10">
         <div className="container py-16 md:py-24 text-center">
           <div className="mx-auto max-w-2xl space-y-4">
             <div className="inline-flex items-center gap-2 rounded-full border border-border bg-background px-4 py-1.5 text-sm text-muted-foreground">
@@ -244,11 +244,11 @@ export default function Contact() {
                 <div className="flex items-center gap-2">
                   <BadgeCheck className="h-5 w-5 text-primary" />
                   <h3 className="font-semibold text-lg">
-                    Samarbejde med CasinOAftaler
+                    Samarbejde med Casinoaftaler
                   </h3>
                 </div>
                 <p className="text-sm text-muted-foreground">
-                  CasinOAftaler samarbejder med licenserede og ansvarlige
+                  Casinoaftaler samarbejder med licenserede og ansvarlige
                   casinooperatører, affiliates og mediepartnere.
                 </p>
                 <ul className="space-y-3">
