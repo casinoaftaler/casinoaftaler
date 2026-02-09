@@ -10,11 +10,7 @@ import { Label } from "@/components/ui/label";
 import { Loader2, Wand2, Trash2, ImageIcon, RefreshCw, Sparkles, Download, Upload } from "lucide-react";
 import { toast } from "sonner";
 
-// Default frame sizes per game (must match SlotMachineFrame.tsx)
-const GAME_FRAME_DEFAULTS: Record<string, number> = {
-  "book-of-fedesvin": 90,
-  "rise-of-fedesvin": 55,
-};
+// (Legacy frame size defaults removed — replaced by free-form positioning)
 
 // Helper to derive settings keys per game
 function getSettingsKeys(gameId: string) {
@@ -22,7 +18,6 @@ function getSettingsKeys(gameId: string) {
     return {
       backgroundKey: "slot_background_image",
       frameKey: "slot_machine_frame_image",
-      frameSizeKey: "slot_frame_size",
       frameWidthKey: "slot_frame_width",
       frameHeightKey: "slot_frame_height",
       frameOffsetXKey: "slot_frame_offset_x",
@@ -33,7 +28,6 @@ function getSettingsKeys(gameId: string) {
   return {
     backgroundKey: `${prefix}_background_image`,
     frameKey: `${prefix}_frame_image`,
-    frameSizeKey: `${prefix}_frame_size`,
     frameWidthKey: `${prefix}_frame_width`,
     frameHeightKey: `${prefix}_frame_height`,
     frameOffsetXKey: `${prefix}_frame_offset_x`,
@@ -61,36 +55,14 @@ export function SlotFrameAdminControls({ gameId = "book-of-fedesvin" }: SlotFram
     setFramePreviewUrl(null);
   }, [gameId]);
 
-  const { backgroundKey, frameKey, frameSizeKey, frameWidthKey, frameHeightKey, frameOffsetXKey, frameOffsetYKey } = getSettingsKeys(gameId);
+  const { backgroundKey, frameKey, frameWidthKey, frameHeightKey, frameOffsetXKey, frameOffsetYKey } = getSettingsKeys(gameId);
   
   const currentBackgroundUrl = settings?.[backgroundKey] || null;
   const currentFrameUrl = settings?.[frameKey] || null;
-  const defaultFrameSize = GAME_FRAME_DEFAULTS[gameId] ?? 90;
-  const currentFrameSize = parseInt(settings?.[frameSizeKey] || String(defaultFrameSize), 10);
   const currentFrameWidth = parseInt(settings?.[frameWidthKey] || "130", 10);
   const currentFrameHeight = parseInt(settings?.[frameHeightKey] || "130", 10);
   const currentFrameOffsetX = parseInt(settings?.[frameOffsetXKey] || "0", 10);
   const currentFrameOffsetY = parseInt(settings?.[frameOffsetYKey] || "0", 10);
-
-  const updateFrameSize = useMutation({
-    mutationFn: async (size: number) => {
-      const { error } = await supabase
-        .from("site_settings")
-        .upsert(
-          { key: frameSizeKey, value: String(size) },
-          { onConflict: "key" }
-        );
-      
-      if (error) throw error;
-    },
-    onSuccess: () => {
-      toast.success("Rammestørrelse opdateret!");
-      queryClient.invalidateQueries({ queryKey: ["site-settings"] });
-    },
-    onError: (error: Error) => {
-      toast.error(`Kunne ikke opdatere størrelse: ${error.message}`);
-    },
-  });
 
   const updateFrameSetting = useMutation({
     mutationFn: async ({ key, value }: { key: string; value: number }) => {
