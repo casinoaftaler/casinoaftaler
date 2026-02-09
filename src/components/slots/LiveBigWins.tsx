@@ -94,7 +94,7 @@ export function LiveBigWins() {
   if (wins.length === 0) return null;
 
   return (
-    <div className="hidden xl:flex fixed right-12 top-1/2 -translate-y-1/2 z-30 flex-col gap-2.5 pointer-events-none">
+    <div className="hidden xl:flex fixed right-24 top-1/2 -translate-y-1/2 z-30 flex-col gap-2.5 pointer-events-none">
       {wins.map((win) => (
         <div key={win.id} className="pointer-events-auto">
           <WinBubble win={win} onRemove={removeWin} />
