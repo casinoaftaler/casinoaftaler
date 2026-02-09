@@ -80,25 +80,43 @@ export default function Contact() {
   return (
     <div className="min-h-screen">
       {/* Hero */}
-      <section className="relative overflow-hidden border-b border-border bg-primary/10">
-        <div className="container py-16 md:py-24 text-center">
-          <div className="mx-auto max-w-2xl space-y-4">
-            <div className="inline-flex items-center gap-2 rounded-full border border-border bg-background px-4 py-1.5 text-sm text-muted-foreground">
+      <section 
+        className="relative overflow-hidden py-8 text-white md:py-12"
+        style={{
+          background: 'linear-gradient(135deg, hsl(260 70% 25%), hsl(250 60% 20%) 40%, hsl(210 80% 25%))',
+        }}
+      >
+        <div className="container relative z-10">
+          <div className="mx-auto max-w-2xl text-center space-y-4">
+            <div className="inline-flex items-center gap-2 rounded-full bg-white/10 px-4 py-1.5 text-sm text-white/80">
               <Building2 className="h-4 w-4" />
               Erhverv & Presse
             </div>
-            <h1 className="text-4xl font-bold tracking-tight md:text-5xl">
+            <h1 className="text-3xl font-bold tracking-tight md:text-4xl lg:text-5xl">
               Kontakt
             </h1>
-            <p className="text-lg text-muted-foreground md:text-xl">
+            <p className="text-base text-white/80 md:text-lg">
               For casino partnerskaber, affiliate henvendelser, kommercielle forslag
               og presseforespørgsler.
             </p>
-            <p className="text-sm text-muted-foreground/70">
+            <p className="text-sm text-white/60">
               Denne kontaktside er ikke beregnet til brugersupport.
             </p>
           </div>
         </div>
+        {/* Decorative elements */}
+        <div className="absolute left-0 top-0 h-full w-full opacity-20">
+          <div className="absolute left-10 top-10 h-32 w-32 rounded-full bg-[hsl(210_80%_60%)] blur-xl" style={{ animation: "float 6s ease-in-out infinite" }} />
+          <div className="absolute bottom-10 right-10 h-48 w-48 rounded-full bg-[hsl(260_70%_60%)] blur-xl" style={{ animation: "float 8s ease-in-out infinite 1s" }} />
+        </div>
+        <style>{`
+          @keyframes float {
+            0%, 100% { transform: translateY(0) translateX(0); }
+            25% { transform: translateY(-15px) translateX(5px); }
+            50% { transform: translateY(-8px) translateX(-5px); }
+            75% { transform: translateY(-20px) translateX(3px); }
+          }
+        `}</style>
       </section>
 
       <div className="container py-12 md:py-16">

@@ -6,6 +6,7 @@ import { BackToTop } from "./BackToTop";
 import { TwitchLivePlayer } from "./TwitchLivePlayer";
 import { ProfileCompletionPrompt } from "./ProfileCompletionPrompt";
 import { usePageTracking } from "@/hooks/usePageTracking";
+import { ScrollToTop } from "./ScrollToTop";
 
 export function Layout() {
   usePageTracking();
@@ -16,6 +17,7 @@ export function Layout() {
 
   return (
     <div className="flex min-h-screen flex-col">
+      <ScrollToTop />
       <Header />
       <main className="flex-1">
         <Outlet />
