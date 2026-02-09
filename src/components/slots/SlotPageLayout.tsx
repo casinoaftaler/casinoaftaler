@@ -4,6 +4,7 @@ import { cn } from "@/lib/utils";
 interface SlotPageLayoutProps {
   children: ReactNode;
   sidePanel?: ReactNode;
+  sidePanelGap?: number;
   className?: string;
 }
 
@@ -11,14 +12,17 @@ interface SlotPageLayoutProps {
  * Layout for the slot machine page.
  * Game is truly centered, side panel is positioned to the left without affecting center.
  */
-export function SlotPageLayout({ children, sidePanel, className }: SlotPageLayoutProps) {
+export function SlotPageLayout({ children, sidePanel, sidePanelGap = 24, className }: SlotPageLayoutProps) {
   return (
     <div className={cn("w-full flex justify-center", className)}>
       {/* Centered game container with relative positioning for side panel */}
       <div className="relative flex justify-center w-full">
         {/* Left side panel - absolutely positioned on desktop, vertically centered */}
         {sidePanel && (
-          <aside className="hidden xl:flex flex-col gap-4 absolute right-full mr-6 top-1/2 -translate-y-1/2 w-[300px]">
+          <aside
+            className="hidden xl:flex flex-col gap-4 absolute right-full top-1/2 -translate-y-1/2 w-[300px]"
+            style={{ marginRight: `${sidePanelGap}px` }}
+          >
             {sidePanel}
           </aside>
         )}

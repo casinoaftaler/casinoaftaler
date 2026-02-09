@@ -199,7 +199,7 @@ export default function RiseOfFedesvin() {
           }}
         >
           <div className="px-1 xs:px-2 sm:px-4">
-            <SlotPageLayout sidePanel={sidePanelContent}>
+            <SlotPageLayout sidePanel={sidePanelContent} sidePanelGap={parseInt(siteSettings?.rise_of_fedesvin_sidepanel_gap || "24", 10)}>
               <SlotGame gameId={GAME_ID} />
             </SlotPageLayout>
           </div>
