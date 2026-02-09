@@ -980,8 +980,8 @@ export function SlotGame({ gameId = "book-of-fedesvin" }: SlotGameProps) {
           </div>
 
           {/* Bonus Status Bar + Control Panel */}
-          <div className="mt-1 sm:mt-2">
-            <div className="max-w-fit mx-auto mb-1 sm:mb-2 space-y-1 sm:space-y-2">
+          <div className="mt-3 sm:mt-4">
+            <div className="max-w-fit mx-auto mb-2 sm:mb-3 space-y-2">
               <BonusStatusBar
                 isActive={bonusState.isActive && bonusBarsReady}
                 freeSpinsRemaining={bonusState.freeSpinsRemaining}
@@ -1002,7 +1002,7 @@ export function SlotGame({ gameId = "book-of-fedesvin" }: SlotGameProps) {
             </div>
             
             <div className={cn(
-              "rounded-xl backdrop-blur-md border p-2 sm:p-2 shadow-lg",
+              "rounded-xl backdrop-blur-md border p-2 sm:p-3 shadow-lg",
               gameId === "rise-of-fedesvin" 
                 ? "bg-purple-950/40 border-purple-500/20" 
                 : "bg-amber-950/40 border-amber-500/20"
