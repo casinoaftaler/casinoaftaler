@@ -110,6 +110,7 @@ export default function GameLibrary() {
   // Get the first two active casinos for the sidebar banners
   const sidebarCasinos = casinos?.filter(c => c.is_active).slice(0, 2) ?? [];
 
+  // Show loading state only briefly - don't block the page
   if (loading) {
     return (
       <div className="min-h-[calc(100vh-4rem)] relative">
@@ -121,28 +122,7 @@ export default function GameLibrary() {
     );
   }
 
-  if (!user) {
-    return (
-      <div className="min-h-[calc(100vh-4rem)] relative">
-        <PageBackground />
-        <GameLibraryHero />
-        <div className="container py-16">
-          <div className="max-w-md mx-auto text-center space-y-6 bg-card/80 backdrop-blur-sm p-8 rounded-xl border border-amber-500/20">
-            <div className="h-20 w-20 mx-auto rounded-full bg-amber-500/20 flex items-center justify-center">
-              <Gamepad2 className="h-10 w-10 text-amber-500" />
-            </div>
-            <h1 className="text-2xl font-bold">Log ind for at spille</h1>
-            <p className="text-muted-foreground">
-              Du skal være logget ind for at få adgang til vores spillehal og optjene point.
-            </p>
-            <Button asChild size="lg" className="bg-[#9146FF] hover:bg-[#772ce8]">
-              <Link to="/auth">Log ind med Twitch</Link>
-            </Button>
-          </div>
-        </div>
-      </div>
-    );
-  }
+  // Allow all users to browse the page - login is only required when clicking to play
 
   return (
     <div className="min-h-[calc(100vh-4rem)] relative">
