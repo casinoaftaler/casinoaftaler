@@ -35,10 +35,10 @@ export const SlotSymbol = React.memo(function SlotSymbol({ symbol, isWinning, is
         isNewlyExpanded && "animate-[expansion-flash_0.6s_ease-out]",
         symbol.is_scatter && hasLanded && !isSpinning && "animate-[scatter-land_0.5s_ease-out]",
         isTeasing && symbol.is_scatter && (isWizard
-          ? "border-purple-400 animate-[scatter-tease-glow_1s_ease-in-out_infinite]"
+          ? "border-purple-400 animate-[scatter-tease-glow-wizard_1s_ease-in-out_infinite]"
           : "border-amber-400 animate-[scatter-tease-glow_1s_ease-in-out_infinite]"),
         isScatterCelebrating && (isWizard
-          ? "border-purple-400 animate-[scatter-celebration_0.4s_ease-in-out_infinite]"
+          ? "border-purple-400 animate-[scatter-celebration-wizard_0.4s_ease-in-out_infinite]"
           : "border-amber-400 animate-[scatter-celebration_0.4s_ease-in-out_infinite]")
       )}
       style={{
