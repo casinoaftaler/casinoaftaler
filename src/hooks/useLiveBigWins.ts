@@ -21,16 +21,13 @@ const GAME_LABELS: Record<string, string> = {
 const MAX_WINS = 10;
 const MIN_MULTIPLIER = 100;
 const ANTI_SPAM_MS = 30_000;
-const WIN_TTL_MS = 1_200_000; // 20 minutes
 const STORAGE_KEY = "live_big_wins";
 
 function loadPersistedWins(): BigWin[] {
   try {
     const raw = sessionStorage.getItem(STORAGE_KEY);
     if (!raw) return [];
-    const parsed: BigWin[] = JSON.parse(raw);
-    const now = Date.now();
-    return parsed.filter((w) => now - w.timestamp < WIN_TTL_MS);
+    return JSON.parse(raw) as BigWin[];
   } catch {
     return [];
   }
