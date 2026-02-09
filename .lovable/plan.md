@@ -1,82 +1,52 @@
 
 
-## Optimize Slot Spin Edge Function Response Time
+## Omstrukturering af Spillemaskine Admin Panel
 
 ### Problem
-The `slot-spin` edge function runs **7-10 sequential database queries** on every normal spin. Each round-trip adds ~10-30ms, resulting in total server response times of 200-400ms+ when they could be much faster.
+Aktuelt er "Spins" og "Points" tabs placeret inde i spillemaskine-sektionen, hvor de gentages for hver maskine selvom de er globale (deles på tvers af alle maskiner). Derudover viser statistik kun data per spil, men der mangler en samlet oversigt.
 
-### Current Sequential Flow (Normal Spin)
+### Ny Tab-struktur
 
-```text
-1. auth.getClaims(token)          ~20ms
-2. slot_active_sessions SELECT    ~15ms
-3. slot_symbols SELECT            ~15ms
-4. profiles SELECT                ~15ms
-5. site_settings SELECT           ~15ms
-6. slot_spins UPSERT              ~15ms
-7. slot_spins SELECT              ~15ms
-8. slot_spins UPDATE              ~15ms
-9. slot_game_results INSERT       ~15ms
-                          Total: ~140-300ms+
-```
-
-### Optimizations
-
-**1. Parallelize independent reads (biggest win)**
-
-Steps 2-5 only depend on `userId` and `gameId` (available right after auth). Run them all simultaneously:
+Den nuværende tab-struktur i spillemaskine admin:
 
 ```text
-Promise.all([
-  slot_active_sessions SELECT,
-  slot_symbols SELECT,
-  profiles SELECT,
-  site_settings SELECT
-])
+[Symboler] [Indstillinger] [Spins] [Points] [Statistik]
+         ^--- per spil ---^  ^--- globale ---^  ^--- per spil ---^
 ```
 
-This cuts 4 sequential queries (~60ms) down to 1 parallel round (~15ms).
-
-**2. Fire-and-forget the analytics insert**
-
-The `slot_game_results` INSERT (step 9) is analytics/logging. The player doesn't need to wait for it. Remove `await` and let it complete in the background with error logging.
-
-**3. Fire-and-forget bonus state writes**
-
-When a bonus triggers, the delete + insert of `slot_bonus_state` can also run without blocking the response, since the client won't use it until the next spin.
-
-### Estimated Improvement
+Ny struktur:
 
 ```text
-Before: ~140-300ms (9 sequential queries)
-After:  ~60-120ms  (4 sequential steps)
-
-Step 1: auth.getClaims                    ~20ms
-Step 2: Promise.all (4 parallel queries)  ~15ms
-Step 3: slot_spins UPSERT + SELECT        ~30ms
-Step 4: slot_spins UPDATE + response      ~15ms
-(game_results + bonus_state: fire-and-forget)
+[Symboler] [Indstillinger] [Statistik] [Spins] [Points] [Samlet Statistik]
+ ^--------- per spil (med game selector) ---------^  ^--- globale (uden game selector) ---^
 ```
 
-Roughly **2-3x faster** response times.
+### Detaljeret Plan
 
-### Technical Details
+**1. Omorganiser tabs i `SlotMachineAdminSection.tsx`**
+- Flyt "Spins" og "Points" tabs ud af den per-game kontekst
+- Tilf en ny "Samlet Statistik" tab der viser statistik for ALLE maskiner kombineret
+- Skjul game selector-knapperne nar globale tabs er aktive (Spins, Points, Samlet Statistik)
 
-**File: `supabase/functions/slot-spin/index.ts`**
+**2. Implementer "Samlet Statistik" tab**
+- Genbrug `StatisticsTab` komponenten men kald den UDEN `gameId` parameter
+- Tilfoej en `useSlotAdminStatistics` query uden gameId-filter der aggregerer data fra alle maskiner
+- Viser samlede spins, gevinster, spillere, RTP osv. pa tvers af alle maskiner
 
-- After `getClaims`, wrap the 4 independent reads in `Promise.all`:
-  - `slot_active_sessions` (session validation)
-  - `slot_symbols` (game symbols)
-  - `profiles` (bonus spins permanent)
-  - `site_settings` (daily spins config)
-- Remove `await` from `slot_game_results` insert, replace with `.then(() => {}).catch(err => console.error(...))` pattern
-- Remove `await` from the bonus state delete + insert sequence when bonus triggers, using the same fire-and-forget pattern
-- Apply the same parallelization to the **bonus spin path**: run `slot_bonus_state` SELECT and `slot_symbols` SELECT in parallel
-- No logic changes -- same queries, same validation, same anti-cheat checks, just reordered for concurrency
+**3. UI-forbedringer**
+- Tilfoej en visuel separator mellem per-game tabs og globale tabs
+- Game selector vises kun nar en per-game tab er aktiv
+- Globale tabs far et andet ikon/styling sa det er tydeligt de er globale
 
-### Safety Notes
+### Tekniske Detaljer
 
-- All validation logic stays the same (session check, spin count, bet validation)
-- Fire-and-forget writes log errors so failures are visible in edge function logs
-- The `ignoreDuplicates` upsert + separate SELECT pattern is kept as-is since it's needed for correctness
+**Fil: `src/components/SlotMachineAdminSection.tsx`**
+- Opdater `SlotMachineAdminSection` eksport-komponenten (linje 1412-1471)
+- Flyt tabs-raekkefoelgen: Symboler, Indstillinger, Statistik (per spil), derefter Spins, Points, Samlet Statistik (globale)
+- Tilfoej state-logik til at tracke om aktiv tab er per-game eller global
+- Skjul/vis game selector baseret pa aktiv tab
+
+**Fil: `src/hooks/useSlotAdminStatistics.ts`**
+- Verificer at hook'en allerede understoetter at blive kaldt uden gameId (optional parameter)
+- Sikr at den aggregerer data korrekt nar intet gameId er angivet
 
