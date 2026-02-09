@@ -1,136 +1,44 @@
 
 
-## Community Highlights Bonus Spins System
+## Fix: Mobile Control Bar Layout and Scrolling on Rise of Fedesvin
 
-### Overview
+### Problem 1: Control Bar Layout on Mobile
 
-A new reward system where users earn one-time bonus spins by uploading approved video clips to Community Highlights. These spins are completely separate from the daily spin economy and must be manually activated by the user.
+The `SlotControlPanel` renders 6 elements in a single flex row with `flex-wrap` on mobile. This causes items to wrap unpredictably -- some items end up on row 1, some on row 2, with inconsistent sizing and gaps.
 
-### Database Changes
+**Fix**: Reorganize the mobile layout into a structured 2-row grid:
+- **Row 1**: Volume | BetControls | SmallWinBar | SpinButton
+- **Row 2**: AutospinRow | PayTable (centered)
 
-**New table: `community_bonus_spins`**
-Tracks each user's community upload rewards:
+On desktop (sm+), keep the current single-row layout.
 
-| Column | Type | Description |
-|--------|------|-------------|
-| id | uuid (PK) | Auto-generated |
-| user_id | uuid (unique) | The user |
-| total_earned | integer (default 0) | Total bonus spins earned from uploads |
-| total_activated | integer (default 0) | Spins already moved to active balance |
-| rewarded_clips_count | integer (default 0) | Number of clips that earned rewards (max 5) |
-| created_at | timestamptz | |
-| updated_at | timestamptz | |
+**File: `src/components/slots/SlotControlPanel.tsx`**
+- Replace the single `flex-wrap` container with a responsive layout
+- On mobile (< sm): Use a two-row flex layout with the spin button centered in the top row alongside the core controls, and autospin + paytable in a smaller bottom row
+- On sm+: Keep the existing single horizontal row (no wrapping)
+- Reduce mobile sizes slightly for Volume/PayTable icons to fit better
 
-RLS: Users can read/update their own row. Admins can read all.
+### Problem 2: Scrolling Cuts Off
 
-**New table: `community_bonus_spins_log`**
-Audit trail for each reward and activation event:
+The game area container uses `flex-1` which makes it expand to fill available space but doesn't allow it to overflow vertically. The mobile side panels below (`xl:hidden` leaderboard/promo) get pushed off-screen and can't be scrolled to.
 
-| Column | Type | Description |
-|--------|------|-------------|
-| id | uuid (PK) | |
-| user_id | uuid | |
-| clip_id | uuid (nullable) | Linked clip (for reward events) |
-| event_type | text | 'reward' or 'activation' |
-| amount | integer | Spins rewarded or activated |
-| created_at | timestamptz | |
+**Fix in `src/pages/RiseOfFedesvin.tsx`**:
+- Change the outer container from `flex flex-col` with `flex-1` game area to allow natural document flow on mobile
+- On mobile (< xl): Remove `flex-1` constraint from the game area so the page flows naturally and the mobile side panels are scrollable
+- Keep the `overflow-x-hidden` to prevent horizontal overflow from scaled content
+- Change the outer div from `min-h-[calc(100dvh-4rem)]` with `flex flex-col` to use `min-h-[calc(100dvh-4rem)]` with overflow-y-auto so the full page scrolls naturally
+- The background stays fixed via absolute positioning with the existing -z-10 setup
 
-RLS: Users can read their own logs. Admins can read all.
+### Changes Summary
 
-### Backend Changes
+**`src/components/slots/SlotControlPanel.tsx`**
+- Wrap controls in a responsive container:
+  - Mobile: Two rows -- top row has Volume + BetControls + Spin + WinBar, bottom row has Autospin + PayTable
+  - Desktop: Single row as-is
+- Tighten mobile gaps and sizes
 
-**Modify clip approval flow (admin approves a clip):**
-
-When an admin approves a clip, the system needs to automatically grant +50 bonus spins to the clip's uploader -- but only if they haven't already been rewarded for 5 clips.
-
-This will be handled via a **database trigger** on `community_clips` that fires on UPDATE when `status` changes to `'approved'`:
-
-1. Check the uploader's `community_bonus_spins.rewarded_clips_count`
-2. If count < 5: increment `rewarded_clips_count` by 1, add 50 to `total_earned`, insert a log entry
-3. If count >= 5: do nothing (cap reached)
-
-This keeps the reward logic atomic and server-side, preventing any client manipulation.
-
-**Modify spin consumption in `slot-spin` edge function:**
-
-Currently the edge function reads from `slot_spins` (daily). The new flow:
-
-1. If NOT a bonus spin (free spin): check `community_bonus_spins` for the user
-2. Consume from community bonus spins first (activated balance = `total_activated` tracks what was already moved to `slot_spins`, so activated spins are already IN `slot_spins.spins_remaining`)
-3. No change needed in the edge function itself -- activated spins are simply added to `slot_spins.spins_remaining`, which the existing consumption logic already handles
-
-**Activation logic** works by:
-- Deducting from `community_bonus_spins` (total_earned - total_activated = available)
-- Adding to today's `slot_spins.spins_remaining`
-- This means activated community spins are consumed first naturally (they're added on top of daily spins, and daily reset doesn't include them)
-
-### Frontend Changes
-
-**1. New hook: `src/hooks/useCommunityBonusSpins.ts`**
-- Fetches user's `community_bonus_spins` record
-- Provides `totalEarned`, `totalActivated`, `remaining` (computed)
-- `activateSpins(amount)` mutation: validates amount <= remaining, updates `community_bonus_spins.total_activated`, adds to today's `slot_spins.spins_remaining`, inserts log entry
-
-**2. New profile section: `src/components/profile/ProfileCommunityBonusSection.tsx`**
-- Card titled "Bonus Spins (Community)"
-- Displays:
-  - Total earned: X / 250
-  - Already activated: Y
-  - Remaining (unactivated): Z
-  - Rewarded clips: N / 5
-- "Aktiver Spins" button opens activation dialog
-
-**3. New component: `src/components/profile/ActivateBonusSpinsDialog.tsx`**
-- Dialog with slider + number input for choosing how many spins to activate
-- Min: 1, Max: remaining unactivated spins
-- Confirmation button
-- On confirm: calls `activateSpins` mutation
-
-**4. Update Profile page (`src/pages/Profile.tsx`)**
-- Import and render `ProfileCommunityBonusSection` below the existing `ProfileRewardsProgress` component
-
-**5. Update `SpinsRemaining` component**
-- Add tooltip line showing community bonus spins info when the user has activated community spins
-- No change to the core display since activated spins are already in `slot_spins.spins_remaining`
-
-**6. Update `useSlotSpins` hook**
-- The `maxSpins` display can optionally show community bonus spins separately in the tooltip
-- The core spin counting doesn't change since activated community spins are added directly to `slot_spins.spins_remaining`
-
-### Spin Consumption Priority
-
-When a user activates X community bonus spins:
-- X is added to today's `slot_spins.spins_remaining`
-- Daily reset the next day sets `spins_remaining` to `daily + profile_bonus` (max 220), which does NOT include community spins
-- This means community spins activated today are consumed first (they're the "extra" on top of the daily allocation)
-- If the user doesn't use them all today, they're lost at daily reset -- this should be communicated clearly in the activation dialog
-
-### Key Constraints Enforced
-
-- Max 5 rewarded clips per user (enforced by DB trigger)
-- Max 250 total community bonus spins (5 x 50, enforced by trigger)
-- Spins never auto-activate (user must click "Aktiver Spins")
-- Daily spins unaffected (200 base + profile bonus, capped at 220)
-- Partial activation supported via slider
-- One-time rewards: each clip can only trigger one reward (trigger checks clip status change)
-- No expiry on unactivated spins (they sit in `community_bonus_spins` indefinitely)
-
-### Technical Summary
-
-```text
-Files to create:
-  - src/hooks/useCommunityBonusSpins.ts
-  - src/components/profile/ProfileCommunityBonusSection.tsx
-  - src/components/profile/ActivateBonusSpinsDialog.tsx
-
-Files to modify:
-  - src/pages/Profile.tsx (add community bonus section)
-  - src/components/slots/SpinsRemaining.tsx (tooltip update)
-
-Database changes:
-  - New table: community_bonus_spins
-  - New table: community_bonus_spins_log
-  - New trigger on community_clips: auto-reward on approval
-  - RLS policies for both new tables
-```
+**`src/pages/RiseOfFedesvin.tsx`**
+- Change game area from `flex-1 flex items-center justify-center` to remove `flex-1` on mobile so content flows naturally
+- Add `overflow-y-auto` to the outer container so the page is scrollable
+- This ensures the mobile side panels (leaderboard, promo slider) below the game are reachable by scrolling
 
