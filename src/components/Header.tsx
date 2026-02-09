@@ -9,7 +9,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { ChevronDown, Gamepad2, LogOut, Menu, User, X, Dices, Gift, BookOpen, Users, ShoppingBag, Video, ShieldCheck, Sparkles, Layers, Moon, Sun, Coins, UserCircle } from "lucide-react";
+import { ChevronDown, Gamepad2, LogOut, Menu, User, X, Dices, Gift, BookOpen, Users, ShoppingBag, Video, ShieldCheck, Sparkles, Layers, Moon, Sun, Coins, UserCircle, Trophy } from "lucide-react";
 import { useState, useEffect } from "react";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
 import { useTwitchStatus } from "@/hooks/useTwitchStatus";
@@ -144,6 +144,12 @@ export function Header() {
                 <Link to="/community/slots" className="flex items-center gap-2">
                   <Coins className="h-4 w-4" />
                   Spillehal
+                </Link>
+              </DropdownMenuItem>
+              <DropdownMenuItem asChild>
+                <Link to="/community/leaderboard" className="flex items-center gap-2">
+                  <Trophy className="h-4 w-4" />
+                  Leaderboard
                 </Link>
               </DropdownMenuItem>
               <DropdownMenuItem asChild>
@@ -321,6 +327,14 @@ export function Header() {
             >
               <Coins className="h-4 w-4" />
               Spillehal
+            </Link>
+            <Link
+              to="/community/leaderboard"
+              className="ml-6 flex items-center gap-2 text-sm text-muted-foreground transition-colors hover:text-primary"
+              onClick={() => setMobileMenuOpen(false)}
+            >
+              <Trophy className="h-4 w-4" />
+              Leaderboard
             </Link>
             <Link
               to="/community/highlights"
