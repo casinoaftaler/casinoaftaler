@@ -601,13 +601,32 @@ Deno.serve(async (req) => {
       );
     }
 
-    // Validate session (anti-multi-device)
-    const { data: sessionData } = await supabase
-      .from("slot_active_sessions")
-      .select("session_id")
-      .eq("user_id", userId)
-      .maybeSingle();
+    // Parallelize independent reads: session, symbols, profile, settings
+    const [sessionRes, symbolsRes, profileRes, settingsRes] = await Promise.all([
+      supabase
+        .from("slot_active_sessions")
+        .select("session_id")
+        .eq("user_id", userId)
+        .maybeSingle(),
+      supabase
+        .from("slot_symbols")
+        .select("*")
+        .eq("game_id", gameId)
+        .order("position"),
+      supabase
+        .from("profiles")
+        .select("bonus_spins_permanent")
+        .eq("user_id", userId)
+        .maybeSingle(),
+      supabase
+        .from("site_settings")
+        .select("value")
+        .eq("key", "slot_daily_spins")
+        .maybeSingle(),
+    ]);
 
+    // Validate session (anti-multi-device)
+    const sessionData = sessionRes.data;
     if (sessionData && sessionData.session_id !== sessionId) {
       return new Response(
         JSON.stringify({ error: "Session blocked - active on another device" }),
@@ -615,13 +634,9 @@ Deno.serve(async (req) => {
       );
     }
 
-    // Fetch slot symbols filtered by gameId
-    const { data: symbols, error: symbolsError } = await supabase
-      .from("slot_symbols")
-      .select("*")
-      .eq("game_id", gameId)
-      .order("position");
-
+    // Validate symbols
+    const symbols = symbolsRes.data;
+    const symbolsError = symbolsRes.error;
     if (symbolsError || !symbols || symbols.length === 0) {
       console.error(`[slot-spin] Failed to load symbols for gameId=${gameId}:`, symbolsError);
       return new Response(
@@ -632,7 +647,7 @@ Deno.serve(async (req) => {
 
     const isRiseOfFedesvin = gameId === "rise-of-fedesvin";
 
-    // Handle bonus spin
+    // Handle bonus spin (symbols already loaded from parallel fetch above)
     if (isBonusSpin) {
       // Get bonus state filtered by game_id
       const { data: bonusData, error: bonusError } = await supabase
@@ -842,23 +857,9 @@ Deno.serve(async (req) => {
     // Normal spin - validate spins remaining
     const today = new Date().toISOString().split("T")[0];
     
-    // Get bonus spins permanent from profile
-    const { data: profileData } = await supabase
-      .from("profiles")
-      .select("bonus_spins_permanent")
-      .eq("user_id", userId)
-      .maybeSingle();
-
-    const bonusSpinsPermanent = profileData?.bonus_spins_permanent || 0;
-
-    // Get daily spins setting
-    const { data: settingsData } = await supabase
-      .from("site_settings")
-      .select("value")
-      .eq("key", "slot_daily_spins")
-      .maybeSingle();
-
-    const dailySpins = parseInt(settingsData?.value || "100", 10);
+    // Profile and settings already fetched in parallel above
+    const bonusSpinsPermanent = profileRes.data?.bonus_spins_permanent || 0;
+    const dailySpins = parseInt(settingsRes.data?.value || "100", 10);
     const maxSpins = Math.min(dailySpins + bonusSpinsPermanent, MAX_SPINS_CAP);
 
     // Get or create today's spin record (shared across games)
@@ -951,16 +952,14 @@ Deno.serve(async (req) => {
         bonusInsert.expanding_symbol_names = [expandingSymbol.name];
       }
 
-      // Delete any existing bonus state for this game first, then insert
-      await supabase
+      // Fire-and-forget: delete existing bonus state then insert new one
+      supabase
         .from("slot_bonus_state")
         .delete()
         .eq("user_id", userId)
-        .eq("game_id", gameId);
-
-      await supabase
-        .from("slot_bonus_state")
-        .insert(bonusInsert);
+        .eq("game_id", gameId)
+        .then(() => supabase.from("slot_bonus_state").insert(bonusInsert))
+        .catch((err: unknown) => console.error("[slot-spin] Fire-and-forget bonus state write failed:", err));
 
       bonusState = {
         isActive: true,
@@ -977,15 +976,15 @@ Deno.serve(async (req) => {
       }
     }
 
-    // Record game result with game_id
-    await supabase.from("slot_game_results").insert({
+    // Fire-and-forget: record game result (analytics only)
+    supabase.from("slot_game_results").insert({
       user_id: userId,
       bet_amount: bet,
       win_amount: result.totalWin,
       is_bonus_triggered: result.bonusTriggered,
       bonus_win_amount: 0,
       game_id: gameId,
-    });
+    }).then(() => {}).catch((err: unknown) => console.error("[slot-spin] Fire-and-forget game result insert failed:", err));
 
     return new Response(
       JSON.stringify({
