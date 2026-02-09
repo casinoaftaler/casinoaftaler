@@ -165,32 +165,23 @@ export default function GameLibrary() {
           </div>
         </div>
 
-        {/* Desktop: Centered grid with absolutely positioned banners */}
-        <div className="relative flex justify-center">
-          {/* Banners - positioned closer to the centered grid */}
-          <aside 
-            className="hidden xl:block absolute top-0 w-80 2xl:w-96"
-            style={{ 
-              // Position closer to the grid: half viewport + half grid width + smaller gap
-              right: 'calc(50% + 480px + 24px)',
-            }}
-          >
-            <div className="space-y-4">
-              {sidebarCasinos.map((casino, index) => (
-                <CasinoCard
-                  key={casino.id}
-                  casino={mapCasino(casino)}
-                  rank={index + 1}
-                  open={openCasinoId === casino.id}
-                  onOpenChange={(open) => setOpenCasinoId(open ? casino.id : null)}
-                />
-              ))}
-            </div>
+        {/* Desktop: CSS Grid layout - banners in flow, not absolute */}
+        <div className="hidden xl:grid xl:grid-cols-[minmax(280px,320px)_1fr] 2xl:grid-cols-[minmax(320px,380px)_1fr] gap-6 max-w-[1400px] mx-auto px-6">
+          {/* Left column: Banners - in normal document flow */}
+          <aside className="space-y-4 self-start">
+            {sidebarCasinos.map((casino, index) => (
+              <CasinoCard
+                key={casino.id}
+                casino={mapCasino(casino)}
+                rank={index + 1}
+                open={openCasinoId === casino.id}
+                onOpenChange={(open) => setOpenCasinoId(open ? casino.id : null)}
+              />
+            ))}
           </aside>
 
-          {/* Centered game grid - wider max-width for more spacious feel */}
-          <div className="w-full max-w-[960px] px-4">
-            {/* Game grid */}
+          {/* Center column: Game grid - uses remaining space, grid stays centered within */}
+          <div className="w-full max-w-[960px]">
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
               {GAMES.map((game, index) => (
                 <div
