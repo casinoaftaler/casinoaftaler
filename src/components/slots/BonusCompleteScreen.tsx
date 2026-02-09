@@ -90,7 +90,7 @@ export function BonusCompleteScreen({
     <div
       className={cn(
         "fixed inset-0 z-50 flex items-center justify-center",
-        "bg-black/85 backdrop-blur-md",
+        isWizard ? "bg-black/40 backdrop-blur-sm" : "bg-black/85 backdrop-blur-md",
         "animate-in fade-in duration-300"
       )}
       onClick={onClose}
