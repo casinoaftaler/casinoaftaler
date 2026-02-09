@@ -9,6 +9,7 @@ import { SlotPageLoading } from "./components/slots/SlotPageLoading";
 import Index from "./pages/Index";
 import CasinoDetail from "./pages/CasinoDetail";
 import About from "./pages/About";
+import Contact from "./pages/Contact";
 import BonusGuide from "./pages/BonusGuide";
 import ResponsibleGaming from "./pages/ResponsibleGaming";
 import Privacy from "./pages/Privacy";
@@ -44,6 +45,7 @@ const App = () => (
             <Route path="/" element={<Index />} />
             <Route path="/casino/:slug" element={<CasinoDetail />} />
             <Route path="/about" element={<About />} />
+            <Route path="/contact" element={<Contact />} />
             <Route path="/bonus-guide" element={<BonusGuide />} />
             <Route path="/responsible-gaming" element={<ResponsibleGaming />} />
             <Route path="/privacy" element={<Privacy />} />
