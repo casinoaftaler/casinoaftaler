@@ -190,8 +190,8 @@ export default function RiseOfFedesvin() {
         </Button>
       </div>
       
-      {/* Game area - no top padding, starts right under header */}
-      <div className="flex items-start justify-center overflow-hidden flex-1">
+      {/* Game area - positioned directly under header */}
+      <div className="flex items-start justify-center overflow-hidden flex-1 -mt-2">
         <div 
           className="slot-viewport-container"
           style={{
