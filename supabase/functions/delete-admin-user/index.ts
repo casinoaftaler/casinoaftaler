@@ -1,61 +1,68 @@
-import { serve } from "https://deno.land/std@0.190.0/http/server.ts";
-import { createClient } from "https://esm.sh/@supabase/supabase-js@2.39.3";
+import { createClient } from "npm:@supabase/supabase-js@^2.87.1";
 
 const corsHeaders = {
   "Access-Control-Allow-Origin": "*",
-  "Access-Control-Allow-Headers": "authorization, x-client-info, apikey, content-type",
+  "Access-Control-Allow-Headers": "authorization, x-client-info, apikey, content-type, x-supabase-client-platform, x-supabase-client-platform-version, x-supabase-client-runtime, x-supabase-client-runtime-version",
 };
 
-serve(async (req) => {
-  // Handle CORS preflight requests
+Deno.serve(async (req) => {
   if (req.method === "OPTIONS") {
-    return new Response(null, { headers: corsHeaders });
+    return new Response("ok", { headers: corsHeaders });
   }
 
   try {
     const supabaseUrl = Deno.env.get("SUPABASE_URL");
     const supabaseServiceRoleKey = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY");
+    const anonKey = Deno.env.get("SUPABASE_ANON_KEY");
 
-    if (!supabaseUrl || !supabaseServiceRoleKey) {
-      throw new Error("Missing environment variables");
+    if (!supabaseUrl || !supabaseServiceRoleKey || !anonKey) {
+      console.error("Missing environment variables");
+      return new Response(
+        JSON.stringify({ error: "Server konfiguration mangler" }),
+        { status: 500, headers: { ...corsHeaders, "Content-Type": "application/json" } }
+      );
     }
 
-    // Create admin client with service role
-    const supabaseAdmin = createClient(supabaseUrl, supabaseServiceRoleKey, {
-      auth: {
-        autoRefreshToken: false,
-        persistSession: false,
-      },
-    });
-
-    // Create regular client to verify the requesting user is an admin
-    const authHeader = req.headers.get("Authorization");
-    if (!authHeader) {
+    // Validate auth header
+    const authHeader = req.headers.get("authorization") ?? req.headers.get("Authorization");
+    if (!authHeader?.startsWith("Bearer ")) {
+      console.log("Missing/invalid Authorization header");
       return new Response(
         JSON.stringify({ error: "Ikke autoriseret" }),
         { status: 401, headers: { ...corsHeaders, "Content-Type": "application/json" } }
       );
     }
 
-    const supabaseClient = createClient(supabaseUrl, Deno.env.get("SUPABASE_ANON_KEY") || "", {
+    // User-context client to validate the caller
+    const userClient = createClient(supabaseUrl, anonKey, {
       global: { headers: { Authorization: authHeader } },
+      auth: { persistSession: false, autoRefreshToken: false },
     });
 
-    // Verify the requesting user is an admin
-    const { data: { user }, error: userError } = await supabaseClient.auth.getUser();
-    if (userError || !user) {
+    // Verify the caller's identity
+    const { data: userData, error: userError } = await userClient.auth.getUser();
+    if (userError || !userData?.user) {
+      console.log("User verification failed:", userError?.message);
       return new Response(
         JSON.stringify({ error: "Ikke autoriseret" }),
         { status: 401, headers: { ...corsHeaders, "Content-Type": "application/json" } }
       );
     }
 
-    // Check if user is admin using the has_role function
+    const requesterUserId = userData.user.id;
+    console.log(`Delete request from user: ${requesterUserId}`);
+
+    // Service-role client for admin operations
+    const supabaseAdmin = createClient(supabaseUrl, supabaseServiceRoleKey, {
+      auth: { autoRefreshToken: false, persistSession: false },
+    });
+
+    // Check if requester is admin
     const { data: isAdmin, error: roleError } = await supabaseAdmin
-      .rpc("has_role", { _user_id: user.id, _role: "admin" });
+      .rpc("has_role", { _user_id: requesterUserId, _role: "admin" });
 
     if (roleError || !isAdmin) {
-      console.log("Role check failed:", roleError, isAdmin);
+      console.log("Role check failed:", { roleError, isAdmin, requesterUserId });
       return new Response(
         JSON.stringify({ error: "Kun administratorer kan fjerne admin brugere" }),
         { status: 403, headers: { ...corsHeaders, "Content-Type": "application/json" } }
@@ -73,7 +80,7 @@ serve(async (req) => {
     }
 
     // Prevent self-deletion
-    if (userId === user.id) {
+    if (userId === requesterUserId) {
       return new Response(
         JSON.stringify({ error: "Du kan ikke fjerne din egen admin rolle" }),
         { status: 400, headers: { ...corsHeaders, "Content-Type": "application/json" } }
