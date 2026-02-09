@@ -69,8 +69,8 @@ export function SlotControlPanel({
 
   return (
     <>
-      {/* Desktop: single row - min-w prevents layout shift when autospin toggles */}
-      <div className="hidden sm:flex w-full flex-row items-center justify-center gap-4 min-w-[700px]">
+      {/* Desktop: single row */}
+      <div className="hidden sm:flex w-full flex-row items-center justify-center gap-4">
         <VolumeControl className={cn(theme.accent, "flex-shrink-0")} />
         <BetControls
           bet={bet}
