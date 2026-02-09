@@ -1,24 +1,66 @@
 
-## Centrer Rise of Fedesvin indhold
+## Justerbar afstand mellem tromler, leaderboard og kontrolpanel
 
 ### Problem
-Spillecontaineren bruger `items-start` og `-mt-2`, hvilket placerer alt indhold i toppen af viewporten i stedet for at centrere det.
+Afstanden mellem tromlerne og leaderboardet (sidepanelet) samt mellem tromlerne og kontrolpanelet er hardcodet og kan ikke finjusteres uden kodeaendringer.
 
 ### Losning
-Samme tilgang som blev brugt til Book of Fedesvin: aendr game-area containeren til at centrere indholdet vertikalt og horisontalt.
+Tilfoej to nye admin-indstillinger (sliders) i ramme-administrationspanelet:
+1. **Sidepanel-afstand** - afstand mellem tromlerne og leaderboardet (desktop)
+2. **Kontrolpanel-afstand** - afstand mellem tromlerne og kontrolpanelet nedenunder
 
-### Teknisk aendring
+Begge vaerdier gemmes i `site_settings` per spil og anvendes dynamisk.
 
-**`src/pages/RiseOfFedesvin.tsx` (linje 194)**
+### Tekniske aendringer
 
-Fra:
+**1. Nye site_settings nogler (per spil)**
+
+Book of Fedesvin:
+- `slot_sidepanel_gap` (standard: 24px, dvs. nuvaerende `mr-6`)
+- `slot_controls_gap` (standard: 16px, dvs. nuvaerende `mt-4`)
+
+Rise of Fedesvin:
+- `rise_of_fedesvin_sidepanel_gap`
+- `rise_of_fedesvin_controls_gap`
+
+**2. RLS whitelist opdatering**
+
+Tilfoej de fire nye nogler til den eksisterende `Public can read whitelisted display settings` politik pa `site_settings` tabellen.
+
+**3. `src/components/slots/SlotFrameAdminControls.tsx`**
+
+- Tilfoej `sidepanelGapKey` og `controlsGapKey` til `getSettingsKeys()`
+- Tilfoej to nye sliders i ramme-positioneringssektionen:
+  - "Sidepanel afstand" (0-80px, standard 24)
+  - "Kontrolpanel afstand" (0-40px, standard 16)
+- Inkluder dem i reset-funktionen
+
+**4. `src/components/slots/SlotGame.tsx`**
+
+- Laes `controlsGap` fra `useSiteSettings()` (nogle afhaengig af `gameId`)
+- Anvend vaerdien som inline `style={{ marginTop: controlsGap }}` pa kontrolpanel-containeren (linje 983) i stedet for den hardcodede `mt-3 sm:mt-4`
+
+**5. `src/components/slots/SlotPageLayout.tsx`**
+
+- Tilfoej en ny `sidePanelGap` prop (number, default 24)
+- Anvend som `style={{ marginRight: sidePanelGap }}` pa aside-elementet i stedet for den hardcodede `mr-6`
+
+**6. `src/pages/SlotMachine.tsx` og `src/pages/RiseOfFedesvin.tsx`**
+
+- Laes den relevante `sidepanel_gap` vaerdi fra `useSiteSettings()`
+- Send den som prop til `SlotPageLayout`
+
+### Overblik over flow
+
+```text
+Admin Panel (Slider)
+    |
+    v
+site_settings tabel (per spil)
+    |
+    v
+useSiteSettings() hook
+    |
+    +---> SlotPageLayout (sidepanel gap)
+    +---> SlotGame (controls gap)
 ```
-<div className="flex items-start justify-center overflow-hidden flex-1 -mt-2">
-```
-
-Til:
-```
-<div className="flex-1 flex items-center justify-center overflow-hidden">
-```
-
-Dette fjerner `-mt-2` og `items-start`, og tilfojer `items-center` og `flex-1` for perfekt centrering i begge akser.
