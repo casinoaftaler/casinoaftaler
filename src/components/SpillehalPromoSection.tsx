@@ -21,7 +21,7 @@ export function SpillehalPromoSection() {
           </div>
           
           <Button asChild variant="outline" size="sm" className="gap-1.5 flex-shrink-0">
-            <Link to="/slot-machine">
+            <Link to="/community/slots">
               Gå til Spillehal
               <ArrowRight className="h-3.5 w-3.5" />
             </Link>
