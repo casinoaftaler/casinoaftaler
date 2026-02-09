@@ -170,11 +170,11 @@ export default function RiseOfFedesvin() {
   return (
     <div className="min-h-[calc(100dvh-4rem)] relative flex flex-col">
       <div 
-        className="fixed inset-0 bg-cover bg-center bg-no-repeat -z-10"
+        className="absolute inset-0 bg-cover bg-center bg-no-repeat -z-10"
         style={{ backgroundImage: `url(${backgroundImage})` }}
       />
-      <div className="fixed inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black/70 -z-10" />
-      <div className="fixed inset-0 bg-gradient-to-b from-purple-900/20 via-transparent to-indigo-900/15 -z-10" />
+      <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black/70 -z-10" />
+      <div className="absolute inset-0 bg-gradient-to-b from-purple-900/20 via-transparent to-indigo-900/15 -z-10" />
 
       <div className="absolute top-1 left-1 sm:top-2 sm:left-2 z-20">
         <Button
