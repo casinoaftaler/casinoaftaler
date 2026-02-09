@@ -176,21 +176,22 @@ export default function RiseOfFedesvin() {
       <div className="fixed inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black/70 -z-10" />
       <div className="fixed inset-0 bg-gradient-to-b from-purple-900/20 via-transparent to-indigo-900/15 -z-10" />
 
-      <div className="absolute top-3 left-3 z-20">
+      <div className="absolute top-1 left-1 sm:top-2 sm:left-2 z-20">
         <Button
           asChild
           variant="ghost"
           size="sm"
-          className="text-purple-300/80 hover:text-purple-300 hover:bg-purple-500/10 gap-1.5"
+          className="text-purple-300/80 hover:text-purple-300 hover:bg-purple-500/10 gap-1.5 h-7 px-2 text-xs sm:h-8 sm:px-3 sm:text-sm"
         >
           <Link to="/community/slots">
-            <ArrowLeft className="h-4 w-4" />
+            <ArrowLeft className="h-3 w-3 sm:h-4 sm:w-4" />
             <span className="hidden sm:inline">Tilbage til spil</span>
           </Link>
         </Button>
       </div>
       
-      <div className="flex items-start justify-center pt-2 sm:pt-4 overflow-hidden">
+      {/* Game area - no top padding, starts right under header */}
+      <div className="flex items-start justify-center overflow-hidden flex-1">
         <div 
           className="slot-viewport-container"
           style={{
@@ -199,15 +200,15 @@ export default function RiseOfFedesvin() {
         >
           <div className="px-1 xs:px-2 sm:px-4">
             <SlotPageLayout sidePanel={sidePanelContent}>
-
               <SlotGame gameId={GAME_ID} />
             </SlotPageLayout>
           </div>
         </div>
       </div>
 
-      <div className="xl:hidden flex justify-center px-4 pb-6 pt-2">
-        <div className="w-full max-w-sm space-y-4">
+      {/* Mobile side panels - reduced padding */}
+      <div className="xl:hidden flex justify-center px-4 pb-4 pt-1">
+        <div className="w-full max-w-sm space-y-3">
           {topCasino && (
             <SlotPromoSlider casino={topCasino} backgroundImage={slotCasinoCardBg} />
           )}
