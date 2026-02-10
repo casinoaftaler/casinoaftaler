@@ -44,3 +44,12 @@ verify_jwt = false
 
 [functions.redeem-code]
 verify_jwt = false
+
+[functions.verify-slot-password]
+verify_jwt = false
+
+[functions.daily-credit-allocation]
+verify_jwt = false
+
+[functions.twitch-clip-thumbnail]
+verify_jwt = false

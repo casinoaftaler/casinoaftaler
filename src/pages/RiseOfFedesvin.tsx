@@ -45,7 +45,7 @@ export default function RiseOfFedesvin() {
     refreshSession 
   } = useSlotSession(GAME_ID);
   const { scale, shouldScale } = useSlotScale();
-  const { isLocked, hasAccess, isLoading: accessLoading, error: accessError, verifyPassword } = useSlotPageAccess(GAME_ID);
+  const { isLocked, hasAccess, isLoading: accessLoading, isVerifying, error: accessError, verifyPassword } = useSlotPageAccess(GAME_ID);
   
   const [loadingPhase, setLoadingPhase] = useState<LoadingPhase>('loading');
   
@@ -100,6 +100,7 @@ export default function RiseOfFedesvin() {
         backgroundImage={backgroundImage}
         onVerify={verifyPassword}
         error={accessError}
+        isVerifying={isVerifying}
         gameName="Rise of Fedesvin"
       />
     );

@@ -8,18 +8,15 @@ const RISE_SESSION_STORAGE_KEY = "rise_slot_page_access_granted";
 
 interface SlotPageAccessSettings {
   isLocked: boolean;
-  password: string;
 }
 
-const GAME_SETTINGS_KEYS: Record<string, { lockedKey: string; passwordKey: string; sessionKey: string }> = {
+const GAME_SETTINGS_KEYS: Record<string, { lockedKey: string; sessionKey: string }> = {
   "book-of-fedesvin": {
     lockedKey: "slot_page_locked",
-    passwordKey: "slot_page_password",
     sessionKey: SESSION_STORAGE_KEY,
   },
   "rise-of-fedesvin": {
     lockedKey: "rise_of_fedesvin_locked",
-    passwordKey: "rise_of_fedesvin_password",
     sessionKey: RISE_SESSION_STORAGE_KEY,
   },
 };
@@ -29,6 +26,7 @@ export function useSlotPageAccess(gameId: string = "book-of-fedesvin") {
   const [hasSessionAccess, setHasSessionAccess] = useState(false);
   const [isAdmin, setIsAdmin] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [isVerifying, setIsVerifying] = useState(false);
 
   const gameKeys = GAME_SETTINGS_KEYS[gameId] || GAME_SETTINGS_KEYS["book-of-fedesvin"];
 
@@ -67,14 +65,14 @@ export function useSlotPageAccess(gameId: string = "book-of-fedesvin") {
     }
   }, [gameKeys.sessionKey]);
 
-  // Fetch lock settings from database
+  // Fetch ONLY lock status from database (NOT the password)
   const { data: settings, isLoading } = useQuery({
     queryKey: ["slot-page-access-settings", gameId],
     queryFn: async (): Promise<SlotPageAccessSettings> => {
       const { data, error } = await supabase
         .from("site_settings")
         .select("key, value")
-        .in("key", [gameKeys.lockedKey, gameKeys.passwordKey]);
+        .eq("key", gameKeys.lockedKey);
 
       if (error) throw error;
 
@@ -85,7 +83,6 @@ export function useSlotPageAccess(gameId: string = "book-of-fedesvin") {
 
       return {
         isLocked: settingsMap[gameKeys.lockedKey] === "true",
-        password: settingsMap[gameKeys.passwordKey] || "",
       };
     },
   });
@@ -95,23 +92,38 @@ export function useSlotPageAccess(gameId: string = "book-of-fedesvin") {
   // User has access if: not locked, or is admin, or has session access
   const hasAccess = !isLocked || isAdmin || hasSessionAccess;
 
-  const verifyPassword = useCallback((inputPassword: string): boolean => {
+  // Server-side password verification via edge function
+  const verifyPassword = useCallback(async (inputPassword: string): Promise<boolean> => {
     setError(null);
-    
-    if (!settings?.password) {
+    setIsVerifying(true);
+
+    try {
+      const { data, error: fnError } = await supabase.functions.invoke("verify-slot-password", {
+        body: { password: inputPassword, gameId },
+      });
+
+      if (fnError) {
+        console.error("Password verification error:", fnError);
+        setError("Kunne ikke verificere password");
+        return false;
+      }
+
+      if (data?.valid) {
+        sessionStorage.setItem(gameKeys.sessionKey, "true");
+        setHasSessionAccess(true);
+        return true;
+      } else {
+        setError("Forkert password");
+        return false;
+      }
+    } catch (err) {
+      console.error("Password verification error:", err);
       setError("Kunne ikke verificere password");
       return false;
+    } finally {
+      setIsVerifying(false);
     }
-
-    if (inputPassword === settings.password) {
-      sessionStorage.setItem(gameKeys.sessionKey, "true");
-      setHasSessionAccess(true);
-      return true;
-    } else {
-      setError("Forkert password");
-      return false;
-    }
-  }, [settings?.password, gameKeys.sessionKey]);
+  }, [gameId, gameKeys.sessionKey]);
 
   const clearAccess = useCallback(() => {
     sessionStorage.removeItem(gameKeys.sessionKey);
@@ -123,6 +135,7 @@ export function useSlotPageAccess(gameId: string = "book-of-fedesvin") {
     hasAccess,
     isAdmin,
     isLoading,
+    isVerifying,
     error,
     verifyPassword,
     clearAccess,
