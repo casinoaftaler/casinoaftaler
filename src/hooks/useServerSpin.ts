@@ -2,6 +2,7 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
 import { useAuth } from "@/hooks/useAuth";
 import { toast } from "sonner";
+import { getTodayDanish } from "@/lib/danishDate";
 
 interface LineWin {
   lineIndex: number;
@@ -103,7 +104,7 @@ export function useServerSpin(gameId: string = "book-of-fedesvin") {
       
       // Only update spins cache immediately (spending spins is expected UX)
       if (data.spinsRemaining !== undefined) {
-        const today = new Date().toISOString().split("T")[0];
+        const today = getTodayDanish();
         queryClient.setQueryData(
           ["slot-spins", session?.user?.id, today],
           (old: any) => old ? { ...old, spins_remaining: data.spinsRemaining } : old

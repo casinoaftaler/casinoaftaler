@@ -1,5 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
+import { getTodayDanish } from "@/lib/danishDate";
 
 interface TopWinner {
   user_id: string;
@@ -19,7 +20,7 @@ export function useSlotStatistics() {
   return useQuery({
     queryKey: ["slot-statistics"],
     queryFn: async (): Promise<SlotStatistics> => {
-      const today = new Date().toISOString().split("T")[0];
+      const today = getTodayDanish();
 
       // Get today's game results
       const { data: results, error: resultsError } = await supabase

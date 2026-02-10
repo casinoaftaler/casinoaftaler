@@ -2,6 +2,7 @@ import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
 import { useAuth } from "@/hooks/useAuth";
 import { toast } from "sonner";
+import { getTodayDanish } from "@/lib/danishDate";
 
 interface CommunityBonusSpins {
   id: string;
@@ -44,7 +45,7 @@ export function useCommunityBonusSpins() {
       if (!user?.id) throw new Error("Ikke logget ind");
       if (amount <= 0 || amount > remaining) throw new Error("Ugyldigt antal");
 
-      const today = new Date().toISOString().split("T")[0];
+      const today = getTodayDanish();
 
       // 1. Update community_bonus_spins
       const { error: updateError } = await supabase

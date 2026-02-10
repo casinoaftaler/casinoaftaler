@@ -855,7 +855,15 @@ Deno.serve(async (req) => {
     }
 
     // Normal spin - validate spins remaining
-    const today = new Date().toISOString().split("T")[0];
+    // Use Danish timezone (Europe/Copenhagen) for date boundary
+    const now = new Date();
+    const todayParts = new Intl.DateTimeFormat("sv-SE", {
+      timeZone: "Europe/Copenhagen",
+      year: "numeric",
+      month: "2-digit",
+      day: "2-digit",
+    }).format(now);
+    const today = todayParts;
     
     // Profile and settings already fetched in parallel above
     const bonusSpinsPermanent = profileRes.data?.bonus_spins_permanent || 0;
