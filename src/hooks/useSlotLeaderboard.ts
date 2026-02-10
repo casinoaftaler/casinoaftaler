@@ -38,6 +38,7 @@ export function useSlotLeaderboard(period: "daily" | "weekly" | "alltime" = "all
 
   return useQuery({
     queryKey: ["slot-leaderboard", period, currentUserId],
+    enabled: !!currentUserId,
     queryFn: async (): Promise<{
       entries: LeaderboardEntry[];
       currentUser: CurrentUserLeaderboard | null;

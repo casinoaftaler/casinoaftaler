@@ -11,6 +11,9 @@ import { useSlotLeaderboard, type LeaderboardEntry } from "@/hooks/useSlotLeader
 import { UserProfileLink } from "@/components/UserProfileLink";
 import { cn } from "@/lib/utils";
 import { getSlotTheme, type SlotTheme } from "@/lib/slotTheme";
+import { useAuth } from "@/hooks/useAuth";
+import { LogIn } from "lucide-react";
+import { Link } from "react-router-dom";
 
 function LeaderboardRow({
   entry,
@@ -91,6 +94,7 @@ interface SlotLeaderboardProps {
 
 export function SlotLeaderboard({ gameId = "book-of-fedesvin" }: SlotLeaderboardProps) {
   const theme = getSlotTheme(gameId);
+  const { user } = useAuth();
   const [showFullList, setShowFullList] = useState(false);
   const [dialogPeriod, setDialogPeriod] = useState<"daily" | "weekly" | "alltime">("alltime");
   const [searchQuery, setSearchQuery] = useState("");
@@ -124,7 +128,18 @@ export function SlotLeaderboard({ gameId = "book-of-fedesvin" }: SlotLeaderboard
           </CardTitle>
         </CardHeader>
         <CardContent className="pt-3">
-          {isLoading ? (
+          {!user ? (
+            <div className="text-center py-8">
+              <LogIn className={cn("h-10 w-10 mx-auto mb-2 opacity-50", theme.leaderboardEmptyIconColor)} />
+              <p className={theme.leaderboardEmptyText}>Log ind for at se ranglisten</p>
+              <Link to="/auth">
+                <Button variant="outline" className="mt-3">
+                  <LogIn className="h-4 w-4 mr-2" />
+                  Log ind
+                </Button>
+              </Link>
+            </div>
+          ) : isLoading ? (
             <div className="space-y-2">
               {[1, 2, 3].map((i) => (
                 <div key={i} className="h-16 bg-muted/50 rounded-lg animate-pulse" />
