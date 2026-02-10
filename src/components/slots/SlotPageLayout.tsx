@@ -20,10 +20,12 @@ export function SlotPageLayout({ children, sidePanel, sidePanelGap = 24, classNa
         {/* Left side panel - absolutely positioned on desktop, vertically centered */}
         {sidePanel && (
           <aside
-            className="hidden xl:flex flex-col gap-4 absolute right-full top-1/2 -translate-y-1/2 w-[300px] z-10"
+            className="hidden xl:flex flex-col gap-4 absolute right-full top-0 bottom-0 items-center justify-center w-[300px] z-10"
             style={{ marginRight: `${sidePanelGap}px` }}
           >
-            {sidePanel}
+            <div className="flex flex-col gap-4">
+              {sidePanel}
+            </div>
           </aside>
         )}
 
