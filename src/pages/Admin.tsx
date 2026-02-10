@@ -37,7 +37,7 @@ import {
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Plus, Trash2, LogOut, Star, Loader2, Pencil, GripVertical, Gift, ShoppingBag, BarChart3, Settings, Users, Video, Gamepad2, Bell, Sparkles, Radio, Ticket } from "lucide-react";
+import { Plus, Trash2, LogOut, Star, Loader2, Pencil, GripVertical, Gift, ShoppingBag, BarChart3, Settings, Users, Video, Gamepad2, Bell, Sparkles, Ticket } from "lucide-react";
 import { AdminUserManagement } from "@/components/AdminUserManagement";
 import { TwitchUsersSection } from "@/components/TwitchUsersSection";
 import { HighlightsAdminSection } from "@/components/HighlightsAdminSection";
@@ -803,32 +803,28 @@ function AdminDashboard() {
 
       <main className="container py-8">
         <Tabs defaultValue="casinos" className="w-full">
-          <TabsList className="grid w-full grid-cols-11 mb-8 h-auto">
-            <TabsTrigger value="casinos" className="flex items-center gap-2 py-3">
-              <Gift className="h-4 w-4" />
-              <span className="hidden sm:inline">Casino Tilbud</span>
-            </TabsTrigger>
-            <TabsTrigger value="shop" className="flex items-center gap-2 py-3">
-              <ShoppingBag className="h-4 w-4" />
-              <span className="hidden sm:inline">Butik</span>
-            </TabsTrigger>
-            <TabsTrigger value="highlights" className="flex items-center gap-2 py-3">
-              <Video className="h-4 w-4" />
-              <span className="hidden sm:inline">Highlights</span>
-            </TabsTrigger>
-            <TabsTrigger value="community-clips" className="flex items-center gap-2 py-3">
-              <Sparkles className="h-4 w-4" />
-              <span className="hidden sm:inline">Community</span>
-            </TabsTrigger>
-            <TabsTrigger value="slotmachine" className="flex items-center gap-2 py-3">
-              <Gamepad2 className="h-4 w-4" />
-              <span className="hidden sm:inline">Spillemaskine</span>
-            </TabsTrigger>
-            <TabsTrigger value="live-players" className="flex items-center gap-2 py-3">
-              <Radio className="h-4 w-4" />
-              <span className="hidden sm:inline">Live spillere</span>
-            </TabsTrigger>
-            <TabsTrigger value="codes" className="flex items-center gap-2 py-3">
+            <TabsList className="grid w-full grid-cols-10 mb-8 h-auto">
+              <TabsTrigger value="casinos" className="flex items-center gap-2 py-3">
+                <Gift className="h-4 w-4" />
+                <span className="hidden sm:inline">Casino Tilbud</span>
+              </TabsTrigger>
+              <TabsTrigger value="shop" className="flex items-center gap-2 py-3">
+                <ShoppingBag className="h-4 w-4" />
+                <span className="hidden sm:inline">Butik</span>
+              </TabsTrigger>
+              <TabsTrigger value="highlights" className="flex items-center gap-2 py-3">
+                <Video className="h-4 w-4" />
+                <span className="hidden sm:inline">Highlights</span>
+              </TabsTrigger>
+              <TabsTrigger value="community-clips" className="flex items-center gap-2 py-3">
+                <Sparkles className="h-4 w-4" />
+                <span className="hidden sm:inline">Community</span>
+              </TabsTrigger>
+              <TabsTrigger value="slotmachine" className="flex items-center gap-2 py-3">
+                <Gamepad2 className="h-4 w-4" />
+                <span className="hidden sm:inline">Spillemaskine</span>
+              </TabsTrigger>
+              <TabsTrigger value="codes" className="flex items-center gap-2 py-3">
               <Ticket className="h-4 w-4" />
               <span className="hidden sm:inline">Koder</span>
             </TabsTrigger>
@@ -960,11 +956,9 @@ function AdminDashboard() {
           {/* Spillemaskine Tab */}
           <TabsContent value="slotmachine">
             <SlotMachineAdminSection />
-          </TabsContent>
-
-          {/* Live Spillere Tab */}
-          <TabsContent value="live-players">
-            <LivePlayersAdminSection />
+            <div className="mt-8">
+              <LivePlayersAdminSection />
+            </div>
           </TabsContent>
 
           {/* Koder Tab */}
