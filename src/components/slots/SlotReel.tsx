@@ -70,17 +70,35 @@ export const SlotReel = React.memo(function SlotReel({
 
   const [reelStrip, setReelStrip] = useState<SlotSymbolType[]>([]);
 
+  // Pre-generate a pool of random symbols once when symbols change, avoiding
+  // repeated Math.random + array-index lookups during animation frames.
+  const randomPoolRef = useRef<SlotSymbolType[]>([]);
+  useEffect(() => {
+    if (symbols.length === 0) return;
+    const pool: SlotSymbolType[] = [];
+    for (let i = 0; i < 60; i++) {
+      pool.push(symbols[Math.floor(Math.random() * symbols.length)]);
+    }
+    randomPoolRef.current = pool;
+  }, [symbols]);
+
+  const poolIndexRef = useRef(0);
+
   const buildReelStrip = () => {
     const strip: SlotSymbolType[] = [];
-    displayedSymbolIds.forEach(id => {
-      const symbol = symbolsById.get(id);
+    for (let i = 0; i < displayedSymbolIds.length; i++) {
+      const symbol = symbolsById.get(displayedSymbolIds[i]);
       if (symbol) strip.push(symbol);
-    });
-    const spinSymbolCount = 30;
-    for (let i = 0; i < spinSymbolCount; i++) {
-      const randomSymbol = symbols[Math.floor(Math.random() * symbols.length)];
-      strip.push(randomSymbol);
     }
+    const pool = randomPoolRef.current;
+    const poolLen = pool.length;
+    if (poolLen === 0) return strip;
+    let idx = poolIndexRef.current;
+    for (let i = 0; i < 30; i++) {
+      strip.push(pool[idx % poolLen]);
+      idx++;
+    }
+    poolIndexRef.current = idx;
     return strip;
   };
 
