@@ -154,6 +154,24 @@ Deno.serve(async (req) => {
         });
     }
 
+    // Create a notification for the user
+    const { data: notif } = await adminClient
+      .from("notifications")
+      .insert({
+        title: "Kode indløst! 🎉",
+        message: `Du har indløst koden "${code}" og modtaget ${codeData.credits_amount} credits.`,
+      })
+      .select("id")
+      .single();
+
+    if (notif) {
+      await adminClient.from("user_notifications").insert({
+        user_id: user.id,
+        notification_id: notif.id,
+        is_read: false,
+      });
+    }
+
     return new Response(
       JSON.stringify({
         success: true,
