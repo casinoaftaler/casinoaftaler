@@ -1,70 +1,120 @@
 
 
-# Database Oprydning og Optimering
+# Website Optimering - 5 Forbedringer
 
 ## Oversigt
-En gennemgang af databasen og kodebasen har afsloeret ubrugt kode, en ubrugt edge function, en ubrugt database view, en ubrugt hook, og manglende indekser paa den stoerste tabel. Alt funktionalitet bevares.
+Fem optimeringer der reducerer initial load-tid, mindsker unodvendige netvaerksopkald og goer queries mere effektive. Al funktionalitet bevares.
 
 ---
 
-## 1. Slet ubrugt kode
+## 1. Lazy-load flere sider
 
-### Filer der kan slettes
-| Fil | Grund |
-|---|---|
-| `src/hooks/useSlotStatistics.ts` | Eksporteres men importeres aldrig nogen steder i kodebasen |
-| `src/hooks/useLogoColor.ts` | Eksporteres men importeres aldrig nogen steder i kodebasen |
-| `supabase/functions/stress-test-slots/index.ts` | Aldrig kaldt fra frontend-koden - kun et test-vaerktoj |
-| `supabase/functions/generate-and-save-slot-sound/index.ts` | Aldrig kaldt fra frontend-koden (elevenlabs-sfx bruges i stedet) |
+**Problem:** 17 sider importeres eagerly og indgaar i initial bundle, selvom brugere kun besoeger 1-2 sider ad gangen.
 
-### Database view der kan slettes
-| View | Grund |
-|---|---|
-| `shop_items_public` | Eksisterer i databasen men bruges aldrig i koden (shop-siden laeser direkte fra `shop_items` tabellen) |
+**Loesning:** Lazy-load alle sider undtagen Index (forsiden) og Layout. Tilfoej en generel loading-fallback.
+
+**Fil:** `src/App.tsx`
+- Konverter alle page-imports (Admin, Profile, Auth, Shop, Highlights osv.) til `lazy(() => import(...))`
+- Wrap alle routes i `<Suspense>` med en simpel loading-fallback
+- Behold Index som eager import (forsiden skal loade hurtigt)
 
 ---
 
-## 2. Tilfoej manglende indekser (ydeevne)
+## 2. Cache site settings
 
-Tabellen `slot_game_results` har 28.800+ raekker og vokser hurtigt, men mangler indekser paa de kolonner der bruges til filtrering:
+**Problem:** `useSiteSettings` har `staleTime: 0`, saa den refetcher ved HVER komponent-mount og hvert page-skift. Site settings aendres sjældent.
 
-| Indeks | Kolonne | Bruges af |
-|---|---|---|
-| `idx_slot_game_results_user_id` | `user_id` | Leaderboard, bruger-statistik |
-| `idx_slot_game_results_created_at` | `created_at` | Daglig/ugentlig statistik-filtrering |
+**Loesning:** Saet `staleTime: 5 * 60 * 1000` (5 minutter) saa settings caches og ikke hentes igen paa hvert sideskift.
+
+**Fil:** `src/hooks/useSiteSettings.ts`
+- AEndr `staleTime` fra 0 til 300000 (5 min)
 
 ---
 
-## 3. Oprydning i edge function config
+## 3. Optimer casino auth-check
 
-Fjern de slettede funktioner fra `supabase/config.toml` saa de ikke laengere deployes.
+**Problem:** `useCasinos` kalder `supabase.auth.getSession()` i HVER query-execution, ogsaa for public brugere der aldrig har brug for auth.
+
+**Loesning:** Flyt auth-check ud saa den kun koerer naar `includeInactive=true` (kun admin-panelet). Public brugere springer auth-check over.
+
+**Fil:** `src/hooks/useCasinos.ts`
+- Flyt `getSession()` ind i `if (includeInactive)` blokken
+- Public path (default) gaar direkte til `casinos_public` view uden auth-check
+
+---
+
+## 4. Begrans leaderboard-data
+
+**Problem:** `useSlotLeaderboard` henter ALLE raekker fra `slot_leaderboard` view uden limit. Efterhaanden som brugerbasen vokser, bliver dette langsomt.
+
+**Loesning:** Tilfoej `.limit(100)` til leaderboard-query og `.limit(100)` til profiles-query. Top 100 er rigeligt til visning, og current user hentes separat allerede.
+
+**Fil:** `src/hooks/useSlotLeaderboard.ts`
+- Tilfoej `.limit(100)` paa leaderboard-query
+- Tilfoej `.limit(100)` paa profiles-query
+
+---
+
+## 5. Fjern unodig realtime-subscription paa leaderboard
+
+**Problem:** Leaderboard subscribes til ALLE inserts i `slot_game_results` og invaliderer query ved hvert spin. Med 28.000+ raekker og aktive spillere giver det mange unodvendige refetches.
+
+**Loesning:** Fjern realtime-subscription helt. Leaderboardet har allerede `refetchInterval: 30000` (30 sek), hvilket er tilstraekkeligt for en leaderboard.
+
+**Fil:** `src/hooks/useSlotLeaderboard.ts`
+- Slet hele `useEffect` med `supabase.channel('leaderboard-updates')`
+- Behold `refetchInterval: 30000` som opdateringsmekanisme
 
 ---
 
 ## Teknisk sektion
 
-### Migration SQL
-```sql
--- Add missing indexes for performance
-CREATE INDEX IF NOT EXISTS idx_slot_game_results_user_id
-  ON public.slot_game_results (user_id);
-CREATE INDEX IF NOT EXISTS idx_slot_game_results_created_at
-  ON public.slot_game_results (created_at);
+### App.tsx aendringer
+```
+// Alle sider lazy-loaded undtagen Index
+const Admin = lazy(() => import("./pages/Admin"));
+const Profile = lazy(() => import("./pages/Profile"));
+const Auth = lazy(() => import("./pages/Auth"));
+// ... osv for alle sider
 
--- Drop unused view
-DROP VIEW IF EXISTS public.shop_items_public;
+// Generel fallback
+<Suspense fallback={<div className="min-h-screen" />}>
+  <Route ... />
+</Suspense>
+```
+
+### useSiteSettings.ts
+```
+staleTime: 5 * 60 * 1000, // 5 minutter cache
+```
+
+### useCasinos.ts
+```
+// Kun check auth naar det er noedvendigt
+if (includeInactive) {
+  const { data: { session } } = await supabase.auth.getSession();
+  if (session) { ... }
+}
+// Public path: ingen auth-check
+```
+
+### useSlotLeaderboard.ts
+```
+// Tilfoej limit
+.from("slot_leaderboard").select(...).limit(100)
+
+// Fjern realtime useEffect helt
+// Behold refetchInterval: 30000
 ```
 
 ### Filer der aendres
-- Slet `src/hooks/useSlotStatistics.ts`
-- Slet `src/hooks/useLogoColor.ts`
-- Slet `supabase/functions/stress-test-slots/` (mappe)
-- Slet `supabase/functions/generate-and-save-slot-sound/` (mappe)
-- Fjern de to funktioners entries fra `supabase/config.toml`
-- Kør migration med indekser og view-drop
+- `src/App.tsx` - lazy-load sider
+- `src/hooks/useSiteSettings.ts` - cache staleTime
+- `src/hooks/useCasinos.ts` - fjern unodig auth-check
+- `src/hooks/useSlotLeaderboard.ts` - limit + fjern realtime
 
-### Hvad der IKKE roeres
-- Alle tabeller bevares (ingen data slettes)
-- Alle aktive edge functions bevares
-- Alle views der faktisk bruges (`casinos_public`, `profiles_public`, `profiles_leaderboard`, `slot_leaderboard`) bevares
-
+### Ingen breaking changes
+- Al funktionalitet bevares
+- Leaderboard opdateres stadig hvert 30. sekund
+- Admin faar stadig fuld casino-data
+- Site settings refetches stadig ved window focus
