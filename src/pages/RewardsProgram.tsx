@@ -102,7 +102,7 @@ export default function RewardsProgram() {
               </div>
 
               <Button asChild size="lg" className="w-full sm:w-auto gap-2">
-                <Link to="/community/highlights">
+                <Link to="/highlights?tab=community">
                   <Video className="h-5 w-5" />
                   Upload til Community Highlights
                   <ArrowRight className="h-4 w-4" />

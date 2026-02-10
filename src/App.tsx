@@ -19,7 +19,7 @@ const Terms = lazy(() => import("./pages/Terms"));
 const Cookies = lazy(() => import("./pages/Cookies"));
 const Shop = lazy(() => import("./pages/Shop"));
 const Highlights = lazy(() => import("./pages/Highlights"));
-const CommunityHighlights = lazy(() => import("./pages/CommunityHighlights"));
+
 const Leaderboard = lazy(() => import("./pages/Leaderboard"));
 const RewardsProgram = lazy(() => import("./pages/RewardsProgram"));
 const GameLibrary = lazy(() => import("./pages/GameLibrary"));
@@ -56,7 +56,7 @@ const App = () => (
               <Route path="/cookies" element={<Cookies />} />
               <Route path="/butik" element={<Shop />} />
               <Route path="/highlights" element={<Highlights />} />
-              <Route path="/community/highlights" element={<CommunityHighlights />} />
+              
               <Route path="/community/leaderboard" element={<Leaderboard />} />
               <Route path="/community/rewards" element={<RewardsProgram />} />
               <Route 

@@ -152,12 +152,6 @@ export function Header() {
                 </Link>
               </DropdownMenuItem>
               <DropdownMenuItem asChild>
-                <Link to="/community/highlights" className="flex items-center gap-2">
-                  <Sparkles className="h-4 w-4" />
-                  Community Highlights
-                </Link>
-              </DropdownMenuItem>
-              <DropdownMenuItem asChild>
                 <Link to="/community/rewards" className="flex items-center gap-2">
                   <Gift className="h-4 w-4" />
                   Rewards Program
@@ -360,14 +354,6 @@ export function Header() {
             >
               <Trophy className="h-4 w-4" />
               Leaderboard
-            </Link>
-            <Link
-              to="/community/highlights"
-              className="ml-6 flex items-center gap-2 text-sm text-muted-foreground transition-colors hover:text-primary"
-              onClick={() => setMobileMenuOpen(false)}
-            >
-              <Sparkles className="h-4 w-4" />
-              Community Highlights
             </Link>
             <Link
               to="/community/rewards"
