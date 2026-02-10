@@ -632,6 +632,77 @@ export type Database = {
         }
         Relationships: []
       }
+      redeem_code_uses: {
+        Row: {
+          code_id: string
+          credits_awarded: number
+          id: string
+          redeemed_at: string
+          user_id: string
+        }
+        Insert: {
+          code_id: string
+          credits_awarded: number
+          id?: string
+          redeemed_at?: string
+          user_id: string
+        }
+        Update: {
+          code_id?: string
+          credits_awarded?: number
+          id?: string
+          redeemed_at?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "redeem_code_uses_code_id_fkey"
+            columns: ["code_id"]
+            isOneToOne: false
+            referencedRelation: "redeem_codes"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      redeem_codes: {
+        Row: {
+          code: string
+          created_at: string
+          created_by: string
+          credits_amount: number
+          expires_at: string | null
+          id: string
+          is_active: boolean
+          max_uses: number | null
+          times_used: number
+          usage_type: string
+        }
+        Insert: {
+          code: string
+          created_at?: string
+          created_by: string
+          credits_amount: number
+          expires_at?: string | null
+          id?: string
+          is_active?: boolean
+          max_uses?: number | null
+          times_used?: number
+          usage_type?: string
+        }
+        Update: {
+          code?: string
+          created_at?: string
+          created_by?: string
+          credits_amount?: number
+          expires_at?: string | null
+          id?: string
+          is_active?: boolean
+          max_uses?: number | null
+          times_used?: number
+          usage_type?: string
+        }
+        Relationships: []
+      }
       shop_items: {
         Row: {
           created_at: string
