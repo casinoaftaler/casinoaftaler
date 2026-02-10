@@ -9,7 +9,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { ChevronDown, Gamepad2, LogOut, Mail, Menu, User, X, Dices, Gift, BookOpen, Users, ShoppingBag, Video, ShieldCheck, Sparkles, Layers, Moon, Sun, Coins, UserCircle, Trophy } from "lucide-react";
+import { ChevronDown, Gamepad2, LogOut, Mail, Menu, User, X, Dices, Gift, BookOpen, Users, ShoppingBag, Video, ShieldCheck, Sparkles, Layers, Moon, Sun, Coins, UserCircle, Trophy, Ticket } from "lucide-react";
 import { useState, useEffect } from "react";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
 import { useTwitchStatus } from "@/hooks/useTwitchStatus";
@@ -17,6 +17,8 @@ import { useAuth } from "@/hooks/useAuth";
 import { useQuery } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
 import { NotificationDropdown } from "./NotificationDropdown";
+import { RedeemCodeDialog } from "./RedeemCodeDialog";
+import { getTodayDanish } from "@/lib/danishDate";
 export function Header() {
   const navigate = useNavigate();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -28,6 +30,8 @@ export function Header() {
   const { data: twitchStatus } = useTwitchStatus(siteSettings?.twitch_url);
   const { user, loading: authLoading, signOut } = useAuth();
   
+  const [redeemDialogOpen, setRedeemDialogOpen] = useState(false);
+
   const { data: profile } = useQuery({
     queryKey: ["profile", user?.id],
     queryFn: async () => {
@@ -36,6 +40,22 @@ export function Header() {
         .from("profiles")
         .select("*")
         .eq("user_id", user.id)
+        .maybeSingle();
+      return data;
+    },
+    enabled: !!user?.id,
+  });
+
+  const today = getTodayDanish();
+  const { data: creditsData } = useQuery({
+    queryKey: ["header-credits", user?.id, today],
+    queryFn: async () => {
+      if (!user?.id) return null;
+      const { data } = await supabase
+        .from("slot_spins")
+        .select("spins_remaining")
+        .eq("user_id", user.id)
+        .eq("date", today)
         .maybeSingle();
       return data;
     },
@@ -65,6 +85,7 @@ export function Header() {
   };
 
   return (
+    <>
     <header className="sticky top-0 z-50 w-full border-b border-border bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="container flex h-16 items-center justify-between">
         <Link to="/" className="flex items-center gap-2 min-w-0">
@@ -196,6 +217,12 @@ export function Header() {
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>
                   <Button variant="ghost" className="relative flex h-auto items-center gap-2 rounded-full px-2 py-1">
+                    {creditsData && (
+                      <span className="flex items-center gap-1 text-xs font-semibold text-primary">
+                        <Coins className="h-3.5 w-3.5" />
+                        {creditsData.spins_remaining.toLocaleString("da-DK")}
+                      </span>
+                    )}
                     <Avatar className="h-8 w-8">
                       <AvatarImage src={profile?.avatar_url || undefined} alt={profile?.display_name || "Bruger"} />
                       <AvatarFallback>
@@ -226,6 +253,10 @@ export function Header() {
                   <DropdownMenuItem onClick={() => navigate("/profil")} className="cursor-pointer">
                     <UserCircle className="mr-2 h-4 w-4" />
                     Profil
+                  </DropdownMenuItem>
+                  <DropdownMenuItem onClick={() => setRedeemDialogOpen(true)} className="cursor-pointer">
+                    <Ticket className="mr-2 h-4 w-4" />
+                    Indløs Kode
                   </DropdownMenuItem>
                   <DropdownMenuItem onClick={toggleTheme} className="cursor-pointer sm:hidden">
                     {isDark ? (
@@ -385,5 +416,7 @@ export function Header() {
         </div>
       )}
     </header>
+    <RedeemCodeDialog open={redeemDialogOpen} onOpenChange={setRedeemDialogOpen} />
+    </>
   );
 }
