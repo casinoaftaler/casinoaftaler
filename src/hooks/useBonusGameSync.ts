@@ -92,7 +92,10 @@ export function useBonusGameSync(symbols?: SlotSymbol[], gameId: string = "book-
           if (suppressRealtimeRef.current) return;
           
           if (payload.eventType === "DELETE") {
-            setBonusState(INITIAL_STATE);
+            const oldData = payload.old as any;
+            if (!oldData?.game_id || oldData.game_id === gameId) {
+              setBonusState(INITIAL_STATE);
+            }
           } else if (payload.new) {
             const newData = payload.new as any;
             // Only update if it's for our game

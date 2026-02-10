@@ -460,18 +460,10 @@ export function SlotGame({ gameId = "book-of-fedesvin" }: SlotGameProps) {
     if (shouldEndBonus && !isSpinning && !isWinAnimating) {
       const { winnings, spins } = await endBonus();
       
-      // Record the complete bonus result as a single entry
-      if (user && winnings > 0) {
-        supabase.from("slot_game_results").insert({
-          user_id: user.id,
-          bet_amount: bonusBetAmount,
-          win_amount: 0,
-          is_bonus_triggered: false,
-          bonus_win_amount: winnings,
-          game_id: gameId,
-        } as any).then(() => {
-          queryClient.invalidateQueries({ queryKey: ["slot-leaderboard"] });
-        });
+      // Bonus result is now recorded server-side in the slot-spin edge function
+      // when free_spins_remaining reaches 0. Just invalidate the leaderboard cache.
+      if (winnings > 0) {
+        queryClient.invalidateQueries({ queryKey: ["slot-leaderboard"] });
       }
       
       setBonusTotalWinnings(winnings);
@@ -800,7 +792,7 @@ export function SlotGame({ gameId = "book-of-fedesvin" }: SlotGameProps) {
           
           pendingExpandedReelsRef.current = [];
           pendingExpandingWinGroupsRef.current = [];
-        } else {
+      } else if (winGroups.length > 0) {
           // Show connecting (non-expanding) payline wins first, before expansion
           const singleGroupWinKeys = new Set(
             winGroups[0].wins.map((w: any) => `${w.lineIndex}-${w.symbolId}`)
@@ -842,6 +834,19 @@ export function SlotGame({ gameId = "book-of-fedesvin" }: SlotGameProps) {
           }
           setShowExpansionDarken(false);
           
+          pendingExpandedReelsRef.current = [];
+          pendingExpandingWinGroupsRef.current = [];
+        } else {
+          // Expansion happened but no wins -- show expansion visually only
+          setExpandedReels(reelsExpanded);
+          setShowExpansionDarken(true);
+          await new Promise(resolve => setTimeout(resolve, 500));
+          setGrid(expandedGrid);
+          setNewlyExpandedReels(reelsExpanded);
+          slotSounds.playSymbolExpand();
+          await new Promise(resolve => setTimeout(resolve, 600));
+          setNewlyExpandedReels([]);
+          setShowExpansionDarken(false);
           pendingExpandedReelsRef.current = [];
           pendingExpandingWinGroupsRef.current = [];
         }

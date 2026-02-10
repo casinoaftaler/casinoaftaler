@@ -813,6 +813,18 @@ Deno.serve(async (req) => {
         .eq("user_id", userId)
         .eq("game_id", gameId);
 
+      // Record bonus result server-side when bonus just ended
+      if (newFreeSpins <= 0 && newBonusWinnings > 0) {
+        await serviceClient.from("slot_game_results").insert({
+          user_id: userId,
+          bet_amount: bet,
+          win_amount: 0,
+          is_bonus_triggered: false,
+          bonus_win_amount: newBonusWinnings,
+          game_id: gameId,
+        });
+      }
+
       const result: BonusSpinResult = {
         grid: originalGrid,
         expandedGrid,
