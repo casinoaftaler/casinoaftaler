@@ -1,24 +1,36 @@
 
+## Fix: Access Control Switches Not Working
 
-## Fix: Reel 5 Missing Blink Effect During Expansion
+### Problems Found
 
-### Problem
-When symbols expand in Rise of Fedesvin, all expanded reels should show the blink/win effect. However, reel 5 (index 4) sometimes doesn't blink because of how `getWinningPositions` calculates which positions to highlight.
+1. **Switches don't auto-save**: The lock switches only update local form state (`formData`). The actual save only happens when the user scrolls down and clicks "Gem Indstillinger" far below. This makes it look like the toggle does nothing.
 
-The function at line 609 uses `reelIndex < win.count` to determine if a reel should show winning positions. For a win line with `count: 4`, reel 5 is excluded even though it's expanded with the same winning symbol.
+2. **Book of Fedesvin has no lock gate**: `SlotMachine.tsx` doesn't use `useSlotPageAccess` at all -- it never shows the password gate, so the lock setting has no effect for that game. Only `RiseOfFedesvin.tsx` implements it.
 
 ### Fix
 
-**File: `src/components/slots/SlotGame.tsx`** (lines 599-614)
+**File: `src/components/SlotMachineAdminSection.tsx`**
+- Make both lock switches save immediately when toggled (call `updateSettings.mutate()` directly on change), instead of requiring the user to scroll down and click save.
 
-Update `getWinningPositions` so that when expanded reels are active and the current reel is one of them, all 3 row positions (0, 1, 2) are returned -- since the entire reel is filled with the expanding symbol. The `win.count` check should only apply to non-expanded reels.
+**File: `src/pages/SlotMachine.tsx`**
+- Add the `useSlotPageAccess` hook (same as Rise of Fedesvin already does).
+- Add the `SlotPageLockGate` component to show the password gate when the game is locked and the user doesn't have access.
+- Add the `accessLoading` state to the initial loading check.
 
+### Technical Details
+
+In `SlotMachineAdminSection.tsx`, each switch's `onCheckedChange` handler will be updated from:
 ```
-getWinningPositions(reelIndex):
-  if no wins -> return empty
-  if expandedReels active and reel NOT in expandedReels -> return empty
-  if expandedReels active and reel IS in expandedReels -> return [0, 1, 2]
-  else (normal non-expanded wins) -> use existing win.count logic
+onCheckedChange={(checked) => setFormData({ ...formData, pageLocked: checked })}
+```
+to also trigger an immediate save:
+```
+onCheckedChange={(checked) => {
+  setFormData({ ...formData, pageLocked: checked });
+  updateSettings.mutate({ pageLocked: checked });
+}}
 ```
 
-This is a single function change (~3 lines added) that ensures all expanded reels get the full blink treatment.
+Same pattern for the Rise of Fedesvin switch with `riseLocked`.
+
+In `SlotMachine.tsx`, the lock gate check will be added after the auth loading check and before the login prompt, matching the exact pattern already used in `RiseOfFedesvin.tsx`.
