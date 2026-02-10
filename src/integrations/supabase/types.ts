@@ -1185,48 +1185,6 @@ export type Database = {
         }
         Relationships: []
       }
-      shop_items_public: {
-        Row: {
-          created_at: string | null
-          description: string | null
-          id: string | null
-          image_url: string | null
-          is_active: boolean | null
-          name: string | null
-          position: number | null
-          price: string | null
-          slug: string | null
-          stock: string | null
-          updated_at: string | null
-        }
-        Insert: {
-          created_at?: string | null
-          description?: string | null
-          id?: string | null
-          image_url?: string | null
-          is_active?: boolean | null
-          name?: string | null
-          position?: number | null
-          price?: string | null
-          slug?: string | null
-          stock?: string | null
-          updated_at?: string | null
-        }
-        Update: {
-          created_at?: string | null
-          description?: string | null
-          id?: string | null
-          image_url?: string | null
-          is_active?: boolean | null
-          name?: string | null
-          position?: number | null
-          price?: string | null
-          slug?: string | null
-          stock?: string | null
-          updated_at?: string | null
-        }
-        Relationships: []
-      }
       slot_leaderboard: {
         Row: {
           biggest_multiplier: number | null
