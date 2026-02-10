@@ -1,52 +1,31 @@
 
 
-## Fix: Expansion Darkening & Leaderboard Self-Visibility
+## Fix: Mobile Side Panels Position (Closer to Game)
 
-### Issue 1: Expanded Symbols Stay Dark During Tease
+### Problem
 
-**Root Cause:** In `SlotReel.tsx` line 251, the darkening logic is:
+On mobile, the game container div uses `flex-1` which makes it expand to fill the entire remaining viewport height. Even though the slot game is scaled down and visually small, the container still occupies the full flex space. The mobile side panels (leaderboard, promo slider) appear after this oversized container, resulting in a large empty gap before the panels become visible.
+
+### Root Cause
+
+Both `SlotMachine.tsx` (line 190) and `RiseOfFedesvin.tsx` (line 195) have:
 ```
-const shouldDarkenSymbol = (isDarkenedForTease && !symbol.is_scatter) || isDarkenedForExpansion;
-```
-
-While `isDarkenedForExpansion` correctly excludes expanded reels, it does NOT exclude the individual expanded symbols within those reels. Additionally, `isDarkenedForTease` is driven by `scatterReelsLanded.size >= 2 && isSpinning` -- since `isSpinning` remains `true` throughout the entire expansion animation sequence (it's only set to `false` at line 909, after all animations), and React state batching may not flush `setScatterReelsLanded(new Set())` synchronously between async awaits, the tease darkening can persist into the expansion phase.
-
-**Fix (SlotReel.tsx, line 251):** Expanded symbols should never be darkened. Add an exception for symbols that are currently expanded:
-
-```
-const shouldDarkenSymbol = 
-  !symbolIsExpanded && (
-    (isDarkenedForTease && !symbol.is_scatter) || isDarkenedForExpansion
-  );
+<div className="flex-1 flex items-start justify-center overflow-hidden">
 ```
 
-This ensures any symbol that is actively expanded (matching the `expandingSymbolId`) is always bright, regardless of tease or expansion darkening state.
+The `flex-1` class makes this container grow to fill all available space in the flex column, pushing the mobile panels far below.
 
----
+### Fix
 
-### Issue 2: Leaderboard Users Can't See Themselves Outside Top 100
+Remove `flex-1` from the game container on screens below `xl` breakpoint so the container only takes up the space the scaled game actually needs. On `xl` and above, keep `flex-1` so the desktop layout remains unchanged.
 
-**Root Cause:** In `useSlotLeaderboard.ts`, the database query at line 57 uses `.limit(100)`. If the current user is ranked 101st or lower, they are never fetched from the database. The `currentUser` search at line 101 only looks within the already-fetched 100 entries, so users outside the top 100 will never see their own position.
+**File 1: `src/pages/SlotMachine.tsx`** (line 190)
+- Change `flex-1 flex items-start justify-center overflow-hidden` to `xl:flex-1 flex items-start justify-center overflow-hidden`
 
-**Fix (useSlotLeaderboard.ts):** After fetching the top 100, make a separate query to fetch the current user's data if they weren't in the top 100. Then calculate their rank by comparing their score against the sorted list.
+**File 2: `src/pages/RiseOfFedesvin.tsx`** (line 195)
+- Change `flex-1 flex items-start justify-center overflow-hidden` to `xl:flex-1 flex items-start justify-center overflow-hidden`
 
-Steps:
-1. Fetch top 100 as before
-2. Check if `currentUserId` is in the fetched results
-3. If not, make a second query: `supabase.from("slot_leaderboard").select(...).eq("user_id", currentUserId).maybeSingle()`
-4. If found, fetch their profile too
-5. To determine rank, we can count how many users have a higher score: query with `.gt(sortKey, userScore)` and use the count, or simply append them and note they are "100+"
-6. Return the user entry with their approximate rank
+This single-class change ensures:
+- Mobile/tablet: container shrinks to fit the scaled game, panels sit right below
+- Desktop (xl+): container still fills viewport height as before
 
-### Technical Details
-
-**File 1: `src/components/slots/SlotReel.tsx`** (line 251)
-- Change the `shouldDarkenSymbol` calculation to exclude expanded symbols
-
-**File 2: `src/hooks/useSlotLeaderboard.ts`** (lines 98-108)
-- After building `allEntries` (top 100), check if `currentUserId` exists in the list
-- If not found, fetch the user's row separately and their profile
-- Calculate rank: since we only have 100 entries, we know the user is ranked > 100. We can use a count query or simply set rank to 100+ the count of users in the top 100 with higher scores
-- Return the user's entry with their rank so the UI can display them pinned at the bottom
-
-The `SlotLeaderboard.tsx` component already has logic to show the current user pinned below a separator if they're not in the visible list (lines 212-223), so no UI changes are needed.
