@@ -192,7 +192,7 @@ export default function RiseOfFedesvin() {
         </Button>
       </div>
       
-      <div className="flex-1 flex items-center justify-center overflow-hidden">
+      <div className="flex-1 flex items-start justify-center overflow-hidden">
         <div 
           className="slot-viewport-container"
           style={{
