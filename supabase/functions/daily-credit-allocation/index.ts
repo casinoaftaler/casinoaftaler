@@ -27,39 +27,56 @@ Deno.serve(async (req) => {
   try {
     const supabaseUrl = Deno.env.get("SUPABASE_URL")!;
     const serviceRoleKey = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!;
-
-    // Require admin authentication
-    const authHeader = req.headers.get("Authorization");
-    if (!authHeader?.startsWith("Bearer ")) {
-      return new Response(
-        JSON.stringify({ error: "Unauthorized" }),
-        { status: 401, headers: { ...corsHeaders, "Content-Type": "application/json" } }
-      );
-    }
-
     const supabase = createClient(supabaseUrl, serviceRoleKey);
-    const token = authHeader.replace("Bearer ", "");
-    const { data: { user }, error: authError } = await supabase.auth.getUser(token);
 
-    if (authError || !user) {
-      return new Response(
-        JSON.stringify({ error: "Unauthorized" }),
-        { status: 401, headers: { ...corsHeaders, "Content-Type": "application/json" } }
-      );
+    // Check if this is a cron call (body contains "time" field from pg_cron)
+    // The function is fully idempotent so cron calls are safe without admin auth.
+    let isCronCall = false;
+    let body: any = {};
+    try {
+      body = await req.json();
+      if (body?.time) isCronCall = true;
+    } catch {
+      // No body or invalid JSON — not a cron call
     }
 
-    const { data: roleData } = await supabase
-      .from("user_roles")
-      .select("role")
-      .eq("user_id", user.id)
-      .eq("role", "admin")
-      .maybeSingle();
+    if (!isCronCall) {
+      // Manual call — require admin authentication
+      const authHeader = req.headers.get("Authorization");
+      if (!authHeader?.startsWith("Bearer ")) {
+        return new Response(
+          JSON.stringify({ error: "Unauthorized" }),
+          { status: 401, headers: { ...corsHeaders, "Content-Type": "application/json" } }
+        );
+      }
 
-    if (!roleData) {
-      return new Response(
-        JSON.stringify({ error: "Admin access required" }),
-        { status: 403, headers: { ...corsHeaders, "Content-Type": "application/json" } }
-      );
+      const token = authHeader.replace("Bearer ", "");
+
+      // Allow service_role key OR admin user
+      if (token !== serviceRoleKey) {
+        const { data: { user }, error: authError } = await supabase.auth.getUser(token);
+
+        if (authError || !user) {
+          return new Response(
+            JSON.stringify({ error: "Unauthorized" }),
+            { status: 401, headers: { ...corsHeaders, "Content-Type": "application/json" } }
+          );
+        }
+
+        const { data: roleData } = await supabase
+          .from("user_roles")
+          .select("role")
+          .eq("user_id", user.id)
+          .eq("role", "admin")
+          .maybeSingle();
+
+        if (!roleData) {
+          return new Response(
+            JSON.stringify({ error: "Admin access required" }),
+            { status: 403, headers: { ...corsHeaders, "Content-Type": "application/json" } }
+          );
+        }
+      }
     }
 
     const today = getTodayDanish();
@@ -81,37 +98,51 @@ Deno.serve(async (req) => {
       );
     }
 
-    // Get the most recent spin record for each user (before today)
-    // This gives us the carry-over balance
-    const userIds = profiles.map((p) => p.user_id);
-    const { data: latestSpins, error: latestError } = await supabase
-      .from("slot_spins")
-      .select("user_id, spins_remaining, date")
-      .in("user_id", userIds)
-      .lt("date", today)
-      .order("date", { ascending: false });
+    // Helper to batch .in() queries (Supabase URL length limit)
+    async function batchIn<T>(
+      table: string,
+      column: string,
+      values: string[],
+      select: string,
+      extraFilters?: (q: any) => any,
+    ): Promise<T[]> {
+      const BATCH = 50;
+      const results: T[] = [];
+      for (let i = 0; i < values.length; i += BATCH) {
+        const chunk = values.slice(i, i + BATCH);
+        let q = supabase.from(table).select(select).in(column, chunk);
+        if (extraFilters) q = extraFilters(q);
+        const { data, error } = await q;
+        if (error) throw error;
+        if (data) results.push(...(data as T[]));
+      }
+      return results;
+    }
 
-    if (latestError) throw latestError;
+    // Get the most recent spin record for each user (before today)
+    const userIds = profiles.map((p) => p.user_id);
+    const latestSpins = await batchIn<any>(
+      "slot_spins", "user_id", userIds,
+      "user_id, spins_remaining, date",
+      (q) => q.lt("date", today).order("date", { ascending: false }),
+    );
 
     // Build a map of user_id -> most recent spins_remaining (before today)
     const latestSpinMap = new Map<string, number>();
-    for (const spin of latestSpins || []) {
-      // Only keep the first (most recent) entry per user
+    for (const spin of latestSpins) {
       if (!latestSpinMap.has(spin.user_id)) {
         latestSpinMap.set(spin.user_id, spin.spins_remaining);
       }
     }
 
     // Also check if today's records already exist (to skip those users)
-    const { data: todaySpins, error: todayError } = await supabase
-      .from("slot_spins")
-      .select("user_id")
-      .in("user_id", userIds)
-      .eq("date", today);
+    const todaySpins = await batchIn<any>(
+      "slot_spins", "user_id", userIds,
+      "user_id",
+      (q) => q.eq("date", today),
+    );
 
-    if (todayError) throw todayError;
-
-    const usersWithTodayRecord = new Set((todaySpins || []).map((s) => s.user_id));
+    const usersWithTodayRecord = new Set(todaySpins.map((s: any) => s.user_id));
 
     // Build upsert rows with top-up logic
     const rows: Array<{ user_id: string; date: string; spins_remaining: number }> = [];
