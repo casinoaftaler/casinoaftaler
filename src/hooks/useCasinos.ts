@@ -47,21 +47,21 @@ export function useCasinos(includeInactive = false) {
   return useQuery({
     queryKey: ["casinos", includeInactive],
     queryFn: async () => {
-      // Check if user is authenticated (admin)
-      const { data: { session } } = await supabase.auth.getSession();
-      
-      if (includeInactive && session) {
-        // Authenticated admins get full data from casinos table
-        const { data, error } = await supabase
-          .from("casinos")
-          .select("*")
-          .order("position", { ascending: true });
-        
-        if (error) throw error;
-        return (data || []).map(casino => ({
-          ...casino,
-          game_providers: (casino.game_providers as unknown as GameProvider[]) || []
-        })) as Casino[];
+      if (includeInactive) {
+        // Only check auth for admin path
+        const { data: { session } } = await supabase.auth.getSession();
+        if (session) {
+          const { data, error } = await supabase
+            .from("casinos")
+            .select("*")
+            .order("position", { ascending: true });
+          
+          if (error) throw error;
+          return (data || []).map(casino => ({
+            ...casino,
+            game_providers: (casino.game_providers as unknown as GameProvider[]) || []
+          })) as Casino[];
+        }
       }
       
       // Public users get data from the view (excludes affiliate_url)

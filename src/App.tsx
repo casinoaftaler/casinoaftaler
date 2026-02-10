@@ -7,32 +7,34 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { Layout } from "./components/Layout";
 import { SlotPageLoading } from "./components/slots/SlotPageLoading";
 import Index from "./pages/Index";
-import CasinoDetail from "./pages/CasinoDetail";
-import About from "./pages/About";
-import Contact from "./pages/Contact";
-import BonusGuide from "./pages/BonusGuide";
-import ResponsibleGaming from "./pages/ResponsibleGaming";
-import Privacy from "./pages/Privacy";
-import Terms from "./pages/Terms";
-import Cookies from "./pages/Cookies";
-import Shop from "./pages/Shop";
-import Highlights from "./pages/Highlights";
-import CommunityHighlights from "./pages/CommunityHighlights";
-import Leaderboard from "./pages/Leaderboard";
-import RewardsProgram from "./pages/RewardsProgram";
-import Admin from "./pages/Admin";
-import Auth from "./pages/Auth";
-import AuthCallback from "./pages/AuthCallback";
-import Profile from "./pages/Profile";
-import PublicProfile from "./pages/PublicProfile";
-import NotFound from "./pages/NotFound";
 
-// Lazy load game pages for better initial load performance
+// Lazy load all pages except Index for smaller initial bundle
+const CasinoDetail = lazy(() => import("./pages/CasinoDetail"));
+const About = lazy(() => import("./pages/About"));
+const Contact = lazy(() => import("./pages/Contact"));
+const BonusGuide = lazy(() => import("./pages/BonusGuide"));
+const ResponsibleGaming = lazy(() => import("./pages/ResponsibleGaming"));
+const Privacy = lazy(() => import("./pages/Privacy"));
+const Terms = lazy(() => import("./pages/Terms"));
+const Cookies = lazy(() => import("./pages/Cookies"));
+const Shop = lazy(() => import("./pages/Shop"));
+const Highlights = lazy(() => import("./pages/Highlights"));
+const CommunityHighlights = lazy(() => import("./pages/CommunityHighlights"));
+const Leaderboard = lazy(() => import("./pages/Leaderboard"));
+const RewardsProgram = lazy(() => import("./pages/RewardsProgram"));
 const GameLibrary = lazy(() => import("./pages/GameLibrary"));
 const SlotMachine = lazy(() => import("./pages/SlotMachine"));
 const RiseOfFedesvin = lazy(() => import("./pages/RiseOfFedesvin"));
+const Admin = lazy(() => import("./pages/Admin"));
+const Auth = lazy(() => import("./pages/Auth"));
+const AuthCallback = lazy(() => import("./pages/AuthCallback"));
+const Profile = lazy(() => import("./pages/Profile"));
+const PublicProfile = lazy(() => import("./pages/PublicProfile"));
+const NotFound = lazy(() => import("./pages/NotFound"));
 
 const queryClient = new QueryClient();
+
+const PageFallback = () => <div className="min-h-screen" />;
 
 const App = () => (
   <QueryClientProvider client={queryClient}>
@@ -40,56 +42,58 @@ const App = () => (
       <Toaster />
       <Sonner />
       <BrowserRouter>
-        <Routes>
-          <Route element={<Layout />}>
-            <Route path="/" element={<Index />} />
-            <Route path="/casino/:slug" element={<CasinoDetail />} />
-            <Route path="/about" element={<About />} />
-            <Route path="/contact" element={<Contact />} />
-            <Route path="/bonus-guide" element={<BonusGuide />} />
-            <Route path="/responsible-gaming" element={<ResponsibleGaming />} />
-            <Route path="/privacy" element={<Privacy />} />
-            <Route path="/terms" element={<Terms />} />
-            <Route path="/cookies" element={<Cookies />} />
-            <Route path="/butik" element={<Shop />} />
-            <Route path="/highlights" element={<Highlights />} />
-            <Route path="/community/highlights" element={<CommunityHighlights />} />
-            <Route path="/community/leaderboard" element={<Leaderboard />} />
-            <Route path="/community/rewards" element={<RewardsProgram />} />
-            <Route 
-              path="/community/slots" 
-              element={
-                <Suspense fallback={<SlotPageLoading />}>
-                  <GameLibrary />
-                </Suspense>
-              } 
-            />
-            <Route 
-              path="/community/slots/book-of-fedesvin" 
-              element={
-                <Suspense fallback={<SlotPageLoading />}>
-                  <SlotMachine />
-                </Suspense>
-              } 
-            />
-            <Route 
-              path="/community/slots/rise-of-fedesvin" 
-              element={
-                <Suspense fallback={<SlotPageLoading />}>
-                  <RiseOfFedesvin />
-                </Suspense>
-              } 
-            />
-            <Route path="/auth" element={<Auth />} />
-            <Route path="/auth/callback" element={<AuthCallback />} />
-            <Route path="/profil" element={<Profile />} />
-            <Route path="/u/:username" element={<PublicProfile />} />
-          </Route>
-          <Route path="/admin" element={<Admin />} />
-          
-          {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-          <Route path="*" element={<NotFound />} />
-        </Routes>
+        <Suspense fallback={<PageFallback />}>
+          <Routes>
+            <Route element={<Layout />}>
+              <Route path="/" element={<Index />} />
+              <Route path="/casino/:slug" element={<CasinoDetail />} />
+              <Route path="/about" element={<About />} />
+              <Route path="/contact" element={<Contact />} />
+              <Route path="/bonus-guide" element={<BonusGuide />} />
+              <Route path="/responsible-gaming" element={<ResponsibleGaming />} />
+              <Route path="/privacy" element={<Privacy />} />
+              <Route path="/terms" element={<Terms />} />
+              <Route path="/cookies" element={<Cookies />} />
+              <Route path="/butik" element={<Shop />} />
+              <Route path="/highlights" element={<Highlights />} />
+              <Route path="/community/highlights" element={<CommunityHighlights />} />
+              <Route path="/community/leaderboard" element={<Leaderboard />} />
+              <Route path="/community/rewards" element={<RewardsProgram />} />
+              <Route 
+                path="/community/slots" 
+                element={
+                  <Suspense fallback={<SlotPageLoading />}>
+                    <GameLibrary />
+                  </Suspense>
+                } 
+              />
+              <Route 
+                path="/community/slots/book-of-fedesvin" 
+                element={
+                  <Suspense fallback={<SlotPageLoading />}>
+                    <SlotMachine />
+                  </Suspense>
+                } 
+              />
+              <Route 
+                path="/community/slots/rise-of-fedesvin" 
+                element={
+                  <Suspense fallback={<SlotPageLoading />}>
+                    <RiseOfFedesvin />
+                  </Suspense>
+                } 
+              />
+              <Route path="/auth" element={<Auth />} />
+              <Route path="/auth/callback" element={<AuthCallback />} />
+              <Route path="/profil" element={<Profile />} />
+              <Route path="/u/:username" element={<PublicProfile />} />
+            </Route>
+            <Route path="/admin" element={<Admin />} />
+            
+            {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </Suspense>
       </BrowserRouter>
     </TooltipProvider>
   </QueryClientProvider>

@@ -1,4 +1,4 @@
-import { useQuery, useQueryClient } from "@tanstack/react-query";
+import { useQuery } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
 import { useEffect, useState } from "react";
 
@@ -21,7 +21,6 @@ export interface CurrentUserLeaderboard {
 }
 
 export function useSlotLeaderboard(period: "daily" | "weekly" | "alltime" = "alltime") {
-  const queryClient = useQueryClient();
   const [currentUserId, setCurrentUserId] = useState<string | null>(null);
 
   // Get current user ID
@@ -36,28 +35,6 @@ export function useSlotLeaderboard(period: "daily" | "weekly" | "alltime" = "all
 
     return () => subscription.unsubscribe();
   }, []);
-
-  // Subscribe to realtime changes on slot_game_results
-  useEffect(() => {
-    const channel = supabase
-      .channel('leaderboard-updates')
-      .on(
-        'postgres_changes',
-        {
-          event: 'INSERT',
-          schema: 'public',
-          table: 'slot_game_results',
-        },
-        () => {
-          queryClient.invalidateQueries({ queryKey: ["slot-leaderboard"] });
-        }
-      )
-      .subscribe();
-
-    return () => {
-      supabase.removeChannel(channel);
-    };
-  }, [queryClient]);
 
   return useQuery({
     queryKey: ["slot-leaderboard", period, currentUserId],
@@ -76,7 +53,8 @@ export function useSlotLeaderboard(period: "daily" | "weekly" | "alltime" = "all
           total_bonuses,
           daily_winnings,
           weekly_winnings
-        `);
+        `)
+        .limit(100);
 
       if (error) throw error;
 
@@ -89,7 +67,8 @@ export function useSlotLeaderboard(period: "daily" | "weekly" | "alltime" = "all
         const { data: profiles } = await supabase
           .from("profiles_leaderboard")
           .select("user_id, display_name, avatar_url")
-          .in("user_id", userIds);
+          .in("user_id", userIds)
+          .limit(100);
 
         profileMap = new Map(profiles?.map(p => [p.user_id, p]) || []);
       }
