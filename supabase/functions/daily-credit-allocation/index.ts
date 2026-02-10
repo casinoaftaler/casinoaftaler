@@ -48,48 +48,109 @@ Deno.serve(async (req) => {
       );
     }
 
-    // Build upsert rows for all users
-    const rows = profiles.map((p) => ({
-      user_id: p.user_id,
-      date: today,
-      spins_remaining: Math.min(
-        BASE_DAILY_SPINS + (p.bonus_spins_permanent || 0),
-        MAX_SPINS_CAP
-      ),
-    }));
-
-    // Upsert with ignoreDuplicates so we don't overwrite users who already
-    // have a record for today (e.g. admin gave extra credits earlier)
-    const { error: upsertError } = await supabase
+    // Get the most recent spin record for each user (before today)
+    // This gives us the carry-over balance
+    const userIds = profiles.map((p) => p.user_id);
+    const { data: latestSpins, error: latestError } = await supabase
       .from("slot_spins")
-      .upsert(rows, { onConflict: "user_id,date", ignoreDuplicates: true });
+      .select("user_id, spins_remaining, date")
+      .in("user_id", userIds)
+      .lt("date", today)
+      .order("date", { ascending: false });
 
-    if (upsertError) throw upsertError;
+    if (latestError) throw latestError;
 
-    // Log the allocation for each user
-    const logRows = rows.map((r) => ({
-      user_id: r.user_id,
-      amount: r.spins_remaining,
-      source: "daily_cron",
-      note: `Daglig tildeling: ${r.spins_remaining} credits`,
-    }));
-
-    const { error: logError } = await supabase
-      .from("credit_allocation_log")
-      .insert(logRows);
-
-    if (logError) {
-      // Don't fail the whole allocation just because logging failed
-      console.error("Failed to log credit allocations:", logError);
+    // Build a map of user_id -> most recent spins_remaining (before today)
+    const latestSpinMap = new Map<string, number>();
+    for (const spin of latestSpins || []) {
+      // Only keep the first (most recent) entry per user
+      if (!latestSpinMap.has(spin.user_id)) {
+        latestSpinMap.set(spin.user_id, spin.spins_remaining);
+      }
     }
 
-    console.log(`Daily credit allocation complete: ${rows.length} users, date: ${today}`);
+    // Also check if today's records already exist (to skip those users)
+    const { data: todaySpins, error: todayError } = await supabase
+      .from("slot_spins")
+      .select("user_id")
+      .in("user_id", userIds)
+      .eq("date", today);
+
+    if (todayError) throw todayError;
+
+    const usersWithTodayRecord = new Set((todaySpins || []).map((s) => s.user_id));
+
+    // Build upsert rows with top-up logic
+    const rows: Array<{ user_id: string; date: string; spins_remaining: number }> = [];
+    const logRows: Array<{ user_id: string; amount: number; source: string; note: string }> = [];
+
+    for (const p of profiles) {
+      // Skip users who already have a record for today
+      if (usersWithTodayRecord.has(p.user_id)) continue;
+
+      const cap = Math.min(BASE_DAILY_SPINS + (p.bonus_spins_permanent || 0), MAX_SPINS_CAP);
+      const previous = latestSpinMap.get(p.user_id);
+
+      let startValue: number;
+      let topUpAmount: number;
+
+      if (previous === undefined) {
+        // New user or no history - give full cap
+        startValue = cap;
+        topUpAmount = cap;
+      } else if (previous >= cap) {
+        // User has more than cap (admin/community bonus) - carry over
+        startValue = previous;
+        topUpAmount = 0;
+      } else {
+        // User is below cap - top up to cap
+        startValue = cap;
+        topUpAmount = cap - previous;
+      }
+
+      rows.push({
+        user_id: p.user_id,
+        date: today,
+        spins_remaining: startValue,
+      });
+
+      logRows.push({
+        user_id: p.user_id,
+        amount: topUpAmount,
+        source: "daily_cron",
+        note: topUpAmount > 0
+          ? `Daglig top-up: +${topUpAmount} credits (fra ${previous ?? 0} til ${startValue})`
+          : `Carry-over: ${startValue} credits (ingen top-up nødvendig)`,
+      });
+    }
+
+    if (rows.length > 0) {
+      // Insert new records (ignoreDuplicates for safety)
+      const { error: upsertError } = await supabase
+        .from("slot_spins")
+        .upsert(rows, { onConflict: "user_id,date", ignoreDuplicates: true });
+
+      if (upsertError) throw upsertError;
+
+      // Log the allocations
+      const { error: logError } = await supabase
+        .from("credit_allocation_log")
+        .insert(logRows);
+
+      if (logError) {
+        console.error("Failed to log credit allocations:", logError);
+      }
+    }
+
+    const skipped = usersWithTodayRecord.size;
+    console.log(`Daily credit allocation complete: ${rows.length} users processed, ${skipped} skipped (already had today's record), date: ${today}`);
 
     return new Response(
       JSON.stringify({
         success: true,
         date: today,
         usersProcessed: rows.length,
+        usersSkipped: skipped,
       }),
       { headers: { ...corsHeaders, "Content-Type": "application/json" } }
     );

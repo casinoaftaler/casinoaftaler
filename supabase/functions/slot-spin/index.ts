@@ -870,38 +870,76 @@ Deno.serve(async (req) => {
     const dailySpins = parseInt(settingsRes.data?.value || "100", 10);
     const maxSpins = Math.min(dailySpins + bonusSpinsPermanent, MAX_SPINS_CAP);
 
-    // Get or create today's spin record (shared across games)
-    // Use upsert with conflict handling to prevent race conditions
-    // when multiple requests try to create the same daily record simultaneously
-    const { error: upsertError } = await supabase
-      .from("slot_spins")
-      .upsert(
-        {
-          user_id: userId,
-          date: today,
-          spins_remaining: maxSpins,
-        },
-        {
-          onConflict: "user_id,date",
-          ignoreDuplicates: true, // Don't overwrite if record already exists
-        }
-      );
-
-    if (upsertError) {
-      console.error("Upsert error:", upsertError);
-      return new Response(
-        JSON.stringify({ error: "Failed to initialize spins" }),
-        { status: 500, headers: { ...corsHeaders, "Content-Type": "application/json" } }
-      );
-    }
-
-    // Now fetch the record (guaranteed to exist after upsert)
-    const { data: spinsData, error: fetchError } = await supabase
+    // Get or create today's spin record with carry-over logic
+    // First check if today's record exists
+    let { data: spinsData, error: fetchError } = await supabase
       .from("slot_spins")
       .select("*")
       .eq("user_id", userId)
       .eq("date", today)
-      .single();
+      .maybeSingle();
+
+    if (fetchError) {
+      console.error("Failed to fetch today's spins:", fetchError);
+      return new Response(
+        JSON.stringify({ error: "Failed to read spins data" }),
+        { status: 500, headers: { ...corsHeaders, "Content-Type": "application/json" } }
+      );
+    }
+
+    if (!spinsData) {
+      // No record for today - check previous day's balance for carry-over
+      const { data: previousRecord } = await supabase
+        .from("slot_spins")
+        .select("spins_remaining")
+        .eq("user_id", userId)
+        .lt("date", today)
+        .order("date", { ascending: false })
+        .limit(1)
+        .maybeSingle();
+
+      let startValue: number;
+      if (!previousRecord) {
+        startValue = maxSpins;
+      } else if (previousRecord.spins_remaining >= maxSpins) {
+        startValue = previousRecord.spins_remaining;
+      } else {
+        startValue = maxSpins;
+      }
+
+      const { error: upsertError } = await supabase
+        .from("slot_spins")
+        .upsert(
+          { user_id: userId, date: today, spins_remaining: startValue },
+          { onConflict: "user_id,date", ignoreDuplicates: true }
+        );
+
+      if (upsertError) {
+        console.error("Upsert error:", upsertError);
+        return new Response(
+          JSON.stringify({ error: "Failed to initialize spins" }),
+          { status: 500, headers: { ...corsHeaders, "Content-Type": "application/json" } }
+        );
+      }
+
+      // Fetch the created record
+      const { data: newSpins, error: newFetchError } = await supabase
+        .from("slot_spins")
+        .select("*")
+        .eq("user_id", userId)
+        .eq("date", today)
+        .single();
+
+      if (newFetchError || !newSpins) {
+        console.error("Failed to fetch spins after upsert:", newFetchError);
+        return new Response(
+          JSON.stringify({ error: "Failed to read spins data" }),
+          { status: 500, headers: { ...corsHeaders, "Content-Type": "application/json" } }
+        );
+      }
+
+      spinsData = newSpins;
+    }
 
     if (fetchError || !spinsData) {
       console.error("Failed to fetch spins after upsert:", fetchError);

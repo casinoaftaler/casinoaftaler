@@ -44,15 +44,48 @@ export function useSlotSpins() {
     queryFn: async (): Promise<SlotSpins | null> => {
       if (!user?.id) return null;
 
-      // Upsert today's record - ignoreDuplicates prevents overwriting existing data
-      const totalDailySpins = Math.min(settings.dailySpins + bonusSpinsPermanent, MAX_SPINS_CAP);
+      const cap = Math.min(settings.dailySpins + bonusSpinsPermanent, MAX_SPINS_CAP);
+
+      // Check if today's record already exists
+      const { data: existing } = await supabase
+        .from("slot_spins")
+        .select("*")
+        .eq("user_id", user.id)
+        .eq("date", today)
+        .maybeSingle();
+
+      if (existing) return existing;
+
+      // No record for today - check yesterday/latest previous record
+      const { data: previousRecord } = await supabase
+        .from("slot_spins")
+        .select("spins_remaining")
+        .eq("user_id", user.id)
+        .lt("date", today)
+        .order("date", { ascending: false })
+        .limit(1)
+        .maybeSingle();
+
+      let startValue: number;
+      if (!previousRecord) {
+        // New user or no history - full cap
+        startValue = cap;
+      } else if (previousRecord.spins_remaining >= cap) {
+        // Carry over surplus (admin/community bonus credits)
+        startValue = previousRecord.spins_remaining;
+      } else {
+        // Top up to cap
+        startValue = cap;
+      }
+
+      // Create today's record with ignoreDuplicates for race condition safety
       await supabase
         .from("slot_spins")
         .upsert(
           {
             user_id: user.id,
             date: today,
-            spins_remaining: totalDailySpins,
+            spins_remaining: startValue,
           },
           {
             onConflict: "user_id,date",
