@@ -1,111 +1,114 @@
 
 
-## Slot Request Feature
+## Fix: Rise of Fedesvin Bonus Round Crash
 
-Users can request specific slot machines for the live stream. If the admin hits a bonus on the requested slot, the user earns +20 credits.
+### Root Cause Analysis
 
-### Database
-
-**New table: `slot_requests`**
-
-| Column | Type | Details |
-|--------|------|---------|
-| id | uuid | PK, default gen_random_uuid() |
-| user_id | uuid | NOT NULL |
-| slot_name | text | NOT NULL -- preset or custom name |
-| provider | text | NOT NULL -- always required, even for custom slots |
-| is_custom | boolean | default false |
-| status | text | default 'pending' -- pending / played / bonus_hit / no_bonus / rejected |
-| admin_note | text | nullable |
-| credits_awarded | integer | default 0 |
-| created_at | timestamptz | default now() |
-| updated_at | timestamptz | default now() |
-
-**RLS Policies:**
-- Users can INSERT their own requests (auth.uid() = user_id)
-- Users can SELECT their own requests (auth.uid() = user_id)
-- Admins can SELECT, UPDATE, DELETE all requests (using has_role)
-
-**Constraint:** 1 pending request per user at a time (enforced in app logic).
+I found **3 bugs** causing the reported issue where reels turn off and an error appears after pressing "Start" on the bonus trigger:
 
 ---
 
-### Form Flow
+### Bug 1 (Critical): `winGroups[0]` crash when expansion produces no win groups
 
-The user always selects a **provider first** from the 6 preset providers + "Andet" (Other):
+**File:** `src/components/slots/SlotGame.tsx` (lines 803-806)
 
-1. **Known provider selected** (e.g. Pragmatic Play):
-   - Show a slot dropdown with presets for that provider + an "Andet" option
-   - If "Andet" slot is chosen -> free-text input for the slot name, saved with the selected provider
+When a bonus spin results in expanded reels (`expandedReels.length > 0`) but the `expandingWinGroups` array is empty (possible when multiplier values produce no qualifying wins), the code enters the `else` branch and tries to access `winGroups[0].wins` -- which is `undefined`, causing a `TypeError`.
 
-2. **"Andet" provider selected**:
-   - Show a free-text input for the provider name
-   - Show a free-text input for the slot name
-   - Both are saved as custom entries
+This crashes the `onReelStop` handler. The error bubbles up, and the catch block at line 441 sets `isSpinning(false)` (reels turn off) and shows an error toast.
 
-This way, even custom slots always have a provider attached.
+**Fix:** Add a guard before accessing `winGroups[0]`. If `winGroups` is empty but expansion occurred, skip the single-group win animation and just show the expanded grid visually.
 
 ---
 
-### Preset Slot List
+### Bug 2 (Secondary): `handleBonusEnd` INSERT blocked by security hardening
 
-- **Relax Gaming**: Money Train 4, Dream Drop Jackpot, Temple Tumble 2, Snake Arena
-- **Pragmatic Play**: Gates of Olympus, Sweet Bonanza, Sugar Rush, Big Bass Bonanza, Starlight Princess
-- **Play'n GO**: Book of Dead, Reactoonz 2, Rise of Olympus, Fire Joker
-- **Thunderkick**: Pink Elephants 2, Flame Busters, Esqueleto Explosivo 2
-- **Hacksaw Gaming**: Wanted Dead or a Wild, Chaos Crew, Stick 'Em, Hand of Anubis
-- **Quickspin**: Big Bad Wolf, Sakura Fortune 2, Sticky Bandits
+**File:** `src/components/slots/SlotGame.tsx` (line 465)
 
----
+After the recent security migration removed INSERT permissions on `slot_game_results` for users, the client-side call in `handleBonusEnd` fails silently. This means bonus completion results are never recorded to the leaderboard.
 
-### New Files
-
-1. **`src/hooks/useSlotRequests.ts`**
-   - `useMySlotRequests()` -- user's own requests
-   - `useAllSlotRequests()` -- admin: all requests with profile display_name
-   - `useCreateSlotRequest()` -- insert mutation
-   - `useUpdateSlotRequestStatus()` -- admin mutation (update status, award credits)
-
-2. **`src/components/SlotRequestForm.tsx`**
-   - Provider select (6 presets + "Andet")
-   - If "Andet" provider: text input for custom provider name
-   - Slot select (presets for chosen provider + "Andet")
-   - If "Andet" slot or "Andet" provider: text input for custom slot name
-   - Submit button (requires login)
-   - List of user's existing requests with status badges below the form
-
-3. **`src/components/SlotRequestsAdminSection.tsx`**
-   - Table of all requests (newest first)
-   - Columns: user display name, slot name, provider, status, date
-   - Action buttons: "Bonus Hit" (awards 20 credits), "Ingen Bonus", "Afvis"
-   - "Bonus Hit" flow: updates status, adds 20 to slot_spins, logs in credit_allocation_log
-   - Status badges with color coding
+**Fix:** Move the bonus result recording to the server. When the bonus ends and the client calls `endBonus()` which deletes the `slot_bonus_state` row, the server should handle recording the final bonus result. Alternatively, add a dedicated edge function call for bonus completion, or record it during the last bonus spin in the existing `slot-spin` function.
 
 ---
 
-### Changes to Existing Files
+### Bug 3 (Minor): Realtime filter missing `game_id`
 
-4. **`src/pages/RewardsProgram.tsx`**
-   - Add a third section "Slot Request Rewards" between Profile Completion and the Info section
-   - Icon: Gamepad2, heading: "Slot Request Rewards"
-   - Explanation text: request a slot for the stream, if we hit bonus you get +20 credits
-   - Embed the `<SlotRequestForm />` component directly
-   - Requires login to submit
+**File:** `src/hooks/useBonusGameSync.ts` (line 88)
 
-5. **`src/pages/Admin.tsx`**
-   - Change grid-cols-10 to grid-cols-11
-   - Add new tab trigger "Requests" with Gamepad2 icon (or Dices)
-   - Add TabsContent rendering `<SlotRequestsAdminSection />`
+The realtime subscription filters only by `user_id`, not `game_id`. If a user has active bonuses in both games, realtime events from one game can update the other game's bonus state, causing visual glitches.
+
+**Fix:** The Supabase realtime filter syntax doesn't support multiple column filters directly, so the `game_id` check (already at line 99) is the correct approach. However, the DELETE event handler at line 94 doesn't check `game_id` before resetting state to INITIAL. This means ending a bonus in one game resets the other game's local state.
 
 ---
 
-### Credit Awarding (Admin "Bonus Hit" action)
+### Implementation Steps
 
-When admin clicks "Bonus Hit" on a request:
-1. Update request: `status = 'bonus_hit'`, `credits_awarded = 20`
-2. Fetch/upsert the user's `slot_spins` row for today, add +20 to `spins_remaining`
-3. Insert into `credit_allocation_log` with source `"slot_request_bonus"`
-4. Show toast confirmation
+1. **Guard `winGroups[0]` access** in `SlotGame.tsx`:
+   - Before the `else` branch (line 803), check `winGroups.length > 0`
+   - If empty, still show the expansion animation visually but skip win line display
+   - Fall through to normal result handling
 
-This follows the exact same pattern already used in `SpinManagementSection.tsx`.
+2. **Move bonus result recording server-side**:
+   - In `slot-spin/index.ts`, detect when `free_spins_remaining` reaches 0 after decrement
+   - Record the bonus result using `serviceClient` (which bypasses RLS)
+   - Remove the client-side INSERT from `handleBonusEnd`
 
+3. **Fix realtime DELETE handler**:
+   - In `useBonusGameSync.ts`, check `payload.old.game_id` before resetting state on DELETE events
+
+### Technical Details
+
+**Bug 1 fix (SlotGame.tsx ~line 803):**
+```
+// Before:
+} else {
+  const singleGroupWinKeys = new Set(
+    winGroups[0].wins.map(...)
+  );
+
+// After:
+} else if (winGroups.length > 0) {
+  const singleGroupWinKeys = new Set(
+    winGroups[0].wins.map(...)
+  );
+  // ... rest of single-group logic
+} else {
+  // Expansion happened but no wins -- show expansion visually only
+  setExpandedReels(reelsExpanded);
+  setShowExpansionDarken(true);
+  await new Promise(resolve => setTimeout(resolve, 500));
+  setGrid(expandedGrid);
+  setNewlyExpandedReels(reelsExpanded);
+  slotSounds.playSymbolExpand();
+  await new Promise(resolve => setTimeout(resolve, 600));
+  setNewlyExpandedReels([]);
+  setShowExpansionDarken(false);
+  pendingExpandedReelsRef.current = [];
+  pendingExpandingWinGroupsRef.current = [];
+}
+```
+
+**Bug 2 fix (slot-spin/index.ts ~line 793):**
+```
+// After updating bonus state, check if bonus just ended
+if (newFreeSpins <= 0 && newBonusWinnings > 0) {
+  // Record bonus result server-side
+  await serviceClient.from("slot_game_results").insert({
+    user_id: userId,
+    bet_amount: bet,
+    win_amount: 0,
+    is_bonus_triggered: false,
+    bonus_win_amount: newBonusWinnings,
+    game_id: gameId,
+  });
+}
+```
+
+**Bug 3 fix (useBonusGameSync.ts ~line 94):**
+```
+if (payload.eventType === "DELETE") {
+  const oldData = payload.old as any;
+  if (!oldData?.game_id || oldData.game_id === gameId) {
+    setBonusState(INITIAL_STATE);
+  }
+}
+```
