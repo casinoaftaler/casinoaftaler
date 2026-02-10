@@ -1,50 +1,49 @@
 
 
-## Fix: Leaderboard Sorting and Global Statistics
+## Merge Highlights and Community Highlights into One Page
 
-### Current Issues
+### Overview
 
-1. **No server-side sorting**: The query fetches 100 rows from `slot_leaderboard` without an `ORDER BY` clause. The database returns rows in arbitrary order, meaning the 100 rows fetched may NOT be the actual top 100. Client-side sorting happens after, but it's sorting whatever random 100 rows came back.
+Currently there are two separate pages:
+- **Highlights** (`/highlights`) -- Admin-curated video highlights with category/platform filters and search
+- **Community Highlights** (`/community/highlights`) -- User-submitted clips with submission form, likes, and comments
 
-2. **Global statistics**: The `slot_leaderboard` view already aggregates across ALL games (no `game_id` filter), so this part is already correct. No database changes needed.
+These will be merged into a single page at `/highlights` using tabs to switch between the two sections.
 
-### Fix
+### Changes
 
-**File: `src/hooks/useSlotLeaderboard.ts`**
+**File 1: `src/pages/Highlights.tsx`**
+- Add a tabbed interface (using Radix Tabs) at the top of the content area with two tabs: "Highlights" (admin-curated) and "Community Clips" (user-submitted)
+- Import and embed the community clips content (clip grid, submission button, detail dialog) directly into the second tab
+- Keep the existing hero section but update the description to cover both sections
+- The "Highlights" tab shows the current filter/search/grid for admin highlights
+- The "Community Clips" tab shows the community clip grid with the submit button and detail dialog
 
-Add `.order("total_winnings", { ascending: false })` to the main query (line 45-57) so the database returns the actual top 100 users by total points. The `total_winnings` column is the right sort key for the initial fetch since it represents the all-time ranking -- the most important ordering.
+**File 2: `src/App.tsx`**
+- Remove the `/community/highlights` route (line 59)
+- Remove the `CommunityHighlights` lazy import (line 22)
+- Keep `/highlights` route as the single merged page
 
-For the "daily" and "weekly" period views, also add period-specific ordering so the correct top 100 for each period is fetched. This means the `sortKey` logic needs to move before the query, and the query should use `.order(sortKey, { ascending: false })`.
+**File 3: `src/components/Header.tsx`**
+- Remove the "Community Highlights" link from the Community dropdown (desktop, lines 154-159)
+- Remove the "Community Highlights" link from the mobile menu
+- The "Highlights" link in the Community dropdown already points to `/highlights`
 
-Changes to lines 45-57:
+**File 4: `src/pages/CommunityHighlights.tsx`**
+- This file can be deleted since its content is merged into `Highlights.tsx`
 
-```typescript
-// Determine sort key before query
-const sortKey = period === "daily" ? "daily_winnings" 
-              : period === "weekly" ? "weekly_winnings" 
-              : "total_winnings";
+### Technical Details
 
-const { data, error } = await supabase
-  .from("slot_leaderboard")
-  .select(`
-    user_id,
-    total_winnings,
-    biggest_win,
-    biggest_multiplier,
-    total_spins,
-    total_bonuses,
-    daily_winnings,
-    weekly_winnings
-  `)
-  .order(sortKey, { ascending: false })
-  .limit(100);
+The merged page will use `@radix-ui/react-tabs` (already installed via shadcn Tabs component) to separate the two content types:
+
+```
+[Hero Section - shared]
+
+[Tab: Highlights | Tab: Community Clips]
+
+Tab 1: Search + Filters + Admin Highlight Cards
+Tab 2: Submit Button + Community Clip Cards + Detail Dialog
 ```
 
-And remove the duplicate `sortKey` declaration from lines 93-95 since it's now declared earlier.
-
-This ensures:
-- The database returns the actual top 100 users sorted by the relevant period's points
-- The user with the most points appears first
-- Global (cross-game) statistics are used (already the case)
-- The current user fallback query still works correctly for users outside top 100
+Any links elsewhere in the codebase that point to `/community/highlights` will need to redirect or be updated. The Rewards Program page references community highlights -- those links will be updated to point to `/highlights` with the community tab pre-selected via a URL parameter or hash.
 
