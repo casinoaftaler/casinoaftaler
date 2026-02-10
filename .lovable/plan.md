@@ -1,31 +1,50 @@
 
 
-## Fix: Mobile Side Panels Position (Closer to Game)
+## Fix: Leaderboard Sorting and Global Statistics
 
-### Problem
+### Current Issues
 
-On mobile, the game container div uses `flex-1` which makes it expand to fill the entire remaining viewport height. Even though the slot game is scaled down and visually small, the container still occupies the full flex space. The mobile side panels (leaderboard, promo slider) appear after this oversized container, resulting in a large empty gap before the panels become visible.
+1. **No server-side sorting**: The query fetches 100 rows from `slot_leaderboard` without an `ORDER BY` clause. The database returns rows in arbitrary order, meaning the 100 rows fetched may NOT be the actual top 100. Client-side sorting happens after, but it's sorting whatever random 100 rows came back.
 
-### Root Cause
-
-Both `SlotMachine.tsx` (line 190) and `RiseOfFedesvin.tsx` (line 195) have:
-```
-<div className="flex-1 flex items-start justify-center overflow-hidden">
-```
-
-The `flex-1` class makes this container grow to fill all available space in the flex column, pushing the mobile panels far below.
+2. **Global statistics**: The `slot_leaderboard` view already aggregates across ALL games (no `game_id` filter), so this part is already correct. No database changes needed.
 
 ### Fix
 
-Remove `flex-1` from the game container on screens below `xl` breakpoint so the container only takes up the space the scaled game actually needs. On `xl` and above, keep `flex-1` so the desktop layout remains unchanged.
+**File: `src/hooks/useSlotLeaderboard.ts`**
 
-**File 1: `src/pages/SlotMachine.tsx`** (line 190)
-- Change `flex-1 flex items-start justify-center overflow-hidden` to `xl:flex-1 flex items-start justify-center overflow-hidden`
+Add `.order("total_winnings", { ascending: false })` to the main query (line 45-57) so the database returns the actual top 100 users by total points. The `total_winnings` column is the right sort key for the initial fetch since it represents the all-time ranking -- the most important ordering.
 
-**File 2: `src/pages/RiseOfFedesvin.tsx`** (line 195)
-- Change `flex-1 flex items-start justify-center overflow-hidden` to `xl:flex-1 flex items-start justify-center overflow-hidden`
+For the "daily" and "weekly" period views, also add period-specific ordering so the correct top 100 for each period is fetched. This means the `sortKey` logic needs to move before the query, and the query should use `.order(sortKey, { ascending: false })`.
 
-This single-class change ensures:
-- Mobile/tablet: container shrinks to fit the scaled game, panels sit right below
-- Desktop (xl+): container still fills viewport height as before
+Changes to lines 45-57:
+
+```typescript
+// Determine sort key before query
+const sortKey = period === "daily" ? "daily_winnings" 
+              : period === "weekly" ? "weekly_winnings" 
+              : "total_winnings";
+
+const { data, error } = await supabase
+  .from("slot_leaderboard")
+  .select(`
+    user_id,
+    total_winnings,
+    biggest_win,
+    biggest_multiplier,
+    total_spins,
+    total_bonuses,
+    daily_winnings,
+    weekly_winnings
+  `)
+  .order(sortKey, { ascending: false })
+  .limit(100);
+```
+
+And remove the duplicate `sortKey` declaration from lines 93-95 since it's now declared earlier.
+
+This ensures:
+- The database returns the actual top 100 users sorted by the relevant period's points
+- The user with the most points appears first
+- Global (cross-game) statistics are used (already the case)
+- The current user fallback query still works correctly for users outside top 100
 
