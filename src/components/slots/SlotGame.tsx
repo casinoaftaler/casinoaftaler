@@ -603,6 +603,11 @@ export function SlotGame({ gameId = "book-of-fedesvin" }: SlotGameProps) {
       return EMPTY_POSITIONS;
     }
     
+    // If this reel is expanded, all 3 rows show the winning effect
+    if (expandedReels.length > 0 && expandedReels.includes(reelIndex)) {
+      return [0, 1, 2];
+    }
+    
     const positions: number[] = [];
     for (const win of lastResult.wins) {
       const linePattern = PAY_LINES[win.lineIndex];
