@@ -6,6 +6,7 @@ import { Input } from "@/components/ui/input";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Coins, Loader2, Search, Plus, Minus, Users } from "lucide-react";
 import { toast } from "sonner";
+import { getTodayDanish } from "@/lib/danishDate";
 
 interface UserWithSpins {
   user_id: string;
@@ -22,7 +23,7 @@ export function SpinManagementSection() {
   const [spinAmounts, setSpinAmounts] = useState<Record<string, number>>({});
   const [bulkSpinAmount, setBulkSpinAmount] = useState(10);
   const queryClient = useQueryClient();
-  const today = new Date().toISOString().split("T")[0];
+  const today = getTodayDanish();
 
   // Fetch all users with their current spins
   const { data: users, isLoading } = useQuery({

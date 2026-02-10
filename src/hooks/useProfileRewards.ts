@@ -3,6 +3,7 @@ import { supabase } from "@/integrations/supabase/client";
 import { useAuth } from "./useAuth";
 import { toast } from "@/hooks/use-toast";
 import { ProfileData } from "./useProfile";
+import { getTodayDanish } from "@/lib/danishDate";
 
 export const SPINS_PER_SECTION = 5;
 
@@ -142,7 +143,7 @@ export function useProfileRewards() {
       if (error) throw error;
 
       // Also add the spins to today's slot_spins record so they're usable immediately
-      const today = new Date().toISOString().split("T")[0];
+      const today = getTodayDanish();
       const { data: todaySpins } = await supabase
         .from("slot_spins")
         .select("id, spins_remaining")

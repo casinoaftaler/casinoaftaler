@@ -2,6 +2,7 @@ import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
 import { useAuth } from "@/hooks/useAuth";
 import { useSlotSettings } from "@/hooks/useSlotSettings";
+import { getTodayDanish } from "@/lib/danishDate";
 
 interface SlotSpins {
   id: string;
@@ -16,7 +17,7 @@ export function useSlotSpins() {
   const { user } = useAuth();
   const { settings } = useSlotSettings();
   const queryClient = useQueryClient();
-  const today = new Date().toISOString().split("T")[0];
+  const today = getTodayDanish();
 
   // Fetch permanent bonus spins from profile
   const { data: bonusSpinsData } = useQuery({
