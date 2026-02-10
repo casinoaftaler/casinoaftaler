@@ -154,12 +154,13 @@ Deno.serve(async (req) => {
         });
     }
 
-    // Create a notification for the user
+    // Create a notification for the user (scoped to this user only)
     const { data: notif } = await adminClient
       .from("notifications")
       .insert({
         title: "Kode indløst! 🎉",
         message: `Du har indløst koden "${code}" og modtaget ${codeData.credits_amount} credits.`,
+        target_user_id: user.id,
       })
       .select("id")
       .single();

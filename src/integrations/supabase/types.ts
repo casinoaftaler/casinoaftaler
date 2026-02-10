@@ -481,18 +481,21 @@ export type Database = {
           created_at: string
           id: string
           message: string
+          target_user_id: string | null
           title: string | null
         }
         Insert: {
           created_at?: string
           id?: string
           message: string
+          target_user_id?: string | null
           title?: string | null
         }
         Update: {
           created_at?: string
           id?: string
           message?: string
+          target_user_id?: string | null
           title?: string | null
         }
         Relationships: []

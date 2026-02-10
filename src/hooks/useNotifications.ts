@@ -27,10 +27,11 @@ export function useNotifications() {
     queryFn: async (): Promise<UserNotificationWithDetails[]> => {
       if (!user?.id) return [];
 
-      // First get all notifications
+      // Fetch notifications: global (no target) OR targeted to this user
       const { data: allNotifications, error: notifError } = await supabase
         .from("notifications")
         .select("*")
+        .or(`target_user_id.is.null,target_user_id.eq.${user.id}`)
         .order("created_at", { ascending: false });
 
       if (notifError) throw notifError;
