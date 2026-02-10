@@ -998,14 +998,21 @@ Deno.serve(async (req) => {
         bonusInsert.expanding_symbol_names = [expandingSymbol.name];
       }
 
-      // Fire-and-forget: delete existing bonus state then insert new one
-      supabase
+      // Awaited: bonus state MUST exist before we respond, otherwise the
+      // first bonus spin will hit "No active bonus" due to a race condition.
+      await supabase
         .from("slot_bonus_state")
         .delete()
         .eq("user_id", userId)
-        .eq("game_id", gameId)
-        .then(() => supabase.from("slot_bonus_state").insert(bonusInsert))
-        .catch((err: unknown) => console.error("[slot-spin] Fire-and-forget bonus state write failed:", err));
+        .eq("game_id", gameId);
+
+      const { error: bonusInsertError } = await supabase
+        .from("slot_bonus_state")
+        .insert(bonusInsert);
+
+      if (bonusInsertError) {
+        console.error("[slot-spin] Bonus state insert failed:", bonusInsertError);
+      }
 
       bonusState = {
         isActive: true,
