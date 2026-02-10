@@ -19,7 +19,7 @@ export function useSiteSettings() {
 
       return settings;
     },
-    staleTime: 0, // Always refetch to ensure fresh data
+    staleTime: 5 * 60 * 1000, // 5 minutes cache
     refetchOnWindowFocus: true,
   });
 }
