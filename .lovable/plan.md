@@ -1,21 +1,19 @@
 
 
-# Flyt spillemaskinen op til toppen af skaermen
+## Fix: Slot Machine Stuck at Bottom on Mobile
 
-## Problem
-Spillemaskinen er vertikalt centreret (`items-center`) i sin container, hvilket skubber den ned mod bunden paa mobil, hvor viewporten er hoejere end den skalerede spillemaskine.
+### Problem
+On mobile devices, both slot machines ("Book of Fedesvin" and "Rise of Fedesvin") appear pushed to the bottom of the screen with a large empty gap above them.
 
-## Loesning
-Skift `items-center` til `items-start` paa den skalerede game-container i begge page-filer, saa spillet altid starter fra toppen. Paa desktop hvor spillet fylder det meste af viewporten, vil forskellen vaere minimal.
+### Root Cause
+The CSS for `.slot-viewport-container` in `src/index.css` has `transform-origin: center center`. When the game scales down on mobile (e.g., to 0.3x), the scaling shrinks the content toward its center point, leaving unused space above and below. Combined with the flex container, this results in the game appearing at the bottom.
 
-## AEndringer
+### Fix
+Change the `transform-origin` from `center center` to `top center` in `src/index.css`. This ensures the game scales downward from the top, keeping it anchored at the top of the viewport on mobile.
 
-### `src/pages/SlotMachine.tsx` (linje 190)
-- AEndr `flex-1 flex items-center justify-center` til `flex-1 flex items-start justify-center`
+### Technical Details
 
-### `src/pages/RiseOfFedesvin.tsx` (tilsvarende linje)
-- Samme aendring: `items-center` til `items-start`
+**File: `src/index.css`**
+- Change `.slot-viewport-container` transform-origin from `center center` to `top center`
 
-### Ingen andre filer paavirkedes
-- Skalering, spillogik, side-paneler og overlays forbliver uaendrede
-
+This single CSS change fixes the positioning for both slot machine pages since they share the same class.
