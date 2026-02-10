@@ -1,49 +1,81 @@
 
 
-## Merge Highlights and Community Highlights into One Page
+## Show Credits in Header + Redeem Code System
 
-### Overview
+### Part 1: Credits Display in Header
 
-Currently there are two separate pages:
-- **Highlights** (`/highlights`) -- Admin-curated video highlights with category/platform filters and search
-- **Community Highlights** (`/community/highlights`) -- User-submitted clips with submission form, likes, and comments
+**What**: When logged in, show the user's current credit balance next to their profile avatar in the top nav.
 
-These will be merged into a single page at `/highlights` using tabs to switch between the two sections.
+**How**: 
+- In `src/components/Header.tsx`, fetch the user's `spins_remaining` from the `slot_spins` table for today's date
+- Display a small coin icon + number next to the avatar button (e.g., "142" with a coin icon)
+- Use Danish number formatting (e.g., 1.234)
+- Only show when user is logged in
 
-### Changes
+### Part 2: Redeem Code System
 
-**File 1: `src/pages/Highlights.tsx`**
-- Add a tabbed interface (using Radix Tabs) at the top of the content area with two tabs: "Highlights" (admin-curated) and "Community Clips" (user-submitted)
-- Import and embed the community clips content (clip grid, submission button, detail dialog) directly into the second tab
-- Keep the existing hero section but update the description to cover both sections
-- The "Highlights" tab shows the current filter/search/grid for admin highlights
-- The "Community Clips" tab shows the community clip grid with the submit button and detail dialog
+#### Database: New `redeem_codes` table
 
-**File 2: `src/App.tsx`**
-- Remove the `/community/highlights` route (line 59)
-- Remove the `CommunityHighlights` lazy import (line 22)
-- Keep `/highlights` route as the single merged page
+| Column | Type | Description |
+|--------|------|-------------|
+| id | uuid | Primary key |
+| code | text (unique) | The code string (e.g., "BONUS50") |
+| credits_amount | integer | How many credits the code gives |
+| usage_type | text | "single_user" (one user only) or "one_per_user" (everyone can use once) |
+| max_uses | integer (nullable) | Optional cap on total redemptions |
+| times_used | integer | Counter of total redemptions |
+| expires_at | timestamptz (nullable) | Optional expiry time |
+| is_active | boolean | Admin can deactivate |
+| created_by | uuid | Admin who created it |
+| created_at | timestamptz | Creation timestamp |
 
-**File 3: `src/components/Header.tsx`**
-- Remove the "Community Highlights" link from the Community dropdown (desktop, lines 154-159)
-- Remove the "Community Highlights" link from the mobile menu
-- The "Highlights" link in the Community dropdown already points to `/highlights`
+#### Database: New `redeem_code_uses` table
 
-**File 4: `src/pages/CommunityHighlights.tsx`**
-- This file can be deleted since its content is merged into `Highlights.tsx`
+| Column | Type | Description |
+|--------|------|-------------|
+| id | uuid | Primary key |
+| code_id | uuid | FK to redeem_codes |
+| user_id | uuid | Who redeemed |
+| credits_awarded | integer | How many credits were given |
+| redeemed_at | timestamptz | When redeemed |
+
+Unique constraint on (code_id, user_id) to prevent double-use per user.
+
+#### RLS Policies
+- `redeem_codes`: Anyone authenticated can SELECT (to validate codes). Only admins can INSERT/UPDATE/DELETE.
+- `redeem_code_uses`: Users can SELECT their own uses. INSERT handled via edge function with service role.
+
+#### Edge Function: `redeem-code`
+- Accepts `{ code: string }` + auth token
+- Validates: code exists, is active, not expired, user hasn't already used it, usage limits not exceeded
+- Atomically: inserts into `redeem_code_uses`, increments `times_used`, adds credits to user's `slot_spins` for today
+- Returns success/error message
+
+#### User Interface: "Indlos Kode" in Profile Dropdown
+- Add a new menu item "Indlos Kode" (with a `Ticket` icon) in the profile dropdown menu in the header (between "Profil" and the theme toggle)
+- Clicking it opens a dialog with a text input for the code and a "Indlos" button
+- Shows success/error feedback via toast
+
+#### Admin Interface: "Koder" tab in Admin Panel
+- New tab in the admin dashboard (11th tab)
+- List all existing codes with status (active, expired, usage count)
+- Form to create new codes: code string, credits amount, usage type (single user / everyone once), optional expiry date/time
+- Toggle to activate/deactivate codes
+- Delete codes
 
 ### Technical Details
 
-The merged page will use `@radix-ui/react-tabs` (already installed via shadcn Tabs component) to separate the two content types:
+**Files to create:**
+- `src/components/RedeemCodeDialog.tsx` -- Dialog with code input
+- `src/components/RedeemCodesAdminSection.tsx` -- Admin CRUD for codes
+- `supabase/functions/redeem-code/index.ts` -- Server-side redemption logic
 
-```
-[Hero Section - shared]
+**Files to modify:**
+- `src/components/Header.tsx` -- Add credits display + "Indlos Kode" menu item + dialog
+- `src/pages/Admin.tsx` -- Add "Koder" tab
+- `supabase/config.toml` -- Add redeem-code function config
 
-[Tab: Highlights | Tab: Community Clips]
-
-Tab 1: Search + Filters + Admin Highlight Cards
-Tab 2: Submit Button + Community Clip Cards + Detail Dialog
-```
-
-Any links elsewhere in the codebase that point to `/community/highlights` will need to redirect or be updated. The Rewards Program page references community highlights -- those links will be updated to point to `/highlights` with the community tab pre-selected via a URL parameter or hash.
+**Database migration:**
+- Create `redeem_codes` and `redeem_code_uses` tables with RLS policies
+- Enable realtime on `slot_spins` (optional, for live credit updates)
 
