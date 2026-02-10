@@ -787,7 +787,10 @@ function SettingsTab({ gameId }: { gameId?: string }) {
             <Switch
               id="page-locked"
               checked={formData.pageLocked}
-              onCheckedChange={(checked) => setFormData({ ...formData, pageLocked: checked })}
+              onCheckedChange={(checked) => {
+                setFormData({ ...formData, pageLocked: checked });
+                updateSettings.mutate({ pageLocked: checked });
+              }}
             />
           </div>
 
@@ -825,7 +828,10 @@ function SettingsTab({ gameId }: { gameId?: string }) {
             <Switch
               id="rise-locked"
               checked={formData.riseLocked}
-              onCheckedChange={(checked) => setFormData({ ...formData, riseLocked: checked })}
+              onCheckedChange={(checked) => {
+                setFormData({ ...formData, riseLocked: checked });
+                updateSettings.mutate({ riseLocked: checked });
+              }}
             />
           </div>
 
