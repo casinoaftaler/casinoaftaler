@@ -1,59 +1,83 @@
 
 
-## Fix: "Der opstod en fejl" When Starting Bonus Spins
+## Fix: Multi-Expanding Symbol Logic in Rise of Fedesvin
 
-### Problem
-After triggering a bonus (3+ scatters), pressing SPIN gives the error "Der opstod en fejl. Prov igen." The bonus round never starts.
+### Problems Identified
 
-### Root Cause
-There is a **race condition** in the server-side edge function (`slot-spin/index.ts`). When a normal spin triggers a bonus, the bonus state is written to the database using a **fire-and-forget** pattern (lines 1001-1008):
+There are **two server-side bugs** and **one client-side issue** causing the broken behavior when multiple expanding symbols land on the same spin.
 
-```text
-Normal spin triggers bonus
-  --> Server responds to client immediately with bonusState
-  --> Server writes bonus to DB in background (fire-and-forget)
-  --> Client shows scatter celebration + bonus overlay
-  --> User closes overlay, client sets bonusState.isActive = true
-  --> Client sends first bonus spin (isBonusSpin=true)
-  --> Server queries DB for bonus state... IT DOESN'T EXIST YET
-  --> Server returns "No active bonus" error
-```
+---
 
-The delete + insert chain is not awaited, so the server responds before the database write completes. When the client sends the first bonus spin, the server looks up the bonus state in the database and finds nothing -- returning an error.
+### Bug 1: Shared Reel Conflict Resolution Destroys Wins (Server)
 
-### Fix
+**File:** `supabase/functions/slot-spin/index.ts` -- `applyMultiExpandingSymbols()`
 
-**File: `supabase/functions/slot-spin/index.ts`** (lines ~1001-1008)
+When two expanding symbols share a reel (e.g., J on reels 1,3,5 and Phoenix on reels 1,3), the function picks a single "winner" per reel based on highest `multiplier_5`. The losing symbol loses that reel entirely, potentially dropping below its minimum reel count and producing no win at all.
 
-Change the bonus state write from fire-and-forget to **awaited**. The delete + insert must complete before the server responds, so the bonus state is guaranteed to exist when the first bonus spin arrives.
+**Example:** J (common, needs 3 reels) is on reels 1,3,5. Phoenix (premium, needs 2 reels) is on reels 1,3. If Phoenix has a higher `multiplier_5`, it takes reels 1 and 3, leaving J with only reel 5 -- no win. If J wins, Phoenix gets 0 reels -- no win either.
 
-```typescript
-// BEFORE (fire-and-forget -- causes race condition):
-supabase
-  .from("slot_bonus_state")
-  .delete()
-  .eq("user_id", userId)
-  .eq("game_id", gameId)
-  .then(() => supabase.from("slot_bonus_state").insert(bonusInsert))
-  .catch(...);
+**Fix:** Each expanding symbol should be evaluated independently against its own reels. Instead of a single `expandedGrid` with conflict resolution, the server should:
 
-// AFTER (awaited -- guarantees bonus state exists):
-await supabase
-  .from("slot_bonus_state")
-  .delete()
-  .eq("user_id", userId)
-  .eq("game_id", gameId);
+1. Calculate each symbol's reels independently (no conflict resolution)
+2. Calculate wins for each symbol group independently on its own partially-expanded grid
+3. Return all win groups to the client for sequential animation
 
-await supabase
-  .from("slot_bonus_state")
-  .insert(bonusInsert);
-```
+The `expandedGrid` sent to the client should remain the merged/conflict-resolved version for final display, but win calculation must happen per-group on per-group grids.
 
-This adds a small amount of latency to the normal spin response (~20-40ms for two DB calls), but it eliminates the race condition entirely. The performance impact is minimal since bonus triggers are infrequent events.
+---
+
+### Bug 2: `processedLines` Prevents Second Group From Winning (Server)
+
+**File:** `supabase/functions/slot-spin/index.ts` -- `calculateMultiExpandingBonusWins()`
+
+The function uses a `processedLines` Set. When the first symbol group claims all 10 pay lines (which expanding wins always do -- they pay on ALL lines), the second group gets zero wins because every line is already in `processedLines`.
+
+**Fix:** Remove the `processedLines` guard for expanding symbol wins. Each expanding symbol group should independently calculate its wins on all 10 lines. The groups don't compete for lines -- they each represent a separate expansion sequence with its own payout.
+
+---
+
+### Bug 3: Client End-of-Spin Total Win Display After Multi-Group (Client)
+
+**File:** `src/components/slots/SlotGame.tsx` (lines 853-876)
+
+After the multi-group loop finishes (with `skipEndCelebrationRef.current = true`), the code at line 855 sets `setWinAmount(result.totalWin)` which shows the server's total. However, since Bug 1 and 2 cause incorrect server totals, this displays wrong numbers. Additionally, after multi-group celebration, the end-of-spin code still tries to play win sounds and show celebration again based on `result.totalWin`, which can produce a "weird calculation" display.
+
+**Fix:** After fixing Bugs 1 and 2, the server total will be correct. The client code already handles multi-group celebration sequentially and skips the end celebration, so this should work correctly once the server data is fixed.
+
+---
+
+### Implementation Plan
+
+#### Server Changes (`supabase/functions/slot-spin/index.ts`)
+
+1. **Refactor `applyMultiExpandingSymbols`** to still produce a merged expandedGrid (for display), but also return each symbol's independent reel list without conflict resolution.
+
+2. **Refactor `calculateMultiExpandingBonusWins`**:
+   - Remove `processedLines` tracking
+   - Calculate wins per expanding symbol group independently, each on its own partial grid
+   - Each group pays on all 10 lines independently based on its own reel count
+
+3. **Update win group building** (lines 730-757): Use the independent per-symbol reel lists (not the conflict-resolved ones) when building `expandingWinGroups`.
+
+#### Client Changes (`src/components/slots/SlotGame.tsx`)
+
+4. **Update multi-group animation loop** (lines 700-776): Ensure each group's `partialGrid` is built from the original grid using that group's independent reels, not from the conflict-resolved data. The existing code already does this correctly at line 714-719, so no change needed here once the server sends correct per-group reels.
 
 ### Technical Details
 
-- Only the bonus state write changes from fire-and-forget to awaited
-- The game result insert (line 1026) can remain fire-and-forget since it's analytics-only
-- No client-side changes needed -- the client flow is correct, it's the server timing that's broken
+The key insight is that in Rise of Fedesvin, each expanding symbol group should be treated as an independent expansion event:
+
+```text
+Spin lands: J on reels 1,3,5 -- Phoenix on reels 1,3
+
+Group 1 (J): Expand reels 1,3,5 with J -> 3-of-a-kind on all 10 lines
+Group 2 (Phoenix): Expand reels 1,3 with Phoenix -> 2-of-a-kind on all 10 lines (if premium)
+
+Sequential animation:
+  1. Darken -> Expand J on reels 1,3,5 -> Show J paylines -> Celebrate J win -> Unexpand
+  2. Darken -> Expand Phoenix on reels 1,3 -> Show Phoenix paylines -> Celebrate Phoenix win -> Unexpand
+  3. Continue to next spin
+```
+
+The merged `expandedGrid` (with conflict resolution for shared reels) is only used as a visual fallback if the client doesn't support sequential animation. Win calculation must always use independent per-symbol grids.
 
