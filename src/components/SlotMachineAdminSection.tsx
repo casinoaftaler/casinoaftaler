@@ -8,6 +8,7 @@ import { SlotSymbolImageUpload } from "@/components/SlotSymbolImageUpload";
 import { SlotTitleImageUpload } from "@/components/SlotTitleImageUpload";
 import { SlotBackgroundImageUpload } from "@/components/SlotBackgroundImageUpload";
 import { SpinManagementSection } from "@/components/SpinManagementSection";
+import { CreditAllocationHistory } from "@/components/CreditAllocationHistory";
 import { SlotFrameAdminControls } from "@/components/slots/SlotFrameAdminControls";
 import { SlotStatsResetSection } from "@/components/slots/SlotStatsResetSection";
 import { SlotSoundAdminSection } from "@/components/slots/SlotSoundAdminSection";
@@ -1482,7 +1483,10 @@ export function SlotMachineAdminSection() {
         </TabsContent>
 
         <TabsContent value="spins">
-          <SpinManagementSection />
+          <div className="space-y-6">
+            <SpinManagementSection />
+            <CreditAllocationHistory />
+          </div>
         </TabsContent>
 
         <TabsContent value="points">

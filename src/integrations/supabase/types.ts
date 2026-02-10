@@ -336,6 +336,36 @@ export type Database = {
         }
         Relationships: []
       }
+      credit_allocation_log: {
+        Row: {
+          admin_user_id: string | null
+          amount: number
+          created_at: string
+          id: string
+          note: string | null
+          source: string
+          user_id: string
+        }
+        Insert: {
+          admin_user_id?: string | null
+          amount: number
+          created_at?: string
+          id?: string
+          note?: string | null
+          source: string
+          user_id: string
+        }
+        Update: {
+          admin_user_id?: string | null
+          amount?: number
+          created_at?: string
+          id?: string
+          note?: string | null
+          source?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
       highlight_categories: {
         Row: {
           created_at: string

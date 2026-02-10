@@ -66,6 +66,23 @@ Deno.serve(async (req) => {
 
     if (upsertError) throw upsertError;
 
+    // Log the allocation for each user
+    const logRows = rows.map((r) => ({
+      user_id: r.user_id,
+      amount: r.spins_remaining,
+      source: "daily_cron",
+      note: `Daglig tildeling: ${r.spins_remaining} credits`,
+    }));
+
+    const { error: logError } = await supabase
+      .from("credit_allocation_log")
+      .insert(logRows);
+
+    if (logError) {
+      // Don't fail the whole allocation just because logging failed
+      console.error("Failed to log credit allocations:", logError);
+    }
+
     console.log(`Daily credit allocation complete: ${rows.length} users, date: ${today}`);
 
     return new Response(

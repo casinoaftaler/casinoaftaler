@@ -158,6 +158,14 @@ export function useProfileRewards() {
           .eq("id", todaySpins.id);
       }
 
+      // Log the credit allocation
+      await supabase.from("credit_allocation_log").insert({
+        user_id: user.id,
+        amount: SPINS_PER_SECTION,
+        source: "profile_reward",
+        note: `Profil sektion: ${section}`,
+      });
+
       return { data, section, spinsEarned: SPINS_PER_SECTION };
     },
     onSuccess: ({ section, spinsEarned }) => {

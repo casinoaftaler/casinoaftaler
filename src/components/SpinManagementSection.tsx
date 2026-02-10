@@ -77,29 +77,34 @@ export function SpinManagementSection() {
       const newSpins = Math.max(0, currentSpins + amount);
 
       if (recordId) {
-        // Update existing record
         const { error } = await supabase
           .from("slot_spins")
           .update({ spins_remaining: newSpins })
           .eq("id", recordId);
-
         if (error) throw error;
       } else {
-        // Create new record for today
         const { error } = await supabase.from("slot_spins").insert({
           user_id: userId,
           date: today,
           spins_remaining: newSpins,
         });
-
         if (error) throw error;
       }
+
+      // Log the admin credit change
+      await supabase.from("credit_allocation_log").insert({
+        user_id: userId,
+        amount,
+        source: "admin_manual",
+        note: `Admin: ${amount >= 0 ? "+" : ""}${amount} credits`,
+      });
 
       return { userId, newSpins };
     },
     onSuccess: (data) => {
       toast.success(`Credits opdateret til ${data.newSpins}`);
       queryClient.invalidateQueries({ queryKey: ["admin-user-spins"] });
+      queryClient.invalidateQueries({ queryKey: ["credit-allocation-log"] });
     },
     onError: (error: Error) => {
       toast.error(`Fejl: ${error.message}`);
@@ -139,6 +144,7 @@ export function SpinManagementSection() {
     onSuccess: (data) => {
       toast.success(`Gav ${data.amount} credits til ${data.count} brugere`);
       queryClient.invalidateQueries({ queryKey: ["admin-user-spins"] });
+      queryClient.invalidateQueries({ queryKey: ["credit-allocation-log"] });
     },
     onError: (error: Error) => {
       toast.error(`Fejl: ${error.message}`);
