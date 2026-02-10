@@ -32,25 +32,25 @@ export function BetControls({
 
   return (
     <div className={cn(
-      "flex flex-col gap-1.5 w-auto min-w-fit backdrop-blur-sm rounded-xl px-3 py-2 sm:px-4 sm:py-3",
+      "flex flex-col gap-1.5 w-auto min-w-fit backdrop-blur-sm rounded-xl px-4 py-3",
       "bg-gradient-to-b", theme.panelFrom, theme.panelVia, theme.panelTo,
       "border-2", theme.borderAccentStrong,
       "shadow-[inset_0_1px_0_rgba(255,255,255,0.1),0_4px_12px_rgba(0,0,0,0.4)]"
     )}>
       {/* Bet controls row */}
-      <div className="flex items-center gap-2 sm:gap-3">
+      <div className="flex items-center gap-3">
         <span className={cn(
-          "text-xs sm:text-sm font-semibold uppercase tracking-wider",
+          "text-sm font-semibold uppercase tracking-wider",
           theme.accent, theme.dropShadowGlow
         )}>
           Indsats
         </span>
-        <div className="flex items-center gap-1.5 sm:gap-2">
+        <div className="flex items-center gap-2">
           <Button
             variant="ghost"
             size="icon"
             className={cn(
-              "h-8 w-8 sm:h-9 sm:w-9 rounded-lg bg-gradient-to-b border",
+              "h-9 w-9 rounded-lg bg-gradient-to-b border",
               theme.btnFrom, theme.btnTo, theme.accentLight,
               theme.borderAccent,
               "shadow-[inset_0_1px_0_rgba(255,255,255,0.1)]"
@@ -61,7 +61,7 @@ export function BetControls({
             <Minus className="h-4 w-4" />
           </Button>
           <span className={cn(
-            "w-8 sm:w-10 text-center font-bold text-lg sm:text-xl",
+            "w-10 text-center font-bold text-xl",
             theme.accentLight, theme.dropShadowGlowStrong
           )}>
             {bet}
@@ -70,7 +70,7 @@ export function BetControls({
             variant="ghost"
             size="icon"
             className={cn(
-              "h-8 w-8 sm:h-9 sm:w-9 rounded-lg bg-gradient-to-b border",
+              "h-9 w-9 rounded-lg bg-gradient-to-b border",
               theme.btnFrom, theme.btnTo, theme.accentLight,
               theme.borderAccent,
               "shadow-[inset_0_1px_0_rgba(255,255,255,0.1)]"
@@ -83,7 +83,7 @@ export function BetControls({
         </div>
       </div>
 
-      {/* Spins remaining - integrated below */}
+      {/* Spins remaining */}
       {showSpins && (
         <div className={cn("flex items-center justify-center gap-1.5 pt-1 border-t", theme.borderAccent)}>
           <Sparkles className={cn("h-3.5 w-3.5", theme.accent)} />

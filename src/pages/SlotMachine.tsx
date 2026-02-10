@@ -14,7 +14,7 @@ import { useSlotSoundLoader } from "@/hooks/useSlotSoundLoader";
 
 import { useSlotSession } from "@/hooks/useSlotSession";
 import { useCasinos } from "@/hooks/useCasinos";
-import { useViewportScaling } from "@/hooks/useViewportScaling";
+import { useSlotScale } from "@/hooks/useSlotScale";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { ArrowLeft, Gamepad2 } from "lucide-react";
@@ -42,7 +42,7 @@ export default function SlotMachine() {
     takeOverSession,
     refreshSession 
   } = useSlotSession("book-of-fedesvin");
-  const { scale, shouldScale } = useViewportScaling();
+  const { scale, shouldScale } = useSlotScale();
   
   const [loadingPhase, setLoadingPhase] = useState<LoadingPhase>('loading');
   
@@ -191,18 +191,15 @@ export default function SlotMachine() {
         <div 
           className="slot-viewport-container"
           style={{
+            width: '1280px',
             transform: shouldScale 
               ? `translate(${parseInt(siteSettings?.['slot_offset_x_book-of-fedesvin'] || '0', 10)}px, ${parseInt(siteSettings?.['slot_offset_y_book-of-fedesvin'] || '0', 10)}px) scale(${scale})`
               : `translate(${parseInt(siteSettings?.['slot_offset_x_book-of-fedesvin'] || '0', 10)}px, ${parseInt(siteSettings?.['slot_offset_y_book-of-fedesvin'] || '0', 10)}px)`,
           }}
         >
-          <div className="px-1 xs:px-2 sm:px-4">
-            <SlotPageLayout sidePanel={sidePanelContent} sidePanelGap={parseInt(siteSettings?.slot_sidepanel_gap || "24", 10)}>
-
-              {/* Slot Game */}
-              <SlotGame />
-            </SlotPageLayout>
-          </div>
+          <SlotPageLayout sidePanel={sidePanelContent} sidePanelGap={parseInt(siteSettings?.slot_sidepanel_gap || "24", 10)}>
+            <SlotGame />
+          </SlotPageLayout>
         </div>
       </div>
 

@@ -16,7 +16,7 @@ interface SlotSymbolProps {
   gameId?: string;
 }
 
-// Symbol sizes: xs=61, mobile=71, sm=92, md=109, lg=133, xl=150
+// Fixed base size: 150×150 container, 136×136 image
 export const SlotSymbol = React.memo(function SlotSymbol({ symbol, isWinning, isSpinning, isExpanded, isNewlyExpanded, hasLanded, isTeasing, isScatterCelebrating, isDarkened, gameId }: SlotSymbolProps) {
   const isWizard = gameId === "rise-of-fedesvin";
   
@@ -24,7 +24,7 @@ export const SlotSymbol = React.memo(function SlotSymbol({ symbol, isWinning, is
     <div
       className={cn(
         "relative flex items-center justify-center rounded-lg border-2 transition-all duration-300 overflow-hidden",
-        "w-[61px] h-[61px] xs:w-[71px] xs:h-[71px] sm:w-[92px] sm:h-[92px] md:w-[109px] md:h-[109px] lg:w-[133px] lg:h-[133px] xl:w-[150px] xl:h-[150px]",
+        "w-[150px] h-[150px]",
         isWinning
           ? isWizard
             ? "border-purple-400 scale-105 bg-purple-900/30"
@@ -63,7 +63,7 @@ export const SlotSymbol = React.memo(function SlotSymbol({ symbol, isWinning, is
           loading="eager"
           decoding="async"
           className={cn(
-            "w-[51px] h-[51px] xs:w-[61px] xs:h-[61px] sm:w-[78px] sm:h-[78px] md:w-[95px] md:h-[95px] lg:w-[119px] lg:h-[119px] xl:w-[136px] xl:h-[136px] object-cover rounded-lg transition-transform duration-300",
+            "w-[136px] h-[136px] object-cover rounded-lg transition-transform duration-300",
             "shadow-[0_4px_12px_rgba(0,0,0,0.5),0_2px_4px_rgba(0,0,0,0.3)]",
             isExpanded && "scale-110",
             isNewlyExpanded && "animate-[symbol-expand_0.5s_ease-out]"
@@ -71,7 +71,7 @@ export const SlotSymbol = React.memo(function SlotSymbol({ symbol, isWinning, is
         />
       ) : (
         <span className={cn(
-          "text-3xl xs:text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl transition-transform duration-300",
+          "text-8xl transition-transform duration-300",
           isExpanded && "scale-110",
           isNewlyExpanded && "animate-[symbol-expand_0.5s_ease-out]"
         )}>

@@ -25,9 +25,9 @@ import { Loader2, Gamepad2 } from "lucide-react";
 import { toast } from "sonner";
 import { cn } from "@/lib/utils";
 
-// Symbol dimensions - MUST match SlotSymbol Tailwind classes and useResponsiveSlotDimensions
-const SYMBOL_SIZE = { xs: 61, mobile: 71, sm: 92, md: 109, lg: 133, xl: 150 };
-const GAP = { xs: 4, mobile: 6, sm: 8, md: 12, lg: 16, xl: 16 };
+// Fixed symbol dimensions at base resolution (scaling is handled at container level)
+const SYMBOL_SIZE = 150;
+const SYMBOL_GAP = 16;
 
 type AutoSpinCount = 10 | 25 | 50 | 100 | "infinite";
 
@@ -587,18 +587,7 @@ export function SlotGame({ gameId = "book-of-fedesvin" }: SlotGameProps) {
     return expandedReels.includes(reelIndex);
   };
 
-  const getSymbolDimensions = () => {
-    if (typeof window === "undefined") return { size: SYMBOL_SIZE.xl, gap: GAP.xl };
-    const width = window.innerWidth;
-    if (width < 400) return { size: SYMBOL_SIZE.xs, gap: GAP.xs };
-    if (width < 640) return { size: SYMBOL_SIZE.mobile, gap: GAP.mobile };
-    if (width < 768) return { size: SYMBOL_SIZE.sm, gap: GAP.sm };
-    if (width < 1024) return { size: SYMBOL_SIZE.md, gap: GAP.md };
-    if (width < 1280) return { size: SYMBOL_SIZE.lg, gap: GAP.lg };
-    return { size: SYMBOL_SIZE.xl, gap: GAP.xl };
-  };
-
-  const symbolDimensions = getSymbolDimensions();
+  const symbolDimensions = { size: SYMBOL_SIZE, gap: SYMBOL_GAP };
 
   if (symbolsLoading) {
     return (
@@ -685,11 +674,11 @@ export function SlotGame({ gameId = "book-of-fedesvin" }: SlotGameProps) {
       />
 
       <div className="max-w-fit mx-auto">
-        <div className="p-1 xs:p-2 sm:p-3 md:p-4 space-y-1 sm:space-y-2">
-          {/* Slot machine reels with Egyptian frame */}
+        <div className="p-4 space-y-2">
+          {/* Slot machine reels with frame */}
           <div className="flex justify-center relative">
             <SlotMachineFrame isBonus={bonusState.isActive} isSpinning={isSpinning} gameId={gameId}>
-              <div className="relative p-1 xs:p-2 sm:p-4 md:p-6 rounded-xl">
+              <div className="relative p-6 rounded-xl">
                 {/* Win Celebration Effects */}
                 <WinCelebration
                   isActive={isWinAnimating}
@@ -1095,7 +1084,7 @@ export function SlotGame({ gameId = "book-of-fedesvin" }: SlotGameProps) {
                         gameId={gameId}
                       />
                       {colIndex < 4 && (
-                        <div className={cn("w-[1px] sm:w-[2px] self-stretch", gameId === "rise-of-fedesvin" ? "bg-purple-950/70" : "bg-amber-950/70")} />
+                        <div className={cn("w-[2px] self-stretch", gameId === "rise-of-fedesvin" ? "bg-purple-950/70" : "bg-amber-950/70")} />
                       )}
                     </React.Fragment>
                   ))}
@@ -1118,10 +1107,10 @@ export function SlotGame({ gameId = "book-of-fedesvin" }: SlotGameProps) {
           {/* Bonus Status Bar + Control Panel */}
           <div style={{ marginTop: `${controlsGap}px` }}>
             <div className={cn(
-              "max-w-fit mx-auto mb-2 sm:mb-3 space-y-2",
+              "max-w-fit mx-auto mb-3 space-y-2",
               gameId === "rise-of-fedesvin"
-                ? "min-h-[88px] sm:min-h-[100px]"
-                : "min-h-[48px] sm:min-h-[56px]"
+                ? "min-h-[100px]"
+                : "min-h-[56px]"
             )}>
               <BonusStatusBar
                 isActive={bonusState.isActive && bonusBarsReady}
@@ -1143,7 +1132,7 @@ export function SlotGame({ gameId = "book-of-fedesvin" }: SlotGameProps) {
             </div>
             
             <div className={cn(
-              "rounded-xl backdrop-blur-md border p-2 sm:p-3 shadow-lg",
+              "rounded-xl backdrop-blur-md border p-3 shadow-lg",
               gameId === "rise-of-fedesvin" 
                 ? "bg-purple-950/40 border-purple-500/20" 
                 : "bg-amber-950/40 border-amber-500/20"
