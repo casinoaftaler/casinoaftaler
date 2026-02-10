@@ -248,7 +248,7 @@ export const SlotReel = React.memo(function SlotReel({
             if (!symbol) return null;
             const symbolIsExpanded = shouldShowExpansion(symbolId);
             const symbolIsNewlyExpanded = shouldShowNewlyExpanded(symbolId);
-            const shouldDarkenSymbol = (isDarkenedForTease && !symbol.is_scatter) || isDarkenedForExpansion;
+            const shouldDarkenSymbol = !symbolIsExpanded && ((isDarkenedForTease && !symbol.is_scatter) || isDarkenedForExpansion);
             return (
               <div
                 key={`final-${rowIndex}-${symbolId}`}

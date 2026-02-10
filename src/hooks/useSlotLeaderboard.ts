@@ -104,6 +104,47 @@ export function useSlotLeaderboard(period: "daily" | "weekly" | "alltime" = "all
             entry: allEntries[userIndex],
             rank: userIndex + 1,
           };
+        } else {
+          // User not in top 100 — fetch their data separately
+          const { data: userData } = await supabase
+            .from("slot_leaderboard")
+            .select("user_id, total_winnings, biggest_win, biggest_multiplier, total_spins, total_bonuses, daily_winnings, weekly_winnings")
+            .eq("user_id", currentUserId)
+            .maybeSingle();
+
+          if (userData) {
+            const { data: userProfile } = await supabase
+              .from("profiles_leaderboard")
+              .select("user_id, display_name, avatar_url")
+              .eq("user_id", currentUserId)
+              .maybeSingle();
+
+            const userScore = userData[sortKey] || 0;
+
+            // Count how many users have a higher score to determine rank
+            const { count } = await supabase
+              .from("slot_leaderboard")
+              .select("user_id", { count: "exact", head: true })
+              .gt(sortKey, userScore);
+
+            const entry: LeaderboardEntry = {
+              user_id: userData.user_id || "",
+              total_winnings: userData.total_winnings || 0,
+              biggest_win: userData.biggest_win || 0,
+              biggest_multiplier: userData.biggest_multiplier || 0,
+              total_spins: userData.total_spins || 0,
+              total_bonuses: userData.total_bonuses || 0,
+              daily_winnings: userData.daily_winnings || 0,
+              weekly_winnings: userData.weekly_winnings || 0,
+              display_name: userProfile?.display_name || "Anonym",
+              avatar_url: userProfile?.avatar_url || undefined,
+            };
+
+            currentUser = {
+              entry,
+              rank: (count ?? 100) + 1,
+            };
+          }
         }
       }
 
