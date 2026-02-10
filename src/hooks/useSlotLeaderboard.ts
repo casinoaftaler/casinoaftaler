@@ -42,6 +42,11 @@ export function useSlotLeaderboard(period: "daily" | "weekly" | "alltime" = "all
       entries: LeaderboardEntry[];
       currentUser: CurrentUserLeaderboard | null;
     }> => {
+      // Determine sort key before query
+      const sortKey = period === "daily" ? "daily_winnings" 
+                    : period === "weekly" ? "weekly_winnings" 
+                    : "total_winnings";
+
       const { data, error } = await supabase
         .from("slot_leaderboard")
         .select(`
@@ -54,6 +59,7 @@ export function useSlotLeaderboard(period: "daily" | "weekly" | "alltime" = "all
           daily_winnings,
           weekly_winnings
         `)
+        .order(sortKey, { ascending: false })
         .limit(100);
 
       if (error) throw error;
@@ -89,10 +95,7 @@ export function useSlotLeaderboard(period: "daily" | "weekly" | "alltime" = "all
         };
       });
 
-      // Sort by period
-      const sortKey = period === "daily" ? "daily_winnings" 
-                    : period === "weekly" ? "weekly_winnings" 
-                    : "total_winnings";
+      // Already sorted by database, but ensure consistent order
       allEntries.sort((a, b) => (b[sortKey] as number) - (a[sortKey] as number));
 
       // Find current user's rank in the full sorted list
