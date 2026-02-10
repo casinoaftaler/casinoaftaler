@@ -267,12 +267,18 @@ function applyExpandingSymbol(
 // Each expanding symbol is evaluated INDEPENDENTLY based on its rarity:
 // - Premium symbols expand if they appear on 2+ reels
 // - Common symbols expand if they appear on 3+ reels
-// If multiple qualifying symbols appear on the same reel, the one with the
-// highest multiplier_5 is chosen to fill that reel.
+// Returns BOTH a merged expandedGrid (for visual display) AND independent
+// per-symbol reel lists (for win calculation without conflict resolution).
 function applyMultiExpandingSymbols(
   grid: string[][],
   expandingSymbols: SlotSymbol[],
-): { expandedGrid: string[][]; expandedReels: number[]; expandedSymbolMap: Map<number, SlotSymbol> } {
+): { 
+  expandedGrid: string[][]; 
+  expandedReels: number[]; 
+  expandedSymbolMap: Map<number, SlotSymbol>;
+  independentSymbolReels: Map<string, number[]>;
+  qualifyingSymbolIds: string[];
+} {
   const expandedGrid = grid.map((col) => [...col]);
   const expandedSymbolMap = new Map<number, SlotSymbol>();
 
@@ -289,13 +295,21 @@ function applyMultiExpandingSymbols(
   }
 
   // Step 2: Determine which symbols qualify for expansion based on rarity
-  const qualifyingExpansions = new Map<number, SlotSymbol[]>(); // reel -> qualifying symbols
+  // Track INDEPENDENT reels per symbol (no conflict resolution -- for win calculation)
+  const independentSymbolReels = new Map<string, number[]>();
+  const qualifyingSymbolIds: string[] = [];
+  
+  const qualifyingExpansions = new Map<number, SlotSymbol[]>(); // reel -> qualifying symbols (for merged grid)
   for (const expSym of expandingSymbols) {
     const reels = symbolReelPresence.get(expSym.id) || [];
     const minReels = expSym.rarity === "premium" ? 2 : 3;
     
     if (reels.length >= minReels) {
-      // This symbol qualifies - mark all its reels
+      // This symbol qualifies -- store its independent reel list
+      independentSymbolReels.set(expSym.id, [...reels]);
+      qualifyingSymbolIds.push(expSym.id);
+      
+      // Also mark for merged grid conflict resolution
       for (const col of reels) {
         const existing = qualifyingExpansions.get(col) || [];
         existing.push(expSym);
@@ -304,10 +318,9 @@ function applyMultiExpandingSymbols(
     }
   }
 
-  // Step 3: For each reel that has qualifying expansions, pick the best symbol
+  // Step 3: For each reel that has qualifying expansions, pick the best symbol (for MERGED grid only)
   const expandedReels: number[] = [];
   for (const [col, qualifyingSymbols] of qualifyingExpansions.entries()) {
-    // Pick the symbol with the highest multiplier_5
     const bestSymbol = qualifyingSymbols.reduce((best, s) =>
       s.multiplier_5 > best.multiplier_5 ? s : best
     );
@@ -315,7 +328,6 @@ function applyMultiExpandingSymbols(
     expandedSymbolMap.set(col, bestSymbol);
   }
 
-  // Sort expanded reels for consistent ordering
   expandedReels.sort((a, b) => a - b);
 
   if (expandedReels.length > 0) {
@@ -325,10 +337,10 @@ function applyMultiExpandingSymbols(
         expandedGrid[col][row] = sym.id;
       }
     }
-    return { expandedGrid, expandedReels, expandedSymbolMap };
+    return { expandedGrid, expandedReels, expandedSymbolMap, independentSymbolReels, qualifyingSymbolIds };
   }
 
-  return { expandedGrid: grid, expandedReels: [], expandedSymbolMap: new Map() };
+  return { expandedGrid: grid, expandedReels: [], expandedSymbolMap: new Map(), independentSymbolReels: new Map(), qualifyingSymbolIds: [] };
 }
 
 function calculateBonusWins(
@@ -421,68 +433,50 @@ function calculateBonusWins(
   return wins;
 }
 
-// Multi-expanding bonus wins: calculate for each expanding symbol group independently
+// Multi-expanding bonus wins: calculate for each expanding symbol group INDEPENDENTLY
+// Each symbol group gets its own partial grid and pays on ALL 10 lines independently.
+// No processedLines guard -- groups don't compete for lines.
 function calculateMultiExpandingBonusWins(
-  expandedGrid: string[][],
+  originalGrid: string[][],
   expandedReels: number[],
-  expandedSymbolMap: Map<number, SlotSymbol>,
+  _expandedSymbolMap: Map<number, SlotSymbol>,
   symbols: SlotSymbol[],
   betAmount: number,
-  expandingSymbols: SlotSymbol[]
+  expandingSymbols: SlotSymbol[],
+  independentSymbolReels: Map<string, number[]>,
+  qualifyingSymbolIds: string[]
 ): LineWin[] {
   if (expandedReels.length === 0) {
     // No expansion - use standard line wins on original grid
-    return calculateStandardLineWins(expandedGrid, symbols, betAmount);
-  }
-
-  // Group expanded reels by symbol
-  const symbolReelGroups = new Map<string, number[]>();
-  for (const col of expandedReels) {
-    const sym = expandedSymbolMap.get(col)!;
-    const existing = symbolReelGroups.get(sym.id) || [];
-    existing.push(col);
-    symbolReelGroups.set(sym.id, existing);
+    return calculateStandardLineWins(originalGrid, symbols, betAmount);
   }
 
   const wins: LineWin[] = [];
-  const processedLines = new Set<number>();
 
-  // For each expanding symbol group, check if they form valid wins
-  for (const [symbolId, reels] of symbolReelGroups.entries()) {
+  // For each qualifying expanding symbol, calculate wins independently on its OWN partial grid
+  for (const symbolId of qualifyingSymbolIds) {
     const sym = expandingSymbols.find((s) => s.id === symbolId);
     if (!sym) continue;
 
+    const reels = independentSymbolReels.get(symbolId) || [];
     const minReels = sym.rarity === "premium" ? 2 : 3;
-    if (reels.length >= minReels) {
-      // All-reels expanding win: every pay line wins
-      let multiplier = 0;
-      if (reels.length === 2 && sym.rarity === "premium") multiplier = sym.multiplier_2;
-      else if (reels.length === 3) multiplier = sym.multiplier_3;
-      else if (reels.length === 4) multiplier = sym.multiplier_4;
-      else if (reels.length === 5) multiplier = sym.multiplier_5;
+    if (reels.length < minReels) continue;
 
-      if (multiplier > 0) {
-        for (let lineIndex = 0; lineIndex < PAY_LINES.length; lineIndex++) {
-          if (!processedLines.has(lineIndex)) {
-            wins.push({
-              lineIndex,
-              symbolId: sym.id,
-              count: reels.length,
-              payout: multiplier * betAmount,
-            });
-            processedLines.add(lineIndex);
-          }
-        }
-      }
-    }
-  }
+    // Each group pays on ALL 10 lines based on its own reel count
+    let multiplier = 0;
+    if (reels.length === 2 && sym.rarity === "premium") multiplier = sym.multiplier_2;
+    else if (reels.length === 3) multiplier = sym.multiplier_3;
+    else if (reels.length === 4) multiplier = sym.multiplier_4;
+    else if (reels.length === 5) multiplier = sym.multiplier_5;
 
-  // For lines not covered by expanding wins, check standard wins
-  if (processedLines.size < PAY_LINES.length) {
-    const standardWins = calculateStandardLineWins(expandedGrid, symbols, betAmount);
-    for (const win of standardWins) {
-      if (!processedLines.has(win.lineIndex)) {
-        wins.push(win);
+    if (multiplier > 0) {
+      for (let lineIndex = 0; lineIndex < PAY_LINES.length; lineIndex++) {
+        wins.push({
+          lineIndex,
+          symbolId: sym.id,
+          count: reels.length,
+          payout: multiplier * betAmount,
+        });
       }
     }
   }
@@ -713,14 +707,16 @@ Deno.serve(async (req) => {
         expandedGrid = multiResult.expandedGrid;
         expandedReels = multiResult.expandedReels;
 
-        // Calculate wins with multi-expanding logic
+        // Calculate wins with multi-expanding logic using INDEPENDENT reels per symbol
         wins = calculateMultiExpandingBonusWins(
-          expandedGrid,
+          originalGrid,
           expandedReels,
           multiResult.expandedSymbolMap,
           symbols,
           bet,
-          expandingSymbols
+          expandingSymbols,
+          multiResult.independentSymbolReels,
+          multiResult.qualifyingSymbolIds
         );
 
         // Build per-reel symbol mapping and win groups for sequential animation
@@ -728,7 +724,7 @@ Deno.serve(async (req) => {
         expandingWinGroups = [];
 
         if (expandedReels.length > 0) {
-          // Map each reel to its expanding symbol ID
+          // Map each reel to its expanding symbol ID (for merged grid display)
           for (const col of expandedReels) {
             const sym = multiResult.expandedSymbolMap.get(col);
             if (sym) {
@@ -736,24 +732,17 @@ Deno.serve(async (req) => {
             }
           }
 
-          // Group reels by symbol
-          const symbolReelGroups = new Map<string, number[]>();
-          for (const col of expandedReels) {
-            const sym = multiResult.expandedSymbolMap.get(col);
-            if (sym) {
-              const existing = symbolReelGroups.get(sym.id) || [];
-              existing.push(col);
-              symbolReelGroups.set(sym.id, existing);
+          // Build win groups using INDEPENDENT per-symbol reels (not conflict-resolved)
+          for (const symId of multiResult.qualifyingSymbolIds) {
+            const reels = multiResult.independentSymbolReels.get(symId) || [];
+            const symbolWins = wins.filter(w => w.symbolId === symId);
+            if (symbolWins.length > 0) {
+              expandingWinGroups.push({ symbolId: symId, reels, wins: symbolWins });
             }
           }
 
-          // Build win groups per expanding symbol
-          for (const [symId, reels] of symbolReelGroups.entries()) {
-            const symbolWins = wins.filter(w => w.symbolId === symId);
-            expandingWinGroups.push({ symbolId: symId, reels, wins: symbolWins });
-          }
-
-          console.log(`[slot-spin] Rise expanding win groups: ${expandingWinGroups.length} groups, reelSymbolIds:`, expandedReelSymbolIds);
+          console.log(`[slot-spin] Rise expanding win groups: ${expandingWinGroups.length} groups, independent reels:`,
+            Object.fromEntries(multiResult.independentSymbolReels));
         }
       } else {
         // ===== BOOK OF FEDESVIN: Single expanding symbol (original logic) =====
