@@ -187,7 +187,7 @@ export default function SlotMachine() {
       </div>
       
       {/* Scaled game area - only the game itself is scaled */}
-      <div className="flex-1 flex items-start justify-center overflow-hidden">
+      <div className="xl:flex-1 flex items-start justify-center overflow-hidden">
         <div 
           className="slot-viewport-container"
           style={{
