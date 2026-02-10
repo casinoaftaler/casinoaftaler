@@ -14,7 +14,7 @@ import { useSiteSettings } from "@/hooks/useSiteSettings";
 import { useSlotSoundLoader } from "@/hooks/useSlotSoundLoader";
 import { useSlotSession } from "@/hooks/useSlotSession";
 import { useCasinos } from "@/hooks/useCasinos";
-import { useViewportScaling } from "@/hooks/useViewportScaling";
+import { useSlotScale } from "@/hooks/useSlotScale";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { ArrowLeft, Gamepad2 } from "lucide-react";
@@ -44,7 +44,7 @@ export default function RiseOfFedesvin() {
     takeOverSession,
     refreshSession 
   } = useSlotSession(GAME_ID);
-  const { scale, shouldScale } = useViewportScaling();
+  const { scale, shouldScale } = useSlotScale();
   const { isLocked, hasAccess, isLoading: accessLoading, error: accessError, verifyPassword } = useSlotPageAccess(GAME_ID);
   
   const [loadingPhase, setLoadingPhase] = useState<LoadingPhase>('loading');
@@ -169,7 +169,7 @@ export default function RiseOfFedesvin() {
   );
 
   return (
-    <div className="min-h-[calc(100dvh-4rem)] relative overflow-x-hidden">
+    <div className="min-h-[calc(100dvh-4rem)] relative flex flex-col overflow-x-hidden">
       <LiveBigWins />
       <div 
         className="absolute inset-0 bg-cover bg-center bg-no-repeat -z-10"
@@ -192,21 +192,19 @@ export default function RiseOfFedesvin() {
         </Button>
       </div>
       
-      {/* Game area */}
-      <div className="flex items-center justify-center">
+      <div className="flex-1 flex items-center justify-center overflow-hidden">
         <div 
           className="slot-viewport-container"
           style={{
+            width: '1280px',
             transform: shouldScale 
               ? `translate(${parseInt(siteSettings?.['slot_offset_x_rise-of-fedesvin'] || '0', 10)}px, ${parseInt(siteSettings?.['slot_offset_y_rise-of-fedesvin'] || '0', 10)}px) scale(${scale})`
               : `translate(${parseInt(siteSettings?.['slot_offset_x_rise-of-fedesvin'] || '0', 10)}px, ${parseInt(siteSettings?.['slot_offset_y_rise-of-fedesvin'] || '0', 10)}px)`,
           }}
         >
-          <div className="px-1 xs:px-2 sm:px-4">
-            <SlotPageLayout sidePanel={sidePanelContent} sidePanelGap={parseInt(siteSettings?.rise_of_fedesvin_sidepanel_gap || "24", 10)}>
-              <SlotGame gameId={GAME_ID} />
-            </SlotPageLayout>
-          </div>
+          <SlotPageLayout sidePanel={sidePanelContent} sidePanelGap={parseInt(siteSettings?.rise_of_fedesvin_sidepanel_gap || "24", 10)}>
+            <SlotGame gameId={GAME_ID} />
+          </SlotPageLayout>
         </div>
       </div>
 

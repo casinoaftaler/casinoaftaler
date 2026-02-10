@@ -3,7 +3,10 @@ import { cn } from "@/lib/utils";
 import { SlotSymbol } from "./SlotSymbol";
 import { slotSounds } from "@/lib/slotSoundEffects";
 import type { SlotSymbol as SlotSymbolType } from "@/lib/slotGameLogic";
-import { useResponsiveSlotDimensions } from "@/hooks/useResponsiveSlotDimensions";
+
+// Fixed dimensions at base resolution
+const SYMBOL_HEIGHT = 150;
+const GAP = 16;
 
 interface SlotReelProps {
   symbols: SlotSymbolType[];
@@ -56,9 +59,6 @@ export const SlotReel = React.memo(function SlotReel({
 }: SlotReelProps) {
   const isWizard = gameId === "rise-of-fedesvin";
   
-  // Use cached responsive dimensions
-  const { symbolSize: symbolHeight, gap } = useResponsiveSlotDimensions();
-  
   const symbolsById = useMemo(() => new Map(symbols.map(s => [s.id, s])), [symbols]);
   const [spinState, setSpinState] = useState<"idle" | "spinning" | "stopping" | "stopped">("idle");
   const [offset, setOffset] = useState(0);
@@ -70,155 +70,100 @@ export const SlotReel = React.memo(function SlotReel({
 
   const [reelStrip, setReelStrip] = useState<SlotSymbolType[]>([]);
 
-  // Build the reel strip: final symbols at start, then random symbols for spinning effect
   const buildReelStrip = () => {
     const strip: SlotSymbolType[] = [];
-    
     displayedSymbolIds.forEach(id => {
       const symbol = symbolsById.get(id);
       if (symbol) strip.push(symbol);
     });
-    
     const spinSymbolCount = 30;
     for (let i = 0; i < spinSymbolCount; i++) {
       const randomSymbol = symbols[Math.floor(Math.random() * symbols.length)];
       strip.push(randomSymbol);
     }
-    
     return strip;
   };
 
-
-  // Start fake loop when spinning begins
   useEffect(() => {
     if (isSpinning && !hasStartedSpinRef.current) {
       if (spinState !== "idle") {
-        if (animationRef.current) {
-          cancelAnimationFrame(animationRef.current);
-          animationRef.current = null;
-        }
+        if (animationRef.current) cancelAnimationFrame(animationRef.current);
         setSpinState("idle");
         setOffset(0);
       }
-      
       hasStartedSpinRef.current = true;
       hasStartedSlowdownRef.current = false;
-      
       const strip = buildReelStrip();
       setReelStrip(strip);
-      
-      const totalSymbolHeight = symbolHeight + gap;
+      const totalSymbolHeight = SYMBOL_HEIGHT + GAP;
       const startOffset = (strip.length - 3) * totalSymbolHeight;
       setOffset(startOffset);
-      
       setSpinState("spinning");
-      
       const loopDuration = spinLoopMs;
       const fakeLoopStartTime = performance.now();
-      
       const fakeLoopAnimate = (currentTime: number) => {
         if (!hasStartedSpinRef.current || hasStartedSlowdownRef.current) return;
-        
         const elapsed = (currentTime - fakeLoopStartTime) % loopDuration;
         const loopProgress = elapsed / loopDuration;
         const loopOffset = startOffset * (1 - loopProgress);
         setOffset(loopOffset);
-        
         animationRef.current = requestAnimationFrame(fakeLoopAnimate);
       };
-      
       animationRef.current = requestAnimationFrame(fakeLoopAnimate);
     }
   }, [isSpinning]);
 
-  // Handle transition from fake loop to slowdown
   useEffect(() => {
     if (shouldSlowDown && hasStartedSpinRef.current && !hasStartedSlowdownRef.current && spinState === "spinning") {
       hasStartedSlowdownRef.current = true;
-      
-      if (animationRef.current) {
-        cancelAnimationFrame(animationRef.current);
-      }
-      
+      if (animationRef.current) cancelAnimationFrame(animationRef.current);
       if (teaseMode && isActiveTeaseReel) {
         stopTeaseSoundRef.current = slotSounds.playActiveTeaseSlowdown(delay);
       }
-      
       const strip = buildReelStrip();
       setReelStrip(strip);
-      
-      const totalSymbolHeight = symbolHeight + gap;
+      const totalSymbolHeight = SYMBOL_HEIGHT + GAP;
       const startOffset = (strip.length - 3) * totalSymbolHeight;
       setOffset(startOffset);
-      
       const startTime = performance.now();
       const spinDuration = teaseMode ? 3000 : reelSlowdownMs;
-      
       const animate = (currentTime: number) => {
         const elapsed = currentTime - startTime;
         const progress = Math.min(elapsed / spinDuration, 1);
-        
-        const easeOut = teaseMode
-          ? 1 - Math.pow(1 - progress, 5)
-          : 1 - Math.pow(1 - progress, 2);
-        
+        const easeOut = teaseMode ? 1 - Math.pow(1 - progress, 5) : 1 - Math.pow(1 - progress, 2);
         const currentOffset = startOffset * (1 - easeOut);
         setOffset(currentOffset);
-        
         if (progress < 1) {
           animationRef.current = requestAnimationFrame(animate);
         } else {
-          if (stopTeaseSoundRef.current) {
-            stopTeaseSoundRef.current();
-            stopTeaseSoundRef.current = null;
-          }
-          
+          if (stopTeaseSoundRef.current) { stopTeaseSoundRef.current(); stopTeaseSoundRef.current = null; }
           setOffset(0);
           setSpinState("stopping");
-          
           onReelStop?.(delay);
-          
           setTimeout(() => {
             setSpinState("stopped");
-            setTimeout(() => {
-              setSpinState("idle");
-              hasStartedSpinRef.current = false;
-              hasStartedSlowdownRef.current = false;
-            }, 100);
+            setTimeout(() => { setSpinState("idle"); hasStartedSpinRef.current = false; hasStartedSlowdownRef.current = false; }, 100);
           }, 50);
         }
       };
-      
       animationRef.current = requestAnimationFrame(animate);
     }
   }, [shouldSlowDown, spinState, teaseMode, isActiveTeaseReel, delay, onReelStop]);
 
-  // Reset when isSpinning goes false
   useEffect(() => {
     if (!isSpinning && spinState === "idle" && hasStartedSpinRef.current) {
       hasStartedSpinRef.current = false;
       hasStartedSlowdownRef.current = false;
       setOffset(0);
-      if (animationRef.current) {
-        cancelAnimationFrame(animationRef.current);
-      }
-      if (stopTeaseSoundRef.current) {
-        stopTeaseSoundRef.current();
-        stopTeaseSoundRef.current = null;
-      }
+      if (animationRef.current) cancelAnimationFrame(animationRef.current);
+      if (stopTeaseSoundRef.current) { stopTeaseSoundRef.current(); stopTeaseSoundRef.current = null; }
     }
   }, [isSpinning, spinState]);
 
-  // Force cleanup if isSpinning goes false while still animating
   useEffect(() => {
     if (!isSpinning && spinState !== "idle") {
-      if (animationRef.current) {
-        cancelAnimationFrame(animationRef.current);
-      }
-      if (stopTeaseSoundRef.current) {
-        stopTeaseSoundRef.current();
-        stopTeaseSoundRef.current = null;
-      }
+      if (animationRef.current) cancelAnimationFrame(animationRef.current);
+      if (stopTeaseSoundRef.current) { stopTeaseSoundRef.current(); stopTeaseSoundRef.current = null; }
       setSpinState("idle");
       setOffset(0);
       hasStartedSpinRef.current = false;
@@ -226,16 +171,11 @@ export const SlotReel = React.memo(function SlotReel({
     }
   }, [isSpinning, spinState]);
 
-  const shouldShowExpansion = (symbolId: string): boolean => {
-    return isExpanded && !!expandingSymbolId && symbolId === expandingSymbolId;
-  };
+  const shouldShowExpansion = (symbolId: string): boolean => isExpanded && !!expandingSymbolId && symbolId === expandingSymbolId;
+  const shouldShowNewlyExpanded = (symbolId: string): boolean => isNewlyExpanded && !!expandingSymbolId && symbolId === expandingSymbolId;
 
-  const shouldShowNewlyExpanded = (symbolId: string): boolean => {
-    return isNewlyExpanded && !!expandingSymbolId && symbolId === expandingSymbolId;
-  };
-
-  const totalSymbolHeight = symbolHeight + gap;
-  const viewportHeight = 3 * symbolHeight + 2 * gap;
+  const totalSymbolHeight = SYMBOL_HEIGHT + GAP;
+  const viewportHeight = 3 * SYMBOL_HEIGHT + 2 * GAP;
 
   const getBlurAmount = () => {
     if (spinState !== "spinning") return 0;
@@ -248,7 +188,6 @@ export const SlotReel = React.memo(function SlotReel({
   const blurAmount = getBlurAmount();
   const isAnimating = spinState === "spinning" || spinState === "stopping";
 
-  // Theme-aware glow colors
   const fakeLoopGlow = isWizard
     ? "shadow-[0_0_15px_rgba(168,85,247,0.3),0_0_25px_rgba(168,85,247,0.15)] animate-pulse"
     : "shadow-[0_0_15px_rgba(251,191,36,0.3),0_0_25px_rgba(251,191,36,0.15)] animate-pulse";
@@ -267,7 +206,7 @@ export const SlotReel = React.memo(function SlotReel({
       )}
       style={{ 
         height: `${viewportHeight}px`,
-        width: `${symbolHeight}px`
+        width: `${SYMBOL_HEIGHT}px`
       }}
     >
       {isAnimating ? (
@@ -275,43 +214,28 @@ export const SlotReel = React.memo(function SlotReel({
           className="absolute left-0 right-0 flex flex-col"
           style={{ 
             transform: `translateY(-${offset}px)`,
-            gap: `${gap}px`,
+            gap: `${GAP}px`,
             filter: blurAmount > 0 ? `blur(${blurAmount}px)` : 'none',
             transition: spinState === "stopping" ? 'filter 0.2s ease-out' : 'none',
           }}
         >
           {reelStrip.map((symbol, index) => (
-            <SlotSymbol
-              key={`reel-${index}-${symbol.id}`}
-              symbol={symbol}
-              isSpinning={true}
-              isTeasing={false}
-              gameId={gameId}
-            />
+            <SlotSymbol key={`reel-${index}-${symbol.id}`} symbol={symbol} isSpinning={true} isTeasing={false} gameId={gameId} />
           ))}
         </div>
       ) : (
-        <div 
-          className="absolute left-0 right-0 flex flex-col"
-          style={{ gap: `${gap}px` }}
-        >
+        <div className="absolute left-0 right-0 flex flex-col" style={{ gap: `${GAP}px` }}>
           {displayedSymbolIds.map((symbolId, rowIndex) => {
             const symbol = symbolsById.get(symbolId);
             if (!symbol) return null;
-
             const symbolIsExpanded = shouldShowExpansion(symbolId);
             const symbolIsNewlyExpanded = shouldShowNewlyExpanded(symbolId);
             const shouldDarkenSymbol = (isDarkenedForTease && !symbol.is_scatter) || isDarkenedForExpansion;
-
             return (
               <div
                 key={`final-${rowIndex}-${symbolId}`}
-                className={cn(
-                  spinState === "stopped" && "animate-[slot-land_0.4s_cubic-bezier(0.34,1.56,0.64,1)]"
-                )}
-                style={{
-                  animationFillMode: spinState === "stopped" ? "both" : undefined
-                }}
+                className={cn(spinState === "stopped" && "animate-[slot-land_0.4s_cubic-bezier(0.34,1.56,0.64,1)]")}
+                style={{ animationFillMode: spinState === "stopped" ? "both" : undefined }}
               >
                 <SlotSymbol
                   symbol={symbol}

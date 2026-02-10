@@ -35,12 +35,11 @@ export function AutospinRow({
 
   return (
     <div className={cn(
-      "flex items-center justify-center gap-2 backdrop-blur-sm rounded-xl px-3 py-2 min-w-[140px] sm:min-w-[160px]",
+      "flex items-center justify-center gap-2 backdrop-blur-sm rounded-xl px-3 py-2 min-w-[160px]",
       "bg-gradient-to-b", theme.panelFrom, theme.panelVia, theme.panelTo,
       "border-2", theme.borderAccentStrong,
       "shadow-[inset_0_1px_0_rgba(255,255,255,0.1),0_4px_12px_rgba(0,0,0,0.4)]"
     )}>
-      {/* Autospin count selector - only show when not spinning */}
       {!isAutoSpinning && (
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
@@ -54,11 +53,7 @@ export function AutospinRow({
               )}
               disabled={disabled}
             >
-              {autoSpinCount === "infinite" ? (
-                <Infinity className="h-4 w-4" />
-              ) : (
-                autoSpinCount
-              )}
+              {autoSpinCount === "infinite" ? <Infinity className="h-4 w-4" /> : autoSpinCount}
               <ChevronDown className="ml-1.5 h-3 w-3" />
             </Button>
           </DropdownMenuTrigger>
@@ -67,37 +62,24 @@ export function AutospinRow({
               <DropdownMenuItem
                 key={String(count)}
                 onClick={() => onAutoSpinCountChange(count)}
-                className={cn(
-                  "text-base cursor-pointer",
-                  autoSpinCount === count && theme.bgAccent
-                )}
+                className={cn("text-base cursor-pointer", autoSpinCount === count && theme.bgAccent)}
               >
                 {count === "infinite" ? (
-                  <span className="flex items-center gap-2">
-                    <Infinity className="h-4 w-4" /> Uendelig
-                  </span>
-                ) : (
-                  `${count} credits`
-                )}
+                  <span className="flex items-center gap-2"><Infinity className="h-4 w-4" /> Uendelig</span>
+                ) : `${count} credits`}
               </DropdownMenuItem>
             ))}
           </DropdownMenuContent>
         </DropdownMenu>
       )}
 
-      {/* Autospin toggle button */}
       <Button
         variant={isAutoSpinning ? "destructive" : "outline"}
         className={cn(
           "h-10 px-4 text-sm font-bold transition-all shadow-[0_4px_12px_rgba(0,0,0,0.3)]",
           isAutoSpinning
             ? "bg-gradient-to-b from-red-500 to-red-700 hover:from-red-400 hover:to-red-600 text-white border-2 border-red-400/50"
-            : cn(
-                "border-2 bg-gradient-to-b",
-                theme.borderAccentStrong, theme.panelFrom, theme.panelTo,
-                theme.accentLight,
-                "shadow-[inset_0_1px_0_rgba(255,255,255,0.1)]"
-              )
+            : cn("border-2 bg-gradient-to-b", theme.borderAccentStrong, theme.panelFrom, theme.panelTo, theme.accentLight, "shadow-[inset_0_1px_0_rgba(255,255,255,0.1)]")
         )}
         onClick={onToggle}
         disabled={disabled}
@@ -105,9 +87,7 @@ export function AutospinRow({
         {isAutoSpinning ? (
           <>
             <Square className="mr-1.5 h-4 w-4" />
-            <span>
-              {autoSpinsRemaining !== null ? `STOP (${autoSpinsRemaining})` : "STOP"}
-            </span>
+            <span>{autoSpinsRemaining !== null ? `STOP (${autoSpinsRemaining})` : "STOP"}</span>
           </>
         ) : (
           <>

@@ -30,7 +30,7 @@ export function BonusStatusBar({
   return (
     <div
       className={cn(
-        "w-full p-2.5 sm:p-3 rounded-xl",
+        "w-full p-3 rounded-xl",
         "bg-gradient-to-b", theme.panelFrom, theme.panelVia, theme.panelTo,
         "backdrop-blur-sm",
         "border-2", theme.borderAccentStrong,
@@ -39,52 +39,44 @@ export function BonusStatusBar({
         "animate-fade-in"
       )}
     >
-      <div className="grid grid-cols-2 sm:flex sm:flex-wrap sm:items-center sm:justify-between gap-2 sm:gap-4">
+      <div className="flex flex-wrap items-center justify-between gap-4">
         {/* Bonus indicator */}
-        <div className="flex items-center gap-1 sm:gap-2">
-          <Sparkles className={cn("h-4 w-4 sm:h-5 sm:w-5 animate-pulse", theme.accent, theme.dropShadowGlowStrong)} />
-          <span className={cn("text-sm sm:text-lg font-bold", theme.accentLight, theme.dropShadowGlowStrong)}>
+        <div className="flex items-center gap-2">
+          <Sparkles className={cn("h-5 w-5 animate-pulse", theme.accent, theme.dropShadowGlowStrong)} />
+          <span className={cn("text-lg font-bold", theme.accentLight, theme.dropShadowGlowStrong)}>
             FREE SPINS
           </span>
         </div>
 
         {/* Spins remaining */}
-        <div className="flex items-center gap-1 sm:gap-2 justify-end sm:justify-start">
-          <span className={cn("text-xs sm:text-base", theme.accentMuted)}>Spins:</span>
-          <span className={cn("text-base sm:text-xl font-bold", theme.accentLight, theme.dropShadowGlow)}>
+        <div className="flex items-center gap-2">
+          <span className={cn("text-base", theme.accentMuted)}>Spins:</span>
+          <span className={cn("text-xl font-bold", theme.accentLight, theme.dropShadowGlow)}>
             {freeSpinsRemaining}/{totalFreeSpins}
           </span>
         </div>
 
         {/* Expanding symbol(s) */}
         {(expandingSymbols.length > 0 || expandingSymbol) && (
-          <div className="flex items-center gap-1 sm:gap-2">
-            <span className={cn("text-xs sm:text-sm", theme.accentMuted)}>Expanding:</span>
+          <div className="flex items-center gap-2">
+            <span className={cn("text-sm", theme.accentMuted)}>Expanding:</span>
             <div className="flex items-center gap-1">
               {(expandingSymbols.length > 0 ? expandingSymbols : (expandingSymbol ? [expandingSymbol] : [])).map((sym) => (
                 <div
                   key={sym.id}
                   className={cn(
-                    "flex items-center gap-0.5 px-1 sm:px-1.5 py-0.5 rounded-lg border",
+                    "flex items-center gap-0.5 px-1.5 py-0.5 rounded-lg border",
                     "bg-gradient-to-b", theme.btnFrom, theme.btnTo,
                     theme.borderAccent,
                     "shadow-[inset_0_1px_0_rgba(255,255,255,0.1)]"
                   )}
                 >
                   {sym.image_url ? (
-                    <img
-                      src={sym.image_url}
-                      alt={sym.name}
-                      className={cn("w-4 h-4 sm:w-6 sm:h-6 object-contain", theme.dropShadowGlow)}
-                    />
+                    <img src={sym.image_url} alt={sym.name} className={cn("w-6 h-6 object-contain", theme.dropShadowGlow)} />
                   ) : (
-                    <span className="text-sm sm:text-lg">
-                      {getSymbolEmoji(sym.name)}
-                    </span>
+                    <span className="text-lg">{getSymbolEmoji(sym.name)}</span>
                   )}
-                  <span className={cn("font-medium text-xs sm:text-sm hidden sm:inline", theme.accentLight)}>
-                    {sym.name}
-                  </span>
+                  <span className={cn("font-medium text-sm", theme.accentLight)}>{sym.name}</span>
                 </div>
               ))}
             </div>
@@ -92,9 +84,9 @@ export function BonusStatusBar({
         )}
 
         {/* Bonus winnings */}
-        <div className="flex items-center gap-1 sm:gap-2 justify-end sm:justify-start">
-          <span className={cn("text-xs sm:text-base", theme.accentMuted)}>Gevinst:</span>
-          <span className={cn("text-base sm:text-xl font-bold", theme.accentLight, theme.dropShadowGlowStrong)}>
+        <div className="flex items-center gap-2">
+          <span className={cn("text-base", theme.accentMuted)}>Gevinst:</span>
+          <span className={cn("text-xl font-bold", theme.accentLight, theme.dropShadowGlowStrong)}>
             {bonusWinnings}
           </span>
         </div>
