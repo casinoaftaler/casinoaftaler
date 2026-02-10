@@ -503,7 +503,7 @@ All colors MUST be HSL.
 /* Viewport scaling container for slot machine */
 .slot-viewport-container {
   will-change: transform;
-  transform-origin: center center;
+  transform-origin: top center;
   /* Smooth transitions during window resize */
   transition: transform 0.15s ease-out;
   /* Prevent content from affecting layout when scaled */
