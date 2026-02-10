@@ -36,6 +36,7 @@ export function RedeemCodeDialog({ open, onOpenChange }: RedeemCodeDialogProps) 
         toast.success(data.message || `Du har modtaget ${data.credits_awarded} credits!`);
         queryClient.invalidateQueries({ queryKey: ["slot-spins"] });
         queryClient.invalidateQueries({ queryKey: ["header-credits"] });
+        queryClient.invalidateQueries({ queryKey: ["notifications"] });
         setCode("");
         onOpenChange(false);
       }
