@@ -344,6 +344,12 @@ export function SlotGame({ gameId = "book-of-fedesvin" }: SlotGameProps) {
     // Play quick spin start sound
     slotSounds.playSpinStart();
 
+    // Suppress realtime BEFORE the server call for bonus spins to prevent
+    // the DB write's realtime event from racing ahead of the HTTP response
+    if (isBonusSpin) {
+      suppressRealtimeUpdates();
+    }
+
     try {
       // Call server for spin result
       const response = await serverSpin(bet, isBonusSpin);
@@ -427,6 +433,11 @@ export function SlotGame({ gameId = "book-of-fedesvin" }: SlotGameProps) {
         stopTeaseSound.current = null;
       }
       
+      // Resume realtime if we suppressed it for a bonus spin
+      if (isBonusSpin) {
+        resumeRealtimeUpdates();
+      }
+
       // Reset state on error
       setIsSpinning(false);
       setTeaseReels([]);
