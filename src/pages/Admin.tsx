@@ -48,6 +48,7 @@ import { StorageCleanupSection } from "@/components/StorageCleanupSection";
 import { NotificationsAdminSection } from "@/components/NotificationsAdminSection";
 import { ProfileCompletionStatsCard } from "@/components/ProfileCompletionStatsCard";
 import { CommunityClipsAdminSection } from "@/components/CommunityClipsAdminSection";
+import { SlotRequestsAdminSection } from "@/components/SlotRequestsAdminSection";
 
 import { ThemeToggle } from "@/components/ThemeToggle";
 import { RedeemCodesAdminSection } from "@/components/RedeemCodesAdminSection";
@@ -804,7 +805,7 @@ function AdminDashboard() {
 
       <main className="container py-8">
         <Tabs defaultValue="casinos" className="w-full">
-            <TabsList className="grid w-full grid-cols-10 mb-8 h-auto">
+            <TabsList className="grid w-full grid-cols-11 mb-8 h-auto">
               <TabsTrigger value="casinos" className="flex items-center gap-2 py-3">
                 <Gift className="h-4 w-4" />
                 <span className="hidden sm:inline">Casino Tilbud</span>
@@ -824,6 +825,10 @@ function AdminDashboard() {
               <TabsTrigger value="slotmachine" className="flex items-center gap-2 py-3">
                 <Gamepad2 className="h-4 w-4" />
                 <span className="hidden sm:inline">Spillemaskine</span>
+              </TabsTrigger>
+              <TabsTrigger value="requests" className="flex items-center gap-2 py-3">
+                <Gamepad2 className="h-4 w-4" />
+                <span className="hidden sm:inline">Requests</span>
               </TabsTrigger>
               <TabsTrigger value="codes" className="flex items-center gap-2 py-3">
               <Ticket className="h-4 w-4" />
@@ -957,6 +962,11 @@ function AdminDashboard() {
           {/* Spillemaskine Tab */}
           <TabsContent value="slotmachine">
             <SlotMachineAdminSection />
+          </TabsContent>
+
+          {/* Requests Tab */}
+          <TabsContent value="requests">
+            <SlotRequestsAdminSection />
           </TabsContent>
 
           {/* Koder Tab */}

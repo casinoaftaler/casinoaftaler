@@ -2,7 +2,8 @@ import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Gift, Video, UserCircle, Sparkles, Info, ArrowRight, CheckCircle2 } from "lucide-react";
+import { Gift, Video, UserCircle, Sparkles, Info, ArrowRight, CheckCircle2, Gamepad2 } from "lucide-react";
+import { SlotRequestForm } from "@/components/SlotRequestForm";
 import { useAuth } from "@/hooks/useAuth";
 
 export default function RewardsProgram() {
@@ -163,6 +164,47 @@ export default function RewardsProgram() {
                   </Link>
                 </Button>
               )}
+            </CardContent>
+          </Card>
+        </section>
+
+        {/* Section: Slot Request Rewards */}
+        <section className="space-y-6">
+          <div className="flex items-center gap-3">
+            <div className="p-3 rounded-xl bg-primary/10">
+              <Gamepad2 className="h-6 w-6 text-primary" />
+            </div>
+            <div>
+              <h2 className="text-2xl md:text-3xl font-bold">Slot Request Rewards</h2>
+              <p className="text-muted-foreground text-sm">Request en slot til livestream og optjen credits</p>
+            </div>
+          </div>
+
+          <Card className="border-primary/20 bg-gradient-to-br from-primary/5 via-transparent to-transparent">
+            <CardContent className="p-6 md:p-8 space-y-5">
+              <p className="text-muted-foreground leading-relaxed">
+                Send en request om hvilken slot vi skal spille på livestream! Hvis vi rammer{" "}
+                <span className="text-foreground font-medium">bonus</span> på din valgte slot, får du{" "}
+                <span className="text-foreground font-semibold">+20 credits</span> som belønning.
+              </p>
+
+              <div className="grid gap-3 sm:grid-cols-2">
+                {[
+                  "Vælg fra populære slots eller skriv din egen",
+                  "Bonus hit = +20 credits til dig",
+                  "Én aktiv request ad gangen",
+                  "Følg status på dine requests herunder",
+                ].map((item) => (
+                  <div key={item} className="flex items-start gap-2.5">
+                    <CheckCircle2 className="h-5 w-5 text-primary flex-shrink-0 mt-0.5" />
+                    <span className="text-sm text-muted-foreground">{item}</span>
+                  </div>
+                ))}
+              </div>
+
+              <div className="pt-2 border-t border-border/50">
+                <SlotRequestForm />
+              </div>
             </CardContent>
           </Card>
         </section>
