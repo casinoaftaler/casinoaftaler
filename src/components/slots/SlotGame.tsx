@@ -804,9 +804,18 @@ export function SlotGame({ gameId = "book-of-fedesvin" }: SlotGameProps) {
           pendingExpandedReelsRef.current = [];
           pendingExpandingWinGroupsRef.current = [];
         }
+        
+        // Filter out wins already shown during expansion to prevent re-flash
+        const allExpandingWinKeys = new Set(
+          winGroups.flatMap(g => g.wins.map((w: any) => `${w.lineIndex}-${w.symbolId}`))
+        );
+        const remainingWins = result.wins.filter(
+          (w: any) => !allExpandingWinKeys.has(`${w.lineIndex}-${w.symbolId}`)
+        );
+        setLastResult({ ...result, wins: remainingWins });
+      } else {
+        setLastResult(result);
       }
-      
-      setLastResult(result);
       
       let shouldStopAuto = false;
       if (result.bonusTriggered) {
