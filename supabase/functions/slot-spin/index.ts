@@ -567,6 +567,13 @@ Deno.serve(async (req) => {
       { global: { headers: { Authorization: authHeader } } }
     );
 
+    // Service role client for privileged write operations
+    // This bypasses RLS - all validation is done above (auth + session checks)
+    const serviceClient = createClient(
+      Deno.env.get("SUPABASE_URL")!,
+      Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!
+    );
+
     // Validate user
     const token = authHeader.replace("Bearer ", "");
     const { data: claimsData, error: claimsError } = await supabase.auth.getClaims(token);
@@ -800,7 +807,7 @@ Deno.serve(async (req) => {
         }
       }
 
-      await supabase
+      await serviceClient
         .from("slot_bonus_state")
         .update(updatePayload)
         .eq("user_id", userId)
@@ -861,7 +868,7 @@ Deno.serve(async (req) => {
 
     // Get or create today's spin record with carry-over logic
     // First check if today's record exists
-    let { data: spinsData, error: fetchError } = await supabase
+    let { data: spinsData, error: fetchError } = await serviceClient
       .from("slot_spins")
       .select("*")
       .eq("user_id", userId)
@@ -878,7 +885,7 @@ Deno.serve(async (req) => {
 
     if (!spinsData) {
       // No record for today - check previous day's balance for carry-over
-      const { data: previousRecord } = await supabase
+      const { data: previousRecord } = await serviceClient
         .from("slot_spins")
         .select("spins_remaining")
         .eq("user_id", userId)
@@ -896,7 +903,7 @@ Deno.serve(async (req) => {
         startValue = maxSpins;
       }
 
-      const { error: upsertError } = await supabase
+      const { error: upsertError } = await serviceClient
         .from("slot_spins")
         .upsert(
           { user_id: userId, date: today, spins_remaining: startValue },
@@ -912,7 +919,7 @@ Deno.serve(async (req) => {
       }
 
       // Fetch the created record
-      const { data: newSpins, error: newFetchError } = await supabase
+      const { data: newSpins, error: newFetchError } = await serviceClient
         .from("slot_spins")
         .select("*")
         .eq("user_id", userId)
@@ -951,7 +958,7 @@ Deno.serve(async (req) => {
     const result = calculateSpinResult(grid, symbols, bet);
 
     // Deduct spins (atomic update)
-    const { error: updateError } = await supabase
+    const { error: updateError } = await serviceClient
       .from("slot_spins")
       .update({ spins_remaining: spinsData.spins_remaining - bet })
       .eq("id", spinsData.id)
@@ -989,13 +996,13 @@ Deno.serve(async (req) => {
 
       // Awaited: bonus state MUST exist before we respond, otherwise the
       // first bonus spin will hit "No active bonus" due to a race condition.
-      await supabase
+      await serviceClient
         .from("slot_bonus_state")
         .delete()
         .eq("user_id", userId)
         .eq("game_id", gameId);
 
-      const { error: bonusInsertError } = await supabase
+      const { error: bonusInsertError } = await serviceClient
         .from("slot_bonus_state")
         .insert(bonusInsert);
 
@@ -1019,7 +1026,7 @@ Deno.serve(async (req) => {
     }
 
     // Fire-and-forget: record game result (analytics only)
-    supabase.from("slot_game_results").insert({
+    serviceClient.from("slot_game_results").insert({
       user_id: userId,
       bet_amount: bet,
       win_amount: result.totalWin,

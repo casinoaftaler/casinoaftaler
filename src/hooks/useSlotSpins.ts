@@ -1,4 +1,4 @@
-import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
+import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
 import { useAuth } from "@/hooks/useAuth";
 import { useSlotSettings } from "@/hooks/useSlotSettings";
@@ -39,14 +39,13 @@ export function useSlotSpins() {
 
   const bonusSpinsPermanent = bonusSpinsData || 0;
 
+  // Read-only: fetch today's spin record
+  // Spin initialization and deduction are handled server-side by the slot-spin edge function
   const { data: spinsData, isLoading } = useQuery({
     queryKey: ["slot-spins", user?.id, today],
     queryFn: async (): Promise<SlotSpins | null> => {
       if (!user?.id) return null;
 
-      const cap = Math.min(settings.dailySpins + bonusSpinsPermanent, MAX_SPINS_CAP);
-
-      // Check if today's record already exists
       const { data: existing } = await supabase
         .from("slot_spins")
         .select("*")
@@ -54,77 +53,10 @@ export function useSlotSpins() {
         .eq("date", today)
         .maybeSingle();
 
-      if (existing) return existing;
-
-      // No record for today - check yesterday/latest previous record
-      const { data: previousRecord } = await supabase
-        .from("slot_spins")
-        .select("spins_remaining")
-        .eq("user_id", user.id)
-        .lt("date", today)
-        .order("date", { ascending: false })
-        .limit(1)
-        .maybeSingle();
-
-      let startValue: number;
-      if (!previousRecord) {
-        // New user or no history - full cap
-        startValue = cap;
-      } else if (previousRecord.spins_remaining >= cap) {
-        // Carry over surplus (admin/community bonus credits)
-        startValue = previousRecord.spins_remaining;
-      } else {
-        // Top up to cap
-        startValue = cap;
-      }
-
-      // Create today's record with ignoreDuplicates for race condition safety
-      await supabase
-        .from("slot_spins")
-        .upsert(
-          {
-            user_id: user.id,
-            date: today,
-            spins_remaining: startValue,
-          },
-          {
-            onConflict: "user_id,date",
-            ignoreDuplicates: true,
-          }
-        );
-
-      // Fetch the record (guaranteed to exist after upsert)
-      const { data, error } = await supabase
-        .from("slot_spins")
-        .select("*")
-        .eq("user_id", user.id)
-        .eq("date", today)
-        .single();
-
-      if (error) throw error;
-      return data;
+      // Return whatever exists - the slot-spin edge function handles initialization
+      return existing || null;
     },
     enabled: !!user?.id,
-  });
-
-  const decrementSpin = useMutation({
-    mutationFn: async (count: number = 1) => {
-      if (!user?.id || !spinsData) throw new Error("No user or spins data");
-      if (spinsData.spins_remaining < count) throw new Error("Not enough spins remaining");
-
-      const { data, error } = await supabase
-        .from("slot_spins")
-        .update({ spins_remaining: spinsData.spins_remaining - count })
-        .eq("id", spinsData.id)
-        .select()
-        .single();
-
-      if (error) throw error;
-      return data;
-    },
-    onSuccess: (data) => {
-      queryClient.setQueryData(["slot-spins", user?.id, today], data);
-    },
   });
 
   // Function to check if user has enough spins for a given bet
@@ -140,7 +72,6 @@ export function useSlotSpins() {
     maxSpins,
     bonusSpinsPermanent,
     isLoading,
-    decrementSpin,
     canSpin: (spinsData?.spins_remaining ?? 0) > 0,
     hasEnoughSpins,
   };

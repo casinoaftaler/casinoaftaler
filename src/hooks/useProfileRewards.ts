@@ -3,7 +3,6 @@ import { supabase } from "@/integrations/supabase/client";
 import { useAuth } from "./useAuth";
 import { toast } from "@/hooks/use-toast";
 import { ProfileData } from "./useProfile";
-import { getTodayDanish } from "@/lib/danishDate";
 
 export const SPINS_PER_SECTION = 5;
 
@@ -120,53 +119,27 @@ export function useProfileRewards() {
   const claimReward = useMutation({
     mutationFn: async ({
       section,
-      currentBonusSpins,
     }: {
       section: "profile" | "stats" | "favorites" | "playstyle";
       currentBonusSpins: number;
     }) => {
       if (!user?.id) throw new Error("Not authenticated");
 
-      const columnName = `${section}_section_completed`;
-      const newBonusSpins = currentBonusSpins + SPINS_PER_SECTION;
-
-      const { data, error } = await supabase
-        .from("profiles")
-        .update({
-          [columnName]: true,
-          bonus_spins_permanent: newBonusSpins,
-        })
-        .eq("user_id", user.id)
-        .select()
-        .single();
-
-      if (error) throw error;
-
-      // Also add the spins to today's slot_spins record so they're usable immediately
-      const today = getTodayDanish();
-      const { data: todaySpins } = await supabase
-        .from("slot_spins")
-        .select("id, spins_remaining")
-        .eq("user_id", user.id)
-        .eq("date", today)
-        .maybeSingle();
-
-      if (todaySpins) {
-        await supabase
-          .from("slot_spins")
-          .update({ spins_remaining: todaySpins.spins_remaining + SPINS_PER_SECTION })
-          .eq("id", todaySpins.id);
-      }
-
-      // Log the credit allocation
-      await supabase.from("credit_allocation_log").insert({
-        user_id: user.id,
-        amount: SPINS_PER_SECTION,
-        source: "profile_reward",
-        note: `Profil sektion: ${section}`,
+      // Call secure edge function instead of direct DB writes
+      const response = await supabase.functions.invoke("claim-profile-reward", {
+        body: { section },
       });
 
-      return { data, section, spinsEarned: SPINS_PER_SECTION };
+      if (response.error) {
+        throw new Error(response.error.message || "Failed to claim reward");
+      }
+
+      const data = response.data;
+      if (!data?.success) {
+        throw new Error(data?.error || "Failed to claim reward");
+      }
+
+      return { section, spinsEarned: data.spinsEarned };
     },
     onSuccess: ({ section, spinsEarned }) => {
       queryClient.invalidateQueries({ queryKey: ["profile", user?.id] });

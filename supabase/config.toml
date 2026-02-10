@@ -53,3 +53,9 @@ verify_jwt = false
 
 [functions.twitch-clip-thumbnail]
 verify_jwt = false
+
+[functions.claim-profile-reward]
+verify_jwt = false
+
+[functions.activate-community-spins]
+verify_jwt = false
