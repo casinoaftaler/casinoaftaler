@@ -1331,6 +1331,10 @@ export type Database = {
         }
         Returns: boolean
       }
+      increment_redeem_code_uses: {
+        Args: { code_id_input: string }
+        Returns: undefined
+      }
     }
     Enums: {
       app_role: "admin" | "user" | "casino_owner"

@@ -123,11 +123,11 @@ Deno.serve(async (req) => {
       throw useError;
     }
 
-    // Increment times_used
-    await adminClient
-      .from("redeem_codes")
-      .update({ times_used: codeData.times_used + 1 })
-      .eq("id", codeData.id);
+    // Atomically increment times_used to prevent race conditions
+    const { error: incrementError } = await adminClient.rpc('increment_redeem_code_uses', {
+      code_id_input: codeData.id,
+    });
+    if (incrementError) throw incrementError;
 
     // Add credits to user's slot_spins for today
     const today = new Date().toLocaleDateString("en-CA", { timeZone: "Europe/Copenhagen" });
