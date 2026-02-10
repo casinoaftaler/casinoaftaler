@@ -769,10 +769,17 @@ export function SlotGame({ gameId = "book-of-fedesvin" }: SlotGameProps) {
             setLastResult(null);
             setShowExpansionDarken(false);
             
-            expandedReelSymbolMapRef.current = {};
-            setGrid(originalGridCopy);
-            setExpandedReels([]);
-            await new Promise(resolve => setTimeout(resolve, 500));
+            // Don't reset expansion on last group if retrigger is coming
+            const isLastGroup = groupIdx === winGroups.length - 1;
+            if (isLastGroup && result.bonusTriggered) {
+              // Keep expanded state visible during retrigger animation
+              await new Promise(resolve => setTimeout(resolve, 300));
+            } else {
+              expandedReelSymbolMapRef.current = {};
+              setGrid(originalGridCopy);
+              setExpandedReels([]);
+              await new Promise(resolve => setTimeout(resolve, 500));
+            }
           }
           
           pendingExpandedReelsRef.current = [];
@@ -983,6 +990,10 @@ export function SlotGame({ gameId = "book-of-fedesvin" }: SlotGameProps) {
         onClose={() => {
           setShowRetrigger(false);
           setPendingRetriggerSymbol(null);
+          // Clean up any lingering expansion state from pre-retrigger
+          expandedReelSymbolMapRef.current = {};
+          setExpandedReels([]);
+          setShowExpansionDarken(false);
           resumeRealtimeUpdates();
           if (pendingBonusStateRef.current) {
             updateBonusFromServer(pendingBonusStateRef.current);
