@@ -1,0 +1,172 @@
+import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
+import { supabase } from "@/integrations/supabase/client";
+import { useAuth } from "@/hooks/useAuth";
+import { getTodayDanish } from "@/lib/danishDate";
+import { toast } from "sonner";
+
+export interface SlotRequest {
+  id: string;
+  user_id: string;
+  slot_name: string;
+  provider: string;
+  is_custom: boolean;
+  status: string;
+  admin_note: string | null;
+  credits_awarded: number;
+  created_at: string;
+  updated_at: string;
+}
+
+export interface SlotRequestWithProfile extends SlotRequest {
+  display_name: string | null;
+}
+
+export function useMySlotRequests() {
+  const { user } = useAuth();
+  return useQuery({
+    queryKey: ["my-slot-requests", user?.id],
+    queryFn: async () => {
+      const { data, error } = await supabase
+        .from("slot_requests" as any)
+        .select("*")
+        .eq("user_id", user!.id)
+        .order("created_at", { ascending: false });
+      if (error) throw error;
+      return data as unknown as SlotRequest[];
+    },
+    enabled: !!user,
+  });
+}
+
+export function useAllSlotRequests() {
+  return useQuery({
+    queryKey: ["all-slot-requests"],
+    queryFn: async () => {
+      // Get all requests
+      const { data: requests, error } = await supabase
+        .from("slot_requests" as any)
+        .select("*")
+        .order("created_at", { ascending: false });
+      if (error) throw error;
+
+      // Get profiles for display names
+      const userIds = [...new Set((requests as any[]).map((r: any) => r.user_id))];
+      const { data: profiles } = await supabase
+        .from("profiles")
+        .select("user_id, display_name")
+        .in("user_id", userIds);
+
+      const profileMap = new Map(profiles?.map((p) => [p.user_id, p.display_name]) ?? []);
+
+      return (requests as any[]).map((r: any) => ({
+        ...r,
+        display_name: profileMap.get(r.user_id) || "Ukendt",
+      })) as SlotRequestWithProfile[];
+    },
+  });
+}
+
+export function useCreateSlotRequest() {
+  const { user } = useAuth();
+  const queryClient = useQueryClient();
+
+  return useMutation({
+    mutationFn: async (data: { slot_name: string; provider: string; is_custom: boolean }) => {
+      const { error } = await supabase.from("slot_requests" as any).insert({
+        user_id: user!.id,
+        slot_name: data.slot_name,
+        provider: data.provider,
+        is_custom: data.is_custom,
+      } as any);
+      if (error) throw error;
+    },
+    onSuccess: () => {
+      toast.success("Slot request sendt!");
+      queryClient.invalidateQueries({ queryKey: ["my-slot-requests"] });
+    },
+    onError: (error: Error) => {
+      toast.error(`Fejl: ${error.message}`);
+    },
+  });
+}
+
+export function useUpdateSlotRequestStatus() {
+  const queryClient = useQueryClient();
+
+  return useMutation({
+    mutationFn: async ({
+      requestId,
+      status,
+      userId,
+      awardCredits,
+    }: {
+      requestId: string;
+      status: string;
+      userId: string;
+      awardCredits?: boolean;
+    }) => {
+      // Update the request status
+      const updateData: any = { status };
+      if (awardCredits) {
+        updateData.credits_awarded = 20;
+      }
+      const { error: updateError } = await supabase
+        .from("slot_requests" as any)
+        .update(updateData)
+        .eq("id", requestId);
+      if (updateError) throw updateError;
+
+      // Award credits if bonus hit
+      if (awardCredits) {
+        const today = getTodayDanish();
+
+        // Get or create today's spin record
+        const { data: existing } = await supabase
+          .from("slot_spins")
+          .select("*")
+          .eq("user_id", userId)
+          .eq("date", today)
+          .maybeSingle();
+
+        if (existing) {
+          const { error } = await supabase
+            .from("slot_spins")
+            .update({ spins_remaining: existing.spins_remaining + 20 })
+            .eq("id", existing.id);
+          if (error) throw error;
+        } else {
+          const { error } = await supabase.from("slot_spins").insert({
+            user_id: userId,
+            date: today,
+            spins_remaining: 20,
+          });
+          if (error) throw error;
+        }
+
+        // Log the credit allocation
+        await supabase.from("credit_allocation_log").insert({
+          user_id: userId,
+          amount: 20,
+          source: "slot_request_bonus",
+          note: "Bonus hit på slot request",
+        });
+      }
+    },
+    onSuccess: (_, variables) => {
+      const msg =
+        variables.status === "bonus_hit"
+          ? "Bonus hit! +20 credits tildelt"
+          : variables.status === "no_bonus"
+          ? "Markeret som ingen bonus"
+          : "Request afvist";
+      toast.success(msg);
+      queryClient.invalidateQueries({ queryKey: ["all-slot-requests"] });
+      queryClient.invalidateQueries({ queryKey: ["my-slot-requests"] });
+      queryClient.invalidateQueries({ queryKey: ["admin-user-spins"] });
+      queryClient.invalidateQueries({ queryKey: ["credit-allocation-log"] });
+    },
+    onError: (error: Error) => {
+      toast.error(`Fejl: ${error.message}`);
+    },
+  });
+}

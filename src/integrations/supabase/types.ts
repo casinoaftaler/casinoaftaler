@@ -916,6 +916,45 @@ export type Database = {
         }
         Relationships: []
       }
+      slot_requests: {
+        Row: {
+          admin_note: string | null
+          created_at: string
+          credits_awarded: number
+          id: string
+          is_custom: boolean
+          provider: string
+          slot_name: string
+          status: string
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          admin_note?: string | null
+          created_at?: string
+          credits_awarded?: number
+          id?: string
+          is_custom?: boolean
+          provider: string
+          slot_name: string
+          status?: string
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          admin_note?: string | null
+          created_at?: string
+          credits_awarded?: number
+          id?: string
+          is_custom?: boolean
+          provider?: string
+          slot_name?: string
+          status?: string
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
       slot_spins: {
         Row: {
           created_at: string
