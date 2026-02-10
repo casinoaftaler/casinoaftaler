@@ -1,114 +1,56 @@
 
 
-## Fix: Rise of Fedesvin Bonus Round Crash
+## Plan: Tilfoej authentication-krav til leaderboard views
 
-### Root Cause Analysis
+### Analyse af nuvaerende setup
 
-I found **3 bugs** causing the reported issue where reels turn off and an error appears after pressing "Start" on the bonus trigger:
+- **`slot_leaderboard`** view: Bruger `security_invoker=on`, saa den respekterer RLS paa `slot_game_results`. Den underliggende tabel har en policy `Anyone can view leaderboard` med `USING (true)` -- det er her adgangen skal aendres.
+- **`profiles_leaderboard`** view: Bruger `security_invoker=false` (security definer), som bevidst omgaar RLS for at vise display_name og avatar_url. Denne bruges ogsaa af community clips og kommentarer, som skal vaere synlige for alle.
 
----
+### Udfordring
 
-### Bug 1 (Critical): `winGroups[0]` crash when expansion produces no win groups
+`profiles_leaderboard` bruges af 5 forskellige features:
+1. Leaderboard (slot-spil)
+2. Community clips (offentlig)
+3. Community kommentarer (offentlig)
+4. Live Big Wins (slot-spil)
+5. Slot Points Management (admin)
 
-**File:** `src/components/slots/SlotGame.tsx` (lines 803-806)
+Hvis vi laaser `profiles_leaderboard` til kun autentificerede brugere, vil community clips og kommentarer miste navne/avatars for gaester.
 
-When a bonus spin results in expanded reels (`expandedReels.length > 0`) but the `expandingWinGroups` array is empty (possible when multiplier values produce no qualifying wins), the code enters the `else` branch and tries to access `winGroups[0].wins` -- which is `undefined`, causing a `TypeError`.
+### Loesung
 
-This crashes the `onReelStop` handler. The error bubbles up, and the catch block at line 441 sets `isSpinning(false)` (reels turn off) and shows an error toast.
+**Trin 1: Opdater RLS paa `slot_game_results`**
+- Erstat den eksisterende "Anyone can view leaderboard" policy med en ny, der kraever `auth.uid() IS NOT NULL`
+- Dette sikrer at `slot_leaderboard` viewet (som bruger `security_invoker=on`) automatisk kun er tilgaengeligt for indloggede brugere
 
-**Fix:** Add a guard before accessing `winGroups[0]`. If `winGroups` is empty but expansion occurred, skip the single-group win animation and just show the expanded grid visually.
+**Trin 2: Behold `profiles_leaderboard` som den er**
+- Denne view eksponerer kun ikke-folsomme data (display_name, avatar_url)
+- Den bruges af offentlige features (community clips), saa den skal forblive tilgaengelig
+- Risikoen er minimal da den kun viser offentlige profiloplysninger
 
----
+**Trin 3: Opdater frontend**
+- Tilfoej et login-gate i `SlotLeaderboard` komponenten, saa uautentificerede brugere ser en besked om at logge ind
+- Opdater `useSlotLeaderboard` hook til at deaktivere query naar brugeren ikke er logget ind
+- Opdater `useUserPoints` hook til at haandtere uautentificeret tilstand
 
-### Bug 2 (Secondary): `handleBonusEnd` INSERT blocked by security hardening
+### Tekniske detaljer
 
-**File:** `src/components/slots/SlotGame.tsx` (line 465)
+```text
+Database aendringer:
+  1. DROP POLICY "Anyone can view leaderboard" ON slot_game_results
+  2. CREATE POLICY "Authenticated users can view leaderboard"
+     ON slot_game_results FOR SELECT
+     USING (auth.uid() IS NOT NULL)
 
-After the recent security migration removed INSERT permissions on `slot_game_results` for users, the client-side call in `handleBonusEnd` fails silently. This means bonus completion results are never recorded to the leaderboard.
-
-**Fix:** Move the bonus result recording to the server. When the bonus ends and the client calls `endBonus()` which deletes the `slot_bonus_state` row, the server should handle recording the final bonus result. Alternatively, add a dedicated edge function call for bonus completion, or record it during the last bonus spin in the existing `slot-spin` function.
-
----
-
-### Bug 3 (Minor): Realtime filter missing `game_id`
-
-**File:** `src/hooks/useBonusGameSync.ts` (line 88)
-
-The realtime subscription filters only by `user_id`, not `game_id`. If a user has active bonuses in both games, realtime events from one game can update the other game's bonus state, causing visual glitches.
-
-**Fix:** The Supabase realtime filter syntax doesn't support multiple column filters directly, so the `game_id` check (already at line 99) is the correct approach. However, the DELETE event handler at line 94 doesn't check `game_id` before resetting state to INITIAL. This means ending a bonus in one game resets the other game's local state.
-
----
-
-### Implementation Steps
-
-1. **Guard `winGroups[0]` access** in `SlotGame.tsx`:
-   - Before the `else` branch (line 803), check `winGroups.length > 0`
-   - If empty, still show the expansion animation visually but skip win line display
-   - Fall through to normal result handling
-
-2. **Move bonus result recording server-side**:
-   - In `slot-spin/index.ts`, detect when `free_spins_remaining` reaches 0 after decrement
-   - Record the bonus result using `serviceClient` (which bypasses RLS)
-   - Remove the client-side INSERT from `handleBonusEnd`
-
-3. **Fix realtime DELETE handler**:
-   - In `useBonusGameSync.ts`, check `payload.old.game_id` before resetting state on DELETE events
-
-### Technical Details
-
-**Bug 1 fix (SlotGame.tsx ~line 803):**
-```
-// Before:
-} else {
-  const singleGroupWinKeys = new Set(
-    winGroups[0].wins.map(...)
-  );
-
-// After:
-} else if (winGroups.length > 0) {
-  const singleGroupWinKeys = new Set(
-    winGroups[0].wins.map(...)
-  );
-  // ... rest of single-group logic
-} else {
-  // Expansion happened but no wins -- show expansion visually only
-  setExpandedReels(reelsExpanded);
-  setShowExpansionDarken(true);
-  await new Promise(resolve => setTimeout(resolve, 500));
-  setGrid(expandedGrid);
-  setNewlyExpandedReels(reelsExpanded);
-  slotSounds.playSymbolExpand();
-  await new Promise(resolve => setTimeout(resolve, 600));
-  setNewlyExpandedReels([]);
-  setShowExpansionDarken(false);
-  pendingExpandedReelsRef.current = [];
-  pendingExpandingWinGroupsRef.current = [];
-}
+Frontend aendringer:
+  - useSlotLeaderboard.ts: Tilfoej enabled: !!currentUserId
+  - SlotLeaderboard.tsx: Vis login-prompt for gaester
+  - useUserPoints.ts: Ingen aendring noe dvendig (allerede filtreret paa userId)
 ```
 
-**Bug 2 fix (slot-spin/index.ts ~line 793):**
-```
-// After updating bonus state, check if bonus just ended
-if (newFreeSpins <= 0 && newBonusWinnings > 0) {
-  // Record bonus result server-side
-  await serviceClient.from("slot_game_results").insert({
-    user_id: userId,
-    bet_amount: bet,
-    win_amount: 0,
-    is_bonus_triggered: false,
-    bonus_win_amount: newBonusWinnings,
-    game_id: gameId,
-  });
-}
-```
+### Hvad forbliver uaendret
+- `profiles_leaderboard` view -- forbliver offentlig (brugt af community features)
+- `profiles_public` view -- forbliver offentlig (brugt af offentlige profiler)
+- Community clips og kommentarer -- upaavirkede
 
-**Bug 3 fix (useBonusGameSync.ts ~line 94):**
-```
-if (payload.eventType === "DELETE") {
-  const oldData = payload.old as any;
-  if (!oldData?.game_id || oldData.game_id === gameId) {
-    setBonusState(INITIAL_STATE);
-  }
-}
-```
