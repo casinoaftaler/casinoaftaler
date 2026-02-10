@@ -87,7 +87,7 @@ export function BonusStatusBar({
         <div className="flex items-center gap-2">
           <span className={cn("text-base", theme.accentMuted)}>Gevinst:</span>
           <span className={cn("text-xl font-bold", theme.accentLight, theme.dropShadowGlowStrong)}>
-            {bonusWinnings}
+            {Number(bonusWinnings.toFixed(2))}
           </span>
         </div>
       </div>
