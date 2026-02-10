@@ -581,12 +581,15 @@ export function SlotGame({ gameId = "book-of-fedesvin" }: SlotGameProps) {
     return () => clearTimeout(timer);
   }, [bonusState.isActive, bonusState.freeSpinsRemaining, isSpinning, isWinAnimating, isSpinLocked, showBonusTrigger, showBonusComplete, showRetrigger, showScatterCelebration]);
 
+  // Stable empty array to avoid defeating React.memo when there are no wins
+  const EMPTY_POSITIONS = React.useMemo(() => [] as number[], []);
+
   // Find winning positions for each reel - memoized to prevent SlotReel re-renders
   const getWinningPositions = useCallback((reelIndex: number): number[] => {
-    if (!lastResult || lastResult.wins.length === 0) return [];
+    if (!lastResult || lastResult.wins.length === 0) return EMPTY_POSITIONS;
     
     if (expandedReels.length > 0 && !expandedReels.includes(reelIndex)) {
-      return [];
+      return EMPTY_POSITIONS;
     }
     
     const positions: number[] = [];
@@ -597,7 +600,7 @@ export function SlotGame({ gameId = "book-of-fedesvin" }: SlotGameProps) {
       }
     }
     return [...new Set(positions)];
-  }, [lastResult, expandedReels]);
+  }, [lastResult, expandedReels, EMPTY_POSITIONS]);
 
   const isReelExpanded = useCallback((reelIndex: number): boolean => {
     return expandedReels.includes(reelIndex);
