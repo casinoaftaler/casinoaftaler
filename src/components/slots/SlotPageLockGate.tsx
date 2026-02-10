@@ -1,21 +1,22 @@
 import { useState } from "react";
-import { Lock, KeyRound } from "lucide-react";
+import { Lock, KeyRound, Loader2 } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 
 interface SlotPageLockGateProps {
   backgroundImage: string;
-  onVerify: (password: string) => boolean;
+  onVerify: (password: string) => Promise<boolean>;
   error: string | null;
+  isVerifying?: boolean;
   promo?: React.ReactNode;
   gameName?: string;
 }
 
-export function SlotPageLockGate({ backgroundImage, onVerify, error, promo, gameName = "Book of Fedesvin" }: SlotPageLockGateProps) {
+export function SlotPageLockGate({ backgroundImage, onVerify, error, isVerifying, promo, gameName = "Book of Fedesvin" }: SlotPageLockGateProps) {
   const [password, setPassword] = useState("");
   const [localError, setLocalError] = useState<string | null>(null);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLocalError(null);
     
@@ -24,7 +25,7 @@ export function SlotPageLockGate({ backgroundImage, onVerify, error, promo, game
       return;
     }
 
-    const success = onVerify(password);
+    const success = await onVerify(password);
     if (!success) {
       setPassword("");
     }
@@ -73,6 +74,7 @@ export function SlotPageLockGate({ backgroundImage, onVerify, error, promo, game
                 onChange={(e) => setPassword(e.target.value)}
                 className="pl-11 h-12 bg-background/50 border-amber-500/30 focus:border-amber-500 text-foreground"
                 autoFocus
+                disabled={isVerifying}
               />
             </div>
 
@@ -85,8 +87,16 @@ export function SlotPageLockGate({ backgroundImage, onVerify, error, promo, game
             <Button 
               type="submit" 
               className="w-full h-12 bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 text-white font-semibold"
+              disabled={isVerifying}
             >
-              Få adgang
+              {isVerifying ? (
+                <>
+                  <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                  Verificerer...
+                </>
+              ) : (
+                "Få adgang"
+              )}
             </Button>
           </form>
 
