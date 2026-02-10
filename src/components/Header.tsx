@@ -120,26 +120,25 @@ export function Header() {
               </DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>
-          <Link
-            to="/butik"
-            className="flex items-center gap-1.5 text-sm font-medium transition-colors hover:text-primary"
-          >
-            <ShoppingBag className="h-4 w-4" />
-            Butik
-          </Link>
-          <Link
-            to="/highlights"
-            className="flex items-center gap-1.5 text-sm font-medium transition-colors hover:text-primary"
-          >
-            <Video className="h-4 w-4" />
-            Highlights
-          </Link>
           <DropdownMenu>
             <DropdownMenuTrigger className="flex items-center gap-1.5 text-sm font-medium transition-colors hover:text-primary">
               <Users className="h-4 w-4" />
               Community <ChevronDown className="h-4 w-4" />
             </DropdownMenuTrigger>
             <DropdownMenuContent align="center" className="bg-popover">
+              <DropdownMenuItem asChild>
+                <Link to="/butik" className="flex items-center gap-2">
+                  <ShoppingBag className="h-4 w-4" />
+                  Butik
+                </Link>
+              </DropdownMenuItem>
+              <DropdownMenuItem asChild>
+                <Link to="/highlights" className="flex items-center gap-2">
+                  <Video className="h-4 w-4" />
+                  Highlights
+                </Link>
+              </DropdownMenuItem>
+              <DropdownMenuSeparator />
               <DropdownMenuItem asChild>
                 <Link to="/community/slots" className="flex items-center gap-2">
                   <Coins className="h-4 w-4" />
@@ -325,9 +324,14 @@ export function Header() {
               <Mail className="h-4 w-4" />
               Kontakt
             </Link>
+            {/* Community section */}
+            <div className="flex items-center gap-2 text-sm font-medium text-muted-foreground">
+              <Users className="h-4 w-4" />
+              Community
+            </div>
             <Link
               to="/butik"
-              className="flex items-center gap-2 text-sm font-medium transition-colors hover:text-primary"
+              className="ml-6 flex items-center gap-2 text-sm text-muted-foreground transition-colors hover:text-primary"
               onClick={() => setMobileMenuOpen(false)}
             >
               <ShoppingBag className="h-4 w-4" />
@@ -335,18 +339,12 @@ export function Header() {
             </Link>
             <Link
               to="/highlights"
-              className="flex items-center gap-2 text-sm font-medium transition-colors hover:text-primary"
+              className="ml-6 flex items-center gap-2 text-sm text-muted-foreground transition-colors hover:text-primary"
               onClick={() => setMobileMenuOpen(false)}
             >
               <Video className="h-4 w-4" />
               Highlights
             </Link>
-            
-            {/* Community section */}
-            <div className="flex items-center gap-2 text-sm font-medium text-muted-foreground">
-              <Users className="h-4 w-4" />
-              Community
-            </div>
             <Link
               to="/community/slots"
               className="ml-6 flex items-center gap-2 text-sm text-muted-foreground transition-colors hover:text-primary"
