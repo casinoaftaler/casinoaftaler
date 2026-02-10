@@ -8,9 +8,11 @@ import { SlotLoadingScreen } from "@/components/slots/SlotLoadingScreen";
 import { SlotIntroScreen } from "@/components/slots/SlotIntroScreen";
 import { SlotSessionGate } from "@/components/slots/SlotSessionGate";
 import { SlotPageLayout } from "@/components/slots/SlotPageLayout";
+import { SlotPageLockGate } from "@/components/slots/SlotPageLockGate";
 import { useAuth } from "@/hooks/useAuth";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
 import { useSlotSoundLoader } from "@/hooks/useSlotSoundLoader";
+import { useSlotPageAccess } from "@/hooks/useSlotPageAccess";
 
 import { useSlotSession } from "@/hooks/useSlotSession";
 import { useCasinos } from "@/hooks/useCasinos";
@@ -29,6 +31,7 @@ export default function SlotMachine() {
   const { user, loading } = useAuth();
   const { data: siteSettings } = useSiteSettings();
   const { data: casinos } = useCasinos();
+  const { hasAccess, isLoading: accessLoading, verifyPassword, error: accessError } = useSlotPageAccess("book-of-fedesvin");
   
   // Load custom sound files at page level so they're ready for intro screen music
   useSlotSoundLoader("book-of-fedesvin");
@@ -81,8 +84,8 @@ export default function SlotMachine() {
     </>
   );
 
-  // 1. Show loading while checking auth
-  if (loading) {
+  // 1. Show loading while checking auth or access
+  if (loading || accessLoading) {
     return (
       <div className="min-h-[calc(100vh-4rem)] relative">
         <PageBackground />
@@ -93,7 +96,19 @@ export default function SlotMachine() {
     );
   }
 
-  // 2. Show login prompt if not logged in
+  // 2. Show lock gate if page is locked and user doesn't have access
+  if (!hasAccess) {
+    return (
+      <SlotPageLockGate
+        backgroundImage={backgroundImage}
+        onVerify={verifyPassword}
+        error={accessError}
+        gameName="Book of Fedesvin"
+      />
+    );
+  }
+
+  // 3. Show login prompt if not logged in
   if (!user) {
     return (
       <div className="min-h-[calc(100vh-4rem)] relative">
