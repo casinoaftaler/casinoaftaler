@@ -31,7 +31,7 @@ export function ProfileCommunityBonusSection({ className }: ProfileCommunityBonu
         <CardHeader className="pb-3">
           <CardTitle className="flex items-center gap-2 text-base">
             <Gift className="h-5 w-5 text-primary" />
-            Bonus Spins (Community)
+            Bonus Credits (Community)
           </CardTitle>
         </CardHeader>
         <CardContent className="space-y-4">
@@ -64,14 +64,14 @@ export function ProfileCommunityBonusSection({ className }: ProfileCommunityBonu
 
           {/* Info text */}
           <p className="text-xs text-muted-foreground">
-            Upload godkendte klips til Community Highlights og optjen +50 bonus spins per klip (maks {maxClips} klips).
+            Upload godkendte klips til Community Highlights og optjen +50 bonus credits per klip (maks {maxClips} klips).
           </p>
 
           {/* Activate button */}
           {remaining > 0 && (
             <Button onClick={() => setDialogOpen(true)} className="w-full" size="sm">
               <Sparkles className="h-4 w-4 mr-2" />
-              Aktiver Spins ({remaining} tilgængelige)
+              Aktiver Credits ({remaining} tilgængelige)
             </Button>
           )}
         </CardContent>

@@ -97,10 +97,10 @@ export function useCommunityBonusSpins() {
     onSuccess: (amount) => {
       queryClient.invalidateQueries({ queryKey: ["community-bonus-spins"] });
       queryClient.invalidateQueries({ queryKey: ["slot-spins"] });
-      toast.success(`${amount} bonus spins aktiveret!`);
+      toast.success(`${amount} bonus credits aktiveret!`);
     },
     onError: (error) => {
-      toast.error("Kunne ikke aktivere spins: " + error.message);
+      toast.error("Kunne ikke aktivere credits: " + error.message);
     },
   });
 

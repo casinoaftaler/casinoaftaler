@@ -80,10 +80,10 @@ export function ProfileCompletionPrompt() {
             <Gift className="h-7 w-7 text-primary" />
           </div>
           <DialogTitle className="text-xl">
-            Få 20 ekstra spins hver dag! 🎰
+            Få 20 ekstra credits hver dag! 🎰
           </DialogTitle>
           <DialogDescription className="text-base pt-2">
-            Vil du modtage <span className="font-semibold text-primary">20 gratis spins ekstra</span> hver eneste dag? 
+            Vil du modtage <span className="font-semibold text-primary">20 gratis credits ekstra</span> hver eneste dag? 
             Udfyld din profil, og de er dine — for altid!
           </DialogDescription>
         </DialogHeader>

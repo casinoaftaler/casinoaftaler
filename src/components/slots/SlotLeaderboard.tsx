@@ -70,7 +70,7 @@ function LeaderboardRow({
         </div>
         <div className="text-center">
           <p className={cn("font-medium", theme.leaderboardSpinsText)}>{entry.total_spins.toLocaleString()}</p>
-          <p className="text-xs text-muted-foreground">spins</p>
+          <p className="text-xs text-muted-foreground">credits</p>
         </div>
         <div className="text-center">
           <p className="font-medium text-blue-400">{entry.total_bonuses.toLocaleString()}</p>

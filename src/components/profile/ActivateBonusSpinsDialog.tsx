@@ -39,10 +39,10 @@ export function ActivateBonusSpinsDialog({
         <DialogHeader>
           <DialogTitle className="flex items-center gap-2">
             <Sparkles className="h-5 w-5 text-primary" />
-            Aktiver Bonus Spins
+            Aktiver Bonus Credits
           </DialogTitle>
           <DialogDescription>
-            Vælg hvor mange bonus spins du vil aktivere. De tilføjes til din aktive spin-saldo.
+            Vælg hvor mange bonus credits du vil aktivere. De tilføjes til din aktive credit-saldo.
           </DialogDescription>
         </DialogHeader>
 
@@ -75,7 +75,7 @@ export function ActivateBonusSpinsDialog({
           <div className="rounded-lg border border-border bg-muted/30 p-3 flex items-start gap-2">
             <AlertTriangle className="h-4 w-4 text-destructive mt-0.5 shrink-0" />
             <p className="text-xs text-muted-foreground">
-              Aktiverede spins tilføjes til dagens saldo. Ubrugte aktiverede spins nulstilles ved dagsskiftet — aktiver kun hvad du kan bruge i dag.
+              Aktiverede credits tilføjes til dagens saldo. Ubrugte aktiverede credits nulstilles ved dagsskiftet — aktiver kun hvad du kan bruge i dag.
             </p>
           </div>
         </div>
@@ -88,7 +88,7 @@ export function ActivateBonusSpinsDialog({
             onClick={() => onActivate(amount)}
             disabled={isActivating || amount < 1}
           >
-            {isActivating ? "Aktiverer..." : `Aktiver ${amount} spins`}
+            {isActivating ? "Aktiverer..." : `Aktiver ${amount} credits`}
           </Button>
         </DialogFooter>
       </DialogContent>
