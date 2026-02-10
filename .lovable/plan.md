@@ -1,81 +1,49 @@
 
 
-## Show Credits in Header + Redeem Code System
+## Fix: Random Win Lines Appearing After Expansion Animations
 
-### Part 1: Credits Display in Header
+### Problem
 
-**What**: When logged in, show the user's current credit balance next to their profile avatar in the top nav.
+After the sequential expanding symbol animations finish in Rise of Fedesvin (the multi-group loop), the code unconditionally falls through to `setLastResult(result)` on line 809, which sets the **full server result** with **all wins** (including the ones already shown per-group). Then on line 885, `setShowWinLines(true)` is called, causing all win lines to briefly flash on the grid -- appearing as random, unexpected symbol connections.
 
-**How**: 
-- In `src/components/Header.tsx`, fetch the user's `spins_remaining` from the `slot_spins` table for today's date
-- Display a small coin icon + number next to the avatar button (e.g., "142" with a coin icon)
-- Use Danish number formatting (e.g., 1.234)
-- Only show when user is logged in
+### Root Cause
 
-### Part 2: Redeem Code System
+Lines 809 and 885-887 in `SlotGame.tsx` don't account for the fact that wins were already displayed during the per-group expansion loop. They re-show everything.
 
-#### Database: New `redeem_codes` table
+### Fix
 
-| Column | Type | Description |
-|--------|------|-------------|
-| id | uuid | Primary key |
-| code | text (unique) | The code string (e.g., "BONUS50") |
-| credits_amount | integer | How many credits the code gives |
-| usage_type | text | "single_user" (one user only) or "one_per_user" (everyone can use once) |
-| max_uses | integer (nullable) | Optional cap on total redemptions |
-| times_used | integer | Counter of total redemptions |
-| expires_at | timestamptz (nullable) | Optional expiry time |
-| is_active | boolean | Admin can deactivate |
-| created_by | uuid | Admin who created it |
-| created_at | timestamptz | Creation timestamp |
+After the multi-group expansion block completes (line 776), filter the result to only contain **connecting wins** (non-expanding wins) that weren't already shown. If all wins were expanding wins (which is the common case), set `lastResult` to a version with an empty wins array so no win lines are drawn.
 
-#### Database: New `redeem_code_uses` table
+### Technical Changes
 
-| Column | Type | Description |
-|--------|------|-------------|
-| id | uuid | Primary key |
-| code_id | uuid | FK to redeem_codes |
-| user_id | uuid | Who redeemed |
-| credits_awarded | integer | How many credits were given |
-| redeemed_at | timestamptz | When redeemed |
+**File**: `src/components/slots/SlotGame.tsx`
 
-Unique constraint on (code_id, user_id) to prevent double-use per user.
+1. After the multi-group `for` loop ends (around line 776), compute remaining wins that weren't part of any expansion group:
 
-#### RLS Policies
-- `redeem_codes`: Anyone authenticated can SELECT (to validate codes). Only admins can INSERT/UPDATE/DELETE.
-- `redeem_code_uses`: Users can SELECT their own uses. INSERT handled via edge function with service role.
+```typescript
+// After multi-group loop (line 776), before falling through to line 809:
+// Filter out wins already shown during expansion groups
+const allExpandingWinKeys = new Set(
+  winGroups.flatMap(g => g.wins.map((w: any) => `${w.lineIndex}-${w.symbolId}`))
+);
+const remainingWins = result.wins.filter(
+  (w: any) => !allExpandingWinKeys.has(`${w.lineIndex}-${w.symbolId}`)
+);
+// Replace result.wins reference for the rest of the handler
+const filteredResult = {
+  ...result,
+  wins: remainingWins,
+  totalWin: result.totalWin, // keep total for celebration
+};
+```
 
-#### Edge Function: `redeem-code`
-- Accepts `{ code: string }` + auth token
-- Validates: code exists, is active, not expired, user hasn't already used it, usage limits not exceeded
-- Atomically: inserts into `redeem_code_uses`, increments `times_used`, adds credits to user's `slot_spins` for today
-- Returns success/error message
+2. Use `filteredResult` instead of `result` when setting `lastResult` on line 809, so only un-shown wins (if any) get win lines.
 
-#### User Interface: "Indlos Kode" in Profile Dropdown
-- Add a new menu item "Indlos Kode" (with a `Ticket` icon) in the profile dropdown menu in the header (between "Profil" and the theme toggle)
-- Clicking it opens a dialog with a text input for the code and a "Indlos" button
-- Shows success/error feedback via toast
+3. Similarly for the single-group path (lines 780-806), after showing the group's wins, clear the result wins before falling through.
 
-#### Admin Interface: "Koder" tab in Admin Panel
-- New tab in the admin dashboard (11th tab)
-- List all existing codes with status (active, expired, usage count)
-- Form to create new codes: code string, credits amount, usage type (single user / everyone once), optional expiry date/time
-- Toggle to activate/deactivate codes
-- Delete codes
+4. The win amount celebration (lines 856-883) should still use the **original** `result.totalWin` for the final total display -- only the win lines should be filtered.
 
-### Technical Details
+### Summary
 
-**Files to create:**
-- `src/components/RedeemCodeDialog.tsx` -- Dialog with code input
-- `src/components/RedeemCodesAdminSection.tsx` -- Admin CRUD for codes
-- `supabase/functions/redeem-code/index.ts` -- Server-side redemption logic
-
-**Files to modify:**
-- `src/components/Header.tsx` -- Add credits display + "Indlos Kode" menu item + dialog
-- `src/pages/Admin.tsx` -- Add "Koder" tab
-- `supabase/config.toml` -- Add redeem-code function config
-
-**Database migration:**
-- Create `redeem_codes` and `redeem_code_uses` tables with RLS policies
-- Enable realtime on `slot_spins` (optional, for live credit updates)
+One targeted change in `SlotGame.tsx` (~10 lines modified) to prevent already-displayed expansion wins from re-appearing as win lines at the end of the expansion sequence.
 
