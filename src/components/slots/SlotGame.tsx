@@ -89,9 +89,22 @@ export function SlotGame({ gameId = "book-of-fedesvin" }: SlotGameProps) {
   const [newlyExpandedReels, setNewlyExpandedReels] = useState<number[]>([]);
   const [showWinLines, setShowWinLines] = useState(false);
   const [teaseReels, setTeaseReels] = useState<number[]>([]);
+  const teaseReelsSet = React.useMemo(() => new Set(teaseReels), [teaseReels]);
   const [activeTeaseReelIndex, setActiveTeaseReelIndex] = useState<number | null>(null);
   const [teaseInfo, setTeaseInfo] = useState<TeaseInfo>({ reels: [], lateScatter: false, lastScatterReel: -1 });
   const [scatterReelsLanded, setScatterReelsLanded] = useState<Set<number>>(new Set());
+  const isDarkenedForTeaseGlobal = scatterReelsLanded.size >= 2 && isSpinning;
+  
+  // Pre-compute scatter map per reel from the current grid to avoid repeated symbols.find() in onReelStop
+  const scatterReelMap = React.useMemo(() => {
+    if (!grid || !symbols) return new Map<number, boolean>();
+    const scatterIds = new Set(symbols.filter(s => s.is_scatter).map(s => s.id));
+    const map = new Map<number, boolean>();
+    for (let r = 0; r < grid.length; r++) {
+      map.set(r, grid[r].some(id => scatterIds.has(id)));
+    }
+    return map;
+  }, [grid, symbols]);
   const [showExpansionDarken, setShowExpansionDarken] = useState(false);
   const [showConnectingWins, setShowConnectingWins] = useState(false);
   
@@ -720,29 +733,18 @@ export function SlotGame({ gameId = "book-of-fedesvin" }: SlotGameProps) {
                             }, slotSettings.reelStaggerMs);
                           }
                           
-                          // Check for scatter sounds
-                          const hasScatterOnReel = grid?.[reelIndex]?.some(symbolId => {
-                            const symbol = symbols?.find(s => s.id === symbolId);
-                            return symbol?.is_scatter;
-                          });
+                          // Check for scatter sounds using pre-computed scatter map
+                          const hasScatterOnReel = scatterReelMap.get(reelIndex) ?? false;
                           
                           if (hasScatterOnReel) {
                             let scattersLanded = 0;
                             for (let r = 0; r <= reelIndex; r++) {
-                              const reelHasScatter = grid?.[r]?.some(symbolId => {
-                                const symbol = symbols?.find(s => s.id === symbolId);
-                                return symbol?.is_scatter;
-                              });
-                              if (reelHasScatter) scattersLanded++;
+                              if (scatterReelMap.get(r)) scattersLanded++;
                             }
                             
                             let scattersOnReels123 = 0;
                             for (let r = 0; r <= Math.min(reelIndex, 2); r++) {
-                              const reelHasScatter123 = grid?.[r]?.some(symbolId => {
-                                const symbol = symbols?.find(s => s.id === symbolId);
-                                return symbol?.is_scatter;
-                              });
-                              if (reelHasScatter123) scattersOnReels123++;
+                              if (scatterReelMap.get(r)) scattersOnReels123++;
                             }
                             
                             const isOnReels123 = reelIndex <= 2;
@@ -761,15 +763,15 @@ export function SlotGame({ gameId = "book-of-fedesvin" }: SlotGameProps) {
                           
                           stoppedReelsRef.current.add(reelIndex);
                           
-                          // Handle sequential tease reel activation
-                          if (teaseReels.includes(reelIndex)) {
+                          // Handle sequential tease reel activation using Set for O(1) lookup
+                          if (teaseReelsSet.has(reelIndex)) {
                             const currentTeaseIndex = teaseReels.indexOf(reelIndex);
                             if (currentTeaseIndex < teaseReels.length - 1) {
                               setActiveTeaseReelIndex(teaseReels[currentTeaseIndex + 1]);
                             }
-                          } else if (teaseReels.length > 0) {
+                          } else if (teaseReelsSet.size > 0) {
                             const nextReel = reelIndex + 1;
-                            if (teaseReels.includes(nextReel)) {
+                            if (teaseReelsSet.has(nextReel)) {
                               setActiveTeaseReelIndex(nextReel);
                             }
                           }
@@ -1070,16 +1072,14 @@ export function SlotGame({ gameId = "book-of-fedesvin" }: SlotGameProps) {
                             }, spinLockDelay);
                           }
                         }}
-                        teaseMode={teaseReels.includes(colIndex)}
-                        isActiveTeaseReel={teaseReels.includes(colIndex) && activeTeaseReelIndex === colIndex}
+                        teaseMode={teaseReelsSet.has(colIndex)}
+                        isActiveTeaseReel={teaseReelsSet.has(colIndex) && activeTeaseReelIndex === colIndex}
                         scatterLandedOnPreviousReel={scatterReelsLanded.has(teaseInfo.lastScatterReel)}
                         extendedFakeLoop={teaseInfo.lateScatter && colIndex === 4}
-                        globalTeaseActive={teaseReels.length > 0 && isSpinning && activeTeaseReelIndex !== null}
+                        globalTeaseActive={teaseReelsSet.size > 0 && isSpinning && activeTeaseReelIndex !== null}
                         hasLandedScatter={scatterReelsLanded.has(colIndex) && scatterReelsLanded.size >= 2 && isSpinning}
                         isScatterCelebrating={showScatterCelebration}
-                        isDarkenedForTease={
-                          (scatterReelsLanded.size >= 2 && isSpinning)
-                        }
+                        isDarkenedForTease={isDarkenedForTeaseGlobal}
                         isDarkenedForExpansion={showExpansionDarken && !expandedReels.includes(colIndex)}
                         gameId={gameId}
                       />
