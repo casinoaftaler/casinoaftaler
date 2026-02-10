@@ -37,7 +37,7 @@ import {
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Separator } from "@/components/ui/separator";
+
 import { Plus, Trash2, LogOut, Star, Loader2, Pencil, GripVertical, Gift, ShoppingBag, BarChart3, Settings, Users, Video, Gamepad2, Bell, Sparkles, Ticket } from "lucide-react";
 import { AdminUserManagement } from "@/components/AdminUserManagement";
 import { TwitchUsersSection } from "@/components/TwitchUsersSection";
@@ -48,7 +48,7 @@ import { StorageCleanupSection } from "@/components/StorageCleanupSection";
 import { NotificationsAdminSection } from "@/components/NotificationsAdminSection";
 import { ProfileCompletionStatsCard } from "@/components/ProfileCompletionStatsCard";
 import { CommunityClipsAdminSection } from "@/components/CommunityClipsAdminSection";
-import { LivePlayersAdminSection } from "@/components/LivePlayersAdminSection";
+
 import { ThemeToggle } from "@/components/ThemeToggle";
 import { RedeemCodesAdminSection } from "@/components/RedeemCodesAdminSection";
 import { useQueryClient } from "@tanstack/react-query";
@@ -957,9 +957,6 @@ function AdminDashboard() {
           {/* Spillemaskine Tab */}
           <TabsContent value="slotmachine">
             <SlotMachineAdminSection />
-            <Separator className="my-8" />
-            <h2 className="text-xl font-semibold mb-4">Live spillere</h2>
-            <LivePlayersAdminSection />
           </TabsContent>
 
           {/* Koder Tab */}

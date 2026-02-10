@@ -15,6 +15,7 @@ import { SlotSoundAdminSection } from "@/components/slots/SlotSoundAdminSection"
 import { SlotPointsManagement } from "@/components/slots/SlotPointsManagement";
 import { SlotSoundFilesSection } from "@/components/slots/SlotSoundFilesSection";
 import { SlotSoundGeneratorSection } from "@/components/slots/SlotSoundGeneratorSection";
+import { LivePlayersAdminSection } from "@/components/LivePlayersAdminSection";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -1410,7 +1411,7 @@ const GAME_OPTIONS = [
   { id: "rise-of-fedesvin", label: "Rise of Fedesvin" },
 ] as const;
 
-const GLOBAL_TABS = ["spins", "points", "combined-stats"] as const;
+const GLOBAL_TABS = ["spins", "points", "combined-stats", "live-players"] as const;
 
 export function SlotMachineAdminSection() {
   const [selectedGame, setSelectedGame] = useState("book-of-fedesvin");
@@ -1448,6 +1449,10 @@ export function SlotMachineAdminSection() {
           <TabsTrigger value="symbols">Symboler</TabsTrigger>
           <TabsTrigger value="settings">Indstillinger</TabsTrigger>
           <TabsTrigger value="statistics">Statistik</TabsTrigger>
+          <TabsTrigger value="live-players" className="gap-1">
+            <Users className="h-3.5 w-3.5" />
+            Live spillere
+          </TabsTrigger>
 
           {/* Visual separator */}
           <div className="w-px h-6 bg-border mx-1 self-center" />
@@ -1498,6 +1503,10 @@ export function SlotMachineAdminSection() {
             <SlotStatsResetSection />
             <StatisticsTab />
           </div>
+        </TabsContent>
+
+        <TabsContent value="live-players">
+          <LivePlayersAdminSection />
         </TabsContent>
       </Tabs>
     </div>
