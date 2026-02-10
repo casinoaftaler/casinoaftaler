@@ -788,13 +788,17 @@ export function SlotGame({ gameId = "book-of-fedesvin" }: SlotGameProps) {
           await new Promise(resolve => setTimeout(resolve, 600));
           setNewlyExpandedReels([]);
           
-          setLastResult(result);
-          setShowConnectingWins(true);
-          setShowWinLines(true);
-          await new Promise(resolve => setTimeout(resolve, 1200));
-          setShowWinLines(false);
-          setShowConnectingWins(false);
-          setLastResult(null);
+          const singleGroup = winGroups[0];
+          const groupWin = singleGroup.wins.reduce((sum, w) => sum + w.payout, 0);
+          if (singleGroup.wins.length > 0) {
+            setLastResult({ ...result, wins: singleGroup.wins, totalWin: groupWin });
+            setShowConnectingWins(true);
+            setShowWinLines(true);
+            await new Promise(resolve => setTimeout(resolve, 1200));
+            setShowWinLines(false);
+            setShowConnectingWins(false);
+            setLastResult(null);
+          }
           setShowExpansionDarken(false);
           
           pendingExpandedReelsRef.current = [];
