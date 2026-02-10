@@ -35,7 +35,7 @@ export function SpinsRemaining({ gameId }: SpinsRemainingProps) {
             <Sparkles className={`h-4 w-4 ${accentColor}`} />
             <span className="text-sm font-medium">
               <span className={accentColor}>{spinsRemaining}</span>
-              <span className="text-muted-foreground">/{maxSpins} spins i dag</span>
+              <span className="text-muted-foreground">/{maxSpins} credits i dag</span>
             </span>
             {bonusSpinsPermanent > 0 && (
               <Gift className="h-3 w-3 text-primary" />
@@ -44,12 +44,12 @@ export function SpinsRemaining({ gameId }: SpinsRemainingProps) {
         </TooltipTrigger>
         <TooltipContent>
           <div className="text-xs space-y-1">
-            <p>Daglige spins + profilbelønninger</p>
+            <p>Daglige credits + profilbelønninger</p>
             {bonusSpinsPermanent > 0 && (
-              <p className="text-primary">+{bonusSpinsPermanent} bonus spins fra profil</p>
+              <p className="text-primary">+{bonusSpinsPermanent} bonus credits fra profil</p>
             )}
             {communityRemaining > 0 && (
-              <p className="text-primary">{communityRemaining} community bonus spins tilgængelige</p>
+              <p className="text-primary">{communityRemaining} community bonus credits tilgængelige</p>
             )}
           </div>
         </TooltipContent>

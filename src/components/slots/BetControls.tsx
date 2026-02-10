@@ -92,7 +92,7 @@ export function BetControls({
           ) : (
             <span className="text-xs font-medium">
               <span className={cn(theme.accentLight, theme.dropShadowGlow)}>{spinsRemaining}</span>
-              <span className={theme.accentMuted}>/{maxSpins} spins</span>
+              <span className={theme.accentMuted}>/{maxSpins} credits</span>
             </span>
           )}
         </div>

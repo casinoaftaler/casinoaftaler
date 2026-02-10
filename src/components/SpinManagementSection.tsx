@@ -97,7 +97,7 @@ export function SpinManagementSection() {
       return { userId, newSpins };
     },
     onSuccess: (data) => {
-      toast.success(`Spins opdateret til ${data.newSpins}`);
+      toast.success(`Credits opdateret til ${data.newSpins}`);
       queryClient.invalidateQueries({ queryKey: ["admin-user-spins"] });
     },
     onError: (error: Error) => {
@@ -136,7 +136,7 @@ export function SpinManagementSection() {
       return { count: users.length, amount };
     },
     onSuccess: (data) => {
-      toast.success(`Gav ${data.amount} spins til ${data.count} brugere`);
+      toast.success(`Gav ${data.amount} credits til ${data.count} brugere`);
       queryClient.invalidateQueries({ queryKey: ["admin-user-spins"] });
     },
     onError: (error: Error) => {
@@ -166,12 +166,12 @@ export function SpinManagementSection() {
       <CardHeader>
         <CardTitle className="flex items-center gap-2">
           <Coins className="h-5 w-5" />
-          Giv Spins til Brugere
+          Giv Credits til Brugere
         </CardTitle>
       </CardHeader>
       <CardContent className="space-y-6">
         <p className="text-sm text-muted-foreground">
-          Giv eller fjern spins fra brugere. Ændringer gælder for dagens dato.
+          Giv eller fjern credits fra brugere. Ændringer gælder for dagens dato.
         </p>
 
         {/* Bulk give spins */}
@@ -185,7 +185,7 @@ export function SpinManagementSection() {
             onChange={(e) => setBulkSpinAmount(parseInt(e.target.value) || 10)}
             className="w-24 text-center"
           />
-          <span className="text-sm text-muted-foreground">spins</span>
+          <span className="text-sm text-muted-foreground">credits</span>
           <Button
             onClick={() => giveSpinsToAll.mutate(bulkSpinAmount)}
             disabled={giveSpinsToAll.isPending || !users || users.length === 0}
@@ -301,7 +301,7 @@ export function SpinManagementSection() {
                     <span className="font-mono font-bold text-primary">
                       {user.spins_remaining}
                     </span>
-                    <span className="text-muted-foreground text-sm"> spins</span>
+                    <span className="text-muted-foreground text-sm"> credits</span>
                   </div>
                 </div>
               </div>

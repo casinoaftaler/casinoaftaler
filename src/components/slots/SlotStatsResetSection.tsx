@@ -42,12 +42,12 @@ export function SlotStatsResetSection() {
         description: "Dette sletter alle spilleresultater og nulstiller leaderboardet. Alle brugers gevinster og statistik vil blive slettet permanent.",
       },
       spins: {
-        title: "Nulstil Alle Spins",
-        description: "Dette sletter alle spins-tællere. Alle brugere får nulstillet deres daglige spins og skal vente på nye.",
+         title: "Nulstil Alle Credits",
+        description: "Dette sletter alle credit-tællere. Alle brugere får nulstillet deres daglige credits og skal vente på nye.",
       },
       all: {
         title: "Nulstil Alt",
-        description: "Dette sletter BÅDE leaderboard OG alle spins. Alle brugers gevinster, statistik og spins vil blive slettet permanent.",
+        description: "Dette sletter BÅDE leaderboard OG alle credits. Alle brugers gevinster, statistik og credits vil blive slettet permanent.",
       },
     };
 
@@ -94,7 +94,7 @@ export function SlotStatsResetSection() {
 
       const targetLabels: Record<ResetTarget, string> = {
         leaderboard: "Leaderboard",
-        spins: "Spins",
+        spins: "Credits",
         all: "Alt",
       };
 
@@ -149,7 +149,7 @@ export function SlotStatsResetSection() {
               ) : (
                 <Timer className="h-4 w-4" />
               )}
-              Nulstil Alle Spins
+              Nulstil Alle Credits
             </Button>
 
             <Button

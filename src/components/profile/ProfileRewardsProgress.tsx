@@ -44,7 +44,7 @@ export function ProfileRewardsProgress({
           </CardTitle>
           <div className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-background/80 border">
             <span className="text-lg font-bold text-primary">{bonusSpinsPermanent}</span>
-            <span className="text-sm text-muted-foreground">/ {maxSpins} spins</span>
+            <span className="text-sm text-muted-foreground">/ {maxSpins} credits</span>
           </div>
         </div>
       </CardHeader>
@@ -107,7 +107,7 @@ export function ProfileRewardsProgress({
                       : "text-muted-foreground"
                   }`}
                 >
-                  +{SPINS_PER_SECTION} spins
+                  +{SPINS_PER_SECTION} credits
                 </div>
               </div>
             );

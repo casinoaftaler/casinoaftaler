@@ -77,7 +77,7 @@ export function AutospinRow({
                     <Infinity className="h-4 w-4" /> Uendelig
                   </span>
                 ) : (
-                  `${count} spins`
+                  `${count} credits`
                 )}
               </DropdownMenuItem>
             ))}
