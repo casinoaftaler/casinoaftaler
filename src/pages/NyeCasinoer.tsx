@@ -7,7 +7,7 @@ import { CasinoCard } from "@/components/CasinoCard";
 import { RelatedGuides } from "@/components/RelatedGuides";
 import { useCasinos } from "@/hooks/useCasinos";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
-import { useState, type ReactNode } from "react";
+import { useState, useMemo, type ReactNode } from "react";
 import {
   Accordion,
   AccordionContent,
@@ -34,6 +34,16 @@ import {
 } from "lucide-react";
 
 const PRIORITY_SLUGS = ["spildansknu", "spilleautomaten"];
+
+const DANISH_MONTHS = [
+  "Januar", "Februar", "Marts", "April", "Maj", "Juni",
+  "Juli", "August", "September", "Oktober", "November", "December",
+];
+
+function getDanishMonthYear() {
+  const now = new Date();
+  return `${DANISH_MONTHS[now.getMonth()]} ${now.getFullYear()}`;
+}
 
 const linkClass = "text-primary underline hover:text-primary/80";
 
@@ -270,7 +280,7 @@ const NyeCasinoer = () => {
         {/* New Casinos List */}
         <section className="mb-12">
           <h2 className="mb-6 text-3xl font-bold">
-            Nye casinoer – Februar 2026
+            Nye casinoer i Danmark {getDanishMonthYear()}
           </h2>
           {isLoading ? (
             <div className="flex items-center justify-center py-12">
