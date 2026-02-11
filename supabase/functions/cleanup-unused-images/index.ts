@@ -120,21 +120,15 @@ Deno.serve(async (req) => {
     // Get all used image URLs from database
     const usedFileNames = new Set<string>();
 
-    // 1. Site settings image URLs
+    // 1. Site settings – check ALL values that look like storage URLs
+    //    This ensures game-specific assets (rise_of_fedesvin_*, etc.) are never deleted.
     const { data: siteSettings } = await supabaseAdmin
       .from("site_settings")
-      .select("key, value")
-      .in("key", [
-        "header_icon",
-        "slot_background_image",
-        "slot_machine_frame_image",
-        "slot_title_image",
-        "hero_background_image"
-      ]);
+      .select("key, value");
 
     if (siteSettings) {
       for (const setting of siteSettings) {
-        if (setting.value) {
+        if (setting.value && setting.value.includes("/storage/v1/object/public/")) {
           const fileName = extractFileName(setting.value);
           if (fileName) usedFileNames.add(fileName);
         }
