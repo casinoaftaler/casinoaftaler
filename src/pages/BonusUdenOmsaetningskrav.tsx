@@ -358,7 +358,11 @@ const BonusUdenOmsaetningskrav = () => {
               </CardHeader>
               <CardContent>
                 <p className="text-sm text-muted-foreground leading-relaxed">
-                  Den klassiske velkomstbonus, hvor man modtager bonussen i
+                  Den klassiske{" "}
+                  <Link to="/velkomstbonus" className="text-primary underline hover:text-primary/80">
+                    velkomstbonus
+                  </Link>
+                  , hvor man modtager bonussen i
                   form af bonuspenge eller gratis spins. Nogle casinoer
                   tilbyder disse helt uden omsætningskrav som en ekstra
                   attraktion for nye spillere.
@@ -375,7 +379,10 @@ const BonusUdenOmsaetningskrav = () => {
               </CardHeader>
               <CardContent>
                 <p className="text-sm text-muted-foreground leading-relaxed">
-                  Free spins uden omsætningskrav er meget populære. Du modtager
+                  <Link to="/free-spins" className="text-primary underline hover:text-primary/80">
+                    Free spins
+                  </Link>{" "}
+                  uden omsætningskrav er meget populære. Du modtager
                   et antal gratis spins, hvor alt hvad du vinder kan hæves med
                   det samme, uden gennemspilning.
                 </p>

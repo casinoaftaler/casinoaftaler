@@ -276,10 +276,17 @@ const BonusUdenIndbetaling = () => {
               </CardHeader>
               <CardContent>
                 <p className="text-sm text-muted-foreground leading-relaxed">
-                  Ofte kombineres no deposit bonussen med en klassisk
-                  velkomstbonus. Du starter med gratis spins eller
+                  Ofte kombineres no deposit bonussen med en klassisk{" "}
+                  <Link to="/velkomstbonus" className="text-primary underline hover:text-primary/80">
+                    velkomstbonus
+                  </Link>
+                  . Du starter med gratis spins eller
                   kontanter, og når den risikofri runde er overstået,
-                  venter en matchbonus på din første indbetaling.
+                  venter en{" "}
+                  <Link to="/indskudsbonus" className="text-primary underline hover:text-primary/80">
+                    matchbonus (indskudsbonus)
+                  </Link>{" "}
+                  på din første indbetaling.
                 </p>
               </CardContent>
             </Card>
@@ -396,7 +403,11 @@ const BonusUdenIndbetaling = () => {
                   Det mest almindelige vilkår. Angiver hvor mange gange
                   bonusbeløbet skal gennemspilles, før gevinster kan
                   udbetales. I Danmark er loftet 10x takket være
-                  Spillemyndigheden.
+                  Spillemyndigheden. Læs mere i vores guide til{" "}
+                  <Link to="/omsaetningskrav" className="text-primary underline hover:text-primary/80">
+                    omsætningskrav
+                  </Link>
+                  .
                 </p>
               </CardContent>
             </Card>
@@ -461,7 +472,11 @@ const BonusUdenIndbetaling = () => {
           </h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
             I Danmark har Spillemyndigheden sat et loft på maksimalt 10x
-            for omsætningskrav. Det betyder, at danske casinoer aldrig kan
+            for{" "}
+            <Link to="/omsaetningskrav" className="text-primary underline hover:text-primary/80">
+              omsætningskrav
+            </Link>
+            . Det betyder, at danske casinoer aldrig kan
             kræve, at du gennemspiller en bonus mere end 10 gange. Det er
             en stor fordel for danske spillere sammenlignet med udenlandske
             markeder.

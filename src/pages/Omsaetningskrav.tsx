@@ -283,8 +283,11 @@ const Omsaetningskrav = () => {
                   Her gælder omsætningskravet kun for selve bonusbeløbet.
                   Modtager du 100 kr. i bonus, skal du satse for
                   100 × 10 = 1.000 kr. Din indbetaling skal stadig
-                  omsættes 1x separat. Denne type ses typisk ved
-                  no-sticky bonusser.
+                  omsættes 1x separat. Denne type ses typisk ved{" "}
+                  <Link to="/no-sticky-bonus" className="text-primary underline hover:text-primary/80">
+                    no-sticky bonusser
+                  </Link>
+                  .
                 </p>
               </CardContent>
             </Card>
@@ -457,7 +460,11 @@ const Omsaetningskrav = () => {
           <p className="mb-4 text-muted-foreground leading-relaxed">
             En stor fordel ved danske casinoer er, at Spillemyndigheden
             kræver, at alle gevinster vundet under bonusspil – inklusive
-            in-game free spins – tæller med i omsætningskravet. Det
+            in-game{" "}
+            <Link to="/free-spins" className="text-primary underline hover:text-primary/80">
+              free spins
+            </Link>{" "}
+            – tæller med i omsætningskravet. Det
             betyder, at hvis du vinder gratis spins i en spilleautomat
             og derefter vinder penge, bidrager disse gevinster til at
             opfylde dit omsætningskrav.
