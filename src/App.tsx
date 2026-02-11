@@ -41,6 +41,8 @@ const Indskudsbonus = lazy(() => import("./pages/Indskudsbonus"));
 const BonusUdenIndbetaling = lazy(() => import("./pages/BonusUdenIndbetaling"));
 const BonusUdenOmsaetningskrav = lazy(() => import("./pages/BonusUdenOmsaetningskrav"));
 const LiveCasino = lazy(() => import("./pages/LiveCasino"));
+const NoStickyBonus = lazy(() => import("./pages/NoStickyBonus"));
+const StickyBonus = lazy(() => import("./pages/StickyBonus"));
 const NotFound = lazy(() => import("./pages/NotFound"));
 
 const queryClient = new QueryClient();
@@ -77,6 +79,8 @@ const App = () => (
                 <Route path="/indskudsbonus" element={<Indskudsbonus />} />
                 <Route path="/bonus-uden-indbetaling" element={<BonusUdenIndbetaling />} />
                 <Route path="/bonus-uden-omsaetningskrav" element={<BonusUdenOmsaetningskrav />} />
+                <Route path="/no-sticky-bonus" element={<NoStickyBonus />} />
+                <Route path="/sticky-bonus" element={<StickyBonus />} />
                 <Route path="/live-casino" element={<LiveCasino />} />
                 
                 <Route path="/community/leaderboard" element={<Leaderboard />} />

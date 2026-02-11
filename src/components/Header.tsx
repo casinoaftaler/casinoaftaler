@@ -135,13 +135,13 @@ export function Header() {
                 </Link>
               </DropdownMenuItem>
               <DropdownMenuItem asChild>
-                <Link to="/bonus-guide#no-sticky" className="flex items-center gap-2">
+                <Link to="/no-sticky-bonus" className="flex items-center gap-2">
                   <Sparkles className="h-4 w-4" />
                   No-Sticky Bonusser
                 </Link>
               </DropdownMenuItem>
               <DropdownMenuItem asChild>
-                <Link to="/bonus-guide#sticky" className="flex items-center gap-2">
+                <Link to="/sticky-bonus" className="flex items-center gap-2">
                   <Gift className="h-4 w-4" />
                   Sticky Bonusser
                 </Link>
