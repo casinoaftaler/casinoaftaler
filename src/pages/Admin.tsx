@@ -40,7 +40,7 @@ import {
 } from "@/components/ui/alert-dialog";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
-import { Plus, Trash2, LogOut, Star, Loader2, Pencil, GripVertical, Gift, ShoppingBag, BarChart3, Settings, Users, Video, Gamepad2, Bell, Sparkles, Ticket, Menu } from "lucide-react";
+import { Plus, Trash2, LogOut, Star, Loader2, Pencil, GripVertical, Gift, ShoppingBag, BarChart3, Settings, Users, Video, Gamepad2, Bell, Sparkles, Ticket, Menu, Ban } from "lucide-react";
 import { AdminUserManagement } from "@/components/AdminUserManagement";
 import { TwitchUsersSection } from "@/components/TwitchUsersSection";
 import { HighlightsAdminSection } from "@/components/HighlightsAdminSection";
@@ -51,6 +51,7 @@ import { NotificationsAdminSection } from "@/components/NotificationsAdminSectio
 import { ProfileCompletionStatsCard } from "@/components/ProfileCompletionStatsCard";
 import { CommunityClipsAdminSection } from "@/components/CommunityClipsAdminSection";
 import { SlotRequestsAdminSection } from "@/components/SlotRequestsAdminSection";
+import { BanManagementSection } from "@/components/BanManagementSection";
 
 import { ThemeToggle } from "@/components/ThemeToggle";
 import { RedeemCodesAdminSection } from "@/components/RedeemCodesAdminSection";
@@ -761,6 +762,7 @@ function AdminDashboard() {
     { value: "analytics", label: "Analytics", icon: BarChart3 },
     { value: "settings", label: "Indstillinger", icon: Settings },
     { value: "users", label: "Brugere", icon: Users },
+    { value: "bans", label: "Bans", icon: Ban },
   ];
 
   useEffect(() => {
@@ -863,7 +865,7 @@ function AdminDashboard() {
 
       <main className="container py-8">
         <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
-            <TabsList className="hidden lg:grid w-full grid-cols-11 mb-8 h-auto">
+            <TabsList className="hidden lg:grid w-full grid-cols-12 mb-8 h-auto">
               {navItems.map((item) => (
                 <TabsTrigger key={item.value} value={item.value} className="flex items-center gap-2 py-3">
                   <item.icon className="h-4 w-4" />
@@ -1073,6 +1075,15 @@ function AdminDashboard() {
                 <TwitchUsersSection />
               </div>
             </div>
+          </TabsContent>
+
+          {/* Bans Tab */}
+          <TabsContent value="bans">
+            <div className="mb-6">
+              <h2 className="text-2xl font-bold">Ban Management</h2>
+              <p className="text-muted-foreground">Oversigt over bannede brugere med mulighed for unban.</p>
+            </div>
+            <BanManagementSection />
           </TabsContent>
         </Tabs>
       </main>
