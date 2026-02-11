@@ -11,6 +11,7 @@ export interface LeaderboardEntry {
   total_bonuses: number;
   daily_winnings: number;
   weekly_winnings: number;
+  monthly_winnings: number;
   display_name?: string;
   avatar_url?: string;
 }
@@ -20,7 +21,7 @@ export interface CurrentUserLeaderboard {
   rank: number;
 }
 
-export function useSlotLeaderboard(period: "daily" | "weekly" | "alltime" = "alltime") {
+export function useSlotLeaderboard(period: "daily" | "weekly" | "monthly" | "alltime" = "alltime") {
   const [currentUserId, setCurrentUserId] = useState<string | null>(null);
 
   // Get current user ID
@@ -45,7 +46,8 @@ export function useSlotLeaderboard(period: "daily" | "weekly" | "alltime" = "all
     }> => {
       // Determine sort key before query
       const sortKey = period === "daily" ? "daily_winnings" 
-                    : period === "weekly" ? "weekly_winnings" 
+                    : period === "weekly" ? "weekly_winnings"
+                    : period === "monthly" ? "monthly_winnings"
                     : "total_winnings";
 
       const { data, error } = await supabase
@@ -58,7 +60,8 @@ export function useSlotLeaderboard(period: "daily" | "weekly" | "alltime" = "all
           total_spins,
           total_bonuses,
           daily_winnings,
-          weekly_winnings
+          weekly_winnings,
+          monthly_winnings
         `)
         .order(sortKey, { ascending: false, nullsFirst: false })
         .limit(100);
@@ -91,6 +94,7 @@ export function useSlotLeaderboard(period: "daily" | "weekly" | "alltime" = "all
           total_bonuses: row.total_bonuses || 0,
           daily_winnings: row.daily_winnings || 0,
           weekly_winnings: row.weekly_winnings || 0,
+          monthly_winnings: row.monthly_winnings || 0,
           display_name: profile?.display_name || "Anonym",
           avatar_url: profile?.avatar_url || undefined,
         };
@@ -117,7 +121,7 @@ export function useSlotLeaderboard(period: "daily" | "weekly" | "alltime" = "all
           // User not in top 100 — fetch their data separately
           const { data: userData } = await supabase
             .from("slot_leaderboard")
-            .select("user_id, total_winnings, biggest_win, biggest_multiplier, total_spins, total_bonuses, daily_winnings, weekly_winnings")
+            .select("user_id, total_winnings, biggest_win, biggest_multiplier, total_spins, total_bonuses, daily_winnings, weekly_winnings, monthly_winnings")
             .eq("user_id", currentUserId)
             .maybeSingle();
 
@@ -145,6 +149,7 @@ export function useSlotLeaderboard(period: "daily" | "weekly" | "alltime" = "all
               total_bonuses: userData.total_bonuses || 0,
               daily_winnings: userData.daily_winnings || 0,
               weekly_winnings: userData.weekly_winnings || 0,
+              monthly_winnings: userData.monthly_winnings || 0,
               display_name: userProfile?.display_name || "Anonym",
               avatar_url: userProfile?.avatar_url || undefined,
             };
