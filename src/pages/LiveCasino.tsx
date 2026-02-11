@@ -373,7 +373,7 @@ const LiveCasino = () => {
           </div>
         </section>
 
-        <InlineCasinoCards title="Casinoer med live casino" />
+        <InlineCasinoCards title="Casinoer med live casino" excludeSlugs={["betit"]} />
 
         <Separator className="my-10" />
 

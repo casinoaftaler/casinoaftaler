@@ -8,14 +8,19 @@ interface InlineCasinoCardsProps {
   title?: string;
   /** Number of casinos to show (default: 6) */
   count?: number;
+  /** Casino slugs to exclude */
+  excludeSlugs?: string[];
 }
 
 export function InlineCasinoCards({
   title = "Anbefalede Casinoer",
   count = 6,
+  excludeSlugs = [],
 }: InlineCasinoCardsProps) {
   const { data: casinos, isLoading } = useCasinos();
-  const displayCasinos = casinos?.slice(0, count) ?? [];
+  const displayCasinos = (casinos ?? [])
+    .filter((c) => !excludeSlugs.includes(c.slug))
+    .slice(0, count);
 
   const mapCasino = (casino: (typeof displayCasinos)[0]) => ({
     id: casino.id,
