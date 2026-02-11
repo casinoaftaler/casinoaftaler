@@ -4,9 +4,10 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { CasinoCard } from "@/components/CasinoCard";
+import { RelatedGuides } from "@/components/RelatedGuides";
 import { useCasinos } from "@/hooks/useCasinos";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
-import { useState } from "react";
+import { useState, type ReactNode } from "react";
 import {
   Accordion,
   AccordionContent,
@@ -34,16 +35,26 @@ import {
 
 const PRIORITY_SLUGS = ["spildansknu", "spilleautomaten"];
 
-const nyeCasinoerFaqs = [
+const linkClass = "text-primary underline hover:text-primary/80";
+
+const nyeCasinoerFaqs: { question: string; answer: ReactNode }[] = [
   {
     question: "Hvordan finder vi nye casinoer til vores side?",
-    answer:
-      "Vi holder konstant øje med det danske marked og tester nye casinoer grundigt, så snart de lancerer. Alle spillesteder på vores liste har gyldig dansk licens fra Spillemyndigheden.",
+    answer: (
+      <>
+        Vi holder konstant øje med det danske marked og tester nye casinoer grundigt, så snart de lancerer. Alle spillesteder på vores liste har gyldig dansk licens fra Spillemyndigheden. Læs mere om vores tilgang på{" "}
+        <Link to="/about" className={linkClass}>Om Os</Link>-siden.
+      </>
+    ),
   },
   {
     question: "Hvordan er sikkerheden hos casinoerne på siden?",
-    answer:
-      "Alle casinoer på Casinoaftaler.dk har dansk licens og anvender SSL-kryptering til at beskytte dine data. Vi tjekker også, at de tilbyder ansvarligt spil-værktøjer som ROFUS.",
+    answer: (
+      <>
+        Alle casinoer på Casinoaftaler.dk har dansk licens og anvender SSL-kryptering til at beskytte dine data. Vi tjekker også, at de tilbyder ansvarligt spil-værktøjer som ROFUS. Læs mere om{" "}
+        <Link to="/responsible-gaming" className={linkClass}>ansvarligt spil</Link>.
+      </>
+    ),
   },
   {
     question: "Er de nye casinoer stabile?",
@@ -57,23 +68,44 @@ const nyeCasinoerFaqs = [
   },
   {
     question: "Er der live casino hos nye casinoer?",
-    answer:
-      "Ja, de fleste nye casinoer tilbyder live casino med spil som blackjack, roulette og baccarat fra førende udbydere som Evolution Gaming.",
+    answer: (
+      <>
+        Ja, de fleste nye casinoer tilbyder{" "}
+        <Link to="/live-casino" className={linkClass}>live casino</Link>{" "}
+        med spil som blackjack, roulette og baccarat fra førende{" "}
+        <Link to="/spiludviklere" className={linkClass}>spiludviklere</Link> som Evolution Gaming.
+      </>
+    ),
   },
   {
     question: "Hvem er de bedste casinoer online?",
-    answer:
-      "Det afhænger af dine præferencer. Vi anbefaler at sammenligne bonusser, spiludvalg og udbetalingstider. Tjek vores toplistefor et overblik over de bedste muligheder.",
+    answer: (
+      <>
+        Det afhænger af dine præferencer. Vi anbefaler at sammenligne{" "}
+        <Link to="/velkomstbonus" className={linkClass}>velkomstbonusser</Link>,{" "}
+        spiludvalg og udbetalingstider. Tjek vores topliste for et overblik over de bedste muligheder.
+      </>
+    ),
   },
   {
     question: "Hvad er kvaliteten på casinoerne?",
-    answer:
-      "Vi vurderer hvert casino ud fra bonus, spiludvalg, betalingsmetoder, kundeservice og mobiloplevelse. Kun casinoer, der lever op til vores standarder, kommer på listen.",
+    answer: (
+      <>
+        Vi vurderer hvert casino ud fra bonus, spiludvalg,{" "}
+        <Link to="/betalingsmetoder" className={linkClass}>betalingsmetoder</Link>,{" "}
+        kundeservice og mobiloplevelse. Kun casinoer, der lever op til vores standarder, kommer på listen.
+      </>
+    ),
   },
   {
     question: "Hvorfor bør jeg vælge et nyt casino?",
-    answer:
-      "Nye casinoer tilbyder ofte bedre velkomstbonusser, moderne design og innovative funktioner for at tiltrække spillere. Det kan betyde bedre værdi for dig.",
+    answer: (
+      <>
+        Nye casinoer tilbyder ofte bedre{" "}
+        <Link to="/velkomstbonus" className={linkClass}>velkomstbonusser</Link>,{" "}
+        moderne design og innovative funktioner for at tiltrække spillere. Det kan betyde bedre værdi for dig.
+      </>
+    ),
   },
   {
     question: "Skal jeg vælge et nyt eller et etableret casino?",
@@ -82,8 +114,13 @@ const nyeCasinoerFaqs = [
   },
   {
     question: "Er der bonusser hos Casinoaftaler?",
-    answer:
-      "Vi formidler bonusser fra de casinoer, vi anbefaler. Du finder altid opdaterede velkomstbonusser, free spins og eksklusive tilbud på vores side.",
+    answer: (
+      <>
+        Vi formidler bonusser fra de casinoer, vi anbefaler. Du finder altid opdaterede{" "}
+        <Link to="/velkomstbonus" className={linkClass}>velkomstbonusser</Link>,{" "}
+        <Link to="/free-spins" className={linkClass}>free spins</Link> og eksklusive tilbud på vores side.
+      </>
+    ),
   },
   {
     question: "Kan jeg spille casino på mobilen?",
@@ -99,7 +136,6 @@ const NyeCasinoer = () => {
 
   const heroBackgroundImage = siteSettings?.hero_background_image;
 
-  // Show newest casinos, but prioritize SpilDanskNu and Spilleautomaten first
   const newCasinos = casinos
     ?.filter((c) => c.is_active)
     ?.sort((a, b) => {
@@ -144,7 +180,7 @@ const NyeCasinoer = () => {
       "name": faq.question,
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": faq.answer,
+        "text": typeof faq.answer === "string" ? faq.answer : faq.question,
       },
     })),
   };
@@ -164,7 +200,7 @@ const NyeCasinoer = () => {
         <script type="application/ld+json">{JSON.stringify(faqJsonLd)}</script>
       </Helmet>
 
-      {/* Hero Section - matching Index hero background */}
+      {/* Hero Section */}
       <section
         className="relative overflow-hidden py-12 text-white md:py-20"
         style={{
@@ -216,16 +252,18 @@ const NyeCasinoer = () => {
           <p className="mb-4 text-muted-foreground leading-relaxed">
             Nye casinoer dukker jævnligt op på det danske marked, og det kan være
             svært at bevare overblikket. Hos Casinoaftaler.dk gennemgår vi hvert nyt
-            spillested grundigt – fra velkomstbonus og spiludvalg til
-            betalingsmetoder, behandlingstider og kundeservice. Alle casinoer på
+            spillested grundigt – fra{" "}
+            <Link to="/velkomstbonus" className={linkClass}>velkomstbonus</Link> og spiludvalg til{" "}
+            <Link to="/betalingsmetoder" className={linkClass}>betalingsmetoder</Link>, behandlingstider og kundeservice. Alle casinoer på
             vores liste har dansk licens fra Spillemyndigheden, SSL-kryptering og
             overholder gældende lovgivning.
           </p>
           <p className="text-muted-foreground leading-relaxed">
             Vores mål er at give dig et ærligt og pålideligt billede, så du kan tage
-            en informeret beslutning, når du vælger dit næste spillested. Uanset om
-            du er erfaren spiller eller helt ny, finder du her de vigtigste
-            informationer samlet ét sted.
+            en informeret beslutning, når du vælger dit næste spillested. Læs også vores{" "}
+            <Link to="/bonus-guide" className={linkClass}>bonus guide</Link> for at forstå de forskellige bonustyper, eller se vores dybdegående artikler om{" "}
+            <Link to="/omsaetningskrav" className={linkClass}>omsætningskrav</Link> og{" "}
+            <Link to="/free-spins" className={linkClass}>free spins</Link>.
           </p>
         </section>
 
@@ -293,9 +331,12 @@ const NyeCasinoer = () => {
               </CardHeader>
               <CardContent>
                 <p className="text-sm text-muted-foreground">
-                  Nye casinoer tilbyder ofte generøse velkomstpakker for at tiltrække
-                  spillere – det kan betyde bedre match-bonusser, flere free spins
-                  og lavere omsætningskrav.
+                  Nye casinoer tilbyder ofte generøse{" "}
+                  <Link to="/velkomstbonus" className={linkClass}>velkomstpakker</Link> for at tiltrække
+                  spillere – det kan betyde bedre match-bonusser, flere{" "}
+                  <Link to="/free-spins" className={linkClass}>free spins</Link>{" "}
+                  og lavere{" "}
+                  <Link to="/omsaetningskrav" className={linkClass}>omsætningskrav</Link>.
                 </p>
               </CardContent>
             </Card>
@@ -309,7 +350,8 @@ const NyeCasinoer = () => {
               </CardHeader>
               <CardContent>
                 <p className="text-sm text-muted-foreground">
-                  Nyere platforme er bygget med den seneste teknologi, hvilket
+                  Nyere platforme er bygget med den seneste teknologi fra førende{" "}
+                  <Link to="/spiludviklere" className={linkClass}>spiludviklere</Link>, hvilket
                   betyder hurtigere loading, bedre mobiloplevelse og et mere
                   intuitivt design.
                 </p>
@@ -326,7 +368,8 @@ const NyeCasinoer = () => {
               <CardContent>
                 <p className="text-sm text-muted-foreground">
                   Nye spillesteder eksperimenterer med innovative funktioner som
-                  gamification, VIP-lounges, live-turneringer og personlige
+                  gamification, VIP-lounges,{" "}
+                  <Link to="/live-casino" className={linkClass}>live-turneringer</Link> og personlige
                   bonustilbud.
                 </p>
               </CardContent>
@@ -341,7 +384,8 @@ const NyeCasinoer = () => {
           </h2>
           <p className="mb-6 text-muted-foreground leading-relaxed">
             Når et nyt casino dukker op på det danske marked, gennemgår vi det med
-            samme grundighed som etablerede spillesteder. Her er de vigtigste
+            samme grundighed som etablerede spillesteder. Læs mere om vores metode på{" "}
+            <Link to="/about" className={linkClass}>Om Os</Link>-siden. Her er de vigtigste
             faktorer, vi vurderer:
           </p>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -361,7 +405,9 @@ const NyeCasinoer = () => {
               <div>
                 <h3 className="font-semibold">Bonus og vilkår</h3>
                 <p className="text-sm text-muted-foreground">
-                  Vi evaluerer velkomstbonusser, omsætningskrav, gyldighed og om
+                  Vi evaluerer{" "}
+                  <Link to="/velkomstbonus" className={linkClass}>velkomstbonusser</Link>,{" "}
+                  <Link to="/omsaetningskrav" className={linkClass}>omsætningskrav</Link>, gyldighed og om
                   vilkårene er gennemsigtige og fair.
                 </p>
               </div>
@@ -373,7 +419,8 @@ const NyeCasinoer = () => {
                 <h3 className="font-semibold">Betalingsmetoder</h3>
                 <p className="text-sm text-muted-foreground">
                   MobilePay, Trustly, Visa og andre populære metoder – vi tjekker
-                  at ind- og udbetalinger kører hurtigt og sikkert.
+                  at ind- og udbetalinger kører hurtigt og sikkert. Læs vores{" "}
+                  <Link to="/betalingsmetoder" className={linkClass}>guide til betalingsmetoder</Link>.
                 </p>
               </div>
             </div>
@@ -394,8 +441,10 @@ const NyeCasinoer = () => {
               <div>
                 <h3 className="font-semibold">Spiludvalg</h3>
                 <p className="text-sm text-muted-foreground">
-                  Fra slots og live casino til bordspil – vi vurderer bredden og
-                  kvaliteten af spilkataloget.
+                  Fra slots og{" "}
+                  <Link to="/live-casino" className={linkClass}>live casino</Link> til bordspil – vi vurderer bredden og
+                  kvaliteten af spilkataloget fra de bedste{" "}
+                  <Link to="/spiludviklere" className={linkClass}>spiludviklere</Link>.
                 </p>
               </div>
             </div>
@@ -423,39 +472,54 @@ const NyeCasinoer = () => {
             trends, vi ser blandt nye danske spillesteder i 2026:
           </p>
           <div className="space-y-3">
-            {[
-              {
-                title: "Personlige bonustilbud",
-                desc: "Casinoer bruger data og spilleradfærd til at skræddersy bonusser, der passer til den enkelte spiller.",
-              },
-              {
-                title: "Udvidet live casino",
-                desc: "Flere nye spillesteder satser stort på live dealer-spil med ægte dealere og interaktive funktioner. Læs vores komplette guide til live casino.",
-              },
-              {
-                title: "Hurtigere betalinger",
-                desc: "MobilePay, Trustly og øjeblikkelige udbetalinger bliver standarden hos nye casinoer.",
-              },
-              {
-                title: "Gamification og belønninger",
-                desc: "Missioner, achievements og loyalitetsprogrammer gør spiloplevelsen mere engagerende.",
-              },
-              {
-                title: "Mobil-first design",
-                desc: "Nye platforme designes med mobilen i centrum – perfekt optimeret til smartphones og tablets.",
-              },
-            ].map((trend) => (
-              <div
-                key={trend.title}
-                className="flex items-start gap-3 rounded-lg border border-border bg-card p-4"
-              >
-                <CheckCircle2 className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
-                <div>
-                  <h3 className="font-semibold">{trend.title}</h3>
-                  <p className="text-sm text-muted-foreground">{trend.desc}</p>
-                </div>
+            <div className="flex items-start gap-3 rounded-lg border border-border bg-card p-4">
+              <CheckCircle2 className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
+              <div>
+                <h3 className="font-semibold">Personlige bonustilbud</h3>
+                <p className="text-sm text-muted-foreground">
+                  Casinoer bruger data og spilleradfærd til at skræddersy bonusser, der passer til den enkelte spiller. Læs om de forskellige{" "}
+                  <Link to="/bonus-guide" className={linkClass}>bonustyper</Link>.
+                </p>
               </div>
-            ))}
+            </div>
+            <div className="flex items-start gap-3 rounded-lg border border-border bg-card p-4">
+              <CheckCircle2 className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
+              <div>
+                <h3 className="font-semibold">Udvidet live casino</h3>
+                <p className="text-sm text-muted-foreground">
+                  Flere nye spillesteder satser stort på live dealer-spil med ægte dealere og interaktive funktioner. Læs vores komplette guide til{" "}
+                  <Link to="/live-casino" className={linkClass}>live casino</Link>.
+                </p>
+              </div>
+            </div>
+            <div className="flex items-start gap-3 rounded-lg border border-border bg-card p-4">
+              <CheckCircle2 className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
+              <div>
+                <h3 className="font-semibold">Hurtigere betalinger</h3>
+                <p className="text-sm text-muted-foreground">
+                  MobilePay, Trustly og øjeblikkelige udbetalinger bliver standarden hos nye casinoer. Se alle{" "}
+                  <Link to="/betalingsmetoder" className={linkClass}>betalingsmetoder</Link>.
+                </p>
+              </div>
+            </div>
+            <div className="flex items-start gap-3 rounded-lg border border-border bg-card p-4">
+              <CheckCircle2 className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
+              <div>
+                <h3 className="font-semibold">Gamification og belønninger</h3>
+                <p className="text-sm text-muted-foreground">
+                  Missioner, achievements og loyalitetsprogrammer gør spiloplevelsen mere engagerende.
+                </p>
+              </div>
+            </div>
+            <div className="flex items-start gap-3 rounded-lg border border-border bg-card p-4">
+              <CheckCircle2 className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
+              <div>
+                <h3 className="font-semibold">Mobil-first design</h3>
+                <p className="text-sm text-muted-foreground">
+                  Nye platforme designes med mobilen i centrum – perfekt optimeret til smartphones og tablets.
+                </p>
+              </div>
+            </div>
           </div>
         </section>
 
@@ -498,8 +562,9 @@ const NyeCasinoer = () => {
               <CardContent>
                 <p className="text-sm text-muted-foreground">
                   Store udenlandske casinoer, der vælger at lancere i Danmark, bringer
-                  global erfaring og teknologiske løsninger med sig. De tilpasser
-                  betalingsmetoder og support til det danske marked.
+                  global erfaring og teknologiske løsninger med sig. De tilpasser{" "}
+                  <Link to="/betalingsmetoder" className={linkClass}>betalingsmetoder</Link>{" "}
+                  og support til det danske marked.
                 </p>
               </CardContent>
             </Card>
@@ -537,7 +602,8 @@ const NyeCasinoer = () => {
               <p className="text-muted-foreground leading-relaxed">
                 Uanset om du vælger et nyt eller etableret casino, er det vigtigt at
                 spille ansvarligt. Sæt altid et budget, hold pauser og spil aldrig
-                for mere, end du har råd til at tabe.
+                for mere, end du har råd til at tabe. Læs mere i vores guide til{" "}
+                <Link to="/responsible-gaming" className={linkClass}>ansvarligt spil</Link>.
               </p>
               <p className="text-muted-foreground leading-relaxed">
                 Alle casinoer på vores liste har dansk licens og tilbyder
@@ -593,7 +659,7 @@ const NyeCasinoer = () => {
               {
                 step: "3",
                 title: "Indbetal og aktiver din bonus",
-                desc: "Vælg din foretrukne betalingsmetode – MobilePay, Trustly eller kort – og foretag din første indbetaling. Bonussen aktiveres normalt automatisk.",
+                desc: "Vælg din foretrukne betalingsmetode og foretag din første indbetaling. Bonussen aktiveres normalt automatisk.",
               },
               {
                 step: "4",
@@ -625,7 +691,9 @@ const NyeCasinoer = () => {
             Bonusser hos nye casinoer i Danmark
           </h2>
           <p className="mb-6 text-muted-foreground leading-relaxed">
-            En af de største fordele ved nye casinoer er deres generøse bonustilbud. For at tiltrække nye spillere konkurrerer de på velkomstpakker, free spins og lave omsætningskrav. Her er de mest almindelige bonustyper, du finder hos nye spillesteder:
+            En af de største fordele ved nye casinoer er deres generøse bonustilbud. For at tiltrække nye spillere konkurrerer de på velkomstpakker,{" "}
+            <Link to="/free-spins" className={linkClass}>free spins</Link> og lave{" "}
+            <Link to="/omsaetningskrav" className={linkClass}>omsætningskrav</Link>. Her er de mest almindelige bonustyper:
           </p>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <Card className="border-border bg-card">
@@ -637,7 +705,8 @@ const NyeCasinoer = () => {
               </CardHeader>
               <CardContent>
                 <p className="text-sm text-muted-foreground">
-                  Den mest udbredte bonustype, hvor casinoet matcher din første indbetaling med en procentdel – typisk 100% op til et bestemt beløb. Nye casinoer tilbyder ofte højere match-procenter for at skille sig ud.
+                  Den mest udbredte bonustype, hvor casinoet matcher din første indbetaling. Læs mere i vores{" "}
+                  <Link to="/indskudsbonus" className={linkClass}>indskudsbonus guide</Link>. Nye casinoer tilbyder ofte højere match-procenter.
                 </p>
               </CardContent>
             </Card>
@@ -651,7 +720,9 @@ const NyeCasinoer = () => {
               </CardHeader>
               <CardContent>
                 <p className="text-sm text-muted-foreground">
-                  Nogle nye casinoer giver dig gratis spins blot ved oprettelse – helt uden indbetaling. Det er en risikofri måde at teste casinoets spiludvalg og platform, før du binder dig.
+                  Nogle nye casinoer giver dig gratis spins blot ved oprettelse – helt uden indbetaling. Læs om{" "}
+                  <Link to="/bonus-uden-indbetaling" className={linkClass}>bonus uden indbetaling</Link> og{" "}
+                  <Link to="/free-spins" className={linkClass}>free spins</Link>.
                 </p>
               </CardContent>
             </Card>
@@ -660,12 +731,14 @@ const NyeCasinoer = () => {
               <CardHeader className="pb-2">
                 <CardTitle className="flex items-center gap-2 text-lg">
                   <Trophy className="h-5 w-5 text-primary" />
-                  Velkomstpakker
+                  No-Sticky Bonus
                 </CardTitle>
               </CardHeader>
               <CardContent>
                 <p className="text-sm text-muted-foreground">
-                  Mange nye casinoer tilbyder velkomstpakker, der strækker sig over de første 2-4 indbetalinger. Det giver dig mulighed for at sprede din bonus over flere sessioner og opleve mere af casinoet.
+                  Med en{" "}
+                  <Link to="/no-sticky-bonus" className={linkClass}>no-sticky bonus</Link> holdes dine rigtige penge og bonusmidler adskilt. Du kan hæve rigtige pengegevinster når som helst. Sammenlign med{" "}
+                  <Link to="/sticky-bonus" className={linkClass}>sticky bonus</Link>.
                 </p>
               </CardContent>
             </Card>
@@ -674,12 +747,13 @@ const NyeCasinoer = () => {
               <CardHeader className="pb-2">
                 <CardTitle className="flex items-center gap-2 text-lg">
                   <TrendingUp className="h-5 w-5 text-primary" />
-                  Cashback-bonusser
+                  Bonus uden omsætningskrav
                 </CardTitle>
               </CardHeader>
               <CardContent>
                 <p className="text-sm text-muted-foreground">
-                  En stigende trend hos nye casinoer er cashback, hvor du får en procentdel af dine tab refunderet. Det er populært, fordi det ofte kommer uden omsætningskrav – du kan udbetale pengene direkte.
+                  En stigende trend er{" "}
+                  <Link to="/bonus-uden-omsaetningskrav" className={linkClass}>bonus uden omsætningskrav</Link>, hvor du kan udbetale gevinster direkte – ingen gennemspilskrav.
                 </p>
               </CardContent>
             </Card>
@@ -697,7 +771,8 @@ const NyeCasinoer = () => {
             Når du spiller hos et nyt online casino i Danmark, er det afgørende, at spillestedet har en gyldig licens fra Spillemyndigheden. Licensen sikrer, at casinoet overholder den danske spillelovgivning og beskytter dig som spiller.
           </p>
           <p className="mb-4 text-muted-foreground leading-relaxed">
-            Alle casinoer på vores liste er licenserede og regulerede. Det betyder, at de lever op til strenge krav om datasikkerhed, fairness i spil (RNG-certificering) og beskyttelse mod spilleafhængighed via ROFUS-registret.
+            Alle casinoer på vores liste er licenserede og regulerede. Det betyder, at de lever op til strenge krav om datasikkerhed, fairness i spil (RNG-certificering) og beskyttelse mod spilleafhængighed via ROFUS-registret. Læs mere om{" "}
+            <Link to="/responsible-gaming" className={linkClass}>ansvarligt spil</Link>.
           </p>
           <p className="mb-6 text-muted-foreground leading-relaxed">
             Vi anbefaler altid, at du tjekker om et casino har dansk licens, før du opretter en konto. Du kan verificere licensen på{" "}
@@ -709,7 +784,7 @@ const NyeCasinoer = () => {
             >
               Spillemyndighedens hjemmeside
             </a>
-            . Derudover bør du kigge efter SSL-kryptering (hængelåsikonet i browseren), som beskytter dine personlige og finansielle data.
+            .
           </p>
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
             <div className="flex items-start gap-3 rounded-lg border border-border bg-card p-4">
@@ -750,10 +825,11 @@ const NyeCasinoer = () => {
             Betalingsmetoder hos nye danske casinoer
           </h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
-            Moderne danske casinoer tilbyder et bredt udvalg af betalingsmetoder. Indbetalinger er typisk øjeblikkelige, mens udbetalingstider varierer fra sekunder til et par bankdage afhængigt af metoden.
+            Moderne danske casinoer tilbyder et bredt udvalg af{" "}
+            <Link to="/betalingsmetoder" className={linkClass}>betalingsmetoder</Link>. Indbetalinger er typisk øjeblikkelige, mens udbetalingstider varierer fra sekunder til et par bankdage afhængigt af metoden.
           </p>
           <p className="mb-6 text-muted-foreground leading-relaxed">
-            De mest populære betalingsmuligheder hos nye casinoer inkluderer MobilePay, som er den foretrukne metode for mange danske spillere, Trustly for direkte bankoverførsler, samt Visa og Mastercard. Nogle nye spillesteder understøtter også Pay N Play, hvor du kan spille uden traditionel kontooprettelse.
+            De mest populære betalingsmuligheder hos nye casinoer inkluderer MobilePay, Trustly for direkte bankoverførsler, samt Visa og Mastercard. Nogle nye spillesteder understøtter også Pay N Play.
           </p>
           <div className="space-y-3">
             {[
@@ -819,6 +895,8 @@ const NyeCasinoer = () => {
             ))}
           </Accordion>
         </section>
+
+        <RelatedGuides currentPath="/nye-casinoer" />
       </div>
     </>
   );
