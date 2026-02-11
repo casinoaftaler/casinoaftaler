@@ -78,20 +78,30 @@ function RankBadge({ rank }: { rank: number }) {
   );
 }
 
+function getDisplayWinnings(entry: LeaderboardEntry, period: "daily" | "weekly" | "alltime"): number {
+  if (period === "daily") return entry.daily_winnings ?? 0;
+  if (period === "weekly") return entry.weekly_winnings ?? 0;
+  return entry.total_winnings;
+}
+
 function LeaderboardPlayerRow({
   entry,
   rank,
   isCurrentUser,
   compact = false,
+  period = "alltime",
 }: {
   entry: LeaderboardEntry;
   rank: number;
   isCurrentUser?: boolean;
   compact?: boolean;
+  period?: "daily" | "weekly" | "alltime";
 }) {
   const formattedMultiplier = entry.biggest_multiplier > 0
     ? `${Number(entry.biggest_multiplier.toFixed(1))}x`
     : "-";
+
+  const displayPoints = getDisplayWinnings(entry, period);
 
   return (
     <div
@@ -146,7 +156,7 @@ function LeaderboardPlayerRow({
         )}
         <div>
           <p className={cn("font-bold", rank === 1 ? "text-amber-400" : rank === 2 ? "text-gray-300" : rank === 3 ? "text-amber-600" : "text-foreground")}>
-            {entry.total_winnings.toLocaleString()}
+            {displayPoints.toLocaleString()}
           </p>
           <p className="text-xs text-muted-foreground">point</p>
         </div>
@@ -210,6 +220,7 @@ function TournamentCard({
                 entry={entry}
                 rank={index + 1}
                 isCurrentUser={currentUser?.entry.user_id === entry.user_id}
+                period={period}
               />
             ))}
             
@@ -225,6 +236,7 @@ function TournamentCard({
                   entry={currentUser.entry}
                   rank={currentUser.rank}
                   isCurrentUser
+                  period={period}
                 />
               </>
             )}
@@ -355,7 +367,7 @@ export default function Leaderboard() {
                     className="data-[state=active]:bg-primary/20 data-[state=active]:text-primary"
                   >
                     <Trophy className="h-4 w-4 mr-1.5 hidden sm:inline" />
-                    Måned
+                    All-time
                   </TabsTrigger>
                 </TabsList>
               </Tabs>

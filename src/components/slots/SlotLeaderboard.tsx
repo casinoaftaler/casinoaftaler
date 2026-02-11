@@ -15,16 +15,24 @@ import { useAuth } from "@/hooks/useAuth";
 import { LogIn } from "lucide-react";
 import { Link } from "react-router-dom";
 
+function getDisplayWinnings(entry: LeaderboardEntry, period: "daily" | "weekly" | "alltime"): number {
+  if (period === "daily") return entry.daily_winnings ?? 0;
+  if (period === "weekly") return entry.weekly_winnings ?? 0;
+  return entry.total_winnings;
+}
+
 function LeaderboardRow({
   entry,
   rank,
   isCurrentUser = false,
   theme,
+  period = "alltime",
 }: {
   entry: LeaderboardEntry;
   rank: number;
   isCurrentUser?: boolean;
   theme: SlotTheme;
+  period?: "daily" | "weekly" | "alltime";
 }) {
   const getRankIcon = () => {
     if (rank === 1) return <Trophy className="h-5 w-5 text-amber-500" />;
@@ -68,7 +76,7 @@ function LeaderboardRow({
       {/* Bottom row: Stats in 4 columns */}
       <div className="flex items-center justify-between text-sm pl-9">
         <div className="text-center">
-          <p className={cn("font-bold", theme.leaderboardPointsText)}>{entry.total_winnings.toLocaleString()}</p>
+          <p className={cn("font-bold", theme.leaderboardPointsText)}>{getDisplayWinnings(entry, period).toLocaleString()}</p>
           <p className="text-xs text-muted-foreground">point</p>
         </div>
         <div className="text-center">
@@ -187,7 +195,7 @@ export function SlotLeaderboard({ gameId = "book-of-fedesvin" }: SlotLeaderboard
                           Uge
                         </TabsTrigger>
                         <TabsTrigger value="alltime" className={cn(theme.leaderboardTabActive, theme.leaderboardTabActiveText)}>
-                          Måned
+                          All-time
                         </TabsTrigger>
                       </TabsList>
                     </Tabs>
@@ -220,6 +228,7 @@ export function SlotLeaderboard({ gameId = "book-of-fedesvin" }: SlotLeaderboard
                                 rank={originalRank}
                                 isCurrentUser={dialogCurrentUser?.entry.user_id === entry.user_id}
                                 theme={theme}
+                                period={dialogPeriod}
                               />
                             );
                           })}
@@ -233,6 +242,7 @@ export function SlotLeaderboard({ gameId = "book-of-fedesvin" }: SlotLeaderboard
                                 rank={dialogCurrentUser.rank}
                                 isCurrentUser
                                 theme={theme}
+                                period={dialogPeriod}
                               />
                             </>
                           )}

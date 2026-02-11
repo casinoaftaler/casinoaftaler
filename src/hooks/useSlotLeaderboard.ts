@@ -96,16 +96,21 @@ export function useSlotLeaderboard(period: "daily" | "weekly" | "alltime" = "all
         };
       });
 
+      // Filter out entries with 0 winnings for period-specific views
+      const filteredEntries = period !== "alltime"
+        ? allEntries.filter(e => (e[sortKey] as number) > 0)
+        : allEntries;
+
       // Already sorted by database, but ensure consistent order
-      allEntries.sort((a, b) => (b[sortKey] as number) - (a[sortKey] as number));
+      filteredEntries.sort((a, b) => (b[sortKey] as number) - (a[sortKey] as number));
 
       // Find current user's rank in the full sorted list
       let currentUser: CurrentUserLeaderboard | null = null;
       if (currentUserId) {
-        const userIndex = allEntries.findIndex(e => e.user_id === currentUserId);
+        const userIndex = filteredEntries.findIndex(e => e.user_id === currentUserId);
         if (userIndex !== -1) {
           currentUser = {
-            entry: allEntries[userIndex],
+            entry: filteredEntries[userIndex],
             rank: userIndex + 1,
           };
         } else {
@@ -153,7 +158,7 @@ export function useSlotLeaderboard(period: "daily" | "weekly" | "alltime" = "all
       }
 
       return {
-        entries: allEntries,
+        entries: filteredEntries,
         currentUser,
       };
     },
