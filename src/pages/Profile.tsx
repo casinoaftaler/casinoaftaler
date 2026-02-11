@@ -79,48 +79,55 @@ export default function Profile() {
     setFormData((prev) => ({ ...prev, [field]: value }));
   };
 
+  const [isSaving, setIsSaving] = useState(false);
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
-    if (!profile) return;
+    if (!profile || isSaving) return;
+    setIsSaving(true);
 
-    const updates: ProfileUpdateData = {
-      display_name: formData.display_name || null,
-      bio: formData.bio || null,
-      highest_win_amount: formData.highest_win_amount ? parseFloat(formData.highest_win_amount) : null,
-      highest_win_game: formData.highest_win_game || null,
-      highest_win_casino: formData.highest_win_casino || null,
-      biggest_spin_win: formData.biggest_spin_win ? parseFloat(formData.biggest_spin_win) : null,
-      biggest_x_win: formData.biggest_x_win ? parseFloat(formData.biggest_x_win) : null,
-      favorite_slot: formData.favorite_slot || null,
-      favorite_provider: formData.favorite_provider || null,
-      favorite_casino: formData.favorite_casino || null,
-      typical_bet_size: formData.typical_bet_size || null,
-      play_styles: formData.play_styles.length > 0 ? formData.play_styles : null,
-      preferred_game_type: formData.preferred_game_type || null,
-      volatility_preference: formData.volatility_preference || null,
-      stats_public: formData.stats_public,
-      hide_amounts: formData.hide_amounts,
-    };
+    try {
+      const updates: ProfileUpdateData = {
+        display_name: formData.display_name || null,
+        bio: formData.bio || null,
+        highest_win_amount: formData.highest_win_amount ? parseFloat(formData.highest_win_amount) : null,
+        highest_win_game: formData.highest_win_game || null,
+        highest_win_casino: formData.highest_win_casino || null,
+        biggest_spin_win: formData.biggest_spin_win ? parseFloat(formData.biggest_spin_win) : null,
+        biggest_x_win: formData.biggest_x_win ? parseFloat(formData.biggest_x_win) : null,
+        favorite_slot: formData.favorite_slot || null,
+        favorite_provider: formData.favorite_provider || null,
+        favorite_casino: formData.favorite_casino || null,
+        typical_bet_size: formData.typical_bet_size || null,
+        play_styles: formData.play_styles.length > 0 ? formData.play_styles : null,
+        preferred_game_type: formData.preferred_game_type || null,
+        volatility_preference: formData.volatility_preference || null,
+        stats_public: formData.stats_public,
+        hide_amounts: formData.hide_amounts,
+      };
 
-    // First update the profile
-    updateProfile(updates);
+      // First update the profile and wait for it
+      updateProfile(updates);
 
-    // Then check for new rewards to claim
-    const profileWithRewards = {
-      ...profile,
-      profile_section_completed: profile.profile_section_completed ?? false,
-      stats_section_completed: profile.stats_section_completed ?? false,
-      favorites_section_completed: profile.favorites_section_completed ?? false,
-      playstyle_section_completed: profile.playstyle_section_completed ?? false,
-      bonus_spins_permanent: profile.bonus_spins_permanent ?? 0,
-    };
+      // Then check for new rewards to claim
+      const profileWithRewards = {
+        ...profile,
+        profile_section_completed: profile.profile_section_completed ?? false,
+        stats_section_completed: profile.stats_section_completed ?? false,
+        favorites_section_completed: profile.favorites_section_completed ?? false,
+        playstyle_section_completed: profile.playstyle_section_completed ?? false,
+        bonus_spins_permanent: profile.bonus_spins_permanent ?? 0,
+      };
 
-    const rewards = checkAndClaimRewards(formData, profileWithRewards);
-    
-    // Claim rewards sequentially to ensure correct bonus spin accumulation
-    for (const reward of rewards) {
-      await claimReward(reward);
+      const rewards = checkAndClaimRewards(formData, profileWithRewards);
+      
+      // Claim rewards sequentially to ensure correct bonus spin accumulation
+      for (const reward of rewards) {
+        await claimReward(reward);
+      }
+    } finally {
+      setIsSaving(false);
     }
   };
 
@@ -287,11 +294,11 @@ export default function Profile() {
         <div className="mt-6 flex justify-end sticky bottom-4 sm:static">
           <Button 
             type="submit" 
-            disabled={isUpdating}
+            disabled={isUpdating || isSaving}
             size="lg"
             className="w-full sm:w-auto shadow-lg sm:shadow-none"
           >
-            {isUpdating ? (
+            {isUpdating || isSaving ? (
               <>
                 <Loader2 className="mr-2 h-4 w-4 animate-spin" />
                 Gemmer...
