@@ -227,8 +227,8 @@ export function Header() {
           </DropdownMenu>
           <DropdownMenu>
             <DropdownMenuTrigger className="flex items-center gap-1.5 text-sm font-medium transition-colors hover:text-primary">
-              <Users className="h-4 w-4" />
-              Om Os <ChevronDown className="h-4 w-4" />
+              <MoreHorizontal className="h-4 w-4" />
+              Mere <ChevronDown className="h-4 w-4" />
             </DropdownMenuTrigger>
             <DropdownMenuContent align="center" className="bg-popover">
               <DropdownMenuItem asChild>
@@ -243,14 +243,7 @@ export function Header() {
                   Kontakt
                 </Link>
               </DropdownMenuItem>
-            </DropdownMenuContent>
-          </DropdownMenu>
-          <DropdownMenu>
-            <DropdownMenuTrigger className="flex items-center gap-1.5 text-sm font-medium transition-colors hover:text-primary">
-              <MoreHorizontal className="h-4 w-4" />
-              Mere <ChevronDown className="h-4 w-4" />
-            </DropdownMenuTrigger>
-            <DropdownMenuContent align="center" className="bg-popover">
+              <DropdownMenuSeparator />
               <DropdownMenuItem asChild>
                 <Link to="/betalingsmetoder" className="flex items-center gap-2">
                   <CreditCard className="h-4 w-4" />
@@ -437,29 +430,6 @@ export function Header() {
               </div>
             )}
 
-            {/* Om Os - expandable */}
-            <button
-              onClick={() => setExpandedSection(expandedSection === "about" ? null : "about")}
-              className="flex items-center justify-between py-3 text-sm font-medium transition-colors hover:text-primary border-b border-border/50"
-            >
-              <span className="flex items-center gap-2">
-                <Users className="h-4 w-4" />
-                Om Os
-              </span>
-              <ChevronDown className={`h-4 w-4 transition-transform duration-200 ${expandedSection === "about" ? "rotate-180" : ""}`} />
-            </button>
-            {expandedSection === "about" && (
-              <div className="flex flex-col border-b border-border/50 bg-muted/30">
-                <Link to="/about" className="ml-6 flex items-center gap-2 py-2.5 text-sm text-muted-foreground transition-colors hover:text-primary" onClick={() => setMobileMenuOpen(false)}>
-                  <Users className="h-4 w-4" />
-                  Om Os
-                </Link>
-                <Link to="/contact" className="ml-6 flex items-center gap-2 py-2.5 text-sm text-muted-foreground transition-colors hover:text-primary" onClick={() => setMobileMenuOpen(false)}>
-                  <Mail className="h-4 w-4" />
-                  Kontakt
-                </Link>
-              </div>
-            )}
 
             {/* Community - expandable */}
             <button
@@ -507,6 +477,14 @@ export function Header() {
             </button>
             {expandedSection === "more" && (
               <div className="flex flex-col border-b border-border/50 bg-muted/30">
+                <Link to="/about" className="ml-6 flex items-center gap-2 py-2.5 text-sm text-muted-foreground transition-colors hover:text-primary" onClick={() => setMobileMenuOpen(false)}>
+                  <Users className="h-4 w-4" />
+                  Om Os
+                </Link>
+                <Link to="/contact" className="ml-6 flex items-center gap-2 py-2.5 text-sm text-muted-foreground transition-colors hover:text-primary" onClick={() => setMobileMenuOpen(false)}>
+                  <Mail className="h-4 w-4" />
+                  Kontakt
+                </Link>
                 <Link to="/betalingsmetoder" className="ml-6 flex items-center gap-2 py-2.5 text-sm text-muted-foreground transition-colors hover:text-primary" onClick={() => setMobileMenuOpen(false)}>
                   <CreditCard className="h-4 w-4" />
                   Betalingsmetoder
