@@ -51,6 +51,7 @@ import { ProfileCompletionOverview } from "@/components/ProfileCompletionStatsCa
 import { CommunityClipsAdminSection } from "@/components/CommunityClipsAdminSection";
 
 import { SpinManagementSection } from "@/components/SpinManagementSection";
+import { SlotPointsManagement } from "@/components/slots/SlotPointsManagement";
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
 
 import { ThemeToggle } from "@/components/ThemeToggle";
@@ -1058,48 +1059,6 @@ function AdminDashboard() {
             </Card>
           </TabsContent>
 
-          {/* Indstillinger Tab */}
-          <TabsContent value="settings">
-            <div className="mb-6">
-              <h2 className="text-2xl font-bold">Site Indstillinger</h2>
-              <p className="text-muted-foreground">Tilpas hjemmesidens udseende og indhold.</p>
-            </div>
-            <Card>
-              <CardContent className="space-y-6 pt-6">
-                <div>
-                  <h3 className="text-sm font-medium mb-3">Site Navn</h3>
-                  <SiteNameInput />
-                </div>
-                <div className="pt-4 border-t border-border">
-                  <h3 className="text-sm font-medium mb-3">Header Ikon</h3>
-                  <HeaderIconUpload
-                    currentIconUrl={headerIconUrl}
-                    onIconChange={(url) => {
-                      setHeaderIconUrl(url);
-                      queryClient.invalidateQueries({ queryKey: ["site-settings"] });
-                    }}
-                  />
-                </div>
-                <div className="pt-4 border-t border-border">
-                  <h3 className="text-sm font-medium mb-3">Hero Sektion</h3>
-                  <HeroSettingsInput />
-                </div>
-                <div className="pt-4 border-t border-border">
-                  <h3 className="text-sm font-medium mb-3">Sociale Medier Links</h3>
-                  <SocialLinksInput />
-                </div>
-                <div className="pt-4 border-t border-border">
-                  <h3 className="text-sm font-medium mb-3">Casino Kort Disclaimer</h3>
-                  <DisclaimerInput />
-                </div>
-                <div className="pt-4 border-t border-border">
-                  <h3 className="text-sm font-medium mb-3">Storage Oprydning</h3>
-                  <StorageCleanupSection />
-                </div>
-              </CardContent>
-            </Card>
-          </TabsContent>
-
           {/* Brugere Tab */}
           <TabsContent value="users">
             <div className="space-y-8">
@@ -1121,6 +1080,10 @@ function AdminDashboard() {
               
               <div className="pt-4 border-t border-border">
                 <SpinManagementSection />
+              </div>
+
+              <div className="pt-4 border-t border-border">
+                <SlotPointsManagement />
               </div>
             </div>
           </TabsContent>
