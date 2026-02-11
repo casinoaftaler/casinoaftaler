@@ -1,29 +1,51 @@
 
 
-## Fix: Spillemaskinens kontrolbar bliver afskåret
+## Tilføj Månedlig Tracking til Leaderboard
 
-### Problem
-Skaleringshooket (`useSlotScale`) antager at spillemaskinens totale højde er 720px, men det faktiske indhold er højere -- tromler (3 rader x 150px + gaps), ramme/padding, bonus-bars og kontrolpanelet med den store spin-knap (112px) gør den reelle højde ca. 900-950px. Det betyder at skaleringsfaktoren bliver for stor, og bunden skæres af.
+### Overblik
+Tilføjer en `monthly_winnings` kolonne til `slot_leaderboard`-viewet og en ny "Måned" tab i UI'et, så leaderboardet viser fire perioder: I dag, Denne uge, Denne måned og All-time.
 
-### Løsning
-Ændr `useSlotScale` til at måle den faktiske højde af slot-containeren dynamisk med en `ResizeObserver` i stedet for at bruge en hardcoded `BASE_HEIGHT`. Dette sikrer at skaleringen altid passer til det fulde indhold uanset skærmstørrelse.
+### Database-ændring
 
-### Tekniske detaljer
+Genskab `slot_leaderboard`-viewet med en ekstra `monthly_winnings` kolonne:
 
-**1. `src/hooks/useSlotScale.ts`**
-- Tilføj en `ref` som returneres fra hooket og skal sættes på slot-containeren
-- Brug `ResizeObserver` til at måle containerens faktiske højde og bredde
-- Beregn scale ud fra de målte dimensioner i stedet for faste `BASE_WIDTH`/`BASE_HEIGHT`
-- Behold `BASE_WIDTH = 1280` som fallback for bredden (den er korrekt)
-- Øg `BASE_HEIGHT` fra 720 til ca. 920 som fallback/default indtil måling er klar
-- Tilføj lidt ekstra padding til højdeberegningen for at sikre at kontrolbaren ikke afskæres
+```sql
+DROP VIEW IF EXISTS public.slot_leaderboard;
 
-**2. `src/pages/SlotMachine.tsx` og `src/pages/RiseOfFedesvin.tsx`**
-- Ingen ændringer nødvendige -- den øgede `BASE_HEIGHT` værdi løser problemet direkte
+CREATE VIEW public.slot_leaderboard WITH (security_invoker=on) AS
+SELECT
+  user_id,
+  SUM(win_amount + bonus_win_amount) AS total_winnings,
+  MAX(win_amount + bonus_win_amount) AS biggest_win,
+  MAX((win_amount + bonus_win_amount) / NULLIF(bet_amount, 0)) AS biggest_multiplier,
+  COUNT(*) AS total_spins,
+  COUNT(*) FILTER (WHERE is_bonus_triggered = true) AS total_bonuses,
+  SUM(win_amount + bonus_win_amount) FILTER (WHERE created_at >= CURRENT_DATE) AS daily_winnings,
+  SUM(win_amount + bonus_win_amount) FILTER (WHERE created_at >= date_trunc('week', CURRENT_DATE)) AS weekly_winnings,
+  SUM(win_amount + bonus_win_amount) FILTER (WHERE created_at >= date_trunc('month', CURRENT_DATE)) AS monthly_winnings
+FROM public.slot_game_results
+GROUP BY user_id;
+```
 
-### Alternativ simpel tilgang (anbefalet)
-I stedet for dynamisk måling, øg blot `BASE_HEIGHT` fra 720 til 920 i `useSlotScale.ts`. Dette er den mest stabile løsning da spillemaskinens layout er fast og forudsigeligt. Tallet 920 dækker: tromler (498px) + ramme/padding (ca. 80px) + bonus-bars (100px) + kontrolpanel (150px) + mellemrum (92px).
+### Kode-ændringer
 
-**Eneste fil der ændres: `src/hooks/useSlotScale.ts`**
-- Linje 5: `const BASE_HEIGHT = 720;` bliver til `const BASE_HEIGHT = 920;`
+**1. `src/hooks/useSlotLeaderboard.ts`**
+- Tilføj `monthly_winnings` til `LeaderboardEntry` interface
+- Tilføj `"monthly"` som mulig period-type
+- Tilføj `monthly_winnings` i select-query og sortKey-logik
+
+**2. `src/components/slots/SlotLeaderboard.tsx`**
+- Opdater `getDisplayWinnings` til at håndtere `"monthly"`
+- Tilføj "Måned" tab i dialog-tabsene (4 kolonner i stedet for 3)
+- Opdater period-state type til at inkludere `"monthly"`
+
+**3. `src/pages/Leaderboard.tsx`**
+- Tilføj "Måned" tab (4 kolonner i stedet for 3)
+- Opdater `getDisplayWinnings` til at håndtere `"monthly"`
+- Opdater period-state type
+
+### Rækkefølge
+1. Database-migration (tilføj `monthly_winnings` til viewet)
+2. Opdater hook med ny type og query
+3. Opdater begge UI-komponenter med "Måned" tab
 
