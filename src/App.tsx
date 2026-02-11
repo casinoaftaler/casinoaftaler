@@ -36,6 +36,7 @@ const Betalingsmetoder = lazy(() => import("./pages/Betalingsmetoder"));
 const Spiludviklere = lazy(() => import("./pages/Spiludviklere"));
 const FreeSpins = lazy(() => import("./pages/FreeSpins"));
 const Velkomstbonus = lazy(() => import("./pages/Velkomstbonus"));
+const Omsaetningskrav = lazy(() => import("./pages/Omsaetningskrav"));
 const NotFound = lazy(() => import("./pages/NotFound"));
 
 const queryClient = new QueryClient();
@@ -68,6 +69,7 @@ const App = () => (
                 <Route path="/spiludviklere" element={<Spiludviklere />} />
                 <Route path="/free-spins" element={<FreeSpins />} />
                 <Route path="/velkomstbonus" element={<Velkomstbonus />} />
+                <Route path="/omsaetningskrav" element={<Omsaetningskrav />} />
                 
                 <Route path="/community/leaderboard" element={<Leaderboard />} />
                 <Route path="/community/rewards" element={<RewardsProgram />} />
