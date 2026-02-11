@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { Helmet } from "react-helmet-async";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -8,6 +9,7 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import {
   CreditCard,
   ShieldCheck,
@@ -22,6 +24,9 @@ import {
   BookOpen,
   CheckCircle2,
   AlertTriangle,
+  ThumbsUp,
+  ThumbsDown,
+  ArrowRight,
 } from "lucide-react";
 
 const betalingsmetoderFaqs = [
@@ -124,7 +129,96 @@ const paymentMethodsOverview = [
   },
 ];
 
+const paymentMethodGuides = [
+  {
+    id: "apple-pay",
+    name: "Apple Pay",
+    icon: Smartphone,
+    intro: "Apples mobile betalingsløsning har gjort det muligt for iPhone- og iPad-brugere at indbetale på casinoer med blot et tryk og biometrisk godkendelse. Face ID eller Touch ID erstatter kortnumre og PIN-koder, og transaktionen gennemføres på få sekunder.",
+    whatIs: "Apple Pay blev lanceret i oktober 2014 og fungerer via Apples digitale tegnebog, Wallet. Dine kortoplysninger tokeniseres – det vil sige, at casinoet aldrig modtager dit rigtige kortnummer, men i stedet en engangskode. Tjenesten understøttes i millioner af butikker, apps og på nettet verden over, og Apple tager en lille procentdel fra kortudstederen for hver transaktion.",
+    security: "Apple Pay benytter tokenisering, biometrisk godkendelse (Face ID/Touch ID) og ende-til-ende-kryptering. Dine kortoplysninger deles aldrig direkte med forhandleren, og hver transaktion kræver aktiv godkendelse fra din enhed. Apple overholder PCI DSS-standarder og har næsten 100 % oppetid på sin betalingsinfrastruktur.",
+    howToDeposit: "Log ind på casinoets kasse, vælg Apple Pay som betalingsmetode, og bekræft med Face ID eller Touch ID. Beløbet lander øjeblikkeligt på din spillekonto. Ved udbetaling vælger du Apple Pay i udbetalingssektionen, indtaster beløbet og godkender igen biometrisk. Pengene vender typisk tilbage til dit kort inden for få timer.",
+    pros: ["Øjeblikkelig indbetaling med Face ID/Touch ID", "Kortoplysninger forbliver skjulte via tokenisering", "Høj sikkerhed med kryptering", "Som regel ingen ekstra gebyrer"],
+    cons: ["Kræver en Apple-enhed (iPhone, iPad eller Mac)", "Ikke tilgængeligt på alle danske casinoer", "Udbetalinger kan være begrænsede hos visse udbydere"],
+    minDeposit: "Minimumsindskud varierer – typisk fra 45 kr. til 100 kr. afhængigt af casinoet.",
+    bonus: "De fleste danske casinoer behandler Apple Pay-indbetalinger på lige fod med kortbetalinger, så du kvalificerer dig til velkomstbonusser. Fordi verifikationen sker øjeblikkeligt via Wallet, frigives bonussen med det samme.",
+    tax: "Gevinster fra casinoer med dansk licens er skattefrie. Casinoet betaler allerede afgift til staten, så dine præmier er dine at beholde.",
+  },
+  {
+    id: "mobilepay",
+    name: "MobilePay",
+    icon: Smartphone,
+    intro: "MobilePay er Danmarks foretrukne mobile betalingsapp, som gør det muligt at indbetale på casinoer med blot et par tryk og en MitID-bekræftelse. Ingen kortnumre, ingen netbank – bare hurtig og sikker betaling direkte fra mobilen.",
+    whatIs: "MobilePay blev lanceret af Danske Bank i 2013 med en vision om at gøre betalinger lige så enkle som at sende en SMS. I dag er MobilePay en af de mest brugte betalingsmetoder i Danmark og Finland med millioner af transaktioner hver måned. I 2022 fusionerede MobilePay med den norske tjeneste Vipps og danner nu Vipps MobilePay – en samlet nordisk betalingsløsning.",
+    security: "MobilePay beskytter alle transaktioner med avanceret kryptering og kræver MitID-verifikation. Appen kan kun bruges på én enhed ad gangen, og modtagerens fulde navn vises altid før godkendelse. En blokeringsfunktion lader dig afvise uønskede anmodninger.",
+    howToDeposit: "Vælg MobilePay i casinoets kasse, indtast dit mobilnummer og beløb. Du modtager en anmodning i MobilePay-appen, som du godkender med et swipe eller MitID. Pengene lander øjeblikkeligt. Udbetalinger er mulige hos visse casinoer, men ikke alle understøtter det endnu.",
+    pros: ["Hurtige og nemme indbetalinger uden kortoplysninger", "Ingen gebyrer på de fleste casinoer", "Høj sikkerhed med kryptering og MitID", "Fungerer på både Android og iOS"],
+    cons: ["Ikke alle casinoer understøtter MobilePay til udbetalinger", "Kan have beløbsgrænser pr. transaktion", "Begrænset international anvendelse"],
+    minDeposit: "Typisk 100 kr. som minimum, mens maks. grænsen kan variere op til 37.500–40.000 kr. pr. dag.",
+    bonus: "MobilePay behandles som en bankoverførsel, så du kvalificerer dig næsten altid til velkomstbonusser. Modsat visse e-wallets er MobilePay sjældent udelukket fra bonustilbud.",
+    tax: "Gevinster fra danske licenserede casinoer er 100 % skattefrie. Spiller du derimod på udenlandske sider uden dansk licens, kan gevinster beskattes med op til 42 %.",
+  },
+  {
+    id: "paypal",
+    name: "PayPal",
+    icon: Wallet,
+    intro: "PayPal er en af verdens mest anerkendte digitale betalingsløsninger og kombinerer hastighed, sikkerhed og fleksibilitet. Mange danske casinoer accepterer PayPal til både ind- og udbetalinger, og dine kortoplysninger deles aldrig direkte med casinoet.",
+    whatIs: "PayPal blev grundlagt i 1998 under navnet Confinity og fusionerede senere med Elon Musks X.com. I 2002 blev det opkøbt af eBay, og i 2015 blev det en selvstændig virksomhed igen. I dag har PayPal over 430 millioner aktive brugere på verdensplan og hovedsæde i San Jose, Californien. Tjenesten bruges til alt fra e-handel og freelancing til online casinoer.",
+    security: "PayPal anvender avanceret kryptering, køberbeskyttelse og totrinsbekræftelse. Dine betalingsoplysninger forbliver skjulte for casinoet, hvilket reducerer risikoen for svindel markant. PayPal har strenge retningslinjer for godkendte transaktioner, og konti kan midlertidigt låses ved mistænkelig aktivitet.",
+    howToDeposit: "Vælg PayPal i casinoets betalingssektion, og du bliver sendt videre til PayPal, hvor du logger ind og godkender transaktionen. Pengene er tilgængelige med det samme. Ved udbetaling følger du samme proces, og PayPal overfører typisk pengene øjeblikkeligt til din PayPal-konto, hvorfra du kan sende dem videre til banken.",
+    pros: ["Hurtige og sikre transaktioner", "Kortoplysninger deles aldrig med casinoet", "Stærk køberbeskyttelse og svindelkontrol", "Ofte tilgængelig til både ind- og udbetalinger"],
+    cons: ["Ikke alle casinoer accepterer PayPal", "Mulige gebyrer på visse transaktioner (1–2 %)", "Visse bonustilbud kan udelukke e-wallets"],
+    minDeposit: "Typisk 100 kr. som minimum. Maksimumsgrænsen varierer – visse casinoer tillader op til 110.000 kr. ved indbetalinger.",
+    bonus: "Nogle casinoer udelukker e-wallets fra velkomstbonusser, men mange accepterer stadig PayPal fuldt ud. Tjek altid betingelserne hos det specifikke casino.",
+    tax: "Gevinster fra casinoer med dansk licens er skattefrie. På udenlandske sider kan gevinster beskattes med op til 42 %.",
+  },
+  {
+    id: "skrill",
+    name: "Skrill",
+    icon: Wallet,
+    intro: "Skrill er en populær e-wallet, der giver dig mulighed for lynhurtige indbetalinger uden at skulle dele kortoplysninger direkte med casinoet. Udbetalinger er ofte markant hurtigere end traditionelle bankoverførsler.",
+    whatIs: "Skrill blev grundlagt i 2001 under navnet Moneybookers og gennemgik en stor rebranding i 2011. I dag er Skrill en del af Paysafe Group (som også ejer Neteller og Paysafecard) og opererer i over 120 lande med understøttelse af mere end 40 valutaer. Tjenesten tilbyder desuden forudbetalte kort, kryptovaluta-handel og VIP-fordele for loyale brugere.",
+    security: "Skrill er licenseret af det britiske Financial Conduct Authority (FCA) og anvender avanceret kryptering samt totrinsbekræftelse. Dine betalingsoplysninger forbliver anonyme over for casinoet, og muligheden for en separat e-wallet-saldo giver bedre kontrol over dit spillebudget.",
+    howToDeposit: "Vælg Skrill i casinoets kasse, indtast beløbet og log ind på din Skrill-konto for at godkende. Pengene er tilgængelige med det samme. Ved udbetaling vælger du Skrill, indtaster beløbet og bekræfter. Behandlingstiden afhænger af casinoet, men er ofte samme dag.",
+    pros: ["Øjeblikkelige indbetalinger med høj sikkerhed", "Mulighed for VIP-fordele og loyalitetsprogrammer", "Mobilvenlig og nem at bruge", "Separat saldo giver budgetkontrol"],
+    cons: ["Kan have gebyrer ved udbetalinger til bankkonto", "Ikke tilgængelig på alle danske casinoer", "Visse casinoer udelukker Skrill fra bonustilbud"],
+    minDeposit: "Typisk 50–100 kr. som standard. Nogle casinoer kan kræve 200 kr. i forbindelse med bonusaktivering.",
+    bonus: "Visse casinoer ekskluderer Skrill fra velkomstbonusser, men mange accepterer det stadig. Tjek altid vilkårene, inden du indbetaler.",
+    tax: "Gevinster fra danske licenserede casinoer er skattefrie. Gevinster fra udenlandske casinoer uden dansk licens kan være skattepligtige.",
+  },
+  {
+    id: "trustly",
+    name: "Trustly",
+    icon: Banknote,
+    intro: "Trustly fungerer som en direkte bro mellem din bankkonto og casinoet – øjeblikkelige overførsler uden kortoplysninger eller separate e-wallet-konti. Med MitID-godkendelse er processen både hurtig og sikker.",
+    whatIs: "Trustly blev grundlagt i Sverige i 2008 med en vision om hurtigere og sikrere online betalinger. I stedet for at gemme kortoplysninger eller kræve en digital tegnebog, bruger Trustly open banking til at forbinde din bank direkte med casinoet. Virksomheden ejes i dag af Nordic Capital og har håndteret milliarder af transaktioner på verdensplan.",
+    security: "Trustly bruger bankens egne sikkerhedsstandarder og avanceret kryptering. Ingen følsomme data opbevares eller deles med tredjepart. Transaktioner godkendes via MitID (i Danmark) eller BankID, og betalinger bekræftes øjeblikkeligt. Trustly er reguleret af europæiske finansielle myndigheder og overholder PSD2-kravene.",
+    howToDeposit: "Vælg Trustly i kassen, vælg din bank, log ind med MitID og godkend overførslen. Pengene lander på din spillekonto inden for sekunder. Ved udbetaling vælger du Trustly, angiver beløbet og godkender – pengene sendes direkte til din bankkonto, ofte inden for minutter.",
+    pros: ["Direkte bankoverførsler uden kort eller e-wallet", "Hurtige ind- og udbetalinger", "Ingen gebyrer fra Trustly", "Høj sikkerhed med MitID/BankID"],
+    cons: ["Ikke alle casinoer accepterer Trustly", "Udbetalinger kan tage lidt længere end e-wallets", "Kreditkort kan ikke bruges via Trustly"],
+    minDeposit: "Typisk 100 kr. som minimum. Visse casinoer kan have lavere eller højere grænser.",
+    bonus: "Trustly-indbetalinger kvalificerer næsten altid til velkomstbonusser, da det betragtes som en bankoverførsel. Ingen bonusbegrænsninger som ved visse e-wallets.",
+    tax: "Gevinster fra danske licenserede casinoer er skattefrie. Spil altid på casinoer med dansk licens for at undgå skattemæssige komplikationer.",
+  },
+  {
+    id: "zimpler",
+    name: "Zimpler",
+    icon: Zap,
+    intro: "Zimpler er en svensk fintech-løsning, der overfører penge direkte mellem din bank og casinoet på få sekunder via open banking og MitID. Ingen kortnumre, ingen ekstra konti – bare hurtig konto-til-konto-betaling.",
+    whatIs: "Zimpler blev grundlagt i 2012 i Göteborg af Johan Friis og Kristofer Edlund under navnet PugglePay. Virksomheden skiftede senere navn og fokuserede på direkte konto-til-konto-transaktioner via open banking. I dag ejes Zimpler af moderselskabet Zimpler AB med kontorer i Stockholm, Málaga og São Paulo. Tjenesten er især populær i den nordiske spilbranche og ekspanderer mod Danmark, Tyskland og Latinamerika.",
+    security: "Zimpler opererer under svensk finanstilsyn og overholder hele PSD2-pakken med stærk kundegodkendelse. Betalinger kører via MitID eller BankID, og kundemidler holdes på separate klientkonti. Ingen kortdata eller følsomme oplysninger lagres hos tredjepart, og firmaet gennemgår regelmæssige IT- og compliance-audits.",
+    howToDeposit: "Vælg Zimpler i kassen, indtast beløbet og log ind med MitID. Zimpler viser dine tilknyttede bankkonti – vælg den ønskede, bekræft med et swipe i bankappen, og saldoen opdateres inden for sekunder. Ved udbetaling følger du samme proces i omvendt rækkefølge, og pengene sendes direkte til din bankkonto – typisk inden for få minutter.",
+    pros: ["Øjeblikkelig konto-til-konto-overførsel uden kortoplysninger", "MitID-login giver tofaktorsikkerhed", "Ingen gebyrer fra Zimpler på danske licenserede sider", "Stærk svensk tilsynsregulering og PSD2-kompatibilitet"],
+    cons: ["Nogle banker har daglige grænser, der kan forsinke større beløb", "Ingen kreditmulighed som ved traditionelle kort", "Endnu ikke tilgængeligt på alle danske casinoer"],
+    minDeposit: "Typisk 100 kr. som minimum hos de fleste casinoer. Maks. indbetaling kan være op til 110.000 kr.",
+    bonus: "Zimpler-indbetalinger giver adgang til de samme velkomstbonusser som kortbetalinger – typisk 100 % op til 1.000 kr. Ingen gebyrer trækker fra bonusbeløbet, og bonuskoden udfyldes ofte automatisk.",
+    tax: "Gevinster fra danske licenserede casinoer er skattefrie. Spiller du på udenlandske sider uden dansk licens, skal gevinster indberettes som personlig indkomst.",
+  },
+];
+
 const Betalingsmetoder = () => {
+  const [activeGuide, setActiveGuide] = useState("apple-pay");
+
   const faqJsonLd = {
     "@context": "https://schema.org",
     "@type": "FAQPage",
@@ -211,7 +305,7 @@ const Betalingsmetoder = () => {
             <BookOpen className="h-4 w-4" />
             <span>
               Læsetid:{" "}
-              <span className="font-medium text-foreground">8 Min.</span>
+              <span className="font-medium text-foreground">15 Min.</span>
             </span>
           </div>
         </div>
@@ -275,6 +369,138 @@ const Betalingsmetoder = () => {
               </tbody>
             </table>
           </div>
+        </section>
+
+        <Separator className="my-10" />
+
+        {/* ===== DETAILED PAYMENT METHOD GUIDES ===== */}
+        <section className="mb-12">
+          <h2 className="mb-4 text-3xl font-bold">Dybdegående guider til hver betalingsmetode</h2>
+          <p className="mb-6 text-muted-foreground leading-relaxed">
+            Klik på en betalingsmetode nedenfor for at læse en komplet guide med sikkerhed, fordele, ulemper, minimumsindbetaling og bonusvilkår.
+          </p>
+
+          <Tabs value={activeGuide} onValueChange={setActiveGuide} className="w-full">
+            <TabsList className="flex flex-wrap h-auto gap-1 bg-muted/50 p-1">
+              {paymentMethodGuides.map((guide) => (
+                <TabsTrigger
+                  key={guide.id}
+                  value={guide.id}
+                  className="flex items-center gap-1.5 text-xs sm:text-sm"
+                >
+                  <guide.icon className="h-3.5 w-3.5" />
+                  {guide.name}
+                </TabsTrigger>
+              ))}
+            </TabsList>
+
+            {paymentMethodGuides.map((guide) => (
+              <TabsContent key={guide.id} value={guide.id} className="mt-6 space-y-6">
+                {/* Intro */}
+                <Card className="border-border bg-card">
+                  <CardHeader>
+                    <CardTitle className="flex items-center gap-2 text-2xl">
+                      <guide.icon className="h-6 w-6 text-primary" />
+                      {guide.name} på danske casinoer
+                    </CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <p className="text-muted-foreground leading-relaxed">{guide.intro}</p>
+                  </CardContent>
+                </Card>
+
+                {/* What is it */}
+                <div>
+                  <h3 className="mb-3 text-xl font-bold">Hvad er {guide.name}?</h3>
+                  <p className="text-muted-foreground leading-relaxed">{guide.whatIs}</p>
+                </div>
+
+                {/* Security */}
+                <div>
+                  <h3 className="mb-3 text-xl font-bold flex items-center gap-2">
+                    <ShieldCheck className="h-5 w-5 text-primary" />
+                    Sikkerhed og pålidelighed
+                  </h3>
+                  <p className="text-muted-foreground leading-relaxed">{guide.security}</p>
+                </div>
+
+                {/* How to deposit */}
+                <div>
+                  <h3 className="mb-3 text-xl font-bold flex items-center gap-2">
+                    <ArrowRight className="h-5 w-5 text-primary" />
+                    Sådan bruger du {guide.name} til ind- og udbetalinger
+                  </h3>
+                  <p className="text-muted-foreground leading-relaxed">{guide.howToDeposit}</p>
+                </div>
+
+                {/* Pros & Cons */}
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <Card className="border-border bg-card">
+                    <CardHeader className="pb-2">
+                      <CardTitle className="flex items-center gap-2 text-lg text-primary">
+                        <ThumbsUp className="h-5 w-5" />
+                        Fordele
+                      </CardTitle>
+                    </CardHeader>
+                    <CardContent>
+                      <ul className="space-y-2">
+                        {guide.pros.map((pro, i) => (
+                          <li key={i} className="flex items-start gap-2 text-sm text-muted-foreground">
+                            <CheckCircle2 className="mt-0.5 h-4 w-4 flex-shrink-0 text-primary" />
+                            {pro}
+                          </li>
+                        ))}
+                      </ul>
+                    </CardContent>
+                  </Card>
+
+                  <Card className="border-border bg-card">
+                    <CardHeader className="pb-2">
+                      <CardTitle className="flex items-center gap-2 text-lg text-destructive">
+                        <ThumbsDown className="h-5 w-5" />
+                        Ulemper
+                      </CardTitle>
+                    </CardHeader>
+                    <CardContent>
+                      <ul className="space-y-2">
+                        {guide.cons.map((con, i) => (
+                          <li key={i} className="flex items-start gap-2 text-sm text-muted-foreground">
+                            <AlertTriangle className="mt-0.5 h-4 w-4 flex-shrink-0 text-destructive" />
+                            {con}
+                          </li>
+                        ))}
+                      </ul>
+                    </CardContent>
+                  </Card>
+                </div>
+
+                {/* Min deposit, bonus, tax */}
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                  <div className="rounded-lg border border-border bg-card p-4">
+                    <h4 className="mb-2 font-semibold flex items-center gap-2">
+                      <Banknote className="h-4 w-4 text-primary" />
+                      Minimumsindskud
+                    </h4>
+                    <p className="text-sm text-muted-foreground">{guide.minDeposit}</p>
+                  </div>
+                  <div className="rounded-lg border border-border bg-card p-4">
+                    <h4 className="mb-2 font-semibold flex items-center gap-2">
+                      <Wallet className="h-4 w-4 text-primary" />
+                      Velkomstbonus
+                    </h4>
+                    <p className="text-sm text-muted-foreground">{guide.bonus}</p>
+                  </div>
+                  <div className="rounded-lg border border-border bg-card p-4">
+                    <h4 className="mb-2 font-semibold flex items-center gap-2">
+                      <ShieldCheck className="h-4 w-4 text-primary" />
+                      Skat på gevinster
+                    </h4>
+                    <p className="text-sm text-muted-foreground">{guide.tax}</p>
+                  </div>
+                </div>
+              </TabsContent>
+            ))}
+          </Tabs>
         </section>
 
         <Separator className="my-10" />
@@ -357,108 +583,6 @@ const Betalingsmetoder = () => {
                 </p>
               </CardContent>
             </Card>
-          </div>
-        </section>
-
-        <Separator className="my-10" />
-
-        {/* E-wallets */}
-        <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold">E-wallets</h2>
-          <p className="mb-6 text-muted-foreground leading-relaxed">
-            Elektroniske tegnebøger er hurtigt blevet blandt de mest populære
-            betalingsløsninger hos danske spillere. I stedet for fysiske kort
-            overfører du penge via en digital konto – indbetalinger sker
-            øjeblikkeligt, og udbetalinger er ofte markant hurtigere end ved
-            traditionelle metoder.
-          </p>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-            {[
-              {
-                name: "PayPal",
-                desc: "En af de mest anerkendte e-wallets med høj sikkerhed og bred accept hos danske casinoer. Transaktioner sker øjeblikkeligt, og dine betalingsoplysninger holdes private.",
-              },
-              {
-                name: "Neteller",
-                desc: "Udviklet med fokus på online gaming. Hurtige transaktioner og mulighed for eksklusive bonusser, men vær opmærksom på eventuelle gebyrer ved overførsler til din bank.",
-              },
-              {
-                name: "Skrill",
-                desc: "Et godt alternativ til Neteller med ind- og udbetalinger, der ofte gennemføres på under 24 timer. Populær blandt spillere, der prioriterer hurtige pengeoverførsler.",
-              },
-              {
-                name: "Trustly",
-                desc: "Fungerer som en bro mellem din bank og casinoet – øjeblikkelige bankoverførsler uden separat konto. Understøtter også Pay N Play, hvor du kan spille uden registrering.",
-              },
-              {
-                name: "Zimpler",
-                desc: "En hurtig og sikker løsning, der minder om Trustly. Øjeblikkelige transaktioner ofte uden gebyrer, og du kan nemt sætte betalingsgrænser for bedre kontrol.",
-              },
-              {
-                name: "Payz",
-                desc: "En fleksibel e-wallet med mulighed for både ind- og udbetalinger. Tilbyder virtuelle og fysiske betalingskort, hvilket giver ekstra fleksibilitet i hverdagen.",
-              },
-            ].map((wallet) => (
-              <Card key={wallet.name} className="border-border bg-card">
-                <CardHeader className="pb-2">
-                  <CardTitle className="flex items-center gap-2 text-lg">
-                    <Wallet className="h-5 w-5 text-primary" />
-                    {wallet.name}
-                  </CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-sm text-muted-foreground">{wallet.desc}</p>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        </section>
-
-        <Separator className="my-10" />
-
-        {/* Mobile betalinger */}
-        <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold">Mobile betalinger</h2>
-          <p className="mb-6 text-muted-foreground leading-relaxed">
-            Mobilbetalinger er blevet en af de mest brugervenlige måder at
-            overføre penge på. Danske spillere har i stigende grad taget løsninger
-            som MobilePay, Apple Pay og Google Pay til sig – du kan indbetale
-            direkte fra mobilen uden at indtaste kortoplysninger hver gang.
-          </p>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            {[
-              {
-                name: "MobilePay",
-                icon: Smartphone,
-                desc: "Danmarks mest populære mobile betalingsløsning. Indsæt penge med få tryk – hurtigt og intuitivt. Udbetalinger er dog ikke altid understøttet.",
-              },
-              {
-                name: "Apple Pay",
-                icon: Smartphone,
-                desc: "Hurtig og sikker betaling via iPhone, iPad og Mac. Bekræftes med Face ID eller Touch ID for ekstra sikkerhed. Udbetalinger er sjældent mulige.",
-              },
-              {
-                name: "Google Pay",
-                icon: Smartphone,
-                desc: "Android-brugeres svar på Apple Pay. Hurtige og sikre betalinger uden kortoplysninger. Ikke alle casinoer tilbyder udbetalinger via Google Pay.",
-              },
-              {
-                name: "Paysafecard",
-                icon: Lock,
-                desc: "Et forudbetalt kort, der fungerer som en digital værdikupon. Perfekt til kontrol over forbruget – men udbetalinger er ikke mulige med denne metode.",
-              },
-            ].map((item) => (
-              <div
-                key={item.name}
-                className="flex items-start gap-3 rounded-lg border border-border bg-card p-4"
-              >
-                <item.icon className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
-                <div>
-                  <h3 className="font-semibold">{item.name}</h3>
-                  <p className="text-sm text-muted-foreground">{item.desc}</p>
-                </div>
-              </div>
-            ))}
           </div>
         </section>
 
@@ -604,7 +728,7 @@ const Betalingsmetoder = () => {
             {[
               {
                 title: "Hurtige løsninger",
-                desc: "MobilePay, Trustly og e-wallets sikrer øjeblikkelige transaktioner.",
+                desc: "MobilePay, Trustly, Zimpler og e-wallets sikrer øjeblikkelige transaktioner.",
               },
               {
                 title: "Klassiske kortbetalinger",
