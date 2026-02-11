@@ -747,13 +747,12 @@ function AdminDashboard() {
   const [editingCasino, setEditingCasino] = useState<Casino | null>(null);
   const [orderedCasinos, setOrderedCasinos] = useState<Casino[]>([]);
   const [headerIconUrl, setHeaderIconUrl] = useState<string | null>(null);
-  const [activeTab, setActiveTab] = useState("casinos");
+  const [activeTab, setActiveTab] = useState("content");
   const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [contentSubTab, setContentSubTab] = useState("casinos");
 
   const navItems = [
-    { value: "casinos", label: "Casino Tilbud", icon: Gift },
-    { value: "shop", label: "Butik", icon: ShoppingBag },
-    { value: "highlights", label: "Highlights", icon: Video },
+    { value: "content", label: "Indhold", icon: Gift },
     { value: "community-clips", label: "Community", icon: Sparkles },
     { value: "slotmachine", label: "Spillemaskine", icon: Gamepad2 },
     { value: "requests", label: "Requests", icon: Gamepad2 },
@@ -865,7 +864,7 @@ function AdminDashboard() {
 
       <main className="container py-8">
         <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
-            <TabsList className="hidden lg:grid w-full grid-cols-12 mb-8 h-auto">
+            <TabsList className="hidden lg:grid w-full grid-cols-10 mb-8 h-auto">
               {navItems.map((item) => (
                 <TabsTrigger key={item.value} value={item.value} className="flex items-center gap-2 py-3">
                   <item.icon className="h-4 w-4" />
@@ -874,97 +873,114 @@ function AdminDashboard() {
               ))}
             </TabsList>
 
-            {/* Casino Tilbud Tab */}
-          <TabsContent value="casinos">
-            <div className="mb-8 flex items-center justify-between">
-              <div>
-                <h2 className="text-2xl font-bold">Casino Tilbud</h2>
-                <p className="text-muted-foreground">
-                  Administrer casinobonusser og tilbud. Træk for at ændre rækkefølge.
-                </p>
-              </div>
-              <Dialog open={dialogOpen} onOpenChange={setDialogOpen}>
-                <DialogTrigger asChild>
-                  <Button>
-                    <Plus className="mr-2 h-4 w-4" /> Tilføj Casino
-                  </Button>
-                </DialogTrigger>
-                <DialogContent className="max-w-2xl">
-                  <DialogHeader>
-                    <DialogTitle>Tilføj Nyt Casino</DialogTitle>
-                  </DialogHeader>
-                  <AddCasinoForm onClose={() => setDialogOpen(false)} />
-                </DialogContent>
-              </Dialog>
-            </div>
+            {/* Indhold Tab (Casino Tilbud + Butik + Highlights) */}
+          <TabsContent value="content">
+            <Tabs value={contentSubTab} onValueChange={setContentSubTab}>
+              <TabsList className="grid w-full grid-cols-3 mb-6">
+                <TabsTrigger value="casinos" className="flex items-center gap-2">
+                  <Gift className="h-4 w-4" />
+                  Casino Tilbud
+                </TabsTrigger>
+                <TabsTrigger value="shop" className="flex items-center gap-2">
+                  <ShoppingBag className="h-4 w-4" />
+                  Butik
+                </TabsTrigger>
+                <TabsTrigger value="highlights" className="flex items-center gap-2">
+                  <Video className="h-4 w-4" />
+                  Highlights
+                </TabsTrigger>
+              </TabsList>
 
-            {isLoading ? (
-              <div className="flex items-center justify-center py-12">
-                <Loader2 className="h-8 w-8 animate-spin text-primary" />
-              </div>
-            ) : (
-              <DndContext
-                sensors={sensors}
-                collisionDetection={closestCenter}
-                onDragEnd={handleDragEnd}
-              >
-                <SortableContext
-                  items={orderedCasinos.map((c) => c.id)}
-                  strategy={verticalListSortingStrategy}
-                >
-                  <div className="space-y-4">
-                    {orderedCasinos.map((casino) => (
-                      <SortableCasinoCard
-                        key={casino.id}
-                        casino={casino}
-                        onEdit={setEditingCasino}
-                        onDelete={(id) => deleteCasino.mutate(id)}
-                      />
-                    ))}
-
-                    {orderedCasinos.length === 0 && (
-                      <Card>
-                        <CardContent className="py-12 text-center">
-                          <p className="text-muted-foreground">
-                            Ingen casinoer fundet. Tilføj dit første casino!
-                          </p>
-                        </CardContent>
-                      </Card>
-                    )}
+              <TabsContent value="casinos">
+                <div className="mb-8 flex items-center justify-between">
+                  <div>
+                    <h2 className="text-2xl font-bold">Casino Tilbud</h2>
+                    <p className="text-muted-foreground">
+                      Administrer casinobonusser og tilbud. Træk for at ændre rækkefølge.
+                    </p>
                   </div>
-                </SortableContext>
-              </DndContext>
-            )}
+                  <Dialog open={dialogOpen} onOpenChange={setDialogOpen}>
+                    <DialogTrigger asChild>
+                      <Button>
+                        <Plus className="mr-2 h-4 w-4" /> Tilføj Casino
+                      </Button>
+                    </DialogTrigger>
+                    <DialogContent className="max-w-2xl">
+                      <DialogHeader>
+                        <DialogTitle>Tilføj Nyt Casino</DialogTitle>
+                      </DialogHeader>
+                      <AddCasinoForm onClose={() => setDialogOpen(false)} />
+                    </DialogContent>
+                  </Dialog>
+                </div>
 
-            {/* Edit Casino Dialog */}
-            <Dialog open={!!editingCasino} onOpenChange={(open) => !open && setEditingCasino(null)}>
-              <DialogContent className="max-w-2xl">
-                <DialogHeader>
-                  <DialogTitle>Rediger Casino</DialogTitle>
-                </DialogHeader>
-                {editingCasino && (
-                  <EditCasinoForm casino={editingCasino} onClose={() => setEditingCasino(null)} />
+                {isLoading ? (
+                  <div className="flex items-center justify-center py-12">
+                    <Loader2 className="h-8 w-8 animate-spin text-primary" />
+                  </div>
+                ) : (
+                  <DndContext
+                    sensors={sensors}
+                    collisionDetection={closestCenter}
+                    onDragEnd={handleDragEnd}
+                  >
+                    <SortableContext
+                      items={orderedCasinos.map((c) => c.id)}
+                      strategy={verticalListSortingStrategy}
+                    >
+                      <div className="space-y-4">
+                        {orderedCasinos.map((casino) => (
+                          <SortableCasinoCard
+                            key={casino.id}
+                            casino={casino}
+                            onEdit={setEditingCasino}
+                            onDelete={(id) => deleteCasino.mutate(id)}
+                          />
+                        ))}
+
+                        {orderedCasinos.length === 0 && (
+                          <Card>
+                            <CardContent className="py-12 text-center">
+                              <p className="text-muted-foreground">
+                                Ingen casinoer fundet. Tilføj dit første casino!
+                              </p>
+                            </CardContent>
+                          </Card>
+                        )}
+                      </div>
+                    </SortableContext>
+                  </DndContext>
                 )}
-              </DialogContent>
-            </Dialog>
-          </TabsContent>
 
-          {/* Butik Tab */}
-          <TabsContent value="shop">
-            <div className="mb-6">
-              <h2 className="text-2xl font-bold">Butik Administration</h2>
-              <p className="text-muted-foreground">Administrer produkter i butikken.</p>
-            </div>
-            <ShopAdminSection embedded />
-          </TabsContent>
+                {/* Edit Casino Dialog */}
+                <Dialog open={!!editingCasino} onOpenChange={(open) => !open && setEditingCasino(null)}>
+                  <DialogContent className="max-w-2xl">
+                    <DialogHeader>
+                      <DialogTitle>Rediger Casino</DialogTitle>
+                    </DialogHeader>
+                    {editingCasino && (
+                      <EditCasinoForm casino={editingCasino} onClose={() => setEditingCasino(null)} />
+                    )}
+                  </DialogContent>
+                </Dialog>
+              </TabsContent>
 
-          {/* Highlights Tab */}
-          <TabsContent value="highlights">
-            <div className="mb-6">
-              <h2 className="text-2xl font-bold">Highlights Administration</h2>
-              <p className="text-muted-foreground">Administrer Twitch clips og YouTube videoer.</p>
-            </div>
-            <HighlightsAdminSection />
+              <TabsContent value="shop">
+                <div className="mb-6">
+                  <h2 className="text-2xl font-bold">Butik Administration</h2>
+                  <p className="text-muted-foreground">Administrer produkter i butikken.</p>
+                </div>
+                <ShopAdminSection embedded />
+              </TabsContent>
+
+              <TabsContent value="highlights">
+                <div className="mb-6">
+                  <h2 className="text-2xl font-bold">Highlights Administration</h2>
+                  <p className="text-muted-foreground">Administrer Twitch clips og YouTube videoer.</p>
+                </div>
+                <HighlightsAdminSection />
+              </TabsContent>
+            </Tabs>
           </TabsContent>
 
           {/* Community Clips Tab */}
