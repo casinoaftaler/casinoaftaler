@@ -292,11 +292,18 @@ const Velkomstbonus = () => {
               </CardHeader>
               <CardContent>
                 <p className="text-sm text-muted-foreground leading-relaxed">
-                  Omsætningskravet angiver, hvor mange gange bonusbeløbet
+                  <Link to="/omsaetningskrav" className="text-primary underline hover:text-primary/80">
+                    Omsætningskravet
+                  </Link>{" "}
+                  angiver, hvor mange gange bonusbeløbet
                   skal gennemspilles, før gevinster kan udbetales. Får du fx
                   en bonus på 1.000 kr. med 10x omsætningskrav, skal du
                   satse for 10.000 kr. i alt. Kig efter casinoer med lave
-                  krav (5-10x) for den bedste værdi.
+                  krav (5-10x) for den bedste værdi, eller overvej en{" "}
+                  <Link to="/bonus-uden-omsaetningskrav" className="text-primary underline hover:text-primary/80">
+                    bonus uden omsætningskrav
+                  </Link>
+                  .
                 </p>
               </CardContent>
             </Card>
@@ -361,7 +368,11 @@ const Velkomstbonus = () => {
               </CardHeader>
               <CardContent>
                 <p className="text-sm text-muted-foreground leading-relaxed">
-                  Ikke alle spil bidrager ens til omsætningskravet.
+                  Ikke alle spil bidrager ens til{" "}
+                  <Link to="/omsaetningskrav" className="text-primary underline hover:text-primary/80">
+                    omsætningskravet
+                  </Link>
+                  .
                   Spilleautomater bidrager typisk 100%, mens bordspil som
                   blackjack og roulette kun tæller 10-20%. Live casino-spil
                   kan være helt udelukket. Planlæg din strategi derefter.
@@ -493,9 +504,16 @@ const Velkomstbonus = () => {
               <CardContent>
                 <p className="text-sm text-muted-foreground leading-relaxed">
                   Helt risikofri, da du ikke skal indbetale noget. Til
-                  gengæld er bonusbeløbene små, og omsætningskravene ofte
-                  højere. Ideel til at afprøve et casino uden økonomisk
-                  forpligtelse.
+                  gengæld er bonusbeløbene små, og{" "}
+                  <Link to="/omsaetningskrav" className="text-primary underline hover:text-primary/80">
+                    omsætningskravene
+                  </Link>{" "}
+                  ofte højere. Ideel til at afprøve et casino uden økonomisk
+                  forpligtelse. Læs mere i vores guide til{" "}
+                  <Link to="/bonus-uden-indbetaling" className="text-primary underline hover:text-primary/80">
+                    bonus uden indbetaling
+                  </Link>
+                  .
                 </p>
               </CardContent>
             </Card>
@@ -528,7 +546,11 @@ const Velkomstbonus = () => {
                 <p className="text-sm text-muted-foreground leading-relaxed">
                   Gratis omgange på spilleautomater. Kan indgå som en del
                   af velkomstpakken eller tilbydes separat. Ideelle til at
-                  prøve nye spil uden at satse egne penge.
+                  prøve nye spil uden at satse egne penge. Læs vores{" "}
+                  <Link to="/free-spins" className="text-primary underline hover:text-primary/80">
+                    komplette guide til free spins
+                  </Link>
+                  .
                 </p>
               </CardContent>
             </Card>

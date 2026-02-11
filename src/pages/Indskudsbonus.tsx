@@ -265,8 +265,11 @@ const Indskudsbonus = () => {
                 <p className="text-sm text-muted-foreground leading-relaxed">
                   Indbetaler du 700 kr. med 100% matchbonus, får du 700 kr.
                   ekstra. Samlet resultat: 1.400 kr. til rådighed. Nogle
-                  bonusser inkluderer også gratis spins oven i hatten, der
-                  typisk skal bruges på udvalgte spillemaskiner.
+                  bonusser inkluderer også{" "}
+                  <Link to="/free-spins" className="text-primary underline hover:text-primary/80">
+                    gratis spins
+                  </Link>{" "}
+                  oven i hatten, der typisk skal bruges på udvalgte spillemaskiner.
                 </p>
               </CardContent>
             </Card>
@@ -280,7 +283,10 @@ const Indskudsbonus = () => {
               </CardHeader>
               <CardContent>
                 <p className="text-sm text-muted-foreground leading-relaxed">
-                  Mange casinoer bruger indskudsbonussen som velkomstbonus
+                  Mange casinoer bruger indskudsbonussen som{" "}
+                  <Link to="/velkomstbonus" className="text-primary underline hover:text-primary/80">
+                    velkomstbonus
+                  </Link>{" "}
                   til nye spillere. Denne gælder kun på første indbetaling
                   og kan ikke genaktiveres senere. Andre casinoer tilbyder
                   også løbende indskudsbonusser til eksisterende kunder.
@@ -369,8 +375,11 @@ const Indskudsbonus = () => {
                 <p className="text-sm text-muted-foreground leading-relaxed">
                   Angiver hvor mange gange bonusbeløbet skal gennemspilles,
                   før gevinster kan hæves. Typisk 5x–10x (d+b) i Danmark.
-                  En bonus på 1.000 kr. med 10x kræver, at du satser for
-                  10.000 kr.
+                  Læs mere om{" "}
+                  <Link to="/omsaetningskrav" className="text-primary underline hover:text-primary/80">
+                    omsætningskrav
+                  </Link>{" "}
+                  i vores dybdegående guide.
                 </p>
               </CardContent>
             </Card>
@@ -490,18 +499,34 @@ const Indskudsbonus = () => {
           </h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
             Indskudsbonusser har nogle klare fordele sammenlignet med andre
-            kampagnetyper. Mens en velkomstbonus kun kan bruges af nye
-            spillere, kan indskudsbonusser bruges af alle – både nye og
-            eksisterende kunder. Det gør den til en af de mest generøse
-            bonusser i den danske spilindustri.
+            kampagnetyper. Mens en{" "}
+            <Link to="/velkomstbonus" className="text-primary underline hover:text-primary/80">
+              velkomstbonus
+            </Link>{" "}
+            kun kan bruges af nye spillere, kan indskudsbonusser bruges af
+            alle – både nye og eksisterende kunder. Det gør den til en af de
+            mest generøse bonusser i den danske spilindustri.
           </p>
           <p className="text-muted-foreground leading-relaxed">
-            Bonus uden indbetaling er attraktive, da de giver chancen for
-            at vinde rigtige penge uden risiko, men de kommer ofte med
-            sværere omsætningskrav. Cashback-bonusser er ideelle for
-            loyale spillere med store indsatser, da de giver en procentdel
-            af tabene tilbage som bonuspenge. Gratis spins er perfekte for
-            nye spillere, der vil prøve spil uden at bruge egne penge.
+            <Link to="/bonus-uden-indbetaling" className="text-primary underline hover:text-primary/80">
+              Bonus uden indbetaling
+            </Link>{" "}
+            er attraktive, da de giver chancen for at vinde rigtige penge
+            uden risiko, men de kommer ofte med sværere{" "}
+            <Link to="/omsaetningskrav" className="text-primary underline hover:text-primary/80">
+              omsætningskrav
+            </Link>
+            . Cashback-bonusser er ideelle for loyale spillere med store
+            indsatser.{" "}
+            <Link to="/free-spins" className="text-primary underline hover:text-primary/80">
+              Gratis spins
+            </Link>{" "}
+            er perfekte for nye spillere, der vil prøve spil uden at bruge
+            egne penge. Du kan også overveje en{" "}
+            <Link to="/no-sticky-bonus" className="text-primary underline hover:text-primary/80">
+              no-sticky bonus
+            </Link>
+            , hvis du vil holde dine egne penge adskilt fra bonuspengene.
           </p>
         </section>
 
@@ -514,10 +539,13 @@ const Indskudsbonus = () => {
           </h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
             Indskudsbonusser er fleksible og kan passe til mange typer
-            spillere. Hvis den anvendes som velkomstbonus, er den
-            forbeholdt nye kunder. Hvis den derimod tilbydes som en løbende
-            kampagne, kan alle spillere drage fordel af den – både VIP'er,
-            nye spillere og dem der har været der i kort tid.
+            spillere. Hvis den anvendes som{" "}
+            <Link to="/velkomstbonus" className="text-primary underline hover:text-primary/80">
+              velkomstbonus
+            </Link>
+            , er den forbeholdt nye kunder. Hvis den derimod tilbydes som en
+            løbende kampagne, kan alle spillere drage fordel af den – både
+            VIP'er, nye spillere og dem der har været der i kort tid.
           </p>
           <p className="text-muted-foreground leading-relaxed">
             Det er netop denne fleksibilitet, der gør indskudsbonussen til

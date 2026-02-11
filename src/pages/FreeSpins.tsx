@@ -390,8 +390,11 @@ const FreeSpins = () => {
             Hvor finder man free spins?
           </h2>
           <p className="mb-6 text-muted-foreground leading-relaxed">
-            Free spins er tæt knyttet til bonusser, kampagner og
-            velkomstpakker. Her er de mest almindelige steder, du kan støde
+            Free spins er tæt knyttet til bonusser, kampagner og{" "}
+            <Link to="/velkomstbonus" className="text-primary underline hover:text-primary/80">
+              velkomstpakker
+            </Link>
+            . Her er de mest almindelige steder, du kan støde
             på tilbud med gratis spins.
           </p>
 
@@ -460,7 +463,11 @@ const FreeSpins = () => {
                 det samme som casino-bonusser. De er en del af spillets
                 returprocent (RTP) og kræver ingen bonuskode eller tilmelding.
                 Gevinster fra in-game free spins tilføjes direkte til din saldo
-                uden omsætningskrav – medmindre du spiller med bonuspenge.
+                uden{" "}
+                <Link to="/omsaetningskrav" className="text-primary underline hover:text-primary/80">
+                  omsætningskrav
+                </Link>{" "}
+                – medmindre du spiller med bonuspenge.
               </p>
             </CardContent>
           </Card>
