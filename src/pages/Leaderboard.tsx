@@ -4,9 +4,10 @@ import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Trophy, Medal, Award, Crown, Sparkles, Gamepad2, ArrowRight } from "lucide-react";
+import { Trophy, Medal, Award, Crown, Sparkles, Gamepad2, ArrowRight, LogIn } from "lucide-react";
 import { useSlotLeaderboard, type LeaderboardEntry } from "@/hooks/useSlotLeaderboard";
 import { UserProfileLink } from "@/components/UserProfileLink";
+import { useAuth } from "@/hooks/useAuth";
 import { cn } from "@/lib/utils";
 
 // Tournament definitions
@@ -254,6 +255,7 @@ function TournamentCard({
 
 export default function Leaderboard() {
   const [period, setPeriod] = useState<"daily" | "weekly" | "alltime">("alltime");
+  const { user, loading } = useAuth();
 
   return (
     <div className="min-h-[calc(100vh-4rem)] relative">
@@ -310,60 +312,82 @@ export default function Leaderboard() {
 
       {/* Content */}
       <div className="container py-10">
-        {/* Period Tabs */}
-        <div className="flex justify-center mb-8">
-          <Tabs value={period} onValueChange={(v) => setPeriod(v as typeof period)} className="w-full max-w-md">
-            <TabsList className="w-full grid grid-cols-3 bg-muted/50 p-1">
-              <TabsTrigger
-                value="daily"
-                className="data-[state=active]:bg-primary/20 data-[state=active]:text-primary"
-              >
-                <Sparkles className="h-4 w-4 mr-1.5 hidden sm:inline" />
-                I dag
-              </TabsTrigger>
-              <TabsTrigger
-                value="weekly"
-                className="data-[state=active]:bg-primary/20 data-[state=active]:text-primary"
-              >
-                <Sparkles className="h-4 w-4 mr-1.5 hidden sm:inline" />
-                Denne uge
-              </TabsTrigger>
-              <TabsTrigger
-                value="alltime"
-                className="data-[state=active]:bg-primary/20 data-[state=active]:text-primary"
-              >
-                <Trophy className="h-4 w-4 mr-1.5 hidden sm:inline" />
-                Måned
-              </TabsTrigger>
-            </TabsList>
-          </Tabs>
-        </div>
-
-        {/* Tournament Cards Grid */}
-        <div className="grid gap-6 md:grid-cols-2 max-w-5xl mx-auto">
-          {TOURNAMENTS.map((tournament) => (
-            <TournamentCard
-              key={tournament.id}
-              tournament={tournament}
-              period={period}
-            />
-          ))}
-        </div>
-
-        {/* Coming Soon Placeholder */}
-        <div className="mt-8 max-w-5xl mx-auto">
-          <Card className="border-dashed border-muted-foreground/30 bg-muted/10">
-            <CardContent className="py-12 text-center">
-              <div className="mx-auto mb-4 h-16 w-16 rounded-full bg-muted/20 flex items-center justify-center">
-                <Sparkles className="h-8 w-8 text-muted-foreground/50" />
+        {!loading && !user ? (
+          <Card className="max-w-md mx-auto border-primary/20 bg-card/80 backdrop-blur-sm">
+            <CardContent className="py-12 text-center space-y-4">
+              <div className="mx-auto h-16 w-16 rounded-full bg-primary/10 flex items-center justify-center">
+                <LogIn className="h-8 w-8 text-primary" />
               </div>
-              <h3 className="text-lg font-medium text-muted-foreground mb-1">Flere turneringer kommer snart</h3>
-              <p className="text-sm text-muted-foreground/70">
-                Hold øje med nye spil og specielle events!
+              <h3 className="text-lg font-semibold text-foreground">Log ind for at se ranglisten</h3>
+              <p className="text-sm text-muted-foreground">
+                Du skal være logget ind for at se turneringsranglisterne.
               </p>
+              <Button asChild className="gap-2">
+                <Link to="/auth">
+                  <LogIn className="h-4 w-4" />
+                  Log ind
+                </Link>
+              </Button>
             </CardContent>
           </Card>
-        </div>
+        ) : (
+          <>
+            {/* Period Tabs */}
+            <div className="flex justify-center mb-8">
+              <Tabs value={period} onValueChange={(v) => setPeriod(v as typeof period)} className="w-full max-w-md">
+                <TabsList className="w-full grid grid-cols-3 bg-muted/50 p-1">
+                  <TabsTrigger
+                    value="daily"
+                    className="data-[state=active]:bg-primary/20 data-[state=active]:text-primary"
+                  >
+                    <Sparkles className="h-4 w-4 mr-1.5 hidden sm:inline" />
+                    I dag
+                  </TabsTrigger>
+                  <TabsTrigger
+                    value="weekly"
+                    className="data-[state=active]:bg-primary/20 data-[state=active]:text-primary"
+                  >
+                    <Sparkles className="h-4 w-4 mr-1.5 hidden sm:inline" />
+                    Denne uge
+                  </TabsTrigger>
+                  <TabsTrigger
+                    value="alltime"
+                    className="data-[state=active]:bg-primary/20 data-[state=active]:text-primary"
+                  >
+                    <Trophy className="h-4 w-4 mr-1.5 hidden sm:inline" />
+                    Måned
+                  </TabsTrigger>
+                </TabsList>
+              </Tabs>
+            </div>
+
+            {/* Tournament Cards Grid */}
+            <div className="grid gap-6 md:grid-cols-2 max-w-5xl mx-auto">
+              {TOURNAMENTS.map((tournament) => (
+                <TournamentCard
+                  key={tournament.id}
+                  tournament={tournament}
+                  period={period}
+                />
+              ))}
+            </div>
+
+            {/* Coming Soon Placeholder */}
+            <div className="mt-8 max-w-5xl mx-auto">
+              <Card className="border-dashed border-muted-foreground/30 bg-muted/10">
+                <CardContent className="py-12 text-center">
+                  <div className="mx-auto mb-4 h-16 w-16 rounded-full bg-muted/20 flex items-center justify-center">
+                    <Sparkles className="h-8 w-8 text-muted-foreground/50" />
+                  </div>
+                  <h3 className="text-lg font-medium text-muted-foreground mb-1">Flere turneringer kommer snart</h3>
+                  <p className="text-sm text-muted-foreground/70">
+                    Hold øje med nye spil og specielle events!
+                  </p>
+                </CardContent>
+              </Card>
+            </div>
+          </>
+        )}
       </div>
     </div>
   );
