@@ -8,9 +8,6 @@ const corsHeaders = {
 
 const VALID_SECTIONS = ["profile", "stats", "favorites", "playstyle"] as const;
 
-/**
- * Returns today's date (YYYY-MM-DD) in Danish timezone.
- */
 function getTodayDanish(): string {
   const now = new Date();
   return new Intl.DateTimeFormat("sv-SE", {
@@ -31,7 +28,6 @@ Deno.serve(async (req) => {
     const anonKey = Deno.env.get("SUPABASE_ANON_KEY")!;
     const serviceRoleKey = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!;
 
-    // Validate authorization
     const authHeader = req.headers.get("Authorization");
     if (!authHeader?.startsWith("Bearer ")) {
       return new Response(
@@ -40,7 +36,6 @@ Deno.serve(async (req) => {
       );
     }
 
-    // User-scoped client to get user identity
     const supabase = createClient(supabaseUrl, anonKey, {
       global: { headers: { Authorization: authHeader } },
     });
@@ -56,7 +51,6 @@ Deno.serve(async (req) => {
 
     const userId = claimsData.claims.sub;
 
-    // Parse and validate request
     const body = await req.json();
     const { section } = body;
 
@@ -67,8 +61,22 @@ Deno.serve(async (req) => {
       );
     }
 
-    // Service role client for the atomic RPC call
     const serviceClient = createClient(supabaseUrl, serviceRoleKey);
+
+    // Rate limiting: max 4 profile reward claims per hour (there are only 4 sections total)
+    const { count: recentCount } = await serviceClient
+      .from("credit_allocation_log")
+      .select("*", { count: "exact", head: true })
+      .eq("user_id", userId)
+      .eq("source", "profile_reward")
+      .gte("created_at", new Date(Date.now() - 3_600_000).toISOString());
+
+    if ((recentCount ?? 0) >= 4) {
+      return new Response(
+        JSON.stringify({ error: "For mange forsøg. Vent venligst." }),
+        { status: 429, headers: { ...corsHeaders, "Content-Type": "application/json" } }
+      );
+    }
 
     // Server-side validation: verify the section is actually filled in
     const { data: profile, error: profileError } = await serviceClient
@@ -117,7 +125,6 @@ Deno.serve(async (req) => {
       );
     }
 
-    // Call the atomic DB function (uses FOR UPDATE row locking to prevent race conditions)
     const today = getTodayDanish();
     const { data: result, error: rpcError } = await serviceClient.rpc(
       "claim_profile_section_reward",
