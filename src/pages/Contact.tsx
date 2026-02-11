@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -53,29 +54,6 @@ const COOPERATION_AREAS = [
   { icon: Newspaper, label: "Presse- og mediehenvendelser" },
 ];
 
-const contactFaqs = [
-  {
-    question: "Hvem kan kontakte jer?",
-    answer:
-      "Vores kontaktside er primært beregnet til casino partnerskaber, affiliate henvendelser, kommercielle forslag og presseforespørgsler. Denne kontaktside er ikke beregnet til brugersupport.",
-  },
-  {
-    question: "Hvor hurtigt svarer I?",
-    answer:
-      "Vi bestræber os på at besvare alle seriøse henvendelser inden for 1-3 hverdage. I travle perioder kan svartiden dog være lidt længere.",
-  },
-  {
-    question: "Kan jeg anmelde mit casino hos jer?",
-    answer:
-      "Ja, vi er altid åbne for at anmelde nye casinoer. Casinoet skal have gyldig dansk licens fra Spillemyndigheden. Send os en henvendelse via formularen, og vi vender tilbage med mere information.",
-  },
-  {
-    question: "Tilbyder I affiliate samarbejder?",
-    answer:
-      "Ja, vi samarbejder med udvalgte affiliates og mediepartnere. Kontakt os via formularen med information om dit forslag, så gennemgår vi det.",
-  },
-];
-
 export default function Contact() {
   const { toast } = useToast();
   const { data: siteSettings } = useSiteSettings();
@@ -84,17 +62,57 @@ export default function Contact() {
   const [sending, setSending] = useState(false);
   const [inquiryType, setInquiryType] = useState("");
 
+  const contactFaqs = [
+    {
+      question: "Hvem kan kontakte jer?",
+      answer: (
+        <>
+          Vores kontaktside er primært beregnet til casino partnerskaber, affiliate henvendelser, kommercielle forslag og presseforespørgsler. Denne kontaktside er ikke beregnet til brugersupport. For information om bonusser, se vores guides til{" "}
+          <Link to="/velkomstbonus" className="text-primary underline hover:text-primary/80">velkomstbonusser</Link>,{" "}
+          <Link to="/free-spins" className="text-primary underline hover:text-primary/80">free spins</Link> og{" "}
+          <Link to="/omsaetningskrav" className="text-primary underline hover:text-primary/80">omsætningskrav</Link>.
+        </>
+      ),
+    },
+    {
+      question: "Hvor hurtigt svarer I?",
+      answer:
+        "Vi bestræber os på at besvare alle seriøse henvendelser inden for 1-3 hverdage. I travle perioder kan svartiden dog være lidt længere.",
+    },
+    {
+      question: "Kan jeg anmelde mit casino hos jer?",
+      answer: (
+        <>
+          Ja, vi er altid åbne for at anmelde nye casinoer. Casinoet skal have gyldig dansk licens fra Spillemyndigheden. Send os en henvendelse via formularen, og vi vender tilbage med mere information. Vi anmelder bl.a.{" "}
+          <Link to="/velkomstbonus" className="text-primary underline hover:text-primary/80">velkomstbonusser</Link>,{" "}
+          <Link to="/indskudsbonus" className="text-primary underline hover:text-primary/80">indskudsbonusser</Link>,{" "}
+          <Link to="/bonus-uden-indbetaling" className="text-primary underline hover:text-primary/80">bonusser uden indbetaling</Link> og{" "}
+          <Link to="/live-casino" className="text-primary underline hover:text-primary/80">live casino</Link>-tilbud. Se også vores{" "}
+          <Link to="/nye-casinoer" className="text-primary underline hover:text-primary/80">oversigt over nye casinoer</Link>.
+        </>
+      ),
+    },
+    {
+      question: "Tilbyder I affiliate samarbejder?",
+      answer: (
+        <>
+          Ja, vi samarbejder med udvalgte affiliates og mediepartnere. Kontakt os via formularen med information om dit forslag, så gennemgår vi det. Læs mere{" "}
+          <Link to="/about" className="text-primary underline hover:text-primary/80">om os</Link>{" "}
+          og vores tilgang til anmeldelser.
+        </>
+      ),
+    },
+  ];
+
   const faqJsonLd = {
     "@context": "https://schema.org",
     "@type": "FAQPage",
-    mainEntity: contactFaqs.map((faq) => ({
-      "@type": "Question",
-      name: faq.question,
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: faq.answer,
-      },
-    })),
+    mainEntity: [
+      { "@type": "Question", name: "Hvem kan kontakte jer?", acceptedAnswer: { "@type": "Answer", text: "Vores kontaktside er primært beregnet til casino partnerskaber, affiliate henvendelser, kommercielle forslag og presseforespørgsler. Denne kontaktside er ikke beregnet til brugersupport." } },
+      { "@type": "Question", name: "Hvor hurtigt svarer I?", acceptedAnswer: { "@type": "Answer", text: "Vi bestræber os på at besvare alle seriøse henvendelser inden for 1-3 hverdage. I travle perioder kan svartiden dog være lidt længere." } },
+      { "@type": "Question", name: "Kan jeg anmelde mit casino hos jer?", acceptedAnswer: { "@type": "Answer", text: "Ja, vi er altid åbne for at anmelde nye casinoer. Casinoet skal have gyldig dansk licens fra Spillemyndigheden. Send os en henvendelse via formularen, og vi vender tilbage med mere information." } },
+      { "@type": "Question", name: "Tilbyder I affiliate samarbejder?", acceptedAnswer: { "@type": "Answer", text: "Ja, vi samarbejder med udvalgte affiliates og mediepartnere. Kontakt os via formularen med information om dit forslag, så gennemgår vi det." } },
+    ],
   };
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -165,7 +183,7 @@ export default function Contact() {
               Erhverv & Presse
             </Badge>
             <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">
-              Kontakt
+              Kontakt Casinoaftaler.dk
             </h1>
             <p className="text-lg text-white/80">
               For casino partnerskaber, affiliate henvendelser, kommercielle
@@ -203,6 +221,35 @@ export default function Contact() {
             </span>
           </div>
         </div>
+
+        {/* Intro with internal links */}
+        <section className="mb-12">
+          <h2 className="mb-4 text-3xl font-bold">Samarbejd med os</h2>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            Casinoaftaler.dk samarbejder med licenserede og ansvarlige
+            casinooperatører, affiliates og mediepartnere. Vi dækker hele
+            spektret af bonusser – fra{" "}
+            <Link to="/velkomstbonus" className="text-primary underline hover:text-primary/80">velkomstbonusser</Link>{" "}
+            og{" "}
+            <Link to="/free-spins" className="text-primary underline hover:text-primary/80">free spins</Link>{" "}
+            til{" "}
+            <Link to="/bonus-uden-indbetaling" className="text-primary underline hover:text-primary/80">bonusser uden indbetaling</Link>{" "}
+            og{" "}
+            <Link to="/indskudsbonus" className="text-primary underline hover:text-primary/80">indskudsbonusser</Link>.
+          </p>
+          <p className="text-muted-foreground leading-relaxed">
+            Vi gennemgår alle bonusser grundigt, herunder{" "}
+            <Link to="/omsaetningskrav" className="text-primary underline hover:text-primary/80">omsætningskrav</Link>,{" "}
+            <Link to="/no-sticky-bonus" className="text-primary underline hover:text-primary/80">no-sticky bonusser</Link>{" "}
+            og{" "}
+            <Link to="/bonus-uden-omsaetningskrav" className="text-primary underline hover:text-primary/80">bonusser uden omsætningskrav</Link>.
+            Læs mere{" "}
+            <Link to="/about" className="text-primary underline hover:text-primary/80">om os</Link>{" "}
+            og vores anmeldelsesproces.
+          </p>
+        </section>
+
+        <Separator className="my-10" />
 
         {/* Contact form + sidebar */}
         <section className="mb-12">
@@ -332,6 +379,9 @@ export default function Contact() {
                   </a>
                   <p className="text-sm text-muted-foreground">
                     Alle seriøse henvendelser bliver gennemgået og besvaret.
+                    Læs mere{" "}
+                    <Link to="/about" className="text-primary underline hover:text-primary/80">om os</Link>{" "}
+                    og vores værdier.
                   </p>
                 </CardContent>
               </Card>
@@ -346,7 +396,10 @@ export default function Contact() {
                   </div>
                   <p className="text-sm text-muted-foreground">
                     Casinoaftaler samarbejder med licenserede og ansvarlige
-                    casinooperatører, affiliates og mediepartnere.
+                    casinooperatører, affiliates og mediepartnere. Vi dækker alt fra{" "}
+                    <Link to="/velkomstbonus" className="text-primary underline hover:text-primary/80">velkomstbonusser</Link>{" "}
+                    til{" "}
+                    <Link to="/nye-casinoer" className="text-primary underline hover:text-primary/80">nye casinoer</Link>.
                   </p>
                   <ul className="space-y-3">
                     {COOPERATION_AREAS.map(({ icon: Icon, label }) => (
