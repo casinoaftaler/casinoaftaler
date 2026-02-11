@@ -1,25 +1,39 @@
 
-## Merge Casino Tilbud, Butik og Highlights til 1 tab
+## Konsolider Brugere-fanen og styrk Ban-funktionalitet
 
 ### Hvad bliver lavet
-De tre separate admin-faner "Casino Tilbud", "Butik" og "Highlights" samles i en enkelt fane kaldet "Indhold" med interne sub-tabs til at skifte mellem de tre sektioner.
+1. **Admin Brugere sektion g&#248;res collapsible** -- s&#229; den kan foldes sammen for at spare plads
+2. **&#201;n samlet brugerliste** -- fjern TwitchUsersSection og BanManagementSection fra Brugere-fanen. SpinManagementSection (som allerede viser alle brugere med ban/unban) flyttes fra sin egen "Spins" tab ind i "Brugere" som den prim&#230;re brugerliste
+3. **Ban sletter leaderboard-data og credits** -- n&#229;r en bruger bannes, slettes ogs&#229; deres `slot_game_results` (leaderboard) og `slot_spins` (credits)
 
 ### Brugeroplevelse
-- I stedet for 3 separate faner i top-navigationen, vises 1 fane: **"Indhold"** (med et passende ikon)
-- Når man klikker på "Indhold", vises en sekundær tab-bar med 3 sub-tabs: **Casino Tilbud**, **Butik**, **Highlights**
-- Alt eksisterende indhold og funktionalitet forbliver uændret -- det er kun navigationsstrukturen der ændres
-- Desktop tab-bar reduceres fra 12 til 10 kolonner
-- Mobil sidebar viser blot "Indhold" som et enkelt punkt
+- "Brugere"-fanen viser: Profilfuldforelse (uaendret), Admin Brugere (collapsible), og derunder den fulde brugerliste med credits + ban/unban (fra SpinManagementSection)
+- Ban-knappen fjerner nu ogs&#229; brugerens leaderboard-data og credits automatisk
+- "Spins"-tabben fjernes fra top-navigationen (indholdet er nu under "Brugere")
+- BanManagementSection og TwitchUsersSection fjernes -- al info er samlet i &#233;n liste
+- Desktop tab-bar g&#229;r fra 9 til 8 kolonner
 
 ### Tekniske detaljer
 
-**Fil: `src/pages/Admin.tsx`**
+**1. `src/pages/Admin.tsx`**
+- Fjern `spins` fra `navItems` og opdater grid til `grid-cols-8`
+- Fjern TwitchUsersSection og BanManagementSection imports/renders fra "users" tab
+- Flyt SpinManagementSection ind i "users" TabsContent (under Admin Brugere)
+- G&#248;r "Admin Brugere" sektionen collapsible med Collapsible-komponenten
+- Fjern `TabsContent value="spins"`
 
-1. **Reducer `navItems`**: Fjern de tre separate entries (`casinos`, `shop`, `highlights`) og erstat med en enkelt `{ value: "content", label: "Indhold", icon: Gift }`
-2. **Tilføj sub-tab state**: Ny `useState` for `contentSubTab` med default `"casinos"`
-3. **Opdater `TabsList`**: Ændr `grid-cols-12` til `grid-cols-10`
-4. **Ny samlet `TabsContent value="content"`**:
-   - Indeholder en sekundær `Tabs`-komponent med 3 triggers: "Casino Tilbud", "Butik", "Highlights"
-   - Hver sub-tab renderer det eksisterende indhold (casino-listen, `ShopAdminSection`, `HighlightsAdminSection`)
-5. **Fjern** de gamle `TabsContent` for `casinos`, `shop` og `highlights`
-6. **Mobil sidebar**: Viser "Indhold" som et enkelt punkt der navigerer til `content`-fanen
+**2. `src/components/SpinManagementSection.tsx`**
+- Opdater `banUser` mutation til ogs&#229; at slette fra `slot_game_results` og `slot_spins` n&#229;r en bruger bannes
+- Disse sletninger kr&#230;ver service role, s&#229; vi opretter en edge function
+
+**3. Ny edge function: `supabase/functions/ban-user/index.ts`**
+- Modtager `userId`, `reason`, `bannedBy`
+- Verificerer at kaldende bruger er admin
+- Inds&#230;tter i `user_bans`
+- Sletter fra `slot_game_results` (leaderboard data)
+- S&#230;tter `slot_spins.spins_remaining` til 0
+- Alt k&#248;res med service_role for at omg&#229; RLS
+
+**4. Oprydning**
+- `src/components/TwitchUsersSection.tsx` kan fjernes (al info er i SpinManagementSection)
+- `src/components/BanManagementSection.tsx` kan fjernes (ban/unban er i SpinManagementSection)
