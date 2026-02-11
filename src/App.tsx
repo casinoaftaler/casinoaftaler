@@ -1,4 +1,5 @@
 import { lazy, Suspense } from "react";
+import { HelmetProvider } from "react-helmet-async";
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -38,67 +39,69 @@ const queryClient = new QueryClient();
 const PageFallback = () => <div className="min-h-screen" />;
 
 const App = () => (
-  <QueryClientProvider client={queryClient}>
-    <TooltipProvider>
-      <Toaster />
-      <Sonner />
-      <BrowserRouter>
-        <Suspense fallback={<PageFallback />}>
-          <Routes>
-            <Route element={<Layout />}>
-              <Route path="/" element={<Index />} />
-              <Route path="/casino/:slug" element={<CasinoDetail />} />
-              <Route path="/nye-casinoer" element={<NyeCasinoer />} />
-              <Route path="/about" element={<About />} />
-              <Route path="/contact" element={<Contact />} />
-              <Route path="/bonus-guide" element={<BonusGuide />} />
-              <Route path="/responsible-gaming" element={<ResponsibleGaming />} />
-              <Route path="/privacy" element={<Privacy />} />
-              <Route path="/terms" element={<Terms />} />
-              <Route path="/cookies" element={<Cookies />} />
-              <Route path="/butik" element={<Shop />} />
-              <Route path="/highlights" element={<Highlights />} />
+  <HelmetProvider>
+    <QueryClientProvider client={queryClient}>
+      <TooltipProvider>
+        <Toaster />
+        <Sonner />
+        <BrowserRouter>
+          <Suspense fallback={<PageFallback />}>
+            <Routes>
+              <Route element={<Layout />}>
+                <Route path="/" element={<Index />} />
+                <Route path="/casino/:slug" element={<CasinoDetail />} />
+                <Route path="/nye-casinoer" element={<NyeCasinoer />} />
+                <Route path="/about" element={<About />} />
+                <Route path="/contact" element={<Contact />} />
+                <Route path="/bonus-guide" element={<BonusGuide />} />
+                <Route path="/responsible-gaming" element={<ResponsibleGaming />} />
+                <Route path="/privacy" element={<Privacy />} />
+                <Route path="/terms" element={<Terms />} />
+                <Route path="/cookies" element={<Cookies />} />
+                <Route path="/butik" element={<Shop />} />
+                <Route path="/highlights" element={<Highlights />} />
+                
+                <Route path="/community/leaderboard" element={<Leaderboard />} />
+                <Route path="/community/rewards" element={<RewardsProgram />} />
+                <Route 
+                  path="/community/slots" 
+                  element={
+                    <Suspense fallback={<SlotPageLoading />}>
+                      <GameLibrary />
+                    </Suspense>
+                  } 
+                />
+                <Route 
+                  path="/community/slots/book-of-fedesvin" 
+                  element={
+                    <Suspense fallback={<SlotPageLoading />}>
+                      <SlotMachine />
+                    </Suspense>
+                  } 
+                />
+                <Route 
+                  path="/community/slots/rise-of-fedesvin" 
+                  element={
+                    <Suspense fallback={<SlotPageLoading />}>
+                      <RiseOfFedesvin />
+                    </Suspense>
+                  } 
+                />
+                <Route path="/auth" element={<Auth />} />
+                <Route path="/auth/callback" element={<AuthCallback />} />
+                <Route path="/profil" element={<Profile />} />
+                <Route path="/u/:username" element={<PublicProfile />} />
+              </Route>
+              <Route path="/admin" element={<Admin />} />
               
-              <Route path="/community/leaderboard" element={<Leaderboard />} />
-              <Route path="/community/rewards" element={<RewardsProgram />} />
-              <Route 
-                path="/community/slots" 
-                element={
-                  <Suspense fallback={<SlotPageLoading />}>
-                    <GameLibrary />
-                  </Suspense>
-                } 
-              />
-              <Route 
-                path="/community/slots/book-of-fedesvin" 
-                element={
-                  <Suspense fallback={<SlotPageLoading />}>
-                    <SlotMachine />
-                  </Suspense>
-                } 
-              />
-              <Route 
-                path="/community/slots/rise-of-fedesvin" 
-                element={
-                  <Suspense fallback={<SlotPageLoading />}>
-                    <RiseOfFedesvin />
-                  </Suspense>
-                } 
-              />
-              <Route path="/auth" element={<Auth />} />
-              <Route path="/auth/callback" element={<AuthCallback />} />
-              <Route path="/profil" element={<Profile />} />
-              <Route path="/u/:username" element={<PublicProfile />} />
-            </Route>
-            <Route path="/admin" element={<Admin />} />
-            
-            {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-            <Route path="*" element={<NotFound />} />
-          </Routes>
-        </Suspense>
-      </BrowserRouter>
-    </TooltipProvider>
-  </QueryClientProvider>
+              {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+              <Route path="*" element={<NotFound />} />
+            </Routes>
+          </Suspense>
+        </BrowserRouter>
+      </TooltipProvider>
+    </QueryClientProvider>
+  </HelmetProvider>
 );
 
 export default App;
