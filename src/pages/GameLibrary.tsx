@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useAuth } from "@/hooks/useAuth";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
@@ -7,7 +7,7 @@ import { Button } from "@/components/ui/button";
 import { GameCard } from "@/components/games/GameCard";
 import { SlotLeaderboard } from "@/components/slots/SlotLeaderboard";
 import { CasinoCard } from "@/components/CasinoCard";
-import { Gamepad2 } from "lucide-react";
+import { Gamepad2, Clock } from "lucide-react";
 import slotIntroImage from "@/assets/slots/slot-intro-screen.jpg";
 import bookTitleFallback from "@/assets/slots/book-of-fedesvin-title.png";
 import riseTitleFallback from "@/assets/slots/rise/title-logo.png";
@@ -219,7 +219,37 @@ export default function GameLibrary() {
   );
 }
 
+function useCreditCountdown() {
+  const [timeLeft, setTimeLeft] = useState("");
+
+  useEffect(() => {
+    function calcTimeLeft() {
+      const now = new Date();
+      // Next refill is midnight Danish time (Europe/Copenhagen)
+      // Get current date in Danish timezone
+      const danishNow = new Date(now.toLocaleString("en-US", { timeZone: "Europe/Copenhagen" }));
+      const midnight = new Date(danishNow);
+      midnight.setHours(24, 0, 0, 0);
+      const diffMs = midnight.getTime() - danishNow.getTime();
+      
+      const hours = Math.floor(diffMs / (1000 * 60 * 60));
+      const minutes = Math.floor((diffMs % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((diffMs % (1000 * 60)) / 1000);
+      
+      return `${String(hours).padStart(2, "0")}:${String(minutes).padStart(2, "0")}:${String(seconds).padStart(2, "0")}`;
+    }
+
+    setTimeLeft(calcTimeLeft());
+    const interval = setInterval(() => setTimeLeft(calcTimeLeft()), 1000);
+    return () => clearInterval(interval);
+  }, []);
+
+  return timeLeft;
+}
+
 function GameLibraryHero() {
+  const countdown = useCreditCountdown();
+
   return (
     <section
       className="relative overflow-hidden py-14 md:py-20 text-foreground"
@@ -238,6 +268,13 @@ function GameLibraryHero() {
           <p className="text-white/70 text-base md:text-lg max-w-lg mx-auto">
             Vælg et spil og begynd at spille. Optjen point og kæmp om pladserne på ranglisten!
           </p>
+          
+          {/* Credit refill countdown */}
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 backdrop-blur-sm border border-white/15 text-white/90 text-sm">
+            <Clock className="h-4 w-4 text-amber-400" />
+            <span>Nye credits om</span>
+            <span className="font-mono font-semibold text-amber-400 tabular-nums">{countdown}</span>
+          </div>
         </div>
       </div>
       {/* Decorative blur circles */}
