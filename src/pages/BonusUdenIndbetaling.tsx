@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -35,6 +36,7 @@ import {
   Zap,
 } from "lucide-react";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
+import { RelatedGuides } from "@/components/RelatedGuides";
 
 const bonusUdenIndbetalingFaqs = [
   {
@@ -86,6 +88,18 @@ const BonusUdenIndbetaling = () => {
     })),
   };
 
+  const articleJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    headline: "Bonus uden Indbetaling – No Deposit Bonus Guide 2026",
+    description: "Komplet guide til bonus uden indbetaling hos danske casinoer. Typer, betingelser og strategier.",
+    author: { "@type": "Organization", name: "Casinoaftaler" },
+    publisher: { "@type": "Organization", name: "Casinoaftaler" },
+    datePublished: "2025-06-01",
+    dateModified: "2026-02-11",
+    mainEntityOfPage: "https://bonushuset-buddy.lovable.app/bonus-uden-indbetaling",
+  };
+
   return (
     <>
       <Helmet>
@@ -103,6 +117,7 @@ const BonusUdenIndbetaling = () => {
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://bonushuset-buddy.lovable.app/bonus-uden-indbetaling" />
         <script type="application/ld+json">{JSON.stringify(faqJsonLd)}</script>
+        <script type="application/ld+json">{JSON.stringify(articleJsonLd)}</script>
       </Helmet>
 
       {/* Hero Section */}
@@ -638,6 +653,8 @@ const BonusUdenIndbetaling = () => {
             ))}
           </Accordion>
         </section>
+
+        <RelatedGuides currentPath="/bonus-uden-indbetaling" />
       </div>
     </>
   );

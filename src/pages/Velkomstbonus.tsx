@@ -1,4 +1,6 @@
+import { Link } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
+import { RelatedGuides } from "@/components/RelatedGuides";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
@@ -115,6 +117,18 @@ const Velkomstbonus = () => {
     })),
   };
 
+  const articleJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    headline: "Velkomstbonus – Komplet Guide til Casino Velkomstbonusser 2026",
+    description: "Alt du skal vide om velkomstbonusser på danske casinoer. Typer, omsætningskrav og tips.",
+    author: { "@type": "Organization", name: "Casinoaftaler" },
+    publisher: { "@type": "Organization", name: "Casinoaftaler" },
+    datePublished: "2025-06-01",
+    dateModified: "2026-02-11",
+    mainEntityOfPage: "https://bonushuset-buddy.lovable.app/velkomstbonus",
+  };
+
   return (
     <>
       <Helmet>
@@ -132,6 +146,7 @@ const Velkomstbonus = () => {
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://bonushuset-buddy.lovable.app/velkomstbonus" />
         <script type="application/ld+json">{JSON.stringify(faqJsonLd)}</script>
+        <script type="application/ld+json">{JSON.stringify(articleJsonLd)}</script>
       </Helmet>
 
       {/* Hero Section */}
@@ -625,6 +640,8 @@ const Velkomstbonus = () => {
             ))}
           </Accordion>
         </section>
+
+        <RelatedGuides currentPath="/velkomstbonus" />
       </div>
     </>
   );

@@ -32,6 +32,7 @@ import {
   Users,
 } from "lucide-react";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
+import { RelatedGuides } from "@/components/RelatedGuides";
 
 const liveCasinoFaqs = [
   {
@@ -98,6 +99,18 @@ const LiveCasino = () => {
     })),
   };
 
+  const articleJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    headline: "Live Casino – Bedste Live Casinoer i Danmark 2026",
+    description: "Komplet guide til live casino i Danmark 2026. Find de bedste live casinoer med rigtige dealere.",
+    author: { "@type": "Organization", name: "Casinoaftaler" },
+    publisher: { "@type": "Organization", name: "Casinoaftaler" },
+    datePublished: "2025-06-01",
+    dateModified: "2026-02-11",
+    mainEntityOfPage: "https://bonushuset-buddy.lovable.app/live-casino",
+  };
+
   return (
     <>
       <Helmet>
@@ -115,6 +128,7 @@ const LiveCasino = () => {
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://bonushuset-buddy.lovable.app/live-casino" />
         <script type="application/ld+json">{JSON.stringify(faqJsonLd)}</script>
+        <script type="application/ld+json">{JSON.stringify(articleJsonLd)}</script>
       </Helmet>
 
       {/* Hero Section */}
@@ -671,6 +685,8 @@ const LiveCasino = () => {
             ))}
           </Accordion>
         </section>
+
+        <RelatedGuides currentPath="/live-casino" />
       </div>
     </>
   );

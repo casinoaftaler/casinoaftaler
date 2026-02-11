@@ -1,4 +1,6 @@
+import { Link } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
+import { RelatedGuides } from "@/components/RelatedGuides";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
@@ -121,6 +123,18 @@ const FreeSpins = () => {
     })),
   };
 
+  const articleJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    headline: "Free Spins – Komplet Guide til Gratis Spins 2026",
+    description: "Alt du skal vide om free spins på danske casinoer. Typer, omsætningskrav, betingelser og strategier.",
+    author: { "@type": "Organization", name: "Casinoaftaler" },
+    publisher: { "@type": "Organization", name: "Casinoaftaler" },
+    datePublished: "2025-06-01",
+    dateModified: "2026-02-11",
+    mainEntityOfPage: "https://bonushuset-buddy.lovable.app/free-spins",
+  };
+
   return (
     <>
       <Helmet>
@@ -143,6 +157,7 @@ const FreeSpins = () => {
           content="Alt du skal vide om free spins på danske casinoer – typer, betingelser og strategier."
         />
         <script type="application/ld+json">{JSON.stringify(faqJsonLd)}</script>
+        <script type="application/ld+json">{JSON.stringify(articleJsonLd)}</script>
       </Helmet>
 
       {/* Hero Section */}
@@ -621,6 +636,8 @@ const FreeSpins = () => {
             ))}
           </Accordion>
         </section>
+
+        <RelatedGuides currentPath="/free-spins" />
       </div>
     </>
   );
