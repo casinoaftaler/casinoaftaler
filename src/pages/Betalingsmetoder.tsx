@@ -1,5 +1,8 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
+import { useSiteSettings } from "@/hooks/useSiteSettings";
+import { RelatedGuides } from "@/components/RelatedGuides";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
@@ -29,38 +32,7 @@ import {
   ArrowRight,
 } from "lucide-react";
 
-const betalingsmetoderFaqs = [
-  {
-    question: "Kan jeg bruge MobilePay på alle danske casinoer?",
-    answer:
-      "Nej, MobilePay er ikke tilgængeligt på alle danske casinoer, men det bliver stadig mere populært. Flere licenserede spillesteder har tilføjet MobilePay til indbetalinger, mens udbetalinger via MobilePay fortsat er sjældne. Tjek altid casinoets betalingsmuligheder, før du opretter en konto.",
-  },
-  {
-    question: "Hvilken betalingsmetode har de hurtigste udbetalinger?",
-    answer:
-      "E-wallets som PayPal, Skrill og Neteller samt Trustly er blandt de hurtigste. Transaktioner behandles ofte inden for få timer, mens bankoverførsler og kortbetalinger kan tage 1–5 hverdage. Hastigheden afhænger også af casinoets interne behandlingstid.",
-  },
-  {
-    question: "Er der indbetalingsgrænser på danske casinoer?",
-    answer:
-      "Ja, alle licenserede danske casinoer har indbetalingsgrænser for at fremme ansvarligt spil. Du kan ofte selv sætte personlige grænser via casinoets indstillinger, og der kan desuden være minimums- og maksimumsbeløb afhængigt af den valgte betalingsmetode.",
-  },
-  {
-    question: "Skal jeg verificere min betalingsmetode?",
-    answer:
-      "Ja, danske casinoer er underlagt Spillemyndighedens regler, og du skal verificere din betalingsmetode for at kunne hæve penge. Det sker typisk ved at uploade dokumentation som et billede af dit kort eller en bankudskrift. Verifikationen er en sikkerhedsforanstaltning mod svindel.",
-  },
-  {
-    question: "Er kryptovaluta tilladt på danske casinoer?",
-    answer:
-      "Nej, ifølge Spillemyndighedens regler må danske licenserede casinoer ikke acceptere kryptovalutaer som Bitcoin eller Ethereum. Alle transaktioner skal kunne spores og reguleres efter gældende standarder.",
-  },
-  {
-    question: "Hvad er forskellen på e-wallets og bankoverførsler?",
-    answer:
-      "E-wallets som PayPal, Skrill og Trustly fungerer som digitale tegnebøger, der muliggør hurtige transaktioner – ofte inden for timer. Bankoverførsler går direkte gennem din bank og er meget sikre, men kan tage 2–5 hverdage at gennemføre.",
-  },
-];
+// FAQs moved inside component for Link support
 
 const paymentMethodsOverview = [
   {
@@ -218,18 +190,75 @@ const paymentMethodGuides = [
 
 const Betalingsmetoder = () => {
   const [activeGuide, setActiveGuide] = useState("apple-pay");
+  const { data: siteSettings } = useSiteSettings();
+  const heroBackgroundImage = siteSettings?.hero_background;
+
+  const betalingsmetoderFaqs = [
+    {
+      question: "Kan jeg bruge MobilePay på alle danske casinoer?",
+      answer: (
+        <>
+          Nej, MobilePay er ikke tilgængeligt på alle danske casinoer, men det bliver stadig mere populært. Tjek altid casinoets betalingsmuligheder, før du opretter en konto. MobilePay kvalificerer dig typisk til{" "}
+          <Link to="/velkomstbonus" className="text-primary underline hover:text-primary/80">velkomstbonusser</Link>.
+        </>
+      ),
+    },
+    {
+      question: "Hvilken betalingsmetode har de hurtigste udbetalinger?",
+      answer: (
+        <>
+          E-wallets som PayPal, Skrill og Neteller samt Trustly er blandt de hurtigste. Transaktioner behandles ofte inden for få timer, mens bankoverførsler og kortbetalinger kan tage 1–5 hverdage. Se vores{" "}
+          <Link to="/nye-casinoer" className="text-primary underline hover:text-primary/80">nye casinoer</Link>{" "}
+          for at finde de hurtigste udbetalingsmuligheder.
+        </>
+      ),
+    },
+    {
+      question: "Er der indbetalingsgrænser på danske casinoer?",
+      answer: (
+        <>
+          Ja, alle licenserede danske casinoer har indbetalingsgrænser for at fremme{" "}
+          <Link to="/responsible-gaming" className="text-primary underline hover:text-primary/80">ansvarligt spil</Link>.
+          Du kan ofte selv sætte personlige grænser via casinoets indstillinger. Grænser kan også påvirke, hvilke{" "}
+          <Link to="/indskudsbonus" className="text-primary underline hover:text-primary/80">indskudsbonusser</Link>{" "}
+          du kan aktivere.
+        </>
+      ),
+    },
+    {
+      question: "Skal jeg verificere min betalingsmetode?",
+      answer:
+        "Ja, danske casinoer er underlagt Spillemyndighedens regler, og du skal verificere din betalingsmetode for at kunne hæve penge. Det sker typisk ved at uploade dokumentation som et billede af dit kort eller en bankudskrift.",
+    },
+    {
+      question: "Er kryptovaluta tilladt på danske casinoer?",
+      answer:
+        "Nej, ifølge Spillemyndighedens regler må danske licenserede casinoer ikke acceptere kryptovalutaer som Bitcoin eller Ethereum. Alle transaktioner skal kunne spores og reguleres efter gældende standarder.",
+    },
+    {
+      question: "Hvad er forskellen på e-wallets og bankoverførsler?",
+      answer: (
+        <>
+          E-wallets som PayPal og Skrill fungerer som digitale tegnebøger med hurtige transaktioner. Bankoverførsler går direkte via din bank og er meget sikre, men kan tage 2–5 hverdage. Visse e-wallets kan være udelukket fra{" "}
+          <Link to="/velkomstbonus" className="text-primary underline hover:text-primary/80">velkomstbonusser</Link>{" "}
+          – tjek altid{" "}
+          <Link to="/omsaetningskrav" className="text-primary underline hover:text-primary/80">omsætningskravene</Link>.
+        </>
+      ),
+    },
+  ];
 
   const faqJsonLd = {
     "@context": "https://schema.org",
     "@type": "FAQPage",
-    mainEntity: betalingsmetoderFaqs.map((faq) => ({
-      "@type": "Question",
-      name: faq.question,
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: faq.answer,
-      },
-    })),
+    mainEntity: [
+      { "@type": "Question", name: "Kan jeg bruge MobilePay på alle danske casinoer?", acceptedAnswer: { "@type": "Answer", text: "Nej, MobilePay er ikke tilgængeligt på alle danske casinoer, men det bliver stadig mere populært." } },
+      { "@type": "Question", name: "Hvilken betalingsmetode har de hurtigste udbetalinger?", acceptedAnswer: { "@type": "Answer", text: "E-wallets som PayPal, Skrill og Trustly er blandt de hurtigste. Transaktioner behandles ofte inden for få timer." } },
+      { "@type": "Question", name: "Er der indbetalingsgrænser på danske casinoer?", acceptedAnswer: { "@type": "Answer", text: "Ja, alle licenserede danske casinoer har indbetalingsgrænser for at fremme ansvarligt spil." } },
+      { "@type": "Question", name: "Skal jeg verificere min betalingsmetode?", acceptedAnswer: { "@type": "Answer", text: "Ja, danske casinoer er underlagt Spillemyndighedens regler, og du skal verificere din betalingsmetode for at kunne hæve penge." } },
+      { "@type": "Question", name: "Er kryptovaluta tilladt på danske casinoer?", acceptedAnswer: { "@type": "Answer", text: "Nej, ifølge Spillemyndighedens regler må danske licenserede casinoer ikke acceptere kryptovalutaer." } },
+      { "@type": "Question", name: "Hvad er forskellen på e-wallets og bankoverførsler?", acceptedAnswer: { "@type": "Answer", text: "E-wallets som PayPal og Skrill fungerer som digitale tegnebøger med hurtige transaktioner, mens bankoverførsler kan tage 2–5 hverdage." } },
+    ],
   };
 
   return (
@@ -260,8 +289,9 @@ const Betalingsmetoder = () => {
       <section
         className="relative overflow-hidden py-12 text-white md:py-20"
         style={{
-          backgroundImage:
-            "linear-gradient(135deg, hsl(260 70% 25%), hsl(250 60% 20%) 40%, hsl(210 80% 25%))",
+          backgroundImage: heroBackgroundImage
+            ? `linear-gradient(135deg, hsl(260 70% 25% / 0.95), hsl(210 80% 30% / 0.9)), url(${heroBackgroundImage})`
+            : "linear-gradient(135deg, hsl(260 70% 25%), hsl(250 60% 20%) 40%, hsl(210 80% 25%))",
           backgroundSize: "cover",
           backgroundPosition: "center",
         }}
@@ -320,12 +350,19 @@ const Betalingsmetoder = () => {
             men det kan være svært at gennemskue, hvilken der passer bedst til
             dig. Hastighed, gebyrer, sikkerhed og tilgængelighed varierer fra
             metode til metode – og det rigtige valg afhænger af dine personlige
-            præferencer.
+            præferencer. Betalingsmetoden kan også påvirke, hvilke{" "}
+            <Link to="/velkomstbonus" className="text-primary underline hover:text-primary/80">velkomstbonusser</Link>{" "}
+            du kan aktivere – visse e-wallets kan være udelukket fra bonustilbud.
           </p>
           <p className="text-muted-foreground leading-relaxed">
             I Danmark reguleres alle betalinger af Spillemyndigheden, så kun
             godkendte og sikre løsninger kan bruges. Vi har samlet en komplet
             oversigt, der gør det nemt at sammenligne de mest populære metoder.
+            Læs også om{" "}
+            <Link to="/omsaetningskrav" className="text-primary underline hover:text-primary/80">omsætningskrav</Link>{" "}
+            og{" "}
+            <Link to="/indskudsbonus" className="text-primary underline hover:text-primary/80">indskudsbonusser</Link>{" "}
+            for at forstå, hvordan din betalingsmetode kan påvirke bonusvilkårene.
           </p>
         </section>
 
@@ -377,7 +414,10 @@ const Betalingsmetoder = () => {
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold">Dybdegående guider til hver betalingsmetode</h2>
           <p className="mb-6 text-muted-foreground leading-relaxed">
-            Klik på en betalingsmetode nedenfor for at læse en komplet guide med sikkerhed, fordele, ulemper, minimumsindbetaling og bonusvilkår.
+            Klik på en betalingsmetode nedenfor for at læse en komplet guide med sikkerhed, fordele, ulemper, minimumsindbetaling og bonusvilkår. Den valgte betalingsmetode kan påvirke, om du kvalificerer dig til{" "}
+            <Link to="/velkomstbonus" className="text-primary underline hover:text-primary/80">velkomstbonusser</Link>{" "}
+            og{" "}
+            <Link to="/free-spins" className="text-primary underline hover:text-primary/80">free spins</Link>.
           </p>
 
           <Tabs value={activeGuide} onValueChange={setActiveGuide} className="w-full">
@@ -513,7 +553,11 @@ const Betalingsmetoder = () => {
             danske online casinoer. Indbetalinger sker øjeblikkeligt, og
             sikkerheden er høj takket være 3D Secure og SSL-kryptering. Forskellen
             ligger i, at kreditkort lader dig spille med lånte penge, mens
-            debetkort trækker direkte fra din bankkonto.
+            debetkort trækker direkte fra din bankkonto. De fleste{" "}
+            <Link to="/velkomstbonus" className="text-primary underline hover:text-primary/80">velkomstbonusser</Link>{" "}
+            og{" "}
+            <Link to="/indskudsbonus" className="text-primary underline hover:text-primary/80">indskudsbonusser</Link>{" "}
+            kan aktiveres med kortbetalinger.
           </p>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <Card className="border-border bg-card">
@@ -620,6 +664,10 @@ const Betalingsmetoder = () => {
           <p className="mb-6 text-muted-foreground leading-relaxed">
             Den rigtige betalingsmetode afhænger af, hvad du prioriterer højest.
             Er det hurtige transaktioner, lave gebyrer eller maksimal sikkerhed?
+            Overvej også, om metoden kvalificerer dig til{" "}
+            <Link to="/bonus-uden-indbetaling" className="text-primary underline hover:text-primary/80">bonusser uden indbetaling</Link>{" "}
+            eller{" "}
+            <Link to="/bonus-uden-omsaetningskrav" className="text-primary underline hover:text-primary/80">bonusser uden omsætningskrav</Link>.
             Her er de vigtigste faktorer at overveje:
           </p>
           <div className="space-y-3">
@@ -670,7 +718,9 @@ const Betalingsmetoder = () => {
             Når penge er involveret, er sikkerhed en topprioritet. Danske casinoer
             anvender SSL-kryptering til at beskytte dine betalingsoplysninger, og
             kortbetalinger er beskyttet med 3D Secure, som kræver ekstra
-            godkendelse via SMS eller bankapp.
+            godkendelse via SMS eller bankapp. Læs mere om{" "}
+            <Link to="/responsible-gaming" className="text-primary underline hover:text-primary/80">ansvarligt spil</Link>{" "}
+            og de værktøjer, som danske casinoer tilbyder.
           </p>
           <p className="mb-6 text-muted-foreground leading-relaxed">
             Vær altid opmærksom på phishing-forsøg og mistænkelige e-mails. Brug
@@ -792,6 +842,8 @@ const Betalingsmetoder = () => {
             ))}
           </Accordion>
         </section>
+
+        <RelatedGuides currentPath="/betalingsmetoder" />
       </div>
     </>
   );
