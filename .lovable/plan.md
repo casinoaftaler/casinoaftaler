@@ -1,23 +1,25 @@
 
 
-## Fix: Dobbelt "Site Settings" og flyt Point Administration til Brugere
+## Ny sektion i Vilkår og Betingelser: Fair Play & Exploit-politik
 
-### Problem 1: Dobbelt Site Settings
-`TabsContent value="settings"` blokken er duplikeret i `src/pages/Admin.tsx` (linje 1020-1058 og linje 1062-1101). Den anden kopi skal fjernes.
+### Hvad der tilfojes
 
-### Problem 2: Point Administration skal flyttes til Brugere
-`SlotPointsManagement` komponenten ligger i dag under "Spillemaskine" tabben som en "Points" sub-tab. Den skal flyttes til "Brugere" tabben i stedet.
+En ny sektion **"12. Fair Play & Exploits"** i Terms-siden (`src/pages/Terms.tsx`) med folgende indhold:
 
-### Tekniske ændringer
+- Casinoaftaler.dk star for fair play i alle spil og konkurrencer pa platformen
+- Brugere er forpligtet til at rapportere eventuelle fejl, bugs eller exploits til administratorerne hurtigst muligt
+- Administratorer forbeholder sig retten til at diskvalificere brugere, der bevidst udnytter exploits uden at rapportere dem
+- Konsekvenser ved brug af exploits kan omfatte:
+  - Permanent ban fra websitet
+  - Ban fra Twitch-kanalen
+  - Sletning af alle credits og point
+  - Fjernelse af al leaderboard-fremgang
+- Afgoerelsen om diskvalifikation ligger hos administratorerne og er endelig
 
-**`src/pages/Admin.tsx`**
-1. Slet den duplikerede `TabsContent value="settings"` blok (linje 1062-1101)
-2. Importér `SlotPointsManagement` fra `@/components/slots/SlotPointsManagement`
-3. Tilføj `SlotPointsManagement` i "Brugere" tabben (under SpinManagementSection) med en border-separator og passende overskrift
+### Teknisk implementering
 
-**`src/components/SlotMachineAdminSection.tsx`**
-1. Fjern "Points" sub-tabben (`TabsTrigger value="points"`) fra spillemaskinens tab-liste
-2. Fjern `TabsContent value="points"` blokken der renderer `SlotPointsManagement`
-3. Fjern importen af `SlotPointsManagement` (og `Users` ikonet hvis ikke brugt andetsteds)
-4. Opdater `grid-cols` i TabsList til at matche det nye antal tabs (en færre)
+- Tilfojer en ny `Card`-komponent i `src/pages/Terms.tsx` efter sektion 11 (Lovvalg og vaerneting) og for "Tilbage til forsiden"-linket
+- Bruger `Shield` eller `ShieldAlert`-ikonet fra lucide-react for at matche temaet
+- Anvender samme card-styling med `border-l-4 border-l-destructive` for at signalere vigtigheden (ligesom aldersbegraensnings-sektionen)
+- Opdaterer den eksisterende sektion-nummerering: den nye sektion bliver nr. 12
 
