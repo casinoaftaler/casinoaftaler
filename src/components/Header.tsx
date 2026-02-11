@@ -145,6 +145,12 @@ export function Header() {
                   Free Spins
                 </Link>
               </DropdownMenuItem>
+              <DropdownMenuItem asChild>
+                <Link to="/velkomstbonus" className="flex items-center gap-2">
+                  <Gift className="h-4 w-4" />
+                  Velkomstbonus
+                </Link>
+              </DropdownMenuItem>
               <DropdownMenuSeparator />
               <DropdownMenuItem asChild>
                 <Link to="/responsible-gaming" className="flex items-center gap-2">
@@ -373,6 +379,14 @@ export function Header() {
             >
               <Sparkles className="h-4 w-4" />
               Free Spins
+            </Link>
+            <Link
+              to="/velkomstbonus"
+              className="ml-6 flex items-center gap-2 text-sm text-muted-foreground transition-colors hover:text-primary"
+              onClick={() => setMobileMenuOpen(false)}
+            >
+              <Gift className="h-4 w-4" />
+              Velkomstbonus
             </Link>
             <Link
               to="/responsible-gaming"
