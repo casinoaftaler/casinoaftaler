@@ -3,7 +3,14 @@ import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { CasinoCard } from "@/components/CasinoCard";
 import { useCasinos } from "@/hooks/useCasinos";
+import { useSiteSettings } from "@/hooks/useSiteSettings";
 import { useState } from "react";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
 import {
   Sparkles,
   ShieldCheck,
@@ -17,17 +24,91 @@ import {
   TrendingUp,
   CheckCircle2,
   Loader2,
+  HelpCircle,
+  User,
+  CalendarDays,
+  BookOpen,
 } from "lucide-react";
+
+const PRIORITY_SLUGS = ["spildansknu", "spilleautomaten"];
+
+const nyeCasinoerFaqs = [
+  {
+    question: "Hvordan finder vi nye casinoer til vores side?",
+    answer:
+      "Vi holder konstant øje med det danske marked og tester nye casinoer grundigt, så snart de lancerer. Alle spillesteder på vores liste har gyldig dansk licens fra Spillemyndigheden.",
+  },
+  {
+    question: "Hvordan er sikkerheden hos casinoerne på siden?",
+    answer:
+      "Alle casinoer på Casinoaftaler.dk har dansk licens og anvender SSL-kryptering til at beskytte dine data. Vi tjekker også, at de tilbyder ansvarligt spil-værktøjer som ROFUS.",
+  },
+  {
+    question: "Er de nye casinoer stabile?",
+    answer:
+      "Ja – vi anbefaler kun casinoer, der har vist sig stabile og pålidelige. Mange nye casinoer drives af erfarne operatører med årelang erfaring i branchen.",
+  },
+  {
+    question: "Hvad er de bedste og sikreste licenser?",
+    answer:
+      "Den danske licens fra Spillemyndigheden er den vigtigste for danske spillere. Andre anerkendte licenser inkluderer Malta Gaming Authority (MGA) og UK Gambling Commission.",
+  },
+  {
+    question: "Er der live casino hos nye casinoer?",
+    answer:
+      "Ja, de fleste nye casinoer tilbyder live casino med spil som blackjack, roulette og baccarat fra førende udbydere som Evolution Gaming.",
+  },
+  {
+    question: "Hvem er de bedste casinoer online?",
+    answer:
+      "Det afhænger af dine præferencer. Vi anbefaler at sammenligne bonusser, spiludvalg og udbetalingstider. Tjek vores toplistefor et overblik over de bedste muligheder.",
+  },
+  {
+    question: "Hvad er kvaliteten på casinoerne?",
+    answer:
+      "Vi vurderer hvert casino ud fra bonus, spiludvalg, betalingsmetoder, kundeservice og mobiloplevelse. Kun casinoer, der lever op til vores standarder, kommer på listen.",
+  },
+  {
+    question: "Hvorfor bør jeg vælge et nyt casino?",
+    answer:
+      "Nye casinoer tilbyder ofte bedre velkomstbonusser, moderne design og innovative funktioner for at tiltrække spillere. Det kan betyde bedre værdi for dig.",
+  },
+  {
+    question: "Skal jeg vælge et nyt eller et etableret casino?",
+    answer:
+      "Begge har fordele. Nye casinoer giver friske bonusser og moderne oplevelser, mens etablerede spillesteder har dokumenteret pålidelighed. Det vigtigste er dansk licens.",
+  },
+  {
+    question: "Er der bonusser hos Casinoaftaler?",
+    answer:
+      "Vi formidler bonusser fra de casinoer, vi anbefaler. Du finder altid opdaterede velkomstbonusser, free spins og eksklusive tilbud på vores side.",
+  },
+  {
+    question: "Kan jeg spille casino på mobilen?",
+    answer:
+      "Ja, alle casinoer på vores liste er fuldt optimeret til mobil. De fleste tilbyder en browserbaseret mobiloplevelse, der fungerer på både iOS og Android.",
+  },
+];
 
 const NyeCasinoer = () => {
   const { data: casinos, isLoading } = useCasinos();
+  const { data: siteSettings } = useSiteSettings();
   const [openCasinoId, setOpenCasinoId] = useState<string | null>(null);
 
-  // Show newest casinos (use is_hot or most recently created)
+  const heroBackgroundImage = siteSettings?.hero_background_image;
+
+  // Show newest casinos, but prioritize SpilDanskNu and Spilleautomaten first
   const newCasinos = casinos
     ?.filter((c) => c.is_active)
-    ?.sort((a, b) => new Date(b.created_at).getTime() - new Date(a.created_at).getTime())
-    ?.slice(0, 6) ?? [];
+    ?.sort((a, b) => {
+      const aIdx = PRIORITY_SLUGS.indexOf(a.slug);
+      const bIdx = PRIORITY_SLUGS.indexOf(b.slug);
+      if (aIdx !== -1 && bIdx !== -1) return aIdx - bIdx;
+      if (aIdx !== -1) return -1;
+      if (bIdx !== -1) return 1;
+      return new Date(b.created_at).getTime() - new Date(a.created_at).getTime();
+    })
+    ?.slice(0, 8) ?? [];
 
   const mapCasino = (casino: typeof newCasinos[0]) => ({
     id: casino.id,
@@ -55,8 +136,17 @@ const NyeCasinoer = () => {
 
   return (
     <>
-      {/* Hero Section */}
-      <section className="relative overflow-hidden bg-gradient-to-br from-primary/10 via-background to-accent/10 py-12 md:py-20">
+      {/* Hero Section - matching Index hero background */}
+      <section
+        className="relative overflow-hidden py-12 text-white md:py-20"
+        style={{
+          backgroundImage: heroBackgroundImage
+            ? `linear-gradient(135deg, hsl(260 70% 25% / 0.95), hsl(210 80% 30% / 0.9)), url(${heroBackgroundImage})`
+            : 'linear-gradient(135deg, hsl(260 70% 25%), hsl(250 60% 20%) 40%, hsl(210 80% 25%))',
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+        }}
+      >
         <div className="container">
           <div className="mx-auto max-w-3xl text-center">
             <Badge variant="secondary" className="mb-4">
@@ -66,7 +156,7 @@ const NyeCasinoer = () => {
             <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">
               Nye Casinoer i Danmark
             </h1>
-            <p className="text-lg text-muted-foreground">
+            <p className="text-lg text-white/80">
               Oplev de seneste danske online casinoer med friske bonusser, moderne
               spiloplevelser og dansk licens. Vi har samlet et komplet overblik, så du
               nemt kan finde dit næste spillested.
@@ -76,6 +166,22 @@ const NyeCasinoer = () => {
       </section>
 
       <div className="container py-8 md:py-12">
+        {/* Meta info bar */}
+        <div className="mb-8 flex flex-wrap items-center gap-x-6 gap-y-2 text-sm text-muted-foreground">
+          <div className="flex items-center gap-1.5">
+            <User className="h-4 w-4" />
+            <span>Skrevet af: <span className="font-medium text-foreground">Casinoaftaler</span></span>
+          </div>
+          <div className="flex items-center gap-1.5">
+            <CalendarDays className="h-4 w-4" />
+            <span>Siden opdateret: <span className="font-medium text-foreground">11-02-2026</span></span>
+          </div>
+          <div className="flex items-center gap-1.5">
+            <BookOpen className="h-4 w-4" />
+            <span>Læsetid: <span className="font-medium text-foreground">4 Min.</span></span>
+          </div>
+        </div>
+
         {/* Intro Section */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold">Overblik over nye casinoer</h2>
@@ -432,6 +538,38 @@ const NyeCasinoer = () => {
               </p>
             </CardContent>
           </Card>
+        </section>
+
+        <Separator className="my-10" />
+
+        {/* FAQ Section */}
+        <section className="mb-12">
+          <div className="mb-8">
+            <div className="flex items-center gap-2 mb-4">
+              <HelpCircle className="h-8 w-8 text-primary" />
+              <h2 className="text-3xl font-bold">Ofte Stillede Spørgsmål</h2>
+            </div>
+            <p className="text-muted-foreground">
+              Alt du behøver at vide om nye casinoer i Danmark.
+            </p>
+          </div>
+
+          <Accordion type="single" collapsible className="space-y-3">
+            {nyeCasinoerFaqs.map((faq, index) => (
+              <AccordionItem
+                key={index}
+                value={`item-${index}`}
+                className="rounded-lg border border-border bg-card px-6"
+              >
+                <AccordionTrigger className="text-left hover:no-underline">
+                  {faq.question}
+                </AccordionTrigger>
+                <AccordionContent className="text-muted-foreground">
+                  {faq.answer}
+                </AccordionContent>
+              </AccordionItem>
+            ))}
+          </Accordion>
         </section>
       </div>
     </>
