@@ -876,7 +876,7 @@ Deno.serve(async (req) => {
     
     // Profile and settings already fetched in parallel above
     const bonusSpinsPermanent = profileRes.data?.bonus_spins_permanent || 0;
-    const dailySpins = parseInt(settingsRes.data?.value || "100", 10);
+    const dailySpins = parseInt(settingsRes.data?.value || "200", 10);
     const maxSpins = Math.min(dailySpins + bonusSpinsPermanent, MAX_SPINS_CAP);
 
     // Get or create today's spin record with carry-over logic
