@@ -20,18 +20,15 @@ export function SlotRequestsAdminSection() {
     updateStatus.mutate({ requestId, status, userId, awardCredits });
   };
 
+  const pendingRequests = requests?.filter(req => req.status === "pending") ?? [];
+
   return (
     <div className="space-y-6">
-      <div className="mb-6">
-        <h2 className="text-2xl font-bold">Slot Requests</h2>
-        <p className="text-muted-foreground">Administrer brugernes slot requests til livestream.</p>
-      </div>
-
       <Card>
         <CardHeader>
           <CardTitle className="flex items-center gap-2">
             <Gamepad2 className="h-5 w-5" />
-            Alle Requests ({requests?.length ?? 0})
+            Ventende Requests ({pendingRequests.length})
           </CardTitle>
         </CardHeader>
         <CardContent>
@@ -39,7 +36,7 @@ export function SlotRequestsAdminSection() {
             <div className="flex justify-center py-8">
               <Loader2 className="h-6 w-6 animate-spin text-primary" />
             </div>
-          ) : requests && requests.length > 0 ? (
+          ) : pendingRequests.length > 0 ? (
             <Table>
               <TableHeader>
                 <TableRow>
@@ -52,7 +49,7 @@ export function SlotRequestsAdminSection() {
                 </TableRow>
               </TableHeader>
               <TableBody>
-                {requests.map((req) => {
+                {pendingRequests.map((req) => {
                   const config = STATUS_CONFIG[req.status] || STATUS_CONFIG.pending;
                   const isPending = req.status === "pending";
                   return (
@@ -109,7 +106,7 @@ export function SlotRequestsAdminSection() {
             </Table>
           ) : (
             <p className="text-center text-sm text-muted-foreground py-8">
-              Ingen slot requests endnu.
+              Ingen ventende requests 🎉
             </p>
           )}
         </CardContent>
