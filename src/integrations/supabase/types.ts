@@ -1313,6 +1313,10 @@ export type Database = {
       }
     }
     Functions: {
+      claim_profile_section_reward: {
+        Args: { p_section: string; p_today: string; p_user_id: string }
+        Returns: Json
+      }
       get_admin_users_with_email: {
         Args: never
         Returns: {

@@ -12,6 +12,7 @@ interface SlotSpins {
 }
 
 const MAX_SPINS_CAP = 220;
+const ABSOLUTE_MAX_CREDITS = 1000;
 
 export function useSlotSpins() {
   const { user } = useAuth();

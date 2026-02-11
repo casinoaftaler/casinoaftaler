@@ -6,10 +6,7 @@ const corsHeaders = {
     "authorization, x-client-info, apikey, content-type, x-supabase-client-platform, x-supabase-client-platform-version, x-supabase-client-runtime, x-supabase-client-runtime-version",
 };
 
-const SPINS_PER_SECTION = 5;
-
 const VALID_SECTIONS = ["profile", "stats", "favorites", "playstyle"] as const;
-type Section = typeof VALID_SECTIONS[number];
 
 /**
  * Returns today's date (YYYY-MM-DD) in Danish timezone.
@@ -43,7 +40,7 @@ Deno.serve(async (req) => {
       );
     }
 
-    // User-scoped client for reads
+    // User-scoped client to get user identity
     const supabase = createClient(supabaseUrl, anonKey, {
       global: { headers: { Authorization: authHeader } },
     });
@@ -70,13 +67,13 @@ Deno.serve(async (req) => {
       );
     }
 
-    // Service role client for writes
+    // Service role client for the atomic RPC call
     const serviceClient = createClient(supabaseUrl, serviceRoleKey);
 
-    // Fetch current profile to validate
+    // Server-side validation: verify the section is actually filled in
     const { data: profile, error: profileError } = await serviceClient
       .from("profiles")
-      .select("bonus_spins_permanent, profile_section_completed, stats_section_completed, favorites_section_completed, playstyle_section_completed, bio, highest_win_amount, highest_win_game, highest_win_casino, favorite_slot, favorite_provider, favorite_casino, typical_bet_size, play_styles, preferred_game_type, volatility_preference")
+      .select("bio, highest_win_amount, highest_win_game, highest_win_casino, favorite_slot, favorite_provider, favorite_casino, typical_bet_size, play_styles, preferred_game_type, volatility_preference")
       .eq("user_id", userId)
       .single();
 
@@ -87,23 +84,13 @@ Deno.serve(async (req) => {
       );
     }
 
-    // Check if section is already completed
-    const completedColumn = `${section}_section_completed` as keyof typeof profile;
-    if (profile[completedColumn]) {
-      return new Response(
-        JSON.stringify({ error: "Section already completed" }),
-        { status: 400, headers: { ...corsHeaders, "Content-Type": "application/json" } }
-      );
-    }
-
-    // Server-side validation: verify the section is actually filled in
     let sectionComplete = false;
-    switch (section as Section) {
+    switch (section) {
       case "profile":
         sectionComplete = (profile.bio || "").trim().length > 0;
         break;
       case "stats":
-        sectionComplete = 
+        sectionComplete =
           String(profile.highest_win_amount || "").trim().length > 0 &&
           (profile.highest_win_game || "").trim().length > 0 &&
           (profile.highest_win_casino || "").trim().length > 0;
@@ -130,55 +117,34 @@ Deno.serve(async (req) => {
       );
     }
 
-    const newBonusSpins = (profile.bonus_spins_permanent || 0) + SPINS_PER_SECTION;
+    // Call the atomic DB function (uses FOR UPDATE row locking to prevent race conditions)
+    const today = getTodayDanish();
+    const { data: result, error: rpcError } = await serviceClient.rpc(
+      "claim_profile_section_reward",
+      { p_user_id: userId, p_section: section, p_today: today }
+    );
 
-    // Update profile with service role (bypasses trigger protection)
-    const { error: updateError } = await serviceClient
-      .from("profiles")
-      .update({
-        [`${section}_section_completed`]: true,
-        bonus_spins_permanent: newBonusSpins,
-      })
-      .eq("user_id", userId);
-
-    if (updateError) {
-      console.error("Profile update error:", updateError);
+    if (rpcError) {
+      console.error("RPC error:", rpcError);
       return new Response(
-        JSON.stringify({ error: "Failed to update profile" }),
+        JSON.stringify({ error: "Failed to claim reward" }),
         { status: 500, headers: { ...corsHeaders, "Content-Type": "application/json" } }
       );
     }
 
-    // Add spins to today's slot_spins record
-    const today = getTodayDanish();
-    const { data: todaySpins } = await serviceClient
-      .from("slot_spins")
-      .select("id, spins_remaining")
-      .eq("user_id", userId)
-      .eq("date", today)
-      .maybeSingle();
-
-    if (todaySpins) {
-      await serviceClient
-        .from("slot_spins")
-        .update({ spins_remaining: todaySpins.spins_remaining + SPINS_PER_SECTION })
-        .eq("id", todaySpins.id);
+    if (result?.error) {
+      return new Response(
+        JSON.stringify({ error: result.error }),
+        { status: 400, headers: { ...corsHeaders, "Content-Type": "application/json" } }
+      );
     }
-
-    // Log the credit allocation
-    await serviceClient.from("credit_allocation_log").insert({
-      user_id: userId,
-      amount: SPINS_PER_SECTION,
-      source: "profile_reward",
-      note: `Profil sektion: ${section}`,
-    });
 
     return new Response(
       JSON.stringify({
         success: true,
         section,
-        spinsEarned: SPINS_PER_SECTION,
-        newBonusSpins,
+        spinsEarned: 5,
+        newBonusSpins: result.newBonusSpins,
       }),
       { headers: { ...corsHeaders, "Content-Type": "application/json" } }
     );
