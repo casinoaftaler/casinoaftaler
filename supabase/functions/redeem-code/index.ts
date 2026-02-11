@@ -23,7 +23,6 @@ Deno.serve(async (req) => {
     const supabaseUrl = Deno.env.get("SUPABASE_URL")!;
     const supabaseServiceKey = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!;
 
-    // User client to get user identity
     const userClient = createClient(supabaseUrl, Deno.env.get("SUPABASE_ANON_KEY")!, {
       global: { headers: { Authorization: authHeader } },
     });
@@ -44,6 +43,20 @@ Deno.serve(async (req) => {
     }
 
     const adminClient = createClient(supabaseUrl, supabaseServiceKey);
+
+    // Rate limiting: max 5 redemption attempts per minute
+    const { count: recentCount } = await adminClient
+      .from("redeem_code_uses")
+      .select("*", { count: "exact", head: true })
+      .eq("user_id", user.id)
+      .gte("redeemed_at", new Date(Date.now() - 60_000).toISOString());
+
+    if ((recentCount ?? 0) >= 5) {
+      return new Response(JSON.stringify({ error: "For mange forsøg. Vent venligst et minut." }), {
+        status: 429,
+        headers: { ...corsHeaders, "Content-Type": "application/json" },
+      });
+    }
 
     // Fetch the code
     const { data: codeData, error: codeError } = await adminClient
@@ -113,7 +126,6 @@ Deno.serve(async (req) => {
       });
 
     if (useError) {
-      // Unique constraint violation = already used
       if (useError.code === "23505") {
         return new Response(JSON.stringify({ error: "Du har allerede brugt denne kode" }), {
           status: 400,
@@ -123,7 +135,7 @@ Deno.serve(async (req) => {
       throw useError;
     }
 
-    // Atomically increment times_used to prevent race conditions
+    // Atomically increment times_used
     const { error: incrementError } = await adminClient.rpc('increment_redeem_code_uses', {
       code_id_input: codeData.id,
     });
@@ -156,7 +168,7 @@ Deno.serve(async (req) => {
         });
     }
 
-    // Create a notification for the user (scoped to this user only)
+    // Create a notification for the user
     const { data: notif } = await adminClient
       .from("notifications")
       .insert({

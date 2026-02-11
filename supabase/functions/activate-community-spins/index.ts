@@ -6,9 +6,6 @@ const corsHeaders = {
     "authorization, x-client-info, apikey, content-type, x-supabase-client-platform, x-supabase-client-platform-version, x-supabase-client-runtime, x-supabase-client-runtime-version",
 };
 
-/**
- * Returns today's date (YYYY-MM-DD) in Danish timezone.
- */
 function getTodayDanish(): string {
   const now = new Date();
   return new Intl.DateTimeFormat("sv-SE", {
@@ -29,7 +26,6 @@ Deno.serve(async (req) => {
     const anonKey = Deno.env.get("SUPABASE_ANON_KEY")!;
     const serviceRoleKey = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!;
 
-    // Validate authorization
     const authHeader = req.headers.get("Authorization");
     if (!authHeader?.startsWith("Bearer ")) {
       return new Response(
@@ -52,8 +48,23 @@ Deno.serve(async (req) => {
     }
 
     const userId = claimsData.claims.sub;
+    const serviceClient = createClient(supabaseUrl, serviceRoleKey);
 
-    // Parse and validate request
+    // Rate limiting: max 3 activations per minute
+    const { count: recentCount } = await serviceClient
+      .from("credit_allocation_log")
+      .select("*", { count: "exact", head: true })
+      .eq("user_id", userId)
+      .eq("source", "community_activation")
+      .gte("created_at", new Date(Date.now() - 60_000).toISOString());
+
+    if ((recentCount ?? 0) >= 3) {
+      return new Response(
+        JSON.stringify({ error: "For mange forsøg. Vent venligst et minut." }),
+        { status: 429, headers: { ...corsHeaders, "Content-Type": "application/json" } }
+      );
+    }
+
     const body = await req.json();
     const { amount } = body;
 
@@ -64,10 +75,8 @@ Deno.serve(async (req) => {
       );
     }
 
-    const serviceClient = createClient(supabaseUrl, serviceRoleKey);
     const today = getTodayDanish();
 
-    // Call the atomic DB function (uses FOR UPDATE row locking + 1000 credit cap)
     const { data: result, error: rpcError } = await serviceClient.rpc(
       "activate_community_spins_safe",
       { p_user_id: userId, p_amount: amount, p_today: today }
@@ -88,7 +97,6 @@ Deno.serve(async (req) => {
       );
     }
 
-    // Log the activation in community_bonus_spins_log
     await serviceClient
       .from("community_bonus_spins_log")
       .insert({
