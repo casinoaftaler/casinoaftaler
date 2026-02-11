@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -26,34 +27,6 @@ import {
 } from "lucide-react";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
 import { RelatedGuides } from "@/components/RelatedGuides";
-
-const aboutFaqs = [
-  {
-    question: "Er Casinoaftaler.dk uafhængig?",
-    answer:
-      "Ja, alle vores anmeldelser og vurderinger er baseret på vores ærlige vurdering. Vi modtager muligvis provision fra casinoer, men dette påvirker aldrig vores vurderinger eller anbefalinger.",
-  },
-  {
-    question: "Hvordan vælger I hvilke casinoer der anmeldes?",
-    answer:
-      "Vi anmelder udelukkende casinoer med gyldig dansk licens fra Spillemyndigheden. Vi fokuserer på casinoer, der tilbyder konkurrencedygtige bonusser, bredt spiludbud og god kundeservice.",
-  },
-  {
-    question: "Hvor ofte opdateres anmeldelserne?",
-    answer:
-      "Vi gennemgår og opdaterer vores anmeldelser løbende for at afspejle ændringer i bonusvilkår, nye kampagner og eventuel spillerfeedback. De fleste anmeldelser opdateres mindst én gang om måneden.",
-  },
-  {
-    question: "Kan jeg stole på jeres bonusvurderinger?",
-    answer:
-      "Vi analyserer grundigt alle bonusvilkår, herunder omsætningskrav, tidsfrister og spilbidrag. Vi fremhæver både fordele og ulemper, så du kan træffe en informeret beslutning.",
-  },
-  {
-    question: "Hvem kan kontakte jer?",
-    answer:
-      "Vores kontaktside er primært beregnet til casino partnerskaber, affiliate henvendelser og presseforespørgsler. For generel information kan du læse vores guides og anmeldelser.",
-  },
-];
 
 const values = [
   {
@@ -122,17 +95,70 @@ const About = () => {
     mainEntityOfPage: "https://bonushuset-buddy.lovable.app/about",
   };
 
+  const aboutFaqs = [
+    {
+      question: "Er Casinoaftaler.dk uafhængig?",
+      answer: (
+        <>
+          Ja, alle vores anmeldelser og vurderinger er baseret på vores ærlige vurdering. Vi modtager muligvis provision fra casinoer, men dette påvirker aldrig vores vurderinger eller anbefalinger. Læs mere om vores tilgang til{" "}
+          <Link to="/velkomstbonus" className="text-primary underline hover:text-primary/80">velkomstbonusser</Link>,{" "}
+          <Link to="/free-spins" className="text-primary underline hover:text-primary/80">free spins</Link> og{" "}
+          <Link to="/omsaetningskrav" className="text-primary underline hover:text-primary/80">omsætningskrav</Link>.
+        </>
+      ),
+    },
+    {
+      question: "Hvordan vælger I hvilke casinoer der anmeldes?",
+      answer: (
+        <>
+          Vi anmelder udelukkende casinoer med gyldig dansk licens fra Spillemyndigheden. Vi fokuserer på casinoer, der tilbyder konkurrencedygtige bonusser som{" "}
+          <Link to="/velkomstbonus" className="text-primary underline hover:text-primary/80">velkomstbonusser</Link>,{" "}
+          <Link to="/bonus-uden-indbetaling" className="text-primary underline hover:text-primary/80">bonusser uden indbetaling</Link> og{" "}
+          <Link to="/indskudsbonus" className="text-primary underline hover:text-primary/80">indskudsbonusser</Link>, bredt spiludbud og god kundeservice. Se vores{" "}
+          <Link to="/nye-casinoer" className="text-primary underline hover:text-primary/80">oversigt over nye casinoer</Link>.
+        </>
+      ),
+    },
+    {
+      question: "Hvor ofte opdateres anmeldelserne?",
+      answer:
+        "Vi gennemgår og opdaterer vores anmeldelser løbende for at afspejle ændringer i bonusvilkår, nye kampagner og eventuel spillerfeedback. De fleste anmeldelser opdateres mindst én gang om måneden.",
+    },
+    {
+      question: "Kan jeg stole på jeres bonusvurderinger?",
+      answer: (
+        <>
+          Vi analyserer grundigt alle bonusvilkår, herunder{" "}
+          <Link to="/omsaetningskrav" className="text-primary underline hover:text-primary/80">omsætningskrav</Link>, tidsfrister og spilbidrag. Vi fremhæver både fordele og ulemper, så du kan træffe en informeret beslutning. Vi dækker alt fra{" "}
+          <Link to="/bonus-uden-omsaetningskrav" className="text-primary underline hover:text-primary/80">bonusser uden omsætningskrav</Link> til{" "}
+          <Link to="/no-sticky-bonus" className="text-primary underline hover:text-primary/80">no-sticky bonusser</Link>.
+        </>
+      ),
+    },
+    {
+      question: "Hvem kan kontakte jer?",
+      answer: (
+        <>
+          Vores{" "}
+          <Link to="/contact" className="text-primary underline hover:text-primary/80">kontaktside</Link>{" "}
+          er primært beregnet til casino partnerskaber, affiliate henvendelser og presseforespørgsler. For generel information kan du læse vores guides om bl.a.{" "}
+          <Link to="/velkomstbonus" className="text-primary underline hover:text-primary/80">velkomstbonusser</Link> og{" "}
+          <Link to="/free-spins" className="text-primary underline hover:text-primary/80">free spins</Link>.
+        </>
+      ),
+    },
+  ];
+
   const faqJsonLd = {
     "@context": "https://schema.org",
     "@type": "FAQPage",
-    mainEntity: aboutFaqs.map((faq) => ({
-      "@type": "Question",
-      name: faq.question,
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: faq.answer,
-      },
-    })),
+    mainEntity: [
+      { "@type": "Question", name: "Er Casinoaftaler.dk uafhængig?", acceptedAnswer: { "@type": "Answer", text: "Ja, alle vores anmeldelser og vurderinger er baseret på vores ærlige vurdering. Vi modtager muligvis provision fra casinoer, men dette påvirker aldrig vores vurderinger eller anbefalinger." } },
+      { "@type": "Question", name: "Hvordan vælger I hvilke casinoer der anmeldes?", acceptedAnswer: { "@type": "Answer", text: "Vi anmelder udelukkende casinoer med gyldig dansk licens fra Spillemyndigheden. Vi fokuserer på casinoer, der tilbyder konkurrencedygtige bonusser, bredt spiludbud og god kundeservice." } },
+      { "@type": "Question", name: "Hvor ofte opdateres anmeldelserne?", acceptedAnswer: { "@type": "Answer", text: "Vi gennemgår og opdaterer vores anmeldelser løbende for at afspejle ændringer i bonusvilkår, nye kampagner og eventuel spillerfeedback. De fleste anmeldelser opdateres mindst én gang om måneden." } },
+      { "@type": "Question", name: "Kan jeg stole på jeres bonusvurderinger?", acceptedAnswer: { "@type": "Answer", text: "Vi analyserer grundigt alle bonusvilkår, herunder omsætningskrav, tidsfrister og spilbidrag. Vi fremhæver både fordele og ulemper, så du kan træffe en informeret beslutning." } },
+      { "@type": "Question", name: "Hvem kan kontakte jer?", acceptedAnswer: { "@type": "Answer", text: "Vores kontaktside er primært beregnet til casino partnerskaber, affiliate henvendelser og presseforespørgsler. For generel information kan du læse vores guides og anmeldelser." } },
+    ],
   };
 
   return (
@@ -218,11 +244,19 @@ const About = () => {
             igennem støjen og hjælpe danske spillere med at træffe informerede
             beslutninger om online casinobonusser. Vi ved, at det kan være
             overvældende at navigere i verden af casinokampagner med
-            komplekse vilkår og betingelser, der ikke altid er lette at forstå.
+            komplekse vilkår og betingelser – herunder{" "}
+            <Link to="/omsaetningskrav" className="text-primary underline hover:text-primary/80">omsætningskrav</Link>,
+            tidsfrister og spilrestriktioner – der ikke altid er lette at forstå.
           </p>
           <p className="text-muted-foreground leading-relaxed">
-            Derfor gennemgår vores team af eksperter omhyggeligt hver bonus,
-            nedbryder de vigtigste detaljer og præsenterer dem i et klart,
+            Derfor gennemgår vores team af eksperter omhyggeligt hver bonus –
+            fra{" "}
+            <Link to="/velkomstbonus" className="text-primary underline hover:text-primary/80">velkomstbonusser</Link>{" "}
+            og{" "}
+            <Link to="/free-spins" className="text-primary underline hover:text-primary/80">free spins</Link>{" "}
+            til{" "}
+            <Link to="/bonus-uden-indbetaling" className="text-primary underline hover:text-primary/80">bonusser uden indbetaling</Link>{" "}
+            – nedbryder de vigtigste detaljer og præsenterer dem i et klart,
             brugervenligt format. Vi mener, at enhver spiller fortjener at
             vide præcis, hvad de tilmelder sig.
           </p>
@@ -265,7 +299,13 @@ const About = () => {
           </h2>
           <p className="mb-6 text-muted-foreground leading-relaxed">
             Vores anmeldelsesproces er grundig og systematisk. Vi gennemgår
-            hvert casino i fire trin for at sikre en fair og dækkende vurdering.
+            hvert casino i fire trin for at sikre en fair og dækkende vurdering
+            af alt fra{" "}
+            <Link to="/velkomstbonus" className="text-primary underline hover:text-primary/80">velkomstbonusser</Link>{" "}
+            til{" "}
+            <Link to="/indskudsbonus" className="text-primary underline hover:text-primary/80">indskudsbonusser</Link>{" "}
+            og{" "}
+            <Link to="/live-casino" className="text-primary underline hover:text-primary/80">live casino</Link>-tilbud.
           </p>
           <div className="space-y-3">
             {reviewSteps.map((item) => (
@@ -285,11 +325,99 @@ const About = () => {
 
         <Separator className="my-10" />
 
+        {/* Hvad vi dækker */}
+        <section className="mb-12">
+          <h2 className="mb-4 text-3xl font-bold">Hvad Vi Dækker</h2>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            Vores guides og anmeldelser dækker hele spektret af casino bonusser
+            i Danmark. Vi hjælper dig med at forstå forskellen mellem de
+            forskellige bonustyper, så du altid kan træffe det bedste valg.
+          </p>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <Card className="border-border bg-card">
+              <CardHeader className="pb-2">
+                <CardTitle className="flex items-center gap-2 text-lg">
+                  <CheckCircle2 className="h-5 w-5 text-primary" />
+                  Bonustyper
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <p className="text-sm text-muted-foreground leading-relaxed">
+                  Vi dækker{" "}
+                  <Link to="/velkomstbonus" className="text-primary underline hover:text-primary/80">velkomstbonusser</Link>,{" "}
+                  <Link to="/indskudsbonus" className="text-primary underline hover:text-primary/80">indskudsbonusser</Link>,{" "}
+                  <Link to="/free-spins" className="text-primary underline hover:text-primary/80">free spins</Link>,{" "}
+                  <Link to="/bonus-uden-indbetaling" className="text-primary underline hover:text-primary/80">bonusser uden indbetaling</Link> og meget mere.
+                </p>
+              </CardContent>
+            </Card>
+
+            <Card className="border-border bg-card">
+              <CardHeader className="pb-2">
+                <CardTitle className="flex items-center gap-2 text-lg">
+                  <Target className="h-5 w-5 text-primary" />
+                  Bonusvilkår
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <p className="text-sm text-muted-foreground leading-relaxed">
+                  Vi forklarer{" "}
+                  <Link to="/omsaetningskrav" className="text-primary underline hover:text-primary/80">omsætningskrav</Link>,{" "}
+                  <Link to="/no-sticky-bonus" className="text-primary underline hover:text-primary/80">no-sticky bonusser</Link>,{" "}
+                  <Link to="/sticky-bonus" className="text-primary underline hover:text-primary/80">sticky bonusser</Link> og{" "}
+                  <Link to="/bonus-uden-omsaetningskrav" className="text-primary underline hover:text-primary/80">bonusser uden omsætningskrav</Link>.
+                </p>
+              </CardContent>
+            </Card>
+
+            <Card className="border-border bg-card">
+              <CardHeader className="pb-2">
+                <CardTitle className="flex items-center gap-2 text-lg">
+                  <Gamepad2 className="h-5 w-5 text-primary" />
+                  Casinoer & Spil
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <p className="text-sm text-muted-foreground leading-relaxed">
+                  Anmeldelser af{" "}
+                  <Link to="/nye-casinoer" className="text-primary underline hover:text-primary/80">nye casinoer</Link>,{" "}
+                  <Link to="/live-casino" className="text-primary underline hover:text-primary/80">live casino</Link>-tilbud,{" "}
+                  <Link to="/betalingsmetoder" className="text-primary underline hover:text-primary/80">betalingsmetoder</Link> og{" "}
+                  <Link to="/spiludviklere" className="text-primary underline hover:text-primary/80">spiludviklere</Link>.
+                </p>
+              </CardContent>
+            </Card>
+
+            <Card className="border-border bg-card">
+              <CardHeader className="pb-2">
+                <CardTitle className="flex items-center gap-2 text-lg">
+                  <ShieldCheck className="h-5 w-5 text-primary" />
+                  Ansvarligt Spil
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <p className="text-sm text-muted-foreground leading-relaxed">
+                  Vi fremmer{" "}
+                  <Link to="/responsible-gaming" className="text-primary underline hover:text-primary/80">ansvarligt spil</Link>{" "}
+                  og anbefaler kun casinoer med dansk licens fra Spillemyndigheden.
+                  Læs også vores{" "}
+                  <Link to="/privacy" className="text-primary underline hover:text-primary/80">privatlivspolitik</Link> og{" "}
+                  <Link to="/terms" className="text-primary underline hover:text-primary/80">vilkår og betingelser</Link>.
+                </p>
+              </CardContent>
+            </Card>
+          </div>
+        </section>
+
+        <Separator className="my-10" />
+
         {/* Ansvarligt spil */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold">Ansvarligt Spil</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
-            Vi tager ansvarligt spil alvorligt. Vi anbefaler kun casinoer, der
+            Vi tager{" "}
+            <Link to="/responsible-gaming" className="text-primary underline hover:text-primary/80">ansvarligt spil</Link>{" "}
+            alvorligt. Vi anbefaler kun casinoer, der
             er licenseret af Spillemyndigheden og opfylder strenge krav til
             spillerbeskyttelse. Vi opfordrer altid vores læsere til at spille
             ansvarligt og inden for deres økonomiske rammer.
@@ -307,7 +435,8 @@ const About = () => {
                   baseret på vores ærlige vurdering og påvirkes aldrig af
                   potentielle provisioner. Vi anbefaler kun casinoer, der er
                   licenseret af Spillemyndigheden og opfylder vores strenge
-                  kvalitetsstandarder.
+                  kvalitetsstandarder. Har du spørgsmål? Besøg vores{" "}
+                  <Link to="/contact" className="text-primary underline hover:text-primary/80">kontaktside</Link>.
                 </p>
               </div>
             </div>
