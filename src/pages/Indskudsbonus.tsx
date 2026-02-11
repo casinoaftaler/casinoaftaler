@@ -193,15 +193,31 @@ const Indskudsbonus = () => {
             En indskudsbonus er en af de mest populære og attraktive
             bonustyper hos danske online casinoer. Denne form for bonus
             matcher din indbetaling med en procentdel – typisk 100% – så
-            du får dobbelt så mange penge at spille for. Indskudsbonusser
-            er ikke kun forbeholdt nye spillere, men tilbydes også til
-            loyale kunder, så alle kan booste spilleglæden.
+            du får dobbelt så mange penge at spille for. Indskudsbonussen
+            bruges ofte som{" "}
+            <Link to="/velkomstbonus" className="text-primary underline hover:text-primary/80">
+              velkomstbonus
+            </Link>{" "}
+            til nye spillere, men tilbydes også til loyale kunder.
           </p>
           <p className="text-muted-foreground leading-relaxed">
             En indskudsbonus kaldes også for en matchbonus, da den netop
-            matcher en procentdel af din indbetaling. Procentsatsen og
-            betingelserne varierer fra casino til casino, og det er vigtigt
-            at forstå reglerne, før du aktiverer en bonus.
+            matcher en procentdel af din indbetaling. Alle indskudsbonusser
+            kommer med{" "}
+            <Link to="/omsaetningskrav" className="text-primary underline hover:text-primary/80">
+              omsætningskrav
+            </Link>
+            , som skal opfyldes før udbetaling. Mange indskudsbonusser
+            inkluderer desuden{" "}
+            <Link to="/free-spins" className="text-primary underline hover:text-primary/80">
+              free spins
+            </Link>{" "}
+            som en ekstra fordel. Foretrækker du ingen risiko, kan du i
+            stedet kigge efter en{" "}
+            <Link to="/bonus-uden-indbetaling" className="text-primary underline hover:text-primary/80">
+              bonus uden indbetaling
+            </Link>
+            .
           </p>
         </section>
 

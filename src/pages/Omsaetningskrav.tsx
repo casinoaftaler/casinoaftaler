@@ -182,16 +182,34 @@ const Omsaetningskrav = () => {
             gennemspilskrav – refererer til det antal gange, en bonus
             eller indbetaling skal spilles igennem, før gevinster kan
             udbetales. Det er den mest centrale betingelse i enhver
-            casinobonus, og det er afgørende, at du forstår den fuldt ud,
+            casinobonus – uanset om det er en{" "}
+            <Link to="/velkomstbonus" className="text-primary underline hover:text-primary/80">
+              velkomstbonus
+            </Link>
+            , en{" "}
+            <Link to="/indskudsbonus" className="text-primary underline hover:text-primary/80">
+              indskudsbonus
+            </Link>{" "}
+            eller{" "}
+            <Link to="/free-spins" className="text-primary underline hover:text-primary/80">
+              free spins
+            </Link>
+            . Det er afgørende, at du forstår omsætningskrav fuldt ud,
             inden du accepterer et tilbud.
           </p>
           <p className="text-muted-foreground leading-relaxed">
             Udtrykket stammer fra det engelske "Wagering Requirement" og
             betyder i bund og grund, at casinoet kræver, at du satser et
-            bestemt beløb, før du kan hæve penge. Det handler ikke om at
-            vinde et bestemt beløb, men om at placere væddemål for et
-            samlet beløb over tid. Hver gang du spinner på en
-            spilleautomat, tæller din indsats med i omsætningen.
+            bestemt beløb, før du kan hæve penge. Ønsker du at undgå dette
+            helt, kan du kigge efter{" "}
+            <Link to="/bonus-uden-omsaetningskrav" className="text-primary underline hover:text-primary/80">
+              bonusser uden omsætningskrav
+            </Link>{" "}
+            eller en{" "}
+            <Link to="/no-sticky-bonus" className="text-primary underline hover:text-primary/80">
+              no-sticky bonus
+            </Link>
+            , der adskiller dine egne penge fra bonuspengene.
           </p>
         </section>
 
