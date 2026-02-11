@@ -225,15 +225,32 @@ const FreeSpins = () => {
             modtager free spins, kan du spille på udvalgte slots uden at bruge
             din egen saldo. Det giver dig mulighed for at afprøve et casino
             eller en bestemt spilleautomat helt risikofrit og stadig have
-            chancen for at vinde rigtige penge.
+            chancen for at vinde rigtige penge. Gevinster fra free spins er dog
+            typisk underlagt{" "}
+            <Link to="/omsaetningskrav" className="text-primary underline hover:text-primary/80">
+              omsætningskrav
+            </Link>
+            , som du bør sætte dig ind i.
           </p>
           <p className="text-muted-foreground leading-relaxed">
             Populariteten bag free spins skyldes netop denne kombination af nul
             risiko og reel gevinstmulighed. For nye spillere fungerer gratis
             spins som en tryg introduktion til casinoet, mens erfarne spillere
             bruger dem til at udforske nye spil uden at belaste budgettet.
-            Desuden indgår free spins ofte i velkomstbonusser, loyalitetsprogrammer
-            og løbende kampagner, hvilket holder engagementet højt.
+            Desuden indgår free spins ofte i{" "}
+            <Link to="/velkomstbonus" className="text-primary underline hover:text-primary/80">
+              velkomstbonusser
+            </Link>
+            , loyalitetsprogrammer og løbende kampagner. Du kan også finde dem
+            som en del af en{" "}
+            <Link to="/indskudsbonus" className="text-primary underline hover:text-primary/80">
+              indskudsbonus
+            </Link>{" "}
+            eller som{" "}
+            <Link to="/bonus-uden-indbetaling" className="text-primary underline hover:text-primary/80">
+              bonus uden indbetaling
+            </Link>
+            .
           </p>
         </section>
 
@@ -290,12 +307,19 @@ const FreeSpins = () => {
               </CardHeader>
               <CardContent>
                 <p className="text-sm text-muted-foreground leading-relaxed">
-                  Omsætningskrav angiver, hvor mange gange du skal spille dine
+                  <Link to="/omsaetningskrav" className="text-primary underline hover:text-primary/80">
+                    Omsætningskrav
+                  </Link>{" "}
+                  angiver, hvor mange gange du skal spille dine
                   free spins-gevinster igennem, før du kan hæve dem. Hvis du
                   vinder 100 kr. med gratis spins og omsætningskravet er 10x,
                   skal du placere væddemål for 1.000 kr., før pengene kan
                   udbetales. Kig efter tilbud med lave omsætningskrav
-                  (under 30x) for bedst mulig værdi.
+                  (under 30x) for bedst mulig værdi – eller overvej{" "}
+                  <Link to="/bonus-uden-omsaetningskrav" className="text-primary underline hover:text-primary/80">
+                    bonusser uden omsætningskrav
+                  </Link>
+                  .
                 </p>
               </CardContent>
             </Card>

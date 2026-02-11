@@ -185,16 +185,36 @@ const BonusUdenIndbetaling = () => {
             et af de mest eftertragtede tilbud på casinomarkedet. Med
             denne type bonus belønnes du blot for at oprette en konto,
             helt uden at du behøver at indsætte penge. Bonussen kan
-            komme i form af gratis spins på spilleautomater eller som et
-            mindre pengebeløb direkte på din spillekonto.
+            komme i form af{" "}
+            <Link to="/free-spins" className="text-primary underline hover:text-primary/80">
+              gratis spins
+            </Link>{" "}
+            på spilleautomater eller som et mindre pengebeløb direkte på
+            din spillekonto.
           </p>
           <p className="text-muted-foreground leading-relaxed">
             Denne bonustype er særligt populær, fordi den giver dig
-            mulighed for at afprøve casinoets spiludvalg og platform
-            uden nogen økonomisk risiko. Det er en fantastisk måde at
-            udforske nye online casinoer på – uanset om du ender med at
-            vinde eller ej. Det vigtigste er, at du får adgang til rigtige
-            spil og ikke blot demoversioner.
+            mulighed for at afprøve casinoets spiludvalg uden økonomisk
+            risiko. Gevinster fra en no deposit bonus er dog typisk
+            underlagt{" "}
+            <Link to="/omsaetningskrav" className="text-primary underline hover:text-primary/80">
+              omsætningskrav
+            </Link>
+            . Foretrækker du en bonus hvor du beholder alt med det samme,
+            kan en{" "}
+            <Link to="/bonus-uden-omsaetningskrav" className="text-primary underline hover:text-primary/80">
+              bonus uden omsætningskrav
+            </Link>{" "}
+            være et bedre valg. Ønsker du i stedet at maksimere din
+            indbetaling, er en{" "}
+            <Link to="/indskudsbonus" className="text-primary underline hover:text-primary/80">
+              indskudsbonus
+            </Link>{" "}
+            eller{" "}
+            <Link to="/velkomstbonus" className="text-primary underline hover:text-primary/80">
+              velkomstbonus
+            </Link>{" "}
+            værd at overveje.
           </p>
         </section>
 

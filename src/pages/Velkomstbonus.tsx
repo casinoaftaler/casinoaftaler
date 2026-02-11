@@ -213,16 +213,29 @@ const Velkomstbonus = () => {
             En velkomstbonus er det tilbud, som et online casino giver nye
             spillere ved deres første tilmelding. Det er i bund og grund
             casinoets måde at sige "velkommen" på – og det er en fordel for
-            begge parter. Du får ekstra penge eller gratis spins at spille
-            for, mens casinoet vinder en ny kunde.
+            begge parter. Du får ekstra penge eller{" "}
+            <Link to="/free-spins" className="text-primary underline hover:text-primary/80">
+              gratis spins
+            </Link>{" "}
+            at spille for, mens casinoet vinder en ny kunde.
           </p>
           <p className="text-muted-foreground leading-relaxed">
-            Den mest gængse form er en matchbonus, hvor casinoet matcher din
-            første indbetaling med en bestemt procentdel. Indbetaler du fx
-            500 kr. med en 100% matchbonus, får du 500 kr. ekstra – altså
-            1.000 kr. i alt at spille for. Nogle casinoer supplerer desuden
-            med gratis spins på udvalgte spilleautomater, hvilket giver dig
-            endnu flere muligheder for at udforske deres spiludbud.
+            Den mest gængse form er en{" "}
+            <Link to="/indskudsbonus" className="text-primary underline hover:text-primary/80">
+              matchbonus (indskudsbonus)
+            </Link>
+            , hvor casinoet matcher din første indbetaling med en bestemt
+            procentdel. Indbetaler du fx 500 kr. med en 100% matchbonus, får
+            du 500 kr. ekstra – altså 1.000 kr. i alt at spille for. Alle
+            velkomstbonusser kommer med{" "}
+            <Link to="/omsaetningskrav" className="text-primary underline hover:text-primary/80">
+              omsætningskrav
+            </Link>
+            , som du skal opfylde, før gevinster kan udbetales. Der findes også{" "}
+            <Link to="/bonus-uden-indbetaling" className="text-primary underline hover:text-primary/80">
+              velkomstbonusser uden indbetaling
+            </Link>
+            , hvor du slet ikke skal sætte penge ind for at komme i gang.
           </p>
         </section>
 

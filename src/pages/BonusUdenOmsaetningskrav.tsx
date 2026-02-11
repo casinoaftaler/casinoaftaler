@@ -183,18 +183,38 @@ const BonusUdenOmsaetningskrav = () => {
             Forståelse af hvad omsætningskrav er
           </h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
-            Et omsætningskrav er et vilkår sat af casinoer. Det angiver, hvor
-            mange gange du skal spille din bonus igennem, før du kan hæve dine
-            gevinster. Modtager du f.eks. en bonus på 100 kr. med et
-            omsætningskrav på 10x, skal du spille for 1.000 kr., før eventuelle
-            gevinster kan udbetales.
+            Et{" "}
+            <Link to="/omsaetningskrav" className="text-primary underline hover:text-primary/80">
+              omsætningskrav
+            </Link>{" "}
+            er et vilkår sat af casinoer. Det angiver, hvor mange gange du
+            skal spille din bonus igennem, før du kan hæve dine gevinster.
+            Modtager du f.eks. en bonus på 100 kr. med et omsætningskrav på
+            10x, skal du spille for 1.000 kr., før eventuelle gevinster kan
+            udbetales.
           </p>
           <p className="text-muted-foreground leading-relaxed">
-            Omsætningskrav kan variere betydeligt mellem forskellige casinoer og
-            bonusser, så det er vigtigt at læse betingelserne, før du
-            accepterer en bonus. Forståelsen af omsætningskrav er essentielt
-            for spillere på alle niveauer, da det påvirker, hvordan og hvornår
-            man kan hæve sine gevinster.
+            Omsætningskrav gælder for de fleste bonustyper – herunder{" "}
+            <Link to="/velkomstbonus" className="text-primary underline hover:text-primary/80">
+              velkomstbonusser
+            </Link>
+            ,{" "}
+            <Link to="/indskudsbonus" className="text-primary underline hover:text-primary/80">
+              indskudsbonusser
+            </Link>{" "}
+            og{" "}
+            <Link to="/free-spins" className="text-primary underline hover:text-primary/80">
+              free spins
+            </Link>
+            . Vil du undgå dem helt, er en{" "}
+            <Link to="/no-sticky-bonus" className="text-primary underline hover:text-primary/80">
+              no-sticky bonus
+            </Link>{" "}
+            eller en{" "}
+            <Link to="/bonus-uden-indbetaling" className="text-primary underline hover:text-primary/80">
+              bonus uden indbetaling
+            </Link>{" "}
+            med 0x krav et godt alternativ.
           </p>
         </section>
 
