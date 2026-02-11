@@ -108,6 +108,13 @@ export function Header() {
             <Dices className="h-4 w-4" />
             Casinoer
           </Link>
+          <Link
+            to="/nye-casinoer"
+            className="flex items-center gap-1.5 text-sm font-medium transition-colors hover:text-primary"
+          >
+            <Sparkles className="h-4 w-4" />
+            Nye Casinoer
+          </Link>
           <DropdownMenu>
             <DropdownMenuTrigger className="flex items-center gap-1.5 text-sm font-medium transition-colors hover:text-primary">
               <BookOpen className="h-4 w-4" />
@@ -316,6 +323,14 @@ export function Header() {
             >
               <Dices className="h-4 w-4" />
               Casinoer
+            </Link>
+            <Link
+              to="/nye-casinoer"
+              className="flex items-center gap-2 text-sm font-medium transition-colors hover:text-primary"
+              onClick={() => setMobileMenuOpen(false)}
+            >
+              <Sparkles className="h-4 w-4" />
+              Nye Casinoer
             </Link>
             <Link
               to="/bonus-guide"
