@@ -761,7 +761,6 @@ function AdminDashboard() {
     { value: "analytics", label: "Analytics", icon: BarChart3 },
     { value: "settings", label: "Indstillinger", icon: Settings },
     { value: "users", label: "Brugere", icon: Users },
-    { value: "bans", label: "Bans", icon: Ban },
   ];
 
   useEffect(() => {
@@ -864,7 +863,7 @@ function AdminDashboard() {
 
       <main className="container py-8">
         <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
-            <TabsList className="hidden lg:grid w-full grid-cols-10 mb-8 h-auto">
+            <TabsList className="hidden lg:grid w-full grid-cols-9 mb-8 h-auto">
               {navItems.map((item) => (
                 <TabsTrigger key={item.value} value={item.value} className="flex items-center gap-2 py-3">
                   <item.icon className="h-4 w-4" />
@@ -1090,16 +1089,15 @@ function AdminDashboard() {
                 </div>
                 <TwitchUsersSection />
               </div>
-            </div>
-          </TabsContent>
 
-          {/* Bans Tab */}
-          <TabsContent value="bans">
-            <div className="mb-6">
-              <h2 className="text-2xl font-bold">Ban Management</h2>
-              <p className="text-muted-foreground">Oversigt over bannede brugere med mulighed for unban.</p>
+              <div className="pt-4 border-t border-border">
+                <div className="mb-6">
+                  <h2 className="text-2xl font-bold">Ban Management</h2>
+                  <p className="text-muted-foreground">Oversigt over bannede brugere med mulighed for unban.</p>
+                </div>
+                <BanManagementSection />
+              </div>
             </div>
-            <BanManagementSection />
           </TabsContent>
         </Tabs>
       </main>
