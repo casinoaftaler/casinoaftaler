@@ -9,7 +9,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { ChevronDown, Gamepad2, LogOut, Mail, Menu, User, X, Dices, Gift, BookOpen, Users, ShoppingBag, Video, ShieldCheck, Sparkles, Layers, Moon, Sun, Coins, UserCircle, Trophy, Ticket } from "lucide-react";
+import { ChevronDown, Gamepad2, LogOut, Mail, Menu, User, X, Dices, Gift, BookOpen, Users, ShoppingBag, Video, ShieldCheck, Sparkles, Layers, Moon, Sun, Coins, UserCircle, Trophy, Ticket, CreditCard, MoreHorizontal } from "lucide-react";
 import { useState, useEffect } from "react";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
 import { useTwitchStatus } from "@/hooks/useTwitchStatus";
@@ -203,6 +203,20 @@ export function Header() {
                 <Link to="/contact" className="flex items-center gap-2">
                   <Mail className="h-4 w-4" />
                   Kontakt
+                </Link>
+              </DropdownMenuItem>
+            </DropdownMenuContent>
+          </DropdownMenu>
+          <DropdownMenu>
+            <DropdownMenuTrigger className="flex items-center gap-1.5 text-sm font-medium transition-colors hover:text-primary">
+              <MoreHorizontal className="h-4 w-4" />
+              Mere <ChevronDown className="h-4 w-4" />
+            </DropdownMenuTrigger>
+            <DropdownMenuContent align="center" className="bg-popover">
+              <DropdownMenuItem asChild>
+                <Link to="/betalingsmetoder" className="flex items-center gap-2">
+                  <CreditCard className="h-4 w-4" />
+                  Betalingsmetoder
                 </Link>
               </DropdownMenuItem>
             </DropdownMenuContent>
@@ -408,6 +422,19 @@ export function Header() {
             >
               <Gift className="h-4 w-4" />
               Rewards Program
+            </Link>
+            {/* Mere section */}
+            <div className="flex items-center gap-2 text-sm font-medium text-muted-foreground">
+              <MoreHorizontal className="h-4 w-4" />
+              Mere
+            </div>
+            <Link
+              to="/betalingsmetoder"
+              className="ml-6 flex items-center gap-2 text-sm text-muted-foreground transition-colors hover:text-primary"
+              onClick={() => setMobileMenuOpen(false)}
+            >
+              <CreditCard className="h-4 w-4" />
+              Betalingsmetoder
             </Link>
             
             {/* Theme toggle in mobile menu */}
