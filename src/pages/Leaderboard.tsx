@@ -78,9 +78,10 @@ function RankBadge({ rank }: { rank: number }) {
   );
 }
 
-function getDisplayWinnings(entry: LeaderboardEntry, period: "daily" | "weekly" | "alltime"): number {
+function getDisplayWinnings(entry: LeaderboardEntry, period: "daily" | "weekly" | "monthly" | "alltime"): number {
   if (period === "daily") return entry.daily_winnings ?? 0;
   if (period === "weekly") return entry.weekly_winnings ?? 0;
+  if (period === "monthly") return entry.monthly_winnings ?? 0;
   return entry.total_winnings;
 }
 
@@ -95,7 +96,7 @@ function LeaderboardPlayerRow({
   rank: number;
   isCurrentUser?: boolean;
   compact?: boolean;
-  period?: "daily" | "weekly" | "alltime";
+  period?: "daily" | "weekly" | "monthly" | "alltime";
 }) {
   const formattedMultiplier = entry.biggest_multiplier > 0
     ? `${Number(entry.biggest_multiplier.toFixed(1))}x`
@@ -170,7 +171,7 @@ function TournamentCard({
   period,
 }: {
   tournament: typeof TOURNAMENTS[number];
-  period: "daily" | "weekly" | "alltime";
+  period: "daily" | "weekly" | "monthly" | "alltime";
 }) {
   const { data, isLoading } = useSlotLeaderboard(period);
   const entries = data?.entries ?? [];
@@ -266,7 +267,7 @@ function TournamentCard({
 }
 
 export default function Leaderboard() {
-  const [period, setPeriod] = useState<"daily" | "weekly" | "alltime">("alltime");
+  const [period, setPeriod] = useState<"daily" | "weekly" | "monthly" | "alltime">("alltime");
   const { user, loading } = useAuth();
 
   return (
@@ -347,7 +348,7 @@ export default function Leaderboard() {
             {/* Period Tabs */}
             <div className="flex justify-center mb-8">
               <Tabs value={period} onValueChange={(v) => setPeriod(v as typeof period)} className="w-full max-w-md">
-                <TabsList className="w-full grid grid-cols-3 bg-muted/50 p-1">
+                <TabsList className="w-full grid grid-cols-4 bg-muted/50 p-1">
                   <TabsTrigger
                     value="daily"
                     className="data-[state=active]:bg-primary/20 data-[state=active]:text-primary"
@@ -360,7 +361,14 @@ export default function Leaderboard() {
                     className="data-[state=active]:bg-primary/20 data-[state=active]:text-primary"
                   >
                     <Sparkles className="h-4 w-4 mr-1.5 hidden sm:inline" />
-                    Denne uge
+                    Uge
+                  </TabsTrigger>
+                  <TabsTrigger
+                    value="monthly"
+                    className="data-[state=active]:bg-primary/20 data-[state=active]:text-primary"
+                  >
+                    <Sparkles className="h-4 w-4 mr-1.5 hidden sm:inline" />
+                    Måned
                   </TabsTrigger>
                   <TabsTrigger
                     value="alltime"

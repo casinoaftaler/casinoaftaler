@@ -15,9 +15,10 @@ import { useAuth } from "@/hooks/useAuth";
 import { LogIn } from "lucide-react";
 import { Link } from "react-router-dom";
 
-function getDisplayWinnings(entry: LeaderboardEntry, period: "daily" | "weekly" | "alltime"): number {
+function getDisplayWinnings(entry: LeaderboardEntry, period: "daily" | "weekly" | "monthly" | "alltime"): number {
   if (period === "daily") return entry.daily_winnings ?? 0;
   if (period === "weekly") return entry.weekly_winnings ?? 0;
+  if (period === "monthly") return entry.monthly_winnings ?? 0;
   return entry.total_winnings;
 }
 
@@ -32,7 +33,7 @@ function LeaderboardRow({
   rank: number;
   isCurrentUser?: boolean;
   theme: SlotTheme;
-  period?: "daily" | "weekly" | "alltime";
+  period?: "daily" | "weekly" | "monthly" | "alltime";
 }) {
   const getRankIcon = () => {
     if (rank === 1) return <Trophy className="h-5 w-5 text-amber-500" />;
@@ -104,7 +105,7 @@ export function SlotLeaderboard({ gameId = "book-of-fedesvin" }: SlotLeaderboard
   const theme = getSlotTheme(gameId);
   const { user } = useAuth();
   const [showFullList, setShowFullList] = useState(false);
-  const [dialogPeriod, setDialogPeriod] = useState<"daily" | "weekly" | "alltime">("alltime");
+  const [dialogPeriod, setDialogPeriod] = useState<"daily" | "weekly" | "monthly" | "alltime">("alltime");
   const [searchQuery, setSearchQuery] = useState("");
 
   // Main card always shows alltime
@@ -187,12 +188,15 @@ export function SlotLeaderboard({ gameId = "book-of-fedesvin" }: SlotLeaderboard
                     </DialogHeader>
 
                     <Tabs value={dialogPeriod} onValueChange={(v) => setDialogPeriod(v as typeof dialogPeriod)} className="w-full">
-                      <TabsList className={cn("w-full grid grid-cols-3", theme.leaderboardTabsBg)}>
+                      <TabsList className={cn("w-full grid grid-cols-4", theme.leaderboardTabsBg)}>
                         <TabsTrigger value="daily" className={cn(theme.leaderboardTabActive, theme.leaderboardTabActiveText)}>
                           I dag
                         </TabsTrigger>
                         <TabsTrigger value="weekly" className={cn(theme.leaderboardTabActive, theme.leaderboardTabActiveText)}>
                           Uge
+                        </TabsTrigger>
+                        <TabsTrigger value="monthly" className={cn(theme.leaderboardTabActive, theme.leaderboardTabActiveText)}>
+                          Måned
                         </TabsTrigger>
                         <TabsTrigger value="alltime" className={cn(theme.leaderboardTabActive, theme.leaderboardTabActiveText)}>
                           All-time

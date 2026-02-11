@@ -1327,6 +1327,7 @@ export type Database = {
           biggest_multiplier: number | null
           biggest_win: number | null
           daily_winnings: number | null
+          monthly_winnings: number | null
           total_bonuses: number | null
           total_spins: number | null
           total_winnings: number | null
