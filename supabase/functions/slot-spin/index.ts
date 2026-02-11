@@ -61,7 +61,8 @@ interface BonusSpinResult extends SpinResult {
 }
 
 const DEFAULT_SYMBOL_WEIGHT = 10;
-const MAX_SPINS_CAP = 220;
+    const MAX_SPINS_CAP = 220;
+    const ABSOLUTE_MAX_CREDITS = 1000;
 
 // Secure random number generator
 function secureRandom(): number {
@@ -910,7 +911,8 @@ Deno.serve(async (req) => {
       if (!previousRecord) {
         startValue = maxSpins;
       } else if (previousRecord.spins_remaining >= maxSpins) {
-        startValue = previousRecord.spins_remaining;
+        // Carry over but enforce absolute max
+        startValue = Math.min(previousRecord.spins_remaining, ABSOLUTE_MAX_CREDITS);
       } else {
         startValue = maxSpins;
       }

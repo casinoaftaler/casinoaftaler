@@ -1313,6 +1313,10 @@ export type Database = {
       }
     }
     Functions: {
+      activate_community_spins_safe: {
+        Args: { p_amount: number; p_today: string; p_user_id: string }
+        Returns: Json
+      }
       claim_profile_section_reward: {
         Args: { p_section: string; p_today: string; p_user_id: string }
         Returns: Json
