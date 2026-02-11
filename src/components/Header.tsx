@@ -163,6 +163,12 @@ export function Header() {
                   Indskudsbonus
                 </Link>
               </DropdownMenuItem>
+              <DropdownMenuItem asChild>
+                <Link to="/bonus-uden-indbetaling" className="flex items-center gap-2">
+                  <Gift className="h-4 w-4" />
+                  Bonus uden Indbetaling
+                </Link>
+              </DropdownMenuItem>
               <DropdownMenuSeparator />
               <DropdownMenuItem asChild>
                 <Link to="/responsible-gaming" className="flex items-center gap-2">
@@ -415,6 +421,14 @@ export function Header() {
             >
               <DollarSign className="h-4 w-4" />
               Indskudsbonus
+            </Link>
+            <Link
+              to="/bonus-uden-indbetaling"
+              className="ml-6 flex items-center gap-2 text-sm text-muted-foreground transition-colors hover:text-primary"
+              onClick={() => setMobileMenuOpen(false)}
+            >
+              <Gift className="h-4 w-4" />
+              Bonus uden Indbetaling
             </Link>
             <Link
               to="/responsible-gaming"
