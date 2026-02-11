@@ -156,9 +156,8 @@ export default function GameLibrary() {
           </div>
           
           {/* Leaderboards - appear after games on mobile */}
-          <div className="space-y-4 max-w-md mx-auto mb-8">
-            <SlotLeaderboard gameId="book-of-fedesvin" />
-            <SlotLeaderboard gameId="rise-of-fedesvin" />
+          <div className="max-w-md mx-auto mb-8">
+            <SlotLeaderboard />
           </div>
 
           {/* Banners - appear after leaderboards on mobile */}
@@ -219,9 +218,8 @@ export default function GameLibrary() {
 
           {/* Right side - Leaderboards */}
           <div className="flex-shrink-0 w-[calc(50vw-480px-24px)] min-w-[340px] 2xl:min-w-[400px] flex justify-start pl-6">
-            <aside className="w-80 2xl:w-96 space-y-4">
-              <SlotLeaderboard gameId="book-of-fedesvin" />
-              <SlotLeaderboard gameId="rise-of-fedesvin" />
+            <aside className="w-80 2xl:w-96">
+              <SlotLeaderboard />
             </aside>
           </div>
         </div>
