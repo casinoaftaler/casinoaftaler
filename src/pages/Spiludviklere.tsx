@@ -1,5 +1,7 @@
+import { Link } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
+import { RelatedGuides } from "@/components/RelatedGuides";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
@@ -27,38 +29,7 @@ import {
   BookOpen,
 } from "lucide-react";
 
-const spiludviklereFaqs = [
-  {
-    question: "Hvad er en spiludvikler?",
-    answer:
-      "En spiludvikler er en virksomhed, der designer og producerer casinospil som spilleautomater, bordspil og live casino. De står bag grafik, funktioner og mekanik, der gør spillene underholdende og retfærdige.",
-  },
-  {
-    question: "Hvad betyder RTP?",
-    answer:
-      "RTP (Return to Player) angiver, hvor stor en procentdel af de samlede indsatser et spil teoretisk betaler tilbage til spillerne over tid. En højere RTP betyder bedre langsigtede chancer for spilleren.",
-  },
-  {
-    question: "Hvordan vælger jeg en god spiludvikler?",
-    answer:
-      "Vælg casinoer, der samarbejder med licenserede udviklere som NetEnt, Microgaming eller Play'n GO. De leverer spil af høj kvalitet med fair gameplay og er regulerede af anerkendte myndigheder.",
-  },
-  {
-    question: "Hvad er forskellen på slots og live casino?",
-    answer:
-      "Spilleautomater er maskinbaserede spil med temaer og bonusfunktioner, mens live casino involverer rigtige dealere og giver en autentisk casinooplevelse via livestreaming i realtid.",
-  },
-  {
-    question: "Er spil fra alle udviklere fair?",
-    answer:
-      "Kun spil fra licenserede udviklere garanterer fairness. De anvender RNG-teknologi (Random Number Generator) og testes løbende af uafhængige testbureauer som eCOGRA.",
-  },
-  {
-    question: "Kan jeg spille på mobilen?",
-    answer:
-      "Ja, stort set alle moderne spiludviklere optimerer deres spil til både desktop og mobil, så du kan nyde dine favoritspil uanset enhed.",
-  },
-];
+// FAQs are now JSX inside the component for internal links
 
 const gameTypes = [
   {
@@ -240,27 +211,91 @@ const Spiludviklere = () => {
   const { data: siteSettings } = useSiteSettings();
   const heroBackgroundImage = siteSettings?.hero_background;
 
+  const spiludviklereFaqs = [
+    {
+      question: "Hvad er en spiludvikler?",
+      answer: (
+        <>
+          En spiludvikler er en virksomhed, der designer og producerer casinospil som spilleautomater, bordspil og{" "}
+          <Link to="/live-casino" className="text-primary underline hover:text-primary/80">live casino</Link>.
+          De står bag grafik, funktioner og mekanik, der gør spillene underholdende og retfærdige.
+        </>
+      ),
+    },
+    {
+      question: "Hvad betyder RTP?",
+      answer: (
+        <>
+          RTP (Return to Player) angiver, hvor stor en procentdel af de samlede indsatser et spil teoretisk betaler tilbage til spillerne over tid. En højere RTP betyder bedre langsigtede chancer. RTP er også relevant, når du spiller med en{" "}
+          <Link to="/velkomstbonus" className="text-primary underline hover:text-primary/80">velkomstbonus</Link>{" "}
+          eller{" "}
+          <Link to="/free-spins" className="text-primary underline hover:text-primary/80">free spins</Link>.
+        </>
+      ),
+    },
+    {
+      question: "Hvordan vælger jeg en god spiludvikler?",
+      answer: (
+        <>
+          Vælg casinoer, der samarbejder med licenserede udviklere som NetEnt, Microgaming eller Play'n GO. Se vores{" "}
+          <Link to="/nye-casinoer" className="text-primary underline hover:text-primary/80">oversigt over nye casinoer</Link>{" "}
+          for at finde spillesteder med de bedste spiludviklere.
+        </>
+      ),
+    },
+    {
+      question: "Hvad er forskellen på slots og live casino?",
+      answer: (
+        <>
+          Spilleautomater er maskinbaserede spil med temaer og bonusfunktioner, mens{" "}
+          <Link to="/live-casino" className="text-primary underline hover:text-primary/80">live casino</Link>{" "}
+          involverer rigtige dealere og giver en autentisk casinooplevelse via livestreaming i realtid.
+        </>
+      ),
+    },
+    {
+      question: "Er spil fra alle udviklere fair?",
+      answer:
+        "Kun spil fra licenserede udviklere garanterer fairness. De anvender RNG-teknologi (Random Number Generator) og testes løbende af uafhængige testbureauer som eCOGRA.",
+    },
+    {
+      question: "Kan jeg spille på mobilen?",
+      answer: (
+        <>
+          Ja, stort set alle moderne spiludviklere optimerer deres spil til både desktop og mobil. Du kan også nemt indbetale via{" "}
+          <Link to="/betalingsmetoder" className="text-primary underline hover:text-primary/80">mobilvennlige betalingsmetoder</Link>{" "}
+          som MobilePay og Apple Pay.
+        </>
+      ),
+    },
+  ];
+
   const faqJsonLd = {
     "@context": "https://schema.org",
     "@type": "FAQPage",
-    mainEntity: spiludviklereFaqs.map((faq) => ({
-      "@type": "Question",
-      name: faq.question,
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: faq.answer,
-      },
-    })),
+    mainEntity: [
+      { "@type": "Question", name: "Hvad er en spiludvikler?", acceptedAnswer: { "@type": "Answer", text: "En spiludvikler er en virksomhed, der designer og producerer casinospil som spilleautomater, bordspil og live casino. De står bag grafik, funktioner og mekanik, der gør spillene underholdende og retfærdige." } },
+      { "@type": "Question", name: "Hvad betyder RTP?", acceptedAnswer: { "@type": "Answer", text: "RTP (Return to Player) angiver, hvor stor en procentdel af de samlede indsatser et spil teoretisk betaler tilbage til spillerne over tid. En højere RTP betyder bedre langsigtede chancer for spilleren." } },
+      { "@type": "Question", name: "Hvordan vælger jeg en god spiludvikler?", acceptedAnswer: { "@type": "Answer", text: "Vælg casinoer, der samarbejder med licenserede udviklere som NetEnt, Microgaming eller Play'n GO. De leverer spil af høj kvalitet med fair gameplay." } },
+      { "@type": "Question", name: "Hvad er forskellen på slots og live casino?", acceptedAnswer: { "@type": "Answer", text: "Spilleautomater er maskinbaserede spil med temaer og bonusfunktioner, mens live casino involverer rigtige dealere via livestreaming i realtid." } },
+      { "@type": "Question", name: "Er spil fra alle udviklere fair?", acceptedAnswer: { "@type": "Answer", text: "Kun spil fra licenserede udviklere garanterer fairness. De anvender RNG-teknologi og testes løbende af uafhængige testbureauer som eCOGRA." } },
+      { "@type": "Question", name: "Kan jeg spille på mobilen?", acceptedAnswer: { "@type": "Answer", text: "Ja, stort set alle moderne spiludviklere optimerer deres spil til både desktop og mobil, så du kan nyde dine favoritspil uanset enhed." } },
+    ],
   };
 
   return (
     <>
       <Helmet>
-        <title>Spiludviklere – De Bedste Casino-Spiludviklere i Danmark</title>
+        <title>Spiludviklere – De Bedste Casino-Spiludviklere i Danmark 2026 | Casinoaftaler</title>
         <meta
           name="description"
           content="Lær alt om de største spiludviklere i casinobranchen. Fra NetEnt og Microgaming til Play'n GO – find ud af hvem der skaber dine favoritspil."
         />
+        <link rel="canonical" href="https://bonushuset-buddy.lovable.app/spiludviklere" />
+        <meta property="og:title" content="Spiludviklere – De Bedste Casino-Spiludviklere i Danmark 2026" />
+        <meta property="og:description" content="Komplet guide til de største spiludviklere i casinobranchen. NetEnt, Play'n GO, Microgaming og flere." />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://bonushuset-buddy.lovable.app/spiludviklere" />
         <script type="application/ld+json">{JSON.stringify(faqJsonLd)}</script>
       </Helmet>
 
@@ -331,7 +366,11 @@ const Spiludviklere = () => {
             De designer hele oplevelsen fra bunden: skarpe visuelle
             detaljer, fængslende lydeffekter, innovative funktioner og
             glidende gameplay, der tilsammen skaber noget unikt og
-            engagerende.
+            engagerende. Spiludviklerne er også afgørende for, hvilke{" "}
+            <Link to="/velkomstbonus" className="text-primary underline hover:text-primary/80">velkomstbonusser</Link>{" "}
+            og{" "}
+            <Link to="/free-spins" className="text-primary underline hover:text-primary/80">free spins</Link>{" "}
+            casinoerne kan tilbyde, da det ofte er specifikke spil, der indgår i bonustilbud.
           </p>
           <p className="mb-4 text-muted-foreground leading-relaxed">
             Processen begynder med en idé – måske inspireret af
@@ -346,7 +385,11 @@ const Spiludviklere = () => {
           <p className="text-muted-foreground leading-relaxed">
             Spiludviklere er med andre ord ikke bare tekniske eksperter –
             de er kunstnere og historiefortællere, der gør hvert eneste
-            spin til noget særligt.
+            spin til noget særligt. Når du spiller med en{" "}
+            <Link to="/indskudsbonus" className="text-primary underline hover:text-primary/80">indskudsbonus</Link>{" "}
+            eller{" "}
+            <Link to="/bonus-uden-indbetaling" className="text-primary underline hover:text-primary/80">bonus uden indbetaling</Link>,
+            er det spiludviklernes spil, du nyder godt af.
           </p>
         </section>
 
@@ -363,7 +406,9 @@ const Spiludviklere = () => {
             spiludvikleren er en afgørende brik, der bestemmer om spillet er
             underholdende, retfærdigt og teknisk problemfrit. Kendte udviklere
             som NetEnt, Play'n GO og Microgaming er garanti for kvalitet og
-            tryghed.
+            tryghed. Valget af spiludvikler påvirker også, hvordan{" "}
+            <Link to="/omsaetningskrav" className="text-primary underline hover:text-primary/80">omsætningskrav</Link>{" "}
+            opfyldes, da forskellige spiltyper bidrager forskelligt.
           </p>
 
           <div className="grid gap-4 md:grid-cols-2">
@@ -415,8 +460,13 @@ const Spiludviklere = () => {
           </h2>
           <p className="mb-6 text-muted-foreground leading-relaxed">
             Spiludviklere skaber et bredt udvalg af spil der appellerer til
-            alle typer spillere. Fra klassiske slots til avancerede live
-            casino-oplevelser – hver kategori bringer noget unikt til bordet.
+            alle typer spillere. Fra klassiske slots til avancerede{" "}
+            <Link to="/live-casino" className="text-primary underline hover:text-primary/80">live casino</Link>-oplevelser
+            – hver kategori bringer noget unikt til bordet. Mange af disse spil
+            indgår i{" "}
+            <Link to="/free-spins" className="text-primary underline hover:text-primary/80">free spins</Link>-tilbud
+            og{" "}
+            <Link to="/velkomstbonus" className="text-primary underline hover:text-primary/80">velkomstbonusser</Link>.
           </p>
 
           <div className="space-y-6">
@@ -526,7 +576,10 @@ const Spiludviklere = () => {
           <p className="mb-6 text-muted-foreground leading-relaxed">
             Valget af spiludvikler kan gøre en stor forskel for din oplevelse.
             En god spiludvikler betyder ikke kun spil af høj kvalitet, men
-            også retfærdighed, sikkerhed og spændende funktioner.
+            også retfærdighed, sikkerhed og spændende funktioner. Tjek også
+            vores guide til{" "}
+            <Link to="/betalingsmetoder" className="text-primary underline hover:text-primary/80">betalingsmetoder</Link>{" "}
+            for at sikre du bruger den bedste løsning til ind- og udbetalinger.
           </p>
 
           <div className="grid gap-4 md:grid-cols-3">
@@ -749,13 +802,15 @@ const Spiludviklere = () => {
                 <AccordionTrigger className="text-left hover:no-underline">
                   {faq.question}
                 </AccordionTrigger>
-                <AccordionContent className="text-muted-foreground">
+                <AccordionContent className="text-muted-foreground leading-relaxed">
                   {faq.answer}
                 </AccordionContent>
               </AccordionItem>
             ))}
           </Accordion>
         </section>
+
+        <RelatedGuides currentPath="/spiludviklere" />
       </div>
     </>
   );
