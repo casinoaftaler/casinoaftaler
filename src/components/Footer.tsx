@@ -115,13 +115,13 @@ export function Footer() {
             <h4 className="mb-4 text-sm font-semibold">Alle Bonustyper</h4>
             <ul className="space-y-2 text-sm">
               <li>
-                <Link to="/bonus-uden-omsaetningskrav" className="flex items-center gap-2 text-muted-foreground transition-colors hover:text-foreground">
+                <Link to="/no-sticky-bonus" className="flex items-center gap-2 text-muted-foreground transition-colors hover:text-foreground">
                   <Zap className="h-4 w-4" />
                   No-Sticky Bonusser
                 </Link>
               </li>
               <li>
-                <Link to="/bonus-guide" className="flex items-center gap-2 text-muted-foreground transition-colors hover:text-foreground">
+                <Link to="/sticky-bonus" className="flex items-center gap-2 text-muted-foreground transition-colors hover:text-foreground">
                   <BookOpen className="h-4 w-4" />
                   Sticky Bonusser
                 </Link>
