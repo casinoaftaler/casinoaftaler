@@ -33,6 +33,7 @@ const AuthCallback = lazy(() => import("./pages/AuthCallback"));
 const Profile = lazy(() => import("./pages/Profile"));
 const PublicProfile = lazy(() => import("./pages/PublicProfile"));
 const Betalingsmetoder = lazy(() => import("./pages/Betalingsmetoder"));
+const Spiludviklere = lazy(() => import("./pages/Spiludviklere"));
 const NotFound = lazy(() => import("./pages/NotFound"));
 
 const queryClient = new QueryClient();
@@ -62,6 +63,7 @@ const App = () => (
                 <Route path="/butik" element={<Shop />} />
                 <Route path="/highlights" element={<Highlights />} />
                 <Route path="/betalingsmetoder" element={<Betalingsmetoder />} />
+                <Route path="/spiludviklere" element={<Spiludviklere />} />
                 
                 <Route path="/community/leaderboard" element={<Leaderboard />} />
                 <Route path="/community/rewards" element={<RewardsProgram />} />

@@ -219,6 +219,12 @@ export function Header() {
                   Betalingsmetoder
                 </Link>
               </DropdownMenuItem>
+              <DropdownMenuItem asChild>
+                <Link to="/spiludviklere" className="flex items-center gap-2">
+                  <Gamepad2 className="h-4 w-4" />
+                  Spiludviklere
+                </Link>
+              </DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>
         </nav>
@@ -435,6 +441,14 @@ export function Header() {
             >
               <CreditCard className="h-4 w-4" />
               Betalingsmetoder
+            </Link>
+            <Link
+              to="/spiludviklere"
+              className="ml-6 flex items-center gap-2 text-sm text-muted-foreground transition-colors hover:text-primary"
+              onClick={() => setMobileMenuOpen(false)}
+            >
+              <Gamepad2 className="h-4 w-4" />
+              Spiludviklere
             </Link>
             
             {/* Theme toggle in mobile menu */}
