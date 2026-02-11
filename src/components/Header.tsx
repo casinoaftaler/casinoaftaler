@@ -118,7 +118,7 @@ export function Header() {
           <DropdownMenu>
             <DropdownMenuTrigger className="flex items-center gap-1.5 text-sm font-medium transition-colors hover:text-primary">
               <BookOpen className="h-4 w-4" />
-              Bonus Guide <ChevronDown className="h-4 w-4" />
+              Casino Bonus <ChevronDown className="h-4 w-4" />
             </DropdownMenuTrigger>
             <DropdownMenuContent align="center" className="bg-popover">
               <DropdownMenuItem asChild>
@@ -394,7 +394,7 @@ export function Header() {
               onClick={() => setMobileMenuOpen(false)}
             >
               <BookOpen className="h-4 w-4" />
-              Bonus Guide
+              Casino Bonus
             </Link>
             <Link
               to="/free-spins"
