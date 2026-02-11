@@ -1,0 +1,629 @@
+import { Helmet } from "react-helmet-async";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import { Separator } from "@/components/ui/separator";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
+import {
+  Sparkles,
+  ShieldCheck,
+  HelpCircle,
+  User,
+  CalendarDays,
+  BookOpen,
+  CheckCircle2,
+  AlertTriangle,
+  Gift,
+  Clock,
+  Target,
+  Gamepad2,
+  Star,
+  Trophy,
+  RefreshCw,
+  Zap,
+  Lock,
+  TrendingUp,
+} from "lucide-react";
+
+const freeSpinsFaqs = [
+  {
+    question: "Hvad er free spins?",
+    answer:
+      "Free spins er gratis omgange på spilleautomater, som du modtager fra et online casino. Du kan spille uden at bruge din egen saldo, men eventuelle gevinster er typisk underlagt omsætningskrav, før de kan udbetales.",
+  },
+  {
+    question: "Kan jeg vinde rigtige penge med free spins?",
+    answer:
+      "Ja, du kan vinde rigtige penge med free spins. Dog skal du som regel opfylde casinoets omsætningskrav, før du kan hæve dine gevinster. Tjek altid vilkårene for det specifikke tilbud.",
+  },
+  {
+    question: "Hvad er forskellen på free spins med og uden omsætningskrav?",
+    answer:
+      "Free spins med omsætningskrav kræver, at du spiller dine gevinster igennem et vist antal gange, før du kan hæve. Free spins uden omsætningskrav (omsætningsfrie spins) lader dig beholde og hæve gevinsterne med det samme – dog ofte med et gevinstloft.",
+  },
+  {
+    question: "Kan jeg bruge free spins på alle spilleautomater?",
+    answer:
+      "Nej, free spins er typisk begrænset til bestemte spilleautomater udvalgt af casinoet. Det kan fx være populære titler som Book of Dead eller Starburst. Tjek altid vilkårene for at se, hvilke spil der er inkluderet.",
+  },
+  {
+    question: "Udløber free spins?",
+    answer:
+      "Ja, free spins har næsten altid en udløbsdato. Danske casinoer er forpligtede til at angive en gyldighedsperiode – typisk mellem 24 timer og 30 dage. Ubrugte spins forsvinder automatisk efter fristen.",
+  },
+  {
+    question: "Hvad er no deposit free spins?",
+    answer:
+      "No deposit free spins er gratis spins, du modtager uden at skulle indbetale penge først. De gives ofte til nye spillere ved tilmelding og giver dig mulighed for at prøve casinoet helt risikofrit. Gevinsterne er dog typisk underlagt omsætningskrav og gevinstlofter.",
+  },
+];
+
+const freeSpinsTypes = [
+  {
+    id: "no-deposit",
+    name: "No Deposit Free Spins",
+    icon: Gift,
+    description:
+      "Modtag gratis spins uden at indbetale en eneste krone. Disse tilbydes typisk til nye spillere ved registrering og giver dig mulighed for at prøve casinoet helt risikofrit. Gevinster er som regel underlagt omsætningskrav og gevinstlofter.",
+  },
+  {
+    id: "deposit",
+    name: "Indbetalingsbonus med Free Spins",
+    icon: TrendingUp,
+    description:
+      "Ved at foretage en indbetaling modtager du et antal free spins som en del af velkomstpakken eller en reload-bonus. Antallet af spins afhænger ofte af indbetalingens størrelse, og de er typisk knyttet til specifikke spilleautomater.",
+  },
+  {
+    id: "wager-free",
+    name: "Omsætningsfrie Free Spins",
+    icon: Zap,
+    description:
+      "Den mest spillervenlige variant. Her kan du hæve dine gevinster med det samme uden at gennemspille dem. Dog følger der ofte et gevinstloft og begrænsninger på, hvilke spil de gælder for.",
+  },
+  {
+    id: "vip",
+    name: "VIP Free Spins",
+    icon: Trophy,
+    description:
+      "Eksklusive spins til casinoets mest loyale spillere. Disse kommer ofte med bedre vilkår – lavere omsætningskrav, højere spinværdi og adgang til premium-spil, som ikke er tilgængelige for almindelige spillere.",
+  },
+  {
+    id: "loyalty",
+    name: "Loyalitets Free Spins",
+    icon: Star,
+    description:
+      "Belønning til eksisterende kunder baseret på deres spilleaktivitet. Disse spins optjenes over tid og er skræddersyet til den enkelte spillers engagement – jo mere du spiller, desto flere spins modtager du.",
+  },
+  {
+    id: "reload",
+    name: "Re-load Free Spins",
+    icon: RefreshCw,
+    description:
+      "Tilbydes ved efterfølgende indbetalinger og er designet til at belønne fortsat spil. Antallet og vilkårene varierer fra casino til casino, men de giver dig regelmæssige muligheder for ekstra spins.",
+  },
+];
+
+const FreeSpins = () => {
+  const faqJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: freeSpinsFaqs.map((faq) => ({
+      "@type": "Question",
+      name: faq.question,
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: faq.answer,
+      },
+    })),
+  };
+
+  return (
+    <>
+      <Helmet>
+        <title>Free Spins – Komplet Guide til Gratis Spins 2026 | Casinoaftaler</title>
+        <meta
+          name="description"
+          content="Alt du skal vide om free spins på danske casinoer. Typer, omsætningskrav, betingelser og strategier til at få mest ud af dine gratis spins."
+        />
+        <link rel="canonical" href="https://bonushuset-buddy.lovable.app/free-spins" />
+        <meta property="og:title" content="Free Spins – Komplet Guide til Gratis Spins 2026" />
+        <meta
+          property="og:description"
+          content="Alt du skal vide om free spins på danske casinoer. Typer, omsætningskrav og strategier."
+        />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://bonushuset-buddy.lovable.app/free-spins" />
+        <meta name="twitter:title" content="Free Spins – Komplet Guide til Gratis Spins 2026" />
+        <meta
+          name="twitter:description"
+          content="Alt du skal vide om free spins på danske casinoer – typer, betingelser og strategier."
+        />
+        <script type="application/ld+json">{JSON.stringify(faqJsonLd)}</script>
+      </Helmet>
+
+      {/* Hero Section */}
+      <section
+        className="relative overflow-hidden py-12 text-white md:py-20"
+        style={{
+          backgroundImage:
+            "linear-gradient(135deg, hsl(260 70% 25%), hsl(250 60% 20%) 40%, hsl(210 80% 25%))",
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+        }}
+      >
+        <div className="container">
+          <div className="mx-auto max-w-3xl text-center">
+            <Badge variant="secondary" className="mb-4">
+              <Sparkles className="mr-1.5 h-3.5 w-3.5" />
+              Opdateret Februar 2026
+            </Badge>
+            <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">
+              Free Spins på Danske Casinoer
+            </h1>
+            <p className="text-lg text-white/80">
+              Gratis spins er en af de mest populære bonustyper i casinoverdenen.
+              Lær hvordan de fungerer, hvilke typer der findes, og hvordan du
+              udnytter dem bedst muligt.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <div className="container py-8 md:py-12">
+        {/* Meta info bar */}
+        <div className="mb-8 flex flex-wrap items-center gap-x-6 gap-y-2 text-sm text-muted-foreground">
+          <div className="flex items-center gap-1.5">
+            <User className="h-4 w-4" />
+            <span>
+              Skrevet af:{" "}
+              <span className="font-medium text-foreground">Casinoaftaler</span>
+            </span>
+          </div>
+          <div className="flex items-center gap-1.5">
+            <CalendarDays className="h-4 w-4" />
+            <span>
+              Siden opdateret:{" "}
+              <span className="font-medium text-foreground">11-02-2026</span>
+            </span>
+          </div>
+          <div className="flex items-center gap-1.5">
+            <BookOpen className="h-4 w-4" />
+            <span>
+              Læsetid:{" "}
+              <span className="font-medium text-foreground">12 Min.</span>
+            </span>
+          </div>
+        </div>
+
+        {/* Intro */}
+        <section className="mb-12">
+          <h2 className="mb-4 text-3xl font-bold">
+            Hvad er free spins, og hvorfor er de så populære?
+          </h2>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            Free spins – eller gratis spins – er gratis omgange på
+            spilleautomater, som casinoer tilbyder deres spillere. Når du
+            modtager free spins, kan du spille på udvalgte slots uden at bruge
+            din egen saldo. Det giver dig mulighed for at afprøve et casino
+            eller en bestemt spilleautomat helt risikofrit og stadig have
+            chancen for at vinde rigtige penge.
+          </p>
+          <p className="text-muted-foreground leading-relaxed">
+            Populariteten bag free spins skyldes netop denne kombination af nul
+            risiko og reel gevinstmulighed. For nye spillere fungerer gratis
+            spins som en tryg introduktion til casinoet, mens erfarne spillere
+            bruger dem til at udforske nye spil uden at belaste budgettet.
+            Desuden indgår free spins ofte i velkomstbonusser, loyalitetsprogrammer
+            og løbende kampagner, hvilket holder engagementet højt.
+          </p>
+        </section>
+
+        <Separator className="my-10" />
+
+        {/* Typer af Free Spins */}
+        <section className="mb-12">
+          <h2 className="mb-4 text-3xl font-bold">Typer af free spins-bonusser</h2>
+          <p className="mb-6 text-muted-foreground leading-relaxed">
+            Selvom idéen bag gratis spins er simpel, findes der mange
+            variationer med forskellige vilkår og fordele. Her er de mest
+            almindelige typer, du vil støde på hos danske casinoer.
+          </p>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            {freeSpinsTypes.map((type) => (
+              <Card key={type.id} className="border-border bg-card">
+                <CardHeader className="pb-2">
+                  <CardTitle className="flex items-center gap-2 text-lg">
+                    <type.icon className="h-5 w-5 text-primary" />
+                    {type.name}
+                  </CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <p className="text-sm text-muted-foreground leading-relaxed">
+                    {type.description}
+                  </p>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </section>
+
+        <Separator className="my-10" />
+
+        {/* Betingelser */}
+        <section className="mb-12">
+          <h2 className="mb-4 text-3xl font-bold">
+            Betingelser du skal kende til
+          </h2>
+          <p className="mb-6 text-muted-foreground leading-relaxed">
+            Uanset hvor fristende free spins er, følger der altid vilkår og
+            betingelser med. At forstå disse krav er afgørende for at vurdere
+            den reelle værdi af et tilbud og undgå ubehagelige overraskelser.
+          </p>
+
+          <div className="space-y-4">
+            <Card className="border-border bg-card">
+              <CardHeader className="pb-2">
+                <CardTitle className="flex items-center gap-2 text-lg">
+                  <RefreshCw className="h-5 w-5 text-primary" />
+                  Omsætningskrav
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <p className="text-sm text-muted-foreground leading-relaxed">
+                  Omsætningskrav angiver, hvor mange gange du skal spille dine
+                  free spins-gevinster igennem, før du kan hæve dem. Hvis du
+                  vinder 100 kr. med gratis spins og omsætningskravet er 10x,
+                  skal du placere væddemål for 1.000 kr., før pengene kan
+                  udbetales. Kig efter tilbud med lave omsætningskrav
+                  (under 30x) for bedst mulig værdi.
+                </p>
+              </CardContent>
+            </Card>
+
+            <Card className="border-border bg-card">
+              <CardHeader className="pb-2">
+                <CardTitle className="flex items-center gap-2 text-lg">
+                  <Gamepad2 className="h-5 w-5 text-primary" />
+                  Spilbegrænsninger
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <p className="text-sm text-muted-foreground leading-relaxed">
+                  Free spins er næsten altid knyttet til specifikke
+                  spilleautomater valgt af casinoet. Det kan være populære
+                  titler som Starburst, Book of Dead eller Gonzo's Quest. Se
+                  det som en mulighed for at opdage nye favoritspil – men
+                  husk at tjekke, hvilke spil der er inkluderet, inden du
+                  accepterer bonussen.
+                </p>
+              </CardContent>
+            </Card>
+
+            <Card className="border-border bg-card">
+              <CardHeader className="pb-2">
+                <CardTitle className="flex items-center gap-2 text-lg">
+                  <Clock className="h-5 w-5 text-primary" />
+                  Tidsbegrænsninger
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <p className="text-sm text-muted-foreground leading-relaxed">
+                  Alle free spins-tilbud i Danmark har en udløbsdato – typisk
+                  mellem 24 timer og 30 dage. Danske casinoer er forpligtede
+                  til at angive gyldighedsperioden tydeligt. Ubrugte spins
+                  forsvinder automatisk, når fristen udløber, så det betaler
+                  sig at bruge dem hurtigt.
+                </p>
+              </CardContent>
+            </Card>
+
+            <Card className="border-border bg-card">
+              <CardHeader className="pb-2">
+                <CardTitle className="flex items-center gap-2 text-lg">
+                  <Lock className="h-5 w-5 text-primary" />
+                  Gevinstlofter og maks. indsats
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <p className="text-sm text-muted-foreground leading-relaxed">
+                  Mange free spins-bonusser har et loft for, hvor meget du kan
+                  vinde. Selvom du rammer en stor jackpot, kan et gevinstloft
+                  begrænse det beløb, du faktisk kan hæve. Derudover kan der
+                  være en maksimal indsats pr. spin, som du skal overholde
+                  under omsætningen – overskrides den, risikerer du at miste
+                  bonussen.
+                </p>
+              </CardContent>
+            </Card>
+          </div>
+        </section>
+
+        <Separator className="my-10" />
+
+        {/* Hvor finder man free spins */}
+        <section className="mb-12">
+          <h2 className="mb-4 text-3xl font-bold">
+            Hvor finder man free spins?
+          </h2>
+          <p className="mb-6 text-muted-foreground leading-relaxed">
+            Free spins er tæt knyttet til bonusser, kampagner og
+            velkomstpakker. Her er de mest almindelige steder, du kan støde
+            på tilbud med gratis spins.
+          </p>
+
+          <div className="space-y-3">
+            {[
+              {
+                title: "Velkomstbonusser",
+                desc: "Det mest almindelige sted at finde free spins. Nye spillere modtager typisk et antal gratis spins som en del af registreringen eller den første indbetaling.",
+                icon: Gift,
+              },
+              {
+                title: "Indbetalingskampagner",
+                desc: "Ved at indbetale på bestemte tidspunkter kan du modtage free spins som ekstra bonus – ofte knyttet til weekendtilbud eller særlige kampagneperioder.",
+                icon: TrendingUp,
+              },
+              {
+                title: "Loyalitetsprogrammer",
+                desc: "Regelmæssige spillere belønnes med free spins baseret på spilleaktivitet. Jo mere du spiller, desto flere spins optjener du.",
+                icon: Star,
+              },
+              {
+                title: "Turneringer og events",
+                desc: "Casinoer arrangerer jævnligt konkurrencer, hvor free spins er en del af præmiepuljen – ofte knyttet til nye spilslip eller sæsonbegivenheder.",
+                icon: Trophy,
+              },
+              {
+                title: "VIP-programmer",
+                desc: "De mest engagerede spillere nyder eksklusive free spins med bedre vilkår – lavere omsætningskrav, højere spinværdi og adgang til premium-slots.",
+                icon: Sparkles,
+              },
+              {
+                title: "Nyhedsbreve og bonuskoder",
+                desc: "Ved at tilmelde dig casinoets nyhedsbrev kan du modtage eksklusive bonuskoder, der giver adgang til free spins, som ikke er tilgængelige for alle.",
+                icon: Target,
+              },
+            ].map((item) => (
+              <div
+                key={item.title}
+                className="flex items-start gap-3 rounded-lg border border-border bg-card p-4"
+              >
+                <item.icon className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
+                <div>
+                  <h3 className="font-semibold">{item.title}</h3>
+                  <p className="text-sm text-muted-foreground">{item.desc}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        <Separator className="my-10" />
+
+        {/* In-game Free Spins */}
+        <section className="mb-12">
+          <h2 className="mb-4 text-3xl font-bold">In-game free spins</h2>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            Ud over de bonusbaserede free spins findes der også in-game free
+            spins, som aktiveres direkte inde i en spilleautomat. Disse udløses
+            typisk ved at lande et bestemt antal scatter-symboler på hjulene og
+            er en integreret del af spillets mekanik.
+          </p>
+          <Card className="border-border bg-card border-l-4 border-l-primary">
+            <CardContent className="pt-6">
+              <p className="text-muted-foreground leading-relaxed">
+                <strong>Vigtigt at forstå:</strong> In-game free spins er ikke
+                det samme som casino-bonusser. De er en del af spillets
+                returprocent (RTP) og kræver ingen bonuskode eller tilmelding.
+                Gevinster fra in-game free spins tilføjes direkte til din saldo
+                uden omsætningskrav – medmindre du spiller med bonuspenge.
+              </p>
+            </CardContent>
+          </Card>
+        </section>
+
+        <Separator className="my-10" />
+
+        {/* Strategier */}
+        <section className="mb-12">
+          <h2 className="mb-4 text-3xl font-bold">
+            Strategier til at få mest ud af dine free spins
+          </h2>
+          <p className="mb-6 text-muted-foreground leading-relaxed">
+            Selvom free spins grundlæggende handler om held, kan en strategisk
+            tilgang øge dine chancer for at omdanne gratis spins til reel
+            gevinst. Her er de vigtigste tips.
+          </p>
+
+          <div className="space-y-4">
+            {[
+              {
+                title: "1. Læs altid vilkårene grundigt",
+                desc: "Omsætningskrav, gevinstlofter, tidsbegrænsninger og spilbegrænsninger varierer kraftigt. Brug tid på at forstå betingelserne, før du accepterer en bonus.",
+              },
+              {
+                title: "2. Prioritér lave omsætningskrav",
+                desc: "Et tilbud med 10x omsætning er markant mere værdifuldt end et med 50x. Lave krav giver dig en realistisk chance for at hæve dine gevinster.",
+              },
+              {
+                title: "3. Vælg spil med høj RTP",
+                desc: "Hvis du har valgfrihed, så spil på automater med en RTP over 96 %. Højere RTP betyder, at du statistisk set beholder mere af dine gevinster over tid.",
+              },
+              {
+                title: "4. Brug dine spins hurtigt",
+                desc: "Free spins har altid en udløbsdato. Vent ikke for længe – ubrugte spins forsvinder, og du mister muligheden for gevinst.",
+              },
+              {
+                title: "5. Overvej omsætningsfrie spins",
+                desc: "Hvis du har muligheden, vælg altid omsætningsfrie free spins. Her kan du hæve gevinsterne med det samme – selvom gevinstloftet kan være lavere.",
+              },
+            ].map((item) => (
+              <Card key={item.title} className="border-border bg-card">
+                <CardContent className="pt-6">
+                  <h4 className="mb-2 font-semibold">{item.title}</h4>
+                  <p className="text-sm text-muted-foreground">{item.desc}</p>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </section>
+
+        <Separator className="my-10" />
+
+        {/* Faldgruber */}
+        <section className="mb-12">
+          <Card className="border-border bg-card border-l-4 border-l-destructive">
+            <CardHeader>
+              <CardTitle className="flex items-center gap-2">
+                <AlertTriangle className="h-6 w-6 text-destructive" />
+                Undgå disse faldgruber
+              </CardTitle>
+            </CardHeader>
+            <CardContent className="space-y-3">
+              <ul className="space-y-3">
+                {[
+                  "Acceptér aldrig en bonus uden at læse vilkårene – omsætningskrav kan gøre gevinster svære at hæve.",
+                  "Hold øje med udløbsdatoer. Glemte spins er tabte spins.",
+                  "Overskrid aldrig den maksimale indsats under omsætning – det kan annullere hele din bonus.",
+                  "Lad dig ikke friste af et højt antal free spins alene. Vilkårene er vigtigere end antallet.",
+                  "Spil altid på licenserede danske casinoer for at sikre fair behandling og regulering.",
+                ].map((item, i) => (
+                  <li key={i} className="flex items-start gap-2 text-sm text-muted-foreground">
+                    <AlertTriangle className="mt-0.5 h-4 w-4 flex-shrink-0 text-destructive" />
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </CardContent>
+          </Card>
+        </section>
+
+        <Separator className="my-10" />
+
+        {/* Ansvarligt spil */}
+        <section className="mb-12">
+          <Card className="border-border bg-card border-l-4 border-l-primary">
+            <CardHeader>
+              <CardTitle className="flex items-center gap-2">
+                <ShieldCheck className="h-6 w-6 text-primary" />
+                Spil ansvarligt
+              </CardTitle>
+            </CardHeader>
+            <CardContent className="space-y-3">
+              <p className="text-muted-foreground leading-relaxed">
+                Free spins er underholdende, men husk altid at sætte et budget
+                og holde dig til det. Spil aldrig for mere, end du har råd til
+                at tabe, og tag regelmæssige pauser.
+              </p>
+              <p className="text-muted-foreground leading-relaxed">
+                Alle casinoer på vores liste tilbyder selvudelukkelse via{" "}
+                <a
+                  href="https://www.rofus.nu/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-primary hover:underline font-medium"
+                >
+                  ROFUS
+                </a>
+                . Har du brug for hjælp, kan du kontakte{" "}
+                <a
+                  href="https://www.stopspillet.dk/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-primary hover:underline font-medium"
+                >
+                  StopSpillet.dk
+                </a>
+                .
+              </p>
+              <p className="text-xs text-muted-foreground">
+                18+ | Spil ansvarligt | Annoncering
+              </p>
+            </CardContent>
+          </Card>
+        </section>
+
+        <Separator className="my-10" />
+
+        {/* Opsummering */}
+        <section className="mb-12">
+          <h2 className="mb-6 text-3xl font-bold">Opsummering</h2>
+          <div className="space-y-3">
+            {[
+              {
+                title: "Risikofri spiloplevelse",
+                desc: "Free spins giver dig mulighed for at spille uden at bruge dine egne penge – perfekt til at udforske nye spil.",
+              },
+              {
+                title: "Mange varianter",
+                desc: "Fra no deposit spins til VIP-belønninger – der er en type for enhver spiller og spillestil.",
+              },
+              {
+                title: "Vilkår er afgørende",
+                desc: "Omsætningskrav, gevinstlofter og tidsbegrænsninger bestemmer den reelle værdi af dine free spins.",
+              },
+              {
+                title: "Omsætningsfrie spins er bedst",
+                desc: "Vælg altid omsætningsfrie free spins, når det er muligt – her beholder du gevinsterne med det samme.",
+              },
+              {
+                title: "Spil kun på licenserede casinoer",
+                desc: "Danske licenserede casinoer garanterer fair vilkår og skattefrie gevinster.",
+              },
+            ].map((item) => (
+              <div
+                key={item.title}
+                className="flex items-start gap-3 rounded-lg border border-border bg-card p-4"
+              >
+                <CheckCircle2 className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
+                <div>
+                  <h3 className="font-semibold">{item.title}</h3>
+                  <p className="text-sm text-muted-foreground">{item.desc}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        <Separator className="my-10" />
+
+        {/* FAQ */}
+        <section className="mb-12">
+          <div className="mb-8">
+            <div className="flex items-center gap-2 mb-4">
+              <HelpCircle className="h-8 w-8 text-primary" />
+              <h2 className="text-3xl font-bold">Ofte Stillede Spørgsmål</h2>
+            </div>
+            <p className="text-muted-foreground">
+              Alt du behøver at vide om free spins på danske casinoer.
+            </p>
+          </div>
+
+          <Accordion type="single" collapsible className="space-y-3">
+            {freeSpinsFaqs.map((faq, index) => (
+              <AccordionItem
+                key={index}
+                value={`item-${index}`}
+                className="rounded-lg border border-border bg-card px-6"
+              >
+                <AccordionTrigger className="text-left hover:no-underline">
+                  {faq.question}
+                </AccordionTrigger>
+                <AccordionContent className="text-muted-foreground">
+                  {faq.answer}
+                </AccordionContent>
+              </AccordionItem>
+            ))}
+          </Accordion>
+        </section>
+      </div>
+    </>
+  );
+};
+
+export default FreeSpins;

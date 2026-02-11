@@ -139,6 +139,12 @@ export function Header() {
                   Sticky Bonusser
                 </Link>
               </DropdownMenuItem>
+              <DropdownMenuItem asChild>
+                <Link to="/free-spins" className="flex items-center gap-2">
+                  <Sparkles className="h-4 w-4" />
+                  Free Spins
+                </Link>
+              </DropdownMenuItem>
               <DropdownMenuSeparator />
               <DropdownMenuItem asChild>
                 <Link to="/responsible-gaming" className="flex items-center gap-2">
@@ -359,6 +365,14 @@ export function Header() {
             >
               <BookOpen className="h-4 w-4" />
               Bonus Guide
+            </Link>
+            <Link
+              to="/free-spins"
+              className="ml-6 flex items-center gap-2 text-sm text-muted-foreground transition-colors hover:text-primary"
+              onClick={() => setMobileMenuOpen(false)}
+            >
+              <Sparkles className="h-4 w-4" />
+              Free Spins
             </Link>
             <Link
               to="/responsible-gaming"
