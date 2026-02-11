@@ -129,12 +129,6 @@ export function Header() {
             </DropdownMenuTrigger>
             <DropdownMenuContent align="center" className="bg-popover">
               <DropdownMenuItem asChild>
-                <Link to="/bonus-guide" className="flex items-center gap-2">
-                  <Layers className="h-4 w-4" />
-                  Alle Bonustyper
-                </Link>
-              </DropdownMenuItem>
-              <DropdownMenuItem asChild>
                 <Link to="/no-sticky-bonus" className="flex items-center gap-2">
                   <Sparkles className="h-4 w-4" />
                   No-Sticky Bonusser
