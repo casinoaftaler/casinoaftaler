@@ -139,10 +139,12 @@ Deno.serve(async (req) => {
       .eq("date", today)
       .maybeSingle();
 
+    const MAX_CREDITS = 1000;
     if (existingSpins) {
+      const newBalance = Math.min(existingSpins.spins_remaining + codeData.credits_amount, MAX_CREDITS);
       await adminClient
         .from("slot_spins")
-        .update({ spins_remaining: existingSpins.spins_remaining + codeData.credits_amount })
+        .update({ spins_remaining: newBalance })
         .eq("id", existingSpins.id);
     } else {
       await adminClient
@@ -150,7 +152,7 @@ Deno.serve(async (req) => {
         .insert({
           user_id: user.id,
           date: today,
-          spins_remaining: codeData.credits_amount,
+          spins_remaining: Math.min(codeData.credits_amount, MAX_CREDITS),
         });
     }
 

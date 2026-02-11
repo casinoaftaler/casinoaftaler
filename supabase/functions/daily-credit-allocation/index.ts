@@ -82,6 +82,7 @@ Deno.serve(async (req) => {
     const today = getTodayDanish();
     const BASE_DAILY_SPINS = 200;
     const MAX_SPINS_CAP = 220;
+    const ABSOLUTE_MAX_CREDITS = 1000;
 
     // Get all users with a Twitch account (active users)
     const { data: profiles, error: profilesError } = await supabase
@@ -163,8 +164,8 @@ Deno.serve(async (req) => {
         startValue = cap;
         topUpAmount = cap;
       } else if (previous >= cap) {
-        // User has more than cap (admin/community bonus) - carry over
-        startValue = previous;
+        // User has more than cap — carry over but enforce absolute max
+        startValue = Math.min(previous, ABSOLUTE_MAX_CREDITS);
         topUpAmount = 0;
       } else {
         // User is below cap - top up to cap
