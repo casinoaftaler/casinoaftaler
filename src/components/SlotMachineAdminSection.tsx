@@ -7,8 +7,6 @@ import { useSlotSymbolsAdmin } from "@/hooks/useSlotSymbolsAdmin";
 import { SlotSymbolImageUpload } from "@/components/SlotSymbolImageUpload";
 import { SlotTitleImageUpload } from "@/components/SlotTitleImageUpload";
 import { SlotBackgroundImageUpload } from "@/components/SlotBackgroundImageUpload";
-import { SpinManagementSection } from "@/components/SpinManagementSection";
-import { CreditAllocationHistory } from "@/components/CreditAllocationHistory";
 import { SlotFrameAdminControls } from "@/components/slots/SlotFrameAdminControls";
 import { SlotStatsResetSection } from "@/components/slots/SlotStatsResetSection";
 import { SlotSoundAdminSection } from "@/components/slots/SlotSoundAdminSection";
@@ -1464,10 +1462,6 @@ export function SlotMachineAdminSection() {
           <div className="w-px h-6 bg-border mx-1 self-center" />
 
           {/* Global tabs */}
-          <TabsTrigger value="spins" className="gap-1">
-            <Users className="h-3.5 w-3.5" />
-            Spins
-          </TabsTrigger>
           <TabsTrigger value="points" className="gap-1">
             <Users className="h-3.5 w-3.5" />
             Points
@@ -1490,13 +1484,6 @@ export function SlotMachineAdminSection() {
           <div className="space-y-6">
             <SlotStatsResetSection />
             <StatisticsTab gameId={selectedGame} />
-          </div>
-        </TabsContent>
-
-        <TabsContent value="spins">
-          <div className="space-y-6">
-            <SpinManagementSection />
-            <CreditAllocationHistory />
           </div>
         </TabsContent>
 
