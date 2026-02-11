@@ -9,7 +9,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { ChevronDown, Gamepad2, LogOut, Mail, Menu, User, X, Dices, Gift, BookOpen, Users, ShoppingBag, Video, ShieldCheck, Sparkles, Layers, Moon, Sun, Coins, UserCircle, Trophy, Ticket, CreditCard, MoreHorizontal, RefreshCw, DollarSign } from "lucide-react";
+import { ChevronDown, Gamepad2, LogOut, Mail, Menu, User, X, Dices, Gift, BookOpen, Users, ShoppingBag, Video, ShieldCheck, Sparkles, Layers, Moon, Sun, Coins, UserCircle, Trophy, Ticket, CreditCard, MoreHorizontal, RefreshCw, DollarSign, Zap } from "lucide-react";
 import { useState, useEffect } from "react";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
 import { useTwitchStatus } from "@/hooks/useTwitchStatus";
@@ -167,6 +167,12 @@ export function Header() {
                 <Link to="/bonus-uden-indbetaling" className="flex items-center gap-2">
                   <Gift className="h-4 w-4" />
                   Bonus uden Indbetaling
+                </Link>
+              </DropdownMenuItem>
+              <DropdownMenuItem asChild>
+                <Link to="/bonus-uden-omsaetningskrav" className="flex items-center gap-2">
+                  <Zap className="h-4 w-4" />
+                  Bonus uden Omsætningskrav
                 </Link>
               </DropdownMenuItem>
               <DropdownMenuSeparator />
@@ -429,6 +435,14 @@ export function Header() {
             >
               <Gift className="h-4 w-4" />
               Bonus uden Indbetaling
+            </Link>
+            <Link
+              to="/bonus-uden-omsaetningskrav"
+              className="ml-6 flex items-center gap-2 text-sm text-muted-foreground transition-colors hover:text-primary"
+              onClick={() => setMobileMenuOpen(false)}
+            >
+              <Zap className="h-4 w-4" />
+              Bonus uden Omsætningskrav
             </Link>
             <Link
               to="/responsible-gaming"
