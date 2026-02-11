@@ -4,9 +4,33 @@ import { supabase } from "@/integrations/supabase/client";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Coins, Loader2, Search, Plus, Minus, Users } from "lucide-react";
+import { Badge } from "@/components/ui/badge";
+import {
+  Coins,
+  Loader2,
+  Search,
+  Plus,
+  Minus,
+  Users,
+  ArrowUpDown,
+  ArrowDown,
+  ArrowUp,
+  Ban,
+  ShieldCheck,
+} from "lucide-react";
 import { toast } from "sonner";
 import { getTodayDanish } from "@/lib/danishDate";
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+} from "@/components/ui/alert-dialog";
+import { Textarea } from "@/components/ui/textarea";
 
 interface UserWithSpins {
   user_id: string;
@@ -16,38 +40,47 @@ interface UserWithSpins {
   spins_remaining: number;
   date: string;
   spin_record_id: string | null;
+  is_banned: boolean;
 }
+
+type SortField = "name" | "credits";
+type SortDir = "asc" | "desc";
 
 export function SpinManagementSection() {
   const [searchTerm, setSearchTerm] = useState("");
   const [spinAmounts, setSpinAmounts] = useState<Record<string, number>>({});
   const [bulkSpinAmount, setBulkSpinAmount] = useState(10);
+  const [sortField, setSortField] = useState<SortField>("credits");
+  const [sortDir, setSortDir] = useState<SortDir>("desc");
+  const [banDialogUser, setBanDialogUser] = useState<UserWithSpins | null>(null);
+  const [banReason, setBanReason] = useState("");
   const queryClient = useQueryClient();
   const today = getTodayDanish();
 
-  // Fetch all users with their current spins
+  // Fetch all users with their current spins and ban status
   const { data: users, isLoading } = useQuery({
     queryKey: ["admin-user-spins", today],
     queryFn: async (): Promise<UserWithSpins[]> => {
-      // Get all profiles
-      const { data: profiles, error: profilesError } = await supabase
-        .from("profiles")
-        .select("user_id, display_name, twitch_username, avatar_url")
-        .not("twitch_id", "is", null);
+      const [profilesRes, spinsRes, bansRes] = await Promise.all([
+        supabase
+          .from("profiles")
+          .select("user_id, display_name, twitch_username, avatar_url")
+          .not("twitch_id", "is", null),
+        supabase.from("slot_spins").select("*").eq("date", today),
+        supabase.from("user_bans").select("user_id"),
+      ]);
 
-      if (profilesError) throw profilesError;
+      if (profilesRes.error) throw profilesRes.error;
+      if (spinsRes.error) throw spinsRes.error;
+      // bans query might fail for non-admins, handle gracefully
+      const bannedIds = new Set(
+        (bansRes.data || []).map((b: { user_id: string }) => b.user_id)
+      );
 
-      // Get today's spin records
-      const { data: spins, error: spinsError } = await supabase
-        .from("slot_spins")
-        .select("*")
-        .eq("date", today);
-
-      if (spinsError) throw spinsError;
-
-      // Combine the data
-      return profiles.map((profile) => {
-        const spinRecord = spins?.find((s) => s.user_id === profile.user_id);
+      return profilesRes.data.map((profile) => {
+        const spinRecord = spinsRes.data?.find(
+          (s) => s.user_id === profile.user_id
+        );
         return {
           user_id: profile.user_id,
           display_name: profile.display_name,
@@ -56,6 +89,7 @@ export function SpinManagementSection() {
           spins_remaining: spinRecord?.spins_remaining ?? 0,
           date: today,
           spin_record_id: spinRecord?.id ?? null,
+          is_banned: bannedIds.has(profile.user_id),
         };
       });
     },
@@ -91,7 +125,6 @@ export function SpinManagementSection() {
         if (error) throw error;
       }
 
-      // Log the admin credit change
       await supabase.from("credit_allocation_log").insert({
         user_id: userId,
         amount,
@@ -151,6 +184,56 @@ export function SpinManagementSection() {
     },
   });
 
+  // Ban mutation
+  const banUser = useMutation({
+    mutationFn: async ({
+      userId,
+      reason,
+    }: {
+      userId: string;
+      reason: string;
+    }) => {
+      const {
+        data: { user },
+      } = await supabase.auth.getUser();
+      if (!user) throw new Error("Not authenticated");
+
+      const { error } = await supabase.from("user_bans").insert({
+        user_id: userId,
+        banned_by: user.id,
+        reason: reason || null,
+      });
+      if (error) throw error;
+    },
+    onSuccess: () => {
+      toast.success("Bruger banned");
+      queryClient.invalidateQueries({ queryKey: ["admin-user-spins"] });
+      setBanDialogUser(null);
+      setBanReason("");
+    },
+    onError: (error: Error) => {
+      toast.error(`Fejl: ${error.message}`);
+    },
+  });
+
+  // Unban mutation
+  const unbanUser = useMutation({
+    mutationFn: async (userId: string) => {
+      const { error } = await supabase
+        .from("user_bans")
+        .delete()
+        .eq("user_id", userId);
+      if (error) throw error;
+    },
+    onSuccess: () => {
+      toast.success("Bruger unbanned");
+      queryClient.invalidateQueries({ queryKey: ["admin-user-spins"] });
+    },
+    onError: (error: Error) => {
+      toast.error(`Fejl: ${error.message}`);
+    },
+  });
+
   const handleSpinChange = (
     userId: string,
     amount: number,
@@ -160,166 +243,332 @@ export function SpinManagementSection() {
     updateSpins.mutate({ userId, amount, currentSpins, recordId });
   };
 
-  const filteredUsers = users?.filter((user) => {
-    const search = searchTerm.toLowerCase();
-    return (
-      user.display_name?.toLowerCase().includes(search) ||
-      user.twitch_username?.toLowerCase().includes(search)
+  const toggleSort = (field: SortField) => {
+    if (sortField === field) {
+      setSortDir((d) => (d === "asc" ? "desc" : "asc"));
+    } else {
+      setSortField(field);
+      setSortDir(field === "credits" ? "desc" : "asc");
+    }
+  };
+
+  const SortIcon = ({ field }: { field: SortField }) => {
+    if (sortField !== field)
+      return <ArrowUpDown className="h-3.5 w-3.5 text-muted-foreground" />;
+    return sortDir === "asc" ? (
+      <ArrowUp className="h-3.5 w-3.5" />
+    ) : (
+      <ArrowDown className="h-3.5 w-3.5" />
     );
-  });
+  };
+
+  const filteredUsers = users
+    ?.filter((user) => {
+      const search = searchTerm.toLowerCase();
+      return (
+        user.display_name?.toLowerCase().includes(search) ||
+        user.twitch_username?.toLowerCase().includes(search)
+      );
+    })
+    .sort((a, b) => {
+      const dir = sortDir === "asc" ? 1 : -1;
+      if (sortField === "credits") {
+        return (a.spins_remaining - b.spins_remaining) * dir;
+      }
+      const nameA = (
+        a.display_name ||
+        a.twitch_username ||
+        ""
+      ).toLowerCase();
+      const nameB = (
+        b.display_name ||
+        b.twitch_username ||
+        ""
+      ).toLowerCase();
+      return nameA.localeCompare(nameB) * dir;
+    });
 
   return (
-    <Card>
-      <CardHeader>
-        <CardTitle className="flex items-center gap-2">
-          <Coins className="h-5 w-5" />
-          Giv Credits til Brugere
-        </CardTitle>
-      </CardHeader>
-      <CardContent className="space-y-6">
-        <p className="text-sm text-muted-foreground">
-          Giv eller fjern credits fra brugere. Ændringer gælder for dagens dato.
-        </p>
+    <>
+      <Card>
+        <CardHeader>
+          <CardTitle className="flex items-center gap-2">
+            <Coins className="h-5 w-5" />
+            Giv Credits til Brugere
+          </CardTitle>
+        </CardHeader>
+        <CardContent className="space-y-6">
+          <p className="text-sm text-muted-foreground">
+            Giv eller fjern credits fra brugere. Ændringer gælder for dagens
+            dato.
+          </p>
 
-        {/* Bulk give spins */}
-        <div className="flex items-center gap-3 p-4 rounded-lg border border-border bg-muted/50">
-          <Users className="h-5 w-5 text-primary" />
-          <span className="text-sm font-medium">Giv til alle:</span>
-          <Input
-            type="number"
-            min="1"
-            value={bulkSpinAmount}
-            onChange={(e) => setBulkSpinAmount(parseInt(e.target.value) || 10)}
-            className="w-24 text-center"
-          />
-          <span className="text-sm text-muted-foreground">credits</span>
-          <Button
-            onClick={() => giveSpinsToAll.mutate(bulkSpinAmount)}
-            disabled={giveSpinsToAll.isPending || !users || users.length === 0}
-            className="ml-auto"
-          >
-            {giveSpinsToAll.isPending ? (
-              <Loader2 className="h-4 w-4 animate-spin mr-2" />
-            ) : (
-              <Plus className="h-4 w-4 mr-2" />
-            )}
-            Giv til alle ({users?.length ?? 0})
-          </Button>
-        </div>
-
-        {/* Search */}
-        <div className="relative">
-          <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-          <Input
-            placeholder="Søg efter bruger..."
-            value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
-            className="pl-10"
-          />
-        </div>
-
-        {isLoading ? (
-          <div className="flex items-center justify-center py-8">
-            <Loader2 className="h-6 w-6 animate-spin text-primary" />
+          {/* Bulk give spins */}
+          <div className="flex flex-col sm:flex-row items-start sm:items-center gap-3 p-4 rounded-lg border border-border bg-muted/50">
+            <Users className="h-5 w-5 text-primary flex-shrink-0" />
+            <span className="text-sm font-medium">Giv til alle:</span>
+            <Input
+              type="number"
+              min="1"
+              value={bulkSpinAmount}
+              onChange={(e) =>
+                setBulkSpinAmount(parseInt(e.target.value) || 10)
+              }
+              className="w-24 text-center"
+            />
+            <span className="text-sm text-muted-foreground">credits</span>
+            <Button
+              onClick={() => giveSpinsToAll.mutate(bulkSpinAmount)}
+              disabled={
+                giveSpinsToAll.isPending || !users || users.length === 0
+              }
+              className="sm:ml-auto"
+            >
+              {giveSpinsToAll.isPending ? (
+                <Loader2 className="h-4 w-4 animate-spin mr-2" />
+              ) : (
+                <Plus className="h-4 w-4 mr-2" />
+              )}
+              Giv til alle ({users?.length ?? 0})
+            </Button>
           </div>
-        ) : filteredUsers && filteredUsers.length > 0 ? (
-          <div className="space-y-3 max-h-[400px] overflow-y-auto">
-            {filteredUsers.map((user) => (
-              <div
-                key={user.user_id}
-                className="flex items-center justify-between rounded-lg border border-border bg-card p-3"
+
+          {/* Search + Sort */}
+          <div className="flex flex-col sm:flex-row gap-3">
+            <div className="relative flex-1">
+              <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+              <Input
+                placeholder="Søg efter bruger..."
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+                className="pl-10"
+              />
+            </div>
+            <div className="flex gap-2">
+              <Button
+                variant="outline"
+                size="sm"
+                onClick={() => toggleSort("name")}
+                className="gap-1.5"
               >
-                <div className="flex items-center gap-3">
-                  {user.avatar_url ? (
-                    <img
-                      src={user.avatar_url}
-                      alt=""
-                      className="h-10 w-10 rounded-full"
-                    />
-                  ) : (
-                    <div className="h-10 w-10 rounded-full bg-muted flex items-center justify-center">
-                      <Coins className="h-5 w-5 text-muted-foreground" />
+                Navn
+                <SortIcon field="name" />
+              </Button>
+              <Button
+                variant="outline"
+                size="sm"
+                onClick={() => toggleSort("credits")}
+                className="gap-1.5"
+              >
+                Credits
+                <SortIcon field="credits" />
+              </Button>
+            </div>
+          </div>
+
+          {isLoading ? (
+            <div className="flex items-center justify-center py-8">
+              <Loader2 className="h-6 w-6 animate-spin text-primary" />
+            </div>
+          ) : filteredUsers && filteredUsers.length > 0 ? (
+            <div className="space-y-3 max-h-[500px] overflow-y-auto">
+              {filteredUsers.map((user) => (
+                <div
+                  key={user.user_id}
+                  className={`flex flex-col sm:flex-row items-start sm:items-center justify-between rounded-lg border p-3 gap-3 ${
+                    user.is_banned
+                      ? "border-destructive/50 bg-destructive/5"
+                      : "border-border bg-card"
+                  }`}
+                >
+                  <div className="flex items-center gap-3">
+                    {user.avatar_url ? (
+                      <img
+                        src={user.avatar_url}
+                        alt=""
+                        className="h-10 w-10 rounded-full"
+                      />
+                    ) : (
+                      <div className="h-10 w-10 rounded-full bg-muted flex items-center justify-center">
+                        <Coins className="h-5 w-5 text-muted-foreground" />
+                      </div>
+                    )}
+                    <div>
+                      <div className="flex items-center gap-2">
+                        <p className="font-medium">
+                          {user.display_name ||
+                            user.twitch_username ||
+                            "Ukendt"}
+                        </p>
+                        {user.is_banned && (
+                          <Badge
+                            variant="destructive"
+                            className="text-xs"
+                          >
+                            Banned
+                          </Badge>
+                        )}
+                      </div>
+                      {user.twitch_username &&
+                        user.display_name !== user.twitch_username && (
+                          <p className="text-xs text-muted-foreground">
+                            @{user.twitch_username}
+                          </p>
+                        )}
                     </div>
-                  )}
-                  <div>
-                    <p className="font-medium">
-                      {user.display_name || user.twitch_username || "Ukendt"}
-                    </p>
-                    {user.twitch_username && user.display_name !== user.twitch_username && (
-                      <p className="text-xs text-muted-foreground">
-                        @{user.twitch_username}
-                      </p>
+                  </div>
+
+                  <div className="flex items-center gap-3 w-full sm:w-auto justify-between sm:justify-end">
+                    <div className="flex items-center gap-2">
+                      <Input
+                        type="number"
+                        min="1"
+                        value={spinAmounts[user.user_id] ?? 10}
+                        onChange={(e) =>
+                          setSpinAmounts((prev) => ({
+                            ...prev,
+                            [user.user_id]: parseInt(e.target.value) || 10,
+                          }))
+                        }
+                        className="w-20 text-center"
+                      />
+                    </div>
+
+                    <div className="flex items-center gap-1">
+                      <Button
+                        size="icon"
+                        variant="outline"
+                        onClick={() =>
+                          handleSpinChange(
+                            user.user_id,
+                            -(spinAmounts[user.user_id] ?? 10),
+                            user.spins_remaining,
+                            user.spin_record_id
+                          )
+                        }
+                        disabled={updateSpins.isPending}
+                        className="text-destructive hover:text-destructive"
+                      >
+                        <Minus className="h-4 w-4" />
+                      </Button>
+                      <Button
+                        size="icon"
+                        variant="outline"
+                        onClick={() =>
+                          handleSpinChange(
+                            user.user_id,
+                            spinAmounts[user.user_id] ?? 10,
+                            user.spins_remaining,
+                            user.spin_record_id
+                          )
+                        }
+                        disabled={updateSpins.isPending}
+                        className="text-primary hover:text-primary"
+                      >
+                        <Plus className="h-4 w-4" />
+                      </Button>
+                    </div>
+
+                    <div className="min-w-[80px] text-right">
+                      <span className="font-mono font-bold text-primary">
+                        {user.spins_remaining}
+                      </span>
+                      <span className="text-muted-foreground text-sm">
+                        {" "}
+                        credits
+                      </span>
+                    </div>
+
+                    {/* Ban/Unban button */}
+                    {user.is_banned ? (
+                      <Button
+                        size="icon"
+                        variant="outline"
+                        onClick={() => unbanUser.mutate(user.user_id)}
+                        disabled={unbanUser.isPending}
+                        title="Unban bruger"
+                        className="text-green-500 hover:text-green-500"
+                      >
+                        <ShieldCheck className="h-4 w-4" />
+                      </Button>
+                    ) : (
+                      <Button
+                        size="icon"
+                        variant="outline"
+                        onClick={() => setBanDialogUser(user)}
+                        title="Ban bruger"
+                        className="text-destructive hover:text-destructive"
+                      >
+                        <Ban className="h-4 w-4" />
+                      </Button>
                     )}
                   </div>
                 </div>
+              ))}
+            </div>
+          ) : (
+            <p className="text-center text-sm text-muted-foreground py-4">
+              {searchTerm
+                ? "Ingen brugere fundet"
+                : "Ingen Twitch-brugere registreret"}
+            </p>
+          )}
+        </CardContent>
+      </Card>
 
-                <div className="flex items-center gap-3">
-                  <div className="flex items-center gap-2">
-                    <Input
-                      type="number"
-                      min="1"
-                      value={spinAmounts[user.user_id] ?? 10}
-                      onChange={(e) =>
-                        setSpinAmounts((prev) => ({
-                          ...prev,
-                          [user.user_id]: parseInt(e.target.value) || 10,
-                        }))
-                      }
-                      className="w-20 text-center"
-                    />
-                  </div>
-
-                  <div className="flex items-center gap-1">
-                    <Button
-                      size="icon"
-                      variant="outline"
-                      onClick={() =>
-                        handleSpinChange(
-                          user.user_id,
-                          -(spinAmounts[user.user_id] ?? 10),
-                          user.spins_remaining,
-                          user.spin_record_id
-                        )
-                      }
-                      disabled={updateSpins.isPending}
-                      className="text-destructive hover:text-destructive"
-                    >
-                      <Minus className="h-4 w-4" />
-                    </Button>
-                    <Button
-                      size="icon"
-                      variant="outline"
-                      onClick={() =>
-                        handleSpinChange(
-                          user.user_id,
-                          spinAmounts[user.user_id] ?? 10,
-                          user.spins_remaining,
-                          user.spin_record_id
-                        )
-                      }
-                      disabled={updateSpins.isPending}
-                      className="text-primary hover:text-primary"
-                    >
-                      <Plus className="h-4 w-4" />
-                    </Button>
-                  </div>
-
-                  <div className="min-w-[80px] text-right">
-                    <span className="font-mono font-bold text-primary">
-                      {user.spins_remaining}
-                    </span>
-                    <span className="text-muted-foreground text-sm"> credits</span>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-        ) : (
-          <p className="text-center text-sm text-muted-foreground py-4">
-            {searchTerm ? "Ingen brugere fundet" : "Ingen Twitch-brugere registreret"}
-          </p>
-        )}
-      </CardContent>
-    </Card>
+      {/* Ban confirmation dialog */}
+      <AlertDialog
+        open={!!banDialogUser}
+        onOpenChange={(open) => {
+          if (!open) {
+            setBanDialogUser(null);
+            setBanReason("");
+          }
+        }}
+      >
+        <AlertDialogContent>
+          <AlertDialogHeader>
+            <AlertDialogTitle>
+              Ban{" "}
+              {banDialogUser?.display_name ||
+                banDialogUser?.twitch_username ||
+                "bruger"}
+              ?
+            </AlertDialogTitle>
+            <AlertDialogDescription>
+              Brugeren vil ikke længere kunne tilgå siden. Du kan altid unban
+              dem senere.
+            </AlertDialogDescription>
+          </AlertDialogHeader>
+          <Textarea
+            placeholder="Årsag (valgfri)..."
+            value={banReason}
+            onChange={(e) => setBanReason(e.target.value)}
+            className="mt-2"
+          />
+          <AlertDialogFooter>
+            <AlertDialogCancel>Annuller</AlertDialogCancel>
+            <AlertDialogAction
+              onClick={() => {
+                if (banDialogUser) {
+                  banUser.mutate({
+                    userId: banDialogUser.user_id,
+                    reason: banReason,
+                  });
+                }
+              }}
+              className="bg-destructive text-destructive-foreground hover:bg-destructive/90"
+            >
+              {banUser.isPending ? (
+                <Loader2 className="h-4 w-4 animate-spin mr-2" />
+              ) : (
+                <Ban className="h-4 w-4 mr-2" />
+              )}
+              Ban bruger
+            </AlertDialogAction>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
+    </>
   );
 }
