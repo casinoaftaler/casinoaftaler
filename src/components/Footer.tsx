@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { Gamepad2, Instagram, MessageCircle, Trophy, BookOpen, Users, Shield, Scale, FileText, Cookie, ExternalLink, Video } from "lucide-react";
+import { Gamepad2, Instagram, MessageCircle, Trophy, BookOpen, Users, Shield, Scale, FileText, Cookie, ExternalLink, Video, Gift, Sparkles, CreditCard, Target, Zap, Tv } from "lucide-react";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
 
 export function Footer() {
@@ -14,7 +14,7 @@ export function Footer() {
   return (
     <footer className="border-t border-border bg-card">
       <div className="container py-12">
-        <div className="grid gap-8 md:grid-cols-4">
+        <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-5">
           <div className="space-y-4">
             <Link to="/" className="flex items-center gap-2">
               <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-primary overflow-hidden">
@@ -106,6 +106,72 @@ export function Footer() {
                 >
                   <Users className="h-4 w-4" />
                   Om Os
+                </Link>
+              </li>
+            </ul>
+          </div>
+
+          <div>
+            <h4 className="mb-4 text-sm font-semibold">Alle Bonustyper</h4>
+            <ul className="space-y-2 text-sm">
+              <li>
+                <Link to="/bonus-uden-omsaetningskrav" className="flex items-center gap-2 text-muted-foreground transition-colors hover:text-foreground">
+                  <Zap className="h-4 w-4" />
+                  No-Sticky Bonusser
+                </Link>
+              </li>
+              <li>
+                <Link to="/bonus-guide" className="flex items-center gap-2 text-muted-foreground transition-colors hover:text-foreground">
+                  <BookOpen className="h-4 w-4" />
+                  Sticky Bonusser
+                </Link>
+              </li>
+              <li>
+                <Link to="/free-spins" className="flex items-center gap-2 text-muted-foreground transition-colors hover:text-foreground">
+                  <Sparkles className="h-4 w-4" />
+                  Free Spins
+                </Link>
+              </li>
+              <li>
+                <Link to="/velkomstbonus" className="flex items-center gap-2 text-muted-foreground transition-colors hover:text-foreground">
+                  <Trophy className="h-4 w-4" />
+                  Velkomstbonus
+                </Link>
+              </li>
+              <li>
+                <Link to="/omsaetningskrav" className="flex items-center gap-2 text-muted-foreground transition-colors hover:text-foreground">
+                  <Target className="h-4 w-4" />
+                  Omsætningskrav
+                </Link>
+              </li>
+              <li>
+                <Link to="/indskudsbonus" className="flex items-center gap-2 text-muted-foreground transition-colors hover:text-foreground">
+                  <CreditCard className="h-4 w-4" />
+                  Indskudsbonus
+                </Link>
+              </li>
+              <li>
+                <Link to="/bonus-uden-indbetaling" className="flex items-center gap-2 text-muted-foreground transition-colors hover:text-foreground">
+                  <Gift className="h-4 w-4" />
+                  Bonus uden Indbetaling
+                </Link>
+              </li>
+              <li>
+                <Link to="/bonus-uden-omsaetningskrav" className="flex items-center gap-2 text-muted-foreground transition-colors hover:text-foreground">
+                  <Zap className="h-4 w-4" />
+                  Bonus uden Omsætningskrav
+                </Link>
+              </li>
+              <li>
+                <Link to="/live-casino" className="flex items-center gap-2 text-muted-foreground transition-colors hover:text-foreground">
+                  <Tv className="h-4 w-4" />
+                  Live Casino
+                </Link>
+              </li>
+              <li>
+                <Link to="/responsible-gaming" className="flex items-center gap-2 text-muted-foreground transition-colors hover:text-foreground">
+                  <Shield className="h-4 w-4" />
+                  Ansvarligt Spil
                 </Link>
               </li>
             </ul>
