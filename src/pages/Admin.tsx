@@ -1,4 +1,6 @@
 import { useState, useEffect } from "react";
+import { useIsMobile } from "@/hooks/use-mobile";
+import { Sheet, SheetContent, SheetHeader, SheetTitle } from "@/components/ui/sheet";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "@/hooks/useAuth";
 import { useCasinos, useCreateCasino, useUpdateCasino, useDeleteCasino, useUpdateCasinoPositions, type Casino, type CasinoInsert } from "@/hooks/useCasinos";
@@ -38,7 +40,7 @@ import {
 } from "@/components/ui/alert-dialog";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
-import { Plus, Trash2, LogOut, Star, Loader2, Pencil, GripVertical, Gift, ShoppingBag, BarChart3, Settings, Users, Video, Gamepad2, Bell, Sparkles, Ticket } from "lucide-react";
+import { Plus, Trash2, LogOut, Star, Loader2, Pencil, GripVertical, Gift, ShoppingBag, BarChart3, Settings, Users, Video, Gamepad2, Bell, Sparkles, Ticket, Menu } from "lucide-react";
 import { AdminUserManagement } from "@/components/AdminUserManagement";
 import { TwitchUsersSection } from "@/components/TwitchUsersSection";
 import { HighlightsAdminSection } from "@/components/HighlightsAdminSection";
@@ -739,10 +741,27 @@ function AdminDashboard() {
   const updatePositions = useUpdateCasinoPositions();
   const navigate = useNavigate();
   const queryClient = useQueryClient();
+  const isMobile = useIsMobile();
   const [dialogOpen, setDialogOpen] = useState(false);
   const [editingCasino, setEditingCasino] = useState<Casino | null>(null);
   const [orderedCasinos, setOrderedCasinos] = useState<Casino[]>([]);
   const [headerIconUrl, setHeaderIconUrl] = useState<string | null>(null);
+  const [activeTab, setActiveTab] = useState("casinos");
+  const [sidebarOpen, setSidebarOpen] = useState(false);
+
+  const navItems = [
+    { value: "casinos", label: "Casino Tilbud", icon: Gift },
+    { value: "shop", label: "Butik", icon: ShoppingBag },
+    { value: "highlights", label: "Highlights", icon: Video },
+    { value: "community-clips", label: "Community", icon: Sparkles },
+    { value: "slotmachine", label: "Spillemaskine", icon: Gamepad2 },
+    { value: "requests", label: "Requests", icon: Gamepad2 },
+    { value: "codes", label: "Koder", icon: Ticket },
+    { value: "notifications", label: "Notifikationer", icon: Bell },
+    { value: "analytics", label: "Analytics", icon: BarChart3 },
+    { value: "settings", label: "Indstillinger", icon: Settings },
+    { value: "users", label: "Brugere", icon: Users },
+  ];
 
   useEffect(() => {
     if (siteSettings?.header_icon) {
@@ -791,68 +810,69 @@ function AdminDashboard() {
   return (
     <div className="min-h-screen bg-background">
       <header className="border-b border-border bg-card">
-        <div className="container flex h-16 items-center justify-between">
-          <h1 className="text-xl font-bold">Super Admin Dashboard</h1>
-          <div className="flex items-center gap-4">
-            <span className="text-sm text-muted-foreground">{user?.email}</span>
+        <div className="container flex h-16 items-center justify-between gap-2">
+          <div className="flex items-center gap-2">
+            <Button
+              variant="ghost"
+              size="icon"
+              className="lg:hidden"
+              onClick={() => setSidebarOpen(true)}
+            >
+              <Menu className="h-5 w-5" />
+            </Button>
+            <h1 className="text-lg font-bold lg:text-xl">Admin Dashboard</h1>
+          </div>
+          <div className="flex items-center gap-2 lg:gap-4">
+            <span className="hidden text-sm text-muted-foreground sm:inline">{user?.email}</span>
             <ThemeToggle />
             <Button onClick={handleSignOut} variant="outline" size="sm">
-              <LogOut className="mr-2 h-4 w-4" /> Log Ud
+              <LogOut className="h-4 w-4" />
+              <span className="hidden sm:inline ml-2">Log Ud</span>
             </Button>
           </div>
         </div>
       </header>
 
-      <main className="container py-8">
-        <Tabs defaultValue="casinos" className="w-full">
-            <TabsList className="grid w-full grid-cols-11 mb-8 h-auto">
-              <TabsTrigger value="casinos" className="flex items-center gap-2 py-3">
-                <Gift className="h-4 w-4" />
-                <span className="hidden sm:inline">Casino Tilbud</span>
-              </TabsTrigger>
-              <TabsTrigger value="shop" className="flex items-center gap-2 py-3">
-                <ShoppingBag className="h-4 w-4" />
-                <span className="hidden sm:inline">Butik</span>
-              </TabsTrigger>
-              <TabsTrigger value="highlights" className="flex items-center gap-2 py-3">
-                <Video className="h-4 w-4" />
-                <span className="hidden sm:inline">Highlights</span>
-              </TabsTrigger>
-              <TabsTrigger value="community-clips" className="flex items-center gap-2 py-3">
-                <Sparkles className="h-4 w-4" />
-                <span className="hidden sm:inline">Community</span>
-              </TabsTrigger>
-              <TabsTrigger value="slotmachine" className="flex items-center gap-2 py-3">
-                <Gamepad2 className="h-4 w-4" />
-                <span className="hidden sm:inline">Spillemaskine</span>
-              </TabsTrigger>
-              <TabsTrigger value="requests" className="flex items-center gap-2 py-3">
-                <Gamepad2 className="h-4 w-4" />
-                <span className="hidden sm:inline">Requests</span>
-              </TabsTrigger>
-              <TabsTrigger value="codes" className="flex items-center gap-2 py-3">
-              <Ticket className="h-4 w-4" />
-              <span className="hidden sm:inline">Koder</span>
-            </TabsTrigger>
-            <TabsTrigger value="notifications" className="flex items-center gap-2 py-3">
-              <Bell className="h-4 w-4" />
-              <span className="hidden sm:inline">Notifikationer</span>
-            </TabsTrigger>
-            <TabsTrigger value="analytics" className="flex items-center gap-2 py-3">
-              <BarChart3 className="h-4 w-4" />
-              <span className="hidden sm:inline">Analytics</span>
-            </TabsTrigger>
-            <TabsTrigger value="settings" className="flex items-center gap-2 py-3">
-              <Settings className="h-4 w-4" />
-              <span className="hidden sm:inline">Indstillinger</span>
-            </TabsTrigger>
-            <TabsTrigger value="users" className="flex items-center gap-2 py-3">
-              <Users className="h-4 w-4" />
-              <span className="hidden sm:inline">Brugere</span>
-            </TabsTrigger>
-          </TabsList>
+      {/* Mobile sidebar sheet */}
+      <Sheet open={sidebarOpen} onOpenChange={setSidebarOpen}>
+        <SheetContent side="left" className="w-72 p-0">
+          <SheetHeader className="border-b border-border p-4">
+            <SheetTitle>Navigation</SheetTitle>
+          </SheetHeader>
+          <nav className="flex flex-col gap-1 p-2">
+            {navItems.map((item) => (
+              <button
+                key={item.value}
+                onClick={() => {
+                  setActiveTab(item.value);
+                  setSidebarOpen(false);
+                }}
+                className={`flex items-center gap-3 rounded-md px-3 py-2.5 text-sm font-medium transition-colors ${
+                  activeTab === item.value
+                    ? "bg-primary text-primary-foreground"
+                    : "text-muted-foreground hover:bg-muted hover:text-foreground"
+                }`}
+              >
+                <item.icon className="h-4 w-4" />
+                {item.label}
+              </button>
+            ))}
+          </nav>
+        </SheetContent>
+      </Sheet>
 
-          {/* Casino Tilbud Tab */}
+      <main className="container py-8">
+        <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
+            <TabsList className="hidden lg:grid w-full grid-cols-11 mb-8 h-auto">
+              {navItems.map((item) => (
+                <TabsTrigger key={item.value} value={item.value} className="flex items-center gap-2 py-3">
+                  <item.icon className="h-4 w-4" />
+                  <span className="hidden xl:inline">{item.label}</span>
+                </TabsTrigger>
+              ))}
+            </TabsList>
+
+            {/* Casino Tilbud Tab */}
           <TabsContent value="casinos">
             <div className="mb-8 flex items-center justify-between">
               <div>
