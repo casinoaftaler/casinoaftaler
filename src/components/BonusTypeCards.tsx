@@ -45,7 +45,7 @@ export function BonusTypeCards() {
                 </li>
               </ul>
               <Button asChild variant="outline" className="w-full">
-                <Link to="/bonus-guide#no-sticky">
+                <Link to="/no-sticky-bonus">
                   Læs Mere <ArrowRight className="ml-2 h-4 w-4" />
                 </Link>
               </Button>
@@ -81,7 +81,7 @@ export function BonusTypeCards() {
                 </li>
               </ul>
               <Button asChild variant="outline" className="w-full">
-                <Link to="/bonus-guide#sticky">
+                <Link to="/sticky-bonus">
                   Læs Mere <ArrowRight className="ml-2 h-4 w-4" />
                 </Link>
               </Button>
