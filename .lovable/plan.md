@@ -1,56 +1,42 @@
 
 
-## Plan: Tilfoej authentication-krav til leaderboard views
+## Plan: Skjul affiliate_url fra casinos-tabellen for almindelige brugere
 
-### Analyse af nuvaerende setup
+### Problem
+Tabellen `casinos` har en RLS-policy "Anyone can view active casinos" (`USING (is_active = true)`), som giver alle brugere direkte adgang til **alle kolonner** -- inklusiv `affiliate_url`. Selvom frontend-koden bruger `casinos_public`-viewet (som udelader `affiliate_url`), kan en teknisk bruger stadig hente `affiliate_url` direkte fra `casinos`-tabellen via API'et.
 
-- **`slot_leaderboard`** view: Bruger `security_invoker=on`, saa den respekterer RLS paa `slot_game_results`. Den underliggende tabel har en policy `Anyone can view leaderboard` med `USING (true)` -- det er her adgangen skal aendres.
-- **`profiles_leaderboard`** view: Bruger `security_invoker=false` (security definer), som bevidst omgaar RLS for at vise display_name og avatar_url. Denne bruges ogsaa af community clips og kommentarer, som skal vaere synlige for alle.
+### Loesning
 
-### Udfordring
+**Trin 1: Genskab `casinos_public` view med security definer**
 
-`profiles_leaderboard` bruges af 5 forskellige features:
-1. Leaderboard (slot-spil)
-2. Community clips (offentlig)
-3. Community kommentarer (offentlig)
-4. Live Big Wins (slot-spil)
-5. Slot Points Management (admin)
+Viewet bruger i dag `security_invoker=on`, hvilket betyder det koerer med brugerens egne rettigheder. Naar vi fjerner den offentlige SELECT-policy paa `casinos`, vil viewet ogsaa stoppe med at virke. Derfor skal viewet aendres til `security_invoker=false` (security definer), saa det kan laese fra `casinos` uafhaengigt af brugerens rettigheder.
 
-Hvis vi laaser `profiles_leaderboard` til kun autentificerede brugere, vil community clips og kommentarer miste navne/avatars for gaester.
+**Trin 2: Fjern den offentlige SELECT-policy paa `casinos`**
 
-### Loesung
+Drop policyen "Anyone can view active casinos". Herefter kan kun admins (via "Admins can view all casinos") tilgaa tabellen direkte.
 
-**Trin 1: Opdater RLS paa `slot_game_results`**
-- Erstat den eksisterende "Anyone can view leaderboard" policy med en ny, der kraever `auth.uid() IS NOT NULL`
-- Dette sikrer at `slot_leaderboard` viewet (som bruger `security_invoker=on`) automatisk kun er tilgaengeligt for indloggede brugere
+**Trin 3: Ingen frontend-aendringer noedvendige**
 
-**Trin 2: Behold `profiles_leaderboard` som den er**
-- Denne view eksponerer kun ikke-folsomme data (display_name, avatar_url)
-- Den bruges af offentlige features (community clips), saa den skal forblive tilgaengelig
-- Risikoen er minimal da den kun viser offentlige profiloplysninger
-
-**Trin 3: Opdater frontend**
-- Tilfoej et login-gate i `SlotLeaderboard` komponenten, saa uautentificerede brugere ser en besked om at logge ind
-- Opdater `useSlotLeaderboard` hook til at deaktivere query naar brugeren ikke er logget ind
-- Opdater `useUserPoints` hook til at haandtere uautentificeret tilstand
+`useCasinos` hook'en bruger allerede `casinos_public` for offentlige brugere og `casinos` for admins (med session-check). Affiliate-redirect edge function bruger service role key og paavirkes ikke af RLS.
 
 ### Tekniske detaljer
 
 ```text
-Database aendringer:
-  1. DROP POLICY "Anyone can view leaderboard" ON slot_game_results
-  2. CREATE POLICY "Authenticated users can view leaderboard"
-     ON slot_game_results FOR SELECT
-     USING (auth.uid() IS NOT NULL)
-
-Frontend aendringer:
-  - useSlotLeaderboard.ts: Tilfoej enabled: !!currentUserId
-  - SlotLeaderboard.tsx: Vis login-prompt for gaester
-  - useUserPoints.ts: Ingen aendring noe dvendig (allerede filtreret paa userId)
+SQL Migration:
+  1. DROP VIEW casinos_public
+  2. CREATE VIEW casinos_public WITH (security_invoker=false) AS
+       SELECT id, name, slug, rating, bonus_title, bonus_amount, bonus_type,
+              wagering_requirements, validity, min_deposit, payout_time,
+              free_spins, features, pros, cons, description, logo_url,
+              is_active, is_recommended, is_hot, position, game_providers,
+              created_at, updated_at
+       FROM casinos
+       WHERE is_active = true
+  3. GRANT SELECT ON casinos_public TO anon, authenticated
+  4. DROP POLICY "Anyone can view active casinos" ON casinos
 ```
 
-### Hvad forbliver uaendret
-- `profiles_leaderboard` view -- forbliver offentlig (brugt af community features)
-- `profiles_public` view -- forbliver offentlig (brugt af offentlige profiler)
-- Community clips og kommentarer -- upaavirkede
-
+### Risiko-vurdering
+- `affiliate_url` vil IKKE vaere tilgaengelig for nogen bruger undtagen admins
+- Affiliate-redirect edge function bruger service role og paavirkes ikke
+- Community features og frontend forbliver upaavirket
