@@ -569,6 +569,226 @@ const NyeCasinoer = () => {
 
         <Separator className="my-10" />
 
+        {/* How to Get Started */}
+        <section className="mb-12">
+          <h2 className="mb-4 text-3xl font-bold">
+            Sådan kommer du i gang hos et nyt casino
+          </h2>
+          <p className="mb-6 text-muted-foreground leading-relaxed">
+            Det er nemt at oprette en konto hos et nyt online casino i Danmark. Her guider vi dig trin for trin, så du hurtigt kan komme i gang med at spille.
+          </p>
+          <div className="space-y-3">
+            {[
+              {
+                step: "1",
+                title: "Vælg et nyt casino fra vores liste",
+                desc: "Start med at sammenligne de nye casinoer på vores side. Kig efter velkomstbonusser, spiludvalg og betalingsmetoder, der passer til dine præferencer.",
+              },
+              {
+                step: "2",
+                title: "Opret en konto med NemID/MitID",
+                desc: "Alle danske casinoer kræver verifikation via NemID eller MitID. Processen tager typisk under 5 minutter og sikrer, at dit spil foregår lovligt og sikkert.",
+              },
+              {
+                step: "3",
+                title: "Indbetal og aktiver din bonus",
+                desc: "Vælg din foretrukne betalingsmetode – MobilePay, Trustly eller kort – og foretag din første indbetaling. Bonussen aktiveres normalt automatisk.",
+              },
+              {
+                step: "4",
+                title: "Udforsk spiludvalget",
+                desc: "Når din konto er oprettet og bonussen aktiveret, kan du dykke ned i spilleautomater, live casino, bordspil og meget mere.",
+              },
+            ].map((item) => (
+              <div
+                key={item.step}
+                className="flex items-start gap-3 rounded-lg border border-border bg-card p-4"
+              >
+                <span className="flex h-7 w-7 flex-shrink-0 items-center justify-center rounded-full bg-primary text-sm font-bold text-primary-foreground">
+                  {item.step}
+                </span>
+                <div>
+                  <h3 className="font-semibold">{item.title}</h3>
+                  <p className="text-sm text-muted-foreground">{item.desc}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        <Separator className="my-10" />
+
+        {/* Bonuses at New Casinos */}
+        <section className="mb-12">
+          <h2 className="mb-4 text-3xl font-bold">
+            Bonusser hos nye casinoer i Danmark
+          </h2>
+          <p className="mb-6 text-muted-foreground leading-relaxed">
+            En af de største fordele ved nye casinoer er deres generøse bonustilbud. For at tiltrække nye spillere konkurrerer de på velkomstpakker, free spins og lave omsætningskrav. Her er de mest almindelige bonustyper, du finder hos nye spillesteder:
+          </p>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <Card className="border-border bg-card">
+              <CardHeader className="pb-2">
+                <CardTitle className="flex items-center gap-2 text-lg">
+                  <CreditCard className="h-5 w-5 text-primary" />
+                  Indskudsbonus (Match Bonus)
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <p className="text-sm text-muted-foreground">
+                  Den mest udbredte bonustype, hvor casinoet matcher din første indbetaling med en procentdel – typisk 100% op til et bestemt beløb. Nye casinoer tilbyder ofte højere match-procenter for at skille sig ud.
+                </p>
+              </CardContent>
+            </Card>
+
+            <Card className="border-border bg-card">
+              <CardHeader className="pb-2">
+                <CardTitle className="flex items-center gap-2 text-lg">
+                  <Sparkles className="h-5 w-5 text-primary" />
+                  Free Spins uden indbetaling
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <p className="text-sm text-muted-foreground">
+                  Nogle nye casinoer giver dig gratis spins blot ved oprettelse – helt uden indbetaling. Det er en risikofri måde at teste casinoets spiludvalg og platform, før du binder dig.
+                </p>
+              </CardContent>
+            </Card>
+
+            <Card className="border-border bg-card">
+              <CardHeader className="pb-2">
+                <CardTitle className="flex items-center gap-2 text-lg">
+                  <Trophy className="h-5 w-5 text-primary" />
+                  Velkomstpakker
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <p className="text-sm text-muted-foreground">
+                  Mange nye casinoer tilbyder velkomstpakker, der strækker sig over de første 2-4 indbetalinger. Det giver dig mulighed for at sprede din bonus over flere sessioner og opleve mere af casinoet.
+                </p>
+              </CardContent>
+            </Card>
+
+            <Card className="border-border bg-card">
+              <CardHeader className="pb-2">
+                <CardTitle className="flex items-center gap-2 text-lg">
+                  <TrendingUp className="h-5 w-5 text-primary" />
+                  Cashback-bonusser
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <p className="text-sm text-muted-foreground">
+                  En stigende trend hos nye casinoer er cashback, hvor du får en procentdel af dine tab refunderet. Det er populært, fordi det ofte kommer uden omsætningskrav – du kan udbetale pengene direkte.
+                </p>
+              </CardContent>
+            </Card>
+          </div>
+        </section>
+
+        <Separator className="my-10" />
+
+        {/* Danish License & Safety */}
+        <section className="mb-12">
+          <h2 className="mb-4 text-3xl font-bold">
+            Dansk licens og sikkerhed hos nye casinoer
+          </h2>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            Når du spiller hos et nyt online casino i Danmark, er det afgørende, at spillestedet har en gyldig licens fra Spillemyndigheden. Licensen sikrer, at casinoet overholder den danske spillelovgivning og beskytter dig som spiller.
+          </p>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            Alle casinoer på vores liste er licenserede og regulerede. Det betyder, at de lever op til strenge krav om datasikkerhed, fairness i spil (RNG-certificering) og beskyttelse mod spilleafhængighed via ROFUS-registret.
+          </p>
+          <p className="mb-6 text-muted-foreground leading-relaxed">
+            Vi anbefaler altid, at du tjekker om et casino har dansk licens, før du opretter en konto. Du kan verificere licensen på{" "}
+            <a
+              href="https://www.spillemyndigheden.dk/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-primary hover:underline font-medium"
+            >
+              Spillemyndighedens hjemmeside
+            </a>
+            . Derudover bør du kigge efter SSL-kryptering (hængelåsikonet i browseren), som beskytter dine personlige og finansielle data.
+          </p>
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+            <div className="flex items-start gap-3 rounded-lg border border-border bg-card p-4">
+              <ShieldCheck className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
+              <div>
+                <h3 className="font-semibold">Spillemyndigheden</h3>
+                <p className="text-sm text-muted-foreground">
+                  Den danske licensmyndighed, der regulerer og overvåger alle lovlige casinoer i Danmark.
+                </p>
+              </div>
+            </div>
+            <div className="flex items-start gap-3 rounded-lg border border-border bg-card p-4">
+              <ShieldCheck className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
+              <div>
+                <h3 className="font-semibold">ROFUS</h3>
+                <p className="text-sm text-muted-foreground">
+                  Det danske register til frivillig udelukkelse fra spil. Alle licenserede casinoer er tilsluttet.
+                </p>
+              </div>
+            </div>
+            <div className="flex items-start gap-3 rounded-lg border border-border bg-card p-4">
+              <ShieldCheck className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
+              <div>
+                <h3 className="font-semibold">SSL-kryptering</h3>
+                <p className="text-sm text-muted-foreground">
+                  Avanceret krypteringsteknologi, der beskytter dine data under overførsler mellem dig og casinoet.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <Separator className="my-10" />
+
+        {/* Payment Methods */}
+        <section className="mb-12">
+          <h2 className="mb-4 text-3xl font-bold">
+            Betalingsmetoder hos nye danske casinoer
+          </h2>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            Moderne danske casinoer tilbyder et bredt udvalg af betalingsmetoder. Indbetalinger er typisk øjeblikkelige, mens udbetalingstider varierer fra sekunder til et par bankdage afhængigt af metoden.
+          </p>
+          <p className="mb-6 text-muted-foreground leading-relaxed">
+            De mest populære betalingsmuligheder hos nye casinoer inkluderer MobilePay, som er den foretrukne metode for mange danske spillere, Trustly for direkte bankoverførsler, samt Visa og Mastercard. Nogle nye spillesteder understøtter også Pay N Play, hvor du kan spille uden traditionel kontooprettelse.
+          </p>
+          <div className="space-y-3">
+            {[
+              {
+                title: "MobilePay",
+                desc: "Danmarks mest brugte betalingsapp. Øjeblikkelige indbetalinger og hurtige udbetalinger direkte til din MobilePay-konto.",
+              },
+              {
+                title: "Trustly",
+                desc: "Direkte bankoverførsel uden at dele kortoplysninger. Populært for sin sikkerhed og hastighed.",
+              },
+              {
+                title: "Visa / Mastercard",
+                desc: "De klassiske kortbetalinger. Bredt accepteret hos alle danske casinoer med hurtige indbetalinger.",
+              },
+              {
+                title: "Pay N Play",
+                desc: "En ny trend, der kombinerer registrering og indbetaling i ét trin via BankID. Hurtig og enkel opstart.",
+              },
+            ].map((method) => (
+              <div
+                key={method.title}
+                className="flex items-start gap-3 rounded-lg border border-border bg-card p-4"
+              >
+                <CreditCard className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
+                <div>
+                  <h3 className="font-semibold">{method.title}</h3>
+                  <p className="text-sm text-muted-foreground">{method.desc}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        <Separator className="my-10" />
+
         {/* FAQ Section */}
         <section className="mb-12">
           <div className="mb-8">
