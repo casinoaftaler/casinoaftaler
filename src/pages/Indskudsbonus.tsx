@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -34,6 +35,7 @@ import {
   Users,
 } from "lucide-react";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
+import { RelatedGuides } from "@/components/RelatedGuides";
 
 const indskudsbonusFaqs = [
   {
@@ -95,6 +97,18 @@ const Indskudsbonus = () => {
     })),
   };
 
+  const articleJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    headline: "Indskudsbonus – Komplet Guide til Matchbonusser 2026",
+    description: "Alt du skal vide om indskudsbonusser hos danske casinoer. Matchbonusser, betingelser og strategier.",
+    author: { "@type": "Organization", name: "Casinoaftaler" },
+    publisher: { "@type": "Organization", name: "Casinoaftaler" },
+    datePublished: "2025-06-01",
+    dateModified: "2026-02-11",
+    mainEntityOfPage: "https://bonushuset-buddy.lovable.app/indskudsbonus",
+  };
+
   return (
     <>
       <Helmet>
@@ -112,6 +126,7 @@ const Indskudsbonus = () => {
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://bonushuset-buddy.lovable.app/indskudsbonus" />
         <script type="application/ld+json">{JSON.stringify(faqJsonLd)}</script>
+        <script type="application/ld+json">{JSON.stringify(articleJsonLd)}</script>
       </Helmet>
 
       {/* Hero Section */}
@@ -584,6 +599,8 @@ const Indskudsbonus = () => {
             ))}
           </Accordion>
         </section>
+
+        <RelatedGuides currentPath="/indskudsbonus" />
       </div>
     </>
   );

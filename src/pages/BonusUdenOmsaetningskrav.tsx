@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -34,6 +35,7 @@ import {
   Users,
 } from "lucide-react";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
+import { RelatedGuides } from "@/components/RelatedGuides";
 
 const faqs = [
   {
@@ -88,6 +90,18 @@ const BonusUdenOmsaetningskrav = () => {
     })),
   };
 
+  const articleJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    headline: "Bonus uden Omsætningskrav – Komplet Guide 2026",
+    description: "Alt du skal vide om bonusser uden omsætningskrav på danske casinoer. Fordele, typer og tips.",
+    author: { "@type": "Organization", name: "Casinoaftaler" },
+    publisher: { "@type": "Organization", name: "Casinoaftaler" },
+    datePublished: "2025-06-01",
+    dateModified: "2026-02-11",
+    mainEntityOfPage: "https://bonushuset-buddy.lovable.app/bonus-uden-omsaetningskrav",
+  };
+
   return (
     <>
       <Helmet>
@@ -105,6 +119,7 @@ const BonusUdenOmsaetningskrav = () => {
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://bonushuset-buddy.lovable.app/bonus-uden-omsaetningskrav" />
         <script type="application/ld+json">{JSON.stringify(faqJsonLd)}</script>
+        <script type="application/ld+json">{JSON.stringify(articleJsonLd)}</script>
       </Helmet>
 
       {/* Hero Section */}
@@ -678,6 +693,8 @@ const BonusUdenOmsaetningskrav = () => {
             ))}
           </Accordion>
         </section>
+
+        <RelatedGuides currentPath="/bonus-uden-omsaetningskrav" />
       </div>
     </>
   );

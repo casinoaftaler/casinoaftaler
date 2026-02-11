@@ -1,6 +1,7 @@
 import { Outlet, useLocation } from "react-router-dom";
 import { Header } from "./Header";
 import { Footer } from "./Footer";
+import { Breadcrumbs } from "./Breadcrumbs";
 import { CookieConsent } from "./CookieConsent";
 import { BackToTop } from "./BackToTop";
 import { TwitchLivePlayer } from "./TwitchLivePlayer";
@@ -26,6 +27,7 @@ export function Layout() {
     <div className="flex min-h-screen flex-col">
       <ScrollToTop />
       <Header />
+      <Breadcrumbs />
       <main className="flex-1">
         <Outlet />
       </main>
