@@ -1,42 +1,46 @@
 
 
-## Plan: Skjul affiliate_url fra casinos-tabellen for almindelige brugere
+## Fix Admin Panel Mobile Layout
 
-### Problem
-Tabellen `casinos` har en RLS-policy "Anyone can view active casinos" (`USING (is_active = true)`), som giver alle brugere direkte adgang til **alle kolonner** -- inklusiv `affiliate_url`. Selvom frontend-koden bruger `casinos_public`-viewet (som udelader `affiliate_url`), kan en teknisk bruger stadig hente `affiliate_url` direkte fra `casinos`-tabellen via API'et.
+The current admin panel uses a horizontal tab bar with 11 columns (`grid-cols-11`), which is completely unusable on mobile devices. The plan is to replace this with a responsive layout that uses a **slide-out sheet/drawer** on mobile and keeps the current tab layout on desktop.
 
-### Loesning
+### Current Problem
+- 11 tabs in a single horizontal row squished on small screens
+- Tab labels are hidden on mobile (`hidden sm:inline`), leaving only tiny icons
+- Header bar text overflows on narrow viewports
 
-**Trin 1: Genskab `casinos_public` view med security definer**
+### Solution
 
-Viewet bruger i dag `security_invoker=on`, hvilket betyder det koerer med brugerens egne rettigheder. Naar vi fjerner den offentlige SELECT-policy paa `casinos`, vil viewet ogsaa stoppe med at virke. Derfor skal viewet aendres til `security_invoker=false` (security definer), saa det kan laese fra `casinos` uafhaengigt af brugerens rettigheder.
+**1. Create an `AdminSidebar` component**
+- A new component that renders the list of 11 navigation items (icon + label) vertically
+- On mobile (< `lg` breakpoint): rendered inside a `Sheet` (slide-out drawer) triggered by a hamburger/menu button in the admin header
+- On desktop (`lg`+): the existing horizontal `TabsList` remains as-is
 
-**Trin 2: Fjern den offentlige SELECT-policy paa `casinos`**
+**2. Refactor `AdminDashboard` layout**
+- Replace `Tabs` with a state-based approach using `useState` for the active section (e.g., `activeTab`)
+- On mobile: hide the `TabsList` entirely; show a menu button in the header that opens the sheet with all nav items
+- On desktop: show the `TabsList` as it currently works
+- The `TabsContent` sections render based on the `activeTab` state regardless of device
 
-Drop policyen "Anyone can view active casinos". Herefter kan kun admins (via "Admins can view all casinos") tilgaa tabellen direkte.
+**3. Fix admin header for mobile**
+- Stack or truncate the user email on small screens
+- Ensure the menu button, theme toggle, and logout button fit comfortably
 
-**Trin 3: Ingen frontend-aendringer noedvendige**
+### Technical Details
 
-`useCasinos` hook'en bruger allerede `casinos_public` for offentlige brugere og `casinos` for admins (med session-check). Affiliate-redirect edge function bruger service role key og paavirkes ikke af RLS.
+**Files to modify:**
+- `src/pages/Admin.tsx` -- Main changes:
+  - Add `Sheet` import from `@/components/ui/sheet`
+  - Add `useIsMobile` hook import
+  - Add `useState` for `activeTab` and `sidebarOpen`
+  - Replace `<Tabs>` with controlled `<Tabs value={activeTab} onValueChange={setActiveTab}>`
+  - Add a mobile menu button in the header (visible only below `lg`)
+  - Wrap nav items in a `Sheet` for mobile
+  - Hide `TabsList` on mobile with `hidden lg:grid`
+  - Fix header to be responsive (hide email on small screens, adjust spacing)
 
-### Tekniske detaljer
+**Navigation items in the sheet:**
+Each item is a button with icon + label that sets `activeTab` and closes the sheet. The active item gets a highlighted background.
 
-```text
-SQL Migration:
-  1. DROP VIEW casinos_public
-  2. CREATE VIEW casinos_public WITH (security_invoker=false) AS
-       SELECT id, name, slug, rating, bonus_title, bonus_amount, bonus_type,
-              wagering_requirements, validity, min_deposit, payout_time,
-              free_spins, features, pros, cons, description, logo_url,
-              is_active, is_recommended, is_hot, position, game_providers,
-              created_at, updated_at
-       FROM casinos
-       WHERE is_active = true
-  3. GRANT SELECT ON casinos_public TO anon, authenticated
-  4. DROP POLICY "Anyone can view active casinos" ON casinos
-```
+**No new files needed** -- all changes are contained within `Admin.tsx` using existing UI components (`Sheet`, `Button`, `useIsMobile`).
 
-### Risiko-vurdering
-- `affiliate_url` vil IKKE vaere tilgaengelig for nogen bruger undtagen admins
-- Affiliate-redirect edge function bruger service role og paavirkes ikke
-- Community features og frontend forbliver upaavirket
