@@ -1,4 +1,5 @@
 import { Helmet } from "react-helmet-async";
+import { useSiteSettings } from "@/hooks/useSiteSettings";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
@@ -236,6 +237,9 @@ const developers = [
 ];
 
 const Spiludviklere = () => {
+  const { data: siteSettings } = useSiteSettings();
+  const heroBackgroundImage = siteSettings?.hero_background;
+
   const faqJsonLd = {
     "@context": "https://schema.org",
     "@type": "FAQPage",
@@ -261,42 +265,50 @@ const Spiludviklere = () => {
       </Helmet>
 
       {/* Hero Section */}
-      <section className="relative overflow-hidden bg-gradient-to-b from-primary/10 via-background to-background py-12 md:py-20">
-        <div className="container mx-auto px-4">
+      <section
+        className="relative overflow-hidden py-12 text-white md:py-20"
+        style={{
+          backgroundImage: heroBackgroundImage
+            ? `linear-gradient(135deg, hsl(260 70% 25% / 0.95), hsl(210 80% 30% / 0.9)), url(${heroBackgroundImage})`
+            : 'linear-gradient(135deg, hsl(260 70% 25%), hsl(250 60% 20%) 40%, hsl(210 80% 25%))',
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+        }}
+      >
+        <div className="container">
           <div className="mx-auto max-w-3xl text-center">
             <Badge variant="secondary" className="mb-4">
               <Gamepad2 className="mr-1.5 h-3 w-3" />
               Guide til spiludviklere
             </Badge>
-            <h1 className="mb-4 text-3xl font-bold tracking-tight md:text-5xl">
+            <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">
               Spiludviklere
             </h1>
-            <p className="text-lg text-muted-foreground">
+            <p className="text-lg text-white/80">
               Bag ethvert fantastisk casinospil står en spiludvikler med passion
               for innovation, teknologi og underholdning. Lær de største navne
               at kende, og find ud af hvem der skaber dine favoritspil.
             </p>
-
-            {/* Meta bar */}
-            <div className="mt-6 flex flex-wrap items-center justify-center gap-4 text-sm text-muted-foreground">
-              <span className="flex items-center gap-1">
-                <User className="h-3.5 w-3.5" />
-                Casinoaftaler
-              </span>
-              <span className="flex items-center gap-1">
-                <CalendarDays className="h-3.5 w-3.5" />
-                Opdateret: 11-02-2026
-              </span>
-              <span className="flex items-center gap-1">
-                <BookOpen className="h-3.5 w-3.5" />
-                Læsetid: 8 Min.
-              </span>
-            </div>
           </div>
         </div>
       </section>
 
       <div className="container mx-auto px-4 py-8 md:py-12">
+        {/* Meta info bar */}
+        <div className="mb-8 flex flex-wrap items-center gap-x-6 gap-y-2 text-sm text-muted-foreground">
+          <div className="flex items-center gap-1.5">
+            <User className="h-4 w-4" />
+            <span>Skrevet af: <span className="font-medium text-foreground">Casinoaftaler</span></span>
+          </div>
+          <div className="flex items-center gap-1.5">
+            <CalendarDays className="h-4 w-4" />
+            <span>Siden opdateret: <span className="font-medium text-foreground">11-02-2026</span></span>
+          </div>
+          <div className="flex items-center gap-1.5">
+            <BookOpen className="h-4 w-4" />
+            <span>Læsetid: <span className="font-medium text-foreground">15 Min.</span></span>
+          </div>
+        </div>
         {/* Intro Section */}
         <section className="mx-auto max-w-4xl">
           <Card>
