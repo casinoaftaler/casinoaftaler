@@ -254,7 +254,7 @@ const Spiludviklere = () => {
   };
 
   return (
-    <div className="min-h-screen bg-background">
+    <>
       <Helmet>
         <title>Spiludviklere – De Bedste Casino-Spiludviklere i Danmark</title>
         <meta
@@ -278,7 +278,7 @@ const Spiludviklere = () => {
         <div className="container">
           <div className="mx-auto max-w-3xl text-center">
             <Badge variant="secondary" className="mb-4">
-              <Gamepad2 className="mr-1.5 h-3 w-3" />
+              <Gamepad2 className="mr-1.5 h-3.5 w-3.5" />
               Guide til spiludviklere
             </Badge>
             <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">
@@ -293,68 +293,71 @@ const Spiludviklere = () => {
         </div>
       </section>
 
-      <div className="container mx-auto px-4 py-8 md:py-12">
+      <div className="container py-8 md:py-12">
         {/* Meta info bar */}
         <div className="mb-8 flex flex-wrap items-center gap-x-6 gap-y-2 text-sm text-muted-foreground">
           <div className="flex items-center gap-1.5">
             <User className="h-4 w-4" />
-            <span>Skrevet af: <span className="font-medium text-foreground">Casinoaftaler</span></span>
+            <span>
+              Skrevet af:{" "}
+              <span className="font-medium text-foreground">Casinoaftaler</span>
+            </span>
           </div>
           <div className="flex items-center gap-1.5">
             <CalendarDays className="h-4 w-4" />
-            <span>Siden opdateret: <span className="font-medium text-foreground">11-02-2026</span></span>
+            <span>
+              Siden opdateret:{" "}
+              <span className="font-medium text-foreground">11-02-2026</span>
+            </span>
           </div>
           <div className="flex items-center gap-1.5">
             <BookOpen className="h-4 w-4" />
-            <span>Læsetid: <span className="font-medium text-foreground">15 Min.</span></span>
+            <span>
+              Læsetid:{" "}
+              <span className="font-medium text-foreground">15 Min.</span>
+            </span>
           </div>
         </div>
-        {/* Intro Section */}
-        <section className="mx-auto max-w-4xl">
-          <Card>
-            <CardHeader>
-              <CardTitle className="flex items-center gap-2 text-xl">
-                <Gamepad2 className="h-5 w-5 text-primary" />
-                Hvad er en spiludvikler?
-              </CardTitle>
-            </CardHeader>
-            <CardContent className="space-y-4 text-muted-foreground">
-              <p>
-                Spiludviklere er drivkraften bag casinoverdenen – de kreative
-                hoveder der forvandler idéer til digitale spiloplevelser. Deres
-                arbejde strækker sig langt ud over at bygge et simpelt spil.
-                De designer hele oplevelsen fra bunden: skarpe visuelle
-                detaljer, fængslende lydeffekter, innovative funktioner og
-                glidende gameplay, der tilsammen skaber noget unikt og
-                engagerende.
-              </p>
-              <p>
-                Processen begynder med en idé – måske inspireret af
-                oldægyptisk mytologi, science fiction eller klassisk
-                casinoæstetik. Derefter arbejder designere, programmører og
-                lydproducenter tæt sammen. Programmørerne bygger spillets
-                fundament med avanceret teknologi som RNG (Random Number
-                Generator) for at sikre fuldstændig fairness, mens
-                lyddesignere tilfører den stemning, der suger spilleren ind i
-                universet.
-              </p>
-              <p>
-                Spiludviklere er med andre ord ikke bare tekniske eksperter –
-                de er kunstnere og historiefortællere, der gør hvert eneste
-                spin til noget særligt.
-              </p>
-            </CardContent>
-          </Card>
+
+        {/* Intro */}
+        <section className="mb-12">
+          <h2 className="mb-4 text-3xl font-bold">
+            Hvad er en spiludvikler?
+          </h2>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            Spiludviklere er drivkraften bag casinoverdenen – de kreative
+            hoveder der forvandler idéer til digitale spiloplevelser. Deres
+            arbejde strækker sig langt ud over at bygge et simpelt spil.
+            De designer hele oplevelsen fra bunden: skarpe visuelle
+            detaljer, fængslende lydeffekter, innovative funktioner og
+            glidende gameplay, der tilsammen skaber noget unikt og
+            engagerende.
+          </p>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            Processen begynder med en idé – måske inspireret af
+            oldægyptisk mytologi, science fiction eller klassisk
+            casinoæstetik. Derefter arbejder designere, programmører og
+            lydproducenter tæt sammen. Programmørerne bygger spillets
+            fundament med avanceret teknologi som RNG (Random Number
+            Generator) for at sikre fuldstændig fairness, mens
+            lyddesignere tilfører den stemning, der suger spilleren ind i
+            universet.
+          </p>
+          <p className="text-muted-foreground leading-relaxed">
+            Spiludviklere er med andre ord ikke bare tekniske eksperter –
+            de er kunstnere og historiefortællere, der gør hvert eneste
+            spin til noget særligt.
+          </p>
         </section>
 
-        <Separator className="mx-auto my-8 max-w-4xl" />
+        <Separator className="my-10" />
 
         {/* Why Important */}
-        <section className="mx-auto max-w-4xl">
-          <h2 className="mb-6 text-2xl font-bold">
+        <section className="mb-12">
+          <h2 className="mb-4 text-3xl font-bold">
             Hvorfor er spiludvikleren vigtig?
           </h2>
-          <p className="mb-6 text-muted-foreground">
+          <p className="mb-6 text-muted-foreground leading-relaxed">
             Når du spinner hjulene eller satser på det rigtige nummer, tænker
             du måske ikke over, hvem der står bag oplevelsen. Men
             spiludvikleren er en afgørende brik, der bestemmer om spillet er
@@ -403,14 +406,14 @@ const Spiludviklere = () => {
           </div>
         </section>
 
-        <Separator className="mx-auto my-8 max-w-4xl" />
+        <Separator className="my-10" />
 
         {/* Game Types */}
-        <section className="mx-auto max-w-4xl">
-          <h2 className="mb-6 text-2xl font-bold">
+        <section className="mb-12">
+          <h2 className="mb-4 text-3xl font-bold">
             Typer af spil fra spiludviklere
           </h2>
-          <p className="mb-6 text-muted-foreground">
+          <p className="mb-6 text-muted-foreground leading-relaxed">
             Spiludviklere skaber et bredt udvalg af spil der appellerer til
             alle typer spillere. Fra klassiske slots til avancerede live
             casino-oplevelser – hver kategori bringer noget unikt til bordet.
@@ -434,12 +437,8 @@ const Spiludviklere = () => {
                       <thead>
                         <tr className="border-b border-border text-left">
                           <th className="pb-2 pr-4 font-semibold">Type</th>
-                          <th className="pb-2 pr-4 font-semibold">
-                            Beskrivelse
-                          </th>
-                          <th className="pb-2 pr-4 font-semibold">
-                            Eksempler
-                          </th>
+                          <th className="pb-2 pr-4 font-semibold">Beskrivelse</th>
+                          <th className="pb-2 pr-4 font-semibold">Eksempler</th>
                           <th className="pb-2 font-semibold">Gns. RTP</th>
                         </tr>
                       </thead>
@@ -449,15 +448,9 @@ const Spiludviklere = () => {
                             key={type.type}
                             className="border-b border-border/50 last:border-0"
                           >
-                            <td className="py-2 pr-4 font-medium">
-                              {type.type}
-                            </td>
-                            <td className="py-2 pr-4 text-muted-foreground">
-                              {type.description}
-                            </td>
-                            <td className="py-2 pr-4 text-muted-foreground">
-                              {type.examples}
-                            </td>
+                            <td className="py-2 pr-4 font-medium">{type.type}</td>
+                            <td className="py-2 pr-4 text-muted-foreground">{type.description}</td>
+                            <td className="py-2 pr-4 text-muted-foreground">{type.examples}</td>
                             <td className="py-2">
                               <Badge variant="secondary">{type.rtp}</Badge>
                             </td>
@@ -472,14 +465,14 @@ const Spiludviklere = () => {
           </div>
         </section>
 
-        <Separator className="mx-auto my-8 max-w-4xl" />
+        <Separator className="my-10" />
 
         {/* Known Developers */}
-        <section className="mx-auto max-w-4xl">
-          <h2 className="mb-6 text-2xl font-bold">
+        <section className="mb-12">
+          <h2 className="mb-4 text-3xl font-bold">
             Kendte spiludviklere i branchen
           </h2>
-          <p className="mb-6 text-muted-foreground">
+          <p className="mb-6 text-muted-foreground leading-relaxed">
             De største navne i branchen har ikke kun givet os ikoniske spil,
             men også revolutioneret måden vi spiller på. Her er et overblik
             over de mest anerkendte spiludviklere og deres bedste titler.
@@ -523,14 +516,14 @@ const Spiludviklere = () => {
           </div>
         </section>
 
-        <Separator className="mx-auto my-8 max-w-4xl" />
+        <Separator className="my-10" />
 
         {/* How to Choose */}
-        <section className="mx-auto max-w-4xl">
-          <h2 className="mb-6 text-2xl font-bold">
+        <section className="mb-12">
+          <h2 className="mb-4 text-3xl font-bold">
             Hvordan vælger du den rigtige spiludvikler?
           </h2>
-          <p className="mb-6 text-muted-foreground">
+          <p className="mb-6 text-muted-foreground leading-relaxed">
             Valget af spiludvikler kan gøre en stor forskel for din oplevelse.
             En god spiludvikler betyder ikke kun spil af høj kvalitet, men
             også retfærdighed, sikkerhed og spændende funktioner.
@@ -581,11 +574,11 @@ const Spiludviklere = () => {
           </div>
         </section>
 
-        <Separator className="mx-auto my-8 max-w-4xl" />
+        <Separator className="my-10" />
 
         {/* Pros and Cons */}
-        <section className="mx-auto max-w-4xl">
-          <h2 className="mb-6 text-2xl font-bold">
+        <section className="mb-12">
+          <h2 className="mb-4 text-3xl font-bold">
             Fordele og ulemper ved spiludviklere
           </h2>
 
@@ -660,10 +653,10 @@ const Spiludviklere = () => {
           </div>
         </section>
 
-        <Separator className="mx-auto my-8 max-w-4xl" />
+        <Separator className="my-10" />
 
         {/* Responsible Gaming */}
-        <section className="mx-auto max-w-4xl">
+        <section className="mb-12">
           <Card className="border-primary/20 bg-primary/5">
             <CardHeader>
               <CardTitle className="flex items-center gap-2 text-xl">
@@ -688,66 +681,72 @@ const Spiludviklere = () => {
           </Card>
         </section>
 
-        <Separator className="mx-auto my-8 max-w-4xl" />
+        <Separator className="my-10" />
 
         {/* Summary */}
-        <section className="mx-auto max-w-4xl">
-          <h2 className="mb-6 text-2xl font-bold">
-            Konklusion – Find den rette spiloplevelse
+        <section className="mb-12">
+          <h2 className="mb-6 text-3xl font-bold">
+            Opsummering
           </h2>
-          <Card>
-            <CardContent className="space-y-4 pt-6 text-sm text-muted-foreground">
-              <p>
-                Online casinoverdenen ville ikke være den samme uden
-                spiludviklernes konstante innovation og kreativitet. De
-                leverer alt fra klassiske bordspil til de nyeste slots og live
-                casino-spil, der gør oplevelsen spændende og engagerende.
-              </p>
-              <p>
-                Når du vælger et casino, bør du ikke kun overveje bonusser og
-                design – kig også på udviklerne bag spillene. De bedste spil
-                kommer fra licenserede og erfarne udviklere, som sikrer både
-                retfærdighed og sikkerhed i hvert spin.
-              </p>
-              <div>
-                <p className="mb-2 font-semibold text-foreground">
-                  Opsummering:
-                </p>
-                <ul className="space-y-1">
-                  {[
-                    "Spiludviklere er kernen i online casinooplevelsen",
-                    "Kendte navne sikrer innovation og kvalitet",
-                    "Licenserede udviklere garanterer fairness",
-                    "Spiludvalget spænder fra slots til live casino",
-                    "Moderne funktioner øger underholdningen",
-                    "Ansvarligt spil understøttes med nyttige værktøjer",
-                    "Variation sikrer noget for enhver smag",
-                  ].map((item, i) => (
-                    <li
-                      key={i}
-                      className="flex items-center gap-2"
-                    >
-                      <CheckCircle2 className="h-3.5 w-3.5 text-primary" />
-                      {item}
-                    </li>
-                  ))}
-                </ul>
+          <div className="space-y-3">
+            {[
+              {
+                title: "Spiludviklere er kernen",
+                desc: "De skaber fundamentet for online casinooplevelsen med innovation og kreativitet.",
+              },
+              {
+                title: "Kendte navne sikrer kvalitet",
+                desc: "NetEnt, Microgaming, Play'n GO og andre topudviklere garanterer spil af højeste kvalitet.",
+              },
+              {
+                title: "Licenserede udviklere",
+                desc: "Regulerede udviklere sikrer fairness med RNG-teknologi og uafhængig testning.",
+              },
+              {
+                title: "Bredt spiludvalg",
+                desc: "Fra klassiske slots og bordspil til live casino og game shows – der er noget for enhver smag.",
+              },
+              {
+                title: "Moderne funktioner",
+                desc: "Megaways, cascading reels og VR-teknologi øger underholdningen markant.",
+              },
+            ].map((item) => (
+              <div
+                key={item.title}
+                className="flex items-start gap-3 rounded-lg border border-border bg-card p-4"
+              >
+                <CheckCircle2 className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
+                <div>
+                  <h3 className="font-semibold">{item.title}</h3>
+                  <p className="text-sm text-muted-foreground">{item.desc}</p>
+                </div>
               </div>
-            </CardContent>
-          </Card>
+            ))}
+          </div>
         </section>
 
-        <Separator className="mx-auto my-8 max-w-4xl" />
+        <Separator className="my-10" />
 
         {/* FAQ */}
-        <section className="mx-auto max-w-4xl">
-          <h2 className="mb-6 text-2xl font-bold">
-            Ofte stillede spørgsmål om spiludviklere
-          </h2>
-          <Accordion type="single" collapsible className="w-full">
+        <section className="mb-12">
+          <div className="mb-8">
+            <div className="flex items-center gap-2 mb-4">
+              <Gamepad2 className="h-8 w-8 text-primary" />
+              <h2 className="text-3xl font-bold">Ofte Stillede Spørgsmål</h2>
+            </div>
+            <p className="text-muted-foreground">
+              Alt du behøver at vide om spiludviklere i casinobranchen.
+            </p>
+          </div>
+
+          <Accordion type="single" collapsible className="space-y-3">
             {spiludviklereFaqs.map((faq, index) => (
-              <AccordionItem key={index} value={`faq-${index}`}>
-                <AccordionTrigger className="text-left">
+              <AccordionItem
+                key={index}
+                value={`item-${index}`}
+                className="rounded-lg border border-border bg-card px-6"
+              >
+                <AccordionTrigger className="text-left hover:no-underline">
                   {faq.question}
                 </AccordionTrigger>
                 <AccordionContent className="text-muted-foreground">
@@ -758,7 +757,7 @@ const Spiludviklere = () => {
           </Accordion>
         </section>
       </div>
-    </div>
+    </>
   );
 };
 
