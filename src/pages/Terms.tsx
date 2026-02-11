@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { FileText, Scale, AlertTriangle, Ban, RefreshCw, Gavel, Coins, Gift, CircleDollarSign } from "lucide-react";
+import { FileText, Scale, AlertTriangle, Ban, RefreshCw, Gavel, Coins, Gift, CircleDollarSign, ShieldAlert } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 
 const Terms = () => {
@@ -331,6 +331,52 @@ const Terms = () => {
                     <p className="text-muted-foreground leading-relaxed">
                       Disse vilkår er underlagt dansk ret. Eventuelle tvister skal afgøres ved de danske domstole. Ved at bruge dette website accepterer du denne jurisdiktion.
                     </p>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* Fair Play & Exploits */}
+            <Card className="border-border bg-card border-l-4 border-l-destructive">
+              <CardContent className="p-6 md:p-8">
+                <div className="flex items-start gap-4">
+                  <div className="rounded-lg bg-destructive/10 p-3">
+                    <ShieldAlert className="h-6 w-6 text-destructive" />
+                  </div>
+                  <div className="flex-1">
+                    <h2 className="mb-4 text-2xl font-bold">12. Fair Play & Exploits</h2>
+                    <div className="space-y-4 text-muted-foreground">
+                      <p className="leading-relaxed">
+                        <strong className="text-foreground">Casinoaftaler.dk står for fair play i alle spil og konkurrencer på platformen.</strong> Vi forventer, at alle brugere deltager i god tro og overholder reglerne.
+                      </p>
+                      <p className="leading-relaxed">
+                        Brugere er forpligtet til at rapportere eventuelle fejl, bugs eller exploits til administratorerne hurtigst muligt. Bevidst udnyttelse af exploits uden rettidig rapportering betragtes som et brud på disse vilkår.
+                      </p>
+                      <p className="leading-relaxed font-semibold text-foreground">
+                        Konsekvenser ved brug af exploits kan omfatte:
+                      </p>
+                      <ul className="space-y-2">
+                        <li className="flex items-center gap-2">
+                          <span className="h-1.5 w-1.5 rounded-full bg-destructive" />
+                          Permanent ban fra websitet
+                        </li>
+                        <li className="flex items-center gap-2">
+                          <span className="h-1.5 w-1.5 rounded-full bg-destructive" />
+                          Ban fra Twitch-kanalen
+                        </li>
+                        <li className="flex items-center gap-2">
+                          <span className="h-1.5 w-1.5 rounded-full bg-destructive" />
+                          Sletning af alle credits og point
+                        </li>
+                        <li className="flex items-center gap-2">
+                          <span className="h-1.5 w-1.5 rounded-full bg-destructive" />
+                          Fjernelse af al leaderboard-fremgang
+                        </li>
+                      </ul>
+                      <p className="leading-relaxed">
+                        Administratorerne forbeholder sig retten til at diskvalificere brugere, der bevidst udnytter exploits. <strong className="text-foreground">Denne afgørelse er endelig og kan ikke ankes.</strong>
+                      </p>
+                    </div>
                   </div>
                 </div>
               </CardContent>
