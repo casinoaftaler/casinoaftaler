@@ -1,34 +1,29 @@
 
-## Flyt Slot Requests ind i Spillemaskine-fanen og vis kun ventende requests
 
-### Hvad bliver lavet
-1. **Fjern "Requests" som selvstaendig tab** i admin-navigationen -- flyttes ind som en ny sub-tab under "Spillemaskine"
-2. **Admin-listen viser kun ventende (pending) requests** -- naar admin vaelger en handling (Bonus Hit, Ingen Bonus, Afvist), gemmes resultatet i databasen og requestet forsvinder fra listen
-3. **Brugerens historik bevares** -- brugeren kan stadig se alle sine requests (inkl. behandlede) paa Rewards-siden via `SlotRequestForm`
-4. **Grid opdateres** fra 9 til 8 kolonner i desktop-navigationen
+## Fix: Spillemaskinens kontrolbar bliver afskåret
 
-### Brugeroplevelse
-- Admin ser kun de requests der kraever handling -- ingen lang liste af gamle behandlede requests
-- Brugere ser stadig hele deres historik paa Rewards-siden
-- Slot Requests er nu logisk grupperet under Spillemaskine
+### Problem
+Skaleringshooket (`useSlotScale`) antager at spillemaskinens totale højde er 720px, men det faktiske indhold er højere -- tromler (3 rader x 150px + gaps), ramme/padding, bonus-bars og kontrolpanelet med den store spin-knap (112px) gør den reelle højde ca. 900-950px. Det betyder at skaleringsfaktoren bliver for stor, og bunden skæres af.
+
+### Løsning
+Ændr `useSlotScale` til at måle den faktiske højde af slot-containeren dynamisk med en `ResizeObserver` i stedet for at bruge en hardcoded `BASE_HEIGHT`. Dette sikrer at skaleringen altid passer til det fulde indhold uanset skærmstørrelse.
 
 ### Tekniske detaljer
 
-**1. `src/pages/Admin.tsx`**
-- Fjern `{ value: "requests", label: "Requests", icon: Gamepad2 }` fra `navItems`
-- Fjern `TabsContent value="requests"` blokken
-- Fjern import af `SlotRequestsAdminSection`
-- Opdater grid fra `grid-cols-9` til `grid-cols-8`
+**1. `src/hooks/useSlotScale.ts`**
+- Tilføj en `ref` som returneres fra hooket og skal sættes på slot-containeren
+- Brug `ResizeObserver` til at måle containerens faktiske højde og bredde
+- Beregn scale ud fra de målte dimensioner i stedet for faste `BASE_WIDTH`/`BASE_HEIGHT`
+- Behold `BASE_WIDTH = 1280` som fallback for bredden (den er korrekt)
+- Øg `BASE_HEIGHT` fra 720 til ca. 920 som fallback/default indtil måling er klar
+- Tilføj lidt ekstra padding til højdeberegningen for at sikre at kontrolbaren ikke afskæres
 
-**2. `src/components/SlotMachineAdminSection.tsx`**
-- Tilfoej "Requests" som ny tab i Spillemaskine-sektionens `TabsList`
-- Tilfoej til `GLOBAL_TABS` array saa game-selector skjules for denne tab
-- Importer og render `SlotRequestsAdminSection` i en ny `TabsContent value="requests"`
+**2. `src/pages/SlotMachine.tsx` og `src/pages/RiseOfFedesvin.tsx`**
+- Ingen ændringer nødvendige -- den øgede `BASE_HEIGHT` værdi løser problemet direkte
 
-**3. `src/components/SlotRequestsAdminSection.tsx`**
-- Filtrer listen til kun at vise requests med `status === "pending"`
-- Vis antal ventende requests i CardTitle (f.eks. "Ventende Requests (3)")
+### Alternativ simpel tilgang (anbefalet)
+I stedet for dynamisk måling, øg blot `BASE_HEIGHT` fra 720 til 920 i `useSlotScale.ts`. Dette er den mest stabile løsning da spillemaskinens layout er fast og forudsigeligt. Tallet 920 dækker: tromler (498px) + ramme/padding (ca. 80px) + bonus-bars (100px) + kontrolpanel (150px) + mellemrum (92px).
 
-**4. `src/hooks/useSlotRequests.ts`**
-- Ingen aendringer needed -- `useAllSlotRequests` henter stadig alt, og filtreringen sker i UI-laget
-- `useUpdateSlotRequestStatus` gemmer allerede resultatet korrekt i databasen
+**Eneste fil der ændres: `src/hooks/useSlotScale.ts`**
+- Linje 5: `const BASE_HEIGHT = 720;` bliver til `const BASE_HEIGHT = 920;`
+
