@@ -1,3 +1,4 @@
+import { Helmet } from "react-helmet-async";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
@@ -134,8 +135,34 @@ const NyeCasinoer = () => {
     gameProviders: casino.game_providers ?? [],
   });
 
+  const faqJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": nyeCasinoerFaqs.map((faq) => ({
+      "@type": "Question",
+      "name": faq.question,
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": faq.answer,
+      },
+    })),
+  };
+
   return (
     <>
+      <Helmet>
+        <title>Nye Casinoer 2026 – Bedste Nye Online Casinoer i Danmark</title>
+        <meta name="description" content="Opdateret liste over de bedste nye casinoer i Danmark 2026. Sammenlign bonusser, free spins og vilkår hos nye spillesteder med dansk licens." />
+        <link rel="canonical" href="https://bonushuset-buddy.lovable.app/nye-casinoer" />
+        <meta property="og:title" content="Nye Casinoer 2026 – Bedste Nye Online Casinoer i Danmark" />
+        <meta property="og:description" content="Opdateret liste over de bedste nye casinoer i Danmark 2026. Sammenlign bonusser, free spins og vilkår hos nye spillesteder med dansk licens." />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://bonushuset-buddy.lovable.app/nye-casinoer" />
+        <meta name="twitter:title" content="Nye Casinoer 2026 – Bedste Nye Online Casinoer" />
+        <meta name="twitter:description" content="Opdateret liste over de bedste nye casinoer i Danmark 2026. Sammenlign bonusser, free spins og vilkår." />
+        <script type="application/ld+json">{JSON.stringify(faqJsonLd)}</script>
+      </Helmet>
+
       {/* Hero Section - matching Index hero background */}
       <section
         className="relative overflow-hidden py-12 text-white md:py-20"
