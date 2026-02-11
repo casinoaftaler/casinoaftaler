@@ -177,13 +177,6 @@ export function Header() {
                   Bonus uden Omsætningskrav
                 </Link>
               </DropdownMenuItem>
-              <DropdownMenuSeparator />
-              <DropdownMenuItem asChild>
-                <Link to="/responsible-gaming" className="flex items-center gap-2">
-                  <ShieldCheck className="h-4 w-4" />
-                  Ansvarligt Spil
-                </Link>
-              </DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>
           <DropdownMenu>
@@ -254,6 +247,13 @@ export function Header() {
                 <Link to="/spiludviklere" className="flex items-center gap-2">
                   <Gamepad2 className="h-4 w-4" />
                   Spiludviklere
+                </Link>
+              </DropdownMenuItem>
+              <DropdownMenuSeparator />
+              <DropdownMenuItem asChild>
+                <Link to="/responsible-gaming" className="flex items-center gap-2">
+                  <ShieldCheck className="h-4 w-4" />
+                  Ansvarligt Spil
                 </Link>
               </DropdownMenuItem>
             </DropdownMenuContent>
@@ -415,7 +415,6 @@ export function Header() {
                   { to: "/indskudsbonus", icon: <DollarSign className="h-4 w-4" />, label: "Indskudsbonus" },
                   { to: "/bonus-uden-indbetaling", icon: <Gift className="h-4 w-4" />, label: "Bonus uden Indbetaling" },
                   { to: "/bonus-uden-omsaetningskrav", icon: <Zap className="h-4 w-4" />, label: "Bonus uden Omsætningskrav" },
-                  { to: "/responsible-gaming", icon: <ShieldCheck className="h-4 w-4" />, label: "Ansvarligt Spil" },
                 ].map((item) => (
                   <Link
                     key={item.to}
@@ -492,6 +491,10 @@ export function Header() {
                 <Link to="/spiludviklere" className="ml-6 flex items-center gap-2 py-2.5 text-sm text-muted-foreground transition-colors hover:text-primary" onClick={() => setMobileMenuOpen(false)}>
                   <Gamepad2 className="h-4 w-4" />
                   Spiludviklere
+                </Link>
+                <Link to="/responsible-gaming" className="ml-6 flex items-center gap-2 py-2.5 text-sm text-muted-foreground transition-colors hover:text-primary" onClick={() => setMobileMenuOpen(false)}>
+                  <ShieldCheck className="h-4 w-4" />
+                  Ansvarligt Spil
                 </Link>
               </div>
             )}
