@@ -47,7 +47,7 @@ import { CombinedAnalyticsDashboard } from "@/components/CombinedAnalyticsDashbo
 import { SlotMachineAdminSection } from "@/components/SlotMachineAdminSection";
 import { StorageCleanupSection } from "@/components/StorageCleanupSection";
 import { NotificationsAdminSection } from "@/components/NotificationsAdminSection";
-import { ProfileCompletionStatsCard } from "@/components/ProfileCompletionStatsCard";
+import { ProfileCompletionOverview } from "@/components/ProfileCompletionStatsCard";
 import { CommunityClipsAdminSection } from "@/components/CommunityClipsAdminSection";
 import { SlotRequestsAdminSection } from "@/components/SlotRequestsAdminSection";
 import { SpinManagementSection } from "@/components/SpinManagementSection";
@@ -1107,14 +1107,8 @@ function AdminDashboard() {
           {/* Brugere Tab */}
           <TabsContent value="users">
             <div className="space-y-8">
-              {/* Profile Completion Statistics */}
-              <div>
-                <div className="mb-6">
-                  <h2 className="text-2xl font-bold">Profilfuldførelse</h2>
-                  <p className="text-muted-foreground">Oversigt over brugerprofilers fuldførelsesgrad.</p>
-                </div>
-                <ProfileCompletionStatsCard />
-              </div>
+              {/* Profile Completion Statistics Overview */}
+              <ProfileCompletionOverview />
 
               <div className="pt-4 border-t border-border">
                 <Collapsible>
