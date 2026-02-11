@@ -22,6 +22,7 @@ import { getTodayDanish } from "@/lib/danishDate";
 export function Header() {
   const navigate = useNavigate();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [expandedSection, setExpandedSection] = useState<string | null>(null);
   const [isDark, setIsDark] = useState(() => {
     const saved = localStorage.getItem("theme");
     return saved === "dark";
@@ -371,11 +372,12 @@ export function Header() {
 
       {/* Mobile Navigation */}
       {mobileMenuOpen && (
-        <div className="border-t border-border bg-background lg:hidden">
-          <nav className="container flex flex-col gap-4 py-4">
+        <div className="border-t border-border bg-background lg:hidden max-h-[calc(100dvh-4rem)] overflow-y-auto">
+          <nav className="container flex flex-col py-3">
+            {/* Direct links */}
             <Link
               to="/"
-              className="flex items-center gap-2 text-sm font-medium transition-colors hover:text-primary"
+              className="flex items-center gap-2 py-3 text-sm font-medium transition-colors hover:text-primary border-b border-border/50"
               onClick={() => setMobileMenuOpen(false)}
             >
               <Dices className="h-4 w-4" />
@@ -383,7 +385,7 @@ export function Header() {
             </Link>
             <Link
               to="/nye-casinoer"
-              className="flex items-center gap-2 text-sm font-medium transition-colors hover:text-primary"
+              className="flex items-center gap-2 py-3 text-sm font-medium transition-colors hover:text-primary border-b border-border/50"
               onClick={() => setMobileMenuOpen(false)}
             >
               <Sparkles className="h-4 w-4" />
@@ -391,163 +393,135 @@ export function Header() {
             </Link>
             <Link
               to="/live-casino"
-              className="flex items-center gap-2 text-sm font-medium transition-colors hover:text-primary"
+              className="flex items-center gap-2 py-3 text-sm font-medium transition-colors hover:text-primary border-b border-border/50"
               onClick={() => setMobileMenuOpen(false)}
             >
               <Tv className="h-4 w-4" />
               Live Casino
             </Link>
-            <Link
-              to="/bonus-guide"
-              className="flex items-center gap-2 text-sm font-medium transition-colors hover:text-primary"
-              onClick={() => setMobileMenuOpen(false)}
+
+            {/* Casino Bonus - expandable */}
+            <button
+              onClick={() => setExpandedSection(expandedSection === "bonus" ? null : "bonus")}
+              className="flex items-center justify-between py-3 text-sm font-medium transition-colors hover:text-primary border-b border-border/50"
             >
-              <BookOpen className="h-4 w-4" />
-              Casino Bonus
-            </Link>
-            <Link
-              to="/free-spins"
-              className="ml-6 flex items-center gap-2 text-sm text-muted-foreground transition-colors hover:text-primary"
-              onClick={() => setMobileMenuOpen(false)}
+              <span className="flex items-center gap-2">
+                <BookOpen className="h-4 w-4" />
+                Casino Bonus
+              </span>
+              <ChevronDown className={`h-4 w-4 transition-transform duration-200 ${expandedSection === "bonus" ? "rotate-180" : ""}`} />
+            </button>
+            {expandedSection === "bonus" && (
+              <div className="flex flex-col border-b border-border/50 bg-muted/30">
+                {[
+                  { to: "/no-sticky-bonus", icon: <Sparkles className="h-4 w-4" />, label: "No-Sticky Bonusser" },
+                  { to: "/sticky-bonus", icon: <Gift className="h-4 w-4" />, label: "Sticky Bonusser" },
+                  { to: "/free-spins", icon: <Sparkles className="h-4 w-4" />, label: "Free Spins" },
+                  { to: "/velkomstbonus", icon: <Gift className="h-4 w-4" />, label: "Velkomstbonus" },
+                  { to: "/omsaetningskrav", icon: <RefreshCw className="h-4 w-4" />, label: "Omsætningskrav" },
+                  { to: "/indskudsbonus", icon: <DollarSign className="h-4 w-4" />, label: "Indskudsbonus" },
+                  { to: "/bonus-uden-indbetaling", icon: <Gift className="h-4 w-4" />, label: "Bonus uden Indbetaling" },
+                  { to: "/bonus-uden-omsaetningskrav", icon: <Zap className="h-4 w-4" />, label: "Bonus uden Omsætningskrav" },
+                  { to: "/responsible-gaming", icon: <ShieldCheck className="h-4 w-4" />, label: "Ansvarligt Spil" },
+                ].map((item) => (
+                  <Link
+                    key={item.to}
+                    to={item.to}
+                    className="ml-6 flex items-center gap-2 py-2.5 text-sm text-muted-foreground transition-colors hover:text-primary"
+                    onClick={() => setMobileMenuOpen(false)}
+                  >
+                    {item.icon}
+                    {item.label}
+                  </Link>
+                ))}
+              </div>
+            )}
+
+            {/* Om Os - expandable */}
+            <button
+              onClick={() => setExpandedSection(expandedSection === "about" ? null : "about")}
+              className="flex items-center justify-between py-3 text-sm font-medium transition-colors hover:text-primary border-b border-border/50"
             >
-              <Sparkles className="h-4 w-4" />
-              Free Spins
-            </Link>
-            <Link
-              to="/velkomstbonus"
-              className="ml-6 flex items-center gap-2 text-sm text-muted-foreground transition-colors hover:text-primary"
-              onClick={() => setMobileMenuOpen(false)}
+              <span className="flex items-center gap-2">
+                <Users className="h-4 w-4" />
+                Om Os
+              </span>
+              <ChevronDown className={`h-4 w-4 transition-transform duration-200 ${expandedSection === "about" ? "rotate-180" : ""}`} />
+            </button>
+            {expandedSection === "about" && (
+              <div className="flex flex-col border-b border-border/50 bg-muted/30">
+                <Link to="/about" className="ml-6 flex items-center gap-2 py-2.5 text-sm text-muted-foreground transition-colors hover:text-primary" onClick={() => setMobileMenuOpen(false)}>
+                  <Users className="h-4 w-4" />
+                  Om Os
+                </Link>
+                <Link to="/contact" className="ml-6 flex items-center gap-2 py-2.5 text-sm text-muted-foreground transition-colors hover:text-primary" onClick={() => setMobileMenuOpen(false)}>
+                  <Mail className="h-4 w-4" />
+                  Kontakt
+                </Link>
+              </div>
+            )}
+
+            {/* Community - expandable */}
+            <button
+              onClick={() => setExpandedSection(expandedSection === "community" ? null : "community")}
+              className="flex items-center justify-between py-3 text-sm font-medium transition-colors hover:text-primary border-b border-border/50"
             >
-              <Gift className="h-4 w-4" />
-              Velkomstbonus
-            </Link>
-            <Link
-              to="/omsaetningskrav"
-              className="ml-6 flex items-center gap-2 text-sm text-muted-foreground transition-colors hover:text-primary"
-              onClick={() => setMobileMenuOpen(false)}
+              <span className="flex items-center gap-2">
+                <Users className="h-4 w-4" />
+                Community
+              </span>
+              <ChevronDown className={`h-4 w-4 transition-transform duration-200 ${expandedSection === "community" ? "rotate-180" : ""}`} />
+            </button>
+            {expandedSection === "community" && (
+              <div className="flex flex-col border-b border-border/50 bg-muted/30">
+                {[
+                  { to: "/butik", icon: <ShoppingBag className="h-4 w-4" />, label: "Butik" },
+                  { to: "/highlights", icon: <Video className="h-4 w-4" />, label: "Highlights" },
+                  { to: "/community/slots", icon: <Coins className="h-4 w-4" />, label: "Spillehal" },
+                  { to: "/community/leaderboard", icon: <Trophy className="h-4 w-4" />, label: "Leaderboard" },
+                  { to: "/community/rewards", icon: <Gift className="h-4 w-4" />, label: "Rewards Program" },
+                ].map((item) => (
+                  <Link
+                    key={item.to}
+                    to={item.to}
+                    className="ml-6 flex items-center gap-2 py-2.5 text-sm text-muted-foreground transition-colors hover:text-primary"
+                    onClick={() => setMobileMenuOpen(false)}
+                  >
+                    {item.icon}
+                    {item.label}
+                  </Link>
+                ))}
+              </div>
+            )}
+
+            {/* Mere - expandable */}
+            <button
+              onClick={() => setExpandedSection(expandedSection === "more" ? null : "more")}
+              className="flex items-center justify-between py-3 text-sm font-medium transition-colors hover:text-primary border-b border-border/50"
             >
-              <RefreshCw className="h-4 w-4" />
-              Omsætningskrav
-            </Link>
-            <Link
-              to="/indskudsbonus"
-              className="ml-6 flex items-center gap-2 text-sm text-muted-foreground transition-colors hover:text-primary"
-              onClick={() => setMobileMenuOpen(false)}
-            >
-              <DollarSign className="h-4 w-4" />
-              Indskudsbonus
-            </Link>
-            <Link
-              to="/bonus-uden-indbetaling"
-              className="ml-6 flex items-center gap-2 text-sm text-muted-foreground transition-colors hover:text-primary"
-              onClick={() => setMobileMenuOpen(false)}
-            >
-              <Gift className="h-4 w-4" />
-              Bonus uden Indbetaling
-            </Link>
-            <Link
-              to="/bonus-uden-omsaetningskrav"
-              className="ml-6 flex items-center gap-2 text-sm text-muted-foreground transition-colors hover:text-primary"
-              onClick={() => setMobileMenuOpen(false)}
-            >
-              <Zap className="h-4 w-4" />
-              Bonus uden Omsætningskrav
-            </Link>
-            <Link
-              to="/responsible-gaming"
-              className="ml-6 flex items-center gap-2 text-sm text-muted-foreground transition-colors hover:text-primary"
-              onClick={() => setMobileMenuOpen(false)}
-            >
-              <ShieldCheck className="h-4 w-4" />
-              Ansvarligt Spil
-            </Link>
-            <Link
-              to="/about"
-              className="flex items-center gap-2 text-sm font-medium transition-colors hover:text-primary"
-              onClick={() => setMobileMenuOpen(false)}
-            >
-              <Users className="h-4 w-4" />
-              Om Os
-            </Link>
-            <Link
-              to="/contact"
-              className="ml-6 flex items-center gap-2 text-sm text-muted-foreground transition-colors hover:text-primary"
-              onClick={() => setMobileMenuOpen(false)}
-            >
-              <Mail className="h-4 w-4" />
-              Kontakt
-            </Link>
-            {/* Community section */}
-            <div className="flex items-center gap-2 text-sm font-medium text-muted-foreground">
-              <Users className="h-4 w-4" />
-              Community
-            </div>
-            <Link
-              to="/butik"
-              className="ml-6 flex items-center gap-2 text-sm text-muted-foreground transition-colors hover:text-primary"
-              onClick={() => setMobileMenuOpen(false)}
-            >
-              <ShoppingBag className="h-4 w-4" />
-              Butik
-            </Link>
-            <Link
-              to="/highlights"
-              className="ml-6 flex items-center gap-2 text-sm text-muted-foreground transition-colors hover:text-primary"
-              onClick={() => setMobileMenuOpen(false)}
-            >
-              <Video className="h-4 w-4" />
-              Highlights
-            </Link>
-            <Link
-              to="/community/slots"
-              className="ml-6 flex items-center gap-2 text-sm text-muted-foreground transition-colors hover:text-primary"
-              onClick={() => setMobileMenuOpen(false)}
-            >
-              <Coins className="h-4 w-4" />
-              Spillehal
-            </Link>
-            <Link
-              to="/community/leaderboard"
-              className="ml-6 flex items-center gap-2 text-sm text-muted-foreground transition-colors hover:text-primary"
-              onClick={() => setMobileMenuOpen(false)}
-            >
-              <Trophy className="h-4 w-4" />
-              Leaderboard
-            </Link>
-            <Link
-              to="/community/rewards"
-              className="ml-6 flex items-center gap-2 text-sm text-muted-foreground transition-colors hover:text-primary"
-              onClick={() => setMobileMenuOpen(false)}
-            >
-              <Gift className="h-4 w-4" />
-              Rewards Program
-            </Link>
-            {/* Mere section */}
-            <div className="flex items-center gap-2 text-sm font-medium text-muted-foreground">
-              <MoreHorizontal className="h-4 w-4" />
-              Mere
-            </div>
-            <Link
-              to="/betalingsmetoder"
-              className="ml-6 flex items-center gap-2 text-sm text-muted-foreground transition-colors hover:text-primary"
-              onClick={() => setMobileMenuOpen(false)}
-            >
-              <CreditCard className="h-4 w-4" />
-              Betalingsmetoder
-            </Link>
-            <Link
-              to="/spiludviklere"
-              className="ml-6 flex items-center gap-2 text-sm text-muted-foreground transition-colors hover:text-primary"
-              onClick={() => setMobileMenuOpen(false)}
-            >
-              <Gamepad2 className="h-4 w-4" />
-              Spiludviklere
-            </Link>
-            
-            {/* Theme toggle in mobile menu */}
+              <span className="flex items-center gap-2">
+                <MoreHorizontal className="h-4 w-4" />
+                Mere
+              </span>
+              <ChevronDown className={`h-4 w-4 transition-transform duration-200 ${expandedSection === "more" ? "rotate-180" : ""}`} />
+            </button>
+            {expandedSection === "more" && (
+              <div className="flex flex-col border-b border-border/50 bg-muted/30">
+                <Link to="/betalingsmetoder" className="ml-6 flex items-center gap-2 py-2.5 text-sm text-muted-foreground transition-colors hover:text-primary" onClick={() => setMobileMenuOpen(false)}>
+                  <CreditCard className="h-4 w-4" />
+                  Betalingsmetoder
+                </Link>
+                <Link to="/spiludviklere" className="ml-6 flex items-center gap-2 py-2.5 text-sm text-muted-foreground transition-colors hover:text-primary" onClick={() => setMobileMenuOpen(false)}>
+                  <Gamepad2 className="h-4 w-4" />
+                  Spiludviklere
+                </Link>
+              </div>
+            )}
+
+            {/* Theme toggle */}
             <button
               onClick={toggleTheme}
-              className="flex items-center gap-2 text-sm font-medium transition-colors hover:text-primary"
+              className="flex items-center gap-2 py-3 text-sm font-medium transition-colors hover:text-primary"
             >
               {isDark ? (
                 <>
