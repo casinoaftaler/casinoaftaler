@@ -14,6 +14,7 @@ import { SlotPointsManagement } from "@/components/slots/SlotPointsManagement";
 import { SlotSoundFilesSection } from "@/components/slots/SlotSoundFilesSection";
 import { SlotSoundGeneratorSection } from "@/components/slots/SlotSoundGeneratorSection";
 import { LivePlayersAdminSection } from "@/components/LivePlayersAdminSection";
+import { SlotRequestsAdminSection } from "@/components/SlotRequestsAdminSection";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -1415,7 +1416,7 @@ const GAME_OPTIONS = [
   { id: "rise-of-fedesvin", label: "Rise of Fedesvin" },
 ] as const;
 
-const GLOBAL_TABS = ["spins", "points", "combined-stats", "live-players"] as const;
+const GLOBAL_TABS = ["spins", "points", "combined-stats", "live-players", "requests"] as const;
 
 export function SlotMachineAdminSection() {
   const [selectedGame, setSelectedGame] = useState("book-of-fedesvin");
@@ -1470,6 +1471,10 @@ export function SlotMachineAdminSection() {
             <BarChart3 className="h-3.5 w-3.5" />
             Samlet Statistik
           </TabsTrigger>
+          <TabsTrigger value="requests" className="gap-1">
+            <Gamepad2 className="h-3.5 w-3.5" />
+            Requests
+          </TabsTrigger>
         </TabsList>
 
         <TabsContent value="symbols">
@@ -1500,6 +1505,10 @@ export function SlotMachineAdminSection() {
 
         <TabsContent value="live-players">
           <LivePlayersAdminSection />
+        </TabsContent>
+
+        <TabsContent value="requests">
+          <SlotRequestsAdminSection />
         </TabsContent>
       </Tabs>
     </div>
