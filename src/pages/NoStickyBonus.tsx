@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
+import { InlineCasinoCards } from "@/components/InlineCasinoCards";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
@@ -363,6 +364,8 @@ const NoStickyBonus = () => {
             </Card>
           </div>
         </section>
+
+        <InlineCasinoCards title="Casinoer med No-Sticky Bonus" />
 
         <Separator className="my-10" />
 
