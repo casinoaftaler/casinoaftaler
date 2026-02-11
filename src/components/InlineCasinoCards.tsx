@@ -6,13 +6,13 @@ import { Separator } from "@/components/ui/separator";
 interface InlineCasinoCardsProps {
   /** Heading displayed above the casino cards */
   title?: string;
-  /** Number of casinos to show (default: 2) */
+  /** Number of casinos to show (default: 6) */
   count?: number;
 }
 
 export function InlineCasinoCards({
   title = "Anbefalede Casinoer",
-  count = 2,
+  count = 6,
 }: InlineCasinoCardsProps) {
   const { data: casinos, isLoading } = useCasinos();
   const displayCasinos = casinos?.slice(0, count) ?? [];
@@ -63,12 +63,12 @@ export function InlineCasinoCards({
         <h3 className="text-lg font-semibold text-center text-muted-foreground">
           {title}
         </h3>
-        <div className="grid gap-4 md:grid-cols-2">
+        <div className="grid gap-3 grid-cols-2 lg:grid-cols-3">
           {displayCasinos.map((casino, index) => (
             <CasinoCard
               key={casino.id}
               casino={mapCasino(casino)}
-              rank={index + 1}
+              rank={index + 3}
             />
           ))}
         </div>
