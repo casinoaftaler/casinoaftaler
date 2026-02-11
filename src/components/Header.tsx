@@ -9,7 +9,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { ChevronDown, Gamepad2, LogOut, Mail, Menu, User, X, Dices, Gift, BookOpen, Users, ShoppingBag, Video, ShieldCheck, Sparkles, Layers, Moon, Sun, Coins, UserCircle, Trophy, Ticket, CreditCard, MoreHorizontal, RefreshCw } from "lucide-react";
+import { ChevronDown, Gamepad2, LogOut, Mail, Menu, User, X, Dices, Gift, BookOpen, Users, ShoppingBag, Video, ShieldCheck, Sparkles, Layers, Moon, Sun, Coins, UserCircle, Trophy, Ticket, CreditCard, MoreHorizontal, RefreshCw, DollarSign } from "lucide-react";
 import { useState, useEffect } from "react";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
 import { useTwitchStatus } from "@/hooks/useTwitchStatus";
@@ -155,6 +155,12 @@ export function Header() {
                 <Link to="/omsaetningskrav" className="flex items-center gap-2">
                   <RefreshCw className="h-4 w-4" />
                   Omsætningskrav
+                </Link>
+              </DropdownMenuItem>
+              <DropdownMenuItem asChild>
+                <Link to="/indskudsbonus" className="flex items-center gap-2">
+                  <DollarSign className="h-4 w-4" />
+                  Indskudsbonus
                 </Link>
               </DropdownMenuItem>
               <DropdownMenuSeparator />
@@ -401,6 +407,14 @@ export function Header() {
             >
               <RefreshCw className="h-4 w-4" />
               Omsætningskrav
+            </Link>
+            <Link
+              to="/indskudsbonus"
+              className="ml-6 flex items-center gap-2 text-sm text-muted-foreground transition-colors hover:text-primary"
+              onClick={() => setMobileMenuOpen(false)}
+            >
+              <DollarSign className="h-4 w-4" />
+              Indskudsbonus
             </Link>
             <Link
               to="/responsible-gaming"
