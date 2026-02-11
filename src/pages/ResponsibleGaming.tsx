@@ -1,6 +1,7 @@
 import { AlertTriangle, Phone, Globe, HelpCircle, Shield, Clock, Users } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
+import { InlineCasinoCards } from "@/components/InlineCasinoCards";
 
 const ResponsibleGaming = () => {
   return (
@@ -153,6 +154,8 @@ const ResponsibleGaming = () => {
             værktøjer og muligheder for ansvarligt spil.
           </p>
         </div>
+
+        <InlineCasinoCards title="Casinoer med ansvarligt spil-værktøjer" />
 
         {/* Help Resources */}
         <div className="mb-16">
