@@ -184,7 +184,7 @@ export function SpinManagementSection() {
     },
   });
 
-  // Ban mutation
+  // Ban mutation (uses edge function to also delete leaderboard + credits)
   const banUser = useMutation({
     mutationFn: async ({
       userId,
@@ -194,20 +194,21 @@ export function SpinManagementSection() {
       reason: string;
     }) => {
       const {
-        data: { user },
-      } = await supabase.auth.getUser();
-      if (!user) throw new Error("Not authenticated");
+        data: { session },
+      } = await supabase.auth.getSession();
+      if (!session) throw new Error("Not authenticated");
 
-      const { error } = await supabase.from("user_bans").insert({
-        user_id: userId,
-        banned_by: user.id,
-        reason: reason || null,
+      const response = await supabase.functions.invoke("ban-user", {
+        body: { userId, reason },
       });
-      if (error) throw error;
+
+      if (response.error) throw new Error(response.error.message);
+      if (response.data?.error) throw new Error(response.data.error);
     },
     onSuccess: () => {
-      toast.success("Bruger banned");
+      toast.success("Bruger banned – leaderboard og credits slettet");
       queryClient.invalidateQueries({ queryKey: ["admin-user-spins"] });
+      queryClient.invalidateQueries({ queryKey: ["slot-leaderboard"] });
       setBanDialogUser(null);
       setBanReason("");
     },

@@ -40,9 +40,8 @@ import {
 } from "@/components/ui/alert-dialog";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
-import { Plus, Trash2, LogOut, Star, Loader2, Pencil, GripVertical, Gift, ShoppingBag, BarChart3, Settings, Users, Video, Gamepad2, Bell, Sparkles, Ticket, Menu, Ban } from "lucide-react";
+import { Plus, Trash2, LogOut, Star, Loader2, Pencil, GripVertical, Gift, ShoppingBag, BarChart3, Settings, Users, Video, Gamepad2, Bell, Sparkles, Ticket, Menu, ChevronDown } from "lucide-react";
 import { AdminUserManagement } from "@/components/AdminUserManagement";
-import { TwitchUsersSection } from "@/components/TwitchUsersSection";
 import { HighlightsAdminSection } from "@/components/HighlightsAdminSection";
 import { CombinedAnalyticsDashboard } from "@/components/CombinedAnalyticsDashboard";
 import { SlotMachineAdminSection } from "@/components/SlotMachineAdminSection";
@@ -51,7 +50,8 @@ import { NotificationsAdminSection } from "@/components/NotificationsAdminSectio
 import { ProfileCompletionStatsCard } from "@/components/ProfileCompletionStatsCard";
 import { CommunityClipsAdminSection } from "@/components/CommunityClipsAdminSection";
 import { SlotRequestsAdminSection } from "@/components/SlotRequestsAdminSection";
-import { BanManagementSection } from "@/components/BanManagementSection";
+import { SpinManagementSection } from "@/components/SpinManagementSection";
+import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
 
 import { ThemeToggle } from "@/components/ThemeToggle";
 import { RedeemCodesAdminSection } from "@/components/RedeemCodesAdminSection";
@@ -1062,6 +1062,48 @@ function AdminDashboard() {
             </Card>
           </TabsContent>
 
+          {/* Indstillinger Tab */}
+          <TabsContent value="settings">
+            <div className="mb-6">
+              <h2 className="text-2xl font-bold">Site Indstillinger</h2>
+              <p className="text-muted-foreground">Tilpas hjemmesidens udseende og indhold.</p>
+            </div>
+            <Card>
+              <CardContent className="space-y-6 pt-6">
+                <div>
+                  <h3 className="text-sm font-medium mb-3">Site Navn</h3>
+                  <SiteNameInput />
+                </div>
+                <div className="pt-4 border-t border-border">
+                  <h3 className="text-sm font-medium mb-3">Header Ikon</h3>
+                  <HeaderIconUpload
+                    currentIconUrl={headerIconUrl}
+                    onIconChange={(url) => {
+                      setHeaderIconUrl(url);
+                      queryClient.invalidateQueries({ queryKey: ["site-settings"] });
+                    }}
+                  />
+                </div>
+                <div className="pt-4 border-t border-border">
+                  <h3 className="text-sm font-medium mb-3">Hero Sektion</h3>
+                  <HeroSettingsInput />
+                </div>
+                <div className="pt-4 border-t border-border">
+                  <h3 className="text-sm font-medium mb-3">Sociale Medier Links</h3>
+                  <SocialLinksInput />
+                </div>
+                <div className="pt-4 border-t border-border">
+                  <h3 className="text-sm font-medium mb-3">Casino Kort Disclaimer</h3>
+                  <DisclaimerInput />
+                </div>
+                <div className="pt-4 border-t border-border">
+                  <h3 className="text-sm font-medium mb-3">Storage Oprydning</h3>
+                  <StorageCleanupSection />
+                </div>
+              </CardContent>
+            </Card>
+          </TabsContent>
+
           {/* Brugere Tab */}
           <TabsContent value="users">
             <div className="space-y-8">
@@ -1075,27 +1117,20 @@ function AdminDashboard() {
               </div>
 
               <div className="pt-4 border-t border-border">
-                <div className="mb-6">
-                  <h2 className="text-2xl font-bold">Admin Brugere</h2>
-                  <p className="text-muted-foreground">Opret og administrer admin brugere.</p>
-                </div>
-                <AdminUserManagement embedded />
+                <Collapsible>
+                  <CollapsibleTrigger className="flex items-center gap-2 text-2xl font-bold w-full group">
+                    Admin Brugere
+                    <ChevronDown className="h-5 w-5 transition-transform group-data-[state=open]:rotate-180" />
+                  </CollapsibleTrigger>
+                  <p className="text-muted-foreground mb-4">Opret og administrer admin brugere.</p>
+                  <CollapsibleContent>
+                    <AdminUserManagement embedded />
+                  </CollapsibleContent>
+                </Collapsible>
               </div>
               
               <div className="pt-4 border-t border-border">
-                <div className="mb-6">
-                  <h2 className="text-2xl font-bold">Twitch Brugere</h2>
-                  <p className="text-muted-foreground">Alle brugere der har logget ind med Twitch.</p>
-                </div>
-                <TwitchUsersSection />
-              </div>
-
-              <div className="pt-4 border-t border-border">
-                <div className="mb-6">
-                  <h2 className="text-2xl font-bold">Ban Management</h2>
-                  <p className="text-muted-foreground">Oversigt over bannede brugere med mulighed for unban.</p>
-                </div>
-                <BanManagementSection />
+                <SpinManagementSection />
               </div>
             </div>
           </TabsContent>
