@@ -1,206 +1,348 @@
-import { Shield, Users, Award, Target } from "lucide-react";
+import { Helmet } from "react-helmet-async";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import { Separator } from "@/components/ui/separator";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
+import {
+  Shield,
+  Users,
+  Award,
+  Target,
+  HelpCircle,
+  User,
+  CalendarDays,
+  BookOpen,
+  ShieldCheck,
+  CheckCircle2,
+  Search,
+  RefreshCw,
+  Gamepad2,
+  Scale,
+} from "lucide-react";
+import { useSiteSettings } from "@/hooks/useSiteSettings";
+import { RelatedGuides } from "@/components/RelatedGuides";
+
+const aboutFaqs = [
+  {
+    question: "Er Casinoaftaler.dk uafhængig?",
+    answer:
+      "Ja, alle vores anmeldelser og vurderinger er baseret på vores ærlige vurdering. Vi modtager muligvis provision fra casinoer, men dette påvirker aldrig vores vurderinger eller anbefalinger.",
+  },
+  {
+    question: "Hvordan vælger I hvilke casinoer der anmeldes?",
+    answer:
+      "Vi anmelder udelukkende casinoer med gyldig dansk licens fra Spillemyndigheden. Vi fokuserer på casinoer, der tilbyder konkurrencedygtige bonusser, bredt spiludbud og god kundeservice.",
+  },
+  {
+    question: "Hvor ofte opdateres anmeldelserne?",
+    answer:
+      "Vi gennemgår og opdaterer vores anmeldelser løbende for at afspejle ændringer i bonusvilkår, nye kampagner og eventuel spillerfeedback. De fleste anmeldelser opdateres mindst én gang om måneden.",
+  },
+  {
+    question: "Kan jeg stole på jeres bonusvurderinger?",
+    answer:
+      "Vi analyserer grundigt alle bonusvilkår, herunder omsætningskrav, tidsfrister og spilbidrag. Vi fremhæver både fordele og ulemper, så du kan træffe en informeret beslutning.",
+  },
+  {
+    question: "Hvem kan kontakte jer?",
+    answer:
+      "Vores kontaktside er primært beregnet til casino partnerskaber, affiliate henvendelser og presseforespørgsler. For generel information kan du læse vores guides og anmeldelser.",
+  },
+];
+
+const values = [
+  {
+    icon: Shield,
+    name: "Gennemsigtighed",
+    description:
+      "Vi forklarer tydeligt alle bonusvilkår, herunder gennemspilskrav, spilrestriktioner og udbetalingsgrænser. Du skal aldrig blive overrasket af skjulte betingelser.",
+  },
+  {
+    icon: Users,
+    name: "Spilleren Først",
+    description:
+      "Vores anmeldelser prioriterer spilleroplevelsen med fokus på bonusser, der tilbyder ægte værdi og fair betingelser. Vi anbefaler kun casinoer, vi selv ville spille på.",
+  },
+  {
+    icon: Award,
+    name: "Ekspertise",
+    description:
+      "Vores team har mange års erfaring i iGaming-branchen og bringer dyb viden til hver anmeldelse. Vi kender branchens faldgruber og hjælper dig med at undgå dem.",
+  },
+  {
+    icon: Target,
+    name: "Uafhængighed",
+    description:
+      "Vores anmeldelser er upartiske. Vi modtager muligvis provision, men dette påvirker aldrig vores vurderinger eller anbefalinger. Integritet er vores fundament.",
+  },
+];
+
+const reviewSteps = [
+  {
+    icon: ShieldCheck,
+    title: "Trin 1: Licens & Sikkerhedstjek",
+    desc: "Vi verificerer, at hvert casino har gyldige licenser fra Spillemyndigheden og bruger branchestandarder for sikkerhedsforanstaltninger.",
+  },
+  {
+    icon: Search,
+    title: "Trin 2: Bonusanalyse",
+    desc: "Vi analyserer grundigt bonusvilkår, gennemspilskrav, spilbidrag og tidsgrænser for at vurdere den reelle værdi for spillere.",
+  },
+  {
+    icon: Gamepad2,
+    title: "Trin 3: Test af Spilleroplevelse",
+    desc: "Vi tester registreringsprocessen, indbetalingsmetoder, spiludvalg og kundesupport for at sikre en kvalitetsoplevelse.",
+  },
+  {
+    icon: RefreshCw,
+    title: "Trin 4: Løbende Overvågning",
+    desc: "Vi opdaterer løbende vores anmeldelser for at afspejle ændringer i bonusvilkår, spillerfeedback og casinoets omdømme.",
+  },
+];
 
 const About = () => {
+  const { data: siteSettings } = useSiteSettings();
+  const heroBackgroundImage = siteSettings?.hero_background;
+
+  const articleJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    headline: "Om Casinoaftaler.dk – Din Guide til Danske Casinobonusser",
+    description:
+      "Lær mere om Casinoaftaler.dk, vores mission, værdier og hvordan vi anmelder danske online casinoer.",
+    author: { "@type": "Organization", name: "Casinoaftaler" },
+    publisher: { "@type": "Organization", name: "Casinoaftaler" },
+    datePublished: "2025-06-01",
+    dateModified: "2026-02-11",
+    mainEntityOfPage: "https://bonushuset-buddy.lovable.app/about",
+  };
+
+  const faqJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: aboutFaqs.map((faq) => ({
+      "@type": "Question",
+      name: faq.question,
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: faq.answer,
+      },
+    })),
+  };
+
   return (
-    <div className="min-h-screen">
-      {/* Hero Section */}
-      <section className="relative py-16 md:py-24 overflow-hidden">
-        <div 
-          className="absolute inset-0"
-          style={{
-            backgroundImage: 'linear-gradient(135deg, hsl(260 70% 25%), hsl(250 60% 20%) 40%, hsl(210 80% 25%))',
-          }}
+    <>
+      <Helmet>
+        <title>Om Os – Casinoaftaler.dk | Din Guide til Danske Casinobonusser</title>
+        <meta
+          name="description"
+          content="Lær mere om Casinoaftaler.dk, vores mission, værdier og hvordan vi anmelder danske online casinoer med gennemsigtige, upartiske anmeldelser."
         />
-        <div className="absolute inset-0 opacity-20">
-          <div className="absolute left-10 top-10 h-32 w-32 rounded-full bg-[hsl(210_80%_60%)] blur-xl" />
-          <div className="absolute bottom-10 right-10 h-48 w-48 rounded-full bg-[hsl(260_70%_60%)] blur-xl" />
-        </div>
-        <div className="container relative z-10">
-          <div className="mx-auto max-w-3xl text-center text-white">
-            <div className="mb-6 flex justify-center">
-              <div className="rounded-full bg-white/10 p-4">
-                <Users className="h-12 w-12" />
-              </div>
-            </div>
-            <h1 className="mb-4 text-4xl font-bold md:text-5xl">Om Casinoaftaler.dk</h1>
+        <link rel="canonical" href="https://bonushuset-buddy.lovable.app/about" />
+        <meta property="og:title" content="Om Os – Casinoaftaler.dk" />
+        <meta
+          property="og:description"
+          content="Lær mere om Casinoaftaler.dk, vores mission og hvordan vi anmelder danske casinoer."
+        />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://bonushuset-buddy.lovable.app/about" />
+        <script type="application/ld+json">{JSON.stringify(articleJsonLd)}</script>
+        <script type="application/ld+json">{JSON.stringify(faqJsonLd)}</script>
+      </Helmet>
+
+      {/* Hero Section */}
+      <section
+        className="relative overflow-hidden py-12 text-white md:py-20"
+        style={{
+          backgroundImage: heroBackgroundImage
+            ? `linear-gradient(135deg, hsl(260 70% 25% / 0.95), hsl(210 80% 30% / 0.9)), url(${heroBackgroundImage})`
+            : "linear-gradient(135deg, hsl(260 70% 25%), hsl(250 60% 20%) 40%, hsl(210 80% 25%))",
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+        }}
+      >
+        <div className="container">
+          <div className="mx-auto max-w-3xl text-center">
+            <Badge variant="secondary" className="mb-4">
+              <Users className="mr-1.5 h-3.5 w-3.5" />
+              Om Os
+            </Badge>
+            <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">
+              Om Casinoaftaler.dk
+            </h1>
             <p className="text-lg text-white/80">
-              Vi er dedikerede til at hjælpe danske spillere med at finde de bedste
-              casinobonusser med gennemsigtige, upartiske anmeldelser og
+              Vi er dedikerede til at hjælpe danske spillere med at finde de
+              bedste casinobonusser med gennemsigtige, upartiske anmeldelser og
               sammenligninger.
             </p>
           </div>
         </div>
       </section>
 
-      <div className="py-16">
-        <div className="container">
-          {/* Mission */}
-          <div className="mb-16">
-            <div className="mx-auto max-w-3xl">
-              <h2 className="mb-6 text-2xl font-bold">Vores Mission</h2>
-              <p className="mb-4 text-muted-foreground">
-                Casinoaftaler.dk blev grundlagt med et simpelt mål: at skære
-                igennem støjen og hjælpe danske spillere med at træffe informerede
-                beslutninger om online casinobonusser. Vi ved, at det kan være
-                overvældende at navigere i verden af casinokampagner med
-                komplekse vilkår og betingelser, der ikke altid er lette at forstå.
-              </p>
-              <p className="text-muted-foreground">
-                Derfor gennemgår vores team af eksperter omhyggeligt hver bonus,
-                nedbryder de vigtigste detaljer og præsenterer dem i et klart,
-                brugervenligt format. Vi mener, at enhver spiller fortjener at
-                vide præcis, hvad de tilmelder sig.
-              </p>
-            </div>
+      <div className="container py-8 md:py-12">
+        {/* Meta info bar */}
+        <div className="mb-8 flex flex-wrap items-center gap-x-6 gap-y-2 text-sm text-muted-foreground">
+          <div className="flex items-center gap-1.5">
+            <User className="h-4 w-4" />
+            <span>
+              Skrevet af:{" "}
+              <span className="font-medium text-foreground">Casinoaftaler</span>
+            </span>
           </div>
-
-          {/* Values */}
-          <div className="mb-16">
-            <h2 className="mb-8 text-center text-2xl font-bold">Hvad Vi Står For</h2>
-            <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
-              <Card>
-                <CardHeader>
-                  <div className="mb-2 flex h-12 w-12 items-center justify-center rounded-lg bg-primary/10">
-                    <Shield className="h-6 w-6 text-primary" />
-                  </div>
-                  <CardTitle>Gennemsigtighed</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-muted-foreground">
-                    Vi forklarer tydeligt alle bonusvilkår, herunder gennemspilskrav,
-                    spilrestriktioner og udbetalingsgrænser.
-                  </p>
-                </CardContent>
-              </Card>
-
-              <Card>
-                <CardHeader>
-                  <div className="mb-2 flex h-12 w-12 items-center justify-center rounded-lg bg-primary/10">
-                    <Users className="h-6 w-6 text-primary" />
-                  </div>
-                  <CardTitle>Spilleren Først</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-muted-foreground">
-                    Vores anmeldelser prioriterer spilleroplevelsen med fokus på
-                    bonusser, der tilbyder ægte værdi og fair betingelser.
-                  </p>
-                </CardContent>
-              </Card>
-
-              <Card>
-                <CardHeader>
-                  <div className="mb-2 flex h-12 w-12 items-center justify-center rounded-lg bg-primary/10">
-                    <Award className="h-6 w-6 text-primary" />
-                  </div>
-                  <CardTitle>Ekspertise</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-muted-foreground">
-                    Vores team har mange års erfaring i iGaming-branchen og
-                    bringer dyb viden til hver anmeldelse.
-                  </p>
-                </CardContent>
-              </Card>
-
-              <Card>
-                <CardHeader>
-                  <div className="mb-2 flex h-12 w-12 items-center justify-center rounded-lg bg-primary/10">
-                    <Target className="h-6 w-6 text-primary" />
-                  </div>
-                  <CardTitle>Uafhængighed</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-muted-foreground">
-                    Vores anmeldelser er upartiske. Vi modtager muligvis provision,
-                    men dette påvirker aldrig vores vurderinger eller anbefalinger.
-                  </p>
-                </CardContent>
-              </Card>
-            </div>
+          <div className="flex items-center gap-1.5">
+            <CalendarDays className="h-4 w-4" />
+            <span>
+              Siden opdateret:{" "}
+              <span className="font-medium text-foreground">11-02-2026</span>
+            </span>
           </div>
+          <div className="flex items-center gap-1.5">
+            <BookOpen className="h-4 w-4" />
+            <span>
+              Læsetid:{" "}
+              <span className="font-medium text-foreground">5 Min.</span>
+            </span>
+          </div>
+        </div>
 
-          {/* Review Process */}
-          <div className="mb-16">
-            <div className="mx-auto max-w-3xl">
-              <h2 className="mb-6 text-2xl font-bold">Hvordan Vi Anmelder Casinoer</h2>
-              <div className="space-y-6">
-                <div className="flex gap-4">
-                  <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-primary text-sm font-bold text-primary-foreground">
-                    1
-                  </div>
-                  <div>
-                    <h3 className="mb-2 font-semibold">Licens & Sikkerhedstjek</h3>
-                    <p className="text-muted-foreground">
-                      Vi verificerer, at hvert casino har gyldige licenser fra
-                      Spillemyndigheden og bruger branchestandarder
-                      for sikkerhedsforanstaltninger.
-                    </p>
-                  </div>
-                </div>
+        {/* Mission */}
+        <section className="mb-12">
+          <h2 className="mb-4 text-3xl font-bold">Vores Mission</h2>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            Casinoaftaler.dk blev grundlagt med et simpelt mål: at skære
+            igennem støjen og hjælpe danske spillere med at træffe informerede
+            beslutninger om online casinobonusser. Vi ved, at det kan være
+            overvældende at navigere i verden af casinokampagner med
+            komplekse vilkår og betingelser, der ikke altid er lette at forstå.
+          </p>
+          <p className="text-muted-foreground leading-relaxed">
+            Derfor gennemgår vores team af eksperter omhyggeligt hver bonus,
+            nedbryder de vigtigste detaljer og præsenterer dem i et klart,
+            brugervenligt format. Vi mener, at enhver spiller fortjener at
+            vide præcis, hvad de tilmelder sig.
+          </p>
+        </section>
 
-                <div className="flex gap-4">
-                  <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-primary text-sm font-bold text-primary-foreground">
-                    2
-                  </div>
-                  <div>
-                    <h3 className="mb-2 font-semibold">Bonusanalyse</h3>
-                    <p className="text-muted-foreground">
-                      Vi analyserer grundigt bonusvilkår, gennemspilskrav,
-                      spilbidrag og tidsgrænser for at vurdere den reelle værdi
-                      for spillere.
-                    </p>
-                  </div>
-                </div>
+        <Separator className="my-10" />
 
-                <div className="flex gap-4">
-                  <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-primary text-sm font-bold text-primary-foreground">
-                    3
-                  </div>
-                  <div>
-                    <h3 className="mb-2 font-semibold">Test af Spilleroplevelse</h3>
-                    <p className="text-muted-foreground">
-                      Vi tester registreringsprocessen, indbetalingsmetoder,
-                      spiludvalg og kundesupport for at sikre en kvalitetsoplevelse.
-                    </p>
-                  </div>
-                </div>
+        {/* Values */}
+        <section className="mb-12">
+          <h2 className="mb-4 text-3xl font-bold">Hvad Vi Står For</h2>
+          <p className="mb-6 text-muted-foreground leading-relaxed">
+            Vores kerneværdier guider alt, hvad vi gør – fra hvordan vi
+            anmelder casinoer til hvordan vi kommunikerer med vores læsere.
+          </p>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            {values.map((value) => (
+              <Card key={value.name} className="border-border bg-card">
+                <CardHeader className="pb-2">
+                  <CardTitle className="flex items-center gap-2 text-lg">
+                    <value.icon className="h-5 w-5 text-primary" />
+                    {value.name}
+                  </CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <p className="text-sm text-muted-foreground leading-relaxed">
+                    {value.description}
+                  </p>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </section>
 
-                <div className="flex gap-4">
-                  <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-primary text-sm font-bold text-primary-foreground">
-                    4
-                  </div>
-                  <div>
-                    <h3 className="mb-2 font-semibold">Løbende Overvågning</h3>
-                    <p className="text-muted-foreground">
-                      Vi opdaterer løbende vores anmeldelser for at afspejle
-                      ændringer i bonusvilkår, spillerfeedback og casinoets
-                      omdømme.
-                    </p>
-                  </div>
+        <Separator className="my-10" />
+
+        {/* Review Process */}
+        <section className="mb-12">
+          <h2 className="mb-4 text-3xl font-bold">
+            Hvordan Vi Anmelder Casinoer
+          </h2>
+          <p className="mb-6 text-muted-foreground leading-relaxed">
+            Vores anmeldelsesproces er grundig og systematisk. Vi gennemgår
+            hvert casino i fire trin for at sikre en fair og dækkende vurdering.
+          </p>
+          <div className="space-y-3">
+            {reviewSteps.map((item) => (
+              <div
+                key={item.title}
+                className="flex items-start gap-3 rounded-lg border border-border bg-card p-4"
+              >
+                <item.icon className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
+                <div>
+                  <h3 className="font-semibold">{item.title}</h3>
+                  <p className="text-sm text-muted-foreground">{item.desc}</p>
                 </div>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        <Separator className="my-10" />
+
+        {/* Ansvarligt spil */}
+        <section className="mb-12">
+          <h2 className="mb-4 text-3xl font-bold">Ansvarligt Spil</h2>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            Vi tager ansvarligt spil alvorligt. Vi anbefaler kun casinoer, der
+            er licenseret af Spillemyndigheden og opfylder strenge krav til
+            spillerbeskyttelse. Vi opfordrer altid vores læsere til at spille
+            ansvarligt og inden for deres økonomiske rammer.
+          </p>
+          <div className="rounded-lg border border-border bg-card p-4">
+            <div className="flex items-start gap-3">
+              <Scale className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
+              <div>
+                <h3 className="font-semibold">Affiliate Oplysning</h3>
+                <p className="text-sm text-muted-foreground">
+                  Casinoaftaler.dk modtager muligvis kompensation, når du
+                  klikker på links til casinoer og/eller opretter en konto.
+                  Dette hjælper os med at vedligeholde og forbedre vores
+                  service. Vores anmeldelser og vurderinger er dog altid
+                  baseret på vores ærlige vurdering og påvirkes aldrig af
+                  potentielle provisioner. Vi anbefaler kun casinoer, der er
+                  licenseret af Spillemyndigheden og opfylder vores strenge
+                  kvalitetsstandarder.
+                </p>
               </div>
             </div>
           </div>
+        </section>
 
-          {/* Disclaimer */}
-          <Card className="mx-auto max-w-3xl bg-muted/50">
-            <CardContent className="p-6">
-              <h3 className="mb-2 font-semibold">Affiliate Oplysning</h3>
-              <p className="text-sm text-muted-foreground">
-                Casinoaftaler.dk modtager muligvis kompensation, når du klikker på
-                links til casinoer og/eller opretter en konto. Dette hjælper os med
-                at vedligeholde og forbedre vores service. Vores anmeldelser og
-                vurderinger er dog altid baseret på vores ærlige vurdering og
-                påvirkes aldrig af potentielle provisioner. Vi anbefaler kun
-                casinoer, der er licenseret af Spillemyndigheden og opfylder vores strenge kvalitetsstandarder.
-              </p>
-            </CardContent>
-          </Card>
-        </div>
+        <Separator className="my-10" />
+
+        {/* FAQ */}
+        <section className="mb-12">
+          <h2 className="mb-6 text-3xl font-bold">
+            <HelpCircle className="mr-2 inline h-7 w-7 text-primary" />
+            Ofte stillede spørgsmål
+          </h2>
+          <Accordion type="single" collapsible className="space-y-3">
+            {aboutFaqs.map((faq, index) => (
+              <AccordionItem
+                key={index}
+                value={`faq-${index}`}
+                className="rounded-lg border border-border bg-card px-6"
+              >
+                <AccordionTrigger className="text-left font-semibold hover:no-underline">
+                  {faq.question}
+                </AccordionTrigger>
+                <AccordionContent className="text-muted-foreground leading-relaxed">
+                  {faq.answer}
+                </AccordionContent>
+              </AccordionItem>
+            ))}
+          </Accordion>
+        </section>
+
+        <RelatedGuides currentPath="/about" />
       </div>
-    </div>
+    </>
   );
 };
 
