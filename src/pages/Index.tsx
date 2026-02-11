@@ -383,7 +383,9 @@ const Index = () => {
             Førende udbydere som Evolution Gaming og Pragmatic Play Live sætter standarden for live casino med høj billedkvalitet, professionelle dealere og et bredt udvalg af borde med forskellige indsatsniveauer. Uanset om du foretrækker klassisk blackjack, speed roulette eller innovative game shows som Crazy Time og Monopoly Live, finder du det hos de casinoer, vi anbefaler.
           </p>
           <p className="text-muted-foreground leading-relaxed">
-            De fleste nye casinoer satser stort på live casino-sektionen, og mange tilbyder endda separate velkomstbonusser til live casino-spil. Tjek vores{" "}
+            De fleste nye casinoer satser stort på live casino-sektionen, og mange tilbyder endda separate velkomstbonusser til live casino-spil. Læs vores{" "}
+            <Link to="/live-casino" className="text-primary hover:underline font-medium">komplette guide til live casino</Link>
+            {" "}eller tjek vores{" "}
             <Link to="/nye-casinoer" className="text-primary hover:underline font-medium">oversigt over nye casinoer</Link>
             {" "}for at finde de bedste live casino-oplevelser.
           </p>

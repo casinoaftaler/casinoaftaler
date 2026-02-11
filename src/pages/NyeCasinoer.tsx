@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -429,7 +430,7 @@ const NyeCasinoer = () => {
               },
               {
                 title: "Udvidet live casino",
-                desc: "Flere nye spillesteder satser stort på live dealer-spil med ægte dealere og interaktive funktioner.",
+                desc: "Flere nye spillesteder satser stort på live dealer-spil med ægte dealere og interaktive funktioner. Læs vores komplette guide til live casino.",
               },
               {
                 title: "Hurtigere betalinger",

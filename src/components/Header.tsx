@@ -9,7 +9,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { ChevronDown, Gamepad2, LogOut, Mail, Menu, User, X, Dices, Gift, BookOpen, Users, ShoppingBag, Video, ShieldCheck, Sparkles, Layers, Moon, Sun, Coins, UserCircle, Trophy, Ticket, CreditCard, MoreHorizontal, RefreshCw, DollarSign, Zap } from "lucide-react";
+import { ChevronDown, Gamepad2, LogOut, Mail, Menu, User, X, Dices, Gift, BookOpen, Users, ShoppingBag, Video, ShieldCheck, Sparkles, Layers, Moon, Sun, Coins, UserCircle, Trophy, Ticket, CreditCard, MoreHorizontal, RefreshCw, DollarSign, Zap, Tv } from "lucide-react";
 import { useState, useEffect } from "react";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
 import { useTwitchStatus } from "@/hooks/useTwitchStatus";
@@ -114,6 +114,13 @@ export function Header() {
           >
             <Sparkles className="h-4 w-4" />
             Nye Casinoer
+          </Link>
+          <Link
+            to="/live-casino"
+            className="flex items-center gap-1.5 text-sm font-medium transition-colors hover:text-primary"
+          >
+            <Tv className="h-4 w-4" />
+            Live Casino
           </Link>
           <DropdownMenu>
             <DropdownMenuTrigger className="flex items-center gap-1.5 text-sm font-medium transition-colors hover:text-primary">
@@ -387,6 +394,14 @@ export function Header() {
             >
               <Sparkles className="h-4 w-4" />
               Nye Casinoer
+            </Link>
+            <Link
+              to="/live-casino"
+              className="flex items-center gap-2 text-sm font-medium transition-colors hover:text-primary"
+              onClick={() => setMobileMenuOpen(false)}
+            >
+              <Tv className="h-4 w-4" />
+              Live Casino
             </Link>
             <Link
               to="/bonus-guide"
