@@ -60,7 +60,7 @@ export function useSlotLeaderboard(period: "daily" | "weekly" | "alltime" = "all
           daily_winnings,
           weekly_winnings
         `)
-        .order(sortKey, { ascending: false })
+        .order(sortKey, { ascending: false, nullsFirst: false })
         .limit(100);
 
       if (error) throw error;
