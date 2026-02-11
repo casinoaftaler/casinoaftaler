@@ -95,6 +95,58 @@ function UserProfileRow({ user }: { user: UserProfileStatus }) {
   );
 }
 
+export function ProfileCompletionOverview() {
+  const { data, isLoading, error } = useProfileCompletionStats();
+
+  if (isLoading) {
+    return (
+      <Card>
+        <CardContent className="flex items-center justify-center py-12">
+          <Loader2 className="h-6 w-6 animate-spin text-primary" />
+        </CardContent>
+      </Card>
+    );
+  }
+
+  if (error || !data) {
+    return (
+      <Card>
+        <CardContent className="py-8 text-center text-muted-foreground">
+          Kunne ikke indlæse profilstatistik
+        </CardContent>
+      </Card>
+    );
+  }
+
+  const { stats } = data;
+
+  return (
+    <Card className="border-primary/20">
+      <CardHeader className="pb-3">
+        <CardTitle className="flex items-center gap-2 text-lg">
+          <TrendingUp className="h-5 w-5 text-primary" />
+          Profilfuldførelse Oversigt
+        </CardTitle>
+      </CardHeader>
+      <CardContent className="space-y-6">
+        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          <StatCard icon={Users} label="Totalt brugere" value={stats.totalUsers.toLocaleString("da-DK")} />
+          <StatCard icon={UserCheck} label="Profiler fuldført" value={stats.completedProfiles.toLocaleString("da-DK")} variant="success" />
+          <StatCard icon={UserX} label="Profiler ufuldstændige" value={stats.incompleteProfiles.toLocaleString("da-DK")} variant="warning" />
+          <StatCard icon={TrendingUp} label="Fuldførelsesrate" value={`${stats.completionRate.toFixed(1)}%`} />
+        </div>
+        <div className="space-y-2">
+          <div className="flex justify-between text-sm">
+            <span className="text-muted-foreground">Overordnet fremskridt</span>
+            <span className="font-medium">{stats.completionRate.toFixed(1)}%</span>
+          </div>
+          <Progress value={stats.completionRate} className="h-3" />
+        </div>
+      </CardContent>
+    </Card>
+  );
+}
+
 const INITIAL_DISPLAY_COUNT = 10;
 
 export function ProfileCompletionStatsCard() {

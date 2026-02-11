@@ -17,7 +17,10 @@ import {
   ArrowUp,
   Ban,
   ShieldCheck,
+  Check,
+  X,
 } from "lucide-react";
+import { useProfileCompletionStats, type UserProfileStatus } from "@/hooks/useProfileCompletionStats";
 import { toast } from "sonner";
 import { getTodayDanish } from "@/lib/danishDate";
 import {
@@ -56,6 +59,10 @@ export function SpinManagementSection() {
   const [banReason, setBanReason] = useState("");
   const queryClient = useQueryClient();
   const today = getTodayDanish();
+  const { data: profileData } = useProfileCompletionStats();
+  const profileMap = new Map<string, UserProfileStatus>(
+    (profileData?.users ?? []).map((u) => [u.user_id, u])
+  );
 
   // Fetch all users with their current spins and ban status
   const { data: users, isLoading } = useQuery({
@@ -295,7 +302,7 @@ export function SpinManagementSection() {
         <CardHeader>
           <CardTitle className="flex items-center gap-2">
             <Coins className="h-5 w-5" />
-            Giv Credits til Brugere
+            Brugere
           </CardTitle>
         </CardHeader>
         <CardContent className="space-y-6">
@@ -417,6 +424,24 @@ export function SpinManagementSection() {
                           </p>
                         )}
                     </div>
+                    {/* Profile completion badge */}
+                    {(() => {
+                      const ps = profileMap.get(user.user_id);
+                      if (!ps) return null;
+                      return (
+                        <div className="flex items-center gap-1.5 mt-1">
+                          <Badge variant={ps.is_fully_completed ? "default" : "secondary"} className="text-xs gap-1">
+                            {ps.sections_completed}/4
+                          </Badge>
+                          <div className="flex gap-0.5">
+                            {ps.profile_completed ? <Check className="h-3 w-3 text-primary" /> : <X className="h-3 w-3 text-muted-foreground/40" />}
+                            {ps.stats_completed ? <Check className="h-3 w-3 text-primary" /> : <X className="h-3 w-3 text-muted-foreground/40" />}
+                            {ps.favorites_completed ? <Check className="h-3 w-3 text-primary" /> : <X className="h-3 w-3 text-muted-foreground/40" />}
+                            {ps.playstyle_completed ? <Check className="h-3 w-3 text-primary" /> : <X className="h-3 w-3 text-muted-foreground/40" />}
+                          </div>
+                        </div>
+                      );
+                    })()}
                   </div>
 
                   <div className="flex items-center gap-3 w-full sm:w-auto justify-between sm:justify-end">
