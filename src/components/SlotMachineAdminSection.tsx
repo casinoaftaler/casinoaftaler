@@ -10,7 +10,7 @@ import { SlotBackgroundImageUpload } from "@/components/SlotBackgroundImageUploa
 import { SlotFrameAdminControls } from "@/components/slots/SlotFrameAdminControls";
 import { SlotStatsResetSection } from "@/components/slots/SlotStatsResetSection";
 import { SlotSoundAdminSection } from "@/components/slots/SlotSoundAdminSection";
-import { SlotPointsManagement } from "@/components/slots/SlotPointsManagement";
+
 import { SlotSoundFilesSection } from "@/components/slots/SlotSoundFilesSection";
 import { SlotSoundGeneratorSection } from "@/components/slots/SlotSoundGeneratorSection";
 import { LivePlayersAdminSection } from "@/components/LivePlayersAdminSection";
@@ -1463,10 +1463,6 @@ export function SlotMachineAdminSection() {
           <div className="w-px h-6 bg-border mx-1 self-center" />
 
           {/* Global tabs */}
-          <TabsTrigger value="points" className="gap-1">
-            <Users className="h-3.5 w-3.5" />
-            Points
-          </TabsTrigger>
           <TabsTrigger value="combined-stats" className="gap-1">
             <BarChart3 className="h-3.5 w-3.5" />
             Samlet Statistik
@@ -1490,10 +1486,6 @@ export function SlotMachineAdminSection() {
             <SlotStatsResetSection />
             <StatisticsTab gameId={selectedGame} />
           </div>
-        </TabsContent>
-
-        <TabsContent value="points">
-          <SlotPointsManagement />
         </TabsContent>
 
         <TabsContent value="combined-stats">
