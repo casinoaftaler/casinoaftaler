@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { Helmet } from "react-helmet-async";
+import { SEO } from "@/components/SEO";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
@@ -163,23 +163,11 @@ const About = () => {
 
   return (
     <>
-      <Helmet>
-        <title>Om Os – Casinoaftaler.dk | Din Guide til Danske Casinobonusser</title>
-        <meta
-          name="description"
-          content="Lær mere om Casinoaftaler.dk, vores mission, værdier og hvordan vi anmelder danske online casinoer med gennemsigtige, upartiske anmeldelser."
-        />
-        <link rel="canonical" href="https://casinoaftaler.dk/about" />
-        <meta property="og:title" content="Om Os – Casinoaftaler.dk" />
-        <meta
-          property="og:description"
-          content="Lær mere om Casinoaftaler.dk, vores mission og hvordan vi anmelder danske casinoer."
-        />
-        <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://casinoaftaler.dk/about" />
-        <script type="application/ld+json">{JSON.stringify(articleJsonLd)}</script>
-        <script type="application/ld+json">{JSON.stringify(faqJsonLd)}</script>
-      </Helmet>
+      <SEO
+        title="Om Os – Casinoaftaler.dk | Din Guide til Danske Casinobonusser"
+        description="Lær mere om Casinoaftaler.dk, vores mission, værdier og hvordan vi anmelder danske online casinoer med gennemsigtige, upartiske anmeldelser."
+        jsonLd={[articleJsonLd, faqJsonLd]}
+      />
 
       {/* Hero Section */}
       <section

@@ -1,5 +1,6 @@
 import { useParams, Link } from "react-router-dom";
 import { Star, Clock, Gift, CreditCard, Timer, Check, X, ArrowLeft, Loader2 } from "lucide-react";
+import { SEO } from "@/components/SEO";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -33,6 +34,10 @@ const CasinoDetail = () => {
 
   return (
     <div className="py-8">
+      <SEO
+        title={`${casino.name} Anmeldelse – Bonus & Vilkår | Casinoaftaler`}
+        description={casino.description || `Læs vores anmeldelse af ${casino.name}. Se bonus, free spins, omsætningskrav og vilkår.`}
+      />
       <div className="container">
         <Button variant="ghost" asChild className="mb-6">
           <Link to="/">

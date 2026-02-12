@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { Helmet } from "react-helmet-async";
+import { SEO } from "@/components/SEO";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -148,22 +148,11 @@ export default function Contact() {
 
   return (
     <>
-      <Helmet>
-        <title>Kontakt – Casinoaftaler.dk | Erhverv & Presse</title>
-        <meta
-          name="description"
-          content="Kontakt Casinoaftaler.dk for casino partnerskaber, affiliate henvendelser, kommercielle forslag og presseforespørgsler."
-        />
-        <link rel="canonical" href="https://casinoaftaler.dk/contact" />
-        <meta property="og:title" content="Kontakt – Casinoaftaler.dk" />
-        <meta
-          property="og:description"
-          content="Kontakt Casinoaftaler.dk for casino partnerskaber, affiliate henvendelser og presseforespørgsler."
-        />
-        <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://casinoaftaler.dk/contact" />
-        <script type="application/ld+json">{JSON.stringify(faqJsonLd)}</script>
-      </Helmet>
+      <SEO
+        title="Kontakt – Casinoaftaler.dk | Erhverv & Presse"
+        description="Kontakt Casinoaftaler.dk for casino partnerskaber, affiliate henvendelser, kommercielle forslag og presseforespørgsler."
+        jsonLd={faqJsonLd}
+      />
 
       {/* Hero Section */}
       <section

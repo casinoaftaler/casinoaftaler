@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { Helmet } from "react-helmet-async";
+import { SEO } from "@/components/SEO";
 import { RelatedGuides } from "@/components/RelatedGuides";
 import { InlineCasinoCards } from "@/components/InlineCasinoCards";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -138,28 +138,11 @@ const FreeSpins = () => {
 
   return (
     <>
-      <Helmet>
-        <title>Free Spins – Komplet Guide til Gratis Spins 2026 | Casinoaftaler</title>
-        <meta
-          name="description"
-          content="Alt du skal vide om free spins på danske casinoer. Typer, omsætningskrav, betingelser og strategier til at få mest ud af dine gratis spins."
-        />
-        <link rel="canonical" href="https://casinoaftaler.dk/free-spins" />
-        <meta property="og:title" content="Free Spins – Komplet Guide til Gratis Spins 2026" />
-        <meta
-          property="og:description"
-          content="Alt du skal vide om free spins på danske casinoer. Typer, omsætningskrav og strategier."
-        />
-        <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://casinoaftaler.dk/free-spins" />
-        <meta name="twitter:title" content="Free Spins – Komplet Guide til Gratis Spins 2026" />
-        <meta
-          name="twitter:description"
-          content="Alt du skal vide om free spins på danske casinoer – typer, betingelser og strategier."
-        />
-        <script type="application/ld+json">{JSON.stringify(faqJsonLd)}</script>
-        <script type="application/ld+json">{JSON.stringify(articleJsonLd)}</script>
-      </Helmet>
+      <SEO
+        title="Free Spins – Komplet Guide til Gratis Spins 2026 | Casinoaftaler"
+        description="Alt du skal vide om free spins på danske casinoer. Typer, omsætningskrav, betingelser og strategier til at få mest ud af dine gratis spins."
+        jsonLd={[faqJsonLd, articleJsonLd]}
+      />
 
       {/* Hero Section */}
       <section

@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { Helmet } from "react-helmet-async";
+import { SEO } from "@/components/SEO";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
 import { RelatedGuides } from "@/components/RelatedGuides";
 import { InlineCasinoCards } from "@/components/InlineCasinoCards";
@@ -286,19 +286,11 @@ const Spiludviklere = () => {
 
   return (
     <>
-      <Helmet>
-        <title>Spiludviklere – De Bedste Casino-Spiludviklere i Danmark 2026 | Casinoaftaler</title>
-        <meta
-          name="description"
-          content="Lær alt om de største spiludviklere i casinobranchen. Fra NetEnt og Microgaming til Play'n GO – find ud af hvem der skaber dine favoritspil."
-        />
-        <link rel="canonical" href="https://casinoaftaler.dk/spiludviklere" />
-        <meta property="og:title" content="Spiludviklere – De Bedste Casino-Spiludviklere i Danmark 2026" />
-        <meta property="og:description" content="Komplet guide til de største spiludviklere i casinobranchen. NetEnt, Play'n GO, Microgaming og flere." />
-        <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://casinoaftaler.dk/spiludviklere" />
-        <script type="application/ld+json">{JSON.stringify(faqJsonLd)}</script>
-      </Helmet>
+      <SEO
+        title="Spiludviklere – De Bedste Casino-Spiludviklere i Danmark 2026 | Casinoaftaler"
+        description="Lær alt om de største spiludviklere i casinobranchen. Fra NetEnt og Microgaming til Play'n GO – find ud af hvem der skaber dine favoritspil."
+        jsonLd={faqJsonLd}
+      />
 
       {/* Hero Section */}
       <section
