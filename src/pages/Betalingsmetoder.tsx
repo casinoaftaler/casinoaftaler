@@ -270,14 +270,14 @@ const Betalingsmetoder = () => {
           name="description"
           content="Komplet guide til betalingsmetoder på danske online casinoer. Sammenlign Visa, MobilePay, PayPal, Trustly, Skrill og flere – hastighed, gebyrer og sikkerhed."
         />
-        <link rel="canonical" href="https://bonushuset-buddy.lovable.app/betalingsmetoder" />
+        <link rel="canonical" href="https://casinoaftaler.dk/betalingsmetoder" />
         <meta property="og:title" content="Betalingsmetoder på Danske Online Casinoer 2026" />
         <meta
           property="og:description"
           content="Komplet guide til betalingsmetoder på danske online casinoer. Sammenlign hastighed, gebyrer og sikkerhed."
         />
         <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://bonushuset-buddy.lovable.app/betalingsmetoder" />
+        <meta property="og:url" content="https://casinoaftaler.dk/betalingsmetoder" />
         <meta name="twitter:title" content="Betalingsmetoder på Danske Online Casinoer 2026" />
         <meta
           name="twitter:description"

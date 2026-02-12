@@ -13,4 +13,4 @@ Allow: /
 User-agent: *
 Allow: /
 
-Sitemap: https://bonushuset-buddy.lovable.app/sitemap.xml
+Sitemap: https://casinoaftaler.dk/sitemap.xml

@@ -95,7 +95,7 @@ const Omsaetningskrav = () => {
     publisher: { "@type": "Organization", name: "Casinoaftaler" },
     datePublished: "2025-06-01",
     dateModified: "2026-02-11",
-    mainEntityOfPage: "https://bonushuset-buddy.lovable.app/omsaetningskrav",
+    mainEntityOfPage: "https://casinoaftaler.dk/omsaetningskrav",
   };
 
   return (
@@ -106,14 +106,14 @@ const Omsaetningskrav = () => {
           name="description"
           content="Alt du skal vide om omsætningskrav på danske casinoer. Hvad de betyder, hvordan de beregnes, strategier og tips til at opfylde dem effektivt."
         />
-        <link rel="canonical" href="https://bonushuset-buddy.lovable.app/omsaetningskrav" />
+        <link rel="canonical" href="https://casinoaftaler.dk/omsaetningskrav" />
         <meta property="og:title" content="Omsætningskrav – Komplet Guide til Gennemspilningskrav 2026" />
         <meta
           property="og:description"
           content="Alt du skal vide om omsætningskrav på danske casinoer. Beregning, strategier og tips."
         />
         <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://bonushuset-buddy.lovable.app/omsaetningskrav" />
+        <meta property="og:url" content="https://casinoaftaler.dk/omsaetningskrav" />
         <script type="application/ld+json">{JSON.stringify(faqJsonLd)}</script>
         <script type="application/ld+json">{JSON.stringify(articleJsonLd)}</script>
       </Helmet>

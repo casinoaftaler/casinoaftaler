@@ -107,7 +107,7 @@ const Indskudsbonus = () => {
     publisher: { "@type": "Organization", name: "Casinoaftaler" },
     datePublished: "2025-06-01",
     dateModified: "2026-02-11",
-    mainEntityOfPage: "https://bonushuset-buddy.lovable.app/indskudsbonus",
+    mainEntityOfPage: "https://casinoaftaler.dk/indskudsbonus",
   };
 
   return (
@@ -118,14 +118,14 @@ const Indskudsbonus = () => {
           name="description"
           content="Alt du skal vide om indskudsbonusser hos danske casinoer. Lær hvordan matchbonusser fungerer, betingelser, aktivering og strategier for at maksimere din bonus."
         />
-        <link rel="canonical" href="https://bonushuset-buddy.lovable.app/indskudsbonus" />
+        <link rel="canonical" href="https://casinoaftaler.dk/indskudsbonus" />
         <meta property="og:title" content="Indskudsbonus – Komplet Guide til Matchbonusser 2026" />
         <meta
           property="og:description"
           content="Alt du skal vide om indskudsbonusser hos danske casinoer. Matchbonusser, betingelser og strategier."
         />
         <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://bonushuset-buddy.lovable.app/indskudsbonus" />
+        <meta property="og:url" content="https://casinoaftaler.dk/indskudsbonus" />
         <script type="application/ld+json">{JSON.stringify(faqJsonLd)}</script>
         <script type="application/ld+json">{JSON.stringify(articleJsonLd)}</script>
       </Helmet>

@@ -154,14 +154,14 @@ export default function Contact() {
           name="description"
           content="Kontakt Casinoaftaler.dk for casino partnerskaber, affiliate henvendelser, kommercielle forslag og presseforespørgsler."
         />
-        <link rel="canonical" href="https://bonushuset-buddy.lovable.app/contact" />
+        <link rel="canonical" href="https://casinoaftaler.dk/contact" />
         <meta property="og:title" content="Kontakt – Casinoaftaler.dk" />
         <meta
           property="og:description"
           content="Kontakt Casinoaftaler.dk for casino partnerskaber, affiliate henvendelser og presseforespørgsler."
         />
         <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://bonushuset-buddy.lovable.app/contact" />
+        <meta property="og:url" content="https://casinoaftaler.dk/contact" />
         <script type="application/ld+json">{JSON.stringify(faqJsonLd)}</script>
       </Helmet>
 

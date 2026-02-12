@@ -94,7 +94,8 @@ const Index = () => {
       <Helmet>
         <title>Casinoaftaler – Bedste Casino Bonusser i Danmark 2026</title>
         <meta name="description" content="Sammenlign de bedste online casinoer i Danmark 2026. Find velkomstbonusser, free spins, omsætningskrav og eksklusive tilbud fra casinoer med dansk licens." />
-        <link rel="canonical" href="https://bonushuset-buddy.lovable.app/" />
+        <link rel="canonical" href="https://casinoaftaler.dk/" />
+        <meta property="og:url" content="https://casinoaftaler.dk/" />
         <meta property="og:title" content="Casinoaftaler – Bedste Casino Bonusser i Danmark 2026" />
         <meta property="og:description" content="Sammenlign de bedste online casinoer i Danmark 2026. Find velkomstbonusser, free spins og eksklusive tilbud." />
         <meta property="og:type" content="website" />

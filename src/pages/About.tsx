@@ -92,7 +92,7 @@ const About = () => {
     publisher: { "@type": "Organization", name: "Casinoaftaler" },
     datePublished: "2025-06-01",
     dateModified: "2026-02-11",
-    mainEntityOfPage: "https://bonushuset-buddy.lovable.app/about",
+    mainEntityOfPage: "https://casinoaftaler.dk/about",
   };
 
   const aboutFaqs = [
@@ -169,14 +169,14 @@ const About = () => {
           name="description"
           content="Lær mere om Casinoaftaler.dk, vores mission, værdier og hvordan vi anmelder danske online casinoer med gennemsigtige, upartiske anmeldelser."
         />
-        <link rel="canonical" href="https://bonushuset-buddy.lovable.app/about" />
+        <link rel="canonical" href="https://casinoaftaler.dk/about" />
         <meta property="og:title" content="Om Os – Casinoaftaler.dk" />
         <meta
           property="og:description"
           content="Lær mere om Casinoaftaler.dk, vores mission og hvordan vi anmelder danske casinoer."
         />
         <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://bonushuset-buddy.lovable.app/about" />
+        <meta property="og:url" content="https://casinoaftaler.dk/about" />
         <script type="application/ld+json">{JSON.stringify(articleJsonLd)}</script>
         <script type="application/ld+json">{JSON.stringify(faqJsonLd)}</script>
       </Helmet>

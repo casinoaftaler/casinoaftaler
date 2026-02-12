@@ -127,7 +127,7 @@ const Velkomstbonus = () => {
     publisher: { "@type": "Organization", name: "Casinoaftaler" },
     datePublished: "2025-06-01",
     dateModified: "2026-02-11",
-    mainEntityOfPage: "https://bonushuset-buddy.lovable.app/velkomstbonus",
+    mainEntityOfPage: "https://casinoaftaler.dk/velkomstbonus",
   };
 
   return (
@@ -138,14 +138,14 @@ const Velkomstbonus = () => {
           name="description"
           content="Alt du skal vide om velkomstbonusser på danske casinoer. Typer, omsætningskrav, betingelser og tips til at vælge den bedste velkomstbonus."
         />
-        <link rel="canonical" href="https://bonushuset-buddy.lovable.app/velkomstbonus" />
+        <link rel="canonical" href="https://casinoaftaler.dk/velkomstbonus" />
         <meta property="og:title" content="Velkomstbonus – Komplet Guide til Casino Velkomstbonusser 2026" />
         <meta
           property="og:description"
           content="Alt du skal vide om velkomstbonusser på danske casinoer. Typer, omsætningskrav og tips."
         />
         <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://bonushuset-buddy.lovable.app/velkomstbonus" />
+        <meta property="og:url" content="https://casinoaftaler.dk/velkomstbonus" />
         <script type="application/ld+json">{JSON.stringify(faqJsonLd)}</script>
         <script type="application/ld+json">{JSON.stringify(articleJsonLd)}</script>
       </Helmet>

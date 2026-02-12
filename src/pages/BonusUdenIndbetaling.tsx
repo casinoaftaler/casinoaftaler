@@ -98,7 +98,7 @@ const BonusUdenIndbetaling = () => {
     publisher: { "@type": "Organization", name: "Casinoaftaler" },
     datePublished: "2025-06-01",
     dateModified: "2026-02-11",
-    mainEntityOfPage: "https://bonushuset-buddy.lovable.app/bonus-uden-indbetaling",
+    mainEntityOfPage: "https://casinoaftaler.dk/bonus-uden-indbetaling",
   };
 
   return (
@@ -109,14 +109,14 @@ const BonusUdenIndbetaling = () => {
           name="description"
           content="Komplet guide til bonus uden indbetaling hos danske casinoer. Lær hvordan no deposit bonusser fungerer, typer, betingelser og strategier for at maksimere din bonus."
         />
-        <link rel="canonical" href="https://bonushuset-buddy.lovable.app/bonus-uden-indbetaling" />
+        <link rel="canonical" href="https://casinoaftaler.dk/bonus-uden-indbetaling" />
         <meta property="og:title" content="Bonus uden Indbetaling – No Deposit Bonus Guide 2026" />
         <meta
           property="og:description"
           content="Alt du skal vide om bonus uden indbetaling hos danske casinoer. Typer, betingelser og strategier."
         />
         <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://bonushuset-buddy.lovable.app/bonus-uden-indbetaling" />
+        <meta property="og:url" content="https://casinoaftaler.dk/bonus-uden-indbetaling" />
         <script type="application/ld+json">{JSON.stringify(faqJsonLd)}</script>
         <script type="application/ld+json">{JSON.stringify(articleJsonLd)}</script>
       </Helmet>

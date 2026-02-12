@@ -133,7 +133,7 @@ const FreeSpins = () => {
     publisher: { "@type": "Organization", name: "Casinoaftaler" },
     datePublished: "2025-06-01",
     dateModified: "2026-02-11",
-    mainEntityOfPage: "https://bonushuset-buddy.lovable.app/free-spins",
+    mainEntityOfPage: "https://casinoaftaler.dk/free-spins",
   };
 
   return (
@@ -144,14 +144,14 @@ const FreeSpins = () => {
           name="description"
           content="Alt du skal vide om free spins på danske casinoer. Typer, omsætningskrav, betingelser og strategier til at få mest ud af dine gratis spins."
         />
-        <link rel="canonical" href="https://bonushuset-buddy.lovable.app/free-spins" />
+        <link rel="canonical" href="https://casinoaftaler.dk/free-spins" />
         <meta property="og:title" content="Free Spins – Komplet Guide til Gratis Spins 2026" />
         <meta
           property="og:description"
           content="Alt du skal vide om free spins på danske casinoer. Typer, omsætningskrav og strategier."
         />
         <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://bonushuset-buddy.lovable.app/free-spins" />
+        <meta property="og:url" content="https://casinoaftaler.dk/free-spins" />
         <meta name="twitter:title" content="Free Spins – Komplet Guide til Gratis Spins 2026" />
         <meta
           name="twitter:description"

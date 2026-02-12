@@ -115,7 +115,7 @@ const NoStickyBonus = () => {
     publisher: { "@type": "Organization", name: "Casinoaftaler" },
     datePublished: "2025-06-01",
     dateModified: "2026-02-11",
-    mainEntityOfPage: "https://bonushuset-buddy.lovable.app/no-sticky-bonus",
+    mainEntityOfPage: "https://casinoaftaler.dk/no-sticky-bonus",
   };
 
   return (
@@ -126,14 +126,14 @@ const NoStickyBonus = () => {
           name="description"
           content="Forstå No-Sticky Bonusser hos danske casinoer. Lær hvordan adskillelse af midler fungerer, fordele vs. Sticky Bonus, og tips til at maksimere dine gevinster."
         />
-        <link rel="canonical" href="https://bonushuset-buddy.lovable.app/no-sticky-bonus" />
+        <link rel="canonical" href="https://casinoaftaler.dk/no-sticky-bonus" />
         <meta property="og:title" content="No-Sticky Bonus – Den Komplette Guide 2026" />
         <meta
           property="og:description"
           content="Alt om No-Sticky Bonusser hos danske casinoer. Fordele, betingelser og sammenligning med Sticky Bonus."
         />
         <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://bonushuset-buddy.lovable.app/no-sticky-bonus" />
+        <meta property="og:url" content="https://casinoaftaler.dk/no-sticky-bonus" />
         <script type="application/ld+json">{JSON.stringify(faqJsonLd)}</script>
         <script type="application/ld+json">{JSON.stringify(articleJsonLd)}</script>
       </Helmet>
