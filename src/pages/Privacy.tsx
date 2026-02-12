@@ -1,10 +1,15 @@
 import { Link } from "react-router-dom";
 import { Shield, Lock, Eye, FileText, Calendar } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
+import { SEO } from "@/components/SEO";
 
 const Privacy = () => {
   return (
     <div className="min-h-screen">
+      <SEO
+        title="Privatlivspolitik | Casinoaftaler"
+        description="Læs Casinoaftalers privatlivspolitik. Vi beskytter dine persondata og forklarer, hvordan vi indsamler og behandler oplysninger."
+      />
       {/* Hero Section */}
       <section className="relative py-16 md:py-24 overflow-hidden">
         <div 

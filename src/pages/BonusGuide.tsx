@@ -5,6 +5,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Check, X, AlertTriangle, ArrowRight, BookOpen, Gift, Sparkles, RefreshCw, Percent, Calendar, Gamepad2, ListChecks, Loader2 } from "lucide-react";
 import { useCasinos } from "@/hooks/useCasinos";
 import { CasinoCard } from "@/components/CasinoCard";
+import { SEO } from "@/components/SEO";
 
 const BonusGuide = () => {
   const location = useLocation();
@@ -58,6 +59,10 @@ const BonusGuide = () => {
   };
   return (
     <div className="min-h-screen">
+      <SEO
+        title="Casino Bonus Guide – Alt om Casinobonusser 2026 | Casinoaftaler"
+        description="Komplet guide til casinobonusser i Danmark 2026. Forstå velkomstbonusser, no-sticky bonusser, gennemspilskrav og tips til at vælge den bedste bonus."
+      />
       {/* Hero Section */}
       <section className="relative py-16 md:py-24 overflow-hidden">
         <div 

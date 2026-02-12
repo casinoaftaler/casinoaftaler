@@ -1,10 +1,15 @@
 import { Link } from "react-router-dom";
 import { FileText, Scale, AlertTriangle, Ban, RefreshCw, Gavel, Coins, Gift, CircleDollarSign, ShieldAlert } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
+import { SEO } from "@/components/SEO";
 
 const Terms = () => {
   return (
     <div className="min-h-screen">
+      <SEO
+        title="Vilkår og Betingelser | Casinoaftaler"
+        description="Læs Casinoaftalers vilkår og betingelser. Her finder du reglerne for brug af vores side og tjenester."
+      />
       {/* Hero Section */}
       <section className="relative py-16 md:py-24 overflow-hidden">
         <div 

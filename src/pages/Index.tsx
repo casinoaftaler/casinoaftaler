@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { Helmet } from "react-helmet-async";
+import { SEO } from "@/components/SEO";
 import { HeroSection } from "@/components/HeroSection";
 import { SpillehalPromoSection } from "@/components/SpillehalPromoSection";
 import { CasinoCard } from "@/components/CasinoCard";
@@ -91,15 +91,19 @@ const Index = () => {
 
   return (
     <>
-      <Helmet>
-        <title>Casinoaftaler – Bedste Casino Bonusser i Danmark 2026</title>
-        <meta name="description" content="Sammenlign de bedste online casinoer i Danmark 2026. Find velkomstbonusser, free spins, omsætningskrav og eksklusive tilbud fra casinoer med dansk licens." />
-        <link rel="canonical" href="https://casinoaftaler.dk/" />
-        <meta property="og:url" content="https://casinoaftaler.dk/" />
-        <meta property="og:title" content="Casinoaftaler – Bedste Casino Bonusser i Danmark 2026" />
-        <meta property="og:description" content="Sammenlign de bedste online casinoer i Danmark 2026. Find velkomstbonusser, free spins og eksklusive tilbud." />
-        <meta property="og:type" content="website" />
-      </Helmet>
+      <SEO
+        title="Casinoaftaler – Bedste Casino Bonusser i Danmark 2026"
+        description="Sammenlign de bedste online casinoer i Danmark 2026. Find velkomstbonusser, free spins, omsætningskrav og eksklusive tilbud fra casinoer med dansk licens."
+        jsonLd={{
+          "@context": "https://schema.org",
+          "@type": "Organization",
+          name: "Casinoaftaler",
+          url: "https://casinoaftaler.dk",
+          description: "Din pålidelige kilde til sammenligning af casinobonusser og anmeldelser i Danmark.",
+          foundingDate: "2025",
+          sameAs: [],
+        }}
+      />
 
       <HeroSection />
 
