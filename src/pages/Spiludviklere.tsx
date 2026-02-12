@@ -292,11 +292,11 @@ const Spiludviklere = () => {
           name="description"
           content="Lær alt om de største spiludviklere i casinobranchen. Fra NetEnt og Microgaming til Play'n GO – find ud af hvem der skaber dine favoritspil."
         />
-        <link rel="canonical" href="https://bonushuset-buddy.lovable.app/spiludviklere" />
+        <link rel="canonical" href="https://casinoaftaler.dk/spiludviklere" />
         <meta property="og:title" content="Spiludviklere – De Bedste Casino-Spiludviklere i Danmark 2026" />
         <meta property="og:description" content="Komplet guide til de største spiludviklere i casinobranchen. NetEnt, Play'n GO, Microgaming og flere." />
         <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://bonushuset-buddy.lovable.app/spiludviklere" />
+        <meta property="og:url" content="https://casinoaftaler.dk/spiludviklere" />
         <script type="application/ld+json">{JSON.stringify(faqJsonLd)}</script>
       </Helmet>
 

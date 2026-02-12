@@ -25,7 +25,7 @@ const routeLabels: Record<string, string> = {
   "/highlights": "Highlights",
 };
 
-const BASE_URL = "https://bonushuset-buddy.lovable.app";
+const BASE_URL = "https://casinoaftaler.dk";
 
 export function Breadcrumbs() {
   const location = useLocation();

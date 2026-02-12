@@ -100,7 +100,7 @@ const BonusUdenOmsaetningskrav = () => {
     publisher: { "@type": "Organization", name: "Casinoaftaler" },
     datePublished: "2025-06-01",
     dateModified: "2026-02-11",
-    mainEntityOfPage: "https://bonushuset-buddy.lovable.app/bonus-uden-omsaetningskrav",
+    mainEntityOfPage: "https://casinoaftaler.dk/bonus-uden-omsaetningskrav",
   };
 
   return (
@@ -111,14 +111,14 @@ const BonusUdenOmsaetningskrav = () => {
           name="description"
           content="Alt du skal vide om bonusser uden omsætningskrav på danske casinoer. Hvad de er, hvordan de fungerer, fordele, og hvordan du finder de bedste tilbud."
         />
-        <link rel="canonical" href="https://bonushuset-buddy.lovable.app/bonus-uden-omsaetningskrav" />
+        <link rel="canonical" href="https://casinoaftaler.dk/bonus-uden-omsaetningskrav" />
         <meta property="og:title" content="Bonus uden Omsætningskrav – Komplet Guide 2026" />
         <meta
           property="og:description"
           content="Alt du skal vide om bonusser uden omsætningskrav på danske casinoer. Fordele, typer og tips."
         />
         <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://bonushuset-buddy.lovable.app/bonus-uden-omsaetningskrav" />
+        <meta property="og:url" content="https://casinoaftaler.dk/bonus-uden-omsaetningskrav" />
         <script type="application/ld+json">{JSON.stringify(faqJsonLd)}</script>
         <script type="application/ld+json">{JSON.stringify(articleJsonLd)}</script>
       </Helmet>

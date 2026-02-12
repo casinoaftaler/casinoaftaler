@@ -109,7 +109,7 @@ const LiveCasino = () => {
     publisher: { "@type": "Organization", name: "Casinoaftaler" },
     datePublished: "2025-06-01",
     dateModified: "2026-02-11",
-    mainEntityOfPage: "https://bonushuset-buddy.lovable.app/live-casino",
+    mainEntityOfPage: "https://casinoaftaler.dk/live-casino",
   };
 
   return (
@@ -120,14 +120,14 @@ const LiveCasino = () => {
           name="description"
           content="Komplet guide til live casino i Danmark 2026. Find de bedste live casinoer med rigtige dealere, live roulette, blackjack og baccarat. Sammenlign bonusser og spiltyper."
         />
-        <link rel="canonical" href="https://bonushuset-buddy.lovable.app/live-casino" />
+        <link rel="canonical" href="https://casinoaftaler.dk/live-casino" />
         <meta property="og:title" content="Live Casino – Bedste Live Casinoer i Danmark 2026" />
         <meta
           property="og:description"
           content="Komplet guide til live casino i Danmark. Find de bedste live casinoer med rigtige dealere, bonusser og spiltyper."
         />
         <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://bonushuset-buddy.lovable.app/live-casino" />
+        <meta property="og:url" content="https://casinoaftaler.dk/live-casino" />
         <script type="application/ld+json">{JSON.stringify(faqJsonLd)}</script>
         <script type="application/ld+json">{JSON.stringify(articleJsonLd)}</script>
       </Helmet>
