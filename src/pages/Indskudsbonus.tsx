@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { Helmet } from "react-helmet-async";
+import { SEO } from "@/components/SEO";
 import { InlineCasinoCards } from "@/components/InlineCasinoCards";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -112,23 +112,11 @@ const Indskudsbonus = () => {
 
   return (
     <>
-      <Helmet>
-        <title>Indskudsbonus – Komplet Guide til Matchbonusser 2026 | Casinoaftaler</title>
-        <meta
-          name="description"
-          content="Alt du skal vide om indskudsbonusser hos danske casinoer. Lær hvordan matchbonusser fungerer, betingelser, aktivering og strategier for at maksimere din bonus."
-        />
-        <link rel="canonical" href="https://casinoaftaler.dk/indskudsbonus" />
-        <meta property="og:title" content="Indskudsbonus – Komplet Guide til Matchbonusser 2026" />
-        <meta
-          property="og:description"
-          content="Alt du skal vide om indskudsbonusser hos danske casinoer. Matchbonusser, betingelser og strategier."
-        />
-        <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://casinoaftaler.dk/indskudsbonus" />
-        <script type="application/ld+json">{JSON.stringify(faqJsonLd)}</script>
-        <script type="application/ld+json">{JSON.stringify(articleJsonLd)}</script>
-      </Helmet>
+      <SEO
+        title="Indskudsbonus – Komplet Guide til Matchbonusser 2026 | Casinoaftaler"
+        description="Alt du skal vide om indskudsbonusser hos danske casinoer. Lær hvordan matchbonusser fungerer, betingelser, aktivering og strategier for at maksimere din bonus."
+        jsonLd={[faqJsonLd, articleJsonLd]}
+      />
 
       {/* Hero Section */}
       <section

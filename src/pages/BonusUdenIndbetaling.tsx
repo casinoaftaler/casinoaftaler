@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { Helmet } from "react-helmet-async";
+import { SEO } from "@/components/SEO";
 import { InlineCasinoCards } from "@/components/InlineCasinoCards";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -103,23 +103,11 @@ const BonusUdenIndbetaling = () => {
 
   return (
     <>
-      <Helmet>
-        <title>Bonus uden Indbetaling – No Deposit Bonus Guide 2026 | Casinoaftaler</title>
-        <meta
-          name="description"
-          content="Komplet guide til bonus uden indbetaling hos danske casinoer. Lær hvordan no deposit bonusser fungerer, typer, betingelser og strategier for at maksimere din bonus."
-        />
-        <link rel="canonical" href="https://casinoaftaler.dk/bonus-uden-indbetaling" />
-        <meta property="og:title" content="Bonus uden Indbetaling – No Deposit Bonus Guide 2026" />
-        <meta
-          property="og:description"
-          content="Alt du skal vide om bonus uden indbetaling hos danske casinoer. Typer, betingelser og strategier."
-        />
-        <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://casinoaftaler.dk/bonus-uden-indbetaling" />
-        <script type="application/ld+json">{JSON.stringify(faqJsonLd)}</script>
-        <script type="application/ld+json">{JSON.stringify(articleJsonLd)}</script>
-      </Helmet>
+      <SEO
+        title="Bonus uden Indbetaling – No Deposit Bonus Guide 2026 | Casinoaftaler"
+        description="Komplet guide til bonus uden indbetaling hos danske casinoer. Lær hvordan no deposit bonusser fungerer, typer, betingelser og strategier for at maksimere din bonus."
+        jsonLd={[faqJsonLd, articleJsonLd]}
+      />
 
       {/* Hero Section */}
       <section

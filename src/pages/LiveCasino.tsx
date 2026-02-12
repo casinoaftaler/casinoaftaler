@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { Helmet } from "react-helmet-async";
+import { SEO } from "@/components/SEO";
 import { InlineCasinoCards } from "@/components/InlineCasinoCards";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -114,23 +114,11 @@ const LiveCasino = () => {
 
   return (
     <>
-      <Helmet>
-        <title>Live Casino – Bedste Live Casinoer i Danmark 2026 | Casinoaftaler</title>
-        <meta
-          name="description"
-          content="Komplet guide til live casino i Danmark 2026. Find de bedste live casinoer med rigtige dealere, live roulette, blackjack og baccarat. Sammenlign bonusser og spiltyper."
-        />
-        <link rel="canonical" href="https://casinoaftaler.dk/live-casino" />
-        <meta property="og:title" content="Live Casino – Bedste Live Casinoer i Danmark 2026" />
-        <meta
-          property="og:description"
-          content="Komplet guide til live casino i Danmark. Find de bedste live casinoer med rigtige dealere, bonusser og spiltyper."
-        />
-        <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://casinoaftaler.dk/live-casino" />
-        <script type="application/ld+json">{JSON.stringify(faqJsonLd)}</script>
-        <script type="application/ld+json">{JSON.stringify(articleJsonLd)}</script>
-      </Helmet>
+      <SEO
+        title="Live Casino – Bedste Live Casinoer i Danmark 2026 | Casinoaftaler"
+        description="Komplet guide til live casino i Danmark 2026. Find de bedste live casinoer med rigtige dealere, live roulette, blackjack og baccarat. Sammenlign bonusser og spiltyper."
+        jsonLd={[faqJsonLd, articleJsonLd]}
+      />
 
       {/* Hero Section */}
       <section

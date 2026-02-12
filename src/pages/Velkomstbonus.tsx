@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { Helmet } from "react-helmet-async";
+import { SEO } from "@/components/SEO";
 import { RelatedGuides } from "@/components/RelatedGuides";
 import { InlineCasinoCards } from "@/components/InlineCasinoCards";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -132,23 +132,11 @@ const Velkomstbonus = () => {
 
   return (
     <>
-      <Helmet>
-        <title>Velkomstbonus – Komplet Guide til Casino Velkomstbonusser 2026 | Casinoaftaler</title>
-        <meta
-          name="description"
-          content="Alt du skal vide om velkomstbonusser på danske casinoer. Typer, omsætningskrav, betingelser og tips til at vælge den bedste velkomstbonus."
-        />
-        <link rel="canonical" href="https://casinoaftaler.dk/velkomstbonus" />
-        <meta property="og:title" content="Velkomstbonus – Komplet Guide til Casino Velkomstbonusser 2026" />
-        <meta
-          property="og:description"
-          content="Alt du skal vide om velkomstbonusser på danske casinoer. Typer, omsætningskrav og tips."
-        />
-        <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://casinoaftaler.dk/velkomstbonus" />
-        <script type="application/ld+json">{JSON.stringify(faqJsonLd)}</script>
-        <script type="application/ld+json">{JSON.stringify(articleJsonLd)}</script>
-      </Helmet>
+      <SEO
+        title="Velkomstbonus – Komplet Guide til Casino Velkomstbonusser 2026 | Casinoaftaler"
+        description="Alt du skal vide om velkomstbonusser på danske casinoer. Typer, omsætningskrav, betingelser og tips til at vælge den bedste velkomstbonus."
+        jsonLd={[faqJsonLd, articleJsonLd]}
+      />
 
       {/* Hero Section */}
       <section

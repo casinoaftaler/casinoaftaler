@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { Helmet } from "react-helmet-async";
+import { SEO } from "@/components/SEO";
 
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -119,23 +119,11 @@ const StickyBonus = () => {
 
   return (
     <>
-      <Helmet>
-        <title>Sticky Bonus – Komplet Guide til Klæbende Bonusser 2026 | Casinoaftaler</title>
-        <meta
-          name="description"
-          content="Forstå Sticky Bonusser hos danske casinoer. Lær hvordan klæbende bonusser fungerer, omsætningskrav, strategier og sammenligning med No-Sticky Bonusser."
-        />
-        <link rel="canonical" href="https://casinoaftaler.dk/sticky-bonus" />
-        <meta property="og:title" content="Sticky Bonus – Komplet Guide til Klæbende Bonusser 2026" />
-        <meta
-          property="og:description"
-          content="Alt om Sticky Bonusser hos danske casinoer. Betingelser, strategier og sammenligning med No-Sticky."
-        />
-        <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://casinoaftaler.dk/sticky-bonus" />
-        <script type="application/ld+json">{JSON.stringify(faqJsonLd)}</script>
-        <script type="application/ld+json">{JSON.stringify(articleJsonLd)}</script>
-      </Helmet>
+      <SEO
+        title="Sticky Bonus – Komplet Guide til Klæbende Bonusser 2026 | Casinoaftaler"
+        description="Forstå Sticky Bonusser hos danske casinoer. Lær hvordan klæbende bonusser fungerer, omsætningskrav, strategier og sammenligning med No-Sticky Bonusser."
+        jsonLd={[faqJsonLd, articleJsonLd]}
+      />
 
       {/* Hero Section */}
       <section

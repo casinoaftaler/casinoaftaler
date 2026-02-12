@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { Helmet } from "react-helmet-async";
+import { SEO } from "@/components/SEO";
 import { RelatedGuides } from "@/components/RelatedGuides";
 import { InlineCasinoCards } from "@/components/InlineCasinoCards";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -100,23 +100,11 @@ const Omsaetningskrav = () => {
 
   return (
     <>
-      <Helmet>
-        <title>Omsætningskrav – Komplet Guide til Gennemspilningskrav 2026 | Casinoaftaler</title>
-        <meta
-          name="description"
-          content="Alt du skal vide om omsætningskrav på danske casinoer. Hvad de betyder, hvordan de beregnes, strategier og tips til at opfylde dem effektivt."
-        />
-        <link rel="canonical" href="https://casinoaftaler.dk/omsaetningskrav" />
-        <meta property="og:title" content="Omsætningskrav – Komplet Guide til Gennemspilningskrav 2026" />
-        <meta
-          property="og:description"
-          content="Alt du skal vide om omsætningskrav på danske casinoer. Beregning, strategier og tips."
-        />
-        <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://casinoaftaler.dk/omsaetningskrav" />
-        <script type="application/ld+json">{JSON.stringify(faqJsonLd)}</script>
-        <script type="application/ld+json">{JSON.stringify(articleJsonLd)}</script>
-      </Helmet>
+      <SEO
+        title="Omsætningskrav – Komplet Guide til Gennemspilningskrav 2026 | Casinoaftaler"
+        description="Alt du skal vide om omsætningskrav på danske casinoer. Hvad de betyder, hvordan de beregnes, strategier og tips til at opfylde dem effektivt."
+        jsonLd={[faqJsonLd, articleJsonLd]}
+      />
 
       {/* Hero Section */}
       <section

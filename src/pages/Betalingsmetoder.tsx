@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { Helmet } from "react-helmet-async";
+import { SEO } from "@/components/SEO";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
 import { RelatedGuides } from "@/components/RelatedGuides";
 import { InlineCasinoCards } from "@/components/InlineCasinoCards";
@@ -264,27 +264,11 @@ const Betalingsmetoder = () => {
 
   return (
     <>
-      <Helmet>
-        <title>Betalingsmetoder på Danske Online Casinoer 2026 | Casinoaftaler</title>
-        <meta
-          name="description"
-          content="Komplet guide til betalingsmetoder på danske online casinoer. Sammenlign Visa, MobilePay, PayPal, Trustly, Skrill og flere – hastighed, gebyrer og sikkerhed."
-        />
-        <link rel="canonical" href="https://casinoaftaler.dk/betalingsmetoder" />
-        <meta property="og:title" content="Betalingsmetoder på Danske Online Casinoer 2026" />
-        <meta
-          property="og:description"
-          content="Komplet guide til betalingsmetoder på danske online casinoer. Sammenlign hastighed, gebyrer og sikkerhed."
-        />
-        <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://casinoaftaler.dk/betalingsmetoder" />
-        <meta name="twitter:title" content="Betalingsmetoder på Danske Online Casinoer 2026" />
-        <meta
-          name="twitter:description"
-          content="Sammenlign de bedste betalingsmetoder til danske casinoer – MobilePay, Visa, PayPal, Trustly og mere."
-        />
-        <script type="application/ld+json">{JSON.stringify(faqJsonLd)}</script>
-      </Helmet>
+      <SEO
+        title="Betalingsmetoder på Danske Online Casinoer 2026 | Casinoaftaler"
+        description="Komplet guide til betalingsmetoder på danske online casinoer. Sammenlign Visa, MobilePay, PayPal, Trustly, Skrill og flere – hastighed, gebyrer og sikkerhed."
+        jsonLd={faqJsonLd}
+      />
 
       {/* Hero Section */}
       <section
