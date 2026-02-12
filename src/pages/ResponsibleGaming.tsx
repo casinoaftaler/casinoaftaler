@@ -2,10 +2,15 @@ import { AlertTriangle, Phone, Globe, HelpCircle, Shield, Clock, Users } from "l
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { InlineCasinoCards } from "@/components/InlineCasinoCards";
+import { SEO } from "@/components/SEO";
 
 const ResponsibleGaming = () => {
   return (
     <div className="min-h-screen">
+      <SEO
+        title="Ansvarligt Spil – Hjælp og Ressourcer | Casinoaftaler"
+        description="Lær om ansvarligt spil. Find advarselstegn, tips til at bevare kontrollen, selvudelukkelse via ROFUS og hjælp fra StopSpillet og Center for Ludomani."
+      />
       {/* Hero Section */}
       <section className="relative py-16 md:py-24 overflow-hidden">
         <div 

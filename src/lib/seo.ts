@@ -6,6 +6,7 @@
  * for SEO consistency.
  */
 export const SITE_URL = "https://casinoaftaler.dk";
+export const SITE_NAME = "Casinoaftaler";
 
 /**
  * Returns the canonical URL for the current page.

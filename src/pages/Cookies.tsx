@@ -1,10 +1,15 @@
 import { Link } from "react-router-dom";
 import { Cookie, Settings, BarChart3, Share2, Shield, ToggleLeft } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
+import { SEO } from "@/components/SEO";
 
 const Cookies = () => {
   return (
     <div className="min-h-screen">
+      <SEO
+        title="Cookiepolitik | Casinoaftaler"
+        description="Læs om Casinoaftalers brug af cookies. Vi forklarer, hvilke cookies vi bruger, og hvordan du administrerer dine præferencer."
+      />
       {/* Hero Section */}
       <section className="relative py-16 md:py-24 overflow-hidden">
         <div 
