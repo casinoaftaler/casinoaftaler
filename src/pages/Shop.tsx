@@ -1,4 +1,5 @@
 import { useShopItems } from "@/hooks/useShopItems";
+import { SEO } from "@/components/SEO";
 import { ShopItemCard } from "@/components/ShopItemCard";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Card, CardContent } from "@/components/ui/card";
@@ -264,6 +265,10 @@ export default function Shop() {
 
   return (
     <div className="min-h-screen">
+      <SEO
+        title="Butik – Køb med Point | Casinoaftaler"
+        description="Shop eksklusive varer med dine Twitch-point hos Casinoaftaler. Gaming headsets, gavekort, konsoller og mere. Optjen point ved at se streams."
+      />
       <ShopHero />
       <PointsDisplay />
       <div className="py-16">

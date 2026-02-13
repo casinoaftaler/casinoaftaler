@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import { SEO } from "@/components/SEO";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Badge } from "@/components/ui/badge";
@@ -272,6 +273,10 @@ export default function Leaderboard() {
 
   return (
     <div className="min-h-[calc(100vh-4rem)] relative">
+      <SEO
+        title="Rangliste – Top Spillere | Casinoaftaler"
+        description="Se hvem der topper ranglisten hos Casinoaftaler. Daglige, ugentlige og månedlige leaderboards for vores gratis spilleautomater."
+      />
       {/* Background */}
       <div className="absolute inset-0 bg-gradient-to-b from-background via-background to-background -z-10" />
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-primary/8 via-transparent to-transparent -z-10" />

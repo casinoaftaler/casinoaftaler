@@ -1,5 +1,6 @@
 import { useState, useCallback, useEffect } from "react";
 import { slotSounds } from "@/lib/slotSoundEffects";
+import { SEO } from "@/components/SEO";
 import { SlotGame } from "@/components/slots/SlotGame";
 import { SlotLeaderboard } from "@/components/slots/SlotLeaderboard";
 import { SlotPromoSlider } from "@/components/slots/SlotPromoSlider";
@@ -180,6 +181,10 @@ export default function SlotMachine() {
   // 7. Show the game
   return (
     <div className="min-h-[calc(100dvh-4rem)] relative flex flex-col">
+      <SEO
+        title="Book of Fedesvin – Gratis Spilleautomat | Casinoaftaler"
+        description="Spil Book of Fedesvin gratis hos Casinoaftaler. Egyptisk-tema spilleautomat med expanding symbols, free spins og bonusrunder. Optjen point og klatr på ranglisten."
+      />
       <LiveBigWins />
       <div 
         className="absolute inset-0 bg-cover bg-center bg-no-repeat -z-10"

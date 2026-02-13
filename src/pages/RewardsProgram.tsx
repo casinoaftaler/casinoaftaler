@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { SEO } from "@/components/SEO";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -11,6 +12,10 @@ export default function RewardsProgram() {
 
   return (
     <div className="min-h-[calc(100vh-4rem)] relative">
+      <SEO
+        title="Belønningsprogram – Optjen Gratis Spins | Casinoaftaler"
+        description="Deltag i Casinoaftalers belønningsprogram. Optjen gratis spins, indsend clips og anmod om nye spilleautomater. Se hvordan du kan blive belønnet."
+      />
       {/* Background */}
       <div className="absolute inset-0 bg-gradient-to-b from-background via-background to-background -z-10" />
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-primary/8 via-transparent to-transparent -z-10" />

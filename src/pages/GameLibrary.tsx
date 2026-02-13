@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import { SEO } from "@/components/SEO";
 import { useAuth } from "@/hooks/useAuth";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
 import { useCasinos } from "@/hooks/useCasinos";
@@ -126,6 +127,10 @@ export default function GameLibrary() {
 
   return (
     <div className="min-h-[calc(100vh-4rem)] relative">
+      <SEO
+        title="Spillehal – Gratis Spilleautomater | Casinoaftaler"
+        description="Udforsk vores gratis spilleautomater hos Casinoaftaler. Spil Book of Fedesvin, Rise of Fedesvin og flere spil. Optjen point og konkurrer på ranglisten."
+      />
       <PageBackground />
       <GameLibraryHero />
       

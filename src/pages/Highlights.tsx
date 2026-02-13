@@ -1,4 +1,5 @@
 import { useState, useMemo } from "react";
+import { SEO } from "@/components/SEO";
 import { useHighlights } from "@/hooks/useHighlights";
 import { useApprovedClips, CommunityClipWithStats } from "@/hooks/useCommunityClips";
 import { HighlightCard } from "@/components/HighlightCard";
@@ -221,6 +222,10 @@ export default function Highlights() {
 
   return (
     <div className="min-h-screen">
+      <SEO
+        title="Highlights & Community Clips | Casinoaftaler"
+        description="Se de bedste øjeblikke fra vores streams og community. Twitch clips, YouTube videoer og bruger-indsendte highlights samlet ét sted."
+      />
       <HighlightsHero />
       <div className="py-16">
         <div className="container">
