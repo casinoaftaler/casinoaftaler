@@ -22,6 +22,7 @@ const Terms = lazy(() => import("./pages/Terms"));
 const Cookies = lazy(() => import("./pages/Cookies"));
 const Shop = lazy(() => import("./pages/Shop"));
 const Highlights = lazy(() => import("./pages/Highlights"));
+const CasinoBonus = lazy(() => import("./pages/CasinoBonus"));
 
 const Leaderboard = lazy(() => import("./pages/Leaderboard"));
 const RewardsProgram = lazy(() => import("./pages/RewardsProgram"));
@@ -73,6 +74,7 @@ const App = () => (
                 <Route path="/about" element={<About />} />
                 <Route path="/contact" element={<Contact />} />
                 <Route path="/bonus-guide" element={<BonusGuide />} />
+                <Route path="/casino-bonus" element={<CasinoBonus />} />
                 <Route path="/responsible-gaming" element={<ResponsibleGaming />} />
                 <Route path="/privacy" element={<Privacy />} />
                 <Route path="/terms" element={<Terms />} />
