@@ -546,7 +546,26 @@ const Indskudsbonus = () => {
 
         <Separator className="my-10" />
 
-        {/* Ansvarligt spil */}
+        {/* Indskudsbonus markedsoverblik */}
+        <section className="mb-12">
+          <h2 className="mb-4 text-3xl font-bold">
+            Indskudsbonus i Danmark 2026 – Trends og markedsoverblik
+          </h2>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            Indskudsbonus er fortsat den mest populære bonustype på det danske casinomarked i 2026. Næsten alle danske casinoer bruger en indskudsbonus som deres primære <Link to="/velkomstbonus" className="text-primary underline hover:text-primary/80">velkomstbonus</Link>, og konkurrencen om at tilbyde den bedste indskudsbonus presser vilkårene i en stadig mere spillervenlig retning.
+          </p>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            Den typiske indskudsbonus i Danmark tilbyder 100% match op til 1.000-2.000 kr. med omsætningskrav på 5-10x. Nogle casinoer differentierer sig med indskudsbonusser på 200% eller endda 300% match, mens andre fokuserer på at tilbyde de lavest mulige <Link to="/omsaetningskrav" className="text-primary underline hover:text-primary/80">omsætningskrav</Link>. Den bedste indskudsbonus balancerer et generøst matchbeløb med fair vilkår.
+          </p>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            En vigtig udvikling er, at flere indskudsbonusser nu tilbydes med <Link to="/no-sticky-bonus" className="text-primary underline hover:text-primary/80">no-sticky struktur</Link>, som holder din indbetaling adskilt fra bonusmidlerne. Det betyder, at du kan hæve gevinster fra din egen indbetaling uden omsætningskrav – en klar fordel i forhold til den traditionelle <Link to="/sticky-bonus" className="text-primary underline hover:text-primary/80">sticky indskudsbonus</Link>.
+          </p>
+          <p className="text-muted-foreground leading-relaxed">
+            Mange indskudsbonusser inkluderer også <Link to="/free-spins" className="text-primary underline hover:text-primary/80">free spins</Link> som ekstra bonus oven i matchbeløbet. Disse kombinerede pakker giver dig både ekstra spillekapital og gratis omgange på populære spilleautomater, hvilket gør indskudsbonussen til det mest alsidige bonustilbud på markedet.
+          </p>
+        </section>
+
+        <Separator className="my-10" />
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold">
             Ansvarligt spil
