@@ -108,11 +108,11 @@ const Index = () => {
 
       <HeroSection />
 
+      <SidebarNav />
+
       {/* Top Casinos Section */}
       <section id="top-casinos" className="py-8 md:py-12">
-        <div className="container flex gap-8">
-          <SidebarNav />
-          <div className="min-w-0 flex-1">
+        <div className="container">
           <div className="mb-8">
             <h2 className="mb-4 text-3xl font-bold">Top Casinobonusser</h2>
             <p className="mb-6 text-muted-foreground">
@@ -178,7 +178,6 @@ const Index = () => {
               )}
             </div>
           )}
-          </div>
         </div>
       </section>
 

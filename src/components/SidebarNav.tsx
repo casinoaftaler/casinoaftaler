@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import { Gamepad2, Star, Newspaper, Radio, Gift } from "lucide-react";
 
 const navItems = [
-  { icon: Gamepad2, label: "Spillehal", to: "/slot-machine" },
+  { icon: Gamepad2, label: "Spillehal", to: "/community/slots" },
   { icon: Star, label: "Highlights", to: "/highlights" },
   { icon: Newspaper, label: "Nye Casinoer", to: "/nye-casinoer" },
   { icon: Radio, label: "Live Casinoer", to: "/live-casino" },
@@ -11,8 +11,8 @@ const navItems = [
 
 export const SidebarNav = () => {
   return (
-    <nav className="hidden lg:block sticky top-24 w-56 shrink-0">
-      <div className="rounded-xl border border-border bg-card p-5">
+    <nav className="hidden xl:block fixed left-6 top-1/2 -translate-y-1/2 z-40 w-52">
+      <div className="rounded-xl border border-border bg-card/95 backdrop-blur-sm p-5 shadow-lg">
         <h3 className="mb-4 text-sm font-bold uppercase tracking-wider text-foreground">
           Naviger til
         </h3>
