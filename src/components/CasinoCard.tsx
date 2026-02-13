@@ -1,5 +1,6 @@
 import { useState } from "react";
-import { Star, Flame, Check, ChevronDown, Gift, RotateCcw, Clock, Wallet, Calendar, Percent, Coins, Zap } from "lucide-react";
+import { Link } from "react-router-dom";
+import { Star, Flame, Check, ChevronDown, Gift, RotateCcw, Clock, Wallet, Calendar, Percent, Coins, Zap, BookOpen } from "lucide-react";
 import { getAffiliateRedirect } from "@/lib/affiliateRedirect";
 import { useAuth } from "@/hooks/useAuth";
 import { Button } from "@/components/ui/button";
@@ -343,7 +344,22 @@ function FeaturedCard({
               <span className="relative z-10">HENT BONUS</span>
             </Button>
 
-            {/* Read More Toggle */}
+            {/* Review Link for casinos with dedicated review pages */}
+            {casino.slug === "spilleautomaten" && (
+              <Button
+                asChild
+                variant="ghost"
+                className={`w-full rounded-full border border-white/30 text-white/90 hover:bg-white/10 hover:text-white font-medium ${
+                  isTopRow ? "py-4 text-sm" : "py-3 text-xs"
+                }`}
+              >
+                <Link to="/spilleautomaten-anmeldelse">
+                  <BookOpen className={`${isTopRow ? "h-4 w-4" : "h-3.5 w-3.5"}`} />
+                  Læs anmeldelse
+                </Link>
+              </Button>
+            )}
+
             <CollapsibleTrigger asChild>
               <button className="flex items-center justify-center gap-1 text-sm text-white/80 hover:text-white mt-3 transition-colors">
                 {isOpen ? "Vis mindre" : "Læs mere"}
