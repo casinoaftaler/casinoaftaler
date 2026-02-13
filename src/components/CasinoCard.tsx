@@ -353,9 +353,13 @@ function FeaturedCard({
                 </button>
               </CollapsibleTrigger>
 
-              {(casino.slug === "spilleautomaten" || casino.slug === "spildansknu") && (
+              {(casino.slug === "spilleautomaten" || casino.slug === "spildansknu" || casino.slug === "campobet") && (
                 <Link
-                  to={casino.slug === "spilleautomaten" ? "/spilleautomaten-anmeldelse" : "/spildansknu-anmeldelse"}
+                  to={
+                    casino.slug === "spilleautomaten" ? "/spilleautomaten-anmeldelse" :
+                    casino.slug === "spildansknu" ? "/spildansknu-anmeldelse" :
+                    "/campobet-anmeldelse"
+                  }
                   className="text-sm font-semibold text-accent hover:text-accent/80 transition-colors"
                 >
                   Læs Anmeldelse
