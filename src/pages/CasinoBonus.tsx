@@ -233,8 +233,8 @@ const CasinoBonus = () => {
   return (
     <>
       <SEO
-        title="Casino Bonus 2026 – Bedste Casinobonusser i Danmark"
-        description="Komplet oversigt over de bedste casino bonusser i Danmark 2026. Sammenlign velkomstbonusser, free spins, no-sticky bonusser og omsætningskrav hos danske casinoer med licens."
+        title="Bedste Casino Bonus 2026 – Top Bonusser til Danske Spillere"
+        description="Find den bedste casino bonus i Danmark 2026. Sammenlign velkomstbonusser, free spins, no-sticky bonusser og lave omsætningskrav. Kun casinoer med dansk licens."
         jsonLd={[faqJsonLd, breadcrumbJsonLd]}
       />
 
@@ -256,7 +256,7 @@ const CasinoBonus = () => {
               Opdateret Februar 2026
             </Badge>
             <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">
-              Casino Bonus – De Bedste Bonusser i Danmark
+              Bedste Casino Bonus i Danmark 2026
             </h1>
             <p className="text-lg text-white/80">
               Find de mest attraktive casino bonusser på det danske marked. Vi har
@@ -341,7 +341,7 @@ const CasinoBonus = () => {
         {/* Casino List */}
         <section className="mb-12">
           <h2 className="mb-6 text-3xl font-bold">
-            Bedste casino bonusser i Danmark 2026
+            Bedste casino bonus – Top tilbud i Danmark 2026
           </h2>
           <p className="mb-6 text-muted-foreground leading-relaxed">
             Herunder finder du vores håndplukkede liste over de bedste casino
