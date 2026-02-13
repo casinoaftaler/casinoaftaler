@@ -47,6 +47,9 @@ const StickyBonus = lazy(() => import("./pages/StickyBonus"));
 const SpilleautomatenAnmeldelse = lazy(() => import("./pages/SpilleautomatenAnmeldelse"));
 const SpilDanskNuAnmeldelse = lazy(() => import("./pages/SpilDanskNuAnmeldelse"));
 const CampobetAnmeldelse = lazy(() => import("./pages/CampobetAnmeldelse"));
+const BetiniaAnmeldelse = lazy(() => import("./pages/BetiniaAnmeldelse"));
+const SwiftCasinoAnmeldelse = lazy(() => import("./pages/SwiftCasinoAnmeldelse"));
+const LunaCasinoAnmeldelse = lazy(() => import("./pages/LunaCasinoAnmeldelse"));
 const NotFound = lazy(() => import("./pages/NotFound"));
 
 const queryClient = new QueryClient();
@@ -90,6 +93,9 @@ const App = () => (
                 <Route path="/spilleautomaten-anmeldelse" element={<SpilleautomatenAnmeldelse />} />
                 <Route path="/spildansknu-anmeldelse" element={<SpilDanskNuAnmeldelse />} />
                 <Route path="/campobet-anmeldelse" element={<CampobetAnmeldelse />} />
+                <Route path="/betinia-anmeldelse" element={<BetiniaAnmeldelse />} />
+                <Route path="/swift-casino-anmeldelse" element={<SwiftCasinoAnmeldelse />} />
+                <Route path="/luna-casino-anmeldelse" element={<LunaCasinoAnmeldelse />} />
                 
                 <Route path="/community/leaderboard" element={<Leaderboard />} />
                 <Route path="/community/rewards" element={<RewardsProgram />} />
