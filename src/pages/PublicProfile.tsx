@@ -1,4 +1,5 @@
 import { useParams, Link } from "react-router-dom";
+import { SEO } from "@/components/SEO";
 import { usePublicProfile } from "@/hooks/usePublicProfile";
 import { useUserPoints } from "@/hooks/useUserPoints";
 import { useTwitchBadges } from "@/hooks/useTwitchBadges";
@@ -195,8 +196,14 @@ export default function PublicProfile() {
   const hasPlayStyle = (profile.play_styles && profile.play_styles.length > 0) || profile.preferred_game_type || profile.volatility_preference;
   const hasPoints = pointsData && pointsData.total_winnings > 0;
 
+  const displayName = profile.display_name || username || "Ukendt";
+
   return (
     <div className="min-h-screen bg-background">
+      <SEO
+        title={`${displayName} – Profil | Casinoaftaler`}
+        description={`Se ${displayName}s offentlige profil på Casinoaftaler. Statistik, badges og spillestil.`}
+      />
       {/* Hero Header */}
       <div className="relative overflow-hidden">
         {/* Background gradient */}

@@ -1,5 +1,6 @@
 import { useState, useCallback, useEffect } from "react";
 import { slotSounds } from "@/lib/slotSoundEffects";
+import { SEO } from "@/components/SEO";
 import { SlotGame } from "@/components/slots/SlotGame";
 import { SlotLeaderboard } from "@/components/slots/SlotLeaderboard";
 import { SlotPromoSlider } from "@/components/slots/SlotPromoSlider";
@@ -171,6 +172,10 @@ export default function RiseOfFedesvin() {
 
   return (
     <div className="min-h-[calc(100dvh-4rem)] relative flex flex-col overflow-x-hidden">
+      <SEO
+        title="Rise of Fedesvin – Gratis Spilleautomat | Casinoaftaler"
+        description="Spil Rise of Fedesvin gratis hos Casinoaftaler. Magisk tema med tryllekunstnere, drager og free spins. Optjen point og klatr på ranglisten."
+      />
       <LiveBigWins />
       <div 
         className="absolute inset-0 bg-cover bg-center bg-no-repeat -z-10"
