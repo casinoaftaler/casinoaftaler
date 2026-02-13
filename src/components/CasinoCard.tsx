@@ -344,28 +344,24 @@ function FeaturedCard({
               <span className="relative z-10">HENT BONUS</span>
             </Button>
 
-            {/* Review Link for casinos with dedicated review pages */}
-            {casino.slug === "spilleautomaten" && (
-              <Button
-                asChild
-                variant="ghost"
-                className={`w-full rounded-full border border-white/30 text-white/90 hover:bg-white/10 hover:text-white font-medium ${
-                  isTopRow ? "py-4 text-sm" : "py-3 text-xs"
-                }`}
-              >
-                <Link to="/spilleautomaten-anmeldelse">
-                  <BookOpen className={`${isTopRow ? "h-4 w-4" : "h-3.5 w-3.5"}`} />
-                  Læs anmeldelse
-                </Link>
-              </Button>
-            )}
+            {/* Vis Funktioner + Læs anmeldelse row */}
+            <div className="flex items-center justify-between mt-3">
+              <CollapsibleTrigger asChild>
+                <button className="flex items-center gap-1 text-sm text-white/80 hover:text-white transition-colors">
+                  {isOpen ? "Vis mindre" : "Vis Funktioner"}
+                  <ChevronDown className={`h-4 w-4 transition-transform duration-200 ${isOpen ? "rotate-180" : ""}`} />
+                </button>
+              </CollapsibleTrigger>
 
-            <CollapsibleTrigger asChild>
-              <button className="flex items-center justify-center gap-1 text-sm text-white/80 hover:text-white mt-3 transition-colors">
-                {isOpen ? "Vis mindre" : "Læs mere"}
-                <ChevronDown className={`h-4 w-4 transition-transform duration-200 ${isOpen ? "rotate-180" : ""}`} />
-              </button>
-            </CollapsibleTrigger>
+              {casino.slug === "spilleautomaten" && (
+                <Link
+                  to="/spilleautomaten-anmeldelse"
+                  className="text-sm font-semibold text-accent hover:text-accent/80 transition-colors"
+                >
+                  Læs Anmeldelse
+                </Link>
+              )}
+            </div>
 
             {/* Disclaimer */}
             <CasinoCardDisclaimer />
