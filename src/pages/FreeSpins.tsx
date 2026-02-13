@@ -537,7 +537,26 @@ const FreeSpins = () => {
 
         <Separator className="my-10" />
 
-        {/* Ansvarligt spil */}
+        {/* Free Spins markedsoverblik */}
+        <section className="mb-12">
+          <h2 className="mb-4 text-3xl font-bold">
+            Free spins i Danmark 2026 – Trends og markedsoverblik
+          </h2>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            Free spins er fortsat en af de mest eftertragtede bonustyper hos danske spillere i 2026. Næsten alle danske casinoer inkluderer free spins i deres velkomstpakker, og tilbuddene bliver stadig mere attraktive. I 2026 ser vi en klar trend mod omsætningsfrie free spins – gratis spins, hvor du beholder alle gevinster med det samme uden gennemspilskrav.
+          </p>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            Værdien af free spins varierer betydeligt mellem danske casinoer. Nogle tilbyder 50 free spins på populære slots som Book of Dead eller Starburst, mens andre giver op til 200 free spins fordelt over flere dage. Den vigtigste faktor er ikke antallet af free spins, men vilkårene – specielt omsætningskrav, gevinstlofter og hvilke spil de gælder for. Free spins med lave <Link to="/omsaetningskrav" className="text-primary underline hover:text-primary/80">omsætningskrav</Link> eller helt uden krav giver den bedste reelle værdi.
+          </p>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            En vigtig udvikling i 2026 er personaliseringen af free spins-tilbud. Flere casinoer tilbyder nu skræddersyede free spins baseret på din spillehistorik – f.eks. free spins på dine yndlingsspil eller med højere spinværdi for loyale spillere. Denne personalisering gør free spins endnu mere værdifulde, da de matcher din spillestil præcist.
+          </p>
+          <p className="text-muted-foreground leading-relaxed">
+            For at finde de bedste free spins-tilbud anbefaler vi at sammenligne vilkårene grundigt. Kig efter free spins med spinværdi på mindst 2 kr., omsætningskrav under 10x (eller helst 0x), og en rimelig gyldighedsperiode på mindst 7 dage. Kombineret med en god <Link to="/velkomstbonus" className="text-primary underline hover:text-primary/80">velkomstbonus</Link> kan free spins give dig en fantastisk start hos et nyt dansk casino.
+          </p>
+        </section>
+
+        <Separator className="my-10" />
         <section className="mb-12">
           <Card className="border-border bg-card border-l-4 border-l-primary">
             <CardHeader>

@@ -654,7 +654,26 @@ const StickyBonus = () => {
 
         <Separator className="my-10" />
 
-        {/* Ansvarligt spil */}
+        {/* Sticky Bonus markedsoverblik */}
+        <section className="mb-12">
+          <h2 className="mb-4 text-3xl font-bold">
+            Sticky Bonus i Danmark 2026 – Hvad du skal vide
+          </h2>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            Sticky bonus er fortsat den mest udbredte bonustype på det danske casinomarked i 2026. De fleste danske casinoer tilbyder en sticky bonus som deres primære velkomsttilbud, fordi denne bonusstruktur giver casinoerne mulighed for at tilbyde større bonusbeløb. For spillere betyder en sticky bonus, at hele saldoen – både indbetaling og bonus – er underlagt omsætningskrav fra start.
+          </p>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            Fordelen ved en sticky bonus er det større spillebudget. Hvor en <Link to="/no-sticky-bonus" className="text-primary hover:underline">no-sticky bonus</Link> typisk tilbyder 100% match, kan en sticky bonus tilbyde mere generøse beløb, fordi casinoet har sikkerhed for, at du spiller pengene igennem. Det gør en sticky bonus særligt attraktiv for spillere, der planlægger længere spillesessioner og ønsker maksimal spilletid.
+          </p>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            Det er dog vigtigt at forstå risikoen ved en sticky bonus. Da hele din saldo er låst bag omsætningskravene, kan du ikke hæve noget – heller ikke gevinster fra dine egne penge – før kravene er opfyldt. Hvis du vinder stort tidligt i en session med en sticky bonus, skal du stadig gennemspille hele beløbet. Denne binding gør det ekstra vigtigt at vælge en sticky bonus med rimelige vilkår.
+          </p>
+          <p className="text-muted-foreground leading-relaxed">
+            I Danmark er Spillemyndighedens loft på 10x (d+b) en stor fordel for spillere, der vælger en sticky bonus. Sammenlignet med udenlandske markeder, hvor sticky bonusser kan have 50x+ omsætningskrav, er danske sticky bonusser langt mere realistiske at gennemføre. Kombineret med 60 dages minimum gyldighedsperiode giver en dansk sticky bonus en fair chance for at opfylde kravene inden for tidsfristen.
+          </p>
+        </section>
+
+        <Separator className="my-10" />
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold">
             Ansvarligt spil med Sticky Bonusser

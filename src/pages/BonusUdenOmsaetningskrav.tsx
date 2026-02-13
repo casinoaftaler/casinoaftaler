@@ -596,7 +596,26 @@ const BonusUdenOmsaetningskrav = () => {
 
         <Separator className="my-10" />
 
-        {/* Ansvarligt spil */}
+        {/* Bonus uden omsætningskrav markedsoverblik */}
+        <section className="mb-12">
+          <h2 className="mb-4 text-3xl font-bold">
+            Bonus uden omsætningskrav i Danmark 2026 – Trends
+          </h2>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            Bonusser uden omsætningskrav er i kraftig vækst på det danske casinomarked i 2026. Flere og flere casinoer tilbyder nu omsætningsfrie bonusser som en del af deres kampagner, og trenden peger klart i retning af mere gennemsigtige og spillervenlige tilbud. En bonus uden omsætningskrav er det ultimative tilbud, da alle gevinster kan hæves med det samme.
+          </p>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            De mest populære former for bonus uden omsætningskrav er omsætningsfrie <Link to="/free-spins" className="text-primary underline hover:text-primary/80">free spins</Link> og cashback-bonusser. Ved omsætningsfrie free spins modtager du et antal gratis spins, hvor alle gevinster udbetales som kontanter direkte til din konto. Cashback-bonusser uden omsætningskrav giver dig en procentdel af dine tab tilbage som rigtige penge – typisk 5-15%.
+          </p>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            Selvom en bonus uden omsætningskrav er den mest spillervenlige bonustype, kan der stadig være andre vilkår at være opmærksom på. Mange casinoer sætter et gevinstloft på omsætningsfrie bonusser – f.eks. maks. 1.000 kr. i gevinst fra free spins. Der kan også være begrænsninger på, hvilke spil bonussen gælder for, og en tidsfrist for at bruge den.
+          </p>
+          <p className="text-muted-foreground leading-relaxed">
+            For at finde den bedste bonus uden omsætningskrav anbefaler vi at sammenligne tilbuddene fra vores liste over danske casinoer. Kig efter omsætningsfrie bonusser med højt gevinstloft, lang gyldighedsperiode, og adgang til et bredt udvalg af spil. En bonus uden omsætningskrav kombineret med en <Link to="/no-sticky-bonus" className="text-primary underline hover:text-primary/80">no-sticky velkomstbonus</Link> giver dig den ultimative start hos et nyt dansk casino.
+          </p>
+        </section>
+
+        <Separator className="my-10" />
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold">
             Spil ansvarligt – også med bonusser uden omsætningskrav

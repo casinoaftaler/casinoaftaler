@@ -470,7 +470,26 @@ const Omsaetningskrav = () => {
 
         <Separator className="my-10" />
 
-        {/* Misbrug af bonusser */}
+        {/* Omsætningskrav markedsoverblik */}
+        <section className="mb-12">
+          <h2 className="mb-4 text-3xl font-bold">
+            Omsætningskrav i Danmark 2026 – Det unikke danske marked
+          </h2>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            Danmark har nogle af verdens mest spillervenlige omsætningskrav takket være Spillemyndighedens regulering. Med et loft på maksimalt 10x omsætningskrav (d+b) sikrer den danske lovgivning, at casinobonusser altid har rimelige vilkår. Til sammenligning kan omsætningskrav på udenlandske markeder nå op til 40x, 50x eller endda 70x – beløb der er næsten umulige at gennemspille uden at tabe alt.
+          </p>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            I 2026 ser vi en trend mod endnu lavere omsætningskrav hos danske casinoer. Flere casinoer tilbyder nu omsætningskrav på blot 1x-5x, og nogle har endda lanceret <Link to="/bonus-uden-omsaetningskrav" className="text-primary underline hover:text-primary/80">bonusser helt uden omsætningskrav</Link>. Denne udvikling drives af konkurrencen om danske spillere og er et klart tegn på, at markedet bevæger sig i en mere spillervenlig retning.
+          </p>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            Et vigtigt aspekt ved danske omsætningskrav er, at in-game free spins og bonusfunktioner altid tæller med i omsætningen. Det betyder, at hvis du udløser gratis spins i en spilleautomat under bonusspil, bidrager gevinsterne fra disse spins til at opfylde omsætningskravet. Denne regel er unik for det danske marked og gør det markant nemmere at gennemføre omsætningskravet sammenlignet med udenlandske casinoer.
+          </p>
+          <p className="text-muted-foreground leading-relaxed">
+            For at maksimere dine chancer for at opfylde omsætningskravet anbefaler vi at vælge en <Link to="/no-sticky-bonus" className="text-primary underline hover:text-primary/80">no-sticky bonus</Link>, hvor omsætningskravet kun gælder for bonusmidlerne. Kombineret med spil der har høj RTP (96%+) og lave indsatser kan du systematisk arbejde dig igennem omsætningskravet. Husk at spilleautomater typisk bidrager 100% til omsætningen, mens bordspil kun tæller 10-20%.
+          </p>
+        </section>
+
+        <Separator className="my-10" />
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold">
             Misbrug af bonusser

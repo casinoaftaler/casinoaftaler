@@ -591,7 +591,26 @@ const BonusUdenIndbetaling = () => {
 
         <Separator className="my-10" />
 
-        {/* Ansvarligt spil */}
+        {/* Bonus uden indbetaling markedsoverblik */}
+        <section className="mb-12">
+          <h2 className="mb-4 text-3xl font-bold">
+            Bonus uden indbetaling i Danmark 2026 – Markedsoverblik
+          </h2>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            Bonus uden indbetaling – eller no deposit bonus – er et af de mest eftertragtede tilbud blandt danske casinospillere i 2026. Denne type bonus giver dig mulighed for at teste et online casino helt risikofrit, da du ikke behøver at indsætte egne penge for at komme i gang. Det er den ultimative måde at udforske nye casinoer på, og flere danske operatører tilbyder nu attraktive no deposit tilbud.
+          </p>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            De mest almindelige former for bonus uden indbetaling i Danmark er <Link to="/free-spins" className="text-primary underline hover:text-primary/80">free spins</Link> ved registrering og mindre kontantbonusser (typisk 50-200 kr.). Selvom beløbene er beskedne sammenlignet med en traditionel <Link to="/indskudsbonus" className="text-primary underline hover:text-primary/80">indskudsbonus</Link>, er værdien i den risikofrie karakter – du kan vinde rigtige penge uden at risikere noget.
+          </p>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            Vigtige faktorer at vurdere ved en bonus uden indbetaling inkluderer <Link to="/omsaetningskrav" className="text-primary underline hover:text-primary/80">omsætningskrav</Link> (typisk 1x-10x i Danmark), gevinstloft (det maksimale beløb du kan udbetale), og gyldighedsperiode. De bedste no deposit bonusser har lave omsætningskrav og ingen eller høje gevinstlofter, så du har en reel chance for at beholde dine gevinster.
+          </p>
+          <p className="text-muted-foreground leading-relaxed">
+            En bonus uden indbetaling er særligt værdifuld for spillere, der ønsker at sammenligne flere casinoer uden økonomisk forpligtelse. Du kan oprette konti hos flere <Link to="/nye-casinoer" className="text-primary underline hover:text-primary/80">nye casinoer</Link>, modtage deres no deposit tilbud, og vurdere spiludbud, brugervenlighed og kundeservice – alt sammen uden at bruge egne penge.
+          </p>
+        </section>
+
+        <Separator className="my-10" />
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold">
             Ansvarligt spil

@@ -573,7 +573,26 @@ const Velkomstbonus = () => {
 
         <Separator className="my-10" />
 
-        {/* Ansvarligt spil */}
+        {/* Velkomstbonus markedsoverblik */}
+        <section className="mb-12">
+          <h2 className="mb-4 text-3xl font-bold">
+            Velkomstbonus i Danmark 2026 – Sådan vælger du den bedste
+          </h2>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            I 2026 tilbyder næsten alle danske casinoer en velkomstbonus til nye spillere. Konkurrencen om at tilbyde den bedste velkomstbonus er hårdere end nogensinde, hvilket er godt nyt for spillerne. Den typiske velkomstbonus på det danske marked er en 100% matchbonus op til 1.000-2.000 kr., ofte kombineret med <Link to="/free-spins" className="text-primary underline hover:text-primary/80">free spins</Link> på populære spilleautomater.
+          </p>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            Når du vælger en velkomstbonus, bør du fokusere på vilkårene frem for bonusbeløbet alene. En velkomstbonus på 1.000 kr. med 5x omsætningskrav er langt mere værdifuld end en velkomstbonus på 5.000 kr. med 10x (d+b) krav. Kig efter velkomstbonusser med <Link to="/no-sticky-bonus" className="text-primary underline hover:text-primary/80">no-sticky struktur</Link>, da de giver dig fleksibilitet til at hæve gevinster fra dine egne penge uden omsætningskrav.
+          </p>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            En velkomstbonus er din eneste chance for at få det bedste tilbud fra et casino, da den kun kan bruges én gang. Derfor anbefaler vi at sammenligne velkomstbonusser grundigt, før du vælger. Overvej hvilken bonustype der passer bedst til din spillestil: En ren matchbonus giver mest ekstra spillekapital, mens en velkomstbonus med free spins er ideel, hvis du elsker spilleautomater.
+          </p>
+          <p className="text-muted-foreground leading-relaxed">
+            Husk også at tjekke, om velkomstbonussen er en <Link to="/sticky-bonus" className="text-primary underline hover:text-primary/80">sticky bonus</Link> eller en no-sticky bonus, da dette har stor betydning for, hvordan du kan bruge dine gevinster. De bedste velkomstbonusser i Danmark 2026 kombinerer en generøs matchprocent, lave <Link to="/omsaetningskrav" className="text-primary underline hover:text-primary/80">omsætningskrav</Link>, og no-sticky struktur – og vi opdaterer løbende vores liste, så du altid finder det bedste tilbud.
+          </p>
+        </section>
+
+        <Separator className="my-10" />
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold">Ansvarligt spil</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
