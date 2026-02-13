@@ -105,15 +105,9 @@ export function Header() {
           <DropdownMenu>
             <DropdownMenuTrigger className="flex items-center gap-1.5 text-sm font-medium transition-colors hover:text-primary">
               <Dices className="h-4 w-4" />
-              Casino <ChevronDown className="h-4 w-4" />
+              Casinoer <ChevronDown className="h-4 w-4" />
             </DropdownMenuTrigger>
             <DropdownMenuContent align="center" className="bg-popover">
-              <DropdownMenuItem asChild>
-                <Link to="/" className="flex items-center gap-2">
-                  <Dices className="h-4 w-4" />
-                  Top Casinoer
-                </Link>
-              </DropdownMenuItem>
               <DropdownMenuItem asChild>
                 <Link to="/top-10-casino-online" className="flex items-center gap-2">
                   <Trophy className="h-4 w-4" />
@@ -385,14 +379,13 @@ export function Header() {
             >
               <span className="flex items-center gap-2">
                 <Dices className="h-4 w-4" />
-                Casino
+                Casinoer
               </span>
               <ChevronDown className={`h-4 w-4 transition-transform duration-200 ${expandedSection === "casino" ? "rotate-180" : ""}`} />
             </button>
             {expandedSection === "casino" && (
               <div className="flex flex-col border-b border-border/50 bg-muted/30">
                 {[
-                  { to: "/", icon: <Dices className="h-4 w-4" />, label: "Top Casinoer" },
                   { to: "/top-10-casino-online", icon: <Trophy className="h-4 w-4" />, label: "Top 10 Casino Online" },
                   { to: "/nye-casinoer", icon: <Sparkles className="h-4 w-4" />, label: "Nye Casinoer" },
                   { to: "/live-casino", icon: <Tv className="h-4 w-4" />, label: "Live Casino" },
