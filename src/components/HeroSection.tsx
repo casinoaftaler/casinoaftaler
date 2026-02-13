@@ -65,7 +65,7 @@ export function HeroSection() {
               </a>
             </Button>
             <Button size="lg" variant="outline" asChild className="bg-transparent border-white/30 text-white hover:bg-white/10 transition-all duration-300 hover:scale-105 hover:shadow-lg">
-              <Link to="/bonus-guide">
+              <Link to="/casino-bonus">
                 <BookOpen className="mr-2 h-5 w-5" />
                 Læs Bonus Guide
               </Link>

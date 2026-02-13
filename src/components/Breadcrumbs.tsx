@@ -6,7 +6,7 @@ const routeLabels: Record<string, string> = {
   "/": "Forside",
   "/nye-casinoer": "Nye Casinoer",
   "/live-casino": "Live Casino",
-  "/bonus-guide": "Casino Bonus Guide",
+  "/casino-bonus": "Casino Bonus",
   "/free-spins": "Free Spins",
   "/velkomstbonus": "Velkomstbonus",
   "/omsaetningskrav": "Omsætningskrav",

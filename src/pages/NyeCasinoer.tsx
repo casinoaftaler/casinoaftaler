@@ -264,7 +264,7 @@ const NyeCasinoer = () => {
           <p className="text-muted-foreground leading-relaxed">
             Vores mål er at give dig et ærligt og pålideligt billede, så du kan tage
             en informeret beslutning, når du vælger dit næste spillested. Læs også vores{" "}
-            <Link to="/bonus-guide" className={linkClass}>bonus guide</Link> for at forstå de forskellige bonustyper, eller se vores dybdegående artikler om{" "}
+            <Link to="/casino-bonus" className={linkClass}>casino bonus guide</Link> for at forstå de forskellige bonustyper, eller se vores dybdegående artikler om{" "}
             <Link to="/omsaetningskrav" className={linkClass}>omsætningskrav</Link> og{" "}
             <Link to="/free-spins" className={linkClass}>free spins</Link>.
           </p>
@@ -481,7 +481,7 @@ const NyeCasinoer = () => {
                 <h3 className="font-semibold">Personlige bonustilbud</h3>
                 <p className="text-sm text-muted-foreground">
                   Casinoer bruger data og spilleradfærd til at skræddersy bonusser, der passer til den enkelte spiller. Læs om de forskellige{" "}
-                  <Link to="/bonus-guide" className={linkClass}>bonustyper</Link>.
+                  <Link to="/casino-bonus" className={linkClass}>bonustyper</Link>.
                 </p>
               </div>
             </div>
