@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { Gamepad2, Instagram, MessageCircle, Trophy, BookOpen, Users, Shield, Scale, FileText, Cookie, ExternalLink, Video, Gift, Sparkles, CreditCard, Target, Zap, Tv } from "lucide-react";
+import { Gamepad2, Instagram, MessageCircle, Trophy, BookOpen, Users, Shield, Scale, FileText, Cookie, ExternalLink, Video, Gift, Sparkles, CreditCard, Target, Zap, Tv, Star } from "lucide-react";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
 
 export function Footer() {
@@ -79,6 +79,15 @@ export function Footer() {
                 >
                   <Trophy className="h-4 w-4" />
                   Top Casinoer
+                </Link>
+              </li>
+              <li>
+                <Link
+                  to="/top-10-casino-online"
+                  className="flex items-center gap-2 text-muted-foreground transition-colors hover:text-foreground"
+                >
+                  <Star className="h-4 w-4" />
+                  Top 10 Casino Online
                 </Link>
               </li>
               <li>

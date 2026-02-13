@@ -11,6 +11,7 @@ import Index from "./pages/Index";
 
 // Lazy load all pages except Index for smaller initial bundle
 const CasinoDetail = lazy(() => import("./pages/CasinoDetail"));
+const TopCasinoOnline = lazy(() => import("./pages/TopCasinoOnline"));
 const NyeCasinoer = lazy(() => import("./pages/NyeCasinoer"));
 const About = lazy(() => import("./pages/About"));
 const Contact = lazy(() => import("./pages/Contact"));
@@ -61,6 +62,7 @@ const App = () => (
               <Route element={<Layout />}>
                 <Route path="/" element={<Index />} />
                 <Route path="/casino/:slug" element={<CasinoDetail />} />
+                <Route path="/top-10-casino-online" element={<TopCasinoOnline />} />
                 <Route path="/nye-casinoer" element={<NyeCasinoer />} />
                 <Route path="/about" element={<About />} />
                 <Route path="/contact" element={<Contact />} />

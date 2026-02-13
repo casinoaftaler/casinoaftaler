@@ -102,27 +102,38 @@ export function Header() {
 
         {/* Desktop Navigation */}
         <nav className="hidden items-center gap-6 lg:flex">
-          <Link
-            to="/"
-            className="flex items-center gap-1.5 text-sm font-medium transition-colors hover:text-primary"
-          >
-            <Dices className="h-4 w-4" />
-            Casinoer
-          </Link>
-          <Link
-            to="/nye-casinoer"
-            className="flex items-center gap-1.5 text-sm font-medium transition-colors hover:text-primary"
-          >
-            <Sparkles className="h-4 w-4" />
-            Nye Casinoer
-          </Link>
-          <Link
-            to="/live-casino"
-            className="flex items-center gap-1.5 text-sm font-medium transition-colors hover:text-primary"
-          >
-            <Tv className="h-4 w-4" />
-            Live Casino
-          </Link>
+          <DropdownMenu>
+            <DropdownMenuTrigger className="flex items-center gap-1.5 text-sm font-medium transition-colors hover:text-primary">
+              <Dices className="h-4 w-4" />
+              Casino <ChevronDown className="h-4 w-4" />
+            </DropdownMenuTrigger>
+            <DropdownMenuContent align="center" className="bg-popover">
+              <DropdownMenuItem asChild>
+                <Link to="/" className="flex items-center gap-2">
+                  <Dices className="h-4 w-4" />
+                  Top Casinoer
+                </Link>
+              </DropdownMenuItem>
+              <DropdownMenuItem asChild>
+                <Link to="/top-10-casino-online" className="flex items-center gap-2">
+                  <Trophy className="h-4 w-4" />
+                  Top 10 Casino Online
+                </Link>
+              </DropdownMenuItem>
+              <DropdownMenuItem asChild>
+                <Link to="/nye-casinoer" className="flex items-center gap-2">
+                  <Sparkles className="h-4 w-4" />
+                  Nye Casinoer
+                </Link>
+              </DropdownMenuItem>
+              <DropdownMenuItem asChild>
+                <Link to="/live-casino" className="flex items-center gap-2">
+                  <Tv className="h-4 w-4" />
+                  Live Casino
+                </Link>
+              </DropdownMenuItem>
+            </DropdownMenuContent>
+          </DropdownMenu>
           <DropdownMenu>
             <DropdownMenuTrigger className="flex items-center gap-1.5 text-sm font-medium transition-colors hover:text-primary">
               <BookOpen className="h-4 w-4" />
@@ -367,31 +378,37 @@ export function Header() {
       {mobileMenuOpen && (
         <div className="border-t border-border bg-background lg:hidden max-h-[calc(100dvh-4rem)] overflow-y-auto">
           <nav className="container flex flex-col py-3">
-            {/* Direct links */}
-            <Link
-              to="/"
-              className="flex items-center gap-2 py-3 text-sm font-medium transition-colors hover:text-primary border-b border-border/50"
-              onClick={() => setMobileMenuOpen(false)}
+            {/* Casino - expandable */}
+            <button
+              onClick={() => setExpandedSection(expandedSection === "casino" ? null : "casino")}
+              className="flex items-center justify-between py-3 text-sm font-medium transition-colors hover:text-primary border-b border-border/50"
             >
-              <Dices className="h-4 w-4" />
-              Casinoer
-            </Link>
-            <Link
-              to="/nye-casinoer"
-              className="flex items-center gap-2 py-3 text-sm font-medium transition-colors hover:text-primary border-b border-border/50"
-              onClick={() => setMobileMenuOpen(false)}
-            >
-              <Sparkles className="h-4 w-4" />
-              Nye Casinoer
-            </Link>
-            <Link
-              to="/live-casino"
-              className="flex items-center gap-2 py-3 text-sm font-medium transition-colors hover:text-primary border-b border-border/50"
-              onClick={() => setMobileMenuOpen(false)}
-            >
-              <Tv className="h-4 w-4" />
-              Live Casino
-            </Link>
+              <span className="flex items-center gap-2">
+                <Dices className="h-4 w-4" />
+                Casino
+              </span>
+              <ChevronDown className={`h-4 w-4 transition-transform duration-200 ${expandedSection === "casino" ? "rotate-180" : ""}`} />
+            </button>
+            {expandedSection === "casino" && (
+              <div className="flex flex-col border-b border-border/50 bg-muted/30">
+                {[
+                  { to: "/", icon: <Dices className="h-4 w-4" />, label: "Top Casinoer" },
+                  { to: "/top-10-casino-online", icon: <Trophy className="h-4 w-4" />, label: "Top 10 Casino Online" },
+                  { to: "/nye-casinoer", icon: <Sparkles className="h-4 w-4" />, label: "Nye Casinoer" },
+                  { to: "/live-casino", icon: <Tv className="h-4 w-4" />, label: "Live Casino" },
+                ].map((item) => (
+                  <Link
+                    key={item.to}
+                    to={item.to}
+                    className="ml-6 flex items-center gap-2 py-2.5 text-sm text-muted-foreground transition-colors hover:text-primary"
+                    onClick={() => setMobileMenuOpen(false)}
+                  >
+                    {item.icon}
+                    {item.label}
+                  </Link>
+                ))}
+              </div>
+            )}
 
             {/* Casino Bonus - expandable */}
             <button
