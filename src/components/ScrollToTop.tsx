@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useLocation } from "react-router-dom";
 
-const EXCLUDED_PATHS = ["/bonus-guide"];
+const EXCLUDED_PATHS = ["/casino-bonus"];
 
 export function ScrollToTop() {
   const { pathname } = useLocation();

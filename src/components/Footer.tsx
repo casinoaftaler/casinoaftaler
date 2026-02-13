@@ -92,11 +92,11 @@ export function Footer() {
               </li>
               <li>
                 <Link
-                  to="/bonus-guide"
+                  to="/casino-bonus"
                   className="flex items-center gap-2 text-muted-foreground transition-colors hover:text-foreground"
                 >
                   <BookOpen className="h-4 w-4" />
-                  Bonus Guide
+                  Casino Bonus
                 </Link>
               </li>
               <li>

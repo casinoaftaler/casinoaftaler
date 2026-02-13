@@ -15,7 +15,7 @@ const TopCasinoOnline = lazy(() => import("./pages/TopCasinoOnline"));
 const NyeCasinoer = lazy(() => import("./pages/NyeCasinoer"));
 const About = lazy(() => import("./pages/About"));
 const Contact = lazy(() => import("./pages/Contact"));
-const BonusGuide = lazy(() => import("./pages/BonusGuide"));
+
 const ResponsibleGaming = lazy(() => import("./pages/ResponsibleGaming"));
 const Privacy = lazy(() => import("./pages/Privacy"));
 const Terms = lazy(() => import("./pages/Terms"));
@@ -73,7 +73,7 @@ const App = () => (
                 <Route path="/nye-casinoer" element={<NyeCasinoer />} />
                 <Route path="/about" element={<About />} />
                 <Route path="/contact" element={<Contact />} />
-                <Route path="/bonus-guide" element={<BonusGuide />} />
+                
                 <Route path="/casino-bonus" element={<CasinoBonus />} />
                 <Route path="/responsible-gaming" element={<ResponsibleGaming />} />
                 <Route path="/privacy" element={<Privacy />} />

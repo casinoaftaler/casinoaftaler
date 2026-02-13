@@ -48,9 +48,7 @@ const casinoBonusFaqs: { question: string; answer: ReactNode }[] = [
       <>
         En casino bonus er et tilbud fra et online casino, der giver dig ekstra
         midler eller gratis spins oven i din indbetaling. Bonusser bruges til at
-        tiltrække nye spillere og belønne eksisterende kunder. Læs mere om de
-        forskellige typer i vores{" "}
-        <Link to="/bonus-guide" className={linkClass}>bonus guide</Link>.
+        tiltrække nye spillere og belønne eksisterende kunder.
       </>
     ),
   },

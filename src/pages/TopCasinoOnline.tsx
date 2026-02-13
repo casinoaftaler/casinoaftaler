@@ -910,7 +910,7 @@ const TopCasinoOnline = () => {
                 title: "Personaliserede bonusser",
                 desc: (
                   <>Casinoer bruger data til at skræddersy bonustilbud til den enkelte spiller. Det betyder mere relevante tilbud baseret på dine foretrukne spil og spillemønster. Læs vores{" "}
-                    <Link to="/bonus-guide" className={linkClass}>bonus guide</Link> for mere.</>
+                    <Link to="/casino-bonus" className={linkClass}>casino bonus guide</Link> for mere.</>
                 ),
               },
               {
