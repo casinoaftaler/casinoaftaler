@@ -102,9 +102,19 @@ export function Header() {
 
         {/* Desktop Navigation */}
         <nav className="hidden items-center gap-6 lg:flex">
-          <Link to="/top-10-casino-online" className="flex items-center gap-1.5 text-sm font-medium transition-colors hover:text-primary">
-            Casinoer
-          </Link>
+          <DropdownMenu>
+            <DropdownMenuTrigger className="flex items-center gap-1.5 text-sm font-medium transition-colors hover:text-primary">
+              Casinoer <ChevronDown className="h-4 w-4" />
+            </DropdownMenuTrigger>
+            <DropdownMenuContent align="center" className="bg-popover z-50">
+              <DropdownMenuItem asChild>
+                <Link to="/top-10-casino-online" className="flex items-center gap-2">
+                  <Trophy className="h-4 w-4" />
+                  Top 10 Casino Online
+                </Link>
+              </DropdownMenuItem>
+            </DropdownMenuContent>
+          </DropdownMenu>
           <Link to="/nye-casinoer" className="flex items-center gap-1.5 text-sm font-medium transition-colors hover:text-primary">
             Nye Casinoer
           </Link>
@@ -355,10 +365,24 @@ export function Header() {
       {mobileMenuOpen && (
         <div className="border-t border-border bg-background lg:hidden max-h-[calc(100dvh-4rem)] overflow-y-auto">
           <nav className="container flex flex-col py-3">
-            <Link to="/top-10-casino-online" className="flex items-center gap-2 py-3 text-sm font-medium transition-colors hover:text-primary border-b border-border/50" onClick={() => setMobileMenuOpen(false)}>
-              <Dices className="h-4 w-4" />
-              Casinoer
-            </Link>
+            <button
+              onClick={() => setExpandedSection(expandedSection === "casino" ? null : "casino")}
+              className="flex items-center justify-between py-3 text-sm font-medium transition-colors hover:text-primary border-b border-border/50"
+            >
+              <span className="flex items-center gap-2">
+                <Dices className="h-4 w-4" />
+                Casinoer
+              </span>
+              <ChevronDown className={`h-4 w-4 transition-transform duration-200 ${expandedSection === "casino" ? "rotate-180" : ""}`} />
+            </button>
+            {expandedSection === "casino" && (
+              <div className="flex flex-col border-b border-border/50 bg-muted/30">
+                <Link to="/top-10-casino-online" className="ml-6 flex items-center gap-2 py-2.5 text-sm text-muted-foreground transition-colors hover:text-primary" onClick={() => setMobileMenuOpen(false)}>
+                  <Trophy className="h-4 w-4" />
+                  Top 10 Casino Online
+                </Link>
+              </div>
+            )}
             <Link to="/nye-casinoer" className="flex items-center gap-2 py-3 text-sm font-medium transition-colors hover:text-primary border-b border-border/50" onClick={() => setMobileMenuOpen(false)}>
               <Sparkles className="h-4 w-4" />
               Nye Casinoer
