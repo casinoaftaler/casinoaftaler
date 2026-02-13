@@ -353,9 +353,9 @@ function FeaturedCard({
                 </button>
               </CollapsibleTrigger>
 
-              {casino.slug === "spilleautomaten" && (
+              {(casino.slug === "spilleautomaten" || casino.slug === "spildansknu") && (
                 <Link
-                  to="/spilleautomaten-anmeldelse"
+                  to={casino.slug === "spilleautomaten" ? "/spilleautomaten-anmeldelse" : "/spildansknu-anmeldelse"}
                   className="text-sm font-semibold text-accent hover:text-accent/80 transition-colors"
                 >
                   Læs Anmeldelse
