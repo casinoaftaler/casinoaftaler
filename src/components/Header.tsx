@@ -128,6 +128,13 @@ export function Header() {
             </DropdownMenuTrigger>
             <DropdownMenuContent align="center" className="bg-popover">
               <DropdownMenuItem asChild>
+                <Link to="/casino-bonus" className="flex items-center gap-2">
+                  <BookOpen className="h-4 w-4" />
+                  Casino Bonus Oversigt
+                </Link>
+              </DropdownMenuItem>
+              <DropdownMenuSeparator />
+              <DropdownMenuItem asChild>
                 <Link to="/no-sticky-bonus" className="flex items-center gap-2">
                   <Sparkles className="h-4 w-4" />
                   No-Sticky Bonusser
@@ -405,6 +412,14 @@ export function Header() {
             </button>
             {expandedSection === "bonus" && (
               <div className="flex flex-col border-b border-border/50 bg-muted/30">
+                <Link
+                  to="/casino-bonus"
+                  className="ml-6 flex items-center gap-2 py-2.5 text-sm font-medium text-foreground transition-colors hover:text-primary"
+                  onClick={() => setMobileMenuOpen(false)}
+                >
+                  <BookOpen className="h-4 w-4" />
+                  Casino Bonus Oversigt
+                </Link>
                 {[
                   { to: "/no-sticky-bonus", icon: <Sparkles className="h-4 w-4" />, label: "No-Sticky Bonusser" },
                   { to: "/sticky-bonus", icon: <Gift className="h-4 w-4" />, label: "Sticky Bonusser" },
