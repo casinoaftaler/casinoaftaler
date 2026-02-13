@@ -122,10 +122,15 @@ export function Header() {
             Live Casino
           </Link>
           <DropdownMenu>
-            <DropdownMenuTrigger className="flex items-center gap-1.5 text-sm font-medium transition-colors hover:text-primary">
-              <BookOpen className="h-4 w-4" />
-              Casino Bonus <ChevronDown className="h-4 w-4" />
-            </DropdownMenuTrigger>
+            <div className="flex items-center gap-0">
+              <Link to="/casino-bonus" className="flex items-center gap-1.5 text-sm font-medium transition-colors hover:text-primary">
+                <BookOpen className="h-4 w-4" />
+                Casino Bonus
+              </Link>
+              <DropdownMenuTrigger className="flex items-center p-1 text-sm font-medium transition-colors hover:text-primary">
+                <ChevronDown className="h-4 w-4" />
+              </DropdownMenuTrigger>
+            </div>
             <DropdownMenuContent align="center" className="bg-popover">
               <DropdownMenuItem asChild>
                 <Link to="/no-sticky-bonus" className="flex items-center gap-2">
@@ -393,16 +398,18 @@ export function Header() {
             </Link>
 
             {/* Casino Bonus - expandable */}
-            <button
-              onClick={() => setExpandedSection(expandedSection === "bonus" ? null : "bonus")}
-              className="flex items-center justify-between py-3 text-sm font-medium transition-colors hover:text-primary border-b border-border/50"
-            >
-              <span className="flex items-center gap-2">
+            <div className="flex items-center justify-between py-3 border-b border-border/50">
+              <Link to="/casino-bonus" className="flex items-center gap-2 text-sm font-medium transition-colors hover:text-primary" onClick={() => setMobileMenuOpen(false)}>
                 <BookOpen className="h-4 w-4" />
                 Casino Bonus
-              </span>
-              <ChevronDown className={`h-4 w-4 transition-transform duration-200 ${expandedSection === "bonus" ? "rotate-180" : ""}`} />
-            </button>
+              </Link>
+              <button
+                onClick={() => setExpandedSection(expandedSection === "bonus" ? null : "bonus")}
+                className="p-1 transition-colors hover:text-primary"
+              >
+                <ChevronDown className={`h-4 w-4 transition-transform duration-200 ${expandedSection === "bonus" ? "rotate-180" : ""}`} />
+              </button>
+            </div>
             {expandedSection === "bonus" && (
               <div className="flex flex-col border-b border-border/50 bg-muted/30">
                 {[
