@@ -210,6 +210,9 @@ const CampobetAnmeldelse = () => {
                 No-Sticky Bonus
               </Badge>
             </div>
+            {casino?.logo_url && (
+              <img src={casino.logo_url} alt={`${casino.name} logo`} className="mx-auto mb-4 h-16 w-auto object-contain md:h-20" />
+            )}
             <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">
               Campobet Anmeldelse 2026
             </h1>
