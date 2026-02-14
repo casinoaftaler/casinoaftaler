@@ -317,7 +317,82 @@ const CasinoAnmeldelser = () => {
 
         <Separator className="my-10" />
 
-        {/* Hvad gør en god casino anmeldelse */}
+        {/* Dybdegående guider til hvert casino */}
+        <section className="mb-12">
+          <h2 className="mb-4 text-3xl font-bold">Dybdegående anmeldelser af hvert casino</h2>
+          <p className="mb-6 text-muted-foreground leading-relaxed">
+            Udforsk vores komplette anmeldelser af de bedste danske online casinoer. Hver anmeldelse dækker{" "}
+            <Link to="/casino-bonus" className={linkClass}>bonusvilkår</Link>,{" "}
+            <Link to="/spiludviklere" className={linkClass}>spiludvalg</Link>,{" "}
+            <Link to="/betalingsmetoder" className={linkClass}>betalingsmetoder</Link>, udbetalingstider, kundeservice og sikkerhed – alt hvad du behøver for at træffe det rigtige valg.
+          </p>
+
+          <div className="grid gap-4 md:grid-cols-2">
+            {[
+              {
+                name: "SpilDanskNu",
+                slug: "spildansknu-anmeldelse",
+                description: "Dansk fokuseret casino med brugervenlighed i fokus. Fair No-Sticky bonus med lave omsætningskrav og ingen bonuskode nødvendig.",
+                highlight: "No-Sticky bonus & dansk fokus",
+              },
+              {
+                name: "Spilleautomaten",
+                slug: "spilleautomaten-anmeldelse",
+                description: "Et af Danmarks mest populære casinoer med over 2.500 spil fra førende udbydere. Generøs No-Sticky velkomstbonus med kun 10x omsætning.",
+                highlight: "2.500+ spil & 10x omsætning",
+              },
+              {
+                name: "Betinia",
+                slug: "betinia-anmeldelse",
+                description: "Kombineret casino og sportsbetting med over 40 spiludbydere. No-Sticky velkomstbonus med 10x omsætningskrav og akkumulatorboost.",
+                highlight: "40+ udbydere & akkumulatorboost",
+              },
+              {
+                name: "Swift Casino",
+                slug: "swift-casino-anmeldelse",
+                description: "Unik Hot Or Cold-funktion der viser aktive spilleautomater. Over 3.300 casinospil fra anerkendte udbydere.",
+                highlight: "Hot Or Cold-funktion & 3.300+ spil",
+              },
+              {
+                name: "Campobet",
+                slug: "campobet-anmeldelse",
+                description: "Kombineret casino og sportsbetting med 3.000+ spil og stærkt live casino fra Evolution Gaming.",
+                highlight: "Casino + sportsbetting i ét",
+              },
+              {
+                name: "Luna Casino",
+                slug: "luna-casino-anmeldelse",
+                description: "VIP-program med eksklusive fordele og bonusser. No-Sticky bonus med 50 free spins inkluderet i velkomstpakken.",
+                highlight: "VIP-program & 50 free spins",
+              },
+            ].map((review) => (
+              <Card key={review.slug} className="group relative border-border bg-card">
+                <CardHeader>
+                  <CardTitle className="flex items-center gap-2 text-lg">
+                    <Star className="h-5 w-5 text-primary" />
+                    {review.name}
+                  </CardTitle>
+                </CardHeader>
+                <CardContent className="space-y-3">
+                  <p className="text-sm text-muted-foreground">{review.description}</p>
+                  <div className="flex items-center justify-between gap-2">
+                    <Badge variant="outline" className="text-xs">{review.highlight}</Badge>
+                    <Link
+                      to={`/${review.slug}`}
+                      className="text-sm font-medium text-primary underline hover:text-primary/80"
+                    >
+                      Læs anmeldelse →
+                    </Link>
+                  </div>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </section>
+
+        <InlineCasinoCards title="Anbefalede Casinoer" />
+
+        <Separator className="my-10" />
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold">
             Hvad gør en god casino anmeldelse? – Den komplette guide

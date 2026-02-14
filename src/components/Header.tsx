@@ -237,12 +237,6 @@ export function Header() {
             </DropdownMenuTrigger>
             <DropdownMenuContent align="center" className="bg-popover">
               <DropdownMenuItem asChild>
-                <Link to="/casino-anmeldelser" className="flex items-center gap-2">
-                  <Star className="h-4 w-4" />
-                  Casino Anmeldelser
-                </Link>
-              </DropdownMenuItem>
-              <DropdownMenuItem asChild>
                 <Link to="/about" className="flex items-center gap-2">
                   <Users className="h-4 w-4" />
                   Om Os
@@ -315,6 +309,36 @@ export function Header() {
                     { to: "/spiludviklere/microgaming", label: "Microgaming" },
                     { to: "/spiludviklere/red-tiger", label: "Red Tiger" },
                     { to: "/spiludviklere/big-time-gaming", label: "Big Time Gaming" },
+                  ].map((item) => (
+                    <DropdownMenuItem key={item.to} asChild>
+                      <Link to={item.to} className="flex items-center gap-2">
+                        <Star className="h-3 w-3" />
+                        {item.label}
+                      </Link>
+                    </DropdownMenuItem>
+                  ))}
+                </DropdownMenuSubContent>
+              </DropdownMenuSub>
+              <DropdownMenuSub>
+                <DropdownMenuSubTrigger className="flex items-center gap-2">
+                  <Star className="h-4 w-4" />
+                  Casino Anmeldelser
+                </DropdownMenuSubTrigger>
+                <DropdownMenuSubContent className="bg-popover">
+                  <DropdownMenuItem asChild>
+                    <Link to="/casino-anmeldelser" className="flex items-center gap-2 font-medium">
+                      <Star className="h-4 w-4" />
+                      Alle anmeldelser
+                    </Link>
+                  </DropdownMenuItem>
+                  <DropdownMenuSeparator />
+                  {[
+                    { to: "/spildansknu-anmeldelse", label: "SpilDanskNu" },
+                    { to: "/spilleautomaten-anmeldelse", label: "Spilleautomaten" },
+                    { to: "/betinia-anmeldelse", label: "Betinia" },
+                    { to: "/swift-casino-anmeldelse", label: "Swift Casino" },
+                    { to: "/campobet-anmeldelse", label: "Campobet" },
+                    { to: "/luna-casino-anmeldelse", label: "Luna Casino" },
                   ].map((item) => (
                     <DropdownMenuItem key={item.to} asChild>
                       <Link to={item.to} className="flex items-center gap-2">
@@ -565,10 +589,6 @@ export function Header() {
             </button>
             {expandedSection === "more" && (
               <div className="flex flex-col border-b border-border/50 bg-muted/30">
-                <Link to="/casino-anmeldelser" className="ml-6 flex items-center gap-2 py-2.5 text-sm text-muted-foreground transition-colors hover:text-primary" onClick={() => setMobileMenuOpen(false)}>
-                  <Star className="h-4 w-4" />
-                  Casino Anmeldelser
-                </Link>
                 <Link to="/about" className="ml-6 flex items-center gap-2 py-2.5 text-sm text-muted-foreground transition-colors hover:text-primary" onClick={() => setMobileMenuOpen(false)}>
                   <Users className="h-4 w-4" />
                   Om Os
@@ -642,6 +662,26 @@ export function Header() {
                     ))}
                   </div>
                 )}
+                {/* Casino Anmeldelser submenu */}
+                <Link to="/casino-anmeldelser" className="ml-6 flex items-center gap-2 py-2.5 text-sm text-muted-foreground transition-colors hover:text-primary" onClick={() => setMobileMenuOpen(false)}>
+                  <Star className="h-4 w-4" />
+                  Casino Anmeldelser
+                </Link>
+                <div className="flex flex-col ml-10">
+                  {[
+                    { to: "/spildansknu-anmeldelse", label: "SpilDanskNu" },
+                    { to: "/spilleautomaten-anmeldelse", label: "Spilleautomaten" },
+                    { to: "/betinia-anmeldelse", label: "Betinia" },
+                    { to: "/swift-casino-anmeldelse", label: "Swift Casino" },
+                    { to: "/campobet-anmeldelse", label: "Campobet" },
+                    { to: "/luna-casino-anmeldelse", label: "Luna Casino" },
+                  ].map((item) => (
+                    <Link key={item.to} to={item.to} className="flex items-center gap-2 py-2 text-sm text-muted-foreground transition-colors hover:text-primary" onClick={() => setMobileMenuOpen(false)}>
+                      <Star className="h-3 w-3" />
+                      {item.label}
+                    </Link>
+                  ))}
+                </div>
                 <Link to="/responsible-gaming" className="ml-6 flex items-center gap-2 py-2.5 text-sm text-muted-foreground transition-colors hover:text-primary" onClick={() => setMobileMenuOpen(false)}>
                   <ShieldCheck className="h-4 w-4" />
                   Ansvarligt Spil
