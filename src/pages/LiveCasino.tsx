@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { FAQSection } from "@/components/FAQSection";
+import liveCasinoHero from "@/assets/heroes/live-casino-hero.jpg";
 import { SEO } from "@/components/SEO";
 import { InlineCasinoCards } from "@/components/InlineCasinoCards";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -174,6 +175,10 @@ const LiveCasino = () => {
               <span className="font-medium text-foreground">15 Min.</span>
             </span>
           </div>
+        </div>
+
+        <div className="mb-10 overflow-hidden rounded-xl">
+          <img src={liveCasinoHero} alt="Live casino dealer ved blackjack bordet" className="w-full h-auto object-cover max-h-[400px]" loading="eager" />
         </div>
 
         {/* Intro */}

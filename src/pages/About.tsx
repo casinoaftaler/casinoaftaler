@@ -27,6 +27,7 @@ import {
   Scale,
 } from "lucide-react";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
+import aboutHero from "@/assets/heroes/about-hero.jpg";
 import { RelatedGuides } from "@/components/RelatedGuides";
 
 const values = [
@@ -223,6 +224,10 @@ const About = () => {
               <span className="font-medium text-foreground">5 Min.</span>
             </span>
           </div>
+        </div>
+
+        <div className="mb-10 overflow-hidden rounded-xl">
+          <img src={aboutHero} alt="Casinoaftaler teamet analyserer casino data" className="w-full h-auto object-cover max-h-[400px]" loading="eager" />
         </div>
 
         {/* Mission */}

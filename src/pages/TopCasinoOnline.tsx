@@ -9,6 +9,7 @@ import { RelatedGuides } from "@/components/RelatedGuides";
 import { InlineCasinoCards } from "@/components/InlineCasinoCards";
 import { useCasinos } from "@/hooks/useCasinos";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
+import topCasinoHero from "@/assets/heroes/top-casino-hero.jpg";
 import { useState, type ReactNode } from "react";
 import {
   Accordion,
@@ -285,6 +286,10 @@ const TopCasinoOnline = () => {
             <BookOpen className="h-4 w-4" />
             <span>Læsetid: <span className="font-medium text-foreground">12 Min.</span></span>
           </div>
+        </div>
+
+        <div className="mb-10 overflow-hidden rounded-xl">
+          <img src={topCasinoHero} alt="Top 10 casino – guldtrofæ med casino chips" className="w-full h-auto object-cover max-h-[400px]" loading="eager" />
         </div>
 
         {/* Intro Section */}

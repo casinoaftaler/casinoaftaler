@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { FAQSection } from "@/components/FAQSection";
 import { SEO } from "@/components/SEO";
+import bonusUdenIndbetalingHero from "@/assets/heroes/bonus-uden-indbetaling-hero.jpg";
 import { InlineCasinoCards } from "@/components/InlineCasinoCards";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -163,6 +164,10 @@ const BonusUdenIndbetaling = () => {
               <span className="font-medium text-foreground">10 Min.</span>
             </span>
           </div>
+        </div>
+
+        <div className="mb-10 overflow-hidden rounded-xl">
+          <img src={bonusUdenIndbetalingHero} alt="Bonus uden indbetaling – gratis casino bonus" className="w-full h-auto object-cover max-h-[400px]" loading="eager" />
         </div>
 
         {/* Intro */}

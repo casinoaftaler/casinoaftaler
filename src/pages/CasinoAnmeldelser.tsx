@@ -9,6 +9,7 @@ import { InlineCasinoCards } from "@/components/InlineCasinoCards";
 import { CasinoCard } from "@/components/CasinoCard";
 import { useCasinos } from "@/hooks/useCasinos";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
+import casinoAnmeldelserHero from "@/assets/heroes/casino-anmeldelser-hero.jpg";
 import { useState } from "react";
 import {
   Accordion,
@@ -243,6 +244,10 @@ const CasinoAnmeldelser = () => {
               <span className="font-medium text-foreground">18 Min.</span>
             </span>
           </div>
+        </div>
+
+        <div className="mb-10 overflow-hidden rounded-xl">
+          <img src={casinoAnmeldelserHero} alt="Casino anmeldelser – dokumenter og ratings" className="w-full h-auto object-cover max-h-[400px]" loading="eager" />
         </div>
 
         {/* Intro */}

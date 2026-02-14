@@ -49,6 +49,8 @@ interface ProviderPageProps {
   seoDescription: string;
   name: string;
   heroSubtitle: string;
+  heroImage?: string;
+  heroImageAlt?: string;
   introTitle: string;
   introContent: ReactNode;
   historyTitle: string;
@@ -84,6 +86,8 @@ export function ProviderPage({
   seoDescription,
   name,
   heroSubtitle,
+  heroImage,
+  heroImageAlt,
   introTitle,
   introContent,
   historyTitle,
@@ -155,6 +159,17 @@ export function ProviderPage({
             <span>Læsetid: <span className="font-medium text-foreground">12 Min.</span></span>
           </div>
         </div>
+
+        {heroImage && (
+          <div className="mb-10 overflow-hidden rounded-xl">
+            <img
+              src={heroImage}
+              alt={heroImageAlt || `${name} - spiludvikler`}
+              className="w-full h-auto object-cover max-h-[400px]"
+              loading="eager"
+            />
+          </div>
+        )}
 
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold">{introTitle}</h2>

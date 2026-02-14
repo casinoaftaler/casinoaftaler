@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { FAQSection } from "@/components/FAQSection";
 import { SEO } from "@/components/SEO";
+import noStickyHero from "@/assets/heroes/no-sticky-hero.jpg";
 import { InlineCasinoCards } from "@/components/InlineCasinoCards";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -180,6 +181,10 @@ const NoStickyBonus = () => {
               <span className="font-medium text-foreground">12 Min.</span>
             </span>
           </div>
+        </div>
+
+        <div className="mb-10 overflow-hidden rounded-xl">
+          <img src={noStickyHero} alt="No-sticky bonus – frihed fra begrænsninger" className="w-full h-auto object-cover max-h-[400px]" loading="eager" />
         </div>
 
         {/* Intro */}

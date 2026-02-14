@@ -48,6 +48,8 @@ interface PaymentMethodPageProps {
   seoDescription: string;
   name: string;
   heroSubtitle: string;
+  heroImage?: string;
+  heroImageAlt?: string;
   introTitle: string;
   introContent: ReactNode;
   whatIsTitle: string;
@@ -83,6 +85,8 @@ export function PaymentMethodPage({
   seoDescription,
   name,
   heroSubtitle,
+  heroImage,
+  heroImageAlt,
   introTitle,
   introContent,
   whatIsTitle,
@@ -156,6 +160,17 @@ export function PaymentMethodPage({
             <span>Læsetid: <span className="font-medium text-foreground">14 Min.</span></span>
           </div>
         </div>
+
+        {heroImage && (
+          <div className="mb-10 overflow-hidden rounded-xl">
+            <img
+              src={heroImage}
+              alt={heroImageAlt || `${name} - betalingsmetode`}
+              className="w-full h-auto object-cover max-h-[400px]"
+              loading="eager"
+            />
+          </div>
+        )}
 
         {/* Intro */}
         <section className="mb-12">

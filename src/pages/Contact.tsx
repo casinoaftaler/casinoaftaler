@@ -1,3 +1,4 @@
+import contactHero from "@/assets/heroes/contact-hero.jpg";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { FAQSection } from "@/components/FAQSection";
@@ -210,6 +211,10 @@ export default function Contact() {
               <span className="font-medium text-foreground">1-3 hverdage</span>
             </span>
           </div>
+        </div>
+
+        <div className="mb-10 overflow-hidden rounded-xl">
+          <img src={contactHero} alt="Kontakt os – professionelt kontor" className="w-full h-auto object-cover max-h-[400px]" loading="eager" />
         </div>
 
         {/* Intro with internal links */}

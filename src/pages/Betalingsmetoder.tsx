@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { FAQSection } from "@/components/FAQSection";
 import { SEO } from "@/components/SEO";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
+import betalingsmetoderHero from "@/assets/heroes/betalingsmetoder-hero.jpg";
 import { RelatedGuides } from "@/components/RelatedGuides";
 import { InlineCasinoCards } from "@/components/InlineCasinoCards";
 import applePayLogo from "@/assets/payments/apple-pay.png";
@@ -195,6 +196,10 @@ const Betalingsmetoder = () => {
               <span className="font-medium text-foreground">15 Min.</span>
             </span>
           </div>
+        </div>
+
+        <div className="mb-10 overflow-hidden rounded-xl">
+          <img src={betalingsmetoderHero} alt="Betalingsmetoder – betalingskort og digitale wallets" className="w-full h-auto object-cover max-h-[400px]" loading="eager" />
         </div>
 
         {/* Intro */}
