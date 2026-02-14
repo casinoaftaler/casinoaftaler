@@ -836,14 +836,14 @@ Deno.serve(async (req) => {
           .then(({ data: activeTournaments }) => {
             if (activeTournaments && activeTournaments.length > 0) {
               for (const t of activeTournaments) {
-                serviceClient.rpc("upsert_tournament_entry", {
+                Promise.resolve(serviceClient.rpc("upsert_tournament_entry", {
                   p_tournament_id: t.id,
                   p_user_id: userId,
                   p_game_id: gameId,
                   p_points: newBonusWinnings,
                   p_bet: bet,
                   p_is_bonus: true,
-                }).catch((err: unknown) => console.error("[slot-spin] Tournament bonus entry upsert failed:", err));
+                })).catch((err: unknown) => console.error("[slot-spin] Tournament bonus entry upsert failed:", err));
               }
             }
           })
@@ -1084,14 +1084,14 @@ Deno.serve(async (req) => {
       .then(({ data: activeTournaments }) => {
         if (activeTournaments && activeTournaments.length > 0) {
           for (const t of activeTournaments) {
-            serviceClient.rpc("upsert_tournament_entry", {
+            Promise.resolve(serviceClient.rpc("upsert_tournament_entry", {
               p_tournament_id: t.id,
               p_user_id: userId,
               p_game_id: gameId,
               p_points: result.totalWin,
               p_bet: bet,
               p_is_bonus: false,
-            }).catch((err: unknown) => console.error("[slot-spin] Tournament entry upsert failed:", err));
+            })).catch((err: unknown) => console.error("[slot-spin] Tournament entry upsert failed:", err));
           }
         }
       })
