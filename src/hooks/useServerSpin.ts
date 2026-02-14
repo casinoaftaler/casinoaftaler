@@ -34,6 +34,7 @@ interface BonusState {
   expandingSymbolId: string;
   expandingSymbolName: string;
   bonusWinnings: number;
+  betAmount?: number;
 }
 
 interface SpinResponse {

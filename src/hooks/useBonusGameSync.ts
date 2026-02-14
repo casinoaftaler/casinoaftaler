@@ -136,13 +136,14 @@ export function useBonusGameSync(symbols?: SlotSymbol[], gameId: string = "book-
     expandingSymbolIds?: string[];
     expandingSymbolNames?: string[];
     bonusWinnings: number;
+    betAmount?: number;
   } | null) => {
     if (!serverBonusState) {
       setBonusState(INITIAL_STATE);
       return;
     }
     
-    setBonusState({
+    setBonusState(prev => ({
       isActive: serverBonusState.isActive ?? true,
       freeSpinsRemaining: serverBonusState.freeSpinsRemaining,
       totalFreeSpins: serverBonusState.totalFreeSpins,
@@ -151,8 +152,8 @@ export function useBonusGameSync(symbols?: SlotSymbol[], gameId: string = "book-
       expandingSymbolIds: serverBonusState.expandingSymbolIds || [],
       expandingSymbolNames: serverBonusState.expandingSymbolNames || [],
       bonusWinnings: serverBonusState.bonusWinnings,
-      betAmount: bonusState.betAmount,
-    });
+      betAmount: serverBonusState.betAmount || prev.betAmount,
+    }));
   }, []);
 
   // End bonus - clears local state (server already handled in edge function)
