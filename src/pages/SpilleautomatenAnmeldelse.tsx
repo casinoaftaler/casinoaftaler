@@ -204,9 +204,6 @@ const SpilleautomatenAnmeldelse = () => {
               <Star className="mr-1.5 h-3.5 w-3.5" />
               4.9 / 5 – Anbefalet Casino
             </Badge>
-            {casino?.logo_url && (
-              <img src={casino.logo_url} alt={`${casino.name} logo`} className="mx-auto mb-4 h-16 w-auto object-contain md:h-20" />
-            )}
             <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">
               Spilleautomaten Anmeldelse 2026
             </h1>
@@ -284,7 +281,7 @@ const SpilleautomatenAnmeldelse = () => {
                   <p className="text-lg font-bold text-foreground">Winteq ApS</p>
                 </div>
               </div>
-              <QuickFactsProviders providers={["Hacksaw Gaming", "Pragmatic Play", "Play'n GO", "Wazdan", "Quickspin", "Push Gaming", "ELK Studios", "Endorphina", "Stakelogic", "Synot"]} />
+              <QuickFactsProviders providers={["Hacksaw Gaming", "Pragmatic Play", "Play'n GO", "Wazdan", "Quickspin", "Push Gaming", "ELK Studios", "Endorphina", "Stakelogic", "Synot"]} logoUrl={casino?.logo_url} casinoName={casino?.name} />
             </CardContent>
           </Card>
         </section>

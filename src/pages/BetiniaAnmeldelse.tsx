@@ -210,9 +210,6 @@ const BetiniaAnmeldelse = () => {
                 No-Sticky Bonus
               </Badge>
             </div>
-            {casino?.logo_url && (
-              <img src={casino.logo_url} alt={`${casino.name} logo`} className="mx-auto mb-4 h-16 w-auto object-contain md:h-20" />
-            )}
             <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">
               Betinia Anmeldelse 2026
             </h1>
@@ -294,7 +291,7 @@ const BetiniaAnmeldelse = () => {
                   <p className="text-lg font-bold text-foreground">40+</p>
                 </div>
               </div>
-              <QuickFactsProviders providers={["NetEnt", "Evolution Gaming", "Play'n GO", "Quickspin", "Wazdan", "ELK Studios", "Big Time Gaming", "Nolimit City", "Pragmatic Play", "Yggdrasil", "Red Tiger", "Hacksaw Gaming", "Push Gaming", "Relax Gaming", "Thunderkick", "Blueprint Gaming"]} />
+              <QuickFactsProviders providers={["NetEnt", "Evolution Gaming", "Play'n GO", "Quickspin", "Wazdan", "ELK Studios", "Big Time Gaming", "Nolimit City", "Pragmatic Play", "Yggdrasil", "Red Tiger", "Hacksaw Gaming", "Push Gaming", "Relax Gaming", "Thunderkick", "Blueprint Gaming"]} logoUrl={casino?.logo_url} casinoName={casino?.name} />
             </CardContent>
           </Card>
         </section>
