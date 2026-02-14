@@ -142,69 +142,123 @@ const gameTypes = [
 const developers = [
   {
     name: "NetEnt",
+    slug: "netent",
     description:
-      "NetEnt er en af de mest anerkendte spiludviklere i branchen og kendte for deres høje kvalitet og kreative tilgang. De har leveret nogle af de mest ikoniske titler i casinoverdenen og fortsætter med at sætte standarden for moderne spilleautomater.",
+      "NetEnt er en af de mest anerkendte spiludviklere i branchen og kendte for deres høje kvalitet og kreative tilgang.",
     games: [
       "Gonzo's Quest – Revolutionerede slots med cascading reels",
-      "Starburst – Et simpelt, men utroligt populært slot med skinnende ædelstene",
-      "Dead or Alive – Kendt for høje gevinster og spændende western-tema",
+      "Starburst – Et simpelt, men utroligt populært slot",
+      "Dead or Alive – Kendt for høje gevinster og western-tema",
     ],
     highlight: "Synonym med kvalitet og innovation inden for slots",
   },
   {
-    name: "Microgaming",
+    name: "Pragmatic Play",
+    slug: "pragmatic-play",
     description:
-      "Microgaming er en pioner, der var blandt de første til at lancere et online casino helt tilbage i 1994. Deres lange historie og imponerende portefølje har gjort dem til en fast bestanddel af branchen.",
+      "Med en omfattende portefølje der spænder over slots, live casino og bingo, har Pragmatic Play etableret sig som en alsidig og pålidelig spiludvikler.",
     games: [
-      "Mega Moolah – Progressiv jackpot der har skabt millionærer",
-      "Immortal Romance – Dramatisk slot med spændende bonusfunktioner",
-      "Thunderstruck II – Populært spil baseret på nordisk mytologi",
+      "The Dog House Megaways – Underholdende slot med tusindvis af vinderkombinationer",
+      "Sweet Bonanza – Farverigt slot med multiplikatorer",
+      "Wolf Gold – Klassisk favorit med store jackpots",
     ],
-    highlight: "Banebrydende teknologi og konstant innovation",
-  },
-  {
-    name: "Play'n GO",
-    description:
-      "Med en passion for innovation har Play'n GO leveret nogle af de mest populære spil til online casinoverdenen. De er kendte for høj kvalitet og evnen til at skabe spil med spændende temaer og unikke funktioner.",
-    games: [
-      "Book of Dead – Et af de mest populære slots med egyptisk tema",
-      "Fire Joker – En klassiker med moderne twists og enkelhed",
-      "Reactoonz – Et kaotisk og sjovt grid-slot med unikke funktioner",
-    ],
-    highlight: "Kreativitet kombineret med solide gevinster på tværs af platforme",
+    highlight: "Alsidig udvikler med fokus på spillerens behov",
   },
   {
     name: "Relax Gaming",
+    slug: "relax-gaming",
     description:
-      "Som en af de nyere stjerner har Relax Gaming hurtigt gjort sig bemærket med deres kreative tilgang. Deres fokus på unikke mekanikker og banebrydende funktioner adskiller dem fra konkurrenterne.",
+      "Som en af de nyere stjerner har Relax Gaming hurtigt gjort sig bemærket med deres kreative tilgang og unikke mekanikker.",
     games: [
       "Money Train 2 – Actionfyldt slot med massive gevinstmuligheder",
-      "Temple Tumble Megaways – Megaways-spil med tusindvis af vinderkombinationer",
+      "Temple Tumble Megaways – Tusindvis af vinderkombinationer",
       "Iron Bank – Sjov og dynamisk titel med stor variation",
     ],
     highlight: "Innovativ udvikler der konstant skubber til grænserne",
   },
   {
-    name: "Pragmatic Play",
+    name: "Play'n GO",
+    slug: "play-n-go",
     description:
-      "Med en omfattende portefølje der spænder over slots, live casino og bingo, har Pragmatic Play etableret sig som en alsidig og pålidelig spiludvikler med glat gameplay og attraktive bonusfunktioner.",
+      "Med en passion for innovation har Play'n GO leveret nogle af de mest populære spil til online casinoverdenen.",
     games: [
-      "The Dog House Megaways – Underholdende slot med tusindvis af vinderkombinationer",
-      "Sweet Bonanza – Farverigt slot med multiplikatorer og store gevinster",
-      "Wolf Gold – Klassisk favorit med enkle mekanikker og store jackpots",
+      "Book of Dead – Et af de mest populære slots med egyptisk tema",
+      "Fire Joker – En klassiker med moderne twists",
+      "Reactoonz – Et kaotisk og sjovt grid-slot",
     ],
-    highlight: "Alsidig udvikler med fokus på spillerens behov",
+    highlight: "Kreativitet kombineret med solide gevinster",
   },
   {
     name: "Hacksaw Gaming",
+    slug: "hacksaw-gaming",
     description:
-      "Hacksaw Gaming er kendt for deres innovative tilgang til slots og instant win-spil. Med fokus på enkle, men engagerende mekanikker har de hurtigt skabt sig et navn i branchen.",
+      "Hacksaw Gaming er kendt for deres innovative tilgang til slots og instant win-spil med enkle, men engagerende mekanikker.",
     games: [
       "Chaos Crew – Unikt slot med edgy, punk-inspireret stil",
       "Wanted Dead or a Wild – Western-slot med høj volatilitet",
-      "Cubes 2 – Farverig og kreativ titel der bryder med traditionelle designs",
+      "Cubes 2 – Farverig og kreativ titel",
     ],
     highlight: "Frisk tilføjelse til branchen med fokus på originalitet",
+  },
+  {
+    name: "Nolimit City",
+    slug: "nolimit-city",
+    description:
+      "Nolimit City er kendt for deres ekstreme volatilitet og unikke xWays- og xNudge-mekanikker, der giver helt nye spiloplevelser.",
+    games: [
+      "Mental – Kontroversielt slot med ekstrem volatilitet",
+      "Tombstone RIP – Western-tema med massive gevinstmuligheder",
+      "San Quentin – Banebrydende slot med xWays-mekanik",
+    ],
+    highlight: "Specialister i høj volatilitet og unikke mekanikker",
+  },
+  {
+    name: "Yggdrasil",
+    slug: "yggdrasil",
+    description:
+      "Yggdrasil er en innovativ spiludvikler der kombinerer fantastisk grafik med spændende gameplay og unikke funktioner.",
+    games: [
+      "Vikings Go Berzerk – Actionfyldt viking-slot",
+      "Valley of the Gods – Egyptisk eventyr med cluster pays",
+      "Raptor DoubleMax – Dinosaur-tema med DoubleMax-mekanik",
+    ],
+    highlight: "Fantastisk grafik og innovative spilmekanikker",
+  },
+  {
+    name: "Microgaming",
+    slug: "microgaming",
+    description:
+      "Microgaming er en pioner der var blandt de første til at lancere et online casino helt tilbage i 1994.",
+    games: [
+      "Mega Moolah – Progressiv jackpot der har skabt millionærer",
+      "Immortal Romance – Dramatisk slot med bonusfunktioner",
+      "Thunderstruck II – Populært spil med nordisk mytologi",
+    ],
+    highlight: "Banebrydende teknologi og konstant innovation",
+  },
+  {
+    name: "Red Tiger",
+    slug: "red-tiger",
+    description:
+      "Red Tiger Gaming er kendt for deres daglige jackpots og visuelt imponerende spilleautomater med innovative bonusfunktioner.",
+    games: [
+      "Gonzo's Quest Megaways – Megaways-version af klassikeren",
+      "Dragon's Luck – Asiatisk tema med mystery symbols",
+      "Piggy Riches Megaways – Populær Megaways-variant",
+    ],
+    highlight: "Daglige jackpots og visuelt imponerende spil",
+  },
+  {
+    name: "Big Time Gaming",
+    slug: "big-time-gaming",
+    description:
+      "Big Time Gaming er skaberne bag den banebrydende Megaways-mekanik, der har revolutioneret spilleautomatbranchen.",
+    games: [
+      "Bonanza Megaways – Den originale Megaways-slot",
+      "Extra Chilli – Populært mexicansk-tema slot",
+      "White Rabbit – Alice i Eventyrland med Megaways",
+    ],
+    highlight: "Opfindere af Megaways-mekanikken",
   },
 ];
 
@@ -525,7 +579,7 @@ const Spiludviklere = () => {
 
           <div className="grid gap-4 md:grid-cols-2">
             {developers.map((dev) => (
-              <Card key={dev.name}>
+              <Card key={dev.name} className="group relative">
                 <CardHeader>
                   <CardTitle className="flex items-center gap-2 text-lg">
                     <Star className="h-5 w-5 text-primary" />
@@ -552,9 +606,17 @@ const Spiludviklere = () => {
                       ))}
                     </ul>
                   </div>
-                  <Badge variant="outline" className="text-xs">
-                    {dev.highlight}
-                  </Badge>
+                  <div className="flex items-center justify-between gap-2">
+                    <Badge variant="outline" className="text-xs">
+                      {dev.highlight}
+                    </Badge>
+                    <Link
+                      to={`/spiludviklere/${dev.slug}`}
+                      className="text-sm font-medium text-primary underline hover:text-primary/80"
+                    >
+                      Læs mere →
+                    </Link>
+                  </div>
                 </CardContent>
               </Card>
             ))}
