@@ -1,4 +1,18 @@
 import { Gamepad2 } from "lucide-react";
+import { Link } from "react-router-dom";
+
+const providerRoutes: Record<string, string> = {
+  "NetEnt": "/spiludviklere/netent",
+  "Pragmatic Play": "/spiludviklere/pragmatic-play",
+  "Relax Gaming": "/spiludviklere/relax-gaming",
+  "Play'n GO": "/spiludviklere/play-n-go",
+  "Hacksaw Gaming": "/spiludviklere/hacksaw-gaming",
+  "Nolimit City": "/spiludviklere/nolimit-city",
+  "Yggdrasil": "/spiludviklere/yggdrasil",
+  "Microgaming": "/spiludviklere/microgaming",
+  "Red Tiger": "/spiludviklere/red-tiger",
+  "Big Time Gaming": "/spiludviklere/big-time-gaming",
+};
 
 interface QuickFactsProvidersProps {
   providers: string[];
@@ -16,14 +30,28 @@ export function QuickFactsProviders({ providers, logoUrl, casinoName }: QuickFac
         Spiludbydere
       </p>
       <div className="flex flex-wrap justify-center gap-1.5">
-        {providers.map((name) => (
-          <span
-            key={name}
-            className="inline-block rounded-md bg-secondary px-2 py-0.5 text-xs font-medium text-secondary-foreground"
-          >
-            {name}
-          </span>
-        ))}
+        {providers.map((name) => {
+          const route = providerRoutes[name];
+          if (route) {
+            return (
+              <Link
+                key={name}
+                to={route}
+                className="inline-block rounded-md bg-secondary px-2 py-0.5 text-xs font-medium text-secondary-foreground hover:bg-primary/10 hover:text-primary transition-colors"
+              >
+                {name}
+              </Link>
+            );
+          }
+          return (
+            <span
+              key={name}
+              className="inline-block rounded-md bg-secondary px-2 py-0.5 text-xs font-medium text-secondary-foreground"
+            >
+              {name}
+            </span>
+          );
+        })}
       </div>
     </div>
   );

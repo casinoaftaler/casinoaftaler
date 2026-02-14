@@ -1119,7 +1119,7 @@ const CasinoBonus = () => {
             dig statistisk set bedre chancer for at beholde din casino bonus-saldo,
             mens du omsætter. Populære højt-RTP-spil inkluderer titler fra{" "}
             <Link to="/spiludviklere" className={linkClass}>førende spiludviklere</Link>{" "}
-            som NetEnt, Play&apos;n GO og Pragmatic Play. Undgå progressive jackpot-spil
+            som <Link to="/spiludviklere/netent" className={linkClass}>NetEnt</Link>, <Link to="/spiludviklere/play-n-go" className={linkClass}>Play&apos;n GO</Link> og <Link to="/spiludviklere/pragmatic-play" className={linkClass}>Pragmatic Play</Link>. Undgå progressive jackpot-spil
             under omsætning af din casino bonus, da de typisk har lavere RTP.
           </p>
 

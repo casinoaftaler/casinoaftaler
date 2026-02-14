@@ -502,7 +502,7 @@ const SpilDanskNuAnmeldelse = () => {
               </CardHeader>
               <CardContent>
                 <p className="text-sm text-muted-foreground">
-                  Over 1.500 slots fra topudbydere som Play'n GO, Pragmatic Play, NetEnt, Red Tiger og ELK Studios. Fra klassiske frugttemaer til moderne megaways og bonus buy-spil – udvalget er enormt og konstant voksende.
+                  Over 1.500 slots fra topudbydere som <Link to="/spiludviklere/play-n-go" className={linkClass}>Play'n GO</Link>, <Link to="/spiludviklere/pragmatic-play" className={linkClass}>Pragmatic Play</Link>, <Link to="/spiludviklere/netent" className={linkClass}>NetEnt</Link>, <Link to="/spiludviklere/red-tiger" className={linkClass}>Red Tiger</Link> og ELK Studios. Fra klassiske frugttemaer til moderne megaways og bonus buy-spil – udvalget er enormt og konstant voksende.
                 </p>
               </CardContent>
             </Card>
