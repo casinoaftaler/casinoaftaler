@@ -10,6 +10,7 @@ import { useCasinos } from "@/hooks/useCasinos";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
 import { getAffiliateRedirect } from "@/lib/affiliateRedirect";
 import { useAuth } from "@/hooks/useAuth";
+import { QuickFactsProviders } from "@/components/QuickFactsProviders";
 import type { ReactNode } from "react";
 import {
   Accordion,
@@ -198,6 +199,7 @@ const SwiftCasinoAnmeldelse = () => {
                   </div>
                 ))}
               </div>
+              <QuickFactsProviders providers={["NetEnt", "Play'n GO", "Red Tiger", "ELK Studios", "Playtech", "Microgaming", "Pragmatic Play", "Evolution Gaming"]} />
             </CardContent>
           </Card>
         </section>

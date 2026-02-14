@@ -10,6 +10,7 @@ import { useCasinos } from "@/hooks/useCasinos";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
 import { getAffiliateRedirect } from "@/lib/affiliateRedirect";
 import { useAuth } from "@/hooks/useAuth";
+import { QuickFactsProviders } from "@/components/QuickFactsProviders";
 import type { ReactNode } from "react";
 import {
   Accordion,
@@ -280,6 +281,7 @@ const SpilleautomatenAnmeldelse = () => {
                   <p className="text-lg font-bold text-foreground">Winteq ApS</p>
                 </div>
               </div>
+              <QuickFactsProviders providers={["Hacksaw Gaming", "Pragmatic Play", "Play'n GO", "Wazdan", "Quickspin", "Push Gaming", "ELK Studios", "Endorphina", "Stakelogic", "Synot"]} />
             </CardContent>
           </Card>
         </section>

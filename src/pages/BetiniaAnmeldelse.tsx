@@ -17,6 +17,7 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
+import { QuickFactsProviders } from "@/components/QuickFactsProviders";
 import {
   ShieldCheck,
   Star,
@@ -290,6 +291,7 @@ const BetiniaAnmeldelse = () => {
                   <p className="text-lg font-bold text-foreground">40+</p>
                 </div>
               </div>
+              <QuickFactsProviders providers={["NetEnt", "Evolution Gaming", "Play'n GO", "Quickspin", "Wazdan", "ELK Studios", "Big Time Gaming", "Nolimit City", "Pragmatic Play", "Yggdrasil", "Red Tiger", "Hacksaw Gaming", "Push Gaming", "Relax Gaming", "Thunderkick", "Blueprint Gaming"]} />
             </CardContent>
           </Card>
         </section>

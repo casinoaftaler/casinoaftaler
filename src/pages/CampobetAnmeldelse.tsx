@@ -10,6 +10,7 @@ import { useCasinos } from "@/hooks/useCasinos";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
 import { getAffiliateRedirect } from "@/lib/affiliateRedirect";
 import { useAuth } from "@/hooks/useAuth";
+import { QuickFactsProviders } from "@/components/QuickFactsProviders";
 import type { ReactNode } from "react";
 import {
   Accordion,
@@ -290,6 +291,7 @@ const CampobetAnmeldelse = () => {
                   <p className="text-lg font-bold text-foreground">Denix Limited</p>
                 </div>
               </div>
+              <QuickFactsProviders providers={["Pragmatic Play", "Hacksaw Gaming", "Nolimit City", "NetEnt", "Play'n GO", "Yggdrasil", "ELK Studios", "Quickspin", "Red Tiger", "Push Gaming", "Relax Gaming", "Evolution Gaming"]} />
             </CardContent>
           </Card>
         </section>

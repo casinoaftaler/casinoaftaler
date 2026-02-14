@@ -17,6 +17,7 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
+import { QuickFactsProviders } from "@/components/QuickFactsProviders";
 import {
   ShieldCheck,
   Star,
@@ -285,6 +286,7 @@ const SpilDanskNuAnmeldelse = () => {
                   <p className="text-lg font-bold text-foreground">Winteq ApS</p>
                 </div>
               </div>
+              <QuickFactsProviders providers={["Pragmatic Play", "Play'n GO", "Quickspin", "Push Gaming", "Hacksaw Gaming", "Stakelogic", "Synot", "Greentube", "ELK Studios", "Wazdan", "Endorphina"]} />
             </CardContent>
           </Card>
         </section>
