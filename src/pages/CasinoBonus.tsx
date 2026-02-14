@@ -800,30 +800,18 @@ const CasinoBonus = () => {
             <div className="flex items-start gap-3 rounded-lg border border-border bg-card p-4">
               <CheckCircle2 className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
               <div>
-                <h3 className="font-semibold">10x – 20x – Meget godt</h3>
+                <h3 className="font-semibold">10x – Dansk standard</h3>
                 <p className="text-sm text-muted-foreground">
-                  Stadig spillervenligt og opnåeligt. De fleste danske casinoer
-                  ligger i dette interval.
+                  Alle danske casinoer med licens fra Spillemyndigheden opererer med 10x omsætningskrav (indskud + bonus). Det er blandt de laveste i verden.
                 </p>
               </div>
             </div>
             <div className="flex items-start gap-3 rounded-lg border border-border bg-card p-4">
               <CheckCircle2 className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
               <div>
-                <h3 className="font-semibold">20x – 35x – Branchestandard</h3>
+                <h3 className="font-semibold">0x – Uden omsætningskrav</h3>
                 <p className="text-sm text-muted-foreground">
-                  Gennemsnitligt krav, der kræver lidt mere spil. Stadig fair,
-                  men vurder gyldighedsperioden nøje.
-                </p>
-              </div>
-            </div>
-            <div className="flex items-start gap-3 rounded-lg border border-border bg-card p-4">
-              <CheckCircle2 className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
-              <div>
-                <h3 className="font-semibold">Over 35x – Høje krav</h3>
-                <p className="text-sm text-muted-foreground">
-                  Sværere at opfylde. Vær ekstra opmærksom på tidsfristen og
-                  overvej om bonussen reelt er værd at aktivere.
+                  Nogle casinoer tilbyder bonusser helt uden omsætningskrav – du kan udbetale gevinster med det samme.
                 </p>
               </div>
             </div>
@@ -1016,8 +1004,7 @@ const CasinoBonus = () => {
                     <Link to="/omsaetningskrav" className={linkClass}>
                       omsætningskrav
                     </Link>
-                    , jo bedre. Under 10x er fremragende, 10-20x er meget godt.
-                    Alt over 35x bør overvejes nøje.
+                    , jo bedre. Alle danske casinoer opererer med 10x, som er fastsat af Spillemyndigheden.
                   </>
                 ),
               },
@@ -1086,10 +1073,9 @@ const CasinoBonus = () => {
           <p className="mb-4 text-muted-foreground leading-relaxed">
             Det er vigtigt at forstå, at en casino bonus ikke er "gratis penge". Hver
             casino bonus kommer med omsætningskrav, der angiver, hvor mange gange du
-            skal spille for bonusbeløbet, før du kan hæve eventuelle gevinster. De bedste
-            casino bonusser i Danmark har omsætningskrav på under 10x, mens gennemsnittet
-            ligger på 10-20x. En casino bonus med høje omsætningskrav (over 35x) kan
-            være vanskelig at omsætte og giver sjældent reel værdi.
+            skal spille for bonusbeløbet, før du kan hæve eventuelle gevinster. Alle
+            danske casinoer med licens fra Spillemyndigheden opererer med 10x omsætningskrav
+            (indskud + bonus), hvilket gør det danske marked til et af de mest spillervenlige i verden.
           </p>
           <p className="mb-4 text-muted-foreground leading-relaxed">
             En vigtig faktor ved valg af casino bonus er bonusstrukturen. Der findes
