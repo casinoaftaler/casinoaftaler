@@ -4,18 +4,13 @@ import { supabase } from "@/integrations/supabase/client";
 
 const VISITOR_ID_KEY = "visitor_id";
 
-// Generate a unique visitor ID
 function generateVisitorId(): string {
   return `anon_${crypto.randomUUID()}`;
 }
 
-// Get or create a persistent visitor ID from localStorage
 function getVisitorId(): string | null {
-  // Only create/use visitor ID if cookie consent is accepted
   const consent = localStorage.getItem("cookie-consent");
-  if (consent !== "accepted") {
-    return null;
-  }
+  if (consent !== "accepted") return null;
 
   let visitorId = localStorage.getItem(VISITOR_ID_KEY);
   if (!visitorId) {
@@ -25,29 +20,42 @@ function getVisitorId(): string | null {
   return visitorId;
 }
 
+// Cache the session to avoid repeated async calls
+let cachedUserId: string | null = null;
+let sessionChecked = false;
+
+async function getCachedUserId(): Promise<string | null> {
+  if (sessionChecked) return cachedUserId;
+  try {
+    const { data: { session } } = await supabase.auth.getSession();
+    cachedUserId = session?.user?.id || null;
+    sessionChecked = true;
+  } catch {
+    cachedUserId = null;
+    sessionChecked = true;
+  }
+  return cachedUserId;
+}
+
+// Listen for auth changes to invalidate cache
+supabase.auth.onAuthStateChange((_event, session) => {
+  cachedUserId = session?.user?.id || null;
+  sessionChecked = true;
+});
+
 export function usePageTracking() {
   const location = useLocation();
   const lastTrackedPath = useRef<string | null>(null);
 
   useEffect(() => {
     const currentPath = location.pathname;
-
-    // Avoid tracking the same path multiple times in a row
-    if (lastTrackedPath.current === currentPath) {
-      return;
-    }
-
+    if (lastTrackedPath.current === currentPath) return;
     lastTrackedPath.current = currentPath;
 
-    // Track the page view
     const trackPageView = async () => {
       try {
-        // Get visitor ID (respects cookie consent)
         const visitorId = getVisitorId();
-
-        // Get current user ID if logged in
-        const { data: { session } } = await supabase.auth.getSession();
-        const userId = session?.user?.id || null;
+        const userId = await getCachedUserId();
 
         await supabase.from("page_views").insert({
           path: currentPath,
@@ -56,9 +64,8 @@ export function usePageTracking() {
           visitor_id: visitorId,
           user_id: userId,
         });
-      } catch (error) {
-        // Silently fail - analytics should not break the app
-        console.debug("Page tracking error:", error);
+      } catch {
+        // Silently fail
       }
     };
 

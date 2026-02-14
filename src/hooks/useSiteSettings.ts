@@ -20,6 +20,6 @@ export function useSiteSettings() {
       return settings;
     },
     staleTime: 5 * 60 * 1000, // 5 minutes cache
-    refetchOnWindowFocus: true,
+    refetchOnWindowFocus: false,
   });
 }
