@@ -176,6 +176,9 @@ function CasinoInfoContent({ casino, variant }: { casino: Casino; variant: "feat
                   <img 
                     src={provider.logo_url} 
                     alt={provider.name} 
+                    width={80}
+                    height={32}
+                    loading="lazy"
                     className="h-8 w-auto max-w-[80px] object-contain"
                   />
                 ) : (
@@ -256,6 +259,9 @@ function FeaturedCard({
                 <img
                   src={casino.logoUrl}
                   alt={casino.name}
+                  width={isTopRow ? 96 : 80}
+                  height={isTopRow ? 96 : 80}
+                  loading={rank <= 2 ? "eager" : "lazy"}
                   className={`object-cover rounded-xl border-2 border-white/30 shadow-lg ${
                     isTopRow ? "h-24 w-24" : "h-20 w-20"
                   }`}
@@ -432,6 +438,9 @@ function RegularCard({
                 <img
                   src={casino.logoUrl}
                   alt={casino.name}
+                  width={96}
+                  height={96}
+                  loading="lazy"
                   className="h-24 w-24 rounded-xl object-cover"
                 />
               ) : (
