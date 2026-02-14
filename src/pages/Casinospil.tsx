@@ -6,6 +6,7 @@ import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { RelatedGuides } from "@/components/RelatedGuides";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
+import casinospilHero from "@/assets/casinospil-hero.jpg";
 import { type ReactNode } from "react";
 import {
   Accordion,
@@ -211,6 +212,16 @@ const Casinospil = () => {
               <span className="font-medium text-foreground">10 Min.</span>
             </span>
           </div>
+        </div>
+
+        {/* Hero Image */}
+        <div className="mb-10 overflow-hidden rounded-xl">
+          <img
+            src={casinospilHero}
+            alt="Luxuriøst casino med spilleautomater, rouletteborde og kortborde"
+            className="w-full h-auto object-cover max-h-[400px]"
+            loading="eager"
+          />
         </div>
 
         {/* Intro Section */}
