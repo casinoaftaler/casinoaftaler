@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { FAQSection } from "@/components/FAQSection";
 import { SEO } from "@/components/SEO";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -778,31 +779,7 @@ const CasinoAnmeldelser = () => {
 
         <Separator className="my-10" />
 
-        {/* FAQ */}
-        <Card className="mb-12">
-          <CardHeader>
-            <div className="flex items-center gap-2">
-              <HelpCircle className="h-7 w-7 text-primary" />
-              <CardTitle className="text-2xl md:text-3xl">
-                Ofte stillede spørgsmål om casino anmeldelser
-              </CardTitle>
-            </div>
-          </CardHeader>
-          <CardContent>
-            <Accordion type="single" collapsible className="space-y-3">
-              {faqs.map((faq, index) => (
-                <AccordionItem key={index} value={`item-${index}`} className="rounded-lg border border-border bg-muted/50 px-6">
-                  <AccordionTrigger className="text-left hover:no-underline">
-                    {faq.question}
-                  </AccordionTrigger>
-                  <AccordionContent className="text-muted-foreground leading-relaxed">
-                    {faq.answer}
-                  </AccordionContent>
-                </AccordionItem>
-              ))}
-            </Accordion>
-          </CardContent>
-        </Card>
+        <FAQSection title="Ofte stillede spørgsmål om casino anmeldelser" faqs={faqs} />
 
         <RelatedGuides currentPath="/casino-anmeldelser" />
       </div>

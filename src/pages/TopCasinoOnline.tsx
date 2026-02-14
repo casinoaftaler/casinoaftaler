@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { FAQSection } from "@/components/FAQSection";
 import { SEO } from "@/components/SEO";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -1219,35 +1220,7 @@ const TopCasinoOnline = () => {
 
         <Separator className="my-10" />
 
-        {/* FAQ Section */}
-        <section className="mb-12">
-          <div className="mb-8">
-            <div className="flex items-center gap-2 mb-4">
-              <HelpCircle className="h-8 w-8 text-primary" />
-              <h2 className="text-3xl font-bold">Ofte Stillede Spørgsmål om Online Casino</h2>
-            </div>
-            <p className="text-muted-foreground">
-              Alt du behøver at vide om online casino i Danmark – fra bonus og betalinger til sikkerhed og ansvarligt spil.
-            </p>
-          </div>
-
-          <Accordion type="single" collapsible className="space-y-3">
-            {topCasinoFaqs.map((faq, index) => (
-              <AccordionItem
-                key={index}
-                value={`item-${index}`}
-                className="rounded-lg border border-border bg-card px-6"
-              >
-                <AccordionTrigger className="text-left hover:no-underline">
-                  {faq.question}
-                </AccordionTrigger>
-                <AccordionContent className="text-muted-foreground">
-                  {faq.answer}
-                </AccordionContent>
-              </AccordionItem>
-            ))}
-          </Accordion>
-        </section>
+        <FAQSection title="Ofte stillede spørgsmål om online casino" faqs={topCasinoFaqs} />
 
         <RelatedGuides currentPath="/top-10-casino-online" />
       </div>

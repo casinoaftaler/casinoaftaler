@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import { FAQSection } from "@/components/FAQSection";
 import { SEO } from "@/components/SEO";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -411,29 +412,7 @@ export default function Contact() {
 
         <Separator className="my-10" />
 
-        {/* FAQ */}
-        <section className="mb-12">
-          <h2 className="mb-6 text-3xl font-bold">
-            <HelpCircle className="mr-2 inline h-7 w-7 text-primary" />
-            Ofte stillede spørgsmål
-          </h2>
-          <Accordion type="single" collapsible className="space-y-3">
-            {contactFaqs.map((faq, index) => (
-              <AccordionItem
-                key={index}
-                value={`faq-${index}`}
-                className="rounded-lg border border-border bg-card px-6"
-              >
-                <AccordionTrigger className="text-left font-semibold hover:no-underline">
-                  {faq.question}
-                </AccordionTrigger>
-                <AccordionContent className="text-muted-foreground leading-relaxed">
-                  {faq.answer}
-                </AccordionContent>
-              </AccordionItem>
-            ))}
-          </Accordion>
-        </section>
+        <FAQSection title="Ofte stillede spørgsmål" faqs={contactFaqs} />
 
         <RelatedGuides currentPath="/contact" />
       </div>

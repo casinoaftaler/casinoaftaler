@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { FAQSection } from "@/components/FAQSection";
 import { SEO } from "@/components/SEO";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
 import { RelatedGuides } from "@/components/RelatedGuides";
@@ -332,30 +333,7 @@ export function ProviderPage({
 
         <Separator className="my-10" />
 
-        <section className="mb-12">
-          <div className="mb-8">
-            <div className="flex items-center gap-2 mb-4">
-              <Gamepad2 className="h-8 w-8 text-primary" />
-              <h2 className="text-3xl font-bold">Ofte Stillede Spørgsmål om {name}</h2>
-            </div>
-          </div>
-          <Accordion type="single" collapsible className="space-y-3">
-            {faqs.map((faq, index) => (
-              <AccordionItem
-                key={index}
-                value={`item-${index}`}
-                className="rounded-lg border border-border bg-card px-6"
-              >
-                <AccordionTrigger className="text-left hover:no-underline">
-                  {faq.question}
-                </AccordionTrigger>
-                <AccordionContent className="text-muted-foreground leading-relaxed">
-                  {faq.answer}
-                </AccordionContent>
-              </AccordionItem>
-            ))}
-          </Accordion>
-        </section>
+        <FAQSection title={`Ofte stillede spørgsmål om ${name}`} faqs={faqs} />
 
         <RelatedGuides currentPath={currentPath} />
       </div>

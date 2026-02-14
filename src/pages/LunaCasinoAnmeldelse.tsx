@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { FAQSection } from "@/components/FAQSection";
 import { SEO } from "@/components/SEO";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -517,18 +518,7 @@ const LunaCasinoAnmeldelse = () => {
 
         <Separator className="my-10" />
 
-        {/* FAQ */}
-        <section className="mb-12">
-          <h2 className="mb-6 text-3xl font-bold flex items-center gap-2"><HelpCircle className="h-8 w-8 text-primary" />Ofte Stillede Spørgsmål om Luna Casino</h2>
-          <Accordion type="single" collapsible className="space-y-3">
-            {lunaFaqs.map((faq, index) => (
-              <AccordionItem key={index} value={`faq-${index}`} className="rounded-lg border border-border bg-card px-6">
-                <AccordionTrigger className="text-left hover:no-underline text-foreground">{faq.question}</AccordionTrigger>
-                <AccordionContent className="text-muted-foreground">{faq.answer}</AccordionContent>
-              </AccordionItem>
-            ))}
-          </Accordion>
-        </section>
+        <FAQSection title="Ofte stillede spørgsmål om Luna Casino" faqs={lunaFaqs} />
 
         <Separator className="my-10" />
         <InlineCasinoCards />
