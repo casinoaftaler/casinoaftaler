@@ -12,6 +12,7 @@ import { useSiteSettings } from "@/hooks/useSiteSettings";
 import { getAffiliateRedirect } from "@/lib/affiliateRedirect";
 import { useAuth } from "@/hooks/useAuth";
 import type { ReactNode } from "react";
+import betiniaHero from "@/assets/heroes/betinia-hero.jpg";
 import {
   Accordion,
   AccordionContent,
@@ -244,6 +245,10 @@ const BetiniaAnmeldelse = () => {
             <BookOpen className="h-4 w-4" />
             <span>Læsetid: <span className="font-medium text-foreground">18 Min.</span></span>
           </div>
+        </div>
+
+        <div className="mb-10 overflow-hidden rounded-xl">
+          <img src={betiniaHero} alt="Betinia casino – dansk online casino med No-Sticky bonus" className="w-full h-auto object-cover max-h-[400px]" loading="eager" />
         </div>
 
         {/* Quick Facts Card */}

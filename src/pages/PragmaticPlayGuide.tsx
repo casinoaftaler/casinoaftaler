@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { ProviderPage } from "./providers/ProviderPageTemplate";
+import pragmaticPlayHero from "@/assets/heroes/pragmatic-play-hero.jpg";
 
 const PragmaticPlayGuide = () => (
   <ProviderPage
@@ -7,6 +8,8 @@ const PragmaticPlayGuide = () => (
     seoDescription="Komplet guide til Pragmatic Play – en af branchens mest alsidige spiludviklere. Læs om Sweet Bonanza, The Dog House, licenser og deres imponerende portefølje."
     name="Pragmatic Play"
     heroSubtitle="Pragmatic Play har taget casinobranchen med storm med en alsidig portefølje der spænder fra spilleautomater til live casino og bingo. Lær alt om denne innovative spiludvikler."
+    heroImage={pragmaticPlayHero}
+    heroImageAlt="Pragmatic Play spiludvikler – farverige spilleautomater"
     currentPath="/spiludviklere/pragmatic-play"
     introTitle="Hvad er Pragmatic Play?"
     introContent={

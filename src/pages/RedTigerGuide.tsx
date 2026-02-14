@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { ProviderPage } from "./providers/ProviderPageTemplate";
+import redTigerHero from "@/assets/heroes/red-tiger-hero.jpg";
 
 const RedTigerGuide = () => (
   <ProviderPage
@@ -7,6 +8,8 @@ const RedTigerGuide = () => (
     seoDescription="Komplet guide til Red Tiger Gaming – opkøbt af NetEnt for 1,8 milliarder. Læs om Piggy Riches Megaways, deres innovative funktioner og stærke position i branchen."
     name="Red Tiger Gaming"
     heroSubtitle="Red Tiger Gaming har fra starten fokuseret på at levere banebrydende spilleautomater, der fungerer lige så godt på mobil som desktop. Opkøbt af NetEnt for 1,8 milliarder kroner."
+    heroImage={redTigerHero}
+    heroImageAlt="Red Tiger Gaming – Daily Jackpots og Megaways slots"
     currentPath="/spiludviklere/red-tiger"
     introTitle="Hvad er Red Tiger Gaming?"
     introContent={

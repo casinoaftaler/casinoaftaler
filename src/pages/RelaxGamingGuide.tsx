@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { ProviderPage } from "./providers/ProviderPageTemplate";
+import relaxHero from "@/assets/heroes/relax-gaming-hero.jpg";
 
 const RelaxGamingGuide = () => (
   <ProviderPage
@@ -7,6 +8,8 @@ const RelaxGamingGuide = () => (
     seoDescription="Komplet guide til Relax Gaming – innovativ spiludvikler bag Money Train og Dream Drop Jackpots. Læs om deres historie, spil, licenser og unikke funktioner."
     name="Relax Gaming"
     heroSubtitle="Relax Gaming er en af branchens mest innovative udviklere med hits som Money Train-serien og det revolutionerende Dream Drop Jackpot-system."
+    heroImage={relaxHero}
+    heroImageAlt="Relax Gaming – innovative spilleautomater og Dream Drop Jackpots"
     currentPath="/spiludviklere/relax-gaming"
     introTitle="Hvad er Relax Gaming?"
     introContent={

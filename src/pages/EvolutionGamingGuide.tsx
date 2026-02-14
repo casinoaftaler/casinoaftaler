@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { ProviderPage } from "./providers/ProviderPageTemplate";
+import evolutionHero from "@/assets/heroes/evolution-gaming-hero.jpg";
 
 const EvolutionGamingGuide = () => (
   <ProviderPage
@@ -7,6 +8,8 @@ const EvolutionGamingGuide = () => (
     seoDescription="Komplet guide til Evolution Gaming – verdens førende inden for live casino. Læs om Crazy Time, Lightning Roulette, deres historie og dominerende markedsposition."
     name="Evolution Gaming"
     heroSubtitle="Evolution Gaming er den ubestridte leder inden for live casino og har revolutioneret online gambling med innovative game shows, professionelle dealere og banebrydende teknologi."
+    heroImage={evolutionHero}
+    heroImageAlt="Evolution Gaming live casino studio med professionelle dealere"
     currentPath="/spiludviklere/evolution-gaming"
     introTitle="Hvad er Evolution Gaming?"
     introContent={

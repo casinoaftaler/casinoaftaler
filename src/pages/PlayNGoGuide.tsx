@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { ProviderPage } from "./providers/ProviderPageTemplate";
+import playNGoHero from "@/assets/heroes/play-n-go-hero.jpg";
 
 const PlayNGoGuide = () => (
   <ProviderPage
@@ -7,6 +8,8 @@ const PlayNGoGuide = () => (
     seoDescription="Komplet guide til Play'n GO – skaberne af Book of Dead og Reactoonz. Læs om deres historie, populære spil, licenser og hvad der gør dem unikke."
     name="Play'n GO"
     heroSubtitle="Play'n GO er en af branchens mest kreative spiludviklere med over 300 spil i porteføljen. Fra Book of Dead til Reactoonz – de leverer innovation og kvalitet."
+    heroImage={playNGoHero}
+    heroImageAlt="Play'n GO – kreative spilleautomater med Book of Dead og Reactoonz"
     currentPath="/spiludviklere/play-n-go"
     introTitle="Hvad er Play'n GO?"
     introContent={

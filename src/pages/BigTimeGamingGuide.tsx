@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { ProviderPage } from "./providers/ProviderPageTemplate";
+import btgHero from "@/assets/heroes/big-time-gaming-hero.jpg";
 
 const BigTimeGamingGuide = () => (
   <ProviderPage
@@ -7,6 +8,8 @@ const BigTimeGamingGuide = () => (
     seoDescription="Komplet guide til Big Time Gaming – opfinderne af Megaways. Læs om deres revolutionerende mekanik, populære spil som Bonanza, og deres position i branchen."
     name="Big Time Gaming"
     heroSubtitle="Big Time Gaming opfandt Megaways-mekanikken der revolutionerede hele casinoindustrien. Med op til 117.649 vinderkombinationer per spin ændrede de spillets regler for altid."
+    heroImage={btgHero}
+    heroImageAlt="Big Time Gaming – opfinderne af Megaways mekanikken"
     currentPath="/spiludviklere/big-time-gaming"
     introTitle="Hvad er Big Time Gaming?"
     introContent={

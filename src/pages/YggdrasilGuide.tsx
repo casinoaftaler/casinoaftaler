@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { ProviderPage } from "./providers/ProviderPageTemplate";
+import yggdrasilHero from "@/assets/heroes/yggdrasil-hero.jpg";
 
 const YggdrasilGuide = () => (
   <ProviderPage
@@ -7,6 +8,8 @@ const YggdrasilGuide = () => (
     seoDescription="Komplet guide til Yggdrasil Gaming – grundlagt af NetEnts tidligere CEO. Læs om deres innovative spil, unikke funktioner og position i casinobranchen."
     name="Yggdrasil Gaming"
     heroSubtitle="Yggdrasil Gaming blev grundlagt af NetEnts tidligere CEO med en vision om at ændre casinobranchen. Med innovative spil og banebrydende teknologi har de gjort præcis det."
+    heroImage={yggdrasilHero}
+    heroImageAlt="Yggdrasil Gaming – nordisk mytologi og innovative spilmekanikker"
     currentPath="/spiludviklere/yggdrasil"
     introTitle="Hvad er Yggdrasil Gaming?"
     introContent={

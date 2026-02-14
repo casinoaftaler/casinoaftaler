@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { ProviderPage } from "./providers/ProviderPageTemplate";
+import hacksawHero from "@/assets/heroes/hacksaw-gaming-hero.jpg";
 
 const HacksawGamingGuide = () => (
   <ProviderPage
@@ -7,6 +8,8 @@ const HacksawGamingGuide = () => (
     seoDescription="Komplet guide til Hacksaw Gaming – den kreative gamechanger bag Wanted Dead or a Wild og Chaos Crew. Læs om historie, spil og unikke innovationer."
     name="Hacksaw Gaming"
     heroSubtitle="Hacksaw Gaming er den kreative rebel i casinobranchen. Fra skrabelodder til high-volatility slots har de skabt en helt unik identitet med dristige mekanikker og edgy designs."
+    heroImage={hacksawHero}
+    heroImageAlt="Hacksaw Gaming – dristige og innovative spilleautomater"
     currentPath="/spiludviklere/hacksaw-gaming"
     introTitle="Hvad er Hacksaw Gaming?"
     introContent={

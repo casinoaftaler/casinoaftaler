@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { ProviderPage } from "./providers/ProviderPageTemplate";
+import elkHero from "@/assets/heroes/elk-studios-hero.jpg";
 
 const ELKStudiosGuide = () => (
   <ProviderPage
@@ -7,6 +8,8 @@ const ELKStudiosGuide = () => (
     seoDescription="Komplet guide til ELK Studios – svenske innovatører bag Kaiju Payment og Avalanche-serien. Læs om deres historie, populære spil, licenser og unikke funktioner."
     name="ELK Studios"
     heroSubtitle="ELK Studios er en svensk spiludvikler med fokus på kvalitet frem for kvantitet. Deres innovative tilgang til spildesign og unikke mekanikker som Avalanche har gjort dem til en favorit blandt erfarne spillere."
+    heroImage={elkHero}
+    heroImageAlt="ELK Studios – kvalitetsspilleautomater fra Stockholm"
     currentPath="/spiludviklere/elk-studios"
     introTitle="Hvad er ELK Studios?"
     introContent={
