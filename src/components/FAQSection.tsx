@@ -54,7 +54,7 @@ export function FAQSection({ title = "Ofte Stillede Spørgsmål", faqs = default
         <HelpCircle className="h-8 w-8 text-primary" />
         {title}
       </h2>
-      <div className="mx-auto max-w-3xl">
+      <div>
         <Accordion type="single" collapsible className="space-y-4">
           {faqs.map((faq, index) => (
             <AccordionItem
