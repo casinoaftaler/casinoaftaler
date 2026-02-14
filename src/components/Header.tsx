@@ -96,7 +96,7 @@ export function Header() {
         <Link to="/" className="flex items-center gap-2 min-w-0">
           <div className="flex h-8 w-8 sm:h-10 sm:w-10 flex-shrink-0 items-center justify-center rounded-lg bg-primary overflow-hidden">
             {headerIconUrl ? (
-              <img src={headerIconUrl} alt="Site icon" className="h-full w-full object-cover" />
+              <img src={headerIconUrl} alt="Site icon" width={40} height={40} className="h-full w-full object-cover" />
             ) : (
               <Gamepad2 className="h-5 w-5 sm:h-6 sm:w-6 text-primary-foreground" />
             )}

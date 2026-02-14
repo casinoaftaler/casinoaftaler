@@ -77,7 +77,15 @@ const VisaMastercardGuide = lazy(() => import("./pages/payments/VisaMastercardGu
 const RevolutGuide = lazy(() => import("./pages/payments/RevolutGuide"));
 const NotFound = lazy(() => import("./pages/NotFound"));
 
-const queryClient = new QueryClient();
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      staleTime: 2 * 60 * 1000, // 2 min default stale time
+      refetchOnWindowFocus: false,
+      retry: 1,
+    },
+  },
+});
 
 const PageFallback = () => <div className="min-h-screen" />;
 
