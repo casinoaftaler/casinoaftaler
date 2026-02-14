@@ -1,3 +1,4 @@
+import React from "react";
 import { Link } from "react-router-dom";
 import { FAQSection } from "@/components/FAQSection";
 import { SEO } from "@/components/SEO";
@@ -39,36 +40,53 @@ import {
 } from "lucide-react";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
 
-const velkomstbonusFaqs = [
+const linkClass = "text-primary underline hover:text-primary/80";
+
+const velkomstbonusFaqs: { question: string; answer: string | React.ReactNode }[] = [
   {
     question: "Hvad er en velkomstbonus?",
-    answer:
-      "En velkomstbonus er et tilbud fra et online casino til nye spillere ved deres første tilmelding og indbetaling. Det er typisk en matchbonus, hvor casinoet matcher din indbetaling med en bestemt procentdel – fx 100% op til 1.000 kr. Nogle velkomstbonusser inkluderer også gratis spins på udvalgte spilleautomater.",
+    answer: (
+      <>
+        En velkomstbonus er et tilbud fra et online casino til nye spillere. Det er typisk en{" "}
+        <Link to="/indskudsbonus" className={linkClass}>matchbonus</Link>, hvor casinoet matcher din indbetaling med en bestemt procentdel – fx 100%. Nogle inkluderer også{" "}
+        <Link to="/free-spins" className={linkClass}>free spins</Link>.
+      </>
+    ),
   },
   {
     question: "Kan alle få en velkomstbonus?",
     answer:
-      "Velkomstbonusser er forbeholdt nye spillere, der opretter en konto for første gang hos det pågældende casino. Du kan kun modtage én velkomstbonus per casino, og du skal typisk foretage en minimumsindbetaling for at aktivere tilbuddet.",
+      "Velkomstbonusser er forbeholdt nye spillere, der opretter en konto for første gang. Du kan kun modtage én velkomstbonus per casino, og du skal typisk foretage en minimumsindbetaling.",
   },
   {
     question: "Hvad betyder omsætningskrav?",
-    answer:
-      "Omsætningskrav angiver, hvor mange gange du skal spille bonusbeløbet igennem, før du kan hæve dine gevinster. Fx betyder et omsætningskrav på 10x, at en bonus på 500 kr. kræver, at du satser for i alt 5.000 kr., før pengene kan udbetales.",
+    answer: (
+      <>
+        <Link to="/omsaetningskrav" className={linkClass}>Omsætningskrav</Link> angiver, hvor mange gange du skal spille bonusbeløbet igennem, før du kan hæve gevinster. Fx betyder 10x, at en bonus på 500 kr. kræver indsatser for 5.000 kr.
+      </>
+    ),
   },
   {
     question: "Er det altid en god idé at tage imod en velkomstbonus?",
-    answer:
-      "Det afhænger af din spillestil og bonussens vilkår. Hvis omsætningskravene er rimelige, og du alligevel planlægger at spille, kan det give dig ekstra værdi. Men hvis vilkårene er for strenge – fx høje omsætningskrav eller korte tidsfrister – kan det være bedre at spille uden bonus.",
+    answer: (
+      <>
+        Det afhænger af vilkårene. Hvis <Link to="/omsaetningskrav" className={linkClass}>omsætningskravene</Link> er rimelige (typisk 10x), kan det give ekstra værdi. Overvej en{" "}
+        <Link to="/no-sticky-bonus" className={linkClass}>no-sticky bonus</Link> for mere frihed.
+      </>
+    ),
   },
   {
     question: "Hvad sker der, hvis jeg ikke opfylder omsætningskravene?",
     answer:
-      "Hvis du ikke når at opfylde omsætningskravene inden for den angivne tidsramme, mister du typisk bonusbeløbet og eventuelle gevinster, der stammer fra bonussen. Din egen indbetaling vil dog normalt stadig være tilgængelig.",
+      "Hvis du ikke når at opfylde kravene inden for tidsrammen, mister du typisk bonusbeløbet og eventuelle gevinster fra bonussen. Din egen indbetaling vil dog normalt stadig være tilgængelig.",
   },
   {
     question: "Kan jeg bruge en velkomstbonus på alle spil?",
-    answer:
-      "Nej, de fleste velkomstbonusser har begrænsninger på, hvilke spil der bidrager til omsætningskravet. Spilleautomater bidrager typisk 100%, mens bordspil som blackjack og roulette ofte kun bidrager med 10-20%. Live casino-spil kan være helt udelukket.",
+    answer: (
+      <>
+        Nej, de fleste har begrænsninger. <Link to="/casinospil" className={linkClass}>Spilleautomater</Link> bidrager typisk 100%, mens bordspil ofte kun bidrager 10-20%. <Link to="/live-casino" className={linkClass}>Live casino</Link>-spil kan være udelukket.
+      </>
+    ),
   },
 ];
 

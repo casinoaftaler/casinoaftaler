@@ -1,3 +1,4 @@
+import React from "react";
 import { Link } from "react-router-dom";
 import { FAQSection } from "@/components/FAQSection";
 import { SEO } from "@/components/SEO";
@@ -34,36 +35,56 @@ import {
   TrendingUp,
 } from "lucide-react";
 
-const freeSpinsFaqs = [
+const linkClass = "text-primary underline hover:text-primary/80";
+
+const freeSpinsFaqs: { question: string; answer: string | React.ReactNode }[] = [
   {
     question: "Hvad er free spins?",
-    answer:
-      "Free spins er gratis omgange på spilleautomater, som du modtager fra et online casino. Du kan spille uden at bruge din egen saldo, men eventuelle gevinster er typisk underlagt omsætningskrav, før de kan udbetales.",
+    answer: (
+      <>
+        Free spins er gratis omgange på spilleautomater, som du modtager fra et online casino. Du kan spille uden at bruge din egen saldo, men eventuelle gevinster er typisk underlagt{" "}
+        <Link to="/omsaetningskrav" className={linkClass}>omsætningskrav</Link>, før de kan udbetales.
+      </>
+    ),
   },
   {
     question: "Kan jeg vinde rigtige penge med free spins?",
-    answer:
-      "Ja, du kan vinde rigtige penge med free spins. Dog skal du som regel opfylde casinoets omsætningskrav, før du kan hæve dine gevinster. Tjek altid vilkårene for det specifikke tilbud.",
+    answer: (
+      <>
+        Ja, du kan vinde rigtige penge med free spins. Dog skal du som regel opfylde casinoets{" "}
+        <Link to="/omsaetningskrav" className={linkClass}>omsætningskrav</Link>, før du kan hæve dine gevinster. Overvej{" "}
+        <Link to="/bonus-uden-omsaetningskrav" className={linkClass}>bonusser uden omsætningskrav</Link> for direkte udbetaling.
+      </>
+    ),
   },
   {
     question: "Hvad er forskellen på free spins med og uden omsætningskrav?",
-    answer:
-      "Free spins med omsætningskrav kræver, at du spiller dine gevinster igennem et vist antal gange, før du kan hæve. Free spins uden omsætningskrav (omsætningsfrie spins) lader dig beholde og hæve gevinsterne med det samme – dog ofte med et gevinstloft.",
+    answer: (
+      <>
+        Free spins med{" "}
+        <Link to="/omsaetningskrav" className={linkClass}>omsætningskrav</Link> kræver, at du spiller dine gevinster igennem. Free spins{" "}
+        <Link to="/bonus-uden-omsaetningskrav" className={linkClass}>uden omsætningskrav</Link> lader dig hæve gevinsterne med det samme – dog ofte med et gevinstloft.
+      </>
+    ),
   },
   {
     question: "Kan jeg bruge free spins på alle spilleautomater?",
     answer:
-      "Nej, free spins er typisk begrænset til bestemte spilleautomater udvalgt af casinoet. Det kan fx være populære titler som Book of Dead eller Starburst. Tjek altid vilkårene for at se, hvilke spil der er inkluderet.",
+      "Nej, free spins er typisk begrænset til bestemte spilleautomater udvalgt af casinoet. Det kan fx være populære titler som Book of Dead eller Starburst. Tjek altid vilkårene.",
   },
   {
     question: "Udløber free spins?",
     answer:
-      "Ja, free spins har næsten altid en udløbsdato. Danske casinoer er forpligtede til at angive en gyldighedsperiode – typisk mellem 24 timer og 30 dage. Ubrugte spins forsvinder automatisk efter fristen.",
+      "Ja, free spins har næsten altid en udløbsdato – typisk mellem 24 timer og 30 dage. Ubrugte spins forsvinder automatisk efter fristen.",
   },
   {
     question: "Hvad er no deposit free spins?",
-    answer:
-      "No deposit free spins er gratis spins, du modtager uden at skulle indbetale penge først. De gives ofte til nye spillere ved tilmelding og giver dig mulighed for at prøve casinoet helt risikofrit. Gevinsterne er dog typisk underlagt omsætningskrav og gevinstlofter.",
+    answer: (
+      <>
+        No deposit free spins er gratis spins, du modtager uden at skulle indbetale penge først – en form for{" "}
+        <Link to="/bonus-uden-indbetaling" className={linkClass}>bonus uden indbetaling</Link>. De gives ofte til nye spillere ved tilmelding.
+      </>
+    ),
   },
 ];
 
