@@ -225,7 +225,7 @@ const TopCasinoOnline = () => {
   const articleJsonLd = {
     "@context": "https://schema.org",
     "@type": "Article",
-    "headline": "Top 10 Casino Online i Danmark 2026 – Bedste Online Casinoer",
+    "headline": "Top 10 Online Casino i Danmark 2026 – Bedste Online Casinoer",
     "author": { "@type": "Organization", "name": "Casinoaftaler" },
     "publisher": { "@type": "Organization", "name": "Casinoaftaler" },
     "datePublished": "2026-01-15",
@@ -259,7 +259,7 @@ const TopCasinoOnline = () => {
               Opdateret {getDanishMonthYear()}
             </Badge>
             <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">
-              Top 10 Casino Online i Danmark 2026
+              Top 10 Online Casino i Danmark 2026
             </h1>
             <p className="text-lg text-white/80">
               Find de bedste online casinoer med dansk licens, generøse bonusser og hurtige udbetalinger. 
