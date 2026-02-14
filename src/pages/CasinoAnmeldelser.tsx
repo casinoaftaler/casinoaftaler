@@ -326,168 +326,182 @@ const CasinoAnmeldelser = () => {
             En casino anmeldelse er din vigtigste ressource, når du skal vælge et nyt online casino. Men ikke alle anmeldelser er skabt lige. Her gennemgår vi, hvad du bør forvente af en grundig og troværdig casino anmeldelse, og hvorfor det er afgørende at læse én, før du opretter en konto og indbetaler penge.
           </p>
 
-          <h3 className="mb-3 text-xl font-semibold flex items-center gap-2">
-            <Gift className="h-5 w-5 text-primary" />
-            1. Bonusvilkår og velkomstbonus
-          </h3>
-          <p className="mb-4 text-muted-foreground leading-relaxed">
-            Det første de fleste spillere kigger efter er{" "}
-            <Link to="/casino-bonus" className={linkClass}>casinobonussen</Link>. Men en stor bonus er ikke nødvendigvis en god bonus. Det er vilkårene, der afgør, om bonussen reelt er værd at aktivere. De vigtigste faktorer at vurdere inkluderer:
-          </p>
-          <ul className="mb-6 list-disc pl-6 space-y-2 text-muted-foreground leading-relaxed">
-            <li>
-              <strong className="text-foreground">Bonusstørrelse:</strong> De fleste danske casinoer tilbyder en{" "}
-              <Link to="/velkomstbonus" className={linkClass}>velkomstbonus</Link> på 100% op til et bestemt beløb, typisk mellem 500 kr. og 2.000 kr.
-            </li>
-            <li>
-              <strong className="text-foreground">Omsætningskrav:</strong>{" "}
-              <Link to="/omsaetningskrav" className={linkClass}>Omsætningskrav</Link> bestemmer, hvor mange gange du skal gennemspille bonusbeløbet. De bedste casinoer tilbyder krav på kun 10x, mens mindre favorable casinoer kan kræve 40x eller mere.
-            </li>
-            <li>
-              <strong className="text-foreground">Bonustype:</strong> En{" "}
-              <Link to="/no-sticky-bonus" className={linkClass}>No-Sticky bonus</Link> holder dine egne penge adskilt fra bonuspengene. En{" "}
-              <Link to="/sticky-bonus" className={linkClass}>Sticky bonus</Link> blander pengene sammen.
-            </li>
-            <li>
-              <strong className="text-foreground">Free spins:</strong>{" "}
-              <Link to="/free-spins" className={linkClass}>Free spins</Link> er gratis snurr på udvalgte spilleautomater og er en populær del af mange velkomstpakker.
-            </li>
-            <li>
-              <strong className="text-foreground">Bonus uden indbetaling:</strong> Nogle casinoer tilbyder{" "}
-              <Link to="/bonus-uden-indbetaling" className={linkClass}>bonus uden indbetaling</Link>, hvor du kan prøve casinoet helt gratis.
-            </li>
-            <li>
-              <strong className="text-foreground">Bonus uden omsætningskrav:</strong> De sjældne{" "}
-              <Link to="/bonus-uden-omsaetningskrav" className={linkClass}>bonusser uden omsætningskrav</Link> lader dig hæve gevinster med det samme.
-            </li>
-          </ul>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            {/* 1. Bonusvilkår */}
+            <Card className="border-border bg-card">
+              <CardHeader className="pb-2">
+                <CardTitle className="flex items-center gap-2 text-lg">
+                  <Gift className="h-5 w-5 text-primary" />
+                  1. Bonusvilkår og velkomstbonus
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <p className="mb-3 text-sm text-muted-foreground leading-relaxed">
+                  Det første de fleste spillere kigger efter er{" "}
+                  <Link to="/casino-bonus" className={linkClass}>casinobonussen</Link>. Men en stor bonus er ikke nødvendigvis en god bonus. Det er vilkårene, der afgør, om bonussen reelt er værd at aktivere.
+                </p>
+                <ul className="list-disc pl-5 space-y-1.5 text-sm text-muted-foreground leading-relaxed">
+                  <li><strong className="text-foreground">Bonusstørrelse:</strong> De fleste tilbyder en{" "}<Link to="/velkomstbonus" className={linkClass}>velkomstbonus</Link> på 100% op til 500-2.000 kr.</li>
+                  <li><strong className="text-foreground">Omsætningskrav:</strong>{" "}<Link to="/omsaetningskrav" className={linkClass}>Omsætningskrav</Link> fra 10x til 40x+</li>
+                  <li><strong className="text-foreground">Bonustype:</strong>{" "}<Link to="/no-sticky-bonus" className={linkClass}>No-Sticky</Link> vs.{" "}<Link to="/sticky-bonus" className={linkClass}>Sticky bonus</Link></li>
+                  <li><strong className="text-foreground">Free spins:</strong>{" "}<Link to="/free-spins" className={linkClass}>Free spins</Link> på udvalgte spilleautomater</li>
+                  <li><strong className="text-foreground">Uden indbetaling:</strong>{" "}<Link to="/bonus-uden-indbetaling" className={linkClass}>Bonus uden indbetaling</Link></li>
+                  <li><strong className="text-foreground">Uden omsætning:</strong>{" "}<Link to="/bonus-uden-omsaetningskrav" className={linkClass}>Bonusser uden omsætningskrav</Link></li>
+                </ul>
+              </CardContent>
+            </Card>
 
-          <h3 className="mb-3 text-xl font-semibold flex items-center gap-2">
-            <Gamepad2 className="h-5 w-5 text-primary" />
-            2. Spiludvalg og spiludbydere
-          </h3>
-          <p className="mb-4 text-muted-foreground leading-relaxed">
-            Et casino er kun så godt som dets spil. Vi vurderer bredden og kvaliteten af spilkataloget, herunder{" "}
-            <Link to="/casinospil" className={linkClass}>casinospil</Link> fra anerkendte{" "}
-            <Link to="/spiludviklere" className={linkClass}>spiludviklere</Link>. De bedste casinoer tilbyder spil fra:
-          </p>
-          <ul className="mb-6 list-disc pl-6 space-y-2 text-muted-foreground leading-relaxed">
-            <li><Link to="/spiludviklere/netent" className={linkClass}>NetEnt</Link> – Pionerer inden for online slots med klassikere som Starburst og Gonzo's Quest</li>
-            <li><Link to="/spiludviklere/pragmatic-play" className={linkClass}>Pragmatic Play</Link> – Alsidig udvikler med populære titler som Sweet Bonanza og The Dog House</li>
-            <li><Link to="/spiludviklere/evolution-gaming" className={linkClass}>Evolution Gaming</Link> – Verdens førende inden for{" "}<Link to="/live-casino" className={linkClass}>live casino</Link> med innovative game shows</li>
-            <li><Link to="/spiludviklere/play-n-go" className={linkClass}>Play'n GO</Link> – Skabt Book of Dead og Reactoonz, kendt for kreativitet og høj RTP</li>
-            <li><Link to="/spiludviklere/hacksaw-gaming" className={linkClass}>Hacksaw Gaming</Link> – Innovativ tilgang til slots med høj volatilitet</li>
-            <li><Link to="/spiludviklere/nolimit-city" className={linkClass}>Nolimit City</Link> – Specialister i ekstrem volatilitet med unikke xWays-mekanikker</li>
-            <li><Link to="/spiludviklere/relax-gaming" className={linkClass}>Relax Gaming</Link> – Money Train-serien og Temple Tumble Megaways</li>
-            <li>
-              Andre kvalitetsudbydere som{" "}
-              <Link to="/spiludviklere/yggdrasil" className={linkClass}>Yggdrasil</Link>,{" "}
-              <Link to="/spiludviklere/microgaming" className={linkClass}>Microgaming</Link>,{" "}
-              <Link to="/spiludviklere/elk-studios" className={linkClass}>ELK Studios</Link>,{" "}
-              <Link to="/spiludviklere/red-tiger" className={linkClass}>Red Tiger</Link> og{" "}
-              <Link to="/spiludviklere/big-time-gaming" className={linkClass}>Big Time Gaming</Link>
-            </li>
-          </ul>
-          <p className="mb-6 text-muted-foreground leading-relaxed">
-            Et godt casino bør tilbyde mindst 1.500-2.000 spil fra minimum 20-30 forskellige udbydere. De bedste, som{" "}
-            <Link to="/spilleautomaten-anmeldelse" className={linkClass}>Spilleautomaten</Link>, tilbyder over 2.500 titler.
-          </p>
+            {/* 2. Spiludvalg */}
+            <Card className="border-border bg-card">
+              <CardHeader className="pb-2">
+                <CardTitle className="flex items-center gap-2 text-lg">
+                  <Gamepad2 className="h-5 w-5 text-primary" />
+                  2. Spiludvalg og spiludbydere
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <p className="mb-3 text-sm text-muted-foreground leading-relaxed">
+                  Vi vurderer bredden og kvaliteten af{" "}
+                  <Link to="/casinospil" className={linkClass}>casinospil</Link> fra anerkendte{" "}
+                  <Link to="/spiludviklere" className={linkClass}>spiludviklere</Link>. Et godt casino bør tilbyde 1.500-2.000+ spil fra 20-30 udbydere.
+                </p>
+                <ul className="list-disc pl-5 space-y-1.5 text-sm text-muted-foreground leading-relaxed">
+                  <li><Link to="/spiludviklere/netent" className={linkClass}>NetEnt</Link> – Starburst og Gonzo's Quest</li>
+                  <li><Link to="/spiludviklere/pragmatic-play" className={linkClass}>Pragmatic Play</Link> – Sweet Bonanza og The Dog House</li>
+                  <li><Link to="/spiludviklere/evolution-gaming" className={linkClass}>Evolution Gaming</Link> – Førende inden for{" "}<Link to="/live-casino" className={linkClass}>live casino</Link></li>
+                  <li><Link to="/spiludviklere/play-n-go" className={linkClass}>Play'n GO</Link> – Book of Dead og Reactoonz</li>
+                  <li><Link to="/spiludviklere/hacksaw-gaming" className={linkClass}>Hacksaw Gaming</Link>,{" "}<Link to="/spiludviklere/nolimit-city" className={linkClass}>Nolimit City</Link>,{" "}<Link to="/spiludviklere/relax-gaming" className={linkClass}>Relax Gaming</Link></li>
+                  <li><Link to="/spiludviklere/yggdrasil" className={linkClass}>Yggdrasil</Link>,{" "}<Link to="/spiludviklere/microgaming" className={linkClass}>Microgaming</Link>,{" "}<Link to="/spiludviklere/elk-studios" className={linkClass}>ELK Studios</Link>,{" "}<Link to="/spiludviklere/red-tiger" className={linkClass}>Red Tiger</Link>,{" "}<Link to="/spiludviklere/big-time-gaming" className={linkClass}>Big Time Gaming</Link></li>
+                </ul>
+              </CardContent>
+            </Card>
 
-          <h3 className="mb-3 text-xl font-semibold flex items-center gap-2">
-            <CreditCard className="h-5 w-5 text-primary" />
-            3. Betalingsmetoder og udbetalingstider
-          </h3>
-          <p className="mb-4 text-muted-foreground leading-relaxed">
-            Hurtige og sikre{" "}
-            <Link to="/betalingsmetoder" className={linkClass}>betalingsmetoder</Link> er essentielle for en god casinooplevelse. Vi tester alle tilgængelige ind- og udbetalingsmetoder og måler de faktiske udbetalingstider. De mest populære metoder blandt danske spillere inkluderer:
-          </p>
-          <ul className="mb-6 list-disc pl-6 space-y-2 text-muted-foreground leading-relaxed">
-            <li><Link to="/betalingsmetoder/mobilepay" className={linkClass}>MobilePay</Link> – Danmarks foretrukne betalingsmetode med øjeblikkelige indbetalinger</li>
-            <li><Link to="/betalingsmetoder/trustly" className={linkClass}>Trustly</Link> – Direkte bankoverførsel uden at dele bankoplysninger</li>
-            <li><Link to="/betalingsmetoder/visa-mastercard" className={linkClass}>Visa/Mastercard</Link> – Den klassiske og universelt accepterede betalingsmetode</li>
-            <li><Link to="/betalingsmetoder/paypal" className={linkClass}>PayPal</Link> – Sikker e-wallet med køberbeskyttelse</li>
-            <li><Link to="/betalingsmetoder/skrill" className={linkClass}>Skrill</Link> – Populær e-wallet med hurtige transaktioner</li>
-            <li>
-              Andre muligheder:{" "}
-              <Link to="/betalingsmetoder/apple-pay" className={linkClass}>Apple Pay</Link>,{" "}
-              <Link to="/betalingsmetoder/revolut" className={linkClass}>Revolut</Link>,{" "}
-              <Link to="/betalingsmetoder/zimpler" className={linkClass}>Zimpler</Link>,{" "}
-              <Link to="/betalingsmetoder/paysafecard" className={linkClass}>Paysafecard</Link> og{" "}
-              <Link to="/betalingsmetoder/bankoverforsler" className={linkClass}>bankoverførsel</Link>
-            </li>
-          </ul>
-          <p className="mb-6 text-muted-foreground leading-relaxed">
-            De bedste casinoer tilbyder udbetalinger inden for 0-24 timer via e-wallets og MobilePay, mens bankoverførsler typisk tager 1-3 hverdage.
-          </p>
+            {/* 3. Betalingsmetoder */}
+            <Card className="border-border bg-card">
+              <CardHeader className="pb-2">
+                <CardTitle className="flex items-center gap-2 text-lg">
+                  <CreditCard className="h-5 w-5 text-primary" />
+                  3. Betalingsmetoder og udbetalingstider
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <p className="mb-3 text-sm text-muted-foreground leading-relaxed">
+                  Hurtige og sikre{" "}
+                  <Link to="/betalingsmetoder" className={linkClass}>betalingsmetoder</Link> er essentielle. De bedste casinoer tilbyder udbetalinger inden for 0-24 timer.
+                </p>
+                <ul className="list-disc pl-5 space-y-1.5 text-sm text-muted-foreground leading-relaxed">
+                  <li><Link to="/betalingsmetoder/mobilepay" className={linkClass}>MobilePay</Link> – Danmarks foretrukne med øjeblikkelige indbetalinger</li>
+                  <li><Link to="/betalingsmetoder/trustly" className={linkClass}>Trustly</Link> – Direkte bankoverførsel</li>
+                  <li><Link to="/betalingsmetoder/visa-mastercard" className={linkClass}>Visa/Mastercard</Link> – Universelt accepteret</li>
+                  <li><Link to="/betalingsmetoder/paypal" className={linkClass}>PayPal</Link> – Sikker e-wallet med køberbeskyttelse</li>
+                  <li><Link to="/betalingsmetoder/skrill" className={linkClass}>Skrill</Link>,{" "}<Link to="/betalingsmetoder/apple-pay" className={linkClass}>Apple Pay</Link>,{" "}<Link to="/betalingsmetoder/revolut" className={linkClass}>Revolut</Link>,{" "}<Link to="/betalingsmetoder/zimpler" className={linkClass}>Zimpler</Link>,{" "}<Link to="/betalingsmetoder/paysafecard" className={linkClass}>Paysafecard</Link></li>
+                </ul>
+              </CardContent>
+            </Card>
 
-          <h3 className="mb-3 text-xl font-semibold flex items-center gap-2">
-            <Tv className="h-5 w-5 text-primary" />
-            4. Live casino og gameshows
-          </h3>
-          <p className="mb-6 text-muted-foreground leading-relaxed">
-            <Link to="/live-casino" className={linkClass}>Live casino</Link> er en af de hurtigst voksende sektorer inden for online gambling. Med professionelle dealere, der streamer i HD fra studios verden over, får du en autentisk casinooplevelse direkte fra din sofa.{" "}
-            <Link to="/spiludviklere/evolution-gaming" className={linkClass}>Evolution Gaming</Link> dominerer markedet med innovative game shows som Crazy Time, Lightning Roulette og MONOPOLY Live. I vores anmeldelser vurderer vi altid live casino-udbuddet, herunder antal borde, minimumindsatser og tilgængelighed af danske dealere.
-          </p>
+            {/* 4. Live casino */}
+            <Card className="border-border bg-card">
+              <CardHeader className="pb-2">
+                <CardTitle className="flex items-center gap-2 text-lg">
+                  <Tv className="h-5 w-5 text-primary" />
+                  4. Live casino og gameshows
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <p className="text-sm text-muted-foreground leading-relaxed">
+                  <Link to="/live-casino" className={linkClass}>Live casino</Link> er en af de hurtigst voksende sektorer inden for online gambling. Med professionelle dealere, der streamer i HD fra studios verden over, får du en autentisk casinooplevelse direkte fra din sofa.{" "}
+                  <Link to="/spiludviklere/evolution-gaming" className={linkClass}>Evolution Gaming</Link> dominerer markedet med innovative game shows som Crazy Time, Lightning Roulette og MONOPOLY Live. Vi vurderer altid live casino-udbuddet, herunder antal borde, minimumindsatser og tilgængelighed af danske dealere.
+                </p>
+              </CardContent>
+            </Card>
 
-          <h3 className="mb-3 text-xl font-semibold flex items-center gap-2">
-            <ShieldCheck className="h-5 w-5 text-primary" />
-            5. Sikkerhed, licens og ansvarligt spil
-          </h3>
-          <p className="mb-4 text-muted-foreground leading-relaxed">
-            Alle casinoer vi anmelder har en gyldig dansk licens fra Spillemyndigheden. Dette er et ufravigeligt krav. En dansk licens garanterer:
-          </p>
-          <ul className="mb-6 list-disc pl-6 space-y-2 text-muted-foreground leading-relaxed">
-            <li>Spillerbeskyttelse og klageadgang via Spillemyndigheden</li>
-            <li>Mulighed for selvudelukkelse via <a href="https://www.rofus.nu/" target="_blank" rel="noopener noreferrer" className={linkClass}>ROFUS</a></li>
-            <li>Krypteret datatransmission og sikker opbevaring af spillerdata</li>
-            <li>Adskillelse af spillermidler fra casinoets driftsmidler</li>
-            <li>Forpligtelse til at fremme{" "}<Link to="/responsible-gaming" className={linkClass}>ansvarligt spil</Link></li>
-          </ul>
-          <p className="mb-6 text-muted-foreground leading-relaxed">
-            Har du brug for hjælp med spilleproblemer, kan du kontakte{" "}
-            <a href="https://www.stopspillet.dk/" target="_blank" rel="noopener noreferrer" className={linkClass}>StopSpillet.dk</a> – gratis og anonymt.
-          </p>
+            {/* 5. Sikkerhed */}
+            <Card className="border-border bg-card">
+              <CardHeader className="pb-2">
+                <CardTitle className="flex items-center gap-2 text-lg">
+                  <ShieldCheck className="h-5 w-5 text-primary" />
+                  5. Sikkerhed, licens og ansvarligt spil
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <p className="mb-3 text-sm text-muted-foreground leading-relaxed">
+                  Alle casinoer vi anmelder har en gyldig dansk licens fra Spillemyndigheden. En dansk licens garanterer:
+                </p>
+                <ul className="list-disc pl-5 space-y-1.5 text-sm text-muted-foreground leading-relaxed">
+                  <li>Spillerbeskyttelse og klageadgang</li>
+                  <li>Selvudelukkelse via <a href="https://www.rofus.nu/" target="_blank" rel="noopener noreferrer" className={linkClass}>ROFUS</a></li>
+                  <li>Krypteret datatransmission</li>
+                  <li>Adskillelse af spillermidler</li>
+                  <li>Forpligtelse til{" "}<Link to="/responsible-gaming" className={linkClass}>ansvarligt spil</Link></li>
+                </ul>
+                <p className="mt-3 text-sm text-muted-foreground leading-relaxed">
+                  Hjælp:{" "}<a href="https://www.stopspillet.dk/" target="_blank" rel="noopener noreferrer" className={linkClass}>StopSpillet.dk</a> – gratis og anonymt.
+                </p>
+              </CardContent>
+            </Card>
 
-          <h3 className="mb-3 text-xl font-semibold flex items-center gap-2">
-            <Users className="h-5 w-5 text-primary" />
-            6. Kundeservice og brugervenlighed
-          </h3>
-          <p className="mb-4 text-muted-foreground leading-relaxed">
-            En god kundeservice er en indikator for, hvor seriøst et casino tager sine spillere. Vi vurderer responstid, tilgængelige kanaler (live chat, e-mail, telefon) og kvaliteten af den hjælp, der tilbydes. Vi tester også, om kundeservicen er tilgængelig på dansk, og om den kan håndtere specifikke spørgsmål om bonusvilkår og udbetalinger.
-          </p>
-          <p className="mb-6 text-muted-foreground leading-relaxed">
-            Mobiloplevelsen er ligeledes vigtig. I 2026 spiller over 70% af danske spillere på mobilen, så et casino skal tilbyde en responsiv og intuitiv mobilplatform med hurtig indlæsningstid og problemfri navigation.
-          </p>
+            {/* 6. Kundeservice */}
+            <Card className="border-border bg-card">
+              <CardHeader className="pb-2">
+                <CardTitle className="flex items-center gap-2 text-lg">
+                  <Users className="h-5 w-5 text-primary" />
+                  6. Kundeservice og brugervenlighed
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <p className="mb-3 text-sm text-muted-foreground leading-relaxed">
+                  Vi vurderer responstid, tilgængelige kanaler (live chat, e-mail, telefon) og kvaliteten af hjælpen. Vi tester også, om kundeservicen er tilgængelig på dansk, og om den kan håndtere specifikke spørgsmål om bonusvilkår og udbetalinger.
+                </p>
+                <p className="text-sm text-muted-foreground leading-relaxed">
+                  I 2026 spiller over 70% af danske spillere på mobilen, så casinoet skal tilbyde en responsiv og intuitiv mobilplatform med hurtig indlæsningstid og problemfri navigation.
+                </p>
+              </CardContent>
+            </Card>
 
-          <h3 className="mb-3 text-xl font-semibold flex items-center gap-2">
-            <Target className="h-5 w-5 text-primary" />
-            7. RTP og volatilitet – Forstå dine chancer
-          </h3>
-          <p className="mb-4 text-muted-foreground leading-relaxed">
-            RTP (Return to Player) og volatilitet er to nøglebegreber, som enhver casinospiller bør forstå. RTP angiver den teoretiske tilbagebetaling over tid – et spil med 96% RTP betaler i gennemsnit 96 kr. tilbage for hver 100 kr. der satses. De bedste{" "}
-            <Link to="/casinospil" className={linkClass}>casinospil</Link> tilbyder en RTP på over 96%.
-          </p>
-          <p className="mb-6 text-muted-foreground leading-relaxed">
-            Volatilitet beskriver, hvordan gevinsterne fordeles. Lav volatilitet giver hyppige, men mindre gevinster, mens høj volatilitet giver sjældne, men potentielt store gevinster.{" "}
-            <Link to="/spiludviklere/nolimit-city" className={linkClass}>Nolimit City</Link> er kendt for ekstrem høj volatilitet, mens{" "}
-            <Link to="/spiludviklere/netent" className={linkClass}>NetEnt</Link> typisk tilbyder mere balancerede spil.
-          </p>
+            {/* 7. RTP og volatilitet */}
+            <Card className="border-border bg-card">
+              <CardHeader className="pb-2">
+                <CardTitle className="flex items-center gap-2 text-lg">
+                  <Target className="h-5 w-5 text-primary" />
+                  7. RTP og volatilitet – Forstå dine chancer
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <p className="mb-3 text-sm text-muted-foreground leading-relaxed">
+                  RTP (Return to Player) angiver den teoretiske tilbagebetaling – et spil med 96% RTP betaler i gennemsnit 96 kr. tilbage for hver 100 kr. De bedste{" "}
+                  <Link to="/casinospil" className={linkClass}>casinospil</Link> tilbyder RTP over 96%.
+                </p>
+                <p className="text-sm text-muted-foreground leading-relaxed">
+                  Lav volatilitet giver hyppige, men mindre gevinster. Høj volatilitet giver sjældne, men potentielt store gevinster.{" "}
+                  <Link to="/spiludviklere/nolimit-city" className={linkClass}>Nolimit City</Link> er kendt for ekstrem høj volatilitet, mens{" "}
+                  <Link to="/spiludviklere/netent" className={linkClass}>NetEnt</Link> tilbyder mere balancerede spil.
+                </p>
+              </CardContent>
+            </Card>
 
-          <h3 className="mb-3 text-xl font-semibold flex items-center gap-2">
-            <Award className="h-5 w-5 text-primary" />
-            8. Vores anmeldelsesproces
-          </h3>
-          <p className="mb-4 text-muted-foreground leading-relaxed">
-            For at sikre de mest nøjagtige og troværdige anmeldelser følger vi en standardiseret proces:
-          </p>
-          <ul className="mb-6 list-disc pl-6 space-y-2 text-muted-foreground leading-relaxed">
-            <li><strong className="text-foreground">Oprettelse og verifikation:</strong> Vi opretter en rigtig konto, gennemgår KYC-processen og vurderer hele onboarding-oplevelsen.</li>
-            <li><strong className="text-foreground">Bonustest:</strong> Vi aktiverer velkomstbonussen, læser alle vilkår grundigt og vurderer fairness baseret på omsætningskrav, bonustype og udløbsdato.</li>
-            <li><strong className="text-foreground">Spiludvalg:</strong> Vi gennemgår det fulde spilkatalog, tæller udbydere og tester populære titler for stabilitet og brugeroplevelse.</li>
-            <li><strong className="text-foreground">Betalinger:</strong> Vi foretager ind- og udbetalinger via flere metoder og måler de faktiske behandlingstider.</li>
-            <li><strong className="text-foreground">Kundeservice:</strong> Vi kontakter support med specifikke spørgsmål og vurderer responstid og kvalitet.</li>
-            <li><strong className="text-foreground">Løbende opdatering:</strong> Alle anmeldelser gennemgås minimum hvert kvartal for at sikre, at informationen er aktuel.</li>
-          </ul>
+            {/* 8. Vores anmeldelsesproces */}
+            <Card className="border-border bg-card">
+              <CardHeader className="pb-2">
+                <CardTitle className="flex items-center gap-2 text-lg">
+                  <Award className="h-5 w-5 text-primary" />
+                  8. Vores anmeldelsesproces
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <p className="mb-3 text-sm text-muted-foreground leading-relaxed">
+                  For at sikre troværdige anmeldelser følger vi en standardiseret proces:
+                </p>
+                <ul className="list-disc pl-5 space-y-1.5 text-sm text-muted-foreground leading-relaxed">
+                  <li><strong className="text-foreground">Oprettelse:</strong> Vi opretter en rigtig konto og gennemgår KYC-processen</li>
+                  <li><strong className="text-foreground">Bonustest:</strong> Vi aktiverer velkomstbonussen og vurderer fairness</li>
+                  <li><strong className="text-foreground">Spiludvalg:</strong> Vi gennemgår spilkataloget og tæller udbydere</li>
+                  <li><strong className="text-foreground">Betalinger:</strong> Vi tester ind- og udbetalinger via flere metoder</li>
+                  <li><strong className="text-foreground">Kundeservice:</strong> Vi kontakter support med specifikke spørgsmål</li>
+                  <li><strong className="text-foreground">Opdatering:</strong> Anmeldelser gennemgås minimum hvert kvartal</li>
+                </ul>
+              </CardContent>
+            </Card>
+          </div>
         </section>
 
         <Separator className="my-10" />
