@@ -35,7 +35,7 @@ export function Footer() {
               Din pålidelige kilde til sammenligning af casinobonusser og anmeldelser.
             </p>
             {/* Social Media Links */}
-            <div className="flex items-center gap-3 pt-2">
+            <div className="flex flex-wrap items-center gap-2 pt-2">
               {discordUrl && (
                 <a
                   href={discordUrl}
