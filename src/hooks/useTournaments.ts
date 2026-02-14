@@ -14,6 +14,7 @@ export interface Tournament {
   status: string;
   created_by: string;
   created_at: string;
+  max_credits: number | null;
 }
 
 export interface TournamentEntry {
@@ -25,6 +26,7 @@ export interface TournamentEntry {
   total_spins: number;
   biggest_win: number;
   biggest_multiplier: number;
+  total_credits_used: number;
   updated_at: string;
   // Joined from profiles_leaderboard
   display_name?: string;
@@ -93,13 +95,14 @@ export function useTournamentLeaderboard(tournamentId: string | undefined, gameI
             existing.total_spins += e.total_spins;
             existing.biggest_win = Math.max(existing.biggest_win, Number(e.biggest_win));
             existing.biggest_multiplier = Math.max(existing.biggest_multiplier, Number(e.biggest_multiplier));
+            existing.total_credits_used = (existing.total_credits_used || 0) + Number(e.total_credits_used || 0);
           } else {
-            userMap.set(e.user_id, { ...e, total_points: Number(e.total_points), biggest_win: Number(e.biggest_win), biggest_multiplier: Number(e.biggest_multiplier) });
+            userMap.set(e.user_id, { ...e, total_points: Number(e.total_points), biggest_win: Number(e.biggest_win), biggest_multiplier: Number(e.biggest_multiplier), total_credits_used: Number(e.total_credits_used || 0) });
           }
         }
         aggregated = Array.from(userMap.values()).sort((a, b) => b.total_points - a.total_points);
       } else {
-        aggregated = ((entries || []) as TournamentEntry[]).map(e => ({ ...e, total_points: Number(e.total_points), biggest_win: Number(e.biggest_win), biggest_multiplier: Number(e.biggest_multiplier) }));
+        aggregated = ((entries || []) as TournamentEntry[]).map(e => ({ ...e, total_points: Number(e.total_points), biggest_win: Number(e.biggest_win), biggest_multiplier: Number(e.biggest_multiplier), total_credits_used: Number(e.total_credits_used || 0) }));
       }
 
       // Fetch profile info for all users
@@ -152,6 +155,7 @@ export function useCreateTournament() {
       starts_at: string;
       ends_at: string;
       created_by: string;
+      max_credits?: number | null;
     }) => {
       const status = new Date(tournament.starts_at) <= new Date() ? "active" : "upcoming";
       const { data, error } = await supabase
@@ -206,6 +210,7 @@ export function useUpdateTournament() {
       separate_leaderboards?: boolean;
       starts_at?: string;
       ends_at?: string;
+      max_credits?: number | null;
     }) => {
       const { error } = await supabase
         .from("tournaments")
