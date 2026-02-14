@@ -873,6 +873,7 @@ Deno.serve(async (req) => {
         bonusWinnings: newBonusWinnings,
         expandingSymbolId: bonusData.expanding_symbol_id,
         expandingSymbolName: bonusData.expanding_symbol_name,
+        betAmount: bet,
       };
 
       if (isRiseOfFedesvin) {
@@ -1059,6 +1060,7 @@ Deno.serve(async (req) => {
         expandingSymbolId: expandingSymbol.id,
         expandingSymbolName: expandingSymbol.name,
         bonusWinnings: 0,
+        betAmount: bet,
       } as Record<string, unknown>;
 
       if (isRiseOfFedesvin) {
