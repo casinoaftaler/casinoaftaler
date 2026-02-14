@@ -257,6 +257,25 @@ export function Header() {
                   Spiludviklere
                 </Link>
               </DropdownMenuItem>
+              {[
+                { to: "/spiludviklere/netent", label: "NetEnt" },
+                { to: "/spiludviklere/pragmatic-play", label: "Pragmatic Play" },
+                { to: "/spiludviklere/relax-gaming", label: "Relax Gaming" },
+                { to: "/spiludviklere/play-n-go", label: "Play'n GO" },
+                { to: "/spiludviklere/hacksaw-gaming", label: "Hacksaw Gaming" },
+                { to: "/spiludviklere/nolimit-city", label: "Nolimit City" },
+                { to: "/spiludviklere/yggdrasil", label: "Yggdrasil" },
+                { to: "/spiludviklere/microgaming", label: "Microgaming" },
+                { to: "/spiludviklere/red-tiger", label: "Red Tiger" },
+                { to: "/spiludviklere/big-time-gaming", label: "Big Time Gaming" },
+              ].map((item) => (
+                <DropdownMenuItem key={item.to} asChild>
+                  <Link to={item.to} className="flex items-center gap-2 pl-6 text-muted-foreground">
+                    <Star className="h-3 w-3" />
+                    {item.label}
+                  </Link>
+                </DropdownMenuItem>
+              ))}
               <DropdownMenuSeparator />
               <DropdownMenuItem asChild>
                 <Link to="/responsible-gaming" className="flex items-center gap-2">
@@ -513,6 +532,23 @@ export function Header() {
                   <Gamepad2 className="h-4 w-4" />
                   Spiludviklere
                 </Link>
+                {[
+                  { to: "/spiludviklere/netent", label: "NetEnt" },
+                  { to: "/spiludviklere/pragmatic-play", label: "Pragmatic Play" },
+                  { to: "/spiludviklere/relax-gaming", label: "Relax Gaming" },
+                  { to: "/spiludviklere/play-n-go", label: "Play'n GO" },
+                  { to: "/spiludviklere/hacksaw-gaming", label: "Hacksaw Gaming" },
+                  { to: "/spiludviklere/nolimit-city", label: "Nolimit City" },
+                  { to: "/spiludviklere/yggdrasil", label: "Yggdrasil" },
+                  { to: "/spiludviklere/microgaming", label: "Microgaming" },
+                  { to: "/spiludviklere/red-tiger", label: "Red Tiger" },
+                  { to: "/spiludviklere/big-time-gaming", label: "Big Time Gaming" },
+                ].map((item) => (
+                  <Link key={item.to} to={item.to} className="ml-10 flex items-center gap-2 py-2 text-sm text-muted-foreground transition-colors hover:text-primary" onClick={() => setMobileMenuOpen(false)}>
+                    <Star className="h-3 w-3" />
+                    {item.label}
+                  </Link>
+                ))}
                 <Link to="/responsible-gaming" className="ml-6 flex items-center gap-2 py-2.5 text-sm text-muted-foreground transition-colors hover:text-primary" onClick={() => setMobileMenuOpen(false)}>
                   <ShieldCheck className="h-4 w-4" />
                   Ansvarligt Spil
