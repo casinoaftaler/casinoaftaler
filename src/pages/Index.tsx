@@ -188,15 +188,29 @@ const Index = () => {
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold">Din Guide til Online Casino i Danmark</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
-            Velkommen til Casinoaftaler – dit samlingspunkt for alt inden for online casino i Danmark. Vi gør det lettere, sikrere og mere overskueligt for danske spillere at navigere i junglen af online casinoer. Vores mission er at give dig ærlige vurderinger, gennemsigtige sammenligninger og al den viden, du behøver for at træffe det bedste valg, når du vælger dit næste spillested.
+            Velkommen til <strong>Casinoaftaler</strong> – Danmarks mest komplette ressource for online casino i 2026. Vi gør det lettere, sikrere og mere overskueligt for danske spillere at navigere i junglen af online casinoer. Vores mission er at give dig ærlige vurderinger, gennemsigtige sammenligninger og al den viden, du behøver for at træffe det bedste valg, når du vælger dit næste spillested.
           </p>
           <p className="mb-4 text-muted-foreground leading-relaxed">
-            Hos os er tillid og gennemsigtighed altafgørende. Vores team af erfarne casinoentusiaster gennemgår og tester hvert casino omhyggeligt, så du kun møder troværdige og underholdende spilleoplevelser. Vi dækker alt fra velkomstbonusser og{" "}
+            Hos os er tillid og gennemsigtighed altafgørende. Vores team af erfarne casinoentusiaster gennemgår og tester hvert casino omhyggeligt, så du kun møder troværdige og underholdende spilleoplevelser. Vi dækker alt fra{" "}
+            <Link to="/velkomstbonus" className="text-primary hover:underline font-medium">velkomstbonusser</Link>
+            {" "}og{" "}
             <Link to="/omsaetningskrav" className="text-primary hover:underline font-medium">omsætningskrav</Link>
-            {" "}til spiludvalg, betalingsmetoder og kundeservice.
+            {" "}til{" "}
+            <Link to="/casinospil" className="text-primary hover:underline font-medium">casinospil</Link>
+            ,{" "}
+            <Link to="/betalingsmetoder" className="text-primary hover:underline font-medium">betalingsmetoder</Link>
+            {" "}og kundeservice.
+          </p>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            Uanset om du er helt ny i casinoverdenen eller en erfaren spiller, der søger de nyeste bonustilbud og trends, finder du det her. Vi opdaterer løbende vores indhold, så du altid har adgang til de seneste informationer om det danske casinomarked. Vores{" "}
+            <Link to="/top-10-casino-online" className="text-primary hover:underline font-medium">top 10 liste over de bedste casinoer</Link>
+            {" "}opdateres månedligt baseret på grundige tests og brugerfeedback.
           </p>
           <p className="text-muted-foreground leading-relaxed">
-            Uanset om du er helt ny i casinoverdenen eller en erfaren spiller, der søger de nyeste bonustilbud og trends, finder du det her. Vi opdaterer løbende vores indhold, så du altid har adgang til de seneste informationer om det danske casinomarked.
+            Danmark har et af verdens mest regulerede casinomarkeder, og alle casinoer, vi anbefaler, har gyldig licens fra Spillemyndigheden. Det betyder, at du altid spiller i trygge rammer med adgang til selvudelukkelse via{" "}
+            <a href="https://www.rofus.nu/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline font-medium">ROFUS</a>
+            {" "}og professionel rådgivning fra{" "}
+            <a href="https://www.stopspillet.dk/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline font-medium">StopSpillet</a>.
           </p>
         </section>
 
@@ -206,12 +220,18 @@ const Index = () => {
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold">Casino Bonus – Få Mest Muligt ud af Dit Spil</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
-            Bonusserne er ofte det, der afgør, hvilket casino man vælger. Det kan være svært at have styr på de mange forskellige bonustyper – for ikke at nævne deres vilkår og betingelser. Derfor har vi samlet alt, du behøver at vide, så du kan tage en informeret beslutning og få mest muligt ud af din casinooplevelse.
+            Bonusserne er ofte det, der afgør, hvilket casino man vælger. Det kan være svært at have styr på de mange forskellige bonustyper – for ikke at nævne deres vilkår og betingelser. Derfor har vi samlet alt, du behøver at vide, så du kan tage en informeret beslutning og få mest muligt ud af din casinooplevelse. Vores{" "}
+            <Link to="/casino-bonus" className="text-primary hover:underline font-medium">komplette bonusguide</Link>
+            {" "}dækker alle aspekter af casinobonusser i Danmark.
           </p>
           <p className="mb-6 text-muted-foreground leading-relaxed">
             En casino bonus er typisk en måde for spillestederne at byde nye spillere velkommen med ekstra midler eller gratis spins, der giver dig mulighed for at udforske casinoet uden at risikere for mange af dine egne penge. Men det er vigtigt at forstå vilkårene – især{" "}
             <Link to="/omsaetningskrav" className="text-primary hover:underline font-medium">omsætningskravene</Link>
-            {" "}– før du accepterer en bonus.
+            {" "}– før du accepterer en bonus. Vi anbefaler altid at læse om forskellen mellem{" "}
+            <Link to="/no-sticky-bonus" className="text-primary hover:underline font-medium">no-sticky bonusser</Link>
+            {" "}og{" "}
+            <Link to="/sticky-bonus" className="text-primary hover:underline font-medium">sticky bonusser</Link>
+            , da det har stor betydning for, hvordan du kan udbetale dine gevinster.
           </p>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -309,19 +329,165 @@ const Index = () => {
 
         <Separator className="my-10" />
 
+        {/* Betalingsmetoder Section - NEW */}
+        <section className="mb-12">
+          <h2 className="mb-4 text-3xl font-bold">Betalingsmetoder på Danske Casinoer</h2>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            Valget af betalingsmetode har stor betydning for din casinooplevelse. Hurtige ind- og udbetalinger er afgørende for en god spilleoplevelse, og i 2026 har danske spillere adgang til et bredt udvalg af sikre og pålidelige betalingsløsninger. Vi har testet og gennemgået alle de mest populære metoder i vores{" "}
+            <Link to="/betalingsmetoder" className="text-primary hover:underline font-medium">komplette guide til betalingsmetoder</Link>.
+          </p>
+          <p className="mb-6 text-muted-foreground leading-relaxed">
+            Fra øjeblikkelige mobile betalinger med{" "}
+            <Link to="/betalingsmetoder/mobilepay" className="text-primary hover:underline font-medium">MobilePay</Link>
+            {" "}til sikre bankoverførsler via{" "}
+            <Link to="/betalingsmetoder/trustly" className="text-primary hover:underline font-medium">Trustly</Link>
+            {" "}– vi dækker fordele, ulemper og behandlingstider for hver enkelt metode, så du kan vælge den løsning, der passer bedst til dine behov.
+          </p>
+
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-3">
+            {[
+              { name: "MobilePay", to: "/betalingsmetoder/mobilepay" },
+              { name: "Trustly", to: "/betalingsmetoder/trustly" },
+              { name: "Visa/Mastercard", to: "/betalingsmetoder/visa-mastercard" },
+              { name: "Apple Pay", to: "/betalingsmetoder/apple-pay" },
+              { name: "PayPal", to: "/betalingsmetoder/paypal" },
+              { name: "Skrill", to: "/betalingsmetoder/skrill" },
+              { name: "Revolut", to: "/betalingsmetoder/revolut" },
+              { name: "Paysafecard", to: "/betalingsmetoder/paysafecard" },
+              { name: "Zimpler", to: "/betalingsmetoder/zimpler" },
+              { name: "Bankoverførsel", to: "/betalingsmetoder/bankoverforsler" },
+            ].map((pm) => (
+              <Link
+                key={pm.name}
+                to={pm.to}
+                className="flex items-center gap-2 rounded-lg border border-border bg-card p-3 text-sm font-medium transition-colors hover:border-primary hover:text-primary"
+              >
+                <CreditCard className="h-4 w-4 text-primary flex-shrink-0" />
+                {pm.name}
+              </Link>
+            ))}
+          </div>
+
+          <p className="mt-4 text-muted-foreground leading-relaxed">
+            De fleste danske casinoer tilbyder øjeblikkelige indbetalinger, men udbetalingstider varierer markant afhængigt af metode. E-wallets som{" "}
+            <Link to="/betalingsmetoder/skrill" className="text-primary hover:underline font-medium">Skrill</Link>
+            {" "}og{" "}
+            <Link to="/betalingsmetoder/paypal" className="text-primary hover:underline font-medium">PayPal</Link>
+            {" "}tilbyder typisk de hurtigste udbetalinger (0-24 timer), mens{" "}
+            <Link to="/betalingsmetoder/bankoverforsler" className="text-primary hover:underline font-medium">bankoverførsler</Link>
+            {" "}kan tage 1-3 hverdage. Nye løsninger som{" "}
+            <Link to="/betalingsmetoder/revolut" className="text-primary hover:underline font-medium">Revolut</Link>
+            {" "}og{" "}
+            <Link to="/betalingsmetoder/zimpler" className="text-primary hover:underline font-medium">Zimpler</Link>
+            {" "}vinder hurtigt frem blandt danske spillere i 2026.
+          </p>
+        </section>
+
+        <Separator className="my-10" />
+
+        {/* Spiludviklere Section - NEW */}
+        <section className="mb-12">
+          <h2 className="mb-4 text-3xl font-bold">Spiludviklere – Kvaliteten Bag Spillene</h2>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            Kvaliteten af din casinooplevelse afhænger i høj grad af de{" "}
+            <Link to="/spiludviklere" className="text-primary hover:underline font-medium">spiludviklere</Link>
+            , der står bag spillene. Anerkendte udviklere garanterer fair gameplay med certificerede RNG-systemer (Random Number Generator), høj grafisk kvalitet og innovative spilmekanikker. Vi har samlet de førende udbydere, så du ved præcis, hvad du kan forvente.
+          </p>
+          <p className="mb-6 text-muted-foreground leading-relaxed">
+            Fra klassiske slots hos{" "}
+            <Link to="/spiludviklere/netent" className="text-primary hover:underline font-medium">NetEnt</Link>
+            {" "}og innovative megaways-mekanikker fra{" "}
+            <Link to="/spiludviklere/big-time-gaming" className="text-primary hover:underline font-medium">Big Time Gaming</Link>
+            {" "}til live casino-oplevelser fra{" "}
+            <Link to="/spiludviklere/evolution-gaming" className="text-primary hover:underline font-medium">Evolution Gaming</Link>
+            {" "}– hvert studie bringer noget unikt til bordet.
+          </p>
+
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3">
+            {[
+              { name: "NetEnt", to: "/spiludviklere/netent" },
+              { name: "Pragmatic Play", to: "/spiludviklere/pragmatic-play" },
+              { name: "Play'n GO", to: "/spiludviklere/play-n-go" },
+              { name: "Evolution Gaming", to: "/spiludviklere/evolution-gaming" },
+              { name: "Hacksaw Gaming", to: "/spiludviklere/hacksaw-gaming" },
+              { name: "Nolimit City", to: "/spiludviklere/nolimit-city" },
+              { name: "Relax Gaming", to: "/spiludviklere/relax-gaming" },
+              { name: "Big Time Gaming", to: "/spiludviklere/big-time-gaming" },
+              { name: "Red Tiger", to: "/spiludviklere/red-tiger" },
+              { name: "ELK Studios", to: "/spiludviklere/elk-studios" },
+              { name: "Yggdrasil", to: "/spiludviklere/yggdrasil" },
+              { name: "Microgaming", to: "/spiludviklere/microgaming" },
+            ].map((provider) => (
+              <Link
+                key={provider.name}
+                to={provider.to}
+                className="flex items-center gap-2 rounded-lg border border-border bg-card p-3 text-sm font-medium transition-colors hover:border-primary hover:text-primary"
+              >
+                <Gamepad2 className="h-4 w-4 text-primary flex-shrink-0" />
+                {provider.name}
+              </Link>
+            ))}
+          </div>
+
+          <p className="mt-4 text-muted-foreground leading-relaxed">
+            Når du vælger et casino, bør du altid tjekke, hvilke spiludviklere der er repræsenteret i kataloget. Et bredt udvalg af udviklere sikrer, at du har adgang til mange forskellige spiltyper, temaer og volatilitetsniveauer. Læs mere om de enkelte udviklere i vores{" "}
+            <Link to="/spiludviklere" className="text-primary hover:underline font-medium">komplette guide til spiludviklere</Link>.
+          </p>
+        </section>
+
+        <Separator className="my-10" />
+
         {/* Nye Casinoer Section */}
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold">Nye Casinoer i Danmark</h2>
+          <h2 className="mb-4 text-3xl font-bold">Nye Casinoer i Danmark 2026</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
-            Casinomarkedet i Danmark udvides konstant med nye tilføjelser, og det kan være svært at holde øje med alle de nye spillesteder. Nye casinoer bringer ofte friske perspektiver med sig – fra innovative bonusstrukturer og moderne design til hurtigere betalingsløsninger og unikke spiloplevelser.
+            Casinomarkedet i Danmark udvides konstant med nye tilføjelser, og det kan være svært at holde øje med alle de nye spillesteder. Nye casinoer bringer ofte friske perspektiver med sig – fra innovative bonusstrukturer og moderne design til hurtigere betalingsløsninger som{" "}
+            <Link to="/betalingsmetoder/mobilepay" className="text-primary hover:underline font-medium">MobilePay</Link>
+            {" "}og{" "}
+            <Link to="/betalingsmetoder/apple-pay" className="text-primary hover:underline font-medium">Apple Pay</Link>
+            {" "}samt unikke spiloplevelser fra innovative udviklere som{" "}
+            <Link to="/spiludviklere/hacksaw-gaming" className="text-primary hover:underline font-medium">Hacksaw Gaming</Link>
+            {" "}og{" "}
+            <Link to="/spiludviklere/nolimit-city" className="text-primary hover:underline font-medium">Nolimit City</Link>.
           </p>
           <p className="mb-4 text-muted-foreground leading-relaxed">
             Vi holder konstant øje med markedet og tester nye casinoer grundigt, så snart de lancerer med dansk licens. Vores{" "}
             <Link to="/nye-casinoer" className="text-primary hover:underline font-medium">oversigt over nye casinoer</Link>
-            {" "}giver dig et komplet overblik, så du nemt kan finde dit næste spillested og drage fordel af de ofte generøse velkomstbonusser, som nye casinoer tilbyder for at tiltrække spillere.
+            {" "}giver dig et komplet overblik, så du nemt kan finde dit næste spillested og drage fordel af de ofte generøse{" "}
+            <Link to="/velkomstbonus" className="text-primary hover:underline font-medium">velkomstbonusser</Link>
+            , som nye casinoer tilbyder for at tiltrække spillere.
           </p>
           <p className="text-muted-foreground leading-relaxed">
-            Uanset om du leder efter et casino med det nyeste spiludvalg, de hurtigste udbetalinger eller de mest attraktive bonusser, hjælper vi dig med at navigere i det stadigt voksende udbud af danske online casinoer.
+            Uanset om du leder efter et casino med det nyeste spiludvalg, de hurtigste udbetalinger eller de mest attraktive{" "}
+            <Link to="/bonus-uden-omsaetningskrav" className="text-primary hover:underline font-medium">bonusser uden omsætningskrav</Link>
+            , hjælper vi dig med at navigere i det stadigt voksende udbud af danske online casinoer.
+          </p>
+        </section>
+
+        <Separator className="my-10" />
+
+        {/* Casinospil Section - NEW */}
+        <section className="mb-12">
+          <h2 className="mb-4 text-3xl font-bold">Casinospil – Slots, Bordspil og Mere</h2>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            Online casinoer tilbyder hundredvis af forskellige{" "}
+            <Link to="/casinospil" className="text-primary hover:underline font-medium">casinospil</Link>
+            , der dækker alt fra klassiske spilleautomater til avancerede live dealer-spil. Forståelse af de forskellige spilkategorier hjælper dig med at finde de spil, der passer bedst til din spillestil og budget.
+          </p>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            <strong>Spilleautomater (slots)</strong> er den mest populære kategori med tusindvis af titler fra udviklere som{" "}
+            <Link to="/spiludviklere/pragmatic-play" className="text-primary hover:underline font-medium">Pragmatic Play</Link>
+            ,{" "}
+            <Link to="/spiludviklere/play-n-go" className="text-primary hover:underline font-medium">Play'n GO</Link>
+            {" "}og{" "}
+            <Link to="/spiludviklere/relax-gaming" className="text-primary hover:underline font-medium">Relax Gaming</Link>
+            . RTP (Return to Player) varierer typisk fra 94% til 97%, og volatiliteten afgør, om du foretrækker hyppige små gevinster eller sjældne, men store gevinster.
+          </p>
+          <p className="text-muted-foreground leading-relaxed">
+            <strong>Bordspil</strong> som blackjack, roulette og baccarat tilbyder lavere husfordel end de fleste slots, hvilket gør dem attraktive for strategiske spillere. I{" "}
+            <Link to="/live-casino" className="text-primary hover:underline font-medium">live casino</Link>
+            -sektionen kan du spille disse spil med rigtige dealere i realtid, streamet i HD-kvalitet fra professionelle studier hos{" "}
+            <Link to="/spiludviklere/evolution-gaming" className="text-primary hover:underline font-medium">Evolution Gaming</Link>.
           </p>
         </section>
 
@@ -331,7 +497,9 @@ const Index = () => {
         <section className="mb-12">
           <h2 className="mb-6 text-3xl font-bold">Sådan Vurderer Vi Online Casinoer</h2>
           <p className="mb-6 text-muted-foreground leading-relaxed">
-            Vores team gennemgår hvert casino med samme grundighed, uanset om det er et nyt eller etableret spillested. Vi lader os ikke påvirke af partnerskaber – vores vurderinger afspejler altid vores ærlige opfattelse af spillestedets kvalitet. Her er de vigtigste faktorer, vi kigger på:
+            Vores team gennemgår hvert casino med samme grundighed, uanset om det er et nyt eller etableret spillested. Vi lader os ikke påvirke af partnerskaber – vores vurderinger afspejler altid vores ærlige opfattelse af spillestedets kvalitet. Læs mere om vores metodik på{" "}
+            <Link to="/top-10-casino-online" className="text-primary hover:underline font-medium">top 10 casino-listen</Link>
+            . Her er de vigtigste faktorer, vi kigger på:
           </p>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
             {[
@@ -358,41 +526,30 @@ const Index = () => {
 
         <Separator className="my-10" />
 
-        {/* Betalingsmetoder & Spiludviklere */}
-        <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold">Betalingsmetoder og Spiludviklere</h2>
-          <p className="mb-4 text-muted-foreground leading-relaxed">
-            Et godt online casino skal tilbyde et bredt udvalg af sikre og hurtige betalingsmetoder. De mest populære metoder blandt danske spillere inkluderer <Link to="/betalingsmetoder/mobilepay" className="text-primary hover:underline font-medium">MobilePay</Link>, <Link to="/betalingsmetoder/trustly" className="text-primary hover:underline font-medium">Trustly</Link>, <Link to="/betalingsmetoder/visa-mastercard" className="text-primary hover:underline font-medium">Visa</Link> og bankoverførsler. Vi har samlet en komplet{" "}
-            <Link to="/betalingsmetoder" className="text-primary hover:underline font-medium">guide til betalingsmetoder</Link>
-            {" "}på danske casinoer, hvor du kan lære om fordele, ulemper og behandlingstider for hver metode.
-          </p>
-          <p className="mb-4 text-muted-foreground leading-relaxed">
-            Kvaliteten af spillene afhænger i høj grad af de udviklere, der står bag dem. Anerkendte{" "}
-            <Link to="/spiludviklere" className="text-primary hover:underline font-medium">spiludviklere</Link>
-            {" "}som NetEnt, Play'n GO, Pragmatic Play og Evolution Gaming sikrer høj grafisk kvalitet, fair RTP-procenter og innovative spilmekanikker. Vi gennemgår de førende udbydere, så du ved præcis, hvad du kan forvente af dine yndlingsspil.
-          </p>
-          <p className="text-muted-foreground leading-relaxed">
-            Kombinationen af pålidelige betalingsløsninger og kvalitetsspil fra anerkendte udviklere er det, der kendetegner de bedste online casinoer. Vi hjælper dig med at finde dem, der lever op til begge kriterier.
-          </p>
-        </section>
-
-        <Separator className="my-10" />
-
         {/* Live Casino */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold">Live Casino – Den Autentiske Casinooplevelse</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
-            Live casino er blevet fast inventar hos ethvert seriøst online casino i Danmark. Den moderne teknologi og høje streaming-kvalitet gør det muligt at opleve den autentiske stemning fra et fysisk casino – direkte fra din stue. Med live dealere, der styrer spil som blackjack, roulette og baccarat i realtid, får du en interaktiv og medrivende spiloplevelse.
+            <Link to="/live-casino" className="text-primary hover:underline font-medium">Live casino</Link>
+            {" "}er blevet fast inventar hos ethvert seriøst online casino i Danmark. Den moderne teknologi og høje streaming-kvalitet gør det muligt at opleve den autentiske stemning fra et fysisk casino – direkte fra din stue. Med live dealere, der styrer spil som blackjack, roulette og baccarat i realtid, får du en interaktiv og medrivende spiloplevelse.
           </p>
           <p className="mb-4 text-muted-foreground leading-relaxed">
-            Førende udbydere som Evolution Gaming og Pragmatic Play Live sætter standarden for live casino med høj billedkvalitet, professionelle dealere og et bredt udvalg af borde med forskellige indsatsniveauer. Uanset om du foretrækker klassisk blackjack, speed roulette eller innovative game shows som Crazy Time og Monopoly Live, finder du det hos de casinoer, vi anbefaler.
+            Førende udbydere som{" "}
+            <Link to="/spiludviklere/evolution-gaming" className="text-primary hover:underline font-medium">Evolution Gaming</Link>
+            {" "}og{" "}
+            <Link to="/spiludviklere/pragmatic-play" className="text-primary hover:underline font-medium">Pragmatic Play</Link>
+            {" "}Live sætter standarden for live casino med høj billedkvalitet, professionelle dealere og et bredt udvalg af borde med forskellige indsatsniveauer. Uanset om du foretrækker klassisk blackjack, speed roulette eller innovative game shows som Crazy Time og Monopoly Live, finder du det hos de casinoer, vi anbefaler.
           </p>
           <p className="text-muted-foreground leading-relaxed">
-            De fleste nye casinoer satser stort på live casino-sektionen, og mange tilbyder endda separate velkomstbonusser til live casino-spil. Læs vores{" "}
-            <Link to="/live-casino" className="text-primary hover:underline font-medium">komplette guide til live casino</Link>
-            {" "}eller tjek vores{" "}
-            <Link to="/nye-casinoer" className="text-primary hover:underline font-medium">oversigt over nye casinoer</Link>
-            {" "}for at finde de bedste live casino-oplevelser.
+            De fleste{" "}
+            <Link to="/nye-casinoer" className="text-primary hover:underline font-medium">nye casinoer</Link>
+            {" "}satser stort på live casino-sektionen, og mange tilbyder endda separate{" "}
+            <Link to="/velkomstbonus" className="text-primary hover:underline font-medium">velkomstbonusser</Link>
+            {" "}til live casino-spil. Indbetalinger via{" "}
+            <Link to="/betalingsmetoder/mobilepay" className="text-primary hover:underline font-medium">MobilePay</Link>
+            {" "}eller{" "}
+            <Link to="/betalingsmetoder/trustly" className="text-primary hover:underline font-medium">Trustly</Link>
+            {" "}gør det nemt at komme i gang med det samme.
           </p>
         </section>
 
@@ -407,11 +564,11 @@ const Index = () => {
           <div className="space-y-3">
             {[
               { title: "Personlige bonustilbud", desc: "Casinoer bruger spilleradfærd og data til at skræddersy bonusser, der passer til den enkelte. Det betyder mere relevante tilbud og bedre værdi for dig." },
-              { title: "Hurtigere betalinger med MobilePay", desc: "Øjeblikkelige ind- og udbetalinger via MobilePay og Trustly bliver standarden. Læs mere om betalingsmetoder i vores guide." },
+              { title: "Øjeblikkelige betalinger", desc: "MobilePay, Trustly og Apple Pay gør ind- og udbetalinger øjeblikkelige. Nye løsninger som Revolut og Zimpler vinder også frem." },
               { title: "Gamification og belønningsprogrammer", desc: "Missioner, achievements og loyalitetsprogrammer gør spiloplevelsen mere engagerende og giver dig ekstra værdi for dit spil." },
               { title: "Mobil-first design", desc: "Nye platforme designes med mobilen i centrum – fuldt optimeret til smartphones og tablets med hurtig loading og intuitive menuer." },
-              { title: "Cashback uden omsætningskrav", desc: "Flere casinoer tilbyder cashback-bonusser helt uden gennemspilskrav. Læs om denne trend i vores guide til bonusser uden omsætningskrav." },
-              { title: "Udvidet live casino", desc: "Live dealer-sektioner vokser med nye spiltyper, game shows og interaktive funktioner, der bringer casinooplevelsen tættere på virkeligheden." },
+              { title: "Cashback uden omsætningskrav", desc: "Flere casinoer tilbyder cashback-bonusser helt uden gennemspilskrav – en trend der kun vokser i popularitet." },
+              { title: "Udvidet live casino", desc: "Live dealer-sektioner vokser med nye spiltyper, game shows og interaktive funktioner fra Evolution Gaming og andre." },
             ].map((trend) => (
               <div
                 key={trend.title}
@@ -429,6 +586,37 @@ const Index = () => {
 
         <Separator className="my-10" />
 
+        {/* Casino Anmeldelser - NEW */}
+        <section className="mb-12">
+          <h2 className="mb-4 text-3xl font-bold">Casino Anmeldelser – Dybdegående og Ærlige</h2>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            Vi anmelder hvert casino grundigt med fokus på de faktorer, der virkelig betyder noget for danske spillere. Vores anmeldelser dækker alt fra bonusvilkår og spiludvalg til{" "}
+            <Link to="/betalingsmetoder" className="text-primary hover:underline font-medium">betalingsmetoder</Link>
+            {" "}og udbetalingstider. Her er nogle af vores seneste anmeldelser:
+          </p>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+            {[
+              { name: "Spilleautomaten", to: "/spilleautomaten-anmeldelse" },
+              { name: "Campobet", to: "/campobet-anmeldelse" },
+              { name: "Betinia", to: "/betinia-anmeldelse" },
+              { name: "Swift Casino", to: "/swift-casino-anmeldelse" },
+              { name: "Luna Casino", to: "/luna-casino-anmeldelse" },
+              { name: "SpilDanskNu", to: "/spildansknu-anmeldelse" },
+            ].map((casino) => (
+              <Link
+                key={casino.name}
+                to={casino.to}
+                className="flex items-center gap-2 rounded-lg border border-border bg-card p-3 text-sm font-medium transition-colors hover:border-primary hover:text-primary"
+              >
+                <BookOpen className="h-4 w-4 text-primary flex-shrink-0" />
+                {casino.name} Anmeldelse
+              </Link>
+            ))}
+          </div>
+        </section>
+
+        <Separator className="my-10" />
+
         {/* Gennemsigtighed */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold">Gennemsigtighed og Troværdighed</h2>
@@ -436,10 +624,17 @@ const Index = () => {
             Hos Casinoaftaler tror vi på fuld gennemsigtighed over for vores brugere. Vi arbejder hårdt for at give dig præcis og opdateret information om online casinoer, bonusser og spilrelaterede emner. Her forklarer vi, hvordan vores partnerskaber fungerer.
           </p>
           <p className="mb-4 text-muted-foreground leading-relaxed">
-            Vi er en gratis ressource for alle brugere. Vi tjener penge gennem affiliate-partnerskaber med nogle af de casinoer, vi anmelder og anbefaler. Når du klikker på et link og registrerer dig, modtager vi en provision. Denne provision påvirker aldrig din oplevelse og koster dig ikke ekstra.
+            Vi er en gratis ressource for alle brugere. Vi tjener penge gennem affiliate-partnerskaber med nogle af de casinoer, vi anmelder og anbefaler. Når du klikker på et link og registrerer dig, modtager vi en provision. Denne provision påvirker aldrig din oplevelse og koster dig ikke ekstra. Læs mere{" "}
+            <Link to="/about" className="text-primary hover:underline font-medium">om os</Link>
+            {" "}eller{" "}
+            <Link to="/contact" className="text-primary hover:underline font-medium">kontakt os</Link>
+            {" "}med spørgsmål.
           </p>
-          <p className="mb-4 text-muted-foreground leading-relaxed">
-            Selvom vi har partnerskaber, er vi forpligtede til at levere ærlige og uvildige vurderinger. Vores team tester hvert casino grundigt baseret på kriterier som licens, spiludvalg, bonusser, betalingsmetoder, kundeservice og brugeroplevelse. Vi samarbejder kun med casinoer, der er licenserede, pålidelige og overholder standarder for ansvarligt spil.
+          <p className="text-muted-foreground leading-relaxed">
+            Selvom vi har partnerskaber, er vi forpligtede til at levere ærlige og uvildige vurderinger. Vores team tester hvert casino grundigt baseret på kriterier som licens, spiludvalg, bonusser,{" "}
+            <Link to="/betalingsmetoder" className="text-primary hover:underline font-medium">betalingsmetoder</Link>
+            , kundeservice og brugeroplevelse. Vi samarbejder kun med casinoer, der er licenserede, pålidelige og overholder standarder for{" "}
+            <Link to="/ansvarligt-spil" className="text-primary hover:underline font-medium">ansvarligt spil</Link>.
           </p>
         </section>
 
