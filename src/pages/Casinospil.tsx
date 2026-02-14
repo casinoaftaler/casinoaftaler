@@ -664,6 +664,53 @@ const Casinospil = () => {
 
         <Separator className="my-10" />
 
+        {/* Casinospil på mobilen */}
+        <section className="mb-12">
+          <h2 className="mb-6 text-3xl font-bold">
+            Casinospil på mobilen – spil hvor som helst
+          </h2>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            I 2026 spilles størstedelen af alle casinospil på mobilen. Moderne casinospil er fuldt optimeret til smartphones og tablets, og de bedste danske casinoer tilbyder tusindvis af casinospil direkte i din mobilbrowser – helt uden download. Uanset om du foretrækker spilleautomater, bordspil eller{" "}
+            <Link to="/live-casino" className={linkClass}>live casinospil</Link>, fungerer de perfekt på både iPhone og Android.
+          </p>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            De førende{" "}
+            <Link to="/spiludviklere" className={linkClass}>spiludviklere</Link> som <Link to="/spiludviklere/netent" className={linkClass}>NetEnt</Link>, <Link to="/spiludviklere/pragmatic-play" className={linkClass}>Pragmatic Play</Link> og <Link to="/spiludviklere/play-n-go" className={linkClass}>Play'n GO</Link> designer alle deres casinospil med mobilen i centrum. Det betyder, at grafik, lyd og gameplay i mobile casinospil er lige så imponerende som på desktop. Touch-kontroller gør det intuitivt at spille casinospil på farten, og hurtig indlæsning sikrer en problemfri casinospil-oplevelse.
+          </p>
+          <p className="text-muted-foreground leading-relaxed">
+            For at komme i gang med mobile casinospil skal du blot vælge et casino fra vores liste, åbne det i din mobilbrowser og oprette en konto. Du kan indbetale med{" "}
+            <Link to="/betalingsmetoder/mobilepay" className={linkClass}>MobilePay</Link> direkte fra din telefon og begynde at spille casinospil med det samme. Alle{" "}
+            <Link to="/casino-bonus" className={linkClass}>casino bonusser</Link> og{" "}
+            <Link to="/free-spins" className={linkClass}>free spins</Link> kan også aktiveres og bruges på mobile casinospil.
+          </p>
+        </section>
+
+        <Separator className="my-10" />
+
+        {/* Hvordan vælger du de bedste casinospil */}
+        <section className="mb-12">
+          <h2 className="mb-6 text-3xl font-bold">
+            Sådan vælger du de bedste casinospil i 2026
+          </h2>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            Med tusindvis af casinospil tilgængelige hos danske casinoer kan det være overvældende at vælge. Her er vores guide til at finde de casinospil, der passer til din spillestil og dit budget.
+          </p>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            Start med at definere din spillestil: Foretrækker du underholdning og store jackpots? Så er spilleautomater de ideelle casinospil for dig. Elsker du strategi og lave house edges? Så er bordspil som blackjack eller baccarat de bedste casinospil. Ønsker du den autentiske casinooplevelse med rigtige dealere? Så er{" "}
+            <Link to="/live-casino" className={linkClass}>live casinospil</Link> det perfekte valg.
+          </p>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            Overvej også dit budget, når du vælger casinospil. Casinospil med lav volatilitet giver hyppige, mindre gevinster og er ideelle til spillere med et begrænset budget. Casinospil med høj volatilitet kræver en større bankroll, men tilbyder mulighed for store gevinster. De mest spillede casinospil på det danske marked er typisk medium-volatilitet med RTP'er over 96%.
+          </p>
+          <p className="text-muted-foreground leading-relaxed">
+            Endelig anbefaler vi altid at prøve casinospil i demotilstand, før du spiller for rigtige penge. De fleste danske casinoer tilbyder gratis demo-versioner af deres casinospil, så du kan teste gameplay, bonusfunktioner og volatilitet uden risiko. Brug desuden en{" "}
+            <Link to="/velkomstbonus" className={linkClass}>velkomstbonus</Link> eller{" "}
+            <Link to="/free-spins" className={linkClass}>free spins</Link> til at udforske nye casinospil uden at risikere dine egne penge.
+          </p>
+        </section>
+
+        <Separator className="my-10" />
+
         {/* Trends 2026 */}
         <section className="mb-12">
           <h2 className="mb-6 text-3xl font-bold">
