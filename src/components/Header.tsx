@@ -221,7 +221,7 @@ export const Header = memo(function Header() {
               <DropdownMenuItem asChild>
                 <Link to="/community/leaderboard" className="flex items-center gap-2">
                   <Trophy className="h-4 w-4" />
-                  Leaderboard
+                  Turneringer
                 </Link>
               </DropdownMenuItem>
               <DropdownMenuItem asChild>
@@ -568,7 +568,7 @@ export const Header = memo(function Header() {
                   { to: "/butik", icon: <ShoppingBag className="h-4 w-4" />, label: "Butik" },
                   { to: "/highlights", icon: <Video className="h-4 w-4" />, label: "Highlights" },
                   { to: "/community/slots", icon: <Coins className="h-4 w-4" />, label: "Spillehal" },
-                  { to: "/community/leaderboard", icon: <Trophy className="h-4 w-4" />, label: "Leaderboard" },
+                  { to: "/community/leaderboard", icon: <Trophy className="h-4 w-4" />, label: "Turneringer" },
                   { to: "/community/rewards", icon: <Gift className="h-4 w-4" />, label: "Rewards Program" },
                 ].map((item) => (
                   <Link

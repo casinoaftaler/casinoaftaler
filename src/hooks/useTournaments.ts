@@ -1,0 +1,193 @@
+import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
+import { supabase } from "@/integrations/supabase/client";
+import { useAuth } from "./useAuth";
+
+export interface Tournament {
+  id: string;
+  title: string;
+  description: string | null;
+  game_ids: string[];
+  separate_leaderboards: boolean;
+  starts_at: string;
+  ends_at: string;
+  status: string;
+  created_by: string;
+  created_at: string;
+}
+
+export interface TournamentEntry {
+  id: string;
+  tournament_id: string;
+  user_id: string;
+  game_id: string;
+  total_points: number;
+  total_spins: number;
+  biggest_win: number;
+  biggest_multiplier: number;
+  updated_at: string;
+  // Joined from profiles_leaderboard
+  display_name?: string;
+  avatar_url?: string;
+}
+
+function computeStatus(t: { starts_at: string; ends_at: string; status: string }): string {
+  const now = new Date();
+  const start = new Date(t.starts_at);
+  const end = new Date(t.ends_at);
+  if (now < start) return "upcoming";
+  if (now >= start && now < end) return "active";
+  return "ended";
+}
+
+export function useTournaments() {
+  return useQuery({
+    queryKey: ["tournaments"],
+    queryFn: async () => {
+      const { data, error } = await supabase
+        .from("tournaments")
+        .select("*")
+        .order("starts_at", { ascending: false });
+
+      if (error) throw error;
+
+      // Compute live status based on time
+      return (data as Tournament[]).map((t) => ({
+        ...t,
+        status: computeStatus(t),
+      }));
+    },
+    refetchInterval: 30000, // Refresh every 30s for timer accuracy
+  });
+}
+
+export function useTournamentLeaderboard(tournamentId: string | undefined, gameId?: string) {
+  const { user } = useAuth();
+
+  return useQuery({
+    queryKey: ["tournament-leaderboard", tournamentId, gameId],
+    queryFn: async () => {
+      if (!tournamentId) return { entries: [], currentUser: null };
+
+      let query = supabase
+        .from("tournament_entries")
+        .select("*")
+        .eq("tournament_id", tournamentId)
+        .order("total_points", { ascending: false });
+
+      if (gameId) {
+        query = query.eq("game_id", gameId);
+      }
+
+      const { data: entries, error } = await query;
+      if (error) throw error;
+
+      // If no gameId filter and we want combined, aggregate by user
+      let aggregated: TournamentEntry[] = [];
+      if (!gameId && entries) {
+        const userMap = new Map<string, TournamentEntry>();
+        for (const e of entries as TournamentEntry[]) {
+          const existing = userMap.get(e.user_id);
+          if (existing) {
+            existing.total_points += Number(e.total_points);
+            existing.total_spins += e.total_spins;
+            existing.biggest_win = Math.max(existing.biggest_win, Number(e.biggest_win));
+            existing.biggest_multiplier = Math.max(existing.biggest_multiplier, Number(e.biggest_multiplier));
+          } else {
+            userMap.set(e.user_id, { ...e, total_points: Number(e.total_points), biggest_win: Number(e.biggest_win), biggest_multiplier: Number(e.biggest_multiplier) });
+          }
+        }
+        aggregated = Array.from(userMap.values()).sort((a, b) => b.total_points - a.total_points);
+      } else {
+        aggregated = ((entries || []) as TournamentEntry[]).map(e => ({ ...e, total_points: Number(e.total_points), biggest_win: Number(e.biggest_win), biggest_multiplier: Number(e.biggest_multiplier) }));
+      }
+
+      // Fetch profile info for all users
+      const userIds = aggregated.map((e) => e.user_id);
+      if (userIds.length > 0) {
+        const { data: profiles } = await supabase
+          .from("profiles_leaderboard")
+          .select("user_id, display_name, avatar_url")
+          .in("user_id", userIds);
+
+        const profileMap = new Map(
+          (profiles || []).map((p) => [p.user_id, p])
+        );
+        for (const entry of aggregated) {
+          const profile = profileMap.get(entry.user_id);
+          if (profile) {
+            entry.display_name = profile.display_name || "Anonym";
+            entry.avatar_url = profile.avatar_url || undefined;
+          } else {
+            entry.display_name = "Anonym";
+          }
+        }
+      }
+
+      // Find current user
+      let currentUser = null;
+      if (user) {
+        const rank = aggregated.findIndex((e) => e.user_id === user.id);
+        if (rank >= 0) {
+          currentUser = { entry: aggregated[rank], rank: rank + 1 };
+        }
+      }
+
+      return { entries: aggregated, currentUser };
+    },
+    enabled: !!tournamentId,
+    refetchInterval: 15000,
+  });
+}
+
+export function useCreateTournament() {
+  const queryClient = useQueryClient();
+  return useMutation({
+    mutationFn: async (tournament: {
+      title: string;
+      description?: string;
+      game_ids: string[];
+      separate_leaderboards: boolean;
+      starts_at: string;
+      ends_at: string;
+      created_by: string;
+    }) => {
+      const status = new Date(tournament.starts_at) <= new Date() ? "active" : "upcoming";
+      const { data, error } = await supabase
+        .from("tournaments")
+        .insert({ ...tournament, status })
+        .select()
+        .single();
+      if (error) throw error;
+      return data;
+    },
+    onSuccess: () => queryClient.invalidateQueries({ queryKey: ["tournaments"] }),
+  });
+}
+
+export function useEndTournament() {
+  const queryClient = useQueryClient();
+  return useMutation({
+    mutationFn: async (tournamentId: string) => {
+      const { error } = await supabase
+        .from("tournaments")
+        .update({ status: "ended", ends_at: new Date().toISOString() })
+        .eq("id", tournamentId);
+      if (error) throw error;
+    },
+    onSuccess: () => queryClient.invalidateQueries({ queryKey: ["tournaments"] }),
+  });
+}
+
+export function useDeleteTournament() {
+  const queryClient = useQueryClient();
+  return useMutation({
+    mutationFn: async (tournamentId: string) => {
+      const { error } = await supabase
+        .from("tournaments")
+        .delete()
+        .eq("id", tournamentId);
+      if (error) throw error;
+    },
+    onSuccess: () => queryClient.invalidateQueries({ queryKey: ["tournaments"] }),
+  });
+}

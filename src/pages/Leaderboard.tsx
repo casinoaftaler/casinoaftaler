@@ -1,77 +1,68 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { SEO } from "@/components/SEO";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Trophy, Medal, Award, Crown, Sparkles, Gamepad2, ArrowRight, LogIn } from "lucide-react";
-import { useSlotLeaderboard, type LeaderboardEntry } from "@/hooks/useSlotLeaderboard";
+import { Trophy, Medal, Award, Crown, Sparkles, Gamepad2, ArrowRight, LogIn, Clock, Timer } from "lucide-react";
 import { UserProfileLink } from "@/components/UserProfileLink";
 import { useAuth } from "@/hooks/useAuth";
+import { useTournaments, useTournamentLeaderboard, type Tournament, type TournamentEntry } from "@/hooks/useTournaments";
 import { cn } from "@/lib/utils";
 
-// Tournament definitions
-const TOURNAMENTS = [
-  {
-    id: "book-of-fedesvin",
-    name: "Book of Fedesvin",
-    description: "Egyptisk eventyr med expanding symbols",
-    href: "/community/slots/book-of-fedesvin",
-    theme: {
-      gradient: "from-amber-950/90 via-amber-900/80 to-amber-950/90",
-      border: "border-amber-500/30",
-      accent: "text-amber-400",
-      accentBg: "bg-amber-500/20",
-      glow: "shadow-[0_0_30px_rgba(251,191,36,0.15)]",
-      badgeBg: "bg-amber-500/20",
-      badgeText: "text-amber-300",
-      badgeBorder: "border-amber-500/40",
-    },
+const GAME_THEMES: Record<string, { gradient: string; border: string; accent: string; accentBg: string; glow: string; badgeBg: string; badgeText: string; badgeBorder: string }> = {
+  "book-of-fedesvin": {
+    gradient: "from-amber-950/90 via-amber-900/80 to-amber-950/90",
+    border: "border-amber-500/30",
+    accent: "text-amber-400",
+    accentBg: "bg-amber-500/20",
+    glow: "shadow-[0_0_30px_rgba(251,191,36,0.15)]",
+    badgeBg: "bg-amber-500/20",
+    badgeText: "text-amber-300",
+    badgeBorder: "border-amber-500/40",
   },
-  {
-    id: "rise-of-fedesvin",
-    name: "Rise of Fedesvin",
-    description: "Merlins magi med multi-expanding bonus",
-    href: "/community/slots/rise-of-fedesvin",
-    theme: {
-      gradient: "from-purple-950/90 via-purple-900/80 to-purple-950/90",
-      border: "border-purple-500/30",
-      accent: "text-purple-400",
-      accentBg: "bg-purple-500/20",
-      glow: "shadow-[0_0_30px_rgba(168,85,247,0.15)]",
-      badgeBg: "bg-purple-500/20",
-      badgeText: "text-purple-300",
-      badgeBorder: "border-purple-500/40",
-    },
+  "rise-of-fedesvin": {
+    gradient: "from-purple-950/90 via-purple-900/80 to-purple-950/90",
+    border: "border-purple-500/30",
+    accent: "text-purple-400",
+    accentBg: "bg-purple-500/20",
+    glow: "shadow-[0_0_30px_rgba(168,85,247,0.15)]",
+    badgeBg: "bg-purple-500/20",
+    badgeText: "text-purple-300",
+    badgeBorder: "border-purple-500/40",
   },
-];
+};
+
+const GAME_NAMES: Record<string, string> = {
+  "book-of-fedesvin": "Book of Fedesvin",
+  "rise-of-fedesvin": "Rise of Fedesvin",
+};
+
+const GAME_HREFS: Record<string, string> = {
+  "book-of-fedesvin": "/community/slots/book-of-fedesvin",
+  "rise-of-fedesvin": "/community/slots/rise-of-fedesvin",
+};
 
 function RankBadge({ rank }: { rank: number }) {
-  if (rank === 1) {
-    return (
-      <div className="relative flex items-center justify-center w-10 h-10">
-        <div className="absolute inset-0 bg-gradient-to-br from-amber-400 via-yellow-500 to-amber-600 rounded-full animate-pulse opacity-50" />
-        <div className="relative bg-gradient-to-br from-amber-400 via-yellow-500 to-amber-600 rounded-full w-8 h-8 flex items-center justify-center shadow-lg">
-          <Crown className="h-4 w-4 text-amber-900" />
-        </div>
+  if (rank === 1) return (
+    <div className="relative flex items-center justify-center w-10 h-10">
+      <div className="absolute inset-0 bg-gradient-to-br from-amber-400 via-yellow-500 to-amber-600 rounded-full animate-pulse opacity-50" />
+      <div className="relative bg-gradient-to-br from-amber-400 via-yellow-500 to-amber-600 rounded-full w-8 h-8 flex items-center justify-center shadow-lg">
+        <Crown className="h-4 w-4 text-amber-900" />
       </div>
-    );
-  }
-  if (rank === 2) {
-    return (
-      <div className="w-8 h-8 bg-gradient-to-br from-gray-300 via-gray-400 to-gray-500 rounded-full flex items-center justify-center shadow-md">
-        <Medal className="h-4 w-4 text-gray-700" />
-      </div>
-    );
-  }
-  if (rank === 3) {
-    return (
-      <div className="w-8 h-8 bg-gradient-to-br from-amber-600 via-amber-700 to-amber-800 rounded-full flex items-center justify-center shadow-md">
-        <Award className="h-4 w-4 text-amber-200" />
-      </div>
-    );
-  }
+    </div>
+  );
+  if (rank === 2) return (
+    <div className="w-8 h-8 bg-gradient-to-br from-gray-300 via-gray-400 to-gray-500 rounded-full flex items-center justify-center shadow-md">
+      <Medal className="h-4 w-4 text-gray-700" />
+    </div>
+  );
+  if (rank === 3) return (
+    <div className="w-8 h-8 bg-gradient-to-br from-amber-600 via-amber-700 to-amber-800 rounded-full flex items-center justify-center shadow-md">
+      <Award className="h-4 w-4 text-amber-200" />
+    </div>
+  );
   return (
     <div className="w-8 h-8 bg-muted/50 rounded-full flex items-center justify-center">
       <span className="text-sm font-bold text-muted-foreground">{rank}</span>
@@ -79,86 +70,39 @@ function RankBadge({ rank }: { rank: number }) {
   );
 }
 
-function getDisplayWinnings(entry: LeaderboardEntry, period: "daily" | "weekly" | "monthly" | "alltime"): number {
-  if (period === "daily") return entry.daily_winnings ?? 0;
-  if (period === "weekly") return entry.weekly_winnings ?? 0;
-  if (period === "monthly") return entry.monthly_winnings ?? 0;
-  return entry.total_winnings;
-}
-
-function LeaderboardPlayerRow({
-  entry,
-  rank,
-  isCurrentUser,
-  compact = false,
-  period = "alltime",
-}: {
-  entry: LeaderboardEntry;
-  rank: number;
-  isCurrentUser?: boolean;
-  compact?: boolean;
-  period?: "daily" | "weekly" | "monthly" | "alltime";
-}) {
-  const formattedMultiplier = entry.biggest_multiplier > 0
-    ? `${Number(entry.biggest_multiplier.toFixed(1))}x`
-    : "-";
-
-  const displayPoints = getDisplayWinnings(entry, period);
-
+function LeaderboardRow({ entry, rank, isCurrentUser }: { entry: TournamentEntry; rank: number; isCurrentUser?: boolean }) {
+  const formattedMultiplier = entry.biggest_multiplier > 0 ? `${Number(entry.biggest_multiplier.toFixed(1))}x` : "-";
   return (
-    <div
-      className={cn(
-        "flex items-center gap-3 p-3 rounded-xl transition-all duration-200",
-        rank === 1 && "bg-gradient-to-r from-amber-500/10 via-yellow-500/5 to-transparent",
-        rank === 2 && "bg-gradient-to-r from-gray-400/10 via-gray-400/5 to-transparent",
-        rank === 3 && "bg-gradient-to-r from-amber-700/10 via-amber-700/5 to-transparent",
-        rank > 3 && "hover:bg-muted/30",
-        isCurrentUser && "ring-1 ring-primary/50 bg-primary/5"
-      )}
-    >
+    <div className={cn(
+      "flex items-center gap-3 p-3 rounded-xl transition-all duration-200",
+      rank === 1 && "bg-gradient-to-r from-amber-500/10 via-yellow-500/5 to-transparent",
+      rank === 2 && "bg-gradient-to-r from-gray-400/10 via-gray-400/5 to-transparent",
+      rank === 3 && "bg-gradient-to-r from-amber-700/10 via-amber-700/5 to-transparent",
+      rank > 3 && "hover:bg-muted/30",
+      isCurrentUser && "ring-1 ring-primary/50 bg-primary/5"
+    )}>
       <RankBadge rank={rank} />
-      
       <div className="flex items-center gap-2 flex-1 min-w-0">
         <UserProfileLink
           userId={entry.user_id}
-          displayName={entry.display_name}
+          displayName={entry.display_name || "Anonym"}
           avatarUrl={entry.avatar_url}
           avatarClassName={cn("h-8 w-8", rank <= 3 && "ring-2 ring-offset-2 ring-offset-background", rank === 1 && "ring-amber-400", rank === 2 && "ring-gray-400", rank === 3 && "ring-amber-600")}
         />
         <div className="flex-1 min-w-0">
-          <p className={cn("font-medium truncate", rank <= 3 && "text-foreground", rank > 3 && "text-muted-foreground")}>
-            {entry.display_name}
-          </p>
-          {!compact && (
-            <p className="text-xs text-muted-foreground">
-              {entry.total_spins.toLocaleString()} spins
-            </p>
-          )}
+          <p className={cn("font-medium truncate", rank <= 3 ? "text-foreground" : "text-muted-foreground")}>{entry.display_name || "Anonym"}</p>
+          <p className="text-xs text-muted-foreground">{entry.total_spins.toLocaleString()} spins</p>
         </div>
       </div>
-
-      {isCurrentUser && (
-        <Badge variant="outline" className="text-xs border-primary/50 text-primary bg-primary/10">
-          Du
-        </Badge>
-      )}
-
+      {isCurrentUser && <Badge variant="outline" className="text-xs border-primary/50 text-primary bg-primary/10">Du</Badge>}
       <div className="flex items-center gap-4 text-right">
-        {!compact && (
-          <>
-            <div className="hidden sm:block">
-              <p className="text-sm font-medium text-blue-400">{entry.total_bonuses}</p>
-              <p className="text-xs text-muted-foreground">bonusser</p>
-            </div>
-            <div className="hidden sm:block">
-              <p className="text-sm font-bold text-green-400">{formattedMultiplier}</p>
-              <p className="text-xs text-muted-foreground">bedste</p>
-            </div>
-          </>
-        )}
+        <div className="hidden sm:block">
+          <p className="text-sm font-bold text-green-400">{formattedMultiplier}</p>
+          <p className="text-xs text-muted-foreground">bedste</p>
+        </div>
         <div>
           <p className={cn("font-bold", rank === 1 ? "text-amber-400" : rank === 2 ? "text-gray-300" : rank === 3 ? "text-amber-600" : "text-foreground")}>
-            {displayPoints.toLocaleString()}
+            {entry.total_points.toLocaleString()}
           </p>
           <p className="text-xs text-muted-foreground">point</p>
         </div>
@@ -167,165 +111,215 @@ function LeaderboardPlayerRow({
   );
 }
 
-function TournamentCard({
-  tournament,
-  period,
-}: {
-  tournament: typeof TOURNAMENTS[number];
-  period: "daily" | "weekly" | "monthly" | "alltime";
-}) {
-  const { data, isLoading } = useSlotLeaderboard(period);
+function useCountdown(endDate: string) {
+  const [timeLeft, setTimeLeft] = useState("");
+  useEffect(() => {
+    const update = () => {
+      const diff = new Date(endDate).getTime() - Date.now();
+      if (diff <= 0) { setTimeLeft("Afsluttet"); return; }
+      const d = Math.floor(diff / 86400000);
+      const h = Math.floor((diff % 86400000) / 3600000);
+      const m = Math.floor((diff % 3600000) / 60000);
+      const s = Math.floor((diff % 60000) / 1000);
+      setTimeLeft(d > 0 ? `${d}d ${h}t ${m}m` : `${h}t ${m}m ${s}s`);
+    };
+    update();
+    const id = setInterval(update, 1000);
+    return () => clearInterval(id);
+  }, [endDate]);
+  return timeLeft;
+}
+
+function TournamentLeaderboardCard({ tournament }: { tournament: Tournament }) {
+  const [selectedGame, setSelectedGame] = useState<string | undefined>(
+    tournament.separate_leaderboards ? tournament.game_ids[0] : undefined
+  );
+  const { data, isLoading } = useTournamentLeaderboard(tournament.id, selectedGame);
+  const { user } = useAuth();
   const entries = data?.entries ?? [];
   const currentUser = data?.currentUser;
-  const top5 = entries.slice(0, 5);
+  const top10 = entries.slice(0, 10);
+  const isActive = tournament.status === "active";
+  const isEnded = tournament.status === "ended";
+  const isUpcoming = tournament.status === "upcoming";
+  const countdown = useCountdown(isActive ? tournament.ends_at : tournament.starts_at);
+  const winner = isEnded && entries.length > 0 ? entries[0] : null;
+
+  // Pick a theme based on the first game
+  const themeKey = tournament.game_ids[0] || "book-of-fedesvin";
+  const theme = GAME_THEMES[themeKey] || GAME_THEMES["book-of-fedesvin"];
 
   return (
     <Card className={cn(
-      "relative overflow-hidden border backdrop-blur-md transition-all duration-300 hover:scale-[1.01]",
-      tournament.theme.border,
-      tournament.theme.glow,
-      `bg-gradient-to-b ${tournament.theme.gradient}`
+      "relative overflow-hidden border backdrop-blur-md transition-all duration-300",
+      theme.border, theme.glow,
+      `bg-gradient-to-b ${theme.gradient}`,
+      isEnded && "opacity-80"
     )}>
-      {/* Decorative corner glow */}
-      <div className={cn("absolute top-0 right-0 w-32 h-32 opacity-20 blur-2xl -z-10", tournament.theme.accentBg)} />
-      
+      <div className={cn("absolute top-0 right-0 w-32 h-32 opacity-20 blur-2xl -z-10", theme.accentBg)} />
+
       <CardHeader className="pb-3">
-        <div className="flex items-center justify-between">
+        <div className="flex items-center justify-between flex-wrap gap-2">
           <div className="flex items-center gap-3">
-            <div className={cn("p-2.5 rounded-xl", tournament.theme.accentBg)}>
-              <Gamepad2 className={cn("h-5 w-5", tournament.theme.accent)} />
+            <div className={cn("p-2.5 rounded-xl", theme.accentBg)}>
+              <Trophy className={cn("h-5 w-5", theme.accent)} />
             </div>
             <div>
-              <h3 className="font-bold text-lg text-foreground">{tournament.name}</h3>
-              <p className="text-sm text-muted-foreground">{tournament.description}</p>
+              <h3 className="font-bold text-lg text-foreground">{tournament.title}</h3>
+              {tournament.description && <p className="text-sm text-muted-foreground">{tournament.description}</p>}
             </div>
           </div>
-          <Badge className={cn("border", tournament.theme.badgeBg, tournament.theme.badgeText, tournament.theme.badgeBorder)}>
-            <Trophy className="h-3 w-3 mr-1" />
-            {entries.length} spillere
-          </Badge>
+          <div className="flex items-center gap-2">
+            {isActive && (
+              <Badge className={cn("border", theme.badgeBg, theme.badgeText, theme.badgeBorder)}>
+                <Timer className="h-3 w-3 mr-1" /> {countdown}
+              </Badge>
+            )}
+            {isUpcoming && (
+              <Badge className="bg-blue-500/20 text-blue-300 border-blue-500/40 border">
+                <Clock className="h-3 w-3 mr-1" /> Starter om {countdown}
+              </Badge>
+            )}
+            {isEnded && (
+              <Badge variant="secondary">Afsluttet</Badge>
+            )}
+          </div>
         </div>
+
+        {/* Game filter tabs for separate leaderboards */}
+        {tournament.separate_leaderboards && tournament.game_ids.length > 1 && (
+          <Tabs value={selectedGame} onValueChange={setSelectedGame} className="mt-3">
+            <TabsList className="w-full grid" style={{ gridTemplateColumns: `repeat(${tournament.game_ids.length}, 1fr)` }}>
+              {tournament.game_ids.map((gid) => (
+                <TabsTrigger key={gid} value={gid} className="text-xs">
+                  {GAME_NAMES[gid] || gid}
+                </TabsTrigger>
+              ))}
+            </TabsList>
+          </Tabs>
+        )}
+
+        {/* Game names for combined */}
+        {!tournament.separate_leaderboards && (
+          <p className="text-xs text-muted-foreground mt-2">
+            <Gamepad2 className="h-3 w-3 inline mr-1" />
+            {tournament.game_ids.map((id) => GAME_NAMES[id] || id).join(" + ")}
+          </p>
+        )}
       </CardHeader>
 
       <CardContent className="pt-0">
-        {isLoading ? (
+        {/* Winner announcement for ended tournaments */}
+        {isEnded && winner && (
+          <div className={cn("mb-4 p-4 rounded-xl border text-center", theme.accentBg, theme.border)}>
+            <Crown className={cn("h-8 w-8 mx-auto mb-2", theme.accent)} />
+            <p className="text-sm text-muted-foreground">Vinder</p>
+            <p className="font-bold text-lg text-foreground">{winner.display_name || "Anonym"}</p>
+            <p className={cn("font-bold text-xl", theme.accent)}>{winner.total_points.toLocaleString()} point</p>
+          </div>
+        )}
+
+        {isUpcoming ? (
+          <div className="text-center py-8">
+            <Clock className={cn("h-12 w-12 mx-auto mb-3 opacity-30", theme.accent)} />
+            <p className="text-muted-foreground">Turneringen er ikke startet endnu</p>
+          </div>
+        ) : isLoading ? (
           <div className="space-y-2">
             {[1, 2, 3, 4, 5].map((i) => (
               <div key={i} className="h-14 bg-muted/20 rounded-xl animate-pulse" />
             ))}
           </div>
-        ) : top5.length > 0 ? (
+        ) : top10.length > 0 ? (
           <div className="space-y-1">
-            {top5.map((entry, index) => (
-              <LeaderboardPlayerRow
-                key={entry.user_id}
+            {top10.map((entry, index) => (
+              <LeaderboardRow
+                key={`${entry.user_id}-${entry.game_id}`}
                 entry={entry}
                 rank={index + 1}
-                isCurrentUser={currentUser?.entry.user_id === entry.user_id}
-                period={period}
+                isCurrentUser={user?.id === entry.user_id}
               />
             ))}
-            
-            {/* Current user if not in top 5 */}
-            {currentUser && currentUser.rank > 5 && (
+            {currentUser && currentUser.rank > 10 && (
               <>
                 <div className="flex items-center gap-2 py-2">
                   <div className="flex-1 border-t border-dashed border-muted-foreground/20" />
                   <span className="text-xs text-muted-foreground">Din placering</span>
                   <div className="flex-1 border-t border-dashed border-muted-foreground/20" />
                 </div>
-                <LeaderboardPlayerRow
-                  entry={currentUser.entry}
-                  rank={currentUser.rank}
-                  isCurrentUser
-                  period={period}
-                />
+                <LeaderboardRow entry={currentUser.entry} rank={currentUser.rank} isCurrentUser />
               </>
             )}
           </div>
         ) : (
           <div className="text-center py-8">
-            <Trophy className={cn("h-12 w-12 mx-auto mb-3 opacity-30", tournament.theme.accent)} />
+            <Trophy className={cn("h-12 w-12 mx-auto mb-3 opacity-30", theme.accent)} />
             <p className="text-muted-foreground">Ingen spillere endnu</p>
             <p className="text-sm text-muted-foreground/70">Vær den første på ranglisten!</p>
           </div>
         )}
 
-        {/* Play button */}
-        <Button
-          asChild
-          className={cn("w-full mt-4 gap-2", tournament.theme.accentBg, "hover:opacity-90 border", tournament.theme.border)}
-          variant="ghost"
-        >
-          <Link to={tournament.href}>
-            Spil nu
-            <ArrowRight className="h-4 w-4" />
-          </Link>
-        </Button>
+        {/* Play buttons */}
+        {isActive && (
+          <div className={cn("flex gap-2 mt-4", tournament.game_ids.length === 1 ? "" : "flex-col sm:flex-row")}>
+            {tournament.game_ids.map((gid) => (
+              <Button
+                key={gid}
+                asChild
+                className={cn("flex-1 gap-2", GAME_THEMES[gid]?.accentBg || theme.accentBg, "hover:opacity-90 border", GAME_THEMES[gid]?.border || theme.border)}
+                variant="ghost"
+              >
+                <Link to={GAME_HREFS[gid] || "/community/slots"}>
+                  Spil {GAME_NAMES[gid] || gid}
+                  <ArrowRight className="h-4 w-4" />
+                </Link>
+              </Button>
+            ))}
+          </div>
+        )}
       </CardContent>
     </Card>
   );
 }
 
 export default function Leaderboard() {
-  const [period, setPeriod] = useState<"daily" | "weekly" | "monthly" | "alltime">("alltime");
   const { user, loading } = useAuth();
+  const { data: tournaments, isLoading: tournamentsLoading } = useTournaments();
+
+  const active = tournaments?.filter((t) => t.status === "active") || [];
+  const upcoming = tournaments?.filter((t) => t.status === "upcoming") || [];
+  const ended = tournaments?.filter((t) => t.status === "ended") || [];
 
   return (
     <div className="min-h-[calc(100vh-4rem)] relative">
       <SEO
-        title="Rangliste – Top Spillere | Casinoaftaler"
-        description="Se hvem der topper ranglisten hos Casinoaftaler. Daglige, ugentlige og månedlige leaderboards for vores gratis spilleautomater."
+        title="Turneringer – Slot Turneringer | Casinoaftaler"
+        description="Deltag i slot-turneringer og vind præmier! Se aktive turneringer, ranglister og vindere hos Casinoaftaler."
       />
-      {/* Background */}
       <div className="absolute inset-0 bg-gradient-to-b from-background via-background to-background -z-10" />
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-primary/8 via-transparent to-transparent -z-10" />
 
-      {/* Hero Section */}
+      {/* Hero */}
       <section
         className="relative overflow-hidden py-14 md:py-20"
-        style={{
-          background: "linear-gradient(135deg, hsl(260 70% 20%), hsl(250 60% 15%) 40%, hsl(210 80% 20%))",
-        }}
+        style={{ background: "linear-gradient(135deg, hsl(260 70% 20%), hsl(250 60% 15%) 40%, hsl(210 80% 20%))" }}
       >
         <div className="container relative z-10">
           <div className="mx-auto max-w-2xl text-center space-y-4">
             <div className="mx-auto mb-4 h-20 w-20 rounded-full bg-amber-500/15 backdrop-blur-sm border border-amber-500/20 flex items-center justify-center animate-pulse">
               <Trophy className="h-10 w-10 text-amber-400" />
             </div>
-            <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-white">
-              Leaderboard
-            </h1>
+            <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-white">Turneringer</h1>
             <p className="text-white/70 text-base md:text-lg max-w-lg mx-auto">
-              Top spillere på tværs af igangværende slot-turneringer
+              Deltag i slot-turneringer og kæmp om præmier!
             </p>
           </div>
         </div>
-        
-        {/* Decorative blur circles */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          <div
-            className="absolute -left-10 top-10 h-40 w-40 rounded-full bg-amber-500 opacity-10 blur-3xl"
-            style={{ animation: "float 6s ease-in-out infinite" }}
-          />
-          <div
-            className="absolute -bottom-10 -right-10 h-56 w-56 rounded-full bg-purple-500 opacity-10 blur-3xl"
-            style={{ animation: "float 8s ease-in-out infinite 1s" }}
-          />
-          <div
-            className="absolute left-1/2 top-1/2 h-32 w-32 rounded-full bg-blue-500 opacity-10 blur-3xl"
-            style={{ animation: "float 7s ease-in-out infinite 0.5s" }}
-          />
+          <div className="absolute -left-10 top-10 h-40 w-40 rounded-full bg-amber-500 opacity-10 blur-3xl" style={{ animation: "float 6s ease-in-out infinite" }} />
+          <div className="absolute -bottom-10 -right-10 h-56 w-56 rounded-full bg-purple-500 opacity-10 blur-3xl" style={{ animation: "float 8s ease-in-out infinite 1s" }} />
         </div>
-        
-        <style>{`
-          @keyframes float {
-            0%, 100% { transform: translateY(0) translateX(0); }
-            25% { transform: translateY(-15px) translateX(5px); }
-            50% { transform: translateY(-8px) translateX(-5px); }
-            75% { transform: translateY(-20px) translateX(3px); }
-          }
-        `}</style>
+        <style>{`@keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-15px); } }`}</style>
       </section>
 
       {/* Content */}
@@ -336,82 +330,57 @@ export default function Leaderboard() {
               <div className="mx-auto h-16 w-16 rounded-full bg-primary/10 flex items-center justify-center">
                 <LogIn className="h-8 w-8 text-primary" />
               </div>
-              <h3 className="text-lg font-semibold text-foreground">Log ind for at se ranglisten</h3>
-              <p className="text-sm text-muted-foreground">
-                Du skal være logget ind for at se turneringsranglisterne.
-              </p>
+              <h3 className="text-lg font-semibold text-foreground">Log ind for at se turneringer</h3>
+              <p className="text-sm text-muted-foreground">Du skal være logget ind for at se turneringsranglisterne.</p>
               <Button asChild className="gap-2">
-                <Link to="/auth">
-                  <LogIn className="h-4 w-4" />
-                  Log ind
-                </Link>
+                <Link to="/auth"><LogIn className="h-4 w-4" /> Log ind</Link>
               </Button>
             </CardContent>
           </Card>
+        ) : tournamentsLoading ? (
+          <div className="max-w-5xl mx-auto space-y-4">
+            {[1, 2].map((i) => <div key={i} className="h-64 bg-muted/20 rounded-xl animate-pulse" />)}
+          </div>
         ) : (
-          <>
-            {/* Period Tabs */}
-            <div className="flex justify-center mb-8">
-              <Tabs value={period} onValueChange={(v) => setPeriod(v as typeof period)} className="w-full max-w-md">
-                <TabsList className="w-full grid grid-cols-4 bg-muted/50 p-1">
-                  <TabsTrigger
-                    value="daily"
-                    className="data-[state=active]:bg-primary/20 data-[state=active]:text-primary"
-                  >
-                    <Sparkles className="h-4 w-4 mr-1.5 hidden sm:inline" />
-                    I dag
-                  </TabsTrigger>
-                  <TabsTrigger
-                    value="weekly"
-                    className="data-[state=active]:bg-primary/20 data-[state=active]:text-primary"
-                  >
-                    <Sparkles className="h-4 w-4 mr-1.5 hidden sm:inline" />
-                    Uge
-                  </TabsTrigger>
-                  <TabsTrigger
-                    value="monthly"
-                    className="data-[state=active]:bg-primary/20 data-[state=active]:text-primary"
-                  >
-                    <Sparkles className="h-4 w-4 mr-1.5 hidden sm:inline" />
-                    Måned
-                  </TabsTrigger>
-                  <TabsTrigger
-                    value="alltime"
-                    className="data-[state=active]:bg-primary/20 data-[state=active]:text-primary"
-                  >
-                    <Trophy className="h-4 w-4 mr-1.5 hidden sm:inline" />
-                    All-time
-                  </TabsTrigger>
-                </TabsList>
-              </Tabs>
-            </div>
+          <div className="max-w-5xl mx-auto space-y-8">
+            {/* Active tournaments */}
+            {active.length > 0 && (
+              <div className="space-y-6">
+                {active.map((t) => <TournamentLeaderboardCard key={t.id} tournament={t} />)}
+              </div>
+            )}
 
-            {/* Tournament Cards Grid */}
-            <div className="grid gap-6 md:grid-cols-2 max-w-5xl mx-auto">
-              {TOURNAMENTS.map((tournament) => (
-                <TournamentCard
-                  key={tournament.id}
-                  tournament={tournament}
-                  period={period}
-                />
-              ))}
-            </div>
+            {/* Upcoming tournaments */}
+            {upcoming.length > 0 && (
+              <div className="space-y-6">
+                <h2 className="text-lg font-semibold text-muted-foreground flex items-center gap-2">
+                  <Clock className="h-5 w-5" /> Kommende turneringer
+                </h2>
+                {upcoming.map((t) => <TournamentLeaderboardCard key={t.id} tournament={t} />)}
+              </div>
+            )}
 
-            {/* Coming Soon Placeholder */}
-            <div className="mt-8 max-w-5xl mx-auto">
+            {/* Ended tournaments */}
+            {ended.length > 0 && (
+              <div className="space-y-6">
+                <h2 className="text-lg font-semibold text-muted-foreground">Afsluttede turneringer</h2>
+                {ended.map((t) => <TournamentLeaderboardCard key={t.id} tournament={t} />)}
+              </div>
+            )}
+
+            {/* No tournaments */}
+            {!active.length && !upcoming.length && !ended.length && (
               <Card className="border-dashed border-muted-foreground/30 bg-muted/10">
                 <CardContent className="py-12 text-center">
                   <div className="mx-auto mb-4 h-16 w-16 rounded-full bg-muted/20 flex items-center justify-center">
                     <Sparkles className="h-8 w-8 text-muted-foreground/50" />
                   </div>
-                  <h3 className="text-lg font-medium text-muted-foreground mb-1">Flere turneringer kommer snart</h3>
-                  <p className="text-sm text-muted-foreground/70">
-                    Hold øje med nye spil og specielle events!
-                  </p>
+                  <h3 className="text-lg font-medium text-muted-foreground mb-1">Ingen turneringer endnu</h3>
+                  <p className="text-sm text-muted-foreground/70">Hold øje med nye turneringer og events!</p>
                 </CardContent>
               </Card>
-            </div>
-          </>
+            )}
+          </div>
         )}
       </div>
     </div>
