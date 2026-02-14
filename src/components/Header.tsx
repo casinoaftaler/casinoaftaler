@@ -118,6 +118,9 @@ export function Header() {
           <Link to="/nye-casinoer" className="flex items-center gap-1.5 text-sm font-medium transition-colors hover:text-primary">
             Nye Casinoer
           </Link>
+          <Link to="/casinospil" className="flex items-center gap-1.5 text-sm font-medium transition-colors hover:text-primary">
+            Casinospil
+          </Link>
           <Link to="/live-casino" className="flex items-center gap-1.5 text-sm font-medium transition-colors hover:text-primary">
             Live Casino
           </Link>
@@ -393,6 +396,10 @@ export function Header() {
             <Link to="/nye-casinoer" className="flex items-center gap-2 py-3 text-sm font-medium transition-colors hover:text-primary border-b border-border/50" onClick={() => setMobileMenuOpen(false)}>
               <Sparkles className="h-4 w-4" />
               Nye Casinoer
+            </Link>
+            <Link to="/casinospil" className="flex items-center gap-2 py-3 text-sm font-medium transition-colors hover:text-primary border-b border-border/50" onClick={() => setMobileMenuOpen(false)}>
+              <Dices className="h-4 w-4" />
+              Casinospil
             </Link>
             <Link to="/live-casino" className="flex items-center gap-2 py-3 text-sm font-medium transition-colors hover:text-primary border-b border-border/50" onClick={() => setMobileMenuOpen(false)}>
               <Tv className="h-4 w-4" />

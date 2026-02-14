@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { Gamepad2, Instagram, MessageCircle, Trophy, BookOpen, Users, Shield, Scale, FileText, Cookie, ExternalLink, Video, Gift, Sparkles, CreditCard, Target, Zap, Tv, Star } from "lucide-react";
+import { Gamepad2, Instagram, MessageCircle, Trophy, BookOpen, Users, Shield, Scale, FileText, Cookie, ExternalLink, Video, Gift, Sparkles, CreditCard, Target, Zap, Tv, Star, Dices } from "lucide-react";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
 
 export function Footer() {
@@ -97,6 +97,15 @@ export function Footer() {
                 >
                   <BookOpen className="h-4 w-4" />
                   Casino Bonus
+                </Link>
+              </li>
+              <li>
+                <Link
+                  to="/casinospil"
+                  className="flex items-center gap-2 text-muted-foreground transition-colors hover:text-foreground"
+                >
+                  <Dices className="h-4 w-4" />
+                  Casinospil
                 </Link>
               </li>
               <li>
