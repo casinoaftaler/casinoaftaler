@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { PaymentMethodPage } from "./PaymentMethodPageTemplate";
+import revolutHero from "@/assets/heroes/revolut-hero.jpg";
 
 const RevolutGuide = () => {
   return (

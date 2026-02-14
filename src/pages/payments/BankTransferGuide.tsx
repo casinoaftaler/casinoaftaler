@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { PaymentMethodPage } from "./PaymentMethodPageTemplate";
+import bankTransferHero from "@/assets/heroes/bank-transfer-hero.jpg";
 
 const BankTransferGuide = () => {
   return (

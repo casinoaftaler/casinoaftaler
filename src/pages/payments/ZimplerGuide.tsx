@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { PaymentMethodPage } from "./PaymentMethodPageTemplate";
+import zimplerHero from "@/assets/heroes/zimpler-hero.jpg";
 
 const ZimplerGuide = () => {
   return (
