@@ -4,7 +4,7 @@ import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { Layout } from "./components/Layout";
 import { SlotPageLoading } from "./components/slots/SlotPageLoading";
 
@@ -194,8 +194,37 @@ const App = () => (
                 <Route path="/u/:username" element={<PublicProfile />} />
               </Route>
               <Route path="/admin" element={<Admin />} />
-              
-              {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+
+              {/* 301-style redirects for old/common URLs */}
+              <Route path="/blog" element={<Navigate to="/" replace />} />
+              <Route path="/blog/*" element={<Navigate to="/" replace />} />
+              <Route path="/top-casino-online" element={<Navigate to="/top-10-casino-online" replace />} />
+              <Route path="/anmeldelser" element={<Navigate to="/casino-anmeldelser" replace />} />
+              <Route path="/anmeldelser/*" element={<Navigate to="/casino-anmeldelser" replace />} />
+              <Route path="/bonus" element={<Navigate to="/casino-bonus" replace />} />
+              <Route path="/bonusser" element={<Navigate to="/casino-bonus" replace />} />
+              <Route path="/spil" element={<Navigate to="/casinospil" replace />} />
+              <Route path="/slots" element={<Navigate to="/community/slots" replace />} />
+              <Route path="/free-spins-uden-indbetaling" element={<Navigate to="/bonus-uden-indbetaling" replace />} />
+              <Route path="/betalinger" element={<Navigate to="/betalingsmetoder" replace />} />
+              <Route path="/payment-methods" element={<Navigate to="/betalingsmetoder" replace />} />
+              <Route path="/providers" element={<Navigate to="/spiludviklere" replace />} />
+              <Route path="/game-providers" element={<Navigate to="/spiludviklere" replace />} />
+              <Route path="/ansvarligt-spil" element={<Navigate to="/responsible-gaming" replace />} />
+              <Route path="/login" element={<Navigate to="/auth" replace />} />
+              <Route path="/signup" element={<Navigate to="/auth" replace />} />
+              <Route path="/register" element={<Navigate to="/auth" replace />} />
+              <Route path="/profil/*" element={<Navigate to="/profil" replace />} />
+              <Route path="/shop" element={<Navigate to="/butik" replace />} />
+              <Route path="/leaderboard" element={<Navigate to="/community/leaderboard" replace />} />
+              <Route path="/rewards" element={<Navigate to="/community/rewards" replace />} />
+              <Route path="/kontakt" element={<Navigate to="/contact" replace />} />
+              <Route path="/om" element={<Navigate to="/about" replace />} />
+              <Route path="/om-os" element={<Navigate to="/about" replace />} />
+              <Route path="/privatlivspolitik" element={<Navigate to="/privacy" replace />} />
+              <Route path="/vilkaar" element={<Navigate to="/terms" replace />} />
+
+              {/* Catch-all */}
               <Route path="*" element={<NotFound />} />
             </Routes>
           </Suspense>
