@@ -666,6 +666,9 @@ Deno.serve(async (req) => {
         );
       }
 
+      // Use the locked-in bet from bonus trigger, not the client-sent value
+      bet = Number(bonusData.bet_amount) || bet;
+
       // Generate grid with bonus weights
       const originalGrid = generateGrid(symbols, true);
       
