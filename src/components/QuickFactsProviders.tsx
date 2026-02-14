@@ -4,10 +4,12 @@ import { Link } from "react-router-dom";
 const providerRoutes: Record<string, string> = {
   "NetEnt": "/spiludviklere/netent",
   "Pragmatic Play": "/spiludviklere/pragmatic-play",
+  "Evolution Gaming": "/spiludviklere/evolution-gaming",
   "Relax Gaming": "/spiludviklere/relax-gaming",
   "Play'n GO": "/spiludviklere/play-n-go",
   "Hacksaw Gaming": "/spiludviklere/hacksaw-gaming",
   "Nolimit City": "/spiludviklere/nolimit-city",
+  "ELK Studios": "/spiludviklere/elk-studios",
   "Yggdrasil": "/spiludviklere/yggdrasil",
   "Microgaming": "/spiludviklere/microgaming",
   "Red Tiger": "/spiludviklere/red-tiger",

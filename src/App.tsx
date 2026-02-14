@@ -62,6 +62,8 @@ const YggdrasilGuide = lazy(() => import("./pages/YggdrasilGuide"));
 const MicrogamingGuide = lazy(() => import("./pages/MicrogamingGuide"));
 const RedTigerGuide = lazy(() => import("./pages/RedTigerGuide"));
 const BigTimeGamingGuide = lazy(() => import("./pages/BigTimeGamingGuide"));
+const ELKStudiosGuide = lazy(() => import("./pages/ELKStudiosGuide"));
+const EvolutionGamingGuide = lazy(() => import("./pages/EvolutionGamingGuide"));
 const NotFound = lazy(() => import("./pages/NotFound"));
 
 const queryClient = new QueryClient();
@@ -120,6 +122,8 @@ const App = () => (
                 <Route path="/spiludviklere/microgaming" element={<MicrogamingGuide />} />
                 <Route path="/spiludviklere/red-tiger" element={<RedTigerGuide />} />
                 <Route path="/spiludviklere/big-time-gaming" element={<BigTimeGamingGuide />} />
+                <Route path="/spiludviklere/elk-studios" element={<ELKStudiosGuide />} />
+                <Route path="/spiludviklere/evolution-gaming" element={<EvolutionGamingGuide />} />
                 
                 <Route path="/community/leaderboard" element={<Leaderboard />} />
                 <Route path="/community/rewards" element={<RewardsProgram />} />

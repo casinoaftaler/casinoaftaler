@@ -437,7 +437,7 @@ const TopCasinoOnline = () => {
                 <p className="text-sm text-muted-foreground">
                   Vi vurderer bredden og kvaliteten af spilkataloget. De bedste casinoer tilbyder spilleautomater, bordspil,{" "}
                   <Link to="/live-casino" className={linkClass}>live casino</Link> og jackpotspil fra anerkendte{" "}
-                  <Link to="/spiludviklere" className={linkClass}>spiludviklere</Link> som NetEnt, Play'n GO, Pragmatic Play og Evolution Gaming.
+                  <Link to="/spiludviklere" className={linkClass}>spiludviklere</Link> som <Link to="/spiludviklere/netent" className={linkClass}>NetEnt</Link>, <Link to="/spiludviklere/play-n-go" className={linkClass}>Play'n GO</Link>, <Link to="/spiludviklere/pragmatic-play" className={linkClass}>Pragmatic Play</Link> og <Link to="/spiludviklere/evolution-gaming" className={linkClass}>Evolution Gaming</Link>.
                 </p>
               </CardContent>
             </Card>
@@ -541,7 +541,7 @@ const TopCasinoOnline = () => {
               <CardContent>
                 <p className="text-sm text-muted-foreground">
                   <Link to="/live-casino" className={linkClass}>Live casino</Link>{" "}
-                  giver dig en autentisk casinooplevelse med rigtige dealere streamed i HD. Spil blackjack, roulette, baccarat, poker og gameshows som Crazy Time og Lightning Roulette. Evolution Gaming er den førende udbyder, men Pragmatic Play Live og Playtech Live vinder også terræn.
+                  giver dig en autentisk casinooplevelse med rigtige dealere streamed i HD. Spil blackjack, roulette, baccarat, poker og gameshows som Crazy Time og Lightning Roulette. <Link to="/spiludviklere/evolution-gaming" className={linkClass}>Evolution Gaming</Link> er den førende udbyder, men <Link to="/spiludviklere/pragmatic-play" className={linkClass}>Pragmatic Play</Link> Live og Playtech Live vinder også terræn.
                 </p>
               </CardContent>
             </Card>
@@ -918,7 +918,7 @@ const TopCasinoOnline = () => {
                 title: "Udvidet live casino",
                 desc: (
                   <>
-                    <Link to="/live-casino" className={linkClass}>Live casino</Link> fortsætter med at vokse med nye gameshows, turneringer og ekslusive VIP-borde. Evolution Gaming og Pragmatic Play Live er de førende innovatører.</>
+                    <Link to="/live-casino" className={linkClass}>Live casino</Link> fortsætter med at vokse med nye gameshows, turneringer og ekslusive VIP-borde. <Link to="/spiludviklere/evolution-gaming" className={linkClass}>Evolution Gaming</Link> og <Link to="/spiludviklere/pragmatic-play" className={linkClass}>Pragmatic Play</Link> Live er de førende innovatører.</>
                 ),
               },
               {
@@ -1071,14 +1071,27 @@ const TopCasinoOnline = () => {
             <Link to="/spiludviklere" className={linkClass}>spiludviklere</Link>, det samarbejder med. De bedste casinoer i vores top 10 tilbyder spil fra et bredt udvalg af anerkendte udviklere, der garanterer høj grafisk kvalitet, fair RTP-værdier og innovativt gameplay.
           </p>
           <p className="mb-6 text-muted-foreground leading-relaxed">
-            Blandt de mest populære spiludviklere finder du <strong>NetEnt</strong> (kendte for Starburst og Gonzo's Quest), <strong>Play'n GO</strong> (skabt af Book of Dead og Rich Wilde-serien), <strong>Pragmatic Play</strong> (Sweet Bonanza og Gates of Olympus), <strong>Evolution Gaming</strong> (verdens førende inden for live casino), og <strong>Microgaming</strong> (legendarisk for progressive jackpots som Mega Moolah). Et top casino samarbejder typisk med 20+ udviklere for at sikre et varieret og spændende spiludvalg.
+            Blandt de mest populære spiludviklere finder du <Link to="/spiludviklere/netent" className={linkClass}><strong>NetEnt</strong></Link> (kendte for Starburst og Gonzo's Quest), <Link to="/spiludviklere/play-n-go" className={linkClass}><strong>Play'n GO</strong></Link> (skabt af Book of Dead og Rich Wilde-serien), <Link to="/spiludviklere/pragmatic-play" className={linkClass}><strong>Pragmatic Play</strong></Link> (Sweet Bonanza og Gates of Olympus), <Link to="/spiludviklere/evolution-gaming" className={linkClass}><strong>Evolution Gaming</strong></Link> (verdens førende inden for live casino), og <Link to="/spiludviklere/microgaming" className={linkClass}><strong>Microgaming</strong></Link> (legendarisk for progressive jackpots som Mega Moolah). Et top casino samarbejder typisk med 20+ udviklere for at sikre et varieret og spændende spiludvalg.
           </p>
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-3">
-            {["NetEnt", "Play'n GO", "Pragmatic Play", "Evolution Gaming", "Microgaming", "Yggdrasil", "Red Tiger", "Big Time Gaming", "Nolimit City", "Hacksaw Gaming"].map((provider) => (
-              <div key={provider} className="flex items-center justify-center gap-2 rounded-lg border border-border bg-card p-3 text-sm font-medium text-center">
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3">
+            {[
+              { name: "NetEnt", to: "/spiludviklere/netent" },
+              { name: "Play'n GO", to: "/spiludviklere/play-n-go" },
+              { name: "Pragmatic Play", to: "/spiludviklere/pragmatic-play" },
+              { name: "Evolution Gaming", to: "/spiludviklere/evolution-gaming" },
+              { name: "Microgaming", to: "/spiludviklere/microgaming" },
+              { name: "Yggdrasil", to: "/spiludviklere/yggdrasil" },
+              { name: "Red Tiger", to: "/spiludviklere/red-tiger" },
+              { name: "Big Time Gaming", to: "/spiludviklere/big-time-gaming" },
+              { name: "Nolimit City", to: "/spiludviklere/nolimit-city" },
+              { name: "Hacksaw Gaming", to: "/spiludviklere/hacksaw-gaming" },
+              { name: "Relax Gaming", to: "/spiludviklere/relax-gaming" },
+              { name: "ELK Studios", to: "/spiludviklere/elk-studios" },
+            ].map((provider) => (
+              <Link key={provider.name} to={provider.to} className="flex items-center justify-center gap-2 rounded-lg border border-border bg-card p-3 text-sm font-medium text-center transition-colors hover:border-primary/50 hover:bg-accent/50">
                 <Gamepad2 className="h-4 w-4 text-primary flex-shrink-0" />
-                {provider}
-              </div>
+                {provider.name}
+              </Link>
             ))}
           </div>
         </section>

@@ -324,10 +324,12 @@ const NetEntGuide = () => {
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3">
             {[
               { to: "/spiludviklere/pragmatic-play", label: "Pragmatic Play" },
+              { to: "/spiludviklere/evolution-gaming", label: "Evolution Gaming" },
               { to: "/spiludviklere/relax-gaming", label: "Relax Gaming" },
               { to: "/spiludviklere/play-n-go", label: "Play'n GO" },
               { to: "/spiludviklere/hacksaw-gaming", label: "Hacksaw Gaming" },
               { to: "/spiludviklere/nolimit-city", label: "Nolimit City" },
+              { to: "/spiludviklere/elk-studios", label: "ELK Studios" },
               { to: "/spiludviklere/yggdrasil", label: "Yggdrasil" },
               { to: "/spiludviklere/microgaming", label: "Microgaming" },
               { to: "/spiludviklere/red-tiger", label: "Red Tiger" },
