@@ -5,8 +5,7 @@ import { Sparkles, ArrowRight, Trophy, Video } from "lucide-react";
 export function CommunityPromoSection() {
   return (
     <section className="py-6 md:py-8">
-      <div className="container">
-        <div className="flex flex-col gap-4 p-5 md:p-6 rounded-xl bg-muted/50 border border-border/50">
+      <div className="flex flex-col gap-4 p-5 md:p-6 rounded-xl bg-muted/50 border border-border/50">
           <div className="flex items-center gap-3">
             <Sparkles className="h-5 w-5 flex-shrink-0 text-primary" />
             <h3 className="text-base md:text-lg font-semibold text-foreground">
@@ -38,7 +37,6 @@ export function CommunityPromoSection() {
               </Link>
             </Button>
           </div>
-        </div>
       </div>
     </section>
   );
