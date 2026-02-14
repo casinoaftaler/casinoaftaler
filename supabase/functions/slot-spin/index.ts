@@ -590,7 +590,7 @@ Deno.serve(async (req) => {
 
     // Parse request body
     const body = await req.json();
-    const { bet, sessionId, isBonusSpin, gameId: rawGameId } = body;
+    let { bet, sessionId, isBonusSpin, gameId: rawGameId } = body;
     const gameId = rawGameId || "book-of-fedesvin";
 
     console.log(`[slot-spin] gameId=${gameId}, bet=${bet}, isBonusSpin=${isBonusSpin}, userId=${userId}`);
