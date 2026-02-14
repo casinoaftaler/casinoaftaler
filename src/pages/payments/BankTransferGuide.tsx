@@ -8,6 +8,8 @@ const BankTransferGuide = () => {
       seoTitle="Bankoverførsel Casino – Komplet Guide til Bankoverførsler på Danske Casinoer 2026 | Casinoaftaler"
       seoDescription="Alt om bankoverførsler på danske casinoer. Direkte banktransaktioner, sikkerhed, behandlingstider, gebyrer og sammenligninger med hurtigere alternativer."
       name="Bankoverførsel"
+      heroImage={bankTransferHero}
+      heroImageAlt="Bankoverførsel betalingsmetode på danske casinoer"
       heroSubtitle="Den klassiske og mest troværdige betalingsmetode – direkte overførsler fra din bankkonto til casinoet med fuld sporbarhed og bankgaranti."
       introTitle="Bankoverførsler på Danske Casinoer – Klassisk og Pålidelig"
       introContent={

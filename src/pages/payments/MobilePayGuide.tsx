@@ -8,6 +8,8 @@ const MobilePayGuide = () => {
       seoTitle="MobilePay Casino – Komplet Guide til MobilePay på Danske Casinoer 2026 | Casinoaftaler"
       seoDescription="Alt om MobilePay på danske casinoer. Indbetal med et swipe, MitID-sikkerhed, bonusregler, gebyrer og de bedste MobilePay casinoer i Danmark 2026."
       name="MobilePay"
+      heroImage={mobilePayHero}
+      heroImageAlt="MobilePay betalingsmetode på danske casinoer"
       heroSubtitle="Danmarks foretrukne betalingsapp gør det nemt at indbetale på casinoer med blot et par tryk og MitID-bekræftelse. Ingen kortnumre, ingen netbank – bare hurtig og sikker betaling."
       introTitle="MobilePay på Danske Casinoer – Danmarks Foretrukne Betalingsapp"
       introContent={

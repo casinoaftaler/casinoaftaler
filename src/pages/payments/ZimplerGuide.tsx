@@ -8,6 +8,8 @@ const ZimplerGuide = () => {
       seoTitle="Zimpler Casino – Komplet Guide til Zimpler på Danske Casinoer 2026 | Casinoaftaler"
       seoDescription="Alt om Zimpler på danske casinoer. Svensk fintech med open banking, MitID-sikkerhed, ingen gebyrer og øjeblikkelige konto-til-konto-overførsler."
       name="Zimpler"
+      heroImage={zimplerHero}
+      heroImageAlt="Zimpler betalingsmetode på danske casinoer"
       heroSubtitle="Svensk fintech-løsning der overfører penge direkte mellem din bank og casinoet på få sekunder via open banking og MitID. Ingen kortnumre, ingen ekstra konti."
       introTitle="Zimpler på Danske Casinoer – Moderne Open Banking-Betaling"
       introContent={
