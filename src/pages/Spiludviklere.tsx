@@ -5,10 +5,12 @@ import { RelatedGuides } from "@/components/RelatedGuides";
 import { InlineCasinoCards } from "@/components/InlineCasinoCards";
 import netentLogo from "@/assets/providers/netent.png";
 import pragmaticPlayLogo from "@/assets/providers/pragmatic-play.png";
+import evolutionGamingLogo from "@/assets/providers/evolution-gaming.png";
 import relaxGamingLogo from "@/assets/providers/relax-gaming.png";
 import playNGoLogo from "@/assets/providers/play-n-go.png";
 import hacksawGamingLogo from "@/assets/providers/hacksaw-gaming.png";
 import nolimitCityLogo from "@/assets/providers/nolimit-city.png";
+import elkStudiosLogo from "@/assets/providers/elk-studios.png";
 import yggdrasilLogo from "@/assets/providers/yggdrasil.png";
 import microgamingLogo from "@/assets/providers/microgaming.png";
 import redTigerLogo from "@/assets/providers/red-tiger.png";
@@ -279,6 +281,32 @@ const developers = [
       "White Rabbit – Alice i Eventyrland med Megaways",
     ],
     highlight: "Opfindere af Megaways-mekanikken",
+  },
+  {
+    name: "Evolution Gaming",
+    slug: "evolution-gaming",
+    logo: evolutionGamingLogo,
+    description:
+      "Evolution Gaming er verdens førende leverandør af live casino-spil med innovative game shows og professionelle dealere.",
+    games: [
+      "Crazy Time – Det ultimative live game show med 25.000x multiplikator",
+      "Lightning Roulette – Roulette med op til 500x multiplikatorer",
+      "MONOPOLY Live – Det ikoniske brætspil i live casino-format",
+    ],
+    highlight: "Absolut markedsleder inden for live casino",
+  },
+  {
+    name: "ELK Studios",
+    slug: "elk-studios",
+    logo: elkStudiosLogo,
+    description:
+      "ELK Studios er en svensk spiludvikler med fokus på kvalitet frem for kvantitet og innovative mekanikker som Avalanche.",
+    games: [
+      "Wild Toro – Flagskibstitel med Walking Wilds",
+      "Kaiju Payment – Innovativ slot med monster-tema",
+      "Cygnus – Avalanche-slot med 262.144 vinderkombinationer",
+    ],
+    highlight: "Prisbelønnet kvalitet og innovativ spildesign",
   },
 ];
 
