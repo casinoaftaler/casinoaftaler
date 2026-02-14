@@ -672,9 +672,8 @@ const Index = () => {
           </Card>
         </section>
 
+        <FAQSection />
       </div>
-
-      <FAQSection />
     </>
   );
 };
