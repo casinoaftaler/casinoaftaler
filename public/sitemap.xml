@@ -96,12 +96,62 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://casinoaftaler.dk/betalingsmetoder</loc>
+    <loc>https://casinoaftaler.dk/spiludviklere</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://casinoaftaler.dk/spiludviklere</loc>
+    <loc>https://casinoaftaler.dk/spiludviklere/netent</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://casinoaftaler.dk/spiludviklere/pragmatic-play</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://casinoaftaler.dk/spiludviklere/relax-gaming</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://casinoaftaler.dk/spiludviklere/play-n-go</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://casinoaftaler.dk/spiludviklere/hacksaw-gaming</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://casinoaftaler.dk/spiludviklere/nolimit-city</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://casinoaftaler.dk/spiludviklere/yggdrasil</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://casinoaftaler.dk/spiludviklere/microgaming</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://casinoaftaler.dk/spiludviklere/red-tiger</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://casinoaftaler.dk/spiludviklere/big-time-gaming</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://casinoaftaler.dk/betalingsmetoder</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
