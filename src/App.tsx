@@ -7,12 +7,16 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { Layout } from "./components/Layout";
 import { SlotPageLoading } from "./components/slots/SlotPageLoading";
+import { Skeleton } from "@/components/ui/skeleton";
 import Index from "./pages/Index";
 
-// Lazy load all pages except Index for smaller initial bundle
+// Eager-load most visited pages to avoid Suspense flash
+import CasinoBonus from "./pages/CasinoBonus";
+import NyeCasinoer from "./pages/NyeCasinoer";
+import TopCasinoOnline from "./pages/TopCasinoOnline";
+
+// Lazy load remaining pages
 const CasinoDetail = lazy(() => import("./pages/CasinoDetail"));
-const TopCasinoOnline = lazy(() => import("./pages/TopCasinoOnline"));
-const NyeCasinoer = lazy(() => import("./pages/NyeCasinoer"));
 const About = lazy(() => import("./pages/About"));
 const Contact = lazy(() => import("./pages/Contact"));
 
@@ -22,7 +26,6 @@ const Terms = lazy(() => import("./pages/Terms"));
 const Cookies = lazy(() => import("./pages/Cookies"));
 const Shop = lazy(() => import("./pages/Shop"));
 const Highlights = lazy(() => import("./pages/Highlights"));
-const CasinoBonus = lazy(() => import("./pages/CasinoBonus"));
 
 const Leaderboard = lazy(() => import("./pages/Leaderboard"));
 const RewardsProgram = lazy(() => import("./pages/RewardsProgram"));
@@ -87,7 +90,16 @@ const queryClient = new QueryClient({
   },
 });
 
-const PageFallback = () => <div className="min-h-screen" />;
+const PageFallback = () => (
+  <div className="min-h-screen p-6 space-y-6">
+    <Skeleton className="h-10 w-3/4 max-w-md" />
+    <Skeleton className="h-6 w-1/2 max-w-sm" />
+    <div className="space-y-4 pt-4">
+      <Skeleton className="h-40 w-full max-w-4xl rounded-xl" />
+      <Skeleton className="h-40 w-full max-w-4xl rounded-xl" />
+    </div>
+  </div>
+);
 
 const App = () => (
   <HelmetProvider>
