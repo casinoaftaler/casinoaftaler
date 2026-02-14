@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { SEO } from "@/components/SEO";
 import { HeroSection } from "@/components/HeroSection";
-import { SpillehalPromoSection } from "@/components/SpillehalPromoSection";
+import { CommunityPromoSection } from "@/components/CommunityPromoSection";
 import { CasinoCard } from "@/components/CasinoCard";
 import { BonusTypeCards } from "@/components/BonusTypeCards";
 import { FAQSection } from "@/components/FAQSection";
@@ -178,7 +178,7 @@ const Index = () => {
         </div>
       </section>
 
-      <SpillehalPromoSection />
+      <CommunityPromoSection />
       <BonusTypeCards />
 
       {/* === SEO Content Sections === */}

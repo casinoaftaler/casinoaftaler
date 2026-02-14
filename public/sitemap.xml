@@ -237,6 +237,43 @@
     <priority>0.7</priority>
   </url>
 
+  <!-- Community -->
+  <url>
+    <loc>https://casinoaftaler.dk/community/slots</loc>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://casinoaftaler.dk/community/slots/book-of-fedesvin</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://casinoaftaler.dk/community/slots/rise-of-fedesvin</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://casinoaftaler.dk/community/leaderboard</loc>
+    <changefreq>daily</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://casinoaftaler.dk/community/rewards</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://casinoaftaler.dk/highlights</loc>
+    <changefreq>daily</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://casinoaftaler.dk/butik</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
   <!-- Info & Ansvarligt Spil -->
   <url>
     <loc>https://casinoaftaler.dk/responsible-gaming</loc>
