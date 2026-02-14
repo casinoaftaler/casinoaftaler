@@ -426,13 +426,59 @@ const SwiftCasinoAnmeldelse = () => {
 
         <Separator className="my-10" />
 
+        {/* Mobiloplevelse */}
+        <section className="mb-12">
+          <h2 className="mb-4 text-3xl font-bold">Mobiloplevelse hos Swift Casino</h2>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            Swift Casino har ingen dedikeret app, men hjemmesiden er fuldt optimeret til mobil og fungerer problemfrit i alle moderne browsere på både iOS og Android. Designet tilpasser sig automatisk til din skærmstørrelse, og alle funktioner – inklusiv Hot Or Cold – er tilgængelige på mobilen.
+          </p>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            Spilleautomater, bordspil og{" "}
+            <Link to="/live-casino" className={linkClass}>live casino</Link>{" "}
+            kører glidende på mobilen, og indbetalinger via{" "}
+            <Link to="/betalingsmetoder" className={linkClass}>MobilePay og Trustly</Link>{" "}
+            kan gennemføres med få tryk. Login via MitID fungerer sømløst, og du kan hurtigt skifte mellem spil uden forsinkelser.
+          </p>
+          <p className="text-muted-foreground leading-relaxed">
+            Vi testede mobilversionen på flere enheder og oplevede konsekvent hurtige loadtider, stabil streaming i live casinoet og ingen tekniske problemer. For spillere, der primært spiller på farten, er Swift Casino et godt valg.
+          </p>
+        </section>
+
+        <Separator className="my-10" />
+
+        {/* Registrering */}
+        <section className="mb-12">
+          <h2 className="mb-4 text-3xl font-bold">Tilmelding og registrering</h2>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            Tilmeldingsprocessen hos Swift Casino er hurtig og enkel takket være MitID-integration. Du behøver kun at indtaste dit CPR-nummer, godkende via MitID-appen, vælge dine indbetalingsgrænser og foretage din første indbetaling. Hele processen tager under 5 minutter.
+          </p>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            Som med alle danske casinoer med licens fra Spillemyndigheden skal du sætte daglige, ugentlige og månedlige indbetalingsgrænser ved oprettelsen. Dette er en del af lovgivningen om{" "}
+            <Link to="/responsible-gaming" className="text-primary hover:underline">ansvarligt spil</Link>{" "}
+            og kan altid justeres senere via din kontoside.
+          </p>
+          <p className="text-muted-foreground leading-relaxed">
+            Husk at indtaste bonuskoden <strong className="text-foreground">SWIFT</strong> efter din første indbetaling for at aktivere{" "}
+            <Link to="/velkomstbonus" className={linkClass}>velkomstbonussen</Link> på 100 % op til 500 kr. Bonussen tilføjes ikke automatisk – koden er påkrævet.
+          </p>
+        </section>
+
+        <Separator className="my-10" />
+
         {/* Security */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold">Sikkerhed og licens</h2>
-          <p className="mb-6 text-muted-foreground leading-relaxed">
-            Swift Casino opererer med licens fra Spillemyndigheden (nr. 16-1066791). Skill On Net Ltd har haft dansk licens siden 2017, hvilket giver en solid baggrund. Alle data beskyttes med SSL-kryptering, og casinoet er tilsluttet{" "}
-            <a href="https://www.rofus.nu/" target="_blank" rel="noopener noreferrer" className={linkClass}>ROFUS</a> og{" "}
-            <a href="https://www.stopspillet.dk/" target="_blank" rel="noopener noreferrer" className={linkClass}>StopSpillet</a>.
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            Swift Casino opererer med licens fra Spillemyndigheden (nr. 16-1066791). Skill On Net Ltd har haft dansk licens siden 2017, hvilket giver en solid baggrund og dokumenteret pålidelighed. Selskabet driver også flere andre velkendte casinoer i Danmark, hvilket yderligere understreger deres erfaring i branchen.
+          </p>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            Alle data beskyttes med 256-bit SSL-kryptering, og casinoet er tilsluttet{" "}
+            <a href="https://www.rofus.nu/" target="_blank" rel="noopener noreferrer" className={linkClass}>ROFUS</a> for selvudelukkelse og{" "}
+            <a href="https://www.stopspillet.dk/" target="_blank" rel="noopener noreferrer" className={linkClass}>StopSpillet</a> for rådgivning om spilleproblemer. Identitetsverifikation sker automatisk via MitID ved tilmelding, hvilket eliminerer behovet for manuel dokumentation.
+          </p>
+          <p className="text-muted-foreground leading-relaxed">
+            Swift Casino overholder desuden Spillemyndighedens strenge regler for{" "}
+            <Link to="/responsible-gaming" className="text-primary hover:underline">ansvarligt spil</Link>, herunder obligatoriske indbetalingsgrænser, session-påmindelser og mulighed for midlertidig udelukkelse. Du kan altid kontakte kundeservice, hvis du har brug for hjælp til at sætte grænser.
           </p>
         </section>
 
