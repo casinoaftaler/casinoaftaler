@@ -18,6 +18,7 @@ export function SocialLinksInput() {
   const [linkedinUrl, setLinkedinUrl] = useState("");
   const [xUrl, setXUrl] = useState("");
   const [facebookUrl, setFacebookUrl] = useState("");
+  const [snapchatUrl, setSnapchatUrl] = useState("");
   const [streamElementsChannelId, setStreamElementsChannelId] = useState("");
   const [saving, setSaving] = useState(false);
 
@@ -30,6 +31,7 @@ export function SocialLinksInput() {
       setLinkedinUrl(siteSettings.linkedin_url || "");
       setXUrl(siteSettings.x_url || "");
       setFacebookUrl(siteSettings.facebook_url || "");
+      setSnapchatUrl(siteSettings.snapchat_url || "");
       setStreamElementsChannelId(siteSettings.streamelements_channel_id || "");
     }
   }, [siteSettings]);
@@ -64,6 +66,7 @@ export function SocialLinksInput() {
         saveSetting("linkedin_url", linkedinUrl),
         saveSetting("x_url", xUrl),
         saveSetting("facebook_url", facebookUrl),
+        saveSetting("snapchat_url", snapchatUrl),
         saveSetting("streamelements_channel_id", streamElementsChannelId),
       ]);
       
@@ -183,6 +186,21 @@ export function SocialLinksInput() {
           value={linkedinUrl}
           onChange={(e) => setLinkedinUrl(e.target.value)}
           placeholder="https://linkedin.com/in/..."
+        />
+      </div>
+
+      <div className="space-y-2">
+        <Label htmlFor="snapchat_url" className="flex items-center gap-2">
+          <svg className="h-4 w-4" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12.206.793c.99 0 4.347.276 5.93 3.821.529 1.193.403 3.219.299 4.847l-.003.06c-.012.18-.022.345-.03.51.075.045.203.09.401.09.3-.016.659-.12 1.033-.301.165-.088.344-.104.464-.104.182 0 .299.04.451.123.076.042.18.12.18.12.061.036.12.074.165.12.226.209.195.504.089.69-.135.227-.405.45-.736.614-.18.09-.39.15-.615.195l-.122.03c-.27.06-.57.12-.795.24-.225.12-.39.3-.45.51-.06.195-.015.42.12.63.255.375.51.705.81 1.02.33.345.72.66 1.17.93 1.005.6 1.485.81 1.875 1.215.21.21.315.435.285.69-.03.27-.225.48-.495.615-.375.195-.855.3-1.335.33a5.11 5.11 0 0 1-.57-.015c-.12-.015-.255-.03-.39-.03-.18 0-.33.045-.48.135-.165.09-.315.225-.435.39-.24.33-.555.645-.93.855-.39.21-.855.33-1.365.33-.12 0-.24-.015-.345-.03-.285-.045-.525-.105-.72-.165a4.5 4.5 0 0 0-.555-.12c-.12-.015-.24-.03-.375-.03s-.27.015-.39.03c-.165.03-.345.075-.555.12-.195.06-.435.12-.72.165a2.46 2.46 0 0 1-.345.03c-.51 0-.975-.12-1.365-.33a2.7 2.7 0 0 1-.93-.855c-.12-.165-.27-.3-.435-.39a.96.96 0 0 0-.48-.135c-.135 0-.27.015-.39.03-.12.015-.255.03-.57.015-.48-.03-.96-.135-1.335-.33-.27-.135-.465-.345-.495-.615-.03-.255.075-.48.285-.69.39-.405.87-.615 1.875-1.215.45-.27.84-.585 1.17-.93.3-.315.555-.645.81-1.02.135-.21.18-.435.12-.63-.06-.21-.225-.39-.45-.51-.225-.12-.525-.18-.795-.24l-.122-.03a3.3 3.3 0 0 1-.615-.195c-.33-.165-.6-.387-.736-.614-.105-.186-.136-.481.089-.69.045-.046.104-.084.165-.12 0 0 .104-.078.18-.12.152-.083.269-.123.451-.123.12 0 .3.016.464.104.374.181.733.285 1.033.301.198 0 .326-.045.401-.09a8.34 8.34 0 0 1-.033-.57c-.104-1.628-.23-3.654.299-4.847C7.86 1.069 11.216.793 12.206.793z"/>
+          </svg>
+          Snapchat URL
+        </Label>
+        <Input
+          id="snapchat_url"
+          value={snapchatUrl}
+          onChange={(e) => setSnapchatUrl(e.target.value)}
+          placeholder="https://snapchat.com/..."
         />
       </div>
 
