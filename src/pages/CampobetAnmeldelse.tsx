@@ -10,7 +10,7 @@ import { useCasinos } from "@/hooks/useCasinos";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
 import { getAffiliateRedirect } from "@/lib/affiliateRedirect";
 import { useAuth } from "@/hooks/useAuth";
-import { QuickFactsProviders } from "@/components/QuickFactsProviders";
+import { QuickFactsProviders, QuickFactsLogo } from "@/components/QuickFactsProviders";
 import type { ReactNode } from "react";
 import {
   Accordion,
@@ -249,10 +249,13 @@ const CampobetAnmeldelse = () => {
         <section className="mb-12">
           <Card className="border-border bg-card border-l-4 border-l-primary">
             <CardHeader>
-              <CardTitle className="flex items-center gap-2 text-xl">
-                <Zap className="h-6 w-6 text-primary" />
-                Hurtige Fakta – Campobet
-              </CardTitle>
+              <div className="flex items-center justify-between">
+                <CardTitle className="flex items-center gap-2 text-xl">
+                  <Zap className="h-6 w-6 text-primary" />
+                  Hurtige Fakta – Campobet
+                </CardTitle>
+                <QuickFactsLogo logoUrl={casino?.logo_url} casinoName={casino?.name} />
+              </div>
             </CardHeader>
             <CardContent>
               <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
@@ -291,7 +294,7 @@ const CampobetAnmeldelse = () => {
                   <p className="text-lg font-bold text-foreground">Denix Limited</p>
                 </div>
               </div>
-              <QuickFactsProviders providers={["Pragmatic Play", "Hacksaw Gaming", "Nolimit City", "NetEnt", "Play'n GO", "Yggdrasil", "ELK Studios", "Quickspin", "Red Tiger", "Push Gaming", "Relax Gaming", "Evolution Gaming"]} logoUrl={casino?.logo_url} casinoName={casino?.name} />
+              <QuickFactsProviders providers={["Pragmatic Play", "Hacksaw Gaming", "Nolimit City", "NetEnt", "Play'n GO", "Yggdrasil", "ELK Studios", "Quickspin", "Red Tiger", "Push Gaming", "Relax Gaming", "Evolution Gaming"]} />
             </CardContent>
           </Card>
         </section>

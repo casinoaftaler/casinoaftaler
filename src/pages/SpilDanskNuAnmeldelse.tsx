@@ -17,7 +17,7 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
-import { QuickFactsProviders } from "@/components/QuickFactsProviders";
+import { QuickFactsProviders, QuickFactsLogo } from "@/components/QuickFactsProviders";
 import {
   ShieldCheck,
   Star,
@@ -244,10 +244,13 @@ const SpilDanskNuAnmeldelse = () => {
         <section className="mb-12">
           <Card className="border-border bg-card border-l-4 border-l-primary">
             <CardHeader>
-              <CardTitle className="flex items-center gap-2 text-xl">
-                <Zap className="h-6 w-6 text-primary" />
-                Hurtige Fakta – SpilDanskNu
-              </CardTitle>
+              <div className="flex items-center justify-between">
+                <CardTitle className="flex items-center gap-2 text-xl">
+                  <Zap className="h-6 w-6 text-primary" />
+                  Hurtige Fakta – SpilDanskNu
+                </CardTitle>
+                <QuickFactsLogo logoUrl={casino?.logo_url} casinoName={casino?.name} />
+              </div>
             </CardHeader>
             <CardContent>
               <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
@@ -286,7 +289,7 @@ const SpilDanskNuAnmeldelse = () => {
                   <p className="text-lg font-bold text-foreground">Winteq ApS</p>
                 </div>
               </div>
-              <QuickFactsProviders providers={["Pragmatic Play", "Play'n GO", "Quickspin", "Push Gaming", "Hacksaw Gaming", "Stakelogic", "Synot", "Greentube", "ELK Studios", "Wazdan", "Endorphina"]} logoUrl={casino?.logo_url} casinoName={casino?.name} />
+              <QuickFactsProviders providers={["Pragmatic Play", "Play'n GO", "Quickspin", "Push Gaming", "Hacksaw Gaming", "Stakelogic", "Synot", "Greentube", "ELK Studios", "Wazdan", "Endorphina"]} />
             </CardContent>
           </Card>
         </section>
