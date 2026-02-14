@@ -13,6 +13,7 @@ import { getAffiliateRedirect } from "@/lib/affiliateRedirect";
 import { useAuth } from "@/hooks/useAuth";
 import { QuickFactsProviders, QuickFactsLogo } from "@/components/QuickFactsProviders";
 import type { ReactNode } from "react";
+import lunaHero from "@/assets/heroes/luna-casino-hero.jpg";
 import {
   Accordion,
   AccordionContent,
@@ -167,6 +168,10 @@ const LunaCasinoAnmeldelse = () => {
           <div className="flex items-center gap-1.5"><User className="h-4 w-4" /><span>Skrevet af: <span className="font-medium text-foreground">Casinoaftaler</span></span></div>
           <div className="flex items-center gap-1.5"><CalendarDays className="h-4 w-4" /><span>Opdateret: <span className="font-medium text-foreground">13-02-2026</span></span></div>
           <div className="flex items-center gap-1.5"><BookOpen className="h-4 w-4" /><span>Læsetid: <span className="font-medium text-foreground">16 Min.</span></span></div>
+        </div>
+
+        <div className="mb-10 overflow-hidden rounded-xl">
+          <img src={lunaHero} alt="Luna Casino – kvalitetsbevidst dansk casino med loyalitetsprogram" className="w-full h-auto object-cover max-h-[400px]" loading="eager" />
         </div>
 
         {/* Quick Facts */}

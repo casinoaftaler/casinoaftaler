@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { ProviderPage } from "./providers/ProviderPageTemplate";
+import microgamingHero from "@/assets/heroes/microgaming-hero.jpg";
 
 const MicrogamingGuide = () => (
   <ProviderPage
@@ -7,6 +8,8 @@ const MicrogamingGuide = () => (
     seoDescription="Komplet guide til Microgaming – branchens pioner siden 1994. Læs om Mega Moolah, deres 900+ spil og hvordan de har formet online casinoindustrien."
     name="Microgaming"
     heroSubtitle="Microgaming er en pioner i casinobranchen og var blandt de første til at lancere et online casino i 1994. Med over 900 spil og verdensrekorder i jackpots er de en legende."
+    heroImage={microgamingHero}
+    heroImageAlt="Microgaming – pioner i online casino siden 1994"
     currentPath="/spiludviklere/microgaming"
     introTitle="Hvad er Microgaming?"
     introContent={

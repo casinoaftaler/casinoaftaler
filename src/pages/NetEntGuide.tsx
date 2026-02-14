@@ -26,6 +26,7 @@ import {
   CalendarDays,
   BookOpen,
 } from "lucide-react";
+import netentHero from "@/assets/heroes/netent-hero.jpg";
 
 const NetEntGuide = () => {
   const { data: siteSettings } = useSiteSettings();
@@ -131,6 +132,10 @@ const NetEntGuide = () => {
             <BookOpen className="h-4 w-4" />
             <span>Læsetid: <span className="font-medium text-foreground">12 Min.</span></span>
           </div>
+        </div>
+
+        <div className="mb-10 overflow-hidden rounded-xl">
+          <img src={netentHero} alt="NetEnt – førende svensk spiludvikler bag Starburst og Gonzo's Quest" className="w-full h-auto object-cover max-h-[400px]" loading="eager" />
         </div>
 
         <section className="mb-12">

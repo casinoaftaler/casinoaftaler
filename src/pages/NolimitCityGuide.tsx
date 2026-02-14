@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { ProviderPage } from "./providers/ProviderPageTemplate";
+import nolimitHero from "@/assets/heroes/nolimit-city-hero.jpg";
 
 const NolimitCityGuide = () => (
   <ProviderPage
@@ -7,6 +8,8 @@ const NolimitCityGuide = () => (
     seoDescription="Komplet guide til Nolimit City – opkøbt af Evolution for 2,5 milliarder. Læs om deres xWays og xNudge-mekanikker, populære spil og unikke position i branchen."
     name="Nolimit City"
     heroSubtitle="Nolimit City har redefineret high-volatility slots med unikke mekanikker som xWays og xNudge. Opkøbt af Evolution Gaming for 2,5 milliarder kroner i 2022."
+    heroImage={nolimitHero}
+    heroImageAlt="Nolimit City – high-volatility slots med xWays og xNudge mekanikker"
     currentPath="/spiludviklere/nolimit-city"
     introTitle="Hvad er Nolimit City?"
     introContent={

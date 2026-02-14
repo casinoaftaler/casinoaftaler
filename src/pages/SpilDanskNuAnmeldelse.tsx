@@ -12,6 +12,7 @@ import { useSiteSettings } from "@/hooks/useSiteSettings";
 import { getAffiliateRedirect } from "@/lib/affiliateRedirect";
 import { useAuth } from "@/hooks/useAuth";
 import type { ReactNode } from "react";
+import spildanskHero from "@/assets/heroes/spildansknu-hero.jpg";
 import {
   Accordion,
   AccordionContent,
@@ -239,6 +240,10 @@ const SpilDanskNuAnmeldelse = () => {
             <BookOpen className="h-4 w-4" />
             <span>Læsetid: <span className="font-medium text-foreground">14 Min.</span></span>
           </div>
+        </div>
+
+        <div className="mb-10 overflow-hidden rounded-xl">
+          <img src={spildanskHero} alt="SpilDanskNu – etableret dansk online casino siden 2017" className="w-full h-auto object-cover max-h-[400px]" loading="eager" />
         </div>
 
         {/* Quick Facts Card */}
