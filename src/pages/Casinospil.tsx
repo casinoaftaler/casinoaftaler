@@ -682,24 +682,30 @@ const Casinospil = () => {
         <Separator className="my-10" />
 
         {/* FAQ */}
-        <section className="mb-12">
-          <h2 className="mb-6 flex items-center gap-2 text-3xl font-bold">
-            <HelpCircle className="h-7 w-7 text-primary" />
-            Ofte stillede spørgsmål om casinospil
-          </h2>
-          <Accordion type="single" collapsible className="w-full">
-            {casinospilFaqs.map((faq, idx) => (
-              <AccordionItem key={idx} value={`faq-${idx}`}>
-                <AccordionTrigger className="text-left text-base font-medium">
-                  {faq.question}
-                </AccordionTrigger>
-                <AccordionContent className="text-muted-foreground leading-relaxed">
-                  {faq.answer}
-                </AccordionContent>
-              </AccordionItem>
-            ))}
-          </Accordion>
-        </section>
+        <Card className="mb-12">
+          <CardHeader>
+            <div className="flex items-center gap-2">
+              <HelpCircle className="h-7 w-7 text-primary" />
+              <CardTitle className="text-2xl md:text-3xl">
+                Ofte stillede spørgsmål om casinospil
+              </CardTitle>
+            </div>
+          </CardHeader>
+          <CardContent>
+            <Accordion type="single" collapsible className="space-y-3">
+              {casinospilFaqs.map((faq, idx) => (
+                <AccordionItem key={idx} value={`faq-${idx}`} className="rounded-lg border border-border bg-muted/50 px-6">
+                  <AccordionTrigger className="text-left text-base font-medium hover:no-underline">
+                    {faq.question}
+                  </AccordionTrigger>
+                  <AccordionContent className="text-muted-foreground leading-relaxed">
+                    {faq.answer}
+                  </AccordionContent>
+                </AccordionItem>
+              ))}
+            </Accordion>
+          </CardContent>
+        </Card>
 
         <Separator className="my-10" />
 
