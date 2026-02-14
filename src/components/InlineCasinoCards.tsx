@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { Loader2 } from "lucide-react";
 import { useCasinos } from "@/hooks/useCasinos";
 import { CasinoCard } from "@/components/CasinoCard";
@@ -18,6 +19,8 @@ export function InlineCasinoCards({
   excludeSlugs = [],
 }: InlineCasinoCardsProps) {
   const { data: casinos, isLoading } = useCasinos();
+  const [openCasinoId, setOpenCasinoId] = useState<string | null>(null);
+
   const displayCasinos = (casinos ?? [])
     .filter((c) => !excludeSlugs.includes(c.slug))
     .slice(0, count);
@@ -64,18 +67,37 @@ export function InlineCasinoCards({
   return (
     <>
       <Separator className="my-10" />
-      <section className="mb-12 space-y-4">
-        <h3 className="text-lg font-semibold text-center text-muted-foreground">
-          {title}
-        </h3>
-        <div className="grid gap-3 grid-cols-2 lg:grid-cols-3">
-          {displayCasinos.map((casino, index) => (
-            <CasinoCard
-              key={casino.id}
-              casino={mapCasino(casino)}
-              rank={index + 3}
-            />
-          ))}
+      <section className="mb-12">
+        <h3 className="text-2xl font-bold mb-6 text-center">{title}</h3>
+        <div className="space-y-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 items-start">
+            {displayCasinos.slice(0, 2).map((casino, index) => (
+              <CasinoCard
+                key={casino.id}
+                casino={mapCasino(casino)}
+                rank={index + 1}
+                open={openCasinoId === casino.id}
+                onOpenChange={(open) =>
+                  setOpenCasinoId(open ? casino.id : null)
+                }
+              />
+            ))}
+          </div>
+          {displayCasinos.length > 2 && (
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 items-start">
+              {displayCasinos.slice(2).map((casino, index) => (
+                <CasinoCard
+                  key={casino.id}
+                  casino={mapCasino(casino)}
+                  rank={index + 3}
+                  open={openCasinoId === casino.id}
+                  onOpenChange={(open) =>
+                    setOpenCasinoId(open ? casino.id : null)
+                  }
+                />
+              ))}
+            </div>
+          )}
         </div>
       </section>
     </>
