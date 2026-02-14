@@ -156,6 +156,66 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://casinoaftaler.dk/betalingsmetoder/apple-pay</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://casinoaftaler.dk/betalingsmetoder/mobilepay</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://casinoaftaler.dk/betalingsmetoder/paypal</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://casinoaftaler.dk/betalingsmetoder/skrill</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://casinoaftaler.dk/betalingsmetoder/trustly</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://casinoaftaler.dk/betalingsmetoder/zimpler</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://casinoaftaler.dk/betalingsmetoder/paysafecard</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://casinoaftaler.dk/betalingsmetoder/bankoverforsler</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://casinoaftaler.dk/betalingsmetoder/visa-mastercard</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://casinoaftaler.dk/betalingsmetoder/revolut</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://casinoaftaler.dk/spiludviklere/evolution-gaming</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://casinoaftaler.dk/spiludviklere/elk-studios</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://casinoaftaler.dk/responsible-gaming</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>

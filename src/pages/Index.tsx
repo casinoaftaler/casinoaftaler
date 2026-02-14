@@ -362,7 +362,7 @@ const Index = () => {
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold">Betalingsmetoder og Spiludviklere</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
-            Et godt online casino skal tilbyde et bredt udvalg af sikre og hurtige betalingsmetoder. De mest populære metoder blandt danske spillere inkluderer MobilePay, Trustly, Visa og bankoverførsler. Vi har samlet en komplet{" "}
+            Et godt online casino skal tilbyde et bredt udvalg af sikre og hurtige betalingsmetoder. De mest populære metoder blandt danske spillere inkluderer <Link to="/betalingsmetoder/mobilepay" className="text-primary hover:underline font-medium">MobilePay</Link>, <Link to="/betalingsmetoder/trustly" className="text-primary hover:underline font-medium">Trustly</Link>, <Link to="/betalingsmetoder/visa-mastercard" className="text-primary hover:underline font-medium">Visa</Link> og bankoverførsler. Vi har samlet en komplet{" "}
             <Link to="/betalingsmetoder" className="text-primary hover:underline font-medium">guide til betalingsmetoder</Link>
             {" "}på danske casinoer, hvor du kan lære om fordele, ulemper og behandlingstider for hver metode.
           </p>

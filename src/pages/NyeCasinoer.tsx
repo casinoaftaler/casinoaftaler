@@ -421,7 +421,7 @@ const NyeCasinoer = () => {
               <div>
                 <h3 className="font-semibold">Betalingsmetoder</h3>
                 <p className="text-sm text-muted-foreground">
-                  MobilePay, Trustly, Visa og andre populære metoder – vi tjekker
+                  <Link to="/betalingsmetoder/mobilepay" className={linkClass}>MobilePay</Link>, <Link to="/betalingsmetoder/trustly" className={linkClass}>Trustly</Link>, Visa og andre populære metoder – vi tjekker
                   at ind- og udbetalinger kører hurtigt og sikkert. Læs vores{" "}
                   <Link to="/betalingsmetoder" className={linkClass}>guide til betalingsmetoder</Link>.
                 </p>
@@ -500,7 +500,7 @@ const NyeCasinoer = () => {
               <div>
                 <h3 className="font-semibold">Hurtigere betalinger</h3>
                 <p className="text-sm text-muted-foreground">
-                  MobilePay, Trustly og øjeblikkelige udbetalinger bliver standarden hos nye casinoer. Se alle{" "}
+                  <Link to="/betalingsmetoder/mobilepay" className={linkClass}>MobilePay</Link>, <Link to="/betalingsmetoder/trustly" className={linkClass}>Trustly</Link> og øjeblikkelige udbetalinger bliver standarden hos nye casinoer. Se alle{" "}
                   <Link to="/betalingsmetoder" className={linkClass}>betalingsmetoder</Link>.
                 </p>
               </div>
@@ -832,7 +832,7 @@ const NyeCasinoer = () => {
             <Link to="/betalingsmetoder" className={linkClass}>betalingsmetoder</Link>. Indbetalinger er typisk øjeblikkelige, mens udbetalingstider varierer fra sekunder til et par bankdage afhængigt af metoden.
           </p>
           <p className="mb-6 text-muted-foreground leading-relaxed">
-            De mest populære betalingsmuligheder hos nye casinoer inkluderer MobilePay, Trustly for direkte bankoverførsler, samt Visa og Mastercard. Nogle nye spillesteder understøtter også Pay N Play.
+            De mest populære betalingsmuligheder hos nye casinoer inkluderer <Link to="/betalingsmetoder/mobilepay" className={linkClass}>MobilePay</Link>, <Link to="/betalingsmetoder/trustly" className={linkClass}>Trustly</Link> for direkte bankoverførsler, samt <Link to="/betalingsmetoder/visa-mastercard" className={linkClass}>Visa og Mastercard</Link>. Nogle nye spillesteder understøtter også Pay N Play.
           </p>
           <div className="space-y-3">
             {[
