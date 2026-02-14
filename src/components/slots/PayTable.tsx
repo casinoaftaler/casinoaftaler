@@ -13,16 +13,18 @@ import { getSymbolEmoji, RARITY_LABELS } from "@/lib/slotGameLogic";
 import { cn } from "@/lib/utils";
 import { getSlotTheme } from "@/lib/slotTheme";
 
-// Format multiplier: show "5×" for whole numbers, "1.5×" for decimals
-const formatMultiplier = (value: number): string => {
-  return Number.isInteger(value) ? `${value}×` : `${parseFloat(value.toFixed(2))}×`;
+// Format payout: show actual credit amount based on bet
+const formatPayout = (multiplier: number, bet: number): string => {
+  const payout = multiplier * bet;
+  return Number.isInteger(payout) ? `${payout}` : `${parseFloat(payout.toFixed(2))}`;
 };
 
 interface PayTableProps {
   gameId?: string;
+  bet?: number;
 }
 
-export function PayTable({ gameId }: PayTableProps) {
+export function PayTable({ gameId, bet = 1 }: PayTableProps) {
   const { data: symbols } = useSlotSymbols(gameId);
   const theme = getSlotTheme(gameId);
 
@@ -43,10 +45,10 @@ export function PayTable({ gameId }: PayTableProps) {
           <span>{symbol.name}</span>
         </div>
       </TableCell>
-      <TableCell className="text-right">{formatMultiplier(symbol.multiplier_2)}</TableCell>
-      <TableCell className="text-right">{formatMultiplier(symbol.multiplier_3)}</TableCell>
-      <TableCell className="text-right">{formatMultiplier(symbol.multiplier_4)}</TableCell>
-      <TableCell className="text-right">{formatMultiplier(symbol.multiplier_5)}</TableCell>
+      <TableCell className="text-right">{formatPayout(symbol.multiplier_2, bet)}</TableCell>
+      <TableCell className="text-right">{formatPayout(symbol.multiplier_3, bet)}</TableCell>
+      <TableCell className="text-right">{formatPayout(symbol.multiplier_4, bet)}</TableCell>
+      <TableCell className="text-right">{formatPayout(symbol.multiplier_5, bet)}</TableCell>
     </TableRow>
   );
 
@@ -62,9 +64,9 @@ export function PayTable({ gameId }: PayTableProps) {
           <span>{symbol.name}</span>
         </div>
       </TableCell>
-      <TableCell className="text-right">{formatMultiplier(symbol.multiplier_3)}</TableCell>
-      <TableCell className="text-right">{formatMultiplier(symbol.multiplier_4)}</TableCell>
-      <TableCell className="text-right">{formatMultiplier(symbol.multiplier_5)}</TableCell>
+      <TableCell className="text-right">{formatPayout(symbol.multiplier_3, bet)}</TableCell>
+      <TableCell className="text-right">{formatPayout(symbol.multiplier_4, bet)}</TableCell>
+      <TableCell className="text-right">{formatPayout(symbol.multiplier_5, bet)}</TableCell>
     </TableRow>
   );
 
@@ -98,7 +100,7 @@ export function PayTable({ gameId }: PayTableProps) {
         
         <div className="space-y-4">
           <p className="text-sm text-muted-foreground">
-            Gevinster multipliceres med din indsats. Scatter er både Wild og Scatter - 3+ udløser bonus!
+            Viser gevinster ved indsats <strong>{bet}</strong>. Scatter er både Wild og Scatter - 3+ udløser bonus!
           </p>
           
           {/* Premium Symbols Section */}
@@ -177,9 +179,9 @@ export function PayTable({ gameId }: PayTableProps) {
                         <span>{scatterSymbol.name}</span>
                       </div>
                     </TableCell>
-                    <TableCell className="text-right">{formatMultiplier(scatterSymbol.multiplier_3)}</TableCell>
-                    <TableCell className="text-right">{formatMultiplier(scatterSymbol.multiplier_4)}</TableCell>
-                    <TableCell className="text-right">{formatMultiplier(scatterSymbol.multiplier_5)}</TableCell>
+                    <TableCell className="text-right">{formatPayout(scatterSymbol.multiplier_3, bet)}</TableCell>
+                    <TableCell className="text-right">{formatPayout(scatterSymbol.multiplier_4, bet)}</TableCell>
+                    <TableCell className="text-right">{formatPayout(scatterSymbol.multiplier_5, bet)}</TableCell>
                   </TableRow>
                 </TableBody>
               </Table>
