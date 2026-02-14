@@ -1,3 +1,4 @@
+import React from "react";
 import { Link } from "react-router-dom";
 import { FAQSection } from "@/components/FAQSection";
 import { SEO } from "@/components/SEO";
@@ -43,7 +44,9 @@ import {
 import { useSiteSettings } from "@/hooks/useSiteSettings";
 import { RelatedGuides } from "@/components/RelatedGuides";
 
-const noStickyFaqs = [
+const linkClass = "text-primary underline hover:text-primary/80";
+
+const noStickyFaqs: { question: string; answer: string | React.ReactNode }[] = [
   {
     question: "Hvad er en No-Sticky Bonus?",
     answer:
@@ -51,23 +54,39 @@ const noStickyFaqs = [
   },
   {
     question: "Findes der No-Sticky Bonusser hos danske casinoer?",
-    answer:
-      "Ja, No-Sticky Bonusser er blevet mere udbredte i Danmark. Flere store operatører tilbyder nu denne bonustype, ofte som en del af deres velkomstpakke til nye spillere.",
+    answer: (
+      <>
+        Ja, No-Sticky Bonusser er blevet mere udbredte i Danmark. Flere store operatører tilbyder nu denne bonustype, ofte som en del af deres{" "}
+        <Link to="/velkomstbonus" className={linkClass}>velkomstpakke</Link> til nye spillere.
+      </>
+    ),
   },
   {
     question: "Kan jeg vinde rigtige penge med en No-Sticky Bonus?",
-    answer:
-      "Ja, du kan vinde rigtige penge. Gevinster vundet med dine egne penge kan hæves uden omsætningskrav. Gevinster vundet med bonusmidlerne kræver dog, at omsætningskravene opfyldes først.",
+    answer: (
+      <>
+        Ja, du kan vinde rigtige penge. Gevinster vundet med dine egne penge kan hæves uden{" "}
+        <Link to="/omsaetningskrav" className={linkClass}>omsætningskrav</Link>. Gevinster vundet med bonusmidlerne kræver dog, at kravene opfyldes først.
+      </>
+    ),
   },
   {
     question: "Hvad er forskellen mellem No-Sticky og Sticky Bonus?",
-    answer:
-      "Med en No-Sticky Bonus er dine egne penge og bonusmidler adskilt – du spiller med egne penge først og kan hæve gevinster frit. Med en Sticky Bonus er alt sammenblandet, og du skal opfylde omsætningskrav, før noget kan hæves.",
+    answer: (
+      <>
+        Med en No-Sticky Bonus er dine egne penge og bonusmidler adskilt. Med en{" "}
+        <Link to="/sticky-bonus" className={linkClass}>Sticky Bonus</Link> er alt sammenblandet, og du skal opfylde omsætningskrav, før noget kan hæves.
+      </>
+    ),
   },
   {
     question: "Hvordan aktiverer jeg en No-Sticky Bonus?",
-    answer:
-      "Opret en konto hos et casino med No-Sticky Bonus, foretag en indbetaling, og bonussen tildeles automatisk. Den aktiveres først, når din egen saldo når 0 kr.",
+    answer: (
+      <>
+        Opret en konto hos et casino med No-Sticky Bonus (se vores{" "}
+        <Link to="/nye-casinoer" className={linkClass}>liste over nye casinoer</Link>), foretag en indbetaling, og bonussen tildeles automatisk.
+      </>
+    ),
   },
   {
     question: "Hvad er omsætningskravene for en No-Sticky Bonus?",
@@ -82,12 +101,16 @@ const noStickyFaqs = [
   {
     question: "Er en No-Sticky Bonus bedre end en Sticky Bonus?",
     answer:
-      "Det afhænger af din spillestil. No-Sticky Bonusser giver større fleksibilitet og lavere risiko, da du kan hæve gevinster fra egne penge. Sticky Bonusser tilbyder ofte større bonusbeløb, men kræver fuld gennemspilning.",
+      "Det afhænger af din spillestil. No-Sticky Bonusser giver større fleksibilitet og lavere risiko, da du kan hæve gevinster fra egne penge. Sticky Bonusser tilbyder ofte større bonusbeløb.",
   },
   {
     question: "Er der minimumsindskud for No-Sticky Bonusser?",
-    answer:
-      "Ja, de fleste casinoer kræver et minimumsindskud – typisk mellem 100-200 kr. – for at aktivere en No-Sticky Bonus.",
+    answer: (
+      <>
+        Ja, de fleste casinoer kræver et{" "}
+        <Link to="/indskudsbonus" className={linkClass}>minimumsindskud</Link> – typisk mellem 100-200 kr. – for at aktivere en No-Sticky Bonus.
+      </>
+    ),
   },
 ];
 

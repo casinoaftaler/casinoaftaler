@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { FAQSection } from "@/components/FAQSection";
 import liveCasinoHero from "@/assets/heroes/live-casino-hero.jpg";
@@ -40,41 +40,73 @@ import {
 import { useSiteSettings } from "@/hooks/useSiteSettings";
 import { RelatedGuides } from "@/components/RelatedGuides";
 
-const liveCasinoFaqs = [
+const linkClass = "text-primary underline hover:text-primary/80";
+
+const liveCasinoFaqs: { question: string; answer: string | React.ReactNode }[] = [
   {
     question: "Hvad er et live casino?",
-    answer:
-      "Et live casino er en online platform, hvor du kan spille klassiske casinospil som blackjack, roulette og poker med en rigtig dealer i realtid. Spillet streames live via video, så det føles næsten som at sidde ved et fysisk bord på et ægte casino.",
+    answer: (
+      <>
+        Et live casino er en online platform, hvor du kan spille klassiske{" "}
+        <Link to="/casinospil" className={linkClass}>casinospil</Link> som blackjack, roulette og poker med en rigtig dealer i realtid. Spillet streames live via video, så det føles næsten som at sidde ved et fysisk bord på et ægte casino.
+      </>
+    ),
   },
   {
     question: "Hvilke spil kan jeg spille på live casinoer?",
-    answer:
-      "De mest populære spil på live casinoer er blackjack, roulette, baccarat og poker. Mange casinoer tilbyder også innovative game shows som Crazy Time, Monopoly Live og Dream Catcher, der kombinerer klassiske casinospil med underholdningselementer.",
+    answer: (
+      <>
+        De mest populære spil er blackjack, roulette, baccarat og poker. Mange casinoer tilbyder også innovative game shows som Crazy Time, Monopoly Live og Dream Catcher fra{" "}
+        <Link to="/spiludviklere/evolution-gaming" className={linkClass}>Evolution Gaming</Link>.
+      </>
+    ),
   },
   {
     question: "Er live casinoer tilgængelige i Danmark?",
-    answer:
-      "Ja, mange licenserede online casinoer i Danmark tilbyder live casino med danske dealere og professionelle studier. Alle casinoer på vores liste har gyldig dansk licens fra Spillemyndigheden.",
+    answer: (
+      <>
+        Ja, mange licenserede online casinoer i Danmark tilbyder live casino med danske dealere. Alle casinoer på vores liste har gyldig dansk licens fra Spillemyndigheden. Se vores{" "}
+        <Link to="/top-10-casino-online" className={linkClass}>top 10 casino</Link>-liste.
+      </>
+    ),
   },
   {
     question: "Kan jeg spille live casino gratis?",
-    answer:
-      "Live casinoer er sjældent tilgængelige i gratis versioner, da spillene kører i realtid med rigtige dealere. Dog kan du bruge velkomstbonusser til at prøve live spil med bonuspenge.",
+    answer: (
+      <>
+        Live casinoer er sjældent tilgængelige i gratis versioner. Dog kan du bruge{" "}
+        <Link to="/velkomstbonus" className={linkClass}>velkomstbonusser</Link> til at prøve live spil med bonuspenge, eller finde en{" "}
+        <Link to="/bonus-uden-indbetaling" className={linkClass}>bonus uden indbetaling</Link>.
+      </>
+    ),
   },
   {
     question: "Er det sikkert at spille på live casinoer?",
-    answer:
-      "Ja, så længe du spiller på et licenseret og reguleret casino. Alle casinoer på vores side har dansk licens, SSL-kryptering og er tilsluttet ROFUS for ansvarligt spil.",
+    answer: (
+      <>
+        Ja, så længe du spiller på et licenseret casino. Alle casinoer på vores side har dansk licens, SSL-kryptering og er tilsluttet ROFUS. Læs mere om{" "}
+        <Link to="/responsible-gaming" className={linkClass}>ansvarligt spil</Link>.
+      </>
+    ),
   },
   {
     question: "Hvordan får jeg en live casino bonus?",
-    answer:
-      "Mange live casinoer tilbyder velkomstbonusser, der matcher din første indbetaling. Nogle casinoer har også separate bonusser specifikt til live casino-spil, cashback-tilbud og reload-bonusser.",
+    answer: (
+      <>
+        Mange live casinoer tilbyder{" "}
+        <Link to="/velkomstbonus" className={linkClass}>velkomstbonusser</Link>, der matcher din første indbetaling. Nogle har også separate bonusser til live spil. Tjek altid{" "}
+        <Link to="/omsaetningskrav" className={linkClass}>omsætningskravene</Link>.
+      </>
+    ),
   },
   {
     question: "Kan jeg spille live casino på mobilen?",
-    answer:
-      "Ja, de fleste moderne live casinoer er fuldt optimeret til mobil. Du kan spille live roulette, blackjack og andre spil direkte fra din smartphone eller tablet, uanset om du bruger iOS eller Android.",
+    answer: (
+      <>
+        Ja, de fleste moderne live casinoer er fuldt optimeret til mobil. Du kan indbetale med{" "}
+        <Link to="/betalingsmetoder/mobilepay" className={linkClass}>MobilePay</Link> og spille direkte fra din smartphone.
+      </>
+    ),
   },
   {
     question: "Hvordan fungerer live casinoer teknisk?",
@@ -83,8 +115,14 @@ const liveCasinoFaqs = [
   },
   {
     question: "Hvem er de største udviklere af live casino spil?",
-    answer:
-      "De største og mest anerkendte udviklere inkluderer Evolution Gaming, Pragmatic Play Live, Playtech og Microgaming. Evolution Gaming er markedsleder og står bag populære spil som Lightning Roulette og Crazy Time.",
+    answer: (
+      <>
+        De største udviklere inkluderer{" "}
+        <Link to="/spiludviklere/evolution-gaming" className={linkClass}>Evolution Gaming</Link>,{" "}
+        <Link to="/spiludviklere/pragmatic-play" className={linkClass}>Pragmatic Play</Link> Live, Playtech og{" "}
+        <Link to="/spiludviklere/microgaming" className={linkClass}>Microgaming</Link>. Evolution Gaming er markedsleder og står bag Lightning Roulette og Crazy Time.
+      </>
+    ),
   },
 ];
 
@@ -455,11 +493,11 @@ const LiveCasino = () => {
             {[
               {
                 title: "Evolution Gaming",
-                desc: "Ubestridt markedsleder inden for live casino. Står bag ikoniske spil som Lightning Roulette, Crazy Time og Monopoly Live. Evolution Gaming har revolutioneret branchen med konstant innovation og top streaming-kvalitet.",
+                desc: (<>Ubestridt markedsleder inden for live casino. Står bag ikoniske spil som Lightning Roulette, Crazy Time og Monopoly Live. <Link to="/spiludviklere/evolution-gaming" className="text-primary hover:underline">Læs vores Evolution Gaming-guide</Link>.</>),
               },
               {
                 title: "Pragmatic Play Live",
-                desc: "En af de mest fremadstormende udviklere, kendt for kreative nyfortolkninger af klassiske spil. Power Up Roulette, Mega Roulette og Sweet Bonanza Candy Land er blandt deres mest populære titler.",
+                desc: (<>En af de mest fremadstormende udviklere, kendt for kreative nyfortolkninger af klassiske spil. <Link to="/spiludviklere/pragmatic-play" className="text-primary hover:underline">Læs vores Pragmatic Play-guide</Link>.</>),
               },
               {
                 title: "Playtech",
@@ -467,7 +505,7 @@ const LiveCasino = () => {
               },
               {
                 title: "Microgaming",
-                desc: "Pionerer inden for casinospil siden 1994. Ud over deres berømte spilleautomater har Microgaming også produceret populære live versioner af Casino Hold'em, blackjack og baccarat.",
+                desc: (<>Pionerer inden for casinospil siden 1994. Ud over deres berømte spilleautomater har Microgaming også produceret populære live versioner af Casino Hold'em, blackjack og baccarat. <Link to="/spiludviklere/microgaming" className="text-primary hover:underline">Læs vores Microgaming-guide</Link>.</>),
               },
             ].map((dev) => (
               <div
@@ -707,7 +745,8 @@ const LiveCasino = () => {
                 Ansvarligt spil er nøglen til at have det sjovt på live casinoer uden at miste kontrollen. Sæt altid et budget, inden du begynder, og hold dig til det – tænk på det som en underholdningsudgift. Hold styr på din bankroll og undgå at jagte tab.
               </p>
               <p className="text-muted-foreground leading-relaxed">
-                Live casinoer kan være utroligt spændende, og det er nemt at miste overblikket. Sæt tidsgrænser og brug de værktøjer, som alle danske casinoer tilbyder: indbetalingsgrænser, tabsgrænser og selvudelukkelse via{" "}
+                Live casinoer kan være utroligt spændende, og det er nemt at miste overblikket. Sæt tidsgrænser og brug de værktøjer, som alle danske casinoer tilbyder. Læs mere om{" "}
+                <Link to="/responsible-gaming" className="text-primary hover:underline font-medium">ansvarligt spil</Link>, eller selvudeluk via{" "}
                 <a href="https://www.rofus.nu/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline font-medium">ROFUS</a>
                 . Har du brug for hjælp, kan du kontakte{" "}
                 <a href="https://www.stopspillet.dk/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline font-medium">StopSpillet.dk</a>

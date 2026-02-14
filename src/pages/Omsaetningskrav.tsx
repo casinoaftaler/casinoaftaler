@@ -1,3 +1,4 @@
+import React from "react";
 import { Link } from "react-router-dom";
 import { FAQSection } from "@/components/FAQSection";
 import { SEO } from "@/components/SEO";
@@ -38,36 +39,51 @@ import {
 } from "lucide-react";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
 
-const omsaetningskravFaqs = [
+const linkClass = "text-primary underline hover:text-primary/80";
+
+const omsaetningskravFaqs: { question: string; answer: string | React.ReactNode }[] = [
   {
     question: "Hvad er et omsætningskrav?",
     answer:
-      "Et omsætningskrav (også kaldet gennemspilningskrav) angiver, hvor mange gange du skal spille et bonusbeløb igennem, før du kan hæve eventuelle gevinster. Fx betyder et krav på 10x, at en bonus på 500 kr. kræver, at du samlet satser for 5.000 kr.",
+      "Et omsætningskrav angiver, hvor mange gange du skal spille et bonusbeløb igennem, før du kan hæve eventuelle gevinster. Fx betyder et krav på 10x, at en bonus på 500 kr. kræver, at du samlet satser for 5.000 kr.",
   },
   {
     question: "Gælder omsætningskrav kun for bonusser?",
     answer:
-      "Nej. Alle indbetalinger til danske casinoer har et omsætningskrav på minimum 1x. Det betyder, at du skal spille for hele dit indbetalte beløb mindst én gang, før du kan hæve pengene. Dette skyldes hvidvaskningslovgivningen og gælder uanset, om du modtager en bonus eller ej.",
+      "Nej. Alle indbetalinger til danske casinoer har et omsætningskrav på minimum 1x. Det betyder, at du skal spille for hele dit indbetalte beløb mindst én gang, før du kan hæve pengene. Dette er for at overholde hvidvaskningsloven.",
   },
   {
     question: "Hvad betyder (d+b) i omsætningskrav?",
-    answer:
-      "Forkortelsen (d+b) står for 'deposit + bonus', altså indbetaling + bonus. Det betyder, at omsætningskravet gælder for både dit indbetalte beløb og bonusbeløbet tilsammen. Indbetaler du 500 kr. og får 500 kr. i bonus med 10x (d+b), skal du satse for i alt 10.000 kr.",
+    answer: (
+      <>
+        Forkortelsen (d+b) står for 'deposit + bonus'. Det betyder, at kravet gælder for både dit indbetalte beløb og bonusbeløbet tilsammen. Det er standarden for de fleste{" "}
+        <Link to="/indskudsbonus" className={linkClass}>indskudsbonusser</Link>.
+      </>
+    ),
   },
   {
     question: "Hvad er det maksimale omsætningskrav i Danmark?",
-    answer:
-      "I Danmark har Spillemyndigheden sat et loft på maksimalt 10x for omsætningskrav på bonusser. Dette sikrer, at danske licenserede casinoer tilbyder rimelige vilkår for spillerne. Kravet er en del af den danske spillelovgivning.",
+    answer: (
+      <>
+        I Danmark har Spillemyndigheden sat et loft på maksimalt 10x for omsætningskrav på bonusser. Det sikrer rimelige vilkår. Nogle casinoer tilbyder dog{" "}
+        <Link to="/bonus-uden-omsaetningskrav" className={linkClass}>bonusser helt uden omsætningskrav</Link>.
+      </>
+    ),
   },
   {
     question: "Hvad sker der, hvis jeg løber tør for penge under omsætningen?",
     answer:
-      "Hvis du løber tør for penge, før omsætningskravet er opfyldt, kan du enten indbetale flere penge og fortsætte, eller acceptere at bonussen og tilknyttede gevinster går tabt. Det er derfor vigtigt at vælge bonusser, der passer til dit budget.",
+      "Hvis du løber tør for penge, før kravet er opfyldt, kan du indbetale mere eller acceptere, at bonussen går tabt. Med en{" "}
+      <Link to="/no-sticky-bonus" className={linkClass}>no-sticky bonus</Link>{" "}
+      starter du dog med dine egne penge først.",
   },
   {
     question: "Tæller alle spil lige meget mod omsætningskravet?",
-    answer:
-      "Nej. Spilleautomater bidrager typisk 100% til omsætningskravet, mens bordspil som blackjack og roulette ofte kun bidrager 10-20%. Visse spil kan være helt udelukket. Tjek altid de specifikke vilkår for din bonus.",
+    answer: (
+      <>
+        Nej. <Link to="/casinospil" className={linkClass}>Spilleautomater</Link> bidrager typisk 100%, mens bordspil ofte kun bidrager 10-20%. Live casino-spil kan være helt udelukket.
+      </>
+    ),
   },
 ];
 
