@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { FAQSection } from "@/components/FAQSection";
 import { SEO } from "@/components/SEO";
 import { RelatedGuides } from "@/components/RelatedGuides";
+import velkomstbonusHero from "@/assets/heroes/velkomstbonus-hero.jpg";
 import { InlineCasinoCards } from "@/components/InlineCasinoCards";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -192,6 +193,10 @@ const Velkomstbonus = () => {
               <span className="font-medium text-foreground">11 Min.</span>
             </span>
           </div>
+        </div>
+
+        <div className="mb-10 overflow-hidden rounded-xl">
+          <img src={velkomstbonusHero} alt="Velkomstbonus – gaveboks med casino chips" className="w-full h-auto object-cover max-h-[400px]" loading="eager" />
         </div>
 
         {/* Intro */}

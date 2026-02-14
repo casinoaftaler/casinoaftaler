@@ -8,6 +8,7 @@ import { CasinoCard } from "@/components/CasinoCard";
 import { RelatedGuides } from "@/components/RelatedGuides";
 import { useCasinos } from "@/hooks/useCasinos";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
+import nyeCasinoerHero from "@/assets/heroes/nye-casinoer-hero.jpg";
 import { useState, useMemo, type ReactNode } from "react";
 import {
   Accordion,
@@ -248,6 +249,10 @@ const NyeCasinoer = () => {
             <BookOpen className="h-4 w-4" />
             <span>Læsetid: <span className="font-medium text-foreground">4 Min.</span></span>
           </div>
+        </div>
+
+        <div className="mb-10 overflow-hidden rounded-xl">
+          <img src={nyeCasinoerHero} alt="Nye casinoer – futuristisk casino med neonlys" className="w-full h-auto object-cover max-h-[400px]" loading="eager" />
         </div>
 
         {/* Intro Section */}

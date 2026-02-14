@@ -1,3 +1,4 @@
+import responsibleGamingHero from "@/assets/heroes/responsible-gaming-hero.jpg";
 import { AlertTriangle, Phone, Globe, HelpCircle, Shield, Clock, Users, User, CalendarDays, BookOpen } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -163,6 +164,10 @@ const ResponsibleGaming = () => {
               <span className="font-medium text-foreground">5 Min.</span>
             </span>
           </div>
+        </div>
+
+        <div className="mb-10 overflow-hidden rounded-xl">
+          <img src={responsibleGamingHero} alt="Ansvarligt spil – tillid og sikkerhed ved casinospil" className="w-full h-auto object-cover max-h-[400px]" loading="eager" />
         </div>
 
         {/* Warning Signs */}

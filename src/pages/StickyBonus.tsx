@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { FAQSection } from "@/components/FAQSection";
 import { SEO } from "@/components/SEO";
+import stickyBonusHero from "@/assets/heroes/sticky-bonus-hero.jpg";
 
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -179,6 +180,10 @@ const StickyBonus = () => {
               <span className="font-medium text-foreground">12 Min.</span>
             </span>
           </div>
+        </div>
+
+        <div className="mb-10 overflow-hidden rounded-xl">
+          <img src={stickyBonusHero} alt="Sticky bonus vs non-sticky bonus sammenligning" className="w-full h-auto object-cover max-h-[400px]" loading="eager" />
         </div>
 
         {/* Intro */}

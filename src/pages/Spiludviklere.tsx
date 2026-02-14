@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { FAQSection } from "@/components/FAQSection";
 import { SEO } from "@/components/SEO";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
+import spiludviklereHero from "@/assets/heroes/spiludviklere-hero.jpg";
 import { RelatedGuides } from "@/components/RelatedGuides";
 import { InlineCasinoCards } from "@/components/InlineCasinoCards";
 import netentLogo from "@/assets/providers/netent.png";
@@ -448,6 +449,10 @@ const Spiludviklere = () => {
               <span className="font-medium text-foreground">15 Min.</span>
             </span>
           </div>
+        </div>
+
+        <div className="mb-10 overflow-hidden rounded-xl">
+          <img src={spiludviklereHero} alt="Spiludviklere – game studio med slot-spil på skærme" className="w-full h-auto object-cover max-h-[400px]" loading="eager" />
         </div>
 
         {/* Intro */}

@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { FAQSection } from "@/components/FAQSection";
 import { SEO } from "@/components/SEO";
 import { RelatedGuides } from "@/components/RelatedGuides";
+import freeSpinsHero from "@/assets/heroes/free-spins-hero.jpg";
 import { InlineCasinoCards } from "@/components/InlineCasinoCards";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -197,6 +198,10 @@ const FreeSpins = () => {
               <span className="font-medium text-foreground">12 Min.</span>
             </span>
           </div>
+        </div>
+
+        <div className="mb-10 overflow-hidden rounded-xl">
+          <img src={freeSpinsHero} alt="Free spins – farverige spilleautomater med mønter" className="w-full h-auto object-cover max-h-[400px]" loading="eager" />
         </div>
 
         {/* Intro */}

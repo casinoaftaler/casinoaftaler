@@ -9,6 +9,7 @@ import { RelatedGuides } from "@/components/RelatedGuides";
 import { useCasinos } from "@/hooks/useCasinos";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
 import { useState, type ReactNode } from "react";
+import casinoBonusHero from "@/assets/heroes/casino-bonus-hero.jpg";
 import {
   Accordion,
   AccordionContent,
@@ -293,6 +294,10 @@ const CasinoBonus = () => {
               <span className="font-medium text-foreground">12 Min.</span>
             </span>
           </div>
+        </div>
+
+        <div className="mb-10 overflow-hidden rounded-xl">
+          <img src={casinoBonusHero} alt="Casino bonus – gyldne mønter og gaver" className="w-full h-auto object-cover max-h-[400px]" loading="eager" />
         </div>
 
         {/* Intro Section */}

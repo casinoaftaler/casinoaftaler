@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { FAQSection } from "@/components/FAQSection";
 import { SEO } from "@/components/SEO";
+import omsaetningskravHero from "@/assets/heroes/omsaetningskrav-hero.jpg";
 import { RelatedGuides } from "@/components/RelatedGuides";
 import { InlineCasinoCards } from "@/components/InlineCasinoCards";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -160,6 +161,10 @@ const Omsaetningskrav = () => {
               <span className="font-medium text-foreground">12 Min.</span>
             </span>
           </div>
+        </div>
+
+        <div className="mb-10 overflow-hidden rounded-xl">
+          <img src={omsaetningskravHero} alt="Omsætningskrav – lommeregner og casino chips" className="w-full h-auto object-cover max-h-[400px]" loading="eager" />
         </div>
 
         {/* Intro - Hvad betyder omsætningskrav */}
