@@ -130,7 +130,7 @@ export function SlotControlPanel({
         gameId={gameId}
       />
       <div className="flex-shrink-0">
-        <PayTable gameId={gameId} />
+        <PayTable gameId={gameId} bet={bet} />
       </div>
     </div>
   );
