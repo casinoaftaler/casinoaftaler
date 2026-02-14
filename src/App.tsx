@@ -52,6 +52,16 @@ const BetiniaAnmeldelse = lazy(() => import("./pages/BetiniaAnmeldelse"));
 const SwiftCasinoAnmeldelse = lazy(() => import("./pages/SwiftCasinoAnmeldelse"));
 const LunaCasinoAnmeldelse = lazy(() => import("./pages/LunaCasinoAnmeldelse"));
 const Casinospil = lazy(() => import("./pages/Casinospil"));
+const NetEntGuide = lazy(() => import("./pages/NetEntGuide"));
+const PragmaticPlayGuide = lazy(() => import("./pages/PragmaticPlayGuide"));
+const RelaxGamingGuide = lazy(() => import("./pages/RelaxGamingGuide"));
+const PlayNGoGuide = lazy(() => import("./pages/PlayNGoGuide"));
+const HacksawGamingGuide = lazy(() => import("./pages/HacksawGamingGuide"));
+const NolimitCityGuide = lazy(() => import("./pages/NolimitCityGuide"));
+const YggdrasilGuide = lazy(() => import("./pages/YggdrasilGuide"));
+const MicrogamingGuide = lazy(() => import("./pages/MicrogamingGuide"));
+const RedTigerGuide = lazy(() => import("./pages/RedTigerGuide"));
+const BigTimeGamingGuide = lazy(() => import("./pages/BigTimeGamingGuide"));
 const NotFound = lazy(() => import("./pages/NotFound"));
 
 const queryClient = new QueryClient();
