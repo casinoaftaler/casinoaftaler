@@ -27,6 +27,8 @@ export const Header = memo(function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [expandedSection, setExpandedSection] = useState<string | null>(null);
   const [providersExpanded, setProvidersExpanded] = useState(false);
+  const [paymentsExpanded, setPaymentsExpanded] = useState(false);
+  const [reviewsExpanded, setReviewsExpanded] = useState(false);
   const [isDark, setIsDark] = useState(() => {
     const saved = localStorage.getItem("theme");
     return saved === "dark";
@@ -604,33 +606,40 @@ export const Header = memo(function Header() {
                   Kontakt
                 </Link>
                 <button
-                  onClick={() => setProvidersExpanded(false)}
+                  onClick={() => setPaymentsExpanded(!paymentsExpanded)}
                   className="ml-6 flex w-full items-center justify-between py-2.5 pr-4 text-sm text-muted-foreground transition-colors hover:text-primary"
                 >
-                  <Link to="/betalingsmetoder" className="flex items-center gap-2" onClick={() => setMobileMenuOpen(false)}>
+                  <span className="flex items-center gap-2">
                     <CreditCard className="h-4 w-4" />
                     Betalingsmetoder
-                  </Link>
+                  </span>
+                  <ChevronDown className={`h-3.5 w-3.5 transition-transform duration-200 ${paymentsExpanded ? "rotate-180" : ""}`} />
                 </button>
-                <div className="flex flex-col ml-10">
-                  {[
-                    { to: "/betalingsmetoder/apple-pay", label: "Apple Pay" },
-                    { to: "/betalingsmetoder/mobilepay", label: "MobilePay" },
-                    { to: "/betalingsmetoder/paypal", label: "PayPal" },
-                    { to: "/betalingsmetoder/skrill", label: "Skrill" },
-                    { to: "/betalingsmetoder/trustly", label: "Trustly" },
-                    { to: "/betalingsmetoder/zimpler", label: "Zimpler" },
-                    { to: "/betalingsmetoder/paysafecard", label: "Paysafecard" },
-                    { to: "/betalingsmetoder/bankoverforsler", label: "Bankoverførsel" },
-                    { to: "/betalingsmetoder/visa-mastercard", label: "Visa / Mastercard" },
-                    { to: "/betalingsmetoder/revolut", label: "Revolut" },
-                  ].map((item) => (
-                    <Link key={item.to} to={item.to} className="flex items-center gap-2 py-2 text-sm text-muted-foreground transition-colors hover:text-primary" onClick={() => setMobileMenuOpen(false)}>
-                      <Star className="h-3 w-3" />
-                      {item.label}
+                {paymentsExpanded && (
+                  <div className="flex flex-col">
+                    <Link to="/betalingsmetoder" className="ml-10 flex items-center gap-2 py-2 text-sm font-medium text-muted-foreground transition-colors hover:text-primary" onClick={() => setMobileMenuOpen(false)}>
+                      <CreditCard className="h-3 w-3" />
+                      Alle betalingsmetoder
                     </Link>
-                  ))}
-                </div>
+                    {[
+                      { to: "/betalingsmetoder/apple-pay", label: "Apple Pay" },
+                      { to: "/betalingsmetoder/mobilepay", label: "MobilePay" },
+                      { to: "/betalingsmetoder/paypal", label: "PayPal" },
+                      { to: "/betalingsmetoder/skrill", label: "Skrill" },
+                      { to: "/betalingsmetoder/trustly", label: "Trustly" },
+                      { to: "/betalingsmetoder/zimpler", label: "Zimpler" },
+                      { to: "/betalingsmetoder/paysafecard", label: "Paysafecard" },
+                      { to: "/betalingsmetoder/bankoverforsler", label: "Bankoverførsel" },
+                      { to: "/betalingsmetoder/visa-mastercard", label: "Visa / Mastercard" },
+                      { to: "/betalingsmetoder/revolut", label: "Revolut" },
+                    ].map((item) => (
+                      <Link key={item.to} to={item.to} className="ml-10 flex items-center gap-2 py-2 text-sm text-muted-foreground transition-colors hover:text-primary" onClick={() => setMobileMenuOpen(false)}>
+                        <Star className="h-3 w-3" />
+                        {item.label}
+                      </Link>
+                    ))}
+                  </div>
+                )}
                 <button
                   onClick={() => setProvidersExpanded(!providersExpanded)}
                   className="ml-6 flex w-full items-center justify-between py-2.5 pr-4 text-sm text-muted-foreground transition-colors hover:text-primary"
@@ -668,26 +677,37 @@ export const Header = memo(function Header() {
                     ))}
                   </div>
                 )}
-                {/* Casino Anmeldelser submenu */}
-                <Link to="/casino-anmeldelser" className="ml-6 flex items-center gap-2 py-2.5 text-sm text-muted-foreground transition-colors hover:text-primary" onClick={() => setMobileMenuOpen(false)}>
-                  <Star className="h-4 w-4" />
-                  Casino Anmeldelser
-                </Link>
-                <div className="flex flex-col ml-10">
-                  {[
-                    { to: "/spildansknu-anmeldelse", label: "SpilDanskNu" },
-                    { to: "/spilleautomaten-anmeldelse", label: "Spilleautomaten" },
-                    { to: "/betinia-anmeldelse", label: "Betinia" },
-                    { to: "/swift-casino-anmeldelse", label: "Swift Casino" },
-                    { to: "/campobet-anmeldelse", label: "Campobet" },
-                    { to: "/luna-casino-anmeldelse", label: "Luna Casino" },
-                  ].map((item) => (
-                    <Link key={item.to} to={item.to} className="flex items-center gap-2 py-2 text-sm text-muted-foreground transition-colors hover:text-primary" onClick={() => setMobileMenuOpen(false)}>
+                <button
+                  onClick={() => setReviewsExpanded(!reviewsExpanded)}
+                  className="ml-6 flex w-full items-center justify-between py-2.5 pr-4 text-sm text-muted-foreground transition-colors hover:text-primary"
+                >
+                  <span className="flex items-center gap-2">
+                    <Star className="h-4 w-4" />
+                    Casino Anmeldelser
+                  </span>
+                  <ChevronDown className={`h-3.5 w-3.5 transition-transform duration-200 ${reviewsExpanded ? "rotate-180" : ""}`} />
+                </button>
+                {reviewsExpanded && (
+                  <div className="flex flex-col">
+                    <Link to="/casino-anmeldelser" className="ml-10 flex items-center gap-2 py-2 text-sm font-medium text-muted-foreground transition-colors hover:text-primary" onClick={() => setMobileMenuOpen(false)}>
                       <Star className="h-3 w-3" />
-                      {item.label}
+                      Alle anmeldelser
                     </Link>
-                  ))}
-                </div>
+                    {[
+                      { to: "/spildansknu-anmeldelse", label: "SpilDanskNu" },
+                      { to: "/spilleautomaten-anmeldelse", label: "Spilleautomaten" },
+                      { to: "/betinia-anmeldelse", label: "Betinia" },
+                      { to: "/swift-casino-anmeldelse", label: "Swift Casino" },
+                      { to: "/campobet-anmeldelse", label: "Campobet" },
+                      { to: "/luna-casino-anmeldelse", label: "Luna Casino" },
+                    ].map((item) => (
+                      <Link key={item.to} to={item.to} className="ml-10 flex items-center gap-2 py-2 text-sm text-muted-foreground transition-colors hover:text-primary" onClick={() => setMobileMenuOpen(false)}>
+                        <Star className="h-3 w-3" />
+                        {item.label}
+                      </Link>
+                    ))}
+                  </div>
+                )}
                 <Link to="/responsible-gaming" className="ml-6 flex items-center gap-2 py-2.5 text-sm text-muted-foreground transition-colors hover:text-primary" onClick={() => setMobileMenuOpen(false)}>
                   <ShieldCheck className="h-4 w-4" />
                   Ansvarligt Spil
