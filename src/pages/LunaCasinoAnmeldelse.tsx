@@ -150,9 +150,6 @@ const LunaCasinoAnmeldelse = () => {
               <Badge variant="secondary"><Star className="mr-1.5 h-3.5 w-3.5" />4.6 / 5 – Anbefalet</Badge>
               <Badge variant="outline" className="border-white/40 text-white">Loyalitetsprogram</Badge>
             </div>
-            {casino?.logo_url && (
-              <img src={casino.logo_url} alt={`${casino.name} logo`} className="mx-auto mb-4 h-16 w-auto object-contain md:h-20" />
-            )}
             <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">Luna Casino Anmeldelse 2026</h1>
             <p className="mb-6 text-lg text-white/80">
               Komplet anmeldelse af Luna Casino – et kvalitetsbevidst dansk casino med 100 % bonus op til 500 kr., kun 10x omsætningskrav, loyalitetsprogram med stigende niveauer, daglige bonuskampagner og et kurateret spiludvalg.
@@ -202,7 +199,7 @@ const LunaCasinoAnmeldelse = () => {
                   </div>
                 ))}
               </div>
-              <QuickFactsProviders providers={["NetEnt", "Microgaming", "Evolution Gaming", "Pragmatic Play", "Red Tiger", "Play'n GO", "Yggdrasil", "Hacksaw Gaming", "Blueprint Gaming", "Push Gaming", "ELK Studios", "Big Time Gaming", "iSoftBet"]} />
+              <QuickFactsProviders providers={["NetEnt", "Microgaming", "Evolution Gaming", "Pragmatic Play", "Red Tiger", "Play'n GO", "Yggdrasil", "Hacksaw Gaming", "Blueprint Gaming", "Push Gaming", "ELK Studios", "Big Time Gaming", "iSoftBet"]} logoUrl={casino?.logo_url} casinoName={casino?.name} />
             </CardContent>
           </Card>
         </section>
