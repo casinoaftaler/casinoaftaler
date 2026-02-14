@@ -52,9 +52,11 @@ export function useTwitchStatus(twitchUrl: string | null | undefined) {
       return data || { isLive: false, stream: null };
     },
     enabled: !!channelName,
-    // Refetch every 60 seconds to keep status updated
-    refetchInterval: 60 * 1000,
-    // Keep stale data while refetching
-    staleTime: 30 * 1000,
+    // Poll every 3 minutes when not live, every 60s when live
+    refetchInterval: (query) => {
+      const isLive = query.state.data?.isLive;
+      return isLive ? 60 * 1000 : 3 * 60 * 1000;
+    },
+    staleTime: 2 * 60 * 1000,
   });
 }
