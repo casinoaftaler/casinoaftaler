@@ -1043,6 +1043,11 @@ export function SlotGame({ gameId = "book-of-fedesvin" }: SlotGameProps) {
           setShowExpansionDarken(false);
           resumeRealtimeUpdates();
           if (pendingBonusStateRef.current) {
+            // Restore the locked-in bet from the bonus state
+            const lockedBet = pendingBonusStateRef.current.betAmount || bonusBetAmount;
+            if (lockedBet > 0) {
+              setBet(lockedBet);
+            }
             updateBonusFromServer(pendingBonusStateRef.current);
             pendingBonusStateRef.current = null;
           }
@@ -1059,6 +1064,11 @@ export function SlotGame({ gameId = "book-of-fedesvin" }: SlotGameProps) {
           setBonusBarsReady(true);
           resumeRealtimeUpdates();
           if (pendingBonusStateRef.current) {
+            // Restore the locked-in bet from the bonus state BEFORE auto-spin fires
+            const lockedBet = pendingBonusStateRef.current.betAmount || bonusBetAmount;
+            if (lockedBet > 0) {
+              setBet(lockedBet);
+            }
             updateBonusFromServer(pendingBonusStateRef.current);
             pendingBonusStateRef.current = null;
           }
