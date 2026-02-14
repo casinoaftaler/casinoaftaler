@@ -1,8 +1,10 @@
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import { FAQSection } from "@/components/FAQSection";
 import liveCasinoHero from "@/assets/heroes/live-casino-hero.jpg";
 import { SEO } from "@/components/SEO";
-import { InlineCasinoCards } from "@/components/InlineCasinoCards";
+import { CasinoCard } from "@/components/CasinoCard";
+import { useCasinos } from "@/hooks/useCasinos";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
@@ -33,6 +35,7 @@ import {
   Star,
   Tv,
   Users,
+  Loader2,
 } from "lucide-react";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
 import { RelatedGuides } from "@/components/RelatedGuides";
@@ -87,6 +90,8 @@ const liveCasinoFaqs = [
 
 const LiveCasino = () => {
   const { data: siteSettings } = useSiteSettings();
+  const { data: casinos, isLoading: casinosLoading } = useCasinos();
+  const [openCasinoId, setOpenCasinoId] = useState<string | null>(null);
   const heroBackgroundImage = siteSettings?.hero_background;
 
   const faqJsonLd = {
@@ -367,7 +372,71 @@ const LiveCasino = () => {
           </div>
         </section>
 
-        <InlineCasinoCards title="Casinoer med live casino" excludeSlugs={["betit"]} />
+        {/* Casino Cards Section */}
+        <Separator className="my-10" />
+        <section className="mb-12">
+          <h2 className="mb-6 text-3xl font-bold">Casinoer med live casino</h2>
+          {casinosLoading ? (
+            <div className="flex items-center justify-center py-12">
+              <Loader2 className="h-8 w-8 animate-spin text-primary" />
+            </div>
+          ) : (() => {
+            const liveCasinos = (casinos ?? [])
+              .filter((c) => c.is_active && c.slug !== "betit")
+              .slice(0, 6);
+            const mapCasino = (casino: typeof liveCasinos[0]) => ({
+              id: casino.id,
+              name: casino.name,
+              slug: casino.slug,
+              rating: Number(casino.rating),
+              bonusTitle: casino.bonus_title,
+              bonusAmount: casino.bonus_amount,
+              bonusType: casino.bonus_type,
+              wageringRequirements: casino.wagering_requirements,
+              validity: casino.validity,
+              minDeposit: casino.min_deposit,
+              payoutTime: casino.payout_time,
+              freeSpins: casino.free_spins,
+              features: casino.features ?? [],
+              pros: casino.pros ?? [],
+              cons: casino.cons ?? [],
+              description: casino.description ?? "",
+              isRecommended: casino.is_recommended,
+              isHot: casino.is_hot,
+              logoUrl: casino.logo_url,
+              affiliateUrl: casino.affiliate_url,
+              gameProviders: casino.game_providers ?? [],
+            });
+            return liveCasinos.length === 0 ? null : (
+              <div className="space-y-4">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 items-start">
+                  {liveCasinos.slice(0, 2).map((casino, index) => (
+                    <CasinoCard
+                      key={casino.id}
+                      casino={mapCasino(casino)}
+                      rank={index + 1}
+                      open={openCasinoId === casino.id}
+                      onOpenChange={(open) => setOpenCasinoId(open ? casino.id : null)}
+                    />
+                  ))}
+                </div>
+                {liveCasinos.length > 2 && (
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-4 items-start">
+                    {liveCasinos.slice(2).map((casino, index) => (
+                      <CasinoCard
+                        key={casino.id}
+                        casino={mapCasino(casino)}
+                        rank={index + 3}
+                        open={openCasinoId === casino.id}
+                        onOpenChange={(open) => setOpenCasinoId(open ? casino.id : null)}
+                      />
+                    ))}
+                  </div>
+                )}
+              </div>
+            );
+          })()}
+        </section>
 
         <Separator className="my-10" />
 
