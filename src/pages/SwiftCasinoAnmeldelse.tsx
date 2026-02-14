@@ -509,13 +509,11 @@ const SwiftCasinoAnmeldelse = () => {
         </section>
 
         <Separator className="my-10" />
-
-        <FAQSection title="Ofte stillede spørgsmål om Swift Casino" faqs={swiftFaqs} />
-
-        <Separator className="my-10" />
         <InlineCasinoCards />
         <Separator className="my-10" />
         <RelatedGuides currentPath="/swift-casino-anmeldelse" />
+
+        <FAQSection title="Ofte stillede spørgsmål om Swift Casino" faqs={swiftFaqs} />
       </div>
     </>
   );

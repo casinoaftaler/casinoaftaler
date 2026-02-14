@@ -803,9 +803,9 @@ const SpilDanskNuAnmeldelse = () => {
 
         <Separator className="my-10" />
 
-        <FAQSection title="Ofte stillede spørgsmål om SpilDanskNu" faqs={spilDanskNuFaqs} />
-
         <RelatedGuides currentPath="/spildansknu-anmeldelse" />
+
+        <FAQSection title="Ofte stillede spørgsmål om SpilDanskNu" faqs={spilDanskNuFaqs} />
       </div>
     </>
   );

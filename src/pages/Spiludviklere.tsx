@@ -894,10 +894,10 @@ const Spiludviklere = () => {
 
         <Separator className="my-10" />
 
+        <RelatedGuides currentPath="/spiludviklere" />
+
         {/* FAQ */}
         <FAQSection title="Ofte stillede spørgsmål om spiludviklere" faqs={spiludviklereFaqs} />
-
-        <RelatedGuides currentPath="/spiludviklere" />
       </div>
     </>
   );

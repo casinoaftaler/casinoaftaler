@@ -870,9 +870,9 @@ const NyeCasinoer = () => {
 
         <Separator className="my-10" />
 
-        <FAQSection title="Ofte stillede spørgsmål om nye casinoer" faqs={nyeCasinoerFaqs} />
-
         <RelatedGuides currentPath="/nye-casinoer" />
+
+        <FAQSection title="Ofte stillede spørgsmål om nye casinoer" faqs={nyeCasinoerFaqs} />
       </div>
     </>
   );

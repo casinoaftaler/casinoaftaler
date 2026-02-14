@@ -663,9 +663,9 @@ const Velkomstbonus = () => {
 
         <Separator className="my-10" />
 
-        <FAQSection title="Ofte stillede spørgsmål om velkomstbonus" faqs={velkomstbonusFaqs} />
-
         <RelatedGuides currentPath="/velkomstbonus" />
+
+        <FAQSection title="Ofte stillede spørgsmål om velkomstbonus" faqs={velkomstbonusFaqs} />
       </div>
     </>
   );

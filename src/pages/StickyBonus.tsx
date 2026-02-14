@@ -740,9 +740,9 @@ const StickyBonus = () => {
 
         <Separator className="my-10" />
 
-        <FAQSection title="Ofte stillede spørgsmål om sticky bonus" faqs={stickyFaqs} />
-
         <RelatedGuides currentPath="/sticky-bonus" />
+
+        <FAQSection title="Ofte stillede spørgsmål om sticky bonus" faqs={stickyFaqs} />
       </div>
     </>
   );

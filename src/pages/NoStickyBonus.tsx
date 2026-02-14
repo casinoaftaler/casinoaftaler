@@ -660,9 +660,9 @@ const NoStickyBonus = () => {
 
         <Separator className="my-10" />
 
-        <FAQSection title="Ofte stillede spørgsmål om no-sticky bonus" faqs={noStickyFaqs} />
-
         <RelatedGuides currentPath="/no-sticky-bonus" />
+
+        <FAQSection title="Ofte stillede spørgsmål om no-sticky bonus" faqs={noStickyFaqs} />
       </div>
     </>
   );

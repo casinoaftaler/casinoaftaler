@@ -412,9 +412,9 @@ export default function Contact() {
 
         <Separator className="my-10" />
 
-        <FAQSection title="Ofte stillede spørgsmål" faqs={contactFaqs} />
-
         <RelatedGuides currentPath="/contact" />
+
+        <FAQSection title="Ofte stillede spørgsmål" faqs={contactFaqs} />
       </div>
     </>
   );

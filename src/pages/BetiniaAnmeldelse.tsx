@@ -761,10 +761,6 @@ const BetiniaAnmeldelse = () => {
 
         <Separator className="my-10" />
 
-        <FAQSection title="Ofte stillede spørgsmål om Betinia" faqs={betiniaFaqs} />
-
-        <Separator className="my-10" />
-
         {/* Inline Casino Cards */}
         <InlineCasinoCards />
 
@@ -772,6 +768,8 @@ const BetiniaAnmeldelse = () => {
 
         {/* Related Guides */}
         <RelatedGuides currentPath="/betinia-anmeldelse" />
+
+        <FAQSection title="Ofte stillede spørgsmål om Betinia" faqs={betiniaFaqs} />
       </div>
     </>
   );

@@ -733,9 +733,9 @@ const SpilleautomatenAnmeldelse = () => {
 
         <Separator className="my-10" />
 
-        <FAQSection title="Ofte stillede spørgsmål om Spilleautomaten" faqs={spilleautomatenFaqs} />
-
         <RelatedGuides currentPath="/spilleautomaten-anmeldelse" />
+
+        <FAQSection title="Ofte stillede spørgsmål om Spilleautomaten" faqs={spilleautomatenFaqs} />
       </div>
     </>
   );
