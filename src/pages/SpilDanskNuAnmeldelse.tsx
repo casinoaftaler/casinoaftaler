@@ -382,8 +382,7 @@ const SpilDanskNuAnmeldelse = () => {
             <Link to="/velkomstbonus" className={linkClass}>velkomstpakke</Link> der er bygget som en femdages model. Du kan få op til 200 kr. i bonus pr. dag, så totalen rammer 1.000 kr. Det er en af de mest gennemsigtige velkomstbonusser på det danske marked.
           </p>
           <p className="mb-6 text-muted-foreground leading-relaxed">
-            Det mest bemærkelsesværdige er{" "}
-            <Link to="/omsaetningskrav" className={linkClass}>omsætningskravet</Link> på kun 10x (indskud + bonus). Hvor de fleste danske casinoer opererer med 25x–40x, holder SpilDanskNu sig markant lavere. Bonussen har 60 dages gyldighed, og maks. indsats med bonusmidler er 40 kr. pr. runde. Bemærk at kun spilleautomater tæller med – progressive slots, bordspil og live casino er undtaget.
+            <Link to="/omsaetningskrav" className={linkClass}>Omsætningskravet</Link> er 10x (indskud + bonus), hvilket er standarden for alle danske casinoer med licens fra Spillemyndigheden. Bonussen har 60 dages gyldighed, og maks. indsats med bonusmidler er 40 kr. pr. runde. Bemærk at kun spilleautomater tæller med – progressive slots, bordspil og live casino er undtaget.
           </p>
 
           <Card className="border-border bg-card mb-6">
@@ -443,7 +442,7 @@ const SpilDanskNuAnmeldelse = () => {
                 </div>
               </div>
               <p className="text-xs text-muted-foreground mt-3">
-                Sammenlign dette med branchens gennemsnit på 25x–40x. Læs vores dybdegående guide til{" "}
+                Alle danske casinoer opererer med 10x omsætningskrav. Læs vores dybdegående guide til{" "}
                 <Link to="/omsaetningskrav" className={linkClass}>omsætningskrav</Link>.
               </p>
             </CardContent>

@@ -152,7 +152,7 @@ function AddCasinoForm({ onClose }: { onClose: () => void }) {
     rating: "4.5",
     bonus_amount: "",
     bonus_type: "No-sticky",
-    wagering_requirements: "35x",
+    wagering_requirements: "10x",
     validity: "30 dage",
     min_deposit: "100 kr.",
     payout_time: "24 timer",

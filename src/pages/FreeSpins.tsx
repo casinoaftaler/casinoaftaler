@@ -298,8 +298,7 @@ const FreeSpins = () => {
                   free spins-gevinster igennem, før du kan hæve dem. Hvis du
                   vinder 100 kr. med gratis spins og omsætningskravet er 10x,
                   skal du placere væddemål for 1.000 kr., før pengene kan
-                  udbetales. Kig efter tilbud med lave omsætningskrav
-                  (under 30x) for bedst mulig værdi – eller overvej{" "}
+                  udbetales. Alle danske casinoer opererer med 10x omsætningskrav – eller overvej{" "}
                   <Link to="/bonus-uden-omsaetningskrav" className="text-primary underline hover:text-primary/80">
                     bonusser uden omsætningskrav
                   </Link>

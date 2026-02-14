@@ -372,7 +372,7 @@ const SpilleautomatenAnmeldelse = () => {
           </p>
           <p className="mb-6 text-muted-foreground leading-relaxed">
             Det virkelig interessante er{" "}
-            <Link to="/omsaetningskrav" className={linkClass}>omsætningskravet</Link> på kun 10x (indskud + bonus). Til sammenligning opererer de fleste danske casinoer med 25x-40x, hvilket gør Spilleautomaten til et af de mest spillervenlige valg. Bonussen er gyldig i hele 60 dage, så du har masser af tid til at gennemspille kravene.
+            <Link to="/omsaetningskrav" className={linkClass}>omsætningskravet</Link> på kun 10x (indskud + bonus), hvilket er standarden for alle danske casinoer med licens fra Spillemyndigheden. Bonussen er gyldig i hele 60 dage, så du har masser af tid til at gennemspille kravene.
           </p>
 
           <Card className="border-border bg-card mb-6">
@@ -432,7 +432,7 @@ const SpilleautomatenAnmeldelse = () => {
                 </div>
               </div>
               <p className="text-xs text-muted-foreground mt-3">
-                Sammenlign dette med branchens gennemsnit på 25x–40x. Læs vores dybdegående guide til{" "}
+                Alle danske casinoer opererer med 10x omsætningskrav. Læs vores dybdegående guide til{" "}
                 <Link to="/omsaetningskrav" className={linkClass}>omsætningskrav</Link>.
               </p>
             </CardContent>
