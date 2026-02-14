@@ -39,6 +39,7 @@ import {
 } from "lucide-react";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
 import { RelatedGuides } from "@/components/RelatedGuides";
+import { CommunityPromoSection } from "@/components/CommunityPromoSection";
 
 const linkClass = "text-primary underline hover:text-primary/80";
 
@@ -829,6 +830,8 @@ const LiveCasino = () => {
             for at finde de bedste tilbud til live casino-spillere.
           </p>
         </section>
+
+        <CommunityPromoSection />
 
         <Separator className="my-10" />
 
