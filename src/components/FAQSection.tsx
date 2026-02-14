@@ -4,6 +4,7 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { HelpCircle } from "lucide-react";
 
 const faqs = [
@@ -36,39 +37,38 @@ const faqs = [
 
 export function FAQSection() {
   return (
-    <section className="bg-muted/30 py-16">
-      <div className="container">
-        <div className="mb-12 text-center">
-          <div className="flex items-center justify-center gap-2 mb-4">
-            <HelpCircle className="h-8 w-8 text-primary" />
-            <h2 className="text-3xl font-bold">
+    <section className="container py-16">
+      <Card>
+        <CardHeader>
+          <div className="flex items-center gap-2">
+            <HelpCircle className="h-7 w-7 text-primary" />
+            <CardTitle className="text-2xl md:text-3xl">
               Ofte Stillede Spørgsmål
-            </h2>
+            </CardTitle>
           </div>
-          <p className="mx-auto max-w-2xl text-muted-foreground">
+          <p className="text-muted-foreground">
             Alt du behøver at vide om casinobonusser og hvordan de fungerer.
           </p>
-        </div>
-
-        <div className="mx-auto max-w-3xl">
-          <Accordion type="single" collapsible className="space-y-4">
+        </CardHeader>
+        <CardContent>
+          <Accordion type="single" collapsible className="space-y-3">
             {faqs.map((faq, index) => (
               <AccordionItem
                 key={index}
                 value={`item-${index}`}
-                className="rounded-lg border border-border bg-card px-6"
+                className="rounded-lg border border-border bg-muted/50 px-6"
               >
                 <AccordionTrigger className="text-left hover:no-underline">
                   {faq.question}
                 </AccordionTrigger>
-                <AccordionContent className="text-muted-foreground">
+                <AccordionContent className="text-muted-foreground leading-relaxed">
                   {faq.answer}
                 </AccordionContent>
               </AccordionItem>
             ))}
           </Accordion>
-        </div>
-      </div>
+        </CardContent>
+      </Card>
     </section>
   );
 }
