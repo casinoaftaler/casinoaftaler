@@ -314,15 +314,13 @@ export function Footer() {
                 </a>
               </li>
               <li>
-                <a
-                  href="https://www.spillemyndigheden.dk/"
-                  target="_blank"
-                  rel="noopener noreferrer"
+                <Link
+                  to="/spillemyndigheden"
                   className="flex items-center gap-2 text-muted-foreground transition-colors hover:text-foreground"
                 >
                   <Scale className="h-4 w-4" />
                   Spillemyndigheden
-                </a>
+                </Link>
               </li>
             </ul>
           </div>
