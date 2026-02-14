@@ -1,3 +1,4 @@
+import React from "react";
 import { Scale, Shield, FileCheck, AlertTriangle, Globe, BookOpen, User, CalendarDays, Clock, CheckCircle, Landmark, Gavel, Lock, Eye, Users, Phone, Ban } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -64,30 +65,51 @@ const playerProtections = [
   },
 ];
 
-const spillemyndighedenFaqs = [
+const spillemyndighedenFaqs: { question: string; answer: string | React.ReactNode }[] = [
   {
     question: "Hvad er Spillemyndigheden?",
-    answer: "Spillemyndigheden er den danske statslige myndighed, der regulerer og fører tilsyn med alt lovligt spil i Danmark. Den hører under Skatteministeriet og har til opgave at sikre et fair, sikkert og ansvarligt spilmarked for danske forbrugere.",
+    answer: (
+      <>
+        Spillemyndigheden er den danske statslige myndighed, der regulerer og fører tilsyn med alt lovligt spil i Danmark. Den sikrer fair og{" "}
+        <Link to="/responsible-gaming" className="text-primary underline hover:text-primary/80">ansvarligt spil</Link> for danske forbrugere.
+      </>
+    ),
   },
   {
     question: "Hvordan tjekker jeg, om et casino har dansk licens?",
-    answer: "Du kan tjekke det direkte på Spillemyndighedens hjemmeside (spillemyndigheden.dk), hvor de offentliggør en komplet liste over alle aktive licenshavere. Et licenseret casino skal desuden vise sit licensnummer i bunden af hjemmesiden.",
+    answer: (
+      <>
+        Du kan tjekke det direkte på Spillemyndighedens hjemmeside, hvor de offentliggør alle aktive licenshavere. Se også vores{" "}
+        <Link to="/casino-anmeldelser" className="text-primary underline hover:text-primary/80">casino anmeldelser</Link> – alle anmeldte casinoer har dansk licens.
+      </>
+    ),
   },
   {
     question: "Hvad sker der, hvis jeg spiller på et casino uden dansk licens?",
-    answer: "Hvis du spiller på et ulicenseret casino, mister du al den beskyttelse, som dansk lovgivning tilbyder. Det betyder ingen adgang til ROFUS-selvudelukkelse, ingen klageadgang via Spillemyndigheden og ingen garanti for, at dine penge eller gevinster er sikre. Spillemyndigheden blokerer aktivt ulovlige sider i Danmark.",
+    answer: "Hvis du spiller på et ulicenseret casino, mister du al den beskyttelse, som dansk lovgivning tilbyder. Det betyder ingen adgang til ROFUS-selvudelukkelse, ingen klageadgang via Spillemyndigheden og ingen garanti for, at dine penge eller gevinster er sikre.",
   },
   {
     question: "Hvad er ROFUS, og hvordan tilmelder jeg mig?",
-    answer: "ROFUS (Register Over Frivilligt Udelukkede Spillere) er en national ordning, hvor du kan udelukke dig selv fra alle danske licenserede spillesider. Tilmelding foregår via spillemyndigheden.dk med MitID. Du kan vælge udelukkelse i 24 timer, 1 måned, 3 måneder, 6 måneder eller permanent.",
+    answer: (
+      <>
+        ROFUS (Register Over Frivilligt Udelukkede Spillere) er en national ordning, hvor du kan udelukke dig selv fra alle danske licenserede spillesider. Læs mere om dette på vores side om{" "}
+        <Link to="/responsible-gaming" className="text-primary underline hover:text-primary/80">ansvarligt spil</Link>.
+      </>
+    ),
   },
   {
     question: "Kan jeg klage over et licenseret casino?",
-    answer: "Ja, du kan indgive en klage til Spillemyndigheden, hvis du oplever problemer med et licenseret casino. Klagen kan indsendes via deres hjemmeside. Spillemyndigheden vurderer derefter sagen og kan pålægge operatøren sanktioner, hvis reglerne er overtrådt.",
+    answer: "Ja, du kan indgive en klage til Spillemyndigheden, hvis du oplever problemer med et licenseret casino. Klagen kan indsendes via deres hjemmeside. Spillemyndigheden vurderer derefter sagen og kan pålægge operatøren sanktioner.",
   },
   {
     question: "Hvilke krav stiller Spillemyndigheden til casinoer?",
-    answer: "Kravene omfatter anti-hvidvask-procedurer, teknisk sikkerhed og fair spil (RNG-certificering), ansvarligt spil-værktøjer (ROFUS-integration, indbetalingsgrænser, sessionspåmindelser), databeskyttelse i henhold til GDPR og regelmæssig rapportering til myndigheden.",
+    answer: (
+      <>
+        Kravene omfatter anti-hvidvask-procedurer, teknisk sikkerhed og fair spil (RNG-certificering),{" "}
+        <Link to="/responsible-gaming" className="text-primary underline hover:text-primary/80">ansvarligt spil</Link>-værktøjer (ROFUS, indbetalingsgrænser), databeskyttelse og regelmæssig rapportering. Læs også om{" "}
+        <Link to="/omsaetningskrav" className="text-primary underline hover:text-primary/80">omsætningskrav</Link>, som er reguleret med et loft på 10x.
+      </>
+    ),
   },
 ];
 

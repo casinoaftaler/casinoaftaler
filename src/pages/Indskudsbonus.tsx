@@ -41,21 +41,35 @@ import {
 import { useSiteSettings } from "@/hooks/useSiteSettings";
 import { RelatedGuides } from "@/components/RelatedGuides";
 
-const indskudsbonusFaqs = [
+const linkClass = "text-primary underline hover:text-primary/80";
+
+const indskudsbonusFaqs: { question: string; answer: string | React.ReactNode }[] = [
   {
     question: "Hvad er en indskudsbonus?",
-    answer:
-      "En indskudsbonus er en kampagnebonus fra online casinoer, som matcher din indbetaling med en procentdel – typisk 100%. Det betyder, at du får ekstra spillemidler oven i dit indskud, så du har flere penge at spille for.",
+    answer: (
+      <>
+        En indskudsbonus er en kampagnebonus fra online casinoer, som matcher din indbetaling med en procentdel – typisk 100%. Det betyder, at du får ekstra spillemidler oven i dit indskud. Den bruges ofte som{" "}
+        <Link to="/velkomstbonus" className={linkClass}>velkomstbonus</Link> til nye spillere.
+      </>
+    ),
   },
   {
     question: "Tilbyder danske casinoer indskudsbonus?",
-    answer:
-      "Ja, mange licenserede danske casinoer tilbyder indskudsbonusser. De bruges både til at tiltrække nye spillere og til at belønne eksisterende kunder med ekstra midler ved indbetaling.",
+    answer: (
+      <>
+        Ja, mange licenserede danske casinoer tilbyder indskudsbonusser. De bruges til at tiltrække nye spillere og belønne eksisterende kunder. Se vores{" "}
+        <Link to="/casino-anmeldelser" className={linkClass}>casino anmeldelser</Link> for konkrete eksempler.
+      </>
+    ),
   },
   {
     question: "Kan jeg vinde rigtige penge med en indskudsbonus?",
-    answer:
-      "Ja, du kan vinde rigtige penge. Dog skal du opfylde omsætningskravene, før du kan hæve eventuelle gevinster fra bonussen.",
+    answer: (
+      <>
+        Ja, du kan vinde rigtige penge. Dog skal du opfylde{" "}
+        <Link to="/omsaetningskrav" className={linkClass}>omsætningskravene</Link>, før du kan hæve eventuelle gevinster fra bonussen.
+      </>
+    ),
   },
   {
     question: "Hvem er indskudsbonus bedst egnet til?",
@@ -69,8 +83,11 @@ const indskudsbonusFaqs = [
   },
   {
     question: "Hvad er omsætningskravene for en indskudsbonus?",
-    answer:
-      "Omsætningskravene angiver, hvor mange gange bonusbeløbet skal gennemspilles, før gevinster kan hæves. F.eks. kræver en bonus på 1.000 kr. med 10x omsætning, at du spiller for 10.000 kr. i alt.",
+    answer: (
+      <>
+        <Link to="/omsaetningskrav" className={linkClass}>Omsætningskravene</Link> angiver, hvor mange gange bonusbeløbet skal gennemspilles, før gevinster kan hæves. F.eks. kræver en bonus på 1.000 kr. med 10x omsætning, at du spiller for 10.000 kr. i alt.
+      </>
+    ),
   },
   {
     question: "Er der indsatsgrænser på indskudsbonusser?",
@@ -79,8 +96,12 @@ const indskudsbonusFaqs = [
   },
   {
     question: "Kan jeg hæve gevinster fra en indskudsbonus?",
-    answer:
-      "Ja, men først efter at omsætningskravene er opfyldt. Når kravene er gennemført inden for tidsfristen, kan du frit hæve dine gevinster.",
+    answer: (
+      <>
+        Ja, men først efter at{" "}
+        <Link to="/omsaetningskrav" className={linkClass}>omsætningskravene</Link> er opfyldt. Når kravene er gennemført inden for tidsfristen, kan du frit hæve dine gevinster.
+      </>
+    ),
   },
 ];
 
