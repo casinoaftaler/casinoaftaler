@@ -1,82 +1,48 @@
 
+# Fix: Bet Size Resetting During Bonus in Rise of Fedesvin
 
-# Turneringscredit-begrænsning
+## Problem
+During an active bonus round, win calculations use the `bet` value sent from the client instead of the locked-in bet amount stored in the database. This means if the client's local `bet` state drifts to 1 (e.g., due to a component re-render, race condition, or state reset), all subsequent bonus spin payouts are calculated at bet=1 instead of the original bet.
 
-## Overblik
-Admins kan sætte et valgfrit maksimum for credits brugt per bruger i en turnering. Når en deltager har brugt det tilladte antal credits, tæller efterfølgende spins ikke længere for turneringens leaderboard (men det globale leaderboard og selve spillet fortsætter normalt).
+## Root Cause
+The `slot-spin` Edge Function receives `bet` from the request body and uses it directly for all win calculations during bonus spins -- even though the correct bet is already stored in `slot_bonus_state.bet_amount`.
 
-## Database-ændringer
+Affected lines in `supabase/functions/slot-spin/index.ts`:
+- Line 724: `calculateMultiExpandingBonusWins(..., bet, ...)` (Rise of Fedesvin)
+- Line 769: `calculateBonusWins(..., bet, ...)` (Book of Fedesvin)
+- Line 776-778: Scatter payout calculations using `bet`
+- Line 821: `bet_amount: bet` in final bonus result recording
 
-### 1. `tournaments` tabel: ny kolonne
-- `max_credits` (integer, nullable, default null) -- null betyder ingen begrænsning
+## Solution
+**Server-side fix only** -- override `bet` with the stored `bonusData.bet_amount` at the start of the bonus spin path. This is the authoritative, tamper-proof approach since the database value was set when the bonus was originally triggered.
 
-### 2. `tournament_entries` tabel: ny kolonne
-- `total_credits_used` (numeric, default 0) -- akkumulerede credits/indsatser brugt i turneringen
+### Changes
 
-### 3. Opdater `upsert_tournament_entry` RPC
-Tilføj parameteren `p_bet` (som allerede sendes) til at akkumulere `total_credits_used`. Før upsert tjekkes om brugeren har nået max_credits-grænsen for turneringen. Hvis ja, skippes upsert.
+**File: `supabase/functions/slot-spin/index.ts`**
 
-Logik:
+After confirming the bonus state is valid (around line 667), add:
+
 ```text
-1. Slå turneringens max_credits op
-2. Hvis max_credits IS NULL -> ingen begrænsning, fortsæt normalt
-3. Hent brugerens nuværende total_credits_used for denne turnering
-4. Hvis total_credits_used + p_bet > max_credits -> skip (return tidligt)
-5. Ellers -> upsert som normalt og addér p_bet til total_credits_used
+// Use the locked-in bet from bonus trigger, not the client-sent value
+bet = Number(bonusData.bet_amount) || bet;
 ```
 
-## Frontend-ændringer
+This single line ensures:
+- All win calculations use the correct bet
+- Scatter payouts use the correct bet
+- The final bonus result record uses the correct bet
+- It's impossible for a client to send a manipulated bet during bonus
+- No frontend changes needed
 
-### 1. Admin: Opret/Rediger turnering
-- Nyt valgfrit felt "Maks credits per deltager" i både `CreateTournamentDialog` og `EditTournamentDialog`
-- Placeholder: "Ingen begrænsning" når feltet er tomt
+### Why not a frontend fix?
+The current frontend restore effect (lines 182-187) is a good safeguard but insufficient alone because:
+1. It depends on React state timing
+2. A client could theoretically send any bet value
+3. The server should be the source of truth for the locked-in bet amount
 
-### 2. Turneringskort (Leaderboard.tsx)
-- Vis maks credits badge på turneringskortet (fx "Maks 600 credits")
-- Vis brugerens forbrugte credits under deres leaderboard-entry (fx "420 / 600 credits brugt")
+The frontend restore effect can remain as-is for UI correctness, but the server must enforce the correct bet.
 
-### 3. useTournaments hook
-- Opdater `Tournament` interface med `max_credits: number | null`
-- Opdater `TournamentEntry` interface med `total_credits_used: number`
-
-## Backend: slot-spin Edge Function
-Ingen ændringer nødvendige i selve slot-spin -- begrænsningen håndteres inde i den opdaterede `upsert_tournament_entry` RPC-funktion, som allerede modtager `p_bet`.
-
-## Tekniske detaljer
-
-### Opdateret `upsert_tournament_entry` RPC (pseudokode)
-```text
-DECLARE v_max_credits integer;
-DECLARE v_current_used numeric;
-
--- Hent turneringens max_credits
-SELECT max_credits INTO v_max_credits FROM tournaments WHERE id = p_tournament_id;
-
--- Hvis der er en begrænsning, tjek om den er nået
-IF v_max_credits IS NOT NULL THEN
-  SELECT COALESCE(total_credits_used, 0) INTO v_current_used
-  FROM tournament_entries
-  WHERE tournament_id = p_tournament_id AND user_id = p_user_id AND game_id = p_game_id;
-
-  IF COALESCE(v_current_used, 0) + p_bet > v_max_credits THEN
-    RETURN; -- Skip, brugeren har nået grænsen
-  END IF;
-END IF;
-
--- Fortsæt med upsert som normalt, men tilføj total_credits_used
-INSERT INTO tournament_entries (..., total_credits_used)
-VALUES (..., p_bet)
-ON CONFLICT (tournament_id, user_id, game_id)
-DO UPDATE SET
-  ...,
-  total_credits_used = tournament_entries.total_credits_used + p_bet;
-```
-
-## Fil-oversigt
-| Fil | Ændring |
+## Files Modified
+| File | Change |
 |---|---|
-| Database migration | Tilføj `max_credits` til `tournaments`, `total_credits_used` til `tournament_entries`, opdater RPC |
-| `src/hooks/useTournaments.ts` | Opdater interfaces og mutations |
-| `src/components/TournamentAdminSection.tsx` | Tilføj max_credits input i opret/rediger dialogs |
-| `src/pages/Leaderboard.tsx` | Vis max_credits badge og brugerens credit-forbrug |
-
+| `supabase/functions/slot-spin/index.ts` | Override `bet` with `bonusData.bet_amount` at start of bonus spin path |
