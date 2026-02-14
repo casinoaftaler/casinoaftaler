@@ -11,9 +11,24 @@ import {
   BookOpen,
   Tv,
   ShieldCheck,
+  Star,
+  Gamepad2,
+  Wallet,
+  Landmark,
+  Smartphone,
+  Globe,
 } from "lucide-react";
+import { LucideIcon } from "lucide-react";
 
-const guideLinks = [
+interface GuideLink {
+  to: string;
+  label: string;
+  icon: LucideIcon;
+  desc: string;
+}
+
+// === BONUS GUIDES ===
+const bonusGuides: GuideLink[] = [
   { to: "/velkomstbonus", label: "Velkomstbonus", icon: Trophy, desc: "Få mest ud af din første indbetaling" },
   { to: "/free-spins", label: "Free Spins", icon: Sparkles, desc: "Gratis spins på populære spilleautomater" },
   { to: "/indskudsbonus", label: "Indskudsbonus", icon: CreditCard, desc: "Matchbonusser der fordobler dit indskud" },
@@ -22,19 +37,129 @@ const guideLinks = [
   { to: "/sticky-bonus", label: "Sticky Bonus", icon: Gift, desc: "Klæbende bonusser med større beløb" },
   { to: "/bonus-uden-indbetaling", label: "Bonus uden Indbetaling", icon: Gift, desc: "Spil gratis uden at indbetale" },
   { to: "/bonus-uden-omsaetningskrav", label: "Uden Omsætningskrav", icon: Zap, desc: "Hæv gevinster med det samme" },
-  { to: "/live-casino", label: "Live Casino", icon: Tv, desc: "Spil med rigtige dealere i realtid" },
-  { to: "/nye-casinoer", label: "Nye Casinoer", icon: Sparkles, desc: "De seneste casinoer med dansk licens" },
+  { to: "/casino-bonus", label: "Casino Bonus Oversigt", icon: Trophy, desc: "Komplet oversigt over alle bonustyper" },
 ];
 
+// === PAYMENT GUIDES ===
+const paymentGuides: GuideLink[] = [
+  { to: "/betalingsmetoder", label: "Betalingsmetoder Oversigt", icon: Wallet, desc: "Sammenlign alle betalingsløsninger" },
+  { to: "/betalingsmetoder/visa-mastercard", label: "Visa / Mastercard", icon: CreditCard, desc: "Kortbetaling med 3D Secure" },
+  { to: "/betalingsmetoder/mobilepay", label: "MobilePay", icon: Smartphone, desc: "Danmarks populære mobilbetaling" },
+  { to: "/betalingsmetoder/trustly", label: "Trustly", icon: Landmark, desc: "Direkte bankoverførsel via open banking" },
+  { to: "/betalingsmetoder/paypal", label: "PayPal", icon: Globe, desc: "Verdens største e-wallet" },
+  { to: "/betalingsmetoder/skrill", label: "Skrill", icon: Wallet, desc: "E-wallet med VIP-program" },
+  { to: "/betalingsmetoder/zimpler", label: "Zimpler", icon: Zap, desc: "Svensk fintech med open banking" },
+  { to: "/betalingsmetoder/paysafecard", label: "Paysafecard", icon: ShieldCheck, desc: "Anonym forudbetalt voucher" },
+  { to: "/betalingsmetoder/apple-pay", label: "Apple Pay", icon: Smartphone, desc: "Biometrisk mobilbetaling" },
+  { to: "/betalingsmetoder/bankoverforsler", label: "Bankoverførsel", icon: Landmark, desc: "Traditionel bankoverførsel" },
+  { to: "/betalingsmetoder/revolut", label: "Revolut", icon: Globe, desc: "Moderne fintech-app" },
+];
+
+// === PROVIDER GUIDES ===
+const providerGuides: GuideLink[] = [
+  { to: "/spiludviklere", label: "Spiludviklere Oversigt", icon: Gamepad2, desc: "Alle spiludbydere på danske casinoer" },
+  { to: "/spiludviklere/pragmatic-play", label: "Pragmatic Play", icon: Star, desc: "Populær udbyder med store jackpots" },
+  { to: "/spiludviklere/netent", label: "NetEnt", icon: Star, desc: "Nordisk kvalitet og innovation" },
+  { to: "/spiludviklere/play-n-go", label: "Play'n GO", icon: Star, desc: "Book of Dead og meget mere" },
+  { to: "/spiludviklere/evolution-gaming", label: "Evolution Gaming", icon: Tv, desc: "Verdens førende live casino-udbyder" },
+  { to: "/spiludviklere/nolimit-city", label: "Nolimit City", icon: Zap, desc: "Høj volatilitet og unikke mekanikker" },
+  { to: "/spiludviklere/hacksaw-gaming", label: "Hacksaw Gaming", icon: Sparkles, desc: "Innovative slots med stor vindpotentiale" },
+  { to: "/spiludviklere/microgaming", label: "Microgaming", icon: Trophy, desc: "Pionererne bag Mega Moolah" },
+  { to: "/spiludviklere/red-tiger", label: "Red Tiger", icon: Star, desc: "Daily jackpots og unikke features" },
+  { to: "/spiludviklere/yggdrasil", label: "Yggdrasil", icon: Sparkles, desc: "Visuelt imponerende spiloplevelser" },
+  { to: "/spiludviklere/relax-gaming", label: "Relax Gaming", icon: Gamepad2, desc: "Dream Drop jackpot-serien" },
+  { to: "/spiludviklere/elk-studios", label: "ELK Studios", icon: Star, desc: "Kreative mekanikker og flot grafik" },
+  { to: "/spiludviklere/big-time-gaming", label: "Big Time Gaming", icon: Zap, desc: "Opfinderne af Megaways" },
+];
+
+// === CASINO REVIEW GUIDES ===
+const casinoReviewGuides: GuideLink[] = [
+  { to: "/casino-anmeldelser", label: "Casino Anmeldelser", icon: BookOpen, desc: "Oversigt over alle anmeldelser" },
+  { to: "/spildansknu-anmeldelse", label: "SpilDanskNu", icon: Star, desc: "Dansk casino med 10x omsætningskrav" },
+  { to: "/spilleautomaten-anmeldelse", label: "Spilleautomaten", icon: Gamepad2, desc: "Bredt spiludvalg og hurtige udbetalinger" },
+  { to: "/betinia-anmeldelse", label: "Betinia", icon: Trophy, desc: "Moderne casino med store bonusser" },
+  { to: "/swift-casino-anmeldelse", label: "Swift Casino", icon: Zap, desc: "Hurtigt og enkelt casinooplevelse" },
+  { to: "/campobet-anmeldelse", label: "Campobet", icon: Star, desc: "Casino og sportsbetting i ét" },
+  { to: "/luna-casino-anmeldelse", label: "Luna Casino", icon: Sparkles, desc: "Nyt dansk casino med stærk bonus" },
+];
+
+// === GENERAL / MIXED GUIDES ===
+const generalGuides: GuideLink[] = [
+  { to: "/live-casino", label: "Live Casino", icon: Tv, desc: "Spil med rigtige dealere i realtid" },
+  { to: "/nye-casinoer", label: "Nye Casinoer", icon: Sparkles, desc: "De seneste casinoer med dansk licens" },
+  { to: "/top-casino-online", label: "Top 10 Casino", icon: Trophy, desc: "De bedste online casinoer i Danmark" },
+  { to: "/casinospil", label: "Casinospil", icon: Gamepad2, desc: "Udforsk alle typer casinospil" },
+  { to: "/responsible-gaming", label: "Ansvarligt Spil", icon: ShieldCheck, desc: "Spil sikkert og ansvarligt" },
+];
+
+/**
+ * Determine the category of the current page and return relevant guides
+ */
+function getContextualGuides(currentPath: string): { guides: GuideLink[]; subtitle: string } {
+  const path = currentPath.toLowerCase();
+
+  // Payment method pages → show other payment guides + a few general
+  if (path.startsWith("/betalingsmetoder")) {
+    return {
+      guides: [...paymentGuides, ...generalGuides.slice(0, 2)],
+      subtitle: "Udforsk vores andre dybdegående guides til betalingsmetoder på danske casinoer.",
+    };
+  }
+
+  // Provider pages → show other provider guides + a few general
+  if (path.startsWith("/spiludviklere")) {
+    return {
+      guides: [...providerGuides, ...generalGuides.slice(0, 2)],
+      subtitle: "Udforsk vores andre dybdegående guides til populære spiludviklere på danske casinoer.",
+    };
+  }
+
+  // Casino review pages → show other reviews + a few bonus/general
+  if (path.includes("-anmeldelse") || path === "/casino-anmeldelser") {
+    return {
+      guides: [...casinoReviewGuides, ...bonusGuides.slice(0, 3), ...generalGuides.slice(0, 2)],
+      subtitle: "Udforsk vores dybdegående anmeldelser og guides til danske online casinoer.",
+    };
+  }
+
+  // Bonus pages → show other bonus guides + a few general
+  if (
+    path.startsWith("/velkomstbonus") ||
+    path.startsWith("/free-spins") ||
+    path.startsWith("/indskudsbonus") ||
+    path.startsWith("/omsaetningskrav") ||
+    path.startsWith("/no-sticky-bonus") ||
+    path.startsWith("/sticky-bonus") ||
+    path.startsWith("/bonus-uden") ||
+    path.startsWith("/casino-bonus")
+  ) {
+    return {
+      guides: [...bonusGuides, ...generalGuides.slice(0, 2)],
+      subtitle: "Udforsk vores andre dybdegående guides og bliv klogere på alt inden for casino bonusser i Danmark.",
+    };
+  }
+
+  // General / casino pages → show a mix of everything
+  return {
+    guides: [
+      ...bonusGuides.slice(0, 3),
+      ...paymentGuides.slice(0, 2),
+      ...providerGuides.slice(0, 2),
+      ...casinoReviewGuides.slice(0, 2),
+      ...generalGuides,
+    ],
+    subtitle: "Udforsk vores dybdegående guides til bonusser, betalingsmetoder, spiludviklere og casino anmeldelser.",
+  };
+}
+
 interface RelatedGuidesProps {
-  /** Current page path to exclude from links */
   currentPath: string;
-  /** Max number of links to show */
   maxLinks?: number;
 }
 
 export function RelatedGuides({ currentPath, maxLinks = 6 }: RelatedGuidesProps) {
-  const filteredLinks = guideLinks.filter((link) => link.to !== currentPath).slice(0, maxLinks);
+  const { guides, subtitle } = getContextualGuides(currentPath);
+  const filteredLinks = guides.filter((link) => link.to !== currentPath).slice(0, maxLinks);
 
   return (
     <>
@@ -45,7 +170,7 @@ export function RelatedGuides({ currentPath, maxLinks = 6 }: RelatedGuidesProps)
           Relaterede Guides
         </h2>
         <p className="mb-6 text-muted-foreground leading-relaxed">
-          Udforsk vores andre dybdegående guides og bliv klogere på alt inden for casino bonusser i Danmark.
+          {subtitle}
         </p>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
           {filteredLinks.map((link) => (
@@ -64,7 +189,6 @@ export function RelatedGuides({ currentPath, maxLinks = 6 }: RelatedGuidesProps)
         </div>
       </section>
 
-      {/* Trust / Ansvarligt Spil CTA */}
       <section className="mb-12">
         <Card className="border-border bg-card border-l-4 border-l-primary">
           <CardHeader className="pb-2">
