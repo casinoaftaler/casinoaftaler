@@ -25,8 +25,8 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
-import { Plus, Loader2, Trophy, Clock, Trash2, Square, Gift } from "lucide-react";
-import { useTournaments, useCreateTournament, useEndTournament, useDeleteTournament, type Tournament } from "@/hooks/useTournaments";
+import { Plus, Loader2, Trophy, Clock, Trash2, Square, Gift, Pencil } from "lucide-react";
+import { useTournaments, useCreateTournament, useEndTournament, useDeleteTournament, useUpdateTournament, type Tournament } from "@/hooks/useTournaments";
 import { useAuth } from "@/hooks/useAuth";
 import { toast } from "sonner";
 import { format } from "date-fns";
@@ -156,6 +156,110 @@ function CreateTournamentDialog() {
   );
 }
 
+function EditTournamentDialog({ tournament }: { tournament: Tournament }) {
+  const [open, setOpen] = useState(false);
+  const updateTournament = useUpdateTournament();
+  const [title, setTitle] = useState(tournament.title);
+  const [description, setDescription] = useState(tournament.description || "");
+  const [prizeText, setPrizeText] = useState(tournament.prize_text || "");
+  const [gameIds, setGameIds] = useState<string[]>(tournament.game_ids);
+  const [separateLeaderboards, setSeparateLeaderboards] = useState(tournament.separate_leaderboards);
+  const [startsAt, setStartsAt] = useState(new Date(tournament.starts_at).toISOString().slice(0, 16));
+  const [endsAt, setEndsAt] = useState(new Date(tournament.ends_at).toISOString().slice(0, 16));
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (gameIds.length === 0) {
+      toast.error("Vælg mindst én spillemaskine");
+      return;
+    }
+    try {
+      await updateTournament.mutateAsync({
+        id: tournament.id,
+        title,
+        description: description || null,
+        prize_text: prizeText || null,
+        game_ids: gameIds,
+        separate_leaderboards: separateLeaderboards,
+        starts_at: new Date(startsAt).toISOString(),
+        ends_at: new Date(endsAt).toISOString(),
+      });
+      toast.success("Turnering opdateret!");
+      setOpen(false);
+    } catch {
+      toast.error("Fejl ved opdatering af turnering");
+    }
+  };
+
+  const toggleGame = (id: string) => {
+    setGameIds((prev) =>
+      prev.includes(id) ? prev.filter((g) => g !== id) : [...prev, id]
+    );
+  };
+
+  return (
+    <Dialog open={open} onOpenChange={setOpen}>
+      <DialogTrigger asChild>
+        <Button variant="outline" size="icon"><Pencil className="h-4 w-4" /></Button>
+      </DialogTrigger>
+      <DialogContent className="max-w-lg">
+        <DialogHeader>
+          <DialogTitle>Rediger Turnering</DialogTitle>
+        </DialogHeader>
+        <form onSubmit={handleSubmit} className="space-y-4">
+          <div className="space-y-2">
+            <Label htmlFor="e-title">Titel *</Label>
+            <Input id="e-title" value={title} onChange={(e) => setTitle(e.target.value)} required />
+          </div>
+          <div className="space-y-2">
+            <Label htmlFor="e-desc">Beskrivelse</Label>
+            <Textarea id="e-desc" value={description} onChange={(e) => setDescription(e.target.value)} rows={3} />
+          </div>
+          <div className="space-y-2">
+            <Label htmlFor="e-prize">Præmie</Label>
+            <Input id="e-prize" value={prizeText} onChange={(e) => setPrizeText(e.target.value)} placeholder='Fx "Gaming Headset"' />
+          </div>
+          <div className="space-y-2">
+            <Label>Spillemaskiner *</Label>
+            <div className="flex flex-col gap-2">
+              {GAME_OPTIONS.map((game) => (
+                <div key={game.id} className="flex items-center gap-2">
+                  <Checkbox
+                    id={`edit-game-${game.id}`}
+                    checked={gameIds.includes(game.id)}
+                    onCheckedChange={() => toggleGame(game.id)}
+                  />
+                  <Label htmlFor={`edit-game-${game.id}`} className="cursor-pointer">{game.label}</Label>
+                </div>
+              ))}
+            </div>
+          </div>
+          {gameIds.length > 1 && (
+            <div className="flex items-center gap-3">
+              <Switch checked={separateLeaderboards} onCheckedChange={setSeparateLeaderboards} id="edit-separate-lb" />
+              <Label htmlFor="edit-separate-lb" className="cursor-pointer">Separate leaderboards per slot</Label>
+            </div>
+          )}
+          <div className="grid grid-cols-2 gap-4">
+            <div className="space-y-2">
+              <Label htmlFor="e-start">Starttidspunkt *</Label>
+              <Input id="e-start" type="datetime-local" value={startsAt} onChange={(e) => setStartsAt(e.target.value)} required />
+            </div>
+            <div className="space-y-2">
+              <Label htmlFor="e-end">Sluttidspunkt *</Label>
+              <Input id="e-end" type="datetime-local" value={endsAt} onChange={(e) => setEndsAt(e.target.value)} required />
+            </div>
+          </div>
+          <Button type="submit" className="w-full" disabled={updateTournament.isPending}>
+            {updateTournament.isPending && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
+            Gem Ændringer
+          </Button>
+        </form>
+      </DialogContent>
+    </Dialog>
+  );
+}
+
 function TournamentRow({ tournament }: { tournament: Tournament }) {
   const endTournament = useEndTournament();
   const deleteTournament = useDeleteTournament();
@@ -182,6 +286,7 @@ function TournamentRow({ tournament }: { tournament: Tournament }) {
           )}
         </div>
         <div className="flex items-center gap-2">
+          <EditTournamentDialog tournament={tournament} />
           {tournament.status === "active" && (
             <AlertDialog>
               <AlertDialogTrigger asChild>
