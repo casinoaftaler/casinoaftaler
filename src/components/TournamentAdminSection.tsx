@@ -25,7 +25,7 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
-import { Plus, Loader2, Trophy, Clock, Trash2, Square } from "lucide-react";
+import { Plus, Loader2, Trophy, Clock, Trash2, Square, Gift } from "lucide-react";
 import { useTournaments, useCreateTournament, useEndTournament, useDeleteTournament, type Tournament } from "@/hooks/useTournaments";
 import { useAuth } from "@/hooks/useAuth";
 import { toast } from "sonner";
@@ -51,6 +51,7 @@ function CreateTournamentDialog() {
   const [description, setDescription] = useState("");
   const [gameIds, setGameIds] = useState<string[]>(["book-of-fedesvin"]);
   const [separateLeaderboards, setSeparateLeaderboards] = useState(false);
+  const [prizeText, setPrizeText] = useState("");
   const [startsAt, setStartsAt] = useState("");
   const [endsAt, setEndsAt] = useState("");
 
@@ -65,6 +66,7 @@ function CreateTournamentDialog() {
       await createTournament.mutateAsync({
         title,
         description: description || undefined,
+        prize_text: prizeText || undefined,
         game_ids: gameIds,
         separate_leaderboards: separateLeaderboards,
         starts_at: new Date(startsAt).toISOString(),
@@ -77,6 +79,7 @@ function CreateTournamentDialog() {
       setDescription("");
       setGameIds(["book-of-fedesvin"]);
       setSeparateLeaderboards(false);
+      setPrizeText("");
       setStartsAt("");
       setEndsAt("");
     } catch {
@@ -107,6 +110,10 @@ function CreateTournamentDialog() {
           <div className="space-y-2">
             <Label htmlFor="t-desc">Beskrivelse</Label>
             <Textarea id="t-desc" value={description} onChange={(e) => setDescription(e.target.value)} placeholder="Præmieinformation, regler osv." rows={3} />
+          </div>
+          <div className="space-y-2">
+            <Label htmlFor="t-prize">Præmie</Label>
+            <Input id="t-prize" value={prizeText} onChange={(e) => setPrizeText(e.target.value)} placeholder='Fx "Gaming Headset" eller "500 kr. gavekort"' />
           </div>
           <div className="space-y-2">
             <Label>Spillemaskiner *</Label>
@@ -168,6 +175,11 @@ function TournamentRow({ tournament }: { tournament: Tournament }) {
             Spil: {tournament.game_ids.map(id => GAME_OPTIONS.find(g => g.id === id)?.label || id).join(", ")}
             {tournament.separate_leaderboards && " · Separate leaderboards"}
           </p>
+          {tournament.prize_text && (
+            <p className="text-xs text-muted-foreground mt-0.5 flex items-center gap-1">
+              <Gift className="h-3 w-3" /> Præmie: {tournament.prize_text}
+            </p>
+          )}
         </div>
         <div className="flex items-center gap-2">
           {tournament.status === "active" && (

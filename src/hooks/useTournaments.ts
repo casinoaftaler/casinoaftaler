@@ -6,6 +6,7 @@ export interface Tournament {
   id: string;
   title: string;
   description: string | null;
+  prize_text: string | null;
   game_ids: string[];
   separate_leaderboards: boolean;
   starts_at: string;
@@ -145,6 +146,7 @@ export function useCreateTournament() {
     mutationFn: async (tournament: {
       title: string;
       description?: string;
+      prize_text?: string;
       game_ids: string[];
       separate_leaderboards: boolean;
       starts_at: string;

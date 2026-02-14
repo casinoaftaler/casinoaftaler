@@ -1130,6 +1130,7 @@ export type Database = {
           ends_at: string
           game_ids: string[]
           id: string
+          prize_text: string | null
           separate_leaderboards: boolean
           starts_at: string
           status: string
@@ -1142,6 +1143,7 @@ export type Database = {
           ends_at: string
           game_ids?: string[]
           id?: string
+          prize_text?: string | null
           separate_leaderboards?: boolean
           starts_at: string
           status?: string
@@ -1154,6 +1156,7 @@ export type Database = {
           ends_at?: string
           game_ids?: string[]
           id?: string
+          prize_text?: string | null
           separate_leaderboards?: boolean
           starts_at?: string
           status?: string

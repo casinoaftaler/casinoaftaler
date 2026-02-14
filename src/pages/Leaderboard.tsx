@@ -5,7 +5,7 @@ import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Trophy, Medal, Award, Crown, Sparkles, Gamepad2, ArrowRight, LogIn, Clock, Timer } from "lucide-react";
+import { Trophy, Medal, Award, Crown, Sparkles, Gamepad2, ArrowRight, LogIn, Clock, Timer, Gift } from "lucide-react";
 import { UserProfileLink } from "@/components/UserProfileLink";
 import { useAuth } from "@/hooks/useAuth";
 import { useTournaments, useTournamentLeaderboard, type Tournament, type TournamentEntry } from "@/hooks/useTournaments";
@@ -167,6 +167,12 @@ function TournamentLeaderboardCard({ tournament }: { tournament: Tournament }) {
             <div>
               <h3 className="font-bold text-lg text-foreground">{tournament.title}</h3>
               {tournament.description && <p className="text-sm text-muted-foreground">{tournament.description}</p>}
+              {tournament.prize_text && (
+                <div className="flex items-center gap-1.5 mt-1">
+                  <Gift className={cn("h-4 w-4", theme.accent)} />
+                  <span className={cn("text-sm font-medium", theme.accent)}>Præmie: {tournament.prize_text}</span>
+                </div>
+              )}
             </div>
           </div>
           <div className="flex items-center gap-2">
