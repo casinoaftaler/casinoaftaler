@@ -7,7 +7,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { Layout } from "./components/Layout";
 import { SlotPageLoading } from "./components/slots/SlotPageLoading";
-import { Skeleton } from "@/components/ui/skeleton";
+
 import Index from "./pages/Index";
 
 // Eager-load most visited pages to avoid Suspense flash
@@ -91,14 +91,7 @@ const queryClient = new QueryClient({
 });
 
 const PageFallback = () => (
-  <div className="min-h-screen p-6 space-y-6">
-    <Skeleton className="h-10 w-3/4 max-w-md" />
-    <Skeleton className="h-6 w-1/2 max-w-sm" />
-    <div className="space-y-4 pt-4">
-      <Skeleton className="h-40 w-full max-w-4xl rounded-xl" />
-      <Skeleton className="h-40 w-full max-w-4xl rounded-xl" />
-    </div>
-  </div>
+  <div className="min-h-screen" />
 );
 
 const App = () => (
