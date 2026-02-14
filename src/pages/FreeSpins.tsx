@@ -643,9 +643,9 @@ const FreeSpins = () => {
 
         <Separator className="my-10" />
 
-        <FAQSection title="Ofte stillede spørgsmål om free spins" faqs={freeSpinsFaqs} />
-
         <RelatedGuides currentPath="/free-spins" />
+
+        <FAQSection title="Ofte stillede spørgsmål om free spins" faqs={freeSpinsFaqs} />
       </div>
     </>
   );

@@ -1220,9 +1220,9 @@ const TopCasinoOnline = () => {
 
         <Separator className="my-10" />
 
-        <FAQSection title="Ofte stillede spørgsmål om online casino" faqs={topCasinoFaqs} />
-
         <RelatedGuides currentPath="/top-10-casino-online" />
+
+        <FAQSection title="Ofte stillede spørgsmål om online casino" faqs={topCasinoFaqs} />
       </div>
     </>
   );

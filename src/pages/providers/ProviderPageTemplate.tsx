@@ -333,9 +333,9 @@ export function ProviderPage({
 
         <Separator className="my-10" />
 
-        <FAQSection title={`Ofte stillede spørgsmål om ${name}`} faqs={faqs} />
-
         <RelatedGuides currentPath={currentPath} />
+
+        <FAQSection title={`Ofte stillede spørgsmål om ${name}`} faqs={faqs} />
       </div>
     </>
   );

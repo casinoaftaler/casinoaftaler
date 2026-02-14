@@ -682,12 +682,12 @@ const Casinospil = () => {
 
         <Separator className="my-10" />
 
-        {/* FAQ */}
-        <FAQSection title="Ofte stillede spørgsmål om casinospil" faqs={casinospilFaqs} />
-
         <Separator className="my-10" />
 
         <RelatedGuides currentPath="/casinospil" />
+
+        {/* FAQ */}
+        <FAQSection title="Ofte stillede spørgsmål om casinospil" faqs={casinospilFaqs} />
       </div>
     </>
   );

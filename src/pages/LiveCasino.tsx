@@ -648,9 +648,9 @@ const LiveCasino = () => {
 
         <Separator className="my-10" />
 
-        <FAQSection title="Ofte stillede spørgsmål om live casino" faqs={liveCasinoFaqs} />
-
         <RelatedGuides currentPath="/live-casino" />
+
+        <FAQSection title="Ofte stillede spørgsmål om live casino" faqs={liveCasinoFaqs} />
       </div>
     </>
   );

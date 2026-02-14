@@ -875,9 +875,9 @@ const CampobetAnmeldelse = () => {
 
         <Separator className="my-10" />
 
-        <FAQSection title="Ofte stillede spørgsmål om Campobet" faqs={campobetFaqs} />
-
         <RelatedGuides currentPath="/campobet-anmeldelse" />
+
+        <FAQSection title="Ofte stillede spørgsmål om Campobet" faqs={campobetFaqs} />
       </div>
     </>
   );

@@ -553,9 +553,9 @@ const Omsaetningskrav = () => {
 
         <Separator className="my-10" />
 
-        <FAQSection title="Ofte stillede spørgsmål om omsætningskrav" faqs={omsaetningskravFaqs} />
-
         <RelatedGuides currentPath="/omsaetningskrav" />
+
+        <FAQSection title="Ofte stillede spørgsmål om omsætningskrav" faqs={omsaetningskravFaqs} />
       </div>
     </>
   );

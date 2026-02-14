@@ -1405,9 +1405,9 @@ const CasinoBonus = () => {
 
         <Separator className="my-10" />
 
-        <FAQSection title="Ofte stillede spørgsmål om casino bonus" faqs={casinoBonusFaqs} />
-
         <RelatedGuides currentPath="/casino-bonus" />
+
+        <FAQSection title="Ofte stillede spørgsmål om casino bonus" faqs={casinoBonusFaqs} />
       </div>
     </>
   );

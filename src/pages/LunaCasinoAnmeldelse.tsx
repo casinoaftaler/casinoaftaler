@@ -517,13 +517,11 @@ const LunaCasinoAnmeldelse = () => {
         </section>
 
         <Separator className="my-10" />
-
-        <FAQSection title="Ofte stillede spørgsmål om Luna Casino" faqs={lunaFaqs} />
-
-        <Separator className="my-10" />
         <InlineCasinoCards />
         <Separator className="my-10" />
         <RelatedGuides currentPath="/luna-casino-anmeldelse" />
+
+        <FAQSection title="Ofte stillede spørgsmål om Luna Casino" faqs={lunaFaqs} />
       </div>
     </>
   );

@@ -708,9 +708,9 @@ const BonusUdenOmsaetningskrav = () => {
 
         <Separator className="my-10" />
 
-        <FAQSection title="Ofte stillede spørgsmål om bonus uden omsætningskrav" faqs={faqs} />
-
         <RelatedGuides currentPath="/bonus-uden-omsaetningskrav" />
+
+        <FAQSection title="Ofte stillede spørgsmål om bonus uden omsætningskrav" faqs={faqs} />
       </div>
     </>
   );
