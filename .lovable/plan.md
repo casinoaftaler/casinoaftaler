@@ -1,48 +1,61 @@
 
-# Fix: Bet Size Resetting During Bonus in Rise of Fedesvin
 
-## Problem
-During an active bonus round, win calculations use the `bet` value sent from the client instead of the locked-in bet amount stored in the database. This means if the client's local `bet` state drifts to 1 (e.g., due to a component re-render, race condition, or state reset), all subsequent bonus spin payouts are calculated at bet=1 instead of the original bet.
+## Intern linking fra SEO-sider til Community
 
-## Root Cause
-The `slot-spin` Edge Function receives `bet` from the request body and uses it directly for all win calculations during bonus spins -- even though the correct bet is already stored in `slot_bonus_state.bet_amount`.
+### Problem
+De ~30+ SEO-sider (bonusguides, betalingsmetoder, spiludviklere, anmeldelser) har ingen links til community-siderne (Spillehal, Highlights, Leaderboard, Shop, Rewards). Det betyder at Google ikke opdager community-siderne via crawling af SEO-indholdet, og brugerne ikke ledes videre.
 
-Affected lines in `supabase/functions/slot-spin/index.ts`:
-- Line 724: `calculateMultiExpandingBonusWins(..., bet, ...)` (Rise of Fedesvin)
-- Line 769: `calculateBonusWins(..., bet, ...)` (Book of Fedesvin)
-- Line 776-778: Scatter payout calculations using `bet`
-- Line 821: `bet_amount: bet` in final bonus result recording
+### Strategi
 
-## Solution
-**Server-side fix only** -- override `bet` with the stored `bonusData.bet_amount` at the start of the bonus spin path. This is the authoritative, tamper-proof approach since the database value was set when the bonus was originally triggered.
+#### 1. Tilfoej community-links i RelatedGuides-komponenten
+Udvid `RelatedGuides` med en ny kategori af community-links der vises som en separat sektion under de eksisterende relaterede guides. Dette giver alle 30+ sider der bruger `RelatedGuides` en naturlig kobling til community.
 
-### Changes
+Community-links der tilfoejs:
+- `/community/slots` - Spillehal (Proev vores gratis slot maskiner)
+- `/highlights` - Highlights & Clips (Se de bedste oejeblikkefra streamen)
+- `/community/leaderboard` - Leaderboard (Se hvem der topper ranglisten)
+- `/butik` - Butik (Brug dine point paa praemier)
+- `/community/rewards` - Rewards (Optjen point og beloenninger)
 
-**File: `supabase/functions/slot-spin/index.ts`**
+Disse vises som en kompakt sektion med overskriften "Vores Community" under de eksisterende relaterede guides.
 
-After confirming the bonus state is valid (around line 667), add:
+#### 2. Udvid SpillehalPromoSection til en bredere CommunityPromoSection
+Opgrader den eksisterende `SpillehalPromoSection` (som kun vises paa forsiden) til en mere alsidig `CommunityPromoSection` der ogsaa naevner highlights og leaderboard. Placeres paa de stoerste cornerstone-sider:
+- `/casino-bonus`
+- `/top-10-casino-online`
+- `/nye-casinoer`
+- `/casinospil`
+- `/live-casino`
 
-```text
-// Use the locked-in bet from bonus trigger, not the client-sent value
-bet = Number(bonusData.bet_amount) || bet;
-```
+#### 3. Tilfoej community-sider til sitemap.xml
+Foelgende URLs mangler i sitemappet:
+- `/community/slots`
+- `/community/slots/book-of-fedesvin`
+- `/community/slots/rise-of-fedesvin`
+- `/community/leaderboard`
+- `/community/rewards`
+- `/highlights`
+- `/butik`
 
-This single line ensures:
-- All win calculations use the correct bet
-- Scatter payouts use the correct bet
-- The final bonus result record uses the correct bet
-- It's impossible for a client to send a manipulated bet during bonus
-- No frontend changes needed
+### Teknisk implementering
 
-### Why not a frontend fix?
-The current frontend restore effect (lines 182-187) is a good safeguard but insufficient alone because:
-1. It depends on React state timing
-2. A client could theoretically send any bet value
-3. The server should be the source of truth for the locked-in bet amount
+**Fil: `src/components/RelatedGuides.tsx`**
+- Tilfoej en `communityGuides` array med de 5 community-links
+- Tilfoej en ny sektion i render-outputtet under de eksisterende guides med overskriften "Vores Community"
+- Vises paa alle sider der bruger `RelatedGuides` (30+ sider) - ingen aendringer i de individuelle sider
 
-The frontend restore effect can remain as-is for UI correctness, but the server must enforce the correct bet.
+**Fil: `src/components/SpillehalPromoSection.tsx`**
+- Omnavngivs til `CommunityPromoSection`
+- Udvides med links til baade Spillehal, Highlights og Leaderboard i en kompakt boks
 
-## Files Modified
-| File | Change |
-|---|---|
-| `supabase/functions/slot-spin/index.ts` | Override `bet` with `bonusData.bet_amount` at start of bonus spin path |
+**Filer: Cornerstone-sider**
+- Importer og placer `CommunityPromoSection` paa 4-5 af de stoerste SEO-sider (casino-bonus, top-10, nye-casinoer, casinospil, live-casino)
+
+**Fil: `public/sitemap.xml`**
+- Tilfoej de 7 manglende community-URLs
+
+### SEO-effekt
+- 30+ sider faar interne links til community (via RelatedGuides)
+- 5 cornerstone-sider faar prominente community-CTAs
+- Google kan nu crawle community-siderne via det interne linknetvaerk
+- Sitemappet sikrer direkte indeksering af alle community-URLs
