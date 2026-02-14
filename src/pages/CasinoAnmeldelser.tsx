@@ -8,6 +8,7 @@ import { InlineCasinoCards } from "@/components/InlineCasinoCards";
 import { CasinoCard } from "@/components/CasinoCard";
 import { useCasinos } from "@/hooks/useCasinos";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
+import { useState } from "react";
 import {
   Accordion,
   AccordionContent,
@@ -151,6 +152,7 @@ const breadcrumbJsonLd = {
 const CasinoAnmeldelser = () => {
   const { data: casinos, isLoading } = useCasinos();
   const { data: siteSettings } = useSiteSettings();
+  const [openCasinoId, setOpenCasinoId] = useState<string | null>(null);
   const heroBackgroundImage = siteSettings?.hero_background;
 
   const reviewCasinos = (casinos ?? []).filter((c) => reviewSlugs.includes(c.slug));
@@ -272,14 +274,43 @@ const CasinoAnmeldelser = () => {
         <section className="mb-12">
           <h2 className="mb-6 text-3xl font-bold">Alle Casino Anmeldelser</h2>
           {isLoading ? (
-            <div className="flex justify-center py-8">
-              <Loader2 className="h-6 w-6 animate-spin text-primary" />
+            <div className="flex items-center justify-center py-12">
+              <Loader2 className="h-8 w-8 animate-spin text-primary" />
             </div>
+          ) : reviewCasinos.length === 0 ? (
+            <p className="py-8 text-center text-muted-foreground">
+              Ingen casino anmeldelser tilgængelige i øjeblikket.
+            </p>
           ) : (
             <div className="space-y-4">
-              {reviewCasinos.map((casino, idx) => (
-                <CasinoCard key={casino.id} casino={mapCasino(casino)} rank={idx + 1} />
-              ))}
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 items-start">
+                {reviewCasinos.slice(0, 2).map((casino, index) => (
+                  <CasinoCard
+                    key={casino.id}
+                    casino={mapCasino(casino)}
+                    rank={index + 1}
+                    open={openCasinoId === casino.id}
+                    onOpenChange={(open) =>
+                      setOpenCasinoId(open ? casino.id : null)
+                    }
+                  />
+                ))}
+              </div>
+              {reviewCasinos.length > 2 && (
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-4 items-start">
+                  {reviewCasinos.slice(2).map((casino, index) => (
+                    <CasinoCard
+                      key={casino.id}
+                      casino={mapCasino(casino)}
+                      rank={index + 3}
+                      open={openCasinoId === casino.id}
+                      onOpenChange={(open) =>
+                        setOpenCasinoId(open ? casino.id : null)
+                      }
+                    />
+                  ))}
+                </div>
+              )}
             </div>
           )}
         </section>
