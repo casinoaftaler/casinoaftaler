@@ -93,11 +93,28 @@ const generalGuides: GuideLink[] = [
   { to: "/spillemyndigheden", label: "Spillemyndigheden", icon: Globe, desc: "Danmarks tilsynsmyndighed for spil" },
 ];
 
+// === LEGAL / RESPONSIBLE GAMING GUIDES ===
+const legalGuides: GuideLink[] = [
+  { to: "/privacy", label: "Privatlivspolitik", icon: ShieldCheck, desc: "Læs om hvordan vi beskytter dine data" },
+  { to: "/terms", label: "Vilkår og Betingelser", icon: BookOpen, desc: "Vores generelle vilkår for brug af sitet" },
+  { to: "/cookies", label: "Cookiepolitik", icon: Globe, desc: "Information om vores brug af cookies" },
+  { to: "/responsible-gaming", label: "Ansvarligt Spil", icon: ShieldCheck, desc: "Spil sikkert og ansvarligt" },
+  { to: "/spillemyndigheden", label: "Spillemyndigheden", icon: Landmark, desc: "Danmarks tilsynsmyndighed for spil" },
+];
+
 /**
  * Determine the category of the current page and return relevant guides
  */
 function getContextualGuides(currentPath: string): { guides: GuideLink[]; subtitle: string } {
   const path = currentPath.toLowerCase();
+
+  // Legal / responsible gaming pages → show other legal + responsible gaming guides
+  if (path === "/privacy" || path === "/terms" || path === "/cookies" || path === "/responsible-gaming" || path === "/spillemyndigheden") {
+    return {
+      guides: legalGuides,
+      subtitle: "Udforsk vores andre sider om ansvarligt spil, databeskyttelse og juridiske vilkår.",
+    };
+  }
 
   // Payment method pages → show other payment guides + a few general
   if (path.startsWith("/betalingsmetoder")) {
