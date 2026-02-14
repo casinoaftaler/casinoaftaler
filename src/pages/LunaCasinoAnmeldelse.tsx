@@ -422,13 +422,71 @@ const LunaCasinoAnmeldelse = () => {
 
         <Separator className="my-10" />
 
+        {/* Daglige bonuskampagner */}
+        <section className="mb-12">
+          <h2 className="mb-4 text-3xl font-bold">Daglige bonuskampagner og deals</h2>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            Ud over velkomstbonussen tilbyder Luna Casino daglige bonuskampagner, der giver dig ekstra værdi hver eneste dag. Kampagnerne varierer fra dag til dag og kan inkludere{" "}
+            <Link to="/free-spins" className={linkClass}>free spins</Link> på udvalgte spilleautomater, reload-bonusser, cashback-tilbud og eksklusive turneringsinvitationer.
+          </p>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            Det unikke ved Luna Casinos tilgang er, at bonusspiludvalget skræddersys til din profil. Baseret på dine foretrukne spiltyper og spillevaner modtager du personlige tilbud, der er relevante for netop dig. Det gør oplevelsen mere engagerende end de standardiserede kampagner, man finder hos mange konkurrenter.
+          </p>
+          <p className="text-muted-foreground leading-relaxed">
+            For at holde dig opdateret anbefaler vi at tjekke kampagnesektionen dagligt. De bedste deals har ofte begrænsede pladser eller tidsvinduer, og det betaler sig at være hurtig. Kombineret med loyalitetsprogrammet giver de daglige kampagner en solid grund til at vende tilbage til Luna Casino regelmæssigt.
+          </p>
+        </section>
+
+        <Separator className="my-10" />
+
+        {/* Mobiloplevelse */}
+        <section className="mb-12">
+          <h2 className="mb-4 text-3xl font-bold">Mobiloplevelse hos Luna Casino</h2>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            Luna Casino tilbyder en fuldt mobiloptimeret hjemmeside, der fungerer sømløst i alle moderne browsere på iOS og Android. Der er ingen dedikeret app, men den mobilvenlige udgave er hurtig, stabil og nem at navigere. Alle spil, bonusser og kontofunktioner er tilgængelige direkte fra din smartphone eller tablet.
+          </p>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            Indbetalinger via{" "}
+            <Link to="/betalingsmetoder" className={linkClass}>MobilePay</Link>{" "}
+            er særligt velegnet til mobilspil – du kan gennemføre en indbetaling med blot et par tryk og en swipe i MobilePay-appen. Login via MitID fungerer ligeledes problemfrit fra mobilenheder.
+          </p>
+          <p className="text-muted-foreground leading-relaxed">
+            {" "}
+            <Link to="/live-casino" className={linkClass}>Live casino</Link>-spillene streamer i høj kvalitet selv på mobilnetværk, og spilleautomaterne tilpasser sig automatisk til din skærmstørrelse. Det kuraterede spiludvalg er faktisk en fordel på mobilen, da det gør det lettere at finde kvalitetsspil uden at skulle scrolle gennem tusindvis af titler.
+          </p>
+        </section>
+
+        <Separator className="my-10" />
+
+        {/* Registrering */}
+        <section className="mb-12">
+          <h2 className="mb-4 text-3xl font-bold">Tilmelding og registrering</h2>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            Tilmeldingsprocessen hos Luna Casino er enkel og strømlinet via MitID-integration. Du udfylder dine personlige oplysninger, vælger brugernavn og adgangskode, bekræfter din identitet via MitID og sætter dine indbetalingsgrænser. Hele processen tager under 5 minutter, og du er klar til at spille med det samme.
+          </p>
+          <p className="text-muted-foreground leading-relaxed">
+            Alle danske casinoer med licens fra Spillemyndigheden kræver, at du sætter daglige, ugentlige og månedlige indbetalingsgrænser ved oprettelse. Dette er en del af lovgivningen om{" "}
+            <Link to="/responsible-gaming" className="text-primary hover:underline">ansvarligt spil</Link>{" "}
+            og sikrer, at du altid har kontrol over dit forbrug. Grænserne kan justeres senere via din kontoside.
+          </p>
+        </section>
+
+        <Separator className="my-10" />
+
         {/* Security */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold">Sikkerhed og licens</h2>
-          <p className="mb-6 text-muted-foreground leading-relaxed">
-            Luna Casino opererer med dansk licens fra Spillemyndigheden (nr. 16-1066791). SkillOnNet Limited er et veletableret selskab med mange års erfaring. SSL-kryptering beskytter alle data, og casinoet er tilsluttet{" "}
-            <a href="https://www.rofus.nu/" target="_blank" rel="noopener noreferrer" className={linkClass}>ROFUS</a> og{" "}
-            <a href="https://www.stopspillet.dk/" target="_blank" rel="noopener noreferrer" className={linkClass}>StopSpillet</a>.
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            Luna Casino opererer med dansk licens fra Spillemyndigheden (nr. 16-1066791). SkillOnNet Limited er et veletableret selskab med mange års erfaring i branchen og driver flere andre anerkendte online casinoer i Danmark og internationalt. Denne erfaring og dokumenterede track record giver ekstra tryghed for danske spillere.
+          </p>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            Alle transaktioner og personoplysninger beskyttes med 256-bit SSL-kryptering, og casinoet er tilsluttet{" "}
+            <a href="https://www.rofus.nu/" target="_blank" rel="noopener noreferrer" className={linkClass}>ROFUS</a> for selvudelukkelse og{" "}
+            <a href="https://www.stopspillet.dk/" target="_blank" rel="noopener noreferrer" className={linkClass}>StopSpillet</a> for rådgivning om spilleproblemer.
+          </p>
+          <p className="text-muted-foreground leading-relaxed">
+            Luna Casino overholder Spillemyndighedens strenge regler for{" "}
+            <Link to="/responsible-gaming" className="text-primary hover:underline">ansvarligt spil</Link>, herunder obligatoriske indbetalingsgrænser, session-påmindelser efter 60 minutters spil og mulighed for midlertidig udelukkelse. Identitetsverifikation sker automatisk via MitID, så du behøver aldrig at uploade dokumentation manuelt.
           </p>
         </section>
 
