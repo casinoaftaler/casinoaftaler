@@ -110,6 +110,16 @@ const App = () => (
                 <Route path="/swift-casino-anmeldelse" element={<SwiftCasinoAnmeldelse />} />
                 <Route path="/luna-casino-anmeldelse" element={<LunaCasinoAnmeldelse />} />
                 <Route path="/casinospil" element={<Casinospil />} />
+                <Route path="/spiludviklere/netent" element={<NetEntGuide />} />
+                <Route path="/spiludviklere/pragmatic-play" element={<PragmaticPlayGuide />} />
+                <Route path="/spiludviklere/relax-gaming" element={<RelaxGamingGuide />} />
+                <Route path="/spiludviklere/play-n-go" element={<PlayNGoGuide />} />
+                <Route path="/spiludviklere/hacksaw-gaming" element={<HacksawGamingGuide />} />
+                <Route path="/spiludviklere/nolimit-city" element={<NolimitCityGuide />} />
+                <Route path="/spiludviklere/yggdrasil" element={<YggdrasilGuide />} />
+                <Route path="/spiludviklere/microgaming" element={<MicrogamingGuide />} />
+                <Route path="/spiludviklere/red-tiger" element={<RedTigerGuide />} />
+                <Route path="/spiludviklere/big-time-gaming" element={<BigTimeGamingGuide />} />
                 
                 <Route path="/community/leaderboard" element={<Leaderboard />} />
                 <Route path="/community/rewards" element={<RewardsProgram />} />
