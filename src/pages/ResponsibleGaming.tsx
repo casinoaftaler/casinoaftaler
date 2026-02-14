@@ -1,4 +1,5 @@
 import { AlertTriangle, Phone, Globe, HelpCircle, Shield, Clock, Users, User, CalendarDays, BookOpen } from "lucide-react";
+import { Link } from "react-router-dom";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -242,7 +243,7 @@ const ResponsibleGaming = () => {
           </div>
           <p className="mt-4 text-muted-foreground leading-relaxed">
             Kontakt casinoets kundesupport for at lære om deres specifikke
-            værktøjer og muligheder for ansvarligt spil.
+            værktøjer og muligheder for ansvarligt spil. Læs mere om dansk spilleregulering på vores <Link to="/spillemyndigheden" className="text-primary hover:underline font-medium">guide til Spillemyndigheden</Link>.
           </p>
         </section>
 
