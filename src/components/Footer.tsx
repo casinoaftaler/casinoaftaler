@@ -14,7 +14,7 @@ export function Footer() {
   return (
     <footer className="border-t border-border bg-card">
       <div className="container py-12">
-        <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-5">
+        <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6">
           <div className="space-y-4">
             <Link to="/" className="flex items-center gap-2">
               <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-primary overflow-hidden">
@@ -192,6 +192,31 @@ export function Footer() {
                   Ansvarligt Spil
                 </Link>
               </li>
+            </ul>
+          </div>
+
+          <div>
+            <h4 className="mb-4 text-sm font-semibold">Betalingsmetoder</h4>
+            <ul className="space-y-2 text-sm">
+              {[
+                { to: "/betalingsmetoder", label: "Alle betalingsmetoder", icon: CreditCard },
+                { to: "/betalingsmetoder/mobilepay", label: "MobilePay", icon: CreditCard },
+                { to: "/betalingsmetoder/trustly", label: "Trustly", icon: CreditCard },
+                { to: "/betalingsmetoder/paypal", label: "PayPal", icon: CreditCard },
+                { to: "/betalingsmetoder/visa-mastercard", label: "Visa / Mastercard", icon: CreditCard },
+                { to: "/betalingsmetoder/apple-pay", label: "Apple Pay", icon: CreditCard },
+                { to: "/betalingsmetoder/revolut", label: "Revolut", icon: CreditCard },
+              ].map((item) => (
+                <li key={item.to}>
+                  <Link
+                    to={item.to}
+                    className="flex items-center gap-2 text-muted-foreground transition-colors hover:text-foreground"
+                  >
+                    <item.icon className="h-4 w-4" />
+                    {item.label}
+                  </Link>
+                </li>
+              ))}
             </ul>
           </div>
 

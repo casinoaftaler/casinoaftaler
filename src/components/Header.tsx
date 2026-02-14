@@ -249,12 +249,40 @@ export function Header() {
                 </Link>
               </DropdownMenuItem>
               <DropdownMenuSeparator />
-              <DropdownMenuItem asChild>
-                <Link to="/betalingsmetoder" className="flex items-center gap-2">
+              <DropdownMenuSub>
+                <DropdownMenuSubTrigger className="flex items-center gap-2">
                   <CreditCard className="h-4 w-4" />
                   Betalingsmetoder
-                </Link>
-              </DropdownMenuItem>
+                </DropdownMenuSubTrigger>
+                <DropdownMenuSubContent className="bg-popover">
+                  <DropdownMenuItem asChild>
+                    <Link to="/betalingsmetoder" className="flex items-center gap-2 font-medium">
+                      <CreditCard className="h-4 w-4" />
+                      Alle betalingsmetoder
+                    </Link>
+                  </DropdownMenuItem>
+                  <DropdownMenuSeparator />
+                  {[
+                    { to: "/betalingsmetoder/apple-pay", label: "Apple Pay" },
+                    { to: "/betalingsmetoder/mobilepay", label: "MobilePay" },
+                    { to: "/betalingsmetoder/paypal", label: "PayPal" },
+                    { to: "/betalingsmetoder/skrill", label: "Skrill" },
+                    { to: "/betalingsmetoder/trustly", label: "Trustly" },
+                    { to: "/betalingsmetoder/zimpler", label: "Zimpler" },
+                    { to: "/betalingsmetoder/paysafecard", label: "Paysafecard" },
+                    { to: "/betalingsmetoder/bankoverforsler", label: "Bankoverførsel" },
+                    { to: "/betalingsmetoder/visa-mastercard", label: "Visa / Mastercard" },
+                    { to: "/betalingsmetoder/revolut", label: "Revolut" },
+                  ].map((item) => (
+                    <DropdownMenuItem key={item.to} asChild>
+                      <Link to={item.to} className="flex items-center gap-2">
+                        <Star className="h-3 w-3" />
+                        {item.label}
+                      </Link>
+                    </DropdownMenuItem>
+                  ))}
+                </DropdownMenuSubContent>
+              </DropdownMenuSub>
               <DropdownMenuSub>
                 <DropdownMenuSubTrigger className="flex items-center gap-2">
                   <Gamepad2 className="h-4 w-4" />
@@ -539,10 +567,34 @@ export function Header() {
                   <Mail className="h-4 w-4" />
                   Kontakt
                 </Link>
-                <Link to="/betalingsmetoder" className="ml-6 flex items-center gap-2 py-2.5 text-sm text-muted-foreground transition-colors hover:text-primary" onClick={() => setMobileMenuOpen(false)}>
-                  <CreditCard className="h-4 w-4" />
-                  Betalingsmetoder
-                </Link>
+                <button
+                  onClick={() => setProvidersExpanded(false)}
+                  className="ml-6 flex w-full items-center justify-between py-2.5 pr-4 text-sm text-muted-foreground transition-colors hover:text-primary"
+                >
+                  <Link to="/betalingsmetoder" className="flex items-center gap-2" onClick={() => setMobileMenuOpen(false)}>
+                    <CreditCard className="h-4 w-4" />
+                    Betalingsmetoder
+                  </Link>
+                </button>
+                <div className="flex flex-col ml-10">
+                  {[
+                    { to: "/betalingsmetoder/apple-pay", label: "Apple Pay" },
+                    { to: "/betalingsmetoder/mobilepay", label: "MobilePay" },
+                    { to: "/betalingsmetoder/paypal", label: "PayPal" },
+                    { to: "/betalingsmetoder/skrill", label: "Skrill" },
+                    { to: "/betalingsmetoder/trustly", label: "Trustly" },
+                    { to: "/betalingsmetoder/zimpler", label: "Zimpler" },
+                    { to: "/betalingsmetoder/paysafecard", label: "Paysafecard" },
+                    { to: "/betalingsmetoder/bankoverforsler", label: "Bankoverførsel" },
+                    { to: "/betalingsmetoder/visa-mastercard", label: "Visa / Mastercard" },
+                    { to: "/betalingsmetoder/revolut", label: "Revolut" },
+                  ].map((item) => (
+                    <Link key={item.to} to={item.to} className="flex items-center gap-2 py-2 text-sm text-muted-foreground transition-colors hover:text-primary" onClick={() => setMobileMenuOpen(false)}>
+                      <Star className="h-3 w-3" />
+                      {item.label}
+                    </Link>
+                  ))}
+                </div>
                 <button
                   onClick={() => setProvidersExpanded(!providersExpanded)}
                   className="ml-6 flex w-full items-center justify-between py-2.5 pr-4 text-sm text-muted-foreground transition-colors hover:text-primary"

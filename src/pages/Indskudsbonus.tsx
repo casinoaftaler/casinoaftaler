@@ -451,7 +451,7 @@ const Indskudsbonus = () => {
                 <p className="text-sm text-muted-foreground leading-relaxed">
                   Der kan være krav til specifikke betalingsmetoder ved
                   udbetaling, samt et maksimalt beløb per hævning. E-wallets
-                  som Skrill og Neteller er ofte undtaget.
+                  som <Link to="/betalingsmetoder/skrill" className="text-primary underline hover:text-primary/80">Skrill</Link> og Neteller er ofte undtaget.
                 </p>
               </CardContent>
             </Card>

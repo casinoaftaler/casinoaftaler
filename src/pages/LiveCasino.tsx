@@ -579,7 +579,7 @@ const LiveCasino = () => {
           <p className="text-muted-foreground leading-relaxed">
             Læs mere om{" "}
             <Link to="/betalingsmetoder" className="text-primary hover:underline font-medium">betalingsmetoder</Link>
-            {" "}til mobil, herunder MobilePay og Trustly, der gør det nemt at indbetale og hæve gevinster direkte fra din telefon.
+            {" "}til mobil, herunder <Link to="/betalingsmetoder/mobilepay" className="text-primary hover:underline font-medium">MobilePay</Link> og <Link to="/betalingsmetoder/trustly" className="text-primary hover:underline font-medium">Trustly</Link>, der gør det nemt at indbetale og hæve gevinster direkte fra din telefon.
           </p>
         </section>
 

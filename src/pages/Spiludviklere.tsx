@@ -367,7 +367,7 @@ const Spiludviklere = () => {
         <>
           Ja, stort set alle moderne spiludviklere optimerer deres spil til både desktop og mobil. Du kan også nemt indbetale via{" "}
           <Link to="/betalingsmetoder" className="text-primary underline hover:text-primary/80">mobilvennlige betalingsmetoder</Link>{" "}
-          som MobilePay og Apple Pay.
+          som <Link to="/betalingsmetoder/mobilepay" className="text-primary underline hover:text-primary/80">MobilePay</Link> og <Link to="/betalingsmetoder/apple-pay" className="text-primary underline hover:text-primary/80">Apple Pay</Link>.
         </>
       ),
     },

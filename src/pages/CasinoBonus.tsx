@@ -860,7 +860,7 @@ const CasinoBonus = () => {
                     <Link to="/betalingsmetoder" className={linkClass}>
                       betalingsmetode
                     </Link>{" "}
-                    – MobilePay, Trustly, Visa eller lignende. Tjek altid
+                    – <Link to="/betalingsmetoder/mobilepay" className="text-primary underline hover:text-primary/80">MobilePay</Link>, <Link to="/betalingsmetoder/trustly" className="text-primary underline hover:text-primary/80">Trustly</Link>, Visa eller lignende. Tjek altid
                     minimumsindbetaling for at aktivere bonussen.
                   </>
                 ),
