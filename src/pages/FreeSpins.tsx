@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { FAQSection } from "@/components/FAQSection";
 import { SEO } from "@/components/SEO";
 import { RelatedGuides } from "@/components/RelatedGuides";
 import { InlineCasinoCards } from "@/components/InlineCasinoCards";
@@ -642,35 +643,7 @@ const FreeSpins = () => {
 
         <Separator className="my-10" />
 
-        {/* FAQ */}
-        <section className="mb-12">
-          <div className="mb-8">
-            <div className="flex items-center gap-2 mb-4">
-              <HelpCircle className="h-8 w-8 text-primary" />
-              <h2 className="text-3xl font-bold">Ofte Stillede Spørgsmål</h2>
-            </div>
-            <p className="text-muted-foreground">
-              Alt du behøver at vide om free spins på danske casinoer.
-            </p>
-          </div>
-
-          <Accordion type="single" collapsible className="space-y-3">
-            {freeSpinsFaqs.map((faq, index) => (
-              <AccordionItem
-                key={index}
-                value={`item-${index}`}
-                className="rounded-lg border border-border bg-card px-6"
-              >
-                <AccordionTrigger className="text-left hover:no-underline">
-                  {faq.question}
-                </AccordionTrigger>
-                <AccordionContent className="text-muted-foreground">
-                  {faq.answer}
-                </AccordionContent>
-              </AccordionItem>
-            ))}
-          </Accordion>
-        </section>
+        <FAQSection title="Ofte stillede spørgsmål om free spins" faqs={freeSpinsFaqs} />
 
         <RelatedGuides currentPath="/free-spins" />
       </div>

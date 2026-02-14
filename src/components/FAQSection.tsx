@@ -1,13 +1,25 @@
+import { ReactNode } from "react";
+import { HelpCircle } from "lucide-react";
 import {
   Accordion,
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { HelpCircle } from "lucide-react";
 
-const faqs = [
+interface FAQ {
+  question: string;
+  answer: string | ReactNode;
+}
+
+interface FAQSectionProps {
+  /** Title displayed next to the icon */
+  title?: string;
+  /** Array of FAQ items */
+  faqs?: FAQ[];
+}
+
+const defaultFaqs: FAQ[] = [
   {
     question: "Hvad er en casinobonus?",
     answer:
@@ -16,7 +28,7 @@ const faqs = [
   {
     question: "Hvad er gennemspilskrav?",
     answer:
-      "Gennemspilskrav (også kaldet omsætningskrav) specificerer, hvor mange gange du skal spille for bonusbeløbet, før du kan hæve eventuelle gevinster. For eksempel betyder en bonus på 1.000 kr. med 35x gennemspil, at du skal placere væddemål for 35.000 kr., før du kan hæve.",
+      "Gennemspilskrav (også kaldet omsætningskrav) specificerer, hvor mange gange du skal spille for bonusbeløbet, før du kan hæve eventuelle gevinster. For eksempel betyder en bonus på 1.000 kr. med 10x gennemspil, at du skal placere væddemål for 10.000 kr., før du kan hæve.",
   },
   {
     question: "Hvad er forskellen mellem sticky og no-sticky bonusser?",
@@ -26,7 +38,7 @@ const faqs = [
   {
     question: "Er online casinobonusser det værd?",
     answer:
-      "Casinobonusser kan være det værd, hvis du forstår vilkår og betingelser. Kig efter bonusser med lavere gennemspilskrav (under 40x), rimelige gyldighedsperioder og fair spilbidragsprocenter. No-sticky bonusser tilbyder generelt bedre værdi for spillere.",
+      "Casinobonusser kan være det værd, hvis du forstår vilkår og betingelser. Kig efter bonusser med lavere gennemspilskrav (10x på danske casinoer), rimelige gyldighedsperioder og fair spilbidragsprocenter. No-sticky bonusser tilbyder generelt bedre værdi for spillere.",
   },
   {
     question: "Hvordan gør jeg krav på en casinobonus?",
@@ -35,40 +47,31 @@ const faqs = [
   },
 ];
 
-export function FAQSection() {
+export function FAQSection({ title = "Ofte Stillede Spørgsmål", faqs = defaultFaqs }: FAQSectionProps) {
   return (
-    <section className="container py-16">
-      <Card>
-        <CardHeader>
-          <div className="flex items-center gap-2">
-            <HelpCircle className="h-7 w-7 text-primary" />
-            <CardTitle className="text-2xl md:text-3xl">
-              Ofte Stillede Spørgsmål
-            </CardTitle>
-          </div>
-          <p className="text-muted-foreground">
-            Alt du behøver at vide om casinobonusser og hvordan de fungerer.
-          </p>
-        </CardHeader>
-        <CardContent>
-          <Accordion type="single" collapsible className="space-y-3">
-            {faqs.map((faq, index) => (
-              <AccordionItem
-                key={index}
-                value={`item-${index}`}
-                className="rounded-lg border border-border bg-muted/50 px-6"
-              >
-                <AccordionTrigger className="text-left hover:no-underline">
-                  {faq.question}
-                </AccordionTrigger>
-                <AccordionContent className="text-muted-foreground leading-relaxed">
-                  {faq.answer}
-                </AccordionContent>
-              </AccordionItem>
-            ))}
-          </Accordion>
-        </CardContent>
-      </Card>
+    <section className="mb-12">
+      <h2 className="mb-6 text-3xl font-bold flex items-center gap-2">
+        <HelpCircle className="h-8 w-8 text-primary" />
+        {title}
+      </h2>
+      <div className="mx-auto max-w-3xl">
+        <Accordion type="single" collapsible className="space-y-4">
+          {faqs.map((faq, index) => (
+            <AccordionItem
+              key={index}
+              value={`item-${index}`}
+              className="rounded-lg border border-border bg-card px-6"
+            >
+              <AccordionTrigger className="text-left hover:no-underline">
+                {faq.question}
+              </AccordionTrigger>
+              <AccordionContent className="text-muted-foreground leading-relaxed">
+                {faq.answer}
+              </AccordionContent>
+            </AccordionItem>
+          ))}
+        </Accordion>
+      </div>
     </section>
   );
 }

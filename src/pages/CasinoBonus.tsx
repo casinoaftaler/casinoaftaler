@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { FAQSection } from "@/components/FAQSection";
 import { SEO } from "@/components/SEO";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -1404,31 +1405,7 @@ const CasinoBonus = () => {
 
         <Separator className="my-10" />
 
-        {/* FAQ Section */}
-        <section className="mb-12">
-          <h2 className="mb-6 text-3xl font-bold flex items-center gap-2">
-            <HelpCircle className="h-8 w-8 text-primary" />
-            Ofte stillede spørgsmål om casino bonus
-          </h2>
-          <div className="mx-auto max-w-3xl">
-            <Accordion type="single" collapsible className="space-y-4">
-              {casinoBonusFaqs.map((faq, index) => (
-                <AccordionItem
-                  key={index}
-                  value={`item-${index}`}
-                  className="rounded-lg border border-border bg-card px-6"
-                >
-                  <AccordionTrigger className="text-left hover:no-underline">
-                    {faq.question}
-                  </AccordionTrigger>
-                  <AccordionContent className="text-muted-foreground">
-                    {faq.answer}
-                  </AccordionContent>
-                </AccordionItem>
-              ))}
-            </Accordion>
-          </div>
-        </section>
+        <FAQSection title="Ofte stillede spørgsmål om casino bonus" faqs={casinoBonusFaqs} />
 
         <RelatedGuides currentPath="/casino-bonus" />
       </div>

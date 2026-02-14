@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { FAQSection } from "@/components/FAQSection";
 import { SEO } from "@/components/SEO";
 import { InlineCasinoCards } from "@/components/InlineCasinoCards";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -647,35 +648,7 @@ const LiveCasino = () => {
 
         <Separator className="my-10" />
 
-        {/* FAQ Section */}
-        <section className="mb-12">
-          <div className="mb-8">
-            <div className="flex items-center gap-2 mb-4">
-              <HelpCircle className="h-8 w-8 text-primary" />
-              <h2 className="text-3xl font-bold">Ofte Stillede Spørgsmål</h2>
-            </div>
-            <p className="text-muted-foreground">
-              Alt du behøver at vide om live casino i Danmark.
-            </p>
-          </div>
-
-          <Accordion type="single" collapsible className="space-y-3">
-            {liveCasinoFaqs.map((faq, index) => (
-              <AccordionItem
-                key={index}
-                value={`item-${index}`}
-                className="rounded-lg border border-border bg-card px-6"
-              >
-                <AccordionTrigger className="text-left hover:no-underline">
-                  {faq.question}
-                </AccordionTrigger>
-                <AccordionContent className="text-muted-foreground">
-                  {faq.answer}
-                </AccordionContent>
-              </AccordionItem>
-            ))}
-          </Accordion>
-        </section>
+        <FAQSection title="Ofte stillede spørgsmål om live casino" faqs={liveCasinoFaqs} />
 
         <RelatedGuides currentPath="/live-casino" />
       </div>
