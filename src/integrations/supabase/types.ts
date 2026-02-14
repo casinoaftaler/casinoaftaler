@@ -1078,6 +1078,89 @@ export type Database = {
         }
         Relationships: []
       }
+      tournament_entries: {
+        Row: {
+          biggest_multiplier: number
+          biggest_win: number
+          game_id: string
+          id: string
+          total_points: number
+          total_spins: number
+          tournament_id: string
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          biggest_multiplier?: number
+          biggest_win?: number
+          game_id: string
+          id?: string
+          total_points?: number
+          total_spins?: number
+          tournament_id: string
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          biggest_multiplier?: number
+          biggest_win?: number
+          game_id?: string
+          id?: string
+          total_points?: number
+          total_spins?: number
+          tournament_id?: string
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "tournament_entries_tournament_id_fkey"
+            columns: ["tournament_id"]
+            isOneToOne: false
+            referencedRelation: "tournaments"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      tournaments: {
+        Row: {
+          created_at: string
+          created_by: string
+          description: string | null
+          ends_at: string
+          game_ids: string[]
+          id: string
+          separate_leaderboards: boolean
+          starts_at: string
+          status: string
+          title: string
+        }
+        Insert: {
+          created_at?: string
+          created_by: string
+          description?: string | null
+          ends_at: string
+          game_ids?: string[]
+          id?: string
+          separate_leaderboards?: boolean
+          starts_at: string
+          status?: string
+          title: string
+        }
+        Update: {
+          created_at?: string
+          created_by?: string
+          description?: string | null
+          ends_at?: string
+          game_ids?: string[]
+          id?: string
+          separate_leaderboards?: boolean
+          starts_at?: string
+          status?: string
+          title?: string
+        }
+        Relationships: []
+      }
       user_bans: {
         Row: {
           banned_by: string
@@ -1366,6 +1449,17 @@ export type Database = {
       }
       increment_redeem_code_uses: {
         Args: { code_id_input: string }
+        Returns: undefined
+      }
+      upsert_tournament_entry: {
+        Args: {
+          p_bet: number
+          p_game_id: string
+          p_is_bonus: boolean
+          p_points: number
+          p_tournament_id: string
+          p_user_id: string
+        }
         Returns: undefined
       }
     }

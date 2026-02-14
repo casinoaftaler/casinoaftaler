@@ -824,6 +824,30 @@ Deno.serve(async (req) => {
           bonus_win_amount: newBonusWinnings,
           game_id: gameId,
         });
+
+        // Fire-and-forget: track tournament entries for bonus completion
+        const bonusNowISO = new Date().toISOString();
+        serviceClient
+          .from("tournaments")
+          .select("id")
+          .contains("game_ids", [gameId])
+          .lte("starts_at", bonusNowISO)
+          .gte("ends_at", bonusNowISO)
+          .then(({ data: activeTournaments }) => {
+            if (activeTournaments && activeTournaments.length > 0) {
+              for (const t of activeTournaments) {
+                serviceClient.rpc("upsert_tournament_entry", {
+                  p_tournament_id: t.id,
+                  p_user_id: userId,
+                  p_game_id: gameId,
+                  p_points: newBonusWinnings,
+                  p_bet: bet,
+                  p_is_bonus: true,
+                }).catch((err: unknown) => console.error("[slot-spin] Tournament bonus entry upsert failed:", err));
+              }
+            }
+          })
+          .catch((err: unknown) => console.error("[slot-spin] Tournament bonus lookup failed:", err));
       }
 
       const result: BonusSpinResult = {
@@ -1048,6 +1072,30 @@ Deno.serve(async (req) => {
       bonus_win_amount: 0,
       game_id: gameId,
     }).then(() => {}).catch((err: unknown) => console.error("[slot-spin] Fire-and-forget game result insert failed:", err));
+
+    // Fire-and-forget: track tournament entries for active tournaments
+    const nowISO = new Date().toISOString();
+    serviceClient
+      .from("tournaments")
+      .select("id")
+      .contains("game_ids", [gameId])
+      .lte("starts_at", nowISO)
+      .gte("ends_at", nowISO)
+      .then(({ data: activeTournaments }) => {
+        if (activeTournaments && activeTournaments.length > 0) {
+          for (const t of activeTournaments) {
+            serviceClient.rpc("upsert_tournament_entry", {
+              p_tournament_id: t.id,
+              p_user_id: userId,
+              p_game_id: gameId,
+              p_points: result.totalWin,
+              p_bet: bet,
+              p_is_bonus: false,
+            }).catch((err: unknown) => console.error("[slot-spin] Tournament entry upsert failed:", err));
+          }
+        }
+      })
+      .catch((err: unknown) => console.error("[slot-spin] Tournament lookup failed:", err));
 
     return new Response(
       JSON.stringify({

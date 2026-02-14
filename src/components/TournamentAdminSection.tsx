@@ -1,0 +1,266 @@
+import { useState } from "react";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Textarea } from "@/components/ui/textarea";
+import { Badge } from "@/components/ui/badge";
+import { Switch } from "@/components/ui/switch";
+import { Checkbox } from "@/components/ui/checkbox";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from "@/components/ui/alert-dialog";
+import { Plus, Loader2, Trophy, Clock, Trash2, Square } from "lucide-react";
+import { useTournaments, useCreateTournament, useEndTournament, useDeleteTournament, type Tournament } from "@/hooks/useTournaments";
+import { useAuth } from "@/hooks/useAuth";
+import { toast } from "sonner";
+import { format } from "date-fns";
+import { da } from "date-fns/locale";
+
+const GAME_OPTIONS = [
+  { id: "book-of-fedesvin", label: "Book of Fedesvin" },
+  { id: "rise-of-fedesvin", label: "Rise of Fedesvin" },
+];
+
+function getStatusBadge(status: string) {
+  if (status === "active") return <Badge className="bg-green-500/20 text-green-400 border-green-500/40">Aktiv</Badge>;
+  if (status === "upcoming") return <Badge className="bg-blue-500/20 text-blue-400 border-blue-500/40">Kommende</Badge>;
+  return <Badge variant="secondary">Afsluttet</Badge>;
+}
+
+function CreateTournamentDialog() {
+  const [open, setOpen] = useState(false);
+  const { user } = useAuth();
+  const createTournament = useCreateTournament();
+  const [title, setTitle] = useState("");
+  const [description, setDescription] = useState("");
+  const [gameIds, setGameIds] = useState<string[]>(["book-of-fedesvin"]);
+  const [separateLeaderboards, setSeparateLeaderboards] = useState(false);
+  const [startsAt, setStartsAt] = useState("");
+  const [endsAt, setEndsAt] = useState("");
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!user) return;
+    if (gameIds.length === 0) {
+      toast.error("Vælg mindst én spillemaskine");
+      return;
+    }
+    try {
+      await createTournament.mutateAsync({
+        title,
+        description: description || undefined,
+        game_ids: gameIds,
+        separate_leaderboards: separateLeaderboards,
+        starts_at: new Date(startsAt).toISOString(),
+        ends_at: new Date(endsAt).toISOString(),
+        created_by: user.id,
+      });
+      toast.success("Turnering oprettet!");
+      setOpen(false);
+      setTitle("");
+      setDescription("");
+      setGameIds(["book-of-fedesvin"]);
+      setSeparateLeaderboards(false);
+      setStartsAt("");
+      setEndsAt("");
+    } catch {
+      toast.error("Fejl ved oprettelse af turnering");
+    }
+  };
+
+  const toggleGame = (id: string) => {
+    setGameIds((prev) =>
+      prev.includes(id) ? prev.filter((g) => g !== id) : [...prev, id]
+    );
+  };
+
+  return (
+    <Dialog open={open} onOpenChange={setOpen}>
+      <DialogTrigger asChild>
+        <Button><Plus className="mr-2 h-4 w-4" /> Opret Turnering</Button>
+      </DialogTrigger>
+      <DialogContent className="max-w-lg">
+        <DialogHeader>
+          <DialogTitle>Opret Ny Turnering</DialogTitle>
+        </DialogHeader>
+        <form onSubmit={handleSubmit} className="space-y-4">
+          <div className="space-y-2">
+            <Label htmlFor="t-title">Titel *</Label>
+            <Input id="t-title" value={title} onChange={(e) => setTitle(e.target.value)} placeholder='Fx "Vind et headset!"' required />
+          </div>
+          <div className="space-y-2">
+            <Label htmlFor="t-desc">Beskrivelse</Label>
+            <Textarea id="t-desc" value={description} onChange={(e) => setDescription(e.target.value)} placeholder="Præmieinformation, regler osv." rows={3} />
+          </div>
+          <div className="space-y-2">
+            <Label>Spillemaskiner *</Label>
+            <div className="flex flex-col gap-2">
+              {GAME_OPTIONS.map((game) => (
+                <div key={game.id} className="flex items-center gap-2">
+                  <Checkbox
+                    id={`game-${game.id}`}
+                    checked={gameIds.includes(game.id)}
+                    onCheckedChange={() => toggleGame(game.id)}
+                  />
+                  <Label htmlFor={`game-${game.id}`} className="cursor-pointer">{game.label}</Label>
+                </div>
+              ))}
+            </div>
+          </div>
+          {gameIds.length > 1 && (
+            <div className="flex items-center gap-3">
+              <Switch checked={separateLeaderboards} onCheckedChange={setSeparateLeaderboards} id="separate-lb" />
+              <Label htmlFor="separate-lb" className="cursor-pointer">Separate leaderboards per slot</Label>
+            </div>
+          )}
+          <div className="grid grid-cols-2 gap-4">
+            <div className="space-y-2">
+              <Label htmlFor="t-start">Starttidspunkt *</Label>
+              <Input id="t-start" type="datetime-local" value={startsAt} onChange={(e) => setStartsAt(e.target.value)} required />
+            </div>
+            <div className="space-y-2">
+              <Label htmlFor="t-end">Sluttidspunkt *</Label>
+              <Input id="t-end" type="datetime-local" value={endsAt} onChange={(e) => setEndsAt(e.target.value)} required />
+            </div>
+          </div>
+          <Button type="submit" className="w-full" disabled={createTournament.isPending}>
+            {createTournament.isPending && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
+            Opret Turnering
+          </Button>
+        </form>
+      </DialogContent>
+    </Dialog>
+  );
+}
+
+function TournamentRow({ tournament }: { tournament: Tournament }) {
+  const endTournament = useEndTournament();
+  const deleteTournament = useDeleteTournament();
+
+  return (
+    <Card>
+      <CardContent className="flex items-center justify-between p-4">
+        <div className="flex-1 min-w-0">
+          <div className="flex items-center gap-2 mb-1">
+            <h3 className="font-semibold truncate">{tournament.title}</h3>
+            {getStatusBadge(tournament.status)}
+          </div>
+          <p className="text-xs text-muted-foreground">
+            {format(new Date(tournament.starts_at), "d. MMM yyyy HH:mm", { locale: da })} — {format(new Date(tournament.ends_at), "d. MMM yyyy HH:mm", { locale: da })}
+          </p>
+          <p className="text-xs text-muted-foreground mt-0.5">
+            Spil: {tournament.game_ids.map(id => GAME_OPTIONS.find(g => g.id === id)?.label || id).join(", ")}
+            {tournament.separate_leaderboards && " · Separate leaderboards"}
+          </p>
+        </div>
+        <div className="flex items-center gap-2">
+          {tournament.status === "active" && (
+            <AlertDialog>
+              <AlertDialogTrigger asChild>
+                <Button variant="outline" size="sm"><Square className="h-3 w-3 mr-1" /> Afslut</Button>
+              </AlertDialogTrigger>
+              <AlertDialogContent>
+                <AlertDialogHeader>
+                  <AlertDialogTitle>Afslut turnering?</AlertDialogTitle>
+                  <AlertDialogDescription>Dette afslutter "{tournament.title}" med det samme.</AlertDialogDescription>
+                </AlertDialogHeader>
+                <AlertDialogFooter>
+                  <AlertDialogCancel>Annuller</AlertDialogCancel>
+                  <AlertDialogAction onClick={() => endTournament.mutate(tournament.id)}>Afslut</AlertDialogAction>
+                </AlertDialogFooter>
+              </AlertDialogContent>
+            </AlertDialog>
+          )}
+          <AlertDialog>
+            <AlertDialogTrigger asChild>
+              <Button variant="destructive" size="icon"><Trash2 className="h-4 w-4" /></Button>
+            </AlertDialogTrigger>
+            <AlertDialogContent>
+              <AlertDialogHeader>
+                <AlertDialogTitle>Slet turnering?</AlertDialogTitle>
+                <AlertDialogDescription>Er du sikker? Alle turneringsdata slettes permanent.</AlertDialogDescription>
+              </AlertDialogHeader>
+              <AlertDialogFooter>
+                <AlertDialogCancel>Annuller</AlertDialogCancel>
+                <AlertDialogAction onClick={() => deleteTournament.mutate(tournament.id)} className="bg-destructive text-destructive-foreground">Slet</AlertDialogAction>
+              </AlertDialogFooter>
+            </AlertDialogContent>
+          </AlertDialog>
+        </div>
+      </CardContent>
+    </Card>
+  );
+}
+
+export function TournamentAdminSection() {
+  const { data: tournaments, isLoading } = useTournaments();
+
+  const active = tournaments?.filter((t) => t.status === "active") || [];
+  const upcoming = tournaments?.filter((t) => t.status === "upcoming") || [];
+  const ended = tournaments?.filter((t) => t.status === "ended") || [];
+
+  return (
+    <div className="space-y-6">
+      <div className="flex items-center justify-between">
+        <div>
+          <h2 className="text-2xl font-bold flex items-center gap-2">
+            <Trophy className="h-6 w-6" /> Turneringer
+          </h2>
+          <p className="text-muted-foreground">Opret og administrer slot-turneringer.</p>
+        </div>
+        <CreateTournamentDialog />
+      </div>
+
+      {isLoading ? (
+        <div className="flex justify-center py-8">
+          <Loader2 className="h-6 w-6 animate-spin text-primary" />
+        </div>
+      ) : (
+        <div className="space-y-6">
+          {active.length > 0 && (
+            <div>
+              <h3 className="text-sm font-medium text-muted-foreground mb-2">Aktive ({active.length})</h3>
+              <div className="space-y-2">{active.map((t) => <TournamentRow key={t.id} tournament={t} />)}</div>
+            </div>
+          )}
+          {upcoming.length > 0 && (
+            <div>
+              <h3 className="text-sm font-medium text-muted-foreground mb-2">Kommende ({upcoming.length})</h3>
+              <div className="space-y-2">{upcoming.map((t) => <TournamentRow key={t.id} tournament={t} />)}</div>
+            </div>
+          )}
+          {ended.length > 0 && (
+            <div>
+              <h3 className="text-sm font-medium text-muted-foreground mb-2">Afsluttede ({ended.length})</h3>
+              <div className="space-y-2">{ended.map((t) => <TournamentRow key={t.id} tournament={t} />)}</div>
+            </div>
+          )}
+          {!active.length && !upcoming.length && !ended.length && (
+            <Card>
+              <CardContent className="py-8 text-center">
+                <Clock className="h-8 w-8 mx-auto mb-2 text-muted-foreground/50" />
+                <p className="text-muted-foreground">Ingen turneringer endnu</p>
+              </CardContent>
+            </Card>
+          )}
+        </div>
+      )}
+    </div>
+  );
+}

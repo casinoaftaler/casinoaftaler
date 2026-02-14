@@ -49,6 +49,7 @@ import { StorageCleanupSection } from "@/components/StorageCleanupSection";
 import { NotificationsAdminSection } from "@/components/NotificationsAdminSection";
 import { ProfileCompletionOverview } from "@/components/ProfileCompletionStatsCard";
 import { CommunityClipsAdminSection } from "@/components/CommunityClipsAdminSection";
+import { TournamentAdminSection } from "@/components/TournamentAdminSection";
 
 import { SpinManagementSection } from "@/components/SpinManagementSection";
 import { SlotPointsManagement } from "@/components/slots/SlotPointsManagement";
@@ -1000,6 +1001,9 @@ function AdminDashboard() {
           {/* Spillemaskine Tab */}
           <TabsContent value="slotmachine">
             <SlotMachineAdminSection />
+            <div className="mt-8 pt-8 border-t border-border">
+              <TournamentAdminSection />
+            </div>
           </TabsContent>
 
 
