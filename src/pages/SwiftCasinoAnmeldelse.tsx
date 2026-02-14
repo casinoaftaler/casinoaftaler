@@ -150,6 +150,9 @@ const SwiftCasinoAnmeldelse = () => {
               <Badge variant="secondary"><Star className="mr-1.5 h-3.5 w-3.5" />4.7 / 5 – Anbefalet</Badge>
               <Badge variant="outline" className="border-white/40 text-white">Hot Or Cold</Badge>
             </div>
+            {casino?.logo_url && (
+              <img src={casino.logo_url} alt={`${casino.name} logo`} className="mx-auto mb-4 h-16 w-auto object-contain md:h-20" />
+            )}
             <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">Swift Casino Anmeldelse 2026</h1>
             <p className="mb-6 text-lg text-white/80">
               Komplet anmeldelse af Swift Casino – et veletableret dansk casino med 100 % bonus op til 500 kr., kun 10x omsætningskrav, over 3.300 spiltitler, unik Hot Or Cold-funktion og hurtige udbetalinger via MobilePay og Trustly.
