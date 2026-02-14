@@ -193,3 +193,26 @@ export function useDeleteTournament() {
     onSuccess: () => queryClient.invalidateQueries({ queryKey: ["tournaments"] }),
   });
 }
+
+export function useUpdateTournament() {
+  const queryClient = useQueryClient();
+  return useMutation({
+    mutationFn: async ({ id, ...updates }: {
+      id: string;
+      title?: string;
+      description?: string | null;
+      prize_text?: string | null;
+      game_ids?: string[];
+      separate_leaderboards?: boolean;
+      starts_at?: string;
+      ends_at?: string;
+    }) => {
+      const { error } = await supabase
+        .from("tournaments")
+        .update(updates)
+        .eq("id", id);
+      if (error) throw error;
+    },
+    onSuccess: () => queryClient.invalidateQueries({ queryKey: ["tournaments"] }),
+  });
+}
