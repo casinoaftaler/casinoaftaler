@@ -568,7 +568,7 @@ const CampobetAnmeldelse = () => {
               </CardHeader>
               <CardContent>
                 <p className="text-sm text-muted-foreground">
-                  Tusindvis af slots fra udbydere som Pragmatic Play, Microgaming, Red Tiger, Bigtime Gaming og Yggdrasil. Populære titler som Book of Dead, Big Bass Amazon Extreme og Scroll of Dead.
+                  Tusindvis af slots fra udbydere som <Link to="/spiludviklere/pragmatic-play" className={linkClass}>Pragmatic Play</Link>, <Link to="/spiludviklere/microgaming" className={linkClass}>Microgaming</Link>, <Link to="/spiludviklere/red-tiger" className={linkClass}>Red Tiger</Link>, <Link to="/spiludviklere/big-time-gaming" className={linkClass}>Big Time Gaming</Link> og <Link to="/spiludviklere/yggdrasil" className={linkClass}>Yggdrasil</Link>. Populære titler som Book of Dead, Big Bass Amazon Extreme og Scroll of Dead.
                 </p>
               </CardContent>
             </Card>

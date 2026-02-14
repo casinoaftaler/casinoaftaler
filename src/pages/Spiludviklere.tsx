@@ -312,7 +312,7 @@ const Spiludviklere = () => {
       question: "Hvordan vælger jeg en god spiludvikler?",
       answer: (
         <>
-          Vælg casinoer, der samarbejder med licenserede udviklere som NetEnt, Microgaming eller Play'n GO. Se vores{" "}
+          Vælg casinoer, der samarbejder med licenserede udviklere som <Link to="/spiludviklere/netent" className="text-primary underline hover:text-primary/80">NetEnt</Link>, <Link to="/spiludviklere/microgaming" className="text-primary underline hover:text-primary/80">Microgaming</Link> eller <Link to="/spiludviklere/play-n-go" className="text-primary underline hover:text-primary/80">Play'n GO</Link>. Se vores{" "}
           <Link to="/nye-casinoer" className="text-primary underline hover:text-primary/80">oversigt over nye casinoer</Link>{" "}
           for at finde spillesteder med de bedste spiludviklere.
         </>
@@ -472,7 +472,7 @@ const Spiludviklere = () => {
             du måske ikke over, hvem der står bag oplevelsen. Men
             spiludvikleren er en afgørende brik, der bestemmer om spillet er
             underholdende, retfærdigt og teknisk problemfrit. Kendte udviklere
-            som NetEnt, Play'n GO og Microgaming er garanti for kvalitet og
+            som <Link to="/spiludviklere/netent" className="text-primary underline hover:text-primary/80">NetEnt</Link>, <Link to="/spiludviklere/play-n-go" className="text-primary underline hover:text-primary/80">Play'n GO</Link> og <Link to="/spiludviklere/microgaming" className="text-primary underline hover:text-primary/80">Microgaming</Link> er garanti for kvalitet og
             tryghed. Valget af spiludvikler påvirker også, hvordan{" "}
             <Link to="/omsaetningskrav" className="text-primary underline hover:text-primary/80">omsætningskrav</Link>{" "}
             opfyldes, da forskellige spiltyper bidrager forskelligt.
@@ -690,7 +690,7 @@ const Spiludviklere = () => {
               </CardHeader>
               <CardContent className="text-sm text-muted-foreground">
                 De bedste udviklere tilbyder noget for enhver smag. Kig efter
-                udviklere som Play'n GO og NetEnt for slots, eller Evolution
+                udviklere som <Link to="/spiludviklere/play-n-go" className="text-primary underline hover:text-primary/80">Play'n GO</Link> og <Link to="/spiludviklere/netent" className="text-primary underline hover:text-primary/80">NetEnt</Link> for slots, eller Evolution
                 Gaming for autentiske live casino-oplevelser.
               </CardContent>
             </Card>
@@ -834,6 +834,7 @@ const Spiludviklere = () => {
               {
                 title: "Kendte navne sikrer kvalitet",
                 desc: "NetEnt, Microgaming, Play'n GO og andre topudviklere garanterer spil af højeste kvalitet.",
+
               },
               {
                 title: "Licenserede udviklere",

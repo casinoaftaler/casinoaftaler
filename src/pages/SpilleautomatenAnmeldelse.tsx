@@ -464,7 +464,7 @@ const SpilleautomatenAnmeldelse = () => {
               </CardHeader>
               <CardContent>
                 <p className="text-sm text-muted-foreground">
-                  Et stort udvalg af slots fra topudbydere som Play'n GO, Pragmatic Play og ELK Studios. Fra egyptiske eventyr i Legacy of Dead til actionfyldte Fire Joker Blitz – der er noget for enhver smag.
+                  Et stort udvalg af slots fra topudbydere som <Link to="/spiludviklere/play-n-go" className={linkClass}>Play'n GO</Link>, <Link to="/spiludviklere/pragmatic-play" className={linkClass}>Pragmatic Play</Link> og ELK Studios. Fra egyptiske eventyr i Legacy of Dead til actionfyldte Fire Joker Blitz – der er noget for enhver smag.
                 </p>
               </CardContent>
             </Card>

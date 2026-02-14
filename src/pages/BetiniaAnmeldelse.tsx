@@ -571,7 +571,7 @@ const BetiniaAnmeldelse = () => {
               </CardHeader>
               <CardContent>
                 <p className="text-sm text-muted-foreground">
-                  Tusindvis af slots fra udbydere som Pragmatic Play, NetEnt, Microgaming, Red Tiger og Play'n GO. Populære titler som Book of Dead, Sweet Bonanza og Big Bass Bonanza.
+                  Tusindvis af slots fra udbydere som <Link to="/spiludviklere/pragmatic-play" className={linkClass}>Pragmatic Play</Link>, <Link to="/spiludviklere/netent" className={linkClass}>NetEnt</Link>, <Link to="/spiludviklere/microgaming" className={linkClass}>Microgaming</Link>, <Link to="/spiludviklere/red-tiger" className={linkClass}>Red Tiger</Link> og <Link to="/spiludviklere/play-n-go" className={linkClass}>Play'n GO</Link>. Populære titler som Book of Dead, Sweet Bonanza og Big Bass Bonanza.
                 </p>
               </CardContent>
             </Card>

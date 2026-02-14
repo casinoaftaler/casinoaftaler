@@ -362,7 +362,7 @@ const SwiftCasinoAnmeldelse = () => {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             <Card className="border-border bg-card">
               <CardHeader className="pb-2"><CardTitle className="flex items-center gap-2 text-lg"><Gamepad2 className="h-5 w-5 text-primary" />Spilleautomater</CardTitle></CardHeader>
-              <CardContent><p className="text-sm text-muted-foreground">Tusindvis af slots fra Pragmatic Play, NetEnt, Microgaming, Play'n GO og mange flere. Populære titler som Starburst, Gonzo's Quest og Book of Dead.</p></CardContent>
+              <CardContent><p className="text-sm text-muted-foreground">Tusindvis af slots fra <Link to="/spiludviklere/pragmatic-play" className={linkClass}>Pragmatic Play</Link>, <Link to="/spiludviklere/netent" className={linkClass}>NetEnt</Link>, <Link to="/spiludviklere/microgaming" className={linkClass}>Microgaming</Link>, <Link to="/spiludviklere/play-n-go" className={linkClass}>Play'n GO</Link> og mange flere. Populære titler som Starburst, Gonzo's Quest og Book of Dead.</p></CardContent>
             </Card>
             <Card className="border-border bg-card">
               <CardHeader className="pb-2"><CardTitle className="flex items-center gap-2 text-lg"><Trophy className="h-5 w-5 text-primary" />Bordspil</CardTitle></CardHeader>

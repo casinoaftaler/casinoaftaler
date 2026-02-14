@@ -248,7 +248,7 @@ const Casinospil = () => {
             <Link to="/spiludviklere" className={linkClass}>
               spiludviklere
             </Link>{" "}
-            som NetEnt, Play'n GO, Pragmatic Play og Evolution Gaming. Uanset om
+            som <Link to="/spiludviklere/netent" className={linkClass}>NetEnt</Link>, <Link to="/spiludviklere/play-n-go" className={linkClass}>Play'n GO</Link>, <Link to="/spiludviklere/pragmatic-play" className={linkClass}>Pragmatic Play</Link> og Evolution Gaming. Uanset om
             du er nybegynder eller erfaren spiller, er der altid nye og
             spændende casinospil at opdage.
           </p>
