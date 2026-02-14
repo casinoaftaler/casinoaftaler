@@ -208,7 +208,9 @@ const Betalingsmetoder = () => {
             metode til metode – og det rigtige valg afhænger af dine personlige
             præferencer. Betalingsmetoden kan også påvirke, hvilke{" "}
             <Link to="/velkomstbonus" className="text-primary underline hover:text-primary/80">velkomstbonusser</Link>{" "}
-            du kan aktivere – visse e-wallets kan være udelukket fra bonustilbud.
+            du kan aktivere – visse e-wallets kan være udelukket fra bonustilbud. Se vores{" "}
+            <Link to="/casino-bonus" className="text-primary underline hover:text-primary/80">casino bonus oversigt</Link>{" "}
+            for en komplet gennemgang af bonustyper.
           </p>
           <p className="text-muted-foreground leading-relaxed">
             I Danmark reguleres alle betalinger af Spillemyndigheden, så kun
@@ -218,7 +220,9 @@ const Betalingsmetoder = () => {
             <Link to="/omsaetningskrav" className="text-primary underline hover:text-primary/80">omsætningskrav</Link>{" "}
             og{" "}
             <Link to="/indskudsbonus" className="text-primary underline hover:text-primary/80">indskudsbonusser</Link>{" "}
-            for at forstå, hvordan din betalingsmetode kan påvirke bonusvilkårene.
+            for at forstå, hvordan din betalingsmetode kan påvirke bonusvilkårene. Du kan også læse vores{" "}
+            <Link to="/casino-anmeldelser" className="text-primary underline hover:text-primary/80">casino anmeldelser</Link>{" "}
+            for at se, hvilke betalingsmetoder hvert casino tilbyder.
           </p>
         </section>
 
@@ -340,7 +344,8 @@ const Betalingsmetoder = () => {
                   Visa er bredt accepteret hos næsten alle danske casinoer.
                   Indbetalinger sker øjeblikkeligt, mens udbetalinger typisk tager
                   1–3 hverdage. Sikkerheden er i top med 3D Secure, men visse
-                  casinoer kan opkræve gebyrer ved udbetalinger.
+                  casinoer kan opkræve gebyrer ved udbetalinger.{" "}
+                  <Link to="/betalingsmetoder/visa-mastercard" className="text-primary underline hover:text-primary/80">Læs vores komplette Visa/Mastercard guide</Link>.
                 </p>
               </CardContent>
             </Card>
@@ -357,7 +362,9 @@ const Betalingsmetoder = () => {
                   Mastercard fungerer på samme måde som Visa med hurtige
                   indbetalinger. Vær dog opmærksom på, at ikke alle spillesteder
                   tilbyder udbetalinger til Mastercard – i så fald kan du vælge en
-                  alternativ metode som bankoverførsel.
+                  alternativ metode som{" "}
+                  <Link to="/betalingsmetoder/bankoverforsler" className="text-primary underline hover:text-primary/80">bankoverførsel</Link>.{" "}
+                  <Link to="/betalingsmetoder/visa-mastercard" className="text-primary underline hover:text-primary/80">Læs den fulde guide her</Link>.
                 </p>
               </CardContent>
             </Card>
@@ -390,8 +397,10 @@ const Betalingsmetoder = () => {
                 <p className="text-sm text-muted-foreground">
                   Bankoverførsler er en stabil og sikker løsning, hvor
                   transaktionerne går direkte via din bank. Standardoverførsler kan
-                  tage 2–5 hverdage, mens instant-løsninger som Trustly giver
-                  øjeblikkelige indbetalinger.
+                  tage 2–5 hverdage, mens instant-løsninger som{" "}
+                  <Link to="/betalingsmetoder/trustly" className="text-primary underline hover:text-primary/80">Trustly</Link>{" "}
+                  giver øjeblikkelige indbetalinger.{" "}
+                  <Link to="/betalingsmetoder/bankoverforsler" className="text-primary underline hover:text-primary/80">Læs vores bankoverførsels-guide</Link>.
                 </p>
               </CardContent>
             </Card>
@@ -436,6 +445,10 @@ const Betalingsmetoder = () => {
             <Link to="/bonus-uden-indbetaling" className="text-primary underline hover:text-primary/80">bonusser uden indbetaling</Link>{" "}
             eller{" "}
             <Link to="/bonus-uden-omsaetningskrav" className="text-primary underline hover:text-primary/80">bonusser uden omsætningskrav</Link>.
+            Du kan også finde inspiration i vores{" "}
+            <Link to="/top-casino-online" className="text-primary underline hover:text-primary/80">top 10 online casinoer</Link>{" "}
+            og de{" "}
+            <Link to="/spiludviklere" className="text-primary underline hover:text-primary/80">bedste spiludviklere</Link>.
             Her er de vigtigste faktorer at overveje:
           </p>
           <div className="space-y-3">
@@ -543,39 +556,55 @@ const Betalingsmetoder = () => {
         <section className="mb-12">
           <h2 className="mb-6 text-3xl font-bold">Opsummering</h2>
           <div className="space-y-3">
-            {[
-              {
-                title: "Hurtige løsninger",
-                desc: "MobilePay, Trustly, Zimpler og e-wallets sikrer øjeblikkelige transaktioner.",
-              },
-              {
-                title: "Klassiske kortbetalinger",
-                desc: "Visa og Mastercard er stabile og bredt accepteret, men udbetalinger kan tage tid.",
-              },
-              {
-                title: "Bankoverførsler",
-                desc: "Troværdige og sikre, men sjældent de hurtigste.",
-              },
-              {
-                title: "Forudbetalte kort",
-                desc: "God kontrol over forbruget, men ikke egnet til udbetalinger.",
-              },
-              {
-                title: "Kryptovaluta",
-                desc: "Ikke understøttet af danske licenserede casinoer.",
-              },
-            ].map((item) => (
-              <div
-                key={item.title}
-                className="flex items-start gap-3 rounded-lg border border-border bg-card p-4"
-              >
-                <CheckCircle2 className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
-                <div>
-                  <h3 className="font-semibold">{item.title}</h3>
-                  <p className="text-sm text-muted-foreground">{item.desc}</p>
-                </div>
+            <div className="flex items-start gap-3 rounded-lg border border-border bg-card p-4">
+              <CheckCircle2 className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
+              <div>
+                <h3 className="font-semibold">Hurtige løsninger</h3>
+                <p className="text-sm text-muted-foreground">
+                  <Link to="/betalingsmetoder/mobilepay" className="text-primary underline hover:text-primary/80">MobilePay</Link>,{" "}
+                  <Link to="/betalingsmetoder/trustly" className="text-primary underline hover:text-primary/80">Trustly</Link>,{" "}
+                  <Link to="/betalingsmetoder/zimpler" className="text-primary underline hover:text-primary/80">Zimpler</Link>{" "}
+                  og e-wallets sikrer øjeblikkelige transaktioner.
+                </p>
               </div>
-            ))}
+            </div>
+            <div className="flex items-start gap-3 rounded-lg border border-border bg-card p-4">
+              <CheckCircle2 className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
+              <div>
+                <h3 className="font-semibold">Klassiske kortbetalinger</h3>
+                <p className="text-sm text-muted-foreground">
+                  <Link to="/betalingsmetoder/visa-mastercard" className="text-primary underline hover:text-primary/80">Visa og Mastercard</Link>{" "}
+                  er stabile og bredt accepteret, men udbetalinger kan tage tid.
+                </p>
+              </div>
+            </div>
+            <div className="flex items-start gap-3 rounded-lg border border-border bg-card p-4">
+              <CheckCircle2 className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
+              <div>
+                <h3 className="font-semibold">Bankoverførsler</h3>
+                <p className="text-sm text-muted-foreground">
+                  <Link to="/betalingsmetoder/bankoverforsler" className="text-primary underline hover:text-primary/80">Bankoverførsler</Link>{" "}
+                  er troværdige og sikre, men sjældent de hurtigste.
+                </p>
+              </div>
+            </div>
+            <div className="flex items-start gap-3 rounded-lg border border-border bg-card p-4">
+              <CheckCircle2 className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
+              <div>
+                <h3 className="font-semibold">Forudbetalte kort</h3>
+                <p className="text-sm text-muted-foreground">
+                  <Link to="/betalingsmetoder/paysafecard" className="text-primary underline hover:text-primary/80">Paysafecard</Link>{" "}
+                  giver god kontrol over forbruget, men er ikke egnet til udbetalinger.
+                </p>
+              </div>
+            </div>
+            <div className="flex items-start gap-3 rounded-lg border border-border bg-card p-4">
+              <CheckCircle2 className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
+              <div>
+                <h3 className="font-semibold">Kryptovaluta</h3>
+                <p className="text-sm text-muted-foreground">Ikke understøttet af danske licenserede casinoer.</p>
+              </div>
+            </div>
           </div>
         </section>
 
