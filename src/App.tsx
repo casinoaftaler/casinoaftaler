@@ -223,6 +223,12 @@ const App = () => (
               <Route path="/om-os" element={<Navigate to="/about" replace />} />
               <Route path="/privatlivspolitik" element={<Navigate to="/privacy" replace />} />
               <Route path="/vilkaar" element={<Navigate to="/terms" replace />} />
+              <Route path="/danske-casinoer" element={<Navigate to="/top-10-casino-online" replace />} />
+              <Route path="/bonus-guide" element={<Navigate to="/casino-bonus" replace />} />
+              <Route path="/casino-bonusser" element={<Navigate to="/casino-bonus" replace />} />
+              <Route path="/slots/book-of-fedesvin" element={<Navigate to="/community/slots/book-of-fedesvin" replace />} />
+              <Route path="/slots/rise-of-fedesvin" element={<Navigate to="/community/slots/rise-of-fedesvin" replace />} />
+              <Route path="/slots/*" element={<Navigate to="/community/slots" replace />} />
 
               {/* Catch-all */}
               <Route path="*" element={<NotFound />} />
