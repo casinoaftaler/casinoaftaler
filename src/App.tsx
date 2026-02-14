@@ -64,6 +64,16 @@ const RedTigerGuide = lazy(() => import("./pages/RedTigerGuide"));
 const BigTimeGamingGuide = lazy(() => import("./pages/BigTimeGamingGuide"));
 const ELKStudiosGuide = lazy(() => import("./pages/ELKStudiosGuide"));
 const EvolutionGamingGuide = lazy(() => import("./pages/EvolutionGamingGuide"));
+const ApplePayGuide = lazy(() => import("./pages/payments/ApplePayGuide"));
+const MobilePayGuide = lazy(() => import("./pages/payments/MobilePayGuide"));
+const PayPalGuide = lazy(() => import("./pages/payments/PayPalGuide"));
+const SkrillGuide = lazy(() => import("./pages/payments/SkrillGuide"));
+const TrustlyGuide = lazy(() => import("./pages/payments/TrustlyGuide"));
+const ZimplerGuide = lazy(() => import("./pages/payments/ZimplerGuide"));
+const PaysafecardGuide = lazy(() => import("./pages/payments/PaysafecardGuide"));
+const BankTransferGuide = lazy(() => import("./pages/payments/BankTransferGuide"));
+const VisaMastercardGuide = lazy(() => import("./pages/payments/VisaMastercardGuide"));
+const RevolutGuide = lazy(() => import("./pages/payments/RevolutGuide"));
 const NotFound = lazy(() => import("./pages/NotFound"));
 
 const queryClient = new QueryClient();
@@ -124,6 +134,16 @@ const App = () => (
                 <Route path="/spiludviklere/big-time-gaming" element={<BigTimeGamingGuide />} />
                 <Route path="/spiludviklere/elk-studios" element={<ELKStudiosGuide />} />
                 <Route path="/spiludviklere/evolution-gaming" element={<EvolutionGamingGuide />} />
+                <Route path="/betalingsmetoder/apple-pay" element={<ApplePayGuide />} />
+                <Route path="/betalingsmetoder/mobilepay" element={<MobilePayGuide />} />
+                <Route path="/betalingsmetoder/paypal" element={<PayPalGuide />} />
+                <Route path="/betalingsmetoder/skrill" element={<SkrillGuide />} />
+                <Route path="/betalingsmetoder/trustly" element={<TrustlyGuide />} />
+                <Route path="/betalingsmetoder/zimpler" element={<ZimplerGuide />} />
+                <Route path="/betalingsmetoder/paysafecard" element={<PaysafecardGuide />} />
+                <Route path="/betalingsmetoder/bankoverforsler" element={<BankTransferGuide />} />
+                <Route path="/betalingsmetoder/visa-mastercard" element={<VisaMastercardGuide />} />
+                <Route path="/betalingsmetoder/revolut" element={<RevolutGuide />} />
                 
                 <Route path="/community/leaderboard" element={<Leaderboard />} />
                 <Route path="/community/rewards" element={<RewardsProgram />} />
