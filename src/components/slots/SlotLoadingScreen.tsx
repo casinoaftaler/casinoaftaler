@@ -35,22 +35,36 @@ function useAudioPreloader(urls: (string | null | undefined)[]) {
 
     setReady(false);
     let loaded = 0;
+    let settled = false;
 
     const done = () => {
+      if (settled) return;
       loaded++;
-      if (loaded >= validUrls.length) setReady(true);
+      if (loaded >= validUrls.length) {
+        settled = true;
+        setReady(true);
+      }
     };
+
+    // Timeout fallback: if sounds haven't loaded in 4s, mark ready anyway
+    const timeout = setTimeout(() => {
+      if (!settled) {
+        settled = true;
+        setReady(true);
+      }
+    }, 4000);
 
     const elements: HTMLAudioElement[] = validUrls.map((url) => {
       const a = new Audio();
       a.preload = "auto";
       a.addEventListener("canplaythrough", done, { once: true });
-      a.addEventListener("error", done, { once: true }); // don't block on errors
+      a.addEventListener("error", done, { once: true });
       a.src = url;
       return a;
     });
 
     return () => {
+      clearTimeout(timeout);
       elements.forEach((a) => {
         a.removeEventListener("canplaythrough", done);
         a.removeEventListener("error", done);
