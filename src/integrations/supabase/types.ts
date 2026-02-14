@@ -1084,6 +1084,7 @@ export type Database = {
           biggest_win: number
           game_id: string
           id: string
+          total_credits_used: number
           total_points: number
           total_spins: number
           tournament_id: string
@@ -1095,6 +1096,7 @@ export type Database = {
           biggest_win?: number
           game_id: string
           id?: string
+          total_credits_used?: number
           total_points?: number
           total_spins?: number
           tournament_id: string
@@ -1106,6 +1108,7 @@ export type Database = {
           biggest_win?: number
           game_id?: string
           id?: string
+          total_credits_used?: number
           total_points?: number
           total_spins?: number
           tournament_id?: string
@@ -1130,6 +1133,7 @@ export type Database = {
           ends_at: string
           game_ids: string[]
           id: string
+          max_credits: number | null
           prize_text: string | null
           separate_leaderboards: boolean
           starts_at: string
@@ -1143,6 +1147,7 @@ export type Database = {
           ends_at: string
           game_ids?: string[]
           id?: string
+          max_credits?: number | null
           prize_text?: string | null
           separate_leaderboards?: boolean
           starts_at: string
@@ -1156,6 +1161,7 @@ export type Database = {
           ends_at?: string
           game_ids?: string[]
           id?: string
+          max_credits?: number | null
           prize_text?: string | null
           separate_leaderboards?: boolean
           starts_at?: string

@@ -70,7 +70,7 @@ function RankBadge({ rank }: { rank: number }) {
   );
 }
 
-function LeaderboardRow({ entry, rank, isCurrentUser }: { entry: TournamentEntry; rank: number; isCurrentUser?: boolean }) {
+function LeaderboardRow({ entry, rank, isCurrentUser, maxCredits }: { entry: TournamentEntry; rank: number; isCurrentUser?: boolean; maxCredits?: number | null }) {
   const formattedMultiplier = entry.biggest_multiplier > 0 ? `${Number(entry.biggest_multiplier.toFixed(1))}x` : "-";
   return (
     <div className={cn(
@@ -91,7 +91,12 @@ function LeaderboardRow({ entry, rank, isCurrentUser }: { entry: TournamentEntry
         />
         <div className="flex-1 min-w-0">
           <p className={cn("font-medium truncate", rank <= 3 ? "text-foreground" : "text-muted-foreground")}>{entry.display_name || "Anonym"}</p>
-          <p className="text-xs text-muted-foreground">{entry.total_spins.toLocaleString()} spins</p>
+          <div className="flex items-center gap-2">
+            <p className="text-xs text-muted-foreground">{entry.total_spins.toLocaleString()} spins</p>
+            {isCurrentUser && maxCredits && (
+              <p className="text-xs text-muted-foreground">· {Math.round(entry.total_credits_used).toLocaleString()} / {maxCredits.toLocaleString()} credits</p>
+            )}
+          </div>
         </div>
       </div>
       {isCurrentUser && <Badge variant="outline" className="text-xs border-primary/50 text-primary bg-primary/10">Du</Badge>}
@@ -173,6 +178,11 @@ function TournamentLeaderboardCard({ tournament }: { tournament: Tournament }) {
                   <span className={cn("text-sm font-medium", theme.accent)}>Præmie: {tournament.prize_text}</span>
                 </div>
               )}
+              {tournament.max_credits && (
+                <div className="flex items-center gap-1.5 mt-0.5">
+                  <span className="text-xs text-muted-foreground">💰 Maks {tournament.max_credits.toLocaleString()} credits</span>
+                </div>
+              )}
             </div>
           </div>
           <div className="flex items-center gap-2">
@@ -244,6 +254,7 @@ function TournamentLeaderboardCard({ tournament }: { tournament: Tournament }) {
                 entry={entry}
                 rank={index + 1}
                 isCurrentUser={user?.id === entry.user_id}
+                maxCredits={tournament.max_credits}
               />
             ))}
             {currentUser && currentUser.rank > 10 && (
@@ -253,7 +264,7 @@ function TournamentLeaderboardCard({ tournament }: { tournament: Tournament }) {
                   <span className="text-xs text-muted-foreground">Din placering</span>
                   <div className="flex-1 border-t border-dashed border-muted-foreground/20" />
                 </div>
-                <LeaderboardRow entry={currentUser.entry} rank={currentUser.rank} isCurrentUser />
+                <LeaderboardRow entry={currentUser.entry} rank={currentUser.rank} isCurrentUser maxCredits={tournament.max_credits} />
               </>
             )}
           </div>
