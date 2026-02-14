@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { PaymentMethodPage } from "./PaymentMethodPageTemplate";
+import paypalHero from "@/assets/heroes/paypal-hero.jpg";
 
 const PayPalGuide = () => {
   return (

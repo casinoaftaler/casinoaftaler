@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { PaymentMethodPage } from "./PaymentMethodPageTemplate";
+import applePayHero from "@/assets/heroes/apple-pay-hero.jpg";
 
 const ApplePayGuide = () => {
   return (

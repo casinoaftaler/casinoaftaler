@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { PaymentMethodPage } from "./PaymentMethodPageTemplate";
+import mobilePayHero from "@/assets/heroes/mobilepay-hero.jpg";
 
 const MobilePayGuide = () => {
   return (
