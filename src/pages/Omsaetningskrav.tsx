@@ -72,10 +72,13 @@ const omsaetningskravFaqs: { question: string; answer: string | React.ReactNode 
   },
   {
     question: "Hvad sker der, hvis jeg løber tør for penge under omsætningen?",
-    answer:
-      "Hvis du løber tør for penge, før kravet er opfyldt, kan du indbetale mere eller acceptere, at bonussen går tabt. Med en{" "}
-      <Link to="/no-sticky-bonus" className={linkClass}>no-sticky bonus</Link>{" "}
-      starter du dog med dine egne penge først.",
+    answer: (
+      <>
+        Hvis du løber tør for penge, før kravet er opfyldt, kan du indbetale mere eller acceptere, at bonussen går tabt. Med en{" "}
+        <Link to="/no-sticky-bonus" className={linkClass}>no-sticky bonus</Link>{" "}
+        starter du dog med dine egne penge først.
+      </>
+    ),
   },
   {
     question: "Tæller alle spil lige meget mod omsætningskravet?",

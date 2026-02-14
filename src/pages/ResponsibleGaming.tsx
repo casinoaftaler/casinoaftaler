@@ -1,3 +1,4 @@
+import React from "react";
 import responsibleGamingHero from "@/assets/heroes/responsible-gaming-hero.jpg";
 import { AlertTriangle, Phone, Globe, HelpCircle, Shield, Clock, Users, User, CalendarDays, BookOpen } from "lucide-react";
 import { Link } from "react-router-dom";
@@ -59,10 +60,15 @@ const helpResources = [
   },
 ];
 
-const responsibleGamingFaqs = [
+const responsibleGamingFaqs: { question: string; answer: string | React.ReactNode }[] = [
   {
     question: "Hvad er ROFUS, og hvordan tilmelder jeg mig?",
-    answer: "ROFUS (Register Over Frivilligt Udelukkede Spillere) er en dansk ordning, hvor du kan udelukke dig selv fra alle licenserede online casinoer i Danmark. Du tilmelder dig via spillemyndigheden.dk med dit MitID. Du kan vælge udelukkelse i 24 timer, 1 måned, 3 måneder, 6 måneder eller permanent.",
+    answer: (
+      <>
+        ROFUS (Register Over Frivilligt Udelukkede Spillere) er en dansk ordning administreret af{" "}
+        <Link to="/spillemyndigheden" className="text-primary underline hover:text-primary/80">Spillemyndigheden</Link>, hvor du kan udelukke dig selv fra alle licenserede online casinoer i Danmark. Du tilmelder dig via spillemyndigheden.dk med dit MitID.
+      </>
+    ),
   },
   {
     question: "Hvordan sætter jeg indbetalingsgrænser på mit casino?",

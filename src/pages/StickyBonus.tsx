@@ -1,3 +1,4 @@
+import React from "react";
 import { Link } from "react-router-dom";
 import { FAQSection } from "@/components/FAQSection";
 import { SEO } from "@/components/SEO";
@@ -42,26 +43,44 @@ import {
 import { useSiteSettings } from "@/hooks/useSiteSettings";
 import { RelatedGuides } from "@/components/RelatedGuides";
 
-const stickyFaqs = [
+const linkClass = "text-primary underline hover:text-primary/80";
+
+const stickyFaqs: { question: string; answer: string | React.ReactNode }[] = [
   {
     question: "Hvad er en Sticky Bonus?",
-    answer:
-      "En Sticky Bonus er en casinobonus, hvor din indbetaling og bonusmidlerne sammenblandes til én saldo. Du kan ikke hæve noget – hverken gevinster eller indbetaling – før du har opfyldt omsætningskravene fuldt ud.",
+    answer: (
+      <>
+        En Sticky Bonus er en casinobonus, hvor din indbetaling og bonusmidlerne sammenblandes til én saldo. Du kan ikke hæve noget – hverken gevinster eller indbetaling – før du har opfyldt{" "}
+        <Link to="/omsaetningskrav" className={linkClass}>omsætningskravene</Link> fuldt ud.
+      </>
+    ),
   },
   {
     question: "Tilbyder danske casinoer Sticky Bonusser?",
-    answer:
-      "Ja, langt de fleste bonusser hos danske online casinoer er Sticky Bonusser. De tilbydes typisk som velkomstbonusser, genindbetalingsbonusser og kampagnetilbud til eksisterende spillere.",
+    answer: (
+      <>
+        Ja, langt de fleste bonusser hos danske online casinoer er Sticky Bonusser. De tilbydes typisk som{" "}
+        <Link to="/velkomstbonus" className={linkClass}>velkomstbonusser</Link>, genindbetalingsbonusser og kampagnetilbud til eksisterende spillere.
+      </>
+    ),
   },
   {
     question: "Kan jeg vinde rigtige penge med en Sticky Bonus?",
-    answer:
-      "Ja, du kan vinde rigtige penge. Dog skal du opfylde omsætningskravene, før eventuelle gevinster kan hæves. Selve bonusbeløbet trækkes normalt fra ved udbetaling.",
+    answer: (
+      <>
+        Ja, du kan vinde rigtige penge. Dog skal du opfylde{" "}
+        <Link to="/omsaetningskrav" className={linkClass}>omsætningskravene</Link>, før eventuelle gevinster kan hæves. Selve bonusbeløbet trækkes normalt fra ved udbetaling.
+      </>
+    ),
   },
   {
     question: "Hvad er forskellen på en Sticky og en No-Sticky Bonus?",
-    answer:
-      "Med en Sticky Bonus er indbetaling og bonus sammenblandet, og du skal opfylde omsætningskrav for alt. Med en No-Sticky Bonus er midlerne adskilt, og du kan hæve gevinster fra egne penge frit.",
+    answer: (
+      <>
+        Med en Sticky Bonus er indbetaling og bonus sammenblandet, og du skal opfylde omsætningskrav for alt. Med en{" "}
+        <Link to="/no-sticky-bonus" className={linkClass}>No-Sticky Bonus</Link> er midlerne adskilt, og du kan hæve gevinster fra egne penge frit.
+      </>
+    ),
   },
   {
     question: "Hvordan genkender jeg en Sticky Bonus?",
@@ -75,13 +94,20 @@ const stickyFaqs = [
   },
   {
     question: "Er Sticky Bonusser begrænset til bestemte spil?",
-    answer:
-      "Ja, nogle Sticky Bonusser kan være begrænset til specifikke spil eller kategorier. Spilleautomater tæller typisk 100% mod omsætningskravet, mens bordspil bidrager med en lavere procentdel.",
+    answer: (
+      <>
+        Ja, nogle Sticky Bonusser kan være begrænset til specifikke spil. <Link to="/casinospil" className={linkClass}>Spilleautomater</Link> tæller typisk 100% mod omsætningskravet, mens bordspil bidrager med en lavere procentdel.
+      </>
+    ),
   },
   {
     question: "Hvad er typiske omsætningskrav for en Sticky Bonus?",
-    answer:
-      "I Danmark er omsætningskravene reguleret af Spillemyndigheden med et loft på 10x (d+b). Det betyder, at du maksimalt skal gennemspille bonusbeløbet + indbetalingen 10 gange.",
+    answer: (
+      <>
+        I Danmark er <Link to="/omsaetningskrav" className={linkClass}>omsætningskravene</Link> reguleret af{" "}
+        <Link to="/spillemyndigheden" className={linkClass}>Spillemyndigheden</Link> med et loft på 10x (d+b). Det betyder, at du maksimalt skal gennemspille bonusbeløbet + indbetalingen 10 gange.
+      </>
+    ),
   },
   {
     question: "Kan jeg spille progressive jackpots med en Sticky Bonus?",
