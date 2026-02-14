@@ -1463,6 +1463,7 @@ export type Database = {
         Args: { code_id_input: string }
         Returns: undefined
       }
+      refresh_slot_leaderboard: { Args: never; Returns: undefined }
       upsert_tournament_entry: {
         Args: {
           p_bet: number
