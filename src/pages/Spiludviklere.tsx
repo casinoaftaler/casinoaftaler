@@ -3,6 +3,16 @@ import { SEO } from "@/components/SEO";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
 import { RelatedGuides } from "@/components/RelatedGuides";
 import { InlineCasinoCards } from "@/components/InlineCasinoCards";
+import netentLogo from "@/assets/providers/netent.png";
+import pragmaticPlayLogo from "@/assets/providers/pragmatic-play.png";
+import relaxGamingLogo from "@/assets/providers/relax-gaming.png";
+import playNGoLogo from "@/assets/providers/play-n-go.png";
+import hacksawGamingLogo from "@/assets/providers/hacksaw-gaming.png";
+import nolimitCityLogo from "@/assets/providers/nolimit-city.png";
+import yggdrasilLogo from "@/assets/providers/yggdrasil.png";
+import microgamingLogo from "@/assets/providers/microgaming.png";
+import redTigerLogo from "@/assets/providers/red-tiger.png";
+import bigTimeGamingLogo from "@/assets/providers/big-time-gaming.png";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
@@ -143,6 +153,7 @@ const developers = [
   {
     name: "NetEnt",
     slug: "netent",
+    logo: netentLogo,
     description:
       "NetEnt er en af de mest anerkendte spiludviklere i branchen og kendte for deres høje kvalitet og kreative tilgang.",
     games: [
@@ -155,6 +166,7 @@ const developers = [
   {
     name: "Pragmatic Play",
     slug: "pragmatic-play",
+    logo: pragmaticPlayLogo,
     description:
       "Med en omfattende portefølje der spænder over slots, live casino og bingo, har Pragmatic Play etableret sig som en alsidig og pålidelig spiludvikler.",
     games: [
@@ -167,6 +179,7 @@ const developers = [
   {
     name: "Relax Gaming",
     slug: "relax-gaming",
+    logo: relaxGamingLogo,
     description:
       "Som en af de nyere stjerner har Relax Gaming hurtigt gjort sig bemærket med deres kreative tilgang og unikke mekanikker.",
     games: [
@@ -179,6 +192,7 @@ const developers = [
   {
     name: "Play'n GO",
     slug: "play-n-go",
+    logo: playNGoLogo,
     description:
       "Med en passion for innovation har Play'n GO leveret nogle af de mest populære spil til online casinoverdenen.",
     games: [
@@ -191,6 +205,7 @@ const developers = [
   {
     name: "Hacksaw Gaming",
     slug: "hacksaw-gaming",
+    logo: hacksawGamingLogo,
     description:
       "Hacksaw Gaming er kendt for deres innovative tilgang til slots og instant win-spil med enkle, men engagerende mekanikker.",
     games: [
@@ -203,6 +218,7 @@ const developers = [
   {
     name: "Nolimit City",
     slug: "nolimit-city",
+    logo: nolimitCityLogo,
     description:
       "Nolimit City er kendt for deres ekstreme volatilitet og unikke xWays- og xNudge-mekanikker, der giver helt nye spiloplevelser.",
     games: [
@@ -215,6 +231,7 @@ const developers = [
   {
     name: "Yggdrasil",
     slug: "yggdrasil",
+    logo: yggdrasilLogo,
     description:
       "Yggdrasil er en innovativ spiludvikler der kombinerer fantastisk grafik med spændende gameplay og unikke funktioner.",
     games: [
@@ -227,6 +244,7 @@ const developers = [
   {
     name: "Microgaming",
     slug: "microgaming",
+    logo: microgamingLogo,
     description:
       "Microgaming er en pioner der var blandt de første til at lancere et online casino helt tilbage i 1994.",
     games: [
@@ -239,6 +257,7 @@ const developers = [
   {
     name: "Red Tiger",
     slug: "red-tiger",
+    logo: redTigerLogo,
     description:
       "Red Tiger Gaming er kendt for deres daglige jackpots og visuelt imponerende spilleautomater med innovative bonusfunktioner.",
     games: [
@@ -251,6 +270,7 @@ const developers = [
   {
     name: "Big Time Gaming",
     slug: "big-time-gaming",
+    logo: bigTimeGamingLogo,
     description:
       "Big Time Gaming er skaberne bag den banebrydende Megaways-mekanik, der har revolutioneret spilleautomatbranchen.",
     games: [
@@ -581,10 +601,17 @@ const Spiludviklere = () => {
             {developers.map((dev) => (
               <Card key={dev.name} className="group relative">
                 <CardHeader>
-                  <CardTitle className="flex items-center gap-2 text-lg">
-                    <Star className="h-5 w-5 text-primary" />
-                    {dev.name}
-                  </CardTitle>
+                  <div className="flex items-center justify-between gap-3">
+                    <CardTitle className="flex items-center gap-2 text-lg">
+                      <Star className="h-5 w-5 text-primary" />
+                      {dev.name}
+                    </CardTitle>
+                    <img
+                      src={dev.logo}
+                      alt={`${dev.name} logo`}
+                      className="h-10 w-auto max-w-[100px] rounded object-contain md:h-12"
+                    />
+                  </div>
                 </CardHeader>
                 <CardContent className="space-y-3">
                   <p className="text-sm text-muted-foreground">
