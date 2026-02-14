@@ -177,6 +177,14 @@ export function SlotGame({ gameId = "book-of-fedesvin" }: SlotGameProps) {
       setBonusBarsReady(true);
     }
   }, [bonusLoaded, bonusState.isActive, showBonusTrigger, bonusBarsReady, showScatterCelebration, isSpinning, pendingBonusTrigger]);
+
+  // Restore bet size from bonus state when resuming after refresh
+  useEffect(() => {
+    if (bonusLoaded && bonusState.isActive && bonusState.betAmount > 0) {
+      setBet(bonusState.betAmount);
+      setBonusBetAmount(bonusState.betAmount);
+    }
+  }, [bonusLoaded, bonusState.isActive, bonusState.betAmount]);
   
   const stopTeaseSound = useRef<(() => void) | null>(null);
 

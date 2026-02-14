@@ -1024,6 +1024,7 @@ Deno.serve(async (req) => {
         expanding_symbol_name: expandingSymbol.name,
         bonus_winnings: 0,
         game_id: gameId,
+        bet_amount: bet,
       };
 
       // For Rise of Fedesvin, also set the arrays

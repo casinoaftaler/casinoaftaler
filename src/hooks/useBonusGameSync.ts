@@ -12,6 +12,7 @@ export interface BonusGameState {
   expandingSymbolIds: string[];
   expandingSymbolNames: string[];
   bonusWinnings: number;
+  betAmount: number;
 }
 
 interface BonusGameStateWithSymbol extends Omit<BonusGameState, 'expandingSymbolId' | 'expandingSymbolName' | 'expandingSymbolIds' | 'expandingSymbolNames'> {
@@ -28,6 +29,7 @@ const INITIAL_STATE: BonusGameState = {
   expandingSymbolIds: [],
   expandingSymbolNames: [],
   bonusWinnings: 0,
+  betAmount: 1,
 };
 
 export function useBonusGameSync(symbols?: SlotSymbol[], gameId: string = "book-of-fedesvin") {
@@ -66,6 +68,7 @@ export function useBonusGameSync(symbols?: SlotSymbol[], gameId: string = "book-
             expandingSymbolIds: data.expanding_symbol_ids || [],
             expandingSymbolNames: data.expanding_symbol_names || [],
             bonusWinnings: Number(data.bonus_winnings),
+            betAmount: Number(data.bet_amount) || 1,
           });
         }
       } catch (error) {
@@ -109,6 +112,7 @@ export function useBonusGameSync(symbols?: SlotSymbol[], gameId: string = "book-
               expandingSymbolIds: newData.expanding_symbol_ids || [],
               expandingSymbolNames: newData.expanding_symbol_names || [],
               bonusWinnings: Number(newData.bonus_winnings),
+              betAmount: Number(newData.bet_amount) || 1,
             });
           }
         }
@@ -147,6 +151,7 @@ export function useBonusGameSync(symbols?: SlotSymbol[], gameId: string = "book-
       expandingSymbolIds: serverBonusState.expandingSymbolIds || [],
       expandingSymbolNames: serverBonusState.expandingSymbolNames || [],
       bonusWinnings: serverBonusState.bonusWinnings,
+      betAmount: bonusState.betAmount,
     });
   }, []);
 
@@ -202,6 +207,7 @@ export function useBonusGameSync(symbols?: SlotSymbol[], gameId: string = "book-
     expandingSymbol,
     expandingSymbols,
     bonusWinnings: bonusState.bonusWinnings,
+    betAmount: bonusState.betAmount,
   };
 
   // Suppress/resume realtime updates (used to prevent bars showing before overlay closes)

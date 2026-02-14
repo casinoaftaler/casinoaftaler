@@ -807,6 +807,7 @@ export type Database = {
       }
       slot_bonus_state: {
         Row: {
+          bet_amount: number
           bonus_winnings: number
           created_at: string
           expanding_symbol_id: string | null
@@ -822,6 +823,7 @@ export type Database = {
           user_id: string
         }
         Insert: {
+          bet_amount?: number
           bonus_winnings?: number
           created_at?: string
           expanding_symbol_id?: string | null
@@ -837,6 +839,7 @@ export type Database = {
           user_id: string
         }
         Update: {
+          bet_amount?: number
           bonus_winnings?: number
           created_at?: string
           expanding_symbol_id?: string | null
