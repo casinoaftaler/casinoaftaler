@@ -8,6 +8,8 @@ const SkrillGuide = () => {
       seoTitle="Skrill Casino – Komplet Guide til Skrill på Danske Casinoer 2026 | Casinoaftaler"
       seoDescription="Alt om Skrill på danske casinoer. VIP-fordele, hurtige udbetalinger, sikkerhed, bonusregler og de bedste Skrill casinoer i Danmark 2026."
       name="Skrill"
+      heroImage={skrillHero}
+      heroImageAlt="Skrill e-wallet betalingsmetode på danske casinoer"
       heroSubtitle="Skrill er en populær e-wallet med VIP-fordele, hurtige transaktioner og stærk sikkerhed. Perfekt til casinospillere der ønsker en separat spillekonto med fuld budgetkontrol."
       introTitle="Skrill på Danske Casinoer – E-Wallet med VIP-Fordele"
       introContent={

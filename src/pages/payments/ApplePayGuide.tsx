@@ -8,6 +8,8 @@ const ApplePayGuide = () => {
       seoTitle="Apple Pay Casino – Komplet Guide til Apple Pay på Danske Casinoer 2026 | Casinoaftaler"
       seoDescription="Alt om Apple Pay på danske casinoer. Lær hvordan du indbetaler med Face ID, sikkerhed via tokenisering, bonusregler, gebyrer og de bedste Apple Pay casinoer i Danmark."
       name="Apple Pay"
+      heroImage={applePayHero}
+      heroImageAlt="Apple Pay betalingsmetode på danske casinoer"
       heroSubtitle="Indbetal på casinoer med Face ID eller Touch ID – hurtigt, sikkert og uden at dele dine kortoplysninger. Apple Pay er en af de mest moderne betalingsløsninger på danske online casinoer."
       introTitle="Apple Pay på Danske Casinoer – Hurtig og Sikker Betaling"
       introContent={

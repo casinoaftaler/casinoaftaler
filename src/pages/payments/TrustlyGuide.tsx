@@ -8,6 +8,8 @@ const TrustlyGuide = () => {
       seoTitle="Trustly Casino – Komplet Guide til Trustly på Danske Casinoer 2026 | Casinoaftaler"
       seoDescription="Alt om Trustly på danske casinoer. Direkte bankoverførsler, MitID-sikkerhed, ingen gebyrer, hurtige udbetalinger og de bedste Trustly casinoer i Danmark."
       name="Trustly"
+      heroImage={trustlyHero}
+      heroImageAlt="Trustly open banking betalingsmetode på danske casinoer"
       heroSubtitle="Trustly er den direkte bro mellem din bankkonto og casinoet – øjeblikkelige overførsler via open banking og MitID uden kortoplysninger eller separate konti."
       introTitle="Trustly på Danske Casinoer – Direkte Bankbetaling i Realtid"
       introContent={

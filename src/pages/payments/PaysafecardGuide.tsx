@@ -8,6 +8,8 @@ const PaysafecardGuide = () => {
       seoTitle="Paysafecard Casino – Komplet Guide til Paysafecard på Danske Casinoer 2026 | Casinoaftaler"
       seoDescription="Alt om Paysafecard på danske casinoer. Forudbetalt og anonym indbetaling, sikkerhed, begrænsninger og de bedste Paysafecard casinoer i Danmark."
       name="Paysafecard"
+      heroImage={paysafecardHero}
+      heroImageAlt="Paysafecard forudbetalt betalingsmetode på danske casinoer"
       heroSubtitle="Paysafecard er en forudbetalt betalingsløsning, der lader dig indbetale på casinoer med en simpel 16-cifret PIN-kode – helt uden at dele bank- eller kortoplysninger."
       introTitle="Paysafecard på Danske Casinoer – Forudbetalt og Anonym Betaling"
       introContent={

@@ -8,6 +8,8 @@ const PayPalGuide = () => {
       seoTitle="PayPal Casino – Komplet Guide til PayPal på Danske Casinoer 2026 | Casinoaftaler"
       seoDescription="Alt om PayPal på danske casinoer. Hurtige transaktioner, køberbeskyttelse, bonusregler og de bedste PayPal casinoer i Danmark 2026."
       name="PayPal"
+      heroImage={paypalHero}
+      heroImageAlt="PayPal betalingsmetode på danske casinoer"
       heroSubtitle="Verdens mest kendte e-wallet kombinerer hastighed, køberbeskyttelse og global rækkevidde. PayPal gør det muligt at indbetale og udbetale på danske casinoer uden at dele kortoplysninger."
       introTitle="PayPal på Danske Casinoer – Verdens Førende E-Wallet"
       introContent={
