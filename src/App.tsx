@@ -51,6 +51,7 @@ const CampobetAnmeldelse = lazy(() => import("./pages/CampobetAnmeldelse"));
 const BetiniaAnmeldelse = lazy(() => import("./pages/BetiniaAnmeldelse"));
 const SwiftCasinoAnmeldelse = lazy(() => import("./pages/SwiftCasinoAnmeldelse"));
 const LunaCasinoAnmeldelse = lazy(() => import("./pages/LunaCasinoAnmeldelse"));
+const CasinoAnmeldelser = lazy(() => import("./pages/CasinoAnmeldelser"));
 const Casinospil = lazy(() => import("./pages/Casinospil"));
 const NetEntGuide = lazy(() => import("./pages/NetEntGuide"));
 const PragmaticPlayGuide = lazy(() => import("./pages/PragmaticPlayGuide"));
@@ -121,6 +122,7 @@ const App = () => (
                 <Route path="/betinia-anmeldelse" element={<BetiniaAnmeldelse />} />
                 <Route path="/swift-casino-anmeldelse" element={<SwiftCasinoAnmeldelse />} />
                 <Route path="/luna-casino-anmeldelse" element={<LunaCasinoAnmeldelse />} />
+                <Route path="/casino-anmeldelser" element={<CasinoAnmeldelser />} />
                 <Route path="/casinospil" element={<Casinospil />} />
                 <Route path="/spiludviklere/netent" element={<NetEntGuide />} />
                 <Route path="/spiludviklere/pragmatic-play" element={<PragmaticPlayGuide />} />

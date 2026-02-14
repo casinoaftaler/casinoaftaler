@@ -237,6 +237,12 @@ export function Header() {
             </DropdownMenuTrigger>
             <DropdownMenuContent align="center" className="bg-popover">
               <DropdownMenuItem asChild>
+                <Link to="/casino-anmeldelser" className="flex items-center gap-2">
+                  <Star className="h-4 w-4" />
+                  Casino Anmeldelser
+                </Link>
+              </DropdownMenuItem>
+              <DropdownMenuItem asChild>
                 <Link to="/about" className="flex items-center gap-2">
                   <Users className="h-4 w-4" />
                   Om Os
@@ -559,6 +565,10 @@ export function Header() {
             </button>
             {expandedSection === "more" && (
               <div className="flex flex-col border-b border-border/50 bg-muted/30">
+                <Link to="/casino-anmeldelser" className="ml-6 flex items-center gap-2 py-2.5 text-sm text-muted-foreground transition-colors hover:text-primary" onClick={() => setMobileMenuOpen(false)}>
+                  <Star className="h-4 w-4" />
+                  Casino Anmeldelser
+                </Link>
                 <Link to="/about" className="ml-6 flex items-center gap-2 py-2.5 text-sm text-muted-foreground transition-colors hover:text-primary" onClick={() => setMobileMenuOpen(false)}>
                   <Users className="h-4 w-4" />
                   Om Os
