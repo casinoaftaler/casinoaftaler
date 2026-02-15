@@ -86,12 +86,12 @@ const RouletteStrategiGuide = () => {
         jsonLd={[faqJsonLd, breadcrumbJsonLd]}
       />
 
-      <section className="relative overflow-hidden py-12 text-white md:py-20" style={{ backgroundImage: "linear-gradient(135deg, hsl(45 60% 25%), hsl(35 50% 20%) 40%, hsl(25 70% 20%))" }}>
+      <section className="relative overflow-hidden py-12 text-white md:py-20" style={{ backgroundImage: "linear-gradient(135deg, hsl(260 70% 25%), hsl(250 60% 20%) 40%, hsl(210 80% 25%))" }}>
         <div className="container">
           <div className="mx-auto max-w-3xl text-center">
-            <Badge className="bg-white/10 text-white border-white/20 hover:bg-white/20"><Sparkles className="mr-1 h-3 w-3" /> Opdateret Februar 2026</Badge>
-            <h1 className="mt-6 text-4xl font-bold tracking-tight md:text-5xl lg:text-6xl">Roulette Strategi 2026</h1>
-            <p className="mt-6 text-lg leading-8 text-yellow-100">Martingale, Fibonacci og matematisk analyse – den komplette strategi-guide.</p>
+            <Badge variant="secondary" className="mb-4"><Sparkles className="mr-1.5 h-3.5 w-3.5" /> Opdateret Februar 2026</Badge>
+            <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">Roulette Strategi 2026</h1>
+            <p className="text-lg text-white/80">Martingale, Fibonacci og matematisk analyse – den komplette strategi-guide.</p>
           </div>
         </div>
       </section>
