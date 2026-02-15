@@ -167,6 +167,15 @@ Deno.serve(async (req) => {
       } else {
         newBalance = currentBalance;
       }
+
+      // Track credits awarded for clawback on tournament end
+      if (creditsAwarded > 0) {
+        await serviceClient.from("tournament_credit_tracking").insert({
+          tournament_id,
+          user_id: userId,
+          credits_awarded: creditsAwarded,
+        });
+      }
     }
 
     return new Response(

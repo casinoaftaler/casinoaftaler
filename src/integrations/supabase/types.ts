@@ -1087,6 +1087,41 @@ export type Database = {
         }
         Relationships: []
       }
+      tournament_credit_tracking: {
+        Row: {
+          created_at: string
+          credits_awarded: number
+          credits_clawed_back: number
+          id: string
+          tournament_id: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          credits_awarded?: number
+          credits_clawed_back?: number
+          id?: string
+          tournament_id: string
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          credits_awarded?: number
+          credits_clawed_back?: number
+          id?: string
+          tournament_id?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "tournament_credit_tracking_tournament_id_fkey"
+            columns: ["tournament_id"]
+            isOneToOne: false
+            referencedRelation: "tournaments"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       tournament_entries: {
         Row: {
           biggest_multiplier: number
