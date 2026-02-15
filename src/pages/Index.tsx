@@ -309,7 +309,7 @@ const Index = () => {
             Har du brug for hjælp eller oplever problemer med dine spillevaner, kan du kontakte{" "}
             <a href="https://www.stopspillet.dk/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline font-medium">StopSpillet.dk</a>
             {" "}– en gratis og anonym rådgivningstjeneste. Vi opfordrer altid til{" "}
-            <Link to="/ansvarligt-spil" className="text-primary hover:underline font-medium">ansvarligt spil</Link>
+            <Link to="/responsible-gaming" className="text-primary hover:underline font-medium">ansvarligt spil</Link>
             {" "}og at sætte faste grænser for tid og penge.
           </p>
         </section>
@@ -502,7 +502,7 @@ const Index = () => {
           </p>
           <p className="mb-4 text-muted-foreground leading-relaxed">
             Vores team tester hvert online casino grundigt baseret på objektive kriterier. Vi samarbejder kun med licenserede og pålidelige spillesteder, der overholder standarder for{" "}
-            <Link to="/ansvarligt-spil" className="text-primary hover:underline font-medium">ansvarligt spil</Link>
+             <Link to="/responsible-gaming" className="text-primary hover:underline font-medium">ansvarligt spil</Link>
             . Læs mere{" "}
             <Link to="/about" className="text-primary hover:underline font-medium">om os</Link>
             {" "}eller{" "}
@@ -525,7 +525,7 @@ const Index = () => {
             <CardContent className="space-y-3">
               <p className="text-muted-foreground leading-relaxed">
                 Online casino skal altid være underholdning – ikke en kilde til stress eller økonomiske problemer. Hos Casinoaftaler er vi engagerede i at fremme{" "}
-                <Link to="/ansvarligt-spil" className="text-primary hover:underline font-medium">ansvarligt spil</Link>
+                <Link to="/responsible-gaming" className="text-primary hover:underline font-medium">ansvarligt spil</Link>
                 . Vi opfordrer alle spillere til at sætte grænser, holde pauser og aldrig spille for mere, end de har råd til at tabe.
               </p>
               <p className="text-muted-foreground leading-relaxed">
