@@ -9,17 +9,21 @@ export function CasinoReviewHero({ slug, casinoName }: CasinoReviewHeroProps) {
   const { data: casinos } = useCasinos();
   const casino = casinos?.find((c) => c.slug === slug);
   const logoUrl = casino?.logo_url;
+  const displayName = casinoName || casino?.name || slug;
 
   if (!logoUrl) return null;
 
   return (
     <div className="mb-8 mt-6 w-full overflow-hidden rounded-2xl border border-border bg-card">
-      <div className="flex items-center justify-center py-12 px-6 md:py-16">
+      <div className="flex flex-col items-center justify-center gap-4 py-10 px-6 md:flex-row md:gap-6 md:py-14">
         <img
           src={logoUrl}
-          alt={`${casinoName || casino?.name || slug} logo`}
-          className="h-20 w-auto max-w-[320px] object-contain md:h-28 md:max-w-[400px]"
+          alt={`${displayName} logo`}
+          className="h-16 w-16 rounded-xl object-contain bg-background/50 p-1.5 md:h-20 md:w-20"
         />
+        <h2 className="text-3xl font-bold tracking-tight text-foreground md:text-4xl lg:text-5xl">
+          {displayName}
+        </h2>
       </div>
     </div>
   );
