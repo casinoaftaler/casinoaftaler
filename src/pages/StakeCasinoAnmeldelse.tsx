@@ -11,6 +11,7 @@ import { InlineCasinoCards } from "@/components/InlineCasinoCards";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
 import { buildArticleSchema } from "@/lib/seo";
 import { QuickFactsProviders } from "@/components/QuickFactsProviders";
+import { CasinoReviewHero } from "@/components/CasinoReviewHero";
 import type { ReactNode } from "react";
 import { Star, Zap, Check, X, ShieldCheck, AlertTriangle } from "lucide-react";
 
@@ -45,7 +46,7 @@ const StakeCasinoAnmeldelse = () => {
 
       <div className="container py-8 md:py-12">
         <AuthorMetaBar author="jonas" date="15-02-2026" readTime="18 Min." />
-
+        <CasinoReviewHero slug="stake" casinoName="Stake Casino" />
         <section className="mb-12">
           <Card className="border-border bg-card border-l-4 border-l-yellow-500">
             <CardHeader><CardTitle className="flex items-center gap-2 text-xl"><AlertTriangle className="h-6 w-6 text-yellow-500" />Vigtig Information</CardTitle></CardHeader>

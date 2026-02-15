@@ -12,6 +12,7 @@ import { InlineCasinoCards } from "@/components/InlineCasinoCards";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
 import { buildArticleSchema } from "@/lib/seo";
 import { QuickFactsProviders } from "@/components/QuickFactsProviders";
+import { CasinoReviewHero } from "@/components/CasinoReviewHero";
 import type { ReactNode } from "react";
 import {
   ShieldCheck, Star, Clock, CreditCard, Gift, Trophy, Sparkles, Gamepad2, Wallet,
@@ -135,7 +136,7 @@ const ComeOnAnmeldelse = () => {
 
       <div className="container py-8 md:py-12">
         <AuthorMetaBar author="jonas" date="15-02-2026" readTime="18 Min." />
-
+        <CasinoReviewHero slug="comeon" casinoName="ComeOn Casino" />
         <section className="mb-12">
           <Card className="border-border bg-card border-l-4 border-l-primary">
             <CardHeader><CardTitle className="flex items-center gap-2 text-xl"><Zap className="h-6 w-6 text-primary" />Hurtige Fakta – ComeOn Casino</CardTitle></CardHeader>
