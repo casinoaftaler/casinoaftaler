@@ -589,8 +589,9 @@ const FreeSpins = () => {
           <p className="mb-4 text-muted-foreground leading-relaxed">
             En vigtig udvikling i 2026 er personaliseringen af free spins-tilbud. Flere casinoer tilbyder nu skræddersyede free spins baseret på din spillehistorik – f.eks. free spins på dine yndlingsspil eller med højere spinværdi for loyale spillere. Denne personalisering gør free spins endnu mere værdifulde, da de matcher din spillestil præcist.
           </p>
-          <p className="text-muted-foreground leading-relaxed">
-            For at finde de bedste free spins-tilbud anbefaler vi at sammenligne vilkårene grundigt. Kig efter free spins med spinværdi på mindst 2 kr., omsætningskrav under 10x (eller helst 0x), og en rimelig gyldighedsperiode på mindst 7 dage. Kombineret med en god <Link to="/velkomstbonus" className="text-primary underline hover:text-primary/80">velkomstbonus</Link> kan free spins give dig en fantastisk start hos et nyt dansk casino.
+           <p className="text-muted-foreground leading-relaxed">
+            For at finde de bedste free spins-tilbud anbefaler vi at sammenligne vilkårene grundigt. Kig efter free spins med spinværdi på mindst 2 kr., omsætningskrav under 10x (eller helst 0x), og en rimelig gyldighedsperiode på mindst 7 dage. Kombineret med en god <Link to="/velkomstbonus" className="text-primary underline hover:text-primary/80">velkomstbonus</Link> kan free spins give dig en fantastisk start hos et nyt dansk casino. Du kan også optjene ekstra spins gennem vores{" "}
+            <Link to="/community/rewards" className="text-primary underline hover:text-primary/80">Rewards Program</Link>.
           </p>
         </section>
 

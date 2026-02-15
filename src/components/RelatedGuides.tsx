@@ -118,6 +118,19 @@ const communityGuides: GuideLink[] = [
 function getContextualGuides(currentPath: string): { guides: GuideLink[]; subtitle: string } {
   const path = currentPath.toLowerCase();
 
+  // Community rewards page → show only relevant bonus guides
+  if (path === "/community/rewards") {
+    return {
+      guides: [
+        bonusGuides.find(g => g.to === "/free-spins")!,
+        bonusGuides.find(g => g.to === "/omsaetningskrav")!,
+        bonusGuides.find(g => g.to === "/bonus-uden-indbetaling")!,
+        bonusGuides.find(g => g.to === "/indskudsbonus")!,
+      ],
+      subtitle: "Lær mere om bonusser, omsætningskrav og gratis spins på danske casinoer.",
+    };
+  }
+
   // Legal / responsible gaming pages → show other legal + responsible gaming guides
   if (path === "/privacy" || path === "/terms" || path === "/cookies" || path === "/responsible-gaming" || path === "/spillemyndigheden") {
     return {

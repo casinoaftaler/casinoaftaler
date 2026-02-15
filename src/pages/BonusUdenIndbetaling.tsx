@@ -612,7 +612,8 @@ const BonusUdenIndbetaling = () => {
             Vigtige faktorer at vurdere ved en bonus uden indbetaling inkluderer <Link to="/omsaetningskrav" className="text-primary underline hover:text-primary/80">omsætningskrav</Link> (typisk 1x-10x i Danmark), gevinstloft (det maksimale beløb du kan udbetale), og gyldighedsperiode. De bedste no deposit bonusser har lave omsætningskrav og ingen eller høje gevinstlofter, så du har en reel chance for at beholde dine gevinster.
           </p>
           <p className="text-muted-foreground leading-relaxed">
-            En bonus uden indbetaling er særligt værdifuld for spillere, der ønsker at sammenligne flere casinoer uden økonomisk forpligtelse. Du kan oprette konti hos flere <Link to="/nye-casinoer" className="text-primary underline hover:text-primary/80">nye casinoer</Link>, modtage deres no deposit tilbud, og vurdere spiludbud, brugervenlighed og kundeservice – alt sammen uden at bruge egne penge.
+            En bonus uden indbetaling er særligt værdifuld for spillere, der ønsker at sammenligne flere casinoer uden økonomisk forpligtelse. Du kan oprette konti hos flere <Link to="/nye-casinoer" className="text-primary underline hover:text-primary/80">nye casinoer</Link>, modtage deres no deposit tilbud, og vurdere spiludbud, brugervenlighed og kundeservice – alt sammen uden at bruge egne penge. Se hvordan du optjener gratis spins i vores{" "}
+            <Link to="/community/rewards" className="text-primary underline hover:text-primary/80">community Rewards Program</Link>.
           </p>
         </section>
 

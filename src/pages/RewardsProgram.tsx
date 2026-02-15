@@ -83,10 +83,12 @@ export default function RewardsProgram() {
               <p className="text-muted-foreground leading-relaxed">
                 Del dine bedste øjeblikke med fællesskabet! Når du uploader et videoklip til{" "}
                 <Link to="/highlights?tab=community" className="text-primary underline hover:text-primary/80">Community Highlights</Link>, og det
-                bliver godkendt, optjener du bonus spins som belønning. Brug dine spins i vores{" "}
+                bliver godkendt, optjener du{" "}
+                <Link to="/free-spins" className="text-primary underline hover:text-primary/80">bonus spins</Link> som belønning. Dine spins er underlagt de samme{" "}
+                <Link to="/omsaetningskrav" className="text-primary underline hover:text-primary/80">bonus-regler</Link> som på rigtige casinoer. Brug dem i vores{" "}
                 <Link to="/community/slots" className="text-primary underline hover:text-primary/80">gratis spillehal</Link> og
                 konkurrér om topplaceringer på{" "}
-                <Link to="/community/leaderboard" className="text-primary underline hover:text-primary/80">leaderboardet</Link>.
+                <Link to="/community/leaderboard" className="text-primary underline hover:text-primary/80">ranglisten</Link>.
               </p>
 
               <div className="grid gap-3 sm:grid-cols-2">
@@ -133,7 +135,8 @@ export default function RewardsProgram() {
               <p className="text-muted-foreground leading-relaxed">
                 Gør din profil komplet og bliv belønnet! For hver profilsektion du udfylder, optjener
                 du <span className="text-foreground font-medium">+5 permanente bonus spins</span> til
-                din daglige pulje.
+                din daglige pulje – ligesom{" "}
+                <Link to="/bonus-uden-indbetaling" className="text-primary underline hover:text-primary/80">gratis spins uden indbetaling</Link> på rigtige casinoer.
               </p>
 
               <div className="grid gap-3 sm:grid-cols-2">
@@ -252,7 +255,7 @@ export default function RewardsProgram() {
           </Card>
         </section>
 
-        <RelatedGuides currentPath="/community/rewards" />
+        <RelatedGuides currentPath="/community/rewards" maxLinks={4} />
       </div>
     </>
   );
