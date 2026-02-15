@@ -50,79 +50,62 @@ const linkClass = "text-primary underline hover:text-primary/80";
 
 const spilDanskNuFaqs: { question: string; answer: ReactNode }[] = [
   {
-    question: "Er SpilDanskNu et sikkert og lovligt casino?",
+    question: "Hvad er SpilDanskNus velkomstbonus, og hvordan aktiveres den?",
     answer: (
       <>
-        Ja. SpilDanskNu har gyldig dansk licens fra Spillemyndigheden og drives af Winteq ApS. Platformen benytter SSL-kryptering og er tilsluttet{" "}
-        <a href="https://www.rofus.nu/" target="_blank" rel="noopener noreferrer" className={linkClass}>ROFUS</a> for selvudelukkelse. Læs mere om{" "}
-        <Link to="/responsible-gaming" className={linkClass}>ansvarligt spil</Link>.
-      </>
-    ),
-  },
-  {
-    question: "Hvad er velkomstbonussen hos SpilDanskNu?",
-    answer: (
-      <>
-        Nye spillere får 100 % bonus op til 1.000 kr. fordelt over 5 dage med bonuskoden VELKOMMEN. Omsætningskravet er kun 10x (indskud + bonus) med 60 dages gyldighed. Læs mere om{" "}
+        SpilDanskNu tilbyder nye spillere en velkomstbonus på 100 % op til 1.000 kr. fordelt over 5 dage. Du aktiverer bonussen med koden VELKOMMEN ved hver indbetaling – op til 200 kr. i bonus pr. dag. Omsætningskravet er 10x (indskud + bonus) med 60 dages gyldighed, hvilket placerer SpilDanskNu blandt de mest fordelagtige på det danske marked. Bemærk, at kun spilleautomater bidrager fuldt til omsætningen, mens bordspil typisk bidrager med 10 %. Du kan til enhver tid følge din omsætningsprogression direkte i din kontooversigt. Læs mere om{" "}
         <Link to="/velkomstbonus" className={linkClass}>velkomstbonusser</Link>.
       </>
     ),
   },
   {
-    question: "Hvilke betalingsmetoder tilbyder SpilDanskNu?",
+    question: "Hvordan fungerer MitID-registreringen hos SpilDanskNu?",
+    answer:
+      "SpilDanskNu bruger MitID til registrering og kontoverifikation, hvilket er et krav fra Spillemyndigheden for alle danske casinoer. Registreringsprocessen tager typisk under 3 minutter: du opretter en konto, verificerer med MitID, og din identitet er straks bekræftet. Den store fordel er, at du slipper for efterfølgende dokumentverifikation ved udbetalinger, da din identitet allerede er verificeret. Det eliminerer de typiske forsinkelser på 24–72 timer, som mange internationale casinoer kræver ved første udbetaling. MitID-integrationen sikrer desuden, at mindreårige ikke kan oprette konti.",
+  },
+  {
+    question: "Hvor hurtigt udbetaler SpilDanskNu gevinster?",
     answer: (
       <>
-        Du kan indbetale med MobilePay, Visa, Mastercard og Trustly. Alle indbetalinger er gebyrfri med et minimum på 75 kr. Se vores guide til{" "}
-        <Link to="/betalingsmetoder" className={linkClass}>betalingsmetoder</Link>.
+        Udbetalinger hos SpilDanskNu behandles typisk inden for 1–3 hverdage. De hurtigste metoder er{" "}
+        <Link to="/betalingsmetoder/mobilepay" className={linkClass}>MobilePay</Link> og{" "}
+        <Link to="/betalingsmetoder/trustly" className={linkClass}>Trustly</Link>, hvor pengene ofte er på din konto inden for samme dag. Kortbetalinger via Visa og Mastercard kræver normalt 1–2 bankdage ekstra. Minimum udbetalingsbeløb er 75 kr. Da din identitet allerede er verificeret via MitID ved registrering, undgår du forsinkelser ved første udbetaling – en klar fordel sammenlignet med casinoer, der kræver manuel dokumentverifikation.
       </>
     ),
   },
   {
-    question: "Har SpilDanskNu et loyalitetsprogram?",
+    question: "Hvilke ugentlige kampagner og bonusser tilbyder SpilDanskNu?",
     answer:
-      "Ja. For hver 5 kr. omsat i slots optjener du 1 point. Pointene kan indløses til kontanter i Præmieshoppen. Du bliver automatisk medlem ved registrering og nyhedsbrevstilmelding.",
+      "Ud over velkomstbonussen kører SpilDanskNu regelmæssige kampagner for eksisterende spillere. Det inkluderer ugentlige reload-bonusser, free spins-tilbud på udvalgte spilleautomater og sæsonbestemte kampagner ved helligdage og store sportsbegivenheder. Kampagnerne kommunikeres primært via e-mail til spillere, der har tilmeldt sig nyhedsbrevet, og direkte i kontooversigten efter login. Vilkårene varierer fra kampagne til kampagne, men omsætningskravene ligger typisk på 10x – samme niveau som velkomstbonussen. Det er værd at tjekke sin konto regelmæssigt, da nogle tilbud kun er tilgængelige i begrænsede perioder.",
   },
   {
-    question: "Kan jeg spille SpilDanskNu på mobilen?",
-    answer:
-      "Ja. SpilDanskNu er en web-app, der fungerer direkte i browseren på både iOS og Android. Der er ingen separat app at downloade – alle spil, bonusser og betalinger er tilgængelige mobilt.",
-  },
-  {
-    question: "Hvem står bag SpilDanskNu?",
+    question: "Er SpilDanskNu sikkert, og hvem står bag platformen?",
     answer: (
       <>
-        SpilDanskNu drives af Winteq ApS, der også står bag{" "}
-        <Link to="/spilleautomaten-anmeldelse" className={linkClass}>Spilleautomaten.dk</Link> og Bingo.dk. Det er en erfaren dansk operatør med mange års erfaring på det danske marked.
+        SpilDanskNu drives af Winteq ApS, et dansk selskab med gyldig licens fra Spillemyndigheden. Winteq har mange års erfaring på det danske marked og driver desuden{" "}
+        <Link to="/spilleautomaten-anmeldelse" className={linkClass}>Spilleautomaten.dk</Link> og Bingo.dk. Platformen benytter SSL-kryptering og er fuldt tilsluttet{" "}
+        <a href="https://www.rofus.nu/" target="_blank" rel="noopener noreferrer" className={linkClass}>ROFUS</a>. At operatøren er dansk giver en ekstra tryghed, da du kan kontakte kundeservice på dansk og ved, at selskabet er underlagt dansk lovgivning. Læs mere om{" "}
+        <Link to="/responsible-gaming" className={linkClass}>ansvarligt spil</Link>.
       </>
     ),
   },
   {
-    question: "Hvad er omsætningskravet på bonussen?",
+    question: "Hvordan er spiludvalget og RTP-niveauerne hos SpilDanskNu?",
     answer: (
       <>
-        Omsætningskravet er 10x (indskud + bonus), hvilket er blandt de laveste i branchen. Eksempel: Indbetaler du 200 kr. og får 200 kr. i bonus, skal du omsætte 4.000 kr. Læs om{" "}
-        <Link to="/omsaetningskrav" className={linkClass}>omsætningskrav</Link>.
+        SpilDanskNu har et bredt spiludvalg med over 2.500 titler fra udviklere som{" "}
+        <Link to="/spiludviklere/netent" className={linkClass}>NetEnt</Link>,{" "}
+        <Link to="/spiludviklere/play-n-go" className={linkClass}>Play'n GO</Link>,{" "}
+        <Link to="/spiludviklere/pragmatic-play" className={linkClass}>Pragmatic Play</Link> og{" "}
+        <Link to="/spiludviklere/evolution-gaming" className={linkClass}>Evolution Gaming</Link>. Spilleautomater udgør størstedelen af kataloget med RTP-niveauer typisk mellem 94 % og 97 %. Casinoet tilbyder desuden bordspil, video poker og et fuldt{" "}
+        <Link to="/live-casino" className={linkClass}>live casino</Link> med professionelle dealere. Nye spil tilføjes løbende, og du kan filtrere efter kategori, udbyder og popularitet direkte på platformen.
       </>
     ),
   },
   {
-    question: "Tilbyder SpilDanskNu live casino?",
-    answer: (
-      <>
-        Ja, SpilDanskNu har et bredt{" "}
-        <Link to="/live-casino" className={linkClass}>live casino</Link>-udvalg med roulette, blackjack og game shows fra professionelle dealere.
-      </>
-    ),
-  },
-  {
-    question: "Hvor hurtigt får jeg mine penge udbetalt?",
+    question: "Hvad er Præmieshoppen hos SpilDanskNu, og hvordan optjener man points?",
     answer:
-      "Udbetalinger behandles typisk inden for 1–3 hverdage. MobilePay og Trustly er de hurtigste metoder. Sørg for at have verificeret din konto inden første udbetaling for at undgå forsinkelser.",
-  },
-  {
-    question: "Er der en bonuskode til SpilDanskNu?",
-    answer:
-      "Ja. Velkomstbonussen aktiveres med bonuskoden VELKOMMEN ved indbetaling. Du kan få op til 200 kr. i bonus pr. dag over 5 dage – i alt op til 1.000 kr.",
+      "Præmieshoppen er SpilDanskNus loyalitetsprogram, hvor du optjener points for dit spil og kan indløse dem til kontante bonusmidler. For hver 5 kr. omsat på spilleautomater modtager du 1 loyalitetspoint. Pointene har ingen udløbsdato, så du bestemmer selv, hvornår du vil indløse dem. Programmet aktiveres automatisk, når du registrerer dig og tilmelder dig nyhedsbrevet. Det er et simpelt og gennemsigtigt belønningssystem uden komplicerede tier-niveauer – du optjener og indløser i dit eget tempo. Bordspil og live casino bidrager typisk med færre points pr. omsat krone.",
   },
 ];
 

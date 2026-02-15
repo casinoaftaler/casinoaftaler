@@ -30,66 +30,69 @@ const linkClass = "text-primary underline hover:text-primary/80";
 
 const swiftFaqs: { question: string; answer: ReactNode }[] = [
   {
-    question: "Er Swift Casino et sikkert casino?",
+    question: "Hvad er Swift Casinos velkomstbonus, og kræver den en bonuskode?",
     answer: (
       <>
-        Ja. Swift Casino har gyldig dansk licens fra Spillemyndigheden (licensnr. 16-1066791) og drives af Skill On Net Ltd. Platformen benytter SSL-kryptering og er tilsluttet{" "}
-        <a href="https://www.rofus.nu/" target="_blank" rel="noopener noreferrer" className={linkClass}>ROFUS</a>. Læs mere om{" "}
-        <Link to="/responsible-gaming" className={linkClass}>ansvarligt spil</Link>.
-      </>
-    ),
-  },
-  {
-    question: "Hvad er velkomstbonussen hos Swift Casino?",
-    answer: (
-      <>
-        Nye spillere får 100 % bonus op til 500 kr. ved første indbetaling med bonuskoden SWIFT. Omsætningskravet er 10x (d+b) med 60 dages gyldighed. Læs mere om{" "}
-        <Link to="/velkomstbonus" className={linkClass}>velkomstbonusser</Link>.
-      </>
-    ),
-  },
-  {
-    question: "Hvilke betalingsmetoder tilbyder Swift Casino?",
-    answer: (
-      <>
-        Swift Casino tilbyder MobilePay, Visa, Mastercard, Trustly, PayPal og Skrill. Min. indbetaling er 100 kr. og min. udbetaling er 200 kr. Se vores guide til{" "}
-        <Link to="/betalingsmetoder" className={linkClass}>betalingsmetoder</Link>.
-      </>
-    ),
-  },
-  {
-    question: "Har Swift Casino sportsbetting?",
-    answer: "Nej. Swift Casino fokuserer udelukkende på casino-spil og tilbyder ikke sportsbetting.",
-  },
-  {
-    question: "Hvad er omsætningskravet på bonussen?",
-    answer: (
-      <>
-        Velkomstbonussen har et omsætningskrav på 10x (indskud + bonus). Eksempel: Indbetal 500 kr., få 500 kr. bonus = 10.000 kr. i omsætning inden for 60 dage. Læs om{" "}
+        Nye spillere hos Swift Casino får 100 % bonus op til 500 kr. ved første indbetaling. Bonussen kræver bonuskoden SWIFT, som indtastes efter indbetalingen. Omsætningskravet er 10x (indskud + bonus) med 60 dages gyldighed – eksempelvis kræver en indbetaling på 500 kr. med 500 kr. bonus en samlet omsætning på 10.000 kr. Kun spilleautomater bidrager fuldt til omsætningen. Minimumsindbetalingen er 100 kr. Sammenlignet med markedets gennemsnit er omsætningskravet lavt, hvilket giver realistiske chancer for at konvertere bonusmidler til hævbare gevinster. Læs mere om{" "}
+        <Link to="/velkomstbonus" className={linkClass}>velkomstbonusser</Link> og{" "}
         <Link to="/omsaetningskrav" className={linkClass}>omsætningskrav</Link>.
       </>
     ),
   },
   {
-    question: "Hvad er Hot Or Cold-funktionen?",
-    answer: "Hot Or Cold er en unik funktion hos Swift Casino, der viser hvilke spilleautomater der aktuelt udbetaler mest (Hot) og mindst (Cold). Det hjælper dig med at vælge spil baseret på aktuel performance.",
+    question: "Hvad er Hot Or Cold-funktionen hos Swift Casino, og hvordan bruges den?",
+    answer:
+      "Hot Or Cold er en unik funktion hos Swift Casino, der ikke findes hos mange konkurrenter. Funktionen viser i realtid, hvilke spilleautomater der aktuelt udbetaler hyppigst (markeret som 'Hot') og hvilke der udbetaler mindst (markeret som 'Cold'). Data opdateres løbende baseret på faktiske spilresultater fra alle spillere på platformen. Det er vigtigt at understrege, at Hot Or Cold-indikatoren er baseret på historiske data og ikke garanterer fremtidige resultater – alle spilleautomater bruger certificerede tilfældighedsgeneratorer (RNG). Funktionen kan dog hjælpe dig med at identificere trends og vælge spil ud fra aktuel aktivitet.",
   },
   {
-    question: "Tilbyder Swift Casino live casino?",
+    question: "Hvor stort er Swift Casinos spiludvalg, og hvilke kategorier dækkes?",
     answer: (
       <>
-        Ja. Swift Casino har et veludviklet live casino med professionelle dealere, herunder blackjack, roulette og baccarat. Læs mere om{" "}
-        <Link to="/live-casino" className={linkClass}>live casino</Link>.
+        Swift Casino har over 3.300 spil fordelt på spilleautomater, bordspil, video poker og{" "}
+        <Link to="/live-casino" className={linkClass}>live casino</Link>. Spilleautomater udgør størstedelen med titler fra førende udviklere som{" "}
+        <Link to="/spiludviklere/netent" className={linkClass}>NetEnt</Link>,{" "}
+        <Link to="/spiludviklere/pragmatic-play" className={linkClass}>Pragmatic Play</Link>,{" "}
+        <Link to="/spiludviklere/play-n-go" className={linkClass}>Play'n GO</Link>,{" "}
+        <Link to="/spiludviklere/nolimit-city" className={linkClass}>Nolimit City</Link> og{" "}
+        <Link to="/spiludviklere/microgaming" className={linkClass}>Microgaming</Link>. Live casinoet drives af{" "}
+        <Link to="/spiludviklere/evolution-gaming" className={linkClass}>Evolution Gaming</Link> med professionelle dealere. RTP-niveauerne ligger typisk mellem 94 % og 97 %. Casinoet tilføjer nye spil ugentligt og har en effektiv søge- og filtreringsfunktion.
       </>
     ),
   },
   {
-    question: "Hvad er bonuskoden til Swift Casino?",
-    answer: "Bonuskoden er SWIFT. Indtast den efter din første indbetaling for at aktivere velkomstbonussen på 100 % op til 500 kr.",
+    question: "Hvilke betalingsmetoder tilbyder Swift Casino, og hvad er minimumsgrænserne?",
+    answer: (
+      <>
+        Swift Casino understøtter{" "}
+        <Link to="/betalingsmetoder/mobilepay" className={linkClass}>MobilePay</Link>,{" "}
+        <Link to="/betalingsmetoder/visa-mastercard" className={linkClass}>Visa/Mastercard</Link>,{" "}
+        <Link to="/betalingsmetoder/trustly" className={linkClass}>Trustly</Link>,{" "}
+        <Link to="/betalingsmetoder/paypal" className={linkClass}>PayPal</Link> og{" "}
+        <Link to="/betalingsmetoder/skrill" className={linkClass}>Skrill</Link>. Alle indbetalinger er gebyrfri med et minimum på 100 kr. Minimumsudbetalingen er 200 kr. – lidt højere end branchegennemsnittet. Udbetalinger behandles typisk inden for 24 timer for e-wallets og 1–3 hverdage for kortbetalinger. Da registrering sker via MitID, er identitetsverifikation allerede gennemført, hvilket fremskynder første udbetaling. Se vores guide til{" "}
+        <Link to="/betalingsmetoder" className={linkClass}>betalingsmetoder</Link>.
+      </>
+    ),
   },
   {
-    question: "Hvem står bag Swift Casino?",
-    answer: "Swift Casino drives af Skill On Net Ltd, et veletableret selskab der har haft dansk spillelicens siden 2017 og driver flere andre casinoer i Danmark.",
+    question: "Er Swift Casino sikkert, og hvem er Skill On Net?",
+    answer: (
+      <>
+        Swift Casino drives af Skill On Net Ltd, et veletableret selskab med dansk spillelicens fra Spillemyndigheden (licensnr. 16-1066791) siden 2017. Skill On Net driver flere andre danske casinoer, herunder{" "}
+        <Link to="/luna-casino-anmeldelse" className={linkClass}>Luna Casino</Link>, hvilket vidner om deres erfaring og pålidelighed. Platformen benytter SSL-kryptering og er tilsluttet{" "}
+        <a href="https://www.rofus.nu/" target="_blank" rel="noopener noreferrer" className={linkClass}>ROFUS</a>. Alle spil er certificeret af uafhængige testorganisationer, og RNG-teknologien sikrer fair og tilfældige resultater. Læs mere om{" "}
+        <Link to="/responsible-gaming" className={linkClass}>ansvarligt spil</Link>.
+      </>
+    ),
+  },
+  {
+    question: "Hvor hurtigt udbetaler Swift Casino gevinster?",
+    answer:
+      "Swift Casino har generelt hurtige udbetalinger sammenlignet med mange danske konkurrenter. E-wallets som PayPal og Skrill behandles typisk inden for 24 timer, mens MobilePay og Trustly ofte er endnu hurtigere med samme-dags udbetaling. Kortbetalinger via Visa og Mastercard kræver normalt 1–3 bankdage. Bemærk at minimumsudbetalingen er 200 kr. – hvis din saldo er under dette beløb, skal du fortsætte med at spille eller indbetale mere for at nå grænsen. Alle udbetalinger er gebyrfri, og der er ingen maksimal udbetalingsgrænse pr. måned.",
+  },
+  {
+    question: "Hvilke kampagner og løbende bonusser tilbyder Swift Casino?",
+    answer:
+      "Ud over velkomstbonussen kører Swift Casino regelmæssige kampagner for eksisterende spillere. Det inkluderer ugentlige free spins-tilbud på udvalgte spilleautomater, cashback-kampagner og sæsonbestemte bonusser. Casinoet annoncerer nye kampagner via e-mail-nyhedsbrevet og direkte på platformen efter login. Vilkårene varierer, men omsætningskravene holder sig typisk på det lave danske niveau omkring 10x. Swift Casino har desuden turnerings-events, hvor spillere konkurrerer om præmiepuljer ved at spille udvalgte spil inden for en given tidsperiode.",
   },
 ];
 
