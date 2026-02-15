@@ -24,7 +24,7 @@ export function SEO({ title, description, type = "website", image, noindex, json
       <title>{title}</title>
       <meta name="description" content={description} />
       {noindex ? (
-        <meta name="robots" content="noindex, nofollow" />
+        <meta name="robots" content="noindex, follow" />
       ) : (
         <link rel="canonical" href={canonicalUrl} />
       )}
