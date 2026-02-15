@@ -17,7 +17,7 @@ const Casino888Anmeldelse = () => {
   return (
     <>
       <SEO title="888 Casino Anmeldelse 2026 – Bonus, Spil & Vurdering | Casinoaftaler" description="Komplet anmeldelse af 888 Casino – en af online gamblings pionerer. Eksklusive spil, 888 Club loyalitetsprogram, dansk licens og bonus uden indbetaling." jsonLd={[articleSchema, faqJsonLd, reviewJsonLd]} />
-      <section className="relative overflow-hidden py-12 text-white md:py-20" style={{ backgroundImage: heroBackgroundImage ? `linear-gradient(135deg, hsl(0 0% 15% / 0.95), hsl(210 30% 12% / 0.9)), url(${heroBackgroundImage})` : "linear-gradient(135deg, hsl(0 0% 15%), hsl(210 30% 12%) 40%, hsl(200 20% 10%))", backgroundSize: "cover", backgroundPosition: "center" }}>
+      <section className="relative overflow-hidden py-12 text-white md:py-20" style={{ backgroundImage: heroBackgroundImage ? `linear-gradient(135deg, hsl(260 70% 25% / 0.95), hsl(210 80% 30% / 0.9)), url(${heroBackgroundImage})` : "linear-gradient(135deg, hsl(260 70% 25%), hsl(250 60% 20%) 40%, hsl(210 80% 25%))", backgroundSize: "cover", backgroundPosition: "center" }}>
         <div className="container"><div className="mx-auto max-w-3xl text-center">
           <Badge variant="secondary" className="mb-4"><Crown className="mr-1.5 h-3.5 w-3.5" />4.3 / 5 – Online Casino Pioner</Badge>
           <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">888 Casino Anmeldelse 2026</h1>

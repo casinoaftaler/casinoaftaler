@@ -35,7 +35,7 @@ const StakeCasinoAnmeldelse = () => {
     <>
       <SEO title="Stake Casino Anmeldelse 2026 – Snart i DK | Casinoaftaler" description="Forhåndsanmeldelse af Stake Casino i Danmark. Crypto-giganten forbereder dansk lancering. Læs om Stake Originals, features og hvad du kan forvente." jsonLd={[articleSchema, faqJsonLd]} />
 
-      <section className="relative overflow-hidden py-12 text-white md:py-20" style={{ backgroundImage: heroBackgroundImage ? `linear-gradient(135deg, hsl(220 60% 15% / 0.95), hsl(200 50% 20% / 0.9)), url(${heroBackgroundImage})` : "linear-gradient(135deg, hsl(220 60% 15%), hsl(210 50% 12%) 40%, hsl(200 40% 18%))", backgroundSize: "cover", backgroundPosition: "center" }}>
+      <section className="relative overflow-hidden py-12 text-white md:py-20" style={{ backgroundImage: heroBackgroundImage ? `linear-gradient(135deg, hsl(260 70% 25% / 0.95), hsl(210 80% 30% / 0.9)), url(${heroBackgroundImage})` : "linear-gradient(135deg, hsl(260 70% 25%), hsl(250 60% 20%) 40%, hsl(210 80% 25%))", backgroundSize: "cover", backgroundPosition: "center" }}>
         <div className="container"><div className="mx-auto max-w-3xl text-center">
           <Badge variant="secondary" className="mb-4"><AlertTriangle className="mr-1.5 h-3.5 w-3.5" />Endnu ikke lanceret i DK</Badge>
           <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">Stake Casino – Forhåndsanmeldelse 2026</h1>

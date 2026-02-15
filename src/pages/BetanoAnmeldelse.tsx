@@ -17,7 +17,7 @@ const BetanoAnmeldelse = () => {
   return (
     <>
       <SEO title="Betano Anmeldelse 2026 – Casino, Sports & Bonus | Casinoaftaler" description="Komplet anmeldelse af Betano – Europas hurtigst voksende spiludbyder. Casino og sportsbetting med dansk licens, 2.000+ spil og avanceret mobilapp." jsonLd={[articleSchema, faqJsonLd, reviewJsonLd]} />
-      <section className="relative overflow-hidden py-12 text-white md:py-20" style={{ backgroundImage: heroBackgroundImage ? `linear-gradient(135deg, hsl(145 60% 25% / 0.92), hsl(160 50% 20% / 0.9)), url(${heroBackgroundImage})` : "linear-gradient(135deg, hsl(145 60% 25%), hsl(160 50% 20%) 40%, hsl(170 40% 18%))", backgroundSize: "cover", backgroundPosition: "center" }}>
+      <section className="relative overflow-hidden py-12 text-white md:py-20" style={{ backgroundImage: heroBackgroundImage ? `linear-gradient(135deg, hsl(260 70% 25% / 0.95), hsl(210 80% 30% / 0.9)), url(${heroBackgroundImage})` : "linear-gradient(135deg, hsl(260 70% 25%), hsl(250 60% 20%) 40%, hsl(210 80% 25%))", backgroundSize: "cover", backgroundPosition: "center" }}>
         <div className="container"><div className="mx-auto max-w-3xl text-center">
           <Badge variant="secondary" className="mb-4"><Globe className="mr-1.5 h-3.5 w-3.5" />4.2 / 5 – Europas hurtigst voksende</Badge>
           <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">Betano Anmeldelse 2026</h1>
