@@ -98,14 +98,46 @@ const RedTigerGuide = () => (
       "Daily Jackpot-størrelsen er typisk moderat sammenlignet med progressive",
     ]}
     faqs={[
-      { question: "Hvad er Red Tiger Gaming?", answer: "Red Tiger Gaming er en spiludvikler fra 2014, nu ejet af Evolution Gaming (via NetEnt). De har 220+ spil og er kendte for Daily Jackpots, Tournaments og Megaways-slots." },
-      { question: "Hvad er Daily Jackpots?", answer: "Daily Jackpots er Red Tigers innovation der garanterer mindst én jackpot-udbetaling hver dag. Jackpotten har en deadline og SKAL udbetales inden dagen er omme." },
-      { question: "Hvad er forskellen på Daily Jackpots og progressive jackpots?", answer: (
-        <>
-          Daily Jackpots garanterer daglig udbetaling med moderate beløb. Progressive jackpots som <Link to="/spiludviklere/microgaming" className="text-primary underline hover:text-primary/80">Microgamings</Link> Mega Moolah vokser over tid uden garanteret timing, men kan nå millioner.
-        </>
-      )},
-      { question: "Er Red Tiger-spil tilgængelige i Danmark?", answer: "Ja, Red Tiger Gaming har været i Danmark siden 2019 via samarbejde med Danske Spil og findes hos de fleste danske casinoer." },
+      {
+        question: "Hvordan garanterer Red Tiger at en Daily Jackpot falder hver dag?",
+        answer: "Daily Jackpots bruger en 'must-drop-before'-mekanik: jackpotten har en hård deadline og SKAL udbetales inden kl. 23:59 UTC. Jo tættere på deadline, desto højere sandsynlighed for at jackpotten falder. Matematisk øges triggerchancen gradvist i løbet af dagen via en dynamisk algoritme. Jackpot-størrelsen er typisk €500-€5.000 – langt mindre end progressive jackpots, men med garanteret daglig udbetaling. Systemet kører uafhængigt af antal aktive spillere, og jackpot-puljen finansieres af en lille procentdel af hver indsats i deltagende spil.",
+      },
+      {
+        question: "Hvad er Tournaments-funktionen og hvordan virker den i praksis?",
+        answer: (
+          <>
+            Red Tigers Tournaments tilføjer live leaderboard-konkurrence direkte inde i spillene. Spillere optjener turneringspoint baseret på gevinstmultiplikatorer (ikke absolutte beløb), hvilket sikrer fair konkurrence uanset indsatsniveau. Turneringer kan vare 30 minutter til flere dage, og præmier inkluderer kontantgevinster, free spins eller eksklusive bonusser. Ifølge operatør-data øger Tournaments den gennemsnitlige session-tid med 20-30%. I modsætning til <Link to="/spiludviklere/pragmatic-play" className="text-primary underline hover:text-primary/80">Pragmatic Plays</Link> turneringssystem er Red Tigers integration native – den er bygget direkte ind i spilgrænsefladen, ikke som et eksternt overlay.
+          </>
+        ),
+      },
+      {
+        question: "Hvilke Red Tiger-titler bruger Megaways-mekanikken?",
+        answer: (
+          <>
+            Red Tiger har skabt flere Megaways-versioner af klassiske spil i samarbejde med <Link to="/spiludviklere/netent" className="text-primary underline hover:text-primary/80">NetEnt</Link> under Evolution-paraplyen: Gonzo's Quest Megaways (op til 117.649 vinderkombinationer), Piggy Riches Megaways og Wings of Ra Megaways er blandt de mest populære. Disse titler kombinerer Red Tigers gamification-features (Daily Jackpots, Tournaments) med <Link to="/spiludviklere/big-time-gaming" className="text-primary underline hover:text-primary/80">Big Time Gamings</Link> patenterede dynamiske hjul. RTP på Megaways-titlerne ligger typisk på 96%+, og volatiliteten er naturligt høj pga. det variable antal vinderkombinationer per spin.
+          </>
+        ),
+      },
+      {
+        question: "Hvordan positionerer Red Tiger sig i Evolution-koncernen?",
+        answer: "Red Tiger blev opkøbt af NetEnt i 2019 for £200 millioner, og med Evolutions efterfølgende køb af NetEnt er Red Tiger nu en nøglebrik i verdens største casinospil-koncern. Deres rolle er gamification-specialist: Daily Jackpots og Tournaments-teknologien kan integreres på tværs af koncernens samlede portefølje (NetEnt, BTG, Evolution). Red Tiger beholder sit eget udviklingsteam i Malta og udgiver 2-3 nye titler månedligt. Samarbejdet med Danske Spil har sikret en stærk dansk tilstedeværelse siden 2019.",
+      },
+      {
+        question: "Er Daily Jackpots bedre end traditionelle progressive jackpots?",
+        answer: (
+          <>
+            Det afhænger af spillertypen. Daily Jackpots tilbyder forudsigelig spænding – du ved at mindst én spiller vinder hver dag – men beløbene er moderate (€500-€5.000). <Link to="/spiludviklere/microgaming" className="text-primary underline hover:text-primary/80">Microgamings</Link> Mega Moolah kan udbetale €18 millioner+ men falder gennemsnitligt kun hver 8-12 uge. Daily Jackpots har minimal effekt på basis-RTP (typisk under 0,5% bidrag), mens Mega Moolah trækker ca. 8% til jackpot-puljen. For danske spillere der søger regelmæssig jackpot-spænding uden markant RTP-tab, er Daily Jackpots det rationelle valg.
+          </>
+        ),
+      },
+      {
+        question: "Hvilke Red Tiger-spil fungerer bedst til bonusomsætning?",
+        answer: (
+          <>
+            Dragon's Lucky 8 (96,17% RTP, medium volatilitet) og Lucky Halloween (96,23%) er velegnede til at gennemspille <Link to="/omsaetningskrav" className="text-primary underline hover:text-primary/80">omsætningskrav</Link> med stabile hitfrekvenser over 25%. Cash Volt (96,14%) tilbyder Hold and Win-mekanik med decent gennemspilningspotentiale. Undgå Megaways-titlerne til omsætning – deres høje volatilitet dræner bankrollet for hurtigt. Daily Jackpot-bidrag påvirker ikke den annoncerede RTP, så du mister ikke afkast ved at spille jackpot-spil. Tournaments tilføjer ekstra gevinstchance uden ekstra indsats.
+          </>
+        ),
+      },
     ]}
     responsibleGamingText="Red Tiger Gaming integrerer ansvarligt spil-features direkte i Tournaments-funktionen med session-grænser og indsatslofter. Daily Jackpots er designet med transparente odds og udbetalingsgarantier."
   />

@@ -99,10 +99,42 @@ const MicrogamingGuide = () => (
       "Skiftet fokus til aggregering – færre egne nye titler",
     ]}
     faqs={[
-      { question: "Hvad er Microgaming?", answer: "Microgaming er en af verdens ældste spiludviklere, grundlagt i 1994 på Isle of Man. De lancerede et af de første online casinoer, har 900+ spil og har udbetalt €1 milliard+ i Mega Moolah-jackpots." },
-      { question: "Hvad er Mega Moolah?", answer: "Mega Moolah er Microgamings legendariske progressive jackpot-slot med fire niveauer. Mega-jackpotten starter ved €1 million, og den største udbetaling var €18,9 millioner i 2019." },
-      { question: "Hvorfor har Mega Moolah lav RTP?", answer: "Mega Moolah har en basis-RTP på 88,12% fordi en del af hver indsats bidrager til den progressive jackpot-pulje. Inklusiv jackpot-bidraget er den langsigtede RTP højere, men basis-afkastet er lavere end standard slots." },
-      { question: "Er Microgaming-spil fair?", answer: "Ja, Microgaming medstiftede eCOGRA i 2003 netop for at etablere branchestandarder for fairness. Alle spil testes regelmæssigt med certificeret RNG." },
+      {
+        question: "Hvorfor har Mega Moolah en basis-RTP på kun 88,12%?",
+        answer: (
+          <>
+            Mega Moolah's lave basis-RTP skyldes at en signifikant del af hver indsats (ca. 8%) bidrager direkte til den progressive jackpot-pulje fordelt på fire niveauer: Mini (gennemsnitligt €10), Minor (€100), Major (€10.000) og Mega (€1 million+). Den effektive langsigtede RTP inklusive jackpot-bidrag er højere, men den daglige spilleroplevelse føles som en 88% slot. Til sammenligning har standard <Link to="/spiludviklere/netent" className="text-primary underline hover:text-primary/80">NetEnt</Link>-slots 95-98% RTP. Mega Moolah er designet til jackpot-jægere, ikke til bonusomsætning eller sessionsbaseret underholdning.
+          </>
+        ),
+      },
+      {
+        question: "Hvad er Quickfire-platformens rolle i moderne casinobranchen?",
+        answer: (
+          <>
+            Quickfire er Microgamings B2B-aggregeringsplatform der distribuerer spil fra over 50 partnerstudios til hundredvis af casinoer. Platformen har transformeret Microgaming fra primær spiludvikler til infrastruktur-leverandør – en rolle der minder om <Link to="/spiludviklere/relax-gaming" className="text-primary underline hover:text-primary/80">Relax Gamings</Link> aggregeringsmodel. For casinoer betyder Quickfire én teknisk integration i stedet for 50 individuelle aftaler. For spillere betyder det et bredere udvalg af spil fra uafhængige studios, leveret under Microgamings regulatoriske paraply. Quickfire håndterer over 3 milliarder spiltransaktioner årligt.
+          </>
+        ),
+      },
+      {
+        question: "Hvad gjorde Microgaming til pioner i online casinobranchen?",
+        answer: "Microgaming lancerede et af verdens første funktionelle online casinoer i 1994 – to år før Google blev grundlagt. I 1998 introducerede de Cash Splash, den første progressive jackpot-slot online. I 2003 medstiftede de eCOGRA (eCommerce Online Gaming Regulation and Assurance), som definerede fairness-standarder hele branchen stadig bruger. I 2004 lancerede de det første mobile casino. Denne liste af 'firsts' er uovertruffen i branchen. Microgamings historiske DNA som innovator har dog gradvist givet plads til en mere konservativ aggregator-rolle.",
+      },
+      {
+        question: "Er Immortal Romance og Thunderstruck II stadig relevante spil?",
+        answer: "Immortal Romance (2011) og Thunderstruck II (2010) er Microgamings mest ikoniske slots efter Mega Moolah. Immortal Romance tilbyder fire forskellige free spins-modi med progressive unlocks der belønner langvarig spilning – en mekanik der var revolutionerende ved lanceringen. Thunderstruck II har lignende progressiv bonus med nordisk mytologi-tema. Begge har RTP på 96,86% og medium-høj volatilitet. Grafisk virker de daterede sammenlignet med moderne titler, men gameplay-dybden og den matematiske balance holder dem relevante. Begge findes stadig hos de fleste danske casinoer.",
+      },
+      {
+        question: "Hvad er den største Mega Moolah-jackpot nogensinde?",
+        answer: "Den største enkeltudbetaling fra Mega Moolah var €18,9 millioner, vundet i 2019 af en anonym spiller. Den næststørste var €17,8 millioner i 2018. Over jackpottens levetid har Mega Moolah-netværket udbetalt mere end €1 milliard i samlede gevinster. Mega-jackpotten starter altid ved €1 million og vokser gennemsnitligt med €100.000-200.000 dagligt fra spillernes indsatser. Statistisk udløses Mega-jackpotten gennemsnitligt hver 8-12 uge, men intervallet varierer betydeligt – den kan falde efter 4 uger eller vokse i 20 uger.",
+      },
+      {
+        question: "Kan man spille Mega Moolah med en dansk casino bonus?",
+        answer: (
+          <>
+            Mega Moolah er teknisk tilgængelig med <Link to="/indskudsbonus" className="text-primary underline hover:text-primary/80">indskudsbonusser</Link>, men de fleste danske casinoer begrænser jackpot-slots til kun 5-10% bidrag til omsætningskrav. Det betyder at du skal spille 10-20x mere i Mega Moolah end i standard slots for at omsætte det samme beløb. Med en basis-RTP på 88,12% slider bankrollet desuden hurtigere. Hvis du primært vil jage jackpotten, anbefales det at spille med egne midler fremfor bonuspenge – det sikrer at en eventuel jackpot udbetales uden omsætningskrav-komplikationer.
+          </>
+        ),
+      },
     ]}
     responsibleGamingText="Microgaming var med til at grundlægge eCOGRA i 2003 og har siden konsekvent investeret i ansvarligt spil-initiativer, herunder PlayItForward-programmet der støtter spillebehandling globalt."
   />

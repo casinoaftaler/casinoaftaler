@@ -104,40 +104,44 @@ const NetEntGuide = () => (
     ]}
     faqs={[
       {
-        question: "Hvad er NetEnt?",
+        question: "Hvorfor er Starburst stadig så populær efter 13 år?",
+        answer: "Starburst genererer over 5 milliarder spins årligt globalt, hvilket gør den til den mest spillede slot i historien. Hemmeligheden ligger i dens lave volatilitet (hitfrekvens ~23%), simple mekanik med expanding wilds og en RTP på 96,09%. Spillet bruges i over 80% af alle danske free spins-tilbud, fordi casinoer ved at spillere genkender det. Den korte spilletid per spin (under 2 sekunder) gør det ideelt til hurtige sessioner og til at gennemspille omsætningskrav effektivt.",
+      },
+      {
+        question: "Hvad betyder Evolutions opkøb af NetEnt for danske spillere?",
         answer: (
           <>
-            NetEnt (Net Entertainment) er en svensk spiludvikler grundlagt i 1996. De er en af verdens mest anerkendte producenter af online casinospil og leverer spilleautomater, bordspil og{" "}
-            <Link to="/live-casino" className="text-primary underline hover:text-primary/80">live casino</Link>-løsninger til hundredvis af casinoer verden over.
+            Evolution Gaming opkøbte NetEnt i 2020 for 19,6 milliarder SEK, men NetEnt opererer fortsat som selvstændigt brand med eget udviklingsteam i Stockholm. For danske spillere har opkøbet primært betydet to ting: bedre integration mellem NetEnt-slots og Evolutions <Link to="/live-casino" className="text-primary underline hover:text-primary/80">live casino</Link>-produkter, og mere stabil distribution på tværs af danske casinoer. Release-kadencen er dog faldet fra 3-4 til 1-2 nye titler månedligt, da Evolution prioriterer kvalitet over kvantitet i NetEnt-porteføljen.
           </>
         ),
       },
       {
-        question: "Hvad er RTP på NetEnt-spil?",
-        answer: "NetEnt-spil har generelt høje RTP-procenter, typisk mellem 95,5% og 98%. Blood Suckers topper med 98%, mens Starburst ligger på 96,09%. Dette gør dem ideelle til bonusspil.",
-      },
-      {
-        question: "Er NetEnt-spil fair?",
+        question: "Hvilke NetEnt-spil har den højeste RTP?",
         answer: (
           <>
-            Ja, alle NetEnt-spil bruger certificeret RNG-teknologi testet af eCOGRA og iTech Labs. NetEnt har licenser fra Malta Gaming Authority, UK Gambling Commission og{" "}
-            <Link to="/responsible-gaming" className="text-primary underline hover:text-primary/80">ansvarligt spil</Link>-compliance i 24 jurisdiktioner.
+            NetEnts portefølje rummer nogle af branchens højeste RTP-værdier. Blood Suckers topper med 98,00% – den højeste RTP i nogen mainstream slot. Mega Joker varierer mellem 85,17% og 99,00% afhængigt af indsatsniveau. Starburst ligger stabilt på 96,09%, mens Dead or Alive 2 har 96,82%. Disse høje værdier gør NetEnt-spil særligt velegnede til at gennemspille <Link to="/omsaetningskrav" className="text-primary underline hover:text-primary/80">omsætningskrav</Link>, da spilleren statistisk beholder mere af sin bankroll per spin.
           </>
         ),
       },
       {
-        question: "Kan man spille NetEnt-spil med bonus?",
+        question: "Kan man stole på at NetEnt-spil er fair og tilfældige?",
+        answer: "NetEnt er licenseret af tre af verdens strengeste myndigheder: Malta Gaming Authority, UK Gambling Commission og den danske Spillemyndighed. Alle spil testes af eCOGRA og iTech Labs med certificeret RNG-teknologi. NetEnts RTP er fast og ikke operatør-konfigurerbar – i modsætning til Pragmatic Play, hvor casinoer kan justere afkastet. Det betyder at et NetEnt-spil altid har den annoncerede RTP, uanset hvilket casino du spiller på.",
+      },
+      {
+        question: "Hvordan adskiller Dead or Alive 2 sig fra den originale?",
+        answer: "Dead or Alive 2 (2019) er en markant opgradering af 2009-originalen. Hvor originalen havde én bonusrunde, tilbyder opfølgeren tre valgbare free spins-modi: Train Heist (medium volatilitet, sticky wilds), Old Saloon (høj volatilitet, multiplikator wilds) og High Noon Saloon (ekstremt høj, sticky+multiplikator wilds). Maks. gevinsten steg fra 6.000x til 111.111x indsatsen. RTP er 96,82%. Denne mekaniske dybde gør den til en favorit blandt erfarne spillere.",
+      },
+      {
+        question: "Hvad er de bedste NetEnt-spil til free spins-bonusser?",
         answer: (
           <>
-            Ja, NetEnt-spil er de mest populære til{" "}
-            <Link to="/free-spins" className="text-primary underline hover:text-primary/80">free spins</Link>-tilbud. Starburst er det hyppigst brugte spil i danske{" "}
-            <Link to="/velkomstbonus" className="text-primary underline hover:text-primary/80">velkomstbonusser</Link>.
+            Til <Link to="/free-spins" className="text-primary underline hover:text-primary/80">free spins</Link>-tilbud er Starburst (96,09% RTP, lav volatilitet) det sikre valg med høj hitfrekvens og stabil bankroll. Twin Spin Megaways (96,04%) tilbyder større gevinstpotentiale med op til 117.649 vinderkombinationer. For spillere der søger balance er Gonzo's Quest (95,97%) et godt mellemvalg med sin Avalanche-mekanik. Undgå Dead or Alive 2 til bonusomsætning – den ekstremt høje volatilitet kan dræne bankrollet hurtigt trods den høje RTP.
           </>
         ),
       },
       {
-        question: "Hvem ejer NetEnt?",
-        answer: "NetEnt blev opkøbt af Evolution Gaming i 2020 for 19,6 milliarder SEK. De opererer fortsat som selvstændigt brand under Evolution-koncernen.",
+        question: "Udgiver NetEnt stadig nye spil regelmæssigt?",
+        answer: "Ja, men i et lavere tempo end før Evolution-opkøbet. NetEnt udgiver nu 1-2 nye titler månedligt mod tidligere 3-4. Strategien er skiftet til at polere eksisterende franchises: Starburst XXXtreme (2021) tilføjede multiplikatorer til klassikeren, og Gonzo's Quest Megaways kombinerede den ikoniske Avalanche-mekanik med Big Time Gamings dynamiske hjul. Denne konservative tilgang sikrer høj kvalitet men betyder mindre synlighed i casinolobbyer.",
       },
     ]}
     responsibleGamingText="NetEnt har siden 2003 samarbejdet med eCOGRA om ansvarligt spil og var blandt de første udviklere til at integrere session-timere og tabsgrænser direkte i spillene."

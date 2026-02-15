@@ -98,14 +98,38 @@ const HacksawGamingGuide = () => (
       "Ingen lav-volatilitetsspil for casual spillere",
     ]}
     faqs={[
-      { question: "Hvad er Hacksaw Gaming?", answer: "Hacksaw Gaming er en maltesisk spiludvikler fra 2018, oprindeligt specialiseret i skrabelodder men nu primært en slot-udvikler med 80+ titler i ekstremt høj volatilitet." },
-      { question: "Hvad er den højeste gevinst i Hacksaw-spil?", answer: "Dork Unit har den højeste maks. gevinst på 55.000x indsatsen. Wanted Dead or a Wild har 12.500x." },
-      { question: "Er Hacksaw-spil fair?", answer: "Ja, alle spil er licenseret af MGA og UKGC med certificeret RNG-teknologi testet af uafhængige bureauer." },
-      { question: "Egner Hacksaw-spil sig til bonusomsætning?", answer: (
-        <>
-          Pga. ekstremt høj volatilitet og lav hitfrekvens er Hacksaw-spil bedst egnet til <Link to="/no-sticky-bonus" className="text-primary underline hover:text-primary/80">no-sticky bonusser</Link> snarere end til at gennemspille traditionelle omsætningskrav.
-        </>
-      )},
+      {
+        question: "Hvordan pivoterede Hacksaw Gaming fra skrabelodder til slots?",
+        answer: "Hacksaw Gaming startede i 2018 med skrabelodder og instant win-spil – en niche de fleste ignorerer. Erfaringen med kompakte spilflader med øjeblikkelig feedback oversatte direkte til deres slot-design: kompakte grid-layouts (5x5, 6x5) med hurtige bonusmomenter. Pivoten til spilleautomater skete i 2020 med Chaos Crew, der definerede Hacksaws visuelle identitet med graffiti-inspirerede designs og eksplosive farvepaletter. Skrabelods-baggrunden er stadig synlig i spillenes DNA – hurtige afslutninger, simpel mekanik og øjeblikkelig belønning, pakket ind i visuelt spektakulære rammer.",
+      },
+      {
+        question: "Hvad gør Wanted Dead or a Wild til Hacksaws flagskibstitel?",
+        answer: "Wanted Dead or a Wild (2021) var slotten der satte Hacksaw på verdenskortet. VS-bonusfunktionen – et helt unikt duel-koncept hvor to karakter-wilds kæmper mod hinanden – skabte en spilleoplevelse der ikke fandtes andre steder. Maks. gevinsten er 12.500x med en RTP på 96,38%. Bonus Buy koster 80x indsatsen. Spillet generer fortsat milliarder af spins årligt og er en fast bestanddel i streamer-content. Duel-mekanikken er siden blevet kopieret af flere konkurrenter, men originalen forbliver standarden for VS-bonusformatet.",
+      },
+      {
+        question: "Hvorfor har Hacksaw-spil så lav hitfrekvens?",
+        answer: (
+          <>
+            Hacksaws hitfrekvens på 14-18% er blandt branchens laveste – bevidst designet for at finansiere de ekstremt høje maks. gevinster (op til 55.000x i Dork Unit). Matematisk er det et trade-off: færre men større gevinster vs. hyppigere men mindre hits. Til sammenligning har <Link to="/spiludviklere/netent" className="text-primary underline hover:text-primary/80">NetEnts</Link> Starburst en hitfrekvens på ~23%. Den lave hitfrekvens betyder at spillere oplever lange tørkeperioder, hvilket gør bankroll-management afgørende. Hacksaw-spil er designet til sessioner med Bonus Buy (60-100x), ikke til langvarig basis-spilning.
+          </>
+        ),
+      },
+      {
+        question: "Hvilke Hacksaw-spil passer bedst til no-sticky bonusser?",
+        answer: (
+          <>
+            Til <Link to="/no-sticky-bonus" className="text-primary underline hover:text-primary/80">no-sticky bonusser</Link> anbefales Dork Unit (55.000x maks., 96,26% RTP) for maksimalt upside, Wanted Dead or a Wild (12.500x, 96,38%) for det mest engagerende gameplay, og Hand of Anubis (10.000x, 96,25%) for en mellemniveau-risiko. No-sticky bonusser lader dig hæve rigtige penge ud når som helst og kun miste bonusbeløbet, hvilket passer perfekt til Hacksaws ekstremt høje volatilitet. Undgå Hacksaw-spil til klassisk <Link to="/omsaetningskrav" className="text-primary underline hover:text-primary/80">omsætningskrav</Link> – den lave hitfrekvens dræner bankrollet før kravene er opfyldt.
+          </>
+        ),
+      },
+      {
+        question: "Hvad er Hacksaws cluster pays-mekanik?",
+        answer: "I modsætning til traditionelle 5x3 hjul med faste gevinstlinjer bruger mange Hacksaw-spil cluster pays på kompakte grids (typisk 5x5 eller 6x5). Gevinster tæller når klynger af identiske symboler rører hinanden (horisontalt eller vertikalt), ikke langs linjer. Denne mekanik tillader større symbolmængder per grid og mere eksplosive kaskade-effekter. Vindende klynger fjernes og nye symboler falder ned (Tumble-mekanik), hvilket kan udløse kædegevinster. Formatet er optimeret til mobilskærme, da det kompakte grid udnytter portræt-visning bedre end brede 5x3 layouts.",
+      },
+      {
+        question: "Er Hacksaw Gaming licenseret til det danske marked?",
+        answer: "Hacksaw Gaming har licenser fra Malta Gaming Authority (MGA) og UK Gambling Commission (UKGC), hvilket giver dem adgang til regulerede europæiske markeder, herunder Danmark. Alle spil certificeres af uafhængige testbureauer for RNG-integritet. Deres instant win-spil og skrabelodder følger særskilte regulatoriske krav der adskiller sig fra standard slot-certificering. Med kun 80+ titler har Hacksaw en kompakt men helt regulatorisk compliant portefølje. Deres spil findes hos de fleste danske casinoer med Spillemyndigheden-licens.",
+      },
     ]}
   />
 );

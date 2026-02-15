@@ -99,14 +99,46 @@ const PragmaticPlayGuide = () => (
       "Ekstremt høj volatilitet egner sig dårligt til bonusomsætning",
     ]}
     faqs={[
-      { question: "Hvad er Pragmatic Play?", answer: "Pragmatic Play er en maltesisk spiludvikler grundlagt i 2015 med 250+ spil. De producerer slots, live casino og bingo med 6-8 nye udgivelser hver måned." },
-      { question: "Hvad er Pragmatic Plays RTP?", answer: "Pragmatic Play tilbyder operatør-konfigurerbar RTP, typisk mellem 94,0% og 96,5%. Det samme spil kan have forskellig RTP på forskellige casinoer." },
-      { question: "Kan man købe bonus i Pragmatic-spil?", answer: "Ja, de fleste Pragmatic Play-slots tilbyder en Bonus Buy-funktion der typisk koster 80-100x indsatsen for direkte adgang til free spins." },
-      { question: "Hvilke Pragmatic-spil er bedst til bonus?", answer: (
-        <>
-          Til <Link to="/bonus-uden-omsaetningskrav" className="text-primary underline hover:text-primary/80">bonusser uden omsætningskrav</Link> fungerer Gates of Olympus og Sweet Bonanza godt. Til omsætning er Wolf Gold (96,01% RTP, lavere volatilitet) et bedre valg.
-        </>
-      )},
+      {
+        question: "Hvordan fungerer Bonus Buy hos Pragmatic Play?",
+        answer: (
+          <>
+            Bonus Buy (også kaldet Ante Bet eller Feature Buy) lader spillere købe direkte adgang til free spins-runden for typisk 80-100x grundindsatsen. I Gates of Olympus koster det 100x, i Sweet Bonanza 100x, og i Big Bass Bonanza 75x. Funktionen springer basis-spillet over og udløser bonusrunden øjeblikkeligt. Det er vigtigt at forstå at den forventede værdi af et købt bonusspil statistisk svarer til at spille sig naturligt til det – Bonus Buy ændrer ikke den matematiske RTP. Funktionen appellerer til spillere der foretrækker koncentreret spænding fremfor længere sessioner.
+          </>
+        ),
+      },
+      {
+        question: "Kan casinoer sænke RTP på Pragmatic Play-spil?",
+        answer: (
+          <>
+            Ja, Pragmatic Play tilbyder operatør-konfigurerbar RTP, typisk i intervallet 94,0-96,5%. Det betyder at det samme spil – f.eks. Gates of Olympus – kan have 96,50% RTP på ét casino og 94,50% på et andet. Forskellen over 1.000 spins kan betyde 20 DKK ekstra tab per 1.000 DKK indsat. Dette er en afgørende forskel vs. <Link to="/spiludviklere/play-n-go" className="text-primary underline hover:text-primary/80">Play'n GO</Link>, der har fast RTP. Tjek altid RTP-informationen i selve spillet (menuen &gt; hjælp) før du spiller.
+          </>
+        ),
+      },
+      {
+        question: "Hvad gør Sweet Bonanza-serien så populær?",
+        answer: "Sweet Bonanza-serien har solgt milliarder af spins takket være tre faktorer: Tumble-mekanikken (vindende symboler forsvinder og nye falder ned), cluster pays (ingen faste gevinstlinjer), og multiplikator-bomber op til 100x. Seriens 8+ varianter inkluderer Sweet Bonanza CandyLand (live game show), Sweet Bonanza Xmas (sæsontema) og Sweet Bonanza 1000 (endnu højere volatilitet med 25.000x maks.). Basis-spillet har en hitfrekvens på ca. 18% og RTP mellem 94,50-96,51% afhængigt af casinoets konfiguration.",
+      },
+      {
+        question: "Egner Pragmatic Play-spil sig til bonusomsætning?",
+        answer: (
+          <>
+            Det afhænger af spillet og bonustypen. Til <Link to="/bonus-uden-omsaetningskrav" className="text-primary underline hover:text-primary/80">bonusser uden omsætningskrav</Link> er Gates of Olympus og Sweet Bonanza ideelle pga. høj maks. gevinst (5.000x). Til klassisk omsætning er Wolf Gold (96,01%, medium volatilitet) og John Hunter and the Tomb of the Scarab Queen (96,50%) bedre valg, da de har højere hitfrekvens (~25%) og slider bankrollet langsommere. Undgå Bonus Buy ved omsætning – det brænder credits for hurtigt.
+          </>
+        ),
+      },
+      {
+        question: "Hvad er forskellen på Pragmatic Plays slots og live casino?",
+        answer: (
+          <>
+            Pragmatic Play er en af få udviklere der producerer både slots, <Link to="/live-casino" className="text-primary underline hover:text-primary/80">live casino</Link> og bingo. Deres live casino-division har over 100 borde med professionelle dealere, herunder Speed Roulette, Mega Sic Bo og PowerUP Roulette. Live-spillene streames fra faciliteter i Bukarest og har en house edge på 1-5%, mens slots typisk har 94-96,5% RTP. Live casino-spil bidrager normalt kun 10-20% til bonusomsætning, så de to produktvertikaler appellerer til forskellige spillertyper.
+          </>
+        ),
+      },
+      {
+        question: "Hvor mange nye spil udgiver Pragmatic Play om måneden?",
+        answer: "Pragmatic Play har branchens højeste release-kadence med 6-8 nye spilleautomater hver måned – tre gange gennemsnittet for andre studios. Denne volumen-strategi betyder at de kan eksperimentere med temaer og mekanikker og hurtigt identificere vindere. Franchise-systemet sikrer at succesfulde titler (Big Bass har 12+ varianter) udnyttes maksimalt. Bagsiden er at mange udgivelser føles som re-skins med kosmetiske ændringer. Kvaliteten varierer markant fra titel til titel, og kun 10-15% bliver langsigtede hits.",
+      },
     ]}
     responsibleGamingText="Pragmatic Play har integreret session-grænser og realitets-checks i deres spilgrænseflader og samarbejder med GamCare og BeGambleAware."
   />

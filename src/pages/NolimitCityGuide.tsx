@@ -99,10 +99,42 @@ const NolimitCityGuide = () => (
       "Kun 60+ titler – den mindste portefølje blandt etablerede studios",
     ]}
     faqs={[
-      { question: "Hvad er Nolimit City?", answer: "Nolimit City er en svensk spiludvikler fra 2013, nu ejet af Evolution Gaming. De har patenterede mekanikker (xWays, xNudge, xBomb, xSplit) og branchens højeste maks. gevinster." },
-      { question: "Hvad er den højeste gevinst i Nolimit City?", answer: "San Quentin xWays har en teoretisk maks. gevinst på 2.084.000x indsatsen – den højeste i hele casinobranchen." },
-      { question: "Hvad er xWays?", answer: "xWays er Nolimit Citys patenterede mekanik der dynamisk udvider hjulene med 2-6 ekstra symboler per position, hvilket skaber eksponentielt flere vinderkombinationer." },
-      { question: "Er Nolimit City-spil fair?", answer: "Ja, alle spil certificeres af BMM Testlabs og iTech Labs under Evolution Gamings Malta Gaming Authority-licens." },
+      {
+        question: "Hvad er forskellen på xWays, xNudge, xBomb og xSplit?",
+        answer: "Nolimit Citys fire patenterede mekanikker fungerer fundamentalt forskelligt: xWays udvider hjulpositioner med 2-6 ekstra symboler, hvilket dynamisk øger vinderkombinationer. xNudge nudger wild-symboler ned et felt ad gangen og øger en multiplikator for hvert nudge. xBomb ødelægger alle omkringliggende symboler og tilføjer en global multiplikator (+1x per detonation) – særligt kraftfuld i kombination med cascading wins. xSplit fordobler alle symboler på det hjul den lander på. Disse mekanikker kan kombineres i samme spil (Mental bruger alle fire), hvilket skaber en mekanisk dybde ingen konkurrent kan matche.",
+      },
+      {
+        question: "Hvorfor bruger Nolimit City kontroversielle temaer?",
+        answer: (
+          <>
+            Nolimit Citys valg af temaer som fængsler (San Quentin), psykiatriske institutioner (Mental) og grafisk vold (Tombstone RIP) er en bevidst brandstrategi der positionerer dem som anti-mainstream. Temaerne tiltrækker streamer-segmentet og high-risk-spillere der søger en oplevelse traditionelle slots ikke tilbyder. Det er diametralt modsat <Link to="/spiludviklere/netent" className="text-primary underline hover:text-primary/80">NetEnts</Link> family-friendly tilgang. Kontroversen har dog en pris: flere jurisdiktioner (herunder UK) har begrænset adgangen til visse titler. I Danmark er alle Nolimit City-spil tilgængelige hos licenserede operatører.
+          </>
+        ),
+      },
+      {
+        question: "Kan man realistisk ramme 2.000.000x i San Quentin?",
+        answer: "San Quentin xWays' teoretiske maks. gevinst på 2.084.000x er matematisk mulig men ekstremt usandsynlig. Det kræver en perfekt storm af xWays-udvidelser på alle hjul, multiplikator-wilds i maximalt niveau og Lockdown Spins med alle enhancers aktive. Statistisk set vil det ske sjældnere end 1 gang per 100 millioner spins. Realistisk maks. på en god session er 5.000-50.000x. Hitfrekvensen er under 15%, og bonus udløses typisk 1 per 200-400 spins. Det er vigtigt at forstå at disse tal er matematiske ekstremer, ikke forventede resultater.",
+      },
+      {
+        question: "Hvad koster Bonus Buy i Nolimit City-spil?",
+        answer: (
+          <>
+            Nolimit City tilbyder typisk tre niveauer af Bonus Buy: Standard (ca. 67-80x indsatsen), Super (150-400x) og Lucky Draw (tilfældig pris). Standard giver adgang til basis free spins, Super til den forbedrede version med flere startmodifikatorer (ekstra xWays, xBombs eller xNudge wilds). Lucky Draw er et lotteri der tilfældigt vælger Standard eller Super til nedsat pris. Bonus Buy er ikke tilgængeligt i alle jurisdiktioner. For danske spillere med <Link to="/no-sticky-bonus" className="text-primary underline hover:text-primary/80">no-sticky bonusser</Link> kan Standard-købet være en effektiv strategi.
+          </>
+        ),
+      },
+      {
+        question: "Hvordan sammenligner Nolimit City sig med Hacksaw Gaming?",
+        answer: (
+          <>
+            Begge studios opererer i ultra-high-volatility-nichen, men med markant forskellige tilgange. <Link to="/spiludviklere/hacksaw-gaming" className="text-primary underline hover:text-primary/80">Hacksaw Gaming</Link> bruger kompakte grid-layouts, humor og pop-kultur med maks. gevinster op til 55.000x. Nolimit City bruger klassiske hjul-layouts, mørkere temaer og patenterede mekanikker med op til 2.084.000x. Nolimit har 4 IP-patenter (xWays, xNudge, xBomb, xSplit) vs. Hacksaws VS-bonus. Hitfrekvensen er sammenlignelig (14-18%), men Nolimit City tilbyder flere Bonus Buy-niveauer. For streamere er begge populære, men med forskellige emotionelle tonaliteter.
+          </>
+        ),
+      },
+      {
+        question: "Er Nolimit City-spil certificeret til det danske marked?",
+        answer: "Ja, Nolimit City opererer under Evolution Gamings regulatoriske infrastruktur med licenser fra Malta Gaming Authority og UK Gambling Commission. Alle patenterede mekanikker (xWays, xNudge, xBomb, xSplit) er uafhængigt certificeret af BMM Testlabs og iTech Labs for RNG-integritet. Trods kontroversielle temaer overholder alle spil danske regulatoriske krav. Evolution-opkøbet i 2022 for €340 millioner har styrket den compliance-mæssige infrastruktur og sikret global distribution til samtlige danske licenserede casinoer.",
+      },
     ]}
     responsibleGamingText="Nolimit City integrerer session-grænser og cool-down-perioder i deres bonus buy-funktioner. Alle spil har mandatory aldersverifikation og er underlagt Evolution Gamings ansvarligt spil-politik."
   />

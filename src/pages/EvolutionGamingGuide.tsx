@@ -99,14 +99,42 @@ const EvolutionGamingGuide = () => (
       "Minimumindsatser på live-borde typisk 5-10 DKK – højere end RNG-slots",
     ]}
     faqs={[
-      { question: "Hvad er Evolution Gaming?", answer: "Evolution (tidligere Evolution Gaming) er verdens førende leverandør af live casino-spil, grundlagt i 2006. De leverer live dealer-spil til over 700 casinoer og ejer NetEnt, Red Tiger og Big Time Gaming." },
-      { question: "Hvad er Crazy Time?", answer: "Crazy Time er Evolutions mest populære live game show med pengehjul, fire bonusrunder (Coin Flip, Cash Hunt, Pachinko, Crazy Time) og multiplikatorer op til 25.000x." },
-      { question: "Tæller live casino-spil til bonusomsætning?", answer: (
-        <>
-          Live casino-spil bidrager typisk kun med 10-20% til <Link to="/omsaetningskrav" className="text-primary underline hover:text-primary/80">omsætningskrav</Link>. Tjek altid bonusvilkårene hos det specifikke casino.
-        </>
-      )},
-      { question: "Hvem ejer Evolution?", answer: "Evolution er børsnoteret på Nasdaq Stockholm. De har opkøbt NetEnt (2020), Red Tiger og Big Time Gaming og er verdens største casinospil-koncern." },
+      {
+        question: "Hvordan fungerer Lightning Roulette sammenlignet med klassisk roulette?",
+        answer: "Lightning Roulette kombinerer standard europæisk roulette (1-36 + 0) med RNG-baserede multiplikatorer. Hver runde vælges 1-5 tilfældige tal der tildeles multiplikatorer på 50x-500x. Straight-up gevinster uden lightning betaler 30:1 (mod normalt 35:1) for at finansiere multiplikatorerne. House edge er 2,7% – identisk med standard roulette. Spillet streames live fra Evolutions studio i Riga, Letland, med professionelle dealere og filmisk belysning. Over 500.000 spillere deltager dagligt, hvilket gør det til verdens mest spillede live roulette-variant.",
+      },
+      {
+        question: "Hvilke live game shows tilbyder Evolution ud over Crazy Time?",
+        answer: (
+          <>
+            Evolution har skabt en hel genre af live game shows: MONOPOLY Live (licenseret fra Hasbro, pengehjul med 3D-bonusrunde), Dream Catcher (det originale pengehjul-koncept), Mega Ball (bingo-inspireret med 100x multiplikatorer), Funky Time (disco-tema med fire bonusspil), Cash or Crash (helikopter-tema med risiko/belønning-progression) og Football Studio Dice. Hvert show har unikke mekanikker, men deler et fælles format: live hosts, social chat og RNG-baserede bonuselementer. House edge varierer fra 3,5% (Dream Catcher) til 5,3% (Mega Ball).
+          </>
+        ),
+      },
+      {
+        question: "Bidrager Evolutions live spil til bonusomsætning på danske casinoer?",
+        answer: (
+          <>
+            Live casino-spil fra Evolution bidrager typisk kun 10-20% til <Link to="/omsaetningskrav" className="text-primary underline hover:text-primary/80">omsætningskrav</Link> på danske casinoer. Det betyder at du skal spille 5-10x mere i live casino for at omsætte det samme beløb som i slots. Nogle casinoer ekskluderer live spil helt fra bonusomsætning. Game shows som Crazy Time tæller normalt som live casino, ikke som slots. Hvis dit primære mål er bonusomsætning, bør du vælge <Link to="/spiludviklere/netent" className="text-primary underline hover:text-primary/80">NetEnt</Link>-slots med høj RTP i stedet.
+          </>
+        ),
+      },
+      {
+        question: "Hvad kræver det teknisk at spille Evolutions live casino?",
+        answer: "Evolution streamer i HD-kvalitet (720p-1080p) fra professionelle studiefaciliteter i Letland, Malta, Georgien, Canada og flere lande. Minimum anbefalet internetforbindelse er 5 Mbit/s for stabil streaming uden buffering. Spillet fungerer på alle moderne browsere og mobilenheder uden download. Minimumindsatsen på live borde er typisk 5-10 DKK (roulette/blackjack), mens VIP-borde starter ved 250-500 DKK. Latency er under 1 sekund, og alle dealer-handlinger verificeres af optisk læsning (OCR-teknologi) for at sikre korrekt registrering.",
+      },
+      {
+        question: "Hvor stor er Evolutions markedsandel inden for live casino?",
+        answer: "Evolution kontrollerer over 70% af det globale live casino-marked – en dominans der er uden parallel i casinobranchen. De leverer live spil til over 700 operatører med 16.000+ ansatte fordelt på studiefaciliteter på fire kontinenter. Børsværdien på Nasdaq Stockholm overstiger 150 milliarder SEK. Nærmeste konkurrent er Pragmatic Plays live casino-division med estimeret 10-12% markedsandel. Denne dominans giver Evolution prissætnings-magt og sikrer at deres spil er tilgængelige hos alle seriøse casinoer, inklusive samtlige danske licenserede operatører.",
+      },
+      {
+        question: "Hvad er forskellen på Evolutions egne slots og NetEnt/Red Tiger?",
+        answer: (
+          <>
+            Evolution er primært en live casino-udvikler, men ejer tre slot-studios: <Link to="/spiludviklere/netent" className="text-primary underline hover:text-primary/80">NetEnt</Link> (medium volatilitet, Starburst), <Link to="/spiludviklere/red-tiger" className="text-primary underline hover:text-primary/80">Red Tiger</Link> (Daily Jackpots, Tournaments) og <Link to="/spiludviklere/big-time-gaming" className="text-primary underline hover:text-primary/80">Big Time Gaming</Link> (Megaways-patentet). Hvert studio beholder sin egen identitet og udviklingsteam. Evolution selv udgiver sjældent slots, men har eksperimenteret med hybrid-formater som NetEnt-slots integreret i live casino-lobbyer. Koncernens samlede portefølje er over 800 titler.
+          </>
+        ),
+      },
     ]}
     responsibleGamingText="Evolution Gaming har implementeret realitets-checks, session-timere og indsatsgrænser direkte i deres live casino-grænseflader og samarbejder med flere europæiske spillehjælpsorganisationer."
   />
