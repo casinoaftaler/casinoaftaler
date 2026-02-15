@@ -186,8 +186,6 @@ const Index = () => {
         </div>
       </section>
 
-      <BonusTypeCards />
-
       {/* === SEO Content Sections === */}
       <div className="container py-8 md:py-12">
 
@@ -291,6 +289,8 @@ const Index = () => {
             {" "}– før du accepterer en bonus. Et lavt omsætningskrav er ofte mere værd end en stor bonussum med urealistiske betingelser.
           </p>
         </section>
+
+        <BonusTypeCards />
 
         <Separator className="my-10" />
 
