@@ -318,58 +318,63 @@ const Spiludviklere = () => {
 
   const spiludviklereFaqs = [
     {
-      question: "Hvad er en spiludvikler?",
+      question: "Hvad gør en spiludvikler, og hvordan adskiller de sig fra casinooperatører?",
       answer: (
         <>
-          En spiludvikler er en virksomhed, der designer og producerer casinospil som spilleautomater, bordspil og{" "}
-          <Link to="/live-casino" className="text-primary underline hover:text-primary/80">live casino</Link>.
-          De står bag grafik, funktioner og mekanik, der gør spillene underholdende og retfærdige.
+          En spiludvikler (også kaldet game provider eller studio) er virksomheden, der designer, programmerer og producerer selve casinospillene – fra spilleautomater og bordspil til{" "}
+          <Link to="/live-casino" className="text-primary underline hover:text-primary/80">live casino</Link>-løsninger. Casinooperatøren driver derimod platformen, håndterer licenser, betalinger og kundeservice. Et moderne online casino samarbejder typisk med 20–40 forskellige spiludviklere for at tilbyde et bredt katalog. Udviklerne certificerer deres spil via uafhængige testlaboratorier (eCOGRA, iTech Labs, GLI) og licenserer dem via B2B-aftaler. De største udviklere som{" "}
+          <Link to="/spiludviklere/netent" className="text-primary underline hover:text-primary/80">NetEnt</Link> og{" "}
+          <Link to="/spiludviklere/pragmatic-play" className="text-primary underline hover:text-primary/80">Pragmatic Play</Link> har porteføljer med 200+ titler.
         </>
       ),
     },
     {
-      question: "Hvad betyder RTP?",
+      question: "Hvad er RTP og hit frequency, og hvordan bruger jeg tallene til at vælge spil?",
       answer: (
         <>
-          RTP (Return to Player) angiver, hvor stor en procentdel af de samlede indsatser et spil teoretisk betaler tilbage til spillerne over tid. En højere RTP betyder bedre langsigtede chancer. RTP er også relevant, når du spiller med en{" "}
-          <Link to="/velkomstbonus" className="text-primary underline hover:text-primary/80">velkomstbonus</Link>{" "}
-          eller{" "}
-          <Link to="/free-spins" className="text-primary underline hover:text-primary/80">free spins</Link>.
+          RTP (Return to Player) angiver den procentvise tilbagebetaling over millioner af spins – fx betyder 96 % RTP, at casinoet statistisk beholder 4 % af alle indsatser. Hit frequency angiver, hvor ofte et spin resulterer i en gevinst – typisk 20–35 % for moderne video slots. Høj RTP + høj hit frequency giver jævne sessioner (fx Starburst: 96,09 % RTP, ~23 % hit frequency). Høj RTP + lav hit frequency giver sjældne, men store gevinster (fx Book of Dead: 96,21 % RTP, ~18 % hit frequency). Disse tal er relevante, når du vælger spil til{" "}
+          <Link to="/velkomstbonus" className="text-primary underline hover:text-primary/80">bonusomsætning</Link> – høj hit frequency hjælper med at strække budgettet.
         </>
       ),
     },
     {
-      question: "Hvordan vælger jeg en god spiludvikler?",
+      question: "Hvilke innovative spilmekanikker har de største udviklere skabt?",
       answer: (
         <>
-          Vælg casinoer, der samarbejder med licenserede udviklere som <Link to="/spiludviklere/netent" className="text-primary underline hover:text-primary/80">NetEnt</Link>, <Link to="/spiludviklere/microgaming" className="text-primary underline hover:text-primary/80">Microgaming</Link> eller <Link to="/spiludviklere/play-n-go" className="text-primary underline hover:text-primary/80">Play'n GO</Link>. Se vores{" "}
-          <Link to="/nye-casinoer" className="text-primary underline hover:text-primary/80">oversigt over nye casinoer</Link>{" "}
-          for at finde spillesteder med de bedste spiludviklere.
+          De vigtigste innovationer inkluderer: Megaways (opfundet af{" "}
+          <Link to="/spiludviklere/big-time-gaming" className="text-primary underline hover:text-primary/80">Big Time Gaming</Link>) med op til 117.649 dynamiske vinderkombinationer pr. spin. Cascading Reels/Avalanche (pioneeret af NetEnt i Gonzo's Quest) hvor vindende symboler forsvinder og erstattes af nye. xWays og xNudge fra{" "}
+          <Link to="/spiludviklere/nolimit-city" className="text-primary underline hover:text-primary/80">Nolimit City</Link>, der udvider hjulene dynamisk. Cluster Pays (Yggdrasil) der belønner grupper frem for linjer. Tumble-mekanik fra{" "}
+          <Link to="/spiludviklere/pragmatic-play" className="text-primary underline hover:text-primary/80">Pragmatic Play</Link> (Sweet Bonanza). Disse mekanikker har fundamentalt ændret, hvordan moderne slots fungerer.
         </>
       ),
     },
     {
-      question: "Hvad er forskellen på slots og live casino?",
-      answer: (
-        <>
-          Spilleautomater er maskinbaserede spil med temaer og bonusfunktioner, mens{" "}
-          <Link to="/live-casino" className="text-primary underline hover:text-primary/80">live casino</Link>{" "}
-          involverer rigtige dealere og giver en autentisk casinooplevelse via livestreaming i realtid.
-        </>
-      ),
-    },
-    {
-      question: "Er spil fra alle udviklere fair?",
+      question: "Er spil fra alle udviklere fair, og hvem kontrollerer tilfældigheden?",
       answer:
-        "Kun spil fra licenserede udviklere garanterer fairness. De anvender RNG-teknologi (Random Number Generator) og testes løbende af uafhængige testbureauer som eCOGRA.",
+        "Kun spil fra licenserede udviklere garanterer fairness. Alle spil hos danske casinoer bruger certificerede Random Number Generators (RNG), der testes regelmæssigt af uafhængige laboratorier som eCOGRA, iTech Labs og GLI (Gaming Laboratories International). Disse testorganisationer verificerer, at hvert spin er statistisk uafhængigt, at den offentliggjorte RTP er korrekt, og at bonusfunktioner aktiveres med den annoncerede frekvens. Spillemyndigheden kræver desuden, at alle spil på danske licenserede casinoer har gennemgået teknisk certificering. Resultatet er, at du kan stole på, at et spil med 96 % RTP faktisk betaler 96 % tilbage over tid – hverken casinoet eller udvikleren kan manipulere individuelle spins.",
     },
     {
-      question: "Kan jeg spille på mobilen?",
+      question: "Hvordan påvirker valget af spiludvikler min casinooplevelse?",
       answer: (
         <>
-          Ja, stort set alle moderne spiludviklere optimerer deres spil til både desktop og mobil. Du kan også nemt indbetale via{" "}
-          <Link to="/betalingsmetoder" className="text-primary underline hover:text-primary/80">mobilvennlige betalingsmetoder</Link>{" "}
-          som <Link to="/betalingsmetoder/mobilepay" className="text-primary underline hover:text-primary/80">MobilePay</Link> og <Link to="/betalingsmetoder/apple-pay" className="text-primary underline hover:text-primary/80">Apple Pay</Link>.
+          Valget af udviklere definerer din oplevelse markant. Hvis du foretrækker stabile sessioner med jævne gevinster, er{" "}
+          <Link to="/spiludviklere/netent" className="text-primary underline hover:text-primary/80">NetEnt</Link> og{" "}
+          <Link to="/spiludviklere/play-n-go" className="text-primary underline hover:text-primary/80">Play'n GO</Link> ideelle med overvejende medium-volatilitet. For adrenalin og potentielt massive gevinster er{" "}
+          <Link to="/spiludviklere/nolimit-city" className="text-primary underline hover:text-primary/80">Nolimit City</Link> og{" "}
+          <Link to="/spiludviklere/hacksaw-gaming" className="text-primary underline hover:text-primary/80">Hacksaw Gaming</Link> specialister i høj-volatilitet. For{" "}
+          <Link to="/live-casino" className="text-primary underline hover:text-primary/80">live casino</Link> er{" "}
+          <Link to="/spiludviklere/evolution-gaming" className="text-primary underline hover:text-primary/80">Evolution Gaming</Link> ubestridt markedsleder. Et godt casino bør samarbejde med minimum 15 udviklere for at sikre bredde i spillestile.
+        </>
+      ),
+    },
+    {
+      question: "Kan jeg spille alle udvikleres spil på mobilen, og er oplevelsen den samme?",
+      answer: (
+        <>
+          Stort set alle moderne spiludviklere udvikler med HTML5-teknologi, der sikrer fuld kompatibilitet på tværs af desktop, tablet og smartphone. Mobiloplevelsen er i mange tilfælde bedre end desktop, da spil som Sweet Bonanza og Book of Dead er designet med touch-interaktion i tankerne. Nogle ældre titler fra{" "}
+          <Link to="/spiludviklere/microgaming" className="text-primary underline hover:text-primary/80">Microgaming</Link> og NetEnt har tilpassede mobilversioner med forenklede menuer. Live casino fungerer også fejlfrit på mobil med automatisk videokvalitetsjustering. Du kan indbetale direkte via mobilvennlige metoder som{" "}
+          <Link to="/betalingsmetoder/mobilepay" className="text-primary underline hover:text-primary/80">MobilePay</Link> og{" "}
+          <Link to="/betalingsmetoder/apple-pay" className="text-primary underline hover:text-primary/80">Apple Pay</Link>.
         </>
       ),
     },

@@ -52,81 +52,55 @@ const reviewSlugs = [
 
 const faqs = [
   {
-    question: "Hvad skal jeg kigge efter i en casino anmeldelse?",
+    question: "Hvad indgår i jeres evalueringsproces, når I anmelder et dansk casino?",
     answer: (
       <>
-        En god casino anmeldelse bør dække{" "}
-        <Link to="/casino-bonus" className="text-primary underline hover:text-primary/80">bonusvilkår</Link> (herunder{" "}
-        <Link to="/omsaetningskrav" className="text-primary underline hover:text-primary/80">omsætningskrav</Link> og bonustype), spiludvalg og{" "}
-        <Link to="/spiludviklere" className="text-primary underline hover:text-primary/80">udbydere</Link>,{" "}
-        <Link to="/betalingsmetoder" className="text-primary underline hover:text-primary/80">betalingsmetoder</Link>, udbetalingstider, kundeservice, licens og sikkerhed.
+        Vores anmeldelsesproces strækker sig over minimum 2 uger, hvor vi tester hvert casino med rigtige penge. Vi evaluerer seks kerneparametre: 1) Licens og sikkerhed – vi verificerer dansk licens fra Spillemyndigheden og kontrollerer SSL-kryptering og ROFUS-tilslutning. 2){" "}
+        <Link to="/casino-bonus" className="text-primary underline hover:text-primary/80">Bonusvilkår</Link> – vi analyserer velkomstbonus,{" "}
+        <Link to="/omsaetningskrav" className="text-primary underline hover:text-primary/80">omsætningskrav</Link>, bonustype (no-sticky vs. sticky) og spilbidrag. 3) Spiludvalg – antal titler,{" "}
+        <Link to="/spiludviklere" className="text-primary underline hover:text-primary/80">udviklere</Link> og gennemsnitlig RTP. 4){" "}
+        <Link to="/betalingsmetoder" className="text-primary underline hover:text-primary/80">Betalingsmetoder</Link> og udbetalingshastighed. 5) Kundeservice – tilgængelighed, svartider og danske sprogmuligheder. 6) Mobiloplevelse og design.
       </>
     ),
   },
   {
-    question: "Er alle anmeldte casinoer lovlige i Danmark?",
+    question: "Hvordan sikrer I, at anmeldelserne forbliver objektive trods affiliate-samarbejde?",
+    answer:
+      "Vi er transparente om, at vi modtager provision via affiliate-links, men dette påvirker aldrig vores vurdering eller rangering. Vores redaktionelle retningslinjer er klare: ingen operatør kan betale for en bedre placering eller mere favorabel anmeldelse. Vi har afvist casinoer med høje provisioner, fordi de ikke levede op til vores kvalitetskrav – og vi har anbefalet casinoer med lavere provision, fordi de tilbød bedre vilkår for spillerne. Vores rangering baseres udelukkende på de seks evalueringsparametre, og vi offentliggør vores metodik. Denne uafhængighed er fundamentet for vores troværdighed.",
+  },
+  {
+    question: "Hvad er den reelle forskel på No-Sticky og Sticky bonusser i praksis?",
     answer: (
       <>
-        Ja, alle casinoer vi anmelder har en gyldig dansk spillelicens udstedt af Spillemyndigheden. Det betyder, at de overholder strenge krav til spillerbeskyttelse,{" "}
-        <Link to="/responsible-gaming" className="text-primary underline hover:text-primary/80">ansvarligt spil</Link> og datasikkerhed.
+        Forskellen er afgørende for din spilleoplevelse. Med en{" "}
+        <Link to="/no-sticky-bonus" className="text-primary underline hover:text-primary/80">No-Sticky bonus</Link> spiller du altid med egne penge først. Vinder du 5.000 kr. med din egen indbetaling, kan du hæve beløbet med det samme – bonusmidlerne forsvinder simpelthen. Med en{" "}
+        <Link to="/sticky-bonus" className="text-primary underline hover:text-primary/80">Sticky bonus</Link> blandes dine penge og bonussen i én saldo, og du kan intet hæve, før hele omsætningskravet er opfyldt. Statistisk set giver no-sticky en markant bedre forventet værdi, da du bevarer friheden til at stoppe, når du er foran. Vi anbefaler altid no-sticky bonusser og markerer bonustypen tydeligt i hver anmeldelse.
       </>
     ),
   },
   {
-    question: "Hvad er forskellen på No-Sticky og Sticky bonus?",
+    question: "Hvor ofte opdaterer I anmeldelserne, og hvad trigger en opdatering?",
+    answer:
+      "Alle anmeldelser gennemgås systematisk minimum hvert kvartal, men vi opdaterer også ad hoc ved væsentlige ændringer. Triggers for øjeblikkelig opdatering inkluderer: ændrede bonusvilkår (beløb, omsætningskrav, gyldighed), nye eller fjernede betalingsmetoder, ændringer i licensstatus, markante udvidelser eller reduktioner i spiludvalget, og ændrede udbetalingstider. Vi monitorerer også spillerfeedback og klager via Spillemyndigheden. Datoen for seneste opdatering vises øverst på hver anmeldelse, så du altid ved, hvor aktuel informationen er.",
+  },
+  {
+    question: "Hvad er de vigtigste advarsler, man bør kende, før man vælger et nyt casino?",
     answer: (
       <>
-        En{" "}
-        <Link to="/no-sticky-bonus" className="text-primary underline hover:text-primary/80">No-Sticky bonus</Link> holder dine egne penge adskilt fra bonuspengene, så du kan hæve dine egne gevinster når som helst. En{" "}
-        <Link to="/sticky-bonus" className="text-primary underline hover:text-primary/80">Sticky bonus</Link> blander pengene sammen, og du skal opfylde omsætningskravene før du kan hæve.
+        De hyppigste faldgruber for danske spillere er: 1) Bonusser med skjulte begrænsninger – nogle casinoer har lave maksgevinster på bonusmidler (fx 5.000 kr.), selvom bonussen selv er stor. 2) Udbetalingsgrænser – visse casinoer har daglige eller ugentlige lofter, der kan forsinke store gevinster. 3) Manglende spilbidrag – tjek altid om dine foretrukne spil bidrager fuldt til{" "}
+        <Link to="/omsaetningskrav" className="text-primary underline hover:text-primary/80">omsætningskravet</Link>. 4) Kundeservice kun på engelsk. 5) Høje minimumsudbetalinger (nogle kræver 200+ kr.). Vi fremhæver alle disse faktorer i vores anmeldelser under fordele og ulemper.
       </>
     ),
   },
   {
-    question: "Hvorfor er omsætningskrav vigtige?",
+    question: "Hvordan vurderer I et casinos spiludvalg og RTP-niveauer?",
     answer: (
       <>
-        <Link to="/omsaetningskrav" className="text-primary underline hover:text-primary/80">Omsætningskrav</Link> bestemmer, hvor mange gange du skal gennemspille bonusbeløbet, før du kan hæve gevinster. Lavere krav (f.eks. 10x) giver dig bedre chancer for at beholde dine gevinster.
+        Vi analyserer både bredden og kvaliteten af spiludvalget. Et topscorende casino bør have 1.500+ titler fra minimum 15{" "}
+        <Link to="/spiludviklere" className="text-primary underline hover:text-primary/80">anerkendte udviklere</Link>, herunder brancheledere som NetEnt, Pragmatic Play og Evolution Gaming. Vi tjekker gennemsnitlige RTP-niveauer – et godt casino tilbyder hovedsageligt spil med 95 %+ RTP. Vi evaluerer også{" "}
+        <Link to="/live-casino" className="text-primary underline hover:text-primary/80">live casino</Link>-sektionens dybde, tilgængeligheden af progressive jackpots og om casinoet tilføjer nye spil regelmæssigt. Søge- og filtreringsfunktionalitet vægtes også – det bør være nemt at finde spil efter kategori, udbyder og popularitet.
       </>
     ),
-  },
-  {
-    question: "Hvordan vurderer I et casino?",
-    answer: "Vi vurderer casinoer baseret på bonusvilkår, spiludvalg, betalingsmetoder, udbetalingstider, kundeservice, mobilvenlighed, sikkerhed og licensforhold. Hvert casino testes grundigt af vores eksperter.",
-  },
-  {
-    question: "Kan jeg stole på jeres casino anmeldelser?",
-    answer: "Vores anmeldelser er uafhængige og baseret på faktisk testning. Vi modtager provision fra casinoerne, men dette påvirker aldrig vores vurdering eller rangering.",
-  },
-  {
-    question: "Hvilke betalingsmetoder accepterer danske casinoer?",
-    answer: (
-      <>
-        De fleste danske casinoer accepterer{" "}
-        <Link to="/betalingsmetoder/mobilepay" className="text-primary underline hover:text-primary/80">MobilePay</Link>,{" "}
-        <Link to="/betalingsmetoder/trustly" className="text-primary underline hover:text-primary/80">Trustly</Link>,{" "}
-        <Link to="/betalingsmetoder/visa-mastercard" className="text-primary underline hover:text-primary/80">Visa/Mastercard</Link>,{" "}
-        <Link to="/betalingsmetoder/paypal" className="text-primary underline hover:text-primary/80">PayPal</Link>,{" "}
-        <Link to="/betalingsmetoder/skrill" className="text-primary underline hover:text-primary/80">Skrill</Link> og flere.
-      </>
-    ),
-  },
-  {
-    question: "Hvad er RTP, og hvorfor er det vigtigt?",
-    answer: "RTP (Return to Player) angiver, hvor stor en procentdel af indsatserne et spil i gennemsnit betaler tilbage over tid. En RTP på 96% betyder, at spillet betaler 96 kr. tilbage for hver 100 kr. der satses.",
-  },
-  {
-    question: "Er det sikkert at spille online casino i Danmark?",
-    answer: (
-      <>
-        Ja, når du spiller på casinoer med dansk licens fra Spillemyndigheden. Disse casinoer er underlagt streng regulering og tilbyder selvudelukkelse via{" "}
-        <a href="https://www.rofus.nu/" target="_blank" rel="noopener noreferrer" className="text-primary underline hover:text-primary/80">ROFUS</a>.
-      </>
-    ),
-  },
-  {
-    question: "Hvornår opdateres jeres casino anmeldelser?",
-    answer: "Vi opdaterer løbende vores anmeldelser, når casinoer ændrer deres bonusvilkår, spiludvalg eller andre vigtige funktioner. Alle anmeldelser gennemgås minimum kvartalsvis.",
   },
 ];
 

@@ -43,79 +43,53 @@ const linkClass = "text-primary underline hover:text-primary/80";
 
 const casinospilFaqs: { question: string; answer: ReactNode }[] = [
   {
-    question: "Hvad er casinospil?",
+    question: "Hvad bestemmer dine vinderchancer i forskellige casinospil – RTP, house edge og volatilitet?",
     answer:
-      "Casinospil er spil, du kan spille på et online casino. De mest populære casinospil inkluderer spilleautomater (slots), roulette, blackjack, baccarat, poker og live casino-spil. Alle casinospil hos danske casinoer er reguleret af Spillemyndigheden.",
+      "Tre nøgletal styrer dine odds: RTP (Return to Player) angiver den procentvise tilbagebetaling over millioner af spins – blackjack topper med op til 99,5 %, mens progressive jackpots typisk har 88–92 %. House edge er det omvendte (100 % minus RTP) og repræsenterer casinoets statistiske fordel. Volatilitet beskriver gevinstfordelingen: lav volatilitet (fx Starburst) giver hyppige gevinster på 1–10x indsatsen, høj volatilitet (fx Book of Dead) giver sjældnere gevinster men op til 5.000–50.000x. For budgetstyring er lav volatilitet bedst til lange sessioner, mens høj volatilitet kræver større bankroll men tilbyder potentielt livsendrende beløb.",
   },
   {
-    question: "Hvilke casinospil har den bedste RTP?",
+    question: "Hvilke bordspil tilbyder de bedste odds for danske spillere, og kræver de strategi?",
     answer: (
       <>
-        Blackjack har typisk den højeste RTP (op til 99,5 %), efterfulgt af
-        baccarat (ca. 98,9 %) og video poker (op til 99,5 %). Blandt
-        spilleautomater varierer RTP normalt mellem 94 % og 97 %. Tjek altid
-        RTP-værdien, før du vælger et casinospil.
+        Blackjack har den laveste house edge blandt alle casinospil – helt ned til 0,5 % med optimal basisstrategi (hit/stand/double/split baseret på dine kort vs. dealerens åbne kort). Baccarat følger med 1,06 % house edge på banker-bet, og det kræver ingen strategi – du vælger blot banker, player eller tie. Video poker (Jacks or Better) kan nå 99,5 % RTP med optimal strategi. Roulette har 2,70 % house edge på europæisk variant (enkelt nul) – undgå altid amerikansk roulette med dobbelt nul (5,26 %). Craps tilbyder 1,36 % house edge på don't pass-line. Strategispil belønner altså tålmodighed og viden med markant bedre odds end rene tilfældighedsspil.
       </>
     ),
   },
   {
-    question: "Er casinospil lovlige i Danmark?",
+    question: "Hvad er forskellen på klassiske slots, video slots, Megaways og progressive jackpots?",
     answer: (
       <>
-        Ja, casinospil er fuldt lovlige i Danmark, når du spiller hos et casino
-        med gyldig dansk licens fra Spillemyndigheden. Alle casinoer på{" "}
-        <Link to="/" className={linkClass}>
-          Casinoaftaler.dk
-        </Link>{" "}
-        har dansk licens og er sikre at spille hos.
+        Klassiske slots har 3 hjul, få gevinstlinjer (1–5) og simple funktioner – ideelle til begyndere med RTP omkring 96–97 %. Video slots har 5+ hjul, 20–243 faste gevinstlinjer, temaer, bonusspil og free spins – de udgør 90 % af moderne{" "}
+        <Link to="/spiludviklere" className={linkClass}>spiludvikleres</Link> katalog. Megaways-spil (opfundet af{" "}
+        <Link to="/spiludviklere/big-time-gaming" className={linkClass}>Big Time Gaming</Link>) bruger dynamiske hjul med op til 117.649 vinderkombinationer pr. spin – antallet ændres ved hvert spin. Progressive jackpots (fx Mega Moolah fra{" "}
+        <Link to="/spiludviklere/microgaming" className={linkClass}>Microgaming</Link>) har en fælles pulje, der vokser med hver indsats på tværs af alle casinoer, men basis-RTP er lavere (88–92 %).
       </>
     ),
   },
   {
-    question: "Hvad er forskellen på slots og bordspil?",
-    answer:
-      "Spilleautomater (slots) er baseret primært på tilfældighed og kræver ingen strategi. Bordspil som blackjack, poker og baccarat involverer en grad af strategi og beslutningstagning, der kan påvirke dine vinderchancer. Begge typer casinospil er populære hos danske spillere.",
-  },
-  {
-    question: "Kan jeg prøve casinospil gratis?",
+    question: "Kan jeg prøve casinospil gratis, og hvad er begrænsningerne ved demotilstand?",
     answer: (
       <>
-        Ja, de fleste online casinoer tilbyder demotilstand, hvor du kan prøve
-        casinospil gratis uden at risikere rigtige penge. Derudover kan du bruge{" "}
-        <Link to="/free-spins" className={linkClass}>
-          free spins
-        </Link>{" "}
-        eller en{" "}
-        <Link to="/bonus-uden-indbetaling" className={linkClass}>
-          bonus uden indbetaling
-        </Link>{" "}
-        til at spille med rigtige gevinster uden egen indbetaling.
+        De fleste spilleautomater og video slots tilbyder demotilstand (play-for-fun) med virtuelle credits, hvor du kan teste grafik, gameplay og bonusfunktioner uden at risikere penge. Dog har demotilstand begrænsninger: progressive jackpots er ikke tilgængelige, og{" "}
+        <Link to="/live-casino" className={linkClass}>live casino</Link>-spil kræver altid rigtige penge. Alternativt kan du bruge en{" "}
+        <Link to="/bonus-uden-indbetaling" className={linkClass}>bonus uden indbetaling</Link> til at spille med rigtige gevinster uden egen indbetaling, eller udnytte{" "}
+        <Link to="/free-spins" className={linkClass}>free spins</Link> på udvalgte automater. Vær opmærksom på, at RNG-resultaterne er identiske i demo- og pengetilstand – casinospillets matematiske model ændres ikke.
       </>
     ),
   },
   {
-    question: "Hvad er live casinospil?",
+    question: "Hvad er game shows i live casino, og hvorfor er de blevet så populære?",
     answer: (
       <>
-        <Link to="/live-casino" className={linkClass}>
-          Live casinospil
-        </Link>{" "}
-        er spil, der streames i realtid med en rigtig dealer via video. Du kan
-        spille blackjack, roulette, baccarat og game shows live fra dit
-        hjem. Det kombinerer den autentiske casinooplevelse med bekvemmeligheden
-        ved online spil.
+        Game shows er en hybrid mellem traditionelle casinospil og tv-underholdning, pioneeret af{" "}
+        <Link to="/spiludviklere/evolution-gaming" className={linkClass}>Evolution Gaming</Link> med Dream Catcher i 2017. De mest populære titler inkluderer Crazy Time (fire bonusspil, multiplikatorer op til 25.000x, 96,08 % RTP), Monopoly Live (3D-bonusrunde med realistisk spilleplade) og Lightning Dice (multiplikator-mekanik på terningkast). Game shows kræver ingen strategi og har lave minimumsindsatser (typisk 1–5 kr.), hvilket gør dem tilgængelige for alle spillere. House edge er typisk 3–5 % – højere end klassiske bordspil, men lavere end mange spilleautomater. Det er underholdningsværdien og den sociale dimension, der driver populariteten.
       </>
     ),
   },
   {
-    question: "Hvordan vælger jeg det bedste casinospil?",
+    question: "Hvordan vælger jeg det rigtige casinospil baseret på min spillestil og budget?",
     answer:
-      "Vælg casinospil baseret på din spillestil: Hvis du vil have underholdning og store jackpots, er spilleautomater ideelle. Hvis du foretrækker strategi og lave house edges, er blackjack eller baccarat bedst. Overvej også RTP, volatilitet og dit budget, når du vælger casinospil.",
-  },
-  {
-    question: "Hvad er volatilitet i casinospil?",
-    answer:
-      "Volatilitet beskriver risikoprofilen i et casinospil. Lav volatilitet giver hyppige, men mindre gevinster. Høj volatilitet giver sjældnere, men større gevinster. Medium volatilitet er en mellemvej. Vælg volatilitet baseret på din risikotolerance og dit budget.",
+      "Match dit spilvalg med din risikoprofil og dit budget. Med et lille budget (100–300 kr.) bør du vælge lav-volatilitet slots eller blackjack med lav minimumsindsats – det giver flest spins/hænder og længst spilletid. Med medium budget (300–1.000 kr.) er video slots med medium volatilitet ideelle – de balancerer underholdning og gevinstpotentiale. Med højere budget kan høj-volatilitet slots eller live casino borde med højere indsatser give bedre oplevelser. Uanset budget: sæt altid en tabsgrænse, vælg spil med 95 %+ RTP, og brug casinoets indbetalingsgrænser. Husk at house edge altid er i casinoets favør – spil for underholdningens skyld.",
   },
 ];
 

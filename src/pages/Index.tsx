@@ -672,7 +672,32 @@ const Index = () => {
           </Card>
         </section>
 
-        <FAQSection />
+        <FAQSection title="Ofte stillede spørgsmål om online casino i Danmark" faqs={[
+          {
+            question: "Hvad er det vigtigste at vide, før man spiller online casino i Danmark?",
+            answer: "Det allervigtigste er at vælge et casino med gyldig dansk licens fra Spillemyndigheden. Licensen sikrer, at casinoet overholder strenge krav til spillerbeskyttelse, herunder tilslutning til ROFUS (Register Over Frivilligt Udelukkede Spillere), krypteret dataoverførsel via SSL og maksimalt omsætningskrav på 10x. Danske casinoer bruger MitID til registrering, hvilket forhindrer mindreårige i at spille og eliminerer langvarig dokumentverifikation. Gevinster fra licenserede casinoer er desuden skattefri i Danmark – du beholder hele beløbet. Vi anbefaler altid at sætte et budget og bruge casinoets indbetalingsgrænser, før du starter.",
+          },
+          {
+            question: "Hvordan finder jeg det bedste casino til mine behov?",
+            answer: "Start med at definere, hvad der er vigtigst for dig: Er det bonusstørrelse, spiludvalg, udbetalingshastighed eller betalingsmetoder? Sammenlign velkomstbonusser og deres omsætningskrav – et lavt krav på 10x er markant bedre end 40x. Tjek om casinoet tilbyder dine foretrukne betalingsmetoder som MobilePay eller Trustly, og undersøg udbetalingstider. Vi tester hvert casino grundigt og vurderer det ud fra bonus, spiludvalg, betalingsmetoder, kundeservice, mobiloplevelse og sikkerhed. Vores topliste opdateres løbende, så du altid finder de aktuelt bedste muligheder.",
+          },
+          {
+            question: "Hvad er forskellen på en velkomstbonus og free spins?",
+            answer: "En velkomstbonus matcher typisk din første indbetaling med en procentdel – fx 100 % op til 1.000 kr. – så du får ekstra spillemidler. Free spins er gratis runder på udvalgte spilleautomater, ofte 50–200 spins, enten som del af en velkomstpakke eller som selvstændig bonus. Begge bonustyper har omsætningskrav, men free spins-gevinster har ofte separate vilkår med maksimal gevinst. No-sticky bonusser er særligt fordelagtige, da dine egne penge altid er tilgængelige for udbetaling. Bonus uden indbetaling giver dig mulighed for at prøve et casino helt risikofrit.",
+          },
+          {
+            question: "Er online casinoer i Danmark sikre og regulerede?",
+            answer: "Ja, det danske marked er et af de mest strengt regulerede i Europa. Spillemyndigheden udsteder licenser og fører løbende tilsyn med alle licenserede operatører. Casinoerne skal dokumentere fair spil via certificerede tilfældighedsgeneratorer (RNG), implementere anti-hvidvask-procedurer og tilbyde selvudelukkelsesværktøjer. ROFUS-systemet giver dig mulighed for at udelukke dig selv fra alle danske spillesider med ét klik. Indbetalingsgrænser, sessionstidsadvarsler og links til hjælpeorganisationer som StopSpillet er påkrævet på alle platforme. Vi anbefaler kun casinoer, der lever op til disse standarder.",
+          },
+          {
+            question: "Skal jeg betale skat af casinogevinster i Danmark?",
+            answer: "Nej, alle gevinster fra online casinoer med gyldig dansk licens fra Spillemyndigheden er 100 % skattefri for spilleren. Det gælder uanset gevinstens størrelse – om det er 500 kr. eller 5 millioner kr. Skatten er allerede betalt af casinooperatøren via deres licensafgift. Det er en af de vigtigste fordele ved at spille hos licenserede danske casinoer frem for udenlandske sider uden dansk licens. Vær opmærksom på, at gevinster fra casinoer uden dansk licens teknisk set er skattepligtige, og at du mister al spillerbeskyttelse ved at spille på ulicenserede platforme.",
+          },
+          {
+            question: "Hvilke casinospil giver de bedste vinderchancer?",
+            answer: "Blackjack har den laveste house edge (ned til 0,5 % med optimal strategi), efterfulgt af baccarat (ca. 1,06 % på banker-bet) og visse video poker-varianter (op til 99,5 % RTP). Blandt spilleautomater varierer RTP fra 88 % (progressive jackpots som Mega Moolah) til 97 %+ (mange moderne video slots). Højere RTP betyder bedre langsigtede chancer, men husk at volatilitet også spiller en rolle: lav volatilitet giver hyppige mindre gevinster, mens høj volatilitet giver sjældnere, men potentielt større gevinster. Tjek altid RTP og volatilitet, før du vælger et spil.",
+          },
+        ]} />
       </div>
     </>
   );

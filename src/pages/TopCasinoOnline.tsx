@@ -63,114 +63,64 @@ const linkClass = "text-primary underline hover:text-primary/80";
 
 const topCasinoFaqs: { question: string; answer: ReactNode }[] = [
   {
-    question: "Hvad er det bedste online casino i Danmark?",
+    question: "Hvordan udvælger I casinoerne til jeres top 10 liste, og hvad vejer tungest?",
     answer: (
       <>
-        Det bedste online casino afhænger af dine personlige præferencer. Vi anbefaler at sammenligne{" "}
-        <Link to="/velkomstbonus" className={linkClass}>velkomstbonusser</Link>,{" "}
-        spiludvalg, <Link to="/betalingsmetoder" className={linkClass}>betalingsmetoder</Link>{" "}
-        og udbetalingstider. Vores top 10 liste giver dig et grundigt overblik over de bedste muligheder med dansk licens.
+        Vores top 10 rangering baseres på en samlet score fra seks vurderingskategorier, der vægtes efter relevans for danske spillere. Licens og sikkerhed er et ufravigeligt minimumskrav – alle casinoer skal have aktiv dansk licens fra Spillemyndigheden.{" "}
+        <Link to="/casino-bonus" className={linkClass}>Bonusvilkår</Link> vægter tungest i den samlede score, herunder bonusstørrelse,{" "}
+        <Link to="/omsaetningskrav" className={linkClass}>omsætningskrav</Link> (10x er maksimum i Danmark), bonustype (no-sticky foretrækkes) og spilbidrag. Dernæst vurderer vi spiludvalg og udviklere, betalingsmetoder og udbetalingshastighed, kundeservice og mobiloplevelse. Listen opdateres løbende baseret på ændrede vilkår og nye markedsindtræder.
       </>
     ),
   },
   {
-    question: "Er det sikkert at spille online casino i Danmark?",
-    answer: (
-      <>
-        Ja, så længe du vælger et casino med gyldig dansk licens fra Spillemyndigheden. Alle casinoer på vores liste er licenserede, bruger SSL-kryptering og er tilsluttet{" "}
-        <a href="https://www.rofus.nu/" target="_blank" rel="noopener noreferrer" className={linkClass}>ROFUS</a>. Læs mere om{" "}
-        <Link to="/responsible-gaming" className={linkClass}>ansvarligt spil</Link>.
-      </>
-    ),
-  },
-  {
-    question: "Hvordan vurderer I casinoerne på jeres top 10 liste?",
+    question: "Er gevinster fra online casinoer skattefri i Danmark, og gælder det alle beløb?",
     answer:
-      "Vi evaluerer hvert casino ud fra seks nøglekategorier: licens og sikkerhed, bonusvilkår, spiludvalg, betalingsmetoder, udbetalingstider og kundeservice. Kun casinoer der scorer højt i alle kategorier kvalificerer sig til vores top 10.",
+      "Ja, alle gevinster fra online casinoer med gyldig dansk licens fra Spillemyndigheden er 100 % skattefri – uanset beløbets størrelse. Det gælder om du vinder 500 kr. på en spilleautomat eller 10 millioner kr. på en progressiv jackpot. Skattefritagelsen skyldes, at casinooperatørerne betaler en afgift på 28 % af deres bruttospilleindtægt (GGR) direkte til den danske stat. Det er vigtigt at understrege, at denne skattefritagelse kun gælder casinoer med dansk licens. Gevinster fra ulicenserede udenlandske casinoer er teknisk set skattepligtig indkomst og skal selvangives. Vælg derfor altid et licenseret dansk casino.",
   },
   {
-    question: "Hvad er forskellen på et online casino og et live casino?",
+    question: "Hvad er den reelle forskel på et nyt casino og et etableret casino i Danmark?",
     answer: (
       <>
-        Et online casino tilbyder primært digitale spilleautomater og bordspil med tilfældighedsgenerator (RNG). Et{" "}
-        <Link to="/live-casino" className={linkClass}>live casino</Link>{" "}
-        streamer ægte dealere i realtid, så du kan spille blackjack, roulette og baccarat med en autentisk casinooplevelse hjemmefra.
+        <Link to="/nye-casinoer" className={linkClass}>Nye casinoer</Link> tilbyder typisk mere aggressive velkomstbonusser (op til 2.000 kr.) og moderne brugergrænseflader designet til mobile-first oplevelser. De har ofte nyere spiludviklere i kataloget og innovativ funktionalitet som gamification-elementer. Etablerede casinoer har derimod dokumenteret track record, veletablerede loyalitetsprogrammer, større spiludvalg (3.000+ titler) og hurtigere udbetalingsprocesser. Sikkerhedsmæssigt er der ingen forskel – begge typer kræver identisk dansk licens med samme strenge krav. Vi anbefaler at vælge baseret på, hvad der er vigtigst for dig: friske bonusser eller dokumenteret stabilitet.
       </>
     ),
   },
   {
-    question: "Kan jeg spille casino online på mobilen?",
+    question: "Hvilke betalingsmetoder er hurtigst til udbetalinger, og er der gebyrer?",
+    answer: (
+      <>
+        Udbetalingshastighed varierer markant mellem{" "}
+        <Link to="/betalingsmetoder" className={linkClass}>betalingsmetoder</Link>. E-wallets som{" "}
+        <Link to="/betalingsmetoder/paypal" className={linkClass}>PayPal</Link> og{" "}
+        <Link to="/betalingsmetoder/skrill" className={linkClass}>Skrill</Link> samt{" "}
+        <Link to="/betalingsmetoder/trustly" className={linkClass}>Trustly</Link> er hurtigst med typisk 0–24 timers behandlingstid. Kortbetalinger via Visa/Mastercard tager 1–3 bankdage, mens bankoverførsler kan tage 2–5 hverdage. De fleste top 10 casinoer opkræver ikke gebyrer på hverken ind- eller udbetalinger, men din bank eller e-wallet kan have egne gebyrer. MitID-verifikation ved registrering eliminerer forsinkelser ved første udbetaling, da din identitet allerede er bekræftet.
+      </>
+    ),
+  },
+  {
+    question: "Hvad er RTP og volatilitet, og hvordan påvirker de mine vinderchancer?",
     answer:
-      "Ja, alle top 10 casinoer på vores liste er fuldt optimeret til mobil. Du kan spille direkte i din mobilbrowser uden at downloade en app – perfekt til både iPhone og Android.",
+      "RTP (Return to Player) angiver den procentvise tilbagebetaling over millioner af spins. Et spil med 96 % RTP beholder statistisk 4 % af alle indsatser. Jo højere RTP, desto bedre langsigtede odds. Volatilitet beskriver gevinstfordelingen: lav volatilitet giver hyppige, men mindre gevinster (ideelt til længere sessioner med begrænset budget), mens høj volatilitet giver sjældne, men potentielt massive gevinster (bedst for spillere med højere risikotolerance). Eksempler: Starburst (96,09 % RTP, lav volatilitet) vs. Book of Dead (96,21 % RTP, høj volatilitet). Progressive jackpots har typisk lavere basis-RTP (88–92 %) men tilbyder livsendrende gevinster.",
   },
   {
-    question: "Hvad er omsætningskrav på en casino bonus?",
+    question: "Kan jeg sætte grænser for mit forbrug, og hvilke værktøjer er tilgængelige?",
     answer: (
       <>
-        Omsætningskrav angiver, hvor mange gange du skal gennemspille din bonus, før du kan udbetale gevinster. Et omsætningskrav på x10 betyder, at du skal spille for 10 gange bonusbeløbet. Læs vores komplette guide til{" "}
-        <Link to="/omsaetningskrav" className={linkClass}>omsætningskrav</Link>.
+        Alle danske licenserede casinoer er lovpligtige at tilbyde selvbegrænsningsværktøjer. Du kan sætte daglige, ugentlige og månedlige indbetalingsgrænser direkte i casinoets indstillinger – nedsættelse træder i kraft øjeblikkeligt, mens forhøjelse kræver en afkølingsperiode på 24 timer. Sessionstidsadvarsler minder dig om, hvor længe du har spillet. Du kan også tage en afkølingsperiode (24 timer til 30 dage) eller selvudelukke via{" "}
+        <a href="https://www.rofus.nu/" target="_blank" rel="noopener noreferrer" className={linkClass}>ROFUS</a>, som blokerer adgangen til alle danske spillesider. Læs mere om{" "}
+        <Link to="/responsible-gaming" className={linkClass}>ansvarligt spil</Link> og tilgængelige hjælperessourcer.
       </>
     ),
   },
   {
-    question: "Hvilke betalingsmetoder kan jeg bruge?",
+    question: "Hvad er de mest populære casinospil blandt danske spillere i 2026?",
     answer: (
       <>
-        De fleste danske casinoer understøtter MobilePay, Trustly, Visa og Mastercard. Nogle tilbyder også Pay N Play og andre moderne løsninger. Se vores komplette guide til{" "}
-        <Link to="/betalingsmetoder" className={linkClass}>betalingsmetoder</Link>.
-      </>
-    ),
-  },
-  {
-    question: "Skal jeg betale skat af casino gevinster i Danmark?",
-    answer:
-      "Nej, gevinster fra online casinoer med dansk licens er skattefri i Danmark. Det er en af fordelene ved at spille hos licenserede danske casinoer – du beholder hele din gevinst.",
-  },
-  {
-    question: "Hvad er en no-sticky bonus?",
-    answer: (
-      <>
-        En <Link to="/no-sticky-bonus" className={linkClass}>no-sticky bonus</Link>{" "}
-        holder dine rigtige penge og bonusmidler adskilt. Det betyder, at du kan hæve dine egne penge og gevinster herfra når som helst – uden at skulle opfylde omsætningskrav først. Det er den mest spillervenlige bonustype.
-      </>
-    ),
-  },
-  {
-    question: "Hvordan opretter jeg en konto hos et online casino?",
-    answer:
-      "Processen er enkel: Vælg et casino fra vores top 10, klik på linket, verificér dig med MitID, foretag din første indbetaling og aktivér din velkomstbonus. Hele processen tager typisk under 5 minutter.",
-  },
-  {
-    question: "Hvad er RTP, og hvorfor er det vigtigt?",
-    answer:
-      "RTP (Return to Player) angiver den gennemsnitlige tilbagebetaling til spillere over tid. En RTP på 96% betyder, at casinoet i gennemsnit beholder 4% af indsatserne. Jo højere RTP, desto bedre odds har du som spiller. Top casinoer tilbyder spil med RTP'er over 95%.",
-  },
-  {
-    question: "Er der forskel på nye og etablerede casinoer?",
-    answer: (
-      <>
-        Begge har fordele. <Link to="/nye-casinoer" className={linkClass}>Nye casinoer</Link>{" "}
-        tilbyder ofte bedre velkomstbonusser og moderne design, mens etablerede casinoer har lang dokumenteret pålidelighed. Det vigtigste er altid, at casinoet har dansk licens.
-      </>
-    ),
-  },
-  {
-    question: "Kan jeg sætte grænser for mit forbrug?",
-    answer: (
-      <>
-        Ja, alle danske licenserede casinoer tilbyder selvbegrænsningsværktøjer, hvor du kan sætte daglige, ugentlige eller månedlige indbetalingsgrænser. Du kan også selvudelukke via{" "}
-        <a href="https://www.rofus.nu/" target="_blank" rel="noopener noreferrer" className={linkClass}>ROFUS</a>. Læs mere om{" "}
-        <Link to="/responsible-gaming" className={linkClass}>ansvarligt spil</Link>.
-      </>
-    ),
-  },
-  {
-    question: "Hvad er de mest populære casino spil online?",
-    answer: (
-      <>
-        De mest populære spil inkluderer spilleautomater (slots) som Book of Dead, Starburst og Sweet Bonanza, samt{" "}
-        <Link to="/live-casino" className={linkClass}>live casino</Link>-spil som blackjack, roulette og baccarat. De bedste casinoer tilbyder hundredvis af spil fra førende{" "}
-        <Link to="/spiludviklere" className={linkClass}>spiludviklere</Link>.
+        Spilleautomater dominerer med ca. 70 % af al omsætning på danske casinoer. De mest spillede titler inkluderer Sweet Bonanza (Pragmatic Play, 96,48 % RTP), Book of Dead (Play'n GO, 96,21 % RTP) og Starburst (NetEnt, 96,09 % RTP).{" "}
+        <Link to="/live-casino" className={linkClass}>Live casino</Link> er det hurtigst voksende segment med Lightning Roulette og Crazy Time fra{" "}
+        <Link to="/spiludviklere/evolution-gaming" className={linkClass}>Evolution Gaming</Link> som de mest populære. Højvolatile slots fra{" "}
+        <Link to="/spiludviklere/nolimit-city" className={linkClass}>Nolimit City</Link> og{" "}
+        <Link to="/spiludviklere/hacksaw-gaming" className={linkClass}>Hacksaw Gaming</Link> har vundet markant popularitet blandt erfarne spillere.
       </>
     ),
   },
