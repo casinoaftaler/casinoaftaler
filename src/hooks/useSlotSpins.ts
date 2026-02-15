@@ -62,18 +62,21 @@ export function useSlotSpins() {
 
   // Function to check if user has enough spins for a given bet
   const hasEnoughSpins = (betAmount: number): boolean => {
-    return (spinsData?.spins_remaining ?? 0) >= betAmount;
+    const available = spinsData ? spinsData.spins_remaining : maxSpins;
+    return available >= betAmount;
   };
 
   // Calculate max spins (daily + permanent bonus, capped at MAX_SPINS_CAP)
   const maxSpins = Math.min(settings.dailySpins + bonusSpinsPermanent, MAX_SPINS_CAP);
 
+  const spinsRemaining = spinsData ? spinsData.spins_remaining : maxSpins;
+
   return {
-    spinsRemaining: spinsData?.spins_remaining ?? 0,
+    spinsRemaining,
     maxSpins,
     bonusSpinsPermanent,
     isLoading,
-    canSpin: (spinsData?.spins_remaining ?? 0) > 0,
+    canSpin: spinsRemaining > 0,
     hasEnoughSpins,
   };
 }
