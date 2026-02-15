@@ -25,7 +25,7 @@ export const organizationSchema = {
   "@type": "Organization",
   name: "Casinoaftaler.dk",
   url: SITE_URL,
-  logo: `${SITE_URL}/favicon.ico`,
+  logo: "https://zhpbqqhtgnblaugrqhqi.supabase.co/storage/v1/object/public/casino-logos/header-icon.jpg",
   sameAs: [
     "https://www.twitch.tv/fedesvinansen",
     "https://www.instagram.com/casinoaftaler",
@@ -72,7 +72,7 @@ export function buildArticleSchema(opts: {
       url: SITE_URL,
       logo: {
         "@type": "ImageObject",
-        url: `${SITE_URL}/favicon.ico`,
+        url: "https://zhpbqqhtgnblaugrqhqi.supabase.co/storage/v1/object/public/casino-logos/header-icon.jpg",
       },
     },
   };
