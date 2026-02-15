@@ -953,8 +953,8 @@ Deno.serve(async (req) => {
       if (!previousRecord) {
         startValue = maxSpins;
       } else if (previousRecord.spins_remaining >= maxSpins) {
-        // Carry over but enforce absolute max
-        startValue = Math.min(previousRecord.spins_remaining, ABSOLUTE_MAX_CREDITS);
+        // Carry over as-is — do NOT reduce gifted/rewarded balances
+        startValue = previousRecord.spins_remaining;
       } else {
         startValue = maxSpins;
       }

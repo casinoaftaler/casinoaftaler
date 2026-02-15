@@ -156,21 +156,37 @@ export function SpinManagementSection() {
     mutationFn: async (amount: number) => {
       if (!users || users.length === 0) throw new Error("No users found");
 
-      const operations = users.map(async (user) => {
-        const newSpins = Math.max(0, user.spins_remaining + amount);
+      const ABSOLUTE_MAX_CREDITS = 1000;
 
-        if (user.spin_record_id) {
-          return supabase
-            .from("slot_spins")
-            .update({ spins_remaining: newSpins })
-            .eq("id", user.spin_record_id);
-        } else {
-          return supabase.from("slot_spins").insert({
-            user_id: user.user_id,
-            date: today,
-            spins_remaining: newSpins,
-          });
-        }
+      const operations = users.map(async (user) => {
+        const newSpins = Math.min(
+          Math.max(0, user.spins_remaining + amount),
+          ABSOLUTE_MAX_CREDITS
+        );
+
+        const spinResult = user.spin_record_id
+          ? await supabase
+              .from("slot_spins")
+              .update({ spins_remaining: newSpins })
+              .eq("id", user.spin_record_id)
+          : await supabase.from("slot_spins").insert({
+              user_id: user.user_id,
+              date: today,
+              spins_remaining: newSpins,
+            });
+
+        if (spinResult.error) return spinResult;
+
+        // Log each allocation
+        const actualAmount = newSpins - user.spins_remaining;
+        await supabase.from("credit_allocation_log").insert({
+          user_id: user.user_id,
+          amount: actualAmount,
+          source: "admin_manual",
+          note: `Bulk: +${amount} credits (fra ${user.spins_remaining} til ${newSpins}${newSpins === ABSOLUTE_MAX_CREDITS ? ", capped" : ""})`,
+        });
+
+        return spinResult;
       });
 
       const results = await Promise.all(operations);
