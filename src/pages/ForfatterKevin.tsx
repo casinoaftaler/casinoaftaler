@@ -259,25 +259,25 @@ export default function ForfatterKevin() {
             Baggrund og Motivation
           </h2>
           <p className="text-muted-foreground leading-relaxed mb-4">
-            Kevin er 26 år og har streamet slots i over 3 år. Han mødte{" "}
+            Kevin er 26 år og har streamet slots i mere end tre år. Han mødte{" "}
             <Link to="/forfatter" className="text-primary hover:underline">Jonas</Link> gennem Twitch,
-            hvor de hurtigt fandt fælles interesse for streaming og online casino. Siden har de gæstet
-            hinandens streams flere gange og opbygget et stærkt samarbejde.
+            hvor de hurtigt fandt fælles interesse for streaming, online casino og opbygning af engagerede
+            communities. Siden har de samarbejdet på tværs af streams og udviklet et stærkt professionelt partnerskab.
           </p>
           <p className="text-muted-foreground leading-relaxed mb-4">
-            Kevin har tidligere arbejdet som editor for <strong>FaZe Clan</strong>, hvilket var grunden til,
-            at han i en periode blev omtalt som "Kevin Faze" i communityet. Hans erfaring fra en af verdens
-            største gaming-organisationer har givet ham unik indsigt i content creation og community building.
+            Tidligere har Kevin arbejdet som editor for <strong>FaZe Clan</strong>, en af verdens mest anerkendte
+            gaming-organisationer. Erfaringen herfra har givet ham solid indsigt i content creation, digital branding
+            og community management – kompetencer han i dag aktivt anvender i arbejdet med Casinoaftaler.dk.
           </p>
           <p className="text-muted-foreground leading-relaxed mb-4">
-            Da Instagram introducerede muligheden for at købe verificeringsbadge, købte Kevin det – hvilket
-            hurtigt blev en intern joke i Twitch-chatten. Herfra opstod kælenavnet <strong>"Mr. Verify"</strong>,
-            som stadig nævnes, når han dukker op på streamen.
+            Da Instagram introducerede muligheden for at købe et verificeringsbadge, valgte Kevin at benytte
+            funktionen. Det udviklede sig hurtigt til en humoristisk intern reference i Twitch-chatten, hvor han
+            siden har været kendt som <strong>"Mr. Verify"</strong> – et kælenavn, der stadig nævnes med et smil.
           </p>
           <p className="text-muted-foreground leading-relaxed mb-4">
-            I dag er Kevin en fast del af <strong>Casinoaftaler.dk</strong> som streamer samt IT medansvarlig
-            for hjemmeside og udvikling. Han bringer sin tekniske baggrund og sit skarpe øje for detaljer
-            ind i alt, hvad han laver.
+            I dag er Kevin en fast del af <strong>Casinoaftaler.dk</strong> som både streamer og medansvarlig for
+            hjemmeside og udvikling. Han bidrager med teknisk forståelse, analytisk tilgang og et skarpt øje for
+            detaljer i både indhold og platformens videre udvikling.
           </p>
         </section>
 
