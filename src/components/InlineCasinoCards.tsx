@@ -4,6 +4,16 @@ import { useCasinos } from "@/hooks/useCasinos";
 import { CasinoCard } from "@/components/CasinoCard";
 import { Separator } from "@/components/ui/separator";
 
+/** Only show casino cards for partner casinos */
+const PARTNER_SLUGS = [
+  "spildansknu",
+  "spilleautomaten",
+  "betinia",
+  "campobet",
+  "swift-casino",
+  "luna-casino",
+];
+
 interface InlineCasinoCardsProps {
   /** Heading displayed above the casino cards */
   title?: string;
@@ -22,7 +32,7 @@ export function InlineCasinoCards({
   const [openCasinoId, setOpenCasinoId] = useState<string | null>(null);
 
   const displayCasinos = (casinos ?? [])
-    .filter((c) => !excludeSlugs.includes(c.slug))
+    .filter((c) => PARTNER_SLUGS.includes(c.slug) && !excludeSlugs.includes(c.slug))
     .slice(0, count);
 
   const mapCasino = (casino: (typeof displayCasinos)[0]) => ({

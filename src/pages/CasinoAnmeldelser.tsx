@@ -12,7 +12,7 @@ import { CasinoCard } from "@/components/CasinoCard";
 import { useCasinos } from "@/hooks/useCasinos";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
 import casinoAnmeldelserHero from "@/assets/heroes/casino-anmeldelser-hero.jpg";
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import {
   Accordion,
   AccordionContent,
@@ -131,6 +131,7 @@ const CasinoAnmeldelser = () => {
   const { data: casinos, isLoading } = useCasinos();
   const { data: siteSettings } = useSiteSettings();
   const [openCasinoId, setOpenCasinoId] = useState<string | null>(null);
+  const [showAllReviews, setShowAllReviews] = useState(false);
   const heroBackgroundImage = siteSettings?.hero_background;
 
   const reviewCasinos = (casinos ?? []).filter((c) => reviewSlugs.includes(c.slug));
@@ -286,8 +287,14 @@ const CasinoAnmeldelser = () => {
             <Link to="/betalingsmetoder" className={linkClass}>betalingsmetoder</Link>, udbetalingstider, kundeservice og sikkerhed – alt hvad du behøver for at træffe det rigtige valg.
           </p>
 
-          <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-            {[
+          {(() => {
+            const allReviews = [
+              { name: "SpilDanskNu", slug: "spildansknu-anmeldelse", highlight: "No-Sticky bonus & dansk fokus", partner: true },
+              { name: "Spilleautomaten", slug: "spilleautomaten-anmeldelse", highlight: "2.500+ spil & 10x omsætning", partner: true },
+              { name: "Betinia", slug: "betinia-anmeldelse", highlight: "40+ udbydere & akkumulatorboost", partner: true },
+              { name: "Campobet", slug: "campobet-anmeldelse", highlight: "Casino + sportsbetting i ét", partner: true },
+              { name: "Swift Casino", slug: "swift-casino-anmeldelse", highlight: "Hot Or Cold & 3.300+ spil", partner: true },
+              { name: "Luna Casino", slug: "luna-casino-anmeldelse", highlight: "VIP-program & 50 free spins", partner: true },
               { name: "Danske Spil Casino", slug: "casino-anmeldelser/danske-spil", highlight: "Danmarks største spiludbyder" },
               { name: "LeoVegas", slug: "casino-anmeldelser/leovegas", highlight: "Mobilvenligt & prisbelønnet" },
               { name: "Mr Green", slug: "casino-anmeldelser/mr-green", highlight: "Green Gaming & ansvarligt spil" },
@@ -311,34 +318,48 @@ const CasinoAnmeldelser = () => {
               { name: "MarathonBet", slug: "casino-anmeldelser/marathonbet", highlight: "Konkurrencedygtige odds" },
               { name: "Casinostuen", slug: "casino-anmeldelser/casinostuen", highlight: "Dansk nichefokus" },
               { name: "Stake Casino", slug: "casino-anmeldelser/stake-casino", highlight: "Crypto & coming soon" },
-              { name: "SpilDanskNu", slug: "spildansknu-anmeldelse", highlight: "No-Sticky bonus & dansk fokus" },
-              { name: "Spilleautomaten", slug: "spilleautomaten-anmeldelse", highlight: "2.500+ spil & 10x omsætning" },
-              { name: "Betinia", slug: "betinia-anmeldelse", highlight: "40+ udbydere & akkumulatorboost" },
-              { name: "Swift Casino", slug: "swift-casino-anmeldelse", highlight: "Hot Or Cold & 3.300+ spil" },
-              { name: "Campobet", slug: "campobet-anmeldelse", highlight: "Casino + sportsbetting i ét" },
-              { name: "Luna Casino", slug: "luna-casino-anmeldelse", highlight: "VIP-program & 50 free spins" },
-            ].map((review) => (
-              <Card key={review.slug} className="group relative border-border bg-card">
-                <CardHeader className="pb-2">
-                  <CardTitle className="flex items-center gap-2 text-base">
-                    <Star className="h-4 w-4 text-primary" />
-                    {review.name}
-                  </CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <div className="flex items-center justify-between gap-2">
-                    <Badge variant="outline" className="text-xs">{review.highlight}</Badge>
-                    <Link
-                      to={`/${review.slug}`}
-                      className="text-sm font-medium text-primary underline hover:text-primary/80 whitespace-nowrap"
-                    >
-                      Læs →
-                    </Link>
-                  </div>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
+            ];
+
+            const partnerReviews = allReviews.filter((r) => r.partner);
+            const otherReviews = allReviews.filter((r) => !r.partner);
+            const displayReviews = showAllReviews ? allReviews : partnerReviews;
+
+            return (
+              <>
+                <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+                  {displayReviews.map((review) => (
+                    <Card key={review.slug} className="group relative border-border bg-card">
+                      <CardHeader className="pb-2">
+                        <CardTitle className="flex items-center gap-2 text-base">
+                          <Star className="h-4 w-4 text-primary" />
+                          {review.name}
+                        </CardTitle>
+                      </CardHeader>
+                      <CardContent>
+                        <div className="flex items-center justify-between gap-2">
+                          <Badge variant="outline" className="text-xs">{review.highlight}</Badge>
+                          <Link
+                            to={`/${review.slug}`}
+                            className="text-sm font-medium text-primary underline hover:text-primary/80 whitespace-nowrap"
+                          >
+                            Læs →
+                          </Link>
+                        </div>
+                      </CardContent>
+                    </Card>
+                  ))}
+                </div>
+                {!showAllReviews && otherReviews.length > 0 && (
+                  <button
+                    onClick={() => setShowAllReviews(true)}
+                    className="mt-4 w-full rounded-lg border border-border bg-card p-3 text-sm font-medium text-primary hover:bg-accent/10 transition-colors"
+                  >
+                    Vis alle {allReviews.length} casino anmeldelser ↓
+                  </button>
+                )}
+              </>
+            );
+          })()}
         </section>
 
         <InlineCasinoCards title="Anbefalede Casinoer" />
