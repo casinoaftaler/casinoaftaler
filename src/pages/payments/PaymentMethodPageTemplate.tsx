@@ -332,19 +332,18 @@ export function PaymentMethodPage({
 
         <Separator className="my-10" />
 
-        {/* Other payment methods */}
+        {/* Related payment methods (max 3 siblings + hub) */}
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold">Andre Betalingsmetoder</h2>
+          <h2 className="mb-4 text-3xl font-bold">Relaterede Betalingsmetoder</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
-            Udforsk vores dybdegående guides til andre populære{" "}
-            <Link to="/betalingsmetoder" className="text-primary underline hover:text-primary/80">betalingsmetoder</Link>{" "}
-            på danske casinoer. Prøv også vores{" "}
-            <Link to="/community/slots" className="text-primary underline hover:text-primary/80">gratis spillehal</Link>{" "}
-            – helt uden indbetaling.
+            Se vores komplette{" "}
+            <Link to="/betalingsmetoder" className="text-primary underline hover:text-primary/80">oversigt over betalingsmetoder</Link>{" "}
+            på danske casinoer.
           </p>
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3">
+          <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
             {paymentLinks
               .filter((pm) => pm.to !== currentPath)
+              .slice(0, 3)
               .map((pm) => (
                 <Link
                   key={pm.to}
