@@ -5,7 +5,9 @@ import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Trophy, Medal, Award, Crown, Sparkles, Gamepad2, ArrowRight, LogIn, Clock, Timer, Gift } from "lucide-react";
+import { Trophy, Medal, Award, Crown, Sparkles, Gamepad2, ArrowRight, LogIn, Clock, Timer, Gift, User, CalendarDays, BookOpen } from "lucide-react";
+import { RelatedGuides } from "@/components/RelatedGuides";
+import { useSiteSettings } from "@/hooks/useSiteSettings";
 import { UserProfileLink } from "@/components/UserProfileLink";
 import { useAuth } from "@/hooks/useAuth";
 import { useTournaments, useTournamentLeaderboard, type Tournament, type TournamentEntry } from "@/hooks/useTournaments";
@@ -308,39 +310,52 @@ export default function Leaderboard() {
   const ended = tournaments?.filter((t) => t.status === "ended") || [];
 
   return (
-    <div className="min-h-[calc(100vh-4rem)] relative">
+    <>
       <SEO
         title="Turneringer – Slot Turneringer | Casinoaftaler"
         description="Deltag i slot-turneringer og vind præmier! Se aktive turneringer, ranglister og vindere hos Casinoaftaler."
       />
-      <div className="absolute inset-0 bg-gradient-to-b from-background via-background to-background -z-10" />
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-primary/8 via-transparent to-transparent -z-10" />
 
-      {/* Hero */}
+      {/* Hero Section */}
       <section
-        className="relative overflow-hidden py-14 md:py-20"
-        style={{ background: "linear-gradient(135deg, hsl(260 70% 20%), hsl(250 60% 15%) 40%, hsl(210 80% 20%))" }}
+        className="relative overflow-hidden py-12 text-white md:py-20"
+        style={{
+          backgroundImage: "linear-gradient(135deg, hsl(260 70% 25%), hsl(250 60% 20%) 40%, hsl(210 80% 25%))",
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+        }}
       >
-        <div className="container relative z-10">
-          <div className="mx-auto max-w-2xl text-center space-y-4">
-            <div className="mx-auto mb-4 h-20 w-20 rounded-full bg-amber-500/15 backdrop-blur-sm border border-amber-500/20 flex items-center justify-center animate-pulse">
-              <Trophy className="h-10 w-10 text-amber-400" />
-            </div>
-            <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-white">Turneringer</h1>
-            <p className="text-white/70 text-base md:text-lg max-w-lg mx-auto">
-              Deltag i slot-turneringer og kæmp om præmier!
+        <div className="container">
+          <div className="mx-auto max-w-3xl text-center">
+            <Badge variant="secondary" className="mb-4">
+              <Sparkles className="mr-1.5 h-3.5 w-3.5" />
+              Kæmp om Præmier
+            </Badge>
+            <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">Turneringer</h1>
+            <p className="text-lg text-white/80">
+              Deltag i slot-turneringer og kæmp om præmier! Se aktive turneringer, ranglister og vindere.
             </p>
           </div>
         </div>
-        <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          <div className="absolute -left-10 top-10 h-40 w-40 rounded-full bg-amber-500 opacity-10 blur-3xl" style={{ animation: "float 6s ease-in-out infinite" }} />
-          <div className="absolute -bottom-10 -right-10 h-56 w-56 rounded-full bg-purple-500 opacity-10 blur-3xl" style={{ animation: "float 8s ease-in-out infinite 1s" }} />
-        </div>
-        <style>{`@keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-15px); } }`}</style>
       </section>
 
-      {/* Content */}
-      <div className="container py-10">
+      <div className="container py-8 md:py-12">
+        {/* Meta info bar */}
+        <div className="mb-8 flex flex-wrap items-center gap-x-6 gap-y-2 text-sm text-muted-foreground">
+          <div className="flex items-center gap-1.5">
+            <User className="h-4 w-4" />
+            <span>Skrevet af: <span className="font-medium text-foreground">Casinoaftaler</span></span>
+          </div>
+          <div className="flex items-center gap-1.5">
+            <CalendarDays className="h-4 w-4" />
+            <span>Siden opdateret: <span className="font-medium text-foreground">15-02-2026</span></span>
+          </div>
+          <div className="flex items-center gap-1.5">
+            <BookOpen className="h-4 w-4" />
+            <span>Læsetid: <span className="font-medium text-foreground">2 Min.</span></span>
+          </div>
+        </div>
+
         {!loading && !user ? (
           <Card className="max-w-md mx-auto border-primary/20 bg-card/80 backdrop-blur-sm">
             <CardContent className="py-12 text-center space-y-4">
@@ -399,7 +414,11 @@ export default function Leaderboard() {
             )}
           </div>
         )}
+
+        <div className="mt-12">
+          <RelatedGuides currentPath="/community/leaderboard" />
+        </div>
       </div>
-    </div>
+    </>
   );
 }
