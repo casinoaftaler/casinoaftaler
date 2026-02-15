@@ -124,9 +124,26 @@ export const Header = memo(function Header() {
           <Link to="/nye-casinoer" className="flex items-center gap-1.5 text-sm font-medium transition-colors hover:text-primary">
             Nye Casinoer
           </Link>
-          <Link to="/casinospil" className="flex items-center gap-1.5 text-sm font-medium transition-colors hover:text-primary">
-            Casinospil
-          </Link>
+          <DropdownMenu>
+            <DropdownMenuTrigger className="flex items-center gap-1.5 text-sm font-medium transition-colors hover:text-primary">
+              Casinospil <ChevronDown className="h-4 w-4" />
+            </DropdownMenuTrigger>
+            <DropdownMenuContent align="center" className="bg-popover z-50">
+              <DropdownMenuItem asChild>
+                <Link to="/casinospil" className="flex items-center gap-2">
+                  <Dices className="h-4 w-4" />
+                  Casinospil Oversigt
+                </Link>
+              </DropdownMenuItem>
+              <DropdownMenuSeparator />
+              <DropdownMenuItem asChild>
+                <Link to="/casinospil/spillemaskiner" className="flex items-center gap-2">
+                  <Gamepad2 className="h-4 w-4" />
+                  Spillemaskiner
+                </Link>
+              </DropdownMenuItem>
+            </DropdownMenuContent>
+          </DropdownMenu>
           <Link to="/live-casino" className="flex items-center gap-1.5 text-sm font-medium transition-colors hover:text-primary">
             Live Casino
           </Link>
@@ -497,10 +514,28 @@ export const Header = memo(function Header() {
               <Sparkles className="h-4 w-4" />
               Nye Casinoer
             </Link>
-            <Link to="/casinospil" className="flex items-center gap-2 py-3 text-sm font-medium transition-colors hover:text-primary border-b border-border/50" onClick={() => setMobileMenuOpen(false)}>
-              <Dices className="h-4 w-4" />
-              Casinospil
-            </Link>
+            <button
+              onClick={() => setExpandedSection(expandedSection === "casinospil" ? null : "casinospil")}
+              className="flex items-center justify-between py-3 text-sm font-medium transition-colors hover:text-primary border-b border-border/50"
+            >
+              <span className="flex items-center gap-2">
+                <Dices className="h-4 w-4" />
+                Casinospil
+              </span>
+              <ChevronDown className={`h-4 w-4 transition-transform duration-200 ${expandedSection === "casinospil" ? "rotate-180" : ""}`} />
+            </button>
+            {expandedSection === "casinospil" && (
+              <div className="flex flex-col border-b border-border/50 bg-muted/30">
+                <Link to="/casinospil" className="ml-6 flex items-center gap-2 py-2.5 text-sm font-medium text-foreground transition-colors hover:text-primary" onClick={() => setMobileMenuOpen(false)}>
+                  <Dices className="h-4 w-4" />
+                  Casinospil Oversigt
+                </Link>
+                <Link to="/casinospil/spillemaskiner" className="ml-6 flex items-center gap-2 py-2.5 text-sm text-muted-foreground transition-colors hover:text-primary" onClick={() => setMobileMenuOpen(false)}>
+                  <Gamepad2 className="h-4 w-4" />
+                  Spillemaskiner
+                </Link>
+              </div>
+            )}
             <Link to="/live-casino" className="flex items-center gap-2 py-3 text-sm font-medium transition-colors hover:text-primary border-b border-border/50" onClick={() => setMobileMenuOpen(false)}>
               <Tv className="h-4 w-4" />
               Live Casino
