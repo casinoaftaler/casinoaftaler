@@ -1,90 +1,54 @@
 
+## Fix: Tilfoej fuld hero-sektion paa alle 8 nye casinospil-sider
 
-## 8 nye casinospil-undersider
+### Problem
+Alle 8 nye sider bruger en tynd gradient-bar (`h-16 md:h-24`) i stedet for den fulde hero-sektion med titel, badge og beskrivelse, som bruges paa sider som "Nye Casinoer", "Casino Bonus" osv.
 
-### Oversigt
-Der oprettes 8 nye sider under `/casinospil/`-stien, som alle folger den etablerede skabelon fra Spillemaskiner og Hoj RTP-siderne. Hver side far minimum 3.000 ord unikt indhold, AI-genereret hero-billede, 7 unikke FAQ'er med JSON-LD schema, metadata-bar, breadcrumbs og RelatedGuides.
+### Loesning
+Erstat den tynde gradient-div paa alle 8 sider med en fuld hero-sektion der foelger det etablerede moenster fra NyeCasinoer:
 
-### Nye sider og URL-struktur
+```text
+<section className="relative overflow-hidden py-12 text-white md:py-20"
+  style={{ backgroundImage: "linear-gradient(135deg, ...)" }}>
+  <div className="container">
+    <div className="mx-auto max-w-3xl text-center">
+      <Badge>Opdateret Februar 2026</Badge>
+      <h1>Sidetitel</h1>
+      <p>Kort beskrivelse</p>
+    </div>
+  </div>
+</section>
+```
 
-| Side | URL | Filnavn |
-|------|-----|---------|
-| Blackjack Regler | `/casinospil/blackjack` | `src/pages/casinospil/BlackjackGuide.tsx` |
-| Roulette Regler | `/casinospil/roulette` | `src/pages/casinospil/RouletteGuide.tsx` |
-| Poker Regler | `/casinospil/poker` | `src/pages/casinospil/PokerGuide.tsx` |
-| Craps Regler | `/casinospil/craps` | `src/pages/casinospil/CrapsGuide.tsx` |
-| Baccarat Regler | `/casinospil/baccarat` | `src/pages/casinospil/BaccaratGuide.tsx` |
-| Roulette Strategi | `/casinospil/roulette-strategi` | `src/pages/casinospil/RouletteStrategiGuide.tsx` |
-| Online Lotteri | `/casinospil/online-lotteri` | `src/pages/casinospil/OnlineLotteriGuide.tsx` |
-| Online Game Shows | `/casinospil/game-shows` | `src/pages/casinospil/GameShowsGuide.tsx` |
+Derudover flyttes H1-titlen fra broed-indholdet op i hero-sektionen, saa den vises med hvid tekst paa den farvede baggrund.
 
-### Indholdstemaer pr. side (3.000+ ord, helt unikke formuleringer)
+### Aendringer pr. side
 
-**Blackjack Regler**: Spillets historie fra 1700-tallet, kortvaerdier og optaelling, haard vs. blod hand, splitting og doubling down, forsikring, surrender, soft 17-reglen, multi-hand blackjack, blackjack-varianter (European, Atlantic City, Spanish 21), house edge-analyse pr. variant, grundlaeggende strategi-tabel, bankroll management, live blackjack hos danske casinoer, bonusregler for bordspil.
-
-**Roulette Regler**: Hjulets opbygning (europaeisk vs. amerikansk), indre og ydre væddemaal, straight up/split/street/corner/line, kolonner og dusiner, roulette-varianter (French, European, American, Lightning), La Partage og En Prison regler, RTP-sammenligning, live roulette-formater, hastighedsroulette, historie og udvikling.
-
-**Poker Regler**: Casino poker vs. turneringspoker, Texas Hold'em regler trin-for-trin, Omaha og Three Card Poker, Caribbean Stud Poker, Video Poker-varianter og RTP, handraekkefolge fra Royal Flush til High Card, positionsspil, bluffing-strategi, pot odds og implied odds, bankroll management, live poker hos danske casinoer.
-
-**Craps Regler**: Terningspillets anatomi, Pass Line og Don't Pass, Come og Don't Come, odds bets, proposition bets, house edge pr. vaeddemaal, craps-etikette, online vs. live craps, strategier for begyndere, historisk kontekst.
-
-**Baccarat Regler**: Punto Banco-regler, kortvaerdier, tredje-kort-regler for Player og Banker, Tie-vaeddemaal og house edge, Mini Baccarat, Squeeze Baccarat, Lightning Baccarat, baccarat-strategier, bankroll management, baccarat i asiatisk casinokultur.
-
-**Roulette Strategi**: Martingale, omvendt Martingale, D'Alembert, Fibonacci, Labouchere, James Bond-strategien, sektorvaeddemaal, matematisk analyse af hver strategi, simuleringer og forventet vaerdi, risikoprofiler, myteaflivning, praktiske tips til danske spillere.
-
-**Online Lotteri**: Danske lotterityper, Euro Jackpot, Lotto, Keno, scratchcards, odds-sammenligning, RTP for lotterispil, lovgivning i Danmark, Spillemyndigheden og lotteri, tips til responsibelt lottospil, digitale lotteriplatforme.
-
-**Online Game Shows**: Evolution Gaming's game show-koncept, Crazy Time, Dream Catcher, Monopoly Live, Lightning-serien, Deal or No Deal Live, spillemekanikker, RTP og volatilitet, live studio-produktion, strategier, sammenligning med traditionelle casinospil.
-
-### Skabelon pr. side (identisk med Spillemaskiner/Hoj RTP)
-- `<SEO>` komponent med unik title/description + FAQ JSON-LD + BreadcrumbList JSON-LD
-- Gradient top bar
-- Metadata-bar (forfatter, dato, laesetid)
-- Hero-billede med `max-h-[400px]`
-- H1 med tracking-tight
-- 6-8 sektioner med H2/H3, Cards, interne links
-- 7 unikke FAQ'er (80-150 ord pr. svar, JSX med interne links)
-- `<RelatedGuides>` i bunden
-- Separator mellem sektioner
+| Side | Gradient-farver | Hero-titel | Hero-beskrivelse |
+|------|----------------|------------|-----------------|
+| BlackjackGuide | Groen (160/140/120) | Blackjack Regler 2026 | Guide til kortvaerdier, strategi og varianter |
+| RouletteGuide | Roed (0/350/340) | Roulette Regler 2026 | Guide til vaeddemaal, odds og varianter |
+| PokerGuide | Blaa (210/220/230) | Poker Regler 2026 | Guide til Texas Hold'em, Omaha og strategi |
+| CrapsGuide | Brun/orange (30/20/10) | Craps Regler 2026 | Guide til terningspil, odds bets og strategi |
+| BaccaratGuide | Pink/lilla (330/340/350) | Baccarat Regler 2026 | Guide til Punto Banco, kortregler og strategi |
+| RouletteStrategiGuide | Guld (45/35/25) | Roulette Strategi 2026 | Martingale, Fibonacci og matematisk analyse |
+| OnlineLotteriGuide | Gul (50/40/30) | Online Lotteri 2026 | Guide til Keno, skrabelodder og odds |
+| GameShowsGuide | Lilla (280/300/320) | Online Game Shows 2026 | Guide til Crazy Time, Dream Catcher og mere |
 
 ### Filer der aendres
 
-| Fil | Aendring |
-|-----|----------|
-| `src/pages/casinospil/BlackjackGuide.tsx` | Ny fil |
-| `src/pages/casinospil/RouletteGuide.tsx` | Ny fil |
-| `src/pages/casinospil/PokerGuide.tsx` | Ny fil |
-| `src/pages/casinospil/CrapsGuide.tsx` | Ny fil |
-| `src/pages/casinospil/BaccaratGuide.tsx` | Ny fil |
-| `src/pages/casinospil/RouletteStrategiGuide.tsx` | Ny fil |
-| `src/pages/casinospil/OnlineLotteriGuide.tsx` | Ny fil |
-| `src/pages/casinospil/GameShowsGuide.tsx` | Ny fil |
-| 8 hero-billeder i `src/assets/heroes/` | Nye AI-genererede billeder |
-| `src/App.tsx` | 8 nye lazy-loaded routes |
-| `src/lib/seoRoutes.ts` | 8 nye SEO-routes med priority 0.9 |
-| `src/components/Breadcrumbs.tsx` | 8 nye route labels |
-| `src/components/RelatedGuides.tsx` | Tilfojer de 8 nye sider til `generalGuides` |
-| `src/components/Header.tsx` | Tilfojer alle 8 sider i Casinospil-dropdown (desktop submenu + mobil) som underpunkter, ligesom Spillemaskiner er nu |
+Alle 8 filer i `src/pages/casinospil/`:
+- `BlackjackGuide.tsx`
+- `RouletteGuide.tsx`
+- `PokerGuide.tsx`
+- `CrapsGuide.tsx`
+- `BaccaratGuide.tsx`
+- `RouletteStrategiGuide.tsx`
+- `OnlineLotteriGuide.tsx`
+- `GameShowsGuide.tsx`
 
-### Navigation (Header)
-Desktop: Under "Casinospil" dropdown far vi separate links for hver ny side, grupperet under "Casinospil Oversigt". Spillemaskiner beholder sin eksisterende submenu. De nye sider tilfojes som direkte links (ikke sub-submenus):
+### Praecis aendring pr. fil
 
-```
-Casinospil Oversigt
----
-Spillemaskiner >  (eksisterende submenu)
-Blackjack
-Roulette
-Roulette Strategi
-Poker
-Craps
-Baccarat
-Online Lotteri
-Game Shows
-```
-
-Mobil: Samme struktur under "Casinospil" expandable section med `ml-6` indrykning.
-
-### SEO Routes
-Alle 8 sider registreres med `changefreq: "weekly"` og `priority: 0.9` for at matche de andre casinospil-undersider.
-
+1. Tilfoej `Badge` import fra `@/components/ui/badge` og `Sparkles` ikon
+2. Erstat den tynde gradient-div med fuld hero-sektion (ca. 15 linjer)
+3. Fjern den gamle H1-tag fra container-indholdet (den flyttes op i hero)
