@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { SEO } from "@/components/SEO";
 import { HeroSection } from "@/components/HeroSection";
+import { QuickNavBar } from "@/components/QuickNavBar";
+import { SpillehalPromoBanner } from "@/components/SpillehalPromoBanner";
 import { CommunityPromoSection } from "@/components/CommunityPromoSection";
 import { CasinoCard } from "@/components/CasinoCard";
 import { BonusTypeCards } from "@/components/BonusTypeCards";
@@ -106,6 +108,7 @@ const Index = () => {
       />
 
       <HeroSection />
+      <QuickNavBar />
 
       {/* Top Casinos Section */}
       <section id="top-casinos" className="py-8 md:py-12">
@@ -212,6 +215,10 @@ const Index = () => {
             {" "}og professionel rådgivning fra{" "}
             <a href="https://www.stopspillet.dk/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline font-medium">StopSpillet</a>.
           </p>
+          {/* Spillehal Promo Banner */}
+          <div className="mb-12">
+            <SpillehalPromoBanner />
+          </div>
         </section>
 
         <Separator className="my-10" />
