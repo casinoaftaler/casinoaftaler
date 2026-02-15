@@ -6,6 +6,7 @@ import { SEO } from "@/components/SEO";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { RelatedGuides } from "@/components/RelatedGuides";
+import { InlineCasinoCards } from "@/components/InlineCasinoCards";
 import { type ReactNode } from "react";
 import {
   BarChart3,
@@ -148,6 +149,8 @@ export default function SpillemaskinerHoejRTP() {
             RTP er ikke bare et abstrakt tal – det er den mest pålidelige indikator for, hvor spillervenlig en spilleautomat er. Hvor house edge repræsenterer casinoets fordel (100 % minus RTP), er RTP dit værktøj til at sammenligne spillemaskiner og træffe informerede valg. Alle <Link to="/casinospil/spillemaskiner" className={linkClass}>spillemaskiner</Link> hos danske licenserede casinoer har deres RTP certificeret af uafhængige testlaboratorier og godkendt af <Link to="/spillemyndigheden" className="text-primary underline hover:text-primary/80">Spillemyndigheden</Link>.
           </p>
         </section>
+
+        <InlineCasinoCards title="Bedste casinoer til høj RTP-slots" count={4} />
 
         {/* Section 2: How RTP is calculated */}
         <section className="mb-12">

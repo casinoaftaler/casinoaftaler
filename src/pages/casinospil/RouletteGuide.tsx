@@ -109,7 +109,7 @@ const RouletteGuide = () => {
       </section>
 
       <div className="container py-8 md:py-12">
-        <AuthorMetaBar author="redaktionen" date="15-02-2026" readTime="14 Min." />
+        <AuthorMetaBar author="jonas" date="15-02-2026" readTime="14 Min." />
 
         <div className="mb-10 overflow-hidden rounded-xl">
           <img src={rouletteHero} alt="Roulettehjul med kugle" className="w-full h-auto object-cover max-h-[400px]" loading="eager" />
@@ -130,6 +130,8 @@ const RouletteGuide = () => {
             I dag oplever roulette en renæssance takket være live casino-teknologi. Du kan spille roulette med en professionel dealer i realtid fra din stue, med kameravinkler, der viser kuglen i slow motion og close-up. Varianter som Lightning Roulette og Immersive Roulette har tilføjet nye dimensioner til det klassiske spil, mens grundreglerne forbliver trofaste mod originalen.
           </p>
         </section>
+
+        <InlineCasinoCards title="Bedste Casinoer til Roulette" count={4} />
 
         <Separator className="my-10" />
 

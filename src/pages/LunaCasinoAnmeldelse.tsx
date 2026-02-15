@@ -156,7 +156,7 @@ const LunaCasinoAnmeldelse = () => {
       </section>
 
       <div className="container py-8 md:py-12">
-        <AuthorMetaBar author="redaktionen" date="13-02-2026" readTime="16 Min." />
+        <AuthorMetaBar author="jonas" date="13-02-2026" readTime="16 Min." />
 
         <div className="mb-10 overflow-hidden rounded-xl">
           <img src={lunaHero} alt="Luna Casino – kvalitetsbevidst dansk casino med loyalitetsprogram" className="w-full h-auto object-cover max-h-[400px]" loading="eager" />

@@ -6,6 +6,7 @@ import { SEO } from "@/components/SEO";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { RelatedGuides } from "@/components/RelatedGuides";
+import { InlineCasinoCards } from "@/components/InlineCasinoCards";
 import { type ReactNode } from "react";
 import {
   Gamepad2,
@@ -184,6 +185,8 @@ const Spillemaskiner = () => {
             <Link to="/community/leaderboard" className={linkClass}>ranglisten</Link>.
           </p>
         </section>
+
+        <InlineCasinoCards title="Bedste casinoer til spillemaskiner" count={4} />
 
         <Separator className="my-10" />
 

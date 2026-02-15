@@ -117,6 +117,8 @@ const OnlineLotteriGuide = () => {
           <p className="text-muted-foreground leading-relaxed">Denne guide dækker alt om online lotteri i Danmark: spilletyper, odds og RTP, lovgivning, og praktiske tips til at maximere din underholdningsværdi. Vi sammenligner også lotterispil med traditionelle casinospil, så du kan træffe informerede valg om, hvor dine underholdningskroner giver mest værdi.</p>
         </section>
 
+        <InlineCasinoCards title="Bedste Online Casinoer til Lotteri" count={4} />
+
         <Separator className="my-10" />
 
         <section className="mb-12">

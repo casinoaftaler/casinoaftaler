@@ -154,6 +154,8 @@ const BlackjackGuide = () => {
           </p>
         </section>
 
+        <InlineCasinoCards title="Bedste Casinoer til Blackjack" count={4} />
+
         <Separator className="my-10" />
 
         {/* Section 2: Kortværdier */}
