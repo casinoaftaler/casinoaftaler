@@ -62,7 +62,7 @@ export function AuthorMetaBar({ author, date, readTime, showFactCheck = true }: 
             Faktatjekket
           </Badge>
           {author === "redaktionen" || author === "kevin" ? (
-            <Link to="/forfatter" className="flex items-center gap-1.5 group">
+            <Link to="/forfatter/jonas" className="flex items-center gap-1.5 group">
               <span>Af:</span>
               <img
                 src={jonasImage}

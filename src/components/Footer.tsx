@@ -262,9 +262,21 @@ export function Footer() {
             <h4 className="mb-4 text-sm font-semibold">Ansvarligt Spil & Juridisk</h4>
             <ul className="space-y-2 text-sm">
               <li>
-                <Link to="/om-teamet" className="flex items-center gap-2 text-muted-foreground transition-colors hover:text-foreground">
+                <Link to="/om" className="flex items-center gap-2 text-muted-foreground transition-colors hover:text-foreground">
                   <Users className="h-4 w-4" />
                   Om Teamet
+                </Link>
+              </li>
+              <li>
+                <Link to="/forretningsmodel" className="flex items-center gap-2 text-muted-foreground transition-colors hover:text-foreground">
+                  <Scale className="h-4 w-4" />
+                  Forretningsmodel
+                </Link>
+              </li>
+              <li>
+                <Link to="/redaktionel-politik" className="flex items-center gap-2 text-muted-foreground transition-colors hover:text-foreground">
+                  <FileText className="h-4 w-4" />
+                  Redaktionel Politik
                 </Link>
               </li>
               <li>

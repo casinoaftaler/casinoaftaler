@@ -289,7 +289,7 @@ export const Header = memo(function Header() {
             </DropdownMenuTrigger>
             <DropdownMenuContent align="center" className="bg-popover">
               <DropdownMenuItem asChild>
-                <Link to="/om-teamet" className="flex items-center gap-2">
+                <Link to="/om" className="flex items-center gap-2">
                   <Users className="h-4 w-4" />
                   Om Teamet
                 </Link>
@@ -301,7 +301,7 @@ export const Header = memo(function Header() {
                 </DropdownMenuSubTrigger>
                 <DropdownMenuSubContent className="bg-popover">
                   <DropdownMenuItem asChild>
-                    <Link to="/forfatter" className="flex items-center gap-2">
+                    <Link to="/forfatter/jonas" className="flex items-center gap-2">
                       <User className="h-4 w-4" />
                       Jonas – Grundlægger
                     </Link>
@@ -710,11 +710,11 @@ export const Header = memo(function Header() {
             </button>
             {expandedSection === "more" && (
               <div className="flex flex-col border-b border-border/50 bg-muted/30">
-                <Link to="/om-teamet" className="ml-6 flex items-center gap-2 py-2.5 text-sm text-muted-foreground transition-colors hover:text-primary" onClick={() => setMobileMenuOpen(false)}>
+                <Link to="/om" className="ml-6 flex items-center gap-2 py-2.5 text-sm text-muted-foreground transition-colors hover:text-primary" onClick={() => setMobileMenuOpen(false)}>
                   <Users className="h-4 w-4" />
                   Om Teamet
                 </Link>
-                <Link to="/forfatter" className="ml-6 flex items-center gap-2 py-2.5 text-sm text-muted-foreground transition-colors hover:text-primary" onClick={() => setMobileMenuOpen(false)}>
+                <Link to="/forfatter/jonas" className="ml-6 flex items-center gap-2 py-2.5 text-sm text-muted-foreground transition-colors hover:text-primary" onClick={() => setMobileMenuOpen(false)}>
                   <User className="h-4 w-4" />
                   Jonas – Grundlægger
                 </Link>

@@ -1,0 +1,248 @@
+import { Link } from "react-router-dom";
+import { SEO } from "@/components/SEO";
+import { Card, CardContent } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import { Separator } from "@/components/ui/separator";
+import {
+  FileText,
+  ShieldCheck,
+  CheckCircle2,
+  BookOpen,
+  RefreshCw,
+  Scale,
+  Search,
+  Eye,
+  Pen,
+  Users,
+} from "lucide-react";
+import { useSiteSettings } from "@/hooks/useSiteSettings";
+import { AuthorMetaBar } from "@/components/AuthorMetaBar";
+import { RelatedGuides } from "@/components/RelatedGuides";
+import { buildArticleSchema } from "@/lib/seo";
+
+const RedaktionelPolitik = () => {
+  const { data: siteSettings } = useSiteSettings();
+  const heroBackgroundImage = siteSettings?.hero_background;
+
+  const articleJsonLd = buildArticleSchema({
+    headline: "Redaktionel politik – Casinoaftaler.dk",
+    description: "Læs om vores redaktionelle retningslinjer, hvordan vi producerer indhold, og hvordan vi sikrer uafhængighed og kvalitet.",
+    url: "https://casinoaftaler.dk/redaktionel-politik",
+    datePublished: "2025-06-01",
+    dateModified: "2026-02-15",
+    authorName: "Jonas",
+    authorUrl: "https://casinoaftaler.dk/forfatter/jonas",
+  });
+
+  const breadcrumbJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Forside", item: "https://casinoaftaler.dk/" },
+      { "@type": "ListItem", position: 2, name: "Redaktionel Politik", item: "https://casinoaftaler.dk/redaktionel-politik" },
+    ],
+  };
+
+  const editorialSteps = [
+    { icon: Search, title: "Research & registrering", desc: "Vi opretter en reel konto, verificerer identitet og gennemfører hele registreringsprocessen som enhver anden spiller." },
+    { icon: Pen, title: "Praktisk test", desc: "Vi indbetaler, spiller og tester bonusser, kundeservice og udbetalingsprocesser med rigtige penge." },
+    { icon: Eye, title: "Analyse & dokumentation", desc: "Alle observationer dokumenteres systematisk efter faste kriterier. Vi vurderer brugeroplevelse, spiludvalg, bonusvilkår og sikkerhed." },
+    { icon: RefreshCw, title: "Løbende opdatering", desc: "Anmeldelser og guides opdateres løbende, når vilkår ændres, nye funktioner lanceres, eller casinoer forbedrer deres tilbud." },
+  ];
+
+  const guidelines = [
+    "Alt indhold er baseret på førstehåndserfaring – ikke pressemeddelelser eller marketing",
+    "Alle bonusvilkår verificeres manuelt og opdateres løbende",
+    "Kommercielle samarbejder oplyses tydeligt og påvirker aldrig vurderinger",
+    "Faktatjek udføres af en anden redaktør end forfatteren",
+    "Alle anmeldelser følger en standardiseret, dokumenteret vurderingsmetode",
+    "Indhold der ikke længere er aktuelt, fjernes eller opdateres",
+  ];
+
+  return (
+    <>
+      <SEO
+        title="Redaktionel Politik – Sådan produceres indhold på Casinoaftaler.dk"
+        description="Læs om vores redaktionelle retningslinjer, hvordan vi producerer indhold, og hvordan vi sikrer uafhængighed og kvalitet i alle anmeldelser."
+        jsonLd={[articleJsonLd, breadcrumbJsonLd]}
+      />
+
+      {/* Hero */}
+      <section
+        className="relative overflow-hidden py-12 text-white md:py-20"
+        style={{
+          backgroundImage: heroBackgroundImage
+            ? `linear-gradient(135deg, hsl(260 70% 18% / 0.97), hsl(210 80% 22% / 0.95)), url(${heroBackgroundImage})`
+            : "linear-gradient(135deg, hsl(260 70% 18%), hsl(250 60% 15%) 40%, hsl(210 80% 20%))",
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+        }}
+      >
+        <div className="container">
+          <div className="mx-auto max-w-3xl text-center">
+            <Badge variant="secondary" className="mb-4">
+              <FileText className="mr-1.5 h-3.5 w-3.5" />
+              Kvalitetssikring
+            </Badge>
+            <h1 className="mb-4 text-3xl font-bold tracking-tight md:text-5xl">
+              Redaktionel Politik
+            </h1>
+            <p className="text-lg text-white/80">
+              Sådan producerer, kvalitetssikrer og opdaterer vi indhold på Casinoaftaler.dk.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <div className="container py-10 md:py-14">
+        <AuthorMetaBar author="redaktionen" date="2026-02-15" readTime="6 min" />
+
+        {/* Vores redaktionelle proces */}
+        <section className="mb-12">
+          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
+            <BookOpen className="h-7 w-7 text-primary" />
+            Vores redaktionelle proces
+          </h2>
+          <p className="text-muted-foreground leading-relaxed mb-6">
+            Alt indhold på Casinoaftaler.dk gennemgår en struktureret proces fra research til 
+            publicering. Vi tror på, at kvalitetsindhold kræver tid, praktisk erfaring og 
+            systematisk dokumentation.
+          </p>
+          <div className="grid gap-4 md:grid-cols-2">
+            {editorialSteps.map((step, i) => (
+              <Card key={step.title} className="border-border bg-card">
+                <CardContent className="p-6">
+                  <div className="flex items-center gap-3 mb-3">
+                    <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary/10 text-primary font-bold text-sm">
+                      {i + 1}
+                    </div>
+                    <step.icon className="h-5 w-5 text-primary" />
+                  </div>
+                  <h3 className="mb-2 font-semibold">{step.title}</h3>
+                  <p className="text-sm text-muted-foreground leading-relaxed">{step.desc}</p>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </section>
+
+        <Separator className="my-10" />
+
+        {/* Anmeldelser */}
+        <section className="mb-12">
+          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
+            <Search className="h-7 w-7 text-primary" />
+            Sådan udformes anmeldelser
+          </h2>
+          <p className="text-muted-foreground leading-relaxed mb-4">
+            Vores casino-anmeldelser følger en standardiseret metode, der sikrer konsistens og 
+            sammenlignelighed. Hver anmeldelse vurderer casinoet på tværs af følgende områder:
+          </p>
+          <div className="rounded-xl border border-border bg-card p-6 space-y-3">
+            {[
+              "Bonusstruktur og omsætningskrav",
+              "Spiludvalg og softwarekvalitet",
+              "Udbetalingshastighed og betalingsmetoder",
+              "Kundeservice og supportkvalitet",
+              "Mobiloplevelse og brugervenlighed",
+              "Licensforhold og sikkerhed",
+              "Ansvarligt spil-funktioner",
+            ].map((item) => (
+              <div key={item} className="flex items-start gap-3">
+                <CheckCircle2 className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
+                <span className="font-medium">{item}</span>
+              </div>
+            ))}
+          </div>
+          <div className="mt-6">
+            <Link to="/saadan-tester-vi-casinoer">
+              <Button variant="outline" size="sm">
+                <ShieldCheck className="mr-1.5 h-4 w-4" />
+                Læs mere om vores testmetode
+              </Button>
+            </Link>
+          </div>
+        </section>
+
+        <Separator className="my-10" />
+
+        {/* Opdateringspolitik */}
+        <section className="mb-12">
+          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
+            <RefreshCw className="h-7 w-7 text-primary" />
+            Opdateringspolitik
+          </h2>
+          <p className="text-muted-foreground leading-relaxed mb-4">
+            Online casino-branchen ændrer sig hurtigt. Bonusser justeres, nye spil lanceres, og 
+            vilkår opdateres løbende. Derfor har vi en aktiv opdateringspolitik:
+          </p>
+          <ul className="space-y-2 text-muted-foreground">
+            <li className="flex items-start gap-3">
+              <CheckCircle2 className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
+              <span>Anmeldelser gennemgås minimum kvartalsvis og opdateres ved væsentlige ændringer</span>
+            </li>
+            <li className="flex items-start gap-3">
+              <CheckCircle2 className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
+              <span>Bonusguides opdateres løbende, når vilkår ændres</span>
+            </li>
+            <li className="flex items-start gap-3">
+              <CheckCircle2 className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
+              <span>Dato for seneste opdatering vises tydeligt på alle sider</span>
+            </li>
+            <li className="flex items-start gap-3">
+              <CheckCircle2 className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
+              <span>Forældet indhold fjernes eller markeres tydeligt</span>
+            </li>
+          </ul>
+        </section>
+
+        <Separator className="my-10" />
+
+        {/* Skelnen mellem kommercielt og redaktionelt */}
+        <section className="mb-12">
+          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
+            <Scale className="h-7 w-7 text-primary" />
+            Kommercielt vs. redaktionelt
+          </h2>
+          <p className="text-muted-foreground leading-relaxed mb-4">
+            Vi skelner altid klart mellem kommercielle samarbejder og redaktionelt indhold. 
+            Vores affiliate-partnerskaber finansierer platformen, men påvirker aldrig vores 
+            vurderinger eller anbefalinger.
+          </p>
+          <p className="text-muted-foreground leading-relaxed mb-6">
+            Læs mere om vores forretningsmodel og hvordan vi sikrer denne adskillelse:
+          </p>
+          <Link to="/forretningsmodel">
+            <Button variant="outline" size="sm">
+              <Scale className="mr-1.5 h-4 w-4" />
+              Vores forretningsmodel
+            </Button>
+          </Link>
+        </section>
+
+        <Separator className="my-10" />
+
+        {/* Retningslinjer */}
+        <section className="mb-12">
+          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
+            <Users className="h-7 w-7 text-primary" />
+            Redaktionelle retningslinjer
+          </h2>
+          <div className="rounded-xl border border-border bg-card p-6">
+            {guidelines.map((g) => (
+              <div key={g} className="flex items-start gap-3 py-2">
+                <CheckCircle2 className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
+                <span className="font-medium">{g}</span>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        <RelatedGuides currentPath="/redaktionel-politik" maxLinks={5} />
+      </div>
+    </>
+  );
+};
+
+export default RedaktionelPolitik;
