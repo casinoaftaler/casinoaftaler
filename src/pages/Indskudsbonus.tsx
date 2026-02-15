@@ -200,7 +200,7 @@ const Indskudsbonus = () => {
           </p>
           <p className="text-muted-foreground leading-relaxed">
             En indskudsbonus kaldes også for en matchbonus, da den netop
-            matcher en procentdel af din indbetaling. Alle indskudsbonusser
+            matcher en procentdel af din indbetaling. Det er en central del af vores samlede <Link to="/casino-bonus" className="text-primary underline hover:text-primary/80">casino bonus oversigt</Link>. Alle indskudsbonusser
             kommer med{" "}
             <Link to="/omsaetningskrav" className="text-primary underline hover:text-primary/80">
               omsætningskrav
@@ -215,7 +215,7 @@ const Indskudsbonus = () => {
             <Link to="/bonus-uden-indbetaling" className="text-primary underline hover:text-primary/80">
               bonus uden indbetaling
             </Link>
-            .
+            . Du kan også optjene ekstra bonus spins ved at deltage i vores <Link to="/community/rewards" className="text-primary underline hover:text-primary/80">rewards program</Link>.
           </p>
         </section>
 

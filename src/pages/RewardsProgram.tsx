@@ -44,7 +44,7 @@ export default function RewardsProgram() {
               Rewards Program
             </h1>
             <p className="text-lg text-white/80">
-              Optjen ekstra spins ved at bidrage til fællesskabet og udfylde din profil. Upload clips, udfyld din profil og request slots til livestream.
+              Optjen ekstra spins ved at bidrage til fællesskabet og udfylde din profil. Upload clips, udfyld din profil og request slots til livestream. Læs også vores guide til <Link to="/free-spins" className="text-white underline hover:text-white/80">free spins</Link> for flere måder at spille gratis på.
             </p>
           </div>
         </div>

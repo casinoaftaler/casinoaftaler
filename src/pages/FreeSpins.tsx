@@ -255,6 +255,13 @@ const FreeSpins = () => {
             </Link>
             .
           </p>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            Free spins er en af de mest populære kategorier i vores{" "}
+            <Link to="/casino-bonus" className="text-primary underline hover:text-primary/80">
+              casino bonus guide
+            </Link>{" "}
+            – sammenlign alle bonustyper og find det bedste tilbud til danske spillere.
+          </p>
           <p className="text-muted-foreground leading-relaxed">
             Vil du opleve free spins-mekanikken i praksis? I vores{" "}
             <Link to="/community/slots" className="text-primary underline hover:text-primary/80">

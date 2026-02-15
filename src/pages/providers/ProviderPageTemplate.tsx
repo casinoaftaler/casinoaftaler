@@ -115,6 +115,13 @@ export function ProviderPage({
       <section className="mb-12">
         <h2 className="mb-4 text-3xl font-bold">{introTitle}</h2>
         {introContent}
+        <p className="mt-4 text-muted-foreground leading-relaxed">
+          Læs vores komplette{" "}
+          <Link to="/spiludviklere" className="text-primary underline hover:text-primary/80">oversigt over spiludviklere</Link>{" "}
+          for at sammenligne {name} med andre førende studios i branchen, eller udforsk{" "}
+          <Link to="/casinospil" className="text-primary underline hover:text-primary/80">vores guide til casinospil</Link>{" "}
+          for at finde de bedste spil til din spillestil.
+        </p>
       </section>
     ),
     history: (
@@ -260,7 +267,10 @@ export function ProviderPage({
       <section className="mb-12">
         <h2 className="mb-4 text-3xl font-bold">Andre Spiludviklere</h2>
         <p className="mb-4 text-muted-foreground leading-relaxed">
-          Udforsk vores dybdegående guides til andre spiludviklere i casinobranchen.
+          Udforsk vores dybdegående guides til andre{" "}
+          <Link to="/spiludviklere" className="text-primary underline hover:text-primary/80">spiludviklere</Link>{" "}
+          i casinobranchen. Du kan også se hvilke spil vi streamer live i{" "}
+          <Link to="/highlights" className="text-primary underline hover:text-primary/80">vores community highlights</Link>.
         </p>
         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3">
           {providerLinks

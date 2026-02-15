@@ -176,6 +176,13 @@ export function PaymentMethodPage({
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold">{introTitle}</h2>
           {introContent}
+          <p className="mt-4 text-muted-foreground leading-relaxed">
+            Se vores komplette{" "}
+            <Link to="/betalingsmetoder" className="text-primary underline hover:text-primary/80">sammenligning af betalingsmetoder</Link>{" "}
+            for at finde den metode, der passer bedst til dine behov, eller læs vores{" "}
+            <Link to="/casino-anmeldelser" className="text-primary underline hover:text-primary/80">casino anmeldelser</Link>{" "}
+            for at se, hvilke metoder hvert casino understøtter.
+          </p>
         </section>
 
         <Separator className="my-10" />
@@ -329,7 +336,11 @@ export function PaymentMethodPage({
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold">Andre Betalingsmetoder</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
-            Udforsk vores dybdegående guides til andre populære betalingsmetoder på danske casinoer.
+            Udforsk vores dybdegående guides til andre populære{" "}
+            <Link to="/betalingsmetoder" className="text-primary underline hover:text-primary/80">betalingsmetoder</Link>{" "}
+            på danske casinoer. Prøv også vores{" "}
+            <Link to="/community/slots" className="text-primary underline hover:text-primary/80">gratis spillehal</Link>{" "}
+            – helt uden indbetaling.
           </p>
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3">
             {paymentLinks

@@ -205,6 +205,11 @@ const LiveCasino = () => {
             <Link to="/spiludviklere" className="text-primary hover:underline font-medium">spiludviklere</Link>
             {" "}bag spillene, og hvilke casinoer der leverer de bedste live oplevelser til danske spillere.
           </p>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            Live casino er en af de mest engagerende kategorier inden for{" "}
+            <Link to="/casinospil" className="text-primary hover:underline font-medium">casinospil</Link>{" "}
+            – udforsk alle spiltyper i vores komplette guide.
+          </p>
           <p className="text-muted-foreground leading-relaxed">
             Se de bedste casino-øjeblikke fra vores streams på{" "}
             <Link to="/highlights" className="text-primary hover:underline font-medium">vores highlights-side</Link>

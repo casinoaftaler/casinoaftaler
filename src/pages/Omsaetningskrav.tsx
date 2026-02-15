@@ -214,7 +214,7 @@ const Omsaetningskrav = () => {
             . Det er afgørende, at du forstår omsætningskrav fuldt ud,
             inden du accepterer et tilbud.
           </p>
-          <p className="text-muted-foreground leading-relaxed">
+          <p className="mb-4 text-muted-foreground leading-relaxed">
             Udtrykket stammer fra det engelske "Wagering Requirement" og
             betyder i bund og grund, at casinoet kræver, at du satser et
             bestemt beløb, før du kan hæve penge. Ønsker du at undgå dette
@@ -227,6 +227,16 @@ const Omsaetningskrav = () => {
               no-sticky bonus
             </Link>
             , der adskiller dine egne penge fra bonuspengene.
+          </p>
+          <p className="text-muted-foreground leading-relaxed">
+            Omsætningskrav er et centralt emne i vores{" "}
+            <Link to="/casino-bonus" className="text-primary underline hover:text-primary/80">
+              casino bonus oversigt
+            </Link>
+            , hvor vi gennemgår alle bonustyper og deres vilkår. Du kan også prøve at gennemspille bonusrunder risikofrit i vores{" "}
+            <Link to="/community/slots" className="text-primary underline hover:text-primary/80">
+              gratis spillehal
+            </Link>.
           </p>
         </section>
 
