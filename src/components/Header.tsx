@@ -136,18 +136,27 @@ export const Header = memo(function Header() {
                 </Link>
               </DropdownMenuItem>
               <DropdownMenuSeparator />
-              <DropdownMenuItem asChild>
-                <Link to="/casinospil/spillemaskiner" className="flex items-center gap-2">
+              <DropdownMenuSub>
+                <DropdownMenuSubTrigger className="flex items-center gap-2">
                   <Gamepad2 className="h-4 w-4" />
                   Spillemaskiner
-                </Link>
-              </DropdownMenuItem>
-              <DropdownMenuItem asChild>
-                <Link to="/casinospil/spillemaskiner/hoej-rtp" className="flex items-center gap-2">
-                  <BarChart3 className="h-4 w-4" />
-                  Høj RTP Slots
-                </Link>
-              </DropdownMenuItem>
+                </DropdownMenuSubTrigger>
+                <DropdownMenuSubContent className="bg-popover">
+                  <DropdownMenuItem asChild>
+                    <Link to="/casinospil/spillemaskiner" className="flex items-center gap-2 font-medium">
+                      <Gamepad2 className="h-4 w-4" />
+                      Alle Spillemaskiner
+                    </Link>
+                  </DropdownMenuItem>
+                  <DropdownMenuSeparator />
+                  <DropdownMenuItem asChild>
+                    <Link to="/casinospil/spillemaskiner/hoej-rtp" className="flex items-center gap-2">
+                      <BarChart3 className="h-4 w-4" />
+                      Spillemaskiner med høj RTP
+                    </Link>
+                  </DropdownMenuItem>
+                </DropdownMenuSubContent>
+              </DropdownMenuSub>
             </DropdownMenuContent>
           </DropdownMenu>
           <Link to="/live-casino" className="flex items-center gap-1.5 text-sm font-medium transition-colors hover:text-primary">
@@ -540,9 +549,9 @@ export const Header = memo(function Header() {
                   <Gamepad2 className="h-4 w-4" />
                   Spillemaskiner
                 </Link>
-                <Link to="/casinospil/spillemaskiner/hoej-rtp" className="ml-6 flex items-center gap-2 py-2.5 text-sm text-muted-foreground transition-colors hover:text-primary" onClick={() => setMobileMenuOpen(false)}>
+                <Link to="/casinospil/spillemaskiner/hoej-rtp" className="ml-10 flex items-center gap-2 py-2.5 text-sm text-muted-foreground transition-colors hover:text-primary" onClick={() => setMobileMenuOpen(false)}>
                   <BarChart3 className="h-4 w-4" />
-                  Høj RTP Slots
+                  Spillemaskiner med høj RTP
                 </Link>
               </div>
             )}
