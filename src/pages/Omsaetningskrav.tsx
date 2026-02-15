@@ -517,8 +517,9 @@ const Omsaetningskrav = () => {
           <p className="mb-4 text-muted-foreground leading-relaxed">
             Et vigtigt aspekt ved danske omsætningskrav er, at in-game free spins og bonusfunktioner altid tæller med i omsætningen. Det betyder, at hvis du udløser gratis spins i en spilleautomat under bonusspil, bidrager gevinsterne fra disse spins til at opfylde omsætningskravet. Denne regel er unik for det danske marked og gør det markant nemmere at gennemføre omsætningskravet sammenlignet med udenlandske casinoer.
           </p>
-          <p className="text-muted-foreground leading-relaxed">
-            For at maksimere dine chancer for at opfylde omsætningskravet anbefaler vi at vælge en <Link to="/no-sticky-bonus" className="text-primary underline hover:text-primary/80">no-sticky bonus</Link>, hvor omsætningskravet kun gælder for bonusmidlerne. Kombineret med spil der har høj RTP (96%+) og lave indsatser kan du systematisk arbejde dig igennem omsætningskravet. Husk at spilleautomater typisk bidrager 100% til omsætningen, mens bordspil kun tæller 10-20%.
+           <p className="text-muted-foreground leading-relaxed">
+            For at maksimere dine chancer for at opfylde omsætningskravet anbefaler vi at vælge en <Link to="/no-sticky-bonus" className="text-primary underline hover:text-primary/80">no-sticky bonus</Link>, hvor omsætningskravet kun gælder for bonusmidlerne. Kombineret med spil der har høj RTP (96%+) og lave indsatser kan du systematisk arbejde dig igennem omsætningskravet. Husk at spilleautomater typisk bidrager 100% til omsætningen, mens bordspil kun tæller 10-20%. Læs hvordan vores bonus spins fungerer i praksis i{" "}
+            <Link to="/community/rewards" className="text-primary underline hover:text-primary/80">Rewards Programmet</Link>.
           </p>
         </section>
 
