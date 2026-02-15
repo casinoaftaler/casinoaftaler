@@ -435,6 +435,7 @@ export const Header = memo(function Header() {
                   </DropdownMenuItem>
                   <DropdownMenuSeparator />
                   {[
+                    { to: "/casino-anmeldelser/danske-spil", label: "Danske Spil Casino" },
                     { to: "/spildansknu-anmeldelse", label: "SpilDanskNu" },
                     { to: "/spilleautomaten-anmeldelse", label: "Spilleautomaten" },
                     { to: "/betinia-anmeldelse", label: "Betinia" },
@@ -846,6 +847,7 @@ export const Header = memo(function Header() {
                       Alle anmeldelser
                     </Link>
                     {[
+                      { to: "/casino-anmeldelser/danske-spil", label: "Danske Spil Casino" },
                       { to: "/spildansknu-anmeldelse", label: "SpilDanskNu" },
                       { to: "/spilleautomaten-anmeldelse", label: "Spilleautomaten" },
                       { to: "/betinia-anmeldelse", label: "Betinia" },
