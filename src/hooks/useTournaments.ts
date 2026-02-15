@@ -15,6 +15,7 @@ export interface Tournament {
   created_by: string;
   created_at: string;
   max_credits: number | null;
+  exclude_from_global_leaderboard: boolean;
 }
 
 export interface TournamentEntry {
@@ -186,6 +187,7 @@ export function useCreateTournament() {
       ends_at: string;
       created_by: string;
       max_credits?: number | null;
+      exclude_from_global_leaderboard?: boolean;
     }) => {
       const status = new Date(tournament.starts_at) <= new Date() ? "active" : "upcoming";
       const { data, error } = await supabase
@@ -241,6 +243,7 @@ export function useUpdateTournament() {
       starts_at?: string;
       ends_at?: string;
       max_credits?: number | null;
+      exclude_from_global_leaderboard?: boolean;
     }) => {
       const { error } = await supabase
         .from("tournaments")

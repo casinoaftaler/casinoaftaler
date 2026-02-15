@@ -53,6 +53,7 @@ function CreateTournamentDialog() {
   const [separateLeaderboards, setSeparateLeaderboards] = useState(false);
   const [prizeText, setPrizeText] = useState("");
   const [maxCredits, setMaxCredits] = useState("");
+  const [excludeFromGlobalLeaderboard, setExcludeFromGlobalLeaderboard] = useState(false);
   const [startsAt, setStartsAt] = useState("");
   const [endsAt, setEndsAt] = useState("");
 
@@ -74,6 +75,7 @@ function CreateTournamentDialog() {
         ends_at: new Date(endsAt).toISOString(),
         created_by: user.id,
         max_credits: maxCredits ? parseInt(maxCredits) : null,
+        exclude_from_global_leaderboard: excludeFromGlobalLeaderboard,
       });
       toast.success("Turnering oprettet!");
       setOpen(false);
@@ -83,6 +85,7 @@ function CreateTournamentDialog() {
       setSeparateLeaderboards(false);
       setPrizeText("");
       setMaxCredits("");
+      setExcludeFromGlobalLeaderboard(false);
       setStartsAt("");
       setEndsAt("");
     } catch {
@@ -137,6 +140,13 @@ function CreateTournamentDialog() {
               ))}
             </div>
           </div>
+          <div className="flex items-center gap-3">
+            <Switch checked={excludeFromGlobalLeaderboard} onCheckedChange={setExcludeFromGlobalLeaderboard} id="exclude-global" />
+            <div>
+              <Label htmlFor="exclude-global" className="cursor-pointer">Ekskluder fra globalt leaderboard</Label>
+              <p className="text-xs text-muted-foreground">Turneringsspins tæller ikke med i det globale leaderboard. Når maks credits er brugt, tæller spins igen.</p>
+            </div>
+          </div>
           {gameIds.length > 1 && (
             <div className="flex items-center gap-3">
               <Switch checked={separateLeaderboards} onCheckedChange={setSeparateLeaderboards} id="separate-lb" />
@@ -170,6 +180,7 @@ function EditTournamentDialog({ tournament }: { tournament: Tournament }) {
   const [description, setDescription] = useState(tournament.description || "");
   const [prizeText, setPrizeText] = useState(tournament.prize_text || "");
   const [maxCredits, setMaxCredits] = useState(tournament.max_credits?.toString() || "");
+  const [excludeFromGlobalLeaderboard, setExcludeFromGlobalLeaderboard] = useState(tournament.exclude_from_global_leaderboard ?? false);
   const [gameIds, setGameIds] = useState<string[]>(tournament.game_ids);
   const [separateLeaderboards, setSeparateLeaderboards] = useState(tournament.separate_leaderboards);
   const [startsAt, setStartsAt] = useState(new Date(tournament.starts_at).toISOString().slice(0, 16));
@@ -192,6 +203,7 @@ function EditTournamentDialog({ tournament }: { tournament: Tournament }) {
         starts_at: new Date(startsAt).toISOString(),
         ends_at: new Date(endsAt).toISOString(),
         max_credits: maxCredits ? parseInt(maxCredits) : null,
+        exclude_from_global_leaderboard: excludeFromGlobalLeaderboard,
       });
       toast.success("Turnering opdateret!");
       setOpen(false);
@@ -247,6 +259,13 @@ function EditTournamentDialog({ tournament }: { tournament: Tournament }) {
               ))}
             </div>
           </div>
+          <div className="flex items-center gap-3">
+            <Switch checked={excludeFromGlobalLeaderboard} onCheckedChange={setExcludeFromGlobalLeaderboard} id="edit-exclude-global" />
+            <div>
+              <Label htmlFor="edit-exclude-global" className="cursor-pointer">Ekskluder fra globalt leaderboard</Label>
+              <p className="text-xs text-muted-foreground">Turneringsspins tæller ikke med i det globale leaderboard. Når maks credits er brugt, tæller spins igen.</p>
+            </div>
+          </div>
           {gameIds.length > 1 && (
             <div className="flex items-center gap-3">
               <Switch checked={separateLeaderboards} onCheckedChange={setSeparateLeaderboards} id="edit-separate-lb" />
@@ -291,6 +310,7 @@ function TournamentRow({ tournament }: { tournament: Tournament }) {
           <p className="text-xs text-muted-foreground mt-0.5">
             Spil: {tournament.game_ids.map(id => GAME_OPTIONS.find(g => g.id === id)?.label || id).join(", ")}
             {tournament.separate_leaderboards && " · Separate leaderboards"}
+            {tournament.exclude_from_global_leaderboard && " · Ekskl. globalt LB"}
           </p>
           {tournament.prize_text && (
             <p className="text-xs text-muted-foreground mt-0.5 flex items-center gap-1">
