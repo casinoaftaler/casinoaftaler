@@ -3,38 +3,39 @@ import { SEO } from "@/components/SEO";
 import { ShopItemCard } from "@/components/ShopItemCard";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Card, CardContent } from "@/components/ui/card";
-import { ShoppingBag, Coins, LogIn, Loader2, ExternalLink } from "lucide-react";
+import { ShoppingBag, Coins, LogIn, Loader2, ExternalLink, Sparkles, User, CalendarDays, BookOpen } from "lucide-react";
 import { useStreamElementsPoints } from "@/hooks/useStreamElementsPoints";
 import { useAuth } from "@/hooks/useAuth";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
-
-const description = "Her kan du shoppe eksklusive varer, men der er en lille twist – alt her kan kun købes med point, som du optjener ved at se vores streams på Twitch! Det betyder, at jo mere du ser, desto flere point tjener du, og desto flere fede produkter kan du få fat i. Så det er bare at sætte dig godt til rette, nyde vores streams, og se pointene rulle ind. Gå på opdagelse i vores udvalg og start din rejse mod de unikke præmier i dag!";
+import { RelatedGuides } from "@/components/RelatedGuides";
 
 function ShopHero() {
+  const { data: siteSettings } = useSiteSettings();
+  const heroBackgroundImage = siteSettings?.hero_background;
+
   return (
-    <section className="relative py-16 md:py-24 overflow-hidden">
-      <div 
-        className="absolute inset-0"
-        style={{
-          backgroundImage: 'linear-gradient(135deg, hsl(260 70% 25%), hsl(250 60% 20%) 40%, hsl(210 80% 25%))',
-        }}
-      />
-      <div className="absolute inset-0 opacity-20">
-        <div className="absolute left-10 top-10 h-32 w-32 rounded-full bg-[hsl(210_80%_60%)] blur-xl" />
-        <div className="absolute bottom-10 right-10 h-48 w-48 rounded-full bg-[hsl(260_70%_60%)] blur-xl" />
-      </div>
-      <div className="container relative z-10">
-        <div className="mx-auto max-w-3xl text-center text-white">
-          <div className="mb-6 flex justify-center">
-            <div className="rounded-full bg-white/10 p-4">
-              <ShoppingBag className="h-12 w-12" />
-            </div>
-          </div>
-          <h1 className="mb-4 text-4xl font-bold md:text-5xl">Butik</h1>
-          <p className="text-base text-white/80">
-            {description}
+    <section
+      className="relative overflow-hidden py-12 text-white md:py-20"
+      style={{
+        backgroundImage: heroBackgroundImage
+          ? `linear-gradient(135deg, hsl(260 70% 25% / 0.95), hsl(210 80% 30% / 0.9)), url(${heroBackgroundImage})`
+          : "linear-gradient(135deg, hsl(260 70% 25%), hsl(250 60% 20%) 40%, hsl(210 80% 25%))",
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+      }}
+    >
+      <div className="container">
+        <div className="mx-auto max-w-3xl text-center">
+          <Badge variant="secondary" className="mb-4">
+            <Sparkles className="mr-1.5 h-3.5 w-3.5" />
+            Køb med Point
+          </Badge>
+          <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">Butik</h1>
+          <p className="text-lg text-white/80">
+            Her kan du shoppe eksklusive varer med point, som du optjener ved at se vores streams på Twitch. Jo mere du ser, desto flere fede produkter kan du få fat i!
           </p>
         </div>
       </div>
@@ -228,65 +229,80 @@ export default function Shop() {
 
   if (isLoading) {
     return (
-      <div className="min-h-screen">
+      <>
         <ShopHero />
-        <PointsDisplay />
-        <div className="py-16">
-          <div className="container">
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {[...Array(6)].map((_, i) => (
-                <div key={i} className="space-y-4">
-                  <Skeleton className="aspect-video w-full" />
-                  <Skeleton className="h-6 w-3/4" />
-                  <Skeleton className="h-4 w-full" />
-                  <Skeleton className="h-10 w-full" />
-                </div>
-              ))}
-            </div>
+        <div className="container py-8 md:py-12">
+          <PointsDisplay />
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-8">
+            {[...Array(6)].map((_, i) => (
+              <div key={i} className="space-y-4">
+                <Skeleton className="aspect-video w-full" />
+                <Skeleton className="h-6 w-3/4" />
+                <Skeleton className="h-4 w-full" />
+                <Skeleton className="h-10 w-full" />
+              </div>
+            ))}
           </div>
         </div>
-      </div>
+      </>
     );
   }
 
   if (error) {
     return (
-      <div className="min-h-screen">
+      <>
         <ShopHero />
-        <PointsDisplay />
-        <div className="py-16">
-          <div className="container">
-            <p className="text-destructive">Der opstod en fejl ved indlæsning af produkter.</p>
-          </div>
+        <div className="container py-8 md:py-12">
+          <PointsDisplay />
+          <p className="mt-8 text-destructive">Der opstod en fejl ved indlæsning af produkter.</p>
         </div>
-      </div>
+      </>
     );
   }
 
   return (
-    <div className="min-h-screen">
+    <>
       <SEO
         title="Butik – Køb med Point | Casinoaftaler"
         description="Shop eksklusive varer med dine Twitch-point hos Casinoaftaler. Gaming headsets, gavekort, konsoller og mere. Optjen point ved at se streams."
       />
       <ShopHero />
-      <PointsDisplay />
-      <div className="py-16">
-        <div className="container">
-          {items && items.length > 0 ? (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {items.map((item) => (
-                <ShopItemCard key={item.id} item={item} />
-              ))}
-            </div>
-          ) : (
-            <div className="flex flex-col items-center justify-center py-16 text-muted-foreground">
-              <ShoppingBag className="h-16 w-16 mb-4" />
-              <p className="text-lg">Der er ingen produkter i butikken endnu.</p>
-            </div>
-          )}
+      <div className="container py-8 md:py-12">
+        {/* Meta info bar */}
+        <div className="mb-8 flex flex-wrap items-center gap-x-6 gap-y-2 text-sm text-muted-foreground">
+          <div className="flex items-center gap-1.5">
+            <User className="h-4 w-4" />
+            <span>Skrevet af: <span className="font-medium text-foreground">Casinoaftaler</span></span>
+          </div>
+          <div className="flex items-center gap-1.5">
+            <CalendarDays className="h-4 w-4" />
+            <span>Siden opdateret: <span className="font-medium text-foreground">15-02-2026</span></span>
+          </div>
+          <div className="flex items-center gap-1.5">
+            <BookOpen className="h-4 w-4" />
+            <span>Læsetid: <span className="font-medium text-foreground">2 Min.</span></span>
+          </div>
+        </div>
+
+        <PointsDisplay />
+
+        {items && items.length > 0 ? (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-8">
+            {items.map((item) => (
+              <ShopItemCard key={item.id} item={item} />
+            ))}
+          </div>
+        ) : (
+          <div className="flex flex-col items-center justify-center py-16 text-muted-foreground">
+            <ShoppingBag className="h-16 w-16 mb-4" />
+            <p className="text-lg">Der er ingen produkter i butikken endnu.</p>
+          </div>
+        )}
+
+        <div className="mt-12">
+          <RelatedGuides currentPath="/butik" />
         </div>
       </div>
-    </div>
+    </>
   );
 }

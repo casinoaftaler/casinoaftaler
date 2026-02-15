@@ -10,44 +10,34 @@ import { ClipSubmitForm } from "@/components/community/ClipSubmitForm";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
-import { Video, Search, Sparkles, Plus } from "lucide-react";
+import { Video, Search, Sparkles, Plus, User, CalendarDays, BookOpen } from "lucide-react";
 import { useAuth } from "@/hooks/useAuth";
 import { Link, useSearchParams } from "react-router-dom";
+import { RelatedGuides } from "@/components/RelatedGuides";
 
 const description = "Se de bedste øjeblikke fra vores streams og community! Twitch clips, YouTube videoer og bruger-indsendte highlights samlet ét sted.";
 
 function HighlightsHero() {
   return (
-    <section className="relative py-16 md:py-24 overflow-hidden">
-      <div
-        className="absolute inset-0"
-        style={{
-          backgroundImage: 'linear-gradient(135deg, hsl(280 70% 25%), hsl(270 60% 20%) 40%, hsl(320 80% 25%))',
-        }}
-      />
-      <div className="absolute inset-0 opacity-20">
-        <div className="absolute left-10 top-10 h-32 w-32 rounded-full bg-[hsl(320_80%_60%)] blur-xl" />
-        <div className="absolute bottom-10 right-10 h-48 w-48 rounded-full bg-[hsl(280_70%_60%)] blur-xl" />
-      </div>
-      <div className="container relative z-10">
-        <div className="mx-auto max-w-3xl text-center text-white">
-          <div className="mb-6 flex justify-center">
-            <div className="rounded-full bg-white/10 p-4">
-              <Sparkles className="h-12 w-12" />
-            </div>
-          </div>
-          <h1 className="mb-4 text-4xl font-bold md:text-5xl">Highlights</h1>
-          <p className="text-base text-white/80 mb-3">
+    <section
+      className="relative overflow-hidden py-12 text-white md:py-20"
+      style={{
+        backgroundImage: "linear-gradient(135deg, hsl(260 70% 25%), hsl(250 60% 20%) 40%, hsl(210 80% 25%))",
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+      }}
+    >
+      <div className="container">
+        <div className="mx-auto max-w-3xl text-center">
+          <Badge variant="secondary" className="mb-4">
+            <Sparkles className="mr-1.5 h-3.5 w-3.5" />
+            Stream & Community
+          </Badge>
+          <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">Highlights</h1>
+          <p className="text-lg text-white/80">
             {description}
-          </p>
-          <p className="text-sm text-white/60">
-            Udforsk vores{" "}
-            <Link to="/community/slots" className="text-white/90 underline hover:text-white">gratis spillehal</Link>,
-            tjek{" "}
-            <Link to="/community/leaderboard" className="text-white/90 underline hover:text-white">turneringerne</Link> eller
-            lær om{" "}
-            <Link to="/casino-bonus" className="text-white/90 underline hover:text-white">casino bonusser</Link>.
           </p>
         </div>
       </div>
@@ -229,36 +219,54 @@ export default function Highlights() {
   const defaultTab = searchParams.get("tab") === "community" ? "community" : "highlights";
 
   return (
-    <div className="min-h-screen">
+    <>
       <SEO
         title="Highlights & Community Clips | Casinoaftaler"
         description="Se de bedste øjeblikke fra vores streams og community. Twitch clips, YouTube videoer og bruger-indsendte highlights samlet ét sted."
       />
       <HighlightsHero />
-      <div className="py-16">
-        <div className="container">
-          <Tabs defaultValue={defaultTab} className="w-full">
-            <div className="flex justify-center mb-8">
-              <TabsList>
-                <TabsTrigger value="highlights" className="gap-2">
-                  <Video className="h-4 w-4" />
-                  Highlights
-                </TabsTrigger>
-                <TabsTrigger value="community" className="gap-2">
-                  <Sparkles className="h-4 w-4" />
-                  Community Clips
-                </TabsTrigger>
-              </TabsList>
-            </div>
-            <TabsContent value="highlights">
-              <HighlightsTab />
-            </TabsContent>
-            <TabsContent value="community">
-              <CommunityTab />
-            </TabsContent>
-          </Tabs>
+      <div className="container py-8 md:py-12">
+        {/* Meta info bar */}
+        <div className="mb-8 flex flex-wrap items-center gap-x-6 gap-y-2 text-sm text-muted-foreground">
+          <div className="flex items-center gap-1.5">
+            <User className="h-4 w-4" />
+            <span>Skrevet af: <span className="font-medium text-foreground">Casinoaftaler</span></span>
+          </div>
+          <div className="flex items-center gap-1.5">
+            <CalendarDays className="h-4 w-4" />
+            <span>Siden opdateret: <span className="font-medium text-foreground">15-02-2026</span></span>
+          </div>
+          <div className="flex items-center gap-1.5">
+            <BookOpen className="h-4 w-4" />
+            <span>Læsetid: <span className="font-medium text-foreground">3 Min.</span></span>
+          </div>
+        </div>
+
+        <Tabs defaultValue={defaultTab} className="w-full">
+          <div className="flex justify-center mb-8">
+            <TabsList>
+              <TabsTrigger value="highlights" className="gap-2">
+                <Video className="h-4 w-4" />
+                Highlights
+              </TabsTrigger>
+              <TabsTrigger value="community" className="gap-2">
+                <Sparkles className="h-4 w-4" />
+                Community Clips
+              </TabsTrigger>
+            </TabsList>
+          </div>
+          <TabsContent value="highlights">
+            <HighlightsTab />
+          </TabsContent>
+          <TabsContent value="community">
+            <CommunityTab />
+          </TabsContent>
+        </Tabs>
+
+        <div className="mt-12">
+          <RelatedGuides currentPath="/highlights" />
         </div>
       </div>
-    </div>
+    </>
   );
 }
