@@ -188,12 +188,6 @@ export function Footer() {
                 </Link>
               </li>
               <li>
-                <Link to="/saadan-tester-vi-casinoer" className="flex items-center gap-2 text-muted-foreground transition-colors hover:text-foreground">
-                  <ClipboardList className="h-4 w-4" />
-                  Sådan tester vi casinoer
-                </Link>
-              </li>
-              <li>
                 <Link
                   to="/spiludviklere"
                   className="flex items-center gap-2 text-muted-foreground transition-colors hover:text-foreground"
@@ -267,6 +261,12 @@ export function Footer() {
           <div>
             <h4 className="mb-4 text-sm font-semibold">Ansvarligt Spil & Juridisk</h4>
             <ul className="space-y-2 text-sm">
+              <li>
+                <Link to="/saadan-tester-vi-casinoer" className="flex items-center gap-2 text-muted-foreground transition-colors hover:text-foreground">
+                  <ClipboardList className="h-4 w-4" />
+                  Sådan tester vi casinoer
+                </Link>
+              </li>
               <li>
                 <Link to="/responsible-gaming" className="flex items-center gap-2 text-muted-foreground transition-colors hover:text-foreground">
                   <Shield className="h-4 w-4" />
