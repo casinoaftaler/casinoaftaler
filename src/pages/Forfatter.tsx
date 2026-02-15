@@ -273,7 +273,7 @@ export default function Forfatter() {
           </p>
           <p className="text-muted-foreground leading-relaxed mb-4">
             Mange lærte ham først at kende gennem hans kat, <strong>Fedesvin</strong>, som i dag stolt har sine helt egne to{" "}
-            <Link to="/spillemaskiner" className="text-primary hover:underline">slotmaskiner</Link>. Det siger meget om hans univers: Det må gerne være skørt, underholdende og lidt ud over det sædvanlige.
+            <a href="https://casinoaftaler.dk/community/slots" className="text-primary hover:underline">slotmaskiner</a>. Det siger meget om hans univers: Det må gerne være skørt, underholdende og lidt ud over det sædvanlige.
           </p>
           <p className="text-muted-foreground leading-relaxed mb-4">
             Tilbage i tiden var han medstifter af JPLiveSlots, som på rekordtid blev en af de største slotstreamere i Danmark. Det var en intens rejse med højt tempo, store ambitioner og et stærkt drive for at skabe noget unikt. Succesen kom hurtigt og gav ham både erfaring og troen på, at han kunne bygge noget endnu større.
