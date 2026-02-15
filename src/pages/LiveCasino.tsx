@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
+import { AuthorBio } from "@/components/AuthorBio";
 import { Link } from "react-router-dom";
 import { FAQSection } from "@/components/FAQSection";
 import liveCasinoHero from "@/assets/heroes/live-casino-hero.jpg";
@@ -786,6 +787,8 @@ const LiveCasino = () => {
         </section>
 
         <CommunityPromoSection />
+
+        <AuthorBio />
 
         <Separator className="my-10" />
 

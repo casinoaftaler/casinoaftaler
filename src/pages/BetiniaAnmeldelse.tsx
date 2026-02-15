@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
+import { AuthorBio } from "@/components/AuthorBio";
 import { FAQSection } from "@/components/FAQSection";
 import { SEO } from "@/components/SEO";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -741,6 +742,8 @@ const BetiniaAnmeldelse = () => {
 
         {/* Inline Casino Cards */}
         <InlineCasinoCards />
+
+        <AuthorBio />
 
         <Separator className="my-10" />
 

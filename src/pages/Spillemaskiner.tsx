@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
+import { AuthorBio } from "@/components/AuthorBio";
 import { FAQSection } from "@/components/FAQSection";
 import { SEO } from "@/components/SEO";
 import { Badge } from "@/components/ui/badge";
@@ -466,6 +467,8 @@ const Spillemaskiner = () => {
             Vi anbefaler altid at verificere casinoets licens på Spillemyndighedens hjemmeside, før du opretter en konto. Spil aldrig på uregulerede platforme uden dansk licens – du har ingen juridisk beskyttelse, og spillene er ikke garanteret fair.
           </p>
         </section>
+
+        <AuthorBio />
 
         <Separator className="my-10" />
 

@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
+import { AuthorBio } from "@/components/AuthorBio";
 import { FAQSection } from "@/components/FAQSection";
 import { SEO } from "@/components/SEO";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -714,6 +715,8 @@ const SpilleautomatenAnmeldelse = () => {
           count={6}
           excludeSlugs={["spilleautomaten"]}
         />
+
+        <AuthorBio />
 
         <Separator className="my-10" />
 

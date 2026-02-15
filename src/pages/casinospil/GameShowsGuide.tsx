@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
+import { AuthorBio } from "@/components/AuthorBio";
 import { FAQSection } from "@/components/FAQSection";
 import { SEO } from "@/components/SEO";
 import { Separator } from "@/components/ui/separator";
@@ -173,6 +174,8 @@ const GameShowsGuide = () => {
         <Separator className="my-10" />
 
         <InlineCasinoCards title="Bedste Casinoer til Game Shows" count={4} />
+
+        <AuthorBio />
 
         <RelatedGuides currentPath="/casinospil/game-shows" />
 
