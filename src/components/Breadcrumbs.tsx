@@ -40,7 +40,7 @@ const routeLabels: Record<string, string> = {
   "/spiludviklere/elk-studios": "ELK Studios",
   "/spiludviklere/evolution-gaming": "Evolution Gaming",
   "/responsible-gaming": "Ansvarligt Spil",
-  "/about": "Om Os",
+  "/om-teamet": "Om Teamet",
   "/contact": "Kontakt",
   "/privacy": "Privatlivspolitik",
   "/terms": "Vilkår",

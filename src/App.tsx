@@ -17,7 +17,7 @@ import TopCasinoOnline from "./pages/TopCasinoOnline";
 
 // Lazy load remaining pages
 const CasinoDetail = lazy(() => import("./pages/CasinoDetail"));
-const About = lazy(() => import("./pages/About"));
+const OmTeamet = lazy(() => import("./pages/OmTeamet"));
 const Contact = lazy(() => import("./pages/Contact"));
 
 const ResponsibleGaming = lazy(() => import("./pages/ResponsibleGaming"));
@@ -122,7 +122,7 @@ const App = () => (
                 <Route path="/casino/:slug" element={<CasinoDetail />} />
                 <Route path="/top-10-casino-online" element={<TopCasinoOnline />} />
                 <Route path="/nye-casinoer" element={<NyeCasinoer />} />
-                <Route path="/about" element={<About />} />
+                <Route path="/om-teamet" element={<OmTeamet />} />
                 <Route path="/forfatter" element={<Forfatter />} />
                 <Route path="/forfatter/kevin" element={<ForfatterKevin />} />
                 <Route path="/saadan-tester-vi-casinoer" element={<SaadanTesterVi />} />
@@ -246,8 +246,9 @@ const App = () => (
               <Route path="/leaderboard" element={<Navigate to="/community/leaderboard" replace />} />
               <Route path="/rewards" element={<Navigate to="/community/rewards" replace />} />
               <Route path="/kontakt" element={<Navigate to="/contact" replace />} />
-              <Route path="/om" element={<Navigate to="/about" replace />} />
-              <Route path="/om-os" element={<Navigate to="/about" replace />} />
+              <Route path="/om" element={<Navigate to="/om-teamet" replace />} />
+              <Route path="/om-os" element={<Navigate to="/om-teamet" replace />} />
+              <Route path="/about" element={<Navigate to="/om-teamet" replace />} />
               <Route path="/privatlivspolitik" element={<Navigate to="/privacy" replace />} />
               <Route path="/vilkaar" element={<Navigate to="/terms" replace />} />
               <Route path="/danske-casinoer" element={<Navigate to="/top-10-casino-online" replace />} />

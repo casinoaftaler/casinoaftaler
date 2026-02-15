@@ -289,9 +289,9 @@ export const Header = memo(function Header() {
             </DropdownMenuTrigger>
             <DropdownMenuContent align="center" className="bg-popover">
               <DropdownMenuItem asChild>
-                <Link to="/about" className="flex items-center gap-2">
+                <Link to="/om-teamet" className="flex items-center gap-2">
                   <Users className="h-4 w-4" />
-                  Om Os
+                  Om Teamet
                 </Link>
               </DropdownMenuItem>
               <DropdownMenuSub>
@@ -710,9 +710,9 @@ export const Header = memo(function Header() {
             </button>
             {expandedSection === "more" && (
               <div className="flex flex-col border-b border-border/50 bg-muted/30">
-                <Link to="/about" className="ml-6 flex items-center gap-2 py-2.5 text-sm text-muted-foreground transition-colors hover:text-primary" onClick={() => setMobileMenuOpen(false)}>
+                <Link to="/om-teamet" className="ml-6 flex items-center gap-2 py-2.5 text-sm text-muted-foreground transition-colors hover:text-primary" onClick={() => setMobileMenuOpen(false)}>
                   <Users className="h-4 w-4" />
-                  Om Os
+                  Om Teamet
                 </Link>
                 <Link to="/forfatter" className="ml-6 flex items-center gap-2 py-2.5 text-sm text-muted-foreground transition-colors hover:text-primary" onClick={() => setMobileMenuOpen(false)}>
                   <User className="h-4 w-4" />

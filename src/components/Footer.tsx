@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { Gamepad2, Instagram, MessageCircle, Trophy, BookOpen, Shield, Scale, FileText, Cookie, ExternalLink, Sparkles, CreditCard, Target, Zap, Tv, Star, Dices, ClipboardList } from "lucide-react";
+import { Gamepad2, Instagram, MessageCircle, Trophy, BookOpen, Shield, Scale, FileText, Cookie, ExternalLink, Sparkles, CreditCard, Target, Zap, Tv, Star, Dices, ClipboardList, Users } from "lucide-react";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
 
 export function Footer() {
@@ -261,6 +261,12 @@ export function Footer() {
           <div>
             <h4 className="mb-4 text-sm font-semibold">Ansvarligt Spil & Juridisk</h4>
             <ul className="space-y-2 text-sm">
+              <li>
+                <Link to="/om-teamet" className="flex items-center gap-2 text-muted-foreground transition-colors hover:text-foreground">
+                  <Users className="h-4 w-4" />
+                  Om Teamet
+                </Link>
+              </li>
               <li>
                 <Link to="/saadan-tester-vi-casinoer" className="flex items-center gap-2 text-muted-foreground transition-colors hover:text-foreground">
                   <ClipboardList className="h-4 w-4" />
