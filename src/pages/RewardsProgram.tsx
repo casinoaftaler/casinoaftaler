@@ -3,79 +3,72 @@ import { SEO } from "@/components/SEO";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Gift, Video, UserCircle, Sparkles, Info, ArrowRight, CheckCircle2, Gamepad2 } from "lucide-react";
+import { Separator } from "@/components/ui/separator";
+import { Gift, Video, UserCircle, Sparkles, Info, ArrowRight, CheckCircle2, Gamepad2, User, CalendarDays, BookOpen } from "lucide-react";
 import { SlotRequestForm } from "@/components/SlotRequestForm";
 import { useAuth } from "@/hooks/useAuth";
+import { useSiteSettings } from "@/hooks/useSiteSettings";
+import { RelatedGuides } from "@/components/RelatedGuides";
 
 export default function RewardsProgram() {
   const { user, loading } = useAuth();
+  const { data: siteSettings } = useSiteSettings();
+  const heroBackgroundImage = siteSettings?.hero_background;
 
   return (
-    <div className="min-h-[calc(100vh-4rem)] relative">
+    <>
       <SEO
         title="Belønningsprogram – Optjen Gratis Spins | Casinoaftaler"
         description="Deltag i Casinoaftalers belønningsprogram. Optjen gratis spins, indsend clips og anmod om nye spilleautomater. Se hvordan du kan blive belønnet."
       />
-      {/* Background */}
-      <div className="absolute inset-0 bg-gradient-to-b from-background via-background to-background -z-10" />
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-primary/8 via-transparent to-transparent -z-10" />
 
       {/* Hero Section */}
       <section
-        className="relative overflow-hidden py-16 md:py-24"
+        className="relative overflow-hidden py-12 text-white md:py-20"
         style={{
-          background: "linear-gradient(135deg, hsl(260 70% 20%), hsl(250 60% 15%) 40%, hsl(210 80% 20%))",
+          backgroundImage: heroBackgroundImage
+            ? `linear-gradient(135deg, hsl(260 70% 25% / 0.95), hsl(210 80% 30% / 0.9)), url(${heroBackgroundImage})`
+            : "linear-gradient(135deg, hsl(260 70% 25%), hsl(250 60% 20%) 40%, hsl(210 80% 25%))",
+          backgroundSize: "cover",
+          backgroundPosition: "center",
         }}
       >
-        <div className="container relative z-10">
-          <div className="mx-auto max-w-2xl text-center space-y-4">
-            <div className="mx-auto mb-4 h-20 w-20 rounded-full bg-primary/15 backdrop-blur-sm border border-primary/20 flex items-center justify-center">
-              <Gift className="h-10 w-10 text-primary" />
-            </div>
-            <Badge className="bg-primary/20 text-primary border-primary/30 text-sm px-4 py-1">
-              <Sparkles className="h-3.5 w-3.5 mr-1.5" />
+        <div className="container">
+          <div className="mx-auto max-w-3xl text-center">
+            <Badge variant="secondary" className="mb-4">
+              <Sparkles className="mr-1.5 h-3.5 w-3.5" />
               Optjen Bonus Spins
             </Badge>
-            <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-white">
+            <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">
               Rewards Program
             </h1>
-            <p className="text-white/70 text-base md:text-lg max-w-lg mx-auto">
-              Optjen ekstra spins ved at bidrage til fællesskabet og udfylde din profil.
+            <p className="text-lg text-white/80">
+              Optjen ekstra spins ved at bidrage til fællesskabet og udfylde din profil. Upload clips, udfyld din profil og request slots til livestream.
             </p>
           </div>
         </div>
-
-        {/* Decorative blur circles */}
-        <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          <div
-            className="absolute -left-10 top-10 h-40 w-40 rounded-full bg-primary opacity-10 blur-3xl"
-            style={{ animation: "float 6s ease-in-out infinite" }}
-          />
-          <div
-            className="absolute -bottom-10 -right-10 h-56 w-56 rounded-full bg-purple-500 opacity-10 blur-3xl"
-            style={{ animation: "float 8s ease-in-out infinite 1s" }}
-          />
-          <div
-            className="absolute left-1/2 top-1/2 h-32 w-32 rounded-full bg-blue-500 opacity-10 blur-3xl"
-            style={{ animation: "float 7s ease-in-out infinite 0.5s" }}
-          />
-        </div>
-
-        <style>{`
-          @keyframes float {
-            0%, 100% { transform: translateY(0) translateX(0); }
-            25% { transform: translateY(-15px) translateX(5px); }
-            50% { transform: translateY(-8px) translateX(-5px); }
-            75% { transform: translateY(-20px) translateX(3px); }
-          }
-        `}</style>
       </section>
 
-      {/* Content */}
-      <div className="container py-10 md:py-16 space-y-10 md:space-y-16 max-w-4xl mx-auto">
+      <div className="container py-8 md:py-12">
+        {/* Meta info bar */}
+        <div className="mb-8 flex flex-wrap items-center gap-x-6 gap-y-2 text-sm text-muted-foreground">
+          <div className="flex items-center gap-1.5">
+            <User className="h-4 w-4" />
+            <span>Skrevet af: <span className="font-medium text-foreground">Casinoaftaler</span></span>
+          </div>
+          <div className="flex items-center gap-1.5">
+            <CalendarDays className="h-4 w-4" />
+            <span>Siden opdateret: <span className="font-medium text-foreground">15-02-2026</span></span>
+          </div>
+          <div className="flex items-center gap-1.5">
+            <BookOpen className="h-4 w-4" />
+            <span>Læsetid: <span className="font-medium text-foreground">3 Min.</span></span>
+          </div>
+        </div>
+
         {/* Section: Community Highlights Rewards */}
-        <section className="space-y-6">
-          <div className="flex items-center gap-3">
+        <section className="mb-12">
+          <div className="flex items-center gap-3 mb-4">
             <div className="p-3 rounded-xl bg-primary/10">
               <Video className="h-6 w-6 text-primary" />
             </div>
@@ -89,11 +82,11 @@ export default function RewardsProgram() {
             <CardContent className="p-6 md:p-8 space-y-5">
               <p className="text-muted-foreground leading-relaxed">
                 Del dine bedste øjeblikke med fællesskabet! Når du uploader et videoklip til{" "}
-                <Link to="/highlights?tab=community" className="text-foreground font-medium hover:text-primary underline">Community Highlights</Link>, og det
+                <Link to="/highlights?tab=community" className="text-primary underline hover:text-primary/80">Community Highlights</Link>, og det
                 bliver godkendt, optjener du bonus spins som belønning. Brug dine spins i vores{" "}
-                <Link to="/community/slots" className="text-foreground font-medium hover:text-primary underline">gratis spillehal</Link> og
+                <Link to="/community/slots" className="text-primary underline hover:text-primary/80">gratis spillehal</Link> og
                 konkurrér om topplaceringer på{" "}
-                <Link to="/community/leaderboard" className="text-foreground font-medium hover:text-primary underline">leaderboardet</Link>.
+                <Link to="/community/leaderboard" className="text-primary underline hover:text-primary/80">leaderboardet</Link>.
               </p>
 
               <div className="grid gap-3 sm:grid-cols-2">
@@ -121,9 +114,11 @@ export default function RewardsProgram() {
           </Card>
         </section>
 
+        <Separator className="my-10" />
+
         {/* Section: Profile Completion Rewards */}
-        <section className="space-y-6">
-          <div className="flex items-center gap-3">
+        <section className="mb-12">
+          <div className="flex items-center gap-3 mb-4">
             <div className="p-3 rounded-xl bg-primary/10">
               <UserCircle className="h-6 w-6 text-primary" />
             </div>
@@ -176,9 +171,11 @@ export default function RewardsProgram() {
           </Card>
         </section>
 
+        <Separator className="my-10" />
+
         {/* Section: Slot Request Rewards */}
-        <section className="space-y-6">
-          <div className="flex items-center gap-3">
+        <section className="mb-12">
+          <div className="flex items-center gap-3 mb-4">
             <div className="p-3 rounded-xl bg-primary/10">
               <Gamepad2 className="h-6 w-6 text-primary" />
             </div>
@@ -194,8 +191,8 @@ export default function RewardsProgram() {
                 Send en request om hvilken slot vi skal spille på livestream! Hvis vi rammer{" "}
                 <span className="text-foreground font-medium">bonus</span> på din valgte slot, får du{" "}
                 <span className="text-foreground font-semibold">+20 credits</span> som belønning. Lær mere om{" "}
-                <Link to="/casino-bonus" className="text-foreground font-medium hover:text-primary underline">casino bonusser</Link> og{" "}
-                <Link to="/omsaetningskrav" className="text-foreground font-medium hover:text-primary underline">omsætningskrav</Link> i vores guides.
+                <Link to="/casino-bonus" className="text-primary underline hover:text-primary/80">casino bonusser</Link> og{" "}
+                <Link to="/omsaetningskrav" className="text-primary underline hover:text-primary/80">omsætningskrav</Link> i vores guides.
               </p>
 
               <div className="grid gap-3 sm:grid-cols-2">
@@ -219,8 +216,10 @@ export default function RewardsProgram() {
           </Card>
         </section>
 
+        <Separator className="my-10" />
+
         {/* Info Section */}
-        <section>
+        <section className="mb-12">
           <Card className="border-muted-foreground/20 bg-muted/30">
             <CardContent className="p-6 md:p-8">
               <div className="flex items-start gap-3">
@@ -252,7 +251,9 @@ export default function RewardsProgram() {
             </CardContent>
           </Card>
         </section>
+
+        <RelatedGuides currentPath="/community/rewards" />
       </div>
-    </div>
+    </>
   );
 }
