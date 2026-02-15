@@ -118,7 +118,7 @@ export const Header = memo(function Header() {
               <DropdownMenuItem asChild>
                 <Link to="/top-10-casino-online" className="flex items-center gap-2">
                   <Trophy className="h-4 w-4" />
-                  Top 10 Casino Online
+                  Top 10 Online Casino
                 </Link>
               </DropdownMenuItem>
             </DropdownMenuContent>
@@ -623,7 +623,7 @@ export const Header = memo(function Header() {
               <div className="flex flex-col border-b border-border/50 bg-muted/30">
                 <Link to="/top-10-casino-online" className="ml-6 flex items-center gap-2 py-2.5 text-sm text-muted-foreground transition-colors hover:text-primary" onClick={() => setMobileMenuOpen(false)}>
                   <Trophy className="h-4 w-4" />
-                  Top 10 Casino Online
+                  Top 10 Online Casino
                 </Link>
               </div>
             )}
