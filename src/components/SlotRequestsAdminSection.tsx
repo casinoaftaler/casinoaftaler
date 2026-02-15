@@ -1,9 +1,16 @@
+import { useState, useEffect } from "react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { useAllSlotRequests, useUpdateSlotRequestStatus } from "@/hooks/useSlotRequests";
-import { Loader2, Gamepad2, Trophy, X, Minus } from "lucide-react";
+import { useSiteSettings } from "@/hooks/useSiteSettings";
+import { supabase } from "@/integrations/supabase/client";
+import { useQueryClient } from "@tanstack/react-query";
+import { Loader2, Gamepad2, Trophy, X, Minus, Save, Settings } from "lucide-react";
+import { toast } from "sonner";
 
 const STATUS_CONFIG: Record<string, { label: string; variant: "default" | "secondary" | "destructive" | "outline" }> = {
   pending: { label: "Afventer", variant: "secondary" },
@@ -15,6 +22,30 @@ const STATUS_CONFIG: Record<string, { label: string; variant: "default" | "secon
 export function SlotRequestsAdminSection() {
   const { data: requests, isLoading } = useAllSlotRequests();
   const updateStatus = useUpdateSlotRequestStatus();
+  const { data: siteSettings } = useSiteSettings();
+  const queryClient = useQueryClient();
+
+  const currentMax = parseInt(siteSettings?.max_pending_slot_requests ?? "1", 10);
+  const [maxLimit, setMaxLimit] = useState(currentMax);
+  const [saving, setSaving] = useState(false);
+
+  useEffect(() => {
+    setMaxLimit(currentMax);
+  }, [currentMax]);
+
+  const handleSaveLimit = async () => {
+    setSaving(true);
+    const { error } = await supabase
+      .from("site_settings")
+      .upsert({ key: "max_pending_slot_requests", value: String(maxLimit) }, { onConflict: "key" });
+    setSaving(false);
+    if (error) {
+      toast.error("Kunne ikke gemme indstillingen");
+    } else {
+      toast.success("Maks requests opdateret");
+      queryClient.invalidateQueries({ queryKey: ["site-settings"] });
+    }
+  };
 
   const handleAction = (requestId: string, userId: string, status: string, awardCredits?: boolean) => {
     updateStatus.mutate({ requestId, status, userId, awardCredits });
@@ -24,6 +55,40 @@ export function SlotRequestsAdminSection() {
 
   return (
     <div className="space-y-6">
+      <Card>
+        <CardHeader>
+          <CardTitle className="flex items-center gap-2">
+            <Settings className="h-5 w-5" />
+            Request Indstillinger
+          </CardTitle>
+        </CardHeader>
+        <CardContent>
+          <div className="flex items-end gap-3">
+            <div className="space-y-1.5">
+              <Label htmlFor="max-requests">Maks ventende requests pr. bruger</Label>
+              <Input
+                id="max-requests"
+                type="number"
+                min={1}
+                max={20}
+                value={maxLimit}
+                onChange={(e) => setMaxLimit(Math.max(1, Math.min(20, Number(e.target.value))))}
+                className="w-24"
+              />
+            </div>
+            <Button
+              size="sm"
+              onClick={handleSaveLimit}
+              disabled={saving || maxLimit === currentMax}
+              className="gap-1"
+            >
+              {saving ? <Loader2 className="h-3.5 w-3.5 animate-spin" /> : <Save className="h-3.5 w-3.5" />}
+              Gem
+            </Button>
+          </div>
+        </CardContent>
+      </Card>
+
       <Card>
         <CardHeader>
           <CardTitle className="flex items-center gap-2">
