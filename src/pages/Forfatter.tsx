@@ -29,20 +29,17 @@ import jonasImage from "@/assets/jonas-forfatter.png";
 
 const FEATURED_SLUGS = ["spildansknu", "spilleautomaten", "campobet"];
 
-const casinoDescriptions: Record<string, { title: string; text: string; link: string }> = {
+const casinoDescriptions: Record<string, { title: string; link: string }> = {
   spildansknu: {
     title: "SpilDanskNu",
-    text: "SpilDanskNu er et af de mest populære danske online casinoer med et stærkt fokus på det danske marked. Med en dansk licens og et bredt udvalg af spilleautomater, bordspil og live casino tilbyder de en tryg og underholdende spiloplevelse. Deres lave omsætningskrav på kun 10x gør dem til et oplagt valg for danske spillere.",
     link: "/spildansknu-anmeldelse",
   },
   spilleautomaten: {
     title: "Spilleautomaten",
-    text: "Spilleautomaten er kendt for sit enorme spiludvalg og hurtige udbetalinger. Med over 3.000 spil fra førende udbydere som NetEnt, Pragmatic Play og Play'n GO er der altid noget nyt at udforske. Casinoet tilbyder en generøs velkomstbonus og en brugervenlig platform, der fungerer perfekt på både desktop og mobil.",
     link: "/spilleautomaten-anmeldelse",
   },
   campobet: {
     title: "Campobet",
-    text: "Campobet kombinerer casino og sportsbetting under ét tag, hvilket gør det til et alsidigt valg for spillere, der gerne vil have det hele samlet. Med en dansk licens, konkurrencedygtige bonusser og et solidt live casino-udbud leverer Campobet en komplet spiloplevelse til danske spillere.",
     link: "/campobet-anmeldelse",
   },
 };
@@ -269,7 +266,7 @@ export default function Forfatter() {
             Baggrund og Motivation
           </h2>
           <p className="text-muted-foreground leading-relaxed mb-4">
-            Han har streamet gambling i fire år – men for ham har det aldrig kun handlet om slots. Det har handlet om energi, fællesskab og personlighed.
+            Han har streamet gambling i fire år – men for ham har det aldrig kun handlet om <Link to="/spillemaskiner" className="text-primary hover:underline">slots</Link>. Det har handlet om energi, fællesskab og personlighed.
           </p>
           <p className="text-muted-foreground leading-relaxed mb-4">
             Mange lærte ham først at kende gennem hans kat, <strong>Fedesvin</strong>, som i dag stolt har sine helt egne to{" "}
@@ -307,7 +304,7 @@ export default function Forfatter() {
             En fast bestanddel af Jonas' streams er katten <strong>Fedesvin</strong>, der efterhånden har opnået kultstatus 
             blandt seerne – ofte er der flere spørgsmål om kattens velbefindende end om Jonas selv! 
             Fællesskabet er præget af humor, god stemning og en åben dialog, hvor der tales om alt 
-            fra casinospil til hverdagens udfordringer.
+            fra <Link to="/casinospil" className="text-primary hover:underline">casinospil</Link> til hverdagens udfordringer.
           </p>
           <div className="grid gap-4 md:grid-cols-3">
             <Card>
@@ -376,22 +373,41 @@ export default function Forfatter() {
             </div>
           )}
 
-          {/* SEO casino descriptions */}
+          {/* SEO casino descriptions with internal links */}
           <div className="mt-8 space-y-6">
-            {FEATURED_SLUGS.map((slug) => {
-              const desc = casinoDescriptions[slug];
-              if (!desc) return null;
-              return (
-                <div key={slug}>
-                  <h4 className="text-lg font-semibold mb-2">
-                    <Link to={desc.link} className="text-primary hover:underline">
-                      {desc.title}
-                    </Link>
-                  </h4>
-                  <p className="text-muted-foreground leading-relaxed">{desc.text}</p>
-                </div>
-              );
-            })}
+            <div>
+              <h4 className="text-lg font-semibold mb-2">
+                <Link to="/spildansknu-anmeldelse" className="text-primary hover:underline">SpilDanskNu</Link>
+              </h4>
+              <p className="text-muted-foreground leading-relaxed">
+                SpilDanskNu er et af de mest populære danske online casinoer med et stærkt fokus på det danske marked. Med en dansk licens og et bredt udvalg af{" "}
+                <Link to="/spillemaskiner" className="text-primary hover:underline">spilleautomater</Link>, bordspil og{" "}
+                <Link to="/live-casino" className="text-primary hover:underline">live casino</Link> tilbyder de en tryg og underholdende spiloplevelse. Deres lave{" "}
+                <Link to="/omsaetningskrav" className="text-primary hover:underline">omsætningskrav</Link> på kun 10x gør dem til et oplagt valg for danske spillere.
+              </p>
+            </div>
+            <div>
+              <h4 className="text-lg font-semibold mb-2">
+                <Link to="/spilleautomaten-anmeldelse" className="text-primary hover:underline">Spilleautomaten</Link>
+              </h4>
+              <p className="text-muted-foreground leading-relaxed">
+                Spilleautomaten er kendt for sit enorme spiludvalg og hurtige udbetalinger. Med over 3.000 spil fra førende udbydere som{" "}
+                <Link to="/spiludviklere/netent" className="text-primary hover:underline">NetEnt</Link>,{" "}
+                <Link to="/spiludviklere/pragmatic-play" className="text-primary hover:underline">Pragmatic Play</Link> og{" "}
+                <Link to="/spiludviklere/play-n-go" className="text-primary hover:underline">Play'n GO</Link> er der altid noget nyt at udforske. Casinoet tilbyder en generøs{" "}
+                <Link to="/velkomstbonus" className="text-primary hover:underline">velkomstbonus</Link> og en brugervenlig platform, der fungerer perfekt på både desktop og mobil.
+              </p>
+            </div>
+            <div>
+              <h4 className="text-lg font-semibold mb-2">
+                <Link to="/campobet-anmeldelse" className="text-primary hover:underline">Campobet</Link>
+              </h4>
+              <p className="text-muted-foreground leading-relaxed">
+                Campobet kombinerer casino og sportsbetting under ét tag, hvilket gør det til et alsidigt valg for spillere, der gerne vil have det hele samlet. Med en dansk licens, konkurrencedygtige{" "}
+                <Link to="/casino-bonus" className="text-primary hover:underline">bonusser</Link> og et solidt{" "}
+                <Link to="/live-casino" className="text-primary hover:underline">live casino</Link>-udbud leverer Campobet en komplet spiloplevelse til danske spillere.
+              </p>
+            </div>
           </div>
         </section>
 
