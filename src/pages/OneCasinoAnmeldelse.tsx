@@ -12,7 +12,7 @@ import { useSiteSettings } from "@/hooks/useSiteSettings";
 import { buildArticleSchema } from "@/lib/seo";
 import { QuickFactsProviders } from "@/components/QuickFactsProviders";
 import type { ReactNode } from "react";
-import { CasinoReviewLogo } from "@/components/CasinoReviewLogo";
+import { CasinoReviewHero } from "@/components/CasinoReviewHero";
 import { Star, Zap, Check, X, Gamepad2, Trophy, Sparkles } from "lucide-react";
 
 const linkClass = "text-primary underline hover:text-primary/80";
@@ -39,7 +39,6 @@ const OneCasinoAnmeldelse = () => {
 
       <section className="relative overflow-hidden py-12 text-white md:py-20" style={{ backgroundImage: heroBackgroundImage ? `linear-gradient(135deg, hsl(260 70% 25% / 0.95), hsl(210 80% 30% / 0.9)), url(${heroBackgroundImage})` : "linear-gradient(135deg, hsl(260 70% 25%), hsl(250 60% 20%) 40%, hsl(210 80% 25%))", backgroundSize: "cover", backgroundPosition: "center" }}>
         <div className="container"><div className="mx-auto max-w-3xl text-center">
-          <CasinoReviewLogo slug="onecasino" />
           <Badge variant="secondary" className="mb-4"><Sparkles className="mr-1.5 h-3.5 w-3.5" />3.8 / 5 – Simpel & Unik</Badge>
           <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">One Casino Anmeldelse 2026</h1>
           <p className="mb-6 text-lg text-white/80">Uafhængig anmeldelse af One Casino – den simple platform med eksklusive in-house spil og dansk licens.</p>
@@ -48,7 +47,7 @@ const OneCasinoAnmeldelse = () => {
 
       <div className="container py-8 md:py-12">
         <AuthorMetaBar author="jonas" date="15-02-2026" readTime="16 Min." />
-
+        <CasinoReviewHero slug="onecasino" casinoName="One Casino" />
         <section className="mb-12">
           <Card className="border-border bg-card border-l-4 border-l-primary">
             <CardHeader><CardTitle className="flex items-center gap-2 text-xl"><Zap className="h-6 w-6 text-primary" />Hurtige Fakta – One Casino</CardTitle></CardHeader>

@@ -12,7 +12,7 @@ import { InlineCasinoCards } from "@/components/InlineCasinoCards";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
 import { buildArticleSchema } from "@/lib/seo";
 import { QuickFactsProviders } from "@/components/QuickFactsProviders";
-import { CasinoReviewLogo } from "@/components/CasinoReviewLogo";
+import { CasinoReviewHero } from "@/components/CasinoReviewHero";
 import type { ReactNode } from "react";
 import { ShieldCheck, Star, Clock, CreditCard, Gift, Trophy, Sparkles, Gamepad2, Zap, Check, X, Smartphone, Headphones, Globe, Award, Users } from "lucide-react";
 
@@ -40,7 +40,6 @@ const MrGreenAnmeldelse = () => {
       <SEO title="Mr Green Casino Anmeldelse 2026 – Bonus, Spil & Ansvarligt Spil | Casinoaftaler" description="Komplet anmeldelse af Mr Green Casino. Prisbelønnet casino med dansk licens, Green Gaming-værktøj, kurateret spiludvalg og hurtige udbetalinger." jsonLd={[articleSchema, faqJsonLd, reviewJsonLd]} />
       <section className="relative overflow-hidden py-12 text-white md:py-20" style={{ backgroundImage: heroBackgroundImage ? `linear-gradient(135deg, hsl(260 70% 25% / 0.95), hsl(210 80% 30% / 0.9)), url(${heroBackgroundImage})` : "linear-gradient(135deg, hsl(260 70% 25%), hsl(250 60% 20%) 40%, hsl(210 80% 25%))", backgroundSize: "cover", backgroundPosition: "center" }}>
         <div className="container"><div className="mx-auto max-w-3xl text-center">
-          <CasinoReviewLogo slug="mr-green" />
           <Badge variant="secondary" className="mb-4"><Award className="mr-1.5 h-3.5 w-3.5" />4.4 / 5 – Prisbelønnet Casino</Badge>
           <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">Mr Green Casino Anmeldelse 2026</h1>
           <p className="mb-6 text-lg text-white/80">Dybdegående anmeldelse af Mr Green Casino – den prisbelønnede platform med dansk licens, innovativt Green Gaming-værktøj og et nøje kurateret spiludvalg.</p>
@@ -48,6 +47,7 @@ const MrGreenAnmeldelse = () => {
       </section>
       <div className="container py-8 md:py-12">
         <AuthorMetaBar author="jonas" date="15-02-2026" readTime="20 Min." />
+        <CasinoReviewHero slug="mr-green" casinoName="Mr Green Casino" />
         <section className="mb-12"><Card className="border-border bg-card border-l-4 border-l-primary"><CardHeader><CardTitle className="flex items-center gap-2 text-xl"><Zap className="h-6 w-6 text-primary" />Hurtige Fakta – Mr Green Casino</CardTitle></CardHeader><CardContent>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
             <div className="rounded-lg border border-border p-3"><p className="text-xs text-muted-foreground uppercase mb-1">Velkomstbonus</p><p className="text-lg font-bold text-foreground">Op til 3.000 kr. + FS</p></div>
