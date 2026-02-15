@@ -174,6 +174,17 @@ function getContextualGuides(currentPath: string): { guides: GuideLink[]; subtit
     };
   }
 
+  // Casinospil pages → show other casinospil guides + key bonus/general
+  if (path.startsWith("/casinospil") || path === "/live-casino") {
+    const casinospilGuides = generalGuides.filter(g =>
+      g.to.startsWith("/casinospil") || g.to === "/live-casino"
+    );
+    return {
+      guides: [...casinospilGuides, ...bonusGuides.slice(0, 3), ...providerGuides.slice(0, 3)],
+      subtitle: "Udforsk vores andre guides til casinospil, regler, strategier og spiludviklere.",
+    };
+  }
+
   // Bonus pages → show other bonus guides + a few general
   if (
     path.startsWith("/velkomstbonus") ||

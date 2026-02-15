@@ -110,13 +110,15 @@ export default function SpillemaskinerHoejRTP() {
         jsonLd={[faqJsonLd, breadcrumbJsonLd]}
       />
 
-      {/* Gradient top bar */}
-      <div
-        className="h-16 md:h-24"
-        style={{
-          background: "linear-gradient(135deg, hsl(260 70% 25%), hsl(250 60% 20%) 40%, hsl(210 80% 25%))",
-        }}
-      />
+      <section className="relative overflow-hidden py-12 text-white md:py-20" style={{ backgroundImage: "linear-gradient(135deg, hsl(260 70% 25%), hsl(250 60% 20%) 40%, hsl(210 80% 25%))" }}>
+        <div className="container">
+          <div className="mx-auto max-w-3xl text-center">
+            <Badge variant="secondary" className="mb-4"><Sparkles className="mr-1.5 h-3.5 w-3.5" /> Opdateret Februar 2026</Badge>
+            <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">Spillemaskiner med Høj RTP 2026</h1>
+            <p className="text-lg text-white/80">Find de bedste slots med højest tilbagebetaling – RTP-analyse og anbefalinger.</p>
+          </div>
+        </div>
+      </section>
 
       <div className="container py-8 md:py-12">
         {/* Meta info bar */}
@@ -153,11 +155,6 @@ export default function SpillemaskinerHoejRTP() {
             loading="eager"
           />
         </div>
-
-        {/* H1 */}
-        <h1 className="mb-8 text-3xl font-bold tracking-tight md:text-4xl lg:text-5xl">
-          Spillemaskiner med Høj RTP – Find Slots med Bedst Tilbagebetaling
-        </h1>
 
         {/* Section 1: Intro */}
         <section className="mb-12">
