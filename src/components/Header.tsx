@@ -157,6 +157,24 @@ export const Header = memo(function Header() {
                   </DropdownMenuItem>
                 </DropdownMenuSubContent>
               </DropdownMenuSub>
+              <DropdownMenuSeparator />
+              {[
+                { to: "/casinospil/blackjack", label: "Blackjack" },
+                { to: "/casinospil/roulette", label: "Roulette" },
+                { to: "/casinospil/roulette-strategi", label: "Roulette Strategi" },
+                { to: "/casinospil/poker", label: "Poker" },
+                { to: "/casinospil/craps", label: "Craps" },
+                { to: "/casinospil/baccarat", label: "Baccarat" },
+                { to: "/casinospil/online-lotteri", label: "Online Lotteri" },
+                { to: "/casinospil/game-shows", label: "Game Shows" },
+              ].map((item) => (
+                <DropdownMenuItem key={item.to} asChild>
+                  <Link to={item.to} className="flex items-center gap-2">
+                    <Star className="h-3 w-3" />
+                    {item.label}
+                  </Link>
+                </DropdownMenuItem>
+              ))}
             </DropdownMenuContent>
           </DropdownMenu>
           <Link to="/live-casino" className="flex items-center gap-1.5 text-sm font-medium transition-colors hover:text-primary">
@@ -553,6 +571,21 @@ export const Header = memo(function Header() {
                   <BarChart3 className="h-4 w-4" />
                   Spillemaskiner med høj RTP
                 </Link>
+                {[
+                  { to: "/casinospil/blackjack", label: "Blackjack" },
+                  { to: "/casinospil/roulette", label: "Roulette" },
+                  { to: "/casinospil/roulette-strategi", label: "Roulette Strategi" },
+                  { to: "/casinospil/poker", label: "Poker" },
+                  { to: "/casinospil/craps", label: "Craps" },
+                  { to: "/casinospil/baccarat", label: "Baccarat" },
+                  { to: "/casinospil/online-lotteri", label: "Online Lotteri" },
+                  { to: "/casinospil/game-shows", label: "Game Shows" },
+                ].map((item) => (
+                  <Link key={item.to} to={item.to} className="ml-6 flex items-center gap-2 py-2.5 text-sm text-muted-foreground transition-colors hover:text-primary" onClick={() => setMobileMenuOpen(false)}>
+                    <Star className="h-4 w-4" />
+                    {item.label}
+                  </Link>
+                ))}
               </div>
             )}
             <Link to="/live-casino" className="flex items-center gap-2 py-3 text-sm font-medium transition-colors hover:text-primary border-b border-border/50" onClick={() => setMobileMenuOpen(false)}>

@@ -40,6 +40,14 @@ export const seoRoutes: SeoRoute[] = [
   { path: "/casinospil", changefreq: "weekly", priority: 0.9 },
   { path: "/casinospil/spillemaskiner", changefreq: "weekly", priority: 0.9 },
   { path: "/casinospil/spillemaskiner/hoej-rtp", changefreq: "weekly", priority: 0.9 },
+  { path: "/casinospil/blackjack", changefreq: "weekly", priority: 0.9 },
+  { path: "/casinospil/roulette", changefreq: "weekly", priority: 0.9 },
+  { path: "/casinospil/poker", changefreq: "weekly", priority: 0.9 },
+  { path: "/casinospil/craps", changefreq: "weekly", priority: 0.9 },
+  { path: "/casinospil/baccarat", changefreq: "weekly", priority: 0.9 },
+  { path: "/casinospil/roulette-strategi", changefreq: "weekly", priority: 0.9 },
+  { path: "/casinospil/online-lotteri", changefreq: "weekly", priority: 0.9 },
+  { path: "/casinospil/game-shows", changefreq: "weekly", priority: 0.9 },
 
   // ── Bonus Guides ──
   { path: "/casino-bonus", changefreq: "weekly", priority: 0.9 },
