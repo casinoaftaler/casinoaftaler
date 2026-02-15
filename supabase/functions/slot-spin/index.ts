@@ -667,7 +667,11 @@ Deno.serve(async (req) => {
       }
 
       // Use the locked-in bet from bonus trigger, not the client-sent value
-      bet = Number(bonusData.bet_amount) || bet;
+      const lockedBet = Number(bonusData.bet_amount);
+      if (lockedBet > 0 && lockedBet !== bet) {
+        console.log(`[slot-spin] Bonus bet override: client sent bet=${bet}, using locked bet=${lockedBet} from DB`);
+      }
+      bet = lockedBet > 0 ? lockedBet : bet;
 
       // Generate grid with bonus weights
       const originalGrid = generateGrid(symbols, true);
