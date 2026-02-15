@@ -1,69 +1,43 @@
 
-# Remove Unused Tournament Credits After Tournament Ends
+
+# Fix Google Search Favicon
 
 ## Problem
-When a user joins a tournament, they receive bonus credits (e.g., 200) added to their regular balance. The tournament system tracks credits used via `tournament_entries.total_credits_used`, but when the tournament ends (or the user exhausts their tournament credit allowance), any unused credits remain in their balance. Users can exploit this by joining a tournament for free credits and spinning on non-tournament games.
+Google is showing the default Lovable icon instead of your logo because:
+1. The favicon in `index.html` points to a `.jpg` from storage, which is non-standard for favicons
+2. There are no `apple-touch-icon` or larger PNG icons defined -- Google prefers icons that are at least 48x48px (ideally 192x192px)
+3. The schema references `/favicon.ico` which may not match your actual brand icon
 
 ## Solution
-Create a mechanism to deduct unused tournament credits when the tournament ends, so users only keep credits they actually earned (winnings) during the tournament.
 
-### Approach: Deduct on Tournament End (via the existing cron-based `update-tournament-status` Edge Function)
+### Step 1: Download and add proper favicon files
+- Take your existing header icon (from storage) and add it as a proper favicon in the `public/` directory in multiple formats:
+  - `public/favicon.ico` (32x32)
+  - `public/favicon-192.png` (192x192 -- this is what Google uses)
+  - `public/apple-touch-icon.png` (180x180)
 
-When the status automation function detects a tournament transitioning to "ended", it will:
+Since you already have the icon uploaded to storage, we will reference it directly but also add the proper `<link>` tags that Google needs.
 
-1. For each participant, calculate `credits_awarded - total_credits_used` = unused credits
-2. Deduct those unused credits from the participant's current `slot_spins` balance (floored at 0)
-3. Log the deduction in `credit_allocation_log`
+### Step 2: Update `index.html`
+Add multiple favicon declarations so Google and all browsers pick up the correct icon:
 
-## Technical Changes
-
-### 1. New Database Table: `tournament_credit_tracking`
-Track how many credits were awarded to each participant so we know exactly how much to claw back.
-
-```sql
-CREATE TABLE tournament_credit_tracking (
-  id uuid PRIMARY KEY DEFAULT gen_random_uuid(),
-  tournament_id uuid NOT NULL REFERENCES tournaments(id) ON DELETE CASCADE,
-  user_id uuid NOT NULL,
-  credits_awarded integer NOT NULL DEFAULT 0,
-  credits_clawed_back integer NOT NULL DEFAULT 0,
-  created_at timestamptz NOT NULL DEFAULT now(),
-  UNIQUE(tournament_id, user_id)
-);
-
-ALTER TABLE tournament_credit_tracking ENABLE ROW LEVEL SECURITY;
-
-CREATE POLICY "Admins can manage tournament credit tracking"
-  ON tournament_credit_tracking FOR ALL
-  USING (has_role(auth.uid(), 'admin'));
-
-CREATE POLICY "Users can view own credit tracking"
-  ON tournament_credit_tracking FOR SELECT
-  USING (auth.uid() = user_id);
+```html
+<link rel="icon" type="image/jpeg" href="https://zhpbqqhtgnblaugrqhqi.supabase.co/storage/v1/object/public/casino-logos/header-icon.jpg" />
+<link rel="icon" type="image/png" sizes="192x192" href="https://zhpbqqhtgnblaugrqhqi.supabase.co/storage/v1/object/public/casino-logos/header-icon.jpg" />
+<link rel="apple-touch-icon" href="https://zhpbqqhtgnblaugrqhqi.supabase.co/storage/v1/object/public/casino-logos/header-icon.jpg" />
 ```
 
-### 2. Update `join-tournament` Edge Function
-After awarding credits, also insert a record into `tournament_credit_tracking` with `credits_awarded`.
+### Step 3: Update Organization schema
+Ensure the `logo` field in `src/lib/seo.ts` points to the actual icon URL (the storage URL) instead of `/favicon.ico`, so Google's structured data matches the real asset.
 
-### 3. Update `update-tournament-status` Edge Function
-When a tournament transitions to "ended":
-- Query all `tournament_credit_tracking` rows for that tournament
-- For each participant, sum their `total_credits_used` across `tournament_entries`
-- Calculate unused = `credits_awarded - total_credits_used` (min 0)
-- Deduct unused from today's `slot_spins.spins_remaining` (floor at 0)
-- Update `tournament_credit_tracking.credits_clawed_back`
-- Log in `credit_allocation_log` with source "tournament_clawback"
+## Important Note
+Google caches favicons aggressively. After publishing, it can take **days to weeks** before Google updates the favicon in search results. You can request re-indexing via Google Search Console to speed this up.
 
-### 4. Also Handle Mid-Tournament Credit Exhaustion
-In `slot-spin`, when `upsert_tournament_entry` detects that the user's next bet would exceed `max_credits`, the excess credits have already been consumed as regular spins. No clawback is needed mid-tournament since credits are deducted per-spin from `slot_spins` regardless.
+---
 
-## Files to Create/Modify
-- **New migration**: Create `tournament_credit_tracking` table with RLS
-- **Edit**: `supabase/functions/join-tournament/index.ts` -- insert tracking row after awarding credits
-- **Edit**: `supabase/functions/update-tournament-status/index.ts` -- add clawback logic on tournament end
+## Technical Details
 
-## Edge Cases
-- If user's current balance is less than the unused credits, floor at 0
-- If tournament had no `max_credits`, skip clawback (no credits were awarded)
-- Race condition: use optimistic locking on `slot_spins` update
-- Already clawed back: check `credits_clawed_back > 0` to prevent double-processing
+**Files to modify:**
+- `index.html` -- add proper favicon link tags with sizes
+- `src/lib/seo.ts` -- update `logo` in Organization schema to use the actual storage URL
+
