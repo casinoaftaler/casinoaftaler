@@ -19,6 +19,12 @@ import {
   BookOpen,
   ShieldCheck,
   Gamepad2,
+  Quote,
+  Clock,
+  Tv,
+  MessageSquare,
+  Trophy,
+  Zap,
 } from "lucide-react";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
 import jonasImage from "@/assets/jonas-forfatter.png";
@@ -74,33 +80,54 @@ const OmTeamet = () => {
   };
 
   const missionPoints = [
-    {
-      icon: CheckCircle2,
-      text: "At give ærlige og opdaterede anmeldelser",
-    },
-    {
-      icon: Search,
-      text: "At teste casinoer systematisk",
-    },
-    {
-      icon: Heart,
-      text: "At skabe et engageret community",
-    },
-    {
-      icon: Sparkles,
-      text: "At kombinere streaming og ekspertise",
-    },
+    { icon: CheckCircle2, text: "At give ærlige og opdaterede anmeldelser" },
+    { icon: Search, text: "At teste casinoer systematisk" },
+    { icon: Heart, text: "At skabe et engageret community" },
+    { icon: Sparkles, text: "At kombinere streaming og ekspertise" },
   ];
 
   const workMethods = [
-    { icon: Gamepad2, text: "Vi tester casinoer praktisk" },
-    { icon: RefreshCw, text: "Vi opdaterer bonusser løbende" },
-    { icon: Search, text: "Vi analyserer vilkår" },
-    { icon: Eye, text: "Vi prioriterer gennemsigtighed" },
-    { icon: Scale, text: "Vi adskiller kommercielle samarbejder fra vurdering" },
+    {
+      icon: Gamepad2,
+      title: "Vi tester casinoer praktisk",
+      desc: "Hvert casino bliver testet af vores team med registrering, indbetaling og gameplay – ikke kun skrivebordsvurdering.",
+    },
+    {
+      icon: RefreshCw,
+      title: "Vi opdaterer bonusser løbende",
+      desc: "Bonusser og vilkår ændres ofte. Vi holder vores anmeldelser opdateret, så du altid har de nyeste oplysninger.",
+    },
+    {
+      icon: Search,
+      title: "Vi analyserer vilkår",
+      desc: "Omsætningskrav, tidsfrister og spilbidrag – vi nedbryder det hele, så du forstår hvad du accepterer.",
+    },
+    {
+      icon: Eye,
+      title: "Vi prioriterer gennemsigtighed",
+      desc: "Vi fortæller tydeligt hvad der er godt og hvad der ikke er. Ingen skjulte agendaer.",
+    },
+    {
+      icon: Scale,
+      title: "Vi adskiller kommercielle samarbejder fra vurdering",
+      desc: "Affiliate-partnerskaber påvirker aldrig vores redaktionelle vurderinger eller anbefalinger.",
+    },
   ];
 
+  const stats = [
+    { icon: Clock, value: "7+", label: "Års samlet streaming-erfaring" },
+    { icon: Trophy, value: "100+", label: "Testede casinoer" },
+    { icon: Tv, value: "1000+", label: "Timers live streaming" },
+    { icon: Users, value: "Aktivt", label: "Engageret community" },
+  ];
 
+  const trustPoints = [
+    "Praktisk test af casinoer",
+    "Løbende opdatering af bonusser",
+    "Gennemsigtige vurderingskriterier",
+    "Klar adskillelse mellem kommercielle samarbejder og redaktionel vurdering",
+    "Fokus på ansvarligt spil",
+  ];
 
   return (
     <>
@@ -110,41 +137,95 @@ const OmTeamet = () => {
         jsonLd={[organizationJsonLd, breadcrumbJsonLd]}
       />
 
-      {/* Hero Section */}
+      {/* ═══ HERO ═══ */}
       <section
-        className="relative overflow-hidden py-12 text-white md:py-20"
+        className="relative overflow-hidden py-16 text-white md:py-28"
         style={{
           backgroundImage: heroBackgroundImage
-            ? `linear-gradient(135deg, hsl(260 70% 25% / 0.95), hsl(210 80% 30% / 0.9)), url(${heroBackgroundImage})`
-            : "linear-gradient(135deg, hsl(260 70% 25%), hsl(250 60% 20%) 40%, hsl(210 80% 25%))",
+            ? `linear-gradient(135deg, hsl(260 70% 18% / 0.97), hsl(210 80% 22% / 0.95)), url(${heroBackgroundImage})`
+            : "linear-gradient(135deg, hsl(260 70% 18%), hsl(250 60% 15%) 40%, hsl(210 80% 20%))",
           backgroundSize: "cover",
           backgroundPosition: "center",
         }}
       >
         <div className="container">
-          <div className="mx-auto max-w-3xl text-center">
-            <Badge variant="secondary" className="mb-4">
+          <div className="mx-auto max-w-4xl text-center">
+            <Badge variant="secondary" className="mb-6">
               <Users className="mr-1.5 h-3.5 w-3.5" />
               Om Teamet
             </Badge>
-            <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">
+            <h1 className="mb-6 text-4xl font-bold tracking-tight md:text-6xl">
               Teamet bag Casinoaftaler.dk
             </h1>
-            <p className="text-lg text-white/80">
-              Casinoaftaler.dk drives af et dedikeret team af aktive casino-streamere og
-              content-specialister med praktisk erfaring fra det danske online casinomarked.
+            <p className="mb-4 text-xl font-semibold text-white/90 md:text-2xl">
+              To streamere. Ét fælles mål.
+              <br />
+              At skabe gennemsigtighed i online casino i Danmark.
             </p>
-            <p className="mt-3 text-white/70">
-              Vores mål er at skabe gennemsigtighed, troværdighed og et stærkt community
-              omkring online casino i Danmark.
+            <p className="mx-auto max-w-2xl text-base text-white/70 md:text-lg">
+              Fra Twitch-streams til systematisk test af casinoer – Casinoaftaler.dk er bygget på
+              praktisk erfaring, community og gennemsigtighed.
             </p>
+
+            {/* Profile images side-by-side */}
+            <div className="mt-10 flex items-center justify-center gap-6 md:gap-10">
+              <Link to="/forfatter" className="group">
+                <div className="mx-auto h-28 w-28 overflow-hidden rounded-full border-4 border-white/20 transition-all duration-300 group-hover:border-white/50 group-hover:scale-105 md:h-36 md:w-36">
+                  <img src={jonasImage} alt="Jonas – Grundlægger" className="h-full w-full object-cover" loading="eager" />
+                </div>
+                <p className="mt-2 text-sm font-medium text-white/80">Jonas</p>
+              </Link>
+              <div className="flex flex-col items-center gap-1">
+                <span className="text-3xl font-bold text-white/30">&</span>
+              </div>
+              <Link to="/forfatter/kevin" className="group">
+                <div className="mx-auto h-28 w-28 overflow-hidden rounded-full border-4 border-white/20 transition-all duration-300 group-hover:border-white/50 group-hover:scale-105 md:h-36 md:w-36">
+                  <img src={kevinImage} alt="Kevin – IT Medansvarlig" className="h-full w-full object-cover" loading="eager" />
+                </div>
+                <p className="mt-2 text-sm font-medium text-white/80">Kevin</p>
+              </Link>
+            </div>
           </div>
         </div>
       </section>
 
-      <div className="container py-8 md:py-12">
-        {/* Vores mission */}
-        <section className="mb-12">
+      {/* ═══ FRA TWITCH TIL PLATFORM (Storytelling) ═══ */}
+      <div className="container py-12 md:py-16">
+        <section className="mb-16">
+          <h2 className="mb-6 text-3xl font-bold flex items-center gap-2 md:text-4xl">
+            <Tv className="h-7 w-7 text-primary" />
+            Fra Twitch til Casinoaftaler.dk
+          </h2>
+          <div className="grid gap-8 md:grid-cols-2">
+            <div className="space-y-4">
+              <p className="text-muted-foreground leading-relaxed">
+                Det hele startede på Twitch. Jonas og Kevin streamede uafhængigt af hinanden, men
+                fandt hurtigt fælles interesse for online casino, streaming og det community, der
+                voksede op omkring dem.
+              </p>
+              <p className="text-muted-foreground leading-relaxed">
+                De begyndte at gæste hinandens streams, dele erfaringer og diskutere de casinoer,
+                de testede. Seerne stillede spørgsmål – og det blev tydeligt, at der manglede et
+                sted med ærlig og gennemsigtig information.
+              </p>
+            </div>
+            <div className="space-y-4">
+              <p className="text-muted-foreground leading-relaxed">
+                Derfra voksede idéen om Casinoaftaler.dk – en platform bygget af streamere med
+                praktisk erfaring, for spillere der ønsker gennemsigtighed.
+              </p>
+              <p className="text-muted-foreground leading-relaxed">
+                I dag kombinerer de streaming, systematisk test og community til en samlet
+                platform, hvor anmeldelser bygger på reel erfaring – ikke kun skrivebordsvurdering.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <Separator className="my-10" />
+
+        {/* ═══ VORES MISSION ═══ */}
+        <section className="mb-16">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
             <Target className="h-7 w-7 text-primary" />
             Vores mission
@@ -186,27 +267,94 @@ const OmTeamet = () => {
             </Link>
           </div>
         </section>
+      </div>
+
+      {/* ═══ CITAT-SEKTION (visuelt adskilt) ═══ */}
+      <section
+        className="py-16 md:py-20"
+        style={{
+          background: "linear-gradient(135deg, hsl(260 50% 12%), hsl(230 40% 15%))",
+        }}
+      >
+        <div className="container">
+          <h2 className="mb-10 text-center text-3xl font-bold text-white flex items-center justify-center gap-2 md:text-4xl">
+            <MessageSquare className="h-7 w-7" />
+            Hvad driver os?
+          </h2>
+          <div className="grid gap-6 md:grid-cols-2">
+            <Card className="border-white/10 bg-white/5 backdrop-blur-sm">
+              <CardContent className="p-8">
+                <Quote className="mb-4 h-8 w-8 text-primary/60" />
+                <p className="mb-6 text-xl font-medium leading-relaxed text-white/90 italic">
+                  "Streaming handler om energi. Casinoaftaler handler om gennemsigtighed."
+                </p>
+                <div className="flex items-center gap-3">
+                  <div className="h-12 w-12 overflow-hidden rounded-full border-2 border-primary/30">
+                    <img src={jonasImage} alt="Jonas" className="h-full w-full object-cover" />
+                  </div>
+                  <div>
+                    <p className="font-semibold text-white">Jonas</p>
+                    <p className="text-sm text-white/60">Grundlægger & Indholdsansvarlig</p>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+
+            <Card className="border-white/10 bg-white/5 backdrop-blur-sm">
+              <CardContent className="p-8">
+                <Quote className="mb-4 h-8 w-8 text-primary/60" />
+                <p className="mb-6 text-xl font-medium leading-relaxed text-white/90 italic">
+                  "Vi tester ikke bare casinoer – vi dokumenterer vores vurderinger."
+                </p>
+                <div className="flex items-center gap-3">
+                  <div className="h-12 w-12 overflow-hidden rounded-full border-2 border-primary/30">
+                    <img src={kevinImage} alt="Kevin" className="h-full w-full object-cover" />
+                  </div>
+                  <div>
+                    <p className="font-semibold text-white">Kevin</p>
+                    <p className="text-sm text-white/60">Casino-streamer & IT Medansvarlig</p>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+          </div>
+        </div>
+      </section>
+
+      {/* ═══ TEAMET I TAL ═══ */}
+      <div className="container py-12 md:py-16">
+        <section className="mb-16">
+          <h2 className="mb-8 text-center text-3xl font-bold flex items-center justify-center gap-2 md:text-4xl">
+            <Zap className="h-7 w-7 text-primary" />
+            Teamet i tal
+          </h2>
+          <div className="grid grid-cols-2 gap-4 md:grid-cols-4">
+            {stats.map((stat) => (
+              <Card key={stat.label} className="border-border bg-card text-center">
+                <CardContent className="p-6">
+                  <stat.icon className="mx-auto mb-3 h-8 w-8 text-primary" />
+                  <p className="text-3xl font-bold text-foreground md:text-4xl">{stat.value}</p>
+                  <p className="mt-1 text-sm text-muted-foreground">{stat.label}</p>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </section>
 
         <Separator className="my-10" />
 
-        {/* Mød teamet */}
-        <section className="mb-12">
-          <h2 className="mb-6 text-3xl font-bold flex items-center gap-2">
+        {/* ═══ MØD TEAMET ═══ */}
+        <section className="mb-16">
+          <h2 className="mb-6 text-3xl font-bold flex items-center gap-2 md:text-4xl">
             <Users className="h-7 w-7 text-primary" />
             Mød teamet
           </h2>
           <div className="grid gap-6 md:grid-cols-2">
-            {/* Jonas */}
             <Card className="border-border bg-card overflow-hidden">
               <CardHeader className="pb-4">
                 <div className="flex items-center gap-4">
                   <div className="h-24 w-24 flex-shrink-0 overflow-hidden rounded-full border-2 border-primary/30">
-                    <img
-                      src={jonasImage}
-                      alt="Jonas – Grundlægger af Casinoaftaler.dk"
-                      className="h-full w-full object-cover"
-                      loading="eager"
-                    />
+                    <img src={jonasImage} alt="Jonas – Grundlægger af Casinoaftaler.dk" className="h-full w-full object-cover" loading="eager" />
                   </div>
                   <div>
                     <CardTitle className="text-xl">Jonas</CardTitle>
@@ -232,17 +380,11 @@ const OmTeamet = () => {
               </CardContent>
             </Card>
 
-            {/* Kevin */}
             <Card className="border-border bg-card overflow-hidden">
               <CardHeader className="pb-4">
                 <div className="flex items-center gap-4">
                   <div className="h-24 w-24 flex-shrink-0 overflow-hidden rounded-full border-2 border-primary/30">
-                    <img
-                      src={kevinImage}
-                      alt="Kevin – Casino-streamer & IT Medansvarlig"
-                      className="h-full w-full object-cover"
-                      loading="eager"
-                    />
+                    <img src={kevinImage} alt="Kevin – Casino-streamer & IT Medansvarlig" className="h-full w-full object-cover" loading="eager" />
                   </div>
                   <div>
                     <CardTitle className="text-xl">Kevin</CardTitle>
@@ -271,28 +413,28 @@ const OmTeamet = () => {
 
         <Separator className="my-10" />
 
-        {/* Sådan arbejder vi */}
-        <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
+        {/* ═══ SÅDAN ARBEJDER TEAMET ═══ */}
+        <section className="mb-16">
+          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2 md:text-4xl">
             <BookOpen className="h-7 w-7 text-primary" />
             Sådan arbejder teamet
           </h2>
-          <p className="text-muted-foreground leading-relaxed mb-6">
+          <p className="text-muted-foreground leading-relaxed mb-8">
             Vores arbejdsproces er designet til at sikre, at alle anmeldelser og anbefalinger
             bygger på reel test og dokumenteret vurdering.
           </p>
-          <div className="space-y-3">
+          <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
             {workMethods.map((method) => (
-              <div
-                key={method.text}
-                className="flex items-center gap-3 rounded-lg border border-border bg-card p-4"
-              >
-                <method.icon className="h-5 w-5 flex-shrink-0 text-primary" />
-                <span className="font-medium">{method.text}</span>
-              </div>
+              <Card key={method.title} className="border-border bg-card">
+                <CardContent className="p-6">
+                  <method.icon className="mb-3 h-6 w-6 text-primary" />
+                  <h3 className="mb-2 font-semibold">{method.title}</h3>
+                  <p className="text-sm text-muted-foreground leading-relaxed">{method.desc}</p>
+                </CardContent>
+              </Card>
             ))}
           </div>
-          <div className="mt-6">
+          <div className="mt-8">
             <Link to="/saadan-tester-vi-casinoer">
               <Button variant="outline" size="sm">
                 <ShieldCheck className="mr-1.5 h-4 w-4" />
@@ -304,8 +446,28 @@ const OmTeamet = () => {
 
         <Separator className="my-10" />
 
-        {/* Transparens & ansvar */}
-        <section className="mb-12">
+        {/* ═══ HVORFOR STOLE PÅ OS ═══ */}
+        <section className="mb-16">
+          <h2 className="mb-6 text-3xl font-bold flex items-center gap-2 md:text-4xl">
+            <ShieldCheck className="h-7 w-7 text-primary" />
+            Hvorfor stole på Casinoaftaler.dk?
+          </h2>
+          <div className="rounded-xl border border-border bg-card p-6 md:p-8">
+            <div className="space-y-4">
+              {trustPoints.map((point) => (
+                <div key={point} className="flex items-start gap-3">
+                  <CheckCircle2 className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
+                  <span className="font-medium">{point}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <Separator className="my-10" />
+
+        {/* ═══ TRANSPARENS & ANSVAR ═══ */}
+        <section className="mb-16">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
             <Shield className="h-7 w-7 text-primary" />
             Transparens & ansvar
@@ -319,25 +481,48 @@ const OmTeamet = () => {
             kommercielle samarbejder fra vores redaktionelle vurderinger, og vi oplyser tydeligt
             om alle bonusvilkår og betingelser.
           </p>
-          <div className="flex flex-wrap gap-3">
-            <Link to="/responsible-gaming">
-              <Button variant="outline" size="sm">
-                <Shield className="mr-1.5 h-4 w-4" />
-                Ansvarligt Spil
+        </section>
+      </div>
+
+      {/* ═══ CTA SEKTION (visuelt adskilt) ═══ */}
+      <section
+        className="py-16 md:py-20"
+        style={{
+          background: "linear-gradient(135deg, hsl(260 60% 15%), hsl(220 50% 18%))",
+        }}
+      >
+        <div className="container text-center">
+          <h2 className="mb-4 text-3xl font-bold text-white md:text-4xl">
+            Vil du vide mere om vores testmetode?
+          </h2>
+          <p className="mx-auto mb-8 max-w-xl text-white/70">
+            Se hvordan vi arbejder, eller lær vores team bedre at kende via deres personlige profiler.
+          </p>
+          <div className="flex flex-wrap items-center justify-center gap-4">
+            <Link to="/saadan-tester-vi-casinoer">
+              <Button size="lg" className="font-semibold">
+                <ShieldCheck className="mr-2 h-5 w-5" />
+                Sådan tester vi casinoer
               </Button>
             </Link>
-            <Link to="/contact">
-              <Button variant="outline" size="sm">
-                <Users className="mr-1.5 h-4 w-4" />
-                Kontakt os
+            <Link to="/forfatter">
+              <Button variant="outline" size="lg" className="border-white/20 text-white hover:bg-white/10 font-semibold">
+                Mød Jonas
+                <ArrowRight className="ml-2 h-5 w-5" />
+              </Button>
+            </Link>
+            <Link to="/forfatter/kevin">
+              <Button variant="outline" size="lg" className="border-white/20 text-white hover:bg-white/10 font-semibold">
+                Mød Kevin
+                <ArrowRight className="ml-2 h-5 w-5" />
               </Button>
             </Link>
           </div>
-        </section>
+        </div>
+      </section>
 
-        <Separator className="my-10" />
-
-        {/* Relaterede guides */}
+      {/* ═══ RELATEREDE GUIDES ═══ */}
+      <div className="container py-12 md:py-16">
         <RelatedGuides currentPath="/om-teamet" />
       </div>
     </>
