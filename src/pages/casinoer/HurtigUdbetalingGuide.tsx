@@ -14,8 +14,8 @@ import { buildArticleSchema, buildFaqSchema, SITE_URL } from "@/lib/seo";
 import type { ReactNode } from "react";
 import {
   Zap, Clock, CreditCard, ShieldCheck, Smartphone, CheckCircle2,
-  TrendingUp, ArrowRight, Star, AlertTriangle, Users, BarChart3,
-  Gift, BookOpen, Timer, Wallet, BadgeCheck, Banknote, CircleDollarSign
+  TrendingUp, Star, AlertTriangle, Users, BarChart3,
+  Timer, Wallet, BadgeCheck,
 } from "lucide-react";
 
 const linkClass = "text-primary underline hover:text-primary/80";
@@ -93,37 +93,46 @@ const HurtigUdbetalingGuide = () => {
         jsonLd={[articleSchema, faqSchema]}
       />
 
-      {/* Hero */}
-      <section className="relative w-full overflow-hidden bg-gradient-to-br from-[#1a0533] via-[#2d1b69] to-[#1e3a5f]">
-        <div className="absolute inset-0">
-          <img src={heroImage} alt="Casinoer med hurtig udbetaling" className="h-full w-full object-cover opacity-30" loading="eager" />
-          <div className="absolute inset-0 bg-gradient-to-t from-[#1a0533] via-transparent to-transparent" />
-        </div>
-        <div className="container relative z-10 py-16 md:py-24 text-center">
-          <Badge className="mb-4 bg-primary/20 text-primary border-primary/30">
-            <Zap className="h-3 w-3 mr-1" /> Opdateret Februar 2026
-          </Badge>
-          <h1 className="text-3xl md:text-5xl font-extrabold text-white mb-4 leading-tight max-w-4xl mx-auto">
-            Casinoer med Hurtig Udbetaling i Danmark 2026
-          </h1>
-          <p className="text-lg md:text-xl text-white/80 max-w-3xl mx-auto">
-            Komplet guide til de danske online casinoer med de hurtigste udbetalinger. Få dine gevinster på kontoen inden for timer – ikke dage.
-          </p>
+      {/* Hero Section – matches NyeCasinoer template */}
+      <section
+        className="relative overflow-hidden py-12 text-white md:py-20"
+        style={{
+          backgroundImage: 'linear-gradient(135deg, hsl(260 70% 25%), hsl(250 60% 20%) 40%, hsl(210 80% 25%))',
+        }}
+      >
+        <div className="container">
+          <div className="mx-auto max-w-3xl text-center">
+            <Badge variant="secondary" className="mb-4">
+              <Zap className="mr-1.5 h-3.5 w-3.5" />
+              Opdateret Februar 2026
+            </Badge>
+            <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">
+              Casinoer med Hurtig Udbetaling i Danmark 2026
+            </h1>
+            <p className="text-lg text-white/80">
+              Komplet guide til de danske online casinoer med de hurtigste udbetalinger. Få dine gevinster på kontoen inden for timer – ikke dage.
+            </p>
+          </div>
         </div>
       </section>
 
-      <AuthorMetaBar author="jonas" date="1. februar 2026" readTime="18 min" />
+      <div className="container py-8 md:py-12">
+        <AuthorMetaBar author="jonas" date="1. februar 2026" readTime="18 min" />
 
-      <article className="container max-w-4xl py-10 md:py-16">
+        <div className="mb-10 overflow-hidden rounded-xl">
+          <img src={heroImage} alt="Casinoer med hurtig udbetaling" className="w-full h-auto object-cover max-h-[400px]" loading="eager" />
+        </div>
+
         {/* Intro */}
-        <section className="prose prose-lg max-w-none dark:prose-invert mb-12">
-          <p className="text-lg leading-relaxed">
+        <section className="mb-12">
+          <h2 className="mb-4 text-3xl font-bold">Overblik over hurtige udbetalinger</h2>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
             Når du vinder på et online casino, er der kun én ting, der tæller: <strong>Hvor hurtigt kan du få dine penge?</strong> Intet ødelægger glæden ved en stor gevinst som at vente 3–5 bankdage på, at pengene tikker ind. Heldigvis har konkurrencen mellem danske casinoer drevet udbetalingshastighederne til et niveau, hvor de bedste operatører leverer dine gevinster inden for få timer – og i nogle tilfælde øjeblikkeligt.
           </p>
-          <p>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
             I denne omfattende guide gennemgår vi alt, hvad du skal vide om casinoer med hurtige udbetalinger. Vi analyserer, hvilke <Link to="/betalingsmetoder" className={linkClass}>betalingsmetoder</Link> der er hurtigst, hvad der kan forsinke din udbetaling, og hvordan du sikrer, at dine gevinster når frem så hurtigt som muligt. Vi har testet udbetalingsprocessen hos samtlige <Link to="/casino-anmeldelser" className={linkClass}>casinoer vi anmelder</Link> og kan give dig konkrete, datadrevne anbefalinger baseret på vores erfaringer.
           </p>
-          <p>
+          <p className="text-muted-foreground leading-relaxed">
             Alle casinoer vi anbefaler har gyldig dansk licens fra <Link to="/spillemyndigheden" className={linkClass}>Spillemyndigheden</Link>, hvilket sikrer, at dine midler er beskyttet, og at udbetalingsprocessen overholder strenge regulatoriske krav. Læs mere om vores testmetodik i vores guide til <Link to="/saadan-tester-vi-casinoer" className={linkClass}>hvordan vi tester casinoer</Link>.
           </p>
         </section>
@@ -132,7 +141,7 @@ const HurtigUdbetalingGuide = () => {
 
         {/* Hvad definerer hurtig udbetaling */}
         <section className="mb-12">
-          <h2 className="text-2xl md:text-3xl font-bold mb-6 flex items-center gap-2">
+          <h2 className="mb-6 text-3xl font-bold flex items-center gap-2">
             <Clock className="h-7 w-7 text-primary" />
             Hvad definerer et casino med hurtig udbetaling?
           </h2>
@@ -140,7 +149,7 @@ const HurtigUdbetalingGuide = () => {
             Et casino med hurtig udbetaling er kendetegnet ved at behandle udbetalingsanmodninger markant hurtigere end branchegennemsnittet. Mens mange casinoer opererer med en intern behandlingstid på 24–72 timer, tilbyder de bedste operatører behandling inden for 1–4 timer – uanset tidspunkt på døgnet. Men hvad gør forskellen mellem et "hurtigt" og et "langsomt" casino?
           </p>
           <div className="grid md:grid-cols-2 gap-6 mb-6">
-            <Card>
+            <Card className="border-border bg-card">
               <CardHeader>
                 <CardTitle className="flex items-center gap-2 text-lg">
                   <Timer className="h-5 w-5 text-primary" />
@@ -153,7 +162,7 @@ const HurtigUdbetalingGuide = () => {
                 </p>
               </CardContent>
             </Card>
-            <Card>
+            <Card className="border-border bg-card">
               <CardHeader>
                 <CardTitle className="flex items-center gap-2 text-lg">
                   <Wallet className="h-5 w-5 text-primary" />
@@ -172,11 +181,11 @@ const HurtigUdbetalingGuide = () => {
           </p>
         </section>
 
-        <Separator className="mb-12" />
+        <Separator className="my-10" />
 
         {/* Betalingsmetoder sammenligning */}
         <section className="mb-12">
-          <h2 className="text-2xl md:text-3xl font-bold mb-6 flex items-center gap-2">
+          <h2 className="mb-6 text-3xl font-bold flex items-center gap-2">
             <CreditCard className="h-7 w-7 text-primary" />
             De hurtigste betalingsmetoder til udbetalinger
           </h2>
@@ -238,11 +247,11 @@ const HurtigUdbetalingGuide = () => {
           </p>
         </section>
 
-        <Separator className="mb-12" />
+        <Separator className="my-10" />
 
         {/* Hvorfor vælge hurtig udbetaling */}
         <section className="mb-12">
-          <h2 className="text-2xl md:text-3xl font-bold mb-6 flex items-center gap-2">
+          <h2 className="mb-6 text-3xl font-bold flex items-center gap-2">
             <TrendingUp className="h-7 w-7 text-primary" />
             Hvorfor er hurtige udbetalinger vigtige?
           </h2>
@@ -250,183 +259,92 @@ const HurtigUdbetalingGuide = () => {
             Udbetalingshastighed er ikke bare et spørgsmål om bekvemmelighed – det er en fundamental indikator for et casinos troværdighed og operationelle kvalitet. Her er de vigtigste grunde til at prioritere casinoer med hurtige udbetalinger.
           </p>
           <div className="grid md:grid-cols-3 gap-4 mb-6">
-            <Card className="border-l-4 border-l-primary">
-              <CardContent className="pt-6">
-                <h3 className="font-bold mb-2 flex items-center gap-2">
+            <Card className="border-border bg-card">
+              <CardHeader className="pb-2">
+                <CardTitle className="flex items-center gap-2 text-lg">
                   <ShieldCheck className="h-5 w-5 text-primary" /> Sikkerhedssignal
-                </h3>
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
                 <p className="text-sm text-muted-foreground">
                   Et casino, der udbetaler hurtigt, signalerer finansiel stabilitet og professionel drift. Langsomme udbetalinger kan indikere likviditetsproblemer eller bevidst forsinkelse for at opfordre til yderligere spil. De mest pålidelige operatører har automatiserede systemer, der behandler udbetalinger døgnet rundt uden manuel intervention.
                 </p>
               </CardContent>
             </Card>
-            <Card className="border-l-4 border-l-primary">
-              <CardContent className="pt-6">
-                <h3 className="font-bold mb-2 flex items-center gap-2">
-                  <BadgeCheck className="h-5 w-5 text-primary" /> Ansvarligt spil
-                </h3>
+            <Card className="border-border bg-card">
+              <CardHeader className="pb-2">
+                <CardTitle className="flex items-center gap-2 text-lg">
+                  <CheckCircle2 className="h-5 w-5 text-primary" /> Ansvarligt spil
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
                 <p className="text-sm text-muted-foreground">
-                  Hurtige udbetalinger understøtter <Link to="/responsible-gaming" className={linkClass}>ansvarligt spil</Link> ved at reducere fristelsen til at annullere en udbetaling og spille videre. Mange casinoer tillader annullering under behandlingsperioden – jo kortere denne periode er, desto mindre er risikoen for impulsive beslutninger. Det er en vigtig faktor, som ofte overses.
+                  Hurtige udbetalinger understøtter <Link to="/responsible-gaming" className={linkClass}>ansvarligt spil</Link>. Når du kan få dine gevinster hurtigt, reduceres fristelsen til at "spille dem op" mens du venter. Forsinkede udbetalinger er en kendt taktik, der udnytter impulsspil – seriøse casinoer undgår dette.
                 </p>
               </CardContent>
             </Card>
-            <Card className="border-l-4 border-l-primary">
-              <CardContent className="pt-6">
-                <h3 className="font-bold mb-2 flex items-center gap-2">
-                  <Star className="h-5 w-5 text-primary" /> Brugeroplevelse
-                </h3>
+            <Card className="border-border bg-card">
+              <CardHeader className="pb-2">
+                <CardTitle className="flex items-center gap-2 text-lg">
+                  <BadgeCheck className="h-5 w-5 text-primary" /> Professionel drift
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
                 <p className="text-sm text-muted-foreground">
-                  Den samlede spiloplevelse forbedres markant, når du ved, at dine gevinster er tilgængelige hurtigt. Det skaber tillid og gør det mere sandsynligt, at du vender tilbage til casinoet. De bedste casinoer i vores <Link to="/top-10-casino-online" className={linkClass}>top 10 liste</Link> scorer alle højt på udbetalingshastighed.
+                  Hurtige udbetalinger kræver investering i teknologi og compliance-processer. Et casino, der prioriterer dette, viser, at de investerer i spilleroplevelsen. Det er et tegn på en veldrevet operation, der sandsynligvis også leverer på andre områder som kundeservice og spiludvalg.
                 </p>
               </CardContent>
             </Card>
           </div>
         </section>
 
-        <Separator className="mb-12" />
+        <Separator className="my-10" />
 
-        {/* Tips til hurtigere udbetaling */}
+        {/* Tips til hurtigere udbetalinger */}
         <section className="mb-12">
-          <h2 className="text-2xl md:text-3xl font-bold mb-6 flex items-center gap-2">
-            <CheckCircle2 className="h-7 w-7 text-primary" />
-            8 tips til at sikre den hurtigst mulige udbetaling
+          <h2 className="mb-6 text-3xl font-bold flex items-center gap-2">
+            <Star className="h-7 w-7 text-primary" />
+            7 tips til hurtigere udbetalinger
           </h2>
-          <p className="text-muted-foreground mb-4">
-            Selvom valget af casino og betalingsmetode er afgørende, er der flere ting, du selv kan gøre for at fremskynde udbetalingsprocessen. Her er vores eksperttips baseret på hundredvis af udbetalingstest.
+          <p className="mb-6 text-muted-foreground leading-relaxed">
+            Uanset hvilket casino du vælger, kan du selv gøre meget for at fremskynde udbetalingsprocessen. Her er vores bedste tips baseret på erfaring fra hundredvis af testudbetalinger.
           </p>
-          <div className="space-y-4 mb-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             {[
-              { title: "Verificér din identitet straks efter registrering", desc: "Upload dit ID og adressebevis via MitID umiddelbart efter oprettelse af din konto. Vent ikke til din første udbetaling – KYC-processen kan tage op til 48 timer og er den hyppigste årsag til forsinkelser." },
-              { title: "Vælg den hurtigste betalingsmetode fra start", desc: "De fleste casinoer kræver, at du udbetaler via samme metode som din indbetaling. Vælg derfor Trustly eller PayPal fra starten for at sikre hurtige udbetalinger." },
-              { title: "Opfyld alle bonusvilkår inden udbetaling", desc: "Udbetalinger med aktive bonusser med uopfyldte omsætningskrav vil blive afvist eller forsinket. Tjek altid din bonusstatus i casinoets interface inden du anmoder om udbetaling." },
-              { title: "Respektér udbetalingsgrænserne", desc: "Anmod ikke om beløb over dit daglige udbetalingsloft. Opdel store beløb i flere anmodninger inden for dine grænser for at undgå manuel gennemgang." },
-              { title: "Udbetal på hverdage i arbejdstiden", desc: "Selvom de bedste casinoer behandler døgnet rundt, er der casinoer med manuelle processer, der kun behandler på hverdage mellem 9-17. Weekendanmodninger kan forsinkes." },
-              { title: "Hold dine kontaktoplysninger opdaterede", desc: "Forkerte eller forældede kontaktoplysninger kan forårsage yderligere verifikationskrav og forsinkelser." },
-              { title: "Undgå at ændre betalingsmetode", desc: "Skift af betalingsmetode mellem indbetaling og udbetaling udløser næsten altid ekstra sikkerhedstjek og forsinkelser." },
-              { title: "Kontakt support proaktivt ved store beløb", desc: "Udbetalinger over 100.000 kr. kræver typisk forstærket due diligence. Kontakt kundeservice på forhånd for at forberede dokumentationen." },
+              { icon: <ShieldCheck className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />, title: "Verificér din identitet tidligt", desc: "Gennemfør KYC-verifikation via MitID umiddelbart efter registrering. Det eliminerer den største forsinkelsesårsag og sikrer, at din første udbetaling behandles hurtigt." },
+              { icon: <CreditCard className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />, title: "Vælg den rigtige betalingsmetode", desc: "Trustly og e-wallets er markant hurtigere end bankoverførsler. Indsæt via den metode, du også vil bruge til udbetalinger." },
+              { icon: <AlertTriangle className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />, title: "Opfyld bonuskrav først", desc: "Sørg for at alle omsætningskrav er opfyldt inden du anmoder om udbetaling. Aktive bonusser kan forsinke eller annullere din udbetaling." },
+              { icon: <Users className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />, title: "Brug samme betalingsmetode", desc: "De fleste casinoer kræver, at du udbetaler via samme metode som du indsatte med. Skift af metode kan medføre ekstra verifikation." },
+              { icon: <Clock className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />, title: "Undgå weekender for bankoverførsler", desc: "Bankoverførsler behandles kun på hverdage. Anmod om udbetaling tidligt på ugen for hurtigst mulig levering." },
+              { icon: <BarChart3 className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />, title: "Tjek udbetalingsgrænser", desc: "Visse casinoer har daglige maksimumsgrænser. Store gevinster kan kræve flere udbetalinger over flere dage – VIP-status kan løfte disse grænser." },
             ].map((tip, i) => (
-              <Card key={i}>
-                <CardContent className="flex items-start gap-4 pt-4">
-                  <div className="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full bg-primary/10 text-primary font-bold text-sm">
-                    {i + 1}
-                  </div>
-                  <div>
-                    <h3 className="font-semibold mb-1">{tip.title}</h3>
-                    <p className="text-sm text-muted-foreground">{tip.desc}</p>
-                  </div>
-                </CardContent>
-              </Card>
+              <div key={i} className="flex items-start gap-3 rounded-lg border border-border bg-card p-4">
+                {tip.icon}
+                <div>
+                  <h3 className="font-semibold">{tip.title}</h3>
+                  <p className="text-sm text-muted-foreground">{tip.desc}</p>
+                </div>
+              </div>
             ))}
           </div>
         </section>
 
-        <Separator className="mb-12" />
-
-        {/* Fordele og ulemper */}
-        <section className="mb-12">
-          <h2 className="text-2xl md:text-3xl font-bold mb-6 flex items-center gap-2">
-            <BarChart3 className="h-7 w-7 text-primary" />
-            Fordele og ulemper ved casinoer med hurtige udbetalinger
-          </h2>
-          <div className="grid md:grid-cols-2 gap-6">
-            <Card className="border-green-500/30">
-              <CardHeader>
-                <CardTitle className="text-green-500 flex items-center gap-2">
-                  <CheckCircle2 className="h-5 w-5" /> Fordele
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <ul className="space-y-3 text-sm text-muted-foreground">
-                  <li className="flex items-start gap-2"><CheckCircle2 className="h-4 w-4 text-green-500 mt-0.5 flex-shrink-0" /> Adgang til dine gevinster inden for timer i stedet for dage</li>
-                  <li className="flex items-start gap-2"><CheckCircle2 className="h-4 w-4 text-green-500 mt-0.5 flex-shrink-0" /> Reducerer fristelsen til at annullere udbetalinger og spille videre</li>
-                  <li className="flex items-start gap-2"><CheckCircle2 className="h-4 w-4 text-green-500 mt-0.5 flex-shrink-0" /> Indikerer finansiel stabilitet og professionel drift</li>
-                  <li className="flex items-start gap-2"><CheckCircle2 className="h-4 w-4 text-green-500 mt-0.5 flex-shrink-0" /> Bedre kontrol over din økonomi og spilbudget</li>
-                  <li className="flex items-start gap-2"><CheckCircle2 className="h-4 w-4 text-green-500 mt-0.5 flex-shrink-0" /> Understøtter ansvarligt spil-principper</li>
-                </ul>
-              </CardContent>
-            </Card>
-            <Card className="border-red-500/30">
-              <CardHeader>
-                <CardTitle className="text-red-500 flex items-center gap-2">
-                  <AlertTriangle className="h-5 w-5" /> Ulemper
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <ul className="space-y-3 text-sm text-muted-foreground">
-                  <li className="flex items-start gap-2"><AlertTriangle className="h-4 w-4 text-red-500 mt-0.5 flex-shrink-0" /> Hurtige casinoer kan have lavere udbetalingsgrænser</li>
-                  <li className="flex items-start gap-2"><AlertTriangle className="h-4 w-4 text-red-500 mt-0.5 flex-shrink-0" /> Ikke alle betalingsmetoder understøtter øjeblikkelige overførsler</li>
-                  <li className="flex items-start gap-2"><AlertTriangle className="h-4 w-4 text-red-500 mt-0.5 flex-shrink-0" /> Store beløb kræver stadig manuel verifikation</li>
-                  <li className="flex items-start gap-2"><AlertTriangle className="h-4 w-4 text-red-500 mt-0.5 flex-shrink-0" /> Første udbetaling kan stadig tage længere pga. KYC</li>
-                </ul>
-              </CardContent>
-            </Card>
-          </div>
-        </section>
-
-        <Separator className="mb-12" />
-
-        {/* Verifikationsprocessen */}
-        <section className="mb-12">
-          <h2 className="text-2xl md:text-3xl font-bold mb-6 flex items-center gap-2">
-            <ShieldCheck className="h-7 w-7 text-primary" />
-            Verifikationsprocessen: KYC og MitID
-          </h2>
-          <p className="text-muted-foreground mb-6">
-            Den mest almindelige årsag til forsinkede udbetalinger er den lovpligtige identitetsverifikation. Alle <Link to="/licenserede-casinoer" className={linkClass}>licenserede casinoer</Link> i Danmark er forpligtet til at verificere din identitet inden den første udbetaling. Denne proces, kendt som KYC (Know Your Customer), er reguleret af <Link to="/spillemyndigheden" className={linkClass}>Spillemyndigheden</Link> og kræver typisk følgende dokumentation.
-          </p>
-          <div className="grid md:grid-cols-3 gap-4 mb-6">
-            <Card>
-              <CardContent className="pt-6 text-center">
-                <BadgeCheck className="h-10 w-10 text-primary mx-auto mb-3" />
-                <h3 className="font-bold mb-2">MitID-verifikation</h3>
-                <p className="text-sm text-muted-foreground">
-                  Den hurtigste metode. De fleste danske casinoer integrerer MitID direkte i registreringsprocessen, hvilket eliminerer behovet for yderligere dokumentation og muliggør øjeblikkelig verifikation.
-                </p>
-              </CardContent>
-            </Card>
-            <Card>
-              <CardContent className="pt-6 text-center">
-                <CreditCard className="h-10 w-10 text-primary mx-auto mb-3" />
-                <h3 className="font-bold mb-2">Billedlegitimation</h3>
-                <p className="text-sm text-muted-foreground">
-                  Pas, kørekort eller national ID. Kræves typisk kun hvis MitID-verifikation ikke er tilgængelig, eller ved udbetalinger over bestemte tærskler. Upload klare, ikke-udløbne dokumenter for hurtigst behandling.
-                </p>
-              </CardContent>
-            </Card>
-            <Card>
-              <CardContent className="pt-6 text-center">
-                <Banknote className="h-10 w-10 text-primary mx-auto mb-3" />
-                <h3 className="font-bold mb-2">Adressebevis</h3>
-                <p className="text-sm text-muted-foreground">
-                  Forsyningsregning, kontoudtog eller skattemeddelelse (maks. 3 måneder gammel). Kræves sjældent ved MitID-verifikation, men kan udløses ved store beløb eller mistænkelig aktivitet.
-                </p>
-              </CardContent>
-            </Card>
-          </div>
-          <p className="text-muted-foreground">
-            Vores anbefaling er klar: <strong>Gennemfør din MitID-verifikation umiddelbart efter registrering</strong> – vent ikke til din første udbetaling. De fleste casinoer tilbyder verifikation som en del af registreringsprocessen, og det tager kun 2–3 minutter. Ved at gøre dette eliminerer du den største potentielle forsinkelse og sikrer, at dine fremtidige udbetalinger behandles uden ophold.
-          </p>
-        </section>
-
-        <Separator className="mb-12" />
+        <Separator className="my-10" />
 
         {/* Ansvarligt spil */}
         <section className="mb-12">
-          <h2 className="text-2xl md:text-3xl font-bold mb-6 flex items-center gap-2">
-            <Users className="h-7 w-7 text-primary" />
+          <h2 className="mb-6 text-3xl font-bold flex items-center gap-2">
+            <ShieldCheck className="h-7 w-7 text-primary" />
             Hurtige udbetalinger og ansvarligt spil
           </h2>
-          <p className="text-muted-foreground mb-4">
-            Der er en direkte sammenhæng mellem udbetalingshastighed og <Link to="/responsible-gaming" className={linkClass}>ansvarligt spil</Link>. Forskning viser, at lange ventetider på udbetalinger øger sandsynligheden for, at spillere annullerer deres udbetalingsanmodning og fortsætter med at spille – ofte med negative konsekvenser. Hurtige udbetalinger modvirker denne adfærd ved at minimere vinduet for impulsive beslutninger.
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            Hurtige udbetalinger er en vigtig del af <Link to="/responsible-gaming" className={linkClass}>ansvarligt spil</Link>. Når du kan hæve dine gevinster hurtigt, reduceres fristelsen til at fortsætte med at spille med penge, du egentlig ville trække ud. Det er en af grundene til, at Spillemyndigheden lægger vægt på rimelige behandlingstider for udbetalinger.
           </p>
-          <Card className="bg-primary/5 border-primary/20 mb-6">
+          <Card className="border-border bg-card mb-6">
             <CardContent className="pt-6">
-              <h3 className="font-bold mb-3">Vigtige selvbegrænsningsværktøjer</h3>
-              <p className="text-sm text-muted-foreground mb-3">
-                Uanset udbetalingshastighed bør du altid benytte de tilgængelige værktøjer til ansvarligt spil:
-              </p>
+              <h3 className="font-bold mb-3">Selvbegrænsningsværktøjer</h3>
               <ul className="space-y-2 text-sm text-muted-foreground">
-                <li>• <strong>Indbetalingsgrænser:</strong> Sæt daglige, ugentlige og månedlige grænser</li>
+                <li>• <strong>Indbetalingsgrænser:</strong> Sæt daglige, ugentlige eller månedlige maksimum</li>
                 <li>• <strong>Tabsgrænser:</strong> Definér maksimalt acceptabelt tab pr. session</li>
                 <li>• <strong>Sessionstidsgrænser:</strong> Få advarsler efter fastsat spilletid</li>
                 <li>• <strong>Afkølingsperiode:</strong> Tag en pause fra 24 timer til 30 dage</li>
@@ -439,29 +357,31 @@ const HurtigUdbetalingGuide = () => {
           </p>
         </section>
 
-        <Separator className="mb-12" />
+        <Separator className="my-10" />
 
         {/* Konklusion */}
         <section className="mb-12">
-          <h2 className="text-2xl md:text-3xl font-bold mb-6 flex items-center gap-2">
-            <Star className="h-7 w-7 text-primary" />
+          <h2 className="mb-4 text-3xl font-bold">
             Konklusion: Vælg det rigtige casino med hurtig udbetaling
           </h2>
-          <p className="text-muted-foreground mb-4">
+          <p className="mb-4 text-muted-foreground leading-relaxed">
             Udbetalingshastighed er en af de vigtigste faktorer, når du vælger et <Link to="/top-10-casino-online" className={linkClass}>online casino</Link>. De bedste danske casinoer kombinerer hurtig intern behandling med understøttelse af hurtige betalingsmetoder som <Link to="/betalingsmetoder/trustly" className={linkClass}>Trustly</Link>, og tilbyder en samlet udbetalingstid på under 1 time. Men husk, at hastighed aldrig bør gå på kompromis med sikkerhed – vælg altid et casino med gyldig dansk licens fra <Link to="/spillemyndigheden" className={linkClass}>Spillemyndigheden</Link>.
           </p>
-          <p className="text-muted-foreground mb-4">
+          <p className="text-muted-foreground leading-relaxed">
             Følg vores tips ovenfor, verificér din identitet tidligt, og vælg den rigtige betalingsmetode – så er du sikret en problemfri og hurtig udbetalingsoplevelse. Besøg vores <Link to="/casino-anmeldelser" className={linkClass}>casino anmeldelser</Link> for detaljerede vurderinger af udbetalingstider hos de enkelte casinoer.
           </p>
         </section>
 
-        <FAQSection faqs={faqs} />
+        <CommunityPromoSection />
+
+        <AuthorBio />
+
+        <Separator className="my-10" />
 
         <RelatedGuides currentPath="/casinoer/hurtig-udbetaling" />
 
-        <CommunityPromoSection />
-        <AuthorBio author="jonas" />
-      </article>
+        <FAQSection title="Ofte stillede spørgsmål om hurtige udbetalinger" faqs={faqs} />
+      </div>
     </>
   );
 };
