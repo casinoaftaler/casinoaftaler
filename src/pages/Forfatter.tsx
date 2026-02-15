@@ -145,10 +145,20 @@ export default function Forfatter() {
       >
         <div className="container">
           <div className="mx-auto max-w-3xl text-center">
-            <Badge variant="secondary" className="mb-4">
-              <User className="mr-1.5 h-3.5 w-3.5" />
-              Forfatter
-            </Badge>
+            <div className="mb-4 flex flex-wrap items-center justify-center gap-2">
+              <Badge variant="secondary">
+                <User className="mr-1.5 h-3.5 w-3.5" />
+                Forfatter
+              </Badge>
+              <Badge variant="secondary">
+                <Tv className="mr-1.5 h-3.5 w-3.5" />
+                Casino-streamer
+              </Badge>
+              <Badge variant="secondary">
+                <Zap className="mr-1.5 h-3.5 w-3.5" />
+                Grundlægger
+              </Badge>
+            </div>
             <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">
               Jonas – Fedesvinsejer
             </h1>
