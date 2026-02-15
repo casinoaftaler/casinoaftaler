@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { SEO } from "@/components/SEO";
 import { HeroSection } from "@/components/HeroSection";
+import { QuickNavSidebar } from "@/components/QuickNavBar";
 import { CommunityPromoSection } from "@/components/CommunityPromoSection";
 import { CasinoCard } from "@/components/CasinoCard";
 import { BonusTypeCards } from "@/components/BonusTypeCards";
@@ -107,9 +108,13 @@ const Index = () => {
 
       <HeroSection />
 
-      {/* Top Casinos Section */}
+      {/* Top Casinos Section with sidebar */}
       <section id="top-casinos" className="py-8 md:py-12">
-        <div className="container">
+        <div className="container relative">
+          {/* Left sidebar - positioned just outside container on xl */}
+          <aside className="hidden xl:block absolute right-full top-0 mr-6 w-[200px]">
+            <QuickNavSidebar />
+          </aside>
           <div className="mb-8">
             <h2 className="mb-4 text-3xl font-bold">Top Casinobonusser</h2>
             <p className="mb-6 text-muted-foreground">
