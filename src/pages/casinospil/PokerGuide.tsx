@@ -3,6 +3,7 @@ import { FAQSection } from "@/components/FAQSection";
 import { SEO } from "@/components/SEO";
 import { Separator } from "@/components/ui/separator";
 import { RelatedGuides } from "@/components/RelatedGuides";
+import { InlineCasinoCards } from "@/components/InlineCasinoCards";
 import { type ReactNode } from "react";
 import { Badge } from "@/components/ui/badge";
 import { User, CalendarDays, BookOpen, Target, ShieldCheck, BarChart3, Sparkles, Trophy, Zap, Layers } from "lucide-react";
@@ -226,9 +227,11 @@ const PokerGuide = () => {
 
         <Separator className="my-10" />
 
-        <FAQSection faqs={pokerFaqs} />
+        <InlineCasinoCards title="Bedste Casinoer til Poker" count={4} />
 
         <RelatedGuides currentPath="/casinospil/poker" />
+
+        <FAQSection faqs={pokerFaqs} />
       </div>
     </>
   );
