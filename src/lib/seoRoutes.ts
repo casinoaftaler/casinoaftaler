@@ -91,7 +91,7 @@ export const seoRoutes: SeoRoute[] = [
   // ── Info & Ansvarligt Spil ──
   { path: "/responsible-gaming", changefreq: "monthly", priority: 0.6 },
   { path: "/spillemyndigheden", changefreq: "monthly", priority: 0.7 },
-  { path: "/about", changefreq: "monthly", priority: 0.5 },
+  { path: "/om-teamet", changefreq: "monthly", priority: 0.6 },
   { path: "/contact", changefreq: "monthly", priority: 0.5 },
   { path: "/forfatter", changefreq: "monthly", priority: 0.6 },
   { path: "/forfatter/kevin", changefreq: "monthly", priority: 0.6 },
