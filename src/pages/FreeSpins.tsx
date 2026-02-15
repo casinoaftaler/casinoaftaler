@@ -39,52 +39,44 @@ const linkClass = "text-primary underline hover:text-primary/80";
 
 const freeSpinsFaqs: { question: string; answer: string | React.ReactNode }[] = [
   {
-    question: "Hvad er free spins?",
+    question: "Hvor mange free spins kan man typisk få hos danske casinoer?",
     answer: (
       <>
-        Free spins er gratis omgange på spilleautomater, som du modtager fra et online casino. Du kan spille uden at bruge din egen saldo, men eventuelle gevinster er typisk underlagt{" "}
-        <Link to="/omsaetningskrav" className={linkClass}>omsætningskrav</Link>, før de kan udbetales.
+        Antallet varierer markant: no deposit tilbud giver typisk 10-50 free spins, mens <Link to="/velkomstbonus" className={linkClass}>velkomstpakker</Link> kan inkludere 50-200 free spins fordelt over flere indbetalinger. Spinværdien er ligeså vigtig som antallet – 50 spins á 2 kr. (100 kr. total) er mere værd end 100 spins á 0,50 kr. (50 kr. total). De bedste danske tilbud kombinerer et højt antal spins med en spinværdi på mindst 1 kr. og lave eller ingen omsætningskrav. Udbydere som Starburst og Book of Dead er de hyppigst brugte spil i free spins-kampagner.
       </>
     ),
   },
   {
-    question: "Kan jeg vinde rigtige penge med free spins?",
+    question: "Hvorfor er free spins næsten altid begrænset til bestemte spil?",
+    answer: "Casinoer vælger specifikke spil til free spins af to grunde: 1) Spil med lav-medium volatilitet som Starburst giver spillere en positiv oplevelse med hyppige små gevinster, og 2) Casinoet har forhandlet særlige aftaler med spiludviklerne. Populære free spins-spil inkluderer Starburst (96,09% RTP, lav volatilitet), Book of Dead (96,21% RTP, høj volatilitet) og Gonzo's Quest (95,97% RTP, medium volatilitet). Spilvalget påvirker direkte din gevinstchance – højvolatilitetsspil giver større men sjældnere gevinster.",
+  },
+  {
+    question: "Hvad er forskellen på wager-free og standard free spins?",
     answer: (
       <>
-        Ja, du kan vinde rigtige penge med free spins. Dog skal du som regel opfylde casinoets{" "}
-        <Link to="/omsaetningskrav" className={linkClass}>omsætningskrav</Link>, før du kan hæve dine gevinster. Overvej{" "}
-        <Link to="/bonus-uden-omsaetningskrav" className={linkClass}>bonusser uden omsætningskrav</Link> for direkte udbetaling.
+        Standard free spins krediterer gevinster som bonuspenge der skal gennemspilles (typisk 10x i Danmark). Wager-free (omsætningsfrie) free spins lader dig hæve gevinsterne direkte uden gennemspilning. Forskellen er enorm: med standard spins og 10x omsætning på en gevinst på 200 kr. skal du satse 2.000 kr. før udbetaling. Med wager-free spins kan du hæve straks. Dog har wager-free spins næsten altid et gevinstloft (typisk 500-2.000 kr.). Læs mere om <Link to="/bonus-uden-omsaetningskrav" className={linkClass}>bonusser uden omsætningskrav</Link>.
       </>
     ),
   },
   {
-    question: "Hvad er forskellen på free spins med og uden omsætningskrav?",
+    question: "Kan jeg vælge hvilken spilleautomat mine free spins bruges på?",
+    answer: "I langt de fleste tilfælde nej – casinoet bestemmer spillet. Dog tilbyder nogle casinoer 'valgfrie free spins' hvor du kan vælge mellem 3-5 forudbestemte spil. Vælg altid spillet med højest RTP, medmindre du bevidst søger høj volatilitet med en no-sticky bonus. Hvis du modtager free spins på et ukendt spil, tjek dets RTP og volatilitet i spillets hjælpemenu før du begynder – det tager 30 sekunder og kan spare dig for skuffelse.",
+  },
+  {
+    question: "Udløber free spins – og hvad sker der med ubrugte spins?",
+    answer: "Ja, free spins har altid en udløbsdato – typisk 24 timer til 7 dage efter aktivering. Ubrugte spins forsvinder permanent efter fristen og kan ikke genskabes. Gevinster fra brugte spins forbliver på din konto som bonussaldo (medmindre de er wager-free), men omsætningskravene skal stadig opfyldes inden for bonussens overordnede tidsfrist. Tip: Aktivér free spins når du har tid til at bruge dem alle. Med 100 free spins á 10 sekunder per spin tager det ca. 17 minutter.",
+  },
+  {
+    question: "Er no deposit free spins virkelig gratis – hvad er faldgruben?",
     answer: (
       <>
-        Free spins med{" "}
-        <Link to="/omsaetningskrav" className={linkClass}>omsætningskrav</Link> kræver, at du spiller dine gevinster igennem. Free spins{" "}
-        <Link to="/bonus-uden-omsaetningskrav" className={linkClass}>uden omsætningskrav</Link> lader dig hæve gevinsterne med det samme – dog ofte med et gevinstloft.
+        No deposit free spins er gratis i den forstand at du ikke risikerer egne penge. Faldgruberne er: 1) Gevinster er underlagt <Link to="/omsaetningskrav" className={linkClass}>omsætningskrav</Link> (typisk 10x), 2) Der er altid et gevinstloft (ofte 500-1.000 kr.), 3) Spins har lav værdi (0,50-1 kr.), og 4) Du skal typisk foretage en minimumsindbetaling for at hæve gevinster. Reelt er no deposit free spins en risikofri prøvetur der lader dig teste casinoet – ikke en måde at vinde store beløb på. Vurder det som en gratis demo med reel gevinstmulighed.
       </>
     ),
   },
   {
-    question: "Kan jeg bruge free spins på alle spilleautomater?",
-    answer:
-      "Nej, free spins er typisk begrænset til bestemte spilleautomater udvalgt af casinoet. Det kan fx være populære titler som Book of Dead eller Starburst. Tjek altid vilkårene.",
-  },
-  {
-    question: "Udløber free spins?",
-    answer:
-      "Ja, free spins har næsten altid en udløbsdato – typisk mellem 24 timer og 30 dage. Ubrugte spins forsvinder automatisk efter fristen.",
-  },
-  {
-    question: "Hvad er no deposit free spins?",
-    answer: (
-      <>
-        No deposit free spins er gratis spins, du modtager uden at skulle indbetale penge først – en form for{" "}
-        <Link to="/bonus-uden-indbetaling" className={linkClass}>bonus uden indbetaling</Link>. De gives ofte til nye spillere ved tilmelding.
-      </>
-    ),
+    question: "Hvornår på året tilbyder casinoer flest free spins?",
+    answer: "Danske casinoer kører de mest generøse free spins-kampagner i december (jul), januar (nytår), påsken og Black Friday-perioden. Sommer (juni-august) er typisk lavere aktivitet. Nye casino-lanceringer genererer også aggressive tilbud – operatører investerer tungt i markedsføring de første 3-6 måneder. Hold øje med weekendkampagner: mange casinoer tilbyder reload free spins fredag-søndag for at øge aktiviteten. Tilmeld dig casinoernes nyhedsbreve for at modtage eksklusive free spins-tilbud der ikke annonceres offentligt.",
   },
 ];
 

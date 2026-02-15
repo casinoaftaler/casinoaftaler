@@ -43,34 +43,28 @@ import { RelatedGuides } from "@/components/RelatedGuides";
 
 const bonusUdenIndbetalingFaqs = [
   {
-    question: "Hvad er en bonus uden indbetaling?",
-    answer:
-      "En bonus uden indbetaling er et tilbud fra et online casino, hvor du modtager spillemidler eller gratis spins uden at skulle indsætte penge først. Det bruges typisk som velkomstbonus til nye spillere, men kan også tilbydes eksisterende kunder via kampagner.",
+    question: "Hvor stor er en typisk no deposit bonus hos danske casinoer?",
+    answer: "No deposit bonusser i Danmark er typisk beskedne: 25-100 kr. i bonuspenge eller 10-50 free spins. Beløbet er lavt fordi casinoet ikke har nogen garanti for at spilleren nogensinde indbetaler. Til gengæld er risikoen nul for spilleren – du kan teste casinoet helt gratis. De mest generøse no deposit tilbud inkluderer 50 free spins på populære slots som Starburst eller Book of Dead. Husk at gevinsterne næsten altid er underlagt omsætningskrav (typisk 10x i Danmark) og et gevinstloft.",
   },
   {
-    question: "Hvordan får jeg en bonus uden indbetaling?",
-    answer:
-      "Opret en konto hos et casino, der tilbyder bonussen. I nogle tilfælde krediteres den automatisk, mens du i andre tilfælde skal indtaste en bonuskode under registrering eller ved kassen.",
+    question: "Hvad er et realistisk gevinstloft på en bonus uden indbetaling?",
+    answer: "Gevinstloftet på no deposit bonusser ligger typisk mellem 200 og 1.000 kr. hos danske casinoer. Det betyder at selvom du vinder 5.000 kr. med dine gratis spins, kan du højst hæve det fastsatte maksimum. Loftet eksisterer fordi casinoet ellers ville have en uholdbar risiko. Nogle casinoer har progressive lofter: jo mere du efterfølgende indbetaler, desto højere gevinstloft. Tjek altid vilkårene – et lavt gevinstloft (under 500 kr.) reducerer den reelle værdi af bonussen markant.",
   },
   {
-    question: "Er der begrænsninger på, hvad jeg kan vinde?",
-    answer:
-      "Ja, mange casinoer sætter en maksimal grænse for, hvor meget du kan udbetale fra en bonus uden indbetaling. Selv hvis du vinder et større beløb, vil du kun kunne hæve op til det fastsatte maksimum.",
+    question: "Kan jeg få flere no deposit bonusser på forskellige casinoer?",
+    answer: "Ja, du kan oprette konti hos flere danske casinoer og modtage en no deposit bonus hos hver. Der er ingen lovmæssig begrænsning på dette. Dog kan du kun modtage én no deposit bonus per casino – forsøg på at oprette flere konti hos samme casino er et brud på vilkårene og kan resultere i kontolukning og konfiskering af gevinster. Strategisk set er det fornuftigt at teste 2-3 casinoer med no deposit bonusser for at finde det casino der passer dig bedst, før du foretager din første indbetaling.",
   },
   {
-    question: "Hvorfor tilbyder casinoer bonusser uden indbetaling?",
-    answer:
-      "Casinoer bruger disse bonusser som en strategi for at tiltrække nye kunder og belønne loyale spillere. For nye spillere fungerer det som en risikofri introduktion til casinoets spiludvalg.",
+    question: "Skal jeg afgive kortoplysninger for at modtage en bonus uden indbetaling?",
+    answer: "Det varierer. Nogle danske casinoer kræver at du tilknytter en betalingsmetode under registreringen, selvom du ikke indbetaler. Andre kræver kun MitID-verifikation. Kravet om betalingsmetode er dels for aldersverifikation, dels for at forenkle fremtidige indbetalinger. Du bliver aldrig debiteret automatisk – en indbetaling kræver altid dit aktive samtykke. Hvis du er usikker, kan du bruge Trustly eller MobilePay som bekræftelse, da disse metoder ikke gemmer kortoplysninger hos casinoet.",
   },
   {
-    question: "Hvad er omsætningskrav, og hvordan påvirker det min bonus?",
-    answer:
-      "Omsætningskravet angiver, hvor stort et beløb du skal spille for, før du kan hæve gevinster. Modtager du f.eks. 100 kr. med 10x omsætningskrav, skal du satse for 1.000 kr. før udbetaling.",
+    question: "Hvornår udløber en no deposit bonus?",
+    answer: "No deposit bonusser har typisk en kort gyldighedsperiode: 24 timer til 7 dage efter aktivering. Free spins-versioner har ofte endnu kortere frister – nogle skal bruges inden for 24 timer. Omsætningskravene skal også opfyldes inden for denne periode. Ubrugte free spins eller bonuspenge forsvinder automatisk efter fristen. Sæt en påmindelse på din telefon, så du ikke mister din bonus. Nogle casinoer giver forlængelse ved henvendelse til kundeservice, men det er undtagelsen snarere end reglen.",
   },
   {
-    question: "Kan jeg bruge en bonus uden indbetaling på alle spil?",
-    answer:
-      "Nej, der er ofte begrænsninger. Casinoer kan begrænse bonusmidler til bestemte spil eller spiltyper. Tjek altid vilkårene for at vide, hvilke spil der tæller med i omsætningskravet.",
+    question: "Hvad er forskellen på no deposit free spins og no deposit bonuspenge?",
+    answer: "No deposit free spins giver dig et bestemt antal gratis spins på en specifik spilleautomat – du har ingen kontrol over spilvalget. No deposit bonuspenge (f.eks. 50 kr. gratis) giver dig frihed til at vælge mellem et bredere udvalg af spil. Free spins har typisk lavere omsætningskrav (ofte 5-10x på gevinsten) end bonuspenge (typisk 10x på hele beløbet). Begge har gevinstlofter. For nybegyndere er free spins enklere – du trykker bare spin. For erfarne spillere er bonuspenge mere fleksible.",
   },
 ];
 

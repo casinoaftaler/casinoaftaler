@@ -46,120 +46,49 @@ const linkClass = "text-primary underline hover:text-primary/80";
 
 const casinoBonusFaqs: { question: string; answer: ReactNode }[] = [
   {
-    question: "Hvad er en casino bonus?",
+    question: "Hvordan sammenligner jeg casino bonusser effektivt?",
     answer: (
       <>
-        En casino bonus er et tilbud fra et online casino, der giver dig ekstra
-        midler eller gratis spins oven i din indbetaling. Bonusser bruges til at
-        tiltrække nye spillere og belønne eksisterende kunder.
+        Fokuser på fire nøgletal: 1) Matchprocent (100% er standard), 2) <Link to="/omsaetningskrav" className={linkClass}>Omsætningskrav</Link> (10x er Danmarks maksimum – lavere er bedre), 3) Bonustype (<Link to="/no-sticky-bonus" className={linkClass}>no-sticky</Link> er mest fordelagtig), og 4) Gyldighedsperiode (mindst 14 dage). Ignorer store overskrifter som "Op til 10.000 kr." – den effektive bonusværdi afhænger af vilkårene. En 500 kr. no-sticky bonus med 10x omsætning er mere værd end en 2.000 kr. sticky bonus med 10x omsætning, fordi du kan hæve egne gevinster undervejs.
       </>
     ),
   },
   {
-    question: "Hvad er forskellen på no-sticky og sticky bonus?",
+    question: "Hvad er forskellen mellem de fire hovedtyper af casino bonusser?",
     answer: (
       <>
-        Med en{" "}
-        <Link to="/no-sticky-bonus" className={linkClass}>no-sticky bonus</Link>{" "}
-        spilles dine rigtige penge først, og du kan hæve gevinster når som helst.
-        Med en{" "}
-        <Link to="/sticky-bonus" className={linkClass}>sticky bonus</Link>{" "}
-        kombineres din indbetaling og bonus, og du skal opfylde omsætningskravene
-        før udbetaling.
+        <Link to="/velkomstbonus" className={linkClass}>Velkomstbonus</Link>: Matchbonus til nye spillere (mest generøs). <Link to="/free-spins" className={linkClass}>Free spins</Link>: Gratis omgange på specifikke slots. <Link to="/bonus-uden-indbetaling" className={linkClass}>No deposit bonus</Link>: Gratis midler uden indbetaling (lavest beløb, højest risikofrihed). <Link to="/indskudsbonus" className={linkClass}>Reload bonus</Link>: Matchbonus til eksisterende spillere (lavere matchprocent). Hver type har unikke fordele – vælg baseret på din spillestil og risikovillighed. Velkomstbonussen giver mest værdi per krone, men kan kun bruges én gang.
       </>
     ),
   },
   {
-    question: "Hvad er omsætningskrav?",
+    question: "Kan bonusvilkår ændre sig efter jeg har accepteret en bonus?",
+    answer: "Nej, de vilkår du accepterer ved bonusaktivering er bindende for den specifikke bonus. Casinoet kan ikke ændre omsætningskrav, gyldighedsperiode eller gevinstloft bagudrettet. Dog kan generelle bonusvilkår ændres for fremtidige tilbud. Gem altid en kopi af vilkårene (screenshot) ved aktivering. Spillemyndigheden kræver at alle vilkår er tydeligt præsenteret og tilgængelige. Hvis du oplever uretfærdige ændringer, kan du klage direkte til Spillemyndigheden.",
+  },
+  {
+    question: "Tæller alle spil lige meget til bonusomsætning?",
     answer: (
       <>
-        Omsætningskrav angiver, hvor mange gange du skal spille for bonusbeløbet,
-        før du kan hæve gevinster. Et krav på 10x på en bonus på 1.000 kr.
-        betyder, at du skal omsætte for 10.000 kr. Læs vores dybdegående guide
-        til{" "}
-        <Link to="/omsaetningskrav" className={linkClass}>omsætningskrav</Link>.
+        Nej, spilbidrag varierer markant. <Link to="/casinospil" className={linkClass}>Spilleautomater</Link> bidrager typisk 100%, bordspil (blackjack, roulette) kun 10-20%, og <Link to="/live-casino" className={linkClass}>live casino</Link> er ofte 0-10%. Progressive jackpots kan være helt ekskluderet. Visse højvolatilitetsslots kan også have reduceret bidrag. Strategisk bør du udelukkende spille 100%-bidragsslots under bonusomsætning – alt andet forlænger gennemspilningstiden dramatisk.
       </>
     ),
   },
   {
-    question: "Kan jeg få en bonus uden at indbetale?",
+    question: "Er alle casinoer på listen licenserede og sikre?",
     answer: (
       <>
-        Ja, nogle casinoer tilbyder en{" "}
-        <Link to="/bonus-uden-indbetaling" className={linkClass}>
-          bonus uden indbetaling
-        </Link>
-        , hvor du modtager bonusmidler eller free spins blot ved at oprette en
-        konto. Disse bonusser er typisk mindre, men risikofri.
+        Ja, alle casinoer på Casinoaftaler.dk har gyldig dansk licens fra Spillemyndigheden. Det sikrer din beskyttelse som spiller – du kan altid selvudelukke via{" "}
+        <a href="https://www.rofus.nu/" target="_blank" rel="noopener noreferrer" className={linkClass}>ROFUS</a>, klage til Spillemyndigheden, og dine penge er beskyttet af regulatoriske krav. Casinoer uden dansk licens tilbyder ingen af disse garantier. Læs mere om <Link to="/responsible-gaming" className={linkClass}>ansvarligt spil</Link>.
       </>
     ),
   },
   {
-    question: "Hvordan aktiverer jeg en casino bonus?",
-    answer:
-      "De fleste bonusser aktiveres automatisk ved din første indbetaling. Nogle kræver en bonuskode, som du indtaster under indbetalingen. Tjek altid bonusvilkårene, så du ved præcis, hvordan du aktiverer dit tilbud.",
-  },
-  {
-    question: "Er casino bonusser det værd?",
-    answer: (
-      <>
-        Ja, hvis du forstår vilkårene. Kig efter bonusser med lave{" "}
-        <Link to="/omsaetningskrav" className={linkClass}>omsætningskrav</Link>{" "}
-        (under 15x), rimelige gyldighedsperioder og no-sticky struktur. Bonusser
-        med{" "}
-        <Link to="/bonus-uden-omsaetningskrav" className={linkClass}>
-          ingen omsætningskrav
-        </Link>{" "}
-        giver den bedste værdi.
-      </>
-    ),
-  },
-  {
-    question: "Hvad er free spins?",
-    answer: (
-      <>
-        <Link to="/free-spins" className={linkClass}>Free spins</Link> er
-        gratis omgange på spilleautomater. De kan være en del af en
-        velkomstpakke eller gives som selvstændig bonus. Gevinster fra free spins
-        er ofte underlagt omsætningskrav.
-      </>
-    ),
-  },
-  {
-    question: "Kan jeg bruge bonus på live casino?",
-    answer: (
-      <>
-        De fleste bonusser er begrænset til spilleautomater, men nogle casinoer
-        tilbyder specifikke{" "}
-        <Link to="/live-casino" className={linkClass}>live casino</Link>{" "}
-        bonusser. Tjek altid bonusvilkårene for spilbidrag fra live-spil.
-      </>
-    ),
+    question: "Hvornår er det bedst at bruge en casino bonus?",
+    answer: "De bedste tidspunkter for bonusudnyttelse er: 1) Ved din første registrering (velkomstbonussen er altid størst), 2) Under sæsonkampagner (jul, påske, Black Friday), og 3) Via VIP/loyalitetsprogrammer (bedre vilkår for aktive spillere). Undgå at jage bonusser dagligt – det fører let til overforbrug. Sæt et budget og brug bonusser som supplement, ikke som primær motivator. De mest disciplinerede spillere bruger bonusser strategisk 2-3 gange årligt ved de bedste tilbud.",
   },
   {
     question: "Hvor ofte opdaterer I bonuslisten?",
-    answer:
-      "Vi opdaterer vores bonusliste løbende – typisk dagligt eller ugentligt. Alle bonusser på siden er verificeret og aktuelle, og vi fjerner tilbud, der ikke længere er gældende.",
-  },
-  {
-    question: "Er alle casinoer på listen licenserede?",
-    answer: (
-      <>
-        Ja, alle casinoer på Casinoaftaler.dk har gyldig dansk licens fra
-        Spillemyndigheden. Det sikrer din beskyttelse som spiller, og du kan
-        altid selvudelukke via{" "}
-        <a
-          href="https://www.rofus.nu/"
-          target="_blank"
-          rel="noopener noreferrer"
-          className={linkClass}
-        >
-          ROFUS
-        </a>
-        . Læs mere om{" "}
-        <Link to="/responsible-gaming" className={linkClass}>ansvarligt spil</Link>.
-      </>
-    ),
+    answer: "Vi verificerer alle bonustilbud løbende – typisk dagligt eller ugentligt. Udløbne eller ændrede tilbud fjernes eller opdateres straks. Alle bonusser på siden er aktuelle og verificeret med direkte links til casinoernes officielle bonussider. Vi tester også selv nye tilbud ved at oprette konti og indbetale for at bekræfte at de annoncerede vilkår stemmer overens med det faktiske tilbud.",
   },
 ];
 

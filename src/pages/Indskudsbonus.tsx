@@ -45,63 +45,44 @@ const linkClass = "text-primary underline hover:text-primary/80";
 
 const indskudsbonusFaqs: { question: string; answer: string | React.ReactNode }[] = [
   {
-    question: "Hvad er en indskudsbonus?",
+    question: "Hvad er den typiske matchprocent på danske indskudsbonusser?",
     answer: (
       <>
-        En indskudsbonus er en kampagnebonus fra online casinoer, som matcher din indbetaling med en procentdel – typisk 100%. Det betyder, at du får ekstra spillemidler oven i dit indskud. Den bruges ofte som{" "}
-        <Link to="/velkomstbonus" className={linkClass}>velkomstbonus</Link> til nye spillere.
+        De fleste danske casinoer tilbyder 100% match på den første indbetaling – altså krone-for-krone op til et maksimum (typisk 500-2.000 kr.). Enkelte casinoer tilbyder 150-200% match for at differentiere sig, men disse har ofte strengere vilkår eller lavere maksimumbeløb. Velkomstpakker fordelt over flere indbetalinger kan samlet give op til 5.000 kr. i bonus. Sammenlign altid den totale pakkeværdi – ikke kun første indbetalings match. Tjek også om <Link to="/free-spins" className={linkClass}>free spins</Link> er inkluderet.
       </>
     ),
   },
   {
-    question: "Tilbyder danske casinoer indskudsbonus?",
+    question: "Hvilke betalingsmetoder kvalificerer til indskudsbonus?",
     answer: (
       <>
-        Ja, mange licenserede danske casinoer tilbyder indskudsbonusser. De bruges til at tiltrække nye spillere og belønne eksisterende kunder. Se vores{" "}
-        <Link to="/casino-anmeldelser" className={linkClass}>casino anmeldelser</Link> for konkrete eksempler.
+        De fleste betalingsmetoder kvalificerer, men visse e-wallets som Skrill og Neteller er ofte ekskluderet fra bonusaktivering hos danske casinoer. <Link to="/betalingsmetoder/mobilepay" className="text-primary underline hover:text-primary/80">MobilePay</Link>, <Link to="/betalingsmetoder/trustly" className="text-primary underline hover:text-primary/80">Trustly</Link> og <Link to="/betalingsmetoder/visa-mastercard" className="text-primary underline hover:text-primary/80">Visa/Mastercard</Link> kvalificerer næsten altid. Tjek bonusvilkårene FØR du indbetaler – det er ærgerligt at opdage at din valgte betalingsmetode er udelukket efter indbetalingen er foretaget. Nogle casinoer giver ekstra free spins ved brug af specifikke metoder.
       </>
     ),
   },
   {
-    question: "Kan jeg vinde rigtige penge med en indskudsbonus?",
+    question: "Er der forskel på en indskudsbonus og en velkomstbonus?",
     answer: (
       <>
-        Ja, du kan vinde rigtige penge. Dog skal du opfylde{" "}
-        <Link to="/omsaetningskrav" className={linkClass}>omsætningskravene</Link>, før du kan hæve eventuelle gevinster fra bonussen.
+        En <Link to="/velkomstbonus" className={linkClass}>velkomstbonus</Link> er altid en indskudsbonus – men ikke alle indskudsbonusser er velkomstbonusser. Velkomstbonussen er forbeholdt nye spillere og er typisk den mest generøse. Reload-indskudsbonusser gives til eksisterende spillere ved efterfølgende indbetalinger og har normalt lavere matchprocent (25-50%) og færre free spins. VIP-indskudsbonusser kan dog overgå velkomstbonussen i generøsitet for casinoets mest loyale spillere. Ugentlige reload-tilbud er en effektiv måde at strække dit spillebudget.
       </>
     ),
   },
   {
-    question: "Hvem er indskudsbonus bedst egnet til?",
-    answer:
-      "Indskudsbonusser er velegnede til både nye spillere, der vil maksimere deres første indbetaling, og erfarne spillere, der ønsker ekstra midler. De giver mulighed for at udforske flere spil uden at risikere lige så mange egne penge.",
+    question: "Hvad er den maksimale indsats per spin under bonusomsætning?",
+    answer: "Alle danske indskudsbonusser har en maksimal indsats per spilrunde – typisk 25-50 kr. per spin. Overskrider du denne grænse, kan casinoet annullere hele bonussen og alle tilknyttede gevinster. Grænsen eksisterer for at forhindre højrisikostrategi med bonusmidler. Kontrollér altid den specifikke grænse i bonusvilkårene, da den varierer mellem casinoer. Visse spil med høj minimumsindsats (f.eks. progressive jackpots) kan automatisk overskride grænsen og bør undgås under bonusomsætning.",
   },
   {
-    question: "Hvordan aktiverer jeg en indskudsbonus?",
-    answer:
-      "Opret en konto hos et casino der tilbyder bonussen, foretag en indbetaling, og bonussen tilføjes automatisk til din konto – eller aktiveres via en bonuskode, hvis det kræves.",
-  },
-  {
-    question: "Hvad er omsætningskravene for en indskudsbonus?",
+    question: "Kan jeg annullere min indskudsbonus efter aktivering?",
     answer: (
       <>
-        <Link to="/omsaetningskrav" className={linkClass}>Omsætningskravene</Link> angiver, hvor mange gange bonusbeløbet skal gennemspilles, før gevinster kan hæves. F.eks. kræver en bonus på 1.000 kr. med 10x omsætning, at du spiller for 10.000 kr. i alt.
+        Ja, de fleste danske casinoer tillader bonusannullering via kundeservice eller kontoindstillinger. Konsekvenserne afhænger af bonustypen: med en <Link to="/no-sticky-bonus" className={linkClass}>no-sticky bonus</Link> beholder du egne penge og gevinster vundet hermed. Med en <Link to="/sticky-bonus" className={linkClass}>sticky bonus</Link> kan annullering betyde at du mister gevinster optjent med blandet saldo. Tip: Beslut dig FØR du begynder at spille. Hvis du allerede har vundet et stort beløb med egne penge og har en no-sticky bonus, kan det være klogest at hæve med det samme uden at røre bonusdelen.
       </>
     ),
   },
   {
-    question: "Er der indsatsgrænser på indskudsbonusser?",
-    answer:
-      "Ja, der er typisk en maksimal indsats per spilrunde, når du bruger bonuspenge – ofte omkring 50 kr. per spin. Disse grænser skal overholdes for at bonussen forbliver aktiv.",
-  },
-  {
-    question: "Kan jeg hæve gevinster fra en indskudsbonus?",
-    answer: (
-      <>
-        Ja, men først efter at{" "}
-        <Link to="/omsaetningskrav" className={linkClass}>omsætningskravene</Link> er opfyldt. Når kravene er gennemført inden for tidsfristen, kan du frit hæve dine gevinster.
-      </>
-    ),
+    question: "Hvor hurtigt kan man gennemspille en indskudsbonus på 10x?",
+    answer: "Med 10x (d+b) omsætning på en typisk 500 kr. + 500 kr. bonus skal du satse for 10.000 kr. Med en gennemsnitlig indsats på 5 kr. per spin kræver det 2.000 spins. Ved en spinrate på 10 sekunder per spin tager det ca. 5,5 timer aktiv spilletid. Med en 96% RTP-slot vil du statistisk beholde ca. 600 kr. af dine samlede 1.000 kr. Det er ikke garanteret – volatilitet betyder at udfaldet kan variere fra 0 kr. til flere tusinde. Planlæg realistisk og spred sessionerne over flere dage.",
   },
 ];
 

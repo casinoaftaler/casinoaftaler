@@ -48,67 +48,46 @@ const linkClass = "text-primary underline hover:text-primary/80";
 
 const noStickyFaqs: { question: string; answer: string | React.ReactNode }[] = [
   {
-    question: "Hvad er en No-Sticky Bonus?",
-    answer:
-      "En No-Sticky Bonus er en bonustype, hvor dine egne indbetalte penge holdes adskilt fra bonusmidlerne. Du spiller først med dine egne penge, og bonussen aktiveres kun, hvis du mister din indbetaling. Det giver dig mulighed for at hæve gevinster vundet med egne penge uden omsætningskrav.",
-  },
-  {
-    question: "Findes der No-Sticky Bonusser hos danske casinoer?",
+    question: "Hvordan fungerer adskillelsen af penge i en No-Sticky Bonus?",
     answer: (
       <>
-        Ja, No-Sticky Bonusser er blevet mere udbredte i Danmark. Flere store operatører tilbyder nu denne bonustype, ofte som en del af deres{" "}
-        <Link to="/velkomstbonus" className={linkClass}>velkomstpakke</Link> til nye spillere.
+        Med en No-Sticky Bonus opretter casinoet to separate saldi: din indbetaling (rigtige penge) og bonusmidlerne. Du spiller ALTID med dine egne penge først. Hvis du vinder 2.000 kr. med din egen indbetaling på 500 kr., kan du hæve alle 2.500 kr. straks – bonussen forsvinder blot. Bonusmidlerne aktiveres kun hvis du taber hele din indbetaling. Denne mekanik er fundamentalt anderledes end en <Link to="/sticky-bonus" className={linkClass}>sticky bonus</Link>, hvor alt blandes sammen og ingen udbetaling er mulig før omsætningskravene er opfyldt.
       </>
     ),
   },
   {
-    question: "Kan jeg vinde rigtige penge med en No-Sticky Bonus?",
+    question: "Hvornår giver det mening at bruge bonusdelen af en No-Sticky Bonus?",
+    answer: "Bonusdelen aktiveres automatisk når din reelle saldo rammer 0 kr. – du behøver ikke gøre noget. Strategisk giver det mest mening at spille konservativt med egne penge (lav-medium volatilitet, høj RTP) og skifte til højvolatilitetsspil når bonusdelen aktiveres. Med bonusmidler har du 'ingenting at tabe' (du har allerede mistet din indbetaling), så høj risiko er rationelt. Spil fra Nolimit City, Hacksaw Gaming eller Pragmatic Plays højvolatilitetstitel giver størst upside-potentiale med bonusmidler.",
+  },
+  {
+    question: "Kan jeg hæve penge midt i omsætningen af bonusdelen?",
     answer: (
       <>
-        Ja, du kan vinde rigtige penge. Gevinster vundet med dine egne penge kan hæves uden{" "}
-        <Link to="/omsaetningskrav" className={linkClass}>omsætningskrav</Link>. Gevinster vundet med bonusmidlerne kræver dog, at kravene opfyldes først.
+        Nej, når du spiller med bonusmidler i en No-Sticky Bonus gælder standard <Link to="/omsaetningskrav" className={linkClass}>omsætningskrav</Link> (typisk 10x i Danmark). Du kan ikke hæve gevinster fra bonusdelen før kravene er opfyldt. Dog kan du annullere bonussen: gevinster op til bonusbeløbet konfiskeres, men du beholder din indbetaling. Forskellen til sticky bonus er at du allerede har haft mulighed for at hæve gevinster fra egne penge FØR bonusdelen aktiveres.
       </>
     ),
   },
   {
-    question: "Hvad er forskellen mellem No-Sticky og Sticky Bonus?",
+    question: "Er No-Sticky Bonusser altid bedre end Sticky Bonusser?",
     answer: (
       <>
-        Med en No-Sticky Bonus er dine egne penge og bonusmidler adskilt. Med en{" "}
-        <Link to="/sticky-bonus" className={linkClass}>Sticky Bonus</Link> er alt sammenblandet, og du skal opfylde omsætningskrav, før noget kan hæves.
+        For de fleste spillere ja – No-Sticky giver mere fleksibilitet og lavere risiko. Men der er undtagelser: Sticky Bonusser tilbyder ofte større bonusbeløb (200-300% match vs. 100% for No-Sticky). Hvis du alligevel planlægger at gennemspille hele omsætningskravet, giver en større sticky bonus mere bankroll at spille med. For high-risk-spillere der søger <Link to="/bonus-uden-omsaetningskrav" className={linkClass}>omsætningsfrie bonusser</Link> er det dog altid bedst at vælge No-Sticky eller omsætningsfrit – gevinstfleksibiliteten vejer tungere end bonusstørrelsen.
       </>
     ),
   },
   {
-    question: "Hvordan aktiverer jeg en No-Sticky Bonus?",
+    question: "Hvilke spil bør jeg spille med egne penge vs. bonusmidler i en No-Sticky?",
     answer: (
       <>
-        Opret en konto hos et casino med No-Sticky Bonus (se vores{" "}
-        <Link to="/nye-casinoer" className={linkClass}>liste over nye casinoer</Link>), foretag en indbetaling, og bonussen tildeles automatisk.
+        Med egne penge: Vælg slots med høj RTP og lav-medium volatilitet – Blood Suckers (98%), Starburst (96,09%) eller <Link to="/spiludviklere/play-n-go" className={linkClass}>Play'n GO</Link>s Fire Joker (96,15%). Målet er at bevare bankrollet og opbygge en gevinstbuffer. Med bonusmidler: Skift til højvolatilitetsslots med store maks. gevinster – Gates of Olympus (5.000x), Wanted Dead or a Wild (12.500x) eller Money Train 3 (100.000x). Du har allerede mistet din indbetaling, så du spiller med 'gratis penge' – maksimer upside-potentialet.
       </>
     ),
   },
   {
-    question: "Hvad er omsætningskravene for en No-Sticky Bonus?",
-    answer:
-      "Omsætningskravene gælder kun for bonusmidlerne – ikke for dine egne indbetalte penge. Kravene varierer fra casino til casino og aktiveres først, når du begynder at spille med bonuspengene.",
-  },
-  {
-    question: "Er der gevinstbegrænsninger på No-Sticky Bonusser?",
-    answer:
-      "Ja, nogle casinoer sætter en øvre grænse for, hvor meget du kan vinde med bonusmidlerne. Tjek altid vilkårene for det specifikke bonustilbud.",
-  },
-  {
-    question: "Er en No-Sticky Bonus bedre end en Sticky Bonus?",
-    answer:
-      "Det afhænger af din spillestil. No-Sticky Bonusser giver større fleksibilitet og lavere risiko, da du kan hæve gevinster fra egne penge. Sticky Bonusser tilbyder ofte større bonusbeløb.",
-  },
-  {
-    question: "Er der minimumsindskud for No-Sticky Bonusser?",
+    question: "Hvad er det typiske minimumsindskud for en No-Sticky Bonus i Danmark?",
     answer: (
       <>
-        Ja, de fleste casinoer kræver et{" "}
-        <Link to="/indskudsbonus" className={linkClass}>minimumsindskud</Link> – typisk mellem 100-200 kr. – for at aktivere en No-Sticky Bonus.
+        De fleste danske casinoer kræver en minimumsindbetaling på 100-200 kr. for at aktivere en No-Sticky velkomstbonus. Enkelte casinoer tilbyder lavere minimum (50 kr.), men bonusværdien er naturligvis proportionel med indbetalingen. Indbetal det beløb der maksimerer bonusmatchet – hvis casinoet giver 100% op til 1.000 kr., giver 1.000 kr. den fulde bonusværdi. Tjek at din valgte <Link to="/betalingsmetoder" className={linkClass}>betalingsmetode</Link> kvalificerer – visse e-wallets kan være ekskluderet.
       </>
     ),
   },

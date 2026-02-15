@@ -44,47 +44,42 @@ const linkClass = "text-primary underline hover:text-primary/80";
 
 const velkomstbonusFaqs: { question: string; answer: string | React.ReactNode }[] = [
   {
-    question: "Hvad er en velkomstbonus?",
+    question: "Hvad gør en velkomstbonus bedre end andre bonustyper?",
     answer: (
       <>
-        En velkomstbonus er et tilbud fra et online casino til nye spillere. Det er typisk en{" "}
-        <Link to="/indskudsbonus" className={linkClass}>matchbonus</Link>, hvor casinoet matcher din indbetaling med en bestemt procentdel – fx 100%. Nogle inkluderer også{" "}
-        <Link to="/free-spins" className={linkClass}>free spins</Link>.
+        Velkomstbonussen er typisk det mest generøse tilbud et casino giver – matchprocenten er højest (ofte 100-200%), og free spins-antallet er størst. Til sammenligning giver reload-bonusser sjældent mere end 50% match og færre spins. Grunden er enkel: casinoet investerer i din acquisition. Danske velkomstbonusser har desuden fordelen af Spillemyndighedens 10x-loft på <Link to="/omsaetningskrav" className={linkClass}>omsætningskrav</Link>, hvilket gør dem markant mere fordelagtige end internationale tilbud med 40-70x krav.
       </>
     ),
   },
   {
-    question: "Kan alle få en velkomstbonus?",
-    answer:
-      "Velkomstbonusser er forbeholdt nye spillere, der opretter en konto for første gang. Du kan kun modtage én velkomstbonus per casino, og du skal typisk foretage en minimumsindbetaling.",
+    question: "Kan jeg modtage flere velkomstbonusser fra det samme casino?",
+    answer: "Nej, velkomstbonusser er strengt forbeholdt nye spillere – én per person, husstand og IP-adresse. Forsøg på at oprette flere konti for at udnytte tilbudet gentagne gange er et brud på vilkårene og kan resultere i kontolukning og konfiskering af alle midler. Dog tilbyder mange casinoer velkomstpakker fordelt over de første 2-4 indbetalinger, hvor du modtager nye bonusser og free spins for hver indbetaling. Planlæg dine indbetalinger strategisk for at maksimere den samlede pakkeværdi.",
   },
   {
-    question: "Hvad betyder omsætningskrav?",
+    question: "Hvornår skal jeg aktivere min velkomstbonus – ved registrering eller indbetaling?",
     answer: (
       <>
-        <Link to="/omsaetningskrav" className={linkClass}>Omsætningskrav</Link> angiver, hvor mange gange du skal spille bonusbeløbet igennem, før du kan hæve gevinster. Fx betyder 10x, at en bonus på 500 kr. kræver indsatser for 5.000 kr.
+        De fleste danske velkomstbonusser aktiveres automatisk ved din første indbetaling – du behøver ikke gøre noget aktivt. Nogle kræver dog en bonuskode der skal indtastes i indbetalingsfeltet. Vigtigt: Læs ALTID vilkårene FØR du indbetaler. Nogle casinoer kræver at du vælger bonussen aktivt, og hvis du springer trinnet over, kan du ikke efterfølgende få bonussen tilskrevet. Overvej også om bonussen passer din spillestil – en <Link to="/no-sticky-bonus" className={linkClass}>no-sticky velkomstbonus</Link> giver mere fleksibilitet end en standard sticky bonus.
       </>
     ),
   },
   {
-    question: "Er det altid en god idé at tage imod en velkomstbonus?",
+    question: "Hvad er minimumsindbetaling for at aktivere en velkomstbonus?",
+    answer: "Minimumsindbetaling hos danske casinoer ligger typisk på 100-200 kr. for at aktivere velkomstbonussen. Nogle casinoer har et lavere minimum (50 kr.), mens VIP-tilbud kan kræve 500-1.000 kr. Indbetal præcis det beløb der maksimerer bonussen: Hvis casinoet matcher 100% op til 1.000 kr., giver en indbetaling på 1.000 kr. den fulde 1.000 kr. bonus. En indbetaling på 500 kr. giver kun 500 kr. bonus – du efterlader værdi på bordet. Tjek også om visse betalingsmetoder er ekskluderet fra bonusen.",
+  },
+  {
+    question: "Hvor lang tid har jeg til at gennemspille en velkomstbonus?",
     answer: (
       <>
-        Det afhænger af vilkårene. Hvis <Link to="/omsaetningskrav" className={linkClass}>omsætningskravene</Link> er rimelige (typisk 10x), kan det give ekstra værdi. Overvej en{" "}
-        <Link to="/no-sticky-bonus" className={linkClass}>no-sticky bonus</Link> for mere frihed.
+        Tidsfristen varierer fra 7 til 30 dage afhængigt af casinoet. De fleste danske casinoer giver 14-30 dage til at opfylde omsætningskravene. Med et typisk 10x (d+b) krav på en 500 kr. indbetaling + 500 kr. bonus skal du omsætte 10.000 kr. inden fristen. Ved gennemsnitligt 5 kr. per spin og 600 spins/time tager det ca. 3,3 timer. Planlæg din spilletid realistisk – det er bedre at gennemspille roligt end at forhaste sig den sidste dag med desperate høje indsatser.
       </>
     ),
   },
   {
-    question: "Hvad sker der, hvis jeg ikke opfylder omsætningskravene?",
-    answer:
-      "Hvis du ikke når at opfylde kravene inden for tidsrammen, mister du typisk bonusbeløbet og eventuelle gevinster fra bonussen. Din egen indbetaling vil dog normalt stadig være tilgængelig.",
-  },
-  {
-    question: "Kan jeg bruge en velkomstbonus på alle spil?",
+    question: "Er det klogt at tage imod alle velkomstbonusser?",
     answer: (
       <>
-        Nej, de fleste har begrænsninger. <Link to="/casinospil" className={linkClass}>Spilleautomater</Link> bidrager typisk 100%, mens bordspil ofte kun bidrager 10-20%. <Link to="/live-casino" className={linkClass}>Live casino</Link>-spil kan være udelukket.
+        Ikke nødvendigvis. Evaluer hver velkomstbonus ud fra tre kriterier: 1) Omsætningskrav (10x er standard i Danmark – alt under er exceptionelt), 2) Bonustype (<Link to="/no-sticky-bonus" className={linkClass}>no-sticky</Link> er bedst, <Link to="/sticky-bonus" className={linkClass}>sticky</Link> er standard), og 3) Gyldighedsperiode (mindst 14 dage). Hvis du primært spiller live casino eller bordspil, er en velkomstbonus ofte dårlig værdi, da disse spil typisk kun bidrager 10-20% til omsætningen. I det tilfælde er det bedre at spille uden bonus.
       </>
     ),
   },
