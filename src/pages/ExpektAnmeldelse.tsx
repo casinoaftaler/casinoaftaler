@@ -12,6 +12,7 @@ import { InlineCasinoCards } from "@/components/InlineCasinoCards";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
 import { buildArticleSchema } from "@/lib/seo";
 import { QuickFactsProviders } from "@/components/QuickFactsProviders";
+import { CasinoReviewHero } from "@/components/CasinoReviewHero";
 import type { ReactNode } from "react";
 import { ShieldCheck, Star, Clock, CreditCard, Trophy, Sparkles, Gamepad2, Zap, Check, X, Globe, Award } from "lucide-react";
 
@@ -45,6 +46,7 @@ const ExpektAnmeldelse = () => {
       </section>
       <div className="container py-8 md:py-12">
         <AuthorMetaBar author="jonas" date="15-02-2026" readTime="17 Min." />
+        <CasinoReviewHero slug="expekt" casinoName="Expekt" />
         <section className="mb-12"><Card className="border-border bg-card border-l-4 border-l-primary"><CardHeader><CardTitle className="flex items-center gap-2 text-xl"><Zap className="h-6 w-6 text-primary" />Hurtige Fakta – Expekt</CardTitle></CardHeader><CardContent>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
             <div className="rounded-lg border border-border p-3"><p className="text-xs text-muted-foreground uppercase mb-1">Velkomstbonus</p><p className="text-lg font-bold text-foreground">Op til 1.000 kr. + 50 FS</p></div>
