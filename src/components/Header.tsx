@@ -291,7 +291,7 @@ export const Header = memo(function Header() {
               <DropdownMenuItem asChild>
                 <Link to="/om" className="flex items-center gap-2">
                   <Users className="h-4 w-4" />
-                  Om Teamet
+                  Om Casinoaftaler.dk
                 </Link>
               </DropdownMenuItem>
               <DropdownMenuItem asChild>
@@ -746,7 +746,7 @@ export const Header = memo(function Header() {
               <div className="flex flex-col border-b border-border/50 bg-muted/30">
                 <Link to="/om" className="ml-6 flex items-center gap-2 py-2.5 text-sm text-muted-foreground transition-colors hover:text-primary" onClick={() => setMobileMenuOpen(false)}>
                   <Users className="h-4 w-4" />
-                  Om Teamet
+                  Om Casinoaftaler.dk
                 </Link>
                 <Link to="/saadan-tester-vi-casinoer" className="ml-6 flex items-center gap-2 py-2.5 text-sm text-muted-foreground transition-colors hover:text-primary" onClick={() => setMobileMenuOpen(false)}>
                   <Scale className="h-4 w-4" />
