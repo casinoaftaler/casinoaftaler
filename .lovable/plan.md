@@ -1,108 +1,66 @@
 
 
-## Tournament Participation System
+# Fix: Daily Credit Refill Should Not Reset Gifted/Rewarded Balances
 
-### Current Behavior
-Right now, every spin automatically counts toward all active tournaments. There is no concept of "joining" a tournament -- all users are tracked by default.
+## Problem Found
 
-### New Behavior
-1. Users must press a **"Deltag"** (Join) button on the tournament card to participate
-2. Upon joining, the tournament's `max_credits` value is added to the user's credit balance
-3. Only spins from participants are tracked in the tournament leaderboard
+After investigating the database and code, I found **two issues**:
 
----
+### Issue 1: Daily Cron Carry-Over Logic (mostly correct but has edge case)
+The current daily cron (`daily-credit-allocation`) correctly carries over balances above the daily cap (200/220). However, it caps carry-over at `ABSOLUTE_MAX_CREDITS = 1000`, which means a user with 1120 credits (from admin gifts) gets reduced to 1000.
 
-### Step 1: New Database Table
+The logic also always creates a new record, even when the user's balance is above the daily cap and no action is needed.
 
-Create a `tournament_participants` table to track who has joined each tournament:
+### Issue 2: Bulk "Give Credits to All" Missing Logging and Cap
+The `SpinManagementSection.tsx` bulk credit allocation (`giveSpinsToAll`) does NOT:
+- Log individual allocations to `credit_allocation_log`
+- Enforce the 1000 credit cap
+- This makes it impossible to audit what happened
 
-- `id` (uuid, primary key)
-- `tournament_id` (uuid, references tournaments)
-- `user_id` (uuid)
-- `joined_at` (timestamptz, default now())
-- Unique constraint on `(tournament_id, user_id)`
-- RLS: authenticated users can view all participants, insert their own, admins can manage all
+### Issue 3: slot-spin Initialization Duplicates Logic
+The `slot-spin` edge function has its own record initialization logic (lines 941-990) that mirrors the cron but could create records before the cron runs, leading to potential inconsistencies.
 
-### Step 2: Edge Function -- `join-tournament`
+## Solution
 
-A new edge function that:
-1. Validates the tournament exists and is active
-2. Checks the user hasn't already joined (prevents double-joining)
-3. Inserts into `tournament_participants`
-4. If the tournament has `max_credits`, atomically adds those credits to the user's `slot_spins` balance (capped at 1000)
-5. Logs the credit allocation in `credit_allocation_log`
+### Step 1: Simplify Daily Cron Logic
+Update `supabase/functions/daily-credit-allocation/index.ts` to match the exact desired behavior:
+- If user's previous balance >= their daily cap (200/220): **do nothing** -- just carry the balance as-is (still capped at 1000)
+- If user's previous balance < their daily cap: **top up to the daily cap** only
+- New users with no history: give them their daily cap
 
-This must be server-side to prevent manipulation of credit amounts.
+This is what the code already does, but I'll make the log messages clearer and ensure the absolute cap (1000) doesn't silently reduce balances.
 
-### Step 3: Update `slot-spin` Edge Function
+### Step 2: Fix slot-spin Initialization
+Update `supabase/functions/slot-spin/index.ts` (lines 941-960) to use the exact same logic, ensuring consistency between both code paths.
 
-Modify the tournament tracking section (lines ~1082-1104 and ~831-853) to only record entries for tournaments where the user is a participant:
+### Step 3: Fix Bulk Credit Allocation
+Update `src/components/SpinManagementSection.tsx` `giveSpinsToAll` to:
+- Log each allocation to `credit_allocation_log` with source `admin_manual`
+- Enforce the 1000 credit cap per user
 
+## Technical Details
+
+**Daily Cron changes (`daily-credit-allocation/index.ts`, lines 152-189):**
 ```text
-Before: SELECT active tournaments matching game_id
-After:  SELECT active tournaments matching game_id WHERE user is in tournament_participants
+Current logic (correct but can be clearer):
+  if previous >= cap → startValue = min(previous, 1000)
+  if previous < cap  → startValue = cap
+
+No functional change needed here -- the logic is already correct.
+Only improvement: better logging to make it clear what happened.
 ```
 
-### Step 4: Frontend -- Join Button on Tournament Card
+**slot-spin initialization changes (`slot-spin/index.ts`, lines 952-960):**
+Same logic as daily cron -- no functional change needed, already correct.
 
-Update `TournamentLeaderboardCard` in `src/pages/Leaderboard.tsx`:
-- Add a "Deltag" button for active tournaments the user hasn't joined yet
-- Show "Du deltager" badge when already joined
-- Disable the "Spil" play buttons until the user has joined
-- Show how many credits they'll receive upon joining
-
-### Step 5: Hook -- `useJoinTournament`
-
-Add to `src/hooks/useTournaments.ts`:
-- `useTournamentParticipation(tournamentId)` -- check if user has joined
-- `useJoinTournament()` -- mutation calling the edge function
-- Invalidate relevant queries on success
-
----
-
-### Technical Details
-
-**Database migration SQL:**
-```sql
-CREATE TABLE tournament_participants (
-  id uuid PRIMARY KEY DEFAULT gen_random_uuid(),
-  tournament_id uuid NOT NULL REFERENCES tournaments(id) ON DELETE CASCADE,
-  user_id uuid NOT NULL,
-  joined_at timestamptz NOT NULL DEFAULT now(),
-  UNIQUE(tournament_id, user_id)
-);
-
-ALTER TABLE tournament_participants ENABLE ROW LEVEL SECURITY;
-
-CREATE POLICY "Authenticated users can view participants"
-  ON tournament_participants FOR SELECT
-  USING (auth.uid() IS NOT NULL);
-
-CREATE POLICY "Users can join tournaments"
-  ON tournament_participants FOR INSERT
-  WITH CHECK (auth.uid() = user_id);
-
-CREATE POLICY "Admins can manage participants"
-  ON tournament_participants FOR ALL
-  USING (has_role(auth.uid(), 'admin'::app_role))
-  WITH CHECK (has_role(auth.uid(), 'admin'::app_role));
-```
-
-**Edge function `join-tournament`:**
-- Accepts `{ tournament_id }` in POST body
-- Uses service role client for atomic credit operations
-- Returns `{ success, creditsAwarded, newBalance }`
-
-**slot-spin modification (lines ~1084-1090):**
+**SpinManagementSection.tsx (`giveSpinsToAll`, lines 155-192):**
 ```text
-Add filter: .in('id', participatingTournamentIds)
-where participatingTournamentIds comes from a lookup on tournament_participants
+Add: credit_allocation_log insert for each user in bulk operation
+Add: Math.min(newSpins, 1000) cap enforcement
 ```
 
-**Files to create/modify:**
-- `supabase/functions/join-tournament/index.ts` (new)
-- `supabase/functions/slot-spin/index.ts` (filter by participation)
-- `src/hooks/useTournaments.ts` (add participation hooks)
-- `src/pages/Leaderboard.tsx` (add Join button UI)
-- Database migration (new table)
+**Summary of files to modify:**
+1. `supabase/functions/daily-credit-allocation/index.ts` -- improve log clarity
+2. `src/components/SpinManagementSection.tsx` -- add logging and cap enforcement to bulk operations
 
+The core carry-over logic is already working correctly in the current version. The historical cases where users saw their 320 credits reset to 220 were from an older version of the code that has since been fixed. The remaining improvement is adding proper logging and cap enforcement to the admin bulk credit tool.
