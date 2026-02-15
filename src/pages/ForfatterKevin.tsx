@@ -24,6 +24,7 @@ import {
   ShieldCheck,
   Landmark,
   Phone,
+  Scale,
 } from "lucide-react";
 import kevinImage from "@/assets/kevin-forfatter.png";
 
@@ -402,6 +403,52 @@ export default function ForfatterKevin() {
                 <Link to="/spiludviklere" className="text-primary hover:underline">spiludviklere</Link>.
               </p>
             </div>
+          </div>
+        </section>
+
+        <Separator className="my-10" />
+
+        {/* Transparens & metode */}
+        <section className="mb-12">
+          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
+            <ShieldCheck className="h-7 w-7 text-primary" />
+            Transparens & metode
+          </h2>
+          <p className="mb-6 text-muted-foreground leading-relaxed">
+            Kevins anmeldelser bygger på en dokumenteret testmetode og klare redaktionelle retningslinjer.
+            Læs mere om vores tilgang til test, forretningsmodel og redaktionel politik.
+          </p>
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+            <Link
+              to="/saadan-tester-vi-casinoer"
+              className="flex items-start gap-3 rounded-lg border border-border bg-card p-4 transition-colors hover:border-primary/50 hover:bg-accent/50"
+            >
+              <ShieldCheck className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
+              <div>
+                <h3 className="font-semibold text-sm">Sådan tester vi casinoer</h3>
+                <p className="text-xs text-muted-foreground">Vores testmetode og vurderingskriterier</p>
+              </div>
+            </Link>
+            <Link
+              to="/forretningsmodel"
+              className="flex items-start gap-3 rounded-lg border border-border bg-card p-4 transition-colors hover:border-primary/50 hover:bg-accent/50"
+            >
+              <Scale className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
+              <div>
+                <h3 className="font-semibold text-sm">Forretningsmodel</h3>
+                <p className="text-xs text-muted-foreground">Sådan finansieres Casinoaftaler.dk</p>
+              </div>
+            </Link>
+            <Link
+              to="/redaktionel-politik"
+              className="flex items-start gap-3 rounded-lg border border-border bg-card p-4 transition-colors hover:border-primary/50 hover:bg-accent/50"
+            >
+              <BookOpen className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
+              <div>
+                <h3 className="font-semibold text-sm">Redaktionel politik</h3>
+                <p className="text-xs text-muted-foreground">Vores redaktionelle retningslinjer</p>
+              </div>
+            </Link>
           </div>
         </section>
 

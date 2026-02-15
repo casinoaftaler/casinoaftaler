@@ -19,7 +19,7 @@ export function Footer() {
   return (
     <footer className="border-t border-border bg-card">
       <div className="container py-12">
-        <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
+        <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6">
           <div className="space-y-4">
             <Link to="/" className="flex items-center gap-2">
               <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-primary overflow-hidden">
@@ -259,12 +259,18 @@ export function Footer() {
           </div>
 
           <div>
-            <h4 className="mb-4 text-sm font-semibold">Ansvarligt Spil & Juridisk</h4>
+            <h4 className="mb-4 text-sm font-semibold">Transparens & Retningslinjer</h4>
             <ul className="space-y-2 text-sm">
               <li>
                 <Link to="/om" className="flex items-center gap-2 text-muted-foreground transition-colors hover:text-foreground">
                   <Users className="h-4 w-4" />
                   Om Teamet
+                </Link>
+              </li>
+              <li>
+                <Link to="/saadan-tester-vi-casinoer" className="flex items-center gap-2 text-muted-foreground transition-colors hover:text-foreground">
+                  <ClipboardList className="h-4 w-4" />
+                  Sådan tester vi casinoer
                 </Link>
               </li>
               <li>
@@ -276,15 +282,15 @@ export function Footer() {
               <li>
                 <Link to="/redaktionel-politik" className="flex items-center gap-2 text-muted-foreground transition-colors hover:text-foreground">
                   <FileText className="h-4 w-4" />
-                  Redaktionel Politik
+                  Redaktionel politik
                 </Link>
               </li>
-              <li>
-                <Link to="/saadan-tester-vi-casinoer" className="flex items-center gap-2 text-muted-foreground transition-colors hover:text-foreground">
-                  <ClipboardList className="h-4 w-4" />
-                  Sådan tester vi casinoer
-                </Link>
-              </li>
+            </ul>
+          </div>
+
+          <div>
+            <h4 className="mb-4 text-sm font-semibold">Ansvarligt Spil & Juridisk</h4>
+            <ul className="space-y-2 text-sm">
               <li>
                 <Link to="/responsible-gaming" className="flex items-center gap-2 text-muted-foreground transition-colors hover:text-foreground">
                   <Shield className="h-4 w-4" />

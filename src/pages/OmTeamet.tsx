@@ -478,41 +478,88 @@ const OmTeamet = () => {
 
         <Separator className="my-10" />
 
-        {/* ═══ TRANSPARENS & ANSVAR ═══ */}
-        <section className="mb-16">
+        {/* ═══ VORES TESTMETODE ═══ */}
+        <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <Shield className="h-7 w-7 text-primary" />
-            Transparens & ansvar
+            <ShieldCheck className="h-7 w-7 text-primary" />
+            Vores testmetode
           </h2>
           <p className="text-muted-foreground leading-relaxed mb-4">
-            Casinoaftaler.dk modtager kommission gennem affiliate-samarbejder med udvalgte casinoer.
-            Dette påvirker dog ikke vores vurderingsmetode, som bygger på faste kriterier og reel test.
+            Alle anmeldelser på Casinoaftaler.dk bygger på praktisk test udført af vores team. Vi opretter konti,
+            indbetaler, spiller og evaluerer hvert casino ud fra faste kriterier – herunder spilsortiment, bonusvilkår,
+            kundeservice og udbetalingshastighed.
           </p>
-          <p className="text-muted-foreground leading-relaxed mb-6">
-            Vi mener, at gennemsigtighed er fundamentet for tillid. Derfor adskiller vi altid
-            kommercielle samarbejder fra vores redaktionelle vurderinger, og vi oplyser tydeligt
-            om alle bonusvilkår og betingelser.
+          <Link to="/saadan-tester-vi-casinoer">
+            <Button variant="outline" size="sm">
+              <ShieldCheck className="mr-1.5 h-4 w-4" />
+              Sådan tester vi casinoer
+              <ArrowRight className="ml-1.5 h-4 w-4" />
+            </Button>
+          </Link>
+        </section>
+
+        <Separator className="my-10" />
+
+        {/* ═══ FORRETNINGSMODEL ═══ */}
+        <section className="mb-12">
+          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
+            <Scale className="h-7 w-7 text-primary" />
+            Forretningsmodel
+          </h2>
+          <p className="text-muted-foreground leading-relaxed mb-4">
+            Casinoaftaler.dk finansieres gennem affiliate-samarbejder med udvalgte casinoer. Det betyder, at vi
+            modtager kommission, når brugere tilmelder sig via vores links. Vores vurderinger og anbefalinger
+            er dog altid uafhængige og bygger på faste testkriterier.
           </p>
-          <div className="flex flex-wrap gap-3">
-            <Link to="/forretningsmodel">
-              <Button variant="outline" size="sm">
-                <Scale className="mr-1.5 h-4 w-4" />
-                Vores forretningsmodel
-              </Button>
-            </Link>
-            <Link to="/redaktionel-politik">
-              <Button variant="outline" size="sm">
-                <BookOpen className="mr-1.5 h-4 w-4" />
-                Redaktionel politik
-              </Button>
-            </Link>
-            <Link to="/contact">
-              <Button variant="outline" size="sm">
-                <MessageSquare className="mr-1.5 h-4 w-4" />
-                Kontakt
-              </Button>
-            </Link>
-          </div>
+          <Link to="/forretningsmodel">
+            <Button variant="outline" size="sm">
+              <Scale className="mr-1.5 h-4 w-4" />
+              Læs vores forretningsmodel
+              <ArrowRight className="ml-1.5 h-4 w-4" />
+            </Button>
+          </Link>
+        </section>
+
+        <Separator className="my-10" />
+
+        {/* ═══ REDAKTIONEL POLITIK ═══ */}
+        <section className="mb-12">
+          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
+            <BookOpen className="h-7 w-7 text-primary" />
+            Redaktionel politik
+          </h2>
+          <p className="text-muted-foreground leading-relaxed mb-4">
+            Vores redaktionelle politik sikrer en klar adskillelse mellem kommercielt og redaktionelt indhold.
+            Alt indhold produceres af vores team, opdateres løbende og følger dokumenterede retningslinjer
+            for kvalitet og objektivitet.
+          </p>
+          <Link to="/redaktionel-politik">
+            <Button variant="outline" size="sm">
+              <BookOpen className="mr-1.5 h-4 w-4" />
+              Læs vores redaktionelle politik
+              <ArrowRight className="ml-1.5 h-4 w-4" />
+            </Button>
+          </Link>
+        </section>
+
+        <Separator className="my-10" />
+
+        {/* ═══ KONTAKT & IMPRESSUM ═══ */}
+        <section className="mb-16">
+          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
+            <MessageSquare className="h-7 w-7 text-primary" />
+            Kontakt
+          </h2>
+          <p className="text-muted-foreground leading-relaxed mb-4">
+            Har du spørgsmål, feedback eller ønsker du at samarbejde med os? Vi hører gerne fra dig.
+          </p>
+          <Link to="/contact">
+            <Button variant="outline" size="sm">
+              <MessageSquare className="mr-1.5 h-4 w-4" />
+              Kontakt os
+              <ArrowRight className="ml-1.5 h-4 w-4" />
+            </Button>
+          </Link>
         </section>
       </div>
 
