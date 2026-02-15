@@ -8,6 +8,8 @@ import { SpillehalPromoBanner } from "./SpillehalPromoBanner";
 
 const navItems = [
   { label: "Spillehal", to: "/community/slots", icon: spillehalIcon },
+  { label: "Turneringer", to: "/community/leaderboard", icon: spillehalIcon },
+  { label: "Casino Bonus", to: "/casino-bonus", icon: casinospilIcon },
   { label: "Nye Casinoer", to: "/nye-casinoer", icon: nyeCasinoerIcon },
   { label: "Casino Anmeldelser", to: "/casino-anmeldelser", icon: anmeldelserIcon },
   { label: "Casinospil", to: "/casinospil", icon: casinospilIcon },
