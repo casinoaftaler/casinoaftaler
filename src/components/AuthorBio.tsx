@@ -13,10 +13,10 @@ export function AuthorBio() {
             <img
               src={jonasImage}
               alt="Jonas – Grundlægger af Casinoaftaler.dk"
-              className="h-36 w-36 rounded-full object-cover object-top ring-2 ring-border group-hover:ring-primary transition-colors"
+              className="h-44 w-44 rounded-full object-cover object-top ring-2 ring-border group-hover:ring-primary transition-colors"
               loading="lazy"
-              width={144}
-              height={144}
+              width={176}
+              height={176}
             />
           </Link>
 
