@@ -51,6 +51,8 @@ import {
   ArrowRight,
 } from "lucide-react";
 
+const PARTNER_SLUGS = ["spildansknu", "spilleautomaten", "betinia", "campobet", "swift-casino", "luna-casino"];
+
 const DANISH_MONTHS = [
   "Januar", "Februar", "Marts", "April", "Maj", "Juni",
   "Juli", "August", "September", "Oktober", "November", "December",
@@ -136,9 +138,8 @@ const TopCasinoOnline = () => {
   const heroBackgroundImage = siteSettings?.hero_background_image;
 
   const topCasinos = casinos
-    ?.filter((c) => c.is_active)
-    ?.sort((a, b) => a.position - b.position)
-    ?.slice(0, 10) ?? [];
+    ?.filter((c) => c.is_active && PARTNER_SLUGS.includes(c.slug))
+    ?.sort((a, b) => a.position - b.position) ?? [];
 
   const mapCasino = (casino: typeof topCasinos[0]) => ({
     id: casino.id,
