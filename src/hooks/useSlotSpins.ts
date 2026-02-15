@@ -12,6 +12,8 @@ interface SlotSpins {
 }
 
 const MAX_SPINS_CAP = 220;
+const SUBSCRIBER_MAX_SPINS_CAP = 320;
+const SUBSCRIBER_BONUS = 100;
 const ABSOLUTE_MAX_CREDITS = 1000;
 
 export function useSlotSpins() {
@@ -20,25 +22,30 @@ export function useSlotSpins() {
   const queryClient = useQueryClient();
   const today = getTodayDanish();
 
-  // Fetch permanent bonus spins from profile
-  const { data: bonusSpinsData } = useQuery({
-    queryKey: ["profile-bonus-spins", user?.id],
+  // Fetch permanent bonus spins and twitch badges from profile
+  const { data: profileData } = useQuery({
+    queryKey: ["profile-bonus-and-badges", user?.id],
     queryFn: async () => {
-      if (!user?.id) return 0;
+      if (!user?.id) return { bonus: 0, isSubscriber: false };
       
       const { data, error } = await supabase
         .from("profiles")
-        .select("bonus_spins_permanent")
+        .select("bonus_spins_permanent, twitch_badges")
         .eq("user_id", user.id)
         .maybeSingle();
       
       if (error) throw error;
-      return data?.bonus_spins_permanent || 0;
+      const badges = data?.twitch_badges as any;
+      return {
+        bonus: data?.bonus_spins_permanent || 0,
+        isSubscriber: !!badges?.is_subscriber,
+      };
     },
     enabled: !!user?.id,
   });
 
-  const bonusSpinsPermanent = bonusSpinsData || 0;
+  const bonusSpinsPermanent = profileData?.bonus || 0;
+  const isSubscriber = profileData?.isSubscriber || false;
 
   // Read-only: fetch today's spin record
   // Spin initialization and deduction are handled server-side by the slot-spin edge function
@@ -66,8 +73,10 @@ export function useSlotSpins() {
     return available >= betAmount;
   };
 
-  // Calculate max spins (daily + permanent bonus, capped at MAX_SPINS_CAP)
-  const maxSpins = Math.min(settings.dailySpins + bonusSpinsPermanent, MAX_SPINS_CAP);
+  // Calculate max spins (daily + subscriber bonus + permanent bonus, capped dynamically)
+  const subBonus = isSubscriber ? SUBSCRIBER_BONUS : 0;
+  const capLimit = isSubscriber ? SUBSCRIBER_MAX_SPINS_CAP : MAX_SPINS_CAP;
+  const maxSpins = Math.min(settings.dailySpins + subBonus + bonusSpinsPermanent, capLimit);
 
   const spinsRemaining = spinsData ? spinsData.spins_remaining : maxSpins;
 

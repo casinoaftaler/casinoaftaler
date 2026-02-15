@@ -146,6 +146,8 @@ serve(async (req) => {
           twitch_username: twitchUser.login,
           display_name: twitchUser.display_name,
           avatar_url: twitchUser.profile_image_url,
+          twitch_access_token: tokenData.access_token,
+          twitch_refresh_token: tokenData.refresh_token,
         }, {
           onConflict: "user_id",
         });
@@ -192,13 +194,15 @@ serve(async (req) => {
       userId = existingProfileByTwitch.user_id;
       console.log("Found existing user by Twitch ID:", userId);
 
-      // Update their profile with latest Twitch data
+      // Update their profile with latest Twitch data + store tokens
       await supabaseAdmin
         .from("profiles")
         .update({
           twitch_username: twitchUser.login,
           display_name: twitchUser.display_name,
           avatar_url: twitchUser.profile_image_url,
+          twitch_access_token: tokenData.access_token,
+          twitch_refresh_token: tokenData.refresh_token,
         })
         .eq("user_id", userId);
     } else {
@@ -219,7 +223,7 @@ serve(async (req) => {
           .maybeSingle();
 
         if (existingUserProfile) {
-          // Update existing profile with Twitch data
+          // Update existing profile with Twitch data + tokens
           const { error: updateError } = await supabaseAdmin
             .from("profiles")
             .update({
@@ -227,6 +231,8 @@ serve(async (req) => {
               twitch_username: twitchUser.login,
               display_name: twitchUser.display_name,
               avatar_url: twitchUser.profile_image_url,
+              twitch_access_token: tokenData.access_token,
+              twitch_refresh_token: tokenData.refresh_token,
             })
             .eq("user_id", userId);
 
@@ -245,6 +251,8 @@ serve(async (req) => {
               twitch_username: twitchUser.login,
               display_name: twitchUser.display_name,
               avatar_url: twitchUser.profile_image_url,
+              twitch_access_token: tokenData.access_token,
+              twitch_refresh_token: tokenData.refresh_token,
             });
 
           if (insertError) {
@@ -289,6 +297,8 @@ serve(async (req) => {
             twitch_username: twitchUser.login,
             display_name: twitchUser.display_name,
             avatar_url: twitchUser.profile_image_url,
+            twitch_access_token: tokenData.access_token,
+            twitch_refresh_token: tokenData.refresh_token,
           });
 
         if (profileError) {
