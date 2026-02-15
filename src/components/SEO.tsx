@@ -7,10 +7,11 @@ interface SEOProps {
   description: string;
   type?: string;
   image?: string;
+  noindex?: boolean;
   jsonLd?: Record<string, unknown> | Record<string, unknown>[];
 }
 
-export function SEO({ title, description, type = "website", image, jsonLd }: SEOProps) {
+export function SEO({ title, description, type = "website", image, noindex, jsonLd }: SEOProps) {
   const { pathname } = useLocation();
   const canonicalUrl = getCanonicalUrl(pathname);
 
@@ -22,7 +23,11 @@ export function SEO({ title, description, type = "website", image, jsonLd }: SEO
     <Helmet>
       <title>{title}</title>
       <meta name="description" content={description} />
-      <link rel="canonical" href={canonicalUrl} />
+      {noindex ? (
+        <meta name="robots" content="noindex, nofollow" />
+      ) : (
+        <link rel="canonical" href={canonicalUrl} />
+      )}
 
       <meta property="og:locale" content="da_DK" />
       <meta property="og:type" content={type} />

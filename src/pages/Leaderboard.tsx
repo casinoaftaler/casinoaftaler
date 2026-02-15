@@ -355,6 +355,7 @@ export default function Leaderboard() {
       <SEO
         title="Turneringer – Slot Turneringer | Casinoaftaler"
         description="Deltag i slot-turneringer og vind præmier! Se aktive turneringer, ranglister og vindere hos Casinoaftaler."
+        noindex
       />
 
       {/* Hero Section */}

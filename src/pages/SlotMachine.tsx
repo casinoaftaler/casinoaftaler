@@ -184,6 +184,7 @@ export default function SlotMachine() {
       <SEO
         title="Book of Fedesvin – Gratis Spilleautomat | Casinoaftaler"
         description="Spil Book of Fedesvin gratis hos Casinoaftaler. Egyptisk-tema spilleautomat med expanding symbols, free spins og bonusrunder. Optjen point og klatr på ranglisten."
+        noindex
       />
       <LiveBigWins />
       <div 

@@ -14,6 +14,7 @@ const NotFound = () => {
       <SEO
         title="Side ikke fundet (404) | Casinoaftaler"
         description="Siden du leder efter blev ikke fundet. Gå tilbage til forsiden for at finde det du søger."
+        noindex
       />
       <div className="text-center">
         <h1 className="mb-4 text-4xl font-bold">404</h1>

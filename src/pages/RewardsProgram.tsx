@@ -20,6 +20,7 @@ export default function RewardsProgram() {
       <SEO
         title="Belønningsprogram – Optjen Gratis Spins | Casinoaftaler"
         description="Deltag i Casinoaftalers belønningsprogram. Optjen gratis spins, indsend clips og anmod om nye spilleautomater. Se hvordan du kan blive belønnet."
+        noindex
       />
 
       {/* Hero Section */}

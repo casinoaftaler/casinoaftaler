@@ -130,6 +130,7 @@ export default function GameLibrary() {
       <SEO
         title="Spillehal – Gratis Spilleautomater | Casinoaftaler"
         description="Udforsk vores gratis spilleautomater hos Casinoaftaler. Spil Book of Fedesvin, Rise of Fedesvin og flere spil. Optjen point og konkurrer på ranglisten."
+        noindex
       />
       <PageBackground />
       <GameLibraryHero />
