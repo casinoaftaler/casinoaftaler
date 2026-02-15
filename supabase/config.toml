@@ -62,3 +62,6 @@ verify_jwt = false
 
 [functions.ban-user]
 verify_jwt = false
+
+[functions.join-tournament]
+verify_jwt = false
