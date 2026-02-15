@@ -136,36 +136,17 @@ const Spillemaskiner = () => {
         jsonLd={[faqJsonLd, breadcrumbJsonLd]}
       />
 
-      {/* Hero Section */}
-      <section
-        className="relative overflow-hidden py-12 text-white md:py-20"
+      {/* Gradient top bar */}
+      <div
+        className="h-16 md:h-24"
         style={{
-          backgroundImage: `linear-gradient(135deg, hsl(260 70% 25% / 0.85), hsl(250 60% 20% / 0.8) 40%, hsl(210 80% 25% / 0.85)), url(${spillemaskinerHero})`,
-          backgroundSize: "cover",
-          backgroundPosition: "center",
+          background: "linear-gradient(135deg, hsl(260 70% 25%), hsl(250 60% 20%) 40%, hsl(210 80% 25%))",
         }}
-      >
-        <div className="container">
-          <div className="mx-auto max-w-3xl text-center">
-            <Badge variant="secondary" className="mb-4">
-              <Gamepad2 className="mr-1.5 h-3.5 w-3.5" />
-              Opdateret Februar 2026
-            </Badge>
-            <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">
-              Spillemaskiner 2026 – Din Guide til Online Slots
-            </h1>
-            <p className="text-lg text-white/80">
-              Alt du skal vide om spillemaskiner hos danske online casinoer. Fra
-              RTP og volatilitet til Megaways og bonusfunktioner – find de
-              bedste slots i Danmark.
-            </p>
-          </div>
-        </div>
-      </section>
+      />
 
       <div className="container py-8 md:py-12">
         {/* Meta info bar */}
-        <div className="mb-8 flex flex-wrap items-center gap-x-6 gap-y-2 text-sm text-muted-foreground">
+        <div className="mb-6 flex flex-wrap items-center gap-x-6 gap-y-2 text-sm text-muted-foreground">
           <div className="flex items-center gap-1.5">
             <User className="h-4 w-4" />
             <span>
@@ -188,6 +169,21 @@ const Spillemaskiner = () => {
             </span>
           </div>
         </div>
+
+        {/* Hero Image */}
+        <div className="mb-10 overflow-hidden rounded-xl">
+          <img
+            src={spillemaskinerHero}
+            alt="Spillemaskiner og online slots i Danmark"
+            className="h-auto w-full object-cover"
+            loading="eager"
+          />
+        </div>
+
+        {/* H1 */}
+        <h1 className="mb-8 text-3xl font-bold tracking-tight md:text-4xl lg:text-5xl">
+          Spillemaskiner 2026 – Din Guide til Online Slots
+        </h1>
 
         {/* Section 1: Hvad er spillemaskiner */}
         <section className="mb-12">
