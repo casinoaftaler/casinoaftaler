@@ -7,9 +7,10 @@ interface AuthorMetaBarProps {
   author: "jonas" | "redaktionen";
   date: string;
   readTime: string;
+  showFactCheck?: boolean;
 }
 
-export function AuthorMetaBar({ author, date, readTime }: AuthorMetaBarProps) {
+export function AuthorMetaBar({ author, date, readTime, showFactCheck = true }: AuthorMetaBarProps) {
   return (
     <div className="mb-8 flex flex-wrap items-center justify-between gap-y-3 text-sm text-muted-foreground">
       {/* Left side: author + date + read time */}
@@ -46,15 +47,31 @@ export function AuthorMetaBar({ author, date, readTime }: AuthorMetaBarProps) {
       </div>
 
       {/* Right side: fact-check badge */}
-      <div className="flex items-center gap-2">
-        <Badge className="bg-green-600 hover:bg-green-700 text-white gap-1">
-          <CheckCircle className="h-3.5 w-3.5" />
-          Faktatjekket
-        </Badge>
-        <span>
-          Af: <span className="font-medium text-foreground">Casinoaftaler Redaktionen</span>
-        </span>
-      </div>
+      {showFactCheck && (
+        <div className="flex items-center gap-2">
+          <Badge className="bg-green-600 hover:bg-green-700 text-white gap-1">
+            <CheckCircle className="h-3.5 w-3.5" />
+            Faktatjekket
+          </Badge>
+          {author === "redaktionen" ? (
+            <Link to="/forfatter" className="flex items-center gap-1.5 group">
+              <span>Af:</span>
+              <img
+                src={jonasImage}
+                alt="Jonas – Fedesvinsejer"
+                className="h-6 w-6 rounded-full object-cover object-top ring-1 ring-border group-hover:ring-primary transition-colors"
+              />
+              <span className="font-medium text-foreground group-hover:text-primary transition-colors">
+                Jonas
+              </span>
+            </Link>
+          ) : (
+            <span>
+              Af: <span className="font-medium text-foreground">Casinoaftaler Redaktionen</span>
+            </span>
+          )}
+        </div>
+      )}
     </div>
   );
 }
