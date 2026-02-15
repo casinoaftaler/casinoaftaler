@@ -321,6 +321,30 @@ export const Header = memo(function Header() {
                 </Link>
               </DropdownMenuItem>
               <DropdownMenuItem asChild>
+                <Link to="/forretningsmodel" className="flex items-center gap-2">
+                  <BookOpen className="h-4 w-4" />
+                  Forretningsmodel
+                </Link>
+              </DropdownMenuItem>
+              <DropdownMenuItem asChild>
+                <Link to="/redaktionel-politik" className="flex items-center gap-2">
+                  <BookOpen className="h-4 w-4" />
+                  Redaktionel Politik
+                </Link>
+              </DropdownMenuItem>
+              <DropdownMenuItem asChild>
+                <Link to="/responsible-gaming" className="flex items-center gap-2">
+                  <ShieldCheck className="h-4 w-4" />
+                  Ansvarligt Spil
+                </Link>
+              </DropdownMenuItem>
+              <DropdownMenuItem asChild>
+                <Link to="/spillemyndigheden" className="flex items-center gap-2">
+                  <Scale className="h-4 w-4" />
+                  Spillemyndigheden
+                </Link>
+              </DropdownMenuItem>
+              <DropdownMenuItem asChild>
                 <Link to="/contact" className="flex items-center gap-2">
                   <Mail className="h-4 w-4" />
                   Kontakt
@@ -427,19 +451,6 @@ export const Header = memo(function Header() {
                   ))}
                 </DropdownMenuSubContent>
               </DropdownMenuSub>
-              <DropdownMenuSeparator />
-              <DropdownMenuItem asChild>
-                <Link to="/responsible-gaming" className="flex items-center gap-2">
-                  <ShieldCheck className="h-4 w-4" />
-                  Ansvarligt Spil
-                </Link>
-              </DropdownMenuItem>
-              <DropdownMenuItem asChild>
-                <Link to="/spillemyndigheden" className="flex items-center gap-2">
-                  <Scale className="h-4 w-4" />
-                  Spillemyndigheden
-                </Link>
-              </DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>
         </nav>
@@ -722,6 +733,26 @@ export const Header = memo(function Header() {
                   <User className="h-4 w-4" />
                   Kevin – IT Medansvarlig
                 </Link>
+                <Link to="/saadan-tester-vi-casinoer" className="ml-6 flex items-center gap-2 py-2.5 text-sm text-muted-foreground transition-colors hover:text-primary" onClick={() => setMobileMenuOpen(false)}>
+                  <Scale className="h-4 w-4" />
+                  Sådan tester vi
+                </Link>
+                <Link to="/forretningsmodel" className="ml-6 flex items-center gap-2 py-2.5 text-sm text-muted-foreground transition-colors hover:text-primary" onClick={() => setMobileMenuOpen(false)}>
+                  <BookOpen className="h-4 w-4" />
+                  Forretningsmodel
+                </Link>
+                <Link to="/redaktionel-politik" className="ml-6 flex items-center gap-2 py-2.5 text-sm text-muted-foreground transition-colors hover:text-primary" onClick={() => setMobileMenuOpen(false)}>
+                  <BookOpen className="h-4 w-4" />
+                  Redaktionel Politik
+                </Link>
+                <Link to="/responsible-gaming" className="ml-6 flex items-center gap-2 py-2.5 text-sm text-muted-foreground transition-colors hover:text-primary" onClick={() => setMobileMenuOpen(false)}>
+                  <ShieldCheck className="h-4 w-4" />
+                  Ansvarligt Spil
+                </Link>
+                <Link to="/spillemyndigheden" className="ml-6 flex items-center gap-2 py-2.5 text-sm text-muted-foreground transition-colors hover:text-primary" onClick={() => setMobileMenuOpen(false)}>
+                  <Scale className="h-4 w-4" />
+                  Spillemyndigheden
+                </Link>
                 <Link to="/contact" className="ml-6 flex items-center gap-2 py-2.5 text-sm text-muted-foreground transition-colors hover:text-primary" onClick={() => setMobileMenuOpen(false)}>
                   <Mail className="h-4 w-4" />
                   Kontakt
@@ -829,14 +860,6 @@ export const Header = memo(function Header() {
                     ))}
                   </div>
                 )}
-                <Link to="/responsible-gaming" className="ml-6 flex items-center gap-2 py-2.5 text-sm text-muted-foreground transition-colors hover:text-primary" onClick={() => setMobileMenuOpen(false)}>
-                  <ShieldCheck className="h-4 w-4" />
-                  Ansvarligt Spil
-                </Link>
-                <Link to="/spillemyndigheden" className="ml-6 flex items-center gap-2 py-2.5 text-sm text-muted-foreground transition-colors hover:text-primary" onClick={() => setMobileMenuOpen(false)}>
-                  <Scale className="h-4 w-4" />
-                  Spillemyndigheden
-                </Link>
               </div>
             )}
 
