@@ -175,7 +175,7 @@ const Spillemaskiner = () => {
           <img
             src={spillemaskinerHero}
             alt="Spillemaskiner og online slots i Danmark"
-            className="h-auto w-full object-cover"
+            className="w-full h-auto object-cover max-h-[400px]"
             loading="eager"
           />
         </div>
