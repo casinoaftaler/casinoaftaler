@@ -196,7 +196,7 @@ const StickyBonus = () => {
             bonusmidlerne sammen til én samlet saldo. Det betyder, at du ikke
             kan hæve noget, før du har opfyldt{" "}
             <Link to="/omsaetningskrav" className="text-primary hover:underline">omsætningskravene</Link> –
-            heller ikke selvom du vinder med dine egne indbetalte penge.
+            heller ikke selvom du vinder med dine egne indbetalte penge. Sticky bonusser er en vigtig kategori i vores <Link to="/casino-bonus" className="text-primary hover:underline">bonusguide</Link>.
           </p>
           <p className="mb-4 text-muted-foreground leading-relaxed">
             Betegnelsen "Sticky" kommer af, at bonusmidlerne klæber sig til

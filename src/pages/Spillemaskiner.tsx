@@ -193,8 +193,16 @@ const Spillemaskiner = () => {
           <p className="mb-4 text-muted-foreground leading-relaxed">
             Kernen i enhver moderne spillemaskine er en Random Number Generator (RNG) – en algoritme, der genererer tusindvis af tilfældige tal i sekundet. Når du trykker på spin-knappen, vælger RNG'en det præcise resultat i det millisekund, du klikker. Hvert spin er fuldstændig uafhængigt af det forrige, hvilket betyder, at spillemaskinen ikke kan være "varm" eller "kold". RNG'en testes og certificeres af uafhængige laboratorier som eCOGRA og iTech Labs, hvilket garanterer, at resultaterne er genuint tilfældige.
           </p>
-          <p className="text-muted-foreground leading-relaxed">
+          <p className="mb-4 text-muted-foreground leading-relaxed">
             Spillemaskinens opbygning inkluderer typisk 3–6 hjul med varierende antal symboler pr. hjul, gevinstlinjer (fra 1 til over 100.000), specialsymboler som wilds og scatters, samt bonusfunktioner. Gevinstlinjerne bestemmer, hvilke symbolkombinationer der udløser betaling – jo flere linjer, jo flere måder at vinde på. Indsatsen fordeles normalt jævnt på tværs af alle aktive gevinstlinjer.
+          </p>
+          <p className="text-muted-foreground leading-relaxed">
+            Spillemaskiner er den mest populære kategori inden for{" "}
+            <Link to="/casinospil" className={linkClass}>casinospil</Link>{" "}
+            – læs vores komplette guide for at udforske alle spiltyper. Du kan også teste spillemaskiner gratis i vores{" "}
+            <Link to="/community/slots" className={linkClass}>spillehal</Link>{" "}
+            og konkurrere om topplaceringer på{" "}
+            <Link to="/community/leaderboard" className={linkClass}>ranglisten</Link>.
           </p>
         </section>
 

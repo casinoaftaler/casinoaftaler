@@ -127,6 +127,9 @@ const RouletteGuide = () => {
             Det europæiske roulettehjul har 37 lommer nummereret 0–36, arrangeret i en specifik rækkefølge, der sikrer en jævn fordeling af høje/lave, ulige/lige og røde/sorte tal. Nulfeltet (grønt) repræsenterer casinoets matematiske fordel. Det amerikanske hjul tilføjer et ekstra nulfelt (00), hvilket næsten fordobler house edge. Hjulets design er ikke tilfældigt – nummereringen er omhyggeligt udvalgt, så tilstødende tal altid skifter mellem rød og sort, og summen af tal i hver sektion er så tæt på ensartet som muligt.
           </p>
           <p className="text-muted-foreground leading-relaxed">
+            Roulette er kernen i kategorien <Link to="/casinospil" className={linkClass}>casinospil</Link> – se vores fulde oversigt for flere klassikere. Du kan også teste roulette-strategier risikofrit i vores <Link to="/community/slots" className={linkClass}>gratis spilområde</Link> før du spiller for rigtige penge.
+          </p>
+          <p className="text-muted-foreground leading-relaxed">
             I dag oplever roulette en renæssance takket være live casino-teknologi. Du kan spille roulette med en professionel dealer i realtid fra din stue, med kameravinkler, der viser kuglen i slow motion og close-up. Varianter som Lightning Roulette og Immersive Roulette har tilføjet nye dimensioner til det klassiske spil, mens grundreglerne forbliver trofaste mod originalen.
           </p>
         </section>

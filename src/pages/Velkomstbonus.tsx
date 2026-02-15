@@ -245,6 +245,13 @@ const Velkomstbonus = () => {
             </Link>
             , hvor du slet ikke skal sætte penge ind for at komme i gang.
           </p>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            Velkomstbonussen er blot én af mange bonustyper – i vores{" "}
+            <Link to="/casino-bonus" className="text-primary underline hover:text-primary/80">
+              komplette bonusoversigt
+            </Link>{" "}
+            kan du sammenligne alle typer og finde det tilbud, der matcher din spillestil bedst.
+          </p>
           <p className="text-muted-foreground leading-relaxed">
             Vil du forstå bonusmekanikker i praksis, inden du investerer rigtige penge?
             Prøv vores{" "}

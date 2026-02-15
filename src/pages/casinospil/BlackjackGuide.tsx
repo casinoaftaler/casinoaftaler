@@ -143,8 +143,16 @@ const BlackjackGuide = () => {
           <p className="mb-4 text-muted-foreground leading-relaxed">
             I modsætning til rent tilfældighedsbaserede spil som <Link to="/casinospil/roulette" className={linkClass}>roulette</Link> eller spilleautomater kræver blackjack, at du træffer beslutninger, der direkte påvirker dine vindchancer. Hver hånd præsenterer et valg: skal du trække et kort, stå, fordoble din indsats eller splitte par? Disse beslutninger, kombineret med matematisk funderet strategi, kan reducere casinoets fordel til under 0,5 % – den laveste house edge af alle casinospil. Det gør blackjack til det mest fordelagtige spil for den informerede spiller.
           </p>
-          <p className="text-muted-foreground leading-relaxed">
+          <p className="mb-4 text-muted-foreground leading-relaxed">
             Spillets enkle præmis – kom tættere på 21 end dealeren uden at overstige tallet – skjuler et overraskende dybt strategisk univers. Hvert kort, der afsløres, ændrer det matematiske landskab og åbner for nye beslutninger. Det er denne blanding af simplicitet og dybde, der har gjort blackjack til et ikonisk casinospil i over 300 år. Uanset om du er helt ny eller har spillet i årevis, vil denne guide give dig den viden, du behøver for at spille optimalt.
+          </p>
+          <p className="text-muted-foreground leading-relaxed">
+            Blackjack er blot ét af mange spændende{" "}
+            <Link to="/casinospil" className={linkClass}>casinospil</Link>{" "}
+            du kan udforske hos danske casinoer. Vi har samlet de bedste casinoer med blackjack i vores{" "}
+            <Link to="/casino-anmeldelser" className={linkClass}>casino anmeldelser</Link>. Du kan også prøve kræfter med vores{" "}
+            <Link to="/community/slots" className={linkClass}>gratis spillehal</Link>{" "}
+            for at teste din strategi uden risiko.
           </p>
         </section>
 

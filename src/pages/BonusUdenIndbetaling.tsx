@@ -181,7 +181,7 @@ const BonusUdenIndbetaling = () => {
             på spilleautomater eller som et mindre pengebeløb direkte på
             din spillekonto.
           </p>
-          <p className="text-muted-foreground leading-relaxed">
+          <p className="mb-4 text-muted-foreground leading-relaxed">
             Denne bonustype er særligt populær, fordi den giver dig
             mulighed for at afprøve casinoets spiludvalg uden økonomisk
             risiko. Gevinster fra en no deposit bonus er dog typisk
@@ -204,6 +204,17 @@ const BonusUdenIndbetaling = () => {
               velkomstbonus
             </Link>{" "}
             værd at overveje.
+          </p>
+          <p className="text-muted-foreground leading-relaxed">
+            Sammenlign alle bonuskategorier i vores{" "}
+            <Link to="/casino-bonus" className="text-primary underline hover:text-primary/80">
+              komplette casino bonus guide
+            </Link>
+            , eller prøv bonusmekanikker gratis i vores{" "}
+            <Link to="/community/slots" className="text-primary underline hover:text-primary/80">
+              spillehal
+            </Link>{" "}
+            – helt uden indbetaling.
           </p>
         </section>
 

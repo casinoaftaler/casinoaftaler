@@ -30,7 +30,7 @@ const MobilePayGuide = () => {
             <Link to="/betalingsmetoder/bankoverforsler" className="text-primary underline hover:text-primary/80">bankoverførsler</Link>.
           </p>
           <p className="text-muted-foreground leading-relaxed">
-            I denne guide dykker vi ned i alt, hvad du behøver at vide om MobilePay på danske casinoer: sikkerhed, hastighed, bonusregler, gebyrer, sammenligninger med andre metoder og de bedste MobilePay casinoer i Danmark anno 2026.
+            I denne guide dykker vi ned i alt, hvad du behøver at vide om MobilePay på danske casinoer: sikkerhed, hastighed, bonusregler, gebyrer, sammenligninger med andre <Link to="/betalingsmetoder" className="text-primary underline hover:text-primary/80">betalingsmetoder</Link> og de bedste MobilePay casinoer i Danmark anno 2026.
           </p>
         </>
       }

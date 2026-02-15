@@ -124,7 +124,10 @@ const PokerGuide = () => {
             I online casinoverden opdeles poker i to kategorier: <strong>casino poker</strong> (du spiller mod huset, fx Caribbean Stud, Casino Hold'em, Three Card Poker) og <strong>spiller-vs-spiller poker</strong> (fx Texas Hold'em turneringer). Casino poker har en fast house edge og kræver ingen interaktion med andre spillere, mens spiller-vs-spiller poker er et rent færdighedsspil, hvor casinoet kun tager en "rake" (typisk 2,5–5 % af puljen).
           </p>
           <p className="text-muted-foreground leading-relaxed">
-            Video Poker er en tredje kategori, der kombinerer poker med <Link to="/casinospil/spillemaskiner" className={linkClass}>spillemaskiner</Link>. Her modtager du fem kort og vælger, hvilke du vil beholde. Det er det eneste casinospil, hvor perfekt strategi faktisk kan give spilleren en matematisk fordel over huset. Denne guide dækker alle tre kategorier og giver dig den viden, du behøver for at spille informeret.
+            Video Poker er en tredje kategori, der kombinerer poker med <Link to="/casinospil/spillemaskiner" className={linkClass}>spillemaskiner</Link>. Her modtager du fem kort og vælger, hvilke du vil beholde. Det er det eneste <Link to="/casinospil" className={linkClass}>casinospil</Link>, hvor perfekt strategi faktisk kan give spilleren en matematisk fordel over huset. Denne guide dækker alle tre kategorier og giver dig den viden, du behøver for at spille informeret.
+          </p>
+          <p className="text-muted-foreground leading-relaxed">
+            Følg med i vores <Link to="/highlights" className={linkClass}>community highlights</Link> for at se store pokergevinster og strategiske træk fra vores streamere.
           </p>
         </section>
 

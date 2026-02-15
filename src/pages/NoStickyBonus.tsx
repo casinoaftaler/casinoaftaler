@@ -210,11 +210,17 @@ const NoStickyBonus = () => {
             Bonusmidlerne fungerer dermed som et sikkerhedsnet, der kun træder
             i kraft, når du har opbrugt din indbetaling.
           </p>
-          <p className="text-muted-foreground leading-relaxed">
+          <p className="mb-4 text-muted-foreground leading-relaxed">
             Denne bonustype er særligt populær blandt spillere, der værdsætter
             fleksibilitet og kontrol over deres midler. Modsat en Sticky Bonus,
             hvor alt sammenblandes fra start, giver No-Sticky varianten dig
             en reel mulighed for at forlade casinoet med gevinsten i lommen.
+          </p>
+          <p className="text-muted-foreground leading-relaxed">
+            No-Sticky bonusser er blot én kategori i vores{" "}
+            <Link to="/casino-bonus" className={linkClass}>bonusguide</Link>
+            , hvor vi sammenligner alle bonustyper side om side. Optjen ekstra spins til at afprøve bonusmekanikker i vores{" "}
+            <Link to="/community/rewards" className={linkClass}>belønningsprogram</Link>.
           </p>
         </section>
 
