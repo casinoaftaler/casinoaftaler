@@ -7,21 +7,21 @@ export function AuthorBio() {
   return (
     <section className="my-10" aria-label="Om forfatteren">
       <div className="rounded-xl border border-border bg-card p-6 shadow-sm md:p-8">
-        <div className="flex flex-col items-center gap-6 text-center sm:flex-row sm:items-start sm:text-left">
+        <div className="flex flex-col items-center gap-6 text-center sm:flex-row sm:items-center sm:text-left">
           {/* Profile image */}
           <Link to="/forfatter" className="shrink-0 group" aria-label="Se Jonas' forfatterprofil">
             <img
               src={jonasImage}
               alt="Jonas – Grundlægger af Casinoaftaler.dk"
-              className="h-56 w-56 rounded-full object-cover object-top ring-2 ring-border group-hover:ring-primary transition-colors"
+              className="h-36 w-36 rounded-full object-cover object-top ring-2 ring-border group-hover:ring-primary transition-colors"
               loading="lazy"
-              width={224}
-              height={224}
+              width={144}
+              height={144}
             />
           </Link>
 
           {/* Text content */}
-          <div className="flex-1 space-y-2">
+          <div className="flex-1 space-y-3">
             <div>
               <Link
                 to="/forfatter"
