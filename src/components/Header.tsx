@@ -453,6 +453,12 @@ export const Header = memo(function Header() {
                     { to: "/swift-casino-anmeldelse", label: "Swift Casino" },
                     { to: "/campobet-anmeldelse", label: "Campobet" },
                     { to: "/luna-casino-anmeldelse", label: "Luna Casino" },
+                    { to: "/casino-anmeldelser/royal-casino", label: "Royal Casino" },
+                    { to: "/casino-anmeldelser/maria-casino", label: "Maria Casino" },
+                    { to: "/casino-anmeldelser/kapow-casino", label: "Kapow Casino" },
+                    { to: "/casino-anmeldelser/nordicbet", label: "NordicBet" },
+                    { to: "/casino-anmeldelser/one-casino", label: "One Casino" },
+                    { to: "/casino-anmeldelser/spilnu", label: "Spilnu" },
                   ].map((item) => (
                     <DropdownMenuItem key={item.to} asChild>
                       <Link to={item.to} className="flex items-center gap-2">
@@ -871,6 +877,12 @@ export const Header = memo(function Header() {
                       { to: "/swift-casino-anmeldelse", label: "Swift Casino" },
                       { to: "/campobet-anmeldelse", label: "Campobet" },
                       { to: "/luna-casino-anmeldelse", label: "Luna Casino" },
+                      { to: "/casino-anmeldelser/royal-casino", label: "Royal Casino" },
+                      { to: "/casino-anmeldelser/maria-casino", label: "Maria Casino" },
+                      { to: "/casino-anmeldelser/kapow-casino", label: "Kapow Casino" },
+                      { to: "/casino-anmeldelser/nordicbet", label: "NordicBet" },
+                      { to: "/casino-anmeldelser/one-casino", label: "One Casino" },
+                      { to: "/casino-anmeldelser/spilnu", label: "Spilnu" },
                     ].map((item) => (
                       <Link key={item.to} to={item.to} className="ml-10 flex items-center gap-2 py-2 text-sm text-muted-foreground transition-colors hover:text-primary" onClick={() => setMobileMenuOpen(false)}>
                         <Star className="h-3 w-3" />
