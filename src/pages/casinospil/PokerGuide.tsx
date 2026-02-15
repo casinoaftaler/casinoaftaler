@@ -230,8 +230,6 @@ const PokerGuide = () => {
 
         <Separator className="my-10" />
 
-        <InlineCasinoCards title="Bedste Casinoer til Poker" count={4} />
-
         <AuthorBio />
 
         <RelatedGuides currentPath="/casinospil/poker" />

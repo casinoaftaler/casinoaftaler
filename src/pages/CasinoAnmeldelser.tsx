@@ -583,9 +583,6 @@ const CasinoAnmeldelser = () => {
             </table>
           </div>
         </section>
-
-        <InlineCasinoCards title="Anbefalede Casinoer" />
-
         <Separator className="my-10" />
 
         {/* Fordele og ulemper */}

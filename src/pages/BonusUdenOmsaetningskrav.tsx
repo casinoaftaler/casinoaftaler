@@ -301,9 +301,6 @@ const BonusUdenOmsaetningskrav = () => {
             ))}
           </div>
         </section>
-
-        <InlineCasinoCards title="Casinoer uden omsætningskrav" />
-
         <Separator className="my-10" />
 
         {/* Typer af bonusser uden omsætningskrav */}

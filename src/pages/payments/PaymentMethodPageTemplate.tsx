@@ -318,8 +318,6 @@ export function PaymentMethodPage({
           </>
         )}
 
-        <InlineCasinoCards title={`Casinoer der accepterer ${name}`} />
-
         <Separator className="my-10" />
 
         {/* Related payment methods (max 3 siblings + hub) */}

@@ -168,8 +168,6 @@ const BaccaratGuide = () => {
 
         <Separator className="my-10" />
 
-        <InlineCasinoCards title="Bedste Casinoer til Baccarat" count={4} />
-
         <RelatedGuides currentPath="/casinospil/baccarat" />
 
         <FAQSection faqs={baccaratFaqs} />

@@ -178,8 +178,6 @@ const OnlineLotteriGuide = () => {
 
         <Separator className="my-10" />
 
-        <InlineCasinoCards title="Bedste Online Casinoer til Lotteri" count={4} />
-
         <AuthorBio />
 
         <RelatedGuides currentPath="/casinospil/online-lotteri" />

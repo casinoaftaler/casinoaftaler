@@ -179,8 +179,6 @@ const RouletteStrategiGuide = () => {
 
         <Separator className="my-10" />
 
-        <InlineCasinoCards title="Bedste Casinoer til Roulette" count={4} />
-
         <RelatedGuides currentPath="/casinospil/roulette-strategi" />
 
         <FAQSection faqs={strategiFaqs} />
