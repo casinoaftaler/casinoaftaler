@@ -15,7 +15,7 @@ import { getAffiliateRedirect } from "@/lib/affiliateRedirect";
 import { useAuth } from "@/hooks/useAuth";
 import { QuickFactsProviders, QuickFactsLogo } from "@/components/QuickFactsProviders";
 import type { ReactNode } from "react";
-import campobetHero from "@/assets/heroes/campobet-hero.jpg";
+import { CasinoReviewHero } from "@/components/CasinoReviewHero";
 import {
   Accordion,
   AccordionContent,
@@ -233,9 +233,7 @@ const CampobetAnmeldelse = () => {
       <div className="container py-8 md:py-12">
         <AuthorMetaBar author="jonas" date="13-02-2026" readTime="16 Min." />
 
-        <div className="mb-10 overflow-hidden rounded-xl">
-          <img src={campobetHero} alt="Campobet casino – internationalt casino med dansk licens" className="w-full h-auto object-cover max-h-[400px]" loading="eager" />
-        </div>
+        <CasinoReviewHero slug="campobet" casinoName="Campobet" />
 
         {/* Quick Facts Card */}
         <section className="mb-12">

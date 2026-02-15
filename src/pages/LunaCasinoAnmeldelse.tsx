@@ -14,7 +14,7 @@ import { getAffiliateRedirect } from "@/lib/affiliateRedirect";
 import { useAuth } from "@/hooks/useAuth";
 import { QuickFactsProviders, QuickFactsLogo } from "@/components/QuickFactsProviders";
 import type { ReactNode } from "react";
-import lunaHero from "@/assets/heroes/luna-casino-hero.jpg";
+import { CasinoReviewHero } from "@/components/CasinoReviewHero";
 import {
   Accordion,
   AccordionContent,
@@ -158,9 +158,7 @@ const LunaCasinoAnmeldelse = () => {
       <div className="container py-8 md:py-12">
         <AuthorMetaBar author="jonas" date="13-02-2026" readTime="16 Min." />
 
-        <div className="mb-10 overflow-hidden rounded-xl">
-          <img src={lunaHero} alt="Luna Casino – kvalitetsbevidst dansk casino med loyalitetsprogram" className="w-full h-auto object-cover max-h-[400px]" loading="eager" />
-        </div>
+        <CasinoReviewHero slug="luna-casino" casinoName="Luna Casino" />
 
         {/* Quick Facts */}
         <section className="mb-12">

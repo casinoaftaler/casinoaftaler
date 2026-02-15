@@ -14,7 +14,7 @@ import { useSiteSettings } from "@/hooks/useSiteSettings";
 import { getAffiliateRedirect } from "@/lib/affiliateRedirect";
 import { useAuth } from "@/hooks/useAuth";
 import type { ReactNode } from "react";
-import betiniaHero from "@/assets/heroes/betinia-hero.jpg";
+import { CasinoReviewHero } from "@/components/CasinoReviewHero";
 import {
   Accordion,
   AccordionContent,
@@ -221,9 +221,7 @@ const BetiniaAnmeldelse = () => {
       <div className="container py-8 md:py-12">
         <AuthorMetaBar author="jonas" date="13-02-2026" readTime="18 Min." />
 
-        <div className="mb-10 overflow-hidden rounded-xl">
-          <img src={betiniaHero} alt="Betinia casino – dansk online casino med No-Sticky bonus" className="w-full h-auto object-cover max-h-[400px]" loading="eager" />
-        </div>
+        <CasinoReviewHero slug="betinia" casinoName="Betinia" />
 
         {/* Quick Facts Card */}
         <section className="mb-12">
