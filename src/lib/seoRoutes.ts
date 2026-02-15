@@ -46,6 +46,12 @@ export const seoRoutes: SeoRoute[] = [
   { path: "/casino-anmeldelser/888-casino", changefreq: "weekly", priority: 0.9 },
   { path: "/casino-anmeldelser/unibet", changefreq: "weekly", priority: 0.9 },
   { path: "/casino-anmeldelser/bet365", changefreq: "weekly", priority: 0.9 },
+  { path: "/casino-anmeldelser/royal-casino", changefreq: "weekly", priority: 0.9 },
+  { path: "/casino-anmeldelser/maria-casino", changefreq: "weekly", priority: 0.9 },
+  { path: "/casino-anmeldelser/kapow-casino", changefreq: "weekly", priority: 0.9 },
+  { path: "/casino-anmeldelser/nordicbet", changefreq: "weekly", priority: 0.9 },
+  { path: "/casino-anmeldelser/one-casino", changefreq: "weekly", priority: 0.9 },
+  { path: "/casino-anmeldelser/spilnu", changefreq: "weekly", priority: 0.9 },
 
   // ── Casino Spil & Live ──
   { path: "/live-casino", changefreq: "weekly", priority: 0.9 },
