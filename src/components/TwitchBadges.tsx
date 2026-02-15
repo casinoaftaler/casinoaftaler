@@ -1,5 +1,5 @@
-import { Badge } from "@/components/ui/badge";
 import { Skeleton } from "@/components/ui/skeleton";
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 import { 
   Sword, 
   Gem, 
@@ -24,7 +24,6 @@ interface TwitchBadgesProps {
   badges?: TwitchBadgesType | null;
   isLoading?: boolean;
   className?: string;
-  showLabels?: boolean;
   size?: "sm" | "md" | "lg";
 }
 
@@ -33,10 +32,8 @@ export function TwitchBadges({
   badges: propBadges, 
   isLoading: propIsLoading,
   className = "",
-  showLabels = true,
   size = "md",
 }: TwitchBadgesProps) {
-  // If badges are passed directly, use them; otherwise fetch
   const { data, isLoading: queryLoading } = useTwitchBadges(
     propBadges !== undefined ? null : userId
   );
@@ -46,9 +43,9 @@ export function TwitchBadges({
 
   if (isLoading) {
     return (
-      <div className={`flex flex-wrap gap-1.5 ${className}`}>
-        <Skeleton className="h-6 w-20 rounded-full" />
-        <Skeleton className="h-6 w-16 rounded-full" />
+      <div className={`flex items-center gap-1.5 ${className}`}>
+        <Skeleton className="h-5 w-5 rounded-full" />
+        <Skeleton className="h-5 w-5 rounded-full" />
       </div>
     );
   }
@@ -59,34 +56,32 @@ export function TwitchBadges({
     return null;
   }
 
-  const sizeClasses = {
-    sm: "px-2 py-0.5 text-[10px]",
-    md: "px-2.5 py-0.5 text-xs",
-    lg: "px-3 py-1 text-sm",
-  };
-
   const iconSizes = {
-    sm: "h-3 w-3",
-    md: "h-3.5 w-3.5",
-    lg: "h-4 w-4",
+    sm: "h-4 w-4",
+    md: "h-5 w-5",
+    lg: "h-6 w-6",
   };
 
   return (
-    <div className={`flex flex-wrap gap-1.5 ${className}`}>
-      {badgeList.map((badge) => {
-        const Icon = ICON_MAP[badge.icon] || Heart;
-        return (
-          <Badge
-            key={badge.key}
-            variant="outline"
-            className={`${badge.color} ${sizeClasses[size]} font-medium border`}
-          >
-            <Icon className={`${iconSizes[size]} ${showLabels ? "mr-1" : ""}`} />
-            {showLabels && badge.label}
-          </Badge>
-        );
-      })}
-    </div>
+    <TooltipProvider delayDuration={200}>
+      <div className={`flex items-center gap-1.5 ${className}`}>
+        {badgeList.map((badge) => {
+          const Icon = ICON_MAP[badge.icon] || Heart;
+          return (
+            <Tooltip key={badge.key}>
+              <TooltipTrigger asChild>
+                <span className="inline-flex cursor-default">
+                  <Icon className={`${iconSizes[size]} ${badge.color}`} />
+                </span>
+              </TooltipTrigger>
+              <TooltipContent side="top" className="text-xs">
+                {badge.label}
+              </TooltipContent>
+            </Tooltip>
+          );
+        })}
+      </div>
+    </TooltipProvider>
   );
 }
 
@@ -96,14 +91,13 @@ export function TwitchBadgesInline({
   badges: propBadges,
   isLoading: propIsLoading,
   className = "",
-}: Omit<TwitchBadgesProps, "showLabels" | "size">) {
+}: Omit<TwitchBadgesProps, "size">) {
   return (
     <TwitchBadges
       userId={userId}
       badges={propBadges}
       isLoading={propIsLoading}
       className={className}
-      showLabels={false}
       size="sm"
     />
   );
