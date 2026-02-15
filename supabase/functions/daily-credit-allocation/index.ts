@@ -164,8 +164,8 @@ Deno.serve(async (req) => {
         startValue = cap;
         topUpAmount = cap;
       } else if (previous >= cap) {
-        // User has more than cap — carry over but enforce absolute max
-        startValue = Math.min(previous, ABSOLUTE_MAX_CREDITS);
+        // User has more than cap from gifts/rewards — carry over as-is, do NOT reduce
+        startValue = previous;
         topUpAmount = 0;
       } else {
         // User is below cap - top up to cap
@@ -185,7 +185,7 @@ Deno.serve(async (req) => {
         source: "daily_cron",
         note: topUpAmount > 0
           ? `Daglig top-up: +${topUpAmount} credits (fra ${previous ?? 0} til ${startValue})`
-          : `Carry-over: ${startValue} credits (ingen top-up nødvendig)`,
+          : `Carry-over: ${startValue} credits beholdt (over daglig cap på ${cap})`,
       });
     }
 
