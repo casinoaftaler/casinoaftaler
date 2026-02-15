@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { FAQSection } from "@/components/FAQSection";
 import { SEO } from "@/components/SEO";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
@@ -431,30 +432,7 @@ const Spiludviklere = () => {
       </section>
 
       <div className="container py-8 md:py-12">
-        {/* Meta info bar */}
-        <div className="mb-8 flex flex-wrap items-center gap-x-6 gap-y-2 text-sm text-muted-foreground">
-          <div className="flex items-center gap-1.5">
-            <User className="h-4 w-4" />
-            <span>
-              Skrevet af:{" "}
-              <span className="font-medium text-foreground">Casinoaftaler</span>
-            </span>
-          </div>
-          <div className="flex items-center gap-1.5">
-            <CalendarDays className="h-4 w-4" />
-            <span>
-              Siden opdateret:{" "}
-              <span className="font-medium text-foreground">11-02-2026</span>
-            </span>
-          </div>
-          <div className="flex items-center gap-1.5">
-            <BookOpen className="h-4 w-4" />
-            <span>
-              Læsetid:{" "}
-              <span className="font-medium text-foreground">15 Min.</span>
-            </span>
-          </div>
-        </div>
+        <AuthorMetaBar author="redaktionen" date="11-02-2026" readTime="15 Min." />
 
         <div className="mb-10 overflow-hidden rounded-xl">
           <img src={spiludviklereHero} alt="Spiludviklere – game studio med slot-spil på skærme" className="w-full h-auto object-cover max-h-[400px]" loading="eager" />
