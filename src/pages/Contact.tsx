@@ -66,43 +66,58 @@ export default function Contact() {
 
   const contactFaqs = [
     {
-      question: "Hvem kan kontakte jer?",
+      question: "Hvem henvender kontaktsiden sig til, og hvad kan I hjælpe med?",
       answer: (
         <>
-          Vores kontaktside er primært beregnet til casino partnerskaber, affiliate henvendelser, kommercielle forslag og presseforespørgsler. Denne kontaktside er ikke beregnet til brugersupport. For information om bonusser, se vores guides til{" "}
+          Kontaktsiden er udelukkende til erhvervsmæssige henvendelser – vi besvarer ikke spørgsmål om individuelle casinokonti eller bonusaktivering. Vi modtager henvendelser fra casinooperatører, der ønsker at blive anmeldt, affiliate-partnere, medievirksomheder og kommercielle samarbejdspartnere. Alle casinoer vi anmelder skal have gyldig dansk licens fra Spillemyndigheden. Har du spørgsmål om bonusvilkår, anbefaler vi vores guides til{" "}
           <Link to="/velkomstbonus" className="text-primary underline hover:text-primary/80">velkomstbonusser</Link>,{" "}
-          <Link to="/free-spins" className="text-primary underline hover:text-primary/80">free spins</Link> og{" "}
-          <Link to="/omsaetningskrav" className="text-primary underline hover:text-primary/80">omsætningskrav</Link>.
+          <Link to="/omsaetningskrav" className="text-primary underline hover:text-primary/80">omsætningskrav</Link> og{" "}
+          <Link to="/free-spins" className="text-primary underline hover:text-primary/80">free spins</Link>. Har du spillerelaterede problemer, henviser vi til{" "}
+          <Link to="/responsible-gaming" className="text-primary underline hover:text-primary/80">ansvarligt spil</Link>-ressourcer.
         </>
       ),
     },
     {
-      question: "Hvor hurtigt svarer I?",
+      question: "Hvor hurtigt besvarer I henvendelser, og hvad sker der efter indsendelsen?",
       answer:
-        "Vi bestræber os på at besvare alle seriøse henvendelser inden for 1-3 hverdage. I travle perioder kan svartiden dog være lidt længere.",
+        "Vi bestræber os på at besvare alle seriøse erhvervshenvendelser inden for 1–3 hverdage. I travle perioder – særligt omkring store kampagneperioder som jul, nytår og store sportsbegivenheder – kan svartiden forlænges til op til 5 hverdage. Når vi modtager din henvendelse, vurderer vi først relevansen og kategoriserer den. Casino-partnerskabsforespørgsler gennemgår vores interne evalueringsproces, hvor vi tjekker licensstatus, bonusvilkår og spiludvalg. Affiliate-henvendelser videresendes til vores kommercielle team. Du modtager altid en bekræftelse efter afsendelse, og vi kontakter dig via den oplyste e-mail.",
     },
     {
-      question: "Kan jeg anmelde mit casino hos jer?",
+      question: "Hvordan kan mit casino blive anmeldt på Casinoaftaler?",
       answer: (
         <>
-          Ja, vi er altid åbne for at anmelde nye casinoer. Casinoet skal have gyldig dansk licens fra Spillemyndigheden. Send os en henvendelse via formularen, og vi vender tilbage med mere information. Vi anmelder bl.a.{" "}
-          <Link to="/velkomstbonus" className="text-primary underline hover:text-primary/80">velkomstbonusser</Link>,{" "}
-          <Link to="/indskudsbonus" className="text-primary underline hover:text-primary/80">indskudsbonusser</Link>,{" "}
-          <Link to="/bonus-uden-indbetaling" className="text-primary underline hover:text-primary/80">bonusser uden indbetaling</Link> og{" "}
-          <Link to="/live-casino" className="text-primary underline hover:text-primary/80">live casino</Link>-tilbud. Se også vores{" "}
-          <Link to="/nye-casinoer" className="text-primary underline hover:text-primary/80">oversigt over nye casinoer</Link>.
+          For at blive anmeldt skal dit casino have en aktiv dansk spillelicens fra Spillemyndigheden – dette er et ufravigeligt krav. Send en henvendelse via formularen med casinoets navn, licensnummer, bonusstruktur og kontaktoplysninger. Vores redaktion tester casinoet grundigt over minimum 2 uger, hvor vi evaluerer{" "}
+          <Link to="/velkomstbonus" className="text-primary underline hover:text-primary/80">velkomstbonus</Link>, spiludvalg,{" "}
+          <Link to="/betalingsmetoder" className="text-primary underline hover:text-primary/80">betalingsmetoder</Link>, udbetalingshastighed, kundeservice og{" "}
+          <Link to="/live-casino" className="text-primary underline hover:text-primary/80">live casino</Link>-tilbud. Vi publicerer kun anmeldelser af casinoer, der lever op til vores kvalitetsstandarder. Se eksempler i vores{" "}
+          <Link to="/casino-anmeldelser" className="text-primary underline hover:text-primary/80">casino anmeldelser</Link>.
         </>
       ),
     },
     {
-      question: "Tilbyder I affiliate samarbejder?",
+      question: "Tilbyder I affiliate- og mediesamarbejder, og hvad kræver det?",
       answer: (
         <>
-          Ja, vi samarbejder med udvalgte affiliates og mediepartnere. Kontakt os via formularen med information om dit forslag, så gennemgår vi det. Læs mere{" "}
+          Vi samarbejder med udvalgte affiliates, mediepartnere og indholdsproducenter inden for den danske gambling-industri. Vi prioriterer partnere med dokumenteret trafik, kvalitetsindhold og fokus på det regulerede danske marked. Kontakt os via formularen med information om dit medie, trafikvolumen og foreslået samarbejdsform. Vi vurderer alle henvendelser individuelt og vender tilbage inden for 5 hverdage. Læs mere{" "}
           <Link to="/about" className="text-primary underline hover:text-primary/80">om os</Link>{" "}
-          og vores tilgang til anmeldelser.
+          og vores redaktionelle principper, der sikrer uafhængighed i vores anmeldelser uanset kommercielle partnerskaber.
         </>
       ),
+    },
+    {
+      question: "Hvad er jeres redaktionelle politik for casino-anmeldelser?",
+      answer: (
+        <>
+          Vores anmeldelser er uafhængige og baseret på faktisk testning af hvert enkelt casino. Vi modtager provision via affiliate-links, men dette påvirker aldrig vores vurdering, rangering eller anbefalinger. Hvert casino evalueres på seks parametre: licens og sikkerhed,{" "}
+          <Link to="/casino-bonus" className="text-primary underline hover:text-primary/80">bonusvilkår</Link>, spiludvalg og{" "}
+          <Link to="/spiludviklere" className="text-primary underline hover:text-primary/80">spiludviklere</Link>, betalingsmetoder, udbetalingshastighed og kundeservice. Anmeldelserne opdateres minimum kvartalsvis og straks ved væsentlige ændringer i bonusvilkår eller licensstatus. Vi offentliggør altid vores metodik og eventuelle interessekonflikter.
+        </>
+      ),
+    },
+    {
+      question: "Kan jeg rapportere fejl eller foreslå forbedringer til jeres indhold?",
+      answer:
+        "Ja, vi modtager gerne feedback om vores indhold. Hvis du opdager en fejl i en anmeldelse – fx forældede bonusvilkår, forkerte omsætningskrav eller ændrede betalingsmetoder – er du velkommen til at kontakte os via formularen med emnet 'Anden Kommerciel Henvendelse'. Angiv specifikt hvilken side der indeholder fejlen og hvad den korrekte information er. Vi verificerer alle rapporterede fejl og opdaterer indholdet inden for 48 timer. Din feedback hjælper os med at holde alle anmeldelser og guides aktuelle og præcise for danske spillere.",
     },
   ];
 

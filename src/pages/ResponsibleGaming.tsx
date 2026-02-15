@@ -62,25 +62,42 @@ const helpResources = [
 
 const responsibleGamingFaqs: { question: string; answer: string | React.ReactNode }[] = [
   {
-    question: "Hvad er ROFUS, og hvordan tilmelder jeg mig?",
+    question: "Hvad er ROFUS præcist, og hvad sker der teknisk, når jeg tilmelder mig?",
     answer: (
       <>
-        ROFUS (Register Over Frivilligt Udelukkede Spillere) er en dansk ordning administreret af{" "}
-        <Link to="/spillemyndigheden" className="text-primary underline hover:text-primary/80">Spillemyndigheden</Link>, hvor du kan udelukke dig selv fra alle licenserede online casinoer i Danmark. Du tilmelder dig via spillemyndigheden.dk med dit MitID.
+        ROFUS (Register Over Frivilligt Udelukkede Spillere) er en centraliseret database administreret af{" "}
+        <Link to="/spillemyndigheden" className="text-primary underline hover:text-primary/80">Spillemyndigheden</Link>, som alle danske licenserede casinoer er lovpligtige at konsultere i realtid. Tilmelding sker via spillemyndigheden.dk med dit MitID. Inden for 24 timer blokeres din adgang til alle licenserede online casinoer, væddemålssider og fysiske casinoer i Danmark. Du vælger mellem midlertidig udelukkelse (24 timer, 1 måned, 3 måneder, 6 måneder eller 1 år) eller permanent udelukkelse. Permanent udelukkelse kan tidligst ophæves efter 1 år med en obligatorisk afkølingsperiode på 7 dage. ROFUS dækker kun licenserede danske operatører – ulicenserede sider er ikke tilsluttet.
       </>
     ),
   },
   {
-    question: "Hvordan sætter jeg indbetalingsgrænser på mit casino?",
-    answer: "De fleste danske casinoer tilbyder indbetalingsgrænser under dine kontoindstillinger. Du kan typisk sætte daglige, ugentlige og månedlige grænser. Kontakt casinoets kundeservice, hvis du har brug for hjælp til at finde funktionen.",
+    question: "Hvordan sætter jeg indbetalingsgrænser, og kan casinoet ændre dem?",
+    answer:
+      "Alle danske licenserede casinoer tilbyder indbetalingsgrænser under kontoindstillinger – typisk kan du sætte daglige, ugentlige og månedlige lofter. Nedsættelse af en grænse træder i kraft øjeblikkeligt for at beskytte dig, mens forhøjelse kræver en lovpligtig afkølingsperiode på minimum 24 timer. Casinoet kan aldrig forhøje dine grænser uden din aktive godkendelse. Spillemyndigheden kræver desuden, at casinoer sætter en default indbetalingsgrænse for nye spillere. Mange casinoer tilbyder også tabsgrænser og sessionstidsadvarsler. Vi anbefaler altid at sætte en grænse, der matcher dit underholdningsbudget – betragt det som en biograf- eller koncertudgift.",
   },
   {
-    question: "Hvad gør jeg, hvis jeg tror, en ven eller et familiemedlem har spilleproblemer?",
-    answer: "Kontakt StopSpillet (stopspillet.dk) for gratis og fortrolig rådgivning. De hjælper både spillere og pårørende. Du kan også ringe til dem anonymt. Det vigtigste er at vise forståelse og ikke dømme personen.",
+    question: "Hvad gør jeg, hvis jeg er bekymret for en vens eller familiemedlems spillevaner?",
+    answer:
+      "Kontakt StopSpillet (stopspillet.dk / tlf. 70 22 28 25) for gratis, fortrolig rådgivning – de hjælper både spillere og pårørende. Det vigtigste er at vise forståelse uden at dømme. Undgå ultimatummer eller beskyldninger, da det ofte forstærker skam og hemmeligholdelse. Konkrete tegn at være opmærksom på inkluderer: uforklarlige økonomiske problemer, humørsvingninger knyttet til spilresultater, social tilbagetrækning og løgne om tidsforbrugt online. Center for Ludomani (ludomani.dk) tilbyder gratis behandlingsprogrammer for hele familien. Du kan ikke tvinge nogen til at stoppe, men du kan skabe et miljø, hvor det er sikkert at bede om hjælp.",
   },
   {
-    question: "Er der gratis hjælp til spilleproblemer i Danmark?",
-    answer: "Ja, Center for Ludomani tilbyder gratis behandling og rådgivning i hele Danmark. StopSpillet tilbyder også gratis telefonisk rådgivning. Begge tjenester er fortrolige og tilgængelige for alle.",
+    question: "Hvilke gratis behandlingsmuligheder findes der for spilleproblemer i Danmark?",
+    answer:
+      "Center for Ludomani tilbyder gratis, professionel behandling i hele Danmark – både individuel terapi, gruppeterapi og online-rådgivning. Behandlingen er baseret på kognitiv adfærdsterapi og har dokumenteret høj succesrate. StopSpillet tilbyder telefonisk rådgivning (70 22 28 25) og chat-rådgivning med uddannede konsulenter. Kommunerne kan desuden tilbyde gratis misbrugsbehandling via visitering. Anonyme Gamblere (AG) holder regelmæssige møder i flere danske byer med 12-trinsprogrammet. Alle tjenester er 100 % fortrolige. Ventetiden varierer, men akut rådgivning er typisk tilgængelig inden for 1–3 hverdage.",
+  },
+  {
+    question: "Hvad er de psykologiske mekanismer bag problematisk spil?",
+    answer:
+      "Problematisk spil aktiverer hjernens belønningssystem via dopaminfrigivelse – den samme mekanisme, der driver andre afhængigheder. Nær-vinst-effekten (near miss) er særligt kraftfuld: hjernens reaktion på et næsten-vinst er næsten identisk med en reel gevinst, hvilket motiverer fortsat spil. Intermitterende forstærkning – uforudsigelige gevinster i tilfældige intervaller – skaber den stærkeste vanedannende adfærd. Tabsjagt (chasing losses) er drevet af tapsaversion, et kognitivt bias hvor tab føles ca. 2x stærkere end tilsvarende gevinster. Forståelse af disse mekanismer er første skridt mod at genkende, hvornår spil overgår fra underholdning til problem.",
+  },
+  {
+    question: "Hvad er forskellen på sundt spil og problematisk spil?",
+    answer: (
+      <>
+        Sundt spil er kendetegnet ved: et forudbestemt budget du overholder, tidsgrænser du respekterer, accept af tab som prisen for underholdning, og glæde ved selve spillet uanset resultat. Problematisk spil viser sig ved: jagt på tab, budgetoverskridelser, skjult spil for familie, lån til spil, forsømmelse af ansvar og humørsvingninger knyttet til resultater. Overgangen er ofte gradvis – mange spillere erkender først problemet, når de økonomiske konsekvenser er alvorlige. Hvis du genkender tre eller flere af advarselstegnene ovenfor, anbefaler vi at kontakte StopSpillet for en fortrolig samtale. Læs også om{" "}
+        <Link to="/spillemyndigheden" className="text-primary underline hover:text-primary/80">Spillemyndighedens</Link> spillerbeskyttelsestiltag.
+      </>
+    ),
   },
 ];
 

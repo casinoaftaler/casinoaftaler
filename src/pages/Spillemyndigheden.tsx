@@ -76,40 +76,47 @@ const spillemyndighedenFaqs: { question: string; answer: string | React.ReactNod
     ),
   },
   {
-    question: "Hvordan tjekker jeg, om et casino har dansk licens?",
+    question: "Hvordan verificerer jeg, at et online casino har gyldig dansk licens?",
     answer: (
       <>
-        Du kan tjekke det direkte på Spillemyndighedens hjemmeside, hvor de offentliggør alle aktive licenshavere. Se også vores{" "}
-        <Link to="/casino-anmeldelser" className="text-primary underline hover:text-primary/80">casino anmeldelser</Link> – alle anmeldte casinoer har dansk licens.
+        Spillemyndigheden vedligeholder en offentligt tilgængelig liste over alle aktive licenshavere på deres hjemmeside spillemyndigheden.dk. Du kan søge på casinoets navn eller operatørselskabets navn og se licensnummer, licenstype og udstedelsesdato. Alternativt skal alle licenserede casinoer vise Spillemyndighedens logo i bunden af deres hjemmeside med et klikbart link til licensregistret. Hvis logoet mangler eller linket er dødt, bør du være på vagt. Alle casinoer i vores{" "}
+        <Link to="/casino-anmeldelser" className="text-primary underline hover:text-primary/80">casino anmeldelser</Link> har vi selv verificeret som aktivt licenserede.
       </>
     ),
   },
   {
-    question: "Hvad sker der, hvis jeg spiller på et casino uden dansk licens?",
-    answer: "Hvis du spiller på et ulicenseret casino, mister du al den beskyttelse, som dansk lovgivning tilbyder. Det betyder ingen adgang til ROFUS-selvudelukkelse, ingen klageadgang via Spillemyndigheden og ingen garanti for, at dine penge eller gevinster er sikre.",
+    question: "Hvad risikerer jeg ved at spille på et casino uden dansk licens?",
+    answer:
+      "Konsekvenserne er vidtrækkende. Du mister adgang til ROFUS-selvudelukkelse, klageadgang via Spillemyndigheden og garantien for, at dine indbetalinger og gevinster er sikre. Ulicenserede casinoer er ikke forpligtet til at bruge certificerede tilfældighedsgeneratorer (RNG), hvilket betyder, at spilresultater potentielt kan manipuleres. Gevinster fra ulicenserede casinoer er desuden skattepligtige i Danmark, i modsætning til skattefri gevinster fra licenserede operatører. Spillemyndigheden blokkerede 83 ulovlige spillesider i 2024 alene, og tallet stiger hvert år. Der er også ingen garanti for, at dine persondata håndteres forsvarligt.",
   },
   {
-    question: "Hvad er ROFUS, og hvordan tilmelder jeg mig?",
+    question: "Hvad er ROFUS, og hvordan fungerer selvudelukkelsessystemet teknisk?",
     answer: (
       <>
-        ROFUS (Register Over Frivilligt Udelukkede Spillere) er en national ordning, hvor du kan udelukke dig selv fra alle danske licenserede spillesider. Læs mere om dette på vores side om{" "}
+        ROFUS (Register Over Frivilligt Udelukkede Spillere) er en centraliseret database administreret af Spillemyndigheden, som alle danske licenserede spilleoperatører er lovpligtige at konsultere i realtid. Når du tilmelder dig ROFUS via MitID, blokeres din adgang til alle licenserede online casinoer, væddemålssider og landbaserede casinoer i Danmark inden for 24 timer. Du kan vælge midlertidig udelukkelse (24 timer, 1 måned, 3 måneder, 6 måneder eller 1 år) eller permanent udelukkelse. Permanent udelukkelse kan tidligst ophæves efter 1 år med en afkølingsperiode på 7 dage. Læs mere om{" "}
         <Link to="/responsible-gaming" className="text-primary underline hover:text-primary/80">ansvarligt spil</Link>.
       </>
     ),
   },
   {
-    question: "Kan jeg klage over et licenseret casino?",
-    answer: "Ja, du kan indgive en klage til Spillemyndigheden, hvis du oplever problemer med et licenseret casino. Klagen kan indsendes via deres hjemmeside. Spillemyndigheden vurderer derefter sagen og kan pålægge operatøren sanktioner.",
+    question: "Hvordan klager jeg over et licenseret casino, og hvad kan Spillemyndigheden gøre?",
+    answer:
+      "Klageprocessen starter på Spillemyndighedens hjemmeside, hvor du udfylder en digital klageformular med beskrivelse af problemet og relevant dokumentation (skærmbilleder, e-mailkorrespondance, transaktionshistorik). Spillemyndigheden behandler klagen og kan pålægge operatøren sanktioner fra påtaler og bøder til midlertidig suspension eller permanent inddragelse af licensen. I 2024 resulterede klagesager i sanktioner mod flere operatører for manglende overholdelse af bonusvilkår og forsinkede udbetalinger. Typiske klageemner inkluderer tilbageholdte gevinster, ændrede bonusvilkår og utilstrækkelig kundeservice. Behandlingstiden varierer fra 4 til 12 uger.",
   },
   {
-    question: "Hvilke krav stiller Spillemyndigheden til casinoer?",
+    question: "Hvilke specifikke krav stiller Spillemyndigheden til bonusvilkår og omsætningskrav?",
     answer: (
       <>
-        Kravene omfatter anti-hvidvask-procedurer, teknisk sikkerhed og fair spil (RNG-certificering),{" "}
-        <Link to="/responsible-gaming" className="text-primary underline hover:text-primary/80">ansvarligt spil</Link>-værktøjer (ROFUS, indbetalingsgrænser), databeskyttelse og regelmæssig rapportering. Læs også om{" "}
-        <Link to="/omsaetningskrav" className="text-primary underline hover:text-primary/80">omsætningskrav</Link>, som er reguleret med et loft på 10x.
+        Spillemyndigheden regulerer bonusvilkår stramt for at beskytte danske spillere. Det maksimale tilladte omsætningskrav er 10x – markant lavere end i de fleste andre europæiske markeder, hvor 30–50x er normalt. Bonusvilkår skal være klart formulerede og let tilgængelige for spilleren, inden bonussen accepteres. Casinoet skal angive gyldighed, spilbidrag og maksimale indsatser med bonusmidler. Vildledende markedsføring af bonusser kan medføre sanktioner. Læs mere om{" "}
+        <Link to="/omsaetningskrav" className="text-primary underline hover:text-primary/80">omsætningskrav</Link> og{" "}
+        <Link to="/casino-bonus" className="text-primary underline hover:text-primary/80">casino bonusser</Link> generelt.
       </>
     ),
+  },
+  {
+    question: "Hvad koster en dansk spillelicens, og hvilke økonomiske forpligtelser har operatørerne?",
+    answer:
+      "En online casinolicens koster ca. 285.800 kr. i ansøgningsgebyr, mens en kombineret casino- og væddemålslicens koster ca. 400.100 kr. Ud over licensgebyret betaler operatørerne en afgift på 28 % af bruttospilleindtægten (GGR) – det vil sige forskellen mellem spillernes indsatser og udbetalte gevinster. Det er denne afgift, der gør gevinster skattefri for spillerne. Operatørerne skal desuden stille en bankgaranti på minimum 750.000 kr. som sikkerhed for spillernes indeståender. De samlede etableringsomkostninger for en ny dansk casinolicens – inklusiv teknisk certificering, juridisk rådgivning og compliance-setup – estimeres typisk til 2–5 millioner kr.",
   },
 ];
 

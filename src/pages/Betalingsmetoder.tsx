@@ -69,54 +69,54 @@ const Betalingsmetoder = () => {
 
   const betalingsmetoderFaqs = [
     {
-      question: "Kan jeg bruge MobilePay på alle danske casinoer?",
+      question: "Hvilken betalingsmetode giver de hurtigste udbetalinger fra danske casinoer?",
       answer: (
         <>
-          Nej, MobilePay er ikke tilgængeligt på alle danske casinoer, men det bliver stadig mere populært. Tjek altid casinoets betalingsmuligheder, før du opretter en konto. MobilePay kvalificerer dig typisk til{" "}
-          <Link to="/velkomstbonus" className="text-primary underline hover:text-primary/80">velkomstbonusser</Link>.
+          <Link to="/betalingsmetoder/trustly" className="text-primary underline hover:text-primary/80">Trustly</Link> og e-wallets som{" "}
+          <Link to="/betalingsmetoder/paypal" className="text-primary underline hover:text-primary/80">PayPal</Link> og{" "}
+          <Link to="/betalingsmetoder/skrill" className="text-primary underline hover:text-primary/80">Skrill</Link> er hurtigst med typisk 0–24 timers behandlingstid. Trustly overfører direkte til din bankkonto via open banking og MitID – ingen mellemmænd, ingen ekstra konti.{" "}
+          <Link to="/betalingsmetoder/mobilepay" className="text-primary underline hover:text-primary/80">MobilePay</Link> behandler indbetalinger øjeblikkeligt, men udbetalingstiden varierer og er typisk 1–2 dage. Kortbetalinger via{" "}
+          <Link to="/betalingsmetoder/visa-mastercard" className="text-primary underline hover:text-primary/80">Visa/Mastercard</Link> tager 1–3 bankdage, mens traditionelle bankoverførsler kan tage 2–5 hverdage. Da alle danske casinoer bruger MitID, er identitetsverifikation allerede gennemført, hvilket eliminerer forsinkelser ved første udbetaling.
         </>
       ),
     },
     {
-      question: "Hvilken betalingsmetode har de hurtigste udbetalinger?",
+      question: "Påvirker mit valg af betalingsmetode, om jeg kan aktivere en velkomstbonus?",
       answer: (
         <>
-          E-wallets som PayPal, Skrill og Neteller samt Trustly er blandt de hurtigste. Transaktioner behandles ofte inden for få timer, mens bankoverførsler og kortbetalinger kan tage 1–5 hverdage. Se vores{" "}
-          <Link to="/nye-casinoer" className="text-primary underline hover:text-primary/80">nye casinoer</Link>{" "}
-          for at finde de hurtigste udbetalingsmuligheder.
+          Ja, nogle{" "}
+          <Link to="/velkomstbonus" className="text-primary underline hover:text-primary/80">velkomstbonusser</Link> udelukker specifikke betalingsmetoder – særligt e-wallets som Skrill og Neteller er ofte ekskluderet fra bonusaktivering. Det skyldes, at disse metoder historisk er blevet brugt til bonusmisbrug. Bankoverførsler, Visa/Mastercard, MobilePay og Trustly kvalificerer næsten altid til bonusser. Tjek altid bonusvilkårene, før du indbetaler – det specifikke betalingsmetodekrav bør fremgå tydeligt.{" "}
+          <Link to="/betalingsmetoder/paysafecard" className="text-primary underline hover:text-primary/80">Paysafecard</Link> kvalificerer typisk til bonusser, men kan ikke bruges til udbetalinger. Vi angiver eventuelle betalingsrestriktioner i vores{" "}
+          <Link to="/casino-anmeldelser" className="text-primary underline hover:text-primary/80">casino anmeldelser</Link>.
         </>
       ),
     },
     {
-      question: "Er der indbetalingsgrænser på danske casinoer?",
+      question: "Er der indbetalings- og udbetalingsgrænser på danske casinoer?",
       answer: (
         <>
-          Ja, alle licenserede danske casinoer har indbetalingsgrænser for at fremme{" "}
-          <Link to="/responsible-gaming" className="text-primary underline hover:text-primary/80">ansvarligt spil</Link>.
-          Du kan ofte selv sætte personlige grænser via casinoets indstillinger. Grænser kan også påvirke, hvilke{" "}
-          <Link to="/indskudsbonus" className="text-primary underline hover:text-primary/80">indskudsbonusser</Link>{" "}
-          du kan aktivere.
+          Ja, danske casinoer har både obligatoriske og valgfrie grænser. Spillemyndigheden kræver, at alle licenserede casinoer tilbyder indbetalingsgrænser som en del af{" "}
+          <Link to="/responsible-gaming" className="text-primary underline hover:text-primary/80">ansvarligt spil</Link>-værktøjerne – du kan sætte daglige, ugentlige og månedlige lofter. Minimumsindbetaling er typisk 50–100 kr. hos de fleste casinoer, mens minimumsudbetalingen varierer fra 75 kr. til 200 kr. Maksimale daglige udbetalingsgrænser varierer markant: fra 25.000 kr. til ubegrænset hos top-casinoer. Ved store jackpotgevinster (100.000+ kr.) udbetaler de fleste casinoer i rater efter individuel aftale. Vi angiver specifikke grænser i vores{" "}
+          <Link to="/casino-anmeldelser" className="text-primary underline hover:text-primary/80">anmeldelser</Link>.
         </>
       ),
     },
     {
-      question: "Skal jeg verificere min betalingsmetode?",
+      question: "Skal jeg bruge samme betalingsmetode til indbetaling og udbetaling?",
       answer:
-        "Ja, danske casinoer er underlagt Spillemyndighedens regler, og du skal verificere din betalingsmetode for at kunne hæve penge. Det sker typisk ved at uploade dokumentation som et billede af dit kort eller en bankudskrift.",
+        "De fleste danske casinoer kræver, at du udbetaler til den samme metode, du indbetalte med – dette er en anti-hvidvask-foranstaltning påkrævet af Spillemyndigheden. Undtagelser inkluderer Paysafecard (kun indbetaling) og Apple Pay (varierer), hvor casinoet tilbyder alternative udbetalingsmetoder som bankoverførsel. Hvis du har indbetalt med flere metoder, udbetales typisk proportionelt til de anvendte metoder. Vi anbefaler at indbetale med den metode, du også ønsker at modtage udbetalinger på – det forenkler processen markant og undgår potentielle forsinkelser ved verifikation af alternative udbetalingskanaler.",
     },
     {
-      question: "Er kryptovaluta tilladt på danske casinoer?",
+      question: "Er kryptovaluta tilladt som betalingsmetode på danske casinoer?",
       answer:
-        "Nej, ifølge Spillemyndighedens regler må danske licenserede casinoer ikke acceptere kryptovalutaer som Bitcoin eller Ethereum. Alle transaktioner skal kunne spores og reguleres efter gældende standarder.",
+        "Nej, ifølge Spillemyndighedens regulering er kryptovalutaer som Bitcoin, Ethereum og Litecoin ikke tilladte som betalingsmetode hos danske licenserede casinoer. Alle transaktioner skal kunne spores og reguleres efter de danske anti-hvidvask-standarder, og kryptobetalinger lever ikke op til disse krav. Udenlandske casinoer uden dansk licens accepterer ofte krypto, men ved at spille der mister du al spillerbeskyttelse: ingen ROFUS-tilslutning, ingen klageadgang, skattepligtige gevinster og ingen garanti for dine indeståender. De regulerede betalingsmetoder – kort, bankoverførsel, e-wallets og mobile betalingsløsninger – dækker alle danske spilleres behov.",
     },
     {
-      question: "Hvad er forskellen på e-wallets og bankoverførsler?",
+      question: "Hvad er forskellen på en e-wallet, en bankoverførsel og en mobilbetaling i praksis?",
       answer: (
         <>
-          E-wallets som PayPal og Skrill fungerer som digitale tegnebøger med hurtige transaktioner. Bankoverførsler går direkte via din bank og er meget sikre, men kan tage 2–5 hverdage. Visse e-wallets kan være udelukket fra{" "}
-          <Link to="/velkomstbonus" className="text-primary underline hover:text-primary/80">velkomstbonusser</Link>{" "}
-          – tjek altid{" "}
-          <Link to="/omsaetningskrav" className="text-primary underline hover:text-primary/80">omsætningskravene</Link>.
+          E-wallets (PayPal, Skrill) fungerer som digitale tegnebøger med separat saldo – du overfører penge fra din bank til e-walleten og bruger den som mellemmand. Fordel: hurtige transaktioner og du deler ikke bankoplysninger med casinoet. Ulempe: mulige gebyrer og potentiel bonusudelukkelse.{" "}
+          <Link to="/betalingsmetoder/bankoverforsler" className="text-primary underline hover:text-primary/80">Bankoverførsler</Link> går direkte fra din bankkonto via open banking (Trustly) eller traditionel overførsel – ingen mellemmænd, høj sikkerhed, men langsommere ved traditionelle overførsler. Mobilbetalinger (MobilePay, Apple Pay) bruger din eksisterende betalingsinfrastruktur (mobilnummer eller Face ID/Touch ID) – den hurtigste og mest bekvemme metode for indbetalinger, med varierende udbetalingshastighed.
         </>
       ),
     },

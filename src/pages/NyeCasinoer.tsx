@@ -52,93 +52,52 @@ const linkClass = "text-primary underline hover:text-primary/80";
 
 const nyeCasinoerFaqs: { question: string; answer: ReactNode }[] = [
   {
-    question: "Hvordan finder vi nye casinoer til vores side?",
+    question: "Hvordan sikrer I jer, at nye casinoer er pålidelige, før I anbefaler dem?",
     answer: (
       <>
-        Vi holder konstant øje med det danske marked og tester nye casinoer grundigt, så snart de lancerer. Alle spillesteder på vores liste har gyldig dansk licens fra Spillemyndigheden. Læs mere om vores tilgang på{" "}
-        <Link to="/about" className={linkClass}>Om Os</Link>-siden.
+        Vores screening-proces for nye casinoer er intensiv. Først verificerer vi den danske licens fra Spillemyndigheden – dette er et ufravigeligt krav. Derefter undersøger vi operatørselskabet bag casinoet: har de erfaring fra andre markeder? Driver de andre licenserede casinoer? Vi tester casinoet med rigtige penge over minimum 2 uger, hvor vi evaluerer registreringsprocessen, indbetalinger via flere{" "}
+        <Link to="/betalingsmetoder" className={linkClass}>betalingsmetoder</Link>, spiloplevelsen og – kritisk –udbetalingshastigheden. Vi kontakter også kundeservice med specifikke spørgsmål for at vurdere kompetence og svartid. Kun casinoer, der består alle tests, kommer på listen.
       </>
     ),
   },
   {
-    question: "Hvordan er sikkerheden hos casinoerne på siden?",
+    question: "Hvorfor tilbyder nye casinoer ofte bedre bonusser end etablerede?",
     answer: (
       <>
-        Alle casinoer på Casinoaftaler.dk har dansk licens og anvender SSL-kryptering til at beskytte dine data. Vi tjekker også, at de tilbyder ansvarligt spil-værktøjer som ROFUS. Læs mere om{" "}
-        <Link to="/responsible-gaming" className={linkClass}>ansvarligt spil</Link>.
+        Nye casinoer opererer med en aggressiv markedsføringsstrategi, hvor kundeakvisation prioriteres over kortsigtede marginer. De investerer typisk 40–60 % af deres marketingbudget i{" "}
+        <Link to="/velkomstbonus" className={linkClass}>velkomstbonusser</Link> for at opbygge en spillerbase. Det resulterer ofte i større bonusbeløb, lavere{" "}
+        <Link to="/omsaetningskrav" className={linkClass}>omsætningskrav</Link> og flere{" "}
+        <Link to="/free-spins" className={linkClass}>free spins</Link>. Når casinoet har etableret en stabil spillerbase, normaliseres bonusniveauerne typisk. Det er derfor strategisk smart at udnytte nye casinoers velkomstbonusser – så længe vilkårene er gennemsigtige. Vi sammenligner altid den reelle bonusværdi i vores anmeldelser.
       </>
     ),
   },
   {
-    question: "Er de nye casinoer stabile?",
+    question: "Hvad kendetegner de bedste nye casinoer i 2026 sammenlignet med tidligere år?",
     answer:
-      "Ja – vi anbefaler kun casinoer, der har vist sig stabile og pålidelige. Mange nye casinoer drives af erfarne operatører med årelang erfaring i branchen.",
+      "Trends i 2026 viser, at nye casinoer fokuserer på tre områder: 1) Mobile-first design – platformen udvikles primært til smartphones med sekundær desktop-optimering. 2) Gamification – loyalitetsprogrammer med levels, achievements og daglige udfordringer erstatter traditionelle VIP-programmer. 3) Hurtigere udbetalinger – mange nye operatører tilbyder instant-udbetalinger via Trustly og MobilePay. Teknologisk set ser vi flere casinoer med AI-drevet spilanbefaling og personaliserede bonustilbud baseret på spillestil. Sikkerheden er identisk med etablerede casinoer, da alle kræver samme danske licens med strenge compliance-krav.",
   },
   {
-    question: "Hvad er de bedste og sikreste licenser?",
+    question: "Hvilke licenser bør jeg kigge efter ud over den danske?",
     answer:
-      "Den danske licens fra Spillemyndigheden er den vigtigste for danske spillere. Andre anerkendte licenser inkluderer Malta Gaming Authority (MGA) og UK Gambling Commission.",
+      "Den danske licens fra Spillemyndigheden er det absolutte minimumskrav for danske spillere – den sikrer skattefri gevinster, ROFUS-tilslutning og 10x omsætningsloft. Derudover er Malta Gaming Authority (MGA) den mest anerkendte internationale licens med strenge krav til spillerbeskyttelse og kapitalreserver. UK Gambling Commission (UKGC) er den strengeste i verden med særligt fokus på ansvarligt spil. Gibraltar Gambling Commission har også et solidt ry. Mange nye casinoer har dual-licensering (fx dansk + MGA), hvilket giver ekstra sikkerhed, da operatøren er underlagt regulering fra to uafhængige tilsynsmyndigheder.",
   },
   {
-    question: "Er der live casino hos nye casinoer?",
+    question: "Er det risikabelt at være blandt de første spillere på et helt nyt casino?",
     answer: (
       <>
-        Ja, de fleste nye casinoer tilbyder{" "}
-        <Link to="/live-casino" className={linkClass}>live casino</Link>{" "}
-        med spil som blackjack, roulette og baccarat fra førende{" "}
-        <Link to="/spiludviklere" className={linkClass}>spiludviklere</Link> som Evolution Gaming.
+        Risikoen er minimal, så længe casinoet har dansk licens. Spillemyndigheden kræver, at operatøren stiller en bankgaranti på minimum 750.000 kr. som sikkerhed for spillernes indeståender, har implementeret alle tekniske sikkerhedskrav og har bestået compliance-audit, før licensen udstedes. Mange "nye" danske casinoer drives desuden af erfarne operatørselskaber, der allerede driver succesfulde casinoer i andre markeder. Det er dog altid fornuftigt at starte med en mindre indbetaling og teste udbetalingsprocessen, før du øger dit engagement. Læs altid vores{" "}
+        <Link to="/casino-anmeldelser" className={linkClass}>anmeldelse</Link>, før du registrerer dig.
       </>
     ),
   },
   {
-    question: "Hvem er de bedste casinoer online?",
+    question: "Hvordan holder I listen over nye casinoer opdateret?",
     answer: (
       <>
-        Det afhænger af dine præferencer. Vi anbefaler at sammenligne{" "}
-        <Link to="/velkomstbonus" className={linkClass}>velkomstbonusser</Link>,{" "}
-        spiludvalg og udbetalingstider. Tjek vores topliste for et overblik over de bedste muligheder.
+        Vi monitorerer det danske spillemarked dagligt via Spillemyndighedens licensregister, branchemedier og vores netværk af kontakter i industrien. Når et nyt casino lancerer med dansk licens, påbegynder vi vores evalueringsproces inden for de første 48 timer. Casinoer forbliver i "nye casinoer"-kategorien i op til 12 måneder efter dansk lancering, hvorefter de overgår til vores generelle{" "}
+        <Link to="/top-10-casino-online" className={linkClass}>top 10 liste</Link>. Vi fjerner casinoer fra listen, hvis de mister deres licens, ændrer vilkår væsentligt i negativ retning eller hvis vores løbende tests afslører forringet kvalitet i betalingsprocesser eller kundeservice.
       </>
     ),
-  },
-  {
-    question: "Hvad er kvaliteten på casinoerne?",
-    answer: (
-      <>
-        Vi vurderer hvert casino ud fra bonus, spiludvalg,{" "}
-        <Link to="/betalingsmetoder" className={linkClass}>betalingsmetoder</Link>,{" "}
-        kundeservice og mobiloplevelse. Kun casinoer, der lever op til vores standarder, kommer på listen.
-      </>
-    ),
-  },
-  {
-    question: "Hvorfor bør jeg vælge et nyt casino?",
-    answer: (
-      <>
-        Nye casinoer tilbyder ofte bedre{" "}
-        <Link to="/velkomstbonus" className={linkClass}>velkomstbonusser</Link>,{" "}
-        moderne design og innovative funktioner for at tiltrække spillere. Det kan betyde bedre værdi for dig.
-      </>
-    ),
-  },
-  {
-    question: "Skal jeg vælge et nyt eller et etableret casino?",
-    answer:
-      "Begge har fordele. Nye casinoer giver friske bonusser og moderne oplevelser, mens etablerede spillesteder har dokumenteret pålidelighed. Det vigtigste er dansk licens.",
-  },
-  {
-    question: "Er der bonusser hos Casinoaftaler?",
-    answer: (
-      <>
-        Vi formidler bonusser fra de casinoer, vi anbefaler. Du finder altid opdaterede{" "}
-        <Link to="/velkomstbonus" className={linkClass}>velkomstbonusser</Link>,{" "}
-        <Link to="/free-spins" className={linkClass}>free spins</Link> og eksklusive tilbud på vores side.
-      </>
-    ),
-  },
-  {
-    question: "Kan jeg spille casino på mobilen?",
-    answer:
-      "Ja, alle casinoer på vores liste er fuldt optimeret til mobil. De fleste tilbyder en browserbaseret mobiloplevelse, der fungerer på både iOS og Android.",
   },
 ];
 

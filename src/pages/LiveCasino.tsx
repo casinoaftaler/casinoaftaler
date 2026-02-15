@@ -45,85 +45,49 @@ const linkClass = "text-primary underline hover:text-primary/80";
 
 const liveCasinoFaqs: { question: string; answer: string | React.ReactNode }[] = [
   {
-    question: "Hvad er et live casino?",
-    answer: (
-      <>
-        Et live casino er en online platform, hvor du kan spille klassiske{" "}
-        <Link to="/casinospil" className={linkClass}>casinospil</Link> som blackjack, roulette og poker med en rigtig dealer i realtid. Spillet streames live via video, så det føles næsten som at sidde ved et fysisk bord på et ægte casino.
-      </>
-    ),
-  },
-  {
-    question: "Hvilke spil kan jeg spille på live casinoer?",
-    answer: (
-      <>
-        De mest populære spil er blackjack, roulette, baccarat og poker. Mange casinoer tilbyder også innovative game shows som Crazy Time, Monopoly Live og Dream Catcher fra{" "}
-        <Link to="/spiludviklere/evolution-gaming" className={linkClass}>Evolution Gaming</Link>.
-      </>
-    ),
-  },
-  {
-    question: "Er live casinoer tilgængelige i Danmark?",
-    answer: (
-      <>
-        Ja, mange licenserede online casinoer i Danmark tilbyder live casino med danske dealere. Alle casinoer på vores liste har gyldig dansk licens fra Spillemyndigheden. Se vores{" "}
-        <Link to="/top-10-casino-online" className={linkClass}>top 10 casino</Link>-liste.
-      </>
-    ),
-  },
-  {
-    question: "Kan jeg spille live casino gratis?",
-    answer: (
-      <>
-        Live casinoer er sjældent tilgængelige i gratis versioner. Dog kan du bruge{" "}
-        <Link to="/velkomstbonus" className={linkClass}>velkomstbonusser</Link> til at prøve live spil med bonuspenge, eller finde en{" "}
-        <Link to="/bonus-uden-indbetaling" className={linkClass}>bonus uden indbetaling</Link>.
-      </>
-    ),
-  },
-  {
-    question: "Er det sikkert at spille på live casinoer?",
-    answer: (
-      <>
-        Ja, så længe du spiller på et licenseret casino. Alle casinoer på vores side har dansk licens, SSL-kryptering og er tilsluttet ROFUS. Læs mere om{" "}
-        <Link to="/responsible-gaming" className={linkClass}>ansvarligt spil</Link>.
-      </>
-    ),
-  },
-  {
-    question: "Hvordan får jeg en live casino bonus?",
-    answer: (
-      <>
-        Mange live casinoer tilbyder{" "}
-        <Link to="/velkomstbonus" className={linkClass}>velkomstbonusser</Link>, der matcher din første indbetaling. Nogle har også separate bonusser til live spil. Tjek altid{" "}
-        <Link to="/omsaetningskrav" className={linkClass}>omsætningskravene</Link>.
-      </>
-    ),
-  },
-  {
-    question: "Kan jeg spille live casino på mobilen?",
-    answer: (
-      <>
-        Ja, de fleste moderne live casinoer er fuldt optimeret til mobil. Du kan indbetale med{" "}
-        <Link to="/betalingsmetoder/mobilepay" className={linkClass}>MobilePay</Link> og spille direkte fra din smartphone.
-      </>
-    ),
-  },
-  {
-    question: "Hvordan fungerer live casinoer teknisk?",
+    question: "Hvordan fungerer live casino teknisk, og hvad kræves af min internetforbindelse?",
     answer:
-      "Live casinoer bruger avancerede kameraer og streaming-teknologi til at sende spillet live fra professionelle studier. Professionelle dealere styrer spillet, og du placerer dine indsatser digitalt i realtid via din skærm.",
+      "Live casino bruger avanceret multi-kamera streaming-teknologi fra professionelle studier – typisk med 3–8 HD-kameraer pr. bord, der dækker alle vinkler. Optical Character Recognition (OCR) digitaliserer kort og kuglepositioner i realtid, så resultaterne vises øjeblikkeligt på din skærm. Du har brug for minimum 5 Mbit/s downloadhastighed for stabil HD-streaming, selvom 10+ Mbit/s anbefales for den bedste oplevelse. De fleste udbydere tilbyder automatisk kvalitetsjustering, der tilpasser videoopløsningen til din forbindelse. Latency holdes typisk under 2 sekunder, så du kan interagere med dealeren næsten i realtid.",
   },
   {
-    question: "Hvem er de største udviklere af live casino spil?",
+    question: "Hvad er forskellen på de store live casino-udbydere, og hvem er bedst?",
     answer: (
       <>
-        De største udviklere inkluderer{" "}
-        <Link to="/spiludviklere/evolution-gaming" className={linkClass}>Evolution Gaming</Link>,{" "}
-        <Link to="/spiludviklere/pragmatic-play" className={linkClass}>Pragmatic Play</Link> Live, Playtech og{" "}
-        <Link to="/spiludviklere/microgaming" className={linkClass}>Microgaming</Link>. Evolution Gaming er markedsleder og står bag Lightning Roulette og Crazy Time.
+        <Link to="/spiludviklere/evolution-gaming" className={linkClass}>Evolution Gaming</Link> er den ubestridte markedsleder med over 85 % markedsandel i live casino-segmentet. De tilbyder det bredeste udvalg med 200+ bordvarianter, herunder unikke game shows som Crazy Time (97,72 % RTP), Lightning Roulette (97,30 % RTP) og Monopoly Live.{" "}
+        <Link to="/spiludviklere/pragmatic-play" className={linkClass}>Pragmatic Play</Link> Live har vokset hurtigt med dedikerede studier og konkurrencedygtige borde med lavere minimumsindsatser. Playtech tilbyder stærke blackjack-varianter, mens{" "}
+        <Link to="/spiludviklere/microgaming" className={linkClass}>Microgaming</Link> samarbejder med On Air Entertainment om baccarat-specialiteter. Valget afhænger af dine præferencer: Evolution for variation, Pragmatic for budget-venlige borde.
       </>
     ),
+  },
+  {
+    question: "Hvilke live casino-spil har den laveste house edge for danske spillere?",
+    answer:
+      "Blackjack med optimal basisstrategi har den laveste house edge på live casinoer – helt ned til 0,5 % på standard 8-deck spil. Baccarat følger med 1,06 % på banker-bet og 1,24 % på player-bet (undgå tie-bet med 14,36 % house edge). Live roulette varierer markant: europæisk roulette har 2,70 % house edge, mens Lightning Roulette har en effektiv house edge på ca. 2,78 % grundet multiplikator-mekanikken. Game shows som Crazy Time og Dream Catcher har typisk 3–5 % house edge. For de bedste odds bør du fokusere på klassiske bordspil frem for game shows, selvom sidstnævnte tilbyder højere underholdningsværdi.",
+  },
+  {
+    question: "Kan jeg bruge min velkomstbonus til live casino-spil?",
+    answer: (
+      <>
+        De fleste{" "}
+        <Link to="/velkomstbonus" className={linkClass}>velkomstbonusser</Link> kan teknisk set bruges på live casino, men spilbidraget er typisk kun 10 % sammenlignet med 100 % for spilleautomater. Det betyder, at en bonus med 10x{" "}
+        <Link to="/omsaetningskrav" className={linkClass}>omsætningskrav</Link> reelt kræver 100x omsætning på live casino-spil. Nogle casinoer udelukker helt live casino fra bonusomsætning. Tjek altid de specifikke bonusvilkår, før du spiller live med bonusmidler. Et alternativ er at bruge en{" "}
+        <Link to="/bonus-uden-indbetaling" className={linkClass}>bonus uden indbetaling</Link> på spilleautomater og reservere din egen indbetaling til live casino-spil, hvor du spiller uden bonusbegrænsninger.
+      </>
+    ),
+  },
+  {
+    question: "Er live casinoer tilgængelige med danske dealere, og hvornår er bordene åbne?",
+    answer: (
+      <>
+        Flere danske licenserede casinoer tilbyder borde med dansktalende dealere, primært i peak-timerne fra kl. 18–24. Uden for disse timer er engelsktalende dealere altid tilgængelige, da de internationale studier opererer 24/7. Evolution Gaming har dedikerede danske borde for udvalgte operatører. Minimumsindsatserne varierer: dansktalende borde starter typisk fra 25–50 kr. pr. runde, mens internationale borde kan starte fra 5–10 kr. For de fleste danske spillere er sproget ikke en barriere, da interfacet er fuldt oversat, og de engelsktalende dealere er professionelle og letforståelige. Se vores{" "}
+        <Link to="/top-10-casino-online" className={linkClass}>top 10 liste</Link>.
+      </>
+    ),
+  },
+  {
+    question: "Hvad er live casino game shows, og hvordan adskiller de sig fra klassiske bordspil?",
+    answer:
+      "Live casino game shows er en hybrid mellem traditionelle casinospil og tv-underholdning, pioneeret af Evolution Gaming fra 2018. Spillene bruger store studier med farverigt sceneri, hjul, kugler og bonusrunder med publikumselementer. De mest populære inkluderer Crazy Time (med fire bonusspil og multiplikatorer op til 25.000x), Dream Catcher (simpelt penghjul med op til 40x multiplikator), Monopoly Live (kombination af penghjul og 3D-bonusrunde) og Lightning Dice. Fordelen er lav indgangsbarriere – du behøver ingen strategi – og den høje underholdningsværdi. Ulempen er typisk højere house edge (3–5 %) sammenlignet med klassiske bordspil.",
   },
 ];
 
