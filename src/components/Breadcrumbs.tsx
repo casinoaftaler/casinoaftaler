@@ -48,6 +48,7 @@ const routeLabels: Record<string, string> = {
   "/butik": "Butik",
   "/highlights": "Highlights",
   "/forfatter": "Forfatter",
+  "/forfatter/kevin": "Kevin",
   "/spillemyndigheden": "Spillemyndigheden",
   "/top-10-casino-online": "Top 10 Casino Online",
   "/casino-anmeldelser": "Casino Anmeldelser",
