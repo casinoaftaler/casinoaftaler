@@ -244,8 +244,6 @@ export function Footer() {
                 { to: "/betalingsmetoder/trustly", label: "Trustly", icon: CreditCard },
                 { to: "/betalingsmetoder/paypal", label: "PayPal", icon: CreditCard },
                 { to: "/betalingsmetoder/visa-mastercard", label: "Visa / Mastercard", icon: CreditCard },
-                { to: "/betalingsmetoder/apple-pay", label: "Apple Pay", icon: CreditCard },
-                { to: "/betalingsmetoder/revolut", label: "Revolut", icon: CreditCard },
               ].map((item) => (
                 <li key={item.to}>
                   <Link
