@@ -62,6 +62,8 @@ interface BonusSpinResult extends SpinResult {
 
 const DEFAULT_SYMBOL_WEIGHT = 10;
     const MAX_SPINS_CAP = 220;
+    const SUBSCRIBER_MAX_SPINS_CAP = 320;
+    const SUBSCRIBER_BONUS = 100;
     const ABSOLUTE_MAX_CREDITS = 1000;
 
 // Secure random number generator
@@ -617,7 +619,7 @@ Deno.serve(async (req) => {
         .order("position"),
       supabase
         .from("profiles")
-        .select("bonus_spins_permanent")
+        .select("bonus_spins_permanent, twitch_badges")
         .eq("user_id", userId)
         .maybeSingle(),
       supabase
@@ -918,8 +920,11 @@ Deno.serve(async (req) => {
     
     // Profile and settings already fetched in parallel above
     const bonusSpinsPermanent = profileRes.data?.bonus_spins_permanent || 0;
+    const isSubscriber = !!(profileRes.data as any)?.twitch_badges?.is_subscriber;
+    const subBonus = isSubscriber ? SUBSCRIBER_BONUS : 0;
+    const capLimit = isSubscriber ? SUBSCRIBER_MAX_SPINS_CAP : MAX_SPINS_CAP;
     const dailySpins = parseInt(settingsRes.data?.value || "200", 10);
-    const maxSpins = Math.min(dailySpins + bonusSpinsPermanent, MAX_SPINS_CAP);
+    const maxSpins = Math.min(dailySpins + subBonus + bonusSpinsPermanent, capLimit);
 
     // Get or create today's spin record with carry-over logic
     // First check if today's record exists

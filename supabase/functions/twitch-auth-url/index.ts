@@ -24,7 +24,7 @@ serve(async (req) => {
       );
     }
 
-    const scope = "user:read:email";
+    const scope = "user:read:email user:read:subscriptions";
     
     const authUrl = new URL("https://id.twitch.tv/oauth2/authorize");
     authUrl.searchParams.set("client_id", clientId);

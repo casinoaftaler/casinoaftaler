@@ -555,10 +555,12 @@ export type Database = {
           profile_section_completed: boolean | null
           stats_public: boolean | null
           stats_section_completed: boolean | null
+          twitch_access_token: string | null
           twitch_badges: Json | null
           twitch_badges_updated_at: string | null
           twitch_follow_date: string | null
           twitch_id: string | null
+          twitch_refresh_token: string | null
           twitch_username: string | null
           typical_bet_size: string | null
           updated_at: string
@@ -589,10 +591,12 @@ export type Database = {
           profile_section_completed?: boolean | null
           stats_public?: boolean | null
           stats_section_completed?: boolean | null
+          twitch_access_token?: string | null
           twitch_badges?: Json | null
           twitch_badges_updated_at?: string | null
           twitch_follow_date?: string | null
           twitch_id?: string | null
+          twitch_refresh_token?: string | null
           twitch_username?: string | null
           typical_bet_size?: string | null
           updated_at?: string
@@ -623,10 +627,12 @@ export type Database = {
           profile_section_completed?: boolean | null
           stats_public?: boolean | null
           stats_section_completed?: boolean | null
+          twitch_access_token?: string | null
           twitch_badges?: Json | null
           twitch_badges_updated_at?: string | null
           twitch_follow_date?: string | null
           twitch_id?: string | null
+          twitch_refresh_token?: string | null
           twitch_username?: string | null
           typical_bet_size?: string | null
           updated_at?: string

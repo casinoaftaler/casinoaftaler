@@ -133,9 +133,90 @@ async function checkFollower(
   };
 }
 
-// Check subscription status (requires user access token, so we'll skip for now and use public info)
-// Note: Checking subscriptions requires the broadcaster's access token or the user's token with proper scopes
-// For now, we'll only support moderator, VIP, and follower badges which work with app tokens
+// Check subscription status using the user's stored access token
+async function checkSubscription(
+  broadcasterId: string,
+  userTwitchId: string,
+  userAccessToken: string,
+  userRefreshToken: string | null,
+  clientId: string,
+  clientSecret: string,
+  supabaseAdmin: any,
+  userId: string
+): Promise<{ isSubscriber: boolean; tier: number | null }> {
+  if (!userAccessToken) {
+    return { isSubscriber: false, tier: null };
+  }
+
+  // Try with current token
+  let response = await fetch(
+    `https://api.twitch.tv/helix/subscriptions/user?broadcaster_id=${broadcasterId}&user_id=${userTwitchId}`,
+    {
+      headers: {
+        Authorization: `Bearer ${userAccessToken}`,
+        "Client-Id": clientId,
+      },
+    }
+  );
+
+  // If 401, try refreshing the token
+  if (response.status === 401 && userRefreshToken) {
+    console.log("User token expired, refreshing...");
+    const refreshResponse = await fetch("https://id.twitch.tv/oauth2/token", {
+      method: "POST",
+      headers: { "Content-Type": "application/x-www-form-urlencoded" },
+      body: new URLSearchParams({
+        client_id: clientId,
+        client_secret: clientSecret,
+        grant_type: "refresh_token",
+        refresh_token: userRefreshToken,
+      }),
+    });
+
+    if (refreshResponse.ok) {
+      const refreshData = await refreshResponse.json();
+      const newAccessToken = refreshData.access_token;
+      const newRefreshToken = refreshData.refresh_token || userRefreshToken;
+
+      // Store updated tokens
+      await supabaseAdmin
+        .from("profiles")
+        .update({
+          twitch_access_token: newAccessToken,
+          twitch_refresh_token: newRefreshToken,
+        })
+        .eq("user_id", userId);
+
+      // Retry with new token
+      response = await fetch(
+        `https://api.twitch.tv/helix/subscriptions/user?broadcaster_id=${broadcasterId}&user_id=${userTwitchId}`,
+        {
+          headers: {
+            Authorization: `Bearer ${newAccessToken}`,
+            "Client-Id": clientId,
+          },
+        }
+      );
+    } else {
+      console.error("Token refresh failed");
+      return { isSubscriber: false, tier: null };
+    }
+  }
+
+  if (!response.ok) {
+    // 404 means not subscribed, other errors we just return false
+    return { isSubscriber: false, tier: null };
+  }
+
+  const data = await response.json();
+  const sub = data.data?.[0];
+  if (sub) {
+    const tierNum = sub.tier ? Math.floor(parseInt(sub.tier) / 1000) : 1;
+    return { isSubscriber: true, tier: tierNum };
+  }
+
+  return { isSubscriber: false, tier: null };
+}
 
 serve(async (req) => {
   if (req.method === "OPTIONS") {
@@ -172,7 +253,7 @@ serve(async (req) => {
     // Get user's profile with twitch_id
     const { data: profile, error: profileError } = await supabaseAdmin
       .from("profiles")
-      .select("twitch_id, twitch_username, twitch_badges, twitch_badges_updated_at, twitch_follow_date")
+      .select("twitch_id, twitch_username, twitch_badges, twitch_badges_updated_at, twitch_follow_date, twitch_access_token, twitch_refresh_token")
       .eq("user_id", user_id)
       .maybeSingle();
 
@@ -259,10 +340,17 @@ serve(async (req) => {
     const userTwitchId = profile.twitch_id;
 
     // Fetch all badge statuses in parallel
-    const [isModerator, isVip, followerInfo] = await Promise.all([
+    const [isModerator, isVip, followerInfo, subInfo] = await Promise.all([
       checkModerator(broadcasterId, userTwitchId, accessToken, clientId),
       checkVip(broadcasterId, userTwitchId, accessToken, clientId),
       checkFollower(broadcasterId, userTwitchId, accessToken, clientId),
+      checkSubscription(
+        broadcasterId, userTwitchId,
+        profile.twitch_access_token || "",
+        profile.twitch_refresh_token || null,
+        clientId, clientSecret,
+        supabaseAdmin, user_id
+      ),
     ]);
 
     // Calculate follow duration
@@ -276,9 +364,10 @@ serve(async (req) => {
     const badges: TwitchBadges = {
       is_moderator: isModerator,
       is_vip: isVip,
-      is_subscriber: false, // Would need user token to check
+      is_subscriber: subInfo.isSubscriber,
       is_follower: followerInfo.isFollower,
       follow_duration_days: followDurationDays,
+      tier: subInfo.tier,
     };
 
     // Update profile with cached badges
