@@ -6,6 +6,7 @@ import { CookieConsent } from "./CookieConsent";
 import { BackToTop } from "./BackToTop";
 import { TwitchLivePlayer } from "./TwitchLivePlayer";
 import { ProfileCompletionPrompt } from "./ProfileCompletionPrompt";
+import { QuickNavBar } from "./QuickNavBar";
 import { usePageTracking } from "@/hooks/usePageTracking";
 import { ScrollToTop } from "./ScrollToTop";
 import { useBanCheck } from "@/hooks/useBanCheck";
@@ -16,8 +17,8 @@ export function Layout() {
   const location = useLocation();
   const { isBanned, banLoading } = useBanCheck();
   
-  // Hide footer on game pages (but show on library)
   const hideFooter = location.pathname.startsWith("/community/slots/");
+  const isHomePage = location.pathname === "/";
 
   if (isBanned && !banLoading) {
     return <BannedScreen />;
@@ -28,6 +29,7 @@ export function Layout() {
       <ScrollToTop />
       <Header />
       <Breadcrumbs />
+      {isHomePage && <QuickNavBar />}
       <main className="flex-1">
         <Outlet />
       </main>
