@@ -12,6 +12,7 @@ import { InlineCasinoCards } from "@/components/InlineCasinoCards";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
 import { buildArticleSchema } from "@/lib/seo";
 import { QuickFactsProviders } from "@/components/QuickFactsProviders";
+import { CasinoReviewLogo } from "@/components/CasinoReviewLogo";
 import type { ReactNode } from "react";
 import { ShieldCheck, Star, Clock, CreditCard, Gift, Trophy, Sparkles, Gamepad2, Zap, Check, X, Smartphone, Headphones, Globe, Award, Users } from "lucide-react";
 
@@ -39,6 +40,7 @@ const MrGreenAnmeldelse = () => {
       <SEO title="Mr Green Casino Anmeldelse 2026 – Bonus, Spil & Ansvarligt Spil | Casinoaftaler" description="Komplet anmeldelse af Mr Green Casino. Prisbelønnet casino med dansk licens, Green Gaming-værktøj, kurateret spiludvalg og hurtige udbetalinger." jsonLd={[articleSchema, faqJsonLd, reviewJsonLd]} />
       <section className="relative overflow-hidden py-12 text-white md:py-20" style={{ backgroundImage: heroBackgroundImage ? `linear-gradient(135deg, hsl(260 70% 25% / 0.95), hsl(210 80% 30% / 0.9)), url(${heroBackgroundImage})` : "linear-gradient(135deg, hsl(260 70% 25%), hsl(250 60% 20%) 40%, hsl(210 80% 25%))", backgroundSize: "cover", backgroundPosition: "center" }}>
         <div className="container"><div className="mx-auto max-w-3xl text-center">
+          <CasinoReviewLogo slug="mr-green" />
           <Badge variant="secondary" className="mb-4"><Award className="mr-1.5 h-3.5 w-3.5" />4.4 / 5 – Prisbelønnet Casino</Badge>
           <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">Mr Green Casino Anmeldelse 2026</h1>
           <p className="mb-6 text-lg text-white/80">Dybdegående anmeldelse af Mr Green Casino – den prisbelønnede platform med dansk licens, innovativt Green Gaming-værktøj og et nøje kurateret spiludvalg.</p>
