@@ -265,16 +265,16 @@ export function ProviderPage({
     ) : null,
     providers: (
       <section className="mb-12">
-        <h2 className="mb-4 text-3xl font-bold">Andre Spiludviklere</h2>
+        <h2 className="mb-4 text-3xl font-bold">Relaterede Spiludviklere</h2>
         <p className="mb-4 text-muted-foreground leading-relaxed">
-          Udforsk vores dybdegående guides til andre{" "}
-          <Link to="/spiludviklere" className="text-primary underline hover:text-primary/80">spiludviklere</Link>{" "}
-          i casinobranchen. Du kan også se hvilke spil vi streamer live i{" "}
-          <Link to="/highlights" className="text-primary underline hover:text-primary/80">vores community highlights</Link>.
+          Se vores komplette{" "}
+          <Link to="/spiludviklere" className="text-primary underline hover:text-primary/80">oversigt over spiludviklere</Link>{" "}
+          i casinobranchen.
         </p>
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3">
+        <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
           {providerLinks
             .filter((dev) => dev.to !== currentPath)
+            .slice(0, 3)
             .map((dev) => (
               <Link
                 key={dev.to}
