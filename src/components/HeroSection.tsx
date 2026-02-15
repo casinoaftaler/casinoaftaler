@@ -8,8 +8,8 @@ export function HeroSection() {
   const { data: siteSettings } = useSiteSettings();
   const { data: twitchStatus } = useTwitchStatus(siteSettings?.twitch_url);
   
-  const heroTitle = siteSettings?.hero_title || "Find de Bedste Casinobonusser i 2024";
-  const heroSubtitle = siteSettings?.hero_subtitle || "Sammenlign velkomstbonusser, gratis spins og eksklusive tilbud fra de bedste online casinoer. Vi hjælper dig med at finde den perfekte bonus til din spillestil.";
+  const heroTitle = siteSettings?.hero_title || "Online Casino i Danmark – Sammenlign og Vælg Rigtigt";
+  const heroSubtitle = siteSettings?.hero_subtitle || "Uafhængige anmeldelser og sammenligninger af danske online casinoer. Vi tester spiludvalg, udbetalinger, vilkår og sikkerhed, så du kan træffe det bedste valg.";
   const heroBackgroundImage = siteSettings?.hero_background_image;
   const isLive = twitchStatus?.isLive ?? false;
 
