@@ -57,6 +57,7 @@ const SwiftCasinoAnmeldelse = lazy(() => import("./pages/SwiftCasinoAnmeldelse")
 const LunaCasinoAnmeldelse = lazy(() => import("./pages/LunaCasinoAnmeldelse"));
 const CasinoAnmeldelser = lazy(() => import("./pages/CasinoAnmeldelser"));
 const Casinospil = lazy(() => import("./pages/Casinospil"));
+const Spillemaskiner = lazy(() => import("./pages/Spillemaskiner"));
 const NetEntGuide = lazy(() => import("./pages/NetEntGuide"));
 const PragmaticPlayGuide = lazy(() => import("./pages/PragmaticPlayGuide"));
 const RelaxGamingGuide = lazy(() => import("./pages/RelaxGamingGuide"));
@@ -139,6 +140,7 @@ const App = () => (
                 <Route path="/luna-casino-anmeldelse" element={<LunaCasinoAnmeldelse />} />
                 <Route path="/casino-anmeldelser" element={<CasinoAnmeldelser />} />
                 <Route path="/casinospil" element={<Casinospil />} />
+                <Route path="/casinospil/spillemaskiner" element={<Spillemaskiner />} />
                 <Route path="/spiludviklere/netent" element={<NetEntGuide />} />
                 <Route path="/spiludviklere/pragmatic-play" element={<PragmaticPlayGuide />} />
                 <Route path="/spiludviklere/relax-gaming" element={<RelaxGamingGuide />} />
@@ -204,6 +206,7 @@ const App = () => (
               <Route path="/bonus" element={<Navigate to="/casino-bonus" replace />} />
               <Route path="/bonusser" element={<Navigate to="/casino-bonus" replace />} />
               <Route path="/spil" element={<Navigate to="/casinospil" replace />} />
+              <Route path="/spillemaskiner" element={<Navigate to="/casinospil/spillemaskiner" replace />} />
               <Route path="/slots" element={<Navigate to="/community/slots" replace />} />
               <Route path="/free-spins-uden-indbetaling" element={<Navigate to="/bonus-uden-indbetaling" replace />} />
               <Route path="/betalinger" element={<Navigate to="/betalingsmetoder" replace />} />
