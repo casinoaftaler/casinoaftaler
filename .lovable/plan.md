@@ -1,51 +1,108 @@
 
 
-## Fix: New users see 0 credits before first spin
+## Tournament Participation System
 
-### Problem
-When a new user signs up and enters the slot machine, the `SpinsRemaining` component shows **0 credits** because no `slot_spins` record exists yet. Credits are only initialized server-side when the user performs their first spin (just-in-time in the `slot-spin` edge function). This confuses users into thinking they have no credits.
+### Current Behavior
+Right now, every spin automatically counts toward all active tournaments. There is no concept of "joining" a tournament -- all users are tracked by default.
 
-### Root Cause
-The `useSlotSpins` hook (line 72) returns `spinsRemaining: spinsData?.spins_remaining ?? 0`. When `spinsData` is `null` (no record for today), it defaults to 0. The actual initialization happens much later -- only when the user clicks "Spin" for the first time.
+### New Behavior
+1. Users must press a **"Deltag"** (Join) button on the tournament card to participate
+2. Upon joining, the tournament's `max_credits` value is added to the user's credit balance
+3. Only spins from participants are tracked in the tournament leaderboard
 
-### Solution
-Two-part fix to ensure credits are visible immediately:
+---
 
-#### 1. Update `useSlotSpins` to show expected credits when no record exists
-When the query returns `null` (no record for today), instead of showing 0, display the calculated `maxSpins` value. This matches what the `slot-spin` edge function would create on first spin.
+### Step 1: New Database Table
 
-**File: `src/hooks/useSlotSpins.ts`**
-- Change line 72 from `spinsRemaining: spinsData?.spins_remaining ?? 0` to `spinsRemaining: spinsData?.spins_remaining ?? maxSpins`
-- Similarly update `canSpin` (line 76) and `hasEnoughSpins` (line 64-65) to use `maxSpins` as fallback
-- Add a `hasRecord` boolean so the spin button logic knows when credits are uninitialized vs actually 0
+Create a `tournament_participants` table to track who has joined each tournament:
 
-#### 2. Add early credit initialization when entering the slot page
-Create a small hook or effect that calls a lightweight endpoint to initialize the `slot_spins` record when the user enters the slot machine page, rather than waiting for the first spin. This ensures the database record exists before the user sees the UI.
+- `id` (uuid, primary key)
+- `tournament_id` (uuid, references tournaments)
+- `user_id` (uuid)
+- `joined_at` (timestamptz, default now())
+- Unique constraint on `(tournament_id, user_id)`
+- RLS: authenticated users can view all participants, insert their own, admins can manage all
 
-**File: `src/hooks/useSlotSpins.ts`**
-- Add a `useMutation` or `useEffect` that calls the existing `slot-spin`-style initialization logic via a new simple edge function, OR
-- Use the existing `daily-credit-allocation` pattern to create the record client-side via service role
+### Step 2: Edge Function -- `join-tournament`
 
-The simplest and most robust approach: **just fix the display fallback** in `useSlotSpins`. The server-side initialization already works correctly on first spin. The only issue is the UI showing 0.
+A new edge function that:
+1. Validates the tournament exists and is active
+2. Checks the user hasn't already joined (prevents double-joining)
+3. Inserts into `tournament_participants`
+4. If the tournament has `max_credits`, atomically adds those credits to the user's `slot_spins` balance (capped at 1000)
+5. Logs the credit allocation in `credit_allocation_log`
 
-### Final approach (minimal change)
+This must be server-side to prevent manipulation of credit amounts.
 
-**File: `src/hooks/useSlotSpins.ts`**
-- When `spinsData` is `null` and `isLoading` is `false`, use `maxSpins` as the displayed value for `spinsRemaining`
-- Update `canSpin` to return `true` when no record exists (since the server will create one with full credits)
-- Update `hasEnoughSpins` similarly
+### Step 3: Update `slot-spin` Edge Function
 
-This is a single-file, ~5 line change that fully resolves the issue without needing new edge functions or database changes.
-
-### Technical details
+Modify the tournament tracking section (lines ~1082-1104 and ~831-853) to only record entries for tournaments where the user is a participant:
 
 ```text
-Before (line 72):
-  spinsRemaining: spinsData?.spins_remaining ?? 0
-
-After:
-  spinsRemaining: spinsData ? spinsData.spins_remaining : maxSpins
+Before: SELECT active tournaments matching game_id
+After:  SELECT active tournaments matching game_id WHERE user is in tournament_participants
 ```
 
-The same pattern applies to `canSpin` and `hasEnoughSpins` -- when no record exists, the user effectively has `maxSpins` credits available because the `slot-spin` edge function will create the record with that value on first spin.
+### Step 4: Frontend -- Join Button on Tournament Card
+
+Update `TournamentLeaderboardCard` in `src/pages/Leaderboard.tsx`:
+- Add a "Deltag" button for active tournaments the user hasn't joined yet
+- Show "Du deltager" badge when already joined
+- Disable the "Spil" play buttons until the user has joined
+- Show how many credits they'll receive upon joining
+
+### Step 5: Hook -- `useJoinTournament`
+
+Add to `src/hooks/useTournaments.ts`:
+- `useTournamentParticipation(tournamentId)` -- check if user has joined
+- `useJoinTournament()` -- mutation calling the edge function
+- Invalidate relevant queries on success
+
+---
+
+### Technical Details
+
+**Database migration SQL:**
+```sql
+CREATE TABLE tournament_participants (
+  id uuid PRIMARY KEY DEFAULT gen_random_uuid(),
+  tournament_id uuid NOT NULL REFERENCES tournaments(id) ON DELETE CASCADE,
+  user_id uuid NOT NULL,
+  joined_at timestamptz NOT NULL DEFAULT now(),
+  UNIQUE(tournament_id, user_id)
+);
+
+ALTER TABLE tournament_participants ENABLE ROW LEVEL SECURITY;
+
+CREATE POLICY "Authenticated users can view participants"
+  ON tournament_participants FOR SELECT
+  USING (auth.uid() IS NOT NULL);
+
+CREATE POLICY "Users can join tournaments"
+  ON tournament_participants FOR INSERT
+  WITH CHECK (auth.uid() = user_id);
+
+CREATE POLICY "Admins can manage participants"
+  ON tournament_participants FOR ALL
+  USING (has_role(auth.uid(), 'admin'::app_role))
+  WITH CHECK (has_role(auth.uid(), 'admin'::app_role));
+```
+
+**Edge function `join-tournament`:**
+- Accepts `{ tournament_id }` in POST body
+- Uses service role client for atomic credit operations
+- Returns `{ success, creditsAwarded, newBalance }`
+
+**slot-spin modification (lines ~1084-1090):**
+```text
+Add filter: .in('id', participatingTournamentIds)
+where participatingTournamentIds comes from a lookup on tournament_participants
+```
+
+**Files to create/modify:**
+- `supabase/functions/join-tournament/index.ts` (new)
+- `supabase/functions/slot-spin/index.ts` (filter by participation)
+- `src/hooks/useTournaments.ts` (add participation hooks)
+- `src/pages/Leaderboard.tsx` (add Join button UI)
+- Database migration (new table)
 
