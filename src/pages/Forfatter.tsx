@@ -405,7 +405,7 @@ export default function Forfatter() {
           <div className="overflow-hidden rounded-xl border border-border">
             <div className="relative aspect-video w-full">
               <iframe
-                src="https://www.youtube.com/embed/tWTMTXdrr1I?start=14"
+                src="https://www.youtube.com/embed/ZKDrnL7373o"
                 title="Jonas' bedste highlights – Casinoaftaler.dk"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                 allowFullScreen
