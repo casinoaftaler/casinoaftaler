@@ -14,10 +14,10 @@ const navItems = [
   { label: "Live Casino", to: "/live-casino", icon: liveCasinoIcon },
 ];
 
-export function QuickNavBar() {
+export function QuickNavSidebar() {
   return (
-    <aside className="hidden xl:block fixed top-1/3 left-[max(0.5rem,calc((100vw-1280px)/2-220px))] z-30 w-[200px]">
-      <nav className="flex flex-col gap-1 mb-4">
+    <div className="sticky top-24 flex flex-col gap-4 w-[200px]">
+      <nav className="flex flex-col gap-1">
         <span className="text-xs font-bold uppercase tracking-wider text-muted-foreground mb-2 px-2">
           Naviger til
         </span>
@@ -39,9 +39,7 @@ export function QuickNavBar() {
           </Link>
         ))}
       </nav>
-      <div className="w-full">
-        <SpillehalPromoBanner />
-      </div>
-    </aside>
+      <SpillehalPromoBanner />
+    </div>
   );
 }
