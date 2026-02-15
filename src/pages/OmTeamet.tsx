@@ -170,8 +170,8 @@ const OmTeamet = () => {
             {/* Profile images side-by-side */}
             <div className="mt-10 flex items-center justify-center gap-6 md:gap-10">
               <Link to="/forfatter" className="group">
-                <div className="mx-auto h-28 w-28 overflow-hidden rounded-full border-4 border-white/20 transition-all duration-300 group-hover:border-white/50 group-hover:scale-105 md:h-36 md:w-36">
-                  <img src={jonasImage} alt="Jonas – Grundlægger" className="h-full w-full object-cover" loading="eager" />
+                <div className="mx-auto h-28 w-28 overflow-hidden rounded-2xl border-4 border-white/20 transition-all duration-300 group-hover:border-white/50 group-hover:scale-105 md:h-36 md:w-36">
+                  <img src={jonasImage} alt="Jonas – Grundlægger" className="h-full w-full object-cover object-top" loading="eager" />
                 </div>
                 <p className="mt-2 text-sm font-medium text-white/80">Jonas</p>
               </Link>
@@ -179,8 +179,8 @@ const OmTeamet = () => {
                 <span className="text-3xl font-bold text-white/30">&</span>
               </div>
               <Link to="/forfatter/kevin" className="group">
-                <div className="mx-auto h-28 w-28 overflow-hidden rounded-full border-4 border-white/20 transition-all duration-300 group-hover:border-white/50 group-hover:scale-105 md:h-36 md:w-36">
-                  <img src={kevinImage} alt="Kevin – IT Medansvarlig" className="h-full w-full object-cover" loading="eager" />
+                <div className="mx-auto h-28 w-28 overflow-hidden rounded-2xl border-4 border-white/20 transition-all duration-300 group-hover:border-white/50 group-hover:scale-105 md:h-36 md:w-36">
+                  <img src={kevinImage} alt="Kevin – IT Medansvarlig" className="h-full w-full object-cover object-top" loading="eager" />
                 </div>
                 <p className="mt-2 text-sm font-medium text-white/80">Kevin</p>
               </Link>
@@ -289,8 +289,8 @@ const OmTeamet = () => {
                   "Streaming handler om energi. Casinoaftaler handler om gennemsigtighed."
                 </p>
                 <div className="flex items-center gap-3">
-                  <div className="h-12 w-12 overflow-hidden rounded-full border-2 border-primary/30">
-                    <img src={jonasImage} alt="Jonas" className="h-full w-full object-cover" />
+                   <div className="h-12 w-12 overflow-hidden rounded-xl border-2 border-primary/30">
+                     <img src={jonasImage} alt="Jonas" className="h-full w-full object-cover object-top" />
                   </div>
                   <div>
                     <p className="font-semibold text-white">Jonas</p>
@@ -307,8 +307,8 @@ const OmTeamet = () => {
                   "Vi tester ikke bare casinoer – vi dokumenterer vores vurderinger."
                 </p>
                 <div className="flex items-center gap-3">
-                  <div className="h-12 w-12 overflow-hidden rounded-full border-2 border-primary/30">
-                    <img src={kevinImage} alt="Kevin" className="h-full w-full object-cover" />
+                   <div className="h-12 w-12 overflow-hidden rounded-xl border-2 border-primary/30">
+                     <img src={kevinImage} alt="Kevin" className="h-full w-full object-cover object-top" />
                   </div>
                   <div>
                     <p className="font-semibold text-white">Kevin</p>
@@ -353,8 +353,8 @@ const OmTeamet = () => {
             <Card className="border-border bg-card overflow-hidden">
               <CardHeader className="pb-4">
                 <div className="flex items-center gap-4">
-                  <div className="h-24 w-24 flex-shrink-0 overflow-hidden rounded-full border-2 border-primary/30">
-                    <img src={jonasImage} alt="Jonas – Grundlægger af Casinoaftaler.dk" className="h-full w-full object-cover" loading="eager" />
+                  <div className="h-24 w-24 flex-shrink-0 overflow-hidden rounded-2xl border-2 border-primary/30">
+                     <img src={jonasImage} alt="Jonas – Grundlægger af Casinoaftaler.dk" className="h-full w-full object-cover object-top" loading="eager" />
                   </div>
                   <div>
                     <CardTitle className="text-xl">Jonas</CardTitle>
@@ -383,8 +383,8 @@ const OmTeamet = () => {
             <Card className="border-border bg-card overflow-hidden">
               <CardHeader className="pb-4">
                 <div className="flex items-center gap-4">
-                  <div className="h-24 w-24 flex-shrink-0 overflow-hidden rounded-full border-2 border-primary/30">
-                    <img src={kevinImage} alt="Kevin – Casino-streamer & IT Medansvarlig" className="h-full w-full object-cover" loading="eager" />
+                  <div className="h-24 w-24 flex-shrink-0 overflow-hidden rounded-2xl border-2 border-primary/30">
+                     <img src={kevinImage} alt="Kevin – Casino-streamer & IT Medansvarlig" className="h-full w-full object-cover object-top" loading="eager" />
                   </div>
                   <div>
                     <CardTitle className="text-xl">Kevin</CardTitle>
