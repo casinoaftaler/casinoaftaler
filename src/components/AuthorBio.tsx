@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { ExternalLink } from "lucide-react";
+import { ExternalLink, BadgeCheck } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import jonasImage from "@/assets/jonas-forfatter.png";
 
@@ -23,12 +23,18 @@ export function AuthorBio() {
           {/* Text content */}
           <div className="flex-1 space-y-3">
             <div>
-              <Link
-                to="/forfatter"
-                className="text-lg font-bold text-foreground hover:text-primary transition-colors"
-              >
-                Jonas
-              </Link>
+              <div className="flex items-center gap-2 justify-center sm:justify-start">
+                <Link
+                  to="/forfatter"
+                  className="text-lg font-bold text-foreground hover:text-primary transition-colors"
+                >
+                  Jonas
+                </Link>
+                <span className="inline-flex items-center gap-1 rounded-full bg-primary/10 px-2.5 py-0.5 text-xs font-medium text-primary">
+                  <BadgeCheck className="h-3.5 w-3.5" />
+                  Verificeret forfatter
+                </span>
+              </div>
               <p className="text-sm font-medium text-muted-foreground">
                 Grundlægger af Casinoaftaler.dk &amp; Casino-streamer
               </p>
