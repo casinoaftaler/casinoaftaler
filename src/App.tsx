@@ -89,6 +89,7 @@ const BaccaratGuide = lazy(() => import("./pages/casinospil/BaccaratGuide"));
 const RouletteStrategiGuide = lazy(() => import("./pages/casinospil/RouletteStrategiGuide"));
 const OnlineLotteriGuide = lazy(() => import("./pages/casinospil/OnlineLotteriGuide"));
 const GameShowsGuide = lazy(() => import("./pages/casinospil/GameShowsGuide"));
+const Forfatter = lazy(() => import("./pages/Forfatter"));
 const NotFound = lazy(() => import("./pages/NotFound"));
 
 const queryClient = new QueryClient({
@@ -120,6 +121,7 @@ const App = () => (
                 <Route path="/top-10-casino-online" element={<TopCasinoOnline />} />
                 <Route path="/nye-casinoer" element={<NyeCasinoer />} />
                 <Route path="/about" element={<About />} />
+                <Route path="/forfatter" element={<Forfatter />} />
                 <Route path="/contact" element={<Contact />} />
                 
                 <Route path="/casino-bonus" element={<CasinoBonus />} />
