@@ -477,6 +477,8 @@ const Spiludviklere = () => {
           </p>
         </section>
 
+        <InlineCasinoCards title="Casinoer med de bedste spiludviklere" count={4} />
+
         <Separator className="my-10" />
 
         {/* Why Important */}

@@ -173,6 +173,8 @@ export function PaymentMethodPage({
           </p>
         </section>
 
+        <InlineCasinoCards title={`Casinoer der accepterer ${name}`} count={4} />
+
         <Separator className="my-10" />
 
         {/* What is it */}

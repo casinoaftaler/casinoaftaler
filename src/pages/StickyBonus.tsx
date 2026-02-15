@@ -1,5 +1,6 @@
 import React from "react";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
+import { InlineCasinoCards } from "@/components/InlineCasinoCards";
 import { Link } from "react-router-dom";
 import { FAQSection } from "@/components/FAQSection";
 import { SEO } from "@/components/SEO";
@@ -196,6 +197,8 @@ const StickyBonus = () => {
             <Link to="/highlights" className="text-primary hover:underline">highlights-side</Link>.
           </p>
         </section>
+
+        <InlineCasinoCards title="Bedste casinoer med sticky bonus" count={4} />
 
         <Separator className="my-10" />
 

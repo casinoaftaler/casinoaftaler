@@ -241,6 +241,8 @@ const Velkomstbonus = () => {
           </p>
         </section>
 
+        <InlineCasinoCards title="Bedste casinoer med velkomstbonus" count={4} />
+
         <Separator className="my-10" />
 
         {/* Typer af velkomstbonusser */}

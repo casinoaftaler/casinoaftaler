@@ -210,6 +210,8 @@ const Betalingsmetoder = () => {
           </p>
         </section>
 
+        <InlineCasinoCards title="Casinoer med de bedste betalingsmetoder" count={4} />
+
         {/* Comparison Table */}
         <section className="mb-12">
           <h2 className="mb-6 text-3xl font-bold">Sammenligning af betalingsmetoder</h2>

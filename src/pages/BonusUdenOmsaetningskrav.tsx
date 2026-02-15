@@ -183,6 +183,8 @@ const BonusUdenOmsaetningskrav = () => {
           </p>
         </section>
 
+        <InlineCasinoCards title="Casinoer uden omsætningskrav" count={4} />
+
         <Separator className="my-10" />
 
         {/* Hvad betyder det */}
