@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { SEO } from "@/components/SEO";
 import { HeroSection } from "@/components/HeroSection";
 import { QuickNavSidebar } from "@/components/QuickNavBar";
-import { CommunityPromoSection } from "@/components/CommunityPromoSection";
+
 import { CasinoCard } from "@/components/CasinoCard";
 import { BonusTypeCards } from "@/components/BonusTypeCards";
 import { FAQSection } from "@/components/FAQSection";
@@ -183,7 +183,6 @@ const Index = () => {
         </div>
       </section>
 
-      <CommunityPromoSection />
       <BonusTypeCards />
 
       {/* === SEO Content Sections === */}
