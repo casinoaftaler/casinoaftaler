@@ -61,6 +61,7 @@ const routeLabels: Record<string, string> = {
   "/swift-casino-anmeldelse": "Swift Casino",
   "/luna-casino-anmeldelse": "Luna Casino",
   "/spildansknu-anmeldelse": "SpilDanskNu",
+  "/casino-anmeldelser/danske-spil": "Danske Spil Casino",
   "/casinospil": "Casinospil",
   "/casinospil/spillemaskiner": "Spillemaskiner",
   "/casinospil/spillemaskiner/hoej-rtp": "Høj RTP",

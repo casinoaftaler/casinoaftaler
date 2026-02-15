@@ -34,6 +34,7 @@ export const seoRoutes: SeoRoute[] = [
   { path: "/swift-casino-anmeldelse", changefreq: "weekly", priority: 0.9 },
   { path: "/luna-casino-anmeldelse", changefreq: "weekly", priority: 0.9 },
   { path: "/spildansknu-anmeldelse", changefreq: "weekly", priority: 0.9 },
+  { path: "/casino-anmeldelser/danske-spil", changefreq: "weekly", priority: 0.9 },
 
   // ── Casino Spil & Live ──
   { path: "/live-casino", changefreq: "weekly", priority: 0.9 },

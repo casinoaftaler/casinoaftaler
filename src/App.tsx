@@ -57,6 +57,7 @@ const CampobetAnmeldelse = lazy(() => import("./pages/CampobetAnmeldelse"));
 const BetiniaAnmeldelse = lazy(() => import("./pages/BetiniaAnmeldelse"));
 const SwiftCasinoAnmeldelse = lazy(() => import("./pages/SwiftCasinoAnmeldelse"));
 const LunaCasinoAnmeldelse = lazy(() => import("./pages/LunaCasinoAnmeldelse"));
+const DanskeSpilAnmeldelse = lazy(() => import("./pages/DanskeSpilAnmeldelse"));
 const CasinoAnmeldelser = lazy(() => import("./pages/CasinoAnmeldelser"));
 const Casinospil = lazy(() => import("./pages/Casinospil"));
 const Spillemaskiner = lazy(() => import("./pages/Spillemaskiner"));
@@ -158,6 +159,7 @@ const App = () => (
                 <Route path="/swift-casino-anmeldelse" element={<SwiftCasinoAnmeldelse />} />
                 <Route path="/luna-casino-anmeldelse" element={<LunaCasinoAnmeldelse />} />
                 <Route path="/casino-anmeldelser" element={<CasinoAnmeldelser />} />
+                <Route path="/casino-anmeldelser/danske-spil" element={<DanskeSpilAnmeldelse />} />
                 <Route path="/casinospil" element={<Casinospil />} />
                 <Route path="/casinospil/spillemaskiner" element={<Spillemaskiner />} />
                 <Route path="/casinospil/spillemaskiner/hoej-rtp" element={<SpillemaskinerHoejRTP />} />
