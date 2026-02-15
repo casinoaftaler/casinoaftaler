@@ -10,7 +10,7 @@ import { RelatedGuides } from "@/components/RelatedGuides";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
 import { UserProfileLink } from "@/components/UserProfileLink";
 import { useAuth } from "@/hooks/useAuth";
-import { useTournaments, useTournamentLeaderboard, useTournamentParticipation, useJoinTournament, type Tournament, type TournamentEntry } from "@/hooks/useTournaments";
+import { useTournaments, useTournamentLeaderboard, useTournamentParticipation, useTournamentParticipants, useJoinTournament, type Tournament, type TournamentEntry } from "@/hooks/useTournaments";
 import { cn } from "@/lib/utils";
 import { toast } from "@/hooks/use-toast";
 
@@ -143,6 +143,7 @@ function TournamentLeaderboardCard({ tournament }: { tournament: Tournament }) {
     tournament.separate_leaderboards ? tournament.game_ids[0] : undefined
   );
   const { data, isLoading } = useTournamentLeaderboard(tournament.id, selectedGame);
+  const { data: participants } = useTournamentParticipants(tournament.id);
   const { user } = useAuth();
   const { data: hasJoined, isLoading: participationLoading } = useTournamentParticipation(tournament.id);
   const joinMutation = useJoinTournament();
@@ -317,10 +318,33 @@ function TournamentLeaderboardCard({ tournament }: { tournament: Tournament }) {
             )}
           </div>
         ) : (
-          <div className="text-center py-8">
-            <Trophy className={cn("h-12 w-12 mx-auto mb-3 opacity-30", theme.accent)} />
-            <p className="text-muted-foreground">Ingen spillere endnu</p>
+          <div className="text-center py-6">
+            <Trophy className={cn("h-10 w-10 mx-auto mb-2 opacity-30", theme.accent)} />
+            <p className="text-muted-foreground">Ingen har spillet endnu</p>
             <p className="text-sm text-muted-foreground/70">Vær den første på ranglisten!</p>
+          </div>
+        )}
+
+        {/* Show joined participants */}
+        {participants && participants.length > 0 && (
+          <div className={cn(top10.length > 0 ? "mt-4 pt-4 border-t border-border/30" : "")}>
+            <p className="text-sm text-muted-foreground mb-3">
+              {participants.length} tilmeldte spillere
+            </p>
+            <div className="flex flex-wrap gap-2">
+              {participants.map((p) => (
+                <div key={p.user_id} className="flex items-center gap-1.5">
+                  <UserProfileLink
+                    userId={p.user_id}
+                    displayName={p.display_name}
+                    avatarUrl={p.avatar_url}
+                    avatarClassName="h-6 w-6"
+                    showDropdown={false}
+                  />
+                  <span className="text-xs text-muted-foreground">{p.display_name}</span>
+                </div>
+              ))}
+            </div>
           </div>
         )}
 

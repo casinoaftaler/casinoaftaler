@@ -60,6 +60,50 @@ export function useTournaments() {
   });
 }
 
+export interface TournamentParticipant {
+  user_id: string;
+  display_name: string;
+  avatar_url: string | null;
+  joined_at: string;
+}
+
+export function useTournamentParticipants(tournamentId: string | undefined) {
+  return useQuery({
+    queryKey: ["tournament-participants", tournamentId],
+    queryFn: async (): Promise<TournamentParticipant[]> => {
+      if (!tournamentId) return [];
+      const { data: participants, error } = await supabase
+        .from("tournament_participants")
+        .select("user_id, joined_at")
+        .eq("tournament_id", tournamentId);
+      if (error) throw error;
+      if (!participants || participants.length === 0) return [];
+
+      const userIds = participants.map((p) => p.user_id);
+      const { data: profiles } = await supabase
+        .from("profiles_leaderboard")
+        .select("user_id, display_name, avatar_url")
+        .in("user_id", userIds);
+
+      const profileMap = new Map(
+        (profiles || []).map((p) => [p.user_id, p])
+      );
+
+      return participants.map((p) => {
+        const profile = profileMap.get(p.user_id);
+        return {
+          user_id: p.user_id,
+          display_name: profile?.display_name || "Anonym",
+          avatar_url: profile?.avatar_url || null,
+          joined_at: p.joined_at,
+        };
+      });
+    },
+    enabled: !!tournamentId,
+    refetchInterval: 15000,
+  });
+}
+
 export function useTournamentParticipation(tournamentId: string | undefined) {
   const { user } = useAuth();
   return useQuery({
