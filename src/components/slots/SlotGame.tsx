@@ -79,7 +79,13 @@ export function SlotGame({ gameId = "book-of-fedesvin" }: SlotGameProps) {
     resumeRealtimeUpdates,
   } = useBonusGameSync(symbols, gameId);
   
-  const [bet, setBet] = useState(1);
+  const [bet, setBetRaw] = useState(1);
+  // During active bonus, always show the locked-in bet from bonus state
+  // to prevent brief flash of bet=1 on page refresh
+  const effectiveBet = bonusState.isActive && bonusLoaded && bonusState.betAmount > 0
+    ? bonusState.betAmount
+    : bet;
+  const setBet = setBetRaw;
   const [isSpinning, setIsSpinning] = useState(false);
   const [grid, setGrid] = useState<string[][] | null>(null);
   const [lastResult, setLastResult] = useState<SpinResult | null>(null);
@@ -1195,7 +1201,7 @@ export function SlotGame({ gameId = "book-of-fedesvin" }: SlotGameProps) {
                 : "bg-amber-950/40 border-amber-500/20"
             )}>
               <SlotControlPanel
-                bet={bet}
+                bet={effectiveBet}
                 onBetChange={setBet}
                 onSpin={handleSpin}
                 onAutoSpinToggle={toggleAutoSpin}
