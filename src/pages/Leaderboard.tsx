@@ -427,20 +427,7 @@ export default function Leaderboard() {
           </div>
         </div>
 
-        {!loading && !user ? (
-          <Card className="max-w-md mx-auto border-primary/20 bg-card/80 backdrop-blur-sm">
-            <CardContent className="py-12 text-center space-y-4">
-              <div className="mx-auto h-16 w-16 rounded-full bg-primary/10 flex items-center justify-center">
-                <LogIn className="h-8 w-8 text-primary" />
-              </div>
-              <h3 className="text-lg font-semibold text-foreground">Log ind for at se turneringer</h3>
-              <p className="text-sm text-muted-foreground">Du skal være logget ind for at se turneringsranglisterne.</p>
-              <Button asChild className="gap-2">
-                <Link to="/auth"><LogIn className="h-4 w-4" /> Log ind</Link>
-              </Button>
-            </CardContent>
-          </Card>
-        ) : tournamentsLoading ? (
+        {tournamentsLoading ? (
           <div className="max-w-5xl mx-auto space-y-4">
             {[1, 2].map((i) => <div key={i} className="h-64 bg-muted/20 rounded-xl animate-pulse" />)}
           </div>
