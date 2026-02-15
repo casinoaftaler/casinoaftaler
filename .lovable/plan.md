@@ -1,66 +1,92 @@
 
 
-# Fix: Daily Credit Refill Should Not Reset Gifted/Rewarded Balances
+# Ny side: Spillemaskiner (`/casinospil/spillemaskiner`)
 
-## Problem Found
+## Oversigt
+Opret en dybdegaende guide om spillemaskiner (slots) som underside til Casinospil. Indholdet omformuleres og tilpasses fra referencesiden pa casinoholdet.com, men skrives helt unikt med egen vinkel, egne FAQ'er og intern linking til Casinoaftaler-sider.
 
-After investigating the database and code, I found **two issues**:
+## Filer der oprettes
 
-### Issue 1: Daily Cron Carry-Over Logic (mostly correct but has edge case)
-The current daily cron (`daily-credit-allocation`) correctly carries over balances above the daily cap (200/220). However, it caps carry-over at `ABSOLUTE_MAX_CREDITS = 1000`, which means a user with 1120 credits (from admin gifts) gets reduced to 1000.
+### `src/pages/Spillemaskiner.tsx`
+Ny side med folgende struktur og sektioner:
 
-The logic also always creates a new record, even when the user's balance is above the daily cap and no action is needed.
+**SEO:**
+- Title: `Spillemaskiner 2026 - Guide til Online Slots i Danmark` (54 tegn)
+- Description: `Alt om spillemaskiner hos danske online casinoer. Lær om RTP, volatilitet, Megaways, jackpots og bonusfunktioner. Find de bedste slots i 2026.` (148 tegn)
+- JSON-LD: FAQPage schema + BreadcrumbList (Forside > Casinospil > Spillemaskiner)
+- Ingen noindex, self-referencing canonical via SEO.tsx
 
-### Issue 2: Bulk "Give Credits to All" Missing Logging and Cap
-The `SpinManagementSection.tsx` bulk credit allocation (`giveSpinsToAll`) does NOT:
-- Log individual allocations to `credit_allocation_log`
-- Enforce the 1000 credit cap
-- This makes it impossible to audit what happened
+**E-E-A-T meta-bar:**
+- Forfatter: Casinoaftaler
+- Opdateringsdato: 15-02-2026
+- Laesetid: 12 Min.
 
-### Issue 3: slot-spin Initialization Duplicates Logic
-The `slot-spin` edge function has its own record initialization logic (lines 941-990) that mirrors the cron but could create records before the cron runs, leading to potential inconsistencies.
+**H1:** `Spillemaskiner 2026 - Din Guide til Online Slots`
 
-## Solution
+**Sektioner (H2/H3):**
+1. **Hvad er spillemaskiner, og hvordan fungerer de?** -- Intro om RNG, hjul, gevinstlinjer, symboler. ~200 ord.
+2. **Typer af spillemaskiner** -- H3'er for: Klassiske 3-hjuls slots, Video slots, Megaways slots, Progressive jackpot slots, Cluster pays slots. ~400 ord. Intern linking til Big Time Gaming, Microgaming.
+3. **RTP og volatilitet -- Forstaa dine odds** -- Forklaring af RTP, house edge, lav/medium/hoj volatilitet. ~250 ord. Intern linking til omsaetningskrav-siden.
+4. **Bonusfunktioner i moderne spillemaskiner** -- Free spins, multiplikatorer, expanding wilds, pick-and-click, cascading wins. ~200 ord. Intern linking til free-spins-siden.
+5. **Sadan vaelger du den rigtige spilleautomat** -- Budgetstyring, RTP-valg, volatilitetsmatch. ~200 ord. Intern linking til casino-bonus.
+6. **De storste spiludviklere bag spillemaskiner** -- Kort om NetEnt, Pragmatic Play, Play'n GO, Nolimit City, Hacksaw Gaming. ~200 ord. Intern linking til spiludviklere-hub.
+7. **Er det sikkert at spille spillemaskiner online i Danmark?** -- Spillemyndigheden, licens, RNG-certificering, ROFUS. ~150 ord.
+8. **FAQ-sektion** (7 unikke sporgsmal, min. 50% unikke ift. Casinospil-siden):
+   - Hvad er en spilleautomat?
+   - Hvad betyder RTP pa en spillemaskine?
+   - Kan man pavirke resultatet pa en spilleautomat?
+   - Hvad er forskellen pa volatilitet og RTP?
+   - Hvad er Megaways-spillemaskiner?
+   - Hvor finder jeg spillemaskiner med hojest RTP?
+   - Er online spillemaskiner fair og tilfaeldige?
+9. **Ansvarligt spil-sektion** via RelatedGuides-komponenten
+10. **RelatedGuides** med currentPath
 
-### Step 1: Simplify Daily Cron Logic
-Update `supabase/functions/daily-credit-allocation/index.ts` to match the exact desired behavior:
-- If user's previous balance >= their daily cap (200/220): **do nothing** -- just carry the balance as-is (still capped at 1000)
-- If user's previous balance < their daily cap: **top up to the daily cap** only
-- New users with no history: give them their daily cap
+**Intern linking (3-5 kontekstuelle links):**
+- `/spiludviklere` og specifikke udviklere (Big Time Gaming, Microgaming, NetEnt)
+- `/free-spins`
+- `/casino-bonus`
+- `/omsaetningskrav`
+- `/casinospil` (parent-side)
 
-This is what the code already does, but I'll make the log messages clearer and ensure the absolute cap (1000) doesn't silently reduce balances.
+**Estimeret ordantal:** ~1.400+ ord
 
-### Step 2: Fix slot-spin Initialization
-Update `supabase/functions/slot-spin/index.ts` (lines 941-960) to use the exact same logic, ensuring consistency between both code paths.
+## Filer der aendres
 
-### Step 3: Fix Bulk Credit Allocation
-Update `src/components/SpinManagementSection.tsx` `giveSpinsToAll` to:
-- Log each allocation to `credit_allocation_log` with source `admin_manual`
-- Enforce the 1000 credit cap per user
+### `src/App.tsx`
+- Tilfoej lazy import: `const Spillemaskiner = lazy(() => import("./pages/Spillemaskiner"));`
+- Tilfoej route: `<Route path="/casinospil/spillemaskiner" element={<Spillemaskiner />} />`
+- Tilfoej redirect: `<Route path="/spillemaskiner" element={<Navigate to="/casinospil/spillemaskiner" replace />} />`
 
-## Technical Details
+### `src/lib/seoRoutes.ts`
+- Tilfoej ny entry under "Casino Spil & Live" sektionen:
+  ```
+  { path: "/casinospil/spillemaskiner", changefreq: "weekly", priority: 0.9 }
+  ```
 
-**Daily Cron changes (`daily-credit-allocation/index.ts`, lines 152-189):**
-```text
-Current logic (correct but can be clearer):
-  if previous >= cap → startValue = min(previous, 1000)
-  if previous < cap  → startValue = cap
+### `src/components/Breadcrumbs.tsx`
+- Tilfoej route label: `"/casinospil/spillemaskiner": "Spillemaskiner"`
+- Tilfoej parent-label: `"/casinospil": "Casinospil"`
+- Udvid breadcrumb-logikken til at understotte 3-niveau breadcrumbs (Forside > Casinospil > Spillemaskiner)
 
-No functional change needed here -- the logic is already correct.
-Only improvement: better logging to make it clear what happened.
-```
+### `src/components/RelatedGuides.tsx`
+- Tilfoej spillemaskiner til `generalGuides` arrayet:
+  ```
+  { to: "/casinospil/spillemaskiner", label: "Spillemaskiner", icon: Gamepad2, desc: "Guide til alle typer online slots" }
+  ```
 
-**slot-spin initialization changes (`slot-spin/index.ts`, lines 952-960):**
-Same logic as daily cron -- no functional change needed, already correct.
+## Tjekliste
+- [x] Unik title (54 tegn) og meta description (148 tegn)
+- [x] Ingen noindex, ikke under /community/
+- [x] Self-referencing canonical via SEO.tsx
+- [x] Tilfojet i seoRoutes.ts med priority 0.9, changefreq weekly
+- [x] En unik H1, logisk H2/H3 struktur
+- [x] 1.400+ ord
+- [x] Intern linking til 5 relevante SEO-sider
+- [x] Ingen kopieret template-FAQ (7 unikke sporgsmal, 0% overlap med Casinospil-FAQs)
+- [x] Unikke sektionsoverskrifter
+- [x] FAQ med JSON-LD schema
+- [x] Forfatter + opdateringsdato + laesetid
+- [x] Ansvarligt spil-sektion
+- [x] Intern reference via RelatedGuides
 
-**SpinManagementSection.tsx (`giveSpinsToAll`, lines 155-192):**
-```text
-Add: credit_allocation_log insert for each user in bulk operation
-Add: Math.min(newSpins, 1000) cap enforcement
-```
-
-**Summary of files to modify:**
-1. `supabase/functions/daily-credit-allocation/index.ts` -- improve log clarity
-2. `src/components/SpinManagementSection.tsx` -- add logging and cap enforcement to bulk operations
-
-The core carry-over logic is already working correctly in the current version. The historical cases where users saw their 320 credits reset to 220 were from an older version of the code that has since been fixed. The remaining improvement is adding proper logging and cap enforcement to the admin bulk credit tool.
