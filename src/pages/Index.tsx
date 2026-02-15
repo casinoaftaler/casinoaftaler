@@ -32,6 +32,8 @@ import {
   Scale,
 } from "lucide-react";
 
+const PARTNER_SLUGS = ["spildansknu", "spilleautomaten", "betinia", "campobet", "swift-casino", "luna-casino"];
+
 const Index = () => {
   const [activeFilter, setActiveFilter] = useState("all");
   const [openCasinoId, setOpenCasinoId] = useState<string | null>(null);
@@ -42,6 +44,7 @@ const Index = () => {
   }, [activeFilter]);
 
   const filteredCasinos = casinos?.filter((casino) => {
+    if (!PARTNER_SLUGS.includes(casino.slug)) return false;
     if (activeFilter === "all") return true;
     if (activeFilter === "no-sticky") return casino.bonus_type === "No-sticky";
     if (activeFilter === "free-spins")
