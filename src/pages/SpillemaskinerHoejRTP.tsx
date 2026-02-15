@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
+import { AuthorBio } from "@/components/AuthorBio";
 import { FAQSection } from "@/components/FAQSection";
 import { SEO } from "@/components/SEO";
 import { Badge } from "@/components/ui/badge";
@@ -495,6 +496,8 @@ export default function SpillemaskinerHoejRTP() {
             Spillemyndigheden fører løbende tilsyn med de licenserede casinoer og kan pålægge sanktioner, hvis der opdages uregelmæssigheder. Danske spillere er desuden beskyttet af ROFUS-systemet til frivillig selvudelukkelse og har adgang til gratis rådgivning via StopSpillet.dk. Denne regulering sikrer, at du trygt kan vælge spillemaskiner baseret på deres oplyste RTP-værdier.
           </p>
         </section>
+
+        <AuthorBio />
 
         <Separator className="my-10" />
 

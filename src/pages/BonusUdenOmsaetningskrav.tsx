@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
+import { AuthorBio } from "@/components/AuthorBio";
 import { FAQSection } from "@/components/FAQSection";
 import { SEO } from "@/components/SEO";
 import bonusUdenOmsaetningHero from "@/assets/heroes/bonus-uden-omsaetning-hero.jpg";
@@ -679,6 +680,8 @@ const BonusUdenOmsaetningskrav = () => {
             ))}
           </div>
         </section>
+
+        <AuthorBio />
 
         <Separator className="my-10" />
 
