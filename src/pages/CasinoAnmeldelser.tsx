@@ -286,61 +286,53 @@ const CasinoAnmeldelser = () => {
             <Link to="/betalingsmetoder" className={linkClass}>betalingsmetoder</Link>, udbetalingstider, kundeservice og sikkerhed – alt hvad du behøver for at træffe det rigtige valg.
           </p>
 
-          <div className="grid gap-4 md:grid-cols-2">
+          <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
             {[
-              {
-                name: "SpilDanskNu",
-                slug: "spildansknu-anmeldelse",
-                description: "Dansk fokuseret casino med brugervenlighed i fokus. Fair No-Sticky bonus med lave omsætningskrav og ingen bonuskode nødvendig.",
-                highlight: "No-Sticky bonus & dansk fokus",
-              },
-              {
-                name: "Spilleautomaten",
-                slug: "spilleautomaten-anmeldelse",
-                description: "Et af Danmarks mest populære casinoer med over 2.500 spil fra førende udbydere. Generøs No-Sticky velkomstbonus med kun 10x omsætning.",
-                highlight: "2.500+ spil & 10x omsætning",
-              },
-              {
-                name: "Betinia",
-                slug: "betinia-anmeldelse",
-                description: "Kombineret casino og sportsbetting med over 40 spiludbydere. No-Sticky velkomstbonus med 10x omsætningskrav og akkumulatorboost.",
-                highlight: "40+ udbydere & akkumulatorboost",
-              },
-              {
-                name: "Swift Casino",
-                slug: "swift-casino-anmeldelse",
-                description: "Unik Hot Or Cold-funktion der viser aktive spilleautomater. Over 3.300 casinospil fra anerkendte udbydere.",
-                highlight: "Hot Or Cold-funktion & 3.300+ spil",
-              },
-              {
-                name: "Campobet",
-                slug: "campobet-anmeldelse",
-                description: "Kombineret casino og sportsbetting med 3.000+ spil og stærkt live casino fra Evolution Gaming.",
-                highlight: "Casino + sportsbetting i ét",
-              },
-              {
-                name: "Luna Casino",
-                slug: "luna-casino-anmeldelse",
-                description: "VIP-program med eksklusive fordele og bonusser. No-Sticky bonus med 50 free spins inkluderet i velkomstpakken.",
-                highlight: "VIP-program & 50 free spins",
-              },
+              { name: "Danske Spil Casino", slug: "casino-anmeldelser/danske-spil", highlight: "Danmarks største spiludbyder" },
+              { name: "LeoVegas", slug: "casino-anmeldelser/leovegas", highlight: "Mobilvenligt & prisbelønnet" },
+              { name: "Mr Green", slug: "casino-anmeldelser/mr-green", highlight: "Green Gaming & ansvarligt spil" },
+              { name: "Unibet", slug: "casino-anmeldelser/unibet", highlight: "Sports + Casino i ét" },
+              { name: "bet365", slug: "casino-anmeldelser/bet365", highlight: "Verdens største sportsbook" },
+              { name: "Betano", slug: "casino-anmeldelser/betano", highlight: "Kaizen Gaming & innovation" },
+              { name: "888 Casino", slug: "casino-anmeldelser/888-casino", highlight: "25+ års erfaring" },
+              { name: "Expekt", slug: "casino-anmeldelser/expekt", highlight: "Betsson Group – Sports & Casino" },
+              { name: "ComeOn Casino", slug: "casino-anmeldelser/comeon", highlight: "Skandinavisk favorit" },
+              { name: "GetLucky Casino", slug: "casino-anmeldelser/getlucky", highlight: "4.000+ spil & loyalty" },
+              { name: "Mr Vegas Casino", slug: "casino-anmeldelser/mr-vegas", highlight: "Betsson Group – casino-fokus" },
+              { name: "Videoslots", slug: "casino-anmeldelser/videoslots", highlight: "11.000+ spil & Battle of Slots" },
+              { name: "Royal Casino", slug: "casino-anmeldelser/royal-casino", highlight: "Dansk Jysk Væddeløbsbane" },
+              { name: "Maria Casino", slug: "casino-anmeldelser/maria-casino", highlight: "Kindred Group & bingo" },
+              { name: "NordicBet", slug: "casino-anmeldelser/nordicbet", highlight: "Nordisk fokus & sportsbetting" },
+              { name: "Kapow Casino", slug: "casino-anmeldelser/kapow-casino", highlight: "Nyt dansk casino" },
+              { name: "One Casino", slug: "casino-anmeldelser/one-casino", highlight: "Bonus uden omsætning" },
+              { name: "Spilnu", slug: "casino-anmeldelser/spilnu", highlight: "Dansk casino med fokus" },
+              { name: "PokerStars", slug: "casino-anmeldelser/pokerstars", highlight: "Verdens største pokerrum" },
+              { name: "bwin", slug: "casino-anmeldelser/bwin", highlight: "Entain Group – sport & casino" },
+              { name: "MarathonBet", slug: "casino-anmeldelser/marathonbet", highlight: "Konkurrencedygtige odds" },
+              { name: "Casinostuen", slug: "casino-anmeldelser/casinostuen", highlight: "Dansk nichefokus" },
+              { name: "Stake Casino", slug: "casino-anmeldelser/stake-casino", highlight: "Crypto & coming soon" },
+              { name: "SpilDanskNu", slug: "spildansknu-anmeldelse", highlight: "No-Sticky bonus & dansk fokus" },
+              { name: "Spilleautomaten", slug: "spilleautomaten-anmeldelse", highlight: "2.500+ spil & 10x omsætning" },
+              { name: "Betinia", slug: "betinia-anmeldelse", highlight: "40+ udbydere & akkumulatorboost" },
+              { name: "Swift Casino", slug: "swift-casino-anmeldelse", highlight: "Hot Or Cold & 3.300+ spil" },
+              { name: "Campobet", slug: "campobet-anmeldelse", highlight: "Casino + sportsbetting i ét" },
+              { name: "Luna Casino", slug: "luna-casino-anmeldelse", highlight: "VIP-program & 50 free spins" },
             ].map((review) => (
               <Card key={review.slug} className="group relative border-border bg-card">
-                <CardHeader>
-                  <CardTitle className="flex items-center gap-2 text-lg">
-                    <Star className="h-5 w-5 text-primary" />
+                <CardHeader className="pb-2">
+                  <CardTitle className="flex items-center gap-2 text-base">
+                    <Star className="h-4 w-4 text-primary" />
                     {review.name}
                   </CardTitle>
                 </CardHeader>
-                <CardContent className="space-y-3">
-                  <p className="text-sm text-muted-foreground">{review.description}</p>
+                <CardContent>
                   <div className="flex items-center justify-between gap-2">
                     <Badge variant="outline" className="text-xs">{review.highlight}</Badge>
                     <Link
                       to={`/${review.slug}`}
-                      className="text-sm font-medium text-primary underline hover:text-primary/80"
+                      className="text-sm font-medium text-primary underline hover:text-primary/80 whitespace-nowrap"
                     >
-                      Læs anmeldelse →
+                      Læs →
                     </Link>
                   </div>
                 </CardContent>
