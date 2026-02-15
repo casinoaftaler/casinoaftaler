@@ -332,7 +332,7 @@ export default function Forfatter() {
           <h3 className="text-2xl font-bold mb-6 text-center">Jonas Top 3 Casinoer</h3>
           {featuredCasinos.length > 0 && (
             <div className="space-y-4">
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-4 items-start">
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-4 items-stretch">
                 {featuredCasinos.map((casino, index) => (
                   <CasinoCard
                     key={casino.id}
