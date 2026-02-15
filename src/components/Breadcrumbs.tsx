@@ -25,6 +25,7 @@ const routeLabels: Record<string, string> = {
   "/highlights": "Highlights",
   "/casinospil": "Casinospil",
   "/casinospil/spillemaskiner": "Spillemaskiner",
+  "/casinospil/spillemaskiner/hoej-rtp": "Høj RTP",
 };
 
 const BASE_URL = "https://casinoaftaler.dk";
