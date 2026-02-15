@@ -298,7 +298,8 @@ const BetiniaAnmeldelse = () => {
             I denne dybdegående anmeldelse gennemgår vi alt fra{" "}
             <Link to="/velkomstbonus" className={linkClass}>velkomstbonus</Link> og{" "}
             <Link to="/omsaetningskrav" className={linkClass}>omsætningskrav</Link> til spiludvalg, sportsbetting,{" "}
-            <Link to="/betalingsmetoder" className={linkClass}>betalingsmetoder</Link>, kundeservice og sikkerhed – så du kan tage en informeret beslutning.
+            <Link to="/betalingsmetoder" className={linkClass}>betalingsmetoder</Link>, kundeservice og sikkerhed – så du kan tage en informeret beslutning. Læs mere om{" "}
+            <Link to="/saadan-tester-vi-casinoer" className={linkClass}>sådan tester vi casinoer</Link>.
           </p>
         </section>
 

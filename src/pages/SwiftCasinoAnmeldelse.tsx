@@ -229,7 +229,8 @@ const SwiftCasinoAnmeldelse = () => {
           </p>
           <p className="text-muted-foreground leading-relaxed">
             I denne dybdegående anmeldelse gennemgår vi alt fra bonus og bonuskode til spiludvalg,{" "}
-            <Link to="/betalingsmetoder" className={linkClass}>betalingsmetoder</Link>, kundeservice og den unikke Hot Or Cold-funktion.
+            <Link to="/betalingsmetoder" className={linkClass}>betalingsmetoder</Link>, kundeservice og den unikke Hot Or Cold-funktion. Læs mere om{" "}
+            <Link to="/saadan-tester-vi-casinoer" className={linkClass}>sådan tester vi casinoer</Link>.
           </p>
         </section>
 

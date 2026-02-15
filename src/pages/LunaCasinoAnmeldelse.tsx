@@ -220,7 +220,8 @@ const LunaCasinoAnmeldelse = () => {
           </p>
           <p className="text-muted-foreground leading-relaxed">
             I denne dybdegående anmeldelse gennemgår vi velkomstbonus, loyalitetsprogram, spiludvalg,{" "}
-            <Link to="/betalingsmetoder" className={linkClass}>betalingsmetoder</Link> og kundeservice – så du kan tage en informeret beslutning.
+            <Link to="/betalingsmetoder" className={linkClass}>betalingsmetoder</Link> og kundeservice – så du kan tage en informeret beslutning. Læs mere om{" "}
+            <Link to="/saadan-tester-vi-casinoer" className={linkClass}>sådan tester vi casinoer</Link>.
           </p>
         </section>
 
