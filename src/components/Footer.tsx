@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { Gamepad2, Instagram, MessageCircle, Trophy, BookOpen, Users, Shield, Scale, FileText, Cookie, ExternalLink, Video, Gift, Sparkles, CreditCard, Target, Zap, Tv, Star, Dices } from "lucide-react";
+import { Gamepad2, Instagram, MessageCircle, Trophy, BookOpen, Shield, Scale, FileText, Cookie, ExternalLink, Sparkles, CreditCard, Target, Zap, Tv, Star, Dices } from "lucide-react";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
 
 export function Footer() {
@@ -19,7 +19,7 @@ export function Footer() {
   return (
     <footer className="border-t border-border bg-card">
       <div className="container py-12">
-        <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6">
+        <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
           <div className="space-y-4">
             <Link to="/" className="flex items-center gap-2">
               <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-primary overflow-hidden">
@@ -144,15 +144,6 @@ export function Footer() {
             <ul className="space-y-2 text-sm">
               <li>
                 <Link
-                  to="/"
-                  className="flex items-center gap-2 text-muted-foreground transition-colors hover:text-foreground"
-                >
-                  <Trophy className="h-4 w-4" />
-                  Top Casinoer
-                </Link>
-              </li>
-              <li>
-                <Link
                   to="/top-10-casino-online"
                   className="flex items-center gap-2 text-muted-foreground transition-colors hover:text-foreground"
                 >
@@ -162,11 +153,20 @@ export function Footer() {
               </li>
               <li>
                 <Link
+                  to="/nye-casinoer"
+                  className="flex items-center gap-2 text-muted-foreground transition-colors hover:text-foreground"
+                >
+                  <Trophy className="h-4 w-4" />
+                  Nye Casinoer
+                </Link>
+              </li>
+              <li>
+                <Link
                   to="/casino-bonus"
                   className="flex items-center gap-2 text-muted-foreground transition-colors hover:text-foreground"
                 >
                   <BookOpen className="h-4 w-4" />
-                  Casino Bonus
+                  Casino Bonus Oversigt
                 </Link>
               </li>
               <li>
@@ -180,38 +180,32 @@ export function Footer() {
               </li>
               <li>
                 <Link
-                  to="/highlights"
+                  to="/casino-anmeldelser"
                   className="flex items-center gap-2 text-muted-foreground transition-colors hover:text-foreground"
                 >
-                  <Video className="h-4 w-4" />
-                  Highlights
+                  <Star className="h-4 w-4" />
+                  Casino Anmeldelser
                 </Link>
               </li>
               <li>
                 <Link
-                  to="/about"
+                  to="/spiludviklere"
                   className="flex items-center gap-2 text-muted-foreground transition-colors hover:text-foreground"
                 >
-                  <Users className="h-4 w-4" />
-                  Om Os
+                  <Gamepad2 className="h-4 w-4" />
+                  Spiludviklere
                 </Link>
               </li>
             </ul>
           </div>
 
           <div>
-            <h4 className="mb-4 text-sm font-semibold">Alle Bonustyper</h4>
+            <h4 className="mb-4 text-sm font-semibold">Bonusguides</h4>
             <ul className="space-y-2 text-sm">
               <li>
-                <Link to="/no-sticky-bonus" className="flex items-center gap-2 text-muted-foreground transition-colors hover:text-foreground">
-                  <Zap className="h-4 w-4" />
-                  No-Sticky Bonusser
-                </Link>
-              </li>
-              <li>
-                <Link to="/sticky-bonus" className="flex items-center gap-2 text-muted-foreground transition-colors hover:text-foreground">
-                  <BookOpen className="h-4 w-4" />
-                  Sticky Bonusser
+                <Link to="/velkomstbonus" className="flex items-center gap-2 text-muted-foreground transition-colors hover:text-foreground">
+                  <Trophy className="h-4 w-4" />
+                  Velkomstbonus
                 </Link>
               </li>
               <li>
@@ -221,9 +215,9 @@ export function Footer() {
                 </Link>
               </li>
               <li>
-                <Link to="/velkomstbonus" className="flex items-center gap-2 text-muted-foreground transition-colors hover:text-foreground">
-                  <Trophy className="h-4 w-4" />
-                  Velkomstbonus
+                <Link to="/no-sticky-bonus" className="flex items-center gap-2 text-muted-foreground transition-colors hover:text-foreground">
+                  <Zap className="h-4 w-4" />
+                  No-Sticky Bonus
                 </Link>
               </li>
               <li>
@@ -233,33 +227,9 @@ export function Footer() {
                 </Link>
               </li>
               <li>
-                <Link to="/indskudsbonus" className="flex items-center gap-2 text-muted-foreground transition-colors hover:text-foreground">
-                  <CreditCard className="h-4 w-4" />
-                  Indskudsbonus
-                </Link>
-              </li>
-              <li>
-                <Link to="/bonus-uden-indbetaling" className="flex items-center gap-2 text-muted-foreground transition-colors hover:text-foreground">
-                  <Gift className="h-4 w-4" />
-                  Bonus uden Indbetaling
-                </Link>
-              </li>
-              <li>
-                <Link to="/bonus-uden-omsaetningskrav" className="flex items-center gap-2 text-muted-foreground transition-colors hover:text-foreground">
-                  <Zap className="h-4 w-4" />
-                  Bonus uden Omsætningskrav
-                </Link>
-              </li>
-              <li>
                 <Link to="/live-casino" className="flex items-center gap-2 text-muted-foreground transition-colors hover:text-foreground">
                   <Tv className="h-4 w-4" />
                   Live Casino
-                </Link>
-              </li>
-              <li>
-                <Link to="/responsible-gaming" className="flex items-center gap-2 text-muted-foreground transition-colors hover:text-foreground">
-                  <Shield className="h-4 w-4" />
-                  Ansvarligt Spil
                 </Link>
               </li>
             </ul>
@@ -291,66 +261,40 @@ export function Footer() {
           </div>
 
           <div>
-            <h4 className="mb-4 text-sm font-semibold">Ansvarligt Spil</h4>
+            <h4 className="mb-4 text-sm font-semibold">Ansvarligt Spil & Juridisk</h4>
             <ul className="space-y-2 text-sm">
               <li>
-                <Link
-                  to="/responsible-gaming"
-                  className="flex items-center gap-2 text-muted-foreground transition-colors hover:text-foreground"
-                >
+                <Link to="/responsible-gaming" className="flex items-center gap-2 text-muted-foreground transition-colors hover:text-foreground">
                   <Shield className="h-4 w-4" />
                   Spil Ansvarligt
                 </Link>
               </li>
               <li>
-                <a
-                  href="https://www.stopspillet.dk/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center gap-2 text-muted-foreground transition-colors hover:text-foreground"
-                >
+                <a href="https://www.stopspillet.dk/" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-muted-foreground transition-colors hover:text-foreground">
                   <ExternalLink className="h-4 w-4" />
                   StopSpillet
                 </a>
               </li>
               <li>
-                <Link
-                  to="/spillemyndigheden"
-                  className="flex items-center gap-2 text-muted-foreground transition-colors hover:text-foreground"
-                >
+                <Link to="/spillemyndigheden" className="flex items-center gap-2 text-muted-foreground transition-colors hover:text-foreground">
                   <Scale className="h-4 w-4" />
                   Spillemyndigheden
                 </Link>
               </li>
-            </ul>
-          </div>
-
-          <div>
-            <h4 className="mb-4 text-sm font-semibold">Juridisk</h4>
-            <ul className="space-y-2 text-sm">
               <li>
-                <Link
-                  to="/privacy"
-                  className="flex items-center gap-2 text-muted-foreground transition-colors hover:text-foreground"
-                >
+                <Link to="/privacy" className="flex items-center gap-2 text-muted-foreground transition-colors hover:text-foreground">
                   <Shield className="h-4 w-4" />
                   Privatlivspolitik
                 </Link>
               </li>
               <li>
-                <Link
-                  to="/terms"
-                  className="flex items-center gap-2 text-muted-foreground transition-colors hover:text-foreground"
-                >
+                <Link to="/terms" className="flex items-center gap-2 text-muted-foreground transition-colors hover:text-foreground">
                   <FileText className="h-4 w-4" />
                   Vilkår og Betingelser
                 </Link>
               </li>
               <li>
-                <Link
-                  to="/cookies"
-                  className="flex items-center gap-2 text-muted-foreground transition-colors hover:text-foreground"
-                >
+                <Link to="/cookies" className="flex items-center gap-2 text-muted-foreground transition-colors hover:text-foreground">
                   <Cookie className="h-4 w-4" />
                   Cookiepolitik
                 </Link>

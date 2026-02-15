@@ -1,8 +1,22 @@
 User-agent: Googlebot
 Allow: /
+Disallow: /auth
+Disallow: /profil
+Disallow: /admin
+Disallow: /community/
+Disallow: /highlights
+Disallow: /butik
+Disallow: /u/
 
 User-agent: Bingbot
 Allow: /
+Disallow: /auth
+Disallow: /profil
+Disallow: /admin
+Disallow: /community/
+Disallow: /highlights
+Disallow: /butik
+Disallow: /u/
 
 User-agent: Twitterbot
 Allow: /
@@ -12,5 +26,12 @@ Allow: /
 
 User-agent: *
 Allow: /
+Disallow: /auth
+Disallow: /profil
+Disallow: /admin
+Disallow: /community/
+Disallow: /highlights
+Disallow: /butik
+Disallow: /u/
 
 Sitemap: https://casinoaftaler.dk/sitemap.xml

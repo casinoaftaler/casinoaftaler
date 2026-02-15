@@ -175,6 +175,7 @@ export default function RiseOfFedesvin() {
       <SEO
         title="Rise of Fedesvin – Gratis Spilleautomat | Casinoaftaler"
         description="Spil Rise of Fedesvin gratis hos Casinoaftaler. Magisk tema med tryllekunstnere, drager og free spins. Optjen point og klatr på ranglisten."
+        noindex
       />
       <LiveBigWins />
       <div 

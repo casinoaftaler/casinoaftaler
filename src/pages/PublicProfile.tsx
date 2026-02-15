@@ -203,6 +203,7 @@ export default function PublicProfile() {
       <SEO
         title={`${displayName} – Profil | Casinoaftaler`}
         description={`Se ${displayName}s offentlige profil på Casinoaftaler. Statistik, badges og spillestil.`}
+        noindex
       />
       {/* Hero Header */}
       <div className="relative overflow-hidden">

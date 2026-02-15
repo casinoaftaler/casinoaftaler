@@ -265,6 +265,7 @@ export default function Shop() {
       <SEO
         title="Butik – Køb med Point | Casinoaftaler"
         description="Shop eksklusive varer med dine Twitch-point hos Casinoaftaler. Gaming headsets, gavekort, konsoller og mere. Optjen point ved at se streams."
+        noindex
       />
       <ShopHero />
       <div className="container py-8 md:py-12">
