@@ -1,61 +1,51 @@
 
 
-## Intern linking fra SEO-sider til Community
+## Fix: New users see 0 credits before first spin
 
 ### Problem
-De ~30+ SEO-sider (bonusguides, betalingsmetoder, spiludviklere, anmeldelser) har ingen links til community-siderne (Spillehal, Highlights, Leaderboard, Shop, Rewards). Det betyder at Google ikke opdager community-siderne via crawling af SEO-indholdet, og brugerne ikke ledes videre.
+When a new user signs up and enters the slot machine, the `SpinsRemaining` component shows **0 credits** because no `slot_spins` record exists yet. Credits are only initialized server-side when the user performs their first spin (just-in-time in the `slot-spin` edge function). This confuses users into thinking they have no credits.
 
-### Strategi
+### Root Cause
+The `useSlotSpins` hook (line 72) returns `spinsRemaining: spinsData?.spins_remaining ?? 0`. When `spinsData` is `null` (no record for today), it defaults to 0. The actual initialization happens much later -- only when the user clicks "Spin" for the first time.
 
-#### 1. Tilfoej community-links i RelatedGuides-komponenten
-Udvid `RelatedGuides` med en ny kategori af community-links der vises som en separat sektion under de eksisterende relaterede guides. Dette giver alle 30+ sider der bruger `RelatedGuides` en naturlig kobling til community.
+### Solution
+Two-part fix to ensure credits are visible immediately:
 
-Community-links der tilfoejs:
-- `/community/slots` - Spillehal (Proev vores gratis slot maskiner)
-- `/highlights` - Highlights & Clips (Se de bedste oejeblikkefra streamen)
-- `/community/leaderboard` - Leaderboard (Se hvem der topper ranglisten)
-- `/butik` - Butik (Brug dine point paa praemier)
-- `/community/rewards` - Rewards (Optjen point og beloenninger)
+#### 1. Update `useSlotSpins` to show expected credits when no record exists
+When the query returns `null` (no record for today), instead of showing 0, display the calculated `maxSpins` value. This matches what the `slot-spin` edge function would create on first spin.
 
-Disse vises som en kompakt sektion med overskriften "Vores Community" under de eksisterende relaterede guides.
+**File: `src/hooks/useSlotSpins.ts`**
+- Change line 72 from `spinsRemaining: spinsData?.spins_remaining ?? 0` to `spinsRemaining: spinsData?.spins_remaining ?? maxSpins`
+- Similarly update `canSpin` (line 76) and `hasEnoughSpins` (line 64-65) to use `maxSpins` as fallback
+- Add a `hasRecord` boolean so the spin button logic knows when credits are uninitialized vs actually 0
 
-#### 2. Udvid SpillehalPromoSection til en bredere CommunityPromoSection
-Opgrader den eksisterende `SpillehalPromoSection` (som kun vises paa forsiden) til en mere alsidig `CommunityPromoSection` der ogsaa naevner highlights og leaderboard. Placeres paa de stoerste cornerstone-sider:
-- `/casino-bonus`
-- `/top-10-casino-online`
-- `/nye-casinoer`
-- `/casinospil`
-- `/live-casino`
+#### 2. Add early credit initialization when entering the slot page
+Create a small hook or effect that calls a lightweight endpoint to initialize the `slot_spins` record when the user enters the slot machine page, rather than waiting for the first spin. This ensures the database record exists before the user sees the UI.
 
-#### 3. Tilfoej community-sider til sitemap.xml
-Foelgende URLs mangler i sitemappet:
-- `/community/slots`
-- `/community/slots/book-of-fedesvin`
-- `/community/slots/rise-of-fedesvin`
-- `/community/leaderboard`
-- `/community/rewards`
-- `/highlights`
-- `/butik`
+**File: `src/hooks/useSlotSpins.ts`**
+- Add a `useMutation` or `useEffect` that calls the existing `slot-spin`-style initialization logic via a new simple edge function, OR
+- Use the existing `daily-credit-allocation` pattern to create the record client-side via service role
 
-### Teknisk implementering
+The simplest and most robust approach: **just fix the display fallback** in `useSlotSpins`. The server-side initialization already works correctly on first spin. The only issue is the UI showing 0.
 
-**Fil: `src/components/RelatedGuides.tsx`**
-- Tilfoej en `communityGuides` array med de 5 community-links
-- Tilfoej en ny sektion i render-outputtet under de eksisterende guides med overskriften "Vores Community"
-- Vises paa alle sider der bruger `RelatedGuides` (30+ sider) - ingen aendringer i de individuelle sider
+### Final approach (minimal change)
 
-**Fil: `src/components/SpillehalPromoSection.tsx`**
-- Omnavngivs til `CommunityPromoSection`
-- Udvides med links til baade Spillehal, Highlights og Leaderboard i en kompakt boks
+**File: `src/hooks/useSlotSpins.ts`**
+- When `spinsData` is `null` and `isLoading` is `false`, use `maxSpins` as the displayed value for `spinsRemaining`
+- Update `canSpin` to return `true` when no record exists (since the server will create one with full credits)
+- Update `hasEnoughSpins` similarly
 
-**Filer: Cornerstone-sider**
-- Importer og placer `CommunityPromoSection` paa 4-5 af de stoerste SEO-sider (casino-bonus, top-10, nye-casinoer, casinospil, live-casino)
+This is a single-file, ~5 line change that fully resolves the issue without needing new edge functions or database changes.
 
-**Fil: `public/sitemap.xml`**
-- Tilfoej de 7 manglende community-URLs
+### Technical details
 
-### SEO-effekt
-- 30+ sider faar interne links til community (via RelatedGuides)
-- 5 cornerstone-sider faar prominente community-CTAs
-- Google kan nu crawle community-siderne via det interne linknetvaerk
-- Sitemappet sikrer direkte indeksering af alle community-URLs
+```text
+Before (line 72):
+  spinsRemaining: spinsData?.spins_remaining ?? 0
+
+After:
+  spinsRemaining: spinsData ? spinsData.spins_remaining : maxSpins
+```
+
+The same pattern applies to `canSpin` and `hasEnoughSpins` -- when no record exists, the user effectively has `maxSpins` credits available because the `slot-spin` edge function will create the record with that value on first spin.
+
