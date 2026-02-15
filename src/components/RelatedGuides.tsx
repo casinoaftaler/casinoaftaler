@@ -90,6 +90,7 @@ const generalGuides: GuideLink[] = [
   { to: "/nye-casinoer", label: "Nye Casinoer", icon: Sparkles, desc: "De seneste casinoer med dansk licens" },
   { to: "/top-casino-online", label: "Top 10 Casino", icon: Trophy, desc: "De bedste online casinoer i Danmark" },
   { to: "/casinospil", label: "Casinospil", icon: Gamepad2, desc: "Udforsk alle typer casinospil" },
+  { to: "/casinospil/spillemaskiner", label: "Spillemaskiner", icon: Gamepad2, desc: "Guide til alle typer online slots" },
   { to: "/responsible-gaming", label: "Ansvarligt Spil", icon: ShieldCheck, desc: "Spil sikkert og ansvarligt" },
   { to: "/spillemyndigheden", label: "Spillemyndigheden", icon: Globe, desc: "Danmarks tilsynsmyndighed for spil" },
 ];

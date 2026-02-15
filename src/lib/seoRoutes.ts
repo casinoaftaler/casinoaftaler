@@ -38,6 +38,7 @@ export const seoRoutes: SeoRoute[] = [
   // ── Casino Spil & Live ──
   { path: "/live-casino", changefreq: "weekly", priority: 0.9 },
   { path: "/casinospil", changefreq: "weekly", priority: 0.9 },
+  { path: "/casinospil/spillemaskiner", changefreq: "weekly", priority: 0.9 },
 
   // ── Bonus Guides ──
   { path: "/casino-bonus", changefreq: "weekly", priority: 0.9 },
