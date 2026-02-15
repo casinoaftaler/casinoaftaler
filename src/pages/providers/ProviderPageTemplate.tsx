@@ -8,12 +8,6 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "@/components/ui/accordion";
-import {
   ShieldCheck,
   Gamepad2,
   Award,
@@ -25,8 +19,10 @@ import {
   User,
   CalendarDays,
   BookOpen,
+  BarChart3,
+  Target,
 } from "lucide-react";
-import { ReactNode } from "react";
+import { ReactNode, Fragment } from "react";
 
 interface GameInfo {
   name: string;
@@ -64,6 +60,11 @@ interface ProviderPageProps {
   faqs: FAQ[];
   currentPath: string;
   responsibleGamingText?: string;
+  strategicAnalysis?: ReactNode;
+  technicalProfile?: ReactNode;
+  sectionOrder?: string[];
+  updatedDate?: string;
+  readTime?: string;
 }
 
 const providerLinks = [
@@ -81,26 +82,17 @@ const providerLinks = [
   { to: "/spiludviklere/big-time-gaming", label: "Big Time Gaming" },
 ];
 
+const defaultSectionOrder = [
+  "intro", "history", "games", "casinos", "licenses",
+  "proscons", "strategic", "technical", "providers", "responsible",
+];
+
 export function ProviderPage({
-  seoTitle,
-  seoDescription,
-  name,
-  heroSubtitle,
-  heroImage,
-  heroImageAlt,
-  introTitle,
-  introContent,
-  historyTitle,
-  historyIntro,
-  timeline,
-  games,
-  gamesIntro,
-  licensesContent,
-  pros,
-  cons,
-  faqs,
-  currentPath,
-  responsibleGamingText,
+  seoTitle, seoDescription, name, heroSubtitle, heroImage, heroImageAlt,
+  introTitle, introContent, historyTitle, historyIntro, timeline,
+  games, gamesIntro, licensesContent, pros, cons, faqs, currentPath,
+  responsibleGamingText, strategicAnalysis, technicalProfile,
+  sectionOrder, updatedDate = "15-02-2026", readTime = "14 Min.",
 }: ProviderPageProps) {
   const { data: siteSettings } = useSiteSettings();
   const heroBackgroundImage = siteSettings?.hero_background;
@@ -118,6 +110,203 @@ export function ProviderPage({
     })),
   };
 
+  const sectionMap: Record<string, ReactNode> = {
+    intro: (
+      <section className="mb-12">
+        <h2 className="mb-4 text-3xl font-bold">{introTitle}</h2>
+        {introContent}
+      </section>
+    ),
+    history: (
+      <section className="mb-12">
+        <h2 className="mb-4 text-3xl font-bold">{historyTitle}</h2>
+        <p className="mb-6 text-muted-foreground leading-relaxed">{historyIntro}</p>
+        <div className="space-y-3 mb-6">
+          {timeline.map((item) => (
+            <div key={item.year + item.event} className="flex items-start gap-3 rounded-lg border border-border bg-card p-4">
+              <Badge variant="outline" className="mt-0.5 flex-shrink-0">{item.year}</Badge>
+              <p className="text-sm text-muted-foreground">{item.event}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+    ),
+    games: (
+      <section className="mb-12">
+        <h2 className="mb-4 text-3xl font-bold">Populære Spil fra {name}</h2>
+        {gamesIntro}
+        <div className="grid gap-4 md:grid-cols-2">
+          {games.map((game) => (
+            <Card key={game.name}>
+              <CardHeader>
+                <CardTitle className="flex items-center gap-2 text-lg">
+                  <Star className="h-5 w-5 text-primary" />
+                  {game.name}
+                </CardTitle>
+              </CardHeader>
+              <CardContent className="space-y-2">
+                <p className="text-sm text-muted-foreground">{game.desc}</p>
+                <Badge variant="outline" className="text-xs">{game.highlight}</Badge>
+              </CardContent>
+            </Card>
+          ))}
+        </div>
+      </section>
+    ),
+    casinos: <InlineCasinoCards title={`Casinoer med ${name}-spil`} />,
+    licenses: (
+      <section className="mb-12">
+        <h2 className="mb-4 text-3xl font-bold">Licenser og Sikkerhed</h2>
+        {licensesContent}
+        <div className="grid gap-4 md:grid-cols-3 mt-6">
+          <Card>
+            <CardHeader>
+              <CardTitle className="flex items-center gap-2 text-base">
+                <ShieldCheck className="h-4 w-4 text-primary" />
+                Malta Gaming Authority
+              </CardTitle>
+            </CardHeader>
+            <CardContent className="text-sm text-muted-foreground">
+              En af verdens mest respekterede spillemyndigheder med strenge krav til fairness og spillerbeskyttelse.
+            </CardContent>
+          </Card>
+          <Card>
+            <CardHeader>
+              <CardTitle className="flex items-center gap-2 text-base">
+                <ShieldCheck className="h-4 w-4 text-primary" />
+                UK Gambling Commission
+              </CardTitle>
+            </CardHeader>
+            <CardContent className="text-sm text-muted-foreground">
+              Den britiske spillemyndighed, kendt for sine strenge regler og høje krav til licenserede spiludviklere.
+            </CardContent>
+          </Card>
+          <Card>
+            <CardHeader>
+              <CardTitle className="flex items-center gap-2 text-base">
+                <Award className="h-4 w-4 text-primary" />
+                RNG Certificeret
+              </CardTitle>
+            </CardHeader>
+            <CardContent className="text-sm text-muted-foreground">
+              Uafhængig testning af RNG-teknologi sikrer, at alle spilresultater er 100% tilfældige og retfærdige.
+            </CardContent>
+          </Card>
+        </div>
+      </section>
+    ),
+    proscons: (
+      <section className="mb-12">
+        <h2 className="mb-4 text-3xl font-bold">Fordele og Ulemper</h2>
+        <div className="grid gap-4 md:grid-cols-2">
+          <Card className="border-primary/20">
+            <CardHeader>
+              <CardTitle className="flex items-center gap-2 text-lg text-primary">
+                <ThumbsUp className="h-5 w-5" />
+                Fordele
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              <ul className="space-y-2">
+                {pros.map((pro, i) => (
+                  <li key={i} className="flex items-start gap-2 text-sm text-muted-foreground">
+                    <CheckCircle2 className="mt-0.5 h-4 w-4 flex-shrink-0 text-primary" />
+                    <span>{pro}</span>
+                  </li>
+                ))}
+              </ul>
+            </CardContent>
+          </Card>
+          <Card className="border-destructive/20">
+            <CardHeader>
+              <CardTitle className="flex items-center gap-2 text-lg text-destructive">
+                <ThumbsDown className="h-5 w-5" />
+                Ulemper
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              <ul className="space-y-2">
+                {cons.map((con, i) => (
+                  <li key={i} className="flex items-start gap-2 text-sm text-muted-foreground">
+                    <AlertTriangle className="mt-0.5 h-4 w-4 flex-shrink-0 text-destructive" />
+                    <span>{con}</span>
+                  </li>
+                ))}
+              </ul>
+            </CardContent>
+          </Card>
+        </div>
+      </section>
+    ),
+    strategic: strategicAnalysis ? (
+      <section className="mb-12">
+        <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
+          <Target className="h-7 w-7 text-primary" />
+          Strategisk Analyse og Markedsposition
+        </h2>
+        {strategicAnalysis}
+      </section>
+    ) : null,
+    technical: technicalProfile ? (
+      <section className="mb-12">
+        <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
+          <BarChart3 className="h-7 w-7 text-primary" />
+          Teknisk Profil
+        </h2>
+        {technicalProfile}
+      </section>
+    ) : null,
+    providers: (
+      <section className="mb-12">
+        <h2 className="mb-4 text-3xl font-bold">Andre Spiludviklere</h2>
+        <p className="mb-4 text-muted-foreground leading-relaxed">
+          Udforsk vores dybdegående guides til andre spiludviklere i casinobranchen.
+        </p>
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3">
+          {providerLinks
+            .filter((dev) => dev.to !== currentPath)
+            .map((dev) => (
+              <Link
+                key={dev.to}
+                to={dev.to}
+                className="flex items-center justify-center rounded-lg border border-border bg-card p-3 text-center text-sm font-medium transition-colors hover:border-primary/50 hover:bg-accent/50"
+              >
+                {dev.label}
+              </Link>
+            ))}
+        </div>
+      </section>
+    ),
+    responsible: (
+      <section className="mb-12">
+        <Card className="border-primary/20 bg-primary/5">
+          <CardHeader>
+            <CardTitle className="flex items-center gap-2 text-xl">
+              <Award className="h-5 w-5 text-primary" />
+              Ansvarligt Spil
+            </CardTitle>
+          </CardHeader>
+          <CardContent className="space-y-3 text-sm text-muted-foreground">
+            <p>
+              {responsibleGamingText || `${name} prioriterer ansvarligt spil og samarbejder med anerkendte organisationer for spillerbeskyttelse.`}{" "}
+              Læs mere om{" "}
+              <Link to="/responsible-gaming" className="text-primary hover:underline font-medium">ansvarligt spil</Link>.{" "}
+              I Danmark kan du altid søge hjælp via{" "}
+              <a href="https://www.rofus.nu/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline font-medium">ROFUS</a>{" "}
+              og{" "}
+              <a href="https://www.stopspillet.dk/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline font-medium">StopSpillet.dk</a>. 18+ | Spil ansvarligt.
+            </p>
+          </CardContent>
+        </Card>
+      </section>
+    ),
+  };
+
+  const order = sectionOrder || defaultSectionOrder;
+  const orderedSections = order
+    .map((key) => ({ key, node: sectionMap[key] }))
+    .filter((s) => s.node != null);
+
   return (
     <>
       <SEO title={seoTitle} description={seoDescription} jsonLd={faqJsonLd} />
@@ -127,9 +316,9 @@ export function ProviderPage({
         style={{
           backgroundImage: heroBackgroundImage
             ? `linear-gradient(135deg, hsl(260 70% 25% / 0.95), hsl(210 80% 30% / 0.9)), url(${heroBackgroundImage})`
-            : 'linear-gradient(135deg, hsl(260 70% 25%), hsl(250 60% 20%) 40%, hsl(210 80% 25%))',
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
+            : "linear-gradient(135deg, hsl(260 70% 25%), hsl(250 60% 20%) 40%, hsl(210 80% 25%))",
+          backgroundSize: "cover",
+          backgroundPosition: "center",
         }}
       >
         <div className="container">
@@ -148,15 +337,15 @@ export function ProviderPage({
         <div className="mb-8 flex flex-wrap items-center gap-x-6 gap-y-2 text-sm text-muted-foreground">
           <div className="flex items-center gap-1.5">
             <User className="h-4 w-4" />
-            <span>Skrevet af: <span className="font-medium text-foreground">Casinoaftaler</span></span>
+            <span>Skrevet af: <span className="font-medium text-foreground">Casinoaftaler Redaktionen</span></span>
           </div>
           <div className="flex items-center gap-1.5">
             <CalendarDays className="h-4 w-4" />
-            <span>Opdateret: <span className="font-medium text-foreground">14-02-2026</span></span>
+            <span>Opdateret: <span className="font-medium text-foreground">{updatedDate}</span></span>
           </div>
           <div className="flex items-center gap-1.5">
             <BookOpen className="h-4 w-4" />
-            <span>Læsetid: <span className="font-medium text-foreground">12 Min.</span></span>
+            <span>Læsetid: <span className="font-medium text-foreground">{readTime}</span></span>
           </div>
         </div>
 
@@ -171,187 +360,15 @@ export function ProviderPage({
           </div>
         )}
 
-        <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold">{introTitle}</h2>
-          {introContent}
-        </section>
+        {orderedSections.map((s, i) => (
+          <Fragment key={s.key}>
+            {i > 0 && <Separator className="my-10" />}
+            {s.node}
+          </Fragment>
+        ))}
 
         <Separator className="my-10" />
-
-        <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold">{historyTitle}</h2>
-          <p className="mb-6 text-muted-foreground leading-relaxed">{historyIntro}</p>
-          <div className="space-y-3 mb-6">
-            {timeline.map((item) => (
-              <div key={item.year + item.event} className="flex items-start gap-3 rounded-lg border border-border bg-card p-4">
-                <Badge variant="outline" className="mt-0.5 flex-shrink-0">{item.year}</Badge>
-                <p className="text-sm text-muted-foreground">{item.event}</p>
-              </div>
-            ))}
-          </div>
-        </section>
-
-        <Separator className="my-10" />
-
-        <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold">Populære Spil fra {name}</h2>
-          {gamesIntro}
-          <div className="grid gap-4 md:grid-cols-2">
-            {games.map((game) => (
-              <Card key={game.name}>
-                <CardHeader>
-                  <CardTitle className="flex items-center gap-2 text-lg">
-                    <Star className="h-5 w-5 text-primary" />
-                    {game.name}
-                  </CardTitle>
-                </CardHeader>
-                <CardContent className="space-y-2">
-                  <p className="text-sm text-muted-foreground">{game.desc}</p>
-                  <Badge variant="outline" className="text-xs">{game.highlight}</Badge>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        </section>
-
-        <InlineCasinoCards title={`Casinoer med ${name}-spil`} />
-
-        <Separator className="my-10" />
-
-        <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold">Licenser og Sikkerhed</h2>
-          {licensesContent}
-          <div className="grid gap-4 md:grid-cols-3 mt-6">
-            <Card>
-              <CardHeader>
-                <CardTitle className="flex items-center gap-2 text-base">
-                  <ShieldCheck className="h-4 w-4 text-primary" />
-                  Malta Gaming Authority
-                </CardTitle>
-              </CardHeader>
-              <CardContent className="text-sm text-muted-foreground">
-                En af verdens mest respekterede spillemyndigheder med strenge krav til fairness og spillerbeskyttelse.
-              </CardContent>
-            </Card>
-            <Card>
-              <CardHeader>
-                <CardTitle className="flex items-center gap-2 text-base">
-                  <ShieldCheck className="h-4 w-4 text-primary" />
-                  UK Gambling Commission
-                </CardTitle>
-              </CardHeader>
-              <CardContent className="text-sm text-muted-foreground">
-                Den britiske spillemyndighed, kendt for sine strenge regler og høje krav til licenserede spiludviklere.
-              </CardContent>
-            </Card>
-            <Card>
-              <CardHeader>
-                <CardTitle className="flex items-center gap-2 text-base">
-                  <Award className="h-4 w-4 text-primary" />
-                  RNG Certificeret
-                </CardTitle>
-              </CardHeader>
-              <CardContent className="text-sm text-muted-foreground">
-                Uafhængig testning af RNG-teknologi sikrer, at alle spilresultater er 100% tilfældige og retfærdige.
-              </CardContent>
-            </Card>
-          </div>
-        </section>
-
-        <Separator className="my-10" />
-
-        <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold">Fordele og Ulemper</h2>
-          <div className="grid gap-4 md:grid-cols-2">
-            <Card className="border-primary/20">
-              <CardHeader>
-                <CardTitle className="flex items-center gap-2 text-lg text-primary">
-                  <ThumbsUp className="h-5 w-5" />
-                  Fordele
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <ul className="space-y-2">
-                  {pros.map((pro, i) => (
-                    <li key={i} className="flex items-start gap-2 text-sm text-muted-foreground">
-                      <CheckCircle2 className="mt-0.5 h-4 w-4 flex-shrink-0 text-primary" />
-                      <span>{pro}</span>
-                    </li>
-                  ))}
-                </ul>
-              </CardContent>
-            </Card>
-            <Card className="border-destructive/20">
-              <CardHeader>
-                <CardTitle className="flex items-center gap-2 text-lg text-destructive">
-                  <ThumbsDown className="h-5 w-5" />
-                  Ulemper
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <ul className="space-y-2">
-                  {cons.map((con, i) => (
-                    <li key={i} className="flex items-start gap-2 text-sm text-muted-foreground">
-                      <AlertTriangle className="mt-0.5 h-4 w-4 flex-shrink-0 text-destructive" />
-                      <span>{con}</span>
-                    </li>
-                  ))}
-                </ul>
-              </CardContent>
-            </Card>
-          </div>
-        </section>
-
-        <Separator className="my-10" />
-
-        <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold">Andre Spiludviklere</h2>
-          <p className="mb-4 text-muted-foreground leading-relaxed">
-            Udforsk vores dybdegående guides til andre populære spiludviklere i casinobranchen.
-          </p>
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3">
-            {providerLinks
-              .filter((dev) => dev.to !== currentPath)
-              .map((dev) => (
-                <Link
-                  key={dev.to}
-                  to={dev.to}
-                  className="flex items-center justify-center rounded-lg border border-border bg-card p-3 text-center text-sm font-medium transition-colors hover:border-primary/50 hover:bg-accent/50"
-                >
-                  {dev.label}
-                </Link>
-              ))}
-          </div>
-        </section>
-
-        <Separator className="my-10" />
-
-        <section className="mb-12">
-          <Card className="border-primary/20 bg-primary/5">
-            <CardHeader>
-              <CardTitle className="flex items-center gap-2 text-xl">
-                <Award className="h-5 w-5 text-primary" />
-                Ansvarligt Spil
-              </CardTitle>
-            </CardHeader>
-            <CardContent className="space-y-3 text-sm text-muted-foreground">
-              <p>
-                {responsibleGamingText || `${name} prioriterer ansvarligt spil og samarbejder med anerkendte organisationer for spillerbeskyttelse.`}{" "}
-                Læs mere om{" "}
-                <Link to="/responsible-gaming" className="text-primary hover:underline font-medium">ansvarligt spil</Link>.{" "}
-                I Danmark kan du altid søge hjælp via{" "}
-                <a href="https://www.rofus.nu/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline font-medium">ROFUS</a>{" "}
-                og{" "}
-                <a href="https://www.stopspillet.dk/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline font-medium">StopSpillet.dk</a>. 18+ | Spil ansvarligt.
-              </p>
-            </CardContent>
-          </Card>
-        </section>
-
-        <Separator className="my-10" />
-
         <RelatedGuides currentPath={currentPath} />
-
         <FAQSection title={`Ofte stillede spørgsmål om ${name}`} faqs={faqs} />
       </div>
     </>
