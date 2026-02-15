@@ -228,7 +228,7 @@ export default function Highlights() {
       />
       <HighlightsHero />
       <div className="container py-8 md:py-12">
-        <AuthorMetaBar author="jonas" date="15-02-2026" readTime="3 Min." />
+        
 
         <Tabs defaultValue={defaultTab} className="w-full">
           <div className="flex justify-center mb-8">

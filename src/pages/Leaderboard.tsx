@@ -412,7 +412,7 @@ export default function Leaderboard() {
       </section>
 
       <div className="container py-8 md:py-12">
-        <AuthorMetaBar author="redaktionen" date="15-02-2026" readTime="2 Min." />
+        
 
         {tournamentsLoading ? (
           <div className="max-w-5xl mx-auto space-y-4">

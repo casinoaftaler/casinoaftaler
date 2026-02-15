@@ -52,7 +52,7 @@ export default function RewardsProgram() {
       </section>
 
       <div className="container py-8 md:py-12">
-        <AuthorMetaBar author="redaktionen" date="15-02-2026" readTime="3 Min." />
+        <AuthorMetaBar author="jonas" date="15-02-2026" readTime="3 Min." showFactCheck={false} />
 
         {/* Section: Community Highlights Rewards */}
         <section className="mb-12">
