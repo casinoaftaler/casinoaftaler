@@ -138,7 +138,7 @@ const faqs = [
     answer: (
       <>
         Jonas er grundlæggeren af Casinoaftaler.dk og har over 4 års erfaring som casino-streamer på Twitch. Han tester personligt alle anmeldte casinoer. Læs mere på hans{" "}
-        <Link to="/forfatter" className="text-primary underline hover:text-primary/80">
+        <Link to="/forfatter/jonas" className="text-primary underline hover:text-primary/80">
           forfatterprofil
         </Link>.
       </>
@@ -245,7 +245,7 @@ const SaadanTesterVi = () => {
             Hos Casinoaftaler.dk er alle anmeldelser baseret på praktisk erfaring. Vi opretter reelle konti, indbetaler egne midler og gennemfører hele spilleoplevelsen fra start til slut. Ingen anmeldelse skrives udelukkende på baggrund af pressematerialer eller markedsføringstekster.
           </p>
           <p className="mb-4 text-muted-foreground leading-relaxed">
-            Bag testene står <Link to="/forfatter" className="text-primary underline hover:text-primary/80">Jonas</Link>, grundlæggeren af Casinoaftaler.dk, som har over 4 års erfaring som casino-streamer. Hans daglige erfaring med at spille live foran tusindvis af seere giver et unikt indblik i, hvad der fungerer i praksis – og hvad der ikke gør.
+            Bag testene står <Link to="/forfatter/jonas" className="text-primary underline hover:text-primary/80">Jonas</Link>, grundlæggeren af Casinoaftaler.dk, som har over 4 års erfaring som casino-streamer. Hans daglige erfaring med at spille live foran tusindvis af seere giver et unikt indblik i, hvad der fungerer i praksis – og hvad der ikke gør.
           </p>
           <p className="text-muted-foreground leading-relaxed">
             Vores mål er enkelt: at give dig den information, du har brug for, til at vælge det rigtige casino. Læs vores{" "}
@@ -404,7 +404,7 @@ const SaadanTesterVi = () => {
                 <div>
                   <h3 className="font-semibold">
                     Testet og vurderet af{" "}
-                    <Link to="/forfatter" className="text-primary underline hover:text-primary/80">
+                    <Link to="/forfatter/jonas" className="text-primary underline hover:text-primary/80">
                       Jonas – Grundlægger & Casino-streamer
                     </Link>
                   </h3>

@@ -91,9 +91,11 @@ export const seoRoutes: SeoRoute[] = [
   // ── Info & Ansvarligt Spil ──
   { path: "/responsible-gaming", changefreq: "monthly", priority: 0.6 },
   { path: "/spillemyndigheden", changefreq: "monthly", priority: 0.7 },
-  { path: "/om-teamet", changefreq: "monthly", priority: 0.6 },
+  { path: "/om", changefreq: "monthly", priority: 0.6 },
+  { path: "/forretningsmodel", changefreq: "monthly", priority: 0.6 },
+  { path: "/redaktionel-politik", changefreq: "monthly", priority: 0.6 },
   { path: "/contact", changefreq: "monthly", priority: 0.5 },
-  { path: "/forfatter", changefreq: "monthly", priority: 0.6 },
+  { path: "/forfatter/jonas", changefreq: "monthly", priority: 0.6 },
   { path: "/forfatter/kevin", changefreq: "monthly", priority: 0.6 },
   { path: "/saadan-tester-vi-casinoer", changefreq: "monthly", priority: 0.8 },
   { path: "/privacy", changefreq: "yearly", priority: 0.3 },

@@ -40,15 +40,27 @@ const OmTeamet = () => {
     "@type": "Organization",
     name: "Casinoaftaler.dk",
     url: "https://casinoaftaler.dk",
+    logo: "https://casinoaftaler.dk/favicon.ico",
     description:
       "Casinoaftaler.dk drives af et dedikeret team af aktive casino-streamere og content-specialister med praktisk erfaring fra det danske online casinomarked.",
     foundingDate: "2024",
+    sameAs: [
+      "https://www.twitch.tv/fedesvinansen",
+      "https://www.instagram.com/casinoaftaler",
+      "https://www.youtube.com/@casinoaftaler",
+    ],
+    contactPoint: {
+      "@type": "ContactPoint",
+      contactType: "customer support",
+      url: "https://casinoaftaler.dk/contact",
+      availableLanguage: "Danish",
+    },
     member: [
       {
         "@type": "Person",
         name: "Jonas",
         jobTitle: "Grundlægger & Indholdsansvarlig",
-        url: "https://casinoaftaler.dk/forfatter",
+        url: "https://casinoaftaler.dk/forfatter/jonas",
         sameAs: ["https://www.twitch.tv/fedesvinansen"],
       },
       {
@@ -74,7 +86,7 @@ const OmTeamet = () => {
         "@type": "ListItem",
         position: 2,
         name: "Om Teamet",
-        item: "https://casinoaftaler.dk/om-teamet",
+        item: "https://casinoaftaler.dk/om",
       },
     ],
   };
@@ -169,7 +181,7 @@ const OmTeamet = () => {
 
             {/* Profile images side-by-side */}
             <div className="mt-10 flex items-center justify-center gap-6 md:gap-10">
-              <Link to="/forfatter" className="group">
+              <Link to="/forfatter/jonas" className="group">
                 <div className="mx-auto h-28 w-28 overflow-hidden rounded-2xl border-4 border-white/20 transition-all duration-300 group-hover:border-white/50 group-hover:scale-105 md:h-36 md:w-36">
                   <img src={jonasImage} alt="Jonas – Grundlægger" className="h-full w-full object-cover object-top" loading="eager" />
                 </div>
@@ -371,7 +383,7 @@ const OmTeamet = () => {
                   Grundlægger af Casinoaftaler.dk og casino-streamer med over 4 års erfaring.
                   Ansvarlig for strategi, test og community.
                 </p>
-                <Link to="/forfatter">
+                <Link to="/forfatter/jonas">
                   <Button variant="outline" size="sm" className="w-full">
                     Se Jonas' fulde profil
                     <ArrowRight className="ml-1.5 h-4 w-4" />
@@ -481,6 +493,26 @@ const OmTeamet = () => {
             kommercielle samarbejder fra vores redaktionelle vurderinger, og vi oplyser tydeligt
             om alle bonusvilkår og betingelser.
           </p>
+          <div className="flex flex-wrap gap-3">
+            <Link to="/forretningsmodel">
+              <Button variant="outline" size="sm">
+                <Scale className="mr-1.5 h-4 w-4" />
+                Vores forretningsmodel
+              </Button>
+            </Link>
+            <Link to="/redaktionel-politik">
+              <Button variant="outline" size="sm">
+                <BookOpen className="mr-1.5 h-4 w-4" />
+                Redaktionel politik
+              </Button>
+            </Link>
+            <Link to="/contact">
+              <Button variant="outline" size="sm">
+                <MessageSquare className="mr-1.5 h-4 w-4" />
+                Kontakt
+              </Button>
+            </Link>
+          </div>
         </section>
       </div>
 
@@ -505,7 +537,7 @@ const OmTeamet = () => {
                 Sådan tester vi casinoer
               </Button>
             </Link>
-            <Link to="/forfatter">
+            <Link to="/forfatter/jonas">
               <Button variant="outline" size="lg" className="border-white/30 text-white bg-white/10 hover:bg-white/20 font-semibold">
                 Mød Jonas
                 <ArrowRight className="ml-2 h-5 w-5" />
@@ -523,7 +555,7 @@ const OmTeamet = () => {
 
       {/* ═══ RELATEREDE GUIDES ═══ */}
       <div className="container py-12 md:py-16">
-        <RelatedGuides currentPath="/om-teamet" maxLinks={6} />
+        <RelatedGuides currentPath="/om" maxLinks={6} />
       </div>
     </>
   );

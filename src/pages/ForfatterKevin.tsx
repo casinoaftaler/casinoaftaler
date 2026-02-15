@@ -260,7 +260,7 @@ export default function ForfatterKevin() {
           </h2>
           <p className="text-muted-foreground leading-relaxed mb-4">
             Kevin er 26 år og har streamet slots i mere end tre år. Han mødte{" "}
-            <Link to="/forfatter" className="text-primary hover:underline">Jonas</Link> gennem Twitch,
+            <Link to="/forfatter/jonas" className="text-primary hover:underline">Jonas</Link> gennem Twitch,
             hvor de hurtigt fandt fælles interesse for streaming, online casino og opbygning af engagerede
             communities. Siden har de samarbejdet på tværs af streams og udviklet et stærkt professionelt partnerskab.
           </p>
@@ -336,7 +336,7 @@ export default function ForfatterKevin() {
               </CardHeader>
               <CardContent className="text-sm text-muted-foreground">
                 Kevin følger ligesom{" "}
-                <Link to="/forfatter" className="text-primary hover:underline">Jonas</Link> tæt med i
+                <Link to="/forfatter/jonas" className="text-primary hover:underline">Jonas</Link> tæt med i
                 E-sport og holder øje med de største turneringer. Hans baggrund i FaZe Clan har givet
                 ham særlig interesse for gaming- og streamingmiljøet.
               </CardContent>

@@ -122,17 +122,30 @@ function getContextualGuides(currentPath: string): { guides: GuideLink[]; subtit
   const path = currentPath.toLowerCase();
 
   // Om teamet → specific curated links
-  if (path === "/om-teamet") {
+  if (path === "/om" || path === "/om-teamet") {
     return {
       guides: [
         { to: "/saadan-tester-vi-casinoer", label: "Sådan tester vi", icon: ShieldCheck, desc: "Vores testmetode og vurderingskriterier" },
         { to: "/contact", label: "Kontakt", icon: Globe, desc: "Kontakt teamet bag Casinoaftaler.dk" },
-        { to: "/forfatter", label: "Jonas – Forfatter", icon: BookOpen, desc: "Grundlægger og casino-streamer" },
+        { to: "/forfatter/jonas", label: "Jonas – Forfatter", icon: BookOpen, desc: "Grundlægger og casino-streamer" },
         { to: "/forfatter/kevin", label: "Kevin – Forfatter", icon: BookOpen, desc: "Casino-streamer og IT medansvarlig" },
         { to: "/responsible-gaming", label: "Ansvarligt Spil", icon: ShieldCheck, desc: "Spil sikkert og ansvarligt" },
         { to: "/spillemyndigheden", label: "Spillemyndigheden", icon: Landmark, desc: "Danmarks tilsynsmyndighed for spil" },
       ],
       subtitle: "Udforsk mere om teamet, vores metode og ansvarligt spil.",
+    };
+  }
+
+  // Forretningsmodel & Redaktionel politik
+  if (path === "/forretningsmodel" || path === "/redaktionel-politik") {
+    return {
+      guides: [
+        { to: "/om", label: "Om Teamet", icon: BookOpen, desc: "Mød teamet bag Casinoaftaler.dk" },
+        { to: "/saadan-tester-vi-casinoer", label: "Sådan tester vi", icon: ShieldCheck, desc: "Vores testmetode og vurderingskriterier" },
+        { to: path === "/forretningsmodel" ? "/redaktionel-politik" : "/forretningsmodel", label: path === "/forretningsmodel" ? "Redaktionel Politik" : "Forretningsmodel", icon: ShieldCheck, desc: path === "/forretningsmodel" ? "Vores redaktionelle retningslinjer" : "Sådan finansieres Casinoaftaler.dk" },
+        { to: "/responsible-gaming", label: "Ansvarligt Spil", icon: ShieldCheck, desc: "Spil sikkert og ansvarligt" },
+      ],
+      subtitle: "Udforsk mere om vores tilgang, metode og ansvarligt spil.",
     };
   }
 
