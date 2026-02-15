@@ -63,7 +63,7 @@ export function getBadgeInfo(badges: TwitchBadges | null) {
       key: "moderator",
       label: "Moderator",
       icon: "sword",
-      color: "bg-green-500/20 text-green-400 border-green-500/30",
+      color: "text-green-400",
       priority: 1,
     });
   }
@@ -73,7 +73,7 @@ export function getBadgeInfo(badges: TwitchBadges | null) {
       key: "vip",
       label: "VIP",
       icon: "gem",
-      color: "bg-pink-500/20 text-pink-400 border-pink-500/30",
+      color: "text-pink-400",
       priority: 2,
     });
   }
@@ -83,7 +83,7 @@ export function getBadgeInfo(badges: TwitchBadges | null) {
       key: "subscriber",
       label: "Subscriber",
       icon: "star",
-      color: "bg-purple-500/20 text-purple-400 border-purple-500/30",
+      color: "text-amber-400",
       priority: 3,
     });
   }
@@ -97,7 +97,7 @@ export function getBadgeInfo(badges: TwitchBadges | null) {
         key: "og_follower",
         label: "OG Follower",
         icon: "crown",
-        color: "bg-amber-500/20 text-amber-400 border-amber-500/30",
+        color: "text-amber-400",
         priority: 4,
       });
     } else if (days >= 365) {
@@ -105,7 +105,7 @@ export function getBadgeInfo(badges: TwitchBadges | null) {
         key: "year_follower",
         label: "1+ År Follower",
         icon: "award",
-        color: "bg-yellow-500/20 text-yellow-400 border-yellow-500/30",
+        color: "text-yellow-400",
         priority: 5,
       });
     } else {
@@ -113,7 +113,7 @@ export function getBadgeInfo(badges: TwitchBadges | null) {
         key: "follower",
         label: "Follower",
         icon: "heart",
-        color: "bg-red-500/20 text-red-400 border-red-500/30",
+        color: "text-red-400",
         priority: 6,
       });
     }
