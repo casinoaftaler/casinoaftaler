@@ -36,7 +36,7 @@ const SpilnuAnmeldelse = () => {
     <>
       <SEO title="Spilnu Anmeldelse 2026 – Bingo & Casino | Casinoaftaler" description="Komplet anmeldelse af Spilnu.dk. Del af Danske Spil, populær bingo, 700+ casinospil. Læs vores ærlige vurdering af denne traditionsrige danske platform." jsonLd={[articleSchema, faqJsonLd, reviewJsonLd]} />
 
-      <section className="relative overflow-hidden py-12 text-white md:py-20" style={{ backgroundImage: heroBackgroundImage ? `linear-gradient(135deg, hsl(120 40% 25% / 0.95), hsl(150 50% 20% / 0.9)), url(${heroBackgroundImage})` : "linear-gradient(135deg, hsl(120 40% 25%), hsl(140 45% 18%) 40%, hsl(150 50% 20%))", backgroundSize: "cover", backgroundPosition: "center" }}>
+      <section className="relative overflow-hidden py-12 text-white md:py-20" style={{ backgroundImage: heroBackgroundImage ? `linear-gradient(135deg, hsl(260 70% 25% / 0.95), hsl(210 80% 30% / 0.9)), url(${heroBackgroundImage})` : "linear-gradient(135deg, hsl(260 70% 25%), hsl(250 60% 20%) 40%, hsl(210 80% 25%))", backgroundSize: "cover", backgroundPosition: "center" }}>
         <div className="container"><div className="mx-auto max-w-3xl text-center">
           <Badge variant="secondary" className="mb-4"><ShieldCheck className="mr-1.5 h-3.5 w-3.5" />4.0 / 5 – Dansk Tradition</Badge>
           <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">Spilnu Anmeldelse 2026</h1>

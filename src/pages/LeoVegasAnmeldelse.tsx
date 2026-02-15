@@ -37,7 +37,7 @@ const LeoVegasAnmeldelse = () => {
   return (
     <>
       <SEO title="LeoVegas Anmeldelse 2026 – Mobilcasino, Bonus & Vurdering | Casinoaftaler" description="Komplet anmeldelse af LeoVegas – 'King of Mobile Casino'. MGM-ejet, 2.500+ spil, dansk licens og prisbevindende mobiloplevelse. Læs vores dybdegående test." jsonLd={[articleSchema, faqJsonLd, reviewJsonLd]} />
-      <section className="relative overflow-hidden py-12 text-white md:py-20" style={{ backgroundImage: heroBackgroundImage ? `linear-gradient(135deg, hsl(30 90% 45% / 0.92), hsl(20 80% 35% / 0.9)), url(${heroBackgroundImage})` : "linear-gradient(135deg, hsl(30 90% 45%), hsl(20 80% 35%) 40%, hsl(15 60% 28%))", backgroundSize: "cover", backgroundPosition: "center" }}>
+      <section className="relative overflow-hidden py-12 text-white md:py-20" style={{ backgroundImage: heroBackgroundImage ? `linear-gradient(135deg, hsl(260 70% 25% / 0.95), hsl(210 80% 30% / 0.9)), url(${heroBackgroundImage})` : "linear-gradient(135deg, hsl(260 70% 25%), hsl(250 60% 20%) 40%, hsl(210 80% 25%))", backgroundSize: "cover", backgroundPosition: "center" }}>
         <div className="container"><div className="mx-auto max-w-3xl text-center">
           <Badge variant="secondary" className="mb-4"><Crown className="mr-1.5 h-3.5 w-3.5" />4.5 / 5 – King of Mobile</Badge>
           <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">LeoVegas Casino Anmeldelse 2026</h1>
