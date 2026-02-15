@@ -48,12 +48,12 @@ const faqs = [
   {
     question: "Hvem er Kevin?",
     answer:
-      "Kevin er casino-streamer og medansvarlig hos Casinoaftaler.dk. Han har streamet slots i over 3 år og er kendt for sin rolige og afslappede stil.",
+      "Kevin er casino-streamer og IT medansvarlig hos Casinoaftaler.dk. Han har streamet slots i over 3 år og er kendt for sin rolige og afslappede stil.",
   },
   {
     question: "Hvad er Kevins rolle hos Casinoaftaler.dk?",
     answer:
-      "Kevin er medansvarlig for hjemmesiden og dens udvikling, samtidig med at han streamer casino på Twitch. Han bidrager aktivt til indhold og community.",
+      "Kevin er IT medansvarlig for hjemmesiden og dens udvikling, samtidig med at han streamer casino på Twitch. Han bidrager aktivt til indhold og community.",
   },
   {
     question: "Hvad er Kevins største gevinst?",
@@ -112,7 +112,7 @@ export default function ForfatterKevin() {
     "@context": "https://schema.org",
     "@type": "Person",
     name: "Kevin",
-    jobTitle: "Casino-streamer & Medansvarlig",
+    jobTitle: "Casino-streamer & IT Medansvarlig",
     worksFor: {
       "@type": "Organization",
       name: "Casinoaftaler.dk",
@@ -139,8 +139,8 @@ export default function ForfatterKevin() {
   return (
     <>
       <SEO
-        title="Kevin – Casino-streamer & Medansvarlig | Casinoaftaler.dk"
-        description="Mød Kevin – casino-streamer med 3 års erfaring og medansvarlig hos Casinoaftaler.dk. Læs om hans streamingstil, præferencer og anbefalede casinoer."
+        title="Kevin – Casino-streamer & IT Medansvarlig | Casinoaftaler.dk"
+        description="Mød Kevin – casino-streamer med 3 års erfaring og IT medansvarlig hos Casinoaftaler.dk. Læs om hans streamingstil, præferencer og anbefalede casinoer."
         jsonLd={[personJsonLd, faqJsonLd]}
       />
 
@@ -168,14 +168,14 @@ export default function ForfatterKevin() {
               </Badge>
               <Badge variant="secondary">
                 <Zap className="mr-1.5 h-3.5 w-3.5" />
-                Medansvarlig
+                IT Medansvarlig
               </Badge>
             </div>
             <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">
-              Kevin – Casino-streamer &amp; Medansvarlig
+              Kevin – Casino-streamer &amp; IT Medansvarlig
             </h1>
             <p className="text-lg text-white/80">
-              Casino-streamer, medansvarlig og udvikler hos Casinoaftaler.dk
+              Casino-streamer, IT medansvarlig og udvikler hos Casinoaftaler.dk
             </p>
           </div>
         </div>
@@ -190,7 +190,7 @@ export default function ForfatterKevin() {
             <div className="flex-shrink-0 mx-auto md:mx-0">
               <img
                 src={kevinImage}
-                alt="Kevin – Casino-streamer & medansvarlig hos Casinoaftaler.dk"
+                alt="Kevin – Casino-streamer & IT medansvarlig hos Casinoaftaler.dk"
                 className="w-64 h-64 rounded-2xl object-cover object-top shadow-lg"
                 loading="eager"
               />
@@ -243,7 +243,7 @@ export default function ForfatterKevin() {
               </div>
               <p className="text-muted-foreground leading-relaxed">
                 Kevin er 26 år og har været en del af det danske casino-streaming-miljø i over 3 år.
-                Som medansvarlig hos Casinoaftaler.dk bidrager han til både indhold, udvikling og community
+                Som IT medansvarlig hos Casinoaftaler.dk bidrager han til både indhold, udvikling og community
                 – altid med fokus på underholdning og gennemsigtighed.
               </p>
             </div>
@@ -275,7 +275,7 @@ export default function ForfatterKevin() {
             som stadig nævnes, når han dukker op på streamen.
           </p>
           <p className="text-muted-foreground leading-relaxed mb-4">
-            I dag er Kevin en fast del af <strong>Casinoaftaler.dk</strong> som streamer samt medansvarlig
+            I dag er Kevin en fast del af <strong>Casinoaftaler.dk</strong> som streamer samt IT medansvarlig
             for hjemmeside og udvikling. Han bringer sin tekniske baggrund og sit skarpe øje for detaljer
             ind i alt, hvad han laver.
           </p>
