@@ -32,7 +32,7 @@ export function AuthorBio() {
                 </Link>
                 <span className="inline-flex items-center gap-1 rounded-full bg-primary/10 px-2.5 py-0.5 text-xs font-medium text-primary">
                   <BadgeCheck className="h-3.5 w-3.5" />
-                  Verificeret forfatter
+                  Grundlægger &amp; indholdsansvarlig
                 </span>
               </div>
               <p className="text-sm font-medium text-muted-foreground">

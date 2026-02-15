@@ -197,6 +197,8 @@ const BonusUdenIndbetaling = () => {
           </p>
         </section>
 
+        <InlineCasinoCards title="Casinoer med bonus uden indbetaling" count={4} />
+
         <Separator className="my-10" />
 
         {/* Sådan fungerer det */}

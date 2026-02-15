@@ -255,6 +255,8 @@ const FreeSpins = () => {
           </p>
         </section>
 
+        <InlineCasinoCards title="Bedste casinoer med free spins" count={4} />
+
         <Separator className="my-10" />
 
         {/* Typer af Free Spins */}

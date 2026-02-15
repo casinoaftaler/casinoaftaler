@@ -203,6 +203,8 @@ const NoStickyBonus = () => {
           </p>
         </section>
 
+        <InlineCasinoCards title="Bedste casinoer med no-sticky bonus" count={4} />
+
         <Separator className="my-10" />
 
         {/* Sådan fungerer det */}

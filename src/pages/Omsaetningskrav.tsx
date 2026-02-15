@@ -219,6 +219,8 @@ const Omsaetningskrav = () => {
           </p>
         </section>
 
+        <InlineCasinoCards title="Casinoer med lave omsætningskrav" count={4} />
+
         <Separator className="my-10" />
 
         {/* Omsætningskrav og lovgivning */}
