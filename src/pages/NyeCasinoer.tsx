@@ -38,6 +38,7 @@ import {
   BookOpen,
 } from "lucide-react";
 
+const PARTNER_SLUGS = ["spildansknu", "spilleautomaten", "betinia", "campobet", "swift-casino", "luna-casino"];
 const PRIORITY_SLUGS = ["spildansknu", "spilleautomaten"];
 
 const DANISH_MONTHS = [
@@ -111,7 +112,7 @@ const NyeCasinoer = () => {
   const heroBackgroundImage = siteSettings?.hero_background_image;
 
   const newCasinos = casinos
-    ?.filter((c) => c.is_active)
+    ?.filter((c) => c.is_active && PARTNER_SLUGS.includes(c.slug))
     ?.sort((a, b) => {
       const aIdx = PRIORITY_SLUGS.indexOf(a.slug);
       const bIdx = PRIORITY_SLUGS.indexOf(b.slug);
@@ -119,8 +120,7 @@ const NyeCasinoer = () => {
       if (aIdx !== -1) return -1;
       if (bIdx !== -1) return 1;
       return new Date(b.created_at).getTime() - new Date(a.created_at).getTime();
-    })
-    ?.slice(0, 8) ?? [];
+    }) ?? [];
 
   const mapCasino = (casino: typeof newCasinos[0]) => ({
     id: casino.id,
