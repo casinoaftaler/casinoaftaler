@@ -58,6 +58,11 @@ const BetiniaAnmeldelse = lazy(() => import("./pages/BetiniaAnmeldelse"));
 const SwiftCasinoAnmeldelse = lazy(() => import("./pages/SwiftCasinoAnmeldelse"));
 const LunaCasinoAnmeldelse = lazy(() => import("./pages/LunaCasinoAnmeldelse"));
 const DanskeSpilAnmeldelse = lazy(() => import("./pages/DanskeSpilAnmeldelse"));
+const ComeOnAnmeldelse = lazy(() => import("./pages/ComeOnAnmeldelse"));
+const GetLuckyAnmeldelse = lazy(() => import("./pages/GetLuckyAnmeldelse"));
+const MrGreenAnmeldelse = lazy(() => import("./pages/MrGreenAnmeldelse"));
+const VideoslotsAnmeldelse = lazy(() => import("./pages/VideoslotsAnmeldelse"));
+const MrVegasAnmeldelse = lazy(() => import("./pages/MrVegasAnmeldelse"));
 const CasinoAnmeldelser = lazy(() => import("./pages/CasinoAnmeldelser"));
 const Casinospil = lazy(() => import("./pages/Casinospil"));
 const Spillemaskiner = lazy(() => import("./pages/Spillemaskiner"));
@@ -160,6 +165,11 @@ const App = () => (
                 <Route path="/luna-casino-anmeldelse" element={<LunaCasinoAnmeldelse />} />
                 <Route path="/casino-anmeldelser" element={<CasinoAnmeldelser />} />
                 <Route path="/casino-anmeldelser/danske-spil" element={<DanskeSpilAnmeldelse />} />
+                <Route path="/casino-anmeldelser/comeon" element={<ComeOnAnmeldelse />} />
+                <Route path="/casino-anmeldelser/getlucky" element={<GetLuckyAnmeldelse />} />
+                <Route path="/casino-anmeldelser/mr-green" element={<MrGreenAnmeldelse />} />
+                <Route path="/casino-anmeldelser/videoslots" element={<VideoslotsAnmeldelse />} />
+                <Route path="/casino-anmeldelser/mr-vegas" element={<MrVegasAnmeldelse />} />
                 <Route path="/casinospil" element={<Casinospil />} />
                 <Route path="/casinospil/spillemaskiner" element={<Spillemaskiner />} />
                 <Route path="/casinospil/spillemaskiner/hoej-rtp" element={<SpillemaskinerHoejRTP />} />

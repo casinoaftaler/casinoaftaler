@@ -436,6 +436,11 @@ export const Header = memo(function Header() {
                   <DropdownMenuSeparator />
                   {[
                     { to: "/casino-anmeldelser/danske-spil", label: "Danske Spil Casino" },
+                    { to: "/casino-anmeldelser/comeon", label: "ComeOn Casino" },
+                    { to: "/casino-anmeldelser/getlucky", label: "GetLucky Casino" },
+                    { to: "/casino-anmeldelser/mr-green", label: "Mr Green Casino" },
+                    { to: "/casino-anmeldelser/videoslots", label: "Videoslots Casino" },
+                    { to: "/casino-anmeldelser/mr-vegas", label: "Mr Vegas Casino" },
                     { to: "/spildansknu-anmeldelse", label: "SpilDanskNu" },
                     { to: "/spilleautomaten-anmeldelse", label: "Spilleautomaten" },
                     { to: "/betinia-anmeldelse", label: "Betinia" },

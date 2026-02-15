@@ -35,6 +35,11 @@ export const seoRoutes: SeoRoute[] = [
   { path: "/luna-casino-anmeldelse", changefreq: "weekly", priority: 0.9 },
   { path: "/spildansknu-anmeldelse", changefreq: "weekly", priority: 0.9 },
   { path: "/casino-anmeldelser/danske-spil", changefreq: "weekly", priority: 0.9 },
+  { path: "/casino-anmeldelser/comeon", changefreq: "weekly", priority: 0.9 },
+  { path: "/casino-anmeldelser/getlucky", changefreq: "weekly", priority: 0.9 },
+  { path: "/casino-anmeldelser/mr-green", changefreq: "weekly", priority: 0.9 },
+  { path: "/casino-anmeldelser/videoslots", changefreq: "weekly", priority: 0.9 },
+  { path: "/casino-anmeldelser/mr-vegas", changefreq: "weekly", priority: 0.9 },
 
   // ── Casino Spil & Live ──
   { path: "/live-casino", changefreq: "weekly", priority: 0.9 },
