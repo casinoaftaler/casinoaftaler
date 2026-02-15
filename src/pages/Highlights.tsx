@@ -38,8 +38,16 @@ function HighlightsHero() {
             </div>
           </div>
           <h1 className="mb-4 text-4xl font-bold md:text-5xl">Highlights</h1>
-          <p className="text-base text-white/80">
+          <p className="text-base text-white/80 mb-3">
             {description}
+          </p>
+          <p className="text-sm text-white/60">
+            Udforsk vores{" "}
+            <Link to="/community/slots" className="text-white/90 underline hover:text-white">gratis spillehal</Link>,
+            tjek{" "}
+            <Link to="/community/leaderboard" className="text-white/90 underline hover:text-white">turneringerne</Link> eller
+            lær om{" "}
+            <Link to="/casino-bonus" className="text-white/90 underline hover:text-white">casino bonusser</Link>.
           </p>
         </div>
       </div>

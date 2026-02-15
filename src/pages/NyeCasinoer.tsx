@@ -268,12 +268,17 @@ const NyeCasinoer = () => {
             vores liste har dansk licens fra Spillemyndigheden, SSL-kryptering og
             overholder gældende lovgivning.
           </p>
-          <p className="text-muted-foreground leading-relaxed">
+          <p className="mb-4 text-muted-foreground leading-relaxed">
             Vores mål er at give dig et ærligt og pålideligt billede, så du kan tage
             en informeret beslutning, når du vælger dit næste spillested. Læs også vores{" "}
             <Link to="/casino-bonus" className={linkClass}>casino bonus guide</Link> for at forstå de forskellige bonustyper, eller se vores dybdegående artikler om{" "}
             <Link to="/omsaetningskrav" className={linkClass}>omsætningskrav</Link> og{" "}
             <Link to="/free-spins" className={linkClass}>free spins</Link>.
+          </p>
+          <p className="text-muted-foreground leading-relaxed">
+            Mens du undersøger nye casinoer, kan du prøve vores{" "}
+            <Link to="/community/slots" className={linkClass}>gratis spilleautomater i spillehallen</Link>{" "}
+            og opleve bonusrunder og free spins helt uden risiko.
           </p>
         </section>
 

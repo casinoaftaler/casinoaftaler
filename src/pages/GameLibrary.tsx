@@ -279,8 +279,15 @@ function GameLibraryHero() {
           <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-white">
             Spillehal
           </h1>
-          <p className="text-white/70 text-base md:text-lg max-w-lg mx-auto">
+          <p className="text-white/70 text-base md:text-lg max-w-lg mx-auto mb-2">
             Vælg et spil og begynd at spille. Optjen point og kæmp om pladserne på ranglisten!
+          </p>
+          <p className="text-white/50 text-sm max-w-md mx-auto">
+            Lær om{" "}
+            <Link to="/casino-bonus" className="text-white/80 underline hover:text-white">casino bonusser</Link>,{" "}
+            <Link to="/free-spins" className="text-white/80 underline hover:text-white">free spins</Link> og{" "}
+            <Link to="/omsaetningskrav" className="text-white/80 underline hover:text-white">omsætningskrav</Link>{" "}
+            i vores guides.
           </p>
           
           {/* Credit refill countdown */}

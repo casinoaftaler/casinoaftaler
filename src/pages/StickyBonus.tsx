@@ -232,12 +232,18 @@ const StickyBonus = () => {
             du optjener ud over bonusbeløbet, efter omsætningskravene er
             opfyldt. Ved udbetaling trækkes bonusbeløbet fra din saldo.
           </p>
-          <p className="text-muted-foreground leading-relaxed">
+          <p className="mb-4 text-muted-foreground leading-relaxed">
             Til gengæld er casinoerne ofte mere gavmilde med Sticky Bonusser.
             Det er ikke ualmindeligt at se matchbonusser på 100% eller mere,
             fordi casinoet har større sikkerhed for, at du spiller pengene
             igennem. Det gør Sticky Bonusser ideelle for spillere, der
             ønsker et større spillebudget.
+          </p>
+          <p className="text-muted-foreground leading-relaxed">
+            Vil du forstå, hvordan bonusmekanikker fungerer i praksis? Prøv vores{" "}
+            <Link to="/community/slots" className="text-primary hover:underline">gratis spilleautomater i spillehallen</Link>
+            , hvor du kan opleve free spins og bonusrunder helt risikofrit, eller se de bedste øjeblikke på vores{" "}
+            <Link to="/highlights" className="text-primary hover:underline">highlights-side</Link>.
           </p>
         </section>
 

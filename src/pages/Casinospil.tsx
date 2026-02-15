@@ -286,6 +286,11 @@ const Casinospil = () => {
             80 % af alle casinospil på danske online casinoer. Grunden er enkel:
             spilleautomater er nemme at forstå, kræver ingen kompliceret strategi
             og tilbyder alt fra underholdende temaer til massive jackpots.
+            Vil du prøve spilleautomater helt gratis?{" "}
+            <Link to="/community/slots" className={linkClass}>
+              Besøg vores spillehal
+            </Link>{" "}
+            og test vores egne slots uden risiko.
           </p>
           <p className="mb-4 text-muted-foreground leading-relaxed">
             Moderne spilleautomater fås i mange varianter: klassiske 3-hjuls

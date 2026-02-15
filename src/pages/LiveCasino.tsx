@@ -236,10 +236,17 @@ const LiveCasino = () => {
           <p className="mb-4 text-muted-foreground leading-relaxed">
             Forskellen mellem et live casino og almindelige online casinospil ligger i interaktiviteten. Du kan chatte med dealeren og andre spillere, og følelsen af at være "til stede" gør hele forskellen. Det er perfekt for dig, der elsker casinospil, men ikke vil gå glip af den sociale dimension, som man normalt kun finder i fysiske casinoer.
           </p>
-          <p className="text-muted-foreground leading-relaxed">
+          <p className="mb-4 text-muted-foreground leading-relaxed">
             Gennem denne guide dækker vi alt, du har brug for at vide om live casino i Danmark. Vi gennemgår, hvordan du kommer i gang, hvilke spil der er populære, de førende{" "}
             <Link to="/spiludviklere" className="text-primary hover:underline font-medium">spiludviklere</Link>
             {" "}bag spillene, og hvilke casinoer der leverer de bedste live oplevelser til danske spillere.
+          </p>
+          <p className="text-muted-foreground leading-relaxed">
+            Se de bedste casino-øjeblikke fra vores streams på{" "}
+            <Link to="/highlights" className="text-primary hover:underline font-medium">vores highlights-side</Link>
+            , eller prøv vores egne{" "}
+            <Link to="/community/slots" className="text-primary hover:underline font-medium">gratis spilleautomater</Link>{" "}
+            i spillehallen.
           </p>
         </section>
 

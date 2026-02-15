@@ -247,11 +247,19 @@ const Omsaetningskrav = () => {
             forhindrer, at nogen blot sætter penge ind og trækker dem ud
             med det samme for at give dem et legitimt udseende.
           </p>
-          <p className="text-muted-foreground leading-relaxed">
+          <p className="mb-4 text-muted-foreground leading-relaxed">
             For bonusser har Spillemyndigheden i Danmark sat et maksimalt
             loft på 10x. Det sikrer, at casinoer med dansk licens tilbyder
             rimelige vilkår for deres spillere – et krav der er unikt for
             det danske marked og en stor fordel for danske spillere.
+          </p>
+          <p className="text-muted-foreground leading-relaxed">
+            Vil du forstå, hvordan omsætningskrav fungerer i praksis? I vores{" "}
+            <Link to="/community/slots" className="text-primary underline hover:text-primary/80">
+              gratis spillehal
+            </Link>{" "}
+            kan du prøve spilleautomater med bonusrunder og se, hvordan spins
+            akkumulerer – helt uden at risikere rigtige penge.
           </p>
         </section>
 
