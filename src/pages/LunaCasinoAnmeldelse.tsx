@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { FAQSection } from "@/components/FAQSection";
 import { SEO } from "@/components/SEO";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -155,11 +156,7 @@ const LunaCasinoAnmeldelse = () => {
       </section>
 
       <div className="container py-8 md:py-12">
-        <div className="mb-8 flex flex-wrap items-center gap-x-6 gap-y-2 text-sm text-muted-foreground">
-          <div className="flex items-center gap-1.5"><User className="h-4 w-4" /><span>Skrevet af: <span className="font-medium text-foreground">Casinoaftaler</span></span></div>
-          <div className="flex items-center gap-1.5"><CalendarDays className="h-4 w-4" /><span>Opdateret: <span className="font-medium text-foreground">13-02-2026</span></span></div>
-          <div className="flex items-center gap-1.5"><BookOpen className="h-4 w-4" /><span>Læsetid: <span className="font-medium text-foreground">16 Min.</span></span></div>
-        </div>
+        <AuthorMetaBar author="redaktionen" date="13-02-2026" readTime="16 Min." />
 
         <div className="mb-10 overflow-hidden rounded-xl">
           <img src={lunaHero} alt="Luna Casino – kvalitetsbevidst dansk casino med loyalitetsprogram" className="w-full h-auto object-cover max-h-[400px]" loading="eager" />

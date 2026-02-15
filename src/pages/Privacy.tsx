@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { Shield, Lock, Eye, FileText, Calendar, User, CalendarDays, BookOpen } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -90,21 +91,7 @@ const Privacy = () => {
       </section>
 
       <div className="container py-8 md:py-12">
-        {/* Meta info bar */}
-        <div className="mb-8 flex flex-wrap items-center gap-x-6 gap-y-2 text-sm text-muted-foreground">
-          <div className="flex items-center gap-1.5">
-            <User className="h-4 w-4" />
-            <span>Skrevet af: <span className="font-medium text-foreground">Casinoaftaler</span></span>
-          </div>
-          <div className="flex items-center gap-1.5">
-            <CalendarDays className="h-4 w-4" />
-            <span>Sidst opdateret: <span className="font-medium text-foreground">14-02-2026</span></span>
-          </div>
-          <div className="flex items-center gap-1.5">
-            <BookOpen className="h-4 w-4" />
-            <span>Læsetid: <span className="font-medium text-foreground">5 Min.</span></span>
-          </div>
-        </div>
+        <AuthorMetaBar author="redaktionen" date="14-02-2026" readTime="5 Min." />
 
         {/* Hero image */}
         <div className="mb-10 overflow-hidden rounded-xl">

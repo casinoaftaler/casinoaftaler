@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { Link } from "react-router-dom";
 import { FAQSection } from "@/components/FAQSection";
 import { SEO } from "@/components/SEO";
@@ -170,30 +171,7 @@ const Casinospil = () => {
       </section>
 
       <div className="container py-8 md:py-12">
-        {/* Meta info bar */}
-        <div className="mb-8 flex flex-wrap items-center gap-x-6 gap-y-2 text-sm text-muted-foreground">
-          <div className="flex items-center gap-1.5">
-            <User className="h-4 w-4" />
-            <span>
-              Skrevet af:{" "}
-              <span className="font-medium text-foreground">Casinoaftaler</span>
-            </span>
-          </div>
-          <div className="flex items-center gap-1.5">
-            <CalendarDays className="h-4 w-4" />
-            <span>
-              Siden opdateret:{" "}
-              <span className="font-medium text-foreground">13-02-2026</span>
-            </span>
-          </div>
-          <div className="flex items-center gap-1.5">
-            <BookOpen className="h-4 w-4" />
-            <span>
-              Læsetid:{" "}
-              <span className="font-medium text-foreground">10 Min.</span>
-            </span>
-          </div>
-        </div>
+        <AuthorMetaBar author="jonas" date="13-02-2026" readTime="10 Min." />
 
         {/* Hero Image */}
         <div className="mb-10 overflow-hidden rounded-xl">

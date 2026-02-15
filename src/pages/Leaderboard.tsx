@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { Link } from "react-router-dom";
 import { SEO } from "@/components/SEO";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
@@ -411,21 +412,7 @@ export default function Leaderboard() {
       </section>
 
       <div className="container py-8 md:py-12">
-        {/* Meta info bar */}
-        <div className="mb-8 flex flex-wrap items-center gap-x-6 gap-y-2 text-sm text-muted-foreground">
-          <div className="flex items-center gap-1.5">
-            <User className="h-4 w-4" />
-            <span>Skrevet af: <span className="font-medium text-foreground">Casinoaftaler</span></span>
-          </div>
-          <div className="flex items-center gap-1.5">
-            <CalendarDays className="h-4 w-4" />
-            <span>Siden opdateret: <span className="font-medium text-foreground">15-02-2026</span></span>
-          </div>
-          <div className="flex items-center gap-1.5">
-            <BookOpen className="h-4 w-4" />
-            <span>Læsetid: <span className="font-medium text-foreground">2 Min.</span></span>
-          </div>
-        </div>
+        <AuthorMetaBar author="redaktionen" date="15-02-2026" readTime="2 Min." />
 
         {tournamentsLoading ? (
           <div className="max-w-5xl mx-auto space-y-4">
