@@ -52,6 +52,11 @@ export const seoRoutes: SeoRoute[] = [
   { path: "/casino-anmeldelser/nordicbet", changefreq: "weekly", priority: 0.9 },
   { path: "/casino-anmeldelser/one-casino", changefreq: "weekly", priority: 0.9 },
   { path: "/casino-anmeldelser/spilnu", changefreq: "weekly", priority: 0.9 },
+  { path: "/casino-anmeldelser/stake-casino", changefreq: "weekly", priority: 0.9 },
+  { path: "/casino-anmeldelser/casinostuen", changefreq: "weekly", priority: 0.9 },
+  { path: "/casino-anmeldelser/pokerstars", changefreq: "weekly", priority: 0.9 },
+  { path: "/casino-anmeldelser/bwin", changefreq: "weekly", priority: 0.9 },
+  { path: "/casino-anmeldelser/marathonbet", changefreq: "weekly", priority: 0.9 },
 
   // ── Casino Spil & Live ──
   { path: "/live-casino", changefreq: "weekly", priority: 0.9 },

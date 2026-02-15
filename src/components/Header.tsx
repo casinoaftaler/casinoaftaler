@@ -459,6 +459,11 @@ export const Header = memo(function Header() {
                     { to: "/casino-anmeldelser/nordicbet", label: "NordicBet" },
                     { to: "/casino-anmeldelser/one-casino", label: "One Casino" },
                     { to: "/casino-anmeldelser/spilnu", label: "Spilnu" },
+                    { to: "/casino-anmeldelser/stake-casino", label: "Stake Casino" },
+                    { to: "/casino-anmeldelser/casinostuen", label: "Casinostuen" },
+                    { to: "/casino-anmeldelser/pokerstars", label: "PokerStars" },
+                    { to: "/casino-anmeldelser/bwin", label: "bwin" },
+                    { to: "/casino-anmeldelser/marathonbet", label: "MarathonBet" },
                   ].map((item) => (
                     <DropdownMenuItem key={item.to} asChild>
                       <Link to={item.to} className="flex items-center gap-2">
@@ -883,6 +888,11 @@ export const Header = memo(function Header() {
                       { to: "/casino-anmeldelser/nordicbet", label: "NordicBet" },
                       { to: "/casino-anmeldelser/one-casino", label: "One Casino" },
                       { to: "/casino-anmeldelser/spilnu", label: "Spilnu" },
+                      { to: "/casino-anmeldelser/stake-casino", label: "Stake Casino" },
+                      { to: "/casino-anmeldelser/casinostuen", label: "Casinostuen" },
+                      { to: "/casino-anmeldelser/pokerstars", label: "PokerStars" },
+                      { to: "/casino-anmeldelser/bwin", label: "bwin" },
+                      { to: "/casino-anmeldelser/marathonbet", label: "MarathonBet" },
                     ].map((item) => (
                       <Link key={item.to} to={item.to} className="ml-10 flex items-center gap-2 py-2 text-sm text-muted-foreground transition-colors hover:text-primary" onClick={() => setMobileMenuOpen(false)}>
                         <Star className="h-3 w-3" />
