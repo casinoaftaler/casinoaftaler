@@ -7,9 +7,9 @@ export function BonusTypeCards() {
   return (
     <section className="py-16">
       <div className="container">
-        <div className="mb-12 text-center">
+        <div className="mb-12">
           <h2 className="mb-4 text-3xl font-bold">Forstå Bonustyper</h2>
-          <p className="mx-auto max-w-2xl text-muted-foreground">
+          <p className="max-w-2xl text-muted-foreground">
             Ikke alle casinobonusser er skabt lige. Lær forskellen mellem de
             vigtigste bonustyper for at træffe informerede beslutninger.
           </p>
