@@ -294,26 +294,6 @@ export const Header = memo(function Header() {
                   Om Teamet
                 </Link>
               </DropdownMenuItem>
-              <DropdownMenuSub>
-                <DropdownMenuSubTrigger className="flex items-center gap-2">
-                  <User className="h-4 w-4" />
-                  Forfattere
-                </DropdownMenuSubTrigger>
-                <DropdownMenuSubContent className="bg-popover">
-                  <DropdownMenuItem asChild>
-                    <Link to="/forfatter/jonas" className="flex items-center gap-2">
-                      <User className="h-4 w-4" />
-                      Jonas – Grundlægger
-                    </Link>
-                  </DropdownMenuItem>
-                  <DropdownMenuItem asChild>
-                    <Link to="/forfatter/kevin" className="flex items-center gap-2">
-                      <User className="h-4 w-4" />
-                      Kevin – IT Medansvarlig
-                    </Link>
-                  </DropdownMenuItem>
-                </DropdownMenuSubContent>
-              </DropdownMenuSub>
               <DropdownMenuItem asChild>
                 <Link to="/saadan-tester-vi-casinoer" className="flex items-center gap-2">
                   <Scale className="h-4 w-4" />
@@ -350,6 +330,26 @@ export const Header = memo(function Header() {
                   Kontakt
                 </Link>
               </DropdownMenuItem>
+              <DropdownMenuSub>
+                <DropdownMenuSubTrigger className="flex items-center gap-2">
+                  <User className="h-4 w-4" />
+                  Forfattere
+                </DropdownMenuSubTrigger>
+                <DropdownMenuSubContent className="bg-popover">
+                  <DropdownMenuItem asChild>
+                    <Link to="/forfatter/jonas" className="flex items-center gap-2">
+                      <User className="h-4 w-4" />
+                      Jonas – Grundlægger
+                    </Link>
+                  </DropdownMenuItem>
+                  <DropdownMenuItem asChild>
+                    <Link to="/forfatter/kevin" className="flex items-center gap-2">
+                      <User className="h-4 w-4" />
+                      Kevin – IT Medansvarlig
+                    </Link>
+                  </DropdownMenuItem>
+                </DropdownMenuSubContent>
+              </DropdownMenuSub>
               <DropdownMenuSeparator />
               <DropdownMenuSub>
                 <DropdownMenuSubTrigger className="flex items-center gap-2">
@@ -725,14 +725,6 @@ export const Header = memo(function Header() {
                   <Users className="h-4 w-4" />
                   Om Teamet
                 </Link>
-                <Link to="/forfatter/jonas" className="ml-6 flex items-center gap-2 py-2.5 text-sm text-muted-foreground transition-colors hover:text-primary" onClick={() => setMobileMenuOpen(false)}>
-                  <User className="h-4 w-4" />
-                  Jonas – Grundlægger
-                </Link>
-                <Link to="/forfatter/kevin" className="ml-6 flex items-center gap-2 py-2.5 text-sm text-muted-foreground transition-colors hover:text-primary" onClick={() => setMobileMenuOpen(false)}>
-                  <User className="h-4 w-4" />
-                  Kevin – IT Medansvarlig
-                </Link>
                 <Link to="/saadan-tester-vi-casinoer" className="ml-6 flex items-center gap-2 py-2.5 text-sm text-muted-foreground transition-colors hover:text-primary" onClick={() => setMobileMenuOpen(false)}>
                   <Scale className="h-4 w-4" />
                   Sådan tester vi
@@ -756,6 +748,14 @@ export const Header = memo(function Header() {
                 <Link to="/contact" className="ml-6 flex items-center gap-2 py-2.5 text-sm text-muted-foreground transition-colors hover:text-primary" onClick={() => setMobileMenuOpen(false)}>
                   <Mail className="h-4 w-4" />
                   Kontakt
+                </Link>
+                <Link to="/forfatter/jonas" className="ml-6 flex items-center gap-2 py-2.5 text-sm text-muted-foreground transition-colors hover:text-primary" onClick={() => setMobileMenuOpen(false)}>
+                  <User className="h-4 w-4" />
+                  Jonas – Grundlægger
+                </Link>
+                <Link to="/forfatter/kevin" className="ml-6 flex items-center gap-2 py-2.5 text-sm text-muted-foreground transition-colors hover:text-primary" onClick={() => setMobileMenuOpen(false)}>
+                  <User className="h-4 w-4" />
+                  Kevin – IT Medansvarlig
                 </Link>
                 <button
                   onClick={() => setPaymentsExpanded(!paymentsExpanded)}
