@@ -301,6 +301,12 @@ export const Header = memo(function Header() {
                 </Link>
               </DropdownMenuItem>
               <DropdownMenuItem asChild>
+                <Link to="/saadan-tester-vi-casinoer" className="flex items-center gap-2">
+                  <Scale className="h-4 w-4" />
+                  Sådan tester vi
+                </Link>
+              </DropdownMenuItem>
+              <DropdownMenuItem asChild>
                 <Link to="/contact" className="flex items-center gap-2">
                   <Mail className="h-4 w-4" />
                   Kontakt
