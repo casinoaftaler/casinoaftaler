@@ -91,7 +91,22 @@ const danskeSpilFaqs: { question: string; answer: ReactNode }[] = [
     answer:
       "Ja, Danske Spil Casino har en dedikeret mobilapp til både iOS og Android samt en fuldt responsiv hjemmeside, der fungerer i alle mobilbrowsere. Appen er veldesignet med hurtig navigation, nem adgang til alle spil og fuld funktionalitet for ind- og udbetalinger. Push-notifikationer holder dig opdateret om nye kampagner og bonusser. Mobiloplevelsen hos Danske Spil er blandt de bedste på det danske marked, hvilket afspejler den store investering i brugeroplevelse, som en statsligt forankret operatør kan tilbyde.",
   },
+  {
+    question: "Hvordan opretter man en konto hos Danske Spil Casino?",
+    answer: (
+      <>
+        Oprettelse af en konto hos Danske Spil Casino foregår via MitID, hvilket gør processen hurtig og sikker. Du skal være fyldt 18 år og have dansk CPR-nummer. Registreringen tager typisk under 3 minutter: besøg danskespil.dk, vælg "Opret konto", verificer med MitID og sæt dine personlige spilgrænser. Det er et lovkrav at sætte ind- og tabsgrænser inden du begynder at spille – et tiltag der understreger Danske Spils fokus på{" "}
+        <Link to="/responsible-gaming" className={linkClass}>ansvarligt spil</Link>. Herefter kan du straks indbetale og begynde at spille.
+      </>
+    ),
+  },
+  {
+    question: "Har Danske Spil Casino et loyalitetsprogram eller VIP-ordning?",
+    answer:
+      "Danske Spil Casino kører løbende kampagner og sæsonbestemte tilbud til eksisterende spillere, herunder free spins, indbetalingsbonusser og særlige turneringer. Selvom platformen ikke har et traditionelt VIP-program med niveauer og eksklusive account managers, kompenserer de med regelmæssige promotions, der er tilgængelige for alle spillere. Denne egalitære tilgang passer til Danske Spils filosofi om at behandle alle spillere ens og undgå at incentivere overdrevent spil gennem VIP-belønninger.",
+  },
 ];
+
 
 const DanskeSpilAnmeldelse = () => {
   const { data: siteSettings } = useSiteSettings();
@@ -178,7 +193,7 @@ const DanskeSpilAnmeldelse = () => {
       </section>
 
       <div className="container py-8 md:py-12">
-        <AuthorMetaBar author="jonas" date="15-02-2026" readTime="14 Min." />
+        <AuthorMetaBar author="jonas" date="15-02-2026" readTime="22 Min." />
 
         <div className="mb-10 overflow-hidden rounded-xl">
           <img src={danskeSpilHero} alt="Danske Spil Casino – Danmarks statsligt forankrede online casino" className="w-full h-auto object-cover max-h-[400px]" loading="eager" />
@@ -243,11 +258,14 @@ const DanskeSpilAnmeldelse = () => {
             <Link to="/casinospil/spillemaskiner" className={linkClass}>spilleautomater</Link>, bordspil og{" "}
             <Link to="/live-casino" className={linkClass}>live casino</Link> fra internationalt anerkendte udbydere. Spiloplevelsen er poleret og brugervenlig med særligt fokus på mobiloplevelsen, hvor Danske Spils dedikerede app er blandt de mest downloadede i Danmark.
           </p>
-          <p className="text-muted-foreground leading-relaxed">
+          <p className="mb-4 text-muted-foreground leading-relaxed">
             I denne anmeldelse gennemgår vi alle aspekter af Danske Spil Casino – fra{" "}
             <Link to="/velkomstbonus" className={linkClass}>bonus</Link> og spiludvalg til{" "}
             <Link to="/betalingsmetoder" className={linkClass}>betalingsmetoder</Link>, sikkerhed og kundeservice – baseret på vores{" "}
             <Link to="/saadan-tester-vi-casinoer" className={linkClass}>grundige testmetode</Link>. Vores mål er at give dig et ærligt og nuanceret billede af, hvad du kan forvente som spiller hos Danske Spil.
+          </p>
+          <p className="text-muted-foreground leading-relaxed">
+            Det er værd at bemærke, at Danske Spil Casino adskiller sig fundamentalt fra de fleste konkurrenter i kraft af sit ejerskab. Mens private casinoer primært drives af profitmotiver, har Danske Spil en dobbelt mission: at tilbyde underholdning og samtidig bidrage til det danske samfund. En betydelig del af overskuddet kanaliseres til almennyttige formål inden for sport, kultur og frivillighed. Det giver en helt anderledes kontekst for din spiloplevelse – du spiller på en platform, der investerer i Danmark, ikke kun i sine aktionærer.
           </p>
         </section>
 
@@ -354,11 +372,63 @@ const DanskeSpilAnmeldelse = () => {
               </div>
             </CardContent>
           </Card>
+          <p className="mt-4 text-sm text-muted-foreground leading-relaxed">
+            En vigtig detalje er, at Danske Spil Casino typisk kører periodiske kampagner, hvor eksisterende spillere kan få{" "}
+            <Link to="/free-spins" className={linkClass}>free spins</Link> eller{" "}
+            <Link to="/indskudsbonus" className={linkClass}>indbetalingsbonusser</Link> på udvalgte spil. Disse tilbud annonceres via appen, e-mail og direkte på platformen. Selvom frekvensen af kampagner er lavere end hos aggressive nye operatører, er kvaliteten typisk høj med rimelige vilkår. Det er en bevidst strategi fra Danske Spils side – de ønsker ikke at incentivere overdrevent spil, men belønner loyale spillere med meningsfulde tilbud.
+          </p>
+          <p className="mt-4 text-sm text-muted-foreground leading-relaxed">
+            <strong>Tip:</strong> Hold øje med sæsonbestemte kampagner omkring jul, påske og store sportsbegivenheder. Danske Spil er kendt for at lancere særlige tilbud i forbindelse med disse perioder, ofte med lavere omsætningskrav eller ekstra free spins på nye spiltitler. Sammenlignet med{" "}
+            <Link to="/bonus-uden-omsaetningskrav" className={linkClass}>bonusser uden omsætningskrav</Link> hos andre operatører, er Danske Spils tilbud mere standardiserede, men også mere forudsigelige.
+          </p>
         </section>
 
         <Separator className="my-10" />
 
-        {/* Game Selection */}
+        {/* Registration Guide */}
+        <section className="mb-12">
+          <h2 className="mb-4 text-3xl font-bold">Sådan opretter du en konto hos Danske Spil Casino</h2>
+          <p className="mb-6 text-muted-foreground leading-relaxed">
+            Registreringsprocessen hos Danske Spil Casino er designet til at være hurtig, sikker og i fuld overensstemmelse med dansk lovgivning. I modsætning til mange internationale casinoer, hvor du manuelt skal uploade dokumenter til verifikation, bruger Danske Spil MitID – Danmarks nationale digitale ID-løsning. Det betyder, at din identitet verificeres øjeblikkeligt, og du kan begynde at spille inden for få minutter.
+          </p>
+
+          <Card className="border-border bg-card mb-6">
+            <CardHeader className="pb-2">
+              <CardTitle className="flex items-center gap-2 text-lg">
+                <Users className="h-5 w-5 text-primary" />
+                Trin-for-trin registrering
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              <div className="space-y-3">
+                {[
+                  { step: "1", title: "Besøg danskespil.dk", desc: "Gå til Danske Spils officielle hjemmeside og klik på 'Opret konto' i øverste højre hjørne." },
+                  { step: "2", title: "Verificer med MitID", desc: "Log ind med dit MitID (app eller nøglekort). Din identitet og alder verificeres automatisk – ingen dokumentupload nødvendig." },
+                  { step: "3", title: "Sæt spilgrænser", desc: "Du skal lovmæssigt fastsætte daglige, ugentlige og månedlige ind- og tabsgrænser. Danske Spil guider dig igennem processen." },
+                  { step: "4", title: "Vælg betalingsmetode", desc: "Tilknyt MobilePay, Dankort eller en anden betalingsmetode til din konto for hurtige ind- og udbetalinger." },
+                  { step: "5", title: "Begynd at spille", desc: "Din konto er nu aktiv. Foretag din første indbetaling og udforsk casinoets spiludvalg." },
+                ].map((item) => (
+                  <div key={item.step} className="flex items-start gap-3">
+                    <span className="flex h-7 w-7 flex-shrink-0 items-center justify-center rounded-full bg-primary text-sm font-bold text-primary-foreground">
+                      {item.step}
+                    </span>
+                    <div>
+                      <h4 className="font-semibold text-foreground">{item.title}</h4>
+                      <p className="text-sm text-muted-foreground">{item.desc}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </CardContent>
+          </Card>
+
+          <p className="text-sm text-muted-foreground leading-relaxed">
+            <strong>Vigtigt:</strong> Du skal være fyldt 18 år og have dansk CPR-nummer for at oprette en konto. Danske Spil accepterer ikke spillere bosiddende uden for Danmark. Denne begrænsning er en del af den danske spillelovgivning og sikrer, at alle spillere er beskyttet af danske regler for{" "}
+            <Link to="/responsible-gaming" className={linkClass}>ansvarligt spil</Link>.
+          </p>
+        </section>
+
+        <Separator className="my-10" />
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold">Spiludvalg hos Danske Spil Casino</h2>
           <p className="mb-6 text-muted-foreground leading-relaxed">
@@ -413,9 +483,22 @@ const DanskeSpilAnmeldelse = () => {
             </Card>
           </div>
 
-          <p className="mt-4 text-sm text-muted-foreground">
+          <p className="mt-4 text-sm text-muted-foreground leading-relaxed">
             <strong>Perspektiv:</strong> Sammenlignet med internationale private operatører har Danske Spil et lidt smallere spiludvalg. Men alle tilgængelige spil er nøje udvalgt og godkendt til det danske marked. For spillere, der prioriterer kvalitet og sikkerhed over kvantitet, er det en fornuftig afvejning. Se vores oversigt over{" "}
             <Link to="/spiludviklere" className={linkClass}>spiludviklere</Link>.
+          </p>
+
+          <h3 className="mt-6 mb-3 text-xl font-bold">RTP og volatilitet hos Danske Spil Casino</h3>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            Return to Player (RTP) er en afgørende faktor, når du vælger spilleautomater. Hos Danske Spil Casino ligger RTP-niveauerne typisk mellem 94 % og 97 %, hvilket er i overensstemmelse med branchestandarderne. Populære titler som Starburst (RTP: 96,09 %), Book of Dead (RTP: 96,21 %) og Gonzo's Quest (RTP: 95,97 %) er alle tilgængelige med deres originale RTP-værdier, som er fastsat af{" "}
+            <Link to="/spiludviklere" className={linkClass}>spiludviklerene</Link>.
+          </p>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            Det er vigtigt at forstå forskellen mellem volatilitet og RTP. Spilleautomater med{" "}
+            <Link to="/casinospil/spillemaskiner/hoej-rtp" className={linkClass}>høj RTP</Link> giver statistisk set mere tilbage over tid, men volatiliteten bestemmer, hvordan gevinsterne fordeles. Hos Danske Spil finder du et godt mix af lavvolatile spil (hyppige, mindre gevinster) og højvolatile spil (sjældnere, men større gevinster), så du kan vælge efter din foretrukne spillestil og risikoprofil.
+          </p>
+          <p className="text-muted-foreground leading-relaxed">
+            En fordel ved Danske Spil Casino er, at de som reguleret dansk operatør ikke har mulighed for at justere RTP-niveauer nedad – noget der forekommer hos visse internationale casinoer. Spillemyndighedens kontrol sikrer, at du altid spiller med de officielle RTP-værdier, hvilket giver en ekstra tryghed i din spiloplevelse.
           </p>
         </section>
 
@@ -570,9 +653,26 @@ const DanskeSpilAnmeldelse = () => {
 
         <Separator className="my-10" />
 
+        {/* History Section */}
+        <section className="mb-12">
+          <h2 className="mb-4 text-3xl font-bold">Danske Spils historie – fra Lotto til online casino</h2>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            For fuldt ud at forstå Danske Spil Casino er det nyttigt at kende virksomhedens historie. Danske Spil A/S blev grundlagt i 1948 som "Dansk Tipstjeneste" med det formål at kanalisere danskernes spiludgifter til almennyttige formål. I årtier var Danske Spil synonymt med Lotto, Tips og senere Oddset – spilprodukter der blev en integreret del af dansk kultur og hverdag.
+          </p>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            Med liberaliseringen af det danske spillemarked i 2012, hvor den nye spillelov åbnede for konkurrence fra private operatører, stod Danske Spil over for en ny virkelighed. Selskabet udviklede hurtigt sine online platforme, herunder casinodivisionen, for at konkurrere med de internationale aktører, der strømmede ind på det danske marked. I dag er Danske Spil Casino en af de mest besøgte online casinoplatforme i Danmark – en position de har opnået gennem kombinationen af et stærkt brand, høj tillid og konstant teknologisk udvikling.
+          </p>
+          <p className="text-muted-foreground leading-relaxed">
+            Den historiske forankring giver Danske Spil en unik position. Mens{" "}
+            <Link to="/nye-casinoer" className={linkClass}>nye casinoer</Link> skal opbygge tillid fra bunden, nyder Danske Spil godt af årtiers brandgenkendelse. For mange danske spillere er Danske Spil det "trygge valg" – det casino, man vælger, fordi man kender og stoler på navnet. Denne tillidskapital er noget, ingen markedsføringsbudget kan købe, og det er en central del af Danske Spil Casinos konkurrencefordel på det danske marked.
+          </p>
+        </section>
+
+        <Separator className="my-10" />
+
         {/* Comparative Perspective */}
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold">Danske Spil Casino i sammenligning</h2>
+          <h2 className="mb-4 text-3xl font-bold">Danske Spil Casino i sammenligning med konkurrenterne</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
             For at give et retvisende billede er det relevant at sammenligne Danske Spil Casino med andre aktører på markedet. I forhold til{" "}
             <Link to="/nye-casinoer" className={linkClass}>nye casinoer</Link>, der ofte lokker med store velkomstbonusser og aggressiv markedsføring, er Danske Spils tilgang mere afdæmpet. Bonusserne er typisk mere konservative, men vilkårene er til gengæld de mest gennemsigtige på markedet.
@@ -580,8 +680,14 @@ const DanskeSpilAnmeldelse = () => {
           <p className="mb-4 text-muted-foreground leading-relaxed">
             Sammenlignet med internationale private operatører har Danske Spil et lidt mindre spiludvalg. Men hvad de mangler i volumen, kompenserer de for med sikkerhed og tillid. Det statslige ejerskab giver en garanti, som ingen privat aktør kan matche – dine penge er altid sikre, og udbetalinger sker uden undtagelse.
           </p>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            I forhold til andre etablerede danske casinoer som{" "}
+            <Link to="/spilleautomaten-anmeldelse" className={linkClass}>Spilleautomaten</Link> og{" "}
+            <Link to="/spildansknu-anmeldelse" className={linkClass}>SpilDanskNu</Link>, som drives af det private selskab Winteq ApS, er Danske Spil den eneste operatør med statsligt ejerskab. Winteq-casinoerne tilbyder typisk et mere nichefokuseret spiludvalg med lavere omsætningskrav (10x for alle danske casinoer), mens Danske Spil har et bredere produkt-økosystem, der inkluderer Lotto, Oddset og andre spilprodukter. For spillere, der ønsker én samlet platform til alle typer spil, er Danske Spil det naturlige valg.
+          </p>
           <p className="text-muted-foreground leading-relaxed">
-            For spillere, der prioriterer tryghed, dansk support og en velkendt platform over aggressive bonusser og tusindvis af spiltitler, er Danske Spil Casino det naturlige valg. Det er et casino, hvor du kan fokusere på underholdningen uden at bekymre dig om operatørens pålidelighed.
+            <strong>Trustpilot-perspektivet:</strong> Danske Spil har en blandet Trustpilot-vurdering, hvilket ikke er usædvanligt for store spiloperatører. Mange negative anmeldelser relaterer sig til generelle frustrationer over tab snarere end faktiske servicemæssige problemer. Vores uafhængige test fokuserer på objektive parametre som udbetalingshastighed, spiludvalg, brugeroplevelse og sikkerhed – og her scorer Danske Spil Casino konsekvent højt. Læs mere om{" "}
+            <Link to="/saadan-tester-vi-casinoer" className={linkClass}>hvordan vi tester casinoer</Link>.
           </p>
         </section>
 
@@ -589,15 +695,18 @@ const DanskeSpilAnmeldelse = () => {
 
         {/* Brugeroplevelse */}
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold">Brugeroplevelse og navigation</h2>
+          <h2 className="mb-4 text-3xl font-bold">Brugeroplevelse og navigation hos Danske Spil Casino</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
-            Danske Spil Casino byder på en intuitiv og lettilgængelig brugeroplevelse. Designet er rent og overskueligt med logiske kategoriseringer, der gør det nemt at finde præcis de spil, du leder efter. Navigationens toppanel giver hurtig adgang til slots, live casino, bordspil og kampagner.
+            Danske Spil Casino byder på en intuitiv og lettilgængelig brugeroplevelse. Designet er rent og overskueligt med logiske kategoriseringer, der gør det nemt at finde præcis de spil, du leder efter. Navigationens toppanel giver hurtig adgang til slots, live casino, bordspil og kampagner. Søgefunktionen er hurtig og præcis, og spil kan filtreres efter udbyder, kategori og popularitet.
           </p>
           <p className="mb-4 text-muted-foreground leading-relaxed">
-            Platformen er særligt velegnet for danske spillere, der foretrækker en velkendt og ukompliceret oplevelse. Login via MitID er hurtigt, og kontostyring – herunder indbetalinger, udbetalinger og spilbegrænsninger – er samlet i en overskuelig profil-sektion. Farvepaletten er afdæmpet og professionel, hvilket giver en behagelig spiloplevelse uden distraherende elementer.
+            Platformen er særligt velegnet for danske spillere, der foretrækker en velkendt og ukompliceret oplevelse. Login via MitID er hurtigt, og kontostyring – herunder indbetalinger, udbetalinger og spilbegrænsninger – er samlet i en overskuelig profil-sektion. Farvepaletten er afdæmpet og professionel, hvilket giver en behagelig spiloplevelse uden distraherende elementer. Sammenligner man med andre danske casinoer, er Danske Spils design det mest "no-nonsense" – der er ingen blinkende bannere eller påtrængende pop-ups.
+          </p>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            Et område, hvor Danske Spil Casino virkelig skinner, er integrationen med deres øvrige produkter. Som spiller kan du nemt skifte mellem casino, Oddset, Lotto og andre produkter fra samme konto. Denne tværgående oplevelse er unik for Danske Spil og en væsentlig fordel for spillere, der nyder flere former for spil. Det eliminerer behovet for at oprette konti hos flere operatører og samler hele din spilaktivitet ét sted.
           </p>
           <p className="text-muted-foreground leading-relaxed">
-            <strong>Hvem passer Danske Spil Casino til?</strong> Platformen er ideel for spillere, der værdsætter sikkerhed over alt, foretrækker dansk sprog og support, og ønsker en pålidelig operatør med årtiers erfaring. Det er det perfekte valg for casual spillere og dem, der er nye i online casino-verdenen.
+            <strong>Hvem passer Danske Spil Casino til?</strong> Platformen er ideel for spillere, der værdsætter sikkerhed over alt, foretrækker dansk sprog og support, og ønsker en pålidelig operatør med årtiers erfaring. Det er det perfekte valg for casual spillere, dem der er nye i online casino-verdenen, og spillere der ønsker at holde alle deres spilaktiviteter samlet hos én troværdig operatør. Erfarne spillere, der jager de største bonusser og det bredeste spiludvalg, vil måske finde bedre muligheder hos private operatører – men de vil aldrig finde en mere sikker platform.
           </p>
         </section>
 
