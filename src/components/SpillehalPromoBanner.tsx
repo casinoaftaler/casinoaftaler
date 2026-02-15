@@ -17,11 +17,17 @@ export function SpillehalPromoBanner() {
           loading="lazy"
         />
         {/* Overlay gradient */}
-        <div className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-background/95 via-background/60 to-transparent" />
+        <div className="absolute inset-x-0 bottom-0 h-2/3 bg-gradient-to-t from-background via-background/70 to-transparent" />
         
         {/* Content overlay */}
-        <div className="absolute inset-x-0 bottom-0 p-3">
-          <Button size="sm" className="w-full gap-2 text-xs">
+        <div className="absolute inset-x-0 bottom-0 p-3 flex flex-col gap-1.5">
+          <p className="text-[10px] font-bold uppercase tracking-wider text-primary">
+            🎰 Vind Præmier
+          </p>
+          <p className="text-xs font-semibold text-foreground leading-tight">
+            Spil gratis på Book of Fedesvin
+          </p>
+          <Button size="sm" className="w-full gap-2 text-xs mt-1">
             <Gamepad2 className="h-3.5 w-3.5" />
             Spil Nu <ArrowRight className="h-3.5 w-3.5" />
           </Button>
