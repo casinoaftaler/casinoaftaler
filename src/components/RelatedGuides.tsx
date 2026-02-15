@@ -18,6 +18,7 @@ import {
   Smartphone,
   Globe,
   Users,
+  BarChart3,
 } from "lucide-react";
 import { LucideIcon } from "lucide-react";
 
@@ -91,6 +92,7 @@ const generalGuides: GuideLink[] = [
   { to: "/top-casino-online", label: "Top 10 Casino", icon: Trophy, desc: "De bedste online casinoer i Danmark" },
   { to: "/casinospil", label: "Casinospil", icon: Gamepad2, desc: "Udforsk alle typer casinospil" },
   { to: "/casinospil/spillemaskiner", label: "Spillemaskiner", icon: Gamepad2, desc: "Guide til alle typer online slots" },
+  { to: "/casinospil/spillemaskiner/hoej-rtp", label: "Høj RTP Slots", icon: BarChart3, desc: "Find spillemaskiner med bedst tilbagebetaling" },
   { to: "/responsible-gaming", label: "Ansvarligt Spil", icon: ShieldCheck, desc: "Spil sikkert og ansvarligt" },
   { to: "/spillemyndigheden", label: "Spillemyndigheden", icon: Globe, desc: "Danmarks tilsynsmyndighed for spil" },
 ];
