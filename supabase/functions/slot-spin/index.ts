@@ -825,48 +825,71 @@ Deno.serve(async (req) => {
 
       // Record bonus result server-side when bonus just ended
       if (newFreeSpins <= 0 && newBonusWinnings > 0) {
-        await serviceClient.from("slot_game_results").insert({
-          user_id: userId,
-          bet_amount: bet,
-          win_amount: 0,
-          is_bonus_triggered: false,
-          bonus_win_amount: newBonusWinnings,
-          game_id: gameId,
-        });
-
-        // Fire-and-forget: track tournament entries for bonus completion (only for participants)
+        // Tournament exclusion check for bonus completion
+        let skipBonusGlobal = false;
         const bonusNowISO = new Date().toISOString();
-        serviceClient
-          .from("tournament_participants")
-          .select("tournament_id")
-          .eq("user_id", userId)
-          .then(({ data: participations }) => {
-            if (!participations || participations.length === 0) return;
+
+        try {
+          const { data: participations } = await serviceClient
+            .from("tournament_participants")
+            .select("tournament_id")
+            .eq("user_id", userId);
+
+          if (participations && participations.length > 0) {
             const participatingIds = participations.map((p: { tournament_id: string }) => p.tournament_id);
-            serviceClient
+            const { data: activeTournaments } = await serviceClient
               .from("tournaments")
-              .select("id")
+              .select("id, exclude_from_global_leaderboard, max_credits")
               .in("id", participatingIds)
               .contains("game_ids", [gameId])
               .lte("starts_at", bonusNowISO)
-              .gte("ends_at", bonusNowISO)
-              .then(({ data: activeTournaments }) => {
-                if (activeTournaments && activeTournaments.length > 0) {
-                  for (const t of activeTournaments) {
-                    Promise.resolve(serviceClient.rpc("upsert_tournament_entry", {
-                      p_tournament_id: t.id,
-                      p_user_id: userId,
-                      p_game_id: gameId,
-                      p_points: newBonusWinnings,
-                      p_bet: bet,
-                      p_is_bonus: true,
-                    })).catch((err: unknown) => console.error("[slot-spin] Tournament bonus entry upsert failed:", err));
+              .gte("ends_at", bonusNowISO);
+
+            if (activeTournaments && activeTournaments.length > 0) {
+              for (const t of activeTournaments) {
+                if (t.exclude_from_global_leaderboard) {
+                  if (t.max_credits) {
+                    const { data: entries } = await serviceClient
+                      .from("tournament_entries")
+                      .select("total_credits_used")
+                      .eq("tournament_id", t.id)
+                      .eq("user_id", userId);
+
+                    const totalUsed = (entries || []).reduce((sum: number, e: { total_credits_used: number }) => sum + Number(e.total_credits_used || 0), 0);
+                    if (totalUsed + bet <= t.max_credits) {
+                      skipBonusGlobal = true;
+                    }
+                  } else {
+                    skipBonusGlobal = true;
                   }
                 }
-              })
-              .catch((err: unknown) => console.error("[slot-spin] Tournament bonus lookup failed:", err));
-          })
-          .catch((err: unknown) => console.error("[slot-spin] Bonus participation lookup failed:", err));
+
+                // Upsert tournament entry for bonus completion
+                serviceClient.rpc("upsert_tournament_entry", {
+                  p_tournament_id: t.id,
+                  p_user_id: userId,
+                  p_game_id: gameId,
+                  p_points: newBonusWinnings,
+                  p_bet: bet,
+                  p_is_bonus: true,
+                }).catch((err: unknown) => console.error("[slot-spin] Tournament bonus entry upsert failed:", err));
+              }
+            }
+          }
+        } catch (err) {
+          console.error("[slot-spin] Bonus tournament exclusion check failed:", err);
+        }
+
+        if (!skipBonusGlobal) {
+          await serviceClient.from("slot_game_results").insert({
+            user_id: userId,
+            bet_amount: bet,
+            win_amount: 0,
+            is_bonus_triggered: false,
+            bonus_win_amount: newBonusWinnings,
+            game_id: gameId,
+          });
+        }
       }
 
       const result: BonusSpinResult = {
@@ -1088,49 +1111,75 @@ Deno.serve(async (req) => {
       }
     }
 
-    // Fire-and-forget: record game result (analytics only)
-    serviceClient.from("slot_game_results").insert({
-      user_id: userId,
-      bet_amount: bet,
-      win_amount: result.totalWin,
-      is_bonus_triggered: result.bonusTriggered,
-      bonus_win_amount: 0,
-      game_id: gameId,
-    }).then(() => {}).catch((err: unknown) => console.error("[slot-spin] Fire-and-forget game result insert failed:", err));
-
-    // Fire-and-forget: track tournament entries for active tournaments (only for participants)
+    // Tournament exclusion check: determine if this spin should skip global leaderboard
+    let skipGlobalLeaderboard = false;
     const nowISO = new Date().toISOString();
-    serviceClient
-      .from("tournament_participants")
-      .select("tournament_id")
-      .eq("user_id", userId)
-      .then(({ data: participations }) => {
-        if (!participations || participations.length === 0) return;
+
+    try {
+      const { data: participations } = await serviceClient
+        .from("tournament_participants")
+        .select("tournament_id")
+        .eq("user_id", userId);
+
+      if (participations && participations.length > 0) {
         const participatingIds = participations.map((p: { tournament_id: string }) => p.tournament_id);
-        serviceClient
+        const { data: activeTournaments } = await serviceClient
           .from("tournaments")
-          .select("id")
+          .select("id, exclude_from_global_leaderboard, max_credits")
           .in("id", participatingIds)
           .contains("game_ids", [gameId])
           .lte("starts_at", nowISO)
-          .gte("ends_at", nowISO)
-          .then(({ data: activeTournaments }) => {
-            if (activeTournaments && activeTournaments.length > 0) {
-              for (const t of activeTournaments) {
-                Promise.resolve(serviceClient.rpc("upsert_tournament_entry", {
-                  p_tournament_id: t.id,
-                  p_user_id: userId,
-                  p_game_id: gameId,
-                  p_points: result.totalWin,
-                  p_bet: bet,
-                  p_is_bonus: false,
-                })).catch((err: unknown) => console.error("[slot-spin] Tournament entry upsert failed:", err));
+          .gte("ends_at", nowISO);
+
+        if (activeTournaments && activeTournaments.length > 0) {
+          for (const t of activeTournaments) {
+            // Check if this tournament excludes from global leaderboard
+            if (t.exclude_from_global_leaderboard) {
+              if (t.max_credits) {
+                // Check current credits used across all game_ids for this tournament
+                const { data: entries } = await serviceClient
+                  .from("tournament_entries")
+                  .select("total_credits_used")
+                  .eq("tournament_id", t.id)
+                  .eq("user_id", userId);
+
+                const totalUsed = (entries || []).reduce((sum: number, e: { total_credits_used: number }) => sum + Number(e.total_credits_used || 0), 0);
+                if (totalUsed + bet <= t.max_credits) {
+                  skipGlobalLeaderboard = true;
+                }
+              } else {
+                // No max_credits but exclusion ON: always exclude during tournament
+                skipGlobalLeaderboard = true;
               }
             }
-          })
-          .catch((err: unknown) => console.error("[slot-spin] Tournament lookup failed:", err));
-      })
-      .catch((err: unknown) => console.error("[slot-spin] Participation lookup failed:", err));
+
+            // Upsert tournament entry (fire-and-forget)
+            serviceClient.rpc("upsert_tournament_entry", {
+              p_tournament_id: t.id,
+              p_user_id: userId,
+              p_game_id: gameId,
+              p_points: result.totalWin,
+              p_bet: bet,
+              p_is_bonus: false,
+            }).catch((err: unknown) => console.error("[slot-spin] Tournament entry upsert failed:", err));
+          }
+        }
+      }
+    } catch (err) {
+      console.error("[slot-spin] Tournament exclusion check failed, defaulting to global insert:", err);
+    }
+
+    // Record game result for global leaderboard (unless excluded by tournament)
+    if (!skipGlobalLeaderboard) {
+      serviceClient.from("slot_game_results").insert({
+        user_id: userId,
+        bet_amount: bet,
+        win_amount: result.totalWin,
+        is_bonus_triggered: result.bonusTriggered,
+        bonus_win_amount: 0,
+        game_id: gameId,
+      }).then(() => {}).catch((err: unknown) => console.error("[slot-spin] Game result insert failed:", err));
+    }
 
     return new Response(
       JSON.stringify({

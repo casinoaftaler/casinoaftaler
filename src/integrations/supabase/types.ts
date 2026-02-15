@@ -1169,6 +1169,7 @@ export type Database = {
           created_by: string
           description: string | null
           ends_at: string
+          exclude_from_global_leaderboard: boolean
           game_ids: string[]
           id: string
           max_credits: number | null
@@ -1183,6 +1184,7 @@ export type Database = {
           created_by: string
           description?: string | null
           ends_at: string
+          exclude_from_global_leaderboard?: boolean
           game_ids?: string[]
           id?: string
           max_credits?: number | null
@@ -1197,6 +1199,7 @@ export type Database = {
           created_by?: string
           description?: string | null
           ends_at?: string
+          exclude_from_global_leaderboard?: boolean
           game_ids?: string[]
           id?: string
           max_credits?: number | null

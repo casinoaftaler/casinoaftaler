@@ -202,6 +202,11 @@ function TournamentLeaderboardCard({ tournament }: { tournament: Tournament }) {
                   <span className="text-xs text-muted-foreground">💰 Maks {tournament.max_credits.toLocaleString()} credits</span>
                 </div>
               )}
+              {tournament.exclude_from_global_leaderboard && (
+                <div className="flex items-center gap-1.5 mt-0.5">
+                  <Badge variant="outline" className="text-xs">Ekskl. globalt leaderboard</Badge>
+                </div>
+              )}
             </div>
           </div>
           <div className="flex items-center gap-2">
