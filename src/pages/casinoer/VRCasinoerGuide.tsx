@@ -43,7 +43,7 @@ const VRCasinoerGuide = () => {
         </div>
       </section>
 
-      <AuthorMetaBar author="Jonas" date="1. februar 2026" readTime="17 min" />
+      <AuthorMetaBar author="jonas" date="1. februar 2026" readTime="17 min" />
 
       <article className="container max-w-4xl py-10 md:py-16">
         <section className="prose prose-lg max-w-none dark:prose-invert mb-12">
@@ -51,7 +51,7 @@ const VRCasinoerGuide = () => {
           <p>Men er VR casinoer klar til prime time i 2026? I denne guide gennemgår vi teknologiens nuværende tilstand, de tilgængelige platforme og spil, det nødvendige udstyr, samt fordelene og begrænsningerne. Vi analyserer også, hvordan VR-gambling forholder sig til dansk regulering og <Link to="/responsible-gaming" className={linkClass}>ansvarligt spil</Link>, og giver vores ærlige vurdering af, hvornår VR casinoer vil blive mainstream.</p>
         </section>
 
-        <InlineCasinoCards slugs={["spildansknu", "spilleautomaten", "betinia"]} title="Anbefalede licenserede casinoer med innovative spil" />
+        <InlineCasinoCards title="Anbefalede licenserede casinoer med innovative spil" />
 
         <section className="mb-12">
           <h2 className="text-2xl md:text-3xl font-bold mb-6 flex items-center gap-2"><Glasses className="h-7 w-7 text-primary" /> Hvad er VR casinoer, og hvordan fungerer de?</h2>
@@ -106,9 +106,9 @@ const VRCasinoerGuide = () => {
         </section>
 
         <FAQSection faqs={faqs} />
-        <RelatedGuides guides={[{ to: "/live-casino", label: "Live Casino" }, { to: "/casinoer/mobil-casinoer", label: "Mobil Casinoer" }, { to: "/top-10-casino-online", label: "Top 10 Online Casino" }]} />
+        <RelatedGuides currentPath="/casinoer/vr-casinoer" />
         <CommunityPromoSection />
-        <AuthorBio author="Jonas" />
+        <AuthorBio author="jonas" />
       </article>
     </>
   );

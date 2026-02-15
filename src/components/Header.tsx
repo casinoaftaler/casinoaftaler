@@ -12,7 +12,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { ChevronDown, Gamepad2, LogOut, Mail, Menu, User, X, Dices, Gift, BookOpen, Users, ShoppingBag, Video, ShieldCheck, Sparkles, Layers, Moon, Sun, Coins, UserCircle, Trophy, Ticket, CreditCard, MoreHorizontal, RefreshCw, DollarSign, Zap, Tv, Star, Scale, BarChart3 } from "lucide-react";
+import { ChevronDown, Gamepad2, LogOut, Mail, Menu, User, X, Dices, Gift, BookOpen, Users, ShoppingBag, Video, ShieldCheck, Sparkles, Layers, Moon, Sun, Coins, UserCircle, Trophy, Ticket, CreditCard, MoreHorizontal, RefreshCw, DollarSign, Zap, Tv, Star, Scale, BarChart3, Smartphone, Globe, Heart } from "lucide-react";
 import { useState, useEffect, memo } from "react";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
 import { useTwitchStatus } from "@/hooks/useTwitchStatus";
@@ -119,6 +119,54 @@ export const Header = memo(function Header() {
                 <Link to="/top-10-casino-online" className="flex items-center gap-2">
                   <Trophy className="h-4 w-4" />
                   Top 10 Online Casino
+                </Link>
+              </DropdownMenuItem>
+              <DropdownMenuItem asChild>
+                <Link to="/casinoer/hurtig-udbetaling" className="flex items-center gap-2">
+                  <Zap className="h-4 w-4" />
+                  Hurtig Udbetaling
+                </Link>
+              </DropdownMenuItem>
+              <DropdownMenuItem asChild>
+                <Link to="/casinoer/hoej-rtp" className="flex items-center gap-2">
+                  <BarChart3 className="h-4 w-4" />
+                  Høj RTP
+                </Link>
+              </DropdownMenuItem>
+              <DropdownMenuItem asChild>
+                <Link to="/licenserede-casinoer" className="flex items-center gap-2">
+                  <ShieldCheck className="h-4 w-4" />
+                  Licenserede Casinoer
+                </Link>
+              </DropdownMenuItem>
+              <DropdownMenuItem asChild>
+                <Link to="/casinoer/mobil-casinoer" className="flex items-center gap-2">
+                  <Smartphone className="h-4 w-4" />
+                  Mobil Casinoer
+                </Link>
+              </DropdownMenuItem>
+              <DropdownMenuItem asChild>
+                <Link to="/casinoer/crypto-casino" className="flex items-center gap-2">
+                  <Globe className="h-4 w-4" />
+                  Crypto Casino
+                </Link>
+              </DropdownMenuItem>
+              <DropdownMenuItem asChild>
+                <Link to="/casinoer/vr-casinoer" className="flex items-center gap-2">
+                  <Gamepad2 className="h-4 w-4" />
+                  VR Casinoer
+                </Link>
+              </DropdownMenuItem>
+              <DropdownMenuItem asChild>
+                <Link to="/casinoer/spil-casino-for-sjov" className="flex items-center gap-2">
+                  <Heart className="h-4 w-4" />
+                  Spil Casino for Sjov
+                </Link>
+              </DropdownMenuItem>
+              <DropdownMenuItem asChild>
+                <Link to="/casinoer/casino-og-skat" className="flex items-center gap-2">
+                  <Scale className="h-4 w-4" />
+                  Casino og Skat
                 </Link>
               </DropdownMenuItem>
             </DropdownMenuContent>
@@ -624,6 +672,38 @@ export const Header = memo(function Header() {
                 <Link to="/top-10-casino-online" className="ml-6 flex items-center gap-2 py-2.5 text-sm text-muted-foreground transition-colors hover:text-primary" onClick={() => setMobileMenuOpen(false)}>
                   <Trophy className="h-4 w-4" />
                   Top 10 Online Casino
+                </Link>
+                <Link to="/casinoer/hurtig-udbetaling" className="ml-6 flex items-center gap-2 py-2.5 text-sm text-muted-foreground transition-colors hover:text-primary" onClick={() => setMobileMenuOpen(false)}>
+                  <Zap className="h-4 w-4" />
+                  Hurtig Udbetaling
+                </Link>
+                <Link to="/casinoer/hoej-rtp" className="ml-6 flex items-center gap-2 py-2.5 text-sm text-muted-foreground transition-colors hover:text-primary" onClick={() => setMobileMenuOpen(false)}>
+                  <BarChart3 className="h-4 w-4" />
+                  Høj RTP
+                </Link>
+                <Link to="/licenserede-casinoer" className="ml-6 flex items-center gap-2 py-2.5 text-sm text-muted-foreground transition-colors hover:text-primary" onClick={() => setMobileMenuOpen(false)}>
+                  <ShieldCheck className="h-4 w-4" />
+                  Licenserede Casinoer
+                </Link>
+                <Link to="/casinoer/mobil-casinoer" className="ml-6 flex items-center gap-2 py-2.5 text-sm text-muted-foreground transition-colors hover:text-primary" onClick={() => setMobileMenuOpen(false)}>
+                  <Smartphone className="h-4 w-4" />
+                  Mobil Casinoer
+                </Link>
+                <Link to="/casinoer/crypto-casino" className="ml-6 flex items-center gap-2 py-2.5 text-sm text-muted-foreground transition-colors hover:text-primary" onClick={() => setMobileMenuOpen(false)}>
+                  <Globe className="h-4 w-4" />
+                  Crypto Casino
+                </Link>
+                <Link to="/casinoer/vr-casinoer" className="ml-6 flex items-center gap-2 py-2.5 text-sm text-muted-foreground transition-colors hover:text-primary" onClick={() => setMobileMenuOpen(false)}>
+                  <Gamepad2 className="h-4 w-4" />
+                  VR Casinoer
+                </Link>
+                <Link to="/casinoer/spil-casino-for-sjov" className="ml-6 flex items-center gap-2 py-2.5 text-sm text-muted-foreground transition-colors hover:text-primary" onClick={() => setMobileMenuOpen(false)}>
+                  <Heart className="h-4 w-4" />
+                  Spil Casino for Sjov
+                </Link>
+                <Link to="/casinoer/casino-og-skat" className="ml-6 flex items-center gap-2 py-2.5 text-sm text-muted-foreground transition-colors hover:text-primary" onClick={() => setMobileMenuOpen(false)}>
+                  <Scale className="h-4 w-4" />
+                  Casino og Skat
                 </Link>
               </div>
             )}

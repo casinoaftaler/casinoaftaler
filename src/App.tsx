@@ -118,6 +118,14 @@ const Forfatter = lazy(() => import("./pages/Forfatter"));
 const ForfatterKevin = lazy(() => import("./pages/ForfatterKevin"));
 const SaadanTesterVi = lazy(() => import("./pages/SaadanTesterVi"));
 const NotFound = lazy(() => import("./pages/NotFound"));
+const HurtigUdbetalingGuide = lazy(() => import("./pages/casinoer/HurtigUdbetalingGuide"));
+const HoejRTPGuide = lazy(() => import("./pages/casinoer/HoejRTPGuide"));
+const CryptoCasinoGuide = lazy(() => import("./pages/casinoer/CryptoCasinoGuide"));
+const LicenseredeCasinoerGuide = lazy(() => import("./pages/casinoer/LicenseredeCasinoerGuide"));
+const VRCasinoerGuide = lazy(() => import("./pages/casinoer/VRCasinoerGuide"));
+const MobilCasinoerGuide = lazy(() => import("./pages/casinoer/MobilCasinoerGuide"));
+const SpilForSjovGuide = lazy(() => import("./pages/casinoer/SpilForSjovGuide"));
+const CasinoOgSkatGuide = lazy(() => import("./pages/casinoer/CasinoOgSkatGuide"));
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -205,6 +213,14 @@ const App = () => (
                 <Route path="/casino-anmeldelser/bwin" element={<BwinAnmeldelse />} />
                 <Route path="/casino-anmeldelser/marathonbet" element={<MarathonBetAnmeldelse />} />
                 <Route path="/casinospil" element={<Casinospil />} />
+                <Route path="/casinoer/hurtig-udbetaling" element={<HurtigUdbetalingGuide />} />
+                <Route path="/casinoer/hoej-rtp" element={<HoejRTPGuide />} />
+                <Route path="/casinoer/crypto-casino" element={<CryptoCasinoGuide />} />
+                <Route path="/licenserede-casinoer" element={<LicenseredeCasinoerGuide />} />
+                <Route path="/casinoer/vr-casinoer" element={<VRCasinoerGuide />} />
+                <Route path="/casinoer/mobil-casinoer" element={<MobilCasinoerGuide />} />
+                <Route path="/casinoer/spil-casino-for-sjov" element={<SpilForSjovGuide />} />
+                <Route path="/casinoer/casino-og-skat" element={<CasinoOgSkatGuide />} />
                 <Route path="/casinospil/spillemaskiner" element={<Spillemaskiner />} />
                 <Route path="/casinospil/spillemaskiner/hoej-rtp" element={<SpillemaskinerHoejRTP />} />
                 <Route path="/casinospil/blackjack" element={<BlackjackGuide />} />

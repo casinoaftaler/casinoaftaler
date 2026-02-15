@@ -112,7 +112,7 @@ const HurtigUdbetalingGuide = () => {
         </div>
       </section>
 
-      <AuthorMetaBar author="Jonas" date="1. februar 2026" readTime="18 min" />
+      <AuthorMetaBar author="jonas" date="1. februar 2026" readTime="18 min" />
 
       <article className="container max-w-4xl py-10 md:py-16">
         {/* Intro */}
@@ -128,10 +128,7 @@ const HurtigUdbetalingGuide = () => {
           </p>
         </section>
 
-        <InlineCasinoCards
-          slugs={["spildansknu", "spilleautomaten", "betinia", "campobet", "swift-casino", "luna-casino"]}
-          title="Anbefalede casinoer med hurtige udbetalinger"
-        />
+        <InlineCasinoCards title="Anbefalede casinoer med hurtige udbetalinger" />
 
         {/* Hvad definerer hurtig udbetaling */}
         <section className="mb-12">
@@ -460,17 +457,10 @@ const HurtigUdbetalingGuide = () => {
 
         <FAQSection faqs={faqs} />
 
-        <RelatedGuides
-          guides={[
-            { to: "/betalingsmetoder", label: "Betalingsmetoder" },
-            { to: "/top-10-casino-online", label: "Top 10 Online Casino" },
-            { to: "/licenserede-casinoer", label: "Licenserede Casinoer" },
-            { to: "/casinoer/mobil-casinoer", label: "Mobil Casinoer" },
-          ]}
-        />
+        <RelatedGuides currentPath="/casinoer/hurtig-udbetaling" />
 
         <CommunityPromoSection />
-        <AuthorBio author="Jonas" />
+        <AuthorBio author="jonas" />
       </article>
     </>
   );

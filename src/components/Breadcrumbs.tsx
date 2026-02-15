@@ -95,6 +95,15 @@ const routeLabels: Record<string, string> = {
   "/casinospil/roulette-strategi": "Roulette Strategi",
   "/casinospil/online-lotteri": "Online Lotteri",
   "/casinospil/game-shows": "Game Shows",
+  "/casinoer": "Casinoer",
+  "/casinoer/hurtig-udbetaling": "Hurtig Udbetaling",
+  "/casinoer/hoej-rtp": "Høj RTP",
+  "/casinoer/crypto-casino": "Crypto Casino",
+  "/licenserede-casinoer": "Licenserede Casinoer",
+  "/casinoer/vr-casinoer": "VR Casinoer",
+  "/casinoer/mobil-casinoer": "Mobil Casinoer",
+  "/casinoer/spil-casino-for-sjov": "Spil Casino for Sjov",
+  "/casinoer/casino-og-skat": "Casino og Skat",
 };
 
 const BASE_URL = "https://casinoaftaler.dk";

@@ -43,7 +43,7 @@ const LicenseredeCasinoerGuide = () => {
         </div>
       </section>
 
-      <AuthorMetaBar author="Jonas" date="1. februar 2026" readTime="19 min" />
+      <AuthorMetaBar author="jonas" date="1. februar 2026" readTime="19 min" />
 
       <article className="container max-w-4xl py-10 md:py-16">
         <section className="prose prose-lg max-w-none dark:prose-invert mb-12">
@@ -51,7 +51,7 @@ const LicenseredeCasinoerGuide = () => {
           <p>Det danske licenssystem er blandt de mest restriktive og spillerbeskyttende i verden. Det stiller strenge krav til operatører inden for anti-hvidvask, ansvarligt spil, teknisk sikkerhed og finansiel soliditet. Resultatet er et marked, hvor danske spillere kan spille med tryghed og tillid – vel vidende, at deres rettigheder er beskyttet af lov. Sammenlign dette med ulicenserede casinoer, hvor du står uden retslig beskyttelse ved tvister, og valget burde være åbenlyst.</p>
         </section>
 
-        <InlineCasinoCards slugs={["spildansknu", "spilleautomaten", "betinia", "campobet", "swift-casino", "luna-casino"]} title="Anbefalede licenserede casinoer i Danmark" />
+        <InlineCasinoCards title="Anbefalede licenserede casinoer i Danmark" />
 
         <section className="mb-12">
           <h2 className="text-2xl md:text-3xl font-bold mb-6 flex items-center gap-2"><Scale className="h-7 w-7 text-primary" /> Hvad er den danske casino-licens?</h2>
@@ -126,9 +126,9 @@ const LicenseredeCasinoerGuide = () => {
         </section>
 
         <FAQSection faqs={faqs} />
-        <RelatedGuides guides={[{ to: "/spillemyndigheden", label: "Spillemyndigheden" }, { to: "/top-10-casino-online", label: "Top 10 Online Casino" }, { to: "/casinoer/casino-og-skat", label: "Casino og Skat" }, { to: "/responsible-gaming", label: "Ansvarligt Spil" }]} />
+        <RelatedGuides currentPath="/licenserede-casinoer" />
         <CommunityPromoSection />
-        <AuthorBio author="Jonas" />
+        <AuthorBio author="jonas" />
       </article>
     </>
   );

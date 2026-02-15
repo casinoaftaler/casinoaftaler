@@ -111,6 +111,16 @@ export const seoRoutes: SeoRoute[] = [
   { path: "/betalingsmetoder/visa-mastercard", changefreq: "monthly", priority: 0.7 },
   { path: "/betalingsmetoder/revolut", changefreq: "monthly", priority: 0.7 },
 
+  // ── Casino Guides ──
+  { path: "/casinoer/hurtig-udbetaling", changefreq: "weekly", priority: 0.9 },
+  { path: "/casinoer/hoej-rtp", changefreq: "weekly", priority: 0.9 },
+  { path: "/casinoer/crypto-casino", changefreq: "weekly", priority: 0.9 },
+  { path: "/licenserede-casinoer", changefreq: "weekly", priority: 0.9 },
+  { path: "/casinoer/vr-casinoer", changefreq: "weekly", priority: 0.9 },
+  { path: "/casinoer/mobil-casinoer", changefreq: "weekly", priority: 0.9 },
+  { path: "/casinoer/spil-casino-for-sjov", changefreq: "weekly", priority: 0.9 },
+  { path: "/casinoer/casino-og-skat", changefreq: "weekly", priority: 0.9 },
+
   // ── Info & Ansvarligt Spil ──
   { path: "/responsible-gaming", changefreq: "monthly", priority: 0.6 },
   { path: "/spillemyndigheden", changefreq: "monthly", priority: 0.7 },

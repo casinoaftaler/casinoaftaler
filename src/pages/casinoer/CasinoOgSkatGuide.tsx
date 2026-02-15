@@ -44,7 +44,7 @@ const CasinoOgSkatGuide = () => {
         </div>
       </section>
 
-      <AuthorMetaBar author="Jonas" date="1. februar 2026" readTime="15 min" />
+      <AuthorMetaBar author="jonas" date="1. februar 2026" readTime="15 min" />
 
       <article className="container max-w-4xl py-10 md:py-16">
         <section className="prose prose-lg max-w-none dark:prose-invert mb-12">
@@ -53,7 +53,7 @@ const CasinoOgSkatGuide = () => {
           <Card className="bg-primary/5 border-primary/20 not-prose my-6"><CardContent className="pt-6"><p className="text-sm text-muted-foreground"><strong>Juridisk disclaimer:</strong> Denne guide er udarbejdet med omhyggelighed og baseret på gældende dansk skattelovgivning per februar 2026. Den erstatter dog ikke professionel skatterådgivning. Skatteforhold kan ændre sig, og individuelle omstændigheder kan påvirke din skattepligt. Konsultér altid en autoriseret skatterådgiver ved tvivl.</p></CardContent></Card>
         </section>
 
-        <InlineCasinoCards slugs={["spildansknu", "spilleautomaten", "betinia", "campobet", "swift-casino", "luna-casino"]} title="Skattefri casinoer med dansk licens" />
+        <InlineCasinoCards title="Skattefri casinoer med dansk licens" />
 
         <section className="mb-12">
           <h2 className="text-2xl md:text-3xl font-bold mb-6 flex items-center gap-2"><Landmark className="h-7 w-7 text-primary" /> Det danske afgiftssystem for online casino</h2>
@@ -114,9 +114,9 @@ const CasinoOgSkatGuide = () => {
         </section>
 
         <FAQSection faqs={faqs} />
-        <RelatedGuides guides={[{ to: "/licenserede-casinoer", label: "Licenserede Casinoer" }, { to: "/casinoer/crypto-casino", label: "Crypto Casino" }, { to: "/spillemyndigheden", label: "Spillemyndigheden" }, { to: "/top-10-casino-online", label: "Top 10 Online Casino" }]} />
+        <RelatedGuides currentPath="/casinoer/casino-og-skat" />
         <CommunityPromoSection />
-        <AuthorBio author="Jonas" />
+        <AuthorBio author="jonas" />
       </article>
     </>
   );

@@ -47,7 +47,7 @@ const HoejRTPGuide = () => {
         </div>
       </section>
 
-      <AuthorMetaBar author="Jonas" date="1. februar 2026" readTime="20 min" />
+      <AuthorMetaBar author="jonas" date="1. februar 2026" readTime="20 min" />
 
       <article className="container max-w-4xl py-10 md:py-16">
         <section className="prose prose-lg max-w-none dark:prose-invert mb-12">
@@ -59,7 +59,7 @@ const HoejRTPGuide = () => {
           </p>
         </section>
 
-        <InlineCasinoCards slugs={["spildansknu", "spilleautomaten", "betinia", "campobet", "swift-casino", "luna-casino"]} title="Anbefalede casinoer med spil med høj RTP" />
+        <InlineCasinoCards title="Anbefalede casinoer med spil med høj RTP" />
 
         <section className="mb-12">
           <h2 className="text-2xl md:text-3xl font-bold mb-6 flex items-center gap-2"><Calculator className="h-7 w-7 text-primary" /> Hvad er RTP, og hvordan beregnes det?</h2>
@@ -169,9 +169,9 @@ const HoejRTPGuide = () => {
         </section>
 
         <FAQSection faqs={faqs} />
-        <RelatedGuides guides={[{ to: "/casinospil/spillemaskiner/hoej-rtp", label: "Spillemaskiner med Høj RTP" }, { to: "/top-10-casino-online", label: "Top 10 Online Casino" }, { to: "/casinoer/hurtig-udbetaling", label: "Hurtig Udbetaling" }, { to: "/spiludviklere", label: "Spiludviklere" }]} />
+        <RelatedGuides currentPath="/casinoer/hoej-rtp" />
         <CommunityPromoSection />
-        <AuthorBio author="Jonas" />
+        <AuthorBio author="jonas" />
       </article>
     </>
   );
