@@ -347,9 +347,6 @@ const NoStickyBonus = () => {
             </Card>
           </div>
         </section>
-
-        <InlineCasinoCards title="Casinoer med No-Sticky Bonus" excludeSlugs={["betit"]} />
-
         <Separator className="my-10" />
 
         {/* Betingelser */}

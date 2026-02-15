@@ -175,8 +175,6 @@ const GameShowsGuide = () => {
 
         <Separator className="my-10" />
 
-        <InlineCasinoCards title="Bedste Casinoer til Game Shows" count={4} />
-
         <AuthorBio />
 
         <RelatedGuides currentPath="/casinospil/game-shows" />

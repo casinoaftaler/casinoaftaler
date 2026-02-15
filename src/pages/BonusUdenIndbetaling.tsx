@@ -273,9 +273,6 @@ const BonusUdenIndbetaling = () => {
             </Card>
           </div>
         </section>
-
-        <InlineCasinoCards title="Casinoer med bonus uden indbetaling" />
-
         <Separator className="my-10" />
 
         {/* Typer af no deposit bonusser */}

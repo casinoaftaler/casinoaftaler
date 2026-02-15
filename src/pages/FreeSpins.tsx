@@ -383,9 +383,6 @@ const FreeSpins = () => {
             </Card>
           </div>
         </section>
-
-        <InlineCasinoCards title="Casinoer med free spins-bonusser" />
-
         <Separator className="my-10" />
 
         {/* Hvor finder man free spins */}

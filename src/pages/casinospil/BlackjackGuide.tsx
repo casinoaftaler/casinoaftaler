@@ -355,8 +355,6 @@ const BlackjackGuide = () => {
 
         <Separator className="my-10" />
 
-        <InlineCasinoCards title="Bedste Casinoer til Blackjack" count={4} />
-
         <AuthorBio />
 
         <RelatedGuides currentPath="/casinospil/blackjack" />

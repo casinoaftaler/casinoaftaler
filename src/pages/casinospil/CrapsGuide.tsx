@@ -218,8 +218,6 @@ const CrapsGuide = () => {
 
         <Separator className="my-10" />
 
-        <InlineCasinoCards title="Bedste Casinoer til Craps" count={4} />
-
         <RelatedGuides currentPath="/casinospil/craps" />
 
         <FAQSection faqs={crapsFaqs} />

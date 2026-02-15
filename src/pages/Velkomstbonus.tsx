@@ -385,9 +385,6 @@ const Velkomstbonus = () => {
             </Card>
           </div>
         </section>
-
-        <InlineCasinoCards title="Casinoer med de bedste velkomstbonusser" />
-
         <Separator className="my-10" />
 
         {/* Sådan gør du krav på en velkomstbonus */}

@@ -273,9 +273,6 @@ const Indskudsbonus = () => {
             </Card>
           </div>
         </section>
-
-        <InlineCasinoCards title="Casinoer med attraktive indskudsbonusser" />
-
         <Separator className="my-10" />
 
         {/* Trin-for-trin */}
