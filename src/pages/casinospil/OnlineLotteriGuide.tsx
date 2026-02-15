@@ -4,6 +4,7 @@ import { SEO } from "@/components/SEO";
 import { Separator } from "@/components/ui/separator";
 import { RelatedGuides } from "@/components/RelatedGuides";
 import { type ReactNode } from "react";
+import { Badge } from "@/components/ui/badge";
 import { User, CalendarDays, BookOpen, Target, ShieldCheck, BarChart3, Sparkles, Trophy, Zap, Layers, Ticket } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import lotteriHero from "@/assets/heroes/online-lotteri-hero.jpg";
@@ -89,7 +90,15 @@ const OnlineLotteriGuide = () => {
         jsonLd={[faqJsonLd, breadcrumbJsonLd]}
       />
 
-      <div className="h-16 md:h-24" style={{ background: "linear-gradient(135deg, hsl(50 70% 25%), hsl(40 60% 20%) 40%, hsl(30 80% 25%))" }} />
+      <section className="relative overflow-hidden py-12 text-white md:py-20" style={{ backgroundImage: "linear-gradient(135deg, hsl(50 70% 25%), hsl(40 60% 20%) 40%, hsl(30 80% 25%))" }}>
+        <div className="container">
+          <div className="mx-auto max-w-3xl text-center">
+            <Badge className="bg-white/10 text-white border-white/20 hover:bg-white/20"><Sparkles className="mr-1 h-3 w-3" /> Opdateret Februar 2026</Badge>
+            <h1 className="mt-6 text-4xl font-bold tracking-tight md:text-5xl lg:text-6xl">Online Lotteri 2026</h1>
+            <p className="mt-6 text-lg leading-8 text-yellow-100">Guide til Keno, skrabelodder og odds – den komplette lotteri-guide.</p>
+          </div>
+        </div>
+      </section>
 
       <div className="container py-8 md:py-12">
         <div className="mb-6 flex flex-wrap items-center gap-x-6 gap-y-2 text-sm text-muted-foreground">
@@ -101,10 +110,6 @@ const OnlineLotteriGuide = () => {
         <div className="mb-10 overflow-hidden rounded-xl">
           <img src={lotteriHero} alt="Lotteribolde i tromle" className="w-full h-auto object-cover max-h-[400px]" loading="eager" />
         </div>
-
-        <h1 className="mb-8 text-3xl font-bold tracking-tight md:text-4xl lg:text-5xl">
-          Online Lotteri 2026 – Den Komplette Guide
-        </h1>
 
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold">Lotteri i Danmark – Tradition og Digitalisering</h2>
