@@ -246,7 +246,7 @@ export default function Forfatter() {
             Baggrund og Motivation
           </h2>
           <p className="text-muted-foreground leading-relaxed mb-4">
-            Han har streamet gambling i fire år – men for ham har det aldrig kun handlet om <Link to="/spillemaskiner" className="text-primary hover:underline">slots</Link>. Det har handlet om energi, fællesskab og personlighed.
+            Han har streamet gambling i fire år – men for ham har det aldrig kun handlet om <Link to="/casinospil/spillemaskiner" className="text-primary hover:underline">slots</Link>. Det har handlet om energi, fællesskab og personlighed.
           </p>
           <p className="text-muted-foreground leading-relaxed mb-4">
             Mange lærte ham først at kende gennem hans kat, <strong>Fedesvin</strong>, som i dag stolt har sine helt egne to{" "}
@@ -260,7 +260,7 @@ export default function Forfatter() {
           </p>
           <p className="text-muted-foreground leading-relaxed mb-4">
             Det blev starten på <strong>Casinoaftaler.dk</strong> – et projekt, der i dag er i markant vækst. Her er der fokus på SEO, strategi og langsigtet udvikling, men vigtigst af alt: fællesskabet. Hans mål er at skabe et stærkt slot-community, hvor seerne fra streamen ikke blot kan finde og spille deres{" "}
-            <Link to="/spillemaskiner" className="text-primary hover:underline">yndlingsmaskiner</Link>, men også kommunikere med hinanden og tage Twitch-fællesskabet med videre.
+            <Link to="/casinospil/spillemaskiner" className="text-primary hover:underline">yndlingsmaskiner</Link>, men også kommunikere med hinanden og tage Twitch-fællesskabet med videre.
           </p>
           <p className="text-muted-foreground leading-relaxed mb-4">
             Han er kendt for sine store råb, sine daglige grin og sine mange – til tider vilde – historier. Han holder sig ikke tilbage. Han er åben om sit liv og deler både op- og nedture med sit publikum. For ham handler streaming ikke kun om spil – det handler om relationer, ærlighed og om at turde være sig selv fuldt ud.
@@ -361,7 +361,7 @@ export default function Forfatter() {
               </h4>
               <p className="text-muted-foreground leading-relaxed">
                 SpilDanskNu er et af de mest populære danske online casinoer med et stærkt fokus på det danske marked. Med en dansk licens og et bredt udvalg af{" "}
-                <Link to="/spillemaskiner" className="text-primary hover:underline">spilleautomater</Link>, bordspil og{" "}
+                <Link to="/casinospil/spillemaskiner" className="text-primary hover:underline">spilleautomater</Link>, bordspil og{" "}
                 <Link to="/live-casino" className="text-primary hover:underline">live casino</Link> tilbyder de en tryg og underholdende spiloplevelse. Deres lave{" "}
                 <Link to="/omsaetningskrav" className="text-primary hover:underline">omsætningskrav</Link> på kun 10x gør dem til et oplagt valg for danske spillere.
               </p>
