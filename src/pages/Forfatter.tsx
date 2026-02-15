@@ -337,7 +337,7 @@ export default function Forfatter() {
                   <CasinoCard
                     key={casino.id}
                     casino={mapCasino(casino)}
-                    rank={index + 1}
+                    rank={1}
                     open={openCasinoId === casino.id}
                     onOpenChange={(open) =>
                       setOpenCasinoId(open ? casino.id : null)
