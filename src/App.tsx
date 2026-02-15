@@ -81,6 +81,14 @@ const PaysafecardGuide = lazy(() => import("./pages/payments/PaysafecardGuide"))
 const BankTransferGuide = lazy(() => import("./pages/payments/BankTransferGuide"));
 const VisaMastercardGuide = lazy(() => import("./pages/payments/VisaMastercardGuide"));
 const RevolutGuide = lazy(() => import("./pages/payments/RevolutGuide"));
+const BlackjackGuide = lazy(() => import("./pages/casinospil/BlackjackGuide"));
+const RouletteGuide = lazy(() => import("./pages/casinospil/RouletteGuide"));
+const PokerGuide = lazy(() => import("./pages/casinospil/PokerGuide"));
+const CrapsGuide = lazy(() => import("./pages/casinospil/CrapsGuide"));
+const BaccaratGuide = lazy(() => import("./pages/casinospil/BaccaratGuide"));
+const RouletteStrategiGuide = lazy(() => import("./pages/casinospil/RouletteStrategiGuide"));
+const OnlineLotteriGuide = lazy(() => import("./pages/casinospil/OnlineLotteriGuide"));
+const GameShowsGuide = lazy(() => import("./pages/casinospil/GameShowsGuide"));
 const NotFound = lazy(() => import("./pages/NotFound"));
 
 const queryClient = new QueryClient({
@@ -143,6 +151,14 @@ const App = () => (
                 <Route path="/casinospil" element={<Casinospil />} />
                 <Route path="/casinospil/spillemaskiner" element={<Spillemaskiner />} />
                 <Route path="/casinospil/spillemaskiner/hoej-rtp" element={<SpillemaskinerHoejRTP />} />
+                <Route path="/casinospil/blackjack" element={<BlackjackGuide />} />
+                <Route path="/casinospil/roulette" element={<RouletteGuide />} />
+                <Route path="/casinospil/poker" element={<PokerGuide />} />
+                <Route path="/casinospil/craps" element={<CrapsGuide />} />
+                <Route path="/casinospil/baccarat" element={<BaccaratGuide />} />
+                <Route path="/casinospil/roulette-strategi" element={<RouletteStrategiGuide />} />
+                <Route path="/casinospil/online-lotteri" element={<OnlineLotteriGuide />} />
+                <Route path="/casinospil/game-shows" element={<GameShowsGuide />} />
                 <Route path="/spiludviklere/netent" element={<NetEntGuide />} />
                 <Route path="/spiludviklere/pragmatic-play" element={<PragmaticPlayGuide />} />
                 <Route path="/spiludviklere/relax-gaming" element={<RelaxGamingGuide />} />

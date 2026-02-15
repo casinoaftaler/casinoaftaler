@@ -26,6 +26,14 @@ const routeLabels: Record<string, string> = {
   "/casinospil": "Casinospil",
   "/casinospil/spillemaskiner": "Spillemaskiner",
   "/casinospil/spillemaskiner/hoej-rtp": "Høj RTP",
+  "/casinospil/blackjack": "Blackjack",
+  "/casinospil/roulette": "Roulette",
+  "/casinospil/poker": "Poker",
+  "/casinospil/craps": "Craps",
+  "/casinospil/baccarat": "Baccarat",
+  "/casinospil/roulette-strategi": "Roulette Strategi",
+  "/casinospil/online-lotteri": "Online Lotteri",
+  "/casinospil/game-shows": "Game Shows",
 };
 
 const BASE_URL = "https://casinoaftaler.dk";
