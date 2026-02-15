@@ -120,6 +120,8 @@ const GameShowsGuide = () => {
           <p className="text-muted-foreground leading-relaxed">Game shows produceres i state-of-the-art studier med augmented reality-teknologi, professionel belysning og lyddesign, og værter der er uddannet til at holde energien oppe time efter time. De streames i HD til millioner af spillere verden over, 24 timer i døgnet, 7 dage om ugen. Denne guide dækker alle de store game shows, deres mekanikker, RTP og strategier. Se vores fulde sektion om <Link to="/casinospil" className={linkClass}>casinospil</Link> for flere underholdende muligheder, eller tjek <Link to="/highlights" className={linkClass}>vores highlights</Link> for at se de vildeste game show gevinster.</p>
         </section>
 
+        <InlineCasinoCards title="Bedste Casinoer til Game Shows" count={4} />
+
         <Separator className="my-10" />
 
         <section className="mb-12">

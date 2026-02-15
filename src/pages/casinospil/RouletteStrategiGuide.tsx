@@ -99,7 +99,7 @@ const RouletteStrategiGuide = () => {
       </section>
 
       <div className="container py-8 md:py-12">
-        <AuthorMetaBar author="redaktionen" date="15-02-2026" readTime="15 Min." />
+        <AuthorMetaBar author="jonas" date="15-02-2026" readTime="15 Min." />
 
         <div className="mb-10 overflow-hidden rounded-xl">
           <img src={rouletteStrategiHero} alt="Roulette strategi med chips og matematiske formler" className="w-full h-auto object-cover max-h-[400px]" loading="eager" />
@@ -111,6 +111,8 @@ const RouletteStrategiGuide = () => {
           <p className="mb-4 text-muted-foreground leading-relaxed">Men det betyder ikke, at strategier er meningsløse. Væddemålssystemer kan give struktur til dit spil, hjælpe med bankroll management og ændre dit risikomønster (mange små gevinster vs. sjældne store tab). At forstå matematikken bag hver strategi gør dig til en bedre informeret spiller og beskytter dig mod overdrevne forventninger.</p>
           <p className="text-muted-foreground leading-relaxed">Denne guide analyserer de seks mest populære roulette-strategier matematisk – med forventet værdi, risikoprofiler og praktiske simuleringer. Vi afslører styrker og svagheder ved hvert system, så du kan træffe et informeret valg om, hvordan du strukturerer dit spil.</p>
         </section>
+
+        <InlineCasinoCards title="Bedste Casinoer til Roulette" count={4} />
 
         <Separator className="my-10" />
 

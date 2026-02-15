@@ -8,6 +8,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { RelatedGuides } from "@/components/RelatedGuides";
+import { InlineCasinoCards } from "@/components/InlineCasinoCards";
 import { CommunityPromoSection } from "@/components/CommunityPromoSection";
 import { CasinoCard } from "@/components/CasinoCard";
 import { useCasinos } from "@/hooks/useCasinos";
@@ -225,6 +226,8 @@ const Casinospil = () => {
             spændende casinospil at opdage.
           </p>
         </section>
+
+        <InlineCasinoCards title="Anbefalede casinoer til casinospil" count={4} />
 
         <Separator className="my-10" />
 

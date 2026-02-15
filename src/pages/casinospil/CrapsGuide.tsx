@@ -103,7 +103,7 @@ const CrapsGuide = () => {
       </section>
 
       <div className="container py-8 md:py-12">
-        <AuthorMetaBar author="redaktionen" date="15-02-2026" readTime="13 Min." />
+        <AuthorMetaBar author="jonas" date="15-02-2026" readTime="13 Min." />
 
         <div className="mb-10 overflow-hidden rounded-xl">
           <img src={crapsHero} alt="Craps-bord med terninger i luften" className="w-full h-auto object-cover max-h-[400px]" loading="eager" />
@@ -121,6 +121,8 @@ const CrapsGuide = () => {
             Online craps eliminerer kompleksiteten ved det fysiske bord. Interfacet guider dig gennem væddemålene, og du kan spille i dit eget tempo uden pres fra andre spillere. Både RNG-baseret craps og live craps (med rigtige terninger og dealere) er tilgængelige på danske licenserede casinoer. Denne guide giver dig alt, du behøver for at forstå og mestre craps.
           </p>
         </section>
+
+        <InlineCasinoCards title="Bedste Casinoer til Craps" count={4} />
 
         <Separator className="my-10" />
 

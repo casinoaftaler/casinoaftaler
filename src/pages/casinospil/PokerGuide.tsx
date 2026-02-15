@@ -129,6 +129,8 @@ const PokerGuide = () => {
           </p>
         </section>
 
+        <InlineCasinoCards title="Bedste Casinoer til Poker" count={4} />
+
         <Separator className="my-10" />
 
         <section className="mb-12">

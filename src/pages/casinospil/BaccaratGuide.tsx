@@ -103,7 +103,7 @@ const BaccaratGuide = () => {
       </section>
 
       <div className="container py-8 md:py-12">
-        <AuthorMetaBar author="redaktionen" date="15-02-2026" readTime="13 Min." />
+        <AuthorMetaBar author="jonas" date="15-02-2026" readTime="13 Min." />
 
         <div className="mb-10 overflow-hidden rounded-xl">
           <img src={baccaratHero} alt="Elegant baccaratbord med kort og chips" className="w-full h-auto object-cover max-h-[400px]" loading="eager" />
@@ -115,6 +115,8 @@ const BaccaratGuide = () => {
           <p className="mb-4 text-muted-foreground leading-relaxed">Spillets charme ligger i dets simplicitet: du vælger blot, om du vil satse på Player (Punto), Banker (Banco) eller Tie (uafgjort). Dealeren håndterer alle kort efter faste regler, og du behøver ikke træffe nogen beslutninger om selve spillet. Denne passive natur gør baccarat tilgængeligt for alle – fra nybegyndere til erfarne spillere. Samtidig tilbyder spillet en af de laveste house edges i casinoet: kun 1,06 % på Banker-væddemålet.</p>
           <p className="text-muted-foreground leading-relaxed">Online baccarat – særligt i <Link to="/live-casino" className={linkClass}>live casino</Link>-format – har demokratiseret spillet. Du behøver ikke længere en smoking og et VIP-kort for at spille. Med indsatser fra 10 kr. på live baccarat-borde hos danske casinoer kan enhver opleve den elegance og spænding, som har gjort baccarat til kongernes spil i over 500 år. Baccarat er en essentiel del af vores <Link to="/casinospil" className={linkClass}>casinospil-univers</Link>.</p>
         </section>
+
+        <InlineCasinoCards title="Bedste Casinoer til Baccarat" count={4} />
 
         <Separator className="my-10" />
 

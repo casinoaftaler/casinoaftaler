@@ -432,7 +432,7 @@ const Spiludviklere = () => {
       </section>
 
       <div className="container py-8 md:py-12">
-        <AuthorMetaBar author="redaktionen" date="11-02-2026" readTime="15 Min." />
+        <AuthorMetaBar author="jonas" date="11-02-2026" readTime="15 Min." />
 
         <div className="mb-10 overflow-hidden rounded-xl">
           <img src={spiludviklereHero} alt="Spiludviklere – game studio med slot-spil på skærme" className="w-full h-auto object-cover max-h-[400px]" loading="eager" />
