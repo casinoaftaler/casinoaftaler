@@ -42,37 +42,28 @@ import { RelatedGuides } from "@/components/RelatedGuides";
 
 const faqs = [
   {
-    question: "Hvad er en casino bonus uden omsætningskrav?",
-    answer:
-      "En casino bonus uden omsætningskrav er en type bonus, hvor spillerne ikke behøver at omsætte beløbet et bestemt antal gange, før de kan udbetale deres gevinster. Det betyder, at alt hvad du vinder med denne bonus, kan hæves uden at skulle omsætte bonussen x antal gange.",
+    question: "Hvad er forskellen på en bonus uden omsætningskrav og en no-sticky bonus?",
+    answer: "En bonus uden omsætningskrav giver dig gevinster der kan hæves direkte – ingen gennemspilning nødvendig. En no-sticky bonus holder dine penge og bonusmidler adskilt, men bonusdelen har stadig omsætningskrav. Forskellen er afgørende: med omsætningsfri bonus beholder du 100% af dine gevinster (op til et evt. gevinstloft), mens no-sticky bonus kræver at du gennemspiller bonusmidlerne separat. Begge er markant bedre end sticky bonusser, men omsætningsfrie bonusser giver den bedste reelle værdi for spilleren.",
   },
   {
-    question: "Hvorfor tilbyder nogle casinoer bonusser uden omsætningskrav?",
-    answer:
-      "Casinoer tilbyder bonusser uden omsætningskrav for at tiltrække nye spillere og skille sig ud fra konkurrenterne. Det er en måde at vise gennemsigtighed og fairness over for spillerne, da det giver dem en reel chance for at beholde deres gevinster uden skjulte betingelser.",
+    question: "Hvorfor er gevinstloftet vigtigt ved omsætningsfrie bonusser?",
+    answer: "De fleste omsætningsfrie bonusser har et maksimalt udbetalingsloft – typisk mellem 500 og 5.000 kr. Selvom du vinder 50.000 kr. med bonussen, kan du kun hæve op til det fastsatte maksimum. Loftet varierer markant mellem casinoer: nogle tilbyder 500 kr., andre op til 10.000 kr. Tjek altid gevinstloftet FØR du accepterer bonussen, da det direkte påvirker den potentielle værdi. Et højt gevinstloft kombineret med lav minimumsindbetaling giver den bedste EV (Expected Value).",
   },
   {
-    question: "Er der ulemper ved casino bonusser uden omsætningskrav?",
-    answer:
-      "En potentiel ulempe er, at værdien af disse bonusser ofte kan være lavere end for traditionelle bonusser med omsætningskrav. Desuden kan nogle tilbud have andre begrænsninger, såsom en maksimal udbetalingsgrænse eller begrænsninger på, hvilke spil du kan bruge bonussen til.",
+    question: "Hvilke spil kan jeg bruge en omsætningsfri bonus på?",
+    answer: "Omsætningsfrie bonusser er typisk begrænset til specifikke spilleautomater valgt af casinoet – ofte populære titler som Starburst, Book of Dead eller Sweet Bonanza. Bordspil og live casino er næsten altid ekskluderet. Nogle casinoer giver dig frihed til at vælge mellem en liste af godkendte spil, mens andre låser bonussen til ét bestemt spil. Spilvalget påvirker dine chancer: lavvolatilitetsspil giver hyppigere små gevinster, mens højvolatilitetsspil giver sjældnere men større hits.",
   },
   {
-    question:
-      "Hvordan finder jeg casinoer, der tilbyder bonusser uden omsætningskrav?",
-    answer:
-      "Det bedste sted at starte er ved at undersøge casinoer med dansk licens, der specifikt markedsfører omsætningsfrie bonusser. Hold øje med kampagner, loyalitetsprogrammer og ugentlige udfordringer, som ofte belønner med bonusser uden omsætningskrav.",
+    question: "Kan man finde omsætningsfrie bonusser hos alle danske casinoer?",
+    answer: "Nej, omsætningsfrie bonusser er ikke standard hos alle danske casinoer. De tilbydes primært af operatører der ønsker at differentiere sig med gennemsigtighed og spillervenlige vilkår. Tendensen er stigende: flere danske casinoer introducerer omsætningsfrie elementer i deres kampagner – særligt i free spins-tilbud og loyalitetsprogrammer. De mest spillervenlige casinoer bruger omsætningsfrie bonusser som ugentlige reload-tilbud eller VIP-belønninger snarere end som velkomstbonus.",
   },
   {
-    question:
-      "Kan jeg virkelig vinde rigtige penge med en casino bonus uden omsætningskrav?",
-    answer:
-      "Ja, du kan vinde rigtige penge med en casino bonus uden omsætningskrav. Da der ikke er nogen omsætningskrav, betyder det, at du kan hæve dine gevinster med det samme, forudsat at du overholder casinoets øvrige vilkår og betingelser.",
+    question: "Er omsætningsfrie free spins det samme som omsætningsfri bonus?",
+    answer: "Begge deler princippet om ingen omsætning, men der er en vigtig forskel. Omsætningsfrie free spins giver dig et bestemt antal gratis spins på en specifik slot, og gevinsterne kan hæves direkte (op til gevinstloftet). En omsætningsfri bonus giver dig typisk et pengebeløb at spille for. Free spins-varianten er mere begrænset (fastlåst til ét spil), men ofte mere gennemsigtig. Bonuspengevarianten giver mere frihed i spilvalg, men har sjældent ingen betingelser overhovedet – læs altid vilkårene grundigt.",
   },
   {
-    question:
-      "Er alle spil berettiget til at blive spillet med en casino bonus uden omsætningskrav?",
-    answer:
-      "Det afhænger af casinoets regler og vilkår. Nogle casinoer tillader kun visse spil at blive spillet med bonussen, mens andre kan have mere fleksible regler. Det er vigtigt at læse vilkårene nøje, før du accepterer en bonus.",
+    question: "Hvad er den reelle værdi af en omsætningsfri bonus sammenlignet med traditionelle bonusser?",
+    answer: "En omsætningsfri bonus på 200 kr. med et gevinstloft på 2.000 kr. har typisk en højere reel værdi end en traditionel 500 kr. bonus med 10x omsætningskrav. Matematisk: med 10x omsætning skal du satse 5.000 kr. for at frigøre bonussen, og med en gennemsnitlig RTP på 96% vil du statistisk miste ca. 200 kr. under gennemspilningen. Den omsætningsfrie bonus kræver ingen gennemspilning, så hele gevinsten er din. Dog kompenserer casinoerne typisk med lavere bonusbeløb og gevinstlofter.",
   },
 ];
 

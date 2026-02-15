@@ -47,72 +47,44 @@ const linkClass = "text-primary underline hover:text-primary/80";
 
 const stickyFaqs: { question: string; answer: string | React.ReactNode }[] = [
   {
-    question: "Hvad er en Sticky Bonus?",
+    question: "Hvorfor er de fleste danske casinobonusser sticky?",
     answer: (
       <>
-        En Sticky Bonus er en casinobonus, hvor din indbetaling og bonusmidlerne sammenblandes til én saldo. Du kan ikke hæve noget – hverken gevinster eller indbetaling – før du har opfyldt{" "}
-        <Link to="/omsaetningskrav" className={linkClass}>omsætningskravene</Link> fuldt ud.
+        Sticky bonusser er industristandarden fordi de er kommercielt fordelagtige for casinoer: ved at blande indbetaling og bonus i én saldo er spilleren forpligtet til at gennemspille alt før udbetaling. Det øger den gennemsnitlige spilletid og casinoets indtjening. Dog har Spillemyndighedens 10x-loft på <Link to="/omsaetningskrav" className={linkClass}>omsætningskrav</Link> gjort danske sticky bonusser markant mere fair end internationale (ofte 40-70x). Flere danske casinoer er begyndt at tilbyde <Link to="/no-sticky-bonus" className={linkClass}>no-sticky alternativer</Link> som differentiering.
       </>
     ),
   },
   {
-    question: "Tilbyder danske casinoer Sticky Bonusser?",
+    question: "Hvordan beregner jeg den reelle værdi af en sticky bonus?",
+    answer: "For at beregne reel værdi: Tag bonusbeløbet, gange med omsætningskravet, og beregn det forventede tab under gennemspilning. Eksempel: 1.000 kr. bonus med 10x (d+b) på en 1.000 kr. indbetaling = 20.000 kr. omsætning. Med 96% RTP mister du statistisk 4% per gennemspillet krone = 800 kr. tab. Din forventede resterende saldo er 2.000 kr. - 800 kr. = 1.200 kr. Minus bonusbeløbet (trækkes ved udbetaling) = 200 kr. netto. Bonussens reelle værdi er altså ca. 200 kr. – langt under de 1.000 kr. der annonceres.",
+  },
+  {
+    question: "Kan jeg spille progressive jackpots mens jeg har en sticky bonus aktiv?",
+    answer: "Det afhænger af casinoets vilkår. Mange casinoer ekskluderer progressive jackpot-spil (som Mega Moolah med 88,12% RTP) fra bonusomsætning, eller de bidrager kun med en reduceret procent. Vigtigere: Hvis du vinder en jackpot under bonusomsætning, kan casinoet begrænse udbetalingen til bonussens gevinstloft – potentielt kan en milliongevinst reduceres til 5.000 kr. Tjek ALTID vilkårene for jackpot-spil. Hvis du jagter jackpots, spil med egne midler uden aktiv bonus.",
+  },
+  {
+    question: "Hvad sker der med min saldo hvis jeg annullerer en sticky bonus?",
     answer: (
       <>
-        Ja, langt de fleste bonusser hos danske online casinoer er Sticky Bonusser. De tilbydes typisk som{" "}
-        <Link to="/velkomstbonus" className={linkClass}>velkomstbonusser</Link>, genindbetalingsbonusser og kampagnetilbud til eksisterende spillere.
+        Ved annullering af en sticky bonus mister du typisk bonusbeløbet OG alle gevinster optjent med den blandede saldo – uanset om gevinsterne reelt stammer fra din egen indbetaling. Dette er den største risiko ved sticky bonusser sammenlignet med <Link to="/no-sticky-bonus" className={linkClass}>no-sticky varianten</Link>, hvor egne gevinster altid er beskyttet. Nogle casinoer tilbyder delvis annullering: du mister bonussen men beholder den aktuelle realsaldo minus bonusdelen. Kontakt kundeservice FØR du annullerer for at forstå de præcise konsekvenser.
       </>
     ),
   },
   {
-    question: "Kan jeg vinde rigtige penge med en Sticky Bonus?",
+    question: "Er det strategisk klogt at spille med en sticky bonus?",
     answer: (
       <>
-        Ja, du kan vinde rigtige penge. Dog skal du opfylde{" "}
-        <Link to="/omsaetningskrav" className={linkClass}>omsætningskravene</Link>, før eventuelle gevinster kan hæves. Selve bonusbeløbet trækkes normalt fra ved udbetaling.
+        Ja, HVIS du vælger den rigtige strategi. Med en sticky bonus bør du fokusere på spilleautomater med højest mulig RTP der bidrager 100% til omsætningen. Undgå bordspil (10-20% bidrag) og <Link to="/live-casino" className={linkClass}>live casino</Link> (ofte 0-10%). Hold indsatsen konsistent på 1-2% af din samlede saldo per spin. Med 96% RTP og 10x omsætning vil du statistisk beholde ca. 60% af din samlede bankroll. Den nøgne sandhed: sticky bonusser er designet til at casinoet statistisk vinder – men med god strategi kan du minimere tabet og maksimere underholdningsværdien.
       </>
     ),
   },
   {
-    question: "Hvad er forskellen på en Sticky og en No-Sticky Bonus?",
+    question: "Hvad er de typiske vilkår for en sticky bonus i Danmark?",
     answer: (
       <>
-        Med en Sticky Bonus er indbetaling og bonus sammenblandet, og du skal opfylde omsætningskrav for alt. Med en{" "}
-        <Link to="/no-sticky-bonus" className={linkClass}>No-Sticky Bonus</Link> er midlerne adskilt, og du kan hæve gevinster fra egne penge frit.
+        Standard danske sticky bonus-vilkår: 100% match op til 500-2.000 kr., 10x (d+b) omsætningskrav, 14-30 dages gyldighedsperiode, 25-50 kr. maks. indsats per spin, spilleautomater bidrager 100%, bordspil 10-20%, live casino 0-10%. Gevinstloft varierer fra 5.000 til 50.000 kr. Spillemyndighedens regulering sikrer at disse vilkår er gennemsigtige – casinoer er forpligtede til at vise dem tydeligt. Sammenlign altid med <Link to="/bonus-uden-omsaetningskrav" className={linkClass}>omsætningsfrie alternativer</Link> for at vurdere reel værdi.
       </>
     ),
-  },
-  {
-    question: "Hvordan genkender jeg en Sticky Bonus?",
-    answer:
-      "Kig efter formuleringer som 'd+b' (deposit + bonus) i vilkårene, hvilket indikerer at omsætningskrav gælder for både indbetaling og bonus. De fleste bonusser er Sticky som standard.",
-  },
-  {
-    question: "Hvad sker der med bonussen, når jeg hæver?",
-    answer:
-      "Ved en Sticky Bonus trækkes bonusbeløbet typisk fra din saldo ved udbetaling. Du kan kun hæve gevinster ud over bonusbeløbet, og kun efter omsætningskravene er opfyldt.",
-  },
-  {
-    question: "Er Sticky Bonusser begrænset til bestemte spil?",
-    answer: (
-      <>
-        Ja, nogle Sticky Bonusser kan være begrænset til specifikke spil. <Link to="/casinospil" className={linkClass}>Spilleautomater</Link> tæller typisk 100% mod omsætningskravet, mens bordspil bidrager med en lavere procentdel.
-      </>
-    ),
-  },
-  {
-    question: "Hvad er typiske omsætningskrav for en Sticky Bonus?",
-    answer: (
-      <>
-        I Danmark er <Link to="/omsaetningskrav" className={linkClass}>omsætningskravene</Link> reguleret af{" "}
-        <Link to="/spillemyndigheden" className={linkClass}>Spillemyndigheden</Link> med et loft på 10x (d+b). Det betyder, at du maksimalt skal gennemspille bonusbeløbet + indbetalingen 10 gange.
-      </>
-    ),
-  },
-  {
-    question: "Kan jeg spille progressive jackpots med en Sticky Bonus?",
-    answer:
-      "Det afhænger af casinoets vilkår. Nogle casinoer tillader det, men eventuelle jackpotgevinster kan være begrænset af bonussens gevinstloft. Læs altid vilkårene først.",
   },
 ];
 

@@ -43,50 +43,53 @@ const linkClass = "text-primary underline hover:text-primary/80";
 
 const omsaetningskravFaqs: { question: string; answer: string | React.ReactNode }[] = [
   {
-    question: "Hvad er et omsætningskrav?",
-    answer:
-      "Et omsætningskrav angiver, hvor mange gange du skal spille et bonusbeløb igennem, før du kan hæve eventuelle gevinster. Fx betyder et krav på 10x, at en bonus på 500 kr. kræver, at du samlet satser for 5.000 kr.",
-  },
-  {
-    question: "Gælder omsætningskrav kun for bonusser?",
-    answer:
-      "Nej. Alle indbetalinger til danske casinoer har et omsætningskrav på minimum 1x. Det betyder, at du skal spille for hele dit indbetalte beløb mindst én gang, før du kan hæve pengene. Dette er for at overholde hvidvaskningsloven.",
-  },
-  {
-    question: "Hvad betyder (d+b) i omsætningskrav?",
+    question: "Hvorfor har Danmark et loft på 10x omsætningskrav?",
     answer: (
       <>
-        Forkortelsen (d+b) står for 'deposit + bonus'. Det betyder, at kravet gælder for både dit indbetalte beløb og bonusbeløbet tilsammen. Det er standarden for de fleste{" "}
-        <Link to="/indskudsbonus" className={linkClass}>indskudsbonusser</Link>.
+        Spillemyndigheden indførte et maksimalt omsætningskrav på 10x for at beskytte danske spillere mod urimelige bonusvilkår. Før reguleringen tilbød udenlandske casinoer bonusser med 40-70x omsætningskrav, hvilket gjorde det næsten umuligt at hæve gevinster. Med 10x-loftet skal en bonus på 500 kr. kun gennemspilles for 5.000 kr. – en mængde der er realistisk at opnå uden at tabe hele bankrollet. Dette gør danske bonusser til de mest spillervenlige i Europa og er en direkte årsag til at{" "}
+        <Link to="/bonus-uden-omsaetningskrav" className={linkClass}>omsætningsfrie bonusser</Link> også er mere udbredte i Danmark.
       </>
     ),
   },
   {
-    question: "Hvad er det maksimale omsætningskrav i Danmark?",
+    question: "Hvad betyder (d+b) vs. kun (b) i omsætningskrav?",
     answer: (
       <>
-        I Danmark har Spillemyndigheden sat et loft på maksimalt 10x for omsætningskrav på bonusser. Det sikrer rimelige vilkår. Nogle casinoer tilbyder dog{" "}
-        <Link to="/bonus-uden-omsaetningskrav" className={linkClass}>bonusser helt uden omsætningskrav</Link>.
+        Forkortelsen (d+b) står for 'deposit + bonus' og betyder at omsætningskravet gælder for både dit indbetalte beløb og bonusbeløbet tilsammen. Indbetaler du 500 kr. og modtager 500 kr. i bonus med 10x (d+b), skal du omsætte for 10.000 kr. Med kun (b) gælder kravet kun bonusdelen: 500 kr. x 10 = 5.000 kr. Forskellen er markant – (d+b) kræver dobbelt så meget omsætning. De fleste danske <Link to="/indskudsbonus" className={linkClass}>indskudsbonusser</Link> bruger (d+b)-modellen, så tjek altid vilkårene nøje.
       </>
     ),
   },
   {
-    question: "Hvad sker der, hvis jeg løber tør for penge under omsætningen?",
+    question: "Hvilke spil tæller 100% mod omsætningskravet?",
     answer: (
       <>
-        Hvis du løber tør for penge, før kravet er opfyldt, kan du indbetale mere eller acceptere, at bonussen går tabt. Med en{" "}
-        <Link to="/no-sticky-bonus" className={linkClass}>no-sticky bonus</Link>{" "}
-        starter du dog med dine egne penge først.
+        <Link to="/casinospil" className={linkClass}>Spilleautomater</Link> bidrager næsten altid 100% til omsætningskravet. Bordspil som blackjack og roulette bidrager typisk kun 10-20%, og <Link to="/live-casino" className={linkClass}>live casino</Link>-spil kan være helt ekskluderet. Nogle casinoer ekskluderer også højvolatilitetsslots og progressiv jackpot-spil. Strategisk bør du vælge slots med høj RTP (96%+) og lav-medium volatilitet til omsætning – Blood Suckers (98% RTP) og Starburst (96,09% RTP) er populære valg der slider bankrollet langsomt.
       </>
     ),
   },
   {
-    question: "Tæller alle spil lige meget mod omsætningskravet?",
+    question: "Hvad er den bedste strategi til at gennemspille et omsætningskrav?",
     answer: (
       <>
-        Nej. <Link to="/casinospil" className={linkClass}>Spilleautomater</Link> bidrager typisk 100%, mens bordspil ofte kun bidrager 10-20%. Live casino-spil kan være helt udelukket.
+        Den matematisk optimale strategi er at vælge spil med højest mulig RTP der bidrager 100% til omsætningen. Blood Suckers (98,00% RTP), Mega Joker (99,00% i supermeter-mode) og Starmania (97,86%) er blandt de bedste valg. Undgå højvolatilitetsspil som <Link to="/spiludviklere/nolimit-city" className={linkClass}>Nolimit City</Link>-titler – deres lave hitfrekvens (under 15%) gør dem uegnede til omsætning. Sæt en konsistent indsats (1-2% af bankroll per spin) og undgå at jage tab. Med en 96% RTP-slot og 10x omsætning vil du statistisk beholde ca. 60% af bonus+indbetaling.
       </>
     ),
+  },
+  {
+    question: "Hvad sker der hvis bonustiden udløber, mens jeg omsætter?",
+    answer: "Hvis du ikke opfylder omsætningskravene inden for tidsfristen – typisk 7-30 dage – mister du bonusbeløbet og alle gevinster optjent med bonusmidlerne. Din egen indbetaling er normalt stadig tilgængelig. Tidsfristen starter fra det øjeblik bonussen aktiveres, ikke fra din sidste aktivitet. Planlæg derfor din spilletid: med 10x omsætning på en 1.000 kr. bonus (d+b = 20.000 kr. omsætning) og et gennemsnit på 5 kr. per spin skal du spille ca. 4.000 spins. Ved 600 spins/time tager det ca. 7 timer.",
+  },
+  {
+    question: "Har alle indbetalinger et omsætningskrav – også uden bonus?",
+    answer: (
+      <>
+        Ja, alle indbetalinger til danske casinoer har et lovpligtigt 1x omsætningskrav uanset om du modtager en bonus. Det betyder at du skal spille for hele dit indbetalte beløb mindst én gang, før du kan hæve det. Kravet eksisterer pga. hvidvasklovgivningen – det forhindrer at casinoer bruges til at 'vaske' penge ved blot at indbetale og straks hæve igen. Med <Link to="/no-sticky-bonus" className={linkClass}>no-sticky bonusser</Link> holder casinoet din indbetaling og bonus adskilt, så 1x-kravet gælder kun for indbetalingen.
+      </>
+    ),
+  },
+  {
+    question: "Kan jeg annullere en bonus for at undgå omsætningskrav?",
+    answer: "Ja, de fleste danske casinoer tillader dig at annullere en bonus – men konsekvenserne varierer. Hos nogle casinoer mister du kun bonusbeløbet og beholder dine egne penge og gevinster. Hos andre mister du også gevinster optjent med bonusmidlerne. Med en no-sticky bonus kan du altid hæve gevinster vundet med egne penge, da disse holdes adskilt. Tip: Overvej om du overhovedet vil aktivere bonussen. Nogle spillere foretrækker at spille uden bonus for at undgå omsætningskrav helt.",
   },
 ];
 
