@@ -100,10 +100,42 @@ const YggdrasilGuide = () => (
       "Ingen live casino-produkter i porteføljen",
     ]}
     faqs={[
-      { question: "Hvad er Yggdrasil Gaming?", answer: "Yggdrasil Gaming er en svensk spiludvikler og platform-virksomhed grundlagt i 2013 af NetEnts tidligere CEO. De har 230+ spil og licenserer BOOST-tools til operatører." },
-      { question: "Hvad er BOOST?", answer: "BOOST er Yggdrasils suite af kampagneværktøjer der giver casinooperatører mulighed for at køre turneringer, missions og Golden Chips-kampagner i real-time på tværs af spilporteføljen." },
-      { question: "Hvad er Gigablox?", answer: "Gigablox er Yggdrasils mekanik hvor kæmpe symboler op til 6x6 kan lande på hjulene, hvilket skaber massive gevinstkombinationer og visuelt imponerende øjeblikke." },
-      { question: "Er Yggdrasil-spil tilgængelige i Danmark?", answer: "Ja, Yggdrasil har været på det danske marked siden 2018 med licensering via Malta Gaming Authority. De findes hos de fleste danske casinoer." },
+      {
+        question: "Hvordan fungerer BOOST-platformens turneringer for spillere?",
+        answer: (
+          <>
+            BOOST-turneringer er Yggdrasils unikke engagement-system der kører direkte inde i spillene – ikke som et eksternt lag. Casinooperatører kan oprette real-time turneringer med live leaderboards, hvor spillere konkurrerer om præmier baseret på største gevinst, flest spins eller specifikke achievements. Golden Chips-funktionen giver spillere gratis spins til specifikke spil, og Missions tilbyder progressionsbaserede belønninger. I modsætning til <Link to="/spiludviklere/red-tiger" className="text-primary underline hover:text-primary/80">Red Tigers</Link> turnerings-system, der kun fungerer i egne spil, kan BOOST køre på tværs af en operators hele portefølje – ikke kun Yggdrasil-titler.
+          </>
+        ),
+      },
+      {
+        question: "Hvad er forskellen på Gigablox og Splitz?",
+        answer: "Gigablox og Splitz er to distinkte mekanikker der løser forskellige matematiske udfordringer. Gigablox tillader kæmpesymboler på op til 6x6 felter at lande på hjulene, hvilket visuelt dominerer skærmen og skaber massive gevinstpotentialer på færre symbolkombinationer. Splitz derimod deler individuelle symboler i op til 12 dele per felt, hvilket eksponentielt øger antallet af vinderkombinationer – fra 46.656 til over 1 million i visse konfigurationer. Gigablox fokuserer på store, sjældne hits; Splitz fokuserer på mekanisk kompleksitet. Begge er Yggdrasil-eksklusive og kan ikke findes hos andre udviklere.",
+      },
+      {
+        question: "Hvad betyder det at Yggdrasils grundlægger var CEO for NetEnt?",
+        answer: (
+          <>
+            Frederik Elmqvist ledede <Link to="/spiludviklere/netent" className="text-primary underline hover:text-primary/80">NetEnt</Link> i en afgørende vækstperiode og bragte dyb branchekendskab med sig til Yggdrasil i 2013. Hans vision var at bygge det studio NetEnt ikke kunne være: en platform-først virksomhed der innoverer på teknologi snarere end blot spilindhold. Dette DNA er tydeligt i BOOST-tools, GEM-frameworks og licensmodellen. Elmqvist forstod fra NetEnt at operatører har brug for engagement-værktøjer mindst lige så meget som nye spil – en indsigt der positionerede Yggdrasil strategisk mellem rene spilstudios og teknologileverandører.
+          </>
+        ),
+      },
+      {
+        question: "Hvilke Yggdrasil-spil passer bedst til danske bonustilbud?",
+        answer: (
+          <>
+            Vikings Go Berzerk (96,10% RTP) er Yggdrasils mest bonusvenlige titel med medium-høj volatilitet og en progressiv bonusmekanik der belønner længere sessioner. Valley of the Gods (96,20%) har ingen gevinstlinjer men bruger Life of Luxury-systemet med respin-features. Til <Link to="/free-spins" className="text-primary underline hover:text-primary/80">free spins</Link>-tilbud er Jackpot Raiders (96,30%) et godt valg med sin progressive jackpot. For spillere med højere risikoappetit tilbyder Raptor Doublemax (96,00%) stigende multiplikatorer i bonus der kan nå astronomiske niveauer.
+          </>
+        ),
+      },
+      {
+        question: "Hvad er Yggdrasils ISO 27001-certificering?",
+        answer: "Yggdrasil er en af ganske få spiludviklere med ISO 27001-certificering – den internationale standard for informationssikkerhedsstyring. Certificeringen dækker hele organisationen: fra spildata og spillerinformation til BOOST-platformens kampagnedata. Det betyder at alle processer for datahåndtering, adgangskontrol og sikkerhedsbrud-respons er eksternt auditeret og godkendt. For danske spillere giver det en ekstra sikkerhedsgaranti ud over de lovpligtige krav fra Malta Gaming Authority og Spillemyndigheden.",
+      },
+      {
+        question: "Hvordan licenserer tredjepartsstudios Yggdrasils teknologi?",
+        answer: "Yggdrasils GEM (Game Engagement Mechanics) og YGS Masters-program giver uafhængige studios adgang til deres tekniske infrastruktur, regulatoriske rammer og BOOST-tools. Partnerstudios bygger spil på Yggdrasils framework og får automatisk distribution til alle markeder hvor Yggdrasil har licens. I modsætning til Relax Gamings rene aggregeringsmodel tilbyder Yggdrasil dyb teknisk integration – partnere kan bruge Gigablox, Splitz og BOOST i deres egne spil. Over 20 studios har licenseret platformen, hvilket gør Yggdrasil til en skjult infrastruktur-gigant bag kulisserne.",
+      },
     ]}
     responsibleGamingText="Yggdrasil Gamings BOOST-platform inkluderer ansvarligt spil-compliance tools der automatisk monitorerer spilleradfærd og integrerer session-grænser i kampagneværktøjerne."
   />

@@ -100,10 +100,42 @@ const RelaxGamingGuide = () => (
       "Aggregeret kvalitet varierer mellem partnerstudios",
     ]}
     faqs={[
-      { question: "Hvad er Relax Gaming?", answer: "Relax Gaming er en maltesisk spiludvikler og aggregator grundlagt i 2010, med 150+ egne spil og distribution af 20+ partnerstudios. De er bag Money Train-serien og Dream Drop Jackpots." },
-      { question: "Hvad er Dream Drop Jackpot?", answer: "Dream Drop er Relax Gamings 4-trins progressive jackpot-system (Rapid, Midi, Maxi, Mega). Mega-jackpotten starter ved €500.000 og kan vokse til flere millioner euro." },
-      { question: "Hvad er den maksimale gevinst i Money Train 3?", answer: "Money Train 3 har en maksimal gevinst på 100.000x din indsats med en RTP på 96,10%." },
-      { question: "Er Relax Gaming-spil fair?", answer: "Ja, alle spil er licenseret af Malta Gaming Authority og UK Gambling Commission. Dream Drop er certificeret af GLI." },
+      {
+        question: "Hvordan adskiller Dream Drop sig fra Mega Moolah?",
+        answer: (
+          <>
+            Dream Drop og <Link to="/spiludviklere/microgaming" className="text-primary underline hover:text-primary/80">Microgamings</Link> Mega Moolah er begge progressive jackpot-systemer, men med fundamentalt forskellige arkitekturer. Mega Moolah er bundet til ét specifikt spil, mens Dream Drop kan integreres i enhver slot – fra Relax Gaming selv eller fra partnerstudios. Dream Drops fire niveauer (Rapid, Midi, Maxi, Mega) udbetaler hyppigere end Mega Moolah, men Mega-jackpotten starter lavere (€500.000 vs. €1 million). Dream Drop er certificeret af GLI og har genereret over €100 millioner i jackpot-udbetalinger inden for det første år.
+          </>
+        ),
+      },
+      {
+        question: "Hvorfor er Money Train-seriens respins-mekanik så indflydelsesrig?",
+        answer: "Money Train-serien (fire titler) introducerede en respins-bonusrunde med persistente multiplikator-symboler og collector-symboler der har inspireret et helt genre af efterfølgere. I bonusrunden starter spilleren med tre respins, og hvert nyt symbol der lander nulstiller tælleren til tre. Collector-symboler samler alle synlige værdier, sniper-symboler skyder tilfældige multiplikatorer, og payer-symboler udbetaler til alle synlige symboler. Money Train 3 toppede med 100.000x maks. gevinst og 96,10% RTP – en kombination af fair afkast og ekstremt gevinstpotentiale.",
+      },
+      {
+        question: "Hvad er Relax Gamings rolle som aggregator?",
+        answer: "Relax Gaming opererer som både spiludvikler og B2B-distributionsplatform for over 20 partnerstudios. Det betyder at casinoer der integrerer Relax' platform automatisk får adgang til hundredvis af spil fra uafhængige studios – uden at skulle forhandle individuelle kontrakter. Denne dobbeltrolle giver Relax unik dataindsigt i hvad der fungerer kommercielt, data de bruger til at forfine egne titler. Partnerstudios får til gengæld global distribution til 200+ operatører, hvilket er særligt værdifuldt for mindre studios der ikke har egen salgsorganisation.",
+      },
+      {
+        question: "Passer Relax Gaming-spil til no-sticky bonusser?",
+        answer: (
+          <>
+            Ja, Relax Gaming-spil er blandt de bedste til <Link to="/no-sticky-bonus" className="text-primary underline hover:text-primary/80">no-sticky bonusser</Link>. Money Train 3 (100.000x maks.), Temple Tumble Megaways (7.776 vinderkombinationer) og Snake Arena (sniper-mekanik) har alle høj volatilitet med store maks. gevinster der kompenserer for risikoen. No-sticky bonusser lader dig hæve rigtige penge ud når som helst og kun miste bonusbeløbet, hvilket passer perfekt til Relax' høj-volatilitetsprofil. Hitfrekvensen ligger typisk på 18-22%, så forvent længere perioder uden gevinst.
+          </>
+        ),
+      },
+      {
+        question: "Hvilke partnerstudios distribuerer Relax Gaming?",
+        answer: "Relax Gamings aggregeringsplatform distribuerer spil fra over 20 uafhængige studios, herunder anerkendte navne som Kalamba Games, Peter & Sons, Print Studios og Fantasma Games. Hvert partnerstudio beholder sin kreative identitet men får adgang til Relax' tekniske infrastruktur, regulatoriske compliance og globale distribution. Kvaliteten varierer mellem partnere – Relax har en streng kvalitetskontrol-proces (Powered By Relax og Silver Bullet) der screener nye studios. For spillere betyder det et bredere udvalg af spilstile inden for én platform.",
+      },
+      {
+        question: "Er Relax Gaming-spil tilgængelige på danske casinoer?",
+        answer: (
+          <>
+            Ja, Relax Gaming distribuerer til over 200 operatører globalt, herunder danske casinoer med <Link to="/top-10-casino-online" className="text-primary underline hover:text-primary/80">Spillemyndigheden-licens</Link>. Money Train-serien, Temple Tumble og Dream Drop Jackpot-spil er tilgængelige hos de fleste danske licenserede casinoer. Relax' Malta Gaming Authority-licens sikrer compliance med danske regulatoriske krav. Dream Drop-jackpotten er den samme på tværs af alle casinoer – det er ét fælles netværk, så jackpot-størrelsen vokser hurtigere end ved casino-specifikke systemer.
+          </>
+        ),
+      },
     ]}
     responsibleGamingText="Relax Gaming integrerer ansvarligt spil-værktøjer direkte i deres aggregeringsplatform, så partnerstudios automatisk overholder regulatoriske krav på tværs af markeder."
   />

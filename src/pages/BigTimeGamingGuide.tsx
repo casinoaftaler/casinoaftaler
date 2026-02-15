@@ -99,10 +99,42 @@ const BigTimeGamingGuide = () => (
       "Høj volatilitet – ikke egnet til konservative spillere eller bonusomsætning",
     ]}
     faqs={[
-      { question: "Hvad er Big Time Gaming?", answer: "Big Time Gaming er en australsk spiludvikler fra 2011, nu ejet af Evolution Gaming. De opfandt Megaways-mekanikken der er brugt i 100+ spil fra 15+ studios." },
-      { question: "Hvad er Megaways?", answer: "Megaways er BTGs patenterede mekanik med dynamiske hjul der ændrer antal symboler per spin. Det skaber op til 117.649 (standard) eller 248.832 (White Rabbit) vinderkombinationer." },
-      { question: "Hvad er Feature Drop?", answer: "Feature Drop er BTGs unikke bonus buy-mekanik hvor prisen for at købe bonus gradvist falder med hvert spin. Jo tættere du er på at trigge bonus naturligt, jo billigere bliver købet." },
-      { question: "Hvem licenserer Megaways?", answer: "15+ studios licenserer Megaways, herunder NetEnt, Pragmatic Play, Red Tiger, Blueprint Gaming, iSoftBet og mange flere. Over 100 Megaways-spil er udgivet globalt." },
+      {
+        question: "Hvordan fungerer Megaways-mekanikkens dynamiske hjul rent matematisk?",
+        answer: "Megaways bruger en Random Reel Modifier der tildeler 2-7 symboler per hjulposition per spin. Med 6 hjul giver standard-konfigurationen op til 7^6 = 117.649 vinderkombinationer. White Rabbit Megaways udvider dette med extending reels (ekstra rækker i bonus) til 248.832. Antallet af vinderkombinationer varierer drastisk fra spin til spin – ét spin kan have 64 (2 symboler x 6 hjul), det næste 117.649. Denne varians er fundamentet for den høje volatilitet. Cascading wins (Reactions) fjerner vindende symboler og lader nye falde ned, hvilket kan skabe kæder af gevinster på ét spin.",
+      },
+      {
+        question: "Hvad gør Feature Drop anderledes end standard Bonus Buy?",
+        answer: (
+          <>
+            Feature Drop er BTGs unikke twist på Bonus Buy: i stedet for en fast pris (typisk 100x hos <Link to="/spiludviklere/pragmatic-play" className="text-primary underline hover:text-primary/80">Pragmatic Play</Link>), falder prisen gradvist med hvert basis-spin. Startprisen er typisk 70-100x indsatsen og reduceres med 0,10-0,50x per spin. Jo tættere du er på at trigge bonus naturligt, jo billigere bliver købet. Matematisk ændrer det ikke den forventede værdi – det er ækvivalent med at købe bonus til fast pris – men psykologisk skaber det en progression der holder spilleren engageret i basis-spillet. Feature Drop er patenteret og eksisterer kun i BTGs egne titler.
+          </>
+        ),
+      },
+      {
+        question: "Hvilke studios har licenseret Megaways-patentet?",
+        answer: (
+          <>
+            Over 15 studios har licenseret Megaways, herunder <Link to="/spiludviklere/netent" className="text-primary underline hover:text-primary/80">NetEnt</Link> (Gonzo's Quest Megaways), <Link to="/spiludviklere/pragmatic-play" className="text-primary underline hover:text-primary/80">Pragmatic Play</Link> (Big Bass Megaways), <Link to="/spiludviklere/red-tiger" className="text-primary underline hover:text-primary/80">Red Tiger</Link> (Piggy Riches Megaways), Blueprint Gaming (Fishin' Frenzy Megaways), iSoftBet og Iron Dog Studio. Over 100 Megaways-spil er udgivet globalt. Licensmodellen genererer royalty-indtægter for BTG uafhængigt af egne spils performance – en forretningsmodel sammenlignelig med QUALCOMM's patent-licensering i tech-branchen. Evolutions opkøb af BTG sikrede at Megaways-royalties forbliver internt i koncernen.
+          </>
+        ),
+      },
+      {
+        question: "Er Bonanza stadig det bedste Megaways-spil?",
+        answer: "Bonanza (2016) var den første Megaways-slot og forbliver genrens definerende titel. Med guld-tema, Reactions (cascading wins) og unlimited multiplier i free spins har den en tidløs appel. RTP er 96,00% med maks. gevinst på 12.000x. Nyere titler som Extra Chilli (op til 50.000x) og White Rabbit (248.832 vinderkombinationer) overgår Bonanza matematisk, men mangler dens ikoniske status. For spillere der er nye til Megaways er Bonanza det naturlige startpunkt – den introducerer mekanikken i sin reneste form uden overlæssede bonusfunktioner.",
+      },
+      {
+        question: "Passer BTG-spil til at gennemspille bonusomsætning?",
+        answer: (
+          <>
+            Generelt nej – BTGs høje volatilitet gør dem dårligt egnede til klassisk <Link to="/omsaetningskrav" className="text-primary underline hover:text-primary/80">bonusomsætning</Link>. Hitfrekvensen på 18-25% og de store udsving i bankroll gør det svært at nå omsætningskrav konsistent. Bonanza (96,00%) og Extra Chilli (96,82%) har acceptable RTP-værdier, men volatiliteten betyder at du lige så ofte taber 80% af bankrollet som du fordobler det. Til <Link to="/no-sticky-bonus" className="text-primary underline hover:text-primary/80">no-sticky bonusser</Link> er BTG-spil derimod ideelle – den høje maks. gevinst (op til 50.000x i Extra Chilli) giver massivt upside med begrænset downside.
+          </>
+        ),
+      },
+      {
+        question: "Hvad kostede Evolutions opkøb af Big Time Gaming?",
+        answer: "Evolution Gaming opkøbte Big Time Gaming i 2021 som led i deres aggressive konsolideringsstrategi. Den præcise købesum er ikke offentligt bekræftet, men brancheestimater peger på €400-500 millioner. Opkøbet bragte Megaways-patentet ind i Evolution-koncernen, hvilket betyder at royalties fra 100+ licenserede Megaways-spil nu tilfalder koncernen internt. BTG opererer stadig selvstændigt fra Sydney med sit eget udviklingsteam og release-kalender. Sammen med NetEnt og Red Tiger giver BTG Evolution den mest komplette portefølje i casinobranchen.",
+      },
     ]}
     responsibleGamingText="Big Time Gaming integrerer ansvarligt spil-tools via Evolution Gamings compliance-infrastruktur. Feature Drop-mekanikken er designet med transparente pris-displays for at hjælpe spillere med informerede beslutninger."
   />

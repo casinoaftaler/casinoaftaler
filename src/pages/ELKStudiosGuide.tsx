@@ -99,10 +99,46 @@ const ELKStudiosGuide = () => (
       "Ingen live casino, bordspil eller progressive jackpots",
     ]}
     faqs={[
-      { question: "Hvad er ELK Studios?", answer: "ELK Studios er en svensk spiludvikler fra 2012 med 80+ spil. De er kendte for Precision Spins-teknologi, Avalanche-mekanikken og exceptionel visuel kvalitet." },
-      { question: "Hvad er Precision Spins?", answer: "Precision Spins er ELKs unikke teknologi der lader spillere allokere deres indsats over et bestemt antal spins, med mulighed for at koncentrere mere på bonus-triggering spins." },
-      { question: "Er ELK Studios-spil fair?", answer: "Ja, alle spil er licenseret af MGA og UKGC og testes af eCOGRA og iTech Labs. Precision Spins er separat certificeret for fairness." },
-      { question: "Hvad er de mest populære ELK-spil?", answer: "Wild Toro, Kaiju Payment, Cygnus og Ecuador Gold er de mest populære. Wild Toro er ELKs mest ikoniske titel." },
+      {
+        question: "Hvordan giver Precision Spins en reel fordel for spillere?",
+        answer: "Precision Spins er ELK Studios' mest innovative bidrag til branchen. I stedet for at sætte den samme indsats per spin kan spilleren fordele sit budget over f.eks. 25 spins med varierende indsats – lavere på basis-spins og højere på de spins der har bonus-potentiale. Systemet bruger en matematisk allokering baseret på bonusfrekvens-data. Resultatet er at den effektive RTP kan optimeres marginalt for spillere der forstår mekanikken. Ingen anden spiludvikler tilbyder denne form for avanceret bankroll-management direkte i spillet. Teknologien er separat certificeret for fairness af eCOGRA.",
+      },
+      {
+        question: "Hvorfor tager ELK Studios 6-9 måneder om at udvikle ét spil?",
+        answer: (
+          <>
+            Hvor <Link to="/spiludviklere/pragmatic-play" className="text-primary underline hover:text-primary/80">Pragmatic Play</Link> udgiver 6-8 titler månedligt med 3-4 måneders udvikling, bruger ELK Studios 6-9 måneder per spil. Den ekstra tid går til tre ting: visuel polering (hvert spil har cinematisk kvalitet med skræddersyede animationer), matematisk balancering (RTP og volatilitet testes over milliarder af simulerede spins), og mekanisk innovation (Avalanche, Walking Wilds og Precision Spins-integration). Resultatet er færre men mere gennemarbejdede titler, hvilket har sikret ELK Studios fem EGR Award-nomineringer trods den beskedne portefølje.
+          </>
+        ),
+      },
+      {
+        question: "Hvad er Avalanche-mekanikken og hvordan adskiller den sig?",
+        answer: "Avalanche (introduceret med Cygnus i 2020) er ELKs cascading wins-system: vindende symboler forsvinder og nye falder ned fra toppen, hvilket kan udløse kædegevinster på ét spin. For hvert cascade øges en multiplikator – typisk +1x per cascade i basis-spillet og +2x-3x i free spins. Cygnus tilbyder op til 262.144 vinderkombinationer med 6 hjul. Mekanikken minder overfladisk om Tumble-funktioner hos andre udviklere, men ELKs implementering har dybere matematisk integration med stigende multiplikatorer der belønner lange vinderkæder.",
+      },
+      {
+        question: "Kan man bruge ELK Studios-spil til bonusomsætning?",
+        answer: (
+          <>
+            Ja, ELK Studios-spil er velegnede til <Link to="/omsaetningskrav" className="text-primary underline hover:text-primary/80">bonusomsætning</Link> takket være konsistent RTP på 95-96,5% der ikke er operatør-konfigurerbar. Wild Toro (96,40%) og Bompers (96,30%) har medium volatilitet og hitfrekvens på 24-28%, hvilket slider bankrollet langsomt. Precision Spins kan optimere omsætningen yderligere ved at allokere mere indsats til bonus-triggering spins. Undgå Cygnus og Ecuador Gold til omsætning – deres Avalanche-mekanik har højere volatilitet og lavere hitfrekvens (20-22%) der gør bankroll-stabiliteten mindre forudsigelig.
+          </>
+        ),
+      },
+      {
+        question: "Hvorfor er ELK Studios mindre synlige i casinolobbyer end konkurrenter?",
+        answer: (
+          <>
+            Med 80 titler mod <Link to="/spiludviklere/pragmatic-play" className="text-primary underline hover:text-primary/80">Pragmatic Plays</Link> 250+ og <Link to="/spiludviklere/play-n-go" className="text-primary underline hover:text-primary/80">Play'n GOs</Link> 300+ har ELK Studios simpelthen færre spil at fyldei casinolobbyer med. Casinoer allokerer lobby-plads baseret på volumen og popularitet, og ELKs boutique-tilgang betyder færre nye titler at promovere. Det er en bevidst strategi: kvalitet over kvantitet. For spillere der aktivt søger ELK-spil via filtermenuen er kvaliteten konsistent høj, men passive browsere vil sjældnere støde på dem. Løsningen er at bruge casinoets søgefunktion eller filtrere efter spiludvikler.
+          </>
+        ),
+      },
+      {
+        question: "Hvilke priser har ELK Studios vundet?",
+        answer: (
+          <>
+            ELK Studios har modtaget adskillige EGR Awards og 'Game of the Year'-nomineringer – imponerende for et studio med kun 80 titler. De har vundet for innovation (Precision Spins), visuel kvalitet (Cygnus' Avalanche-design) og spiloplevelse (Wild Toro). Juryen fremhæver konsekvent ELKs evne til at kombinere teknisk innovation med kunstnerisk ekscellence. I 2022 vandt Ecuador Gold og Cygnus 2 branchepriser for beste mekanik-integration. ELKs prissamling er proportionalt den mest imponerende i branchen, målt per udgivet titel.
+          </>
+        ),
+      },
     ]}
   />
 );

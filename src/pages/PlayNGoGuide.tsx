@@ -99,14 +99,42 @@ const PlayNGoGuide = () => (
       "Ingen live casino eller progressive jackpots",
     ]}
     faqs={[
-      { question: "Hvad er Play'n GO?", answer: "Play'n GO er en svensk spiludvikler fra 2005 med 300+ spil. De har vundet 'Slot Provider of the Year' fem gange og er bag Book of Dead og Reactoonz." },
-      { question: "Har Play'n GO bonus buy?", answer: "Nej, Play'n GO tilbyder ikke bonus buy-funktion i deres spil. Free spins udløses kun gennem naturligt gameplay." },
-      { question: "Kan casinoer ændre RTP på Play'n GO-spil?", answer: "Nej, Play'n GO er en af de få udviklere der ikke tilbyder operatør-konfigurerbar RTP. Det samme spil har altid den samme RTP uanset casino." },
-      { question: "Hvad er det bedste Play'n GO-spil til bonus?", answer: (
-        <>
-          Book of Dead (96,21% RTP) er ideelt til <Link to="/free-spins" className="text-primary underline hover:text-primary/80">free spins</Link>. Fire Joker (96,15%) fungerer godt til at gennemspille <Link to="/omsaetningskrav" className="text-primary underline hover:text-primary/80">omsætningskrav</Link> takket være lav volatilitet.
-        </>
-      )},
+      {
+        question: "Hvorfor tilbyder Play'n GO ikke Bonus Buy som andre udviklere?",
+        answer: (
+          <>
+            Play'n GO har bevidst fravalgt Bonus Buy-funktionen af to grunde: ansvarligt spil og spildesign-filosofi. De mener at bonusrunden skal optjenes gennem naturligt gameplay, ikke købes. Denne holdning adskiller dem fra <Link to="/spiludviklere/pragmatic-play" className="text-primary underline hover:text-primary/80">Pragmatic Play</Link> og <Link to="/spiludviklere/nolimit-city" className="text-primary underline hover:text-primary/80">Nolimit City</Link>, hvor Bonus Buy er standard. For spillere betyder det længere sessioner med mere varieret gameplay, men også at man ikke kan springe direkte til den mest spændende del af spillet. Regulatorisk er Play'n GOs tilgang mere fremtidssikret, da flere jurisdiktioner overvejer at forbyde Bonus Buy.
+          </>
+        ),
+      },
+      {
+        question: "Hvad betyder det at Play'n GO har fast RTP?",
+        answer: (
+          <>
+            Play'n GO er en af branchens få udviklere der ikke tilbyder operatør-konfigurerbar RTP. Book of Dead har altid 96,21% RTP, uanset om du spiller hos et dansk eller maltesisk casino. Til sammenligning kan Pragmatic Plays Gates of Olympus variere fra 94,50% til 96,50% – en forskel på 2 procentpoint der over 10.000 spins kan betyde op til 200 DKK ekstra tab per 1.000 DKK indsat. Denne fast-RTP-politik er en stor fordel for informerede spillere og gør Play'n GO-spil særligt velegnede til <Link to="/omsaetningskrav" className="text-primary underline hover:text-primary/80">omsætningskrav</Link>.
+          </>
+        ),
+      },
+      {
+        question: "Hvad gør Rich Wilde-franchisen unik i casinobranchen?",
+        answer: "Rich Wilde er casinobranchens svar på Indiana Jones – en gennemgående protagonist der optræder i en serie af eventyr-slots. Book of Dead (Egypten), Pearls of India (Indien), Shield of Athena (Grækenland) og Tome of Madness (Lovecraft) er alle selvstændige spil med unikke mekanikker, men deler en fælles narrativ ramme. Denne franchise-tænkning skaber spillerloyalitet og genkendelse der er sjælden i slot-branchen, hvor de fleste spil er enkeltstående titler. Reactoonz-serien (tre titler) har anvendt samme strategi med karakter-kontinuitet.",
+      },
+      {
+        question: "Hvilke Play'n GO-spil er bedst til free spins-tilbud?",
+        answer: (
+          <>
+            Book of Dead (96,21% RTP) er den mest udbudte Play'n GO-titel i <Link to="/free-spins" className="text-primary underline hover:text-primary/80">free spins</Link>-kampagner. Med medium-høj volatilitet og expanding symbols i free spins-runden giver den god balance mellem gevinstfrekvens og potentiale. Fire Joker (96,15%, lav volatilitet) er bedre til konservativ omsætning. Reactoonz (96,51%) tilbyder cluster pays med progressiv bonusmekanik. For maksimal underholdningsværdi er Rise of Olympus (96,50%) et godt valg med sine tre guder der hver tilbyder unikke power-ups i bonusfasen.
+          </>
+        ),
+      },
+      {
+        question: "Hvor mange gange har Play'n GO vundet Slot Provider of the Year?",
+        answer: "Play'n GO har vundet EGR Awards' 'Slot Provider of the Year' fem gange – flere end nogen anden spiludvikler. Prisen gives af European Gaming & Racing Association baseret på innovation, spiloplevelse og kommerciel succes. Denne rekord understreger Play'n GOs position som branchens mest konsistente kvalitetsleverandør over to årtier. Juryen fremhæver typisk deres storytelling-tilgang, franchise-building (Rich Wilde, Reactoonz) og tekniske innovation som grunde til anerkendelsen.",
+      },
+      {
+        question: "Er Play'n GO-spil mobiloptimerede?",
+        answer: "Play'n GO var blandt de første udviklere til at implementere mobile-first design. Alle 300+ spil er bygget i HTML5 og optimeret til touchscreens fra dag ét – ikke efterfølgende tilpasset som hos nogle konkurrenter. Spilfladerne tilpasser sig automatisk til portræt- og landskabsvisning, og UI-elementer (spin-knap, indsatsjustering) er placeret ergonomisk til tommelfinger-navigation. Play'n GO tester alle titler på minimum 50 forskellige enheder og browsere inden lancering, hvilket sikrer en konsistent oplevelse uanset om du spiller på iPhone, Android eller tablet.",
+      },
     ]}
   />
 );
