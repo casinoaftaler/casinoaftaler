@@ -13,12 +13,12 @@ export function CasinoReviewHero({ slug, casinoName }: CasinoReviewHeroProps) {
   if (!logoUrl) return null;
 
   return (
-    <div className="mb-8 mt-6 flex justify-center">
-      <div className="flex items-center justify-center rounded-2xl border border-border bg-card p-6 shadow-sm md:p-8">
+    <div className="mb-8 mt-6 w-full overflow-hidden rounded-2xl border border-border bg-card">
+      <div className="flex items-center justify-center py-12 px-6 md:py-16">
         <img
           src={logoUrl}
           alt={`${casinoName || casino?.name || slug} logo`}
-          className="h-16 w-auto max-w-[280px] object-contain md:h-20 md:max-w-[360px]"
+          className="h-20 w-auto max-w-[320px] object-contain md:h-28 md:max-w-[400px]"
         />
       </div>
     </div>
