@@ -43,7 +43,7 @@ const MobilCasinoerGuide = () => {
         </div>
       </section>
 
-      <AuthorMetaBar author="Jonas" date="1. februar 2026" readTime="18 min" />
+      <AuthorMetaBar author="jonas" date="1. februar 2026" readTime="18 min" />
 
       <article className="container max-w-4xl py-10 md:py-16">
         <section className="prose prose-lg max-w-none dark:prose-invert mb-12">
@@ -51,7 +51,7 @@ const MobilCasinoerGuide = () => {
           <p>I denne guide analyserer vi de bedste mobil casinoer i Danmark: Hvad gør et godt mobil casino, hvilke <Link to="/betalingsmetoder" className={linkClass}>betalingsmetoder</Link> fungerer bedst på mobil, app vs. browser, og hvordan du optimerer din mobiloplevelse. Vi har testet alle vores anbefalede casinoer grundigt på både iPhone og Android for at give dig pålidelige, hands-on vurderinger.</p>
         </section>
 
-        <InlineCasinoCards slugs={["spildansknu", "spilleautomaten", "betinia", "campobet", "swift-casino", "luna-casino"]} title="Bedste mobil casinoer i Danmark 2026" />
+        <InlineCasinoCards title="Bedste mobil casinoer i Danmark 2026" />
 
         <section className="mb-12">
           <h2 className="text-2xl md:text-3xl font-bold mb-6 flex items-center gap-2"><Smartphone className="h-7 w-7 text-primary" /> Hvad kendetegner et godt mobil casino?</h2>
@@ -120,9 +120,9 @@ const MobilCasinoerGuide = () => {
         </section>
 
         <FAQSection faqs={faqs} />
-        <RelatedGuides guides={[{ to: "/betalingsmetoder/mobilepay", label: "MobilePay Casino" }, { to: "/betalingsmetoder/apple-pay", label: "Apple Pay Casino" }, { to: "/top-10-casino-online", label: "Top 10 Online Casino" }]} />
+        <RelatedGuides currentPath="/casinoer/mobil-casinoer" />
         <CommunityPromoSection />
-        <AuthorBio author="Jonas" />
+        <AuthorBio author="jonas" />
       </article>
     </>
   );

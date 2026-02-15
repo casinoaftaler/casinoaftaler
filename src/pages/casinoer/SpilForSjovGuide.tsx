@@ -43,7 +43,7 @@ const SpilForSjovGuide = () => {
         </div>
       </section>
 
-      <AuthorMetaBar author="Jonas" date="1. februar 2026" readTime="16 min" />
+      <AuthorMetaBar author="jonas" date="1. februar 2026" readTime="16 min" />
 
       <article className="container max-w-4xl py-10 md:py-16">
         <section className="prose prose-lg max-w-none dark:prose-invert mb-12">
@@ -51,7 +51,7 @@ const SpilForSjovGuide = () => {
           <p>I denne guide gennemgår vi alle muligheder for at spille casino for sjov: Demo-tilstand på spilleautomater, <Link to="/bonus-uden-indbetaling" className={linkClass}>gratis bonusser uden indbetaling</Link>, <Link to="/free-spins" className={linkClass}>free spins</Link> og sociale casinospil. Vi forklarer, hvordan du finder de bedste gratis muligheder, hvad du skal være opmærksom på, og hvordan du kan gøre det til en positiv oplevelse – helt uden risiko.</p>
         </section>
 
-        <InlineCasinoCards slugs={["spildansknu", "spilleautomaten", "betinia"]} title="Casinoer med gratis demo-spil og bonusser" />
+        <InlineCasinoCards title="Casinoer med gratis demo-spil og bonusser" />
 
         <section className="mb-12">
           <h2 className="text-2xl md:text-3xl font-bold mb-6 flex items-center gap-2"><Sparkles className="h-7 w-7 text-primary" /> 3 måder at spille casino gratis på</h2>
@@ -101,9 +101,9 @@ const SpilForSjovGuide = () => {
         </section>
 
         <FAQSection faqs={faqs} />
-        <RelatedGuides guides={[{ to: "/bonus-uden-indbetaling", label: "Bonus uden Indbetaling" }, { to: "/free-spins", label: "Free Spins" }, { to: "/casino-bonus", label: "Casino Bonus" }, { to: "/responsible-gaming", label: "Ansvarligt Spil" }]} />
+        <RelatedGuides currentPath="/casinoer/spil-casino-for-sjov" />
         <CommunityPromoSection />
-        <AuthorBio author="Jonas" />
+        <AuthorBio author="jonas" />
       </article>
     </>
   );

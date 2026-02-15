@@ -44,7 +44,7 @@ const CryptoCasinoGuide = () => {
         </div>
       </section>
 
-      <AuthorMetaBar author="Jonas" date="1. februar 2026" readTime="22 min" />
+      <AuthorMetaBar author="jonas" date="1. februar 2026" readTime="22 min" />
 
       <article className="container max-w-4xl py-10 md:py-16">
         <section className="prose prose-lg max-w-none dark:prose-invert mb-12">
@@ -53,7 +53,7 @@ const CryptoCasinoGuide = () => {
           <Card className="bg-destructive/10 border-destructive/30 not-prose my-6"><CardContent className="pt-6"><div className="flex items-start gap-3"><AlertTriangle className="h-6 w-6 text-destructive flex-shrink-0 mt-1" /><div><h3 className="font-bold text-destructive mb-2">Vigtig advarsel</h3><p className="text-sm text-muted-foreground">De fleste crypto casinoer opererer uden dansk licens fra <Link to="/spillemyndigheden" className={linkClass}>Spillemyndigheden</Link>. Det betyder, at du ikke har den samme forbrugerbeskyttelse som på licenserede danske casinoer. Vi anbefaler altid at prioritere <Link to="/licenserede-casinoer" className={linkClass}>licenserede casinoer</Link> for maksimal sikkerhed. Denne guide er informativ og udgør ikke en anbefaling af ulicenserede platforme.</p></div></div></CardContent></Card>
         </section>
 
-        <InlineCasinoCards slugs={["spildansknu", "spilleautomaten", "betinia"]} title="Licenserede alternativer vi anbefaler" />
+        <InlineCasinoCards title="Licenserede alternativer vi anbefaler" />
 
         <section className="mb-12">
           <h2 className="text-2xl md:text-3xl font-bold mb-6 flex items-center gap-2"><Bitcoin className="h-7 w-7 text-primary" /> Hvad er et crypto casino?</h2>
@@ -133,9 +133,9 @@ const CryptoCasinoGuide = () => {
         </section>
 
         <FAQSection faqs={faqs} />
-        <RelatedGuides guides={[{ to: "/casinoer/casino-og-skat", label: "Casino og Skat" }, { to: "/licenserede-casinoer", label: "Licenserede Casinoer" }, { to: "/betalingsmetoder", label: "Betalingsmetoder" }]} />
+        <RelatedGuides currentPath="/casinoer/crypto-casino" />
         <CommunityPromoSection />
-        <AuthorBio author="Jonas" />
+        <AuthorBio author="jonas" />
       </article>
     </>
   );

@@ -84,6 +84,17 @@ const reviewSiblings: GuideLink[] = [
   { to: "/luna-casino-anmeldelse", label: "Luna Casino", icon: Sparkles, desc: "Nyt dansk casino med stærk bonus" },
 ];
 
+const casinoGuidesSiblings: GuideLink[] = [
+  { to: "/casinoer/hurtig-udbetaling", label: "Hurtig Udbetaling", icon: Zap, desc: "Casinoer med de hurtigste udbetalinger" },
+  { to: "/casinoer/hoej-rtp", label: "Høj RTP", icon: BarChart3, desc: "Casinoer med bedst tilbagebetaling" },
+  { to: "/casinoer/crypto-casino", label: "Crypto Casino", icon: Globe, desc: "Bitcoin og krypto-gambling" },
+  { to: "/licenserede-casinoer", label: "Licenserede Casinoer", icon: ShieldCheck, desc: "Sikre casinoer med dansk licens" },
+  { to: "/casinoer/vr-casinoer", label: "VR Casinoer", icon: Gamepad2, desc: "Virtual reality casino-oplevelser" },
+  { to: "/casinoer/mobil-casinoer", label: "Mobil Casinoer", icon: Zap, desc: "Casino på din smartphone" },
+  { to: "/casinoer/spil-casino-for-sjov", label: "Spil for Sjov", icon: Sparkles, desc: "Gratis casinospil uden risiko" },
+  { to: "/casinoer/casino-og-skat", label: "Casino og Skat", icon: Target, desc: "Skatteforhold ved casinogevinster" },
+];
+
 const casinospilSiblings: GuideLink[] = [
   { to: "/casinospil/spillemaskiner", label: "Spillemaskiner", icon: Gamepad2, desc: "Guide til alle typer online slots" },
   { to: "/casinospil/spillemaskiner/hoej-rtp", label: "Høj RTP Slots", icon: BarChart3, desc: "Find spillemaskiner med bedst tilbagebetaling" },
@@ -237,6 +248,15 @@ function getContextualGuides(currentPath: string): { guides: GuideLink[]; subtit
     return {
       guides: [...hub, ...siblings, reviewHub].slice(0, MAX_SIBLINGS + 1 + MAX_CROSS_CLUSTER),
       subtitle: "Udforsk andre bonusguides til danske casinoer.",
+    };
+  }
+
+  // Casino guides subpages → 3 siblings + 1 cross-cluster
+  if (path.startsWith("/casinoer/") || path === "/licenserede-casinoer") {
+    const siblings = casinoGuidesSiblings.filter(g => g.to !== path).slice(0, MAX_SIBLINGS);
+    return {
+      guides: [...siblings, bonusHub].slice(0, MAX_SIBLINGS + MAX_CROSS_CLUSTER),
+      subtitle: "Udforsk andre casino-guides til danske spillere.",
     };
   }
 
