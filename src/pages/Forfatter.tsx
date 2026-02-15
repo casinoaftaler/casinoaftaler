@@ -242,8 +242,9 @@ export default function Forfatter() {
               </div>
               <p className="text-muted-foreground leading-relaxed">
                 Jonas, bedre kendt som <strong>Fedesvinsejer</strong>, er grundlæggeren af Casinoaftaler.dk og en af Danmarks mest engagerende casino-streamere. 
-                Med sin åbne stil, smittende energi og humor har han opbygget et aktivt og loyalt community, 
-                der deler hans passion for casinospil og underholdning.
+              Med sin åbne stil, smittende energi og humor har han opbygget et aktivt og loyalt community, 
+                der deler hans passion for{" "}
+                <Link to="/casinospil" className="text-primary hover:underline">casinospil</Link> og underholdning.
               </p>
             </div>
           </div>
@@ -258,14 +259,29 @@ export default function Forfatter() {
             Baggrund og Motivation
           </h2>
           <p className="text-muted-foreground leading-relaxed mb-4">
-            Jonas begyndte sin rejse som casino-streamer i maj 2022, hvor han sammen med sin ven Peter startede kanalen JPLiveslots. 
-            På kort tid blev de én af Danmarks mest populære casino-kanaler på Twitch. Siden da har Jonas udviklet sin egen platform, 
-            Casinoaftaler.dk, for at give danske spillere et pålideligt og gennemsigtigt sted at finde de bedste casino-tilbud og anmeldelser.
+            Han har streamet gambling i fire år – men for ham har det aldrig kun handlet om slots. Det har handlet om energi, fællesskab og personlighed.
           </p>
-          <p className="text-muted-foreground leading-relaxed">
-            Med Casinoaftaler.dk ønsker Jonas at kombinere sin viden om casinobranchen med sin streamingerfaring 
-            for at skabe en unik oplevelse, der både underholder og informerer. Hver anmeldelse og guide på sitet 
-            er baseret på reel erfaring og grundig research.
+          <p className="text-muted-foreground leading-relaxed mb-4">
+            Mange lærte ham først at kende gennem hans kat, <strong>Fedesvin</strong>, som i dag stolt har sine helt egne to{" "}
+            <Link to="/spillemaskiner" className="text-primary hover:underline">slotmaskiner</Link>. Det siger meget om hans univers: Det må gerne være skørt, underholdende og lidt ud over det sædvanlige.
+          </p>
+          <p className="text-muted-foreground leading-relaxed mb-4">
+            Tilbage i tiden var han medstifter af JPLiveSlots, som på rekordtid blev en af de største slotstreamere i Danmark. Det var en intens rejse med højt tempo, store ambitioner og et stærkt drive for at skabe noget unikt. Succesen kom hurtigt og gav ham både erfaring og troen på, at han kunne bygge noget endnu større.
+          </p>
+          <p className="text-muted-foreground leading-relaxed mb-4">
+            Senere startede han projektet Casinoholdet sammen med to andre streamere. Endnu et ambitiøst kapitel i hans karriere. Men på et tidspunkt mærkede han tydeligt, at han ville fokusere fuldt ud på sin egen vision og sit eget brand. Derfor valgte han at gå solo.
+          </p>
+          <p className="text-muted-foreground leading-relaxed mb-4">
+            Det blev starten på <strong>Casinoaftaler.dk</strong> – et projekt, der i dag er i markant vækst. Her er der fokus på SEO, strategi og langsigtet udvikling, men vigtigst af alt: fællesskabet. Hans mål er at skabe et stærkt slot-community, hvor seerne fra streamen ikke blot kan finde og spille deres{" "}
+            <Link to="/spillemaskiner" className="text-primary hover:underline">yndlingsmaskiner</Link>, men også kommunikere med hinanden og tage Twitch-fællesskabet med videre.
+          </p>
+          <p className="text-muted-foreground leading-relaxed mb-4">
+            Han er kendt for sine store råb, sine daglige grin og sine mange – til tider vilde – historier. Han holder sig ikke tilbage. Han er åben om sit liv og deler både op- og nedture med sit publikum. For ham handler streaming ikke kun om spil – det handler om relationer, ærlighed og om at turde være sig selv fuldt ud.
+          </p>
+          <p className="text-muted-foreground leading-relaxed mb-4 font-medium">
+            Han bygger ikke bare en platform.<br />
+            Han bygger et univers.<br />
+            Og rejsen er langt fra slut.
           </p>
         </section>
 
@@ -292,8 +308,9 @@ export default function Forfatter() {
                 </CardTitle>
               </CardHeader>
               <CardContent className="text-sm text-muted-foreground">
-                Energisk og underholdende bonus hunts med masser af interaktion. 
-                Jonas streamer primært om aftenen fra kl. 20-21 og frem.
+                Energisk og underholdende bonus hunts med masser af interaktion på{" "}
+                <Link to="/live-casino" className="text-primary hover:underline">live casino</Link>{" "}
+                og slots. Jonas streamer primært om aftenen fra kl. 20-21 og frem.
               </CardContent>
             </Card>
             <Card>
@@ -319,7 +336,8 @@ export default function Forfatter() {
                 </CardTitle>
               </CardHeader>
               <CardContent className="text-sm text-muted-foreground">
-                Stor fan af Esport – især Counter-Strike, hvor han følger stort set alle turneringer.
+                Stor fan af Esport – især Counter-Strike, hvor han følger stort set alle turneringer. Udforsk hans{" "}
+                <Link to="/highlights" className="text-primary hover:underline">bedste highlights</Link>.
               </CardContent>
             </Card>
           </div>
