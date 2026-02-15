@@ -65,3 +65,6 @@ verify_jwt = false
 
 [functions.join-tournament]
 verify_jwt = false
+
+[functions.update-tournament-status]
+verify_jwt = false
