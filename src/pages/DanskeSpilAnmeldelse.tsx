@@ -13,7 +13,7 @@ import { useSiteSettings } from "@/hooks/useSiteSettings";
 import { buildArticleSchema } from "@/lib/seo";
 import { QuickFactsProviders } from "@/components/QuickFactsProviders";
 import type { ReactNode } from "react";
-import danskeSpilHero from "@/assets/heroes/danske-spil-hero.jpg";
+import { CasinoReviewHero } from "@/components/CasinoReviewHero";
 import {
   ShieldCheck,
   Star,
@@ -195,9 +195,7 @@ const DanskeSpilAnmeldelse = () => {
       <div className="container py-8 md:py-12">
         <AuthorMetaBar author="jonas" date="15-02-2026" readTime="22 Min." />
 
-        <div className="mb-10 overflow-hidden rounded-xl">
-          <img src={danskeSpilHero} alt="Danske Spil Casino – Danmarks statsligt forankrede online casino" className="w-full h-auto object-cover max-h-[400px]" loading="eager" />
-        </div>
+        <CasinoReviewHero slug="danske-spil" casinoName="Danske Spil Casino" />
 
         {/* Quick Facts Card */}
         <section className="mb-12">

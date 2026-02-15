@@ -14,7 +14,7 @@ import { useSiteSettings } from "@/hooks/useSiteSettings";
 import { getAffiliateRedirect } from "@/lib/affiliateRedirect";
 import { useAuth } from "@/hooks/useAuth";
 import type { ReactNode } from "react";
-import spildanskHero from "@/assets/heroes/spildansknu-hero.jpg";
+import { CasinoReviewHero } from "@/components/CasinoReviewHero";
 import {
   Accordion,
   AccordionContent,
@@ -213,9 +213,7 @@ const SpilDanskNuAnmeldelse = () => {
       <div className="container py-8 md:py-12">
         <AuthorMetaBar author="jonas" date="13-02-2026" readTime="14 Min." />
 
-        <div className="mb-10 overflow-hidden rounded-xl">
-          <img src={spildanskHero} alt="SpilDanskNu – etableret dansk online casino siden 2017" className="w-full h-auto object-cover max-h-[400px]" loading="eager" />
-        </div>
+        <CasinoReviewHero slug="spildansknu" casinoName="SpilDanskNu" />
 
         {/* Quick Facts Card */}
         <section className="mb-12">

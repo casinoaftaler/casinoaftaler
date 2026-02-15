@@ -15,7 +15,7 @@ import { getAffiliateRedirect } from "@/lib/affiliateRedirect";
 import { useAuth } from "@/hooks/useAuth";
 import { QuickFactsProviders, QuickFactsLogo } from "@/components/QuickFactsProviders";
 import type { ReactNode } from "react";
-import spilleautomatenHero from "@/assets/heroes/spilleautomaten-hero.jpg";
+import { CasinoReviewHero } from "@/components/CasinoReviewHero";
 import {
   Accordion,
   AccordionContent,
@@ -221,9 +221,7 @@ const SpilleautomatenAnmeldelse = () => {
       <div className="container py-8 md:py-12">
         <AuthorMetaBar author="jonas" date="13-02-2026" readTime="12 Min." />
 
-        <div className="mb-10 overflow-hidden rounded-xl">
-          <img src={spilleautomatenHero} alt="Spilleautomaten – Danmarks nyeste casino med lavt omsætningskrav" className="w-full h-auto object-cover max-h-[400px]" loading="eager" />
-        </div>
+        <CasinoReviewHero slug="spilleautomaten" casinoName="Spilleautomaten" />
 
         {/* Quick Facts Card */}
         <section className="mb-12">
