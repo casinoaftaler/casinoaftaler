@@ -601,7 +601,6 @@ const Spiludviklere = () => {
           </div>
         </section>
 
-        <InlineCasinoCards title="Casinoer med de bedste spiludviklere" />
 
         <Separator className="my-10" />
 
