@@ -10,8 +10,9 @@ import { RelatedGuides } from "@/components/RelatedGuides";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
 import { UserProfileLink } from "@/components/UserProfileLink";
 import { useAuth } from "@/hooks/useAuth";
-import { useTournaments, useTournamentLeaderboard, type Tournament, type TournamentEntry } from "@/hooks/useTournaments";
+import { useTournaments, useTournamentLeaderboard, useTournamentParticipation, useJoinTournament, type Tournament, type TournamentEntry } from "@/hooks/useTournaments";
 import { cn } from "@/lib/utils";
+import { toast } from "@/hooks/use-toast";
 
 const GAME_THEMES: Record<string, { gradient: string; border: string; accent: string; accentBg: string; glow: string; badgeBg: string; badgeText: string; badgeBorder: string }> = {
   "book-of-fedesvin": {
@@ -143,6 +144,8 @@ function TournamentLeaderboardCard({ tournament }: { tournament: Tournament }) {
   );
   const { data, isLoading } = useTournamentLeaderboard(tournament.id, selectedGame);
   const { user } = useAuth();
+  const { data: hasJoined, isLoading: participationLoading } = useTournamentParticipation(tournament.id);
+  const joinMutation = useJoinTournament();
   const entries = data?.entries ?? [];
   const currentUser = data?.currentUser;
   const top10 = entries.slice(0, 10);
@@ -152,9 +155,23 @@ function TournamentLeaderboardCard({ tournament }: { tournament: Tournament }) {
   const countdown = useCountdown(isActive ? tournament.ends_at : tournament.starts_at);
   const winner = isEnded && entries.length > 0 ? entries[0] : null;
 
-  // Pick a theme based on the first game
   const themeKey = tournament.game_ids[0] || "book-of-fedesvin";
   const theme = GAME_THEMES[themeKey] || GAME_THEMES["book-of-fedesvin"];
+
+  const handleJoin = async () => {
+    try {
+      const result = await joinMutation.mutateAsync(tournament.id);
+      toast({
+        title: "Du er tilmeldt! 🎉",
+        description: result.creditsAwarded > 0
+          ? `Du har modtaget ${result.creditsAwarded} credits. Held og lykke!`
+          : "Held og lykke i turneringen!",
+      });
+    } catch (err: unknown) {
+      const message = err instanceof Error ? err.message : "Kunne ikke tilmelde dig";
+      toast({ title: "Fejl", description: message, variant: "destructive" });
+    }
+  };
 
   return (
     <Card className={cn(
@@ -188,6 +205,11 @@ function TournamentLeaderboardCard({ tournament }: { tournament: Tournament }) {
             </div>
           </div>
           <div className="flex items-center gap-2">
+            {isActive && hasJoined && (
+              <Badge className="bg-green-500/20 text-green-300 border-green-500/40 border">
+                <Sparkles className="h-3 w-3 mr-1" /> Du deltager
+              </Badge>
+            )}
             {isActive && (
               <Badge className={cn("border", theme.badgeBg, theme.badgeText, theme.badgeBorder)}>
                 <Timer className="h-3 w-3 mr-1" /> {countdown}
@@ -203,6 +225,25 @@ function TournamentLeaderboardCard({ tournament }: { tournament: Tournament }) {
             )}
           </div>
         </div>
+
+        {/* Join button for active tournaments */}
+        {isActive && user && !hasJoined && !participationLoading && (
+          <div className={cn("mt-3 p-3 rounded-xl border text-center", theme.accentBg, theme.border)}>
+            <p className="text-sm text-muted-foreground mb-2">
+              Tilmeld dig for at deltage i turneringen
+              {tournament.max_credits ? ` og modtag op til ${tournament.max_credits.toLocaleString()} credits!` : "!"}
+            </p>
+            <Button
+              onClick={handleJoin}
+              disabled={joinMutation.isPending}
+              className={cn("gap-2", theme.accentBg, "hover:opacity-90 border", theme.border)}
+              variant="ghost"
+            >
+              <Trophy className="h-4 w-4" />
+              {joinMutation.isPending ? "Tilmelder..." : "Deltag"}
+            </Button>
+          </div>
+        )}
 
         {/* Game filter tabs for separate leaderboards */}
         {tournament.separate_leaderboards && tournament.game_ids.length > 1 && (
@@ -278,8 +319,8 @@ function TournamentLeaderboardCard({ tournament }: { tournament: Tournament }) {
           </div>
         )}
 
-        {/* Play buttons */}
-        {isActive && (
+        {/* Play buttons - only show if joined or ended */}
+        {isActive && hasJoined && (
           <div className={cn("flex gap-2 mt-4", tournament.game_ids.length === 1 ? "" : "flex-col sm:flex-row")}>
             {tournament.game_ids.map((gid) => (
               <Button

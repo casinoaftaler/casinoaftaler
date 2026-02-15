@@ -828,29 +828,39 @@ Deno.serve(async (req) => {
           game_id: gameId,
         });
 
-        // Fire-and-forget: track tournament entries for bonus completion
+        // Fire-and-forget: track tournament entries for bonus completion (only for participants)
         const bonusNowISO = new Date().toISOString();
         serviceClient
-          .from("tournaments")
-          .select("id")
-          .contains("game_ids", [gameId])
-          .lte("starts_at", bonusNowISO)
-          .gte("ends_at", bonusNowISO)
-          .then(({ data: activeTournaments }) => {
-            if (activeTournaments && activeTournaments.length > 0) {
-              for (const t of activeTournaments) {
-                Promise.resolve(serviceClient.rpc("upsert_tournament_entry", {
-                  p_tournament_id: t.id,
-                  p_user_id: userId,
-                  p_game_id: gameId,
-                  p_points: newBonusWinnings,
-                  p_bet: bet,
-                  p_is_bonus: true,
-                })).catch((err: unknown) => console.error("[slot-spin] Tournament bonus entry upsert failed:", err));
-              }
-            }
+          .from("tournament_participants")
+          .select("tournament_id")
+          .eq("user_id", userId)
+          .then(({ data: participations }) => {
+            if (!participations || participations.length === 0) return;
+            const participatingIds = participations.map((p: { tournament_id: string }) => p.tournament_id);
+            serviceClient
+              .from("tournaments")
+              .select("id")
+              .in("id", participatingIds)
+              .contains("game_ids", [gameId])
+              .lte("starts_at", bonusNowISO)
+              .gte("ends_at", bonusNowISO)
+              .then(({ data: activeTournaments }) => {
+                if (activeTournaments && activeTournaments.length > 0) {
+                  for (const t of activeTournaments) {
+                    Promise.resolve(serviceClient.rpc("upsert_tournament_entry", {
+                      p_tournament_id: t.id,
+                      p_user_id: userId,
+                      p_game_id: gameId,
+                      p_points: newBonusWinnings,
+                      p_bet: bet,
+                      p_is_bonus: true,
+                    })).catch((err: unknown) => console.error("[slot-spin] Tournament bonus entry upsert failed:", err));
+                  }
+                }
+              })
+              .catch((err: unknown) => console.error("[slot-spin] Tournament bonus lookup failed:", err));
           })
-          .catch((err: unknown) => console.error("[slot-spin] Tournament bonus lookup failed:", err));
+          .catch((err: unknown) => console.error("[slot-spin] Bonus participation lookup failed:", err));
       }
 
       const result: BonusSpinResult = {
@@ -1079,29 +1089,39 @@ Deno.serve(async (req) => {
       game_id: gameId,
     }).then(() => {}).catch((err: unknown) => console.error("[slot-spin] Fire-and-forget game result insert failed:", err));
 
-    // Fire-and-forget: track tournament entries for active tournaments
+    // Fire-and-forget: track tournament entries for active tournaments (only for participants)
     const nowISO = new Date().toISOString();
     serviceClient
-      .from("tournaments")
-      .select("id")
-      .contains("game_ids", [gameId])
-      .lte("starts_at", nowISO)
-      .gte("ends_at", nowISO)
-      .then(({ data: activeTournaments }) => {
-        if (activeTournaments && activeTournaments.length > 0) {
-          for (const t of activeTournaments) {
-            Promise.resolve(serviceClient.rpc("upsert_tournament_entry", {
-              p_tournament_id: t.id,
-              p_user_id: userId,
-              p_game_id: gameId,
-              p_points: result.totalWin,
-              p_bet: bet,
-              p_is_bonus: false,
-            })).catch((err: unknown) => console.error("[slot-spin] Tournament entry upsert failed:", err));
-          }
-        }
+      .from("tournament_participants")
+      .select("tournament_id")
+      .eq("user_id", userId)
+      .then(({ data: participations }) => {
+        if (!participations || participations.length === 0) return;
+        const participatingIds = participations.map((p: { tournament_id: string }) => p.tournament_id);
+        serviceClient
+          .from("tournaments")
+          .select("id")
+          .in("id", participatingIds)
+          .contains("game_ids", [gameId])
+          .lte("starts_at", nowISO)
+          .gte("ends_at", nowISO)
+          .then(({ data: activeTournaments }) => {
+            if (activeTournaments && activeTournaments.length > 0) {
+              for (const t of activeTournaments) {
+                Promise.resolve(serviceClient.rpc("upsert_tournament_entry", {
+                  p_tournament_id: t.id,
+                  p_user_id: userId,
+                  p_game_id: gameId,
+                  p_points: result.totalWin,
+                  p_bet: bet,
+                  p_is_bonus: false,
+                })).catch((err: unknown) => console.error("[slot-spin] Tournament entry upsert failed:", err));
+              }
+            }
+          })
+          .catch((err: unknown) => console.error("[slot-spin] Tournament lookup failed:", err));
       })
-      .catch((err: unknown) => console.error("[slot-spin] Tournament lookup failed:", err));
+      .catch((err: unknown) => console.error("[slot-spin] Participation lookup failed:", err));
 
     return new Response(
       JSON.stringify({

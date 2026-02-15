@@ -28,7 +28,6 @@ export interface TournamentEntry {
   biggest_multiplier: number;
   total_credits_used: number;
   updated_at: string;
-  // Joined from profiles_leaderboard
   display_name?: string;
   avatar_url?: string;
 }
@@ -50,16 +49,50 @@ export function useTournaments() {
         .from("tournaments")
         .select("*")
         .order("starts_at", { ascending: false });
-
       if (error) throw error;
-
-      // Compute live status based on time
       return (data as Tournament[]).map((t) => ({
         ...t,
         status: computeStatus(t),
       }));
     },
-    refetchInterval: 30000, // Refresh every 30s for timer accuracy
+    refetchInterval: 30000,
+  });
+}
+
+export function useTournamentParticipation(tournamentId: string | undefined) {
+  const { user } = useAuth();
+  return useQuery({
+    queryKey: ["tournament-participation", tournamentId, user?.id],
+    queryFn: async () => {
+      if (!tournamentId || !user?.id) return false;
+      const { data } = await supabase
+        .from("tournament_participants")
+        .select("id")
+        .eq("tournament_id", tournamentId)
+        .eq("user_id", user.id)
+        .maybeSingle();
+      return !!data;
+    },
+    enabled: !!tournamentId && !!user?.id,
+  });
+}
+
+export function useJoinTournament() {
+  const queryClient = useQueryClient();
+  return useMutation({
+    mutationFn: async (tournamentId: string) => {
+      const { data, error } = await supabase.functions.invoke("join-tournament", {
+        body: { tournament_id: tournamentId },
+      });
+      if (error) throw error;
+      if (data?.error) throw new Error(data.error);
+      return data as { success: boolean; creditsAwarded: number; newBalance: number };
+    },
+    onSuccess: (_data, tournamentId) => {
+      queryClient.invalidateQueries({ queryKey: ["tournament-participation", tournamentId] });
+      queryClient.invalidateQueries({ queryKey: ["tournament-leaderboard", tournamentId] });
+      queryClient.invalidateQueries({ queryKey: ["slot-spins"] });
+    },
   });
 }
 
@@ -84,7 +117,6 @@ export function useTournamentLeaderboard(tournamentId: string | undefined, gameI
       const { data: entries, error } = await query;
       if (error) throw error;
 
-      // If no gameId filter and we want combined, aggregate by user
       let aggregated: TournamentEntry[] = [];
       if (!gameId && entries) {
         const userMap = new Map<string, TournamentEntry>();
@@ -105,7 +137,6 @@ export function useTournamentLeaderboard(tournamentId: string | undefined, gameI
         aggregated = ((entries || []) as TournamentEntry[]).map(e => ({ ...e, total_points: Number(e.total_points), biggest_win: Number(e.biggest_win), biggest_multiplier: Number(e.biggest_multiplier), total_credits_used: Number(e.total_credits_used || 0) }));
       }
 
-      // Fetch profile info for all users
       const userIds = aggregated.map((e) => e.user_id);
       if (userIds.length > 0) {
         const { data: profiles } = await supabase
@@ -127,7 +158,6 @@ export function useTournamentLeaderboard(tournamentId: string | undefined, gameI
         }
       }
 
-      // Find current user
       let currentUser = null;
       if (user) {
         const rank = aggregated.findIndex((e) => e.user_id === user.id);
