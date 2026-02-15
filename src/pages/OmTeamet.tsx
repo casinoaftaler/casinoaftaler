@@ -506,13 +506,13 @@ const OmTeamet = () => {
               </Button>
             </Link>
             <Link to="/forfatter">
-              <Button variant="outline" size="lg" className="border-white/20 text-white hover:bg-white/10 font-semibold">
+              <Button variant="outline" size="lg" className="border-white/30 text-white bg-white/10 hover:bg-white/20 font-semibold">
                 Mød Jonas
                 <ArrowRight className="ml-2 h-5 w-5" />
               </Button>
             </Link>
             <Link to="/forfatter/kevin">
-              <Button variant="outline" size="lg" className="border-white/20 text-white hover:bg-white/10 font-semibold">
+              <Button variant="outline" size="lg" className="border-white/30 text-white bg-white/10 hover:bg-white/20 font-semibold">
                 Mød Kevin
                 <ArrowRight className="ml-2 h-5 w-5" />
               </Button>
@@ -523,7 +523,7 @@ const OmTeamet = () => {
 
       {/* ═══ RELATEREDE GUIDES ═══ */}
       <div className="container py-12 md:py-16">
-        <RelatedGuides currentPath="/om-teamet" />
+        <RelatedGuides currentPath="/om-teamet" maxLinks={6} />
       </div>
     </>
   );

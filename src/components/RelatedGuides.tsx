@@ -121,6 +121,21 @@ const MAX_CROSS_CLUSTER = 1;
 function getContextualGuides(currentPath: string): { guides: GuideLink[]; subtitle: string } {
   const path = currentPath.toLowerCase();
 
+  // Om teamet → specific curated links
+  if (path === "/om-teamet") {
+    return {
+      guides: [
+        { to: "/saadan-tester-vi-casinoer", label: "Sådan tester vi", icon: ShieldCheck, desc: "Vores testmetode og vurderingskriterier" },
+        { to: "/contact", label: "Kontakt", icon: Globe, desc: "Kontakt teamet bag Casinoaftaler.dk" },
+        { to: "/forfatter", label: "Jonas – Forfatter", icon: BookOpen, desc: "Grundlægger og casino-streamer" },
+        { to: "/forfatter/kevin", label: "Kevin – Forfatter", icon: BookOpen, desc: "Casino-streamer og IT medansvarlig" },
+        { to: "/responsible-gaming", label: "Ansvarligt Spil", icon: ShieldCheck, desc: "Spil sikkert og ansvarligt" },
+        { to: "/spillemyndigheden", label: "Spillemyndigheden", icon: Landmark, desc: "Danmarks tilsynsmyndighed for spil" },
+      ],
+      subtitle: "Udforsk mere om teamet, vores metode og ansvarligt spil.",
+    };
+  }
+
   // Legal pages → show other legal links only
   if (path === "/privacy" || path === "/terms" || path === "/cookies" || path === "/responsible-gaming" || path === "/spillemyndigheden") {
     return {
