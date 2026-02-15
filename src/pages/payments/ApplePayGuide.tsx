@@ -114,41 +114,40 @@ const ApplePayGuide = () => {
       ]}
       faqs={[
         {
-          question: "Kan jeg bruge Apple Pay på alle danske casinoer?",
-          answer: "Nej, ikke alle danske casinoer understøtter Apple Pay endnu, men antallet vokser støt. Tjek altid casinoets betalingsmuligheder, før du opretter en konto.",
+          question: "Hvordan beskytter Apple Pay mine kortoplysninger ved casinotransaktioner?",
+          answer: "Apple Pay bruger en teknologi kaldet tokenisering, der erstatter dit rigtige kortnummer med en unik enhedskode (Device Account Number). Det betyder, at casinoet aldrig modtager eller opbevarer dit faktiske kortnummer. Hver transaktion kræver biometrisk godkendelse via Face ID eller Touch ID, og Apple Pay genererer en engangssikkerhedskode for hver betaling. Selv hvis casinoet bliver kompromitteret, er dine kortdata beskyttede. Denne sikkerhedsmodel gør Apple Pay til en af de sikreste betalingsmetoder, der overhovedet findes til online casino – markant sikrere end at indtaste kortoplysninger manuelt.",
         },
         {
-          question: "Er Apple Pay sikkert til casinobetaling?",
-          answer: "Ja, Apple Pay er en af de sikreste betalingsmetoder. Dine kortoplysninger deles aldrig med casinoet, og hver transaktion kræver biometrisk godkendelse via Face ID eller Touch ID.",
+          question: "Hvilke enheder kan bruges til Apple Pay-indbetalinger på casinoer?",
+          answer: "Apple Pay fungerer på iPhone (model 6 og nyere), iPad, Apple Watch og Mac med Touch ID eller Apple Silicon. På casinoer bruges det primært via iPhone og iPad i mobilbrowseren Safari. Bemærk, at Apple Pay ikke altid fungerer i andre browsere som Chrome på iOS – Safari er den mest pålidelige. Dine kortoplysninger synkroniseres via iCloud, så du kan bruge samme Apple Pay-opsætning på tværs af enheder. Apple Watch kan bruges til godkendelse af betalinger startet på en nærliggende Mac.",
         },
         {
-          question: "Kan jeg få velkomstbonus med Apple Pay?",
+          question: "Kan jeg bruge Apple Pay til både ind- og udbetalinger på danske casinoer?",
           answer: (
             <>
-              Ja, Apple Pay-indbetalinger behandles som kortbetalinger og kvalificerer næsten altid til{" "}
-              <Link to="/velkomstbonus" className="text-primary underline hover:text-primary/80">velkomstbonusser</Link>{" "}
-              og{" "}
-              <Link to="/free-spins" className="text-primary underline hover:text-primary/80">free spins</Link>.
+              Indbetalinger med Apple Pay er bredt understøttet hos casinoer, der accepterer metoden, og transaktionen gennemføres øjeblikkeligt. Udbetalinger via Apple Pay er derimod mere begrænset – ikke alle casinoer understøtter det endnu. Når det er tilgængeligt, returneres pengene til det underliggende kort (Visa/Mastercard). Hvis casinoet ikke tilbyder Apple Pay-udbetaling, bruger de typisk{" "}
+              <Link to="/betalingsmetoder/trustly" className="text-primary underline hover:text-primary/80">Trustly</Link>{" "}
+              eller direkte bankoverførsel som alternativ. Behandlingstiden for udbetalinger er typisk 1–3 hverdage, da det følger kortets standard udbetalingsprocesser.
             </>
           ),
         },
         {
-          question: "Er der gebyrer ved Apple Pay på casinoer?",
-          answer: "Apple opkræver ikke gebyrer fra forbrugeren. Enkelte casinoer kan dog have egne gebyrer, så tjek altid vilkårene.",
-        },
-        {
-          question: "Kan jeg hæve gevinster med Apple Pay?",
-          answer: "Nogle casinoer understøtter udbetalinger via Apple Pay, men det er ikke universelt. Pengene returneres typisk til det kort, du indbetalte med.",
-        },
-        {
-          question: "Skal jeg betale skat af gevinster med Apple Pay?",
+          question: "Hvordan adskiller Apple Pay sig fra at betale direkte med Visa eller Mastercard?",
           answer: (
             <>
-              Nej, gevinster fra casinoer med dansk licens er skattefrie. Læs mere om{" "}
-              <Link to="/responsible-gaming" className="text-primary underline hover:text-primary/80">ansvarligt spil</Link>{" "}
-              og danske regler.
+              Den primære forskel er sikkerhed: med Apple Pay deles dit kortnummer aldrig med casinoet, mens en direkte kortbetaling kræver, at du indtaster alle kortoplysninger. Apple Pay tilføjer også biometrisk godkendelse (Face ID/Touch ID), som ikke kræves ved standard{" "}
+              <Link to="/betalingsmetoder/visa-mastercard" className="text-primary underline hover:text-primary/80">Visa/Mastercard</Link>-betalinger. Hastigheden er identisk – begge er øjeblikkelige. Bonusmæssigt behandles Apple Pay som en kortbetaling, så du kvalificerer altid til{" "}
+              <Link to="/velkomstbonus" className="text-primary underline hover:text-primary/80">velkomstbonusser</Link>. Apple Pay er det sikre valg, hvis du værdsætter ekstra beskyttelse uden at gå på kompromis med hastighed eller bonusadgang.
             </>
           ),
+        },
+        {
+          question: "Er der beløbsgrænser eller gebyrer ved Apple Pay på casinoer?",
+          answer: "Apple opkræver aldrig gebyrer fra forbrugeren for Apple Pay-transaktioner – hverken for ind- eller udbetalinger. Beløbsgrænser afhænger af dit underliggende kort og din banks politikker, ikke af Apple Pay selv. De fleste danske banker tillader op til 50.000 kr. pr. transaktion via Apple Pay. Casinoet kan dog have egne minimum- og maksimumgrænser, typisk 100–10.000 kr. pr. indbetaling. Kontakt din bank eller tjek casinoets vilkår for præcise grænser.",
+        },
+        {
+          question: "Hvad sker der, hvis min Apple Pay-transaktion afvises på et casino?",
+          answer: "En afvist Apple Pay-transaktion skyldes typisk et af tre scenarier: din bank blokerer gambling-transaktioner (kontakt banken for at aktivere det), dit kort har utilstrækkelig saldo, eller casinoet understøtter teknisk ikke Apple Pay fra din enhed. Visse danske banker har som standard slået gambling-betalinger fra og kræver, at du aktivt tilmelder dig. Prøv alternativt at tilføje et andet kort til Apple Pay, eller brug en alternativ betalingsmetode som MobilePay eller Trustly som backup.",
         },
       ]}
       currentPath="/betalingsmetoder/apple-pay"
