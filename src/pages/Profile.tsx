@@ -14,6 +14,7 @@ import { ProfilePlayStyleSection } from "@/components/profile/ProfilePlayStyleSe
 import { ProfilePrivacySection } from "@/components/profile/ProfilePrivacySection";
 import { ProfileRewardsProgress } from "@/components/profile/ProfileRewardsProgress";
 import { ProfileCommunityBonusSection } from "@/components/profile/ProfileCommunityBonusSection";
+import { ProfileSlotRequestStats } from "@/components/profile/ProfileSlotRequestStats";
 import { TwitchBadges } from "@/components/TwitchBadges";
 import { Loader2, Save, User, Trophy, Heart, Zap, Shield, Coins } from "lucide-react";
 
@@ -289,6 +290,7 @@ export default function Profile() {
         />
 
         <ProfileCommunityBonusSection className="mt-6" />
+        <ProfileSlotRequestStats className="mt-6" />
 
         {/* Save Button - Fixed at bottom on mobile */}
         <div className="mt-6 flex justify-end sticky bottom-4 sm:static">
