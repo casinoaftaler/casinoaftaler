@@ -185,7 +185,7 @@ const NyeCasinoer = () => {
               Opdateret Februar 2026
             </Badge>
             <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">
-              Nye Casinoer i Danmark
+              Nye Casinoer i Danmark 2026
             </h1>
             <p className="text-lg text-white/80">
               Oplev de seneste danske online casinoer med friske bonusser, moderne
