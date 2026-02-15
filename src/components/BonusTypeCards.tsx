@@ -5,8 +5,8 @@ import { Check, X, ArrowRight } from "lucide-react";
 
 export function BonusTypeCards() {
   return (
-    <section className="py-16">
-      <div className="container">
+    <section className="py-12">
+      <div>
         <div className="mb-12">
           <h2 className="mb-4 text-3xl font-bold">Forstå Bonustyper</h2>
           <p className="max-w-2xl text-muted-foreground">
