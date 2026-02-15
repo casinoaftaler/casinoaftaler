@@ -63,6 +63,12 @@ const GetLuckyAnmeldelse = lazy(() => import("./pages/GetLuckyAnmeldelse"));
 const MrGreenAnmeldelse = lazy(() => import("./pages/MrGreenAnmeldelse"));
 const VideoslotsAnmeldelse = lazy(() => import("./pages/VideoslotsAnmeldelse"));
 const MrVegasAnmeldelse = lazy(() => import("./pages/MrVegasAnmeldelse"));
+const LeoVegasAnmeldelse = lazy(() => import("./pages/LeoVegasAnmeldelse"));
+const ExpektAnmeldelse = lazy(() => import("./pages/ExpektAnmeldelse"));
+const BetanoAnmeldelse = lazy(() => import("./pages/BetanoAnmeldelse"));
+const Casino888Anmeldelse = lazy(() => import("./pages/Casino888Anmeldelse"));
+const UnibetAnmeldelse = lazy(() => import("./pages/UnibetAnmeldelse"));
+const Bet365Anmeldelse = lazy(() => import("./pages/Bet365Anmeldelse"));
 const CasinoAnmeldelser = lazy(() => import("./pages/CasinoAnmeldelser"));
 const Casinospil = lazy(() => import("./pages/Casinospil"));
 const Spillemaskiner = lazy(() => import("./pages/Spillemaskiner"));
@@ -170,6 +176,12 @@ const App = () => (
                 <Route path="/casino-anmeldelser/mr-green" element={<MrGreenAnmeldelse />} />
                 <Route path="/casino-anmeldelser/videoslots" element={<VideoslotsAnmeldelse />} />
                 <Route path="/casino-anmeldelser/mr-vegas" element={<MrVegasAnmeldelse />} />
+                <Route path="/casino-anmeldelser/leovegas" element={<LeoVegasAnmeldelse />} />
+                <Route path="/casino-anmeldelser/expekt" element={<ExpektAnmeldelse />} />
+                <Route path="/casino-anmeldelser/betano" element={<BetanoAnmeldelse />} />
+                <Route path="/casino-anmeldelser/888-casino" element={<Casino888Anmeldelse />} />
+                <Route path="/casino-anmeldelser/unibet" element={<UnibetAnmeldelse />} />
+                <Route path="/casino-anmeldelser/bet365" element={<Bet365Anmeldelse />} />
                 <Route path="/casinospil" element={<Casinospil />} />
                 <Route path="/casinospil/spillemaskiner" element={<Spillemaskiner />} />
                 <Route path="/casinospil/spillemaskiner/hoej-rtp" element={<SpillemaskinerHoejRTP />} />

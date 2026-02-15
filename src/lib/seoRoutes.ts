@@ -40,6 +40,12 @@ export const seoRoutes: SeoRoute[] = [
   { path: "/casino-anmeldelser/mr-green", changefreq: "weekly", priority: 0.9 },
   { path: "/casino-anmeldelser/videoslots", changefreq: "weekly", priority: 0.9 },
   { path: "/casino-anmeldelser/mr-vegas", changefreq: "weekly", priority: 0.9 },
+  { path: "/casino-anmeldelser/leovegas", changefreq: "weekly", priority: 0.9 },
+  { path: "/casino-anmeldelser/expekt", changefreq: "weekly", priority: 0.9 },
+  { path: "/casino-anmeldelser/betano", changefreq: "weekly", priority: 0.9 },
+  { path: "/casino-anmeldelser/888-casino", changefreq: "weekly", priority: 0.9 },
+  { path: "/casino-anmeldelser/unibet", changefreq: "weekly", priority: 0.9 },
+  { path: "/casino-anmeldelser/bet365", changefreq: "weekly", priority: 0.9 },
 
   // ── Casino Spil & Live ──
   { path: "/live-casino", changefreq: "weekly", priority: 0.9 },
