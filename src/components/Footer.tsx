@@ -259,14 +259,11 @@ export function Footer() {
           </div>
 
           <div>
-            <h4 className="mb-4 text-sm font-semibold">Transparens & Retningslinjer</h4>
+            <h4 className="mb-4 text-sm font-semibold flex items-center gap-2">
+              <Shield className="h-4 w-4 text-primary" />
+              Transparens & Retningslinjer
+            </h4>
             <ul className="space-y-2 text-sm">
-              <li>
-                <Link to="/om" className="flex items-center gap-2 text-muted-foreground transition-colors hover:text-foreground">
-                  <Users className="h-4 w-4" />
-                  Om Teamet
-                </Link>
-              </li>
               <li>
                 <Link to="/saadan-tester-vi-casinoer" className="flex items-center gap-2 text-muted-foreground transition-colors hover:text-foreground">
                   <ClipboardList className="h-4 w-4" />
@@ -283,6 +280,12 @@ export function Footer() {
                 <Link to="/redaktionel-politik" className="flex items-center gap-2 text-muted-foreground transition-colors hover:text-foreground">
                   <FileText className="h-4 w-4" />
                   Redaktionel politik
+                </Link>
+              </li>
+              <li>
+                <Link to="/om" className="flex items-center gap-2 text-muted-foreground transition-colors hover:text-foreground">
+                  <Users className="h-4 w-4" />
+                  Om Casinoaftaler.dk
                 </Link>
               </li>
             </ul>
