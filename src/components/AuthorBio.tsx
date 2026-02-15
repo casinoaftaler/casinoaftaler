@@ -2,17 +2,51 @@ import { Link } from "react-router-dom";
 import { ExternalLink, BadgeCheck } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import jonasImage from "@/assets/jonas-forfatter.png";
+import kevinImage from "@/assets/kevin-forfatter.png";
 
-export function AuthorBio() {
+interface AuthorBioProps {
+  author?: "jonas" | "kevin";
+}
+
+const authorData = {
+  jonas: {
+    name: "Jonas",
+    image: jonasImage,
+    alt: "Jonas – Grundlægger af Casinoaftaler.dk",
+    link: "/forfatter",
+    badge: "Grundlægger & indholdsansvarlig",
+    role: "Grundlægger af Casinoaftaler.dk & Casino-streamer",
+    bio: "Jonas er grundlægger af Casinoaftaler.dk og har streamet online casino i over 4 år. Med daglig erfaring fra slots og live casino deler han ærlige anmeldelser og opdateret viden om det danske casinomarked.",
+    socials: [
+      { href: "https://www.twitch.tv/fedesvinsejer", label: "Twitch" },
+      { href: "https://www.instagram.com/jonastheill", label: "Instagram" },
+      { href: "https://www.facebook.com/jonas.theill/", label: "Facebook" },
+    ],
+  },
+  kevin: {
+    name: "Kevin",
+    image: kevinImage,
+    alt: "Kevin – Medansvarlig hos Casinoaftaler.dk",
+    link: "/forfatter/kevin",
+    badge: "Casino-streamer & medansvarlig",
+    role: "Medansvarlig hos Casinoaftaler.dk & Casino-streamer",
+    bio: "Kevin er medansvarlig hos Casinoaftaler.dk og har streamet online casino i over 3 år. Med sin rolige og afslappede stil bidrager han til community, indhold og udvikling af platformen.",
+    socials: [],
+  },
+} as const;
+
+export function AuthorBio({ author = "jonas" }: AuthorBioProps) {
+  const data = authorData[author];
+
   return (
     <section className="my-10" aria-label="Om forfatteren">
       <div className="rounded-xl border border-border bg-card p-6 shadow-sm md:p-8">
         <div className="flex flex-col items-center gap-6 text-center sm:flex-row sm:items-center sm:text-left">
           {/* Profile image */}
-          <Link to="/forfatter" className="shrink-0 group" aria-label="Se Jonas' forfatterprofil">
+          <Link to={data.link} className="shrink-0 group" aria-label={`Se ${data.name}' forfatterprofil`}>
             <img
-              src={jonasImage}
-              alt="Jonas – Grundlægger af Casinoaftaler.dk"
+              src={data.image}
+              alt={data.alt}
               className="h-44 w-44 rounded-full object-cover object-top ring-2 ring-border group-hover:ring-primary transition-colors"
               loading="lazy"
               width={176}
@@ -25,58 +59,41 @@ export function AuthorBio() {
             <div>
               <div className="flex items-center gap-2 justify-center sm:justify-start">
                 <Link
-                  to="/forfatter"
+                  to={data.link}
                   className="text-lg font-bold text-foreground hover:text-primary transition-colors"
                 >
-                  Jonas
+                  {data.name}
                 </Link>
                 <span className="inline-flex items-center gap-1 rounded-full bg-primary/10 px-2.5 py-0.5 text-xs font-medium text-primary">
                   <BadgeCheck className="h-3.5 w-3.5" />
-                  Grundlægger &amp; indholdsansvarlig
+                  {data.badge}
                 </span>
               </div>
               <p className="text-sm font-medium text-muted-foreground">
-                Grundlægger af Casinoaftaler.dk &amp; Casino-streamer
+                {data.role}
               </p>
             </div>
 
             <p className="text-sm leading-relaxed text-muted-foreground">
-              Jonas er grundlægger af Casinoaftaler.dk og har streamet online casino i over 4 år.
-              Med daglig erfaring fra slots og live casino deler han ærlige anmeldelser og opdateret
-              viden om det danske casinomarked.
+              {data.bio}
             </p>
 
             <div className="flex flex-wrap items-center gap-3 pt-1">
               <Button asChild variant="outline" size="sm">
-                <Link to="/forfatter">Se fuld profil</Link>
+                <Link to={data.link}>Se fuld profil</Link>
               </Button>
-              <a
-                href="https://www.twitch.tv/fedesvinsejer"
-                target="_blank"
-                rel="nofollow noopener noreferrer"
-                className="inline-flex items-center gap-1 text-xs text-muted-foreground hover:text-primary transition-colors"
-              >
-                <ExternalLink className="h-3 w-3" />
-                Twitch
-              </a>
-              <a
-                href="https://www.instagram.com/jonastheill"
-                target="_blank"
-                rel="nofollow noopener noreferrer"
-                className="inline-flex items-center gap-1 text-xs text-muted-foreground hover:text-primary transition-colors"
-              >
-                <ExternalLink className="h-3 w-3" />
-                Instagram
-              </a>
-              <a
-                href="https://www.facebook.com/jonas.theill/"
-                target="_blank"
-                rel="nofollow noopener noreferrer"
-                className="inline-flex items-center gap-1 text-xs text-muted-foreground hover:text-primary transition-colors"
-              >
-                <ExternalLink className="h-3 w-3" />
-                Facebook
-              </a>
+              {data.socials.map((social) => (
+                <a
+                  key={social.label}
+                  href={social.href}
+                  target="_blank"
+                  rel="nofollow noopener noreferrer"
+                  className="inline-flex items-center gap-1 text-xs text-muted-foreground hover:text-primary transition-colors"
+                >
+                  <ExternalLink className="h-3 w-3" />
+                  {social.label}
+                </a>
+              ))}
             </div>
           </div>
         </div>
