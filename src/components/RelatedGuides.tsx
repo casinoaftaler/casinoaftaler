@@ -255,27 +255,6 @@ export function RelatedGuides({ currentPath, maxLinks = 5 }: RelatedGuidesProps)
           ))}
         </div>
       </section>
-
-      <section className="mb-12">
-        <Card className="border-border bg-card border-l-4 border-l-primary">
-          <CardHeader className="pb-2">
-            <CardTitle className="flex items-center gap-2 text-lg">
-              <ShieldCheck className="h-5 w-5 text-primary" />
-              Ansvarligt Spil
-            </CardTitle>
-          </CardHeader>
-          <CardContent>
-            <p className="text-sm text-muted-foreground leading-relaxed">
-              Spil skal altid være underholdning. Sæt grænser for tid og penge, og stop hvis det ikke længere er sjovt.
-              Alle casinoer på vores side har dansk licens og tilbyder selvudelukkelse via{" "}
-              <a href="https://www.rofus.nu/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline font-medium">ROFUS</a>.
-              Har du brug for hjælp? Kontakt{" "}
-              <a href="https://www.stopspillet.dk/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline font-medium">StopSpillet.dk</a>{" "}
-              – gratis og anonymt. 18+ | Spil ansvarligt | Annoncering
-            </p>
-          </CardContent>
-        </Card>
-      </section>
     </>
   );
 }
