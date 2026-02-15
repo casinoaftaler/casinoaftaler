@@ -6,6 +6,7 @@ import { Badge } from "@/components/ui/badge";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { useAuth } from "@/hooks/useAuth";
 import { useMySlotRequests, useCreateSlotRequest } from "@/hooks/useSlotRequests";
+import { useSiteSettings } from "@/hooks/useSiteSettings";
 import { Loader2, Send, Clock, CheckCircle2, XCircle, Minus } from "lucide-react";
 import { Link } from "react-router-dom";
 
@@ -31,6 +32,7 @@ export function SlotRequestForm() {
   const { user } = useAuth();
   const { data: myRequests, isLoading: requestsLoading } = useMySlotRequests();
   const createRequest = useCreateSlotRequest();
+  const { data: siteSettings } = useSiteSettings();
 
   const [provider, setProvider] = useState("");
   const [customProvider, setCustomProvider] = useState("");
@@ -41,11 +43,13 @@ export function SlotRequestForm() {
   const isAndetSlot = slot === "Andet";
   const slotsForProvider = !isAndetProvider && provider ? PRESET_SLOTS[provider] ?? [] : [];
 
-  const hasPendingRequest = myRequests?.some((r) => r.status === "pending");
+  const pendingCount = myRequests?.filter((r) => r.status === "pending").length ?? 0;
+  const maxPending = parseInt(siteSettings?.max_pending_slot_requests ?? "1", 10);
+  const hasReachedLimit = pendingCount >= maxPending;
 
   const canSubmit =
     user &&
-    !hasPendingRequest &&
+    !hasReachedLimit &&
     !createRequest.isPending &&
     (isAndetProvider
       ? customProvider.trim() && customSlot.trim()
@@ -87,9 +91,9 @@ export function SlotRequestForm() {
     <div className="space-y-6">
       {/* Form */}
       <div className="space-y-4">
-        {hasPendingRequest && (
+        {hasReachedLimit && (
           <p className="text-sm text-muted-foreground bg-muted/50 rounded-lg p-3">
-            Du har allerede en aktiv request. Vent til den er behandlet, før du sender en ny.
+            Du har {pendingCount}/{maxPending} aktive requests. Vent til en er behandlet, før du sender en ny.
           </p>
         )}
 
