@@ -89,8 +89,11 @@ export default function RewardsProgram() {
             <CardContent className="p-6 md:p-8 space-y-5">
               <p className="text-muted-foreground leading-relaxed">
                 Del dine bedste øjeblikke med fællesskabet! Når du uploader et videoklip til{" "}
-                <span className="text-foreground font-medium">Community Highlights</span>, og det
-                bliver godkendt, optjener du bonus spins som belønning.
+                <Link to="/highlights?tab=community" className="text-foreground font-medium hover:text-primary underline">Community Highlights</Link>, og det
+                bliver godkendt, optjener du bonus spins som belønning. Brug dine spins i vores{" "}
+                <Link to="/community/slots" className="text-foreground font-medium hover:text-primary underline">gratis spillehal</Link> og
+                konkurrér om topplaceringer på{" "}
+                <Link to="/community/leaderboard" className="text-foreground font-medium hover:text-primary underline">leaderboardet</Link>.
               </p>
 
               <div className="grid gap-3 sm:grid-cols-2">
@@ -190,7 +193,9 @@ export default function RewardsProgram() {
               <p className="text-muted-foreground leading-relaxed">
                 Send en request om hvilken slot vi skal spille på livestream! Hvis vi rammer{" "}
                 <span className="text-foreground font-medium">bonus</span> på din valgte slot, får du{" "}
-                <span className="text-foreground font-semibold">+20 credits</span> som belønning.
+                <span className="text-foreground font-semibold">+20 credits</span> som belønning. Lær mere om{" "}
+                <Link to="/casino-bonus" className="text-foreground font-medium hover:text-primary underline">casino bonusser</Link> og{" "}
+                <Link to="/omsaetningskrav" className="text-foreground font-medium hover:text-primary underline">omsætningskrav</Link> i vores guides.
               </p>
 
               <div className="grid gap-3 sm:grid-cols-2">

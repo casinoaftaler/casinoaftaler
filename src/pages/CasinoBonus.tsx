@@ -470,7 +470,9 @@ const CasinoBonus = () => {
                   Bonusser målrettet specifikke titler giver dig en nem og
                   risikofri måde at udforske nye spilleautomater og{" "}
                   <Link to="/live-casino" className={linkClass}>live casino</Link>{" "}
-                  spil.
+                  spil. Du kan også prøve vores egne{" "}
+                  <Link to="/community/slots" className={linkClass}>gratis spilleautomater i spillehallen</Link>{" "}
+                  og opleve bonusrunder og free spins helt uden risiko.
                 </p>
               </CardContent>
             </Card>

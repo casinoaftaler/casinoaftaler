@@ -232,7 +232,7 @@ const Velkomstbonus = () => {
             </Link>{" "}
             at spille for, mens casinoet vinder en ny kunde.
           </p>
-          <p className="text-muted-foreground leading-relaxed">
+          <p className="mb-4 text-muted-foreground leading-relaxed">
             Den mest gængse form er en{" "}
             <Link to="/indskudsbonus" className="text-primary underline hover:text-primary/80">
               matchbonus (indskudsbonus)
@@ -249,6 +249,14 @@ const Velkomstbonus = () => {
               velkomstbonusser uden indbetaling
             </Link>
             , hvor du slet ikke skal sætte penge ind for at komme i gang.
+          </p>
+          <p className="text-muted-foreground leading-relaxed">
+            Vil du forstå bonusmekanikker i praksis, inden du investerer rigtige penge?
+            Prøv vores{" "}
+            <Link to="/community/slots" className="text-primary underline hover:text-primary/80">
+              gratis spilleautomater i spillehallen
+            </Link>
+            , hvor du kan opleve free spins og bonusrunder helt risikofrit.
           </p>
         </section>
 

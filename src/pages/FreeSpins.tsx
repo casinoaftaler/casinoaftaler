@@ -243,7 +243,7 @@ const FreeSpins = () => {
             </Link>
             , som du bør sætte dig ind i.
           </p>
-          <p className="text-muted-foreground leading-relaxed">
+          <p className="mb-4 text-muted-foreground leading-relaxed">
             Populariteten bag free spins skyldes netop denne kombination af nul
             risiko og reel gevinstmulighed. For nye spillere fungerer gratis
             spins som en tryg introduktion til casinoet, mens erfarne spillere
@@ -260,6 +260,18 @@ const FreeSpins = () => {
             eller som{" "}
             <Link to="/bonus-uden-indbetaling" className="text-primary underline hover:text-primary/80">
               bonus uden indbetaling
+            </Link>
+            .
+          </p>
+          <p className="text-muted-foreground leading-relaxed">
+            Vil du opleve free spins-mekanikken i praksis? I vores{" "}
+            <Link to="/community/slots" className="text-primary underline hover:text-primary/80">
+              gratis spillehal
+            </Link>{" "}
+            kan du prøve spilleautomater med bonusrunder og free spins helt uden
+            risiko – og samtidig konkurrere på vores{" "}
+            <Link to="/community/leaderboard" className="text-primary underline hover:text-primary/80">
+              leaderboard
             </Link>
             .
           </p>
