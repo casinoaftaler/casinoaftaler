@@ -29,6 +29,8 @@ export const Header = memo(function Header() {
   const [providersExpanded, setProvidersExpanded] = useState(false);
   const [paymentsExpanded, setPaymentsExpanded] = useState(false);
   const [reviewsExpanded, setReviewsExpanded] = useState(false);
+  const [allReviewsExpanded, setAllReviewsExpanded] = useState(false);
+  const [allReviewsDesktop, setAllReviewsDesktop] = useState(false);
   const [isDark, setIsDark] = useState(() => {
     const saved = localStorage.getItem("theme");
     return saved === "dark";
@@ -426,7 +428,7 @@ export const Header = memo(function Header() {
                   <Star className="h-4 w-4" />
                   Casino Anmeldelser
                 </DropdownMenuSubTrigger>
-                <DropdownMenuSubContent className="bg-popover">
+                <DropdownMenuSubContent className="bg-popover max-h-[70vh] overflow-y-auto">
                   <DropdownMenuItem asChild>
                     <Link to="/casino-anmeldelser" className="flex items-center gap-2 font-medium">
                       <Star className="h-4 w-4" />
@@ -435,35 +437,12 @@ export const Header = memo(function Header() {
                   </DropdownMenuItem>
                   <DropdownMenuSeparator />
                   {[
-                    { to: "/casino-anmeldelser/danske-spil", label: "Danske Spil Casino" },
-                    { to: "/casino-anmeldelser/comeon", label: "ComeOn Casino" },
-                    { to: "/casino-anmeldelser/getlucky", label: "GetLucky Casino" },
-                    { to: "/casino-anmeldelser/mr-green", label: "Mr Green Casino" },
-                    { to: "/casino-anmeldelser/videoslots", label: "Videoslots Casino" },
-                    { to: "/casino-anmeldelser/mr-vegas", label: "Mr Vegas Casino" },
-                    { to: "/casino-anmeldelser/leovegas", label: "LeoVegas" },
-                    { to: "/casino-anmeldelser/unibet", label: "Unibet" },
-                    { to: "/casino-anmeldelser/bet365", label: "bet365" },
-                    { to: "/casino-anmeldelser/888-casino", label: "888 Casino" },
-                    { to: "/casino-anmeldelser/betano", label: "Betano" },
-                    { to: "/casino-anmeldelser/expekt", label: "Expekt" },
                     { to: "/spildansknu-anmeldelse", label: "SpilDanskNu" },
                     { to: "/spilleautomaten-anmeldelse", label: "Spilleautomaten" },
                     { to: "/betinia-anmeldelse", label: "Betinia" },
-                    { to: "/swift-casino-anmeldelse", label: "Swift Casino" },
                     { to: "/campobet-anmeldelse", label: "Campobet" },
+                    { to: "/swift-casino-anmeldelse", label: "Swift Casino" },
                     { to: "/luna-casino-anmeldelse", label: "Luna Casino" },
-                    { to: "/casino-anmeldelser/royal-casino", label: "Royal Casino" },
-                    { to: "/casino-anmeldelser/maria-casino", label: "Maria Casino" },
-                    { to: "/casino-anmeldelser/kapow-casino", label: "Kapow Casino" },
-                    { to: "/casino-anmeldelser/nordicbet", label: "NordicBet" },
-                    { to: "/casino-anmeldelser/one-casino", label: "One Casino" },
-                    { to: "/casino-anmeldelser/spilnu", label: "Spilnu" },
-                    { to: "/casino-anmeldelser/stake-casino", label: "Stake Casino" },
-                    { to: "/casino-anmeldelser/casinostuen", label: "Casinostuen" },
-                    { to: "/casino-anmeldelser/pokerstars", label: "PokerStars" },
-                    { to: "/casino-anmeldelser/bwin", label: "bwin" },
-                    { to: "/casino-anmeldelser/marathonbet", label: "MarathonBet" },
                   ].map((item) => (
                     <DropdownMenuItem key={item.to} asChild>
                       <Link to={item.to} className="flex items-center gap-2">
@@ -472,6 +451,51 @@ export const Header = memo(function Header() {
                       </Link>
                     </DropdownMenuItem>
                   ))}
+                  {!allReviewsDesktop ? (
+                    <>
+                      <DropdownMenuSeparator />
+                      <DropdownMenuItem onClick={(e) => { e.preventDefault(); setAllReviewsDesktop(true); }} className="cursor-pointer text-primary font-medium">
+                        <ChevronDown className="h-3 w-3 mr-1" />
+                        Vis alle anmeldelser
+                      </DropdownMenuItem>
+                    </>
+                  ) : (
+                    <>
+                      <DropdownMenuSeparator />
+                      {[
+                        { to: "/casino-anmeldelser/danske-spil", label: "Danske Spil Casino" },
+                        { to: "/casino-anmeldelser/comeon", label: "ComeOn Casino" },
+                        { to: "/casino-anmeldelser/getlucky", label: "GetLucky Casino" },
+                        { to: "/casino-anmeldelser/mr-green", label: "Mr Green Casino" },
+                        { to: "/casino-anmeldelser/videoslots", label: "Videoslots Casino" },
+                        { to: "/casino-anmeldelser/mr-vegas", label: "Mr Vegas Casino" },
+                        { to: "/casino-anmeldelser/leovegas", label: "LeoVegas" },
+                        { to: "/casino-anmeldelser/unibet", label: "Unibet" },
+                        { to: "/casino-anmeldelser/bet365", label: "bet365" },
+                        { to: "/casino-anmeldelser/888-casino", label: "888 Casino" },
+                        { to: "/casino-anmeldelser/betano", label: "Betano" },
+                        { to: "/casino-anmeldelser/expekt", label: "Expekt" },
+                        { to: "/casino-anmeldelser/royal-casino", label: "Royal Casino" },
+                        { to: "/casino-anmeldelser/maria-casino", label: "Maria Casino" },
+                        { to: "/casino-anmeldelser/kapow-casino", label: "Kapow Casino" },
+                        { to: "/casino-anmeldelser/nordicbet", label: "NordicBet" },
+                        { to: "/casino-anmeldelser/one-casino", label: "One Casino" },
+                        { to: "/casino-anmeldelser/spilnu", label: "Spilnu" },
+                        { to: "/casino-anmeldelser/stake-casino", label: "Stake Casino" },
+                        { to: "/casino-anmeldelser/casinostuen", label: "Casinostuen" },
+                        { to: "/casino-anmeldelser/pokerstars", label: "PokerStars" },
+                        { to: "/casino-anmeldelser/bwin", label: "bwin" },
+                        { to: "/casino-anmeldelser/marathonbet", label: "MarathonBet" },
+                      ].map((item) => (
+                        <DropdownMenuItem key={item.to} asChild>
+                          <Link to={item.to} className="flex items-center gap-2">
+                            <Star className="h-3 w-3" />
+                            {item.label}
+                          </Link>
+                        </DropdownMenuItem>
+                      ))}
+                    </>
+                  )}
                 </DropdownMenuSubContent>
               </DropdownMenuSub>
             </DropdownMenuContent>
@@ -869,41 +893,60 @@ export const Header = memo(function Header() {
                       Alle anmeldelser
                     </Link>
                     {[
-                      { to: "/casino-anmeldelser/danske-spil", label: "Danske Spil Casino" },
-                      { to: "/casino-anmeldelser/leovegas", label: "LeoVegas" },
-                      { to: "/casino-anmeldelser/mr-green", label: "Mr Green" },
-                      { to: "/casino-anmeldelser/unibet", label: "Unibet" },
-                      { to: "/casino-anmeldelser/bet365", label: "bet365" },
-                      { to: "/casino-anmeldelser/888-casino", label: "888 Casino" },
-                      { to: "/casino-anmeldelser/betano", label: "Betano" },
-                      { to: "/casino-anmeldelser/expekt", label: "Expekt" },
-                      { to: "/casino-anmeldelser/comeon", label: "ComeOn Casino" },
-                      { to: "/casino-anmeldelser/getlucky", label: "GetLucky Casino" },
-                      { to: "/casino-anmeldelser/mr-vegas", label: "Mr Vegas Casino" },
-                      { to: "/casino-anmeldelser/videoslots", label: "Videoslots" },
                       { to: "/spildansknu-anmeldelse", label: "SpilDanskNu" },
                       { to: "/spilleautomaten-anmeldelse", label: "Spilleautomaten" },
                       { to: "/betinia-anmeldelse", label: "Betinia" },
-                      { to: "/swift-casino-anmeldelse", label: "Swift Casino" },
                       { to: "/campobet-anmeldelse", label: "Campobet" },
+                      { to: "/swift-casino-anmeldelse", label: "Swift Casino" },
                       { to: "/luna-casino-anmeldelse", label: "Luna Casino" },
-                      { to: "/casino-anmeldelser/royal-casino", label: "Royal Casino" },
-                      { to: "/casino-anmeldelser/maria-casino", label: "Maria Casino" },
-                      { to: "/casino-anmeldelser/kapow-casino", label: "Kapow Casino" },
-                      { to: "/casino-anmeldelser/nordicbet", label: "NordicBet" },
-                      { to: "/casino-anmeldelser/one-casino", label: "One Casino" },
-                      { to: "/casino-anmeldelser/spilnu", label: "Spilnu" },
-                      { to: "/casino-anmeldelser/stake-casino", label: "Stake Casino" },
-                      { to: "/casino-anmeldelser/casinostuen", label: "Casinostuen" },
-                      { to: "/casino-anmeldelser/pokerstars", label: "PokerStars" },
-                      { to: "/casino-anmeldelser/bwin", label: "bwin" },
-                      { to: "/casino-anmeldelser/marathonbet", label: "MarathonBet" },
                     ].map((item) => (
                       <Link key={item.to} to={item.to} className="ml-10 flex items-center gap-2 py-2 text-sm text-muted-foreground transition-colors hover:text-primary" onClick={() => setMobileMenuOpen(false)}>
                         <Star className="h-3 w-3" />
                         {item.label}
                       </Link>
                     ))}
+                    {!allReviewsExpanded ? (
+                      <button
+                        onClick={() => setAllReviewsExpanded(true)}
+                        className="ml-10 flex items-center gap-2 py-2 text-sm font-medium text-primary transition-colors hover:text-primary/80"
+                      >
+                        <ChevronDown className="h-3 w-3" />
+                        Vis alle anmeldelser
+                      </button>
+                    ) : (
+                      <>
+                        {[
+                          { to: "/casino-anmeldelser/danske-spil", label: "Danske Spil Casino" },
+                          { to: "/casino-anmeldelser/leovegas", label: "LeoVegas" },
+                          { to: "/casino-anmeldelser/mr-green", label: "Mr Green" },
+                          { to: "/casino-anmeldelser/unibet", label: "Unibet" },
+                          { to: "/casino-anmeldelser/bet365", label: "bet365" },
+                          { to: "/casino-anmeldelser/888-casino", label: "888 Casino" },
+                          { to: "/casino-anmeldelser/betano", label: "Betano" },
+                          { to: "/casino-anmeldelser/expekt", label: "Expekt" },
+                          { to: "/casino-anmeldelser/comeon", label: "ComeOn Casino" },
+                          { to: "/casino-anmeldelser/getlucky", label: "GetLucky Casino" },
+                          { to: "/casino-anmeldelser/mr-vegas", label: "Mr Vegas Casino" },
+                          { to: "/casino-anmeldelser/videoslots", label: "Videoslots" },
+                          { to: "/casino-anmeldelser/royal-casino", label: "Royal Casino" },
+                          { to: "/casino-anmeldelser/maria-casino", label: "Maria Casino" },
+                          { to: "/casino-anmeldelser/kapow-casino", label: "Kapow Casino" },
+                          { to: "/casino-anmeldelser/nordicbet", label: "NordicBet" },
+                          { to: "/casino-anmeldelser/one-casino", label: "One Casino" },
+                          { to: "/casino-anmeldelser/spilnu", label: "Spilnu" },
+                          { to: "/casino-anmeldelser/stake-casino", label: "Stake Casino" },
+                          { to: "/casino-anmeldelser/casinostuen", label: "Casinostuen" },
+                          { to: "/casino-anmeldelser/pokerstars", label: "PokerStars" },
+                          { to: "/casino-anmeldelser/bwin", label: "bwin" },
+                          { to: "/casino-anmeldelser/marathonbet", label: "MarathonBet" },
+                        ].map((item) => (
+                          <Link key={item.to} to={item.to} className="ml-10 flex items-center gap-2 py-2 text-sm text-muted-foreground transition-colors hover:text-primary" onClick={() => setMobileMenuOpen(false)}>
+                            <Star className="h-3 w-3" />
+                            {item.label}
+                          </Link>
+                        ))}
+                      </>
+                    )}
                   </div>
                 )}
               </div>
