@@ -28,9 +28,9 @@ const authorData = {
     image: kevinImage,
     alt: "Kevin – Medansvarlig hos Casinoaftaler.dk",
     link: "/forfatter/kevin",
-    badge: "Casino-streamer & medansvarlig",
-    role: "Medansvarlig hos Casinoaftaler.dk & Casino-streamer",
-    bio: "Kevin er medansvarlig hos Casinoaftaler.dk og har streamet online casino i over 3 år. Med sin rolige og afslappede stil bidrager han til community, indhold og udvikling af platformen.",
+    badge: "Casino-streamer & IT medansvarlig",
+    role: "IT Medansvarlig hos Casinoaftaler.dk & Casino-streamer",
+    bio: "Kevin er IT medansvarlig hos Casinoaftaler.dk og har streamet online casino i over 3 år. Med sin rolige og afslappede stil bidrager han til community, indhold og udvikling af platformen.",
     socials: [],
   },
 } as const;
