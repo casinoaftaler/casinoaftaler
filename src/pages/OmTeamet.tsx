@@ -128,7 +128,7 @@ const OmTeamet = () => {
 
   const stats = [
     { icon: Clock, value: "7+", label: "Års samlet streaming-erfaring" },
-    { icon: Trophy, value: "100+", label: "Testede casinoer" },
+    { icon: Trophy, value: "30+", label: "Testede danske casinoer" },
     { icon: Tv, value: "7000+", label: "Timers live streaming" },
     { icon: Users, value: "Aktivt", label: "Engageret community" },
   ];
