@@ -30,66 +30,57 @@ const linkClass = "text-primary underline hover:text-primary/80";
 
 const lunaFaqs: { question: string; answer: ReactNode }[] = [
   {
-    question: "Er Luna Casino et sikkert casino?",
+    question: "Hvordan fungerer Luna Casinos loyalitetsprogram og level-system?",
+    answer:
+      "Luna Casinos loyalitetsprogram er et af casinoets mest markante kendetegn. Programmet er automatisk aktivt fra din første indbetaling og baserer sig på et stigende level-system. Jo mere du spiller, desto højere stiger du i level – og med hvert nyt level følger bedre fordele som højere cashback-procenter, personlige bonusser og prioriteret kundeservice. Points optjenes for alle typer spil, men spilleautomater bidrager typisk mest pr. omsat krone. I modsætning til mange konkurrenter beholder du dit opnåede level, selvom du holder pause i kortere perioder. Det gør systemet mere fleksibelt end traditionelle VIP-programmer med strenge aktivitetskrav.",
+  },
+  {
+    question: "Hvilke daglige bonuskampagner tilbyder Luna Casino?",
+    answer:
+      "Luna Casino udmærker sig ved at tilbyde daglige bonuskampagner, der varierer fra dag til dag. Det inkluderer reload-bonusser, free spins på udvalgte spilleautomater, cashback-tilbud og turneringer med præmiepuljer. Kampagnerne annonceres direkte på platformen efter login og via e-mail til spillere, der har tilmeldt sig nyhedsbrevet. Vilkårene er typisk fordelagtige med omsætningskrav omkring 10x – samme niveau som velkomstbonussen. De daglige kampagner gør Luna Casino attraktivt for spillere, der værdsætter kontinuerlig værdi frem for enkeltstående velkomstbonusser, og sikrer at der altid er en relevant kampagne uanset hvilken dag du logger ind.",
+  },
+  {
+    question: "Er Luna Casino et sikkert og troværdigt casino?",
     answer: (
       <>
-        Ja. Luna Casino har gyldig dansk licens fra Spillemyndigheden (licensnr. 16-1066791) og drives af SkillOnNet Limited. Platformen benytter SSL-kryptering og er tilsluttet{" "}
-        <a href="https://www.rofus.nu/" target="_blank" rel="noopener noreferrer" className={linkClass}>ROFUS</a>. Læs mere om{" "}
+        Luna Casino drives af SkillOnNet Limited, et veletableret selskab med gyldig dansk licens fra Spillemyndigheden (licensnr. 16-1066791). SkillOnNet driver også{" "}
+        <Link to="/swift-casino-anmeldelse" className={linkClass}>Swift Casino</Link> og har haft tilstedeværelse på det danske marked siden 2017. Platformen benytter 256-bit SSL-kryptering og er fuldt tilsluttet{" "}
+        <a href="https://www.rofus.nu/" target="_blank" rel="noopener noreferrer" className={linkClass}>ROFUS</a> for selvudelukkelse. Registrering sker via MitID, og alle spil er certificeret af uafhængige testorganisationer. Læs mere om{" "}
         <Link to="/responsible-gaming" className={linkClass}>ansvarligt spil</Link>.
       </>
     ),
   },
   {
-    question: "Hvad er velkomstbonussen hos Luna Casino?",
+    question: "Hvad er den maksimale indsats med bonusmidler hos Luna Casino?",
     answer: (
       <>
-        Nye spillere får 100 % matchbonus op til 500 kr. ved første indbetaling. Omsætningskravet er 10x (d+b) med 60 dages gyldighed. Læs mere om{" "}
+        Den maksimale indsats med bonusmidler hos Luna Casino er 50 kr. pr. spin. Denne regel er vigtig at kende, da overskridelse kan medføre, at spinnet ikke medregnes i{" "}
+        <Link to="/omsaetningskrav" className={linkClass}>omsætningskravet</Link>, eller i værste fald at bonussen annulleres. Reglen gælder for alle spil, hvor du har aktive bonusmidler. Når du spiller med egne midler (uden bonus), er der ingen begrænsning på indsatsstørrelsen. Det er en standardregel på de fleste danske casinoer, men grænsen på 50 kr. er lidt højere end hos nogle konkurrenter, der sætter maksimum ved 25–30 kr. pr. spin.
+      </>
+    ),
+  },
+  {
+    question: "Hvad er Luna Casinos velkomstbonus, og hvad er vilkårene?",
+    answer: (
+      <>
+        Nye spillere hos Luna Casino modtager en 100 % matchbonus op til 500 kr. ved første indbetaling. Omsætningskravet er 10x (indskud + bonus) med 60 dages gyldighed. Minimumsindbetalingen er 100 kr. Bonussen aktiveres automatisk ved indbetaling – ingen bonuskode er nødvendig. Kun spilleautomater bidrager fuldt til omsætningskravet, mens bordspil typisk bidrager med 10 %. Eksempel: indbetal 500 kr., modtag 500 kr. i bonus, og omsæt i alt 10.000 kr. inden for 60 dage. Sammenlignet med branchen er vilkårene blandt de mest fordelagtige. Læs mere om{" "}
         <Link to="/velkomstbonus" className={linkClass}>velkomstbonusser</Link>.
       </>
     ),
   },
   {
-    question: "Hvilke betalingsmetoder tilbyder Luna Casino?",
+    question: "Hvilke turneringer tilbyder Luna Casino, og hvordan deltager man?",
+    answer:
+      "Luna Casino arrangerer regelmæssige turneringer, hvor spillere konkurrerer om præmiepuljer ved at spille udvalgte spilleautomater inden for en given periode. Turneringerne rangerer deltagere baseret på faktorer som antal spins, samlede gevinster eller største enkeltgevinst. Deltagelse er typisk gratis for registrerede spillere, og turneringerne varer fra 24 timer til en uge. Præmierne kan inkludere kontante bonusmidler, free spins eller eksklusive kampagnetilbud. Du kan se aktive turneringer og din aktuelle placering direkte på platformen. Det er en social dimension, der tilføjer konkurrenceelement til spillet.",
+  },
+  {
+    question: "Hvor hurtigt behandler Luna Casino udbetalinger?",
     answer: (
       <>
-        Luna Casino tilbyder Visa, Mastercard, MobilePay, Skrill og Payz. Min. indbetaling er 100 kr. Se vores guide til{" "}
-        <Link to="/betalingsmetoder" className={linkClass}>betalingsmetoder</Link>.
+        Luna Casino behandler udbetalinger typisk inden for 24–48 timer for e-wallets som{" "}
+        <Link to="/betalingsmetoder/skrill" className={linkClass}>Skrill</Link> og Payz, mens kortbetalinger via Visa og Mastercard tager 2–3 bankdage. MobilePay-udbetalinger behandles normalt inden for samme hverdag. Minimumudbetalingsbeløbet er 100 kr. Da registrering foregår via MitID, er identitetsverifikation allerede gennemført, hvilket fjerner forsinkelser ved første udbetaling. Alle udbetalinger er gebyrfri. Luna Casino har ingen månedlig udbetalingsgrænse for standardspillere, men casinoet forbeholder sig retten til at opdele ekstraordinært store gevinster.
       </>
     ),
-  },
-  {
-    question: "Har Luna Casino et loyalitetsprogram?",
-    answer: "Ja. Luna Casino tilbyder et stigende loyalitetsprogram, hvor du akkumulerer points og stiger i level med løbende fordele og bonusser. Der er også regelmæssige turneringer.",
-  },
-  {
-    question: "Hvad er omsætningskravet?",
-    answer: (
-      <>
-        Velkomstbonussen har 10x omsætningskrav (d+b). Eksempel: Indbetal 300 kr., få 300 kr. bonus = 6.000 kr. i omsætning. Kun spillemaskiner bidrager. Læs om{" "}
-        <Link to="/omsaetningskrav" className={linkClass}>omsætningskrav</Link>.
-      </>
-    ),
-  },
-  {
-    question: "Tilbyder Luna Casino live casino?",
-    answer: (
-      <>
-        Ja. Luna Casino har et kvalitetsbevidst live casino med professionelle dealere, herunder blackjack, roulette og baccarat. Læs mere om{" "}
-        <Link to="/live-casino" className={linkClass}>live casino</Link>.
-      </>
-    ),
-  },
-  {
-    question: "Har Luna Casino sportsbetting?",
-    answer: "Nej. Luna Casino fokuserer udelukkende på casino-spil og tilbyder ikke sportsbetting.",
-  },
-  {
-    question: "Hvem står bag Luna Casino?",
-    answer: "Luna Casino drives af SkillOnNet Limited, der har dansk spillelicens og driver flere andre anerkendte online casinoer i Danmark. Selskabet er veletableret i branchen.",
-  },
-  {
-    question: "Hvad er den maksimale indsats med bonus?",
-    answer: "Den maksimale indsats med bonusmidler er 50 kr. pr. spin. Overskrides denne grænse, medregnes spinnet ikke i omsætningskravet.",
   },
 ];
 

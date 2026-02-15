@@ -50,79 +50,77 @@ const linkClass = "text-primary underline hover:text-primary/80";
 
 const campobetFaqs: { question: string; answer: ReactNode }[] = [
   {
-    question: "Er Campobet et sikkert casino?",
+    question: "Hvad betyder det, at Campobets velkomstbonus er No-Sticky?",
     answer: (
       <>
-        Ja. Campobet har gyldig dansk licens fra Spillemyndigheden (licensnr. 20-6359) samt licenser fra Malta Gaming Authority og den svenske spillemyndighed. Platformen benytter SSL-kryptering og er tilsluttet{" "}
-        <a href="https://www.rofus.nu/" target="_blank" rel="noopener noreferrer" className={linkClass}>ROFUS</a> for selvudelukkelse. Læs mere om{" "}
-        <Link to="/responsible-gaming" className={linkClass}>ansvarligt spil</Link>.
-      </>
-    ),
-  },
-  {
-    question: "Hvad er velkomstbonussen hos Campobet?",
-    answer: (
-      <>
-        Nye spillere får 100 % No-Sticky bonus op til 1.000 kr. ved første indbetaling. Omsætningskravet er kun 10x (indskud + bonus) med 60 dages gyldighed. Du kan alternativt vælge en oddsbonus på 100 % op til 1.000 kr. med 5x omsætning. Læs mere om{" "}
+        Campobets velkomstbonus på 100 % op til 1.000 kr. er en{" "}
+        <Link to="/no-sticky-bonus" className={linkClass}>No-Sticky bonus</Link> (også kaldet faldskærmsbonus). Det betyder, at din indbetaling og bonusmidlerne holdes adskilt i to separate saldi. Du spiller altid først med dine egne penge, og du kan til enhver tid hæve din indbetaling og eventuelle gevinster vundet med egne midler – uden at opfylde omsætningskravet. Bonusmidlerne aktiveres kun, hvis din egen saldo rammer 0 kr. Med et omsætningskrav på kun 10x (indskud + bonus) er det en af de mest spillervenlige bonusstrukturer på det danske marked. Læs mere om{" "}
         <Link to="/velkomstbonus" className={linkClass}>velkomstbonusser</Link>.
       </>
     ),
   },
   {
-    question: "Hvilke betalingsmetoder tilbyder Campobet?",
+    question: "Hvordan adskiller Campobets sportssektion sig fra rene casino-sider?",
+    answer:
+      "Campobet er en dual-platform, der kombinerer online casino med en fuldt integreret sportssektion. Sportssektionen dækker cirka 40 sportsgrene, herunder fodbold, håndbold, tennis, basketball, ishockey og e-sport. Du kan placere pre-match væddemål samt livebets med realtidsopdatering af odds. Bet Builder-funktionen giver mulighed for at kombinere flere væddemål inden for samme kamp til en samlet odds-kupon. Nye spillere kan alternativt vælge en dedikeret oddsbonus på 100 % op til 1.000 kr. med kun 5x omsætningskrav i stedet for casinobonussen. Det gør Campobet attraktivt for spillere, der ønsker begge dele under ét tag.",
+  },
+  {
+    question: "Er Campobet et sikkert casino med gyldig dansk licens?",
     answer: (
       <>
-        Campobet tilbyder MobilePay, Visa, Mastercard, Trustly, PayPal, Zimpler, Skrill, Neteller, Paysafecard samt direkte bankoverførsler fra bl.a. Danske Bank, Nordea, Jyske Bank, Sydbank og Nykredit. Alle transaktioner er gebyrfri. Se vores guide til{" "}
+        Campobet har tredobbelt licensering: dansk licens fra Spillemyndigheden (licensnr. 20-6359), licens fra Malta Gaming Authority (MGA) samt den svenske spillemyndighed. Platformen drives af Denix Limited, der har drevet casinoet internationalt siden 2018 og lancerede den danske version i 2024. Casinoet benytter SSL-kryptering og er fuldt tilsluttet{" "}
+        <a href="https://www.rofus.nu/" target="_blank" rel="noopener noreferrer" className={linkClass}>ROFUS</a>. Registrering sker via MitID, hvilket sikrer øjeblikkelig identitetsverifikation og forhindrer mindreårige i at oprette konti. Læs mere om{" "}
+        <Link to="/responsible-gaming" className={linkClass}>ansvarligt spil</Link>.
+      </>
+    ),
+  },
+  {
+    question: "Hvilke betalingsmetoder understøtter Campobet, og er der gebyrer?",
+    answer: (
+      <>
+        Campobet har det bredeste udvalg af betalingsmetoder blandt danske casinoer. Udover{" "}
+        <Link to="/betalingsmetoder/mobilepay" className={linkClass}>MobilePay</Link>,{" "}
+        <Link to="/betalingsmetoder/visa-mastercard" className={linkClass}>Visa/Mastercard</Link> og{" "}
+        <Link to="/betalingsmetoder/trustly" className={linkClass}>Trustly</Link> tilbyder de også{" "}
+        <Link to="/betalingsmetoder/paypal" className={linkClass}>PayPal</Link>,{" "}
+        <Link to="/betalingsmetoder/zimpler" className={linkClass}>Zimpler</Link>,{" "}
+        <Link to="/betalingsmetoder/skrill" className={linkClass}>Skrill</Link>, Neteller,{" "}
+        <Link to="/betalingsmetoder/paysafecard" className={linkClass}>Paysafecard</Link> samt direkte bankoverførsler fra bl.a. Danske Bank, Nordea, Jyske Bank og Sydbank. Alle transaktioner er 100 % gebyrfri, og minimumsindbetalingen er 100 kr. Se vores guide til{" "}
         <Link to="/betalingsmetoder" className={linkClass}>betalingsmetoder</Link>.
       </>
     ),
   },
   {
-    question: "Tilbyder Campobet sportsbetting?",
-    answer:
-      "Ja. Campobet har en dedikeret sportssektion med ca. 40 sportsgrene, herunder fodbold, håndbold, tennis, basketball og e-sport. Der er mulighed for pre-match og livebetting samt Bet Builder-væddemål.",
-  },
-  {
-    question: "Hvad er omsætningskravet på bonussen?",
+    question: "Tilbyder Campobet reload-bonusser til eksisterende spillere?",
     answer: (
       <>
-        Casino-velkomstbonussen har et omsætningskrav på 10x (indskud + bonus). Da det er en No-Sticky bonus, starter du med din egen saldo. Bonusmidlerne aktiveres først, når din saldo når 0 kr. Læs om{" "}
-        <Link to="/omsaetningskrav" className={linkClass}>omsætningskrav</Link>.
+        Ja. Campobet har faste ugentlige reload-bonusser, der gør platformen attraktiv for langsigtede spillere. Den primære reload-bonus er 100 % op til 500 kr. hver uge, med samme lave omsætningskrav på 10x som velkomstbonussen. Derudover tilbydes en separat weekend reload-bonus med tilsvarende vilkår. Begge kræver minimum 100 kr. i indbetaling. Disse reload-bonusser er ligeledes No-Sticky, hvilket gør dem markant mere fordelagtige end konkurrenternes{" "}
+        <Link to="/sticky-bonus" className={linkClass}>sticky bonusser</Link>. Kampagnerne annonceres via e-mail og direkte på platformen efter login.
       </>
     ),
   },
   {
-    question: "Har Campobet en No-Sticky bonus?",
+    question: "Hvor hurtigt behandler Campobet udbetalinger?",
+    answer:
+      "Campobet behandler udbetalinger typisk inden for 1–3 hverdage uanset betalingsmetode. En væsentlig fordel er, at din identitet allerede er verificeret via MitID ved registrering, hvilket eliminerer forsinkelser ved første udbetaling. E-wallets som PayPal og Skrill er generelt de hurtigste med behandling inden for 24 timer. Bankoverførsler og kortbetalinger tager normalt 2–3 hverdage. Minimum udbetalingsbeløb er 100 kr. Der er ingen maksimal udbetalingsgrænse pr. transaktion, men casinoet forbeholder sig retten til at opdele meget store gevinster i flere betalinger.",
+  },
+  {
+    question: "Hvor stort er Campobets spiludvalg, og hvilke udviklere er repræsenteret?",
     answer: (
       <>
-        Ja. Campobets velkomstbonus er en{" "}
-        <Link to="/no-sticky-bonus" className={linkClass}>No-Sticky bonus</Link>, hvilket betyder at din indbetaling og bonusmidlerne holdes adskilt. Du spiller først med dine egne penge, og kan frit hæve gevinster vundet med din egen saldo.
+        Campobet har over 3.000 casinospil fra mere end 50 spiludviklere, herunder{" "}
+        <Link to="/spiludviklere/pragmatic-play" className={linkClass}>Pragmatic Play</Link>,{" "}
+        <Link to="/spiludviklere/netent" className={linkClass}>NetEnt</Link>,{" "}
+        <Link to="/spiludviklere/evolution-gaming" className={linkClass}>Evolution Gaming</Link>,{" "}
+        <Link to="/spiludviklere/nolimit-city" className={linkClass}>Nolimit City</Link> og{" "}
+        <Link to="/spiludviklere/hacksaw-gaming" className={linkClass}>Hacksaw Gaming</Link>. Udvalget omfatter spilleautomater, bordspil, video poker og ca. 100 live casino-borde med professionelle dealere. Casinoet tilføjer nye titler ugentligt og har en velfungerende filtreringsfunktion, der gør det nemt at finde spil efter kategori, volatilitet eller udbyder.
       </>
     ),
   },
   {
-    question: "Tilbyder Campobet live casino?",
-    answer: (
-      <>
-        Ja. Campobet har ca. 100 live casino-spil med professionelle dealere, herunder blackjack, roulette, baccarat, poker og game shows som Crazy Coin Flip. Læs mere om{" "}
-        <Link to="/live-casino" className={linkClass}>live casino</Link>.
-      </>
-    ),
-  },
-  {
-    question: "Hvor hurtigt får jeg mine penge udbetalt fra Campobet?",
+    question: "Hvem er Denix Limited, og hvilken erfaring har de som casinooperatør?",
     answer:
-      "Udbetalinger behandles typisk inden for 1–3 hverdage uanset betalingsmetode. Campobet har allerede verificeret din identitet via MitID ved registrering, hvilket fremskynder processen.",
-  },
-  {
-    question: "Har Campobet en reload-bonus?",
-    answer:
-      "Ja. Campobet tilbyder en ugentlig reload-bonus på 100 % op til 500 kr. samt en weekend reload-bonus med samme vilkår. Begge har 10x omsætningskrav og kræver minimum 100 kr. indbetaling.",
-  },
-  {
-    question: "Hvem står bag Campobet?",
-    answer:
-      "Campobet drives af Denix Limited, der er baseret på Malta. Selskabet har drevet casinoet internationalt siden 2018 og lancerede den danske version i 2024 med licens fra Spillemyndigheden.",
+      "Denix Limited er et Malta-baseret selskab, der har drevet Campobet internationalt siden 2018. Selskabet har licenser i flere europæiske jurisdiktioner og lancerede den danske version af platformen i 2024 efter at have opnået licens fra Spillemyndigheden. Denix har opbygget et solidt ry for pålidelig drift, hurtige udbetalinger og omfattende spiludvalg. Deres internationale erfaring afspejles i platformens tekniske kvalitet, brede betalingsmuligheder og professionelle kundeservice, der er tilgængelig på dansk via live chat og e-mail.",
   },
 ];
 

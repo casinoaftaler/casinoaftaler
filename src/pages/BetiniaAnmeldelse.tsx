@@ -50,79 +50,65 @@ const linkClass = "text-primary underline hover:text-primary/80";
 
 const betiniaFaqs: { question: string; answer: ReactNode }[] = [
   {
-    question: "Er Betinia et sikkert casino?",
+    question: "Hvor hurtigt udbetaler Betinia gevinster, og hvilke metoder er hurtigst?",
     answer: (
       <>
-        Ja. Betinia har gyldig dansk licens fra Spillemyndigheden (licensnr. 20-6359) samt licens fra Malta Gaming Authority. Platformen benytter SSL-kryptering og er tilsluttet{" "}
-        <a href="https://www.rofus.nu/" target="_blank" rel="noopener noreferrer" className={linkClass}>ROFUS</a> for selvudelukkelse. Læs mere om{" "}
-        <Link to="/responsible-gaming" className={linkClass}>ansvarligt spil</Link>.
-      </>
-    ),
-  },
-  {
-    question: "Hvad er velkomstbonussen hos Betinia?",
-    answer: (
-      <>
-        Nye spillere får 100 % No-Sticky bonus op til 1.000 kr. ved første indbetaling. Omsætningskravet er 10x (indskud + bonus) med 60 dages gyldighed. Der er også en oddsbonus på 100 % op til 1.000 kr. med 5x omsætning. Læs mere om{" "}
-        <Link to="/velkomstbonus" className={linkClass}>velkomstbonusser</Link>.
-      </>
-    ),
-  },
-  {
-    question: "Hvilke betalingsmetoder tilbyder Betinia?",
-    answer: (
-      <>
-        Betinia tilbyder MobilePay, Dankort, Visa, Mastercard, Trustly, PayPal, Skrill, Neteller, MiFinity samt direkte bankoverførsler. Alle indbetalinger er gebyrfri. Se vores guide til{" "}
+        Betinia behandler udbetalinger inden for 1–3 hverdage afhængigt af betalingsmetode. E-wallets som{" "}
+        <Link to="/betalingsmetoder/paypal" className={linkClass}>PayPal</Link> og{" "}
+        <Link to="/betalingsmetoder/skrill" className={linkClass}>Skrill</Link> er typisk de hurtigste med udbetaling inden for 24 timer. Kortbetalinger via Visa og Mastercard tager normalt 2–3 bankdage, mens bankoverførsler kan tage op til 5 hverdage. Da registrering sker via MitID, er din identitet allerede verificeret, hvilket eliminerer forsinkelser ved første udbetaling. Minimum udbetalingsbeløb er 100 kr. Se vores guide til{" "}
         <Link to="/betalingsmetoder" className={linkClass}>betalingsmetoder</Link>.
       </>
     ),
   },
   {
-    question: "Tilbyder Betinia sportsbetting?",
+    question: "Hvad er Betinias akkumulator-boost, og hvordan fungerer den?",
     answer:
-      "Ja. Betinia har en omfattende sportssektion med ca. 30 sportsgrene, herunder fodbold, håndbold, tennis, basketball og e-sport. Der er mulighed for pre-match og livebetting samt akkumulator-boost.",
+      "Betinias akkumulator-boost er en unik funktion i sportssektionen, der øger din potentielle gevinst, når du kombinerer flere væddemål på samme kupon. Jo flere valg du tilføjer til din akkumulator, desto højere bliver din procentvise boost – typisk op til 100 % ekstra på gevinsten. Eksempelvis kan en kupon med 8 valg give 40–50 % ekstra oven i den samlede odds-gevinst. Boosten gælder automatisk på kvalificerende kuponer og kræver ingen bonuskode. Det er en funktion, der primært appellerer til erfarne sportsbettere, der foretrækker kombivæddemål frem for singler. Betinia er et af få danske casinoer, der tilbyder denne type automatisk gevinstforhøjelse.",
   },
   {
-    question: "Hvad er omsætningskravet på bonussen?",
+    question: "Hvordan adskiller Betinias No-Sticky bonus sig fra en traditionel casinobonus?",
     answer: (
       <>
-        Casino-velkomstbonussen har et omsætningskrav på 10x (indskud + bonus). Da det er en No-Sticky bonus, starter du med din egen saldo. Bonusmidlerne aktiveres først, når din saldo når 0 kr. Læs om{" "}
+        Betinias velkomstbonus på 100 % op til 1.000 kr. er en{" "}
+        <Link to="/no-sticky-bonus" className={linkClass}>No-Sticky bonus</Link>, som fundamentalt adskiller sig fra traditionelle{" "}
+        <Link to="/sticky-bonus" className={linkClass}>sticky bonusser</Link>. Med en No-Sticky bonus spiller du altid først med dine egne penge. Du kan til enhver tid hæve din indbetaling og gevinster vundet med egne midler, uanset om du har opfyldt omsætningskravet eller ej. Bonusmidlerne aktiveres først, når din egen saldo rammer 0 kr. – og hvis du på det tidspunkt ikke ønsker at bruge bonussen, kan du simpelthen vælge at stoppe. Omsætningskravet er 10x (indskud + bonus) med 60 dages gyldighed. Læs mere om{" "}
         <Link to="/omsaetningskrav" className={linkClass}>omsætningskrav</Link>.
       </>
     ),
   },
   {
-    question: "Har Betinia en No-Sticky bonus?",
+    question: "Er Betinia et sikkert casino med gyldig dansk licens?",
     answer: (
       <>
-        Ja. Betinias velkomstbonus er en{" "}
-        <Link to="/no-sticky-bonus" className={linkClass}>No-Sticky bonus</Link>, hvilket betyder at din indbetaling og bonusmidlerne holdes adskilt. Du spiller først med dine egne penge og kan frit hæve gevinster vundet med din egen saldo.
+        Betinia har dobbelt licensering: dansk licens fra Spillemyndigheden (licensnr. 20-6359) og licens fra Malta Gaming Authority (MGA). Casinoet drives af Romabet Limited, der lancerede den danske platform i 2022 og hurtigt har etableret sig som et populært valg. Platformen benytter SSL-kryptering til beskyttelse af alle data og transaktioner og er fuldt tilsluttet{" "}
+        <a href="https://www.rofus.nu/" target="_blank" rel="noopener noreferrer" className={linkClass}>ROFUS</a>. Registrering foregår via MitID, hvilket sikrer øjeblikkelig identitetsverifikation. Læs mere om{" "}
+        <Link to="/responsible-gaming" className={linkClass}>ansvarligt spil</Link>.
       </>
     ),
   },
   {
-    question: "Tilbyder Betinia live casino?",
+    question: "Hvilke live casino-spil tilbyder Betinia, og hvem leverer dem?",
     answer: (
       <>
-        Ja. Betinia har et bredt udvalg af live casino-spil med professionelle dealere fra Evolution Gaming, herunder blackjack, roulette, baccarat, poker og game shows. Læs mere om{" "}
+        Betinia har et af de bredeste live casino-udvalg blandt danske casinoer, primært leveret af{" "}
+        <Link to="/spiludviklere/evolution-gaming" className={linkClass}>Evolution Gaming</Link> – verdens førende live casino-udbyder. Udvalget inkluderer klassiske bordspil som blackjack (inkl. danske borde), roulette (europæisk, fransk og Lightning Roulette) og baccarat. Derudover findes game shows som Crazy Time, Dream Catcher, Monopoly Live og Crazy Coin Flip. Der er borde med indsatser fra 10 kr. til over 50.000 kr. pr. runde, hvilket gør det tilgængeligt for alle budgetter. Læs mere om{" "}
         <Link to="/live-casino" className={linkClass}>live casino</Link>.
       </>
     ),
   },
   {
-    question: "Hvor hurtigt får jeg mine penge udbetalt fra Betinia?",
+    question: "Kan Betinia bruges på mobilen, og er der en app?",
     answer:
-      "Udbetalinger behandles typisk inden for 1–3 hverdage afhængigt af betalingsmetode. E-wallets som PayPal og Skrill er ofte hurtigere end bankoverførsler.",
+      "Betinia har ikke en dedikeret app i App Store eller Google Play, men hele platformen er fuldt mobiloptimeret som en progressiv web-app. Det betyder, at alle spil, bonusser, sports-væddemål og betalinger fungerer direkte i din mobilbrowser på både iOS og Android. Grænsefladen tilpasser sig automatisk din skærmstørrelse med touchvenlige menuer og hurtig navigation. Live casino og sportsbetting fungerer ligeledes fejlfrit på mobilen, inklusiv livescores og in-play betting. Fordelen ved denne tilgang er, at du altid har den nyeste version uden at skulle opdatere en app manuelt.",
   },
   {
-    question: "Hvem står bag Betinia?",
-    answer:
-      "Betinia drives af Romabet Limited, der er baseret på Malta. Casinoet lancerede sin danske platform i 2022 med licens fra Spillemyndigheden og har hurtigt etableret sig som et populært valg.",
-  },
-  {
-    question: "Har Betinia en app?",
-    answer:
-      "Betinia har ikke en dedikeret app, men hjemmesiden er fuldt mobiloptimeret og fungerer problemfrit i alle moderne browsere på både iOS og Android.",
+    question: "Hvad er Betinias velkomstbonus, og hvordan aktiverer man den?",
+    answer: (
+      <>
+        Nye spillere hos Betinia kan vælge mellem to velkomstbonusser: en casinobonus på 100 % op til 1.000 kr. (No-Sticky, 10x omsætning) eller en oddsbonus på 100 % op til 1.000 kr. (5x omsætning). Casinobonussen aktiveres automatisk ved første indbetaling på minimum 100 kr. – ingen bonuskode er nødvendig. Oddsbonussen kræver, at du placerer væddemål med minimum odds 1,80. Begge bonusser har 60 dages gyldighed. Du kan kun vælge én af de to, så overvej nøje, om du primært ønsker at spille casino eller placere sportsvæddemål. Læs mere om{" "}
+        <Link to="/velkomstbonus" className={linkClass}>velkomstbonusser</Link>.
+      </>
+    ),
   },
 ];
 

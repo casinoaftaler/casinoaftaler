@@ -50,78 +50,70 @@ const linkClass = "text-primary underline hover:text-primary/80";
 
 const spilleautomatenFaqs: { question: string; answer: ReactNode }[] = [
   {
-    question: "Er Spilleautomaten et sikkert casino?",
+    question: "Hvad gør Spilleautomatens velkomstbonus unik sammenlignet med andre danske casinoer?",
     answer: (
       <>
-        Ja. Spilleautomaten har gyldig dansk licens fra Spillemyndigheden (licensnr. 21-67980) og drives af Winteq ApS. Platformen benytter SSL-kryptering og er tilsluttet{" "}
-        <a href="https://www.rofus.nu/" target="_blank" rel="noopener noreferrer" className={linkClass}>ROFUS</a> for selvudelukkelse. Læs mere om{" "}
-        <Link to="/responsible-gaming" className={linkClass}>ansvarligt spil</Link>.
-      </>
-    ),
-  },
-  {
-    question: "Hvad er velkomstbonussen hos Spilleautomaten?",
-    answer: (
-      <>
-        Nye spillere får 100 % bonus op til 1.000 kr. fordelt over 5 dage med bonuskoder (VELKOMMEN1–VELKOMMEN5). Omsætningskravet er kun 10x (indskud + bonus) med 60 dages gyldighed – blandt de laveste på markedet. Læs mere om{" "}
-        <Link to="/velkomstbonus" className={linkClass}>velkomstbonusser</Link>.
-      </>
-    ),
-  },
-  {
-    question: "Hvilke betalingsmetoder tilbyder Spilleautomaten?",
-    answer: (
-      <>
-        Du kan indbetale med MobilePay, Dankort, Visa, Mastercard og Trustly. Udbetalinger sker via samme metode. MobilePay og Trustly er typisk de hurtigste med udbetaling inden for få timer. Se vores guide til{" "}
-        <Link to="/betalingsmetoder" className={linkClass}>betalingsmetoder</Link>.
-      </>
-    ),
-  },
-  {
-    question: "Har Spilleautomaten et loyalitetsprogram?",
-    answer:
-      "Ja. For hver 5 kr. omsat i slots optjener du 1 point. Pointene kan indløses til kontanter i Præmieshoppen. Programmet aktiveres automatisk ved registrering og nyhedsbrevstilmelding.",
-  },
-  {
-    question: "Kan jeg spille Spilleautomaten på mobilen?",
-    answer:
-      "Absolut. Spilleautomaten er fuldt optimeret til mobil og fungerer fejlfrit på både iOS og Android. Alle spil, bonusser og betalinger er tilgængelige direkte fra browseren.",
-  },
-  {
-    question: "Hvem står bag Spilleautomaten?",
-    answer: (
-      <>
-        Spilleautomaten drives af Winteq ApS, der også står bag Bingo.dk og SpilDanskNu.dk. Det sikrer solid erfaring og pålidelig drift fra en erfaren dansk operatør.
-      </>
-    ),
-  },
-  {
-    question: "Hvad er omsætningskravet på bonussen?",
-    answer: (
-      <>
-        Omsætningskravet er 10x (indskud + bonus), hvilket er meget lavt sammenlignet med branchen. Eksempel: Indbetaler du 200 kr. og får 200 kr. i bonus, skal du omsætte 4.000 kr. Læs om{" "}
+        Spilleautomatens velkomstbonus skiller sig markant ud ved at fordele bonussen over 5 dage med individuelle bonuskoder (VELKOMMEN1 til VELKOMMEN5). Hver dag kan du indbetale op til 200 kr. og modtage 100 % matchbonus, hvilket giver en samlet bonusværdi på op til 1.000 kr. Denne struktur giver spillere mulighed for at sprede deres risiko over flere dage i stedet for at binde hele beløbet på én gang. Med et omsætningskrav på kun 10x (indskud + bonus) og 60 dages gyldighed er det en af de mest fleksible bonusmodeller på det danske marked. Læs mere om{" "}
+        <Link to="/velkomstbonus" className={linkClass}>velkomstbonusser</Link> og{" "}
         <Link to="/omsaetningskrav" className={linkClass}>omsætningskrav</Link>.
       </>
     ),
   },
   {
-    question: "Tilbyder Spilleautomaten live casino?",
+    question: "Hvordan fungerer Spilleautomatens Præmieshop og loyalitetsprogram?",
+    answer:
+      "Spilleautomatens loyalitetsprogram er automatisk aktivt fra registrering og nyhedsbrevstilmelding. For hver 5 kr. du omsætter på spilleautomater, optjener du 1 loyalitetspoint. Disse points akkumuleres og kan indløses til kontante bonusmidler i Præmieshoppen. Det særlige ved Spilleautomatens model er, at den belønner konsistent spil frem for store enkeltstående indbetalinger. Programmet har ingen tidsbegrænsning på optjente points, og du kan selv vælge, hvornår du vil indløse dem. Det gør systemet mere fleksibelt end traditionelle VIP-programmer, der ofte kræver et bestemt aktivitetsniveau for at bevare din status.",
+  },
+  {
+    question: "Er Spilleautomaten et sikkert og troværdigt casino?",
     answer: (
       <>
-        Ja, Spilleautomaten har en voksende{" "}
-        <Link to="/live-casino" className={linkClass}>live casino</Link>-sektion med roulette, blackjack og game shows fra professionelle dealere.
+        Spilleautomaten drives af Winteq ApS, et dansk selskab med gyldig licens fra Spillemyndigheden (licensnr. 21-67980). Platformen benytter 256-bit SSL-kryptering til beskyttelse af alle transaktioner og persondata. Casinoet er fuldt tilsluttet{" "}
+        <a href="https://www.rofus.nu/" target="_blank" rel="noopener noreferrer" className={linkClass}>ROFUS</a>{" "}
+        (Register Over Frivilligt Udelukkede Spillere), hvilket sikrer, at du altid kan selvudelukke dig. Winteq ApS er et etableret dansk operatørselskab, der også driver Bingo.dk og{" "}
+        <Link to="/spildansknu-anmeldelse" className={linkClass}>SpilDanskNu</Link>, hvilket understreger deres erfaring og pålidelighed på det danske marked. Læs mere om{" "}
+        <Link to="/responsible-gaming" className={linkClass}>ansvarligt spil</Link>.
       </>
     ),
   },
   {
-    question: "Hvor hurtigt får jeg mine penge udbetalt?",
-    answer:
-      "Via MobilePay og Trustly kan du typisk forvente udbetaling inden for få timer. Kortbetalinger tager 1–3 hverdage afhængigt af din bank.",
+    question: "Hvilke spiludviklere leverer spil til Spilleautomaten?",
+    answer: (
+      <>
+        Spilleautomaten samarbejder med en bred vifte af anerkendte spiludviklere, herunder{" "}
+        <Link to="/spiludviklere/netent" className={linkClass}>NetEnt</Link>,{" "}
+        <Link to="/spiludviklere/play-n-go" className={linkClass}>Play'n GO</Link>,{" "}
+        <Link to="/spiludviklere/pragmatic-play" className={linkClass}>Pragmatic Play</Link>,{" "}
+        <Link to="/spiludviklere/nolimit-city" className={linkClass}>Nolimit City</Link> og{" "}
+        <Link to="/spiludviklere/hacksaw-gaming" className={linkClass}>Hacksaw Gaming</Link>. Spillekataloget fokuserer primært på spilleautomater med over 2.000 titler, men inkluderer også bordspil og live casino fra{" "}
+        <Link to="/spiludviklere/evolution-gaming" className={linkClass}>Evolution Gaming</Link>. RTP-niveauerne ligger typisk mellem 94 % og 97 %, og der tilføjes regelmæssigt nye spil til kataloget. Udvalget er særligt stærkt inden for danske favoritter som Book of Dead, Sweet Bonanza og Starburst.
+      </>
+    ),
   },
   {
-    question: "Er der en bonuskode til Spilleautomaten?",
+    question: "Hvor hurtigt behandler Spilleautomaten udbetalinger?",
+    answer: (
+      <>
+        Udbetalingshastigheden hos Spilleautomaten varierer afhængigt af din valgte betalingsmetode. MobilePay og{" "}
+        <Link to="/betalingsmetoder/trustly" className={linkClass}>Trustly</Link>{" "}
+        er de hurtigste med behandlingstider på typisk under 4 timer i hverdagene. Kortbetalinger via Visa og Mastercard tager normalt 1–3 hverdage, da bankerne skal behandle transaktionen. Minimum udbetalingsbeløb er 100 kr. Sørg for at have gennemført kontoverifikation via MitID inden din første udbetaling for at undgå forsinkelser. Se vores guide til{" "}
+        <Link to="/betalingsmetoder" className={linkClass}>betalingsmetoder</Link>.
+      </>
+    ),
+  },
+  {
+    question: "Kan Spilleautomaten bruges som app på mobilen?",
     answer:
-      "Ja. Velkomstbonussen aktiveres med bonuskoder: VELKOMMEN1 (dag 1), VELKOMMEN2 (dag 2) osv. op til VELKOMMEN5. Husk at indtaste koden ved hver indbetaling.",
+      "Spilleautomaten har ikke en dedikeret app i App Store eller Google Play, men hele platformen er udviklet som en responsiv web-app, der fungerer fejlfrit direkte i mobilbrowseren. Det betyder, at du har adgang til samtlige spil, bonusser, indbetalinger og udbetalinger fra din smartphone eller tablet uden at downloade noget. Oplevelsen er optimeret til touchskærme med tilpassede menuer og hurtig indlæsningstid. Fordelen ved denne tilgang er, at du altid bruger den nyeste version uden manuelle opdateringer, og du sparer lagerplads på din enhed.",
+  },
+  {
+    question: "Hvad adskiller Spilleautomaten fra andre Winteq-casinoer som SpilDanskNu?",
+    answer: (
+      <>
+        Selvom begge casinoer drives af Winteq ApS, har Spilleautomaten en mere fokuseret profil med specialisering i spilleautomater og et dedikeret loyalitetsprogram med Præmieshoppen. SpilDanskNu har et bredere spiludvalg og en mere generel casinoprofil. Bonusstrukturerne er sammenlignelige, men Spilleautomatens 5-dages bonusmodel er unik. Begge casinoer deler det lave omsætningskrav på 10x, men Spilleautomaten har typisk flere kampagner rettet specifikt mod automatsegmentet. Læs vores{" "}
+        <Link to="/spildansknu-anmeldelse" className={linkClass}>SpilDanskNu-anmeldelse</Link> for en direkte sammenligning.
+      </>
+    ),
   },
 ];
 
