@@ -295,7 +295,7 @@ export function Footer() {
             <h4 className="mb-4 text-sm font-semibold">Ansvarligt Spil & Juridisk</h4>
             <ul className="space-y-2 text-sm">
               <li>
-                <Link to="/responsible-gaming" className="flex items-center gap-2 text-muted-foreground transition-colors hover:text-foreground">
+                <Link to="/ansvarligt-spil" className="flex items-center gap-2 text-muted-foreground transition-colors hover:text-foreground">
                   <Shield className="h-4 w-4" />
                   Spil Ansvarligt
                 </Link>
@@ -313,7 +313,7 @@ export function Footer() {
                 </Link>
               </li>
               <li>
-                <Link to="/privacy" className="flex items-center gap-2 text-muted-foreground transition-colors hover:text-foreground">
+                <Link to="/privatlivspolitik" className="flex items-center gap-2 text-muted-foreground transition-colors hover:text-foreground">
                   <Shield className="h-4 w-4" />
                   Privatlivspolitik
                 </Link>

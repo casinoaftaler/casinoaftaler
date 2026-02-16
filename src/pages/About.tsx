@@ -373,7 +373,7 @@ const About = () => {
                   <Link to="/responsible-gaming" className="text-primary underline hover:text-primary/80">ansvarligt spil</Link>{" "}
                   og anbefaler kun casinoer med dansk licens fra Spillemyndigheden.
                   Læs også vores{" "}
-                  <Link to="/privacy" className="text-primary underline hover:text-primary/80">privatlivspolitik</Link> og{" "}
+                  <Link to="/privatlivspolitik" className="text-primary underline hover:text-primary/80">privatlivspolitik</Link> og{" "}
                   <Link to="/terms" className="text-primary underline hover:text-primary/80">vilkår og betingelser</Link>.
                 </p>
               </CardContent>

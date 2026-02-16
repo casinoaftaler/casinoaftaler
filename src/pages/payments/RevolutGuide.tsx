@@ -28,7 +28,7 @@ const RevolutGuide = () => {
           </p>
           <p className="text-muted-foreground leading-relaxed">
             I denne guide gennemgår vi alt om Revolut på danske casinoer – fra sikkerhed og hastighed til de unikke budgetfunktioner, der gør Revolut til et fremragende værktøj til{" "}
-            <Link to="/responsible-gaming" className="text-primary underline hover:text-primary/80">ansvarligt spil</Link>.
+            <Link to="/ansvarligt-spil" className="text-primary underline hover:text-primary/80">ansvarligt spil</Link>.
           </p>
         </>
       }
@@ -56,7 +56,7 @@ const RevolutGuide = () => {
           </p>
           <p className="text-muted-foreground leading-relaxed">
             For{" "}
-            <Link to="/responsible-gaming" className="text-primary underline hover:text-primary/80">ansvarligt spil</Link>{" "}
+            <Link to="/ansvarligt-spil" className="text-primary underline hover:text-primary/80">ansvarligt spil</Link>{" "}
             er Revoluts budgetværktøjer særligt værdifulde: Du kan se dine casinoudgifter i realtid, sætte månedlige grænser og endda blokere gambling-transaktioner helt i app-indstillingerne.
           </p>
         </>

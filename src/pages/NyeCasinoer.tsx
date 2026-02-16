@@ -565,7 +565,7 @@ const NyeCasinoer = () => {
                 Uanset om du vælger et nyt eller etableret casino, er det vigtigt at
                 spille ansvarligt. Sæt altid et budget, hold pauser og spil aldrig
                 for mere, end du har råd til at tabe. Læs mere i vores guide til{" "}
-                <Link to="/responsible-gaming" className={linkClass}>ansvarligt spil</Link>.
+                <Link to="/ansvarligt-spil" className={linkClass}>ansvarligt spil</Link>.
               </p>
               <p className="text-muted-foreground leading-relaxed">
                 Alle casinoer på vores liste har dansk licens og tilbyder

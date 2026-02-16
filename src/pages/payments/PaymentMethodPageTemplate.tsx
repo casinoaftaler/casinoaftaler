@@ -359,7 +359,7 @@ export function PaymentMethodPage({
               <p>
                 {responsibleGamingText || `Når du bruger ${name} til casinotransaktioner, er det vigtigt at spille ansvarligt og sætte personlige grænser for indbetalinger.`}{" "}
                 Læs mere om{" "}
-                <Link to="/responsible-gaming" className="text-primary hover:underline font-medium">ansvarligt spil</Link>.{" "}
+                <Link to="/ansvarligt-spil" className="text-primary hover:underline font-medium">ansvarligt spil</Link>.{" "}
                 I Danmark kan du altid søge hjælp via{" "}
                 <a href="https://www.rofus.nu/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline font-medium">ROFUS</a>{" "}
                 og{" "}

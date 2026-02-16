@@ -30,8 +30,8 @@ const Forretningsmodel = () => {
     url: "https://casinoaftaler.dk/forretningsmodel",
     datePublished: "2025-06-01",
     dateModified: "2026-02-15",
-    authorName: "Jonas",
-    authorUrl: "https://casinoaftaler.dk/forfatter/jonas",
+    authorName: "Kevin",
+    authorUrl: "https://casinoaftaler.dk/forfatter/kevin",
   });
 
   const breadcrumbJsonLd = {
@@ -86,7 +86,7 @@ const Forretningsmodel = () => {
       </section>
 
       <div className="container py-10 md:py-14">
-        <AuthorMetaBar author="redaktionen" date="2026-02-15" readTime="5 min" />
+        <AuthorMetaBar author="kevin" date="2026-02-15" readTime="5 min" />
 
         {/* Hvad er affiliate-marketing */}
         <section className="mb-12">

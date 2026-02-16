@@ -31,8 +31,8 @@ const RedaktionelPolitik = () => {
     url: "https://casinoaftaler.dk/redaktionel-politik",
     datePublished: "2025-06-01",
     dateModified: "2026-02-15",
-    authorName: "Jonas",
-    authorUrl: "https://casinoaftaler.dk/forfatter/jonas",
+    authorName: "Kevin",
+    authorUrl: "https://casinoaftaler.dk/forfatter/kevin",
   });
 
   const breadcrumbJsonLd = {
@@ -96,7 +96,7 @@ const RedaktionelPolitik = () => {
       </section>
 
       <div className="container py-10 md:py-14">
-        <AuthorMetaBar author="redaktionen" date="2026-02-15" readTime="6 min" />
+        <AuthorMetaBar author="kevin" date="2026-02-15" readTime="6 min" />
 
         {/* Vores redaktionelle proces */}
         <section className="mb-12">

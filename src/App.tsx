@@ -20,11 +20,11 @@ const CasinoDetail = lazy(() => import("./pages/CasinoDetail"));
 const OmTeamet = lazy(() => import("./pages/OmTeamet"));
 const Forretningsmodel = lazy(() => import("./pages/Forretningsmodel"));
 const RedaktionelPolitik = lazy(() => import("./pages/RedaktionelPolitik"));
-const Contact = lazy(() => import("./pages/Contact"));
+const Kontakt = lazy(() => import("./pages/Contact"));
 
-const ResponsibleGaming = lazy(() => import("./pages/ResponsibleGaming"));
+const AnsvarligtSpil = lazy(() => import("./pages/ResponsibleGaming"));
 const Spillemyndigheden = lazy(() => import("./pages/Spillemyndigheden"));
-const Privacy = lazy(() => import("./pages/Privacy"));
+const Privatlivspolitik = lazy(() => import("./pages/Privacy"));
 const Terms = lazy(() => import("./pages/Terms"));
 const Cookies = lazy(() => import("./pages/Cookies"));
 const Shop = lazy(() => import("./pages/Shop"));
@@ -161,12 +161,12 @@ const App = () => (
                 <Route path="/forfatter/jonas" element={<Forfatter />} />
                 <Route path="/forfatter/kevin" element={<ForfatterKevin />} />
                 <Route path="/saadan-tester-vi-casinoer" element={<SaadanTesterVi />} />
-                <Route path="/contact" element={<Contact />} />
+                <Route path="/kontakt" element={<Kontakt />} />
                 
                 <Route path="/casino-bonus" element={<CasinoBonus />} />
-                <Route path="/responsible-gaming" element={<ResponsibleGaming />} />
+                <Route path="/ansvarligt-spil" element={<AnsvarligtSpil />} />
                 <Route path="/spillemyndigheden" element={<Spillemyndigheden />} />
-                <Route path="/privacy" element={<Privacy />} />
+                <Route path="/privatlivspolitik" element={<Privatlivspolitik />} />
                 <Route path="/terms" element={<Terms />} />
                 <Route path="/cookies" element={<Cookies />} />
                 <Route path="/butik" element={<Shop />} />
@@ -303,7 +303,7 @@ const App = () => (
               <Route path="/payment-methods" element={<Navigate to="/betalingsmetoder" replace />} />
               <Route path="/providers" element={<Navigate to="/spiludviklere" replace />} />
               <Route path="/game-providers" element={<Navigate to="/spiludviklere" replace />} />
-              <Route path="/ansvarligt-spil" element={<Navigate to="/responsible-gaming" replace />} />
+              <Route path="/responsible-gaming" element={<Navigate to="/ansvarligt-spil" replace />} />
               <Route path="/login" element={<Navigate to="/auth" replace />} />
               <Route path="/signup" element={<Navigate to="/auth" replace />} />
               <Route path="/register" element={<Navigate to="/auth" replace />} />
@@ -311,12 +311,12 @@ const App = () => (
               <Route path="/shop" element={<Navigate to="/butik" replace />} />
               <Route path="/leaderboard" element={<Navigate to="/community/leaderboard" replace />} />
               <Route path="/rewards" element={<Navigate to="/community/rewards" replace />} />
-              <Route path="/kontakt" element={<Navigate to="/contact" replace />} />
+              <Route path="/contact" element={<Navigate to="/kontakt" replace />} />
               <Route path="/om-os" element={<Navigate to="/om" replace />} />
               <Route path="/om-teamet" element={<Navigate to="/om" replace />} />
               <Route path="/about" element={<Navigate to="/om" replace />} />
               <Route path="/forfatter" element={<Navigate to="/forfatter/jonas" replace />} />
-              <Route path="/privatlivspolitik" element={<Navigate to="/privacy" replace />} />
+              <Route path="/privacy" element={<Navigate to="/privatlivspolitik" replace />} />
               <Route path="/vilkaar" element={<Navigate to="/terms" replace />} />
               <Route path="/danske-casinoer" element={<Navigate to="/top-10-casino-online" replace />} />
               <Route path="/bonus-guide" element={<Navigate to="/casino-bonus" replace />} />
