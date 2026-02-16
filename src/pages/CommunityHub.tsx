@@ -230,53 +230,63 @@ export default function CommunityHub() {
             })}
           </div>
 
+          {/* Divider */}
+          <div className="mt-16 mb-0 border-t border-border/20" />
+
           {/* Founder / Brand block */}
           <section
-            className="mt-12 rounded-xl p-6 md:p-8"
+            className="py-10 md:py-14 rounded-xl px-6 md:px-10"
             style={{
-              border: "1px solid rgba(139,92,246,0.25)",
+              border: "1px solid rgba(139,92,246,0.2)",
               background:
-                "linear-gradient(135deg, hsl(260 30% 15%) 0%, hsl(220 25% 14%) 100%)",
+                "linear-gradient(135deg, hsl(260 25% 14%) 0%, hsl(220 22% 13%) 100%)",
             }}
           >
             <div className="flex flex-col sm:flex-row items-center sm:items-start gap-6">
-              <div className="flex gap-5 shrink-0">
+              <div className="flex gap-4 shrink-0">
                 <Link to="/forfatter/jonas" className="flex flex-col items-center gap-2 group">
                   <img
                     src={jonasImage}
                     alt="Jonas – medstifter af Casinoaftaler.dk"
-                    className="h-32 w-32 rounded-full object-cover object-top ring-2 ring-primary/30 transition-all group-hover:ring-primary/60"
+                    className="h-20 w-20 rounded-full object-cover object-top ring-2 ring-transparent transition-all"
+                    style={{ boxShadow: "0 0 0 2px rgba(139,92,246,0.4)" }}
                   />
-                  <span className="text-sm font-medium text-muted-foreground group-hover:text-foreground transition-colors">Jonas</span>
+                  <span className="text-xs font-medium text-muted-foreground group-hover:text-foreground transition-colors">Jonas</span>
                 </Link>
                 <Link to="/forfatter/kevin" className="flex flex-col items-center gap-2 group">
                   <img
                     src={kevinImage}
                     alt="Kevin – medstifter af Casinoaftaler.dk"
-                    className="h-32 w-32 rounded-full object-cover ring-2 ring-primary/30 transition-all group-hover:ring-primary/60"
+                    className="h-20 w-20 rounded-full object-cover ring-2 ring-transparent transition-all"
+                    style={{ boxShadow: "0 0 0 2px rgba(99,149,246,0.4)" }}
                   />
-                  <span className="text-sm font-medium text-muted-foreground group-hover:text-foreground transition-colors">Kevin</span>
+                  <span className="text-xs font-medium text-muted-foreground group-hover:text-foreground transition-colors">Kevin</span>
                 </Link>
               </div>
               <div className="text-center sm:text-left">
+                <span className="text-[11px] font-semibold uppercase tracking-widest text-primary/60 mb-1 block">Om os</span>
                 <h2 className="text-xl font-bold text-foreground mb-2">
                   🚀 Skabt af spillere – for spillere
                 </h2>
-                <p className="text-sm text-muted-foreground leading-relaxed mb-4">
+                <p className="text-sm text-muted-foreground leading-relaxed mb-4 max-w-lg">
                   Community-universet på Casinoaftaler.dk er udviklet af Jonas og Kevin, som også står bag vores analyser af nye casinoer og bonusser.
-                  Målet er at samle gratis spil, turneringer og casinoindsigt ét sted – med fokus på gennemsigtighed og ansvarligt spil.
                 </p>
-                <div className="flex flex-wrap gap-x-4 gap-y-1 text-xs text-muted-foreground mb-4">
+                <div className="flex flex-wrap gap-x-4 gap-y-1.5 text-xs text-muted-foreground mb-5">
                   <span className="flex items-center gap-1.5">✔ Uafhængige anmeldelser</span>
                   <span className="flex items-center gap-1.5">✔ Opdateret løbende</span>
                   <span className="flex items-center gap-1.5">✔ Fokus på ansvarligt spil</span>
                 </div>
-                <Button variant="outline" size="sm" asChild>
-                  <Link to="/om" className="gap-2">
-                    Læs mere om os
-                    <ArrowRight className="h-3.5 w-3.5" />
-                  </Link>
-                </Button>
+                <Link
+                  to="/om"
+                  className="inline-flex items-center gap-2 rounded-lg px-5 py-2.5 text-sm font-semibold text-foreground transition-all duration-200 hover:scale-[1.02] hover:shadow-[0_0_20px_rgba(139,92,246,0.2)]"
+                  style={{
+                    border: "1px solid rgba(139,92,246,0.35)",
+                    background: "linear-gradient(135deg, hsl(260 40% 22%) 0%, hsl(220 35% 20%) 100%)",
+                  }}
+                >
+                  👉 Mød teamet bag Casinoaftaler
+                  <ArrowRight className="h-3.5 w-3.5" />
+                </Link>
               </div>
             </div>
           </section>
