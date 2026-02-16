@@ -93,6 +93,11 @@ const NyeCasinoerBonusUdenIndbetaling = () => {
           <p className="text-muted-foreground leading-relaxed">
             Husk altid at læse vilkårene for en no-deposit bonus. Selv om bonussen er gratis, er der typisk <Link to="/omsaetningskrav" className={linkClass}>omsætningskrav</Link> (max 10x på danske casinoer), udbetalingsgrænser og tidsfrister, du skal være opmærksom på.
           </p>
+          <div className="mt-6 rounded-lg border border-primary/30 bg-accent/30 p-4">
+            <p className="text-sm text-muted-foreground">
+              <strong>Se også alle bonusser uden indbetaling</strong> – ikke kun hos nye casinoer. Vores <Link to="/bonus-uden-indbetaling" className={linkClass}>komplette guide til bonus uden indbetaling</Link> dækker no-deposit bonusser hos både nye og etablerede danske casinoer.
+            </p>
+          </div>
         </section>
 
         <InlineCasinoCards title="Nye Casinoer med No-Deposit Bonus" />

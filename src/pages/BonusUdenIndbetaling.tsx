@@ -143,6 +143,14 @@ const BonusUdenIndbetaling = () => {
           <img src={bonusUdenIndbetalingHero} alt="Bonus uden indbetaling – gratis casino bonus" className="w-full h-auto object-cover max-h-[400px]" loading="eager" />
         </div>
 
+        {/* Cross-link to nye casinoer sub */}
+        <div className="mb-8 rounded-lg border border-primary/30 bg-accent/30 p-4">
+          <p className="text-sm text-muted-foreground">
+            <strong>Leder du efter nye casinoer med bonus uden indbetaling?</strong>{" "}
+            Se vores dedikerede guide til <Link to="/nye-casinoer/bonus-uden-indbetaling" className="text-primary underline hover:text-primary/80">nye casinoer med bonus uden indbetaling</Link>, hvor vi fokuserer specifikt på de nyeste spillesteder med gratis no-deposit bonusser.
+          </p>
+        </div>
+
         {/* Intro */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold">

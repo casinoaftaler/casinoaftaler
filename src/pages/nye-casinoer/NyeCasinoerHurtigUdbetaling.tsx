@@ -97,6 +97,11 @@ const NyeCasinoerHurtigUdbetaling = () => {
           <p className="text-muted-foreground leading-relaxed">
             Vi har testet udbetalingstider hos alle nye casinoer på vores liste og rangerer dem efter faktiske udbetalingshastigheder, ikke hvad de reklamerer med. Herunder finder du vores anbefalede nye casinoer med de hurtigste udbetalinger.
           </p>
+          <div className="mt-6 rounded-lg border border-primary/30 bg-accent/30 p-4">
+            <p className="text-sm text-muted-foreground">
+              <strong>Se også alle casinoer med hurtig udbetaling</strong> – ikke kun nye. Vores <Link to="/casinoer/hurtig-udbetaling" className={linkClass}>komplette guide til casinoer med hurtig udbetaling</Link> dækker både nye og etablerede casinoer med de hurtigste udbetalingstider.
+            </p>
+          </div>
         </section>
 
         <InlineCasinoCards title="Nye Casinoer med Hurtigst Udbetaling" />
