@@ -244,7 +244,7 @@ export default function CommunityHub() {
                 <img
                   src={jonasImage}
                   alt="Jonas – medstifter af Casinoaftaler.dk"
-                  className="h-32 w-32 rounded-full object-cover ring-2 ring-primary/30"
+                  className="h-32 w-32 rounded-full object-cover object-top ring-2 ring-primary/30"
                 />
                 <img
                   src={kevinImage}
