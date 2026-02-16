@@ -7,7 +7,7 @@ import { RelatedGuides } from "@/components/RelatedGuides";
 import { InlineCasinoCards } from "@/components/InlineCasinoCards";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
-import { Landmark, Sparkles, CheckCircle2, Zap } from "lucide-react";
+import { Landmark, Sparkles, CheckCircle2, Zap, ShieldCheck } from "lucide-react";
 import { buildArticleSchema, buildFaqSchema, SITE_URL } from "@/lib/seo";
 import type { ReactNode } from "react";
 
@@ -18,29 +18,33 @@ const faqs: { question: string; answer: ReactNode }[] = [
     question: "Hvad er Trustly, og hvordan fungerer det på nye casinoer?",
     answer: (
       <>
-        <Link to="/betalingsmetoder/trustly" className={linkClass}>Trustly</Link> er en svensk fintech-løsning, der muliggør direkte bankoverførsler via open banking. Du logger ind med din netbank (eller MitID i Danmark), og betalingen gennemføres øjeblikkeligt – uden at casinoet får adgang til dine bankoplysninger. Det er en af de sikreste og hurtigste betalingsmetoder.
+        <Link to="/betalingsmetoder/trustly" className={linkClass}>Trustly</Link> er en svensk fintech-løsning, der muliggør direkte bankoverførsler via open banking. Du logger ind med din netbank (eller <Link to="/nye-casinoer/mitid" className={linkClass}>MitID</Link> i Danmark), og betalingen gennemføres øjeblikkeligt – uden at casinoet får adgang til dine bankoplysninger. Trustly er reguleret som betalingsinstitut i EU og bruger bankgraderet kryptering.
       </>
     ),
   },
   {
     question: "Hvad er Pay N Play, og tilbyder nye casinoer det?",
-    answer: "Pay N Play er Trustlys innovative løsning, der kombinerer registrering og indbetaling i ét trin. Du identificeres via din bank, og din konto oprettes automatisk. Flere nye danske casinoer tilbyder Pay N Play, hvilket gør hele opstartsprocessen under 60 sekunder.",
+    answer: "Pay N Play er Trustlys innovative løsning, der kombinerer registrering og indbetaling i ét trin. Du identificeres automatisk via din bank, og din casinokonto oprettes i baggrunden. Flere nye danske casinoer tilbyder Pay N Play, hvilket gør hele opstartsprocessen under 60 sekunder – uden separate formularer eller dokumentuploads.",
   },
   {
     question: "Er Trustly sikkert at bruge på nye casinoer?",
-    answer: "Ja, Trustly er reguleret som betalingsinstitut i EU og bruger bankgraderet kryptering. Dine bankoplysninger deles aldrig med casinoet. Trustly har processet over 100 milliarder euro i transaktioner og betjener over 8.300 banker i Europa.",
+    answer: "Ja, Trustly er reguleret som betalingsinstitut i EU under PSD2-direktivet og bruger bankgraderet kryptering (256-bit SSL). Dine bankoplysninger deles aldrig med casinoet – Trustly fungerer som mellemled. Trustly har processet over 100 milliarder euro i transaktioner og betjener over 8.300 banker i 33 europæiske lande.",
   },
   {
     question: "Hvor hurtig er en udbetaling via Trustly?",
     answer: (
       <>
-        Udbetalinger via Trustly på nye casinoer behandles typisk inden for 5 minutter. Nogle nye casinoer tilbyder instant-udbetalinger, hvor pengene er på din bankkonto inden for sekunder. Se vores guide til <Link to="/nye-casinoer/hurtig-udbetaling" className={linkClass}>nye casinoer med hurtig udbetaling</Link>.
+        Udbetalinger via Trustly på nye casinoer behandles typisk inden for 5 minutter. Nogle nye casinoer tilbyder instant-udbetalinger, hvor pengene er på din bankkonto inden for sekunder. Trustly fungerer 24/7 – også weekender og helligdage. Se vores guide til <Link to="/nye-casinoer/hurtig-udbetaling" className={linkClass}>nye casinoer med hurtig udbetaling</Link> for en komplet sammenligning.
       </>
     ),
   },
   {
     question: "Kræver Trustly en separat konto?",
-    answer: "Nej, Trustly kræver ingen separat konto eller app. Du bruger din eksisterende netbank direkte. Det er en af Trustlys største fordele – ingen ekstra registrering, ingen app-download, ingen ekstra gebyrer.",
+    answer: "Nej, Trustly kræver ingen separat konto, app eller registrering. Du bruger din eksisterende netbank direkte. Det er en af Trustlys største fordele – ingen ekstra apps, ingen ekstra gebyrer og ingen personlige data gemt hos Trustly. Hver transaktion autentificeres direkte med din bank via MitID.",
+  },
+  {
+    question: "Er der gebyrer ved at bruge Trustly på nye casinoer?",
+    answer: "Trustly opkræver ingen gebyrer direkte fra spillere. Alle transaktionsomkostninger betales af casinoet. Det gælder både indbetalinger og udbetalinger. Din bank kan dog have separate gebyrer for udenlandske transaktioner – tjek med din bank for detaljer.",
   },
 ];
 
@@ -70,18 +74,18 @@ const NyeCasinoerTrustly = () => {
       </section>
 
       <div className="container py-8 md:py-12">
-        <AuthorMetaBar author="kevin" date="16-02-2026" readTime="7 Min." />
+        <AuthorMetaBar author="kevin" date="16-02-2026" readTime="8 Min." />
 
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold">Trustly hos nye casinoer i Danmark</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
-            <Link to="/betalingsmetoder/trustly" className={linkClass}>Trustly</Link> er blevet den foretrukne betalingsmetode hos <Link to="/nye-casinoer" className={linkClass}>nye casinoer</Link> i Danmark. Den svenske open banking-løsning muliggør instant-indbetalinger direkte fra din bankkonto – uden behov for kreditkort, e-wallets eller separat kontooprettelse.
+            <Link to="/betalingsmetoder/trustly" className={linkClass}>Trustly</Link> er blevet den foretrukne betalingsmetode hos <Link to="/nye-casinoer" className={linkClass}>nye casinoer</Link> i Danmark. Den svenske open banking-løsning muliggør instant-indbetalinger direkte fra din bankkonto – uden behov for kreditkort, e-wallets eller separat kontooprettelse. For danske spillere er Trustly særligt attraktivt, fordi det integrerer sømløst med <Link to="/nye-casinoer/mitid" className={linkClass}>MitID</Link>.
           </p>
           <p className="mb-4 text-muted-foreground leading-relaxed">
-            For nye casinoer er Trustly særligt attraktivt, fordi det muliggør Pay N Play – en revolutionerende funktion, der kombinerer registrering og indbetaling i ét trin. Du identificeres via din bank, og din casinokonto oprettes automatisk. Hele processen tager under 60 sekunder.
+            For nye casinoer er Trustly særligt attraktivt, fordi det muliggør Pay N Play – en revolutionerende funktion, der kombinerer registrering og indbetaling i ét trin. Du identificeres via din bank, og din casinokonto oprettes automatisk i baggrunden. Hele processen tager under 60 sekunder – sammenlignet med 5-10 minutter ved traditionel registrering.
           </p>
           <p className="text-muted-foreground leading-relaxed">
-            Udbetalinger via Trustly hos nye casinoer behandles typisk inden for 5 minutter, og pengene lander direkte på din bankkonto. Det gør Trustly til det ideelle valg for spillere, der prioriterer hastighed og bekvemmelighed. Se også vores guide til <Link to="/nye-casinoer/hurtig-udbetaling" className={linkClass}>nye casinoer med hurtig udbetaling</Link>.
+            Udbetalinger via Trustly hos nye casinoer behandles typisk inden for 5 minutter, og pengene lander direkte på din bankkonto. Det gør Trustly til det ideelle valg for spillere, der prioriterer hastighed og bekvemmelighed. Se også vores guide til <Link to="/nye-casinoer/hurtig-udbetaling" className={linkClass}>nye casinoer med hurtig udbetaling</Link> for en komplet sammenligning af betalingsmetoder.
           </p>
         </section>
 
@@ -90,19 +94,70 @@ const NyeCasinoerTrustly = () => {
         <Separator className="my-10" />
 
         <section className="mb-12">
+          <h2 className="mb-4 text-3xl font-bold">Sådan fungerer Trustly på nye casinoer</h2>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            Trustly-processen hos nye danske casinoer er enkel og gennemskuelig. Her er det typiske flow:
+          </p>
+          <div className="space-y-3">
+            {[
+              { step: "1. Vælg Trustly", desc: "Ved registrering eller indbetaling vælger du Trustly som betalingsmetode. Du viderestilles til Trustlys sikre betalingsvindue." },
+              { step: "2. Vælg din bank", desc: "Du vælger din bank fra listen over danske banker. Alle større danske banker understøttes, inklusiv Danske Bank, Nordea, Jyske Bank og Nykredit." },
+              { step: "3. Log ind med MitID", desc: "Du verificerer dig med MitID – enten via MitID-appen eller chip/kodelæser. Casinoet får aldrig adgang til dine bankoplysninger." },
+              { step: "4. Bekræft beløb", desc: "Du bekræfter indbetalingsbeløbet direkte i din netbank. Pengene overføres øjeblikkeligt til din casinokonto." },
+              { step: "5. Spil med det samme", desc: "Ved Pay N Play oprettes din konto automatisk, og du kan spille umiddelbart efter bekræftelse. Ingen formularer, ingen ventetid." },
+            ].map((item) => (
+              <div key={item.step} className="flex items-start gap-3 rounded-lg border border-border bg-card p-4">
+                <Zap className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
+                <div>
+                  <h3 className="font-semibold">{item.step}</h3>
+                  <p className="text-sm text-muted-foreground">{item.desc}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        <Separator className="my-10" />
+
+        <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold">Fordele ved Trustly hos nye casinoer</h2>
           <div className="space-y-3">
             {[
-              "Instant-indbetalinger direkte fra din bankkonto",
-              "Udbetalinger på under 5 minutter – 24/7",
-              "Ingen separat konto, app eller registrering krævet",
-              "Bankgraderet sikkerhed – casinoet ser aldrig dine bankoplysninger",
-              "Pay N Play – registrering og indbetaling i ét trin",
-              "Ingen gebyrer fra Trustly på indbetalinger eller udbetalinger",
+              "Instant-indbetalinger direkte fra din bankkonto – pengene er tilgængelige med det samme",
+              "Udbetalinger på under 5 minutter – 24/7, inklusiv weekender og helligdage",
+              "Ingen separat konto, app eller registrering krævet – brug din eksisterende netbank",
+              "Bankgraderet sikkerhed – casinoet ser aldrig dine bankoplysninger eller login-data",
+              "Pay N Play – registrering og indbetaling i ét trin, under 60 sekunder",
+              "Ingen gebyrer fra Trustly – alle omkostninger betales af casinoet",
             ].map((benefit) => (
               <div key={benefit} className="flex items-center gap-3 rounded-lg border border-border bg-card p-3">
                 <CheckCircle2 className="h-5 w-5 flex-shrink-0 text-primary" />
                 <p className="text-sm text-muted-foreground">{benefit}</p>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        <Separator className="my-10" />
+
+        <section className="mb-12">
+          <h2 className="mb-4 text-3xl font-bold">Trustly sikkerhed</h2>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            Trustly er en af de sikreste betalingsmetoder tilgængelige for danske casinospillere. Her er de vigtigste sikkerhedsgarantier:
+          </p>
+          <div className="space-y-3">
+            {[
+              { title: "EU-reguleret betalingsinstitut", desc: "Trustly er autoriseret under PSD2-direktivet og overvåges af den svenske finanstilsynsmyndighed (Finansinspektionen)." },
+              { title: "Bankgraderet kryptering", desc: "Alle transaktioner beskyttes med 256-bit SSL-kryptering – samme niveau som din netbank bruger." },
+              { title: "Ingen data lagret", desc: "Trustly lagrer ikke dine bankoplysninger efter transaktionen. Hver betaling autentificeres individuelt via MitID." },
+              { title: "Transaktionsgaranti", desc: "Trustly garanterer, at transaktioner gennemføres korrekt. Ved fejl refunderes beløbet automatisk." },
+            ].map((item) => (
+              <div key={item.title} className="flex items-start gap-3 rounded-lg border border-border bg-card p-4">
+                <ShieldCheck className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
+                <div>
+                  <h3 className="font-semibold">{item.title}</h3>
+                  <p className="text-sm text-muted-foreground">{item.desc}</p>
+                </div>
               </div>
             ))}
           </div>
