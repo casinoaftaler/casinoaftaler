@@ -6,7 +6,7 @@ import { CommunityConversionStrip } from "@/components/community/CommunityConver
 import { CommunityBrandBlock } from "@/components/community/CommunityBrandBlock";
 import { CommunitySeoBridge } from "@/components/community/CommunitySeoBridge";
 import { CommunityConversionCard } from "@/components/community/CommunityConversionCard";
-import { AuthorMetaBar } from "@/components/AuthorMetaBar";
+
 import { buildArticleSchema, SITE_URL } from "@/lib/seo";
 
 import { CommunityJoinCTA } from "@/components/community/CommunityJoinCTA";
@@ -115,16 +115,6 @@ export default function GameLibrary() {
 
         {/* Main content */}
         <div className="py-8 md:py-12 space-y-8 md:space-y-10">
-          <AuthorMetaBar author="jonas" date="16. februar 2026" readTime="2 min" showFactCheck={false} />
-
-          <p className="text-muted-foreground leading-relaxed -mt-4">
-            Vores gratis{" "}
-            <Link to="/casinospil/spillemaskiner" className="text-primary hover:underline">spillemaskiner</Link>{" "}
-            giver dig den autentiske slotsoplevelse uden risiko. Optjen points, kæmp om pladserne på ranglisten, og udforsk de{" "}
-            <Link to="/nye-casinoer" className="text-primary hover:underline">nyeste casinoer</Link>{" "}
-            eller hent inspiration fra vores{" "}
-            <Link to="/free-spins" className="text-primary hover:underline">free spins guide</Link>.
-          </p>
 
           {/* Community CTA for logged-out users */}
           {!user && <CommunityJoinCTA />}
