@@ -113,8 +113,14 @@ const NyeCasinoer2026 = () => {
             Vi hos <Link to="/om" className={linkClass}>Casinoaftaler.dk</Link> monitorerer det danske marked dagligt og tester hvert nyt casino grundigt, før det kommer på vores liste. Vores <Link to="/saadan-tester-vi-casinoer" className={linkClass}>testmetode</Link> sikrer, at vi kun anbefaler casinoer, der lever op til strenge kvalitetskrav inden for sikkerhed, fairness, bonus og kundeservice.
           </p>
           <p className="text-muted-foreground leading-relaxed">
-            Herunder finder du en komplet oversigt over alle <Link to="/nye-casinoer" className={linkClass}>nye casinoer</Link> lanceret i 2026 – sorteret efter lanceringsdato og vores samlede vurdering.
+            Herunder finder du en komplet oversigt over alle nye casinoer lanceret i 2026 – sorteret efter lanceringsdato og vores samlede vurdering.
           </p>
+          <div className="mt-6 rounded-lg border border-primary/30 bg-accent/30 p-4">
+            <p className="text-sm text-muted-foreground">
+              <strong>Se alle nye casinoer:</strong>{" "}
+              Vores <Link to="/nye-casinoer" className={linkClass}>komplette hub over nye casinoer i Danmark</Link> dækker ikke kun 2026, men giver dig et evergreen overblik over alle nye spillesteder.
+            </p>
+          </div>
         </section>
 
         <InlineCasinoCards title="Nye Casinoer i 2026" />
