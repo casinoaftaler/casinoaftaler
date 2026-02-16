@@ -14,6 +14,7 @@ import { useAuth } from "@/hooks/useAuth";
 
 import { FeaturedSlotPanel } from "@/components/games/FeaturedSlotPanel";
 import { SidebarLeaderboard } from "@/components/games/SidebarLeaderboard";
+import { SidebarSocialProof } from "@/components/games/SidebarSocialProof";
 import { Button } from "@/components/ui/button";
 import { Gamepad2, Clock, Rocket } from "lucide-react";
 import spillehalHero from "@/assets/community/spillehal-hero.jpg";
@@ -111,6 +112,7 @@ export default function GameLibrary() {
               <CommunityConversionCard />
             </div>
             <SidebarLeaderboard />
+            <SidebarSocialProof />
           </div>
         </div>
 
