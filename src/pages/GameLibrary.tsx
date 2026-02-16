@@ -28,7 +28,7 @@ const FEATURED_SLOTS = [
     href: "/community/slots/book-of-fedesvin",
     badge: "🔥 POPULÆR",
     priority: "primary" as const,
-    imagePosition: "center 20%",
+    imagePosition: "center 15%",
   },
   {
     id: "rise-of-fedesvin",
