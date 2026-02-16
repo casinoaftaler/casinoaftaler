@@ -27,7 +27,7 @@ export function FeaturedSlotPanel({
       <div className="group relative overflow-hidden rounded-2xl border border-amber-500/15 shadow-[0_4px_30px_rgba(0,0,0,0.3)] transition-all duration-500 hover:border-amber-500/30 hover:shadow-[0_8px_40px_rgba(251,191,36,0.08)]">
         {/* Hero image – constrained height */}
         <div
-          className="relative overflow-hidden aspect-[5/2]"
+          className="relative overflow-hidden aspect-[16/7]"
         >
           <img
             src={image}
@@ -35,7 +35,7 @@ export function FeaturedSlotPanel({
             width={1200}
             height={675}
             loading="lazy"
-            className="h-full w-full object-cover object-center transition-transform duration-700 ease-out group-hover:scale-[1.02]"
+            className="h-full w-full object-cover object-top transition-transform duration-700 ease-out group-hover:scale-[1.02]"
           />
 
           {/* Stronger bottom gradient for text readability */}
