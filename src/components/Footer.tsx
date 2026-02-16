@@ -6,9 +6,7 @@ export function Footer() {
   const { data: siteSettings } = useSiteSettings();
   
   const siteName = siteSettings?.site_name || "Casinoaftaler.dk";
-  const headerIcon = siteSettings?.header_icon
-    ? siteSettings.header_icon.replace('/object/public/', '/render/image/public/') + (siteSettings.header_icon.includes('?') ? '&' : '?') + 'width=80&height=80&quality=80&format=webp'
-    : undefined;
+  const headerIcon = siteSettings?.header_icon || undefined;
   const discordUrl = siteSettings?.discord_url;
   const instagramUrl = siteSettings?.instagram_url;
   const twitchUrl = siteSettings?.twitch_url;
