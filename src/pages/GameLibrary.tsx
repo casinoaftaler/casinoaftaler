@@ -282,10 +282,10 @@ function GameLibraryHero() {
           <div className="mx-auto mb-2 h-14 w-14 rounded-full bg-amber-500/15 backdrop-blur-sm border border-amber-500/20 flex items-center justify-center">
             <Gamepad2 className="h-7 w-7 text-amber-400" />
           </div>
-          <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight text-white">
+          <h1 className="text-4xl font-bold tracking-tight md:text-5xl text-white">
             Spillehal
           </h1>
-          <p className="text-white/70 text-sm md:text-base max-w-lg mx-auto">
+          <p className="text-lg text-white/80 max-w-lg mx-auto">
             Vælg et spil og begynd at spille. Optjen point og kæmp om pladserne på ranglisten!
           </p>
           <p className="text-white/50 text-sm max-w-md mx-auto">
