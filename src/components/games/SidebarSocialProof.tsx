@@ -56,19 +56,15 @@ export function SidebarSocialProof() {
 
   useEffect(() => {
     async function fetchStats() {
-      const [membersRes, spinsRes, tournamentsRes] = await Promise.all([
-        supabase.from("profiles").select("id", { count: "exact", head: true }).not("twitch_id", "is", null),
-        supabase.from("slot_game_results").select("id", { count: "exact", head: true }),
-        supabase
-          .from("tournaments")
-          .select("id", { count: "exact", head: true })
-          .gte("created_at", new Date(new Date().getFullYear(), new Date().getMonth(), 1).toISOString()),
-      ]);
+      const { data, error } = await supabase.rpc("get_community_stats");
 
+      if (error || !data) return;
+
+      const d = data as { active_members?: number; total_spins?: number; tournaments_this_month?: number };
       setStats((prev) => [
-        { ...prev[0], value: membersRes.count ?? null },
-        { ...prev[1], value: spinsRes.count ?? null },
-        { ...prev[2], value: tournamentsRes.count ?? null },
+        { ...prev[0], value: d.active_members ?? null },
+        { ...prev[1], value: d.total_spins ?? null },
+        { ...prev[2], value: d.tournaments_this_month ?? null },
       ]);
     }
 

@@ -1557,6 +1557,7 @@ export type Database = {
           user_id: string
         }[]
       }
+      get_community_stats: { Args: never; Returns: Json }
       get_user_id_by_email: { Args: { lookup_email: string }; Returns: string }
       has_role: {
         Args: {
