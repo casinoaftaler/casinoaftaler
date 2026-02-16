@@ -8,7 +8,7 @@ import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { CasinoCard } from "@/components/CasinoCard";
 import { RelatedGuides } from "@/components/RelatedGuides";
-import { CommunityPromoSection } from "@/components/CommunityPromoSection";
+
 import { useCasinos } from "@/hooks/useCasinos";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
 import { useState, type ReactNode } from "react";
@@ -1318,8 +1318,6 @@ const CasinoBonus = () => {
             </CardContent>
           </Card>
         </section>
-
-        <CommunityPromoSection />
 
         <AuthorBio />
 

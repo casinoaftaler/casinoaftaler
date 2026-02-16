@@ -8,7 +8,7 @@ import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { InlineCasinoCards } from "@/components/InlineCasinoCards";
 import { RelatedGuides } from "@/components/RelatedGuides";
-import { CommunityPromoSection } from "@/components/CommunityPromoSection";
+
 import heroImage from "@/assets/heroes/crypto-casino-hero.jpg";
 import { buildArticleSchema, buildFaqSchema, SITE_URL } from "@/lib/seo";
 import type { ReactNode } from "react";
@@ -192,7 +192,7 @@ const CryptoCasinoGuide = () => {
           <p className="text-muted-foreground leading-relaxed">Besøg vores <Link to="/casino-anmeldelser" className={linkClass}>casino anmeldelser</Link> for detaljerede vurderinger af licenserede danske casinoer, der tilbyder hurtige og sikre betalingsløsninger uden de ekstra risici, som crypto gambling medfører.</p>
         </section>
 
-        <CommunityPromoSection />
+        
         <AuthorBio />
         <Separator className="my-10" />
         <RelatedGuides currentPath="/casinoer/crypto-casino" />

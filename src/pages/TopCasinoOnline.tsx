@@ -8,7 +8,7 @@ import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { CasinoCard } from "@/components/CasinoCard";
 import { RelatedGuides } from "@/components/RelatedGuides";
-import { CommunityPromoSection } from "@/components/CommunityPromoSection";
+
 import { InlineCasinoCards } from "@/components/InlineCasinoCards";
 import { useCasinos } from "@/hooks/useCasinos";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
@@ -1165,8 +1165,6 @@ const TopCasinoOnline = () => {
             <Link to="/about" className={linkClass}>om os</Link>. Vi er her for at hjælpe dig med at finde det perfekte spillested.
           </p>
         </section>
-
-        <CommunityPromoSection />
 
         <AuthorBio />
 

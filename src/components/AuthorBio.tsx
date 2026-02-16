@@ -1,11 +1,14 @@
 import { Link } from "react-router-dom";
 import { ExternalLink, BadgeCheck } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { CommunityPromoSection } from "@/components/CommunityPromoSection";
 import jonasImage from "@/assets/jonas-forfatter.png";
 import kevinImage from "@/assets/kevin-forfatter.png";
 
 interface AuthorBioProps {
   author?: "jonas" | "kevin";
+  /** Set to false if CommunityPromoSection is already rendered elsewhere on the page */
+  showCommunity?: boolean;
 }
 
 const authorData = {
@@ -35,69 +38,72 @@ const authorData = {
   },
 } as const;
 
-export function AuthorBio({ author = "jonas" }: AuthorBioProps) {
+export function AuthorBio({ author = "jonas", showCommunity = true }: AuthorBioProps) {
   const data = authorData[author];
 
   return (
-    <section className="my-10" aria-label="Om forfatteren">
-      <div className="rounded-xl border border-border bg-card p-6 shadow-sm md:p-8">
-        <div className="flex flex-col items-center gap-6 text-center sm:flex-row sm:items-center sm:text-left">
-          {/* Profile image */}
-          <Link to={data.link} className="shrink-0 group" aria-label={`Se ${data.name}' forfatterprofil`}>
-            <img
-              src={data.image}
-              alt={data.alt}
-              className="h-44 w-44 rounded-full object-cover object-top ring-2 ring-border group-hover:ring-primary transition-colors"
-              loading="lazy"
-              width={176}
-              height={176}
-            />
-          </Link>
+    <>
+      {showCommunity && <CommunityPromoSection />}
+      <section className="my-10" aria-label="Om forfatteren">
+        <div className="rounded-xl border border-border bg-card p-6 shadow-sm md:p-8">
+          <div className="flex flex-col items-center gap-6 text-center sm:flex-row sm:items-center sm:text-left">
+            {/* Profile image */}
+            <Link to={data.link} className="shrink-0 group" aria-label={`Se ${data.name}' forfatterprofil`}>
+              <img
+                src={data.image}
+                alt={data.alt}
+                className="h-44 w-44 rounded-full object-cover object-top ring-2 ring-border group-hover:ring-primary transition-colors"
+                loading="lazy"
+                width={176}
+                height={176}
+              />
+            </Link>
 
-          {/* Text content */}
-          <div className="flex-1 space-y-3">
-            <div>
-              <div className="flex items-center gap-2 justify-center sm:justify-start">
-                <Link
-                  to={data.link}
-                  className="text-lg font-bold text-foreground hover:text-primary transition-colors"
-                >
-                  {data.name}
-                </Link>
-                <span className="inline-flex items-center gap-1 rounded-full bg-primary/10 px-2.5 py-0.5 text-xs font-medium text-primary">
-                  <BadgeCheck className="h-3.5 w-3.5" />
-                  {data.badge}
-                </span>
+            {/* Text content */}
+            <div className="flex-1 space-y-3">
+              <div>
+                <div className="flex items-center gap-2 justify-center sm:justify-start">
+                  <Link
+                    to={data.link}
+                    className="text-lg font-bold text-foreground hover:text-primary transition-colors"
+                  >
+                    {data.name}
+                  </Link>
+                  <span className="inline-flex items-center gap-1 rounded-full bg-primary/10 px-2.5 py-0.5 text-xs font-medium text-primary">
+                    <BadgeCheck className="h-3.5 w-3.5" />
+                    {data.badge}
+                  </span>
+                </div>
+                <p className="text-sm font-medium text-muted-foreground">
+                  {data.role}
+                </p>
               </div>
-              <p className="text-sm font-medium text-muted-foreground">
-                {data.role}
+
+              <p className="text-sm leading-relaxed text-muted-foreground">
+                {data.bio}
               </p>
-            </div>
 
-            <p className="text-sm leading-relaxed text-muted-foreground">
-              {data.bio}
-            </p>
-
-            <div className="flex flex-wrap items-center gap-3 pt-1">
-              <Button asChild variant="outline" size="sm">
-                <Link to={data.link}>Se fuld profil</Link>
-              </Button>
-              {data.socials.map((social) => (
-                <a
-                  key={social.label}
-                  href={social.href}
-                  target="_blank"
-                  rel="nofollow noopener noreferrer"
-                  className="inline-flex items-center gap-1 text-xs text-muted-foreground hover:text-primary transition-colors"
-                >
-                  <ExternalLink className="h-3 w-3" />
-                  {social.label}
-                </a>
-              ))}
+              <div className="flex flex-wrap items-center gap-3 pt-1">
+                <Button asChild variant="outline" size="sm">
+                  <Link to={data.link}>Se fuld profil</Link>
+                </Button>
+                {data.socials.map((social) => (
+                  <a
+                    key={social.label}
+                    href={social.href}
+                    target="_blank"
+                    rel="nofollow noopener noreferrer"
+                    className="inline-flex items-center gap-1 text-xs text-muted-foreground hover:text-primary transition-colors"
+                  >
+                    <ExternalLink className="h-3 w-3" />
+                    {social.label}
+                  </a>
+                ))}
+              </div>
             </div>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
+    </>
   );
 }

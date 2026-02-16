@@ -8,7 +8,7 @@ import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { InlineCasinoCards } from "@/components/InlineCasinoCards";
 import { RelatedGuides } from "@/components/RelatedGuides";
-import { CommunityPromoSection } from "@/components/CommunityPromoSection";
+
 import heroImage from "@/assets/heroes/hoej-rtp-casino-hero.jpg";
 import { buildArticleSchema, buildFaqSchema, SITE_URL } from "@/lib/seo";
 import type { ReactNode } from "react";
@@ -322,8 +322,6 @@ const HoejRTPGuide = () => {
           <p className="mb-4 text-muted-foreground leading-relaxed">Husk: RTP er et langsigtigt gennemsnit, ikke en garanti for individuelle resultater. Det vigtigste er, at du spiller for underholdning, sætter et budget du har råd til at tabe, og vælger spil, der matcher din personlige spillestil. Høj RTP giver dig bare det bedste udgangspunkt for at gøre det.</p>
           <p className="text-muted-foreground leading-relaxed">Besøg vores <Link to="/casino-anmeldelser" className={linkClass}>casino anmeldelser</Link> for detaljerede vurderinger af RTP-indstillinger hos de enkelte casinoer, og brug vores guides til individuelle <Link to="/spiludviklere" className={linkClass}>spiludviklere</Link> for at finde de spil med de højeste tilbagebetalingsprocenter.</p>
         </section>
-
-        <CommunityPromoSection />
 
         <AuthorBio />
 

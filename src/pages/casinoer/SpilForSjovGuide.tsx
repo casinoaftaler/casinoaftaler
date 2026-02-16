@@ -8,7 +8,7 @@ import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { InlineCasinoCards } from "@/components/InlineCasinoCards";
 import { RelatedGuides } from "@/components/RelatedGuides";
-import { CommunityPromoSection } from "@/components/CommunityPromoSection";
+
 import heroImage from "@/assets/heroes/spil-for-sjov-hero.jpg";
 import { buildArticleSchema, buildFaqSchema, SITE_URL } from "@/lib/seo";
 import type { ReactNode } from "react";
@@ -202,8 +202,6 @@ const SpilForSjovGuide = () => {
           <p className="mb-4 text-muted-foreground leading-relaxed">Uanset hvad du vælger, er det vigtigt at holde det sjovt, spille bevidst og <Link to="/responsible-gaming" className={linkClass}>spille ansvarligt</Link>. Forstå forskellen mellem demo-spil og rigtige penge-spil, læs altid bonusvilkår grundigt, og sæt klare grænser for din tid og eventuelle fremtidige udgifter.</p>
           <p className="text-muted-foreground leading-relaxed">Når og hvis du er klar til at spille med rigtige penge, anbefaler vi altid at starte med en lille indbetaling på et <Link to="/licenserede-casinoer" className={linkClass}>licenseret dansk casino</Link> og udnytte en <Link to="/velkomstbonus" className={linkClass}>velkomstbonus</Link> med lave <Link to="/omsaetningskrav" className={linkClass}>omsætningskrav</Link>. På den måde sikrer du dig den bedste start med maksimal beskyttelse og mest mulig værdi for dine penge.</p>
         </section>
-
-        <CommunityPromoSection />
 
         <AuthorBio />
 

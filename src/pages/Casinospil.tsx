@@ -9,7 +9,7 @@ import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { RelatedGuides } from "@/components/RelatedGuides";
 import { InlineCasinoCards } from "@/components/InlineCasinoCards";
-import { CommunityPromoSection } from "@/components/CommunityPromoSection";
+
 import { CasinoCard } from "@/components/CasinoCard";
 import { useCasinos } from "@/hooks/useCasinos";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
@@ -772,9 +772,8 @@ const Casinospil = () => {
 
         <Separator className="my-10" />
 
-        <CommunityPromoSection />
 
-        <AuthorBio />
+
 
         <Separator className="my-10" />
 

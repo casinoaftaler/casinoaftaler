@@ -8,7 +8,7 @@ import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { CasinoCard } from "@/components/CasinoCard";
 import { RelatedGuides } from "@/components/RelatedGuides";
-import { CommunityPromoSection } from "@/components/CommunityPromoSection";
+
 import { useCasinos } from "@/hooks/useCasinos";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
 import nyeCasinoerHero from "@/assets/heroes/nye-casinoer-hero.jpg";
@@ -897,8 +897,6 @@ const NyeCasinoer = () => {
             <Link to="/top-10-casino-online" className={linkClass}>top 10 casino</Link>-liste for de bedste muligheder uanset erfaring.
           </p>
         </section>
-
-        <CommunityPromoSection />
 
         <AuthorBio />
 

@@ -8,7 +8,7 @@ import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { InlineCasinoCards } from "@/components/InlineCasinoCards";
 import { RelatedGuides } from "@/components/RelatedGuides";
-import { CommunityPromoSection } from "@/components/CommunityPromoSection";
+
 import heroImage from "@/assets/heroes/hurtig-udbetaling-hero.jpg";
 import { buildArticleSchema, buildFaqSchema, SITE_URL } from "@/lib/seo";
 import type { ReactNode } from "react";
@@ -614,8 +614,6 @@ const HurtigUdbetalingGuide = () => {
             Følg vores tips ovenfor, verificér din identitet tidligt, og vælg den rigtige betalingsmetode – så er du sikret en problemfri og hurtig udbetalingsoplevelse. Besøg vores <Link to="/casino-anmeldelser" className={linkClass}>casino anmeldelser</Link> for detaljerede vurderinger af udbetalingstider hos de enkelte casinoer, og sammenlign dine muligheder for at finde det casino, der passer bedst til dine behov.
           </p>
         </section>
-
-        <CommunityPromoSection />
 
         <AuthorBio />
 

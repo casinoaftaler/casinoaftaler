@@ -8,7 +8,7 @@ import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { InlineCasinoCards } from "@/components/InlineCasinoCards";
 import { RelatedGuides } from "@/components/RelatedGuides";
-import { CommunityPromoSection } from "@/components/CommunityPromoSection";
+
 import heroImage from "@/assets/heroes/mobil-casinoer-hero.jpg";
 import { buildArticleSchema, buildFaqSchema, SITE_URL } from "@/lib/seo";
 import type { ReactNode } from "react";
@@ -328,8 +328,6 @@ const MobilCasinoerGuide = () => {
           <p className="mb-4 text-muted-foreground leading-relaxed">Vi anbefaler at bruge browserversionen af dit foretrukne casino for den mest fleksible og problemfri oplevelse. Sørg for at bruge en stabil internetforbindelse, hold din telefon opdateret, og følg vores sikkerhedstips for at beskytte din konto og dine penge. Og husk: De samme regler for ansvarligt spil gælder på mobil som på desktop.</p>
           <p className="text-muted-foreground leading-relaxed">Husk altid at spille <Link to="/responsible-gaming" className={linkClass}>ansvarligt</Link>, uanset om du sidder ved computeren eller er på farten med din telefon. Sæt grænser for din tid og dit budget, og tag pauser regelmæssigt. Besøg vores <Link to="/casino-anmeldelser" className={linkClass}>casino anmeldelser</Link> for at finde det perfekte mobil casino til dine behov.</p>
         </section>
-
-        <CommunityPromoSection />
 
         <AuthorBio />
 
