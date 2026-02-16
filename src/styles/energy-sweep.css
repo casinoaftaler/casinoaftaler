@@ -1,0 +1,63 @@
+/* Energy sweep animation for Community Hub sections */
+
+@keyframes energy-sweep {
+  0% {
+    opacity: 0;
+    transform: translateX(-150px) translateY(-50%);
+  }
+  5% {
+    opacity: 0.8;
+  }
+  85% {
+    opacity: 0.6;
+  }
+  100% {
+    opacity: 0;
+    transform: translateX(calc(100vw + 150px)) translateY(-50%);
+  }
+}
+
+@keyframes energy-sweep-glow {
+  0% {
+    opacity: 0;
+    transform: translateX(-200px) translateY(-50%);
+  }
+  5% {
+    opacity: 1;
+  }
+  85% {
+    opacity: 0.5;
+  }
+  100% {
+    opacity: 0;
+    transform: translateX(calc(100vw + 200px)) translateY(-50%);
+  }
+}
+
+@keyframes energy-particle {
+  0% {
+    opacity: 0;
+    transform: translateX(-100px);
+  }
+  8% {
+    opacity: 0.6;
+  }
+  70% {
+    opacity: 0.3;
+  }
+  100% {
+    opacity: 0;
+    transform: translateX(calc(100vw + 100px));
+  }
+}
+
+/* Card charge effect - applied via JS when sweep passes */
+@keyframes card-charge {
+  0% { box-shadow: 0 0 0 rgba(139, 92, 246, 0); }
+  50% { box-shadow: 0 0 15px rgba(139, 92, 246, 0.12), 0 0 30px rgba(99, 102, 241, 0.06); }
+  100% { box-shadow: 0 0 0 rgba(139, 92, 246, 0); }
+}
+
+.energy-charged {
+  animation: card-charge 0.6s ease-out;
+}
