@@ -2,6 +2,7 @@ import { ReactNode } from "react";
 import { Badge } from "@/components/ui/badge";
 import { CommunityNav } from "./CommunityNav";
 import { CommunitySeoBridge } from "./CommunitySeoBridge";
+import { CommunityConversionCard } from "./CommunityConversionCard";
 import { type LucideIcon } from "lucide-react";
 import communityHero from "@/assets/community/community-hero.jpg";
 
@@ -62,8 +63,9 @@ export function CommunityPageLayout({
         {/* Sidebar - positioned to the left, outside content flow */}
         {!hideSidebar && (
           <div className="hidden xl:block absolute right-full top-8 mr-6 w-[260px]">
-            <div className="sticky top-24 h-fit">
+            <div className="sticky top-24 h-fit flex flex-col gap-4">
               <CommunitySeoBridge />
+              <CommunityConversionCard />
             </div>
           </div>
         )}
