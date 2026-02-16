@@ -4,6 +4,7 @@ import { CommunityNav } from "@/components/community/CommunityNav";
 import { SpinWheel } from "@/components/spin-the-reel/SpinWheel";
 import { RewardModal } from "@/components/spin-the-reel/RewardModal";
 import { CooldownTimer } from "@/components/spin-the-reel/CooldownTimer";
+import { useSpinSounds } from "@/hooks/useSpinSounds";
 import { useAuth } from "@/hooks/useAuth";
 import { supabase } from "@/integrations/supabase/client";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
@@ -15,6 +16,7 @@ import { toast } from "sonner";
 export default function SpinTheReel() {
   const { user, session, loading: authLoading } = useAuth();
   const queryClient = useQueryClient();
+  const sounds = useSpinSounds();
 
   const [isSpinning, setIsSpinning] = useState(false);
   const [targetSegment, setTargetSegment] = useState<number | null>(null);
@@ -86,6 +88,25 @@ export default function SpinTheReel() {
       setIsSpinning(false);
     }
   }, [session]);
+
+  const handleSpinAnimStart = useCallback(() => {
+    sounds.playSpinStart();
+    sounds.startTicking();
+  }, [sounds]);
+
+  const handleSpinAnimEnd = useCallback(() => {
+    sounds.stopTicking();
+    sounds.playStop();
+
+    // Play win/lose sound after a tiny delay
+    setTimeout(() => {
+      if (rewardData.type !== "none") {
+        sounds.playWin();
+      } else {
+        sounds.playLose();
+      }
+    }, 300);
+  }, [sounds, rewardData.type]);
 
   const handleSpinComplete = useCallback(() => {
     setIsSpinning(false);
@@ -159,6 +180,10 @@ export default function SpinTheReel() {
                 onSpinStart={handleSpinStart}
                 disabled={!canSpin}
                 disabledReason={getDisabledReason()}
+                muted={sounds.muted}
+                onToggleMute={sounds.toggleMute}
+                onSpinAnimStart={handleSpinAnimStart}
+                onSpinAnimEnd={handleSpinAnimEnd}
               />
 
               {isCooldownActive && !cooldownExpired && cooldownEnd && (
