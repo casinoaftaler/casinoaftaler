@@ -8,7 +8,7 @@ import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { InlineCasinoCards } from "@/components/InlineCasinoCards";
 import { RelatedGuides } from "@/components/RelatedGuides";
-import { CommunityPromoSection } from "@/components/CommunityPromoSection";
+
 import heroImage from "@/assets/heroes/vr-casinoer-hero.jpg";
 import { buildArticleSchema, buildFaqSchema, SITE_URL } from "@/lib/seo";
 import type { ReactNode } from "react";
@@ -224,8 +224,6 @@ const VRCasinoerGuide = () => {
           <p className="mb-4 text-muted-foreground leading-relaxed">De vigtigste barrierer for mainstream-adoption er stadig hardware-priser (selvom de falder), motion sickness (selvom teknologien forbedres), begrænset spiludvalg (selvom det vokser), og manglende VR-specifik regulering (selvom myndighederne arbejder på det). For danske spillere er den regulatoriske dimension særlig vigtig – uden dansk licens mister du de beskyttelser, der gør det danske marked til et af verdens sikreste.</p>
           <p className="text-muted-foreground leading-relaxed">For danske spillere anbefaler vi at holde øje med udviklingen, men fortsat vælge <Link to="/licenserede-casinoer" className={linkClass}>licenserede casinoer</Link> for den bedste kombination af sikkerhed, spiludvalg og beskyttelse. Når VR-teknologien modnes, og regulering følger med, vil VR casinoer utvivlsomt blive en vigtig del af fremtidens gambling-landskab. Indtil da er <Link to="/live-casino" className={linkClass}>live casino</Link> det nærmeste du kommer den immersive oplevelse på en licenseret dansk platform.</p>
         </section>
-
-        <CommunityPromoSection />
 
         <AuthorBio />
 

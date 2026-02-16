@@ -8,7 +8,7 @@ import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { InlineCasinoCards } from "@/components/InlineCasinoCards";
 import { RelatedGuides } from "@/components/RelatedGuides";
-import { CommunityPromoSection } from "@/components/CommunityPromoSection";
+
 import heroImage from "@/assets/heroes/licenserede-casinoer-hero.jpg";
 import { buildArticleSchema, buildFaqSchema, SITE_URL } from "@/lib/seo";
 import type { ReactNode } from "react";
@@ -235,8 +235,6 @@ const LicenseredeCasinoerGuide = () => {
           <p className="mb-4 text-muted-foreground leading-relaxed">Det danske licenssystem er ikke perfekt, men det er blandt de bedste i verden. Det balancerer hensynet til spillerbeskyttelse, fair konkurrence og statsindtægter på en måde, der tjener alle parter. Og takket være den løbende udvikling og revision af lovgivningen bliver systemet konstant bedre og mere tilpasset nye udfordringer og teknologier.</p>
           <p className="text-muted-foreground leading-relaxed">Alle casinoer vi anbefaler på Casinoaftaler.dk har gyldig dansk licens og er grundigt testet efter vores <Link to="/saadan-tester-vi-casinoer" className={linkClass}>testmetodik</Link>. Din sikkerhed er vores topprioritet, og vi vil altid anbefale dig at vælge en licenseret platform – uanset hvor attraktive tilbud ulicenserede alternativer måtte præsentere.</p>
         </section>
-
-        <CommunityPromoSection />
 
         <AuthorBio />
 

@@ -8,7 +8,7 @@ import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { InlineCasinoCards } from "@/components/InlineCasinoCards";
 import { RelatedGuides } from "@/components/RelatedGuides";
-import { CommunityPromoSection } from "@/components/CommunityPromoSection";
+
 import heroImage from "@/assets/heroes/casino-og-skat-hero.jpg";
 import { buildArticleSchema, buildFaqSchema, SITE_URL } from "@/lib/seo";
 import type { ReactNode } from "react";
@@ -269,8 +269,6 @@ const CasinoOgSkatGuide = () => {
           <p className="mb-4 text-muted-foreground leading-relaxed">Spiller du derimod på udenlandske casinoer uden EU-licens, risikerer du at betale op til 52 % i skat af dine gevinster – en forskel, der kan beløbe sig til hundredtusindvis af kroner for større gevinster. Dertil kommer risikoen for skattetillæg og bøder ved manglende selvangivelse, samt den generelle mangel på forbrugerbeskyttelse, der følger med ulicenserede platforme.</p>
           <p className="text-muted-foreground leading-relaxed">Besøg vores <Link to="/top-10-casino-online" className={linkClass}>top 10 online casino</Link> for de bedste skattefri casinomuligheder i Danmark, eller læs vores <Link to="/licenserede-casinoer" className={linkClass}>guide til licenserede casinoer</Link> for at forstå, hvorfor dansk licens bør være dit vigtigste kriterium.</p>
         </section>
-
-        <CommunityPromoSection />
 
         <AuthorBio />
 
