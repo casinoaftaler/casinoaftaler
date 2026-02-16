@@ -28,6 +28,7 @@ const FEATURED_SLOTS = [
     href: "/community/slots/book-of-fedesvin",
     badge: "🔥 POPULÆR",
     priority: "primary" as const,
+    imagePosition: "center 20%",
   },
   {
     id: "rise-of-fedesvin",
@@ -37,6 +38,7 @@ const FEATURED_SLOTS = [
     href: "/community/slots/rise-of-fedesvin",
     badge: "✨ NY",
     priority: "secondary" as const,
+    imagePosition: "center 30%",
   },
 ];
 
@@ -132,6 +134,7 @@ export default function GameLibrary() {
                 badge={slot.badge}
                 priority={slot.priority}
                 showScrollHint={index === 0}
+                imagePosition={slot.imagePosition}
               />
             </div>
           ))}
