@@ -1,31 +1,40 @@
 /**
  * SEO configuration constants.
- * 
+ *
  * In production, all canonical/og:url references use the primary domain.
  * Preview deployments on lovable.app will still use the production domain
  * for SEO consistency.
  */
 export const SITE_URL = "https://casinoaftaler.dk";
 export const SITE_NAME = "Casinoaftaler";
+export const SITE_BRAND = "Casinoaftaler.dk";
 
 /**
  * Returns the canonical URL for the current page.
  * Combines SITE_URL with the given pathname.
+ * Ensures lowercase, no trailing slash, no double slashes.
  */
 export const getCanonicalUrl = (pathname: string): string => {
-  // Ensure no double slashes and consistent trailing format
-  const cleanPath = pathname === "/" ? "/" : pathname.replace(/\/+$/, "");
+  const cleanPath = pathname === "/"
+    ? "/"
+    : pathname.replace(/\/+$/, "").toLowerCase();
   return `${SITE_URL}${cleanPath}`;
 };
 
 /**
- * Shared Organization schema for JSON-LD.
+ * Shared Organization schema for JSON-LD (standalone use).
  */
 export const organizationSchema = {
+  "@context": "https://schema.org",
   "@type": "Organization",
   name: "Casinoaftaler.dk",
   url: SITE_URL,
-  logo: "https://zhpbqqhtgnblaugrqhqi.supabase.co/storage/v1/object/public/casino-logos/header-icon.jpg",
+  logo: {
+    "@type": "ImageObject",
+    url: "https://zhpbqqhtgnblaugrqhqi.supabase.co/storage/v1/object/public/casino-logos/header-icon.jpg",
+    width: 192,
+    height: 192,
+  },
   sameAs: [
     "https://www.twitch.tv/fedesvinansen",
     "https://www.instagram.com/casinoaftaler",
@@ -40,7 +49,7 @@ export const organizationSchema = {
 };
 
 /**
- * Generate Article JSON-LD schema.
+ * Generate Article JSON-LD schema with all required fields.
  */
 export function buildArticleSchema(opts: {
   headline: string;
@@ -57,10 +66,13 @@ export function buildArticleSchema(opts: {
     "@type": "Article",
     headline: opts.headline,
     description: opts.description,
-    image: opts.image,
+    image: opts.image || `${SITE_URL}/og-image.png`,
     datePublished: opts.datePublished,
     dateModified: opts.dateModified,
-    mainEntityOfPage: opts.url,
+    mainEntityOfPage: {
+      "@type": "WebPage",
+      "@id": opts.url,
+    },
     author: {
       "@type": "Person",
       name: opts.authorName || "Jonas",
@@ -73,6 +85,8 @@ export function buildArticleSchema(opts: {
       logo: {
         "@type": "ImageObject",
         url: "https://zhpbqqhtgnblaugrqhqi.supabase.co/storage/v1/object/public/casino-logos/header-icon.jpg",
+        width: 192,
+        height: 192,
       },
     },
   };
