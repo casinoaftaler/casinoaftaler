@@ -763,7 +763,7 @@ const Casinospil = () => {
               StopSpillet
             </a>
             . Læs mere om{" "}
-            <Link to="/responsible-gaming" className={linkClass}>
+            <Link to="/ansvarligt-spil" className={linkClass}>
               ansvarligt spil
             </Link>{" "}
             på vores dedikerede side.

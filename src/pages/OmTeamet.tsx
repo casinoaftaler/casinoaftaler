@@ -271,7 +271,7 @@ const OmTeamet = () => {
                 Nye Casinoer
               </Button>
             </Link>
-            <Link to="/responsible-gaming">
+            <Link to="/ansvarligt-spil">
               <Button variant="outline" size="sm">
                 <Shield className="mr-1.5 h-4 w-4" />
                 Ansvarligt Spil

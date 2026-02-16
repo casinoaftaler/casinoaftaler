@@ -65,7 +65,7 @@ const ApplePayGuide = () => {
           </p>
           <p className="text-muted-foreground leading-relaxed">
             Apple overholder PCI DSS-standarderne (Payment Card Industry Data Security Standard) og har næsten 100 % oppetid på sin betalingsinfrastruktur. For danske spillere, der værdsætter{" "}
-            <Link to="/responsible-gaming" className="text-primary underline hover:text-primary/80">ansvarligt spil</Link>, giver Apple Pay også bedre udgiftskontrol, da alle transaktioner logges i Wallet med dato, beløb og modtager.
+            <Link to="/ansvarligt-spil" className="text-primary underline hover:text-primary/80">ansvarligt spil</Link>, giver Apple Pay også bedre udgiftskontrol, da alle transaktioner logges i Wallet med dato, beløb og modtager.
           </p>
         </>
       }

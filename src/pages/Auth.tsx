@@ -199,7 +199,7 @@ export default function Auth() {
               </a>{" "}
               og{" "}
               <a 
-                href="/privacy" 
+                href="/privatlivspolitik" 
                 target="_blank" 
                 rel="noopener noreferrer" 
                 className="underline hover:text-primary"

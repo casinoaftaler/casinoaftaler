@@ -125,7 +125,7 @@ const ResponsibleGaming = () => {
     publisher: { "@type": "Organization", name: "Casinoaftaler" },
     datePublished: "2025-06-01",
     dateModified: "2026-02-14",
-    mainEntityOfPage: "https://casinoaftaler.dk/responsible-gaming",
+    mainEntityOfPage: "https://casinoaftaler.dk/ansvarligt-spil",
   };
 
   return (
@@ -165,7 +165,7 @@ const ResponsibleGaming = () => {
       </section>
 
       <div className="container py-8 md:py-12">
-        <AuthorMetaBar author="redaktionen" date="14-02-2026" readTime="5 Min." />
+        <AuthorMetaBar author="kevin" date="14-02-2026" readTime="5 Min." />
 
         <div className="mb-10 overflow-hidden rounded-xl">
           <img src={responsibleGamingHero} alt="Ansvarligt spil – tillid og sikkerhed ved casinospil" className="w-full h-auto object-cover max-h-[400px]" loading="eager" />
@@ -314,7 +314,7 @@ const ResponsibleGaming = () => {
 
         <FAQSection title="Ofte Stillede Spørgsmål om Ansvarligt Spil" faqs={responsibleGamingFaqs} />
 
-        <RelatedGuides currentPath="/responsible-gaming" />
+        <RelatedGuides currentPath="/ansvarligt-spil" />
       </div>
     </>
   );

@@ -266,7 +266,7 @@ const Privacy = () => {
         <Separator className="my-10" />
 
         {/* Related Guides */}
-        <RelatedGuides currentPath="/privacy" />
+        <RelatedGuides currentPath="/privatlivspolitik" />
       </div>
     </>
   );

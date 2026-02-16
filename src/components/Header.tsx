@@ -363,7 +363,7 @@ export const Header = memo(function Header() {
                 </Link>
               </DropdownMenuItem>
               <DropdownMenuItem asChild>
-                <Link to="/responsible-gaming" className="flex items-center gap-2">
+                <Link to="/ansvarligt-spil" className="flex items-center gap-2">
                   <ShieldCheck className="h-4 w-4" />
                   Ansvarligt Spil
                 </Link>
@@ -375,7 +375,7 @@ export const Header = memo(function Header() {
                 </Link>
               </DropdownMenuItem>
               <DropdownMenuItem asChild>
-                <Link to="/contact" className="flex items-center gap-2">
+                <Link to="/kontakt" className="flex items-center gap-2">
                   <Mail className="h-4 w-4" />
                   Kontakt
                 </Link>
@@ -864,7 +864,7 @@ export const Header = memo(function Header() {
                   <BookOpen className="h-4 w-4" />
                   Redaktionel Politik
                 </Link>
-                <Link to="/responsible-gaming" className="ml-6 flex items-center gap-2 py-2.5 text-sm text-muted-foreground transition-colors hover:text-primary" onClick={() => setMobileMenuOpen(false)}>
+                <Link to="/ansvarligt-spil" className="ml-6 flex items-center gap-2 py-2.5 text-sm text-muted-foreground transition-colors hover:text-primary" onClick={() => setMobileMenuOpen(false)}>
                   <ShieldCheck className="h-4 w-4" />
                   Ansvarligt Spil
                 </Link>
@@ -872,7 +872,7 @@ export const Header = memo(function Header() {
                   <Scale className="h-4 w-4" />
                   Spillemyndigheden
                 </Link>
-                <Link to="/contact" className="ml-6 flex items-center gap-2 py-2.5 text-sm text-muted-foreground transition-colors hover:text-primary" onClick={() => setMobileMenuOpen(false)}>
+                <Link to="/kontakt" className="ml-6 flex items-center gap-2 py-2.5 text-sm text-muted-foreground transition-colors hover:text-primary" onClick={() => setMobileMenuOpen(false)}>
                   <Mail className="h-4 w-4" />
                   Kontakt
                 </Link>

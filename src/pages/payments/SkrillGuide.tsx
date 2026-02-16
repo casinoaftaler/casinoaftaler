@@ -21,7 +21,7 @@ const SkrillGuide = () => {
           </p>
           <p className="mb-4 text-muted-foreground leading-relaxed">
             En af Skrills største fordele er den separate saldo: Du overfører penge fra din bankkonto til din Skrill-konto og bruger derefter Skrill-saldoen på casinoer. Det giver fremragende budgetkontrol og fungerer som et naturligt værktøj til{" "}
-            <Link to="/responsible-gaming" className="text-primary underline hover:text-primary/80">ansvarligt spil</Link>, da du aldrig risikerer at trække mere fra din bankkonto end planlagt.
+            <Link to="/ansvarligt-spil" className="text-primary underline hover:text-primary/80">ansvarligt spil</Link>, da du aldrig risikerer at trække mere fra din bankkonto end planlagt.
           </p>
           <p className="mb-4 text-muted-foreground leading-relaxed">
             Skrill tilbyder også forudbetalte Skrill Prepaid Mastercard-kort, kryptovaluta-handel og pengoverførsler. For casinospillere er det dog de hurtige transaktioner og VIP-fordelene, der gør størst forskel. Skrill VIP-programmet har fire niveauer (Bronze, Silver, Gold, Diamond) med stigende fordele som lavere gebyrer, dedikeret kundeservice og eksklusive kampagner.

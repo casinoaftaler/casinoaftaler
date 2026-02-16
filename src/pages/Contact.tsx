@@ -1,4 +1,5 @@
 import contactHero from "@/assets/heroes/contact-hero.jpg";
+import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { FAQSection } from "@/components/FAQSection";
@@ -73,7 +74,7 @@ export default function Contact() {
           <Link to="/velkomstbonus" className="text-primary underline hover:text-primary/80">velkomstbonusser</Link>,{" "}
           <Link to="/omsaetningskrav" className="text-primary underline hover:text-primary/80">omsætningskrav</Link> og{" "}
           <Link to="/free-spins" className="text-primary underline hover:text-primary/80">free spins</Link>. Har du spillerelaterede problemer, henviser vi til{" "}
-          <Link to="/responsible-gaming" className="text-primary underline hover:text-primary/80">ansvarligt spil</Link>-ressourcer.
+          <Link to="/ansvarligt-spil" className="text-primary underline hover:text-primary/80">ansvarligt spil</Link>-ressourcer.
         </>
       ),
     },
@@ -203,30 +204,7 @@ export default function Contact() {
       </section>
 
       <div className="container py-8 md:py-12">
-        {/* Meta info bar */}
-        <div className="mb-8 flex flex-wrap items-center gap-x-6 gap-y-2 text-sm text-muted-foreground">
-          <div className="flex items-center gap-1.5">
-            <User className="h-4 w-4" />
-            <span>
-              Kontakt:{" "}
-              <span className="font-medium text-foreground">Casinoaftaler</span>
-            </span>
-          </div>
-          <div className="flex items-center gap-1.5">
-            <CalendarDays className="h-4 w-4" />
-            <span>
-              Siden opdateret:{" "}
-              <span className="font-medium text-foreground">11-02-2026</span>
-            </span>
-          </div>
-          <div className="flex items-center gap-1.5">
-            <BookOpen className="h-4 w-4" />
-            <span>
-              Svartid:{" "}
-              <span className="font-medium text-foreground">1-3 hverdage</span>
-            </span>
-          </div>
-        </div>
+        <AuthorMetaBar author="kevin" date="2026-02-16" readTime="3 min" />
 
         <div className="mb-10 overflow-hidden rounded-xl">
           <img src={contactHero} alt="Kontakt os – professionelt kontor" className="w-full h-auto object-cover max-h-[400px]" loading="eager" />
@@ -432,7 +410,7 @@ export default function Contact() {
 
         <Separator className="my-10" />
 
-        <RelatedGuides currentPath="/contact" />
+        <RelatedGuides currentPath="/kontakt" />
 
         <FAQSection title="Ofte stillede spørgsmål" faqs={contactFaqs} />
       </div>

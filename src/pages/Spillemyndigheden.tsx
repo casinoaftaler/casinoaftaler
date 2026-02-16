@@ -72,7 +72,7 @@ const spillemyndighedenFaqs: { question: string; answer: string | React.ReactNod
     answer: (
       <>
         Spillemyndigheden er den danske statslige myndighed, der regulerer og fører tilsyn med alt lovligt spil i Danmark. Den sikrer fair og{" "}
-        <Link to="/responsible-gaming" className="text-primary underline hover:text-primary/80">ansvarligt spil</Link> for danske forbrugere.
+        <Link to="/ansvarligt-spil" className="text-primary underline hover:text-primary/80">ansvarligt spil</Link> for danske forbrugere.
       </>
     ),
   },
@@ -95,7 +95,7 @@ const spillemyndighedenFaqs: { question: string; answer: string | React.ReactNod
     answer: (
       <>
         ROFUS (Register Over Frivilligt Udelukkede Spillere) er en centraliseret database administreret af Spillemyndigheden, som alle danske licenserede spilleoperatører er lovpligtige at konsultere i realtid. Når du tilmelder dig ROFUS via MitID, blokeres din adgang til alle licenserede online casinoer, væddemålssider og landbaserede casinoer i Danmark inden for 24 timer. Du kan vælge midlertidig udelukkelse (24 timer, 1 måned, 3 måneder, 6 måneder eller 1 år) eller permanent udelukkelse. Permanent udelukkelse kan tidligst ophæves efter 1 år med en afkølingsperiode på 7 dage. Læs mere om{" "}
-        <Link to="/responsible-gaming" className="text-primary underline hover:text-primary/80">ansvarligt spil</Link>.
+        <Link to="/ansvarligt-spil" className="text-primary underline hover:text-primary/80">ansvarligt spil</Link>.
       </>
     ),
   },

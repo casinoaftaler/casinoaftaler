@@ -46,7 +46,7 @@ const MobilePayGuide = () => {
           </p>
           <p className="mb-4 text-muted-foreground leading-relaxed">
             MobilePay har daglige betalingsgrænser, der kan variere afhængigt af din bank. Typisk kan du overføre op til 15.000 kr. pr. transaktion og op til 37.500–40.000 kr. pr. dag. Disse grænser kan dog justeres hos din bank. For de fleste casinospillere er grænserne mere end tilstrækkelige, og de fungerer samtidig som en naturlig mekanisme for{" "}
-            <Link to="/responsible-gaming" className="text-primary underline hover:text-primary/80">ansvarligt spil</Link>.
+            <Link to="/ansvarligt-spil" className="text-primary underline hover:text-primary/80">ansvarligt spil</Link>.
           </p>
           <p className="text-muted-foreground leading-relaxed">
             Et vigtigt point for bonusjægere: Da MobilePay-indbetalinger behandles som bankoverførsler (og ikke som e-wallet-betalinger), er de sjældent udelukket fra bonustilbud. Det står i kontrast til metoder som{" "}
