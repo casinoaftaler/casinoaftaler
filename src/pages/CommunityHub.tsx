@@ -4,7 +4,7 @@ import { CommunityPageLayout } from "@/components/community/CommunityPageLayout"
 import { CommunityBrandBlock } from "@/components/community/CommunityBrandBlock";
 import { CommunityJoinCTA } from "@/components/community/CommunityJoinCTA";
 
-import { buildArticleSchema, SITE_URL } from "@/lib/seo";
+
 import { EnergySweep } from "@/components/community/EnergySweep";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 import { Card, CardContent } from "@/components/ui/card";
@@ -149,15 +149,7 @@ export default function CommunityHub() {
       <SEO
         title="Community – Gratis Slots, Turneringer & Bonus Spins"
         description="Spil gratis slots, deltag i turneringer og optjen points i Casinoaftaler.dk's community. Vind spins og præmier hver dag."
-        jsonLd={buildArticleSchema({
-          headline: "Community – Gratis Slots, Turneringer & Bonus Spins",
-          description: "Spil gratis slots, deltag i turneringer og optjen points i Casinoaftaler.dk's community. Vind spins og præmier hver dag.",
-          url: `${SITE_URL}/community`,
-          datePublished: "2025-06-01",
-          dateModified: "2026-02-16",
-          authorName: "Jonas",
-          authorUrl: `${SITE_URL}/forfatter/jonas`,
-        })}
+        noindex
       />
       <CommunityPageLayout
         title="Community"
