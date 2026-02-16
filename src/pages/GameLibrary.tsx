@@ -7,6 +7,7 @@ import { CommunityBrandBlock } from "@/components/community/CommunityBrandBlock"
 import { CommunitySeoBridge } from "@/components/community/CommunitySeoBridge";
 import { CommunityConversionCard } from "@/components/community/CommunityConversionCard";
 
+import { CommunityJoinCTA } from "@/components/community/CommunityJoinCTA";
 import { useAuth } from "@/hooks/useAuth";
 
 import { FeaturedSlotPanel } from "@/components/games/FeaturedSlotPanel";
@@ -130,7 +131,8 @@ export default function GameLibrary() {
 
           {/* Section divider */}
           <div className="spillehal-divider" />
-
+          {/* Community CTA for logged-out users */}
+          {!user && <CommunityJoinCTA />}
 
           {/* Conversion strip */}
           <CommunityConversionStrip />
