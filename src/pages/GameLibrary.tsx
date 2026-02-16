@@ -83,7 +83,7 @@ export default function GameLibrary() {
       <CommunityNav />
 
       {/* Featured Slots – full width showcase */}
-      <div className="container py-10 space-y-8">
+      <div className="container py-10 space-y-12 md:space-y-16">
         {FEATURED_SLOTS.map((slot, index) => (
           <div
             key={slot.id}
@@ -100,6 +100,7 @@ export default function GameLibrary() {
               href={slot.href}
               badge={slot.badge}
               priority={slot.priority}
+              showScrollHint={index === 0}
             />
           </div>
         ))}
