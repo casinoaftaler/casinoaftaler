@@ -80,7 +80,7 @@ const casinoBonusFaqs: { question: string; answer: ReactNode }[] = [
     answer: (
       <>
         Ja, alle casinoer på Casinoaftaler.dk har gyldig dansk licens fra Spillemyndigheden. Det sikrer din beskyttelse som spiller – du kan altid selvudelukke via{" "}
-        <a href="https://www.rofus.nu/" target="_blank" rel="noopener noreferrer" className={linkClass}>ROFUS</a>, klage til Spillemyndigheden, og dine penge er beskyttet af regulatoriske krav. Casinoer uden dansk licens tilbyder ingen af disse garantier. Læs mere om <Link to="/responsible-gaming" className={linkClass}>ansvarligt spil</Link>.
+        <a href="https://www.rofus.nu/" target="_blank" rel="noopener noreferrer" className={linkClass}>ROFUS</a>, klage til Spillemyndigheden, og dine penge er beskyttet af regulatoriske krav. Casinoer uden dansk licens tilbyder ingen af disse garantier. Læs mere om <Link to="/ansvarligt-spil" className={linkClass}>ansvarligt spil</Link>.
       </>
     ),
   },
@@ -1285,7 +1285,7 @@ const CasinoBonus = () => {
                 mere, end du har råd til at tabe. En casino bonus bør ses som
                 underholdning – ikke som en indtægtskilde. Læs mere i vores
                 guide til{" "}
-                <Link to="/responsible-gaming" className={linkClass}>
+                <Link to="/ansvarligt-spil" className={linkClass}>
                   ansvarligt spil
                 </Link>
                 .

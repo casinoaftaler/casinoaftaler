@@ -81,7 +81,7 @@ const swiftFaqs: { question: string; answer: ReactNode }[] = [
         Swift Casino drives af Skill On Net Ltd, et veletableret selskab med dansk spillelicens fra Spillemyndigheden (licensnr. 16-1066791) siden 2017. Skill On Net driver flere andre danske casinoer, herunder{" "}
         <Link to="/luna-casino-anmeldelse" className={linkClass}>Luna Casino</Link>, hvilket vidner om deres erfaring og pålidelighed. Platformen benytter SSL-kryptering og er tilsluttet{" "}
         <a href="https://www.rofus.nu/" target="_blank" rel="noopener noreferrer" className={linkClass}>ROFUS</a>. Alle spil er certificeret af uafhængige testorganisationer, og RNG-teknologien sikrer fair og tilfældige resultater. Læs mere om{" "}
-        <Link to="/responsible-gaming" className={linkClass}>ansvarligt spil</Link>.
+        <Link to="/ansvarligt-spil" className={linkClass}>ansvarligt spil</Link>.
       </>
     ),
   },
@@ -466,7 +466,7 @@ const SwiftCasinoAnmeldelse = () => {
           </p>
           <p className="mb-4 text-muted-foreground leading-relaxed">
             Som med alle danske casinoer med licens fra Spillemyndigheden skal du sætte daglige, ugentlige og månedlige indbetalingsgrænser ved oprettelsen. Dette er en del af lovgivningen om{" "}
-            <Link to="/responsible-gaming" className="text-primary hover:underline">ansvarligt spil</Link>{" "}
+            <Link to="/ansvarligt-spil" className="text-primary hover:underline">ansvarligt spil</Link>{" "}
             og kan altid justeres senere via din kontoside.
           </p>
           <p className="text-muted-foreground leading-relaxed">
@@ -490,7 +490,7 @@ const SwiftCasinoAnmeldelse = () => {
           </p>
           <p className="text-muted-foreground leading-relaxed">
             Swift Casino overholder desuden Spillemyndighedens strenge regler for{" "}
-            <Link to="/responsible-gaming" className="text-primary hover:underline">ansvarligt spil</Link>, herunder obligatoriske indbetalingsgrænser, session-påmindelser og mulighed for midlertidig udelukkelse. Du kan altid kontakte kundeservice, hvis du har brug for hjælp til at sætte grænser.
+            <Link to="/ansvarligt-spil" className="text-primary hover:underline">ansvarligt spil</Link>, herunder obligatoriske indbetalingsgrænser, session-påmindelser og mulighed for midlertidig udelukkelse. Du kan altid kontakte kundeservice, hvis du har brug for hjælp til at sætte grænser.
           </p>
         </section>
 

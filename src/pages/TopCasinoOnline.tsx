@@ -112,7 +112,7 @@ const topCasinoFaqs: { question: string; answer: ReactNode }[] = [
       <>
         Alle danske licenserede casinoer er lovpligtige at tilbyde selvbegrænsningsværktøjer. Du kan sætte daglige, ugentlige og månedlige indbetalingsgrænser direkte i casinoets indstillinger – nedsættelse træder i kraft øjeblikkeligt, mens forhøjelse kræver en afkølingsperiode på 24 timer. Sessionstidsadvarsler minder dig om, hvor længe du har spillet. Du kan også tage en afkølingsperiode (24 timer til 30 dage) eller selvudelukke via{" "}
         <a href="https://www.rofus.nu/" target="_blank" rel="noopener noreferrer" className={linkClass}>ROFUS</a>, som blokerer adgangen til alle danske spillesider. Læs mere om{" "}
-        <Link to="/responsible-gaming" className={linkClass}>ansvarligt spil</Link> og tilgængelige hjælperessourcer.
+        <Link to="/ansvarligt-spil" className={linkClass}>ansvarligt spil</Link> og tilgængelige hjælperessourcer.
       </>
     ),
   },
@@ -927,7 +927,7 @@ const TopCasinoOnline = () => {
                   StopSpillet.dk
                 </a>{" "}
                 på tlf. 70 22 28 25. Læs mere i vores guide til{" "}
-                <Link to="/responsible-gaming" className={linkClass}>ansvarligt spil</Link>.
+                <Link to="/ansvarligt-spil" className={linkClass}>ansvarligt spil</Link>.
               </p>
               <p className="text-xs text-muted-foreground">
                 18+ | Spil ansvarligt | Annoncering

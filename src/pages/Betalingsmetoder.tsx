@@ -97,7 +97,7 @@ const Betalingsmetoder = () => {
       answer: (
         <>
           Ja, danske casinoer har både obligatoriske og valgfrie grænser. Spillemyndigheden kræver, at alle licenserede casinoer tilbyder indbetalingsgrænser som en del af{" "}
-          <Link to="/responsible-gaming" className="text-primary underline hover:text-primary/80">ansvarligt spil</Link>-værktøjerne – du kan sætte daglige, ugentlige og månedlige lofter. Minimumsindbetaling er typisk 50–100 kr. hos de fleste casinoer, mens minimumsudbetalingen varierer fra 75 kr. til 200 kr. Maksimale daglige udbetalingsgrænser varierer markant: fra 25.000 kr. til ubegrænset hos top-casinoer. Ved store jackpotgevinster (100.000+ kr.) udbetaler de fleste casinoer i rater efter individuel aftale. Vi angiver specifikke grænser i vores{" "}
+          <Link to="/ansvarligt-spil" className="text-primary underline hover:text-primary/80">ansvarligt spil</Link>-værktøjerne – du kan sætte daglige, ugentlige og månedlige lofter. Minimumsindbetaling er typisk 50–100 kr. hos de fleste casinoer, mens minimumsudbetalingen varierer fra 75 kr. til 200 kr. Maksimale daglige udbetalingsgrænser varierer markant: fra 25.000 kr. til ubegrænset hos top-casinoer. Ved store jackpotgevinster (100.000+ kr.) udbetaler de fleste casinoer i rater efter individuel aftale. Vi angiver specifikke grænser i vores{" "}
           <Link to="/casino-anmeldelser" className="text-primary underline hover:text-primary/80">anmeldelser</Link>.
         </>
       ),
@@ -486,7 +486,7 @@ const Betalingsmetoder = () => {
             anvender SSL-kryptering til at beskytte dine betalingsoplysninger, og
             kortbetalinger er beskyttet med 3D Secure, som kræver ekstra
             godkendelse via SMS eller bankapp. Læs mere om{" "}
-            <Link to="/responsible-gaming" className="text-primary underline hover:text-primary/80">ansvarligt spil</Link>{" "}
+            <Link to="/ansvarligt-spil" className="text-primary underline hover:text-primary/80">ansvarligt spil</Link>{" "}
             og de værktøjer, som danske casinoer tilbyder.
           </p>
           <p className="mb-6 text-muted-foreground leading-relaxed">

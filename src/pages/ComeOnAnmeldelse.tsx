@@ -28,7 +28,7 @@ const comeonFaqs: { question: string; answer: ReactNode }[] = [
       <>
         Ja, ComeOn Casino har en gyldig dansk licens udstedt af Spillemyndigheden, hvilket gør det fuldt lovligt at spille på for danske spillere. Platformen er tilsluttet{" "}
         <a href="https://www.rofus.nu/" target="_blank" rel="noopener noreferrer" className={linkClass}>ROFUS</a> og overholder alle danske regler for{" "}
-        <Link to="/responsible-gaming" className={linkClass}>ansvarligt spil</Link>. ComeOn drives af Cherry AB (nu Highlight Games), som har mange års erfaring i den europæiske iGaming-branche og opererer under streng regulering i flere lande.
+        <Link to="/ansvarligt-spil" className={linkClass}>ansvarligt spil</Link>. ComeOn drives af Cherry AB (nu Highlight Games), som har mange års erfaring i den europæiske iGaming-branche og opererer under streng regulering i flere lande.
       </>
     ),
   },

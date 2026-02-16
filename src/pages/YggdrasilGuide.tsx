@@ -84,7 +84,7 @@ const YggdrasilGuide = () => (
     licensesContent={
       <p className="mb-4 text-muted-foreground leading-relaxed">
         Yggdrasil Gaming har licenser fra Malta Gaming Authority, UK Gambling Commission og flere internationale regulatorer. De er ISO 27001 certificeret for informationssikkerhed – en af få spiludviklere med denne standard. Alle spil anvender certificeret RNG, og BOOST-platformens kampagneværktøjer er separat auditeret for{" "}
-        <Link to="/responsible-gaming" className="text-primary underline hover:text-primary/80">ansvarligt spil</Link>-compliance.
+        <Link to="/ansvarligt-spil" className="text-primary underline hover:text-primary/80">ansvarligt spil</Link>-compliance.
       </p>
     }
     pros={[

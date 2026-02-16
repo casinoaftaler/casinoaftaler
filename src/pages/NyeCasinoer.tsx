@@ -734,7 +734,7 @@ const NyeCasinoer = () => {
           </p>
           <p className="mb-4 text-muted-foreground leading-relaxed">
             Alle casinoer på vores liste er licenserede og regulerede. Det betyder, at de lever op til strenge krav om datasikkerhed, fairness i spil (RNG-certificering) og beskyttelse mod spilleafhængighed via ROFUS-registret. Læs mere om{" "}
-            <Link to="/responsible-gaming" className={linkClass}>ansvarligt spil</Link>.
+            <Link to="/ansvarligt-spil" className={linkClass}>ansvarligt spil</Link>.
           </p>
           <p className="mb-6 text-muted-foreground leading-relaxed">
             Vi anbefaler altid, at du tjekker om et casino har dansk licens, før du opretter en konto. Du kan verificere licensen på{" "}

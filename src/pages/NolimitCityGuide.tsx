@@ -83,7 +83,7 @@ const NolimitCityGuide = () => (
     licensesContent={
       <p className="mb-4 text-muted-foreground leading-relaxed">
         Nolimit City opererer under Evolution Gamings regulatoriske paraply med licenser fra Malta Gaming Authority og UK Gambling Commission. Alle patenterede mekanikker (xWays, xNudge, xBomb, xSplit) er uafhængigt certificeret af BMM Testlabs og iTech Labs. Trods kontroversielle temaer overholder alle spil strenge standarder for{" "}
-        <Link to="/responsible-gaming" className="text-primary underline hover:text-primary/80">ansvarligt spil</Link>.
+        <Link to="/ansvarligt-spil" className="text-primary underline hover:text-primary/80">ansvarligt spil</Link>.
       </p>
     }
     pros={[

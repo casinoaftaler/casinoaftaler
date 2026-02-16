@@ -370,7 +370,7 @@ const About = () => {
               <CardContent>
                 <p className="text-sm text-muted-foreground leading-relaxed">
                   Vi fremmer{" "}
-                  <Link to="/responsible-gaming" className="text-primary underline hover:text-primary/80">ansvarligt spil</Link>{" "}
+                  <Link to="/ansvarligt-spil" className="text-primary underline hover:text-primary/80">ansvarligt spil</Link>{" "}
                   og anbefaler kun casinoer med dansk licens fra Spillemyndigheden.
                   Læs også vores{" "}
                   <Link to="/privatlivspolitik" className="text-primary underline hover:text-primary/80">privatlivspolitik</Link> og{" "}
@@ -388,7 +388,7 @@ const About = () => {
           <h2 className="mb-4 text-3xl font-bold">Ansvarligt Spil</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
             Vi tager{" "}
-            <Link to="/responsible-gaming" className="text-primary underline hover:text-primary/80">ansvarligt spil</Link>{" "}
+            <Link to="/ansvarligt-spil" className="text-primary underline hover:text-primary/80">ansvarligt spil</Link>{" "}
             alvorligt. Vi anbefaler kun casinoer, der
             er licenseret af Spillemyndigheden og opfylder strenge krav til
             spillerbeskyttelse. Vi opfordrer altid vores læsere til at spille

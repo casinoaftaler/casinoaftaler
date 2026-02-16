@@ -28,7 +28,7 @@ const NetEntGuide = () => (
         </p>
         <p className="text-muted-foreground leading-relaxed">
           I dag er NetEnt en del af Evolution-koncernen, men fortsætter med at udgive nye titler under sit eget brand. De har licenser fra Malta Gaming Authority, UK Gambling Commission og Spillemyndigheden i Danmark, hvilket sikrer, at alle deres spil lever op til de strengeste krav om fairness og{" "}
-          <Link to="/responsible-gaming" className="text-primary underline hover:text-primary/80">ansvarligt spil</Link>.
+          <Link to="/ansvarligt-spil" className="text-primary underline hover:text-primary/80">ansvarligt spil</Link>.
         </p>
       </>
     }

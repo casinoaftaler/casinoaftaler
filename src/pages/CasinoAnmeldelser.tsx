@@ -219,7 +219,7 @@ const CasinoAnmeldelser = () => {
           </p>
           <p className="mb-4 text-muted-foreground leading-relaxed">
             Alle casinoer vi anmelder har en gyldig dansk spillelicens fra Spillemyndigheden, hvilket garanterer, at de overholder strenge krav til spillerbeskyttelse,{" "}
-            <Link to="/responsible-gaming" className={linkClass}>ansvarligt spil</Link> og datasikkerhed. Vi anbefaler kun casinoer, der lever op til vores høje standarder for kvalitet og fairness.
+            <Link to="/ansvarligt-spil" className={linkClass}>ansvarligt spil</Link> og datasikkerhed. Vi anbefaler kun casinoer, der lever op til vores høje standarder for kvalitet og fairness.
           </p>
           <p className="text-muted-foreground leading-relaxed">
             Vores eksperter spiller selv på hvert casino, tester{" "}
@@ -479,7 +479,7 @@ const CasinoAnmeldelser = () => {
                   <li>Selvudelukkelse via <a href="https://www.rofus.nu/" target="_blank" rel="noopener noreferrer" className={linkClass}>ROFUS</a></li>
                   <li>Krypteret datatransmission</li>
                   <li>Adskillelse af spillermidler</li>
-                  <li>Forpligtelse til{" "}<Link to="/responsible-gaming" className={linkClass}>ansvarligt spil</Link></li>
+                  <li>Forpligtelse til{" "}<Link to="/ansvarligt-spil" className={linkClass}>ansvarligt spil</Link></li>
                 </ul>
                 <p className="mt-3 text-sm text-muted-foreground leading-relaxed">
                   Hjælp:{" "}<a href="https://www.stopspillet.dk/" target="_blank" rel="noopener noreferrer" className={linkClass}>StopSpillet.dk</a> – gratis og anonymt.
@@ -731,7 +731,7 @@ const CasinoAnmeldelser = () => {
                 <CardTitle className="text-base">5. Sæt grænser</CardTitle>
               </CardHeader>
               <CardContent>
-                <p className="text-sm text-muted-foreground">Brug casinoets ansvarligt spil-værktøjer. Spil skal altid være{" "}<Link to="/responsible-gaming" className={linkClass}>ansvarligt</Link> og underholdende.</p>
+                <p className="text-sm text-muted-foreground">Brug casinoets ansvarligt spil-værktøjer. Spil skal altid være{" "}<Link to="/ansvarligt-spil" className={linkClass}>ansvarligt</Link> og underholdende.</p>
               </CardContent>
             </Card>
             <Card className="border-border bg-card">

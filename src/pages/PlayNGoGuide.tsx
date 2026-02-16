@@ -25,7 +25,7 @@ const PlayNGoGuide = () => (
           Book of Dead er Play'n GOs flagskib – et egyptisk eventyr med Rich Wilde der har genereret milliarder af spins og er blandt de mest udbudte titler i <Link to="/free-spins" className="text-primary underline hover:text-primary/80">free spins-tilbud</Link> på det danske marked. Reactoonz-serien med dens kaotiske grid-gameplay har tilføjet en helt anden dimension til porteføljen, og Rich Wilde-franchisen fortsætter med nye eventyr.
         </p>
         <p className="text-muted-foreground leading-relaxed">
-          Med licenser fra Malta Gaming Authority, UK Gambling Commission og Spillemyndigheden opererer Play'n GO i de mest regulerede markeder globalt. De er en af få udviklere der aldrig har kompromitteret på <Link to="/responsible-gaming" className="text-primary underline hover:text-primary/80">ansvarligt spil</Link>-standarder.
+          Med licenser fra Malta Gaming Authority, UK Gambling Commission og Spillemyndigheden opererer Play'n GO i de mest regulerede markeder globalt. De er en af få udviklere der aldrig har kompromitteret på <Link to="/ansvarligt-spil" className="text-primary underline hover:text-primary/80">ansvarligt spil</Link>-standarder.
         </p>
       </>
     }

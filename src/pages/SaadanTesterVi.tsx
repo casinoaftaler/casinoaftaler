@@ -441,7 +441,7 @@ const SaadanTesterVi = () => {
               Casino Anmeldelser
             </Link>
             <Link
-              to="/responsible-gaming"
+              to="/ansvarligt-spil"
               className="flex items-center gap-2 rounded-lg border border-border bg-card p-4 text-sm font-medium transition-colors hover:bg-muted"
             >
               <Shield className="h-4 w-4 text-primary" />
