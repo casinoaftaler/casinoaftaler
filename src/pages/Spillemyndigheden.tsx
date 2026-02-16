@@ -208,7 +208,7 @@ const Spillemyndigheden = () => {
             Myndighedens primære formål er at beskytte danske spillere mod svindel, sikre fair og gennemsigtigt spil samt forebygge ludomani og hvidvask. Det gør den gennem et strengt licenssystem, løbende tilsyn og samarbejde med internationale reguleringsorganer. Alle <Link to="/top-10-casino-online" className="text-primary hover:underline font-medium">lovlige online casinoer i Danmark</Link> skal have en aktiv licens fra Spillemyndigheden for at kunne tilbyde spil til danske forbrugere.
           </p>
           <p className="text-muted-foreground leading-relaxed">
-            Når du spiller på et casino med dansk licens, er du beskyttet af dansk lovgivning. Det betyder, at casinoet er forpligtet til at tilbyde værktøjer som <Link to="/responsible-gaming" className="text-primary hover:underline font-medium">ansvarligt spil</Link>, herunder selvudelukkelse via ROFUS, indbetalingsgrænser og sessionspåmindelser. Spillemyndigheden fører aktivt tilsyn med, at disse krav overholdes.
+            Når du spiller på et casino med dansk licens, er du beskyttet af dansk lovgivning. Det betyder, at casinoet er forpligtet til at tilbyde værktøjer som <Link to="/ansvarligt-spil" className="text-primary hover:underline font-medium">ansvarligt spil</Link>, herunder selvudelukkelse via ROFUS, indbetalingsgrænser og sessionspåmindelser. Spillemyndigheden fører aktivt tilsyn med, at disse krav overholdes.
           </p>
         </section>
 
@@ -343,7 +343,7 @@ const Spillemyndigheden = () => {
             Spillerbeskyttelse og Ansvarligt Spil
           </h2>
           <p className="mb-6 text-muted-foreground leading-relaxed">
-            Et af Spillemyndighedens vigtigste fokusområder er at beskytte spillere mod problematisk spil. Alle licenserede operatører er forpligtet til at implementere en række værktøjer og procedurer, der fremmer <Link to="/responsible-gaming" className="text-primary hover:underline font-medium">ansvarligt spil</Link>.
+            Et af Spillemyndighedens vigtigste fokusområder er at beskytte spillere mod problematisk spil. Alle licenserede operatører er forpligtet til at implementere en række værktøjer og procedurer, der fremmer <Link to="/ansvarligt-spil" className="text-primary hover:underline font-medium">ansvarligt spil</Link>.
           </p>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {playerProtections.map((item) => (

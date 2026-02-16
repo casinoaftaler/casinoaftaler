@@ -317,7 +317,7 @@ const BlackjackGuide = () => {
             Flere faktorer påvirker house edge: Antal kortspil (færre = lavere house edge), 3:2 vs. 6:5-udbetaling for blackjack (6:5 tilføjer ca. 1,4 %), om dealeren hitter eller stander på soft 17 (hit soft 17 tilføjer ca. 0,2 %), og tilgængeligheden af surrender, doubling after split og resplitting af esser. Hver af disse regler påvirker house edge med typisk 0,1–0,4 procentpoint, og tilsammen kan de udgøre forskellen mellem et favorabelt og et ufavorabelt spil.
           </p>
           <p className="text-muted-foreground leading-relaxed">
-            Bankroll management er kritisk i blackjack på trods af den lave house edge. Variansen betyder, at du kan opleve lange perioder med tab, selv med perfekt spil. En tommelfingerregel er at have mindst 50 gange din gennemsnitlige indsats som bankroll for en session. Sæt en tidsgrænse og et tabsbudget, og hold dig til det. Husk, at <Link to="/responsible-gaming" className={linkClass}>ansvarligt spil</Link> altid bør prioriteres – uanset hvor favorabel matematikken er.
+            Bankroll management er kritisk i blackjack på trods af den lave house edge. Variansen betyder, at du kan opleve lange perioder med tab, selv med perfekt spil. En tommelfingerregel er at have mindst 50 gange din gennemsnitlige indsats som bankroll for en session. Sæt en tidsgrænse og et tabsbudget, og hold dig til det. Husk, at <Link to="/ansvarligt-spil" className={linkClass}>ansvarligt spil</Link> altid bør prioriteres – uanset hvor favorabel matematikken er.
           </p>
         </section>
 

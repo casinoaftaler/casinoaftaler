@@ -84,7 +84,7 @@ const betiniaFaqs: { question: string; answer: ReactNode }[] = [
       <>
         Betinia har dobbelt licensering: dansk licens fra Spillemyndigheden (licensnr. 20-6359) og licens fra Malta Gaming Authority (MGA). Casinoet drives af Romabet Limited, der lancerede den danske platform i 2022 og hurtigt har etableret sig som et populært valg. Platformen benytter SSL-kryptering til beskyttelse af alle data og transaktioner og er fuldt tilsluttet{" "}
         <a href="https://www.rofus.nu/" target="_blank" rel="noopener noreferrer" className={linkClass}>ROFUS</a>. Registrering foregår via MitID, hvilket sikrer øjeblikkelig identitetsverifikation. Læs mere om{" "}
-        <Link to="/responsible-gaming" className={linkClass}>ansvarligt spil</Link>.
+        <Link to="/ansvarligt-spil" className={linkClass}>ansvarligt spil</Link>.
       </>
     ),
   },

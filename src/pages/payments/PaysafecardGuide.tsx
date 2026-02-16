@@ -24,7 +24,7 @@ const PaysafecardGuide = () => {
           </p>
           <p className="mb-4 text-muted-foreground leading-relaxed">
             Den store fordel er den totale privatlivsbeskyttelse: Paysafecard kræver ingen registrering, ingen bankoplysninger og ingen personlige data. Det gør den ideel til spillere, der prioriterer anonymitet og fuld kontrol over deres spillebudget – en effektiv strategi for{" "}
-            <Link to="/responsible-gaming" className="text-primary underline hover:text-primary/80">ansvarligt spil</Link>.
+            <Link to="/ansvarligt-spil" className="text-primary underline hover:text-primary/80">ansvarligt spil</Link>.
           </p>
           <p className="text-muted-foreground leading-relaxed">
             <strong>Vigtigt:</strong> Paysafecard kan kun bruges til indbetalinger – ikke til udbetalinger. Når du vil hæve gevinster, skal du bruge en alternativ metode som{" "}
@@ -99,7 +99,7 @@ const PaysafecardGuide = () => {
         )},
         { question: "Hvad sker der, hvis jeg ikke bruger hele min Paysafecard-saldo på casinoet?", answer: "Hvis du ikke bruger hele saldoen på din Paysafecard-voucher, gemmes restbeløbet på den 16-cifrede PIN-kode. Du kan bruge restbeløbet til fremtidige indbetalinger på samme eller et andet casino – eller til andre online-køb. Saldoen udløber ikke inden for de første 12 måneder. Herefter kan der pålægges et månedligt inaktivitetsgebyr på 3 EUR, der trækkes fra restbeløbet. Du kan altid tjekke din saldo på paysafecard.com. Det anbefales at opbevare PIN-koden sikkert, da Paysafecard ikke kan erstatte mistede koder." },
         { question: "Kan jeg bruge Paysafecard til ansvarligt spil og budgetkontrol?", answer: (
-          <>Paysafecard er faktisk en af de bedste betalingsmetoder til{" "}<Link to="/responsible-gaming" className="text-primary underline hover:text-primary/80">ansvarligt spil</Link>. Da du køber vouchers med et fast beløb på forhånd, sætter du automatisk en naturlig grænse for, hvor meget du kan indbetale. Du kan ikke overskride dit budget, da der ikke er nogen direkte forbindelse til din bankkonto. Denne 'forudbetalt'-model gør det nemmere at holde styr på dit forbrug sammenlignet med kortbetalinger eller bankoverførsler, der giver adgang til hele din saldo.</>
+          <>Paysafecard er faktisk en af de bedste betalingsmetoder til{" "}<Link to="/ansvarligt-spil" className="text-primary underline hover:text-primary/80">ansvarligt spil</Link>. Da du køber vouchers med et fast beløb på forhånd, sætter du automatisk en naturlig grænse for, hvor meget du kan indbetale. Du kan ikke overskride dit budget, da der ikke er nogen direkte forbindelse til din bankkonto. Denne 'forudbetalt'-model gør det nemmere at holde styr på dit forbrug sammenlignet med kortbetalinger eller bankoverførsler, der giver adgang til hele din saldo.</>
         )},
       ]}
       currentPath="/betalingsmetoder/paysafecard"

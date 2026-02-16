@@ -87,7 +87,7 @@ const spilDanskNuFaqs: { question: string; answer: ReactNode }[] = [
         SpilDanskNu drives af Winteq ApS, et dansk selskab med gyldig licens fra Spillemyndigheden. Winteq har mange års erfaring på det danske marked og driver desuden{" "}
         <Link to="/spilleautomaten-anmeldelse" className={linkClass}>Spilleautomaten.dk</Link> og Bingo.dk. Platformen benytter SSL-kryptering og er fuldt tilsluttet{" "}
         <a href="https://www.rofus.nu/" target="_blank" rel="noopener noreferrer" className={linkClass}>ROFUS</a>. At operatøren er dansk giver en ekstra tryghed, da du kan kontakte kundeservice på dansk og ved, at selskabet er underlagt dansk lovgivning. Læs mere om{" "}
-        <Link to="/responsible-gaming" className={linkClass}>ansvarligt spil</Link>.
+        <Link to="/ansvarligt-spil" className={linkClass}>ansvarligt spil</Link>.
       </>
     ),
   },
@@ -685,7 +685,7 @@ const SpilDanskNuAnmeldelse = () => {
           <h2 className="mb-4 text-3xl font-bold">Sikkerhed, licens og ansvarligt spil</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
             SpilDanskNu opererer under dansk licens fra Spillemyndigheden, udstedt til Winteq ApS. Det sikrer fuld overholdelse af dansk spillelovgivning med strenge krav til fairness, databeskyttelse og{" "}
-            <Link to="/responsible-gaming" className={linkClass}>ansvarligt spil</Link>.
+            <Link to="/ansvarligt-spil" className={linkClass}>ansvarligt spil</Link>.
           </p>
 
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-6">

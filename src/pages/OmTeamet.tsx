@@ -52,7 +52,7 @@ const OmTeamet = () => {
     contactPoint: {
       "@type": "ContactPoint",
       contactType: "customer support",
-      url: "https://casinoaftaler.dk/contact",
+      url: "https://casinoaftaler.dk/kontakt",
       availableLanguage: "Danish",
     },
     member: [
@@ -553,7 +553,7 @@ const OmTeamet = () => {
           <p className="text-muted-foreground leading-relaxed mb-4">
             Har du spørgsmål, feedback eller ønsker du at samarbejde med os? Vi hører gerne fra dig.
           </p>
-          <Link to="/contact">
+          <Link to="/kontakt">
             <Button variant="outline" size="sm">
               <MessageSquare className="mr-1.5 h-4 w-4" />
               Kontakt os

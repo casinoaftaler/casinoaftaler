@@ -43,7 +43,7 @@ export const organizationSchema = {
   contactPoint: {
     "@type": "ContactPoint",
     contactType: "customer support",
-    url: `${SITE_URL}/contact`,
+    url: `${SITE_URL}/kontakt`,
     availableLanguage: "Danish",
   },
 };

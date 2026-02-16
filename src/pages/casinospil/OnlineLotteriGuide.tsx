@@ -58,7 +58,7 @@ const lotteriFaqs: { question: string; answer: ReactNode }[] = [
     question: "Hvordan spiller man ansvarligt med lotterispil?",
     answer: (
       <>
-        Lotterispil kræver de samme principper for <Link to="/responsible-gaming" className={linkClass}>ansvarligt spil</Link> som andre former for gambling: (1) Sæt et fast budget – bestem hvor meget du vil bruge om ugen/måneden på lotterier, og hold dig til det. (2) Acceptér, at tab er forventet – med 45–50 % RTP taber du statistisk set over halvdelen af din indsats. (3) Undgå "chasing losses" – køb ikke flere lodder for at genvinde tab. (4) Brug Danske Spils indbetalingsgrænser og selvudelukkelsesværktøjer. (5) Hvis lotterispil ikke længere er underholdende, kontakt StopSpillet.dk (gratis og anonymt) eller tilmeld dig ROFUS for selvudelukkelse. Lotterier kan være addiktive pga. den asymmetriske præmiestruktur (små indsatser, potentielt enorme gevinster).
+        Lotterispil kræver de samme principper for <Link to="/ansvarligt-spil" className={linkClass}>ansvarligt spil</Link> som andre former for gambling: (1) Sæt et fast budget – bestem hvor meget du vil bruge om ugen/måneden på lotterier, og hold dig til det. (2) Acceptér, at tab er forventet – med 45–50 % RTP taber du statistisk set over halvdelen af din indsats. (3) Undgå "chasing losses" – køb ikke flere lodder for at genvinde tab. (4) Brug Danske Spils indbetalingsgrænser og selvudelukkelsesværktøjer. (5) Hvis lotterispil ikke længere er underholdende, kontakt StopSpillet.dk (gratis og anonymt) eller tilmeld dig ROFUS for selvudelukkelse. Lotterier kan være addiktive pga. den asymmetriske præmiestruktur (små indsatser, potentielt enorme gevinster).
       </>
     ),
   },

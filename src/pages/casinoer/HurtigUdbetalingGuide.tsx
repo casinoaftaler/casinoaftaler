@@ -425,7 +425,7 @@ const HurtigUdbetalingGuide = () => {
               </CardHeader>
               <CardContent>
                 <p className="text-sm text-muted-foreground">
-                  Hurtige udbetalinger understøtter <Link to="/responsible-gaming" className={linkClass}>ansvarligt spil</Link>. Når du kan få dine gevinster hurtigt, reduceres fristelsen til at "spille dem op" mens du venter. Forsinkede udbetalinger er en kendt taktik, der udnytter impulsspil – seriøse casinoer undgår dette. Spillemyndigheden har også fremhævet udbetalingshastighed som en vigtig faktor i ansvarlig gambling-praksis.
+                  Hurtige udbetalinger understøtter <Link to="/ansvarligt-spil" className={linkClass}>ansvarligt spil</Link>. Når du kan få dine gevinster hurtigt, reduceres fristelsen til at "spille dem op" mens du venter. Forsinkede udbetalinger er en kendt taktik, der udnytter impulsspil – seriøse casinoer undgår dette. Spillemyndigheden har også fremhævet udbetalingshastighed som en vigtig faktor i ansvarlig gambling-praksis.
                 </p>
               </CardContent>
             </Card>
@@ -575,7 +575,7 @@ const HurtigUdbetalingGuide = () => {
             Hurtige udbetalinger og ansvarligt spil
           </h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
-            Hurtige udbetalinger er en vigtig del af <Link to="/responsible-gaming" className={linkClass}>ansvarligt spil</Link>. Når du kan hæve dine gevinster hurtigt, reduceres fristelsen til at fortsætte med at spille med penge, du egentlig ville trække ud. Det er en af grundene til, at Spillemyndigheden lægger vægt på rimelige behandlingstider for udbetalinger. Forskning viser, at spillere, der har nem adgang til udbetalinger, har bedre kontrol over deres spilleadfærd.
+            Hurtige udbetalinger er en vigtig del af <Link to="/ansvarligt-spil" className={linkClass}>ansvarligt spil</Link>. Når du kan hæve dine gevinster hurtigt, reduceres fristelsen til at fortsætte med at spille med penge, du egentlig ville trække ud. Det er en af grundene til, at Spillemyndigheden lægger vægt på rimelige behandlingstider for udbetalinger. Forskning viser, at spillere, der har nem adgang til udbetalinger, har bedre kontrol over deres spilleadfærd.
           </p>
           <p className="mb-4 text-muted-foreground leading-relaxed">
             En af de mest problematiske praksisser i online gambling er den såkaldte "reverse withdrawal" – muligheden for at annullere en udbetalingsanmodning og genoptage spil med pengene. Mange ansvarlige casinoer har elimineret denne mulighed, netop fordi den udnytter impulsspil. De bedste casinoer behandler udbetalinger øjeblikkeligt, så pengene er ude af casinoets system, før fristelsen kan opstå.

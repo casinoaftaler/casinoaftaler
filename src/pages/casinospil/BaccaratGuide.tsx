@@ -163,7 +163,7 @@ const BaccaratGuide = () => {
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold">Bankroll Management og Ansvarligt Spil</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">Trods den lave house edge kan baccarat være volatilt, særligt i Lightning-varianter. Vi anbefaler en session-bankroll på minimum 40 gange din gennemsnitlige indsats. Med 100 kr. pr. runde bør du have mindst 4.000 kr. reserveret til sessionen.</p>
-          <p className="text-muted-foreground leading-relaxed">Sæt altid tids- og tabsgrænser inden du begynder at spille. Baccarat's hurtige tempo (27–48 sekunder pr. runde) betyder, at du nemt kan spille 50–100 runder i timen. Med en house edge på 1,06 % og 100 kr. indsats pr. runde forventes et statistisk tab på ca. 106 kr. i timen. Husk, at dette er et gennemsnit – variansen kan føre til både store gevinster og tab. <Link to="/responsible-gaming" className={linkClass}>Ansvarligt spil</Link> er altid fundamentet for en bæredygtig spiloplevelse.</p>
+          <p className="text-muted-foreground leading-relaxed">Sæt altid tids- og tabsgrænser inden du begynder at spille. Baccarat's hurtige tempo (27–48 sekunder pr. runde) betyder, at du nemt kan spille 50–100 runder i timen. Med en house edge på 1,06 % og 100 kr. indsats pr. runde forventes et statistisk tab på ca. 106 kr. i timen. Husk, at dette er et gennemsnit – variansen kan føre til både store gevinster og tab. <Link to="/ansvarligt-spil" className={linkClass}>Ansvarligt spil</Link> er altid fundamentet for en bæredygtig spiloplevelse.</p>
         </section>
 
         <Separator className="my-10" />

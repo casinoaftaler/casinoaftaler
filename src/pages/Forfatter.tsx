@@ -71,9 +71,9 @@ const faqs = [
 ];
 
 const relatedLinks = [
-  { to: "/about", label: "Om Os", icon: Users, desc: "Læs mere om holdet bag Casinoaftaler.dk" },
-  { to: "/contact", label: "Kontakt", icon: Phone, desc: "Kontakt os med spørgsmål eller feedback" },
-  { to: "/responsible-gaming", label: "Ansvarligt Spil", icon: ShieldCheck, desc: "Spil sikkert og ansvarligt" },
+  { to: "/om", label: "Om Os", icon: Users, desc: "Læs mere om holdet bag Casinoaftaler.dk" },
+  { to: "/kontakt", label: "Kontakt", icon: Phone, desc: "Kontakt os med spørgsmål eller feedback" },
+  { to: "/ansvarligt-spil", label: "Ansvarligt Spil", icon: ShieldCheck, desc: "Spil sikkert og ansvarligt" },
   { to: "/spillemyndigheden", label: "Spillemyndigheden", icon: Landmark, desc: "Danmarks tilsynsmyndighed for spil" },
 ];
 

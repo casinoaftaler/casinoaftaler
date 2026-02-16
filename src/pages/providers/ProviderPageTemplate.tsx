@@ -301,7 +301,7 @@ export function ProviderPage({
             <p>
               {responsibleGamingText || `${name} prioriterer ansvarligt spil og samarbejder med anerkendte organisationer for spillerbeskyttelse.`}{" "}
               Læs mere om{" "}
-              <Link to="/responsible-gaming" className="text-primary hover:underline font-medium">ansvarligt spil</Link>.{" "}
+              <Link to="/ansvarligt-spil" className="text-primary hover:underline font-medium">ansvarligt spil</Link>.{" "}
               I Danmark kan du altid søge hjælp via{" "}
               <a href="https://www.rofus.nu/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline font-medium">ROFUS</a>{" "}
               og{" "}

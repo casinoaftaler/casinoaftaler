@@ -212,7 +212,7 @@ const PokerGuide = () => {
             <strong>Caribbean Stud:</strong> Raise altid med par eller bedre. Fold altid med mindre end Ace-King. Med Ace-King: raise hvis dit tredje-højeste kort er Queen eller bedre, eller hvis du har et kort, der matcher dealerens åbne kort. <strong>Casino Hold'em:</strong> Call med næsten enhver hånd – folding er sjældent korrekt (under 18 % af hænderne). <strong>Three Card Poker:</strong> Play med Queen-6-4 eller bedre; fold alt under det.
           </p>
           <p className="text-muted-foreground leading-relaxed">
-            <strong>Bankroll management</strong> er lige så vigtig i poker som i andre casinospil. For casino poker anbefaler vi en bankroll på minimum 30 gange din ante. For Video Poker bør du have 100+ gange din indsats pga. spillenes høje varians (Royal Flush-udbetalingen udgør en stor del af RTP'en). Og husk: <Link to="/responsible-gaming" className={linkClass}>ansvarligt spil</Link> kommer altid først. Sæt grænser for tid og penge, og stop når du når dem.
+            <strong>Bankroll management</strong> er lige så vigtig i poker som i andre casinospil. For casino poker anbefaler vi en bankroll på minimum 30 gange din ante. For Video Poker bør du have 100+ gange din indsats pga. spillenes høje varians (Royal Flush-udbetalingen udgør en stor del af RTP'en). Og husk: <Link to="/ansvarligt-spil" className={linkClass}>ansvarligt spil</Link> kommer altid først. Sæt grænser for tid og penge, og stop når du når dem.
           </p>
         </section>
 
