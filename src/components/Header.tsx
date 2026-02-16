@@ -29,6 +29,7 @@ export const Header = memo(function Header() {
   const [providersExpanded, setProvidersExpanded] = useState(false);
   const [paymentsExpanded, setPaymentsExpanded] = useState(false);
   const [reviewsExpanded, setReviewsExpanded] = useState(false);
+  const [forfattereExpanded, setForfattereExpanded] = useState(false);
   const [allReviewsExpanded, setAllReviewsExpanded] = useState(false);
   const [allReviewsDesktop, setAllReviewsDesktop] = useState(false);
   const [isDark, setIsDark] = useState(() => {
@@ -963,14 +964,28 @@ export const Header = memo(function Header() {
                   <Mail className="h-4 w-4" />
                   Kontakt
                 </Link>
-                <Link to="/forfatter/jonas" className="ml-6 flex items-center gap-2 py-2.5 text-sm text-muted-foreground transition-colors hover:text-primary" onClick={() => setMobileMenuOpen(false)}>
-                  <User className="h-4 w-4" />
-                  Jonas
-                </Link>
-                <Link to="/forfatter/kevin" className="ml-6 flex items-center gap-2 py-2.5 text-sm text-muted-foreground transition-colors hover:text-primary" onClick={() => setMobileMenuOpen(false)}>
-                  <User className="h-4 w-4" />
-                  Kevin
-                </Link>
+                <button
+                  onClick={() => setForfattereExpanded(!forfattereExpanded)}
+                  className="ml-6 flex w-full items-center justify-between py-2.5 pr-4 text-sm text-muted-foreground transition-colors hover:text-primary"
+                >
+                  <span className="flex items-center gap-2">
+                    <User className="h-4 w-4" />
+                    Forfattere
+                  </span>
+                  <ChevronDown className={`h-3.5 w-3.5 transition-transform duration-200 ${forfattereExpanded ? "rotate-180" : ""}`} />
+                </button>
+                {forfattereExpanded && (
+                  <div className="flex flex-col">
+                    <Link to="/forfatter/jonas" className="ml-12 flex items-center gap-2 py-2 text-sm text-muted-foreground transition-colors hover:text-primary" onClick={() => setMobileMenuOpen(false)}>
+                      <User className="h-4 w-4" />
+                      Jonas
+                    </Link>
+                    <Link to="/forfatter/kevin" className="ml-12 flex items-center gap-2 py-2 text-sm text-muted-foreground transition-colors hover:text-primary" onClick={() => setMobileMenuOpen(false)}>
+                      <User className="h-4 w-4" />
+                      Kevin
+                    </Link>
+                  </div>
+                )}
                 <button
                   onClick={() => setPaymentsExpanded(!paymentsExpanded)}
                   className="ml-6 flex w-full items-center justify-between py-2.5 pr-4 text-sm text-muted-foreground transition-colors hover:text-primary"
