@@ -152,7 +152,7 @@ export default function CommunityHub() {
 
           {/* Feature strip – breaks grid rhythm */}
           <Link
-            to="/casinoer/casino-bonus"
+            to="/velkomstbonus"
             className="group block mt-6 mb-6 rounded-xl p-6 transition-all duration-300 hover:scale-[1.005] hover:shadow-[0_0_30px_rgba(139,92,246,0.15)]"
             style={{
               border: "1px solid rgba(139,92,246,0.3)",
@@ -167,10 +167,10 @@ export default function CommunityHub() {
                 </div>
                 <div>
                   <h3 className="text-base font-bold text-foreground flex items-center gap-2">
-                    🔥 Mest populære bonus lige nu
+                    Søger du en indbetalingsbonus?
                   </h3>
                   <p className="text-sm text-muted-foreground">
-                    Se hvor danske spillere får de bedste velkomstbonusser.
+                    Tag en fordel mod casinoerne!
                   </p>
                 </div>
               </div>
@@ -181,7 +181,7 @@ export default function CommunityHub() {
                     "linear-gradient(135deg, hsl(260 70% 50%), hsl(220 80% 50%))",
                 }}
               >
-                Se Casino Bonus
+                Velkomstbonus
                 <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
               </Button>
             </div>
