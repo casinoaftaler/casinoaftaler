@@ -66,27 +66,23 @@ export function CasinoCardDisclaimer() {
   const { data: settings } = useSiteSettings();
   const disclaimerText = settings?.casino_card_disclaimer || DEFAULT_DISCLAIMER;
 
-  // Split by | separator to get segments
-  const segments = disclaimerText.split('|').map(s => s.trim()).filter(Boolean);
+  // Split into first line (pipe-separated tags) and remaining paragraphs
+  const parts = disclaimerText.split('\n').map(s => s.trim()).filter(Boolean);
   
-  // First 6 segments shown prominently
-  const visibleSegments = segments.slice(0, 6);
-  const remainingSegments = segments.slice(6);
+  // First part is the pipe-separated header line, rest is detailed terms
+  const headerLine = parts[0] || '';
+  const detailedText = parts.slice(1).join(' ');
   
-  // Check if there's additional text after the pipe-separated segments
-  const hasRemainingContent = remainingSegments.length > 0;
-
-  const visibleText = visibleSegments.join(' | ');
-  const remainingText = remainingSegments.join(' | ');
+  const hasRemainingContent = detailedText.length > 0;
 
   return (
     <div className="text-[10px] text-white/60 text-center mt-2">
-      {/* First 3 segments always visible */}
-      <div className="leading-relaxed">
-        {renderWithLinks(visibleText)}
-      </div>
+      {/* Header line with pipe separators - shown as a single flowing line */}
+      <p className="leading-relaxed">
+        {renderWithLinks(headerLine)}
+      </p>
       
-      {/* Expandable area for remaining content */}
+      {/* Expandable area for detailed terms */}
       {hasRemainingContent && (
         <>
           <div 
@@ -94,9 +90,9 @@ export function CasinoCardDisclaimer() {
               isExpanded ? 'max-h-[200px] opacity-100' : 'max-h-0 opacity-0'
             }`}
           >
-            <div className="leading-relaxed opacity-80 px-1 pt-1">
-              {renderWithLinks(remainingText)}
-            </div>
+            <p className="leading-relaxed opacity-80 px-1 pt-2">
+              {renderWithLinks(detailedText)}
+            </p>
           </div>
           
           <button
