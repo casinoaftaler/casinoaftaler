@@ -3,6 +3,7 @@ import { Badge } from "@/components/ui/badge";
 import { CommunityNav } from "./CommunityNav";
 import { CommunitySeoBridge } from "./CommunitySeoBridge";
 import { type LucideIcon } from "lucide-react";
+import communityHero from "@/assets/community/community-hero.jpg";
 
 interface CommunityPageLayoutProps {
   children: ReactNode;
@@ -10,9 +11,7 @@ interface CommunityPageLayoutProps {
   description: string;
   badgeText: string;
   badgeIcon: LucideIcon;
-  /** Set false to skip the hero (e.g. GameLibrary has its own) */
   showHero?: boolean;
-  /** Hide the SEO sidebar (e.g. on slot game pages that have their own layout) */
   hideSidebar?: boolean;
 }
 
@@ -28,16 +27,23 @@ export function CommunityPageLayout({
   return (
     <>
       {showHero && (
-        <section
-          className="relative overflow-hidden py-12 text-white md:py-20"
-          style={{
-            backgroundImage:
-              "linear-gradient(135deg, hsl(260 70% 25%), hsl(250 60% 20%) 40%, hsl(210 80% 25%))",
-            backgroundSize: "cover",
-            backgroundPosition: "center",
-          }}
-        >
-          <div className="container">
+        <section className="relative overflow-hidden text-white">
+          {/* Hero background image */}
+          <img
+            src={communityHero}
+            alt=""
+            className="absolute inset-0 w-full h-full object-cover"
+            aria-hidden="true"
+          />
+          {/* Gradient overlay */}
+          <div
+            className="absolute inset-0"
+            style={{
+              backgroundImage:
+                "linear-gradient(135deg, hsl(260 70% 25% / 0.85), hsl(250 60% 20% / 0.8) 40%, hsl(210 80% 25% / 0.85))",
+            }}
+          />
+          <div className="relative container py-12 md:py-20">
             <div className="mx-auto max-w-3xl text-center">
               <Badge variant="secondary" className="mb-4">
                 <BadgeIcon className="mr-1.5 h-3.5 w-3.5" />
