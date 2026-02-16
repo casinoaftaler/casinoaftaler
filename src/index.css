@@ -50,7 +50,7 @@ All colors MUST be HSL.
     --accent-foreground: 210 90% 98%;
 
     --destructive: 0 72% 50%;
-    --destructive-foreground: 0 85% 97%;
+    --destructive-foreground: 0 0% 100%;
 
     --border: 250 25% 88%;
     --input: 250 25% 88%;
@@ -136,7 +136,7 @@ All colors MUST be HSL.
     --accent-foreground: 220 20% 98%;
 
     --destructive: 0 84% 60%;
-    --destructive-foreground: 0 85% 97%;
+    --destructive-foreground: 0 0% 100%;
 
     --border: 250 20% 22%;
     --input: 250 20% 22%;
