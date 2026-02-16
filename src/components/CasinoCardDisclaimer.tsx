@@ -76,9 +76,9 @@ export function CasinoCardDisclaimer() {
   const hasRemainingContent = detailedText.length > 0;
 
   return (
-    <div className="text-[11px] text-white/70 text-center leading-[1.3]">
+    <div className="text-[11px] text-white/70 text-center leading-snug">
       {/* Header line with pipe separators - shown as a single flowing line */}
-      <p className="leading-[1.3]">
+      <p className="leading-tight">
         {renderWithLinks(headerLine)}
       </p>
       
@@ -90,14 +90,14 @@ export function CasinoCardDisclaimer() {
               isExpanded ? 'max-h-[200px] opacity-100' : 'max-h-0 opacity-0'
             }`}
           >
-            <p className="leading-[1.3] opacity-80 px-1 pt-1">
+            <p className="leading-tight opacity-80 px-1 pt-1">
               {renderWithLinks(detailedText)}
             </p>
           </div>
           
           <button
             onClick={() => setIsExpanded(!isExpanded)}
-            className="flex items-center justify-center gap-1 mx-auto mt-3 text-xs min-h-[44px] px-3 text-white/50 hover:text-white/70 transition-colors"
+            className="flex items-center justify-center gap-1 mx-auto mt-1 text-xs min-h-[44px] px-3 text-white/50 hover:text-white/70 transition-colors"
           >
             {isExpanded ? 'Vis mindre' : 'Vis vilkår'}
             <ChevronDown className={`h-3 w-3 transition-transform duration-200 ${isExpanded ? 'rotate-180' : ''}`} />

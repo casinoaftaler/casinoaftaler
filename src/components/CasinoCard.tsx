@@ -377,7 +377,7 @@ function FeaturedCard({
             </div>
 
             {/* Disclaimer Footer */}
-            <div className="mt-4 -mx-5 -mb-4 px-5 py-3 bg-black/15 rounded-b-2xl">
+            <div className="mt-6 pt-4 border-t border-white/[0.08]">
               <CasinoCardDisclaimer />
             </div>
 
