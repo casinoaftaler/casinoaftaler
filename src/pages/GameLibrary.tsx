@@ -6,13 +6,12 @@ import { CommunityConversionStrip } from "@/components/community/CommunityConver
 import { CommunityBrandBlock } from "@/components/community/CommunityBrandBlock";
 import { useAuth } from "@/hooks/useAuth";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
-import { useCasinos } from "@/hooks/useCasinos";
+
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { GameCard } from "@/components/games/GameCard";
 import { SlotLeaderboard } from "@/components/slots/SlotLeaderboard";
-import { CasinoCard } from "@/components/CasinoCard";
-import { Gamepad2, Clock, ArrowRight, Trophy, Flame } from "lucide-react";
+import { Gamepad2, Clock, ArrowRight, Flame } from "lucide-react";
 import slotIntroImage from "@/assets/slots/slot-intro-screen.jpg";
 import bookTitleFallback from "@/assets/slots/book-of-fedesvin-title.png";
 import riseTitleFallback from "@/assets/slots/rise/title-logo.png";
@@ -79,41 +78,9 @@ const GAMES: GameDef[] = [
   },
 ];
 
-// Map casino from DB format to CasinoCard format
-function mapCasino(casino: ReturnType<typeof useCasinos>["data"] extends (infer T)[] | undefined ? T : never) {
-  return {
-    id: casino.id,
-    name: casino.name,
-    slug: casino.slug,
-    rating: Number(casino.rating),
-    bonusTitle: casino.bonus_title,
-    bonusAmount: casino.bonus_amount,
-    bonusType: casino.bonus_type,
-    wageringRequirements: casino.wagering_requirements,
-    validity: casino.validity,
-    minDeposit: casino.min_deposit,
-    payoutTime: casino.payout_time,
-    freeSpins: casino.free_spins,
-    features: casino.features ?? [],
-    pros: casino.pros ?? [],
-    cons: casino.cons ?? [],
-    description: casino.description ?? "",
-    isRecommended: casino.is_recommended,
-    isHot: casino.is_hot,
-    logoUrl: casino.logo_url,
-    affiliateUrl: casino.affiliate_url,
-    gameProviders: casino.game_providers ?? [],
-  };
-}
-
 export default function GameLibrary() {
   const { data: siteSettings } = useSiteSettings();
   const { user, loading } = useAuth();
-  const { data: casinos } = useCasinos();
-  const [openCasinoId, setOpenCasinoId] = useState<string | null>(null);
-
-  // Get the first two active casinos for the sidebar banners
-  const sidebarCasinos = casinos?.filter(c => c.is_active).slice(0, 2) ?? [];
 
   // Show loading state only briefly - don't block the page
   if (loading) {
@@ -186,7 +153,7 @@ export default function GameLibrary() {
       </div>
 
       <div className="pb-10">
-        {/* Mobile/Tablet: Games FIRST, then leaderboard preview */}
+        {/* Mobile/Tablet */}
         <div className="xl:hidden container">
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 max-w-[600px] mx-auto mb-8">
             {GAMES.map((game, index) => (
@@ -210,66 +177,38 @@ export default function GameLibrary() {
             ))}
           </div>
           
-          {/* Mini leaderboard preview on mobile */}
           <div className="max-w-md mx-auto mb-8">
             <SlotLeaderboard />
           </div>
-
-          <div className="space-y-4 max-w-md mx-auto">
-            {sidebarCasinos.map((casino, index) => (
-              <CasinoCard
-                key={casino.id}
-                casino={mapCasino(casino)}
-                rank={index + 1}
-                open={openCasinoId === casino.id}
-                onOpenChange={(open) => setOpenCasinoId(open ? casino.id : null)}
-              />
-            ))}
-          </div>
         </div>
 
-        {/* Desktop: Full-width layout */}
-        <div className="hidden xl:flex xl:items-start w-full">
-          <div className="flex-shrink-0 w-[calc(50vw-480px-24px)] min-w-[340px] 2xl:min-w-[400px] flex justify-end pr-6">
-            <aside className="w-80 2xl:w-96 space-y-4">
-              {sidebarCasinos.map((casino, index) => (
-                <CasinoCard
-                  key={casino.id}
-                  casino={mapCasino(casino)}
-                  rank={index + 1}
-                  open={openCasinoId === casino.id}
-                  onOpenChange={(open) => setOpenCasinoId(open ? casino.id : null)}
-                />
-              ))}
-            </aside>
-          </div>
-
-          <div className="flex-shrink-0 w-[960px] px-4">
-            <div className="grid grid-cols-2 gap-6">
-              {GAMES.map((game, index) => (
-                <div
-                  key={game.id}
-                  className="animate-fade-in"
-                  style={{
-                    animationDelay: `${index * 150}ms`,
-                    animationFillMode: "both",
-                  }}
-                >
-                  <GameCard
-                    title={game.title}
-                    description={game.description}
-                    image={game.image}
-                    href={game.href}
-                    status={game.status}
-                    badge={game.badge}
-                  />
-                </div>
-              ))}
+        {/* Desktop: Centered game grid with leaderboard on right */}
+        <div className="hidden xl:block container">
+          <div className="flex justify-center gap-8">
+            <div className="w-[700px]">
+              <div className="grid grid-cols-2 gap-6">
+                {GAMES.map((game, index) => (
+                  <div
+                    key={game.id}
+                    className="animate-fade-in"
+                    style={{
+                      animationDelay: `${index * 150}ms`,
+                      animationFillMode: "both",
+                    }}
+                  >
+                    <GameCard
+                      title={game.title}
+                      description={game.description}
+                      image={game.image}
+                      href={game.href}
+                      status={game.status}
+                      badge={game.badge}
+                    />
+                  </div>
+                ))}
+              </div>
             </div>
-          </div>
-
-          <div className="flex-shrink-0 w-[calc(50vw-480px-24px)] min-w-[340px] 2xl:min-w-[400px] flex justify-start pl-6">
-            <aside className="w-80 2xl:w-96">
+            <aside className="w-80 2xl:w-96 shrink-0">
               <SlotLeaderboard />
             </aside>
           </div>
