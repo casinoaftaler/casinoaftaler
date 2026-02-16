@@ -90,16 +90,7 @@
   animation: border-glow-loop 9s cubic-bezier(0.4, 0, 0.2, 1) infinite;
 }
 
-/* 8. Active nav neon underline */
-@keyframes neon-underline {
-  0%, 100% { opacity: 0.6; box-shadow: 0 0 4px hsl(260 60% 50% / 0.4); }
-  50% { opacity: 1; box-shadow: 0 0 8px hsl(260 60% 50% / 0.6); }
-}
-
-/* 9. Card hover lift — applied via group-hover in Tailwind */
-/* Handled inline in component */
-
-/* 10. Button arrow shift on hover */
+/* 8. Button arrow shift on hover */
 .btn-arrow-shift {
   transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1);
 }
@@ -108,7 +99,7 @@
   transform: translateX(3px);
 }
 
-/* 11. Hero particle dots */
+/* 9. Hero particle dots */
 .hero-particle {
   position: absolute;
   width: 3px;
@@ -126,3 +117,57 @@
 .hero-particle:nth-child(6) { left: 25%; bottom: 40%; animation: float-particle-2 7s ease-in-out 4s infinite; }
 .hero-particle:nth-child(7) { left: 65%; bottom: 10%; animation: float-particle 13s ease-in-out 2.5s infinite; }
 .hero-particle:nth-child(8) { left: 45%; bottom: 45%; animation: float-particle-2 8.5s ease-in-out 1.5s infinite; }
+
+/* 10. CTA shine sweep */
+@keyframes cta-shine {
+  0% { transform: translateX(-100%) skewX(-15deg); }
+  100% { transform: translateX(300%) skewX(-15deg); }
+}
+
+.cta-shine-wrap {
+  position: relative;
+  overflow: hidden;
+}
+
+.cta-shine-wrap::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 30%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.08), transparent);
+  animation: cta-shine 6s ease-in-out infinite;
+  pointer-events: none;
+}
+
+/* 11. Card inner glow + top highlight */
+.card-depth {
+  box-shadow: 
+    0 4px 30px rgba(0,0,0,0.3),
+    inset 0 -1px 0 rgba(251,191,36,0.05),
+    inset 0 1px 0 rgba(255,255,255,0.04);
+}
+
+.card-depth:hover {
+  box-shadow: 
+    0 8px 40px rgba(251,191,36,0.12),
+    0 0 20px rgba(139,92,246,0.08),
+    inset 0 -2px 0 rgba(251,191,36,0.08),
+    inset 0 1px 0 rgba(255,255,255,0.06);
+}
+
+/* 12. CTA icon hover rotation */
+.cta-icon-rotate {
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.group:hover .cta-icon-rotate {
+  transform: rotate(8deg);
+}
+
+/* 13. Parallax hero background */
+.hero-parallax {
+  will-change: transform;
+  transition: transform 0.1s linear;
+}
