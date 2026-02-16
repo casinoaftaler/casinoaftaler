@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { SEO } from "@/components/SEO";
 import { CommunityPageLayout } from "@/components/community/CommunityPageLayout";
 import { CommunityBrandBlock } from "@/components/community/CommunityBrandBlock";
+import { EnergySweep } from "@/components/community/EnergySweep";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -21,6 +22,7 @@ import turneringerImg from "@/assets/community/turneringer-card.jpg";
 import highlightsImg from "@/assets/community/highlights-card.jpg";
 import rewardsImg from "@/assets/community/rewards-card.jpg";
 import butikImg from "@/assets/community/butik-card.jpg";
+import "@/styles/energy-sweep.css";
 
 const SECTIONS = [
   {
@@ -110,124 +112,130 @@ export default function CommunityHub() {
             </Card>
           )}
 
-          {/* First row – 3 cards */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
-            {SECTIONS.slice(0, 3).map((section) => {
-              const Icon = section.icon;
-              return (
-                <Link key={section.href} to={section.href} className="group">
-                  <Card className="h-full overflow-hidden transition-all duration-200 hover:shadow-lg hover:border-primary/30 group-hover:-translate-y-0.5">
-                    <div className="relative aspect-[16/9] overflow-hidden">
-                      <img
-                        src={section.image}
-                        alt={section.title}
-                        className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
-                        loading="lazy"
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-card/80 via-transparent to-transparent" />
-                      <Badge
-                        variant="outline"
-                        className={`absolute top-3 left-3 text-xs ${section.badgeColor} backdrop-blur-sm`}
-                      >
-                        {section.badge}
-                      </Badge>
-                    </div>
-                    <CardContent className="p-5">
-                      <h3 className="font-semibold text-lg mb-1.5 group-hover:text-primary transition-colors flex items-center gap-2">
-                        <Icon className="h-5 w-5 text-muted-foreground" />
-                        {section.title}
-                      </h3>
-                      <p className="text-sm text-muted-foreground leading-relaxed mb-3">
-                        {section.description}
-                      </p>
-                      <div className="flex items-center text-sm font-medium text-primary">
-                        Gå til {section.title.toLowerCase()}
-                        <ArrowRight className="h-4 w-4 ml-1 transition-transform group-hover:translate-x-1" />
+          {/* First row – 3 cards with energy sweep */}
+          <EnergySweep>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
+              {SECTIONS.slice(0, 3).map((section) => {
+                const Icon = section.icon;
+                return (
+                  <Link key={section.href} to={section.href} className="group">
+                    <Card className="h-full overflow-hidden transition-all duration-200 hover:shadow-lg hover:border-primary/30 group-hover:-translate-y-0.5">
+                      <div className="relative aspect-[16/9] overflow-hidden">
+                        <img
+                          src={section.image}
+                          alt={section.title}
+                          className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
+                          loading="lazy"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-card/80 via-transparent to-transparent" />
+                        <Badge
+                          variant="outline"
+                          className={`absolute top-3 left-3 text-xs ${section.badgeColor} backdrop-blur-sm`}
+                        >
+                          {section.badge}
+                        </Badge>
                       </div>
-                    </CardContent>
-                  </Card>
-                </Link>
-              );
-            })}
-          </div>
-
-          {/* Feature strip */}
-          <Link
-            to="/velkomstbonus"
-            className="group block mt-6 mb-6 rounded-xl p-6 transition-all duration-300 hover:scale-[1.005] hover:shadow-[0_0_30px_rgba(139,92,246,0.15)]"
-            style={{
-              border: "1px solid rgba(139,92,246,0.3)",
-              background:
-                "linear-gradient(135deg, hsl(260 30% 16%) 0%, hsl(220 30% 16%) 100%)",
-            }}
-          >
-            <div className="flex flex-col sm:flex-row items-center gap-4">
-              <div className="flex items-center gap-3 flex-1">
-                <div className="flex items-center justify-center h-10 w-10 rounded-lg shrink-0" style={{ background: "linear-gradient(135deg, hsl(260 70% 50%), hsl(220 80% 50%))" }}>
-                  <Gift className="h-5 w-5 text-white" />
-                </div>
-                <div>
-                  <h3 className="text-base font-bold text-foreground flex items-center gap-2">
-                    🔥 Klar til en seriøs velkomstbonus?
-                  </h3>
-                  <p className="text-sm text-muted-foreground">
-                    Snup de bedste indbetalingsbonusser og kom stærkt fra start.
-                  </p>
-                </div>
-              </div>
-              <Button
-                className="gap-2 shrink-0 font-semibold shadow-lg"
-                style={{
-                  background:
-                    "linear-gradient(135deg, hsl(260 70% 50%), hsl(220 80% 50%))",
-                }}
-              >
-                Velkomstbonus
-                <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
-              </Button>
+                      <CardContent className="p-5">
+                        <h3 className="font-semibold text-lg mb-1.5 group-hover:text-primary transition-colors flex items-center gap-2">
+                          <Icon className="h-5 w-5 text-muted-foreground" />
+                          {section.title}
+                        </h3>
+                        <p className="text-sm text-muted-foreground leading-relaxed mb-3">
+                          {section.description}
+                        </p>
+                        <div className="flex items-center text-sm font-medium text-primary">
+                          Gå til {section.title.toLowerCase()}
+                          <ArrowRight className="h-4 w-4 ml-1 transition-transform group-hover:translate-x-1" />
+                        </div>
+                      </CardContent>
+                    </Card>
+                  </Link>
+                );
+              })}
             </div>
-          </Link>
+          </EnergySweep>
 
-          {/* Second row */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
-            {SECTIONS.slice(3).map((section) => {
-              const Icon = section.icon;
-              return (
-                <Link key={section.href} to={section.href} className="group">
-                  <Card className="h-full overflow-hidden transition-all duration-200 hover:shadow-lg hover:border-primary/30 group-hover:-translate-y-0.5">
-                    <div className="relative aspect-[16/9] overflow-hidden">
-                      <img
-                        src={section.image}
-                        alt={section.title}
-                        className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
-                        loading="lazy"
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-card/80 via-transparent to-transparent" />
-                      <Badge
-                        variant="outline"
-                        className={`absolute top-3 left-3 text-xs ${section.badgeColor} backdrop-blur-sm`}
-                      >
-                        {section.badge}
-                      </Badge>
-                    </div>
-                    <CardContent className="p-5">
-                      <h3 className="font-semibold text-lg mb-1.5 group-hover:text-primary transition-colors flex items-center gap-2">
-                        <Icon className="h-5 w-5 text-muted-foreground" />
-                        {section.title}
-                      </h3>
-                      <p className="text-sm text-muted-foreground leading-relaxed mb-3">
-                        {section.description}
-                      </p>
-                      <div className="flex items-center text-sm font-medium text-primary">
-                        Gå til {section.title.toLowerCase()}
-                        <ArrowRight className="h-4 w-4 ml-1 transition-transform group-hover:translate-x-1" />
+          {/* Feature strip with energy sweep */}
+          <EnergySweep>
+            <Link
+              to="/velkomstbonus"
+              className="group block mt-6 mb-6 rounded-xl p-6 transition-all duration-300 hover:scale-[1.005] hover:shadow-[0_0_30px_rgba(139,92,246,0.15)]"
+              style={{
+                border: "1px solid rgba(139,92,246,0.3)",
+                background:
+                  "linear-gradient(135deg, hsl(260 30% 16%) 0%, hsl(220 30% 16%) 100%)",
+              }}
+            >
+              <div className="flex flex-col sm:flex-row items-center gap-4">
+                <div className="flex items-center gap-3 flex-1">
+                  <div className="flex items-center justify-center h-10 w-10 rounded-lg shrink-0" style={{ background: "linear-gradient(135deg, hsl(260 70% 50%), hsl(220 80% 50%))" }}>
+                    <Gift className="h-5 w-5 text-white" />
+                  </div>
+                  <div>
+                    <h3 className="text-base font-bold text-foreground flex items-center gap-2">
+                      🔥 Klar til en seriøs velkomstbonus?
+                    </h3>
+                    <p className="text-sm text-muted-foreground">
+                      Snup de bedste indbetalingsbonusser og kom stærkt fra start.
+                    </p>
+                  </div>
+                </div>
+                <Button
+                  className="gap-2 shrink-0 font-semibold shadow-lg"
+                  style={{
+                    background:
+                      "linear-gradient(135deg, hsl(260 70% 50%), hsl(220 80% 50%))",
+                  }}
+                >
+                  Velkomstbonus
+                  <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+                </Button>
+              </div>
+            </Link>
+          </EnergySweep>
+
+          {/* Second row with energy sweep */}
+          <EnergySweep>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
+              {SECTIONS.slice(3).map((section) => {
+                const Icon = section.icon;
+                return (
+                  <Link key={section.href} to={section.href} className="group">
+                    <Card className="h-full overflow-hidden transition-all duration-200 hover:shadow-lg hover:border-primary/30 group-hover:-translate-y-0.5">
+                      <div className="relative aspect-[16/9] overflow-hidden">
+                        <img
+                          src={section.image}
+                          alt={section.title}
+                          className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
+                          loading="lazy"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-card/80 via-transparent to-transparent" />
+                        <Badge
+                          variant="outline"
+                          className={`absolute top-3 left-3 text-xs ${section.badgeColor} backdrop-blur-sm`}
+                        >
+                          {section.badge}
+                        </Badge>
                       </div>
-                    </CardContent>
-                  </Card>
-                </Link>
-              );
-            })}
-          </div>
+                      <CardContent className="p-5">
+                        <h3 className="font-semibold text-lg mb-1.5 group-hover:text-primary transition-colors flex items-center gap-2">
+                          <Icon className="h-5 w-5 text-muted-foreground" />
+                          {section.title}
+                        </h3>
+                        <p className="text-sm text-muted-foreground leading-relaxed mb-3">
+                          {section.description}
+                        </p>
+                        <div className="flex items-center text-sm font-medium text-primary">
+                          Gå til {section.title.toLowerCase()}
+                          <ArrowRight className="h-4 w-4 ml-1 transition-transform group-hover:translate-x-1" />
+                        </div>
+                      </CardContent>
+                    </Card>
+                  </Link>
+                );
+              })}
+            </div>
+          </EnergySweep>
 
           <CommunityBrandBlock />
         </div>
