@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { SEO } from "@/components/SEO";
 import jonasImage from "@/assets/jonas-forfatter.png";
+import kevinImage from "@/assets/kevin-forfatter.png";
 import { CommunityPageLayout } from "@/components/community/CommunityPageLayout";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -239,17 +240,24 @@ export default function CommunityHub() {
             }}
           >
             <div className="flex flex-col sm:flex-row items-center sm:items-start gap-6">
-              <img
-                src={jonasImage}
-                alt="Jonas – grundlægger af Casinoaftaler.dk"
-                className="h-24 w-24 rounded-full object-cover shrink-0 ring-2 ring-primary/30"
-              />
+              <div className="flex gap-3 shrink-0">
+                <img
+                  src={jonasImage}
+                  alt="Jonas – medstifter af Casinoaftaler.dk"
+                  className="h-32 w-32 rounded-full object-cover ring-2 ring-primary/30"
+                />
+                <img
+                  src={kevinImage}
+                  alt="Kevin – medstifter af Casinoaftaler.dk"
+                  className="h-32 w-32 rounded-full object-cover ring-2 ring-primary/30"
+                />
+              </div>
               <div className="text-center sm:text-left">
                 <h2 className="text-xl font-bold text-foreground mb-2">
                   🚀 Skabt af spillere – for spillere
                 </h2>
                 <p className="text-sm text-muted-foreground leading-relaxed mb-4">
-                  Community-universet på Casinoaftaler.dk er udviklet af Jonas, som også står bag vores analyser af nye casinoer og bonusser.
+                  Community-universet på Casinoaftaler.dk er udviklet af Jonas og Kevin, som også står bag vores analyser af nye casinoer og bonusser.
                   Målet er at samle gratis spil, turneringer og casinoindsigt ét sted – med fokus på gennemsigtighed og ansvarligt spil.
                 </p>
                 <div className="flex flex-wrap gap-x-4 gap-y-1 text-xs text-muted-foreground mb-4">
