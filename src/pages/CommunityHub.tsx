@@ -167,10 +167,10 @@ export default function CommunityHub() {
                 </div>
                 <div>
                   <h3 className="text-base font-bold text-foreground flex items-center gap-2">
-                    Søger du en indbetalingsbonus?
+                    🔥 Klar til en seriøs velkomstbonus?
                   </h3>
                   <p className="text-sm text-muted-foreground">
-                    Tag en fordel mod casinoerne!
+                    Snup de bedste indbetalingsbonusser og kom stærkt fra start.
                   </p>
                 </div>
               </div>
