@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { SEO } from "@/components/SEO";
-import { CommunityNav } from "@/components/community/CommunityNav";
 import { useAuth } from "@/hooks/useAuth";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
 import { useCasinos } from "@/hooks/useCasinos";
@@ -135,7 +134,6 @@ export default function GameLibrary() {
       />
       <PageBackground />
       <GameLibraryHero />
-      <CommunityNav />
       
       <div className="py-10">
         {/* Mobile/Tablet: Games FIRST, then banners */}

@@ -24,7 +24,6 @@ import { Link } from "react-router-dom";
 import { ArrowLeft, Gamepad2 } from "lucide-react";
 import defaultSlotBackground from "@/assets/slots/slot-background.jpg";
 import { LiveBigWins } from "@/components/slots/LiveBigWins";
-import { SlotGameSeoCta } from "@/components/community/SlotGameSeoCta";
 
 import slotCasinoCardBg from "@/assets/slots/slot-casino-card-bg.png";
 
@@ -228,14 +227,13 @@ export default function SlotMachine() {
       </div>
 
       {/* Mobile/Tablet: Side content below game - OUTSIDE scaled container for proper scrolling */}
-      <div className="xl:hidden flex flex-col items-center px-4 pb-6 pt-2">
+      <div className="xl:hidden flex justify-center px-4 pb-6 pt-2">
         <div className="w-full max-w-sm space-y-4">
           {topCasino && (
             <SlotPromoSlider casino={topCasino} backgroundImage={slotCasinoCardBg} />
           )}
           <SlotLeaderboard gameId="book-of-fedesvin" />
         </div>
-        <SlotGameSeoCta />
       </div>
     </div>
   );

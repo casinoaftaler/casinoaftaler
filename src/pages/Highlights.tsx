@@ -17,7 +17,34 @@ import { Video, Search, Sparkles, Plus, User, CalendarDays, BookOpen } from "luc
 import { useAuth } from "@/hooks/useAuth";
 import { Link, useSearchParams } from "react-router-dom";
 import { RelatedGuides } from "@/components/RelatedGuides";
-import { CommunityPageLayout } from "@/components/community/CommunityPageLayout";
+
+const description = "Se de bedste øjeblikke fra vores streams og community! Twitch clips, YouTube videoer og bruger-indsendte highlights samlet ét sted.";
+
+function HighlightsHero() {
+  return (
+    <section
+      className="relative overflow-hidden py-12 text-white md:py-20"
+      style={{
+        backgroundImage: "linear-gradient(135deg, hsl(260 70% 25%), hsl(250 60% 20%) 40%, hsl(210 80% 25%))",
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+      }}
+    >
+      <div className="container">
+        <div className="mx-auto max-w-3xl text-center">
+          <Badge variant="secondary" className="mb-4">
+            <Sparkles className="mr-1.5 h-3.5 w-3.5" />
+            Stream & Community
+          </Badge>
+          <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">Highlights</h1>
+          <p className="text-lg text-white/80">
+            {description}
+          </p>
+        </div>
+      </div>
+    </section>
+  );
+}
 
 function HighlightsTab() {
   const [activeCategory, setActiveCategory] = useState("all");
@@ -199,39 +226,35 @@ export default function Highlights() {
         description="Se de bedste øjeblikke fra vores streams og community. Twitch clips, YouTube videoer og bruger-indsendte highlights samlet ét sted."
         noindex
       />
-      <CommunityPageLayout
-        title="Highlights"
-        description="Se de bedste øjeblikke fra vores streams og community! Twitch clips, YouTube videoer og bruger-indsendte highlights samlet ét sted."
-        badgeText="Stream & Community"
-        badgeIcon={Sparkles}
-      >
-        <div className="py-8 md:py-12">
-          <Tabs defaultValue={defaultTab} className="w-full">
-            <div className="flex justify-center mb-8">
-              <TabsList>
-                <TabsTrigger value="highlights" className="gap-2">
-                  <Video className="h-4 w-4" />
-                  Highlights
-                </TabsTrigger>
-                <TabsTrigger value="community" className="gap-2">
-                  <Sparkles className="h-4 w-4" />
-                  Community Clips
-                </TabsTrigger>
-              </TabsList>
-            </div>
-            <TabsContent value="highlights">
-              <HighlightsTab />
-            </TabsContent>
-            <TabsContent value="community">
-              <CommunityTab />
-            </TabsContent>
-          </Tabs>
+      <HighlightsHero />
+      <div className="container py-8 md:py-12">
+        
 
-          <div className="mt-12">
-            <RelatedGuides currentPath="/highlights" />
+        <Tabs defaultValue={defaultTab} className="w-full">
+          <div className="flex justify-center mb-8">
+            <TabsList>
+              <TabsTrigger value="highlights" className="gap-2">
+                <Video className="h-4 w-4" />
+                Highlights
+              </TabsTrigger>
+              <TabsTrigger value="community" className="gap-2">
+                <Sparkles className="h-4 w-4" />
+                Community Clips
+              </TabsTrigger>
+            </TabsList>
           </div>
+          <TabsContent value="highlights">
+            <HighlightsTab />
+          </TabsContent>
+          <TabsContent value="community">
+            <CommunityTab />
+          </TabsContent>
+        </Tabs>
+
+        <div className="mt-12">
+          <RelatedGuides currentPath="/highlights" />
         </div>
-      </CommunityPageLayout>
+      </div>
     </>
   );
 }

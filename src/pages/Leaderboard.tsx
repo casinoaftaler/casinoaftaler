@@ -8,8 +8,6 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Trophy, Medal, Award, Crown, Sparkles, Gamepad2, ArrowRight, LogIn, Clock, Timer, Gift, User, CalendarDays, BookOpen } from "lucide-react";
 import { RelatedGuides } from "@/components/RelatedGuides";
-import { CommunityNav } from "@/components/community/CommunityNav";
-import { CommunitySeoBridge } from "@/components/community/CommunitySeoBridge";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
 import { UserProfileLink } from "@/components/UserProfileLink";
 import { useAuth } from "@/hooks/useAuth";
@@ -413,15 +411,8 @@ export default function Leaderboard() {
         </div>
       </section>
 
-      <CommunityNav />
-
-      <div className="relative">
-        <div className="hidden lg:block absolute left-4 xl:left-8 top-8 w-[260px] z-10">
-          <div className="sticky top-24">
-            <CommunitySeoBridge />
-          </div>
-        </div>
-        <div className="container py-8 md:py-12">
+      <div className="container py-8 md:py-12">
+        
 
         {tournamentsLoading ? (
           <div className="max-w-5xl mx-auto space-y-4">
@@ -435,7 +426,6 @@ export default function Leaderboard() {
                 {active.map((t) => <TournamentLeaderboardCard key={t.id} tournament={t} />)}
               </div>
             )}
-
 
             {/* Upcoming tournaments */}
             {upcoming.length > 0 && (
@@ -474,7 +464,6 @@ export default function Leaderboard() {
           <RelatedGuides currentPath="/community/leaderboard" />
         </div>
       </div>
-    </div>
     </>
   );
 }
