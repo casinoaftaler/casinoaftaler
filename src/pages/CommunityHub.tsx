@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { SEO } from "@/components/SEO";
 import { CommunityPageLayout } from "@/components/community/CommunityPageLayout";
 import { CommunityBrandBlock } from "@/components/community/CommunityBrandBlock";
+import { CommunityJoinCTA } from "@/components/community/CommunityJoinCTA";
 import { EnergySweep } from "@/components/community/EnergySweep";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -95,21 +96,9 @@ export default function CommunityHub() {
       >
         <div className="py-8 md:py-12">
           {!user && (
-            <Card className="mb-8 border-primary/20 bg-gradient-to-r from-primary/5 to-transparent">
-              <CardContent className="flex flex-col sm:flex-row items-center gap-4 py-6">
-                <div className="flex-1">
-                  <h2 className="text-lg font-semibold mb-1">
-                    Bliv en del af vores community
-                  </h2>
-                  <p className="text-sm text-muted-foreground">
-                    Log ind for at spille gratis slots, deltage i turneringer og optjene rewards.
-                  </p>
-                </div>
-                <Button asChild>
-                  <Link to="/auth">Log ind / Opret konto</Link>
-                </Button>
-              </CardContent>
-            </Card>
+            <div className="mb-8">
+              <CommunityJoinCTA />
+            </div>
           )}
 
           {/* First row – 3 cards with energy sweep */}
