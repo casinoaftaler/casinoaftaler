@@ -1,5 +1,3 @@
-import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
-
 const filters = [
   { id: "all", label: "Alle Bonusser" },
   { id: "no-sticky", label: "No-Sticky" },
@@ -15,18 +13,24 @@ interface FilterTabsProps {
 
 export function FilterTabs({ activeFilter, onFilterChange }: FilterTabsProps) {
   return (
-    <Tabs value={activeFilter} onValueChange={onFilterChange} className="w-full">
-      <TabsList className="flex h-auto flex-wrap justify-start gap-2 bg-transparent p-0">
-        {filters.map((filter) => (
-          <TabsTrigger
-            key={filter.id}
-            value={filter.id}
-            className="rounded-full border border-border bg-card px-4 py-2 data-[state=active]:border-primary data-[state=active]:bg-primary data-[state=active]:text-primary-foreground"
-          >
-            {filter.label}
-          </TabsTrigger>
-        ))}
-      </TabsList>
-    </Tabs>
+    <div className="flex h-auto flex-wrap justify-start gap-2" role="tablist" aria-label="Filtrer casinoer">
+      {filters.map((filter) => (
+        <button
+          key={filter.id}
+          role="tab"
+          aria-selected={activeFilter === filter.id}
+          id={`filter-tab-${filter.id}`}
+          aria-controls={`filter-panel-${filter.id}`}
+          onClick={() => onFilterChange(filter.id)}
+          className={`rounded-full border px-4 py-2 text-sm font-medium transition-colors ${
+            activeFilter === filter.id
+              ? "border-primary bg-primary text-primary-foreground"
+              : "border-border bg-card text-foreground hover:border-primary/50"
+          }`}
+        >
+          {filter.label}
+        </button>
+      ))}
+    </div>
   );
 }
