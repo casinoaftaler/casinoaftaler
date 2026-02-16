@@ -61,7 +61,19 @@ export function AuthorMetaBar({ author, date, readTime, showFactCheck = true }: 
             <CheckCircle className="h-3.5 w-3.5" />
             Faktatjekket
           </Badge>
-          {author === "redaktionen" || author === "kevin" ? (
+          {author === "jonas" ? (
+            <Link to="/forfatter/kevin" className="flex items-center gap-1.5 group">
+              <span>Af:</span>
+              <img
+                src={kevinImage}
+                alt="Kevin – Casino-streamer & IT Medansvarlig"
+                className="h-6 w-6 rounded-full object-cover object-top ring-1 ring-border group-hover:ring-primary transition-colors"
+              />
+              <span className="font-medium text-foreground group-hover:text-primary transition-colors">
+                Kevin
+              </span>
+            </Link>
+          ) : author === "kevin" || author === "redaktionen" ? (
             <Link to="/forfatter/jonas" className="flex items-center gap-1.5 group">
               <span>Af:</span>
               <img
@@ -73,11 +85,7 @@ export function AuthorMetaBar({ author, date, readTime, showFactCheck = true }: 
                 Jonas
               </span>
             </Link>
-          ) : (
-            <span>
-              Af: <span className="font-medium text-foreground">Casinoaftaler Redaktionen</span>
-            </span>
-          )}
+          ) : null}
         </div>
       )}
     </div>
