@@ -118,7 +118,7 @@ export function SidebarLeaderboard() {
 
       <div className="flex items-center gap-2 mb-1">
         <Trophy className="h-4 w-4 text-amber-400" />
-        <h3 className="text-sm font-bold text-foreground">Leaderboard</h3>
+        <h3 className="text-sm font-bold text-foreground">Spillehal - Leaderboard</h3>
       </div>
       <p className="text-[11px] text-muted-foreground mb-3">Top 5 spillere</p>
 
