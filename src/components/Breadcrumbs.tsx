@@ -125,7 +125,7 @@ export function Breadcrumbs() {
   const pathname = location.pathname;
 
   // Don't show breadcrumbs on home page or community/slot pages
-  if (pathname === "/" || pathname.startsWith("/community/") || pathname.startsWith("/casino/") || pathname.startsWith("/auth") || pathname.startsWith("/admin") || pathname.startsWith("/profil") || pathname.startsWith("/u/")) {
+  if (pathname === "/" || pathname === "/community" || pathname.startsWith("/community/") || pathname.startsWith("/casino/") || pathname.startsWith("/auth") || pathname.startsWith("/admin") || pathname.startsWith("/profil") || pathname.startsWith("/u/")) {
     return null;
   }
 
