@@ -11,6 +11,7 @@ interface FeaturedSlotPanelProps {
   badge?: string;
   priority?: "primary" | "secondary";
   showScrollHint?: boolean;
+  imagePosition?: string;
 }
 
 export function FeaturedSlotPanel({
@@ -21,6 +22,7 @@ export function FeaturedSlotPanel({
   badge,
   priority = "primary",
   showScrollHint = false,
+  imagePosition = "center",
 }: FeaturedSlotPanelProps) {
   return (
     <div className="relative">
@@ -35,7 +37,8 @@ export function FeaturedSlotPanel({
             width={1200}
             height={675}
             loading="lazy"
-            className="h-full w-full object-cover object-top transition-transform duration-700 ease-out group-hover:scale-[1.02]"
+            className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.02]"
+            style={{ objectPosition: imagePosition }}
           />
 
           {/* Stronger bottom gradient for text readability */}
