@@ -11,6 +11,7 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
 import { RelatedGuides } from "@/components/RelatedGuides";
+import { CommunityNav } from "@/components/community/CommunityNav";
 
 function ShopHero() {
   const { data: siteSettings } = useSiteSettings();
@@ -268,6 +269,7 @@ export default function Shop() {
         noindex
       />
       <ShopHero />
+      <CommunityNav />
       <div className="container py-8 md:py-12">
         {/* Meta info bar */}
         <div className="mb-8 flex flex-wrap items-center gap-x-6 gap-y-2 text-sm text-muted-foreground">

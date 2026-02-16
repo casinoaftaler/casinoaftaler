@@ -10,6 +10,7 @@ import { SlotRequestForm } from "@/components/SlotRequestForm";
 import { useAuth } from "@/hooks/useAuth";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
 import { RelatedGuides } from "@/components/RelatedGuides";
+import { CommunityNav } from "@/components/community/CommunityNav";
 
 export default function RewardsProgram() {
   const { user, loading } = useAuth();
@@ -50,6 +51,8 @@ export default function RewardsProgram() {
           </div>
         </div>
       </section>
+
+      <CommunityNav />
 
       <div className="container py-8 md:py-12">
         <AuthorMetaBar author="jonas" date="15-02-2026" readTime="3 Min." showFactCheck={false} />
