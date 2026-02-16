@@ -45,6 +45,7 @@ interface UserWithSpins {
   date: string;
   spin_record_id: string | null;
   is_banned: boolean;
+  spin_reel_extra_spins: number;
 }
 
 type SortField = "name" | "credits";
@@ -53,6 +54,7 @@ type SortDir = "asc" | "desc";
 export function SpinManagementSection() {
   const [searchTerm, setSearchTerm] = useState("");
   const [spinAmounts, setSpinAmounts] = useState<Record<string, number>>({});
+  const [reelSpinAmounts, setReelSpinAmounts] = useState<Record<string, number>>({});
   const [bulkSpinAmount, setBulkSpinAmount] = useState(10);
   const [sortField, setSortField] = useState<SortField>("credits");
   const [sortDir, setSortDir] = useState<SortDir>("desc");
@@ -72,7 +74,7 @@ export function SpinManagementSection() {
       const [profilesRes, spinsRes, bansRes] = await Promise.all([
         supabase
           .from("profiles")
-          .select("user_id, display_name, twitch_username, avatar_url")
+          .select("user_id, display_name, twitch_username, avatar_url, spin_reel_extra_spins")
           .not("twitch_id", "is", null),
         supabase.from("slot_spins").select("*").eq("date", today),
         supabase.from("user_bans").select("user_id"),
@@ -98,6 +100,7 @@ export function SpinManagementSection() {
           date: today,
           spin_record_id: spinRecord?.id ?? null,
           is_banned: bannedIds.has(profile.user_id),
+          spin_reel_extra_spins: (profile as any).spin_reel_extra_spins ?? 0,
         };
       });
     },
@@ -264,12 +267,42 @@ export function SpinManagementSection() {
     mutationFn: async (userId: string) => {
       const { error } = await supabase
         .from("profiles")
-        .update({ last_spin_at: null })
+        .update({ last_spin_at: null } as any)
         .eq("user_id", userId);
       if (error) throw error;
     },
     onSuccess: () => {
       toast.success("Spin the Reel cooldown nulstillet");
+      queryClient.invalidateQueries({ queryKey: ["admin-user-spins"] });
+    },
+    onError: (error: Error) => {
+      toast.error(`Fejl: ${error.message}`);
+    },
+  });
+
+  // Grant Spin the Reel extra spins
+  const grantReelSpins = useMutation({
+    mutationFn: async ({ userId, amount }: { userId: string; amount: number }) => {
+      // Get current value first
+      const { data: profile, error: fetchError } = await supabase
+        .from("profiles")
+        .select("spin_reel_extra_spins")
+        .eq("user_id", userId)
+        .single();
+      if (fetchError) throw fetchError;
+      
+      const current = (profile as any)?.spin_reel_extra_spins ?? 0;
+      const newValue = Math.max(0, current + amount);
+      
+      const { error } = await supabase
+        .from("profiles")
+        .update({ spin_reel_extra_spins: newValue } as any)
+        .eq("user_id", userId);
+      if (error) throw error;
+      return { newValue };
+    },
+    onSuccess: (data) => {
+      toast.success(`Spin the Reel spins opdateret til ${data.newValue}`);
       queryClient.invalidateQueries({ queryKey: ["admin-user-spins"] });
     },
     onError: (error: Error) => {
@@ -540,16 +573,39 @@ export function SpinManagementSection() {
                       </span>
                     </div>
 
-                    {/* Reset Spin the Reel cooldown */}
-                    <Button
-                      size="icon"
-                      variant="outline"
-                      onClick={() => resetSpinCooldown.mutate(user.user_id)}
-                      disabled={resetSpinCooldown.isPending}
-                      title="Reset Spin the Reel cooldown"
-                    >
-                      <RotateCw className="h-4 w-4" />
-                    </Button>
+                    {/* Spin the Reel spins */}
+                    <div className="flex items-center gap-1 border-l border-border pl-2">
+                      <Input
+                        type="number"
+                        min="1"
+                        value={reelSpinAmounts[user.user_id] ?? 1}
+                        onChange={(e) =>
+                          setReelSpinAmounts((prev) => ({
+                            ...prev,
+                            [user.user_id]: parseInt(e.target.value) || 1,
+                          }))
+                        }
+                        className="w-16 text-center"
+                        title="Antal Spin the Reel spins"
+                      />
+                      <Button
+                        size="icon"
+                        variant="outline"
+                        onClick={() =>
+                          grantReelSpins.mutate({
+                            userId: user.user_id,
+                            amount: reelSpinAmounts[user.user_id] ?? 1,
+                          })
+                        }
+                        disabled={grantReelSpins.isPending}
+                        title="Giv Spin the Reel spins"
+                      >
+                        <RotateCw className="h-4 w-4" />
+                      </Button>
+                      <span className="text-xs text-muted-foreground min-w-[40px] text-right">
+                        {user.spin_reel_extra_spins} 🎡
+                      </span>
+                    </div>
 
                     {/* Ban/Unban button */}
                     {user.is_banned ? (

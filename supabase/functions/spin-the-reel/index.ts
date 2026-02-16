@@ -76,7 +76,7 @@ Deno.serve(async (req) => {
     // Check user has twitch_id
     const { data: profile, error: profileError } = await serviceClient
       .from("profiles")
-      .select("twitch_id, twitch_username, last_spin_at")
+      .select("twitch_id, twitch_username, last_spin_at, spin_reel_extra_spins")
       .eq("user_id", userId)
       .maybeSingle();
 
@@ -95,9 +95,10 @@ Deno.serve(async (req) => {
     }
 
     const isUnlimitedUser = profile.twitch_username?.toLowerCase() === "fedesvinsejer";
+    const hasExtraSpins = (profile as any).spin_reel_extra_spins > 0;
 
-    // Cooldown check (skip for unlimited users)
-    if (!isUnlimitedUser && profile.last_spin_at) {
+    // Cooldown check (skip for unlimited users and users with extra spins)
+    if (!isUnlimitedUser && !hasExtraSpins && profile.last_spin_at) {
       const lastSpin = new Date(profile.last_spin_at);
       const cooldownEnd = new Date(lastSpin.getTime() + COOLDOWN_HOURS * 60 * 60 * 1000);
       const now = new Date();
@@ -138,8 +139,14 @@ Deno.serve(async (req) => {
     // Generate result
     const result = getSecureRandomSegment();
 
-    // Update last_spin_at (skip for unlimited users to avoid cooldown)
-    if (!isUnlimitedUser) {
+    // If user has extra spins, decrement instead of setting cooldown
+    if (hasExtraSpins) {
+      await serviceClient
+        .from("profiles")
+        .update({ spin_reel_extra_spins: (profile as any).spin_reel_extra_spins - 1 })
+        .eq("user_id", userId);
+    } else if (!isUnlimitedUser) {
+      // Update last_spin_at for normal cooldown
       await serviceClient
         .from("profiles")
         .update({ last_spin_at: new Date().toISOString() })
