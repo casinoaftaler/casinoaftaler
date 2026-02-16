@@ -11,6 +11,7 @@ import { useAuth } from "@/hooks/useAuth";
 import { FeaturedSlotPanel } from "@/components/games/FeaturedSlotPanel";
 import { GameCard } from "@/components/games/GameCard";
 import { Gamepad2, Clock } from "lucide-react";
+import spillehalHero from "@/assets/community/spillehal-hero.jpg";
 import slotIntroImage from "@/assets/slots/slot-intro-screen.jpg";
 import riseIntroImage from "@/assets/slots/rise/intro-screen.jpg";
 import leFedesvinImage from "@/assets/slots/le-fedesvin-preview.jpg";
@@ -81,76 +82,74 @@ export default function GameLibrary() {
       <GameLibraryHero />
       <CommunityNav />
 
-      {/* Main content with sidebar */}
-      <div className="container relative py-6">
-        <div className="flex justify-center">
-          {/* Main content – centered */}
-          <div className="w-full max-w-4xl space-y-8 md:space-y-10">
-            {/* Featured Slots */}
-            {FEATURED_SLOTS.map((slot, index) => (
-              <div
-                key={slot.id}
-                className="animate-fade-in"
-                style={{
-                  animationDelay: `${index * 200}ms`,
-                  animationFillMode: "both",
-                }}
-              >
-                <FeaturedSlotPanel
-                  title={slot.title}
-                  description={slot.description}
-                  image={slot.image}
-                  href={slot.href}
-                  badge={slot.badge}
-                  priority={slot.priority}
-                  showScrollHint={index === 0}
-                />
-              </div>
-            ))}
+      {/* Main content with sidebar using same pattern as CommunityPageLayout */}
+      <div className="container relative">
+        {/* Sidebar - positioned to the left, outside content flow */}
+        <div className="hidden xl:block absolute right-full top-0 mr-6 w-[260px] pt-8 md:pt-12">
+          <div className="sticky top-24 h-fit flex flex-col gap-4">
+            <CommunitySeoBridge />
+            <CommunityConversionCard />
+          </div>
+        </div>
 
-            {/* More games */}
-            {MORE_SLOTS.length > 0 && (
-              <div>
-                <h2 className="text-xl md:text-2xl font-bold text-foreground mb-6 flex items-center gap-2">
-                  🔥 Flere spil på vej
-                </h2>
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                  {MORE_SLOTS.map((game, index) => (
-                    <div
-                      key={game.id}
-                      className="animate-fade-in"
-                      style={{
-                        animationDelay: `${(FEATURED_SLOTS.length + index) * 150}ms`,
-                        animationFillMode: "both",
-                      }}
-                    >
-                      <GameCard
-                        title={game.title}
-                        description={game.description}
-                        image={game.image}
-                        href={game.href}
-                        status={game.status}
-                      />
-                    </div>
-                  ))}
-                </div>
-              </div>
-            )}
+        {/* Main content - completely unaffected by sidebar */}
+        <div className="py-6 space-y-8 md:space-y-10">
+          {/* Featured Slots */}
+          {FEATURED_SLOTS.map((slot, index) => (
+            <div
+              key={slot.id}
+              className="animate-fade-in"
+              style={{
+                animationDelay: `${index * 200}ms`,
+                animationFillMode: "both",
+              }}
+            >
+              <FeaturedSlotPanel
+                title={slot.title}
+                description={slot.description}
+                image={slot.image}
+                href={slot.href}
+                badge={slot.badge}
+                priority={slot.priority}
+                showScrollHint={index === 0}
+              />
+            </div>
+          ))}
 
-            {/* Conversion strip + Brand block */}
-            <div className="pb-8">
-              <CommunityConversionStrip />
-              <div className="mt-8">
-                <CommunityBrandBlock />
+          {/* More games */}
+          {MORE_SLOTS.length > 0 && (
+            <div>
+              <h2 className="text-xl md:text-2xl font-bold text-foreground mb-6 flex items-center gap-2">
+                🔥 Flere spil på vej
+              </h2>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                {MORE_SLOTS.map((game, index) => (
+                  <div
+                    key={game.id}
+                    className="animate-fade-in"
+                    style={{
+                      animationDelay: `${(FEATURED_SLOTS.length + index) * 150}ms`,
+                      animationFillMode: "both",
+                    }}
+                  >
+                    <GameCard
+                      title={game.title}
+                      description={game.description}
+                      image={game.image}
+                      href={game.href}
+                      status={game.status}
+                    />
+                  </div>
+                ))}
               </div>
             </div>
-          </div>
+          )}
 
-          {/* SEO Sidebar – positioned to the right, outside centered content */}
-          <div className="hidden xl:block absolute right-full top-0 mr-6 w-[260px] pt-8 md:pt-12" style={{ right: "auto", left: "calc(50% + 32rem + 1.5rem)" }}>
-            <div className="sticky top-24 h-fit flex flex-col gap-4">
-              <CommunitySeoBridge />
-              <CommunityConversionCard />
+          {/* Conversion strip + Brand block */}
+          <div className="pb-8">
+            <CommunityConversionStrip />
+            <div className="mt-8">
+              <CommunityBrandBlock />
             </div>
           </div>
         </div>
@@ -186,18 +185,22 @@ function GameLibraryHero() {
   const countdown = useCreditCountdown();
 
   return (
-    <section className="relative overflow-hidden text-foreground">
-      {/* Multi-layer gradient background */}
+    <section className="relative overflow-hidden text-white">
+      {/* AI-generated hero background */}
+      <img
+        src={spillehalHero}
+        alt=""
+        className="absolute inset-0 w-full h-full object-cover"
+        aria-hidden="true"
+      />
+      {/* Gradient overlay */}
       <div
         className="absolute inset-0"
         style={{
-          background: "linear-gradient(135deg, hsl(260 70% 18%) 0%, hsl(250 60% 14%) 30%, hsl(230 50% 12%) 60%, hsl(210 80% 18%) 100%)",
+          backgroundImage:
+            "linear-gradient(135deg, hsl(260 70% 25% / 0.85), hsl(250 60% 20% / 0.8) 40%, hsl(210 80% 25% / 0.85))",
         }}
       />
-      {/* Accent glow layers */}
-      <div className="absolute inset-0 opacity-40" style={{ background: "radial-gradient(ellipse at 20% 50%, hsl(260 80% 40% / 0.3), transparent 60%)" }} />
-      <div className="absolute inset-0 opacity-30" style={{ background: "radial-gradient(ellipse at 80% 30%, hsl(210 90% 40% / 0.25), transparent 50%)" }} />
-      <div className="absolute inset-0 opacity-20" style={{ background: "radial-gradient(ellipse at 50% 100%, hsl(35 90% 50% / 0.15), transparent 40%)" }} />
 
       <div className="container relative z-10 py-8 md:py-12">
         <div className="mx-auto max-w-2xl text-center space-y-2.5">
@@ -224,21 +227,6 @@ function GameLibraryHero() {
           </div>
         </div>
       </div>
-
-      {/* Animated decorative elements */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute -left-10 top-10 h-40 w-40 rounded-full bg-[hsl(210_80%_60%)] opacity-10 blur-3xl" style={{ animation: "float 6s ease-in-out infinite" }} />
-        <div className="absolute -bottom-10 -right-10 h-56 w-56 rounded-full bg-[hsl(260_70%_60%)] opacity-10 blur-3xl" style={{ animation: "float 8s ease-in-out infinite 1s" }} />
-        <div className="absolute left-1/3 top-1/2 h-28 w-28 rounded-full bg-amber-500 opacity-8 blur-3xl" style={{ animation: "float 7s ease-in-out infinite 0.5s" }} />
-      </div>
-      <style>{`
-        @keyframes float {
-          0%, 100% { transform: translateY(0) translateX(0); }
-          25% { transform: translateY(-15px) translateX(5px); }
-          50% { transform: translateY(-8px) translateX(-5px); }
-          75% { transform: translateY(-20px) translateX(3px); }
-        }
-      `}</style>
     </section>
   );
 }
