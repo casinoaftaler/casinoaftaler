@@ -376,8 +376,10 @@ function FeaturedCard({
               )}
             </div>
 
-            {/* Disclaimer */}
-            <CasinoCardDisclaimer />
+            {/* Disclaimer Footer */}
+            <div className="mt-6 pt-4 border-t border-white/[0.08]">
+              <CasinoCardDisclaimer />
+            </div>
 
             {/* Collapsible Content */}
             <CollapsibleContent className="overflow-hidden data-[state=closed]:animate-collapsible-up data-[state=open]:animate-collapsible-down">
