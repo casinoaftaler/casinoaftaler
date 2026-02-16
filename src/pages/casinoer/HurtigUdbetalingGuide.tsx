@@ -149,6 +149,12 @@ const HurtigUdbetalingGuide = () => {
           <p className="text-muted-foreground leading-relaxed">
             I 2026 har den danske casinobranche taget store skridt fremad inden for betalingsteknologi. Implementeringen af instant payment-infrastruktur, kombineret med avancerede AI-drevne compliance-systemer, har gjort det muligt for de bedste casinoer at reducere udbetalingstider fra dage til minutter. Det er dog stadig vigtigt at forstå, hvordan systemet fungerer, og hvad du selv kan gøre for at sikre den hurtigst mulige udbetaling. Denne guide giver dig alle de værktøjer, du behøver.
           </p>
+          <div className="mt-6 rounded-lg border border-primary/30 bg-accent/30 p-4">
+            <p className="text-sm text-muted-foreground">
+              <strong>Leder du efter nye casinoer med hurtig udbetaling?</strong>{" "}
+              Se vores dedikerede guide til <Link to="/nye-casinoer/hurtig-udbetaling" className={linkClass}>nye casinoer med hurtig udbetaling</Link>, hvor vi fokuserer specifikt på de nyeste casinoer med instant-udbetalinger.
+            </p>
+          </div>
         </section>
 
         <InlineCasinoCards title="Anbefalede casinoer med hurtige udbetalinger" />
