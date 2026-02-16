@@ -85,9 +85,7 @@ export const Header = memo(function Header() {
     localStorage.setItem("theme", newIsDark ? "dark" : "light");
   };
 
-  const headerIconUrl = siteSettings?.header_icon
-    ? siteSettings.header_icon.replace('/object/public/', '/render/image/public/') + (siteSettings.header_icon.includes('?') ? '&' : '?') + 'width=80&height=80&quality=80&format=webp'
-    : undefined;
+  const headerIconUrl = siteSettings?.header_icon || undefined;
   const siteName = siteSettings?.site_name || "Casinoaftaler.dk";
   const isLive = twitchStatus?.isLive ?? false;
 
