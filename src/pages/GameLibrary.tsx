@@ -5,42 +5,26 @@ import { CommunityNav } from "@/components/community/CommunityNav";
 import { CommunityConversionStrip } from "@/components/community/CommunityConversionStrip";
 import { CommunityBrandBlock } from "@/components/community/CommunityBrandBlock";
 import { useAuth } from "@/hooks/useAuth";
-import { useSiteSettings } from "@/hooks/useSiteSettings";
 
+import { FeaturedSlotPanel } from "@/components/games/FeaturedSlotPanel";
 import { GameCard } from "@/components/games/GameCard";
 import { Gamepad2, Clock } from "lucide-react";
 import slotIntroImage from "@/assets/slots/slot-intro-screen.jpg";
-import bookTitleFallback from "@/assets/slots/book-of-fedesvin-title.png";
 import riseTitleFallback from "@/assets/slots/rise/title-logo.png";
 import riseIntroImage from "@/assets/slots/rise/intro-screen.jpg";
 import leFedesvinImage from "@/assets/slots/le-fedesvin-preview.jpg";
-import leFedesvinTitleFallback from "@/assets/slots/le-fedesvin-title.png";
 import olympusImage from "@/assets/slots/fedesvin-of-olympus-preview.jpg";
-import olympusTitleFallback from "@/assets/slots/fedesvin-of-olympus-title.png";
 
-interface GameDef {
-  id: string;
-  title: string;
-  description: string;
-  image: string;
-  href: string;
-  status: "active" | "coming-soon";
-  badge?: string;
-  titleSettingsKey: string;
-  titleFallback: string;
-}
-
-const GAMES: GameDef[] = [
+// Featured slots shown full-width
+const FEATURED_SLOTS = [
   {
     id: "book-of-fedesvin",
     title: "Book of Fedesvin",
-    description: "Udforsk de gamle egyptiske skatte i denne spændende spillemaskine med expanding symbols og free spins.",
+    description: "Udforsk de gamle egyptiske skatte med expanding symbols og free spins. Vores mest populære maskine.",
     image: slotIntroImage,
     href: "/community/slots/book-of-fedesvin",
-    status: "active",
-    badge: "POPULÆR",
-    titleSettingsKey: "slot_title_image",
-    titleFallback: bookTitleFallback,
+    badge: "🔥 POPULÆR",
+    priority: "primary" as const,
   },
   {
     id: "rise-of-fedesvin",
@@ -48,38 +32,34 @@ const GAMES: GameDef[] = [
     description: "Merlins magi venter! Multi-expanding symbols i bonusrunden – jo flere retriggers, jo flere aktive symboler!",
     image: riseIntroImage,
     href: "/community/slots/rise-of-fedesvin",
-    status: "active",
-    badge: "NY",
-    titleSettingsKey: "rise_of_fedesvin_title_image",
-    titleFallback: riseTitleFallback,
+    badge: "✨ NY",
+    priority: "secondary" as const,
   },
+];
+
+// Coming soon / additional slots for grid
+const MORE_SLOTS = [
   {
     id: "le-fedesvin",
     title: "Le Fedesvin",
-    description: "Oplev den franske elegance med roulette-inspirerede bonusrunder og luksuriøse gevinster i Parisisk stil.",
+    description: "Oplev den franske elegance med roulette-inspirerede bonusrunder og luksuriøse gevinster.",
     image: leFedesvinImage,
     href: "#",
-    status: "coming-soon",
-    titleSettingsKey: "le_fedesvin_title_image",
-    titleFallback: leFedesvinTitleFallback,
+    status: "coming-soon" as const,
   },
   {
     id: "fedesvin-of-olympus",
     title: "Fedesvin of Olympus",
-    description: "Besteg Olympen og vind gudernes gunst! Cascading wins og multiplicerende lyn-gevinster venter.",
+    description: "Besteg Olympen og vind gudernes gunst! Cascading wins og multiplicerende lyn-gevinster.",
     image: olympusImage,
     href: "#",
-    status: "coming-soon",
-    titleSettingsKey: "fedesvin_of_olympus_title_image",
-    titleFallback: olympusTitleFallback,
+    status: "coming-soon" as const,
   },
 ];
 
 export default function GameLibrary() {
-  const { data: siteSettings } = useSiteSettings();
-  const { user, loading } = useAuth();
+  const { loading } = useAuth();
 
-  // Show loading state only briefly - don't block the page
   if (loading) {
     return (
       <div className="min-h-[calc(100vh-4rem)] relative">
@@ -90,8 +70,6 @@ export default function GameLibrary() {
       </div>
     );
   }
-
-  // Allow all users to browse the page - login is only required when clicking to play
 
   return (
     <div className="min-h-[calc(100vh-4rem)] relative">
@@ -104,35 +82,64 @@ export default function GameLibrary() {
       <GameLibraryHero />
       <CommunityNav />
 
-      {/* Featured slots */}
-      <div className="container py-10">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
-          {GAMES.filter(g => g.status === "active").map((game, index) => (
-            <div
-              key={game.id}
-              className="animate-fade-in"
-              style={{
-                animationDelay: `${index * 150}ms`,
-                animationFillMode: "both",
-              }}
-            >
-              <GameCard
-                title={game.title}
-                description={game.description}
-                image={game.image}
-                href={game.href}
-                status={game.status}
-                badge={game.badge}
-              />
-            </div>
-          ))}
-        </div>
+      {/* Featured Slots – full width showcase */}
+      <div className="container py-10 space-y-8">
+        {FEATURED_SLOTS.map((slot, index) => (
+          <div
+            key={slot.id}
+            className="animate-fade-in"
+            style={{
+              animationDelay: `${index * 200}ms`,
+              animationFillMode: "both",
+            }}
+          >
+            <FeaturedSlotPanel
+              title={slot.title}
+              description={slot.description}
+              image={slot.image}
+              href={slot.href}
+              badge={slot.badge}
+              priority={slot.priority}
+            />
+          </div>
+        ))}
       </div>
 
+      {/* More games grid */}
+      {MORE_SLOTS.length > 0 && (
+        <div className="container pb-10">
+          <h2 className="text-xl md:text-2xl font-bold text-foreground mb-6 flex items-center gap-2">
+            🔥 Flere spil på vej
+          </h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {MORE_SLOTS.map((game, index) => (
+              <div
+                key={game.id}
+                className="animate-fade-in"
+                style={{
+                  animationDelay: `${(FEATURED_SLOTS.length + index) * 150}ms`,
+                  animationFillMode: "both",
+                }}
+              >
+                <GameCard
+                  title={game.title}
+                  description={game.description}
+                  image={game.image}
+                  href={game.href}
+                  status={game.status}
+                />
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
+
       {/* Conversion strip + Brand block */}
-      <div className="container pb-12">
+      <div className="container pb-16">
         <CommunityConversionStrip />
-        <CommunityBrandBlock />
+        <div className="mt-8">
+          <CommunityBrandBlock />
+        </div>
       </div>
     </div>
   );
@@ -144,20 +151,15 @@ function useCreditCountdown() {
   useEffect(() => {
     function calcTimeLeft() {
       const now = new Date();
-      // Next refill is midnight Danish time (Europe/Copenhagen)
-      // Get current date in Danish timezone
       const danishNow = new Date(now.toLocaleString("en-US", { timeZone: "Europe/Copenhagen" }));
       const midnight = new Date(danishNow);
       midnight.setHours(24, 0, 0, 0);
       const diffMs = midnight.getTime() - danishNow.getTime();
-      
       const hours = Math.floor(diffMs / (1000 * 60 * 60));
       const minutes = Math.floor((diffMs % (1000 * 60 * 60)) / (1000 * 60));
       const seconds = Math.floor((diffMs % (1000 * 60)) / 1000);
-      
       return `${String(hours).padStart(2, "0")}:${String(minutes).padStart(2, "0")}:${String(seconds).padStart(2, "0")}`;
     }
-
     setTimeLeft(calcTimeLeft());
     const interval = setInterval(() => setTimeLeft(calcTimeLeft()), 1000);
     return () => clearInterval(interval);
@@ -194,8 +196,6 @@ function GameLibraryHero() {
             <Link to="/omsaetningskrav" className="text-white/80 underline hover:text-white">omsætningskrav</Link>{" "}
             i vores guides.
           </p>
-          
-          {/* Credit refill countdown */}
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 backdrop-blur-sm border border-white/15 text-white/90 text-sm">
             <Clock className="h-4 w-4 text-amber-400" />
             <span>Nye credits om</span>
@@ -203,20 +203,10 @@ function GameLibraryHero() {
           </div>
         </div>
       </div>
-      {/* Decorative blur circles */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div
-          className="absolute -left-10 top-10 h-40 w-40 rounded-full bg-[hsl(210_80%_60%)] opacity-15 blur-2xl"
-          style={{ animation: "float 6s ease-in-out infinite" }}
-        />
-        <div
-          className="absolute -bottom-10 -right-10 h-56 w-56 rounded-full bg-[hsl(260_70%_60%)] opacity-15 blur-2xl"
-          style={{ animation: "float 8s ease-in-out infinite 1s" }}
-        />
-        <div
-          className="absolute left-1/3 top-1/2 h-28 w-28 rounded-full bg-amber-500 opacity-10 blur-2xl"
-          style={{ animation: "float 7s ease-in-out infinite 0.5s" }}
-        />
+        <div className="absolute -left-10 top-10 h-40 w-40 rounded-full bg-[hsl(210_80%_60%)] opacity-15 blur-2xl" style={{ animation: "float 6s ease-in-out infinite" }} />
+        <div className="absolute -bottom-10 -right-10 h-56 w-56 rounded-full bg-[hsl(260_70%_60%)] opacity-15 blur-2xl" style={{ animation: "float 8s ease-in-out infinite 1s" }} />
+        <div className="absolute left-1/3 top-1/2 h-28 w-28 rounded-full bg-amber-500 opacity-10 blur-2xl" style={{ animation: "float 7s ease-in-out infinite 0.5s" }} />
       </div>
       <style>{`
         @keyframes float {
