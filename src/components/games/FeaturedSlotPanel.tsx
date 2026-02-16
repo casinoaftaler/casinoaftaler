@@ -23,11 +23,12 @@ export function FeaturedSlotPanel({
   showScrollHint = false,
 }: FeaturedSlotPanelProps) {
   return (
-    <div className="relative">
+    <div className="relative max-w-[1050px] mx-auto">
       <div className="group relative overflow-hidden rounded-2xl border border-amber-500/15 shadow-[0_4px_30px_rgba(0,0,0,0.3)] transition-all duration-500 hover:border-amber-500/30 hover:shadow-[0_8px_40px_rgba(251,191,36,0.08)]">
         {/* Hero image – constrained height */}
         <div
-          className="relative overflow-hidden aspect-[21/9]"
+          className="relative overflow-hidden"
+          style={{ height: "clamp(260px, 30vw, 360px)" }}
         >
           <img
             src={image}
@@ -39,8 +40,8 @@ export function FeaturedSlotPanel({
           />
 
           {/* Stronger bottom gradient for text readability */}
-          <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/50 to-black/5" />
-          <div className="absolute inset-0 bg-gradient-to-r from-black/30 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-t from-black via-black/60 to-black/10" />
+          <div className="absolute inset-0 bg-gradient-to-r from-black/40 to-transparent" />
 
           {/* Subtle shine on hover */}
           <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 overflow-hidden pointer-events-none">
@@ -57,7 +58,7 @@ export function FeaturedSlotPanel({
           )}
 
           {/* Content overlay – bottom 30% */}
-          <div className="absolute bottom-0 inset-x-0 p-5 md:p-7 lg:p-8">
+          <div className="absolute bottom-0 inset-x-0 p-4 md:p-6 lg:p-7">
             <div className="flex flex-col sm:flex-row items-start sm:items-end justify-between gap-3">
               <div className="space-y-1.5 max-w-lg">
                 <h2 className={`font-bold text-white tracking-tight leading-tight ${priority === "primary" ? "text-2xl md:text-3xl" : "text-xl md:text-2xl"}`}>

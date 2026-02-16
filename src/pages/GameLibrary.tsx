@@ -93,7 +93,7 @@ export default function GameLibrary() {
         </div>
 
         {/* Main content - completely unaffected by sidebar */}
-        <div className="py-6 space-y-8 md:space-y-10">
+        <div className="py-8 space-y-12 md:space-y-16">
           {/* Featured Slots */}
           {FEATURED_SLOTS.map((slot, index) => (
             <div
@@ -202,26 +202,26 @@ function GameLibraryHero() {
         }}
       />
 
-      <div className="container relative z-10 py-8 md:py-12">
-        <div className="mx-auto max-w-2xl text-center space-y-2.5">
-          <div className="mx-auto mb-2 h-14 w-14 rounded-full bg-amber-500/15 backdrop-blur-sm border border-amber-500/20 flex items-center justify-center">
-            <Gamepad2 className="h-7 w-7 text-amber-400" />
+      <div className="container relative z-10 py-5 md:py-8">
+        <div className="mx-auto max-w-2xl text-center space-y-2">
+          <div className="mx-auto mb-1.5 h-11 w-11 rounded-full bg-amber-500/15 backdrop-blur-sm border border-amber-500/20 flex items-center justify-center">
+            <Gamepad2 className="h-5.5 w-5.5 text-amber-400" />
           </div>
-          <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight text-white">
+          <h1 className="text-xl sm:text-2xl md:text-3xl font-bold tracking-tight text-white">
             Spillehal
           </h1>
-          <p className="text-white/70 text-sm md:text-base max-w-lg mx-auto">
+          <p className="text-white/70 text-xs md:text-sm max-w-md mx-auto">
             Vælg et spil og begynd at spille. Optjen point og kæmp om pladserne på ranglisten!
           </p>
-          <p className="text-white/50 text-sm max-w-md mx-auto">
+          <p className="text-white/50 text-xs max-w-sm mx-auto">
             Lær om{" "}
             <Link to="/casino-bonus" className="text-white/80 underline hover:text-white">casino bonusser</Link>,{" "}
             <Link to="/free-spins" className="text-white/80 underline hover:text-white">free spins</Link> og{" "}
             <Link to="/omsaetningskrav" className="text-white/80 underline hover:text-white">omsætningskrav</Link>{" "}
             i vores guides.
           </p>
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 backdrop-blur-sm border border-white/15 text-white/90 text-sm">
-            <Clock className="h-4 w-4 text-amber-400" />
+          <div className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white/10 backdrop-blur-sm border border-white/15 text-white/90 text-xs">
+            <Clock className="h-3.5 w-3.5 text-amber-400" />
             <span>Nye credits om</span>
             <span className="font-mono font-semibold text-amber-400 tabular-nums">{countdown}</span>
           </div>
