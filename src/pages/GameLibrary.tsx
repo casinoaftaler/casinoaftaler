@@ -10,6 +10,8 @@ import { useAuth } from "@/hooks/useAuth";
 
 import { FeaturedSlotPanel } from "@/components/games/FeaturedSlotPanel";
 import { GameCard } from "@/components/games/GameCard";
+import { Card, CardContent } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
 import { Gamepad2, Clock } from "lucide-react";
 import spillehalHero from "@/assets/community/spillehal-hero.jpg";
 import slotIntroImage from "@/assets/slots/slot-intro-screen.jpg";
@@ -58,7 +60,7 @@ const MORE_SLOTS = [
 ];
 
 export default function GameLibrary() {
-  const { loading } = useAuth();
+  const { user, loading } = useAuth();
 
   if (loading) {
     return (
@@ -85,7 +87,7 @@ export default function GameLibrary() {
       {/* Main content with sidebar using same pattern as CommunityPageLayout */}
       <div className="container relative">
         {/* Sidebar - positioned to the left, outside content flow */}
-        <div className="hidden xl:block absolute right-full top-0 mr-6 w-[260px] pt-6">
+        <div className="hidden xl:block absolute right-full top-0 mr-6 w-[260px] pt-8 md:pt-12">
           <div className="sticky top-24 h-fit flex flex-col gap-4">
             <CommunitySeoBridge />
             <CommunityConversionCard />
@@ -93,7 +95,25 @@ export default function GameLibrary() {
         </div>
 
         {/* Main content - completely unaffected by sidebar */}
-        <div className="py-6 space-y-8 md:space-y-10">
+        <div className="py-8 md:py-12 space-y-8 md:space-y-10">
+          {/* Community CTA for logged-out users */}
+          {!user && (
+            <Card className="border-primary/20 bg-gradient-to-r from-primary/5 to-transparent">
+              <CardContent className="flex flex-col sm:flex-row items-center gap-4 py-6">
+                <div className="flex-1">
+                  <h2 className="text-lg font-semibold mb-1">
+                    Bliv en del af vores community
+                  </h2>
+                  <p className="text-sm text-muted-foreground">
+                    Log ind for at spille gratis slots, deltage i turneringer og optjene rewards.
+                  </p>
+                </div>
+                <Button asChild>
+                  <Link to="/auth">Log ind / Opret konto</Link>
+                </Button>
+              </CardContent>
+            </Card>
+          )}
           {/* Featured Slots */}
           {FEATURED_SLOTS.map((slot, index) => (
             <div
