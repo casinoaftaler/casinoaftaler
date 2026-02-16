@@ -2,14 +2,17 @@ import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { SEO } from "@/components/SEO";
 import { CommunityNav } from "@/components/community/CommunityNav";
+import { CommunityConversionStrip } from "@/components/community/CommunityConversionStrip";
+import { CommunityBrandBlock } from "@/components/community/CommunityBrandBlock";
 import { useAuth } from "@/hooks/useAuth";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
 import { useCasinos } from "@/hooks/useCasinos";
 import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
 import { GameCard } from "@/components/games/GameCard";
 import { SlotLeaderboard } from "@/components/slots/SlotLeaderboard";
 import { CasinoCard } from "@/components/CasinoCard";
-import { Gamepad2, Clock } from "lucide-react";
+import { Gamepad2, Clock, ArrowRight, Trophy, Flame } from "lucide-react";
 import slotIntroImage from "@/assets/slots/slot-intro-screen.jpg";
 import bookTitleFallback from "@/assets/slots/book-of-fedesvin-title.png";
 import riseTitleFallback from "@/assets/slots/rise/title-logo.png";
@@ -137,10 +140,54 @@ export default function GameLibrary() {
       <GameLibraryHero />
       <CommunityNav />
       
-      <div className="py-10">
-        {/* Mobile/Tablet: Games FIRST, then banners */}
+      {/* Featured Slot */}
+      <div className="container py-8">
+        <Link
+          to="/community/slots/book-of-fedesvin"
+          className="group block rounded-xl overflow-hidden transition-all duration-300 hover:shadow-[0_0_40px_rgba(245,158,11,0.15)]"
+          style={{
+            border: "1px solid rgba(245,158,11,0.25)",
+            background: "linear-gradient(135deg, hsl(260 30% 14%) 0%, hsl(35 30% 12%) 100%)",
+          }}
+        >
+          <div className="flex flex-col md:flex-row">
+            <div className="relative md:w-1/2 aspect-video md:aspect-auto overflow-hidden">
+              <img
+                src={slotIntroImage}
+                alt="Book of Fedesvin – Mest spillet"
+                className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+              />
+              <div className="absolute inset-0 bg-gradient-to-r from-transparent to-background/60 hidden md:block" />
+            </div>
+            <div className="p-6 md:p-8 flex flex-col justify-center md:w-1/2">
+              <Badge variant="outline" className="w-fit mb-3 bg-amber-500/15 text-amber-400 border-amber-500/30">
+                <Flame className="h-3 w-3 mr-1" />
+                Mest Spillet
+              </Badge>
+              <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-2">Book of Fedesvin</h2>
+              <p className="text-muted-foreground text-sm leading-relaxed mb-4">
+                Udforsk de gamle egyptiske skatte i denne spændende spillemaskine med expanding symbols og free spins. Spil gratis og optjen point!
+              </p>
+              <Button className="w-fit gap-2" size="lg">
+                Spil Nu
+                <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+              </Button>
+            </div>
+          </div>
+        </Link>
+      </div>
+
+      {/* Section title */}
+      <div className="container">
+        <div className="flex items-center gap-3 mb-6">
+          <Flame className="h-5 w-5 text-amber-400" />
+          <h2 className="text-xl font-bold text-foreground">Populære slots i community</h2>
+        </div>
+      </div>
+
+      <div className="pb-10">
+        {/* Mobile/Tablet: Games FIRST, then leaderboard preview */}
         <div className="xl:hidden container">
-          {/* Game grid - appears first on mobile */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 max-w-[600px] mx-auto mb-8">
             {GAMES.map((game, index) => (
               <div
@@ -163,12 +210,11 @@ export default function GameLibrary() {
             ))}
           </div>
           
-          {/* Leaderboards - appear after games on mobile */}
+          {/* Mini leaderboard preview on mobile */}
           <div className="max-w-md mx-auto mb-8">
             <SlotLeaderboard />
           </div>
 
-          {/* Banners - appear after leaderboards on mobile */}
           <div className="space-y-4 max-w-md mx-auto">
             {sidebarCasinos.map((casino, index) => (
               <CasinoCard
@@ -182,9 +228,8 @@ export default function GameLibrary() {
           </div>
         </div>
 
-        {/* Desktop: Full-width layout with viewport-centered game grid */}
+        {/* Desktop: Full-width layout */}
         <div className="hidden xl:flex xl:items-start w-full">
-          {/* Left spacer with banners - takes fixed width, banners aligned to right edge */}
           <div className="flex-shrink-0 w-[calc(50vw-480px-24px)] min-w-[340px] 2xl:min-w-[400px] flex justify-end pr-6">
             <aside className="w-80 2xl:w-96 space-y-4">
               {sidebarCasinos.map((casino, index) => (
@@ -199,7 +244,6 @@ export default function GameLibrary() {
             </aside>
           </div>
 
-          {/* Viewport-centered wrapper for the game grid - fixed width, centered */}
           <div className="flex-shrink-0 w-[960px] px-4">
             <div className="grid grid-cols-2 gap-6">
               {GAMES.map((game, index) => (
@@ -224,13 +268,18 @@ export default function GameLibrary() {
             </div>
           </div>
 
-          {/* Right side - Leaderboards */}
           <div className="flex-shrink-0 w-[calc(50vw-480px-24px)] min-w-[340px] 2xl:min-w-[400px] flex justify-start pl-6">
             <aside className="w-80 2xl:w-96">
               <SlotLeaderboard />
             </aside>
           </div>
         </div>
+      </div>
+
+      {/* Conversion strip + Brand block */}
+      <div className="container pb-12">
+        <CommunityConversionStrip />
+        <CommunityBrandBlock />
       </div>
     </div>
   );
