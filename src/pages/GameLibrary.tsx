@@ -9,7 +9,6 @@ import { CommunityConversionCard } from "@/components/community/CommunityConvers
 import { useAuth } from "@/hooks/useAuth";
 
 import { FeaturedSlotPanel } from "@/components/games/FeaturedSlotPanel";
-import { GameCard } from "@/components/games/GameCard";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Gamepad2, Clock } from "lucide-react";
@@ -149,7 +148,7 @@ export default function GameLibrary() {
               <h2 className="text-xl md:text-2xl font-bold text-foreground mb-6 flex items-center gap-2">
                 🔥 Flere spil på vej
               </h2>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 items-stretch">
                 {MORE_SLOTS.map((game, index) => (
                   <div
                     key={game.id}
@@ -159,12 +158,13 @@ export default function GameLibrary() {
                       animationFillMode: "both",
                     }}
                   >
-                    <GameCard
+                    <FeaturedSlotPanel
                       title={game.title}
                       description={game.description}
                       image={game.image}
                       href={game.href}
-                      status={game.status}
+                      badge={game.status === "coming-soon" ? "⏳ KOMMER SNART" : undefined}
+                      disabled={game.status === "coming-soon"}
                     />
                   </div>
                 ))}
