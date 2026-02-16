@@ -16,6 +16,7 @@ interface CommunityPageLayoutProps {
   badgeIcon: LucideIcon;
   showHero?: boolean;
   hideSidebar?: boolean;
+  heroExtra?: ReactNode;
 }
 
 export function CommunityPageLayout({
@@ -26,6 +27,7 @@ export function CommunityPageLayout({
   badgeIcon: BadgeIcon,
   showHero = true,
   hideSidebar = false,
+  heroExtra,
 }: CommunityPageLayoutProps) {
   return (
     <>
@@ -56,6 +58,7 @@ export function CommunityPageLayout({
                 {title}
               </h1>
               <p className="text-lg text-white/80">{description}</p>
+              {heroExtra && <div className="mt-4">{heroExtra}</div>}
             </div>
           </div>
         </section>

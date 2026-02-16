@@ -115,20 +115,20 @@ export default function CommunityHub() {
         description="Spil gratis slots, kæmp om præmier i turneringer, del highlights og optjen bonus spins. Alt samlet ét sted."
         badgeText="Fællesskab"
         badgeIcon={Users}
+        heroExtra={
+          <p className="text-sm md:text-base text-white/70 leading-relaxed max-w-2xl mx-auto">
+            Velkommen til Casinoaftalers community – et gratis fællesskab for casino-entusiaster. Spil gratis{" "}
+            <Link to="/casinospil/spillemaskiner" className="text-white/90 underline hover:text-white">spillemaskiner</Link>, deltag i turneringer og optjen bonus spins.
+            Udforsk de{" "}
+            <Link to="/nye-casinoer" className="text-white/90 underline hover:text-white">nyeste casinoer</Link>, lær om{" "}
+            <Link to="/omsaetningskrav" className="text-white/90 underline hover:text-white">omsætningskrav</Link>, og find de bedste{" "}
+            <Link to="/casino-bonus" className="text-white/90 underline hover:text-white">casino bonusser</Link> og{" "}
+            <Link to="/free-spins" className="text-white/90 underline hover:text-white">free spins</Link>.
+          </p>
+        }
       >
         <div className="py-8 md:py-12">
           <AuthorMetaBar author="jonas" date="16. februar 2026" readTime="3 min" showFactCheck={false} />
-
-          <p className="text-muted-foreground leading-relaxed mb-6">
-            Velkommen til Casinoaftalers community – et gratis fællesskab for casino-entusiaster. Her kan du spille gratis{" "}
-            <Link to="/casinospil/spillemaskiner" className="text-primary hover:underline">spillemaskiner</Link>, deltage i turneringer og optjene bonus spins.
-            Uanset om du leder efter de{" "}
-            <Link to="/nye-casinoer" className="text-primary hover:underline">nyeste casinoer</Link> eller vil forstå{" "}
-            <Link to="/omsaetningskrav" className="text-primary hover:underline">omsætningskrav</Link>, har vi dig dækket.
-            Udforsk vores guides til{" "}
-            <Link to="/casino-bonus" className="text-primary hover:underline">casino bonusser</Link> og{" "}
-            <Link to="/free-spins" className="text-primary hover:underline">free spins</Link> for at få mest muligt ud af din spilleoplevelse.
-          </p>
 
           {!user && (
             <div className="mb-8">
