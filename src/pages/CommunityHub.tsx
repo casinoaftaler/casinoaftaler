@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { SEO } from "@/components/SEO";
+import jonasImage from "@/assets/jonas-forfatter.png";
 import { CommunityPageLayout } from "@/components/community/CommunityPageLayout";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -227,6 +228,44 @@ export default function CommunityHub() {
               );
             })}
           </div>
+
+          {/* Founder / Brand block */}
+          <section
+            className="mt-12 rounded-xl p-6 md:p-8"
+            style={{
+              border: "1px solid rgba(139,92,246,0.25)",
+              background:
+                "linear-gradient(135deg, hsl(260 30% 15%) 0%, hsl(220 25% 14%) 100%)",
+            }}
+          >
+            <div className="flex flex-col sm:flex-row items-center sm:items-start gap-6">
+              <img
+                src={jonasImage}
+                alt="Jonas – grundlægger af Casinoaftaler.dk"
+                className="h-24 w-24 rounded-full object-cover shrink-0 ring-2 ring-primary/30"
+              />
+              <div className="text-center sm:text-left">
+                <h2 className="text-xl font-bold text-foreground mb-2">
+                  🚀 Skabt af spillere – for spillere
+                </h2>
+                <p className="text-sm text-muted-foreground leading-relaxed mb-4">
+                  Community-universet på Casinoaftaler.dk er udviklet af Jonas, som også står bag vores analyser af nye casinoer og bonusser.
+                  Målet er at samle gratis spil, turneringer og casinoindsigt ét sted – med fokus på gennemsigtighed og ansvarligt spil.
+                </p>
+                <div className="flex flex-wrap gap-x-4 gap-y-1 text-xs text-muted-foreground mb-4">
+                  <span className="flex items-center gap-1.5">✔ Uafhængige anmeldelser</span>
+                  <span className="flex items-center gap-1.5">✔ Opdateret løbende</span>
+                  <span className="flex items-center gap-1.5">✔ Fokus på ansvarligt spil</span>
+                </div>
+                <Button variant="outline" size="sm" asChild>
+                  <Link to="/om" className="gap-2">
+                    Læs mere om os
+                    <ArrowRight className="h-3.5 w-3.5" />
+                  </Link>
+                </Button>
+              </div>
+            </div>
+          </section>
         </div>
       </CommunityPageLayout>
     </>
