@@ -68,3 +68,6 @@ verify_jwt = false
 
 [functions.update-tournament-status]
 verify_jwt = false
+
+[functions.spin-the-reel]
+verify_jwt = false
