@@ -35,7 +35,7 @@ export function FeaturedSlotPanel({
             width={1200}
             height={675}
             loading="lazy"
-            className="h-full w-full object-cover object-top transition-transform duration-700 ease-out group-hover:scale-[1.02]"
+            className="h-full w-full object-cover object-center transition-transform duration-700 ease-out group-hover:scale-[1.02]"
           />
 
           {/* Stronger bottom gradient for text readability */}
