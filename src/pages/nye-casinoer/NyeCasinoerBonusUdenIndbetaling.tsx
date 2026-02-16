@@ -68,7 +68,7 @@ const NyeCasinoerBonusUdenIndbetaling = () => {
   return (
     <>
       <SEO
-        title="Nye Casinoer med Bonus uden Indbetaling – Gratis Bonus 2026"
+        title="Nye Casinoer med Bonus uden Indbetaling (2026 Guide)"
         description="Nye casinoer med gratis bonus uden indbetaling i 2026. Få free spins og bonuspenge ved oprettelse – helt uden risiko."
         jsonLd={[articleSchema, faqSchema]}
       />
@@ -203,7 +203,7 @@ const NyeCasinoerBonusUdenIndbetaling = () => {
 
         <AuthorBio author="kevin" />
         <RelatedGuides currentPath="/nye-casinoer/bonus-uden-indbetaling" />
-        <FAQSection title="Ofte stillede spørgsmål om bonus uden indbetaling" faqs={faqs} />
+        <FAQSection title="FAQ om nye casinoer med bonus uden indbetaling" faqs={faqs} />
       </div>
     </>
   );
