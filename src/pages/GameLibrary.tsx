@@ -17,6 +17,7 @@ import slotIntroImage from "@/assets/slots/slot-intro-screen.jpg";
 import riseIntroImage from "@/assets/slots/rise/intro-screen.jpg";
 import leFedesvinImage from "@/assets/slots/le-fedesvin-preview.jpg";
 import olympusImage from "@/assets/slots/fedesvin-of-olympus-preview.jpg";
+import "@/styles/spillehal-animations.css";
 
 const FEATURED_SLOTS = [
   {
@@ -90,8 +91,12 @@ export default function GameLibrary() {
         {/* Sidebar - positioned to the left, outside content flow */}
         <div className="hidden xl:block absolute right-full top-0 mr-6 w-[260px] pt-8 md:pt-12">
           <div className="sticky top-24 h-fit flex flex-col gap-4">
-            <CommunitySeoBridge />
-            <CommunityConversionCard />
+            <div className="sidebar-glass-hover rounded-xl">
+              <CommunitySeoBridge />
+            </div>
+            <div className="animate-border-glow rounded-xl">
+              <CommunityConversionCard />
+            </div>
           </div>
         </div>
 
@@ -139,8 +144,14 @@ export default function GameLibrary() {
             ))}
           </div>
 
+          {/* Section divider */}
+          <div className="spillehal-divider" />
+
           {/* Conversion strip between sections */}
           <CommunityConversionStrip />
+
+          {/* Section divider */}
+          <div className="spillehal-divider" />
 
           {/* More games */}
           {MORE_SLOTS.length > 0 && (
@@ -171,6 +182,9 @@ export default function GameLibrary() {
               </div>
             </div>
           )}
+
+          {/* Section divider */}
+          <div className="spillehal-divider" />
 
           {/* Brand block */}
           <div className="pb-8">
@@ -226,6 +240,18 @@ function GameLibraryHero() {
         }}
       />
 
+      {/* Floating particles */}
+      <div className="absolute inset-0 z-[1] pointer-events-none overflow-hidden" aria-hidden="true">
+        <div className="hero-particle" />
+        <div className="hero-particle" />
+        <div className="hero-particle" />
+        <div className="hero-particle" />
+        <div className="hero-particle" />
+        <div className="hero-particle" />
+        <div className="hero-particle" />
+        <div className="hero-particle" />
+      </div>
+
       <div className="container relative z-10 py-8 md:py-12">
         <div className="mx-auto max-w-2xl text-center space-y-2.5">
           <div className="mx-auto mb-2 h-14 w-14 rounded-full bg-amber-500/15 backdrop-blur-sm border border-amber-500/20 flex items-center justify-center">
@@ -244,7 +270,8 @@ function GameLibraryHero() {
             <Link to="/omsaetningskrav" className="text-white/80 underline hover:text-white">omsætningskrav</Link>{" "}
             i vores guides.
           </p>
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 backdrop-blur-sm border border-white/15 text-white/90 text-sm">
+          {/* Countdown badge with subtle pulse */}
+          <div className="animate-countdown-pulse inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 backdrop-blur-sm border border-white/15 text-white/90 text-sm">
             <Clock className="h-4 w-4 text-amber-400" />
             <span>Nye credits om</span>
             <span className="font-mono font-semibold text-amber-400 tabular-nums">{countdown}</span>
