@@ -271,9 +271,13 @@ export default function Shop() {
       />
       <ShopHero />
       <CommunityNav />
-      <div className="container py-8 md:py-12 flex gap-8">
-        <CommunitySeoBridge />
-        <div className="flex-1 min-w-0">
+      <div className="relative">
+        <div className="hidden lg:block absolute left-4 xl:left-8 top-8 w-[260px] z-10">
+          <div className="sticky top-24">
+            <CommunitySeoBridge />
+          </div>
+        </div>
+        <div className="container py-8 md:py-12">
         {/* Meta info bar */}
         <div className="mb-8 flex flex-wrap items-center gap-x-6 gap-y-2 text-sm text-muted-foreground">
           <div className="flex items-center gap-1.5">
