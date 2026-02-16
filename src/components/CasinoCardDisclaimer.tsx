@@ -44,7 +44,8 @@ function renderWithLinks(text: string) {
           href={LINK_MAP[earliestMatch.key]}
           target="_blank"
           rel="noopener noreferrer"
-          className="underline hover:text-white/80 transition-colors"
+          className="underline hover:text-white/80 transition-colors min-h-[44px] inline-flex items-center"
+          aria-label={`${earliestMatch.key} – åbner i nyt vindue`}
         >
           {earliestMatch.key}
         </a>
@@ -100,7 +101,7 @@ export function CasinoCardDisclaimer() {
           
           <button
             onClick={() => setIsExpanded(!isExpanded)}
-            className="flex items-center justify-center gap-0.5 mx-auto mt-1 text-[9px] text-white/50 hover:text-white/70 transition-colors"
+            className="flex items-center justify-center gap-1 mx-auto mt-2 text-xs min-h-[44px] px-3 text-white/50 hover:text-white/70 transition-colors"
           >
             {isExpanded ? 'Vis mindre' : 'Vis vilkår'}
             <ChevronDown className={`h-3 w-3 transition-transform duration-200 ${isExpanded ? 'rotate-180' : ''}`} />

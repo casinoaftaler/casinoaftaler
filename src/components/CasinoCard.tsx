@@ -542,8 +542,8 @@ function RegularCard({
 
           {/* Disclaimer */}
           <div className="border-t border-border bg-muted/20 px-4 py-2">
-            <p className="text-[9px] text-muted-foreground text-center">
-              18+ | Vilkår gælder | <a href="https://rofus.nu" className="text-primary hover:underline" target="_blank" rel="noopener noreferrer">Rofus.nu</a>
+            <p className="text-xs text-muted-foreground text-center">
+              18+ | Vilkår gælder | <a href="https://rofus.nu" className="text-primary hover:underline min-h-[44px] inline-flex items-center" target="_blank" rel="noopener noreferrer" aria-label="Rofus.nu – åbner i nyt vindue">Rofus.nu</a>
             </p>
           </div>
         </div>
