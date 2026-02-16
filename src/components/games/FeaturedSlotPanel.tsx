@@ -29,7 +29,7 @@ export function FeaturedSlotPanel({
       <div className="group relative overflow-hidden rounded-2xl border border-amber-500/15 shadow-[0_4px_30px_rgba(0,0,0,0.3)] transition-all duration-500 hover:border-amber-500/30 hover:shadow-[0_8px_40px_rgba(251,191,36,0.08)]">
         {/* Hero image – constrained height */}
         <div
-          className="relative overflow-hidden aspect-[16/9]"
+          className="relative overflow-hidden max-h-[320px]"
         >
           <img
             src={image}
