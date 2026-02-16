@@ -47,6 +47,7 @@ const GameLibrary = lazy(() => import("./pages/GameLibrary"));
 const CommunityHub = lazy(() => import("./pages/CommunityHub"));
 const SlotMachine = lazy(() => import("./pages/SlotMachine"));
 const RiseOfFedesvin = lazy(() => import("./pages/RiseOfFedesvin"));
+const SpinTheReel = lazy(() => import("./pages/SpinTheReel"));
 const Admin = lazy(() => import("./pages/Admin"));
 const Auth = lazy(() => import("./pages/Auth"));
 const AuthCallback = lazy(() => import("./pages/AuthCallback"));
@@ -280,6 +281,7 @@ const App = () => (
                 <Route path="/community" element={<Suspense fallback={null}><CommunityHub /></Suspense>} />
                 <Route path="/community/leaderboard" element={<Leaderboard />} />
                 <Route path="/community/rewards" element={<RewardsProgram />} />
+                <Route path="/community/spin-the-reel" element={<Suspense fallback={null}><SpinTheReel /></Suspense>} />
                 <Route 
                   path="/community/slots" 
                   element={

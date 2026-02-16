@@ -1,11 +1,12 @@
 import { Link, useLocation } from "react-router-dom";
 import { cn } from "@/lib/utils";
-import { Gamepad2, Trophy, Video, Gift, ShoppingBag, Home } from "lucide-react";
+import { Gamepad2, Trophy, Video, Gift, ShoppingBag, Home, RotateCw } from "lucide-react";
 
 const NAV_ITEMS = [
   { href: "/community", label: "Oversigt", icon: Home, exact: true },
   { href: "/community/slots", label: "Spillehal", icon: Gamepad2 },
   { href: "/community/leaderboard", label: "Turneringer", icon: Trophy },
+  { href: "/community/spin-the-reel", label: "Spin the Reel", icon: RotateCw },
   { href: "/highlights", label: "Highlights", icon: Video },
   { href: "/community/rewards", label: "Rewards", icon: Gift },
   { href: "/butik", label: "Butik", icon: ShoppingBag },

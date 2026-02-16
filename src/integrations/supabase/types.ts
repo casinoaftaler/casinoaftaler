@@ -548,6 +548,7 @@ export type Database = {
           highest_win_casino: string | null
           highest_win_game: string | null
           id: string
+          last_spin_at: string | null
           play_styles: string[] | null
           playstyle_section_completed: boolean | null
           preferred_game_type: string | null
@@ -584,6 +585,7 @@ export type Database = {
           highest_win_casino?: string | null
           highest_win_game?: string | null
           id?: string
+          last_spin_at?: string | null
           play_styles?: string[] | null
           playstyle_section_completed?: boolean | null
           preferred_game_type?: string | null
@@ -620,6 +622,7 @@ export type Database = {
           highest_win_casino?: string | null
           highest_win_game?: string | null
           id?: string
+          last_spin_at?: string | null
           play_styles?: string[] | null
           playstyle_section_completed?: boolean | null
           preferred_game_type?: string | null
@@ -1084,6 +1087,33 @@ export type Database = {
           position?: number
           rarity?: string
           weight?: number
+        }
+        Relationships: []
+      }
+      spin_history: {
+        Row: {
+          created_at: string
+          id: string
+          reward_type: string
+          reward_value: number
+          twitch_id: string | null
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          reward_type: string
+          reward_value?: number
+          twitch_id?: string | null
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          reward_type?: string
+          reward_value?: number
+          twitch_id?: string | null
+          user_id?: string
         }
         Relationships: []
       }
