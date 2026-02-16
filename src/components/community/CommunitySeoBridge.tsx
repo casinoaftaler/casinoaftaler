@@ -56,7 +56,7 @@ export function CommunitySeoBridge() {
   return (
     <nav
       aria-label="Udforsk casinoer"
-      className="rounded-xl p-4 transition-all duration-300 hover:shadow-[0_0_40px_rgba(139,92,246,0.12)]"
+      className="rounded-xl p-4 transition-all duration-300 hover:shadow-[0_0_40px_rgba(139,92,246,0.12)] relative overflow-hidden"
       style={{
         border: "1px solid rgba(139,92,246,0.35)",
         boxShadow: "0 0 30px rgba(139,92,246,0.08)",
@@ -64,20 +64,36 @@ export function CommunitySeoBridge() {
           "linear-gradient(180deg, hsl(260 30% 16%) 0%, hsl(250 25% 13%) 100%)",
       }}
     >
-      <div className="flex items-center gap-2 mb-1">
-        <Flame className="h-4 w-4 text-orange-400" />
+      {/* Subtle casino illustration overlay */}
+      <div
+        className="absolute inset-0 pointer-events-none"
+        style={{
+          backgroundImage: `radial-gradient(circle at 90% 30%, hsl(260 60% 50% / 0.08) 0%, transparent 60%),
+            radial-gradient(circle at 80% 70%, hsl(220 70% 50% / 0.06) 0%, transparent 50%)`,
+        }}
+      />
+      {/* Right side gradient glow */}
+      <div
+        className="absolute top-0 right-0 w-1/2 h-full pointer-events-none"
+        style={{
+          background: "linear-gradient(270deg, hsl(260 60% 50% / 0.06), transparent)",
+        }}
+      />
+
+      <div className="relative flex items-center gap-2 mb-1">
+        <Flame className="h-4 w-4 text-orange-400 animate-seo-fire-pulse" />
         <h2 className="text-base font-bold text-foreground">
           Klar til at spille på nye casinoer?
         </h2>
       </div>
-      <p className="text-xs text-muted-foreground mb-4 leading-relaxed">
+      <p className="relative text-xs text-muted-foreground mb-4 leading-relaxed">
         Find nye online casinoer, free spins og eksklusive bonusser.
       </p>
 
       <Link
         to={primaryLink.href}
         onClick={() => trackClick(primaryLink.label)}
-        className="block mb-4"
+        className="relative block mb-4"
       >
         <Button
           className="w-full gap-2 font-semibold shadow-lg transition-all duration-200 hover:shadow-[0_0_20px_rgba(139,92,246,0.3)] hover:scale-[1.02]"
@@ -92,7 +108,7 @@ export function CommunitySeoBridge() {
         </Button>
       </Link>
 
-      <ul className="space-y-0.5">
+      <ul className="relative space-y-0.5">
         {secondaryLinks.map((link) => {
           const Icon = link.icon;
           return (
@@ -111,9 +127,9 @@ export function CommunitySeoBridge() {
         })}
       </ul>
 
-      <div className="my-3 border-t border-border/30" />
+      <div className="relative my-3 border-t border-border/30" />
 
-      <ul className="space-y-1.5">
+      <ul className="relative space-y-1.5">
         {TRUST_POINTS.map((point) => (
           <li key={point} className="flex items-center gap-2 text-xs text-muted-foreground">
             <CheckCircle2 className="h-3.5 w-3.5 shrink-0 text-emerald-500/70" />

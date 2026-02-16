@@ -1,6 +1,6 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { Link } from "react-router-dom";
-import { Trophy } from "lucide-react";
+import { Trophy, Crown } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
@@ -11,8 +11,37 @@ interface LeaderboardEntry {
   total_winnings: number;
 }
 
+function AnimatedScore({ value }: { value: number }) {
+  const [displayed, setDisplayed] = useState(0);
+  const ref = useRef<HTMLSpanElement>(null);
+
+  useEffect(() => {
+    if (value === 0) return;
+    const duration = 1200;
+    const start = performance.now();
+    let raf: number;
+    function tick(now: number) {
+      const elapsed = now - start;
+      const progress = Math.min(elapsed / duration, 1);
+      const eased = 1 - Math.pow(1 - progress, 3);
+      setDisplayed(Math.round(eased * value));
+      if (progress < 1) raf = requestAnimationFrame(tick);
+    }
+    raf = requestAnimationFrame(tick);
+    return () => cancelAnimationFrame(raf);
+  }, [value]);
+
+  return (
+    <span ref={ref}>
+      {displayed.toLocaleString("da-DK")}
+    </span>
+  );
+}
+
 export function SidebarLeaderboard() {
   const [entries, setEntries] = useState<LeaderboardEntry[]>([]);
+  const [visible, setVisible] = useState(false);
+  const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     async function fetch() {
@@ -50,12 +79,29 @@ export function SidebarLeaderboard() {
     fetch();
   }, []);
 
+  useEffect(() => {
+    const el = containerRef.current;
+    if (!el) return;
+    const obs = new IntersectionObserver(
+      ([entry]) => { if (entry.isIntersecting) { setVisible(true); obs.disconnect(); } },
+      { threshold: 0.3 }
+    );
+    obs.observe(el);
+    return () => obs.disconnect();
+  }, []);
+
   if (entries.length === 0) return null;
 
   const medals = ["🥇", "🥈", "🥉"];
+  const glowColors = [
+    "hsl(45 90% 55% / 0.12)",
+    "hsl(220 10% 70% / 0.08)",
+    "hsl(25 60% 50% / 0.08)",
+  ];
 
   return (
     <div
+      ref={containerRef}
       className="rounded-xl p-4 overflow-hidden relative"
       style={{
         background: "linear-gradient(180deg, hsl(260 28% 15%) 0%, hsl(250 22% 12%) 100%)",
@@ -67,6 +113,13 @@ export function SidebarLeaderboard() {
         className="absolute top-0 left-1/2 -translate-x-1/2 w-3/4 h-px pointer-events-none"
         style={{
           background: "linear-gradient(90deg, transparent, hsl(45 90% 55% / 0.3), transparent)",
+        }}
+      />
+      {/* Radial glow behind 1st place */}
+      <div
+        className="absolute top-8 left-1/2 -translate-x-1/2 w-full h-20 pointer-events-none"
+        style={{
+          background: "radial-gradient(ellipse at center, hsl(45 90% 55% / 0.06), transparent 70%)",
         }}
       />
 
@@ -85,13 +138,39 @@ export function SidebarLeaderboard() {
           const content = (
             <li
               key={entry.user_id}
-              className={`flex items-center gap-2 rounded-lg px-2.5 py-1.5 text-sm transition-colors ${
+              className={`flex items-center gap-2 rounded-lg px-2.5 py-1.5 text-sm transition-all duration-300 ${
                 profileUrl ? "cursor-pointer hover:bg-muted/30" : ""
-              } ${i === 0 ? "bg-amber-500/8" : ""}`}
-              style={i === 0 ? { boxShadow: "0 0 12px rgba(251, 191, 36, 0.06)" } : undefined}
+              }`}
+              style={{
+                opacity: visible ? 1 : 0,
+                transform: visible ? "translateY(0)" : "translateY(8px)",
+                transition: `opacity 0.4s ease ${i * 0.12}s, transform 0.4s ease ${i * 0.12}s`,
+                background: i < 3 ? `radial-gradient(ellipse at left, ${glowColors[i]}, transparent 80%)` : undefined,
+              }}
             >
-              <span className="text-base shrink-0 w-5 text-center">{medals[i]}</span>
-              <Avatar className="h-6 w-6 shrink-0">
+              {/* Crown for 1st place */}
+              <span className="relative text-base shrink-0 w-5 text-center">
+                {i === 0 && (
+                  <Crown
+                    className="absolute -top-2.5 left-1/2 -translate-x-1/2 h-3 w-3 text-amber-400"
+                    style={{ filter: "drop-shadow(0 0 3px rgba(251,191,36,0.4))" }}
+                  />
+                )}
+                {medals[i]}
+              </span>
+              <Avatar
+                className={`h-6 w-6 shrink-0 transition-transform duration-200 ${
+                  profileUrl ? "hover:scale-105" : ""
+                }`}
+                style={i === 0
+                  ? { boxShadow: "0 0 6px rgba(251,191,36,0.3)", border: "1.5px solid rgba(251,191,36,0.35)" }
+                  : i === 1
+                  ? { border: "1.5px solid rgba(192,192,192,0.25)" }
+                  : i === 2
+                  ? { border: "1.5px solid rgba(205,127,50,0.25)" }
+                  : undefined
+                }
+              >
                 <AvatarImage src={entry.avatar_url || undefined} alt={entry.display_name} />
                 <AvatarFallback className="text-[10px]">
                   {entry.display_name.charAt(0).toUpperCase()}
@@ -105,7 +184,7 @@ export function SidebarLeaderboard() {
               <span className={`text-[11px] font-mono font-semibold tabular-nums ${
                 i === 0 ? "text-amber-400" : "text-muted-foreground/70"
               }`}>
-                {Math.round(entry.total_winnings).toLocaleString("da-DK")}
+                {visible ? <AnimatedScore value={Math.round(entry.total_winnings)} /> : "0"}
               </span>
             </li>
           );

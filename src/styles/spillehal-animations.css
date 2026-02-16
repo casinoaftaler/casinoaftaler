@@ -171,3 +171,84 @@
   will-change: transform;
   transition: transform 0.1s linear;
 }
+
+/* 14. Fire icon pulse for SEO bridge */
+@keyframes seo-fire-pulse {
+  0%, 100% { transform: scale(1); filter: brightness(1); }
+  50% { transform: scale(1.15); filter: brightness(1.3); }
+}
+
+.animate-seo-fire-pulse {
+  animation: seo-fire-pulse 3s ease-in-out infinite;
+}
+
+/* 15. CTA button shimmer */
+@keyframes cta-btn-shimmer-sweep {
+  0%, 85% { transform: translateX(-100%) skewX(-15deg); }
+  100% { transform: translateX(300%) skewX(-15deg); }
+}
+
+.cta-btn-shimmer {
+  position: relative;
+  overflow: hidden;
+}
+
+.cta-btn-shimmer::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 30%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.15), transparent);
+  animation: cta-btn-shimmer-sweep 7s ease-in-out infinite;
+  pointer-events: none;
+}
+
+/* 16. Banner moving gradient */
+@keyframes banner-gradient-move {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.banner-moving-gradient {
+  background: linear-gradient(135deg, hsl(260 60% 50% / 0.04), hsl(220 70% 50% / 0.06), hsl(260 60% 50% / 0.04));
+  background-size: 200% 200%;
+  animation: banner-gradient-move 8s ease-in-out infinite;
+}
+
+/* 17. Banner floating particles */
+@keyframes banner-float {
+  0%, 100% { transform: translateY(0) scale(0.8); opacity: 0.15; }
+  50% { transform: translateY(-12px) scale(1); opacity: 0.3; }
+}
+
+.banner-particle {
+  position: absolute;
+  width: 3px;
+  height: 3px;
+  border-radius: 50%;
+  background: hsl(260 60% 60%);
+  animation: banner-float 6s ease-in-out infinite;
+}
+
+.banner-particle:nth-child(2) { animation-delay: 2s; animation-duration: 7s; }
+.banner-particle:nth-child(3) { animation-delay: 4s; animation-duration: 5s; }
+
+/* 18. Banner border shimmer */
+@keyframes banner-border-shimmer {
+  0% { opacity: 0; }
+  50% { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+.banner-border-shimmer {
+  border: 1px solid transparent;
+  background: linear-gradient(90deg, transparent, hsl(260 60% 50% / 0.15), transparent) border-box;
+  -webkit-mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
+  mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  animation: banner-border-shimmer 4s ease-in-out infinite;
+}
