@@ -4,6 +4,7 @@ import { CommunityNav } from "./CommunityNav";
 import { CommunitySeoBridge } from "./CommunitySeoBridge";
 import { CommunityConversionCard } from "./CommunityConversionCard";
 import { SidebarLeaderboard } from "@/components/games/SidebarLeaderboard";
+import { SidebarShopLeaderboard } from "@/components/games/SidebarShopLeaderboard";
 import { type LucideIcon } from "lucide-react";
 import communityHero from "@/assets/community/community-hero.jpg";
 
@@ -68,6 +69,7 @@ export function CommunityPageLayout({
               <CommunitySeoBridge />
               <CommunityConversionCard />
               <SidebarLeaderboard />
+              <SidebarShopLeaderboard />
             </div>
           </div>
         )}
