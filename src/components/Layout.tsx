@@ -1,18 +1,15 @@
-import { lazy, Suspense } from "react";
 import { Outlet, useLocation } from "react-router-dom";
 import { Header } from "./Header";
 import { Footer } from "./Footer";
 import { Breadcrumbs } from "./Breadcrumbs";
+import { CookieConsent } from "./CookieConsent";
+import { BackToTop } from "./BackToTop";
+import { TwitchLivePlayer } from "./TwitchLivePlayer";
+import { ProfileCompletionPrompt } from "./ProfileCompletionPrompt";
 import { usePageTracking } from "@/hooks/usePageTracking";
 import { ScrollToTop } from "./ScrollToTop";
 import { useBanCheck } from "@/hooks/useBanCheck";
 import { BannedScreen } from "./BannedScreen";
-
-// Lazy load non-critical overlay components to reduce initial bundle
-const CookieConsent = lazy(() => import("./CookieConsent").then(m => ({ default: m.CookieConsent })));
-const BackToTop = lazy(() => import("./BackToTop").then(m => ({ default: m.BackToTop })));
-const TwitchLivePlayer = lazy(() => import("./TwitchLivePlayer").then(m => ({ default: m.TwitchLivePlayer })));
-const ProfileCompletionPrompt = lazy(() => import("./ProfileCompletionPrompt").then(m => ({ default: m.ProfileCompletionPrompt })));
 
 export function Layout() {
   usePageTracking();
@@ -34,12 +31,10 @@ export function Layout() {
         <Outlet />
       </main>
       {!hideFooter && <Footer />}
-      <Suspense fallback={null}>
-        <CookieConsent />
-        <BackToTop />
-        <TwitchLivePlayer />
-        <ProfileCompletionPrompt />
-      </Suspense>
+      <CookieConsent />
+      <BackToTop />
+      <TwitchLivePlayer />
+      <ProfileCompletionPrompt />
     </div>
   );
 }
