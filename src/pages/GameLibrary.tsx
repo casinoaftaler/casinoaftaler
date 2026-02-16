@@ -117,7 +117,7 @@ export default function GameLibrary() {
             </Card>
           )}
           {/* Featured Slots - side by side */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 items-stretch">
             {FEATURED_SLOTS.map((slot, index) => (
               <div
                 key={slot.id}
