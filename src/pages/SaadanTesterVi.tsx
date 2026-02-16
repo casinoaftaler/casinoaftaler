@@ -173,7 +173,7 @@ const webPageJsonLd = {
   author: {
     "@type": "Person",
     name: "Jonas",
-    url: "https://casinoaftaler.dk/forfatter",
+    url: "https://casinoaftaler.dk/forfatter/jonas",
   },
   breadcrumb: {
     "@type": "BreadcrumbList",
@@ -365,7 +365,7 @@ const SaadanTesterVi = () => {
                   </p>
                   <p className="text-muted-foreground leading-relaxed">
                     Læs mere om vores værdier og tilgang på vores{" "}
-                    <Link to="/about" className="text-primary underline hover:text-primary/80">Om os</Link>-side.
+                    <Link to="/om" className="text-primary underline hover:text-primary/80">Om os</Link>-side.
                   </p>
                 </div>
               </div>
