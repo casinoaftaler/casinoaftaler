@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import nyeCasinoer2026Hero from "@/assets/heroes/nye-casinoer-2026-hero.jpg";
 import { SEO } from "@/components/SEO";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { AuthorBio } from "@/components/AuthorBio";
@@ -116,6 +117,10 @@ const NyeCasinoer2026 = () => {
 
       <div className="container py-8 md:py-12">
         <AuthorMetaBar author="kevin" date="16-02-2026" readTime="14 Min." />
+
+        <div className="mb-10 overflow-hidden rounded-xl">
+          <img src={nyeCasinoer2026Hero} alt="Nye casinoer i 2026 – futuristisk casino med neonlys" className="w-full h-auto object-cover max-h-[400px]" loading="eager" />
+        </div>
 
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold">Nye casinoer i Danmark 2026 – hvad kan du forvente?</h2>

@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import mitidHero from "@/assets/heroes/nye-casinoer-mitid-hero.jpg";
 import { SEO } from "@/components/SEO";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { AuthorBio } from "@/components/AuthorBio";
@@ -48,6 +49,10 @@ const NyeCasinoerMitID = () => {
 
       <div className="container py-8 md:py-12">
         <AuthorMetaBar author="kevin" date="16-02-2026" readTime="8 Min." />
+
+        <div className="mb-10 overflow-hidden rounded-xl">
+          <img src={mitidHero} alt="MitID verifikation hos nye casinoer" className="w-full h-auto object-cover max-h-[400px]" loading="eager" />
+        </div>
 
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold">MitID hos nye casinoer i Danmark</h2>
