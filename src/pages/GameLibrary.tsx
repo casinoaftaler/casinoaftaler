@@ -6,15 +6,13 @@ import { CommunityConversionStrip } from "@/components/community/CommunityConver
 import { CommunityBrandBlock } from "@/components/community/CommunityBrandBlock";
 import { CommunitySeoBridge } from "@/components/community/CommunitySeoBridge";
 import { CommunityConversionCard } from "@/components/community/CommunityConversionCard";
+import { CommunityJoinCTA } from "@/components/community/CommunityJoinCTA";
 import { useAuth } from "@/hooks/useAuth";
 
 import { FeaturedSlotPanel } from "@/components/games/FeaturedSlotPanel";
-import { LiveActivityTicker } from "@/components/games/LiveActivityTicker";
-import { MiniLeaderboard } from "@/components/games/MiniLeaderboard";
 import { SidebarLeaderboard } from "@/components/games/SidebarLeaderboard";
-import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Gamepad2, Clock } from "lucide-react";
+import { Gamepad2, Clock, Rocket } from "lucide-react";
 import spillehalHero from "@/assets/community/spillehal-hero.jpg";
 import slotIntroImage from "@/assets/slots/slot-intro-screen.jpg";
 import riseIntroImage from "@/assets/slots/rise/intro-screen.jpg";
@@ -106,25 +104,6 @@ export default function GameLibrary() {
 
         {/* Main content */}
         <div className="py-8 md:py-12 space-y-8 md:space-y-10">
-          {/* Community CTA for logged-out users */}
-          {!user && (
-            <Card className="border-primary/20 bg-gradient-to-r from-primary/5 to-transparent">
-              <CardContent className="flex flex-col sm:flex-row items-center gap-4 py-6">
-                <div className="flex-1">
-                  <h2 className="text-lg font-semibold mb-1">
-                    Bliv en del af vores community
-                  </h2>
-                  <p className="text-sm text-muted-foreground">
-                    Log ind for at spille gratis slots, deltage i turneringer og optjene rewards.
-                  </p>
-                </div>
-                <Button asChild>
-                  <Link to="/auth">Log ind / Opret konto</Link>
-                </Button>
-              </CardContent>
-            </Card>
-          )}
-
           {/* Featured Slots - side by side */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 items-stretch">
             {FEATURED_SLOTS.map((slot, index) => (
@@ -152,18 +131,34 @@ export default function GameLibrary() {
           {/* Section divider */}
           <div className="spillehal-divider" />
 
+          {/* Community CTA for logged-out users */}
+          {!user && <CommunityJoinCTA />}
+
           {/* Conversion strip */}
           <CommunityConversionStrip />
 
           {/* Section divider */}
           <div className="spillehal-divider" />
 
-          {/* More games */}
+          {/* Upcoming exclusive games */}
           {MORE_SLOTS.length > 0 && (
             <div>
-              <h2 className="text-xl md:text-2xl font-bold text-foreground mb-6 flex items-center gap-2">
-                🔥 Flere spil på vej
-              </h2>
+              <div className="flex items-center gap-3 mb-6">
+                <div
+                  className="flex items-center justify-center h-8 w-8 rounded-lg shrink-0"
+                  style={{ background: "linear-gradient(135deg, hsl(260 70% 50%), hsl(220 80% 50%))" }}
+                >
+                  <Rocket className="h-4 w-4 text-white" />
+                </div>
+                <div>
+                  <h2 className="text-xl md:text-2xl font-bold text-foreground">
+                    Kommende eksklusive spil
+                  </h2>
+                  <p className="text-xs text-muted-foreground">
+                    Disse spil lanceres snart i Spillehallen – kun for medlemmer.
+                  </p>
+                </div>
+              </div>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 items-stretch">
                 {MORE_SLOTS.map((game, index) => (
                   <div
