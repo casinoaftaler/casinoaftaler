@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import udenRofusHero from "@/assets/heroes/nye-casinoer-uden-rofus-hero.jpg";
 import { SEO } from "@/components/SEO";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { AuthorBio } from "@/components/AuthorBio";
@@ -97,6 +98,10 @@ const NyeCasinoerUdenRofus = () => {
 
       <div className="container py-8 md:py-12">
         <AuthorMetaBar author="kevin" date="16-02-2026" readTime="14 Min." />
+
+        <div className="mb-10 overflow-hidden rounded-xl">
+          <img src={udenRofusHero} alt="Casino uden ROFUS – advarsler og risici" className="w-full h-auto object-cover max-h-[400px]" loading="eager" />
+        </div>
 
         <Card className="mb-8 border-l-4 border-l-destructive">
           <CardContent className="pt-6">

@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import bedsteNyeCasinoerHero from "@/assets/heroes/bedste-nye-casinoer-hero.jpg";
 import { SEO } from "@/components/SEO";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { AuthorBio } from "@/components/AuthorBio";
@@ -63,6 +64,10 @@ const BedsteNyeCasinoer = () => {
 
       <div className="container py-8 md:py-12">
         <AuthorMetaBar author="kevin" date="16-02-2026" readTime="14 Min." />
+
+        <div className="mb-10 overflow-hidden rounded-xl">
+          <img src={bedsteNyeCasinoerHero} alt="Bedste nye casinoer i Danmark" className="w-full h-auto object-cover max-h-[400px]" loading="eager" />
+        </div>
 
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold">De bedste nye casinoer i Danmark</h2>

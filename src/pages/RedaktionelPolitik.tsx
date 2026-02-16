@@ -20,6 +20,7 @@ import { useSiteSettings } from "@/hooks/useSiteSettings";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { RelatedGuides } from "@/components/RelatedGuides";
 import { buildArticleSchema } from "@/lib/seo";
+import redaktionelPolitikHero from "@/assets/heroes/redaktionel-politik-hero.jpg";
 
 const RedaktionelPolitik = () => {
   const { data: siteSettings } = useSiteSettings();
@@ -97,6 +98,10 @@ const RedaktionelPolitik = () => {
 
       <div className="container py-10 md:py-14">
         <AuthorMetaBar author="kevin" date="2026-02-15" readTime="6 min" />
+
+        <div className="mb-10 overflow-hidden rounded-xl">
+          <img src={redaktionelPolitikHero} alt="Redaktionel politik – faktatjek og kvalitetssikring" className="w-full h-auto object-cover max-h-[400px]" loading="eager" />
+        </div>
 
         {/* Vores redaktionelle proces */}
         <section className="mb-12">
