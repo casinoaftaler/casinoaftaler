@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Play } from "lucide-react";
+import { Play, Clock } from "lucide-react";
 
 interface FeaturedSlotPanelProps {
   title: string;
@@ -12,6 +12,7 @@ interface FeaturedSlotPanelProps {
   priority?: "primary" | "secondary";
   showScrollHint?: boolean;
   imagePosition?: string;
+  disabled?: boolean;
 }
 
 export function FeaturedSlotPanel({
@@ -23,10 +24,11 @@ export function FeaturedSlotPanel({
   priority = "primary",
   showScrollHint = false,
   imagePosition = "center",
+  disabled = false,
 }: FeaturedSlotPanelProps) {
   return (
     <div className="relative h-full">
-      <div className="group relative overflow-hidden rounded-2xl border border-amber-500/15 shadow-[0_4px_30px_rgba(0,0,0,0.3)] transition-all duration-500 hover:border-amber-500/30 hover:shadow-[0_8px_40px_rgba(251,191,36,0.08)] h-full">
+      <div className={`group relative overflow-hidden rounded-2xl border border-amber-500/15 shadow-[0_4px_30px_rgba(0,0,0,0.3)] transition-all duration-500 h-full ${disabled ? "opacity-60" : "hover:border-amber-500/30 hover:shadow-[0_8px_40px_rgba(251,191,36,0.08)]"}`}>
         {/* Hero image – constrained height */}
         <div
           className="relative overflow-hidden h-full"
@@ -70,16 +72,23 @@ export function FeaturedSlotPanel({
                   {description}
                 </p>
               </div>
-              <Button
-                asChild
-                size="default"
-                className="bg-amber-500 hover:bg-amber-600 text-black font-semibold gap-2 shrink-0 shadow-[0_2px_12px_rgba(251,191,36,0.25)] hover:shadow-[0_4px_20px_rgba(251,191,36,0.4)] transition-all duration-300 text-sm px-6"
-              >
-                <Link to={href}>
-                  <Play className="h-4 w-4" />
-                  Spil nu
-                </Link>
-              </Button>
+              {disabled ? (
+                <Button disabled size="default" variant="secondary" className="gap-2 shrink-0 text-sm px-6">
+                  <Clock className="h-4 w-4" />
+                  Kommer snart
+                </Button>
+              ) : (
+                <Button
+                  asChild
+                  size="default"
+                  className="bg-amber-500 hover:bg-amber-600 text-black font-semibold gap-2 shrink-0 shadow-[0_2px_12px_rgba(251,191,36,0.25)] hover:shadow-[0_4px_20px_rgba(251,191,36,0.4)] transition-all duration-300 text-sm px-6"
+                >
+                  <Link to={href}>
+                    <Play className="h-4 w-4" />
+                    Spil nu
+                  </Link>
+                </Button>
+              )}
             </div>
           </div>
         </div>
