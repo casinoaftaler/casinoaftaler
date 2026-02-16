@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import { SEO } from "@/components/SEO";
 import { CommunityPageLayout } from "@/components/community/CommunityPageLayout";
 import { CommunityBrandBlock } from "@/components/community/CommunityBrandBlock";
-import { CommunityJoinCTA } from "@/components/community/CommunityJoinCTA";
+
 import { EnergySweep } from "@/components/community/EnergySweep";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -95,11 +95,6 @@ export default function CommunityHub() {
         badgeIcon={Users}
       >
         <div className="py-8 md:py-12">
-          {!user && (
-            <div className="mb-8">
-              <CommunityJoinCTA />
-            </div>
-          )}
 
           {/* First row – 3 cards with energy sweep */}
           <EnergySweep>
