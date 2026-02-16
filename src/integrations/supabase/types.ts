@@ -554,6 +554,7 @@ export type Database = {
           preferred_game_type: string | null
           profile_prompt_dismissed: boolean
           profile_section_completed: boolean | null
+          spin_reel_extra_spins: number
           stats_public: boolean | null
           stats_section_completed: boolean | null
           twitch_access_token: string | null
@@ -591,6 +592,7 @@ export type Database = {
           preferred_game_type?: string | null
           profile_prompt_dismissed?: boolean
           profile_section_completed?: boolean | null
+          spin_reel_extra_spins?: number
           stats_public?: boolean | null
           stats_section_completed?: boolean | null
           twitch_access_token?: string | null
@@ -628,6 +630,7 @@ export type Database = {
           preferred_game_type?: string | null
           profile_prompt_dismissed?: boolean
           profile_section_completed?: boolean | null
+          spin_reel_extra_spins?: number
           stats_public?: boolean | null
           stats_section_completed?: boolean | null
           twitch_access_token?: string | null
