@@ -205,7 +205,7 @@ export default function Highlights() {
         badgeText="Stream & Community"
         badgeIcon={Sparkles}
       >
-        <div className="container py-8 md:py-12">
+        <div className="py-8 md:py-12">
           <Tabs defaultValue={defaultTab} className="w-full">
             <div className="flex justify-center mb-8">
               <TabsList>

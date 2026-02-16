@@ -90,7 +90,7 @@ export default function CommunityHub() {
         badgeText="Fællesskab"
         badgeIcon={Users}
       >
-        <div className="container py-8 md:py-12">
+        <div className="py-8 md:py-12">
           {!user && (
             <Card className="mb-8 border-primary/20 bg-gradient-to-r from-primary/5 to-transparent">
               <CardContent className="flex flex-col sm:flex-row items-center gap-4 py-6">
