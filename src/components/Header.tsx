@@ -110,7 +110,7 @@ export const Header = memo(function Header() {
 
         {/* Desktop Navigation */}
         <nav className="hidden items-center gap-4 xl:gap-6 lg:flex whitespace-nowrap">
-          <DropdownMenu>
+          <DropdownMenu modal={false}>
             <DropdownMenuTrigger className="flex items-center gap-1.5 text-sm font-medium transition-colors hover:text-primary">
               Casinoer <ChevronDown className="h-4 w-4" />
             </DropdownMenuTrigger>
@@ -171,7 +171,7 @@ export const Header = memo(function Header() {
               </DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>
-          <DropdownMenu>
+          <DropdownMenu modal={false}>
             <DropdownMenuTrigger className="flex items-center gap-1.5 text-sm font-medium transition-colors hover:text-primary">
               Nye Casinoer <ChevronDown className="h-4 w-4" />
             </DropdownMenuTrigger>
@@ -204,7 +204,7 @@ export const Header = memo(function Header() {
               ))}
             </DropdownMenuContent>
           </DropdownMenu>
-          <DropdownMenu>
+          <DropdownMenu modal={false}>
             <DropdownMenuTrigger className="flex items-center gap-1.5 text-sm font-medium transition-colors hover:text-primary">
               Casinospil <ChevronDown className="h-4 w-4" />
             </DropdownMenuTrigger>
@@ -260,7 +260,7 @@ export const Header = memo(function Header() {
           <Link to="/live-casino" className="flex items-center gap-1.5 text-sm font-medium transition-colors hover:text-primary">
             Live Casino
           </Link>
-          <DropdownMenu>
+          <DropdownMenu modal={false}>
             <DropdownMenuTrigger className="flex items-center gap-1.5 text-sm font-medium transition-colors hover:text-primary">
               <BookOpen className="h-4 w-4" />
               Casino Bonus <ChevronDown className="h-4 w-4" />
@@ -323,7 +323,7 @@ export const Header = memo(function Header() {
               </DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>
-          <DropdownMenu>
+          <DropdownMenu modal={false}>
             <DropdownMenuTrigger className="flex items-center gap-1.5 text-sm font-medium transition-colors hover:text-primary">
               <Users className="h-4 w-4" />
               Community <ChevronDown className="h-4 w-4" />
@@ -362,7 +362,7 @@ export const Header = memo(function Header() {
               </DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>
-          <DropdownMenu>
+          <DropdownMenu modal={false}>
             <DropdownMenuTrigger className="flex items-center gap-1.5 text-sm font-medium transition-colors hover:text-primary">
               <MoreHorizontal className="h-4 w-4" />
               Mere <ChevronDown className="h-4 w-4" />
@@ -598,7 +598,7 @@ export const Header = memo(function Header() {
           {/* User menu / Login button */}
           {!authLoading && (
             user ? (
-              <DropdownMenu>
+              <DropdownMenu modal={false}>
                 <DropdownMenuTrigger asChild>
                   <Button variant="ghost" className="relative flex h-auto items-center gap-2 rounded-full px-2 py-1">
                     {creditsData && (
