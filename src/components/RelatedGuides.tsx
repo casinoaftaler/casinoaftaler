@@ -251,6 +251,23 @@ function getContextualGuides(currentPath: string): { guides: GuideLink[]; subtit
     };
   }
 
+  // Nye casinoer cluster
+  if (path.startsWith("/nye-casinoer/") || path === "/nye-casinoer") {
+    const nyeCasinoerSiblings: GuideLink[] = [
+      { to: "/nye-casinoer/2026", label: "Nye Casinoer 2026", icon: Sparkles, desc: "Alle nye casinoer i 2026" },
+      { to: "/nye-casinoer/dansk-licens", label: "Med Dansk Licens", icon: ShieldCheck, desc: "Licenserede nye casinoer" },
+      { to: "/nye-casinoer/hurtig-udbetaling", label: "Hurtig Udbetaling", icon: Zap, desc: "De hurtigste nye casinoer" },
+      { to: "/nye-casinoer/bedste", label: "Bedste Nye Casinoer", icon: Trophy, desc: "Vores topvalg i 2026" },
+      { to: "/nye-casinoer/lav-wagering", label: "Lav Wagering", icon: Target, desc: "Lave omsætningskrav" },
+    ];
+    const hub: GuideLink[] = path === "/nye-casinoer" ? [] : [{ to: "/nye-casinoer", label: "Nye Casinoer", icon: Sparkles, desc: "Komplet hub med alle nye casinoer" }];
+    const siblings = nyeCasinoerSiblings.filter(g => g.to !== path).slice(0, MAX_SIBLINGS);
+    return {
+      guides: [...hub, ...siblings, bonusHub].slice(0, MAX_SIBLINGS + 1 + MAX_CROSS_CLUSTER),
+      subtitle: "Udforsk flere guides om nye casinoer i Danmark.",
+    };
+  }
+
   // Casino guides subpages → 3 siblings + 1 cross-cluster
   if (path.startsWith("/casinoer/") || path === "/licenserede-casinoer") {
     const siblings = casinoGuidesSiblings.filter(g => g.to !== path).slice(0, MAX_SIBLINGS);
