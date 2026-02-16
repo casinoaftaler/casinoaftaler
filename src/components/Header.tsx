@@ -324,10 +324,15 @@ export const Header = memo(function Header() {
             </DropdownMenuContent>
           </DropdownMenu>
           <DropdownMenu modal={false}>
-            <DropdownMenuTrigger className="flex items-center gap-1.5 text-sm font-medium transition-colors hover:text-primary">
-              <Users className="h-4 w-4" />
-              Community <ChevronDown className="h-4 w-4" />
-            </DropdownMenuTrigger>
+            <div className="flex items-center gap-0.5">
+              <Link to="/community" className="flex items-center gap-1.5 text-sm font-medium whitespace-nowrap transition-colors hover:text-primary">
+                <Users className="h-4 w-4" />
+                Community
+              </Link>
+              <DropdownMenuTrigger className="transition-colors hover:text-primary p-1">
+                <ChevronDown className="h-4 w-4" />
+              </DropdownMenuTrigger>
+            </div>
             <DropdownMenuContent align="center" className="bg-popover">
               <DropdownMenuItem asChild>
                 <Link to="/butik" className="flex items-center gap-2">
@@ -872,38 +877,46 @@ export const Header = memo(function Header() {
             )}
 
 
-            {/* Community - expandable */}
-            <button
-              onClick={() => setExpandedSection(expandedSection === "community" ? null : "community")}
-              className="flex items-center justify-between py-3 text-sm font-medium transition-colors hover:text-primary border-b border-border/50"
-            >
-              <span className="flex items-center gap-2">
-                <Users className="h-4 w-4" />
-                Community
-              </span>
-              <ChevronDown className={`h-4 w-4 transition-transform duration-200 ${expandedSection === "community" ? "rotate-180" : ""}`} />
-            </button>
-            {expandedSection === "community" && (
-              <div className="flex flex-col border-b border-border/50 bg-muted/30">
-                {[
-                  { to: "/butik", icon: <ShoppingBag className="h-4 w-4" />, label: "Butik" },
-                  { to: "/highlights", icon: <Video className="h-4 w-4" />, label: "Highlights" },
-                  { to: "/community/slots", icon: <Coins className="h-4 w-4" />, label: "Spillehal" },
-                  { to: "/community/leaderboard", icon: <Trophy className="h-4 w-4" />, label: "Turneringer" },
-                  { to: "/community/rewards", icon: <Gift className="h-4 w-4" />, label: "Rewards Program" },
-                ].map((item) => (
-                  <Link
-                    key={item.to}
-                    to={item.to}
-                    className="ml-6 flex items-center gap-2 py-2.5 text-sm text-muted-foreground transition-colors hover:text-primary"
-                    onClick={() => setMobileMenuOpen(false)}
-                  >
-                    {item.icon}
-                    {item.label}
-                  </Link>
-                ))}
+            {/* Community - expandable with direct link */}
+            <div className="border-b border-border/50">
+              <div className="flex items-center justify-between">
+                <Link
+                  to="/community"
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="flex items-center gap-2 py-3 text-sm font-medium transition-colors hover:text-primary flex-1"
+                >
+                  <Users className="h-4 w-4" />
+                  Community
+                </Link>
+                <button
+                  onClick={() => setExpandedSection(expandedSection === "community" ? null : "community")}
+                  className="p-2 transition-colors hover:text-primary"
+                >
+                  <ChevronDown className={`h-4 w-4 transition-transform duration-200 ${expandedSection === "community" ? "rotate-180" : ""}`} />
+                </button>
               </div>
-            )}
+              {expandedSection === "community" && (
+                <div className="flex flex-col bg-muted/30 pb-2">
+                  {[
+                    { to: "/butik", icon: <ShoppingBag className="h-4 w-4" />, label: "Butik" },
+                    { to: "/highlights", icon: <Video className="h-4 w-4" />, label: "Highlights" },
+                    { to: "/community/slots", icon: <Coins className="h-4 w-4" />, label: "Spillehal" },
+                    { to: "/community/leaderboard", icon: <Trophy className="h-4 w-4" />, label: "Turneringer" },
+                    { to: "/community/rewards", icon: <Gift className="h-4 w-4" />, label: "Rewards Program" },
+                  ].map((item) => (
+                    <Link
+                      key={item.to}
+                      to={item.to}
+                      onClick={() => setMobileMenuOpen(false)}
+                      className="flex items-center gap-2 py-2 pl-8 pr-4 text-sm text-muted-foreground transition-colors hover:text-foreground"
+                    >
+                      {item.icon}
+                      {item.label}
+                    </Link>
+                  ))}
+                </div>
+              )}
+            </div>
 
             {/* Mere - expandable */}
             <button

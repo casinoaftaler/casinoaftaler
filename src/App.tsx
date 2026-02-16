@@ -44,6 +44,7 @@ const Highlights = lazy(() => import("./pages/Highlights"));
 const Leaderboard = lazy(() => import("./pages/Leaderboard"));
 const RewardsProgram = lazy(() => import("./pages/RewardsProgram"));
 const GameLibrary = lazy(() => import("./pages/GameLibrary"));
+const CommunityHub = lazy(() => import("./pages/CommunityHub"));
 const SlotMachine = lazy(() => import("./pages/SlotMachine"));
 const RiseOfFedesvin = lazy(() => import("./pages/RiseOfFedesvin"));
 const Admin = lazy(() => import("./pages/Admin"));
@@ -276,6 +277,7 @@ const App = () => (
                 <Route path="/betalingsmetoder/visa-mastercard" element={<VisaMastercardGuide />} />
                 <Route path="/betalingsmetoder/revolut" element={<RevolutGuide />} />
                 
+                <Route path="/community" element={<Suspense fallback={null}><CommunityHub /></Suspense>} />
                 <Route path="/community/leaderboard" element={<Leaderboard />} />
                 <Route path="/community/rewards" element={<RewardsProgram />} />
                 <Route 

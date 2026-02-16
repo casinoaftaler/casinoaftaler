@@ -10,6 +10,8 @@ import { SlotRequestForm } from "@/components/SlotRequestForm";
 import { useAuth } from "@/hooks/useAuth";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
 import { RelatedGuides } from "@/components/RelatedGuides";
+import { CommunityNav } from "@/components/community/CommunityNav";
+import { CommunitySeoBridge } from "@/components/community/CommunitySeoBridge";
 
 export default function RewardsProgram() {
   const { user, loading } = useAuth();
@@ -51,7 +53,15 @@ export default function RewardsProgram() {
         </div>
       </section>
 
-      <div className="container py-8 md:py-12">
+      <CommunityNav />
+
+      <div className="relative">
+        <div className="hidden lg:block absolute left-4 xl:left-8 top-8 w-[260px] z-10">
+          <div className="sticky top-24">
+            <CommunitySeoBridge />
+          </div>
+        </div>
+        <div className="container py-8 md:py-12">
         <AuthorMetaBar author="jonas" date="15-02-2026" readTime="3 Min." showFactCheck={false} />
 
         {/* Section: Community Highlights Rewards */}
@@ -244,6 +254,7 @@ export default function RewardsProgram() {
         </section>
 
         <RelatedGuides currentPath="/community/rewards" maxLinks={4} />
+        </div>
       </div>
     </>
   );
