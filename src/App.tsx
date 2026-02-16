@@ -13,6 +13,16 @@ import Index from "./pages/Index";
 // Eager-load most visited pages to avoid Suspense flash
 import CasinoBonus from "./pages/CasinoBonus";
 import NyeCasinoer from "./pages/NyeCasinoer";
+const NyeCasinoer2026 = lazy(() => import("./pages/nye-casinoer/NyeCasinoer2026"));
+const NyeCasinoerDanskLicens = lazy(() => import("./pages/nye-casinoer/NyeCasinoerDanskLicens"));
+const NyeCasinoerUdenRofus = lazy(() => import("./pages/nye-casinoer/NyeCasinoerUdenRofus"));
+const NyeCasinoerHurtigUdbetaling = lazy(() => import("./pages/nye-casinoer/NyeCasinoerHurtigUdbetaling"));
+const NyeCasinoerBonusUdenIndbetaling = lazy(() => import("./pages/nye-casinoer/NyeCasinoerBonusUdenIndbetaling"));
+const NyeCasinoerTrustly = lazy(() => import("./pages/nye-casinoer/NyeCasinoerTrustly"));
+const NyeCasinoerMitID = lazy(() => import("./pages/nye-casinoer/NyeCasinoerMitID"));
+const NyeCasinoerLavWagering = lazy(() => import("./pages/nye-casinoer/NyeCasinoerLavWagering"));
+const BedsteNyeCasinoer = lazy(() => import("./pages/nye-casinoer/BedsteNyeCasinoer"));
+const NyeVsEtablerede = lazy(() => import("./pages/nye-casinoer/NyeVsEtablerede"));
 import TopCasinoOnline from "./pages/TopCasinoOnline";
 
 // Lazy load remaining pages
@@ -155,6 +165,16 @@ const App = () => (
                 <Route path="/casino/:slug" element={<CasinoDetail />} />
                 <Route path="/top-10-casino-online" element={<TopCasinoOnline />} />
                 <Route path="/nye-casinoer" element={<NyeCasinoer />} />
+                <Route path="/nye-casinoer/2026" element={<NyeCasinoer2026 />} />
+                <Route path="/nye-casinoer/dansk-licens" element={<NyeCasinoerDanskLicens />} />
+                <Route path="/nye-casinoer/uden-rofus" element={<NyeCasinoerUdenRofus />} />
+                <Route path="/nye-casinoer/hurtig-udbetaling" element={<NyeCasinoerHurtigUdbetaling />} />
+                <Route path="/nye-casinoer/bonus-uden-indbetaling" element={<NyeCasinoerBonusUdenIndbetaling />} />
+                <Route path="/nye-casinoer/trustly" element={<NyeCasinoerTrustly />} />
+                <Route path="/nye-casinoer/mitid" element={<NyeCasinoerMitID />} />
+                <Route path="/nye-casinoer/lav-wagering" element={<NyeCasinoerLavWagering />} />
+                <Route path="/nye-casinoer/bedste" element={<BedsteNyeCasinoer />} />
+                <Route path="/nye-casinoer/vs-etablerede" element={<NyeVsEtablerede />} />
                 <Route path="/om" element={<OmTeamet />} />
                 <Route path="/forretningsmodel" element={<Forretningsmodel />} />
                 <Route path="/redaktionel-politik" element={<RedaktionelPolitik />} />

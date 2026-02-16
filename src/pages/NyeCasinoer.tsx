@@ -197,7 +197,7 @@ const NyeCasinoer = () => {
       </section>
 
       <div className="container py-8 md:py-12">
-        <AuthorMetaBar author="jonas" date="11-02-2026" readTime="4 Min." />
+        <AuthorMetaBar author="kevin" date="16-02-2026" readTime="12 Min." />
 
         <div className="mb-10 overflow-hidden rounded-xl">
           <img src={nyeCasinoerHero} alt="Nye casinoer – futuristisk casino med neonlys" className="w-full h-auto object-cover max-h-[400px]" loading="eager" />
@@ -347,8 +347,8 @@ const NyeCasinoer = () => {
           <p className="mb-6 text-muted-foreground leading-relaxed">
             Når et nyt casino dukker op på det danske marked, gennemgår vi det med
             samme grundighed som etablerede spillesteder. Læs mere om vores metode på{" "}
-            <Link to="/about" className={linkClass}>Om Os</Link>-siden. Her er de vigtigste
-            faktorer, vi vurderer:
+             <Link to="/om" className={linkClass}>Om Os</Link>-siden og vores <Link to="/saadan-tester-vi-casinoer" className={linkClass}>testmetode</Link>. Her er de vigtigste
+             faktorer, vi vurderer:
           </p>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div className="flex items-start gap-3 rounded-lg border border-border bg-card p-4">
@@ -898,7 +898,43 @@ const NyeCasinoer = () => {
           </p>
         </section>
 
-        <AuthorBio />
+        <Separator className="my-10" />
+
+        {/* Nye Casinoer Cluster Links */}
+        <section className="mb-12">
+          <h2 className="mb-4 text-3xl font-bold">Udforsk nye casinoer i dybden</h2>
+          <p className="mb-6 text-muted-foreground leading-relaxed">
+            Vi har udarbejdet specialiserede guides til alle aspekter af nye casinoer i Danmark:
+          </p>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+            {[
+              { to: "/nye-casinoer/2026", label: "Nye Casinoer 2026", desc: "Komplet oversigt over alle nye casinoer lanceret i 2026" },
+              { to: "/nye-casinoer/dansk-licens", label: "Med Dansk Licens", desc: "Kun casinoer med gyldig Spillemyndigheden-licens" },
+              { to: "/nye-casinoer/uden-rofus", label: "Uden ROFUS", desc: "Risici og alternativer til casinoer uden ROFUS" },
+              { to: "/nye-casinoer/hurtig-udbetaling", label: "Hurtig Udbetaling", desc: "Nye casinoer med de hurtigste udbetalinger" },
+              { to: "/nye-casinoer/bonus-uden-indbetaling", label: "Bonus uden Indbetaling", desc: "Gratis bonus ved oprettelse" },
+              { to: "/nye-casinoer/trustly", label: "Med Trustly", desc: "Nye casinoer med Trustly Pay N Play" },
+              { to: "/nye-casinoer/mitid", label: "Med MitID", desc: "Hurtig MitID-verifikation" },
+              { to: "/nye-casinoer/lav-wagering", label: "Lav Wagering", desc: "Nye casinoer med lave omsætningskrav" },
+              { to: "/nye-casinoer/bedste", label: "Bedste Nye Casinoer", desc: "Vores topvalg blandt nye casinoer" },
+              { to: "/nye-casinoer/vs-etablerede", label: "Nye vs. Etablerede", desc: "Sammenligning af nye og etablerede casinoer" },
+            ].map((link) => (
+              <Link
+                key={link.to}
+                to={link.to}
+                className="flex items-start gap-3 rounded-lg border border-border bg-card p-4 transition-colors hover:border-primary/50 hover:bg-accent/50"
+              >
+                <Sparkles className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
+                <div>
+                  <h3 className="font-semibold text-sm">{link.label}</h3>
+                  <p className="text-xs text-muted-foreground">{link.desc}</p>
+                </div>
+              </Link>
+            ))}
+          </div>
+        </section>
+
+        <AuthorBio author="kevin" />
 
         <Separator className="my-10" />
 
