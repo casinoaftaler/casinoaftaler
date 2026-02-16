@@ -104,10 +104,10 @@ export default function GameLibrary() {
       <GameLibraryHero />
       <CommunityNav />
 
-      {/* Game grid */}
+      {/* Featured slots */}
       <div className="container py-10">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-5xl mx-auto">
-          {GAMES.map((game, index) => (
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+          {GAMES.filter(g => g.status === "active").map((game, index) => (
             <div
               key={game.id}
               className="animate-fade-in"
