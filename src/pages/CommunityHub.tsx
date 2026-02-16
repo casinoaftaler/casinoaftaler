@@ -14,6 +14,7 @@ import {
   Video,
   Gift,
   ShoppingBag,
+  RotateCw,
   ArrowRight,
   Users,
 } from "lucide-react";
@@ -24,6 +25,7 @@ import turneringerImg from "@/assets/community/turneringer-card.jpg";
 import highlightsImg from "@/assets/community/highlights-card.jpg";
 import rewardsImg from "@/assets/community/rewards-card.jpg";
 import butikImg from "@/assets/community/butik-card.jpg";
+import spinTheReelImg from "@/assets/community/spin-the-reel-card.jpg";
 import "@/styles/energy-sweep.css";
 
 const SECTIONS = [
@@ -66,6 +68,16 @@ const SECTIONS = [
     badge: "Bonus Spins",
     badgeColor: "bg-green-500/15 text-green-600 dark:text-green-400 border-green-500/30",
     image: rewardsImg,
+  },
+  {
+    title: "Spin the Reel",
+    description:
+      "Spin hjulet hver 12. time og vind points eller ekstra spins! Prøv lykken og se hvad du kan vinde.",
+    href: "/community/spin-the-reel",
+    icon: RotateCw,
+    badge: "Hver 12. time",
+    badgeColor: "bg-cyan-500/15 text-cyan-600 dark:text-cyan-400 border-cyan-500/30",
+    image: spinTheReelImg,
   },
   {
     title: "Butik",
