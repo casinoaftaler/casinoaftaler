@@ -1,7 +1,7 @@
 import { ReactNode } from "react";
 import { Badge } from "@/components/ui/badge";
 import { CommunityNav } from "./CommunityNav";
-import { CommunitySeoBridge } from "./CommunitySeoBridge";
+import { CommunityContentLayout } from "./CommunityContentLayout";
 import { type LucideIcon } from "lucide-react";
 
 interface CommunityPageLayoutProps {
@@ -55,16 +55,7 @@ export function CommunityPageLayout({
       {hideSidebar ? (
         children
       ) : (
-        <div className="relative">
-          {/* Sidebar – positioned outside the content flow on lg+ */}
-          <div className="hidden lg:block absolute left-4 xl:left-8 top-8 w-[260px] z-10">
-            <div className="sticky top-24">
-              <CommunitySeoBridge />
-            </div>
-          </div>
-          {/* Main content – unchanged width and centering */}
-          <div className="container">{children}</div>
-        </div>
+        <CommunityContentLayout>{children}</CommunityContentLayout>
       )}
     </>
   );
