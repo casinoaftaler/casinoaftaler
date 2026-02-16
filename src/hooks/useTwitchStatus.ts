@@ -1,4 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
+import { useState, useEffect } from "react";
 import { supabase } from "@/integrations/supabase/client";
 
 interface TwitchStreamInfo {
@@ -18,17 +19,22 @@ interface TwitchStatusResponse {
 function extractChannelName(twitchUrl: string): string | null {
   try {
     const url = new URL(twitchUrl);
-    // Handle twitch.tv/channelname format
     const pathParts = url.pathname.split('/').filter(Boolean);
     return pathParts[0] || null;
   } catch {
-    // If it's not a valid URL, assume it's already a channel name
     return twitchUrl || null;
   }
 }
 
 export function useTwitchStatus(twitchUrl: string | null | undefined) {
   const channelName = twitchUrl ? extractChannelName(twitchUrl) : null;
+  
+  // Defer the twitch call so it doesn't block critical rendering path
+  const [ready, setReady] = useState(false);
+  useEffect(() => {
+    const timer = setTimeout(() => setReady(true), 3000);
+    return () => clearTimeout(timer);
+  }, []);
 
   return useQuery({
     queryKey: ["twitch-status", channelName],
@@ -51,8 +57,7 @@ export function useTwitchStatus(twitchUrl: string | null | undefined) {
 
       return data || { isLive: false, stream: null };
     },
-    enabled: !!channelName,
-    // Poll every 3 minutes when not live, every 60s when live
+    enabled: !!channelName && ready,
     refetchInterval: (query) => {
       const isLive = query.state.data?.isLive;
       return isLive ? 60 * 1000 : 3 * 60 * 1000;
