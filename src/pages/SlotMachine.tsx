@@ -1,3 +1,4 @@
+import "@/styles/slot-animations.css";
 import { useState, useCallback, useEffect } from "react";
 import { slotSounds } from "@/lib/slotSoundEffects";
 import { SEO } from "@/components/SEO";
