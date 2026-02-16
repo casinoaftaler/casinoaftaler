@@ -9,15 +9,17 @@ import {
   ArrowRight,
   CheckCircle2,
   Flame,
+  PartyPopper,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 const LINKS = [
   { href: "/nye-casinoer", label: "Nye Casinoer", icon: Star, primary: true },
-  { href: "/casinoer/free-spins", label: "Free Spins", icon: Zap },
-  { href: "/casinoer/casino-bonus", label: "Casino Bonus", icon: Gift },
+  { href: "/velkomstbonus", label: "Velkomstbonus", icon: PartyPopper },
+  { href: "/free-spins", label: "Free Spins", icon: Zap },
+  { href: "/casino-bonus", label: "Casino Bonus", icon: Gift },
   { href: "/live-casino", label: "Live Casino", icon: Tv },
-  { href: "/casinoer/spillemaskiner", label: "Spillemaskiner", icon: Gamepad2 },
+  { href: "/casinospil/spillemaskiner", label: "Spillemaskiner", icon: Gamepad2 },
 ];
 
 const TRUST_POINTS = [
@@ -45,7 +47,7 @@ export function CommunitySeoBridge() {
   const isSlotPage = pathname.startsWith("/community/slots");
 
   const links = isSlotPage
-    ? [LINKS[4], LINKS[0], LINKS[1], LINKS[2], LINKS[3]]
+    ? [LINKS[5], LINKS[0], LINKS[1], LINKS[2], LINKS[3], LINKS[4]]
     : LINKS;
 
   const primaryLink = links.find((l) => l.primary) || links[0];
