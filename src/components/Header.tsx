@@ -323,52 +323,10 @@ export const Header = memo(function Header() {
               </DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>
-          <DropdownMenu modal={false}>
-            <DropdownMenuTrigger className="flex items-center gap-1.5 text-sm font-medium transition-colors hover:text-primary">
+          <Link to="/community" className="flex items-center gap-1.5 text-sm font-medium whitespace-nowrap transition-colors hover:text-primary">
               <Users className="h-4 w-4" />
-              Community <ChevronDown className="h-4 w-4" />
-            </DropdownMenuTrigger>
-            <DropdownMenuContent align="center" className="bg-popover">
-              <DropdownMenuItem asChild>
-                <Link to="/community" className="flex items-center gap-2">
-                  <Users className="h-4 w-4" />
-                  Community Oversigt
-                </Link>
-              </DropdownMenuItem>
-              <DropdownMenuSeparator />
-              <DropdownMenuItem asChild>
-                <Link to="/butik" className="flex items-center gap-2">
-                  <ShoppingBag className="h-4 w-4" />
-                  Butik
-                </Link>
-              </DropdownMenuItem>
-              <DropdownMenuItem asChild>
-                <Link to="/highlights" className="flex items-center gap-2">
-                  <Video className="h-4 w-4" />
-                  Highlights
-                </Link>
-              </DropdownMenuItem>
-              <DropdownMenuSeparator />
-              <DropdownMenuItem asChild>
-                <Link to="/community/slots" className="flex items-center gap-2">
-                  <Coins className="h-4 w-4" />
-                  Spillehal
-                </Link>
-              </DropdownMenuItem>
-              <DropdownMenuItem asChild>
-                <Link to="/community/leaderboard" className="flex items-center gap-2">
-                  <Trophy className="h-4 w-4" />
-                  Turneringer
-                </Link>
-              </DropdownMenuItem>
-              <DropdownMenuItem asChild>
-                <Link to="/community/rewards" className="flex items-center gap-2">
-                  <Gift className="h-4 w-4" />
-                  Rewards Program
-                </Link>
-              </DropdownMenuItem>
-            </DropdownMenuContent>
-          </DropdownMenu>
+              Community
+          </Link>
           <DropdownMenu modal={false}>
             <DropdownMenuTrigger className="flex items-center gap-1.5 text-sm font-medium transition-colors hover:text-primary">
               <MoreHorizontal className="h-4 w-4" />
@@ -879,39 +837,15 @@ export const Header = memo(function Header() {
             )}
 
 
-            {/* Community - expandable */}
-            <button
-              onClick={() => setExpandedSection(expandedSection === "community" ? null : "community")}
-              className="flex items-center justify-between py-3 text-sm font-medium transition-colors hover:text-primary border-b border-border/50"
+            {/* Community - direct link */}
+            <Link
+              to="/community"
+              onClick={() => setMobileMenuOpen(false)}
+              className="flex items-center gap-2 py-3 text-sm font-medium transition-colors hover:text-primary border-b border-border/50"
             >
-              <span className="flex items-center gap-2">
-                <Users className="h-4 w-4" />
-                Community
-              </span>
-              <ChevronDown className={`h-4 w-4 transition-transform duration-200 ${expandedSection === "community" ? "rotate-180" : ""}`} />
-            </button>
-            {expandedSection === "community" && (
-              <div className="flex flex-col border-b border-border/50 bg-muted/30">
-                {[
-                  { to: "/community", icon: <Users className="h-4 w-4" />, label: "Community Oversigt" },
-                  { to: "/butik", icon: <ShoppingBag className="h-4 w-4" />, label: "Butik" },
-                  { to: "/highlights", icon: <Video className="h-4 w-4" />, label: "Highlights" },
-                  { to: "/community/slots", icon: <Coins className="h-4 w-4" />, label: "Spillehal" },
-                  { to: "/community/leaderboard", icon: <Trophy className="h-4 w-4" />, label: "Turneringer" },
-                  { to: "/community/rewards", icon: <Gift className="h-4 w-4" />, label: "Rewards Program" },
-                ].map((item) => (
-                  <Link
-                    key={item.to}
-                    to={item.to}
-                    className="ml-6 flex items-center gap-2 py-2.5 text-sm text-muted-foreground transition-colors hover:text-primary"
-                    onClick={() => setMobileMenuOpen(false)}
-                  >
-                    {item.icon}
-                    {item.label}
-                  </Link>
-                ))}
-              </div>
-            )}
+              <Users className="h-4 w-4" />
+              Community
+            </Link>
 
             {/* Mere - expandable */}
             <button
