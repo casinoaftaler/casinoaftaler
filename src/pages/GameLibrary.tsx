@@ -7,11 +7,8 @@ import { CommunityBrandBlock } from "@/components/community/CommunityBrandBlock"
 import { useAuth } from "@/hooks/useAuth";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
 
-import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
 import { GameCard } from "@/components/games/GameCard";
-import { SlotLeaderboard } from "@/components/slots/SlotLeaderboard";
-import { Gamepad2, Clock, ArrowRight, Flame } from "lucide-react";
+import { Gamepad2, Clock } from "lucide-react";
 import slotIntroImage from "@/assets/slots/slot-intro-screen.jpg";
 import bookTitleFallback from "@/assets/slots/book-of-fedesvin-title.png";
 import riseTitleFallback from "@/assets/slots/rise/title-logo.png";
@@ -106,112 +103,29 @@ export default function GameLibrary() {
       <PageBackground />
       <GameLibraryHero />
       <CommunityNav />
-      
-      {/* Featured Slot */}
-      <div className="container py-8">
-        <Link
-          to="/community/slots/book-of-fedesvin"
-          className="group block rounded-xl overflow-hidden transition-all duration-300 hover:shadow-[0_0_40px_rgba(245,158,11,0.15)]"
-          style={{
-            border: "1px solid rgba(245,158,11,0.25)",
-            background: "linear-gradient(135deg, hsl(260 30% 14%) 0%, hsl(35 30% 12%) 100%)",
-          }}
-        >
-          <div className="flex flex-col md:flex-row">
-            <div className="relative md:w-1/2 aspect-video md:aspect-auto overflow-hidden">
-              <img
-                src={slotIntroImage}
-                alt="Book of Fedesvin – Mest spillet"
-                className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+
+      {/* Game grid */}
+      <div className="container py-10">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-5xl mx-auto">
+          {GAMES.map((game, index) => (
+            <div
+              key={game.id}
+              className="animate-fade-in"
+              style={{
+                animationDelay: `${index * 150}ms`,
+                animationFillMode: "both",
+              }}
+            >
+              <GameCard
+                title={game.title}
+                description={game.description}
+                image={game.image}
+                href={game.href}
+                status={game.status}
+                badge={game.badge}
               />
-              <div className="absolute inset-0 bg-gradient-to-r from-transparent to-background/60 hidden md:block" />
             </div>
-            <div className="p-6 md:p-8 flex flex-col justify-center md:w-1/2">
-              <Badge variant="outline" className="w-fit mb-3 bg-amber-500/15 text-amber-400 border-amber-500/30">
-                <Flame className="h-3 w-3 mr-1" />
-                Mest Spillet
-              </Badge>
-              <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-2">Book of Fedesvin</h2>
-              <p className="text-muted-foreground text-sm leading-relaxed mb-4">
-                Udforsk de gamle egyptiske skatte i denne spændende spillemaskine med expanding symbols og free spins. Spil gratis og optjen point!
-              </p>
-              <Button className="w-fit gap-2" size="lg">
-                Spil Nu
-                <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
-              </Button>
-            </div>
-          </div>
-        </Link>
-      </div>
-
-      {/* Section title */}
-      <div className="container">
-        <div className="flex items-center gap-3 mb-6">
-          <Flame className="h-5 w-5 text-amber-400" />
-          <h2 className="text-xl font-bold text-foreground">Populære slots i community</h2>
-        </div>
-      </div>
-
-      <div className="pb-10">
-        {/* Mobile/Tablet */}
-        <div className="xl:hidden container">
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 max-w-[600px] mx-auto mb-8">
-            {GAMES.map((game, index) => (
-              <div
-                key={game.id}
-                className="animate-fade-in"
-                style={{
-                  animationDelay: `${index * 150}ms`,
-                  animationFillMode: "both",
-                }}
-              >
-                <GameCard
-                  title={game.title}
-                  description={game.description}
-                  image={game.image}
-                  href={game.href}
-                  status={game.status}
-                  badge={game.badge}
-                />
-              </div>
-            ))}
-          </div>
-          
-          <div className="max-w-md mx-auto mb-8">
-            <SlotLeaderboard />
-          </div>
-        </div>
-
-        {/* Desktop: Centered game grid with leaderboard on right */}
-        <div className="hidden xl:block container">
-          <div className="flex justify-center gap-8">
-            <div className="w-[700px]">
-              <div className="grid grid-cols-2 gap-6">
-                {GAMES.map((game, index) => (
-                  <div
-                    key={game.id}
-                    className="animate-fade-in"
-                    style={{
-                      animationDelay: `${index * 150}ms`,
-                      animationFillMode: "both",
-                    }}
-                  >
-                    <GameCard
-                      title={game.title}
-                      description={game.description}
-                      image={game.image}
-                      href={game.href}
-                      status={game.status}
-                      badge={game.badge}
-                    />
-                  </div>
-                ))}
-              </div>
-            </div>
-            <aside className="w-80 2xl:w-96 shrink-0">
-              <SlotLeaderboard />
-            </aside>
-          </div>
+          ))}
         </div>
       </div>
 
