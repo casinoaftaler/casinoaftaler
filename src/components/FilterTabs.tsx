@@ -13,14 +13,11 @@ interface FilterTabsProps {
 
 export function FilterTabs({ activeFilter, onFilterChange }: FilterTabsProps) {
   return (
-    <div className="flex h-auto flex-wrap justify-start gap-2" role="tablist" aria-label="Filtrer casinoer">
+    <div className="flex h-auto flex-wrap justify-start gap-2" role="group" aria-label="Filtrer casinoer">
       {filters.map((filter) => (
         <button
           key={filter.id}
-          role="tab"
-          aria-selected={activeFilter === filter.id}
-          id={`filter-tab-${filter.id}`}
-          aria-controls={`filter-panel-${filter.id}`}
+          aria-pressed={activeFilter === filter.id}
           onClick={() => onFilterChange(filter.id)}
           className={`rounded-full border px-4 py-2 text-sm font-medium transition-colors ${
             activeFilter === filter.id
