@@ -19,6 +19,7 @@ import {
   ShieldCheck,
   Check,
   X,
+  RotateCw,
 } from "lucide-react";
 import { useProfileCompletionStats, type UserProfileStatus } from "@/hooks/useProfileCompletionStats";
 import { toast } from "sonner";
@@ -251,6 +252,24 @@ export function SpinManagementSection() {
     },
     onSuccess: () => {
       toast.success("Bruger unbanned");
+      queryClient.invalidateQueries({ queryKey: ["admin-user-spins"] });
+    },
+    onError: (error: Error) => {
+      toast.error(`Fejl: ${error.message}`);
+    },
+  });
+
+  // Reset Spin the Reel cooldown
+  const resetSpinCooldown = useMutation({
+    mutationFn: async (userId: string) => {
+      const { error } = await supabase
+        .from("profiles")
+        .update({ last_spin_at: null })
+        .eq("user_id", userId);
+      if (error) throw error;
+    },
+    onSuccess: () => {
+      toast.success("Spin the Reel cooldown nulstillet");
       queryClient.invalidateQueries({ queryKey: ["admin-user-spins"] });
     },
     onError: (error: Error) => {
@@ -520,6 +539,17 @@ export function SpinManagementSection() {
                         credits
                       </span>
                     </div>
+
+                    {/* Reset Spin the Reel cooldown */}
+                    <Button
+                      size="icon"
+                      variant="outline"
+                      onClick={() => resetSpinCooldown.mutate(user.user_id)}
+                      disabled={resetSpinCooldown.isPending}
+                      title="Reset Spin the Reel cooldown"
+                    >
+                      <RotateCw className="h-4 w-4" />
+                    </Button>
 
                     {/* Ban/Unban button */}
                     {user.is_banned ? (
