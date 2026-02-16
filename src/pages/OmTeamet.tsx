@@ -40,7 +40,7 @@ const OmTeamet = () => {
     "@type": "Organization",
     name: "Casinoaftaler.dk",
     url: "https://casinoaftaler.dk",
-    logo: "https://casinoaftaler.dk/favicon.ico",
+    logo: "https://zhpbqqhtgnblaugrqhqi.supabase.co/storage/v1/object/public/casino-logos/header-icon.jpg",
     description:
       "Casinoaftaler.dk drives af et dedikeret team af aktive casino-streamere og content-specialister med praktisk erfaring fra det danske online casinomarked.",
     foundingDate: "2024",
