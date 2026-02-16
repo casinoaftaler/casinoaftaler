@@ -37,6 +37,9 @@ export function SlotCasinoCard({ casino, backgroundImage }: SlotCasinoCardProps)
             <img 
               src={casino.logo_url} 
               alt={casino.name}
+              width={48}
+              height={48}
+              loading="lazy"
               className="h-12 w-12 rounded-lg object-contain bg-white/10 p-1"
             />
           ) : (
