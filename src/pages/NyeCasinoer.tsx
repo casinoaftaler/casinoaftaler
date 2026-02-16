@@ -572,7 +572,7 @@ const NyeCasinoer = () => {
                 <Link to="/ansvarligt-spil" className={linkClass}>ansvarligt spil</Link>.
               </p>
               <p className="text-muted-foreground leading-relaxed">
-                Alle casinoer på vores liste har dansk licens og tilbyder
+                Alle casinoer på vores liste har dansk licens fra Spillemyndigheden – det sikrer skattefri gevinster, ROFUS-beskyttelse og max 10x omsætningskrav. Læs mere om <Link to="/casino-licenser" className={linkClass}>casino-licenser</Link> og hvad de betyder for din sikkerhed. Casinoerne tilbyder
                 selvudelukkelsesmuligheder via{" "}
                 <a
                   href="https://www.rofus.nu/"

@@ -23,6 +23,7 @@ const NyeCasinoerMitID = lazy(() => import("./pages/nye-casinoer/NyeCasinoerMitI
 const NyeCasinoerLavWagering = lazy(() => import("./pages/nye-casinoer/NyeCasinoerLavWagering"));
 const BedsteNyeCasinoer = lazy(() => import("./pages/nye-casinoer/BedsteNyeCasinoer"));
 const NyeVsEtablerede = lazy(() => import("./pages/nye-casinoer/NyeVsEtablerede"));
+const CasinoLicenser = lazy(() => import("./pages/CasinoLicenser"));
 import TopCasinoOnline from "./pages/TopCasinoOnline";
 
 // Lazy load remaining pages
@@ -237,6 +238,7 @@ const App = () => (
                 <Route path="/casinoer/hoej-rtp" element={<HoejRTPGuide />} />
                 <Route path="/casinoer/crypto-casino" element={<CryptoCasinoGuide />} />
                 <Route path="/licenserede-casinoer" element={<LicenseredeCasinoerGuide />} />
+                <Route path="/casino-licenser" element={<CasinoLicenser />} />
                 <Route path="/casinoer/vr-casinoer" element={<VRCasinoerGuide />} />
                 <Route path="/casinoer/mobil-casinoer" element={<MobilCasinoerGuide />} />
                 <Route path="/casinoer/spil-casino-for-sjov" element={<SpilForSjovGuide />} />

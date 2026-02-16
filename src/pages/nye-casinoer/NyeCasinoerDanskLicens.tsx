@@ -108,7 +108,7 @@ const NyeCasinoerDanskLicens = () => {
             Hos <Link to="/nye-casinoer" className={linkClass}>Casinoaftaler.dk</Link> anbefaler vi udelukkende nye casinoer med dansk licens. Det sikrer dig som spiller fem afgørende fordele: alle gevinster er skattefri (casinoet betaler 28% afgift), <Link to="/omsaetningskrav" className={linkClass}>omsætningskrav</Link> på bonusser er lovmæssigt begrænset til maksimalt 10x, du har adgang til ROFUS-selvudelukkelse, du kan klage til Spillemyndigheden ved tvister, og dine penge er sikret via bankgaranti.
           </p>
           <p className="text-muted-foreground leading-relaxed">
-            Den danske licensmodel er anerkendt som en af Europas mest spillervenlige. Med et lovmæssigt omsætningsloft på 10x – sammenlignet med 30–60x hos MGA-licenserede casinoer – har danske spillere markant bedre odds for at realisere bonusgevinster. Det er en unik fordel, som kun casinoer med dansk licens kan tilbyde dig.
+            Den danske licensmodel er anerkendt som en af Europas mest spillervenlige. Med et lovmæssigt omsætningsloft på 10x – sammenlignet med 30–60x hos MGA-licenserede casinoer – har danske spillere markant bedre odds for at realisere bonusgevinster. Læs vores komplette <Link to="/casino-licenser" className={linkClass}>guide til casino-licenser</Link> for en dybdegående sammenligning af dansk licens, MGA, Curaçao og UK-licenser.
           </p>
         </section>
 
