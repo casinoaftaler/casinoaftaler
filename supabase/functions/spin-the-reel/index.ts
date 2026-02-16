@@ -94,8 +94,10 @@ Deno.serve(async (req) => {
       );
     }
 
-    // Cooldown check
-    if (profile.last_spin_at) {
+    const isUnlimitedUser = profile.twitch_username?.toLowerCase() === "fedesvinsejer";
+
+    // Cooldown check (skip for unlimited users)
+    if (!isUnlimitedUser && profile.last_spin_at) {
       const lastSpin = new Date(profile.last_spin_at);
       const cooldownEnd = new Date(lastSpin.getTime() + COOLDOWN_HOURS * 60 * 60 * 1000);
       const now = new Date();
@@ -113,32 +115,36 @@ Deno.serve(async (req) => {
       }
     }
 
-    // Rate limiting - max 1 spin per 10 seconds
-    const { data: recentSpins } = await serviceClient
-      .from("spin_history")
-      .select("created_at")
-      .eq("user_id", userId)
-      .order("created_at", { ascending: false })
-      .limit(1);
+    // Rate limiting - max 1 spin per 10 seconds (skip for unlimited users)
+    if (!isUnlimitedUser) {
+      const { data: recentSpins } = await serviceClient
+        .from("spin_history")
+        .select("created_at")
+        .eq("user_id", userId)
+        .order("created_at", { ascending: false })
+        .limit(1);
 
-    if (recentSpins && recentSpins.length > 0) {
-      const lastSpinTime = new Date(recentSpins[0].created_at);
-      if (Date.now() - lastSpinTime.getTime() < 10000) {
-        return new Response(
-          JSON.stringify({ error: "For mange forsøg. Vent venligst." }),
-          { status: 429, headers: { ...corsHeaders, "Content-Type": "application/json" } }
-        );
+      if (recentSpins && recentSpins.length > 0) {
+        const lastSpinTime = new Date(recentSpins[0].created_at);
+        if (Date.now() - lastSpinTime.getTime() < 10000) {
+          return new Response(
+            JSON.stringify({ error: "For mange forsøg. Vent venligst." }),
+            { status: 429, headers: { ...corsHeaders, "Content-Type": "application/json" } }
+          );
+        }
       }
     }
 
     // Generate result
     const result = getSecureRandomSegment();
 
-    // Update last_spin_at
-    await serviceClient
-      .from("profiles")
-      .update({ last_spin_at: new Date().toISOString() })
-      .eq("user_id", userId);
+    // Update last_spin_at (skip for unlimited users to avoid cooldown)
+    if (!isUnlimitedUser) {
+      await serviceClient
+        .from("profiles")
+        .update({ last_spin_at: new Date().toISOString() })
+        .eq("user_id", userId);
+    }
 
     // Log spin
     await serviceClient.from("spin_history").insert({
