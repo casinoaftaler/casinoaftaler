@@ -63,7 +63,7 @@ export function InlineCasinoCards({
     return (
       <>
         <Separator className="my-10" />
-        <section className="mb-12">
+        <section className="mb-12" style={{ minHeight: '320px' }}>
           <div className="flex justify-center py-8">
             <Loader2 className="h-6 w-6 animate-spin text-primary" />
           </div>
@@ -77,7 +77,7 @@ export function InlineCasinoCards({
   return (
     <>
       <Separator className="my-10" />
-      <section className="mb-12">
+      <section className="mb-12" style={{ minHeight: '320px' }}>
         <h3 className="text-2xl font-bold mb-6 text-center">{title}</h3>
         <div className="space-y-4">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 items-start">

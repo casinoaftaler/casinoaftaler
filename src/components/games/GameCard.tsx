@@ -31,6 +31,9 @@ export function GameCard({ title, description, image, href, status, badge, title
         <img
           src={image}
           alt={title}
+          width={600}
+          height={450}
+          loading="lazy"
           className={cn(
             "h-full w-full object-cover transition-transform duration-500",
             isActive && "group-hover:scale-110"
@@ -66,6 +69,8 @@ export function GameCard({ title, description, image, href, status, badge, title
               <img
                 src={titleLogo}
                 alt={title}
+                width={280}
+                height={80}
                 className="w-3/4 max-w-[280px] h-auto drop-shadow-[0_0_20px_rgba(251,191,36,0.4)]"
               />
               {!isActive && (

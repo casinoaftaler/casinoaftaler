@@ -102,6 +102,9 @@ export function HighlightCard({ highlight, isPlaying, onPlay }: HighlightCardPro
               <img
                 src={thumbnail}
                 alt={highlight.title}
+                width={640}
+                height={360}
+                loading="lazy"
                 className="h-full w-full object-cover"
               />
             ) : (

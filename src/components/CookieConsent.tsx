@@ -28,7 +28,7 @@ export function CookieConsent() {
   if (!isVisible) return null;
 
   return (
-    <div className="fixed bottom-0 left-0 right-0 z-50 p-4 animate-fade-in">
+    <div className="fixed bottom-0 left-0 right-0 z-50 p-4 animate-fade-in" style={{ contain: 'layout' }}>
       <div className="container">
         <div className="relative mx-auto max-w-4xl rounded-2xl border border-border bg-card p-6 shadow-xl">
           {/* Close button */}

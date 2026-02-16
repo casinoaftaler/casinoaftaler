@@ -27,6 +27,9 @@ export function ShopItemCard({ item }: ShopItemCardProps) {
           <img
             src={item.image_url}
             alt={item.name}
+            width={400}
+            height={225}
+            loading="lazy"
             className="h-full w-full object-cover"
           />
         ) : (
