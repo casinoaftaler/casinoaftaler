@@ -1,6 +1,7 @@
 import { ReactNode } from "react";
 import { Badge } from "@/components/ui/badge";
 import { CommunityNav } from "./CommunityNav";
+import { CommunitySeoBridge } from "./CommunitySeoBridge";
 import { type LucideIcon } from "lucide-react";
 
 interface CommunityPageLayoutProps {
@@ -11,6 +12,8 @@ interface CommunityPageLayoutProps {
   badgeIcon: LucideIcon;
   /** Set false to skip the hero (e.g. GameLibrary has its own) */
   showHero?: boolean;
+  /** Hide the SEO sidebar (e.g. on slot game pages that have their own layout) */
+  hideSidebar?: boolean;
 }
 
 export function CommunityPageLayout({
@@ -20,6 +23,7 @@ export function CommunityPageLayout({
   badgeText,
   badgeIcon: BadgeIcon,
   showHero = true,
+  hideSidebar = false,
 }: CommunityPageLayoutProps) {
   return (
     <>
@@ -48,7 +52,14 @@ export function CommunityPageLayout({
         </section>
       )}
       <CommunityNav />
-      {children}
+      {hideSidebar ? (
+        children
+      ) : (
+        <div className="container flex gap-8 py-0">
+          <CommunitySeoBridge />
+          <div className="flex-1 min-w-0">{children}</div>
+        </div>
+      )}
     </>
   );
 }

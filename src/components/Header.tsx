@@ -330,6 +330,13 @@ export const Header = memo(function Header() {
             </DropdownMenuTrigger>
             <DropdownMenuContent align="center" className="bg-popover">
               <DropdownMenuItem asChild>
+                <Link to="/community" className="flex items-center gap-2">
+                  <Users className="h-4 w-4" />
+                  Community Oversigt
+                </Link>
+              </DropdownMenuItem>
+              <DropdownMenuSeparator />
+              <DropdownMenuItem asChild>
                 <Link to="/butik" className="flex items-center gap-2">
                   <ShoppingBag className="h-4 w-4" />
                   Butik
@@ -886,6 +893,7 @@ export const Header = memo(function Header() {
             {expandedSection === "community" && (
               <div className="flex flex-col border-b border-border/50 bg-muted/30">
                 {[
+                  { to: "/community", icon: <Users className="h-4 w-4" />, label: "Community Oversigt" },
                   { to: "/butik", icon: <ShoppingBag className="h-4 w-4" />, label: "Butik" },
                   { to: "/highlights", icon: <Video className="h-4 w-4" />, label: "Highlights" },
                   { to: "/community/slots", icon: <Coins className="h-4 w-4" />, label: "Spillehal" },

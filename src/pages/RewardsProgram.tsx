@@ -11,6 +11,7 @@ import { useAuth } from "@/hooks/useAuth";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
 import { RelatedGuides } from "@/components/RelatedGuides";
 import { CommunityNav } from "@/components/community/CommunityNav";
+import { CommunitySeoBridge } from "@/components/community/CommunitySeoBridge";
 
 export default function RewardsProgram() {
   const { user, loading } = useAuth();
@@ -54,7 +55,9 @@ export default function RewardsProgram() {
 
       <CommunityNav />
 
-      <div className="container py-8 md:py-12">
+      <div className="container py-8 md:py-12 flex gap-8">
+        <CommunitySeoBridge />
+        <div className="flex-1 min-w-0">
         <AuthorMetaBar author="jonas" date="15-02-2026" readTime="3 Min." showFactCheck={false} />
 
         {/* Section: Community Highlights Rewards */}
@@ -247,6 +250,7 @@ export default function RewardsProgram() {
         </section>
 
         <RelatedGuides currentPath="/community/rewards" maxLinks={4} />
+        </div>
       </div>
     </>
   );

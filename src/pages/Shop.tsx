@@ -12,6 +12,7 @@ import { Badge } from "@/components/ui/badge";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
 import { RelatedGuides } from "@/components/RelatedGuides";
 import { CommunityNav } from "@/components/community/CommunityNav";
+import { CommunitySeoBridge } from "@/components/community/CommunitySeoBridge";
 
 function ShopHero() {
   const { data: siteSettings } = useSiteSettings();
@@ -270,7 +271,9 @@ export default function Shop() {
       />
       <ShopHero />
       <CommunityNav />
-      <div className="container py-8 md:py-12">
+      <div className="container py-8 md:py-12 flex gap-8">
+        <CommunitySeoBridge />
+        <div className="flex-1 min-w-0">
         {/* Meta info bar */}
         <div className="mb-8 flex flex-wrap items-center gap-x-6 gap-y-2 text-sm text-muted-foreground">
           <div className="flex items-center gap-1.5">
@@ -304,6 +307,7 @@ export default function Shop() {
 
         <div className="mt-12">
           <RelatedGuides currentPath="/butik" />
+        </div>
         </div>
       </div>
     </>
