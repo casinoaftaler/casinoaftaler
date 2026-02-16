@@ -425,13 +425,13 @@ export const Header = memo(function Header() {
                   <DropdownMenuItem asChild>
                     <Link to="/forfatter/jonas" className="flex items-center gap-2">
                       <User className="h-4 w-4" />
-                      Jonas – Grundlægger
+                      Jonas
                     </Link>
                   </DropdownMenuItem>
                   <DropdownMenuItem asChild>
                     <Link to="/forfatter/kevin" className="flex items-center gap-2">
                       <User className="h-4 w-4" />
-                      Kevin – IT Medansvarlig
+                      Kevin
                     </Link>
                   </DropdownMenuItem>
                 </DropdownMenuSubContent>
@@ -949,11 +949,11 @@ export const Header = memo(function Header() {
                 </Link>
                 <Link to="/forfatter/jonas" className="ml-6 flex items-center gap-2 py-2.5 text-sm text-muted-foreground transition-colors hover:text-primary" onClick={() => setMobileMenuOpen(false)}>
                   <User className="h-4 w-4" />
-                  Jonas – Grundlægger
+                  Jonas
                 </Link>
                 <Link to="/forfatter/kevin" className="ml-6 flex items-center gap-2 py-2.5 text-sm text-muted-foreground transition-colors hover:text-primary" onClick={() => setMobileMenuOpen(false)}>
                   <User className="h-4 w-4" />
-                  Kevin – IT Medansvarlig
+                  Kevin
                 </Link>
                 <button
                   onClick={() => setPaymentsExpanded(!paymentsExpanded)}
