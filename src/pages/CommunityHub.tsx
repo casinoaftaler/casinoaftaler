@@ -10,11 +10,16 @@ import {
   Video,
   Gift,
   ShoppingBag,
-  Sparkles,
   ArrowRight,
   Users,
 } from "lucide-react";
 import { useAuth } from "@/hooks/useAuth";
+
+import spillehalImg from "@/assets/community/spillehal-card.jpg";
+import turneringerImg from "@/assets/community/turneringer-card.jpg";
+import highlightsImg from "@/assets/community/highlights-card.jpg";
+import rewardsImg from "@/assets/community/rewards-card.jpg";
+import butikImg from "@/assets/community/butik-card.jpg";
 
 const SECTIONS = [
   {
@@ -24,9 +29,8 @@ const SECTIONS = [
     href: "/community/slots",
     icon: Gamepad2,
     badge: "Populær",
-    color: "from-amber-500/20 to-amber-500/5",
-    iconColor: "text-amber-500",
     badgeColor: "bg-amber-500/15 text-amber-600 dark:text-amber-400 border-amber-500/30",
+    image: spillehalImg,
   },
   {
     title: "Turneringer",
@@ -35,9 +39,8 @@ const SECTIONS = [
     href: "/community/leaderboard",
     icon: Trophy,
     badge: "Ugentlige præmier",
-    color: "from-purple-500/20 to-purple-500/5",
-    iconColor: "text-purple-500",
     badgeColor: "bg-purple-500/15 text-purple-600 dark:text-purple-400 border-purple-500/30",
+    image: turneringerImg,
   },
   {
     title: "Highlights",
@@ -46,9 +49,8 @@ const SECTIONS = [
     href: "/highlights",
     icon: Video,
     badge: "Clips & Streams",
-    color: "from-blue-500/20 to-blue-500/5",
-    iconColor: "text-blue-500",
     badgeColor: "bg-blue-500/15 text-blue-600 dark:text-blue-400 border-blue-500/30",
+    image: highlightsImg,
   },
   {
     title: "Rewards Program",
@@ -57,9 +59,8 @@ const SECTIONS = [
     href: "/community/rewards",
     icon: Gift,
     badge: "Bonus Spins",
-    color: "from-green-500/20 to-green-500/5",
-    iconColor: "text-green-500",
     badgeColor: "bg-green-500/15 text-green-600 dark:text-green-400 border-green-500/30",
+    image: rewardsImg,
   },
   {
     title: "Butik",
@@ -68,9 +69,8 @@ const SECTIONS = [
     href: "/butik",
     icon: ShoppingBag,
     badge: "Twitch Point",
-    color: "from-rose-500/20 to-rose-500/5",
-    iconColor: "text-rose-500",
     badgeColor: "bg-rose-500/15 text-rose-600 dark:text-rose-400 border-rose-500/30",
+    image: butikImg,
   },
 ];
 
@@ -91,7 +91,6 @@ export default function CommunityHub() {
         badgeIcon={Users}
       >
         <div className="container py-8 md:py-12">
-          {/* Welcome section for non-logged-in users */}
           {!user && (
             <Card className="mb-8 border-primary/20 bg-gradient-to-r from-primary/5 to-transparent">
               <CardContent className="flex flex-col sm:flex-row items-center gap-4 py-6">
@@ -110,7 +109,6 @@ export default function CommunityHub() {
             </Card>
           )}
 
-          {/* Feature cards grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
             {SECTIONS.map((section) => {
               const Icon = section.icon;
@@ -120,21 +118,30 @@ export default function CommunityHub() {
                   to={section.href}
                   className="group"
                 >
-                  <Card className="h-full transition-all duration-200 hover:shadow-lg hover:border-primary/30 group-hover:-translate-y-0.5">
-                    <CardContent className="p-6">
-                      <div className={`inline-flex items-center justify-center w-12 h-12 rounded-xl bg-gradient-to-br ${section.color} mb-4`}>
-                        <Icon className={`h-6 w-6 ${section.iconColor}`} />
-                      </div>
+                  <Card className="h-full overflow-hidden transition-all duration-200 hover:shadow-lg hover:border-primary/30 group-hover:-translate-y-0.5">
+                    {/* Image */}
+                    <div className="relative aspect-[16/9] overflow-hidden">
+                      <img
+                        src={section.image}
+                        alt={section.title}
+                        className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
+                        loading="lazy"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-card/80 via-transparent to-transparent" />
                       <Badge
                         variant="outline"
-                        className={`mb-3 text-xs ${section.badgeColor}`}
+                        className={`absolute top-3 left-3 text-xs ${section.badgeColor} backdrop-blur-sm`}
                       >
                         {section.badge}
                       </Badge>
-                      <h3 className="font-semibold text-lg mb-2 group-hover:text-primary transition-colors">
+                    </div>
+
+                    <CardContent className="p-5">
+                      <h3 className="font-semibold text-lg mb-1.5 group-hover:text-primary transition-colors flex items-center gap-2">
+                        <Icon className="h-5 w-5 text-muted-foreground" />
                         {section.title}
                       </h3>
-                      <p className="text-sm text-muted-foreground leading-relaxed mb-4">
+                      <p className="text-sm text-muted-foreground leading-relaxed mb-3">
                         {section.description}
                       </p>
                       <div className="flex items-center text-sm font-medium text-primary">
