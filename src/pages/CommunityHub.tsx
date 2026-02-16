@@ -112,9 +112,21 @@ export default function CommunityHub() {
       />
       <CommunityPageLayout
         title="Community"
-        description="Spil gratis spillemaskiner i Casinoaftalers community, deltag i turneringer og optjen bonus spins hver dag. Udforsk også vores guides til nye casinoer, casino bonusser og free spins."
+        description="Spil gratis spillemaskiner i Casinoaftalers community, deltag i turneringer og optjen bonus spins hver dag."
         badgeText="Fællesskab"
         badgeIcon={Users}
+        heroExtra={
+          <p className="text-sm md:text-base text-white/70 leading-relaxed max-w-2xl mx-auto">
+            Udforsk vores guides til{" "}
+            <Link to="/nye-casinoer" className="text-white/90 underline hover:text-white">nye casinoer</Link>,{" "}
+            <Link to="/casino-bonus" className="text-white/90 underline hover:text-white">casino bonusser</Link> og{" "}
+            <Link to="/free-spins" className="text-white/90 underline hover:text-white">free spins</Link>.
+            Prøv gratis{" "}
+            <Link to="/casinospil/spillemaskiner" className="text-white/90 underline hover:text-white">spillemaskiner</Link>{" "}
+            og lær om{" "}
+            <Link to="/omsaetningskrav" className="text-white/90 underline hover:text-white">omsætningskrav</Link>.
+          </p>
+        }
       >
         <div className="py-8 md:py-12">
 
