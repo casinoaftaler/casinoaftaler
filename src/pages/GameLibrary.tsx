@@ -11,6 +11,7 @@ import { useAuth } from "@/hooks/useAuth";
 import { FeaturedSlotPanel } from "@/components/games/FeaturedSlotPanel";
 import { LiveActivityTicker } from "@/components/games/LiveActivityTicker";
 import { MiniLeaderboard } from "@/components/games/MiniLeaderboard";
+import { SidebarLeaderboard } from "@/components/games/SidebarLeaderboard";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Gamepad2, Clock } from "lucide-react";
@@ -99,6 +100,7 @@ export default function GameLibrary() {
             <div className="animate-border-glow rounded-xl">
               <CommunityConversionCard />
             </div>
+            <SidebarLeaderboard />
           </div>
         </div>
 
