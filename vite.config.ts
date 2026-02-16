@@ -17,13 +17,14 @@ function sitemapPlugin(): Plugin {
     async closeBundle() {
       // Dynamic import so it only runs at build time
       const { seoRoutes } = await import("./src/lib/seoRoutes");
-      const buildDate = new Date().toISOString().split("T")[0]; // YYYY-MM-DD
+      const buildDate = new Date().toISOString().split("T")[0]; // YYYY-MM-DD fallback
 
       const urls = seoRoutes.map((route) => {
         const loc = route.path === "/" ? SITE_URL + "/" : SITE_URL + route.path;
+        const lastmod = route.lastmod || buildDate;
         return `  <url>
     <loc>${loc}</loc>
-    <lastmod>${buildDate}</lastmod>
+    <lastmod>${lastmod}</lastmod>
     <changefreq>${route.changefreq}</changefreq>
     <priority>${route.priority.toFixed(1)}</priority>
   </url>`;
