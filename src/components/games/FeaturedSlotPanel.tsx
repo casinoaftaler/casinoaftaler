@@ -10,6 +10,7 @@ interface FeaturedSlotPanelProps {
   href: string;
   badge?: string;
   priority?: "primary" | "secondary";
+  showScrollHint?: boolean;
 }
 
 export function FeaturedSlotPanel({
@@ -19,65 +20,78 @@ export function FeaturedSlotPanel({
   href,
   badge,
   priority = "primary",
+  showScrollHint = false,
 }: FeaturedSlotPanelProps) {
   return (
-    <div className="group relative overflow-hidden rounded-2xl border border-amber-500/20 transition-all duration-500 hover:border-amber-500/40 hover:shadow-[0_0_60px_rgba(251,191,36,0.12)]">
-      {/* Subtle glow behind panel */}
-      <div className="absolute -inset-1 rounded-2xl bg-amber-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-xl -z-10" />
+    <div className="relative">
+      <div className="group relative overflow-hidden rounded-2xl border border-amber-500/15 shadow-[0_4px_30px_rgba(0,0,0,0.3)] transition-all duration-500 hover:border-amber-500/30 hover:shadow-[0_8px_40px_rgba(251,191,36,0.08)]">
+        {/* Hero image – constrained height */}
+        <div
+          className="relative overflow-hidden"
+          style={{ maxHeight: "clamp(280px, 55vh, 520px)" }}
+        >
+          <img
+            src={image}
+            alt={title}
+            width={1200}
+            height={675}
+            loading="lazy"
+            className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.02]"
+            style={{ minHeight: "280px" }}
+          />
 
-      {/* Hero image 16:9 */}
-      <div className="relative aspect-video overflow-hidden">
-        <img
-          src={image}
-          alt={title}
-          width={1200}
-          height={675}
-          loading="lazy"
-          className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
-        />
+          {/* Stronger bottom gradient for text readability */}
+          <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/50 to-black/5" />
+          <div className="absolute inset-0 bg-gradient-to-r from-black/30 to-transparent" />
 
-        {/* Gradient overlay */}
-        <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent" />
-        <div className="absolute inset-0 bg-gradient-to-r from-black/40 to-transparent" />
-
-        {/* Shine effect */}
-        <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 overflow-hidden pointer-events-none">
-          <div className="absolute inset-0 -translate-x-full group-hover:animate-shine bg-gradient-to-r from-transparent via-white/8 to-transparent -skew-x-12" />
-        </div>
-
-        {/* Badge */}
-        {badge && (
-          <div className="absolute top-4 left-4 z-10">
-            <Badge className="border-amber-500/30 bg-amber-500/20 text-amber-300 text-xs px-3 py-1 backdrop-blur-sm font-semibold tracking-wide">
-              {badge}
-            </Badge>
+          {/* Subtle shine on hover */}
+          <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 overflow-hidden pointer-events-none">
+            <div className="absolute inset-0 -translate-x-full group-hover:animate-shine bg-gradient-to-r from-transparent via-white/5 to-transparent -skew-x-12" />
           </div>
-        )}
 
-        {/* Content overlay at bottom */}
-        <div className="absolute bottom-0 inset-x-0 p-6 md:p-8 lg:p-10">
-          <div className="flex flex-col sm:flex-row items-start sm:items-end justify-between gap-4">
-            <div className="space-y-2 max-w-xl">
-              <h2 className={`font-bold text-white tracking-tight ${priority === "primary" ? "text-3xl md:text-4xl lg:text-5xl" : "text-2xl md:text-3xl lg:text-4xl"}`}>
-                {title}
-              </h2>
-              <p className="text-white/70 text-sm md:text-base lg:text-lg leading-relaxed line-clamp-2">
-                {description}
-              </p>
+          {/* Badge – refined & subtle */}
+          {badge && (
+            <div className="absolute top-3 left-3 z-10 animate-fade-in" style={{ animationDelay: "300ms", animationFillMode: "both" }}>
+              <Badge className="border-amber-500/20 bg-black/40 text-amber-300/90 text-[10px] px-2 py-0.5 backdrop-blur-md font-medium tracking-wider uppercase">
+                {badge}
+              </Badge>
             </div>
-            <Button
-              asChild
-              size="lg"
-              className="bg-amber-500 hover:bg-amber-600 text-black font-bold gap-2.5 shrink-0 shadow-[0_4px_20px_rgba(251,191,36,0.3)] hover:shadow-[0_4px_30px_rgba(251,191,36,0.5)] transition-all duration-300 text-base px-8"
-            >
-              <Link to={href}>
-                <Play className="h-5 w-5" />
-                Spil nu
-              </Link>
-            </Button>
+          )}
+
+          {/* Content overlay – bottom 30% */}
+          <div className="absolute bottom-0 inset-x-0 p-5 md:p-7 lg:p-8">
+            <div className="flex flex-col sm:flex-row items-start sm:items-end justify-between gap-3">
+              <div className="space-y-1.5 max-w-lg">
+                <h2 className={`font-bold text-white tracking-tight leading-tight ${priority === "primary" ? "text-2xl md:text-3xl" : "text-xl md:text-2xl"}`}>
+                  {title}
+                </h2>
+                <p className="text-white/60 text-sm md:text-base leading-relaxed line-clamp-2">
+                  {description}
+                </p>
+              </div>
+              <Button
+                asChild
+                size="default"
+                className="bg-amber-500 hover:bg-amber-600 text-black font-semibold gap-2 shrink-0 shadow-[0_2px_12px_rgba(251,191,36,0.25)] hover:shadow-[0_4px_20px_rgba(251,191,36,0.4)] transition-all duration-300 text-sm px-6"
+              >
+                <Link to={href}>
+                  <Play className="h-4 w-4" />
+                  Spil nu
+                </Link>
+              </Button>
+            </div>
           </div>
         </div>
       </div>
+
+      {/* Scroll hint */}
+      {showScrollHint && (
+        <div className="flex justify-center mt-4 animate-fade-in" style={{ animationDelay: "800ms", animationFillMode: "both" }}>
+          <span className="text-muted-foreground/50 text-xs tracking-wide animate-bounce" style={{ animationDuration: "2.5s" }}>
+            ↓ Scroll for flere spil
+          </span>
+        </div>
+      )}
     </div>
   );
 }
