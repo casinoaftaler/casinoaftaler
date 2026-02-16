@@ -116,28 +116,32 @@ export default function GameLibrary() {
               </CardContent>
             </Card>
           )}
-          {/* Featured Slots */}
-          {FEATURED_SLOTS.map((slot, index) => (
-            <div
-              key={slot.id}
-              className="animate-fade-in"
-              style={{
-                animationDelay: `${index * 200}ms`,
-                animationFillMode: "both",
-              }}
-            >
-              <FeaturedSlotPanel
-                title={slot.title}
-                description={slot.description}
-                image={slot.image}
-                href={slot.href}
-                badge={slot.badge}
-                priority={slot.priority}
-                showScrollHint={index === 0}
-                imagePosition={slot.imagePosition}
-              />
-            </div>
-          ))}
+          {/* Featured Slots - side by side */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+            {FEATURED_SLOTS.map((slot, index) => (
+              <div
+                key={slot.id}
+                className="animate-fade-in"
+                style={{
+                  animationDelay: `${index * 200}ms`,
+                  animationFillMode: "both",
+                }}
+              >
+                <FeaturedSlotPanel
+                  title={slot.title}
+                  description={slot.description}
+                  image={slot.image}
+                  href={slot.href}
+                  badge={slot.badge}
+                  priority={slot.priority}
+                  imagePosition={slot.imagePosition}
+                />
+              </div>
+            ))}
+          </div>
+
+          {/* Conversion strip between sections */}
+          <CommunityConversionStrip />
 
           {/* More games */}
           {MORE_SLOTS.length > 0 && (
@@ -168,12 +172,9 @@ export default function GameLibrary() {
             </div>
           )}
 
-          {/* Conversion strip + Brand block */}
+          {/* Brand block */}
           <div className="pb-8">
-            <CommunityConversionStrip />
-            <div className="mt-8">
-              <CommunityBrandBlock />
-            </div>
+            <CommunityBrandBlock />
           </div>
         </div>
       </div>
