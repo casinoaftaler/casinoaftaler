@@ -325,56 +325,6 @@ export const Header = memo(function Header() {
             </DropdownMenuContent>
           </DropdownMenu>
           <DropdownMenu modal={false}>
-            <div className="flex items-center gap-0.5">
-              <Link to="/community" className="flex items-center gap-1.5 text-sm font-medium whitespace-nowrap transition-colors hover:text-primary">
-                <Users className="h-4 w-4" />
-                Community
-              </Link>
-              <DropdownMenuTrigger className="transition-colors hover:text-primary p-1">
-                <ChevronDown className="h-4 w-4" />
-              </DropdownMenuTrigger>
-            </div>
-            <DropdownMenuContent align="center" className="bg-popover">
-              <DropdownMenuItem asChild>
-                <Link to="/community/slots" className="flex items-center gap-2">
-                  <Coins className="h-4 w-4" />
-                  Spillehal
-                </Link>
-              </DropdownMenuItem>
-              <DropdownMenuItem asChild>
-                <Link to="/community/leaderboard" className="flex items-center gap-2">
-                  <Trophy className="h-4 w-4" />
-                  Turneringer
-                </Link>
-              </DropdownMenuItem>
-              <DropdownMenuItem asChild>
-                <Link to="/community/spin-the-reel" className="flex items-center gap-2">
-                  <RotateCw className="h-4 w-4" />
-                  Spin the Reel
-                </Link>
-              </DropdownMenuItem>
-              <DropdownMenuItem asChild>
-                <Link to="/community/rewards" className="flex items-center gap-2">
-                  <Gift className="h-4 w-4" />
-                  Rewards Program
-                </Link>
-              </DropdownMenuItem>
-              <DropdownMenuSeparator />
-              <DropdownMenuItem asChild>
-                <Link to="/highlights" className="flex items-center gap-2">
-                  <Video className="h-4 w-4" />
-                  Highlights
-                </Link>
-              </DropdownMenuItem>
-              <DropdownMenuItem asChild>
-                <Link to="/butik" className="flex items-center gap-2">
-                  <ShoppingBag className="h-4 w-4" />
-                  Butik
-                </Link>
-              </DropdownMenuItem>
-            </DropdownMenuContent>
-          </DropdownMenu>
-          <DropdownMenu modal={false}>
             <DropdownMenuTrigger className="flex items-center gap-1.5 text-sm font-medium transition-colors hover:text-primary">
               <MoreHorizontal className="h-4 w-4" />
               Mere <ChevronDown className="h-4 w-4" />
@@ -594,6 +544,56 @@ export const Header = memo(function Header() {
                   )}
                 </DropdownMenuSubContent>
               </DropdownMenuSub>
+            </DropdownMenuContent>
+          </DropdownMenu>
+          <DropdownMenu modal={false}>
+            <div className="flex items-center gap-0.5">
+              <Link to="/community" className="flex items-center gap-1.5 text-sm font-medium whitespace-nowrap transition-colors hover:text-primary">
+                <Users className="h-4 w-4" />
+                Community
+              </Link>
+              <DropdownMenuTrigger className="transition-colors hover:text-primary p-1">
+                <ChevronDown className="h-4 w-4" />
+              </DropdownMenuTrigger>
+            </div>
+            <DropdownMenuContent align="center" className="bg-popover">
+              <DropdownMenuItem asChild>
+                <Link to="/community/slots" className="flex items-center gap-2">
+                  <Coins className="h-4 w-4" />
+                  Spillehal
+                </Link>
+              </DropdownMenuItem>
+              <DropdownMenuItem asChild>
+                <Link to="/community/leaderboard" className="flex items-center gap-2">
+                  <Trophy className="h-4 w-4" />
+                  Turneringer
+                </Link>
+              </DropdownMenuItem>
+              <DropdownMenuItem asChild>
+                <Link to="/community/spin-the-reel" className="flex items-center gap-2">
+                  <RotateCw className="h-4 w-4" />
+                  Spin the Reel
+                </Link>
+              </DropdownMenuItem>
+              <DropdownMenuItem asChild>
+                <Link to="/community/rewards" className="flex items-center gap-2">
+                  <Gift className="h-4 w-4" />
+                  Rewards Program
+                </Link>
+              </DropdownMenuItem>
+              <DropdownMenuSeparator />
+              <DropdownMenuItem asChild>
+                <Link to="/highlights" className="flex items-center gap-2">
+                  <Video className="h-4 w-4" />
+                  Highlights
+                </Link>
+              </DropdownMenuItem>
+              <DropdownMenuItem asChild>
+                <Link to="/butik" className="flex items-center gap-2">
+                  <ShoppingBag className="h-4 w-4" />
+                  Butik
+                </Link>
+              </DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>
         </nav>
@@ -884,48 +884,6 @@ export const Header = memo(function Header() {
             )}
 
 
-            {/* Community - expandable with direct link */}
-            <div className="border-b border-border/50">
-              <div className="flex items-center justify-between">
-                <Link
-                  to="/community"
-                  onClick={() => setMobileMenuOpen(false)}
-                  className="flex items-center gap-2 py-3 text-sm font-medium transition-colors hover:text-primary flex-1"
-                >
-                  <Users className="h-4 w-4" />
-                  Community
-                </Link>
-                <button
-                  onClick={() => setExpandedSection(expandedSection === "community" ? null : "community")}
-                  className="p-2 transition-colors hover:text-primary"
-                >
-                  <ChevronDown className={`h-4 w-4 transition-transform duration-200 ${expandedSection === "community" ? "rotate-180" : ""}`} />
-                </button>
-              </div>
-              {expandedSection === "community" && (
-                <div className="flex flex-col bg-muted/30 pb-2">
-                  {[
-                    { to: "/community/slots", icon: <Coins className="h-4 w-4" />, label: "Spillehal" },
-                    { to: "/community/leaderboard", icon: <Trophy className="h-4 w-4" />, label: "Turneringer" },
-                    { to: "/community/spin-the-reel", icon: <RotateCw className="h-4 w-4" />, label: "Spin the Reel" },
-                    { to: "/community/rewards", icon: <Gift className="h-4 w-4" />, label: "Rewards Program" },
-                    { to: "/highlights", icon: <Video className="h-4 w-4" />, label: "Highlights" },
-                    { to: "/butik", icon: <ShoppingBag className="h-4 w-4" />, label: "Butik" },
-                  ].map((item) => (
-                    <Link
-                      key={item.to}
-                      to={item.to}
-                      onClick={() => setMobileMenuOpen(false)}
-                      className="flex items-center gap-2 py-2 pl-8 pr-4 text-sm text-muted-foreground transition-colors hover:text-foreground"
-                    >
-                      {item.icon}
-                      {item.label}
-                    </Link>
-                  ))}
-                </div>
-              )}
-            </div>
-
             {/* Mere - expandable */}
             <button
               onClick={() => setExpandedSection(expandedSection === "more" ? null : "more")}
@@ -1140,6 +1098,48 @@ export const Header = memo(function Header() {
                 )}
               </div>
             )}
+
+            {/* Community - expandable with direct link */}
+            <div className="border-b border-border/50">
+              <div className="flex items-center justify-between">
+                <Link
+                  to="/community"
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="flex items-center gap-2 py-3 text-sm font-medium transition-colors hover:text-primary flex-1"
+                >
+                  <Users className="h-4 w-4" />
+                  Community
+                </Link>
+                <button
+                  onClick={() => setExpandedSection(expandedSection === "community" ? null : "community")}
+                  className="p-2 transition-colors hover:text-primary"
+                >
+                  <ChevronDown className={`h-4 w-4 transition-transform duration-200 ${expandedSection === "community" ? "rotate-180" : ""}`} />
+                </button>
+              </div>
+              {expandedSection === "community" && (
+                <div className="flex flex-col bg-muted/30 pb-2">
+                  {[
+                    { to: "/community/slots", icon: <Coins className="h-4 w-4" />, label: "Spillehal" },
+                    { to: "/community/leaderboard", icon: <Trophy className="h-4 w-4" />, label: "Turneringer" },
+                    { to: "/community/spin-the-reel", icon: <RotateCw className="h-4 w-4" />, label: "Spin the Reel" },
+                    { to: "/community/rewards", icon: <Gift className="h-4 w-4" />, label: "Rewards Program" },
+                    { to: "/highlights", icon: <Video className="h-4 w-4" />, label: "Highlights" },
+                    { to: "/butik", icon: <ShoppingBag className="h-4 w-4" />, label: "Butik" },
+                  ].map((item) => (
+                    <Link
+                      key={item.to}
+                      to={item.to}
+                      onClick={() => setMobileMenuOpen(false)}
+                      className="flex items-center gap-2 py-2 pl-8 pr-4 text-sm text-muted-foreground transition-colors hover:text-foreground"
+                    >
+                      {item.icon}
+                      {item.label}
+                    </Link>
+                  ))}
+                </div>
+              )}
+            </div>
 
             {/* Theme toggle */}
             <button
