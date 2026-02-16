@@ -80,7 +80,7 @@ const CasinoLicenser = () => {
   return (
     <>
       <SEO
-        title="Casino Licenser – Dansk, MGA, Curaçao og UK Forklaret"
+        title="Casino Licenser i Danmark – Dansk, MGA & Curaçao Guide"
         description="Komplet guide til casino-licenser. Forstå forskellen på dansk licens, MGA, Curaçao og UK – og hvad det betyder for din sikkerhed og skat."
         jsonLd={[articleSchema, faqSchema]}
       />
