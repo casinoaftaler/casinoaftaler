@@ -6,6 +6,8 @@ import { CommunityConversionStrip } from "@/components/community/CommunityConver
 import { CommunityBrandBlock } from "@/components/community/CommunityBrandBlock";
 import { CommunitySeoBridge } from "@/components/community/CommunitySeoBridge";
 import { CommunityConversionCard } from "@/components/community/CommunityConversionCard";
+import { AuthorMetaBar } from "@/components/AuthorMetaBar";
+import { buildArticleSchema, SITE_URL } from "@/lib/seo";
 
 import { CommunityJoinCTA } from "@/components/community/CommunityJoinCTA";
 import { useAuth } from "@/hooks/useAuth";
@@ -80,9 +82,17 @@ export default function GameLibrary() {
   return (
     <div className="min-h-[calc(100vh-4rem)] relative">
       <SEO
-        title="Spillehal – Gratis Spilleautomater | Casinoaftaler"
-        description="Udforsk vores gratis spilleautomater hos Casinoaftaler. Spil Book of Fedesvin, Rise of Fedesvin og flere spil. Optjen point og konkurrer på ranglisten."
-        noindex
+        title="Gratis Slots i Community – Spil Book of Fedesvin & Mere"
+        description="Spil gratis community-slots som Book of Fedesvin og Rise of Fedesvin. Optjen points og konkurrér mod andre spillere."
+        jsonLd={buildArticleSchema({
+          headline: "Gratis Slots i Community – Spil Book of Fedesvin & Mere",
+          description: "Spil gratis community-slots som Book of Fedesvin og Rise of Fedesvin. Optjen points og konkurrér mod andre spillere.",
+          url: `${SITE_URL}/community/slots`,
+          datePublished: "2025-06-01",
+          dateModified: "2026-02-16",
+          authorName: "Jonas",
+          authorUrl: `${SITE_URL}/forfatter/jonas`,
+        })}
       />
       <PageBackground />
       <GameLibraryHero />
@@ -105,6 +115,17 @@ export default function GameLibrary() {
 
         {/* Main content */}
         <div className="py-8 md:py-12 space-y-8 md:space-y-10">
+          <AuthorMetaBar author="jonas" date="16. februar 2026" readTime="2 min" showFactCheck={false} />
+
+          <p className="text-muted-foreground leading-relaxed -mt-4">
+            Vores gratis{" "}
+            <Link to="/casinospil/spillemaskiner" className="text-primary hover:underline">spillemaskiner</Link>{" "}
+            giver dig den autentiske slotsoplevelse uden risiko. Optjen points, kæmp om pladserne på ranglisten, og udforsk de{" "}
+            <Link to="/nye-casinoer" className="text-primary hover:underline">nyeste casinoer</Link>{" "}
+            eller hent inspiration fra vores{" "}
+            <Link to="/free-spins" className="text-primary hover:underline">free spins guide</Link>.
+          </p>
+
           {/* Community CTA for logged-out users */}
           {!user && <CommunityJoinCTA />}
 
