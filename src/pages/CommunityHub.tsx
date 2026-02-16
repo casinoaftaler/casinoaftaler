@@ -240,17 +240,23 @@ export default function CommunityHub() {
             }}
           >
             <div className="flex flex-col sm:flex-row items-center sm:items-start gap-6">
-              <div className="flex gap-3 shrink-0">
-                <img
-                  src={jonasImage}
-                  alt="Jonas – medstifter af Casinoaftaler.dk"
-                  className="h-32 w-32 rounded-full object-cover object-top ring-2 ring-primary/30"
-                />
-                <img
-                  src={kevinImage}
-                  alt="Kevin – medstifter af Casinoaftaler.dk"
-                  className="h-32 w-32 rounded-full object-cover ring-2 ring-primary/30"
-                />
+              <div className="flex gap-5 shrink-0">
+                <Link to="/forfatter/jonas" className="flex flex-col items-center gap-2 group">
+                  <img
+                    src={jonasImage}
+                    alt="Jonas – medstifter af Casinoaftaler.dk"
+                    className="h-32 w-32 rounded-full object-cover object-top ring-2 ring-primary/30 transition-all group-hover:ring-primary/60"
+                  />
+                  <span className="text-sm font-medium text-muted-foreground group-hover:text-foreground transition-colors">Jonas</span>
+                </Link>
+                <Link to="/forfatter/kevin" className="flex flex-col items-center gap-2 group">
+                  <img
+                    src={kevinImage}
+                    alt="Kevin – medstifter af Casinoaftaler.dk"
+                    className="h-32 w-32 rounded-full object-cover ring-2 ring-primary/30 transition-all group-hover:ring-primary/60"
+                  />
+                  <span className="text-sm font-medium text-muted-foreground group-hover:text-foreground transition-colors">Kevin</span>
+                </Link>
               </div>
               <div className="text-center sm:text-left">
                 <h2 className="text-xl font-bold text-foreground mb-2">
