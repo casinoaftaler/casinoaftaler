@@ -149,7 +149,4 @@ export const seoRoutes: SeoRoute[] = [
   { path: "/terms", changefreq: "yearly", priority: 0.3, lastmod: "2026-02-11" },
   { path: "/cookies", changefreq: "yearly", priority: 0.3, lastmod: "2026-02-11" },
 
-  // ── Community (indexable) ──
-  { path: "/community", changefreq: "weekly", priority: 0.7, lastmod: "2026-02-16" },
-  { path: "/community/slots", changefreq: "weekly", priority: 0.7, lastmod: "2026-02-16" },
 ];

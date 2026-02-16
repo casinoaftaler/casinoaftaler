@@ -7,7 +7,7 @@ import { CommunityBrandBlock } from "@/components/community/CommunityBrandBlock"
 import { CommunitySeoBridge } from "@/components/community/CommunitySeoBridge";
 import { CommunityConversionCard } from "@/components/community/CommunityConversionCard";
 
-import { buildArticleSchema, SITE_URL } from "@/lib/seo";
+
 
 import { CommunityJoinCTA } from "@/components/community/CommunityJoinCTA";
 import { useAuth } from "@/hooks/useAuth";
@@ -86,15 +86,7 @@ export default function GameLibrary() {
       <SEO
         title="Gratis Slots i Community – Spil Book of Fedesvin & Mere"
         description="Spil gratis community-slots som Book of Fedesvin og Rise of Fedesvin. Optjen points og konkurrér mod andre spillere."
-        jsonLd={buildArticleSchema({
-          headline: "Gratis Slots i Community – Spil Book of Fedesvin & Mere",
-          description: "Spil gratis community-slots som Book of Fedesvin og Rise of Fedesvin. Optjen points og konkurrér mod andre spillere.",
-          url: `${SITE_URL}/community/slots`,
-          datePublished: "2025-06-01",
-          dateModified: "2026-02-16",
-          authorName: "Jonas",
-          authorUrl: `${SITE_URL}/forfatter/jonas`,
-        })}
+        noindex
       />
       <PageBackground />
       <GameLibraryHero />
