@@ -20,7 +20,6 @@ export function TodayLeaderboard() {
       if (error) throw error;
       if (!data || data.length === 0) return [];
 
-      // Fetch display names
       const userIds = [...new Set(data.map((d) => d.user_id))];
       const { data: profiles } = await supabase
         .from("profiles_leaderboard")
@@ -43,24 +42,24 @@ export function TodayLeaderboard() {
   if (!topSpins || topSpins.length === 0) return null;
 
   return (
-    <div className="w-full max-w-2xl space-y-3">
-      <h2 className="text-lg font-bold text-foreground flex items-center gap-2">
-        <Trophy className="h-5 w-5 text-primary" />
+    <div className="space-y-2">
+      <h2 className="text-sm font-semibold text-muted-foreground uppercase tracking-wider flex items-center gap-2">
+        <Trophy className="h-4 w-4 text-primary" />
         Top Gevinster i Dag
       </h2>
       <div className="space-y-1.5">
         {topSpins.map((entry, i) => (
           <div
             key={`${entry.user_id}-${entry.created_at}`}
-            className="flex items-center justify-between rounded-xl border border-border/50 bg-card/50 backdrop-blur-sm px-4 py-2.5"
+            className="flex items-center justify-between rounded-xl border border-border/50 bg-card/80 backdrop-blur-sm px-4 py-2.5"
           >
             <div className="flex items-center gap-3">
-              <span className="text-sm font-bold text-muted-foreground w-5">#{i + 1}</span>
+              <span className="text-xs font-bold text-muted-foreground w-4">#{i + 1}</span>
               {entry.avatar_url ? (
-                <img src={entry.avatar_url} alt="" className="h-7 w-7 rounded-full" />
+                <img src={entry.avatar_url} alt="" className="h-6 w-6 rounded-full" />
               ) : (
-                <div className="h-7 w-7 rounded-full bg-muted flex items-center justify-center">
-                  <span className="text-xs font-bold text-muted-foreground">?</span>
+                <div className="h-6 w-6 rounded-full bg-muted flex items-center justify-center">
+                  <span className="text-[10px] font-bold text-muted-foreground">?</span>
                 </div>
               )}
               <span className="text-sm font-medium text-foreground">{entry.display_name}</span>

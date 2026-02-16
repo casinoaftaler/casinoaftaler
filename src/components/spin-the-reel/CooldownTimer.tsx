@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import { Clock } from "lucide-react";
 
 interface CooldownTimerProps {
   cooldownEnd: string | null;
@@ -52,10 +51,6 @@ export function CooldownTimer({ cooldownEnd, onExpired, inline }: CooldownTimerP
   }
 
   return (
-    <div className="flex items-center gap-2 text-muted-foreground bg-muted/30 rounded-lg px-4 py-2">
-      <Clock className="h-4 w-4" />
-      <span className="text-sm">Næste spin om:</span>
-      <span className="font-mono font-bold text-foreground">{timeLeft}</span>
-    </div>
+    <p className="font-mono font-bold text-foreground tabular-nums text-sm">{timeLeft}</p>
   );
 }

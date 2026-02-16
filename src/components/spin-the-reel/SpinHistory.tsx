@@ -41,16 +41,16 @@ export function SpinHistory() {
   };
 
   return (
-    <div className="w-full max-w-2xl space-y-3">
-      <h2 className="text-lg font-bold text-foreground flex items-center gap-2">
-        <History className="h-5 w-5" />
+    <div className="space-y-2">
+      <h2 className="text-sm font-semibold text-muted-foreground uppercase tracking-wider flex items-center gap-2">
+        <History className="h-4 w-4" />
         Seneste Spins
       </h2>
       <div className="space-y-1.5">
         {history.map((h) => (
           <div
             key={h.id}
-            className="flex items-center justify-between rounded-xl border border-border/50 bg-card/50 backdrop-blur-sm px-4 py-2.5"
+            className="flex items-center justify-between rounded-xl border border-border/50 bg-card/80 backdrop-blur-sm px-4 py-2.5"
           >
             <div className="flex items-center gap-2.5">
               {getIcon(h.reward_type)}
