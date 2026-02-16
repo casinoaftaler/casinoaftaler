@@ -126,6 +126,7 @@ export const seoRoutes: SeoRoute[] = [
   { path: "/casinoer/hoej-rtp", changefreq: "weekly", priority: 0.9 },
   { path: "/casinoer/crypto-casino", changefreq: "weekly", priority: 0.9 },
   { path: "/licenserede-casinoer", changefreq: "weekly", priority: 0.9 },
+  { path: "/casino-licenser", changefreq: "monthly", priority: 0.9 },
   { path: "/casinoer/vr-casinoer", changefreq: "weekly", priority: 0.9 },
   { path: "/casinoer/mobil-casinoer", changefreq: "weekly", priority: 0.9 },
   { path: "/casinoer/spil-casino-for-sjov", changefreq: "weekly", priority: 0.9 },
