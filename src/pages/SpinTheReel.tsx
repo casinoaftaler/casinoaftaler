@@ -15,7 +15,6 @@ import { LogIn, Shield } from "lucide-react";
 import { Link } from "react-router-dom";
 import { toast } from "sonner";
 
-// Lazy load non-critical sections
 const SpinHistory = lazy(() =>
   import("@/components/spin-the-reel/SpinHistory").then((m) => ({ default: m.SpinHistory }))
 );
@@ -37,7 +36,6 @@ export default function SpinTheReel() {
     label: string;
   }>({ type: "none", value: 0, label: "" });
 
-  // Fetch user profile to check twitch_id and last_spin_at
   const { data: profile } = useQuery({
     queryKey: ["spin-profile", user?.id],
     queryFn: async () => {
@@ -53,7 +51,6 @@ export default function SpinTheReel() {
     enabled: !!user?.id,
   });
 
-  // Calculate cooldown end from last_spin_at
   const cooldownEnd = profile?.last_spin_at
     ? new Date(new Date(profile.last_spin_at).getTime() + 12 * 60 * 60 * 1000).toISOString()
     : null;
@@ -67,7 +64,7 @@ export default function SpinTheReel() {
     setCooldownExpired(true);
   }, []);
 
-  const canSpin = !!user && hasTwitchId && !isCooldownActive || cooldownExpired;
+  const canSpin = !!user && hasTwitchId && (!isCooldownActive || cooldownExpired);
 
   const handleSpinStart = useCallback(async () => {
     if (!session?.access_token) return;
@@ -75,16 +72,9 @@ export default function SpinTheReel() {
 
     try {
       const response = await supabase.functions.invoke("spin-the-reel", {});
-
-      if (response.error) {
-        throw new Error(response.error.message || "Spin fejlede");
-      }
-
+      if (response.error) throw new Error(response.error.message || "Spin fejlede");
       const data = response.data;
-
-      if (!data.success) {
-        throw new Error(data.error || "Spin fejlede");
-      }
+      if (!data.success) throw new Error(data.error || "Spin fejlede");
 
       setRewardData({
         type: data.rewardType,
@@ -107,7 +97,6 @@ export default function SpinTheReel() {
   const handleSpinAnimEnd = useCallback(() => {
     sounds.stopTicking();
     sounds.playStop();
-
     setTimeout(() => {
       if (rewardData.type !== "none") {
         sounds.playWin();
@@ -122,7 +111,6 @@ export default function SpinTheReel() {
     setTargetSegment(null);
     setShowReward(true);
     setCooldownExpired(false);
-
     queryClient.invalidateQueries({ queryKey: ["spin-profile"] });
     queryClient.invalidateQueries({ queryKey: ["slot-spins"] });
     queryClient.invalidateQueries({ queryKey: ["streamelements-points"] });
@@ -137,6 +125,50 @@ export default function SpinTheReel() {
     return undefined;
   };
 
+  const cooldownActive = isCooldownActive && !cooldownExpired;
+
+  // Gate content for unauthenticated / no twitch
+  const renderGate = () => {
+    if (authLoading) {
+      return (
+        <div className="flex items-center justify-center py-24">
+          <div className="animate-spin rounded-full h-8 w-8 border-2 border-primary border-t-transparent" />
+        </div>
+      );
+    }
+    if (!user) {
+      return (
+        <div className="py-20 space-y-4 text-center">
+          <div className="w-16 h-16 rounded-full bg-muted/50 flex items-center justify-center mx-auto">
+            <LogIn className="h-8 w-8 text-muted-foreground" />
+          </div>
+          <p className="text-lg text-muted-foreground">Log ind for at spinne hjulet</p>
+          <Link to="/login">
+            <Button>Log ind</Button>
+          </Link>
+        </div>
+      );
+    }
+    if (!hasTwitchId) {
+      return (
+        <div className="py-20 space-y-4 text-center">
+          <div className="w-16 h-16 rounded-full bg-muted/50 flex items-center justify-center mx-auto">
+            <Shield className="h-8 w-8 text-muted-foreground" />
+          </div>
+          <p className="text-lg text-muted-foreground">
+            Du skal tilknytte dit Twitch ID for at spinne
+          </p>
+          <Link to="/profil">
+            <Button>Gå til profil</Button>
+          </Link>
+        </div>
+      );
+    }
+    return null;
+  };
+
+  const gate = renderGate();
+
   return (
     <>
       <Helmet>
@@ -147,84 +179,72 @@ export default function SpinTheReel() {
       <CommunityNav />
 
       <main className="relative min-h-screen">
-        {/* Hero background with gradient + particles */}
         <HeroBackground />
 
-        <div className="relative z-10 container py-8 md:py-12">
-          <div className="flex flex-col items-center gap-8 md:gap-10">
-            {/* Hero text */}
-            <div className="text-center space-y-2">
-              <h1 className="text-3xl md:text-4xl font-bold text-foreground">
-                🎡 Daglig Bonus Spin
-              </h1>
-              <p className="text-muted-foreground max-w-md mx-auto">
-                Spin hjulet hver 12. time og vind points til StreamElements eller ekstra credits til Spillehallen!
-              </p>
-            </div>
-
-            {authLoading ? (
-              <div className="h-[400px] flex items-center justify-center">
-                <div className="animate-spin rounded-full h-8 w-8 border-2 border-primary border-t-transparent" />
-              </div>
-            ) : !user ? (
-              <div className="py-16 space-y-4 text-center">
-                <div className="w-16 h-16 rounded-full bg-muted/50 flex items-center justify-center mx-auto">
-                  <LogIn className="h-8 w-8 text-muted-foreground" />
-                </div>
-                <p className="text-lg text-muted-foreground">Log ind for at spinne hjulet</p>
-                <Link to="/login">
-                  <Button>Log ind</Button>
-                </Link>
-              </div>
-            ) : !hasTwitchId ? (
-              <div className="py-16 space-y-4 text-center">
-                <div className="w-16 h-16 rounded-full bg-muted/50 flex items-center justify-center mx-auto">
-                  <Shield className="h-8 w-8 text-muted-foreground" />
-                </div>
-                <p className="text-lg text-muted-foreground">
-                  Du skal tilknytte dit Twitch ID for at spinne
+        <div className="relative z-10 container py-6 md:py-10">
+          {gate ? (
+            gate
+          ) : (
+            <>
+              {/* Mobile: title on top */}
+              <div className="text-center mb-6 lg:hidden">
+                <h1 className="text-2xl font-bold text-foreground">🎡 Daglig Bonus Spin</h1>
+                <p className="text-sm text-muted-foreground mt-1">
+                  Spin hjulet hver 12. time og vind points eller credits!
                 </p>
-                <Link to="/profil">
-                  <Button>Gå til profil</Button>
-                </Link>
               </div>
-            ) : (
-              <>
-                {/* User stats bar */}
-                <UserStatsBar
-                  cooldownEnd={cooldownEnd}
-                  isCooldownActive={isCooldownActive && !cooldownExpired}
-                  onCooldownExpired={handleCooldownExpired}
-                />
 
-                {/* Wheel */}
-                <SpinWheel
-                  onSpinComplete={handleSpinComplete}
-                  targetSegmentId={targetSegment}
-                  isSpinning={isSpinning}
-                  onSpinStart={handleSpinStart}
-                  disabled={!canSpin}
-                  disabledReason={getDisabledReason()}
-                  muted={sounds.muted}
-                  onToggleMute={sounds.toggleMute}
-                  onSpinAnimStart={handleSpinAnimStart}
-                  onSpinAnimEnd={handleSpinAnimEnd}
-                />
+              {/* 2-column layout */}
+              <div className="flex flex-col lg:flex-row gap-6 lg:gap-8 items-start">
+                {/* LEFT: Info panel (desktop) */}
+                <aside className="w-full lg:w-[440px] xl:w-[460px] lg:sticky lg:top-6 flex flex-col gap-4 order-2 lg:order-1">
+                  {/* Title - desktop only */}
+                  <div className="hidden lg:block space-y-1">
+                    <h1 className="text-2xl font-bold text-foreground">🎡 Daglig Bonus Spin</h1>
+                    <p className="text-sm text-muted-foreground">
+                      Spin hjulet hver 12. time og vind points til StreamElements eller ekstra credits til Spillehallen!
+                    </p>
+                  </div>
 
-                {/* Reward overview */}
-                <RewardOverview />
+                  {/* User Stats */}
+                  <UserStatsBar
+                    cooldownEnd={cooldownEnd}
+                    isCooldownActive={cooldownActive}
+                    onCooldownExpired={handleCooldownExpired}
+                  />
 
-                {/* Lazy-loaded sections */}
-                <Suspense fallback={null}>
-                  <SpinHistory />
-                </Suspense>
+                  {/* Rewards */}
+                  <RewardOverview />
 
-                <Suspense fallback={null}>
-                  <TodayLeaderboard />
-                </Suspense>
-              </>
-            )}
-          </div>
+                  {/* History + Leaderboard */}
+                  <Suspense fallback={null}>
+                    <SpinHistory />
+                  </Suspense>
+                  <Suspense fallback={null}>
+                    <TodayLeaderboard />
+                  </Suspense>
+                </aside>
+
+                {/* RIGHT: Hero Wheel */}
+                <div className="flex-1 flex flex-col items-center justify-start order-1 lg:order-2 lg:sticky lg:top-6">
+                  <div className={`transition-opacity duration-500 ${cooldownActive ? "opacity-60" : "opacity-100"}`}>
+                    <SpinWheel
+                      onSpinComplete={handleSpinComplete}
+                      targetSegmentId={targetSegment}
+                      isSpinning={isSpinning}
+                      onSpinStart={handleSpinStart}
+                      disabled={!canSpin}
+                      disabledReason={getDisabledReason()}
+                      muted={sounds.muted}
+                      onToggleMute={sounds.toggleMute}
+                      onSpinAnimStart={handleSpinAnimStart}
+                      onSpinAnimEnd={handleSpinAnimEnd}
+                    />
+                  </div>
+                </div>
+              </div>
+            </>
+          )}
         </div>
       </main>
 

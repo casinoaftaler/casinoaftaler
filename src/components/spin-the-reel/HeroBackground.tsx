@@ -1,6 +1,6 @@
 import { useEffect, useRef } from "react";
 
-const PARTICLE_COUNT = 30;
+const PARTICLE_COUNT = 25;
 
 interface Particle {
   x: number;
@@ -30,14 +30,13 @@ export function HeroBackground() {
     };
     resize();
 
-    // Init particles
     particlesRef.current = Array.from({ length: PARTICLE_COUNT }, () => ({
       x: Math.random() * canvas.offsetWidth,
       y: Math.random() * canvas.offsetHeight,
-      size: 1 + Math.random() * 2.5,
-      speedY: -0.2 - Math.random() * 0.5,
-      speedX: (Math.random() - 0.5) * 0.3,
-      opacity: 0.2 + Math.random() * 0.4,
+      size: 1 + Math.random() * 2,
+      speedY: -0.15 - Math.random() * 0.4,
+      speedX: (Math.random() - 0.5) * 0.25,
+      opacity: 0.15 + Math.random() * 0.35,
     }));
 
     const w = () => canvas.offsetWidth;
@@ -45,15 +44,10 @@ export function HeroBackground() {
 
     const animate = () => {
       ctx.clearRect(0, 0, w(), h());
-
       for (const p of particlesRef.current) {
         p.y += p.speedY;
         p.x += p.speedX;
-
-        if (p.y < -10) {
-          p.y = h() + 10;
-          p.x = Math.random() * w();
-        }
+        if (p.y < -10) { p.y = h() + 10; p.x = Math.random() * w(); }
         if (p.x < -10) p.x = w() + 10;
         if (p.x > w() + 10) p.x = -10;
 
@@ -62,12 +56,10 @@ export function HeroBackground() {
         ctx.fillStyle = `hsla(260, 70%, 70%, ${p.opacity})`;
         ctx.fill();
       }
-
       rafRef.current = requestAnimationFrame(animate);
     };
 
     animate();
-
     window.addEventListener("resize", resize);
     return () => {
       cancelAnimationFrame(rafRef.current);
@@ -77,25 +69,14 @@ export function HeroBackground() {
 
   return (
     <div className="absolute inset-0 overflow-hidden pointer-events-none">
-      {/* Animated gradient */}
       <div
         className="absolute inset-0"
         style={{
-          background:
-            "linear-gradient(135deg, hsl(260 50% 8%) 0%, hsl(280 40% 12%) 30%, hsl(260 60% 10%) 60%, hsl(220 40% 8%) 100%)",
+          background: "linear-gradient(135deg, hsl(260 50% 8%) 0%, hsl(280 40% 12%) 30%, hsl(260 60% 10%) 60%, hsl(220 40% 8%) 100%)",
           backgroundSize: "400% 400%",
           animation: "gradient-shift 12s ease infinite",
         }}
       />
-      {/* Halo glow behind wheel area */}
-      <div
-        className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full"
-        style={{
-          background:
-            "radial-gradient(circle, hsla(260, 80%, 50%, 0.15) 0%, hsla(280, 60%, 40%, 0.05) 40%, transparent 70%)",
-        }}
-      />
-      {/* Particles canvas */}
       <canvas ref={canvasRef} className="absolute inset-0 w-full h-full" />
     </div>
   );

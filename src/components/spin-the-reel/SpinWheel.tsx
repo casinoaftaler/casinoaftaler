@@ -58,7 +58,6 @@ export function SpinWheel({
     onSpinStart();
   }, [disabled, isSpinning, onSpinStart]);
 
-  // When targetSegmentId is set by parent, animate to it
   const prevTargetRef = useRef<number | null>(null);
   if (targetSegmentId !== null && targetSegmentId !== prevTargetRef.current && isSpinning) {
     prevTargetRef.current = targetSegmentId;
@@ -82,7 +81,6 @@ export function SpinWheel({
     }, 5500);
   }
 
-  // Reset landed state after visual feedback
   useEffect(() => {
     if (landed) {
       const timer = setTimeout(() => {
@@ -100,28 +98,39 @@ export function SpinWheel({
       {/* Mute toggle */}
       <button
         onClick={onToggleMute}
-        className="absolute top-0 right-0 z-30 p-2 rounded-lg bg-card/80 backdrop-blur-sm border border-border/50 text-muted-foreground hover:text-foreground transition-colors"
+        className="absolute -top-2 -right-2 z-30 p-2 rounded-lg bg-card/80 backdrop-blur-sm border border-border/50 text-muted-foreground hover:text-foreground transition-colors"
         aria-label={muted ? "Slå lyd til" : "Slå lyd fra"}
       >
         {muted ? <VolumeX className="h-4 w-4" /> : <Volume2 className="h-4 w-4" />}
       </button>
+
+      {/* Halo glow behind wheel */}
+      <div
+        className={cn(
+          "absolute inset-0 -m-16 rounded-full pointer-events-none transition-opacity duration-700",
+          disabled && !isSpinning ? "opacity-30" : "opacity-100"
+        )}
+        style={{
+          background: "radial-gradient(circle, hsla(260, 80%, 50%, 0.2) 0%, hsla(280, 60%, 40%, 0.08) 40%, transparent 65%)",
+        }}
+      />
 
       {/* Wheel container */}
       <div className={cn("relative", landed && isLoseResult && "shake-feedback")}>
         {/* Outer glow ring */}
         <div
           className={cn(
-            "absolute -inset-4 rounded-full transition-all duration-500",
+            "absolute -inset-5 rounded-full transition-all duration-500",
             isSpinning
               ? "wheel-glow-active"
-              : "shadow-[0_0_30px_rgba(168,85,247,0.25)]"
+              : "shadow-[0_0_40px_rgba(168,85,247,0.2)]"
           )}
         />
 
-        {/* Decorative ring with LED dots */}
-        <div className="absolute -inset-2 rounded-full border-2 border-primary/20">
-          {Array.from({ length: 20 }).map((_, i) => {
-            const angle = (i / 20) * 360;
+        {/* LED dots ring */}
+        <div className="absolute -inset-3 rounded-full border-2 border-primary/20">
+          {Array.from({ length: 24 }).map((_, i) => {
+            const angle = (i / 24) * 360;
             const rad = (angle * Math.PI) / 180;
             const r = 50;
             return (
@@ -131,31 +140,33 @@ export function SpinWheel({
                   "absolute w-1.5 h-1.5 rounded-full transition-all duration-300",
                   isSpinning
                     ? "bg-primary shadow-[0_0_6px_rgba(168,85,247,0.8)]"
-                    : "bg-primary/40"
+                    : "bg-primary/30"
                 )}
                 style={{
                   left: `calc(50% + ${Math.cos(rad) * r}% - 3px)`,
                   top: `calc(50% + ${Math.sin(rad) * r}% - 3px)`,
-                  animationDelay: isSpinning ? `${i * 50}ms` : undefined,
+                  animationDelay: isSpinning ? `${i * 40}ms` : undefined,
                 }}
               />
             );
           })}
         </div>
 
-        {/* Pointer (top) */}
-        <div className="absolute -top-5 left-1/2 -translate-x-1/2 z-20">
-          <div className="w-0 h-0 border-l-[16px] border-r-[16px] border-t-[28px] border-l-transparent border-r-transparent border-t-primary drop-shadow-[0_0_12px_hsl(var(--primary))]" />
+        {/* Pointer */}
+        <div className="absolute -top-6 left-1/2 -translate-x-1/2 z-20">
+          <div className="w-0 h-0 border-l-[18px] border-r-[18px] border-t-[32px] border-l-transparent border-r-transparent border-t-primary drop-shadow-[0_0_14px_hsl(var(--primary))]" />
         </div>
 
-        {/* Wheel */}
+        {/* Wheel SVG - larger */}
         <div
           ref={wheelRef}
           className={cn(
-            "relative w-[320px] h-[320px] sm:w-[400px] sm:h-[400px] rounded-full overflow-hidden",
+            "relative rounded-full overflow-hidden",
             "border-[3px] border-primary/40",
-            "shadow-[inset_0_0_30px_rgba(0,0,0,0.3)]",
-            isSpinning && "spin-active"
+            "shadow-[inset_0_0_40px_rgba(0,0,0,0.3)]",
+            isSpinning && "spin-active",
+            // Responsive sizes: mobile large, desktop larger
+            "w-[340px] h-[340px] sm:w-[420px] sm:h-[420px] lg:w-[520px] lg:h-[520px] xl:w-[580px] xl:h-[580px]"
           )}
           style={{
             transform: `rotate(${rotation}deg)`,
@@ -167,13 +178,7 @@ export function SpinWheel({
           <svg viewBox="0 0 200 200" className="w-full h-full">
             <defs>
               {SEGMENTS.map((seg, i) => (
-                <radialGradient
-                  key={`grad-${i}`}
-                  id={`seg-grad-${i}`}
-                  cx="50%"
-                  cy="50%"
-                  r="50%"
-                >
+                <radialGradient key={`grad-${i}`} id={`seg-grad-${i}`} cx="50%" cy="50%" r="50%">
                   <stop offset="30%" stopColor={seg.color} />
                   <stop offset="100%" stopColor={seg.accent} />
                 </radialGradient>
@@ -187,12 +192,10 @@ export function SpinWheel({
               const x2 = 100 + 100 * Math.cos(endAngle);
               const y2 = 100 + 100 * Math.sin(endAngle);
               const largeArc = SEGMENT_ANGLE > 180 ? 1 : 0;
-
               const midAngle = ((i + 0.5) * SEGMENT_ANGLE - 90) * (Math.PI / 180);
               const textX = 100 + 62 * Math.cos(midAngle);
               const textY = 100 + 62 * Math.sin(midAngle);
               const textRotation = (i + 0.5) * SEGMENT_ANGLE;
-
               const lines = seg.label.split("\n");
               const isHighlighted = landed && landedSegment === i;
 
@@ -205,32 +208,16 @@ export function SpinWheel({
                     strokeWidth="0.5"
                     className={isHighlighted ? "glow-highlight" : ""}
                   />
-                  {/* Segment separator line */}
-                  <line
-                    x1="100"
-                    y1="100"
-                    x2={x1}
-                    y2={y1}
-                    stroke="rgba(255,255,255,0.15)"
-                    strokeWidth="0.8"
-                  />
+                  <line x1="100" y1="100" x2={x1} y2={y1} stroke="rgba(255,255,255,0.15)" strokeWidth="0.8" />
                   <text
-                    x={textX}
-                    y={textY}
-                    textAnchor="middle"
-                    dominantBaseline="central"
-                    fill="white"
-                    fontSize="7"
-                    fontWeight="bold"
+                    x={textX} y={textY}
+                    textAnchor="middle" dominantBaseline="central"
+                    fill="white" fontSize="7" fontWeight="bold"
                     transform={`rotate(${textRotation}, ${textX}, ${textY})`}
                     style={{ textShadow: "0 1px 4px rgba(0,0,0,0.9)" }}
                   >
                     {lines.map((line, li) => (
-                      <tspan
-                        key={li}
-                        x={textX}
-                        dy={li === 0 ? `-${(lines.length - 1) * 4}` : "9"}
-                      >
+                      <tspan key={li} x={textX} dy={li === 0 ? `-${(lines.length - 1) * 4}` : "9"}>
                         {line}
                       </tspan>
                     ))}
@@ -238,35 +225,11 @@ export function SpinWheel({
                 </g>
               );
             })}
-            {/* Center circle */}
-            <circle
-              cx="100"
-              cy="100"
-              r="16"
-              fill="hsl(var(--card))"
-              stroke="hsl(var(--primary))"
-              strokeWidth="2.5"
-              className={isSpinning ? "center-pulse-active" : ""}
-              style={{ transformOrigin: "100px 100px" }}
-            />
-            <circle
-              cx="100"
-              cy="100"
-              r="14"
-              fill="none"
-              stroke="rgba(168, 85, 247, 0.3)"
-              strokeWidth="1"
-            />
-            <text
-              x="100"
-              y="100"
-              textAnchor="middle"
-              dominantBaseline="central"
-              fill="hsl(var(--primary))"
-              fontSize="6.5"
-              fontWeight="bold"
-              letterSpacing="0.5"
-            >
+            <circle cx="100" cy="100" r="16" fill="hsl(var(--card))" stroke="hsl(var(--primary))" strokeWidth="2.5"
+              className={isSpinning ? "center-pulse-active" : ""} style={{ transformOrigin: "100px 100px" }} />
+            <circle cx="100" cy="100" r="14" fill="none" stroke="rgba(168, 85, 247, 0.3)" strokeWidth="1" />
+            <text x="100" y="100" textAnchor="middle" dominantBaseline="central"
+              fill="hsl(var(--primary))" fontSize="6.5" fontWeight="bold" letterSpacing="0.5">
               SPIN
             </text>
           </svg>
@@ -278,12 +241,13 @@ export function SpinWheel({
         onClick={spin}
         disabled={disabled || isSpinning}
         className={cn(
-          "relative px-10 py-3.5 rounded-xl font-bold text-lg transition-all duration-300",
+          "relative px-12 py-4 rounded-xl font-bold text-lg transition-all duration-300",
           "bg-primary text-primary-foreground",
           "hover:shadow-[0_0_40px_rgba(168,85,247,0.5)] hover:scale-105",
           "active:scale-95",
           "disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100 disabled:hover:shadow-none",
-          !disabled && !isSpinning && "shadow-[0_0_20px_rgba(168,85,247,0.3)]"
+          !disabled && !isSpinning && "shadow-[0_0_24px_rgba(168,85,247,0.3)] animate-pulse",
+          disabled && !isSpinning && "shadow-[0_0_12px_rgba(168,85,247,0.15)]"
         )}
       >
         <span className="relative z-10">
