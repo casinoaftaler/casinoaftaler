@@ -83,7 +83,7 @@ export default function GameLibrary() {
       <CommunityNav />
 
       {/* Featured Slots – full width showcase */}
-      <div className="container py-10 space-y-12 md:space-y-16">
+      <div className="container py-6 space-y-8 md:space-y-10">
         {FEATURED_SLOTS.map((slot, index) => (
           <div
             key={slot.id}
@@ -174,20 +174,20 @@ function GameLibraryHero() {
 
   return (
     <section
-      className="relative overflow-hidden py-14 md:py-20 text-foreground"
+      className="relative overflow-hidden py-8 md:py-12 text-foreground"
       style={{
         background: "linear-gradient(135deg, hsl(260 70% 25%), hsl(250 60% 20%) 40%, hsl(210 80% 25%))",
       }}
     >
       <div className="container relative z-10">
-        <div className="mx-auto max-w-2xl text-center space-y-4">
-          <div className="mx-auto mb-4 h-20 w-20 rounded-full bg-amber-500/15 backdrop-blur-sm border border-amber-500/20 flex items-center justify-center">
-            <Gamepad2 className="h-10 w-10 text-amber-400" />
+        <div className="mx-auto max-w-2xl text-center space-y-2.5">
+          <div className="mx-auto mb-2 h-14 w-14 rounded-full bg-amber-500/15 backdrop-blur-sm border border-amber-500/20 flex items-center justify-center">
+            <Gamepad2 className="h-7 w-7 text-amber-400" />
           </div>
-          <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-white">
+          <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight text-white">
             Spillehal
           </h1>
-          <p className="text-white/70 text-base md:text-lg max-w-lg mx-auto mb-2">
+          <p className="text-white/70 text-sm md:text-base max-w-lg mx-auto">
             Vælg et spil og begynd at spille. Optjen point og kæmp om pladserne på ranglisten!
           </p>
           <p className="text-white/50 text-sm max-w-md mx-auto">

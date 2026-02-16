@@ -28,7 +28,7 @@ export function FeaturedSlotPanel({
         {/* Hero image – constrained height */}
         <div
           className="relative overflow-hidden"
-          style={{ maxHeight: "clamp(280px, 55vh, 520px)" }}
+          style={{ maxHeight: "clamp(240px, 45vh, 420px)" }}
         >
           <img
             src={image}
@@ -86,8 +86,8 @@ export function FeaturedSlotPanel({
 
       {/* Scroll hint */}
       {showScrollHint && (
-        <div className="flex justify-center mt-4 animate-fade-in" style={{ animationDelay: "800ms", animationFillMode: "both" }}>
-          <span className="text-muted-foreground/50 text-xs tracking-wide animate-bounce" style={{ animationDuration: "2.5s" }}>
+        <div className="flex justify-center mt-3 animate-fade-in" style={{ animationDelay: "800ms", animationFillMode: "both" }}>
+          <span className="text-muted-foreground/40 text-[11px] tracking-wide">
             ↓ Scroll for flere spil
           </span>
         </div>
