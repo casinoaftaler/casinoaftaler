@@ -22,6 +22,7 @@ import riseIntroImage from "@/assets/slots/rise/intro-screen.jpg";
 import leFedesvinImage from "@/assets/slots/le-fedesvin-preview.jpg";
 import olympusImage from "@/assets/slots/fedesvin-of-olympus-preview.jpg";
 import "@/styles/spillehal-animations.css";
+import "@/styles/community-micro.css";
 
 const FEATURED_SLOTS = [
   {
