@@ -174,6 +174,7 @@ export default function SpinTheReel() {
       <Helmet>
         <title>Spin the Reel | Casinoaftaler.dk</title>
         <meta name="description" content="Spin hjulet og vind points eller spins! Tilgængelig hver 12. time for community-medlemmer." />
+        <meta name="robots" content="noindex, follow" />
       </Helmet>
 
       <CommunityNav />

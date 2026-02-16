@@ -95,7 +95,7 @@ const About = () => {
     publisher: { "@type": "Organization", name: "Casinoaftaler" },
     datePublished: "2025-06-01",
     dateModified: "2026-02-11",
-    mainEntityOfPage: "https://casinoaftaler.dk/about",
+    mainEntityOfPage: "https://casinoaftaler.dk/om",
   };
 
   const aboutFaqs = [
@@ -417,7 +417,7 @@ const About = () => {
 
         <Separator className="my-10" />
 
-        <RelatedGuides currentPath="/about" />
+        <RelatedGuides currentPath="/om" />
 
         <FAQSection title="Ofte stillede spørgsmål" faqs={aboutFaqs} />
       </div>

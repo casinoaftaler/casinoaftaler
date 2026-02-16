@@ -69,7 +69,7 @@ const faqs = [
 ];
 
 const relatedLinks = [
-  { to: "/forfatter", label: "Jonas – Grundlægger", icon: User, desc: "Mød grundlæggeren af Casinoaftaler.dk" },
+  { to: "/forfatter/jonas", label: "Jonas – Grundlægger", icon: User, desc: "Mød grundlæggeren af Casinoaftaler.dk" },
   { to: "/saadan-tester-vi-casinoer", label: "Sådan tester vi", icon: ShieldCheck, desc: "Vores testmetoder og vurderingskriterier" },
   { to: "/nye-casinoer", label: "Nye Casinoer", icon: Star, desc: "De nyeste danske online casinoer" },
   { to: "/ansvarligt-spil", label: "Ansvarligt Spil", icon: Landmark, desc: "Spil sikkert og ansvarligt" },

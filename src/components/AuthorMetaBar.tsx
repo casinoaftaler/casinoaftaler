@@ -5,7 +5,7 @@ import jonasImage from "@/assets/jonas-forfatter.png";
 import kevinImage from "@/assets/kevin-forfatter.png";
 
 const authorConfig = {
-  jonas: { name: "Jonas", image: jonasImage, alt: "Jonas – Fedesvinsejer", link: "/forfatter" },
+  jonas: { name: "Jonas", image: jonasImage, alt: "Jonas – Fedesvinsejer", link: "/forfatter/jonas" },
   kevin: { name: "Kevin", image: kevinImage, alt: "Kevin – Casino-streamer", link: "/forfatter/kevin" },
 } as const;
 

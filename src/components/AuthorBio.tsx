@@ -16,7 +16,7 @@ const authorData = {
     name: "Jonas",
     image: jonasImage,
     alt: "Jonas – Grundlægger af Casinoaftaler.dk",
-    link: "/forfatter",
+    link: "/forfatter/jonas",
     badge: "Grundlægger & indholdsansvarlig",
     role: "Grundlægger af Casinoaftaler.dk & Casino-streamer",
     bio: "Jonas er grundlægger af Casinoaftaler.dk og har streamet online casino i over 4 år. Med daglig erfaring fra slots og live casino deler han ærlige anmeldelser og opdateret viden om det danske casinomarked.",

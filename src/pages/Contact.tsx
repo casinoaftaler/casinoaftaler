@@ -100,7 +100,7 @@ export default function Contact() {
       answer: (
         <>
           Vi samarbejder med udvalgte affiliates, mediepartnere og indholdsproducenter inden for den danske gambling-industri. Vi prioriterer partnere med dokumenteret trafik, kvalitetsindhold og fokus på det regulerede danske marked. Kontakt os via formularen med information om dit medie, trafikvolumen og foreslået samarbejdsform. Vi vurderer alle henvendelser individuelt og vender tilbage inden for 5 hverdage. Læs mere{" "}
-          <Link to="/about" className="text-primary underline hover:text-primary/80">om os</Link>{" "}
+          <Link to="/om" className="text-primary underline hover:text-primary/80">om os</Link>{" "}
           og vores redaktionelle principper, der sikrer uafhængighed i vores anmeldelser uanset kommercielle partnerskaber.
         </>
       ),
@@ -232,7 +232,7 @@ export default function Contact() {
             og{" "}
             <Link to="/bonus-uden-omsaetningskrav" className="text-primary underline hover:text-primary/80">bonusser uden omsætningskrav</Link>.
             Læs mere{" "}
-            <Link to="/about" className="text-primary underline hover:text-primary/80">om os</Link>{" "}
+            <Link to="/om" className="text-primary underline hover:text-primary/80">om os</Link>{" "}
             og vores anmeldelsesproces.
           </p>
         </section>
@@ -368,7 +368,7 @@ export default function Contact() {
                   <p className="text-sm text-muted-foreground">
                     Alle seriøse henvendelser bliver gennemgået og besvaret.
                     Læs mere{" "}
-                    <Link to="/about" className="text-primary underline hover:text-primary/80">om os</Link>{" "}
+                    <Link to="/om" className="text-primary underline hover:text-primary/80">om os</Link>{" "}
                     og vores værdier.
                   </p>
                 </CardContent>
