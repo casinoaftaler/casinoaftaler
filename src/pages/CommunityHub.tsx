@@ -1,8 +1,7 @@
 import { Link } from "react-router-dom";
 import { SEO } from "@/components/SEO";
-import jonasImage from "@/assets/jonas-forfatter.png";
-import kevinImage from "@/assets/kevin-forfatter.png";
 import { CommunityPageLayout } from "@/components/community/CommunityPageLayout";
+import { CommunityBrandBlock } from "@/components/community/CommunityBrandBlock";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -230,61 +229,7 @@ export default function CommunityHub() {
             })}
           </div>
 
-          {/* Founder / Brand block */}
-          <section
-            className="mt-12 rounded-xl p-6 md:p-8"
-            style={{
-              border: "1px solid rgba(139,92,246,0.25)",
-              background:
-                "linear-gradient(135deg, hsl(260 30% 15%) 0%, hsl(220 25% 14%) 100%)",
-            }}
-          >
-            <div className="flex flex-col sm:flex-row items-center sm:items-start gap-6">
-              <div className="flex gap-5 shrink-0">
-                <Link to="/forfatter/jonas" className="flex flex-col items-center gap-2 group">
-                  <img
-                    src={jonasImage}
-                    alt="Jonas – medstifter af Casinoaftaler.dk"
-                    className="h-32 w-32 rounded-full object-cover object-top ring-2 ring-primary/30 transition-all group-hover:ring-primary/60"
-                  />
-                  <span className="text-sm font-medium text-muted-foreground group-hover:text-foreground transition-colors">Jonas</span>
-                </Link>
-                <Link to="/forfatter/kevin" className="flex flex-col items-center gap-2 group">
-                  <img
-                    src={kevinImage}
-                    alt="Kevin – medstifter af Casinoaftaler.dk"
-                    className="h-32 w-32 rounded-full object-cover ring-2 ring-primary/30 transition-all group-hover:ring-primary/60"
-                  />
-                  <span className="text-sm font-medium text-muted-foreground group-hover:text-foreground transition-colors">Kevin</span>
-                </Link>
-              </div>
-              <div className="text-center sm:text-left">
-                <h2 className="text-xl font-bold text-foreground mb-2">
-                  🚀 Skabt af spillere – for spillere
-                </h2>
-                <p className="text-sm text-muted-foreground leading-relaxed mb-4">
-                  Community-universet på Casinoaftaler.dk er udviklet af Jonas og Kevin, som også står bag vores analyser af nye casinoer og bonusser.
-                  Målet er at samle gratis spil, turneringer og casinoindsigt ét sted – med fokus på gennemsigtighed og ansvarligt spil.
-                </p>
-                <div className="flex flex-wrap gap-x-4 gap-y-1 text-xs text-muted-foreground mb-4">
-                  <span className="flex items-center gap-1.5">✔ Uafhængige anmeldelser</span>
-                  <span className="flex items-center gap-1.5">✔ Opdateret løbende</span>
-                  <span className="flex items-center gap-1.5">✔ Fokus på ansvarligt spil</span>
-                </div>
-                <Link
-                  to="/om"
-                  className="inline-flex items-center gap-2 rounded-lg px-5 py-2.5 text-sm font-semibold text-foreground transition-all duration-200 hover:scale-[1.02] hover:shadow-[0_0_20px_rgba(139,92,246,0.2)]"
-                  style={{
-                    border: "1px solid rgba(139,92,246,0.35)",
-                    background: "linear-gradient(135deg, hsl(260 40% 22%) 0%, hsl(220 35% 20%) 100%)",
-                  }}
-                >
-                  👉 Mød teamet bag Casinoaftaler
-                  <ArrowRight className="h-3.5 w-3.5" />
-                </Link>
-              </div>
-            </div>
-          </section>
+          <CommunityBrandBlock />
         </div>
       </CommunityPageLayout>
     </>
