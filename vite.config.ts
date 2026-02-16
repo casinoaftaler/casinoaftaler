@@ -59,4 +59,35 @@ export default defineConfig(({ mode }) => ({
       "@": path.resolve(__dirname, "./src"),
     },
   },
+  // --- Performance optimisations ---
+  esbuild: {
+    // Strip console.* and debugger statements in production
+    ...(mode === "production" && {
+      drop: ["console", "debugger"] as const,
+    }),
+  },
+  build: {
+    // Target modern browsers for smaller output
+    target: "es2020",
+    // Enable CSS minification
+    cssMinify: true,
+    rollupOptions: {
+      output: {
+        // Split vendor code into stable, cacheable chunks
+        manualChunks: {
+          "vendor-react": ["react", "react-dom", "react-router-dom"],
+          "vendor-query": ["@tanstack/react-query"],
+          "vendor-ui": [
+            "@radix-ui/react-accordion",
+            "@radix-ui/react-dialog",
+            "@radix-ui/react-dropdown-menu",
+            "@radix-ui/react-popover",
+            "@radix-ui/react-tabs",
+            "@radix-ui/react-tooltip",
+            "@radix-ui/react-select",
+          ],
+        },
+      },
+    },
+  },
 }));
