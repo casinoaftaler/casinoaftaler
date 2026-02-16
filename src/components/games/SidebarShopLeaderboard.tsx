@@ -2,13 +2,14 @@ import { useEffect, useState, useRef } from "react";
 import { Link } from "react-router-dom";
 import { ShoppingBag, Crown } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
+import { useSiteSettings } from "@/hooks/useSiteSettings";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
 interface ShopLeaderboardEntry {
-  user_id: string;
-  display_name: string;
+  username: string;
+  points: number;
   avatar_url: string | null;
-  total_winnings: number;
+  display_name: string;
 }
 
 function AnimatedScore({ value }: { value: number }) {
@@ -42,42 +43,59 @@ export function SidebarShopLeaderboard() {
   const [entries, setEntries] = useState<ShopLeaderboardEntry[]>([]);
   const [visible, setVisible] = useState(true);
   const containerRef = useRef<HTMLDivElement>(null);
+  const { data: siteSettings } = useSiteSettings();
+
+  const channelId = siteSettings?.streamelements_channel_id;
 
   useEffect(() => {
-    async function fetch() {
-      const { data } = await supabase
-        .from("slot_leaderboard")
-        .select("user_id, total_winnings")
-        .order("total_winnings", { ascending: false })
-        .limit(5);
+    if (!channelId) return;
 
-      if (!data || data.length === 0) return;
+    async function fetchTop() {
+      try {
+        // Fetch top 5 from StreamElements
+        const response = await fetch(
+          `https://api.streamelements.com/kappa/v2/points/${channelId}/top?limit=5`
+        );
+        if (!response.ok) return;
 
-      const userIds = data.map((d) => d.user_id).filter(Boolean) as string[];
-      const { data: profiles } = await supabase
-        .from("profiles_leaderboard")
-        .select("user_id, display_name, avatar_url")
-        .in("user_id", userIds);
+        const data = await response.json();
+        const topUsers: { username: string; points: number }[] = data?.users || [];
 
-      const profileMap = new Map(
-        (profiles || []).map((p) => [p.user_id, p])
-      );
+        if (topUsers.length === 0) return;
 
-      setEntries(
-        data.map((d) => {
-          const profile = profileMap.get(d.user_id!);
-          return {
-            user_id: d.user_id!,
-            display_name: profile?.display_name || "Anonym",
-            avatar_url: profile?.avatar_url || null,
-            total_winnings: d.total_winnings || 0,
-          };
-        })
-      );
+        // Try to match with profiles by twitch_username using profiles_leaderboard won't work
+        // Instead fetch profiles that have matching twitch_username
+        const usernames = topUsers.map((u) => u.username.toLowerCase());
+
+        // We need to look up profiles by twitch_username - use profiles_public view
+        const { data: profiles } = await supabase
+          .from("profiles_public")
+          .select("user_id, display_name, avatar_url")
+          .filter("display_name", "in", `(${usernames.join(",")})`);
+
+        // Build a map by lowercase display_name
+        const profileMap = new Map(
+          (profiles || []).map((p) => [p.display_name?.toLowerCase() || "", p])
+        );
+
+        setEntries(
+          topUsers.map((u) => {
+            const profile = profileMap.get(u.username.toLowerCase());
+            return {
+              username: u.username,
+              points: u.points,
+              avatar_url: profile?.avatar_url || null,
+              display_name: profile?.display_name || u.username,
+            };
+          })
+        );
+      } catch (err) {
+        console.error("Failed to fetch StreamElements top points:", err);
+      }
     }
 
-    fetch();
-  }, []);
+    fetchTop();
+  }, [channelId]);
 
   if (entries.length === 0) return null;
 
@@ -122,16 +140,12 @@ export function SidebarShopLeaderboard() {
 
       <ul className="space-y-1.5">
         {entries.map((entry, i) => {
-          const profileUrl = entry.display_name !== "Anonym"
-            ? `/u/${encodeURIComponent(entry.display_name)}`
-            : null;
+          const profileUrl = `/u/${encodeURIComponent(entry.display_name)}`;
 
           const content = (
             <li
-              key={entry.user_id}
-              className={`flex items-center gap-2 rounded-lg px-2.5 py-1.5 text-sm transition-all duration-300 ${
-                profileUrl ? "cursor-pointer hover:bg-muted/30" : ""
-              }`}
+              key={entry.username}
+              className={`flex items-center gap-2 rounded-lg px-2.5 py-1.5 text-sm transition-all duration-300 cursor-pointer hover:bg-muted/30`}
               style={{
                 opacity: visible ? 1 : 0,
                 transform: visible ? "translateY(0)" : "translateY(8px)",
@@ -149,9 +163,7 @@ export function SidebarShopLeaderboard() {
                 {medals[i]}
               </span>
               <Avatar
-                className={`h-6 w-6 shrink-0 transition-transform duration-200 ${
-                  profileUrl ? "hover:scale-105" : ""
-                }`}
+                className="h-6 w-6 shrink-0 transition-transform duration-200 hover:scale-105"
                 style={i === 0
                   ? { boxShadow: "0 0 6px rgba(251,191,36,0.3)", border: "1.5px solid rgba(251,191,36,0.35)" }
                   : i === 1
@@ -174,19 +186,16 @@ export function SidebarShopLeaderboard() {
               <span className={`text-[11px] font-mono font-semibold tabular-nums ${
                 i === 0 ? "text-amber-400" : "text-muted-foreground/70"
               }`}>
-                {visible ? <AnimatedScore value={Math.round(entry.total_winnings)} /> : "0"}
+                {visible ? <AnimatedScore value={entry.points} /> : "0"}
               </span>
             </li>
           );
 
-          if (profileUrl) {
-            return (
-              <Link key={entry.user_id} to={profileUrl} className="block no-underline">
-                {content}
-              </Link>
-            );
-          }
-          return content;
+          return (
+            <Link key={entry.username} to={profileUrl} className="block no-underline">
+              {content}
+            </Link>
+          );
         })}
       </ul>
     </div>
