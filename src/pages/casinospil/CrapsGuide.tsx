@@ -185,7 +185,7 @@ const CrapsGuide = () => {
             <strong>Trin 1:</strong> Placer et minimum Pass Line-væddemål. <strong>Trin 2:</strong> Når et point er etableret, placer det maksimalt tilladte Odds Bet bag din Pass Line. Odds Bets har 0 % house edge og kompenserer dermed den 1,41 % edge på Pass Line. Med 2x odds reduceres den samlede edge til 0,85 %. Med 5x odds: 0,33 %. Med 10x odds: 0,18 %. Jo større proportion af din indsats, der er i Odds Bets, jo tættere kommer du på et "fair" spil.
           </p>
           <p className="text-muted-foreground leading-relaxed">
-            For bankroll management i craps anbefaler vi minimum 30 gange din Pass Line-indsats plus den planlagte Odds Bet. Eksempel: med 50 kr. Pass Line og 3x Odds (150 kr.) = 200 kr. pr. runde → bankroll bør være mindst 6.000 kr. Sæt altid en tabsgrænse og vindergrænse, og hold dig til dem. Craps kan være volatilt, og <Link to="/responsible-gaming" className={linkClass}>ansvarligt spil</Link> er afgørende for at bevare spillets underholdningsværdi.
+            For bankroll management i craps anbefaler vi minimum 30 gange din Pass Line-indsats plus den planlagte Odds Bet. Eksempel: med 50 kr. Pass Line og 3x Odds (150 kr.) = 200 kr. pr. runde → bankroll bør være mindst 6.000 kr. Sæt altid en tabsgrænse og vindergrænse, og hold dig til dem. Craps kan være volatilt, og <Link to="/ansvarligt-spil" className={linkClass}>ansvarligt spil</Link> er afgørende for at bevare spillets underholdningsværdi.
           </p>
         </section>
 

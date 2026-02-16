@@ -143,7 +143,7 @@ const About = () => {
       answer: (
         <>
           Vores{" "}
-          <Link to="/contact" className="text-primary underline hover:text-primary/80">kontaktside</Link>{" "}
+          <Link to="/kontakt" className="text-primary underline hover:text-primary/80">kontaktside</Link>{" "}
           er primært beregnet til casino partnerskaber, affiliate henvendelser og presseforespørgsler. For generel information kan du læse vores guides om bl.a.{" "}
           <Link to="/velkomstbonus" className="text-primary underline hover:text-primary/80">velkomstbonusser</Link> og{" "}
           <Link to="/free-spins" className="text-primary underline hover:text-primary/80">free spins</Link>.
@@ -408,7 +408,7 @@ const About = () => {
                   potentielle provisioner. Vi anbefaler kun casinoer, der er
                   licenseret af Spillemyndigheden og opfylder vores strenge
                   kvalitetsstandarder. Har du spørgsmål? Besøg vores{" "}
-                  <Link to="/contact" className="text-primary underline hover:text-primary/80">kontaktside</Link>.
+                  <Link to="/kontakt" className="text-primary underline hover:text-primary/80">kontaktside</Link>.
                 </p>
               </div>
             </div>

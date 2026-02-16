@@ -1161,8 +1161,8 @@ const TopCasinoOnline = () => {
           </p>
           <p className="text-muted-foreground leading-relaxed">
             Har du spørgsmål eller brug for hjælp? Besøg vores{" "}
-            <Link to="/contact" className={linkClass}>kontaktside</Link> eller læs mere{" "}
-            <Link to="/about" className={linkClass}>om os</Link>. Vi er her for at hjælpe dig med at finde det perfekte spillested.
+            <Link to="/kontakt" className={linkClass}>kontaktside</Link> eller læs mere{" "}
+            <Link to="/om" className={linkClass}>om os</Link>. Vi er her for at hjælpe dig med at finde det perfekte spillested.
           </p>
         </section>
 

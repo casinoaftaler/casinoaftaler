@@ -39,7 +39,7 @@ const rouletteFaqs: { question: string; answer: ReactNode }[] = [
     question: "Kan man slå casinoet i roulette med en strategi?",
     answer: (
       <>
-        Nej, ingen væddemålsstrategi kan overvinde roulettens matematiske edge på lang sigt. Strategier som Martingale, D'Alembert og Fibonacci kan påvirke kort-tids gevinstmønstre – fx hyppigere små gevinster med sjældnere store tab – men den forventede værdi forbliver negativ uanset system. Roulettehjulet har ingen hukommelse; hvert spin er 100 % uafhængigt. "Gamblers fallacy" – troen på, at rød er "skyldig" efter ti sorte – er en matematisk fejlslutning. Det eneste, du kan gøre for at optimere dine odds, er at vælge den rigtige variant (fransk roulette med La Partage) og sætte <Link to="/responsible-gaming" className={linkClass}>faste grænser</Link> for tid og penge.
+        Nej, ingen væddemålsstrategi kan overvinde roulettens matematiske edge på lang sigt. Strategier som Martingale, D'Alembert og Fibonacci kan påvirke kort-tids gevinstmønstre – fx hyppigere små gevinster med sjældnere store tab – men den forventede værdi forbliver negativ uanset system. Roulettehjulet har ingen hukommelse; hvert spin er 100 % uafhængigt. "Gamblers fallacy" – troen på, at rød er "skyldig" efter ti sorte – er en matematisk fejlslutning. Det eneste, du kan gøre for at optimere dine odds, er at vælge den rigtige variant (fransk roulette med La Partage) og sætte <Link to="/ansvarligt-spil" className={linkClass}>faste grænser</Link> for tid og penge.
       </>
     ),
   },
@@ -199,7 +199,7 @@ const RouletteGuide = () => {
             Den forventede værdi (EV) af ethvert væddemål på europæisk roulette er -2,7 % af din indsats. For en 100 kr. indsats er EV = -2,70 kr. Over 1.000 spins med 100 kr. indsats pr. runde forventes et tab på ca. 2.700 kr. – men variansen er høj, så det faktiske resultat kan afvige betydeligt i begge retninger. Læs vores <Link to="/casinospil/roulette-strategi" className={linkClass}>roulette strategi-guide</Link> for en dybdegående analyse af væddemålssystemer.
           </p>
           <p className="text-muted-foreground leading-relaxed">
-            Bankroll management er afgørende i roulette. For ydre væddemål (rød/sort) anbefaler vi en bankroll på mindst 30 gange din indsats pr. session. For indre væddemål (straight up) bør du have minimum 50–100 gange indsatsen, da variansen er markant højere. Sæt altid et tabsbudget og en tidsgrænse, og hold dig til det – uanset om du vinder eller taber. <Link to="/responsible-gaming" className={linkClass}>Ansvarligt spil</Link> er fundamentet for en bæredygtig spiloplevelse.
+            Bankroll management er afgørende i roulette. For ydre væddemål (rød/sort) anbefaler vi en bankroll på mindst 30 gange din indsats pr. session. For indre væddemål (straight up) bør du have minimum 50–100 gange indsatsen, da variansen er markant højere. Sæt altid et tabsbudget og en tidsgrænse, og hold dig til det – uanset om du vinder eller taber. <Link to="/ansvarligt-spil" className={linkClass}>Ansvarligt spil</Link> er fundamentet for en bæredygtig spiloplevelse.
           </p>
         </section>
 

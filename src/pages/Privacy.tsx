@@ -52,7 +52,7 @@ const Privacy = () => {
     publisher: { "@type": "Organization", name: "Casinoaftaler" },
     datePublished: "2025-12-01",
     dateModified: "2026-02-14",
-    mainEntityOfPage: "https://casinoaftaler.dk/privacy",
+    mainEntityOfPage: "https://casinoaftaler.dk/privatlivspolitik",
   };
 
   return (

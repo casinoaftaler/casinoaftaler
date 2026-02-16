@@ -122,16 +122,16 @@ export const seoRoutes: SeoRoute[] = [
   { path: "/casinoer/casino-og-skat", changefreq: "weekly", priority: 0.9 },
 
   // ── Info & Ansvarligt Spil ──
-  { path: "/responsible-gaming", changefreq: "monthly", priority: 0.6 },
+  { path: "/ansvarligt-spil", changefreq: "monthly", priority: 0.6 },
   { path: "/spillemyndigheden", changefreq: "monthly", priority: 0.7 },
   { path: "/om", changefreq: "monthly", priority: 0.6 },
   { path: "/forretningsmodel", changefreq: "monthly", priority: 0.6 },
   { path: "/redaktionel-politik", changefreq: "monthly", priority: 0.6 },
-  { path: "/contact", changefreq: "monthly", priority: 0.5 },
+  { path: "/kontakt", changefreq: "monthly", priority: 0.5 },
   { path: "/forfatter/jonas", changefreq: "monthly", priority: 0.6 },
   { path: "/forfatter/kevin", changefreq: "monthly", priority: 0.6 },
   { path: "/saadan-tester-vi-casinoer", changefreq: "monthly", priority: 0.8 },
-  { path: "/privacy", changefreq: "yearly", priority: 0.3 },
+  { path: "/privatlivspolitik", changefreq: "yearly", priority: 0.3 },
   { path: "/terms", changefreq: "yearly", priority: 0.3 },
   { path: "/cookies", changefreq: "yearly", priority: 0.3 },
 ];

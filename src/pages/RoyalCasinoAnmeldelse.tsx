@@ -27,7 +27,7 @@ const royalFaqs: { question: string; answer: ReactNode }[] = [
       <>
         Ja, Royal Casino opererer med dansk licens fra Spillemyndigheden og er en del af Danske Spil-koncernen. Platformen er tilsluttet{" "}
         <a href="https://www.rofus.nu/" target="_blank" rel="noopener noreferrer" className={linkClass}>ROFUS</a> og overholder alle danske regler for{" "}
-        <Link to="/responsible-gaming" className={linkClass}>ansvarligt spil</Link>. Som en del af det statsejede Danske Spil er Royal Casino et af de mest regulerede casinoer på det danske marked.
+        <Link to="/ansvarligt-spil" className={linkClass}>ansvarligt spil</Link>. Som en del af det statsejede Danske Spil er Royal Casino et af de mest regulerede casinoer på det danske marked.
       </>
     ),
   },
@@ -280,7 +280,7 @@ const RoyalCasinoAnmeldelse = () => {
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold">Ansvarligt spil hos Royal Casino</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
-            Som en del af Danske Spil-koncernen er <Link to="/responsible-gaming" className={linkClass}>ansvarligt spil</Link> dybt integreret i Royal Casinos DNA. Platformen tilbyder omfattende selvudelukkelses- og selvreguleringsværktøjer, herunder indbetalingsgrænser, tabsgrænser, sessionsgrænser og midlertidig eller permanent selvudelukkelse via ROFUS.
+            Som en del af Danske Spil-koncernen er <Link to="/ansvarligt-spil" className={linkClass}>ansvarligt spil</Link> dybt integreret i Royal Casinos DNA. Platformen tilbyder omfattende selvudelukkelses- og selvreguleringsværktøjer, herunder indbetalingsgrænser, tabsgrænser, sessionsgrænser og midlertidig eller permanent selvudelukkelse via ROFUS.
           </p>
           <p className="text-muted-foreground leading-relaxed">
             Royal Casino bidrager aktivt til forskning i ludomani og samarbejder med organisationer som StopSpillet og Spillemyndigheden om forebyggende tiltag. Det er en tilgang, der sætter spillerbeskyttelse i centrum og sikrer, at underholdning aldrig bliver til et problem. Denne seriøse tilgang til ansvarligt spil er en af grundene til, at Royal Casino scorer højt i vores <Link to="/saadan-tester-vi-casinoer" className={linkClass}>testmetode</Link>.
