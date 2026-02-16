@@ -1,0 +1,97 @@
+/* Community micro-animations – premium hover glow, scroll reveal, gradient shifts */
+
+/* ═══════ 1. Card hover glow ═══════ */
+.community-card {
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+.community-card:hover {
+  transform: translateY(-6px) scale(1.03);
+  box-shadow: 0 0 25px rgba(124, 58, 237, 0.35), 0 8px 30px rgba(0, 0, 0, 0.2);
+}
+
+/* Image overlay lightens on hover */
+.community-card .card-overlay {
+  transition: opacity 0.25s ease;
+}
+.community-card:hover .card-overlay {
+  opacity: 0.6;
+}
+
+/* CTA arrow nudge */
+.community-card .card-arrow {
+  transition: transform 0.25s ease;
+}
+.community-card:hover .card-arrow {
+  transform: translateX(4px);
+}
+
+/* Card text brightens */
+.community-card .card-description {
+  transition: color 0.25s ease;
+}
+.community-card:hover .card-description {
+  color: hsl(var(--muted-foreground) / 0.9);
+}
+
+/* ═══════ 2. CTA button glow ═══════ */
+.community-btn-glow {
+  transition: box-shadow 0.2s ease, filter 0.2s ease;
+}
+.community-btn-glow:hover {
+  box-shadow: 0 0 18px rgba(147, 51, 234, 0.4);
+  filter: brightness(1.1);
+}
+
+/* ═══════ 3. Join CTA gradient shift ═══════ */
+@keyframes communityGradientShift {
+  0%   { background-position: 0% 50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.community-join-gradient {
+  background-size: 200% 200%;
+  animation: communityGradientShift 10s ease infinite;
+}
+
+/* ═══════ 4. Nav tab underline slide ═══════ */
+.community-nav-tab {
+  position: relative;
+}
+.community-nav-tab::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: hsl(260 70% 50%);
+  border-radius: 1px;
+  transition: width 0.2s ease;
+}
+.community-nav-tab:hover::after {
+  width: 100%;
+}
+/* Don't show underline on active tab – it already has bg highlight */
+.community-nav-tab-active::after {
+  display: none;
+}
+
+/* ═══════ 5. Scroll reveal ═══════ */
+.community-reveal {
+  opacity: 0;
+  transform: translateY(15px);
+  transition: opacity 0.4s ease, transform 0.4s ease;
+}
+.community-reveal.revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ═══════ 6. Feature strip hover ═══════ */
+.community-strip {
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+.community-strip:hover {
+  box-shadow: 0 0 30px rgba(139, 92, 246, 0.2);
+}

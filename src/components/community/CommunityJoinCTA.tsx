@@ -1,16 +1,18 @@
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Users, ArrowRight } from "lucide-react";
+import "@/styles/community-micro.css";
 
 export function CommunityJoinCTA() {
   return (
     <Link
       to="/auth"
-      className="group block rounded-xl p-5 md:p-6 transition-all duration-300 hover:scale-[1.005] hover:-translate-y-0.5 relative overflow-hidden"
+      className="community-join-gradient group block rounded-xl p-5 md:p-6 transition-all duration-300 hover:scale-[1.005] hover:-translate-y-0.5 relative overflow-hidden"
       style={{
         border: "1px solid rgba(139,92,246,0.3)",
-        background:
-          "linear-gradient(135deg, hsl(260 30% 16%) 0%, hsl(220 30% 16%) 100%)",
+        backgroundImage:
+          "linear-gradient(135deg, hsl(260 30% 16%) 0%, hsl(250 28% 18%) 50%, hsl(220 30% 16%) 100%)",
+        backgroundSize: "200% 200%",
         boxShadow: "0 0 20px rgba(139,92,246,0.06)",
       }}
     >
@@ -45,7 +47,7 @@ export function CommunityJoinCTA() {
           </p>
         </div>
         <Button
-          className="gap-2 shrink-0 font-semibold shadow-lg group-hover:shadow-[0_4px_24px_rgba(139,92,246,0.3)] transition-all duration-300"
+          className="gap-2 shrink-0 font-semibold shadow-lg community-btn-glow group-hover:shadow-[0_4px_24px_rgba(139,92,246,0.3)] transition-all duration-300"
           style={{
             background:
               "linear-gradient(135deg, hsl(260 70% 50%), hsl(220 80% 50%))",
