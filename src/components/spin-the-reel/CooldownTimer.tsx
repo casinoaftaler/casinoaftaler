@@ -4,9 +4,10 @@ import { Clock } from "lucide-react";
 interface CooldownTimerProps {
   cooldownEnd: string | null;
   onExpired: () => void;
+  inline?: boolean;
 }
 
-export function CooldownTimer({ cooldownEnd, onExpired }: CooldownTimerProps) {
+export function CooldownTimer({ cooldownEnd, onExpired, inline }: CooldownTimerProps) {
   const [timeLeft, setTimeLeft] = useState("");
   const [isExpired, setIsExpired] = useState(false);
 
@@ -45,6 +46,10 @@ export function CooldownTimer({ cooldownEnd, onExpired }: CooldownTimerProps) {
   }, [cooldownEnd, onExpired]);
 
   if (isExpired || !cooldownEnd) return null;
+
+  if (inline) {
+    return <span className="font-mono font-bold text-foreground tabular-nums">{timeLeft}</span>;
+  }
 
   return (
     <div className="flex items-center gap-2 text-muted-foreground bg-muted/30 rounded-lg px-4 py-2">

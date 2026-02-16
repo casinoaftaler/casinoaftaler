@@ -1,9 +1,11 @@
-import { useState, useCallback } from "react";
+import { useState, useCallback, lazy, Suspense } from "react";
 import { Helmet } from "react-helmet-async";
 import { CommunityNav } from "@/components/community/CommunityNav";
 import { SpinWheel } from "@/components/spin-the-reel/SpinWheel";
 import { RewardModal } from "@/components/spin-the-reel/RewardModal";
-import { CooldownTimer } from "@/components/spin-the-reel/CooldownTimer";
+import { HeroBackground } from "@/components/spin-the-reel/HeroBackground";
+import { UserStatsBar } from "@/components/spin-the-reel/UserStatsBar";
+import { RewardOverview } from "@/components/spin-the-reel/RewardOverview";
 import { useSpinSounds } from "@/hooks/useSpinSounds";
 import { useAuth } from "@/hooks/useAuth";
 import { supabase } from "@/integrations/supabase/client";
@@ -12,6 +14,14 @@ import { Button } from "@/components/ui/button";
 import { LogIn, Shield } from "lucide-react";
 import { Link } from "react-router-dom";
 import { toast } from "sonner";
+
+// Lazy load non-critical sections
+const SpinHistory = lazy(() =>
+  import("@/components/spin-the-reel/SpinHistory").then((m) => ({ default: m.SpinHistory }))
+);
+const TodayLeaderboard = lazy(() =>
+  import("@/components/spin-the-reel/TodayLeaderboard").then((m) => ({ default: m.TodayLeaderboard }))
+);
 
 export default function SpinTheReel() {
   const { user, session, loading: authLoading } = useAuth();
@@ -98,7 +108,6 @@ export default function SpinTheReel() {
     sounds.stopTicking();
     sounds.playStop();
 
-    // Play win/lose sound after a tiny delay
     setTimeout(() => {
       if (rewardData.type !== "none") {
         sounds.playWin();
@@ -114,10 +123,11 @@ export default function SpinTheReel() {
     setShowReward(true);
     setCooldownExpired(false);
 
-    // Invalidate queries to refresh data
     queryClient.invalidateQueries({ queryKey: ["spin-profile"] });
     queryClient.invalidateQueries({ queryKey: ["slot-spins"] });
     queryClient.invalidateQueries({ queryKey: ["streamelements-points"] });
+    queryClient.invalidateQueries({ queryKey: ["spin-history"] });
+    queryClient.invalidateQueries({ queryKey: ["spin-leaderboard-today"] });
   }, [queryClient]);
 
   const getDisabledReason = () => {
@@ -136,64 +146,85 @@ export default function SpinTheReel() {
 
       <CommunityNav />
 
-      <main className="container py-8 md:py-12">
-        <div className="max-w-2xl mx-auto text-center space-y-8">
-          <div>
-            <h1 className="text-3xl md:text-4xl font-bold mb-2">🎡 Spin the Reel</h1>
-            <p className="text-muted-foreground">
-              Spin hjulet hver 12. time og vind points eller spins!
-            </p>
-          </div>
+      <main className="relative min-h-screen">
+        {/* Hero background with gradient + particles */}
+        <HeroBackground />
 
-          {authLoading ? (
-            <div className="h-[400px] flex items-center justify-center">
-              <div className="animate-spin rounded-full h-8 w-8 border-2 border-primary border-t-transparent" />
-            </div>
-          ) : !user ? (
-            <div className="py-16 space-y-4">
-              <div className="w-16 h-16 rounded-full bg-muted/50 flex items-center justify-center mx-auto">
-                <LogIn className="h-8 w-8 text-muted-foreground" />
-              </div>
-              <p className="text-lg text-muted-foreground">Log ind for at spinne hjulet</p>
-              <Link to="/login">
-                <Button>Log ind</Button>
-              </Link>
-            </div>
-          ) : !hasTwitchId ? (
-            <div className="py-16 space-y-4">
-              <div className="w-16 h-16 rounded-full bg-muted/50 flex items-center justify-center mx-auto">
-                <Shield className="h-8 w-8 text-muted-foreground" />
-              </div>
-              <p className="text-lg text-muted-foreground">
-                Du skal tilknytte dit Twitch ID for at spinne
+        <div className="relative z-10 container py-8 md:py-12">
+          <div className="flex flex-col items-center gap-8 md:gap-10">
+            {/* Hero text */}
+            <div className="text-center space-y-2">
+              <h1 className="text-3xl md:text-4xl font-bold text-foreground">
+                🎡 Daglig Bonus Spin
+              </h1>
+              <p className="text-muted-foreground max-w-md mx-auto">
+                Spin hjulet hver 12. time og vind points til StreamElements eller ekstra credits til Spillehallen!
               </p>
-              <Link to="/profil">
-                <Button>Gå til profil</Button>
-              </Link>
             </div>
-          ) : (
-            <div className="space-y-6">
-              <SpinWheel
-                onSpinComplete={handleSpinComplete}
-                targetSegmentId={targetSegment}
-                isSpinning={isSpinning}
-                onSpinStart={handleSpinStart}
-                disabled={!canSpin}
-                disabledReason={getDisabledReason()}
-                muted={sounds.muted}
-                onToggleMute={sounds.toggleMute}
-                onSpinAnimStart={handleSpinAnimStart}
-                onSpinAnimEnd={handleSpinAnimEnd}
-              />
 
-              {isCooldownActive && !cooldownExpired && cooldownEnd && (
-                <CooldownTimer
+            {authLoading ? (
+              <div className="h-[400px] flex items-center justify-center">
+                <div className="animate-spin rounded-full h-8 w-8 border-2 border-primary border-t-transparent" />
+              </div>
+            ) : !user ? (
+              <div className="py-16 space-y-4 text-center">
+                <div className="w-16 h-16 rounded-full bg-muted/50 flex items-center justify-center mx-auto">
+                  <LogIn className="h-8 w-8 text-muted-foreground" />
+                </div>
+                <p className="text-lg text-muted-foreground">Log ind for at spinne hjulet</p>
+                <Link to="/login">
+                  <Button>Log ind</Button>
+                </Link>
+              </div>
+            ) : !hasTwitchId ? (
+              <div className="py-16 space-y-4 text-center">
+                <div className="w-16 h-16 rounded-full bg-muted/50 flex items-center justify-center mx-auto">
+                  <Shield className="h-8 w-8 text-muted-foreground" />
+                </div>
+                <p className="text-lg text-muted-foreground">
+                  Du skal tilknytte dit Twitch ID for at spinne
+                </p>
+                <Link to="/profil">
+                  <Button>Gå til profil</Button>
+                </Link>
+              </div>
+            ) : (
+              <>
+                {/* User stats bar */}
+                <UserStatsBar
                   cooldownEnd={cooldownEnd}
-                  onExpired={handleCooldownExpired}
+                  isCooldownActive={isCooldownActive && !cooldownExpired}
+                  onCooldownExpired={handleCooldownExpired}
                 />
-              )}
-            </div>
-          )}
+
+                {/* Wheel */}
+                <SpinWheel
+                  onSpinComplete={handleSpinComplete}
+                  targetSegmentId={targetSegment}
+                  isSpinning={isSpinning}
+                  onSpinStart={handleSpinStart}
+                  disabled={!canSpin}
+                  disabledReason={getDisabledReason()}
+                  muted={sounds.muted}
+                  onToggleMute={sounds.toggleMute}
+                  onSpinAnimStart={handleSpinAnimStart}
+                  onSpinAnimEnd={handleSpinAnimEnd}
+                />
+
+                {/* Reward overview */}
+                <RewardOverview />
+
+                {/* Lazy-loaded sections */}
+                <Suspense fallback={null}>
+                  <SpinHistory />
+                </Suspense>
+
+                <Suspense fallback={null}>
+                  <TodayLeaderboard />
+                </Suspense>
+              </>
+            )}
+          </div>
         </div>
       </main>
 
