@@ -26,30 +26,32 @@ export function HeroSection() {
     >
       <div className="container relative z-10">
         <div className="mx-auto max-w-3xl text-center">
-          {/* Twitch Live Indicator */}
-          {siteSettings?.twitch_url && (
-            <a
-              href={siteSettings.twitch_url}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="mb-6 inline-flex items-center gap-2 rounded-full bg-[#9146FF]/20 px-4 py-2 text-sm font-medium transition-all hover:bg-[#9146FF]/30 hover:scale-105"
-            >
-              <svg className="h-5 w-5" viewBox="0 0 24 24" fill="currentColor">
-                <path d="M11.571 4.714h1.715v5.143H11.57zm4.715 0H18v5.143h-1.714zM6 0L1.714 4.286v15.428h5.143V24l4.286-4.286h3.428L22.286 12V0zm14.571 11.143l-3.428 3.428h-3.429l-3 3v-3H6.857V1.714h13.714Z"/>
-              </svg>
-              {isLive ? (
-                <>
-                  <span className="relative flex h-2.5 w-2.5">
-                    <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-red-400 opacity-75"></span>
-                    <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-red-500"></span>
-                  </span>
-                  <span>LIVE NU</span>
-                </>
-              ) : (
-                <span>Se Twitch Kanal</span>
-              )}
-            </a>
-          )}
+          {/* Twitch Live Indicator – always reserves space */}
+          <div className="mb-6 min-h-[40px]">
+            {siteSettings?.twitch_url && (
+              <a
+                href={siteSettings.twitch_url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 rounded-full bg-[#9146FF]/20 px-4 py-2 text-sm font-medium transition-all hover:bg-[#9146FF]/30 hover:scale-105"
+              >
+                <svg className="h-5 w-5" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M11.571 4.714h1.715v5.143H11.57zm4.715 0H18v5.143h-1.714zM6 0L1.714 4.286v15.428h5.143V24l4.286-4.286h3.428L22.286 12V0zm14.571 11.143l-3.428 3.428h-3.429l-3 3v-3H6.857V1.714h13.714Z"/>
+                </svg>
+                {isLive ? (
+                  <>
+                    <span className="relative flex h-2.5 w-2.5">
+                      <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-red-400 opacity-75"></span>
+                      <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-red-500"></span>
+                    </span>
+                    <span>LIVE NU</span>
+                  </>
+                ) : (
+                  <span>Se Twitch Kanal</span>
+                )}
+              </a>
+            )}
+          </div>
           
           <h1 className="mb-4 text-3xl font-bold tracking-tight md:text-4xl lg:text-5xl">
             {heroTitle}
