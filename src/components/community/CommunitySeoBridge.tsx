@@ -1,9 +1,9 @@
 import { Link, useLocation } from "react-router-dom";
 import { supabase } from "@/integrations/supabase/client";
 import {
-  Gift,
   Star,
-  Sparkles,
+  Zap,
+  Gift,
   Tv,
   Gamepad2,
   ArrowRight,
@@ -12,17 +12,17 @@ import {
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
-const BASE_LINKS = [
-  { href: "/casinoer/casino-bonus", label: "Casino Bonus", icon: Gift, primary: true },
-  { href: "/nye-casinoer", label: "Nye Casinoer", icon: Star },
-  { href: "/top-10-casino-online", label: "Casino Anmeldelser", icon: Sparkles },
+const LINKS = [
+  { href: "/nye-casinoer", label: "Nye Casinoer", icon: Star, primary: true },
+  { href: "/casinoer/free-spins", label: "Free Spins", icon: Zap },
+  { href: "/casinoer/casino-bonus", label: "Casino Bonus", icon: Gift },
   { href: "/live-casino", label: "Live Casino", icon: Tv },
   { href: "/casinoer/spillemaskiner", label: "Spillemaskiner", icon: Gamepad2 },
 ];
 
 const TRUST_POINTS = [
   "Danske licenserede casinoer",
-  "Eksklusive bonusser",
+  "Eksklusive free spins",
   "Opdateret dagligt",
 ];
 
@@ -45,11 +45,11 @@ export function CommunitySeoBridge() {
   const isSlotPage = pathname.startsWith("/community/slots");
 
   const links = isSlotPage
-    ? [BASE_LINKS[4], BASE_LINKS[0], BASE_LINKS[1], BASE_LINKS[2], BASE_LINKS[3]]
-    : BASE_LINKS;
+    ? [LINKS[4], LINKS[0], LINKS[1], LINKS[2], LINKS[3]]
+    : LINKS;
 
-  const primaryLink = links.find((l) => l.primary);
-  const secondaryLinks = links.filter((l) => !l.primary);
+  const primaryLink = links.find((l) => l.primary) || links[0];
+  const secondaryLinks = links.filter((l) => l !== primaryLink);
 
   return (
     <nav
@@ -62,39 +62,34 @@ export function CommunitySeoBridge() {
           "linear-gradient(180deg, hsl(260 30% 16%) 0%, hsl(250 25% 13%) 100%)",
       }}
     >
-      {/* Header */}
       <div className="flex items-center gap-2 mb-1">
         <Flame className="h-4 w-4 text-orange-400" />
         <h2 className="text-base font-bold text-foreground">
-          Klar til rigtige gevinster?
+          Klar til at spille på nye casinoer?
         </h2>
       </div>
       <p className="text-xs text-muted-foreground mb-4 leading-relaxed">
-        Spil hos danske online casinoer med eksklusive bonusser og anmeldelser.
+        Find nye online casinoer, free spins og eksklusive bonusser.
       </p>
 
-      {/* Primary CTA */}
-      {primaryLink && (
-        <Link
-          to={primaryLink.href}
-          onClick={() => trackClick(primaryLink.label)}
-          className="block mb-4"
+      <Link
+        to={primaryLink.href}
+        onClick={() => trackClick(primaryLink.label)}
+        className="block mb-4"
+      >
+        <Button
+          className="w-full gap-2 font-semibold shadow-lg transition-all duration-200 hover:shadow-[0_0_20px_rgba(139,92,246,0.3)] hover:scale-[1.02]"
+          style={{
+            background:
+              "linear-gradient(135deg, hsl(260 70% 50%), hsl(220 80% 50%))",
+          }}
         >
-          <Button
-            className="w-full gap-2 font-semibold shadow-lg transition-all duration-200 hover:shadow-[0_0_20px_rgba(139,92,246,0.3)] hover:scale-[1.02]"
-            style={{
-              background:
-                "linear-gradient(135deg, hsl(260 70% 50%), hsl(220 80% 50%))",
-            }}
-          >
-            <Gift className="h-4 w-4" />
-            {primaryLink.label}
-            <ArrowRight className="h-3.5 w-3.5 ml-auto" />
-          </Button>
-        </Link>
-      )}
+          <Star className="h-4 w-4" />
+          {primaryLink.label}
+          <ArrowRight className="h-3.5 w-3.5 ml-auto" />
+        </Button>
+      </Link>
 
-      {/* Secondary links */}
       <ul className="space-y-0.5">
         {secondaryLinks.map((link) => {
           const Icon = link.icon;
@@ -114,16 +109,11 @@ export function CommunitySeoBridge() {
         })}
       </ul>
 
-      {/* Divider */}
       <div className="my-3 border-t border-border/30" />
 
-      {/* Trust points */}
       <ul className="space-y-1.5">
         {TRUST_POINTS.map((point) => (
-          <li
-            key={point}
-            className="flex items-center gap-2 text-xs text-muted-foreground"
-          >
+          <li key={point} className="flex items-center gap-2 text-xs text-muted-foreground">
             <CheckCircle2 className="h-3.5 w-3.5 shrink-0 text-emerald-500/70" />
             {point}
           </li>
