@@ -3,7 +3,8 @@ import { SEO } from "@/components/SEO";
 import { CommunityPageLayout } from "@/components/community/CommunityPageLayout";
 import { CommunityBrandBlock } from "@/components/community/CommunityBrandBlock";
 import { CommunityJoinCTA } from "@/components/community/CommunityJoinCTA";
-
+import { AuthorMetaBar } from "@/components/AuthorMetaBar";
+import { buildArticleSchema, SITE_URL } from "@/lib/seo";
 import { EnergySweep } from "@/components/community/EnergySweep";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -97,9 +98,17 @@ export default function CommunityHub() {
   return (
     <>
       <SEO
-        title="Community – Spil, Konkurrér & Vind | Casinoaftaler"
-        description="Udforsk Casinoaftalers community. Spil gratis slots, deltag i turneringer, se highlights, optjen rewards og shop med point."
-        noindex
+        title="Community – Gratis Slots, Turneringer & Bonus Spins"
+        description="Spil gratis slots, deltag i turneringer og optjen points i Casinoaftaler.dk's community. Vind spins og præmier hver dag."
+        jsonLd={buildArticleSchema({
+          headline: "Community – Gratis Slots, Turneringer & Bonus Spins",
+          description: "Spil gratis slots, deltag i turneringer og optjen points i Casinoaftaler.dk's community. Vind spins og præmier hver dag.",
+          url: `${SITE_URL}/community`,
+          datePublished: "2025-06-01",
+          dateModified: "2026-02-16",
+          authorName: "Jonas",
+          authorUrl: `${SITE_URL}/forfatter/jonas`,
+        })}
       />
       <CommunityPageLayout
         title="Community"
@@ -108,6 +117,19 @@ export default function CommunityHub() {
         badgeIcon={Users}
       >
         <div className="py-8 md:py-12">
+          <AuthorMetaBar author="jonas" date="16. februar 2026" readTime="3 min" showFactCheck={false} />
+
+          <p className="text-muted-foreground leading-relaxed mb-6">
+            Velkommen til Casinoaftalers community – et gratis fællesskab for casino-entusiaster. Her kan du spille gratis{" "}
+            <Link to="/casinospil/spillemaskiner" className="text-primary hover:underline">spillemaskiner</Link>, deltage i turneringer og optjene bonus spins.
+            Uanset om du leder efter de{" "}
+            <Link to="/nye-casinoer" className="text-primary hover:underline">nyeste casinoer</Link> eller vil forstå{" "}
+            <Link to="/omsaetningskrav" className="text-primary hover:underline">omsætningskrav</Link>, har vi dig dækket.
+            Udforsk vores guides til{" "}
+            <Link to="/casino-bonus" className="text-primary hover:underline">casino bonusser</Link> og{" "}
+            <Link to="/free-spins" className="text-primary hover:underline">free spins</Link> for at få mest muligt ud af din spilleoplevelse.
+          </p>
+
           {!user && (
             <div className="mb-8">
               <CommunityJoinCTA />
