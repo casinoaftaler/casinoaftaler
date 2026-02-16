@@ -12,7 +12,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { ChevronDown, Gamepad2, LogOut, Mail, Menu, User, X, Dices, Gift, BookOpen, Users, ShoppingBag, Video, ShieldCheck, Sparkles, Layers, Moon, Sun, Coins, UserCircle, Trophy, Ticket, CreditCard, MoreHorizontal, RefreshCw, DollarSign, Zap, Tv, Star, Scale, BarChart3, Smartphone, Globe, Heart, Landmark } from "lucide-react";
+import { ChevronDown, Gamepad2, LogOut, Mail, Menu, User, X, Dices, Gift, BookOpen, Users, ShoppingBag, Video, ShieldCheck, Sparkles, Layers, Moon, Sun, Coins, UserCircle, Trophy, Ticket, CreditCard, MoreHorizontal, RefreshCw, DollarSign, Zap, Tv, Star, Scale, BarChart3, Smartphone, Globe, Heart, Landmark, RotateCw } from "lucide-react";
 import { useState, useEffect, memo } from "react";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
 import { useTwitchStatus } from "@/hooks/useTwitchStatus";
@@ -336,19 +336,6 @@ export const Header = memo(function Header() {
             </div>
             <DropdownMenuContent align="center" className="bg-popover">
               <DropdownMenuItem asChild>
-                <Link to="/butik" className="flex items-center gap-2">
-                  <ShoppingBag className="h-4 w-4" />
-                  Butik
-                </Link>
-              </DropdownMenuItem>
-              <DropdownMenuItem asChild>
-                <Link to="/highlights" className="flex items-center gap-2">
-                  <Video className="h-4 w-4" />
-                  Highlights
-                </Link>
-              </DropdownMenuItem>
-              <DropdownMenuSeparator />
-              <DropdownMenuItem asChild>
                 <Link to="/community/slots" className="flex items-center gap-2">
                   <Coins className="h-4 w-4" />
                   Spillehal
@@ -361,9 +348,28 @@ export const Header = memo(function Header() {
                 </Link>
               </DropdownMenuItem>
               <DropdownMenuItem asChild>
+                <Link to="/community/spin-the-reel" className="flex items-center gap-2">
+                  <RotateCw className="h-4 w-4" />
+                  Spin the Reel
+                </Link>
+              </DropdownMenuItem>
+              <DropdownMenuItem asChild>
                 <Link to="/community/rewards" className="flex items-center gap-2">
                   <Gift className="h-4 w-4" />
                   Rewards Program
+                </Link>
+              </DropdownMenuItem>
+              <DropdownMenuSeparator />
+              <DropdownMenuItem asChild>
+                <Link to="/highlights" className="flex items-center gap-2">
+                  <Video className="h-4 w-4" />
+                  Highlights
+                </Link>
+              </DropdownMenuItem>
+              <DropdownMenuItem asChild>
+                <Link to="/butik" className="flex items-center gap-2">
+                  <ShoppingBag className="h-4 w-4" />
+                  Butik
                 </Link>
               </DropdownMenuItem>
             </DropdownMenuContent>
@@ -899,11 +905,12 @@ export const Header = memo(function Header() {
               {expandedSection === "community" && (
                 <div className="flex flex-col bg-muted/30 pb-2">
                   {[
-                    { to: "/butik", icon: <ShoppingBag className="h-4 w-4" />, label: "Butik" },
-                    { to: "/highlights", icon: <Video className="h-4 w-4" />, label: "Highlights" },
                     { to: "/community/slots", icon: <Coins className="h-4 w-4" />, label: "Spillehal" },
                     { to: "/community/leaderboard", icon: <Trophy className="h-4 w-4" />, label: "Turneringer" },
+                    { to: "/community/spin-the-reel", icon: <RotateCw className="h-4 w-4" />, label: "Spin the Reel" },
                     { to: "/community/rewards", icon: <Gift className="h-4 w-4" />, label: "Rewards Program" },
+                    { to: "/highlights", icon: <Video className="h-4 w-4" />, label: "Highlights" },
+                    { to: "/butik", icon: <ShoppingBag className="h-4 w-4" />, label: "Butik" },
                   ].map((item) => (
                     <Link
                       key={item.to}
