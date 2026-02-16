@@ -171,9 +171,39 @@ export const Header = memo(function Header() {
               </DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>
-          <Link to="/nye-casinoer" className="flex items-center gap-1.5 text-sm font-medium transition-colors hover:text-primary">
-            Nye Casinoer
-          </Link>
+          <DropdownMenu>
+            <DropdownMenuTrigger className="flex items-center gap-1.5 text-sm font-medium transition-colors hover:text-primary">
+              Nye Casinoer <ChevronDown className="h-4 w-4" />
+            </DropdownMenuTrigger>
+            <DropdownMenuContent align="center" className="bg-popover z-50">
+              <DropdownMenuItem asChild>
+                <Link to="/nye-casinoer" className="flex items-center gap-2 font-medium">
+                  <Sparkles className="h-4 w-4" />
+                  Alle Nye Casinoer
+                </Link>
+              </DropdownMenuItem>
+              <DropdownMenuSeparator />
+              {[
+                { to: "/nye-casinoer/2026", label: "Nye Casinoer 2026" },
+                { to: "/nye-casinoer/dansk-licens", label: "Med Dansk Licens" },
+                { to: "/nye-casinoer/uden-rofus", label: "Uden ROFUS" },
+                { to: "/nye-casinoer/hurtig-udbetaling", label: "Hurtig Udbetaling" },
+                { to: "/nye-casinoer/bonus-uden-indbetaling", label: "Bonus uden Indbetaling" },
+                { to: "/nye-casinoer/trustly", label: "Med Trustly" },
+                { to: "/nye-casinoer/mitid", label: "Med MitID" },
+                { to: "/nye-casinoer/lav-wagering", label: "Lav Wagering" },
+                { to: "/nye-casinoer/bedste", label: "Bedste Nye Casinoer" },
+                { to: "/nye-casinoer/vs-etablerede", label: "Nye vs Etablerede" },
+              ].map((item) => (
+                <DropdownMenuItem key={item.to} asChild>
+                  <Link to={item.to} className="flex items-center gap-2">
+                    <Star className="h-4 w-4" />
+                    {item.label}
+                  </Link>
+                </DropdownMenuItem>
+              ))}
+            </DropdownMenuContent>
+          </DropdownMenu>
           <DropdownMenu>
             <DropdownMenuTrigger className="flex items-center gap-1.5 text-sm font-medium transition-colors hover:text-primary">
               Casinospil <ChevronDown className="h-4 w-4" />
@@ -707,10 +737,41 @@ export const Header = memo(function Header() {
                 </Link>
               </div>
             )}
-            <Link to="/nye-casinoer" className="flex items-center gap-2 py-3 text-sm font-medium transition-colors hover:text-primary border-b border-border/50" onClick={() => setMobileMenuOpen(false)}>
-              <Sparkles className="h-4 w-4" />
-              Nye Casinoer
-            </Link>
+            <button
+              onClick={() => setExpandedSection(expandedSection === "nyecasinoer" ? null : "nyecasinoer")}
+              className="flex items-center justify-between py-3 text-sm font-medium transition-colors hover:text-primary border-b border-border/50"
+            >
+              <span className="flex items-center gap-2">
+                <Sparkles className="h-4 w-4" />
+                Nye Casinoer
+              </span>
+              <ChevronDown className={`h-4 w-4 transition-transform duration-200 ${expandedSection === "nyecasinoer" ? "rotate-180" : ""}`} />
+            </button>
+            {expandedSection === "nyecasinoer" && (
+              <div className="flex flex-col border-b border-border/50 bg-muted/30">
+                <Link to="/nye-casinoer" className="ml-6 flex items-center gap-2 py-2.5 text-sm font-medium text-foreground transition-colors hover:text-primary" onClick={() => setMobileMenuOpen(false)}>
+                  <Sparkles className="h-4 w-4" />
+                  Alle Nye Casinoer
+                </Link>
+                {[
+                  { to: "/nye-casinoer/2026", label: "Nye Casinoer 2026" },
+                  { to: "/nye-casinoer/dansk-licens", label: "Med Dansk Licens" },
+                  { to: "/nye-casinoer/uden-rofus", label: "Uden ROFUS" },
+                  { to: "/nye-casinoer/hurtig-udbetaling", label: "Hurtig Udbetaling" },
+                  { to: "/nye-casinoer/bonus-uden-indbetaling", label: "Bonus uden Indbetaling" },
+                  { to: "/nye-casinoer/trustly", label: "Med Trustly" },
+                  { to: "/nye-casinoer/mitid", label: "Med MitID" },
+                  { to: "/nye-casinoer/lav-wagering", label: "Lav Wagering" },
+                  { to: "/nye-casinoer/bedste", label: "Bedste Nye Casinoer" },
+                  { to: "/nye-casinoer/vs-etablerede", label: "Nye vs Etablerede" },
+                ].map((item) => (
+                  <Link key={item.to} to={item.to} className="ml-6 flex items-center gap-2 py-2.5 text-sm text-muted-foreground transition-colors hover:text-primary" onClick={() => setMobileMenuOpen(false)}>
+                    <Star className="h-4 w-4" />
+                    {item.label}
+                  </Link>
+                ))}
+              </div>
+            )}
             <button
               onClick={() => setExpandedSection(expandedSection === "casinospil" ? null : "casinospil")}
               className="flex items-center justify-between py-3 text-sm font-medium transition-colors hover:text-primary border-b border-border/50"
