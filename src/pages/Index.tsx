@@ -1,12 +1,12 @@
-import { useEffect, useState, lazy, Suspense } from "react";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { SEO } from "@/components/SEO";
 import { HeroSection } from "@/components/HeroSection";
 import { QuickNavSidebar } from "@/components/QuickNavBar";
 
 import { CasinoCard } from "@/components/CasinoCard";
-const BonusTypeCards = lazy(() => import("@/components/BonusTypeCards").then(m => ({ default: m.BonusTypeCards })));
-const FAQSection = lazy(() => import("@/components/FAQSection").then(m => ({ default: m.FAQSection })));
+import { BonusTypeCards } from "@/components/BonusTypeCards";
+import { FAQSection } from "@/components/FAQSection";
 import { FilterTabs } from "@/components/FilterTabs";
 import { useCasinos } from "@/hooks/useCasinos";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -293,9 +293,7 @@ const Index = () => {
           </p>
         </section>
 
-        <Suspense fallback={null}>
-          <BonusTypeCards />
-        </Suspense>
+        <BonusTypeCards />
 
         <Separator className="my-10" />
 
@@ -577,34 +575,32 @@ const Index = () => {
           </Card>
         </section>
 
-        <Suspense fallback={null}>
-          <FAQSection title="Ofte stillede spørgsmål om online casino i Danmark" faqs={[
-            {
-              question: "Hvad er det vigtigste at vide, før man spiller på online casino i Danmark?",
-              answer: "Det vigtigste er at vælge et online casino med gyldig dansk licens fra Spillemyndigheden. Licensen sikrer, at casinoet overholder strenge krav til spillerbeskyttelse, herunder tilslutning til ROFUS, krypteret dataoverførsel og maksimalt omsætningskrav på 10x. Danske online casinoer bruger MitID til registrering, og alle gevinster er skattefri. Vi anbefaler altid at sætte et budget, før du starter.",
-            },
-            {
-              question: "Hvordan finder jeg det bedste online casino til mine behov?",
-              answer: "Start med at definere dine prioriteter: Er det spiludvalg, udbetalingshastighed, betalingsmetoder eller vilkår? Sammenlign online casinoer på tværs af disse faktorer. Vores topliste opdateres løbende baseret på grundige tests af bonus, spiludvalg, betalingsmetoder, kundeservice, mobiloplevelse og sikkerhed.",
-            },
-            {
-              question: "Er online casinoer i Danmark sikre og regulerede?",
-              answer: "Ja, det danske marked er et af de mest strengt regulerede i Europa. Spillemyndigheden udsteder licenser og fører løbende tilsyn. Alle licenserede online casinoer skal dokumentere fair spil via certificerede RNG-systemer, implementere anti-hvidvask-procedurer og tilbyde selvudelukkelsesværktøjer. ROFUS giver dig mulighed for at udelukke dig selv fra alle danske spillesider med ét klik.",
-            },
-            {
-              question: "Skal jeg betale skat af gevinster fra online casino?",
-              answer: "Nej, alle gevinster fra online casinoer med gyldig dansk licens er 100 % skattefri – uanset størrelse. Skatten er betalt af casinooperatøren via licensafgiften. Gevinster fra online casinoer uden dansk licens er derimod skattepligtige, og du mister al spillerbeskyttelse.",
-            },
-            {
-              question: "Hvorfor bør jeg sammenligne online casinoer, før jeg vælger?",
-              answer: "Fordi der er markante forskelle mellem online casinoer i Danmark – fra udbetalingstider og spiludvalg til bonusvilkår og kundeservice. En grundig sammenligning hjælper dig med at undgå skjulte vilkår og finde det spillested, der reelt matcher dine præferencer. Vores uafhængige tests gør det nemt at sammenligne på tværs af de vigtigste kriterier.",
-            },
-            {
-              question: "Hvilke casinospil giver de bedste vinderchancer?",
-              answer: "Blackjack har den laveste house edge (ned til 0,5 % med optimal strategi), efterfulgt af baccarat (ca. 1,06 %) og video poker (op til 99,5 % RTP). Blandt spilleautomater varierer RTP fra 88 % til 97 %+. Højere RTP betyder bedre langsigtede chancer, men volatilitet spiller også en rolle for din oplevelse.",
-            },
-          ]} />
-        </Suspense>
+        <FAQSection title="Ofte stillede spørgsmål om online casino i Danmark" faqs={[
+          {
+            question: "Hvad er det vigtigste at vide, før man spiller på online casino i Danmark?",
+            answer: "Det vigtigste er at vælge et online casino med gyldig dansk licens fra Spillemyndigheden. Licensen sikrer, at casinoet overholder strenge krav til spillerbeskyttelse, herunder tilslutning til ROFUS, krypteret dataoverførsel og maksimalt omsætningskrav på 10x. Danske online casinoer bruger MitID til registrering, og alle gevinster er skattefri. Vi anbefaler altid at sætte et budget, før du starter.",
+          },
+          {
+            question: "Hvordan finder jeg det bedste online casino til mine behov?",
+            answer: "Start med at definere dine prioriteter: Er det spiludvalg, udbetalingshastighed, betalingsmetoder eller vilkår? Sammenlign online casinoer på tværs af disse faktorer. Vores topliste opdateres løbende baseret på grundige tests af bonus, spiludvalg, betalingsmetoder, kundeservice, mobiloplevelse og sikkerhed.",
+          },
+          {
+            question: "Er online casinoer i Danmark sikre og regulerede?",
+            answer: "Ja, det danske marked er et af de mest strengt regulerede i Europa. Spillemyndigheden udsteder licenser og fører løbende tilsyn. Alle licenserede online casinoer skal dokumentere fair spil via certificerede RNG-systemer, implementere anti-hvidvask-procedurer og tilbyde selvudelukkelsesværktøjer. ROFUS giver dig mulighed for at udelukke dig selv fra alle danske spillesider med ét klik.",
+          },
+          {
+            question: "Skal jeg betale skat af gevinster fra online casino?",
+            answer: "Nej, alle gevinster fra online casinoer med gyldig dansk licens er 100 % skattefri – uanset størrelse. Skatten er betalt af casinooperatøren via licensafgiften. Gevinster fra online casinoer uden dansk licens er derimod skattepligtige, og du mister al spillerbeskyttelse.",
+          },
+          {
+            question: "Hvorfor bør jeg sammenligne online casinoer, før jeg vælger?",
+            answer: "Fordi der er markante forskelle mellem online casinoer i Danmark – fra udbetalingstider og spiludvalg til bonusvilkår og kundeservice. En grundig sammenligning hjælper dig med at undgå skjulte vilkår og finde det spillested, der reelt matcher dine præferencer. Vores uafhængige tests gør det nemt at sammenligne på tværs af de vigtigste kriterier.",
+          },
+          {
+            question: "Hvilke casinospil giver de bedste vinderchancer?",
+            answer: "Blackjack har den laveste house edge (ned til 0,5 % med optimal strategi), efterfulgt af baccarat (ca. 1,06 %) og video poker (op til 99,5 % RTP). Blandt spilleautomater varierer RTP fra 88 % til 97 %+. Højere RTP betyder bedre langsigtede chancer, men volatilitet spiller også en rolle for din oplevelse.",
+          },
+        ]} />
       </div>
     </>
   );
