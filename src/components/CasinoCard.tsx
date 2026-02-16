@@ -239,14 +239,14 @@ function FeaturedCard({
           {/* Top right badges */}
           <div className="absolute top-3 right-3 z-10 flex items-center gap-2">
             {casino.isRecommended && (
-              <Badge className="bg-destructive text-destructive-foreground hover:bg-destructive/90 text-xs font-bold px-2 py-1">
+              <Badge className="bg-destructive text-destructive-foreground hover:bg-destructive/90 text-sm font-bold px-2.5 py-1">
                 Anbefalet
               </Badge>
             )}
             {casino.isHot && (
               <div className="flex items-center gap-1 rounded-full bg-destructive px-3 py-1.5">
                 <Flame className="h-4 w-4 text-destructive-foreground" />
-                <span className="text-xs font-bold text-destructive-foreground">HOT</span>
+                <span className="text-sm font-bold text-destructive-foreground">HOT</span>
               </div>
             )}
           </div>
@@ -416,9 +416,9 @@ function RegularCard({
       <div className="relative group transition-all duration-300 hover:-translate-y-1 hover:scale-[1.01] hover:shadow-xl hover:shadow-primary/15">
         <div className="relative overflow-hidden rounded-xl border border-border bg-card hover:border-primary/30 transition-all duration-300">
           {/* Recommended Badge */}
-          {casino.isRecommended && (
+           {casino.isRecommended && (
             <div className="absolute top-3 right-3 z-10">
-              <Badge className="bg-destructive text-destructive-foreground hover:bg-destructive/90 text-xs font-bold px-2 py-1">
+              <Badge className="bg-destructive text-destructive-foreground hover:bg-destructive/90 text-sm font-bold px-2.5 py-1">
                 Anbefalet
               </Badge>
             </div>
