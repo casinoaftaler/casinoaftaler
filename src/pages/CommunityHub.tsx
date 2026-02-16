@@ -3,7 +3,7 @@ import { SEO } from "@/components/SEO";
 import { CommunityPageLayout } from "@/components/community/CommunityPageLayout";
 import { CommunityBrandBlock } from "@/components/community/CommunityBrandBlock";
 import { CommunityJoinCTA } from "@/components/community/CommunityJoinCTA";
-import { AuthorMetaBar } from "@/components/AuthorMetaBar";
+
 import { buildArticleSchema, SITE_URL } from "@/lib/seo";
 import { EnergySweep } from "@/components/community/EnergySweep";
 import { Card, CardContent } from "@/components/ui/card";
@@ -112,23 +112,11 @@ export default function CommunityHub() {
       />
       <CommunityPageLayout
         title="Community"
-        description="Spil gratis slots, kæmp om præmier i turneringer, del highlights og optjen bonus spins. Alt samlet ét sted."
+        description="Spil gratis spillemaskiner i Casinoaftalers community, deltag i turneringer og optjen bonus spins hver dag. Udforsk også vores guides til nye casinoer, casino bonusser og free spins."
         badgeText="Fællesskab"
         badgeIcon={Users}
-        heroExtra={
-          <p className="text-sm md:text-base text-white/70 leading-relaxed max-w-2xl mx-auto">
-            Velkommen til Casinoaftalers community – et gratis fællesskab for casino-entusiaster. Spil gratis{" "}
-            <Link to="/casinospil/spillemaskiner" className="text-white/90 underline hover:text-white">spillemaskiner</Link>, deltag i turneringer og optjen bonus spins.
-            Udforsk de{" "}
-            <Link to="/nye-casinoer" className="text-white/90 underline hover:text-white">nyeste casinoer</Link>, lær om{" "}
-            <Link to="/omsaetningskrav" className="text-white/90 underline hover:text-white">omsætningskrav</Link>, og find de bedste{" "}
-            <Link to="/casino-bonus" className="text-white/90 underline hover:text-white">casino bonusser</Link> og{" "}
-            <Link to="/free-spins" className="text-white/90 underline hover:text-white">free spins</Link>.
-          </p>
-        }
       >
         <div className="py-8 md:py-12">
-          <AuthorMetaBar author="jonas" date="16. februar 2026" readTime="3 min" showFactCheck={false} />
 
           {!user && (
             <div className="mb-8">
