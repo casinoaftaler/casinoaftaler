@@ -7,7 +7,7 @@ import { RelatedGuides } from "@/components/RelatedGuides";
 import { InlineCasinoCards } from "@/components/InlineCasinoCards";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
-import { Gift, Sparkles, CheckCircle2 } from "lucide-react";
+import { Gift, Sparkles, CheckCircle2, AlertTriangle } from "lucide-react";
 import { buildArticleSchema, buildFaqSchema, SITE_URL } from "@/lib/seo";
 import type { ReactNode } from "react";
 
@@ -18,7 +18,7 @@ const faqs: { question: string; answer: ReactNode }[] = [
     question: "Hvad er en bonus uden indbetaling hos nye casinoer?",
     answer: (
       <>
-        En <Link to="/bonus-uden-indbetaling" className={linkClass}>bonus uden indbetaling</Link> er en gratis bonus, du modtager blot ved at oprette en konto – uden at indbetale penge. Hos nye casinoer kan det være free spins, bonuspenge eller en kombination. Det giver dig mulighed for at teste casinoet uden risiko.
+        En <Link to="/bonus-uden-indbetaling" className={linkClass}>bonus uden indbetaling</Link> er en gratis bonus, du modtager blot ved at oprette en konto – uden at indbetale penge. Hos nye casinoer kan det være free spins, bonuspenge eller en kombination. Det giver dig mulighed for at teste casinoet uden risiko, men husk at læse vilkårene grundigt.
       </>
     ),
   },
@@ -26,25 +26,29 @@ const faqs: { question: string; answer: ReactNode }[] = [
     question: "Har no-deposit bonusser omsætningskrav?",
     answer: (
       <>
-        Ja, bonusser uden indbetaling har altid <Link to="/omsaetningskrav" className={linkClass}>omsætningskrav</Link>, typisk mellem 5x og 10x for danske licenserede casinoer. Den danske lovgivning sikrer dog et loft på 10x, hvilket gør danske no-deposit bonusser markant mere favorable end udenlandske, der kan kræve 40–60x omsætning.
+        Ja, bonusser uden indbetaling har altid <Link to="/omsaetningskrav" className={linkClass}>omsætningskrav</Link>, typisk mellem 5x og 10x for danske licenserede casinoer. Den danske lovgivning sikrer et loft på 10x, hvilket gør danske no-deposit bonusser markant mere favorable end udenlandske, der kan kræve 40–60x omsætning. Nogle nye casinoer tilbyder endda 1x-3x omsætning.
       </>
     ),
   },
   {
     question: "Hvor mange free spins kan man få uden indbetaling?",
-    answer: "Hos nye danske casinoer ser vi typisk 10–50 free spins uden indbetaling. Værdien pr. spin varierer fra 1–5 kr. afhængigt af casinoet. Nogle nye casinoer tilbyder i stedet bonuspenge (f.eks. 50–100 kr.) i stedet for free spins. Tjek altid vilkårene for det specifikke tilbud.",
+    answer: "Hos nye danske casinoer ser vi typisk 10–50 free spins uden indbetaling. Værdien pr. spin varierer fra 1–5 kr. afhængigt af casinoet og den valgte spilleautomat. Nogle nye casinoer tilbyder i stedet bonuspenge (f.eks. 50–100 kr.) i stedet for free spins. Den samlede bonusværdi ligger typisk mellem 20 og 250 kr.",
   },
   {
     question: "Kan man vinde rigtige penge med en bonus uden indbetaling?",
-    answer: "Ja, du kan vinde rigtige penge, men der er typisk en maksimal udbetalingsgrænse (ofte 500–1.000 kr.) og omsætningskrav, der skal opfyldes først. Trods begrænsningerne er det en risikofri måde at teste et nyt casino og potentielt vinde lidt ekstra.",
+    answer: "Ja, du kan vinde rigtige penge, men der er typisk en maksimal udbetalingsgrænse (ofte 500–1.000 kr.) og omsætningskrav, der skal opfyldes først. I praksis vinder ca. 15-20% af spillere noget, der kan udbetales. Trods begrænsningerne er det en risikofri måde at teste et nyt casino og potentielt vinde lidt ekstra.",
   },
   {
     question: "Hvilke nye casinoer tilbyder den bedste bonus uden indbetaling?",
     answer: (
       <>
-        De bedste no-deposit bonusser hos nye casinoer kombinerer et generøst antal free spins eller bonuspenge med lave omsætningskrav og rimelige udbetalingsgrænser. Vi opdaterer løbende vores liste over <Link to="/nye-casinoer" className={linkClass}>nye casinoer</Link> med aktuelle no-deposit tilbud.
+        De bedste no-deposit bonusser hos nye casinoer kombinerer et generøst antal free spins eller bonuspenge med lave omsætningskrav (1x-5x) og rimelige udbetalingsgrænser (minimum 500 kr.). Vi opdaterer løbende vores liste over <Link to="/nye-casinoer" className={linkClass}>nye casinoer</Link> med aktuelle no-deposit tilbud og angiver altid de præcise vilkår.
       </>
     ),
+  },
+  {
+    question: "Kan man få bonus uden indbetaling mere end én gang?",
+    answer: "Nej, no-deposit bonusser er udelukkende for nye spillere og kan kun bruges én gang pr. person. Det kontrolleres via MitID-verifikation, så det er ikke muligt at oprette flere konti. Forsøg på det kan resultere i kontolukning og tab af gevinster.",
   },
 ];
 
@@ -80,18 +84,18 @@ const NyeCasinoerBonusUdenIndbetaling = () => {
       </section>
 
       <div className="container py-8 md:py-12">
-        <AuthorMetaBar author="kevin" date="16-02-2026" readTime="7 Min." />
+        <AuthorMetaBar author="kevin" date="16-02-2026" readTime="9 Min." />
 
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold">Gratis bonus hos nye casinoer i 2026</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
-            En af de mest attraktive fordele ved <Link to="/nye-casinoer" className={linkClass}>nye casinoer</Link> er muligheden for at modtage en <Link to="/bonus-uden-indbetaling" className={linkClass}>bonus uden indbetaling</Link>. Disse bonusser giver dig gratis free spins eller bonuspenge blot ved at oprette en konto, hvilket gør det muligt at teste casinoet helt risikofrit.
+            En af de mest attraktive fordele ved <Link to="/nye-casinoer" className={linkClass}>nye casinoer</Link> er muligheden for at modtage en <Link to="/bonus-uden-indbetaling" className={linkClass}>bonus uden indbetaling</Link>. Disse bonusser giver dig gratis free spins eller bonuspenge blot ved at oprette en konto, hvilket gør det muligt at teste casinoet helt risikofrit. Det er casinoets måde at demonstrere tillid til sin platform.
           </p>
           <p className="mb-4 text-muted-foreground leading-relaxed">
-            Nye casinoer bruger no-deposit bonusser som et strategisk værktøj til at tiltrække nye spillere. Det er en win-win: du får mulighed for at udforske platformen uden at bruge dine egne penge, og casinoet får chancen for at imponere dig med sin spiloplevelse, <Link to="/betalingsmetoder" className={linkClass}>betalingsmetoder</Link> og kundeservice.
+            Nye casinoer bruger no-deposit bonusser som et strategisk værktøj til at tiltrække nye spillere i et konkurrencepræget marked. Det er en win-win: du får mulighed for at udforske platformen, teste <Link to="/betalingsmetoder" className={linkClass}>betalingsmetoder</Link>, kundeservice og spiludvalg uden at bruge dine egne penge. Casinoet får chancen for at imponere dig med sin spiloplevelse.
           </p>
           <p className="text-muted-foreground leading-relaxed">
-            Husk altid at læse vilkårene for en no-deposit bonus. Selv om bonussen er gratis, er der typisk <Link to="/omsaetningskrav" className={linkClass}>omsætningskrav</Link> (max 10x på danske casinoer), udbetalingsgrænser og tidsfrister, du skal være opmærksom på.
+            Husk altid at læse vilkårene for en no-deposit bonus. Selv om bonussen er gratis, er der typisk <Link to="/omsaetningskrav" className={linkClass}>omsætningskrav</Link> (max 10x på danske casinoer), udbetalingsgrænser og tidsfrister, du skal være opmærksom på. Vi angiver altid de specifikke vilkår i vores anmeldelser.
           </p>
           <div className="mt-6 rounded-lg border border-primary/30 bg-accent/30 p-4">
             <p className="text-sm text-muted-foreground">
@@ -106,11 +110,15 @@ const NyeCasinoerBonusUdenIndbetaling = () => {
 
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold">Typer af bonusser uden indbetaling</h2>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            Nye casinoer tilbyder flere varianter af no-deposit bonusser. Hver type har sine fordele og begrænsninger:
+          </p>
           <div className="space-y-3">
             {[
-              { title: "Free spins uden indbetaling", desc: "Det mest almindelige tilbud. Du modtager typisk 10–50 gratis spins på udvalgte spilleautomater ved oprettelse. Gevinsterne er underlagt omsætningskrav." },
-              { title: "Bonuspenge uden indbetaling", desc: "Nogle nye casinoer tilbyder et lille bonusbeløb (typisk 50–100 kr.) i stedet for free spins. Det giver dig mere frihed til at vælge, hvilke spil du vil prøve." },
-              { title: "Cashback uden indbetaling", desc: "En sjældnere variant, hvor det nye casino returnerer en procentdel af dine tab i den første periode – uden at du har indbetalt." },
+              { title: "Free spins uden indbetaling", desc: "Det mest almindelige tilbud. Du modtager typisk 10–50 gratis spins på udvalgte spilleautomater ved oprettelse. Gevinsterne er underlagt omsætningskrav. Spinværdien varierer fra 1–5 kr., og du kan typisk kun bruge dem på én specifik automat." },
+              { title: "Bonuspenge uden indbetaling", desc: "Nogle nye casinoer tilbyder et lille bonusbeløb (typisk 50–100 kr.) i stedet for free spins. Det giver dig mere frihed til at vælge, hvilke spil du vil prøve – inklusiv bordspil og live casino. Omsætningskrav gælder dog stadig." },
+              { title: "Cashback uden indbetaling", desc: "En sjældnere variant, hvor det nye casino returnerer en procentdel af dine tab i den første periode – uden at du har indbetalt. Typisk 10-25% cashback på de første 24-48 timers spil. Cashback har ofte lavere omsætningskrav end traditionelle bonusser." },
+              { title: "Kombinations-bonus", desc: "Nogle nye casinoer kombinerer flere typer – f.eks. 25 free spins + 50 kr. bonuspenge. Disse tilbud giver den bedste samlede værdi, men læs vilkårene for hver del, da de kan have forskellige omsætningskrav." },
             ].map((item) => (
               <div key={item.title} className="flex items-start gap-3 rounded-lg border border-border bg-card p-4">
                 <CheckCircle2 className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
@@ -126,13 +134,61 @@ const NyeCasinoerBonusUdenIndbetaling = () => {
         <Separator className="my-10" />
 
         <section className="mb-12">
+          <h2 className="mb-4 text-3xl font-bold">Sådan vurderer du en no-deposit bonus</h2>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            Ikke alle bonusser uden indbetaling er lige gode. Her er de fem faktorer, du skal kigge efter, når du sammenligner no-deposit tilbud hos nye casinoer:
+          </p>
+          <div className="space-y-3">
+            {[
+              { title: "Omsætningskrav (wagering)", desc: "Jo lavere, jo bedre. Danske casinoer har et loft på 10x, men de bedste nye casinoer tilbyder 1x-5x. Se vores guide til nye casinoer med lav wagering." },
+              { title: "Udbetalingsgrænse", desc: "Mange no-deposit bonusser har en max-udbetaling på 500-1.000 kr. Jo højere grænsen er, jo mere værd er bonussen i praksis." },
+              { title: "Tidsfrist", desc: "De fleste no-deposit bonusser udløber efter 7-30 dage. Sørg for, at du har tid til at opfylde omsætningskravene inden fristen." },
+              { title: "Spilrestriktioner", desc: "Free spins er ofte begrænset til én specifik spilleautomat. Bonuspenge kan have vægtede spilbidrag – f.eks. tæller bordspil kun 10% mod omsætningskravet." },
+              { title: "Samlet bonusværdi", desc: "Beregn den reelle værdi: (Bonusbeløb × Vinderchance) ÷ Omsætningskrav. En 50 kr. bonus med 3x omsætning er ofte mere værd end en 200 kr. bonus med 10x." },
+            ].map((item) => (
+              <div key={item.title} className="flex items-start gap-3 rounded-lg border border-border bg-card p-4">
+                <Gift className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
+                <div>
+                  <h3 className="font-semibold">{item.title}</h3>
+                  <p className="text-sm text-muted-foreground">{item.desc}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        <Separator className="my-10" />
+
+        <section className="mb-12">
+          <h2 className="mb-4 text-3xl font-bold">Advarselstegn ved no-deposit bonusser</h2>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            Selvom no-deposit bonusser er risikofrie økonomisk, bør du være opmærksom på disse røde flag:
+          </p>
+          <div className="space-y-3">
+            {[
+              "Omsætningskrav over 10x – det er ulovligt for danske casinoer og tyder på manglende dansk licens",
+              "Ingen udbetalingsgrænse nævnt i vilkårene – tjek altid detaljerne, da der næsten altid er en",
+              "Meget kort tidsfrist (under 3 dage) – gør det næsten umuligt at opfylde omsætningskravene",
+              "Krav om indbetaling før udbetaling af no-deposit gevinster – et tegn på dårlig praksis",
+            ].map((warning, i) => (
+              <div key={i} className="flex items-start gap-3 rounded-lg border border-destructive/30 bg-destructive/5 p-3">
+                <AlertTriangle className="mt-0.5 h-5 w-5 flex-shrink-0 text-destructive" />
+                <p className="text-sm text-muted-foreground">{warning}</p>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        <Separator className="my-10" />
+
+        <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold">Udforsk flere bonus-guides</h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
             {[
               { to: "/nye-casinoer", label: "Nye Casinoer – Hovedside", desc: "Alle nye casinoer i Danmark" },
               { to: "/bonus-uden-indbetaling", label: "Bonus uden Indbetaling", desc: "Komplet guide til no-deposit bonusser" },
-              { to: "/free-spins", label: "Free Spins", desc: "Alt om gratis spins" },
               { to: "/nye-casinoer/lav-wagering", label: "Lav Wagering", desc: "Nye casinoer med lave omsætningskrav" },
+              { to: "/nye-casinoer/hurtig-udbetaling", label: "Hurtig Udbetaling", desc: "Nye casinoer med hurtigste udbetalinger" },
             ].map((link) => (
               <Link key={link.to} to={link.to} className="flex items-start gap-3 rounded-lg border border-border bg-card p-4 transition-colors hover:border-primary/50 hover:bg-accent/50">
                 <Sparkles className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />

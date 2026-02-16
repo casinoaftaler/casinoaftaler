@@ -7,7 +7,7 @@ import { RelatedGuides } from "@/components/RelatedGuides";
 import { InlineCasinoCards } from "@/components/InlineCasinoCards";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
-import { Zap, Clock, Sparkles, CreditCard, CheckCircle2 } from "lucide-react";
+import { Zap, Clock, Sparkles, CreditCard, CheckCircle2, AlertTriangle, XCircle } from "lucide-react";
 import { buildArticleSchema, buildFaqSchema, SITE_URL } from "@/lib/seo";
 import type { ReactNode } from "react";
 
@@ -36,17 +36,21 @@ const faqs: { question: string; answer: ReactNode }[] = [
   },
   {
     question: "Kan KYC-verifikation forsinke min udbetaling?",
-    answer: "Ja, KYC (Know Your Customer) er lovpligtigt for alle danske casinoer. Ved din første udbetaling skal du typisk verificere din identitet via MitID. Mange nye casinoer integrerer MitID direkte i registreringsprocessen, så KYC er overstået inden din første udbetaling.",
+    answer: (
+      <>
+        Ja, KYC (Know Your Customer) er lovpligtigt for alle danske casinoer. Ved din første udbetaling skal du typisk verificere din identitet via <Link to="/nye-casinoer/mitid" className={linkClass}>MitID</Link>. Mange nye casinoer integrerer MitID direkte i registreringsprocessen, så KYC er overstået inden din første udbetaling – det eliminerer den primære forsinkelse fuldstændigt.
+      </>
+    ),
   },
   {
     question: "Er der minimum- eller maksimumgrænser for udbetalinger?",
-    answer: "De fleste nye casinoer har en minimumsgrænse på 50–100 kr. og varierende maksimumsgrænser afhængigt af betalingsmetode. Trustly og bankoverførsler har typisk de højeste maksimumsgrænser, mens MobilePay og e-wallets kan have lavere lofter. Vi anbefaler at tjekke vilkårene hos det specifikke casino.",
+    answer: "De fleste nye casinoer har en minimumsgrænse på 50–100 kr. og varierende maksimumsgrænser afhængigt af betalingsmetode. Trustly og bankoverførsler har typisk de højeste maksimumsgrænser (op til 500.000 kr. pr. transaktion), mens MobilePay og e-wallets kan have lavere lofter (typisk 10.000–50.000 kr.). Vi anbefaler at tjekke vilkårene hos det specifikke casino.",
   },
   {
     question: "Påvirker bonusser udbetalingshastigheden?",
     answer: (
       <>
-        Aktive bonusser kan forsinke udbetalinger, da <Link to="/omsaetningskrav" className={linkClass}>omsætningskrav</Link> skal opfyldes først. Med en <Link to="/no-sticky-bonus" className={linkClass}>no-sticky bonus</Link> kan du hæve rigtige penge uafhængigt af bonusmidlerne, hvilket giver hurtigere adgang til dine gevinster. Se også <Link to="/nye-casinoer/lav-wagering" className={linkClass}>nye casinoer med lav wagering</Link>.
+        Aktive bonusser kan forsinke udbetalinger, da <Link to="/omsaetningskrav" className={linkClass}>omsætningskrav</Link> skal opfyldes først. Casinoet vil typisk holde bonusmidler og tilhørende gevinster tilbage, indtil kravene er mødt. Med en <Link to="/no-sticky-bonus" className={linkClass}>no-sticky bonus</Link> kan du hæve rigtige penge uafhængigt af bonusmidlerne, hvilket giver hurtigere adgang til dine gevinster. Se også <Link to="/nye-casinoer/lav-wagering" className={linkClass}>nye casinoer med lav wagering</Link>.
       </>
     ),
   },
@@ -84,18 +88,18 @@ const NyeCasinoerHurtigUdbetaling = () => {
       </section>
 
       <div className="container py-8 md:py-12">
-        <AuthorMetaBar author="kevin" date="16-02-2026" readTime="8 Min." />
+        <AuthorMetaBar author="kevin" date="16-02-2026" readTime="10 Min." />
 
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold">Nye casinoer med de hurtigste udbetalinger i 2026</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
-            Udbetalingshastighed er en af de vigtigste faktorer, når du vælger et <Link to="/nye-casinoer" className={linkClass}>nyt casino</Link>. Ingen ønsker at vente dage på at modtage sine gevinster, og i 2026 er instant-udbetalinger blevet standarden hos de bedste nye danske casinoer.
+            Udbetalingshastighed er en af de vigtigste faktorer, når du vælger et <Link to="/nye-casinoer" className={linkClass}>nyt casino</Link>. Ingen ønsker at vente dage på at modtage sine gevinster, og i 2026 er instant-udbetalinger blevet standarden hos de bedste nye danske casinoer. Hos Casinoaftaler tester vi faktiske udbetalingstider – ikke hvad casinoerne reklamerer med.
           </p>
           <p className="mb-4 text-muted-foreground leading-relaxed">
-            Moderne nye casinoer bygges med avanceret betalingsinfrastruktur, der integrerer open banking-løsninger som <Link to="/betalingsmetoder/trustly" className={linkClass}>Trustly</Link> direkte i platformen. Det eliminerer manuelle godkendelsestrin og muliggør udbetalinger på under 5 minutter – 24 timer i døgnet, 7 dage om ugen.
+            Moderne nye casinoer bygges med avanceret betalingsinfrastruktur, der integrerer open banking-løsninger som <Link to="/betalingsmetoder/trustly" className={linkClass}>Trustly</Link> direkte i platformen. Det eliminerer manuelle godkendelsestrin og muliggør udbetalinger på under 5 minutter – 24 timer i døgnet, 7 dage om ugen. Det er en markant forbedring fra de 2–5 bankdages ventetid, der stadig er normen hos mange ældre casinoer.
           </p>
           <p className="text-muted-foreground leading-relaxed">
-            Vi har testet udbetalingstider hos alle nye casinoer på vores liste og rangerer dem efter faktiske udbetalingshastigheder, ikke hvad de reklamerer med. Herunder finder du vores anbefalede nye casinoer med de hurtigste udbetalinger.
+            Vi har testet udbetalingstider hos alle nye casinoer på vores liste ved at foretage reelle udbetalinger på forskellige tidspunkter (hverdag, weekend, nat). Casinoerne nedenfor er rangeret efter faktiske udbetalingshastigheder baseret på vores test. Se også vores <Link to="/nye-casinoer/trustly" className={linkClass}>Trustly-guide</Link> for dybere indsigt i Pay N Play-udbetalinger.
           </p>
           <div className="mt-6 rounded-lg border border-primary/30 bg-accent/30 p-4">
             <p className="text-sm text-muted-foreground">
@@ -110,13 +114,16 @@ const NyeCasinoerHurtigUdbetaling = () => {
 
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold">Udbetalingstider pr. betalingsmetode</h2>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            Udbetalingshastigheden afhænger i høj grad af den betalingsmetode, du vælger. Her er en oversigt baseret på vores faktiske tests hos nye danske casinoer:
+          </p>
           <div className="space-y-3">
             {[
-              { method: "Trustly", time: "Under 5 minutter", desc: "Open banking-løsning med direkte bankoverførsel. Den hurtigste metode hos nye casinoer." },
-              { method: "MobilePay", time: "Under 5 minutter", desc: "Danmarks populære mobilbetalingsapp. Instant-udbetalinger hos de fleste nye casinoer." },
-              { method: "Skrill / Neteller", time: "1–4 timer", desc: "E-wallets med hurtige udbetalinger. Kræver en separat konto." },
-              { method: "Visa / Mastercard", time: "1–3 bankdage", desc: "Kortudbetalinger er langsommere pga. bankernes behandlingstid." },
-              { method: "Bankoverførsel", time: "2–5 bankdage", desc: "Den langsomste metode, men nødvendig for store beløb hos visse casinoer." },
+              { method: "Trustly", time: "Under 5 minutter", desc: "Open banking-løsning med direkte bankoverførsel. Den hurtigste metode hos nye casinoer. Trustly Pay N Play muliggør instant-udbetalinger direkte til din bankkonto uden manuelt godkendelsestrin." },
+              { method: "MobilePay", time: "Under 5 minutter", desc: "Danmarks populære mobilbetalingsapp. Instant-udbetalinger hos de fleste nye casinoer. Pengene lander direkte i din MobilePay-saldo og kan overføres til din bank." },
+              { method: "Skrill / Neteller", time: "1–4 timer", desc: "E-wallets med hurtige udbetalinger. Kræver en separat konto. Pengene er tilgængelige i din e-wallet inden for timer, men overførsel til bank kan tage yderligere 1–2 dage." },
+              { method: "Visa / Mastercard", time: "1–3 bankdage", desc: "Kortudbetalinger er langsommere pga. bankernes behandlingstid. Nye casinoer processer normalt inden for timer, men din bank kan holde pengene i op til 3 dage." },
+              { method: "Bankoverførsel", time: "2–5 bankdage", desc: "Den langsomste metode. Kun relevant for beløb over de grænser, andre metoder tillader. Behandles ikke i weekender eller helligdage." },
             ].map((item) => (
               <div key={item.method} className="flex items-start gap-3 rounded-lg border border-border bg-card p-4">
                 <CreditCard className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
@@ -135,14 +142,66 @@ const NyeCasinoerHurtigUdbetaling = () => {
         <Separator className="my-10" />
 
         <section className="mb-12">
+          <h2 className="mb-4 text-3xl font-bold">Hvorfor er nye casinoer hurtigere til udbetalinger?</h2>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            Nye casinoer har en strukturel fordel, når det handler om udbetalingshastighed. De bygges med moderne arkitektur, der automatiserer hele udbetalingsprocessen. Her er de vigtigste forskelle sammenlignet med <Link to="/nye-casinoer/vs-etablerede" className={linkClass}>etablerede casinoer</Link>:
+          </p>
+          <div className="space-y-3">
+            {[
+              { title: "Automatiseret godkendelse", desc: "Nye casinoer bruger AI-drevne compliance-systemer, der automatisk godkender udbetalinger under bestemte tærskelbeløb. Etablerede casinoer bruger ofte manuelle godkendelsesprocesser med medarbejdere." },
+              { title: "Pre-verifikation via MitID", desc: "Mange nye casinoer verificerer din identitet allerede ved registrering via MitID, så der ingen KYC-forsinkelse er ved din første udbetaling. Ældre casinoer kræver ofte dokumentupload ved første udbetaling." },
+              { title: "Moderne API-integrationer", desc: "Nye casinoer integrerer direkte med Trustly, MobilePay og andre betalingsudbydere via moderne API'er. Det eliminerer mellemmænd og reducerer behandlingstiden drastisk." },
+              { title: "Ingen legacy-systemer", desc: "Etablerede casinoer kæmper med gammeldags betalingssystemer, der blev implementeret for 10-15 år siden. Nye casinoer starter fra bunden med de nyeste teknologier." },
+            ].map((item) => (
+              <div key={item.title} className="flex items-start gap-3 rounded-lg border border-border bg-card p-4">
+                <Zap className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
+                <div>
+                  <h3 className="font-semibold">{item.title}</h3>
+                  <p className="text-sm text-muted-foreground">{item.desc}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        <Separator className="my-10" />
+
+        <section className="mb-12">
+          <h2 className="mb-4 text-3xl font-bold">Hvad kan forsinke din udbetaling?</h2>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            Selv hos de hurtigste nye casinoer kan visse faktorer forsinke din udbetaling. Kend dem på forhånd, så du undgår unødvendig ventetid:
+          </p>
+          <div className="space-y-3">
+            {[
+              { title: "Uopfyldte omsætningskrav", desc: "Har du en aktiv bonus, skal omsætningskravene opfyldes, før du kan udbetale. Tjek din bonussaldo, og vælg evt. et casino med lav wagering." },
+              { title: "Manglende verifikation", desc: "Hvis du ikke har verificeret dig via MitID ved registrering, vil casinoet kræve det ved din første udbetaling. Det kan tilføje 5-30 minutter." },
+              { title: "Stor udbetalingsbeløb", desc: "Beløb over 50.000 kr. kan udløse ekstra compliance-tjek. Det er lovpligtigt for at forhindre hvidvask og kan tilføje op til 24 timer." },
+              { title: "Weekend og helligdage", desc: "Bankoverførsler og kortudbetalinger behandles ikke i weekender. Trustly og MobilePay fungerer 24/7 og er upåvirkede." },
+              { title: "Mismatch mellem ind- og udbetalingsmetode", desc: "Af sikkerhedsgrunde kræver mange casinoer, at din udbetaling sendes til den samme metode, du indbetalte med. Et mismatch kan forsinke processen." },
+            ].map((item) => (
+              <div key={item.title} className="flex items-start gap-3 rounded-lg border border-border bg-card p-4">
+                <AlertTriangle className="mt-0.5 h-5 w-5 flex-shrink-0 text-destructive" />
+                <div>
+                  <h3 className="font-semibold">{item.title}</h3>
+                  <p className="text-sm text-muted-foreground">{item.desc}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        <Separator className="my-10" />
+
+        <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold">Tips til hurtigere udbetalinger</h2>
           <div className="space-y-3">
             {[
               "Verificer din identitet via MitID allerede ved registrering – så undgår du forsinkelser ved første udbetaling",
-              "Vælg Trustly eller MobilePay som udbetalingsmetode for hurtigst mulig behandling",
-              "Opfyld eventuelle omsætningskrav på bonusser, før du anmoder om udbetaling",
+              "Vælg Trustly eller MobilePay som udbetalingsmetode for hurtigst mulig behandling – de fungerer 24/7",
+              "Opfyld eventuelle omsætningskrav på bonusser, før du anmoder om udbetaling – tjek din bonussaldo",
               "Sørg for at din udbetalingsmetode matcher din indbetalingsmetode – ellers kan behandlingstiden forlænges",
-              "Undgå at anmode om udbetaling i weekenden, hvis du bruger bankoverførsel",
+              "Undgå store engangsudbetalinger over 50.000 kr. – opdel dem i mindre beløb for hurtigere behandling",
+              "Anmod om udbetaling på hverdage, hvis du bruger bankoverførsel – weekender forlænger ventetiden",
             ].map((tip, i) => (
               <div key={i} className="flex items-start gap-3 rounded-lg border border-border bg-card p-3">
                 <CheckCircle2 className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
@@ -160,7 +219,7 @@ const NyeCasinoerHurtigUdbetaling = () => {
             {[
               { to: "/nye-casinoer", label: "Nye Casinoer – Hovedside", desc: "Komplet hub med alle nye casinoer" },
               { to: "/nye-casinoer/trustly", label: "Med Trustly", desc: "Nye casinoer med Trustly Pay N Play" },
-              { to: "/casinoer/hurtig-udbetaling", label: "Hurtig Udbetaling Guide", desc: "Alle casinoer med hurtige udbetalinger" },
+              { to: "/nye-casinoer/lav-wagering", label: "Lav Wagering", desc: "Nye casinoer med lave omsætningskrav" },
               { to: "/betalingsmetoder", label: "Betalingsmetoder", desc: "Alle betalingsmetoder sammenlignet" },
             ].map((link) => (
               <Link key={link.to} to={link.to} className="flex items-start gap-3 rounded-lg border border-border bg-card p-4 transition-colors hover:border-primary/50 hover:bg-accent/50">
