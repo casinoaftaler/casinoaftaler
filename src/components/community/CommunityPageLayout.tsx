@@ -3,6 +3,7 @@ import { Badge } from "@/components/ui/badge";
 import { CommunityNav } from "./CommunityNav";
 import { CommunitySeoBridge } from "./CommunitySeoBridge";
 import { CommunityConversionCard } from "./CommunityConversionCard";
+import { SidebarLeaderboard } from "@/components/games/SidebarLeaderboard";
 import { type LucideIcon } from "lucide-react";
 import communityHero from "@/assets/community/community-hero.jpg";
 
@@ -66,6 +67,7 @@ export function CommunityPageLayout({
             <div className="sticky top-24 h-fit flex flex-col gap-4">
               <CommunitySeoBridge />
               <CommunityConversionCard />
+              <SidebarLeaderboard />
             </div>
           </div>
         )}
