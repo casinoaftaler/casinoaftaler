@@ -167,6 +167,11 @@ All colors MUST be HSL.
 }
 
 @layer base {
+  /* Force scrollbar to prevent CLS from scrollbar appearance */
+  html {
+    overflow-y: scroll;
+  }
+
   * {
     @apply border-border;
   }
