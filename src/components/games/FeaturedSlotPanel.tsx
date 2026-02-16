@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Play, Clock } from "lucide-react";
+import { useRef } from "react";
 
 interface FeaturedSlotPanelProps {
   title: string;
@@ -26,31 +27,64 @@ export function FeaturedSlotPanel({
   imagePosition = "center",
   disabled = false,
 }: FeaturedSlotPanelProps) {
+  const imgRef = useRef<HTMLImageElement>(null);
+
+  function handleMouseMove(e: React.MouseEvent<HTMLDivElement>) {
+    if (disabled || !imgRef.current) return;
+    const rect = e.currentTarget.getBoundingClientRect();
+    const x = ((e.clientX - rect.left) / rect.width - 0.5) * 5;
+    const y = ((e.clientY - rect.top) / rect.height - 0.5) * 5;
+    imgRef.current.style.transform = `scale(1.05) translate(${x}px, ${y}px)`;
+  }
+
+  function handleMouseLeave() {
+    if (imgRef.current) {
+      imgRef.current.style.transform = "scale(1) translate(0, 0)";
+    }
+  }
+
   return (
     <div className="relative h-full">
       <div
-        className={`group relative overflow-hidden rounded-2xl border border-amber-500/15 shadow-[0_4px_30px_rgba(0,0,0,0.3)] h-full transition-all duration-300 ease-[cubic-bezier(0.4,0,0.2,1)] ${
+        className={`card-depth group relative overflow-hidden rounded-2xl border border-amber-500/15 h-full transition-all duration-300 ease-[cubic-bezier(0.4,0,0.2,1)] ${
           disabled
             ? ""
-            : "hover:border-amber-500/30 hover:shadow-[0_8px_40px_rgba(251,191,36,0.12),0_0_20px_rgba(139,92,246,0.08)] hover:-translate-y-1 hover:scale-[1.015]"
+            : "hover:border-amber-500/30 hover:-translate-y-1 hover:scale-[1.01]"
         }`}
+        onMouseMove={handleMouseMove}
+        onMouseLeave={handleMouseLeave}
       >
+        {/* Top edge highlight */}
+        <div
+          className="absolute top-0 left-0 right-0 h-px z-10 pointer-events-none"
+          style={{
+            background: "linear-gradient(90deg, transparent 10%, rgba(255,255,255,0.06) 50%, transparent 90%)",
+          }}
+        />
+
         {/* Hero image */}
         <div className="relative overflow-hidden h-full">
           <img
+            ref={imgRef}
             src={image}
             alt={title}
             width={1200}
             height={675}
             loading="lazy"
-            className={`h-full w-full object-cover transition-transform duration-500 ease-[cubic-bezier(0.4,0,0.2,1)] ${
-              disabled ? "" : "group-hover:scale-[1.05]"
-            }`}
+            className="h-full w-full object-cover transition-transform duration-500 ease-[cubic-bezier(0.4,0,0.2,1)]"
             style={{ objectPosition: imagePosition }}
           />
 
           {/* Bottom gradient for text readability */}
           <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
+
+          {/* Inner bottom glow */}
+          <div
+            className="absolute bottom-0 left-0 right-0 h-24 pointer-events-none"
+            style={{
+              background: "linear-gradient(to top, hsl(260 50% 20% / 0.15), transparent)",
+            }}
+          />
 
           {/* Subtle shine on hover */}
           {!disabled && (
@@ -80,7 +114,7 @@ export function FeaturedSlotPanel({
                 <h2
                   className={`font-bold text-white tracking-tight leading-tight transition-all duration-300 ${
                     priority === "primary" ? "text-2xl md:text-3xl" : "text-xl md:text-2xl"
-                  } ${!disabled ? "group-hover:brightness-125" : ""}`}
+                  } ${!disabled ? "group-hover:brightness-125 group-hover:drop-shadow-[0_0_8px_rgba(255,255,255,0.15)]" : ""}`}
                 >
                   {title}
                 </h2>
@@ -97,7 +131,7 @@ export function FeaturedSlotPanel({
                 <Button
                   asChild
                   size="default"
-                  className="bg-amber-500 hover:bg-amber-600 text-black font-semibold gap-2 shrink-0 shadow-[0_2px_12px_rgba(251,191,36,0.25)] group-hover:shadow-[0_4px_24px_rgba(251,191,36,0.45)] transition-all duration-300 text-sm px-6"
+                  className="bg-amber-500 hover:bg-amber-600 text-black font-semibold gap-2 shrink-0 shadow-[0_2px_12px_rgba(251,191,36,0.25)] group-hover:shadow-[0_4px_24px_rgba(251,191,36,0.5)] transition-all duration-300 text-sm px-6"
                 >
                   <Link to={href}>
                     <Play className="h-4 w-4" />

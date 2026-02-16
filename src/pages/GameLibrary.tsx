@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import { SEO } from "@/components/SEO";
 import { CommunityNav } from "@/components/community/CommunityNav";
@@ -9,6 +9,8 @@ import { CommunityConversionCard } from "@/components/community/CommunityConvers
 import { useAuth } from "@/hooks/useAuth";
 
 import { FeaturedSlotPanel } from "@/components/games/FeaturedSlotPanel";
+import { LiveActivityTicker } from "@/components/games/LiveActivityTicker";
+import { MiniLeaderboard } from "@/components/games/MiniLeaderboard";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Gamepad2, Clock } from "lucide-react";
@@ -86,9 +88,9 @@ export default function GameLibrary() {
       <GameLibraryHero />
       <CommunityNav />
 
-      {/* Main content with sidebar using same pattern as CommunityPageLayout */}
+      {/* Main content with sidebar */}
       <div className="container relative">
-        {/* Sidebar - positioned to the left, outside content flow */}
+        {/* Sidebar */}
         <div className="hidden xl:block absolute right-full top-0 mr-6 w-[260px] pt-8 md:pt-12">
           <div className="sticky top-24 h-fit flex flex-col gap-4">
             <div className="sidebar-glass-hover rounded-xl">
@@ -100,7 +102,7 @@ export default function GameLibrary() {
           </div>
         </div>
 
-        {/* Main content - completely unaffected by sidebar */}
+        {/* Main content */}
         <div className="py-8 md:py-12 space-y-8 md:space-y-10">
           {/* Community CTA for logged-out users */}
           {!user && (
@@ -120,6 +122,10 @@ export default function GameLibrary() {
               </CardContent>
             </Card>
           )}
+
+          {/* Live Activity Ticker */}
+          <LiveActivityTicker />
+
           {/* Featured Slots - side by side */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 items-stretch">
             {FEATURED_SLOTS.map((slot, index) => (
@@ -144,10 +150,13 @@ export default function GameLibrary() {
             ))}
           </div>
 
+          {/* Mini Leaderboard */}
+          <MiniLeaderboard />
+
           {/* Section divider */}
           <div className="spillehal-divider" />
 
-          {/* Conversion strip between sections */}
+          {/* Conversion strip */}
           <CommunityConversionStrip />
 
           {/* Section divider */}
@@ -221,14 +230,27 @@ function useCreditCountdown() {
 
 function GameLibraryHero() {
   const countdown = useCreditCountdown();
+  const heroRef = useRef<HTMLImageElement>(null);
+
+  useEffect(() => {
+    function handleScroll() {
+      if (heroRef.current) {
+        const offset = window.scrollY * 0.15;
+        heroRef.current.style.transform = `translateY(${Math.min(offset, 30)}px) scale(1.05)`;
+      }
+    }
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   return (
     <section className="relative overflow-hidden text-white">
-      {/* AI-generated hero background */}
+      {/* Hero background with parallax */}
       <img
+        ref={heroRef}
         src={spillehalHero}
         alt=""
-        className="absolute inset-0 w-full h-full object-cover"
+        className="absolute inset-0 w-full h-full object-cover hero-parallax scale-105"
         aria-hidden="true"
       />
       {/* Gradient overlay */}
