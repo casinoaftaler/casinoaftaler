@@ -72,7 +72,7 @@ const campobetFaqs: { question: string; answer: ReactNode }[] = [
       <>
         Campobet har tredobbelt licensering: dansk licens fra Spillemyndigheden (licensnr. 20-6359), licens fra Malta Gaming Authority (MGA) samt den svenske spillemyndighed. Platformen drives af Denix Limited, der har drevet casinoet internationalt siden 2018 og lancerede den danske version i 2024. Casinoet benytter SSL-kryptering og er fuldt tilsluttet{" "}
         <a href="https://www.rofus.nu/" target="_blank" rel="noopener noreferrer" className={linkClass}>ROFUS</a>. Registrering sker via MitID, hvilket sikrer øjeblikkelig identitetsverifikation og forhindrer mindreårige i at oprette konti. Læs mere om{" "}
-        <Link to="/responsible-gaming" className={linkClass}>ansvarligt spil</Link>.
+        <Link to="/ansvarligt-spil" className={linkClass}>ansvarligt spil</Link>.
       </>
     ),
   },
@@ -771,7 +771,7 @@ const CampobetAnmeldelse = () => {
           <h2 className="mb-4 text-3xl font-bold">Sikkerhed, licens og ansvarligt spil</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
             Campobet er et af de mest velregulerede casinoer tilgængelige i Danmark med hele tre licenser fra anerkendte myndigheder. Det sikrer den højeste grad af spillerbeskyttelse og{" "}
-            <Link to="/responsible-gaming" className={linkClass}>ansvarligt spil</Link>.
+            <Link to="/ansvarligt-spil" className={linkClass}>ansvarligt spil</Link>.
           </p>
 
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-6">

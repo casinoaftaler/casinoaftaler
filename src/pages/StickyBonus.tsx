@@ -676,7 +676,7 @@ const StickyBonus = () => {
           </p>
           <p className="text-muted-foreground leading-relaxed">
             Tag pauser, hvis du føler dig presset, og husk at{" "}
-            <Link to="/responsible-gaming" className="text-primary hover:underline">ansvarligt spil</Link>{" "}
+            <Link to="/ansvarligt-spil" className="text-primary hover:underline">ansvarligt spil</Link>{" "}
             altid bør komme først. Danske casinoer tilbyder selvudelukkelse
             via{" "}
             <a href="https://www.rofus.nu/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline font-medium">ROFUS</a>.

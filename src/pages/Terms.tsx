@@ -125,7 +125,7 @@ const Terms = () => {
           <ul className="space-y-2 text-muted-foreground">
             <li className="flex items-center gap-2"><span className="h-1.5 w-1.5 rounded-full bg-primary" />Give objektive og opdaterede oplysninger om <Link to="/casino-bonus" className="text-primary hover:underline">casinobonusser</Link></li>
             <li className="flex items-center gap-2"><span className="h-1.5 w-1.5 rounded-full bg-primary" />Hjælpe brugere med at træffe informerede beslutninger</li>
-            <li className="flex items-center gap-2"><span className="h-1.5 w-1.5 rounded-full bg-primary" />Fremme <Link to="/responsible-gaming" className="text-primary hover:underline">ansvarligt spil</Link></li>
+            <li className="flex items-center gap-2"><span className="h-1.5 w-1.5 rounded-full bg-primary" />Fremme <Link to="/ansvarligt-spil" className="text-primary hover:underline">ansvarligt spil</Link></li>
             <li className="flex items-center gap-2"><span className="h-1.5 w-1.5 rounded-full bg-primary" />Levere uddannelsesmæssigt indhold om gambling</li>
           </ul>
         </section>

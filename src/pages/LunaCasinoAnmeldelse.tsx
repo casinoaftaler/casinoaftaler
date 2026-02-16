@@ -47,7 +47,7 @@ const lunaFaqs: { question: string; answer: ReactNode }[] = [
         Luna Casino drives af SkillOnNet Limited, et veletableret selskab med gyldig dansk licens fra Spillemyndigheden (licensnr. 16-1066791). SkillOnNet driver også{" "}
         <Link to="/swift-casino-anmeldelse" className={linkClass}>Swift Casino</Link> og har haft tilstedeværelse på det danske marked siden 2017. Platformen benytter 256-bit SSL-kryptering og er fuldt tilsluttet{" "}
         <a href="https://www.rofus.nu/" target="_blank" rel="noopener noreferrer" className={linkClass}>ROFUS</a> for selvudelukkelse. Registrering sker via MitID, og alle spil er certificeret af uafhængige testorganisationer. Læs mere om{" "}
-        <Link to="/responsible-gaming" className={linkClass}>ansvarligt spil</Link>.
+        <Link to="/ansvarligt-spil" className={linkClass}>ansvarligt spil</Link>.
       </>
     ),
   },
@@ -466,7 +466,7 @@ const LunaCasinoAnmeldelse = () => {
           </p>
           <p className="text-muted-foreground leading-relaxed">
             Alle danske casinoer med licens fra Spillemyndigheden kræver, at du sætter daglige, ugentlige og månedlige indbetalingsgrænser ved oprettelse. Dette er en del af lovgivningen om{" "}
-            <Link to="/responsible-gaming" className="text-primary hover:underline">ansvarligt spil</Link>{" "}
+            <Link to="/ansvarligt-spil" className="text-primary hover:underline">ansvarligt spil</Link>{" "}
             og sikrer, at du altid har kontrol over dit forbrug. Grænserne kan justeres senere via din kontoside.
           </p>
         </section>
@@ -486,7 +486,7 @@ const LunaCasinoAnmeldelse = () => {
           </p>
           <p className="text-muted-foreground leading-relaxed">
             Luna Casino overholder Spillemyndighedens strenge regler for{" "}
-            <Link to="/responsible-gaming" className="text-primary hover:underline">ansvarligt spil</Link>, herunder obligatoriske indbetalingsgrænser, session-påmindelser efter 60 minutters spil og mulighed for midlertidig udelukkelse. Identitetsverifikation sker automatisk via MitID, så du behøver aldrig at uploade dokumentation manuelt.
+            <Link to="/ansvarligt-spil" className="text-primary hover:underline">ansvarligt spil</Link>, herunder obligatoriske indbetalingsgrænser, session-påmindelser efter 60 minutters spil og mulighed for midlertidig udelukkelse. Identitetsverifikation sker automatisk via MitID, så du behøver aldrig at uploade dokumentation manuelt.
           </p>
         </section>
 

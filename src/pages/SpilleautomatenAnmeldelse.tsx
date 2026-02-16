@@ -74,7 +74,7 @@ const spilleautomatenFaqs: { question: string; answer: ReactNode }[] = [
         <a href="https://www.rofus.nu/" target="_blank" rel="noopener noreferrer" className={linkClass}>ROFUS</a>{" "}
         (Register Over Frivilligt Udelukkede Spillere), hvilket sikrer, at du altid kan selvudelukke dig. Winteq ApS er et etableret dansk operatørselskab, der også driver Bingo.dk og{" "}
         <Link to="/spildansknu-anmeldelse" className={linkClass}>SpilDanskNu</Link>, hvilket understreger deres erfaring og pålidelighed på det danske marked. Læs mere om{" "}
-        <Link to="/responsible-gaming" className={linkClass}>ansvarligt spil</Link>.
+        <Link to="/ansvarligt-spil" className={linkClass}>ansvarligt spil</Link>.
       </>
     ),
   },
@@ -624,7 +624,7 @@ const SpilleautomatenAnmeldelse = () => {
           <h2 className="mb-4 text-3xl font-bold">Sikkerhed, licens og ansvarligt spil</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
             Spilleautomaten opererer under dansk licens fra Spillemyndigheden (licensnr. 21-67980, udstedt til Winteq ApS). Det sikrer, at casinoet overholder den danske spillelovgivning og beskytter dig som spiller med strenge krav til fairness, datasikkerhed og{" "}
-            <Link to="/responsible-gaming" className={linkClass}>ansvarligt spil</Link>.
+            <Link to="/ansvarligt-spil" className={linkClass}>ansvarligt spil</Link>.
           </p>
 
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-6">

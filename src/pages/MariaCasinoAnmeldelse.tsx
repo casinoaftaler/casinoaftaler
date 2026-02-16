@@ -27,7 +27,7 @@ const mariaFaqs: { question: string; answer: ReactNode }[] = [
       <>
         Ja, Maria Casino opererer med dansk licens fra Spillemyndigheden under Kindred Group. Platformen er tilsluttet{" "}
         <a href="https://www.rofus.nu/" target="_blank" rel="noopener noreferrer" className={linkClass}>ROFUS</a> og overholder alle danske regler for{" "}
-        <Link to="/responsible-gaming" className={linkClass}>ansvarligt spil</Link>. Kindred Group er børsnoteret på Nasdaq Stockholm og er underlagt omfattende finansiel og regulatorisk kontrol.
+        <Link to="/ansvarligt-spil" className={linkClass}>ansvarligt spil</Link>. Kindred Group er børsnoteret på Nasdaq Stockholm og er underlagt omfattende finansiel og regulatorisk kontrol.
       </>
     ),
   },

@@ -702,7 +702,7 @@ const LiveCasino = () => {
               </p>
               <p className="text-muted-foreground leading-relaxed">
                 Live casinoer kan være utroligt spændende, og det er nemt at miste overblikket. Sæt tidsgrænser og brug de værktøjer, som alle danske casinoer tilbyder. Læs mere om{" "}
-                <Link to="/responsible-gaming" className="text-primary hover:underline font-medium">ansvarligt spil</Link>, eller selvudeluk via{" "}
+                <Link to="/ansvarligt-spil" className="text-primary hover:underline font-medium">ansvarligt spil</Link>, eller selvudeluk via{" "}
                 <a href="https://www.rofus.nu/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline font-medium">ROFUS</a>
                 . Har du brug for hjælp, kan du kontakte{" "}
                 <a href="https://www.stopspillet.dk/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline font-medium">StopSpillet.dk</a>

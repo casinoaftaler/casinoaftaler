@@ -46,7 +46,7 @@ const danskeSpilFaqs: { question: string; answer: ReactNode }[] = [
         Ja, Danske Spil Casino er et af de mest sikre casinoer i Danmark. Det drives af Danske Spil A/S, som er delvist ejet af den danske stat og reguleret direkte af Spillemyndigheden. Casinoet har en dansk licens og er fuldt tilsluttet{" "}
         <a href="https://www.rofus.nu/" target="_blank" rel="noopener noreferrer" className={linkClass}>ROFUS</a>{" "}
         (Register Over Frivilligt Udelukkede Spillere). Alle transaktioner beskyttes med avanceret SSL-kryptering, og platformen overholder den danske spillelovgivning til punkt og prikke. Danske Spil har desuden en lang historie som Danmarks mest betroede spiloperatør med rødder helt tilbage til 1948. Læs mere om{" "}
-        <Link to="/responsible-gaming" className={linkClass}>ansvarligt spil</Link>.
+        <Link to="/ansvarligt-spil" className={linkClass}>ansvarligt spil</Link>.
       </>
     ),
   },
@@ -96,7 +96,7 @@ const danskeSpilFaqs: { question: string; answer: ReactNode }[] = [
     answer: (
       <>
         Oprettelse af en konto hos Danske Spil Casino foregår via MitID, hvilket gør processen hurtig og sikker. Du skal være fyldt 18 år og have dansk CPR-nummer. Registreringen tager typisk under 3 minutter: besøg danskespil.dk, vælg "Opret konto", verificer med MitID og sæt dine personlige spilgrænser. Det er et lovkrav at sætte ind- og tabsgrænser inden du begynder at spille – et tiltag der understreger Danske Spils fokus på{" "}
-        <Link to="/responsible-gaming" className={linkClass}>ansvarligt spil</Link>. Herefter kan du straks indbetale og begynde at spille.
+        <Link to="/ansvarligt-spil" className={linkClass}>ansvarligt spil</Link>. Herefter kan du straks indbetale og begynde at spille.
       </>
     ),
   },
@@ -422,7 +422,7 @@ const DanskeSpilAnmeldelse = () => {
 
           <p className="text-sm text-muted-foreground leading-relaxed">
             <strong>Vigtigt:</strong> Du skal være fyldt 18 år og have dansk CPR-nummer for at oprette en konto. Danske Spil accepterer ikke spillere bosiddende uden for Danmark. Denne begrænsning er en del af den danske spillelovgivning og sikrer, at alle spillere er beskyttet af danske regler for{" "}
-            <Link to="/responsible-gaming" className={linkClass}>ansvarligt spil</Link>.
+            <Link to="/ansvarligt-spil" className={linkClass}>ansvarligt spil</Link>.
           </p>
         </section>
 
