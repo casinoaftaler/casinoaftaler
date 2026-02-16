@@ -125,9 +125,6 @@ export default function GameLibrary() {
             </Card>
           )}
 
-          {/* Live Activity Ticker */}
-          <LiveActivityTicker />
-
           {/* Featured Slots - side by side */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 items-stretch">
             {FEATURED_SLOTS.map((slot, index) => (
@@ -151,9 +148,6 @@ export default function GameLibrary() {
               </div>
             ))}
           </div>
-
-          {/* Mini Leaderboard */}
-          <MiniLeaderboard />
 
           {/* Section divider */}
           <div className="spillehal-divider" />
