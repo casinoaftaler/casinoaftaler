@@ -55,15 +55,17 @@ export function CommunityPageLayout({
       {hideSidebar ? (
         children
       ) : (
-        <div className="relative">
-          {/* Sidebar – positioned outside the content flow on lg+ */}
-          <div className="hidden lg:block absolute left-4 xl:left-8 top-8 w-[260px] z-10">
-            <div className="sticky top-24">
-              <CommunitySeoBridge />
+        <div className="container">
+          <div className="relative lg:grid lg:grid-cols-[260px_1fr] lg:gap-6">
+            {/* Sidebar */}
+            <div className="hidden lg:block">
+              <div className="sticky top-24 pt-8">
+                <CommunitySeoBridge />
+              </div>
             </div>
+            {/* Main content */}
+            <div>{children}</div>
           </div>
-          {/* Main content – unchanged width and centering */}
-          <div className="container">{children}</div>
         </div>
       )}
     </>
