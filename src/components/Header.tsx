@@ -679,6 +679,9 @@ export const Header = memo(function Header() {
             size="icon"
             className="lg:hidden"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            aria-label={mobileMenuOpen ? "Luk menu" : "Åbn menu"}
+            aria-expanded={mobileMenuOpen}
+            aria-controls="mobile-navigation"
           >
             {mobileMenuOpen ? (
               <X className="h-5 w-5" />
@@ -691,7 +694,7 @@ export const Header = memo(function Header() {
 
       {/* Mobile Navigation */}
       {mobileMenuOpen && (
-        <div className="border-t border-border bg-background lg:hidden max-h-[calc(100dvh-4rem)] overflow-y-auto">
+        <div id="mobile-navigation" className="border-t border-border bg-background lg:hidden max-h-[calc(100dvh-4rem)] overflow-y-auto">
           <nav className="container flex flex-col py-3">
             <button
               onClick={() => setExpandedSection(expandedSection === "casino" ? null : "casino")}
