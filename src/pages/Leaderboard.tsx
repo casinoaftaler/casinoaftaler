@@ -415,9 +415,13 @@ export default function Leaderboard() {
 
       <CommunityNav />
 
-      <div className="container py-8 md:py-12 flex gap-8">
-        <CommunitySeoBridge />
-        <div className="flex-1 min-w-0">
+      <div className="relative">
+        <div className="hidden lg:block absolute left-4 xl:left-8 top-8 w-[260px] z-10">
+          <div className="sticky top-24">
+            <CommunitySeoBridge />
+          </div>
+        </div>
+        <div className="container py-8 md:py-12">
 
         {tournamentsLoading ? (
           <div className="max-w-5xl mx-auto space-y-4">
@@ -431,6 +435,7 @@ export default function Leaderboard() {
                 {active.map((t) => <TournamentLeaderboardCard key={t.id} tournament={t} />)}
               </div>
             )}
+
 
             {/* Upcoming tournaments */}
             {upcoming.length > 0 && (
@@ -468,8 +473,8 @@ export default function Leaderboard() {
         <div className="mt-12">
           <RelatedGuides currentPath="/community/leaderboard" />
         </div>
-        </div>
       </div>
+    </div>
     </>
   );
 }
