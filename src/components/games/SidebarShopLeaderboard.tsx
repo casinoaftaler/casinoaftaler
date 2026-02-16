@@ -134,7 +134,7 @@ export function SidebarShopLeaderboard() {
 
       <div className="flex items-center gap-2 mb-1">
         <ShoppingBag className="h-4 w-4 text-amber-400" />
-        <h3 className="text-sm font-bold text-foreground">Butik Points</h3>
+        <h3 className="text-sm font-bold text-foreground">Leaderboard - Butik Points</h3>
       </div>
       <p className="text-[11px] text-muted-foreground mb-3">Top 5 med flest points</p>
 
