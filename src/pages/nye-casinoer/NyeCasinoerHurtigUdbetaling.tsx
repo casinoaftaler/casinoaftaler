@@ -72,7 +72,7 @@ const NyeCasinoerHurtigUdbetaling = () => {
   return (
     <>
       <SEO
-        title="Nye Casinoer med Hurtig Udbetaling – Instant Withdrawals 2026"
+        title="Nye Casinoer med Hurtig Udbetaling – Hurtigste Nye Spillesteder"
         description="Find nye casinoer med de hurtigste udbetalinger i 2026. Sammenlign udbetalingstider via Trustly, MobilePay og andre metoder."
         jsonLd={[articleSchema, faqSchema]}
       />

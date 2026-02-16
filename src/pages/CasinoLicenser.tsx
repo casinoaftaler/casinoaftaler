@@ -23,8 +23,8 @@ const faqs: { question: string; answer: ReactNode }[] = [
     ),
   },
   {
-    question: "Skal man betale skat af casinogevinster fra udenlandske casinoer?",
-    answer: "Ja. Gevinster fra casinoer uden dansk licens er skattepligtige efter personskattelovens § 4. Du skal selvangive alle gevinster, og skattesatsen kan nå op til 45% afhængigt af din samlede indkomst. Til sammenligning er gevinster fra danske licenserede casinoer altid skattefri – casinoet betaler 28% afgift af bruttospilindtægten på dine vegne.",
+    question: "Hvordan påvirker licenstypen skatten på casinogevinster?",
+    answer: "Licenstypen er afgørende for dine skatteforhold. Med dansk licens er gevinster skattefri – casinoet betaler 28% afgift af bruttospilindtægten til SKAT på dine vegne. Med udenlandsk licens (MGA, Curaçao, UK) er gevinster skattepligtige efter personskattelovens § 4, og skattesatsen kan nå op til 45%. Over et år kan forskellen udgøre tusindvis af kroner – licensen er den afgørende faktor.",
   },
   {
     question: "Er en MGA-licens (Malta) sikker for danske spillere?",
@@ -70,7 +70,7 @@ const CasinoLicenser = () => {
     description: "Komplet guide til casino-licenser: Dansk licens, MGA, Curaçao og UK. Forstå forskellen og hvad det betyder for din sikkerhed.",
     url: `${SITE_URL}/casino-licenser`,
     datePublished: "2026-02-16",
-    dateModified: "2026-02-16",
+    dateModified: "2026-02-17",
     authorName: "Kevin",
     authorUrl: `${SITE_URL}/forfatter/kevin`,
   });

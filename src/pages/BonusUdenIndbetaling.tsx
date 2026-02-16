@@ -102,7 +102,7 @@ const BonusUdenIndbetaling = () => {
   return (
     <>
       <SEO
-        title="Bonus uden Indbetaling – No Deposit Bonus Guide 2026 | Casinoaftaler"
+        title="Bonus uden Indbetaling – Bedste No Deposit Bonusser"
         description="Komplet guide til bonus uden indbetaling hos danske casinoer. Lær hvordan no deposit bonusser fungerer, typer, betingelser og strategier for at maksimere din bonus."
         jsonLd={[faqJsonLd, articleJsonLd]}
       />
@@ -677,7 +677,7 @@ const BonusUdenIndbetaling = () => {
 
         <RelatedGuides currentPath="/bonus-uden-indbetaling" />
 
-        <FAQSection title="Ofte stillede spørgsmål om bonus uden indbetaling" faqs={bonusUdenIndbetalingFaqs} />
+        <FAQSection title="Ofte stillede spørgsmål om no deposit bonusser" faqs={bonusUdenIndbetalingFaqs} />
       </div>
     </>
   );

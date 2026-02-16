@@ -100,7 +100,7 @@ const HurtigUdbetalingGuide = () => {
   return (
     <>
       <SEO
-        title="Casinoer med Hurtig Udbetaling 2026 – Lynhurtige Udbetalinger"
+        title="Casinoer med Hurtig Udbetaling i Danmark (2026)"
         description="Find de bedste danske casinoer med hurtige udbetalinger i 2026. Sammenlign udbetalingstider fra 0-24 timer, betalingsmetoder og tips til hurtigere udbetaling."
         jsonLd={[articleSchema, faqSchema]}
       />

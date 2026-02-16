@@ -114,6 +114,8 @@ const routeLabels: Record<string, string> = {
   "/casinoer/mobil-casinoer": "Mobil Casinoer",
   "/casinoer/spil-casino-for-sjov": "Spil Casino for Sjov",
   "/casinoer/casino-og-skat": "Casino og Skat",
+  "/casino-licenser": "Casino Licenser",
+  "/saadan-tester-vi-casinoer": "Sådan Tester Vi Casinoer",
 };
 
 const BASE_URL = "https://casinoaftaler.dk";

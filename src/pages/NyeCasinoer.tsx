@@ -162,7 +162,7 @@ const NyeCasinoer = () => {
   return (
     <>
       <SEO
-        title="Nye Casinoer i Danmark – Bedste Nye Online Spillesteder"
+        title="Nye Casinoer 2026 – Bedste Nye Spillesteder i Danmark"
         description="Komplet oversigt over de bedste nye casinoer i Danmark. Sammenlign bonusser, free spins og vilkår hos nye spillesteder med dansk licens."
         jsonLd={faqJsonLd}
       />
