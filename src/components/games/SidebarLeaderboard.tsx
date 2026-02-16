@@ -40,7 +40,7 @@ function AnimatedScore({ value }: { value: number }) {
 
 export function SidebarLeaderboard() {
   const [entries, setEntries] = useState<LeaderboardEntry[]>([]);
-  const [visible, setVisible] = useState(false);
+  const [visible, setVisible] = useState(true);
   const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -49,7 +49,7 @@ export function SidebarLeaderboard() {
         .from("slot_leaderboard")
         .select("user_id, total_winnings")
         .order("total_winnings", { ascending: false })
-        .limit(3);
+        .limit(5);
 
       if (!data || data.length === 0) return;
 
@@ -79,24 +79,17 @@ export function SidebarLeaderboard() {
     fetch();
   }, []);
 
-  useEffect(() => {
-    const el = containerRef.current;
-    if (!el) return;
-    const obs = new IntersectionObserver(
-      ([entry]) => { if (entry.isIntersecting) { setVisible(true); obs.disconnect(); } },
-      { threshold: 0.3 }
-    );
-    obs.observe(el);
-    return () => obs.disconnect();
-  }, []);
+  // Visibility is immediate for sidebar items
 
   if (entries.length === 0) return null;
 
-  const medals = ["🥇", "🥈", "🥉"];
+  const medals = ["🥇", "🥈", "🥉", "4.", "5."];
   const glowColors = [
     "hsl(45 90% 55% / 0.12)",
     "hsl(220 10% 70% / 0.08)",
     "hsl(25 60% 50% / 0.08)",
+    "transparent",
+    "transparent",
   ];
 
   return (
@@ -127,7 +120,7 @@ export function SidebarLeaderboard() {
         <Trophy className="h-4 w-4 text-amber-400" />
         <h3 className="text-sm font-bold text-foreground">Leaderboard</h3>
       </div>
-      <p className="text-[11px] text-muted-foreground mb-3">Top 3 i dag</p>
+      <p className="text-[11px] text-muted-foreground mb-3">Top 5 spillere</p>
 
       <ul className="space-y-1.5">
         {entries.map((entry, i) => {
