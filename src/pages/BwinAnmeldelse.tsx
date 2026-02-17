@@ -29,7 +29,7 @@ const bwinFaqs: { question: string; answer: ReactNode }[] = [
 const BwinAnmeldelse = () => {
   const { data: siteSettings } = useSiteSettings();
   const heroBackgroundImage = siteSettings?.hero_background_image;
-  const articleSchema = buildArticleSchema({ headline: "bwin Anmeldelse 2026 – Sport & Casino i Verdensklasse", description: "Dybdegående anmeldelse af bwin Danmark. Sportsvæddemål, casino og poker fra en af Europas største gambling-operatører.", url: "https://casinoaftaler.dk/casino-anmeldelser/bwin", datePublished: "2026-02-15", dateModified: "2026-02-15", authorName: "Kevin", authorUrl: "https://casinoaftaler.dk/forfatter/kevin" });
+  const articleSchema = buildArticleSchema({ headline: "bwin Anmeldelse 2026 – Sport & Casino i Verdensklasse", description: "Dybdegående anmeldelse af bwin Danmark. Sportsvæddemål, casino og poker fra en af Europas største gambling-operatører.", url: "https://casinoaftaler.dk/casino-anmeldelser/bwin", datePublished: "2026-02-15", dateModified: "2026-02-15", authorName: "Jonas", authorUrl: "https://casinoaftaler.dk/forfatter/jonas" });
   const faqJsonLd = buildFaqSchema(bwinFaqs);
   const reviewJsonLd = { "@context": "https://schema.org", "@type": "Review", itemReviewed: { "@type": "Organization", name: "bwin", url: "https://www.bwin.dk/" }, author: { "@type": "Organization", name: "Casinoaftaler" }, reviewRating: { "@type": "Rating", ratingValue: "4.1", bestRating: "5" } };
 
@@ -46,7 +46,7 @@ const BwinAnmeldelse = () => {
       </section>
 
       <div className="container py-8 md:py-12">
-        <AuthorMetaBar author="kevin" date="15-02-2026" readTime="17 Min." />
+        <AuthorMetaBar author="jonas" date="15-02-2026" readTime="17 Min." />
         <CasinoReviewHero slug="bwin" casinoName="bwin" />
         <section className="mb-12">
           <Card className="border-border bg-card border-l-4 border-l-primary">
