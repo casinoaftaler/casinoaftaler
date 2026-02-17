@@ -68,6 +68,12 @@ interface ProviderPageProps {
   sectionOrder?: string[];
   updatedDate?: string;
   readTime?: string;
+  strategicTitle?: string;
+  technicalTitle?: string;
+  gamesTitle?: string;
+  licensesTitle?: string;
+  prosConsTitle?: string;
+  responsibleTitle?: string;
 }
 
 const providerLinks = [
@@ -96,6 +102,7 @@ export function ProviderPage({
   games, gamesIntro, licensesContent, pros, cons, faqs, currentPath,
   responsibleGamingText, strategicAnalysis, technicalProfile,
   sectionOrder, updatedDate = "15-02-2026", readTime = "14 Min.",
+  strategicTitle, technicalTitle, gamesTitle, licensesTitle, prosConsTitle, responsibleTitle,
 }: ProviderPageProps) {
   const { data: siteSettings } = useSiteSettings();
   const heroBackgroundImage = siteSettings?.hero_background;
@@ -142,7 +149,7 @@ export function ProviderPage({
     ),
     games: (
       <section className="mb-12">
-        <h2 className="mb-4 text-3xl font-bold">Populære Spil fra {name}</h2>
+        <h2 className="mb-4 text-3xl font-bold">{gamesTitle || `Populære Spil fra ${name}`}</h2>
         {gamesIntro}
         <div className="grid gap-4 md:grid-cols-2">
           {games.map((game) => (
@@ -165,7 +172,7 @@ export function ProviderPage({
     casinos: <InlineCasinoCards title={`Casinoer med ${name}-spil`} />,
     licenses: (
       <section className="mb-12">
-        <h2 className="mb-4 text-3xl font-bold">Licenser og Sikkerhed</h2>
+        <h2 className="mb-4 text-3xl font-bold">{licensesTitle || "Licenser og Sikkerhed"}</h2>
         {licensesContent}
         <div className="grid gap-4 md:grid-cols-3 mt-6">
           <Card>
@@ -206,7 +213,7 @@ export function ProviderPage({
     ),
     proscons: (
       <section className="mb-12">
-        <h2 className="mb-4 text-3xl font-bold">Fordele og Ulemper</h2>
+        <h2 className="mb-4 text-3xl font-bold">{prosConsTitle || "Fordele og Ulemper"}</h2>
         <div className="grid gap-4 md:grid-cols-2">
           <Card className="border-primary/20">
             <CardHeader>
@@ -251,7 +258,7 @@ export function ProviderPage({
       <section className="mb-12">
         <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
           <Target className="h-7 w-7 text-primary" />
-          Strategisk Analyse og Markedsposition
+          {strategicTitle || "Strategisk Analyse og Markedsposition"}
         </h2>
         {strategicAnalysis}
       </section>
@@ -260,7 +267,7 @@ export function ProviderPage({
       <section className="mb-12">
         <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
           <BarChart3 className="h-7 w-7 text-primary" />
-          Teknisk Profil
+          {technicalTitle || "Teknisk Profil"}
         </h2>
         {technicalProfile}
       </section>
@@ -295,7 +302,7 @@ export function ProviderPage({
           <CardHeader>
             <CardTitle className="flex items-center gap-2 text-xl">
               <Award className="h-5 w-5 text-primary" />
-              Ansvarligt Spil
+              {responsibleTitle || "Ansvarligt Spil"}
             </CardTitle>
           </CardHeader>
           <CardContent className="space-y-3 text-sm text-muted-foreground">

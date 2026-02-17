@@ -13,7 +13,13 @@ const PlayNGoGuide = () => (
     heroImageAlt="Play'n GO – kreative spilleautomater med Book of Dead, Reactoonz og Rich Wilde"
     currentPath="/spiludviklere/play-n-go"
     updatedDate="17-02-2026"
-    readTime="25 Min."
+    readTime="32 Min."
+    strategicTitle="Storytellerens Konkurrencefordel: Play'n GOs Unikke Position"
+    technicalTitle="Franchise-Motorens Anatomi: Play'n GOs Tekniske Platform"
+    gamesTitle="Universer i Pixels: Play'n GOs Definerende Titler"
+    licensesTitle="To Årtiers Pletfri Compliance: Play'n GOs Licenser"
+    prosConsTitle="Princippernes Styrker og Omkostninger"
+    responsibleTitle="Bonus Buy-Fravalg som Ansvarligt Spil-Statement"
     sectionOrder={["strategic", "intro", "technical", "history", "games", "licenses", "casinos", "proscons", "providers", "responsible"]}
     introTitle="Play'n GO: Franchise-Tænkningen der Definerede en Genre"
     introContent={

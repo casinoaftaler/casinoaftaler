@@ -13,7 +13,13 @@ const PragmaticPlayGuide = () => (
     heroImageAlt="Pragmatic Play spiludvikler – farverige spilleautomater med høj volatilitet"
     currentPath="/spiludviklere/pragmatic-play"
     updatedDate="17-02-2026"
-    readTime="28 Min."
+    readTime="32 Min."
+    strategicTitle="Produktionsmaskinens Logik: Pragmatics Forretningsstrategi"
+    technicalTitle="Under Motorhjelmen: Pragmatics Tekniske Infrastruktur"
+    gamesTitle="Franchise-Imperiet: De Spil der Driver Milliarder af Spins"
+    licensesTitle="Global Compliance: Pragmatics Regulatoriske Fodaftryk"
+    prosConsTitle="Pragmatics Trumfer og Svagheder"
+    responsibleTitle="Ansvarligt Spil i en High-Volume Verden"
     sectionOrder={["strategic", "technical", "intro", "games", "history", "licenses", "casinos", "proscons", "providers", "responsible"]}
     introTitle="Industriens Maskinrum: Hvordan Pragmatic Play Blev Branchens Mest Spillede Udvikler"
     introContent={

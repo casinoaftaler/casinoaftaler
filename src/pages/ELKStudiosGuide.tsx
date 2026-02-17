@@ -13,7 +13,13 @@ const ELKStudiosGuide = () => (
     heroImageAlt="ELK Studios – kvalitetsspilleautomater med Avalanche og Precision Spins"
     currentPath="/spiludviklere/elk-studios"
     updatedDate="17-02-2026"
-    readTime="24 Min."
+    readTime="32 Min."
+    strategicTitle="Håndværkerens Dilemma: ELK Studios' Markedsstrategi"
+    technicalTitle="Præcisionsinstrumenterne: ELK Studios' Teknologiske Arsenal"
+    gamesTitle="80 Titler, Nul Fyld: ELK Studios' Portefølje-Mesterværker"
+    licensesTitle="Compliance uden Kompromis: ELK Studios' Regulatoriske Ramme"
+    prosConsTitle="Boutique-Fordelene og Niche-Begrænsningerne"
+    responsibleTitle="Precision Spins som Ansvarligt Spil-Værktøj"
     sectionOrder={["strategic", "technical", "intro", "games", "history", "licenses", "casinos", "proscons", "providers", "responsible"]}
     introTitle="ELK Studios: Boutique-Filosofien i en Masseproduktionsbranche"
     introContent={
