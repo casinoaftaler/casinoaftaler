@@ -283,7 +283,8 @@ const SaadanTesterVi = () => {
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold">Sådan tester vi i praksis</h2>
           <p className="mb-6 text-muted-foreground leading-relaxed">
-            Vores testproces er konkret og realistisk. Vi følger de samme trin, som enhver dansk spiller ville – ingen specialbehandling eller testkonti fra casinoerne.
+            Vores testproces er konkret og realistisk. Vi følger de samme trin, som enhver dansk spiller ville – ingen specialbehandling eller testkonti fra casinoerne. Alle RTP-værdier verificeres mod udviklernes officielle data, og licensstatus kontrolleres direkte i{" "}
+            <a href="https://www.spillemyndigheden.dk/tilladelsesindehavere" target="_blank" rel="noopener noreferrer" className="text-primary underline hover:text-primary/80">Spillemyndighedens licensregister</a>.
           </p>
           <div className="space-y-3">
             {testProcess.map((step, i) => (

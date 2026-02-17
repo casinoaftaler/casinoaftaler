@@ -226,7 +226,8 @@ const TopCasinoOnline = () => {
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold">De bedste online casinoer i Danmark</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
-            Med det store antal spillesteder på det danske marked kan det virke uoverskueligt at finde det rigtige casino. Denne top 10-liste samler de bedste danske online casinoer i 2026 – alle med gyldig licens fra Spillemyndigheden, sikre{" "}
+            Med det store antal spillesteder på det danske marked kan det virke uoverskueligt at finde det rigtige casino. Denne top 10-liste samler de bedste danske online casinoer i 2026 – alle verificeret via{" "}
+            <a href="https://www.spillemyndigheden.dk/tilladelsesindehavere" target="_blank" rel="noopener noreferrer" className="text-primary underline hover:text-primary/80">Spillemyndighedens officielle licensregister</a>, med sikre{" "}
             <Link to="/betalingsmetoder" className={linkClass}>betalingsmetoder</Link> og gennemsigtige bonusvilkår.
           </p>
           <p className="mb-4 text-muted-foreground leading-relaxed">
