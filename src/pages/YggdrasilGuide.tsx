@@ -74,7 +74,7 @@ const YggdrasilGuide = () => (
         </div>
       </>
     }
-    historyTitle="Fra Elmqvists Ambitioner til Global Platform-Aktør"
+    
     historyIntro="Yggdrasils historie er uadskillelig fra Frederik Elmqvists vision – en CEO der forlod verdens mest succesfulde slot-studio for at bygge noget helt nyt. Hans idé var ikke bare at lave bedre spil, men at ændre den teknologiske infrastruktur branchen bygger på. Hvert skridt i Yggdrasils rejse afspejler denne platform-ambition."
     timeline={[
       { year: "2013", event: "Yggdrasil Gaming grundlægges af Frederik Elmqvist, tidligere CEO for NetEnt. Visionen er en platform-først spiludvikler." },

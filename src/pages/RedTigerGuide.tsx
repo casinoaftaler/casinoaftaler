@@ -73,7 +73,7 @@ const RedTigerGuide = () => (
         </div>
       </>
     }
-    historyTitle="Fra Maltesisk Startup til Evolution-Koncernens Engagement-Motor"
+    
     historyIntro="Red Tiger Gamings historie er en studie i hvordan innovation inden for engagement-mekanikker kan skabe enorm værdi – fra grundlæggelsen i et lille maltesisk kontor til et £200 millioner opkøb og en central rolle i verdens største casinospil-koncern."
     timeline={[
       { year: "2014", event: "Red Tiger Gaming grundlægges i St. Julians, Malta, af branchefolk med erfaring fra europæisk og asiatisk spiludvikling." },

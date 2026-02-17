@@ -78,7 +78,7 @@ const BigTimeGamingGuide = () => (
         </div>
       </>
     }
-    historyTitle="Fra Australsk Startup til Global Spilrevolution"
+    
     historyIntro="Big Time Gamings historie er en masterclass i fokuseret innovation. Nik Robinson grundlagde studiet med én overbevisning: at spilleautomater var blevet for forudsigelige. Fra en idé om dynamiske hjul til ejerskab af den mest licenserede mekanik i casinobranchen – BTGs rejse viser at én banebrydende innovation kan overgå hundredvis af gennemsnitlige udgivelser."
     timeline={[
       { year: "2011", event: "Big Time Gaming grundlægges i Sydney af Nik Robinson med et lille team af erfarne spiludviklere." },
