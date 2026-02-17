@@ -15,9 +15,11 @@ interface AuthorMetaBarProps {
   readTime: string;
   showFactCheck?: boolean;
   showVerified?: boolean;
+  /** Show "Praktisk testet siden 2021 • 50+ danske casinoer" experience note */
+  showExperience?: boolean;
 }
 
-export function AuthorMetaBar({ author, date, readTime, showFactCheck = true, showVerified = false }: AuthorMetaBarProps) {
+export function AuthorMetaBar({ author, date, readTime, showFactCheck = true, showVerified = false, showExperience = false }: AuthorMetaBarProps) {
   const authorInfo = author !== "redaktionen" ? authorConfig[author] : null;
 
   return (
@@ -57,6 +59,11 @@ export function AuthorMetaBar({ author, date, readTime, showFactCheck = true, sh
           <div className="flex items-center gap-1.5 opacity-85">
             <CheckCircle className="h-3.5 w-3.5 text-primary" />
             <span className="text-sm text-muted-foreground">Verificeret ekspertprofil</span>
+          </div>
+        )}
+        {showExperience && (
+          <div className="flex items-center gap-1.5">
+            <span>Praktisk testet siden 2021 • 50+ danske casinoer gennemgået</span>
           </div>
         )}
       </div>
