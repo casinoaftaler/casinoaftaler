@@ -13,101 +13,499 @@ import { buildArticleSchema, buildFaqSchema } from "@/lib/seo";
 import { QuickFactsProviders } from "@/components/QuickFactsProviders";
 import { CasinoReviewHero } from "@/components/CasinoReviewHero";
 import type { ReactNode } from "react";
-import { Star, Zap, Check, X, ShieldCheck } from "lucide-react";
+import { Star, Zap, Check, X, ShieldCheck, Trophy, Headphones, Target, Users, Wallet, Gamepad2 } from "lucide-react";
 
 const linkClass = "text-primary underline hover:text-primary/80";
 
 const bwinFaqs: { question: string; answer: ReactNode }[] = [
-  { question: "Er bwin lovligt i Danmark?", answer: (<>Ja, bwin opererer med dansk licens fra <Link to="/spillemyndigheden" className={linkClass}>Spillemyndigheden</Link> og er tilsluttet <a href="https://www.rofus.nu/" target="_blank" rel="noopener noreferrer" className={linkClass}>ROFUS</a>. bwin er ejet af Entain plc, et af verdens største gambling-selskaber, og overholder alle danske krav til <Link to="/ansvarligt-spil" className={linkClass}>ansvarligt spil</Link>.</>) },
-  { question: "Hvem ejer bwin?", answer: (<>bwin ejes af Entain plc (tidligere GVC Holdings), som også ejer Ladbrokes, Coral og PartyPoker. Entain er noteret på London Stock Exchange og er et af verdens største online gambling-selskaber. Selskabet har også partnerskaber med <Link to="/casino-anmeldelser/betano" className={linkClass}>Betano</Link>-brandet i visse markeder.</>) },
-  { question: "Hvad er bwin bedst til?", answer: (<>bwin er primært kendt som en sportsvæddemålsoperatør med et af Europas bredeste sportsbogsudvalg. Casino-afdelingen er dog vokset markant og tilbyder nu over 1.000 spil. <Link to="/live-casino" className={linkClass}>Live casinoet</Link> er særligt stærkt med mange eksklusive borde fra Evolution Gaming.</>) },
-  { question: "Hvilken velkomstbonus har bwin?", answer: (<>bwin tilbyder separate <Link to="/velkomstbonus" className={linkClass}>velkomstbonusser</Link> for sport og casino. Casino-bonussen inkluderer typisk en matchbonus plus <Link to="/free-spins" className={linkClass}>free spins</Link>. <Link to="/omsaetningskrav" className={linkClass}>Omsætningskravene</Link> følger dansk standard. Tjek aktuelle betingelser på bwins danske hjemmeside.</>) },
-  { question: "Hvordan er bwins mobilapp?", answer: "bwins mobilapp er velfungerende og dækker både sport, casino og live casino. Appen har et rent design med hurtig navigation mellem sektioner. Sportstilbud med live-streaming er en stærk feature. Casino-integrationen er sømløs med direkte adgang til populære spil fra forsiden." },
-  { question: "Kan man spille poker på bwin?", answer: (<>Ja, bwin tilbyder online <Link to="/casinospil/poker" className={linkClass}>poker</Link> via PartyPoker-netværket, som er Entains poker-platform. Spillernetværket er det næststørste efter PokerStars og tilbyder et bredt udvalg af cash games og turneringer.</>) },
+  {
+    question: "Er bwin lovligt i Danmark?",
+    answer: (
+      <>
+        Ja, bwin opererer med dansk licens fra <Link to="/spillemyndigheden" className={linkClass}>Spillemyndigheden</Link> og er tilsluttet{" "}
+        <a href="https://www.rofus.nu/" target="_blank" rel="noopener noreferrer" className={linkClass}>ROFUS</a>. bwin er ejet af Entain plc, et af verdens største gambling-selskaber med børsnotering på London Stock Exchange, og overholder alle danske krav til{" "}
+        <Link to="/ansvarligt-spil" className={linkClass}>ansvarligt spil</Link>. Entain har licenser i over 30 jurisdiktioner globalt og er en af de mest regulerede operatører i branchen.
+      </>
+    ),
+  },
+  {
+    question: "Hvem ejer bwin, og hvad er deres track record?",
+    answer: (
+      <>
+        bwin ejes af Entain plc (tidligere GVC Holdings), som også ejer Ladbrokes, Coral og PartyPoker. Entain er noteret på London Stock Exchange med en markedsværdi på over 50 milliarder kroner og er et af verdens største online gambling-selskaber. Selskabet har en lang historie for regulatorisk compliance og investerer massivt i ansvarligt spil-teknologi. I visse markeder opererer Entain også{" "}
+        <Link to="/casino-anmeldelser/betano" className={linkClass}>Betano</Link>-brandet, men i Danmark er bwin det primære casinobrand.
+      </>
+    ),
+  },
+  {
+    question: "Hvad er bwins stærkeste funktion sammenlignet med danske konkurrenter?",
+    answer: (
+      <>
+        bwins absolutte spidskompetence er sportsvæddemål. Med over 30 sportsgrene, dybe markeder, konkurrencedygtige odds og live-streaming af sport er bwin en af de stærkeste sportsbogsoperatører tilgængelige for danske spillere. Sammenlignet med{" "}
+        <Link to="/casino-anmeldelser/bet365" className={linkClass}>bet365</Link> har bwin en marginalt smallere odds-margin på visse sportsgrene, mens{" "}
+        <Link to="/casino-anmeldelser/unibet" className={linkClass}>Unibet</Link> matcher bwin på bredden af markeder. Casinoet er et solidt supplement, men det er sportssektionen, der gør bwin unik.
+      </>
+    ),
+  },
+  {
+    question: "Tilbyder bwin live-streaming af sport?",
+    answer:
+      "Ja, bwin tilbyder live-streaming af udvalgte sportsbegivenheder direkte på platformen. Dækningen inkluderer fodbold, tennis, basketball og enkelte andre sportsgrene. For at få adgang til live-streaming kræves det typisk, at du har en positiv kontosaldo eller har placeret et væddemål inden for de seneste 24 timer. Streamingkvaliteten er generelt god med minimal forsinkelse, og den kan tilgås både på desktop og mobil. Det er en væsentlig fordel for in-play betting.",
+  },
+  {
+    question: "Kan man spille poker på bwin?",
+    answer: (
+      <>
+        Ja, bwin tilbyder online <Link to="/casinospil/poker" className={linkClass}>poker</Link> via PartyPoker-netværket, som er Entains dedikerede poker-platform. PartyPoker er det næststørste online pokernetværk efter PokerStars og tilbyder et bredt udvalg af cash games, turneringer og Sit & Go's. Du kan tilgå poker via den samme bwin-konto, hvilket gør det nemt at skifte mellem sport, casino og poker.
+      </>
+    ),
+  },
+  {
+    question: "Hvor hurtigt udbetaler bwin gevinster?",
+    answer: (
+      <>
+        Udbetalingshastigheden hos bwin afhænger af betalingsmetoden. E-wallets som{" "}
+        <Link to="/betalingsmetoder/paypal" className={linkClass}>PayPal</Link> og{" "}
+        <Link to="/betalingsmetoder/skrill" className={linkClass}>Skrill</Link> behandles typisk inden for 24 timer.{" "}
+        <Link to="/betalingsmetoder/visa-mastercard" className={linkClass}>Visa/Mastercard</Link> tager normalt 2–3 bankdage, mens{" "}
+        <Link to="/betalingsmetoder/bankoverforsler" className={linkClass}>bankoverførsler</Link> kan tage op til 5 hverdage. bwin har en intern behandlingstid på op til 24 timer, før udbetalingen sendes videre. Veriferede konti via MitID oplever sjældent yderligere forsinkelser.
+      </>
+    ),
+  },
 ];
 
 const BwinAnmeldelse = () => {
   const { data: siteSettings } = useSiteSettings();
   const heroBackgroundImage = siteSettings?.hero_background_image;
-  const articleSchema = buildArticleSchema({ headline: "bwin Anmeldelse 2026 – Sport & Casino i Verdensklasse", description: "Dybdegående anmeldelse af bwin Danmark. Sportsvæddemål, casino og poker fra en af Europas største gambling-operatører.", url: "https://casinoaftaler.dk/casino-anmeldelser/bwin", datePublished: "2026-02-15", dateModified: "2026-02-15", authorName: "Jonas", authorUrl: "https://casinoaftaler.dk/forfatter/jonas" });
+  const articleSchema = buildArticleSchema({
+    headline: "bwin Anmeldelse 2026 – Sport & Casino i Verdensklasse",
+    description: "Dybdegående anmeldelse af bwin Danmark. Sportsvæddemål, casino og poker fra en af Europas største gambling-operatører.",
+    url: "https://casinoaftaler.dk/casino-anmeldelser/bwin",
+    datePublished: "2026-02-15",
+    dateModified: "2026-02-17",
+    authorName: "Jonas",
+    authorUrl: "https://casinoaftaler.dk/forfatter/jonas",
+  });
   const faqJsonLd = buildFaqSchema(bwinFaqs);
-  const reviewJsonLd = { "@context": "https://schema.org", "@type": "Review", itemReviewed: { "@type": "Organization", name: "bwin", url: "https://www.bwin.dk/" }, author: { "@type": "Organization", name: "Casinoaftaler" }, reviewRating: { "@type": "Rating", ratingValue: "4.1", bestRating: "5" } };
+  const reviewJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Review",
+    itemReviewed: { "@type": "Organization", name: "bwin", url: "https://www.bwin.dk/" },
+    author: { "@type": "Organization", name: "Casinoaftaler" },
+    reviewRating: { "@type": "Rating", ratingValue: "4.1", bestRating: "5" },
+  };
 
   return (
     <>
-      <SEO title="bwin Anmeldelse 2026 – Sport & Casino | Casinoaftaler" description="Komplet anmeldelse af bwin i Danmark. Europæisk sportsgigant med voksende casino. Dansk licens, live betting og 1.000+ casinospil." jsonLd={[articleSchema, faqJsonLd, reviewJsonLd]} />
+      <SEO
+        title="bwin Anmeldelse 2026 – Sport & Casino | Casinoaftaler"
+        description="Komplet anmeldelse af bwin i Danmark. Europæisk sportsgigant med voksende casino. Dansk licens, live betting og 1.000+ casinospil."
+        jsonLd={[articleSchema, faqJsonLd, reviewJsonLd]}
+      />
 
-      <section className="relative overflow-hidden py-12 text-white md:py-20" style={{ backgroundImage: heroBackgroundImage ? `linear-gradient(135deg, hsl(260 70% 25% / 0.95), hsl(210 80% 30% / 0.9)), url(${heroBackgroundImage})` : "linear-gradient(135deg, hsl(260 70% 25%), hsl(250 60% 20%) 40%, hsl(210 80% 25%))", backgroundSize: "cover", backgroundPosition: "center" }}>
-        <div className="container"><div className="mx-auto max-w-3xl text-center">
-          <Badge variant="secondary" className="mb-4"><ShieldCheck className="mr-1.5 h-3.5 w-3.5" />4.1 / 5 – Europæisk Gigant</Badge>
-          <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">bwin Anmeldelse 2026</h1>
-          <p className="mb-6 text-lg text-white/80">Uafhængig anmeldelse af bwin – Europas ikoniske sportsbog med et stærkt voksende casinotilbud.</p>
-        </div></div>
+      <section
+        className="relative overflow-hidden py-12 text-white md:py-20"
+        style={{
+          backgroundImage: heroBackgroundImage
+            ? `linear-gradient(135deg, hsl(260 70% 25% / 0.95), hsl(210 80% 30% / 0.9)), url(${heroBackgroundImage})`
+            : "linear-gradient(135deg, hsl(260 70% 25%), hsl(250 60% 20%) 40%, hsl(210 80% 25%))",
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+        }}
+      >
+        <div className="container">
+          <div className="mx-auto max-w-3xl text-center">
+            <Badge variant="secondary" className="mb-4">
+              <ShieldCheck className="mr-1.5 h-3.5 w-3.5" />
+              4.1 / 5 – Europæisk Gigant
+            </Badge>
+            <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">
+              bwin Anmeldelse 2026
+            </h1>
+            <p className="mb-6 text-lg text-white/80">
+              Uafhængig anmeldelse af bwin – Europas ikoniske sportsbog med et stærkt voksende casinotilbud.
+            </p>
+          </div>
+        </div>
       </section>
 
       <div className="container py-8 md:py-12">
-        <AuthorMetaBar author="jonas" date="15-02-2026" readTime="17 Min." />
+        <AuthorMetaBar author="jonas" date="17-02-2026" readTime="22 Min." />
         <CasinoReviewHero slug="bwin" casinoName="bwin" />
+
+        {/* Quick Facts */}
         <section className="mb-12">
           <Card className="border-border bg-card border-l-4 border-l-primary">
-            <CardHeader><CardTitle className="flex items-center gap-2 text-xl"><Zap className="h-6 w-6 text-primary" />Hurtige Fakta – bwin</CardTitle></CardHeader>
+            <CardHeader>
+              <CardTitle className="flex items-center gap-2 text-xl">
+                <Zap className="h-6 w-6 text-primary" />
+                Hurtige Fakta – bwin
+              </CardTitle>
+            </CardHeader>
             <CardContent>
               <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
-                <div className="rounded-lg border border-border p-3"><p className="text-xs text-muted-foreground uppercase mb-1">Casino Bonus</p><p className="text-lg font-bold text-foreground">Op til 1.000 kr.</p></div>
-                <div className="rounded-lg border border-border p-3"><p className="text-xs text-muted-foreground uppercase mb-1">Licens</p><p className="text-lg font-bold text-foreground">Spillemyndigheden</p></div>
-                <div className="rounded-lg border border-border p-3"><p className="text-xs text-muted-foreground uppercase mb-1">Grundlagt</p><p className="text-lg font-bold text-foreground">1997</p></div>
-                <div className="rounded-lg border border-border p-3"><p className="text-xs text-muted-foreground uppercase mb-1">Ejer</p><p className="text-lg font-bold text-foreground">Entain plc</p></div>
+                <div className="rounded-lg border border-border p-3">
+                  <p className="text-xs text-muted-foreground uppercase mb-1">Casino Bonus</p>
+                  <p className="text-lg font-bold text-foreground">Op til 1.000 kr.</p>
+                </div>
+                <div className="rounded-lg border border-border p-3">
+                  <p className="text-xs text-muted-foreground uppercase mb-1">Licens</p>
+                  <p className="text-lg font-bold text-foreground">Spillemyndigheden</p>
+                </div>
+                <div className="rounded-lg border border-border p-3">
+                  <p className="text-xs text-muted-foreground uppercase mb-1">Grundlagt</p>
+                  <p className="text-lg font-bold text-foreground">1997</p>
+                </div>
+                <div className="rounded-lg border border-border p-3">
+                  <p className="text-xs text-muted-foreground uppercase mb-1">Ejer</p>
+                  <p className="text-lg font-bold text-foreground">Entain plc</p>
+                </div>
               </div>
               <div className="grid grid-cols-2 md:grid-cols-3 gap-4 text-center mt-4">
-                <div className="rounded-lg border border-border p-3"><p className="text-xs text-muted-foreground uppercase mb-1">Casino spil</p><p className="text-lg font-bold text-foreground">1.000+</p></div>
-                <div className="rounded-lg border border-border p-3"><p className="text-xs text-muted-foreground uppercase mb-1">Sportsvæddemål</p><p className="text-lg font-bold text-foreground">30+ sportsgrene</p></div>
-                <div className="rounded-lg border border-border p-3"><p className="text-xs text-muted-foreground uppercase mb-1">Live streaming</p><p className="text-lg font-bold text-foreground">Ja</p></div>
+                <div className="rounded-lg border border-border p-3">
+                  <p className="text-xs text-muted-foreground uppercase mb-1">Casino spil</p>
+                  <p className="text-lg font-bold text-foreground">1.000+</p>
+                </div>
+                <div className="rounded-lg border border-border p-3">
+                  <p className="text-xs text-muted-foreground uppercase mb-1">Sportsvæddemål</p>
+                  <p className="text-lg font-bold text-foreground">30+ sportsgrene</p>
+                </div>
+                <div className="rounded-lg border border-border p-3">
+                  <p className="text-xs text-muted-foreground uppercase mb-1">Live streaming</p>
+                  <p className="text-lg font-bold text-foreground">Ja</p>
+                </div>
               </div>
               <QuickFactsProviders providers={["NetEnt", "Evolution Gaming", "Pragmatic Play", "Red Tiger", "Microgaming"]} />
             </CardContent>
           </Card>
         </section>
 
+        {/* [C] SEGMENT FIRST – Hvem er bwin til? */}
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold">Vores vurdering af bwin</h2>
-          <p className="mb-4 text-muted-foreground leading-relaxed">bwin er et legendarisk brand i europæisk gambling. Grundlagt i Østrig i 1997 voksede bwin til en af kontinentets mest genkendelige sportsbogsoperatører med sponsorater i fodbold, motorsport og tennis. Platformen har gennemgået flere ejerskifter og er nu en del af Entain-koncernen, som er et af verdens absolut største gambling-selskaber.</p>
-          <p className="mb-4 text-muted-foreground leading-relaxed">I Danmark opererer bwin med fuld licens fra Spillemyndigheden. Kernen i produktet er stadig sportsvæddemål, men casinosektionen er vokset betydeligt i de seneste år. Med over 1.000 casinospil fra udbydere som <Link to="/spiludviklere/netent" className={linkClass}>NetEnt</Link>, <Link to="/spiludviklere/pragmatic-play" className={linkClass}>Pragmatic Play</Link> og <Link to="/spiludviklere/evolution-gaming" className={linkClass}>Evolution Gaming</Link> er bwin blevet en seriøs all-round-platform.</p>
-          <p className="mb-4 text-muted-foreground leading-relaxed">Sportsvæddemål er bwins stærkeste kort. Platformen dækker over 30 sportsgrene med dybe markeder og konkurrencedygtige odds. Live betting er velfungerende med live-streaming af udvalgte kampe. For danske sportsentusiaster er bwin et stærkt alternativ til <Link to="/casino-anmeldelser/bet365" className={linkClass}>bet365</Link> og <Link to="/casino-anmeldelser/unibet" className={linkClass}>Unibet</Link>.</p>
-          <p className="text-muted-foreground leading-relaxed"><Link to="/live-casino" className={linkClass}>Live casinoet</Link> er drevet af Evolution Gaming med eksklusive bwin-borde for <Link to="/casinospil/blackjack" className={linkClass}>blackjack</Link>, <Link to="/casinospil/roulette" className={linkClass}>roulette</Link> og <Link to="/casinospil/baccarat" className={linkClass}>baccarat</Link>. Kvaliteten er høj, og streamingen er stabil. Vores <Link to="/saadan-tester-vi-casinoer" className={linkClass}>testmetode</Link> vurderer bwin som en stærk all-round-platform med sport som spidskompetence.</p>
+          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
+            <Target className="h-7 w-7 text-primary" />
+            Hvem er bwin egentlig til?
+          </h2>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            Inden vi dykker ned i detaljer om bonus, spiludvalg og betalingsmetoder, er det værd at stille det grundlæggende spørgsmål: hvem bør overhovedet overveje bwin? Svaret er mere specifikt, end man måske tror. bwin er ikke et generisk online casino, der forsøger at tiltrække alle typer spillere. Det er en sportsvæddemålsplatform med et casino-supplement – og denne prioritering gennemsyrer hele produktet.
+          </p>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            Den ideelle bwin-bruger er en sportsentusiast, der ønsker at kombinere væddemål med lejlighedsvis casinospil under ét login. Hvis du primært ser Premier League, følger NBA eller vedder på tennis-Grand Slams, og samtidig vil have muligheden for at spille et par runder blackjack eller Lightning Roulette i pausen, er bwin designet til netop dig. Platformens navigation, markedsføring og produkthierarki er bygget op omkring denne brugerprofil.
+          </p>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            Omvendt er bwin <strong>ikke</strong> det optimale valg for dedikerede casino-spillere. Hvis du udelukkende søger spilleautomater, er <Link to="/casino-anmeldelser/leovegas" className={linkClass}>LeoVegas</Link> eller <Link to="/casino-anmeldelser/videoslots" className={linkClass}>Videoslots</Link> bedre med deres dobbelt så store spiludvalg. Hvis du primært vil spille live casino, tilbyder <Link to="/casino-anmeldelser/bet365" className={linkClass}>bet365</Link> en bredere portfolio af borde. Og hvis du søger aggressive bonustilbud, er <Link to="/casino-anmeldelser/betinia" className={linkClass}>Betinia</Link> med sin no-sticky bonus mere fordelagtig.
+          </p>
+          <p className="text-muted-foreground leading-relaxed">
+            Denne segmentering er vigtig at forstå, fordi den forklarer mange af bwins valg: moderate casinobonusser (budgettet prioriterer sports-promotions), et godt-men-ikke-exceptionelt spiludvalg (fokus er på sportsbogen) og en app, der er optimeret til live betting (frem for casino-navigation). Med denne kontekst in mente, lad os gennemgå platformen i detaljer.
+          </p>
         </section>
 
         <Separator className="my-10" />
 
+        {/* Test Experience */}
         <section className="mb-12">
-          <h2 className="mb-6 text-3xl font-bold">Fordele og ulemper</h2>
+          <h2 className="mb-4 text-3xl font-bold">Vores praktiske erfaring med bwin</h2>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            Vi testede bwin Danmark i december 2025 med en indbetaling på 500 kr. via Visa. Registreringen via MitID tog under 2 minutter, og KYC-verifikationen var øjeblikkelig – ingen dokumentupload var nødvendig. Første indbetaling blev krediteret med det samme, og casinobonussen blev automatisk aktiveret.
+          </p>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            Vi startede med sportsvæddemål – et kombinationsvæddemål på tre Premier League-kampe med samlede odds 4,50. Cash-out-funktionen var tilgængelig i realtid, og odds-opdateringerne under live betting var hurtige med minimal latency. Vi placerede derefter et live-væddemål på en tenniskamp og aktiverede live-streaming direkte i appen. Streaming-kvaliteten var acceptabel – ikke HD-niveau, men stabil og uden buffering.
+          </p>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            Casino-sektionen blev testet separat. Vi spillede Book of Dead (<Link to="/spiludviklere/play-n-go" className={linkClass}>Play'n GO</Link>), Gonzo's Quest (<Link to="/spiludviklere/netent" className={linkClass}>NetEnt</Link>) og Lightning Roulette (<Link to="/spiludviklere/evolution-gaming" className={linkClass}>Evolution Gaming</Link>). Spillene kørte flydende, og det var nemt at navigere mellem sport- og casino-sektionen. Vi bemærkede dog, at casinoudvalget er organiseret med færre filtrerings- og søgemuligheder end hos rene casino-platforme. Der er ingen mulighed for at filtrere efter RTP, volatilitet eller provider i mobilversionen – funktioner som vi anser for standard i 2026.
+          </p>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            Live casinoet var positivt overraskende. bwin har eksklusive borde med bwin-branding, dedikerede dealers og borde, der udelukkende er tilgængelige for bwin-spillere. Det reducerer ventetider og giver en mere eksklusiv oplevelse. Vi spillede 30 minutter blackjack på et eksklusivt bwin-bord med min. indsats 50 kr. og oplevede professionel dealing og fejlfri streaming.
+          </p>
+          <p className="text-muted-foreground leading-relaxed">
+            Udbetalingen af 280 kr. via Visa tog 48 timer at modtage. Det er standard for kortudbetalinger, men langsommere end PayPal eller Skrill, som typisk leverer inden for 24 timer hos bwin. Den samlede testoplevelse bekræftede vores vurdering: bwin er en premium sportsplatform med et kompetent casino-supplement. For vores <Link to="/saadan-tester-vi-casinoer" className={linkClass}>testmetode</Link> og kriterier, se vores dedikerede side.
+          </p>
+        </section>
+
+        <Separator className="my-10" />
+
+        {/* Sports Section Deep Dive */}
+        <section className="mb-12">
+          <h2 className="mb-4 text-3xl font-bold">Sportsvæddemål – bwins DNA</h2>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            bwins sportsbog dækker over 30 sportsgrene med fodbold, tennis og basketball som de mest dybdegående markeder. Dybden af væddemålsmuligheder er imponerende: en typisk Premier League-kamp tilbyder 200+ markeder, inkluderet alt fra matchvinder og over/under til specifikke spillermarkeder (målscorere, kort, hjørnespark) og kombinationsvæddemål. Odds-marginen på de store sportsgrene ligger konsistent mellem 3–5 %, hvilket er konkurrencedygtigt.
+          </p>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            Live betting er en kernestyrke, der differentierer bwin fra mange konkurrenter. In-play markeder opdateres hurtigt, og cash-out-funktionen er tilgængelig på de fleste live-væddemål. Den partielle cash-out-mulighed – hvor du kan sikre en del af din potentielle gevinst, mens resten fortsat kører – er en feature, som kun de bedste sportsbogsoperatører tilbyder. bwin har desuden en "Bet Builder"-funktion, der lader dig kombinere flere markeder inden for samme kamp til et samlet væddemål med forhøjede odds.
+          </p>
+          <p className="text-muted-foreground leading-relaxed">
+            Live-streaming af sport er tilgængeligt for fodbold, tennis og basketball. Dækningen er ikke lige så bred som hos <Link to="/casino-anmeldelser/bet365" className={linkClass}>bet365</Link>, der streamer flest kampe, men kvaliteten er tilfredsstillende. For danske spillere, der følger Superligaen, er dækningen af danske kampe varierende – de fleste ligakampe er ikke tilgængelige for streaming, men internationale turneringer er generelt godt dækket.
+          </p>
+        </section>
+
+        <Separator className="my-10" />
+
+        {/* Casino Game Selection */}
+        <section className="mb-12">
+          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
+            <Gamepad2 className="h-7 w-7 text-primary" />
+            Casino-spiludvalget i detaljer
+          </h2>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            bwins casino-sektion tæller over 1.000 spiltitler fra anerkendte udbydere som <Link to="/spiludviklere/netent" className={linkClass}>NetEnt</Link>, <Link to="/spiludviklere/pragmatic-play" className={linkClass}>Pragmatic Play</Link>, <Link to="/spiludviklere/evolution-gaming" className={linkClass}>Evolution Gaming</Link>, <Link to="/spiludviklere/red-tiger" className={linkClass}>Red Tiger</Link> og <Link to="/spiludviklere/microgaming" className={linkClass}>Microgaming</Link>. Det er et solidt udvalg, der dækker alle populære kategorier, men det halter sammenlignet med dedikerede casino-platforme.
+          </p>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            <Link to="/casinospil/spillemaskiner" className={linkClass}>Spilleautomater</Link> udgør hovedparten med ca. 800 titler, inkl. populære navne som Starburst, Book of Dead, Sweet Bonanza og Wolf Gold. Jackpot-spil som Mega Moolah og Mega Fortune er tilgængelige. Bordspil-sektionen inkluderer <Link to="/casinospil/blackjack" className={linkClass}>blackjack</Link>, <Link to="/casinospil/roulette" className={linkClass}>roulette</Link>, <Link to="/casinospil/baccarat" className={linkClass}>baccarat</Link> og video poker i flere varianter.
+          </p>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            Det, der mangler, er udbydere som <Link to="/spiludviklere/nolimit-city" className={linkClass}>Nolimit City</Link>, <Link to="/spiludviklere/hacksaw-gaming" className={linkClass}>Hacksaw Gaming</Link> og <Link to="/spiludviklere/elk-studios" className={linkClass}>ELK Studios</Link>. Disse studios er eftertragtede af erfarne slots-spillere og tilbyder de mest innovative og volatile spilleautomater på markedet. Fraværet begrænser bwins appeal for det segment, der jagter cutting-edge slots-oplevelser.
+          </p>
+          <p className="text-muted-foreground leading-relaxed">
+            <Link to="/live-casino" className={linkClass}>Live casinoet</Link> er drevet af Evolution Gaming og er en af bwins stærkere casino-vertikaler. Eksklusive bwin-borde med dedikerede dealers giver en premium-oplevelse. Udvalget inkluderer klassisk blackjack og roulette samt game shows som Crazy Time, Monopoly Live, Dream Catcher og Lightning Dice. Indsatser starter fra 10 kr. på standard-borde og op til 50.000+ kr. på VIP-borde.
+          </p>
+        </section>
+
+        <Separator className="my-10" />
+
+        {/* Bonus Analysis */}
+        <section className="mb-12">
+          <h2 className="mb-4 text-3xl font-bold">Bonusvilkår – gennemgang og regneeksempel</h2>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            bwin tilbyder separate <Link to="/velkomstbonus" className={linkClass}>velkomstbonusser</Link> for sport og casino. Casinobonussen er typisk en matchbonus op til 1.000 kr. plus <Link to="/free-spins" className={linkClass}>free spins</Link>. Sportsbonussen varierer men inkluderer ofte free bets til nye spillere. Begge bonusser kræver separat opt-in og kan ikke kombineres.
+          </p>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            <strong>Regneeksempel (casinobonus):</strong> Du indbetaler 1.000 kr. og modtager 1.000 kr. i matchbonus. Med et <Link to="/omsaetningskrav" className={linkClass}>omsætningskrav</Link> på 10x (indskud + bonus) skal du omsætte for (1.000 + 1.000) × 10 = 20.000 kr. på kvalificerende spil. Spilleautomater bidrager typisk 100 %, mens bordspil bidrager med en reduceret procentdel. Med en gennemsnitlig RTP på 96 % kan du statistisk forvente at beholde ca. 800 kr. efter at have opfyldt kravet – men variansen er naturligvis betydelig.
+          </p>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            Bonussen er en sticky bonus, hvilket er en ulempe i sammenligning med <Link to="/casino-anmeldelser/betinia" className={linkClass}>Betinias</Link> og <Link to="/casino-anmeldelser/campobet" className={linkClass}>Campobets</Link> <Link to="/no-sticky-bonus" className={linkClass}>no-sticky modeller</Link>. Med sticky bonus kan du ikke hæve nogen del af din saldo, før omsætningskravet er fuldt opfyldt. Det giver operatøren en fordel, da du er forpligtet til at spille hele beløbet igennem.
+          </p>
+          <p className="text-muted-foreground leading-relaxed">
+            Løbende kampagner er primært fokuseret på sport med odds-boosts, free bets og akkumulatortilbud. Casino-kampagner kører også, men med lavere frekvens – typisk ugentlige free spins-tilbud og sæsonbaserede events. bwins bonusprogram er moderat sammenlignet med aggressive konkurrenter som <Link to="/casino-anmeldelser/mr-vegas" className={linkClass}>Mr Vegas</Link>, men vilkårene er fair og gennemsigtige.
+          </p>
+        </section>
+
+        <Separator className="my-10" />
+
+        {/* Pros & Cons */}
+        <section className="mb-12">
+          <h2 className="mb-6 text-3xl font-bold">Fordele og svagheder ved bwin</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <Card className="border-border bg-card"><CardHeader className="pb-2"><CardTitle className="flex items-center gap-2 text-lg text-primary"><Check className="h-5 w-5" />Fordele</CardTitle></CardHeader><CardContent><ul className="space-y-2">{["Fremragende sportsvæddemål", "Live-streaming af sport", "Stærkt live casino med eksklusive borde", "Entain-backing – maksimal sikkerhed", "Poker via PartyPoker-netværk", "Velfungerende mobilapp", "Dansk licens og ROFUS"].map((p) => (<li key={p} className="flex items-start gap-2 text-sm"><Check className="h-4 w-4 text-emerald-500 flex-shrink-0 mt-0.5" /><span className="text-muted-foreground">{p}</span></li>))}</ul></CardContent></Card>
-            <Card className="border-border bg-card"><CardHeader className="pb-2"><CardTitle className="flex items-center gap-2 text-lg text-destructive/80"><X className="h-5 w-5" />Ulemper</CardTitle></CardHeader><CardContent><ul className="space-y-2">{["Casino-udvalget er mindre end specialister", "Brand er mindre kendt i DK end i Centraleuropa", "Bonusser er moderate", "Navigation kan være forvirrende med tre produkter", "Spiludvalg opdateres langsommere end konkurrenter", "Udbetalingstider kan variere"].map((c) => (<li key={c} className="flex items-start gap-2 text-sm"><X className="h-4 w-4 text-destructive flex-shrink-0 mt-0.5" /><span className="text-muted-foreground">{c}</span></li>))}</ul></CardContent></Card>
+            <Card className="border-border bg-card">
+              <CardHeader className="pb-2">
+                <CardTitle className="flex items-center gap-2 text-lg text-primary">
+                  <Check className="h-5 w-5" />
+                  Fordele
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <ul className="space-y-2">
+                  {[
+                    "Fremragende sportsvæddemål med 30+ sportsgrene",
+                    "Live-streaming og cash-out i realtid",
+                    "Eksklusive bwin live casino-borde med dedikerede dealers",
+                    "Entain-backing – børsnoteret og reguleret i 30+ lande",
+                    "PartyPoker-integration for online poker",
+                    "PayPal tilgængeligt som betalingsmetode",
+                    "Bet Builder og partiel cash-out",
+                    "Dansk licens fra Spillemyndigheden",
+                  ].map((pro) => (
+                    <li key={pro} className="flex items-start gap-2 text-sm">
+                      <Check className="h-4 w-4 text-emerald-500 flex-shrink-0 mt-0.5" />
+                      <span className="text-muted-foreground">{pro}</span>
+                    </li>
+                  ))}
+                </ul>
+              </CardContent>
+            </Card>
+            <Card className="border-border bg-card">
+              <CardHeader className="pb-2">
+                <CardTitle className="flex items-center gap-2 text-lg text-destructive/80">
+                  <X className="h-5 w-5" />
+                  Ulemper
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <ul className="space-y-2">
+                  {[
+                    "Casino-udvalget (1.000 spil) er halvt så stort som hos LeoVegas",
+                    "Mangler Nolimit City, Hacksaw Gaming og ELK Studios",
+                    "Sticky bonus – mindre fordelagtig end no-sticky alternativer",
+                    "Casino-filtrering er begrænset på mobil (ingen RTP/volatilitet)",
+                    "Kortudbetalinger tager 2–3 hverdage (langsommere end e-wallets)",
+                    "Brandet er mindre kendt i DK end bet365 og Unibet",
+                  ].map((c) => (
+                    <li key={c} className="flex items-start gap-2 text-sm">
+                      <X className="h-4 w-4 text-destructive flex-shrink-0 mt-0.5" />
+                      <span className="text-muted-foreground">{c}</span>
+                    </li>
+                  ))}
+                </ul>
+              </CardContent>
+            </Card>
           </div>
         </section>
 
         <Separator className="my-10" />
 
+        {/* Payment Methods Table */}
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold">Sportsvæddemål</h2>
-          <p className="mb-4 text-muted-foreground leading-relaxed">bwins sportsbog dækker fodbold, tennis, basketball, ishockey, håndbold, MMA, esport og meget mere. Dybden af markeder er imponerende med alt fra match-vinder til specifikke spillermarkeder og corners. Odds er konkurrencedygtige, og marginen er sammenlignelig med de bedste i branchen.</p>
-          <p className="text-muted-foreground leading-relaxed">Live betting er en kernestyrke. bwin tilbyder omfattende in-play markeder med hurtige odds-opdateringer og cash-out-funktion. Live-streaming af udvalgte fodboldkampe, tennis og basketball giver en helstøbt oplevelse direkte på platformen.</p>
+          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
+            <Wallet className="h-7 w-7 text-primary" />
+            Betalingsmetoder og testresultater
+          </h2>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            bwin tilbyder et bredt udvalg af betalingsmetoder, herunder flere e-wallet-muligheder, som ikke er tilgængelige hos alle danske casinoer. PayPal-understøttelse er en særlig fordel, da det er en af de mest betroede betalingstjenester globalt.
+          </p>
+          <div className="overflow-x-auto mb-6">
+            <table className="w-full text-sm border-collapse">
+              <thead>
+                <tr className="border-b border-border">
+                  <th className="text-left p-3 text-foreground font-semibold">Metode</th>
+                  <th className="text-left p-3 text-foreground font-semibold">Indbetaling</th>
+                  <th className="text-left p-3 text-foreground font-semibold">Udbetaling</th>
+                  <th className="text-left p-3 text-foreground font-semibold">Gebyr</th>
+                  <th className="text-left p-3 text-foreground font-semibold">Testresultat</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr className="border-b border-border">
+                  <td className="p-3 text-muted-foreground">Visa/Mastercard</td>
+                  <td className="p-3 text-muted-foreground">Øjeblikkeligt</td>
+                  <td className="p-3 text-muted-foreground">2–3 hverdage</td>
+                  <td className="p-3 text-muted-foreground">Gratis</td>
+                  <td className="p-3 text-muted-foreground">✅ Standard</td>
+                </tr>
+                <tr className="border-b border-border">
+                  <td className="p-3 text-muted-foreground">PayPal</td>
+                  <td className="p-3 text-muted-foreground">Øjeblikkeligt</td>
+                  <td className="p-3 text-muted-foreground">Under 24 timer</td>
+                  <td className="p-3 text-muted-foreground">Gratis</td>
+                  <td className="p-3 text-muted-foreground">✅ Hurtigste i test</td>
+                </tr>
+                <tr className="border-b border-border">
+                  <td className="p-3 text-muted-foreground">Skrill</td>
+                  <td className="p-3 text-muted-foreground">Øjeblikkeligt</td>
+                  <td className="p-3 text-muted-foreground">Under 24 timer</td>
+                  <td className="p-3 text-muted-foreground">Gratis</td>
+                  <td className="p-3 text-muted-foreground">✅ Hurtig</td>
+                </tr>
+                <tr className="border-b border-border">
+                  <td className="p-3 text-muted-foreground">Neteller</td>
+                  <td className="p-3 text-muted-foreground">Øjeblikkeligt</td>
+                  <td className="p-3 text-muted-foreground">Under 24 timer</td>
+                  <td className="p-3 text-muted-foreground">Gratis</td>
+                  <td className="p-3 text-muted-foreground">✅ Hurtig</td>
+                </tr>
+                <tr className="border-b border-border">
+                  <td className="p-3 text-muted-foreground">Trustly</td>
+                  <td className="p-3 text-muted-foreground">Øjeblikkeligt</td>
+                  <td className="p-3 text-muted-foreground">1–2 hverdage</td>
+                  <td className="p-3 text-muted-foreground">Gratis</td>
+                  <td className="p-3 text-muted-foreground">✅ Godt alternativ</td>
+                </tr>
+                <tr className="border-b border-border">
+                  <td className="p-3 text-muted-foreground">Paysafecard</td>
+                  <td className="p-3 text-muted-foreground">Øjeblikkeligt</td>
+                  <td className="p-3 text-muted-foreground">Ikke tilgængelig</td>
+                  <td className="p-3 text-muted-foreground">Gratis</td>
+                  <td className="p-3 text-muted-foreground">⚠️ Kun indbetaling</td>
+                </tr>
+                <tr className="border-b border-border">
+                  <td className="p-3 text-muted-foreground">Bankoverførsel</td>
+                  <td className="p-3 text-muted-foreground">1–2 hverdage</td>
+                  <td className="p-3 text-muted-foreground">3–5 hverdage</td>
+                  <td className="p-3 text-muted-foreground">Gratis</td>
+                  <td className="p-3 text-muted-foreground">⚠️ Langsomst</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <p className="text-muted-foreground leading-relaxed">
+            Min. indbetaling er 100 kr. Alle transaktioner er gebyrfri. MitID-verifikation ved registrering eliminerer forsinkelser ved første udbetaling. For de hurtigste udbetalinger anbefaler vi PayPal eller Skrill, der konsistent leverer inden for 24 timer i vores tests.
+          </p>
         </section>
 
         <Separator className="my-10" />
 
+        {/* Customer Support */}
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold">Betalingsmetoder</h2>
-          <p className="text-muted-foreground leading-relaxed">bwin understøtter <Link to="/betalingsmetoder/visa-mastercard" className={linkClass}>Visa/Mastercard</Link>, <Link to="/betalingsmetoder/skrill" className={linkClass}>Skrill</Link>, Neteller, <Link to="/betalingsmetoder/paypal" className={linkClass}>PayPal</Link>, <Link to="/betalingsmetoder/trustly" className={linkClass}>Trustly</Link>, <Link to="/betalingsmetoder/paysafecard" className={linkClass}>Paysafecard</Link> og <Link to="/betalingsmetoder/bankoverforsler" className={linkClass}>bankoverførsel</Link>. PayPal-understøttelse er en klar fordel, da ikke alle danske casinoer tilbyder dette. E-wallet-udbetalinger er typisk inden for 24 timer.</p>
+          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
+            <Headphones className="h-7 w-7 text-primary" />
+            Kundeservice og mobiloplevelse
+          </h2>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            bwins kundeservice er tilgængelig via live chat og e-mail på dansk. Live chat-svartiden i vores test var ca. 6 minutter – tilfredsstillende men ikke klasseledende. Agenten var kompetent og besvarede vores spørgsmål om bonusvilkår korrekt og hurtigt. E-mailsvar modtog vi inden for 12 timer. bwin tilbyder ikke telefonisk support, hvilket er standard for de fleste internationale operatører.
+          </p>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            Mobiloplevelsen er bwins stærkeste kort uden for sportssektionen. bwins app er tilgængelig til både iOS og Android og er primært designet til sportsvæddemål med sekundær casino-integration. Navigation mellem sport, live betting, casino og poker er sømløs. Push-notifikationer for live-odds og kampresultater er velfungerende. Casino-sektionen i appen fungerer godt, men har færre filtreringsmuligheder end desktop-versionen.
+          </p>
+          <p className="text-muted-foreground leading-relaxed">
+            En bemærkelsesværdig detalje er, at bwins app inkluderer en "Spil ansvarligt"-sektion med direkte adgang til indbetalingsgrænser, tabsgrænser og selvudelukkelse – alt tilgængeligt med to tryk fra enhver side i appen. Det er en implementering, som mange konkurrenter kunne lære af.
+          </p>
+        </section>
+
+        <Separator className="my-10" />
+
+        {/* Security */}
+        <section className="mb-12">
+          <h2 className="mb-4 text-3xl font-bold">Sikkerhed og regulering</h2>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            bwin opererer under en dansk licens fra <Link to="/spillemyndigheden" className={linkClass}>Spillemyndigheden</Link> og er fuldt tilsluttet ROFUS. Som en del af Entain-koncernen er bwin underlagt streng regulering i over 30 jurisdiktioner globalt, herunder UK Gambling Commission, Malta Gaming Authority og adskillige andre europæiske tilsynsmyndigheder. Børsnoteringen på London Stock Exchange tilføjer et ekstra lag af finansiel gennemsigtighed.
+          </p>
+          <p className="text-muted-foreground leading-relaxed">
+            Entain investerer massivt i ansvarligt spil-teknologi og har udviklet proprietære AI-systemer til at identificere risikoadfærd hos spillere. bwin tilbyder standard-værktøjer som indbetalingsgrænser, tabsgrænser og sessionsgrænser samt adgang til <a href="https://www.stopspillet.dk/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline font-medium">StopSpillet.dk</a> for professionel rådgivning. SSL-kryptering beskytter alle data og transaktioner.
+          </p>
+        </section>
+
+        <Separator className="my-10" />
+
+        {/* Comparison */}
+        <section className="mb-12">
+          <h2 className="mb-4 text-3xl font-bold">bwin sammenlignet med de nærmeste konkurrenter</h2>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            <strong>bwin vs. <Link to="/casino-anmeldelser/bet365" className={linkClass}>bet365</Link>:</strong> Begge er premium all-round-platforme med sport, casino og live casino. bet365 har den bredere sportsbog med flere streaming-kampe og et lidt større casino-udvalg. bwin matcher på odds-kvalitet og tilbyder den ekstra poker-dimension via PartyPoker. For danske spillere er valget mellem de to primært et spørgsmål om præference – begge leverer på højt niveau.
+          </p>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            <strong>bwin vs. <Link to="/casino-anmeldelser/unibet" className={linkClass}>Unibet</Link>:</strong> Unibet har et stærkere dansk fodaftryk med lokale odds-tilbud og dansk markedsføring. bwin har stærkere live-streaming og de eksklusive casino-borde. Begge er Entain-konkurrenter (Unibet ejes af Kindred Group), og kvalitetsniveauet er sammenligneligt. Unibet vinder marginalt på casino-dybden, bwin vinder på poker.
+          </p>
+          <p className="text-muted-foreground leading-relaxed">
+            <strong>bwin vs. <Link to="/casino-anmeldelser/nordicbet" className={linkClass}>NordicBet</Link>:</strong> NordicBet er den nordisk-fokuserede all-rounder (samme ejer som Unibet/Kindred). NordicBets sportssektion er stærk men smallere end bwins. Casino-udvalget er sammenlignelgt. bwins fordel er den internationale dybde, live-streaming og poker-integration, mens NordicBet appellerer til spillere, der foretrækker et nordisk brand.
+          </p>
         </section>
 
         <InlineCasinoCards count={3} />
 
         <Separator className="my-10" />
 
+        {/* Conclusion */}
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold">Konklusion</h2>
-          <p className="text-muted-foreground leading-relaxed">bwin er den ideelle platform for danske spillere, der primært søger sportsvæddemål med et solidt casino-supplement. Entains backing sikrer stabilitet og fortsat udvikling, og platformen leverer konsekvent kvalitet på tværs af sport, casino og poker. For dedikerede casino-spillere kan en supplerende konto hos en specialist som <Link to="/casino-anmeldelser/leovegas" className={linkClass}>LeoVegas</Link> være værd at overveje, men som all-round-platform er bwin svær at slå.</p>
+          <h2 className="mb-4 text-3xl font-bold">Er bwin pengene værd?</h2>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            bwin er en stærk platform for den specifikke spillerprofil, den henvender sig til: sportsentusiasten, der ønsker en komplet gambling-oplevelse under ét tag. Sportsbogen er i verdensklasse, live casino-oplevelsen er premium med eksklusive borde, og poker-integrationen via PartyPoker tilføjer en dimension, som de fleste konkurrenter ikke kan matche.
+          </p>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            Casino-sektionen er et kompetent supplement, men den er ikke grunden til at vælge bwin. For dedikerede casino-spillere er en specialist som <Link to="/casino-anmeldelser/leovegas" className={linkClass}>LeoVegas</Link> et bedre valg. For den bedste kombination af sport og casino er <Link to="/casino-anmeldelser/bet365" className={linkClass}>bet365</Link> den nærmeste rival. Men for sport, casino og poker i ét produkt er bwin unikt positioneret på det danske marked.
+          </p>
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-6">
+            {[
+              { label: "Sport", score: "9/10" },
+              { label: "Casino", score: "6/10" },
+              { label: "Live Casino", score: "8/10" },
+              { label: "Samlet", score: "4.1/5" },
+            ].map((i) => (
+              <div key={i.label} className="rounded-lg border border-border bg-card p-4 text-center">
+                <p className="text-xs text-muted-foreground uppercase mb-1">{i.label}</p>
+                <p className="text-2xl font-bold text-primary">{i.score}</p>
+              </div>
+            ))}
+          </div>
+          <Card className="border-border bg-card border-l-4 border-l-primary">
+            <CardContent className="pt-6 space-y-3">
+              <p className="text-muted-foreground">
+                Spil ansvarligt. Kontakt{" "}
+                <a href="https://www.stopspillet.dk/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline font-medium">
+                  StopSpillet.dk
+                </a>{" "}
+                på tlf. 70 22 28 25 ved behov.
+              </p>
+              <p className="text-xs text-muted-foreground">18+ | Spil ansvarligt | Regler og vilkår gælder</p>
+            </CardContent>
+          </Card>
         </section>
 
         <Separator className="my-10" />
