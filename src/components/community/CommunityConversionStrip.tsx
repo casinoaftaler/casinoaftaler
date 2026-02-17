@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Sparkles } from "lucide-react";
+import "@/styles/community-micro.css";
 
 interface CommunityConversionStripProps {
   title?: string;
@@ -19,12 +20,7 @@ export function CommunityConversionStrip({
     <section className="mt-16 mb-4">
       <Link
         to={ctaLink}
-        className="cta-shine-wrap animate-border-glow group block rounded-xl p-6 md:p-8 transition-all duration-300 hover:scale-[1.005] hover:-translate-y-0.5 relative overflow-hidden"
-        style={{
-          border: "1px solid rgba(139,92,246,0.3)",
-          background:
-            "linear-gradient(135deg, hsl(260 30% 16%) 0%, hsl(220 30% 16%) 100%)",
-        }}
+        className="community-panel cta-shine-wrap animate-border-glow group block rounded-xl p-6 md:p-8 transition-all duration-300 hover:scale-[1.005] hover:-translate-y-0.5 relative overflow-hidden"
       >
         {/* Moving gradient background */}
         <div className="absolute inset-0 pointer-events-none banner-moving-gradient" />
