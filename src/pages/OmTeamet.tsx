@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { SEO } from "@/components/SEO";
+import { AuthorBio } from "@/components/AuthorBio";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
@@ -602,6 +603,7 @@ const OmTeamet = () => {
 
       {/* ═══ RELATEREDE GUIDES ═══ */}
       <div className="container py-12 md:py-16">
+        <AuthorBio author="jonas" showCommunity={false} />
         <RelatedGuides currentPath="/om" maxLinks={6} />
       </div>
     </>
