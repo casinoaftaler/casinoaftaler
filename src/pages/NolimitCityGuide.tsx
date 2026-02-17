@@ -73,7 +73,7 @@ const NolimitCityGuide = () => (
         </div>
       </>
     }
-    historyTitle="Vejen fra Stockholm til €340 Millioners Opkøb"
+    
     historyIntro="Nolimit Citys historie er beviset på at originalitet og mod kan trumfe volumen og konformitet. Fra grundlæggelsen i et lille kontor i Stockholm til et €340 millioner opkøb af verdens største casinospilkoncern – hvert skridt på vejen involverede bevidste valg om at gøre tingene anderledes end alle andre."
     timeline={[
       { year: "2013", event: "Nolimit City grundlægges i Stockholm med en vision om at bryde med konventionelle slot-designs og skabe mekanik-drevet innovation." },

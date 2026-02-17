@@ -78,7 +78,7 @@ const MicrogamingGuide = () => (
         </div>
       </>
     }
-    historyTitle="Tre Årtiers Milepæle: Microgamings Kronologi"
+    
     historyIntro="Microgamings historie er uadskillelig fra online casinoindustriens oprindelse. Fra den spæde begyndelse i 1994 på Isle of Man til nutidens globale aggregeringsplatform – de var der fra dag ét og har formet branchen i over 30 år. Hver milepæl herunder repræsenterer et øjeblik der ændrede ikke bare Microgaming, men hele den digitale spilleindustri."
     timeline={[
       { year: "1994", event: "Microgaming grundlægges på Isle of Man – lancerer et af verdens første funktionelle online casinoer. Internet har under 40 millioner brugere globalt." },

@@ -73,7 +73,7 @@ const RelaxGamingGuide = () => (
         </div>
       </>
     }
-    historyTitle="Fra Maltesisk Vision til Jackpot-Revolution"
+    
     historyIntro="Relax Gamings rejse fra en ambitiøs maltesisk startup til en af branchens mest innovative kræfter er drevet af to parallelle strategier: konstant mekanisk innovation i egne spil og opbygning af en platform-infrastruktur der skaber værdi for hele økosystemet."
     timeline={[
       { year: "2010", event: "Relax Gaming grundlægges på Malta med en vision om at kombinere spiludvikling med platform-teknologi." },
