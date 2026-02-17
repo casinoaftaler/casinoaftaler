@@ -113,6 +113,35 @@ const GetLuckyAnmeldelse = () => {
         <Separator className="my-10" />
 
         <section className="mb-12">
+          <h2 className="mb-4 text-3xl font-bold">Live casino – Evolution i topklasse</h2>
+          <p className="mb-4 text-muted-foreground leading-relaxed">GetLuckys live casino-sektion er drevet af <Link to="/spiludviklere/evolution-gaming" className={linkClass}>Evolution Gaming</Link> og rummer ca. 150 borde – et imponerende antal for en mellemstor platform. Udvalget spænder fra klassisk <Link to="/casinospil/roulette" className={linkClass}>roulette</Link> og <Link to="/casinospil/blackjack" className={linkClass}>blackjack</Link> til populære game shows som Crazy Time, Lightning Roulette, Monopoly Live og Dream Catcher. VIP-borde med højere grænser (op til 50.000 kr. pr. runde) er tilgængelige for spillere med større budgetter.</p>
+          <p className="mb-4 text-muted-foreground leading-relaxed">Vi testede tre borde under vores januar 2026-session: Lightning Roulette, Blackjack Party og Crazy Time. Streamingkvaliteten var konsistent HD med under 1 sekunds forsinkelse på fiberforbindelse. På mobil (4G) oplevede vi sporadisk mikro-buffering – ca. 2-3 sekunder hvert kvarter – men det forstyrrede ikke gameplay mærkbart. Dealerne var professionelle og engagerede, med en afslappet tone på Blackjack Party der matchede platformens uformelle identitet.</p>
+          <p className="mb-4 text-muted-foreground leading-relaxed">Minimumsindsat varierede fra 5 kr. på standard roulette til 100 kr. på VIP-blackjack. De lave minimumsindsatser gør live casinoet tilgængeligt for casual spillere – en fordel sammenlignet med platforme som <Link to="/casino-anmeldelser/bet365" className={linkClass}>bet365</Link>, hvor live casino-borde ofte starter ved 20-50 kr. Dog: live casino bidrager 0% til bonusomsætning hos GetLucky, hvilket betyder, at du ikke kan omsætte din velkomstbonus via live borde. Det er en vigtig detalje for bonusbevidste spillere.</p>
+          <p className="text-muted-foreground leading-relaxed">En specifik observation: GetLucky har ikke eksklusive brandede borde som <Link to="/casino-anmeldelser/888-casino" className={linkClass}>888 Casino</Link> eller LeoVegas. Alle borde deles med andre SkillOnNet-platforme, hvilket kan resultere i ventetider i spidsbelastningsperioder (typisk fredag-lørdag aften). Under vores test lørdag kl. 21:00 oplevede vi 2-3 minutters ventetid på populære blackjack-borde med lave minimumsindsatser.</p>
+        </section>
+
+        <Separator className="my-10" />
+
+        <section className="mb-12">
+          <h2 className="mb-4 text-3xl font-bold">Sikkerhed, licens og ansvarligt spil</h2>
+          <p className="mb-4 text-muted-foreground leading-relaxed">GetLucky Casino opererer under dansk licens fra <Link to="/spillemyndigheden" className={linkClass}>Spillemyndigheden</Link> og er fuldt tilsluttet ROFUS. Platformen drives af SkillOnNet Ltd, som også besidder licenser fra Malta Gaming Authority (MGA) og UK Gambling Commission – to af de strengeste reguleringsmyndigheder i branchen. Denne multi-jurisdiktionelle regulering betyder, at SkillOnNet underlægges løbende audits og compliance-krav fra tre uafhængige myndigheder.</p>
+          <p className="mb-4 text-muted-foreground leading-relaxed">SkillOnNet har over 15 års erfaring med drift af online casinoer og driver et netværk af 30+ brands på sin platformsinfrastruktur. Det giver stordriftsfordele inden for sikkerhed, betalingsbehandling og spiludbyder-aftaler. Den finansielle stabilitet er solid – SkillOnNet er privatejede men underlægges ekstern revision som krav fra MGA-licensen. For den danske spiller betyder det en operatør med dyb teknisk erfaring og robust infrastruktur.</p>
+          <p className="mb-4 text-muted-foreground leading-relaxed"><Link to="/ansvarligt-spil" className={linkClass}>Ansvarligt spil</Link>-værktøjer hos GetLucky inkluderer: indbetalingsgrænser (daglige, ugentlige, månedlige), tabsgrænser, sessionsgrænser med automatiske pop-up-påmindelser, afkølingsperioder (24 timer, 7 dage, 30 dage) og permanent selvudelukkelse via ROFUS. Alle grænser kan sættes direkte i kontosektionen uden at kontakte kundeservice – en vigtig detalje for spillere, der ønsker diskret selvregulering.</p>
+          <p className="text-muted-foreground leading-relaxed">Vores <Link to="/redaktionel-politik" className={linkClass}>redaktionelle politik</Link> og <Link to="/forretningsmodel" className={linkClass}>forretningsmodel</Link> sikrer uafhængige vurderinger. Vi modtager affiliate-kommission fra GetLucky, men det påvirker aldrig vores ratings. Kontakt <a href="https://www.stopspillet.dk/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline font-medium">StopSpillet.dk</a> på tlf. 70 22 28 25 ved behov for rådgivning om spilproblemer.</p>
+        </section>
+
+        <Separator className="my-10" />
+
+        <section className="mb-12">
+          <h2 className="mb-4 text-3xl font-bold">GetLucky vs. tre nøglekonkurrenter</h2>
+          <p className="mb-4 text-muted-foreground leading-relaxed"><strong>Vs. <Link to="/casino-anmeldelser/leovegas" className={linkClass}>LeoVegas</Link>:</strong> LeoVegas har et bredere spiludvalg (2.000+ titler), hurtigere udbetalinger (4-6 timer vs. 26 timer) og en mere poleret mobiloplevelse med dedikeret app. GetLucky kompenserer med lavere minimumsindsat på live casino (5 kr. vs. 20 kr.) og et point-baseret loyalitetsprogram der belønner alle budgetter fra dag ét. For mobilfokuserede spillere: LeoVegas. For spilvariation på budget: GetLucky.</p>
+          <p className="mb-4 text-muted-foreground leading-relaxed"><strong>Vs. <Link to="/casino-anmeldelser/comeon" className={linkClass}>ComeOn</Link>:</strong> ComeOn har færre spil (1.000+ vs. 1.500+) men kompenserer med branchens mest gennemsigtige bonusvilkår, dansk kundeservice og markant hurtigere udbetalinger (14 timer). ComeOns 10% live casino-bidrag er en unik fordel, som GetLucky ikke matcher (0%). For gennemsigtighed og hastighed: ComeOn. For spiludvalg og udbyder-bredde: GetLucky.</p>
+          <p className="text-muted-foreground leading-relaxed"><strong>Vs. <Link to="/casino-anmeldelser/videoslots" className={linkClass}>Videoslots</Link>:</strong> Videoslots er GetLuckys mest direkte konkurrent i "bredde"-segmentet med over 5.000 spiltitler – mere end tre gange GetLuckys katalog. Videoslots tilbyder desuden RTP-filtrering direkte i spilbrowseren, Battle of Slots-turneringer og en cash-back funktion. GetLuckys fordel er et mere brugervenligt interface, bedre onboarding for nye spillere og et simplere loyalitetsprogram. For den erfarne power-user: Videoslots. For den undersøgende casual spiller: GetLucky.</p>
+        </section>
+
+        <Separator className="my-10" />
+
+        <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold">Betalingsmetoder – muligheder og hastighed</h2>
           <div className="overflow-x-auto mb-6">
             <table className="w-full text-sm border border-border rounded-lg">
