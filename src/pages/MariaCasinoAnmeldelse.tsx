@@ -71,8 +71,8 @@ const MariaCasinoAnmeldelse = () => {
     url: "https://casinoaftaler.dk/casino-anmeldelser/maria-casino",
     datePublished: "2026-02-15",
     dateModified: "2026-02-15",
-    authorName: "Kevin",
-    authorUrl: "https://casinoaftaler.dk/forfatter/kevin",
+    authorName: "Jonas",
+    authorUrl: "https://casinoaftaler.dk/forfatter/jonas",
   });
 
   const faqJsonLd = buildFaqSchema(mariaFaqs);
@@ -113,7 +113,7 @@ const MariaCasinoAnmeldelse = () => {
       </section>
 
       <div className="container py-8 md:py-12">
-        <AuthorMetaBar author="kevin" date="15-02-2026" readTime="18 Min." />
+        <AuthorMetaBar author="jonas" date="15-02-2026" readTime="18 Min." />
         <CasinoReviewHero slug="maria-casino" casinoName="Maria Casino" />
         <section className="mb-12">
           <Card className="border-border bg-card border-l-4 border-l-primary">

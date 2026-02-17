@@ -185,7 +185,7 @@ const NyeCasinoer = () => {
       </section>
 
       <div className="container py-8 md:py-12">
-        <AuthorMetaBar author="kevin" date="16-02-2026" readTime="12 Min." />
+        <AuthorMetaBar author="jonas" date="16-02-2026" readTime="12 Min." />
 
         <div className="mb-10 overflow-hidden rounded-xl">
           <img src={nyeCasinoerHero} alt="Nye casinoer – futuristisk casino med neonlys" className="w-full h-auto object-cover max-h-[400px]" loading="eager" />

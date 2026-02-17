@@ -60,8 +60,8 @@ const NyeCasinoerBonusUdenIndbetaling = () => {
     url: `${SITE_URL}/nye-casinoer/bonus-uden-indbetaling`,
     datePublished: "2026-01-30",
     dateModified: "2026-02-16",
-    authorName: "Kevin",
-    authorUrl: `${SITE_URL}/forfatter/kevin`,
+    authorName: "Jonas",
+    authorUrl: `${SITE_URL}/forfatter/jonas`,
   });
 
   const faqSchema = buildFaqSchema(faqs);
@@ -85,7 +85,7 @@ const NyeCasinoerBonusUdenIndbetaling = () => {
       </section>
 
       <div className="container py-8 md:py-12">
-        <AuthorMetaBar author="kevin" date="16-02-2026" readTime="9 Min." />
+        <AuthorMetaBar author="jonas" date="16-02-2026" readTime="9 Min." />
 
         <div className="mb-10 overflow-hidden rounded-xl">
           <img src={bonusUdenIndbetalingHero} alt="Nye casinoer med bonus uden indbetaling" className="w-full h-auto object-cover max-h-[400px]" loading="eager" />

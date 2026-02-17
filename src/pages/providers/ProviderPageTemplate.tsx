@@ -108,8 +108,8 @@ export function ProviderPage({
     url: `${SITE_URL}${currentPath}`,
     datePublished: "2026-02-15",
     dateModified: "2026-02-15",
-    authorName: "Jonas",
-    authorUrl: `${SITE_URL}/forfatter/jonas`,
+    authorName: "Kevin",
+    authorUrl: `${SITE_URL}/forfatter/kevin`,
   });
 
   const sectionMap: Record<string, ReactNode> = {
@@ -346,7 +346,7 @@ export function ProviderPage({
       </section>
 
       <div className="container py-8 md:py-12">
-        <AuthorMetaBar author="jonas" date={updatedDate} readTime={readTime} />
+        <AuthorMetaBar author="kevin" date={updatedDate} readTime={readTime} />
 
         {heroImage && (
           <div className="mb-10 overflow-hidden rounded-xl">
