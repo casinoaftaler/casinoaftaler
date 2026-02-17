@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef, useCallback } from "react";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { AuthorBio } from "@/components/AuthorBio";
 import { Link } from "react-router-dom";
@@ -40,6 +40,8 @@ import {
   BadgeCheck,
   Clock,
   FileText,
+  ChevronLeft,
+  ChevronRight,
 } from "lucide-react";
 import jonasImage from "@/assets/jonas-forfatter.png";
 
@@ -85,14 +87,38 @@ const faqs = [
 
 /** Static list of Jonas' articles for the "Artikler skrevet af Jonas" section */
 const jonasArticles = [
+  // Guides
   { title: "Bedste Casino Bonus i Danmark 2026", path: "/casino-bonus", category: "Guide", date: "17-02-2026", readTime: "12 min.", excerpt: "Komplet overblik over de bedste casino bonusser hos danske online casinoer." },
   { title: "Nye Casinoer i Danmark 2026", path: "/nye-casinoer", category: "Guide", date: "17-02-2026", readTime: "10 min.", excerpt: "Vi tester og anmelder de nyeste danske online casinoer løbende." },
-  { title: "SpilDanskNu Anmeldelse", path: "/spildansknu-anmeldelse", category: "Anmeldelse", date: "17-02-2026", readTime: "8 min.", excerpt: "Dybdegående anmeldelse af SpilDanskNu med bonus, spil og brugeroplevelse." },
-  { title: "bet365 Casino Anmeldelse", path: "/casino-anmeldelser/bet365", category: "Anmeldelse", date: "17-02-2026", readTime: "14 min.", excerpt: "Er bet365 det bedste allround casino i Danmark? Vi tester alt." },
   { title: "Omsætningskrav Forklaret", path: "/omsaetningskrav", category: "Guide", date: "17-02-2026", readTime: "9 min.", excerpt: "Forstå omsætningskrav og lær at vælge bonusser med lave krav." },
   { title: "No Sticky Bonus Guide", path: "/no-sticky-bonus", category: "Guide", date: "17-02-2026", readTime: "7 min.", excerpt: "Alt om no-sticky bonusser og hvorfor de er populære blandt spillere." },
   { title: "Velkomstbonus Guide 2026", path: "/velkomstbonus", category: "Guide", date: "17-02-2026", readTime: "8 min.", excerpt: "Find de bedste velkomstbonusser og forstå vilkår og betingelser." },
   { title: "Live Casino Guide", path: "/live-casino", category: "Guide", date: "17-02-2026", readTime: "10 min.", excerpt: "Oplev live dealers og ægte casinostemning fra din sofa." },
+  { title: "Free Spins Uden Indbetaling", path: "/free-spins-uden-indbetaling", category: "Guide", date: "17-02-2026", readTime: "8 min.", excerpt: "Find de bedste tilbud med gratis free spins uden krav om indbetaling." },
+  { title: "Bonus Uden Indbetaling", path: "/bonus-uden-indbetaling", category: "Guide", date: "17-02-2026", readTime: "7 min.", excerpt: "Få casino bonus helt uden at indsætte penge – se aktuelle tilbud." },
+  { title: "Blackjack Regler & Guide", path: "/casinospil/blackjack", category: "Guide", date: "17-02-2026", readTime: "11 min.", excerpt: "Komplet guide til blackjack regler, strategi og varianter." },
+  { title: "Roulette Regler & Guide", path: "/casinospil/roulette", category: "Guide", date: "17-02-2026", readTime: "10 min.", excerpt: "Lær roulette regler, væddemålstyper og varianter." },
+  { title: "Roulette Strategi Guide", path: "/casinospil/roulette-strategi", category: "Guide", date: "17-02-2026", readTime: "9 min.", excerpt: "De mest populære roulette-strategier forklaret og analyseret." },
+  { title: "Baccarat Regler & Guide", path: "/casinospil/baccarat", category: "Guide", date: "17-02-2026", readTime: "8 min.", excerpt: "Lær baccarat regler, kortværdier og tredje-kort-reglen." },
+  { title: "Poker Guide", path: "/casinospil/poker", category: "Guide", date: "17-02-2026", readTime: "10 min.", excerpt: "Komplet guide til online poker hos danske casinoer." },
+  { title: "Craps Guide", path: "/casinospil/craps", category: "Guide", date: "17-02-2026", readTime: "9 min.", excerpt: "Lær craps regler, væddemål og strategi for begyndere." },
+  { title: "Online Lotteri Guide", path: "/casinospil/online-lotteri", category: "Guide", date: "17-02-2026", readTime: "7 min.", excerpt: "Alt om online lotteri hos danske casinoer og operatører." },
+  { title: "Game Shows Guide", path: "/casinospil/game-shows", category: "Guide", date: "17-02-2026", readTime: "8 min.", excerpt: "Oplev live game shows som Crazy Time og Dream Catcher." },
+  { title: "Spillemaskiner Guide", path: "/casinospil/spillemaskiner", category: "Guide", date: "17-02-2026", readTime: "12 min.", excerpt: "Alt om online spillemaskiner – typer, RTP og tips." },
+  { title: "Danske Casinoer Guide", path: "/danske-online-casinoer", category: "Guide", date: "17-02-2026", readTime: "11 min.", excerpt: "Komplet overblik over alle licenserede danske online casinoer." },
+  { title: "Casino Uden ROFUS", path: "/casino-uden-rofus", category: "Guide", date: "17-02-2026", readTime: "8 min.", excerpt: "Information om udenlandske casinoer og ROFUS-registrering." },
+  { title: "Crypto Casino Guide", path: "/crypto-casino", category: "Guide", date: "17-02-2026", readTime: "9 min.", excerpt: "Alt om kryptovaluta-casinoer, Bitcoin-betalinger og sikkerhed." },
+  // Anmeldelser
+  { title: "SpilDanskNu Anmeldelse", path: "/spildansknu-anmeldelse", category: "Anmeldelse", date: "17-02-2026", readTime: "8 min.", excerpt: "Dybdegående anmeldelse af SpilDanskNu med bonus, spil og brugeroplevelse." },
+  { title: "bet365 Casino Anmeldelse", path: "/casino-anmeldelser/bet365", category: "Anmeldelse", date: "17-02-2026", readTime: "14 min.", excerpt: "Er bet365 det bedste allround casino i Danmark? Vi tester alt." },
+  { title: "Betano Anmeldelse", path: "/casino-anmeldelser/betano", category: "Anmeldelse", date: "17-02-2026", readTime: "12 min.", excerpt: "Betano – nyt dansk casino med fokus på sport og casino." },
+  { title: "Spilleautomaten Anmeldelse", path: "/spilleautomaten-anmeldelse", category: "Anmeldelse", date: "17-02-2026", readTime: "8 min.", excerpt: "Anmeldelse af Spilleautomaten med 3.000+ spil og hurtige udbetalinger." },
+  { title: "Campobet Anmeldelse", path: "/campobet-anmeldelse", category: "Anmeldelse", date: "17-02-2026", readTime: "9 min.", excerpt: "Campobet kombinerer casino og sportsbetting under dansk licens." },
+  { title: "Casinostuen Anmeldelse", path: "/casino-anmeldelser/casinostuen", category: "Anmeldelse", date: "17-02-2026", readTime: "10 min.", excerpt: "Casinostuen – klassisk dansk casino med fokus på spilleautomater." },
+  { title: "PokerStars Anmeldelse", path: "/casino-anmeldelser/pokerstars", category: "Anmeldelse", date: "17-02-2026", readTime: "11 min.", excerpt: "PokerStars – verdens største pokersite med dansk licens." },
+  { title: "Unibet Anmeldelse", path: "/casino-anmeldelser/unibet", category: "Anmeldelse", date: "17-02-2026", readTime: "10 min.", excerpt: "Komplet anmeldelse af Unibet – casino, sports og poker samlet." },
+  { title: "MarathonBet Anmeldelse", path: "/casino-anmeldelser/marathonbet", category: "Anmeldelse", date: "17-02-2026", readTime: "9 min.", excerpt: "MarathonBet – konkurrencedygtige odds og casino-supplement." },
+  { title: "Mr Green Anmeldelse", path: "/casino-anmeldelser/mr-green", category: "Anmeldelse", date: "17-02-2026", readTime: "8 min.", excerpt: "Mr Green – dansk licens, flot design og gamification-features." },
 ];
 
 const expertiseItems = [
@@ -138,7 +164,17 @@ export default function Forfatter() {
   const { data: siteSettings } = useSiteSettings();
   const { data: casinos } = useCasinos();
   const [openCasinoId, setOpenCasinoId] = useState<string | null>(null);
+  const [articlePage, setArticlePage] = useState(0);
   const heroBackgroundImage = siteSettings?.hero_background;
+
+  const ARTICLES_PER_PAGE = 8;
+  const totalArticlePages = Math.ceil(jonasArticles.length / ARTICLES_PER_PAGE);
+  const visibleArticles = jonasArticles.slice(
+    articlePage * ARTICLES_PER_PAGE,
+    (articlePage + 1) * ARTICLES_PER_PAGE
+  );
+  const prevArticlePage = useCallback(() => setArticlePage((p) => Math.max(0, p - 1)), []);
+  const nextArticlePage = useCallback(() => setArticlePage((p) => Math.min(totalArticlePages - 1, p + 1)), [totalArticlePages]);
 
   const featuredCasinos = (casinos ?? []).filter((c) =>
     FEATURED_SLUGS.includes(c.slug)
@@ -489,14 +525,37 @@ export default function Forfatter() {
 
         <Separator className="my-10" />
 
-        {/* 3️⃣ Artikler skrevet af Jonas */}
+        {/* 3️⃣ Artikler skrevet af Jonas – horizontal carousel */}
         <section className="mb-12">
-          <h2 className="mb-6 text-3xl font-bold flex items-center gap-2">
-            <BookOpen className="h-7 w-7 text-primary" />
-            Artikler skrevet af Jonas
-          </h2>
+          <div className="mb-6 flex items-center justify-between">
+            <h2 className="text-3xl font-bold flex items-center gap-2">
+              <BookOpen className="h-7 w-7 text-primary" />
+              Artikler skrevet af Jonas
+            </h2>
+            <div className="flex items-center gap-1">
+              <span className="text-sm text-muted-foreground mr-2">
+                {articlePage + 1} / {totalArticlePages}
+              </span>
+              <button
+                onClick={prevArticlePage}
+                disabled={articlePage === 0}
+                className="inline-flex h-9 w-9 items-center justify-center rounded-lg border border-border bg-card text-muted-foreground transition-colors hover:bg-accent hover:text-foreground disabled:opacity-30 disabled:pointer-events-none"
+                aria-label="Forrige artikler"
+              >
+                <ChevronLeft className="h-5 w-5" />
+              </button>
+              <button
+                onClick={nextArticlePage}
+                disabled={articlePage >= totalArticlePages - 1}
+                className="inline-flex h-9 w-9 items-center justify-center rounded-lg border border-border bg-card text-muted-foreground transition-colors hover:bg-accent hover:text-foreground disabled:opacity-30 disabled:pointer-events-none"
+                aria-label="Næste artikler"
+              >
+                <ChevronRight className="h-5 w-5" />
+              </button>
+            </div>
+          </div>
           <div className="grid gap-4 md:grid-cols-2">
-            {jonasArticles.map((article) => (
+            {visibleArticles.map((article) => (
               <Link
                 key={article.path}
                 to={article.path}
