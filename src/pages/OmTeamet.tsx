@@ -41,14 +41,32 @@ const OmTeamet = () => {
     "@type": "Organization",
     name: "Casinoaftaler.dk",
     url: "https://casinoaftaler.dk",
-    logo: "https://zhpbqqhtgnblaugrqhqi.supabase.co/storage/v1/object/public/casino-logos/header-icon.jpg",
+    logo: {
+      "@type": "ImageObject",
+      url: "https://zhpbqqhtgnblaugrqhqi.supabase.co/storage/v1/object/public/casino-logos/header-icon.jpg",
+      width: 192,
+      height: 192,
+    },
     description:
-      "Casinoaftaler.dk drives af et dedikeret team af aktive casino-streamere og content-specialister med praktisk erfaring fra det danske online casinomarked.",
-    foundingDate: "2024",
+      "Casinoaftaler.dk er en dansk casino-guide med fokus på gennemsigtighed, testmetoder og ansvarligt spil.",
+    foundingDate: "2021",
+    founder: {
+      "@type": "Person",
+      name: "Jonas",
+      url: "https://casinoaftaler.dk/forfatter/jonas",
+    },
+    employee: [
+      {
+        "@type": "Person",
+        name: "Kevin",
+        url: "https://casinoaftaler.dk/forfatter/kevin",
+        jobTitle: "Streamer, Forfatter og Medudvikler",
+      },
+    ],
     sameAs: [
-      "https://www.twitch.tv/fedesvinansen",
-      "https://www.instagram.com/casinoaftaler",
+      "https://www.twitch.tv/fedesvinsejer",
       "https://www.youtube.com/@casinoaftaler",
+      "https://www.instagram.com/casinoaftaler",
     ],
     contactPoint: {
       "@type": "ContactPoint",
@@ -56,21 +74,6 @@ const OmTeamet = () => {
       url: "https://casinoaftaler.dk/kontakt",
       availableLanguage: "Danish",
     },
-    member: [
-      {
-        "@type": "Person",
-        name: "Jonas",
-        jobTitle: "Grundlægger & Indholdsansvarlig",
-        url: "https://casinoaftaler.dk/forfatter/jonas",
-        sameAs: ["https://www.twitch.tv/fedesvinansen"],
-      },
-      {
-        "@type": "Person",
-        name: "Kevin",
-        jobTitle: "Casino-streamer & IT Medansvarlig",
-        url: "https://casinoaftaler.dk/forfatter/kevin",
-      },
-    ],
   };
 
   const breadcrumbJsonLd = {
