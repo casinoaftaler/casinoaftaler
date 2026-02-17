@@ -3,8 +3,7 @@ import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { AuthorBio } from "@/components/AuthorBio";
 import { FAQSection } from "@/components/FAQSection";
 import { SEO } from "@/components/SEO";
-import { buildFaqSchema, buildArticleSchema, SITE_URL } from "@/lib/seo";
-import { ExperienceSection } from "@/components/ExperienceSection";
+import { buildFaqSchema } from "@/lib/seo";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
@@ -134,17 +133,6 @@ const CasinoBonus = () => {
   });
 
   const faqJsonLd = buildFaqSchema(casinoBonusFaqs);
-  const articleSchema = buildArticleSchema({
-    headline: "Bedste Casino Bonus 2026 – Din Komplette Guide",
-    description: "Den ultimative guide til casino bonus i Danmark 2026.",
-    url: `${SITE_URL}/casino-bonus`,
-    datePublished: "2026-02-14",
-    dateModified: "2026-02-14",
-    authorName: "Jonas",
-    authorUrl: `${SITE_URL}/forfatter/jonas`,
-    reviewerName: "Kevin",
-    reviewerUrl: `${SITE_URL}/forfatter/kevin`,
-  });
 
   const breadcrumbJsonLd = {
     "@context": "https://schema.org",
@@ -170,7 +158,7 @@ const CasinoBonus = () => {
       <SEO
         title="Bedste Casino Bonus 2026 – Find Din Perfekte Bonus i Danmark"
         description="Den ultimative guide til casino bonus i Danmark 2026. Sammenlign de bedste casino bonusser, velkomstbonusser, free spins og no-sticky bonusser hos danske casinoer med licens. Find din perfekte casino bonus her."
-        jsonLd={[articleSchema, faqJsonLd, breadcrumbJsonLd]}
+        jsonLd={[faqJsonLd, breadcrumbJsonLd]}
       />
 
       {/* Hero Section */}
@@ -205,7 +193,7 @@ const CasinoBonus = () => {
       </section>
 
       <div className="container py-8 md:py-12">
-        <AuthorMetaBar author="jonas" date="13-02-2026" readTime="12 Min." showExperience />
+        <AuthorMetaBar author="jonas" date="13-02-2026" readTime="12 Min." />
 
         <div className="mb-10 overflow-hidden rounded-xl">
           <img src={casinoBonusHero} alt="Casino bonus – gyldne mønter og gaver" className="w-full h-auto object-cover max-h-[400px]" loading="eager" />
@@ -217,7 +205,7 @@ const CasinoBonus = () => {
             Hvad er en casino bonus, og hvorfor er det vigtigt?
           </h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
-            Senest manuelt testet og opdateret i februar 2026. En casino bonus er et tilbud fra et online casino, der giver dig
+            En casino bonus er et tilbud fra et online casino, der giver dig
             ekstra midler, gratis spins eller andre fordele oven i din
             indbetaling. Casino bonusser er designet til at forbedre din spiloplevelse,
             forlænge din spilletid og give dig flere chancer for at vinde. Den bedste
@@ -264,8 +252,6 @@ const CasinoBonus = () => {
             til danske spillere i 2026.
           </p>
         </section>
-
-        <ExperienceSection />
 
         {/* Casino List */}
         <section className="mb-12">

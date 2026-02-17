@@ -4,8 +4,7 @@ import { AuthorBio } from "@/components/AuthorBio";
 import { Link } from "react-router-dom";
 import { FAQSection } from "@/components/FAQSection";
 import { SEO } from "@/components/SEO";
-import { buildFaqSchema, buildArticleSchema, SITE_URL } from "@/lib/seo";
-import { ExperienceSection } from "@/components/ExperienceSection";
+import { buildFaqSchema } from "@/lib/seo";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
@@ -105,17 +104,6 @@ const Casinospil = () => {
   const heroBackgroundImage = siteSettings?.hero_background_image;
 
   const faqJsonLd = buildFaqSchema(casinospilFaqs);
-  const articleSchema = buildArticleSchema({
-    headline: "Casinospil 2026 – Guide til Alle Online Casinospil i Danmark",
-    description: "Komplet guide til casinospil i Danmark 2026.",
-    url: `${SITE_URL}/casinospil`,
-    datePublished: "2026-02-13",
-    dateModified: "2026-02-13",
-    authorName: "Jonas",
-    authorUrl: `${SITE_URL}/forfatter/jonas`,
-    reviewerName: "Kevin",
-    reviewerUrl: `${SITE_URL}/forfatter/kevin`,
-  });
 
   const breadcrumbJsonLd = {
     "@context": "https://schema.org",
@@ -141,7 +129,7 @@ const Casinospil = () => {
       <SEO
         title="Casinospil 2026 – Guide til Alle Online Casinospil i Danmark"
         description="Komplet guide til casinospil i Danmark 2026. Lær alt om spilleautomater, roulette, blackjack, poker, live casino og meget mere. Find de bedste casinospil hos danske casinoer med licens."
-        jsonLd={[articleSchema, faqJsonLd, breadcrumbJsonLd]}
+        jsonLd={[faqJsonLd, breadcrumbJsonLd]}
       />
 
       {/* Hero Section */}
@@ -175,7 +163,7 @@ const Casinospil = () => {
       </section>
 
       <div className="container py-8 md:py-12">
-        <AuthorMetaBar author="jonas" date="13-02-2026" readTime="10 Min." showExperience />
+        <AuthorMetaBar author="jonas" date="13-02-2026" readTime="10 Min." />
 
         {/* Hero Image */}
         <div className="mb-10 overflow-hidden rounded-xl">
@@ -193,7 +181,7 @@ const Casinospil = () => {
             Hvad er casinospil, og hvorfor er de så populære?
           </h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
-            Senest manuelt testet og opdateret i februar 2026. Casinospil er kernen i enhver online casinooplevelse. Uanset om du
+            Casinospil er kernen i enhver online casinooplevelse. Uanset om du
             foretrækker at dreje hjulene på en spilleautomat, satse på roulette
             eller udfordre dealeren i blackjack, findes der casinospil til enhver
             smag og ethvert budget. I Danmark har online casinospil oplevet en
@@ -228,8 +216,6 @@ const Casinospil = () => {
             spændende casinospil at opdage.
           </p>
         </section>
-
-        <ExperienceSection />
 
         <InlineCasinoCards title="Anbefalede casinoer til casinospil" count={4} />
 

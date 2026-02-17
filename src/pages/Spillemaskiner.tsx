@@ -3,8 +3,7 @@ import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { AuthorBio } from "@/components/AuthorBio";
 import { FAQSection } from "@/components/FAQSection";
 import { SEO } from "@/components/SEO";
-import { buildFaqSchema, buildArticleSchema, SITE_URL } from "@/lib/seo";
-import { ExperienceSection } from "@/components/ExperienceSection";
+import { buildFaqSchema } from "@/lib/seo";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { RelatedGuides } from "@/components/RelatedGuides";
@@ -96,17 +95,6 @@ const spillemaskineFaqs: { question: string; answer: ReactNode }[] = [
 
 const Spillemaskiner = () => {
   const faqJsonLd = buildFaqSchema(spillemaskineFaqs);
-  const articleSchema = buildArticleSchema({
-    headline: "Spillemaskiner 2026 - Guide til Online Slots i Danmark",
-    description: "Alt om spillemaskiner hos danske online casinoer.",
-    url: `${SITE_URL}/casinospil/spillemaskiner`,
-    datePublished: "2026-02-13",
-    dateModified: "2026-02-13",
-    authorName: "Jonas",
-    authorUrl: `${SITE_URL}/forfatter/jonas`,
-    reviewerName: "Kevin",
-    reviewerUrl: `${SITE_URL}/forfatter/kevin`,
-  });
 
   const breadcrumbJsonLd = {
     "@context": "https://schema.org",
@@ -138,7 +126,7 @@ const Spillemaskiner = () => {
       <SEO
         title="Spillemaskiner 2026 - Guide til Online Slots i Danmark"
         description="Alt om spillemaskiner hos danske online casinoer. Lær om RTP, volatilitet, Megaways, jackpots og bonusfunktioner. Find de bedste slots i 2026."
-        jsonLd={[articleSchema, faqJsonLd, breadcrumbJsonLd]}
+        jsonLd={[faqJsonLd, breadcrumbJsonLd]}
       />
 
       <section className="relative overflow-hidden py-12 text-white md:py-20" style={{ backgroundImage: "linear-gradient(135deg, hsl(260 70% 25%), hsl(250 60% 20%) 40%, hsl(210 80% 25%))" }}>
@@ -152,7 +140,7 @@ const Spillemaskiner = () => {
       </section>
 
       <div className="container py-8 md:py-12">
-        <AuthorMetaBar author="jonas" date="15-02-2026" readTime="12 Min." showExperience />
+        <AuthorMetaBar author="jonas" date="15-02-2026" readTime="12 Min." />
 
         {/* Hero Image */}
         <div className="mb-10 overflow-hidden rounded-xl">
@@ -173,7 +161,7 @@ const Spillemaskiner = () => {
             Spillemaskiner – også kendt som slots eller spilleautomater – er det mest udbredte casinospil i verden. I deres simpleste form består de af et sæt roterende hjul med symboler, hvor målet er at lande matchende symboler på en eller flere gevinstlinjer. Men bag den tilsyneladende enkle overflade gemmer sig avanceret teknologi, der sikrer fair og tilfældigt spil.
           </p>
           <p className="mb-4 text-muted-foreground leading-relaxed">
-            Senest manuelt testet og opdateret i februar 2026. Kernen i enhver moderne spillemaskine er en Random Number Generator (RNG) – en algoritme, der genererer tusindvis af tilfældige tal i sekundet. Når du trykker på spin-knappen, vælger RNG'en det præcise resultat i det millisekund, du klikker. Hvert spin er fuldstændig uafhængigt af det forrige, hvilket betyder, at spillemaskinen ikke kan være "varm" eller "kold". RNG'en testes og certificeres af uafhængige laboratorier som eCOGRA og iTech Labs, hvilket garanterer, at resultaterne er genuint tilfældige.
+            Kernen i enhver moderne spillemaskine er en Random Number Generator (RNG) – en algoritme, der genererer tusindvis af tilfældige tal i sekundet. Når du trykker på spin-knappen, vælger RNG'en det præcise resultat i det millisekund, du klikker. Hvert spin er fuldstændig uafhængigt af det forrige, hvilket betyder, at spillemaskinen ikke kan være "varm" eller "kold". RNG'en testes og certificeres af uafhængige laboratorier som eCOGRA og iTech Labs, hvilket garanterer, at resultaterne er genuint tilfældige.
           </p>
           <p className="mb-4 text-muted-foreground leading-relaxed">
             Spillemaskinens opbygning inkluderer typisk 3–6 hjul med varierende antal symboler pr. hjul, gevinstlinjer (fra 1 til over 100.000), specialsymboler som wilds og scatters, samt bonusfunktioner. Gevinstlinjerne bestemmer, hvilke symbolkombinationer der udløser betaling – jo flere linjer, jo flere måder at vinde på. Indsatsen fordeles normalt jævnt på tværs af alle aktive gevinstlinjer.
@@ -187,8 +175,6 @@ const Spillemaskiner = () => {
             <Link to="/community/leaderboard" className={linkClass}>ranglisten</Link>.
           </p>
         </section>
-
-        <ExperienceSection />
 
         <InlineCasinoCards title="Bedste casinoer til spillemaskiner" count={4} />
 

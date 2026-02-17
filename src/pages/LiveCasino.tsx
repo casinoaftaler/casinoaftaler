@@ -5,8 +5,7 @@ import { Link } from "react-router-dom";
 import { FAQSection } from "@/components/FAQSection";
 import liveCasinoHero from "@/assets/heroes/live-casino-hero.jpg";
 import { SEO } from "@/components/SEO";
-import { buildFaqSchema, buildArticleSchema, SITE_URL } from "@/lib/seo";
-import { ExperienceSection } from "@/components/ExperienceSection";
+import { buildFaqSchema } from "@/lib/seo";
 import { CasinoCard } from "@/components/CasinoCard";
 import { InlineCasinoCards } from "@/components/InlineCasinoCards";
 import { useCasinos } from "@/hooks/useCasinos";
@@ -104,17 +103,17 @@ const LiveCasino = () => {
 
   const faqJsonLd = buildFaqSchema(liveCasinoFaqs);
 
-  const articleJsonLd = buildArticleSchema({
+  const articleJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Article",
     headline: "Live Casino – Bedste Live Casinoer i Danmark 2026",
     description: "Komplet guide til live casino i Danmark 2026. Find de bedste live casinoer med rigtige dealere.",
-    url: `${SITE_URL}/live-casino`,
+    author: { "@type": "Organization", name: "Casinoaftaler" },
+    publisher: { "@type": "Organization", name: "Casinoaftaler" },
     datePublished: "2025-06-01",
     dateModified: "2026-02-11",
-    authorName: "Jonas",
-    authorUrl: `${SITE_URL}/forfatter/jonas`,
-    reviewerName: "Kevin",
-    reviewerUrl: `${SITE_URL}/forfatter/kevin`,
-  });
+    mainEntityOfPage: "https://casinoaftaler.dk/live-casino",
+  };
 
   return (
     <>
@@ -154,7 +153,7 @@ const LiveCasino = () => {
       </section>
 
       <div className="container py-8 md:py-12">
-        <AuthorMetaBar author="jonas" date="11-02-2026" readTime="15 Min." showExperience />
+        <AuthorMetaBar author="jonas" date="11-02-2026" readTime="15 Min." />
 
         <div className="mb-10 overflow-hidden rounded-xl">
           <img src={liveCasinoHero} alt="Live casino dealer ved blackjack bordet" className="w-full h-auto object-cover max-h-[400px]" loading="eager" />
@@ -166,7 +165,7 @@ const LiveCasino = () => {
             Hvad er et live casino?
           </h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
-            Senest manuelt testet og opdateret i februar 2026. Live casino har revolutioneret den måde, vi spiller online på. I stedet for at spille mod en computer og en tilfældighedsgenerator, sidder du nu over for rigtige dealere, der håndterer kortene, drejer roulettehjulet og styrer spillet – alt sammen streamet i knivskarpe billeder direkte til din skærm. Det er som at have et ægte casino lige ved hånden, uanset om du sidder i sofaen eller er på farten.
+            Live casino har revolutioneret den måde, vi spiller online på. I stedet for at spille mod en computer og en tilfældighedsgenerator, sidder du nu over for rigtige dealere, der håndterer kortene, drejer roulettehjulet og styrer spillet – alt sammen streamet i knivskarpe billeder direkte til din skærm. Det er som at have et ægte casino lige ved hånden, uanset om du sidder i sofaen eller er på farten.
           </p>
           <p className="mb-4 text-muted-foreground leading-relaxed">
             Forskellen mellem et live casino og almindelige online casinospil ligger i interaktiviteten. Du kan chatte med dealeren og andre spillere, og følelsen af at være "til stede" gør hele forskellen. Det er perfekt for dig, der elsker casinospil, men ikke vil gå glip af den sociale dimension, som man normalt kun finder i fysiske casinoer.
@@ -189,8 +188,6 @@ const LiveCasino = () => {
             i spillehallen.
           </p>
         </section>
-
-        <ExperienceSection />
 
         <Separator className="my-10" />
 

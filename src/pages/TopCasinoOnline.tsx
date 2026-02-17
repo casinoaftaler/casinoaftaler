@@ -3,8 +3,7 @@ import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { AuthorBio } from "@/components/AuthorBio";
 import { FAQSection } from "@/components/FAQSection";
 import { SEO } from "@/components/SEO";
-import { buildFaqSchema, buildArticleSchema, SITE_URL } from "@/lib/seo";
-import { ExperienceSection } from "@/components/ExperienceSection";
+import { buildFaqSchema } from "@/lib/seo";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
@@ -169,17 +168,16 @@ const TopCasinoOnline = () => {
 
   const faqJsonLd = buildFaqSchema(topCasinoFaqs);
 
-  const articleJsonLd = buildArticleSchema({
-    headline: "Top 10 Online Casino i Danmark 2026 – Bedste Online Casinoer",
-    description: "Komplet guide til de 10 bedste online casinoer i Danmark 2026.",
-    url: `${SITE_URL}/top-10-casino-online`,
-    datePublished: "2026-01-15",
-    dateModified: "2026-02-13",
-    authorName: "Jonas",
-    authorUrl: `${SITE_URL}/forfatter/jonas`,
-    reviewerName: "Kevin",
-    reviewerUrl: `${SITE_URL}/forfatter/kevin`,
-  });
+  const articleJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "Top 10 Online Casino i Danmark 2026 – Bedste Online Casinoer",
+    "author": { "@type": "Organization", "name": "Casinoaftaler" },
+    "publisher": { "@type": "Organization", "name": "Casinoaftaler" },
+    "datePublished": "2026-01-15",
+    "dateModified": "2026-02-13",
+    "description": "Komplet guide til de 10 bedste online casinoer i Danmark 2026. Sammenlign bonusser, spiludvalg, betalingsmetoder og udbetalingstider.",
+  };
 
   return (
     <>
@@ -218,7 +216,7 @@ const TopCasinoOnline = () => {
       </section>
 
       <div className="container py-8 md:py-12">
-        <AuthorMetaBar author="jonas" date="13-02-2026" readTime="12 Min." showExperience />
+        <AuthorMetaBar author="jonas" date="13-02-2026" readTime="12 Min." />
 
         <div className="mb-10 overflow-hidden rounded-xl">
           <img src={topCasinoHero} alt="Top 10 casino – guldtrofæ med casino chips" className="w-full h-auto object-cover max-h-[400px]" loading="eager" />
@@ -228,7 +226,7 @@ const TopCasinoOnline = () => {
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold">De bedste online casinoer i Danmark</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
-            Senest manuelt testet og opdateret i februar 2026. At finde det rigtige online casino i Danmark kan virke uoverskueligt med det store antal spillesteder på markedet. Hos Casinoaftaler.dk har vi gjort arbejdet for dig og samlet en grundig top 10 liste over de bedste danske online casinoer i 2026. Alle casinoer på vores liste har gyldig dansk licens fra Spillemyndigheden, tilbyder sikre{" "}
+            At finde det rigtige online casino i Danmark kan virke uoverskueligt med det store antal spillesteder på markedet. Hos Casinoaftaler.dk har vi gjort arbejdet for dig og samlet en grundig top 10 liste over de bedste danske online casinoer i 2026. Alle casinoer på vores liste har gyldig dansk licens fra Spillemyndigheden, tilbyder sikre{" "}
             <Link to="/betalingsmetoder" className={linkClass}>betalingsmetoder</Link> og har gennemsigtige bonusvilkår.
           </p>
           <p className="mb-4 text-muted-foreground leading-relaxed">
@@ -241,8 +239,6 @@ const TopCasinoOnline = () => {
             <Link to="/velkomstbonus" className={linkClass}>velkomstbonus guide</Link> for at lære mere om bonustyper.
           </p>
         </section>
-
-        <ExperienceSection />
 
         {/* Top 10 Casino List */}
         <section className="mb-12">

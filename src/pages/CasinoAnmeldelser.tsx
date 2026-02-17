@@ -3,8 +3,7 @@ import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { AuthorBio } from "@/components/AuthorBio";
 import { FAQSection } from "@/components/FAQSection";
 import { SEO } from "@/components/SEO";
-import { buildFaqSchema, buildArticleSchema, SITE_URL } from "@/lib/seo";
-import { ExperienceSection } from "@/components/ExperienceSection";
+import { buildFaqSchema } from "@/lib/seo";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
@@ -111,17 +110,6 @@ const faqs = [
 const linkClass = "text-primary underline hover:text-primary/80";
 
 const faqJsonLd = buildFaqSchema(faqs);
-const articleSchemaAnmeldelser = buildArticleSchema({
-  headline: "Casino Anmeldelser 2026 – Ærlige & Dybdegående Reviews",
-  description: "Læs vores dybdegående casino anmeldelser af de bedste danske online casinoer.",
-  url: `${SITE_URL}/casino-anmeldelser`,
-  datePublished: "2026-02-15",
-  dateModified: "2026-02-15",
-  authorName: "Jonas",
-  authorUrl: `${SITE_URL}/forfatter/jonas`,
-  reviewerName: "Kevin",
-  reviewerUrl: `${SITE_URL}/forfatter/kevin`,
-});
 
 const breadcrumbJsonLd = {
   "@context": "https://schema.org",
@@ -170,7 +158,7 @@ const CasinoAnmeldelser = () => {
       <SEO
         title="Casino Anmeldelser 2026 – Ærlige & Dybdegående Reviews | Casinoaftaler"
         description="Læs vores dybdegående casino anmeldelser af de bedste danske online casinoer. Uafhængige reviews med fokus på bonusvilkår, spiludvalg, betalingsmetoder og sikkerhed. Opdateret 2026."
-        jsonLd={[articleSchemaAnmeldelser, faqJsonLd, breadcrumbJsonLd]}
+        jsonLd={[faqJsonLd, breadcrumbJsonLd]}
       />
 
       {/* Hero Section */}
@@ -203,7 +191,7 @@ const CasinoAnmeldelser = () => {
       </section>
 
       <div className="container py-8 md:py-12">
-        <AuthorMetaBar author="jonas" date="14-02-2026" readTime="18 Min." showExperience />
+        <AuthorMetaBar author="jonas" date="14-02-2026" readTime="18 Min." />
 
         <div className="mb-10 overflow-hidden rounded-xl">
           <img src={casinoAnmeldelserHero} alt="Casino anmeldelser – dokumenter og ratings" className="w-full h-auto object-cover max-h-[400px]" loading="eager" />
@@ -215,7 +203,7 @@ const CasinoAnmeldelser = () => {
             Sådan finder du det bedste online casino i Danmark
           </h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
-            Senest manuelt testet og opdateret i februar 2026. At vælge det rigtige online casino kan virke overvældende. Med et stigende antal{" "}
+            At vælge det rigtige online casino kan virke overvældende. Med et stigende antal{" "}
             <Link to="/nye-casinoer" className={linkClass}>nye casinoer</Link> på det danske marked er det vigtigere end nogensinde at have adgang til grundige, uafhængige anmeldelser. Hos Casinoaftaler gennemgår vi hvert casino minutiøst – fra{" "}
             <Link to="/casino-bonus" className={linkClass}>casinobonusser</Link> og{" "}
             <Link to="/omsaetningskrav" className={linkClass}>omsætningskrav</Link> til{" "}
@@ -234,8 +222,6 @@ const CasinoAnmeldelser = () => {
             <Link to="/bonus-uden-indbetaling" className={linkClass}>bonus uden indbetaling</Link>, har vi en anmeldelse, der hjælper dig med at finde det perfekte match.
           </p>
         </section>
-
-        <ExperienceSection />
 
         {/* Casino Cards from DB */}
         <section className="mb-12">
