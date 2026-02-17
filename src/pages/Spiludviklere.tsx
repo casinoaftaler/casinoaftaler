@@ -832,7 +832,7 @@ const Spiludviklere = () => {
         {/* Summary */}
         <section className="mb-12">
           <h2 className="mb-6 text-3xl font-bold">
-            Opsummering
+            Det vigtigste om spiludviklere
           </h2>
           <div className="space-y-3">
             {[
