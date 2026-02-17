@@ -29,7 +29,7 @@ const faqs: { question: string; answer: ReactNode }[] = [
 
 const SpilForSjovGuide = () => {
   const articleSchema = buildArticleSchema({ headline: "Spil Casino for Sjov 2026 – Gratis Casinospil i Danmark", description: "Guide til gratis casinospil i Danmark 2026.", url: `${SITE_URL}/casinoer/spil-casino-for-sjov`, datePublished: "2026-02-01", dateModified: "2026-02-15" });
-  const faqSchema = buildFaqSchema(faqs.map(f => ({ question: f.question, answer: typeof f.answer === "string" ? f.answer : f.question })));
+  const faqSchema = buildFaqSchema(faqs);
 
   return (
     <>

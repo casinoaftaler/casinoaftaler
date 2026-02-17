@@ -92,10 +92,7 @@ const HurtigUdbetalingGuide = () => {
     dateModified: "2026-02-15",
   });
 
-  const faqSchema = buildFaqSchema(faqs.map(f => ({
-    question: f.question,
-    answer: typeof f.answer === "string" ? f.answer : f.question,
-  })));
+  const faqSchema = buildFaqSchema(faqs);
 
   return (
     <>

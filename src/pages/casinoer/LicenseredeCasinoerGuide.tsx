@@ -29,7 +29,7 @@ const faqs: { question: string; answer: ReactNode }[] = [
 
 const LicenseredeCasinoerGuide = () => {
   const articleSchema = buildArticleSchema({ headline: "Licenserede Casinoer i Danmark 2026 – Din Komplette Guide", description: "Alt om licenserede danske casinoer, Spillemyndigheden og spillerbeskyttelse.", url: `${SITE_URL}/licenserede-casinoer`, datePublished: "2026-02-01", dateModified: "2026-02-15" });
-  const faqSchema = buildFaqSchema(faqs.map(f => ({ question: f.question, answer: typeof f.answer === "string" ? f.answer : f.question })));
+  const faqSchema = buildFaqSchema(faqs);
 
   return (
     <>

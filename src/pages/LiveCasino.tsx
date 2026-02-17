@@ -6,6 +6,7 @@ import { FAQSection } from "@/components/FAQSection";
 import liveCasinoHero from "@/assets/heroes/live-casino-hero.jpg";
 import { SEO } from "@/components/SEO";
 import { CasinoCard } from "@/components/CasinoCard";
+import { InlineCasinoCards } from "@/components/InlineCasinoCards";
 import { useCasinos } from "@/hooks/useCasinos";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -785,6 +786,8 @@ const LiveCasino = () => {
             for at finde de bedste tilbud til live casino-spillere.
           </p>
         </section>
+
+        <InlineCasinoCards title="Bedste casinoer med live casino" count={4} />
 
         <AuthorBio />
 

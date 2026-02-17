@@ -31,7 +31,7 @@ const faqs: { question: string; answer: ReactNode }[] = [
 
 const CryptoCasinoGuide = () => {
   const articleSchema = buildArticleSchema({ headline: "Crypto Casino 2026 – Guide til Kryptovaluta og Online Casino", description: "Alt om crypto casinoer i Danmark 2026. Bitcoin, Ethereum og blockchain-baseret gambling.", url: `${SITE_URL}/casinoer/crypto-casino`, datePublished: "2026-02-01", dateModified: "2026-02-15" });
-  const faqSchema = buildFaqSchema(faqs.map(f => ({ question: f.question, answer: typeof f.answer === "string" ? f.answer : f.question })));
+  const faqSchema = buildFaqSchema(faqs);
 
   return (
     <>

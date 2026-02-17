@@ -33,7 +33,7 @@ const faqs: { question: string; answer: ReactNode }[] = [
 
 const NyeCasinoerMitID = () => {
   const articleSchema = buildArticleSchema({ headline: "Nye Casinoer med MitID – Sikker Verifikation 2026", description: "Nye casinoer med hurtig MitID-verifikation. Opret konto på under 2 minutter hos nye danske spillesteder.", url: `${SITE_URL}/nye-casinoer/mitid`, datePublished: "2026-02-05", dateModified: "2026-02-16", authorName: "Kevin", authorUrl: `${SITE_URL}/forfatter/kevin` });
-  const faqSchema = buildFaqSchema(faqs.map(f => ({ question: f.question, answer: typeof f.answer === "string" ? f.answer : f.question })));
+  const faqSchema = buildFaqSchema(faqs);
 
   return (
     <>

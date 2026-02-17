@@ -29,7 +29,7 @@ const faqs: { question: string; answer: ReactNode }[] = [
 
 const CasinoOgSkatGuide = () => {
   const articleSchema = buildArticleSchema({ headline: "Casino og Skat i Danmark 2026 – Komplet Skatteguide", description: "Alt om skat og casinogevinster i Danmark 2026.", url: `${SITE_URL}/casinoer/casino-og-skat`, datePublished: "2026-02-01", dateModified: "2026-02-15" });
-  const faqSchema = buildFaqSchema(faqs.map(f => ({ question: f.question, answer: typeof f.answer === "string" ? f.answer : f.question })));
+  const faqSchema = buildFaqSchema(faqs);
 
   return (
     <>

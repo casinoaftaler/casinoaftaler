@@ -1,5 +1,6 @@
 import React from "react";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
+import { AuthorBio } from "@/components/AuthorBio";
 import { InlineCasinoCards } from "@/components/InlineCasinoCards";
 import { Link } from "react-router-dom";
 import { FAQSection } from "@/components/FAQSection";
@@ -727,6 +728,8 @@ const StickyBonus = () => {
             ))}
           </div>
         </section>
+
+        <AuthorBio />
 
         <Separator className="my-10" />
 

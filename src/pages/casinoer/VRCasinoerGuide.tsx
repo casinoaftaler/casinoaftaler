@@ -29,7 +29,7 @@ const faqs: { question: string; answer: ReactNode }[] = [
 
 const VRCasinoerGuide = () => {
   const articleSchema = buildArticleSchema({ headline: "VR Casinoer 2026 – Virtual Reality Gambling i Danmark", description: "Komplet guide til VR casinoer i Danmark 2026.", url: `${SITE_URL}/casinoer/vr-casinoer`, datePublished: "2026-02-01", dateModified: "2026-02-15" });
-  const faqSchema = buildFaqSchema(faqs.map(f => ({ question: f.question, answer: typeof f.answer === "string" ? f.answer : f.question })));
+  const faqSchema = buildFaqSchema(faqs);
 
   return (
     <>

@@ -10,7 +10,7 @@ import { Button } from "@/components/ui/button";
 import { RelatedGuides } from "@/components/RelatedGuides";
 import { InlineCasinoCards } from "@/components/InlineCasinoCards";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
-import { buildArticleSchema } from "@/lib/seo";
+import { buildArticleSchema, buildFaqSchema } from "@/lib/seo";
 import { QuickFactsProviders } from "@/components/QuickFactsProviders";
 import { CasinoReviewHero } from "@/components/CasinoReviewHero";
 import type { ReactNode } from "react";
@@ -28,7 +28,7 @@ const VideoslotsAnmeldelse = () => {
   const { data: siteSettings } = useSiteSettings();
   const heroBackgroundImage = siteSettings?.hero_background_image;
   const articleSchema = buildArticleSchema({ headline: "Videoslots Casino Anmeldelse 2026 – 5.000+ Spil & Battle of Slots", description: "Komplet anmeldelse af Videoslots Casino. Verdens største spiludvalg med 5.000+ titler, Battle of Slots og dansk licens.", url: "https://casinoaftaler.dk/casino-anmeldelser/videoslots", datePublished: "2026-02-15", dateModified: "2026-02-15", authorName: "Jonas", authorUrl: "https://casinoaftaler.dk/forfatter/jonas" });
-  const faqJsonLd = { "@context": "https://schema.org", "@type": "FAQPage", mainEntity: faqs.map((f) => ({ "@type": "Question", name: f.question, acceptedAnswer: { "@type": "Answer", text: typeof f.answer === "string" ? f.answer : f.question } })) };
+  const faqJsonLd = buildFaqSchema(faqs);
   const reviewJsonLd = { "@context": "https://schema.org", "@type": "Review", itemReviewed: { "@type": "Organization", name: "Videoslots Casino", url: "https://www.videoslots.com/da/" }, author: { "@type": "Organization", name: "Casinoaftaler" }, reviewRating: { "@type": "Rating", ratingValue: "4.3", bestRating: "5" }, reviewBody: "Videoslots Casino har det største spiludvalg på det danske marked med over 5.000 titler og det unikke Battle of Slots-turneringssystem." };
   return (
     <>

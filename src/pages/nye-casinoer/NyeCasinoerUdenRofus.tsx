@@ -5,6 +5,7 @@ import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { AuthorBio } from "@/components/AuthorBio";
 import { FAQSection } from "@/components/FAQSection";
 import { RelatedGuides } from "@/components/RelatedGuides";
+import { InlineCasinoCards } from "@/components/InlineCasinoCards";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -76,7 +77,7 @@ const NyeCasinoerUdenRofus = () => {
     authorUrl: `${SITE_URL}/forfatter/kevin`,
   });
 
-  const faqSchema = buildFaqSchema(faqs.map(f => ({ question: f.question, answer: typeof f.answer === "string" ? f.answer : f.question })));
+  const faqSchema = buildFaqSchema(faqs);
 
   return (
     <>
@@ -244,6 +245,8 @@ const NyeCasinoerUdenRofus = () => {
             ))}
           </div>
         </section>
+
+        <InlineCasinoCards title="Licenserede alternativer vi anbefaler" count={4} />
 
         <AuthorBio author="kevin" />
         <RelatedGuides currentPath="/nye-casinoer/uden-rofus" />
