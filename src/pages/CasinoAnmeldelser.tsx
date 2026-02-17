@@ -203,8 +203,8 @@ const CasinoAnmeldelser = () => {
             Sådan finder du det bedste online casino i Danmark
           </h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
-            At vælge det rigtige online casino kan virke overvældende. Med et stigende antal{" "}
-            <Link to="/nye-casinoer" className={linkClass}>nye casinoer</Link> på det danske marked er det vigtigere end nogensinde at have adgang til grundige, uafhængige anmeldelser. Hos Casinoaftaler gennemgår vi hvert casino minutiøst – fra{" "}
+            Med et stigende antal{" "}
+            <Link to="/nye-casinoer" className={linkClass}>nye casinoer</Link> på det danske marked er uafhængige anmeldelser vigtigere end nogensinde. Vores testteam gennemgår hvert casino minutiøst – fra{" "}
             <Link to="/casino-bonus" className={linkClass}>casinobonusser</Link> og{" "}
             <Link to="/omsaetningskrav" className={linkClass}>omsætningskrav</Link> til{" "}
             <Link to="/betalingsmetoder" className={linkClass}>betalingsmetoder</Link>,{" "}

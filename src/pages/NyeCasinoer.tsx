@@ -195,13 +195,9 @@ const NyeCasinoer = () => {
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold">Overblik over nye casinoer</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
-            Nye casinoer dukker jævnligt op på det danske marked, og det kan være
-            svært at bevare overblikket. Hos Casinoaftaler.dk gennemgår vi hvert nyt
-            spillested grundigt – fra{" "}
-            <Link to="/velkomstbonus" className={linkClass}>velkomstbonus</Link> og spiludvalg til{" "}
-            <Link to="/betalingsmetoder" className={linkClass}>betalingsmetoder</Link>, behandlingstider og kundeservice. Alle casinoer på
-            vores liste har dansk licens fra Spillemyndigheden, SSL-kryptering og
-            overholder gældende lovgivning.
+            Det danske casinomarked vokser hurtigt, og nye spillesider lanceres løbende med friske{" "}
+            <Link to="/velkomstbonus" className={linkClass}>velkomstbonusser</Link>, moderne spiludvalg og hurtige{" "}
+            <Link to="/betalingsmetoder" className={linkClass}>betalingsmetoder</Link>. Men ikke alle nye casinoer lever op til standarden – derfor gennemgår vi hvert spillested grundigt, fra behandlingstider og kundeservice til licensforhold. Kun casinoer med gyldig dansk licens fra Spillemyndigheden, SSL-kryptering og fuld lovoverholdelse når vores liste.
           </p>
           <p className="mb-4 text-muted-foreground leading-relaxed">
             Vores mål er at give dig et ærligt og pålideligt billede, så du kan tage

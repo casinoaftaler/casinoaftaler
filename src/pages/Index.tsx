@@ -501,7 +501,7 @@ const Index = () => {
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold">Gennemsigtighed og Troværdighed</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
-            Hos Casinoaftaler tror vi på fuld gennemsigtighed. Vi er en gratis ressource, der finansieres gennem affiliate-partnerskaber med nogle af de online casinoer, vi anmelder. Når du klikker på et link og registrerer dig, modtager vi en provision – det koster dig aldrig ekstra og påvirker ikke vores vurderinger.
+            Fuld gennemsigtighed er grundlaget for alt, vi gør. Sitet er en gratis ressource, finansieret gennem affiliate-partnerskaber med udvalgte online casinoer. Når du klikker på et link og registrerer dig, modtager vi en provision – det koster dig aldrig ekstra og påvirker ikke vores vurderinger.
           </p>
           <p className="mb-4 text-muted-foreground leading-relaxed">
             Vores team tester hvert online casino grundigt baseret på objektive kriterier. Vi samarbejder kun med licenserede og pålidelige spillesteder, der overholder standarder for{" "}
@@ -527,9 +527,9 @@ const Index = () => {
             </CardHeader>
             <CardContent className="space-y-3">
               <p className="text-muted-foreground leading-relaxed">
-                Online casino skal altid være underholdning – ikke en kilde til stress eller økonomiske problemer. Hos Casinoaftaler er vi engagerede i at fremme{" "}
+                Online casino skal altid være underholdning – ikke en kilde til stress eller økonomiske problemer. Derfor står{" "}
                 <Link to="/ansvarligt-spil" className="text-primary hover:underline font-medium">ansvarligt spil</Link>
-                . Vi opfordrer alle spillere til at sætte grænser, holde pauser og aldrig spille for mere, end de har råd til at tabe.
+                {" "}centralt i alle vores anmeldelser og guides. Vi opfordrer alle spillere til at sætte grænser, holde pauser og aldrig spille for mere, end de har råd til at tabe.
               </p>
               <p className="text-muted-foreground leading-relaxed">
                 Alle online casinoer på vores liste har dansk licens og tilbyder selvudelukkelse via{" "}
