@@ -3,7 +3,8 @@ import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { AuthorBio } from "@/components/AuthorBio";
 import { FAQSection } from "@/components/FAQSection";
 import { SEO } from "@/components/SEO";
-import { buildFaqSchema } from "@/lib/seo";
+import { buildFaqSchema, buildArticleSchema, SITE_URL } from "@/lib/seo";
+import { ExperienceSection } from "@/components/ExperienceSection";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
@@ -148,13 +149,24 @@ const NyeCasinoer = () => {
   });
 
   const faqJsonLd = buildFaqSchema(nyeCasinoerFaqs);
+  const articleSchema = buildArticleSchema({
+    headline: "Nye Casinoer i Danmark – Bedste Nye Spillesteder",
+    description: "Komplet oversigt over de bedste nye casinoer i Danmark. Sammenlign bonusser, free spins og vilkår hos nye spillesteder med dansk licens.",
+    url: `${SITE_URL}/nye-casinoer`,
+    datePublished: "2026-02-16",
+    dateModified: "2026-02-16",
+    authorName: "Jonas",
+    authorUrl: `${SITE_URL}/forfatter/jonas`,
+    reviewerName: "Kevin",
+    reviewerUrl: `${SITE_URL}/forfatter/kevin`,
+  });
 
   return (
     <>
       <SEO
         title="Nye Casinoer i Danmark – Bedste Nye Spillesteder"
         description="Komplet oversigt over de bedste nye casinoer i Danmark. Sammenlign bonusser, free spins og vilkår hos nye spillesteder med dansk licens."
-        jsonLd={faqJsonLd}
+        jsonLd={[articleSchema, faqJsonLd]}
       />
 
       {/* Hero Section */}
@@ -185,7 +197,7 @@ const NyeCasinoer = () => {
       </section>
 
       <div className="container py-8 md:py-12">
-        <AuthorMetaBar author="jonas" date="16-02-2026" readTime="12 Min." />
+        <AuthorMetaBar author="jonas" date="16-02-2026" readTime="12 Min." showExperience />
 
         <div className="mb-10 overflow-hidden rounded-xl">
           <img src={nyeCasinoerHero} alt="Nye casinoer – futuristisk casino med neonlys" className="w-full h-auto object-cover max-h-[400px]" loading="eager" />
@@ -195,7 +207,7 @@ const NyeCasinoer = () => {
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold">Overblik over nye casinoer</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
-            Nye casinoer dukker jævnligt op på det danske marked, og det kan være
+            Senest manuelt testet og opdateret i februar 2026. Nye casinoer dukker jævnligt op på det danske marked, og det kan være
             svært at bevare overblikket. Hos Casinoaftaler.dk gennemgår vi hvert nyt
             spillested grundigt – fra{" "}
             <Link to="/velkomstbonus" className={linkClass}>velkomstbonus</Link> og spiludvalg til{" "}
@@ -222,6 +234,8 @@ const NyeCasinoer = () => {
             </p>
           </div>
         </section>
+
+        <ExperienceSection />
 
         {/* New Casinos List */}
         <section className="mb-12">

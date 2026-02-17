@@ -63,8 +63,11 @@ export function buildArticleSchema(opts: {
   authorName?: string;
   authorUrl?: string;
   image?: string;
+  /** Optional reviewer (Person) for E-E-A-T signal */
+  reviewerName?: string;
+  reviewerUrl?: string;
 }) {
-  return {
+  const schema: Record<string, unknown> = {
     "@context": "https://schema.org",
     "@type": "Article",
     headline: opts.headline,
@@ -92,7 +95,19 @@ export function buildArticleSchema(opts: {
         height: 192,
       },
     },
+    isBasedOn: `${SITE_URL}/saadan-tester-vi-casinoer`,
+    about: "Online casino test i Danmark",
   };
+
+  if (opts.reviewerName) {
+    schema.reviewer = {
+      "@type": "Person",
+      name: opts.reviewerName,
+      url: opts.reviewerUrl || `${SITE_URL}/forfatter/jonas`,
+    };
+  }
+
+  return schema;
 }
 
 /**
