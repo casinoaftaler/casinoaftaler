@@ -13,7 +13,13 @@ const EvolutionGamingGuide = () => (
     heroImageAlt="Evolution Gaming live casino studio med professionelle dealere og avanceret streaming-teknologi"
     currentPath="/spiludviklere/evolution-gaming"
     updatedDate="17-02-2026"
-    readTime="26 Min."
+    readTime="32 Min."
+    strategicTitle="Koncern-Arkitekturen: Evolutions Opkøbs- og Dominansstrategi"
+    technicalTitle="Live Casino-Teknologien: Fra OCR til 4K-Streaming"
+    gamesTitle="Evolutions Egne Kronjuveler: Live-Titler der Skabte en Kategori"
+    licensesTitle="Børsnoteret Gennemsigtighed: Evolutions Regulatoriske Fundament"
+    prosConsTitle="Monopolets Fordele og Monopolets Pris"
+    responsibleTitle="Ansvarligt Live Casino: Session-Grænser og Realitets-Checks"
     sectionOrder={["intro", "strategic", "technical", "history", "games", "licenses", "casinos", "proscons", "providers", "responsible"]}
     introTitle="Evolution Gaming: Fra Riga-Startup til Global Casino-Koncern"
     introContent={
