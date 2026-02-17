@@ -189,8 +189,6 @@ const StickyBonus = () => {
           </p>
         </section>
 
-        <InlineCasinoCards title="Bedste casinoer med sticky bonus" count={4} />
-
         <Separator className="my-10" />
 
         {/* Sådan fungerer det */}
