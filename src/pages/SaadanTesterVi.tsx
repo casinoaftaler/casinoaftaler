@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { FAQSection } from "@/components/FAQSection";
 import { SEO } from "@/components/SEO";
+import { buildFaqSchema } from "@/lib/seo";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
@@ -146,18 +147,7 @@ const faqs = [
   },
 ];
 
-const faqJsonLd = {
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  mainEntity: faqs.map((f) => ({
-    "@type": "Question",
-    name: f.question,
-    acceptedAnswer: {
-      "@type": "Answer",
-      text: typeof f.answer === "string" ? f.answer : "Jonas er grundlæggeren af Casinoaftaler.dk og har over 4 års erfaring som casino-streamer på Twitch. Han tester personligt alle anmeldte casinoer.",
-    },
-  })),
-};
+const faqJsonLd = buildFaqSchema(faqs);
 
 const webPageJsonLd = {
   "@context": "https://schema.org",

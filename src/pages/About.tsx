@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { FAQSection } from "@/components/FAQSection";
 import { SEO } from "@/components/SEO";
+import { buildFaqSchema } from "@/lib/seo";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
@@ -152,17 +153,7 @@ const About = () => {
     },
   ];
 
-  const faqJsonLd = {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    mainEntity: [
-      { "@type": "Question", name: "Er Casinoaftaler.dk uafhængig?", acceptedAnswer: { "@type": "Answer", text: "Ja, alle vores anmeldelser og vurderinger er baseret på vores ærlige vurdering. Vi modtager muligvis provision fra casinoer, men dette påvirker aldrig vores vurderinger eller anbefalinger." } },
-      { "@type": "Question", name: "Hvordan vælger I hvilke casinoer der anmeldes?", acceptedAnswer: { "@type": "Answer", text: "Vi anmelder udelukkende casinoer med gyldig dansk licens fra Spillemyndigheden. Vi fokuserer på casinoer, der tilbyder konkurrencedygtige bonusser, bredt spiludbud og god kundeservice." } },
-      { "@type": "Question", name: "Hvor ofte opdateres anmeldelserne?", acceptedAnswer: { "@type": "Answer", text: "Vi gennemgår og opdaterer vores anmeldelser løbende for at afspejle ændringer i bonusvilkår, nye kampagner og eventuel spillerfeedback. De fleste anmeldelser opdateres mindst én gang om måneden." } },
-      { "@type": "Question", name: "Kan jeg stole på jeres bonusvurderinger?", acceptedAnswer: { "@type": "Answer", text: "Vi analyserer grundigt alle bonusvilkår, herunder omsætningskrav, tidsfrister og spilbidrag. Vi fremhæver både fordele og ulemper, så du kan træffe en informeret beslutning." } },
-      { "@type": "Question", name: "Hvem kan kontakte jer?", acceptedAnswer: { "@type": "Answer", text: "Vores kontaktside er primært beregnet til casino partnerskaber, affiliate henvendelser og presseforespørgsler. For generel information kan du læse vores guides og anmeldelser." } },
-    ],
-  };
+  const faqJsonLd = buildFaqSchema(aboutFaqs);
 
   return (
     <>

@@ -3,6 +3,7 @@ import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { FAQSection } from "@/components/FAQSection";
 import { SEO } from "@/components/SEO";
 import { buildFaqSchema } from "@/lib/seo";
+import { AuthorBio } from "@/components/AuthorBio";
 import { Separator } from "@/components/ui/separator";
 import { RelatedGuides } from "@/components/RelatedGuides";
 import { InlineCasinoCards } from "@/components/InlineCasinoCards";
@@ -214,6 +215,8 @@ const CrapsGuide = () => {
         <RelatedGuides currentPath="/casinospil/craps" />
 
         <FAQSection faqs={crapsFaqs} />
+
+        <AuthorBio author="jonas" showCommunity={false} />
       </div>
     </>
   );

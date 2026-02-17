@@ -3,6 +3,7 @@ import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { AuthorBio } from "@/components/AuthorBio";
 import { FAQSection } from "@/components/FAQSection";
 import { SEO } from "@/components/SEO";
+import { buildFaqSchema } from "@/lib/seo";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
 import betalingsmetoderHero from "@/assets/heroes/betalingsmetoder-hero.jpg";
 import { RelatedGuides } from "@/components/RelatedGuides";
@@ -124,18 +125,7 @@ const Betalingsmetoder = () => {
     },
   ];
 
-  const faqJsonLd = {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    mainEntity: [
-      { "@type": "Question", name: "Kan jeg bruge MobilePay på alle danske casinoer?", acceptedAnswer: { "@type": "Answer", text: "Nej, MobilePay er ikke tilgængeligt på alle danske casinoer, men det bliver stadig mere populært." } },
-      { "@type": "Question", name: "Hvilken betalingsmetode har de hurtigste udbetalinger?", acceptedAnswer: { "@type": "Answer", text: "E-wallets som PayPal, Skrill og Trustly er blandt de hurtigste. Transaktioner behandles ofte inden for få timer." } },
-      { "@type": "Question", name: "Er der indbetalingsgrænser på danske casinoer?", acceptedAnswer: { "@type": "Answer", text: "Ja, alle licenserede danske casinoer har indbetalingsgrænser for at fremme ansvarligt spil." } },
-      { "@type": "Question", name: "Skal jeg verificere min betalingsmetode?", acceptedAnswer: { "@type": "Answer", text: "Ja, danske casinoer er underlagt Spillemyndighedens regler, og du skal verificere din betalingsmetode for at kunne hæve penge." } },
-      { "@type": "Question", name: "Er kryptovaluta tilladt på danske casinoer?", acceptedAnswer: { "@type": "Answer", text: "Nej, ifølge Spillemyndighedens regler må danske licenserede casinoer ikke acceptere kryptovalutaer." } },
-      { "@type": "Question", name: "Hvad er forskellen på e-wallets og bankoverførsler?", acceptedAnswer: { "@type": "Answer", text: "E-wallets som PayPal og Skrill fungerer som digitale tegnebøger med hurtige transaktioner, mens bankoverførsler kan tage 2–5 hverdage." } },
-    ],
-  };
+  const faqJsonLd = buildFaqSchema(betalingsmetoderFaqs);
 
   return (
     <>

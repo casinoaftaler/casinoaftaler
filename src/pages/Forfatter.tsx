@@ -2,6 +2,7 @@ import { useState } from "react";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { Link } from "react-router-dom";
 import { SEO } from "@/components/SEO";
+import { buildFaqSchema } from "@/lib/seo";
 import { FAQSection } from "@/components/FAQSection";
 import { CasinoCard } from "@/components/CasinoCard";
 import { useCasinos } from "@/hooks/useCasinos";
@@ -111,18 +112,7 @@ export default function Forfatter() {
     gameProviders: casino.game_providers ?? [],
   });
 
-  const faqJsonLd = {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    mainEntity: faqs.map((faq) => ({
-      "@type": "Question",
-      name: faq.question,
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: faq.answer,
-      },
-    })),
-  };
+  const faqJsonLd = buildFaqSchema(faqs);
 
   return (
     <>
