@@ -1,5 +1,6 @@
 import React from "react";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
+import { AuthorBio } from "@/components/AuthorBio";
 import { Scale, Shield, FileCheck, AlertTriangle, Globe, BookOpen, User, CalendarDays, Clock, CheckCircle, Landmark, Gavel, Lock, Eye, Users, Phone, Ban } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -451,6 +452,8 @@ const Spillemyndigheden = () => {
             </CardContent>
           </Card>
         </section>
+
+        <AuthorBio author="kevin" />
 
         <Separator className="my-10" />
 

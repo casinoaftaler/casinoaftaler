@@ -5,6 +5,7 @@ import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { AuthorBio } from "@/components/AuthorBio";
 import { FAQSection } from "@/components/FAQSection";
 import { RelatedGuides } from "@/components/RelatedGuides";
+import { InlineCasinoCards } from "@/components/InlineCasinoCards";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -41,7 +42,7 @@ const faqs: { question: string; answer: ReactNode }[] = [
 
 const NyeVsEtablerede = () => {
   const articleSchema = buildArticleSchema({ headline: "Nye Casinoer vs. Etablerede – Sammenligning 2026", description: "Detaljeret sammenligning af nye og etablerede casinoer i Danmark. Fordele, ulemper og hvad der passer bedst til dig.", url: `${SITE_URL}/nye-casinoer/vs-etablerede`, datePublished: "2026-02-12", dateModified: "2026-02-16", authorName: "Kevin", authorUrl: `${SITE_URL}/forfatter/kevin` });
-  const faqSchema = buildFaqSchema(faqs.map(f => ({ question: f.question, answer: typeof f.answer === "string" ? f.answer : f.question })));
+  const faqSchema = buildFaqSchema(faqs);
 
   return (
     <>
@@ -200,6 +201,8 @@ const NyeVsEtablerede = () => {
             Se vores <Link to="/top-10-casino-online" className={linkClass}>Top 10 Casino Online</Link> for de bedste casinoer uanset kategori, eller udforsk alle <Link to="/nye-casinoer" className={linkClass}>nye casinoer</Link> for de seneste tilskud til det danske marked.
           </p>
         </section>
+
+        <InlineCasinoCards title="Anbefalede casinoer til danske spillere" count={4} />
 
         <Separator className="my-10" />
 

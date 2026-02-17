@@ -93,9 +93,26 @@ export function buildArticleSchema(opts: {
 }
 
 /**
- * Generate FAQ JSON-LD schema from question/answer pairs.
+ * Extract plain text from a React node for use in structured data.
+ * Handles strings, numbers, arrays, and React elements with children.
  */
-export function buildFaqSchema(faqs: { question: string; answer: string }[]) {
+export function reactNodeToText(node: unknown): string {
+  if (node == null || typeof node === "boolean") return "";
+  if (typeof node === "string") return node;
+  if (typeof node === "number") return String(node);
+  if (Array.isArray(node)) return node.map(reactNodeToText).join("");
+  if (typeof node === "object" && node !== null && "props" in node) {
+    const props = (node as { props?: { children?: unknown } }).props;
+    return reactNodeToText(props?.children);
+  }
+  return "";
+}
+
+/**
+ * Generate FAQ JSON-LD schema from question/answer pairs.
+ * Accepts both string and ReactNode answers – ReactNode is auto-converted to plain text.
+ */
+export function buildFaqSchema(faqs: { question: string; answer: unknown }[]) {
   return {
     "@context": "https://schema.org",
     "@type": "FAQPage",
@@ -104,7 +121,7 @@ export function buildFaqSchema(faqs: { question: string; answer: string }[]) {
       name: faq.question,
       acceptedAnswer: {
         "@type": "Answer",
-        text: faq.answer,
+        text: typeof faq.answer === "string" ? faq.answer : reactNodeToText(faq.answer),
       },
     })),
   };

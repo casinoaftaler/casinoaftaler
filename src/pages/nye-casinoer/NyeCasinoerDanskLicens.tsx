@@ -77,7 +77,7 @@ const NyeCasinoerDanskLicens = () => {
     authorUrl: `${SITE_URL}/forfatter/kevin`,
   });
 
-  const faqSchema = buildFaqSchema(faqs.map(f => ({ question: f.question, answer: typeof f.answer === "string" ? f.answer : f.question })));
+  const faqSchema = buildFaqSchema(faqs);
 
   return (
     <>

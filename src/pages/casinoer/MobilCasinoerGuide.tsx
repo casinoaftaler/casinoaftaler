@@ -31,7 +31,7 @@ const faqs: { question: string; answer: ReactNode }[] = [
 
 const MobilCasinoerGuide = () => {
   const articleSchema = buildArticleSchema({ headline: "Mobil Casinoer 2026 – Spil Casino på Din Smartphone", description: "Komplet guide til mobil casino i Danmark 2026.", url: `${SITE_URL}/casinoer/mobil-casinoer`, datePublished: "2026-02-01", dateModified: "2026-02-15" });
-  const faqSchema = buildFaqSchema(faqs.map(f => ({ question: f.question, answer: typeof f.answer === "string" ? f.answer : f.question })));
+  const faqSchema = buildFaqSchema(faqs);
 
   return (
     <>

@@ -10,7 +10,7 @@ import { Button } from "@/components/ui/button";
 import { RelatedGuides } from "@/components/RelatedGuides";
 import { InlineCasinoCards } from "@/components/InlineCasinoCards";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
-import { buildArticleSchema } from "@/lib/seo";
+import { buildArticleSchema, buildFaqSchema } from "@/lib/seo";
 import { QuickFactsProviders } from "@/components/QuickFactsProviders";
 import { CasinoReviewHero } from "@/components/CasinoReviewHero";
 import type { ReactNode } from "react";
@@ -32,7 +32,7 @@ const LeoVegasAnmeldelse = () => {
   const { data: siteSettings } = useSiteSettings();
   const heroBackgroundImage = siteSettings?.hero_background_image;
   const articleSchema = buildArticleSchema({ headline: "LeoVegas Anmeldelse 2026 – King of Mobile Casino i Danmark", description: "Komplet anmeldelse af LeoVegas Casino. MGM-ejet mobilcasino med dansk licens, 2.500+ spil og prisbevindende mobiloplevelse.", url: "https://casinoaftaler.dk/casino-anmeldelser/leovegas", datePublished: "2026-02-15", dateModified: "2026-02-15", authorName: "Jonas", authorUrl: "https://casinoaftaler.dk/forfatter/jonas" });
-  const faqJsonLd = { "@context": "https://schema.org", "@type": "FAQPage", mainEntity: faqs.map((f) => ({ "@type": "Question", name: f.question, acceptedAnswer: { "@type": "Answer", text: typeof f.answer === "string" ? f.answer : f.question } })) };
+  const faqJsonLd = buildFaqSchema(faqs);
   const reviewJsonLd = { "@context": "https://schema.org", "@type": "Review", itemReviewed: { "@type": "Organization", name: "LeoVegas Casino", url: "https://www.leovegas.dk/" }, author: { "@type": "Organization", name: "Casinoaftaler" }, reviewRating: { "@type": "Rating", ratingValue: "4.5", bestRating: "5" }, reviewBody: "LeoVegas Casino er markedsledende inden for mobilcasino med 2.500+ spil, MGM-ejerskab og dansk licens. Prisbevindende mobiloplevelse." };
 
   return (

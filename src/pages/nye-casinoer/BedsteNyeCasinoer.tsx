@@ -48,7 +48,7 @@ const faqs: { question: string; answer: ReactNode }[] = [
 
 const BedsteNyeCasinoer = () => {
   const articleSchema = buildArticleSchema({ headline: "Bedste Nye Casinoer i Danmark 2026", description: "Vores topvalg blandt nye casinoer i Danmark 2026. Grundigt testede og rangeret efter kvalitet, bonus og sikkerhed.", url: `${SITE_URL}/nye-casinoer/bedste`, datePublished: "2026-02-10", dateModified: "2026-02-16", authorName: "Kevin", authorUrl: `${SITE_URL}/forfatter/kevin` });
-  const faqSchema = buildFaqSchema(faqs.map(f => ({ question: f.question, answer: typeof f.answer === "string" ? f.answer : f.question })));
+  const faqSchema = buildFaqSchema(faqs);
 
   return (
     <>

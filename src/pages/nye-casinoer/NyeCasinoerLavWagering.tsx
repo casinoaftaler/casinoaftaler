@@ -41,7 +41,7 @@ const faqs: { question: string; answer: ReactNode }[] = [
 
 const NyeCasinoerLavWagering = () => {
   const articleSchema = buildArticleSchema({ headline: "Nye Casinoer med Lav Wagering 2026", description: "Find nye casinoer med lave omsætningskrav. Bonusser med 1x-5x wagering og nye casinoer helt uden omsætningskrav.", url: `${SITE_URL}/nye-casinoer/lav-wagering`, datePublished: "2026-02-08", dateModified: "2026-02-16", authorName: "Kevin", authorUrl: `${SITE_URL}/forfatter/kevin` });
-  const faqSchema = buildFaqSchema(faqs.map(f => ({ question: f.question, answer: typeof f.answer === "string" ? f.answer : f.question })));
+  const faqSchema = buildFaqSchema(faqs);
 
   return (
     <>
