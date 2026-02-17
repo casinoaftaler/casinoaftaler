@@ -564,10 +564,47 @@ const OmTeamet = () => {
             Alt indhold produceres af vores team, opdateres løbende og følger dokumenterede retningslinjer
             for kvalitet og objektivitet.
           </p>
+
+          <div className="grid gap-4 md:grid-cols-3 mb-6">
+            <Card className="border-border bg-card">
+              <CardContent className="p-5">
+                <div className="flex items-center gap-2 mb-2">
+                  <Users className="h-5 w-5 text-primary" />
+                  <h3 className="font-semibold text-sm">Rollefordeling</h3>
+                </div>
+                <p className="text-sm text-muted-foreground leading-relaxed">
+                  Jonas står for anmeldelser og guides. Kevin dækker teknik, lovgivning og platformudvikling. De fungerer som hinandens faktatjekkere.
+                </p>
+              </CardContent>
+            </Card>
+            <Card className="border-border bg-card">
+              <CardContent className="p-5">
+                <div className="flex items-center gap-2 mb-2">
+                  <CheckCircle2 className="h-5 w-5 text-primary" />
+                  <h3 className="font-semibold text-sm">Faktatjek</h3>
+                </div>
+                <p className="text-sm text-muted-foreground leading-relaxed">
+                  Alle artikler gennemgås af en anden redaktør end forfatteren. Bonusvilkår verificeres manuelt mod casinoernes egne sider før publicering.
+                </p>
+              </CardContent>
+            </Card>
+            <Card className="border-border bg-card">
+              <CardContent className="p-5">
+                <div className="flex items-center gap-2 mb-2">
+                  <RefreshCw className="h-5 w-5 text-primary" />
+                  <h3 className="font-semibold text-sm">Opdateringsfrekvens</h3>
+                </div>
+                <p className="text-sm text-muted-foreground leading-relaxed">
+                  Anmeldelser gennemgås kvartalsvis. Bonusguides opdateres når vilkår ændres. Forældet indhold fjernes eller markeres tydeligt.
+                </p>
+              </CardContent>
+            </Card>
+          </div>
+
           <Link to="/redaktionel-politik">
             <Button variant="outline" size="sm">
               <BookOpen className="mr-1.5 h-4 w-4" />
-              Læs vores redaktionelle politik
+              Læs den fulde redaktionelle politik
               <ArrowRight className="ml-1.5 h-4 w-4" />
             </Button>
           </Link>
