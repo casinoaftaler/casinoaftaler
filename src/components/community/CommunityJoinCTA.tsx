@@ -7,14 +7,7 @@ export function CommunityJoinCTA() {
   return (
     <Link
       to="/auth"
-      className="community-join-gradient group block rounded-xl p-5 md:p-6 transition-all duration-300 hover:scale-[1.005] hover:-translate-y-0.5 relative overflow-hidden"
-      style={{
-        border: "1px solid rgba(139,92,246,0.3)",
-        backgroundImage:
-          "linear-gradient(135deg, hsl(260 30% 16%) 0%, hsl(250 28% 18%) 50%, hsl(220 30% 16%) 100%)",
-        backgroundSize: "200% 200%",
-        boxShadow: "0 0 20px rgba(139,92,246,0.06)",
-      }}
+      className="community-join-gradient community-panel group block rounded-xl p-5 md:p-6 transition-all duration-300 hover:scale-[1.005] hover:-translate-y-0.5 relative overflow-hidden"
     >
       {/* Ambient glow */}
       <div

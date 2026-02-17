@@ -193,12 +193,7 @@ export default function CommunityHub() {
             <EnergySweep>
               <Link
                 to="/velkomstbonus"
-                className="community-strip group block mt-6 mb-6 rounded-xl p-6"
-                style={{
-                  border: "1px solid rgba(139,92,246,0.3)",
-                  background:
-                    "linear-gradient(135deg, hsl(260 30% 16%) 0%, hsl(220 30% 16%) 100%)",
-                }}
+                className="community-strip community-panel group block mt-6 mb-6 rounded-xl p-6"
               >
                 <div className="flex flex-col sm:flex-row items-center gap-4">
                   <div className="flex items-center gap-3 flex-1">

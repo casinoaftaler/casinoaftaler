@@ -1,18 +1,11 @@
 import { Link } from "react-router-dom";
 import { ArrowRight, Zap } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import "@/styles/community-micro.css";
 
 export function CommunityConversionCard() {
   return (
-    <div
-      className="rounded-xl p-4 relative overflow-hidden"
-      style={{
-        border: "1px solid rgba(139,92,246,0.25)",
-        boxShadow: "0 0 20px rgba(139,92,246,0.06)",
-        background:
-          "linear-gradient(180deg, hsl(260 28% 15%) 0%, hsl(250 22% 12%) 100%)",
-      }}
-    >
+    <div className="community-panel-vertical rounded-xl p-4 relative overflow-hidden">
       {/* Coin illustration overlay */}
       <div
         className="absolute inset-0 pointer-events-none"
