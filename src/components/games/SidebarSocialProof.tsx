@@ -1,6 +1,7 @@
 import { useEffect, useState, useRef } from "react";
 import { Users, Dices, Trophy } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
+import "@/styles/community-micro.css";
 
 interface StatItem {
   icon: React.ReactNode;
@@ -73,11 +74,7 @@ export function SidebarSocialProof() {
 
   return (
     <div
-      className="rounded-xl p-4 overflow-hidden relative community-card"
-      style={{
-        background: "linear-gradient(180deg, hsl(260 28% 15%) 0%, hsl(250 22% 12%) 100%)",
-        border: "1px solid hsl(260 40% 30% / 0.25)",
-      }}
+      className="community-panel-vertical rounded-xl p-4 overflow-hidden relative"
     >
       {/* Subtle top glow */}
       <div
@@ -91,10 +88,7 @@ export function SidebarSocialProof() {
         {stats.map((stat, i) => (
           <li
             key={stat.label}
-            className="flex items-center gap-3 rounded-lg px-2.5 py-2 transition-all duration-300"
-            style={{
-              background: "hsl(260 30% 18% / 0.5)",
-            }}
+            className="flex items-center gap-3 rounded-lg px-2.5 py-2 transition-all duration-300 bg-muted/30"
           >
             <div
               className="flex items-center justify-center h-8 w-8 rounded-lg shrink-0"

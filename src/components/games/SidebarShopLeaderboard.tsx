@@ -4,6 +4,7 @@ import { ShoppingBag, Crown } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import "@/styles/community-micro.css";
 
 interface ShopLeaderboardEntry {
   username: string;
@@ -111,11 +112,7 @@ export function SidebarShopLeaderboard() {
   return (
     <div
       ref={containerRef}
-      className="rounded-xl p-4 overflow-hidden relative"
-      style={{
-        background: "linear-gradient(180deg, hsl(260 28% 15%) 0%, hsl(250 22% 12%) 100%)",
-        border: "1px solid hsl(260 40% 30% / 0.25)",
-      }}
+      className="community-panel-vertical rounded-xl p-4 overflow-hidden relative"
     >
       {/* Subtle top glow */}
       <div
