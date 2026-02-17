@@ -3,7 +3,7 @@ import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { AuthorBio } from "@/components/AuthorBio";
 import { Link } from "react-router-dom";
 import { SEO } from "@/components/SEO";
-import { buildFaqSchema } from "@/lib/seo";
+import { buildFaqSchema, SITE_URL } from "@/lib/seo";
 import { FAQSection } from "@/components/FAQSection";
 import { RelatedGuides } from "@/components/RelatedGuides";
 import { CasinoCard } from "@/components/CasinoCard";
@@ -12,6 +12,12 @@ import { useSiteSettings } from "@/hooks/useSiteSettings";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
 import {
   User,
   CalendarDays,
@@ -30,6 +36,10 @@ import {
   Play,
   Scale,
   ArrowRight,
+  CheckCircle2,
+  BadgeCheck,
+  Clock,
+  FileText,
 } from "lucide-react";
 import jonasImage from "@/assets/jonas-forfatter.png";
 
@@ -73,6 +83,56 @@ const faqs = [
   },
 ];
 
+/** Static list of Jonas' articles for the "Artikler skrevet af Jonas" section */
+const jonasArticles = [
+  { title: "Bedste Casino Bonus i Danmark 2026", path: "/casino-bonus", category: "Guide", date: "17-02-2026", readTime: "12 min.", excerpt: "Komplet overblik over de bedste casino bonusser hos danske online casinoer." },
+  { title: "Nye Casinoer i Danmark 2026", path: "/nye-casinoer", category: "Guide", date: "17-02-2026", readTime: "10 min.", excerpt: "Vi tester og anmelder de nyeste danske online casinoer løbende." },
+  { title: "SpilDanskNu Anmeldelse", path: "/spildansknu-anmeldelse", category: "Anmeldelse", date: "17-02-2026", readTime: "8 min.", excerpt: "Dybdegående anmeldelse af SpilDanskNu med bonus, spil og brugeroplevelse." },
+  { title: "bet365 Casino Anmeldelse", path: "/casino-anmeldelser/bet365", category: "Anmeldelse", date: "17-02-2026", readTime: "14 min.", excerpt: "Er bet365 det bedste allround casino i Danmark? Vi tester alt." },
+  { title: "Omsætningskrav Forklaret", path: "/omsaetningskrav", category: "Guide", date: "17-02-2026", readTime: "9 min.", excerpt: "Forstå omsætningskrav og lær at vælge bonusser med lave krav." },
+  { title: "No Sticky Bonus Guide", path: "/no-sticky-bonus", category: "Guide", date: "17-02-2026", readTime: "7 min.", excerpt: "Alt om no-sticky bonusser og hvorfor de er populære blandt spillere." },
+  { title: "Velkomstbonus Guide 2026", path: "/velkomstbonus", category: "Guide", date: "17-02-2026", readTime: "8 min.", excerpt: "Find de bedste velkomstbonusser og forstå vilkår og betingelser." },
+  { title: "Live Casino Guide", path: "/live-casino", category: "Guide", date: "17-02-2026", readTime: "10 min.", excerpt: "Oplev live dealers og ægte casinostemning fra din sofa." },
+];
+
+const expertiseItems = [
+  { icon: CalendarDays, label: "4+ års erfaring med online casino" },
+  { icon: CheckCircle2, label: "Testet 50+ danske casinoer" },
+  { icon: FileText, label: "Speciale i bonusvilkår & omsætningskrav" },
+  { icon: Tv, label: "Aktiv Twitch-streamer siden 2021" },
+  { icon: ShieldCheck, label: "Fokus på ansvarligt spil" },
+];
+
+/** Person JSON-LD schema for Jonas */
+const personSchema = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  name: "Jonas Theill Adsersen",
+  alternateName: "Fedesvinsejer",
+  url: `${SITE_URL}/forfatter/jonas`,
+  image: "https://zhpbqqhtgnblaugrqhqi.supabase.co/storage/v1/object/public/casino-logos/jonas-forfatter.png",
+  jobTitle: "Founder & Casino Anmelder",
+  worksFor: {
+    "@type": "Organization",
+    name: "Casinoaftaler.dk",
+    url: SITE_URL,
+  },
+  sameAs: [
+    "https://www.twitch.tv/fedesvinsejer",
+    "https://www.youtube.com/@casinoaftaler",
+    "https://www.instagram.com/casinoaftaler",
+  ],
+  knowsAbout: [
+    "Online Casino",
+    "Casino Bonus",
+    "Ansvarligt Spil",
+    "Spillemaskiner",
+    "Live Casino",
+  ],
+  description:
+    "Jonas er grundlæggeren af Casinoaftaler.dk og en af Danmarks mest engagerende casino-streamere med over 4 års erfaring.",
+};
+
 
 export default function Forfatter() {
   const { data: siteSettings } = useSiteSettings();
@@ -115,7 +175,7 @@ export default function Forfatter() {
       <SEO
         title="Jonas – Forfatter & Grundlægger | Casinoaftaler.dk"
         description="Mød Jonas, grundlæggeren af Casinoaftaler.dk og casino-streamer på Twitch. Læs om hans baggrund, streamingstil og passion for casinospil."
-        jsonLd={faqJsonLd}
+        jsonLd={[faqJsonLd, personSchema]}
       />
 
       {/* Hero */}
@@ -145,9 +205,25 @@ export default function Forfatter() {
                 Grundlægger
               </Badge>
             </div>
-            <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">
-              Jonas – Fedesvinsejer
-            </h1>
+            <div className="mb-4 flex items-center justify-center gap-3">
+              <h1 className="text-4xl font-bold tracking-tight md:text-5xl">
+                Jonas – Fedesvinsejer
+              </h1>
+              {/* 4️⃣ Verificeret profil badge */}
+              <TooltipProvider>
+                <Tooltip>
+                  <TooltipTrigger asChild>
+                    <span className="inline-flex items-center gap-1.5 rounded-full bg-primary/20 px-3 py-1 text-sm font-medium text-primary-foreground/90 border border-primary/30 cursor-default">
+                      <BadgeCheck className="h-4 w-4" />
+                      Verificeret ekspert
+                    </span>
+                  </TooltipTrigger>
+                  <TooltipContent side="bottom" className="max-w-xs text-center">
+                    Jonas er grundlægger af Casinoaftaler.dk og ansvarlig for test og anmeldelser.
+                  </TooltipContent>
+                </Tooltip>
+              </TooltipProvider>
+            </div>
             <p className="text-lg text-white/80">
               Grundlægger af Casinoaftaler.dk, casino-streamer og community-skaber
             </p>
@@ -215,13 +291,45 @@ export default function Forfatter() {
                   </div>
                 </div>
               </div>
+              {/* 5️⃣ Bio with internal authority links */}
               <p className="text-muted-foreground leading-relaxed">
                 Jonas, bedre kendt som <strong>Fedesvinsejer</strong>, er grundlæggeren af Casinoaftaler.dk og en af Danmarks mest engagerende casino-streamere. 
-              Med sin åbne stil, smittende energi og humor har han opbygget et aktivt og loyalt community, 
+                Med sin åbne stil, smittende energi og humor har han opbygget et aktivt og loyalt community, 
                 der deler hans passion for{" "}
                 <Link to="/casinospil" className="text-primary hover:underline">casinospil</Link> og underholdning.
+                Hans ekspertise spænder fra dybdegående{" "}
+                <Link to="/casino-bonus" className="text-primary hover:underline">bonusanalyser</Link> til{" "}
+                <Link to="/ansvarligt-spil" className="text-primary hover:underline">ansvarligt spil</Link>, og han arbejder løbende på at styrke gennemsigtigheden i den danske casinoindustri.
+                Læs mere om{" "}
+                <Link to="/om" className="text-primary hover:underline">teamet bag Casinoaftaler.dk</Link> og{" "}
+                <Link to="/saadan-tester-vi-casinoer" className="text-primary hover:underline">hvordan vi tester casinoer</Link>.
               </p>
             </div>
+          </div>
+        </section>
+
+        <Separator className="my-10" />
+
+        {/* 2️⃣ Ekspertise & Erfaring */}
+        <section className="mb-12">
+          <h2 className="mb-6 text-3xl font-bold flex items-center gap-2">
+            <BadgeCheck className="h-7 w-7 text-primary" />
+            Ekspertise & Erfaring
+          </h2>
+          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            {expertiseItems.map((item) => (
+              <Card
+                key={item.label}
+                className="group transition-all duration-200 hover:-translate-y-1 hover:shadow-lg hover:shadow-primary/10 hover:border-primary/30"
+              >
+                <CardContent className="flex items-center gap-3 p-5">
+                  <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-primary/10 text-primary group-hover:bg-primary/20 transition-colors">
+                    <item.icon className="h-5 w-5" />
+                  </div>
+                  <p className="text-sm font-medium">{item.label}</p>
+                </CardContent>
+              </Card>
+            ))}
           </div>
         </section>
 
@@ -376,6 +484,44 @@ export default function Forfatter() {
                 <Link to="/live-casino" className="text-primary hover:underline">live casino</Link>-udbud leverer Campobet en komplet spiloplevelse til danske spillere.
               </p>
             </div>
+          </div>
+        </section>
+
+        <Separator className="my-10" />
+
+        {/* 3️⃣ Artikler skrevet af Jonas */}
+        <section className="mb-12">
+          <h2 className="mb-6 text-3xl font-bold flex items-center gap-2">
+            <BookOpen className="h-7 w-7 text-primary" />
+            Artikler skrevet af Jonas
+          </h2>
+          <div className="grid gap-4 md:grid-cols-2">
+            {jonasArticles.map((article) => (
+              <Link
+                key={article.path}
+                to={article.path}
+                className="group flex flex-col rounded-xl border border-border bg-card p-5 transition-all duration-200 hover:-translate-y-1 hover:shadow-lg hover:shadow-primary/10 hover:border-primary/30"
+              >
+                <div className="mb-2 flex items-center gap-2">
+                  <Badge variant="secondary" className="text-xs">
+                    {article.category}
+                  </Badge>
+                  <span className="flex items-center gap-1 text-xs text-muted-foreground">
+                    <Clock className="h-3 w-3" />
+                    {article.readTime}
+                  </span>
+                  <span className="text-xs text-muted-foreground ml-auto">
+                    {article.date}
+                  </span>
+                </div>
+                <h3 className="text-base font-semibold group-hover:text-primary transition-colors mb-1">
+                  {article.title}
+                </h3>
+                <p className="text-sm text-muted-foreground line-clamp-1">
+                  {article.excerpt}
+                </p>
+              </Link>
+            ))}
           </div>
         </section>
 
