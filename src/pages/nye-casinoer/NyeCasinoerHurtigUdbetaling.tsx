@@ -51,9 +51,13 @@ const faqs: { question: string; answer: ReactNode }[] = [
     question: "Påvirker bonusser udbetalingshastigheden?",
     answer: (
       <>
-        Aktive bonusser kan forsinke udbetalinger, da <Link to="/omsaetningskrav" className={linkClass}>omsætningskrav</Link> skal opfyldes først. Casinoet vil typisk holde bonusmidler og tilhørende gevinster tilbage, indtil kravene er mødt. Med en <Link to="/no-sticky-bonus" className={linkClass}>no-sticky bonus</Link> kan du hæve rigtige penge uafhængigt af bonusmidlerne, hvilket giver hurtigere adgang til dine gevinster. Se også <Link to="/nye-casinoer/lav-wagering" className={linkClass}>nye casinoer med lav wagering</Link>.
+        Aktive bonusser kan forsinke udbetalinger, da <Link to="/omsaetningskrav" className={linkClass}>omsætningskrav</Link> skal opfyldes først. Med en <Link to="/no-sticky-bonus" className={linkClass}>no-sticky bonus</Link> kan du hæve rigtige penge uafhængigt af bonusmidlerne. Se også <Link to="/nye-casinoer/lav-wagering" className={linkClass}>nye casinoer med lav wagering</Link>.
       </>
     ),
+  },
+  {
+    question: "Hvad gør jeg, hvis min udbetaling tager længere end forventet?",
+    answer: "Kontakt casinoets kundeservice via live chat – de kan typisk give dig status med det samme. Tjek også om du har uopfyldte omsætningskrav eller manglende verifikation, da det er de hyppigste årsager til forsinkelse. Hvis casinoet ikke reagerer inden for rimelig tid, kan du som dansk spiller klage til Spillemyndigheden.",
   },
 ];
 
