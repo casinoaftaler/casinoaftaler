@@ -224,11 +224,11 @@ const CasinoBonus = () => {
             fair vilkår, der reelt kan opfyldes.
           </p>
           <p className="mb-4 text-muted-foreground leading-relaxed">
-            Hos Casinoaftaler.dk gennemgår vi alle casino bonusser grundigt og vurderer
-            dem på fairness, omsætningskrav, gyldighedsperiode og overordnet
-            værdi. Vi anbefaler kun casino bonusser fra casinoer med gyldig dansk licens
-            fra Spillemyndigheden. Vores mål er at hjælpe dig med at finde den
-            bedste casino bonus, der passer til din spillestil – uanset om du foretrækker{" "}
+            Alle casino bonusser gennemgås grundigt og vurderes på fairness,
+            omsætningskrav, gyldighedsperiode og overordnet værdi. Kun bonusser
+            fra casinoer med gyldig dansk licens fra Spillemyndigheden når
+            listen. Målet er at hjælpe dig med at finde den bedste casino bonus,
+            der passer til din spillestil – uanset om du foretrækker{" "}
             <Link to="/no-sticky-bonus" className={linkClass}>
               no-sticky bonusser
             </Link>
