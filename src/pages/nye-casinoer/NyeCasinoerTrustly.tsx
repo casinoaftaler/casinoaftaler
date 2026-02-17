@@ -24,28 +24,20 @@ const faqs: { question: string; answer: ReactNode }[] = [
     ),
   },
   {
-    question: "Hvad er Pay N Play, og tilbyder nye casinoer det?",
-    answer: "Pay N Play er Trustlys innovative løsning, der kombinerer registrering og indbetaling i ét trin. Du identificeres automatisk via din bank, og din casinokonto oprettes i baggrunden. Flere nye danske casinoer tilbyder Pay N Play, hvilket gør hele opstartsprocessen under 60 sekunder – uden separate formularer eller dokumentuploads.",
-  },
-  {
     question: "Er Trustly sikkert at bruge på nye casinoer?",
-    answer: "Ja, Trustly er reguleret som betalingsinstitut i EU under PSD2-direktivet og bruger bankgraderet kryptering (256-bit SSL). Dine bankoplysninger deles aldrig med casinoet – Trustly fungerer som mellemled. Trustly har processet over 100 milliarder euro i transaktioner og betjener over 8.300 banker i 33 europæiske lande.",
+    answer: "Ja. Trustly er reguleret under PSD2-direktivet, bruger 256-bit SSL-kryptering og deler aldrig dine bankoplysninger med casinoet. Over 100 milliarder euro er processet gennem Trustly på tværs af 33 europæiske lande.",
   },
   {
     question: "Hvor hurtig er en udbetaling via Trustly?",
     answer: (
       <>
-        Udbetalinger via Trustly på nye casinoer behandles typisk inden for 5 minutter. Nogle nye casinoer tilbyder instant-udbetalinger, hvor pengene er på din bankkonto inden for sekunder. Trustly fungerer 24/7 – også weekender og helligdage. Se vores guide til <Link to="/nye-casinoer/hurtig-udbetaling" className={linkClass}>nye casinoer med hurtig udbetaling</Link> for en komplet sammenligning.
+        De fleste nye casinoer behandler Trustly-udbetalinger inden for 5 minutter – nogle endda øjeblikkeligt. Trustly fungerer 24/7, også weekender og helligdage. Det er den hurtigste udbetalingsmetode hos nye danske casinoer. Sammenlign med andre metoder i vores <Link to="/nye-casinoer/hurtig-udbetaling" className={linkClass}>guide til hurtig udbetaling</Link>.
       </>
     ),
   },
   {
-    question: "Kræver Trustly en separat konto?",
-    answer: "Nej, Trustly kræver ingen separat konto, app eller registrering. Du bruger din eksisterende netbank direkte. Det er en af Trustlys største fordele – ingen ekstra apps, ingen ekstra gebyrer og ingen personlige data gemt hos Trustly. Hver transaktion autentificeres direkte med din bank via MitID.",
-  },
-  {
-    question: "Er der gebyrer ved at bruge Trustly på nye casinoer?",
-    answer: "Trustly opkræver ingen gebyrer direkte fra spillere. Alle transaktionsomkostninger betales af casinoet. Det gælder både indbetalinger og udbetalinger. Din bank kan dog have separate gebyrer for udenlandske transaktioner – tjek med din bank for detaljer.",
+    question: "Kræver Trustly en separat konto eller app?",
+    answer: "Nej. Det er en af Trustlys største styrker: ingen registrering, ingen app, ingen ekstra gebyrer. Du bruger din eksisterende netbank direkte, og hver transaktion autentificeres via MitID. Trustly opkræver heller ingen gebyrer fra spillere – alle transaktionsomkostninger betales af casinoet.",
   },
 ];
 

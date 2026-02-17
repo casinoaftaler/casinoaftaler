@@ -31,6 +31,7 @@ import { useSiteSettings } from "@/hooks/useSiteSettings";
 import jonasImage from "@/assets/jonas-forfatter.png";
 import kevinImage from "@/assets/kevin-forfatter.png";
 import { RelatedGuides } from "@/components/RelatedGuides";
+import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 
 const OmTeamet = () => {
   const { data: siteSettings } = useSiteSettings();
@@ -41,6 +42,7 @@ const OmTeamet = () => {
     "@type": "Organization",
     name: "Casinoaftaler.dk",
     url: "https://casinoaftaler.dk",
+    dateModified: "2026-02-17",
     logo: {
       "@type": "ImageObject",
       url: "https://zhpbqqhtgnblaugrqhqi.supabase.co/storage/v1/object/public/casino-logos/header-icon.jpg",
@@ -234,6 +236,7 @@ const OmTeamet = () => {
 
       {/* ═══ FRA TWITCH TIL PLATFORM (Storytelling) ═══ */}
       <div className="container py-12 md:py-16">
+        <AuthorMetaBar author="jonas" date="17-02-2026" readTime="6 Min." showFactCheck={false} />
         <section className="mb-16">
           <h2 className="mb-6 text-3xl font-bold flex items-center gap-2 md:text-4xl">
             <Tv className="h-7 w-7 text-primary" />
@@ -605,6 +608,29 @@ const OmTeamet = () => {
             <Button variant="outline" size="sm">
               <BookOpen className="mr-1.5 h-4 w-4" />
               Læs den fulde redaktionelle politik
+              <ArrowRight className="ml-1.5 h-4 w-4" />
+            </Button>
+          </Link>
+        </section>
+
+        <Separator className="my-10" />
+
+        {/* ═══ ANSVARLIGT SPIL ═══ */}
+        <section className="mb-12">
+          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
+            <Shield className="h-7 w-7 text-primary" />
+            Ansvarligt spil
+          </h2>
+          <p className="text-muted-foreground leading-relaxed mb-4">
+            Vi anbefaler kun licenserede operatører og arbejder aktivt for ansvarligt spil. Alle casinoer på vores platform er tilsluttet ROFUS, og vi opfordrer spillere til at bruge de tilgængelige værktøjer til at sætte grænser for indbetaling, tab og spilletid.
+          </p>
+          <p className="text-muted-foreground leading-relaxed mb-4">
+            Har du brug for hjælp, kan du kontakte <a href="https://www.stopspillet.dk" target="_blank" rel="noopener noreferrer" className="text-primary underline hover:text-primary/80">StopSpillet</a> på telefon 70 22 28 25 (gratis og anonymt) eller udelukke dig selv via <a href="https://www.rofus.nu" target="_blank" rel="noopener noreferrer" className="text-primary underline hover:text-primary/80">ROFUS.nu</a>.
+          </p>
+          <Link to="/ansvarligt-spil">
+            <Button variant="outline" size="sm">
+              <Shield className="mr-1.5 h-4 w-4" />
+              Læs mere om ansvarligt spil
               <ArrowRight className="ml-1.5 h-4 w-4" />
             </Button>
           </Link>

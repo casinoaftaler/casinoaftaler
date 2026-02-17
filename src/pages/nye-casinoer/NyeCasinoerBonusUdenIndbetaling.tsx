@@ -19,7 +19,7 @@ const faqs: { question: string; answer: ReactNode }[] = [
     question: "Hvad er en bonus uden indbetaling hos nye casinoer?",
     answer: (
       <>
-        En <Link to="/bonus-uden-indbetaling" className={linkClass}>bonus uden indbetaling</Link> er en gratis bonus, du modtager blot ved at oprette en konto – uden at indbetale penge. Hos nye casinoer kan det være free spins, bonuspenge eller en kombination. Det giver dig mulighed for at teste casinoet uden risiko, men husk at læse vilkårene grundigt.
+        En <Link to="/bonus-uden-indbetaling" className={linkClass}>bonus uden indbetaling</Link> er en gratis bonus, du modtager blot ved at oprette en konto – uden at indbetale penge. Det kan være free spins, bonuspenge eller en kombination. Du tester casinoet uden risiko, men husk at læse vilkårene.
       </>
     ),
   },
@@ -27,29 +27,33 @@ const faqs: { question: string; answer: ReactNode }[] = [
     question: "Har no-deposit bonusser omsætningskrav?",
     answer: (
       <>
-        Ja, bonusser uden indbetaling har altid <Link to="/omsaetningskrav" className={linkClass}>omsætningskrav</Link>, typisk mellem 5x og 10x for danske licenserede casinoer. Den danske lovgivning sikrer et loft på 10x, hvilket gør danske no-deposit bonusser markant mere favorable end udenlandske, der kan kræve 40–60x omsætning. Nogle nye casinoer tilbyder endda 1x-3x omsætning.
+        Ja, altid. Danske casinoer har et loft på 10x <Link to="/omsaetningskrav" className={linkClass}>omsætningskrav</Link>, men de bedste nye casinoer tilbyder 1x-3x. Det gør danske no-deposit bonusser markant mere favorable end udenlandske, der kan kræve 40-60x.
       </>
     ),
   },
   {
-    question: "Hvor mange free spins kan man få uden indbetaling?",
-    answer: "Hos nye danske casinoer ser vi typisk 10–50 free spins uden indbetaling. Værdien pr. spin varierer fra 1–5 kr. afhængigt af casinoet og den valgte spilleautomat. Nogle nye casinoer tilbyder i stedet bonuspenge (f.eks. 50–100 kr.) i stedet for free spins. Den samlede bonusværdi ligger typisk mellem 20 og 250 kr.",
+    question: "Hvor mange free spins kan man typisk få?",
+    answer: "Hos nye danske casinoer ser vi typisk 10–50 free spins uden indbetaling med en spinværdi på 1–5 kr. Nogle tilbyder bonuspenge (50–100 kr.) i stedet. Den samlede bonusværdi ligger typisk mellem 20 og 250 kr.",
   },
   {
     question: "Kan man vinde rigtige penge med en bonus uden indbetaling?",
-    answer: "Ja, du kan vinde rigtige penge, men der er typisk en maksimal udbetalingsgrænse (ofte 500–1.000 kr.) og omsætningskrav, der skal opfyldes først. I praksis vinder ca. 15-20% af spillere noget, der kan udbetales. Trods begrænsningerne er det en risikofri måde at teste et nyt casino og potentielt vinde lidt ekstra.",
+    answer: "Ja, men der er typisk en maksimal udbetalingsgrænse (ofte 500–1.000 kr.) og omsætningskrav. I praksis vinder ca. 15-20% af spillere noget, der kan udbetales. Det er risikofrit og en god måde at teste et nyt casino på.",
   },
   {
-    question: "Hvilke nye casinoer tilbyder den bedste bonus uden indbetaling?",
+    question: "Kan man få bonus uden indbetaling mere end én gang?",
+    answer: "Nej. No-deposit bonusser er udelukkende for nye spillere og kan kun bruges én gang pr. person, kontrolleret via MitID-verifikation. Forsøg på at oprette flere konti kan resultere i kontolukning og tab af gevinster.",
+  },
+  {
+    question: "Hvad er de vigtigste ting at tjekke i vilkårene?",
     answer: (
       <>
-        De bedste no-deposit bonusser hos nye casinoer kombinerer et generøst antal free spins eller bonuspenge med lave omsætningskrav (1x-5x) og rimelige udbetalingsgrænser (minimum 500 kr.). Vi opdaterer løbende vores liste over <Link to="/nye-casinoer" className={linkClass}>nye casinoer</Link> med aktuelle no-deposit tilbud og angiver altid de præcise vilkår.
+        Fire ting du altid skal verificere: 1) Omsætningskravet – er det 1x eller 10x? 2) Udbetalingsgrænsen – typisk 500-1.000 kr. 3) Tidsfristen – de fleste udløber efter 7-30 dage. 4) Spilrestriktioner – free spins er ofte begrænset til én bestemt automat. Se også <Link to="/nye-casinoer/lav-wagering" className={linkClass}>nye casinoer med lav wagering</Link> for bonusser med bedre vilkår.
       </>
     ),
   },
   {
-    question: "Kan man få bonus uden indbetaling mere end én gang?",
-    answer: "Nej, no-deposit bonusser er udelukkende for nye spillere og kan kun bruges én gang pr. person. Det kontrolleres via MitID-verifikation, så det er ikke muligt at oprette flere konti. Forsøg på det kan resultere i kontolukning og tab af gevinster.",
+    question: "Er no-deposit bonusser hos nye casinoer bedre end hos etablerede?",
+    answer: "Generelt ja. Nye casinoer bruger no-deposit bonusser mere aggressivt som konkurrenceværktøj, hvilket resulterer i bedre vilkår for spilleren – typisk lavere omsætningskrav, højere udbetalingsgrænser og flere free spins. Etablerede casinoer har sjældnere no-deposit tilbud, da de allerede har en kundebase.",
   },
 ];
 

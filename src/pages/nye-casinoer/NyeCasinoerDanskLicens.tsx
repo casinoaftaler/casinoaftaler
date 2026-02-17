@@ -32,35 +32,19 @@ const faqs: { question: string; answer: ReactNode }[] = [
     question: "Hvilke fordele giver dansk licens sammenlignet med udenlandske?",
     answer: (
       <>
-        Dansk licens giver fem afgørende fordele, som ingen udenlandsk licens matcher: 1) Skattefri gevinster – casinoet betaler afgiften, ikke du. 2) Maksimalt 10x <Link to="/omsaetningskrav" className={linkClass}>omsætningskrav</Link> på bonusser – Europas laveste lovmæssige loft. 3) ROFUS-tilslutning til frivillig selvudelukkelse – beskyttelse mod problematisk spil. 4) Klageadgang via Spillemyndigheden – din ret som forbruger ved tvister. 5) Bankgaranti på min. 750.000 kr. – dine penge er beskyttet selv ved konkurs. Ingen MGA-, Curaçao- eller Gibraltar-licens tilbyder disse rettigheder for danske spillere.
+        Dansk licens giver fem afgørende fordele: skattefri gevinster, max 10x <Link to="/omsaetningskrav" className={linkClass}>omsætningskrav</Link>, ROFUS-selvudelukkelse, klageadgang via Spillemyndigheden og bankgaranti på min. 750.000 kr. Ingen MGA-, Curaçao- eller Gibraltar-licens matcher disse rettigheder for danske spillere.
       </>
     ),
   },
   {
     question: "Kan et nyt casino miste sin danske licens?",
-    answer: "Ja, Spillemyndigheden har beføjelse til at tilbagetrække, suspendere eller begrænse en licens ved overtrædelse af vilkårene. Typiske årsager inkluderer: manglende ROFUS-compliance, utilstrækkelig implementering af ansvarligt spil-værktøjer, overtrædelse af markedsføringsregler, manglende opfyldelse af kapitalreserver, eller fejl i RNG-systemer. Spillemyndigheden gennemfører både planlagte og uanmeldte tilsyn. Vi monitorerer løbende licensstatus for alle casinoer på vores liste og fjerner øjeblikkeligt casinoer, der mister eller får suspenderet deres licens.",
-  },
-  {
-    question: "Er nye casinoer med dansk licens lige så sikre som etablerede?",
-    answer: (
-      <>
-        Ja, sikkerhedsniveauet er identisk, da alle casinoer – nye som etablerede – skal opfylde præcis de samme krav fra Spillemyndigheden. Der er ingen forskel i licensbetingelser baseret på operatørens alder. Mange nye casinoer drives desuden af erfarne operatørselskaber, der allerede har licenser på andre europæiske markeder. Se vores detaljerede <Link to="/nye-casinoer/vs-etablerede" className={linkClass}>sammenligning af nye og etablerede casinoer</Link> for en dybdegående analyse.
-      </>
-    ),
-  },
-  {
-    question: "Hvad sker der med mine penge, hvis et nyt casino lukker?",
-    answer: "Spillemyndighedens krav om bankgaranti på minimum 750.000 kr. sikrer, at spillernes indeståender er beskyttet, selv hvis operatøren går konkurs eller trækker sig fra det danske marked. Bankgarantien administreres af et uafhængigt pengeinstitut og kan ikke bruges til operatørens daglige drift. I tilfælde af lukning vil Spillemyndigheden overvåge afviklingsprocessen og sikre, at alle spillere får deres saldoer udbetalt. Historisk set har ingen dansk licenseret operatør lukket uden at spillere har fået fuld kompensation.",
-  },
-  {
-    question: "Hvor mange aktive danske casinolicenser findes der i 2026?",
-    answer: "I starten af 2026 har Spillemyndigheden udstedt licenser til ca. 30–35 aktive online casinooperatører. Antallet svinger, da nye licenser udstedes og enkelte operatører vælger at trække sig fra markedet. Spillemyndighedens liste over tilladelsesindehavere opdateres løbende og er den mest pålidelige kilde til aktuel information.",
+    answer: "Ja. Spillemyndigheden kan tilbagetrække, suspendere eller begrænse en licens ved overtrædelse. Typiske årsager: manglende ROFUS-compliance, overtrædelse af markedsføringsregler, fejl i RNG-systemer eller utilstrækkelige kapitalkrav. Vi monitorerer løbende licensstatus og fjerner øjeblikkeligt casinoer, der mister deres licens.",
   },
   {
     question: "Hvad er forskellen på en dansk licens og en MGA-licens?",
     answer: (
       <>
-        En dansk licens fra Spillemyndigheden giver danske spillere markant bedre beskyttelse end en Malta Gaming Authority (MGA)-licens. Nøgleforskellene: dansk licens = skattefri gevinster, max 10x omsætningskrav, ROFUS-tilslutning, dansk klageadgang. MGA-licens = gevinster er skattepligtige i Danmark, ingen omsætningsloft (ofte 30–60x), ingen ROFUS, klageadgang kun på Malta. Se vores guide til <Link to="/nye-casinoer/uden-rofus" className={linkClass}>casinoer uden ROFUS</Link> for mere information om risici ved udenlandske licenser.
+        Nøgleforskellene for danske spillere: dansk licens = skattefri gevinster, max 10x omsætningskrav, ROFUS-tilslutning, dansk klageadgang. MGA-licens = gevinster er skattepligtige i Danmark, intet omsætningsloft (ofte 30–60x), ingen ROFUS og klageadgang kun på Malta. Se vores guide til <Link to="/nye-casinoer/uden-rofus" className={linkClass}>casinoer uden ROFUS</Link> for mere om risici.
       </>
     ),
   },

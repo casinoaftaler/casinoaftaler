@@ -15,28 +15,38 @@ import type { ReactNode } from "react";
 const linkClass = "text-primary underline hover:text-primary/80";
 
 const faqs: { question: string; answer: ReactNode }[] = [
-  { question: "Hvad er lav wagering hos nye casinoer?", answer: (
-    <>
-      Lav wagering (lave <Link to="/omsaetningskrav" className={linkClass}>omsætningskrav</Link>) betyder, at du skal gennemspille bonusbeløbet færre gange, før du kan hæve gevinster. I Danmark er det lovmæssige loft 10x, men mange nye casinoer tilbyder endnu lavere krav – typisk 1x til 5x – eller helt uden omsætningskrav. Det giver dig markant bedre odds for at beholde dine bonusgevinster.
-    </>
-  )},
-  { question: "Hvorfor tilbyder nye casinoer lavere omsætningskrav?", answer: "Nye casinoer bruger lave omsætningskrav som konkurrencefordel for at tiltrække spillere fra etablerede casinoer. Ved at sænke barrierne for udbetaling af bonusgevinster demonstrerer de tillid til deres produkt. Det er også en langsigtet strategi: spillere, der faktisk kan udbetale bonusgevinster, er mere tilbøjelige til at vende tilbage som loyale kunder." },
-  { question: "Hvad er forskellen på 1x og 10x omsætningskrav?", answer: (
-    <>
-      Med 1x omsætningskrav på en bonus på 1.000 kr. skal du blot spille for 1.000 kr. – det svarer til ca. 100 spins á 10 kr. Med 10x skal du spille for 10.000 kr. – ca. 1.000 spins. Forskellen i reel bonusværdi er enorm: statistisk beholder du ca. 96% af en 1x-bonus, men kun ca. 60-70% af en 10x-bonus. Se vores <Link to="/omsaetningskrav" className={linkClass}>guide til omsætningskrav</Link>.
-    </>
-  )},
-  { question: "Findes der nye casinoer helt uden omsætningskrav?", answer: (
-    <>
-      Ja, en stigende trend blandt nye casinoer er <Link to="/bonus-uden-omsaetningskrav" className={linkClass}>bonusser helt uden omsætningskrav</Link>. Her beholder du alle gevinster direkte og kan udbetale med det samme. Disse bonusser er typisk lavere i nominelt beløb (f.eks. 500 kr. i stedet for 2.000 kr.), men den reelle værdi er ofte højere end større bonusser med høje omsætningskrav.
-    </>
-  )},
-  { question: "Er lav wagering det samme som no-sticky bonus?", answer: (
-    <>
-      Nej, det er to forskellige koncepter. Lav wagering refererer til antallet af gange, du skal gennemspille bonussen, før du kan udbetale. <Link to="/no-sticky-bonus" className={linkClass}>No-sticky bonus</Link> handler om, at dine rigtige penge og bonusmidler holdes adskilt, så du kan hæve rigtige pengegevinster når som helst uden at miste bonussen. De to kan kombineres – og det er den optimale bonusstruktur for spilleren.
-    </>
-  )},
-  { question: "Hvordan beregner man den reelle værdi af en bonus med omsætningskrav?", answer: "Du kan bruge denne formel: Reel værdi ≈ Bonusbeløb × (1 – Husets fordel × Omsætningskrav). Med en bonus på 1.000 kr. og 3x omsætning (hus-fordel 4%): 1.000 × (1 – 0,04 × 3) = 880 kr. i reel værdi. Med 10x: 1.000 × (1 – 0,04 × 10) = 600 kr. Lavere wagering = højere reel bonusværdi." },
+  {
+    question: "Hvad er lav wagering, og hvorfor er det vigtigt?",
+    answer: (
+      <>
+        Lav wagering (lave <Link to="/omsaetningskrav" className={linkClass}>omsætningskrav</Link>) betyder færre gennemspilninger af bonusbeløbet før udbetaling. I Danmark er loftet 10x, men mange nye casinoer tilbyder 1x-5x. Jo lavere wagering, jo mere af bonusværdien beholder du reelt. Med 1x omsætning bevarer du statistisk ca. 96% af bonusværdien – med 10x kun ca. 60-70%.
+      </>
+    ),
+  },
+  {
+    question: "Hvad er forskellen på 1x og 10x omsætningskrav i praksis?",
+    answer: (
+      <>
+        Med 1x på en 1.000 kr. bonus spiller du for 1.000 kr. (ca. 100 spins á 10 kr.). Med 10x spiller du for 10.000 kr. (ca. 1.000 spins). Forskellen i reel bonusværdi: en 1x-bonus er ca. 960 kr. værd, mens en 10x-bonus kun er ca. 600 kr. værd. Se vores <Link to="/omsaetningskrav" className={linkClass}>guide til omsætningskrav</Link> for den fulde formel.
+      </>
+    ),
+  },
+  {
+    question: "Findes der nye casinoer helt uden omsætningskrav?",
+    answer: (
+      <>
+        Ja. En stigende trend er <Link to="/bonus-uden-omsaetningskrav" className={linkClass}>bonusser helt uden omsætningskrav</Link>, hvor du beholder alle gevinster direkte. Bonusbeløbet er typisk lavere (f.eks. 500 kr. i stedet for 2.000 kr.), men den reelle værdi er ofte højere end en stor bonus med høj wagering.
+      </>
+    ),
+  },
+  {
+    question: "Er lav wagering det samme som no-sticky bonus?",
+    answer: (
+      <>
+        Nej, det er to forskellige ting. Wagering handler om antal gennemspilninger. <Link to="/no-sticky-bonus" className={linkClass}>No-sticky</Link> handler om, at rigtige penge og bonusmidler holdes adskilt, så du kan hæve rigtige pengegevinster uden at miste bonussen. De to kan kombineres – og det er den optimale bonusstruktur.
+      </>
+    ),
+  },
 ];
 
 const NyeCasinoerLavWagering = () => {
