@@ -748,8 +748,10 @@ const Spiludviklere = () => {
                   <li className="flex items-start gap-2 text-sm text-muted-foreground">
                     <CheckCircle2 className="mt-0.5 h-4 w-4 flex-shrink-0 text-primary" />
                     <span>
-                      <strong>Fairness</strong> – Licenserede udviklere sikrer
-                      retfærdige og regulerede spil
+                      <strong>Fairness</strong> – Licenserede udviklere
+                      certificeres af uafhængige testlaboratorier som{" "}
+                      <a href="https://www.ecogra.org/" target="_blank" rel="noopener noreferrer" className="text-primary underline hover:text-primary/80">eCOGRA</a> og{" "}
+                      <a href="https://www.itechlabs.com/" target="_blank" rel="noopener noreferrer" className="text-primary underline hover:text-primary/80">iTech Labs</a>, der verificerer RNG og RTP
                     </span>
                   </li>
                   <li className="flex items-start gap-2 text-sm text-muted-foreground">

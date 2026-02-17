@@ -232,10 +232,11 @@ const Omsaetningskrav = () => {
             med det samme for at give dem et legitimt udseende.
           </p>
           <p className="mb-4 text-muted-foreground leading-relaxed">
-            For bonusser har Spillemyndigheden i Danmark sat et maksimalt
-            loft på 10x. Det sikrer, at casinoer med dansk licens tilbyder
-            rimelige vilkår for deres spillere – et krav der er unikt for
-            det danske marked og en stor fordel for danske spillere.
+            For bonusser har Spillemyndigheden sat et maksimalt
+            loft på 10x – fastlagt i{" "}
+            <a href="https://www.retsinformation.dk/eli/lta/2020/1303" target="_blank" rel="noopener noreferrer" className="text-primary underline hover:text-primary/80">bekendtgørelse nr. 1303 om bonusser</a>. Det sikrer, at casinoer med dansk licens tilbyder
+            rimelige vilkår – et krav der er unikt for
+            det danske marked og en markant fordel sammenlignet med udenlandske operatører.
           </p>
           <p className="text-muted-foreground leading-relaxed">
             Vil du forstå, hvordan omsætningskrav fungerer i praksis? I vores{" "}

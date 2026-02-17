@@ -197,7 +197,8 @@ const NyeCasinoer = () => {
           <p className="mb-4 text-muted-foreground leading-relaxed">
             Det danske casinomarked vokser hurtigt, og nye spillesider lanceres løbende med friske{" "}
             <Link to="/velkomstbonus" className={linkClass}>velkomstbonusser</Link>, moderne spiludvalg og hurtige{" "}
-            <Link to="/betalingsmetoder" className={linkClass}>betalingsmetoder</Link>. Men ikke alle nye casinoer lever op til standarden – derfor gennemgår vi hvert spillested grundigt, fra behandlingstider og kundeservice til licensforhold. Kun casinoer med gyldig dansk licens fra Spillemyndigheden, SSL-kryptering og fuld lovoverholdelse når vores liste.
+            <Link to="/betalingsmetoder" className={linkClass}>betalingsmetoder</Link>. Men ikke alle nye casinoer lever op til standarden – derfor gennemgår vi hvert spillested grundigt, fra behandlingstider og kundeservice til licensforhold. Kun casinoer med gyldig dansk licens fra Spillemyndigheden, SSL-kryptering og fuld lovoverholdelse når listen. Du kan selv tjekke et casinos licens via{" "}
+            <a href="https://www.spillemyndigheden.dk/tilladelsesindehavere" target="_blank" rel="noopener noreferrer" className="text-primary underline hover:text-primary/80">den officielle tilladelsesliste</a>.
           </p>
           <p className="mb-4 text-muted-foreground leading-relaxed">
             Vores mål er at give dig et ærligt og pålideligt billede, så du kan tage

@@ -159,7 +159,8 @@ const CasinoLicenser = () => {
         <section id="curacao" className="mb-12">
           <h2 className="mb-4 text-3xl font-bold">Curaçao-licens (eGaming)</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
-            Curaçao-licensen er den mest udbredte og billigste online casino-licens i verden. Den udstedes af Curaçao Gaming Control Board (GCB) og dækker alle former for online gambling under én enkelt licens. Historisk har Curaçao været kendt for minimal regulering, men i 2023-2024 gennemgik jurisdiktionen en reform med skærpede krav.
+            Curaçao-licensen er den mest udbredte og billigste online casino-licens i verden. Den udstedes af{" "}
+            <a href="https://www.curacao-egaming.com/" target="_blank" rel="noopener noreferrer" className="text-primary underline hover:text-primary/80">Curaçao Gaming Control Board (GCB)</a> og dækker alle former for online gambling under én enkelt licens. Historisk har Curaçao været kendt for minimal regulering, men i 2023-2024 gennemgik jurisdiktionen en reform med skærpede krav.
           </p>
           <p className="mb-4 text-muted-foreground leading-relaxed">
             For danske spillere er Curaçao-licensen problematisk: den giver ingen af de rettigheder, som dansk licens sikrer. Gevinster er skattepligtige, der er ingen ROFUS-tilslutning, og klageadgang er begrænset til Curaçao – en jurisdiktion med begrænset erfaring i at beskytte europæiske forbrugere. Casinoer, der opererer mod danske spillere med kun Curaçao-licens, er ulovlige i Danmark.
@@ -189,7 +190,7 @@ const CasinoLicenser = () => {
         <section id="mga" className="mb-12">
           <h2 className="mb-4 text-3xl font-bold">Malta Gaming Authority (MGA) licens</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
-            Malta Gaming Authority (MGA) er en af verdens mest respekterede gambling-regulatorer. Som EU-medlemsstat er Malta underlagt europæisk lovgivning, og MGA-licensen anses for at være den gyldne standard blandt udenlandske licenser. MGA regulerer over 300 licensindehavere og har en dokumenteret track record for spillerbeskyttelse.
+            <a href="https://www.mga.org.mt/" target="_blank" rel="noopener noreferrer" className="text-primary underline hover:text-primary/80">Malta Gaming Authority (MGA)</a> er en af verdens mest respekterede gambling-regulatorer. Som EU-medlemsstat er Malta underlagt europæisk lovgivning, og MGA-licensen anses for at være den gyldne standard blandt udenlandske licenser. MGA regulerer over 300 licensindehavere og har en dokumenteret track record for spillerbeskyttelse.
           </p>
           <p className="mb-4 text-muted-foreground leading-relaxed">
             MGA-licensen kræver: kapitalkrav og finansiel stabilitet, RNG-certificering, ansvarligt spil-værktøjer, hvidvaskforebyggelse, klagebehandlingssystem og regelmæssige compliance-audits. MGA har beføjelse til at pålægge bøder, suspendere eller inddrage licenser ved overtrædelser.

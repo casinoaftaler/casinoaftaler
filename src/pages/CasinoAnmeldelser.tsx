@@ -211,8 +211,8 @@ const CasinoAnmeldelser = () => {
             <Link to="/casinospil" className={linkClass}>spiludvalg</Link> og kundeservice.
           </p>
           <p className="mb-4 text-muted-foreground leading-relaxed">
-            Alle casinoer vi anmelder har en gyldig dansk spillelicens fra Spillemyndigheden, hvilket garanterer, at de overholder strenge krav til spillerbeskyttelse,{" "}
-            <Link to="/ansvarligt-spil" className={linkClass}>ansvarligt spil</Link> og datasikkerhed. Vi anbefaler kun casinoer, der lever op til vores høje standarder for kvalitet og fairness.
+            Alle casinoer vi anmelder har en gyldig dansk spillelicens fra Spillemyndigheden – et krav vi verificerer direkte i det officielle register. Licensen garanterer overholdelse af strenge krav til spillerbeskyttelse,{" "}
+            <Link to="/ansvarligt-spil" className={linkClass}>ansvarligt spil</Link> og datasikkerhed. Kun casinoer, der lever op til disse standarder, optages i vores anmeldelser.
           </p>
           <p className="text-muted-foreground leading-relaxed">
             Vores eksperter spiller selv på hvert casino, tester{" "}

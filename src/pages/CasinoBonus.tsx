@@ -226,8 +226,9 @@ const CasinoBonus = () => {
           <p className="mb-4 text-muted-foreground leading-relaxed">
             Alle casino bonusser gennemgås grundigt og vurderes på fairness,
             omsætningskrav, gyldighedsperiode og overordnet værdi. Kun bonusser
-            fra casinoer med gyldig dansk licens fra Spillemyndigheden når
-            listen. Målet er at hjælpe dig med at finde den bedste casino bonus,
+            fra casinoer med gyldig dansk licens når listen – og omsætningskrav
+            overstiger aldrig det lovbestemte loft på 10x, som er fastsat af{" "}
+            <a href="https://www.spillemyndigheden.dk/" target="_blank" rel="noopener noreferrer" className="text-primary underline hover:text-primary/80">Spillemyndigheden</a>. Målet er at hjælpe dig med at finde den bedste casino bonus,
             der passer til din spillestil – uanset om du foretrækker{" "}
             <Link to="/no-sticky-bonus" className={linkClass}>
               no-sticky bonusser
