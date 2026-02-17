@@ -3,6 +3,7 @@ import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { FAQSection } from "@/components/FAQSection";
 import { SEO } from "@/components/SEO";
 import { buildFaqSchema } from "@/lib/seo";
+import { AuthorBio } from "@/components/AuthorBio";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
 import { RelatedGuides } from "@/components/RelatedGuides";
 import { InlineCasinoCards } from "@/components/InlineCasinoCards";
@@ -358,6 +359,8 @@ export function ProviderPage({
         <Separator className="my-10" />
         <RelatedGuides currentPath={currentPath} />
         <FAQSection title={`Ofte stillede spørgsmål om ${name}`} faqs={faqs} />
+
+        <AuthorBio author="jonas" showCommunity={false} />
       </div>
     </>
   );

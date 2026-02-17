@@ -4,6 +4,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { FAQSection } from "@/components/FAQSection";
 import { SEO } from "@/components/SEO";
+import { buildFaqSchema } from "@/lib/seo";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -122,16 +123,7 @@ export default function Contact() {
     },
   ];
 
-  const faqJsonLd = {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    mainEntity: [
-      { "@type": "Question", name: "Hvem kan kontakte jer?", acceptedAnswer: { "@type": "Answer", text: "Vores kontaktside er primært beregnet til casino partnerskaber, affiliate henvendelser, kommercielle forslag og presseforespørgsler. Denne kontaktside er ikke beregnet til brugersupport." } },
-      { "@type": "Question", name: "Hvor hurtigt svarer I?", acceptedAnswer: { "@type": "Answer", text: "Vi bestræber os på at besvare alle seriøse henvendelser inden for 1-3 hverdage. I travle perioder kan svartiden dog være lidt længere." } },
-      { "@type": "Question", name: "Kan jeg anmelde mit casino hos jer?", acceptedAnswer: { "@type": "Answer", text: "Ja, vi er altid åbne for at anmelde nye casinoer. Casinoet skal have gyldig dansk licens fra Spillemyndigheden. Send os en henvendelse via formularen, og vi vender tilbage med mere information." } },
-      { "@type": "Question", name: "Tilbyder I affiliate samarbejder?", acceptedAnswer: { "@type": "Answer", text: "Ja, vi samarbejder med udvalgte affiliates og mediepartnere. Kontakt os via formularen med information om dit forslag, så gennemgår vi det." } },
-    ],
-  };
+  const faqJsonLd = buildFaqSchema(contactFaqs);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();

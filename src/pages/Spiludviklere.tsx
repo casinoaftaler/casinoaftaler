@@ -3,6 +3,7 @@ import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { AuthorBio } from "@/components/AuthorBio";
 import { FAQSection } from "@/components/FAQSection";
 import { SEO } from "@/components/SEO";
+import { buildFaqSchema } from "@/lib/seo";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
 import spiludviklereHero from "@/assets/heroes/spiludviklere-hero.jpg";
 import { RelatedGuides } from "@/components/RelatedGuides";
@@ -382,18 +383,7 @@ const Spiludviklere = () => {
     },
   ];
 
-  const faqJsonLd = {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    mainEntity: [
-      { "@type": "Question", name: "Hvad er en spiludvikler?", acceptedAnswer: { "@type": "Answer", text: "En spiludvikler er en virksomhed, der designer og producerer casinospil som spilleautomater, bordspil og live casino. De står bag grafik, funktioner og mekanik, der gør spillene underholdende og retfærdige." } },
-      { "@type": "Question", name: "Hvad betyder RTP?", acceptedAnswer: { "@type": "Answer", text: "RTP (Return to Player) angiver, hvor stor en procentdel af de samlede indsatser et spil teoretisk betaler tilbage til spillerne over tid. En højere RTP betyder bedre langsigtede chancer for spilleren." } },
-      { "@type": "Question", name: "Hvordan vælger jeg en god spiludvikler?", acceptedAnswer: { "@type": "Answer", text: "Vælg casinoer, der samarbejder med licenserede udviklere som NetEnt, Microgaming eller Play'n GO. De leverer spil af høj kvalitet med fair gameplay." } },
-      { "@type": "Question", name: "Hvad er forskellen på slots og live casino?", acceptedAnswer: { "@type": "Answer", text: "Spilleautomater er maskinbaserede spil med temaer og bonusfunktioner, mens live casino involverer rigtige dealere via livestreaming i realtid." } },
-      { "@type": "Question", name: "Er spil fra alle udviklere fair?", acceptedAnswer: { "@type": "Answer", text: "Kun spil fra licenserede udviklere garanterer fairness. De anvender RNG-teknologi og testes løbende af uafhængige testbureauer som eCOGRA." } },
-      { "@type": "Question", name: "Kan jeg spille på mobilen?", acceptedAnswer: { "@type": "Answer", text: "Ja, stort set alle moderne spiludviklere optimerer deres spil til både desktop og mobil, så du kan nyde dine favoritspil uanset enhed." } },
-    ],
-  };
+  const faqJsonLd = buildFaqSchema(spiludviklereFaqs);
 
   return (
     <>
