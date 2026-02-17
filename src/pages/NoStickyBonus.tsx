@@ -161,16 +161,11 @@ const NoStickyBonus = () => {
         {/* Intro */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold">
-            Hvad er en No-Sticky Bonus?
+            Sådan fungerer en No-Sticky Bonus i praksis
           </h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
-            En No-Sticky Bonus – også kaldet faldskærmsbonus eller lifeline bonus – er en
-            bonustype hos <Link to="/" className="text-primary hover:underline">danske online casinoer</Link>, der
-            fungerer fundamentalt anderledes end en traditionel{" "}
-            <Link to="/sticky-bonus" className="text-primary hover:underline">Sticky Bonus</Link>. Det centrale
-            princip er, at dine indbetalte penge og bonusmidlerne holdes i to
-            separate puljer. Du spiller altid med dine egne penge først, og
-            bonussen aktiveres kun, hvis din egen saldo rammer nul.
+            De fleste spillere opdager først forskellen mellem bonustyper, når det er for sent – og det koster dem penge. En No-Sticky Bonus (også kaldet faldskærmsbonus) adskiller sig fundamentalt fra en traditionel{" "}
+            <Link to="/sticky-bonus" className="text-primary hover:underline">Sticky Bonus</Link> ved at holde dine indbetalte penge og bonusmidlerne i to separate puljer. Du spiller altid med egne penge først, og bonussen aktiveres kun, hvis din saldo rammer nul.
           </p>
           <p className="mb-4 text-muted-foreground leading-relaxed">
             Det betyder, at hvis du vinder, mens du stadig spiller for egne
@@ -197,10 +192,10 @@ const NoStickyBonus = () => {
 
         <Separator className="my-10" />
 
-        {/* Sådan fungerer det */}
+        {/* Definition */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold">
-            Sådan fungerer en No-Sticky Bonus
+            Hvad er en No-Sticky Bonus?
           </h2>
           <p className="mb-6 text-muted-foreground leading-relaxed">
             Princippet bag en No-Sticky Bonus er enkelt: dine penge og
@@ -580,28 +575,25 @@ const NoStickyBonus = () => {
         <Separator className="my-10" />
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold">
-            Ansvarligt spil med No-Sticky Bonusser
+            Bonusjagt og risikoen ved at maksimere tilbud
           </h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
-            Selvom No-Sticky Bonusser giver ekstra fleksibilitet, er det
-            vigtigt at spille ansvarligt. Sæt altid et fast budget, og hold
-            dig til det – uanset om du spiller med egne penge eller bonusmidler.
+            No-Sticky Bonussens fleksibilitet kan friste til at jage tilbud på tværs af flere casinoer – en praksis kendt som bonusjagt. Selvom det kan virke rationelt, bør du være opmærksom på, at det hurtigt kan udvikle sig til usunde spillevaner. Sæt klare grænser for, hvor mange casinoer du opretter konti hos, og hold altid et fast budget.
           </p>
           <p className="text-muted-foreground leading-relaxed">
-            Brug spilpauser, hvis det hele begynder at fylde for meget. Mange
-            casinoer tilbyder værktøjer til selvudelukkelse via{" "}
-            <a href="https://www.rofus.nu/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline font-medium">ROFUS</a>.
-            Har du brug for hjælp? Kontakt{" "}
+            Hvis du mærker, at jagten på den næste bonus bliver vigtigere end selve underholdningen, er det tid til at stoppe op. Benyt{" "}
+            <a href="https://www.rofus.nu/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline font-medium">ROFUS</a>{" "}
+            til selvudelukkelse eller kontakt{" "}
             <a href="https://www.stopspillet.dk/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline font-medium">StopSpillet.dk</a>{" "}
-            – gratis og anonymt. 18+ | Spil ansvarligt.
+            for gratis og anonym rådgivning. 18+ | Spil ansvarligt.
           </p>
         </section>
 
         <Separator className="my-10" />
 
-        {/* Opsummering */}
+        {/* Det vigtigste */}
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold">Opsummering</h2>
+          <h2 className="mb-4 text-3xl font-bold">Det vigtigste at huske</h2>
           <div className="space-y-3">
             {[
               {

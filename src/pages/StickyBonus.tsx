@@ -157,16 +157,11 @@ const StickyBonus = () => {
         {/* Intro */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold">
-            Hvad er en Sticky Bonus?
+            Hvornår giver en Sticky Bonus mening?
           </h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
-            En Sticky Bonus – også kaldet klæbende bonus – er den mest udbredte
-            bonustype hos <Link to="/" className="text-primary hover:underline">danske online casinoer</Link>.
-            Når du accepterer en Sticky Bonus, smelter din indbetaling og
-            bonusmidlerne sammen til én samlet saldo. Det betyder, at du ikke
-            kan hæve noget, før du har opfyldt{" "}
-            <Link to="/omsaetningskrav" className="text-primary hover:underline">omsætningskravene</Link> –
-            heller ikke selvom du vinder med dine egne indbetalte penge. Sticky bonusser er en vigtig kategori i vores <Link to="/casino-bonus" className="text-primary hover:underline">bonusguide</Link>.
+            Over 80 % af alle danske casinobonusser er sticky – alligevel forstår de færreste præcis, hvad det indebærer. Når du accepterer en Sticky Bonus, sammenblandes din indbetaling og bonusmidlerne til én saldo. Det låser hele beløbet bag{" "}
+            <Link to="/omsaetningskrav" className="text-primary hover:underline">omsætningskravene</Link>, hvilket betyder at du ikke kan hæve noget – heller ikke gevinster fra egne penge – før kravene er opfyldt. Det er en central kategori i vores <Link to="/casino-bonus" className="text-primary hover:underline">bonusguide</Link>.
           </p>
           <p className="mb-4 text-muted-foreground leading-relaxed">
             Betegnelsen "Sticky" kommer af, at bonusmidlerne klæber sig til
@@ -191,10 +186,10 @@ const StickyBonus = () => {
 
         <Separator className="my-10" />
 
-        {/* Sådan fungerer det */}
+        {/* Definition og mekanik */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold">
-            Sådan fungerer en Sticky Bonus
+            Mekanikken bag en Sticky Bonus – trin for trin
           </h2>
           <p className="mb-6 text-muted-foreground leading-relaxed">
             Med en Sticky Bonus bliver din indbetaling og bonus sammenblandet
@@ -656,30 +651,25 @@ const StickyBonus = () => {
         <Separator className="my-10" />
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold">
-            Ansvarligt spil med Sticky Bonusser
+            Risikoen ved at gennemspille en stor saldo
           </h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
-            Sticky Bonusser kan forlænge din spilletid og give flere
-            gevinstchancer, men det er vigtigt at spille med omtanke. Sæt
-            et fast budget og hold dig til det – også når spændingen stiger.
+            Fordi en Sticky Bonus låser hele din saldo bag omsætningskrav, kan det føre til længere spillesessioner end planlagt. Presset for at nå gennemspilningen inden tidsfristen kan forstærke impulsen til at øge indsatsen – en adfærd der sjældent ender godt. Sæt altid et tidsbudget ud over dit pengebudget.
           </p>
           <p className="text-muted-foreground leading-relaxed">
-            Tag pauser, hvis du føler dig presset, og husk at{" "}
-            <Link to="/ansvarligt-spil" className="text-primary hover:underline">ansvarligt spil</Link>{" "}
-            altid bør komme først. Danske casinoer tilbyder selvudelukkelse
-            via{" "}
-            <a href="https://www.rofus.nu/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline font-medium">ROFUS</a>.
-            Kontakt{" "}
+            Hvis du oplever, at omsætningskravet bliver en stressfaktor frem for underholdning, er det klogeste træk at annullere bonussen og spille videre uden. Benyt{" "}
+            <a href="https://www.rofus.nu/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline font-medium">ROFUS</a>{" "}
+            til selvudelukkelse eller kontakt{" "}
             <a href="https://www.stopspillet.dk/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline font-medium">StopSpillet.dk</a>{" "}
-            for gratis og anonym rådgivning. 18+ | Spil ansvarligt.
+            for fortrolig rådgivning. 18+ | Spil ansvarligt.
           </p>
         </section>
 
         <Separator className="my-10" />
 
-        {/* Opsummering */}
+        {/* Konklusion */}
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold">Opsummering</h2>
+          <h2 className="mb-4 text-3xl font-bold">Konklusion: Er en sticky bonus det værd?</h2>
           <div className="space-y-3">
             {[
               {

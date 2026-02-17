@@ -187,14 +187,11 @@ const Velkomstbonus = () => {
             Hvad er en velkomstbonus?
           </h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
-            En velkomstbonus er det tilbud, som et online casino giver nye
-            spillere ved deres første tilmelding. Det er i bund og grund
-            casinoets måde at sige "velkommen" på – og det er en fordel for
-            begge parter. Du får ekstra penge eller{" "}
+            Din første indbetaling hos et nyt casino afgør hele din bonusoplevelse – og forskellen mellem et godt og et dårligt valg kan være tusindvis af kroner. En velkomstbonus matcher typisk din indbetaling med ekstra penge eller{" "}
             <Link to="/free-spins" className="text-primary underline hover:text-primary/80">
               gratis spins
-            </Link>{" "}
-            at spille for, mens casinoet vinder en ny kunde.
+            </Link>
+            , men vilkårene varierer enormt fra casino til casino.
           </p>
           <p className="mb-4 text-muted-foreground leading-relaxed">
             Den mest gængse form er en{" "}
@@ -596,12 +593,9 @@ const Velkomstbonus = () => {
 
         <Separator className="my-10" />
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold">Ansvarligt spil</h2>
+          <h2 className="mb-4 text-3xl font-bold">Første indbetaling kræver eftertanke</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
-            Selvom velkomstbonusser kan forbedre din spiloplevelse, er det
-            vigtigt altid at spille ansvarligt. Sæt et budget, du har råd
-            til at tabe, og overskrid det aldrig – uanset hvor fristende
-            bonussen måtte være.
+            En velkomstbonus er designet til at motivere din første indbetaling – og netop derfor bør du stoppe op og vurdere, om beløbet passer dit budget. Indbetal aldrig mere end du ville have gjort uden bonussen. Din spilleglæde bør aldrig afhænge af et bonustilbud.
           </p>
           <div className="rounded-lg border border-border bg-card p-4">
             <div className="flex items-start gap-3">
@@ -609,11 +603,11 @@ const Velkomstbonus = () => {
               <div>
                 <h3 className="font-semibold">Hjælp og ressourcer</h3>
                 <p className="text-sm text-muted-foreground">
-                  Hvis du oplever problemer med dit spil, kan du kontakte
-                  StopSpillet.dk for rådgivning eller registrere dig i
-                  ROFUS for selvudelukkelse fra danske casinoer. Alle
-                  danske licenserede casinoer er forpligtede til at tilbyde
-                  værktøjer til ansvarligt spil.
+                  Kontakt{" "}
+                  <a href="https://www.stopspillet.dk/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline font-medium">StopSpillet.dk</a>{" "}
+                  for fortrolig rådgivning, eller registrer dig i{" "}
+                  <a href="https://www.rofus.nu/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline font-medium">ROFUS</a>{" "}
+                  for selvudelukkelse. Alle danske casinoer med licens tilbyder værktøjer til ansvarligt spil. 18+ | Spil ansvarligt.
                 </p>
               </div>
             </div>
@@ -622,9 +616,9 @@ const Velkomstbonus = () => {
 
         <Separator className="my-10" />
 
-        {/* Opsummering */}
+        {/* Kort sagt */}
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold">Opsummering</h2>
+          <h2 className="mb-4 text-3xl font-bold">Kort sagt</h2>
           <div className="space-y-3">
             {[
               {

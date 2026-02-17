@@ -132,21 +132,17 @@ const BonusUdenOmsaetningskrav = () => {
           <img src={bonusUdenOmsaetningHero} alt="Bonus uden omsætningskrav – frihed fra krav" className="w-full h-auto object-cover max-h-[400px]" loading="eager" />
         </div>
 
-        {/* Hvad er omsætningskrav */}
+        {/* Intro – trend-vinkel */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold">
-            Forståelse af hvad omsætningskrav er
+            Derfor vælger flere danske spillere omsætningsfrie bonusser
           </h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
-            Et{" "}
+            Antallet af danske casinoer med omsætningsfrie tilbud er steget markant de seneste år – og det er der god grund til. Et{" "}
             <Link to="/omsaetningskrav" className="text-primary underline hover:text-primary/80">
               omsætningskrav
             </Link>{" "}
-            er et vilkår sat af casinoer. Det angiver, hvor mange gange du
-            skal spille din bonus igennem, før du kan hæve dine gevinster.
-            Modtager du f.eks. en bonus på 100 kr. med et omsætningskrav på
-            10x, skal du spille for 1.000 kr., før eventuelle gevinster kan
-            udbetales.
+            angiver, hvor mange gange du skal gennemspille din bonus, før gevinster kan udbetales. Med en bonus på 100 kr. og 10x krav skal du satse for 1.000 kr. – en barriere som omsætningsfrie bonusser eliminerer helt.
           </p>
           <p className="text-muted-foreground leading-relaxed">
             Omsætningskrav gælder for de fleste bonustyper – herunder{" "}
@@ -630,9 +626,9 @@ const BonusUdenOmsaetningskrav = () => {
 
         <Separator className="my-10" />
 
-        {/* Opsummering */}
+        {/* Samlet overblik */}
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold">Opsummering</h2>
+          <h2 className="mb-4 text-3xl font-bold">Samlet overblik</h2>
           <div className="space-y-3">
             {[
               {
