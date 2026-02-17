@@ -11,12 +11,6 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "@/components/ui/accordion";
-import {
   ShieldCheck,
   CreditCard,
   Award,
@@ -24,13 +18,9 @@ import {
   AlertTriangle,
   ThumbsUp,
   ThumbsDown,
-  Star,
-  User,
-  CalendarDays,
-  BookOpen,
-  Banknote,
   ArrowRight,
   Wallet,
+  Banknote,
 } from "lucide-react";
 import { ReactNode } from "react";
 
@@ -46,6 +36,12 @@ interface ComparisonItem {
   withdrawalSupport: string;
 }
 
+interface AdditionalSection {
+  title: string;
+  content: ReactNode;
+  position: "after-intro" | "after-whatis" | "after-security" | "after-howto";
+}
+
 interface PaymentMethodPageProps {
   seoTitle: string;
   seoDescription: string;
@@ -57,17 +53,23 @@ interface PaymentMethodPageProps {
   introContent: ReactNode;
   whatIsTitle: string;
   whatIsContent: ReactNode;
+  securityTitle?: string;
   securityContent: ReactNode;
+  howToTitle?: string;
   howToContent: ReactNode;
+  prosConsTitle?: string;
   pros: string[];
   cons: string[];
+  practicalInfoTitle?: string;
   minDeposit: string;
   bonusInfo: string;
   taxInfo: string;
+  comparisonTitle?: string;
   comparison?: ComparisonItem[];
   faqs: FAQ[];
   currentPath: string;
   responsibleGamingText?: string;
+  additionalSections?: AdditionalSection[];
 }
 
 const paymentLinks = [
@@ -83,6 +85,25 @@ const paymentLinks = [
   { to: "/betalingsmetoder/revolut", label: "Revolut" },
 ];
 
+function renderAdditionalSections(sections: AdditionalSection[] | undefined, position: AdditionalSection["position"]) {
+  if (!sections) return null;
+  const filtered = sections.filter((s) => s.position === position);
+  if (filtered.length === 0) return null;
+  return (
+    <>
+      {filtered.map((section, i) => (
+        <div key={`${position}-${i}`}>
+          <Separator className="my-10" />
+          <section className="mb-12">
+            <h2 className="mb-4 text-3xl font-bold">{section.title}</h2>
+            {section.content}
+          </section>
+        </div>
+      ))}
+    </>
+  );
+}
+
 export function PaymentMethodPage({
   seoTitle,
   seoDescription,
@@ -94,17 +115,23 @@ export function PaymentMethodPage({
   introContent,
   whatIsTitle,
   whatIsContent,
+  securityTitle,
   securityContent,
+  howToTitle,
   howToContent,
+  prosConsTitle,
   pros,
   cons,
+  practicalInfoTitle,
   minDeposit,
   bonusInfo,
   taxInfo,
+  comparisonTitle,
   comparison,
   faqs,
   currentPath,
   responsibleGamingText,
+  additionalSections,
 }: PaymentMethodPageProps) {
   const { data: siteSettings } = useSiteSettings();
   const heroBackgroundImage = siteSettings?.hero_background;
@@ -116,7 +143,7 @@ export function PaymentMethodPage({
     description: seoDescription,
     url: `${SITE_URL}${currentPath}`,
     datePublished: "2026-02-15",
-    dateModified: "2026-02-15",
+    dateModified: "2026-02-17",
     authorName: "Kevin",
     authorUrl: `${SITE_URL}/forfatter/kevin`,
   });
@@ -148,7 +175,7 @@ export function PaymentMethodPage({
       </section>
 
       <div className="container py-8 md:py-12">
-        <AuthorMetaBar author="kevin" date="14-02-2026" readTime="14 Min." />
+        <AuthorMetaBar author="kevin" date="17-02-2026" readTime="22 Min." />
 
         {heroImage && (
           <div className="mb-10 overflow-hidden rounded-xl">
@@ -176,6 +203,8 @@ export function PaymentMethodPage({
 
         <InlineCasinoCards title={`Casinoer der accepterer ${name}`} count={4} />
 
+        {renderAdditionalSections(additionalSections, "after-intro")}
+
         <Separator className="my-10" />
 
         {/* What is it */}
@@ -184,16 +213,20 @@ export function PaymentMethodPage({
           {whatIsContent}
         </section>
 
+        {renderAdditionalSections(additionalSections, "after-whatis")}
+
         <Separator className="my-10" />
 
         {/* Security */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
             <ShieldCheck className="h-7 w-7 text-primary" />
-            Sikkerhed og Pålidelighed
+            {securityTitle || "Sikkerhed og Pålidelighed"}
           </h2>
           {securityContent}
         </section>
+
+        {renderAdditionalSections(additionalSections, "after-security")}
 
         <Separator className="my-10" />
 
@@ -201,16 +234,18 @@ export function PaymentMethodPage({
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
             <ArrowRight className="h-7 w-7 text-primary" />
-            Sådan Bruger du {name} på Casinoer
+            {howToTitle || `Sådan Bruger du ${name} på Casinoer`}
           </h2>
           {howToContent}
         </section>
+
+        {renderAdditionalSections(additionalSections, "after-howto")}
 
         <Separator className="my-10" />
 
         {/* Pros & Cons */}
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold">Fordele og Ulemper</h2>
+          <h2 className="mb-4 text-3xl font-bold">{prosConsTitle || "Fordele og Ulemper"}</h2>
           <div className="grid gap-4 md:grid-cols-2">
             <Card className="border-primary/20">
               <CardHeader>
@@ -255,7 +290,7 @@ export function PaymentMethodPage({
 
         {/* Min deposit, bonus, tax */}
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold">Praktisk Information</h2>
+          <h2 className="mb-4 text-3xl font-bold">{practicalInfoTitle || "Praktisk Information"}</h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             <Card>
               <CardHeader>
@@ -292,7 +327,7 @@ export function PaymentMethodPage({
           <>
             <Separator className="my-10" />
             <section className="mb-12">
-              <h2 className="mb-4 text-3xl font-bold">{name} vs. Andre Betalingsmetoder</h2>
+              <h2 className="mb-4 text-3xl font-bold">{comparisonTitle || `${name} vs. Andre Betalingsmetoder`}</h2>
               <div className="overflow-x-auto rounded-lg border border-border">
                 <table className="w-full text-sm">
                   <thead>
@@ -321,7 +356,7 @@ export function PaymentMethodPage({
 
         <Separator className="my-10" />
 
-        {/* Related payment methods (max 3 siblings + hub) */}
+        {/* Related payment methods */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold">Relaterede Betalingsmetoder</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
