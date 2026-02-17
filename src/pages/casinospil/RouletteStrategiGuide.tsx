@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { FAQSection } from "@/components/FAQSection";
 import { SEO } from "@/components/SEO";
-import { buildFaqSchema } from "@/lib/seo";
+import { buildFaqSchema, buildArticleSchema, SITE_URL } from "@/lib/seo";
 import { AuthorBio } from "@/components/AuthorBio";
 import { Separator } from "@/components/ui/separator";
 import { RelatedGuides } from "@/components/RelatedGuides";
@@ -63,6 +63,7 @@ const strategiFaqs: { question: string; answer: ReactNode }[] = [
 
 const RouletteStrategiGuide = () => {
   const faqJsonLd = buildFaqSchema(strategiFaqs);
+  const articleSchema = buildArticleSchema({ headline: "Roulette Strategi 2026 – Martingale, Fibonacci og Mere", description: "Komplet guide til roulette-strategier: Martingale, D'Alembert, Fibonacci, Labouchère og sektorvæddemål. Matematisk analyse og tips.", url: `${SITE_URL}/casinospil/roulette-strategi`, datePublished: "2026-02-15", dateModified: "2026-02-15", authorName: "Jonas", authorUrl: `${SITE_URL}/forfatter/jonas` });
 
   const breadcrumbJsonLd = {
     "@context": "https://schema.org",
@@ -79,7 +80,7 @@ const RouletteStrategiGuide = () => {
       <SEO
         title="Roulette Strategi 2026 – Martingale, Fibonacci og Mere"
         description="Komplet guide til roulette-strategier: Martingale, D'Alembert, Fibonacci, Labouchère og sektorvæddemål. Matematisk analyse og tips til danske spillere."
-        jsonLd={[faqJsonLd, breadcrumbJsonLd]}
+        jsonLd={[faqJsonLd, breadcrumbJsonLd, articleSchema]}
       />
 
       <section className="relative overflow-hidden py-12 text-white md:py-20" style={{ backgroundImage: "linear-gradient(135deg, hsl(260 70% 25%), hsl(250 60% 20%) 40%, hsl(210 80% 25%))" }}>

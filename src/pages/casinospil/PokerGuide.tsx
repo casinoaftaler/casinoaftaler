@@ -3,7 +3,7 @@ import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { AuthorBio } from "@/components/AuthorBio";
 import { FAQSection } from "@/components/FAQSection";
 import { SEO } from "@/components/SEO";
-import { buildFaqSchema } from "@/lib/seo";
+import { buildFaqSchema, buildArticleSchema, SITE_URL } from "@/lib/seo";
 import { Separator } from "@/components/ui/separator";
 import { RelatedGuides } from "@/components/RelatedGuides";
 import { InlineCasinoCards } from "@/components/InlineCasinoCards";
@@ -70,6 +70,7 @@ const pokerFaqs: { question: string; answer: ReactNode }[] = [
 
 const PokerGuide = () => {
   const faqJsonLd = buildFaqSchema(pokerFaqs);
+  const articleSchema = buildArticleSchema({ headline: "Poker Regler 2026 – Komplet Guide til Online Poker", description: "Lær poker regler, håndrækkefølge, varianter og strategi. Guide til Texas Hold'em, Caribbean Stud, Video Poker og live poker.", url: `${SITE_URL}/casinospil/poker`, datePublished: "2026-02-15", dateModified: "2026-02-15", authorName: "Jonas", authorUrl: `${SITE_URL}/forfatter/jonas` });
 
   const breadcrumbJsonLd = {
     "@context": "https://schema.org",
@@ -86,7 +87,7 @@ const PokerGuide = () => {
       <SEO
         title="Poker Regler 2026 – Komplet Guide til Online Poker"
         description="Lær poker regler, håndrækkefølge, varianter og strategi. Guide til Texas Hold'em, Caribbean Stud, Video Poker og live poker på danske casinoer."
-        jsonLd={[faqJsonLd, breadcrumbJsonLd]}
+        jsonLd={[faqJsonLd, breadcrumbJsonLd, articleSchema]}
       />
 
       <section className="relative overflow-hidden py-12 text-white md:py-20" style={{ backgroundImage: "linear-gradient(135deg, hsl(260 70% 25%), hsl(250 60% 20%) 40%, hsl(210 80% 25%))" }}>

@@ -3,7 +3,7 @@ import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { AuthorBio } from "@/components/AuthorBio";
 import { FAQSection } from "@/components/FAQSection";
 import { SEO } from "@/components/SEO";
-import { buildFaqSchema } from "@/lib/seo";
+import { buildFaqSchema, buildArticleSchema, SITE_URL } from "@/lib/seo";
 import { Separator } from "@/components/ui/separator";
 import { RelatedGuides } from "@/components/RelatedGuides";
 import { InlineCasinoCards } from "@/components/InlineCasinoCards";
@@ -70,6 +70,7 @@ const gameShowFaqs: { question: string; answer: ReactNode }[] = [
 
 const GameShowsGuide = () => {
   const faqJsonLd = buildFaqSchema(gameShowFaqs);
+  const articleSchema = buildArticleSchema({ headline: "Online Game Shows 2026 – Crazy Time, Monopoly Live og Mere", description: "Guide til online game shows: Crazy Time, Dream Catcher, Monopoly Live og Lightning-serien. RTP, mekanikker og tips.", url: `${SITE_URL}/casinospil/game-shows`, datePublished: "2026-02-15", dateModified: "2026-02-15", authorName: "Jonas", authorUrl: `${SITE_URL}/forfatter/jonas` });
 
   const breadcrumbJsonLd = {
     "@context": "https://schema.org",
@@ -86,7 +87,7 @@ const GameShowsGuide = () => {
       <SEO
         title="Online Game Shows 2026 – Crazy Time, Monopoly Live og Mere"
         description="Guide til online game shows: Crazy Time, Dream Catcher, Monopoly Live og Lightning-serien. RTP, mekanikker og tips til danske spillere."
-        jsonLd={[faqJsonLd, breadcrumbJsonLd]}
+        jsonLd={[faqJsonLd, breadcrumbJsonLd, articleSchema]}
       />
 
       <section className="relative overflow-hidden py-12 text-white md:py-20" style={{ backgroundImage: "linear-gradient(135deg, hsl(260 70% 25%), hsl(250 60% 20%) 40%, hsl(210 80% 25%))" }}>

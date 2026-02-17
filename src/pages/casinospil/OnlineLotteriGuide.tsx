@@ -3,7 +3,7 @@ import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { AuthorBio } from "@/components/AuthorBio";
 import { FAQSection } from "@/components/FAQSection";
 import { SEO } from "@/components/SEO";
-import { buildFaqSchema } from "@/lib/seo";
+import { buildFaqSchema, buildArticleSchema, SITE_URL } from "@/lib/seo";
 import { Separator } from "@/components/ui/separator";
 import { RelatedGuides } from "@/components/RelatedGuides";
 import { InlineCasinoCards } from "@/components/InlineCasinoCards";
@@ -67,6 +67,7 @@ const lotteriFaqs: { question: string; answer: ReactNode }[] = [
 
 const OnlineLotteriGuide = () => {
   const faqJsonLd = buildFaqSchema(lotteriFaqs);
+  const articleSchema = buildArticleSchema({ headline: "Online Lotteri 2026 – Guide til Lotto, Keno og Skrabespil", description: "Komplet guide til online lotteri i Danmark. Lotto, Eurojackpot, Keno, skrabespil – odds, RTP og tips.", url: `${SITE_URL}/casinospil/online-lotteri`, datePublished: "2026-02-15", dateModified: "2026-02-15", authorName: "Jonas", authorUrl: `${SITE_URL}/forfatter/jonas` });
 
   const breadcrumbJsonLd = {
     "@context": "https://schema.org",
@@ -83,7 +84,7 @@ const OnlineLotteriGuide = () => {
       <SEO
         title="Online Lotteri 2026 – Guide til Lotto, Keno og Skrabespil"
         description="Komplet guide til online lotteri i Danmark. Lotto, Eurojackpot, Keno, skrabespil – odds, RTP og tips til ansvarligt spil."
-        jsonLd={[faqJsonLd, breadcrumbJsonLd]}
+        jsonLd={[faqJsonLd, breadcrumbJsonLd, articleSchema]}
       />
 
       <section className="relative overflow-hidden py-12 text-white md:py-20" style={{ backgroundImage: "linear-gradient(135deg, hsl(260 70% 25%), hsl(250 60% 20%) 40%, hsl(210 80% 25%))" }}>
