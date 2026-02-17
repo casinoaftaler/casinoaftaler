@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
+import { AuthorBio } from "@/components/AuthorBio";
 import { Link } from "react-router-dom";
 import { SEO } from "@/components/SEO";
 import { buildFaqSchema } from "@/lib/seo";
@@ -471,6 +472,8 @@ export default function ForfatterKevin() {
         </section>
 
         <FAQSection title="Ofte stillede spørgsmål om Kevin" faqs={faqs} />
+
+        <AuthorBio author="jonas" showCommunity={false} />
       </div>
     </>
   );

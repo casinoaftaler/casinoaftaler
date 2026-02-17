@@ -4,6 +4,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
+import { AuthorBio } from "@/components/AuthorBio";
 import {
   Banknote,
   ShieldCheck,
@@ -197,6 +198,8 @@ const Forretningsmodel = () => {
             kræver, at vi prioriterer vores læseres tillid over alt andet.
           </p>
         </section>
+
+        <AuthorBio author="jonas" showCommunity={false} />
 
         <RelatedGuides currentPath="/forretningsmodel" maxLinks={5} />
       </div>

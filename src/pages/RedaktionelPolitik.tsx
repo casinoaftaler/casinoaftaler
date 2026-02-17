@@ -4,6 +4,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
+import { AuthorBio } from "@/components/AuthorBio";
 import {
   FileText,
   ShieldCheck,
@@ -243,6 +244,8 @@ const RedaktionelPolitik = () => {
             ))}
           </div>
         </section>
+
+        <AuthorBio author="jonas" showCommunity={false} />
 
         <RelatedGuides currentPath="/redaktionel-politik" maxLinks={5} />
       </div>

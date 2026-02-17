@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
+import { AuthorBio } from "@/components/AuthorBio";
 import { FAQSection } from "@/components/FAQSection";
 import { SEO } from "@/components/SEO";
 import { buildFaqSchema } from "@/lib/seo";
@@ -442,6 +443,8 @@ const SaadanTesterVi = () => {
 
         {/* FAQ */}
         <FAQSection faqs={faqs} />
+
+        <AuthorBio author="jonas" showCommunity={false} />
       </div>
     </>
   );
