@@ -10,7 +10,7 @@ import { Button } from "@/components/ui/button";
 import { RelatedGuides } from "@/components/RelatedGuides";
 import { InlineCasinoCards } from "@/components/InlineCasinoCards";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
-import { buildArticleSchema } from "@/lib/seo";
+import { buildArticleSchema, buildFaqSchema } from "@/lib/seo";
 import { QuickFactsProviders } from "@/components/QuickFactsProviders";
 import { CasinoReviewHero } from "@/components/CasinoReviewHero";
 import type { ReactNode } from "react";
@@ -31,7 +31,7 @@ const GetLuckyAnmeldelse = () => {
   const { data: siteSettings } = useSiteSettings();
   const heroBackgroundImage = siteSettings?.hero_background_image;
   const articleSchema = buildArticleSchema({ headline: "GetLucky Casino Anmeldelse 2026 – Bonus, Spil & Vurdering", description: "Komplet anmeldelse af GetLucky Casino. 1.500+ spil, dansk licens og loyalitetsprogram.", url: "https://casinoaftaler.dk/casino-anmeldelser/getlucky", datePublished: "2026-02-15", dateModified: "2026-02-15", authorName: "Jonas", authorUrl: "https://casinoaftaler.dk/forfatter/jonas" });
-  const faqJsonLd = { "@context": "https://schema.org", "@type": "FAQPage", mainEntity: getluckyFaqs.map((faq) => ({ "@type": "Question", name: faq.question, acceptedAnswer: { "@type": "Answer", text: typeof faq.answer === "string" ? faq.answer : faq.question } })) };
+  const faqJsonLd = buildFaqSchema(getluckyFaqs);
   const reviewJsonLd = { "@context": "https://schema.org", "@type": "Review", itemReviewed: { "@type": "Organization", name: "GetLucky Casino", url: "https://www.getlucky.com/da/" }, author: { "@type": "Organization", name: "Casinoaftaler" }, reviewRating: { "@type": "Rating", ratingValue: "4.0", bestRating: "5" }, reviewBody: "GetLucky Casino byder på et massivt spiludvalg med over 1.500 titler, dansk licens og et loyalitetsprogram der belønner aktive spillere." };
 
   return (

@@ -5,6 +5,7 @@ import { InlineCasinoCards } from "@/components/InlineCasinoCards";
 import { Link } from "react-router-dom";
 import { FAQSection } from "@/components/FAQSection";
 import { SEO } from "@/components/SEO";
+import { buildFaqSchema } from "@/lib/seo";
 import stickyBonusHero from "@/assets/heroes/sticky-bonus-hero.jpg";
 
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -95,18 +96,7 @@ const StickyBonus = () => {
   const { data: siteSettings } = useSiteSettings();
   const heroBackgroundImage = siteSettings?.hero_background;
 
-  const faqJsonLd = {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    mainEntity: stickyFaqs.map((faq) => ({
-      "@type": "Question",
-      name: faq.question,
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: faq.answer,
-      },
-    })),
-  };
+  const faqJsonLd = buildFaqSchema(stickyFaqs);
 
   const articleJsonLd = {
     "@context": "https://schema.org",

@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { FAQSection } from "@/components/FAQSection";
 import { SEO } from "@/components/SEO";
+import { buildFaqSchema } from "@/lib/seo";
 import { Separator } from "@/components/ui/separator";
 import { RelatedGuides } from "@/components/RelatedGuides";
 import { InlineCasinoCards } from "@/components/InlineCasinoCards";
@@ -64,15 +65,7 @@ const crapsFaqs: { question: string; answer: ReactNode }[] = [
 ];
 
 const CrapsGuide = () => {
-  const faqJsonLd = {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    mainEntity: crapsFaqs.map((faq) => ({
-      "@type": "Question",
-      name: faq.question,
-      acceptedAnswer: { "@type": "Answer", text: typeof faq.answer === "string" ? faq.answer : faq.question },
-    })),
-  };
+  const faqJsonLd = buildFaqSchema(crapsFaqs);
 
   const breadcrumbJsonLd = {
     "@context": "https://schema.org",

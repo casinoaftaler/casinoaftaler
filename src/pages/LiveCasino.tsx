@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import { FAQSection } from "@/components/FAQSection";
 import liveCasinoHero from "@/assets/heroes/live-casino-hero.jpg";
 import { SEO } from "@/components/SEO";
+import { buildFaqSchema } from "@/lib/seo";
 import { CasinoCard } from "@/components/CasinoCard";
 import { InlineCasinoCards } from "@/components/InlineCasinoCards";
 import { useCasinos } from "@/hooks/useCasinos";
@@ -100,18 +101,7 @@ const LiveCasino = () => {
   const [openCasinoId, setOpenCasinoId] = useState<string | null>(null);
   const heroBackgroundImage = siteSettings?.hero_background;
 
-  const faqJsonLd = {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    mainEntity: liveCasinoFaqs.map((faq) => ({
-      "@type": "Question",
-      name: faq.question,
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: faq.answer,
-      },
-    })),
-  };
+  const faqJsonLd = buildFaqSchema(liveCasinoFaqs);
 
   const articleJsonLd = {
     "@context": "https://schema.org",

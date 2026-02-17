@@ -9,7 +9,7 @@ import { Separator } from "@/components/ui/separator";
 import { RelatedGuides } from "@/components/RelatedGuides";
 import { InlineCasinoCards } from "@/components/InlineCasinoCards";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
-import { buildArticleSchema } from "@/lib/seo";
+import { buildArticleSchema, buildFaqSchema } from "@/lib/seo";
 import { QuickFactsProviders } from "@/components/QuickFactsProviders";
 import { CasinoReviewHero } from "@/components/CasinoReviewHero";
 import type { ReactNode } from "react";
@@ -30,7 +30,7 @@ const BwinAnmeldelse = () => {
   const { data: siteSettings } = useSiteSettings();
   const heroBackgroundImage = siteSettings?.hero_background_image;
   const articleSchema = buildArticleSchema({ headline: "bwin Anmeldelse 2026 – Sport & Casino i Verdensklasse", description: "Dybdegående anmeldelse af bwin Danmark. Sportsvæddemål, casino og poker fra en af Europas største gambling-operatører.", url: "https://casinoaftaler.dk/casino-anmeldelser/bwin", datePublished: "2026-02-15", dateModified: "2026-02-15", authorName: "Kevin", authorUrl: "https://casinoaftaler.dk/forfatter/kevin" });
-  const faqJsonLd = { "@context": "https://schema.org", "@type": "FAQPage", mainEntity: bwinFaqs.map((faq) => ({ "@type": "Question", name: faq.question, acceptedAnswer: { "@type": "Answer", text: typeof faq.answer === "string" ? faq.answer : faq.question } })) };
+  const faqJsonLd = buildFaqSchema(bwinFaqs);
   const reviewJsonLd = { "@context": "https://schema.org", "@type": "Review", itemReviewed: { "@type": "Organization", name: "bwin", url: "https://www.bwin.dk/" }, author: { "@type": "Organization", name: "Casinoaftaler" }, reviewRating: { "@type": "Rating", ratingValue: "4.1", bestRating: "5" } };
 
   return (

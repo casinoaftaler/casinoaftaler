@@ -10,7 +10,7 @@ import { Button } from "@/components/ui/button";
 import { RelatedGuides } from "@/components/RelatedGuides";
 import { InlineCasinoCards } from "@/components/InlineCasinoCards";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
-import { buildArticleSchema } from "@/lib/seo";
+import { buildArticleSchema, buildFaqSchema } from "@/lib/seo";
 import { QuickFactsProviders } from "@/components/QuickFactsProviders";
 import type { ReactNode } from "react";
 import { CasinoReviewHero } from "@/components/CasinoReviewHero";
@@ -123,18 +123,7 @@ const DanskeSpilAnmeldelse = () => {
     image: "https://casinoaftaler.dk/assets/heroes/danske-spil-hero.jpg",
   });
 
-  const faqJsonLd = {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    mainEntity: danskeSpilFaqs.map((faq) => ({
-      "@type": "Question",
-      name: faq.question,
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: typeof faq.answer === "string" ? faq.answer : faq.question,
-      },
-    })),
-  };
+  const faqJsonLd = buildFaqSchema(danskeSpilFaqs);
 
   const reviewJsonLd = {
     "@context": "https://schema.org",
