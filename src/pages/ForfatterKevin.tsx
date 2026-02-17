@@ -13,12 +13,6 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import {
-  Tooltip,
-  TooltipContent,
-  TooltipProvider,
-  TooltipTrigger,
-} from "@/components/ui/tooltip";
-import {
   User,
   CalendarDays,
   BookOpen,
@@ -211,24 +205,9 @@ export default function ForfatterKevin() {
                 Medudvikler
               </Badge>
             </div>
-            <div className="mb-4 flex items-center justify-center gap-3">
-              <h1 className="text-4xl font-bold tracking-tight md:text-5xl">
-                Kevin – Streamer &amp; Casinoanalytiker
-              </h1>
-              <TooltipProvider>
-                <Tooltip>
-                  <TooltipTrigger asChild>
-                    <span className="inline-flex items-center gap-1.5 rounded-full bg-primary/20 px-3 py-1 text-sm font-medium text-primary-foreground/90 border border-primary/30 cursor-default">
-                      <BadgeCheck className="h-4 w-4" />
-                      Verificeret profil
-                    </span>
-                  </TooltipTrigger>
-                  <TooltipContent side="bottom" className="max-w-xs text-center">
-                    Aktiv skribent og streamer tilknyttet Casinoaftaler.dk
-                  </TooltipContent>
-                </Tooltip>
-              </TooltipProvider>
-            </div>
+            <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">
+              Kevin – Streamer &amp; Casinoanalytiker
+            </h1>
             <p className="text-lg text-white/80">
               Streamer og forfatter på Casinoaftaler.dk med fokus på casinospil, bonusanalyse og teknisk udvikling af platformen.
             </p>
