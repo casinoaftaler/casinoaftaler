@@ -349,7 +349,7 @@ const CasinoLicenser = () => {
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold">Vores klare anbefaling</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
-            Hos Casinoaftaler.dk anbefaler vi udelukkende casinoer med dansk licens fra <Link to="/spillemyndigheden" className={linkClass}>Spillemyndigheden</Link>. Det er det eneste valg, der giver dig fuld juridisk beskyttelse, skattefri gevinster og adgang til ROFUS. Uanset hvor attraktive udenlandske bonusser måtte virke, opvejer risiciene aldrig fordelene ved dansk licens.
+            Anbefalingen er entydig: vælg altid et casino med dansk licens fra <Link to="/spillemyndigheden" className={linkClass}>Spillemyndigheden</Link>. Det er det eneste valg, der giver fuld juridisk beskyttelse, skattefri gevinster og adgang til ROFUS. Uanset hvor attraktive udenlandske bonusser måtte virke, opvejer risiciene aldrig fordelene ved dansk licens.
           </p>
           <p className="text-muted-foreground leading-relaxed">
             Se vores opdaterede liste over <Link to="/nye-casinoer" className={linkClass}>nye casinoer</Link> – alle med dansk licens og verificeret af vores team. Husk altid at spille <Link to="/ansvarligt-spil" className={linkClass}>ansvarligt</Link>.

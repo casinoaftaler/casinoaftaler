@@ -226,8 +226,8 @@ const TopCasinoOnline = () => {
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold">De bedste online casinoer i Danmark</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
-            At finde det rigtige online casino i Danmark kan virke uoverskueligt med det store antal spillesteder på markedet. Hos Casinoaftaler.dk har vi gjort arbejdet for dig og samlet en grundig top 10 liste over de bedste danske online casinoer i 2026. Alle casinoer på vores liste har gyldig dansk licens fra Spillemyndigheden, tilbyder sikre{" "}
-            <Link to="/betalingsmetoder" className={linkClass}>betalingsmetoder</Link> og har gennemsigtige bonusvilkår.
+            Med det store antal spillesteder på det danske marked kan det virke uoverskueligt at finde det rigtige casino. Denne top 10-liste samler de bedste danske online casinoer i 2026 – alle med gyldig licens fra Spillemyndigheden, sikre{" "}
+            <Link to="/betalingsmetoder" className={linkClass}>betalingsmetoder</Link> og gennemsigtige bonusvilkår.
           </p>
           <p className="mb-4 text-muted-foreground leading-relaxed">
             Vi vurderer hvert casino ud fra en række nøgleparametre: velkomstbonus og{" "}
@@ -895,7 +895,7 @@ const TopCasinoOnline = () => {
             </CardHeader>
             <CardContent className="space-y-3">
               <p className="text-muted-foreground leading-relaxed">
-                Online casino skal altid være en form for underholdning – aldrig en måde at tjene penge på. Hos Casinoaftaler.dk opfordrer vi alle til at spille ansvarligt og sætte klare grænser for både tid og penge. Sæt altid et budget, hold regelmæssige pauser, og spil aldrig for mere, end du har råd til at tabe.
+                Online casino skal altid være en form for underholdning – aldrig en måde at tjene penge på. Spil ansvarligt og sæt klare grænser for både tid og penge. Fastlæg et budget, hold regelmæssige pauser, og spil aldrig for mere, end du har råd til at tabe.
               </p>
               <p className="text-muted-foreground leading-relaxed">
                 Alle casinoer på vores top 10 liste har dansk licens og tilbyder selvbegrænsningsværktøjer, herunder indbetalingsgrænser, tabsgrænser og sessionsgrænser. Du kan til enhver tid selvudelukke via{" "}
