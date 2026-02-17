@@ -529,9 +529,9 @@ const Betalingsmetoder = () => {
 
         <Separator className="my-10" />
 
-        {/* Opsummering */}
+        {/* Konklusion */}
         <section className="mb-12">
-          <h2 className="mb-6 text-3xl font-bold">Opsummering</h2>
+          <h2 className="mb-6 text-3xl font-bold">Hvilken betalingsmetode passer til dig?</h2>
           <div className="space-y-3">
             <div className="flex items-start gap-3 rounded-lg border border-border bg-card p-4">
               <CheckCircle2 className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />

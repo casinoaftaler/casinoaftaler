@@ -525,9 +525,9 @@ const Omsaetningskrav = () => {
 
         <Separator className="my-10" />
 
-        {/* Opsummering */}
+        {/* Kort sagt */}
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold">Opsummering</h2>
+          <h2 className="mb-4 text-3xl font-bold">Kort sagt om omsætningskrav</h2>
           <div className="space-y-3">
             {[
               {
