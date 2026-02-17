@@ -1,8 +1,39 @@
-import { Link } from "react-router-dom";
+import { useMemo } from "react";
+import { Link, useLocation } from "react-router-dom";
 import { CalendarDays, BookOpen, CheckCircle } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import jonasImage from "@/assets/jonas-forfatter.png";
 import kevinImage from "@/assets/kevin-forfatter.png";
+
+const DISCLAIMER_VARIANTS = [
+  <>Denne side indeholder affiliate-links. Vi modtager provision, hvis du opretter en konto via vores links – det påvirker ikke vores vurdering. <Link to="/forretningsmodel" className="underline hover:text-primary">Læs mere om vores model</Link>.</>,
+  <>Indholdet er uafhængigt, men vi modtager kompensation via affiliate-samarbejder. Det har ingen indflydelse på vores anbefalinger. <Link to="/forretningsmodel" className="underline hover:text-primary">Læs mere</Link>.</>,
+  <>Vi finansieres delvist gennem affiliate-links på denne side. Vores vurderinger er redaktionelt uafhængige. <Link to="/forretningsmodel" className="underline hover:text-primary">Se vores forretningsmodel</Link>.</>,
+  <>Nogle links på denne side er affiliate-links. Det betyder, at vi kan modtage provision – uden ekstra omkostning for dig. <Link to="/forretningsmodel" className="underline hover:text-primary">Sådan fungerer det</Link>.</>,
+  <>Denne artikel kan indeholde kommercielle links. Provisionen påvirker aldrig vores redaktionelle vurdering. <Link to="/forretningsmodel" className="underline hover:text-primary">Læs om vores uafhængighed</Link>.</>,
+];
+
+function hashPath(path: string): number {
+  let hash = 0;
+  for (let i = 0; i < path.length; i++) {
+    hash = ((hash << 5) - hash + path.charCodeAt(i)) | 0;
+  }
+  return Math.abs(hash);
+}
+
+function AffiliateDisclaimer() {
+  const { pathname } = useLocation();
+  const variant = useMemo(
+    () => DISCLAIMER_VARIANTS[hashPath(pathname) % DISCLAIMER_VARIANTS.length],
+    [pathname]
+  );
+
+  return (
+    <p className="mb-8 text-xs text-muted-foreground italic">
+      {variant}
+    </p>
+  );
+}
 
 const authorConfig = {
   jonas: { name: "Jonas", image: jonasImage, alt: "Jonas – Fedesvinsejer", link: "/forfatter/jonas" },
@@ -98,12 +129,7 @@ export function AuthorMetaBar({ author, date, readTime, showFactCheck = true, sh
           </div>
         )}
       </div>
-      {showAffiliateDisclaimer && (
-        <p className="mb-8 text-xs text-muted-foreground italic">
-          Denne side indeholder affiliate-links. Vi modtager provision, hvis du opretter en konto via vores links – det påvirker ikke vores vurdering.{" "}
-          <Link to="/forretningsmodel" className="underline hover:text-primary">Læs mere</Link>.
-        </p>
-      )}
+      {showAffiliateDisclaimer && <AffiliateDisclaimer />}
       {!showAffiliateDisclaimer && <div className="mb-6" />}
     </>
   );
