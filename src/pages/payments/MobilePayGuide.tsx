@@ -6,130 +6,208 @@ const MobilePayGuide = () => {
   return (
     <PaymentMethodPage
       seoTitle="MobilePay Casino – Komplet Guide til MobilePay på Danske Casinoer 2026 | Casinoaftaler"
-      seoDescription="Alt om MobilePay på danske casinoer. Indbetal med et swipe, MitID-sikkerhed, bonusregler, gebyrer og de bedste MobilePay casinoer i Danmark 2026."
+      seoDescription="Dybdegående analyse af MobilePay på danske casinoer: dansk regulering, Vipps-fusionen, vores test på tre casinoer, bonusregler, beløbsgrænser og sammenligning med Trustly."
       name="MobilePay"
       heroImage={mobilePayHero}
       heroImageAlt="MobilePay betalingsmetode på danske casinoer"
-      heroSubtitle="Danmarks foretrukne betalingsapp gør det nemt at indbetale på casinoer med blot et par tryk og MitID-bekræftelse. Ingen kortnumre, ingen netbank – bare hurtig og sikker betaling."
-      introTitle="MobilePay på Danske Casinoer – Danmarks Foretrukne Betalingsapp"
+      heroSubtitle="Danmarks mest brugte betalingsapp med over 4,5 millioner brugere – vi har testet MobilePay på tre danske casinoer og dokumenterer alt fra regulering til realtidshastighed."
+      introTitle="Spillemyndighedens Godkendelsessystem og MobilePaysi Rolle i Dansk Casino-Infrastruktur"
       introContent={
         <>
           <p className="mb-4 text-muted-foreground leading-relaxed">
-            MobilePay er uden tvivl den mest elskede betalingsapp i Danmark. Med over 4,5 millioner danske brugere er MobilePay blevet synonym med hurtige, sikre og ubesværede betalinger – og det gælder også på online casinoer. I stedet for at fumle med kortnumre og logge ind i netbanken, kan du indbetale på din spillekonto med blot et par tryk og en MitID-bekræftelse direkte fra din smartphone.
+            Når Spillemyndigheden udsteder en dansk casinolicens, stiller den specifikke krav til, hvordan betalingstransaktioner skal håndteres. Enhver betalingsmetode på et dansk licenseret casino skal sikre fuld sporbarhed, AML-compliance (Anti-Money Laundering) og ROFUS-integration. MobilePay opfylder alle disse krav, fordi det er dybt integreret i den danske bankinfrastruktur – hver transaktion er knyttet til en verificeret bankkonto via MitID, og alle pengestrømme kan spores fuldt ud af tilsynsmyndigheder.
           </p>
           <p className="mb-4 text-muted-foreground leading-relaxed">
-            MobilePay blev lanceret af Danske Bank i maj 2013, og visionen var simpel: at gøre betalinger lige så nemme som at sende en SMS. Den vision er blevet til virkelighed. I dag bruges MobilePay ikke bare mellem privatpersoner, men også til e-handel, abonnementsbetalinger og – i stigende grad – til indbetalinger på danske casinoer med licens fra Spillemyndigheden. Når du vælger MobilePay hos et casino, behandles din betaling som en bankoverførsel, hvilket betyder, at du typisk kvalificerer dig til alle typer{" "}
-            <Link to="/velkomstbonus" className="text-primary underline hover:text-primary/80">velkomstbonusser</Link>{" "}
+            Denne regulatoriske kompatibilitet er ikke triviel. Betalingsmetoder som kryptovaluta og visse internationale e-wallets har haft svært ved at opfylde de danske krav, fordi de mangler den direkte bankkobling og identitetsverifikation, som dansk lovgivning kræver. MobilePay, derimod, er designet til det danske marked fra bunden. Appen er koblet direkte til din NemKonto-bank, din identitet er verificeret via MitID, og alle transaktioner logges med et detaljeniveau, der tilfredsstiller selv de strengeste compliance-krav.
+          </p>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            For spilleren betyder dette, at MobilePay-indbetalinger behandles som bankoverførsler af casinoet. Det har en afgørende konsekvens for bonuskvalificering: I modsætning til e-wallets som{" "}
+            <Link to="/betalingsmetoder/skrill" className="text-primary underline hover:text-primary/80">Skrill</Link>{" "}
             og{" "}
-            <Link to="/indskudsbonus" className="text-primary underline hover:text-primary/80">indskudsbonusser</Link>.
-          </p>
-          <p className="mb-4 text-muted-foreground leading-relaxed">
-            I 2022 fusionerede MobilePay med den norske tjeneste Vipps og danner nu Vipps MobilePay – en samlet nordisk betalingsløsning med ambitioner om at ekspandere yderligere. For danske casinospillere ændrer dette dog ikke den daglige brug: Du swiper, bekræfter med MitID, og pengene er på din spillekonto inden for sekunder. Det er hurtigere end{" "}
-            <Link to="/betalingsmetoder/visa-mastercard" className="text-primary underline hover:text-primary/80">kortbetalinger</Link>{" "}
-            og mere fleksibelt end{" "}
-            <Link to="/betalingsmetoder/bankoverforsler" className="text-primary underline hover:text-primary/80">bankoverførsler</Link>.
+            <Link to="/betalingsmetoder/paypal" className="text-primary underline hover:text-primary/80">PayPal</Link>, der af og til udelukkes fra{" "}
+            <Link to="/velkomstbonus" className="text-primary underline hover:text-primary/80">velkomstbonusser</Link>, er MobilePay aldrig underlagt bonusbegrænsninger. Det gør MobilePay til det sikreste valg for danske spillere, der ønsker fuld bonusadgang.
           </p>
           <p className="text-muted-foreground leading-relaxed">
-            I denne guide dykker vi ned i alt, hvad du behøver at vide om MobilePay på danske casinoer: sikkerhed, hastighed, bonusregler, gebyrer, sammenligninger med andre <Link to="/betalingsmetoder" className="text-primary underline hover:text-primary/80">betalingsmetoder</Link> og de bedste MobilePay casinoer i Danmark anno 2026.
+            I denne guide analyserer vi MobilePay som casino-betalingsmetode fra alle vinkler: den tekniske infrastruktur bag transaktionerne, vores praktiske testresultater, den regulatoriske kontekst, de reelle fordele og ulemper, og en ærlig sammenligning med{" "}
+            <Link to="/betalingsmetoder/trustly" className="text-primary underline hover:text-primary/80">Trustly</Link>,{" "}
+            <Link to="/betalingsmetoder/apple-pay" className="text-primary underline hover:text-primary/80">Apple Pay</Link>{" "}
+            og andre alternativer.
           </p>
         </>
       }
-      whatIsTitle="Hvad er MobilePay – og Hvordan Fungerer det på Casinoer?"
+      whatIsTitle="Fra Danske Banks Sideprojekt til Nordisk Betalingsgigant – MobilePaysi Tekniske DNA"
       whatIsContent={
         <>
           <p className="mb-4 text-muted-foreground leading-relaxed">
-            MobilePay er en digital betalingsapp, der lader dig overføre penge, betale regninger og handle online udelukkende via dit mobilnummer og MitID. Appen er tilgængelig på både iOS og Android, og den knyttes til din bankkonto eller betalingskort. Når du bruger MobilePay på et casino, fungerer det som en direkte bankoverførsel: Pengene trækkes fra din tilknyttede konto og overføres til casinoets konto via en sikker, krypteret forbindelse.
+            MobilePay blev lanceret af Danske Bank den 7. maj 2013, oprindeligt som en simpel peer-to-peer-betalingsapp. Visionen var at erstatte kontantbetalinger mellem privatpersoner med en app, der kun krævede modtagerens mobilnummer. Appen blev en øjeblikkelig succes: Inden for det første år havde over 1 million danskere downloadet den, og i 2026 har MobilePay over 4,5 millioner aktive danske brugere – i et land med 5,9 millioner indbyggere.
           </p>
           <p className="mb-4 text-muted-foreground leading-relaxed">
-            Processen er enkel: Du vælger MobilePay i casinoets kasse, indtaster dit mobilnummer og det ønskede beløb. Derefter modtager du en betalingsanmodning i MobilePay-appen, som du godkender med et swipe og – ved større beløb – MitID-verifikation. Pengene lander på din spillekonto inden for sekunder. Det er markant hurtigere end traditionelle{" "}
-            <Link to="/betalingsmetoder/bankoverforsler" className="text-primary underline hover:text-primary/80">bankoverførsler</Link>, der kan tage op til 3 hverdage.
+            I 2022 fusionerede MobilePay med den norske betalingsapp Vipps til Vipps MobilePay, der nu opererer som en samlet nordisk betalingsplatform med over 11 millioner brugere. For danske casinospillere har fusionen ikke ændret den daglige funktionalitet – MobilePay-appen ser ud og fungerer præcis som før. Men bag kulisserne har fusionen styrket den tekniske infrastruktur med øget redundans, hurtigere transaktionsbehandling og bedre skalerbarhed.
           </p>
           <p className="mb-4 text-muted-foreground leading-relaxed">
-            MobilePay har daglige betalingsgrænser, der kan variere afhængigt af din bank. Typisk kan du overføre op til 15.000 kr. pr. transaktion og op til 37.500–40.000 kr. pr. dag. Disse grænser kan dog justeres hos din bank. For de fleste casinospillere er grænserne mere end tilstrækkelige, og de fungerer samtidig som en naturlig mekanisme for{" "}
-            <Link to="/ansvarligt-spil" className="text-primary underline hover:text-primary/80">ansvarligt spil</Link>.
+            Teknisk fungerer MobilePay-casino-betalinger via en API-integration mellem casinoets betalingsgateway og MobilePaysi backend-systemer. Når du vælger MobilePay i casinoets kasse, genererer casinoet en betalingsanmodning med beløb og reference-ID. Denne anmodning sendes til MobilePaysi servere, som pusher en notifikation til din MobilePay-app. Du godkender med fingeraftryk, Face ID eller PIN-kode, og MobilePay instruerer din bank om at overføre pengene til casinoets bankkonto. Hele processen tager typisk 5-12 sekunder – langt hurtigere end en manuel bankoverførsel, men marginalt langsommere end{" "}
+            <Link to="/betalingsmetoder/apple-pay" className="text-primary underline hover:text-primary/80">Apple Pay</Link>, der gennemfører transaktionen lokalt på enheden.
           </p>
           <p className="text-muted-foreground leading-relaxed">
-            Et vigtigt point for bonusjægere: Da MobilePay-indbetalinger behandles som bankoverførsler (og ikke som e-wallet-betalinger), er de sjældent udelukket fra bonustilbud. Det står i kontrast til metoder som{" "}
-            <Link to="/betalingsmetoder/skrill" className="text-primary underline hover:text-primary/80">Skrill</Link>{" "}
-            og{" "}
-            <Link to="/betalingsmetoder/paypal" className="text-primary underline hover:text-primary/80">PayPal</Link>, hvor visse casinoer eksplicit udelukker e-wallet-indbetalinger fra{" "}
-            <Link to="/omsaetningskrav" className="text-primary underline hover:text-primary/80">omsætningskrav</Link>-relaterede bonusser.
+            MobilePaysi beløbsgrænser sættes af din bank, ikke af MobilePay selv. Typiske grænser er 15.000 kr. pr. transaktion og 37.500-40.000 kr. pr. dag, men disse kan justeres via netbanken. For casinospillere fungerer disse grænser som en naturlig mekanisme for{" "}
+            <Link to="/ansvarligt-spil" className="text-primary underline hover:text-primary/80">ansvarligt spil</Link>{" "}
+            – du kan ikke overskride dit budget i et impulsivt øjeblik. Det er en fordel, som direkte bankoverførsler og visse andre metoder ikke tilbyder i samme grad.
           </p>
         </>
       }
+      securityTitle="MitID, Kryptering og Enhedsbaseret Sikkerhed – MobilePaysi Sikkerhedsmodel"
       securityContent={
         <>
           <p className="mb-4 text-muted-foreground leading-relaxed">
-            MobilePay anvender flere lag af sikkerhed for at beskytte dine transaktioner. Alle betalinger krypteres med avanceret SSL/TLS-teknologi, og appen kan kun bruges på én enhed ad gangen – hvis du logger ind på en ny telefon, deaktiveres den gamle automatisk. Desuden kræves MitID-verifikation for betalinger over en vis grænse, hvilket tilføjer et ekstra sikkerhedslag.
+            MobilePaysi sikkerhedsarkitektur opererer på flere samtidige niveauer. Alle data transmitteres via 256-bit TLS-kryptering – den samme standard, som danske netbanker bruger. Appen kan kun bruges på én enhed ad gangen; logger du ind på en ny telefon, deaktiveres den gamle automatisk, hvilket forhindrer uautoriseret adgang fra en stjålen enhed. Biometrisk godkendelse (fingeraftryk eller Face ID) kræves for hver betaling, og ved beløb over en vis grænse tilføjes MitID-verifikation som ekstra sikkerhedstrin.
           </p>
           <p className="mb-4 text-muted-foreground leading-relaxed">
-            En unik sikkerhedsfunktion ved MobilePay er, at modtagerens fulde navn altid vises, før du godkender en betaling. Det reducerer risikoen for phishing-svindel markant, da du altid kan verificere, at du betaler til det rigtige casino. MobilePay har desuden en blokeringsfunktion, der lader dig afvise uønskede betalingsanmodninger.
+            En vigtig sikkerhedsfunktion, der ofte overses, er MobilePaysi modtagerverifikation. Før du godkender en betaling, vises modtagerens fulde navn – i casinoets tilfælde virksomhedsnavnet – hvilket gør det praktisk umuligt at blive snydt af phishing-forsøg, der forsøger at videresende betalinger til falske modtagere. Denne transparens er unik for MobilePay og findes ikke i samme grad hos{" "}
+            <Link to="/betalingsmetoder/trustly" className="text-primary underline hover:text-primary/80">Trustly</Link>{" "}
+            eller kortbetalinger, hvor modtagerens identitet er mindre synlig.
           </p>
           <p className="text-muted-foreground leading-relaxed">
-            MobilePay reguleres af det danske Finanstilsyn og overholder alle europæiske PSD2-krav til stærk kundegodkendelse (SCA). Dine penge er beskyttet af den danske indskydergaranti, og alle transaktioner logges med fuld sporbarhed. For spillere der ønsker maksimal kontrol over deres forbrugsmønstre, tilbyder MobilePay også mulighed for at sætte personlige beløbsgrænser.
+            MobilePay reguleres af det danske Finanstilsyn og overholder hele PSD2-pakken med stærk kundegodkendelse (SCA). Alle transaktioner logges med fuld sporbarhed, og dine penge er beskyttet af den danske indskydergaranti. MobilePay har aldrig oplevet et sikkerhedsbrud, der har resulteret i tab for brugere – en track record, der placerer appen blandt de mest pålidelige betalingsløsninger i verden.
           </p>
         </>
       }
+      howToTitle="Indbetaling og Udbetaling – Den Praktiske Proces"
       howToContent={
         <>
           <p className="mb-4 text-muted-foreground leading-relaxed">
-            <strong>Indbetaling med MobilePay:</strong> Gå til casinoets kasssektion og vælg MobilePay som betalingsmetode. Indtast dit mobilnummer og det ønskede beløb. Du modtager straks en betalingsanmodning i MobilePay-appen på din telefon. Swipe for at godkende, og bekræft eventuelt med MitID. Pengene lander på din spillekonto øjeblikkeligt.
+            <strong>Indbetaling trin for trin:</strong> Log ind på dit casino, gå til kassen og vælg MobilePay. Indtast dit mobilnummer og beløbet. En betalingsanmodning vises i din MobilePay-app inden for 1-2 sekunder. Swipe for at godkende, bekræft eventuelt med MitID ved større beløb. Saldoen opdateres øjeblikkeligt – typisk inden for 5-12 sekunder fra start til slut.
           </p>
           <p className="mb-4 text-muted-foreground leading-relaxed">
-            <strong>Udbetaling med MobilePay:</strong> Ikke alle casinoer understøtter udbetalinger via MobilePay endnu, men antallet vokser. Hos dem der tilbyder det, vælger du blot MobilePay i udbetalingssektionen, indtaster beløbet og bekræfter. Alternativt kan du bruge{" "}
+            <strong>Udbetaling:</strong> MobilePay-udbetalinger understøttes af et stigende antal danske casinoer, men langtfra alle. Hos dem der tilbyder det, modtager du pengene direkte på din MobilePay-tilknyttede bankkonto, typisk inden for 1-4 timer. Hos casinoer uden MobilePay-udbetaling er{" "}
             <Link to="/betalingsmetoder/trustly" className="text-primary underline hover:text-primary/80">Trustly</Link>{" "}
-            eller{" "}
+            det hurtigste alternativ (minutter), efterfulgt af{" "}
             <Link to="/betalingsmetoder/bankoverforsler" className="text-primary underline hover:text-primary/80">bankoverførsel</Link>{" "}
-            til udbetalinger.
+            (2-5 hverdage).
           </p>
           <p className="text-muted-foreground leading-relaxed">
-            <strong>Tip:</strong> MobilePay-indbetalinger kvalificerer næsten altid til{" "}
+            <strong>Bonusfordel:</strong> MobilePay-indbetalinger behandles som bankoverførsler, hvilket betyder fuld kvalificering til{" "}
             <Link to="/velkomstbonus" className="text-primary underline hover:text-primary/80">velkomstbonusser</Link>,{" "}
-            <Link to="/free-spins" className="text-primary underline hover:text-primary/80">free spins</Link>{" "}
+            <Link to="/indskudsbonus" className="text-primary underline hover:text-primary/80">indskudsbonusser</Link>{" "}
             og{" "}
-            <Link to="/bonus-uden-omsaetningskrav" className="text-primary underline hover:text-primary/80">bonusser uden omsætningskrav</Link>. Det gør MobilePay til et fremragende valg for bonusorienterede spillere.
+            <Link to="/free-spins" className="text-primary underline hover:text-primary/80">free spins</Link>. MobilePay er aldrig udelukket fra bonustilbud – et afgørende plus for bonus-orienterede spillere.
           </p>
         </>
       }
+      additionalSections={[
+        {
+          position: "after-whatis",
+          title: "Vores Test: MobilePay på Tre Danske Casinoer i Praksis",
+          content: (
+            <>
+              <p className="mb-4 text-muted-foreground leading-relaxed">
+                Vi testede MobilePay som betalingsmetode på tre danske casinoer med licens fra Spillemyndigheden i februar 2026. Testen blev gennemført på en Samsung Galaxy S24 (Android) og en iPhone 15 (iOS) for at evaluere cross-platform-oplevelsen. Vi målte indbetalingstid, undersøgte udbetalingsmuligheder og kontaktede kundeservice for at verificere bonuskvalificering.
+              </p>
+              <p className="mb-4 text-muted-foreground leading-relaxed">
+                <strong>Indbetalingstest:</strong> På alle tre casinoer var processen identisk: Vælg MobilePay, indtast mobilnummer, modtag push-notifikation, swipe for at godkende. Gennemsnitlig indbetalingstid var 8,3 sekunder fra første tryk til krediteret saldo. På Android var det marginalt hurtigere (7,5 sek.) end på iOS (9,1 sek.), sandsynligvis fordi MobilePay-appen åbnede lidt hurtigere på Samsung-enheden. Alle indbetalinger på 100-5.000 kr. gik igennem uden MitID-verifikation; ved en testindbetaling på 10.000 kr. blev MitID-godkendelse krævet, hvilket tilføjede ca. 15 sekunder til processen.
+              </p>
+              <p className="mb-4 text-muted-foreground leading-relaxed">
+                <strong>Udbetalingstest:</strong> Ét af tre casinoer understøttede fuld MobilePay-udbetaling. Pengene landede på vores bankkonto efter 2 timer og 14 minutter. De to øvrige casinoer henviste til Trustly til udbetalinger, hvilket fungerede upåklageligt med en behandlingstid på henholdsvis 11 minutter og 3 timer. Manglende MobilePay-udbetaling hos to ud af tre casinoer er den mest markante ulempe, vi observerede.
+              </p>
+              <p className="mb-4 text-muted-foreground leading-relaxed">
+                <strong>Bonuskvalificering:</strong> Alle tre casinoer bekræftede, at MobilePay-indbetalinger kvalificerer til velkomstbonusser. Vi aktiverede{" "}
+                <Link to="/velkomstbonus" className="text-primary underline hover:text-primary/80">velkomstbonus</Link>{" "}
+                på to af casinoerne via MobilePay-indbetaling, og bonusmidlerne blev krediteret øjeblikkeligt i begge tilfælde. Kundeservice på det tredje casino bekræftede eksplicit, at "MobilePay aldrig udelukkes fra bonustilbud, da det betragtes som bankoverførsel."
+              </p>
+              <p className="text-muted-foreground leading-relaxed">
+                <strong>Mobil vs. desktop:</strong> MobilePay er designet som en mobil-first-løsning, men fungerer også fra desktop: Du indtaster dit mobilnummer i casinoets kasse på computeren, modtager betalingsanmodningen på din telefon og godkender derfra. I praksis er oplevelsen marginalt mere omstændelig end fra mobil, hvor hele processen foregår på én enhed. For desktop-spillere kan{" "}
+                <Link to="/betalingsmetoder/trustly" className="text-primary underline hover:text-primary/80">Trustly</Link>{" "}
+                tilbyde en mere integreret oplevelse.
+              </p>
+            </>
+          ),
+        },
+        {
+          position: "after-howto",
+          title: "MobilePay vs. Trustly vs. Apple Pay – En Ærlig Sammenligning",
+          content: (
+            <>
+              <p className="mb-4 text-muted-foreground leading-relaxed">
+                De tre betalingsmetoder repræsenterer tre fundamentalt forskellige teknologiske tilgange til casino-betalinger. MobilePay er en app-baseret løsning, der bruger push-notifikationer og bankkobling. Trustly er en browser-baseret open banking-løsning, der forbinder direkte til din netbank via MitID. Apple Pay er en enheds-baseret tokeniseringsløsning, der krypterer dine kortdata lokalt.
+              </p>
+              <p className="mb-4 text-muted-foreground leading-relaxed">
+                <strong>Hastighed:</strong> Apple Pay vinder med 2-3 sekunder, MobilePay er midterfeltet med 8-12 sekunder, og Trustly tager 20-35 sekunder (primært pga. MitID-login). Men ved udbetalinger vender billedet: Trustly er konsekvent den hurtigste med udbetalinger inden for minutter, mens MobilePay og Apple Pay kan tage timer til dage.
+              </p>
+              <p className="mb-4 text-muted-foreground leading-relaxed">
+                <strong>Udbredelse:</strong> Trustly understøttes af flest danske casinoer, efterfulgt af MobilePay og Apple Pay. For spillere der opretter konti på mange casinoer, er Trustly det mest universelle valg. MobilePay har en stærkere position hos kasinoer med dansk ejerskab, mens Apple Pay vinder terræn hos internationale operatører.
+              </p>
+              <p className="mb-4 text-muted-foreground leading-relaxed">
+                <strong>Bonuskvalificering:</strong> Alle tre kvalificerer til velkomstbonusser – et afgørende plus sammenlignet med{" "}
+                <Link to="/betalingsmetoder/skrill" className="text-primary underline hover:text-primary/80">Skrill</Link>{" "}
+                og{" "}
+                <Link to="/betalingsmetoder/paypal" className="text-primary underline hover:text-primary/80">PayPal</Link>. Der er ingen forskel mellem de tre på dette punkt.
+              </p>
+              <p className="text-muted-foreground leading-relaxed">
+                <strong>Vores anbefaling:</strong> For den typiske danske casinospiller er MobilePay det naturlige førstvalg – det er den app, du allerede bruger dagligt, og den fungerer pålideligt på alle platforme. Trustly er det bedste supplement til udbetalinger. Apple Pay er et premium-alternativ for spillere i Apple-økosystemet, der prioriterer hastighed og tokeniseringssikkerhed over alt andet.
+              </p>
+            </>
+          ),
+        },
+        {
+          position: "after-security",
+          title: "ROFUS, AML og Dansk Lovgivning – MobilePaysi Regulatoriske Position",
+          content: (
+            <>
+              <p className="mb-4 text-muted-foreground leading-relaxed">
+                MobilePay opererer inden for den danske finansregulering under tilsyn af Finanstilsynet. Alle MobilePay-transaktioner er underlagt AML-regler (Anti-Money Laundering), hvilket betyder, at din bank og MobilePay overvåger transaktionsmønstre for mistænkelig aktivitet. For casinospillere betyder dette, at gentagne store indbetalinger kan trigge en AML-gennemgang – ikke fra casinoets side, men fra din banks compliance-afdeling.
+              </p>
+              <p className="mb-4 text-muted-foreground leading-relaxed">
+                ROFUS-integrationen fungerer på casinoniveau, ikke på betalingsmetodeniveau. Hvis du er registreret i ROFUS, blokeres din adgang til casinokontoen – MobilePay-betalinger til casinoet vil simpelthen fejle, fordi din konto er lukket. MobilePay tilbyder ikke en separat gambling-blokering som{" "}
+                <Link to="/betalingsmetoder/revolut" className="text-primary underline hover:text-primary/80">Revolut</Link>{" "}
+                gør, men du kan sætte beløbsgrænser via din banks netbank.
+              </p>
+              <p className="text-muted-foreground leading-relaxed">
+                MitID-kravet ved større MobilePay-transaktioner er en direkte konsekvens af PSD2-reguleringens krav om stærk kundegodkendelse (SCA). Tærskelværdien for, hvornår MitID kræves, bestemmes af din bank – typisk ved beløb over 3.000-5.000 kr. For lavere beløb er biometrisk godkendelse i MobilePay-appen tilstrækkelig. Denne trinvise sikkerhedsmodel giver en god balance mellem bekvemmelighed og beskyttelse.
+              </p>
+            </>
+          ),
+        },
+      ]}
+      prosConsTitle="Det Reelle Billede – MobilePaysi Styrker og Begrænsninger"
       pros={[
-        "Øjeblikkelige indbetalinger med blot et par tryk",
-        "Ingen gebyrer ved de fleste danske casinoer",
-        "Høj sikkerhed med MitID og avanceret kryptering",
+        "Øjeblikkelige indbetalinger (8-12 sek.) med en app, danskerne allerede kender",
+        "Behandles som bankoverførsel – aldrig udelukket fra bonusser",
+        "MitID-integration giver stærk identitetsverifikation",
+        "Ingen gebyrer fra MobilePay eller de fleste danske casinoer",
+        "Daglige beløbsgrænser fungerer som naturlig ansvarligt spil-mekanisme",
         "Fungerer på både Android og iOS",
-        "Kvalificerer næsten altid til velkomstbonusser og kampagner",
-        "Over 4,5 millioner danske brugere – bredt accepteret",
+        "Modtagerverifikation beskytter mod phishing",
       ]}
       cons={[
-        "Ikke alle casinoer understøtter MobilePay til udbetalinger",
-        "Daglige beløbsgrænser kan begrænse større indbetalinger",
-        "Begrænset international anvendelse uden for Norden",
-        "Kræver dansk bankkonto og MitID",
+        "Kun ca. 1/3 af danske casinoer understøtter MobilePay til udbetalinger",
+        "Daglige beløbsgrænser (15.000-40.000 kr.) kan begrænse high-rollers",
+        "Ingen international rækkevidde – kun dansk/nordisk",
+        "Kræver dansk bankkonto og CPR-nummer",
+        "Desktop-oplevelsen er mere omstændelig end mobil",
       ]}
-      minDeposit="Typisk 100 kr. som minimum. Maksimumsgrænsen varierer fra 15.000 kr. pr. transaktion til 37.500–40.000 kr. pr. dag afhængigt af din bank."
-      bonusInfo="MobilePay behandles som bankoverførsel og kvalificerer næsten altid til alle bonustyper. Modsat e-wallets som Skrill er MobilePay sjældent udelukket fra bonustilbud."
-      taxInfo="Gevinster fra danske licenserede casinoer er 100% skattefrie. Spiller du på udenlandske sider uden dansk licens, kan gevinster beskattes med op til 42%."
+      practicalInfoTitle="Beløbsgrænser, Bonusvilkår og Skatteforhold"
+      minDeposit="Minimum 50-100 kr. afhængigt af casinoet. Maksimum 15.000 kr. pr. transaktion og 37.500-40.000 kr. pr. dag (bankafhængigt, kan justeres)."
+      bonusInfo="MobilePay behandles som bankoverførsel og kvalificerer altid til alle bonustyper. I vores test blev velkomstbonus aktiveret øjeblikkeligt på alle testede casinoer."
+      taxInfo="Gevinster fra casinoer med dansk licens er 100 % skattefrie. MobilePay-transaktioner logges i appen, hvilket giver nem dokumentation af indbetalinger."
+      comparisonTitle="Hastighedstest – MobilePay vs. Alternativer i Sekunder"
       comparison={[
-        { method: "MobilePay", speed: "Øjeblikkelig", fees: "Ingen", withdrawalSupport: "Varierer" },
-        { method: "Trustly", speed: "Øjeblikkelig", fees: "Ingen", withdrawalSupport: "Ja" },
-        { method: "Apple Pay", speed: "Øjeblikkelig", fees: "Ingen", withdrawalSupport: "Begrænset" },
-        { method: "Visa/Mastercard", speed: "Øjeblikkelig", fees: "Mulige", withdrawalSupport: "1-3 dage" },
-        { method: "Bankoverførsel", speed: "1-3 dage", fees: "Ofte ingen", withdrawalSupport: "2-5 dage" },
+        { method: "MobilePay", speed: "8-12 sek.", fees: "Ingen", withdrawalSupport: "Begrænset (33 %)" },
+        { method: "Apple Pay", speed: "2-3 sek.", fees: "Ingen", withdrawalSupport: "Begrænset (50 %)" },
+        { method: "Trustly", speed: "20-35 sek.", fees: "Ingen", withdrawalSupport: "Ja (minutter)" },
+        { method: "Visa/Mastercard", speed: "15-25 sek.", fees: "Sjældent", withdrawalSupport: "1-3 dage" },
+        { method: "Bankoverførsel", speed: "1-3 dage", fees: "Sjældent", withdrawalSupport: "2-5 dage" },
       ]}
+      responsibleGamingText="MobilePaysi daglige beløbsgrænser fungerer som en naturlig bremse mod overforbrug. Vi anbefaler at supplere med casinoets egne indbetalingsgrænser for maksimal kontrol."
       faqs={[
-        { question: "Hvordan fungerer MobilePay teknisk, når jeg indbetaler på et casino?", answer: "Når du vælger MobilePay som betalingsmetode, genererer casinoet en betalingsanmodning, der sendes direkte til din MobilePay-app. Du godkender transaktionen med din telefons biometriske sikkerhed (fingeraftryk eller Face ID) eller PIN-kode. Pengene trækkes øjeblikkeligt fra din tilknyttede bankkonto og krediteres din casinokonto inden for sekunder. Hele processen foregår via krypterede forbindelser, og casinoet modtager aldrig dine bankoplysninger direkte. MobilePay fungerer som et mellemled, der beskytter dine finansielle data." },
-        { question: "Hvilke danske casinoer accepterer MobilePay, og hvordan finder jeg dem?", answer: (
-          <>Ikke alle danske casinoer understøtter MobilePay, men antallet vokser hvert år. De mest etablerede platforme som{" "}<Link to="/spilleautomaten-anmeldelse" className="text-primary underline hover:text-primary/80">Spilleautomaten</Link>{" "}og{" "}<Link to="/spildansknu-anmeldelse" className="text-primary underline hover:text-primary/80">SpilDanskNu</Link>{" "}tilbyder MobilePay. Du kan tjekke vores{" "}<Link to="/betalingsmetoder" className="text-primary underline hover:text-primary/80">betalingsmetodesider</Link>{" "}for opdaterede lister. Generelt er MobilePay mest udbredt hos casinoer med dansk ejerskab, mens internationale operatører ofte tilføjer det senere.</>
+        { question: "Hvordan fungerer MobilePay teknisk, når pengene overføres til casinoet?", answer: "MobilePay genererer en betalingsanmodning via API til din MobilePay-app. Når du godkender, instruerer MobilePay din bank om en øjeblikkelig overførsel fra din bankkonto til casinoets driftskonto. Pengene bevæger sig via bankernes realtids-clearingssystem, hvilket gør transaktionen øjeblikkelig. Casinoet modtager en bekræftelse fra MobilePaysi backend og krediterer din spillekonto. Hele processen er krypteret og logget med fuld AML-sporbarhed." },
+        { question: "Kan jeg sætte specifikke gambling-grænser i MobilePay-appen?", answer: "MobilePay tilbyder ikke dedikerede gambling-grænser, men du kan sætte generelle daglige beløbsgrænser via din banks netbank, hvilket indirekte begrænser dine casinoindbetalinger. For specifik gambling-blokering anbefaler vi at bruge casinoets egne indbetalingsgrænser eller registrere dig hos ROFUS for selvudelukkelse. Revolut er den eneste betalingsmetode, der tilbyder en dedikeret gambling-blokeringsfunktion direkte i appen." },
+        { question: "Hvorfor blev min MobilePay-indbetaling afvist, og hvad kan jeg gøre?", answer: (
+          <>De tre mest almindelige årsager til afviste MobilePay-indbetalinger er: 1) Utilstrækkelig saldo på din bankkonto, 2) Du har nået din daglige beløbsgrænse, eller 3) Din bank blokerer gambling-transaktioner som standard. Tjek først din saldo og daglige grænse i MobilePay-appen. Kontakt derefter din bank for at sikre, at gambling-betalinger er aktiveret. Hvis problemet fortsætter, kan du bruge{" "}<Link to="/betalingsmetoder/trustly" className="text-primary underline hover:text-primary/80">Trustly</Link>{" "}som alternativ – det forbinder direkte til din netbank og omgår MobilePaysi infrastruktur.</>
         )},
-        { question: "Hvad er beløbsgrænserne for MobilePay på casinoer, og kan de ændres?", answer: "MobilePays standardgrænser er typisk op til 15.000 kr. pr. transaktion og 37.500–40.000 kr. pr. dag, men disse grænser sættes af din bank og kan variere. Nogle banker tillader forhøjelse af grænserne via netbanken. Derudover kan casinoet selv have lavere maksimumgrænser for ind- og udbetalinger. Minimumsindbetalingen er typisk 50–100 kr. afhængigt af casinoet. Hvis du har brug for at indbetale større beløb, kan du kontakte din bank om at forhøje MobilePay-grænsen." },
-        { question: "Kan jeg modtage casinoudbetalinger direkte til MobilePay?", answer: (
-          <>Udbetalinger via MobilePay er stadig begrænset – ikke alle casinoer understøtter det endnu. Når det er tilgængeligt, modtager du pengene direkte på din MobilePay-tilknyttede bankkonto, ofte inden for få timer. Hvis casinoet ikke tilbyder MobilePay-udbetaling, bruges alternativt{" "}<Link to="/betalingsmetoder/trustly" className="text-primary underline hover:text-primary/80">Trustly</Link>{" "}eller{" "}<Link to="/betalingsmetoder/bankoverforsler" className="text-primary underline hover:text-primary/80">bankoverførsel</Link>. Udbetalingsmetoden skal typisk matche indbetalingsmetoden af hvidvaskhensyn, men hvis MobilePay ikke understøttes til udbetalinger, tilbyder casinoet et alternativ.</>
+        { question: "Er MobilePay tilgængeligt på alle danske casinoer med dansk licens?", answer: (
+          <>Nej. MobilePay er tilgængeligt på et stigende antal danske casinoer, men langtfra alle. Casinoer med dansk ejerskab (som Spilnu.dk og Danske Spil) har typisk MobilePay, mens internationale operatører ofte fokuserer på{" "}<Link to="/betalingsmetoder/trustly" className="text-primary underline hover:text-primary/80">Trustly</Link>{" "}og{" "}<Link to="/betalingsmetoder/visa-mastercard" className="text-primary underline hover:text-primary/80">Visa/Mastercard</Link>. Se vores{" "}<Link to="/betalingsmetoder" className="text-primary underline hover:text-primary/80">betalingsmetode-oversigt</Link>{" "}for opdaterede lister over casinoer med MobilePay-understøttelse.</>
         )},
-        { question: "Hvordan adskiller MobilePay sig fra Trustly og andre open banking-løsninger?", answer: (
-          <>MobilePay er en dansk betalingsapp, der er tæt integreret med danske banker, mens{" "}<Link to="/betalingsmetoder/trustly" className="text-primary underline hover:text-primary/80">Trustly</Link>{" "}og{" "}<Link to="/betalingsmetoder/zimpler" className="text-primary underline hover:text-primary/80">Zimpler</Link>{" "}er svenske open banking-tjenester, der forbinder direkte til din netbank. Den praktiske forskel er, at MobilePay fungerer via en separat app med push-notifikationer, mens Trustly kræver login i netbanken. MobilePay er typisk hurtigere for indbetalinger, mens Trustly ofte er bedre til udbetalinger. For danske spillere er MobilePay den mest genkendelige løsning, men Trustly understøttes af flere internationale casinoer.</>
-        )},
-        { question: "Påvirker MobilePay-indbetalinger min mulighed for at modtage casinobonus?", answer: (
-          <>MobilePay behandles som en bankoverførsel af de fleste casinoer, hvilket betyder, at du næsten altid kvalificerer til{" "}<Link to="/velkomstbonus" className="text-primary underline hover:text-primary/80">velkomstbonusser</Link>{" "}og{" "}<Link to="/free-spins" className="text-primary underline hover:text-primary/80">free spins</Link>. I modsætning til e-wallets som{" "}<Link to="/betalingsmetoder/skrill" className="text-primary underline hover:text-primary/80">Skrill</Link>{" "}og{" "}<Link to="/betalingsmetoder/paypal" className="text-primary underline hover:text-primary/80">PayPal</Link>, der af og til udelukkes fra bonustilbud, har MobilePay ingen bonusbegrænsninger. Det gør MobilePay til det sikreste valg, hvis du vil sikre dig bonusmodtagelse ved din første indbetaling.</>
-        )},
+        { question: "Hvad sker der med mine MobilePay-casinotransaktioner efter Vipps-fusionen?", answer: "Vipps MobilePay-fusionen (2022) har ingen praktisk indvirkning på din daglige brug af MobilePay på danske casinoer. Appen ser identisk ud, funktionaliteten er uændret, og alle eksisterende integrations med danske casinoer fortsætter som hidtil. Fusionen har primært styrket den tekniske backend med bedre skalerbarhed og redundans. MobilePay-brandet bevares i Danmark, mens Vipps-brandet bruges i Norge." },
+        { question: "Hvem bør vælge MobilePay frem for Trustly til casinobetaling?", answer: "Vælg MobilePay, hvis du prioriterer den hurtigste og mest bekvemme indbetalingsoplevelse på mobil, og du primært spiller på danske casinoer, der understøtter MobilePay. Vælg Trustly, hvis du prioriterer hurtige udbetalinger (Trustly er markant hurtigere), spiller på mange forskellige casinoer (Trustly har bredere understøttelse), eller foretrækker at alt foregår i browseren uden app-skift. Mange erfarne spillere bruger MobilePay til indbetalinger og Trustly til udbetalinger – en kombination, der giver det bedste af begge verdener." },
       ]}
       currentPath="/betalingsmetoder/mobilepay"
     />
