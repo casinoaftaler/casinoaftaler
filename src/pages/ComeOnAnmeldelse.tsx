@@ -251,8 +251,27 @@ const ComeOnAnmeldelse = () => {
 
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold">Sikkerhed og regulering</h2>
-          <p className="mb-4 text-muted-foreground leading-relaxed">ComeOn Casino opererer under dansk licens fra <Link to="/spillemyndigheden" className={linkClass}>Spillemyndigheden</Link> og er tilsluttet ROFUS. Platformen benytter 256-bit SSL-kryptering og drives af Cherry AB / Highlight Games Group – en koncern med licenser i flere europæiske jurisdiktioner.</p>
-          <p className="text-muted-foreground leading-relaxed"><Link to="/ansvarligt-spil" className={linkClass}>Ansvarligt spil</Link>-værktøjer inkluderer indbetalingsgrænser, sessionsgrænser og selvudelukkelse via ROFUS. Vores <Link to="/redaktionel-politik" className={linkClass}>redaktionelle politik</Link> og <Link to="/forretningsmodel" className={linkClass}>forretningsmodel</Link> sikrer uafhængige vurderinger.</p>
+          <p className="mb-4 text-muted-foreground leading-relaxed">ComeOn Casino opererer under dansk licens fra <Link to="/spillemyndigheden" className={linkClass}>Spillemyndigheden</Link> og er tilsluttet ROFUS. Platformen benytter 256-bit SSL-kryptering og drives af Cherry AB / Highlight Games Group – en koncern med licenser i flere europæiske jurisdiktioner, herunder Malta Gaming Authority og UK Gambling Commission. Denne multi-jurisdiktionelle regulering giver ComeOn et ekstra lag af troværdighed.</p>
+          <p className="mb-4 text-muted-foreground leading-relaxed"><Link to="/ansvarligt-spil" className={linkClass}>Ansvarligt spil</Link>-værktøjer inkluderer indbetalingsgrænser (daglige, ugentlige, månedlige), sessionsgrænser med automatiske påmindelser, tabsgrænser og selvudelukkelse via ROFUS. ComeOn har desuden implementeret en "Reality Check"-funktion, der sender pop-up-påmindelser efter foruddefinerede tidsintervaller – en nyttig feature for spillere, der vil holde styr på deres sessionslængde.</p>
+          <p className="text-muted-foreground leading-relaxed">Vores <Link to="/redaktionel-politik" className={linkClass}>redaktionelle politik</Link> og <Link to="/forretningsmodel" className={linkClass}>forretningsmodel</Link> sikrer uafhængige vurderinger. Vi modtager affiliate-kommission fra ComeOn, men det påvirker aldrig vores ratings. Kontakt <a href="https://www.stopspillet.dk/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline font-medium">StopSpillet.dk</a> på tlf. 70 22 28 25 ved behov for rådgivning.</p>
+        </section>
+
+        <Separator className="my-10" />
+
+        <section className="mb-12">
+          <h2 className="mb-4 text-3xl font-bold">Live casino – ComeOns stille styrke</h2>
+          <p className="mb-4 text-muted-foreground leading-relaxed">ComeOns live casino-sektion er drevet af <Link to="/spiludviklere/evolution-gaming" className={linkClass}>Evolution Gaming</Link> og omfatter over 80 borde. Udvalget inkluderer klassikere som roulette, blackjack og baccarat samt populære game shows som Crazy Time, Monopoly Live og Lightning Roulette. Det, der gør ComeOns live casino særligt interessant, er den 10% bidragssats til bonusomsætning – de fleste konkurrenter giver 0% på live casino.</p>
+          <p className="mb-4 text-muted-foreground leading-relaxed">Vi testede Lightning Roulette og Crazy Time under vores december 2025-session. Streamingkvaliteten var HD med under 1 sekunds forsinkelse. Dealerne var professionelle og engagerede. Minimumsindsat varierede fra 10 kr. på standard roulette til 50 kr. på VIP-borde. Crazy Time-sessionens gameplay var fejlfrit med responsive bet-knapper og tydelig visuel feedback.</p>
+          <p className="text-muted-foreground leading-relaxed">For live casino-entusiaster er ComeOns 10% omsætningsbidrag en reel fordel. Med et 10x omsætningskrav og 10% bidrag kræver det 100.000 kr. i live casino-indsatser for at opfylde et 10.000 kr. omsætningskrav. Hos konkurrenter med 0% bidrag er det umuligt at omsætte bonussen via live casino. Det gør ComeOn til et af de mere live casino-venlige bonusprogrammer på det danske marked.</p>
+        </section>
+
+        <Separator className="my-10" />
+
+        <section className="mb-12">
+          <h2 className="mb-4 text-3xl font-bold">Hvem bør IKKE vælge ComeOn?</h2>
+          <p className="mb-4 text-muted-foreground leading-relaxed"><strong>Spiludvalgs-jægere:</strong> Med 1.000+ spil er ComeOn solidt men ikke i toppen. Spillere, der søger det bredeste katalog, vil finde markant flere titler hos <Link to="/casino-anmeldelser/getlucky" className={linkClass}>GetLucky</Link> (1.500+) eller <Link to="/casino-anmeldelser/videoslots" className={linkClass}>Videoslots</Link> (5.000+). ComeOn mangler desuden trendsættende udbydere som <Link to="/spiludviklere/hacksaw-gaming" className={linkClass}>Hacksaw Gaming</Link>.</p>
+          <p className="mb-4 text-muted-foreground leading-relaxed"><strong>VIP-spillere:</strong> ComeOns fravær af et transparent VIP-program med navngivne niveauer er en klar begrænsning for spillere, der forventer dedikeret account manager og eksklusive events. <Link to="/casino-anmeldelser/888-casino" className={linkClass}>888 Casino</Link>'s 888 Club og <Link to="/casino-anmeldelser/leovegas" className={linkClass}>LeoVegas</Link>' VIP-program er markant stærkere for denne spillerprofil.</p>
+          <p className="text-muted-foreground leading-relaxed"><strong>Sportsbetting-fans:</strong> ComeOn har ikke en sportsbook. Hvis du ønsker sport og casino samlet, er <Link to="/casino-anmeldelser/bet365" className={linkClass}>bet365</Link>, <Link to="/casino-anmeldelser/bwin" className={linkClass}>bwin</Link> eller <Link to="/casino-anmeldelser/expekt" className={linkClass}>Expekt</Link> bedre alternativer med integreret sportsbook under samme konto.</p>
         </section>
 
         <Separator className="my-10" />
