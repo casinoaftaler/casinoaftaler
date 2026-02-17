@@ -109,8 +109,13 @@ const personSchema = {
   name: "Kevin",
   url: `${SITE_URL}/forfatter/kevin`,
   image: "https://zhpbqqhtgnblaugrqhqi.supabase.co/storage/v1/object/public/casino-logos/kevin-forfatter.png",
-  jobTitle: "Casino Streamer & Content Writer",
+  jobTitle: "Streamer, Forfatter og Medudvikler",
   worksFor: {
+    "@type": "Organization",
+    name: "Casinoaftaler.dk",
+    url: SITE_URL,
+  },
+  memberOf: {
     "@type": "Organization",
     name: "Casinoaftaler.dk",
     url: SITE_URL,

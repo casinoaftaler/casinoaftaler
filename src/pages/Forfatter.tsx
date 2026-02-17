@@ -185,6 +185,11 @@ const personSchema = {
     name: "Casinoaftaler.dk",
     url: SITE_URL,
   },
+  memberOf: {
+    "@type": "Organization",
+    name: "Casinoaftaler.dk",
+    url: SITE_URL,
+  },
   sameAs: [
     "https://www.twitch.tv/fedesvinsejer",
     "https://www.youtube.com/@casinoaftaler",

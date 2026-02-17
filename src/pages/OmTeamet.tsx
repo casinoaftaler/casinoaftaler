@@ -67,12 +67,39 @@ const OmTeamet = () => {
       "https://www.twitch.tv/fedesvinsejer",
       "https://www.youtube.com/@casinoaftaler",
       "https://www.instagram.com/casinoaftaler",
+      "https://www.facebook.com/casinoaftaler",
     ],
     contactPoint: {
       "@type": "ContactPoint",
       contactType: "customer support",
       url: "https://casinoaftaler.dk/kontakt",
       availableLanguage: "Danish",
+    },
+    publishingPrinciples: "https://casinoaftaler.dk/redaktionel-politik",
+    knowsAbout: [
+      "Online casino",
+      "Casino bonus",
+      "Spilleautomater",
+      "Casino test",
+      "Ansvarligt spil",
+    ],
+  };
+
+  const websiteJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    name: "Casinoaftaler.dk",
+    url: "https://casinoaftaler.dk",
+    publisher: {
+      "@type": "Organization",
+      name: "Casinoaftaler.dk",
+      url: "https://casinoaftaler.dk",
+      logo: {
+        "@type": "ImageObject",
+        url: "https://zhpbqqhtgnblaugrqhqi.supabase.co/storage/v1/object/public/casino-logos/header-icon.jpg",
+        width: 192,
+        height: 192,
+      },
     },
   };
 
@@ -150,7 +177,7 @@ const OmTeamet = () => {
       <SEO
         title="Om teamet bag Casinoaftaler.dk | Streamere & Casinoeksperter"
         description="Mød teamet bag Casinoaftaler.dk. Læs om Jonas og Kevin – casino-streamere og medansvarlige for test, anmeldelser og udvikling."
-        jsonLd={[organizationJsonLd, breadcrumbJsonLd]}
+        jsonLd={[organizationJsonLd, websiteJsonLd, breadcrumbJsonLd]}
       />
 
       {/* ═══ HERO ═══ */}

@@ -22,7 +22,9 @@ export const getCanonicalUrl = (pathname: string): string => {
 };
 
 /**
- * Shared Organization schema for JSON-LD (standalone use).
+ * Shared Organization schema for JSON-LD (used as publisher in Article schema).
+ * The full Organization schema with founder, employee, knowsAbout etc.
+ * lives exclusively on /om (OmTeamet.tsx) to avoid duplication.
  */
 export const organizationSchema = {
   "@context": "https://schema.org",
@@ -36,9 +38,10 @@ export const organizationSchema = {
     height: 192,
   },
   sameAs: [
-    "https://www.twitch.tv/fedesvinansen",
-    "https://www.instagram.com/casinoaftaler",
+    "https://www.twitch.tv/fedesvinsejer",
     "https://www.youtube.com/@casinoaftaler",
+    "https://www.instagram.com/casinoaftaler",
+    "https://www.facebook.com/casinoaftaler",
   ],
   contactPoint: {
     "@type": "ContactPoint",
