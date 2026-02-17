@@ -210,6 +210,7 @@ const BetiniaAnmeldelse = () => {
 
       <div className="container py-8 md:py-12">
         <AuthorMetaBar author="jonas" date="13-02-2026" readTime="18 Min." />
+        <p className="mb-6 text-xs text-muted-foreground italic">Denne side indeholder affiliate-links. Vi modtager provision, hvis du opretter en konto via vores links – det påvirker ikke vores vurdering. <Link to="/forretningsmodel" className="underline hover:text-primary">Læs mere</Link>.</p>
 
         <CasinoReviewHero slug="betinia" casinoName="Betinia" />
 
