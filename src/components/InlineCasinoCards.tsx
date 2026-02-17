@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { Loader2 } from "lucide-react";
-import { Link } from "react-router-dom";
 import { useCasinos } from "@/hooks/useCasinos";
 import { CasinoCard } from "@/components/CasinoCard";
 import { Separator } from "@/components/ui/separator";
@@ -79,11 +78,7 @@ export function InlineCasinoCards({
     <>
       <Separator className="my-10" />
       <section className="mb-12" style={{ minHeight: '320px' }}>
-        <h3 className="text-2xl font-bold mb-4 text-center">{title}</h3>
-        <p className="text-xs text-muted-foreground italic text-center mb-6">
-          Denne side indeholder affiliate-links. Vi modtager provision, hvis du opretter en konto via vores links – det påvirker ikke vores vurdering.{" "}
-          <Link to="/forretningsmodel" className="underline hover:text-primary">Læs mere</Link>.
-        </p>
+        <h3 className="text-2xl font-bold mb-6 text-center">{title}</h3>
         <div className="space-y-4">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 items-start">
             {displayCasinos.slice(0, 2).map((casino, index) => (

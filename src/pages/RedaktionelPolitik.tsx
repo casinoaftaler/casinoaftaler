@@ -98,7 +98,7 @@ const RedaktionelPolitik = () => {
       </section>
 
       <div className="container py-10 md:py-14">
-        <AuthorMetaBar author="kevin" date="2026-02-15" readTime="6 min" />
+        <AuthorMetaBar author="kevin" date="2026-02-15" readTime="6 min" showAffiliateDisclaimer={false} />
 
         <div className="mb-10 overflow-hidden rounded-xl">
           <img src={redaktionelPolitikHero} alt="Redaktionel politik – faktatjek og kvalitetssikring" className="w-full h-auto object-cover max-h-[400px]" loading="eager" />
