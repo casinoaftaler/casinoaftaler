@@ -441,14 +441,36 @@ const BwinAnmeldelse = () => {
 
         <Separator className="my-10" />
 
+        {/* Negative Segmentation */}
+        <section className="mb-12">
+          <h2 className="mb-4 text-3xl font-bold">Hvem bør undgå bwin?</h2>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            Selvom bwin er en solid platform for den rigtige spillerprofil, er der flere typer spillere, som vil blive skuffede. Det er vigtigt at være ærlig om disse begrænsninger, da det sparer tid og frustration. bwins casino-sektion er et supplement til sportsbogen – ikke en selvstændig konkurrencedygtig casinooplevelse. Med ca. 1.000 spiltitler ligger bwin under halvdelen af det, som dedikerede casinoer som <Link to="/casino-anmeldelser/leovegas" className={linkClass}>LeoVegas</Link> (2.000+) og <Link to="/casino-anmeldelser/videoslots" className={linkClass}>Videoslots</Link> (4.000+) tilbyder.
+          </p>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            Slots-entusiaster, der jager high-volatility oplevelser fra <Link to="/spiludviklere/nolimit-city" className={linkClass}>Nolimit City</Link> og <Link to="/spiludviklere/hacksaw-gaming" className={linkClass}>Hacksaw Gaming</Link>, finder simpelthen ikke deres foretrukne titler her. San Quentin xWays, Mental, Wanted Dead or a Wild – ingen af disse flagskibsspil er tilgængelige. For dette segment er bwin et direkte forkert valg, og vi anbefaler i stedet platforme, der har integreret disse udbydere fuldt ud.
+          </p>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            Bonusjægere vil ligeledes finde bwin utilfredsstillende. Den sticky bonusstruktur er en klar ulempe i sammenligning med no-sticky alternativer, og de løbende kampagner er primært rettet mod sportsvæddere. Hvis din strategi involverer at udnytte velkomstbonusser aggressivt, er <Link to="/casino-anmeldelser/betinia" className={linkClass}>Betinia</Link> eller <Link to="/casino-anmeldelser/campobet" className={linkClass}>Campobet</Link> med deres no-sticky modeller langt mere fordelagtige.
+          </p>
+          <p className="text-muted-foreground leading-relaxed">
+            Endelig er bwin ikke det oplagte valg for spillere, der udelukkende søger en dansk-fokuseret oplevelse. Platformen er international i sit DNA – interfacet er oversat til dansk, men den grundlæggende brugeroplevelse er designet til et europæisk publikum. Sammenlignet med <Link to="/casino-anmeldelser/danske-spil" className={linkClass}>Danske Spil</Link> eller <Link to="/casino-anmeldelser/spilnu" className={linkClass}>Spilnu</Link>, der føles helt igennem danske, har bwin en mere generisk, international æstetik, der ikke appellerer til alle danske spillere.
+          </p>
+        </section>
+
+        <Separator className="my-10" />
+
         {/* Security */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold">Sikkerhed og regulering</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
-            bwin opererer under en dansk licens fra <Link to="/spillemyndigheden" className={linkClass}>Spillemyndigheden</Link> og er fuldt tilsluttet ROFUS. Som en del af Entain-koncernen er bwin underlagt streng regulering i over 30 jurisdiktioner globalt, herunder UK Gambling Commission, Malta Gaming Authority og adskillige andre europæiske tilsynsmyndigheder. Børsnoteringen på London Stock Exchange tilføjer et ekstra lag af finansiel gennemsigtighed.
+            bwin opererer under en dansk licens fra <Link to="/spillemyndigheden" className={linkClass}>Spillemyndigheden</Link> og er fuldt tilsluttet ROFUS. Som en del af Entain-koncernen er bwin underlagt streng regulering i over 30 jurisdiktioner globalt, herunder UK Gambling Commission, Malta Gaming Authority og adskillige andre europæiske tilsynsmyndigheder. Børsnoteringen på London Stock Exchange tilføjer et ekstra lag af finansiel gennemsigtighed, da Entain er forpligtet til at offentliggøre kvartalsregnskaber og overholde Financial Conduct Authority-regler.
+          </p>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            Entain har en dedikeret afdeling for ansvarligt spil, der beskæftiger over 200 medarbejdere globalt. Selskabet har udviklet proprietære AI-systemer baseret på maskinlæring, der analyserer spillemønstre i realtid og identificerer potentiel risikoadfærd, før den eskalerer. Disse systemer overvåger parametre som indbetalingsfrekvens, sessionsvarighed og ændringer i indsatsmønstre for proaktivt at beskytte sårbare spillere.
           </p>
           <p className="text-muted-foreground leading-relaxed">
-            Entain investerer massivt i ansvarligt spil-teknologi og har udviklet proprietære AI-systemer til at identificere risikoadfærd hos spillere. bwin tilbyder standard-værktøjer som indbetalingsgrænser, tabsgrænser og sessionsgrænser samt adgang til <a href="https://www.stopspillet.dk/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline font-medium">StopSpillet.dk</a> for professionel rådgivning. SSL-kryptering beskytter alle data og transaktioner.
+            For danske brugere tilbyder bwin standard-værktøjer som indbetalingsgrænser (daglige, ugentlige, månedlige), tabsgrænser, sessionsgrænser med automatiske påmindelser og mulighed for midlertidig eller permanent selvudelukkelse. Adgang til <a href="https://www.stopspillet.dk/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline font-medium">StopSpillet.dk</a> er integreret direkte i platformens ansvarligt spil-sektion. SSL-kryptering beskytter alle data og transaktioner, og alle pengetransaktioner håndteres via PCI DSS-certificerede betalingspartnere.
           </p>
         </section>
 
