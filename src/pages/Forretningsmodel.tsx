@@ -87,7 +87,7 @@ const Forretningsmodel = () => {
       </section>
 
       <div className="container py-10 md:py-14">
-        <AuthorMetaBar author="kevin" date="2026-02-15" readTime="5 min" />
+        <AuthorMetaBar author="kevin" date="2026-02-15" readTime="5 min" showAffiliateDisclaimer={false} />
 
         {/* Hvad er affiliate-marketing */}
         <section className="mb-12">
