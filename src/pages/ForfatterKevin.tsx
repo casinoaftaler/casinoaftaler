@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import { SEO } from "@/components/SEO";
 import { buildFaqSchema } from "@/lib/seo";
 import { FAQSection } from "@/components/FAQSection";
+import { RelatedGuides } from "@/components/RelatedGuides";
 import { CasinoCard } from "@/components/CasinoCard";
 import { useCasinos } from "@/hooks/useCasinos";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
@@ -70,12 +71,6 @@ const faqs = [
   },
 ];
 
-const relatedLinks = [
-  { to: "/forfatter/jonas", label: "Jonas – Grundlægger", icon: User, desc: "Mød grundlæggeren af Casinoaftaler.dk" },
-  { to: "/saadan-tester-vi-casinoer", label: "Sådan tester vi", icon: ShieldCheck, desc: "Vores testmetoder og vurderingskriterier" },
-  { to: "/nye-casinoer", label: "Nye Casinoer", icon: Star, desc: "De nyeste danske online casinoer" },
-  { to: "/ansvarligt-spil", label: "Ansvarligt Spil", icon: Landmark, desc: "Spil sikkert og ansvarligt" },
-];
 
 export default function ForfatterKevin() {
   const { data: siteSettings } = useSiteSettings();
@@ -445,31 +440,7 @@ export default function ForfatterKevin() {
 
         <Separator className="my-10" />
 
-        {/* Relaterede Guides */}
-        <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold">
-            <BookOpen className="mr-2 inline h-7 w-7 text-primary" />
-            Relaterede Guides
-          </h2>
-          <p className="mb-6 text-muted-foreground leading-relaxed">
-            Udforsk mere om holdet bag Casinoaftaler.dk og vores tilgang til casinoanmeldelser.
-          </p>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
-            {relatedLinks.map((link) => (
-              <Link
-                key={link.to}
-                to={link.to}
-                className="flex items-start gap-3 rounded-lg border border-border bg-card p-4 transition-colors hover:border-primary/50 hover:bg-accent/50"
-              >
-                <link.icon className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
-                <div>
-                  <h3 className="font-semibold text-sm">{link.label}</h3>
-                  <p className="text-xs text-muted-foreground">{link.desc}</p>
-                </div>
-              </Link>
-            ))}
-          </div>
-        </section>
+        <RelatedGuides currentPath="/forfatter/kevin" />
 
         <FAQSection title="Ofte stillede spørgsmål om Kevin" faqs={faqs} />
 
