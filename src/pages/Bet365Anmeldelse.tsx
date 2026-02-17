@@ -27,10 +27,7 @@ import {
   Shield,
   Smartphone,
   Headphones,
-  TrendingUp,
   Monitor,
-  Radio,
-  Award,
 } from "lucide-react";
 
 const linkClass = "text-primary underline hover:text-primary/80";
@@ -40,105 +37,53 @@ const faqs: { question: string; answer: ReactNode }[] = [
     question: "Er bet365 lovligt i Danmark?",
     answer: (
       <>
-        Ja, bet365 har dansk licens fra Spillemyndigheden og er tilsluttet{" "}
-        <a
-          href="https://www.rofus.nu/"
-          target="_blank"
-          rel="noopener noreferrer"
-          className={linkClass}
-        >
-          ROFUS
-        </a>
-        . bet365 er verdens største online sportsbook og har opereret lovligt i
-        Danmark siden licensordningens start. Alle krav til{" "}
-        <Link to="/ansvarligt-spil" className={linkClass}>
-          ansvarligt spil
-        </Link>{" "}
-        overholdes.
+        Ja. bet365 har dansk licens fra Spillemyndigheden og er registreret i{" "}
+        <a href="https://www.rofus.nu/" target="_blank" rel="noopener noreferrer" className={linkClass}>ROFUS</a>.
+        De har opereret under dansk regulering siden markedet blev liberaliseret i 2012. Alle krav til{" "}
+        <Link to="/ansvarligt-spil" className={linkClass}>ansvarligt spil</Link> overholdes.
       </>
     ),
   },
   {
-    question: "Hvad tilbyder bet365 i velkomstbonus?",
+    question: "Hvad er bet365's velkomstbonus for casino?",
     answer: (
       <>
-        bet365 tilbyder en{" "}
-        <Link to="/velkomstbonus" className={linkClass}>
-          velkomstbonus
-        </Link>{" "}
-        til nye casino-spillere med matchbonus og{" "}
-        <Link to="/free-spins" className={linkClass}>
-          free spins
-        </Link>
-        . Sportsspillere får typisk et væddemålstilbud.{" "}
-        <Link to="/omsaetningskrav" className={linkClass}>
-          Omsætningskrav
-        </Link>{" "}
-        er 10x (d+b), det danske standardkrav.
+        bet365 tilbyder en <Link to="/velkomstbonus" className={linkClass}>matchbonus</Link> til nye
+        casino-spillere plus <Link to="/free-spins" className={linkClass}>free spins</Link>.
+        Bonussen er underlagt et <Link to="/omsaetningskrav" className={linkClass}>omsætningskrav</Link>{" "}
+        på 10x (indskud + bonus). Sportsspillere får et separat væddemålstilbud.
       </>
     ),
   },
   {
     question: "Hvem ejer bet365?",
     answer:
-      "bet365 er privatretligt ejet af grundlæggeren Denise Coates CBE og hendes familie. Virksomheden blev grundlagt i Stoke-on-Trent i England i 2000 og er vokset til verdens største online gambling-virksomhed. Trods det private ejerskab er bet365 kendt for sin finansielle soliditet med en estimeret omsætning på over 3 milliarder pund årligt.",
-  },
-  {
-    question: "Er bet365 verdens største casino?",
-    answer:
-      "bet365 er verdens største online sportsbook, men deres casino er også blandt de mest omfattende. Med over 2.500 casinospil, et fuldt live casino og proprietære features som Early Payout og Bet Builder er bet365 en af de mest komplette spiludbydere i verden. Det er sportsbettingen, der driver trafikken, men casinoet er langt fra et supplement – det er en fuldvoksen oplevelse i sig selv.",
-  },
-  {
-    question: "Har bet365 live streaming?",
-    answer:
-      "Ja, bet365 er kendt for sin omfattende live streaming-service. Platformen streamer tusindvis af sportsbegivenheder hvert år direkte til brugerne – ofte med krav om blot en aktiv konto eller minimalt indskud. Dette inkluderer fodbold, tennis, basketball, hestevæddeløb og mange andre sportsgrene. Live streaming kombineret med in-play betting giver en dynamisk og engagerende spiloplevelse.",
+      "bet365 er privatejet af Denise Coates CBE og hendes familie. Virksomheden blev grundlagt i Stoke-on-Trent i 2000 og er ikke børsnoteret. Det private ejerskab betyder mindre offentlig indsigt i regnskaber, men til gengæld en operatør med langsigtet perspektiv uden aktionærpres.",
   },
   {
     question: "Hvor hurtigt udbetaler bet365?",
     answer: (
       <>
-        bet365 tilbyder hurtige udbetalinger. Via{" "}
-        <Link to="/betalingsmetoder/trustly" className={linkClass}>
-          Trustly
-        </Link>{" "}
-        og e-wallets behandles udbetalinger typisk inden for 24 timer.{" "}
-        <Link to="/betalingsmetoder/visa-mastercard" className={linkClass}>
-          Kort
-        </Link>
-        -udbetalinger tager 1-3 hverdage. bet365 har en af de mest effektive
-        udbetalingsprocesser i branchen takket være deres proprietære
-        betalingsinfrastruktur.
+        Via <Link to="/betalingsmetoder/trustly" className={linkClass}>Trustly</Link> behandles
+        udbetalinger typisk inden for 24 timer. <Link to="/betalingsmetoder/visa-mastercard" className={linkClass}>Kort</Link>-udbetalinger
+        tager 1-3 hverdage. Førstegangsudbetalinger kræver KYC-verifikation, som kan forlænge processen med 24-48 timer.
       </>
     ),
   },
   {
-    question: "Kan man bruge MobilePay på bet365?",
-    answer: (
-      <>
-        bet365 understøtter en bred vifte af danske{" "}
-        <Link to="/betalingsmetoder" className={linkClass}>
-          betalingsmetoder
-        </Link>
-        , herunder{" "}
-        <Link to="/betalingsmetoder/trustly" className={linkClass}>
-          Trustly
-        </Link>{" "}
-        (som kobles direkte til din danske bankkonto),{" "}
-        <Link to="/betalingsmetoder/visa-mastercard" className={linkClass}>
-          Visa/Mastercard
-        </Link>
-        ,{" "}
-        <Link to="/betalingsmetoder/skrill" className={linkClass}>
-          Skrill
-        </Link>{" "}
-        og{" "}
-        <Link to="/betalingsmetoder/paysafecard" className={linkClass}>
-          Paysafecard
-        </Link>
-        . Trustly er den hurtigste metode for danske spillere med øjeblikkelige
-        indbetalinger og udbetalinger inden for 24 timer.
-      </>
-    ),
+    question: "Har bet365 live streaming?",
+    answer:
+      "Ja. bet365 streamer tusindvis af sportsbegivenheder årligt – fodbold, tennis, basketball, hestevæddeløb og mere. Kræver typisk en aktiv saldo eller et nyligt placeret væddemål. Dækningen er markant bredere end hvad danske konkurrenter tilbyder.",
+  },
+  {
+    question: "Kan man spille poker på bet365?",
+    answer:
+      "Ja, bet365 har et pokerrum, men det er ikke tilgængeligt for danske spillere under den danske licens. Poker-sektionen er begrænset til markeder, hvor det er reguleret separat. Danske spillere kan dog benytte casino, sport og live casino.",
+  },
+  {
+    question: "Er bet365's odds bedre end konkurrenterne?",
+    answer:
+      "bet365 er konsekvent blandt de operatører med de laveste marginer på store sportsbegivenheder – særligt fodbold, tennis og basketball. På nichemarkeder og mindre ligaer kan oddsene dog variere. Generelt er bet365 konkurrencedygtig, men ikke altid billigst på alle markeder.",
   },
 ];
 
@@ -147,12 +92,12 @@ const Bet365Anmeldelse = () => {
   const heroBackgroundImage = siteSettings?.hero_background_image;
 
   const articleSchema = buildArticleSchema({
-    headline: "bet365 Anmeldelse 2026 – Verdens Største Sportsbook & Casino",
+    headline: "bet365 Anmeldelse 2026 – Sportsbook, Casino og Live Streaming",
     description:
-      "Komplet anmeldelse af bet365. Verdens største online sportsbook med dansk licens, 2.500+ casinospil og live streaming.",
+      "Kritisk anmeldelse af bet365 i Danmark. Sportsbook, casino med 2.500+ spil, live streaming og dansk licens gennemgået i detaljer.",
     url: "https://casinoaftaler.dk/casino-anmeldelser/bet365",
     datePublished: "2026-02-15",
-    dateModified: "2026-02-15",
+    dateModified: "2026-02-17",
     authorName: "Jonas",
     authorUrl: "https://casinoaftaler.dk/forfatter/jonas",
   });
@@ -168,20 +113,16 @@ const Bet365Anmeldelse = () => {
       url: "https://www.bet365.dk/",
     },
     author: { "@type": "Organization", name: "Casinoaftaler" },
-    reviewRating: {
-      "@type": "Rating",
-      ratingValue: "4.5",
-      bestRating: "5",
-    },
+    reviewRating: { "@type": "Rating", ratingValue: "4.5", bestRating: "5" },
     reviewBody:
-      "bet365 er verdens største online sportsbook med et imponerende casino-tillæg, dansk licens og live streaming.",
+      "bet365 er primært en sportsbook-gigant med et solidt casino-tillæg. Stærkest på sportsbetting og live streaming, men casino-oplevelsen kan virke sekundær.",
   };
 
   return (
     <>
       <SEO
-        title="bet365 Anmeldelse 2026 – Casino, Sports & Live Streaming | Casinoaftaler"
-        description="Komplet anmeldelse af bet365 – verdens største online sportsbook. Casino med 2.500+ spil, live streaming, dansk licens og hurtige udbetalinger."
+        title="bet365 Anmeldelse 2026 – Casino, Odds & Live Streaming | Casinoaftaler"
+        description="Kritisk anmeldelse af bet365 Danmark. Vi tester casino, sportsbetting, live streaming, bonus, udbetaling og kundeservice. Dansk licens."
         jsonLd={[articleSchema, faqJsonLd, reviewJsonLd]}
       />
 
@@ -200,22 +141,20 @@ const Bet365Anmeldelse = () => {
           <div className="mx-auto max-w-3xl text-center">
             <Badge variant="secondary" className="mb-4">
               <Globe className="mr-1.5 h-3.5 w-3.5" />
-              4.5 / 5 – Verdens Største
+              4.5 / 5 – Sportsbook-gigant med casino
             </Badge>
             <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">
               bet365 Anmeldelse 2026
             </h1>
             <p className="mb-6 text-lg text-white/80">
-              Komplet anmeldelse af bet365 – verdens største online sportsbook
-              og en af de mest komplette spilleplatforme i Danmark med 2.500+
-              casinospil, live streaming og innovative bettingværktøjer.
+              bet365 er først og fremmest en sportsbook – men casinoet er langt fra et appendiks. Vi har testet hele platformen fra odds til spilleautomater, og her er vores ærlige vurdering.
             </p>
           </div>
         </div>
       </section>
 
       <div className="container py-8 md:py-12">
-        <AuthorMetaBar author="jonas" date="15-02-2026" readTime="21 Min." />
+        <AuthorMetaBar author="jonas" date="15-02-2026" readTime="18 Min." />
         <CasinoReviewHero slug="bet365" casinoName="bet365" />
 
         {/* Hurtige fakta */}
@@ -224,38 +163,26 @@ const Bet365Anmeldelse = () => {
             <CardHeader>
               <CardTitle className="flex items-center gap-2 text-xl">
                 <Zap className="h-6 w-6 text-primary" />
-                Hurtige Fakta – bet365
+                Overblik – bet365 i tal
               </CardTitle>
             </CardHeader>
             <CardContent>
               <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
                 <div className="rounded-lg border border-border p-3">
-                  <p className="text-xs text-muted-foreground uppercase mb-1">
-                    Casino-spil
-                  </p>
-                  <p className="text-lg font-bold text-foreground">2.500+</p>
+                  <p className="text-xs text-muted-foreground uppercase mb-1">Casino-spil</p>
+                  <p className="text-lg font-bold text-foreground">~2.500</p>
                 </div>
                 <div className="rounded-lg border border-border p-3">
-                  <p className="text-xs text-muted-foreground uppercase mb-1">
-                    Sportsgrene
-                  </p>
+                  <p className="text-xs text-muted-foreground uppercase mb-1">Sportsgrene</p>
                   <p className="text-lg font-bold text-foreground">40+</p>
                 </div>
                 <div className="rounded-lg border border-border p-3">
-                  <p className="text-xs text-muted-foreground uppercase mb-1">
-                    Licens
-                  </p>
-                  <p className="text-lg font-bold text-foreground">
-                    Spillemyndigheden
-                  </p>
+                  <p className="text-xs text-muted-foreground uppercase mb-1">Omsætningskrav</p>
+                  <p className="text-lg font-bold text-foreground">10x (d+b)</p>
                 </div>
                 <div className="rounded-lg border border-border p-3">
-                  <p className="text-xs text-muted-foreground uppercase mb-1">
-                    Live Streaming
-                  </p>
-                  <p className="text-lg font-bold text-foreground">
-                    Ja – tusindvis af events
-                  </p>
+                  <p className="text-xs text-muted-foreground uppercase mb-1">Udbetaling</p>
+                  <p className="text-lg font-bold text-foreground">Under 24 timer</p>
                 </div>
               </div>
               <QuickFactsProviders
@@ -265,90 +192,230 @@ const Bet365Anmeldelse = () => {
                   "Play'n GO",
                   "Evolution Gaming",
                   "Red Tiger",
-                  "Microgaming",
                   "Big Time Gaming",
                   "Hacksaw Gaming",
+                  "Blueprint Gaming",
                 ]}
               />
             </CardContent>
           </Card>
         </section>
 
-        {/* Vores vurdering */}
+        {/* Introduktion – hvem er bet365? */}
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold">
-            Vores vurdering af bet365
-          </h2>
+          <h2 className="mb-4 text-3xl font-bold">Hvem er bet365 – og hvad gør de i Danmark?</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
-            bet365 behøver sjældent introduktion. Som verdens største online
-            sportsbook og en af de mest anerkendte gambling-brands globalt har
-            bet365 defineret standarder for online betting siden
-            grundlæggelsen i 2000. Med dansk licens fra Spillemyndigheden
-            tilbyder bet365 danske spillere en komplet oplevelse med
-            sportsbetting, casino, live casino og poker. Det er en platform,
-            der simpelthen gør alt – og gør det i en skala, ingen konkurrent
-            kan matche.
+            bet365 er en britisk gambling-virksomhed grundlagt i 2000 af Denise Coates. De startede som en fysisk bookmaker i Stoke-on-Trent og bevægede sig hurtigt online. I dag er de den største online sportsbook målt på omsætning, med tilstedeværelse i over 20 regulerede markeder. I Danmark har de opereret med licens fra Spillemyndigheden siden 2012.
           </p>
           <p className="mb-4 text-muted-foreground leading-relaxed">
-            Casino-sektionen hos bet365 er langt mere end et supplement til
-            sportsbook'en. Med over 2.500 spiltitler fra alle de store
-            udbydere –{" "}
-            <Link to="/spiludviklere/pragmatic-play" className={linkClass}>
-              Pragmatic Play
-            </Link>
-            ,{" "}
-            <Link to="/spiludviklere/netent" className={linkClass}>
-              NetEnt
-            </Link>
-            ,{" "}
-            <Link to="/spiludviklere/play-n-go" className={linkClass}>
-              Play'n GO
-            </Link>
-            ,{" "}
-            <Link to="/spiludviklere/evolution-gaming" className={linkClass}>
-              Evolution Gaming
-            </Link>{" "}
-            og mange flere – er casinoet en fuldvoksen oplevelse.{" "}
-            <Link to="/live-casino" className={linkClass}>
-              Live casinoet
-            </Link>{" "}
-            er omfattende med hundredvis af borde, og bet365 tilbyder
-            eksklusive titler og features, som ikke findes hos andre danske
-            operatører.
-          </p>
-          <p className="mb-4 text-muted-foreground leading-relaxed">
-            Det, der virkelig adskiller bet365, er deres proprietære teknologi
-            og innovationer. Features som Early Payout (automatisk udbetaling
-            af væddemål, der allerede er "vundet"), Cash Out (mulighed for at
-            lukke væddemål tidligt) og Bet Builder (byg dit eget væddemål) er
-            brancheførende. Live streaming af tusindvis af sportsbegivenheder
-            direkte i appen er en enorm bonus for sportsbetting-entusiaster og
-            gør bet365 til en helhedsorienteret underholdningsplatform snarere
-            end blot et casino.
+            Det er vigtigt at forstå bet365's DNA: de er en sportsbook, der også har et casino – ikke omvendt. Det mærkes i platformen. Navigation, design og markedsføring er bygget omkring sport. Casino-sektionen er gemt et klik væk, og nye brugere lander som standard på sportsforsiden. Det er ikke nødvendigvis en svaghed – men det er en realitet, som casino-fokuserede spillere bør kende, før de opretter en konto.
           </p>
           <p className="text-muted-foreground leading-relaxed">
-            Vores{" "}
-            <Link to="/saadan-tester-vi-casinoer" className={linkClass}>
-              testmetode
-            </Link>{" "}
-            evaluerer alle aspekter, og bet365 scorer ekstremt højt på
-            pålidelighed, innovation og bredde. Det private ejerskab under
-            Denise Coates sikrer hurtig beslutningstagning og langsigtet
-            tænkning – en sjælden kombination i en branche, der ofte er
-            domineret af kortsigtede kvartalsmål fra børsnoterede selskaber.
-            Det eneste minus er, at casino-oplevelsen kan føles sekundær til
-            sports-fokuset i designet – men kvaliteten af produktet er
-            ubestridelig.
+            Hvad der adskiller bet365 fra de fleste danske konkurrenter, er skala. Virksomheden beskæftiger over 6.000 medarbejdere, behandler millioner af daglige transaktioner og har investeret massivt i egen teknologi. De bruger ikke tredjepartsplatforme som mange mindre operatører – alt fra odds-beregning til betalingsinfrastruktur er bygget internt. Det giver en stabilitet og reaktionshastighed, der er sjælden i branchen.
           </p>
+        </section>
+
+        <Separator className="my-10" />
+
+        {/* Bonusanalyse */}
+        <section className="mb-12">
+          <h2 className="mb-4 text-3xl font-bold">Bonussen – hvad får du reelt?</h2>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            bet365's <Link to="/velkomstbonus" className={linkClass}>velkomstbonus</Link> til casino-spillere er en matchbonus med <Link to="/free-spins" className={linkClass}>free spins</Link>. Det er en standard-pakke, og den skiller sig ærligt talt ikke ud i feltet. Bonusbeløbet er moderat sammenlignet med dedikerede casino-operatører – du får ikke de samme aggressive tilbud som hos eksempelvis <Link to="/casino-anmeldelser/casumo" className={linkClass}>Casumo</Link> eller <Link to="/casino-anmeldelser/leovegas" className={linkClass}>LeoVegas</Link>.
+          </p>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            <Link to="/omsaetningskrav" className={linkClass}>Omsætningskravet</Link> er 10x på indskud plus bonus – det danske lovmæssige maksimum. I praksis: indbetaler du 1.000 kr. og modtager 1.000 kr. i bonus, skal du omsætte for 20.000 kr. i alt, før du kan udbetale. Det er standardvilkår, men det er ikke de mest fordelagtige. Til sammenligning tilbyder flere danske operatører bonusser, hvor kun bonusbeløbet skal omsættes – ikke indskuddet.
+          </p>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            Sportsbettingdelen har et separat velkomsttilbud med et risikofrit væddemål. Her er bet365 mere konkurrencedygtig. For spillere, der primært er interesseret i odds, er velkomsttilbuddet solidt – men det er de løbende kampagner, der gør den reelle forskel hos bet365.
+          </p>
+          <p className="text-muted-foreground leading-relaxed">
+            Det er i de løbende kampagner, at bet365 faktisk leverer. Daglige casino-tilbud, sæsonbestemte kampagner knyttet til store sportsbegivenheder og personaliserede tilbud baseret på aktivitetsniveau. bet365 er ikke stedet, hvor du får den største dag-1-bonus – men det er stedet, hvor du konsekvent får værdi over tid, hvis du er en aktiv spiller.
+          </p>
+        </section>
+
+        <Separator className="my-10" />
+
+        {/* Spiludvalg */}
+        <section className="mb-12">
+          <h2 className="mb-4 text-3xl font-bold">Spiludvalget – bredt, men uden overraskelser</h2>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            bet365 tilbyder cirka 2.500 <Link to="/casinospil/spillemaskiner" className={linkClass}>spilleautomater</Link> og bordspil. Kataloget dækker alle de store udbydere: <Link to="/spiludviklere/pragmatic-play" className={linkClass}>Pragmatic Play</Link>, <Link to="/spiludviklere/netent" className={linkClass}>NetEnt</Link>, <Link to="/spiludviklere/play-n-go" className={linkClass}>Play'n GO</Link>, <Link to="/spiludviklere/red-tiger" className={linkClass}>Red Tiger</Link> og <Link to="/spiludviklere/big-time-gaming" className={linkClass}>Big Time Gaming</Link>. Du finder Gates of Olympus, Book of Dead, Sweet Bonanza og andre populære titler. Der er ingen huller i det basale udvalg.
+          </p>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            Hvor bet365 halter lidt, er på niche-udbydere. Studier som Nolimit City, Hacksaw Gaming og Push Gaming er repræsenteret, men med færre titler end hos eksempelvis <Link to="/casino-anmeldelser/videoslots" className={linkClass}>Videoslots</Link>, der har over 5.000 spil. For de fleste spillere er forskellen ubetydelig – men entusiaster, der jagter specifikke titler fra mindre studier, vil indimellem opleve at et spil mangler.
+          </p>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            Nye spilrelease kommer typisk inden for den første uge efter lancering. bet365 er sjældent den allerførste operatør med en ny titel, men forsinkelsen er minimal. Jackpot-sektionen inkluderer progressive puljer fra Pragmatic Play og NetEnt. Gevinster i millionklassen er sjældne men dokumenterede – og bet365 har historik for at udbetale store jackpots uden drama.
+          </p>
+          <p className="text-muted-foreground leading-relaxed">
+            Bordspilssektionen er tilstrækkelig med standard <Link to="/casinospil/blackjack" className={linkClass}>blackjack</Link>- og <Link to="/casinospil/roulette" className={linkClass}>roulette</Link>-varianter, men den er klart sekundær til live casinoet. Ingen eksklusivt udviklede bordspil eller særlige RTP-varianter – bare standard-versioner af de klassiske spil.
+          </p>
+        </section>
+
+        <Separator className="my-10" />
+
+        {/* Live Casino */}
+        <section className="mb-12">
+          <h2 className="mb-4 text-3xl font-bold">
+            <Sparkles className="inline h-7 w-7 text-primary mr-2" />
+            Live casinoet – her leverer bet365
+          </h2>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            <Link to="/live-casino" className={linkClass}>Live casinoet</Link> er et af de områder, hvor bet365 virkelig retfærdiggør sin størrelse. Med <Link to="/spiludviklere/evolution-gaming" className={linkClass}>Evolution Gaming</Link> som primær leverandør er der hundredvis af aktive borde på ethvert tidspunkt. Du finder blackjack fra 50 kr. til 500.000 kr. per hånd, roulette i alle varianter og game shows som Lightning Roulette, Crazy Time og Monopoly Live.
+          </p>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            bet365 har eksklusive live-borde med dedikerede dealers og branding – en fordel, der sjældent ses hos mindre operatører. Bordgrænserne er fleksible nok til at rumme både casual spillere og high rollers. Streaming-kvaliteten er stabil med minimal latency, og interfacet er rent og funktionelt. Her er ingen unødvendige animationer eller distraktioner – bare spillet.
+          </p>
+          <p className="text-muted-foreground leading-relaxed">
+            En realistisk observation: bordene med de laveste minimumsindsatser (under 25 kr.) kan have ventetid i spidsbelastningsperioder, typisk aften og weekend. Det er ikke unikt for bet365 – det gælder alle operatører, der bruger Evolutions delte bordinfrastruktur. De eksklusive bet365-borde har sjældnere dette problem, men kræver generelt højere minimumsindsatser.
+          </p>
+        </section>
+
+        <Separator className="my-10" />
+
+        {/* Sportsbetting & Live Streaming */}
+        <section className="mb-12">
+          <h2 className="mb-4 text-3xl font-bold">
+            <Monitor className="inline h-7 w-7 text-primary mr-2" />
+            Sportsbetting og live streaming
+          </h2>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            Det er her, bet365 dominerer. Sportsbook'en dækker over 40 sportsgrene med markeder, der går langt dybere end hvad nogen dansk konkurrent tilbyder. En Premier League-kamp kan have 200+ væddemålsmarkeder hos bet365, hvor en typisk dansk operatør ligger på 80-120. Denne dybde er relevant for seriøse bettors, der søger value i sekundære markeder som antal hjørnespark, spillerkort eller kampspecifikke props.
+          </p>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            Bet Builder er et af bet365's bedste værktøjer. Du kan kombinere multiple markeder fra en enkelt kamp til ét samlet væddemål – eksempelvis "Begge hold scorer + Over 2.5 mål + Bestemt spiller scorer". Oddsene beregnes automatisk, og Cash Out er tilgængeligt på de fleste kombinationer. Early Payout-funktionen udbetaler automatisk dit væddemål, hvis dit hold fører med to mål – en unik feature, der reducerer risiko markant.
+          </p>
+          <p className="text-muted-foreground leading-relaxed">
+            Live streaming er bet365's signaturfeature. Tusindvis af kampe streames direkte – fodbold, tennis, basketball, hestevæddeløb og mere. Kvaliteten er stabil, forsinkelsen er minimal, og integrationen med in-play betting er sømløs. Du kan se kampen og placere væddemål i samme visning. Ingen anden dansk-licenseret operatør matcher denne kombination af dækning og kvalitet. For sportsfans, der også spiller casino indimellem, er dette alene grund nok til at vælge bet365.
+          </p>
+        </section>
+
+        <Separator className="my-10" />
+
+        {/* Mobiloplevelse */}
+        <section className="mb-12">
+          <h2 className="mb-4 text-3xl font-bold">
+            <Smartphone className="inline h-7 w-7 text-primary mr-2" />
+            Mobiloplevelsen – effektiv, men tæt pakket
+          </h2>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            bet365 tilbyder mobiladgang via browseren – ingen dedikeret app i de danske app stores. Mobilsiden fungerer som en progressiv webapp med hurtig indlæsning og app-lignende navigation. Det fulde funktionssæt er tilgængeligt: sport, casino, live casino, <Link to="/betalingsmetoder" className={linkClass}>betalinger</Link> og kontostyring.
+          </p>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            Live streaming fungerer overraskende godt på mobil. Billedkvaliteten tilpasser sig automatisk til din forbindelseshastighed, og du kan stadig placere væddemål, mens du ser kampen. Casino-spillene er touch-optimerede, og indlæsningstiderne er generelt acceptable – typisk 2-4 sekunder for en slot.
+          </p>
+          <p className="text-muted-foreground leading-relaxed">
+            Den ærlige observation er, at bet365 på mobil kan føles overvældende. Der er mange menupunkter, mange kategorier og mange funktioner pakket ind i en lille skærm. Nye brugere bruger tid på at finde rundt. Sammenlignet med mobiloplevelsen hos <Link to="/casino-anmeldelser/leovegas" className={linkClass}>LeoVegas</Link>, der er designet mobile-first, føles bet365 som en desktop-oplevelse, der er tilpasset mobil – ikke bygget til den. Det er funktionelt, det er stabilt, men det er ikke elegant.
+          </p>
+        </section>
+
+        <Separator className="my-10" />
+
+        {/* Betalingsmetoder */}
+        <section className="mb-12">
+          <h2 className="mb-4 text-3xl font-bold">Betalingsmetoder og udbetalingstid</h2>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            bet365 understøtter de gængse danske <Link to="/betalingsmetoder" className={linkClass}>betalingsmetoder</Link>: <Link to="/betalingsmetoder/trustly" className={linkClass}>Trustly</Link>, <Link to="/betalingsmetoder/visa-mastercard" className={linkClass}>Visa/Mastercard</Link>, <Link to="/betalingsmetoder/skrill" className={linkClass}>Skrill</Link> og <Link to="/betalingsmetoder/paysafecard" className={linkClass}>Paysafecard</Link>. Indbetalinger er øjeblikkelige uanset metode. Der er ingen gebyrer fra bet365's side – men din bank eller e-wallet kan opkræve egne gebyrer.
+          </p>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+            {[
+              {
+                title: "Trustly",
+                desc: "Direkte bankoverførsel. Udbetalinger typisk under 24 timer. Den hurtigste og mest populære metode for danske spillere.",
+                speed: "⚡ Under 24 timer",
+              },
+              {
+                title: "Visa / Mastercard",
+                desc: "Udbetalinger tager 1-3 hverdage pga. bankens processeringstid. Stabil, men ikke den hurtigste mulighed.",
+                speed: "🕐 1-3 hverdage",
+              },
+              {
+                title: "Skrill",
+                desc: "E-wallet med udbetalinger inden for 24 timer. Kræver separat Skrill-konto. God til spillere med flere operatørkonti.",
+                speed: "⚡ 24 timer",
+              },
+              {
+                title: "Paysafecard",
+                desc: "Forudbetalt kort – kun til indbetaling. Udbetalinger skal ske via en alternativ metode, typisk Trustly.",
+                speed: "➡️ Kun indbetaling",
+              },
+            ].map((m) => (
+              <div key={m.title} className="flex items-start gap-3 rounded-lg border border-border bg-card p-4">
+                <CreditCard className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
+                <div className="flex-1">
+                  <div className="flex items-center gap-2">
+                    <h3 className="font-semibold">{m.title}</h3>
+                    <Badge variant="outline" className="text-xs">{m.speed}</Badge>
+                  </div>
+                  <p className="text-sm text-muted-foreground mt-1">{m.desc}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            KYC-verifikation (Know Your Customer) kræves ved den første udbetaling. Du skal indsende billedlegitimation og bevis for bopæl. bet365's verifikationsproces er generelt hurtig – typisk afsluttet inden for 24 timer – men det kan tage op til 72 timer i spidsbelastningsperioder. Når du er verificeret, behandles efterfølgende udbetalinger automatisk.
+          </p>
+          <p className="text-muted-foreground leading-relaxed">
+            Den samlede betalingsoplevelse hos bet365 er gnidningsfri. Ingen overraskelser, ingen skjulte gebyrer, ingen urimelige udbetalingsgrænser. Det er et af de områder, hvor skalaen giver en reel fordel – bet365's betalingsinfrastruktur er bygget til volumen og fungerer derefter.
+          </p>
+        </section>
+
+        <Separator className="my-10" />
+
+        {/* Kundeservice */}
+        <section className="mb-12">
+          <h2 className="mb-4 text-3xl font-bold">
+            <Headphones className="inline h-7 w-7 text-primary mr-2" />
+            Kundeservice – hurtig, men på engelsk
+          </h2>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            bet365 tilbyder 24/7 live chat og e-mail-support. Responstiden på chat er typisk under to minutter – hurtigere end de fleste danske operatører. Agenterne er kompetente og kan håndtere alt fra kontoverifikation til bonusspørgsmål og tekniske problemer.
+          </p>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            Det store men: kommunikationen foregår primært på engelsk. For danske spillere med begrænset engelskkundskab kan dette være en reel barriere. <Link to="/casino-anmeldelser/danske-spil" className={linkClass}>Danske Spil</Link> og andre lokale operatører tilbyder fuld dansk support – et klart fortrin for den dansksprogede spiller.
+          </p>
+          <p className="text-muted-foreground leading-relaxed">
+            FAQ-centret er omfattende og velorganiseret med kategorier for kontostyring, betalinger og spilleregler. De fleste standardspørgsmål kan besvares her uden at kontakte support. For danske spillere, der er komfortable med engelsk, er bet365's kundeservice fuldt tilstrækkelig. For dem, der foretrækker dansk, er det en klar ulempe.
+          </p>
+        </section>
+
+        <Separator className="my-10" />
+
+        {/* Sikkerhed og licens */}
+        <section className="mb-12">
+          <h2 className="mb-4 text-3xl font-bold">
+            <Shield className="inline h-7 w-7 text-primary mr-2" />
+            Sikkerhed og licens
+          </h2>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            bet365 opererer under dansk licens fra Spillemyndigheden og er fuldt tilsluttet ROFUS. Platformen bruger 256-bit SSL-kryptering til alle data- og betalingstransaktioner. Som en af verdens mest kontrollerede gambling-virksomheder er bet365 underlagt regulering fra myndigheder i over 20 lande, herunder UK Gambling Commission.
+          </p>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            Det private ejerskab under Coates-familien er det eneste punkt, der kan diskuteres i sikkerhedssammenhæng. Børsnoterede konkurrenter som Kindred Group (der driver <Link to="/casino-anmeldelser/unibet" className={linkClass}>Unibet</Link>) offentliggør detaljerede kvartalsregnskaber. bet365 har ikke samme forpligtelse. I praksis har dette dog aldrig resulteret i problemer for spillere – udbetalinger behandles pålideligt, og virksomhedens track record over 20+ år er uplettet.
+          </p>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            Værktøjer til <Link to="/ansvarligt-spil" className={linkClass}>ansvarligt spil</Link> inkluderer indbetalingsgrænser, tabsgrænser, sessionsgrænser og selvudelukkelse. Disse er let tilgængelige i kontostyringen og fungerer som forventet. bet365 samarbejder desuden med GamCare og andre organisationer for forebyggelse af ludomani.
+          </p>
+          <Card className="border-border bg-card border-l-4 border-l-primary">
+            <CardContent className="pt-6 space-y-3">
+              <p className="text-muted-foreground">
+                Spil ansvarligt. Kontakt{" "}
+                <a href="https://www.stopspillet.dk/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline font-medium">
+                  StopSpillet.dk
+                </a>{" "}
+                på tlf. 70 22 28 25 ved behov.
+              </p>
+              <p className="text-xs text-muted-foreground">18+ | Spil ansvarligt | Annoncering</p>
+            </CardContent>
+          </Card>
         </section>
 
         <Separator className="my-10" />
 
         {/* Fordele og ulemper */}
         <section className="mb-12">
-          <h2 className="mb-6 text-3xl font-bold">
-            Fordele og ulemper ved bet365
-          </h2>
+          <h2 className="mb-6 text-3xl font-bold">Fordele og ulemper</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <Card className="border-border bg-card">
               <CardHeader className="pb-2">
@@ -360,18 +427,17 @@ const Bet365Anmeldelse = () => {
               <CardContent>
                 <ul className="space-y-2">
                   {[
-                    "Verdens største og mest anerkendte sportsbook",
-                    "2.500+ casinospil fra topudbydere",
-                    "Live streaming af tusindvis af sportsbegivenheder",
-                    "Innovative features: Early Payout, Cash Out, Bet Builder",
-                    "Dansk licens fra Spillemyndigheden",
+                    "Sportsbook med uovertruffen dybde og dækning",
+                    "Live streaming af tusindvis af events",
+                    "Stabilt casino med ~2.500 titler",
                     "Hurtige udbetalinger via Trustly",
-                    "Komplet produktpalette: casino, sport, poker, live",
-                    "Ekstremt pålideligt med 20+ års driftserfaring",
-                    "Døgnåben kundeservice via live chat",
+                    "Innovative features: Bet Builder, Cash Out, Early Payout",
+                    "24/7 kundeservice med hurtig respons",
+                    "Dansk licens og 20+ års driftserfaring",
+                    "Effektiv betalingsinfrastruktur uden gebyrer",
                   ].map((p) => (
                     <li key={p} className="flex items-start gap-2 text-sm">
-                      <Check className="h-4 w-4 text-emerald-500 flex-shrink-0 mt-0.5" />
+                      <Check className="h-4 w-4 flex-shrink-0 mt-0.5 text-primary" />
                       <span className="text-muted-foreground">{p}</span>
                     </li>
                   ))}
@@ -388,11 +454,12 @@ const Bet365Anmeldelse = () => {
               <CardContent>
                 <ul className="space-y-2">
                   {[
-                    "Casino kan føles sekundært i sports-fokuseret design",
-                    "Velkomstbonus er moderat for casino sammenlignet med specialister",
-                    "Ikke børsnoteret – mindre finansiel gennemsigtighed end Kindred/Flutter",
-                    "Kundeservice er primært engelsksproget på chat",
-                    "Navigation kan være overvældende for helt nye brugere",
+                    "Casino føles sekundært til sport i designet",
+                    "Velkomstbonus er gennemsnitlig for casino",
+                    "Kundeservice primært på engelsk",
+                    "Privatejerskab giver mindre finansiel transparens",
+                    "Mobilnavigation kan føles tæt pakket",
+                    "Færre niche-spiludbydere end specialister",
                   ].map((c) => (
                     <li key={c} className="flex items-start gap-2 text-sm">
                       <X className="h-4 w-4 text-destructive flex-shrink-0 mt-0.5" />
@@ -407,534 +474,30 @@ const Bet365Anmeldelse = () => {
 
         <Separator className="my-10" />
 
-        {/* Velkomstbonus dybdegående */}
+        {/* Hvem passer bet365 til? */}
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold">
-            Velkomstbonus og kampagner hos bet365
-          </h2>
+          <h2 className="mb-4 text-3xl font-bold">Hvem passer bet365 til?</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
-            bet365 tilbyder en{" "}
-            <Link to="/velkomstbonus" className={linkClass}>
-              velkomstbonus
-            </Link>{" "}
-            til nye casino-spillere med matchbonus og{" "}
-            <Link to="/free-spins" className={linkClass}>
-              free spins
-            </Link>
-            . Bonussen er underlagt det danske standard{" "}
-            <Link to="/omsaetningskrav" className={linkClass}>
-              omsætningskrav
-            </Link>{" "}
-            på 10x (indskud + bonus). Sportsspillere modtager typisk et
-            velkomstvæddemål med fordelagtige vilkår. bet365 er mere kendt for
-            sit konstante flow af løbende kampagner end for en enkelt
-            headline-velkomstbonus – og det er faktisk en styrke for
-            langsigtede spillere.
-          </p>
-          <p className="mb-4 text-muted-foreground leading-relaxed">
-            Det, der adskiller bet365 fra mange konkurrenter, er omfanget af de
-            løbende kampagner. Daglige casino-tilbud, ugentlige sports-boosters
-            og sæsonbestemte jackpot-kampagner sikrer, at der altid er noget at
-            se frem til. bet365 lancerer jævnligt tidsbegrænsede kampagner
-            knyttet til store sportsbegivenheder – Premier League-weekender,
-            Grand Slam-tennisturneringer og Champions League-kampe udløser
-            typisk særlige tilbud på tværs af sport og casino.
-          </p>
-          <p className="mb-4 text-muted-foreground leading-relaxed">
-            Omsætningskravet på 10x er det danske lovmæssige maksimum og
-            gælder for summen af indbetaling og bonus. I praksis betyder det,
-            at en bonus på 1.000 kr. med et indskud på 1.000 kr. kræver spil
-            for 20.000 kr., før udbetalingen frigives. Læs vores komplette{" "}
-            <Link to="/omsaetningskrav" className={linkClass}>
-              guide til omsætningskrav
-            </Link>{" "}
-            for at forstå, hvordan du optimerer dine bonusser.
+            bet365 er det oplagte valg for spillere, der primært er interesseret i sportsbetting og ønsker casino som en sidegevinst. Hvis du følger fodbold, tennis eller hestevæddeløb aktivt og værdsætter live streaming, er bet365 svær at matche. Platformen fungerer også godt for spillere, der ønsker alt samlet ét sted – sport, casino og live casino under én konto – og som prioriterer stabilitet og pålidelighed over den nyeste bonus.
           </p>
           <p className="text-muted-foreground leading-relaxed">
-            For eksisterende spillere tilbyder bet365 desuden et internt
-            belønningssystem, hvor aktive spillere modtager personaliserede
-            tilbud baseret på deres aktivitetsniveau. Jo mere du spiller, jo
-            bedre bliver tilbuddene – men altid inden for rammerne af dansk
-            lovgivning og ansvarligt spil.
+            <strong>Hvem bør vælge anderledes?</strong> Hvis du udelukkende spiller casino og aldrig rører sportsbetting, får du en bedre oplevelse hos en dedikeret casino-operatør. <Link to="/casino-anmeldelser/leovegas" className={linkClass}>LeoVegas</Link> har en mere intuitiv mobil casinooplevelse. <Link to="/casino-anmeldelser/casumo" className={linkClass}>Casumo</Link> har et bredere spiludvalg og stærkere velkomstbonus. Og hvis dansk kundeservice er vigtigt for dig, er <Link to="/casino-anmeldelser/danske-spil" className={linkClass}>Danske Spil</Link> det mere komfortable valg. bet365 er en generalist – og den bedste generalist – men generalister er ikke for alle.
           </p>
         </section>
 
         <Separator className="my-10" />
 
-        {/* Spiludvalg dybdegående */}
+        {/* Sammenligning */}
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold">
-            Spiludvalget hos bet365 i detaljer
-          </h2>
-          <p className="mb-6 text-muted-foreground leading-relaxed">
-            bet365 tilbyder et af de mest omfattende spiludvalg på det danske
-            marked med over 2.500 casinospil fordelt på{" "}
-            <Link to="/casinospil/spillemaskiner" className={linkClass}>
-              spilleautomater
-            </Link>
-            , bordspil, jackpots og{" "}
-            <Link to="/live-casino" className={linkClass}>
-              live casino
-            </Link>
-            . Kataloget opdateres ugentligt med de nyeste udgivelser fra
-            branchens topudbydere, og bet365 er typisk blandt de første til at
-            have nye titler tilgængelige for danske spillere.
-          </p>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
-            <Card className="border-border bg-card">
-              <CardHeader className="pb-2">
-                <CardTitle className="flex items-center gap-2 text-lg">
-                  <Gamepad2 className="h-5 w-5 text-primary" />
-                  Spilleautomater
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-sm text-muted-foreground">
-                  Over 2.000 slots fra alle topudbydere. Megaways-titler fra{" "}
-                  <Link
-                    to="/spiludviklere/big-time-gaming"
-                    className={linkClass}
-                  >
-                    Big Time Gaming
-                  </Link>
-                  , cluster pays, bonus buy og progressive jackpots. Populære
-                  serier som Gates of Olympus, Book of Dead og Starburst er
-                  alle tilgængelige.
-                </p>
-              </CardContent>
-            </Card>
-            <Card className="border-border bg-card">
-              <CardHeader className="pb-2">
-                <CardTitle className="flex items-center gap-2 text-lg">
-                  <Trophy className="h-5 w-5 text-primary" />
-                  Live Casino
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-sm text-muted-foreground">
-                  Hundredvis af{" "}
-                  <Link to="/live-casino" className={linkClass}>
-                    live borde
-                  </Link>{" "}
-                  drevet af{" "}
-                  <Link
-                    to="/spiludviklere/evolution-gaming"
-                    className={linkClass}
-                  >
-                    Evolution Gaming
-                  </Link>
-                  . Alt fra klassisk{" "}
-                  <Link to="/casinospil/blackjack" className={linkClass}>
-                    blackjack
-                  </Link>{" "}
-                  og{" "}
-                  <Link to="/casinospil/roulette" className={linkClass}>
-                    roulette
-                  </Link>{" "}
-                  til game shows som Lightning Roulette og Crazy Time.
-                </p>
-              </CardContent>
-            </Card>
-            <Card className="border-border bg-card">
-              <CardHeader className="pb-2">
-                <CardTitle className="flex items-center gap-2 text-lg">
-                  <Radio className="h-5 w-5 text-primary" />
-                  Sportsbetting
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-sm text-muted-foreground">
-                  40+ sportsgrene med branchens dybeste markeder. Live-betting
-                  med realtidsopdateringer, Bet Builder til sammensatte
-                  væddemål og Cash Out på aktive bets. Live streaming af
-                  tusindvis af events årligt.
-                </p>
-              </CardContent>
-            </Card>
-          </div>
+          <h2 className="mb-4 text-3xl font-bold">Sammenligning med konkurrenter</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
-            Spilleautomaterne hos bet365 dækker hele spektret fra simple
-            klassiske frugtemaskiner til de mest avancerede videoautomater med
-            innovative mekanikker. Du finder Megaways-titler, der kan generere
-            op til 117.649 gevinstlinjer, cluster pays-spil, hvor gevinster
-            dannes ved at samle symboler i grupper, og bonus buy-funktioner,
-            der lader dig købe dig direkte ind i bonusrunden. Jackpot-sektionen
-            inkluderer progressive puljer, der jævnligt rammer millionbeløb.
+            Mod <Link to="/casino-anmeldelser/unibet" className={linkClass}>Unibet</Link>: Begge er store allround-platforme, men bet365 har den dybere sportsbook med bedre odds og bredere live streaming. Unibet har til gengæld et aktivt pokerrum tilgængeligt i Danmark og en platform, der føles mere balanceret mellem sport og casino. Unibets ejer, Kindred Group, er børsnoteret – hvilket giver mere transparens. For den sportsfokuserede spiller vinder bet365; for den alsidige spiller er Unibet et stærkt alternativ.
           </p>
           <p className="mb-4 text-muted-foreground leading-relaxed">
-            Live casinoet er et område, hvor bet365 virkelig excellerer. Med
-            hundredvis af borde fra{" "}
-            <Link to="/spiludviklere/evolution-gaming" className={linkClass}>
-              Evolution Gaming
-            </Link>{" "}
-            finder du alt fra klassiske bordspil til innovative game
-            show-formater. bet365 tilbyder eksklusive live casino-borde med
-            dedikerede dealers og specifikke bordgrænser tilpasset danske
-            spillere. Lightning Roulette, Crazy Time og Infinite Blackjack er
-            blandt de mest populære live-titler.
+            Mod <Link to="/casino-anmeldelser/leovegas" className={linkClass}>LeoVegas</Link>: Her er det et spørgsmål om prioriteter. LeoVegas er designet mobile-first med en casino-oplevelse, der er mere poleret og intuitiv. Deres live casino-sektion er dybere med flere eksklusive borde. Men LeoVegas har ingen sportsbook, ingen live streaming og ingen Bet Builder. Hvis casino er 100% af dit fokus, vælg LeoVegas. Hvis du vil have sport og casino, vælg bet365.
           </p>
           <p className="text-muted-foreground leading-relaxed">
-            Sportsbettingsektionen er naturligvis bet365's flagskib. Med
-            dækning af over 40 sportsgrene – fra fodbold og tennis til
-            hestevæddeløb, e-sport og dart – er bet365 uovertruffen i dybde.
-            Deres proprietære Bet Builder lader dig konstruere komplekse
-            væddemål på individuelle kampe, mens Cash Out-funktionen giver dig
-            mulighed for at sikre gevinst eller minimere tab, før en begivenhed
-            er afsluttet. Live streaming af tusindvis af events årligt direkte
-            i appen gør bet365 til en komplet underholdningsplatform.
-          </p>
-        </section>
-
-        <Separator className="my-10" />
-
-        {/* Mobiloplevelse */}
-        <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold">
-            <Smartphone className="inline h-7 w-7 text-primary mr-2" />
-            Mobiloplevelsen hos bet365
-          </h2>
-          <p className="mb-4 text-muted-foreground leading-relaxed">
-            bet365 har investeret massivt i sin mobilplatform, og resultatet er
-            en af de mest gennemarbejdede mobile spiloplevelser på markedet.
-            Mobilversionen er tilgængelig via browseren på alle enheder og
-            tilbyder næsten det fulde funktionssæt fra desktopversionen –
-            inklusiv live streaming, Cash Out og Bet Builder. Navigation er
-            intuitiv med tydelige kategorier, og kontostyring inklusiv{" "}
-            <Link to="/betalingsmetoder" className={linkClass}>
-              ind- og udbetalinger
-            </Link>{" "}
-            kan klares ubesværet fra mobiltelefonen.
-          </p>
-          <p className="mb-4 text-muted-foreground leading-relaxed">
-            Live streaming på mobilen er en af bet365's mest imponerende
-            features. Du kan se sportsbegivenheder live direkte i appen, mens
-            du samtidig placerer in-play væddemål – alt sammen med en forsinkelse
-            på blot få sekunder. Denne integration af underholdning og betting
-            er unik i branchen og gør bet365 til førstevalget for mange
-            sportsbetting-entusiaster, der primært spiller på farten.
-          </p>
-          <p className="text-muted-foreground leading-relaxed">
-            Casino-sektionen på mobilen rummer størstedelen af de 2.500+ titler,
-            og alle spil er optimeret til touch-interaktion. Indlæsningstiderne
-            er generelt hurtige, og bet365 bruger progressiv webteknologi, der
-            sikrer en app-lignende oplevelse uden behov for download. Det eneste
-            minus er, at den enorme mængde af funktioner – sport, casino, live,
-            poker – kan gøre navigationen en smule overvældende for helt nye
-            brugere. Men når først man kender layoutet, er det en effektiv og
-            velstruktureret mobilplatform.
-          </p>
-        </section>
-
-        <Separator className="my-10" />
-
-        {/* Betalingsmetoder dybdegående */}
-        <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold">
-            Betalingsmetoder og udbetalingstid
-          </h2>
-          <p className="mb-4 text-muted-foreground leading-relaxed">
-            bet365 understøtter alle populære danske{" "}
-            <Link to="/betalingsmetoder" className={linkClass}>
-              betalingsmetoder
-            </Link>
-            . Indbetalinger er øjeblikkelige uanset metode, og udbetalinger
-            behandles effektivt med bet365's proprietære betalingsinfrastruktur.
-          </p>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
-            {[
-              {
-                title: "Trustly",
-                desc: "Direkte bankoverførsel. Indbetalinger øjeblikkeligt, udbetalinger inden for 24 timer. Den foretrukne metode for danske spillere.",
-                speed: "⚡ Under 24 timer",
-              },
-              {
-                title: "Visa / Mastercard",
-                desc: "Bredt accepteret og velkendt. Indbetalinger øjeblikkeligt, udbetalinger 1-3 hverdage via bankens processeringstid.",
-                speed: "🕐 1-3 hverdage",
-              },
-              {
-                title: "Skrill / Neteller",
-                desc: "E-wallet med hurtige overførsler begge veje. Populær blandt erfarne online casino-spillere.",
-                speed: "⚡ 24 timer",
-              },
-              {
-                title: "Paysafecard",
-                desc: "Forudbetalt kort til anonym indbetaling. Kan ikke bruges til udbetalinger – disse sendes via alternativ metode.",
-                speed: "🕐 Kun indbetaling",
-              },
-            ].map((m) => (
-              <div
-                key={m.title}
-                className="flex items-start gap-3 rounded-lg border border-border bg-card p-4"
-              >
-                <CreditCard className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
-                <div className="flex-1">
-                  <div className="flex items-center gap-2">
-                    <h3 className="font-semibold">{m.title}</h3>
-                    <Badge variant="outline" className="text-xs">
-                      {m.speed}
-                    </Badge>
-                  </div>
-                  <p className="text-sm text-muted-foreground mt-1">
-                    {m.desc}
-                  </p>
-                </div>
-              </div>
-            ))}
-          </div>
-          <p className="text-muted-foreground leading-relaxed">
-            bet365's udbetalingsproces er en af de mest effektive i branchen.
-            Virksomhedens enorme skala – de behandler millioner af
-            transaktioner dagligt på verdensplan – har resulteret i en
-            veloptimeret betalingsinfrastruktur, der minimerer ventetider. Nye
-            spillere skal gennemgå en standard KYC-verifikation (Know Your
-            Customer) ved den første udbetaling, hvilket er et lovkrav fra
-            Spillemyndigheden. Herefter behandles udbetalinger typisk
-            automatisk.
-          </p>
-        </section>
-
-        <Separator className="my-10" />
-
-        {/* Kundeservice */}
-        <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold">
-            <Headphones className="inline h-7 w-7 text-primary mr-2" />
-            Kundeservice hos bet365
-          </h2>
-          <p className="mb-4 text-muted-foreground leading-relaxed">
-            bet365 tilbyder kundeservice via live chat og e-mail, tilgængelig
-            døgnet rundt, 365 dage om året. Live chatten er typisk den
-            hurtigste kanal med responstider under to minutter i de fleste
-            tilfælde. Det er værd at bemærke, at chatten primært foregår på
-            engelsk, hvilket kan være en barriere for nogle danske spillere.
-            Dog er de engelsksprogede agenter veluddannede og kompetente til
-            at håndtere alt fra kontoverifikation til bonusspørgsmål.
-          </p>
-          <p className="mb-4 text-muted-foreground leading-relaxed">
-            bet365's FAQ-center er omfattende og velstruktureret med kategorier
-            for kontostyring, betalinger, bonusser, sportsbetting og casino.
-            De fleste almindelige spørgsmål kan besvares her uden at kontakte
-            support direkte. For mere komplekse henvendelser – som
-            kontoverifikation eller udbetalingsspørgsmål – er live chatten
-            den anbefalede kanal.
-          </p>
-          <p className="text-muted-foreground leading-relaxed">
-            Sammenlignet med konkurrenter som{" "}
-            <Link to="/casino-anmeldelser/danske-spil" className={linkClass}>
-              Danske Spil
-            </Link>
-            , der tilbyder fuld dansk kundeservice, er det engelsksprogede
-            aspekt af bet365's support en klar ulempe for nogle spillere. Dog
-            kompenserer bet365 med tilgængelighed og hastighed – 24/7 support
-            med hurtige responstider er en sjældenhed blandt danske
-            operatører.
-          </p>
-        </section>
-
-        <Separator className="my-10" />
-
-        {/* Sikkerhed og licens */}
-        <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold">
-            <Shield className="inline h-7 w-7 text-primary mr-2" />
-            Sikkerhed, licens og regulering
-          </h2>
-          <p className="mb-4 text-muted-foreground leading-relaxed">
-            bet365 opererer under dansk licens fra Spillemyndigheden og er
-            fuldt tilsluttet ROFUS (Register Over Frivilligt Udelukkede
-            Spillere). Platformen anvender avanceret 256-bit SSL-kryptering
-            til at beskytte alle data- og betalingstransaktioner. Som verdens
-            største online gambling-virksomhed er bet365 underlagt intens
-            regulatorisk kontrol fra tilsynsmyndigheder i over 20 lande –
-            herunder UK Gambling Commission, en af verdens strengeste
-            regulatorer.
-          </p>
-          <p className="mb-4 text-muted-foreground leading-relaxed">
-            Det private ejerskab under Coates-familien kan ses som både en
-            fordel og en ulempe i sikkerhedsøjemed. På den ene side er der
-            mindre finansiel gennemsigtighed end hos børsnoterede konkurrenter
-            som Kindred Group (Unibet) eller Flutter Entertainment
-            (PokerStars). På den anden side sikrer det private ejerskab, at
-            bet365 kan tage langsigtede beslutninger uden pres fra aktionærer
-            – og virksomhedens 20+ års track record taler for sig selv.
-          </p>
-          <p className="mb-4 text-muted-foreground leading-relaxed">
-            bet365 har implementeret omfattende værktøjer til{" "}
-            <Link to="/ansvarligt-spil" className={linkClass}>
-              ansvarligt spil
-            </Link>
-            , herunder indbetalingsgrænser, tabsgrænser, sessionsgrænser og
-            mulighed for selvudelukkelse. Disse værktøjer er let tilgængelige
-            i kontostyringen og understøttes af bet365's dedikerede team for
-            ansvarligt spil. Vores{" "}
-            <Link to="/forretningsmodel" className={linkClass}>
-              forretningsmodel
-            </Link>{" "}
-            sikrer uafhængig vurdering af alle operatører.
-          </p>
-          <Card className="border-border bg-card border-l-4 border-l-primary">
-            <CardContent className="pt-6 space-y-3">
-              <p className="text-muted-foreground">
-                Spil ansvarligt. Kontakt{" "}
-                <a
-                  href="https://www.stopspillet.dk/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-primary hover:underline font-medium"
-                >
-                  StopSpillet.dk
-                </a>{" "}
-                på tlf. 70 22 28 25 ved behov.
-              </p>
-              <p className="text-xs text-muted-foreground">
-                18+ | Spil ansvarligt | Annoncering
-              </p>
-            </CardContent>
-          </Card>
-        </section>
-
-        <Separator className="my-10" />
-
-        {/* Live streaming sektion */}
-        <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold">
-            <Monitor className="inline h-7 w-7 text-primary mr-2" />
-            Live streaming – bet365's unikke fordel
-          </h2>
-          <p className="mb-4 text-muted-foreground leading-relaxed">
-            En af bet365's absolut stærkeste features er deres live
-            streaming-service. bet365 streamer tusindvis af sportsbegivenheder
-            hvert år direkte til brugerne – gratis for alle med en aktiv konto
-            og en saldo eller et nyligt placeret væddemål. Tjenesten dækker
-            fodbold fra de store europæiske ligaer, tennis fra ATP og WTA,
-            basketball, hestevæddeløb, ishockey, cricket og mange flere
-            sportsgrene.
-          </p>
-          <p className="mb-4 text-muted-foreground leading-relaxed">
-            Kvaliteten af live streaming er generelt høj med stabile streams
-            og minimal forsinkelse. Integrationen med in-play betting er
-            sømløs – du kan se kampen og placere væddemål i realtid, alt
-            sammen i den samme visning. Statistikpanelet opdateres automatisk
-            og viser nøgletal som boldbesiddelse, skud på mål og
-            cornerstatistikker. Denne datadrevne tilgang til live-betting er
-            en af grundene til, at bet365 forbliver branchens foretrukne
-            sportsbook for seriøse bettors.
-          </p>
-          <p className="text-muted-foreground leading-relaxed">
-            Sammenlignet med danske konkurrenter har bet365 den klart
-            bredeste streaming-dækning. Mens{" "}
-            <Link to="/casino-anmeldelser/unibet" className={linkClass}>
-              Unibet
-            </Link>{" "}
-            og{" "}
-            <Link to="/casino-anmeldelser/betano" className={linkClass}>
-              Betano
-            </Link>{" "}
-            også tilbyder live streaming, er bet365's dækning typisk 3-5
-            gange bredere med langt flere begivenheder tilgængelige. For
-            sportsbetting-entusiaster er dette alene en tilstrækkelig grund
-            til at have en konto hos bet365.
-          </p>
-        </section>
-
-        <Separator className="my-10" />
-
-        {/* bet365's historie og baggrund */}
-        <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold">
-            <Award className="inline h-7 w-7 text-primary mr-2" />
-            bet365's historie og position i Danmark
-          </h2>
-          <p className="mb-4 text-muted-foreground leading-relaxed">
-            bet365 blev grundlagt i 2000 af Denise Coates i Stoke-on-Trent, England, og voksede fra en lokal bookmaker til verdens største online gambling-virksomhed på blot to årtier. Denise Coates, der i dag bærer titlen CBE (Commander of the Order of the British Empire), er en af de mest indflydelsesrige kvinder i den globale gambling-industri og har opbygget bet365 med fokus på teknologisk innovation og kundetilfredshed fremfor aggressiv markedsføring. Denne tilgang har resulteret i en loyalitetsdrevet forretningsmodel, hvor mund-til-mund-anbefalinger og produktkvalitet driver væksten.
-          </p>
-          <p className="mb-4 text-muted-foreground leading-relaxed">
-            I Danmark har bet365 opereret med licens fra Spillemyndigheden siden den regulerede markeds begyndelse. Platformen har konsekvent været en af de mest populære udenlandske operatører blandt danske spillere, primært drevet af sportsbettingsektionen. Danske spillere, der følger Premier League, La Liga, Champions League og andre internationale turneringer, har traditionelt foretrukket bet365 for dets overlegen odds og live streaming-dækning. Casino-sektionen er vokset markant de seneste år og tilbyder nu en oplevelse, der kan konkurrere med dedikerede casino-operatører som{" "}
-            <Link to="/casino-anmeldelser/leovegas" className={linkClass}>LeoVegas</Link> og{" "}
-            <Link to="/casino-anmeldelser/casumo" className={linkClass}>Casumo</Link>.
-          </p>
-          <p className="mb-4 text-muted-foreground leading-relaxed">
-            bet365's teknologiske infrastruktur er en af de mest avancerede i branchen. Virksomheden beskæftiger over 6.000 medarbejdere globalt, heraf en betydelig andel indenfor softwareudvikling og IT-infrastruktur. Denne investering i egne systemer – fremfor at bruge tredjepartsplatforme som mange konkurrenter – giver bet365 fuld kontrol over brugeroplevelsen, betalingsprocesser og dataanalyse. Resultatet er en platform, der sjældent oplever nedetid, behandler betalinger hurtigt og løbende introducerer innovative features.
-          </p>
-          <p className="text-muted-foreground leading-relaxed">
-            Virksomhedens sociale ansvar er også værd at bemærke. bet365 har investeret massivt i lokalsamfundet i Stoke-on-Trent, herunder sponsorering af den lokale fodboldklub Stoke City FC og betydelige donationer til velgørende formål. I en branche, der ofte kritiseres for sine sociale konsekvenser, har bet365 demonstreret en model, hvor kommerciel succes kan gå hånd i hånd med samfundsansvar. For danske spillere betyder dette en operatør med dyb institutionel integritet og langsigtede værdier.
-          </p>
-        </section>
-
-        <Separator className="my-10" />
-
-        {/* VIP og loyalitetsprogram */}
-        <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold">
-            <TrendingUp className="inline h-7 w-7 text-primary mr-2" />
-            Loyalitetsprogram og VIP-behandling
-          </h2>
-          <p className="mb-4 text-muted-foreground leading-relaxed">
-            bet365 opererer med et invitationsbaseret VIP-program, hvilket adskiller sig fra konkurrenter som{" "}
-            <Link to="/casino-anmeldelser/mr-green" className={linkClass}>Mr Green</Link> og{" "}
-            <Link to="/casino-anmeldelser/videoslots" className={linkClass}>Videoslots</Link>, der har mere transparente loyalitetsniveauer. Hos bet365 identificeres VIP-spillere automatisk baseret på aktivitetsniveau, og de modtager personaliserede tilbud, højere bonusgrænser og dedikeret kontaktperson. Denne tilgang har fordele og ulemper: det er mindre forudsigeligt for spilleren, men tilbuddene er typisk mere generøse end standardiserede loyalitetsprogrammer.
-          </p>
-          <p className="mb-4 text-muted-foreground leading-relaxed">
-            For casual og mellemstore spillere tilbyder bet365 løbende kampagner, der fungerer som en form for loyalitetsbelønning uden formelt programstruktur. Ugentlige free spins-tildelinger, sæsonbestemte casino-kampagner og sportsbetting-boosters sikrer, at aktive spillere altid har ekstra værdi at hente. bet365's tilgang er pragmatisk: i stedet for at bygge et komplekst point-system fokuserer de på at levere relevante tilbud direkte til spillerne baseret på deres faktiske adfærd og præferencer.
-          </p>
-          <p className="text-muted-foreground leading-relaxed">
-            Det er værd at nævne, at bet365 ikke tilbyder et traditionelt comp points-system, som man finder hos eksempelvis{" "}
-            <Link to="/casino-anmeldelser/888casino" className={linkClass}>888casino</Link>. For spillere, der motiveres af at optjene og indløse point, kan dette være en ulempe. Men bet365's alternative tilgang – med fokus på kampagneværdi fremfor point-mekanikker – resulterer ofte i bedre samlet værdi for den gennemsnitlige spiller. Nøglen er at være aktiv og konsistent, hvorefter bet365's system automatisk tilpasser tilbuddene til dit spillemønster.
-          </p>
-        </section>
-
-        <Separator className="my-10" />
-
-        {/* Sammenligning med konkurrenter */}
-        <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold">
-            bet365 sammenlignet med konkurrenterne
-          </h2>
-          <p className="mb-4 text-muted-foreground leading-relaxed">
-            bet365 er i en liga for sig selv, hvad angår skala og
-            sportsbetting. Sammenlignet med{" "}
-            <Link to="/casino-anmeldelser/unibet" className={linkClass}>
-              Unibet
-            </Link>{" "}
-            har bet365 den stærkere sportsbook med bredere live streaming og
-            mere avancerede bettingværktøjer. Til gengæld har Unibet det mere
-            tilgængelige pokerrum og en platform, der føles mere casino-venlig
-            i sit design. Begge er fremragende allround-platforme, men bet365
-            vinder klart for den sportsfokuserede spiller.
-          </p>
-          <p className="mb-4 text-muted-foreground leading-relaxed">
-            I forhold til{" "}
-            <Link to="/casino-anmeldelser/leovegas" className={linkClass}>
-              LeoVegas
-            </Link>{" "}
-            er bet365 den bredere platform med en langt dybere sportssektion,
-            mens LeoVegas vinder på ren mobilcasino-oplevelse og live
-            casino-dybde. For spillere, der primært er casino-fokuserede, er
-            LeoVegas det bedre valg. For dem, der ønsker en komplet
-            spilleplatform med sport som fundament, er bet365 uovertruffen.
-          </p>
-          <p className="mb-4 text-muted-foreground leading-relaxed">
-            Sammenlignet med{" "}
-            <Link to="/casino-anmeldelser/danske-spil" className={linkClass}>
-              Danske Spil
-            </Link>{" "}
-            tilbyder bet365 et markant bredere spiludvalg og mere
-            konkurrencedygtige odds. Danske Spil har til gengæld den unikke
-            fordel af statsligt ejerskab og fuld dansk kundeservice – en
-            komfortfaktor, som mange danske spillere værdsætter højt. For den
-            internationale og teknologibevidste spiller er bet365 det klare
-            valg; for den lokalfokuserede spiller har Danske Spil sin
-            berettigelse.
-          </p>
-          <p className="text-muted-foreground leading-relaxed">
-            <strong>Hvem passer bet365 til?</strong> Spillere, der ønsker
-            verdens mest komplette og pålidelige spilleplatform. Særligt
-            attraktivt for sportsbetting-entusiaster, der også nyder
-            casino-spil, og for spillere, der værdsætter innovation,
-            live streaming og en platform, der skalerer fra casual til
-            professionel betting. bet365 er det oplagte valg, hvis du søger
-            en enkelt platform, der gør alt – og gør det i verdensklasse.
+            Mod <Link to="/casino-anmeldelser/danske-spil" className={linkClass}>Danske Spil</Link>: Danske Spil har den unikke fordel af fuld dansk kundeservice og den tillid, der følger med statsligt ejerskab. Til gengæld er spiludvalget smallere, oddsene typisk højere (dårligere for bettoren), og der er ingen live streaming. For spillere, der prioriterer dansk support og lokal forankring, er Danske Spil det trygge valg. For alle andre er bet365 objektivt den stærkere platform.
           </p>
         </section>
 
@@ -942,64 +505,35 @@ const Bet365Anmeldelse = () => {
 
         {/* Endelig vurdering */}
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold">
-            Vores endelige vurdering af bet365
-          </h2>
+          <h2 className="mb-4 text-3xl font-bold">Vores endelige vurdering</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
-            bet365 er simpelthen verdens største online sportsbook og en af de
-            mest komplette spilleplatforme, der er tilgængelig for danske
-            spillere. Med 2.500+ casinospil, 40+ sportsgrene, live streaming,
-            innovative bettingværktøjer og 20+ års erfaring er det en
-            platform, der sætter standarden for hele branchen. Casino-sektionen
-            er langt mere end et supplement – den er en fuldvoksen oplevelse
-            i sin egen ret.
+            bet365 er den mest komplette spilleplatform, der er tilgængelig for danske spillere. Sportsbook'en er i en liga for sig selv med dybde, live streaming og innovative værktøjer, som ingen konkurrent matcher. Casino-sektionen er solid med et bredt udvalg, og live casinoet er blandt de bedste. Udbetalinger er hurtige, platformen er stabil, og 20+ års erfaring mærkes i hvert aspekt af produktet.
           </p>
           <p className="mb-6 text-muted-foreground leading-relaxed">
-            De eneste reelle ulemper er den engelsksprogede kundeservice og
-            et casino-design, der kan føles sekundært til sportsfokuset. Men
-            for danske spillere, der søger volumen, pålidelighed og innovation,
-            er bet365 svær at slå. Læs om{" "}
-            <Link to="/forfatter/jonas" className={linkClass}>
-              forfatteren
-            </Link>
-            .
+            De reelle svagheder er begrænsede: en gennemsnitlig casino-velkomstbonus, engelsksproget kundeservice og et design, der prioriterer sport over casino. For den rette spiller – en der ønsker alt samlet ét sted med sport som fundament – er bet365 svær at forbigå. Læs om{" "}
+            <Link to="/forfatter/jonas" className={linkClass}>forfatteren</Link>.
           </p>
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-6">
             {[
+              { label: "Sportsbetting", score: "10/10" },
+              { label: "Casino", score: "8/10" },
               { label: "Pålidelighed", score: "10/10" },
-              { label: "Sport & Live", score: "10/10" },
-              { label: "Casino", score: "9/10" },
               { label: "Samlet", score: "4.5/5" },
             ].map((i) => (
-              <div
-                key={i.label}
-                className="rounded-lg border border-border bg-card p-4 text-center"
-              >
-                <p className="text-xs text-muted-foreground uppercase mb-1">
-                  {i.label}
-                </p>
+              <div key={i.label} className="rounded-lg border border-border bg-card p-4 text-center">
+                <p className="text-xs text-muted-foreground uppercase mb-1">{i.label}</p>
                 <p className="text-2xl font-bold text-primary">{i.score}</p>
               </div>
             ))}
           </div>
           <div className="flex flex-col sm:flex-row gap-3">
-            <Button
-              asChild
-              variant="outline"
-              size="lg"
-              className="flex-1"
-            >
+            <Button asChild variant="outline" size="lg" className="flex-1">
               <Link to="/top-10-casino-online">
                 <Trophy className="mr-2 h-5 w-5" />
                 Se Top 10 Casinoer
               </Link>
             </Button>
-            <Button
-              asChild
-              variant="outline"
-              size="lg"
-              className="flex-1"
-            >
+            <Button asChild variant="outline" size="lg" className="flex-1">
               <Link to="/casino-anmeldelser">
                 <Star className="mr-2 h-5 w-5" />
                 Alle Casino Anmeldelser
@@ -1008,19 +542,11 @@ const Bet365Anmeldelse = () => {
           </div>
         </section>
 
-        <InlineCasinoCards
-          title="Andre anbefalede casinoer"
-          count={6}
-          excludeSlugs={["bet365"]}
-        />
-
+        <InlineCasinoCards title="Andre anbefalede casinoer" count={6} excludeSlugs={["bet365"]} />
         <AuthorBio />
         <Separator className="my-10" />
+        <FAQSection title="Ofte stillede spørgsmål om bet365" faqs={faqs} />
         <RelatedGuides currentPath="/casino-anmeldelser/bet365" />
-        <FAQSection
-          title="Ofte stillede spørgsmål om bet365"
-          faqs={faqs}
-        />
       </div>
     </>
   );
