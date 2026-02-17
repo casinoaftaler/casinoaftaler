@@ -545,8 +545,8 @@ const Bet365Anmeldelse = () => {
         <InlineCasinoCards title="Andre anbefalede casinoer" count={6} excludeSlugs={["bet365"]} />
         <AuthorBio />
         <Separator className="my-10" />
-        <FAQSection title="Ofte stillede spørgsmål om bet365" faqs={faqs} />
         <RelatedGuides currentPath="/casino-anmeldelser/bet365" />
+        <FAQSection title="Ofte stillede spørgsmål om bet365" faqs={faqs} />
       </div>
     </>
   );

@@ -120,11 +120,10 @@ const PokerStarsAnmeldelse = () => {
         </section>
 
         <Separator className="my-10" />
-        <FAQSection faqs={pokerstarsFaqs} />
+        <AuthorBio author="jonas" />
         <Separator className="my-10" />
         <RelatedGuides currentPath="/casino-anmeldelser/pokerstars" />
-        <Separator className="my-10" />
-        <AuthorBio author="jonas" />
+        <FAQSection faqs={pokerstarsFaqs} />
       </div>
     </>
   );

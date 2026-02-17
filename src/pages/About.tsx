@@ -409,11 +409,11 @@ const About = () => {
 
         <Separator className="my-10" />
 
+        <AuthorBio author="jonas" showCommunity={false} />
+
         <RelatedGuides currentPath="/om" />
 
         <FAQSection title="Ofte stillede spørgsmål" faqs={aboutFaqs} />
-
-        <AuthorBio author="jonas" showCommunity={false} />
       </div>
     </>
   );
