@@ -840,6 +840,52 @@ const Bet365Anmeldelse = () => {
 
         <Separator className="my-10" />
 
+        {/* bet365's historie og baggrund */}
+        <section className="mb-12">
+          <h2 className="mb-4 text-3xl font-bold">
+            <Award className="inline h-7 w-7 text-primary mr-2" />
+            bet365's historie og position i Danmark
+          </h2>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            bet365 blev grundlagt i 2000 af Denise Coates i Stoke-on-Trent, England, og voksede fra en lokal bookmaker til verdens største online gambling-virksomhed på blot to årtier. Denise Coates, der i dag bærer titlen CBE (Commander of the Order of the British Empire), er en af de mest indflydelsesrige kvinder i den globale gambling-industri og har opbygget bet365 med fokus på teknologisk innovation og kundetilfredshed fremfor aggressiv markedsføring. Denne tilgang har resulteret i en loyalitetsdrevet forretningsmodel, hvor mund-til-mund-anbefalinger og produktkvalitet driver væksten.
+          </p>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            I Danmark har bet365 opereret med licens fra Spillemyndigheden siden den regulerede markeds begyndelse. Platformen har konsekvent været en af de mest populære udenlandske operatører blandt danske spillere, primært drevet af sportsbettingsektionen. Danske spillere, der følger Premier League, La Liga, Champions League og andre internationale turneringer, har traditionelt foretrukket bet365 for dets overlegen odds og live streaming-dækning. Casino-sektionen er vokset markant de seneste år og tilbyder nu en oplevelse, der kan konkurrere med dedikerede casino-operatører som{" "}
+            <Link to="/casino-anmeldelser/leovegas" className={linkClass}>LeoVegas</Link> og{" "}
+            <Link to="/casino-anmeldelser/casumo" className={linkClass}>Casumo</Link>.
+          </p>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            bet365's teknologiske infrastruktur er en af de mest avancerede i branchen. Virksomheden beskæftiger over 6.000 medarbejdere globalt, heraf en betydelig andel indenfor softwareudvikling og IT-infrastruktur. Denne investering i egne systemer – fremfor at bruge tredjepartsplatforme som mange konkurrenter – giver bet365 fuld kontrol over brugeroplevelsen, betalingsprocesser og dataanalyse. Resultatet er en platform, der sjældent oplever nedetid, behandler betalinger hurtigt og løbende introducerer innovative features.
+          </p>
+          <p className="text-muted-foreground leading-relaxed">
+            Virksomhedens sociale ansvar er også værd at bemærke. bet365 har investeret massivt i lokalsamfundet i Stoke-on-Trent, herunder sponsorering af den lokale fodboldklub Stoke City FC og betydelige donationer til velgørende formål. I en branche, der ofte kritiseres for sine sociale konsekvenser, har bet365 demonstreret en model, hvor kommerciel succes kan gå hånd i hånd med samfundsansvar. For danske spillere betyder dette en operatør med dyb institutionel integritet og langsigtede værdier.
+          </p>
+        </section>
+
+        <Separator className="my-10" />
+
+        {/* VIP og loyalitetsprogram */}
+        <section className="mb-12">
+          <h2 className="mb-4 text-3xl font-bold">
+            <TrendingUp className="inline h-7 w-7 text-primary mr-2" />
+            Loyalitetsprogram og VIP-behandling
+          </h2>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            bet365 opererer med et invitationsbaseret VIP-program, hvilket adskiller sig fra konkurrenter som{" "}
+            <Link to="/casino-anmeldelser/mr-green" className={linkClass}>Mr Green</Link> og{" "}
+            <Link to="/casino-anmeldelser/videoslots" className={linkClass}>Videoslots</Link>, der har mere transparente loyalitetsniveauer. Hos bet365 identificeres VIP-spillere automatisk baseret på aktivitetsniveau, og de modtager personaliserede tilbud, højere bonusgrænser og dedikeret kontaktperson. Denne tilgang har fordele og ulemper: det er mindre forudsigeligt for spilleren, men tilbuddene er typisk mere generøse end standardiserede loyalitetsprogrammer.
+          </p>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            For casual og mellemstore spillere tilbyder bet365 løbende kampagner, der fungerer som en form for loyalitetsbelønning uden formelt programstruktur. Ugentlige free spins-tildelinger, sæsonbestemte casino-kampagner og sportsbetting-boosters sikrer, at aktive spillere altid har ekstra værdi at hente. bet365's tilgang er pragmatisk: i stedet for at bygge et komplekst point-system fokuserer de på at levere relevante tilbud direkte til spillerne baseret på deres faktiske adfærd og præferencer.
+          </p>
+          <p className="text-muted-foreground leading-relaxed">
+            Det er værd at nævne, at bet365 ikke tilbyder et traditionelt comp points-system, som man finder hos eksempelvis{" "}
+            <Link to="/casino-anmeldelser/888casino" className={linkClass}>888casino</Link>. For spillere, der motiveres af at optjene og indløse point, kan dette være en ulempe. Men bet365's alternative tilgang – med fokus på kampagneværdi fremfor point-mekanikker – resulterer ofte i bedre samlet værdi for den gennemsnitlige spiller. Nøglen er at være aktiv og konsistent, hvorefter bet365's system automatisk tilpasser tilbuddene til dit spillemønster.
+          </p>
+        </section>
+
+        <Separator className="my-10" />
+
         {/* Sammenligning med konkurrenter */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold">
