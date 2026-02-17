@@ -4,6 +4,7 @@ import { AuthorBio } from "@/components/AuthorBio";
 import { Link } from "react-router-dom";
 import { FAQSection } from "@/components/FAQSection";
 import { SEO } from "@/components/SEO";
+import { buildFaqSchema } from "@/lib/seo";
 import { RelatedGuides } from "@/components/RelatedGuides";
 import velkomstbonusHero from "@/assets/heroes/velkomstbonus-hero.jpg";
 import { InlineCasinoCards } from "@/components/InlineCasinoCards";
@@ -122,18 +123,7 @@ const Velkomstbonus = () => {
   const { data: siteSettings } = useSiteSettings();
   const heroBackgroundImage = siteSettings?.hero_background;
 
-  const faqJsonLd = {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    mainEntity: velkomstbonusFaqs.map((faq) => ({
-      "@type": "Question",
-      name: faq.question,
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: faq.answer,
-      },
-    })),
-  };
+  const faqJsonLd = buildFaqSchema(velkomstbonusFaqs);
 
   const articleJsonLd = {
     "@context": "https://schema.org",

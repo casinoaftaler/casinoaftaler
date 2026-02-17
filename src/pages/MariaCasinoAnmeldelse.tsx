@@ -9,7 +9,7 @@ import { Separator } from "@/components/ui/separator";
 import { RelatedGuides } from "@/components/RelatedGuides";
 import { InlineCasinoCards } from "@/components/InlineCasinoCards";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
-import { buildArticleSchema } from "@/lib/seo";
+import { buildArticleSchema, buildFaqSchema } from "@/lib/seo";
 import { QuickFactsProviders } from "@/components/QuickFactsProviders";
 import { CasinoReviewHero } from "@/components/CasinoReviewHero";
 import type { ReactNode } from "react";
@@ -75,15 +75,7 @@ const MariaCasinoAnmeldelse = () => {
     authorUrl: "https://casinoaftaler.dk/forfatter/kevin",
   });
 
-  const faqJsonLd = {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    mainEntity: mariaFaqs.map((faq) => ({
-      "@type": "Question",
-      name: faq.question,
-      acceptedAnswer: { "@type": "Answer", text: typeof faq.answer === "string" ? faq.answer : faq.question },
-    })),
-  };
+  const faqJsonLd = buildFaqSchema(mariaFaqs);
 
   const reviewJsonLd = {
     "@context": "https://schema.org",

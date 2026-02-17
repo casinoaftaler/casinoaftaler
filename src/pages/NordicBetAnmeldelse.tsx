@@ -9,7 +9,7 @@ import { Separator } from "@/components/ui/separator";
 import { RelatedGuides } from "@/components/RelatedGuides";
 import { InlineCasinoCards } from "@/components/InlineCasinoCards";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
-import { buildArticleSchema } from "@/lib/seo";
+import { buildArticleSchema, buildFaqSchema } from "@/lib/seo";
 import { QuickFactsProviders } from "@/components/QuickFactsProviders";
 import { CasinoReviewHero } from "@/components/CasinoReviewHero";
 import type { ReactNode } from "react";
@@ -30,7 +30,7 @@ const NordicBetAnmeldelse = () => {
   const { data: siteSettings } = useSiteSettings();
   const heroBackgroundImage = siteSettings?.hero_background_image;
   const articleSchema = buildArticleSchema({ headline: "NordicBet Casino Anmeldelse 2026 – Sport & Casino i Ét", description: "Dybdegående anmeldelse af NordicBet. Nordisk sportsbook med stærkt casino, dansk licens og Betsson Groups opbakning.", url: "https://casinoaftaler.dk/casino-anmeldelser/nordicbet", datePublished: "2026-02-15", dateModified: "2026-02-15", authorName: "Kevin", authorUrl: "https://casinoaftaler.dk/forfatter/kevin" });
-  const faqJsonLd = { "@context": "https://schema.org", "@type": "FAQPage", mainEntity: nordicbetFaqs.map((faq) => ({ "@type": "Question", name: faq.question, acceptedAnswer: { "@type": "Answer", text: typeof faq.answer === "string" ? faq.answer : faq.question } })) };
+  const faqJsonLd = buildFaqSchema(nordicbetFaqs);
   const reviewJsonLd = { "@context": "https://schema.org", "@type": "Review", itemReviewed: { "@type": "Organization", name: "NordicBet", url: "https://www.nordicbet.dk/" }, author: { "@type": "Organization", name: "Casinoaftaler" }, reviewRating: { "@type": "Rating", ratingValue: "4.1", bestRating: "5" }, reviewBody: "NordicBet er en solid nordisk platform med stærkt sportsvæddemål og et konkurrencedygtigt casino under Betsson Group." };
 
   return (

@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { FAQSection } from "@/components/FAQSection";
 import { SEO } from "@/components/SEO";
+import { buildFaqSchema } from "@/lib/seo";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
 import { RelatedGuides } from "@/components/RelatedGuides";
 import { InlineCasinoCards } from "@/components/InlineCasinoCards";
@@ -98,18 +99,7 @@ export function ProviderPage({
   const { data: siteSettings } = useSiteSettings();
   const heroBackgroundImage = siteSettings?.hero_background;
 
-  const faqJsonLd = {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    mainEntity: faqs.map((faq) => ({
-      "@type": "Question",
-      name: faq.question,
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: typeof faq.answer === "string" ? faq.answer : faq.question,
-      },
-    })),
-  };
+  const faqJsonLd = buildFaqSchema(faqs);
 
   const sectionMap: Record<string, ReactNode> = {
     intro: (

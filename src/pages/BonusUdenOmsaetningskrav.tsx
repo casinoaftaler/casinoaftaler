@@ -3,6 +3,7 @@ import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { AuthorBio } from "@/components/AuthorBio";
 import { FAQSection } from "@/components/FAQSection";
 import { SEO } from "@/components/SEO";
+import { buildFaqSchema } from "@/lib/seo";
 import bonusUdenOmsaetningHero from "@/assets/heroes/bonus-uden-omsaetning-hero.jpg";
 import { InlineCasinoCards } from "@/components/InlineCasinoCards";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -73,18 +74,7 @@ const BonusUdenOmsaetningskrav = () => {
   const { data: siteSettings } = useSiteSettings();
   const heroBackgroundImage = siteSettings?.hero_background;
 
-  const faqJsonLd = {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    mainEntity: faqs.map((faq) => ({
-      "@type": "Question",
-      name: faq.question,
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: faq.answer,
-      },
-    })),
-  };
+  const faqJsonLd = buildFaqSchema(faqs);
 
   const articleJsonLd = {
     "@context": "https://schema.org",

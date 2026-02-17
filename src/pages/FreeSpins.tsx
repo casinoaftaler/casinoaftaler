@@ -4,6 +4,7 @@ import { AuthorBio } from "@/components/AuthorBio";
 import { Link } from "react-router-dom";
 import { FAQSection } from "@/components/FAQSection";
 import { SEO } from "@/components/SEO";
+import { buildFaqSchema } from "@/lib/seo";
 import { RelatedGuides } from "@/components/RelatedGuides";
 import freeSpinsHero from "@/assets/heroes/free-spins-hero.jpg";
 import { InlineCasinoCards } from "@/components/InlineCasinoCards";
@@ -128,18 +129,7 @@ const freeSpinsTypes = [
 ];
 
 const FreeSpins = () => {
-  const faqJsonLd = {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    mainEntity: freeSpinsFaqs.map((faq) => ({
-      "@type": "Question",
-      name: faq.question,
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: faq.answer,
-      },
-    })),
-  };
+  const faqJsonLd = buildFaqSchema(freeSpinsFaqs);
 
   const articleJsonLd = {
     "@context": "https://schema.org",

@@ -10,7 +10,7 @@ import { Button } from "@/components/ui/button";
 import { RelatedGuides } from "@/components/RelatedGuides";
 import { InlineCasinoCards } from "@/components/InlineCasinoCards";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
-import { buildArticleSchema } from "@/lib/seo";
+import { buildArticleSchema, buildFaqSchema } from "@/lib/seo";
 import { QuickFactsProviders } from "@/components/QuickFactsProviders";
 import { CasinoReviewHero } from "@/components/CasinoReviewHero";
 import type { ReactNode } from "react";
@@ -89,15 +89,7 @@ const ComeOnAnmeldelse = () => {
     authorUrl: "https://casinoaftaler.dk/forfatter/jonas",
   });
 
-  const faqJsonLd = {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    mainEntity: comeonFaqs.map((faq) => ({
-      "@type": "Question",
-      name: faq.question,
-      acceptedAnswer: { "@type": "Answer", text: typeof faq.answer === "string" ? faq.answer : faq.question },
-    })),
-  };
+  const faqJsonLd = buildFaqSchema(comeonFaqs);
 
   const reviewJsonLd = {
     "@context": "https://schema.org",

@@ -9,7 +9,7 @@ import { Separator } from "@/components/ui/separator";
 import { RelatedGuides } from "@/components/RelatedGuides";
 import { InlineCasinoCards } from "@/components/InlineCasinoCards";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
-import { buildArticleSchema } from "@/lib/seo";
+import { buildArticleSchema, buildFaqSchema } from "@/lib/seo";
 import { QuickFactsProviders } from "@/components/QuickFactsProviders";
 import { CasinoReviewHero } from "@/components/CasinoReviewHero";
 import type { ReactNode } from "react";
@@ -30,7 +30,7 @@ const StakeCasinoAnmeldelse = () => {
   const { data: siteSettings } = useSiteSettings();
   const heroBackgroundImage = siteSettings?.hero_background_image;
   const articleSchema = buildArticleSchema({ headline: "Stake Casino Anmeldelse 2026 – Snart i Danmark", description: "Forhåndsanmeldelse af Stake Casino. Den populære crypto-platform forbereder dansk lancering. Alt du skal vide om Stake i Danmark.", url: "https://casinoaftaler.dk/casino-anmeldelser/stake-casino", datePublished: "2026-02-15", dateModified: "2026-02-15", authorName: "Jonas", authorUrl: "https://casinoaftaler.dk/forfatter/jonas" });
-  const faqJsonLd = { "@context": "https://schema.org", "@type": "FAQPage", mainEntity: stakeFaqs.map((faq) => ({ "@type": "Question", name: faq.question, acceptedAnswer: { "@type": "Answer", text: typeof faq.answer === "string" ? faq.answer : faq.question } })) };
+  const faqJsonLd = buildFaqSchema(stakeFaqs);
 
   return (
     <>

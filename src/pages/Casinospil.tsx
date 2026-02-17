@@ -4,6 +4,7 @@ import { AuthorBio } from "@/components/AuthorBio";
 import { Link } from "react-router-dom";
 import { FAQSection } from "@/components/FAQSection";
 import { SEO } from "@/components/SEO";
+import { buildFaqSchema } from "@/lib/seo";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
@@ -102,18 +103,7 @@ const Casinospil = () => {
   const [openCasinoId, setOpenCasinoId] = useState<string | null>(null);
   const heroBackgroundImage = siteSettings?.hero_background_image;
 
-  const faqJsonLd = {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    mainEntity: casinospilFaqs.map((faq) => ({
-      "@type": "Question",
-      name: faq.question,
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: typeof faq.answer === "string" ? faq.answer : faq.question,
-      },
-    })),
-  };
+  const faqJsonLd = buildFaqSchema(casinospilFaqs);
 
   const breadcrumbJsonLd = {
     "@context": "https://schema.org",

@@ -9,6 +9,7 @@ import { Separator } from "@/components/ui/separator";
 import { RelatedGuides } from "@/components/RelatedGuides";
 import { FAQSection } from "@/components/FAQSection";
 import { SEO } from "@/components/SEO";
+import { buildFaqSchema } from "@/lib/seo";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
 import spillemyndighedenHero from "@/assets/spillemyndigheden-hero.jpg";
 
@@ -126,15 +127,7 @@ const Spillemyndigheden = () => {
   const { data: siteSettings } = useSiteSettings();
   const heroBackgroundImage = siteSettings?.hero_background;
 
-  const faqJsonLd = {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    mainEntity: spillemyndighedenFaqs.map((faq) => ({
-      "@type": "Question",
-      name: faq.question,
-      acceptedAnswer: { "@type": "Answer", text: faq.answer },
-    })),
-  };
+  const faqJsonLd = buildFaqSchema(spillemyndighedenFaqs);
 
   const articleJsonLd = {
     "@context": "https://schema.org",

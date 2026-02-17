@@ -12,6 +12,7 @@ import { InlineCasinoCards } from "@/components/InlineCasinoCards";
 import { useCasinos } from "@/hooks/useCasinos";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
 import { getAffiliateRedirect } from "@/lib/affiliateRedirect";
+import { buildFaqSchema } from "@/lib/seo";
 import { useAuth } from "@/hooks/useAuth";
 import type { ReactNode } from "react";
 import { CasinoReviewHero } from "@/components/CasinoReviewHero";
@@ -123,18 +124,7 @@ const SpilDanskNuAnmeldelse = () => {
     if (casino) getAffiliateRedirect(casino.slug, user?.id);
   };
 
-  const faqJsonLd = {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    mainEntity: spilDanskNuFaqs.map((faq) => ({
-      "@type": "Question",
-      name: faq.question,
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: typeof faq.answer === "string" ? faq.answer : faq.question,
-      },
-    })),
-  };
+  const faqJsonLd = buildFaqSchema(spilDanskNuFaqs);
 
   const reviewJsonLd = {
     "@context": "https://schema.org",
