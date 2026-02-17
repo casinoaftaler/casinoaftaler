@@ -2,17 +2,11 @@ import { Link } from "react-router-dom";
 import { ArrowRight } from "lucide-react";
 import jonasImage from "@/assets/jonas-forfatter.png";
 import kevinImage from "@/assets/kevin-forfatter.png";
+import "@/styles/community-micro.css";
 
 export function CommunityBrandBlock() {
   return (
-    <section
-      className="mt-12 rounded-xl p-6 md:p-8"
-      style={{
-        border: "1px solid rgba(139,92,246,0.25)",
-        background:
-          "linear-gradient(135deg, hsl(260 30% 15%) 0%, hsl(220 25% 14%) 100%)",
-      }}
-    >
+    <section className="community-panel-brand mt-12 rounded-xl p-6 md:p-8">
       <div className="flex flex-col sm:flex-row items-center sm:items-start gap-6">
         <div className="flex gap-5 shrink-0">
           <Link to="/forfatter/jonas" className="flex flex-col items-center gap-2 group">
@@ -47,11 +41,7 @@ export function CommunityBrandBlock() {
           </div>
           <Link
             to="/om"
-            className="inline-flex items-center gap-2 rounded-lg px-5 py-2.5 text-sm font-semibold text-foreground transition-all duration-200 hover:scale-[1.02] hover:shadow-[0_0_20px_rgba(139,92,246,0.2)]"
-            style={{
-              border: "1px solid rgba(139,92,246,0.35)",
-              background: "linear-gradient(135deg, hsl(260 40% 22%) 0%, hsl(220 35% 20%) 100%)",
-            }}
+            className="community-panel-btn inline-flex items-center gap-2 rounded-lg px-5 py-2.5 text-sm font-semibold transition-all duration-200 hover:scale-[1.02] hover:shadow-[0_0_20px_rgba(139,92,246,0.2)]"
           >
             👉 Mød teamet bag Casinoaftaler
             <ArrowRight className="h-3.5 w-3.5" />

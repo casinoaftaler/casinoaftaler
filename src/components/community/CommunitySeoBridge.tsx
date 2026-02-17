@@ -12,6 +12,7 @@ import {
   PartyPopper,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import "@/styles/community-micro.css";
 
 const LINKS = [
   { href: "/nye-casinoer", label: "Nye Casinoer", icon: Star, primary: true },
@@ -56,13 +57,7 @@ export function CommunitySeoBridge() {
   return (
     <nav
       aria-label="Udforsk casinoer"
-      className="rounded-xl p-4 transition-all duration-300 hover:shadow-[0_0_40px_rgba(139,92,246,0.12)] relative overflow-hidden"
-      style={{
-        border: "1px solid rgba(139,92,246,0.35)",
-        boxShadow: "0 0 30px rgba(139,92,246,0.08)",
-        background:
-          "linear-gradient(180deg, hsl(260 30% 16%) 0%, hsl(250 25% 13%) 100%)",
-      }}
+      className="community-panel-vertical rounded-xl p-4 transition-all duration-300 hover:shadow-[0_0_40px_rgba(139,92,246,0.12)] relative overflow-hidden"
     >
       {/* Subtle casino illustration overlay */}
       <div
