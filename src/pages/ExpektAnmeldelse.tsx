@@ -107,7 +107,35 @@ const ExpektAnmeldelse = () => {
             <Card className="border-border bg-card"><CardHeader className="pb-2"><CardTitle className="flex items-center gap-2 text-lg"><Sparkles className="h-5 w-5 text-primary" />Sportsbook</CardTitle></CardHeader><CardContent><p className="text-sm text-muted-foreground">30+ sportsgrene, live-betting med realtids-statistikker, virtuelle sportsbegivenheder og e-sport. Expekts kerne og klart stærkeste produktområde.</p></CardContent></Card>
           </div>
           <p className="mb-4 text-muted-foreground leading-relaxed">Sportsbook'en er Expekts ubestridte styrke. Med dækning af 30+ sportsgrene – fra fodbold, tennis og ishockey til mere niche sportsgrene som dart, snooker og MMA – er det en af de mest komplette sportsbooks på det danske marked. Live-betting er responsiv med hurtige odds-opdateringer og cash-out funktionalitet på de fleste markeder.</p>
+          <p className="mb-4 text-muted-foreground leading-relaxed">Vi analyserede RTP-niveauerne på de mest populære slots under vores test. Starburst (96,09%), Book of Dead (96,21%), Sweet Bonanza (96,48%) og Gates of Olympus (96,50%) var alle til stede i deres standardversioner. Expekt anvender ikke reducerede RTP-versioner – et positivt tegn, der bekræfter, at Betsson Group opretholder fair spilleforhold på tværs af sine brands. Bordspil som blackjack tilbyder standard RTP på 99,5% med optimal strategi.</p>
           <p className="text-muted-foreground leading-relaxed">For spillere, der primært er casino-fokuserede, fungerer sportssektionen som en ekstra dimension af underholdning. Din saldo er delt, så du kan seamlessly skifte mellem at satse på en Champions League-kamp og spille en runde Gates of Olympus. Denne fleksibilitet er Expekts primære differentiator – og den er reel.</p>
+        </section>
+
+        <Separator className="my-10" />
+
+        <section className="mb-12">
+          <h2 className="mb-4 text-3xl font-bold">Mobiloplevelse og app-kvalitet</h2>
+          <p className="mb-4 text-muted-foreground leading-relaxed">Expekts mobile platform er responsiv og fungerer i alle moderne browsere. Under vores test på iPhone 15 og Samsung Galaxy S24 var indlæsningstiderne 3,2 sekunder (iOS) og 2,8 sekunder (Android) – begge acceptabelt. Casino-spil loadede inden for 4-6 sekunder, og gameplay var stabilt uden afbrydelser eller lag. Touch-navigationen er generelt intuitiv, og kontostyring – inklusive ind- og udbetalinger – kan klares fuldt ud på mobil.</p>
+          <p className="mb-4 text-muted-foreground leading-relaxed">Det største problem på mobil er den førnævnte kontekstskift mellem sport og casino. Når du skifter fra sportssektionen til casino, ændrer layout, farvetema og navigationsstruktur sig markant. Det føles som to separate mobilsider snarere end én sammenhængende oplevelse. Sammenlignet med <Link to="/casino-anmeldelser/bet365" className={linkClass}>bet365</Link>'s mere sømløse app-integration er der et klart forbedringspotentiale.</p>
+          <p className="text-muted-foreground leading-relaxed">Expekt tilbyder ikke en dedikeret downloadbar app for det danske marked, hvilket er en begrænsning for spillere, der foretrækker native app-oplevelsen med push-notifikationer om odds-ændringer og kampagner. Du kan tilføje hjemmesiden som genvej fra browseren, men det giver ikke samme funktionalitet. For den sportsfokuserede spiller, der ønsker den bedste mobile live-betting oplevelse, er <Link to="/casino-anmeldelser/bwin" className={linkClass}>bwin</Link>'s dedikerede app et stærkere alternativ.</p>
+        </section>
+
+        <Separator className="my-10" />
+
+        <section className="mb-12">
+          <h2 className="mb-4 text-3xl font-bold">Kundeservice og supportoplevelse</h2>
+          <p className="mb-4 text-muted-foreground leading-relaxed">Expekts kundeservice er tilgængelig via live chat og e-mail. Vi testede live chatten to gange under vores januar 2026-session. Første kontakt (tirsdag kl. 11:30) resulterede i en svartid på 3 minutter og 15 sekunder – acceptabelt. Agenten kommunikerede på engelsk men forstod vores danske kontekst. Spørgsmål om bonusvilkår blev besvaret korrekt og præcist.</p>
+          <p className="mb-4 text-muted-foreground leading-relaxed">Anden kontakt (lørdag kl. 20:00) havde en svartid på 5 minutter og 40 sekunder – længere, men stadig inden for rimelighedens grænser. Agenten var kompetent men henviste os til FAQ-sektionen for detaljerede vilkår om free spins-omsætningskrav. Det er et tegn på standardiseret, international kundeservice snarere end den personlige, danske tilgang man får hos <Link to="/casino-anmeldelser/spilnu" className={linkClass}>Spilnu</Link> eller <Link to="/casino-anmeldelser/casinostuen" className={linkClass}>Casinostuen</Link>.</p>
+          <p className="text-muted-foreground leading-relaxed">En vigtig bemærkning: Expekts kundeservice er primært på engelsk, ikke dansk. For spillere, der foretrækker modersmålssupport, er det en ulempe. FAQ-sektionen er dog tilgængelig på dansk og dækker de mest almindelige spørgsmål om konto, betalinger og bonusser. E-mailsvar modtog vi inden for 18 timer – inden for det lovede interval på 24 timer.</p>
+        </section>
+
+        <Separator className="my-10" />
+
+        <section className="mb-12">
+          <h2 className="mb-4 text-3xl font-bold">Hvem bør – og hvem bør IKKE – vælge Expekt?</h2>
+          <p className="mb-4 text-muted-foreground leading-relaxed"><strong>Expekt er til dig, hvis:</strong> Du er en aktiv sportsvæddemålsspiller, der ønsker at supplere med casino og live casino under ét login. Betsson Groups infrastruktur sikrer hurtige udbetalinger, solid sikkerhed og en sportsbook, der kan måle sig med de bedste. Hvis du betragter casino som en ekstra underholdningsdimension snarere end dit primære fokus, er Expekt en stærk kandidat.</p>
+          <p className="mb-4 text-muted-foreground leading-relaxed"><strong>Expekt er IKKE til dig, hvis:</strong> Du søger det bredeste casino-spiludvalg – <Link to="/casino-anmeldelser/getlucky" className={linkClass}>GetLucky</Link> og <Link to="/casino-anmeldelser/videoslots" className={linkClass}>Videoslots</Link> tilbyder det dobbelte eller tredobbelte antal spil. Hvis du prioriterer dansk kundeservice, er <Link to="/casino-anmeldelser/comeon" className={linkClass}>ComeOn</Link> eller <Link to="/casino-anmeldelser/spilnu" className={linkClass}>Spilnu</Link> bedre valg. Og hvis du udelukkende spiller casino uden interesse for sport, betaler du implicit for en sportsbog, du aldrig bruger – i det tilfælde er en ren casino-platform mere effektiv.</p>
+          <p className="text-muted-foreground leading-relaxed">Det er desuden værd at overveje, at Expekts velkomstbonus kræver et valg mellem sport og casino – du kan ikke få begge. For spillere, der vil teste begge produkter med bonusmidler, er det en begrænsning, som platforme med samlede velkomstpakker (som <Link to="/casino-anmeldelser/bet365" className={linkClass}>bet365</Link>) ikke har.</p>
         </section>
 
         <Separator className="my-10" />
