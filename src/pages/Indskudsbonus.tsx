@@ -154,18 +154,14 @@ const Indskudsbonus = () => {
         {/* Intro */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold">
-            Hvad er en indskudsbonus?
+            Indskudsbonus i praksis: Et regneeksempel
           </h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
-            En indskudsbonus er en af de mest populære og attraktive
-            bonustyper hos danske online casinoer. Denne form for bonus
-            matcher din indbetaling med en procentdel – typisk 100% – så
-            du får dobbelt så mange penge at spille for. Indskudsbonussen
-            bruges ofte som{" "}
+            Med en indbetaling på 500 kr. og 100 % match får du 1.000 kr. at spille for – men hvad er bonussen reelt værd efter omsætningskravene? En indskudsbonus (også kaldet matchbonus) matcher din indbetaling med en procentdel og bruges ofte som{" "}
             <Link to="/velkomstbonus" className="text-primary underline hover:text-primary/80">
               velkomstbonus
             </Link>{" "}
-            til nye spillere, men tilbydes også til loyale kunder.
+            til nye spillere, men tilbydes også som reload-tilbud til loyale kunder.
           </p>
           <p className="text-muted-foreground leading-relaxed">
             En indskudsbonus kaldes også for en matchbonus, da den netop
@@ -545,29 +541,24 @@ const Indskudsbonus = () => {
         <Separator className="my-10" />
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold">
-            Ansvarligt spil
+            Undgå at lade bonussen styre dit indbetalingsmønster
           </h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
-            For at sikre at din oplevelse med online casinoer forbliver
-            underholdende og sikker, er det vigtigt at sætte grænser for
-            både tid og penge. Hvis du mærker, at du mister kontrollen,
-            eller at spillet ikke længere bringer glæde, bør du tage en
-            pause og søge hjælp.
+            En indskudsbonus kan friste til at indbetale mere end planlagt for at maksimere matchbeløbet. Det er en fælde – indbetal aldrig mere, end du ville have spillet for uden bonussen. Dit spillebudget bør fastlægges uafhængigt af bonustilbuddet.
           </p>
           <p className="text-muted-foreground leading-relaxed">
-            Mange casinoer tilbyder værktøjer som Rofus til selvudelukkelse
-            samt indbetalingsgrænser for at regulere din spilaktivitet.
-            Besøg StopSpillet.dk for rådgivning om spilafhængighed. Husk
-            altid, at spil skal være sjovt og aldrig betragtes som en
-            indtægtskilde.
+            Brug casinoets indbetalingsgrænser aktivt, og overvej{" "}
+            <a href="https://www.rofus.nu/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline font-medium">ROFUS</a>{" "}
+            til selvudelukkelse, hvis indbetalingerne begynder at overstige dit budget. Rådgivning findes hos{" "}
+            <a href="https://www.stopspillet.dk/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline font-medium">StopSpillet.dk</a>. 18+ | Spil ansvarligt.
           </p>
         </section>
 
         <Separator className="my-10" />
 
-        {/* Opsummering */}
+        {/* Bundlinjen */}
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold">Opsummering</h2>
+          <h2 className="mb-4 text-3xl font-bold">Bundlinjen</h2>
           <div className="space-y-3">
             {[
               {

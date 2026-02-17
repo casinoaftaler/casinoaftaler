@@ -189,20 +189,14 @@ const FreeSpins = () => {
         {/* Intro */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold">
-            Hvad er free spins, og hvorfor er de så populære?
+            Sådan vælger du de bedste free spins i 2026
           </h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
-            Free spins – eller gratis spins – er gratis omgange på
-            spilleautomater, som casinoer tilbyder deres spillere. Når du
-            modtager free spins, kan du spille på udvalgte slots uden at bruge
-            din egen saldo. Det giver dig mulighed for at afprøve et casino
-            eller en bestemt spilleautomat helt risikofrit og stadig have
-            chancen for at vinde rigtige penge. Gevinster fra free spins er dog
-            typisk underlagt{" "}
+            Ikke alle free spins er lige meget værd – 50 spins á 2 kr. med 0x omsætning slår 200 spins á 0,50 kr. med 10x krav hver gang. Gratis spins er omgange på spilleautomater, hvor du spiller uden at bruge din egen saldo, men gevinsterne er typisk underlagt{" "}
             <Link to="/omsaetningskrav" className="text-primary underline hover:text-primary/80">
               omsætningskrav
             </Link>
-            , som du bør sætte dig ind i.
+            , som du bør forstå før du accepterer.
           </p>
           <p className="mb-4 text-muted-foreground leading-relaxed">
             Populariteten bag free spins skyldes netop denne kombination af nul
@@ -607,9 +601,9 @@ const FreeSpins = () => {
 
         <Separator className="my-10" />
 
-        {/* Opsummering */}
+        {/* Vores vurdering */}
         <section className="mb-12">
-          <h2 className="mb-6 text-3xl font-bold">Opsummering</h2>
+          <h2 className="mb-6 text-3xl font-bold">Vores vurdering</h2>
           <div className="space-y-3">
             {[
               {

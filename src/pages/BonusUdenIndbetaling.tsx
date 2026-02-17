@@ -144,19 +144,14 @@ const BonusUdenIndbetaling = () => {
         {/* Intro */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold">
-            Hvad er en bonus uden indbetaling?
+            Kan man virkelig vinde penge uden at risikere en krone?
           </h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
-            En bonus uden indbetaling – også kaldet no deposit bonus – er
-            et af de mest eftertragtede tilbud på casinomarkedet. Med
-            denne type bonus belønnes du blot for at oprette en konto,
-            helt uden at du behøver at indsætte penge. Bonussen kan
-            komme i form af{" "}
+            Det lyder for godt til at være sandt – og svaret er nuanceret. En no deposit bonus (bonus uden indbetaling) giver dig{" "}
             <Link to="/free-spins" className="text-primary underline hover:text-primary/80">
               gratis spins
             </Link>{" "}
-            på spilleautomater eller som et mindre pengebeløb direkte på
-            din spillekonto.
+            eller et mindre pengebeløb blot for at oprette en konto. Risikoen er nul for dig, men gevinstpotentialet er begrænset af vilkårene.
           </p>
           <p className="mb-4 text-muted-foreground leading-relaxed">
             Denne bonustype er særligt populær, fordi den giver dig
@@ -601,29 +596,25 @@ const BonusUdenIndbetaling = () => {
         <Separator className="my-10" />
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold">
-            Ansvarligt spil
+            Gratis er ikke det samme som risikofrit
           </h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
-            Bonusser uden indbetaling tilbyder en unik mulighed for at
-            opleve et casino uden økonomisk risiko. Selvom det er fristende
-            at dykke lige ind, er det vigtigt at huske på principperne for
-            ansvarligt spil. Sæt realistiske forventninger, forstå
-            vilkårene og spil altid for underholdningens skyld.
+            Selvom en no deposit bonus ikke koster dig penge, kan den stadig koste dig tid og opmærksomhed. Det er let at lade en gratis bonus fungere som indgang til et større forbrug – især hvis du efterfølgende fristes til at indbetale for at hæve gevinster. Vær bevidst om denne dynamik.
           </p>
           <p className="text-muted-foreground leading-relaxed">
-            Nyd spillet uden at forfølge tab eller lade spillet påvirke dit
-            daglige liv. Benyt casinoernes værktøjer til selvudelukkelse
-            via Rofus og kontakt StopSpillet.dk for rådgivning om
-            spilafhængighed. Husk – spil skal altid betragtes som
-            underholdning.
+            Sæt realistiske forventninger: en no deposit bonus er en gratis prøvetur, ikke en indtægtskilde. Benyt{" "}
+            <a href="https://www.rofus.nu/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline font-medium">ROFUS</a>{" "}
+            til selvudelukkelse og{" "}
+            <a href="https://www.stopspillet.dk/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline font-medium">StopSpillet.dk</a>{" "}
+            for rådgivning. 18+ | Spil ansvarligt.
           </p>
         </section>
 
         <Separator className="my-10" />
 
-        {/* Opsummering */}
+        {/* Hvad du bør tage med */}
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold">Opsummering</h2>
+          <h2 className="mb-4 text-3xl font-bold">Hvad du bør tage med</h2>
           <div className="space-y-3">
             {[
               {
