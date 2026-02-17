@@ -80,7 +80,7 @@ const NyeCasinoer2026 = () => {
     description: "Opdateret liste over alle nye casinoer lanceret i Danmark i 2026. Sammenlign bonusser, spiludvalg og vilkår.",
     url: `${SITE_URL}/nye-casinoer/2026`,
     datePublished: "2026-01-15",
-    dateModified: "2026-02-16",
+    dateModified: "2026-02-17",
     authorName: "Kevin",
     authorUrl: `${SITE_URL}/forfatter/kevin`,
   });
@@ -116,7 +116,7 @@ const NyeCasinoer2026 = () => {
       </section>
 
       <div className="container py-8 md:py-12">
-        <AuthorMetaBar author="kevin" date="16-02-2026" readTime="14 Min." />
+        <AuthorMetaBar author="kevin" date="17-02-2026" readTime="14 Min." />
 
         <div className="mb-10 overflow-hidden rounded-xl">
           <img src={nyeCasinoer2026Hero} alt="Nye casinoer i 2026 – futuristisk casino med neonlys" className="w-full h-auto object-cover max-h-[400px]" loading="eager" />

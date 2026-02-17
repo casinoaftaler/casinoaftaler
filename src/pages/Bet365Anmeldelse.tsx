@@ -154,7 +154,7 @@ const Bet365Anmeldelse = () => {
       </section>
 
       <div className="container py-8 md:py-12">
-        <AuthorMetaBar author="jonas" date="15-02-2026" readTime="18 Min." />
+        <AuthorMetaBar author="jonas" date="17-02-2026" readTime="18 Min." />
         <CasinoReviewHero slug="bet365" casinoName="bet365" />
 
         {/* Hurtige fakta */}

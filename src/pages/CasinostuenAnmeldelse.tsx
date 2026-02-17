@@ -29,7 +29,7 @@ const casinostuenFaqs: { question: string; answer: ReactNode }[] = [
 const CasinostuenAnmeldelse = () => {
   const { data: siteSettings } = useSiteSettings();
   const heroBackgroundImage = siteSettings?.hero_background_image;
-  const articleSchema = buildArticleSchema({ headline: "Casinostuen Anmeldelse 2026 – Hyggelig Dansk Casino", description: "Dybdegående anmeldelse af Casinostuen. Dansk licens, hyggelig atmosfære og fokus på det danske marked.", url: "https://casinoaftaler.dk/casino-anmeldelser/casinostuen", datePublished: "2026-02-15", dateModified: "2026-02-15", authorName: "Kevin", authorUrl: "https://casinoaftaler.dk/forfatter/kevin" });
+  const articleSchema = buildArticleSchema({ headline: "Casinostuen Anmeldelse 2026 – Hyggelig Dansk Casino", description: "Dybdegående anmeldelse af Casinostuen. Dansk licens, hyggelig atmosfære og fokus på det danske marked.", url: "https://casinoaftaler.dk/casino-anmeldelser/casinostuen", datePublished: "2026-02-15", dateModified: "2026-02-17", authorName: "Kevin", authorUrl: "https://casinoaftaler.dk/forfatter/kevin" });
   const faqJsonLd = buildFaqSchema(casinostuenFaqs);
   const reviewJsonLd = { "@context": "https://schema.org", "@type": "Review", itemReviewed: { "@type": "Organization", name: "Casinostuen" }, author: { "@type": "Organization", name: "Casinoaftaler" }, reviewRating: { "@type": "Rating", ratingValue: "3.6", bestRating: "5" } };
 
@@ -46,7 +46,7 @@ const CasinostuenAnmeldelse = () => {
       </section>
 
       <div className="container py-8 md:py-12">
-        <AuthorMetaBar author="kevin" date="15-02-2026" readTime="16 Min." />
+        <AuthorMetaBar author="kevin" date="17-02-2026" readTime="16 Min." />
         <CasinoReviewHero slug="casinostuen" casinoName="Casinostuen" />
         <section className="mb-12">
           <Card className="border-border bg-card border-l-4 border-l-primary">

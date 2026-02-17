@@ -159,7 +159,7 @@ const BetanoAnmeldelse = () => {
       </section>
 
       <div className="container py-8 md:py-12">
-        <AuthorMetaBar author="jonas" date="15-02-2026" readTime="19 Min." />
+        <AuthorMetaBar author="jonas" date="17-02-2026" readTime="19 Min." />
         <CasinoReviewHero slug="betano" casinoName="Betano" />
 
         {/* Hurtige fakta */}
