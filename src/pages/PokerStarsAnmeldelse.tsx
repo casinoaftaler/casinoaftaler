@@ -29,7 +29,7 @@ const pokerstarsFaqs: { question: string; answer: ReactNode }[] = [
 const PokerStarsAnmeldelse = () => {
   const { data: siteSettings } = useSiteSettings();
   const heroBackgroundImage = siteSettings?.hero_background_image;
-  const articleSchema = buildArticleSchema({ headline: "PokerStars Anmeldelse 2026 – Verdens Største Poker-Platform", description: "Dybdegående anmeldelse af PokerStars Casino. Dansk licens, poker, casino og sportsvæddemål fra verdens førende poker-brand.", url: "https://casinoaftaler.dk/casino-anmeldelser/pokerstars", datePublished: "2026-02-15", dateModified: "2026-02-15", authorName: "Jonas", authorUrl: "https://casinoaftaler.dk/forfatter/jonas" });
+  const articleSchema = buildArticleSchema({ headline: "PokerStars Anmeldelse 2026 – Verdens Største Poker-Platform", description: "Dybdegående anmeldelse af PokerStars Casino. Dansk licens, poker, casino og sportsvæddemål fra verdens førende poker-brand.", url: "https://casinoaftaler.dk/casino-anmeldelser/pokerstars", datePublished: "2026-02-15", dateModified: "2026-02-17", authorName: "Jonas", authorUrl: "https://casinoaftaler.dk/forfatter/jonas" });
   const faqJsonLd = buildFaqSchema(pokerstarsFaqs);
   const reviewJsonLd = { "@context": "https://schema.org", "@type": "Review", itemReviewed: { "@type": "Organization", name: "PokerStars", url: "https://www.pokerstars.dk/" }, author: { "@type": "Organization", name: "Casinoaftaler" }, reviewRating: { "@type": "Rating", ratingValue: "4.3", bestRating: "5" } };
 
@@ -46,7 +46,7 @@ const PokerStarsAnmeldelse = () => {
       </section>
 
       <div className="container py-8 md:py-12">
-        <AuthorMetaBar author="jonas" date="15-02-2026" readTime="19 Min." />
+        <AuthorMetaBar author="jonas" date="17-02-2026" readTime="19 Min." />
         <CasinoReviewHero slug="pokerstars" casinoName="PokerStars" />
         <section className="mb-12">
           <Card className="border-border bg-card border-l-4 border-l-primary">
