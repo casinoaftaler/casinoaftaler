@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { FAQSection } from "@/components/FAQSection";
 import { SEO } from "@/components/SEO";
-import { buildFaqSchema } from "@/lib/seo";
+import { buildFaqSchema, buildArticleSchema, SITE_URL } from "@/lib/seo";
 import { AuthorBio } from "@/components/AuthorBio";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
 import { RelatedGuides } from "@/components/RelatedGuides";
@@ -101,6 +101,16 @@ export function ProviderPage({
   const heroBackgroundImage = siteSettings?.hero_background;
 
   const faqJsonLd = buildFaqSchema(faqs);
+
+  const articleSchema = buildArticleSchema({
+    headline: seoTitle,
+    description: seoDescription,
+    url: `${SITE_URL}${currentPath}`,
+    datePublished: "2026-02-15",
+    dateModified: "2026-02-15",
+    authorName: "Jonas",
+    authorUrl: `${SITE_URL}/forfatter/jonas`,
+  });
 
   const sectionMap: Record<string, ReactNode> = {
     intro: (
@@ -311,7 +321,7 @@ export function ProviderPage({
 
   return (
     <>
-      <SEO title={seoTitle} description={seoDescription} jsonLd={faqJsonLd} />
+      <SEO title={seoTitle} description={seoDescription} jsonLd={[faqJsonLd, articleSchema]} />
 
       <section
         className="relative overflow-hidden py-12 text-white md:py-20"

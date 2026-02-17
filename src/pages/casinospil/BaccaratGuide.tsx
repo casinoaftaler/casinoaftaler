@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { FAQSection } from "@/components/FAQSection";
 import { SEO } from "@/components/SEO";
-import { buildFaqSchema } from "@/lib/seo";
+import { buildFaqSchema, buildArticleSchema, SITE_URL } from "@/lib/seo";
 import { AuthorBio } from "@/components/AuthorBio";
 import { Separator } from "@/components/ui/separator";
 import { RelatedGuides } from "@/components/RelatedGuides";
@@ -67,6 +67,7 @@ const baccaratFaqs: { question: string; answer: ReactNode }[] = [
 
 const BaccaratGuide = () => {
   const faqJsonLd = buildFaqSchema(baccaratFaqs);
+  const articleSchema = buildArticleSchema({ headline: "Baccarat Regler 2026 – Guide til Online Baccarat", description: "Lær baccarat regler, kortværdier, tredje-kort-reglen og varianter. Guide til Punto Banco, Lightning Baccarat og live baccarat hos danske casinoer.", url: `${SITE_URL}/casinospil/baccarat`, datePublished: "2026-02-15", dateModified: "2026-02-15", authorName: "Jonas", authorUrl: `${SITE_URL}/forfatter/jonas` });
 
   const breadcrumbJsonLd = {
     "@context": "https://schema.org",
@@ -83,7 +84,7 @@ const BaccaratGuide = () => {
       <SEO
         title="Baccarat Regler 2026 – Guide til Online Baccarat"
         description="Lær baccarat regler, kortværdier, tredje-kort-reglen og varianter. Guide til Punto Banco, Lightning Baccarat og live baccarat hos danske casinoer."
-        jsonLd={[faqJsonLd, breadcrumbJsonLd]}
+        jsonLd={[faqJsonLd, breadcrumbJsonLd, articleSchema]}
       />
 
       <section className="relative overflow-hidden py-12 text-white md:py-20" style={{ backgroundImage: "linear-gradient(135deg, hsl(260 70% 25%), hsl(250 60% 20%) 40%, hsl(210 80% 25%))" }}>
