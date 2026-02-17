@@ -233,7 +233,7 @@ const SaadanTesterVi = () => {
             Markedet for online casinoer i Danmark er stort og kan virke uoverskueligt. Der dukker konstant nye casinoer op med tilbud, der lyder for gode til at være sande – og det er de ofte også. Derfor tester vi hvert enkelt casino, inden vi anbefaler det til vores læsere.
           </p>
           <p className="mb-4 text-muted-foreground leading-relaxed">
-            Hos Casinoaftaler.dk er alle anmeldelser baseret på praktisk erfaring. Vi opretter reelle konti, indbetaler egne midler og gennemfører hele spilleoplevelsen fra start til slut. Ingen anmeldelse skrives udelukkende på baggrund af pressematerialer eller markedsføringstekster.
+            Alle anmeldelser bygger på praktisk erfaring. Vi opretter reelle konti, indbetaler egne midler og gennemfører hele spilleoplevelsen fra start til slut. Ingen anmeldelse skrives udelukkende på baggrund af pressematerialer eller markedsføringstekster.
           </p>
           <p className="mb-4 text-muted-foreground leading-relaxed">
             Bag testene står <Link to="/forfatter/jonas" className="text-primary underline hover:text-primary/80">Jonas</Link>, grundlæggeren af Casinoaftaler.dk, som har over 4 års erfaring som casino-streamer. Hans daglige erfaring med at spille live foran tusindvis af seere giver et unikt indblik i, hvad der fungerer i praksis – og hvad der ikke gør.

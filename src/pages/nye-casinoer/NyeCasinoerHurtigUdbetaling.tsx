@@ -98,7 +98,7 @@ const NyeCasinoerHurtigUdbetaling = () => {
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold">Nye casinoer med de hurtigste udbetalinger i 2026</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
-            Udbetalingshastighed er en af de vigtigste faktorer, når du vælger et <Link to="/nye-casinoer" className={linkClass}>nyt casino</Link>. Ingen ønsker at vente dage på at modtage sine gevinster, og i 2026 er instant-udbetalinger blevet standarden hos de bedste nye danske casinoer. Hos Casinoaftaler tester vi faktiske udbetalingstider – ikke hvad casinoerne reklamerer med.
+            Udbetalingshastighed er en af de vigtigste faktorer, når du vælger et <Link to="/nye-casinoer" className={linkClass}>nyt casino</Link>. Ingen ønsker at vente dage på at modtage sine gevinster, og i 2026 er instant-udbetalinger blevet standarden hos de bedste nye danske casinoer. Vores test måler faktiske udbetalingstider – ikke hvad casinoerne reklamerer med.
           </p>
           <p className="mb-4 text-muted-foreground leading-relaxed">
             Moderne nye casinoer bygges med avanceret betalingsinfrastruktur, der integrerer open banking-løsninger som <Link to="/betalingsmetoder/trustly" className={linkClass}>Trustly</Link> direkte i platformen. Det eliminerer manuelle godkendelsestrin og muliggør udbetalinger på under 5 minutter – 24 timer i døgnet, 7 dage om ugen. Det er en markant forbedring fra de 2–5 bankdages ventetid, der stadig er normen hos mange ældre casinoer.

@@ -190,11 +190,10 @@ const Casinospil = () => {
             casinoer.
           </p>
           <p className="mb-4 text-muted-foreground leading-relaxed">
-            Hos Casinoaftaler.dk har vi samlet alt, hvad du behøver at vide om
-            casinospil i Danmark. Vi gennemgår de mest populære typer casinospil,
-            forklarer reglerne, deler strategier og hjælper dig med at finde de
-            casinospil, der passer perfekt til din spillestil. Alle casinoer, vi
-            anbefaler, har gyldig dansk licens fra{" "}
+            Denne guide dækker alt om casinospil i Danmark – fra populære kategorier
+            og spilleregler til strategier, der kan forbedre dine chancer. Målet er
+            at hjælpe dig med at finde de spil, der passer til din spillestil og
+            dit budget. Alle anbefalede casinoer har gyldig dansk licens fra{" "}
             <a
               href="https://www.spillemyndigheden.dk/"
               target="_blank"
