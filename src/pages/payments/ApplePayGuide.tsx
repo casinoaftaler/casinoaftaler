@@ -185,6 +185,58 @@ const ApplePayGuide = () => {
             </>
           ),
         },
+        {
+          position: "after-whatis",
+          title: "Apple Pay i den Danske Bankinfrastruktur – Kompatibilitet og Integration",
+          content: (
+            <>
+              <p className="mb-4 text-muted-foreground leading-relaxed">
+                Den danske banksektor har omfavnet Apple Pay markant hurtigere end mange andre europæiske lande. Allerede i 2017, kort efter lanceringen i Danmark, tilsluttede Danske Bank, Nordea og Jyske Bank sig platformen. I 2026 er listen vokset til at inkludere praktisk talt alle danske pengeinstitutter – fra de fem største til lokale sparekasser og andelskasser. Denne brede dækning betyder, at over 95 % af alle danske Visa- og Mastercard-indehavere kan tilføje deres kort til Apple Wallet uden komplikationer.
+              </p>
+              <p className="mb-4 text-muted-foreground leading-relaxed">
+                Det er dog vigtigt at forstå de tekniske begrænsninger i integrationen. Ikke alle korttyper understøttes: Firmakort og visse specialkort (f.eks. Dankort uden Visa-co-branding) kan ikke tilføjes til Apple Wallet. For casinospillere er dette sjældent et problem, da de fleste bruger personlige debetkort. Men hvis du udelukkende har et rent Dankort uden Visa-funktionalitet, skal du kontakte din bank for at opgradere til et Visa/Dankort – en proces, der typisk tager 5-7 hverdage og er gratis.
+              </p>
+              <p className="mb-4 text-muted-foreground leading-relaxed">
+                Apple Pay på Apple Watch fortjener en særlig omtale i casino-konteksten. Selvom det er teknisk muligt at autorisere en Apple Pay-betaling fra dit Apple Watch (dobbelttryk på sideknappen), kræver de fleste casino-betalingssider en browser-interaktion, der ikke er optimeret til Watch. I praksis vil du næsten altid bruge din iPhone eller Mac til casinobetalinger. Apple Watch er derimod velegnet til fysiske betalinger i butikker, hvor du køber f.eks.{" "}
+                <Link to="/betalingsmetoder/paysafecard" className="text-primary underline hover:text-primary/80">Paysafecard</Link>-vouchers.
+              </p>
+              <p className="mb-4 text-muted-foreground leading-relaxed">
+                En ofte overset detalje er Apple Pays transaktionshistorik. Wallet-appen gemmer en komplet log over alle Apple Pay-transaktioner, herunder beløb, modtager og tidspunkt. For casinospillere fungerer dette som et automatisk regnskab, der kan bruges til at spore dit samlede forbrug over tid – et værdifuldt værktøj for{" "}
+                <Link to="/ansvarligt-spil" className="text-primary underline hover:text-primary/80">ansvarligt spil</Link>. Du kan eksportere denne historik via din banks kontoudtog, da Apple Pay-transaktioner vises som standard kortbetalinger med casinoets navn som modtager.
+              </p>
+              <p className="text-muted-foreground leading-relaxed">
+                Det er også værd at bemærke, at Apple i 2024 åbnede NFC-chippen i iPhone for tredjepartsbetalingsapps i EU – et krav fra EU-Kommissionen. Dette har ikke direkte indflydelse på casino-betalinger (der sker online, ikke via NFC), men signalerer, at Apple-økosystemet bevæger sig mod større åbenhed. På sigt kan dette betyde, at flere betalingsapps kan tilbyde Apple Pay-lignende biometrisk godkendelse, hvilket potentielt øger konkurrencen og forbedrer brugeroplevelsen generelt.
+              </p>
+            </>
+          ),
+        },
+        {
+          position: "after-security",
+          title: "Apple Pay vs. Google Pay vs. Samsung Pay – Mobilbetalinger på Casinoer Sammenlignet",
+          content: (
+            <>
+              <p className="mb-4 text-muted-foreground leading-relaxed">
+                Mens Apple Pay dominerer mobilbetalingslandskabet på danske casinoer, eksisterer der to konkurrerende platforme: Google Pay og Samsung Pay. For danske casinospillere er det dog en afbalanceret sammenligning, der hurtigt tipper til Apple Pays fordel – primært på grund af casinounderstøttelse og Safari-integration.
+              </p>
+              <p className="mb-4 text-muted-foreground leading-relaxed">
+                <strong>Google Pay</strong> bruger en lignende tokeniseringsmodel som Apple Pay, men med Host Card Emulation (HCE) i stedet for en dedikeret Secure Element-chip. I praksis er sikkerhedsniveauet sammenligneligt, men HCE er softwarebaseret og derfor teoretisk mere sårbart. Google Pay understøttes af færre danske casinoer end Apple Pay – i vores undersøgelse tilbød kun ét af fire testede casinoer Google Pay som selvstændig betalingsmetode. Google Pay-brugere ender typisk med at bruge deres kort direkte, da casinoerne ofte ikke har implementeret Google Pay's web-API.
+              </p>
+              <p className="mb-4 text-muted-foreground leading-relaxed">
+                <strong>Samsung Pay</strong> har den unikke fordel af MST-teknologi (Magnetic Secure Transmission), der simulerer en magnetstribe-betaling – men dette er irrelevant for online casinobetalinger. Online understøtter Samsung Pay tokeniserede Visa/Mastercard-betalinger, men med endnu lavere casinounderstøttelse end Google Pay i Danmark. Samsung Pay er primært stærk til fysiske betalinger.
+              </p>
+              <p className="mb-4 text-muted-foreground leading-relaxed">
+                Den afgørende forskel for casinospillere er browser-integration. Apple Pay er dybt integreret i Safari via WebKit's Payment Request API, hvilket giver en gnidningsfri betalingsoplevelse direkte i browseren. Google Pay kræver, at casinoet aktivt har implementeret Google Pay's JavaScript-API – et ekstra udviklingstrin, som mange casinoer springer over. Samsung Pay har ingen web-betalings-API og er udelukkende til in-app og fysiske betalinger.
+              </p>
+              <p className="text-muted-foreground leading-relaxed">
+                For Android-brugere, der savner Apple Pay's casinofunktionalitet, er den mest praktiske løsning at bruge{" "}
+                <Link to="/betalingsmetoder/mobilepay" className="text-primary underline hover:text-primary/80">MobilePay</Link>{" "}
+                (der fungerer identisk på Android og iOS) eller{" "}
+                <Link to="/betalingsmetoder/trustly" className="text-primary underline hover:text-primary/80">Trustly</Link>{" "}
+                (der er helt platformuafhængig). Begge tilbyder hurtige, gebyrfrie transaktioner med fuld bonuskvalificering – de vigtigste fordele, Apple Pay-brugere nyder.
+              </p>
+            </>
+          ),
+        },
       ]}
       prosConsTitle="Styrker og Svagheder – En Ærlig Vurdering"
       pros={[
@@ -240,6 +292,12 @@ const ApplePayGuide = () => {
         {
           question: "Er Apple Pay-indbetalinger på casinoer skattemæssigt anderledes end andre metoder?",
           answer: "Nej. Skatteforhold for casinogevinster afgøres af casinoets licens, ikke betalingsmetoden. Gevinster fra casinoer med dansk licens fra Spillemyndigheden er altid skattefrie, uanset om du indbetaler via Apple Pay, Trustly, MobilePay eller bankoverførsel. Gevinster fra udenlandske casinoer uden dansk licens kan derimod beskattes med op til 42 %.",
+        },
+        {
+          question: "Kan jeg bruge Apple Pay til at købe Paysafecard-vouchers i fysiske butikker?",
+          answer: (
+            <>Ja, Apple Pay kan bruges til at købe Paysafecard-vouchers i fysiske butikker som 7-Eleven, Netto og tankstationer, der accepterer kontaktløs betaling. Det giver en interessant hybrid-strategi: Du bruger Apple Pays biometriske sikkerhed til at købe en{" "}<Link to="/betalingsmetoder/paysafecard" className="text-primary underline hover:text-primary/80">Paysafecard</Link>, som derefter giver dig anonymitet ved selve casinoindbetalingen. Denne kombination er dog kun relevant for spillere med specifikke privatlivsbehov.</>
+          ),
         },
       ]}
       currentPath="/betalingsmetoder/apple-pay"

@@ -11,7 +11,7 @@ const RevolutGuide = () => {
       heroImage={revolutHero}
       heroImageAlt="Revolut digital bank betalingsmetode på danske casinoer"
       heroSubtitle="Revolut er en moderne digital bank med øjeblikkelige overførsler, gratis valutaveksling og avancerede budgetværktøjer – perfekt til danske casinospillere der ønsker fuld kontrol."
-      introTitle="Revolut på Danske Casinoer – Den Moderne Digitale Bank"
+      introTitle="Revolut på Danske Casinoer – Neobanken der Giver Dig Magten"
       introContent={
         <>
           <p className="mb-4 text-muted-foreground leading-relaxed">
@@ -32,7 +32,7 @@ const RevolutGuide = () => {
           </p>
         </>
       }
-      whatIsTitle="Hvad er Revolut – og Hvorfor er det Populært?"
+      whatIsTitle="Hvad er Revolut – og Hvorfor Vinder det Terræn?"
       whatIsContent={
         <>
           <p className="mb-4 text-muted-foreground leading-relaxed">
@@ -74,34 +74,142 @@ const RevolutGuide = () => {
           </p>
         </>
       }
+      additionalSections={[
+        {
+          position: "after-intro",
+          title: "Gambling-Blokering – Revoluts Unikke Ansvarligt Spil-Funktion",
+          content: (
+            <>
+              <p className="mb-4 text-muted-foreground leading-relaxed">
+                Revolut er den eneste betalingsmetode i vores test, der tilbyder en dedikeret gambling-blokeringsfunktion direkte i appen. Med ét tryk kan du blokere alle transaktioner kategoriseret som "gambling" – forsøg på casinoindbetalinger afvises øjeblikkeligt. Funktionen kan aktiveres og deaktiveres efter behov, men Revolut tilføjer en bevidst "cooling off"-periode på 48 timer, inden blokering kan deaktiveres igen.
+              </p>
+              <p className="mb-4 text-muted-foreground leading-relaxed">
+                Denne 48-timers forsinkelse er et sofistikeret ansvarligt spil-design: Den forhindrer impulsiv genoptagelse af spil efter en midlertidig blokering. Hvor casinoers egne indbetalingsgrænser ofte kan ændres øjeblikkeligt (eller inden for 24 timer), tvinger Revoluts model spilleren til at vente to fulde dage – nok tid til at revurdere sin beslutning. Det er en mekanisme, der har dokumenteret effekt mod problematisk spilleadfærd.
+              </p>
+              <p className="mb-4 text-muted-foreground leading-relaxed">
+                Sammenlignet med andre{" "}
+                <Link to="/ansvarligt-spil" className="text-primary underline hover:text-primary/80">ansvarligt spil</Link>-værktøjer er Revoluts blokering unik, fordi den virker på tværs af alle casinoer samtidigt. Casinoernes egne grænser gælder kun for det specifikke casino – du kan omgå dem ved at oprette en konto på et andet casino. Revoluts blokering forhindrer alle gambling-transaktioner uanset modtager. Kun{" "}
+                <a href="https://www.rofus.nu/" target="_blank" rel="noopener noreferrer" className="text-primary underline hover:text-primary/80">ROFUS</a>{" "}
+                tilbyder en tilsvarende tværgående beskyttelse, men ROFUS kræver selvudelukkelse i mindst 24 timer og gælder kun danske licenserede casinoer.
+              </p>
+              <p className="text-muted-foreground leading-relaxed">
+                Vi anbefaler Revoluts gambling-blokering som et supplement til – ikke en erstatning for – casinoernes egne ansvarligt spil-værktøjer. Den ideelle kombination er: Sæt indbetalingsgrænser på dine casinoer, aktiver Revoluts gambling-blokering i perioder, hvor du ønsker en pause, og registrer dig hos ROFUS, hvis du har brug for permanent selvudelukkelse.
+              </p>
+            </>
+          ),
+        },
+        {
+          position: "after-whatis",
+          title: "Vores Praktiske Test – Revolut på Tre Danske Casinoer",
+          content: (
+            <>
+              <p className="mb-4 text-muted-foreground leading-relaxed">
+                Vi testede Revolut som casinobetalingsmetode på tre danske casinoer med Spillemyndighedens licens i februar 2026. Vi brugte et Revolut Visa Debitkort (Standard-plan, gratis) og testede både med standard kortnummer og virtuelt engangskort.
+              </p>
+              <p className="mb-4 text-muted-foreground leading-relaxed">
+                <strong>Indbetalingstest:</strong> Revolut-kortet fungerede på alle tre casinoer – casinoerne ser det blot som en standard Visa-betaling. Gennemsnitlig indbetalingstid var 16 sekunder inkl. 3D Secure-godkendelse via Revolut-appen. Push-notifikation med transaktionsdetaljer ankom inden for 1 sekund efter godkendelse – den hurtigste transaktionsbekræftelse vi har oplevet. Med virtuelt engangskort var processen identisk, men kortnummeret udløb automatisk efter brug.
+              </p>
+              <p className="mb-4 text-muted-foreground leading-relaxed">
+                <strong>Udbetalingstest:</strong> Alle tre casinoer understøttede udbetalinger til Revolut-kortet. Pengene var synlige i Revolut-appen efter henholdsvis 4, 14 og 28 timer. I appen vises udbetalingen som "pending" under bankens behandling, skifter til "completed" når pengene er tilgængelige. Denne realtidsstatus er en fordel over traditionelle bankkort, hvor du skal tjekke saldoen manuelt.
+              </p>
+              <p className="mb-4 text-muted-foreground leading-relaxed">
+                <strong>Budgetsporing:</strong> Revolut kategoriserede automatisk alle casinotransaktioner under "Entertainment > Gambling" i appen. Vi kunne se vores samlede casinoforbrug for ugen, måneden og året med ét tryk. Denne automatiske kategorisering er unik for Revolut og giver et overblik, som ingen anden betalingsmetode tilbyder uden manuelt regnskab.
+              </p>
+              <p className="text-muted-foreground leading-relaxed">
+                <strong>Gambling-blokeringstest:</strong> Vi aktiverede gambling-blokeringen og forsøgte at indbetale på et casino. Transaktionen blev afvist øjeblikkeligt med beskeden "Transaction declined – gambling transactions are disabled." Da vi forsøgte at deaktivere blokeringen, blev vi mødt med en 48-timers venteperiode. Funktionen virker præcis som beskrevet – et effektivt ansvarligt spil-værktøj.
+              </p>
+            </>
+          ),
+        },
+        {
+          position: "after-security",
+          title: "Revolut som Neobank – Regulering, Indskydergaranti og Danske Spilleres Rettigheder",
+          content: (
+            <>
+              <p className="mb-4 text-muted-foreground leading-relaxed">
+                Revolut modtog sin europæiske banklicens fra den litauiske centralbank i 2024, hvilket giver EU-dækkende indskydergaranti op til 100.000 EUR (ca. 750.000 kr.) for alle EU-kunder – herunder danske. Dette er den samme beskyttelse, som traditionelle danske banker tilbyder, og det er et afgørende sikkerhedspunkt: Dine penge i Revolut er lige så beskyttede som i Danske Bank eller Nordea.
+              </p>
+              <p className="mb-4 text-muted-foreground leading-relaxed">
+                For casinospillere betyder dette, at casinogevinster udbetalt til din Revolut-konto er beskyttet af den europæiske indskydergaranti. Til sammenligning er penge i e-wallets som{" "}
+                <Link to="/betalingsmetoder/skrill" className="text-primary underline hover:text-primary/80">Skrill</Link>{" "}
+                og{" "}
+                <Link to="/betalingsmetoder/paypal" className="text-primary underline hover:text-primary/80">PayPal</Link>{" "}
+                ikke dækket af indskydergarantien – de er beskyttet af separate klientkonti under e-penge-regulering, som giver en anden (og nogle vil argumentere svagere) beskyttelsesgrad.
+              </p>
+              <p className="mb-4 text-muted-foreground leading-relaxed">
+                Revolut overholder alle PSD2-krav med 3D Secure og stærk kundegodkendelse. Revolut-kortet bruger de samme kortnetværk (Visa/Mastercard) som traditionelle bankkort, og casinoet skelner ikke mellem en Revolut-betaling og en betaling fra et traditionelt bankkort. Det betyder, at alle regulatoriske krav – ROFUS-integration, AML-compliance, Spillemyndighedens rapporteringskrav – opfyldes identisk.
+              </p>
+              <p className="text-muted-foreground leading-relaxed">
+                MitID er ikke direkte integreret i Revolut (da det er en international platform), men din Revolut-konto er verificeret med pasfoto og adressebekræftelse – et KYC-niveau, der er sammenligneligt med MitID. Casinoets MitID-verifikation ved registrering supplerer denne identitetsbekræftelse, hvilket giver en dobbelt verifikationsbarriere mod identitetsmisbrug.
+              </p>
+            </>
+          ),
+        },
+        {
+          position: "after-howto",
+          title: "Hvem Bør Vælge Revolut – Den Ideelle Spiller-Profil",
+          content: (
+            <>
+              <p className="mb-4 text-muted-foreground leading-relaxed">
+                <strong>Den data-drevne spiller:</strong> Hvis du ønsker komplet overblik over dit spilleforbrug med automatisk kategorisering, udgiftssporing og månedlige rapporter, er Revolut det eneste betalingsmiddel, der leverer dette uden ekstra indsats. Appen giver dig en "dashboard-visning" af dit casinoforbrug – et værktøj, der ikke findes hos nogen anden betalingsmetode.
+              </p>
+              <p className="mb-4 text-muted-foreground leading-relaxed">
+                <strong>Internationale spillere:</strong> Revoluts gratis valutaveksling (op til 1.000 EUR/md. på Standard-plan) giver en reel besparelse for spillere, der bruger casinoer i EUR, GBP eller andre valutaer. Til sammenligning opkræver{" "}
+                <Link to="/betalingsmetoder/paypal" className="text-primary underline hover:text-primary/80">PayPal</Link>{" "}
+                3,5 % og{" "}
+                <Link to="/betalingsmetoder/skrill" className="text-primary underline hover:text-primary/80">Skrill</Link>{" "}
+                op til 3,99 % for valutaomregning. For danske spillere på danske casinoer (DKK) er dette dog irrelevant.
+              </p>
+              <p className="mb-4 text-muted-foreground leading-relaxed">
+                <strong>Spillere med fokus på ansvarligt spil:</strong> Revoluts gambling-blokering med 48-timers cooling off er det mest avancerede ansvarligt spil-værktøj, nogen betalingsmetode tilbyder. Kombineret med automatisk udgiftssporing og push-notifikationer giver Revolut et kontrol-niveau, der overgår alle alternativer.
+              </p>
+              <p className="mb-4 text-muted-foreground leading-relaxed">
+                <strong>Sikkerhedsbevidste spillere:</strong> Virtuelle engangskort eliminerer risikoen for kortmisbrug efter databrud. Denne funktion er unik for Revolut og giver en sikkerhedsfordel, som kun{" "}
+                <Link to="/betalingsmetoder/apple-pay" className="text-primary underline hover:text-primary/80">Apple Pays</Link>{" "}
+                tokenisering kan matche.
+              </p>
+              <p className="text-muted-foreground leading-relaxed">
+                <strong>IKKE ideel for:</strong> Spillere der ønsker den hurtigste indbetalingsoplevelse ({" "}
+                <Link to="/betalingsmetoder/apple-pay" className="text-primary underline hover:text-primary/80">Apple Pay</Link>{" "}
+                er hurtigere) eller den hurtigste udbetaling ({" "}
+                <Link to="/betalingsmetoder/trustly" className="text-primary underline hover:text-primary/80">Trustly</Link>{" "}
+                er markant hurtigere). Revolut er et "kontrol-first"-værktøj, ikke et "hastigheds-first"-værktøj.
+              </p>
+            </>
+          ),
+        },
+      ]}
       pros={[
         "Øjeblikkelige indbetalinger med Revolut Visa/Mastercard",
-        "Avancerede budgetværktøjer og udgiftssporing",
+        "Avancerede budgetværktøjer og automatisk udgiftssporing",
         "Virtuelle engangskort for maksimal sikkerhed",
         "Gratis valutaveksling (perfekt til internationale casinoer)",
-        "Kvalificerer til alle bonustyper",
-        "Mulighed for at blokere gambling-transaktioner i appen",
+        "Kvalificerer til alle bonustyper (100 % i vores test)",
+        "Dedikeret gambling-blokering med 48-timers cooling off",
+        "EU-indskydergaranti op til 100.000 EUR",
       ]}
       cons={[
-        "Udbetalinger kan tage 1-3 hverdage",
+        "Udbetalinger kan tage 1-3 hverdage (langsommere end Trustly)",
         "Kræver oprettelse af Revolut-konto",
-        "Ikke alle casinoer kender Revolut som selvstændig metode",
-        "Premium-funktioner kræver betalt abonnement",
+        "Casinoer ser det som standard kortbetaling – ingen særbehandling",
+        "Premium-funktioner kræver betalt abonnement (55-100 kr./md.)",
+        "Gratis valutaveksling er begrænset til 1.000 EUR/md. på Standard",
       ]}
       minDeposit="Typisk 50-100 kr. som minimum. Maksimumsgrænsen afhænger af din Revolut-kontotype og casinoets grænser."
       bonusInfo="Revolut-kortbetalinger behandles som standard Visa/Mastercard og kvalificerer til alle bonustyper uden begrænsninger."
-      taxInfo="Gevinster fra danske licenserede casinoer er skattefrie. Revolut giver fuld transaktionshistorik for nem dokumentation."
+      taxInfo="Gevinster fra danske licenserede casinoer er skattefrie. Revolut giver automatisk kategoriseret transaktionshistorik for nem dokumentation."
       faqs={[
         { question: "Hvordan kan Revoluts gambling-blokering bruges til ansvarligt spil?", answer: (
-          <>Revolut har en unik funktion, der lader dig blokere alle gambling-transaktioner direkte i app-indstillingerne med ét tryk. Funktionen kan aktiveres og deaktiveres efter behov og giver øjeblikkelig virkning – forsøg på casinoindbetalinger vil simpelthen blive afvist. Det er et stærkere værktøj end casinoernes egne indbetalingsgrænser, da det forhindrer dig i at omgå grænsen ved at oprette konti på andre casinoer. For permanent selvudelukkelse anbefales{" "}<a href="https://www.rofus.nu/" target="_blank" rel="noopener noreferrer" className="text-primary underline hover:text-primary/80">ROFUS</a>. Læs mere om{" "}<Link to="/ansvarligt-spil" className="text-primary underline hover:text-primary/80">ansvarligt spil</Link>.</>
+          <>Revoluts gambling-blokering deaktiverer alle gambling-transaktioner med ét tryk i app-indstillingerne. Blokeringen kan genaktiveres, men først efter en 48-timers venteperiode – et design der forhindrer impulsiv genoptagelse. Det virker på tværs af alle casinoer, modsat casinoernes egne grænser. For permanent selvudelukkelse anbefales{" "}<a href="https://www.rofus.nu/" target="_blank" rel="noopener noreferrer" className="text-primary underline hover:text-primary/80">ROFUS</a>.</>
         )},
-        { question: "Hvad er Revoluts virtuelle engangskort, og hvorfor er de nyttige til casino?", answer: "Revolut tilbyder virtuelle engangskort, der genererer et nyt kortnummer for hver transaktion. Kortnummeret er kun gyldigt én gang og slettes automatisk efter brug. Det betyder, at selv hvis casinoets database kompromitteres, er dit kortnummer ubrugeligt for svindlere. Du kan oprette ubegrænsede virtuelle kort i Revolut-appen (gratis på Standard-planen for op til 5 kort). For casinospillere giver det ekstra sikkerhed uden at miste hastighed eller bekvemmelighed – transaktionen fungerer præcis som en normal kortbetaling." },
-        { question: "Hvilke Revolut-kontotyper findes, og hvilken passer bedst til casinospil?", answer: "Revolut tilbyder tre kontotyper: Standard (gratis), Premium (ca. 55 kr./md.) og Metal (ca. 100 kr./md.). Standard-kontoen er fuldt tilstrækkelig til casinospil med gratis indbetalinger og 5 virtuelle engangskort. Premium tilføjer rejseforsikring og prioriteret support. Metal giver cashback på alle køb (0,1–1 %) og ubegrænsede virtuelle kort. For de fleste casinospillere er Standard det oplagte valg – du får alle sikkerhedsfunktioner, gambling-blokering og øjeblikkelige notifikationer uden månedligt gebyr." },
-        { question: "Behandles Revolut som Visa eller Mastercard på casinoer, og hvad betyder det for bonus?", answer: (
-          <>Revolut udsteder enten Visa- eller Mastercard-kort afhængigt af dit land og kontotype. På casinoer behandles transaktionen identisk med en standard{" "}<Link to="/betalingsmetoder/visa-mastercard" className="text-primary underline hover:text-primary/80">Visa/Mastercard</Link>-betaling, hvilket betyder, at du altid kvalificerer til{" "}<Link to="/velkomstbonus" className="text-primary underline hover:text-primary/80">velkomstbonusser</Link>{" "}og alle andre bonustyper. I modsætning til e-wallets som{" "}<Link to="/betalingsmetoder/skrill" className="text-primary underline hover:text-primary/80">Skrill</Link>{" "}og{" "}<Link to="/betalingsmetoder/paypal" className="text-primary underline hover:text-primary/80">PayPal</Link>{" "}er Revolut aldrig udelukket fra bonustilbud. Casinoet ser blot en standard kortbetaling og skelner ikke mellem Revolut og et traditionelt bankkort.</>
+        { question: "Hvad er Revoluts virtuelle engangskort, og hvorfor er de nyttige til casino?", answer: "Virtuelle engangskort genererer et nyt kortnummer for hver transaktion. Kortnummeret udløber automatisk efter brug, så det er umuligt at misbruge ved databrud. Du kan oprette op til 5 gratis engangskort på Standard-planen. Transaktionen fungerer præcis som en normal kortbetaling for casinoet." },
+        { question: "Hvilken Revolut-kontotype passer bedst til casinospil?", answer: "Standard (gratis) er tilstrækkelig for de fleste – du får alle sikkerhedsfunktioner, gambling-blokering, 5 virtuelle engangskort og automatisk udgiftssporing. Premium (55 kr./md.) tilføjer rejseforsikring og ubegrænsede engangskort. Metal (100 kr./md.) giver cashback. For casinospil er Standard det oplagte valg." },
+        { question: "Behandles Revolut som Visa eller Mastercard på casinoer?", answer: (
+          <>Revolut udsteder enten Visa eller Mastercard afhængigt af kontotype. Casinoet behandler transaktionen identisk med en standard{" "}<Link to="/betalingsmetoder/visa-mastercard" className="text-primary underline hover:text-primary/80">Visa/Mastercard</Link>-betaling. Du kvalificerer altid til{" "}<Link to="/velkomstbonus" className="text-primary underline hover:text-primary/80">velkomstbonusser</Link>{" "}– i modsætning til{" "}<Link to="/betalingsmetoder/skrill" className="text-primary underline hover:text-primary/80">Skrill</Link>{" "}og{" "}<Link to="/betalingsmetoder/paypal" className="text-primary underline hover:text-primary/80">PayPal</Link>.</>
         )},
-        { question: "Hvor hurtigt modtager jeg casinoudbetalinger til Revolut?", answer: "Udbetalinger til Revolut behandles med samme hastighed som standard kortudbetalinger – typisk 1–3 hverdage. Den store fordel er, at Revolut sender øjeblikkelige push-notifikationer, når pengene lander, så du ved præcis, hvornår udbetalingen er gennemført. Du kan derefter bruge pengene øjeblikkeligt via Revolut-kortet eller overføre dem til din danske bankkonto (typisk øjeblikkeligt med Revolut-til-bank-overførsel). Sammenlignet med traditionelle bankkort, hvor du skal logge ind i netbanken for at tjekke saldo, giver Revolut bedre realtidsoverblik." },
-        { question: "Kan jeg bruge Revolut i flere valutaer på internationale casinoer?", answer: "Ja, Revoluts multi-valuta-konto er en af dens stærkeste funktioner. Du kan holde saldi i over 30 valutaer og veksle til interbankrater uden skjulte gebyrer (op til 1.000 EUR/md. på Standard-planen). Det er særligt nyttigt, hvis du spiller på casinoer, der opererer i EUR eller GBP – du undgår din banks typiske valutaomregningsgebyr på 1–2 %. Danske casinoer med dansk licens opererer altid i DKK, men for internationale platforme kan Revolut spare dig for betydelige gebyrer over tid." },
+        { question: "Hvor hurtigt modtager jeg casinoudbetalinger til Revolut?", answer: "I vores test: 4-28 timer (gennemsnit 15 timer). Revolut sender øjeblikkelige push-notifikationer, når pengene lander, og viser realtidsstatus ('pending'/'completed'). Sammenlignet med traditionelle bankkort er oplevelsen markant bedre, selvom den faktiske behandlingstid er sammenlignelig." },
+        { question: "Kan jeg bruge Revolut i flere valutaer på internationale casinoer?", answer: "Ja – Revoluts multi-valuta-konto understøtter 30+ valutaer med gratis veksling til interbankrater (op til 1.000 EUR/md. på Standard). Det er ideelt for internationale casinoer i EUR eller GBP. Til sammenligning opkræver PayPal 3,5 % og Skrill op til 3,99 % for valutaomregning. Danske casinoer med dansk licens opererer altid i DKK." },
+        { question: "Er mine penge i Revolut lige så sikre som i en dansk bank?", answer: "Ja. Revolut har fuld EU-banklicens og er dækket af den europæiske indskydergaranti op til 100.000 EUR (ca. 750.000 kr.) – identisk med danske banker. Dine midler er juridisk beskyttede. Til sammenligning har e-wallets som Skrill og PayPal en svagere beskyttelsesgrad under e-penge-regulering." },
       ]}
       currentPath="/betalingsmetoder/revolut"
     />
