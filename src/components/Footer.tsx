@@ -40,7 +40,7 @@ export function Footer() {
                 <a
                   href={discordUrl}
                   target="_blank"
-                  rel="noopener noreferrer"
+                  rel="nofollow noopener noreferrer"
                   className="flex h-9 w-9 items-center justify-center rounded-lg bg-muted text-muted-foreground transition-colors hover:bg-primary hover:text-primary-foreground"
                   aria-label="Discord"
                 >
@@ -51,7 +51,7 @@ export function Footer() {
                 <a
                   href={instagramUrl}
                   target="_blank"
-                  rel="noopener noreferrer"
+                  rel="nofollow noopener noreferrer"
                   className="flex h-9 w-9 items-center justify-center rounded-lg bg-muted text-muted-foreground transition-colors hover:bg-primary hover:text-primary-foreground"
                   aria-label="Instagram"
                 >
@@ -62,7 +62,7 @@ export function Footer() {
                 <a
                   href={twitchUrl}
                   target="_blank"
-                  rel="noopener noreferrer"
+                  rel="nofollow noopener noreferrer"
                   className="flex h-9 w-9 items-center justify-center rounded-lg bg-muted text-muted-foreground transition-colors hover:bg-primary hover:text-primary-foreground"
                   aria-label="Twitch"
                 >
@@ -75,7 +75,7 @@ export function Footer() {
                 <a
                   href={youtubeUrl}
                   target="_blank"
-                  rel="noopener noreferrer"
+                  rel="nofollow noopener noreferrer"
                   className="flex h-9 w-9 items-center justify-center rounded-lg bg-muted text-muted-foreground transition-colors hover:bg-primary hover:text-primary-foreground"
                   aria-label="YouTube"
                 >
@@ -88,7 +88,7 @@ export function Footer() {
                 <a
                   href={facebookUrl}
                   target="_blank"
-                  rel="noopener noreferrer"
+                  rel="nofollow noopener noreferrer"
                   className="flex h-9 w-9 items-center justify-center rounded-lg bg-muted text-muted-foreground transition-colors hover:bg-primary hover:text-primary-foreground"
                   aria-label="Facebook"
                 >
@@ -101,7 +101,7 @@ export function Footer() {
                 <a
                   href={xUrl}
                   target="_blank"
-                  rel="noopener noreferrer"
+                  rel="nofollow noopener noreferrer"
                   className="flex h-9 w-9 items-center justify-center rounded-lg bg-muted text-muted-foreground transition-colors hover:bg-primary hover:text-primary-foreground"
                   aria-label="X"
                 >
@@ -114,7 +114,7 @@ export function Footer() {
                 <a
                   href={linkedinUrl}
                   target="_blank"
-                  rel="noopener noreferrer"
+                  rel="nofollow noopener noreferrer"
                   className="flex h-9 w-9 items-center justify-center rounded-lg bg-muted text-muted-foreground transition-colors hover:bg-primary hover:text-primary-foreground"
                   aria-label="LinkedIn"
                 >
@@ -127,7 +127,7 @@ export function Footer() {
                 <a
                   href={snapchatUrl}
                   target="_blank"
-                  rel="noopener noreferrer"
+                  rel="nofollow noopener noreferrer"
                   className="flex h-9 w-9 items-center justify-center rounded-lg bg-muted text-muted-foreground transition-colors hover:bg-primary hover:text-primary-foreground"
                   aria-label="Snapchat"
                 >

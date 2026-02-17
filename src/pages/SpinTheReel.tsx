@@ -1,5 +1,5 @@
 import { useState, useCallback, lazy, Suspense } from "react";
-import { Helmet } from "react-helmet-async";
+import { SEO } from "@/components/SEO";
 import { CommunityNav } from "@/components/community/CommunityNav";
 import { SpinWheel } from "@/components/spin-the-reel/SpinWheel";
 import { RewardModal } from "@/components/spin-the-reel/RewardModal";
@@ -171,11 +171,11 @@ export default function SpinTheReel() {
 
   return (
     <>
-      <Helmet>
-        <title>Spin the Reel | Casinoaftaler.dk</title>
-        <meta name="description" content="Spin hjulet og vind points eller spins! Tilgængelig hver 12. time for community-medlemmer." />
-        <meta name="robots" content="noindex, follow" />
-      </Helmet>
+      <SEO
+        title="Spin the Reel"
+        description="Spin hjulet og vind points eller spins! Tilgængelig hver 12. time for community-medlemmer."
+        noindex
+      />
 
       <CommunityNav />
 
