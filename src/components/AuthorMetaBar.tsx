@@ -52,6 +52,10 @@ export function AuthorMetaBar({ author, date, readTime, showFactCheck = true }: 
             Læsetid: <span className="font-medium text-foreground">{readTime}</span>
           </span>
         </div>
+        <div className="flex items-center gap-1.5 opacity-85">
+          <CheckCircle className="h-3.5 w-3.5 text-primary" />
+          <span className="text-sm text-muted-foreground">Verificeret ekspertprofil</span>
+        </div>
       </div>
 
       {/* Right side: fact-check badge */}
