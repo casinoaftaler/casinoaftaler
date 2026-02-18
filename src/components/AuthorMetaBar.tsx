@@ -128,7 +128,7 @@ export function AuthorMetaBar({ author, date, readTime, showFactCheck = true, sh
               </Link>
             ) : null}
             {factCheckDate && (
-              <span className="text-xs text-muted-foreground">– {factCheckDate}</span>
+              <span className="text-muted-foreground">– {factCheckDate}</span>
             )}
           </div>
         )}
