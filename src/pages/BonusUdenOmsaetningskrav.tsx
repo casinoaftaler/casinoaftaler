@@ -3,31 +3,20 @@ import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { AuthorBio } from "@/components/AuthorBio";
 import { FAQSection } from "@/components/FAQSection";
 import { SEO } from "@/components/SEO";
-import { buildFaqSchema } from "@/lib/seo";
+import { buildFaqSchema, buildArticleSchema, SITE_URL } from "@/lib/seo";
 import bonusUdenOmsaetningHero from "@/assets/heroes/bonus-uden-omsaetning-hero.jpg";
 import { InlineCasinoCards } from "@/components/InlineCasinoCards";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "@/components/ui/accordion";
-import {
   Sparkles,
   ShieldCheck,
-  HelpCircle,
-  User,
-  CalendarDays,
-  BookOpen,
   CheckCircle2,
   AlertTriangle,
   Gift,
   Clock,
   Target,
-  RefreshCw,
   Lock,
   TrendingUp,
   CreditCard,
@@ -39,34 +28,78 @@ import {
   Eye,
   Heart,
   Users,
+  Calculator,
+  BookOpen,
+  Flame,
+  Trophy,
+  ArrowRight,
+  Gamepad2,
+  DollarSign,
+  Info,
+  RefreshCw,
 } from "lucide-react";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
 import { RelatedGuides } from "@/components/RelatedGuides";
+import type { ReactNode } from "react";
 
-const faqs = [
+const linkClass = "text-primary underline hover:text-primary/80";
+
+const faqs: { question: string; answer: ReactNode }[] = [
   {
-    question: "Hvad er forskellen på en bonus uden omsætningskrav og en no-sticky bonus?",
-    answer: "En bonus uden omsætningskrav giver dig gevinster der kan hæves direkte – ingen gennemspilning nødvendig. En no-sticky bonus holder dine penge og bonusmidler adskilt, men bonusdelen har stadig omsætningskrav. Forskellen er afgørende: med omsætningsfri bonus beholder du 100% af dine gevinster (op til et evt. gevinstloft), mens no-sticky bonus kræver at du gennemspiller bonusmidlerne separat. Begge er markant bedre end sticky bonusser, men omsætningsfrie bonusser giver den bedste reelle værdi for spilleren.",
+    question: "Hvad er den matematiske forskel mellem 0x og 10x omsætning på en 500 kr. bonus?",
+    answer: (
+      <>
+        Med 0x omsætning (omsætningsfri) beholder du 100% af gevinsten op til gevinstloftet – din EV = gevinst fra spil. Med 10x omsætning skal du satse 5.000 kr. Med 96% RTP taber du statistisk 200 kr. under gennemspilningen. Din netto-EV falder fra 500 kr. til ca. 300 kr. – et tab på 40%. Derfor er en omsætningsfri bonus på 300 kr. matematisk sammenlignelig med en traditionel bonus på 500 kr. med 10x <Link to="/omsaetningskrav" className={linkClass}>omsætningskrav</Link>. Gevinstloftet kan dog ændre beregningen markant.
+      </>
+    ),
   },
   {
-    question: "Hvorfor er gevinstloftet vigtigt ved omsætningsfrie bonusser?",
-    answer: "De fleste omsætningsfrie bonusser har et maksimalt udbetalingsloft – typisk mellem 500 og 5.000 kr. Selvom du vinder 50.000 kr. med bonussen, kan du kun hæve op til det fastsatte maksimum. Loftet varierer markant mellem casinoer: nogle tilbyder 500 kr., andre op til 10.000 kr. Tjek altid gevinstloftet FØR du accepterer bonussen, da det direkte påvirker den potentielle værdi. Et højt gevinstloft kombineret med lav minimumsindbetaling giver den bedste EV (Expected Value).",
+    question: "Er omsætningsfrie bonusser altid bedre end traditionelle bonusser?",
+    answer: (
+      <>
+        Ikke nødvendigvis. Omsætningsfrie bonusser har typisk lavere nominelle beløb og strengere gevinstlofter som kompensation. En 500 kr. omsætningsfri bonus med 1.000 kr. gevinstloft kan have lavere EV end en 2.000 kr. traditionel <Link to="/indskudsbonus" className={linkClass}>indskudsbonus</Link> med 3x omsætning. Det afgørende er totalberegningen: (Bonusbeløb × Vinderchance) – (Omsætningstab) med gevinstloft som øvre grænse. For de fleste casual spillere er omsætningsfrie bonusser bedre pga. enkelheden – men for optimerere kan traditionelle bonusser med lav omsætning give højere absolut EV.
+      </>
+    ),
   },
   {
-    question: "Hvilke spil kan jeg bruge en omsætningsfri bonus på?",
-    answer: "Omsætningsfrie bonusser er typisk begrænset til specifikke spilleautomater valgt af casinoet – ofte populære titler som Starburst, Book of Dead eller Sweet Bonanza. Bordspil og live casino er næsten altid ekskluderet. Nogle casinoer giver dig frihed til at vælge mellem en liste af godkendte spil, mens andre låser bonussen til ét bestemt spil. Spilvalget påvirker dine chancer: lavvolatilitetsspil giver hyppigere små gevinster, mens højvolatilitetsspil giver sjældnere men større hits.",
+    question: "Hvorfor tilbyder casinoer overhovedet bonusser uden omsætningskrav?",
+    answer: "Det er en bevidst markedsføringsstrategi. Casinoer ved at spillere der modtager en positiv første oplevelse (øjeblikkelig gevinst) har 2-3x højere konverteringsrate til indbetalende spillere. Omsætningsfrie bonusser skaber goodwill og tillid, hvilket fører til langvarige kundeforhold. Casinoet 'investerer' bonusbeløbet som kundeakkviseringsomkostning – typisk 100-500 kr. per ny spiller – og forventer at tjene det mange gange igen via fremtidige indbetalinger. Det er en win-win, så længe du som spiller er bevidst om dynamikken.",
   },
   {
-    question: "Kan man finde omsætningsfrie bonusser hos alle danske casinoer?",
-    answer: "Nej, omsætningsfrie bonusser er ikke standard hos alle danske casinoer. De tilbydes primært af operatører der ønsker at differentiere sig med gennemsigtighed og spillervenlige vilkår. Tendensen er stigende: flere danske casinoer introducerer omsætningsfrie elementer i deres kampagner – særligt i free spins-tilbud og loyalitetsprogrammer. De mest spillervenlige casinoer bruger omsætningsfrie bonusser som ugentlige reload-tilbud eller VIP-belønninger snarere end som velkomstbonus.",
+    question: "Hvad er forskellen på en omsætningsfri bonus og en no-sticky bonus?",
+    answer: (
+      <>
+        En <Link to="/no-sticky-bonus" className={linkClass}>no-sticky bonus</Link> adskiller din indbetaling og bonus i to separate saldi – du spiller først med din egen indbetaling, og bonus aktiveres kun hvis din saldo når nul. Bonusdelen har stadig omsætningskrav (typisk 1-10x). En omsætningsfri bonus eliminerer omsætningskravet helt: gevinster kan hæves direkte. Konverteringsraten er 100% for omsætningsfri (op til gevinstloft) vs. ca. 40-60% for no-sticky. Men no-sticky giver dig adgang til langt større bonusbeløb (op til 5.000 kr. vs. typisk 100-500 kr. omsætningsfri).
+      </>
+    ),
   },
   {
-    question: "Er omsætningsfrie free spins det samme som omsætningsfri bonus?",
-    answer: "Begge deler princippet om ingen omsætning, men der er en vigtig forskel. Omsætningsfrie free spins giver dig et bestemt antal gratis spins på en specifik slot, og gevinsterne kan hæves direkte (op til gevinstloftet). En omsætningsfri bonus giver dig typisk et pengebeløb at spille for. Free spins-varianten er mere begrænset (fastlåst til ét spil), men ofte mere gennemsigtig. Bonuspengevarianten giver mere frihed i spilvalg, men har sjældent ingen betingelser overhovedet – læs altid vilkårene grundigt.",
+    question: "Kan jeg kombinere en omsætningsfri bonus med andre bonusser?",
+    answer: (
+      <>
+        Typisk nej – de fleste danske casinoer tillader kun én aktiv bonus ad gangen. Omsætningsfrie bonusser kan dog ofte kombineres med en efterfølgende <Link to="/velkomstbonus" className={linkClass}>velkomstbonus</Link> på din første indbetaling. Tjek altid vilkårene: nogle casinoer annullerer din omsætningsfrie bonus, hvis du indbetaler før du har brugt den. Den optimale rækkefølge er: 1) Modtag og brug omsætningsfri bonus, 2) Udbetal eventuelle gevinster, 3) Foretag indbetaling og modtag velkomstbonus.
+      </>
+    ),
   },
   {
-    question: "Hvad er den reelle værdi af en omsætningsfri bonus sammenlignet med traditionelle bonusser?",
-    answer: "En omsætningsfri bonus på 200 kr. med et gevinstloft på 2.000 kr. har typisk en højere reel værdi end en traditionel 500 kr. bonus med 10x omsætningskrav. Matematisk: med 10x omsætning skal du satse 5.000 kr. for at frigøre bonussen, og med en gennemsnitlig RTP på 96% vil du statistisk miste ca. 200 kr. under gennemspilningen. Den omsætningsfrie bonus kræver ingen gennemspilning, så hele gevinsten er din. Dog kompenserer casinoerne typisk med lavere bonusbeløb og gevinstlofter.",
+    question: "Hvad er de vigtigste vilkår at tjekke ved en omsætningsfri bonus?",
+    answer: (
+      <>
+        Fire kritiske vilkår: 1) <strong>Gevinstloft</strong> – det absolutte maksimum du kan hæve (typisk 500-5.000 kr.). 2) <strong>Tidsfrist</strong> – hvornår bonussen udløber (typisk 3-30 dage). 3) <strong>Spilrestriktioner</strong> – hvilke spil er tilladt (ofte kun udvalgte automater). 4) <strong>Minimumsindbetaling</strong> – kræves en indbetaling før udbetaling? Gevinstloftet er den vigtigste faktor, da det direkte begrænser din potentielle gevinst. Se vores guide til <Link to="/nye-casinoer/lav-wagering" className={linkClass}>casinoer med lav wagering</Link> for bonusser med de bedste vilkår.
+      </>
+    ),
+  },
+  {
+    question: "Hvad siger Spillemyndigheden om bonusser uden omsætningskrav?",
+    answer: "Spillemyndigheden regulerer ikke specifikt bonusser uden omsætningskrav, da de per definition opfylder lovens krav om max 10x omsætning (0x er under 10x). Dog gælder de generelle bonusregler stadig: klar markedsføring, gennemsigtige vilkår, og korrekt information om begrænsninger. Casinoer der markedsfører 'ingen vilkår' men har skjulte gevinstlofter eller spilrestriktioner kan sanktioneres. Omsætningsfrie bonusser ses generelt positivt af regulatoren, da de eliminerer den mest misforståede bonusbetingelse.",
+  },
+  {
+    question: "Er omsætningsfrie free spins det samme som en omsætningsfri bonus?",
+    answer: (
+      <>
+        Begge deler princippet om ingen omsætning, men der er en vigtig forskel. Omsætningsfrie <Link to="/free-spins" className={linkClass}>free spins</Link> giver dig et bestemt antal gratis spins på en specifik slot – gevinsterne kan hæves direkte (op til gevinstloftet). En omsætningsfri bonus i form af bonuspenge giver dig et pengebeløb at spille for med frit spilvalg. Free spins-varianten er mere begrænset (fastlåst til ét spil), men ofte mere gennemsigtig. Bonuspenge-varianten giver mere frihed, men kan have andre skjulte betingelser som maks-indsats.
+      </>
+    ),
   },
 ];
 
@@ -76,23 +109,21 @@ const BonusUdenOmsaetningskrav = () => {
 
   const faqJsonLd = buildFaqSchema(faqs);
 
-  const articleJsonLd = {
-    "@context": "https://schema.org",
-    "@type": "Article",
-    headline: "Bonus uden Omsætningskrav – Komplet Guide 2026",
-    description: "Alt du skal vide om bonusser uden omsætningskrav på danske casinoer. Fordele, typer og tips.",
-    author: { "@type": "Organization", name: "Casinoaftaler" },
-    publisher: { "@type": "Organization", name: "Casinoaftaler" },
+  const articleJsonLd = buildArticleSchema({
+    headline: "Bonus uden Omsætningskrav – Komplet Teknisk Guide 2026",
+    description: "Alt om bonusser uden omsætningskrav på danske casinoer. EV-analyse, regneeksempler, sammenligning og strategier.",
+    url: `${SITE_URL}/bonus-uden-omsaetningskrav`,
     datePublished: "2025-06-01",
-    dateModified: "2026-02-11",
-    mainEntityOfPage: "https://casinoaftaler.dk/bonus-uden-omsaetningskrav",
-  };
+    dateModified: "2026-02-18",
+    authorName: "Jonas",
+    authorUrl: `${SITE_URL}/forfatter/jonas`,
+  });
 
   return (
     <>
       <SEO
-        title="Bonus uden Omsætningskrav – Komplet Guide 2026 | Casinoaftaler"
-        description="Alt du skal vide om bonusser uden omsætningskrav på danske casinoer. Hvad de er, hvordan de fungerer, fordele, og hvordan du finder de bedste tilbud."
+        title="Bonus uden Omsætningskrav – Komplet Guide (2026)"
+        description="Alt om bonusser uden omsætningskrav hos danske casinoer. EV-konvertering, regneeksempler, faldgruber og strategier for at maksimere din omsætningsfrie bonus."
         jsonLd={[faqJsonLd, articleJsonLd]}
       />
 
@@ -101,8 +132,8 @@ const BonusUdenOmsaetningskrav = () => {
         className="relative overflow-hidden py-12 text-white md:py-20"
         style={{
           backgroundImage: heroBackgroundImage
-            ? `linear-gradient(135deg, hsl(260 70% 25% / 0.95), hsl(210 80% 30% / 0.9)), url(${heroBackgroundImage})`
-            : "linear-gradient(135deg, hsl(260 70% 25%), hsl(250 60% 20%) 40%, hsl(210 80% 25%))",
+            ? `linear-gradient(135deg, hsl(150 60% 20% / 0.95), hsl(170 50% 18% / 0.9)), url(${heroBackgroundImage})`
+            : "linear-gradient(135deg, hsl(150 60% 20%), hsl(160 50% 18%) 40%, hsl(180 60% 22%))",
           backgroundSize: "cover",
           backgroundPosition: "center",
         }}
@@ -110,175 +141,69 @@ const BonusUdenOmsaetningskrav = () => {
         <div className="container">
           <div className="mx-auto max-w-3xl text-center">
             <Badge variant="secondary" className="mb-4">
-              <Sparkles className="mr-1.5 h-3.5 w-3.5" />
-              Opdateret Februar 2026
+              <Zap className="mr-1.5 h-3.5 w-3.5" />
+              EV-Konverteringsanalyse – Februar 2026
             </Badge>
             <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">
               Bonus uden Omsætningskrav
             </h1>
             <p className="text-lg text-white/80">
-              En bonus uden omsætningskrav er et casinotilbud, hvor gevinster
-              vundet med bonusmidlerne kan hæves med det samme. Lær hvordan de
-              fungerer, og hvordan du finder de bedste tilbud.
+              100% konvertering af gevinster. Vi analyserer mekanikken bag omsætningsfrie bonusser, beregner den reelle EV, og afslører hvorfor gevinstloftet – ikke omsætningen – er den sande begrænsning.
             </p>
           </div>
         </div>
       </section>
 
       <div className="container py-8 md:py-12">
-        <AuthorMetaBar author="jonas" date="11-02-2026" readTime="10 Min." />
+        <AuthorMetaBar author="jonas" date="18-02-2026" readTime="14 Min." />
 
         <div className="mb-10 overflow-hidden rounded-xl">
-          <img src={bonusUdenOmsaetningHero} alt="Bonus uden omsætningskrav – frihed fra krav" className="w-full h-auto object-cover max-h-[400px]" loading="eager" />
+          <img src={bonusUdenOmsaetningHero} alt="Bonus uden omsætningskrav – teknisk EV-analyse af omsætningsfrie bonusser 2026" className="w-full h-auto object-cover max-h-[400px]" loading="eager" />
         </div>
 
-        {/* Intro – trend-vinkel */}
+        {/* === SEKTION 1: Mekanisk breakdown === */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold">
-            Derfor vælger flere danske spillere omsætningsfrie bonusser
+            Anatomien af en bonus uden omsætningskrav
           </h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
-            Antallet af danske casinoer med omsætningsfrie tilbud er steget markant de seneste år – og det er der god grund til. Et{" "}
-            <Link to="/omsaetningskrav" className="text-primary underline hover:text-primary/80">
-              omsætningskrav
-            </Link>{" "}
-            angiver, hvor mange gange du skal gennemspille din bonus, før gevinster kan udbetales. Med en bonus på 100 kr. og 10x krav skal du satse for 1.000 kr. – en barriere som omsætningsfrie bonusser eliminerer helt.
+            En bonus uden omsætningskrav – også kaldet omsætningsfri bonus eller "wager-free bonus" – er den mest spillervenlige bonustype på markedet. Mekanikken er enkel: du modtager bonusmidler, og alle gevinster fra disse midler kan hæves direkte. Der er ingen gennemspilningskrav, ingen omsætningsformler, ingen "x gange bonus"-beregninger. Gevinsten er din fra det øjeblik den rammer din konto.
+          </p>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            Men "uden omsætningskrav" betyder ikke "uden vilkår". Teknisk set erstatter casinoet omsætningskravet med andre kontrolmekanismer – primært gevinstloftet, som fungerer som en øvre grænse for din potentielle udbetaling. Det er denne mekanisme der gør bonussen økonomisk bæredygtig for casinoet: de risikerer aldrig mere end gevinstloftet per spiller.
+          </p>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            Sammenlign med en traditionel bonus med <Link to="/omsaetningskrav" className={linkClass}>omsætningskrav</Link>: her reducerer gennemspilningen din EV gradvist (hvert spin under omsætning koster dig statistisk penge via house edge). Ved en omsætningsfri bonus sker denne reduktion ikke – men gevinstloftet begrænser opsiden i stedet. Det er to fundamentalt forskellige risikostyringsmodeller, og forståelsen af denne forskel er nøglen til at vælge den rigtige bonustype.
           </p>
           <p className="text-muted-foreground leading-relaxed">
-            Omsætningskrav gælder for de fleste bonustyper – herunder{" "}
-            <Link to="/velkomstbonus" className="text-primary underline hover:text-primary/80">
-              velkomstbonusser
-            </Link>
-            ,{" "}
-            <Link to="/indskudsbonus" className="text-primary underline hover:text-primary/80">
-              indskudsbonusser
-            </Link>{" "}
-            og{" "}
-            <Link to="/free-spins" className="text-primary underline hover:text-primary/80">
-              free spins
-            </Link>
-            . Vil du undgå dem helt, er en{" "}
-            <Link to="/no-sticky-bonus" className="text-primary underline hover:text-primary/80">
-              no-sticky bonus
-            </Link>{" "}
-            eller en{" "}
-            <Link to="/bonus-uden-indbetaling" className="text-primary underline hover:text-primary/80">
-              bonus uden indbetaling
-            </Link>{" "}
-            med 0x krav et godt alternativ.
+            Forskellen til en <Link to="/bonus-uden-indbetaling" className={linkClass}>bonus uden indbetaling</Link> er vigtig: en no deposit bonus kan godt have omsætningskrav (og har det typisk). En omsætningsfri bonus kræver derimod næsten altid en indbetaling. De to egenskaber (ingen indbetaling vs. ingen omsætning) er uafhængige – og de sjældne bonusser der kombinerer begge er de mest værdifulde på markedet.
           </p>
         </section>
 
-        <InlineCasinoCards title="Casinoer uden omsætningskrav" count={4} />
+        <InlineCasinoCards title="Casinoer med omsætningsfrie bonusser" count={4} />
 
         <Separator className="my-10" />
 
-        {/* Hvad betyder det */}
+        {/* === SEKTION 2: Hvordan fungerer konverteringen === */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold">
-            Hvad betyder det at en bonus er uden omsætningskrav?
+            Konverteringsmekanikken: fra bonus til kontanter
           </h2>
           <p className="mb-6 text-muted-foreground leading-relaxed">
-            En bonus uden omsætningskrav fjerner hindringen ved
-            gennemspilningskrav. Det betyder i praksis, at alle gevinster fra
-            bonusmidlerne tilhører dig fra det øjeblik, de rammer din konto.
+            Processen for at konvertere en omsætningsfri bonus til udbetalbare penge er fundamentalt anderledes end ved traditionelle bonusser. Her er det præcise flow:
           </p>
 
           <div className="space-y-4">
-            <Card className="border-border bg-card">
-              <CardHeader className="pb-2">
-                <CardTitle className="flex items-center gap-2 text-lg">
-                  <CheckCircle2 className="h-5 w-5 text-primary" />
-                  Du beholder alt, du vinder
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-sm text-muted-foreground leading-relaxed">
-                  Fra det øjeblik bonusmidlerne rammer din konto, tilhører
-                  eventuelle gevinster fra disse midler dig, uden at du skal
-                  gennemspille et bestemt beløb først. Du kan hæve dine
-                  gevinster med det samme.
-                </p>
-              </CardContent>
-            </Card>
-
-            <Card className="border-border bg-card">
-              <CardHeader className="pb-2">
-                <CardTitle className="flex items-center gap-2 text-lg">
-                  <Eye className="h-5 w-5 text-primary" />
-                  Gennemsigtighed og fairness
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-sm text-muted-foreground leading-relaxed">
-                  Denne type bonus er en tydelig indikation af casinoets
-                  engagement i gennemsigtighed og fair spil, hvilket tilbyder
-                  en mere ligefrem spiloplevelse uden skjulte betingelser.
-                </p>
-              </CardContent>
-            </Card>
-
-            <Card className="border-border bg-card">
-              <CardHeader className="pb-2">
-                <CardTitle className="flex items-center gap-2 text-lg">
-                  <Zap className="h-5 w-5 text-primary" />
-                  Afslappet spilleoplevelse
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-sm text-muted-foreground leading-relaxed">
-                  Du slipper for at holde styr på, hvor tæt eller langt du er
-                  fra at opfylde omsætningskravene. Det sikrer en langt mere
-                  afslappet spilleoplevelse, hvor du ikke behøver bekymre dig
-                  om, hvad der kan spænde ben for din udbetaling.
-                </p>
-              </CardContent>
-            </Card>
-          </div>
-        </section>
-
-        <Separator className="my-10" />
-
-        {/* Sådan spotter du */}
-        <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold">
-            Sådan spotter du en bonus uden omsætningskrav
-          </h2>
-          <p className="mb-6 text-muted-foreground leading-relaxed">
-            Det første skridt er altid at læse de fulde vilkår og betingelser.
-            Danske casinoer er forpligtede til at oplyse grundigt om
-            betingelserne for deres tilbud. Hold øje med følgende nøgleord og
-            indikatorer.
-          </p>
-
-          <div className="space-y-3">
             {[
-              {
-                title: "Kig efter nøgleord",
-                desc: "Hold øje med udtryk som 'ingen omsætningskrav', 'omsætningsfri' eller 'uden gennemspilskrav'. Disse indikerer, at bonussen ikke kræver gennemspilning.",
-                icon: Target,
-              },
-              {
-                title: "Tjek omsætningskravet",
-                desc: "I betingelserne vil omsætningskravet normalt være angivet med et tal efterfulgt af 'x'. Hvis der står '0x' eller det ikke er nævnt, kan det tyde på ingen omsætningskrav.",
-                icon: BarChart3,
-              },
-              {
-                title: "Læs det med småt",
-                desc: "Vær opmærksom på andre betingelser som tidsbegrænsninger, maksimale gevinstgrænser og hvilke spil der kan spilles med bonusmidlerne.",
-                icon: BookOpen,
-              },
-              {
-                title: "Kontakt kundeservice",
-                desc: "Hvis betingelserne er uklare, kan du altid kontakte casinoets kundeservice for at få en klar bekræftelse på, om bonussen er uden omsætningskrav.",
-                icon: Users,
-              },
+              { step: "1", title: "Indbetaling aktiverer bonussen", desc: "De fleste omsætningsfrie bonusser kræver en indbetaling (typisk 100-200 kr.) for at aktivere tilbuddet. Bonussen krediteres enten som free spins eller bonuspenge. Din indbetaling holdes typisk adskilt fra bonusmidlerne – du spiller først med dine egne penge (ligesom en no-sticky model)." },
+              { step: "2", title: "Spil med bonusmidlerne", desc: "Når du bruger bonusmidlerne (free spins eller bonuspenge), genererer hvert spin potentielle gevinster. Disse gevinster går direkte til din udbetalbare saldo – ikke til en bonuskonto. Det er den afgørende forskel: der er ingen mellemstation." },
+              { step: "3", title: "Gevinstloftet sætter grænsen", desc: "Alle gevinster akkumuleres på din udbetalbare saldo, men kun op til gevinstloftet. Eksempel: med et gevinstloft på 2.000 kr. og 3.500 kr. i gevinster fra dine free spins, kan du kun hæve 2.000 kr. De resterende 1.500 kr. fjernes automatisk eller kan bruges til fortsat spil (afhængigt af casinoet)." },
+              { step: "4", title: "Øjeblikkelig udbetaling", desc: "Når du har brugt dine bonusmidler, kan du udbetale din gevinst med det samme via din foretrukne betalingsmetode. Der er ingen venteperiode for gennemspilning – pengene er dine. Udbetalingstiden afhænger herefter kun af casinoets standard udbetalingshastighed." },
             ].map((item) => (
-              <div
-                key={item.title}
-                className="flex items-start gap-3 rounded-lg border border-border bg-card p-4"
-              >
-                <item.icon className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
+              <div key={item.step} className="flex items-start gap-4 rounded-lg border border-border bg-card p-4">
+                <div className="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full bg-primary text-primary-foreground font-bold text-sm">
+                  {item.step}
+                </div>
                 <div>
                   <h3 className="font-semibold">{item.title}</h3>
                   <p className="text-sm text-muted-foreground">{item.desc}</p>
@@ -287,37 +212,32 @@ const BonusUdenOmsaetningskrav = () => {
             ))}
           </div>
         </section>
+
         <Separator className="my-10" />
 
-        {/* Typer af bonusser uden omsætningskrav */}
+        {/* === SEKTION 3: Typer af omsætningsfrie bonusser === */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold">
-            Bonustyper du typisk ser uden omsætningskrav
+            Fire varianter af omsætningsfrie bonusser – og deres EV-profiler
           </h2>
           <p className="mb-6 text-muted-foreground leading-relaxed">
-            Hvor man finder bonusser uden omsætningskrav varierer fra casino til
-            casino. Dog er der nogle bonustyper, som man støder på oftere end
-            andre.
+            Omsætningsfrie bonusser kommer i flere former. Hver variant har sin unikke risk/reward-profil, og det er vigtigt at forstå forskellen for at vælge den mest værdifulde:
           </p>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <Card className="border-border bg-card">
               <CardHeader className="pb-2">
                 <CardTitle className="flex items-center gap-2 text-lg">
-                  <Gift className="h-5 w-5 text-primary" />
-                  Velkomstbonus
+                  <Sparkles className="h-5 w-5 text-primary" />
+                  Omsætningsfrie free spins
                 </CardTitle>
               </CardHeader>
               <CardContent>
+                <p className="text-sm text-muted-foreground leading-relaxed mb-2">
+                  Den mest populære variant. Du modtager <Link to="/free-spins" className={linkClass}>free spins</Link> på en specifik automat, og alle gevinster udbetales som kontanter (op til gevinstloftet). Spinværdien er fast (1-10 kr.) og du har ingen kontrol over spilvalg eller indsats.
+                </p>
                 <p className="text-sm text-muted-foreground leading-relaxed">
-                  Den klassiske{" "}
-                  <Link to="/velkomstbonus" className="text-primary underline hover:text-primary/80">
-                    velkomstbonus
-                  </Link>
-                  , hvor man modtager bonussen i
-                  form af bonuspenge eller gratis spins. Nogle casinoer
-                  tilbyder disse helt uden omsætningskrav som en ekstra
-                  attraktion for nye spillere.
+                  <strong>EV-profil:</strong> 100% konvertering op til loftet. 50 free spins á 2 kr. på Starburst (RTP: 96,1%) = forventet gevinst: 96 kr. Med 1.000 kr. gevinstloft er din EV ≈ 85-96 kr. (loftet rammer sjældent). Enkel og gennemsigtig.
                 </p>
               </CardContent>
             </Card>
@@ -325,18 +245,16 @@ const BonusUdenOmsaetningskrav = () => {
             <Card className="border-border bg-card">
               <CardHeader className="pb-2">
                 <CardTitle className="flex items-center gap-2 text-lg">
-                  <Sparkles className="h-5 w-5 text-primary" />
-                  Gratis spins
+                  <DollarSign className="h-5 w-5 text-primary" />
+                  Omsætningsfrie bonuspenge
                 </CardTitle>
               </CardHeader>
               <CardContent>
+                <p className="text-sm text-muted-foreground leading-relaxed mb-2">
+                  Casinoet giver dig et pengebeløb (typisk 100-500 kr.) at spille for med frit spilvalg. Gevinster konverteres direkte til kontanter. Giver mere kontrol end free spins, men har typisk lavere gevinstloft som kompensation.
+                </p>
                 <p className="text-sm text-muted-foreground leading-relaxed">
-                  <Link to="/free-spins" className="text-primary underline hover:text-primary/80">
-                    Free spins
-                  </Link>{" "}
-                  uden omsætningskrav er meget populære. Du modtager
-                  et antal gratis spins, hvor alt hvad du vinder kan hæves med
-                  det samme, uden gennemspilning.
+                  <strong>EV-profil:</strong> Variabel – afhænger af dit spilvalg og indsats. Med optimal strategi (høj-RTP spil, lav indsats): EV kan nærme sig det fulde bonusbeløb. Risikoen er at du buster hele bonussen i én session – da ingen omsætning kræves, er der ingen "second chance".
                 </p>
               </CardContent>
             </Card>
@@ -345,15 +263,15 @@ const BonusUdenOmsaetningskrav = () => {
               <CardHeader className="pb-2">
                 <CardTitle className="flex items-center gap-2 text-lg">
                   <RefreshCw className="h-5 w-5 text-primary" />
-                  Cashback bonus
+                  Omsætningsfri cashback
                 </CardTitle>
               </CardHeader>
               <CardContent>
+                <p className="text-sm text-muted-foreground leading-relaxed mb-2">
+                  Casinoet returnerer en procentdel af dine tab (typisk 5-20%) som kontanter uden omsætningskrav. Det tilbagebetalte beløb kan hæves med det samme. Den mest spillervenlige variant, da den reducerer din effektive risiko.
+                </p>
                 <p className="text-sm text-muted-foreground leading-relaxed">
-                  Ved cashback bonusser giver casinoet dig en procentdel af
-                  dine tab tilbage. Det tilbagebetalte beløb er som regel
-                  også fri for omsætningskrav, så du kan udbetale det med
-                  det samme.
+                  <strong>EV-profil:</strong> 10% cashback øger din effektive RTP med ca. 0,4-1%. Med 96% base-RTP og 10% cashback: effektiv RTP = 96,4%. Lavere enkeltgevinst-potentiale, men konsistent værdi over tid. Idéel for langsigtede spillere.
                 </p>
               </CardContent>
             </Card>
@@ -361,16 +279,16 @@ const BonusUdenOmsaetningskrav = () => {
             <Card className="border-border bg-card">
               <CardHeader className="pb-2">
                 <CardTitle className="flex items-center gap-2 text-lg">
-                  <Heart className="h-5 w-5 text-primary" />
-                  Loyalitetsbonusser
+                  <Trophy className="h-5 w-5 text-primary" />
+                  VIP/Loyalitets-omsætningsfri bonus
                 </CardTitle>
               </CardHeader>
               <CardContent>
+                <p className="text-sm text-muted-foreground leading-relaxed mb-2">
+                  Eksklusive omsætningsfrie tilbud som belønning til loyale spillere. Typisk højere bonusbeløb (500-2.000 kr.) og højere gevinstlofter end standard-tilbud. Kræver ofte VIP-status eller invitiation.
+                </p>
                 <p className="text-sm text-muted-foreground leading-relaxed">
-                  Disse bonusser tildeles spillere i casinoets
-                  loyalitetsprogram eller VIP-klub som belønning for
-                  spilaktivitet. De tilbydes ofte via kampagner, mails
-                  eller bonuskoder.
+                  <strong>EV-profil:</strong> Den højeste EV af alle omsætningsfrie varianter takket være større beløb og lofter. Men tilgængeligheden er begrænset – du skal typisk have spillet for 10.000+ kr. for at kvalificere dig til VIP-niveauet.
                 </p>
               </CardContent>
             </Card>
@@ -379,128 +297,101 @@ const BonusUdenOmsaetningskrav = () => {
 
         <Separator className="my-10" />
 
-        {/* Regler og overvejelser */}
+        {/* === SEKTION 4: Regneeksempler === */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold">
-            Regler og overvejelser ved bonusser uden omsætningskrav
+            Regneeksempler: omsætningsfri vs. traditionel bonus
           </h2>
           <p className="mb-6 text-muted-foreground leading-relaxed">
-            Selvom "uden omsætningskrav" lyder som fuldkommen frihed, er der
-            stadig visse standarder og regler, du skal være opmærksom på.
-          </p>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <Card className="border-border bg-card">
-              <CardHeader className="pb-2">
-                <CardTitle className="flex items-center gap-2 text-lg">
-                  <CreditCard className="h-5 w-5 text-primary" />
-                  Minimumsindbetaling
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-sm text-muted-foreground leading-relaxed">
-                  For at låse op for din bonus uden omsætningskrav, skal du
-                  som regel foretage en minimumsindbetaling. Beløbet varierer
-                  fra casino til casino, men det er typisk mellem 50-200 kr.
-                </p>
-              </CardContent>
-            </Card>
-
-            <Card className="border-border bg-card">
-              <CardHeader className="pb-2">
-                <CardTitle className="flex items-center gap-2 text-lg">
-                  <Clock className="h-5 w-5 text-primary" />
-                  Tidsbegrænsning
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-sm text-muted-foreground leading-relaxed">
-                  Selv den bedste bonus har en udløbsdato. Du vil typisk have
-                  en begrænset periode til at gøre krav på din bonus og bruge
-                  den, før den udløber automatisk.
-                </p>
-              </CardContent>
-            </Card>
-
-            <Card className="border-border bg-card">
-              <CardHeader className="pb-2">
-                <CardTitle className="flex items-center gap-2 text-lg">
-                  <Ban className="h-5 w-5 text-primary" />
-                  Spilbegrænsninger
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-sm text-muted-foreground leading-relaxed">
-                  Ikke alle spil er berettigede. Nogle spil kan være helt
-                  udelukket, så det er vigtigt at kende reglerne, så du
-                  ikke spiller det forkerte spil med dine bonuspenge.
-                </p>
-              </CardContent>
-            </Card>
-
-            <Card className="border-border bg-card">
-              <CardHeader className="pb-2">
-                <CardTitle className="flex items-center gap-2 text-lg">
-                  <Lock className="h-5 w-5 text-primary" />
-                  Udbetalingsgrænser
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-sm text-muted-foreground leading-relaxed">
-                  Der kan være en grænse for, hvor meget du kan hæve fra dine
-                  gevinster. Det er vigtigt at kende disse grænser, så dine
-                  forventninger stemmer overens med realiteterne.
-                </p>
-              </CardContent>
-            </Card>
-          </div>
-        </section>
-
-        <Separator className="my-10" />
-
-        {/* Sammenligning */}
-        <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold">
-            Med vs. uden omsætningskrav
-          </h2>
-          <p className="mb-6 text-muted-foreground leading-relaxed">
-            Når man sammenligner bonusser uden omsætningskrav med traditionelle
-            bonusser, afhænger valget af din prioritet som spiller. Her er
-            fordele og ulemper ved begge typer.
+            Tal afslører sandheden om bonusværdi. Her er fire scenarier der viser den matematiske forskel mellem omsætningsfrie og traditionelle bonusser:
           </p>
 
           <div className="space-y-4">
-            <Card className="border-border bg-card">
+            <Card className="border-primary/30 bg-card">
               <CardHeader className="pb-2">
                 <CardTitle className="flex items-center gap-2 text-lg">
-                  <CheckCircle2 className="h-5 w-5 text-primary" />
-                  Uden omsætningskrav
+                  <Calculator className="h-5 w-5 text-primary" />
+                  Scenarie 1: Omsætningsfrie free spins – gennemsnitligt forløb
                 </CardTitle>
               </CardHeader>
-              <CardContent>
+              <CardContent className="space-y-2">
                 <p className="text-sm text-muted-foreground leading-relaxed">
-                  Giver øjeblikkelig værdi, da gevinster kan hæves med det
-                  samme. Fjerner den tidskrævende proces med at opfylde
-                  gennemspilningskrav. Perfekt for spillere, der værdsætter
-                  enkelhed og hurtig adgang til gevinster.
+                  <strong>Bonus:</strong> 50 omsætningsfrie free spins á 2 kr. på Starburst (RTP: 96,1%) | <strong>Gevinstloft:</strong> 1.000 kr.
                 </p>
+                <p className="text-sm text-muted-foreground leading-relaxed">
+                  Du spinner dine 50 free spins (nominel værdi: 100 kr.). Med Starbursts RTP vinder du statistisk 96,10 kr. Der er ingen omsætning – du kan hæve 96 kr. med det samme. Til sammenligning ville 100 kr. i traditionel bonus med 10x omsætning (= 1.000 kr. total omsætning) koste dig 40 kr. i gennemspilingsetab, hvilket giver EV ≈ 60 kr.
+                </p>
+                <div className="rounded-md bg-accent/40 p-3">
+                  <p className="text-xs font-medium text-muted-foreground">
+                    <strong>Omsætningsfri EV:</strong> ~96 kr. | <strong>Traditionel 10x EV:</strong> ~60 kr. | <strong>Forskel:</strong> +60% i spillerens favør
+                  </p>
+                </div>
               </CardContent>
             </Card>
 
-            <Card className="border-border bg-card">
+            <Card className="border-primary/30 bg-card">
               <CardHeader className="pb-2">
                 <CardTitle className="flex items-center gap-2 text-lg">
-                  <Percent className="h-5 w-5 text-primary" />
-                  Med omsætningskrav
+                  <TrendingUp className="h-5 w-5 text-primary" />
+                  Scenarie 2: Stort hit – gevinstloftet aktiveres
                 </CardTitle>
               </CardHeader>
-              <CardContent>
+              <CardContent className="space-y-2">
                 <p className="text-sm text-muted-foreground leading-relaxed">
-                  Kan tilbyde større bonusbeløb og flere fordele, da casinoet
-                  har sikkerhed gennem omsætningskravet. Tiltaler spillere, der
-                  planlægger at spille meget, og som normalt ser omsætningskrav
-                  som en del af deres spiladfærd.
+                  <strong>Bonus:</strong> 25 omsætningsfrie free spins á 5 kr. på Book of Dead (RTP: 96,2%, høj volatilitet) | <strong>Gevinstloft:</strong> 2.000 kr.
                 </p>
+                <p className="text-sm text-muted-foreground leading-relaxed">
+                  Du rammer bonusrunden og vinder 4.500 kr. Med et gevinstloft på 2.000 kr. kan du kun hæve 2.000 kr. – de resterende 2.500 kr. tabes. Med en traditionel 10x bonus ville du skulle omsætte 4.500 × 10 = 45.000 kr. (urealistisk høj omsætning) og statistisk miste ~1.700 kr. under gennemspilningen. Den omsætningsfrie variant giver dig 2.000 kr. direkte.
+                </p>
+                <div className="rounded-md bg-accent/40 p-3">
+                  <p className="text-xs font-medium text-muted-foreground">
+                    <strong>Omsætningsfri resultat:</strong> 2.000 kr. (loftet) | <strong>Traditionel 10x resultat:</strong> ~2.800 kr. efter omsætning (men med ~1.700 kr. i omsætningstab, netto ~1.100 kr.) | <strong>Vinder:</strong> Omsætningsfri
+                  </p>
+                </div>
+              </CardContent>
+            </Card>
+
+            <Card className="border-primary/30 bg-card">
+              <CardHeader className="pb-2">
+                <CardTitle className="flex items-center gap-2 text-lg">
+                  <AlertTriangle className="h-5 w-5 text-primary" />
+                  Scenarie 3: Bust – alle spins uden gevinst
+                </CardTitle>
+              </CardHeader>
+              <CardContent className="space-y-2">
+                <p className="text-sm text-muted-foreground leading-relaxed">
+                  <strong>Bonus:</strong> 30 omsætningsfrie free spins á 2 kr. på Sweet Bonanza (RTP: 96,5%, høj volatilitet) | <strong>Gevinstloft:</strong> 1.500 kr.
+                </p>
+                <p className="text-sm text-muted-foreground leading-relaxed">
+                  Sweet Bonanzas høje volatilitet betyder at 30 spins kan give alt fra 0 til 5.000+ kr. I dette scenarie vinder du kun 8 kr. fra dine 30 spins. Med omsætningsfri bonus: du hæver 8 kr. Med traditionel 10x bonus: du skal omsætte 8 × 10 = 80 kr. – næsten umuligt med kun 8 kr. på kontoen. Begge resultater er dårlige, men den omsætningsfrie bonus giver dig i det mindste 8 kr. reelt.
+                </p>
+                <div className="rounded-md bg-accent/40 p-3">
+                  <p className="text-xs font-medium text-muted-foreground">
+                    <strong>Begge modeller:</strong> Dårligt resultat | <strong>Sandsynlighed:</strong> ~25-35% med høj-volatilitetsspil | <strong>Indsigt:</strong> Volatiliteten er din fjende med få spins
+                  </p>
+                </div>
+              </CardContent>
+            </Card>
+
+            <Card className="border-primary/30 bg-card">
+              <CardHeader className="pb-2">
+                <CardTitle className="flex items-center gap-2 text-lg">
+                  <Scale className="h-5 w-5 text-primary" />
+                  Scenarie 4: Direkte sammenligning – 200 kr. bonus
+                </CardTitle>
+              </CardHeader>
+              <CardContent className="space-y-2">
+                <p className="text-sm text-muted-foreground leading-relaxed">
+                  <strong>Casino A:</strong> 200 kr. omsætningsfri bonus, gevinstloft 1.000 kr. | <strong>Casino B:</strong> 500 kr. bonus med 10x omsætning (= 5.000 kr.)
+                </p>
+                <p className="text-sm text-muted-foreground leading-relaxed">
+                  <strong>Casino A:</strong> Du spiller for 200 kr. på Starburst (96,1% RTP) og vinder gennemsnitligt 192 kr. – alt kan hæves. EV = 192 kr. <strong>Casino B:</strong> Du starter med 500 kr. og skal omsætte for 5.000 kr. Under omsætningen taber du statistisk 200 kr. (5.000 × 4%). Du ender med ~300 kr. Men du har brugt 5x længere tid. <strong>EV per time</strong> er markant højere for omsætningsfri.
+                </p>
+                <div className="rounded-md bg-accent/40 p-3">
+                  <p className="text-xs font-medium text-muted-foreground">
+                    <strong>Casino A EV:</strong> ~192 kr. (30 min.) | <strong>Casino B EV:</strong> ~300 kr. (2-3 timer) | <strong>EV/time:</strong> A = 384 kr./t vs. B = 120 kr./t | <strong>Konklusion:</strong> Omsætningsfri vinder per tidsenhed
+                  </p>
+                </div>
               </CardContent>
             </Card>
           </div>
@@ -508,43 +399,267 @@ const BonusUdenOmsaetningskrav = () => {
 
         <Separator className="my-10" />
 
-        {/* Hvem er det bedst egnet til */}
+        {/* === SEKTION 5: Sammenligning med alle bonustyper === */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold">
-            Hvem er bonusser uden omsætningskrav bedst egnet til?
+            Omsætningsfri bonus vs. alle andre bonustyper
           </h2>
           <p className="mb-6 text-muted-foreground leading-relaxed">
-            Bonusser uden omsætningskrav appellerer bredt, men de er især
-            fordelagtige for bestemte typer af spillere.
+            Hvor placerer den omsætningsfrie bonus sig i det danske bonuslandskab? Her er en ærlig teknisk sammenligning med hver bonustype:
+          </p>
+
+          <div className="space-y-4">
+            {[
+              {
+                title: "Vs. traditionel indskudsbonus (med omsætning)",
+                icon: CreditCard,
+                desc: (
+                  <>
+                    En <Link to="/indskudsbonus" className={linkClass}>indskudsbonus</Link> med 100% match og 10x omsætning giver højere nominelt bonusbeløb (op til 5.000 kr.), men omsætningskostnaden reducerer EV med 30-40%. Omsætningsfri giver lavere beløb men 100% konvertering. <strong>Tommelfingerregel:</strong> En omsætningsfri bonus på X kr. ≈ en traditionel bonus på 1,6 × X kr. med 10x omsætning.
+                  </>
+                ),
+              },
+              {
+                title: "Vs. no-sticky bonus",
+                icon: Scale,
+                desc: (
+                  <>
+                    En <Link to="/no-sticky-bonus" className={linkClass}>no-sticky bonus</Link> adskiller saldi og giver dig sikkerhedsnet (du kan altid hæve din egen indbetaling). Men bonusdelen har omsætningskrav. Omsætningsfri eliminerer omsætningen helt men har typisk lavere bonusbeløb. For risikoaverse spillere er omsætningsfri bedre; for optimerere er no-sticky ofte mere værdifuld i absolutte kroner.
+                  </>
+                ),
+              },
+              {
+                title: "Vs. bonus uden indbetaling (no deposit)",
+                icon: Gift,
+                desc: (
+                  <>
+                    En <Link to="/bonus-uden-indbetaling" className={linkClass}>no deposit bonus</Link> kræver ingen indbetaling men har typisk 10x omsætning. Omsætningsfri bonus kræver indbetaling men har 0x omsætning. <strong>EV-sammenligning:</strong> 50 kr. no deposit med 10x ≈ 15-30 kr. EV. 200 kr. omsætningsfri med 500 kr. indbetaling ≈ 192 kr. EV. Omsætningsfri giver markant højere absolut EV, men kræver din egen kapital.
+                  </>
+                ),
+              },
+              {
+                title: "Vs. sticky bonus",
+                icon: Lock,
+                desc: (
+                  <>
+                    En <Link to="/sticky-bonus" className={linkClass}>sticky bonus</Link> kombinerer din indbetaling og bonus til én saldo med omsætningskrav på hele beløbet (d+b). Det er den mindst spillervenlige model. Omsætningsfri er det diametralt modsatte: ingen omsætning, direkte gevinst. <strong>Matematisk:</strong> En sticky 1.000 kr. bonus med 10x (d+b) koster dig ~800 kr. i omsætningstab – værre end at slet ikke have bonus.
+                  </>
+                ),
+              },
+              {
+                title: "Vs. free spins (med omsætning)",
+                icon: Sparkles,
+                desc: (
+                  <>
+                    Standard <Link to="/free-spins" className={linkClass}>free spins</Link> med omsætningskrav giver gevinster der skal gennemspilles før udbetaling. Omsætningsfrie free spins giver gevinster der kan hæves direkte. <strong>Eksempel:</strong> 50 free spins med 10x omsætning: EV ≈ 55-60 kr. 50 omsætningsfrie free spins: EV ≈ 90-96 kr. Forskellen er ca. 50-60% i spillerens favør.
+                  </>
+                ),
+              },
+            ].map((item) => (
+              <div key={item.title} className="flex items-start gap-3 rounded-lg border border-border bg-card p-4">
+                <item.icon className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
+                <div>
+                  <h3 className="font-semibold">{item.title}</h3>
+                  <p className="text-sm text-muted-foreground">{item.desc}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        <Separator className="my-10" />
+
+        {/* === SEKTION 6: Hvem passer det til? === */}
+        <section className="mb-12">
+          <h2 className="mb-4 text-3xl font-bold">
+            Spillerprofiler: hvem får mest ud af omsætningsfrie bonusser?
+          </h2>
+          <p className="mb-6 text-muted-foreground leading-relaxed">
+            Omsætningsfrie bonusser appellerer bredt, men visse spillertyper får markant mere værdi end andre. Her er en ærlig segmentering:
+          </p>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            {[
+              {
+                title: "Casual spillere ✅ Idéel",
+                icon: Gamepad2,
+                desc: "For spillere der prioriterer enkelhed og underholdning er omsætningsfrie bonusser perfekte. Ingen forvirring om vilkår, ingen stress om gennemspilning. Du spiller, vinder måske, og hæver – slut.",
+              },
+              {
+                title: "Nybegyndere ✅ Anbefalet",
+                icon: Users,
+                desc: "Omsætningsfrie bonusser fjerner den mest komplicerede del af casinobonusser (omsætningskravet). Det giver nybegyndere en intuitiv og positiv første oplevelse uden skjulte overraskelser.",
+              },
+              {
+                title: "Tidsbegrænsede spillere ✅ Anbefalet",
+                icon: Clock,
+                desc: "Hvis du har begrænset tid, er omsætningsfrie bonusser overlegne. Du slipper for timevis af gennemspilning og kan bruge din tid på selve underholdningen. EV per tidsenhed er markant højere.",
+              },
+              {
+                title: "Bonus-jægere ⚠️ Betinget",
+                icon: Target,
+                desc: "Systematisk indsamling af omsætningsfrie bonusser kan generere solid EV, men gevinstlofterne begrænser potentialet. Kombiner med traditionelle bonusser med lav omsætning for optimal samlet EV.",
+              },
+              {
+                title: "High rollers ⚠️ Betinget",
+                icon: Flame,
+                desc: "Standard omsætningsfrie bonusser (100-500 kr.) er for små til high rollers. Dog kan VIP-omsætningsfrie tilbud (1.000-5.000 kr.) med højere gevinstlofter være attraktive. Fokuser på VIP-programmer.",
+              },
+              {
+                title: "Strategispillere ⚠️ Betinget",
+                icon: Calculator,
+                desc: "Matematisk korrekte spillere kan beregne at traditionelle bonusser med 1-3x omsætning giver højere absolut EV end omsætningsfrie bonusser med lave gevinstlofter. Det afhænger af den specifikke beregning.",
+              },
+            ].map((item) => (
+              <Card key={item.title} className="border-border bg-card">
+                <CardHeader className="pb-2">
+                  <CardTitle className="flex items-center gap-2 text-lg">
+                    <item.icon className="h-5 w-5 text-primary" />
+                    {item.title}
+                  </CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <p className="text-sm text-muted-foreground leading-relaxed">{item.desc}</p>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </section>
+
+        <Separator className="my-10" />
+
+        {/* === SEKTION 7: Faldgruber === */}
+        <section className="mb-12">
+          <h2 className="mb-4 text-3xl font-bold">
+            Seks faldgruber ved omsætningsfrie bonusser
+          </h2>
+          <p className="mb-6 text-muted-foreground leading-relaxed">
+            "Uden omsætningskrav" er ikke det samme som "uden vilkår". Her er de mest oversete begrænsninger der kan koste dig penge:
           </p>
 
           <div className="space-y-3">
             {[
               {
-                title: "Nye spillere",
-                desc: "En fantastisk måde at udforske forskellige spil på, uden at bekymre sig om komplekse omsætningskrav.",
-                icon: Sparkles,
+                title: "1. Gevinstloftet er for lavt",
+                desc: "Et gevinstloft på 200-500 kr. gør selv den bedste omsætningsfrie bonus til en lille gevinst. Tjek altid loftet: under 500 kr. er lavt, 1.000-2.000 kr. er gennemsnit, og 5.000+ kr. er premium. Loftet er den vigtigste faktor for bonussens reelle værdi.",
+                icon: Lock,
               },
               {
-                title: "Forsigtige spillere",
-                desc: "Spillere med et stramt budget, der foretrækker at minimere risici, vil finde disse bonusser særligt attraktive.",
-                icon: ShieldCheck,
+                title: "2. Spilrestriktioner du overser",
+                desc: "Omsætningsfrie free spins er næsten altid begrænset til én specifik automat – ofte en med lavere RTP end gennemsnittet. Omsætningsfrie bonuspenge kan have maks-indsatsregler. Bordspil og live casino er typisk ekskluderet.",
+                icon: Ban,
               },
               {
-                title: "Spillere der foretrækker enkelhed",
-                desc: "Direkte adgang til gevinster uden at navigere gennem komplekse bonusvilkår.",
-                icon: Target,
-              },
-              {
-                title: "Tidssensitive spillere",
-                desc: "Spillere, der ikke har tiden eller tålmodigheden til at opfylde omsætningskrav, får en hurtigere vej til gevinster.",
+                title: "3. Kort tidsfrist",
+                desc: "Mange omsætningsfrie bonusser udløber efter 24-72 timer. Glemmer du at bruge dine free spins, er de tabt. Sæt alarm det øjeblik du aktiverer bonussen.",
                 icon: Clock,
               },
+              {
+                title: "4. Krav om indbetaling du ikke forventede",
+                desc: "De fleste omsætningsfrie bonusser kræver en indbetaling (100-200 kr.) for at aktivere. Det er ikke en bonus uden indbetaling – det er en bonus uden omsætning. Forveksler du de to, kan du blive skuffet.",
+                icon: CreditCard,
+              },
+              {
+                title: "5. Gevinster over loftet 'forsvinder'",
+                desc: "Hvad sker der med gevinster over gevinstloftet? Hos de fleste casinoer fjernes overskuddet automatisk. Hos andre konverteres det til bonuspenge med omsætningskrav. Tjek vilkårene for dit specifikke casino.",
+                icon: AlertTriangle,
+              },
+              {
+                title: "6. Lavere bonusbeløb end traditionelle tilbud",
+                desc: "Omsætningsfrie bonusser er typisk 50-70% mindre i nominelt beløb end traditionelle bonusser. Et casino der tilbyder 2.000 kr. med 10x omsætning vil typisk tilbyde 300-500 kr. omsætningsfrit. Du betaler for enkelheden med lavere nominel værdi.",
+                icon: Percent,
+              },
             ].map((item) => (
-              <div
-                key={item.title}
-                className="flex items-start gap-3 rounded-lg border border-border bg-card p-4"
-              >
+              <div key={item.title} className="flex items-start gap-3 rounded-lg border border-destructive/30 bg-destructive/5 p-4">
+                <item.icon className="mt-0.5 h-5 w-5 flex-shrink-0 text-destructive" />
+                <div>
+                  <h3 className="font-semibold">{item.title}</h3>
+                  <p className="text-sm text-muted-foreground">{item.desc}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        <Separator className="my-10" />
+
+        {/* === SEKTION 8: Markedsanalyse 2026 === */}
+        <section className="mb-12">
+          <h2 className="mb-4 text-3xl font-bold">
+            Omsætningsfrie bonusser i 2026: markedsudvikling og trends
+          </h2>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            Det danske marked for omsætningsfrie bonusser har gennemgået en transformation de seneste år. Her er de vigtigste udviklinger vi observerer i 2026:
+          </p>
+          <div className="space-y-4">
+            <div className="flex items-start gap-3 rounded-lg border border-border bg-card p-4">
+              <TrendingUp className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
+              <div>
+                <h3 className="font-semibold">Eksponentiel vækst i omsætningsfrie tilbud</h3>
+                <p className="text-sm text-muted-foreground">
+                  I 2023 tilbød ca. 15% af danske casinoer omsætningsfrie bonuselementer. I 2026 er tallet steget til ca. 40%, drevet af spillernes præference for gennemsigtighed. <Link to="/nye-casinoer" className={linkClass}>Nye casinoer</Link> lancerer næsten altid med mindst ét omsætningsfrit element i deres bonuspakke – typisk omsætningsfrie free spins som del af velkomstbonussen.
+                </p>
+              </div>
+            </div>
+            <div className="flex items-start gap-3 rounded-lg border border-border bg-card p-4">
+              <BarChart3 className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
+              <div>
+                <h3 className="font-semibold">Gevinstlofterne stiger</h3>
+                <p className="text-sm text-muted-foreground">
+                  Gennemsnitlige gevinstlofter er steget fra 500 kr. (2023) til 1.000-2.000 kr. (2026). De mest konkurrencedygtige casinoer tilbyder nu gevinstlofter på 5.000-10.000 kr. på omsætningsfrie bonusser. Denne udvikling gør omsætningsfrie bonusser markant mere værdifulde og konkurrencedygtige med traditionelle bonusser.
+                </p>
+              </div>
+            </div>
+            <div className="flex items-start gap-3 rounded-lg border border-border bg-card p-4">
+              <Eye className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
+              <div>
+                <h3 className="font-semibold">Gennemsigtighed som konkurrenceparameter</h3>
+                <p className="text-sm text-muted-foreground">
+                  Flere danske casinoer markedsfører nu aktivt "ingen skjulte vilkår" og "omsætningsfri" som kernebudskaber. Spillemyndighedens krav om klar kommunikation har accelereret denne trend. Casinoer der fastholder komplekse omsætningsmodeller taber markedsandele til de gennemsigtige alternativer.
+                </p>
+              </div>
+            </div>
+            <div className="flex items-start gap-3 rounded-lg border border-border bg-card p-4">
+              <RefreshCw className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
+              <div>
+                <h3 className="font-semibold">Hybrid-modeller vokser frem</h3>
+                <p className="text-sm text-muted-foreground">
+                  En stigende trend er "hybrid-bonusser" der kombinerer en traditionel matchbonus med omsætningsfrie free spins. F.eks.: 100% matchbonus op til 1.000 kr. (10x omsætning) + 50 omsætningsfrie free spins. Det giver spilleren det bedste af begge verdener – volumen fra matchbonussen og umiddelbar værdi fra de omsætningsfrie spins.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <Separator className="my-10" />
+
+        {/* === SEKTION 9: Juridisk ramme === */}
+        <section className="mb-12">
+          <h2 className="mb-4 text-3xl font-bold">
+            Regulatorisk perspektiv: lovgivning og markedsføring
+          </h2>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            Omsætningsfrie bonusser opererer inden for Spillemyndighedens regulatoriske ramme, men har en unik position: de opfylder per definition lovens krav om max 10x omsætning (0x er under 10x). Her er de vigtigste juridiske aspekter:
+          </p>
+          <div className="space-y-3">
+            {[
+              {
+                title: "Markedsføring af 'omsætningsfri'",
+                desc: "Spillemyndigheden kræver at casinoer der markedsfører bonusser som 'omsætningsfri' eller 'wager-free' klart angiver alle øvrige vilkår: gevinstloft, tidsfrist, spilrestriktioner og eventuelle krav om indbetaling. Vildledende brug af disse termer kan sanktioneres med advarsler og bøder.",
+                icon: BookOpen,
+              },
+              {
+                title: "Gevinstloftet som regulatorisk gråzone",
+                desc: "Gevinstlofter på omsætningsfrie bonusser er ikke specifikt reguleret af Spillemyndigheden – der er ingen øvre eller nedre grænse for loftet. Det giver casinoer frihed til at sætte ekstremt lave lofter (f.eks. 100 kr.), hvilket kan gøre en tilsyneladende generøs bonus nærmest værdiløs. Brancheorganisationer arbejder dog på frivillige standarder.",
+                icon: Scale,
+              },
+              {
+                title: "Dansk lovgivning vs. international praksis",
+                desc: "Danmarks 10x omsætningsloft gør allerede traditionelle bonusser mere spillervenlige end i andre markeder. Det reducerer 'gabet' mellem traditionelle og omsætningsfrie bonusser – i Danmark er forskellen ca. 40-60%, mens den i Malta (40-60x omsætning) kan være 80-90%. Det gør omsætningsfrie bonusser relativt set mindre unikke i Danmark.",
+                icon: ShieldCheck,
+              },
+            ].map((item) => (
+              <div key={item.title} className="flex items-start gap-3 rounded-lg border border-border bg-card p-4">
                 <item.icon className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
                 <div>
                   <h3 className="font-semibold">{item.title}</h3>
@@ -557,63 +672,44 @@ const BonusUdenOmsaetningskrav = () => {
 
         <Separator className="my-10" />
 
-        {/* Bonus uden omsætningskrav markedsoverblik */}
+        {/* === SEKTION 10: Spotting tips === */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold">
-            Bonus uden omsætningskrav i Danmark 2026 – Trends
-          </h2>
-          <p className="mb-4 text-muted-foreground leading-relaxed">
-            Bonusser uden omsætningskrav er i kraftig vækst på det danske casinomarked i 2026. Flere og flere casinoer tilbyder nu omsætningsfrie bonusser som en del af deres kampagner, og trenden peger klart i retning af mere gennemsigtige og spillervenlige tilbud. En bonus uden omsætningskrav er det ultimative tilbud, da alle gevinster kan hæves med det samme.
-          </p>
-          <p className="mb-4 text-muted-foreground leading-relaxed">
-            De mest populære former for bonus uden omsætningskrav er omsætningsfrie <Link to="/free-spins" className="text-primary underline hover:text-primary/80">free spins</Link> og cashback-bonusser. Ved omsætningsfrie free spins modtager du et antal gratis spins, hvor alle gevinster udbetales som kontanter direkte til din konto. Cashback-bonusser uden omsætningskrav giver dig en procentdel af dine tab tilbage som rigtige penge – typisk 5-15%.
-          </p>
-          <p className="mb-4 text-muted-foreground leading-relaxed">
-            Selvom en bonus uden omsætningskrav er den mest spillervenlige bonustype, kan der stadig være andre vilkår at være opmærksom på. Mange casinoer sætter et gevinstloft på omsætningsfrie bonusser – f.eks. maks. 1.000 kr. i gevinst fra free spins. Der kan også være begrænsninger på, hvilke spil bonussen gælder for, og en tidsfrist for at bruge den.
-          </p>
-          <p className="text-muted-foreground leading-relaxed">
-            For at finde den bedste bonus uden omsætningskrav anbefaler vi at sammenligne tilbuddene fra vores liste over danske casinoer. Kig efter omsætningsfrie bonusser med højt gevinstloft, lang gyldighedsperiode, og adgang til et bredt udvalg af spil. En bonus uden omsætningskrav kombineret med en <Link to="/no-sticky-bonus" className="text-primary underline hover:text-primary/80">no-sticky velkomstbonus</Link> giver dig den ultimative start hos et nyt dansk casino.
-          </p>
-        </section>
-
-        <Separator className="my-10" />
-        <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold">
-            Spil ansvarligt – også med bonusser uden omsætningskrav
+            Sådan identificerer du de bedste omsætningsfrie bonusser
           </h2>
           <p className="mb-6 text-muted-foreground leading-relaxed">
-            Selv med bonusser uden omsætningskrav er det vigtigt, at spillet
-            forbliver underholdning og aldrig går ud over din personlige trivsel
-            eller økonomiske sundhed.
+            Ikke alle omsætningsfrie bonusser er lige gode. Her er en systematisk tilgang til at evaluere og rangere tilbuddene:
           </p>
 
           <div className="space-y-3">
             {[
               {
-                title: "Selvvurdering",
-                desc: "Vær opmærksom på dine spillevaner og benyt online selvtests til at vurdere dit forhold til spil.",
-                icon: TrendingUp,
+                title: "Beregn EV baseret på gevinstloft",
+                desc: "Den vigtigste beregning: (Bonusbeløb × forventet RTP) begrænset af gevinstloft. En 200 kr. bonus med 500 kr. loft har EV ≈ 192 kr. En 200 kr. bonus med 200 kr. loft har EV ≈ 192 kr. (men loftet rammer oftere). Højere gevinstloft = højere reel EV.",
+                icon: Calculator,
               },
               {
-                title: "Sæt et budget",
-                desc: "Fastlæg et spillebudget og se det som underholdning, ikke indtjening. Hold dig altid til dit budget.",
-                icon: Scale,
+                title: "Tjek spilvalget",
+                desc: "Er bonussen begrænset til én automat? Hvis ja, tjek dens RTP. Free spins på en 94% RTP-slot er markant mindre værd end på en 98% RTP-slot. Frihed til at vælge spil øger din EV med 2-4%.",
+                icon: Gamepad2,
               },
               {
-                title: "Brug selvudelukkelse",
-                desc: "Brug casinoets værktøjer som ROFUS (Register Over Frivilligt Udelukkede Spillere) eller midlertidige pauser ved behov.",
-                icon: ShieldCheck,
+                title: "Vurder tidsfristen",
+                desc: "En 24-timers frist kræver at du sætter tid af specifikt. En 30-dages frist giver fleksibilitet. Korte frister reducerer din EV, da du risikerer at glemme eller ikke nå bonussen.",
+                icon: Clock,
               },
               {
-                title: "Søg hjælp ved behov",
-                desc: "Søg rådgivning gennem StopSpillet.dk, kontakt casinoets kundeservice, eller tal åbent med dine nærmeste om dine spillevaner.",
-                icon: Heart,
+                title: "Kontroller indbetalingskrav",
+                desc: "Hvad koster det at aktivere bonussen? En 200 kr. omsætningsfri bonus der kræver 500 kr. indbetaling har en nettoomkostning på 500 kr. (din indbetaling). Sammenlign altid bonusværdien med indbetalingskravet.",
+                icon: CreditCard,
+              },
+              {
+                title: "Sammenlign på tværs",
+                desc: "Brug vores casino-sammenligninger til at evaluere omsætningsfrie tilbud side om side. Fokuser på EV per krone indbetalt – det giver det mest retvisende billede af bonussens reelle værdi.",
+                icon: BarChart3,
               },
             ].map((item) => (
-              <div
-                key={item.title}
-                className="flex items-start gap-3 rounded-lg border border-border bg-card p-4"
-              >
+              <div key={item.title} className="flex items-start gap-3 rounded-lg border border-border bg-card p-4">
                 <item.icon className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
                 <div>
                   <h3 className="font-semibold">{item.title}</h3>
@@ -626,42 +722,49 @@ const BonusUdenOmsaetningskrav = () => {
 
         <Separator className="my-10" />
 
-        {/* Samlet overblik */}
+        {/* === SEKTION 11: Ansvarligt spil === */}
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold">Samlet overblik</h2>
-          <div className="space-y-3">
+          <h2 className="mb-4 text-3xl font-bold">
+            Omsætningsfrie bonusser og ansvarlig spiladfærd
+          </h2>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            Omsætningsfrie bonusser reducerer én risikofaktor (tab under gennemspilning), men de eliminerer ikke den grundlæggende risiko ved casinospil. Fordi du modtager gevinster direkte, kan den umiddelbare belønning forstærke lysten til at spille mere – og potentielt indbetale egne penge for at fortsætte oplevelsen.
+          </p>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            Behandl altid omsætningsfrie bonusser som underholdning med potentiel gevinst – aldrig som en investering eller indtægtskilde. Sæt et fast budget for dine indbetalinger uafhængigt af bonustilbud, og hold dig strengt til det.
+          </p>
+          <p className="text-muted-foreground leading-relaxed">
+            Benyt{" "}
+            <a href="https://www.rofus.nu/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline font-medium">ROFUS</a>{" "}
+            til selvudelukkelse og{" "}
+            <a href="https://www.stopspillet.dk/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline font-medium">StopSpillet.dk</a>{" "}
+            til gratis rådgivning hvis du oplever problemer med din spiladfærd. 18+ | Spil ansvarligt.
+          </p>
+        </section>
+
+        <Separator className="my-10" />
+
+        {/* === SEKTION 12: Intern linking === */}
+        <section className="mb-12">
+          <h2 className="mb-4 text-3xl font-bold">Dyk dybere ned i bonusverdenen</h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
             {[
-              {
-                icon: CheckCircle2,
-                title: "Øjeblikkelig adgang til gevinster",
-                desc: "Bonusser uden omsætningskrav lader dig hæve dine gevinster med det samme, uden gennemspilning.",
-              },
-              {
-                icon: AlertTriangle,
-                title: "Læs altid betingelserne",
-                desc: "Selv uden omsætningskrav kan der være andre vilkår som tidsbegrænsninger, udbetalingsgrænser og spilbegrænsninger.",
-              },
-              {
-                icon: Scale,
-                title: "Vælg efter din spillestil",
-                desc: "Foretrækker du enkelhed og hurtig udbetaling, er bonusser uden omsætningskrav det rette valg for dig.",
-              },
-              {
-                icon: ShieldCheck,
-                title: "Spil altid ansvarligt",
-                desc: "Sæt et budget, benyt hjælpeværktøjer som StopSpillet.dk og ROFUS, og husk at spil skal være underholdning.",
-              },
-            ].map((item) => (
-              <div
-                key={item.title}
-                className="flex items-start gap-3 rounded-lg border border-border bg-card p-4"
-              >
-                <item.icon className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
+              { to: "/omsaetningskrav", label: "Omsætningskrav – Teknisk Guide", desc: "Dyb forståelse af gennemspilningskrav" },
+              { to: "/no-sticky-bonus", label: "No-Sticky Bonus", desc: "Bonusser med adskilt saldo-mekanik" },
+              { to: "/bonus-uden-indbetaling", label: "Bonus uden Indbetaling", desc: "Gratis bonusser helt uden indbetaling" },
+              { to: "/velkomstbonus", label: "Velkomstbonus Guide", desc: "Maksimer din første casino-bonus" },
+              { to: "/indskudsbonus", label: "Indskudsbonus", desc: "Matchbonusser og deres EV-profil" },
+              { to: "/free-spins", label: "Free Spins Guide", desc: "Alt om gratis spins på det danske marked" },
+              { to: "/sticky-bonus", label: "Sticky Bonus", desc: "Hvorfor du bør undgå sticky-modellen" },
+              { to: "/nye-casinoer/lav-wagering", label: "Casinoer med Lav Wagering", desc: "De laveste omsætningskrav i Danmark" },
+            ].map((link) => (
+              <Link key={link.to} to={link.to} className="flex items-start gap-3 rounded-lg border border-border bg-card p-4 transition-colors hover:border-primary/50 hover:bg-accent/50">
+                <ArrowRight className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
                 <div>
-                  <h3 className="font-semibold">{item.title}</h3>
-                  <p className="text-sm text-muted-foreground">{item.desc}</p>
+                  <h3 className="font-semibold text-sm">{link.label}</h3>
+                  <p className="text-xs text-muted-foreground">{link.desc}</p>
                 </div>
-              </div>
+              </Link>
             ))}
           </div>
         </section>
@@ -672,7 +775,7 @@ const BonusUdenOmsaetningskrav = () => {
 
         <RelatedGuides currentPath="/bonus-uden-omsaetningskrav" />
 
-        <FAQSection title="Ofte stillede spørgsmål om bonus uden omsætningskrav" faqs={faqs} />
+        <FAQSection title="Tekniske spørgsmål om omsætningsfrie bonusser" faqs={faqs} />
       </div>
     </>
   );
