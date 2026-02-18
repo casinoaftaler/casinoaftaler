@@ -200,9 +200,46 @@ Deno.serve(async (req) => {
       });
     }
 
-    // Points are StreamElements-based, so we just log them.
-    // The points reward is informational - actual SE points require SE API integration.
-    // For now we log it and show it as a win.
+    // Add StreamElements points via their API
+    if (result.type === "points" && result.value > 0) {
+      const seJwtToken = Deno.env.get("STREAMELEMENTS_JWT_TOKEN");
+      const seChannelId = "65bbb5cb44a8d1c505351854";
+      const twitchUsername = profile.twitch_username;
+
+      if (seJwtToken && twitchUsername) {
+        try {
+          const seResponse = await fetch(
+            `https://api.streamelements.com/kappa/v2/points/${seChannelId}/${twitchUsername.toLowerCase()}/${result.value}`,
+            {
+              method: "PUT",
+              headers: {
+                "Authorization": `Bearer ${seJwtToken}`,
+                "Content-Type": "application/json",
+              },
+            }
+          );
+
+          if (!seResponse.ok) {
+            const errText = await seResponse.text();
+            console.error(`StreamElements API error (${seResponse.status}): ${errText}`);
+          } else {
+            console.log(`Added ${result.value} SE points to ${twitchUsername}`);
+          }
+        } catch (seError) {
+          console.error("StreamElements API call failed:", seError);
+        }
+      } else {
+        console.warn("Missing SE JWT token or twitch_username, cannot award points");
+      }
+
+      // Log credit allocation for points too
+      await serviceClient.from("credit_allocation_log").insert({
+        user_id: userId,
+        amount: result.value,
+        source: "spin_the_reel_points",
+        note: `Spin the Reel: +${result.value} StreamElements points to ${twitchUsername || "unknown"}`,
+      });
+    }
 
     const cooldownEnd = new Date(Date.now() + COOLDOWN_HOURS * 60 * 60 * 1000);
 
