@@ -251,6 +251,13 @@ export const Header = memo(function Header() {
                     { to: "/casinospil/spillemaskiner/wolf-gold", label: "Wolf Gold" },
                     { to: "/casinospil/spillemaskiner/the-dog-house", label: "The Dog House" },
                     { to: "/casinospil/spillemaskiner/jammin-jars", label: "Jammin' Jars" },
+                    { to: "/casinospil/spillemaskiner/bonanza", label: "Bonanza" },
+                    { to: "/casinospil/spillemaskiner/fire-joker", label: "Fire Joker" },
+                    { to: "/casinospil/spillemaskiner/legacy-of-dead", label: "Legacy of Dead" },
+                    { to: "/casinospil/spillemaskiner/divine-fortune", label: "Divine Fortune" },
+                    { to: "/casinospil/spillemaskiner/eye-of-horus", label: "Eye of Horus" },
+                    { to: "/casinospil/spillemaskiner/buffalo-king", label: "Buffalo King" },
+                    { to: "/casinospil/spillemaskiner/sugar-rush", label: "Sugar Rush" },
                   ].map((item) => (
                     <DropdownMenuItem key={item.to} asChild>
                       <Link to={item.to} className="flex items-center gap-2">
@@ -850,6 +857,13 @@ export const Header = memo(function Header() {
                   { to: "/casinospil/spillemaskiner/wolf-gold", label: "Wolf Gold" },
                   { to: "/casinospil/spillemaskiner/the-dog-house", label: "The Dog House" },
                   { to: "/casinospil/spillemaskiner/jammin-jars", label: "Jammin' Jars" },
+                  { to: "/casinospil/spillemaskiner/bonanza", label: "Bonanza" },
+                  { to: "/casinospil/spillemaskiner/fire-joker", label: "Fire Joker" },
+                  { to: "/casinospil/spillemaskiner/legacy-of-dead", label: "Legacy of Dead" },
+                  { to: "/casinospil/spillemaskiner/divine-fortune", label: "Divine Fortune" },
+                  { to: "/casinospil/spillemaskiner/eye-of-horus", label: "Eye of Horus" },
+                  { to: "/casinospil/spillemaskiner/buffalo-king", label: "Buffalo King" },
+                  { to: "/casinospil/spillemaskiner/sugar-rush", label: "Sugar Rush" },
                 ].map((item) => (
                   <Link key={item.to} to={item.to} className="ml-10 flex items-center gap-2 py-2 text-sm text-muted-foreground transition-colors hover:text-primary" onClick={() => setMobileMenuOpen(false)}>
                     <Star className="h-3 w-3" />
