@@ -12,7 +12,7 @@ import { RelatedGuides } from "@/components/RelatedGuides";
 import { InlineCasinoCards } from "@/components/InlineCasinoCards";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
 import { buildArticleSchema, buildFaqSchema } from "@/lib/seo";
-import { QuickFactsProviders } from "@/components/QuickFactsProviders";
+import { QuickFactsProviders, QuickFactsLicense } from "@/components/QuickFactsProviders";
 import { CasinoReviewHero } from "@/components/CasinoReviewHero";
 import type { ReactNode } from "react";
 import { ShieldCheck, Zap, Check, X, Crown, Gamepad2, Trophy, Sparkles, Headphones, Wallet, Target, Users, Smartphone } from "lucide-react";
@@ -69,6 +69,7 @@ const LeoVegasAnmeldelse = () => {
                 <div className="rounded-lg border border-border p-3"><p className="text-xs text-muted-foreground uppercase mb-1">Udbetaling</p><p className="text-lg font-bold text-foreground">Under 24 timer</p></div>
               </div>
               <QuickFactsProviders providers={["NetEnt", "Pragmatic Play", "Play'n GO", "Evolution Gaming", "Red Tiger", "Yggdrasil", "Nolimit City", "Hacksaw Gaming", "Big Time Gaming"]} />
+              <QuickFactsLicense licenseId="18-0039" />
             </CardContent>
           </Card>
         </section>
@@ -301,16 +302,19 @@ const LeoVegasAnmeldelse = () => {
             Hvem bør undgå LeoVegas?
           </h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
-            Trods LeoVegas' mange styrker er platformen ikke optimal for alle spillerprofiler. Sportsvæddere finder ingen sportsbook hos LeoVegas – til forskel fra all-rounder-platforme som <Link to="/casino-anmeldelser/unibet" className={linkClass}>Unibet</Link> og <Link to="/casino-anmeldelser/bet365" className={linkClass}>bet365</Link>, der kombinerer sport og casino under én konto. Hvis du primært vedder på sport og ønsker casino som supplement, er LeoVegas det forkerte valg.
+            Trods LeoVegas' mange styrker er platformen ikke optimal for alle spillerprofiler. Her er de specifikke profiler, der bør overveje alternativer:
           </p>
           <p className="mb-4 text-muted-foreground leading-relaxed">
-            Poker-entusiaster vil ligeledes finde LeoVegas utilstrækkeligt. Platformen tilbyder ingen poker-sektion – hverken video poker-turneringer eller cash games. <Link to="/casino-anmeldelser/unibet" className={linkClass}>Unibet</Link> og <Link to="/casino-anmeldelser/bwin" className={linkClass}>bwin</Link> (via PartyPoker) er bedre alternativer for poker-spillere.
+            <strong>Sportsvæddere og kombination-spillere:</strong> LeoVegas har ingen sportsbook – og det er en strukturel begrænsning. Hvis du vedder 3+ gange ugentligt på sport og ønsker casino som supplement under samme konto, kræver LeoVegas en separat registrering. <Link to="/casino-anmeldelser/unibet" className={linkClass}>Unibet</Link> og <Link to="/casino-anmeldelser/bet365" className={linkClass}>bet365</Link> tilbyder sport + casino + poker under ét login med fælles saldo. For den typiske danske "sportsspiller med casino-interesse" er det en deal-breaker, der koster LeoVegas anslået 15-20% af det potentielle markedssegment.
           </p>
           <p className="mb-4 text-muted-foreground leading-relaxed">
-            Bonusjægere, der udelukkende fokuserer på velkomstbonusværdi, kan finde bedre deals hos <Link to="/casino-anmeldelser/mr-green" className={linkClass}>Mr Green</Link> (op til 3.000 kr.) eller hos operatører med <Link to="/no-sticky-bonus" className={linkClass}>no-sticky bonus</Link>. LeoVegas' sticky bonusstruktur er en ulempe for spillere med en aggressiv bonusstrategi.
+            <strong>Poker-entusiaster:</strong> Platformen tilbyder hverken cash games, turneringer eller video poker i dedikeret format. Med kun 2-3 video poker-varianter i slot-kataloget er det utilstrækkeligt for spillere, der dedikerer 5+ timer ugentligt til poker. <Link to="/casino-anmeldelser/unibet" className={linkClass}>Unibet</Link> (via Unibet Poker) og <Link to="/casino-anmeldelser/bwin" className={linkClass}>bwin</Link> (via PartyPoker) er de eneste reelle alternativer med dansk licens og dedikerede pokerplatforme.
+          </p>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            <strong>Bonusjægere med aggressiv strategi:</strong> LeoVegas' sticky bonusstruktur er en matematisk ulempe for spillere, der specifikt jager bonus-EV. Med en sticky bonus risikerer du at miste bonusbeløbet ved udbetaling, hvilket reducerer den reelle bonusværdi med ~15-20% sammenlignet med <Link to="/no-sticky-bonus" className={linkClass}>no-sticky alternativer</Link> som <Link to="/casino-anmeldelser/betinia" className={linkClass}>Betinia</Link> og <Link to="/casino-anmeldelser/campobet" className={linkClass}>Campobet</Link>. Spiller du primært for at optimere bonusværdi, er no-sticky casinoer et bedre valg.
           </p>
           <p className="text-muted-foreground leading-relaxed">
-            Endelig kan LeoVegas' omfattende katalog føles overvældende for absolutte nybegyndere. Spillere, der foretrækker en simpel og overskuelig platform med et begrænset udvalg, vil måske finde <Link to="/casino-anmeldelser/spilnu" className={linkClass}>Spilnu</Link> eller <Link to="/casino-anmeldelser/danske-spil" className={linkClass}>Danske Spil</Link> mere tilgængeligt.
+            <strong>Absolutte nybegyndere:</strong> LeoVegas' katalog med 2.500+ spil og 50+ udbydere kan føles overvældende for førstegangs-casinospillere. Platformens avancerede filtreringssystem og anbefalingsmotor hjælper, men den rene mængde af valgmuligheder kan paralysere en ny spiller. <Link to="/casino-anmeldelser/spilnu" className={linkClass}>Spilnu</Link> (600 spil, simplificeret interface) eller <Link to="/casino-anmeldelser/danske-spil" className={linkClass}>Danske Spil</Link> (statsejet tryghed, dansk kundeservice) er mere tilgængelige startpunkter.
           </p>
         </section>
 
