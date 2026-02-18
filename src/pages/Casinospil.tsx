@@ -216,8 +216,6 @@ const Casinospil = () => {
           </p>
         </section>
 
-        <InlineCasinoCards title="Anbefalede casinoer til casinospil" count={4} />
-
         <Separator className="my-10" />
 
         {/* Spilleautomater */}
@@ -761,8 +759,7 @@ const Casinospil = () => {
 
         <Separator className="my-10" />
 
-
-
+        <AuthorBio />
 
         <Separator className="my-10" />
 

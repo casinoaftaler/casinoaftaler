@@ -411,7 +411,7 @@ export function PaymentMethodPage({
 
         <FAQSection title={`Ofte stillede spørgsmål om ${name}`} faqs={faqs} />
 
-        <AuthorBio author="jonas" showCommunity={false} />
+        <AuthorBio author="kevin" showCommunity={false} />
       </div>
     </>
   );

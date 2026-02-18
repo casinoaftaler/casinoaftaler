@@ -656,8 +656,6 @@ const CasinoAnmeldelser = () => {
           </div>
         </section>
 
-        <InlineCasinoCards title="Anbefalede Casinoer" />
-
         <Separator className="my-10" />
 
         {/* ===== SEKTION 7: Strategiske teasers ===== */}

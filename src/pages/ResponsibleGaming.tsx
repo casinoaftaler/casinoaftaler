@@ -308,7 +308,7 @@ const ResponsibleGaming = () => {
 
         <FAQSection title="Ofte Stillede Spørgsmål om Ansvarligt Spil" faqs={responsibleGamingFaqs} />
 
-        <AuthorBio author="jonas" showCommunity={false} />
+        <AuthorBio author="kevin" showCommunity={false} />
 
         <RelatedGuides currentPath="/ansvarligt-spil" />
       </div>
