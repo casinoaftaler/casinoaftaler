@@ -27,7 +27,7 @@ const MrVegasAnmeldelse = () => {
         </div></div>
       </section>
       <div className="container py-8 md:py-12">
-        <AuthorMetaBar author="jonas" date="15-02-2026" readTime="28 Min." />
+        <AuthorMetaBar author="jonas" date="15-02-2026" readTime="39 Min." />
         <CasinoReviewHero slug="mr-vegas" casinoName="Mr Vegas Casino" />
 
         {/* Hurtige Fakta */}
@@ -39,6 +39,7 @@ const MrVegasAnmeldelse = () => {
             <div className="rounded-lg border border-border p-3"><p className="text-xs text-muted-foreground uppercase mb-1">Antal spil</p><p className="text-lg font-bold text-foreground">3.000+</p></div>
           </div>
           <QuickFactsProviders providers={["NetEnt", "Pragmatic Play", "Play'n GO", "Evolution Gaming", "Red Tiger", "Yggdrasil", "Hacksaw Gaming", "Big Time Gaming"]} />
+          <QuickFactsLicense licenseId="18-0051" />
         </CardContent></Card></section>
 
         {/* Introduktion – Betsson-gruppens Vegas-vision */}
@@ -168,6 +169,59 @@ const MrVegasAnmeldelse = () => {
           <p className="mb-4 text-muted-foreground leading-relaxed"><strong>Minimalisme-elskere:</strong> Mr Vegas' design er Vegas-inspireret med neonfarver, animationer og et travlt visuelt udtryk. Hvis du foretrækker den rene, skandinaviske minimalisme, som <Link to="/casino-anmeldelser/mr-green" className={linkClass}>Mr Green</Link> og <Link to="/casino-anmeldelser/leovegas" className={linkClass}>LeoVegas</Link> tilbyder, kan Mr Vegas føles overvældende. Det er en stilpræference, men den påvirker din samlede oplevelse markant.</p>
           <p className="mb-4 text-muted-foreground leading-relaxed"><strong>VIP-spillere med store volumener:</strong> Mr Vegas' VIP-program er begrænset for danske spillere sammenlignet med internationale markeder. Hvis du spiller for store beløb og forventer personlig kontoadministrator, cashback-deals og eksklusive rejser, leverer platforme som <Link to="/casino-anmeldelser/888-casino" className={linkClass}>888 Casino</Link> eller <Link to="/casino-anmeldelser/royal-casino" className={linkClass}>Royal Casino</Link> mere i VIP-segmentet.</p>
           <p className="text-muted-foreground leading-relaxed"><strong>Nat-spillere der har brug for support:</strong> Med kundeservice der lukker kl. 23:00, kan spillere, der primært er aktive sent om aften eller natten, opleve frustration, hvis der opstår problemer. Bet365s 24/7-support er objektivt bedre for den demografik.</p>
+        </section>
+
+        <Separator className="my-10" />
+
+        {/* Mr Vegas' position i det danske marked 2026 */}
+        <section className="mb-12">
+          <h2 className="mb-4 text-3xl font-bold">Mr Vegas i det danske marked – Betsson-gruppens vækstambitioner kvantificeret</h2>
+          <p className="mb-4 text-muted-foreground leading-relaxed">Mr Vegas Casino lanceret i 2023 repræsenterer Betsson Groups mest aggressive forsøg på at erobre markedsandele i det regulerede danske online casino-segment. Mens <Link to="/casino-anmeldelser/nordicbet" className={linkClass}>NordicBet</Link> har haft en stabil men moderat vækst med fokus på sport og casino, og CasinoEuro opererer som et mere konservativt brand, er Mr Vegas designet som en disruptor – en platform der bevidst udfordrer de etablerede aktører på bonus-generøsitet, spiludvalg og brugeroplevelse.</p>
+          <p className="mb-4 text-muted-foreground leading-relaxed">Det danske online gambling-marked er et af Europas mest modne og konkurrenceintensive. Med en årlig omsætning på cirka 5,2 mia. kr. og over 30 licenserede operatører er kampen om markedsandele intens. Mr Vegas positionerer sig i det segment, vi kalder "premium mid-tier" – det er ikke et budget-casino som <Link to="/casino-anmeldelser/kapow-casino" className={linkClass}>Kapow Casino</Link>, men det er heller ikke en etableret premium-platform med årtiers dansk track record som <Link to="/casino-anmeldelser/bet365" className={linkClass}>bet365</Link>. Det er en ambitiøs udfordrer med en infrastruktur, der er premium, og en aggressiv velkomststrategi designet til at opbygge en kritisk masse af spillere hurtigt.</p>
+          <p className="mb-4 text-muted-foreground leading-relaxed">Betsson-gruppens danske markedsstrategi er portfolio-baseret: NordicBet fanger sport-plus-casino-segmentet, CasinoEuro henvender sig til den europæisk-orienterede spiller, og Mr Vegas jager den yngre, bonusfokuserede generation. Denne tilgang minimerer intern kannibalisering og maksimerer samlet markedsdækning. Det er en strategi, vi ser spejlet hos Kindred Group (Unibet + Maria Casino) og Flutter Entertainment (bet365 + Paddy Power), og den fungerer, fordi forskellige spillertyper har fundamentalt forskellige behov og præferencer.</p>
+          <p className="mb-4 text-muted-foreground leading-relaxed">En interessant datapunkt er Mr Vegas' udbetalingshastighed sammenlignet med Betsson-gruppens øvrige brands. Vores test viste 14 timer og 22 minutter via Trustly – hurtigere end NordicBets typiske 18-24 timer og på linje med CasinoEuros bedste tider. Det indikerer, at Betsson har prioriteret Mr Vegas' infrastruktur, sandsynligvis som led i strategien om at positionere det som gruppens mest attraktive casino-brand. Hurtigere udbetalinger er en af de mest effektive differentieringsfaktorer i online casino – det er noget, spillere mærker direkte og husker.</p>
+          <p className="text-muted-foreground leading-relaxed">Mr Vegas' største udfordring er at opbygge brandloyalitet i et marked, hvor spillere ofte springer mellem platforme baseret på bonustilbud. Velkomstbonussen på 4.000 kr. tiltrækker nye spillere, men fastholdelse kræver mere: et VIP-program der kan matche <Link to="/casino-anmeldelser/888-casino" className={linkClass}>888 Casinos</Link> eksklusive tilbud, en mobiloplevelse der kan konkurrere med <Link to="/casino-anmeldelser/leovegas" className={linkClass}>LeoVegas'</Link> appkvalitet, og en kundeservice der kan tilbyde 24/7 dækning. Mr Vegas er endnu ikke der – men med Betsson-gruppens ressourcer og infrastruktur har platformen et realistisk fundament for at nå det.</p>
+        </section>
+
+        <Separator className="my-10" />
+
+        {/* Bankroll-matematik og EV-analyse */}
+        <section className="mb-12">
+          <h2 className="mb-4 text-3xl font-bold">Bankroll-matematik og Expected Value – Mr Vegas under den statistiske lup</h2>
+          <p className="mb-4 text-muted-foreground leading-relaxed">For den matematisk bevidste spiller er Expected Value (EV) den vigtigste metrik. Lad os analysere Mr Vegas' fulde velkomstpakke, løbende kampagner og loyalitetsprogram med konkrete beregninger for at kvantificere den reelle værdi.</p>
+          <Card className="border-border bg-card my-6">
+            <CardHeader><CardTitle className="flex items-center gap-2 text-lg"><TrendingUp className="h-5 w-5 text-primary" />EV-beregning: Mr Vegas komplet velkomstpakke</CardTitle></CardHeader>
+            <CardContent className="space-y-3">
+              <div className="rounded-lg bg-secondary/50 p-4 font-mono text-sm space-y-1">
+                <p className="text-foreground"><strong>Indbetaling 1:</strong> 2.000 kr. → 2.000 kr. bonus (100 %) + 80 FS</p>
+                <p className="text-foreground">Omsætning: 10x × 4.000 = 40.000 kr. Tab: 0,04 × 40.000 = 1.600 kr.</p>
+                <p className="text-foreground">EV indbetaling 1: 2.000 − 1.600 + ~200 kr. (FS) = <strong>+600 kr.</strong></p>
+                <p className="text-foreground mt-2"><strong>Indbetaling 2:</strong> 2.000 kr. → 1.000 kr. bonus (50 %) + 60 FS</p>
+                <p className="text-foreground">Omsætning: 10x × 3.000 = 30.000 kr. Tab: 0,04 × 30.000 = 1.200 kr.</p>
+                <p className="text-foreground">EV indbetaling 2: 1.000 − 1.200 + ~150 kr. (FS) = <strong>−50 kr.</strong></p>
+                <p className="text-foreground mt-2"><strong>Indbetaling 3:</strong> 1.000 kr. → 1.000 kr. bonus (100 %) + 60 FS</p>
+                <p className="text-foreground">Omsætning: 10x × 2.000 = 20.000 kr. Tab: 0,04 × 20.000 = 800 kr.</p>
+                <p className="text-foreground">EV indbetaling 3: 1.000 − 800 + ~150 kr. (FS) = <strong>+350 kr.</strong></p>
+                <p className="text-primary font-bold mt-3">Samlet EV: +600 + (−50) + 350 = +900 kr.</p>
+                <p className="text-muted-foreground text-xs mt-1">Forudsætning: 96 % gennemsnitlig slots-RTP, FS-værdi estimeret ud fra markedsgennemsnit.</p>
+              </div>
+            </CardContent>
+          </Card>
+          <p className="mb-4 text-muted-foreground leading-relaxed">Den samlede EV på +900 kr. placerer Mr Vegas' velkomstpakke i den øverste tredjedel af det danske marked. Til sammenligning har <Link to="/casino-anmeldelser/maria-casino" className={linkClass}>Maria Casino</Link> en EV på +400 kr. (enkel bonus), <Link to="/casino-anmeldelser/kapow-casino" className={linkClass}>Kapow Casino</Link> +585 kr. og <Link to="/casino-anmeldelser/betano" className={linkClass}>Betano</Link> ligger i et lignende interval. Kun platforme med ekstremt generøse pakker overgår Mr Vegas' samlede værdi.</p>
+          <p className="mb-4 text-muted-foreground leading-relaxed"><strong>Risk of Ruin-analyse:</strong> Med en startbankroll på 4.000 kr. (indbetaling 1) og et gennemsnitligt bet på 10 kr. har du 400 units. Med en standardafvigelse på ~15x bet (medium-volatilitet slots) er din Risk of Ruin under den første omsætningsperiode cirka 30 %. Det er lavere end gennemsnittet, fordi Mr Vegas' combined balance-system betyder, at du kan annullere bonussen og beholde resterende saldo, hvis tingene går dårligt. Denne "nødudgang" reducerer effektivt din worst-case til tab af indskuddet minus resterende saldo – ikke nul.</p>
+          <p className="mb-4 text-muted-foreground leading-relaxed"><strong>Cashback og løbende EV:</strong> Mr Vegas tilbyder periodiske cashback-kampagner (typisk 10-15 % af nettotab). Hvis vi antager en gennemsnitlig cashback-rate på 5 % over tid (normaliseret for kampagnefrekvens), reducerer det den effektive House Edge fra 4 % til 3,8 %. Over 100.000 kr. i årlig omsætning sparer det spilleren cirka 200 kr. – en marginal men reel besparelse, der akkumulerer for aktive spillere.</p>
+          <p className="text-muted-foreground leading-relaxed">Den optimale strategi for Mr Vegas er at udnytte alle tre velkomstindbetalinger med de anbefalede beløb, omsætte via medium-RTP slots (96 %+), og derefter evaluere om platformens løbende kampagner og VIP-program giver tilstrækkelig værdi til at forblive som primær spilplatform. For de fleste danske spillere vil Mr Vegas' samlede EV-profil være positiv i de første måneder, hvorefter det afhænger af individuel spillestil og kampagnetilgængelighed.</p>
+        </section>
+
+        <Separator className="my-10" />
+
+        {/* Mr Vegas' fremtid i det danske marked */}
+        <section className="mb-12">
+          <h2 className="mb-4 text-3xl font-bold">Mr Vegas' fremtidsudsigter – fra udfordrer til etableret premium-brand?</h2>
+          <p className="mb-4 text-muted-foreground leading-relaxed">Mr Vegas Casinos udvikling fra lancering i 2023 til sin nuværende position i 2026 har været bemærkelsesværdig. Platformen har opbygget et spiludvalg på 3.000+ titler, etableret en loyal spillerbase og levereret konsekvent hurtige udbetalinger. Spørgsmålet er, om Mr Vegas kan tage det næste skridt fra "ambitiøs udfordrer" til "etableret premium-brand" på det danske marked.</p>
+          <p className="mb-4 text-muted-foreground leading-relaxed">Flere faktorer taler for Mr Vegas' fortsatte vækst. Betsson-gruppens investeringer i teknologi – herunder AI-drevet personalisering, forbedret mobiloplevelse og udvidelse af live casino-sektionen – vil sandsynligvis komme Mr Vegas til gode. Gruppens indkøbsstyrke sikrer adgang til alle nye spiludviklere og releases. Og den voksende trend mod "casino-only"-platforme (uden sportsdistraktion) passer Mr Vegas' rene casino-fokus perfekt.</p>
+          <p className="mb-4 text-muted-foreground leading-relaxed">Udfordringerne er dog reelle. Manglen på en dedikeret mobilapp er en svaghed, der vil blive mere mærkbar, efterhånden som <Link to="/casino-anmeldelser/leovegas" className={linkClass}>LeoVegas</Link> og andre app-first-platforme sætter standarden. VIP-programmet skal styrkes for at fastholde højvolumen-spillere. Og 24/7 kundeservice – en grundlæggende forventning i 2026 – er en nødvendig investering, som Betsson bør prioritere for Mr Vegas.</p>
+          <p className="text-muted-foreground leading-relaxed">Regulatorisk er Mr Vegas godt positioneret. Betsson-gruppens erfaringer med strengere regulering i Sverige, UK og andre markeder giver en compliance-ekspertise, der er værdifuld i takt med, at det danske marked bevæger sig mod strammere regler. Mr Vegas' moderate bonus-størrelse (op til 4.000 kr. er generøst men ikke ekstremt) og fokus på fair vilkår (10x omsætningskrav, combined balance) er naturligt alignet med den regulatoriske trend. Vi forventer, at Mr Vegas inden udgangen af 2027 vil have etableret sig som en fast bestanddel af top 10 danske online casinoer – forudsat at Betsson fortsætter investeringerne i brand og produkt.</p>
         </section>
 
         <Separator className="my-10" />
