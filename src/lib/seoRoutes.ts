@@ -83,7 +83,7 @@ export const seoRoutes: SeoRoute[] = [
   { path: "/casinospil/baccarat", changefreq: "weekly", priority: 0.9, lastmod: "2026-02-18" },
   { path: "/casinospil/roulette-strategi", changefreq: "weekly", priority: 0.9, lastmod: "2026-02-18" },
   { path: "/casinospil/online-lotteri", changefreq: "weekly", priority: 0.9, lastmod: "2026-02-13" },
-  { path: "/casinospil/game-shows", changefreq: "weekly", priority: 0.9, lastmod: "2026-02-13" },
+  { path: "/casinospil/game-shows", changefreq: "weekly", priority: 0.9, lastmod: "2026-02-18" },
 
   // ── Bonus Guides ──
   { path: "/casino-bonus", changefreq: "weekly", priority: 0.9, lastmod: "2026-02-18" },
