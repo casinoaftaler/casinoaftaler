@@ -43,29 +43,32 @@ const ExtraChilliMegawaysGuide = () => {
   return (
     <>
       <SEO title="Extra Chilli Megaways – Feature Drop & RTP" description="Dybdegående analyse af Extra Chilli Megaways: 96,82 % RTP, Feature Drop, free spins-gamble og 20.000× max win." jsonLd={[faqJsonLd, articleSchema, breadcrumbJsonLd]} />
-      <article className="mx-auto max-w-4xl px-4 py-12">
-        <header className="mb-8 text-center">
-          <div className="flex items-center justify-center gap-2 mb-4">
-            <Badge variant="secondary" className="text-xs">Megaways Original</Badge>
-            <Badge variant="outline" className="text-xs">RTP 96,82 %</Badge>
-            <Badge variant="outline" className="text-xs">Høj Volatilitet</Badge>
-          </div>
-          <h1 className="text-4xl md:text-5xl font-bold mb-4 leading-tight">Extra Chilli Megaways – Feature Drop & Gamble-Analyse</h1>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">Big Time Gaming's Megaways-mesterværk: den definitive analyse af 96,82 % RTP, free spins-gamble mekanikken og Feature Drop-strategien, der deler spillere i to lejre.</p>
-        </header>
-        <AuthorMetaBar author="kevin" date="2026-02-18" readTime="17 min" />
-        <Separator className="my-8" />
 
-        <section className="mb-10">
-          <h2 className="text-2xl font-bold mb-4 flex items-center gap-2"><Users className="h-5 w-5 text-primary" />Hvem Passer Extra Chilli Megaways Til?</h2>
+      <section className="relative overflow-hidden py-12 text-white md:py-20" style={{ backgroundImage: "linear-gradient(135deg, hsl(10 75% 32%), hsl(0 65% 25%) 40%, hsl(345 70% 20%))" }}>
+        <div className="container">
+          <div className="mx-auto max-w-3xl text-center">
+            <Badge variant="secondary" className="mb-4"><Flame className="mr-1.5 h-3.5 w-3.5" /> Megaways Original</Badge>
+            <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">Extra Chilli Megaways</h1>
+            <p className="text-lg text-white/80">Big Time Gaming's Megaways-mesterværk: den definitive analyse af 96,82 % RTP, free spins-gamble mekanikken og Feature Drop-strategien, der deler spillere i to lejre.</p>
+          </div>
+        </div>
+      </section>
+
+      <div className="container py-8 md:py-12">
+        <AuthorMetaBar author="kevin" date="2026-02-18" readTime="17 min" />
+
+        <section className="mb-12">
+          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><Users className="h-7 w-7 text-primary" /> Hvem Passer Extra Chilli Megaways Til?</h2>
           <p className="text-muted-foreground mb-4 leading-relaxed">Extra Chilli Megaways er bygget til den erfarne slot-spiller, der forstår varians, EV og risikostyring. Spillets to unikke funktioner – Feature Drop (bonus buy) og free spins-gamble – kræver aktive beslutninger fra spilleren, hvilket adskiller Extra Chilli fra passive "spin and hope"-slots. Det er et spil for spillere, der vil have kontrol over deres risikoprofil.</p>
           <p className="text-muted-foreground mb-4 leading-relaxed">Med en RTP på 96,82 % tilbyder Extra Chilli en af de bedste matematiske value propositions i hele slot-markedet. For spillere, der prioriterer long-term EV over alt andet, er Extra Chilli objektivt et af de mest rationelle valg – uanset om du bruger Feature Drop, gambler free spins, eller spiller konservativt. House edge på kun 3,18 % er sjældent lav.</p>
           <p className="text-muted-foreground mb-4 leading-relaxed">Spillet er IKKE ideelt for begyndere (de multiple beslutningslag kan forvirre), spillere med begrænset bankroll (den høje volatilitet kræver buffer), eller dem, der foretrækker simple mekanikker. For disse profiler anbefaler vi i stedet <Link to="/casinospil/spillemaskiner/starburst" className={linkClass}>Starburst</Link> (beginnervenlig) eller <Link to="/casinospil/spillemaskiner/fire-joker" className={linkClass}>Fire Joker</Link> (simpel klassiker).</p>
           <p className="text-muted-foreground leading-relaxed">For Megaways-entusiaster, der allerede kender <Link to="/casinospil/spillemaskiner/bonanza" className={linkClass}>Bonanza</Link>, er Extra Chilli den naturlige evolution – bedre RTP, højere ceiling, og den kritiske free spins-gamble, der tilfører en strategisk dimension, originalen manglede.</p>
         </section>
 
-        <section className="mb-10">
-          <h2 className="text-2xl font-bold mb-4 flex items-center gap-2"><Calculator className="h-5 w-5 text-primary" />Teknisk Profil: Den Bedste Megaways-RTP</h2>
+        <Separator className="my-10" />
+
+        <section className="mb-12">
+          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><Calculator className="h-7 w-7 text-primary" /> Teknisk Profil: Den Bedste Megaways-RTP</h2>
           <Card className="mb-6"><CardContent className="pt-6">
             <div className="grid grid-cols-2 md:grid-cols-3 gap-4 text-sm">
               <div><span className="text-muted-foreground">Udvikler:</span><br /><strong>Big Time Gaming</strong></div>
@@ -81,25 +84,33 @@ const ExtraChilliMegawaysGuide = () => {
           <p className="text-muted-foreground leading-relaxed">Hit frequency estimeres til 27-32 %, med tumble-kæder (cascading wins) der typisk producerer 1,4-1,7 gevinsthændelser pr. gevindende spin. Base game-RTP estimeres til 60-65 %, med de resterende 35-40 % allokeret til bonusrunder. Denne fordeling er typisk for høj-volatile Megaways-slots.</p>
         </section>
 
-        <section className="mb-10">
-          <h2 className="text-2xl font-bold mb-4 flex items-center gap-2"><Flame className="h-5 w-5 text-primary" />Free Spins-Gamble: Risk vs. Reward</h2>
+        <Separator className="my-10" />
+
+        <section className="mb-12">
+          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><Flame className="h-7 w-7 text-primary" /> Free Spins-Gamble: Risk vs. Reward</h2>
           <p className="text-muted-foreground mb-4 leading-relaxed">Extra Chilli's free spins-gamble er spillets mest kontroversielle og mest fængslende mekanik. Efter at have udløst free spins med 3+ scatters (3 = 8 spins, 4 = 12) præsenteres du med et valg: acceptér dine spins eller gamble for flere. Gamble-sekvensen er tre trin: 8→16 spins (50/50), 16→24 spins (50/50), og derefter spil. Hvis du taber på noget trin, mister du ALLE free spins.</p>
           <p className="text-muted-foreground mb-4 leading-relaxed">Matematikken er fascinator: gamble fra 8 til 24 spins giver 3× flere spins, men sandsynligheden for at nå 24 er kun 25 % (0,5 × 0,5). Der er en 75 % chance for at miste alt – men med 24 spins og en akkumulerende multiplikator er gevinstpotentialet enormt. For risiko-tolerante spillere er gamble-optionen en rationel strategi, hvis bankrollen kan absorbere de hyppige totaltab.</p>
           <p className="text-muted-foreground mb-4 leading-relaxed">Strategisk anbefaling: gamble kun fra 8 til 16 spins (50 % chance, fordoblet spincount). Den marginale EV-gevinst fra 16→24 retfærdiggør sjældent den 50 % tabsrisiko, medmindre din bankroll er meget stor. For konservative spillere: acceptér altid 8 spins og undgå gamble. RTP'en er identisk uanset valg – gamble ændrer kun variansen, ikke den forventede return.</p>
           <p className="text-muted-foreground leading-relaxed">Under free spins er tumble-mekanikken aktiv med en voksende multiplikator (starter ved 1×, øger med 1 for hver tumble-gevinst). Multiplikatoren har ingen øvre grænse og akkumulerer over hele bonusrunden. Med 24 spins og aggressiv tumbling kan multiplikatoren nå 30-50×+ – og det er disse scenarier, der driver max win (20.000×) potentialet.</p>
         </section>
 
+        <Separator className="my-10" />
+
         <InlineCasinoCards />
 
-        <section className="mb-10">
-          <h2 className="text-2xl font-bold mb-4 flex items-center gap-2"><Zap className="h-5 w-5 text-primary" />Feature Drop: Bonus Buy-Strategien</h2>
+        <Separator className="my-10" />
+
+        <section className="mb-12">
+          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><Zap className="h-7 w-7 text-primary" /> Feature Drop: Bonus Buy-Strategien</h2>
           <p className="text-muted-foreground mb-4 leading-relaxed">Feature Drop lader dig købe direkte adgang til free spins for 50× din indsats – equivalent med at klippe forbi 150-200 spins ventetid. Matematisk er Feature Drop neutral: gennemsnitlig bonusrunde-value er ca. 50× (break-even med købsprisen), og RTP'en forbliver 96,82 %. Feature Drop er en bekvemmelighedsfunktion, ikke en strategisk fordel.</p>
           <p className="text-muted-foreground mb-4 leading-relaxed">Vigtigt forbehold: Feature Drop kan være deaktiveret eller forbudt under <Link to="/spillemyndigheden" className={linkClass}>Spillemyndigheden</Link>s regulering på det danske marked. Tjek altid tilgængelighed hos dit valgte casino. Hvor Feature Drop er tilgængelig, er den ideel for korte sessioner, hvor du vil opleve bonusrunden uden at investere tid i base game-grinding.</p>
           <p className="text-muted-foreground leading-relaxed">Kombineret med free spins-gamble giver Feature Drop en unik todelt strategi: køb bonus (50×) og derefter gamble fra 8 til 16 eller 24 spins. Denne tilgang maksimerer volatiliteten – du investerer 50× med mulighed for 0 return (tabte gamble) eller 100-5.000× (succesfuld gamble med høj multiplikator). Det er den mest aggressive strategi i Megaways-kategorien.</p>
         </section>
 
-        <section className="mb-10">
-          <h2 className="text-2xl font-bold mb-4 flex items-center gap-2"><BarChart3 className="h-5 w-5 text-primary" />EV-Beregning: Chilli-Økonomi</h2>
+        <Separator className="my-10" />
+
+        <section className="mb-12">
+          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><BarChart3 className="h-7 w-7 text-primary" /> EV-Beregning: Chilli-Økonomi</h2>
           <Card className="mb-6"><CardContent className="pt-6">
             <h3 className="font-semibold mb-3">EV-scenarie: 500 spins à 4 kr.</h3>
             <div className="grid grid-cols-2 gap-3 text-sm">
@@ -113,23 +124,27 @@ const ExtraChilliMegawaysGuide = () => {
           <p className="text-muted-foreground leading-relaxed">For <Link to="/casino-bonus" className={linkClass}>bonus</Link>-gennemspilning er Extra Chilli et topvalg. Den 96,82 % RTP minimerer tab under gennemspilning, og den høje volatilitet giver mulighed for at komme ud med profit. Anbefalet indsats: 2-3 kr. uden gamble for stabil gennemspilning; 3-4 kr. med gamble for aggressive spillere.</p>
         </section>
 
-        <section className="mb-10">
-          <h2 className="text-2xl font-bold mb-4 flex items-center gap-2"><AlertTriangle className="h-5 w-5 text-primary" />Risikoprofil og Bankroll-Krav</h2>
+        <Separator className="my-10" />
+
+        <section className="mb-12">
+          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><AlertTriangle className="h-7 w-7 text-primary" /> Risikoprofil og Bankroll-Krav</h2>
           <p className="text-muted-foreground mb-4 leading-relaxed">Extra Chilli's høje volatilitet kræver en bankroll på minimum 300-400 spins (1.200-1.600 kr. ved 4 kr. indsats). For spillere, der bruger Feature Drop (50× pr. køb), anbefales en bankroll, der kan dække 4-6 Feature Drops (800-1.200 kr.) plus 100+ base game spins. Tabsstop ved 55 % af startkapitalen.</p>
           <p className="text-muted-foreground leading-relaxed">Husk altid <Link to="/ansvarligt-spil" className={linkClass}>ansvarligt spil</Link>-principper. Free spins-gamble mekanikken er designet til at udløse risiko-seeking adfærd – vær disciplineret med din gamble-strategi og ændr den ikke midt i en session. Besøg vores <Link to="/casinospil/spillemaskiner" className={linkClass}>spillemaskineguide</Link> og <Link to="/free-spins" className={linkClass}>free spins</Link>-side for flere muligheder.</p>
         </section>
 
-        <section className="mb-10">
-          <h2 className="text-2xl font-bold mb-4 flex items-center gap-2"><Trophy className="h-5 w-5 text-primary" />BTG's Krydrede Mesterværk</h2>
+        <Separator className="my-10" />
+
+        <section className="mb-12">
+          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><Trophy className="h-7 w-7 text-primary" /> BTG's Krydrede Mesterværk</h2>
           <p className="text-muted-foreground mb-4 leading-relaxed">Extra Chilli Megaways er Big Time Gaming's finest – en Megaways-slot, der kombinerer branchens højeste RTP med unikke strategiske elementer (gamble + Feature Drop), der giver spillere reel kontrol over deres risikoprofil. For kyndige danske spillere er Extra Chilli den ultimate Megaways-oplevelse.</p>
           <p className="text-muted-foreground leading-relaxed">Udforsk <Link to="/casinospil" className={linkClass}>flere casinospil</Link> for at finde det rette match til din risikoprofil.</p>
         </section>
 
-        <Separator className="my-8" />
+        <Separator className="my-10" />
         <AuthorBio author="kevin" />
         <RelatedGuides currentPath="/casinospil/spillemaskiner/extra-chilli-megaways" />
         <FAQSection title="Ofte Stillede Spørgsmål om Extra Chilli Megaways" faqs={extraChilliFaqs} />
-      </article>
+      </div>
     </>
   );
 };

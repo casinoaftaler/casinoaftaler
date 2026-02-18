@@ -42,29 +42,32 @@ const WantedDeadOrAWildGuide = () => {
   return (
     <>
       <SEO title="Wanted Dead or a Wild – Duel & RTP" description="Dybdegående analyse af Wanted Dead or a Wild: Duel at Dawn, 96,38 % RTP, ekstremt høj volatilitet og 12.500× max win." jsonLd={[faqJsonLd, articleSchema, breadcrumbJsonLd]} />
-      <article className="mx-auto max-w-4xl px-4 py-12">
-        <header className="mb-8 text-center">
-          <div className="flex items-center justify-center gap-2 mb-4">
-            <Badge variant="secondary" className="text-xs">Hacksaw Gaming</Badge>
-            <Badge variant="outline" className="text-xs">RTP 96,38 %</Badge>
-            <Badge variant="outline" className="text-xs">Ekstremt Høj Volatilitet</Badge>
-          </div>
-          <h1 className="text-4xl md:text-5xl font-bold mb-4 leading-tight">Wanted Dead or a Wild – Duel at Dawn & Max Win-Analyse</h1>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">Hacksaw Gaming's western-showdown: en matematisk dekonstruktion af Duel at Dawn-mekanikken, versus-symboler og det eksplosive 12.500× max win-potentiale.</p>
-        </header>
-        <AuthorMetaBar author="kevin" date="2026-02-18" readTime="17 min" />
-        <Separator className="my-8" />
 
-        <section className="mb-10">
-          <h2 className="text-2xl font-bold mb-4 flex items-center gap-2"><Crosshair className="h-5 w-5 text-primary" />Duel at Dawn: Bonusmekanikken Analyseret</h2>
+      <section className="relative overflow-hidden py-12 text-white md:py-20" style={{ backgroundImage: "linear-gradient(135deg, hsl(0 65% 30%), hsl(350 55% 22%) 40%, hsl(340 60% 18%))" }}>
+        <div className="container">
+          <div className="mx-auto max-w-3xl text-center">
+            <Badge variant="secondary" className="mb-4"><Crosshair className="mr-1.5 h-3.5 w-3.5" /> Hacksaw Gaming</Badge>
+            <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">Wanted Dead or a Wild</h1>
+            <p className="text-lg text-white/80">Hacksaw Gaming's western-showdown: en matematisk dekonstruktion af Duel at Dawn-mekanikken, versus-symboler og det eksplosive 12.500× max win-potentiale.</p>
+          </div>
+        </div>
+      </section>
+
+      <div className="container py-8 md:py-12">
+        <AuthorMetaBar author="kevin" date="2026-02-18" readTime="17 min" />
+
+        <section className="mb-12">
+          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><Crosshair className="h-7 w-7 text-primary" /> Duel at Dawn: Bonusmekanikken Analyseret</h2>
           <p className="text-muted-foreground mb-4 leading-relaxed">Duel at Dawn er Wanted Dead or a Wild's definerende feature – en free spins-runde med en unik versus-mekanik, der kan producere de mest eksplosive gevinster i hele Hacksaw Gaming's portefølje. Runden udløses ved 3+ scatter-symboler for 10 free spins og introducerer versus-symboler: to revolvermænd, der "duellerer" på griddet.</p>
           <p className="text-muted-foreground mb-4 leading-relaxed">Når to versus-symboler lander på samme spin, duellerer de: vinderen forbliver som en sticky wild med en multiplikator (typisk 2× eller 3×). Hvis en versus-symbol lander ved siden af en eksisterende sticky wild, kan multiplikatorerne adderes eller multipliceres – afhængigt af symboltypen. Denne mekanisme skaber eksponentielt voksende gevinstpotentiale med hver succesfuld duel.</p>
           <p className="text-muted-foreground mb-4 leading-relaxed">Den gennemsnitlige Duel at Dawn-runde (10 spins) leverer estimeret 20-50× indsatsen – men medianen er markant lavere (10-20×). Fordelingen er ekstremt skæv: de fleste bonusrunder producerer beskeden return (mange runder har 0-1 dueller), mens de sjældne runder med 3-5+ dueller og akkumulerede multiplikatorer kan ramme 500-5.000×+ indsatsen.</p>
           <p className="text-muted-foreground leading-relaxed">Retrigger er muligt med 3+ scatters under free spins, hvilket giver yderligere 5 spins. Med retrigger og multiple sticky duel-wilds kan den forlængede runde producere max win (12.500×). Sandsynligheden for retrigger estimeres til 5-8 % pr. bonusrunde – sjælden men med enormt impact, når det sker.</p>
         </section>
 
-        <section className="mb-10">
-          <h2 className="text-2xl font-bold mb-4 flex items-center gap-2"><Calculator className="h-5 w-5 text-primary" />Teknisk Profil og Volatilitetsekstremerne</h2>
+        <Separator className="my-10" />
+
+        <section className="mb-12">
+          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><Calculator className="h-7 w-7 text-primary" /> Teknisk Profil og Volatilitetsekstremerne</h2>
           <Card className="mb-6"><CardContent className="pt-6">
             <div className="grid grid-cols-2 md:grid-cols-3 gap-4 text-sm">
               <div><span className="text-muted-foreground">Udvikler:</span><br /><strong>Hacksaw Gaming</strong></div>
@@ -80,18 +83,24 @@ const WantedDeadOrAWildGuide = () => {
           <p className="text-muted-foreground leading-relaxed">Free spins trigger-frekvens estimeres til ca. 1 pr. 250-350 spins – lav selv for en ekstrem-volatil slot. Denne sjældenhed forstærker den "all-or-nothing" dynamik: du investerer mange spins i base game (med konstant tab) for sjældne men potentielt massive bonusrunder. Det er et bevidst designvalg fra Hacksaw Gaming, der appellerer til thrill-seekers.</p>
         </section>
 
-        <section className="mb-10">
-          <h2 className="text-2xl font-bold mb-4 flex items-center gap-2"><Sparkles className="h-5 w-5 text-primary" />Versus-Symboler og Multiplikator-Matematik</h2>
+        <Separator className="my-10" />
+
+        <section className="mb-12">
+          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><Sparkles className="h-7 w-7 text-primary" /> Versus-Symboler og Multiplikator-Matematik</h2>
           <p className="text-muted-foreground mb-4 leading-relaxed">Versus-symboler er kernen i Wanted's gevinstpotentiale. Under Duel at Dawn kan to typer versus-symboler lande: "Dead" og "Wild" – benævnt efter spillets to outlaw-karakterer. Når begge symboltyper lander på samme spin, aktiveres en duel-animation, og vinderen efterlades som en sticky wild med en multiplikator.</p>
           <p className="text-muted-foreground mb-4 leading-relaxed">Multiplikator-matematikken er det, der virkelig driver potentialet. Sticky wilds kan akkumulere multiplikatorer: en wild med 2× ved siden af en wild med 3× kan kombinere til 6× på en enkelt position. Med multiple sådanne kombinationer over 10+ spins kan den samlede multiplikator-effekt nå absurde niveauer – og det er dette scenarie, der producerer 1.000-12.500× gevinster.</p>
           <p className="text-muted-foreground mb-4 leading-relaxed">Strategisk observation: versus-symboler har en estimeret landingsfrekvens på ca. 15-20 % pr. free spin. Med 10 spins i en standard bonusrunde kan du forvente 1-2 dueller i gennemsnit – men varians er enorm. Runder med 0 dueller (ca. 20 % sandsynlighed) producerer minimal return, mens runder med 4+ dueller (ca. 5 % sandsynlighed) kan være livs­ændrende.</p>
           <p className="text-muted-foreground leading-relaxed">Den ekstremt skæve gevinstfordeling gør Wanted Dead or a Wild til et af de mest polariserende spil i markedet. For spillere med høj risikotolerance og tilstrækkelig bankroll er det et rush uden lige. For konservative spillere er det et recept for frustration. Kend dig selv – og vælg dit spil derefter.</p>
         </section>
 
+        <Separator className="my-10" />
+
         <InlineCasinoCards />
 
-        <section className="mb-10">
-          <h2 className="text-2xl font-bold mb-4 flex items-center gap-2"><BarChart3 className="h-5 w-5 text-primary" />EV-Scenarie: Prisen for Adrenalinen</h2>
+        <Separator className="my-10" />
+
+        <section className="mb-12">
+          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><BarChart3 className="h-7 w-7 text-primary" /> EV-Scenarie: Prisen for Adrenalinen</h2>
           <Card className="mb-6"><CardContent className="pt-6">
             <h3 className="font-semibold mb-3">EV-scenarie: 500 spins à 4 kr.</h3>
             <div className="grid grid-cols-2 gap-3 text-sm">
@@ -105,8 +114,10 @@ const WantedDeadOrAWildGuide = () => {
           <p className="text-muted-foreground leading-relaxed">Wanted er IKKE velegnet til <Link to="/casino-bonus" className={linkClass}>bonus</Link>-gennemspilning medmindre du har meget stor bankroll-buffer. Den ekstremt høje volatilitet giver stor sandsynlighed for totalt bankroll-tab under gennemspilning. For stabile gennemspilninger anbefaler vi <Link to="/casinospil/spillemaskiner/starburst" className={linkClass}>Starburst</Link> eller <Link to="/casinospil/spillemaskiner/thunderstruck-ii" className={linkClass}>Thunderstruck II</Link>.</p>
         </section>
 
-        <section className="mb-10">
-          <h2 className="text-2xl font-bold mb-4 flex items-center gap-2"><Scale className="h-5 w-5 text-primary" />Wanted vs. High-Volatility Konkurrenter</h2>
+        <Separator className="my-10" />
+
+        <section className="mb-12">
+          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><Scale className="h-7 w-7 text-primary" /> Wanted vs. High-Volatility Konkurrenter</h2>
           <Card className="mb-6"><CardContent className="pt-6">
             <div className="overflow-x-auto">
               <table className="w-full text-sm">
@@ -124,23 +135,27 @@ const WantedDeadOrAWildGuide = () => {
           <p className="text-muted-foreground leading-relaxed">Sammenlignet med <Link to="/casinospil/spillemaskiner/wild-west-gold" className={linkClass}>Wild West Gold</Link> (identisk max win, lavere volatilitet) er Wanted det mere aggressive valg. Wild West Gold tilbyder bedre base game-stabilitet og hyppigere moderate gevinster; Wanted tilbyder sjældnere men potentielt større eksplosioner. Valget afhænger af din risikotolerance og bankroll-størrelse.</p>
         </section>
 
-        <section className="mb-10">
-          <h2 className="text-2xl font-bold mb-4 flex items-center gap-2"><AlertTriangle className="h-5 w-5 text-primary" />Bankroll-Krav og Ansvarligt Spil</h2>
+        <Separator className="my-10" />
+
+        <section className="mb-12">
+          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><AlertTriangle className="h-7 w-7 text-primary" /> Bankroll-Krav og Ansvarligt Spil</h2>
           <p className="text-muted-foreground mb-4 leading-relaxed">Wanted Dead or a Wild kræver den største bankroll af alle slots i vores database: minimum 400-500 spins (1.600-2.000 kr. ved 4 kr. indsats) for en rimelig session. For en session med realistisk chance for mindst én bonustrigger anbefaler vi 500+ spins (2.000+ kr.). Tabsstop ved 60 % af startkapitalen – højere end normalt pga. den reelle mulighed for comeback-gevinster.</p>
           <p className="text-muted-foreground leading-relaxed">Husk altid <Link to="/ansvarligt-spil" className={linkClass}>ansvarligt spil</Link>-principper. Wanted's ekstremt volatile profil gør det til et af de mest risikofyldte slot-valg på markedet. Spil KUN med penge, du har råd til at tabe, og sæt ufravigelige grænser FØR du starter. Udforsk vores <Link to="/casinospil/spillemaskiner" className={linkClass}>spillemaskineguide</Link> for at finde slots med mere balancerede risikoprofiler, og besøg <Link to="/free-spins" className={linkClass}>free spins</Link>-siden for aktuelle tilbud.</p>
         </section>
 
-        <section className="mb-10">
-          <h2 className="text-2xl font-bold mb-4 flex items-center gap-2"><Trophy className="h-5 w-5 text-primary" />Dead or Wild – Hacksaws Signaturtitel</h2>
+        <Separator className="my-10" />
+
+        <section className="mb-12">
+          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><Trophy className="h-7 w-7 text-primary" /> Dead or Wild – Hacksaws Signaturtitel</h2>
           <p className="text-muted-foreground mb-4 leading-relaxed">Wanted Dead or a Wild er Hacksaw Gaming's definerende slot – en titel, der etablerede studiet som en seriøs kraft i high-volatility segmentet. For danske spillere med stor bankroll og høj risikotolerance tilbyder den en unik, adrenalin-drevet oplevelse, der få andre slots kan matche.</p>
           <p className="text-muted-foreground leading-relaxed">Men for de fleste spillere er Wanted for volatil. Kend dine grænser, forstå matematikken, og vælg et spil, der matcher din risikoprofil – ikke dit ego. Udforsk <Link to="/casinospil" className={linkClass}>flere casinospil</Link> for at finde din ideelle match.</p>
         </section>
 
-        <Separator className="my-8" />
+        <Separator className="my-10" />
         <AuthorBio author="kevin" />
         <RelatedGuides currentPath="/casinospil/spillemaskiner/wanted-dead-or-a-wild" />
         <FAQSection title="Ofte Stillede Spørgsmål om Wanted Dead or a Wild" faqs={wantedFaqs} />
-      </article>
+      </div>
     </>
   );
 };
