@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import heroImage from "@/assets/heroes/eye-of-horus-hero.jpg";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { AuthorBio } from "@/components/AuthorBio";
 import { FAQSection } from "@/components/FAQSection";
@@ -56,6 +57,9 @@ const EyeOfHorusGuide = () => {
 
       <div className="container py-8 md:py-12">
         <AuthorMetaBar author="jonas" date="2026-02-18" readTime="18 min" />
+        <div className="mb-10 overflow-hidden rounded-xl">
+          <img src={heroImage} className="w-full h-auto object-cover max-h-[400px]" alt="Eye of Horus spillemaskine" />
+        </div>
 
         <section className="mb-10">
           <h2 className="text-2xl font-bold mb-4 flex items-center gap-2"><TrendingUp className="h-5 w-5 text-primary" />Fra Spillehal til Online: Eye of Horus' Rejse</h2>

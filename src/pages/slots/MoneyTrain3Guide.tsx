@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import heroImage from "@/assets/heroes/money-train-3-hero.jpg";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { AuthorBio } from "@/components/AuthorBio";
 import { FAQSection } from "@/components/FAQSection";
@@ -111,6 +112,9 @@ const MoneyTrain3Guide = () => {
 
       <div className="container py-8 md:py-12">
         <AuthorMetaBar author="jonas" date="2026-02-18" readTime="20 min" />
+        <div className="mb-10 overflow-hidden rounded-xl">
+          <img src={heroImage} className="w-full h-auto object-cover max-h-[400px]" alt="Money Train 3 spillemaskine" />
+        </div>
 
         {/* ── Bonusfunktioner først (Anti-template: Bonus First) ── */}
         <section className="mb-10">
