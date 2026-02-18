@@ -3,25 +3,15 @@ import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { AuthorBio } from "@/components/AuthorBio";
 import { FAQSection } from "@/components/FAQSection";
 import { SEO } from "@/components/SEO";
-import { buildFaqSchema } from "@/lib/seo";
+import { buildFaqSchema, buildArticleSchema, SITE_URL } from "@/lib/seo";
 import bonusUdenIndbetalingHero from "@/assets/heroes/bonus-uden-indbetaling-hero.jpg";
 import { InlineCasinoCards } from "@/components/InlineCasinoCards";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "@/components/ui/accordion";
-import {
   Sparkles,
   ShieldCheck,
-  HelpCircle,
-  User,
-  CalendarDays,
-  BookOpen,
   CheckCircle2,
   AlertTriangle,
   Gift,
@@ -40,34 +30,80 @@ import {
   Users,
   Star,
   Zap,
+  Calculator,
+  BookOpen,
+  Eye,
+  Flame,
+  Trophy,
+  ArrowRight,
+  Info,
 } from "lucide-react";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
 import { RelatedGuides } from "@/components/RelatedGuides";
+import type { ReactNode } from "react";
 
-const bonusUdenIndbetalingFaqs = [
+const linkClass = "text-primary underline hover:text-primary/80";
+
+const bonusUdenIndbetalingFaqs: { question: string; answer: ReactNode }[] = [
   {
-    question: "Hvor stor er en typisk no deposit bonus hos danske casinoer?",
-    answer: "No deposit bonusser i Danmark er typisk beskedne: 25-100 kr. i bonuspenge eller 10-50 free spins. Beløbet er lavt fordi casinoet ikke har nogen garanti for at spilleren nogensinde indbetaler. Til gengæld er risikoen nul for spilleren – du kan teste casinoet helt gratis. De mest generøse no deposit tilbud inkluderer 50 free spins på populære slots som Starburst eller Book of Dead. Husk at gevinsterne næsten altid er underlagt omsætningskrav (typisk 10x i Danmark) og et gevinstloft.",
+    question: "Hvad er den matematiske forventningsværdi af en no deposit bonus på 50 kr.?",
+    answer: (
+      <>
+        Med en typisk no deposit bonus på 50 kr. og 10x omsætningskrav skal du satse for 500 kr. Med en gennemsnitlig RTP på 96% taber du statistisk 20 kr. under omsætningen, hvilket efterlader dig med 30 kr. i forventet værdi – men det er før gevinstloftet. Med et loft på 500 kr. og variansen fra slots er den reelle EV typisk 15-25 kr. Til sammenligning har en <Link to="/indskudsbonus" className={linkClass}>indskudsbonus</Link> en højere nominel værdi, men kræver din egen indbetaling. No deposit bonussens EV er lavere, men risikoen er nul.
+      </>
+    ),
   },
   {
-    question: "Hvad er et realistisk gevinstloft på en bonus uden indbetaling?",
-    answer: "Gevinstloftet på no deposit bonusser ligger typisk mellem 200 og 1.000 kr. hos danske casinoer. Det betyder at selvom du vinder 5.000 kr. med dine gratis spins, kan du højst hæve det fastsatte maksimum. Loftet eksisterer fordi casinoet ellers ville have en uholdbar risiko. Nogle casinoer har progressive lofter: jo mere du efterfølgende indbetaler, desto højere gevinstloft. Tjek altid vilkårene – et lavt gevinstloft (under 500 kr.) reducerer den reelle værdi af bonussen markant.",
+    question: "Kan man leve af no deposit bonusser?",
+    answer: (
+      <>
+        Nej, det er hverken realistisk eller tilsigtet. Selv med optimal strategi – det vil sige at oprette konti hos alle danske casinoer med no deposit tilbud – vil den samlede forventede indtjening være 500-2.000 kr. totalt (engangsbonusser). No deposit bonusser er et markedsføringsværktøj, ikke en indtægtskilde. Du kan kun modtage én bonus per casino via MitID-verifikation. Se dem som en risikofri måde at teste <Link to="/nye-casinoer" className={linkClass}>nye casinoer</Link> – ikke som en forretningsmodel.
+      </>
+    ),
   },
   {
-    question: "Kan jeg få flere no deposit bonusser på forskellige casinoer?",
-    answer: "Ja, du kan oprette konti hos flere danske casinoer og modtage en no deposit bonus hos hver. Der er ingen lovmæssig begrænsning på dette. Dog kan du kun modtage én no deposit bonus per casino – forsøg på at oprette flere konti hos samme casino er et brud på vilkårene og kan resultere i kontolukning og konfiskering af gevinster. Strategisk set er det fornuftigt at teste 2-3 casinoer med no deposit bonusser for at finde det casino der passer dig bedst, før du foretager din første indbetaling.",
+    question: "Hvorfor er gevinstloftet den vigtigste faktor ved no deposit bonusser?",
+    answer: (
+      <>
+        Gevinstloftet begrænser den maksimale udbetaling fra din bonus. Selv hvis du vinder 10.000 kr. med dine gratis spins, kan du typisk kun hæve 500-1.000 kr. Loftet reducerer bonussens EV markant: en bonus med 1.000 kr. gevinstloft er matematisk dobbelt så værdifuld som en med 500 kr. loft (alt andet lige). Kombiner altid loft-vurderingen med <Link to="/omsaetningskrav" className={linkClass}>omsætningskravene</Link> – et lavt loft med høj omsætning er det dårligste scenarie.
+      </>
+    ),
   },
   {
-    question: "Skal jeg afgive kortoplysninger for at modtage en bonus uden indbetaling?",
-    answer: "Det varierer. Nogle danske casinoer kræver at du tilknytter en betalingsmetode under registreringen, selvom du ikke indbetaler. Andre kræver kun MitID-verifikation. Kravet om betalingsmetode er dels for aldersverifikation, dels for at forenkle fremtidige indbetalinger. Du bliver aldrig debiteret automatisk – en indbetaling kræver altid dit aktive samtykke. Hvis du er usikker, kan du bruge Trustly eller MobilePay som bekræftelse, da disse metoder ikke gemmer kortoplysninger hos casinoet.",
+    question: "Hvad er forskellen på no deposit bonuspenge og no deposit free spins?",
+    answer: (
+      <>
+        No deposit bonuspenge (f.eks. 50 kr. gratis) giver fleksibilitet – du vælger selv spil og indsats inden for vilkårene. No deposit <Link to="/free-spins" className={linkClass}>free spins</Link> er fastlåst til én specifik automat med en fast spinværdi (typisk 1-2 kr.). Free spins har ofte lavere omsætningskrav (5-10x på gevinsten) end bonuspenge (10x på hele beløbet). Matematisk har bonuspenge højere EV på grund af fleksibiliteten, men free spins er enklere at forstå og bruge. Valget afhænger af din erfaring og spillestil.
+      </>
+    ),
   },
   {
-    question: "Hvornår udløber en no deposit bonus?",
-    answer: "No deposit bonusser har typisk en kort gyldighedsperiode: 24 timer til 7 dage efter aktivering. Free spins-versioner har ofte endnu kortere frister – nogle skal bruges inden for 24 timer. Omsætningskravene skal også opfyldes inden for denne periode. Ubrugte free spins eller bonuspenge forsvinder automatisk efter fristen. Sæt en påmindelse på din telefon, så du ikke mister din bonus. Nogle casinoer giver forlængelse ved henvendelse til kundeservice, men det er undtagelsen snarere end reglen.",
+    question: "Skal man afgive kortoplysninger for at modtage en bonus uden indbetaling?",
+    answer: "Det varierer. Nogle danske casinoer kræver at du tilknytter en betalingsmetode under registreringen, selvom du ikke indbetaler. Andre kræver kun MitID-verifikation. Kravet om betalingsmetode er dels for aldersverifikation, dels for at forenkle fremtidige indbetalinger. Du bliver aldrig debiteret automatisk – en indbetaling kræver altid dit aktive samtykke. Brug Trustly eller MobilePay som bekræftelse, da disse metoder ikke gemmer kortoplysninger hos casinoet.",
   },
   {
-    question: "Hvad er forskellen på no deposit free spins og no deposit bonuspenge?",
-    answer: "No deposit free spins giver dig et bestemt antal gratis spins på en specifik spilleautomat – du har ingen kontrol over spilvalget. No deposit bonuspenge (f.eks. 50 kr. gratis) giver dig frihed til at vælge mellem et bredere udvalg af spil. Free spins har typisk lavere omsætningskrav (ofte 5-10x på gevinsten) end bonuspenge (typisk 10x på hele beløbet). Begge har gevinstlofter. For nybegyndere er free spins enklere – du trykker bare spin. For erfarne spillere er bonuspenge mere fleksible.",
+    question: "Hvornår udløber en no deposit bonus typisk?",
+    answer: (
+      <>
+        No deposit bonusser har typisk en kort gyldighedsperiode: 24 timer til 7 dage efter aktivering. Free spins-versioner har ofte endnu kortere frister – nogle skal bruges inden for 24 timer. <Link to="/omsaetningskrav" className={linkClass}>Omsætningskravene</Link> skal også opfyldes inden for denne periode. Sæt en påmindelse, så du ikke mister din bonus. Den korte frist er et bevidst designvalg: casinoet ønsker hurtig aktivitet og konvertering til indbetalende spiller.
+      </>
+    ),
+  },
+  {
+    question: "Er no deposit bonusser bedre hos nye casinoer end hos etablerede?",
+    answer: (
+      <>
+        Generelt ja. <Link to="/nye-casinoer" className={linkClass}>Nye casinoer</Link> bruger no deposit bonusser aggressivt som kundeakkviseringsværktøj, hvilket typisk giver bedre vilkår: lavere omsætningskrav (1-5x vs. 10x), højere gevinstlofter og flere free spins. Etablerede casinoer har sjældnere no deposit tilbud, da de allerede har en kundebase. Se vores guide til <Link to="/nye-casinoer/bonus-uden-indbetaling" className={linkClass}>nye casinoer med bonus uden indbetaling</Link> for de seneste tilbud.
+      </>
+    ),
+  },
+  {
+    question: "Hvad siger Spillemyndigheden om no deposit bonusser?",
+    answer: (
+      <>
+        Spillemyndigheden regulerer no deposit bonusser under de generelle bonusregler: max 10x omsætningskrav, klar markedsføring og gennemsigtige vilkår. Casinoet skal tydeligt angive alle betingelser før du accepterer. Vildledende markedsføring af "gratis" bonusser uden at nævne begrænsninger kan resultere i bøder. Danske no deposit bonusser er derfor mere gennemsigtige end udenlandske, men du skal stadig selv læse vilkårene grundigt.
+      </>
+    ),
   },
 ];
 
@@ -77,23 +113,21 @@ const BonusUdenIndbetaling = () => {
 
   const faqJsonLd = buildFaqSchema(bonusUdenIndbetalingFaqs);
 
-  const articleJsonLd = {
-    "@context": "https://schema.org",
-    "@type": "Article",
+  const articleJsonLd = buildArticleSchema({
     headline: "Bonus uden Indbetaling – No Deposit Bonus Guide 2026",
-    description: "Komplet guide til bonus uden indbetaling hos danske casinoer. Typer, betingelser og strategier.",
-    author: { "@type": "Organization", name: "Casinoaftaler" },
-    publisher: { "@type": "Organization", name: "Casinoaftaler" },
+    description: "Komplet teknisk guide til bonus uden indbetaling hos danske casinoer. EV-analyse, regneeksempler, strategier og juridisk perspektiv.",
+    url: `${SITE_URL}/bonus-uden-indbetaling`,
     datePublished: "2025-06-01",
-    dateModified: "2026-02-11",
-    mainEntityOfPage: "https://casinoaftaler.dk/bonus-uden-indbetaling",
-  };
+    dateModified: "2026-02-18",
+    authorName: "Jonas",
+    authorUrl: `${SITE_URL}/forfatter/jonas`,
+  });
 
   return (
     <>
       <SEO
-        title="Bonus uden Indbetaling – Bedste No Deposit Bonusser"
-        description="Komplet guide til bonus uden indbetaling hos danske casinoer. Lær hvordan no deposit bonusser fungerer, typer, betingelser og strategier for at maksimere din bonus."
+        title="Bonus uden Indbetaling – No Deposit Bonus Guide (2026)"
+        description="Komplet teknisk guide til no deposit bonus hos danske casinoer. EV-analyse, regneeksempler, faldgruber og strategier for at maksimere din bonus uden indbetaling."
         jsonLd={[faqJsonLd, articleJsonLd]}
       />
 
@@ -111,172 +145,96 @@ const BonusUdenIndbetaling = () => {
         <div className="container">
           <div className="mx-auto max-w-3xl text-center">
             <Badge variant="secondary" className="mb-4">
-              <Sparkles className="mr-1.5 h-3.5 w-3.5" />
-              Opdateret Februar 2026
+              <Calculator className="mr-1.5 h-3.5 w-3.5" />
+              Teknisk Analyse – Februar 2026
             </Badge>
             <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">
               Bonus uden Indbetaling
             </h1>
             <p className="text-lg text-white/80">
-              En bonus uden indbetaling giver dig mulighed for at spille
-              helt gratis. Lær hvordan no deposit bonusser fungerer,
-              hvilke typer der findes, og hvordan du får mest ud af dem.
+              Nul risiko, reel gevinst? Vi dissekerer no deposit bonussens matematik, afslører gevinstloftets skjulte effekt og viser dig præcis, hvornår en gratis bonus faktisk er pengene værd.
             </p>
           </div>
         </div>
       </section>
 
       <div className="container py-8 md:py-12">
-        <AuthorMetaBar author="jonas" date="11-02-2026" readTime="10 Min." />
+        <AuthorMetaBar author="jonas" date="18-02-2026" readTime="14 Min." />
 
         <div className="mb-10 overflow-hidden rounded-xl">
-          <img src={bonusUdenIndbetalingHero} alt="Bonus uden indbetaling – gratis casino bonus" className="w-full h-auto object-cover max-h-[400px]" loading="eager" />
+          <img src={bonusUdenIndbetalingHero} alt="Bonus uden indbetaling – teknisk analyse af no deposit bonusser i Danmark 2026" className="w-full h-auto object-cover max-h-[400px]" loading="eager" />
         </div>
 
         {/* Cross-link to nye casinoer sub */}
         <div className="mb-8 rounded-lg border border-primary/30 bg-accent/30 p-4">
           <p className="text-sm text-muted-foreground">
             <strong>Leder du efter nye casinoer med bonus uden indbetaling?</strong>{" "}
-            Se vores dedikerede guide til <Link to="/nye-casinoer/bonus-uden-indbetaling" className="text-primary underline hover:text-primary/80">nye casinoer med bonus uden indbetaling</Link>, hvor vi fokuserer specifikt på de nyeste spillesteder med gratis no-deposit bonusser.
+            Se vores dedikerede guide til <Link to="/nye-casinoer/bonus-uden-indbetaling" className={linkClass}>nye casinoer med bonus uden indbetaling</Link>, hvor vi fokuserer specifikt på de nyeste spillesteder med gratis no-deposit bonusser.
           </p>
         </div>
 
-        {/* Intro */}
+        {/* === SEKTION 1: Hvad er en no deposit bonus – mekanisk breakdown === */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold">
-            Kan man virkelig vinde penge uden at risikere en krone?
+            Hvad er en bonus uden indbetaling – og hvordan fungerer mekanikken?
           </h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
-            Det lyder for godt til at være sandt – og svaret er nuanceret. En no deposit bonus (bonus uden indbetaling) giver dig{" "}
-            <Link to="/free-spins" className="text-primary underline hover:text-primary/80">
-              gratis spins
-            </Link>{" "}
-            eller et mindre pengebeløb blot for at oprette en konto. Risikoen er nul for dig, men gevinstpotentialet er begrænset af vilkårene.
+            En bonus uden indbetaling – også kaldet no deposit bonus – er et casinotilbud, hvor du modtager gratis spillemidler blot ved at oprette en konto. Du skal ikke indsætte penge. Konceptet er enkelt: casinoet tager den fulde risiko, og du får en risikofri prøvetur. Men bag den simple facade gemmer sig en præcis mekanisk struktur, som afgør bonussens reelle værdi.
           </p>
           <p className="mb-4 text-muted-foreground leading-relaxed">
-            Denne bonustype er særligt populær, fordi den giver dig
-            mulighed for at afprøve casinoets spiludvalg uden økonomisk
-            risiko. Gevinster fra en no deposit bonus er dog typisk
-            underlagt{" "}
-            <Link to="/omsaetningskrav" className="text-primary underline hover:text-primary/80">
-              omsætningskrav
-            </Link>
-            . Foretrækker du en bonus hvor du beholder alt med det samme,
-            kan en{" "}
-            <Link to="/bonus-uden-omsaetningskrav" className="text-primary underline hover:text-primary/80">
-              bonus uden omsætningskrav
-            </Link>{" "}
-            være et bedre valg. Ønsker du i stedet at maksimere din
-            indbetaling, er en{" "}
-            <Link to="/indskudsbonus" className="text-primary underline hover:text-primary/80">
-              indskudsbonus
-            </Link>{" "}
-            eller{" "}
-            <Link to="/velkomstbonus" className="text-primary underline hover:text-primary/80">
-              velkomstbonus
-            </Link>{" "}
-            værd at overveje.
+            Teknisk set fungerer en no deposit bonus via en bonuskonto, der er adskilt fra din rigtige saldo. Når du opretter din konto og verificerer via MitID, krediteres bonusmidlerne automatisk – eller du aktiverer dem med en bonuskode. Fra dette øjeblik starter tidsfristen, og alle vilkår træder i kraft. Dine indsatser trækkes fra bonuskontoen, og gevinster tilføjes samme konto. Først når <Link to="/omsaetningskrav" className={linkClass}>omsætningskravene</Link> er opfyldt, overføres midlerne til din udbetalbare saldo.
+          </p>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            I modsætning til en <Link to="/indskudsbonus" className={linkClass}>indskudsbonus</Link> eller <Link to="/velkomstbonus" className={linkClass}>velkomstbonus</Link> kræver en no deposit bonus ingen indbetaling overhovedet. Det adskiller den fundamentalt fra alle andre bonustyper: din egen saldo er altid nul, så du kan aldrig tabe egne penge. Til gengæld kompenserer casinoet med strammere vilkår – især gevinstlofter, som vi analyserer nedenfor.
           </p>
           <p className="text-muted-foreground leading-relaxed">
-            Sammenlign alle bonuskategorier i vores{" "}
-            <Link to="/casino-bonus" className="text-primary underline hover:text-primary/80">
-              komplette casino bonus guide
-            </Link>
-            , eller prøv bonusmekanikker gratis i vores{" "}
-            <Link to="/community/slots" className="text-primary underline hover:text-primary/80">
-              spillehal
-            </Link>{" "}
-            – helt uden indbetaling.
+            Forskellen til en <Link to="/no-sticky-bonus" className={linkClass}>no-sticky bonus</Link> er også vigtig at forstå: ved en no-sticky bonus indbetaler du og har to separate saldi (din egen + bonus). Ved en no deposit bonus eksisterer kun bonussaldoen. Det betyder at hele din spilaktivitet sker på casinoets penge – en unik mekanisme i bonusverdenen.
           </p>
         </section>
 
-        <InlineCasinoCards title="Casinoer med bonus uden indbetaling" count={4} />
+        <InlineCasinoCards title="Casinoer med no deposit bonus" count={4} />
 
         <Separator className="my-10" />
 
-        {/* Sådan fungerer det */}
+        {/* === SEKTION 2: Aktiveringsprocessen step-by-step === */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold">
-            Sådan fungerer bonusser uden indbetaling
+            Aktiveringsprocessen: fra oprettelse til bonus
           </h2>
           <p className="mb-6 text-muted-foreground leading-relaxed">
-            For at modtage en bonus uden indbetaling kræver det typisk,
-            at du er ny spiller og opretter en konto hos et online casino.
-            Når din konto er aktiv, krediteres bonussen automatisk – eller
-            du skal indtaste en bonuskode for at aktivere den.
+            Processen for at modtage en no deposit bonus er standardiseret på det danske marked, men der er nuancer, som kan koste dig bonussen, hvis du overser dem:
           </p>
 
           <div className="space-y-4">
-            <Card className="border-border bg-card">
-              <CardHeader className="pb-2">
-                <CardTitle className="flex items-center gap-2 text-lg">
-                  <Gift className="h-5 w-5 text-primary" />
-                  Gratis spins ved registrering
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-sm text-muted-foreground leading-relaxed">
-                  Mange casinoer tilbyder gratis spins på populære
-                  spilleautomater ved oprettelse. F.eks. 20 gratis spins
-                  på Book of Dead, hvor gevinster kan gå ind som kontanter
-                  uden yderligere omsætningskrav.
-                </p>
-              </CardContent>
-            </Card>
-
-            <Card className="border-border bg-card">
-              <CardHeader className="pb-2">
-                <CardTitle className="flex items-center gap-2 text-lg">
-                  <Coins className="h-5 w-5 text-primary" />
-                  Gratis kontanter
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-sm text-muted-foreground leading-relaxed">
-                  Nogle casinoer indsætter et fast kontantbeløb – typisk
-                  mellem 50 og 200 kr. – direkte på din spillekonto. Du
-                  kan frit vælge, hvilke spil du vil bruge pengene på,
-                  inden for bonussens vilkår.
-                </p>
-              </CardContent>
-            </Card>
-
-            <Card className="border-border bg-card">
-              <CardHeader className="pb-2">
-                <CardTitle className="flex items-center gap-2 text-lg">
-                  <DollarSign className="h-5 w-5 text-primary" />
-                  Kombineret med velkomstbonus
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-sm text-muted-foreground leading-relaxed">
-                  Ofte kombineres no deposit bonussen med en klassisk{" "}
-                  <Link to="/velkomstbonus" className="text-primary underline hover:text-primary/80">
-                    velkomstbonus
-                  </Link>
-                  . Du starter med gratis spins eller
-                  kontanter, og når den risikofri runde er overstået,
-                  venter en{" "}
-                  <Link to="/indskudsbonus" className="text-primary underline hover:text-primary/80">
-                    matchbonus (indskudsbonus)
-                  </Link>{" "}
-                  på din første indbetaling.
-                </p>
-              </CardContent>
-            </Card>
+            {[
+              { step: "1", title: "Opret konto via MitID", desc: "Alle danske casinoer kræver MitID-verifikation ved oprettelse. Det sikrer at du er 18+ og bosiddende i Danmark. Processen tager 2-5 minutter. Vigtigt: nogle casinoer krediterer bonussen automatisk efter MitID-godkendelse, mens andre kræver at du aktivt accepterer bonussen i din profil." },
+              { step: "2", title: "Bonusaktivering", desc: "Enten krediteres bonussen automatisk, eller du skal indtaste en bonuskode. Tjek altid om der er en kode – springer du dette trin over, kan du miste bonussen permanent. Nogle casinoer kræver at du kontakter kundeservice for at aktivere no deposit tilbud." },
+              { step: "3", title: "Tidsfristen starter", desc: "Fra aktiveringsøjeblikket tæller uret. Typisk 24 timer til 7 dage for no deposit bonusser – markant kortere end de 30-60 dage ved indskudsbonusser. Alt skal gennemspilles inden fristen, inklusive omsætningskrav." },
+              { step: "4", title: "Spil og omsætning", desc: "Du spiller med bonusmidlerne og forsøger at opfylde omsætningskravene (typisk 1-10x i Danmark). Kun godkendte spil tæller med. Hvis du overskrider maks-indsatsen, kan casinoet konfiskere bonussen og alle gevinster." },
+              { step: "5", title: "Udbetaling eller indbetaling", desc: "Når omsætningen er opfyldt, kan du hæve op til gevinstloftet. Nogle casinoer kræver en minimumsindbetaling (typisk 50-100 kr.) før første udbetaling – selv fra en no deposit bonus. Tjek dette i vilkårene." },
+            ].map((item) => (
+              <div key={item.step} className="flex items-start gap-4 rounded-lg border border-border bg-card p-4">
+                <div className="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full bg-primary text-primary-foreground font-bold text-sm">
+                  {item.step}
+                </div>
+                <div>
+                  <h3 className="font-semibold">{item.title}</h3>
+                  <p className="text-sm text-muted-foreground">{item.desc}</p>
+                </div>
+              </div>
+            ))}
           </div>
         </section>
+
         <Separator className="my-10" />
 
-        {/* Typer af no deposit bonusser */}
+        {/* === SEKTION 3: Typer af no deposit bonusser – teknisk dybde === */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold">
-            Typer af no deposit bonusser
+            Fire varianter af no deposit bonusser – og deres matematiske profiler
           </h2>
           <p className="mb-6 text-muted-foreground leading-relaxed">
-            Der findes flere varianter af bonusser uden indbetaling. Hver
-            type har sine unikke fordele, og det kan hjælpe dig at vælge
-            det tilbud, der passer bedst til din spillestil.
+            Ikke alle no deposit bonusser er skabt lige. Hver variant har sin egen risiko/reward-profil, og det er afgørende at forstå forskellen for at vælge korrekt. Her er de fire hovedtyper og deres tekniske karakteristika:
           </p>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -284,15 +242,15 @@ const BonusUdenIndbetaling = () => {
               <CardHeader className="pb-2">
                 <CardTitle className="flex items-center gap-2 text-lg">
                   <Sparkles className="h-5 w-5 text-primary" />
-                  Free spins uden indbetaling
+                  No deposit free spins
                 </CardTitle>
               </CardHeader>
               <CardContent>
+                <p className="text-sm text-muted-foreground leading-relaxed mb-2">
+                  Du modtager 10-50 <Link to="/free-spins" className={linkClass}>gratis spins</Link> på en specifik spilleautomat ved oprettelse. Spinværdien er fast (typisk 1-2 kr.) og kan ikke ændres. Gevinster fra spinsene krediteres din bonuskonto og er underlagt omsætningskrav.
+                </p>
                 <p className="text-sm text-muted-foreground leading-relaxed">
-                  Den mest populære variant. Du modtager gratis spins på
-                  udvalgte spilleautomater. Antallet varierer fra 10 til
-                  100 spins, og værdien svarer typisk til minimumindsatsen
-                  på det pågældende spil.
+                  <strong>EV-profil:</strong> Lav varians, forudsigelig. 25 free spins á 2 kr. = 50 kr. nominel værdi. Med 96% RTP og 10x omsætning: EV ≈ 10-15 kr. Fordelen er enkelhed – ulempen er nul kontrol over spilvalg.
                 </p>
               </CardContent>
             </Card>
@@ -301,15 +259,15 @@ const BonusUdenIndbetaling = () => {
               <CardHeader className="pb-2">
                 <CardTitle className="flex items-center gap-2 text-lg">
                   <Coins className="h-5 w-5 text-primary" />
-                  Gratis kontant bonus
+                  No deposit bonuspenge
                 </CardTitle>
               </CardHeader>
               <CardContent>
+                <p className="text-sm text-muted-foreground leading-relaxed mb-2">
+                  Casinoet krediterer et kontantbeløb (typisk 50-200 kr.) til din bonuskonto. Du vælger selv spil og indsatsstørrelse inden for vilkårene. Giver markant mere fleksibilitet end free spins.
+                </p>
                 <p className="text-sm text-muted-foreground leading-relaxed">
-                  Casinoet indsætter et kontantbeløb på din konto. Giver
-                  mere fleksibilitet end free spins, da du selv kan vælge
-                  spil. Beløbet er typisk mellem 50–200 kr. med tilhørende
-                  omsætningskrav.
+                  <strong>EV-profil:</strong> Variabel – afhænger af dit spilvalg. Med 100 kr. bonus, 10x omsætning og optimal spiludvælgelse (Blood Suckers, RTP 98%): EV ≈ 40-50 kr. Med dårligt spilvalg (RTP 94%): EV ≈ 15-20 kr. Fleksibiliteten giver erfarne spillere en fordel.
                 </p>
               </CardContent>
             </Card>
@@ -318,15 +276,15 @@ const BonusUdenIndbetaling = () => {
               <CardHeader className="pb-2">
                 <CardTitle className="flex items-center gap-2 text-lg">
                   <Star className="h-5 w-5 text-primary" />
-                  Loyalitetsbonusser
+                  No deposit cashback
                 </CardTitle>
               </CardHeader>
               <CardContent>
+                <p className="text-sm text-muted-foreground leading-relaxed mb-2">
+                  En sjælden variant: casinoet tilbagebetaler en procentdel af dine tab i den første periode – uden at du har indbetalt. Typisk 10-25% cashback på de første 24-48 timers spil.
+                </p>
                 <p className="text-sm text-muted-foreground leading-relaxed">
-                  Belønner eksisterende spillere for engagement. Du
-                  optjener point ved at spille, som kan veksles til gratis
-                  spins eller kontantbonusser. Jo højere rang i
-                  loyalitetsprogrammet, desto bedre belønninger.
+                  <strong>EV-profil:</strong> Unik – cashback reducerer din nedsiderisiko. Med 25% cashback på en 200 kr. bonus: din effektive RTP stiger fra 96% til 97%. Sjælden i Danmark, men den mest spillervenlige variant.
                 </p>
               </CardContent>
             </Card>
@@ -334,16 +292,16 @@ const BonusUdenIndbetaling = () => {
             <Card className="border-border bg-card">
               <CardHeader className="pb-2">
                 <CardTitle className="flex items-center gap-2 text-lg">
-                  <Zap className="h-5 w-5 text-primary" />
-                  VIP-bonusser
+                  <Gift className="h-5 w-5 text-primary" />
+                  Kombineret no deposit pakke
                 </CardTitle>
               </CardHeader>
               <CardContent>
+                <p className="text-sm text-muted-foreground leading-relaxed mb-2">
+                  Nogle casinoer kombinerer free spins + bonuspenge – f.eks. 25 free spins + 50 kr. gratis. Hver del kan have separate vilkår og omsætningskrav. Det giver den bedste samlede nominelle værdi.
+                </p>
                 <p className="text-sm text-muted-foreground leading-relaxed">
-                  Eksklusive tilbud til de mest trofaste spillere. Kan
-                  omfatte højere kontantbonusser, adgang til eksklusive
-                  turneringer og personlige gaver – skræddersyet til den
-                  enkelte spillers vaner.
+                  <strong>EV-profil:</strong> Kompleks – du skal beregne EV for hver del separat. Samlet EV er summen minus overlap i gevinstloft (tjek om loftet gælder per del eller samlet). De bedste kombinationspakker tilbyder 100-200 kr. i samlet nominel værdi.
                 </p>
               </CardContent>
             </Card>
@@ -352,85 +310,101 @@ const BonusUdenIndbetaling = () => {
 
         <Separator className="my-10" />
 
-        {/* Betingelser */}
+        {/* === SEKTION 4: Regneeksempler === */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold">
-            Betingelser og vilkår for bonus uden indbetaling
+            Regneeksempler: den reelle værdi af en no deposit bonus
           </h2>
           <p className="mb-6 text-muted-foreground leading-relaxed">
-            Selvom bonusser uden indbetaling er "gratis", kommer de altid
-            med betingelser. Det er afgørende at forstå disse vilkår for
-            at undgå overraskelser og få mest muligt ud af din bonus.
+            Tal lyver ikke – og i casinobonusverdenen er matematik din bedste ven. Her er fire realistiske scenarier, der viser hvordan en no deposit bonus udspiller sig i praksis. Vi bruger den danske standard: max 10x omsætningskrav.
           </p>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <Card className="border-border bg-card">
+          <div className="space-y-4">
+            <Card className="border-primary/30 bg-card">
               <CardHeader className="pb-2">
                 <CardTitle className="flex items-center gap-2 text-lg">
-                  <BarChart3 className="h-5 w-5 text-primary" />
-                  Omsætningskrav
+                  <Calculator className="h-5 w-5 text-primary" />
+                  Scenarie 1: Standard free spins – gennemsnitligt forløb
                 </CardTitle>
               </CardHeader>
-              <CardContent>
+              <CardContent className="space-y-2">
                 <p className="text-sm text-muted-foreground leading-relaxed">
-                  Det mest almindelige vilkår. Angiver hvor mange gange
-                  bonusbeløbet skal gennemspilles, før gevinster kan
-                  udbetales. I Danmark er loftet 10x takket være
-                  Spillemyndigheden. Læs mere i vores guide til{" "}
-                  <Link to="/omsaetningskrav" className="text-primary underline hover:text-primary/80">
-                    omsætningskrav
-                  </Link>
-                  .
+                  <strong>Bonus:</strong> 25 free spins á 2 kr. på Starburst (RTP: 96,1%) | <strong>Omsætning:</strong> 10x gevinst | <strong>Gevinstloft:</strong> 500 kr.
                 </p>
+                <p className="text-sm text-muted-foreground leading-relaxed">
+                  Du spinner dine 25 gratis spins og vinder i alt 48 kr. (tæt på forventet: 50 kr. × 96,1% = 48,05 kr.). Nu skal du omsætte 48 kr. × 10 = 480 kr. Med minimumindsats på 1 kr. og Starbursts RTP taber du statistisk 480 × 0,039 = 18,72 kr. under omsætningen. Du ender med ca. 29 kr. udbetalbart – under gevinstloftet.
+                </p>
+                <div className="rounded-md bg-accent/40 p-3">
+                  <p className="text-xs font-medium text-muted-foreground">
+                    <strong>Resultat:</strong> ~29 kr. reel værdi | <strong>EV per spin:</strong> ~1,16 kr. | <strong>Tidsforbrug:</strong> ~30-45 min.
+                  </p>
+                </div>
               </CardContent>
             </Card>
 
-            <Card className="border-border bg-card">
+            <Card className="border-primary/30 bg-card">
+              <CardHeader className="pb-2">
+                <CardTitle className="flex items-center gap-2 text-lg">
+                  <TrendingUp className="h-5 w-5 text-primary" />
+                  Scenarie 2: Heldigt forløb – gevinstloftet aktiveres
+                </CardTitle>
+              </CardHeader>
+              <CardContent className="space-y-2">
+                <p className="text-sm text-muted-foreground leading-relaxed">
+                  <strong>Bonus:</strong> 50 kr. bonuspenge | <strong>Omsætning:</strong> 10x (= 500 kr.) | <strong>Gevinstloft:</strong> 1.000 kr.
+                </p>
+                <p className="text-sm text-muted-foreground leading-relaxed">
+                  Du vælger Book of Dead (RTP: 96,2%, høj volatilitet) og rammer en bonusrunde efter 80 kr. satset. Bonusrunden giver 850 kr. i gevinst. Din saldo er nu 820 kr. (50 - 80 + 850). Du fortsætter omsætningen (420 kr. resterende) og ender med 803 kr. – men gevinstloftet er 1.000 kr., så du kan hæve hele beløbet.
+                </p>
+                <div className="rounded-md bg-accent/40 p-3">
+                  <p className="text-xs font-medium text-muted-foreground">
+                    <strong>Resultat:</strong> 803 kr. (under loftet) | <strong>Sandsynlighed:</strong> ~5-8% af spillere oplever dette | <strong>Nøgle:</strong> Høj volatilitet giver større vinderchance – men også hurtigere bust.
+                  </p>
+                </div>
+              </CardContent>
+            </Card>
+
+            <Card className="border-primary/30 bg-card">
+              <CardHeader className="pb-2">
+                <CardTitle className="flex items-center gap-2 text-lg">
+                  <AlertTriangle className="h-5 w-5 text-primary" />
+                  Scenarie 3: Bust – bonussen tabes under omsætning
+                </CardTitle>
+              </CardHeader>
+              <CardContent className="space-y-2">
+                <p className="text-sm text-muted-foreground leading-relaxed">
+                  <strong>Bonus:</strong> 50 kr. bonuspenge | <strong>Omsætning:</strong> 10x (= 500 kr.) | <strong>Gevinstloft:</strong> 500 kr.
+                </p>
+                <p className="text-sm text-muted-foreground leading-relaxed">
+                  Du spiller Gonzo's Quest (RTP: 95,97%) med 5 kr. indsats. Efter 10 spins (50 kr. satset) er din saldo nede på 22 kr. Du skifter til 2 kr. indsats, men efter yderligere 60 kr. satset (total: 110 kr.) er saldoen 0 kr. Du har kun nået 22% af omsætningskravet. Total tab: 0 kr. af dine egne penge – men tid og mental energi er brugt.
+                </p>
+                <div className="rounded-md bg-accent/40 p-3">
+                  <p className="text-xs font-medium text-muted-foreground">
+                    <strong>Resultat:</strong> 0 kr. | <strong>Sandsynlighed:</strong> ~55-65% af spillere buster | <strong>Lektie:</strong> Start med minimumindsats for at maksimere overlevelseschancen.
+                  </p>
+                </div>
+              </CardContent>
+            </Card>
+
+            <Card className="border-primary/30 bg-card">
               <CardHeader className="pb-2">
                 <CardTitle className="flex items-center gap-2 text-lg">
                   <Lock className="h-5 w-5 text-primary" />
-                  Maksimal gevinst
+                  Scenarie 4: Stor gevinst – men gevinstloftet begrænser
                 </CardTitle>
               </CardHeader>
-              <CardContent>
+              <CardContent className="space-y-2">
                 <p className="text-sm text-muted-foreground leading-relaxed">
-                  Mange casinoer begrænser, hvor meget du kan vinde med
-                  din bonus. Selv ved en stor jackpot kan du kun udbetale
-                  op til et fastsat beløb. Resten kan bruges til fortsat
-                  spil.
+                  <strong>Bonus:</strong> 30 free spins á 1 kr. på Sweet Bonanza (RTP: 96,5%) | <strong>Omsætning:</strong> 5x gevinst | <strong>Gevinstloft:</strong> 500 kr.
                 </p>
-              </CardContent>
-            </Card>
-
-            <Card className="border-border bg-card">
-              <CardHeader className="pb-2">
-                <CardTitle className="flex items-center gap-2 text-lg">
-                  <Clock className="h-5 w-5 text-primary" />
-                  Tidsbegrænsning
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
                 <p className="text-sm text-muted-foreground leading-relaxed">
-                  Omsætningskravene skal opfyldes inden for en bestemt
-                  periode – typisk 30–60 dage. Nås fristen ikke,
-                  bortfalder bonussen og alle tilknyttede gevinster.
+                  Du rammer en ekstraordinær multispin-gevinst og vinder 2.300 kr. med dine free spins. Omsætning: 2.300 × 5 = 11.500 kr. Men gevinstloftet er kun 500 kr. – uanset om du gennemfører omsætningen, kan du aldrig hæve mere end 500 kr. I dette tilfælde er det faktisk optimalt at stoppe og bare hæve 500 kr. (hvis vilkårene tillader det).
                 </p>
-              </CardContent>
-            </Card>
-
-            <Card className="border-border bg-card">
-              <CardHeader className="pb-2">
-                <CardTitle className="flex items-center gap-2 text-lg">
-                  <Ban className="h-5 w-5 text-primary" />
-                  Begrænset spilvalg
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-sm text-muted-foreground leading-relaxed">
-                  Din bonus kan kun bruges på bestemte spil. Casinoer
-                  gør dette for at promovere nye spiltitler eller styre,
-                  hvilke spil der kan spilles med bonusmidler.
-                </p>
+                <div className="rounded-md bg-accent/40 p-3">
+                  <p className="text-xs font-medium text-muted-foreground">
+                    <strong>Resultat:</strong> 500 kr. (loftet rammer) | <strong>Tabt potentiale:</strong> 1.800 kr. | <strong>Indsigt:</strong> Gevinstloftet er den reelle begrænsning – ikke omsætningskravet.
+                  </p>
+                </div>
               </CardContent>
             </Card>
           </div>
@@ -438,75 +412,55 @@ const BonusUdenIndbetaling = () => {
 
         <Separator className="my-10" />
 
-        {/* Spillemyndighedens loft */}
+        {/* === SEKTION 5: Sammenligning med andre bonustyper === */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold">
-            Spillemyndighedens loft for omsætningskrav
-          </h2>
-          <p className="mb-4 text-muted-foreground leading-relaxed">
-            I Danmark har Spillemyndigheden sat et loft på maksimalt 10x
-            for{" "}
-            <Link to="/omsaetningskrav" className="text-primary underline hover:text-primary/80">
-              omsætningskrav
-            </Link>
-            . Det betyder, at danske casinoer aldrig kan
-            kræve, at du gennemspiller en bonus mere end 10 gange. Det er
-            en stor fordel for danske spillere sammenlignet med udenlandske
-            markeder.
-          </p>
-          <p className="text-muted-foreground leading-relaxed">
-            På casinoer under MGA eller UKGC-licens findes der intet loft,
-            og omsætningskrav på 20–40x er helt almindelige. I Sverige
-            ligger gennemsnittet på omkring 35x. Det danske loft skaber
-            derfor et markant mere spillervenligt miljø.
-          </p>
-        </section>
-
-        <Separator className="my-10" />
-
-        {/* Strategier */}
-        <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold">
-            Strategier til at maksimere din bonus
+            No deposit bonus vs. andre bonustyper – teknisk sammenligning
           </h2>
           <p className="mb-6 text-muted-foreground leading-relaxed">
-            Med den rette tilgang kan du øge dine chancer for at omsætte
-            en bonus uden indbetaling til reel gevinst. Her er de
-            vigtigste strategier.
+            Hvordan klarer en no deposit bonus sig mod de andre bonustyper i det danske marked? Her er en ærlig sammenligning baseret på EV, risiko og vilkår:
           </p>
 
-          <div className="space-y-3">
+          <div className="space-y-4">
             {[
               {
-                title: "Vælg spil med høj RTP",
-                desc: "Spilleautomater med høj tilbagebetalingsprocent (RTP) giver bedre chancer for at holde din saldo i live. Kig efter spil med RTP over 96% og lav volatilitet.",
-                icon: BarChart3,
+                title: "No deposit bonus vs. indskudsbonus",
+                icon: CreditCard,
+                desc: (
+                  <>
+                    <Link to="/indskudsbonus" className={linkClass}>Indskudsbonussen</Link> kræver din egen indbetaling (typisk 100-1.000 kr.) men giver en matchbonus på 100-200%. EV er markant højere i absolutte tal – en 1.000 kr. 100% match med 10x omsætning giver EV ≈ 800-900 kr. vs. no deposit's 15-30 kr. Men indskudsbonussen har reel risiko: du kan tabe din indbetaling. No deposit bonussen er 100% risikofri. <strong>Konklusion:</strong> Indskudsbonus for erfarne spillere, no deposit for nybegyndere og test.
+                  </>
+                ),
               },
               {
-                title: "Brug små indsatser",
-                desc: "Mindre indsatser forlænger din spilletid og reducerer risikoen for at tømme saldoen for hurtigt. Du når stadig omsætningskravet – det tager bare lidt længere tid.",
-                icon: TrendingUp,
+                title: "No deposit bonus vs. no-sticky bonus",
+                icon: Scale,
+                desc: (
+                  <>
+                    En <Link to="/no-sticky-bonus" className={linkClass}>no-sticky bonus</Link> adskiller din indbetaling fra bonussen, så du altid kan hæve egne penge. EV er typisk 40-60% af bonusbeløbet. No deposit bonussen har lavere EV i kroner, men nul risiko. <strong>Vigtig forskel:</strong> Ved no-sticky kan du stoppe og hæve din egen indbetaling når som helst. Ved no deposit er der intet at hæve, hvis bonussen buster – men du har heller ikke mistet noget.
+                  </>
+                ),
               },
               {
-                title: "Læs vilkårene grundigt",
-                desc: "Forstå omsætningskrav, tidsbegrænsninger og spilrestriktioner, inden du accepterer bonussen. Vær opmærksom på, hvilke spil der tæller med.",
-                icon: CheckCircle2,
+                title: "No deposit bonus vs. bonus uden omsætningskrav",
+                icon: Zap,
+                desc: (
+                  <>
+                    En <Link to="/bonus-uden-omsaetningskrav" className={linkClass}>bonus uden omsætningskrav</Link> giver dig gevinster direkte – ingen gennemspilning. Det giver 100% konvertering af gevinsten (op til gevinstloftet). No deposit bonussen har omsætningskrav, som reducerer EV med 15-40%. <strong>Men:</strong> Bonusser uden omsætningskrav kræver næsten altid en indbetaling. No deposit bonussen er unik i sin nul-risiko-profil.
+                  </>
+                ),
               },
               {
-                title: "Hold øje med kampagner",
-                desc: "Tilmeld dig casinoets nyhedsbrev og følg dem på sociale medier. Sjældne kampagner kan tilbyde ekstraordinær værdi med bonusser uden indbetaling.",
-                icon: Target,
-              },
-              {
-                title: "Implementer stop-loss",
-                desc: "Sæt en grænse for, hvor meget du er villig til at tabe. Jagt aldrig tab, og stop når grænsen er nået. Ansvarligt spil er altid den bedste strategi.",
-                icon: ShieldCheck,
+                title: "No deposit bonus vs. free spins med indbetaling",
+                icon: Sparkles,
+                desc: (
+                  <>
+                    <Link to="/free-spins" className={linkClass}>Free spins</Link> med indbetaling giver typisk 50-200 spins med højere spinværdi (5-10 kr.) vs. no deposit's 10-50 spins á 1-2 kr. Den samlede nominelle værdi er 5-10x højere med indbetaling. <strong>Konklusion:</strong> No deposit free spins er en smagsprøve – indbetalings-free spins er hovedretten.
+                  </>
+                ),
               },
             ].map((item) => (
-              <div
-                key={item.title}
-                className="flex items-start gap-3 rounded-lg border border-border bg-card p-4"
-              >
+              <div key={item.title} className="flex items-start gap-3 rounded-lg border border-border bg-card p-4">
                 <item.icon className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
                 <div>
                   <h3 className="font-semibold">{item.title}</h3>
@@ -519,135 +473,312 @@ const BonusUdenIndbetaling = () => {
 
         <Separator className="my-10" />
 
-        {/* Sammenligning */}
+        {/* === SEKTION 6: Hvem passer no deposit bonusser til? === */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold">
-            No deposit bonus vs. bonus med lavt omsætningskrav
+            Hvilke spillertyper bør vælge en no deposit bonus?
           </h2>
-          <p className="mb-4 text-muted-foreground leading-relaxed">
-            Mens en bonus uden indbetaling tilbyder en risikofri start,
-            kommer den ofte med højere omsætningskrav sammenlignet med
-            bonusser, der kræver en indbetaling. Her er de vigtigste
-            forskelle at overveje.
+          <p className="mb-6 text-muted-foreground leading-relaxed">
+            Ikke alle spillere får lige meget ud af en no deposit bonus. Her er en ærlig vurdering af, hvem der bør – og hvem der ikke bør – prioritere denne bonustype:
           </p>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <Card className="border-border bg-card">
-              <CardHeader className="pb-2">
-                <CardTitle className="flex items-center gap-2 text-lg">
-                  <Gift className="h-5 w-5 text-primary" />
-                  Bonus uden indbetaling
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-sm text-muted-foreground leading-relaxed mb-2">
-                  <strong>Fordele:</strong> Ingen risiko, god til at
-                  udforske nye casinoer og spil risikofrit.
-                </p>
-                <p className="text-sm text-muted-foreground leading-relaxed">
-                  <strong>Ulemper:</strong> Ofte strengere vilkår, lavere
-                  bonusbeløb og maksimal gevinstgrænse.
-                </p>
-              </CardContent>
-            </Card>
 
-            <Card className="border-border bg-card">
-              <CardHeader className="pb-2">
-                <CardTitle className="flex items-center gap-2 text-lg">
-                  <Percent className="h-5 w-5 text-primary" />
-                  Bonus med lavt omsætningskrav
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-sm text-muted-foreground leading-relaxed mb-2">
-                  <strong>Fordele:</strong> Lavere omsætningskrav gør det
-                  lettere at omdanne bonus til rigtige penge.
-                </p>
-                <p className="text-sm text-muted-foreground leading-relaxed">
-                  <strong>Ulemper:</strong> Kræver en initial investering,
-                  hvilket indebærer en vis risiko.
-                </p>
-              </CardContent>
-            </Card>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            {[
+              {
+                title: "Nybegyndere ✅ Anbefalet",
+                icon: Users,
+                desc: "Perfekt til første casinooplevelse. Du lærer mekanikken, tester spil og forstår vilkår – alt uden risiko. Brug bonussen som en uddannelsesøvelse, ikke en profitmulighed.",
+              },
+              {
+                title: "Casino-shoppere ✅ Anbefalet",
+                icon: Eye,
+                desc: "Hvis du vil sammenligne 3-5 casinoer, er no deposit bonusser idéelle. Test spiludvalg, brugervenlighed, udbetalingshastighed og kundeservice på casinoets regning.",
+              },
+              {
+                title: "Bonus-jægere ⚠️ Betinget",
+                icon: Target,
+                desc: "Systematisk indsamling af no deposit bonusser kan generere 500-2.000 kr. totalt, men det kræver 10-20 kontooprettelser og betydelig tid. EV per time er lav (ca. 50-100 kr./time). Kun relevant som supplement til indskudsbonusser.",
+              },
+              {
+                title: "High rollers ❌ Ikke anbefalet",
+                icon: Flame,
+                desc: "Med typiske bonusbeløb på 50-100 kr. og gevinstlofter på 500-1.000 kr. er no deposit bonusser irrelevante for high rollers. Indskudsbonusser eller VIP-programmer tilbyder markant højere værdi.",
+              },
+              {
+                title: "Strategispillere ⚠️ Betinget",
+                icon: Calculator,
+                desc: "Erfarne spillere kan optimere EV ved at vælge højRTP-spil og minimumindsats, men den absolutte gevinst er begrænset af gevinstloftet. Bedre at fokusere energien på indskudsbonusser med lavt omsætningskrav.",
+              },
+              {
+                title: "Casual spillere ✅ Anbefalet",
+                icon: Gamepad2,
+                desc: "For spillere der bare vil have sjov uden risiko er no deposit bonusser perfekte. Du spiller, vinder måske lidt, og har en god oplevelse – alt uden at åbne pungen.",
+              },
+            ].map((item) => (
+              <Card key={item.title} className="border-border bg-card">
+                <CardHeader className="pb-2">
+                  <CardTitle className="flex items-center gap-2 text-lg">
+                    <item.icon className="h-5 w-5 text-primary" />
+                    {item.title}
+                  </CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <p className="text-sm text-muted-foreground leading-relaxed">{item.desc}</p>
+                </CardContent>
+              </Card>
+            ))}
           </div>
         </section>
 
         <Separator className="my-10" />
 
-        {/* Bonus uden indbetaling markedsoverblik */}
+        {/* === SEKTION 7: Typiske faldgruber === */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold">
-            Bonus uden indbetaling i Danmark 2026 – Markedsoverblik
+            Syv faldgruber der kan koste dig din no deposit gevinst
           </h2>
-          <p className="mb-4 text-muted-foreground leading-relaxed">
-            Bonus uden indbetaling – eller no deposit bonus – er et af de mest eftertragtede tilbud blandt danske casinospillere i 2026. Denne type bonus giver dig mulighed for at teste et online casino helt risikofrit, da du ikke behøver at indsætte egne penge for at komme i gang. Det er den ultimative måde at udforske nye casinoer på, og flere danske operatører tilbyder nu attraktive no deposit tilbud.
+          <p className="mb-6 text-muted-foreground leading-relaxed">
+            En no deposit bonus er risikofri i den forstand at du ikke taber egne penge. Men du kan tabe din bonus og potentielle gevinster, hvis du falder i disse fælder:
           </p>
-          <p className="mb-4 text-muted-foreground leading-relaxed">
-            De mest almindelige former for bonus uden indbetaling i Danmark er <Link to="/free-spins" className="text-primary underline hover:text-primary/80">free spins</Link> ved registrering og mindre kontantbonusser (typisk 50-200 kr.). Selvom beløbene er beskedne sammenlignet med en traditionel <Link to="/indskudsbonus" className="text-primary underline hover:text-primary/80">indskudsbonus</Link>, er værdien i den risikofrie karakter – du kan vinde rigtige penge uden at risikere noget.
-          </p>
-          <p className="mb-4 text-muted-foreground leading-relaxed">
-            Vigtige faktorer at vurdere ved en bonus uden indbetaling inkluderer <Link to="/omsaetningskrav" className="text-primary underline hover:text-primary/80">omsætningskrav</Link> (typisk 1x-10x i Danmark), gevinstloft (det maksimale beløb du kan udbetale), og gyldighedsperiode. De bedste no deposit bonusser har lave omsætningskrav og ingen eller høje gevinstlofter, så du har en reel chance for at beholde dine gevinster.
-          </p>
-          <p className="text-muted-foreground leading-relaxed">
-            En bonus uden indbetaling er særligt værdifuld for spillere, der ønsker at sammenligne flere casinoer uden økonomisk forpligtelse. Du kan oprette konti hos flere <Link to="/nye-casinoer" className="text-primary underline hover:text-primary/80">nye casinoer</Link>, modtage deres no deposit tilbud, og vurdere spiludbud, brugervenlighed og kundeservice – alt sammen uden at bruge egne penge. Se hvordan du optjener gratis spins i vores{" "}
-            <Link to="/community/rewards" className="text-primary underline hover:text-primary/80">community Rewards Program</Link>.
-          </p>
-        </section>
 
-        <Separator className="my-10" />
-        <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold">
-            Gratis er ikke det samme som risikofrit
-          </h2>
-          <p className="mb-4 text-muted-foreground leading-relaxed">
-            Selvom en no deposit bonus ikke koster dig penge, kan den stadig koste dig tid og opmærksomhed. Det er let at lade en gratis bonus fungere som indgang til et større forbrug – især hvis du efterfølgende fristes til at indbetale for at hæve gevinster. Vær bevidst om denne dynamik.
-          </p>
-          <p className="text-muted-foreground leading-relaxed">
-            Sæt realistiske forventninger: en no deposit bonus er en gratis prøvetur, ikke en indtægtskilde. Benyt{" "}
-            <a href="https://www.rofus.nu/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline font-medium">ROFUS</a>{" "}
-            til selvudelukkelse og{" "}
-            <a href="https://www.stopspillet.dk/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline font-medium">StopSpillet.dk</a>{" "}
-            for rådgivning. 18+ | Spil ansvarligt.
-          </p>
-        </section>
-
-        <Separator className="my-10" />
-
-        {/* Hvad du bør tage med */}
-        <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold">Hvad du bør tage med</h2>
           <div className="space-y-3">
             {[
               {
-                icon: Gift,
-                title: "Risikofri start",
-                desc: "En bonus uden indbetaling giver dig mulighed for at udforske casinoer og spil helt gratis – uden at sætte egne penge på spil.",
+                title: "1. Overskridelse af maksimumindsatsen",
+                desc: "De fleste no deposit bonusser har en maks-indsatsregel (typisk 25-50 kr. per spin). Overskrider du den – selv én gang – kan casinoet konfiskere hele bonussen og alle gevinster. Tjek ALTID maks-indsatsen før du spiller.",
+                icon: Ban,
               },
               {
-                icon: Scale,
-                title: "Dansk lovgivning beskytter dig",
-                desc: "Spillemyndighedens loft på 10x sikrer rimelige omsætningskrav. In-game gevinster tæller altid med i omsætningen.",
+                title: "2. Udløbet tidsfrist",
+                desc: "No deposit bonusser udløber typisk efter 24 timer til 7 dage. Mange spillere glemmer tidsfristen og mister bonus + gevinster. Sæt en alarm i din telefon det øjeblik du aktiverer bonussen.",
+                icon: Clock,
               },
               {
+                title: "3. Spil der ikke tæller med",
+                desc: "Bordspil, live casino og visse automater tæller ofte 0% mod omsætningskravet. Hvis du spiller blackjack med din no deposit bonus, spilder du den uden at komme tættere på udbetaling.",
+                icon: Gamepad2,
+              },
+              {
+                title: "4. Krav om indbetaling før udbetaling",
+                desc: "Nogle casinoer kræver en minimumsindbetaling (typisk 50-100 kr.) før du kan hæve gevinster fra en no deposit bonus. Det transformerer effektivt bonussen fra 'gratis' til 'prøv billigt'. Tjek dette i vilkårene.",
+                icon: CreditCard,
+              },
+              {
+                title: "5. Ignorering af gevinstloftet",
+                desc: "Gevinstloftet er den hyppigst oversete betingelse. En bonus med 500 kr. gevinstloft er fundamentalt anderledes end en med 2.000 kr. loft – beregn altid din realistiske opside baseret på loftet.",
+                icon: Lock,
+              },
+              {
+                title: "6. Flere konti hos samme casino",
+                desc: "Forsøg på at oprette flere konti for at modtage bonussen flere gange er et klart brud på vilkårene. MitID-verifikation gør det næsten umuligt, og konsekvensen er kontolukning og tab af alle midler.",
                 icon: AlertTriangle,
-                title: "Læs det med småt",
-                desc: "Omsætningskrav, maksimal gevinst, tidsbegrænsninger og spilrestriktioner afgør bonussens reelle værdi.",
               },
               {
-                icon: ShieldCheck,
-                title: "Spil ansvarligt",
-                desc: "Sæt et budget, jagt aldrig tab, og benyt hjælpeværktøjer som StopSpillet.dk og ROFUS ved behov.",
+                title: "7. Bonuskode glemt eller forkert",
+                desc: "Hvis bonussen kræver en kode og du glemmer at indtaste den – eller taster forkert – kan du miste retten til bonussen permanent. Dobbelttjek altid koden, og kontakt support hvis du er i tvivl.",
+                icon: Info,
               },
             ].map((item) => (
-              <div
-                key={item.title}
-                className="flex items-start gap-3 rounded-lg border border-border bg-card p-4"
-              >
+              <div key={item.title} className="flex items-start gap-3 rounded-lg border border-destructive/30 bg-destructive/5 p-4">
+                <item.icon className="mt-0.5 h-5 w-5 flex-shrink-0 text-destructive" />
+                <div>
+                  <h3 className="font-semibold">{item.title}</h3>
+                  <p className="text-sm text-muted-foreground">{item.desc}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        <Separator className="my-10" />
+
+        {/* === SEKTION 8: Markedsanalyse 2026 === */}
+        <section className="mb-12">
+          <h2 className="mb-4 text-3xl font-bold">
+            No deposit bonusser i Danmark 2026 – markedstendenser
+          </h2>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            Det danske no deposit marked har gennemgået markante ændringer de seneste år. Her er de vigtigste tendenser vi ser i 2026:
+          </p>
+          <div className="space-y-4">
+            <div className="flex items-start gap-3 rounded-lg border border-border bg-card p-4">
+              <TrendingUp className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
+              <div>
+                <h3 className="font-semibold">Flere nye casinoer tilbyder no deposit</h3>
+                <p className="text-sm text-muted-foreground">
+                  Med øget konkurrence på det danske marked bruger <Link to="/nye-casinoer" className={linkClass}>nye casinoer</Link> no deposit bonusser som det primære kundeakkviseringsværktøj. I 2024 tilbød ca. 30% af nye lanceringer no deposit – i 2026 er tallet steget til ca. 45%. Bonusbeløbene er dog ikke steget tilsvarende, da Spillemyndighedens regulering holder vilkårene stramme.
+                </p>
+              </div>
+            </div>
+            <div className="flex items-start gap-3 rounded-lg border border-border bg-card p-4">
+              <BarChart3 className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
+              <div>
+                <h3 className="font-semibold">Lavere omsætningskrav bliver normen</h3>
+                <p className="text-sm text-muted-foreground">
+                  Trenden bevæger sig mod lavere omsætning på no deposit bonusser: fra 10x (lovens maksimum) mod 1-5x. Flere casinoer differentierer sig med <Link to="/bonus-uden-omsaetningskrav" className={linkClass}>helt omsætningsfrie</Link> no deposit free spins. Det gør bonusserne mere reelt værdifulde for spilleren.
+                </p>
+              </div>
+            </div>
+            <div className="flex items-start gap-3 rounded-lg border border-border bg-card p-4">
+              <ShieldCheck className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
+              <div>
+                <h3 className="font-semibold">Spillemyndighedens skærpede markedsføringskrav</h3>
+                <p className="text-sm text-muted-foreground">
+                  Spillemyndigheden har i 2025-2026 skærpet kravene til markedsføring af "gratis" bonusser. Casinoer skal nu tydeligt angive alle begrænsninger (gevinstloft, omsætning, tidsfrist) direkte i markedsføringsmaterialet – ikke kun i vilkårene. Det giver bedre gennemsigtighed for spillere.
+                </p>
+              </div>
+            </div>
+            <div className="flex items-start gap-3 rounded-lg border border-border bg-card p-4">
+              <Percent className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
+              <div>
+                <h3 className="font-semibold">Gevinstlofterne stiger langsomt</h3>
+                <p className="text-sm text-muted-foreground">
+                  Gennemsnitlige gevinstlofter er steget fra ca. 500 kr. i 2024 til 750-1.000 kr. i 2026 – en indikation af at casinoerne investerer mere i kundeakkvisering. De mest konkurrencedygtige casinoer tilbyder nu lofter på 2.000-5.000 kr., men det er fortsat undtagelsen.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <Separator className="my-10" />
+
+        {/* === SEKTION 9: Juridisk perspektiv === */}
+        <section className="mb-12">
+          <h2 className="mb-4 text-3xl font-bold">
+            Juridisk ramme: Spillemyndigheden og no deposit bonusser
+          </h2>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            No deposit bonusser i Danmark er reguleret under Spillemyndighedens generelle bonusregler, som er blandt de mest spillervenlige i Europa. Her er de centrale juridiske rammer, du som spiller bør kende:
+          </p>
+          <div className="space-y-3">
+            {[
+              {
+                title: "Maksimalt 10x omsætningskrav",
+                desc: "Ifølge dansk lovgivning må intet dansk casino kræve mere end 10x omsætning på nogen bonustype – herunder no deposit bonusser. Til sammenligning har Malta (MGA) og Storbritannien (UKGC) ingen lovmæssigt fastsat øvre grænse, hvor 30-60x er almindeligt. Det danske loft giver no deposit bonusser markant højere reel værdi.",
+                icon: Scale,
+              },
+              {
+                title: "Klar markedsføringspligt",
+                desc: "Casinoer skal tydeligt kommunikere alle vilkår i deres bonusmarkedsføring: omsætningskrav, gevinstloft, tidsfrist, spilrestriktioner og eventuelle krav om indbetaling. Vildledende brug af 'gratis' uden at nævne begrænsninger kan resultere i bøder fra Spillemyndigheden.",
+                icon: BookOpen,
+              },
+              {
+                title: "MitID-verifikation er lovkrav",
+                desc: "Alle danske casinoer er juridisk forpligtet til at verificere spillerens identitet via MitID før kontooprettelse. Det forhindrer mindreårige og selvudelukkede spillere i at modtage bonusser. Det gør også det umuligt at oprette flere konti for at modtage bonussen gentagne gange.",
+                icon: ShieldCheck,
+              },
+              {
+                title: "ROFUS-tjek er automatisk",
+                desc: "Casinoet kontrollerer automatisk om du er registreret i ROFUS (Register Over Frivilligt Udelukkede Spillere) under MitID-verifikationen. Er du registreret, kan du ikke oprette en konto eller modtage bonusser. Det er en vigtig spillerbeskyttelsesmekanisme.",
+                icon: Lock,
+              },
+            ].map((item) => (
+              <div key={item.title} className="flex items-start gap-3 rounded-lg border border-border bg-card p-4">
                 <item.icon className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
                 <div>
                   <h3 className="font-semibold">{item.title}</h3>
                   <p className="text-sm text-muted-foreground">{item.desc}</p>
                 </div>
               </div>
+            ))}
+          </div>
+        </section>
+
+        <Separator className="my-10" />
+
+        {/* === SEKTION 10: Strategi === */}
+        <section className="mb-12">
+          <h2 className="mb-4 text-3xl font-bold">
+            Optimal strategi for no deposit bonusser
+          </h2>
+          <p className="mb-6 text-muted-foreground leading-relaxed">
+            Med den rette tilgang kan du øge dine chancer for at konvertere en no deposit bonus til reel gevinst. Her er en evidensbaseret strategi:
+          </p>
+
+          <div className="space-y-3">
+            {[
+              {
+                title: "Vælg spil med RTP over 97%",
+                desc: "Hvert procentpoint i RTP sparer dig penge under omsætningen. Blood Suckers (98%), Mega Joker (99%) og 1429 Uncharted Seas (98,6%) er optimale valg, hvis de er tilladte. Undgå spil med RTP under 95% – de dræner bonussen for hurtigt.",
+                icon: BarChart3,
+              },
+              {
+                title: "Brug altid minimumindsatsen",
+                desc: "Lavere indsats = flere spins = højere overlevelsesrate under omsætningen. Med 50 kr. bonus og 10x omsætning (500 kr.) giver 1 kr. indsats 500 spins vs. 10 kr. indsats giver kun 50 spins. Flere spins reducerer variansen og øger sandsynligheden for at overleve omsætningen.",
+                icon: Target,
+              },
+              {
+                title: "Forstå gevinstloftets effekt",
+                desc: "Hvis du rammer en stor gevinst tidligt, beregn om det er optimalt at fortsætte omsætningen eller stoppe (hvis vilkårene tillader det). Med 500 kr. gevinstloft og 700 kr. på kontoen risikerer du at spille saldoen ned – men kan aldrig hæve mere end 500 kr.",
+                icon: Calculator,
+              },
+              {
+                title: "Prioriter lav volatilitet under omsætning",
+                desc: "Lav volatilitet giver hyppigere, mindre gevinster – ideelt for at overleve omsætningskrav. Gem høj volatilitet til fri spil. Under omsætning er overlevelse vigtigere end store gevinster.",
+                icon: TrendingUp,
+              },
+              {
+                title: "Sæt en tidsplan",
+                desc: "Med korte tidsfrister (24-72 timer) skal du planlægge hvornår du spiller. Afsæt en sammenhængende session, så du ikke glemmer bonussen. Bonusser der udløber er tabt potentiale.",
+                icon: Clock,
+              },
+            ].map((item) => (
+              <div key={item.title} className="flex items-start gap-3 rounded-lg border border-border bg-card p-4">
+                <item.icon className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
+                <div>
+                  <h3 className="font-semibold">{item.title}</h3>
+                  <p className="text-sm text-muted-foreground">{item.desc}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        <Separator className="my-10" />
+
+        {/* === SEKTION 11: Ansvarligt spil === */}
+        <section className="mb-12">
+          <h2 className="mb-4 text-3xl font-bold">
+            Risikoperspektivet: no deposit bonusser og spilleadfærd
+          </h2>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            En no deposit bonus koster dig ikke penge, men den kan koste dig tid og opmærksomhed. Forskning viser at gratis bonusser kan fungere som en "gateway" til indbetalingsadfærd – casinoets mål med bonussen er netop at konvertere dig til en betalende spiller. Vær bevidst om denne dynamik.
+          </p>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            Sæt realistiske forventninger: en no deposit bonus er en gratis prøvetur, ikke en indtægtskilde. Gennemsnitlig EV er 15-30 kr. per bonus – mindre end en time på en lavtlønnet jobtype. Hvis du mærker trang til at indbetale for at "jage" gevinster, er det et advarselssignal.
+          </p>
+          <p className="text-muted-foreground leading-relaxed">
+            Benyt{" "}
+            <a href="https://www.rofus.nu/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline font-medium">ROFUS</a>{" "}
+            til selvudelukkelse og{" "}
+            <a href="https://www.stopspillet.dk/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline font-medium">StopSpillet.dk</a>{" "}
+            for rådgivning, hvis du oplever problemer med spilleadfærd. Husk: 18+ | Spil ansvarligt.
+          </p>
+        </section>
+
+        <Separator className="my-10" />
+
+        {/* === SEKTION 12: Intern linking === */}
+        <section className="mb-12">
+          <h2 className="mb-4 text-3xl font-bold">Udforsk relaterede bonusguides</h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            {[
+              { to: "/omsaetningskrav", label: "Omsætningskrav – Komplet Guide", desc: "Alt om gennemspilningskrav på danske casinoer" },
+              { to: "/velkomstbonus", label: "Velkomstbonus Guide", desc: "Maksimer din første casinobonus" },
+              { to: "/indskudsbonus", label: "Indskudsbonus", desc: "Matchbonusser og deres reelle værdi" },
+              { to: "/no-sticky-bonus", label: "No-Sticky Bonus", desc: "Bonusser med adskilt saldo" },
+              { to: "/free-spins", label: "Free Spins Guide", desc: "Alt om gratis spins på danske casinoer" },
+              { to: "/bonus-uden-omsaetningskrav", label: "Bonus uden Omsætningskrav", desc: "Bonusser med øjeblikkelig udbetaling" },
+              { to: "/nye-casinoer/bonus-uden-indbetaling", label: "Nye Casinoer med No Deposit", desc: "De nyeste casinoer med gratis bonus" },
+              { to: "/nye-casinoer/lav-wagering", label: "Lav Wagering Casinoer", desc: "Casinoer med de laveste omsætningskrav" },
+            ].map((link) => (
+              <Link key={link.to} to={link.to} className="flex items-start gap-3 rounded-lg border border-border bg-card p-4 transition-colors hover:border-primary/50 hover:bg-accent/50">
+                <ArrowRight className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
+                <div>
+                  <h3 className="font-semibold text-sm">{link.label}</h3>
+                  <p className="text-xs text-muted-foreground">{link.desc}</p>
+                </div>
+              </Link>
             ))}
           </div>
         </section>
@@ -658,7 +789,7 @@ const BonusUdenIndbetaling = () => {
 
         <RelatedGuides currentPath="/bonus-uden-indbetaling" />
 
-        <FAQSection title="Ofte stillede spørgsmål om no deposit bonusser" faqs={bonusUdenIndbetalingFaqs} />
+        <FAQSection title="Tekniske spørgsmål om no deposit bonusser" faqs={bonusUdenIndbetalingFaqs} />
       </div>
     </>
   );
