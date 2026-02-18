@@ -3,7 +3,7 @@ import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { AuthorBio } from "@/components/AuthorBio";
 import { FAQSection } from "@/components/FAQSection";
 import { SEO } from "@/components/SEO";
-import { buildFaqSchema } from "@/lib/seo";
+import { buildFaqSchema, buildArticleSchema, SITE_URL } from "@/lib/seo";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { RelatedGuides } from "@/components/RelatedGuides";
@@ -11,9 +11,6 @@ import { InlineCasinoCards } from "@/components/InlineCasinoCards";
 import { type ReactNode } from "react";
 import {
   Gamepad2,
-  User,
-  CalendarDays,
-  BookOpen,
   Zap,
   Trophy,
   Sparkles,
@@ -30,64 +27,57 @@ const linkClass = "text-primary underline hover:text-primary/80";
 
 const spillemaskineFaqs: { question: string; answer: ReactNode }[] = [
   {
-    question: "Hvad er en spilleautomat?",
+    question: "Hvad er en spilleautomat, og hvordan fungerer den teknisk?",
     answer: (
       <>
-        En spilleautomat (også kaldet en slot) er et digitalt casinospil, hvor du spinner hjul med symboler og forsøger at lande vindende kombinationer på forudbestemte gevinstlinjer. Moderne spilleautomater drives af en Random Number Generator (RNG), der sikrer, at hvert spin er 100 % tilfældigt og uafhængigt af tidligere resultater. Alle spilleautomater på danske licenserede casinoer er certificeret af uafhængige testlaboratorier som eCOGRA eller iTech Labs, som verificerer, at RNG'en fungerer korrekt. Spilleautomater fås i utallige varianter – fra simple 3-hjuls klassikere til avancerede video slots med hundredvis af funktioner, bonusspil og{" "}
-        <Link to="/free-spins" className={linkClass}>free spins</Link>-runder.
+        En spilleautomat er et digitalt casinospil drevet af en Random Number Generator (RNG), der afgør udfaldet af hvert spin i det millisekund, du trykker. RNG'en genererer tusindvis af tal pr. sekund og bestemmer, hvilke symboler der lander på hjulene. Hvert spin er uafhængigt – maskinen har ingen hukommelse og kan ikke være "varm" eller "kold". Alle spilleautomater hos danske licenserede casinoer certificeres af uafhængige laboratorier som eCOGRA eller iTech Labs, der verificerer, at resultaterne er genuint tilfældige og at den offentliggjorte RTP er korrekt. Moderne spilleautomater bruger kryptografisk stærke pseudotilfældighedsgeneratorer (PRNG), der er praktisk talt umulige at forudsige.
       </>
     ),
   },
   {
-    question: "Hvad betyder RTP på en spillemaskine?",
+    question: "Hvordan beregnes RTP på en spillemaskine, og kan den variere?",
     answer: (
       <>
-        RTP står for Return to Player og angiver den procentdel af alle indsatser, som en spillemaskine statistisk set betaler tilbage til spillerne over tid. En spilleautomat med 96,5 % RTP betyder, at for hver 100 kr. indsat, returneres gennemsnitligt 96,50 kr. over millioner af spins. Det er vigtigt at forstå, at RTP er et langsigtet gennemsnit – på kort sigt kan du vinde langt mere eller miste hele din indsats. RTP-værdien påvirker også{" "}
-        <Link to="/omsaetningskrav" className={linkClass}>omsætningskrav</Link> på bonusser, da spil med højere RTP bidrager mere effektivt til gennemspilning. Vi anbefaler generelt spilleautomater med minimum 95 % RTP.
+        RTP beregnes af spiludvikleren via millioner af simulerede spins og verificeres af tredjepartslaboratorier. Nogle udviklere tilbyder flere RTP-varianter af det samme spil (f.eks. 94 %, 96 % og 97 %), og casinoet vælger én version ved opsætning. På danske licenserede casinoer kan operatøren ikke selv ændre RTP – men de kan vælge hvilken konfiguration de kører. Derfor kan det samme spil have forskellig RTP på forskellige casinoer. Tjek altid spillets info-sektion for den aktuelle RTP-værdi. En spillemaskine med 96 % RTP har en house edge på 4 % – for hver 100 kr. satset beholder casinoet statistisk 4 kr. over tid. Læs mere om <Link to="/casinospil/spillemaskiner/hoej-rtp" className={linkClass}>spillemaskiner med høj RTP</Link>.
       </>
     ),
   },
   {
-    question: "Kan man påvirke resultatet på en spilleautomat?",
+    question: "Hvad er Megaways-spillemaskiner, og hvordan adskiller de sig?",
+    answer: (
+      <>
+        Megaways er en patenteret spilmekanik fra <Link to="/spiludviklere/big-time-gaming" className={linkClass}>Big Time Gaming</Link> (2016), der erstatter faste gevinstlinjer med et dynamisk system. Antallet af symboler pr. hjul ændres ved hvert spin – typisk 2 til 7 symboler pr. hjul på 6 hjul – hvilket giver op til 117.649 unikke vinderkombinationer. Megaways-slots kombineres ofte med "cascading wins" (vindende symboler forsvinder og erstattes) og stigende multiplikatorer under free spins. Mekanikken er licenseret til andre udviklere som <Link to="/spiludviklere/pragmatic-play" className={linkClass}>Pragmatic Play</Link> og <Link to="/spiludviklere/netent" className={linkClass}>NetEnt</Link>. Megaways-slots har typisk høj volatilitet og RTP omkring 96 %. Den dynamiske natur gør hvert spin unikt og giver højere gevinstpotentiale end klassiske faste gevinstlinjer.
+      </>
+    ),
+  },
+  {
+    question: "Hvad er progressive jackpots, og hvordan fungerer puljen?",
     answer:
-      "Nej, resultatet på en spilleautomat er fuldstændig tilfældigt og styres af en certificeret Random Number Generator (RNG). Ingen strategi, timing eller indsatsstørrelse kan ændre den matematiske sandsynlighed for gevinst. Hvert spin er uafhængigt – spillemaskinen husker ikke tidligere resultater og kan ikke være 'skyldig' en gevinst. Det eneste, du kan kontrollere, er dit valg af spilleautomat (RTP og volatilitet), din indsatsstørrelse og hvornår du stopper med at spille. Systemer som Martingale eller 'hot/cold'-teorier har ingen effekt på digitale spilleautomater.",
+      "Progressive jackpot-slots har en præmiepulje, der vokser med hver eneste indsats fra alle tilknyttede spillere på tværs af casinoer i netværket. Typisk bidrager 1–5 % af hver indsats til jackpotpuljen. Den udløses enten tilfældigt, via et specielt bonusspil, eller ved at lande en bestemt symbolkombination. Mega Moolah fra Microgaming har den rekordhøjeste udbetaling på over 130 millioner kroner. Til gengæld har progressive slots lavere basis-RTP (typisk 88–92 %), fordi en del af indsatsen reserveres til puljen. Mange progressive systemer har flere niveauer (Mega, Major, Minor, Mini), hvor kun Mega-jackpotten er den gigantiske. Din chance for at vinde stiger proportionelt med indsatsstørrelsen – men forbliver astronomisk lille.",
   },
   {
-    question: "Hvad er forskellen på volatilitet og RTP?",
+    question: "Er det muligt at have en strategi til spillemaskiner?",
+    answer:
+      "I traditionel forstand: nej. Spilleautomater er rent tilfældighedsbaserede, og du kan ikke påvirke udfaldet af et spin. Men du kan træffe strategiske beslutninger omkring dit spil: vælg spillemaskiner med høj RTP (96 %+), match volatiliteten med dit budget og risikotolerance, udnyt bonusfunktioner som bonus buy klogt, og sæt ufravigelige session-grænser. Bankroll management er din vigtigste 'strategi' – sæt et tabsbudget og en vindergrænse, og hold dig til dem. Væddemålssystemer som Martingale fungerer ikke på slots, da hvert spin er uafhængigt. Den eneste reelle beslutning er, hvilken automat du vælger, og hvornår du stopper.",
+  },
+  {
+    question: "Hvordan påvirker volatilitet min spilleoplevelse konkret?",
+    answer:
+      "Volatilitet bestemmer gevinstfordelingens mønster. Lav volatilitet (fx Starburst) giver gevinster på ca. 30–40 % af alle spins, men sjældent over 10–50x indsatsen. Høj volatilitet (fx San Quentin fra Nolimit City) kan give 50–200+ spins uden noget, men en enkelt bonusrunde kan betale 10.000x+ indsatsen. Med et budget på 500 kr. og 5 kr. pr. spin (100 spins) vil lav volatilitet typisk give dig 80–120 spins af spilletid, mens høj volatilitet kan give dig 60 spins eller 200 spins – afhængigt af held. For casual spillere anbefaler vi lav-medium volatilitet. For bonusjægere med større bankroll er høj volatilitet mere attraktivt.",
+  },
+  {
+    question: "Hvad er 'bonus buy' og 'feature buy' på spillemaskiner?",
     answer: (
       <>
-        RTP og volatilitet beskriver to helt forskellige aspekter af en spillemaskine. RTP (Return to Player) fortæller dig, hvor stor en procentdel af indsatserne der returneres over tid – det er spillemaskinens langsigtede tilbagebetalingsrate. Volatilitet (også kaldet varians) beskriver derimod gevinstfordelingen: lav volatilitet giver hyppige, små gevinster (typisk 1–10x indsatsen), mens høj volatilitet giver sjældnere, men potentielt meget store gevinster (op til 50.000x+ hos udviklere som{" "}
-        <Link to="/spiludviklere/nolimit-city" className={linkClass}>Nolimit City</Link>). To spilleautomater kan have identisk RTP på 96 %, men føles helt forskellige at spille pga. forskellig volatilitet.
+        Bonus buy (også kaldet feature buy) giver dig mulighed for at købe dig direkte ind i en spilleautomats bonusrunde – typisk free spins – for en fast pris. Prisen er normalt 60–100x din basisindsats. Fordelen er, at du springer de potentielt hundredvis af spins over, det tager at trigge bonussen naturligt. Ulempen er den høje engangsindsats og det faktum, at bonus buy-prisen typisk er sat til at give en lille fordel til casinoet sammenlignet med at trigge bonussen naturligt. Bonus buy-funktionen er særligt populær hos <Link to="/spiludviklere/pragmatic-play" className={linkClass}>Pragmatic Play</Link> og <Link to="/spiludviklere/hacksaw-gaming" className={linkClass}>Hacksaw Gaming</Link>. Bemærk: ikke alle reguleringsmyndigheder tillader bonus buy – men det er lovligt under dansk licens.
       </>
     ),
   },
   {
-    question: "Hvad er Megaways-spillemaskiner?",
+    question: "Er online spillemaskiner fair og reguleret i Danmark?",
     answer: (
       <>
-        Megaways er en revolutionerende spilmekanik udviklet af{" "}
-        <Link to="/spiludviklere/big-time-gaming" className={linkClass}>Big Time Gaming</Link> i 2016, som har ændret spilleautomatindustrien fundamentalt. I stedet for faste gevinstlinjer bruger Megaways-spillemaskiner dynamiske hjul, hvor antallet af symboler pr. hjul ændres ved hvert spin – typisk mellem 2 og 7 symboler pr. hjul. Dette skaber op til 117.649 unikke gevinstkombinationer pr. spin. Mekanikken er licenseret til andre udviklere som{" "}
-        <Link to="/spiludviklere/pragmatic-play" className={linkClass}>Pragmatic Play</Link> og{" "}
-        <Link to="/spiludviklere/netent" className={linkClass}>NetEnt</Link>, der har skabt deres egne populære Megaways-titler. Megaways-slots har typisk høj volatilitet og inkluderer ofte cascading wins, hvor vindende symboler forsvinder og erstattes af nye.
-      </>
-    ),
-  },
-  {
-    question: "Hvor finder jeg spillemaskiner med højest RTP?",
-    answer: (
-      <>
-        De fleste spiludviklere offentliggør RTP-værdier i spillemaskinens hjælpesektion eller paytable. Generelt finder du de højeste RTP-værdier hos udviklere som{" "}
-        <Link to="/spiludviklere/netent" className={linkClass}>NetEnt</Link> (Mega Joker: 99 %, Blood Suckers: 98 %) og{" "}
-        <Link to="/spiludviklere/play-n-go" className={linkClass}>Play'n GO</Link>. Vær opmærksom på, at nogle casinoer kan tilbyde forskellige RTP-versioner af samme spil – vælg altid den højeste tilgængelige variant. Progressive jackpot-slots har typisk lavere basis-RTP (88–92 %), fordi en del af indsatsen går til jackpotpuljen. For den bedste balance mellem underholdning og odds anbefaler vi spilleautomater med 96 %+ RTP.
-      </>
-    ),
-  },
-  {
-    question: "Er online spillemaskiner fair og tilfældige?",
-    answer: (
-      <>
-        Ja, alle spilleautomater på danske licenserede casinoer er fair og tilfældige. Dette garanteres gennem flere lag af kontrol: For det første bruger alle spillemaskiner en certificeret Random Number Generator (RNG), der testes og godkendes af uafhængige laboratorier. For det andet kræver den danske{" "}
-        <Link to="/spillemyndigheden" className={linkClass}>Spillemyndighed</Link> regelmæssige audits af alle spil på licenserede platforme. For det tredje har spiludviklerne selv interne kvalitetskontroller, og deres spil certificeres før lancering. Manipulerede spilleautomater ville medføre øjeblikkelig inddragelse af licens og massive bøder – et risikoscenario, som ingen seriøs aktør ville tage.
+        Ja, alle spilleautomater på danske licenserede casinoer er strengt reguleret og fair. Den danske <Link to="/spillemyndigheden" className={linkClass}>Spillemyndighed</Link> kræver, at alle spil certificeres af uafhængige laboratorier før lancering, og at casinoerne undergår regelmæssige audits. RNG'en testes for at sikre, at resultaterne er genuint tilfældige, og at den faktiske RTP matcher den offentliggjorte værdi. Manipulerede spilleautomater ville medføre øjeblikkelig inddragelse af licens og massive bøder. Du kan verificere et casinos licens på Spillemyndighedens hjemmeside. Spil aldrig på uregulerede platforme – du har ingen juridisk beskyttelse, og spillene er ikke garanteret fair.
       </>
     ),
   },
@@ -95,38 +85,32 @@ const spillemaskineFaqs: { question: string; answer: ReactNode }[] = [
 
 const Spillemaskiner = () => {
   const faqJsonLd = buildFaqSchema(spillemaskineFaqs);
+  const articleSchema = buildArticleSchema({
+    headline: "Spillemaskiner 2026 – Guide til Online Slots",
+    description: "Alt om spillemaskiner hos danske online casinoer. Lær om RTP, volatilitet, Megaways, jackpots og bonusfunktioner.",
+    url: `${SITE_URL}/casinospil/spillemaskiner`,
+    datePublished: "2026-02-15",
+    dateModified: "2026-02-18",
+    authorName: "Jonas",
+    authorUrl: `${SITE_URL}/forfatter/jonas`,
+  });
 
   const breadcrumbJsonLd = {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
     itemListElement: [
-      {
-        "@type": "ListItem",
-        position: 1,
-        name: "Forside",
-        item: "https://casinoaftaler.dk/",
-      },
-      {
-        "@type": "ListItem",
-        position: 2,
-        name: "Casinospil",
-        item: "https://casinoaftaler.dk/casinospil",
-      },
-      {
-        "@type": "ListItem",
-        position: 3,
-        name: "Spillemaskiner",
-        item: "https://casinoaftaler.dk/casinospil/spillemaskiner",
-      },
+      { "@type": "ListItem", position: 1, name: "Forside", item: "https://casinoaftaler.dk/" },
+      { "@type": "ListItem", position: 2, name: "Casinospil", item: "https://casinoaftaler.dk/casinospil" },
+      { "@type": "ListItem", position: 3, name: "Spillemaskiner", item: "https://casinoaftaler.dk/casinospil/spillemaskiner" },
     ],
   };
 
   return (
     <>
       <SEO
-        title="Spillemaskiner 2026 - Guide til Online Slots i Danmark"
-        description="Alt om spillemaskiner hos danske online casinoer. Lær om RTP, volatilitet, Megaways, jackpots og bonusfunktioner. Find de bedste slots i 2026."
-        jsonLd={[faqJsonLd, breadcrumbJsonLd]}
+        title="Spillemaskiner 2026 – Guide til Online Slots"
+        description="Alt om spillemaskiner hos danske online casinoer. Lær om RTP, volatilitet, Megaways, jackpots og bonusfunktioner i 2026."
+        jsonLd={[faqJsonLd, breadcrumbJsonLd, articleSchema]}
       />
 
       <section className="relative overflow-hidden py-12 text-white md:py-20" style={{ backgroundImage: "linear-gradient(135deg, hsl(260 70% 25%), hsl(250 60% 20%) 40%, hsl(210 80% 25%))" }}>
@@ -134,45 +118,35 @@ const Spillemaskiner = () => {
           <div className="mx-auto max-w-3xl text-center">
             <Badge variant="secondary" className="mb-4"><Sparkles className="mr-1.5 h-3.5 w-3.5" /> Opdateret Februar 2026</Badge>
             <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">Spillemaskiner 2026</h1>
-            <p className="text-lg text-white/80">Din komplette guide til online slots – RTP, volatilitet, Megaways og bonusfunktioner.</p>
+            <p className="text-lg text-white/80">Din komplette guide til online slots – fra historiske rødder til fremtidens mekanikker.</p>
           </div>
         </div>
       </section>
 
       <div className="container py-8 md:py-12">
-        <AuthorMetaBar author="jonas" date="15-02-2026" readTime="12 Min." />
+        <AuthorMetaBar author="jonas" date="18-02-2026" readTime="35 Min." />
 
-        {/* Hero Image */}
         <div className="mb-10 overflow-hidden rounded-xl">
-          <img
-            src={spillemaskinerHero}
-            alt="Spillemaskiner og online slots i Danmark"
-            className="w-full h-auto object-cover max-h-[400px]"
-            loading="eager"
-          />
+          <img src={spillemaskinerHero} alt="Spillemaskiner og online slots i Danmark" className="w-full h-auto object-cover max-h-[400px]" loading="eager" />
         </div>
 
-        {/* Section 1: Hvad er spillemaskiner */}
+        {/* ── SEKTION 1: Historisk kontekst ── */}
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold">
-            Hvad er spillemaskiner, og hvordan fungerer de?
-          </h2>
+          <h2 className="mb-4 text-3xl font-bold">Spillemaskinens Historie – Fra Mekanisk Vidunder til Digital Kunstform</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
-            Spillemaskiner – også kendt som slots eller spilleautomater – er det mest udbredte casinospil i verden. I deres simpleste form består de af et sæt roterende hjul med symboler, hvor målet er at lande matchende symboler på en eller flere gevinstlinjer. Men bag den tilsyneladende enkle overflade gemmer sig avanceret teknologi, der sikrer fair og tilfældigt spil.
+            Spillemaskinens rejse begynder i San Francisco i 1895, hvor den bayersk-amerikanske mekaniker Charles August Fey konstruerede den legendariske Liberty Bell – en maskine med tre roterende hjul, fem symboler (hestesko, diamanter, spar, hjerter og en sprukken frihedsklokke) og automatisk udbetaling af gevinster. Maskinen var en revolution. Tidligere terning- og kortbaserede automater krævede en bartender til manuelt at verificere og udbetale gevinster, men Feys design automatiserede hele processen. Liberty Bell blev så populær, at konkurrenter hurtigt kopierede konceptet, og inden for et årti stod der spillemaskiner i barer, frisørsaloner og tobaksforretninger over hele USA.
           </p>
           <p className="mb-4 text-muted-foreground leading-relaxed">
-            Kernen i enhver moderne spillemaskine er en Random Number Generator (RNG) – en algoritme, der genererer tusindvis af tilfældige tal i sekundet. Når du trykker på spin-knappen, vælger RNG'en det præcise resultat i det millisekund, du klikker. Hvert spin er fuldstændig uafhængigt af det forrige, hvilket betyder, at spillemaskinen ikke kan være "varm" eller "kold". RNG'en testes og certificeres af uafhængige laboratorier som eCOGRA og iTech Labs, hvilket garanterer, at resultaterne er genuint tilfældige.
+            I 1907 introducerede Herbert Mills de ikoniske frugtsymboler – kirsebær, citroner, appelsiner og blommer – som stadig bruges i dag. Mills' "Operator Bell" omgik datidens gambling-lovgivning ved at udbetale tyggegummi i stedet for penge (deraf frugtmotiverne, der matchede tyggegummismagene). BAR-symbolet stammer fra Bell-Fruit Gum Company's logo, og syvtallet blev tilføjet som det højeste symbol. Disse visuelle konventioner har overlevet i over et århundrede og forbinder moderne video slots med deres mekaniske forfædre.
           </p>
           <p className="mb-4 text-muted-foreground leading-relaxed">
-            Spillemaskinens opbygning inkluderer typisk 3–6 hjul med varierende antal symboler pr. hjul, gevinstlinjer (fra 1 til over 100.000), specialsymboler som wilds og scatters, samt bonusfunktioner. Gevinstlinjerne bestemmer, hvilke symbolkombinationer der udløser betaling – jo flere linjer, jo flere måder at vinde på. Indsatsen fordeles normalt jævnt på tværs af alle aktive gevinstlinjer.
+            Den næste store revolution kom i 1963, da Bally Manufacturing lancerede "Money Honey" – den første elektromekaniske spillemaskine med automatisk udbetaling af op til 500 mønter. Maskinen eliminerede det mekaniske håndtag (selvom det blev beholdt af nostalgiske grunde og gav spilleautomater tilnavnet "one-armed bandits") og introducerede elektrisk drevne hjul og elektroniske gevinstberegninger. Money Honey muliggjorde større jackpots og mere komplekse gevinsttabeller, og den lagde grundstenen for den moderne spillemaskine.
+          </p>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            I 1976 skabte Fortune Coin Co. den første ægte videospilleautomat med en 19-tommers Sony Trinitron-skærm i stedet for fysiske hjul. Nevada State Gaming Commission godkendte maskinen i 1978, og den blev installeret på Hilton Hotel i Las Vegas. Video-teknologien åbnede for ubegrænsede muligheder: flere gevinstlinjer, bonusspil, animationer og temaer. I 1996 lancerede WMS Industries "Reel 'Em In" – den første videoslot med en anden skærm til bonusspil, et koncept der er allestedsnærværende i dag.
           </p>
           <p className="text-muted-foreground leading-relaxed">
-            Spillemaskiner er den mest populære kategori inden for{" "}
-            <Link to="/casinospil" className={linkClass}>casinospil</Link>{" "}
-            – læs vores komplette guide for at udforske alle spiltyper. Du kan også teste spillemaskiner gratis i vores{" "}
-            <Link to="/community/slots" className={linkClass}>spillehal</Link>{" "}
-            og konkurrere om topplaceringer på{" "}
-            <Link to="/community/leaderboard" className={linkClass}>ranglisten</Link>.
+            Internettets fremkomst i slutningen af 1990'erne flyttede spillemaskinerne online. Microgaming lancerede det første online casino i 1994, og <Link to="/spiludviklere/netent" className={linkClass}>NetEnt</Link> fulgte i 1996. Online slots fjernede fysiske begrænsninger og muliggjorde temaer, animationer og mekanikker, som var umulige med fysiske hjul. I dag er spilleautomater langt det mest populære <Link to="/casinospil" className={linkClass}>casinospil</Link> globalt – de genererer over 70 % af den samlede online casinoomsætning og repræsenterer en industri til hundredvis af milliarder kroner årligt.
           </p>
         </section>
 
@@ -180,67 +154,49 @@ const Spillemaskiner = () => {
 
         <Separator className="my-10" />
 
-        {/* Section 2: Typer af spillemaskiner */}
+        {/* ── SEKTION 2: Typer af spillemaskiner ── */}
         <section className="mb-12">
-          <h2 className="mb-6 text-3xl font-bold">
-            Typer af spillemaskiner
-          </h2>
+          <h2 className="mb-6 text-3xl font-bold">De Fem Hovedtyper af Spillemaskiner</h2>
           <p className="mb-6 text-muted-foreground leading-relaxed">
-            Spillemaskinemarkedet har udviklet sig enormt fra de første mekaniske "one-armed bandits" til nutidens digitale mesterværker. Her er de fem hovedtyper, du møder på danske online casinoer:
+            Spillemaskinemarkedet rummer tusindvis af titler, men de kan kategoriseres i fem hovedtyper. Hver type tilbyder en distinkt spiloplevelse, og forståelsen af deres karakteristika hjælper dig med at vælge den rigtige automat til din spillestil og dit budget.
           </p>
 
           <div className="space-y-6">
             <div>
-              <h3 className="mb-2 text-xl font-semibold flex items-center gap-2">
-                <Layers className="h-5 w-5 text-primary" />
-                Klassiske 3-hjuls slots
-              </h3>
+              <h3 className="mb-2 text-xl font-semibold flex items-center gap-2"><Layers className="h-5 w-5 text-primary" />Klassiske 3-hjuls slots</h3>
               <p className="text-muted-foreground leading-relaxed">
-                De klassiske spilleautomater er tro mod den originale design med tre hjul og typisk 1–5 gevinstlinjer. De bruger traditionelle symboler som frugter, klokker, BAR og syvtaller. Klassiske slots har sjældent bonusfunktioner eller free spins, men tilbyder til gengæld enkel gameplay og ofte høj RTP (96–97 %). De er ideelle for spillere, der foretrækker en ren og ukompliceret spiloplevelse uden distraktioner.
+                Klassiske slots er trofaste mod den originale design med tre hjul og 1–5 gevinstlinjer. De bruger traditionelle symboler – frugter, klokker, BAR og syvtaller – og har sjældent avancerede bonusfunktioner. Styrken er simplicitet og gennemsigtighed: du kan hurtigt overskue gevinsttabellen og forstå præcis, hvad hvert spin kan give. RTP ligger typisk på 96–97 %, og volatiliteten er lav til medium. Klassiske slots appellerer til spillere, der foretrækker en ren, ukompliceret oplevelse uden distraherende animationer. De er også ideelle til at forstå grundlæggende spillemaskinkoncepter som gevinstlinjer, indsatsniveauer og symbolværdier.
               </p>
             </div>
 
             <div>
-              <h3 className="mb-2 text-xl font-semibold flex items-center gap-2">
-                <Sparkles className="h-5 w-5 text-primary" />
-                Video slots
-              </h3>
+              <h3 className="mb-2 text-xl font-semibold flex items-center gap-2"><Sparkles className="h-5 w-5 text-primary" />Video slots</h3>
+              <p className="mb-4 text-muted-foreground leading-relaxed">
+                Video slots dominerer markedet med over 85 % af alle tilgængelige spilleautomater. De har typisk 5 hjul (nogle 6 eller flere), 20–243 faste gevinstlinjer og et rigt udvalg af bonusfunktioner. Temaerne spænder fra oldtidens Egypten til nordisk mytologi, fra gyserstemning til popkultur. Den visuelle kvalitet matcher moderne videospil med 3D-animationer, dynamisk lyd og filmiske intros.
+              </p>
               <p className="text-muted-foreground leading-relaxed">
-                Video slots er den dominerende type og udgør over 85 % af alle spilleautomater på danske casinoer. De har typisk 5 hjul (nogle har 6 eller flere), 20–243 faste gevinstlinjer og et rigt udvalg af bonusfunktioner: free spins, multiplikatorer, expanding wilds, pick-and-click bonusspil og cascading wins. Temaerne spænder fra oldtidens Egypten til futuristiske eventyr, og den visuelle kvalitet matcher moderne videospil. Udviklere som{" "}
-                <Link to="/spiludviklere/netent" className={linkClass}>NetEnt</Link> og{" "}
-                <Link to="/spiludviklere/pragmatic-play" className={linkClass}>Pragmatic Play</Link> er førende inden for video slots.
+                Bonusfunktionerne inkluderer free spins, multiplikatorer, expanding wilds, sticky wilds, pick-and-click bonusspil, cascading wins og gamble-features. De bedste video slots balancerer underholdningsværdi med fair matematik. Udviklere som <Link to="/spiludviklere/netent" className={linkClass}>NetEnt</Link>, <Link to="/spiludviklere/pragmatic-play" className={linkClass}>Pragmatic Play</Link> og <Link to="/spiludviklere/play-n-go" className={linkClass}>Play'n GO</Link> er førende. RTP varierer fra 94 % til 98 %, og volatiliteten dækker hele spektret fra ultra-lav til ekstremt høj.
               </p>
             </div>
 
             <div>
-              <h3 className="mb-2 text-xl font-semibold flex items-center gap-2">
-                <Zap className="h-5 w-5 text-primary" />
-                Megaways-spillemaskiner
-              </h3>
+              <h3 className="mb-2 text-xl font-semibold flex items-center gap-2"><Zap className="h-5 w-5 text-primary" />Megaways-spillemaskiner</h3>
               <p className="text-muted-foreground leading-relaxed">
-                Megaways-mekanikken blev opfundet af{" "}
-                <Link to="/spiludviklere/big-time-gaming" className={linkClass}>Big Time Gaming</Link> i 2016 og har revolutioneret branchen. I stedet for faste gevinstlinjer ændrer antallet af symboler pr. hjul sig dynamisk ved hvert spin – typisk mellem 2 og 7 symboler pr. hjul på 6 hjul, hvilket giver op til 117.649 unikke vinderkombinationer. Megaways-slots kombineres ofte med cascading wins (vindende symboler forsvinder og erstattes af nye) og multiplikatorer, der stiger under free spins. Mekanikken er licenseret til andre udviklere, og der findes nu hundredvis af Megaways-titler.
+                Megaways-mekanikken fra <Link to="/spiludviklere/big-time-gaming" className={linkClass}>Big Time Gaming</Link> (2016) erstattte faste gevinstlinjer med et dynamisk system, hvor antallet af symboler pr. hjul ændres ved hvert spin – typisk 2–7 symboler på 6 hjul, op til 117.649 vinderkombinationer. Det revolutionære var, at gevinstpotentialet varierer dramatisk fra spin til spin: et spin med mange symboler pr. hjul giver tusindvis af gevinstmuligheder, mens et spin med få symboler giver markant færre. Megaways kombineres med cascading wins og stigende multiplikatorer under free spins, hvilket skaber en sneboldeffekt, hvor gevinster kan eskalere eksponentielt. Populære titler inkluderer Bonanza, Extra Chilli og Gates of Olympus. Volatiliteten er næsten altid høj.
               </p>
             </div>
 
             <div>
-              <h3 className="mb-2 text-xl font-semibold flex items-center gap-2">
-                <Trophy className="h-5 w-5 text-primary" />
-                Progressive jackpot-slots
-              </h3>
+              <h3 className="mb-2 text-xl font-semibold flex items-center gap-2"><Trophy className="h-5 w-5 text-primary" />Progressive jackpot-slots</h3>
               <p className="text-muted-foreground leading-relaxed">
-                Progressive jackpot-spillemaskiner har en præmiepulje, der vokser med hver indsats fra spillere på tværs af alle tilknyttede casinoer. Jackpotten kan nå tocifrede millionbeløb – Mega Moolah fra{" "}
-                <Link to="/spiludviklere/microgaming" className={linkClass}>Microgaming</Link> har den rekordhøjeste udbetaling på over 130 millioner kroner. Til gengæld har progressive slots lavere basis-RTP (typisk 88–92 %), da en del af hver indsats bidrager til jackpotpuljen. Jackpotten udløses tilfældigt eller via et specielt bonusspil, og chancen for at vinde stiger proportionelt med indsatsstørrelsen.
+                Progressive jackpots vokser med hver indsats fra spillere på tværs af alle tilknyttede casinoer i netværket. En lille procentdel af hver indsats (typisk 1–5 %) bidrager til jackpotpuljen, som kan nå tocifrede millionbeløb. Mega Moolah fra <Link to="/spiludviklere/microgaming" className={linkClass}>Microgaming</Link> holder rekorden med over 130 millioner kroner udbetalt til en enkelt heldig spiller. Kompromisen er lavere basis-RTP (88–92 %), da jackpotbidraget finansieres fra hver indsats. Mange progressive systemer har fire niveauer – Mega, Major, Minor, Mini – der giver forskellige gevinstklasser. Jackpotten udløses tilfældigt eller via bonusspil, og sandsynligheden er proportional med indsatsstørrelsen.
               </p>
             </div>
 
             <div>
-              <h3 className="mb-2 text-xl font-semibold flex items-center gap-2">
-                <Target className="h-5 w-5 text-primary" />
-                Cluster pays-slots
-              </h3>
+              <h3 className="mb-2 text-xl font-semibold flex items-center gap-2"><Target className="h-5 w-5 text-primary" />Cluster pays og grid-slots</h3>
               <p className="text-muted-foreground leading-relaxed">
-                Cluster pays-spillemaskiner bryder med den traditionelle gevinstlinje-model. I stedet for linjer dannes gevinster, når grupper af identiske symboler lander ved siden af hinanden – typisk kræves minimum 5 sammenhængende symboler. Denne mekanik åbner for kaskaderende gevinster, hvor vindende symboler fjernes og erstattes af nye i samme spin. Populære eksempler inkluderer Reactoonz fra Play'n GO og Sugar Rush fra Pragmatic Play. Cluster pays-slots har ofte medium til høj volatilitet og RTP mellem 95–97 %.
+                Cluster pays-spillemaskiner erstatter gevinstlinjer med et gruppesystem: gevinster dannes, når grupper af identiske symboler lander ved siden af hinanden (typisk minimum 5 sammenhængende symboler). Denne mekanik åbner for cascading wins, hvor vindende symboler fjernes og nye falder ned, og for multiplikatorer der stiger med hver kaskade. Grid-slots udvider konceptet med grids op til 8x8 eller større. Populære titler inkluderer Reactoonz (Play'n GO), Sugar Rush (Pragmatic Play) og Cluster Tumble (Relax Gaming). Cluster pays-slots har typisk medium til høj volatilitet og RTP mellem 95–97 %. De tilbyder en frisk og anderledes spiloplevelse, der bryder med den traditionelle hjul-og-linje-model.
               </p>
             </div>
           </div>
@@ -248,228 +204,331 @@ const Spillemaskiner = () => {
 
         <Separator className="my-10" />
 
-        {/* Section 3: RTP og volatilitet */}
+        {/* ── SEKTION 3: Matematikken ── */}
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold">
-            RTP og volatilitet – Forstå dine odds
-          </h2>
+          <h2 className="mb-4 text-3xl font-bold">Matematikken Bag Spillemaskiner – RTP, Volatilitet og Husets Fordel</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
-            To nøgletal definerer enhver spillemaskins matematiske profil: RTP og volatilitet. At forstå disse begreber er afgørende for at vælge den rigtige spilleautomat til din spillestil og dit budget.
+            Enhver spillemaskine styres af et matematisk rammeværk, der bestemmer dens langsigtede tilbagebetaling og gevinstfordeling. At forstå disse koncepter er afgørende for at træffe informerede valg om, hvilke automater du spiller, og hvordan du styrer dit budget. De to vigtigste parametre er RTP (Return to Player) og volatilitet – to begreber, der beskriver fundamentalt forskellige aspekter af spillets matematik.
+          </p>
+
+          <h3 className="mb-3 text-xl font-semibold">RTP – Return to Player</h3>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            RTP angiver den procentdel af alle indsatser, som en spillemaskine statistisk set returnerer til spillerne over tid. En RTP på 96 % betyder, at casinoets house edge er 4 % – for hver 100 kr. satset, beholder casinoet statistisk 4 kr. Denne beregning er baseret på millioner af simulerede spins og repræsenterer et teoretisk gennemsnit. I en enkelt session – typisk 100–500 spins – kan den faktiske tilbagebetaling afvige dramatisk fra den teoretiske RTP.
           </p>
           <p className="mb-4 text-muted-foreground leading-relaxed">
-            <strong>RTP (Return to Player)</strong> er den procentdel af alle indsatser, som en spillemaskine returnerer over tid. En RTP på 96 % betyder, at casinoets house edge er 4 % – altså casinoets statistiske fordel. RTP beregnes over millioner af spins og er ikke en garanti for, hvad du vinder i en enkelt session. Vælg altid spilleautomater med minimum 95 % RTP for de bedste langsigtede odds. Husk, at{" "}
-            <Link to="/omsaetningskrav" className={linkClass}>omsætningskrav</Link> på bonusser påvirkes af RTP – spil med højere RTP hjælper dig med at gennemspille bonusbeløb mere effektivt.
+            Et vigtigt men ofte overset faktum: mange <Link to="/spiludviklere" className={linkClass}>spiludviklere</Link> tilbyder flere RTP-versioner af det samme spil. Gates of Olympus fra Pragmatic Play fås eksempelvis i 94,5 %, 96,5 % og 87,5 % versioner. Casinoet vælger, hvilken version de kører – og på det danske marked er der ingen lovkrav om at informere spilleren om valget. Tjek derfor altid RTP-værdien direkte i spillets info-sektion, og vær opmærksom på, at den kan variere mellem casinoer. Find vores dedikerede guide til <Link to="/casinospil/spillemaskiner/hoej-rtp" className={linkClass}>spillemaskiner med høj RTP</Link> for konkrete anbefalinger.
+          </p>
+
+          <h3 className="mb-3 text-xl font-semibold">Volatilitet – Gevinstfordelingens Natur</h3>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            Hvor RTP fortæller dig, hvor meget en spillemaskine betaler tilbage, beskriver volatiliteten, hvordan gevinsterne fordeles. To automater med identisk RTP på 96 % kan levere fundamentalt forskellige spiloplevelser baseret på deres volatilitetsniveau.
           </p>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
             <Card className="border-border bg-card">
-              <CardHeader className="pb-2">
-                <CardTitle className="flex items-center gap-2 text-lg">
-                  <BarChart3 className="h-5 w-5 text-primary" />
-                  Lav volatilitet
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-sm text-muted-foreground">
-                  Hyppige, små gevinster (1–10x indsatsen). Ideel til længere spillesessioner med begrænset budget. Eksempel: Starburst (NetEnt).
-                </p>
-              </CardContent>
+              <CardHeader className="pb-2"><CardTitle className="flex items-center gap-2 text-lg"><BarChart3 className="h-5 w-5 text-primary" />Lav volatilitet</CardTitle></CardHeader>
+              <CardContent><p className="text-sm text-muted-foreground">Gevinster på ~30–40 % af spins. Typisk 1–50x indsatsen. Ideel til lange sessioner med begrænset budget. Eksempel: Starburst (96,09 % RTP).</p></CardContent>
             </Card>
             <Card className="border-border bg-card">
-              <CardHeader className="pb-2">
-                <CardTitle className="flex items-center gap-2 text-lg">
-                  <BarChart3 className="h-5 w-5 text-primary" />
-                  Medium volatilitet
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-sm text-muted-foreground">
-                  Balanceret gevinstfrekvens og -størrelse. God til de fleste spillere. Eksempel: Gonzos Quest (NetEnt).
-                </p>
-              </CardContent>
+              <CardHeader className="pb-2"><CardTitle className="flex items-center gap-2 text-lg"><BarChart3 className="h-5 w-5 text-primary" />Medium volatilitet</CardTitle></CardHeader>
+              <CardContent><p className="text-sm text-muted-foreground">Balanceret frekvens og størrelse. Bonusrunder 1–2x pr. 100 spins. God allround-oplevelse. Eksempel: Gonzo's Quest (95,97 % RTP).</p></CardContent>
             </Card>
             <Card className="border-border bg-card">
-              <CardHeader className="pb-2">
-                <CardTitle className="flex items-center gap-2 text-lg">
-                  <Zap className="h-5 w-5 text-primary" />
-                  Høj volatilitet
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-sm text-muted-foreground">
-                  Sjældne, men potentielt enorme gevinster (1.000–50.000x+). Kræver større bankroll. Eksempel: Mental (Nolimit City).
-                </p>
-              </CardContent>
+              <CardHeader className="pb-2"><CardTitle className="flex items-center gap-2 text-lg"><Zap className="h-5 w-5 text-primary" />Høj volatilitet</CardTitle></CardHeader>
+              <CardContent><p className="text-sm text-muted-foreground">Sjældne, potentielt massive gevinster (1.000–50.000x+). Lange tørre perioder. Kræver stor bankroll. Eksempel: Mental (96,08 % RTP).</p></CardContent>
             </Card>
           </div>
+
+          <h3 className="mb-3 text-xl font-semibold">Hit Rate og Max Win – Nøgletallene Du Ofte Overser</h3>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            Udover RTP og volatilitet er der to yderligere parametre, som erfarne spillere overvåger. <strong>Hit rate</strong> angiver procentdelen af spins, der resulterer i en gevinst – typisk 20–35 % for moderne video slots. En høj hit rate (30 %+) giver en følelse af hyppige gevinster, selvom mange af dem er under din indsats ("losses disguised as wins"). <strong>Max win</strong> er den højeste mulige gevinst i et enkelt spin eller en bonusrunde, udtrykt som en multiplikator af din indsats. Moderne høj-volatilitet slots har max wins fra 5.000x til over 500.000x (fx Nolimit City's titler). Max win-værdien er begrænset af udvikleren for at sikre casinoets solvens.
+          </p>
+
+          <h3 className="mb-3 text-xl font-semibold">Husets Fordel i Perspektiv</h3>
+          <p className="text-muted-foreground leading-relaxed">
+            For at sætte spillemaskiners matematiske profil i perspektiv: den gennemsnitlige spilleautomat har en house edge på 3–5 %. Til sammenligning har <Link to="/casinospil/blackjack" className={linkClass}>blackjack</Link> med optimal strategi 0,4–0,5 %, <Link to="/casinospil/roulette" className={linkClass}>europæisk roulette</Link> 2,7 %, og <Link to="/casinospil/baccarat" className={linkClass}>baccarat</Link> (Banker) 1,06 %. Spilleautomater har dermed en højere house edge end de fleste bordspil – men kompenserer med højere underholdningsværdi, lavere indsatskrav, og potentielt livsendrende jackpots. Det afgørende er at vælge automater med RTP over 96 % og matche volatiliteten med dit budget. Læs vores <Link to="/omsaetningskrav" className={linkClass}>guide til omsætningskrav</Link> for at forstå, hvordan RTP påvirker bonusgennemspilning.
+          </p>
         </section>
 
         <Separator className="my-10" />
 
-        {/* Section 4: Bonusfunktioner */}
+        {/* ── SEKTION 4: Bonusfunktioner – Dybdegående ── */}
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold">
-            Bonusfunktioner i moderne spillemaskiner
-          </h2>
+          <h2 className="mb-4 text-3xl font-bold">Bonusfunktioner i Moderne Spillemaskiner – En Detaljeret Gennemgang</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
-            Moderne spilleautomater er langt mere end bare spinning hjul. Bonusfunktioner er det, der skaber spænding, variation og potentiale for store gevinster. Her er de vigtigste bonusfunktioner, du møder i 2026:
+            Bonusfunktioner er det, der adskiller en simpel slotsoplevelse fra en underholdende rejse. I 2026 rummer de mest avancerede spilleautomater 10–15 forskellige mekanikker, der interagerer med hinanden for at skabe dybe og engagerende spilsessioner. Her gennemgår vi de vigtigste funktioner, deres matematiske betydning, og hvordan de påvirker din spiloplevelse.
           </p>
+
+          <h3 className="mb-3 text-xl font-semibold">Free Spins – Kernen i Moderne Slots</h3>
           <p className="mb-4 text-muted-foreground leading-relaxed">
-            <strong>Free spins</strong> er den mest udbredte bonusfunktion og udløses typisk ved at lande 3+ scatter-symboler. Under{" "}
-            <Link to="/free-spins" className={linkClass}>free spins</Link>-runder spinner du gratis med mulighed for ekstra features som stigende multiplikatorer, låste wilds eller ekstra scatter-symboler, der forlænger runden. Mange spilleautomater tilbyder også et "bonus buy"-valg, hvor du kan købe dig direkte ind i free spins-runden for en fast pris.
+            <Link to="/free-spins" className={linkClass}>Free spins</Link> er den mest udbredte bonusfunktion og udløses typisk ved at lande 3+ scatter-symboler. Under free spins spinner du gratis med mulighed for ekstra features: stigende multiplikatorer (der starter på 1x og stiger med hver cascading win), låste wilds (symboler der forbliver på hjulene i hele bonusrunden), expanding symboler (et tilfældigt symbol dækker hele hjul), og retrigger-muligheder (ekstra free spins ved nye scatter-landinger). Den gennemsnitlige free spins-runde giver 20–100x indsatsen, men med høj volatilitet kan den give 1.000x+ eller 0x (tomme runder forekommer).
           </p>
+
+          <h3 className="mb-3 text-xl font-semibold">Multiplikatorer – Gevinstens Turbolader</h3>
           <p className="mb-4 text-muted-foreground leading-relaxed">
-            <strong>Multiplikatorer</strong> ganges med din gevinst og kan variere fra 2x til over 15.000x i ekstreme tilfælde. De forekommer som faste værdier, stigende multiplikatorer under free spins, eller tilfældige multiplikatorer på individuelle spins. <strong>Expanding wilds</strong> dækker et helt hjul, når de lander, og erstatter alle andre symboler undtagen scatters – de kan dramatisk øge dine vinderchancer.
+            Multiplikatorer ganges med din gevinst og varierer dramatisk mellem spilleautomater. Faste multiplikatorer (2x, 3x, 5x) er tilknyttet specifikke symboler eller funktioner. Stigende multiplikatorer øges med hver konsekutive gevinst eller kaskade – i Gates of Olympus (Pragmatic Play) starter multiplikatoren ved 2x og stiger ubegrænset under free spins, hvilket skaber potentiale for massive udbetalinger. Tilfældige multiplikatorer tilføjes spontant af spillet – Lightning-serien fra Evolution anvender dette koncept. De mest ekstreme multiplikatorer finder du hos <Link to="/spiludviklere/nolimit-city" className={linkClass}>Nolimit City</Link>, hvor xNudge- og xWays-mekanikker kan skabe multiplikatorer på 15.000x+ i en enkelt spin.
+          </p>
+
+          <h3 className="mb-3 text-xl font-semibold">Wilds, Scatters og Specialsymboler</h3>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            <strong>Wild-symboler</strong> erstatter andre symboler (undtagen scatters) og hjælper med at danne vinderkombinationer. Varianter inkluderer expanding wilds (dækker hele hjul), sticky wilds (forbliver i flere spins), walking wilds (bevæger sig et felt pr. spin), og stacked wilds (fylder 2–4 positioner vertikalt). <strong>Scatter-symboler</strong> udløser bonusfunktioner uafhængigt af gevinstlinjer – de tæller uanset position på hjulene. Nogle spilleautomater bruger <strong>mystery-symboler</strong>, der alle transformeres til det samme tilfældige symbol efter spin, og <strong>collector-symboler</strong>, der opsamler værdier fra andre symboler på skærmen.
+          </p>
+
+          <h3 className="mb-3 text-xl font-semibold">Cascading Wins og Tumbling Reels</h3>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            Cascading wins (også kaldet tumbling reels, avalanche eller reaction) fjerner vindende symboler fra skærmen og lader nye falde ned ovenfra. Processen gentages, indtil ingen flere vinderkombinationer dannes. Denne mekanik giver mulighed for flere gevinster fra et enkelt spin og kombineres ofte med stigende multiplikatorer, der gør hver efterfølgende kaskade mere værdifuld. I cluster pays-slots som Sugar Rush kan en lang kaskade-kæde med stigende multiplikator give tusindvis af gange indsatsen fra et enkelt startspin.
+          </p>
+
+          <h3 className="mb-3 text-xl font-semibold">Bonus Buy og Ante Bet</h3>
+          <p className="text-muted-foreground leading-relaxed">
+            <strong>Bonus buy</strong> (feature buy) giver dig mulighed for at købe direkte adgang til free spins for en fast pris – typisk 60–100x din basisindsats. Det springer den potentielt lange ventetid over, men prisen er matematisk kalibreret til at give casinoet en lille fordel. <strong>Ante bet</strong> er en subtilere variant: du betaler typisk 20–25 % ekstra pr. spin for at fordoble sandsynligheden for at trigge bonusrunden. Ante bet ændrer reelt RTP-værdien (typisk +0,5–1 procentpoint) og er en interessant mulighed for spillere, der primært jagter bonusrunder. Begge funktioner er lovlige under dansk regulering.
+          </p>
+        </section>
+
+        <Separator className="my-10" />
+
+        {/* ── SEKTION 5: Spillertyper ── */}
+        <section className="mb-12">
+          <h2 className="mb-4 text-3xl font-bold">Hvilken Spillertype Er Du? – Slots til Ethvert Temperament</h2>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            Spilleautomater er ikke ens, og den perfekte slot afhænger af din personlige risikoprofil, dit budget og hvad du søger i din spiloplevelse. Her segmenterer vi de mest udbredte spillertyper og matcher dem med de optimale slotskategorier.
+          </p>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+            <Card className="border-border bg-card">
+              <CardHeader className="pb-2"><CardTitle className="text-lg">Den Konservative Hygge-Spiller</CardTitle></CardHeader>
+              <CardContent><p className="text-sm text-muted-foreground">Foretrækker lange sessioner med jævne, små gevinster. Budget: 100–500 kr. <strong>Anbefaling:</strong> Lav volatilitet, RTP 96 %+, minimumsindsats. Eksempler: Starburst, Twin Spin, Aloha! Cluster Pays. Forventet spilletid: 200–500 spins.</p></CardContent>
+            </Card>
+            <Card className="border-border bg-card">
+              <CardHeader className="pb-2"><CardTitle className="text-lg">Bonus-Jægeren</CardTitle></CardHeader>
+              <CardContent><p className="text-sm text-muted-foreground">Jagter bonusrunder og free spins, bruger evt. bonus buy. Budget: 500–2.000 kr. <strong>Anbefaling:</strong> Medium-høj volatilitet med gode bonusfeatures og bonus buy. Eksempler: Gates of Olympus, Sweet Bonanza, Dog House Megaways.</p></CardContent>
+            </Card>
+            <Card className="border-border bg-card">
+              <CardHeader className="pb-2"><CardTitle className="text-lg">High-Volatility Eventyreren</CardTitle></CardHeader>
+              <CardContent><p className="text-sm text-muted-foreground">Accepterer lange tørke-perioder for chancen for en massiv gevinst. Budget: 2.000+ kr. <strong>Anbefaling:</strong> Ekstremt høj volatilitet, max win 10.000x+. Eksempler: Mental, San Quentin, Tombstone R.I.P. (Nolimit City), Wanted Dead or a Wild (Hacksaw).</p></CardContent>
+            </Card>
+            <Card className="border-border bg-card">
+              <CardHeader className="pb-2"><CardTitle className="text-lg">Jackpot-Drømmeren</CardTitle></CardHeader>
+              <CardContent><p className="text-sm text-muted-foreground">Spiller primært for chancen for en livsendrende gevinst. Budget: variabelt, men accepterer lav basis-RTP. <strong>Anbefaling:</strong> Progressive jackpot-slots. Eksempler: Mega Moolah, Divine Fortune, Mega Fortune. Husk: basis-RTP er typisk 88–92 %.</p></CardContent>
+            </Card>
+          </div>
+
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            <strong>Den Strategiske Optimist</strong> fokuserer på høj RTP og lav volatilitet for at maksimere spilletid og minimere varians. Denne spillertype vælger automater som Blood Suckers (98 % RTP) eller Mega Joker (op til 99 %) og bruger dem til at gennemspille <Link to="/casino-bonus" className={linkClass}>casino bonusser</Link> effektivt. Det er den mest matematisk korrekte tilgang, men den ofrer underholdningsværdi og store gevinstmuligheder.
           </p>
           <p className="text-muted-foreground leading-relaxed">
-            <strong>Cascading wins</strong> (også kaldet tumbling reels) fjerner vindende symboler og lader nye falde ned ovenfra, hvilket giver mulighed for flere gevinster i samme spin. Denne mekanik kombineres ofte med stigende multiplikatorer, der gør hver kaskade mere værdifuld. <strong>Pick-and-click bonusspil</strong> tilbyder interaktiv gameplay, hvor du vælger mellem skjulte præmier, multiplikatorer eller free spins.
+            <strong>Den Sociale Streaming-Entusiast</strong> spiller primært for underholdningen og deler oplevelsen med andre – enten via Twitch-streams eller i community-fora. Denne spillertype vælger visuelle, dramatiske slots med high-volatility mekanikker, fordi de skaber de mest spændende øjeblikke. Max win-potentialet og bonusspillenes dramatik er vigtigere end RTP. Populære valg inkluderer Nolimit City's katalog og Hacksaws mest eksperimentelle titler.
           </p>
         </section>
 
         <Separator className="my-10" />
 
-        {/* Section 5: Sådan vælger du den rigtige spilleautomat */}
+        {/* ── SEKTION 6: Myter om spillemaskiner ── */}
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold">
-            Sådan vælger du den rigtige spilleautomat
-          </h2>
+          <h2 className="mb-4 text-3xl font-bold">Myter og Misforståelser Om Spillemaskiner</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
-            Med tusindvis af spilleautomater tilgængelige på danske casinoer kan det føles overvældende at vælge. Her er en praktisk tilgang baseret på tre faktorer: budget, RTP og volatilitetsmatch.
+            Spilleautomater er omgivet af myter, der stammer fra en kombination af misforståelse af tilfældighed, kognitiv bias og anekdotisk "bevismateriale". Her afslører vi de mest udbredte myter med faglig tyngde.
+          </p>
+
+          <h3 className="mb-2 text-lg font-semibold">Myte 1: "Spillemaskinen er ved at give en stor gevinst"</h3>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            Den mest udbredte myte. Spillere tror, at en automat, der ikke har givet en stor gevinst i lang tid, er "skyldig" en jackpot. Dette er gambler's fallacy – fejlslutningen om, at tilfældige hændelser har hukommelse. Hvert spin afgøres af RNG'en i det øjeblik, du trykker, og er fuldstændig uafhængigt af alle tidligere spins. En spilleautomat, der lige har udbetalt en million, har præcis den samme sandsynlighed for at give en ny stor gevinst på det næste spin. RNG'en kender ikke til "varme" og "kolde" perioder – det er menneskelig mønstergenkendelse, der projicerer mønstre ind i rent tilfældige data.
+          </p>
+
+          <h3 className="mb-2 text-lg font-semibold">Myte 2: "Casinoet kan justere RTP midt i dit spil"</h3>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            Nej. RTP-værdien er hardcoded i spillemaskinens software og certificeret af uafhængige laboratorier. Et dansk casino kan ikke ændre RTP'en på en automat i realtid eller tilpasse den til individuelle spillere. Casinoet kan dog vælge mellem forskellige RTP-versioner (f.eks. 94 % vs. 96 %) ved opsætning af spillet, men dette valg er fast og gælder for alle spillere. Enhver manipulation ville detekteres ved reguleringsmæssige audits og medføre øjeblikkelig licensinddragelse.
+          </p>
+
+          <h3 className="mb-2 text-lg font-semibold">Myte 3: "Tidspunktet for dit spin påvirker resultatet"</h3>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            RNG'en genererer tusindvis af tilfældige tal i sekundet. Resultatet bestemmes af det præcise millisekund, du klikker – og da dette timing-valg er ukontrollerbart for mennesker (vi kan ikke reagere i millisekunder), er det i praksis tilfældigt. Det gør ingen forskel, om du spiller kl. 3 om natten eller kl. 14 om eftermiddagen, om du bruger auto-spin eller klikker manuelt, eller om du skifter mellem spil. Hvert spin er identisk tilfældigt uanset tidspunkt og kontekst.
+          </p>
+
+          <h3 className="mb-2 text-lg font-semibold">Myte 4: "Higher stakes giver bedre odds"</h3>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            For standard video slots: nej. RTP'en er identisk uanset dit indsatsniveau. Et spin til 1 kr. har præcis den samme procentvise forventede tilbagebetaling som et spin til 100 kr. Undtagelsen er visse klassiske slots (som Mega Joker), hvor den højeste indsats aktiverer en Supermeter-funktion med højere RTP. Progressive jackpot-slots giver også typisk bedre jackpot-sandsynlighed ved højere indsats – men basis-RTP forbliver den samme. For standardspillere: vælg en indsats, der matcher dit budget, ikke en du tror giver bedre odds.
+          </p>
+
+          <h3 className="mb-2 text-lg font-semibold">Myte 5: "Nye spillemaskiner betaler bedre for at tiltrække spillere"</h3>
+          <p className="text-muted-foreground leading-relaxed">
+            Spiludviklere sætter RTP'en under udviklingen, og den ændres ikke efter lancering. En ny spilleautomat har præcis den samme RTP på dag 1 som på dag 1.000. Den oplevede "generøsitet" af nye slots skyldes tilfældig varians kombineret med bekræftelsesbias – vi husker de store gevinster og glemmer de mange tab. Casinoer kan promovere nye titler med bonusser eller free spins, men selve spillets matematik er uændret.
+          </p>
+        </section>
+
+        <Separator className="my-10" />
+
+        {/* ── SEKTION 7: Risikoanalyse og bankroll management ── */}
+        <section className="mb-12">
+          <h2 className="mb-4 text-3xl font-bold">Risikoanalyse og Bankroll Management for Slots</h2>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            Bankroll management er den mest undervurderede færdighed for slots-spillere. Uanset hvor høj RTP'en er, kan du tabe hele dit budget i en kort session pga. tilfældig varians. En struktureret tilgang til dit spilbudget beskytter dig mod impulsbeslutninger og forlænger din spilletid markant.
           </p>
           <p className="mb-4 text-muted-foreground leading-relaxed">
-            <strong>Budgetstyring:</strong> Sæt altid en grænse, før du begynder at spille. Med et lille budget (100–300 kr.) bør du vælge lav-volatilitet slots med lave minimumsindsatser – det giver flest spins og længst spilletid. Med et større budget kan du tage risikoen med høj-volatilitet slots, der belønner tålmodighed med potentielt massive gevinster.
+            <strong>Session-bankroll beregning:</strong> Din session-bankroll bør baseres på volatiliteten af den slot, du spiller. For lav volatilitet: 50–100x din indsats pr. spin (fx 500 kr. ved 5 kr. pr. spin). For medium volatilitet: 100–200x indsatsen (1.000 kr. ved 5 kr.). For høj volatilitet: 200–500x indsatsen (2.500 kr. ved 5 kr.). Disse tal sikrer, at du har tilstrækkelig dækning til at overleve tørre perioder og nå bonusrunder, der kompenserer for tab.
           </p>
           <p className="mb-4 text-muted-foreground leading-relaxed">
-            <strong>RTP-valg:</strong> Vælg altid spilleautomater med minimum 95 % RTP. Forskellen mellem 94 % og 97 % RTP lyder måske lille, men over 1.000 spins kan det betyde hundredvis af kroner i forskel. Kombiner højt RTP-valg med en god{" "}
-            <Link to="/casino-bonus" className={linkClass}>casino bonus</Link> for at maksimere din spilletid og dine vinderchancer.
+            <strong>Stop-loss og vindergrænser:</strong> Sæt to ufravigelige regler inden du starter: (1) Stop-loss – det maksimale beløb, du er villig til at tabe i en session. En god tommelfingerregel er 50 % af din session-bankroll. (2) Vindergrænse – når du har fordoblet din startbankroll, tag profiten og stop eller reducér indsatsen til minimum. Disciplin ved vindergrænsen er sværere end ved stop-loss, fordi vores hjerne fejlagtigt opfatter gevinster som "husets penge" – men det er dine penge, uanset hvordan du vandt dem.
+          </p>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            <strong>Forventet tab pr. time:</strong> Du kan beregne dit gennemsnitlige forventede tab med formlen: Indsats pr. spin × antal spins pr. time × house edge. Eksempel: 5 kr. × 600 spins/time (en hurtig autoplay-session) × 4 % house edge = 120 kr./time forventet tab. Denne beregning er vigtig for at planlægge din spilletid realistisk. Med en bankroll på 1.000 kr. og et forventet tab på 120 kr./time har du statistisk set ca. 8 timers spilletid – men den faktiske tid kan variere enormt pga. varians.
           </p>
           <p className="text-muted-foreground leading-relaxed">
-            <strong>Volatilitetsmatch:</strong> Match spillemaskinens volatilitet med din risikotolerance. Hvis du nyder lange spillesessioner med jævne gevinster, vælg lav volatilitet. Hvis du jager den store gevinst og kan acceptere lange perioder uden gevinst, er høj volatilitet dit valg. Medium volatilitet er den bedste allround-mulighed for de fleste spillere.
+            <strong>Indsatsstørrelse og tempo:</strong> To faktorer, der ofte overses. Autoplay på højeste hastighed kan udføre 600+ spins i timen, mens manuelt spil med pauser giver 200–300. Det tredobler dit forventede tab pr. time. Vi anbefaler: spil manuelt, tag pauser, og nyd animationerne. Det er ikke blot bedre for din bankroll – det er også en mere tilfredsstillende spiloplevelse. Sæt en timer på 30 minutter og tag en pause, når den ringer.
           </p>
         </section>
 
         <Separator className="my-10" />
 
-        {/* Section 6: De største spiludviklere */}
+        {/* ── SEKTION 8: Sammenligning med andre casinospil ── */}
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold">
-            De største spiludviklere bag spillemaskiner
-          </h2>
+          <h2 className="mb-4 text-3xl font-bold">Spillemaskiner vs. Andre Casinospil – En Ærlig Sammenligning</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
-            Kvaliteten af en spilleautomat afhænger i høj grad af{" "}
-            <Link to="/spiludviklere" className={linkClass}>spiludvikleren</Link> bag den. Her er de vigtigste navne, du bør kende:
+            Spilleautomater konkurrerer om din opmærksomhed med bordspil, live casino og game shows. Hvert format har sine styrker og svagheder, og det rigtige valg afhænger af, hvad du prioriterer: odds, underholdning, social interaktion eller gevinstpotentiale.
           </p>
+
+          <div className="overflow-x-auto mb-6">
+            <table className="w-full text-sm text-muted-foreground border border-border rounded-lg">
+              <thead>
+                <tr className="bg-muted/50">
+                  <th className="p-3 text-left font-semibold text-foreground">Spiltype</th>
+                  <th className="p-3 text-left font-semibold text-foreground">House Edge</th>
+                  <th className="p-3 text-left font-semibold text-foreground">Strategi-indflydelse</th>
+                  <th className="p-3 text-left font-semibold text-foreground">Max Gevinst</th>
+                  <th className="p-3 text-left font-semibold text-foreground">Tempo</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr className="border-t border-border"><td className="p-3 font-medium text-foreground">Spillemaskiner</td><td className="p-3">3–6 %</td><td className="p-3">Ingen</td><td className="p-3">500.000x+</td><td className="p-3">Hurtigt</td></tr>
+                <tr className="border-t border-border"><td className="p-3 font-medium text-foreground">Blackjack</td><td className="p-3">0,4–0,5 %</td><td className="p-3">Høj</td><td className="p-3">3:2 (1,5x)</td><td className="p-3">Middel</td></tr>
+                <tr className="border-t border-border"><td className="p-3 font-medium text-foreground">Roulette</td><td className="p-3">1,35–5,26 %</td><td className="p-3">Ingen</td><td className="p-3">35:1 (35x)</td><td className="p-3">Langsomt</td></tr>
+                <tr className="border-t border-border"><td className="p-3 font-medium text-foreground">Baccarat</td><td className="p-3">1,06–1,24 %</td><td className="p-3">Minimal</td><td className="p-3">1:1 (1x)</td><td className="p-3">Middel</td></tr>
+                <tr className="border-t border-border"><td className="p-3 font-medium text-foreground">Craps</td><td className="p-3">0–16,67 %</td><td className="p-3">Væddemålsvalg</td><td className="p-3">30:1 (30x)</td><td className="p-3">Hurtigt</td></tr>
+                <tr className="border-t border-border"><td className="p-3 font-medium text-foreground">Game Shows</td><td className="p-3">3–9 %</td><td className="p-3">Ingen</td><td className="p-3">25.000x</td><td className="p-3">Langsomt</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            Spillemaskiner taber klart på house edge sammenlignet med <Link to="/casinospil/blackjack" className={linkClass}>blackjack</Link>, <Link to="/casinospil/baccarat" className={linkClass}>baccarat</Link> og <Link to="/casinospil/craps" className={linkClass}>craps</Link> (med korrekte væddemål). Men de vinder på max win-potentiale: ingen anden casinospiltype kan give 50.000x+ indsatsen i en enkelt runde. Det gør dem attraktive for spillere, der accepterer en højere omkostning pr. time til gengæld for en lille chance for en livsendrende gevinst.
+          </p>
+          <p className="text-muted-foreground leading-relaxed">
+            For den matematisk orienterede spiller er bordspil objektivt bedre. For underholdningssøgende spillere tilbyder spilleautomater en uovertruffen variation, visuel kvalitet og dramatik. Den ideelle tilgang er at diversificere: brug bordspil til bonusgennemspilning (bedre RTP), og nyd spilleautomater som underholdning med et dedikeret budget. Se <Link to="/casinospil" className={linkClass}>vores komplette casinospil-oversigt</Link> for at udforske alle muligheder.
+          </p>
+        </section>
+
+        <Separator className="my-10" />
+
+        {/* ── SEKTION 9: Spiludviklerne ── */}
+        <section className="mb-12">
+          <h2 className="mb-4 text-3xl font-bold">Spiludviklerne Bag Spillemaskinerne</h2>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            Kvaliteten og karakteren af en spilleautomat bestemmes primært af <Link to="/spiludviklere" className={linkClass}>spiludvikleren</Link>. Ligesom filmstudier har hver udviklere sin stil, sine signaturmekanikker og sit kvalitetsniveau. At kende de vigtigste udviklere hjælper dig med at navigere i det enorme katalog af tilgængelige slots.
+          </p>
+
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-6">
             <Card className="border-border bg-card">
-              <CardHeader className="pb-2">
-                <CardTitle className="flex items-center gap-2 text-base">
-                  <Star className="h-4 w-4 text-primary" />
-                  <Link to="/spiludviklere/netent" className={linkClass}>NetEnt</Link>
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-sm text-muted-foreground">
-                  Nordisk kvalitetsudbyder bag ikoniske titler som Starburst, Gonzo's Quest og Dead or Alive. Kendt for høj RTP og poleret grafik.
-                </p>
-              </CardContent>
+              <CardHeader className="pb-2"><CardTitle className="flex items-center gap-2 text-base"><Star className="h-4 w-4 text-primary" /><Link to="/spiludviklere/netent" className={linkClass}>NetEnt</Link></CardTitle></CardHeader>
+              <CardContent><p className="text-sm text-muted-foreground">Skandinavisk kvalitetsudbyder bag Starburst, Gonzo's Quest, Dead or Alive og Blood Suckers. Kendt for poleret grafik, ikoniske titler og konsekvent høj RTP (95–98 %). Deres klassikere definerer genren.</p></CardContent>
             </Card>
             <Card className="border-border bg-card">
-              <CardHeader className="pb-2">
-                <CardTitle className="flex items-center gap-2 text-base">
-                  <Star className="h-4 w-4 text-primary" />
-                  <Link to="/spiludviklere/pragmatic-play" className={linkClass}>Pragmatic Play</Link>
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-sm text-muted-foreground">
-                  Markedsleder med enorm produktionskapacitet. Gates of Olympus, Sweet Bonanza og The Dog House er blandt de mest spillede slots i verden.
-                </p>
-              </CardContent>
+              <CardHeader className="pb-2"><CardTitle className="flex items-center gap-2 text-base"><Star className="h-4 w-4 text-primary" /><Link to="/spiludviklere/pragmatic-play" className={linkClass}>Pragmatic Play</Link></CardTitle></CardHeader>
+              <CardContent><p className="text-sm text-muted-foreground">Markedsleder med over 200 slots og enorm produktionskapacitet. Gates of Olympus, Sweet Bonanza og Dog House Megaways er blandt verdens mest spillede. Varieret volatilitet og stærk bonus buy-integration.</p></CardContent>
             </Card>
             <Card className="border-border bg-card">
-              <CardHeader className="pb-2">
-                <CardTitle className="flex items-center gap-2 text-base">
-                  <Star className="h-4 w-4 text-primary" />
-                  <Link to="/spiludviklere/nolimit-city" className={linkClass}>Nolimit City</Link>
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-sm text-muted-foreground">
-                  Specialiseret i ekstremt høj volatilitet med unikke mekanikker som xNudge og xWays. Mental, San Quentin og Tombstone er legendariske.
-                </p>
-              </CardContent>
+              <CardHeader className="pb-2"><CardTitle className="flex items-center gap-2 text-base"><Star className="h-4 w-4 text-primary" /><Link to="/spiludviklere/nolimit-city" className={linkClass}>Nolimit City</Link></CardTitle></CardHeader>
+              <CardContent><p className="text-sm text-muted-foreground">Specialiseret i ekstremt høj volatilitet med unikke mekanikker: xNudge, xWays, xBomb og Infectious xWays. Mental, San Quentin og Tombstone R.I.P. er legendariske. Max wins op til 150.000x.</p></CardContent>
             </Card>
             <Card className="border-border bg-card">
-              <CardHeader className="pb-2">
-                <CardTitle className="flex items-center gap-2 text-base">
-                  <Star className="h-4 w-4 text-primary" />
-                  <Link to="/spiludviklere/hacksaw-gaming" className={linkClass}>Hacksaw Gaming</Link>
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-sm text-muted-foreground">
-                  Innovativ udvikler med fokus på scratch cards og høj-volatilitet slots. Chaos Crew og Wanted Dead or a Wild er blandt deres bedste.
-                </p>
-              </CardContent>
+              <CardHeader className="pb-2"><CardTitle className="flex items-center gap-2 text-base"><Star className="h-4 w-4 text-primary" /><Link to="/spiludviklere/hacksaw-gaming" className={linkClass}>Hacksaw Gaming</Link></CardTitle></CardHeader>
+              <CardContent><p className="text-sm text-muted-foreground">Innovativ studio med fokus på minimalistisk design og høj volatilitet. Wanted Dead or a Wild, Chaos Crew og Itero er populære. Stærke scratch card-spil og unikke gridmekanikker.</p></CardContent>
             </Card>
             <Card className="border-border bg-card">
-              <CardHeader className="pb-2">
-                <CardTitle className="flex items-center gap-2 text-base">
-                  <Star className="h-4 w-4 text-primary" />
-                  <Link to="/spiludviklere/play-n-go" className={linkClass}>Play'n GO</Link>
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-sm text-muted-foreground">
-                  Svensk udvikler bag Book of Dead – en af verdens mest populære spilleautomater. Bredt katalog med varierende volatilitet og temaer.
-                </p>
-              </CardContent>
+              <CardHeader className="pb-2"><CardTitle className="flex items-center gap-2 text-base"><Star className="h-4 w-4 text-primary" /><Link to="/spiludviklere/play-n-go" className={linkClass}>Play'n GO</Link></CardTitle></CardHeader>
+              <CardContent><p className="text-sm text-muted-foreground">Svensk udvikler bag Book of Dead – en af verdens mest populære slots. Bredt katalog fra lav til høj volatilitet. Moon Princess, Reactoonz og Rich Wilde-serien er kerneprodukter.</p></CardContent>
             </Card>
             <Card className="border-border bg-card">
-              <CardHeader className="pb-2">
-                <CardTitle className="flex items-center gap-2 text-base">
-                  <Star className="h-4 w-4 text-primary" />
-                  <Link to="/spiludviklere/big-time-gaming" className={linkClass}>Big Time Gaming</Link>
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-sm text-muted-foreground">
-                  Opfinderne af Megaways-mekanikken. Bonanza og Extra Chilli har defineret en hel genre inden for spilleautomater.
-                </p>
-              </CardContent>
+              <CardHeader className="pb-2"><CardTitle className="flex items-center gap-2 text-base"><Star className="h-4 w-4 text-primary" /><Link to="/spiludviklere/big-time-gaming" className={linkClass}>Big Time Gaming</Link></CardTitle></CardHeader>
+              <CardContent><p className="text-sm text-muted-foreground">Opfinderne af Megaways-mekanikken. Bonanza, Extra Chilli og Danger High Voltage har defineret en hel genre. Licenserer Megaways-teknologien til andre udviklere.</p></CardContent>
             </Card>
           </div>
         </section>
 
         <Separator className="my-10" />
 
-        {/* Section 7: Sikkerhed */}
+        {/* ── SEKTION 10: Regulering i Danmark ── */}
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <ShieldCheck className="h-7 w-7 text-primary" />
-            Er det sikkert at spille spillemaskiner online i Danmark?
-          </h2>
+          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><ShieldCheck className="h-7 w-7 text-primary" />Regulering, Sikkerhed og Ansvarligt Spil</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
-            Ja – forudsat at du spiller på casinoer med gyldig dansk licens fra{" "}
-            <Link to="/spillemyndigheden" className={linkClass}>Spillemyndigheden</Link>. Den danske spillelovgivning er blandt de strengeste i Europa og stiller krav om RNG-certificering, regelmæssige audits, spillerbeskyttelse og obligatorisk tilknytning til ROFUS (Register Over Frivilligt Udelukkede Spillere).
+            Den danske spillelovgivning er blandt Europas strengeste og stiller omfattende krav til alle operatører, der tilbyder spilleautomater til danske spillere. Forståelsen af det regulatoriske landskab giver dig som spiller en vigtig tryghed – og redskaber til at beskytte dig selv.
           </p>
           <p className="mb-4 text-muted-foreground leading-relaxed">
-            Alle spilleautomater på danske licenserede casinoer gennemgår uafhængig testning, og casinoerne skal dokumentere, at spillenes RTP matcher de annoncerede værdier. Derudover tilbyder alle danske casinoer værktøjer til ansvarligt spil: indbetalingsgrænser, tabsgrænser, sessionsgrænser og selvudelukkelse via ROFUS.
+            <strong>Spillemyndighedens rolle:</strong> Den danske <Link to="/spillemyndigheden" className={linkClass}>Spillemyndighed</Link> (underlagt Skatteministeriet) udsteder licenser til online casinoer og overvåger, at de overholder spilleloven. Licensbetingelserne kræver bl.a.: RNG-certificering af alle spilleautomater fra anerkendte laboratorier, regelmæssige audits af faktisk RTP, beskyttelse af spillermidler på separate konti, og implementering af ansvarligt-spil-værktøjer. Overtrædelser medfører bøder, licensinddragelse og potentiel strafforfølgning.
+          </p>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            <strong>ROFUS og indbetalingsgrænser:</strong> Alle danske licenserede casinoer er tilknyttet ROFUS (Register Over Frivilligt Udelukkede Spillere), der giver dig mulighed for at udelukke dig selv fra alle danske spilsider i 24 timer, 1 måned, 3 måneder, 6 måneder eller permanent. Derudover skal alle casinoer tilbyde indbetalingsgrænser (daglige, ugentlige, månedlige), tabsgrænser og sessionsgrænser. Disse værktøjer er ikke valgfrie – de er lovkrav.
+          </p>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            <strong>MitID-verifikation:</strong> Danske casinoer kræver MitID-verifikation ved oprettelse, hvilket sikrer, at kun myndige personer med dansk CPR-nummer kan spille. Denne verifikation forhindrer også mindreårige fra at tilgå spil og muliggør automatisk ROFUS-kontrol. Det er et af de mest effektive spillerbeskyttelsessystemer i verden.
           </p>
           <p className="text-muted-foreground leading-relaxed">
-            Vi anbefaler altid at verificere casinoets licens på Spillemyndighedens hjemmeside, før du opretter en konto. Spil aldrig på uregulerede platforme uden dansk licens – du har ingen juridisk beskyttelse, og spillene er ikke garanteret fair.
+            <strong>Skat på gevinster:</strong> Gevinster fra spil hos danske licenserede casinoer er skattefrie for spilleren – casinoet betaler gevinstafgiften. Dog gælder dette kun for casinoer med dansk licens. Gevinster fra udenlandske uregulerede platforme kan være skattepligtige. Læs mere om skattereglerne i vores guide til <Link to="/ansvarligt-spil" className={linkClass}>ansvarligt spil</Link>.
           </p>
         </section>
+
+        <Separator className="my-10" />
+
+        {/* ── SEKTION 11: Fremtidens spillemaskiner ── */}
+        <section className="mb-12">
+          <h2 className="mb-4 text-3xl font-bold">Fremtidens Spillemaskiner – Tendenser og Innovation</h2>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            Spillemaskinebranchen er i konstant evolution, drevet af teknologisk innovation, ændrede spillerpræferencer og regulatoriske krav. Her er de tendenser, der former fremtidens slots i 2026 og fremefter.
+          </p>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            <strong>Skill-based mekanikker:</strong> En voksende tendens er integration af færdighedsbaserede elementer i traditionelle slots. I stedet for rent tilfældige bonusrunder tilbyder nogle udviklere mini-spil, hvor spillerens dygtighed påvirker udbetalingen – f.eks. timing-baserede challenges eller strategiske valg med reelle konsekvenser. Disse hybridmekanikker appellerer til en yngre generation, der er vokset op med videospil og forventer interaktiv gameplay.
+          </p>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            <strong>Social gaming og turnerings-slots:</strong> Slots-turneringer, hvor spillere konkurrerer mod hinanden om den højeste score inden for en tidsbegrænsning, vinder popularitet. Leaderboard-baserede events skaber en social dimension, der traditionelt har manglet i slots-verdenen. Vores eget <Link to="/community/slots" className={linkClass}>community spilområde</Link> er et eksempel på denne tendens.
+          </p>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            <strong>VR og immersive slots:</strong> Virtual reality-spillemaskiner er teknisk mulige men endnu i en tidlig fase. Udfordringerne er hardware-barrierer (VR-headsets er stadig relativt dyre og upraktiske) og behovet for en fundamentalt anderledes spildesign-filosofi. De første kommercielle VR-slots tilbyder en 360-graders casinooplevelse, men gameplay forbliver stort set uændret. Vi forventer, at AR (augmented reality) integrationer via smartphones bliver den mere tilgængelige gateway til immersive slotsoplevelser.
+          </p>
+          <p className="text-muted-foreground leading-relaxed">
+            <strong>AI-personalisering:</strong> Kunstig intelligens bruges allerede af udviklere til at optimere spildesign baseret på spilleradfærd – men der er vigtige etiske grænser. AI kan foreslå spil baseret på dine præferencer (ligesom Netflix anbefaler film), men det må aldrig bruges til at målrette sårbare spillere eller tilpasse volatiliteten i realtid. Regulatorisk overvågning af AI i gambling-industrien forventes at stige markant i 2026–2028.
+          </p>
+        </section>
+
+        <Separator className="my-10" />
+
+        {/* ── SEKTION 12: Sådan vælger du den rigtige slot ── */}
+        <section className="mb-12">
+          <h2 className="mb-4 text-3xl font-bold">Praktisk Guide – Sådan Vælger Du Den Rigtige Spillemaskine</h2>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            Med tusindvis af spilleautomater tilgængelige kan det føles overvældende at vælge. Her er en struktureret beslutningsproces baseret på tre trin:
+          </p>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            <strong>Trin 1 – Definer dit budget og din risikotolerance.</strong> Hvad er du villig til at tabe i denne session? Hvor lang spilletid ønsker du? Vil du jagte en stor gevinst eller nyde stabil underholdning? Svarene på disse spørgsmål dikterer din ideelle volatilitetsprofil. Lille budget + lang spilletid = lav volatilitet. Større budget + jackpot-jagten = høj volatilitet.
+          </p>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            <strong>Trin 2 – Tjek RTP og volatilitet.</strong> Åbn spillets informationsmenu og noter RTP-værdien. Vælg aldrig automater under 95 % RTP, medmindre du bevidst spiller progressive jackpots. Kombiner RTP-valget med din volatilitetsprofil fra trin 1. Husk, at den specifikke RTP kan variere mellem casinoer – tjek altid i selve spillet, ikke kun i tredjepartsanmeldelser.
+          </p>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            <strong>Trin 3 – Test spillet gratis først.</strong> De fleste danske casinoer tilbyder demotilstand for spilleautomater, hvor du kan spille med fiktive penge og opleve gameplay, bonusfunktioner og volatilitet uden risiko. Brug 50–100 gratis spins til at vurdere, om spillets tempo, tema og mekanikker passer dig, før du indsætter rigtige penge. Du kan også teste automater i vores <Link to="/community/slots" className={linkClass}>gratis spillehal</Link>.
+          </p>
+          <p className="text-muted-foreground leading-relaxed">
+            <strong>Bonustip:</strong> Hvis du spiller med en aktiv <Link to="/casino-bonus" className={linkClass}>casino bonus</Link>, vælg automater med høj RTP og lav-medium volatilitet for den mest effektive gennemspilning af <Link to="/omsaetningskrav" className={linkClass}>omsætningskrav</Link>. Høj volatilitet kan give store gevinster, men den kan også tømme din bonussaldo hurtigt. Blood Suckers (98 % RTP, lav volatilitet) og Mega Joker (op til 99 % RTP) er klassikere til bonusgennemspilning – men tjek altid casinoets bonusvilkår, da visse høj-RTP slots kan være ekskluderet.
+          </p>
+        </section>
+
+        <Separator className="my-10" />
 
         <AuthorBio />
 
         <Separator className="my-10" />
 
-        {/* FAQ Section */}
-        <FAQSection faqs={spillemaskineFaqs} />
-
-        {/* Related Guides + Community + Ansvarligt Spil */}
         <RelatedGuides currentPath="/casinospil/spillemaskiner" />
+
+        <FAQSection faqs={spillemaskineFaqs} />
       </div>
     </>
   );
