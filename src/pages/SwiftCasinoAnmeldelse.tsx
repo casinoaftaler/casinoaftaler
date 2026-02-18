@@ -15,7 +15,7 @@ import { useSiteSettings } from "@/hooks/useSiteSettings";
 import { getAffiliateRedirect } from "@/lib/affiliateRedirect";
 import { buildArticleSchema, buildFaqSchema } from "@/lib/seo";
 import { useAuth } from "@/hooks/useAuth";
-import { QuickFactsProviders, QuickFactsLogo } from "@/components/QuickFactsProviders";
+import { QuickFactsProviders, QuickFactsLogo, QuickFactsLicense } from "@/components/QuickFactsProviders";
 import type { ReactNode } from "react";
 import { CasinoReviewHero } from "@/components/CasinoReviewHero";
 import { AuthorBio } from "@/components/AuthorBio";
@@ -208,6 +208,7 @@ const SwiftCasinoAnmeldelse = () => {
                 ))}
               </div>
               <QuickFactsProviders providers={["NetEnt", "Play'n GO", "Red Tiger", "ELK Studios", "Playtech", "Microgaming", "Pragmatic Play", "Evolution Gaming", "Nolimit City", "Hacksaw Gaming", "Push Gaming", "Big Time Gaming", "Thunderkick"]} />
+              <QuickFactsLicense licenseId="16-1066791" />
             </CardContent>
           </Card>
         </section>

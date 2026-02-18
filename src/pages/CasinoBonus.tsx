@@ -218,8 +218,6 @@ const CasinoBonus = () => {
           </p>
         </section>
 
-        <InlineCasinoCards title="Bedste casino bonus tilbud" count={6} />
-
         <Separator className="my-10" />
 
         {/* ========== 2. BONUS-LANDSKABET I DANMARK 2026 ========== */}
@@ -293,6 +291,8 @@ const CasinoBonus = () => {
             Som tabellen viser, giver det danske marked en unik kombination: lavt omsætningsloft, stærk spillerbeskyttelse og stadig adgang til et bredt udvalg af bonustyper. Sverige har strengere bonusregler (kun én velkomstbonus, ingen løbende bonusser), mens Curaçao-markeder tilbyder høje bonusser med ekstremt krævende vilkår. For danske spillere er budskabet klart: spil hos casinoer med dansk licens for at nyde godt af verdens mest spillervenlige bonusregulering.
           </p>
         </section>
+
+        <InlineCasinoCards title="Bedste casino bonus tilbud" count={6} />
 
         <Separator className="my-10" />
 

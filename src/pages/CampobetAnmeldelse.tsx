@@ -16,7 +16,7 @@ import { useSiteSettings } from "@/hooks/useSiteSettings";
 import { getAffiliateRedirect } from "@/lib/affiliateRedirect";
 import { buildArticleSchema, buildFaqSchema } from "@/lib/seo";
 import { useAuth } from "@/hooks/useAuth";
-import { QuickFactsProviders, QuickFactsLogo } from "@/components/QuickFactsProviders";
+import { QuickFactsProviders, QuickFactsLogo, QuickFactsLicense } from "@/components/QuickFactsProviders";
 import type { ReactNode } from "react";
 import { CasinoReviewHero } from "@/components/CasinoReviewHero";
 import {
@@ -205,6 +205,7 @@ const CampobetAnmeldelse = () => {
                 ))}
               </div>
               <QuickFactsProviders providers={["Pragmatic Play", "Hacksaw Gaming", "Nolimit City", "NetEnt", "Play'n GO", "Yggdrasil", "ELK Studios", "Quickspin", "Red Tiger", "Push Gaming", "Relax Gaming", "Evolution Gaming"]} />
+              <QuickFactsLicense licenseId="20-6359" />
             </CardContent>
           </Card>
         </section>

@@ -16,7 +16,7 @@ import { useSiteSettings } from "@/hooks/useSiteSettings";
 import { getAffiliateRedirect } from "@/lib/affiliateRedirect";
 import { buildArticleSchema, buildFaqSchema } from "@/lib/seo";
 import { useAuth } from "@/hooks/useAuth";
-import { QuickFactsProviders, QuickFactsLogo } from "@/components/QuickFactsProviders";
+import { QuickFactsProviders, QuickFactsLogo, QuickFactsLicense } from "@/components/QuickFactsProviders";
 import type { ReactNode } from "react";
 import { CasinoReviewHero } from "@/components/CasinoReviewHero";
 import {
@@ -250,6 +250,7 @@ const SpilleautomatenAnmeldelse = () => {
                 </div>
               </div>
               <QuickFactsProviders providers={["Hacksaw Gaming", "Pragmatic Play", "Play'n GO", "Wazdan", "Quickspin", "Push Gaming", "ELK Studios", "Endorphina", "Stakelogic", "Synot", "NetEnt", "Nolimit City", "Red Tiger"]} />
+              <QuickFactsLicense licenseId="21-67980" />
             </CardContent>
           </Card>
         </section>

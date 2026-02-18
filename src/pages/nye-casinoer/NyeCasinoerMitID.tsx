@@ -61,8 +61,6 @@ const NyeCasinoerMitID = () => {
           <p className="text-muted-foreground leading-relaxed">MitID-verifikation er din garanti for, at casinoet opererer lovligt under dansk licens fra <Link to="/spillemyndigheden" className={linkClass}>Spillemyndigheden</Link>. Casinoer, der ikke kræver MitID, har ikke dansk licens og bør undgås – se vores guide til <Link to="/nye-casinoer/dansk-licens" className={linkClass}>nye casinoer med dansk licens</Link>.</p>
         </section>
 
-        <InlineCasinoCards title="Nye Casinoer med MitID" />
-
         <Separator className="my-10" />
 
         <section className="mb-12">
@@ -101,6 +99,8 @@ const NyeCasinoerMitID = () => {
             ))}
           </div>
         </section>
+
+        <InlineCasinoCards title="Nye Casinoer med MitID" />
 
         <Separator className="my-10" />
 

@@ -18,7 +18,7 @@ import { buildArticleSchema, buildFaqSchema } from "@/lib/seo";
 import { useAuth } from "@/hooks/useAuth";
 import type { ReactNode } from "react";
 import { CasinoReviewHero } from "@/components/CasinoReviewHero";
-import { QuickFactsProviders, QuickFactsLogo } from "@/components/QuickFactsProviders";
+import { QuickFactsProviders, QuickFactsLogo, QuickFactsLicense } from "@/components/QuickFactsProviders";
 import {
   ShieldCheck, Star, Clock, CreditCard, Gift, Trophy, Sparkles,
   HelpCircle, User, CalendarDays, BookOpen, Smartphone, Headphones,
@@ -249,6 +249,7 @@ const BetiniaAnmeldelse = () => {
                 </div>
               </div>
               <QuickFactsProviders providers={["NetEnt", "Evolution Gaming", "Play'n GO", "Quickspin", "Wazdan", "ELK Studios", "Big Time Gaming", "Nolimit City", "Pragmatic Play", "Yggdrasil", "Red Tiger", "Hacksaw Gaming", "Push Gaming", "Relax Gaming", "Thunderkick", "Blueprint Gaming"]} />
+              <QuickFactsLicense licenseId="20-6359" />
             </CardContent>
           </Card>
         </section>

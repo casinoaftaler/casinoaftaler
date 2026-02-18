@@ -144,8 +144,6 @@ const NyeCasinoer2026 = () => {
           </div>
         </section>
 
-        <InlineCasinoCards title="Nye Casinoer i 2026" />
-
         <Separator className="my-10" />
 
         <section className="mb-12">
@@ -160,6 +158,8 @@ const NyeCasinoer2026 = () => {
             Konsolideringstrenden fra 2024–2025 fortsætter: store internationale operatørgrupper opkøber nicheplatforme og relancerer dem med stærkere teknisk infrastruktur. Det betyder, at mange "nye" casinoer i 2026 reelt drives af erfarne teams med årelang erfaring – de kombinerer nylancerings-energi med enterprise-niveau driftssikkerhed.
           </p>
         </section>
+
+        <InlineCasinoCards title="Nye Casinoer i 2026" />
 
         <Separator className="my-10" />
 
