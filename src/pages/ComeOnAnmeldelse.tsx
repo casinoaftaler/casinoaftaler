@@ -85,7 +85,7 @@ const ComeOnAnmeldelse = () => {
     "@type": "Review",
     itemReviewed: { "@type": "Organization", name: "ComeOn Casino", url: "https://www.comeon.com/dk/" },
     author: { "@type": "Organization", name: "Casinoaftaler" },
-    reviewRating: { "@type": "Rating", ratingValue: "4.2", bestRating: "5", worstRating: "1" },
+    reviewRating: { "@type": "Rating", ratingValue: "4.1", bestRating: "5", worstRating: "1" },
     reviewBody: "ComeOn Casino er en solid og brugervenlig platform med dansk licens, et bredt spiludvalg og gennemsigtige bonusvilkår.",
   };
 

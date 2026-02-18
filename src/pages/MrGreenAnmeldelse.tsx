@@ -35,7 +35,7 @@ const MrGreenAnmeldelse = () => {
   const heroBackgroundImage = siteSettings?.hero_background_image;
   const articleSchema = buildArticleSchema({ headline: "Mr Green Casino Anmeldelse 2026 – Dansk Licens, Bonus & Ansvarligt Spil", description: "Komplet anmeldelse af Mr Green Casino. Prisbelønnet platform med dansk licens, Green Gaming og kurateret spiludvalg.", url: "https://casinoaftaler.dk/casino-anmeldelser/mr-green", datePublished: "2026-02-15", dateModified: "2026-02-17", authorName: "Jonas", authorUrl: "https://casinoaftaler.dk/forfatter/jonas" });
   const faqJsonLd = buildFaqSchema(mrgreenFaqs);
-  const reviewJsonLd = { "@context": "https://schema.org", "@type": "Review", itemReviewed: { "@type": "Organization", name: "Mr Green Casino", url: "https://www.mrgreen.com/dk/" }, author: { "@type": "Organization", name: "Casinoaftaler" }, reviewRating: { "@type": "Rating", ratingValue: "4.4", bestRating: "5", worstRating: "1" }, reviewBody: "Mr Green Casino er en prisbelønnet platform med dansk licens, innovativt Green Gaming-værktøj og et kurateret spiludvalg af høj kvalitet." };
+  const reviewJsonLd = { "@context": "https://schema.org", "@type": "Review", itemReviewed: { "@type": "Organization", name: "Mr Green Casino", url: "https://www.mrgreen.com/dk/" }, author: { "@type": "Organization", name: "Casinoaftaler" }, reviewRating: { "@type": "Rating", ratingValue: "4.3", bestRating: "5", worstRating: "1" }, reviewBody: "Mr Green Casino er en prisbelønnet platform med dansk licens, innovativt Green Gaming-værktøj og et kurateret spiludvalg af høj kvalitet." };
 
   return (
     <>
