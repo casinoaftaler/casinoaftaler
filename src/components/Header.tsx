@@ -297,9 +297,34 @@ export const Header = memo(function Header() {
               ))}
             </DropdownMenuContent>
           </DropdownMenu>
-          <Link to="/live-casino" className="flex items-center gap-1.5 text-sm font-medium transition-colors hover:text-primary">
-            Live Casino
-          </Link>
+          <DropdownMenu modal={false}>
+            <DropdownMenuTrigger className="flex items-center gap-1.5 text-sm font-medium transition-colors hover:text-primary">
+              Live Casino <ChevronDown className="h-4 w-4" />
+            </DropdownMenuTrigger>
+            <DropdownMenuContent align="center" className="bg-popover">
+              <DropdownMenuItem asChild>
+                <Link to="/live-casino" className="flex items-center gap-2">
+                  <Tv className="h-4 w-4" />
+                  Live Casino Oversigt
+                </Link>
+              </DropdownMenuItem>
+              <DropdownMenuSeparator />
+              {[
+                { to: "/live-casino/blackjack", label: "Live Blackjack" },
+                { to: "/live-casino/roulette", label: "Live Roulette" },
+                { to: "/live-casino/baccarat", label: "Live Baccarat" },
+                { to: "/live-casino/lightning-roulette", label: "Lightning Roulette" },
+                { to: "/live-casino/monopoly-live", label: "Monopoly Live" },
+              ].map((item) => (
+                <DropdownMenuItem key={item.to} asChild>
+                  <Link to={item.to} className="flex items-center gap-2">
+                    <Star className="h-3 w-3" />
+                    {item.label}
+                  </Link>
+                </DropdownMenuItem>
+              ))}
+            </DropdownMenuContent>
+          </DropdownMenu>
           <DropdownMenu modal={false}>
             <DropdownMenuTrigger className="flex items-center gap-1.5 text-sm font-medium transition-colors hover:text-primary">
               <BookOpen className="h-4 w-4" />
@@ -907,10 +932,40 @@ export const Header = memo(function Header() {
                 ))}
               </div>
             )}
-            <Link to="/live-casino" className="flex items-center gap-2 py-3 text-sm font-medium transition-colors hover:text-primary border-b border-border/50" onClick={() => setMobileMenuOpen(false)}>
-              <Tv className="h-4 w-4" />
-              Live Casino
-            </Link>
+            <button
+              onClick={() => setExpandedSection(expandedSection === "live" ? null : "live")}
+              className="flex items-center justify-between py-3 text-sm font-medium transition-colors hover:text-primary border-b border-border/50"
+            >
+              <span className="flex items-center gap-2">
+                <Tv className="h-4 w-4" />
+                Live Casino
+              </span>
+              <ChevronDown className={`h-4 w-4 transition-transform duration-200 ${expandedSection === "live" ? "rotate-180" : ""}`} />
+            </button>
+            {expandedSection === "live" && (
+              <div className="flex flex-col border-b border-border/50 bg-muted/30">
+                <Link
+                  to="/live-casino"
+                  className="ml-6 flex items-center gap-2 py-2.5 text-sm font-medium text-foreground transition-colors hover:text-primary"
+                  onClick={() => setMobileMenuOpen(false)}
+                >
+                  <Tv className="h-4 w-4" />
+                  Live Casino Oversigt
+                </Link>
+                {[
+                  { to: "/live-casino/blackjack", label: "Live Blackjack" },
+                  { to: "/live-casino/roulette", label: "Live Roulette" },
+                  { to: "/live-casino/baccarat", label: "Live Baccarat" },
+                  { to: "/live-casino/lightning-roulette", label: "Lightning Roulette" },
+                  { to: "/live-casino/monopoly-live", label: "Monopoly Live" },
+                ].map((item) => (
+                  <Link key={item.to} to={item.to} className="ml-6 flex items-center gap-2 py-2.5 text-sm text-muted-foreground transition-colors hover:text-primary" onClick={() => setMobileMenuOpen(false)}>
+                    <Star className="h-4 w-4" />
+                    {item.label}
+                  </Link>
+                ))}
+              </div>
+            )}
 
             {/* Casino Bonus - expandable */}
             <button
