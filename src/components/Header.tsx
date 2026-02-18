@@ -217,29 +217,9 @@ export const Header = memo(function Header() {
                 </Link>
               </DropdownMenuItem>
               <DropdownMenuSeparator />
-              <DropdownMenuSub>
-                <DropdownMenuSubTrigger className="flex items-center gap-2">
-                  <Gamepad2 className="h-4 w-4" />
-                  Spillemaskiner
-                </DropdownMenuSubTrigger>
-                <DropdownMenuSubContent className="bg-popover">
-                  <DropdownMenuItem asChild>
-                    <Link to="/casinospil/spillemaskiner" className="flex items-center gap-2 font-medium">
-                      <Gamepad2 className="h-4 w-4" />
-                      Alle Spillemaskiner
-                    </Link>
-                  </DropdownMenuItem>
-                  <DropdownMenuSeparator />
-                  <DropdownMenuItem asChild>
-                    <Link to="/casinospil/spillemaskiner/hoej-rtp" className="flex items-center gap-2">
-                      <BarChart3 className="h-4 w-4" />
-                      Spillemaskiner med høj RTP
-                    </Link>
-                  </DropdownMenuItem>
-                </DropdownMenuSubContent>
-              </DropdownMenuSub>
-              <DropdownMenuSeparator />
               {[
+                { to: "/casinospil/spillemaskiner", label: "Spillemaskiner" },
+                { to: "/casinospil/spillemaskiner/hoej-rtp", label: "Spillemaskiner med høj RTP" },
                 { to: "/casinospil/blackjack", label: "Blackjack" },
                 { to: "/casinospil/roulette", label: "Roulette" },
                 { to: "/casinospil/roulette-strategi", label: "Roulette Strategi" },
@@ -809,15 +789,9 @@ export const Header = memo(function Header() {
                   <Dices className="h-4 w-4" />
                   Casinospil Oversigt
                 </Link>
-                <Link to="/casinospil/spillemaskiner" className="ml-6 flex items-center gap-2 py-2.5 text-sm text-muted-foreground transition-colors hover:text-primary" onClick={() => setMobileMenuOpen(false)}>
-                  <Gamepad2 className="h-4 w-4" />
-                  Spillemaskiner
-                </Link>
-                <Link to="/casinospil/spillemaskiner/hoej-rtp" className="ml-10 flex items-center gap-2 py-2.5 text-sm text-muted-foreground transition-colors hover:text-primary" onClick={() => setMobileMenuOpen(false)}>
-                  <BarChart3 className="h-4 w-4" />
-                  Spillemaskiner med høj RTP
-                </Link>
                 {[
+                  { to: "/casinospil/spillemaskiner", label: "Spillemaskiner" },
+                  { to: "/casinospil/spillemaskiner/hoej-rtp", label: "Spillemaskiner med høj RTP" },
                   { to: "/casinospil/blackjack", label: "Blackjack" },
                   { to: "/casinospil/roulette", label: "Roulette" },
                   { to: "/casinospil/roulette-strategi", label: "Roulette Strategi" },
