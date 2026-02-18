@@ -563,12 +563,12 @@ export const Header = memo(function Header() {
                   </DropdownMenuItem>
                   <DropdownMenuSeparator />
                   {[
-                    { to: "/spildansknu-anmeldelse", label: "SpilDanskNu" },
-                    { to: "/spilleautomaten-anmeldelse", label: "Spilleautomaten" },
-                    { to: "/betinia-anmeldelse", label: "Betinia" },
-                    { to: "/campobet-anmeldelse", label: "Campobet" },
-                    { to: "/swift-casino-anmeldelse", label: "Swift Casino" },
-                    { to: "/luna-casino-anmeldelse", label: "Luna Casino" },
+                    { to: "/casino-anmeldelser/spildansknu", label: "SpilDanskNu" },
+                    { to: "/casino-anmeldelser/spilleautomaten", label: "Spilleautomaten" },
+                    { to: "/casino-anmeldelser/betinia", label: "Betinia" },
+                    { to: "/casino-anmeldelser/campobet", label: "Campobet" },
+                    { to: "/casino-anmeldelser/swift-casino", label: "Swift Casino" },
+                    { to: "/casino-anmeldelser/luna-casino", label: "Luna Casino" },
                   ].map((item) => (
                     <DropdownMenuItem key={item.to} asChild>
                       <Link to={item.to} className="flex items-center gap-2">
@@ -1198,12 +1198,12 @@ export const Header = memo(function Header() {
                       Alle anmeldelser
                     </Link>
                     {[
-                      { to: "/spildansknu-anmeldelse", label: "SpilDanskNu" },
-                      { to: "/spilleautomaten-anmeldelse", label: "Spilleautomaten" },
-                      { to: "/betinia-anmeldelse", label: "Betinia" },
-                      { to: "/campobet-anmeldelse", label: "Campobet" },
-                      { to: "/swift-casino-anmeldelse", label: "Swift Casino" },
-                      { to: "/luna-casino-anmeldelse", label: "Luna Casino" },
+                      { to: "/casino-anmeldelser/spildansknu", label: "SpilDanskNu" },
+                      { to: "/casino-anmeldelser/spilleautomaten", label: "Spilleautomaten" },
+                      { to: "/casino-anmeldelser/betinia", label: "Betinia" },
+                      { to: "/casino-anmeldelser/campobet", label: "Campobet" },
+                      { to: "/casino-anmeldelser/swift-casino", label: "Swift Casino" },
+                      { to: "/casino-anmeldelser/luna-casino", label: "Luna Casino" },
                     ].map((item) => (
                       <Link key={item.to} to={item.to} className="ml-10 flex items-center gap-2 py-2 text-sm text-muted-foreground transition-colors hover:text-primary" onClick={() => setMobileMenuOpen(false)}>
                         <Star className="h-3 w-3" />

@@ -620,12 +620,12 @@ const CasinoAnmeldelser = () => {
               </thead>
               <tbody>
                 {[
-                  { name: "Spilleautomaten", licens: "Dansk", type: "No-Sticky", omsætning: "10x", udbetaling: "4–8 timer", rating: "9.2", slug: "spilleautomaten-anmeldelse" },
-                  { name: "SpilDanskNu", licens: "Dansk", type: "No-Sticky", omsætning: "10x", udbetaling: "6–12 timer", rating: "9.0", slug: "spildansknu-anmeldelse" },
-                  { name: "Betinia", licens: "Dansk", type: "No-Sticky", omsætning: "10x", udbetaling: "4–10 timer", rating: "8.9", slug: "betinia-anmeldelse" },
-                  { name: "Campobet", licens: "Dansk", type: "No-Sticky", omsætning: "10x", udbetaling: "6–14 timer", rating: "8.8", slug: "campobet-anmeldelse" },
-                  { name: "Swift Casino", licens: "Dansk", type: "No-Sticky", omsætning: "10x", udbetaling: "4–10 timer", rating: "8.7", slug: "swift-casino-anmeldelse" },
-                  { name: "Luna Casino", licens: "Dansk", type: "No-Sticky", omsætning: "10x", udbetaling: "6–14 timer", rating: "8.6", slug: "luna-casino-anmeldelse" },
+                  { name: "Spilleautomaten", licens: "Dansk", type: "No-Sticky", omsætning: "10x", udbetaling: "4–8 timer", rating: "9.2", slug: "casino-anmeldelser/spilleautomaten" },
+                  { name: "SpilDanskNu", licens: "Dansk", type: "No-Sticky", omsætning: "10x", udbetaling: "6–12 timer", rating: "9.0", slug: "casino-anmeldelser/spildansknu" },
+                  { name: "Betinia", licens: "Dansk", type: "No-Sticky", omsætning: "10x", udbetaling: "4–10 timer", rating: "8.9", slug: "casino-anmeldelser/betinia" },
+                  { name: "Campobet", licens: "Dansk", type: "No-Sticky", omsætning: "10x", udbetaling: "6–14 timer", rating: "8.8", slug: "casino-anmeldelser/campobet" },
+                  { name: "Swift Casino", licens: "Dansk", type: "No-Sticky", omsætning: "10x", udbetaling: "4–10 timer", rating: "8.7", slug: "casino-anmeldelser/swift-casino" },
+                  { name: "Luna Casino", licens: "Dansk", type: "No-Sticky", omsætning: "10x", udbetaling: "6–14 timer", rating: "8.6", slug: "casino-anmeldelser/luna-casino" },
                   { name: "Danske Spil", licens: "Dansk", type: "Sticky", omsætning: "10x", udbetaling: "12–24 timer", rating: "8.5", slug: "casino-anmeldelser/danske-spil" },
                   { name: "LeoVegas", licens: "Dansk", type: "Sticky", omsætning: "10x", udbetaling: "2–8 timer", rating: "8.8", slug: "casino-anmeldelser/leovegas" },
                   { name: "bet365", licens: "Dansk", type: "Sticky", omsætning: "15x", udbetaling: "4–12 timer", rating: "8.7", slug: "casino-anmeldelser/bet365" },
@@ -669,37 +669,37 @@ const CasinoAnmeldelser = () => {
             const allReviews = [
               {
                 name: "Spilleautomaten",
-                slug: "spilleautomaten-anmeldelse",
+                slug: "casino-anmeldelser/spilleautomaten",
                 text: "Spilleautomaten har positioneret sig som det rene casino-alternativ i et marked, der i stigende grad domineres af dual-platform operatører. Med over 2.500 titler fra 40+ udviklere og et konsekvent fokus på no-sticky bonusser med 10x omsætning, leverer platformen en af markedets mest gennemsigtige spilleoplevelser. Vores udbetalingstests viste konsistent 4–8 timers behandling via Trustly – blandt de hurtigste vi har målt. Svagheden er fraværet af sportsbetting og et relativt beskedent VIP-program.",
                 partner: true,
               },
               {
                 name: "SpilDanskNu",
-                slug: "spildansknu-anmeldelse",
+                slug: "casino-anmeldelser/spildansknu",
                 text: "SpilDanskNu lever op til sit navn med en platform, der er designet specifikt til det danske marked. Hele interfacet er på dansk, kundeservice er dansktalende, og spiludvalget er kurateret til danske præferencer. No-sticky bonussen med lave omsætningskrav gør det til et stærkt valg for bonusbevidste spillere. Udbetalingerne er pålidelige, om end lidt langsommere end de hurtigste konkurrenter. Det er det oplagte valg for spillere, der prioriterer en autentisk dansk oplevelse.",
                 partner: true,
               },
               {
                 name: "Betinia",
-                slug: "betinia-anmeldelse",
+                slug: "casino-anmeldelser/betinia",
                 text: "Betinia skiller sig ud med det bredeste udvalg af spiludviklere i vores testfelt – over 40 studier repræsenteret. Akkumulatorboost-funktionen tilføjer et unikt element for spillere, der kombinerer casino med sportsbetting. No-sticky bonus med 10x omsætning følger markedets bedste standard. Den primære svaghed er fraværet af free spins i velkomstpakken, og kundeservice kan være langsom i spidsbelastningsperioder.",
                 partner: true,
               },
               {
                 name: "Campobet",
-                slug: "campobet-anmeldelse",
+                slug: "casino-anmeldelser/campobet",
                 text: "Campobet leverer en af markedets stærkeste dual-platform oplevelser. Casino-sektionen med 3.000+ spil er dybdegående, og sportsbetting-sektionen dækker bredt med konkurrencedygtige odds. Evolution Gamings live casino er velsorteret, og Trustly-udbetalinger behandles typisk inden for 6–14 timer. Platformen passer bedst til spillere, der vil have casino og sport under én konto uden at gå på kompromis med kvaliteten i nogen af delene.",
                 partner: true,
               },
               {
                 name: "Swift Casino",
-                slug: "swift-casino-anmeldelse",
+                slug: "casino-anmeldelser/swift-casino",
                 text: "Swift Casinos Hot Or Cold-funktion er en unik innovation, der viser hvilke spilleautomater, der aktuelt udbetaler over eller under gennemsnittet. Med 3.300+ spil og en no-sticky bonus med 10x omsætning leverer platformen solid substans. Udbetalingerne er hurtige – vores test viste 4–10 timer via Trustly. Svagheden er et lidt begrænset live casino-katalog og fraværet af free spins i velkomstpakken.",
                 partner: true,
               },
               {
                 name: "Luna Casino",
-                slug: "luna-casino-anmeldelse",
+                slug: "casino-anmeldelser/luna-casino",
                 text: "Luna Casino differentierer sig med et VIP-program, der tilbyder reelle fordele fra relativt lave niveauer – inklusiv personlig kontaktperson og cashback uden omsætningskrav. No-sticky bonussen inkluderer 50 free spins, hvilket er unikt blandt vores topanbefalinger. Spiludvalget er solidt, og behandlingstiden for udbetalinger er acceptabel. Det bedste valg for spillere, der spiller regelmæssigt og vil belønnes for loyalitet.",
                 partner: true,
               },

@@ -489,7 +489,7 @@ export default function ForfatterKevin() {
           <div className="mt-8 space-y-6">
             <div>
               <h4 className="text-lg font-semibold mb-2">
-                <Link to="/betinia-anmeldelse" className="text-primary hover:underline">Betinia</Link>
+                <Link to="/casino-anmeldelser/betinia" className="text-primary hover:underline">Betinia</Link>
               </h4>
               <p className="text-muted-foreground leading-relaxed">
                 Betinia er et moderne dansk casino med et stærkt bonusprogram og et bredt udvalg af{" "}
@@ -500,7 +500,7 @@ export default function ForfatterKevin() {
             </div>
             <div>
               <h4 className="text-lg font-semibold mb-2">
-                <Link to="/campobet-anmeldelse" className="text-primary hover:underline">Campobet</Link>
+                <Link to="/casino-anmeldelser/campobet" className="text-primary hover:underline">Campobet</Link>
               </h4>
               <p className="text-muted-foreground leading-relaxed">
                 Campobet kombinerer casino og sportsbetting under ét tag med en dansk licens og konkurrencedygtige{" "}
@@ -511,7 +511,7 @@ export default function ForfatterKevin() {
             </div>
             <div>
               <h4 className="text-lg font-semibold mb-2">
-                <Link to="/spildansknu-anmeldelse" className="text-primary hover:underline">SpilDanskNu</Link>
+                <Link to="/casino-anmeldelser/spildansknu" className="text-primary hover:underline">SpilDanskNu</Link>
               </h4>
               <p className="text-muted-foreground leading-relaxed">
                 SpilDanskNu er et af de mest populære danske online casinoer med lave{" "}

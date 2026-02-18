@@ -440,12 +440,12 @@ const Index = () => {
           </p>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
             {[
-              { name: "Spilleautomaten", to: "/spilleautomaten-anmeldelse" },
-              { name: "Campobet", to: "/campobet-anmeldelse" },
-              { name: "Betinia", to: "/betinia-anmeldelse" },
-              { name: "Swift Casino", to: "/swift-casino-anmeldelse" },
-              { name: "Luna Casino", to: "/luna-casino-anmeldelse" },
-              { name: "SpilDanskNu", to: "/spildansknu-anmeldelse" },
+              { name: "Spilleautomaten", to: "/casino-anmeldelser/spilleautomaten" },
+              { name: "Campobet", to: "/casino-anmeldelser/campobet" },
+              { name: "Betinia", to: "/casino-anmeldelser/betinia" },
+              { name: "Swift Casino", to: "/casino-anmeldelser/swift-casino" },
+              { name: "Luna Casino", to: "/casino-anmeldelser/luna-casino" },
+              { name: "SpilDanskNu", to: "/casino-anmeldelser/spildansknu" },
             ].map((casino) => (
               <Link
                 key={casino.name}

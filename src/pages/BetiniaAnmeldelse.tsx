@@ -117,7 +117,7 @@ const BetiniaAnmeldelse = () => {
   };
 
   const faqJsonLd = buildFaqSchema(betiniaFaqs);
-  const articleSchema = buildArticleSchema({ headline: "Betinia Anmeldelse 2026 – No-Sticky Bonus & Odds", description: "Komplet anmeldelse af Betinia. No-Sticky bonus op til 1.000 kr., 10x omsætning, sportsbetting og dansk licens.", url: "https://casinoaftaler.dk/betinia-anmeldelse", datePublished: "2026-02-15", dateModified: "2026-02-18", authorName: "Jonas", authorUrl: "https://casinoaftaler.dk/forfatter/jonas" });
+  const articleSchema = buildArticleSchema({ headline: "Betinia Anmeldelse 2026 – No-Sticky Bonus & Odds", description: "Komplet anmeldelse af Betinia. No-Sticky bonus op til 1.000 kr., 10x omsætning, sportsbetting og dansk licens.", url: "https://casinoaftaler.dk/casino-anmeldelser/betinia", datePublished: "2026-02-15", dateModified: "2026-02-18", authorName: "Jonas", authorUrl: "https://casinoaftaler.dk/forfatter/jonas" });
 
   const reviewJsonLd = {
     "@context": "https://schema.org",
@@ -133,22 +133,12 @@ const BetiniaAnmeldelse = () => {
       "Betinia er et dansk dual-motor casino med No-Sticky velkomstbonus på 100% op til 1.000 kr., 10x omsætning, sportsbetting med akkumulatorboost, over 40 spiludbydere og 19 betalingsmetoder.",
   };
 
-  const breadcrumbJsonLd = {
-    "@context": "https://schema.org",
-    "@type": "BreadcrumbList",
-    itemListElement: [
-      { "@type": "ListItem", position: 1, name: "Forside", item: "https://casinoaftaler.dk/" },
-      { "@type": "ListItem", position: 2, name: "Top 10 Casino Online", item: "https://casinoaftaler.dk/top-10-casino-online" },
-      { "@type": "ListItem", position: 3, name: "Betinia Anmeldelse", item: "https://casinoaftaler.dk/betinia-anmeldelse" },
-    ],
-  };
-
   return (
     <>
       <SEO
         title="Betinia Anmeldelse 2026 – No-Sticky Bonus"
         description="Komplet anmeldelse af Betinia.dk. 100% No-Sticky bonus op til 1.000 kr., kun 10x omsætning, over 40 spiludbydere, sportsbetting og hurtige udbetalinger. Læs vores ærlige vurdering."
-        jsonLd={[articleSchema, faqJsonLd, reviewJsonLd, breadcrumbJsonLd]}
+        jsonLd={[articleSchema, faqJsonLd, reviewJsonLd]}
       />
 
       {/* Hero Section */}
@@ -900,7 +890,7 @@ const BetiniaAnmeldelse = () => {
               <CardContent className="pt-6">
                 <h3 className="text-lg font-bold text-foreground mb-2">Betinia vs. Campobet</h3>
                 <p className="text-sm text-muted-foreground leading-relaxed">
-                  <Link to="/campobet-anmeldelse" className={linkClass}>Campobet</Link> er en direkte konkurrent med lignende dual-motor profil og No-Sticky bonus. Begge casinoer har 10x omsætningskrav og tilbyder sportsbetting. Campobet har en lidt mere udviklet sportsbetting-sektion med flere markeder pr. kamp, mens Betinia vinder på spiludvalgets bredde (40+ vs. ~25 udbydere) og antallet af betalingsmetoder (19 vs. 12). Akkumulatorboostet er sammenligneligt. For rene casinospillere er Betinia det bedre valg; for sportsbettere er Campobet et stærkt alternativ.
+                  <Link to="/casino-anmeldelser/campobet" className={linkClass}>Campobet</Link> er en direkte konkurrent med lignende dual-motor profil og No-Sticky bonus. Begge casinoer har 10x omsætningskrav og tilbyder sportsbetting. Campobet har en lidt mere udviklet sportsbetting-sektion med flere markeder pr. kamp, mens Betinia vinder på spiludvalgets bredde (40+ vs. ~25 udbydere) og antallet af betalingsmetoder (19 vs. 12). Akkumulatorboostet er sammenligneligt. For rene casinospillere er Betinia det bedre valg; for sportsbettere er Campobet et stærkt alternativ.
                 </p>
               </CardContent>
             </Card>
@@ -950,7 +940,7 @@ const BetiniaAnmeldelse = () => {
 
         <Separator className="my-10" />
 
-        <RelatedGuides currentPath="/betinia-anmeldelse" />
+        <RelatedGuides currentPath="/casino-anmeldelser/betinia" />
 
         <FAQSection title="Ofte stillede spørgsmål om Betinia" faqs={betiniaFaqs} />
       </div>

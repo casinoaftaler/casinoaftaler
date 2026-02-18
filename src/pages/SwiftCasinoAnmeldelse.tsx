@@ -79,7 +79,7 @@ const swiftFaqs: { question: string; answer: ReactNode }[] = [
     answer: (
       <>
         Swift Casino drives af Skill On Net Ltd, et veletableret selskab med dansk spillelicens fra Spillemyndigheden (licensnr. 16-1066791) siden 2017. Skill On Net driver flere andre danske casinoer, herunder{" "}
-        <Link to="/luna-casino-anmeldelse" className={linkClass}>Luna Casino</Link>, hvilket vidner om deres erfaring og pålidelighed. Platformen benytter SSL-kryptering og er tilsluttet{" "}
+        <Link to="/casino-anmeldelser/luna-casino" className={linkClass}>Luna Casino</Link>, hvilket vidner om deres erfaring og pålidelighed. Platformen benytter SSL-kryptering og er tilsluttet{" "}
         <a href="https://www.rofus.nu/" target="_blank" rel="noopener noreferrer" className={linkClass}>ROFUS</a>. Alle spil er certificeret af uafhængige testorganisationer, og RNG-teknologien sikrer fair og tilfældige resultater. Læs mere om{" "}
         <Link to="/ansvarligt-spil" className={linkClass}>ansvarligt spil</Link>.
       </>
@@ -111,7 +111,7 @@ const SwiftCasinoAnmeldelse = () => {
   const handleBonusClick = () => { if (casino) getAffiliateRedirect(casino.slug, user?.id); };
 
   const faqJsonLd = buildFaqSchema(swiftFaqs);
-  const articleSchema = buildArticleSchema({ headline: "Swift Casino Anmeldelse 2026 – Hot Or Cold & 3.300+ Spil", description: "Dybdegående anmeldelse af Swift Casino. 100% bonus op til 500 kr., 10x omsætning, Hot Or Cold-funktion og 3.300+ spil.", url: "https://casinoaftaler.dk/swift-casino-anmeldelse", datePublished: "2026-02-15", dateModified: "2026-02-18", authorName: "Jonas", authorUrl: "https://casinoaftaler.dk/forfatter/jonas" });
+  const articleSchema = buildArticleSchema({ headline: "Swift Casino Anmeldelse 2026 – Hot Or Cold & 3.300+ Spil", description: "Dybdegående anmeldelse af Swift Casino. 100% bonus op til 500 kr., 10x omsætning, Hot Or Cold-funktion og 3.300+ spil.", url: "https://casinoaftaler.dk/casino-anmeldelser/swift-casino", datePublished: "2026-02-15", dateModified: "2026-02-18", authorName: "Jonas", authorUrl: "https://casinoaftaler.dk/forfatter/jonas" });
 
   const reviewJsonLd = {
     "@context": "https://schema.org",
@@ -122,22 +122,12 @@ const SwiftCasinoAnmeldelse = () => {
     reviewBody: "Swift Casino er Data-Innovatøren blandt danske casinoer – et veletableret casino med 3.300+ spil, 100% bonus op til 500 kr. med 10x omsætning, den unikke Hot Or Cold-funktion, PayPal/Trustly-support og hurtige udbetalinger.",
   };
 
-  const breadcrumbJsonLd = {
-    "@context": "https://schema.org",
-    "@type": "BreadcrumbList",
-    itemListElement: [
-      { "@type": "ListItem", position: 1, name: "Forside", item: "https://casinoaftaler.dk/" },
-      { "@type": "ListItem", position: 2, name: "Casino Anmeldelser", item: "https://casinoaftaler.dk/casino-anmeldelser" },
-      { "@type": "ListItem", position: 3, name: "Swift Casino Anmeldelse", item: "https://casinoaftaler.dk/swift-casino-anmeldelse" },
-    ],
-  };
-
   return (
     <>
       <SEO
         title="Swift Casino Anmeldelse 2026 – Hot Or Cold"
         description="Dybdegående anmeldelse af Swift Casino efter 14 dages test. 100% bonus op til 500 kr. (kode SWIFT), 10x omsætning, 3.300+ spil, unik Hot Or Cold-funktion og PayPal/Trustly. Komplet analyse."
-        jsonLd={[articleSchema, faqJsonLd, reviewJsonLd, breadcrumbJsonLd]}
+        jsonLd={[articleSchema, faqJsonLd, reviewJsonLd]}
       />
 
       <section
@@ -221,7 +211,7 @@ const SwiftCasinoAnmeldelse = () => {
           </p>
           <p className="mb-4 text-muted-foreground leading-relaxed">
             Swift Casino blev lanceret i 2020 af Skill On Net Ltd, det samme selskab der driver{" "}
-            <Link to="/luna-casino-anmeldelse" className={linkClass}>Luna Casino</Link>. Mens Luna Casino satser på kvalitetskuratering med et bevidst begrænset katalog, har Swift Casino valgt den modsatte strategi: over 3.300 spiltitler fra alle de store udbydere, kombineret med innovative værktøjer der hjælper spillere med at navigere det omfattende udvalg.
+            <Link to="/casino-anmeldelser/luna-casino" className={linkClass}>Luna Casino</Link>. Mens Luna Casino satser på kvalitetskuratering med et bevidst begrænset katalog, har Swift Casino valgt den modsatte strategi: over 3.300 spiltitler fra alle de store udbydere, kombineret med innovative værktøjer der hjælper spillere med at navigere det omfattende udvalg.
           </p>
           <p className="mb-4 text-muted-foreground leading-relaxed">
             Med gyldig dansk licens fra Spillemyndigheden (nr. 16-1066791), en{" "}
@@ -343,7 +333,7 @@ const SwiftCasinoAnmeldelse = () => {
           <p className="mb-4 text-muted-foreground leading-relaxed">
             Swift Casinos{" "}
             <Link to="/indskudsbonus" className={linkClass}>velkomstbonus</Link> er en 100 % matchbonus op til 500 kr. Men i modsætning til søstercasinoet{" "}
-            <Link to="/luna-casino-anmeldelse" className={linkClass}>Luna Casino</Link>, hvor bonussen aktiveres automatisk, kræver Swift Casino bonuskoden <strong className="text-foreground">SWIFT</strong>. Det er en lille men vigtig detalje: glemmer du koden, mister du bonussen på din første indbetaling.
+            <Link to="/casino-anmeldelser/luna-casino" className={linkClass}>Luna Casino</Link>, hvor bonussen aktiveres automatisk, kræver Swift Casino bonuskoden <strong className="text-foreground">SWIFT</strong>. Det er en lille men vigtig detalje: glemmer du koden, mister du bonussen på din første indbetaling.
           </p>
           <p className="mb-4 text-muted-foreground leading-relaxed">
             <strong className="text-foreground">Matematikken bag 10x omsætning.</strong> Omsætningskravet er 10x (d+b) med 60 dages gyldighed. Lad os beregne den forventede værdi:
@@ -500,7 +490,7 @@ const SwiftCasinoAnmeldelse = () => {
           <h2 className="mb-4 text-3xl font-bold">3.300+ spil: Bredde med substans</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
             Swift Casinos spiludvalg er et af de mest omfattende på det danske marked. Med over 3.300 titler fra 20+ udbydere dækker platformen alt fra klassiske slots til de nyeste releases fra nicheudbydere. Det er her, forskellen til søstercasinoet{" "}
-            <Link to="/luna-casino-anmeldelse" className={linkClass}>Luna Casino</Link> er mest markant.
+            <Link to="/casino-anmeldelser/luna-casino" className={linkClass}>Luna Casino</Link> er mest markant.
           </p>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
             <Card className="border-border bg-card">
@@ -841,7 +831,7 @@ const SwiftCasinoAnmeldelse = () => {
           </p>
           <p className="mb-6 text-muted-foreground leading-relaxed">
             <strong className="text-foreground">Samlet vurdering:</strong> Swift Casino scorer 4.7 / 5. Det er et fremragende valg for spillere der værdsætter bredde, data-transparens og hurtige udbetalinger via PayPal/Trustly. Men hvis du prioriterer kuratering og loyalitetsprogram, vælg{" "}
-            <Link to="/luna-casino-anmeldelse" className={linkClass}>Luna Casino</Link>. Hvis du vil have sportsbetting og højere bonus, vælg{" "}
+            <Link to="/casino-anmeldelser/luna-casino" className={linkClass}>Luna Casino</Link>. Hvis du vil have sportsbetting og højere bonus, vælg{" "}
             <Link to="/casino-anmeldelser/bet365" className={linkClass}>bet365</Link>.
           </p>
           <div className="flex flex-col sm:flex-row justify-center gap-4">
@@ -859,7 +849,7 @@ const SwiftCasinoAnmeldelse = () => {
         <Separator className="my-10" />
         <AuthorBio author="jonas" />
         <Separator className="my-10" />
-        <RelatedGuides currentPath="/swift-casino-anmeldelse" />
+        <RelatedGuides currentPath="/casino-anmeldelser/swift-casino" />
 
         <FAQSection title="Ofte stillede spørgsmål om Swift Casino" faqs={swiftFaqs} />
       </div>

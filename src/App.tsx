@@ -247,12 +247,12 @@ const App = () => (
                 <Route path="/live-casino/baccarat" element={<LiveBaccaratGuide />} />
                 <Route path="/live-casino/lightning-roulette" element={<LightningRouletteGuide />} />
                 <Route path="/live-casino/monopoly-live" element={<MonopolyLiveGuide />} />
-                <Route path="/spilleautomaten-anmeldelse" element={<SpilleautomatenAnmeldelse />} />
-                <Route path="/spildansknu-anmeldelse" element={<SpilDanskNuAnmeldelse />} />
-                <Route path="/campobet-anmeldelse" element={<CampobetAnmeldelse />} />
-                <Route path="/betinia-anmeldelse" element={<BetiniaAnmeldelse />} />
-                <Route path="/swift-casino-anmeldelse" element={<SwiftCasinoAnmeldelse />} />
-                <Route path="/luna-casino-anmeldelse" element={<LunaCasinoAnmeldelse />} />
+                <Route path="/casino-anmeldelser/spilleautomaten" element={<SpilleautomatenAnmeldelse />} />
+                <Route path="/casino-anmeldelser/spildansknu" element={<SpilDanskNuAnmeldelse />} />
+                <Route path="/casino-anmeldelser/campobet" element={<CampobetAnmeldelse />} />
+                <Route path="/casino-anmeldelser/betinia" element={<BetiniaAnmeldelse />} />
+                <Route path="/casino-anmeldelser/swift-casino" element={<SwiftCasinoAnmeldelse />} />
+                <Route path="/casino-anmeldelser/luna-casino" element={<LunaCasinoAnmeldelse />} />
                 <Route path="/casino-anmeldelser" element={<CasinoAnmeldelser />} />
                 <Route path="/casino-anmeldelser/danske-spil" element={<DanskeSpilAnmeldelse />} />
                 <Route path="/casino-anmeldelser/comeon" element={<ComeOnAnmeldelse />} />
@@ -422,6 +422,12 @@ const App = () => (
               <Route path="/slots/book-of-fedesvin" element={<Navigate to="/community/slots/book-of-fedesvin" replace />} />
               <Route path="/slots/rise-of-fedesvin" element={<Navigate to="/community/slots/rise-of-fedesvin" replace />} />
               <Route path="/slots/*" element={<Navigate to="/community/slots" replace />} />
+              <Route path="/spilleautomaten-anmeldelse" element={<Navigate to="/casino-anmeldelser/spilleautomaten" replace />} />
+              <Route path="/spildansknu-anmeldelse" element={<Navigate to="/casino-anmeldelser/spildansknu" replace />} />
+              <Route path="/campobet-anmeldelse" element={<Navigate to="/casino-anmeldelser/campobet" replace />} />
+              <Route path="/betinia-anmeldelse" element={<Navigate to="/casino-anmeldelser/betinia" replace />} />
+              <Route path="/swift-casino-anmeldelse" element={<Navigate to="/casino-anmeldelser/swift-casino" replace />} />
+              <Route path="/luna-casino-anmeldelse" element={<Navigate to="/casino-anmeldelser/luna-casino" replace />} />
 
               {/* Catch-all */}
               <Route path="*" element={<NotFound />} />

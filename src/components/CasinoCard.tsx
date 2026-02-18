@@ -363,12 +363,12 @@ function FeaturedCard({
               {["spilleautomaten", "spildansknu", "campobet", "betinia", "swift-casino", "luna-casino"].includes(casino.slug) && (
                 <Link
                   to={
-                    casino.slug === "spilleautomaten" ? "/spilleautomaten-anmeldelse" :
-                    casino.slug === "spildansknu" ? "/spildansknu-anmeldelse" :
-                    casino.slug === "campobet" ? "/campobet-anmeldelse" :
-                    casino.slug === "betinia" ? "/betinia-anmeldelse" :
-                    casino.slug === "swift-casino" ? "/swift-casino-anmeldelse" :
-                    "/luna-casino-anmeldelse"
+                    casino.slug === "spilleautomaten" ? "/casino-anmeldelser/spilleautomaten" :
+                    casino.slug === "spildansknu" ? "/casino-anmeldelser/spildansknu" :
+                    casino.slug === "campobet" ? "/casino-anmeldelser/campobet" :
+                    casino.slug === "betinia" ? "/casino-anmeldelser/betinia" :
+                    casino.slug === "swift-casino" ? "/casino-anmeldelser/swift-casino" :
+                    "/casino-anmeldelser/luna-casino"
                   }
                   className="text-sm font-semibold text-accent hover:text-accent/80 transition-colors"
                 >

@@ -44,15 +44,15 @@ const FEATURED_SLUGS = ["spildansknu", "spilleautomaten", "campobet"];
 const casinoDescriptions: Record<string, { title: string; link: string }> = {
   spildansknu: {
     title: "SpilDanskNu",
-    link: "/spildansknu-anmeldelse",
+    link: "/casino-anmeldelser/spildansknu",
   },
   spilleautomaten: {
     title: "Spilleautomaten",
-    link: "/spilleautomaten-anmeldelse",
+    link: "/casino-anmeldelser/spilleautomaten",
   },
   campobet: {
     title: "Campobet",
-    link: "/campobet-anmeldelse",
+    link: "/casino-anmeldelser/campobet",
   },
 };
 
@@ -148,12 +148,12 @@ const jonasArticles = [
   { title: "Spil Casino for Sjov", path: "/casinoer/spil-casino-for-sjov", category: "Guide", date: "01-02-2026", readTime: "21 min.", excerpt: "Prøv casinospil gratis uden risiko – komplet guide." },
   { title: "Casino og Skat Guide", path: "/casinoer/casino-og-skat", category: "Guide", date: "01-02-2026", readTime: "22 min.", excerpt: "Alt om skat på casinogevinster i Danmark." },
   // Anmeldelser
-  { title: "SpilDanskNu Anmeldelse", path: "/spildansknu-anmeldelse", category: "Anmeldelse", date: "13-02-2026", readTime: "14 min.", excerpt: "Dybdegående anmeldelse af SpilDanskNu med bonus, spil og brugeroplevelse." },
-  { title: "Spilleautomaten Anmeldelse", path: "/spilleautomaten-anmeldelse", category: "Anmeldelse", date: "13-02-2026", readTime: "12 min.", excerpt: "Anmeldelse af Spilleautomaten med 3.000+ spil og hurtige udbetalinger." },
-  { title: "Campobet Anmeldelse", path: "/campobet-anmeldelse", category: "Anmeldelse", date: "17-02-2026", readTime: "9 min.", excerpt: "Campobet kombinerer casino og sportsbetting under dansk licens." },
-  { title: "Betinia Anmeldelse", path: "/betinia-anmeldelse", category: "Anmeldelse", date: "13-02-2026", readTime: "18 min.", excerpt: "Betinia – moderne casino med stærkt bonusprogram." },
-  { title: "Swift Casino Anmeldelse", path: "/swift-casino-anmeldelse", category: "Anmeldelse", date: "13-02-2026", readTime: "15 min.", excerpt: "Swift Casino – hurtige udbetalinger og moderne design." },
-  { title: "Luna Casino Anmeldelse", path: "/luna-casino-anmeldelse", category: "Anmeldelse", date: "13-02-2026", readTime: "16 min.", excerpt: "Luna Casino – unikt tema og solidt spiludvalg." },
+  { title: "SpilDanskNu Anmeldelse", path: "/casino-anmeldelser/spildansknu", category: "Anmeldelse", date: "13-02-2026", readTime: "14 min.", excerpt: "Dybdegående anmeldelse af SpilDanskNu med bonus, spil og brugeroplevelse." },
+  { title: "Spilleautomaten Anmeldelse", path: "/casino-anmeldelser/spilleautomaten", category: "Anmeldelse", date: "13-02-2026", readTime: "12 min.", excerpt: "Anmeldelse af Spilleautomaten med 3.000+ spil og hurtige udbetalinger." },
+  { title: "Campobet Anmeldelse", path: "/casino-anmeldelser/campobet", category: "Anmeldelse", date: "17-02-2026", readTime: "9 min.", excerpt: "Campobet kombinerer casino og sportsbetting under dansk licens." },
+  { title: "Betinia Anmeldelse", path: "/casino-anmeldelser/betinia", category: "Anmeldelse", date: "13-02-2026", readTime: "18 min.", excerpt: "Betinia – moderne casino med stærkt bonusprogram." },
+  { title: "Swift Casino Anmeldelse", path: "/casino-anmeldelser/swift-casino", category: "Anmeldelse", date: "13-02-2026", readTime: "15 min.", excerpt: "Swift Casino – hurtige udbetalinger og moderne design." },
+  { title: "Luna Casino Anmeldelse", path: "/casino-anmeldelser/luna-casino", category: "Anmeldelse", date: "13-02-2026", readTime: "16 min.", excerpt: "Luna Casino – unikt tema og solidt spiludvalg." },
   { title: "bet365 Casino Anmeldelse", path: "/casino-anmeldelser/bet365", category: "Anmeldelse", date: "17-02-2026", readTime: "18 min.", excerpt: "Er bet365 det bedste allround casino i Danmark? Vi tester alt." },
   { title: "Betano Anmeldelse", path: "/casino-anmeldelser/betano", category: "Anmeldelse", date: "17-02-2026", readTime: "19 min.", excerpt: "Betano – nyt dansk casino med fokus på sport og casino." },
   { title: "Danske Spil Anmeldelse", path: "/casino-anmeldelser/danske-spil", category: "Anmeldelse", date: "15-02-2026", readTime: "22 min.", excerpt: "Danske Spil Casino – Danmarks største spiludbyder testet." },
@@ -535,7 +535,7 @@ export default function Forfatter() {
           <div className="mt-8 space-y-6">
             <div>
               <h4 className="text-lg font-semibold mb-2">
-                <Link to="/spildansknu-anmeldelse" className="text-primary hover:underline">SpilDanskNu</Link>
+                <Link to="/casino-anmeldelser/spildansknu" className="text-primary hover:underline">SpilDanskNu</Link>
               </h4>
               <p className="text-muted-foreground leading-relaxed">
                 SpilDanskNu er et af de mest populære danske online casinoer med et stærkt fokus på det danske marked. Med en dansk licens og et bredt udvalg af{" "}
@@ -546,7 +546,7 @@ export default function Forfatter() {
             </div>
             <div>
               <h4 className="text-lg font-semibold mb-2">
-                <Link to="/spilleautomaten-anmeldelse" className="text-primary hover:underline">Spilleautomaten</Link>
+                <Link to="/casino-anmeldelser/spilleautomaten" className="text-primary hover:underline">Spilleautomaten</Link>
               </h4>
               <p className="text-muted-foreground leading-relaxed">
                 Spilleautomaten er kendt for sit enorme spiludvalg og hurtige udbetalinger. Med over 3.000 spil fra førende udbydere som{" "}
@@ -558,7 +558,7 @@ export default function Forfatter() {
             </div>
             <div>
               <h4 className="text-lg font-semibold mb-2">
-                <Link to="/campobet-anmeldelse" className="text-primary hover:underline">Campobet</Link>
+                <Link to="/casino-anmeldelser/campobet" className="text-primary hover:underline">Campobet</Link>
               </h4>
               <p className="text-muted-foreground leading-relaxed">
                 Campobet kombinerer casino og sportsbetting under ét tag, hvilket gør det til et alsidigt valg for spillere, der gerne vil have det hele samlet. Med en dansk licens, konkurrencedygtige{" "}
