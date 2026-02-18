@@ -44,7 +44,7 @@ const WildWestGoldGuide = () => {
     <>
       <SEO title="Wild West Gold – Sticky Wilds & RTP" description="Dybdegående analyse af Wild West Gold: sticky wild-multiplikatorer, 96,51 % RTP, 12.500× max win og bankroll-strategi." jsonLd={[faqJsonLd, articleSchema, breadcrumbJsonLd]} />
 
-      <section className="relative overflow-hidden py-12 text-white md:py-20" style={{ backgroundImage: "linear-gradient(135deg, hsl(35 70% 30%), hsl(25 60% 22%) 40%, hsl(15 70% 18%))" }}>
+      <section className="relative overflow-hidden py-12 text-white md:py-20" style={{ backgroundImage: "linear-gradient(135deg, hsl(260 70% 25%), hsl(250 60% 20%) 40%, hsl(210 80% 25%))" }}>
         <div className="container">
           <div className="mx-auto max-w-3xl text-center">
             <Badge variant="secondary" className="mb-4"><Sparkles className="mr-1.5 h-3.5 w-3.5" /> Sticky Wilds</Badge>
