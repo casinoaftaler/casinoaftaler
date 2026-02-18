@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";import { AuthorMetaBar } from "@/components/AuthorMetaBar";import { AuthorBio } from "@/components/AuthorBio";import { FAQSection } from "@/components/FAQSection";import { SEO } from "@/components/SEO";import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";import { Badge } from "@/components/ui/badge";import { Separator } from "@/components/ui/separator";import { Button } from "@/components/ui/button";import { RelatedGuides } from "@/components/RelatedGuides";import { InlineCasinoCards } from "@/components/InlineCasinoCards";import { useSiteSettings } from "@/hooks/useSiteSettings";import { buildArticleSchema, buildFaqSchema } from "@/lib/seo";import { QuickFactsProviders, QuickFactsLicense } from "@/components/QuickFactsProviders";import { CasinoReviewHero } from "@/components/CasinoReviewHero";import type { ReactNode } from "react";import { Star, Zap, Check, X, ShieldCheck, Trophy, CreditCard, AlertTriangle, TrendingUp, Gamepad2, Smartphone, Headphones, Globe } from "lucide-react";
+import { Link } from "react-router-dom";import { AuthorMetaBar } from "@/components/AuthorMetaBar";import { AuthorBio } from "@/components/AuthorBio";import { FAQSection } from "@/components/FAQSection";import { SEO } from "@/components/SEO";import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";import { Badge } from "@/components/ui/badge";import { Separator } from "@/components/ui/separator";import { Button } from "@/components/ui/button";import { RelatedGuides } from "@/components/RelatedGuides";import { InlineCasinoCards } from "@/components/InlineCasinoCards";import { useSiteSettings } from "@/hooks/useSiteSettings";import { buildArticleSchema, buildFaqSchema } from "@/lib/seo";import { QuickFactsProviders, QuickFactsLicense } from "@/components/QuickFactsProviders";import { CasinoReviewHero } from "@/components/CasinoReviewHero";import type { ReactNode } from "react";import { Star, Zap, Check, X, ShieldCheck, Trophy, CreditCard, AlertTriangle, TrendingUp, Gamepad2, Smartphone, Headphones, Globe, BarChart3 } from "lucide-react";
 import { RatingBreakdown } from "@/components/RatingBreakdown";import { CASINO_SCORES } from "@/lib/reviewScoring";
 const linkClass = "text-primary underline hover:text-primary/80";
 const marathonbetFaqs: { question: string; answer: ReactNode }[] = [
@@ -13,7 +13,7 @@ const marathonbetFaqs: { question: string; answer: ReactNode }[] = [
 const MarathonBetAnmeldelse = () => {
   const { data: siteSettings } = useSiteSettings();
   const heroBackgroundImage = siteSettings?.hero_background_image;
-  const articleSchema = buildArticleSchema({ headline: "MarathonBet Anmeldelse 2026 – Bedste Odds i Danmark?", description: "Dybdegående anmeldelse af MarathonBet. Dansk licens, ekstremt konkurrencedygtige odds og casino-supplement.", url: "https://casinoaftaler.dk/casino-anmeldelser/marathonbet", datePublished: "2026-02-15", dateModified: "2026-02-17", authorName: "Jonas", authorUrl: "https://casinoaftaler.dk/forfatter/jonas" });
+  const articleSchema = buildArticleSchema({ headline: "MarathonBet Anmeldelse 2026 – Bedste Odds i Danmark?", description: "Dybdegående anmeldelse af MarathonBet. Dansk licens, ekstremt konkurrencedygtige odds og casino-supplement.", url: "https://casinoaftaler.dk/casino-anmeldelser/marathonbet", datePublished: "2026-02-15", dateModified: "2026-02-18", authorName: "Jonas", authorUrl: "https://casinoaftaler.dk/forfatter/jonas" });
   const faqJsonLd = buildFaqSchema(marathonbetFaqs);
   const reviewJsonLd = { "@context": "https://schema.org", "@type": "Review", itemReviewed: { "@type": "Organization", name: "MarathonBet", url: "https://www.marathonbet.dk/" }, author: { "@type": "Organization", name: "Casinoaftaler" }, reviewRating: { "@type": "Rating", ratingValue: "3.8", bestRating: "5", worstRating: "1" }, reviewBody: "MarathonBet er en specialiseret sportsbogsoperatør med branchens laveste marginer og en acceptabel casino-sektion. Ideel for value-bettors, men ikke for dedikerede casino-spillere." };
   return (
@@ -27,7 +27,7 @@ const MarathonBetAnmeldelse = () => {
         </div></div>
       </section>
       <div className="container py-8 md:py-12">
-        <AuthorMetaBar author="jonas" date="15-02-2026" readTime="27 Min." />
+        <AuthorMetaBar author="jonas" date="18-02-2026" readTime="35 Min." />
         <CasinoReviewHero slug="marathonbet" casinoName="MarathonBet" />
 
         {/* Hurtige Fakta */}
@@ -208,6 +208,64 @@ const MarathonBetAnmeldelse = () => {
           </Card>
           <p className="mb-4 text-muted-foreground leading-relaxed">Disse tal forklarer, hvorfor professionelle og semi-professionelle bettors betragter MarathonBet som uundværlig. En besparelse på ~9.250 kr. årligt er et konservativt estimat – for storvolumen-bettors med 1.000+ væddemål stiger besparelsen proportionelt. Det er den matematiske realitet bag MarathonBets tiltrækningskraft.</p>
           <p className="text-muted-foreground leading-relaxed"><strong>Casino-EV:</strong> MarathonBets casino-bonus er minimal, og vi anbefaler ikke at vælge platformen for casino-bonussens skyld. Brug MarathonBet til sport og hav en dedikeret casino-konto hos <Link to="/casino-anmeldelser/leovegas" className={linkClass}>LeoVegas</Link> eller <Link to="/casino-anmeldelser/mr-green" className={linkClass}>Mr Green</Link> for optimal EV på tværs af produkter.</p>
+        </section>
+
+        <Separator className="my-10" />
+
+        {/* Forretningsmodel dybdeanalyse */}
+        <section className="mb-12">
+          <h2 className="mb-4 text-3xl font-bold"><BarChart3 className="inline h-7 w-7 text-primary mr-2" />Forretningsmodellen – hvorfor lave marginer er bæredygtigt</h2>
+          <p className="mb-4 text-muted-foreground leading-relaxed">MarathonBets lave marginer rejser et naturligt spørgsmål: Hvordan kan en bookmaker overleve med halvdelen af branchens standardmargin? Svaret ligger i volumenøkonomi og operationel effektivitet. Mens de store bookmakers bruger 30-50% af deres bruttoindtjening på markedsføring, TV-reklamer og sponsorater, bruger MarathonBet praktisk talt ingenting. Ingen Premier League-sponsorater, ingen TV-kampagner, ingen influencer-partnerskaber. Den sparede markedsføringsomkostning overføres direkte til spillerne i form af bedre odds.</p>
+          <p className="mb-4 text-muted-foreground leading-relaxed">En typisk storskala-bookmaker har følgende omkostningsstruktur: 40% marginer → 15% til markedsføring, 10% til drift, 5% til regulering og 10% i profit. MarathonBets struktur er radikalt anderledes: 15-20% marginer → 2% til markedsføring, 8% til drift, 5% til regulering – profit via volumen. Denne model er kun bæredygtig, hvis MarathonBet tiltrækker nok væddemålsvolumen fra kvalitetsbevidste bettors til at kompensere for den lavere margin per væddemål. Og det gør de – præcis fordi lave marginer tiltrækker de mest aktive og sofistikerede spillere i markedet.</p>
+          <p className="mb-4 text-muted-foreground leading-relaxed">Den vigtige implikation for spillere: MarathonBets model er <em>afhængig</em> af, at lave marginer opretholdes. Hvis de hæver marginerne til branchestandard, mister de deres kernekundebase og har ingen markedsføringsstyrke til at tiltrække nye. Det er en naturlig låsemekanisme, der beskytter spillerne: MarathonBet <em>kan</em> ikke hæve marginer uden at ødelægge sin egen forretningsmodel. Det er en sjælden situation i gambling-branchen, hvor spillerens interesse og operatørens interesse er strukturelt aligned.</p>
+          <p className="text-muted-foreground leading-relaxed">For den danske spiller er denne forretningsmodel en direkte fordel. MarathonBet fungerer som en naturlig priskonkurrent, der holder de øvrige operatører ærlige. Selv hvis du ikke bruger MarathonBet som din primære bookmaker, er dens eksistens i markedet gavnlig: den sætter et prispunkt, som konkurrenterne skal forholde sig til. Det er den klassiske rolle som "price disruptor" – og det er en rolle, der gavner alle spillere i det danske marked.</p>
+        </section>
+
+        <Separator className="my-10" />
+
+        {/* Årlig totaløkonomi */}
+        <section className="mb-12">
+          <h2 className="mb-4 text-3xl font-bold"><TrendingUp className="inline h-7 w-7 text-primary mr-2" />Helårsøkonomi – den komplette MarathonBet-spiller</h2>
+          <p className="mb-4 text-muted-foreground leading-relaxed">For at give et komplet billede af MarathonBets værdi beregner vi den samlede årlige EV for tre spillerprofiler:</p>
+          <Card className="border-border bg-card border-l-4 border-l-primary mb-6">
+            <CardHeader><CardTitle className="flex items-center gap-2 text-xl"><TrendingUp className="h-6 w-6 text-primary" />Årlig EV – MarathonBet vs. branchestandard</CardTitle></CardHeader>
+            <CardContent className="space-y-4">
+              <div className="rounded-lg border border-border p-4">
+                <p className="font-semibold text-foreground mb-2">Casual bettor (100 væddemål/år × 200 kr.)</p>
+                <p className="text-sm text-muted-foreground">MarathonBet margin (1,8%): 20.000 × 0,018 = 360 kr. forventet tab</p>
+                <p className="text-sm text-muted-foreground">Branchestandard (5,5%): 20.000 × 0,055 = 1.100 kr. forventet tab</p>
+                <p className="text-sm text-foreground font-bold mt-2">Årlig besparelse: 740 kr. 💰</p>
+              </div>
+              <div className="rounded-lg border border-border p-4">
+                <p className="font-semibold text-foreground mb-2">Aktiv bettor (500 væddemål/år × 500 kr.)</p>
+                <p className="text-sm text-muted-foreground">MarathonBet: 250.000 × 0,018 = 4.500 kr. forventet tab</p>
+                <p className="text-sm text-muted-foreground">Branchestandard: 250.000 × 0,055 = 13.750 kr. forventet tab</p>
+                <p className="text-sm text-foreground font-bold mt-2">Årlig besparelse: 9.250 kr. 💰</p>
+              </div>
+              <div className="rounded-lg border border-border p-4">
+                <p className="font-semibold text-foreground mb-2">Semi-professionel (1.500 væddemål/år × 1.000 kr.)</p>
+                <p className="text-sm text-muted-foreground">MarathonBet: 1.500.000 × 0,018 = 27.000 kr. forventet tab</p>
+                <p className="text-sm text-muted-foreground">Branchestandard: 1.500.000 × 0,055 = 82.500 kr. forventet tab</p>
+                <p className="text-sm text-foreground font-bold mt-2">Årlig besparelse: 55.500 kr. 💰💰💰</p>
+              </div>
+              <div className="rounded-lg border border-border p-4 bg-muted/20">
+                <p className="font-semibold text-foreground mb-2">Konklusion</p>
+                <p className="text-sm text-muted-foreground">MarathonBets lave marginer giver den mest markante økonomiske fordel for aktive og semi-professionelle bettors. For casual bettors med under 100 væddemål/år er besparelsen beskeden (740 kr.) og retfærdiggør sandsynligvis ikke det mindre polerede interface. For alle med 300+ væddemål/år er MarathonBet en finansielt rationel beslutning.</p>
+              </div>
+            </CardContent>
+          </Card>
+          <p className="text-muted-foreground leading-relaxed"><strong>Risk of Ruin-note:</strong> Sportsvæddemål har generelt lavere varians end casino-spil, men Risk of Ruin er stadig relevant. Med en bankroll på 10.000 kr. og fladt staking (2% pr. væddemål = 200 kr.), er Risk of Ruin over 500 væddemål med MarathonBets marginer ca. 8% – sammenlignet med 19% ved branchestandardmarginer. Lavere margin betyder ikke kun bedre odds – det betyder også, at din bankroll holder længere. Det er den dobbelte fordel ved lave marginer, som mange spillere overser.</p>
+        </section>
+
+        <Separator className="my-10" />
+
+        {/* Arbitrage og sharp betting perspektiv */}
+        <section className="mb-12">
+          <h2 className="mb-4 text-3xl font-bold">MarathonBet i arbitrage- og sharp betting-økosystemet</h2>
+          <p className="mb-4 text-muted-foreground leading-relaxed">Et aspekt af MarathonBet, der sjældent dækkes i traditionelle anmeldelser, er platformens rolle i det bredere betting-økosystem. MarathonBet er en af de få bookmakers, der konsekvent optræder som "sharp line" – dvs. en bookmaker, hvis odds er så tæt på den sande sandsynlighed, at andre bookmakers bruger MarathonBets linjer som reference for at sætte deres egne odds.</p>
+          <p className="mb-4 text-muted-foreground leading-relaxed">I praksis betyder det, at MarathonBets odds ofte bevæger sig <em>før</em> de store bookmakers. Når MarathonBet sænker odds på et udfald, følger bet365, Unibet og andre typisk efter inden for 15-60 minutter. Denne dynamik giver informerede bettors et vindue til at placere væddemål hos de langsommere bookmakers til odds, der allerede er vurderet som for høje af MarathonBets algoritmer. Det er en avanceret strategi, men den er realistisk for enhver bettor, der har konti hos 2-3 bookmakers og følger odds-bevægelser.</p>
+          <p className="mb-4 text-muted-foreground leading-relaxed">For arbitrage-spillere – dem, der udnytter prisforskelle mellem bookmakers til risikofri profit – er MarathonBet ofte den ene side af handlen. MarathonBets lave marginer betyder, at deres odds sjældent er den "forkerte" side i en arbitrage-situation. I stedet er det typisk en mainstream-bookmaker med høje marginer (f.eks. Danske Spil med 6-8% margin), der tilbyder den modsatte side til for høj odds. Resultatet er, at MarathonBet-brugere sjældent oplever kontobegrænsninger relateret til arbitrage – fordi de typisk vædder på den "korrekte" side.</p>
+          <p className="text-muted-foreground leading-relaxed">For den gennemsnitlige danske bettor er denne information relevant af én grund: det bekræfter, at MarathonBets odds er blandt de mest præcise i branchen. Når professionelle syndikater og arbitragører bruger MarathonBet som reference, er det et kvalitetsstempel for odds-integriteten. Du behøver ikke være en professionel bettor for at drage fordel – du skal bare vide, at når du placerer et væddemål hos MarathonBet, får du en pris, der er tættere på den sande sandsynlighed end hos næsten enhver anden bookmaker.</p>
         </section>
 
         <Separator className="my-10" />
