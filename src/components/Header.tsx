@@ -217,9 +217,41 @@ export const Header = memo(function Header() {
                 </Link>
               </DropdownMenuItem>
               <DropdownMenuSeparator />
+              <DropdownMenuSub>
+                <DropdownMenuSubTrigger className="flex items-center gap-2">
+                  <Star className="h-3 w-3" />
+                  Spillemaskiner
+                </DropdownMenuSubTrigger>
+                <DropdownMenuSubContent className="bg-popover">
+                  <DropdownMenuItem asChild>
+                    <Link to="/casinospil/spillemaskiner" className="flex items-center gap-2 font-medium">
+                      <Star className="h-3 w-3" />
+                      Alle Spillemaskiner
+                    </Link>
+                  </DropdownMenuItem>
+                  <DropdownMenuSeparator />
+                  <DropdownMenuItem asChild>
+                    <Link to="/casinospil/spillemaskiner/hoej-rtp" className="flex items-center gap-2">
+                      <Star className="h-3 w-3" />
+                      Høj RTP Spillemaskiner
+                    </Link>
+                  </DropdownMenuItem>
+                  <DropdownMenuSeparator />
+                  {[
+                    { to: "/casinospil/spillemaskiner/sweet-bonanza", label: "Sweet Bonanza" },
+                    { to: "/casinospil/spillemaskiner/book-of-dead", label: "Book of Dead" },
+                    { to: "/casinospil/spillemaskiner/gates-of-olympus", label: "Gates of Olympus" },
+                  ].map((item) => (
+                    <DropdownMenuItem key={item.to} asChild>
+                      <Link to={item.to} className="flex items-center gap-2">
+                        <Star className="h-3 w-3" />
+                        {item.label}
+                      </Link>
+                    </DropdownMenuItem>
+                  ))}
+                </DropdownMenuSubContent>
+              </DropdownMenuSub>
               {[
-                { to: "/casinospil/spillemaskiner", label: "Spillemaskiner" },
-                { to: "/casinospil/spillemaskiner/hoej-rtp", label: "Spillemaskiner med høj RTP" },
                 { to: "/casinospil/blackjack", label: "Blackjack" },
                 { to: "/casinospil/roulette", label: "Roulette" },
                 { to: "/casinospil/roulette-strategi", label: "Roulette Strategi" },
@@ -789,9 +821,22 @@ export const Header = memo(function Header() {
                   <Dices className="h-4 w-4" />
                   Casinospil Oversigt
                 </Link>
+                <Link to="/casinospil/spillemaskiner" className="ml-6 flex items-center gap-2 py-2.5 text-sm font-medium text-foreground transition-colors hover:text-primary" onClick={() => setMobileMenuOpen(false)}>
+                  <Star className="h-4 w-4" />
+                  Spillemaskiner
+                </Link>
                 {[
-                  { to: "/casinospil/spillemaskiner", label: "Spillemaskiner" },
-                  { to: "/casinospil/spillemaskiner/hoej-rtp", label: "Spillemaskiner med høj RTP" },
+                  { to: "/casinospil/spillemaskiner/hoej-rtp", label: "Høj RTP Spillemaskiner" },
+                  { to: "/casinospil/spillemaskiner/sweet-bonanza", label: "Sweet Bonanza" },
+                  { to: "/casinospil/spillemaskiner/book-of-dead", label: "Book of Dead" },
+                  { to: "/casinospil/spillemaskiner/gates-of-olympus", label: "Gates of Olympus" },
+                ].map((item) => (
+                  <Link key={item.to} to={item.to} className="ml-10 flex items-center gap-2 py-2 text-sm text-muted-foreground transition-colors hover:text-primary" onClick={() => setMobileMenuOpen(false)}>
+                    <Star className="h-3 w-3" />
+                    {item.label}
+                  </Link>
+                ))}
+                {[
                   { to: "/casinospil/blackjack", label: "Blackjack" },
                   { to: "/casinospil/roulette", label: "Roulette" },
                   { to: "/casinospil/roulette-strategi", label: "Roulette Strategi" },
