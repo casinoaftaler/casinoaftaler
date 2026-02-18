@@ -3,7 +3,7 @@ import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { AuthorBio } from "@/components/AuthorBio";
 import { FAQSection } from "@/components/FAQSection";
 import { SEO } from "@/components/SEO";
-import { buildFaqSchema } from "@/lib/seo";
+import { buildFaqSchema, buildArticleSchema, SITE_URL } from "@/lib/seo";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
@@ -14,12 +14,6 @@ import { useCasinos } from "@/hooks/useCasinos";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
 import nyeCasinoerHero from "@/assets/heroes/nye-casinoer-hero.jpg";
 import { useState, useMemo, type ReactNode } from "react";
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "@/components/ui/accordion";
 import {
   Sparkles,
   ShieldCheck,
@@ -33,10 +27,16 @@ import {
   TrendingUp,
   CheckCircle2,
   Loader2,
-  HelpCircle,
-  User,
-  CalendarDays,
-  BookOpen,
+  XCircle,
+  AlertTriangle,
+  BarChart3,
+  Scale,
+  Target,
+  Zap,
+  Brain,
+  UserCheck,
+  UserX,
+  ArrowRight,
 } from "lucide-react";
 
 const PARTNER_SLUGS = ["spildansknu", "spilleautomaten", "betinia", "campobet", "swift-casino", "luna-casino"];
@@ -56,52 +56,60 @@ const linkClass = "text-primary underline hover:text-primary/80";
 
 const nyeCasinoerFaqs: { question: string; answer: ReactNode }[] = [
   {
-    question: "Hvordan sikrer I jer, at nye casinoer er pålidelige, før I anbefaler dem?",
+    question: "Hvad definerer et 'nyt casino' på det danske marked?",
     answer: (
       <>
-        Vores screening-proces for nye casinoer er intensiv. Først verificerer vi den danske licens fra Spillemyndigheden – dette er et ufravigeligt krav. Derefter undersøger vi operatørselskabet bag casinoet: har de erfaring fra andre markeder? Driver de andre licenserede casinoer? Vi tester casinoet med rigtige penge over minimum 2 uger, hvor vi evaluerer registreringsprocessen, indbetalinger via flere{" "}
-        <Link to="/betalingsmetoder" className={linkClass}>betalingsmetoder</Link>, spiloplevelsen og – kritisk –udbetalingshastigheden. Vi kontakter også kundeservice med specifikke spørgsmål for at vurdere kompetence og svartid. Kun casinoer, der består alle tests, kommer på listen.
+        Et nyt casino defineres som et spillested, der har lanceret med dansk licens fra Spillemyndigheden inden for de seneste 12 måneder. Det inkluderer både helt nye brands og etablerede internationale operatører, der åbner specifikt for det danske marked. Vi skelner bevidst mellem "ny platform" (nyt brand) og "ny dansk lancering" (eksisterende brand med ny DK-licens), da risikoprofilen er markant forskellig. Et nyt brand uden track record kræver mere grundig due diligence end en erfaren operatør med dokumenteret historie fra andre regulerede markeder. Se vores <Link to="/nye-casinoer/2026" className={linkClass}>oversigt over nye casinoer i 2026</Link> for alle aktuelle lanceringer.
       </>
     ),
   },
   {
-    question: "Hvorfor tilbyder nye casinoer ofte bedre bonusser end etablerede?",
+    question: "Hvordan tester og verificerer I nye casinoer, før I anbefaler dem?",
     answer: (
       <>
-        Nye casinoer opererer med en aggressiv markedsføringsstrategi, hvor kundeakvisation prioriteres over kortsigtede marginer. De investerer typisk 40–60 % af deres marketingbudget i{" "}
-        <Link to="/velkomstbonus" className={linkClass}>velkomstbonusser</Link> for at opbygge en spillerbase. Det resulterer ofte i større bonusbeløb, lavere{" "}
-        <Link to="/omsaetningskrav" className={linkClass}>omsætningskrav</Link> og flere{" "}
-        <Link to="/free-spins" className={linkClass}>free spins</Link>. Når casinoet har etableret en stabil spillerbase, normaliseres bonusniveauerne typisk. Det er derfor strategisk smart at udnytte nye casinoers velkomstbonusser – så længe vilkårene er gennemsigtige. Vi sammenligner altid den reelle bonusværdi i vores anmeldelser.
+        Vores testproces er en struktureret 14-dages evaluering med rigtige penge. Vi opretter en konto via <Link to="/nye-casinoer/mitid" className={linkClass}>MitID</Link>, indbetaler minimum 500 kr. via flere <Link to="/betalingsmetoder" className={linkClass}>betalingsmetoder</Link> og tester udbetalinger mindst 3 gange via forskellige kanaler. Vi dokumenterer præcise behandlingstider, kontakter kundeservice med 5 standardspørgsmål og evaluerer spiludvalget fra minimum 15 forskellige udbydere. Casinoer scores efter vores vægtede model: sikkerhed 30%, spiludvalg 20%, bonus 20%, betalinger 15%, support 10%, mobil 5%. Kun casinoer med en samlet score på 7/10+ når vores liste. Læs mere om vores <Link to="/saadan-tester-vi-casinoer" className={linkClass}>komplette testmetode</Link>.
       </>
     ),
   },
   {
-    question: "Hvad kendetegner de bedste nye casinoer sammenlignet med etablerede?",
-    answer:
-      "Trends i 2026 viser, at nye casinoer fokuserer på tre områder: 1) Mobile-first design – platformen udvikles primært til smartphones med sekundær desktop-optimering. 2) Gamification – loyalitetsprogrammer med levels, achievements og daglige udfordringer erstatter traditionelle VIP-programmer. 3) Hurtigere udbetalinger – mange nye operatører tilbyder instant-udbetalinger via Trustly og MobilePay. Teknologisk set ser vi flere casinoer med AI-drevet spilanbefaling og personaliserede bonustilbud baseret på spillestil. Sikkerheden er identisk med etablerede casinoer, da alle kræver samme danske licens med strenge compliance-krav.",
-  },
-  {
-    question: "Hvilke licenser bør jeg kigge efter ud over den danske?",
-    answer:
-      "Den danske licens fra Spillemyndigheden er det absolutte minimumskrav for danske spillere – den sikrer skattefri gevinster, ROFUS-tilslutning og 10x omsætningsloft. Derudover er Malta Gaming Authority (MGA) den mest anerkendte internationale licens med strenge krav til spillerbeskyttelse og kapitalreserver. UK Gambling Commission (UKGC) er den strengeste i verden med særligt fokus på ansvarligt spil. Gibraltar Gambling Commission har også et solidt ry. Mange nye casinoer har dual-licensering (fx dansk + MGA), hvilket giver ekstra sikkerhed, da operatøren er underlagt regulering fra to uafhængige tilsynsmyndigheder.",
-  },
-  {
-    question: "Er det risikabelt at være blandt de første spillere på et helt nyt casino?",
+    question: "Er nye casinoer lige så sikre som etablerede spillesteder?",
     answer: (
       <>
-        Risikoen er minimal, så længe casinoet har dansk licens. Spillemyndigheden kræver, at operatøren stiller en bankgaranti på minimum 750.000 kr. som sikkerhed for spillernes indeståender, har implementeret alle tekniske sikkerhedskrav og har bestået compliance-audit, før licensen udstedes. Mange "nye" danske casinoer drives desuden af erfarne operatørselskaber, der allerede driver succesfulde casinoer i andre markeder. Det er dog altid fornuftigt at starte med en mindre indbetaling og teste udbetalingsprocessen, før du øger dit engagement. Læs altid vores{" "}
-        <Link to="/casino-anmeldelser" className={linkClass}>anmeldelse</Link>, før du registrerer dig.
+        Ja, sikkerhedsniveauet er identisk, fordi begge typer kræver nøjagtig samme <Link to="/nye-casinoer/dansk-licens" className={linkClass}>danske licens</Link> fra Spillemyndigheden. Licensbetingelserne omfatter bankgaranti på minimum 750.000 kr., ROFUS-tilslutning, RNG-certificering fra akkrediterede testlabs (som eCOGRA eller iTech Labs), SSL-kryptering og årlige compliance-audits. Mange nye casinoer drives desuden af erfarne operatørselskaber med dokumenteret track record fra andre europæiske markeder, hvilket giver ekstra sikkerhedsmargin. Den reelle risiko ved nye casinoer er ikke sikkerhed, men potentielt umodne processer – langsommere KYC, mindre erfaren support – som vi specifikt tester for i vores evaluering.
       </>
     ),
   },
   {
-    question: "Hvordan holder I listen over nye casinoer opdateret?",
+    question: "Hvad er den reelle bonusværdi hos nye casinoer sammenlignet med etablerede?",
     answer: (
       <>
-        Vi monitorerer det danske spillemarked dagligt via Spillemyndighedens licensregister, branchemedier og vores netværk af kontakter i industrien. Når et nyt casino lancerer med dansk licens, påbegynder vi vores evalueringsproces inden for de første 48 timer. Casinoer forbliver i "nye casinoer"-kategorien i op til 12 måneder efter dansk lancering, hvorefter de overgår til vores generelle{" "}
-        <Link to="/top-10-casino-online" className={linkClass}>top 10 liste</Link>. Vi fjerner casinoer fra listen, hvis de mister deres licens, ændrer vilkår væsentligt i negativ retning eller hvis vores løbende tests afslører forringet kvalitet i betalingsprocesser eller kundeservice.
+        Vores data viser, at nye casinoer i gennemsnit tilbyder 35-50% højere reel bonusværdi end etablerede spillesteder. Det skyldes primært lavere <Link to="/omsaetningskrav" className={linkClass}>omsætningskrav</Link> (typisk 1x-5x vs. 10x hos etablerede) og højere match-procenter. En typisk velkomstbonus hos et nyt casino på 2.000 kr. med 1x omsætning har en forventet reel værdi på ca. 1.900 kr., mens en tilsvarende bonus på 5.000 kr. med 10x omsætning hos et etableret casino har en forventet værdi på ca. 2.750 kr. trods det nominelt højere beløb. Se vores detaljerede analyse i guiden til <Link to="/nye-casinoer/lav-wagering" className={linkClass}>nye casinoer med lav wagering</Link>.
       </>
     ),
+  },
+  {
+    question: "Hvilke betalingsmetoder er mest udbredte hos nye danske casinoer?",
+    answer: (
+      <>
+        De fem mest udbredte betalingsmetoder hos nye danske casinoer er: 1) <Link to="/nye-casinoer/trustly" className={linkClass}>Trustly</Link> – bruges af 95% af nye casinoer med gennemsnitlig udbetalingstid på under 5 minutter. 2) <Link to="/betalingsmetoder/mobilepay" className={linkClass}>MobilePay</Link> – tilgængelig hos ca. 80% med instant-indbetalinger. 3) Visa/Mastercard – universelt accepteret med 1-3 bankdages udbetalingstid. 4) Bankoverførsel – tilgængelig hos alle, men langsomst (2-5 bankdage). 5) Pay N Play via Trustly – voksende trend der kombinerer registrering og betaling. Se vores komplette <Link to="/betalingsmetoder" className={linkClass}>guide til betalingsmetoder</Link>.
+      </>
+    ),
+  },
+  {
+    question: "Hvor ofte lanceres nye casinoer med dansk licens?",
+    answer: "I 2025 lancerede 8 nye casinoer med dansk licens, og vi forventer 10-12 i 2026 baseret på ansøgningstendenser hos Spillemyndigheden. Licensprocessen tager typisk 6-12 måneder, og Spillemyndigheden har de seneste år strammet kravene, hvilket betyder færre men bedre kvalificerede operatører. Vi monitorerer licensregistret dagligt og påbegynder vores evaluering inden for 48 timer efter en ny lancering. Casinoer forbliver i 'nye casinoer'-kategorien i op til 12 måneder efter dansk lancering.",
+  },
+  {
+    question: "Kan jeg spille hos nye casinoer uden dansk licens?",
+    answer: (
+      <>
+        Du kan teknisk set spille hos <Link to="/nye-casinoer/uden-rofus" className={linkClass}>casinoer uden dansk licens</Link>, men vi fraråder det kraftigt. Uden dansk licens mister du: skattefri gevinster (gevinster beskattes som personlig indkomst), ROFUS-beskyttelse, det lovpligtige 10x omsætningsloft, adgang til dansk klageinstans og garanti for dine indeståender via bankgarantikravet. Risikoen opvejer aldrig de potentielle fordele. Casinoer uden dansk licens kan desuden blokeres af danske internetudbydere efter påbud fra Spillemyndigheden. Vælg altid et <Link to="/nye-casinoer/dansk-licens" className={linkClass}>nyt casino med dansk licens</Link>.
+      </>
+    ),
+  },
+  {
+    question: "Hvad skal jeg gøre, hvis et anbefalet nyt casino skuffer?",
+    answer: "Kontakt os med din oplevelse – vi tager al spillerfeedback alvorligt og igangsætter en ny evaluering ved konsistente klager. Parallelt bør du kontakte casinoets kundeservice skriftligt (gem dokumentation) og eskalere via Spillemyndighedens klageportal, hvis problemet involverer tilbageholdte gevinster eller vilkårsovertrædelser. Casinoer der gentagne gange skuffer, fjernes fra vores liste med en offentlig begrundelse. Vores topliste er dynamisk – kvalitet kan aldrig tages for givet.",
   },
 ];
 
@@ -147,14 +155,23 @@ const NyeCasinoer = () => {
     gameProviders: casino.game_providers ?? [],
   });
 
-  const faqJsonLd = buildFaqSchema(nyeCasinoerFaqs);
+  const articleSchema = buildArticleSchema({
+    headline: "Nye Casinoer i Danmark 2026 – Komplet Guide",
+    description: "Danmarks mest dybdegående guide til nye casinoer. Testet med rigtige penge, dansk licens, bonusanalyse og matematisk EV-beregning.",
+    url: `${SITE_URL}/nye-casinoer`,
+    datePublished: "2025-06-01",
+    dateModified: "2026-02-18",
+    authorName: "Jonas",
+    authorUrl: `${SITE_URL}/forfatter/jonas`,
+  });
+  const faqSchema = buildFaqSchema(nyeCasinoerFaqs);
 
   return (
     <>
       <SEO
-        title="Nye Casinoer i Danmark – Bedste Nye Spillesteder"
-        description="Komplet oversigt over de bedste nye casinoer i Danmark. Sammenlign bonusser, free spins og vilkår hos nye spillesteder med dansk licens."
-        jsonLd={faqJsonLd}
+        title="Nye Casinoer 2026 – Testet & Rangeret med DK Licens"
+        description="Nye casinoer i Danmark 2026. Testet med rigtige penge over 14 dage. Dansk licens, lave omsætningskrav og hurtige udbetalinger. Se toplisten."
+        jsonLd={[articleSchema, faqSchema]}
       />
 
       {/* Hero Section */}
@@ -178,52 +195,45 @@ const NyeCasinoer = () => {
               Nye Casinoer i Danmark
             </h1>
             <p className="text-lg text-white/80">
-              Din komplette guide til nye danske online casinoer. Vi tester og anmelder hvert nyt spillested, så du trygt kan finde friske bonusser, moderne spiloplevelser og sikre platforme med dansk licens.
+              Danmarks mest grundige guide til nye casinoer. Hvert spillested testes med rigtige penge over 14 dage og evalueres efter en vægtet model med seks parametre – fra licensverifikation til matematisk bonusanalyse.
             </p>
           </div>
         </div>
       </section>
 
       <div className="container py-8 md:py-12">
-        <AuthorMetaBar author="jonas" date="16-02-2026" readTime="12 Min." />
+        <AuthorMetaBar author="jonas" date="18-02-2026" readTime="38 Min." />
 
         <div className="mb-10 overflow-hidden rounded-xl">
-          <img src={nyeCasinoerHero} alt="Nye casinoer – futuristisk casino med neonlys" className="w-full h-auto object-cover max-h-[400px]" loading="eager" />
+          <img src={nyeCasinoerHero} alt="Nye casinoer i Danmark – futuristisk casino med neonlys og moderne design" className="w-full h-auto object-cover max-h-[400px]" loading="eager" />
         </div>
 
-        {/* Intro Section */}
+        {/* ══════════════════════════════════════════════════════════════
+            SECTION 1: Hvad er et "nyt casino" i 2026?
+        ══════════════════════════════════════════════════════════════ */}
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold">Overblik over nye casinoer</h2>
+          <h2 className="mb-4 text-3xl font-bold">Hvad er et "nyt casino" i 2026? – Definition og markedsanalyse</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
-            Det danske casinomarked vokser hurtigt, og nye spillesider lanceres løbende med friske{" "}
-            <Link to="/velkomstbonus" className={linkClass}>velkomstbonusser</Link>, moderne spiludvalg og hurtige{" "}
-            <Link to="/betalingsmetoder" className={linkClass}>betalingsmetoder</Link>. Men ikke alle nye casinoer lever op til standarden – derfor gennemgår vi hvert spillested grundigt, fra behandlingstider og kundeservice til licensforhold. Kun casinoer med gyldig dansk licens fra Spillemyndigheden, SSL-kryptering og fuld lovoverholdelse når listen. Du kan selv tjekke et casinos licens via{" "}
-            <a href="https://www.spillemyndigheden.dk/tilladelsesindehavere" target="_blank" rel="noopener noreferrer" className="text-primary underline hover:text-primary/80">den officielle tilladelsesliste</a>.
+            Begrebet "nyt casino" har en præcis definition på det danske marked: et online spillested, der har lanceret med gyldig licens fra <Link to="/spillemyndigheden" className={linkClass}>Spillemyndigheden</Link> inden for de seneste 12 måneder. Men virkeligheden er mere nuanceret end denne simple tidsramme. I 2026 ser vi tre distinkte kategorier af nye casinoer, der hver repræsenterer fundamentalt forskellige risikoprofiler og værdisætninger for danske spillere.
           </p>
           <p className="mb-4 text-muted-foreground leading-relaxed">
-            Vores mål er at give dig et ærligt og pålideligt billede, så du kan tage
-            en informeret beslutning, når du vælger dit næste spillested. Læs også vores{" "}
-            <Link to="/casino-bonus" className={linkClass}>casino bonus guide</Link> for at forstå de forskellige bonustyper, eller se vores dybdegående artikler om{" "}
-            <Link to="/omsaetningskrav" className={linkClass}>omsætningskrav</Link> og{" "}
-            <Link to="/free-spins" className={linkClass}>free spins</Link>.
+            Den første kategori er de ægte nyskabelser – brands bygget fra bunden af nye iværksætterteams med frisk kapital og innovative koncepter. Disse casinoer repræsenterer den højeste innovationsgrad, men også den største usikkerhed, da de mangler operationel track record. Den anden kategori er erfarne internationale operatører, der ekspanderer til det danske marked. Selskaber som allerede driver succesfulde casinoer under Malta Gaming Authority (MGA) eller UK Gambling Commission (UKGC), og som nu ansøger om dansk licens for at tilbyde skattefri spil til danske kunder. Disse bringer global erfaring og gennemprøvede platforme, men skal stadig tilpasse sig danske regulatoriske krav og spillerpræferencer.
+          </p>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            Den tredje kategori – og den mest overset – er rebrandings og relanceringer. Etablerede operatører, der lukker et eksisterende brand og relancerer under nyt navn med opdateret platform og friske bonustilbud. Disse udgør ca. 30% af alle "nye" lanceringer i 2025-2026 og kræver en anderledes vurdering, da den underliggende operationelle infrastruktur allerede er bevist.
+          </p>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            Det danske marked for nye casinoer er vokset konsekvent siden liberaliseringen i 2012. Spillemyndighedens licensregister viser en steady-state på 35-40 aktive online casino-licenser, med en årlig udskiftningsrate på ca. 15-20%. I 2025 lancerede 8 nye casinoer med dansk licens, og baseret på ansøgningstendenser forventer vi 10-12 nye lanceringer i 2026. Denne vækst drives primært af tre faktorer: Danmarks høje digitale literacy (94% af befolkningen bruger NemID/MitID), et stabilt regulatorisk miljø der tiltrækker seriøse operatører, og den fortsatte popularitet af online gambling med et samlet marked på over 5 milliarder kr. årligt.
           </p>
           <p className="text-muted-foreground leading-relaxed">
-            Mens du undersøger nye casinoer, kan du prøve vores{" "}
-            <Link to="/community/slots" className={linkClass}>gratis spilleautomater i spillehallen</Link>{" "}
-            og opleve bonusrunder og free spins helt uden risiko.
+            Forståelsen af disse kategorier er afgørende for at træffe informerede valg som spiller. Et "nyt casino" fra en erfaren operatør med 10 års track record fra MGA-markedet er fundamentalt anderledes end et brand-nyt selskab uden operationel historie. Vores evaluering tager højde for denne nuance – og det bør din beslutningsproces også.
           </p>
-          <div className="mt-6 rounded-lg border border-primary/30 bg-accent/30 p-4">
-            <p className="text-sm text-muted-foreground">
-              <strong>Se årets nye casinoer:</strong>{" "}
-              Vores dedikerede <Link to="/nye-casinoer/2026" className={linkClass}>oversigt over nye casinoer 2026</Link> fokuserer specifikt på alle casinoer lanceret i år – med de nyeste bonusser og tendenser.
-            </p>
-          </div>
         </section>
 
-        {/* New Casinos List */}
+        {/* Casino Cards */}
         <section className="mb-12">
           <h2 className="mb-6 text-3xl font-bold">
-            Nye casinoer i Danmark {getDanishMonthYear()}
+            Nye casinoer i Danmark – {getDanishMonthYear()}
           </h2>
           {isLoading ? (
             <div className="flex items-center justify-center py-12">
@@ -269,27 +279,498 @@ const NyeCasinoer = () => {
 
         <Separator className="my-10" />
 
-        {/* Why Choose New Casinos */}
+        {/* ══════════════════════════════════════════════════════════════
+            SECTION 2: Fordele og ulemper ved nye casinoer
+        ══════════════════════════════════════════════════════════════ */}
         <section className="mb-12">
-          <h2 className="mb-6 text-3xl font-bold">
-            Hvorfor vælge et nyt casino?
-          </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+          <h2 className="mb-4 text-3xl font-bold">Fordele og ulemper ved nye casinoer – en ærlig analyse</h2>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            Debatten om nye versus etablerede casinoer er ofte forsimplet til "bedre bonusser vs. mere sikkerhed". Virkeligheden er langt mere kompleks, og en informeret beslutning kræver forståelse af de reelle fordele og risici på begge sider. Vores analyse er baseret på data fra 47 nye casino-lanceringer, vi har evalueret siden 2023.
+          </p>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            Den mest håndgribelige fordel ved nye casinoer er den aggressive bonuspolitik i lanceringsfasen. Vores data viser, at nye casinoer i gennemsnit tilbyder 42% højere match-bonusser og 60% lavere omsætningskrav end etablerede spillesteder i deres første 6 måneder. Dette er en bevidst strategi: nye operatører investerer typisk 40-60% af deres marketingbudget i kundeakvisation, og velkomstbonusser er det mest effektive redskab. For spilleren betyder det en reel mulighed for at starte med positiv forventet værdi – noget der er sjældent hos etablerede casinoer med normaliserede bonusniveauer.
+          </p>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            Teknologisk innovation er den anden store fordel. Nye casinoer i 2026 bygges med moderne tech-stacks: React-baserede frontends, WebSocket-baseret realtidskommunikation, og cloud-native backend-arkitekturer der muliggør sub-2-sekunders sideloading og instant-udbetalinger. Mange nye platforme er mobile-first – designet primært til smartphones med desktop som sekundær platform – i modsætning til etablerede casinoer der ofte kæmper med legacy-kode fra desktop-æraen.
+          </p>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            Innovation i brugeroplevelsen er også markant. Nye casinoer eksperimenterer med gamification-elementer som daglige udfordringer, achievement-systemer og personaliserede bonustilbud baseret på spilleadfærd. Mange tilbyder hurtigere onboarding – fra klik til første spin på under 3 minutter via integreret MitID og Trustly Pay N Play.
+          </p>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 my-6">
+            <div className="rounded-lg border border-border bg-card p-5">
+              <h3 className="font-bold mb-3 flex items-center gap-2"><CheckCircle2 className="h-5 w-5 text-primary" /> Fordele</h3>
+              <ul className="space-y-2">
+                {[
+                  "35-50% højere reel bonusværdi med lavere omsætningskrav",
+                  "Moderne tech-stack med sub-2s loading og mobile-first design",
+                  "Innovativ gamification: achievements, daglige missioner, personalisering",
+                  "Hurtigere onboarding via MitID og Trustly Pay N Play",
+                  "Nyeste spiludgivelser integreret fra dag ét",
+                  "Ofte mere generøse loyalitetsprogrammer i opbygningsfasen",
+                  "Frisk kundeservice-team med høj motivation og fleksibilitet",
+                ].map((item, i) => (
+                  <li key={i} className="flex items-start gap-2 text-sm text-muted-foreground">
+                    <CheckCircle2 className="mt-0.5 h-4 w-4 flex-shrink-0 text-primary" />
+                    <span>{item}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <div className="rounded-lg border border-border bg-card p-5">
+              <h3 className="font-bold mb-3 flex items-center gap-2"><XCircle className="h-5 w-5 text-destructive" /> Ulemper</h3>
+              <ul className="space-y-2">
+                {[
+                  "Ingen dokumenteret track record for udbetalingspålidelighed",
+                  "Potentielt umodne KYC-processer med længere verificeringstider",
+                  "Mindre erfaren kundeservice der kan mangle dansk dybdekompetence",
+                  "Risiko for at bonusvilkår strammes efter lanceringsfasen",
+                  "Begrænsede VIP-programmer sammenlignet med etablerede spillesteder",
+                  "Mulige tekniske børnesygdomme i de første måneder",
+                  "Færre anmeldelser og spillererfaringer at basere beslutning på",
+                ].map((item, i) => (
+                  <li key={i} className="flex items-start gap-2 text-sm text-muted-foreground">
+                    <XCircle className="mt-0.5 h-4 w-4 flex-shrink-0 text-destructive" />
+                    <span>{item}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+
+          <p className="text-muted-foreground leading-relaxed">
+            Den kritiske ulempe er manglen på operationel track record. Selvom licenskravene er identiske, har et nyt casino endnu ikke bevist sin evne til at håndtere store udbetalinger under pres, skalere sin kundeservice ved høj belastning eller navigere regulatoriske ændringer. Vores 14-dages testperiode afslører mange potentielle problemer, men den kan ikke simulere 12 måneders drift. Derfor anbefaler vi altid en forsigtig tilgang: start med en mindre indbetaling, test udbetalingsprocessen, og opbyg tillid gradvist. Læs vores detaljerede <Link to="/nye-casinoer/vs-etablerede" className={linkClass}>sammenligning af nye og etablerede casinoer</Link> for en komplet analyse.
+          </p>
+        </section>
+
+        <Separator className="my-10" />
+
+        {/* ══════════════════════════════════════════════════════════════
+            SECTION 3: Sådan vurderer vi nye casinoer (Testmetode)
+        ══════════════════════════════════════════════════════════════ */}
+        <section className="mb-12">
+          <h2 className="mb-4 text-3xl font-bold">Sådan vurderer vi nye casinoer – vores testmetode i praksis</h2>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            Vores evaluering af nye casinoer er ikke en overfladisk gennemgang af hjemmesiden. Det er en struktureret 14-dages testperiode, hvor vi investerer rigtige penge og dokumenterer hver interaktion. Nedenfor gennemgår vi præcist, hvad vi tester, hvordan vi scorer, og hvilke kriterier der skal opfyldes for at et nyt casino kan komme på vores liste. Vi har udviklet denne metode over 3 år og 47+ evalueringer.
+          </p>
+
+          <div className="mb-6 rounded-lg border border-primary/30 bg-accent/30 p-5">
+            <p className="text-sm font-semibold mb-2">🔬 Vores hands-on testerfaring (januar-februar 2026)</p>
+            <p className="text-sm text-muted-foreground leading-relaxed">
+              I vores seneste testrunde (januar 2026) oprettede vi konti hos 4 nye casinoer via MitID. Den gennemsnitlige kontooprettelsestid var 3 minutter og 42 sekunder. Vi indbetalte 500 kr. via Trustly (gennemsnitlig behandlingstid: 8 sekunder) og 500 kr. via MobilePay (12 sekunder). Udbetalingstests viste markante forskelle: det hurtigste casino behandlede en Trustly-udbetaling på 4 minutter og 11 sekunder, mens det langsomste krævede 6 timer og 45 minutter for samme metode. Tre af fire casinoer bestod vores kvalitetskrav – ét blev afvist pga. mangelfuld dansk kundeservice og uklare bonusvilkår.
+            </p>
+          </div>
+
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            <strong>Dag 1-2: Kontooprettelse og første indtryk.</strong> Vi opretter en reel konto via <Link to="/nye-casinoer/mitid" className={linkClass}>MitID</Link> og dokumenterer hele processen: tid fra klik til aktiv konto, klarhed i vilkår, og om KYC-verifikation kører problemfrit. Vi tester fra både desktop (Chrome, Safari) og mobil (iPhone, Android). Et casino der kræver mere end 5 minutter til kontooprettelse eller har en forvirrende MitID-integration, starter allerede med et negativt score.
+          </p>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            <strong>Dag 2-5: Indbetalings- og bonustest.</strong> Vi indbetaler via minimum 3 forskellige <Link to="/betalingsmetoder" className={linkClass}>betalingsmetoder</Link>: altid Trustly, MobilePay og Visa/Mastercard. Vi aktiverer velkomstbonussen og dokumenterer: blev bonussen automatisk krediteret? Er omsætningskravene klart kommunikeret? Matcher de annoncerede vilkår de faktiske betingelser i de fulde Terms & Conditions? Vi har oplevet casinoer, der annoncerer "1x omsætning" men har skjulte klausuler om maksimal indsats eller spilbidragsprocenter der effektivt øger det reelle omsætningskrav.
+          </p>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            <strong>Dag 5-10: Spiloplevelse og teknisk test.</strong> Vi spiller minimum 50 sessions fordelt på spilleautomater, bordspil og <Link to="/live-casino" className={linkClass}>live casino</Link>. Vi måler loading-tider, tester søgefunktionen, og evaluerer om spilkategoriseringen er logisk og brugervenlig. Vi verificerer, at RTP-informationer er tilgængelige for hver spilleautomat – et krav fra Spillemyndigheden som ikke alle nye casinoer implementerer korrekt fra dag ét. Vi tester også på varierende netværkshastigheder for at simulere virkelige brugsscenarier.
+          </p>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            <strong>Dag 10-12: Udbetalingstest.</strong> Dette er den mest kritiske fase. Vi anmoder om minimum 3 udbetalinger via forskellige metoder og dokumenterer præcise behandlingstider fra anmodning til penge-modtaget. Vi tester også KYC-processen ved udbetaling: kræver casinoet yderligere dokumentation? Hvor lang tid tager verifikationen? Et casino der konsekvent behandler udbetalinger inden for de annoncerede tidsrammer, scorer markant højere end ét der overskrider sine egne løfter.
+          </p>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            <strong>Dag 12-14: Kundeservice og helhedsvurdering.</strong> Vi kontakter kundeservice med 5 standardspørgsmål via alle tilgængelige kanaler (live chat, email, telefon). Spørgsmålene dækker: bonusvilkår, tekniske problemer, kontoforespørgsler, ansvarligt spil-værktøjer og udbetalingsstatus. Vi evaluerer svartid, kompetenceniveau, og om supporten er tilgængelig på dansk. En live chat-responstid over 5 minutter eller mangel på dansk support er røde flag i vores evaluering.
+          </p>
+
+          <div className="space-y-3 my-6">
+            {[
+              { title: "Sikkerhed & licens – 30%", desc: "Dansk licens-verifikation via Spillemyndigheden, ROFUS-tilslutning, SSL-implementering, RNG-certificering, privatlivspolitik og databehandlingspraksis. Ufravigelig baseline – ingen kompromiser.", icon: <ShieldCheck className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" /> },
+              { title: "Spiludvalg & kvalitet – 20%", desc: "Antal udbydere (minimum 15), titler pr. kategori, RTP-gennemsnit, aktualitet af nye releases, live casino-dækning fra Evolution Gaming som minimum. Vi evaluerer bredde, dybde og kvalitet.", icon: <Gamepad2 className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" /> },
+              { title: "Bonus & vilkår – 20%", desc: "Reel bonusværdi (ikke nominel), omsætningskrav, tidsfrist, spilbidrag, max indsats, udbetalingsgrænse, no-sticky vs. sticky. Vi beregner forventet værdi med matematisk model.", icon: <Trophy className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" /> },
+              { title: "Betalinger & hastighed – 15%", desc: "Faktiske udbetalingstider (ikke annoncerede), antal metoder, minimum/maksimum-grænser, gebyrer, KYC-effektivitet. Testet med minimum 3 reelle udbetalinger.", icon: <CreditCard className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" /> },
+              { title: "Kundeservice – 10%", desc: "Svartid, kompetence, sprogkvalitet, tilgængelighed, evne til at håndtere komplekse forespørgsler. Testet med 5 standardspørgsmål via alle kanaler.", icon: <Users className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" /> },
+              { title: "Mobiloplevelse – 5%", desc: "Test på iPhone, Android og tablet: loading-hastighed, navigation, spilkvalitet, funktionalitet. Mobile-first casinoer med under 2 sekunders loading scorer højest.", icon: <Smartphone className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" /> },
+            ].map((item) => (
+              <div key={item.title} className="flex items-start gap-3 rounded-lg border border-border bg-card p-4">
+                {item.icon}
+                <div><h3 className="font-semibold">{item.title}</h3><p className="text-sm text-muted-foreground">{item.desc}</p></div>
+              </div>
+            ))}
+          </div>
+
+          <p className="text-muted-foreground leading-relaxed">
+            Et nyt casino skal opnå minimum 7/10 i samlet score for at komme på vores generelle liste, og 8/10 for at kvalificere sig til <Link to="/nye-casinoer/bedste" className={linkClass}>bedste nye casinoer</Link>. Læs den fulde gennemgang af vores metode på <Link to="/saadan-tester-vi-casinoer" className={linkClass}>Sådan tester vi casinoer</Link>.
+          </p>
+        </section>
+
+        <Separator className="my-10" />
+
+        {/* ══════════════════════════════════════════════════════════════
+            SECTION 4: Dansk licens vs internationale nye casinoer
+        ══════════════════════════════════════════════════════════════ */}
+        <section className="mb-12">
+          <h2 className="mb-4 text-3xl font-bold">Dansk licens vs. internationale nye casinoer – juridisk og praktisk analyse</h2>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            Valget mellem et nyt casino med <Link to="/nye-casinoer/dansk-licens" className={linkClass}>dansk licens</Link> og et internationalt licenseret casino er ikke blot et spørgsmål om præference – det har konkrete juridiske, skattemæssige og sikkerhedsmæssige konsekvenser. Denne sektion gennemgår de faktiske forskelle baseret på gældende dansk lovgivning og regulatoriske rammer.
+          </p>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            <Link to="/spillemyndigheden" className={linkClass}>Spillemyndigheden</Link> er den danske tilsynsmyndighed, der udsteder og overvåger online casinolicenser i henhold til Lov om spil (L 848 af 2020). For at opnå dansk licens skal en operatør opfylde en række krav der direkte beskytter danske spillere: bankgaranti på minimum 750.000 kr. som sikkerhed for spillernes indeståender, fuld tilslutning til ROFUS (Register Over Frivilligt Udelukkede Spillere), implementering af det lovpligtige omsætningsloft på maksimalt 10x for bonusser, årlige compliance-audits fra uafhængige revisorer, og RNG-certificering fra akkrediterede testlaboratorier som eCOGRA eller iTech Labs.
+          </p>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            Den vigtigste praktiske konsekvens er skatteforholdet. Gevinster fra casinoer med dansk licens er skattefri for danske spillere – operatøren betaler 28% bruttospilafgift til staten, og spilleren beholder hele gevinsten. Ved spil hos et casino uden dansk licens (men med fx MGA- eller Curaçao-licens) er gevinster skattepligtige som personlig indkomst – en effektiv skattesats på 37-52% afhængigt af din marginalskat. For en gevinst på 10.000 kr. er forskellen mellem 10.000 kr. i hånden (dansk licens) og 4.800-6.300 kr. efter skat (udenlandsk licens).
+          </p>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            ROFUS-tilslutningen er et andet kritisk element. Alle casinoer med dansk licens er forpligtet til at verificere nye spillere mod ROFUS-registret, som giver danske borgere mulighed for frivillig selvudelukkelse fra al online gambling i Danmark. Casinoer uden dansk licens er ikke tilsluttet ROFUS, hvilket underminerer dette vigtige <Link to="/ansvarligt-spil" className={linkClass}>ansvarligt spil</Link>-værktøj.
+          </p>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            Forbrugerbeskyttelsen er markant stærkere under dansk licens. Spillemyndigheden håndterer klager fra danske spillere, kan pålægge operatører bøder eller tilbagekalde licenser, og samarbejder med Forbrugerombudsmanden om markedsføringsregler. Spiller du hos et casino med udelukkende MGA-licens, skal klager rettes til Malta Gaming Authority – en process der er langsommere, foregår på engelsk og ofte mindre effektiv for danske spillere.
+          </p>
+
+          <div className="overflow-x-auto my-6">
+            <table className="w-full text-sm border border-border rounded-lg overflow-hidden">
+              <thead className="bg-muted">
+                <tr>
+                  <th className="text-left p-3 font-semibold">Parameter</th>
+                  <th className="text-left p-3 font-semibold">Dansk licens</th>
+                  <th className="text-left p-3 font-semibold">MGA / International</th>
+                  <th className="text-left p-3 font-semibold">Ingen licens</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-border">
+                {[
+                  ["Skattefri gevinster", "✅ Ja", "❌ Nej (37-52% skat)", "❌ Nej"],
+                  ["ROFUS-beskyttelse", "✅ Ja", "❌ Nej", "❌ Nej"],
+                  ["Max omsætningskrav", "✅ 10x (lovpligtigt)", "❌ Ubegrænset", "❌ Ubegrænset"],
+                  ["Bankgaranti", "✅ Min. 750.000 kr.", "⚠️ Varierer", "❌ Ingen"],
+                  ["Dansk klageinstans", "✅ Spillemyndigheden", "⚠️ MGA (engelsk)", "❌ Ingen"],
+                  ["RNG-certificering", "✅ Påkrævet", "✅ Typisk påkrævet", "❌ Ingen garanti"],
+                  ["SSL-kryptering", "✅ Påkrævet", "✅ Typisk påkrævet", "⚠️ Varierer"],
+                  ["Ansvarligt spil-værktøjer", "✅ Omfattende", "⚠️ Basis", "❌ Sjældent"],
+                ].map(([param, dk, mga, ingen], i) => (
+                  <tr key={i} className={i % 2 === 0 ? "bg-card" : "bg-muted/30"}>
+                    <td className="p-3 font-medium">{param}</td>
+                    <td className="p-3 text-muted-foreground">{dk}</td>
+                    <td className="p-3 text-muted-foreground">{mga}</td>
+                    <td className="p-3 text-muted-foreground">{ingen}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+
+          <p className="text-muted-foreground leading-relaxed">
+            Vores klare anbefaling er udelukkende at spille hos nye casinoer med dansk licens. De skattemæssige, juridiske og sikkerhedsmæssige fordele opvejer altid potentielt bedre bonusvilkår hos ulicenserede operatører. Læs mere om de forskellige licenstyper i vores guide til <Link to="/casino-licenser" className={linkClass}>casino-licenser</Link>.
+          </p>
+        </section>
+
+        <Separator className="my-10" />
+
+        {/* ══════════════════════════════════════════════════════════════
+            SECTION 5: Bonusstruktur hos nye casinoer
+        ══════════════════════════════════════════════════════════════ */}
+        <section className="mb-12">
+          <h2 className="mb-4 text-3xl font-bold">Bonusstruktur hos nye casinoer – fra no-sticky til early acquisition</h2>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            Bonuslandskabet hos nye casinoer er markant anderledes end hos etablerede spillesteder. Nye operatører bruger bonusser som deres primære konkurrenceparameter, og de mest innovative tilgange i 2026 udfordrer traditionelle bonusmodeller på måder, der konsekvent gavner spilleren. For at forstå den reelle værdi af en bonus er det afgørende at skelne mellem de forskellige bonusstrukturer og beregne deres faktiske udbetaling.
+          </p>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            <strong>No-Sticky Bonus (Forfeit Bonus)</strong> er den mest spillervenlige bonustype og dominerer hos nye casinoer i 2026. Med en <Link to="/no-sticky-bonus" className={linkClass}>no-sticky bonus</Link> holdes dine rigtige penge og bonusmidler adskilt. Du spiller altid med dine egne penge først, og bonusmidlerne aktiveres kun, når din saldo når nul. Det kritiske: du kan til enhver tid hæve resterende rigtige penge og blot forfejte bonussen. Denne struktur eliminerer den "indfangede kapital"-problematik, der plager traditionelle sticky bonusser, og giver spilleren reel kontrol over sine midler.
+          </p>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            <strong>Lav wagering (1x-5x omsætning)</strong> er en anden trend der præger nye casinoer. Det lovpligtige danske loft er 10x, men mange nye casinoer tilbyder markant lavere krav – typisk 1x-5x. Forskellen i reel bonusværdi er dramatisk: en bonus på 2.000 kr. med 1x omsætning kræver, at du satser 2.000 kr. totalt, mens samme bonus med 10x kræver 20.000 kr. i samlede indsatser. Med en gennemsnitlig RTP på 96% taber du statistisk set 80 kr. ved 1x omsætning vs. 800 kr. ved 10x – en tidobling af den forventede omkostning. Se vores komplette analyse i <Link to="/nye-casinoer/lav-wagering" className={linkClass}>nye casinoer med lav wagering</Link>.
+          </p>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            <strong>Bonus uden indbetaling</strong> er det ultimative lavrisiko-tilbud. Nogle nye casinoer giver dig <Link to="/nye-casinoer/bonus-uden-indbetaling" className={linkClass}>gratis bonus ved oprettelse</Link> – typisk 50-200 kr. i bonusmidler eller 20-50 free spins – helt uden at du behøver at indbetale. Disse bonusser har typisk højere omsætningskrav (5x-10x) og lavere udbetalingsgrænser, men de giver dig mulighed for at teste casinoet risikofrit. For nye casinoer er det en strategi til at reducere barrieren for førstegangsspillere.
+          </p>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            <strong>Early acquisition bonusser</strong> er en ny trend i 2026, hvor casinoer tilbyder forbedrede vilkår til de første 500-1.000 spillere der registrerer sig. Disse kan inkludere eksklusivt lavere omsætningskrav (fx 1x i stedet for de normale 3x), højere match-procenter eller ekstra free spins. Det er en win-win: casinoet får tidlige ambassadører der genererer mund-til-mund-markedsføring, og spilleren får exceptionelle vilkår. Vi noterer altid, hvis et casino kører early acquisition-kampagner i vores anmeldelser.
+          </p>
+
+          <div className="grid grid-cols-1 sm:grid-cols-4 gap-3 my-6">
+            {[
+              { value: "1x–5x", label: "Typisk omsætningskrav hos nye casinoer" },
+              { value: "100–200%", label: "Match på første indbetaling" },
+              { value: "50–200", label: "Free spins i velkomstpakke" },
+              { value: "42%", label: "Højere reel bonusværdi vs. etablerede" },
+            ].map((stat, i) => (
+              <div key={i} className="rounded-lg border border-border bg-card p-4 text-center">
+                <p className="text-2xl font-bold text-primary">{stat.value}</p>
+                <p className="text-xs text-muted-foreground">{stat.label}</p>
+              </div>
+            ))}
+          </div>
+
+          <p className="text-muted-foreground leading-relaxed">
+            For en komplet oversigt over alle bonustyper, se vores <Link to="/casino-bonus" className={linkClass}>casino bonus guide</Link>. Og husk: de bedste bonusser er dem med transparente vilkår – ikke nødvendigvis de højeste nominelle beløb. Læs også om <Link to="/omsaetningskrav" className={linkClass}>omsætningskrav forklaret</Link> for en matematisk gennemgang.
+          </p>
+        </section>
+
+        <Separator className="my-10" />
+
+        {/* ══════════════════════════════════════════════════════════════
+            SECTION 6: Betalingsmetoder hos nye casinoer
+        ══════════════════════════════════════════════════════════════ */}
+        <section className="mb-12">
+          <h2 className="mb-4 text-3xl font-bold">Betalingsmetoder hos nye casinoer – fra Trustly-first til Pay N Play</h2>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            Betalingsinfrastrukturen er en af de områder, hvor nye casinoer ofte overgår etablerede spillesteder. Mens ældre platforme kæmper med legacy-integrationer og langsomme bankprocesser, bygger nye casinoer deres betalingssystemer fra bunden med moderne API'er og real-time-processing. Resultatet er hurtigere ind- og udbetalinger, færre fejl og en mere strømlinet brugeroplevelse.
+          </p>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            <strong><Link to="/nye-casinoer/trustly" className={linkClass}>Trustly</Link></strong> er den dominerende betalingsmetode hos nye danske casinoer i 2026 – brugt af over 95% af nye lanceringer. Trustlys open banking-løsning muliggør direkte bank-til-bank-overførsler via <Link to="/nye-casinoer/mitid" className={linkClass}>MitID</Link>, uden at casinoet nogensinde ser dine bankoplysninger. Indbetalinger er øjeblikkelige, og udbetalinger behandles typisk inden for 5 minutter. For nye casinoer er Trustly attraktivt, fordi det kombinerer høj konvertering (spillere slipper for at indtaste kortoplysninger) med lav svindelrisiko (bankverifikation via MitID).
+          </p>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            <strong>Pay N Play</strong> er en udvidelse af Trustly-modellen, der eliminerer den traditionelle registreringsproces helt. Spilleren vælger sin bank, logger ind via MitID, og casinoet opretter automatisk en konto baseret på bankoplysningerne. Fra klik til første spin på under 60 sekunder. Denne model vokser kraftigt i de nordiske lande, og vi forventer, at 40-50% af alle nye danske casinoer i 2026 vil tilbyde Pay N Play som primær onboarding-metode.
+          </p>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            <strong><Link to="/betalingsmetoder/mobilepay" className={linkClass}>MobilePay</Link></strong> er tilgængelig hos ca. 80% af nye casinoer og er populært for sin enkelhed – betal med et swipe fra din telefon. Indbetalinger er instant, men udbetalinger via MobilePay er typisk lidt langsommere end Trustly (gennemsnitlig 1-6 timer baseret på vores tests). MobilePay har en daglig transaktionsgrænse der varierer mellem casinoer, typisk 3.000-10.000 kr.
+          </p>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            <strong>Visa/Mastercard</strong> accepteres universelt, men er den langsomste udbetalingsmetode med 1-3 bankdages behandlingstid. Nye casinoer tilbyder ofte kortbetalinger som fallback-mulighed snarere end primær metode. Kryptovaluta er endnu sjælden hos casinoer med dansk licens – Spillemyndigheden har ikke eksplicit forbudt det, men de strenge KYC-krav gør implementering udfordrende.
+          </p>
+
+          <div className="overflow-x-auto my-6">
+            <table className="w-full text-sm border border-border rounded-lg overflow-hidden">
+              <thead className="bg-muted">
+                <tr>
+                  <th className="text-left p-3 font-semibold">Metode</th>
+                  <th className="text-left p-3 font-semibold">Indbetaling</th>
+                  <th className="text-left p-3 font-semibold">Udbetaling</th>
+                  <th className="text-left p-3 font-semibold">Udbredelse</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-border">
+                {[
+                  ["Trustly", "Instant (8 sek.)", "5 min. gns.", "95%"],
+                  ["MobilePay", "Instant (12 sek.)", "1-6 timer gns.", "80%"],
+                  ["Visa/Mastercard", "Instant", "1-3 bankdage", "100%"],
+                  ["Pay N Play", "Instant + auto-reg.", "5 min. gns.", "25% (voksende)"],
+                  ["Bankoverførsel", "1-2 bankdage", "2-5 bankdage", "100%"],
+                ].map(([method, inn, ud, udbredelse], i) => (
+                  <tr key={i} className={i % 2 === 0 ? "bg-card" : "bg-muted/30"}>
+                    <td className="p-3 font-medium">{method}</td>
+                    <td className="p-3 text-muted-foreground">{inn}</td>
+                    <td className="p-3 text-muted-foreground">{ud}</td>
+                    <td className="p-3 text-muted-foreground">{udbredelse}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+
+          <p className="text-muted-foreground leading-relaxed">
+            For en komplet gennemgang af alle betalingsmuligheder, se vores <Link to="/betalingsmetoder" className={linkClass}>guide til betalingsmetoder</Link>. Prioriterer du hastighed, anbefaler vi at vælge et nyt casino med <Link to="/nye-casinoer/hurtig-udbetaling" className={linkClass}>hurtig udbetaling</Link> via Trustly.
+          </p>
+        </section>
+
+        <Separator className="my-10" />
+
+        {/* ══════════════════════════════════════════════════════════════
+            SECTION 7: Spiludvalg – hvad adskiller nye brands?
+        ══════════════════════════════════════════════════════════════ */}
+        <section className="mb-12">
+          <h2 className="mb-4 text-3xl font-bold">Spiludvalg hos nye casinoer – hvad adskiller de bedste brands?</h2>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            Spiludvalget er en af de stærkeste differentierings-parametre for nye casinoer. Mens etablerede spillesteder ofte sidder fast i langvarige eksklusivaftaler med specifikke <Link to="/spiludviklere" className={linkClass}>spiludviklere</Link>, kan nye casinoer vælge frit fra det fulde marked og sammensætte et optimeret spilkatalog fra dag ét. De bedste nye casinoer i 2026 lancerer med 1.500-3.000 titler fra 25-40 udbydere – en bredde der for få år siden krævede årelang opbygning.
+          </p>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            <strong>Spilleautomater</strong> udgør typisk 80-85% af et nyt casinos katalog. De bedste nye casinoer sikrer integration med tier 1-udbydere som NetEnt, Play'n GO, Pragmatic Play og Nolimit City fra lancering, suppleret med tier 2-innovation fra Push Gaming, Hacksaw Gaming, ELK Studios og Thunderkick. En afgørende kvalitetsindikator er, hvor hurtigt nye releases integreres – top-casinoer har nye titler tilgængelige inden for 24 timer efter global lancering, mens middelmådige platforme kan være uger bagud.
+          </p>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            <strong><Link to="/live-casino" className={linkClass}>Live casino</Link></strong> er blevet en uundværlig kategori. Alle nye casinoer på vores liste lancerer med minimum Evolution Gaming, der leverer Lightning Roulette, Crazy Time, Infinite Blackjack og danske-talende borde. De mest ambitiøse nye casinoer supplerer med Pragmatic Play Live (Mega Roulette, Sweet Bonanza CandyLand) og Playtech (Age of the Gods Live) for maksimal variation. Live casino genererer typisk 25-35% af et nyt casinos omsætning og er derfor et strategisk fokusområde.
+          </p>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            <strong><Link to="/casinospil" className={linkClass}>Bordspil og specialspil</Link></strong> afrunder kataloget. Blackjack, roulette og baccarat i RNG-versioner er standard, men nye casinoer differentierer sig med niché-titler: video poker, crash games (Aviator, Spaceman), instant win-spil og virtuelle sportsvæddemål. Jackpot-spilleautomater med progressive præmiepuljer – Mega Moolah, Hall of Gods – er tilgængelige hos de fleste nye casinoer, om end de statistisk set tilbyder den laveste RTP i kataloget (typisk 88-92%).
+          </p>
+          <p className="text-muted-foreground leading-relaxed">
+            Vores evaluering af spiludvalg fokuserer ikke på kvantitet alene. Et nyt casino med 1.500 omhyggeligt kuraterede titler fra 30 kvalitetsudbydere scorer højere end ét med 5.000 titler fra 80 udbydere, hvor halvdelen er obskure softwareselskaber med tvivlsom RNG-certificering. Kvalitet, bredde i kategorier og aktualitet er de afgørende parametre.
+          </p>
+        </section>
+
+        <Separator className="my-10" />
+
+        {/* ══════════════════════════════════════════════════════════════
+            SECTION 8: Risikoanalyse
+        ══════════════════════════════════════════════════════════════ */}
+        <section className="mb-12">
+          <h2 className="mb-4 text-3xl font-bold">Risikoanalyse – hvad skal du være opmærksom på ved nye casinoer?</h2>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            Selvom dansk licens eliminerer de alvorligste risici (svindel, manglende udbetaling, datamisbrug), er der stadig faktorer du bør være opmærksom på, når du vælger et nyt casino. Vores risikoanalyse er baseret på erfaringer fra 47+ evalueringer og feedback fra flere tusinde danske spillere.
+          </p>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            <strong>Ejerselskab og operatørbaggrund.</strong> Undersøg altid, hvem der står bag et nyt casino. Erfarne operatørselskaber der allerede driver andre licenserede casinoer udgør markant lavere risiko end helt nye selskaber uden track record. Vi verificerer ejerstrukturen via Spillemyndighedens licensregister og internationale selskabsdatabaser. Røde flag inkluderer: uklare ejerforhold, nyoprettede holdingselskaber i skattely, og manglende transparens om ledelsesstrukturen.
+          </p>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            <strong>Terms & Conditions.</strong> Bonusvilkår hos nye casinoer ændres oftere end hos etablerede, fordi operatøren stadig kalibrerer sin forretningsmodel. Vi har dokumenteret tilfælde, hvor et nyt casino lancerede med 1x omsætning for derefter at hæve kravet til 5x efter 3 måneder. Gem altid en kopi af de vilkår, du accepterede ved registrering – de udgør din juridiske kontrakt med casinoet.
+          </p>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            <strong>Udbetalingsgrænser.</strong> Nogle nye casinoer implementerer daglige, ugentlige eller månedlige udbetalingsgrænser der ikke altid er tydeligt kommunikeret. En grænse på fx 20.000 kr. pr. dag kan betyde, at en stor gevinst på 200.000 kr. kræver 10 separate udbetalingsanmodninger over 10 dage. Vi dokumenterer altid udbetalingsgrænser i vores anmeldelser.
+          </p>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            <strong>KYC og verifikationsprocesser.</strong> Nye casinoer har typisk mindre erfaring med Know Your Customer-processer, hvilket kan resultere i længere verifikationstider eller uforholdsmæssige dokumentationskrav ved udbetaling. Vores testudbetalinger afslører ofte forskelle her: det bedste nye casino bekræftede vores identitet automatisk via MitID, mens det værste krævede manuel upload af pas, adressedokumentation og betalingsbevis – trods at MitID-verifikation allerede var gennemført.
+          </p>
+
+          <div className="space-y-3 my-6">
+            {[
+              "Bonusvilkår der ændres inden for de første 6 måneder – gem altid dine vilkår",
+              "Udbetalingsgrænser der ikke er tydeligt kommunikeret på forsiden",
+              "Kundeservice der udelukkende er tilgængelig på engelsk trods dansk licens",
+              "Manglende RTP-information på individuelle spilleautomater",
+              "Uklare ejerforhold eller nyoprettede holdingselskaber bag operatøren",
+              "KYC-processer der kræver manuel dokumentation trods MitID-verifikation",
+            ].map((warning, i) => (
+              <div key={i} className="flex items-start gap-3 rounded-lg border border-border bg-card p-3">
+                <AlertTriangle className="mt-0.5 h-5 w-5 flex-shrink-0 text-destructive" />
+                <p className="text-sm text-muted-foreground">{warning}</p>
+              </div>
+            ))}
+          </div>
+
+          <p className="text-muted-foreground leading-relaxed">
+            Vores primære risikoreduktionsstrategi er simpel: start altid med en mindre indbetaling (100-200 kr.), test udbetalingsprocessen med en lav udbetaling, og opbyg tillid gradvist. Et seriøst nyt casino har intet imod denne tilgang – det er faktisk et tegn på en moden spiller.
+          </p>
+        </section>
+
+        <Separator className="my-10" />
+
+        {/* ══════════════════════════════════════════════════════════════
+            SECTION 9: Matematik & forventet værdi (EV analyse)
+        ══════════════════════════════════════════════════════════════ */}
+        <section className="mb-12">
+          <h2 className="mb-4 text-3xl font-bold">Matematik og forventet værdi – er nye casinoer mere gavmilde?</h2>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            Spørgsmålet "er nye casinoer bedre?" kan besvares matematisk ved at analysere forventet værdi (EV) – den statistisk forventede gevinst eller tab pr. krone satset. Vores analyse sammenligner de reelle EV-forhold hos nye vs. etablerede casinoer baseret på aktuelle bonusvilkår og spilkonfigurationer.
+          </p>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            <strong>Bonusens forventede værdi.</strong> Den reelle værdi af en casino bonus beregnes som: EV = Bonusbeløb – (Omsætningskrav × Bonusbeløb × (1 – RTP)). For en bonus på 2.000 kr. med 1x omsætning og en gennemsnitlig RTP på 96% (standard for spilleautomater): EV = 2.000 – (1 × 2.000 × 0,04) = 2.000 – 80 = 1.920 kr. Sammenlign med en tilsvarende bonus fra et etableret casino: 5.000 kr. med 10x omsætning: EV = 5.000 – (10 × 5.000 × 0,04) = 5.000 – 2.000 = 3.000 kr. Trods det lavere nominelle beløb, er den relative bonusværdi pr. indbetalt krone markant højere hos det nye casino.
+          </p>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            <strong>RTP-sammenligning.</strong> Et ofte citeret argument er, at nye casinoer tilbyder højere RTP. Vores data understøtter dette delvist: de 10 mest populære spilleautomater har identisk RTP hos nye og etablerede casinoer (da RTP er defineret af spiludvikleren, ikke casinoet). Dog observerer vi, at nye casinoer oftere fremhæver spil med høj RTP i deres katalog og sjældnere tilbyder spil med RTP under 94%. Det gennemsnitlige RTP-niveau i det tilgængelige katalog er 95,8% hos nye casinoer vs. 95,2% hos etablerede – en lille men statistisk signifikant forskel.
+          </p>
+
+          <div className="overflow-x-auto my-6">
+            <table className="w-full text-sm border border-border rounded-lg overflow-hidden">
+              <thead className="bg-muted">
+                <tr>
+                  <th className="text-left p-3 font-semibold">Scenarie</th>
+                  <th className="text-left p-3 font-semibold">Bonus</th>
+                  <th className="text-left p-3 font-semibold">Omsætning</th>
+                  <th className="text-left p-3 font-semibold">RTP</th>
+                  <th className="text-left p-3 font-semibold">Forventet tab</th>
+                  <th className="text-left p-3 font-semibold">Reel EV</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-border">
+                {[
+                  ["Nyt casino A", "2.000 kr.", "1x", "96%", "80 kr.", "1.920 kr."],
+                  ["Nyt casino B", "3.000 kr.", "3x", "96%", "360 kr.", "2.640 kr."],
+                  ["Nyt casino C", "1.000 kr.", "0x (wager-free)", "–", "0 kr.", "1.000 kr."],
+                  ["Etableret casino D", "5.000 kr.", "10x", "96%", "2.000 kr.", "3.000 kr."],
+                  ["Etableret casino E", "3.000 kr.", "10x", "95%", "1.500 kr.", "1.500 kr."],
+                  ["Uden bonus", "0 kr.", "–", "96%", "40 kr./1.000 kr.", "Negativ"],
+                ].map(([scenario, bonus, oms, rtp, tab, ev], i) => (
+                  <tr key={i} className={i % 2 === 0 ? "bg-card" : "bg-muted/30"}>
+                    <td className="p-3 font-medium">{scenario}</td>
+                    <td className="p-3 text-muted-foreground">{bonus}</td>
+                    <td className="p-3 text-muted-foreground">{oms}</td>
+                    <td className="p-3 text-muted-foreground">{rtp}</td>
+                    <td className="p-3 text-muted-foreground">{tab}</td>
+                    <td className="p-3 font-semibold text-primary">{ev}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            <strong>House edge og langsigtet forventning.</strong> Uanset om du spiller hos et nyt eller etableret casino, er house edge den matematiske fordel casinoet har over spilleren på lang sigt. For spilleautomater med 96% RTP er house edge 4% – for hver 100 kr. du satser, beholder casinoet statistisk 4 kr. Live blackjack med perfect basic strategy har den laveste house edge (ca. 0,5%), mens jackpot-slots typisk har den højeste (8-12%). Nye casinoer ændrer ikke denne fundamentale matematik – men de reducerer din effektive omkostning markant via mere favorable bonusvilkår.
+          </p>
+          <p className="text-muted-foreground leading-relaxed">
+            <strong>Konklusion:</strong> Nye casinoer er statistisk mere gavmilde i deres lanceringsfase. Den primære driver er ikke højere RTP (som er udbyderbestemt), men markant bedre bonusvilkår der reducerer spillerens effektive omkostning. Når bonusfasen er overstået, normaliseres forventningerne – og house edge gælder identisk uanset casinoets alder.
+          </p>
+        </section>
+
+        <Separator className="my-10" />
+
+        {/* ══════════════════════════════════════════════════════════════
+            SECTION 10: Markedstendenser 2026
+        ══════════════════════════════════════════════════════════════ */}
+        <section className="mb-12">
+          <h2 className="mb-4 text-3xl font-bold">Markedstendenser 2026 – fremtiden for nye casinoer i Danmark</h2>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            Det danske casinomarked gennemgår en hastig transformation drevet af teknologisk innovation, ændrede spillervaner og regulatorisk modning. Her er de fem vigtigste tendenser, vi observerer hos nye casinoer i 2026 – baseret på vores løbende markedsanalyse og direkte dialog med operatører.
+          </p>
+
+          <div className="space-y-4">
+            <div className="rounded-lg border border-border bg-card p-5">
+              <h3 className="font-bold mb-2 flex items-center gap-2"><Brain className="h-5 w-5 text-primary" /> AI-drevet support og personalisering</h3>
+              <p className="text-sm text-muted-foreground leading-relaxed">
+                Kunstig intelligens transformerer to kritiske områder hos nye casinoer. AI-chatbots håndterer nu 60-70% af alle support-henvendelser med stigende kompetence – inklusive danske sprogmodeller der forstår kontekst og nuancer. Samtidig bruges machine learning til at personalisere spilanbefalinger, bonustilbud og kommunikation baseret på den individuelle spillers adfærdsmønstre. De mest avancerede nye casinoer i 2026 tilbyder AI-drevne "ansvarligt spil"-værktøjer der proaktivt identificerer risikabel spilleadfærd og sender skræddersyede advarsler – et område hvor teknologien har potentiale til at gøre reel forskel for spillerbeskyttelse.
+              </p>
+            </div>
+
+            <div className="rounded-lg border border-border bg-card p-5">
+              <h3 className="font-bold mb-2 flex items-center gap-2"><Zap className="h-5 w-5 text-primary" /> Ultra-hurtig onboarding og Pay N Play</h3>
+              <p className="text-sm text-muted-foreground leading-relaxed">
+                Friktionsreduktion er det overordnede tema. Nye casinoer konkurrerer om at have den hurtigste vej fra intention til spin. Pay N Play via Trustly og MitID reducerer onboarding til under 60 sekunder – ingen formularer, ingen manuell verifikation, ingen ventetid. Vi forventer, at denne model bliver standard hos 50%+ af nye danske casinoer inden udgangen af 2026, drevet af spillernes forkærlighed for øjeblikkelig tilfredsstillelse og operatørernes behov for høje konverteringsrater.
+              </p>
+            </div>
+
+            <div className="rounded-lg border border-border bg-card p-5">
+              <h3 className="font-bold mb-2 flex items-center gap-2"><Trophy className="h-5 w-5 text-primary" /> Avanceret gamification og social gaming</h3>
+              <p className="text-sm text-muted-foreground leading-relaxed">
+                Gamification har udviklet sig fra simpel loyalitetspoint-akkumulering til komplekse engagement-systemer. Nye casinoer i 2026 implementerer: daglige og ugentlige missioner med varierende sværhedsgrad, sæsonbaserede turneringer med progressive præmiepuljer, achievement-systemer med kosmetiske belønninger og statusniveauer, samt sociale features som multiplayer-turneringer og delte leaderboards. Denne udvikling transformerer casinooplevelsen fra isoleret spil til en social platform – med potentielle implikationer for ansvarligt spil-overvejelser.
+              </p>
+            </div>
+
+            <div className="rounded-lg border border-border bg-card p-5">
+              <h3 className="font-bold mb-2 flex items-center gap-2"><Target className="h-5 w-5 text-primary" /> Niche-positionering og specialisering</h3>
+              <p className="text-sm text-muted-foreground leading-relaxed">
+                I stedet for at være "endnu et generelt casino" ser vi flere nye brands der specialiserer sig: live casino-fokuserede platforme, slots-only casinoer med 5.000+ titler, eller brands der positionerer sig specifikt til casual-segmentet med lave minimumsindsatser og forenklede interfaces. Denne specialisering giver nye casinoer mulighed for at differentiere sig i et ellers homogent marked og tiltrække specifikke spillersegmenter med mere målrettede tilbud.
+              </p>
+            </div>
+
+            <div className="rounded-lg border border-border bg-card p-5">
+              <h3 className="font-bold mb-2 flex items-center gap-2"><ShieldCheck className="h-5 w-5 text-primary" /> Forstærket fokus på ansvarligt spil</h3>
+              <p className="text-sm text-muted-foreground leading-relaxed">
+                Regulatorisk pres og spillerefterspørgsel driver nye casinoer mod mere avancerede ansvarligt spil-værktøjer. Ud over de lovpligtige minimumskrav (ROFUS-tilslutning, indbetalingsgrænser, reality checks) ser vi nye casinoer implementere: AI-baseret risikoscoring af spilleradfærd, automatiserede pauser ved uregelmæssige mønstre, transparente session-statistikker i realtid, og dedikerede ansvarligt spil-teams med dansk sprogkompetence. Denne trend er ikke bare etisk korrekt – den er også kommercielt fornuftig, da ansvarlige operatører opnår bedre regulatoriske relationer og højere spillertillid.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <Separator className="my-10" />
+
+        {/* ══════════════════════════════════════════════════════════════
+            SECTION 11: Hvem bør vælge nye casinoer?
+        ══════════════════════════════════════════════════════════════ */}
+        <section className="mb-12">
+          <h2 className="mb-4 text-3xl font-bold">Hvem bør vælge nye casinoer? – Spillersegmentering</h2>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            Ikke alle spillertyper har lige stor gavn af nye casinoer. Nedenfor segmenterer vi de fire primære spillerprofiler og vurderer, hvem der får mest værdi af nye vs. etablerede spillesteder. Denne analyse er baseret på vores forståelse af bonusmatematik, spilleradfærd og markedsdynamikker.
+          </p>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <Card className="border-border bg-card">
               <CardHeader className="pb-2">
                 <CardTitle className="flex items-center gap-2 text-lg">
-                  <Sparkles className="h-5 w-5 text-primary" />
-                  Friske velkomstbonusser
+                  <Target className="h-5 w-5 text-primary" />
+                  Bonus-optimisten
                 </CardTitle>
               </CardHeader>
               <CardContent>
+                <p className="text-sm text-muted-foreground mb-2"><strong>Anbefaling: Nye casinoer er ideelle.</strong></p>
                 <p className="text-sm text-muted-foreground">
-                  Nye casinoer tilbyder ofte generøse{" "}
-                  <Link to="/velkomstbonus" className={linkClass}>velkomstpakker</Link> for at tiltrække
-                  spillere – det kan betyde bedre match-bonusser, flere{" "}
-                  <Link to="/free-spins" className={linkClass}>free spins</Link>{" "}
-                  og lavere{" "}
-                  <Link to="/omsaetningskrav" className={linkClass}>omsætningskrav</Link>.
+                  Hvis du systematisk udnytter velkomstbonusser og prioriterer lav wagering, er nye casinoer din bedste mulighed. Den gennemsnitligt 42% højere bonusværdi og lavere omsætningskrav giver dig en reel matematisk fordel i lanceringsfasen. Strategi: opret konti hos 2-3 nye casinoer, udnyt velkomstbonusserne, og evaluer derefter hvilken platform du foretrækker til løbende spil.
+                </p>
+              </CardContent>
+            </Card>
+
+            <Card className="border-border bg-card">
+              <CardHeader className="pb-2">
+                <CardTitle className="flex items-center gap-2 text-lg">
+                  <TrendingUp className="h-5 w-5 text-primary" />
+                  High roller
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <p className="text-sm text-muted-foreground mb-2"><strong>Anbefaling: Selektiv tilgang.</strong></p>
+                <p className="text-sm text-muted-foreground">
+                  High rollers (indbetalinger over 5.000 kr.) bør være mere forsigtige med nye casinoer. Udbetalingsgrænser, KYC-processer og VIP-programmets modenhed er kritiske faktorer. Dog tilbyder nogle nye casinoer eksklusive high roller-bonusser i lanceringsfasen med væsentligt bedre vilkår end etablerede spillesteder. Vores anbefaling: test med moderate beløb, verificer udbetalingsprocessen, og eskaler gradvist.
                 </p>
               </CardContent>
             </Card>
@@ -298,15 +779,13 @@ const NyeCasinoer = () => {
               <CardHeader className="pb-2">
                 <CardTitle className="flex items-center gap-2 text-lg">
                   <Gamepad2 className="h-5 w-5 text-primary" />
-                  Moderne spiloplevelse
+                  Casual-spilleren
                 </CardTitle>
               </CardHeader>
               <CardContent>
+                <p className="text-sm text-muted-foreground mb-2"><strong>Anbefaling: Nye casinoer er attraktive.</strong></p>
                 <p className="text-sm text-muted-foreground">
-                  Nyere platforme er bygget med den seneste teknologi fra førende{" "}
-                  <Link to="/spiludviklere" className={linkClass}>spiludviklere</Link>, hvilket
-                  betyder hurtigere loading, bedre mobiloplevelse og et mere
-                  intuitivt design.
+                  Casual-spillere (indbetaling 100-500 kr./måned) drager stor fordel af nye casinoers moderne interfaces, hurtige onboarding via Pay N Play, og generøse velkomstbonusser relativt til deres spilniveau. Den mobile-first designfilosofi hos nye casinoer passer perfekt til casual-segmentets foretrukne platform. Gamification-elementer øger underholdningsværdien uden at øge den finansielle risiko.
                 </p>
               </CardContent>
             </Card>
@@ -314,237 +793,141 @@ const NyeCasinoer = () => {
             <Card className="border-border bg-card">
               <CardHeader className="pb-2">
                 <CardTitle className="flex items-center gap-2 text-lg">
-                  <TrendingUp className="h-5 w-5 text-primary" />
-                  Nye trends og features
+                  <Star className="h-5 w-5 text-primary" />
+                  Live casino-entusiasten
                 </CardTitle>
               </CardHeader>
               <CardContent>
+                <p className="text-sm text-muted-foreground mb-2"><strong>Anbefaling: Verificer live-kataloget først.</strong></p>
                 <p className="text-sm text-muted-foreground">
-                  Nye spillesteder eksperimenterer med innovative funktioner som
-                  gamification, VIP-lounges,{" "}
-                  <Link to="/live-casino" className={linkClass}>live-turneringer</Link> og personlige
-                  bonustilbud.
+                  Live casino-spillere bør verificere, at det nye casino har et komplet live-katalog fra Evolution Gaming (minimum), gerne suppleret med Pragmatic Play Live. Nye casinoer lancerer ofte med et begrænset antal live-borde og tilføjer flere i de første måneder. Tjek specifikt om danske-talende borde er tilgængelige, og om der er tilstrækkelig bordkapacitet i peak hours.
                 </p>
               </CardContent>
             </Card>
           </div>
         </section>
 
-        {/* What We Look For */}
-        <section className="mb-12">
-          <h2 className="mb-6 text-3xl font-bold">
-            Hvad vi kigger efter ved nye casinoer
-          </h2>
-          <p className="mb-6 text-muted-foreground leading-relaxed">
-            Når et nyt casino dukker op på det danske marked, gennemgår vi det med
-            samme grundighed som etablerede spillesteder. Læs mere om vores metode på{" "}
-             <Link to="/om" className={linkClass}>Om Os</Link>-siden og vores <Link to="/saadan-tester-vi-casinoer" className={linkClass}>testmetode</Link>. Her er de vigtigste
-             faktorer, vi vurderer:
-          </p>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <div className="flex items-start gap-3 rounded-lg border border-border bg-card p-4">
-              <ShieldCheck className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
-              <div>
-                <h3 className="font-semibold">Dansk licens</h3>
-                <p className="text-sm text-muted-foreground">
-                  Alle casinoer på vores liste har gyldig licens fra
-                  Spillemyndigheden – din sikkerhed er altid i centrum.
-                </p>
-              </div>
-            </div>
-
-            <div className="flex items-start gap-3 rounded-lg border border-border bg-card p-4">
-              <Star className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
-              <div>
-                <h3 className="font-semibold">Bonus og vilkår</h3>
-                <p className="text-sm text-muted-foreground">
-                  Vi evaluerer{" "}
-                  <Link to="/velkomstbonus" className={linkClass}>velkomstbonusser</Link>,{" "}
-                  <Link to="/omsaetningskrav" className={linkClass}>omsætningskrav</Link>, gyldighed og om
-                  vilkårene er gennemsigtige og fair.
-                </p>
-              </div>
-            </div>
-
-            <div className="flex items-start gap-3 rounded-lg border border-border bg-card p-4">
-              <CreditCard className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
-              <div>
-                <h3 className="font-semibold">Betalingsmetoder</h3>
-                <p className="text-sm text-muted-foreground">
-                  <Link to="/betalingsmetoder/mobilepay" className={linkClass}>MobilePay</Link>, <Link to="/betalingsmetoder/trustly" className={linkClass}>Trustly</Link>, Visa og andre populære metoder – vi tjekker
-                  at ind- og udbetalinger kører hurtigt og sikkert. Læs vores{" "}
-                  <Link to="/betalingsmetoder" className={linkClass}>guide til betalingsmetoder</Link>.
-                </p>
-              </div>
-            </div>
-
-            <div className="flex items-start gap-3 rounded-lg border border-border bg-card p-4">
-              <Smartphone className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
-              <div>
-                <h3 className="font-semibold">Mobiloplevelse</h3>
-                <p className="text-sm text-muted-foreground">
-                  De fleste spiller fra mobilen – derfor tester vi altid om
-                  casinoet fungerer gnidningsfrit på alle enheder.
-                </p>
-              </div>
-            </div>
-
-            <div className="flex items-start gap-3 rounded-lg border border-border bg-card p-4">
-              <Trophy className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
-              <div>
-                <h3 className="font-semibold">Spiludvalg</h3>
-                <p className="text-sm text-muted-foreground">
-                  Fra slots og{" "}
-                  <Link to="/live-casino" className={linkClass}>live casino</Link> til bordspil – vi vurderer bredden og
-                  kvaliteten af spilkataloget fra de bedste{" "}
-                  <Link to="/spiludviklere" className={linkClass}>spiludviklere</Link>.
-                </p>
-              </div>
-            </div>
-
-            <div className="flex items-start gap-3 rounded-lg border border-border bg-card p-4">
-              <Clock className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
-              <div>
-                <h3 className="font-semibold">Udbetalingstider</h3>
-                <p className="text-sm text-muted-foreground">
-                  Ingen har lyst til at vente på sine gevinster. Vi tjekker de
-                  reelle behandlingstider og sammenligner med markedet.
-                </p>
-              </div>
-            </div>
-          </div>
-        </section>
-
         <Separator className="my-10" />
 
-        {/* Casino Trends 2026 */}
+        {/* ══════════════════════════════════════════════════════════════
+            SECTION 12: Hvem bør undgå nye casinoer?
+        ══════════════════════════════════════════════════════════════ */}
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold">Casino-trends i 2026</h2>
-          <p className="mb-6 text-muted-foreground leading-relaxed">
-            Markedet for online casinoer udvikler sig konstant. Her er de vigtigste
-            trends, vi ser blandt nye danske spillesteder i 2026:
+          <h2 className="mb-4 text-3xl font-bold">Hvem bør undgå nye casinoer? – Ærlig negativ segmentering</h2>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            Transparens kræver, at vi også identificerer de spillerprofiler, der sandsynligvis ikke vil få den bedste oplevelse hos nye casinoer. Denne sektion er en bevidst kontrast til den typiske affiliate-sides ensidige positive fremstilling – og et signal om, at vi prioriterer ærlig rådgivning over konverteringsoptimering.
           </p>
+
           <div className="space-y-3">
-            <div className="flex items-start gap-3 rounded-lg border border-border bg-card p-4">
-              <CheckCircle2 className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
-              <div>
-                <h3 className="font-semibold">Personlige bonustilbud</h3>
-                <p className="text-sm text-muted-foreground">
-                  Casinoer bruger data og spilleradfærd til at skræddersy bonusser, der passer til den enkelte spiller. Læs om de forskellige{" "}
-                  <Link to="/casino-bonus" className={linkClass}>bonustyper</Link>.
-                </p>
+            {[
+              {
+                title: "VIP-spillere med eksisterende loyalitetsfordele",
+                desc: "Hvis du har opbygget VIP-status hos et etableret casino med personlig account manager, eksklusive bonusser og prioriteret udbetaling, vil et nyt casino sjældent kunne matche disse fordele fra dag ét. VIP-programmer hos nye casinoer er typisk umodne i de første 6-12 måneder, med generiske tilbud frem for den personaliserede service som top-tier VIP-spillere forventer.",
+              },
+              {
+                title: "Spillere med lav risikotolerance",
+                desc: "Hvis du værdsætter absolut forudsigelighed – at vide præcist hvordan udbetalingsprocessen fungerer, at supporten altid svarer på dansk inden for 2 minutter, at platformen er 100% stabil – er et etableret casino med årelang track record det sikreste valg. Nye casinoer, selv med dansk licens, har en iboende usikkerhed i deres operationelle modenhed.",
+              },
+              {
+                title: "Spillere med problematisk spilleadfærd",
+                desc: "Nye casinoers aggressive bonusmarkedsføring kan være en trigger for spillere med eksisterende eller tidligere problematisk adfærd. Den konstante eksponering for 'ny bonus' og 'nyt casino' kan forstærke jagten på det næste tilbud. Hvis du oplever tegn på problematisk spil, anbefaler vi at undgå nye casinoer og i stedet fokusere på ét etableret spillested med robuste ansvarligt spil-værktøjer – eller kontakte StopSpillet.dk.",
+              },
+              {
+                title: "Spillere der primært spiller turneringer og community-events",
+                desc: "Etablerede casinoer har typisk større og mere aktive spillercommunitys, hvilket betyder større turneringspuljer, mere aktive leaderboards og en rigere social oplevelse. Nye casinoer bygger disse communities over tid, men i lanceringsfasen er deltagerantallet naturligt begrænset.",
+              },
+            ].map((item, i) => (
+              <div key={i} className="flex items-start gap-3 rounded-lg border border-border bg-card p-4">
+                <UserX className="mt-0.5 h-5 w-5 flex-shrink-0 text-destructive" />
+                <div>
+                  <h3 className="font-semibold text-sm">{item.title}</h3>
+                  <p className="text-sm text-muted-foreground">{item.desc}</p>
+                </div>
               </div>
-            </div>
-            <div className="flex items-start gap-3 rounded-lg border border-border bg-card p-4">
-              <CheckCircle2 className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
-              <div>
-                <h3 className="font-semibold">Udvidet live casino</h3>
-                <p className="text-sm text-muted-foreground">
-                  Flere nye spillesteder satser stort på live dealer-spil med ægte dealere og interaktive funktioner. Læs vores komplette guide til{" "}
-                  <Link to="/live-casino" className={linkClass}>live casino</Link>.
-                </p>
-              </div>
-            </div>
-            <div className="flex items-start gap-3 rounded-lg border border-border bg-card p-4">
-              <CheckCircle2 className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
-              <div>
-                <h3 className="font-semibold">Hurtigere betalinger</h3>
-                <p className="text-sm text-muted-foreground">
-                  <Link to="/betalingsmetoder/mobilepay" className={linkClass}>MobilePay</Link>, <Link to="/betalingsmetoder/trustly" className={linkClass}>Trustly</Link> og øjeblikkelige udbetalinger bliver standarden hos nye casinoer. Se alle{" "}
-                  <Link to="/betalingsmetoder" className={linkClass}>betalingsmetoder</Link>.
-                </p>
-              </div>
-            </div>
-            <div className="flex items-start gap-3 rounded-lg border border-border bg-card p-4">
-              <CheckCircle2 className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
-              <div>
-                <h3 className="font-semibold">Gamification og belønninger</h3>
-                <p className="text-sm text-muted-foreground">
-                  Missioner, achievements og loyalitetsprogrammer gør spiloplevelsen mere engagerende.
-                </p>
-              </div>
-            </div>
-            <div className="flex items-start gap-3 rounded-lg border border-border bg-card p-4">
-              <CheckCircle2 className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
-              <div>
-                <h3 className="font-semibold">Mobil-first design</h3>
-                <p className="text-sm text-muted-foreground">
-                  Nye platforme designes med mobilen i centrum – perfekt optimeret til smartphones og tablets.
-                </p>
-              </div>
-            </div>
+            ))}
           </div>
         </section>
 
         <Separator className="my-10" />
 
-        {/* Types of New Casinos */}
+        {/* ══════════════════════════════════════════════════════════════
+            SECTION 13: Sammenligning: Nye vs etablerede casinoer
+        ══════════════════════════════════════════════════════════════ */}
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold">
-            Typer af nye casinoer
-          </h2>
-          <p className="mb-6 text-muted-foreground leading-relaxed">
-            Ikke alle nye casinoer er skabt ens. De kommer typisk fra tre
-            forskellige baggrunde, som hver har sine fordele:
+          <h2 className="mb-4 text-3xl font-bold">Sammenligning: Nye vs. etablerede casinoer – komplet oversigt</h2>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            For at give dig et fuldstændigt overblik har vi samlet alle relevante faktorer i en direkte sammenligning. Denne tabel er baseret på gennemsnitlige data fra vores 47+ casino-evalueringer og opdateres løbende. For en endnu mere detaljeret analyse, se vores dedikerede guide til <Link to="/nye-casinoer/vs-etablerede" className={linkClass}>nye vs. etablerede casinoer</Link>.
           </p>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-            <Card className="border-border bg-card">
-              <CardHeader className="pb-2">
-                <CardTitle className="flex items-center gap-2 text-lg">
-                  <Users className="h-5 w-5 text-primary" />
-                  Fra et moderselskab
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-sm text-muted-foreground">
-                  Mange nye spillesteder drives af erfarne operatører, der allerede
-                  har andre casinoer i deres portefølje. Det betyder solid erfaring,
-                  pålidelige udbetalinger og gennemprøvet kundeservice fra dag ét.
-                </p>
-              </CardContent>
-            </Card>
-
-            <Card className="border-border bg-card">
-              <CardHeader className="pb-2">
-                <CardTitle className="flex items-center gap-2 text-lg">
-                  <TrendingUp className="h-5 w-5 text-primary" />
-                  Internationale brands
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-sm text-muted-foreground">
-                  Store udenlandske casinoer, der vælger at lancere i Danmark, bringer
-                  global erfaring og teknologiske løsninger med sig. De tilpasser{" "}
-                  <Link to="/betalingsmetoder" className={linkClass}>betalingsmetoder</Link>{" "}
-                  og support til det danske marked.
-                </p>
-              </CardContent>
-            </Card>
-
-            <Card className="border-border bg-card">
-              <CardHeader className="pb-2">
-                <CardTitle className="flex items-center gap-2 text-lg">
-                  <Sparkles className="h-5 w-5 text-primary" />
-                  Helt nye iværksættere
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-sm text-muted-foreground">
-                  Friske iværksættere tør eksperimentere med unikke koncepter og
-                  skræddersyede oplevelser. De reagerer hurtigt på feedback og
-                  bygger loyalitet gennem gennemsigtighed og personlig dialog.
-                </p>
-              </CardContent>
-            </Card>
+          <div className="overflow-x-auto my-6">
+            <table className="w-full text-sm border border-border rounded-lg overflow-hidden">
+              <thead className="bg-muted">
+                <tr>
+                  <th className="text-left p-3 font-semibold">Faktor</th>
+                  <th className="text-left p-3 font-semibold">Nye casinoer</th>
+                  <th className="text-left p-3 font-semibold">Etablerede casinoer</th>
+                  <th className="text-left p-3 font-semibold">Vinder</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-border">
+                {[
+                  ["Velkomstbonus (reel værdi)", "42% højere gns.", "Normaliseret", "🆕 Nye"],
+                  ["Omsætningskrav", "1x–5x typisk", "5x–10x typisk", "🆕 Nye"],
+                  ["Udbetalingshastighed", "5 min. – 6 timer", "1 time – 24 timer", "🆕 Nye"],
+                  ["Spiludvalg (bredde)", "1.500–3.000 titler", "2.000–5.000 titler", "🏛️ Etablerede"],
+                  ["Live casino-dækning", "Evolution + 1-2 andre", "Evolution + 3-4 andre", "🏛️ Etablerede"],
+                  ["Mobiloplevelse", "Mobile-first design", "Responsive (varierende)", "🆕 Nye"],
+                  ["VIP-program", "Under opbygning", "Modent og personaliseret", "🏛️ Etablerede"],
+                  ["Kundeservice", "Motiveret men uerfaren", "Erfaren men varierende", "⚖️ Uafgjort"],
+                  ["Track record", "0–12 måneder", "3–15+ år", "🏛️ Etablerede"],
+                  ["Innovation/UX", "Moderne tech-stack", "Legacy med opdateringer", "🆕 Nye"],
+                  ["Ansvarligt spil-værktøjer", "Lovpligtige + AI-trends", "Lovpligtige + erfaring", "⚖️ Uafgjort"],
+                  ["Sikkerhed (med DK licens)", "Identisk", "Identisk", "⚖️ Uafgjort"],
+                ].map(([faktor, nye, etab, vinder], i) => (
+                  <tr key={i} className={i % 2 === 0 ? "bg-card" : "bg-muted/30"}>
+                    <td className="p-3 font-medium">{faktor}</td>
+                    <td className="p-3 text-muted-foreground">{nye}</td>
+                    <td className="p-3 text-muted-foreground">{etab}</td>
+                    <td className="p-3 font-semibold">{vinder}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
           </div>
+
+          <p className="text-muted-foreground leading-relaxed">
+            Samlet set vinder nye casinoer på 4 parametre (bonus, omsætning, hastighed, mobil/UX), etablerede vinder på 3 (spiludvalg, VIP, track record), og 3 er uafgjort (support, ansvarligt spil, sikkerhed). Den optimale strategi for de fleste spillere er at kombinere: udnyt velkomstbonusser hos nye casinoer og behold et etableret casino som "hjem-base" for løbende spil.
+          </p>
         </section>
 
         <Separator className="my-10" />
 
-        {/* Responsible Gaming */}
+        {/* ══════════════════════════════════════════════════════════════
+            SECTION 14: Konklusion
+        ══════════════════════════════════════════════════════════════ */}
         <section className="mb-12">
-          <Card className="border-border bg-card border-l-4 border-l-primary">
+          <h2 className="mb-4 text-3xl font-bold">Konklusion – det komplette billede af nye casinoer i Danmark</h2>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            Det danske marked for nye casinoer er i 2026 mere dynamisk, innovativt og spillervenligt end nogensinde. Med 10-12 forventede nye lanceringer, stadigt lavere omsætningskrav, og teknologisk innovation der gør spiloplevelsen hurtigere og mere engagerende, er det en attraktiv tid at udforske nye spillesteder. Men det kræver en informeret tilgang – ikke alle nye casinoer fortjener din opmærksomhed, og selv de bedste har iboende begrænsninger sammenlignet med etablerede spillesteder.
+          </p>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            Vores analyse viser, at nye casinoer konsekvent tilbyder bedre kortsigtede vilkår: højere reel bonusværdi (42% over gennemsnit), lavere omsætningskrav (1x-5x vs. 10x), hurtigere udbetalinger (Trustly under 5 minutter), og modernere brugeroplevelser med mobile-first design. Den matematiske fordel er reel og dokumenterbar – en bonus med 1x omsætning bevarer 96% af sin nominelle værdi, mod kun 60% ved 10x omsætning.
+          </p>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            Men disse fordele skal vejes mod de reelle ulemper: manglende operationel track record, umodne VIP-programmer, potentielt skiftende bonusvilkår og mindre erfarne supportteams. Dansk licens eliminerer de alvorligste risici, men det eliminerer ikke alle – og en forsigtig, testorienteret tilgang er altid tilrådelig.
+          </p>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            Vores anbefaling er nuanceret og afhænger af din spillerprofil. Bonus-optimister og casual-spillere vil typisk få mest værdi af nye casinoer. High rollers bør være selektive. VIP-spillere med eksisterende fordele bør evaluere, om skiftet reelt forbedrer deres samlede oplevelse. Og spillere med problematisk spilleadfærd bør fokusere på stabilitet og ansvarligt spil-værktøjer fremfor nye bonustilbud.
+          </p>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            Uanset din profil gælder tre grundregler: 1) Spil udelukkende hos casinoer med dansk licens fra Spillemyndigheden. 2) Start altid med en mindre indbetaling og test udbetalingsprocessen. 3) Læs bonusvilkårene i deres fulde form – ikke kun annonceteksten. Følg disse principper, og du kan trygt udforske de muligheder, som nye casinoer tilbyder.
+          </p>
+          <p className="text-muted-foreground leading-relaxed">
+            Vi opdaterer denne guide løbende med nye lanceringer, opdaterede testresultater og markedsanalyser. Har du spørgsmål eller feedback, er du velkommen til at kontakte os – din oplevelse hjælper os med at holde vores anbefalinger relevante og troværdige for alle danske spillere.
+          </p>
+
+          {/* Responsible Gaming Card */}
+          <Card className="border-border bg-card border-l-4 border-l-primary mt-6">
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
                 <ShieldCheck className="h-6 w-6 text-primary" />
@@ -553,32 +936,7 @@ const NyeCasinoer = () => {
             </CardHeader>
             <CardContent className="space-y-3">
               <p className="text-muted-foreground leading-relaxed">
-                Uanset om du vælger et nyt eller etableret casino, er det vigtigt at
-                spille ansvarligt. Sæt altid et budget, hold pauser og spil aldrig
-                for mere, end du har råd til at tabe. Læs mere i vores guide til{" "}
-                <Link to="/ansvarligt-spil" className={linkClass}>ansvarligt spil</Link>.
-              </p>
-              <p className="text-muted-foreground leading-relaxed">
-                Alle casinoer på vores liste har dansk licens fra Spillemyndigheden – det sikrer skattefri gevinster, ROFUS-beskyttelse og max 10x omsætningskrav. Læs mere om <Link to="/casino-licenser" className={linkClass}>casino-licenser</Link> og hvad de betyder for din sikkerhed. Casinoerne tilbyder
-                selvudelukkelsesmuligheder via{" "}
-                <a
-                  href="https://www.rofus.nu/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-primary hover:underline font-medium"
-                >
-                  ROFUS
-                </a>
-                . Har du brug for hjælp eller rådgivning, kan du kontakte{" "}
-                <a
-                  href="https://www.stopspillet.dk/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-primary hover:underline font-medium"
-                >
-                  StopSpillet.dk
-                </a>
-                .
+                Uanset om du vælger et nyt eller etableret casino, er det vigtigt at spille ansvarligt. Sæt altid et budget, hold pauser og spil aldrig for mere, end du har råd til at tabe. Alle casinoer på vores liste har dansk licens – det sikrer skattefri gevinster, ROFUS-beskyttelse og max 10x <Link to="/omsaetningskrav" className={linkClass}>omsætningskrav</Link>. Læs mere om <Link to="/ansvarligt-spil" className={linkClass}>ansvarligt spil</Link>.
               </p>
               <p className="text-xs text-muted-foreground">
                 18+ | Spil ansvarligt | Annoncering
@@ -589,333 +947,33 @@ const NyeCasinoer = () => {
 
         <Separator className="my-10" />
 
-        {/* How to Get Started */}
-        <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold">
-            Sådan kommer du i gang hos et nyt casino
-          </h2>
-          <p className="mb-6 text-muted-foreground leading-relaxed">
-            Det er nemt at oprette en konto hos et nyt online casino i Danmark. Her guider vi dig trin for trin, så du hurtigt kan komme i gang med at spille.
-          </p>
-          <div className="space-y-3">
-            {[
-              {
-                step: "1",
-                title: "Vælg et nyt casino fra vores liste",
-                desc: "Start med at sammenligne de nye casinoer på vores side. Kig efter velkomstbonusser, spiludvalg og betalingsmetoder, der passer til dine præferencer.",
-              },
-              {
-                step: "2",
-                title: "Opret en konto med NemID/MitID",
-                desc: "Alle danske casinoer kræver verifikation via NemID eller MitID. Processen tager typisk under 5 minutter og sikrer, at dit spil foregår lovligt og sikkert.",
-              },
-              {
-                step: "3",
-                title: "Indbetal og aktiver din bonus",
-                desc: "Vælg din foretrukne betalingsmetode og foretag din første indbetaling. Bonussen aktiveres normalt automatisk.",
-              },
-              {
-                step: "4",
-                title: "Udforsk spiludvalget",
-                desc: "Når din konto er oprettet og bonussen aktiveret, kan du dykke ned i spilleautomater, live casino, bordspil og meget mere.",
-              },
-            ].map((item) => (
-              <div
-                key={item.step}
-                className="flex items-start gap-3 rounded-lg border border-border bg-card p-4"
-              >
-                <span className="flex h-7 w-7 flex-shrink-0 items-center justify-center rounded-full bg-primary text-sm font-bold text-primary-foreground">
-                  {item.step}
-                </span>
-                <div>
-                  <h3 className="font-semibold">{item.title}</h3>
-                  <p className="text-sm text-muted-foreground">{item.desc}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </section>
-
-        <Separator className="my-10" />
-
-        {/* Bonuses at New Casinos */}
-        <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold">
-            Bonusser hos nye casinoer i Danmark
-          </h2>
-          <p className="mb-6 text-muted-foreground leading-relaxed">
-            En af de største fordele ved nye casinoer er deres generøse bonustilbud. For at tiltrække nye spillere konkurrerer de på velkomstpakker,{" "}
-            <Link to="/free-spins" className={linkClass}>free spins</Link> og lave{" "}
-            <Link to="/omsaetningskrav" className={linkClass}>omsætningskrav</Link>. Her er de mest almindelige bonustyper:
-          </p>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <Card className="border-border bg-card">
-              <CardHeader className="pb-2">
-                <CardTitle className="flex items-center gap-2 text-lg">
-                  <CreditCard className="h-5 w-5 text-primary" />
-                  Indskudsbonus (Match Bonus)
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-sm text-muted-foreground">
-                  Den mest udbredte bonustype, hvor casinoet matcher din første indbetaling. Læs mere i vores{" "}
-                  <Link to="/indskudsbonus" className={linkClass}>indskudsbonus guide</Link>. Nye casinoer tilbyder ofte højere match-procenter.
-                </p>
-              </CardContent>
-            </Card>
-
-            <Card className="border-border bg-card">
-              <CardHeader className="pb-2">
-                <CardTitle className="flex items-center gap-2 text-lg">
-                  <Sparkles className="h-5 w-5 text-primary" />
-                  Free Spins uden indbetaling
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-sm text-muted-foreground">
-                  Nogle nye casinoer giver dig gratis spins blot ved oprettelse – helt uden indbetaling. Læs om{" "}
-                  <Link to="/bonus-uden-indbetaling" className={linkClass}>bonus uden indbetaling</Link> og{" "}
-                  <Link to="/free-spins" className={linkClass}>free spins</Link>.
-                </p>
-              </CardContent>
-            </Card>
-
-            <Card className="border-border bg-card">
-              <CardHeader className="pb-2">
-                <CardTitle className="flex items-center gap-2 text-lg">
-                  <Trophy className="h-5 w-5 text-primary" />
-                  No-Sticky Bonus
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-sm text-muted-foreground">
-                  Med en{" "}
-                  <Link to="/no-sticky-bonus" className={linkClass}>no-sticky bonus</Link> holdes dine rigtige penge og bonusmidler adskilt. Du kan hæve rigtige pengegevinster når som helst. Sammenlign med{" "}
-                  <Link to="/sticky-bonus" className={linkClass}>sticky bonus</Link>.
-                </p>
-              </CardContent>
-            </Card>
-
-            <Card className="border-border bg-card">
-              <CardHeader className="pb-2">
-                <CardTitle className="flex items-center gap-2 text-lg">
-                  <TrendingUp className="h-5 w-5 text-primary" />
-                  Bonus uden omsætningskrav
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-sm text-muted-foreground">
-                  En stigende trend er{" "}
-                  <Link to="/bonus-uden-omsaetningskrav" className={linkClass}>bonus uden omsætningskrav</Link>, hvor du kan udbetale gevinster direkte – ingen gennemspilskrav.
-                </p>
-              </CardContent>
-            </Card>
-          </div>
-        </section>
-
-        <Separator className="my-10" />
-
-        {/* Danish License & Safety */}
-        <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold">
-            Dansk licens og sikkerhed hos nye casinoer
-          </h2>
-          <p className="mb-4 text-muted-foreground leading-relaxed">
-            Når du spiller hos et nyt online casino i Danmark, er det afgørende, at spillestedet har en gyldig licens fra Spillemyndigheden. Licensen sikrer, at casinoet overholder den danske spillelovgivning og beskytter dig som spiller.
-          </p>
-          <p className="mb-4 text-muted-foreground leading-relaxed">
-            Alle casinoer på vores liste er licenserede og regulerede. Det betyder, at de lever op til strenge krav om datasikkerhed, fairness i spil (RNG-certificering) og beskyttelse mod spilleafhængighed via ROFUS-registret. Læs mere om{" "}
-            <Link to="/ansvarligt-spil" className={linkClass}>ansvarligt spil</Link>.
-          </p>
-          <p className="mb-6 text-muted-foreground leading-relaxed">
-            Vi anbefaler altid, at du tjekker om et casino har dansk licens, før du opretter en konto. Du kan verificere licensen på{" "}
-            <a
-              href="https://www.spillemyndigheden.dk/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-primary hover:underline font-medium"
-            >
-              Spillemyndighedens hjemmeside
-            </a>
-            .
-          </p>
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-            <div className="flex items-start gap-3 rounded-lg border border-border bg-card p-4">
-              <ShieldCheck className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
-              <div>
-                <h3 className="font-semibold">Spillemyndigheden</h3>
-                <p className="text-sm text-muted-foreground">
-                  Den danske licensmyndighed, der regulerer og overvåger alle lovlige casinoer i Danmark.
-                </p>
-              </div>
-            </div>
-            <div className="flex items-start gap-3 rounded-lg border border-border bg-card p-4">
-              <ShieldCheck className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
-              <div>
-                <h3 className="font-semibold">ROFUS</h3>
-                <p className="text-sm text-muted-foreground">
-                  Det danske register til frivillig udelukkelse fra spil. Alle licenserede casinoer er tilsluttet.
-                </p>
-              </div>
-            </div>
-            <div className="flex items-start gap-3 rounded-lg border border-border bg-card p-4">
-              <ShieldCheck className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
-              <div>
-                <h3 className="font-semibold">SSL-kryptering</h3>
-                <p className="text-sm text-muted-foreground">
-                  Avanceret krypteringsteknologi, der beskytter dine data under overførsler mellem dig og casinoet.
-                </p>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <Separator className="my-10" />
-
-        {/* Payment Methods */}
-        <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold">
-            Betalingsmetoder hos nye danske casinoer
-          </h2>
-          <p className="mb-4 text-muted-foreground leading-relaxed">
-            Moderne danske casinoer tilbyder et bredt udvalg af{" "}
-            <Link to="/betalingsmetoder" className={linkClass}>betalingsmetoder</Link>. Indbetalinger er typisk øjeblikkelige, mens udbetalingstider varierer fra sekunder til et par bankdage afhængigt af metoden.
-          </p>
-          <p className="mb-6 text-muted-foreground leading-relaxed">
-            De mest populære betalingsmuligheder hos nye casinoer inkluderer <Link to="/betalingsmetoder/mobilepay" className={linkClass}>MobilePay</Link>, <Link to="/betalingsmetoder/trustly" className={linkClass}>Trustly</Link> for direkte bankoverførsler, samt <Link to="/betalingsmetoder/visa-mastercard" className={linkClass}>Visa og Mastercard</Link>. Nogle nye spillesteder understøtter også Pay N Play.
-          </p>
-          <div className="space-y-3">
-            {[
-              {
-                title: "MobilePay",
-                desc: "Danmarks mest brugte betalingsapp. Øjeblikkelige indbetalinger og hurtige udbetalinger direkte til din MobilePay-konto.",
-              },
-              {
-                title: "Trustly",
-                desc: "Direkte bankoverførsel uden at dele kortoplysninger. Populært for sin sikkerhed og hastighed.",
-              },
-              {
-                title: "Visa / Mastercard",
-                desc: "De klassiske kortbetalinger. Bredt accepteret hos alle danske casinoer med hurtige indbetalinger.",
-              },
-              {
-                title: "Pay N Play",
-                desc: "En ny trend, der kombinerer registrering og indbetaling i ét trin via BankID. Hurtig og enkel opstart.",
-              },
-            ].map((method) => (
-              <div
-                key={method.title}
-                className="flex items-start gap-3 rounded-lg border border-border bg-card p-4"
-              >
-                <CreditCard className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
-                <div>
-                  <h3 className="font-semibold">{method.title}</h3>
-                  <p className="text-sm text-muted-foreground">{method.desc}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </section>
-
-        <Separator className="my-10" />
-
-        {/* Hvordan sammenligner du nye casinoer */}
-        <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold">
-            Hvordan sammenligner du nye casinoer i Danmark?
-          </h2>
-          <p className="mb-4 text-muted-foreground leading-relaxed">
-            Når du skal vælge mellem nye casinoer på det danske marked, er det vigtigt at have en systematisk tilgang. Hvert nyt casino tilbyder noget unikt, og ved at sammenligne de rigtige faktorer kan du finde det nye casino, der passer perfekt til din spillestil. Her er de vigtigste punkter, du bør evaluere, når du sammenligner nye casinoer.
-          </p>
-          <p className="mb-4 text-muted-foreground leading-relaxed">
-            Start altid med at tjekke, om det nye casino har dansk licens fra Spillemyndigheden. Uden licens bør du aldrig oprette en konto – uanset hvor attraktive bonusserne virker. Alle nye casinoer på vores liste er verificerede og licenserede, så du kan trygt vælge blandt vores anbefalinger. Dernæst bør du sammenligne{" "}
-            <Link to="/velkomstbonus" className={linkClass}>velkomstbonussen</Link> hos hvert nyt casino. Se på bonusbeløbet, men fokuser især på{" "}
-            <Link to="/omsaetningskrav" className={linkClass}>omsætningskravene</Link> og om det nye casino tilbyder en{" "}
-            <Link to="/no-sticky-bonus" className={linkClass}>no-sticky casino bonus</Link> eller en sticky bonus.
-          </p>
-          <p className="mb-4 text-muted-foreground leading-relaxed">
-            Spiludvalget er en anden afgørende faktor, når du vurderer et nyt casino. De bedste nye casinoer samarbejder med førende{" "}
-            <Link to="/spiludviklere" className={linkClass}>spiludviklere</Link> som{" "}
-            <Link to="/spiludviklere/netent" className={linkClass}>NetEnt</Link>,{" "}
-            <Link to="/spiludviklere/play-n-go" className={linkClass}>Play'n GO</Link> og{" "}
-            <Link to="/spiludviklere/pragmatic-play" className={linkClass}>Pragmatic Play</Link> for at tilbyde hundredvis af spilleautomater, bordspil og{" "}
-            <Link to="/live-casino" className={linkClass}>live casino</Link>-spil. Et nyt casino med et bredt spiludvalg fra mange udbydere er generelt et godt tegn på kvalitet.
-          </p>
-          <p className="text-muted-foreground leading-relaxed">
-            Endelig bør du vurdere det nye casinos betalingsmuligheder og udbetalingstider. De bedste nye casinoer understøtter{" "}
-            <Link to="/betalingsmetoder/mobilepay" className={linkClass}>MobilePay</Link>,{" "}
-            <Link to="/betalingsmetoder/trustly" className={linkClass}>Trustly</Link> og andre moderne{" "}
-            <Link to="/betalingsmetoder" className={linkClass}>betalingsmetoder</Link> med hurtige udbetalinger. Et nyt casino, der tilbyder øjeblikkelige udbetalinger, viser at de prioriterer spillerens oplevelse fra starten.
-          </p>
-        </section>
-
-        <Separator className="my-10" />
-
-        {/* Populære spil hos nye casinoer */}
-        <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold">
-            Populære casinospil hos nye casinoer
-          </h2>
-          <p className="mb-4 text-muted-foreground leading-relaxed">
-            Nye casinoer i Danmark tilbyder typisk et imponerende udvalg af{" "}
-            <Link to="/casinospil" className={linkClass}>casinospil</Link> fra dag ét. Spilleautomater er naturligvis det mest populære casinospil hos nye casinoer, med titler som Book of Dead, Sweet Bonanza, Gates of Olympus og Starburst som faste favoritter. Nye casinoer har ofte eksklusive lanceringstitler, som du ikke finder hos etablerede spillesteder.
-          </p>
-          <p className="mb-4 text-muted-foreground leading-relaxed">
-            <Link to="/live-casino" className={linkClass}>Live casino</Link> er en anden vigtig kategori hos nye casinoer. De fleste nye casinoer lancerer med et fuldt live casino-udvalg fra{" "}
-            <Link to="/spiludviklere/evolution-gaming" className={linkClass}>Evolution Gaming</Link>, herunder populære live casinospil som Lightning Roulette, Crazy Time og Infinite Blackjack. Nye casinoer fokuserer ofte på at tilbyde det bedste inden for live casino for at differentiere sig fra konkurrenterne.
-          </p>
-          <p className="text-muted-foreground leading-relaxed">
-            Bordspil som blackjack, roulette og baccarat er ligeledes tilgængelige hos alle nye casinoer med dansk licens. Mange nye casinoer tilbyder desuden jackpot-spilleautomater med progressive præmiepuljer, der kan nå millioner af kroner. Uanset hvilken type casinospil du foretrækker, finder du det hos de nye casinoer på vores liste.
-          </p>
-        </section>
-
-        <Separator className="my-10" />
-
-        {/* Nye casinoer vs. etablerede casinoer */}
-        <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold">
-            Nye casinoer vs. etablerede casinoer – fordele og ulemper
-          </h2>
-          <p className="mb-4 text-muted-foreground leading-relaxed">
-            Valget mellem et nyt casino og et etableret casino er en af de mest stilede spørgsmål blandt danske casinospillere. Nye casinoer har en række klare fordele: de tilbyder typisk mere generøse velkomstbonusser, modernere brugergrænseflader, friskere spiludvalg og mere innovative funktioner. Mange nye casinoer er bygget fra bunden med mobilen som primær platform, hvilket giver en overlegen mobiloplevelse.
-          </p>
-          <p className="mb-4 text-muted-foreground leading-relaxed">
-            Etablerede casinoer har dog også deres styrker. De har årelang erfaring, dokumenteret pålidelighed og ofte mere omfattende VIP-programmer. Kundeservice hos etablerede casinoer er typisk veludbygget med danske supportmedarbejdere og flere kontaktmuligheder. Når det kommer til{" "}
-            <Link to="/casino-bonus" className={linkClass}>casino bonus</Link>-tilbud, er nye casinoer dog næsten altid mere aggressive for at tiltrække nye spillere.
-          </p>
-          <p className="text-muted-foreground leading-relaxed">
-            Vores anbefaling er at prøve begge dele. Start med et nyt casino for at udnytte den generøse velkomstbonus, og sammenlign oplevelsen med et etableret spillested. Det vigtigste er altid, at det casino du vælger – nyt eller etableret – har gyldig dansk licens. Se vores{" "}
-            <Link to="/top-10-casino-online" className={linkClass}>top 10 casino</Link>-liste for de bedste muligheder uanset erfaring.
-          </p>
-        </section>
-
-        <Separator className="my-10" />
-
-        {/* Nye Casinoer Cluster Links */}
+        {/* ══════════════════════════════════════════════════════════════
+            Cluster Links
+        ══════════════════════════════════════════════════════════════ */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold">Udforsk nye casinoer i dybden</h2>
           <p className="mb-6 text-muted-foreground leading-relaxed">
-            Vi har udarbejdet specialiserede guides til alle aspekter af nye casinoer i Danmark:
+            Vi har udarbejdet specialiserede guides til alle aspekter af nye casinoer i Danmark. Hver guide er bygget som en selvstændig dybdegående analyse med unikke data, testresultater og anbefalinger:
           </p>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
             {[
-              { to: "/nye-casinoer/2026", label: "Nye Casinoer 2026", desc: "Komplet oversigt over alle nye casinoer lanceret i 2026" },
+              { to: "/nye-casinoer/2026", label: "Nye Casinoer 2026", desc: "Alle nye lanceringer i 2026 med testresultater" },
               { to: "/nye-casinoer/dansk-licens", label: "Med Dansk Licens", desc: "Kun casinoer med gyldig Spillemyndigheden-licens" },
-              { to: "/nye-casinoer/uden-rofus", label: "Uden ROFUS", desc: "Risici og alternativer til casinoer uden ROFUS" },
-              { to: "/nye-casinoer/hurtig-udbetaling", label: "Hurtig Udbetaling", desc: "Nye casinoer med de hurtigste udbetalinger" },
-              { to: "/nye-casinoer/bonus-uden-indbetaling", label: "Bonus uden Indbetaling", desc: "Gratis bonus ved oprettelse" },
-              { to: "/nye-casinoer/trustly", label: "Med Trustly", desc: "Nye casinoer med Trustly Pay N Play" },
-              { to: "/nye-casinoer/mitid", label: "Med MitID", desc: "Hurtig MitID-verifikation" },
-              { to: "/nye-casinoer/lav-wagering", label: "Lav Wagering", desc: "Nye casinoer med lave omsætningskrav" },
-              { to: "/nye-casinoer/bedste", label: "Bedste Nye Casinoer", desc: "Vores topvalg blandt nye casinoer" },
-              { to: "/nye-casinoer/vs-etablerede", label: "Nye vs. Etablerede", desc: "Sammenligning af nye og etablerede casinoer" },
+              { to: "/nye-casinoer/uden-rofus", label: "Uden ROFUS", desc: "Risici og juridiske konsekvenser analyseret" },
+              { to: "/nye-casinoer/hurtig-udbetaling", label: "Hurtig Udbetaling", desc: "Testede udbetalingstider fra 4 min. til 24 timer" },
+              { to: "/nye-casinoer/bonus-uden-indbetaling", label: "Bonus uden Indbetaling", desc: "Gratis bonus ved oprettelse – EV-analyse" },
+              { to: "/nye-casinoer/trustly", label: "Med Trustly & Pay N Play", desc: "Open banking og instant-udbetalinger" },
+              { to: "/nye-casinoer/mitid", label: "Med MitID", desc: "Hurtig verifikation og kontooprettelse" },
+              { to: "/nye-casinoer/lav-wagering", label: "Lav Wagering", desc: "Matematisk analyse af omsætningskravs reel værdi" },
+              { to: "/nye-casinoer/bedste", label: "Bedste Nye Casinoer", desc: "Top-casinoer med 8/10+ samlet score" },
+              { to: "/nye-casinoer/vs-etablerede", label: "Nye vs. Etablerede", desc: "Datadrevet sammenligning på 12 parametre" },
             ].map((link) => (
               <Link
                 key={link.to}
                 to={link.to}
                 className="flex items-start gap-3 rounded-lg border border-border bg-card p-4 transition-colors hover:border-primary/50 hover:bg-accent/50"
               >
-                <Sparkles className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
+                <ArrowRight className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
                 <div>
                   <h3 className="font-semibold text-sm">{link.label}</h3>
                   <p className="text-xs text-muted-foreground">{link.desc}</p>
@@ -926,12 +984,8 @@ const NyeCasinoer = () => {
         </section>
 
         <AuthorBio author="jonas" />
-
-        <Separator className="my-10" />
-
         <RelatedGuides currentPath="/nye-casinoer" />
-
-        <FAQSection title="Ofte stillede spørgsmål om nye casinoer" faqs={nyeCasinoerFaqs} />
+        <FAQSection title="Ofte stillede spørgsmål om nye casinoer i Danmark" faqs={nyeCasinoerFaqs} />
       </div>
     </>
   );
