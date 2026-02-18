@@ -1,4 +1,5 @@
 import React from "react";
+import liveBaccaratHero from "@/assets/heroes/live-baccarat-hero.jpg";
 import { Link } from "react-router-dom";
 import { SEO } from "@/components/SEO";
 import { buildFaqSchema, buildArticleSchema, SITE_URL } from "@/lib/seo";
@@ -97,6 +98,8 @@ const LiveBaccaratGuide = () => {
 
       <div className="container py-8 md:py-12">
         <AuthorMetaBar author="jonas" date="18-02-2026" readTime="12 Min." />
+
+        <img src={liveBaccaratHero} alt="Live baccarat bord med krystalkortsko i et eksklusivt casino studio" className="w-full max-h-[400px] object-cover rounded-xl mb-10" loading="eager" />
 
         <p className="mb-6 text-muted-foreground leading-relaxed">
           Denne side er en del af vores <Link to="/live-casino" className={linkClass}>komplette live casino guide</Link>. Her fokuserer vi specifikt på live baccarat – det spil, der globalt genererer mere omsætning end nogen anden bordspilkategori, primært drevet af det asiatiske marked, men med stigende popularitet i Danmark og Europa.
