@@ -80,18 +80,18 @@ export const CASINO_SCORES: Record<string, CasinoScoring> = {
   },
   campobet: {
     slug: "campobet",
-    scores: { sikkerhed: 5.0, spiludvalg: 4.8, bonus: 4.8, udbetaling: 4.5, kundeservice: 4.5, brugeroplevelse: 4.6 },
+    scores: { sikkerhed: 4.8, spiludvalg: 4.8, bonus: 4.8, udbetaling: 4.5, kundeservice: 4.5, brugeroplevelse: 4.6 },
     total: 4.7,
   },
   "swift-casino": {
     slug: "swift-casino",
-    scores: { sikkerhed: 5.0, spiludvalg: 4.8, bonus: 4.3, udbetaling: 4.5, kundeservice: 4.3, brugeroplevelse: 4.6 },
+    scores: { sikkerhed: 4.8, spiludvalg: 4.8, bonus: 4.3, udbetaling: 4.5, kundeservice: 4.3, brugeroplevelse: 4.6 },
     total: 4.6,
   },
   "luna-casino": {
     slug: "luna-casino",
-    scores: { sikkerhed: 5.0, spiludvalg: 4.4, bonus: 4.5, udbetaling: 4.3, kundeservice: 4.2, brugeroplevelse: 4.5 },
-    total: 4.5,
+    scores: { sikkerhed: 4.5, spiludvalg: 4.4, bonus: 4.5, udbetaling: 4.3, kundeservice: 4.2, brugeroplevelse: 4.5 },
+    total: 4.4,
   },
   spildansknu: {
     slug: "spildansknu",
@@ -135,22 +135,22 @@ export const CASINO_SCORES: Record<string, CasinoScoring> = {
   },
   "888casino": {
     slug: "888casino",
-    scores: { sikkerhed: 5.0, spiludvalg: 4.0, bonus: 4.0, udbetaling: 4.0, kundeservice: 4.0, brugeroplevelse: 4.2 },
+    scores: { sikkerhed: 4.8, spiludvalg: 4.0, bonus: 4.0, udbetaling: 4.0, kundeservice: 4.0, brugeroplevelse: 4.2 },
     total: 4.2,
   },
   videoslots: {
     slug: "videoslots",
-    scores: { sikkerhed: 5.0, spiludvalg: 4.8, bonus: 3.5, udbetaling: 4.0, kundeservice: 3.5, brugeroplevelse: 3.8 },
+    scores: { sikkerhed: 4.8, spiludvalg: 4.8, bonus: 3.5, udbetaling: 4.0, kundeservice: 3.5, brugeroplevelse: 3.8 },
     total: 4.1,
   },
   comeon: {
     slug: "comeon",
-    scores: { sikkerhed: 5.0, spiludvalg: 3.8, bonus: 3.8, udbetaling: 4.0, kundeservice: 3.8, brugeroplevelse: 4.0 },
-    total: 4.1,
+    scores: { sikkerhed: 4.5, spiludvalg: 3.8, bonus: 3.8, udbetaling: 4.0, kundeservice: 3.8, brugeroplevelse: 4.0 },
+    total: 4.0,
   },
   betano: {
     slug: "betano",
-    scores: { sikkerhed: 5.0, spiludvalg: 4.0, bonus: 3.5, udbetaling: 4.0, kundeservice: 4.0, brugeroplevelse: 4.2 },
+    scores: { sikkerhed: 4.8, spiludvalg: 4.0, bonus: 3.5, udbetaling: 4.0, kundeservice: 4.0, brugeroplevelse: 4.2 },
     total: 4.1,
   },
   "stake-casino": {
@@ -160,28 +160,28 @@ export const CASINO_SCORES: Record<string, CasinoScoring> = {
   },
   nordicbet: {
     slug: "nordicbet",
-    scores: { sikkerhed: 5.0, spiludvalg: 3.8, bonus: 3.5, udbetaling: 4.0, kundeservice: 3.8, brugeroplevelse: 3.8 },
+    scores: { sikkerhed: 4.8, spiludvalg: 3.8, bonus: 3.5, udbetaling: 4.0, kundeservice: 3.8, brugeroplevelse: 3.8 },
     total: 4.0,
   },
   bwin: {
     slug: "bwin",
-    scores: { sikkerhed: 5.0, spiludvalg: 3.5, bonus: 3.8, udbetaling: 4.0, kundeservice: 3.5, brugeroplevelse: 3.8 },
-    total: 4.0,
+    scores: { sikkerhed: 4.5, spiludvalg: 3.5, bonus: 3.8, udbetaling: 4.0, kundeservice: 3.5, brugeroplevelse: 3.8 },
+    total: 3.9,
   },
   "mr-vegas": {
     slug: "mr-vegas",
-    scores: { sikkerhed: 5.0, spiludvalg: 4.2, bonus: 3.5, udbetaling: 3.8, kundeservice: 3.5, brugeroplevelse: 3.5 },
+    scores: { sikkerhed: 4.5, spiludvalg: 4.2, bonus: 3.5, udbetaling: 3.8, kundeservice: 3.5, brugeroplevelse: 3.5 },
     total: 3.9,
   },
   "maria-casino": {
     slug: "maria-casino",
-    scores: { sikkerhed: 5.0, spiludvalg: 3.5, bonus: 3.5, udbetaling: 3.8, kundeservice: 3.5, brugeroplevelse: 3.8 },
+    scores: { sikkerhed: 4.8, spiludvalg: 3.5, bonus: 3.5, udbetaling: 3.8, kundeservice: 3.5, brugeroplevelse: 3.8 },
     total: 3.9,
   },
   getlucky: {
     slug: "getlucky",
-    scores: { sikkerhed: 5.0, spiludvalg: 4.0, bonus: 3.5, udbetaling: 3.2, kundeservice: 3.5, brugeroplevelse: 3.5 },
-    total: 3.9,
+    scores: { sikkerhed: 4.5, spiludvalg: 4.0, bonus: 3.5, udbetaling: 3.2, kundeservice: 3.5, brugeroplevelse: 3.5 },
+    total: 3.8,
   },
   spilnu: {
     slug: "spilnu",
@@ -190,28 +190,28 @@ export const CASINO_SCORES: Record<string, CasinoScoring> = {
   },
   "kapow-casino": {
     slug: "kapow-casino",
-    scores: { sikkerhed: 5.0, spiludvalg: 3.5, bonus: 3.8, udbetaling: 3.2, kundeservice: 3.2, brugeroplevelse: 3.2 },
-    total: 3.8,
+    scores: { sikkerhed: 4.5, spiludvalg: 3.5, bonus: 3.8, udbetaling: 3.2, kundeservice: 3.2, brugeroplevelse: 3.2 },
+    total: 3.7,
   },
   marathonbet: {
     slug: "marathonbet",
-    scores: { sikkerhed: 5.0, spiludvalg: 2.8, bonus: 3.0, udbetaling: 3.8, kundeservice: 3.2, brugeroplevelse: 3.5 },
+    scores: { sikkerhed: 4.5, spiludvalg: 2.8, bonus: 3.0, udbetaling: 3.8, kundeservice: 3.2, brugeroplevelse: 3.5 },
     total: 3.6,
   },
   expekt: {
     slug: "expekt",
-    scores: { sikkerhed: 5.0, spiludvalg: 3.2, bonus: 3.0, udbetaling: 3.5, kundeservice: 3.2, brugeroplevelse: 3.5 },
-    total: 3.7,
+    scores: { sikkerhed: 4.5, spiludvalg: 3.2, bonus: 3.0, udbetaling: 3.5, kundeservice: 3.2, brugeroplevelse: 3.5 },
+    total: 3.6,
   },
   onecasino: {
     slug: "onecasino",
-    scores: { sikkerhed: 5.0, spiludvalg: 3.0, bonus: 3.5, udbetaling: 3.2, kundeservice: 3.0, brugeroplevelse: 3.2 },
-    total: 3.6,
+    scores: { sikkerhed: 4.5, spiludvalg: 3.0, bonus: 3.5, udbetaling: 3.2, kundeservice: 3.0, brugeroplevelse: 3.2 },
+    total: 3.5,
   },
   casinostuen: {
     slug: "casinostuen",
-    scores: { sikkerhed: 5.0, spiludvalg: 2.5, bonus: 3.2, udbetaling: 3.2, kundeservice: 3.0, brugeroplevelse: 3.0 },
-    total: 3.5,
+    scores: { sikkerhed: 4.8, spiludvalg: 2.5, bonus: 3.2, udbetaling: 3.2, kundeservice: 3.0, brugeroplevelse: 3.0 },
+    total: 3.4,
   },
 };
 
