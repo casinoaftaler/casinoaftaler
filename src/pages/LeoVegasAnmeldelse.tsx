@@ -36,7 +36,7 @@ const LeoVegasAnmeldelse = () => {
 
   return (
     <>
-      <SEO title="LeoVegas Anmeldelse 2026 – Mobilcasino, Bonus & Vurdering | Casinoaftaler" description="Komplet anmeldelse af LeoVegas – 'King of Mobile Casino'. MGM-ejet, 2.500+ spil, dansk licens og prisbevindende mobiloplevelse. Læs vores dybdegående test." jsonLd={[articleSchema, faqJsonLd, reviewJsonLd]} />
+      <SEO title="LeoVegas Anmeldelse 2026 – Mobilcasino & Bonus" description="Komplet anmeldelse af LeoVegas – 'King of Mobile Casino'. MGM-ejet, 2.500+ spil, dansk licens og prisbevindende mobiloplevelse. Læs vores dybdegående test." jsonLd={[articleSchema, faqJsonLd, reviewJsonLd]} />
 
       <section className="relative overflow-hidden py-12 text-white md:py-20" style={{ backgroundImage: heroBackgroundImage ? `linear-gradient(135deg, hsl(260 70% 25% / 0.95), hsl(210 80% 30% / 0.9)), url(${heroBackgroundImage})` : "linear-gradient(135deg, hsl(260 70% 25%), hsl(250 60% 20%) 40%, hsl(210 80% 25%))", backgroundSize: "cover", backgroundPosition: "center" }}>
         <div className="container"><div className="mx-auto max-w-3xl text-center">
@@ -361,7 +361,7 @@ const LeoVegasAnmeldelse = () => {
         <Separator className="my-10" />
         <RelatedGuides currentPath="/casino-anmeldelser/leovegas" />
         <Separator className="my-10" />
-        <AuthorBio author="kevin" />
+        <AuthorBio author="jonas" />
       </div>
     </>
   );

@@ -241,7 +241,7 @@ const NyeCasinoerDanskLicens = () => {
           </div>
         </section>
 
-        <AuthorBio author="kevin" />
+        <AuthorBio author="jonas" />
         <RelatedGuides currentPath="/nye-casinoer/dansk-licens" />
         <FAQSection title="Ofte stillede spørgsmål om nye casinoer med dansk licens" faqs={faqs} />
       </div>

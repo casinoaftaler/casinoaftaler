@@ -535,7 +535,7 @@ const BwinAnmeldelse = () => {
         <Separator className="my-10" />
         <RelatedGuides currentPath="/casino-anmeldelser/bwin" />
         <Separator className="my-10" />
-        <AuthorBio author="kevin" />
+        <AuthorBio author="jonas" />
       </div>
     </>
   );

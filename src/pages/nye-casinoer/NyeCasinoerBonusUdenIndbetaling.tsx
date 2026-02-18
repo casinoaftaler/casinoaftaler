@@ -210,7 +210,7 @@ const NyeCasinoerBonusUdenIndbetaling = () => {
           </div>
         </section>
 
-        <AuthorBio author="kevin" />
+        <AuthorBio author="jonas" />
         <RelatedGuides currentPath="/nye-casinoer/bonus-uden-indbetaling" />
         <FAQSection title="FAQ om nye casinoer med bonus uden indbetaling" faqs={faqs} />
       </div>

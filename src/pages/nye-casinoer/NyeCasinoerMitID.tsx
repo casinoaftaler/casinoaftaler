@@ -144,7 +144,7 @@ const NyeCasinoerMitID = () => {
           </div>
         </section>
 
-        <AuthorBio author="kevin" />
+        <AuthorBio author="jonas" />
         <RelatedGuides currentPath="/nye-casinoer/mitid" />
         <FAQSection title="Ofte stillede spørgsmål om MitID og nye casinoer" faqs={faqs} />
       </div>

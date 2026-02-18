@@ -12,7 +12,7 @@ import { InlineCasinoCards } from "@/components/InlineCasinoCards";
 import { useCasinos } from "@/hooks/useCasinos";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
 import { getAffiliateRedirect } from "@/lib/affiliateRedirect";
-import { buildFaqSchema } from "@/lib/seo";
+import { buildArticleSchema, buildFaqSchema } from "@/lib/seo";
 import { useAuth } from "@/hooks/useAuth";
 import type { ReactNode } from "react";
 import { CasinoReviewHero } from "@/components/CasinoReviewHero";
@@ -44,12 +44,13 @@ const SpilDanskNuAnmeldelse = () => {
   const handleBonusClick = () => { if (casino) getAffiliateRedirect(casino.slug, user?.id); };
 
   const faqJsonLd = buildFaqSchema(spilDanskNuFaqs);
+  const articleSchema = buildArticleSchema({ headline: "SpilDanskNu Anmeldelse 2026 – Bonus, Spil & Vilkår", description: "Komplet anmeldelse af SpilDanskNu.dk. 100% bonus op til 1.000 kr., kun 10x omsætning, over 2.500 slots og hurtige udbetalinger.", url: "https://casinoaftaler.dk/spildansknu-anmeldelse", datePublished: "2026-02-15", dateModified: "2026-02-18", authorName: "Jonas", authorUrl: "https://casinoaftaler.dk/forfatter/jonas" });
   const reviewJsonLd = { "@context": "https://schema.org", "@type": "Review", itemReviewed: { "@type": "Organization", name: "SpilDanskNu", url: "https://www.spildansknu.dk" }, author: { "@type": "Organization", name: "Casinoaftaler" }, reviewRating: { "@type": "Rating", ratingValue: "4.6", bestRating: "5" }, reviewBody: "SpilDanskNu er et dansk online casino med lavt omsætningskrav, over 2.500 spilleautomater, loyalitetsprogram og hurtige udbetalinger." };
   const breadcrumbJsonLd = { "@context": "https://schema.org", "@type": "BreadcrumbList", itemListElement: [{ "@type": "ListItem", position: 1, name: "Forside", item: "https://casinoaftaler.dk/" }, { "@type": "ListItem", position: 2, name: "Top 10 Casino Online", item: "https://casinoaftaler.dk/top-10-casino-online" }, { "@type": "ListItem", position: 3, name: "SpilDanskNu Anmeldelse", item: "https://casinoaftaler.dk/spildansknu-anmeldelse" }] };
 
   return (
     <>
-      <SEO title="SpilDanskNu Anmeldelse 2026 – Bonus, Spil & Vilkår | Casinoaftaler" description="Komplet anmeldelse af SpilDanskNu.dk. 100% bonus op til 1.000 kr., kun 10x omsætning, over 2.500 slots, loyalitetsprogram og hurtige udbetalinger. Læs vores ærlige vurdering." jsonLd={[faqJsonLd, reviewJsonLd, breadcrumbJsonLd]} />
+      <SEO title="SpilDanskNu Anmeldelse 2026 – Bonus & Vilkår" description="Komplet anmeldelse af SpilDanskNu.dk. 100% bonus op til 1.000 kr., kun 10x omsætning, over 2.500 slots, loyalitetsprogram og hurtige udbetalinger. Læs vores ærlige vurdering." jsonLd={[articleSchema, faqJsonLd, reviewJsonLd, breadcrumbJsonLd]} />
 
       <section className="relative overflow-hidden py-12 text-white md:py-20" style={{ backgroundImage: heroBackgroundImage ? `linear-gradient(135deg, hsl(260 70% 25% / 0.95), hsl(210 80% 30% / 0.9)), url(${heroBackgroundImage})` : "linear-gradient(135deg, hsl(260 70% 25%), hsl(250 60% 20%) 40%, hsl(210 80% 25%))", backgroundSize: "cover", backgroundPosition: "center" }}>
         <div className="container"><div className="mx-auto max-w-3xl text-center">

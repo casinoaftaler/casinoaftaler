@@ -925,7 +925,7 @@ const NyeCasinoer = () => {
           </div>
         </section>
 
-        <AuthorBio author="kevin" />
+        <AuthorBio author="jonas" />
 
         <Separator className="my-10" />
 

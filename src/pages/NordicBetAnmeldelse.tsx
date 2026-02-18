@@ -35,7 +35,7 @@ const NordicBetAnmeldelse = () => {
 
   return (
     <>
-      <SEO title="NordicBet Casino Anmeldelse 2026 – Sport & Casino | Casinoaftaler" description="Komplet anmeldelse af NordicBet. Nordisk sportsbook med 1.000+ casinospil, dansk licens og Betsson Groups erfaring. Læs vores ærlige vurdering." jsonLd={[articleSchema, faqJsonLd, reviewJsonLd]} />
+      <SEO title="NordicBet Anmeldelse 2026 – Sport & Casino" description="Komplet anmeldelse af NordicBet. Nordisk sportsbook med 1.000+ casinospil, dansk licens og Betsson Groups erfaring. Læs vores ærlige vurdering." jsonLd={[articleSchema, faqJsonLd, reviewJsonLd]} />
 
       <section className="relative overflow-hidden py-12 text-white md:py-20" style={{ backgroundImage: heroBackgroundImage ? `linear-gradient(135deg, hsl(260 70% 25% / 0.95), hsl(210 80% 30% / 0.9)), url(${heroBackgroundImage})` : "linear-gradient(135deg, hsl(260 70% 25%), hsl(250 60% 20%) 40%, hsl(210 80% 25%))", backgroundSize: "cover", backgroundPosition: "center" }}>
         <div className="container"><div className="mx-auto max-w-3xl text-center">
@@ -330,7 +330,7 @@ const NordicBetAnmeldelse = () => {
         <Separator className="my-10" />
         <RelatedGuides currentPath="/casino-anmeldelser/nordicbet" />
         <Separator className="my-10" />
-        <AuthorBio author="kevin" />
+        <AuthorBio author="jonas" />
       </div>
     </>
   );

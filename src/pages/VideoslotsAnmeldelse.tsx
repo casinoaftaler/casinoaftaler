@@ -36,7 +36,7 @@ const VideoslotsAnmeldelse = () => {
 
   return (
     <>
-      <SEO title="Videoslots Casino Anmeldelse 2026 – 5.000+ Spil & Battle of Slots | Casinoaftaler" description="Komplet anmeldelse af Videoslots Casino. 5.000+ spil, 170+ udbydere, Battle of Slots-turneringer, Weekend Boosters og dansk licens. Læs vores dybdegående test." jsonLd={[articleSchema, faqJsonLd, reviewJsonLd]} />
+      <SEO title="Videoslots Casino Anmeldelse 2026 – 5.000+ Spil" description="Komplet anmeldelse af Videoslots Casino. 5.000+ spil, 170+ udbydere, Battle of Slots-turneringer, Weekend Boosters og dansk licens. Læs vores dybdegående test." jsonLd={[articleSchema, faqJsonLd, reviewJsonLd]} />
 
       <section className="relative overflow-hidden py-12 text-white md:py-20" style={{ backgroundImage: heroBackgroundImage ? `linear-gradient(135deg, hsl(260 70% 25% / 0.95), hsl(210 80% 30% / 0.9)), url(${heroBackgroundImage})` : "linear-gradient(135deg, hsl(260 70% 25%), hsl(250 60% 20%) 40%, hsl(210 80% 25%))", backgroundSize: "cover", backgroundPosition: "center" }}>
         <div className="container"><div className="mx-auto max-w-3xl text-center">

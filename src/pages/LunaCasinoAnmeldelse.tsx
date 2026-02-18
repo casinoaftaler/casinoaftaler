@@ -11,7 +11,7 @@ import { InlineCasinoCards } from "@/components/InlineCasinoCards";
 import { useCasinos } from "@/hooks/useCasinos";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
 import { getAffiliateRedirect } from "@/lib/affiliateRedirect";
-import { buildFaqSchema } from "@/lib/seo";
+import { buildArticleSchema, buildFaqSchema } from "@/lib/seo";
 import { useAuth } from "@/hooks/useAuth";
 import { QuickFactsProviders, QuickFactsLogo } from "@/components/QuickFactsProviders";
 import type { ReactNode } from "react";
@@ -96,6 +96,7 @@ const LunaCasinoAnmeldelse = () => {
   const handleBonusClick = () => { if (casino) getAffiliateRedirect(casino.slug, user?.id); };
 
   const faqJsonLd = buildFaqSchema(lunaFaqs);
+  const articleSchema = buildArticleSchema({ headline: "Luna Casino Anmeldelse 2026 – Kvalitets-Kuratoren", description: "Dybdegående anmeldelse af Luna Casino. 100% bonus op til 500 kr., 10x omsætning, loyalitetsprogram og kurateret spiludvalg.", url: "https://casinoaftaler.dk/luna-casino-anmeldelse", datePublished: "2026-02-15", dateModified: "2026-02-18", authorName: "Jonas", authorUrl: "https://casinoaftaler.dk/forfatter/jonas" });
 
   const reviewJsonLd = {
     "@context": "https://schema.org",
@@ -119,9 +120,9 @@ const LunaCasinoAnmeldelse = () => {
   return (
     <>
       <SEO
-        title="Luna Casino Anmeldelse 2026 – Kvalitets-Kuratoren med 10x Omsætning"
+        title="Luna Casino Anmeldelse 2026 – Kurateret Kvalitet"
         description="Dybdegående anmeldelse af Luna Casino efter 14 dages test. 100% bonus op til 500 kr., kun 10x omsætning, loyalitetsprogram, daglige kampagner og kurateret spiludvalg. Komplet analyse."
-        jsonLd={[faqJsonLd, reviewJsonLd, breadcrumbJsonLd]}
+        jsonLd={[articleSchema, faqJsonLd, reviewJsonLd, breadcrumbJsonLd]}
       />
 
       <section

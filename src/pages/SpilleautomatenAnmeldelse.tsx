@@ -12,7 +12,7 @@ import { InlineCasinoCards } from "@/components/InlineCasinoCards";
 import { useCasinos } from "@/hooks/useCasinos";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
 import { getAffiliateRedirect } from "@/lib/affiliateRedirect";
-import { buildFaqSchema } from "@/lib/seo";
+import { buildArticleSchema, buildFaqSchema } from "@/lib/seo";
 import { useAuth } from "@/hooks/useAuth";
 import { QuickFactsProviders, QuickFactsLogo } from "@/components/QuickFactsProviders";
 import type { ReactNode } from "react";
@@ -116,6 +116,7 @@ const SpilleautomatenAnmeldelse = () => {
   };
 
   const faqJsonLd = buildFaqSchema(spilleautomatenFaqs);
+  const articleSchema = buildArticleSchema({ headline: "Spilleautomaten Anmeldelse 2026 – 5-Dages Bonus & Præmieshop", description: "Komplet anmeldelse af Spilleautomaten.dk. 100% bonus op til 1.000 kr. over 5 dage, 10x omsætning, Præmieshop og hurtige udbetalinger.", url: "https://casinoaftaler.dk/spilleautomaten-anmeldelse", datePublished: "2026-02-15", dateModified: "2026-02-18", authorName: "Jonas", authorUrl: "https://casinoaftaler.dk/forfatter/jonas" });
 
   const reviewJsonLd = {
     "@context": "https://schema.org",
@@ -144,9 +145,9 @@ const SpilleautomatenAnmeldelse = () => {
   return (
     <>
       <SEO
-        title="Spilleautomaten Anmeldelse 2026 – 5-Dages Bonus, Præmieshop & Vilkår | Casinoaftaler"
+        title="Spilleautomaten Anmeldelse 2026 – Bonus & Præmieshop"
         description="Komplet anmeldelse af Spilleautomaten.dk. 100% bonus op til 1.000 kr. fordelt over 5 dage, kun 10x omsætning, Præmieshop med kontante præmier og hurtige MobilePay-udbetalinger. Testet over 14 dage."
-        jsonLd={[faqJsonLd, reviewJsonLd, breadcrumbJsonLd]}
+        jsonLd={[articleSchema, faqJsonLd, reviewJsonLd, breadcrumbJsonLd]}
       />
 
       {/* Hero Section */}
