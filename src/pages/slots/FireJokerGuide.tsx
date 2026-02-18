@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import heroImage from "@/assets/heroes/fire-joker-hero.jpg";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { AuthorBio } from "@/components/AuthorBio";
 import { FAQSection } from "@/components/FAQSection";
@@ -95,6 +96,9 @@ const FireJokerGuide = () => {
 
       <div className="container py-8 md:py-12">
         <AuthorMetaBar author="kevin" date="2026-02-18" readTime="17 min" />
+        <div className="mb-10 overflow-hidden rounded-xl">
+          <img src={heroImage} className="w-full h-auto object-cover max-h-[400px]" alt="Fire Joker spillemaskine" />
+        </div>
 
         {/* ── Segment First: Hvem er spillet til? ── */}
         <section className="mb-10">

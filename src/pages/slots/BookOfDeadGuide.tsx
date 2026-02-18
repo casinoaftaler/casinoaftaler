@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import heroImage from "@/assets/heroes/book-of-dead-hero.jpg";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { AuthorBio } from "@/components/AuthorBio";
 import { FAQSection } from "@/components/FAQSection";
@@ -100,6 +101,9 @@ const BookOfDeadGuide = () => {
 
       <div className="container py-8 md:py-12">
         <AuthorMetaBar author="jonas" date="18-02-2026" readTime="24 Min." />
+        <div className="mb-10 overflow-hidden rounded-xl">
+          <img src={heroImage} className="w-full h-auto object-cover max-h-[400px]" alt="Book of Dead spillemaskine" />
+        </div>
 
         {/* ── ÅBNINGSVINKEL: RISIKOPROFIL FØRST ── */}
         <section className="mb-12">

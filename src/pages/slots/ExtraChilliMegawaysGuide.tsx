@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import heroImage from "@/assets/heroes/extra-chilli-megaways-hero.jpg";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { AuthorBio } from "@/components/AuthorBio";
 import { FAQSection } from "@/components/FAQSection";
@@ -56,6 +57,9 @@ const ExtraChilliMegawaysGuide = () => {
 
       <div className="container py-8 md:py-12">
         <AuthorMetaBar author="kevin" date="2026-02-18" readTime="17 min" />
+        <div className="mb-10 overflow-hidden rounded-xl">
+          <img src={heroImage} className="w-full h-auto object-cover max-h-[400px]" alt="Extra Chilli Megaways spillemaskine" />
+        </div>
 
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><Users className="h-7 w-7 text-primary" /> Hvem Passer Extra Chilli Megaways Til?</h2>

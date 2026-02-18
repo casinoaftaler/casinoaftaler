@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import heroImage from "@/assets/heroes/gonzos-quest-hero.jpg";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { AuthorBio } from "@/components/AuthorBio";
 import { FAQSection } from "@/components/FAQSection";
@@ -108,6 +109,9 @@ const GonzosQuestGuide = () => {
 
       <div className="container py-8 md:py-12">
         <AuthorMetaBar author="kevin" date="18-02-2026" readTime="22 Min." />
+        <div className="mb-10 overflow-hidden rounded-xl">
+          <img src={heroImage} className="w-full h-auto object-cover max-h-[400px]" alt="Gonzo's Quest spillemaskine" />
+        </div>
 
         {/* ── ÅBNINGSVINKEL: SAMMENLIGNING MED MODERNE SLOTS ── */}
         <section className="mb-12">

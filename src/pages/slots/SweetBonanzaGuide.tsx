@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import heroImage from "@/assets/heroes/sweet-bonanza-hero.jpg";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { AuthorBio } from "@/components/AuthorBio";
 import { FAQSection } from "@/components/FAQSection";
@@ -100,6 +101,9 @@ const SweetBonanzaGuide = () => {
 
       <div className="container py-8 md:py-12">
         <AuthorMetaBar author="jonas" date="18-02-2026" readTime="25 Min." />
+        <div className="mb-10 overflow-hidden rounded-xl">
+          <img src={heroImage} className="w-full h-auto object-cover max-h-[400px]" alt="Sweet Bonanza spillemaskine" />
+        </div>
 
         {/* ── ÅBNINGSVINKEL: MATEMATIK FØRST ── */}
         <section className="mb-12">
