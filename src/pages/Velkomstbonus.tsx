@@ -229,7 +229,7 @@ const Velkomstbonus = () => {
           </p>
         </section>
 
-        <InlineCasinoCards title="Bedste casinoer med velkomstbonus" count={4} />
+        <InlineCasinoCards title="Bedste casinoer med velkomstbonus" count={6} />
 
         <Separator className="my-10" />
 

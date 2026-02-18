@@ -151,7 +151,7 @@ const CrapsGuide = () => {
           </p>
         </section>
 
-        <InlineCasinoCards title="Bedste Casinoer til Craps" count={4} />
+        <InlineCasinoCards title="Bedste Casinoer til Craps" count={6} />
 
         <Separator className="my-10" />
 

@@ -181,7 +181,7 @@ const BigBassBonanzaGuide = () => {
           </p>
         </section>
 
-        <InlineCasinoCards title="Spil Big Bass Bonanza hos disse casinoer" count={4} />
+        <InlineCasinoCards title="Spil Big Bass Bonanza hos disse casinoer" count={6} />
 
         <Separator className="my-10" />
 

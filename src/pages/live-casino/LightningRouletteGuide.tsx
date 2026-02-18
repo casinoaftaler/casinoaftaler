@@ -113,6 +113,8 @@ const LightningRouletteGuide = () => {
           Denne side er en del af vores <Link to="/live-casino" className={linkClass}>komplette live casino guide</Link>. Her dykker vi specifikt ned i Lightning Roulette – Evolutions mest populære innovation, der kombinerer klassisk roulette med RNG-multiplikatorer op til 500x. Fokus er udelukkende på multiplikator-mekanikken og dens matematiske implikationer – for generelle rouletteregler og bordtyper, se vores <Link to="/live-casino/roulette" className={linkClass}>live roulette guide</Link>.
         </p>
 
+        <InlineCasinoCards title="Spil Lightning Roulette her" count={6} />
+
         {/* H2 #1 – Mekanikken */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold">Lightning-mekanikken – hvordan multiplikatorerne fungerer i detaljer</h2>
@@ -562,7 +564,7 @@ const LightningRouletteGuide = () => {
           </p>
         </section>
 
-        <InlineCasinoCards count={1} />
+        
 
         <FAQSection title="Ofte stillede spørgsmål om Lightning Roulette" faqs={faqs} />
         <AuthorBio author="jonas" />

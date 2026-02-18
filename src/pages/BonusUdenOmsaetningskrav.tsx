@@ -180,7 +180,7 @@ const BonusUdenOmsaetningskrav = () => {
           </p>
         </section>
 
-        <InlineCasinoCards title="Casinoer med omsætningsfrie bonusser" count={4} />
+        <InlineCasinoCards title="Casinoer med omsætningsfrie bonusser" count={6} />
 
         <Separator className="my-10" />
 

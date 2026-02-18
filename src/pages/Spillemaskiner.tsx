@@ -151,7 +151,7 @@ const Spillemaskiner = () => {
           </p>
         </section>
 
-        <InlineCasinoCards title="Bedste casinoer til spillemaskiner" count={4} />
+        <InlineCasinoCards title="Bedste casinoer til spillemaskiner" count={6} />
 
         <Separator className="my-10" />
 

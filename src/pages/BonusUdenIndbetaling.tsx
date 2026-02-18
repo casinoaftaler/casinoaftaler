@@ -192,7 +192,7 @@ const BonusUdenIndbetaling = () => {
           </p>
         </section>
 
-        <InlineCasinoCards title="Casinoer med no deposit bonus" count={4} />
+        <InlineCasinoCards title="Casinoer med no deposit bonus" count={6} />
 
         <Separator className="my-10" />
 

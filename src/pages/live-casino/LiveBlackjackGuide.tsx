@@ -119,6 +119,8 @@ const LiveBlackjackGuide = () => {
           Vi har testet samtlige live blackjack-varianter hos danske licenserede casinoer i januar og februar 2026 – fra Evolution Gamings Classic Blackjack til Infinite Blackjack og Lightning Blackjack. Vores analyse bygger på observationer af 2.000+ hænder, regelverifikation på 8 forskellige bordtyper, og matematiske beregninger, der er krydsvalideret mod publicerede RTP-data fra uafhængige testlaboratorier.
         </p>
 
+        <InlineCasinoCards title="Bedste casinoer til live blackjack" count={6} />
+
         {/* ═══ H2 #1 – Reglerne i live blackjack ═══ */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold">
@@ -630,7 +632,7 @@ const LiveBlackjackGuide = () => {
           </p>
         </section>
 
-        <InlineCasinoCards count={1} />
+        
 
         <FAQSection
           title="Ofte stillede spørgsmål om live blackjack"

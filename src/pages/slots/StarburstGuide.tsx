@@ -160,7 +160,7 @@ const StarburstGuide = () => {
           </p>
         </section>
 
-        <InlineCasinoCards title="Spil Starburst hos disse casinoer" count={4} />
+        <InlineCasinoCards title="Spil Starburst hos disse casinoer" count={6} />
 
         <Separator className="my-10" />
 

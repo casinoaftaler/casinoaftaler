@@ -113,6 +113,8 @@ const LiveBaccaratGuide = () => {
           Denne side er en del af vores <Link to="/live-casino" className={linkClass}>komplette live casino guide</Link>. Her fokuserer vi specifikt på live baccarat – det spil, der globalt genererer mere omsætning end nogen anden bordspilkategori, primært drevet af det asiatiske marked, men med stigende popularitet i Danmark og Europa. Alt indhold er baseret på matematisk analyse og personlig erfaring fra hundredvis af timer ved live baccarat-borde.
         </p>
 
+        <InlineCasinoCards title="Bedste casinoer til live baccarat" count={6} />
+
         {/* H2 #1 – Regler */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold">Reglerne i live baccarat – hvorfor det er det simpleste bordspil</h2>
@@ -578,7 +580,7 @@ const LiveBaccaratGuide = () => {
           </p>
         </section>
 
-        <InlineCasinoCards count={1} />
+        
 
         <FAQSection title="Ofte stillede spørgsmål om live baccarat" faqs={faqs} />
         <AuthorBio author="jonas" />

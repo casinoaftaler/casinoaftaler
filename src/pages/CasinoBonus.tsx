@@ -218,6 +218,8 @@ const CasinoBonus = () => {
           </p>
         </section>
 
+        <InlineCasinoCards title="Bedste casino bonus tilbud" count={6} />
+
         <Separator className="my-10" />
 
         {/* ========== 2. BONUS-LANDSKABET I DANMARK 2026 ========== */}
@@ -505,10 +507,6 @@ const CasinoBonus = () => {
             </CardContent>
           </Card>
         </section>
-
-        <Separator className="my-10" />
-
-        <InlineCasinoCards count={3} />
 
         <Separator className="my-10" />
 

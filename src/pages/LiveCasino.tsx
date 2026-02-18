@@ -178,6 +178,8 @@ const LiveCasino = () => {
           </p>
         </section>
 
+        <InlineCasinoCards title="Casinoer med stærkt live casino-udvalg" count={6} />
+
         <Separator className="my-10" />
 
         {/* ═══════════════════════════════════════════════════════════════
@@ -874,11 +876,6 @@ const LiveCasino = () => {
             </CardContent>
           </Card>
         </section>
-
-        <Separator className="my-10" />
-
-        {/* InlineCasinoCards (max 1) */}
-        <InlineCasinoCards title="Casinoer med stærkt live casino-udvalg" count={6} />
 
         <Separator className="my-10" />
 

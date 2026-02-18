@@ -151,7 +151,7 @@ const GatesOfOlympusGuide = () => {
           </p>
         </section>
 
-        <InlineCasinoCards title="Spil Gates of Olympus her" count={4} />
+        <InlineCasinoCards title="Spil Gates of Olympus her" count={6} />
 
         <Separator className="my-10" />
 

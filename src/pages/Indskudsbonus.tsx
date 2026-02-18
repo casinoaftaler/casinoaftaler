@@ -184,7 +184,7 @@ const Indskudsbonus = () => {
           </p>
         </section>
 
-        <InlineCasinoCards title="Bedste casinoer med indskudsbonus" count={4} />
+        <InlineCasinoCards title="Bedste casinoer med indskudsbonus" count={6} />
 
         <Separator className="my-10" />
 
