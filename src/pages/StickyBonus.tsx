@@ -629,6 +629,139 @@ const StickyBonus = () => {
 
         <Separator className="my-10" />
 
+        {/* EV-analyse */}
+        <section className="mb-12">
+          <h2 className="mb-4 text-3xl font-bold">
+            Matematisk EV-analyse: Den reelle værdi af en Sticky Bonus
+          </h2>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            For at forstå den reelle værdi af en sticky bonus skal vi beregne dens Expected Value (EV) – altså den statistisk forventede gevinst eller tab. Formlen er enkel men afslørende: <strong>EV = (Indbetaling + Bonus) – (Total omsætning × House Edge) – Bonusbeløb</strong>. Lad os gennemgå tre konkrete scenarier med danske vilkår og Spillemyndighedens 10x (d+b) loft.
+          </p>
+
+          <div className="space-y-4">
+            <Card className="border-primary/30 bg-card">
+              <CardHeader className="pb-2">
+                <CardTitle className="flex items-center gap-2 text-lg">
+                  <Calculator className="h-5 w-5 text-primary" />
+                  Scenarie 1: Standard 100% Sticky Bonus (10x d+b)
+                </CardTitle>
+              </CardHeader>
+              <CardContent className="space-y-2">
+                <p className="text-sm text-muted-foreground leading-relaxed">
+                  <strong>Input:</strong> Indbetaling 1.000 kr. + 1.000 kr. bonus = 2.000 kr. saldo. Omsætningskrav: 10x (d+b) = 20.000 kr. total omsætning. Slot RTP: 96% (house edge 4%).
+                </p>
+                <p className="text-sm text-muted-foreground leading-relaxed">
+                  <strong>Beregning:</strong> Forventet tab under omsætning = 20.000 × 0,04 = 800 kr. Forventet saldo efter omsætning = 2.000 – 800 = 1.200 kr. Ved udbetaling trækkes bonusbeløbet (1.000 kr.) = <strong>200 kr. netto EV</strong>.
+                </p>
+                <p className="text-sm text-muted-foreground leading-relaxed">
+                  <strong>Konklusion:</strong> Den annoncerede 1.000 kr. bonus har en reel statistisk værdi på kun 200 kr. – 80% lavere end det markedsførte beløb. Dog er din risiko begrænset til din indbetaling (1.000 kr.), mens du får 20.000 kr. i spilleunderholdning.
+                </p>
+              </CardContent>
+            </Card>
+
+            <Card className="border-primary/30 bg-card">
+              <CardHeader className="pb-2">
+                <CardTitle className="flex items-center gap-2 text-lg">
+                  <Calculator className="h-5 w-5 text-primary" />
+                  Scenarie 2: Lavt omsætningskrav (3x d+b)
+                </CardTitle>
+              </CardHeader>
+              <CardContent className="space-y-2">
+                <p className="text-sm text-muted-foreground leading-relaxed">
+                  <strong>Input:</strong> Indbetaling 500 kr. + 500 kr. bonus = 1.000 kr. saldo. Omsætningskrav: 3x (d+b) = 3.000 kr. total omsætning. Slot RTP: 97% (house edge 3%).
+                </p>
+                <p className="text-sm text-muted-foreground leading-relaxed">
+                  <strong>Beregning:</strong> Forventet tab = 3.000 × 0,03 = 90 kr. Forventet saldo = 1.000 – 90 = 910 kr. Minus bonus (500 kr.) = <strong>410 kr. netto EV</strong>.
+                </p>
+                <p className="text-sm text-muted-foreground leading-relaxed">
+                  <strong>Konklusion:</strong> Med 3x omsætning og høj-RTP slot er bonussens reelle værdi 410 kr. af de 500 kr. annoncerede – 82% reel værdi. Dette viser hvorfor lave omsætningskrav er afgørende for <Link to="/nye-casinoer/lav-wagering" className={linkClass}>bonusværdien</Link>.
+                </p>
+              </CardContent>
+            </Card>
+
+            <Card className="border-destructive/30 bg-card">
+              <CardHeader className="pb-2">
+                <CardTitle className="flex items-center gap-2 text-lg">
+                  <AlertTriangle className="h-5 w-5 text-destructive" />
+                  Scenarie 3: Worst case – Udenlandsk 50x bonus (til sammenligning)
+                </CardTitle>
+              </CardHeader>
+              <CardContent className="space-y-2">
+                <p className="text-sm text-muted-foreground leading-relaxed">
+                  <strong>Input:</strong> Indbetaling 1.000 kr. + 1.000 kr. bonus = 2.000 kr. saldo. Omsætningskrav: 50x (d+b) = 100.000 kr. total omsætning. Slot RTP: 95% (house edge 5%).
+                </p>
+                <p className="text-sm text-muted-foreground leading-relaxed">
+                  <strong>Beregning:</strong> Forventet tab = 100.000 × 0,05 = 5.000 kr. Dette overstiger hele din saldo (2.000 kr.) – du går statistisk <strong>bust med 100% sandsynlighed</strong>.
+                </p>
+                <p className="text-sm text-muted-foreground leading-relaxed">
+                  <strong>Konklusion:</strong> Udenlandske sticky bonusser med 50x+ krav har negativ EV og er designet til at du taber alt. Spillemyndighedens 10x loft eksisterer præcis for at forhindre dette scenarie.
+                </p>
+              </CardContent>
+            </Card>
+          </div>
+
+          <div className="mt-6 rounded-lg border border-primary/30 bg-accent/30 p-4">
+            <p className="text-sm text-muted-foreground">
+              <strong>Nøgleformler til EV-beregning:</strong> Forventet tab = Total omsætning × (1 – RTP). Reel bonusværdi = Bonusbeløb – Forventet tab. Breakeven RTP = 1 – (Bonusbeløb ÷ Total omsætning). For en 1.000 kr. sticky bonus med 10x (d+b) er breakeven RTP = 95% – alt over dette giver positiv EV fra bonusdelen.
+            </p>
+          </div>
+        </section>
+
+        <Separator className="my-10" />
+
+        {/* Spillerprofiler */}
+        <section className="mb-12">
+          <h2 className="mb-4 text-3xl font-bold">
+            Hvem bør – og bør IKKE – vælge en Sticky Bonus?
+          </h2>
+          <p className="mb-6 text-muted-foreground leading-relaxed">
+            Sticky bonusser er ikke for alle. Her er en segmenteret analyse af seks spillertyper og deres matematiske kompatibilitet med sticky-modellen.
+          </p>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            {[
+              { title: "✅ High Roller (indsats 50+ kr./spin)", desc: "Ideel. Større saldo giver bedre variansabsorption under omsætning. Med 10x (d+b) og 2.000 kr. bonus har high rolleren 40.000 kr. omsætning – opnåeligt på 4-6 timer med 50 kr./spin. EV forbliver positiv på høj-RTP slots.", icon: TrendingUp },
+              { title: "✅ Bonusjæger (systematisk approach)", desc: "Fungerer, men kræver disciplin. Bonusjægeren vælger sticky bonusser med lavest mulig omsætning og højest mulig RTP-slots. Matematisk optimal strategi: 1-2% af saldo per spin, kun 97%+ RTP slots, og aldrig progressive jackpots.", icon: Target },
+              { title: "⚠️ Casual spiller (10-25 kr./spin)", desc: "Brug forsigtighed. En sticky bonus på 500 kr. med 10x (d+b) kræver 10.000 kr. omsætning – 400-1.000 spins. Casual spilleren risikerer at føle sig 'låst' og presse indsatsen op for at nå kravet hurtigere. Overvej i stedet en no-sticky bonus.", icon: Users },
+              { title: "❌ Bordspil-entusiast", desc: "Undgå sticky. Bordspil bidrager typisk kun 10% til omsætningen – en 10x (d+b) bonus kræver reelt 100x i bordspilsindsatser. Med blackjack (RTP 99%) lyder det godt, men 200.000 kr. i samlet omsætning for en 1.000 kr. bonus er urealistisk. Vælg bonus uden omsætningskrav.", icon: Gamepad2 },
+              { title: "❌ Live casino-spiller", desc: "Helt uegnet. Live casino er ofte 0-10% bidrag eller helt udelukket. En sticky bonus er værdiløs, hvis du primært spiller live roulette, blackjack eller game shows. Se vores guide til live casino for bedre alternativer.", icon: Ban },
+              { title: "❌ Ny spiller (første casino-oplevelse)", desc: "Anbefales ikke som første bonus. Sticky-mekanikken er kompleks og kan skabe frustration. Nye spillere bør starte med en no-deposit bonus eller no-sticky velkomstbonus, hvor egne gevinster altid kan hæves frit.", icon: AlertTriangle },
+            ].map((item) => (
+              <Card key={item.title} className="border-border bg-card">
+                <CardHeader className="pb-2">
+                  <CardTitle className="flex items-center gap-2 text-base">
+                    <item.icon className="h-5 w-5 text-primary" />
+                    {item.title}
+                  </CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <p className="text-sm text-muted-foreground leading-relaxed">{item.desc}</p>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </section>
+
+        <Separator className="my-10" />
+
+        {/* Variansanalyse */}
+        <section className="mb-12">
+          <h2 className="mb-4 text-3xl font-bold">
+            Variansanalyse: Volatilitet og sticky bonusser
+          </h2>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            Volatilitet er en afgørende faktor, når du spiller med en sticky bonus. Høj-volatilitets slots (som Dead or Alive 2 eller Book of Dead) kan give store gevinster, men de tømmer også din saldo hurtigere under omsætning. Lav-volatilitets slots (som Starburst eller Blood Suckers) giver hyppigere, men mindre gevinster – og holder din saldo mere stabil.
+          </p>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            <strong>Den matematiske sandhed:</strong> Med en sticky bonus er din prioritet at overleve omsætningen med en positiv saldo. Lav-volatilitets slots med høj RTP (97%+) er statistisk optimale for dette formål. Du ofrer potentialet for kæmpegevinster til fordel for en højere sandsynlighed for at komme igennem omsætningskravet med penge i hånden.
+          </p>
+          <p className="text-muted-foreground leading-relaxed">
+            <strong>Undtagelsen:</strong> Hvis du har en stor bankroll relativt til bonusbeløbet (f.eks. 5.000 kr. indbetaling med 500 kr. bonus), kan du tillade dig mere volatilitet, fordi din egen indbetaling fungerer som buffer. Jo større forholdet mellem indbetaling og bonus er, jo mere fleksibel er du i spilvalg – men husk at (d+b)-modellen stadig låser hele saldoen.
+          </p>
+        </section>
+
+        <Separator className="my-10" />
+
         {/* Sticky Bonus markedsoverblik */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold">

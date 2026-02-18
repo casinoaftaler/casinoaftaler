@@ -485,6 +485,89 @@ const Omsaetningskrav = () => {
 
         <Separator className="my-10" />
 
+        {/* Teknisk dybde: (d+b) vs (b) */}
+        <section className="mb-12">
+          <h2 className="mb-4 text-3xl font-bold">
+            Teknisk analyse: (d+b) vs. (b) – de to omsætningsmodeller
+          </h2>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            Omsætningskrav beregnes efter to fundamentalt forskellige modeller: <strong>(d+b)</strong> – deposit + bonus – og <strong>(b)</strong> – kun bonus. Forskellen har enorm indvirkning på den totale omsætning, du skal gennemføre. Begge modeller er lovlige i Danmark under Spillemyndighedens 10x loft, men den reelle byrde er vidt forskellig.
+          </p>
+
+          <div className="overflow-x-auto">
+            <table className="w-full border-collapse rounded-lg border border-border text-sm">
+              <thead>
+                <tr className="bg-muted/50">
+                  <th className="border border-border p-3 text-left font-semibold">Parameter</th>
+                  <th className="border border-border p-3 text-left font-semibold">10x (b) – kun bonus</th>
+                  <th className="border border-border p-3 text-left font-semibold">10x (d+b) – deposit + bonus</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td className="border border-border p-3 font-medium">Indbetaling</td>
+                  <td className="border border-border p-3 text-muted-foreground">1.000 kr.</td>
+                  <td className="border border-border p-3 text-muted-foreground">1.000 kr.</td>
+                </tr>
+                <tr className="bg-muted/20">
+                  <td className="border border-border p-3 font-medium">Bonus (100% match)</td>
+                  <td className="border border-border p-3 text-muted-foreground">1.000 kr.</td>
+                  <td className="border border-border p-3 text-muted-foreground">1.000 kr.</td>
+                </tr>
+                <tr>
+                  <td className="border border-border p-3 font-medium">Total omsætning krævet</td>
+                  <td className="border border-border p-3 text-muted-foreground">10 × 1.000 = <strong>10.000 kr.</strong></td>
+                  <td className="border border-border p-3 text-muted-foreground">10 × 2.000 = <strong>20.000 kr.</strong></td>
+                </tr>
+                <tr className="bg-muted/20">
+                  <td className="border border-border p-3 font-medium">Forventet tab (96% RTP)</td>
+                  <td className="border border-border p-3 text-muted-foreground">10.000 × 0,04 = <strong>400 kr.</strong></td>
+                  <td className="border border-border p-3 text-muted-foreground">20.000 × 0,04 = <strong>800 kr.</strong></td>
+                </tr>
+                <tr>
+                  <td className="border border-border p-3 font-medium">Reel bonusværdi (EV)</td>
+                  <td className="border border-border p-3 text-muted-foreground"><strong>600 kr.</strong></td>
+                  <td className="border border-border p-3 text-muted-foreground"><strong>200 kr.</strong></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <p className="mt-4 text-muted-foreground leading-relaxed">
+            <strong>Konklusion:</strong> 10x (b) giver 3x højere reel bonusværdi end 10x (d+b) – præcis fordi din indbetaling ikke indgår i beregningsgrundlaget. Når du sammenligner bonusser, skal du ALTID tjekke om kravet er (b) eller (d+b). En "5x (d+b)"-bonus svarer reelt til "10x (b)" i total omsætning – de er matematisk ækvivalente.
+          </p>
+        </section>
+
+        <Separator className="my-10" />
+
+        {/* EV-formel */}
+        <section className="mb-12">
+          <h2 className="mb-4 text-3xl font-bold">
+            Sådan beregner du bonussens reelle værdi (EV)
+          </h2>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            For enhver bonus kan du beregne Expected Value med denne formel: <strong>EV = Bonusbeløb – (Total omsætning × House Edge)</strong>. Her er house edge = 1 – RTP. For en 96% RTP slot er house edge 4% (0,04).
+          </p>
+          <div className="space-y-3">
+            {[
+              { title: "1x omsætning, 1.000 kr. bonus", desc: "Omsætning: 1.000 kr. Tab: 1.000 × 0,04 = 40 kr. EV = 1.000 – 40 = 960 kr. (96% af nominel værdi). Næsten hele bonussen er reel – dette er det bedste scenarie.", icon: CheckCircle2 },
+              { title: "5x (b) omsætning, 1.000 kr. bonus", desc: "Omsætning: 5.000 kr. Tab: 5.000 × 0,04 = 200 kr. EV = 1.000 – 200 = 800 kr. (80% af nominel værdi). Stadig en god bonus med høj reel værdi.", icon: CheckCircle2 },
+              { title: "10x (d+b) omsætning, 1.000 kr. bonus + 1.000 kr. indbetaling", desc: "Omsætning: 20.000 kr. Tab: 20.000 × 0,04 = 800 kr. EV = 1.000 – 800 = 200 kr. (20% af nominel værdi). Kun en femtedel af bonussen er reel. Overraskende lavt.", icon: AlertTriangle },
+              { title: "Breakeven-punkt", desc: "Bonussen har positiv EV så længe: Bonusbeløb > Total omsætning × House Edge. For 10x (d+b) med 2.000 kr. saldo kræves en RTP over 95% for positiv EV. Under 95% RTP er bonussen statistisk værdiløs.", icon: Target },
+            ].map((item) => (
+              <div key={item.title} className="flex items-start gap-3 rounded-lg border border-border bg-card p-4">
+                <item.icon className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
+                <div>
+                  <h3 className="font-semibold">{item.title}</h3>
+                  <p className="text-sm text-muted-foreground">{item.desc}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        <Separator className="my-10" />
+
         {/* Omsætningskrav markedsoverblik */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold">
