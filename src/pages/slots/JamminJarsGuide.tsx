@@ -79,12 +79,13 @@ const jamminJarsFaqs: { question: string; answer: ReactNode }[] = [
 const JamminJarsGuide = () => {
   const faqJsonLd = buildFaqSchema(jamminJarsFaqs);
   const articleSchema = buildArticleSchema({
-    title: "Jammin' Jars – Cluster Pays & Multiplikator-Analyse",
+    headline: "Jammin' Jars – Cluster Pays & Multiplikator-Analyse",
     description: "Komplet analyse af Jammin' Jars: jar-wild mekanik, cluster pays på 8×8 grid, RTP 96,83 %, volatilitetsprofil og EV-vurdering.",
+    url: `${SITE_URL}/casinospil/spillemaskiner/jammin-jars`,
     datePublished: "2026-02-18",
     dateModified: "2026-02-18",
-    path: "/casinospil/spillemaskiner/jammin-jars",
-    author: "Kevin",
+    authorName: "Kevin",
+    authorUrl: `${SITE_URL}/forfatter/kevin`,
   });
   const breadcrumbJsonLd = {
     "@context": "https://schema.org",
@@ -103,7 +104,6 @@ const JamminJarsGuide = () => {
         title="Jammin' Jars – Cluster Pays & RTP-Analyse"
         description="Dybdegående analyse af Jammin' Jars: cluster pays mekanik, jar-wild multiplikatorer, RTP 96,83 %, volatilitetsprofil og EV-beregninger."
         jsonLd={[faqJsonLd, articleSchema, breadcrumbJsonLd]}
-        canonical={`${SITE_URL}/casinospil/spillemaskiner/jammin-jars`}
       />
 
       <article className="mx-auto max-w-4xl px-4 py-12">
@@ -122,7 +122,7 @@ const JamminJarsGuide = () => {
           </p>
         </header>
 
-        <AuthorMetaBar author="Kevin" dateModified="2026-02-18" />
+        <AuthorMetaBar author="kevin" date="2026-02-18" readTime="19 min" />
         <Separator className="my-8" />
 
         {/* ── Experience First: Spilmekanik ── */}
@@ -366,7 +366,7 @@ const JamminJarsGuide = () => {
         </section>
 
         <Separator className="my-8" />
-        <AuthorBio author="Kevin" />
+        <AuthorBio author="kevin" />
         <RelatedGuides currentPath="/casinospil/spillemaskiner/jammin-jars" />
         <FAQSection title="Ofte Stillede Spørgsmål om Jammin' Jars" faqs={jamminJarsFaqs} />
       </article>

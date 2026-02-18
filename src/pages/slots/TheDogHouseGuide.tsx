@@ -71,12 +71,13 @@ const theDogHouseFaqs: { question: string; answer: ReactNode }[] = [
 const TheDogHouseGuide = () => {
   const faqJsonLd = buildFaqSchema(theDogHouseFaqs);
   const articleSchema = buildArticleSchema({
-    title: "The Dog House – Sticky Wilds & Multiplikator-Analyse",
+    headline: "The Dog House – Sticky Wilds & Multiplikator-Analyse",
     description: "Komplet analyse af The Dog House: sticky wild-mekanik, multiplikator-system, RTP 96,51 %, volatilitetsprofil og EV-vurdering for danske spillere.",
+    url: `${SITE_URL}/casinospil/spillemaskiner/the-dog-house`,
     datePublished: "2026-02-18",
     dateModified: "2026-02-18",
-    path: "/casinospil/spillemaskiner/the-dog-house",
-    author: "Jonas",
+    authorName: "Jonas",
+    authorUrl: `${SITE_URL}/forfatter/jonas`,
   });
   const breadcrumbJsonLd = {
     "@context": "https://schema.org",
@@ -95,7 +96,6 @@ const TheDogHouseGuide = () => {
         title="The Dog House – Sticky Wilds & RTP-Analyse"
         description="Dybdegående analyse af The Dog House: sticky wild-mekanik med multiplikatorer, RTP 96,51 %, volatilitetsprofil og EV-beregninger for danske spillere."
         jsonLd={[faqJsonLd, articleSchema, breadcrumbJsonLd]}
-        canonical={`${SITE_URL}/casinospil/spillemaskiner/the-dog-house`}
       />
 
       <article className="mx-auto max-w-4xl px-4 py-12">
@@ -114,7 +114,7 @@ const TheDogHouseGuide = () => {
           </p>
         </header>
 
-        <AuthorMetaBar author="Jonas" dateModified="2026-02-18" />
+        <AuthorMetaBar author="jonas" date="2026-02-18" readTime="18 min" />
         <Separator className="my-8" />
 
         {/* ── Data First: RTP & Teknisk profil ── */}
@@ -345,7 +345,7 @@ const TheDogHouseGuide = () => {
         </section>
 
         <Separator className="my-8" />
-        <AuthorBio author="Jonas" />
+        <AuthorBio author="jonas" />
         <RelatedGuides currentPath="/casinospil/spillemaskiner/the-dog-house" />
         <FAQSection title="Ofte Stillede Spørgsmål om The Dog House" faqs={theDogHouseFaqs} />
       </article>

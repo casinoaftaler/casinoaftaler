@@ -79,12 +79,13 @@ const reactoonzFaqs: { question: string; answer: ReactNode }[] = [
 const ReactoonzGuide = () => {
   const faqJsonLd = buildFaqSchema(reactoonzFaqs);
   const articleSchema = buildArticleSchema({
-    title: "Reactoonz – Cluster Pays Analyse & Volatilitetsprofil",
+    headline: "Reactoonz – Cluster Pays Analyse & Volatilitetsprofil",
     description: "Dybdegående analyse af Reactoonz: cluster pays-mekanik, Quantum-funktioner, RTP 96,51 %, volatilitetsprofil og EV-beregninger for danske spillere.",
+    url: `${SITE_URL}/casinospil/spillemaskiner/reactoonz`,
     datePublished: "2026-02-18",
     dateModified: "2026-02-18",
-    path: "/casinospil/spillemaskiner/reactoonz",
-    author: "Kevin",
+    authorName: "Kevin",
+    authorUrl: `${SITE_URL}/forfatter/kevin`,
   });
   const breadcrumbJsonLd = {
     "@context": "https://schema.org",
@@ -103,7 +104,6 @@ const ReactoonzGuide = () => {
         title="Reactoonz – Cluster Pays & RTP-Analyse"
         description="Komplet analyse af Reactoonz: cluster pays-mekanik, Quantum-system, RTP 96,51 %, volatilitetsprofil og strategisk EV-vurdering for danske spillere."
         jsonLd={[faqJsonLd, articleSchema, breadcrumbJsonLd]}
-        canonical={`${SITE_URL}/casinospil/spillemaskiner/reactoonz`}
       />
 
       <article className="mx-auto max-w-4xl px-4 py-12">
@@ -122,7 +122,7 @@ const ReactoonzGuide = () => {
           </p>
         </header>
 
-        <AuthorMetaBar author="Kevin" dateModified="2026-02-18" />
+        <AuthorMetaBar author="kevin" date="2026-02-18" readTime="20 min" />
         <Separator className="my-8" />
 
         {/* ── Udviklerkontekst ── */}
@@ -527,7 +527,7 @@ const ReactoonzGuide = () => {
         </section>
 
         <Separator className="my-8" />
-        <AuthorBio author="Kevin" />
+        <AuthorBio author="kevin" />
         <RelatedGuides currentPath="/casinospil/spillemaskiner/reactoonz" />
         <FAQSection title="Ofte Stillede Spørgsmål om Reactoonz" faqs={reactoonzFaqs} />
       </article>

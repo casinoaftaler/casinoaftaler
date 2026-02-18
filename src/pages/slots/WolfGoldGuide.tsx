@@ -87,12 +87,13 @@ const wolfGoldFaqs: { question: string; answer: ReactNode }[] = [
 const WolfGoldGuide = () => {
   const faqJsonLd = buildFaqSchema(wolfGoldFaqs);
   const articleSchema = buildArticleSchema({
-    title: "Wolf Gold – Jackpot-Mekanik & RTP-Analyse",
+    headline: "Wolf Gold – Jackpot-Mekanik & RTP-Analyse",
     description: "Komplet analyse af Wolf Gold: Money Respin-jackpot, free spins med Mega Symbols, RTP 96,01 %, volatilitetsprofil og EV-vurdering.",
+    url: `${SITE_URL}/casinospil/spillemaskiner/wolf-gold`,
     datePublished: "2026-02-18",
     dateModified: "2026-02-18",
-    path: "/casinospil/spillemaskiner/wolf-gold",
-    author: "Kevin",
+    authorName: "Kevin",
+    authorUrl: `${SITE_URL}/forfatter/kevin`,
   });
   const breadcrumbJsonLd = {
     "@context": "https://schema.org",
@@ -111,7 +112,6 @@ const WolfGoldGuide = () => {
         title="Wolf Gold – Jackpot & RTP-Analyse"
         description="Komplet analyse af Wolf Gold: Money Respin-jackpot, Mega Symbols free spins, RTP 96,01 %, volatilitetsprofil og EV-beregninger for danske spillere."
         jsonLd={[faqJsonLd, articleSchema, breadcrumbJsonLd]}
-        canonical={`${SITE_URL}/casinospil/spillemaskiner/wolf-gold`}
       />
 
       <article className="mx-auto max-w-4xl px-4 py-12">
@@ -130,7 +130,7 @@ const WolfGoldGuide = () => {
           </p>
         </header>
 
-        <AuthorMetaBar author="Kevin" dateModified="2026-02-18" />
+        <AuthorMetaBar author="kevin" date="2026-02-18" readTime="18 min" />
         <Separator className="my-8" />
 
         {/* ── Segment First: Hvem er spillet til? ── */}
@@ -410,7 +410,7 @@ const WolfGoldGuide = () => {
         </section>
 
         <Separator className="my-8" />
-        <AuthorBio author="Kevin" />
+        <AuthorBio author="kevin" />
         <RelatedGuides currentPath="/casinospil/spillemaskiner/wolf-gold" />
         <FAQSection title="Ofte Stillede Spørgsmål om Wolf Gold" faqs={wolfGoldFaqs} />
       </article>
