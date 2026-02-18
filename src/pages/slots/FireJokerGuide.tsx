@@ -1,0 +1,282 @@
+import { Link } from "react-router-dom";
+import { AuthorMetaBar } from "@/components/AuthorMetaBar";
+import { AuthorBio } from "@/components/AuthorBio";
+import { FAQSection } from "@/components/FAQSection";
+import { SEO } from "@/components/SEO";
+import { buildFaqSchema, buildArticleSchema, SITE_URL } from "@/lib/seo";
+import { RelatedGuides } from "@/components/RelatedGuides";
+import { InlineCasinoCards } from "@/components/InlineCasinoCards";
+import { type ReactNode } from "react";
+import { Badge } from "@/components/ui/badge";
+import { Separator } from "@/components/ui/separator";
+import { Card, CardContent } from "@/components/ui/card";
+import {
+  Sparkles, TrendingUp, Target, Shield, Zap, BarChart3,
+  Calculator, Flame, Scale, Users, AlertTriangle, Trophy
+} from "lucide-react";
+
+const linkClass = "text-primary underline underline-offset-4 hover:text-primary/80 transition-colors";
+
+const fireJokerFaqs: { question: string; answer: ReactNode }[] = [
+  {
+    question: "Hvad er RTP'en på Fire Joker?",
+    answer: "Fire Joker har en RTP på 96,15 %, hvilket giver en house edge på 3,85 %. Dette placerer den i det øvre interval for klassiske 3-hjuls slots og gør den til et konkurrencedygtigt valg for spillere, der foretrækker enkel mekanik med fair returnering. RTP'en er fast og varierer ikke mellem casinoer, hvilket er en fordel ved Play'n GO's design.",
+  },
+  {
+    question: "Hvordan fungerer Respin of Fire?",
+    answer: "Respin of Fire aktiveres, når to af tre hjul viser identiske symboler efter et regulært spin. Det tredje hjul re-spinner én gang gratis, med en ekstra chance for at lande det matchende symbol og skabe en fuld gevinstlinje. Denne mekanik øger den effektive hit frequency markant og er ansvarlig for en betydelig del af spillets samlede return.",
+  },
+  {
+    question: "Hvad er Wheel of Multipliers i Fire Joker?",
+    answer: "Wheel of Multipliers aktiveres, når alle 9 positioner på griddet viser det samme symbol (en 'full screen'). Et multiplierhjul spinner og tildeler en multiplikator på 2×, 3×, 4×, 5× eller 10×, som ganges med den allerede store full screen-gevinst. Med premium-symbolet (7'er) og 10× multiplikatoren opnås max win på 800× indsatsen.",
+  },
+  {
+    question: "Er Fire Joker en god slot for begyndere?",
+    answer: (
+      <>
+        Absolut. Fire Joker er et af de bedste valg for nye slot-spillere. Med kun 5 gevinstlinjer, ingen komplekse bonusfunktioner og en intuitiv Respin of Fire-mekanik er spillets regler lette at forstå. Den lave-medium volatilitet sikrer hyppige gevinster, som holder spilleren engageret uden de lange tørkeperioder, der kendetegner high-volatility slots som <Link to="/casinospil/spillemaskiner/bonanza" className={linkClass}>Bonanza</Link>.
+      </>
+    ),
+  },
+  {
+    question: "Hvad er max win i Fire Joker?",
+    answer: "Max win i Fire Joker er 800× din indsats. Dette opnås ved at lande en full screen med det højest betalende symbol (stjernen/7'eren) og derefter trække 10× multiplikatoren på Wheel of Multipliers. Med en indsats på 100 kr. svarer dette til 80.000 kr. Max win er lavt sammenlignet med moderne slots, men realistisk opnåeligt takket være spillets lavere volatilitet.",
+  },
+  {
+    question: "Kan jeg bruge Fire Joker til bonusgennemspilning?",
+    answer: (
+      <>
+        Ja, Fire Joker er et fremragende valg til <Link to="/casino-bonus" className={linkClass}>casino bonus</Link>-gennemspilning. Den lave-medium volatilitet giver en stabil gennemspilning uden ekstreme bankroll-udsving, og RTP'en på 96,15 % sikrer en fair return under omsætningskravene. Kontrollér altid casinoets bonusvilkår, da nogle operatører begrænser klassiske slots til en reduceret gennemspilningsprocent.
+      </>
+    ),
+  },
+];
+
+const FireJokerGuide = () => {
+  const faqJsonLd = buildFaqSchema(fireJokerFaqs);
+  const articleSchema = buildArticleSchema({
+    headline: "Fire Joker – Klassisk Slot-Mekanik & Multiplier-Analyse",
+    description: "Komplet analyse af Fire Joker: Respin of Fire, Wheel of Multipliers, RTP 96,15 %, volatilitetsprofil og strategisk EV-vurdering for danske spillere.",
+    url: `${SITE_URL}/casinospil/spillemaskiner/fire-joker`,
+    datePublished: "2026-02-18",
+    dateModified: "2026-02-18",
+    authorName: "Kevin",
+    authorUrl: `${SITE_URL}/forfatter/kevin`,
+  });
+  const breadcrumbJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Forside", item: `${SITE_URL}/` },
+      { "@type": "ListItem", position: 2, name: "Casinospil", item: `${SITE_URL}/casinospil` },
+      { "@type": "ListItem", position: 3, name: "Spillemaskiner", item: `${SITE_URL}/casinospil/spillemaskiner` },
+      { "@type": "ListItem", position: 4, name: "Fire Joker", item: `${SITE_URL}/casinospil/spillemaskiner/fire-joker` },
+    ],
+  };
+
+  return (
+    <>
+      <SEO
+        title="Fire Joker – Klassisk Slot & RTP-Analyse"
+        description="Dybdegående analyse af Fire Joker: Respin of Fire, Wheel of Multipliers, RTP 96,15 %, lav-medium volatilitet og EV-beregninger."
+        jsonLd={[faqJsonLd, articleSchema, breadcrumbJsonLd]}
+      />
+
+      <article className="mx-auto max-w-4xl px-4 py-12">
+        <header className="mb-8 text-center">
+          <div className="flex items-center justify-center gap-2 mb-4">
+            <Badge variant="secondary" className="text-xs">Klassisk 3-Hjul</Badge>
+            <Badge variant="outline" className="text-xs">RTP 96,15 %</Badge>
+            <Badge variant="outline" className="text-xs">Lav-Medium Volatilitet</Badge>
+          </div>
+          <h1 className="text-4xl md:text-5xl font-bold mb-4 leading-tight">
+            Fire Joker – Klassisk Slot-Mekanik & Multiplier-Analyse
+          </h1>
+          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+            Play'n GO's moderne klassiker: hvordan et 3×3 grid med kun 5 linjer leverer en af markedets mest tilgængelige og matematisk elegante slot-oplevelser.
+          </p>
+        </header>
+
+        <AuthorMetaBar author="kevin" date="2026-02-18" readTime="17 min" />
+        <Separator className="my-8" />
+
+        {/* ── Segment First: Hvem er spillet til? ── */}
+        <section className="mb-10">
+          <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
+            <Users className="h-5 w-5 text-primary" />
+            Hvem Er Fire Joker Designet Til?
+          </h2>
+          <p className="text-muted-foreground mb-4 leading-relaxed">
+            Fire Joker er <Link to="/spiludviklere/play-n-go" className={linkClass}>Play'n GO's</Link> svar på den evige efterspørgsel efter enkelhed i en stadig mere kompleks slot-verden. Mens industrien kappes om at tilføje flere hjul, flere funktioner og mere volatilitet, vender Fire Joker bevidst tilbage til grundelementerne: 3 hjul, 3 rækker, 5 gevinstlinjer og to enkle bonusfunktioner. Det er anti-tesen til moderne megaways-slots – og det er præcis derfor, den fungerer.
+          </p>
+          <p className="text-muted-foreground mb-4 leading-relaxed">
+            Spillets primære målgruppe er tredelt: (1) Nye spillere, der ønsker at forstå slot-mekanik uden at drukne i kompleksitet. (2) Erfarne spillere, der søger en afslappet, lav-risk session som pause fra high-volatility grind. (3) Bonus-spillere, der har brug for en stabil slot til at gennemspille <Link to="/casino-bonus" className={linkClass}>omsætningskrav</Link> uden ekstreme bankroll-udsving.
+          </p>
+          <p className="text-muted-foreground mb-4 leading-relaxed">
+            Fire Joker er IKKE designet til spillere, der jagter store enkelgevinster eller søger den adrenalindrevne volatilitet fra slots som <Link to="/casinospil/spillemaskiner/dead-or-alive-2" className={linkClass}>Dead or Alive 2</Link> eller <Link to="/casinospil/spillemaskiner/razor-shark" className={linkClass}>Razor Shark</Link>. Max win på 800× er beskedent efter moderne standarder, og spillets underholdningsværdi ligger i konsistens, ikke i sjældne jackpot-øjeblikke.
+          </p>
+          <p className="text-muted-foreground leading-relaxed">
+            Det er værd at bemærke, at Fire Joker konsekvent rangerer blandt de 10 mest spillede slots i Danmark – ikke på grund af hype eller streamers, men fordi dens simple elegance appellerer til det bredest mulige segment af casino-spillere. Den er det slot-ækvivalent til en pålidelig hverdag­sbil: ikke prangende, men den gør sit job upåklageligt.
+          </p>
+        </section>
+
+        {/* ── Spilmekanik ── */}
+        <section className="mb-10">
+          <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
+            <Zap className="h-5 w-5 text-primary" />
+            Spilmekanik: Simpelt Design, Sofistikeret Matematik
+          </h2>
+          <p className="text-muted-foreground mb-4 leading-relaxed">
+            Fire Jokers grundlæggende mekanik er et 3×3 grid med 5 faste gevinstlinjer: 3 vandrette, 1 diagonal fra øverste venstre til nederste højre, og 1 diagonal fra nederste venstre til øverste højre. Gevinster kræver 3 matchende symboler på en aktiv linje. Med kun 27 mulige symbolkombinationer (3³) er den matematiske model gennemsigtig og let at analysere.
+          </p>
+          <p className="text-muted-foreground mb-4 leading-relaxed">
+            Symbolhierarkiet er tydeligt: Stjernen (7'eren) betaler højest (80× for 3-of-a-kind), efterfulgt af BAR (40×), klokken (20×), kirsebær (10×), citronen (6×) og druen (4×). Jokeren fungerer som wild og substituerer alle symboler. Bemærk, at gevinstværdierne allerede er ganget med linjeindsatsen – et kritisk punkt, der ofte misforstås af nye spillere.
+          </p>
+          <p className="text-muted-foreground mb-4 leading-relaxed">
+            Hit frequency i base game er estimeret til cirka 35-40 %, hvilket er markant højere end moderne 5-hjuls slots (typisk 20-30 %). Denne høje frekvens skyldes det lave antal symboler og positioner – matematisk set har et 3×3 grid med 7 symboltyper en væsentligt højere sandsynlighed for matchende kombinationer end et 5×3 grid med 12+ symboltyper. Den hyppige feedback-loop er central for Fire Jokers appel og holder spilleren engageret.
+          </p>
+          <p className="text-muted-foreground leading-relaxed">
+            Wild-symbolet (Jokeren) er spillets mest værdifulde symbol, da det substituerer alt og dermed øger sandsynligheden for gevinstkombinationer dramatisk. Statistisk set optræder Jokeren med en frekvens, der er kalibreret til at bidrage til cirka 15-20 % af spillets samlede return – en balanceakt mellem at øge hit frequency uden at underminere volatilitetsprofilen.
+          </p>
+        </section>
+
+        {/* ── Respin of Fire ── */}
+        <section className="mb-10">
+          <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
+            <Flame className="h-5 w-5 text-primary" />
+            Respin of Fire: Den Skjulte RTP-Booster
+          </h2>
+          <p className="text-muted-foreground mb-4 leading-relaxed">
+            Respin of Fire er Fire Jokers primære bonusmekanik og en af de mest elegante respin-funktioner i moderne slot-design. Mekanikken aktiveres automatisk, når to af tre hjul lander med identiske symboler efter et regulært spin. Det tredje hjul re-spinner én gang gratis, med potentiale for at komplettere en gevinstlinje.
+          </p>
+          <p className="text-muted-foreground mb-4 leading-relaxed">
+            Matematisk set er Respin of Fire-sandsynligheden cirka 20-25 % af alle spins (sandsynligheden for at 2 af 3 hjul matcher). Konverteringsraten – dvs. sandsynligheden for at respinet lander det matchende symbol – varierer afhængigt af symboltypen, men ligger gennemsnitligt omkring 15-20 %. Dette giver en samlet "respin-gevinst-rate" på cirka 4-5 % af alle spins, som bidrager væsentligt til spillets samlede hit frequency.
+          </p>
+          <p className="text-muted-foreground mb-4 leading-relaxed">
+            En subtil men vigtig detalje er, at Respin of Fire er rent kosmetisk adskillig fra base game-gevinster, men matematisk identisk i RNG-termer. Spillets RNG bestemmer hele spinets resultat på forhånd – respinet er en visuel præsentation af et allerede bestemt udfald. Denne indsigt er relevant for at forstå, at Respin of Fire ikke "giver ekstra chancer" i traditionel forstand, men snarere præsenterer bestemte udfald med ekstra spænding.
+          </p>
+          <p className="text-muted-foreground leading-relaxed">
+            Fra et EV-perspektiv bidrager Respin of Fire med estimeret 8-12 % af spillets samlede return. Uden denne funktion ville Fire Jokers RTP falde til cirka 84-88 % – langt under markedsstandarden. Funktionen er altså ikke et gimmick, men en matematisk nødvendighed for at opnå den angivne 96,15 % RTP inden for rammerne af et så simpelt grundspil.
+          </p>
+        </section>
+
+        <InlineCasinoCards />
+
+        {/* ── Wheel of Multipliers ── */}
+        <section className="mb-10">
+          <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
+            <Sparkles className="h-5 w-5 text-primary" />
+            Wheel of Multipliers: Full Screen-Bonus i Dybden
+          </h2>
+          <p className="text-muted-foreground mb-4 leading-relaxed">
+            Wheel of Multipliers er Fire Jokers sekundære bonusfunktion og spillets primære kilde til store gevinster. Funktionen aktiveres, når alle 9 positioner på griddet viser det samme symbol – en "full screen". I sig selv er en full screen allerede en stor gevinst (alle 5 linjer betaler med det matchende symbol), men Wheel of Multipliers forstørrer denne gevinst yderligere.
+          </p>
+          <p className="text-muted-foreground mb-4 leading-relaxed">
+            Multiplierhjulet indeholder fem sektorer: 2×, 3×, 4×, 5× og 10×. Fordelingen er ikke ligevægtet – de lavere multiplikatorer (2× og 3×) har større sektorer og lander hyppigere, mens 10× udgør den mindste sektor. Estimeret sandsynlighed: 2× (35 %), 3× (25 %), 4× (20 %), 5× (13 %), 10× (7 %). Den forventede gennemsnitlige multiplikator er cirka 3,4×.
+          </p>
+          <p className="text-muted-foreground mb-4 leading-relaxed">
+            Full screen-sandsynligheden er ekstremt lav – estimeret til cirka 1 i 3.000-5.000 spins for ethvert symbol, og endnu sjældnere for premium-symboler. Kombineret med Wheel of Multipliers giver dette en forventet bonus-bidrag på kun 3-5 % af spillets samlede return. Wheel of Multipliers er altså en sjælden, men potentielt lukrativ begivenhed, der tilføjer den nødvendige "excitement factor" til et ellers konsistent, lavvolatilt spil.
+          </p>
+          <p className="text-muted-foreground leading-relaxed">
+            Max win-scenariet kræver en full screen med stjernen (80× base) × 10× multiplikator = 800× indsatsen. Med den estimerede sandsynlighed for dette specifikke scenarie (fuld skærm med det bedste symbol OG 10× multiplikator) er vi nede i intervallet 1 i 50.000-100.000 spins. Det er sjældent, men markant mere realistisk end max win i high-volatility slots – et point der ofte overses i sammenligninger.
+          </p>
+        </section>
+
+        {/* ── RTP & EV ── */}
+        <section className="mb-10">
+          <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
+            <Calculator className="h-5 w-5 text-primary" />
+            RTP-Analyse og Expected Value-Beregning
+          </h2>
+          <Card className="mb-6">
+            <CardContent className="pt-6">
+              <div className="grid grid-cols-2 md:grid-cols-3 gap-4 text-sm">
+                <div><span className="text-muted-foreground">RTP:</span><br /><strong>96,15 %</strong></div>
+                <div><span className="text-muted-foreground">House Edge:</span><br /><strong>3,85 %</strong></div>
+                <div><span className="text-muted-foreground">Hit Frequency:</span><br /><strong>~35-40 %</strong></div>
+                <div><span className="text-muted-foreground">Volatilitet:</span><br /><strong>Lav-Medium</strong></div>
+                <div><span className="text-muted-foreground">Max Win:</span><br /><strong>800×</strong></div>
+                <div><span className="text-muted-foreground">Gevinstlinjer:</span><br /><strong>5 faste</strong></div>
+              </div>
+            </CardContent>
+          </Card>
+          <p className="text-muted-foreground mb-4 leading-relaxed">
+            Fire Jokers 96,15 % RTP er opdelt i tre bidragskilder: base game-gevinster (cirka 83-85 %), Respin of Fire (8-12 %) og Wheel of Multipliers (3-5 %). Denne fordeling adskiller sig markant fra high-volatility slots, hvor bonusrunden typisk udgør 60-70 % af den samlede return. Fire Jokers base game bærer hovedparten af RTP'en, hvilket er grunden til den lave volatilitet og hyppige gevinster.
+          </p>
+          <Card className="mb-6">
+            <CardContent className="pt-6">
+              <h3 className="font-semibold mb-3">EV-scenarie: 500 spins à 5 kr.</h3>
+              <div className="grid grid-cols-2 gap-3 text-sm">
+                <div><span className="text-muted-foreground">Samlet indsats:</span><br /><strong>2.500 kr.</strong></div>
+                <div><span className="text-muted-foreground">Forventet return:</span><br /><strong>2.404 kr.</strong></div>
+                <div><span className="text-muted-foreground">Forventet tab (EV):</span><br /><strong>-96 kr.</strong></div>
+                <div><span className="text-muted-foreground">Realistisk interval:</span><br /><strong>-600 til +1.200 kr.</strong></div>
+              </div>
+            </CardContent>
+          </Card>
+          <p className="text-muted-foreground mb-4 leading-relaxed">
+            Det snævre realistiske interval (sammenlignet med f.eks. <Link to="/casinospil/spillemaskiner/bonanza" className={linkClass}>Bonanza</Link>) illustrerer Fire Jokers lave volatilitet. Standardafvigelsen pr. spin er estimeret til kun 3-5× indsatsen, hvilket betyder at sessionsresultater typisk ligger inden for ±30-40 % af EV. For en spiller med en bankroll på 500 kr. giver dette en meget forudsigelig oplevelse med minimal risiko for total bust.
+          </p>
+          <p className="text-muted-foreground leading-relaxed">
+            Konvergenstiden mod den teoretiske RTP er væsentligt kortere end for high-volatility slots – estimeret til 5.000-10.000 spins (vs. 50.000-100.000 for Bonanza). Dette gør Fire Joker til et af de mest "fair-følende" spil i markedet, da spillere oftere vil opleve resultater tæt på den angivne 96,15 % RTP i deres sessions.
+          </p>
+        </section>
+
+        {/* ── Sammenligning ── */}
+        <section className="mb-10">
+          <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
+            <Scale className="h-5 w-5 text-primary" />
+            Fire Joker vs. Andre Klassiske Slots
+          </h2>
+          <p className="text-muted-foreground mb-4 leading-relaxed">
+            I kategorien klassiske 3-hjuls slots konkurrerer Fire Joker primært med titler som Mega Joker (NetEnt), Triple Diamond (IGT) og Jackpot 6000 (NetEnt). Fire Jokers fordel er dens moderniserede mekanik – Respin of Fire og Wheel of Multipliers tilføjer dynamik, som de mere traditionelle klassikere mangler, uden at kompromittere enkelheden.
+          </p>
+          <p className="text-muted-foreground mb-4 leading-relaxed">
+            Sammenlignet med moderne 5-hjuls slots som <Link to="/casinospil/spillemaskiner/starburst" className={linkClass}>Starburst</Link> (96,09 % RTP, lav volatilitet) er Fire Joker marginalt bedre på RTP (96,15 %) men har et lavere max win (800× vs. 500× – bemærk at Starburst faktisk har lavere max win). Begge slots appellerer til det samme segment, men Fire Joker tilbyder en mere retro-æstetik og et simplere interface.
+          </p>
+          <p className="text-muted-foreground leading-relaxed">
+            For spillere, der vægter enkelhed og forudsigelighed, er Fire Joker den overlegne choice i Play'n GO's portefølje. For dem, der ønsker mere spænding med bevaret enkelhed, er Book of Dead et naturligt næste skridt – stadig relativt simpelt, men med markant højere volatilitet og gevinstpotentiale. Vores <Link to="/casinospil/spillemaskiner" className={linkClass}>spillemaskineguide-oversigt</Link> kan hjælpe dig med at finde det rette match.
+          </p>
+        </section>
+
+        {/* ── Risiko og ansvarligt spil ── */}
+        <section className="mb-10">
+          <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
+            <Shield className="h-5 w-5 text-primary" />
+            Risikoprofil og Ansvarligt Spil-Perspektiv
+          </h2>
+          <p className="text-muted-foreground mb-4 leading-relaxed">
+            Fire Jokers lave volatilitet og høje hit frequency gør den til en af de sikreste slots fra et bankroll-perspektiv. En bankroll på 100 spins (500 kr. ved 5 kr./spin) giver en komfortabel session med minimal bust-risiko. For casual-spillere er dette ideelt – du kan nyde en times spilletid med en forudsigelig omkostning.
+          </p>
+          <p className="text-muted-foreground mb-4 leading-relaxed">
+            Dog er det vigtigt at anerkende, at den lave volatilitet også kan skabe en falsk følelse af sikkerhed. Hyppige, små gevinster kan maskere det graduelle tab over tid (house edge wirker konstant). Spillere bør være opmærksomme på "session creep" – tendensen til at forlænge sessions, fordi saldoen ser ud til at holde, mens den reelt langsomt eroderes.
+          </p>
+          <p className="text-muted-foreground leading-relaxed">
+            Vi anbefaler altid at sætte et tidsbudget (f.eks. 30 minutter) og et tabsstop (f.eks. 200 kr.) før sessionen starter. Fire Jokers forudsigelige profil gør det nemt at planlægge sessioner med <Link to="/ansvarligt-spil" className={linkClass}>ansvarligt spil</Link>-værktøjer – en fordel, som high-volatility slots ikke tilbyder i samme grad.
+          </p>
+        </section>
+
+        {/* ── Konklusion ── */}
+        <section className="mb-10">
+          <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
+            <Trophy className="h-5 w-5 text-primary" />
+            Den Perfekte Begynder-Slot med Dybde
+          </h2>
+          <p className="text-muted-foreground mb-4 leading-relaxed">
+            Fire Joker beviser, at god slot-design ikke kræver hundredvis af funktioner og tusindvis af gevinstlinjer. Play'n GO har skabt et spil, der er umiddelbart tilgængeligt for enhver spiller, men som rummer tilstrækkelig matematisk dybde til at fastholde interessen over tid. Respin of Fire-mekanikken alene er en masterclass i, hvordan man tilføjer spænding til et simpelt grundspil.
+          </p>
+          <p className="text-muted-foreground leading-relaxed">
+            Med en RTP på 96,15 %, lav-medium volatilitet og en max win på 800× er Fire Joker det oplagte valg for spillere, der prioriterer underholdningsværdi og session-stabilitet over jackpot-potentiale. Den er vores anbefaling nummer ét for nye spillere – og et pålideligt fundament for enhver slot-portefølje. Udforsk flere guides på vores <Link to="/casinospil" className={linkClass}>casinospil</Link>-sektion.
+          </p>
+        </section>
+
+        <Separator className="my-8" />
+        <AuthorBio author="kevin" />
+        <RelatedGuides currentPath="/casinospil/spillemaskiner/fire-joker" />
+        <FAQSection title="Ofte Stillede Spørgsmål om Fire Joker" faqs={fireJokerFaqs} />
+      </article>
+    </>
+  );
+};
+
+export default FireJokerGuide;
