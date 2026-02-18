@@ -37,7 +37,7 @@ const StakeCasinoAnmeldelse = () => {
     "@type": "Review",
     itemReviewed: { "@type": "Organization", name: "Stake Casino", url: "https://stake.com/" },
     author: { "@type": "Organization", name: "Casinoaftaler" },
-    reviewRating: { "@type": "Rating", ratingValue: "4.2", bestRating: "5" },
+    reviewRating: { "@type": "Rating", ratingValue: "4.2", bestRating: "5", worstRating: "1" },
     reviewBody: "Forhåndsanmeldelse af Stake Casino baseret på den internationale platform. Innovativt crypto-casino med proprietære spil og stærkt community. Afventer dansk licens.",
   };
 

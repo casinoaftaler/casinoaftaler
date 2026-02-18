@@ -88,7 +88,7 @@ const OneCasinoAnmeldelse = () => {
     "@type": "Review",
     itemReviewed: { "@type": "Organization", name: "One Casino" },
     author: { "@type": "Organization", name: "Casinoaftaler" },
-    reviewRating: { "@type": "Rating", ratingValue: "3.8", bestRating: "5" },
+    reviewRating: { "@type": "Rating", ratingValue: "3.8", bestRating: "5", worstRating: "1" },
     reviewBody: "One Casino er en niche-platform med eksklusive in-house spil og en ukompliceret tilgang. Stærk differentiering via unikke spiltitler, men begrænset i bredde, hastighed og betalingsmuligheder.",
   };
 

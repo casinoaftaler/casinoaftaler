@@ -31,7 +31,7 @@ const CasinostuenAnmeldelse = () => {
   const heroBackgroundImage = siteSettings?.hero_background_image;
   const articleSchema = buildArticleSchema({ headline: "Casinostuen Anmeldelse 2026 – Hyggelig Dansk Casino", description: "Dybdegående anmeldelse af Casinostuen. Dansk licens, hyggelig atmosfære og fokus på det danske marked.", url: "https://casinoaftaler.dk/casino-anmeldelser/casinostuen", datePublished: "2026-02-15", dateModified: "2026-02-17", authorName: "Jonas", authorUrl: "https://casinoaftaler.dk/forfatter/jonas" });
   const faqJsonLd = buildFaqSchema(casinostuenFaqs);
-  const reviewJsonLd = { "@context": "https://schema.org", "@type": "Review", itemReviewed: { "@type": "Organization", name: "Casinostuen" }, author: { "@type": "Organization", name: "Casinoaftaler" }, reviewRating: { "@type": "Rating", ratingValue: "3.6", bestRating: "5" } };
+  const reviewJsonLd = { "@context": "https://schema.org", "@type": "Review", itemReviewed: { "@type": "Organization", name: "Casinostuen" }, author: { "@type": "Organization", name: "Casinoaftaler" }, reviewRating: { "@type": "Rating", ratingValue: "3.6", bestRating: "5", worstRating: "1" } };
 
   return (
     <>

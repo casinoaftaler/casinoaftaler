@@ -118,7 +118,7 @@ const BetanoAnmeldelse = () => {
       url: "https://www.betano.dk/",
     },
     author: { "@type": "Organization", name: "Casinoaftaler" },
-    reviewRating: { "@type": "Rating", ratingValue: "4.2", bestRating: "5" },
+    reviewRating: { "@type": "Rating", ratingValue: "4.2", bestRating: "5", worstRating: "1" },
     reviewBody:
       "Betano er en teknologidrevet platform med stærk sportssektion og et casino, der stadig er under modning på det danske marked.",
   };
@@ -216,7 +216,7 @@ const BetanoAnmeldelse = () => {
             I Danmark lancerede Betano sig med dansk licens fra Spillemyndigheden og har fra dag ét positioneret sig som et tech-first alternativ til de klassiske operatører. Hele platformen er udviklet in-house – fra odds-engine til casino-frontend – hvilket er sjældent i en branche, hvor de fleste operatører kører på tredjepartsløsninger fra eksempelvis Kambi eller EveryMatrix. Det giver Betano en fleksibilitet i produktudvikling, som mange konkurrenter ikke har.
           </p>
           <p className="text-muted-foreground leading-relaxed">
-            Det store spørgsmål er, om teknologisk ambition alene er nok. Betano er stadig relativt ny i Danmark, og brand-genkendelsen er lavere end hos <Link to="/casino-anmeldelser/unibet" className={linkClass}>Unibet</Link>, <Link to="/casino-anmeldelser/bet365" className={linkClass}>bet365</Link> eller <Link to="/casino-anmeldelser/danske-spil" className={linkClass}>Danske Spil</Link>. Det er en platform, der gør mange ting rigtigt – men den mangler stadig den dybde og markedsmodenhed, som 20+ års tilstedeværelse giver.
+            Det store spørgsmål er, om teknologisk ambition alene er nok. Betano er stadig relativt ny i Danmark, og brand-genkendelsen er lavere end hos <Link to="/casino-anmeldelser/unibet" className={linkClass}>Unibet</Link>, <Link to="/casino-anmeldelser/bet365" className={linkClass}>bet365</Link> eller <Link to="/casino-anmeldelser/danske-spil" className={linkClass}>Danske Spil</Link>. Det er en platform, der gør mange ting rigtigt – men den mangler stadig den dybde og markedsmodenhed, som 20+ års tilstedeværelse giver. Læs mere om vores <Link to="/saadan-tester-vi-casinoer" className={linkClass}>testmetode</Link>.
           </p>
         </section>
 

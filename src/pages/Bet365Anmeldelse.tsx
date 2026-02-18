@@ -113,7 +113,7 @@ const Bet365Anmeldelse = () => {
       url: "https://www.bet365.dk/",
     },
     author: { "@type": "Organization", name: "Casinoaftaler" },
-    reviewRating: { "@type": "Rating", ratingValue: "4.5", bestRating: "5" },
+    reviewRating: { "@type": "Rating", ratingValue: "4.5", bestRating: "5", worstRating: "1" },
     reviewBody:
       "bet365 er primært en sportsbook-gigant med et solidt casino-tillæg. Stærkest på sportsbetting og live streaming, men casino-oplevelsen kan virke sekundær.",
   };
@@ -211,7 +211,7 @@ const Bet365Anmeldelse = () => {
             Det er vigtigt at forstå bet365's DNA: de er en sportsbook, der også har et casino – ikke omvendt. Det mærkes i platformen. Navigation, design og markedsføring er bygget omkring sport. Casino-sektionen er gemt et klik væk, og nye brugere lander som standard på sportsforsiden. Det er ikke nødvendigvis en svaghed – men det er en realitet, som casino-fokuserede spillere bør kende, før de opretter en konto.
           </p>
           <p className="text-muted-foreground leading-relaxed">
-            Hvad der adskiller bet365 fra de fleste danske konkurrenter, er skala. Virksomheden beskæftiger over 6.000 medarbejdere, behandler millioner af daglige transaktioner og har investeret massivt i egen teknologi. De bruger ikke tredjepartsplatforme som mange mindre operatører – alt fra odds-beregning til betalingsinfrastruktur er bygget internt. Det giver en stabilitet og reaktionshastighed, der er sjælden i branchen.
+            Hvad der adskiller bet365 fra de fleste danske konkurrenter, er skala. Virksomheden beskæftiger over 6.000 medarbejdere, behandler millioner af daglige transaktioner og har investeret massivt i egen teknologi. De bruger ikke tredjepartsplatforme som mange mindre operatører – alt fra odds-beregning til betalingsinfrastruktur er bygget internt. Det giver en stabilitet og reaktionshastighed, der er sjælden i branchen. Læs mere om vores <Link to="/saadan-tester-vi-casinoer" className={linkClass}>testmetode</Link>.
           </p>
         </section>
 
