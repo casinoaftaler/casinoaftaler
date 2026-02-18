@@ -686,8 +686,6 @@ const Spiludviklere = () => {
           </div>
         </section>
 
-        <InlineCasinoCards title="Casinoer med flest spiludviklere" count={4} />
-
         <Separator className="my-10" />
 
         {/* ═══════════════════════════════════════════
