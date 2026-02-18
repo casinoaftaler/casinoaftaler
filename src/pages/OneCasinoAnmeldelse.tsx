@@ -12,7 +12,7 @@ import { RelatedGuides } from "@/components/RelatedGuides";
 import { InlineCasinoCards } from "@/components/InlineCasinoCards";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
 import { buildArticleSchema, buildFaqSchema } from "@/lib/seo";
-import { QuickFactsProviders } from "@/components/QuickFactsProviders";
+import { QuickFactsProviders, QuickFactsLicense } from "@/components/QuickFactsProviders";
 import type { ReactNode } from "react";
 import { CasinoReviewHero } from "@/components/CasinoReviewHero";
 import { Star, Zap, Check, X, Gamepad2, Trophy, Sparkles, Shield, Headphones, CreditCard, Users, Target, Smartphone, ShieldCheck, TrendingUp } from "lucide-react";
@@ -130,7 +130,7 @@ const OneCasinoAnmeldelse = () => {
       </section>
 
       <div className="container py-8 md:py-12">
-        <AuthorMetaBar author="jonas" date="17-02-2026" readTime="25 Min." />
+        <AuthorMetaBar author="jonas" date="18-02-2026" readTime="33 Min." />
         <CasinoReviewHero slug="onecasino" casinoName="One Casino" />
 
         {/* Hurtige fakta */}
@@ -176,6 +176,7 @@ const OneCasinoAnmeldelse = () => {
                 </div>
               </div>
               <QuickFactsProviders providers={["NetEnt", "Play'n GO", "Evolution Gaming", "Microgaming", "One Casino Exclusive"]} />
+              <QuickFactsLicense licenseId="18-0061" />
             </CardContent>
           </Card>
         </section>
@@ -426,6 +427,54 @@ const OneCasinoAnmeldelse = () => {
           <p className="mb-4 text-muted-foreground leading-relaxed">Mod <Link to="/casino-anmeldelser/comeon" className={linkClass}>ComeOn</Link>: Den nærmeste sammenligning – begge er mellemstore platforme med fokus på enkelhed. ComeOn har et bredere spiludvalg (1.200+ vs. 800), MobilePay-support og stærkere løbende kampagner. One Casino har de eksklusive spil og gratisbonussen. For de fleste spillere er ComeOn det stærkere valg; for den nysgerrige spiller, der søger unikt indhold, har One Casino noget, ComeOn ikke kan tilbyde.</p>
           <p className="mb-4 text-muted-foreground leading-relaxed">Mod <Link to="/casino-anmeldelser/getlucky" className={linkClass}>GetLucky</Link>: Begge er relativt nye brands med innovationsambitioner. GetLucky har et bredere produkt med sport og stærkere kampagner. One Casino har de eksklusive spil. GetLucky vinder på helhedsoplevelsen, men One Casino differentierer sig stærkere. Mod <Link to="/casino-anmeldelser/leovegas" className={linkClass}>LeoVegas</Link> eller <Link to="/casino-anmeldelser/bet365" className={linkClass}>bet365</Link>: Det er ikke en fair sammenligning. Disse platforme overgår One Casino på alle standardparametre. One Casinos eneste fordel er de eksklusive spil – alt andet er markant bedre hos de store aktører.</p>
           <p className="text-muted-foreground leading-relaxed">Den mest ærlige positionering af One Casino er som et supplement-casino – en platform, du besøger for de eksklusive spil, mens du har din primære konto hos en bredere operatør. Det er ikke et primærcasino for nogen spillerprofil vi kan identificere, men det er et interessant tilvalg for den nysgerrige spiller. Og gratisbonussen gør det risikofrit at teste, om platformen passer til dig – en mulighed, vi anbefaler at benytte.</p>
+        </section>
+
+        <Separator className="my-10" />
+
+        {/* EV-analyse – Archetype E */}
+        <section className="mb-12">
+          <h2 className="mb-4 text-3xl font-bold"><TrendingUp className="inline h-7 w-7 text-primary mr-2" />Matematisk analyse – dobbeltbonussens reelle værdi</h2>
+          <p className="mb-4 text-muted-foreground leading-relaxed">One Casinos unikke dobbelt-bonusstrategi – gratis tilmeldingsbonus plus matchbonus – kræver en todelt EV-analyse for at kvantificere den samlede værdi for nye spillere. Vi gennemregner begge elementer separat og samler dem til en total Expected Value.</p>
+          <Card className="border-border bg-card border-l-4 border-l-primary mb-6">
+            <CardContent className="pt-6">
+              <p className="font-semibold text-foreground mb-3">Komplet EV-beregning for One Casinos velkomsttilbud:</p>
+              <div className="space-y-4 text-sm text-muted-foreground">
+                <div>
+                  <p className="font-medium text-foreground">Del A: Gratis tilmeldingsbonus (no-deposit)</p>
+                  <p>Bonusbeløb: 15 kr. (typisk)</p>
+                  <p>Omsætningskrav: 10x = 150 kr. omsætning</p>
+                  <p>Forventet tab: 150 × 0,04 = 6 kr.</p>
+                  <p>EV af gratisbonus: 15 − 6 = <strong>+9 kr.</strong></p>
+                </div>
+                <div>
+                  <p className="font-medium text-foreground">Del B: Matchbonus (100% op til 2.000 kr.)</p>
+                  <p>Indbetal 1.000 kr. → modtag 1.000 kr. matchbonus</p>
+                  <p>Omsætningskrav: 10x × (1.000 + 1.000) = 20.000 kr.</p>
+                  <p>Forventet tab: 20.000 × 0,04 = 800 kr.</p>
+                  <p>EV af matchbonus: 1.000 − 800 = <strong>+200 kr.</strong></p>
+                </div>
+                <div>
+                  <p className="font-medium text-foreground">Samlet Expected Value:</p>
+                  <p>Total EV = +9 + +200 = <strong className="text-primary">+209 kr.</strong></p>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+          <p className="mb-4 text-muted-foreground leading-relaxed">Den samlede EV på +209 kr. placerer One Casino i midterfeltet af danske velkomstbonusser. Men der er en vigtig nuance: gratisbonussen (+9 kr.) kræver ingen risiko fra spillerens side. Du kan teste platformen og de eksklusive spil uden at investere en krone – og den oplevelsesmæssige værdi af dette kan være betydeligt højere end den rene matematiske EV, især for spillere, der er usikre på, om One Casinos nichestrategi passer til dem.</p>
+          <p className="mb-4 text-muted-foreground leading-relaxed"><strong>Eksklusive spil og RTP-overvejelser:</strong> De eksklusive in-house spil har RTP-værdier mellem 95% og 96,5% – lidt under gennemsnittet for top-slots fra <Link to="/spiludviklere/netent" className={linkClass}>NetEnt</Link> (typisk 96-97%). Det betyder, at bonusomsætning på eksklusive spil har en marginalt højere omkostning (House Edge 4-5% vs. 3-4%). For optimal EV bør du omsætte bonussen på standard-slots med høj RTP, og kun spille de eksklusive titler for underholdningsværdien efter omsætningskravet er opfyldt.</p>
+          <p className="mb-4 text-muted-foreground leading-relaxed"><strong>Risk of Ruin-analyse:</strong> Med den samlede startbankroll på 2.015 kr. (1.000 kr. egen + 1.000 kr. matchbonus + 15 kr. gratis) og en gennemsnitlig indsats på 10 kr. (ca. 0,5% af bankroll) er Risk of Ruin ca. 8-10% under omsætning. Den optimale strategi er at bruge gratisbonussen først til at lære platformen at kende, og derefter indbetale og omsætte matchbonussen på velkendte slots med lav-til-medium volatilitet. Book of Dead (RTP 96,21%, medium volatilitet) og Starburst (RTP 96,09%, lav volatilitet) er optimale valg hos One Casino.</p>
+          <p className="text-muted-foreground leading-relaxed"><strong>Sammenlignet med alternativer:</strong> <Link to="/casino-anmeldelser/comeon" className={linkClass}>ComeOn</Link>'s velkomstbonus giver en EV på ca. +200 kr. men uden gratisbonus. <Link to="/casino-anmeldelser/leovegas" className={linkClass}>LeoVegas</Link> giver ca. +400 kr. med free spins. <Link to="/casino-anmeldelser/betinia" className={linkClass}>Betinia</Link>'s no-sticky bonus giver ca. +350 kr. med markant bedre fleksibilitet. One Casinos unikke fordel er den risikofrie testmulighed via gratisbonussen – men den samlede bonusværdi er lavere end hos de mest konkurrencedygtige operatører.</p>
+        </section>
+
+        <Separator className="my-10" />
+
+        <section className="mb-12">
+          <h2 className="mb-4 text-3xl font-bold">One Casinos fremtid – eksklusive spil i et modent marked</h2>
+          <p className="mb-4 text-muted-foreground leading-relaxed">Betreels Ltd's strategi med eksklusive in-house spil repræsenterer et modigt bet på differentiering i et marked, der i stigende grad homogeniseres. Spørgsmålet er, om denne strategi er bæredygtig – og om One Casino kan udvikle sig fra et supplement-casino til en stærkere standalone-platform. Vi ser på de faktorer, der vil forme platformens fremtid.</p>
+          <p className="mb-4 text-muted-foreground leading-relaxed">Den mest kritiske udfordring er skalering af det eksklusive spiludvikling. Med et lille in-house team kan One Casino realistisk lancere 2-4 nye eksklusive titler per kvartal – en kadence, der er utilstrækkelig til at holde engagementet hos aktive spillere, der typisk forventer 50-100 nye titler per måned fra mainstream-kataloget. For at styrke denne side kan Betreels Ltd enten investere i et større udviklingsteam (højt kapitalkrav), indgå eksklusive partnerskaber med uafhængige studios (moderat investering), eller integrere bruger-genereret indhold via gamification-platforme (innovativt men risikabelt).</p>
+          <p className="mb-4 text-muted-foreground leading-relaxed">Det danske marked er modent og intensivt konkurrencepræget med over 30 licenserede operatører. For en nichespiller som One Casino er positionen sårbar: den største trussel er ikke direkte konkurrence, men irrelevans. Hvis de store operatører begynder at tilbyde eksklusive spil – og <Link to="/casino-anmeldelser/leovegas" className={linkClass}>LeoVegas</Link> har allerede eksklusive live casino-borde – mister One Casino sin eneste differentiering. Modsvaret er at fordybe sig yderligere i nichen: bedre eksklusive spil, stærkere community-features og en tydeligere brand-identitet som "det anderledes casino".</p>
+          <p className="mb-4 text-muted-foreground leading-relaxed">Vi ser også en mulighed i den teknologiske udvikling. AI-genererede spil, blockchain-baserede provably fair-mekanikker og personaliserede spiloplevelser er alle teknologier, som et lille, agilt selskab som Betreels Ltd kan adoptere hurtigere end større, mere bureaukratiske konkurrenter. Hvis One Casino kan integrere cutting-edge teknologi i sine eksklusive titler, kan det skifte fra "eksklusive spil som gimmick" til "eksklusive spil som teknologisk førende" – en transformation, der ville ændre platformens markedsposition fundamentalt.</p>
+          <p className="text-muted-foreground leading-relaxed">For spillere, der overvejer One Casino i dag, er den mest realistiske prognose: platformen vil forblive en niche-aktør med et specifikt appeal. Den vil sandsynligvis ikke blive en mainstream-konkurrent, men den vil heller ikke forsvinde – Betreels Ltd har opereret stabilt i over et årti, og det eksklusive spilunivers tiltrækker en loyal, om end lille, spillerbase. Gratisbonussen gør det risikofrit at teste, og for den rette spiller er One Casino en unik oplevelse, der beriger casinolandskabet med variation og originalitet.</p>
         </section>
 
         <InlineCasinoCards count={3} />
