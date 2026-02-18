@@ -189,7 +189,8 @@ const Casinospil = () => {
           </p>
         </section>
 
-        <InlineCasinoCards title="Anbefalede casinoer med bredt spiludvalg" count={6} />
+
+
 
         {/* ═══════════════════════════════════════════
             SECTION 2: Spilleautomater
@@ -267,6 +268,8 @@ const Casinospil = () => {
             <Link to="/casinospil/baccarat" className={linkClass}>Baccarat</Link> er det simpleste bordspil: sats på banker (1,06 % house edge), spiller (1,24 %) eller uafgjort (14,36 % – undgå dette). <Link to="/casinospil/craps" className={linkClass}>Craps</Link> tilbyder 1,36 % house edge på "don't pass line" – men den komplekse tabel skræmmer mange nye spillere. <Link to="/casinospil/poker" className={linkClass}>Poker</Link> er unikt, fordi du spiller mod andre spillere, ikke huset. Casinoet tager en rake, men dine odds afhænger af din dygtighed relativt til modstanderne. Video poker-varianter som Jacks or Better kan nå 99,5 % RTP med perfekt strategi.
           </p>
         </section>
+
+        <InlineCasinoCards title="Anbefalede casinoer med bredt spiludvalg" count={6} />
 
         <Separator className="my-10" />
 

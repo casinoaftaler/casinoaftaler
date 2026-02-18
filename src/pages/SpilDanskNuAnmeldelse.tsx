@@ -18,7 +18,7 @@ import { buildArticleSchema, buildFaqSchema } from "@/lib/seo";
 import { useAuth } from "@/hooks/useAuth";
 import type { ReactNode } from "react";
 import { CasinoReviewHero } from "@/components/CasinoReviewHero";
-import { QuickFactsProviders, QuickFactsLogo } from "@/components/QuickFactsProviders";
+import { QuickFactsProviders, QuickFactsLogo, QuickFactsLicense } from "@/components/QuickFactsProviders";
 import {
   ShieldCheck, Star, Clock, CreditCard, Gift, Trophy, Sparkles,
   Zap, RotateCcw, Check, X, Award, TrendingUp,
@@ -79,6 +79,7 @@ const SpilDanskNuAnmeldelse = () => {
                 {[{ label: "Min. indbetaling", value: "75 kr." }, { label: "Bonusgyldighed", value: "60 dage" }, { label: "Gns. RTP", value: "96,3%" }, { label: "Operatør", value: "Winteq ApS" }].map((f) => (<div key={f.label} className="rounded-lg border border-border p-3"><p className="text-xs text-muted-foreground uppercase mb-1">{f.label}</p><p className="text-lg font-bold text-foreground">{f.value}</p></div>))}
               </div>
               <QuickFactsProviders providers={["Pragmatic Play", "Play'n GO", "Quickspin", "Push Gaming", "Hacksaw Gaming", "Stakelogic", "Synot", "Greentube", "ELK Studios", "Wazdan", "Endorphina"]} />
+              <QuickFactsLicense licenseId="21-67980" />
             </CardContent>
           </Card>
         </section>

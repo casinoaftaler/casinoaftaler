@@ -86,8 +86,6 @@ const NyeCasinoerTrustly = () => {
           </p>
         </section>
 
-        <InlineCasinoCards title="Nye Casinoer med Trustly" />
-
         <Separator className="my-10" />
 
         <section className="mb-12">
@@ -134,6 +132,8 @@ const NyeCasinoerTrustly = () => {
             ))}
           </div>
         </section>
+
+        <InlineCasinoCards title="Nye Casinoer med Trustly" />
 
         <Separator className="my-10" />
 

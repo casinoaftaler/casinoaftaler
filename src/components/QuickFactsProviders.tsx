@@ -1,4 +1,4 @@
-import { Gamepad2 } from "lucide-react";
+import { Gamepad2, ShieldCheck } from "lucide-react";
 import { Link } from "react-router-dom";
 
 const providerRoutes: Record<string, string> = {
@@ -54,6 +54,34 @@ export function QuickFactsProviders({ providers, logoUrl, casinoName }: QuickFac
             </span>
           );
         })}
+      </div>
+    </div>
+  );
+}
+
+interface QuickFactsLicenseProps {
+  licenseId: string;
+  authority?: string;
+}
+
+export function QuickFactsLicense({ licenseId, authority = "Spillemyndigheden" }: QuickFactsLicenseProps) {
+  return (
+    <div className="mt-4 rounded-lg border border-border p-3">
+      <p className="text-xs text-muted-foreground uppercase mb-2 flex items-center justify-center gap-1.5">
+        <ShieldCheck className="h-3.5 w-3.5" />
+        Licensverifikation
+      </p>
+      <div className="flex items-center justify-center gap-2 text-sm">
+        <span className="font-medium text-foreground">Dansk licens #{licenseId}</span>
+        <span className="text-muted-foreground">–</span>
+        <a
+          href="https://www.spillemyndigheden.dk/telefonbog"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-flex items-center gap-1 text-primary underline hover:text-primary/80 text-xs"
+        >
+          Verificér hos {authority} →
+        </a>
       </div>
     </div>
   );
