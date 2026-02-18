@@ -75,13 +75,34 @@ const providerSiblings: GuideLink[] = [
   { to: "/spiludviklere/big-time-gaming", label: "Big Time Gaming", icon: Zap, desc: "Opfinderne af Megaways" },
 ];
 
-const reviewSiblings: GuideLink[] = [
+const allReviews: GuideLink[] = [
+  { to: "/casino-anmeldelser/bet365", label: "bet365", icon: Star, desc: "Komplet sportsbook og casino" },
+  { to: "/casino-anmeldelser/betano", label: "Betano", icon: Trophy, desc: "Moderne casino med stærk bonus" },
+  { to: "/betinia-anmeldelse", label: "Betinia", icon: Trophy, desc: "Moderne casino med store bonusser" },
+  { to: "/casino-anmeldelser/bwin", label: "bwin", icon: Star, desc: "Internationalt casino og betting" },
+  { to: "/campobet-anmeldelse", label: "Campobet", icon: Star, desc: "Casino og sportsbetting i ét" },
+  { to: "/casino-anmeldelser/casinostuen", label: "Casinostuen", icon: Gamepad2, desc: "Dansk casino med loyalitetsprogram" },
+  { to: "/casino-anmeldelser/comeon", label: "ComeOn", icon: Zap, desc: "Enkelt casino med hurtige udbetalinger" },
+  { to: "/casino-anmeldelser/expekt", label: "Expekt", icon: Star, desc: "Nordisk sportsbook og casino" },
+  { to: "/casino-anmeldelser/getlucky", label: "GetLucky", icon: Sparkles, desc: "Casino med bred spiludvalg" },
+  { to: "/casino-anmeldelser/kapow-casino", label: "Kapow Casino", icon: Zap, desc: "Nyt dansk casino med unikke features" },
+  { to: "/casino-anmeldelser/leovegas", label: "LeoVegas", icon: Trophy, desc: "Prisbelønnet mobilcasino" },
+  { to: "/luna-casino-anmeldelse", label: "Luna Casino", icon: Sparkles, desc: "Nyt dansk casino med stærk bonus" },
+  { to: "/casino-anmeldelser/marathonbet", label: "MarathonBet", icon: Star, desc: "Høje odds og lavt margin" },
+  { to: "/casino-anmeldelser/maria-casino", label: "Maria Casino", icon: Sparkles, desc: "Dansk casino med bingo og slots" },
+  { to: "/casino-anmeldelser/mr-green", label: "Mr Green", icon: Star, desc: "Ansvarligt spil og Green Gaming" },
+  { to: "/casino-anmeldelser/mr-vegas", label: "Mr Vegas", icon: Trophy, desc: "Casino med bred spiludvalg" },
+  { to: "/casino-anmeldelser/nordicbet", label: "NordicBet", icon: Star, desc: "Nordisk casino med sportsfokus" },
+  { to: "/casino-anmeldelser/one-casino", label: "One Casino", icon: Gamepad2, desc: "Simpelt casino med hurtig start" },
+  { to: "/casino-anmeldelser/pokerstars", label: "PokerStars", icon: Star, desc: "Verdens største pokersite" },
+  { to: "/casino-anmeldelser/royal-casino", label: "Royal Casino", icon: Trophy, desc: "Dansk licenseret casino" },
   { to: "/spildansknu-anmeldelse", label: "SpilDanskNu", icon: Star, desc: "Dansk casino med 10x omsætningskrav" },
   { to: "/spilleautomaten-anmeldelse", label: "Spilleautomaten", icon: Gamepad2, desc: "Bredt spiludvalg og hurtige udbetalinger" },
-  { to: "/betinia-anmeldelse", label: "Betinia", icon: Trophy, desc: "Moderne casino med store bonusser" },
+  { to: "/casino-anmeldelser/spilnu", label: "Spilnu", icon: Sparkles, desc: "Populært dansk online casino" },
+  { to: "/casino-anmeldelser/stake-casino", label: "Stake Casino", icon: Zap, desc: "Crypto-venligt casino" },
   { to: "/swift-casino-anmeldelse", label: "Swift Casino", icon: Zap, desc: "Hurtigt og enkelt casinooplevelse" },
-  { to: "/campobet-anmeldelse", label: "Campobet", icon: Star, desc: "Casino og sportsbetting i ét" },
-  { to: "/luna-casino-anmeldelse", label: "Luna Casino", icon: Sparkles, desc: "Nyt dansk casino med stærk bonus" },
+  { to: "/casino-anmeldelser/unibet", label: "Unibet", icon: Trophy, desc: "Nordisk gigant med komplet udbud" },
+  { to: "/casino-anmeldelser/videoslots", label: "Videoslots", icon: Gamepad2, desc: "Enormt spiludvalg og Battle of Slots" },
 ];
 
 const casinoGuidesSiblings: GuideLink[] = [
@@ -237,9 +258,21 @@ function getContextualGuides(currentPath: string): { guides: GuideLink[]; subtit
     };
   }
 
-  // Casino review subpages → hub + 3 siblings + 1 cross-cluster
-  if (path.includes("-anmeldelse")) {
-    const siblings = reviewSiblings.filter(g => g.to !== path).slice(0, MAX_SIBLINGS);
+  // Casino review subpages → hub + 3 rotated siblings + 1 cross-cluster
+  if (path.includes("-anmeldelse") || path.startsWith("/casino-anmeldelser/")) {
+    const currentIndex = allReviews.findIndex(g => g.to === path);
+    const filtered = allReviews.filter(g => g.to !== path);
+    let siblings: GuideLink[];
+    if (currentIndex >= 0) {
+      const len = allReviews.length;
+      siblings = [
+        allReviews[(currentIndex + 3) % len],
+        allReviews[(currentIndex + 7) % len],
+        allReviews[(currentIndex + 11) % len],
+      ].filter(g => g.to !== path);
+    } else {
+      siblings = filtered.slice(0, MAX_SIBLINGS);
+    }
     return {
       guides: [reviewHub, ...siblings, bonusHub].slice(0, MAX_SIBLINGS + 1 + MAX_CROSS_CLUSTER),
       subtitle: "Udforsk andre casino anmeldelser på danske casinoer.",
@@ -249,7 +282,7 @@ function getContextualGuides(currentPath: string): { guides: GuideLink[]; subtit
   // Casino review hub
   if (path === "/casino-anmeldelser") {
     return {
-      guides: [...reviewSiblings.slice(0, MAX_SIBLINGS), bonusHub],
+      guides: [...allReviews.slice(0, MAX_SIBLINGS), bonusHub],
       subtitle: "Udforsk vores dybdegående casino anmeldelser.",
     };
   }
