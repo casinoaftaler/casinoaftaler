@@ -13,7 +13,7 @@ const pokerstarsFaqs: { question: string; answer: ReactNode }[] = [
 const PokerStarsAnmeldelse = () => {
   const { data: siteSettings } = useSiteSettings();
   const heroBackgroundImage = siteSettings?.hero_background_image;
-  const articleSchema = buildArticleSchema({ headline: "PokerStars Anmeldelse 2026 – Verdens Største Poker-Platform", description: "Dybdegående anmeldelse af PokerStars Casino. Dansk licens, poker, casino og sportsvæddemål fra verdens førende poker-brand.", url: "https://casinoaftaler.dk/casino-anmeldelser/pokerstars", datePublished: "2026-02-15", dateModified: "2026-02-17", authorName: "Jonas", authorUrl: "https://casinoaftaler.dk/forfatter/jonas" });
+  const articleSchema = buildArticleSchema({ headline: "PokerStars Anmeldelse 2026 – Verdens Største Poker-Platform", description: "Dybdegående anmeldelse af PokerStars Casino. Dansk licens, poker, casino og sportsvæddemål fra verdens førende poker-brand.", url: "https://casinoaftaler.dk/casino-anmeldelser/pokerstars", datePublished: "2026-02-15", dateModified: "2026-02-18", authorName: "Jonas", authorUrl: "https://casinoaftaler.dk/forfatter/jonas" });
   const faqJsonLd = buildFaqSchema(pokerstarsFaqs);
   const reviewJsonLd = { "@context": "https://schema.org", "@type": "Review", itemReviewed: { "@type": "Organization", name: "PokerStars", url: "https://www.pokerstars.dk/" }, author: { "@type": "Organization", name: "Casinoaftaler" }, reviewRating: { "@type": "Rating", ratingValue: "4.3", bestRating: "5", worstRating: "1" }, reviewBody: "PokerStars er verdens førende poker-platform med uovertruffen software, massivt turneringsudvalg og et voksende casino-produkt under Flutter Entertainment." };
   return (
@@ -27,7 +27,7 @@ const PokerStarsAnmeldelse = () => {
         </div></div>
       </section>
       <div className="container py-8 md:py-12">
-        <AuthorMetaBar author="jonas" date="17-02-2026" readTime="29 Min." />
+        <AuthorMetaBar author="jonas" date="18-02-2026" readTime="36 Min." />
         <CasinoReviewHero slug="pokerstars" casinoName="PokerStars" />
 
         {/* Hurtige Fakta */}
@@ -191,12 +191,96 @@ const PokerStarsAnmeldelse = () => {
 
         <Separator className="my-10" />
 
+        {/* Flutter Enterprise Deep-Dive */}
+        <section className="mb-12">
+          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><Globe className="h-7 w-7 text-primary" />Flutter Entertainment – den globale gigant bag PokerStars</h2>
+          <p className="mb-4 text-muted-foreground leading-relaxed">For at forstå PokerStars' position i 2026 er det nødvendigt at forstå moderselskabet Flutter Entertainment. Flutter er verdens største online gambling-selskab med en markedsværdi over $35 mia. og drift i 100+ jurisdiktioner. Porteføljen inkluderer FanDuel (USA's markedsleder i sportsvæddemål), Paddy Power, Betfair, Sportsbet (Australien), Sisal (Italien) og PokerStars. Til sammen håndterer Flutter over $200 mia. i årligt væddemålsvolumen – et tal der overstiger mange nationale BNP'er.</p>
+          <p className="mb-4 text-muted-foreground leading-relaxed">Flutters børsnotering på London Stock Exchange (FLTR.L) og NYSE (FLUT) medfører streng regulering fra både britiske og amerikanske finansmyndigheder. Kvartalsregnskaber revideres af uafhængige revisorer, executive compensation offentliggøres fuldt ud, og selskabet er underlagt SOX-compliance (Sarbanes-Oxley Act) i USA. For den danske poker-spiller er den praktiske konsekvens enkel: dine penge er sikrere på PokerStars end hos nogen anden poker-operatør i verden. Flutter kan ikke skjule problemer – alt er offentligt tilgængeligt i SEC-filings og LSE-rapporter.</p>
+          <p className="mb-4 text-muted-foreground leading-relaxed">Flutters strategi for PokerStars har tre dimensioner: (1) <strong>Poker-kernens bevarelse:</strong> PokerStars forbliver verdens største poker-netværk med fortsatte investeringer i software, turneringer og Game Integrity. Flutter betragter poker som et "heritage brand" med uovertruffen loyalitet. (2) <strong>Casino-diversificering:</strong> PokerStars Casino er vokset 40%+ årligt de seneste tre år med tilføjelse af nye spiludbydere og eksklusive titler. Målet er, at casino-revenue skal udgøre 50% af PokerStars' samlede omsætning inden 2028. (3) <strong>Cross-selling:</strong> PokerStars' unikke position som den eneste platform med poker, casino OG sport under ét tag muliggør cross-selling, der er umulig for pure-play konkurrenter.</p>
+          <p className="text-muted-foreground leading-relaxed">For danske spillere er den mest relevante implikation, at PokerStars ikke forsvinder. I en branche, hvor mindre operatører regelmæssigt lukker, fusionerer eller mister licenser, er Flutter-ejerskabet en absolut garanti for langsigtet stabilitet. Din poker-bankroll, dine turneringspoint og din spillehistorik er sikret af en operatør med ressourcer til at drive platformen i årtier. Det er en tryghed, som ingen uafhængig poker-operatør kan matche.</p>
+        </section>
+
+        <Separator className="my-10" />
+
+        {/* Poker-Specifik EV Deep Dive */}
+        <section className="mb-12">
+          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><TrendingUp className="h-7 w-7 text-primary" />Avanceret EV-analyse: Tre spillerprofiler på PokerStars</h2>
+          <p className="mb-4 text-muted-foreground leading-relaxed">For poker-spillere er Expected Value (EV) beregningen fundamentalt anderledes end for casino-spillere: du spiller mod andre mennesker, ikke mod et house edge. Din EV afhænger af din skill-edge over feltet minus den rake, PokerStars opkræver. Vi analyserer tre realistiske spillerprofiler for danske PokerStars-brugere og beregner deres månedlige EV.</p>
+          
+          <Card className="border-border bg-card mb-6">
+            <CardHeader><CardTitle className="text-lg">Profil 1: Casual Weekend-Spilleren (NL10-NL25)</CardTitle></CardHeader>
+            <CardContent className="space-y-2 text-sm text-muted-foreground">
+              <p><strong>Ugentlig spilletid:</strong> 5 timer (fredag-søndag)</p>
+              <p><strong>Primært format:</strong> Sit & Go og Spin & Go ($3-$7 buy-in)</p>
+              <p><strong>Cash game volume:</strong> ~400 hænder/uge (NL10 Zoom)</p>
+              <p><strong>Turneringer:</strong> 3-5 MTTs/uge ($5-$11 buy-in)</p>
+              <p><strong>Estimeret skill-edge:</strong> 0-2 bb/100 (cash), breakeven-minus i MTTs</p>
+              <p><strong>Månedlig rake betalt:</strong> ~$35-50 / ~250-350 kr.</p>
+              <p><strong>Stars Rewards return:</strong> ~2-3% = ~$1-1.50/måned</p>
+              <p><strong>Samlet månedlig EV:</strong> -$20 til +$15 (rekreativ underholdningsværdi)</p>
+              <p className="text-xs pt-2 italic">For den casual spiller er PokerStars god underholdning med en "pris" der er langt lavere end biograf, streaming-abonnementer eller fysisk casino. Skill-udvikling over tid kan vende minus til plus.</p>
+            </CardContent>
+          </Card>
+
+          <Card className="border-border bg-card mb-6">
+            <CardHeader><CardTitle className="text-lg">Profil 2: Den Seriøse Hobbyspiller (NL50-NL100)</CardTitle></CardHeader>
+            <CardContent className="space-y-2 text-sm text-muted-foreground">
+              <p><strong>Ugentlig spilletid:</strong> 15-20 timer</p>
+              <p><strong>Primært format:</strong> NL50/NL100 Zoom cash games + ugentlige MTTs</p>
+              <p><strong>Cash game volume:</strong> ~4.000 hænder/uge</p>
+              <p><strong>Turneringer:</strong> 5-10 MTTs/uge ($11-$55 buy-in) + Sunday specials</p>
+              <p><strong>Estimeret skill-edge:</strong> 3-5 bb/100 (cash), 15-30% ROI i MTTs</p>
+              <p><strong>Månedlig rake betalt (cash):</strong> ~$400-600 / ~2.800-4.200 kr.</p>
+              <p><strong>Stars Rewards return:</strong> ~3-5% = ~$15-30/måned</p>
+              <p><strong>Cash game netto-EV:</strong> +$200-500/måned (afhængig af volume og win rate)</p>
+              <p><strong>Turnerings-EV:</strong> +$100-400/måned (høj varians – kan svinge ±$1.000+)</p>
+              <p><strong>Samlet månedlig EV:</strong> +$250-800 / ~1.750-5.600 kr.</p>
+              <p className="text-xs pt-2 italic">Denne profil kræver investering i studie (bøger, solver-software, coaching) for at opretholde en edge. Bankroll-anbefaling: min. 25 buy-ins for cash ($1.250-2.500) + separat turneringsbudget.</p>
+            </CardContent>
+          </Card>
+
+          <Card className="border-border bg-card mb-6">
+            <CardHeader><CardTitle className="text-lg">Profil 3: Semi-Professionel Grinder (NL200+)</CardTitle></CardHeader>
+            <CardContent className="space-y-2 text-sm text-muted-foreground">
+              <p><strong>Ugentlig spilletid:</strong> 30-40 timer</p>
+              <p><strong>Primært format:</strong> NL200/NL500 regular og Zoom + high-stakes MTTs</p>
+              <p><strong>Cash game volume:</strong> ~10.000+ hænder/uge</p>
+              <p><strong>Turneringer:</strong> Sunday Majors ($109-$530 buy-in) + WCOOP/SCOOP-events</p>
+              <p><strong>Estimeret skill-edge:</strong> 2-4 bb/100 (NL200), 10-20% ROI i MTTs</p>
+              <p><strong>Månedlig rake betalt:</strong> ~$2.000-4.000 / ~14.000-28.000 kr.</p>
+              <p><strong>Stars Rewards return:</strong> ~4-6% = ~$80-240/måned</p>
+              <p><strong>Cash game netto-EV:</strong> +$800-2.000/måned</p>
+              <p><strong>Turnerings-EV:</strong> +$500-3.000/måned (ekstremt høj varians)</p>
+              <p><strong>Samlet månedlig EV:</strong> +$1.200-4.500 / ~8.400-31.500 kr.</p>
+              <p className="text-xs pt-2 italic">OBS: Stars Rewards returnerer kun 4-6% af rake for high-volume grinders – markant lavere end det gamle Supernova-program (~20-30%). Netto-rake er derfor PokerStars' primære ulempe for professionelle. Bankroll-anbefaling: min. 40 buy-ins for cash + 100 buy-ins for MTTs.</p>
+            </CardContent>
+          </Card>
+
+          <p className="mb-4 text-muted-foreground leading-relaxed"><strong>Rake-sammenligning:</strong> PokerStars' rake-struktur er konkurrencedygtig men ikke markedsledende. Standard 5% rake med caps fra $0.50 (NL2) til $3.00 (NL200+) er identisk med GGPoker og partypoker. Den reelle forskel ligger i rakeback: GGPoker returnerer 15-60% via Fish Buffet-programmet, partypoker tilbyder 20-40% via loyalitetsprogrammet, mens Stars Rewards leverer blot 3-6%. For en NL200-grinder der betaler $3.000/måned i rake, er forskellen mellem 5% (PokerStars) og 30% (GGPoker) rakeback hele $750/måned – et beløb der kan afgøre, om poker er en bæredygtig indtægtskilde.</p>
+          <p className="text-muted-foreground leading-relaxed"><strong>Hvorfor spille PokerStars alligevel?</strong> Fordi spillernetværket kompenserer. PokerStars' likviditet muliggør 250+ Zoom-hænder/time (vs. 150-180 på GGPoker), hvilket øger din absolutte hourly rate selvom per-hand EV er lavere. Turneringsgarantierne er 2-5x større end konkurrenternes, og game-kvaliteten (andel af recreational players) er bedre i turneringer end på de fleste andre sites. For danske spillere, hvor GGPoker har begrænset tilgængelighed, er PokerStars desuden det eneste reelle high-stakes alternativ.</p>
+        </section>
+
+        <Separator className="my-10" />
+
+        {/* Software Deep-Dive */}
+        <section className="mb-12">
+          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><Award className="h-7 w-7 text-primary" />Software-teknologien – derfor er PokerStars stadig branchens benchmark</h2>
+          <p className="mb-4 text-muted-foreground leading-relaxed">PokerStars' software-overlegenhed er ikke tilfældig – den er resultatet af 25 års kontinuerlig udvikling og en R&D-afdeling med 200+ ingeniører. Desktop-klienten er skrevet i C++ for maksimal performance og understøtter multi-tabling op til 24 borde med individuelle eller tilede layouts. Hvert bord kan konfigureres separat med filtstørrelser, chipdesigns, farvetemaer og kortdesigns. Det er en grad af tilpasning, som ingen konkurrent kommer i nærheden af.</p>
+          <p className="mb-4 text-muted-foreground leading-relaxed">Hand replayer-funktionen lader dig genafspille hænder i et filmisk format med automatisk pot-size beregning, equity-visning og showdown-analyse. Noteringssystemet er branchens mest avancerede: du kan tilføje farvekodede etiketter til modstandere (f.eks. "tight-passive fish", "loose-aggressive reg"), skrive detaljerede noter og synkronisere dem på tværs af desktop og mobil. Disse noter bevares permanent og er tilgængelige, næste gang du møder spilleren – uanset om det er måneder eller år senere.</p>
+          <p className="mb-4 text-muted-foreground leading-relaxed">HUD-integration (Heads-Up Display) med PokerTracker 4 og Hold'em Manager 3 er fuldt understøttet. En HUD viser real-time statistikker for dine modstandere direkte på bordet: VPIP (voluntarily put money in pot), PFR (pre-flop raise), 3-bet percentage, fold to c-bet og hundredvis af andre stats. For seriøse spillere er HUD-data afgørende for optimal beslutningstagning, og PokerStars er en af de få platforme, der stadig tillader det – GGPoker og partypoker har delvist begrænset eller forbudt ekstern HUD-software.</p>
+          <p className="mb-4 text-muted-foreground leading-relaxed">Zoom Poker – PokerStars' fast-fold format – fortjener særlig omtale. Når du folder en hånd, flyttes du øjeblikkeligt til et nyt bord med nye modstandere og en ny hånd. Resultatet er 250+ hænder per time (vs. 60-80 på regulære borde) – en 3-4x acceleration der er ideel for grinders, der vil maksimere volume. Zoom er tilgængeligt i No Limit Hold'em (NL2-NL500) og Pot Limit Omaha (PLO5-PLO200), og kvaliteten af spillerpool på Zoom er generelt lidt tøffere end regulære borde, da recreational players foretrækker det langsommere tempo.</p>
+          <p className="text-muted-foreground leading-relaxed">Mobilappen (iOS/Android) håndterer op til 4 samtidige borde med et touch-optimeret interface. Swipe-to-fold, tap-to-bet og auto-size betting-knapper gør mobil-poker overraskende komfortabelt – selv i multi-table situationer. Turneringsregistrering, lobby-browsing og kontostyring er fuldt integreret. Den eneste reelle begrænsning er fraværet af HUD-support og visse avancerede turneringsfiltre, der kræver desktop-klienten. For casual poker og al casino-brug er appen fremragende.</p>
+        </section>
+
+        <Separator className="my-10" />
+
         {/* Market & Future */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold">Online pokers fremtid – og PokerStars' rolle</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">Online poker gennemgår en transformation drevet af to modsatrettede kræfter: faldende popularitet som primær gambling-form (overhalet af sportsvæddemål og slots) men stigende sofistikation blandt de tilbageværende spillere. For PokerStars betyder det en gradvis overgang fra den masseappeal, som Moneymaker-æraen bragte, til en mere specialiseret, skill-baseret platform med casino og sport som supplerende indtægtskilder.</p>
-          <p className="mb-4 text-muted-foreground leading-relaxed">Flutter Entertainments strategi for PokerStars fokuserer på tre søjler: 1) Fastholdelse af pokerkernens loyalitet via turneringsinnovation og softwareforbedringer, 2) Vækst i casino- og sportsprodukterne for at diversificere revenue, og 3) Ekspansion i nye markeder (særligt USA via Fox Bet-partnerskabet). For danske spillere er den vigtigste konsekvens, at PokerStars' poker-produkt forbliver det bedste i verden – det er Flutters flagskib og vil fortsat modtage massive investeringer.</p>
-          <p className="text-muted-foreground leading-relaxed">Vores vurdering: PokerStars er den eneste platform, der er uundværlig for danske pokerspillere. Casino og sport er gode supplementer, men ikke destinations-produkter. Hvis du spiller poker – uanset niveau – bør du have en PokerStars-konto. Det er ikke en anbefaling, det er en konstatering af markedsrealiteten.</p>
+          <p className="mb-4 text-muted-foreground leading-relaxed">AI-udviklingen er den mest disruptive faktor for online pokers fremtid. Moderne AI-systemer (Pluribus, Libratus) kan slå verdens bedste poker-spillere, og tilgængeligheden af solver-software (PioSolver, GTO Wizard) har demokratiseret avanceret strategisk analyse. Konsekvensen er et stadigt tøffere spillemiljø, hvor skill-gabet mellem recreational og professionelle spillere indsnævres. PokerStars responderer med innovations som Mystery Bounty-turneringer, nye Spin & Go-varianter og periodiske "amateur-friendly" initiativer der tiltrækker casual spillere.</p>
+          <p className="mb-4 text-muted-foreground leading-relaxed">Den regulatoriske udvikling i Europa og USA er afgørende. Flere EU-lande bevæger sig mod ringfenced poker-markeder (separate spillerpools per land), hvilket fragmenterer likviditeten. Danmark er allerede ringfenced via Spillemyndighedens licenskrav, men PokerStars' danske pool er integreret i det europæiske netværk – en fordel der sikrer tilstrækkelig likviditet på alle stakes-niveauer. I USA er Flutters ekspansion via FanDuel og Fox Bet en langsigtede vej til et samlet transatlantisk poker-netværk, der ville revolutionere spillet.</p>
+          <p className="text-muted-foreground leading-relaxed">Vores vurdering: PokerStars er den eneste platform, der er uundværlig for danske pokerspillere. Casino og sport er gode supplementer, men ikke destinations-produkter. Hvis du spiller poker – uanset niveau – bør du have en PokerStars-konto. Det er ikke en anbefaling, det er en konstatering af markedsrealiteten. Flutters investeringer sikrer, at PokerStars forbliver branchens benchmark i årtier frem.</p>
         </section>
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold">Kort sagt – PokerStars er stadig kongen</h2>
