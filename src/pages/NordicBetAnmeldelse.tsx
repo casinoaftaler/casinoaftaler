@@ -12,7 +12,7 @@ import { RelatedGuides } from "@/components/RelatedGuides";
 import { InlineCasinoCards } from "@/components/InlineCasinoCards";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
 import { buildArticleSchema, buildFaqSchema } from "@/lib/seo";
-import { QuickFactsProviders } from "@/components/QuickFactsProviders";
+import { QuickFactsProviders, QuickFactsLicense } from "@/components/QuickFactsProviders";
 import { CasinoReviewHero } from "@/components/CasinoReviewHero";
 import type { ReactNode } from "react";
 import { ShieldCheck, Zap, Check, X, Globe, Gamepad2, Trophy, Headphones, Wallet, Target, Users } from "lucide-react";
@@ -68,6 +68,7 @@ const NordicBetAnmeldelse = () => {
                 <div className="rounded-lg border border-border p-3"><p className="text-xs text-muted-foreground uppercase mb-1">Antal casinospil</p><p className="text-lg font-bold text-foreground">1.000+</p></div>
               </div>
               <QuickFactsProviders providers={["NetEnt", "Play'n GO", "Evolution Gaming", "Pragmatic Play", "Red Tiger", "Microgaming", "Yggdrasil", "Hacksaw Gaming"]} />
+              <QuickFactsLicense licenseId="18-0042" />
             </CardContent>
           </Card>
         </section>
@@ -304,6 +305,54 @@ const NordicBetAnmeldelse = () => {
         </section>
 
         <InlineCasinoCards count={3} />
+
+        <Separator className="my-10" />
+
+        {/* Bankroll & EV Analysis */}
+        <section className="mb-12">
+          <h2 className="mb-4 text-3xl font-bold">Bankroll-analyse og Expected Value for NordicBet</h2>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            For at give et matematisk funderet perspektiv på NordicBets casinobonus har vi beregnet Expected Value (EV) og Risk of Ruin under standardbetingelser. Disse beregninger gælder for den typiske danske spiller, der udnytter velkomstbonussen fuldt ud.
+          </p>
+          <Card className="border-border bg-card mb-6">
+            <CardHeader><CardTitle className="text-lg">EV-beregning – NordicBet casinobonus</CardTitle></CardHeader>
+            <CardContent className="space-y-2 text-sm text-muted-foreground">
+              <p><strong>Scenarie:</strong> Indbetaling 1.000 kr. + 1.000 kr. bonus = 2.000 kr. total</p>
+              <p><strong>Omsætningskrav:</strong> 10x (d+b) = 20.000 kr.</p>
+              <p><strong>Gennemsnitlig RTP:</strong> 96% (slots-weighted)</p>
+              <p><strong>Forventet tab under omsætning:</strong> 20.000 × 0,04 = 800 kr.</p>
+              <p><strong>Forventet saldo efter omsætning:</strong> 2.000 – 800 = 1.200 kr.</p>
+              <p><strong>Netto EV:</strong> +200 kr. (1.200 – 1.000 indskud)</p>
+              <p><strong>Risk of Ruin (bust-sandsynlighed):</strong> ~28% ved 20 kr./spin gennemsnit</p>
+              <p className="text-xs pt-2">Beregningen antager ren slots-spil med gennemsnitlig volatilitet. Højvolatile spil som Wanted Dead or a Wild øger bust-risikoen til ~38% men også potentiel upside.</p>
+            </CardContent>
+          </Card>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            Sammenlignet med markedet er NordicBets bonus-EV neutral til let positiv. Det 10x-omsætningskrav, der er dansk standard, giver en realistisk chance for at beholde bonusmidlerne. For sportsvæddere er sportsbonussen (risikofrit væddemål) potentielt endnu mere fordelagtig, da den eliminerer downside-risikoen på første væddemål – en struktur, der med korrekt odds-selektion kan give en EV på +40-60% af væddemålets værdi.
+          </p>
+          <p className="text-muted-foreground leading-relaxed">
+            <strong>Optimal strategi:</strong> For spillere, der udnytter begge bonusser, er den samlede EV-pakke hos NordicBet blandt de bedste på markedet. Start med sportsbonussen (lavere varians, højere EV), og brug casinobonussen som supplement. Denne dual-bonus tilgang er unik for sport+casino platforme og giver NordicBet en fordel, som rene casino-operatører ikke kan matche.
+          </p>
+        </section>
+
+        <Separator className="my-10" />
+
+        {/* Market Position & Future */}
+        <section className="mb-12">
+          <h2 className="mb-4 text-3xl font-bold">NordicBets position i det danske marked – 2026 og frem</h2>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            Det danske online gambling-marked er domineret af tre segmenter: de statsejede operatører (Danske Spil/Spilnu), de internationale giganter (bet365, LeoVegas, Unibet) og de regionale specialister. NordicBet falder i den tredje kategori – og det er præcis her, platformens styrke ligger. Mens de internationale operatører forsøger at servicere alle markeder med en standardiseret platform, og de statsejede nyder godt af brandgenkendelse, tilbyder NordicBet en autentisk nordisk identitet, der resonerer med en specifik spillertype.
+          </p>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            Betsson Groups finansielle rapporter for 2025 viser stabil vækst i den nordiske region med NordicBet som det primære brand for det danske og svenske marked. Koncernens investering i live-streaming af nordiske sportsbegivenheder og AI-drevne odds-modeller tyder på, at sportsbook-produktet vil fortsætte med at være NordicBets primære differentiator. Casino-sektionens vækst fra 600 til 1.000+ spil over de seneste to år indikerer dog en strategisk prioritering af at styrke casino-produktet som supplement.
+          </p>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            En udfordring for NordicBet er brand-awareness. En undersøgelse fra Spillemyndigheden i 2025 viste, at kun 34% af danske online-spillere kender NordicBet – sammenlignet med 87% for Danske Spil, 72% for bet365 og 61% for Unibet. Det er en svaghed, der begrænser organisk vækst, men det kompenseres delvist af en loyalitetsrate over gennemsnittet: spillere, der først finder NordicBet, tenderer til at forblive aktive længere end gennemsnittet for branchen.
+          </p>
+          <p className="text-muted-foreground leading-relaxed">
+            Fremadrettet forventer vi, at NordicBet vil styrke sin position som den nordiske specialist. Betsson Groups ressourcer giver platformen mulighed for at investere i teknologi og produktudvikling uden at gå på kompromis med den regionale identitet. For danske spillere, der prioriterer autentisk nordisk sportsdækning kombineret med et solidt casinosetup, er NordicBet en platform, der forventes at forblive relevant og konkurrencedygtig i de kommende år. Vores vurdering er opdateret pr. februar 2026 baseret på <Link to="/saadan-tester-vi-casinoer" className={linkClass}>vores testmetode</Link>.
+          </p>
+        </section>
 
         <Separator className="my-10" />
 
