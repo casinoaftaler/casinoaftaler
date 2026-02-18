@@ -76,12 +76,24 @@ const GatesOfOlympusGuide = () => {
     ],
   };
 
+  const howToJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "HowTo",
+    name: "Sådan spiller du Gates of Olympus",
+    step: [
+      { "@type": "HowToStep", position: 1, name: "Vælg indsats", text: "Indstil din indsats fra 0,20 til 100 kr. pr. spin." },
+      { "@type": "HowToStep", position: 2, name: "Spin hjulene", text: "Tryk spin eller aktiver Ante Bet (25 % ekstra) for dobbelt scatter-sandsynlighed." },
+      { "@type": "HowToStep", position: 3, name: "Aktivér bonusfunktion", text: "Land 4+ scatter-symboler for 15 free spins med akkumulerende multiplikatorer op til 500×." },
+      { "@type": "HowToStep", position: 4, name: "Udbetal gevinst", text: "Hæv gevinster via casinoets betalingsmetoder." },
+    ],
+  };
+
   return (
     <>
       <SEO
         title="Gates of Olympus – Multiplikator & EV-Analyse"
-        description="Dybdegående analyse af Gates of Olympus: multiplikatormekanik, volatilitet, EV-scenarier og strategisk bonusvurdering."
-        jsonLd={[faqJsonLd, breadcrumbJsonLd, articleSchema]}
+        description="Gates of Olympus 2026: 96,50 % RTP, høj volatilitet, 5.000× max win og multiplikator-matematik forklaret."
+        jsonLd={[faqJsonLd, breadcrumbJsonLd, articleSchema, howToJsonLd]}
       />
 
       {/* ── HERO ── */}

@@ -566,7 +566,7 @@ const CasinoBonus = () => {
 
           <h3 className="mb-3 mt-6 text-xl font-semibold">RTP-valgets indflydelse på bonusværdi</h3>
           <p className="mb-4 text-muted-foreground leading-relaxed">
-            Dit valg af <Link to="/casinospil/spillemaskiner" className={linkClass}>spilleautomat</Link> har enorm indflydelse på bonusværdien. En slot med 97% RTP (3% house edge) versus 94% RTP (6% house edge) ændrer EV dramatisk. For case 1 ovenfor: Med 97% RTP falder tabet til 600 kr. (EV = +400 kr.), mens 94% RTP øger tabet til 1.200 kr. (EV = −200 kr. – bonussen er nu en nettonegativ!). Vælg altid spil med mindst 96% RTP under bonusomsætning.
+            Dit valg af <Link to="/casinospil/spillemaskiner" className={linkClass}>spilleautomat</Link> har enorm indflydelse på bonusværdien. En slot med 97% RTP (3% house edge) versus 94% RTP (6% house edge) ændrer EV dramatisk. For case 1 ovenfor: Med 97% RTP falder tabet til 600 kr. (EV = +400 kr.), mens 94% RTP øger tabet til 1.200 kr. (EV = −200 kr. – bonussen er nu en nettonegativ!). Populære valg til bonusomsætning inkluderer <Link to="/casinospil/spillemaskiner/sweet-bonanza" className={linkClass}>Sweet Bonanza</Link> (96,48 % RTP) og <Link to="/casinospil/spillemaskiner/gates-of-olympus" className={linkClass}>Gates of Olympus</Link> (96,50 % RTP). Vælg altid spil med mindst 96% RTP under bonusomsætning.
           </p>
 
           <h3 className="mb-3 mt-6 text-xl font-semibold">Max. indsats og dens konsekvenser</h3>

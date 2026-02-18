@@ -40,9 +40,21 @@ const WantedDeadOrAWildGuide = () => {
     { "@type": "ListItem", position: 4, name: "Wanted Dead or a Wild", item: `${SITE_URL}/casinospil/spillemaskiner/wanted-dead-or-a-wild` },
   ]};
 
+  const howToJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "HowTo",
+    name: "Sådan spiller du Wanted Dead or a Wild",
+    step: [
+      { "@type": "HowToStep", position: 1, name: "Vælg indsats", text: "Indstil din indsats fra 0,20 til 100 kr. pr. spin." },
+      { "@type": "HowToStep", position: 2, name: "Spin hjulene", text: "Tryk spin og vent på Duel-symboler eller scatter-triggere." },
+      { "@type": "HowToStep", position: 3, name: "Aktivér Duel at Dawn", text: "Land 3+ scatters for at starte Duel at Dawn med sticky wilds og multiplicerende dueller." },
+      { "@type": "HowToStep", position: 4, name: "Udbetal gevinst", text: "Hæv dine gevinster via casinoets betalingsmetoder." },
+    ],
+  };
+
   return (
     <>
-      <SEO title="Wanted Dead or a Wild – Duel & RTP" description="Dybdegående analyse af Wanted Dead or a Wild: Duel at Dawn, 96,38 % RTP, ekstremt høj volatilitet og 12.500× max win." jsonLd={[faqJsonLd, articleSchema, breadcrumbJsonLd]} />
+      <SEO title="Wanted Dead or a Wild – Duel & RTP" description="Wanted Dead or a Wild 2026: 96,38 % RTP, ekstremt høj volatilitet, 12.500× max win og Duel at Dawn forklaret." jsonLd={[faqJsonLd, articleSchema, breadcrumbJsonLd, howToJsonLd]} />
 
       <section className="relative overflow-hidden py-12 text-white md:py-20" style={{ backgroundImage: "linear-gradient(135deg, hsl(260 70% 25%), hsl(250 60% 20%) 40%, hsl(210 80% 25%))" }}>
         <div className="container">
