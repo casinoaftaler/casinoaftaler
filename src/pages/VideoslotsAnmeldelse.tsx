@@ -12,7 +12,7 @@ import { RelatedGuides } from "@/components/RelatedGuides";
 import { InlineCasinoCards } from "@/components/InlineCasinoCards";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
 import { buildArticleSchema, buildFaqSchema } from "@/lib/seo";
-import { QuickFactsProviders } from "@/components/QuickFactsProviders";
+import { QuickFactsProviders, QuickFactsLicense } from "@/components/QuickFactsProviders";
 import { CasinoReviewHero } from "@/components/CasinoReviewHero";
 import type { ReactNode } from "react";
 import { ShieldCheck, Star, Clock, CreditCard, Trophy, Sparkles, Gamepad2, Zap, Check, X, Smartphone, Headphones, Globe, Award, AlertTriangle, Users, TrendingUp, Target, BarChart3, Swords } from "lucide-react";
@@ -32,7 +32,7 @@ const faqs: { question: string; answer: ReactNode }[] = [
 const VideoslotsAnmeldelse = () => {
   const { data: siteSettings } = useSiteSettings();
   const heroBackgroundImage = siteSettings?.hero_background_image;
-  const articleSchema = buildArticleSchema({ headline: "Videoslots Casino Anmeldelse 2026 – 5.000+ Spil, Battle of Slots & Ærlig Test", description: "Komplet anmeldelse af Videoslots Casino. Verdens største spiludvalg med 5.000+ titler fra 170+ udbydere, Battle of Slots-turneringer og dansk licens.", url: "https://casinoaftaler.dk/casino-anmeldelser/videoslots", datePublished: "2026-02-15", dateModified: "2026-02-17", authorName: "Kevin", authorUrl: "https://casinoaftaler.dk/forfatter/kevin" });
+  const articleSchema = buildArticleSchema({ headline: "Videoslots Casino Anmeldelse 2026 – 5.000+ Spil, Battle of Slots & Ærlig Test", description: "Komplet anmeldelse af Videoslots Casino. Verdens største spiludvalg med 5.000+ titler fra 170+ udbydere, Battle of Slots-turneringer og dansk licens.", url: "https://casinoaftaler.dk/casino-anmeldelser/videoslots", datePublished: "2026-02-15", dateModified: "2026-02-18", authorName: "Kevin", authorUrl: "https://casinoaftaler.dk/forfatter/kevin" });
   const faqJsonLd = buildFaqSchema(faqs);
   const reviewJsonLd = { "@context": "https://schema.org", "@type": "Review", itemReviewed: { "@type": "Organization", name: "Videoslots Casino", url: "https://www.videoslots.com/da/" }, author: { "@type": "Organization", name: "Casinoaftaler" }, reviewRating: { "@type": "Rating", ratingValue: "4.3", bestRating: "5", worstRating: "1" }, reviewBody: "Videoslots Casino har det suverænt største spiludvalg på det danske marked med over 5.000 titler fra 170+ udbydere. Battle of Slots-turneringerne og Weekend Boosters gør platformen unik, men det funktionelle design og den beskedne bonus vil ikke appellere til alle." };
 
@@ -49,7 +49,7 @@ const VideoslotsAnmeldelse = () => {
       </section>
 
       <div className="container py-8 md:py-12">
-        <AuthorMetaBar author="kevin" date="17-02-2026" readTime="28 Min." />
+        <AuthorMetaBar author="kevin" date="18-02-2026" readTime="36 Min." />
         <CasinoReviewHero slug="videoslots" casinoName="Videoslots Casino" />
 
         {/* Hurtige Fakta */}
@@ -66,6 +66,7 @@ const VideoslotsAnmeldelse = () => {
             <div className="rounded-lg border border-border p-3"><p className="text-xs text-muted-foreground uppercase mb-1">Udbetaling (Trustly)</p><p className="text-lg font-bold text-foreground">2–6 timer</p></div>
           </div>
           <QuickFactsProviders providers={["NetEnt", "Pragmatic Play", "Nolimit City", "Play'n GO", "Hacksaw Gaming", "Big Time Gaming", "Red Tiger", "ELK Studios", "Push Gaming", "Relax Gaming", "Yggdrasil", "Microgaming"]} />
+          <QuickFactsLicense licenseId="18-0073" />
         </CardContent></Card></section>
 
         {/* Kvantitetens Filosof */}
@@ -194,6 +195,62 @@ const VideoslotsAnmeldelse = () => {
           <p className="mb-4 text-muted-foreground leading-relaxed">Videoslots opererer under dansk licens fra <Link to="/spillemyndigheden" className={linkClass}>Spillemyndigheden</Link>, MGA-licens (Malta Gaming Authority) og UK Gambling Commission-licens. Tredobbelt licensering er sjældent og vidner om en operatør, der tager compliance alvorligt. Platformen er fuldt tilsluttet ROFUS og benytter 256-bit SSL-kryptering til alle dataoverførsler.</p>
           <p className="mb-4 text-muted-foreground leading-relaxed">Det, der gør Videoslots unik fra et sikkerhedsperspektiv, er deres <strong>Cash-out limit</strong>-system. I modsætning til mange operatører, der begrænser maksimale udbetalinger per uge eller måned, har Videoslots en af branchens højeste cash-out-grænser. Det betyder, at store gevinster udbetales som ét beløb snarere end i rater – en politik, der beskytter spillerens rettigheder og eliminerer risikoen for, at operatøren tilbageholder gevinster.</p>
           <p className="text-muted-foreground leading-relaxed">Ansvarligt spil-værktøjerne er kompetente med indbetalingsgrænser, tabsgrænser, sessionsgrænser og direkte ROFUS-integration. Videoslots viser også din "My Play"-statistik prominent, hvilket giver dig konstant overblik over din spilleaktivitet – en form for passiv ansvarligt spil-nudging, der er mere effektiv end de fleste pop-up-advarsler. Læs mere om vores tilgang på vores <Link to="/forretningsmodel" className={linkClass}>forretningsmodel</Link>-side.</p>
+        </section>
+
+        <Separator className="my-10" />
+
+        {/* Videoslots Ltd dybdeanalyse */}
+        <section className="mb-12">
+          <h2 className="mb-4 text-3xl font-bold"><BarChart3 className="inline h-7 w-7 text-primary mr-2" />Videoslots Ltd – selskabet bag platformens filosofi</h2>
+          <p className="mb-4 text-muted-foreground leading-relaxed">Videoslots Ltd er et Malta-baseret selskab grundlagt i 2011 af svenske Alexander Stevendahl med én enkel vision: at bygge verdens mest spilrige casino. I modsætning til børsnoterede giganter som Betsson Group eller Kindred opererer Videoslots som et privathold selskab – hvilket giver det frihed til at forfølge sin niche-strategi uden at skulle retfærdiggøre den over for aktionærer, der forventer bred masseappel.</p>
+          <p className="mb-4 text-muted-foreground leading-relaxed">Denne privatejede struktur er en dobbeltkantet klinge. På den positive side muliggør den den kompromisløse fokus på spiludvalg og innovation (Battle of Slots, Weekend Boosters, RTP-transparens) – features, der ikke nødvendigvis maksimerer kortsigtede aktionærer-afkast men skaber langvarig spillerloyalitet. På den negative side giver privat ejerskab mindre indsigt i selskabets finansielle sundhed. Der er ingen kvartalsrapporter, ingen offentlige revisionsberetninger og ingen aktionærovervågning. For spillere, der vægter finansiel transparens højt, er børsnoterede alternativer som <Link to="/casino-anmeldelser/leovegas" className={linkClass}>LeoVegas</Link> (MGM Resorts) eller <Link to="/casino-anmeldelser/unibet" className={linkClass}>Unibet</Link> (Kindred Group) mere gennemsigtige.</p>
+          <p className="mb-4 text-muted-foreground leading-relaxed">Videoslots kompenserer dog for den manglende finansielle transparens med regulatorisk bredde. Tredobbelt licensering (Spillemyndigheden, MGA, UKGC) er en sjældenhed i branchen og kræver løbende compliance-investering. Særligt UK Gambling Commissions krav er blandt verdens strengeste – og Videoslots' evne til at opretholde denne licens er et indirekte kvalitetsstempel. Dansk licens nr. 18-0073 er pletfri med ingen registrerede sanktioner.</p>
+          <p className="text-muted-foreground leading-relaxed">For danske spillere er konklusionen: Videoslots er en velreguleret, finansielt stabil operatør med en track record på 15 år. Privatejerskabet giver strategisk frihed, og tredobbelt licensering sikrer regulatorisk overvågning. Det er en kombination, der giver tilstrækkelig tryghed – selvom den fulde transparens fra en børsnotering mangler.</p>
+        </section>
+
+        <Separator className="my-10" />
+
+        {/* Årlig spiller-EV */}
+        <section className="mb-12">
+          <h2 className="mb-4 text-3xl font-bold"><TrendingUp className="inline h-7 w-7 text-primary mr-2" />Helårs-analyse – hvad koster det at være Videoslots-spiller?</h2>
+          <p className="mb-4 text-muted-foreground leading-relaxed">For at kvantificere den samlede Videoslots-oplevelse har vi beregnet den årlige EV inklusive alle bonusmekanismer – velkomstbonus, Weekend Boosters og Battle of Slots-turneringer:</p>
+          <Card className="border-border bg-card border-l-4 border-l-primary mb-6">
+            <CardHeader><CardTitle className="flex items-center gap-2 text-xl"><TrendingUp className="h-6 w-6 text-primary" />Årlig EV – Videoslots Casino</CardTitle></CardHeader>
+            <CardContent className="space-y-4">
+              <div className="rounded-lg border border-border p-4">
+                <p className="font-semibold text-foreground mb-2">Moderat spiller (10.000 kr./måned omsætning)</p>
+                <p className="text-sm text-muted-foreground">Forventet tab (96% RTP): 120.000 × 0,04 = 4.800 kr.</p>
+                <p className="text-sm text-muted-foreground">Velkomstbonus EV: +200 kr. (engangs)</p>
+                <p className="text-sm text-muted-foreground">Weekend Boosters (kontant): ~2.400 kr./år (Ø 200 kr./måned)</p>
+                <p className="text-sm text-muted-foreground">Battle of Slots freerolls: ~600 kr./år (Ø 50 kr./måned)</p>
+                <p className="text-sm text-foreground font-bold mt-2">Netto 1. års EV: -1.600 kr. | Følgende år: -1.800 kr.</p>
+              </div>
+              <div className="rounded-lg border border-border p-4">
+                <p className="font-semibold text-foreground mb-2">Aktiv spiller (30.000 kr./måned omsætning)</p>
+                <p className="text-sm text-muted-foreground">Forventet tab: 360.000 × 0,04 = 14.400 kr.</p>
+                <p className="text-sm text-muted-foreground">Velkomstbonus EV: +200 kr.</p>
+                <p className="text-sm text-muted-foreground">Weekend Boosters: ~6.000 kr./år (Ø 500 kr./måned)</p>
+                <p className="text-sm text-muted-foreground">Battle of Slots (buy-in + freeroll): ~1.800 kr./år</p>
+                <p className="text-sm text-foreground font-bold mt-2">Netto 1. års EV: -6.400 kr. | Følgende år: -6.600 kr.</p>
+              </div>
+              <div className="rounded-lg border border-border p-4 bg-muted/20">
+                <p className="font-semibold text-foreground mb-2">Konklusion</p>
+                <p className="text-sm text-muted-foreground">Videoslots' Weekend Boosters returnerer ca. 2% af din omsætning som kontanter – den mest generøse cashback-mekanisme på det danske marked. Sammenlignet med <Link to="/casino-anmeldelser/leovegas" className={linkClass}>LeoVegas</Link> (netto EV -3.800 kr./år ved 10.000 kr./md) og <Link to="/casino-anmeldelser/mr-green" className={linkClass}>Mr Green</Link> (netto EV -3.200 kr./år) er Videoslots den matematisk bedste platform for den aktive spiller, der konsekvent spiller 10.000+ kr./måned.</p>
+              </div>
+            </CardContent>
+          </Card>
+          <p className="text-muted-foreground leading-relaxed"><strong>Risk of Ruin-perspektiv:</strong> Med en bankroll på 5.000 kr. og gennemsnitlig indsats på 20 kr./spin (0,4% af bankroll) er Risk of Ruin over 500 spins ca. 12% – den laveste vi har beregnet for nogen dansk platform, primært pga. Weekend Boosters' kontant-injection, der effektivt forlænger bankrollens levetid. For spillere med stram bankroll management er Videoslots den mest "tilgivende" platform i Danmark.</p>
+        </section>
+
+        <Separator className="my-10" />
+
+        {/* RTP-transparens som konkurrencefordel */}
+        <section className="mb-12">
+          <h2 className="mb-4 text-3xl font-bold">RTP-transparens – hvorfor det er en game-changer</h2>
+          <p className="mb-4 text-muted-foreground leading-relaxed">Videoslots er det eneste casino i Danmark – og et af meget få globalt – der tilbyder individuel RTP-tracking for hvert spil. Under "My Play"-sektionen kan du se: samlet antal spins, samlet indsats, samlet gevinst, personlig RTP, og sessionshistorik for hvert enkelt spil, du har prøvet. Det er en grad af transparens, som ingen anden dansk operatør tilbyder, og den har reelle implikationer for informerede spillere.</p>
+          <p className="mb-4 text-muted-foreground leading-relaxed">I praksis betyder det, at du kan verificere, om de spil, du spiller, performer inden for forventet varians. Hvis Book of Dead har en deklareret RTP på 96,21%, og din personlige RTP over 2.000 spins er 88%, kan du se, at du er i en negativ variansperiode – og træffe informerede beslutninger om, hvorvidt du vil fortsætte eller skifte spil. Det er data, som de fleste casinoer bevidst tilbageholder, fordi det giver spilleren for meget indsigt i spillets matematik.</p>
+          <p className="mb-4 text-muted-foreground leading-relaxed">Denne transparens har også en ansvarligt spil-dimension. Når spillere kan se deres faktiske tab og RTP i realtid, reduceres den kognitive bias, der normalt driver problematisk spil: "Jeg er næsten i plus" eller "Jeg har spillet i lang tid uden at vinde – det SKAL ske snart." Videoslots' data viser dig præcis, hvor du står – og det gør det sværere at retfærdiggøre irrationelle beslutninger. Det er en form for passiv ansvarligt spil-nudging, der er mere effektiv end pop-up-advarsler.</p>
+          <p className="text-muted-foreground leading-relaxed">Vores anbefaling: Udnyt My Play-funktionen aktivt. Sæt et mål for din personlige RTP-tolerance (f.eks. "Hvis min RTP på et spil falder under 90% over 500 spins, skifter jeg spil") og brug dataene til at træffe informerede valg. Det er et værktøj, der giver dig en fordel, som spillere på andre platforme simpelthen ikke har adgang til.</p>
         </section>
 
         <Separator className="my-10" />
