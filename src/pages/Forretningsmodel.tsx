@@ -199,7 +199,7 @@ const Forretningsmodel = () => {
           </p>
         </section>
 
-        <AuthorBio author="jonas" showCommunity={false} />
+        <AuthorBio author="kevin" showCommunity={false} />
 
         <RelatedGuides currentPath="/forretningsmodel" maxLinks={5} />
       </div>

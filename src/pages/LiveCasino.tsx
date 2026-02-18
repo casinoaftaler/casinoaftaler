@@ -777,8 +777,6 @@ const LiveCasino = () => {
           </p>
         </section>
 
-        <InlineCasinoCards title="Bedste casinoer med live casino" count={4} />
-
         <AuthorBio />
 
         <Separator className="my-10" />

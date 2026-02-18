@@ -245,7 +245,7 @@ const RedaktionelPolitik = () => {
           </div>
         </section>
 
-        <AuthorBio author="jonas" showCommunity={false} />
+        <AuthorBio author="kevin" showCommunity={false} />
 
         <RelatedGuides currentPath="/redaktionel-politik" maxLinks={5} />
       </div>

@@ -407,7 +407,7 @@ export default function Contact() {
 
         <FAQSection title="Ofte stillede spørgsmål" faqs={contactFaqs} />
 
-        <AuthorBio author="jonas" showCommunity={false} />
+        <AuthorBio author="kevin" showCommunity={false} />
       </div>
     </>
   );
