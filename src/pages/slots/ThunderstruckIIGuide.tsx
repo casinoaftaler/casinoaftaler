@@ -1,0 +1,142 @@
+import { Link } from "react-router-dom";
+import { AuthorMetaBar } from "@/components/AuthorMetaBar";
+import { AuthorBio } from "@/components/AuthorBio";
+import { FAQSection } from "@/components/FAQSection";
+import { SEO } from "@/components/SEO";
+import { buildFaqSchema, buildArticleSchema, SITE_URL } from "@/lib/seo";
+import { RelatedGuides } from "@/components/RelatedGuides";
+import { InlineCasinoCards } from "@/components/InlineCasinoCards";
+import { type ReactNode } from "react";
+import { Badge } from "@/components/ui/badge";
+import { Separator } from "@/components/ui/separator";
+import { Card, CardContent } from "@/components/ui/card";
+import { Sparkles, TrendingUp, Target, Shield, Zap, BarChart3, Calculator, Flame, Scale, Users, AlertTriangle, Trophy, Layers } from "lucide-react";
+
+const linkClass = "text-primary underline underline-offset-4 hover:text-primary/80 transition-colors";
+
+const thunderstruckIIFaqs: { question: string; answer: ReactNode }[] = [
+  { question: "Hvad er RTP'en på Thunderstruck II?", answer: "Thunderstruck II har en RTP på 96,65 %, hvilket placerer den i den øvre kvartil af alle online slots. House edge er kun 3,35 %, markant bedre end branchens gennemsnit. Denne RTP er fast og varierer ikke mellem casinoer." },
+  { question: "Hvad er max win i Thunderstruck II?", answer: "Max win i Thunderstruck II er 8.000× din indsats (2.400.000 coins ved max bet). Dette opnås i Odin-bonus runden med Rolling Reels og op til 6× multiplikator. Selvom max win er lavere end ultra-volatile slots, er den opnåelig med rimelig sandsynlighed." },
+  { question: "Hvordan fungerer de fire bonusniveauer?", answer: "Great Hall of Spins har fire niveauer, der låses op progressivt: Valkyrie (1.-4. trigger, 10 free spins + 5× multiplikator), Loki (5.-9. trigger, 15 spins + Wild Magic), Odin (10.-14. trigger, 20 spins + ravens + multiplikatorer), Thor (15.+ trigger, 25 spins + Rolling Reels + 5× multiplikator). Hvert niveau tilbyder unik mekanik." },
+  { question: "Er Thunderstruck II stadig relevant i 2026?", answer: (<>Ja, Thunderstruck II forbliver relevant takket være den fremragende RTP (96,65 %), progressiv bonus-mekanik og balanceret volatilitet. Den mangler dog moderne features som Megaways eller tumble-mekanik. For spillere, der søger moderne alternativer, tilbyder <Link to="/casinospil/spillemaskiner/immortal-romance" className={linkClass}>Immortal Romance</Link> en lignende oplevelse med opdateret grafik.</>) },
+  { question: "Hvem har udviklet Thunderstruck II?", answer: (<><Link to="/spiludviklere/microgaming" className={linkClass}>Microgaming</Link> lancerede Thunderstruck II i 2010 som opfølger til den originale Thunderstruck (2004). Spillet betragtes som en af Microgamings bedste titler og definerede den "progressive bonus"-mekanik, hvor bonusfunktioner forbedres over tid.</>) },
+  { question: "Hvad er forskellen på Thunderstruck og Thunderstruck II?", answer: "Thunderstruck II er en markant opgradering: 243 ways (vs. 9 paylines), fire progressive bonusniveauer (vs. én enkel free spin-runde), Wildstorm-funktion, og højere RTP (96,65 % vs. 96,10 %). Originalen er simplere men mere dateret; II er objektivt det bedre matematiske produkt." },
+];
+
+const ThunderstruckIIGuide = () => {
+  const faqJsonLd = buildFaqSchema(thunderstruckIIFaqs);
+  const articleSchema = buildArticleSchema({
+    headline: "Thunderstruck II – Progressive Bonus & RTP",
+    description: "Komplet analyse af Thunderstruck II: progressiv Great Hall of Spins, 96,65 % RTP, 8.000× max win og fire unikke bonusniveauer.",
+    url: `${SITE_URL}/casinospil/spillemaskiner/thunderstruck-ii`,
+    datePublished: "2026-02-18", dateModified: "2026-02-18",
+    authorName: "Kevin", authorUrl: `${SITE_URL}/forfatter/kevin`,
+  });
+  const breadcrumbJsonLd = { "@context": "https://schema.org", "@type": "BreadcrumbList", itemListElement: [
+    { "@type": "ListItem", position: 1, name: "Forside", item: `${SITE_URL}/` },
+    { "@type": "ListItem", position: 2, name: "Casinospil", item: `${SITE_URL}/casinospil` },
+    { "@type": "ListItem", position: 3, name: "Spillemaskiner", item: `${SITE_URL}/casinospil/spillemaskiner` },
+    { "@type": "ListItem", position: 4, name: "Thunderstruck II", item: `${SITE_URL}/casinospil/spillemaskiner/thunderstruck-ii` },
+  ]};
+
+  return (
+    <>
+      <SEO title="Thunderstruck II – Bonus & RTP-Analyse" description="Dybdegående analyse af Thunderstruck II: Great Hall of Spins, 96,65 % RTP, fire bonusniveauer og matematisk EV-vurdering." jsonLd={[faqJsonLd, articleSchema, breadcrumbJsonLd]} />
+      <article className="mx-auto max-w-4xl px-4 py-12">
+        <header className="mb-8 text-center">
+          <div className="flex items-center justify-center gap-2 mb-4">
+            <Badge variant="secondary" className="text-xs">Progressiv Bonus</Badge>
+            <Badge variant="outline" className="text-xs">RTP 96,65 %</Badge>
+            <Badge variant="outline" className="text-xs">Medium Volatilitet</Badge>
+          </div>
+          <h1 className="text-4xl md:text-5xl font-bold mb-4 leading-tight">Thunderstruck II – Progressive Bonusniveauer & RTP-Analyse</h1>
+          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">Microgamings nordiske mesterværk: en slot der belønner loyalitet med fire progressivt stærkere bonusniveauer og en af markedets bedste RTP'er.</p>
+        </header>
+        <AuthorMetaBar author="kevin" date="2026-02-18" readTime="16 min" />
+        <Separator className="my-8" />
+
+        <section className="mb-10">
+          <h2 className="text-2xl font-bold mb-4 flex items-center gap-2"><Users className="h-5 w-5 text-primary" />Hvem Passer Thunderstruck II Til?</h2>
+          <p className="text-muted-foreground mb-4 leading-relaxed">Thunderstruck II er designet til en specifik spillerprofil: den tålmodige strateg, der foretrækker langsigtet progression over øjeblikkelig tilfredsstillelse. Den progressive bonus-mekanik (Great Hall of Spins) belønner direkte spillere, der investerer tid i at nå de højere bonusniveauer – en unik tilgang, der adskiller Thunderstruck II fra næsten alle andre slots på markedet.</p>
+          <p className="text-muted-foreground mb-4 leading-relaxed">Med en RTP på 96,65 % og medium volatilitet tilbyder spillet en balance, der sjældent ses: tilstrækkelig regelmæssige gevinster til at holde sessionerne levende, kombineret med nok variabilitet i bonusrunderne til at bevare spænding. For danske spillere, der søger en 30-60 minutters session med godt value, er Thunderstruck II et topvalg – forudsat at du har tålmodigheden til at nå de avancerede bonusniveauer.</p>
+          <p className="text-muted-foreground mb-4 leading-relaxed">Spillet er IKKE ideelt for jackpot-jægere (max win 8.000× er moderat) eller spillere, der søger ultra-simpel mekanik (de fire bonusniveauer kræver forståelse). For high-volatility-fans anbefaler vi i stedet <Link to="/casinospil/spillemaskiner/dead-or-alive-2" className={linkClass}>Dead or Alive 2</Link> eller <Link to="/casinospil/spillemaskiner/razor-shark" className={linkClass}>Razor Shark</Link>, der tilbyder mere eksplosive gevinstpotentialer.</p>
+          <p className="text-muted-foreground leading-relaxed">Thunderstruck II's ideelle spiller er den, der værdsætter mekanisk dybde, forudsigelig EV, og en fornemmelse af progression. Nordisk mytologi-temaet er en bonus, men det er den matematiske struktur, der gør dette spil til en varig favorit bland kyndige spillere.</p>
+        </section>
+
+        <section className="mb-10">
+          <h2 className="text-2xl font-bold mb-4 flex items-center gap-2"><Layers className="h-5 w-5 text-primary" />Great Hall of Spins: Fire Bonusniveauer Dekonstrueret</h2>
+          <p className="text-muted-foreground mb-4 leading-relaxed">Great Hall of Spins er Thunderstruck II's kronjuvel – et progressivt bonussystem, der forbedres med hver trigger. Systemet anvender en kumulativ tæller, der tracker antallet af bonustriggers pr. session (eller pr. spilinstans, afhængig af implementering). De fire niveauer er:</p>
+          <Card className="mb-6"><CardContent className="pt-6">
+            <div className="space-y-4 text-sm">
+              <div><strong className="text-primary">Valkyrie (1.-4. trigger):</strong> 10 free spins med 5× multiplikator. Den enkleste runde – solid men ikke spektakulær. Gennemsnitlig runde-value: 15-25× indsatsen.</div>
+              <div><strong className="text-primary">Loki (5.-9. trigger):</strong> 15 free spins med Wild Magic-funktion (random wilds transformerer symboler). Markant stærkere end Valkyrie. Gennemsnitlig runde-value: 25-45× indsatsen.</div>
+              <div><strong className="text-primary">Odin (10.-14. trigger):</strong> 20 free spins med Odin's ravens (wild raven-symboler konverterer symboler til wilds/multiplikatorer). Op til 6× multiplikator. Gennemsnitlig runde-value: 40-80× indsatsen.</div>
+              <div><strong className="text-primary">Thor (15.+ trigger):</strong> 25 free spins med Rolling Reels (cascading wins) og op til 5× multiplikator. Enorm gevinstpotentiale med konsekutive gevinster. Gennemsnitlig runde-value: 60-150× indsatsen.</div>
+            </div>
+          </CardContent></Card>
+          <p className="text-muted-foreground mb-4 leading-relaxed">Den progressive struktur skaber en interessant dynamik: tidlige sessioner (trigger 1-4) har lavere EV fra bonusrunder, mens sene sessioner (trigger 15+) har markant højere EV. For spillere, der planlægger lange sessioner, er denne front-loading af risiko og back-loading af belønning en attraktiv mekanik, der belønner tålmodighed og bankroll-disciplin.</p>
+          <p className="text-muted-foreground leading-relaxed">Free spins trigger-frekvens estimeres til ca. 1 pr. 90-120 spins. Med 4 triggers nødvendige for at nå Loki-niveauet kræves ca. 360-480 spins – og for Thor-niveauet (15+ triggers) kræves ca. 1.350-1.800 spins. Det er denne progression, der kræver den tålmodige spillerprofil, vi beskrev ovenfor.</p>
+        </section>
+
+        <section className="mb-10">
+          <h2 className="text-2xl font-bold mb-4 flex items-center gap-2"><Calculator className="h-5 w-5 text-primary" />Teknisk Profil og Volatilitetsanalyse</h2>
+          <Card className="mb-6"><CardContent className="pt-6">
+            <div className="grid grid-cols-2 md:grid-cols-3 gap-4 text-sm">
+              <div><span className="text-muted-foreground">Udvikler:</span><br /><strong>Microgaming</strong></div>
+              <div><span className="text-muted-foreground">RTP:</span><br /><strong>96,65 %</strong></div>
+              <div><span className="text-muted-foreground">Volatilitet:</span><br /><strong>Medium (3/5)</strong></div>
+              <div><span className="text-muted-foreground">Max Win:</span><br /><strong>8.000×</strong></div>
+              <div><span className="text-muted-foreground">Grid:</span><br /><strong>5×3 (243 ways)</strong></div>
+              <div><span className="text-muted-foreground">House Edge:</span><br /><strong>3,35 %</strong></div>
+            </div>
+          </CardContent></Card>
+          <p className="text-muted-foreground mb-4 leading-relaxed">96,65 % RTP placerer Thunderstruck II i kategorien <Link to="/casinospil/spillemaskiner/hoej-rtp" className={linkClass}>høj RTP-spillemaskiner</Link>. House edge på 3,35 % er lavere end de fleste Pragmatic Play-titler (typisk 3,5-4 %) og markant bedre end ældre IGT-slots. 243 ways-systemet (All Ways Pays) eliminerer traditionelle paylines og giver gevinster for matchende symboler på tilstødende hjul fra venstre.</p>
+          <p className="text-muted-foreground mb-4 leading-relaxed">Hit frequency estimeres til 30-33 % – højere end gennemsnittet for 243 ways-slots. De fleste base game-gevinster er små (0,5-2× indsatsen), med meningsfulde gevinster (5×+) forekommende i ca. 3-5 % af spins. Wildstorm-funktionen (random trigger, kan fylde op til 5 hjul med wilds) forekommer sjældent men kan levere store gevinster i base game.</p>
+          <p className="text-muted-foreground leading-relaxed">Den medium volatilitet afspejler en balanceret gevinstfordeling: base game leverer konsistente, små gevinster, mens bonusrunderne (især Odin og Thor) producerer de større udbetalinger. Denne todelte struktur giver en jævnere bankroll-kurve end high-volatility slots, hvor 80 %+ af RTP'en er koncentreret i bonusrunder.</p>
+        </section>
+
+        <InlineCasinoCards />
+
+        <section className="mb-10">
+          <h2 className="text-2xl font-bold mb-4 flex items-center gap-2"><BarChart3 className="h-5 w-5 text-primary" />EV-Beregning og Sessionens Økonomi</h2>
+          <Card className="mb-6"><CardContent className="pt-6">
+            <h3 className="font-semibold mb-3">EV-scenarie: 500 spins à 4 kr.</h3>
+            <div className="grid grid-cols-2 gap-3 text-sm">
+              <div><span className="text-muted-foreground">Samlet indsats:</span><br /><strong>2.000 kr.</strong></div>
+              <div><span className="text-muted-foreground">Forventet return:</span><br /><strong>1.933 kr.</strong></div>
+              <div><span className="text-muted-foreground">Forventet tab (EV):</span><br /><strong>-67 kr.</strong></div>
+              <div><span className="text-muted-foreground">Realistisk interval:</span><br /><strong>-800 til +3.000 kr.</strong></div>
+            </div>
+          </CardContent></Card>
+          <p className="text-muted-foreground mb-4 leading-relaxed">Thunderstruck II's lave house edge giver en af de bedste cost-per-entertainment ratios i slot-markedet. Over 500 spins er det forventede tab kun 67 kr. på en 2.000 kr. session – sammenlign med Mega Moolah (237 kr. tab) eller Buffalo King (79 kr. tab). Det realistiske interval afspejler den medium volatilitet: sjældent katastrofale tab, men heller ikke ultra-eksplosive gevinster.</p>
+          <p className="text-muted-foreground leading-relaxed">For <Link to="/casino-bonus" className={linkClass}>bonus</Link>-gennemspilning er Thunderstruck II et godt valg takket være den høje RTP og regelmæssige gevinstfordeling. Den medium volatilitet sikrer, at bankrollen sjældent kollapser under gennemspilning, hvilket giver en mere forudsigelig progression mod omsætningskravet.</p>
+        </section>
+
+        <section className="mb-10">
+          <h2 className="text-2xl font-bold mb-4 flex items-center gap-2"><Scale className="h-5 w-5 text-primary" />Thunderstruck II vs. Immortal Romance</h2>
+          <p className="text-muted-foreground mb-4 leading-relaxed"><Link to="/casinospil/spillemaskiner/immortal-romance" className={linkClass}>Immortal Romance</Link> er Thunderstruck II's åndelige søster – begge fra Microgaming, begge med progressive bonusniveauer, og begge med fremragende RTP. Den primære forskel er volatilitet: Immortal Romance er højere (high vs. medium), med en mere skæv gevinstfordeling og højere max win (12.150× vs. 8.000×). For spillere, der foretrækker stabilitet, er Thunderstruck II det bedre valg; for dem, der søger større spænding, vinder Immortal Romance.</p>
+          <p className="text-muted-foreground leading-relaxed">Begge slots deler den progressive bonusstruktur, men Immortal Romance's tema (vampyr-romantik) og grafik er mere moderne. For ren matematisk value er forskellen minimal – begge er blandt Microgamings bedste produkter og fortjener en plads i enhver kyndig spillers rotation.</p>
+        </section>
+
+        <section className="mb-10">
+          <h2 className="text-2xl font-bold mb-4 flex items-center gap-2"><AlertTriangle className="h-5 w-5 text-primary" />Bankroll-Strategi og Ansvarligt Spil</h2>
+          <p className="text-muted-foreground mb-4 leading-relaxed">Thunderstruck II's medium volatilitet kræver en bankroll på minimum 200-300 spins for en komfortabel session. Med en indsats på 4 kr. svarer dette til 800-1.200 kr. For spillere, der ønsker at nå Thor-niveauet (15+ bonustriggers), kræves 1.500+ spins (6.000+ kr.) – en betydelig investering, der kun anbefales til spillere med disciplinerede bankroll-strategier.</p>
+          <p className="text-muted-foreground leading-relaxed">Tabsstop anbefales ved 50 % af startkapitalen. Thunderstruck II's jævne gevinstfordeling gør det usandsynligt at tabe hele bankrollen hurtigt, men den progressive natur kan friste spillere til at "jage" næste bonusniveau – en fristelse, der bør modstås med disciplin. Husk altid <Link to="/ansvarligt-spil" className={linkClass}>ansvarligt spil</Link>-principper.</p>
+        </section>
+
+        <section className="mb-10">
+          <h2 className="text-2xl font-bold mb-4 flex items-center gap-2"><Trophy className="h-5 w-5 text-primary" />Thors Hammer Rammer Stadig Hårdt</h2>
+          <p className="text-muted-foreground mb-4 leading-relaxed">Thunderstruck II er et testamente til tidløst spildesign. Over 15 år efter lanceringen forbliver den en af markedets mest respekterede slots – og den høje RTP, progressive bonus og balancerede volatilitet forklarer hvorfor. For danske spillere, der søger value, dybde og underholdning i én pakke, er Thunderstruck II svær at slå.</p>
+          <p className="text-muted-foreground leading-relaxed">Udforsk vores <Link to="/casinospil/spillemaskiner" className={linkClass}>komplette spillemaskineguide</Link> for at finde andre høj-RTP titler, og tjek <Link to="/free-spins" className={linkClass}>free spins</Link>-siden for aktuelle tilbud på <Link to="/spiludviklere/microgaming" className={linkClass}>Microgaming</Link>-slots.</p>
+        </section>
+
+        <Separator className="my-8" />
+        <AuthorBio author="kevin" />
+        <RelatedGuides currentPath="/casinospil/spillemaskiner/thunderstruck-ii" />
+        <FAQSection title="Ofte Stillede Spørgsmål om Thunderstruck II" faqs={thunderstruckIIFaqs} />
+      </article>
+    </>
+  );
+};
+
+export default ThunderstruckIIGuide;

@@ -1,0 +1,149 @@
+import { Link } from "react-router-dom";
+import { AuthorMetaBar } from "@/components/AuthorMetaBar";
+import { AuthorBio } from "@/components/AuthorBio";
+import { FAQSection } from "@/components/FAQSection";
+import { SEO } from "@/components/SEO";
+import { buildFaqSchema, buildArticleSchema, SITE_URL } from "@/lib/seo";
+import { RelatedGuides } from "@/components/RelatedGuides";
+import { InlineCasinoCards } from "@/components/InlineCasinoCards";
+import { type ReactNode } from "react";
+import { Badge } from "@/components/ui/badge";
+import { Separator } from "@/components/ui/separator";
+import { Card, CardContent } from "@/components/ui/card";
+import { Sparkles, TrendingUp, Target, Shield, Zap, BarChart3, Calculator, Flame, Scale, Users, AlertTriangle, Trophy, History, Layers } from "lucide-react";
+
+const linkClass = "text-primary underline underline-offset-4 hover:text-primary/80 transition-colors";
+
+const cleopatraFaqs: { question: string; answer: ReactNode }[] = [
+  { question: "Hvad er RTP'en på Cleopatra?", answer: "Cleopatra har en RTP på 95,02 %, hvilket giver en house edge på 4,98 %. Dette er lavere end moderne slots, men afspejler IGT's ældre designfilosofi. RTP'en er fast og varierer ikke mellem casinoer, da IGT ikke tilbyder justérbare RTP-niveauer for denne titel." },
+  { question: "Hvad er max win i Cleopatra?", answer: "Max win i Cleopatra er 10.000× din indsats. Dette opnås ved at lande 5 Cleopatra wild-symboler på en aktiv gevinstlinje under free spins, hvor alle gevinster tredobles (3× multiplikator). Med 20 gevinstlinjer aktive er det teoretiske ceiling relativt lavt sammenlignet med moderne slots." },
+  { question: "Hvordan fungerer free spins i Cleopatra?", answer: "Free spins udløses ved 3+ Sphinx scatter-symboler. Du modtager 15 free spins med en fast 3× multiplikator på alle gevinster. Retrigger er muligt ved at lande 3+ scatters igen under bonusrunden, med yderligere 15 free spins. Der er ingen grænse for retriggers, men sandsynligheden er lav." },
+  { question: "Er Cleopatra en god slot for begyndere?", answer: (<>Ja, Cleopatra er ideel for begyndere. Den medium volatilitet, simple mekanik (5×3 grid, 20 paylines) og forudsigelige gevinstmønstre gør den til en fremragende introduktion til online slots. Sammenlignet med mere komplekse titler som <Link to="/casinospil/spillemaskiner/sweet-bonanza" className={linkClass}>Sweet Bonanza</Link> er Cleopatra langt mere tilgængelig.</>) },
+  { question: "Hvem har udviklet Cleopatra?", answer: "IGT (International Game Technology) udviklede Cleopatra i 2012 som en online adaptation af den ikoniske landbaserede spillemaskine fra 2005. IGT er en af verdens ældste og mest respekterede spiludviklere med rødder tilbage til 1975." },
+  { question: "Kan man spille Cleopatra på danske casinoer?", answer: (<>Ja, Cleopatra er tilgængelig på flere danske licenserede casinoer. IGT har licens fra Spillemyndigheden, og spillet er godkendt til det danske marked. Tjek vores <Link to="/casinospil/spillemaskiner" className={linkClass}>spillemaskineguide</Link> for at finde de bedste casinoer med IGT-spil.</>) },
+];
+
+const CleopatraGuide = () => {
+  const faqJsonLd = buildFaqSchema(cleopatraFaqs);
+  const articleSchema = buildArticleSchema({
+    headline: "Cleopatra – Den Tidløse Klassiker fra IGT",
+    description: "Komplet analyse af Cleopatra: den ikoniske IGT-slot med 95,02 % RTP, 3× free spins-multiplikator og 10.000× max win.",
+    url: `${SITE_URL}/casinospil/spillemaskiner/cleopatra`,
+    datePublished: "2026-02-18", dateModified: "2026-02-18",
+    authorName: "Kevin", authorUrl: `${SITE_URL}/forfatter/kevin`,
+  });
+  const breadcrumbJsonLd = { "@context": "https://schema.org", "@type": "BreadcrumbList", itemListElement: [
+    { "@type": "ListItem", position: 1, name: "Forside", item: `${SITE_URL}/` },
+    { "@type": "ListItem", position: 2, name: "Casinospil", item: `${SITE_URL}/casinospil` },
+    { "@type": "ListItem", position: 3, name: "Spillemaskiner", item: `${SITE_URL}/casinospil/spillemaskiner` },
+    { "@type": "ListItem", position: 4, name: "Cleopatra", item: `${SITE_URL}/casinospil/spillemaskiner/cleopatra` },
+  ]};
+
+  return (
+    <>
+      <SEO title="Cleopatra – Klassiker-Analyse & RTP" description="Dybdegående analyse af Cleopatra fra IGT: 95,02 % RTP, 3× free spins-multiplikator, 10.000× max win og EV-beregninger." jsonLd={[faqJsonLd, articleSchema, breadcrumbJsonLd]} />
+      <article className="mx-auto max-w-4xl px-4 py-12">
+        <header className="mb-8 text-center">
+          <div className="flex items-center justify-center gap-2 mb-4">
+            <Badge variant="secondary" className="text-xs">Klassiker</Badge>
+            <Badge variant="outline" className="text-xs">RTP 95,02 %</Badge>
+            <Badge variant="outline" className="text-xs">Medium Volatilitet</Badge>
+          </div>
+          <h1 className="text-4xl md:text-5xl font-bold mb-4 leading-tight">Cleopatra – Den Tidløse Klassiker fra IGT</h1>
+          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">Fra landbaserede kasinoer i Las Vegas til danske online casinoer: en matematisk analyse af den slot, der definerede en hel genre og stadig tiltrækker millioner af spillere worldwide.</p>
+        </header>
+        <AuthorMetaBar author="kevin" date="2026-02-18" readTime="16 min" />
+        <Separator className="my-8" />
+
+        <section className="mb-10">
+          <h2 className="text-2xl font-bold mb-4 flex items-center gap-2"><History className="h-5 w-5 text-primary" />Fra Las Vegas til Danmark: Cleopatras Rejse</h2>
+          <p className="text-muted-foreground mb-4 leading-relaxed">Cleopatra er ikke blot en spillemaskine – den er et kulturelt fænomen. Oprindeligt lanceret som en fysisk kabinet-slot af IGT i 2005, revolutionerede Cleopatra den egyptiske slot-genre med sin ikoniske lydeffekt, elegante grafik og en free spins-mekanik, der på det tidspunkt var banebrydende. Overgangen til online-formatet i 2012 bevarede alle de elementer, der gjorde originalen til en succes, samtidig med at IGT tilpassede brugerfladen til digitale platforme.</p>
+          <p className="text-muted-foreground mb-4 leading-relaxed">Det, der adskiller Cleopatra fra de tusindvis af egyptisk-tematiserede slots, der fulgte i dens kølvand, er den underliggende matematiske model. Hvor mange moderne slots jager ekstreme max wins og ultra-høj volatilitet, forbliver Cleopatra tro mod en balanceret gevinstfordeling. Den medium volatilitet sikrer, at spillere oplever regelmæssige gevinster – selv om de sjældent er spektakulære – hvilket giver en mere stabil og forudsigelig spiloplevelse.</p>
+          <p className="text-muted-foreground mb-4 leading-relaxed">IGT's designfilosofi med Cleopatra var enkel: skab et spil, der belønner tålmodighed uden at straffe korte sessioner brutalt. Denne tilgang står i skarp kontrast til <Link to="/spiludviklere/pragmatic-play" className={linkClass}>Pragmatic Play</Link>'s moderne high-volatility titler, der bevidst ofrer base game-konsistens for eksplosive bonusrunder. For danske spillere, der søger underholdningsværdi over jackpot-jagt, er Cleopatra fortsat et relevant valg.</p>
+          <p className="text-muted-foreground leading-relaxed">Den kulturelle arv er også værd at fremhæve: Cleopatra inspirerede direkte titler som Book of Dead, Cleopatra Gold, og Cleopatra Plus. <Link to="/casinospil/spillemaskiner/book-of-dead" className={linkClass}>Book of Dead</Link> fra Play'n GO kan spore sin DNA direkte tilbage til Cleopatras expanding symbol-mekanik under free spins. At forstå Cleopatra er at forstå fundamentet for hele den moderne slot-industri.</p>
+        </section>
+
+        <section className="mb-10">
+          <h2 className="text-2xl font-bold mb-4 flex items-center gap-2"><Calculator className="h-5 w-5 text-primary" />Teknisk Profil: RTP, House Edge og Gevinststruktur</h2>
+          <Card className="mb-6"><CardContent className="pt-6">
+            <div className="grid grid-cols-2 md:grid-cols-3 gap-4 text-sm">
+              <div><span className="text-muted-foreground">Udvikler:</span><br /><strong>IGT</strong></div>
+              <div><span className="text-muted-foreground">RTP:</span><br /><strong>95,02 %</strong></div>
+              <div><span className="text-muted-foreground">Volatilitet:</span><br /><strong>Medium (3/5)</strong></div>
+              <div><span className="text-muted-foreground">Max Win:</span><br /><strong>10.000×</strong></div>
+              <div><span className="text-muted-foreground">Grid:</span><br /><strong>5×3 (20 paylines)</strong></div>
+              <div><span className="text-muted-foreground">House Edge:</span><br /><strong>4,98 %</strong></div>
+            </div>
+          </CardContent></Card>
+          <p className="text-muted-foreground mb-4 leading-relaxed">Cleopatras 95,02 % RTP er under den moderne standard (96 %+), men dette skal kontekstualiseres historisk. Da spillet blev designet, var 95 % RTP normen for landbaserede maskiner, og IGT valgte at bevare denne matematiske model i online-versionen. House edge på 4,98 % er mærkbart højere end f.eks. <Link to="/casinospil/spillemaskiner/starburst" className={linkClass}>Starburst</Link> (3,04 %) eller <Link to="/casinospil/spillemaskiner/gates-of-olympus" className={linkClass}>Gates of Olympus</Link> (3,5 %).</p>
+          <p className="text-muted-foreground mb-4 leading-relaxed">Hit frequency estimeres til 33-35 %, hvilket er blandt de højeste i slot-industrien. Det betyder, at cirka hver tredje spin producerer en gevinst – om end mange af disse er under 1× indsatsen. Denne høje hitrate er direkte forbundet med den medium volatilitet og er en af grundene til, at Cleopatra føles "generøs" trods den lavere RTP.</p>
+          <p className="text-muted-foreground leading-relaxed">Gevinststrukturen er klassisk lineær: 5 matchende symboler betaler mest, ned til 3 matchende. Cleopatra wild-symbolet substituerer for alle undtagen scatter (Sphinx) og betaler 10.000 coins for 5 på en linje – spillets højeste single-line payout. Med 20 aktive paylines er den teoretiske maximum eksponering pr. spin begrænset, men forudsigelig.</p>
+        </section>
+
+        <section className="mb-10">
+          <h2 className="text-2xl font-bold mb-4 flex items-center gap-2"><Flame className="h-5 w-5 text-primary" />Free Spins med 3× Multiplikator: Bonusmekanikken</h2>
+          <p className="text-muted-foreground mb-4 leading-relaxed">Cleopatras free spins-runde er elegant i sin enkelhed. Ved landing af 3, 4 eller 5 Sphinx scatter-symboler modtager du 15 free spins med en fast 3× multiplikator på alle gevinster. Scatter-gevinsten selv (5×, 20× eller 100× total indsats) adderes oven i free spins-belønningen. Retrigger-muligheden (3+ scatters under free spins) giver yderligere 15 gratis spins uden begrænsning.</p>
+          <p className="text-muted-foreground mb-4 leading-relaxed">Den faste 3× multiplikator er kernen i Cleopatras bonusmekanik. I modsætning til moderne slots som <Link to="/casinospil/spillemaskiner/buffalo-king" className={linkClass}>Buffalo King</Link> (variable stacking-multiplikatorer) eller <Link to="/casinospil/spillemaskiner/sweet-bonanza" className={linkClass}>Sweet Bonanza</Link> (tumble-baserede multiplikatorer), tilbyder Cleopatra en forudsigelig forstørrelse af enhver base-gevinst. Denne forudsigelighed reducerer variansen i bonusrunden markant.</p>
+          <p className="text-muted-foreground mb-4 leading-relaxed">Free spins trigger-frekvens estimeres til cirka 1 pr. 120-150 spins – væsentligt hyppigere end de fleste high-volatility slots (typisk 1/200-300). Den gennemsnitlige bonusrunde (15 spins × 3×) leverer estimeret 20-40× indsatsen, med en standardafvigelse der er markant lavere end hos volatile konkurrenter. For spillere, der foretrækker konsistens over eksplosivitet, er dette en klar fordel.</p>
+          <p className="text-muted-foreground leading-relaxed">Max win-scenariet (10.000×) kræver fuldt stakket grid med Cleopatra wilds under free spins på alle 20 paylines med 3× multiplikatoren aktiv. Sandsynligheden for dette er astronomisk lav, men Cleopatras design sikrer, at moderate bonusgevinster (10-50×) forekommer med rimelig regelmæssighed.</p>
+        </section>
+
+        <InlineCasinoCards />
+
+        <section className="mb-10">
+          <h2 className="text-2xl font-bold mb-4 flex items-center gap-2"><BarChart3 className="h-5 w-5 text-primary" />EV-Perspektiv: Hvad Koster Cleopatra Dig?</h2>
+          <Card className="mb-6"><CardContent className="pt-6">
+            <h3 className="font-semibold mb-3">EV-scenarie: 500 spins à 2 kr.</h3>
+            <div className="grid grid-cols-2 gap-3 text-sm">
+              <div><span className="text-muted-foreground">Samlet indsats:</span><br /><strong>1.000 kr.</strong></div>
+              <div><span className="text-muted-foreground">Forventet return:</span><br /><strong>950 kr.</strong></div>
+              <div><span className="text-muted-foreground">Forventet tab (EV):</span><br /><strong>-50 kr.</strong></div>
+              <div><span className="text-muted-foreground">Realistisk interval:</span><br /><strong>-400 til +2.000 kr.</strong></div>
+            </div>
+          </CardContent></Card>
+          <p className="text-muted-foreground mb-4 leading-relaxed">Den højere house edge (4,98 % vs. branchens ~3,5 %) betyder, at Cleopatra koster mere pr. spin end moderne alternativer. Over 500 spins er forskellen mellem 4,98 % og 3,5 % house edge ca. 15 kr. på en 1.000 kr. indsats – ikke dramatisk, men mærkbart over lange sessioner. Det realistiske interval er smallere end hos high-volatility slots, hvilket afspejler den lavere varians.</p>
+          <p className="text-muted-foreground leading-relaxed">For spillere, der prioriterer spilletid over max win-potentiale, tilbyder Cleopatra en bedre cost-per-entertainment ratio end volatile titler. 500 spins ved Cleopatra tager typisk 30-45 minutter – og med 33 % hit frequency vil du opleve ca. 165 gevinsthændelser, hvilket giver en mere "aktiv" oplevelse end en slot med 20 % hit frequency (100 hændelser over samme periode).</p>
+        </section>
+
+        <section className="mb-10">
+          <h2 className="text-2xl font-bold mb-4 flex items-center gap-2"><Scale className="h-5 w-5 text-primary" />Cleopatra vs. Moderne Egyptiske Slots</h2>
+          <Card className="mb-6"><CardContent className="pt-6">
+            <div className="overflow-x-auto">
+              <table className="w-full text-sm">
+                <thead><tr className="border-b"><th className="text-left py-2">Slot</th><th className="text-left py-2">RTP</th><th className="text-left py-2">Volatilitet</th><th className="text-left py-2">Max Win</th></tr></thead>
+                <tbody>
+                  <tr className="border-b"><td className="py-2 font-medium">Cleopatra</td><td>95,02 %</td><td>Medium</td><td>10.000×</td></tr>
+                  <tr className="border-b"><td className="py-2">Book of Dead</td><td>96,21 %</td><td>Høj</td><td>5.000×</td></tr>
+                  <tr className="border-b"><td className="py-2">Eye of Horus</td><td>96,31 %</td><td>Medium-Høj</td><td>3.000×</td></tr>
+                  <tr><td className="py-2">Legacy of Dead</td><td>96,58 %</td><td>Høj</td><td>5.000×</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </CardContent></Card>
+          <p className="text-muted-foreground mb-4 leading-relaxed">Sammenligningen afslører Cleopatras primære svaghed: den lavere RTP. Både <Link to="/casinospil/spillemaskiner/eye-of-horus" className={linkClass}>Eye of Horus</Link> og <Link to="/casinospil/spillemaskiner/legacy-of-dead" className={linkClass}>Legacy of Dead</Link> tilbyder bedre matematisk value med højere RTP og mere moderne mekanikker. Cleopatras 10.000× max win ser imponerende ud, men den medium volatilitet gør det ekstremt usandsynligt at ramme dette ceiling.</p>
+          <p className="text-muted-foreground leading-relaxed">Cleopatras fordel er stabilitet og nostalgi. For spillere, der kender og elsker den klassiske mekanik, tilbyder ingen moderne slot den samme kombination af høj hit frequency, enkel 3× free spins-multiplikator og den ikoniske egyptiske æstetik. Det er en slot for underholdning, ikke for profit-optimering.</p>
+        </section>
+
+        <section className="mb-10">
+          <h2 className="text-2xl font-bold mb-4 flex items-center gap-2"><AlertTriangle className="h-5 w-5 text-primary" />Bankroll og Ansvarlighed</h2>
+          <p className="text-muted-foreground mb-4 leading-relaxed">Cleopatras medium volatilitet kræver en bankroll på minimum 150-200 spins for en tilfredsstillende session. Med en indsats på 2 kr. svarer dette til 300-400 kr. Den relativt hyppige bonustrigger (1/120-150 spins) sikrer, at de fleste sessioner inkluderer mindst én free spins-runde, hvilket giver value for pengene.</p>
+          <p className="text-muted-foreground mb-4 leading-relaxed">Tabsstop anbefales ved 50 % af startkapitalen – lavere end for high-volatility slots, fordi Cleopatras gevinstfordeling sjældent producerer de dramatiske comebacks, der kan redde en session hos mere volatile titler. Cleopatra er IKKE velegnet til <Link to="/casino-bonus" className={linkClass}>bonus</Link>-gennemspilning pga. den lave RTP – de 4,98 % house edge gør gennemspilning inefficient.</p>
+          <p className="text-muted-foreground leading-relaxed">Husk altid <Link to="/ansvarligt-spil" className={linkClass}>ansvarligt spil</Link>-principper. Cleopatras tilgængelige design og høje hit frequency kan skabe en illusion af konsistente gevinster, men den matematiske realitet er, at hvert spin har negativ EV. Sæt dine grænser før du starter, og overhold dem uanset resultaterne.</p>
+        </section>
+
+        <section className="mb-10">
+          <h2 className="text-2xl font-bold mb-4 flex items-center gap-2"><Trophy className="h-5 w-5 text-primary" />Dronningen af Egypten – Stadig Relevant?</h2>
+          <p className="text-muted-foreground mb-4 leading-relaxed">Cleopatra er et monument i slot-historien. For danske spillere, der søger en stabil, underholdende spiloplevelse med egyptisk tema, forbliver den et solidt valg – trods den lavere RTP. Den høje hit frequency, simple mekanik og nostalgiske charme tilbyder noget, som moderne high-volatility slots ikke kan matche: forudsigelighed og tilgængelighed.</p>
+          <p className="text-muted-foreground leading-relaxed">For spillere, der prioriterer matematisk optimering, er nyere alternativer objektivt bedre. Men for dem, der værdsætter den klassiske slot-oplevelse, er Cleopatra tidløs. Udforsk vores <Link to="/casinospil/spillemaskiner" className={linkClass}>komplette spillemaskineguide</Link> for at finde det rette match til din spillestil, og besøg <Link to="/free-spins" className={linkClass}>free spins</Link>-siden for aktuelle tilbud.</p>
+        </section>
+
+        <Separator className="my-8" />
+        <AuthorBio author="kevin" />
+        <RelatedGuides currentPath="/casinospil/spillemaskiner/cleopatra" />
+        <FAQSection title="Ofte Stillede Spørgsmål om Cleopatra" faqs={cleopatraFaqs} />
+      </article>
+    </>
+  );
+};
+
+export default CleopatraGuide;
