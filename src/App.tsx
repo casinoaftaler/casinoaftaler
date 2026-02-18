@@ -117,6 +117,11 @@ const DivineFortuneGuide = lazy(() => import("./pages/slots/DivineFortuneGuide")
 const EyeOfHorusGuide = lazy(() => import("./pages/slots/EyeOfHorusGuide"));
 const BuffaloKingGuide = lazy(() => import("./pages/slots/BuffaloKingGuide"));
 const SugarRushGuide = lazy(() => import("./pages/slots/SugarRushGuide"));
+const CleopatraGuide = lazy(() => import("./pages/slots/CleopatraGuide"));
+const MegaMoolahGuide = lazy(() => import("./pages/slots/MegaMoolahGuide"));
+const ThunderstruckIIGuide = lazy(() => import("./pages/slots/ThunderstruckIIGuide"));
+const ImmortalRomanceGuide = lazy(() => import("./pages/slots/ImmortalRomanceGuide"));
+const WildWestGoldGuide = lazy(() => import("./pages/slots/WildWestGoldGuide"));
 const NetEntGuide = lazy(() => import("./pages/NetEntGuide"));
 const PragmaticPlayGuide = lazy(() => import("./pages/PragmaticPlayGuide"));
 const RelaxGamingGuide = lazy(() => import("./pages/RelaxGamingGuide"));
@@ -287,6 +292,11 @@ const App = () => (
                 <Route path="/casinospil/spillemaskiner/eye-of-horus" element={<EyeOfHorusGuide />} />
                 <Route path="/casinospil/spillemaskiner/buffalo-king" element={<BuffaloKingGuide />} />
                 <Route path="/casinospil/spillemaskiner/sugar-rush" element={<SugarRushGuide />} />
+                <Route path="/casinospil/spillemaskiner/cleopatra" element={<CleopatraGuide />} />
+                <Route path="/casinospil/spillemaskiner/mega-moolah" element={<MegaMoolahGuide />} />
+                <Route path="/casinospil/spillemaskiner/thunderstruck-ii" element={<ThunderstruckIIGuide />} />
+                <Route path="/casinospil/spillemaskiner/immortal-romance" element={<ImmortalRomanceGuide />} />
+                <Route path="/casinospil/spillemaskiner/wild-west-gold" element={<WildWestGoldGuide />} />
                 <Route path="/casinospil/blackjack" element={<BlackjackGuide />} />
                 <Route path="/casinospil/roulette" element={<RouletteGuide />} />
                 <Route path="/casinospil/poker" element={<PokerGuide />} />

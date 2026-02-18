@@ -258,6 +258,11 @@ export const Header = memo(function Header() {
                     { to: "/casinospil/spillemaskiner/eye-of-horus", label: "Eye of Horus" },
                     { to: "/casinospil/spillemaskiner/buffalo-king", label: "Buffalo King" },
                     { to: "/casinospil/spillemaskiner/sugar-rush", label: "Sugar Rush" },
+                    { to: "/casinospil/spillemaskiner/cleopatra", label: "Cleopatra" },
+                    { to: "/casinospil/spillemaskiner/mega-moolah", label: "Mega Moolah" },
+                    { to: "/casinospil/spillemaskiner/thunderstruck-ii", label: "Thunderstruck II" },
+                    { to: "/casinospil/spillemaskiner/immortal-romance", label: "Immortal Romance" },
+                    { to: "/casinospil/spillemaskiner/wild-west-gold", label: "Wild West Gold" },
                   ].map((item) => (
                     <DropdownMenuItem key={item.to} asChild>
                       <Link to={item.to} className="flex items-center gap-2">
@@ -864,6 +869,11 @@ export const Header = memo(function Header() {
                   { to: "/casinospil/spillemaskiner/eye-of-horus", label: "Eye of Horus" },
                   { to: "/casinospil/spillemaskiner/buffalo-king", label: "Buffalo King" },
                   { to: "/casinospil/spillemaskiner/sugar-rush", label: "Sugar Rush" },
+                  { to: "/casinospil/spillemaskiner/cleopatra", label: "Cleopatra" },
+                  { to: "/casinospil/spillemaskiner/mega-moolah", label: "Mega Moolah" },
+                  { to: "/casinospil/spillemaskiner/thunderstruck-ii", label: "Thunderstruck II" },
+                  { to: "/casinospil/spillemaskiner/immortal-romance", label: "Immortal Romance" },
+                  { to: "/casinospil/spillemaskiner/wild-west-gold", label: "Wild West Gold" },
                 ].map((item) => (
                   <Link key={item.to} to={item.to} className="ml-10 flex items-center gap-2 py-2 text-sm text-muted-foreground transition-colors hover:text-primary" onClick={() => setMobileMenuOpen(false)}>
                     <Star className="h-3 w-3" />

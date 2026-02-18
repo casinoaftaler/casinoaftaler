@@ -1,0 +1,130 @@
+import { Link } from "react-router-dom";
+import { AuthorMetaBar } from "@/components/AuthorMetaBar";
+import { AuthorBio } from "@/components/AuthorBio";
+import { FAQSection } from "@/components/FAQSection";
+import { SEO } from "@/components/SEO";
+import { buildFaqSchema, buildArticleSchema, SITE_URL } from "@/lib/seo";
+import { RelatedGuides } from "@/components/RelatedGuides";
+import { InlineCasinoCards } from "@/components/InlineCasinoCards";
+import { type ReactNode } from "react";
+import { Badge } from "@/components/ui/badge";
+import { Separator } from "@/components/ui/separator";
+import { Card, CardContent } from "@/components/ui/card";
+import { Sparkles, TrendingUp, Target, Shield, Zap, BarChart3, Calculator, Flame, Scale, Users, AlertTriangle, Trophy, Crown, Layers } from "lucide-react";
+
+const linkClass = "text-primary underline underline-offset-4 hover:text-primary/80 transition-colors";
+
+const megaMoolahFaqs: { question: string; answer: ReactNode }[] = [
+  { question: "Hvad er RTP'en på Mega Moolah?", answer: "Mega Moolah har en basis-RTP på 88,12 %, hvilket er den laveste blandt populære online slots. Når progressive jackpot-bidrag medregnes, stiger den effektive RTP til ca. 93-94 %, men dette inkluderer sjældne, livs­ændrende jackpots. For gennemsnitsspilleren er den oplevede RTP tættere på 88 %." },
+  { question: "Hvor stor er Mega Moolah jackpotten?", answer: "Mega Moolah's Mega Jackpot starter ved €1.000.000 og har ingen øvre grænse. Den største dokumenterede gevinst er €19.430.723 (2018). Jackpotten udløses gennemsnitligt hver 8-12 uge, men dette er et gennemsnit – den kan falde efter dage eller måneder." },
+  { question: "Hvordan fungerer Mega Moolah's jackpot-hjul?", answer: "Jackpot-hjulet er en random-triggered bonusfunktion uafhængig af gevinstlinjer. Enhver spin (uanset størrelse) kan udløse hjulet, men højere indsatser øger sandsynligheden proportionalt. Hjulet har fire segmenter: Mini (10×), Minor (100×), Major (10.000×) og Mega (€1M+ start)." },
+  { question: "Er Mega Moolah pengene værd trods lav RTP?", answer: (<>Matematisk nej – den 88,12 % basis-RTP er markant lavere end standardslots (96 %+). For hver 100 kr. indsat returnerer Mega Moolah kun 88 kr. uden jackpot. Spillere, der ønsker bedre value, bør overveje <Link to="/casinospil/spillemaskiner/divine-fortune" className={linkClass}>Divine Fortune</Link> (96,59 % RTP, lokal jackpot) som et mere balanceret alternativ.</>) },
+  { question: "Hvem har udviklet Mega Moolah?", answer: (<><Link to="/spiludviklere/microgaming" className={linkClass}>Microgaming</Link> lancerede Mega Moolah i 2006, og spillet holder Guinness World Record for den største online jackpot-udbetaling. Microgaming's progressive netværk forbinder tusindvis af casinoer, hvilket muliggør de astronomiske jackpot-beløb.</>) },
+  { question: "Kan man spille Mega Moolah i Danmark?", answer: (<>Ja, Mega Moolah er tilgængelig på danske licenserede casinoer. Microgaming har aftaler med flere Spillemyndigheden-licenserede operatører. Bemærk at jackpot-beløbet er skattefrit for danske spillere under de nuværende regler. Se vores <Link to="/casinospil/spillemaskiner" className={linkClass}>spillemaskineguide</Link> for anbefalinger.</>) },
+];
+
+const MegaMoolahGuide = () => {
+  const faqJsonLd = buildFaqSchema(megaMoolahFaqs);
+  const articleSchema = buildArticleSchema({
+    headline: "Mega Moolah – Progressiv Jackpot-Analyse",
+    description: "Komplet analyse af Mega Moolah: progressiv jackpot-mekanik, 88,12 % basis-RTP, jackpot-trigger-sandsynlighed og EV-vurdering.",
+    url: `${SITE_URL}/casinospil/spillemaskiner/mega-moolah`,
+    datePublished: "2026-02-18", dateModified: "2026-02-18",
+    authorName: "Kevin", authorUrl: `${SITE_URL}/forfatter/kevin`,
+  });
+  const breadcrumbJsonLd = { "@context": "https://schema.org", "@type": "BreadcrumbList", itemListElement: [
+    { "@type": "ListItem", position: 1, name: "Forside", item: `${SITE_URL}/` },
+    { "@type": "ListItem", position: 2, name: "Casinospil", item: `${SITE_URL}/casinospil` },
+    { "@type": "ListItem", position: 3, name: "Spillemaskiner", item: `${SITE_URL}/casinospil/spillemaskiner` },
+    { "@type": "ListItem", position: 4, name: "Mega Moolah", item: `${SITE_URL}/casinospil/spillemaskiner/mega-moolah` },
+  ]};
+
+  return (
+    <>
+      <SEO title="Mega Moolah – Jackpot & RTP-Analyse" description="Dybdegående analyse af Mega Moolah: progressiv jackpot-mekanik, 88,12 % basis-RTP, Guinness-rekord og EV-beregninger." jsonLd={[faqJsonLd, articleSchema, breadcrumbJsonLd]} />
+      <article className="mx-auto max-w-4xl px-4 py-12">
+        <header className="mb-8 text-center">
+          <div className="flex items-center justify-center gap-2 mb-4">
+            <Badge variant="secondary" className="text-xs">Progressiv Jackpot</Badge>
+            <Badge variant="outline" className="text-xs">Basis-RTP 88,12 %</Badge>
+            <Badge variant="outline" className="text-xs">Medium Volatilitet</Badge>
+          </div>
+          <h1 className="text-4xl md:text-5xl font-bold mb-4 leading-tight">Mega Moolah – Progressiv Jackpot-Analyse</h1>
+          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">Guinness World Record-holderen for den største online jackpot: en matematisk dekonstruktion af det progressive netværk, der har skabt millionærer siden 2006.</p>
+        </header>
+        <AuthorMetaBar author="kevin" date="2026-02-18" readTime="17 min" />
+        <Separator className="my-8" />
+
+        <section className="mb-10">
+          <h2 className="text-2xl font-bold mb-4 flex items-center gap-2"><Crown className="h-5 w-5 text-primary" />Det Progressive Jackpot-Netværk: Sådan Fungerer Det</h2>
+          <p className="text-muted-foreground mb-4 leading-relaxed">Mega Moolah's fire-trins progressive jackpot-system er det mest berømte i online casino-verdenen. Hver spin bidrager med en procentdel af indsatsen til fire separate jackpot-puljer: Mini (typisk €10-100), Minor (€100-1.000), Major (€10.000-100.000) og Mega (starter ved €1.000.000, ingen øvre grænse). Bidraget estimeres til 8-12 % af hver indsats – og det er denne mekanisme, der forklarer den lave basis-RTP på 88,12 %.</p>
+          <p className="text-muted-foreground mb-4 leading-relaxed"><Link to="/spiludviklere/microgaming" className={linkClass}>Microgaming</Link>'s progressive netværk forbinder hundredvis af casinoer worldwide. Hver gang en spiller spinder på Mega Moolah – uanset casino – bidrager indsatsen til den fælles jackpot-pulje. Med millioner af daglige spins vokser Mega-jackpotten hurtigt: typisk €50.000-100.000 pr. dag i perioder uden udbetaling. Denne netværkseffekt er grunden til, at Mega Moolah konsekvent tilbyder de største progressive jackpots i industrien.</p>
+          <p className="text-muted-foreground mb-4 leading-relaxed">Jackpot-triggeren er random-baseret: efter ethvert spin (gevindende eller tabende) kan jackpot-hjulet aktiveres. Sandsynligheden for activation er proportional med indsatsstørrelsen – en €5-spin har fem gange større chance for at udløse hjulet end en €1-spin. Dog er ALLE indsatsniveauer kvalificerede, hvilket adskiller Mega Moolah fra nogle konkurrenter, der kræver max bet for jackpot-adgang.</p>
+          <p className="text-muted-foreground leading-relaxed">Når jackpot-hjulet er aktiveret, spinder spilleren et sekundært hjul med segmenter for de fire jackpot-niveauer. Mega-segmentet er det mindste (estimeret 1-2 % af hjulet), mens Mini-segmentet optager den største andel (ca. 50-60 %). Statistisk set udløses Mega-jackpotten gennemsnitligt hver 8-12 uge, men den faktiske frekvens varierer enormt – den kan falde efter få dage eller forblive uberørt i måneder.</p>
+        </section>
+
+        <section className="mb-10">
+          <h2 className="text-2xl font-bold mb-4 flex items-center gap-2"><Calculator className="h-5 w-5 text-primary" />Teknisk Profil og RTP-Dekomposition</h2>
+          <Card className="mb-6"><CardContent className="pt-6">
+            <div className="grid grid-cols-2 md:grid-cols-3 gap-4 text-sm">
+              <div><span className="text-muted-foreground">Udvikler:</span><br /><strong>Microgaming</strong></div>
+              <div><span className="text-muted-foreground">Basis-RTP:</span><br /><strong>88,12 %</strong></div>
+              <div><span className="text-muted-foreground">Volatilitet:</span><br /><strong>Medium (3/5)</strong></div>
+              <div><span className="text-muted-foreground">Jackpot:</span><br /><strong>Progressiv (4-tier)</strong></div>
+              <div><span className="text-muted-foreground">Grid:</span><br /><strong>5×3 (25 paylines)</strong></div>
+              <div><span className="text-muted-foreground">House Edge (base):</span><br /><strong>11,88 %</strong></div>
+            </div>
+          </CardContent></Card>
+          <p className="text-muted-foreground mb-4 leading-relaxed">Den 88,12 % basis-RTP er den matematiske elefant i rummet. For hver 100 kr. indsat på Mega Moolah returnerer base game-mekanikken kun 88 kr. – en house edge på 11,88 % der er tre gange højere end standard slots. De resterende ~6-8 % af RTP'en er allokeret til jackpot-bidraget, hvilket bringer den samlede teoretiske RTP op på ca. 93-94 %. Men denne "jackpot-RTP" er misleading: den inkluderer enorme, sjældne udbetalinger, som 99,99 % af spillere aldrig vil opleve.</p>
+          <p className="text-muted-foreground mb-4 leading-relaxed">Hit frequency i base game estimeres til 26-30 % – lavere end mange sammenlignelige slots. De fleste gevinster er små (under 1× indsatsen), og free spins-runden (15 spins med 3× multiplikator, udløst af 3+ scatters) leverer typisk 15-30× indsatsen. Base game og free spins alene gør Mega Moolah til en decideret dårlig slot – det er udelukkende jackpot-potentialet, der retfærdiggør spillets eksistens.</p>
+          <p className="text-muted-foreground leading-relaxed">For at sætte det i perspektiv: over 1.000 spins à 5 kr. (5.000 kr. total indsats) er det forventede tab fra base game alene ca. 594 kr. (11,88 %). For samme indsats på <Link to="/casinospil/spillemaskiner/starburst" className={linkClass}>Starburst</Link> ville det forventede tab være ca. 152 kr. (3,04 %). Mega Moolah koster bogstaveligt fire gange mere at spille pr. session – medmindre jackpotten falder.</p>
+        </section>
+
+        <section className="mb-10">
+          <h2 className="text-2xl font-bold mb-4 flex items-center gap-2"><TrendingUp className="h-5 w-5 text-primary" />Jackpot-Sandsynlighed og Forventet Udbetaling</h2>
+          <p className="text-muted-foreground mb-4 leading-relaxed">Den præcise sandsynlighed for at udløse Mega-jackpotten er ikke offentligt tilgængelig, men baseret på historiske data og matematisk modellering estimeres den til ca. 1:50.000.000 pr. spin ved minimum indsats. Ved højere indsatser forbedres oddsen proportionalt, men selv ved max bet forbliver sandsynligheden astronomi ekstremt lav – sammenlignelig med at vinde en mindre lottopulje.</p>
+          <p className="text-muted-foreground mb-4 leading-relaxed">Historisk analyse af Mega-jackpot-udbetalinger viser et gennemsnitligt beløb på ca. €5-8 millioner. Medianen er lavere (€3-5 millioner), da fordelingen er skæv mod sjældne, ekstremt store udbetalinger. Den gennemsnitlige tid mellem Mega-jackpots er 9-10 uger, men standardafvigelsen er enorm – der er perioder med jackpots hver 3-4 uge og tørke-perioder på 4+ måneder.</p>
+          <p className="text-muted-foreground mb-4 leading-relaxed">Et vigtigt koncept er "jackpot-EV-tærskel": det punkt, hvor jackpottens størrelse teoretisk gør det +EV at spille. Med en basis-RTP på 88,12 % og ca. 6-8 % jackpot-bidrag er break-even punktet ekstremt højt. I praksis er det aldrig rationelt at "jage" jackpotten baseret på dens aktuelle størrelse – der er ingen "due date" for progressive jackpots.</p>
+          <p className="text-muted-foreground leading-relaxed">For danske spillere er Mega Moolah en ren underholdningsudgift med en lotteri-lignende upside. Det er vigtigt at behandle indsatsen som et underholdningsbudget – ikke en investering. Sammenlign med <Link to="/casinospil/spillemaskiner/divine-fortune" className={linkClass}>Divine Fortune</Link> for en jackpot-slot med markant bedre base game value.</p>
+        </section>
+
+        <InlineCasinoCards />
+
+        <section className="mb-10">
+          <h2 className="text-2xl font-bold mb-4 flex items-center gap-2"><BarChart3 className="h-5 w-5 text-primary" />EV-Scenarie: Hvad Koster Jackpot-Drømmen?</h2>
+          <Card className="mb-6"><CardContent className="pt-6">
+            <h3 className="font-semibold mb-3">EV-scenarie: 500 spins à 5 kr.</h3>
+            <div className="grid grid-cols-2 gap-3 text-sm">
+              <div><span className="text-muted-foreground">Samlet indsats:</span><br /><strong>2.500 kr.</strong></div>
+              <div><span className="text-muted-foreground">Forventet return (base):</span><br /><strong>2.203 kr.</strong></div>
+              <div><span className="text-muted-foreground">Forventet tab (EV):</span><br /><strong>-297 kr.</strong></div>
+              <div><span className="text-muted-foreground">Realistisk interval:</span><br /><strong>-1.800 til +1.500 kr.</strong></div>
+            </div>
+          </CardContent></Card>
+          <p className="text-muted-foreground mb-4 leading-relaxed">Det realistiske interval ekskluderer jackpot-hits, da sandsynligheden er negligibel for 500 spins. De -297 kr. i forventet tab afspejler den brutale base game-økonomi. Over et års spil (anslået 20.000 spins) er det kumulative forventede tab ca. 11.880 kr. ved 5 kr. indsats – en betydelig underholdningsudgift.</p>
+          <p className="text-muted-foreground leading-relaxed">Mega Moolah er IKKE velegnet til <Link to="/casino-bonus" className={linkClass}>bonus</Link>-gennemspilning. Den lave basis-RTP gør det næsten umuligt at gennemspille bonuskrav profitabelt. For gennemspilning anbefaler vi slots med RTP ≥ 96 % som <Link to="/casinospil/spillemaskiner/fire-joker" className={linkClass}>Fire Joker</Link> eller Starburst.</p>
+        </section>
+
+        <section className="mb-10">
+          <h2 className="text-2xl font-bold mb-4 flex items-center gap-2"><AlertTriangle className="h-5 w-5 text-primary" />Risiko og Ansvarligt Spil ved Jackpot-Slots</h2>
+          <p className="text-muted-foreground mb-4 leading-relaxed">Progressive jackpot-slots som Mega Moolah udgør en unik risiko for problematisk spilleadfærd. Den "near-miss"-psykologi – tanken om at "næste spin kunne være millionen" – kan drive uansvarligt play langt mere effektivt end standard slots. Vi anbefaler et absolut dagligt tabsstop (f.eks. 200 kr.) og aldrig at jage tab med øget indsats.</p>
+          <p className="text-muted-foreground mb-4 leading-relaxed">Bankroll-kravet for Mega Moolah er paradoksalt: den medium volatilitet og høje house edge betyder, at din bankroll eroderer hurtigt og forudsigeligt. Minimum 200 spins (1.000 kr. ved 5 kr. indsats) giver en rimelig session, men forvent at tabe 100-150 kr. i gennemsnit. Husk: jackpot-potentialet ændrer ikke den daglige matematik.</p>
+          <p className="text-muted-foreground leading-relaxed">Husk altid <Link to="/ansvarligt-spil" className={linkClass}>ansvarligt spil</Link>-principper. Mega Moolah skal behandles som en lotterikupon – ikke som en indkomstkilde. Spil kun for penge, du har råd til at tabe, og sæt dine grænser FØR du starter sessionen.</p>
+        </section>
+
+        <section className="mb-10">
+          <h2 className="text-2xl font-bold mb-4 flex items-center gap-2"><Trophy className="h-5 w-5 text-primary" />Millionærmaskinen – Men Til Hvilken Pris?</h2>
+          <p className="text-muted-foreground mb-4 leading-relaxed">Mega Moolah er unik i slot-landskabet: den eneste slot, der realistisk kan gøre dig til millionær med et enkelt spin. Denne USP er ubestridelig og forklarer spillets vedvarende popularitet trods den lave base game value. For danske spillere, der drømmer stort og accepterer den høje pris for drømmen, er Mega Moolah et one-of-a-kind produkt.</p>
+          <p className="text-muted-foreground leading-relaxed">Men for spillere, der søger optimal value pr. krone, er Mega Moolah objektivt et af de dårligste valg i markedet. Udforsk vores <Link to="/casinospil/spillemaskiner" className={linkClass}>komplette spillemaskineguide</Link> for at finde slots med bedre base game-økonomi, og besøg <Link to="/free-spins" className={linkClass}>free spins</Link>-oversigten for aktuelle tilbud.</p>
+        </section>
+
+        <Separator className="my-8" />
+        <AuthorBio author="kevin" />
+        <RelatedGuides currentPath="/casinospil/spillemaskiner/mega-moolah" />
+        <FAQSection title="Ofte Stillede Spørgsmål om Mega Moolah" faqs={megaMoolahFaqs} />
+      </article>
+    </>
+  );
+};
+
+export default MegaMoolahGuide;
