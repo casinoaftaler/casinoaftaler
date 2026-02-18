@@ -1,0 +1,310 @@
+import { Link } from "react-router-dom";
+import { AuthorMetaBar } from "@/components/AuthorMetaBar";
+import { AuthorBio } from "@/components/AuthorBio";
+import { FAQSection } from "@/components/FAQSection";
+import { SEO } from "@/components/SEO";
+import { buildFaqSchema, buildArticleSchema, SITE_URL } from "@/lib/seo";
+import { RelatedGuides } from "@/components/RelatedGuides";
+import { InlineCasinoCards } from "@/components/InlineCasinoCards";
+import { type ReactNode } from "react";
+import { Badge } from "@/components/ui/badge";
+import { Separator } from "@/components/ui/separator";
+import { Card, CardContent } from "@/components/ui/card";
+import {
+  Sparkles, TrendingUp, Target, Shield, Zap, BarChart3,
+  Calculator, Flame, Scale, Users, AlertTriangle, Trophy
+} from "lucide-react";
+
+const linkClass = "text-primary underline hover:text-primary/80";
+
+const doa2Faqs: { question: string; answer: ReactNode }[] = [
+  {
+    question: "Hvad er Dead or Alive 2 RTP?",
+    answer: "Dead or Alive 2 har en fast RTP på 96,82 % – en af de højeste i slot-verdenen. House edge er kun 3,18 %. I modsætning til mange Pragmatic Play-slots tilbyder NetEnt ikke variable RTP-konfigurationer, så alle installationer kører samme matematik.",
+  },
+  {
+    question: "Hvad er den højeste mulige gevinst i Dead or Alive 2?",
+    answer: "Max win er 111.111x din indsats – et af de absolut højeste i industrien. Ved 10 kr./spin er den teoretiske max gevinst 1.111.110 kr. Dog er sandsynligheden for at ramme denne gevinst astronomisk lav, estimeret til mindre end 1:100.000.000 spins. Den kræver 5 sticky wilds med 3x multiplikatorer i High Noon Saloon free spins-mode.",
+  },
+  {
+    question: "Hvad er forskellen mellem de tre free spins-modes?",
+    answer: "Dead or Alive 2 tilbyder tre unikke free spins-varianter: 1) Train Heist – lav volatilitet med stigende multiplikatorer (op til 16x), max 2.000x. 2) Old Saloon – medium volatilitet med sticky wilds på 2x multiplikator, max 40.500x. 3) High Noon Saloon – ekstrem volatilitet med sticky wilds med 2x eller 3x multiplikator, max 111.111x. Valget bestemmer fundamentalt din risikoprofil for sessionen.",
+  },
+  {
+    question: "Hvilken free spins-mode er bedst?",
+    answer: (
+      <>
+        Det afhænger af dit mål. For wagering med <Link to="/omsaetningskrav" className={linkClass}>omsætningskrav</Link>: Train Heist (lavest bust-risiko). For balanceret spil: Old Saloon (moderat risiko, god gevinstpotentiale). For maximal spænding og jackpot-jagt: High Noon Saloon (ekstrem risiko, ekstrem belønning). Matematisk har alle tre modes identisk RTP – det er kun fordelingen af gevinster, der varierer.
+      </>
+    ),
+  },
+  {
+    question: "Er Dead or Alive 2 for volatil til wagering?",
+    answer: "Ja, generelt er Dead or Alive 2 for volatil til systematisk wagering – især i High Noon Saloon mode. Bust-risikoen for standard wagering-scenarier (30x krav) estimeres til 35–45 %. Dog kan Train Heist mode reducere dette til ca. 25 %, og med den høje RTP på 96,82 % er den forventede værdi bedre end de fleste alternativer. Erfarne wagering-spillere med tilstrækkeligt budget kan overveje den.",
+  },
+  {
+    question: "Hvem har udviklet Dead or Alive 2?",
+    answer: (
+      <>
+        Dead or Alive 2 er udviklet af <Link to="/spiludviklere/netent" className={linkClass}>NetEnt</Link> og lanceret i 2019 som opfølger til den originale Dead or Alive fra 2009. NetEnt er et af verdens førende slot-studier, også ansvarlig for Starburst, Gonzo's Quest og Divine Fortune. Dead or Alive 2 er bredt anerkendt som NetEnts mest ambitiøse high-volatility projekt.
+      </>
+    ),
+  },
+  {
+    question: "Hvad er forskellen mellem Dead or Alive 1 og 2?",
+    answer: "Den originale Dead or Alive (2009) havde kun én free spins-mode med sticky wilds og en max win på 12.000x. Dead or Alive 2 (2019) tredoblede valgmulighederne med tre modes, opgraderede max win til 111.111x med multiplikator-wilds, og forbedrede grafikken markant. RTP er næsten identisk (96,82 % vs. 96,80 %). Den originale betragtes stadig som en klassiker, men opfølgeren er objektivt overlegen i alle målbare parametre.",
+  },
+];
+
+const DeadOrAlive2Guide = () => {
+  const faqJsonLd = buildFaqSchema(doa2Faqs);
+  const articleSchema = buildArticleSchema({
+    headline: "Dead or Alive 2 – 111.111x Max Win, Volatilitet & Strategi",
+    description: "Ultimativ analyse af NetEnts Dead or Alive 2: RTP 96,82 %, tre free spins-modes, max win 111.111x og strategisk valg af bonusrunde.",
+    url: `${SITE_URL}/casinospil/spillemaskiner/dead-or-alive-2`,
+    datePublished: "2026-02-18",
+    dateModified: "2026-02-18",
+    authorName: "Jonas",
+    authorUrl: `${SITE_URL}/forfatter/jonas`,
+  });
+
+  const breadcrumbJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Forside", item: `${SITE_URL}/` },
+      { "@type": "ListItem", position: 2, name: "Casinospil", item: `${SITE_URL}/casinospil` },
+      { "@type": "ListItem", position: 3, name: "Spillemaskiner", item: `${SITE_URL}/casinospil/spillemaskiner` },
+      { "@type": "ListItem", position: 4, name: "Dead or Alive 2", item: `${SITE_URL}/casinospil/spillemaskiner/dead-or-alive-2` },
+    ],
+  };
+
+  return (
+    <>
+      <SEO
+        title="Dead or Alive 2 – Max Win & Volatilitet"
+        description="Komplet analyse af Dead or Alive 2: RTP 96,82 %, max win 111.111x, tre free spins-modes og strategisk valg for danske spillere."
+        jsonLd={[faqJsonLd, breadcrumbJsonLd, articleSchema]}
+      />
+
+      {/* ── HERO ── */}
+      <section className="relative overflow-hidden py-12 text-white md:py-20" style={{ backgroundImage: "linear-gradient(135deg, hsl(30 70% 25%), hsl(20 60% 18%) 40%, hsl(10 80% 15%))" }}>
+        <div className="container">
+          <div className="mx-auto max-w-3xl text-center">
+            <Badge variant="secondary" className="mb-4"><AlertTriangle className="mr-1.5 h-3.5 w-3.5" /> Risiko-Analyse</Badge>
+            <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">Dead or Alive 2</h1>
+            <p className="text-lg text-white/80">111.111x max win. Tre bonusmodes. Ekstrem volatilitet. Den mest risikable slot, du kan spille – analyseret til benet.</p>
+          </div>
+        </div>
+      </section>
+
+      <div className="container py-8 md:py-12">
+        <AuthorMetaBar author="jonas" date="18-02-2026" readTime="26 Min." />
+
+        {/* ── ÅBNINGSVINKEL: MAX WIN FOKUS ── */}
+        <section className="mb-12">
+          <h2 className="mb-4 text-3xl font-bold">111.111x: Anatomien af den Største Gevinst i Online Slots</h2>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            111.111 gange din indsats. Det er ikke en trykfejl – det er det faktiske max win i <Link to="/spiludviklere/netent" className={linkClass}>NetEnts</Link> Dead or Alive 2. Med en indsats på bare 10 kr. er den teoretisk højeste gevinst over 1,1 million kroner. Det er det tredjehøjeste max win i nogen mainstream-slot, kun overgået af en håndfuld niche-produkter. Men hvad kræver det at ramme denne gevinst, og hvad er den reelle sandsynlighed?
+          </p>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            Svaret kræver, at vi forstår Dead or Alive 2's trelagsstruktur. Spillet tilbyder tre unikke free spins-modes: Train Heist (sikker), Old Saloon (moderat), og High Noon Saloon (ekstrem). Kun i High Noon Saloon er 111.111x-gevinsten mulig – og den kræver, at alle 5 positioner på hjulene fyldes med sticky wilds med 3x multiplikatorer. Sandsynligheden? Ca. 1:100.000.000 spins. Det er mere sjældent end at vinde i Lotto.
+          </p>
+          <p className="text-muted-foreground leading-relaxed">
+            Men det er netop denne asymmetri mellem risiko og belønning, der definerer Dead or Alive 2. Det er et spil for spillere, der forstår og accepterer, at de sandsynligvis aldrig rammer max win – men nyder jagten alligevel. Denne guide analyserer hvert aspekt af spillets matematiske model, fra bonusmode-valg til optimal bankroll-strategi, for at give dig det mest ærlige billede af, hvad du kan forvente.
+          </p>
+        </section>
+
+        <Separator className="my-10" />
+
+        {/* ── SEKTION: TEKNISK PROFIL ── */}
+        <section className="mb-12">
+          <h2 className="mb-6 text-3xl font-bold flex items-center gap-2"><BarChart3 className="h-7 w-7 text-primary" /> Spillets Fundament: 5×3, 9 Linjer, 3 Verdener</h2>
+          <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3 mb-6">
+            <Card><CardContent className="pt-6">
+              <p className="text-sm text-muted-foreground">Udvikler</p>
+              <p className="text-xl font-bold"><Link to="/spiludviklere/netent" className={linkClass}>NetEnt</Link></p>
+            </CardContent></Card>
+            <Card><CardContent className="pt-6">
+              <p className="text-sm text-muted-foreground">RTP</p>
+              <p className="text-xl font-bold">96,82 %</p>
+            </CardContent></Card>
+            <Card><CardContent className="pt-6">
+              <p className="text-sm text-muted-foreground">Volatilitet</p>
+              <p className="text-xl font-bold">Ekstrem (5/5)</p>
+            </CardContent></Card>
+            <Card><CardContent className="pt-6">
+              <p className="text-sm text-muted-foreground">Max Win</p>
+              <p className="text-xl font-bold">111.111x</p>
+            </CardContent></Card>
+            <Card><CardContent className="pt-6">
+              <p className="text-sm text-muted-foreground">Grid Layout</p>
+              <p className="text-xl font-bold">5 hjul × 3 rækker</p>
+            </CardContent></Card>
+            <Card><CardContent className="pt-6">
+              <p className="text-sm text-muted-foreground">Gevinstlinjer</p>
+              <p className="text-xl font-bold">9 faste</p>
+            </CardContent></Card>
+          </div>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            Dead or Alive 2 bruger et klassisk 5x3 grid med kun 9 gevinstlinjer – en bevidst minimalistisk opsætning, der koncentrerer gevinsterne på færre, men højere kombinationer. Basisspillet har et Wild West-tema med revolveremner, whisky-flasker, cowboyhatte og sheriff-stjerner som symboler. Hit-raten er ca. 15 % – lavere end de fleste moderne slots, men forventet for dette volatilitetsniveau.
+          </p>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            Basisspillet bidrager med ca. 25 % af den samlede RTP, mens bonusrunden leverer 75 %. Det er en af de mest skæve fordelinger i branchen og forklarer, hvorfor Dead or Alive 2 kan føles brutal under basisspillet – du spiller effektivt med en RTP på ca. 24 % mellem bonusrunder, kompenseret af (sjældne) massive bonusgevinster.
+          </p>
+          <p className="text-muted-foreground leading-relaxed">
+            Det unikke ved Dead or Alive 2 er valget mellem tre bonusmodes. Ingen andre mainstream-slots tilbyder denne grad af spiller-kontrol over risikoprofilen. Det gør spillet til det mest strategisk interessante slot-produkt på markedet – du vælger ikke bare, hvornår du spiller, men også hvordan du spiller.
+          </p>
+        </section>
+
+        <InlineCasinoCards title="Spil Dead or Alive 2 på disse casinoer" count={4} />
+
+        <Separator className="my-10" />
+
+        {/* ── SEKTION: TRE MODES DEEP DIVE ── */}
+        <section className="mb-12">
+          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><Zap className="h-7 w-7 text-primary" /> Tre Verdener: Train Heist, Old Saloon & High Noon</h2>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            Når du trigger free spins (3+ scatters, ca. 1:250 spins), vælger du mellem tre fundamentalt forskellige oplevelser. Alle tre har 12 free spins som standard med mulighed for retrigger, og alle tre deler den samlede RTP ligeligt. Men gevinstfordelingen er radikalt forskellig:
+          </p>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            <strong>Train Heist</strong> er den "sikre" mode med stigende multiplikatorer (1x → 2x → 4x → 8x → 16x) for consecutive wins. Max win er 2.000x. Den gennemsnitlige bonusrunde udbetaler ca. 60–80x. Bust-risiko under wagering: ~20 %. Ideel til: wagering, casual play, begrænset budget.
+          </p>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            <strong>Old Saloon</strong> er mellemvejen med sticky wilds, der forbliver på hjulene resten af bonusrunden. Hvert wild har en fast 2x multiplikator. Max win er 40.500x. Gennemsnitlig bonusudbetaling: ca. 100–150x. Bust-risiko: ~30 %. Ideel til: spillere, der ønsker god balance mellem risiko og potentiale.
+          </p>
+          <p className="text-muted-foreground leading-relaxed">
+            <strong>High Noon Saloon</strong> er ekstremmoden: sticky wilds med tilfældige 2x ELLER 3x multiplikatorer, der MULTIPLERER med hinanden. Med 5 wilds med 3x multiplikatorer: 3×3×3×3×3 = 243x multiplikator på alle gevinster. Max win: 111.111x. Gennemsnitlig bonus: ca. 80–120x (skæv fordeling). Bust-risiko: ~45 %. Ideel til: erfarne spillere med tilstrækkeligt budget, der accepterer høj risiko.
+          </p>
+        </section>
+
+        <Separator className="my-10" />
+
+        {/* ── SEKTION: RTP ANALYSE ── */}
+        <section className="mb-12">
+          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><TrendingUp className="h-7 w-7 text-primary" /> 96,82 % RTP: Hvad Det Betyder i Kontekst</h2>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            Dead or Alive 2's RTP på 96,82 % er en af de bedste i branchen – house edge er kun 3,18 %. Over 1.000 spins á 10 kr. er det forventede tab 318 kr. – ca. 70 kr. mindre end Sweet Bonanza og 73 kr. mindre end Starburst. Den høje RTP gør Dead or Alive 2 til et af de matematisk mest fair slot-produkter.
+          </p>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            Men RTP er en langsigtet statistik, og Dead or Alive 2's ekstreme volatilitet (især i High Noon mode) betyder, at korte sessioner kan afvige voldsomt fra forventningen. Over 200 spins kan din oplevede RTP variere fra 0 % (total bust) til 1.000 %+ (massiv bonusgevinst). Det er først over 50.000+ spins, at den teoretiske RTP konsistent materialiserer sig.
+          </p>
+          <p className="text-muted-foreground leading-relaxed">
+            For wagering med <Link to="/casino-bonus" className={linkClass}>bonuspenge</Link> og 30x omsætningskrav er det forventede tab: 30.000 × 0,0318 = 954 kr. – en af de bedste EV-profiler i slot-verdenen. Problemet er bust-risikoen: med High Noon Saloon er der ca. 45 % chance for at gå bust, før wagering er fuldført. Med Train Heist er det ca. 20 %. Valget af mode har altså enorm praktisk betydning.
+          </p>
+        </section>
+
+        <Separator className="my-10" />
+
+        {/* ── SEKTION: VOLATILITET ── */}
+        <section className="mb-12">
+          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><Flame className="h-7 w-7 text-primary" /> Ekstrem Volatilitet: Hvad 5/5 Virkelig Føles Som</h2>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            Dead or Alive 2 i High Noon Saloon mode er en af de mest volatile mainstream-slots. Med en estimeret standardafvigelse på ca. 20x+ indsatsen pr. spin er bankroll-svingningerne dramatiske. Over 100 spins á 10 kr. kan din saldo realistisk variere fra 0 kr. til 5.000+ kr. – total uforudsigelighed.
+          </p>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            I praksis opleves ekstremen som følger: du kan forvente 200–400 spins i basisspillet mellem bonustriggers. Med en hit-rate på 15 % og de fleste gevinster under 1x, falder din saldo jævnt. Når bonusrunden endelig kommer, er resultatet binært: enten en moderat gevinst (50–100x i 60 % af tilfælde) eller en potentielt massiv udbetaling (500x+ i 10 % af tilfælde).
+          </p>
+          <p className="text-muted-foreground leading-relaxed">
+            Det anbefalede bankroll-til-indsats-forhold for High Noon mode er minimum 500:1. Med 5.000 kr. bør din indsats være 10 kr./spin, hvilket giver ca. 500 spins og 2–3 potentielle bonustriggers. For Train Heist mode er 200:1 tilstrækkeligt. Tilpas din indsats til den valgte mode – det er den mest kritiske strategiske beslutning i Dead or Alive 2.
+          </p>
+        </section>
+
+        <Separator className="my-10" />
+
+        {/* ── SEKTION: SAMMENLIGNING ── */}
+        <section className="mb-12">
+          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><Scale className="h-7 w-7 text-primary" /> Dead or Alive 2 vs. Razor Shark vs. Book of Dead</h2>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            De tre mest populære high-volatility slots har fundamentalt forskellige tilgange til risiko og belønning:
+          </p>
+
+          <div className="overflow-x-auto mb-6">
+            <table className="w-full text-sm">
+              <thead>
+                <tr className="border-b">
+                  <th className="py-2 text-left font-semibold">Metrik</th>
+                  <th className="py-2 text-right font-semibold">Dead or Alive 2</th>
+                  <th className="py-2 text-right font-semibold">Razor Shark</th>
+                  <th className="py-2 text-right font-semibold">Book of Dead</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr className="border-b"><td className="py-2">RTP</td><td className="py-2 text-right">96,82 %</td><td className="py-2 text-right">96,70 %</td><td className="py-2 text-right">96,21 %</td></tr>
+                <tr className="border-b"><td className="py-2">Max Win</td><td className="py-2 text-right">111.111x</td><td className="py-2 text-right">50.000x</td><td className="py-2 text-right">5.000x</td></tr>
+                <tr className="border-b"><td className="py-2">Volatilitet</td><td className="py-2 text-right">5/5</td><td className="py-2 text-right">4,5/5</td><td className="py-2 text-right">4/5</td></tr>
+                <tr className="border-b"><td className="py-2">Bonusvalg</td><td className="py-2 text-right">3 modes</td><td className="py-2 text-right">Ingen</td><td className="py-2 text-right">Expanding symbol</td></tr>
+                <tr className="border-b"><td className="py-2">Hit Rate</td><td className="py-2 text-right">~15 %</td><td className="py-2 text-right">~18 %</td><td className="py-2 text-right">~20 %</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            Dead or Alive 2 er den mest ekstreme i alle dimensioner: højeste max win, højeste volatilitet, laveste hit rate, og det unikke bonusvalg. <Link to="/casinospil/spillemaskiner/book-of-dead" className={linkClass}>Book of Dead</Link> er det mest tilgængelige valg med lavere risiko og en mere klassisk slot-oplevelse. Razor Shark placerer sig imellem med sin innovative Mystery Stack-mekanik.
+          </p>
+          <p className="text-muted-foreground leading-relaxed">
+            For spillere, der ønsker den ultimative high-risk, high-reward oplevelse, er Dead or Alive 2 (High Noon Saloon) uovertruffen. For dem, der søger volatilitet med mere konsistente bonusrunder, er Razor Shark et bedre valg. Og for spillere, der ønsker en velkendt, tilgængelig høj-volatilitets oplevelse, er Book of Dead den naturlige kandidat.
+          </p>
+        </section>
+
+        <Separator className="my-10" />
+
+        {/* ── SEKTION: HVEM PASSER DET TIL ── */}
+        <section className="mb-12">
+          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><Users className="h-7 w-7 text-primary" /> Spillertyper: Den Hårde Sandhed om Hvem der Bør Spille</h2>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            Dead or Alive 2 er IKKE for nybegyndere. Spillets ekstreme volatilitet, lave hit-rate, og evne til at eliminere et helt bankroll på 100 spins gør det til et produkt for erfarne spillere med specifik risikotolerance og tilstrækkeligt budget. Den ideelle Dead or Alive 2-spiller har: budget over 3.000 kr. pr. session, erfaring med høj-volatile slots, og mental robusthed til at håndtere lange tørrperioder.
+          </p>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            Dog gør bonusmode-valget Dead or Alive 2 mere tilgængeligt end de fleste ekstremt volatile slots. Med Train Heist mode kan selv moderate spillere nyde spillet med en risikoprofil, der ligner en standard medium-volatility slot. Det er denne fleksibilitet, der gør Dead or Alive 2 unik: den tilpasser sig spillerens ambitionsniveau i stedet for at påtvinge en fastlåst risikoprofil.
+          </p>
+          <p className="text-muted-foreground leading-relaxed">
+            Vores anbefaling: start med Train Heist for at lære spillets flow. Avancér til Old Saloon, når du er komfortabel. Og reservér High Noon Saloon til sessioner, hvor du har tilstrækkeligt budget og er klar til det ultimative slot-eventyr. Husk altid: <Link to="/ansvarligt-spil" className={linkClass}>ansvarligt spil</Link> er essentielt, uanset hvilken mode du vælger.
+          </p>
+        </section>
+
+        <Separator className="my-10" />
+
+        {/* ── SEKTION: RISIKOPROFIL ── */}
+        <section className="mb-12">
+          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><Shield className="h-7 w-7 text-primary" /> Ansvarligt Spil: Særlige Forholdsregler for Ekstremer</h2>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            Dead or Alive 2 kræver ekstra opmærksomhed på <Link to="/ansvarligt-spil" className={linkClass}>ansvarligt spil</Link> på grund af dens ekstremer. Spillets evne til at levere massive gevinster kan skabe en falsk følelse af, at "den store gevinst er lige om hjørnet" – en kognitiv bias kaldet "gambler's fallacy". I virkeligheden er hvert spin uafhængigt, og sandsynligheden for en stor gevinst er identisk, uanset dine foregående resultater.
+          </p>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            Specifikke retningslinjer for Dead or Alive 2: sæt et ufravigeligt session-budget; vælg din bonusmode INDEN sessionen baseret på dit budget; stop altid, når budgettet er opbrugt; og undgå at "skifte" til High Noon Saloon efter en dårlig session med lavere modes – det er den klassiske tab-jagnings-adfærd.
+          </p>
+          <p className="text-muted-foreground leading-relaxed">
+            Husk: Dead or Alive 2 er underholdning, ikke en investering. Den mest sandsynlige outcome er, at du taber dit session-budget. Hvis du kan nyde spillet med den forventning og behandle enhver gevinst som en bonus, er Dead or Alive 2 en af de mest spændende slot-oplevelser, der findes. Hvis ikke, er der bedre valg med lavere volatilitet.
+          </p>
+        </section>
+
+        <Separator className="my-10" />
+
+        {/* ── SEKTION: KONKLUSION ── */}
+        <section className="mb-12">
+          <h2 className="mb-4 text-3xl font-bold">Westernens Ultimative Showdown: Er Risikoen Værd?</h2>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            Dead or Alive 2 er et mesterværk i slot-design. Ingen andre spil tilbyder den samme kombination af ekstrem risiko, spiller-kontrol (tre bonusmodes), og matematisk elegance. Med 96,82 % RTP er det fair, med 111.111x max win er det potentielt livsændrende, og med Train Heist er det tilgængeligt for de fleste spillere.
+          </p>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            Men lad os være ærlige: for 95 % af spillere vil Dead or Alive 2 resultere i tab. Det er et spil, der belønner de tålmodige, de disciplinerede, og de heldige. Hvis du spiller for underholdning og kan acceptere dette, er der få bedre oplevelser i online slots. Hvis du spiller for profit, er der mere fordelagtige alternativer.
+          </p>
+          <p className="text-muted-foreground leading-relaxed">
+            Vores dom: Dead or Alive 2 fortjener sin status som en af de allerbedste slots nogensinde lavet. Den har den bedste RTP, det højeste max win, og den mest innovative bonusstruktur i sin klasse. Spil den hos et <Link to="/licenserede-casinoer" className={linkClass}>licenseret casino</Link>, vælg din mode med omtanke, og respektér altid dit budget. High Noon venter.
+          </p>
+        </section>
+
+        <Separator className="my-10" />
+
+        <AuthorBio />
+
+        <RelatedGuides currentPath="/casinospil/spillemaskiner/dead-or-alive-2" />
+
+        <FAQSection title="Ofte Stillede Spørgsmål om Dead or Alive 2" faqs={doa2Faqs} />
+      </div>
+    </>
+  );
+};
+
+export default DeadOrAlive2Guide;
