@@ -43,7 +43,11 @@ export function SEO({ title, description, type = "website", image, noindex, json
       {noindex ? (
         <meta name="robots" content="noindex, follow" />
       ) : (
-        <link rel="canonical" href={canonicalUrl} />
+        <>
+          <link rel="canonical" href={canonicalUrl} />
+          <link rel="alternate" hrefLang="da" href={canonicalUrl} />
+          <link rel="alternate" hrefLang="x-default" href={canonicalUrl} />
+        </>
       )}
 
       <meta property="og:locale" content="da_DK" />
