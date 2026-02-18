@@ -98,24 +98,19 @@ const TheDogHouseGuide = () => {
         jsonLd={[faqJsonLd, articleSchema, breadcrumbJsonLd]}
       />
 
-      <article className="mx-auto max-w-4xl px-4 py-12">
-        {/* Hero */}
-        <header className="mb-8 text-center">
-          <div className="flex items-center justify-center gap-2 mb-4">
-            <Badge variant="secondary" className="text-xs">Sticky Wilds</Badge>
-            <Badge variant="outline" className="text-xs">RTP 96,51 %</Badge>
-            <Badge variant="outline" className="text-xs">Høj Volatilitet</Badge>
+      {/* ── HERO ── */}
+      <section className="relative overflow-hidden py-12 text-white md:py-20" style={{ backgroundImage: "linear-gradient(135deg, hsl(260 70% 25%), hsl(250 60% 20%) 40%, hsl(210 80% 25%))" }}>
+        <div className="container">
+          <div className="mx-auto max-w-3xl text-center">
+            <Badge variant="secondary" className="mb-4"><Sparkles className="mr-1.5 h-3.5 w-3.5" /> Opdateret Februar 2026</Badge>
+            <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">The Dog House – Sticky Wilds & Multiplikator-Analyse</h1>
+            <p className="text-lg text-white/80">Pragmatic Play's elskerinde sticky wild-slot: en matematisk dekonstruktion af multiplikator-stacking, free spins-dynamik og den reelle værdi af Bonus Buy.</p>
           </div>
-          <h1 className="text-4xl md:text-5xl font-bold mb-4 leading-tight">
-            The Dog House – Sticky Wilds & Multiplikator-Analyse
-          </h1>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Pragmatic Play's elskerinde sticky wild-slot: en matematisk dekonstruktion af multiplikator-stacking, free spins-dynamik og den reelle værdi af Bonus Buy.
-          </p>
-        </header>
+        </div>
+      </section>
 
+      <div className="container py-8 md:py-12">
         <AuthorMetaBar author="jonas" date="2026-02-18" readTime="18 min" />
-        <Separator className="my-8" />
 
         {/* ── Data First: RTP & Teknisk profil ── */}
         <section className="mb-10">
@@ -348,7 +343,7 @@ const TheDogHouseGuide = () => {
         <AuthorBio author="jonas" />
         <RelatedGuides currentPath="/casinospil/spillemaskiner/the-dog-house" />
         <FAQSection title="Ofte Stillede Spørgsmål om The Dog House" faqs={theDogHouseFaqs} />
-      </article>
+      </div>
     </>
   );
 };

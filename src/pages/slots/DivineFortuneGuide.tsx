@@ -42,18 +42,19 @@ const DivineFortuneGuide = () => {
   return (
     <>
       <SEO title="Divine Fortune – Jackpot & RTP-Analyse" description="Dybdegående analyse af Divine Fortune: progressivt jackpot-system, Falling Wilds, RTP 96,59 % og EV-beregninger for danske spillere." jsonLd={[faqJsonLd, articleSchema, breadcrumbJsonLd]} />
-      <article className="mx-auto max-w-4xl px-4 py-12">
-        <header className="mb-8 text-center">
-          <div className="flex items-center justify-center gap-2 mb-4">
-            <Badge variant="secondary" className="text-xs">Progressiv Jackpot</Badge>
-            <Badge variant="outline" className="text-xs">RTP 96,59 %</Badge>
-            <Badge variant="outline" className="text-xs">Medium Volatilitet</Badge>
+      {/* ── HERO ── */}
+      <section className="relative overflow-hidden py-12 text-white md:py-20" style={{ backgroundImage: "linear-gradient(135deg, hsl(260 70% 25%), hsl(250 60% 20%) 40%, hsl(210 80% 25%))" }}>
+        <div className="container">
+          <div className="mx-auto max-w-3xl text-center">
+            <Badge variant="secondary" className="mb-4"><Sparkles className="mr-1.5 h-3.5 w-3.5" /> Opdateret Februar 2026</Badge>
+            <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">Divine Fortune – Progressiv Jackpot & RTP-Analyse</h1>
+            <p className="text-lg text-white/80">NetEnt's mest populære progressive jackpot-slot: en matematisk gennemgang af jackpot-mekanikken, Falling Wilds og hvorfor 96,59 % RTP gør den til markedets mest fair jackpot-titel.</p>
           </div>
-          <h1 className="text-4xl md:text-5xl font-bold mb-4 leading-tight">Divine Fortune – Progressiv Jackpot & RTP-Analyse</h1>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">NetEnt's mest populære progressive jackpot-slot: en matematisk gennemgang af jackpot-mekanikken, Falling Wilds og hvorfor 96,59 % RTP gør den til markedets mest fair jackpot-titel.</p>
-        </header>
+        </div>
+      </section>
+
+      <div className="container py-8 md:py-12">
         <AuthorMetaBar author="kevin" date="2026-02-18" readTime="19 min" />
-        <Separator className="my-8" />
 
         <section className="mb-10">
           <h2 className="text-2xl font-bold mb-4 flex items-center gap-2"><Flame className="h-5 w-5 text-primary" />Jackpot-Slots Redefineret: Hvorfor Divine Fortune Skiller Sig Ud</h2>
@@ -140,7 +141,7 @@ const DivineFortuneGuide = () => {
         <AuthorBio author="kevin" />
         <RelatedGuides currentPath="/casinospil/spillemaskiner/divine-fortune" />
         <FAQSection title="Ofte Stillede Spørgsmål om Divine Fortune" faqs={divineFortuneFaqs} />
-      </article>
+      </div>
     </>
   );
 };

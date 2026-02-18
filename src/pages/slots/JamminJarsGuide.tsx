@@ -106,24 +106,19 @@ const JamminJarsGuide = () => {
         jsonLd={[faqJsonLd, articleSchema, breadcrumbJsonLd]}
       />
 
-      <article className="mx-auto max-w-4xl px-4 py-12">
-        {/* Hero */}
-        <header className="mb-8 text-center">
-          <div className="flex items-center justify-center gap-2 mb-4">
-            <Badge variant="secondary" className="text-xs">Cluster Pays</Badge>
-            <Badge variant="outline" className="text-xs">RTP 96,83 %</Badge>
-            <Badge variant="outline" className="text-xs">Høj Volatilitet</Badge>
+      {/* ── HERO ── */}
+      <section className="relative overflow-hidden py-12 text-white md:py-20" style={{ backgroundImage: "linear-gradient(135deg, hsl(260 70% 25%), hsl(250 60% 20%) 40%, hsl(210 80% 25%))" }}>
+        <div className="container">
+          <div className="mx-auto max-w-3xl text-center">
+            <Badge variant="secondary" className="mb-4"><Sparkles className="mr-1.5 h-3.5 w-3.5" /> Opdateret Februar 2026</Badge>
+            <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">Jammin' Jars – Cluster Pays & Multiplikator-Analyse</h1>
+            <p className="text-lg text-white/80">Push Gamings frugtbaserede cluster-slot med bevægelige jar-wilds: en matematisk analyse af multiplikator-stacking, 8×8 grid-dynamik og en af markedets højeste RTP-værdier.</p>
           </div>
-          <h1 className="text-4xl md:text-5xl font-bold mb-4 leading-tight">
-            Jammin' Jars – Cluster Pays & Multiplikator-Analyse
-          </h1>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Push Gamings frugtbaserede cluster-slot med bevægelige jar-wilds: en matematisk analyse af multiplikator-stacking, 8×8 grid-dynamik og en af markedets højeste RTP-værdier.
-          </p>
-        </header>
+        </div>
+      </section>
 
+      <div className="container py-8 md:py-12">
         <AuthorMetaBar author="kevin" date="2026-02-18" readTime="19 min" />
-        <Separator className="my-8" />
 
         {/* ── Experience First: Spilmekanik ── */}
         <section className="mb-10">
@@ -369,7 +364,7 @@ const JamminJarsGuide = () => {
         <AuthorBio author="kevin" />
         <RelatedGuides currentPath="/casinospil/spillemaskiner/jammin-jars" />
         <FAQSection title="Ofte Stillede Spørgsmål om Jammin' Jars" faqs={jamminJarsFaqs} />
-      </article>
+      </div>
     </>
   );
 };

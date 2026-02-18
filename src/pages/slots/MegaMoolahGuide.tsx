@@ -42,18 +42,19 @@ const MegaMoolahGuide = () => {
   return (
     <>
       <SEO title="Mega Moolah – Jackpot & RTP-Analyse" description="Dybdegående analyse af Mega Moolah: progressiv jackpot-mekanik, 88,12 % basis-RTP, Guinness-rekord og EV-beregninger." jsonLd={[faqJsonLd, articleSchema, breadcrumbJsonLd]} />
-      <article className="mx-auto max-w-4xl px-4 py-12">
-        <header className="mb-8 text-center">
-          <div className="flex items-center justify-center gap-2 mb-4">
-            <Badge variant="secondary" className="text-xs">Progressiv Jackpot</Badge>
-            <Badge variant="outline" className="text-xs">Basis-RTP 88,12 %</Badge>
-            <Badge variant="outline" className="text-xs">Medium Volatilitet</Badge>
+      {/* ── HERO ── */}
+      <section className="relative overflow-hidden py-12 text-white md:py-20" style={{ backgroundImage: "linear-gradient(135deg, hsl(260 70% 25%), hsl(250 60% 20%) 40%, hsl(210 80% 25%))" }}>
+        <div className="container">
+          <div className="mx-auto max-w-3xl text-center">
+            <Badge variant="secondary" className="mb-4"><Sparkles className="mr-1.5 h-3.5 w-3.5" /> Opdateret Februar 2026</Badge>
+            <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">Mega Moolah – Progressiv Jackpot-Analyse</h1>
+            <p className="text-lg text-white/80">Guinness World Record-holderen for den største online jackpot: en matematisk dekonstruktion af det progressive netværk, der har skabt millionærer siden 2006.</p>
           </div>
-          <h1 className="text-4xl md:text-5xl font-bold mb-4 leading-tight">Mega Moolah – Progressiv Jackpot-Analyse</h1>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">Guinness World Record-holderen for den største online jackpot: en matematisk dekonstruktion af det progressive netværk, der har skabt millionærer siden 2006.</p>
-        </header>
+        </div>
+      </section>
+
+      <div className="container py-8 md:py-12">
         <AuthorMetaBar author="kevin" date="2026-02-18" readTime="17 min" />
-        <Separator className="my-8" />
 
         <section className="mb-10">
           <h2 className="text-2xl font-bold mb-4 flex items-center gap-2"><Crown className="h-5 w-5 text-primary" />Det Progressive Jackpot-Netværk: Sådan Fungerer Det</h2>
@@ -122,7 +123,7 @@ const MegaMoolahGuide = () => {
         <AuthorBio author="kevin" />
         <RelatedGuides currentPath="/casinospil/spillemaskiner/mega-moolah" />
         <FAQSection title="Ofte Stillede Spørgsmål om Mega Moolah" faqs={megaMoolahFaqs} />
-      </article>
+      </div>
     </>
   );
 };
