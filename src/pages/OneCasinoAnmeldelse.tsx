@@ -1,5 +1,7 @@
 import { Link } from "react-router-dom";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
+import { RatingBreakdown } from "@/components/RatingBreakdown";
+import { CASINO_SCORES } from "@/lib/reviewScoring";
 import { AuthorBio } from "@/components/AuthorBio";
 import { FAQSection } from "@/components/FAQSection";
 import { SEO } from "@/components/SEO";
@@ -437,20 +439,7 @@ const OneCasinoAnmeldelse = () => {
           <p className="mb-4 text-muted-foreground leading-relaxed">Den gratis tilmeldingsbonus gør det risikofrit at prøve – og det er vores primære anbefaling: opret en konto, test de eksklusive spil med gratisbonussen, og beslut derefter om platformen er noget for dig. De bedste eksklusive in-house spil tilbyder en oplevelse, der ikke kan genskabes andetsteds, og de 3-4 stærkeste titler er genuint underholdende med originale mekanikker. Men platformen mangler den polering, dybde og hastighed, som de bedste danske casinoer leverer i 2026.</p>
           <p className="mb-4 text-muted-foreground leading-relaxed">Vores anbefaling: Brug One Casino som supplement, ikke som primært casino. Test de eksklusive spil gratis, vurder om de tiltaler dig, og behold kontoen som et sted du besøger for unikt indhold. Dit primære casino bør være en bredere platform med stærkere bonusser, hurtigere udbetalinger og MobilePay-support. Hvis de eksklusive spil tiltaler dig, er One Casino værd at have i porteføljen. Hvis ikke, er der stærkere alternativer i næsten alle andre kategorier.</p>
 
-          <div className="grid grid-cols-2 md:grid-cols-5 gap-4 text-center mt-6">
-            {[
-              { label: "Eksklusive Spil", score: "8/10" },
-              { label: "Spiludvalg", score: "5/10" },
-              { label: "Bonus", score: "7/10" },
-              { label: "Brugervenlighed", score: "8/10" },
-              { label: "Samlet", score: "3.8/5" },
-            ].map((i) => (
-              <div key={i.label} className="rounded-lg border border-border bg-card p-4 text-center">
-                <p className="text-xs text-muted-foreground uppercase mb-1">{i.label}</p>
-                <p className="text-2xl font-bold text-primary">{i.score}</p>
-              </div>
-            ))}
-          </div>
+          <RatingBreakdown scores={CASINO_SCORES["onecasino"].scores} total={CASINO_SCORES["onecasino"].total} />
 
           <Card className="border-border bg-card border-l-4 border-l-primary mt-6">
             <CardContent className="pt-6 space-y-3">

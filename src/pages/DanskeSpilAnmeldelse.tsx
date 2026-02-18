@@ -1,5 +1,7 @@
 import { Link } from "react-router-dom";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
+import { RatingBreakdown } from "@/components/RatingBreakdown";
+import { CASINO_SCORES } from "@/lib/reviewScoring";
 import { AuthorBio } from "@/components/AuthorBio";
 import { FAQSection } from "@/components/FAQSection";
 import { SEO } from "@/components/SEO";
@@ -303,17 +305,7 @@ const DanskeSpilAnmeldelse = () => {
           <p className="mb-4 text-muted-foreground leading-relaxed">Bonusstrukturen er mere konservativ end hos private aktører, men til gengæld er vilkårene krystalklare og fair. Kundeservicen er professionel, tilgængelig på dansk, og udbetalingerne er pålidelige. Den tværgående platform med casino, Oddset og Lotto under ét tag giver en unik fleksibilitet.</p>
           <p className="mb-6 text-muted-foreground leading-relaxed">For spillere, der prioriterer sikkerhed, tillid og en velkendt dansk platform – og som kan acceptere et lidt smallere spiludvalg og færre betalingsalternativer – er Danske Spil Casino et oplagt og ansvarsfuldt valg. Læs mere om <Link to="/forfatter/jonas" className={linkClass}>forfatteren bag denne anmeldelse</Link>.</p>
 
-          <div className="grid grid-cols-2 sm:grid-cols-5 gap-4 mb-6">
-            {[
-              { label: "Sikkerhed", score: "10/10" },
-              { label: "Spiludvalg", score: "7/10" },
-              { label: "Bonus", score: "7/10" },
-              { label: "Tillid", score: "10/10" },
-              { label: "Samlet", score: "4.5/5" },
-            ].map((item) => (
-              <div key={item.label} className="rounded-lg border border-border bg-card p-4 text-center"><p className="text-xs text-muted-foreground uppercase mb-1">{item.label}</p><p className="text-2xl font-bold text-primary">{item.score}</p></div>
-            ))}
-          </div>
+          <RatingBreakdown scores={CASINO_SCORES["danske-spil"].scores} total={CASINO_SCORES["danske-spil"].total} />
 
           <div className="flex flex-col sm:flex-row gap-3">
             <Button asChild variant="outline" size="lg" className="flex-1"><Link to="/top-10-casino-online"><Trophy className="mr-2 h-5 w-5" />Se Top 10 Casinoer</Link></Button>

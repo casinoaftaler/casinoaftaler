@@ -1,5 +1,7 @@
 import { Link } from "react-router-dom";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
+import { RatingBreakdown } from "@/components/RatingBreakdown";
+import { CASINO_SCORES } from "@/lib/reviewScoring";
 import { AuthorBio } from "@/components/AuthorBio";
 import { FAQSection } from "@/components/FAQSection";
 import { SEO } from "@/components/SEO";
@@ -203,9 +205,7 @@ const Casino888Anmeldelse = () => {
           <h2 className="mb-4 text-3xl font-bold">Fortjener 888 Casino stadig sin legende-status?</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">Svaret er et kvalificeret ja. 888 Casino er ikke det mest moderne, det hurtigste eller det bredeste casino på det danske marked i 2026. Men det er et af de mest dybdegående, troværdige og differentierbare. De eksklusive spil, det lagdelte loyalitetsprogram og den finansielle gennemsigtighed fra børsnoteringen er reelle styrker, som få konkurrenter kan matche.</p>
           <p className="mb-6 text-muted-foreground leading-relaxed">Med en rating på 4.3/5 afspejler vores vurdering en platform med exceptionel troværdighed og unikke features, der trækkes ned af et dateret design og gennemsnitlige udbetalingstider. For spillere, der planlægger langsigtede relationer med deres casino og værdsætter loyalitetsbelønning, er 888 Casino et stærkt valg. For dem, der prioriterer hastighed og den nyeste teknologi, er der bedre alternativer. Læs mere om <Link to="/forfatter/jonas" className={linkClass}>forfatteren bag denne anmeldelse</Link>.</p>
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-6">
-            {[{ label: "Troværdighed", score: "10/10" }, { label: "Loyalitet", score: "9/10" }, { label: "Spiludvalg", score: "8/10" }, { label: "Samlet", score: "4.3/5" }].map((i) => (<div key={i.label} className="rounded-lg border border-border bg-card p-4 text-center"><p className="text-xs text-muted-foreground uppercase mb-1">{i.label}</p><p className="text-2xl font-bold text-primary">{i.score}</p></div>))}
-          </div>
+          <RatingBreakdown scores={CASINO_SCORES["888casino"].scores} total={CASINO_SCORES["888casino"].total} />
           <div className="flex flex-col sm:flex-row gap-3">
             <Button asChild variant="outline" size="lg" className="flex-1"><Link to="/top-10-casino-online"><Trophy className="mr-2 h-5 w-5" />Se Top 10 Casinoer</Link></Button>
             <Button asChild variant="outline" size="lg" className="flex-1"><Link to="/casino-anmeldelser"><Star className="mr-2 h-5 w-5" />Alle Casino Anmeldelser</Link></Button>

@@ -1,5 +1,7 @@
 import { Link } from "react-router-dom";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
+import { RatingBreakdown } from "@/components/RatingBreakdown";
+import { CASINO_SCORES } from "@/lib/reviewScoring";
 import { AuthorBio } from "@/components/AuthorBio";
 import { FAQSection } from "@/components/FAQSection";
 import { SEO } from "@/components/SEO";
@@ -503,19 +505,7 @@ const BwinAnmeldelse = () => {
           <p className="mb-4 text-muted-foreground leading-relaxed">
             Casino-sektionen er et kompetent supplement, men den er ikke grunden til at vælge bwin. For dedikerede casino-spillere er en specialist som <Link to="/casino-anmeldelser/leovegas" className={linkClass}>LeoVegas</Link> et bedre valg. For den bedste kombination af sport og casino er <Link to="/casino-anmeldelser/bet365" className={linkClass}>bet365</Link> den nærmeste rival. Men for sport, casino og poker i ét produkt er bwin unikt positioneret på det danske marked.
           </p>
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-6">
-            {[
-              { label: "Sport", score: "9/10" },
-              { label: "Casino", score: "6/10" },
-              { label: "Live Casino", score: "8/10" },
-              { label: "Samlet", score: "4.1/5" },
-            ].map((i) => (
-              <div key={i.label} className="rounded-lg border border-border bg-card p-4 text-center">
-                <p className="text-xs text-muted-foreground uppercase mb-1">{i.label}</p>
-                <p className="text-2xl font-bold text-primary">{i.score}</p>
-              </div>
-            ))}
-          </div>
+          <RatingBreakdown scores={CASINO_SCORES["bwin"].scores} total={CASINO_SCORES["bwin"].total} />
           <Card className="border-border bg-card border-l-4 border-l-primary">
             <CardContent className="pt-6 space-y-3">
               <p className="text-muted-foreground">

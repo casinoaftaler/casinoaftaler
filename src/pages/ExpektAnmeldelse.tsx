@@ -1,5 +1,7 @@
 import { Link } from "react-router-dom";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
+import { RatingBreakdown } from "@/components/RatingBreakdown";
+import { CASINO_SCORES } from "@/lib/reviewScoring";
 import { AuthorBio } from "@/components/AuthorBio";
 import { FAQSection } from "@/components/FAQSection";
 import { SEO } from "@/components/SEO";
@@ -190,9 +192,7 @@ const ExpektAnmeldelse = () => {
           <h2 className="mb-4 text-3xl font-bold">Kernebudskabet om Expekt</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">Expekt er en solid hybrid-platform, der excellerer i sportsbetting og leverer en kompetent casino-oplevelse. Det er ikke det bedste casino, og det er ikke den bedste sportsbook – men det er en af de bedste kombinationer af begge. For den alsidige spiller, der nyder at skifte mellem sport og casino under én konto, er Expekt et logisk valg.</p>
           <p className="mb-6 text-muted-foreground leading-relaxed">Ratingen på 3.8/5 afspejler, at Expekt evalueres som casino – og her ligger det under rene casino-platforme som <Link to="/casino-anmeldelser/leovegas" className={linkClass}>LeoVegas</Link> (4.7) og <Link to="/casino-anmeldelser/888-casino" className={linkClass}>888 Casino</Link> (4.3). Men tilføj sportsbook-dimensionen, og den samlede værdi stiger markant. Læs om <Link to="/forfatter/jonas" className={linkClass}>forfatteren bag denne anmeldelse</Link>.</p>
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-6">
-            {[{ label: "Sikkerhed", score: "9/10" }, { label: "Sports", score: "9/10" }, { label: "Casino", score: "7/10" }, { label: "Samlet", score: "3.8/5" }].map((i) => (<div key={i.label} className="rounded-lg border border-border bg-card p-4 text-center"><p className="text-xs text-muted-foreground uppercase mb-1">{i.label}</p><p className="text-2xl font-bold text-primary">{i.score}</p></div>))}
-          </div>
+          <RatingBreakdown scores={CASINO_SCORES["expekt"].scores} total={CASINO_SCORES["expekt"].total} />
           <div className="flex flex-col sm:flex-row gap-3">
             <Button asChild variant="outline" size="lg" className="flex-1"><Link to="/top-10-casino-online"><Trophy className="mr-2 h-5 w-5" />Se Top 10 Casinoer</Link></Button>
             <Button asChild variant="outline" size="lg" className="flex-1"><Link to="/casino-anmeldelser"><Star className="mr-2 h-5 w-5" />Alle Casino Anmeldelser</Link></Button>

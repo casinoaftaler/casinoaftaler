@@ -1,5 +1,7 @@
 import { Link } from "react-router-dom";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
+import { RatingBreakdown } from "@/components/RatingBreakdown";
+import { CASINO_SCORES } from "@/lib/reviewScoring";
 import { AuthorBio } from "@/components/AuthorBio";
 import { FAQSection } from "@/components/FAQSection";
 import { SEO } from "@/components/SEO";
@@ -510,19 +512,7 @@ const BetanoAnmeldelse = () => {
             De to stærkeste grunde til at vælge Betano: mobiloplevelsen og den integrerede sport+casino-kombination med dansk support. Den primære svaghed er manglende modenhed – VIP-program, live casino-dybde og brand-tillid kommer med tid, og Betano er stadig i vækstfasen på det danske marked. Læs om{" "}
             <Link to="/forfatter/jonas" className={linkClass}>forfatteren</Link>.
           </p>
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-6">
-            {[
-              { label: "Teknologi", score: "9/10" },
-              { label: "Sport", score: "8/10" },
-              { label: "Casino", score: "7/10" },
-              { label: "Samlet", score: "4.2/5" },
-            ].map((i) => (
-              <div key={i.label} className="rounded-lg border border-border bg-card p-4 text-center">
-                <p className="text-xs text-muted-foreground uppercase mb-1">{i.label}</p>
-                <p className="text-2xl font-bold text-primary">{i.score}</p>
-              </div>
-            ))}
-          </div>
+          <RatingBreakdown scores={CASINO_SCORES["betano"].scores} total={CASINO_SCORES["betano"].total} />
           <div className="flex flex-col sm:flex-row gap-3">
             <Button asChild variant="outline" size="lg" className="flex-1">
               <Link to="/top-10-casino-online">

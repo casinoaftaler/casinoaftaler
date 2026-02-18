@@ -1,5 +1,7 @@
 import { Link } from "react-router-dom";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
+import { RatingBreakdown } from "@/components/RatingBreakdown";
+import { CASINO_SCORES } from "@/lib/reviewScoring";
 import { AuthorBio } from "@/components/AuthorBio";
 import { FAQSection } from "@/components/FAQSection";
 import { SEO } from "@/components/SEO";
@@ -314,9 +316,7 @@ const NordicBetAnmeldelse = () => {
           <p className="mb-4 text-muted-foreground leading-relaxed">
             Vores samlede vurdering på 4.1 ud af 5 afspejler denne specialisering: 9/10 på nordisk sportsdybde, 7/10 på casino, 7/10 på bonus og 10/10 på sikkerhed. For den rigtige spillerprofil er NordicBet den mest autentiske nordiske spilleplatform, der er tilgængelig.
           </p>
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-6">
-            {[{ label: "Sport (Nordisk)", score: "9/10" }, { label: "Casino", score: "7/10" }, { label: "Sikkerhed", score: "10/10" }, { label: "Samlet", score: "4.1/5" }].map((i) => (<div key={i.label} className="rounded-lg border border-border bg-card p-4 text-center"><p className="text-xs text-muted-foreground uppercase mb-1">{i.label}</p><p className="text-2xl font-bold text-primary">{i.score}</p></div>))}
-          </div>
+          <RatingBreakdown scores={CASINO_SCORES["nordicbet"].scores} total={CASINO_SCORES["nordicbet"].total} />
           <Card className="border-border bg-card border-l-4 border-l-primary">
             <CardContent className="pt-6 space-y-3">
               <p className="text-muted-foreground">Spil ansvarligt. Kontakt <a href="https://www.stopspillet.dk/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline font-medium">StopSpillet.dk</a> på tlf. 70 22 28 25 ved behov.</p>

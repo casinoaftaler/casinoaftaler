@@ -1,5 +1,7 @@
 import { Link } from "react-router-dom";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
+import { RatingBreakdown } from "@/components/RatingBreakdown";
+import { CASINO_SCORES } from "@/lib/reviewScoring";
 import { AuthorBio } from "@/components/AuthorBio";
 import { FAQSection } from "@/components/FAQSection";
 import { SEO } from "@/components/SEO";
@@ -341,9 +343,7 @@ const LeoVegasAnmeldelse = () => {
           <p className="mb-4 text-muted-foreground leading-relaxed">
             Vores samlede vurdering på 4.5 ud af 5 afspejler en platform, der scorer 10/10 på mobiloplevelse, 10/10 på sikkerhed, 9/10 på spiludvalg og 8/10 på bonus. Det eneste, der forhindrer en perfekt score, er den sticky bonusstruktur og fraværet af poker og sport. For spillere, der udelukkende søger en premium casino-oplevelse – og det er præcis hvad LeoVegas er bygget til – er dette det bedste valg på det danske marked.
           </p>
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-6">
-            {[{ label: "Mobiloplevelse", score: "10/10" }, { label: "Sikkerhed", score: "10/10" }, { label: "Spiludvalg", score: "9/10" }, { label: "Samlet", score: "4.5/5" }].map((i) => (<div key={i.label} className="rounded-lg border border-border bg-card p-4 text-center"><p className="text-xs text-muted-foreground uppercase mb-1">{i.label}</p><p className="text-2xl font-bold text-primary">{i.score}</p></div>))}
-          </div>
+          <RatingBreakdown scores={CASINO_SCORES["leovegas"].scores} total={CASINO_SCORES["leovegas"].total} />
           <Card className="border-border bg-card border-l-4 border-l-primary">
             <CardContent className="pt-6 space-y-3">
               <p className="text-muted-foreground">
