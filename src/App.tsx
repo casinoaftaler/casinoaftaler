@@ -27,7 +27,7 @@ const CasinoLicenser = lazy(() => import("./pages/CasinoLicenser"));
 import TopCasinoOnline from "./pages/TopCasinoOnline";
 
 // Lazy load remaining pages
-const CasinoDetail = lazy(() => import("./pages/CasinoDetail"));
+const CasinoSlugRedirect = lazy(() => import("./components/CasinoSlugRedirect"));
 const OmTeamet = lazy(() => import("./pages/OmTeamet"));
 const Forretningsmodel = lazy(() => import("./pages/Forretningsmodel"));
 const RedaktionelPolitik = lazy(() => import("./pages/RedaktionelPolitik"));
@@ -200,7 +200,7 @@ const App = () => (
             <Routes>
               <Route element={<Layout />}>
                 <Route path="/" element={<Index />} />
-                <Route path="/casino/:slug" element={<CasinoDetail />} />
+                <Route path="/casino/:slug" element={<CasinoSlugRedirect />} />
                 <Route path="/top-10-casino-online" element={<TopCasinoOnline />} />
                 <Route path="/nye-casinoer" element={<NyeCasinoer />} />
                 <Route path="/nye-casinoer/2026" element={<NyeCasinoer2026 />} />
