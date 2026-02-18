@@ -88,6 +88,7 @@ export function SlotCasinoCard({ casino, backgroundImage }: SlotCasinoCardProps)
           {/* CTA Button */}
           <Button
             onClick={handleBonusClick}
+            data-sponsored="true"
             className="w-full bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 text-black font-bold py-2 relative overflow-hidden group"
           >
             <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700" />
