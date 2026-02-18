@@ -80,7 +80,7 @@ export const seoRoutes: SeoRoute[] = [
   { path: "/casinospil/roulette", changefreq: "weekly", priority: 0.9, lastmod: "2026-02-18" },
   { path: "/casinospil/poker", changefreq: "weekly", priority: 0.9, lastmod: "2026-02-18" },
   { path: "/casinospil/craps", changefreq: "weekly", priority: 0.9, lastmod: "2026-02-18" },
-  { path: "/casinospil/baccarat", changefreq: "weekly", priority: 0.9, lastmod: "2026-02-13" },
+  { path: "/casinospil/baccarat", changefreq: "weekly", priority: 0.9, lastmod: "2026-02-18" },
   { path: "/casinospil/roulette-strategi", changefreq: "weekly", priority: 0.9, lastmod: "2026-02-18" },
   { path: "/casinospil/online-lotteri", changefreq: "weekly", priority: 0.9, lastmod: "2026-02-13" },
   { path: "/casinospil/game-shows", changefreq: "weekly", priority: 0.9, lastmod: "2026-02-13" },
