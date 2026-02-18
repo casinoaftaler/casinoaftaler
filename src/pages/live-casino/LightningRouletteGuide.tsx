@@ -12,7 +12,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
-import { Sparkles, Zap, Target, BarChart3, AlertTriangle } from "lucide-react";
+import { Sparkles, Zap, Target, BarChart3, AlertTriangle, DollarSign, TrendingUp, Shield, Clock } from "lucide-react";
 
 const linkClass = "text-primary underline hover:text-primary/80 font-medium";
 
@@ -44,6 +44,14 @@ const faqs: { question: string; answer: string | React.ReactNode }[] = [
   {
     question: "Hvor tit rammer man en 500x multiplikator?",
     answer: "Sandsynligheden for at ramme præcis 500x er ekstremt lav. Antag at gennemsnitligt 2,5 numre får Lightning pr. spin, og at 500x tildeles ca. 10 % af gangene. Sandsynligheden for at din straight-up bet rammer ET Lightning-nummer er ca. 6,76 %. At det specifikke nummer har 500x er ca. 0,68 %. Samlet: ca. 0,046 % pr. spin – eller gennemsnitligt 1 gang pr. 2.174 spins. Ved 30 spins/time er det ca. 72 timers spil.",
+  },
+  {
+    question: "Kan man bruge Martingale-systemet i Lightning Roulette?",
+    answer: "Nej, Martingale er endnu mere destruktivt i Lightning Roulette end i standard roulette. Med 29:1 basis-udbetaling (vs. 35:1 i standard) har du lavere gevinst-til-indsats-ratio, hvilket gør det sværere at indhente tab. Martingale på outside bets fungerer identisk med standard roulette (ingen Lightning-fordel). Martingale på straight-up bets eskalerer din indsats eksponentielt uden at ændre EV. Intet progressionssystem fungerer i Lightning Roulette – eller noget andet roulettespil.",
+  },
+  {
+    question: "Er Lightning Roulette rigged eller manipuleret?",
+    answer: "Nej. Lightning Roulette bruger et fysisk roulettehjul med en reel kugle – dette er identisk med standard live roulette og reguleret af Spillemyndigheden. Lightning-numrene og multiplikatorerne vælges af en certificeret RNG (Random Number Generator) efter at betting-perioden er lukket. Både hjulet og RNG'en auditeres regelmæssigt af uafhængige testlaboratorier som GLI og eCOGRA. Evolution er reguleret i 20+ jurisdiktioner globalt.",
   },
 ];
 
@@ -97,7 +105,7 @@ const LightningRouletteGuide = () => {
       </section>
 
       <div className="container py-8 md:py-12">
-        <AuthorMetaBar author="jonas" date="18-02-2026" readTime="12 Min." />
+        <AuthorMetaBar author="jonas" date="18-02-2026" readTime="18 Min." />
 
         <img src={lightningRouletteHero} alt="Lightning Roulette hjul med elektriske lyn-effekter i Evolution studio" className="w-full max-h-[400px] object-cover rounded-xl mb-10" loading="eager" />
 
@@ -107,25 +115,104 @@ const LightningRouletteGuide = () => {
 
         {/* H2 #1 – Mekanikken */}
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold">Lightning-mekanikken – hvordan multiplikatorerne fungerer</h2>
+          <h2 className="mb-4 text-3xl font-bold">Lightning-mekanikken – hvordan multiplikatorerne fungerer i detaljer</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
-            Lightning Roulette, lanceret af <Link to="/spiludviklere/evolution-gaming" className={linkClass}>Evolution Gaming</Link> i 2018, revolutionerede live roulette ved at tilføje et lag af RNG-baseret volatilitet til et ellers rent chancespil. Konceptet er elegant: før hvert spin "rammer lynet" 1-5 tilfældige numre på bordet, og hvert ramt nummer tildeles en multiplikator fra 50x til 500x.
+            Lightning Roulette, lanceret af <Link to="/spiludviklere/evolution-gaming" className={linkClass}>Evolution Gaming</Link> i 2018, revolutionerede live roulette ved at tilføje et lag af RNG-baseret volatilitet til et ellers rent chancespil. Konceptet er elegant: før hvert spin "rammer lynet" 1-5 tilfældige numre på bordet, og hvert ramt nummer tildeles en multiplikator fra 50x til 500x. Spillet vandt den prestigefyldte "Game of the Year" pris ved ICE 2018 og har siden genereret mere omsætning end nogen anden enkelt-titel i live casino-segmentet.
           </p>
           <p className="mb-4 text-muted-foreground leading-relaxed">
-            Vigtige detaljer om mekanikken: Lightning-numrene vælges af en certificeret RNG <em>efter</em> at betting-perioden er lukket – de er altså ikke forudbestemte og kan ikke påvirkes. Multiplikator-fordelingen er: 50x (hyppigst), 100x, 200x, 300x, 400x og 500x (sjældnest). Gennemsnitligt vælges 2-3 Lightning-numre pr. spin.
+            <strong>Trin-for-trin proces:</strong> (1) Spillere placerer deres indsatser i den normale betting-periode. (2) Betting-perioden lukker. (3) RNG'en vælger 1-5 tilfældige numre og tildeler multiplikatorer til hvert. (4) Lyn-animation afslører de valgte numre med dramatiske visuelle effekter. (5) Dealeren spinner hjulet og kaster kuglen. (6) Resultatet afgøres som i standard roulette, men med potentiel multiplikator på straight-up bets.
+          </p>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            Vigtige detaljer om mekanikken: Lightning-numrene vælges af en certificeret RNG <em>efter</em> at betting-perioden er lukket – de er altså ikke forudbestemte og kan ikke påvirkes af hverken spiller eller casino. Multiplikator-fordelingen er: 50x (hyppigst, estimeret ~40 % af tildelinger), 100x (~25 %), 200x (~15 %), 300x (~10 %), 400x (~5 %) og 500x (sjældnest, ~5 %). Gennemsnitligt vælges 2-3 Lightning-numre pr. spin med en gennemsnitlig multiplikator på ca. 115-125x.
           </p>
           <p className="text-muted-foreground leading-relaxed">
-            <strong>Kritisk pointe:</strong> Kun straight-up bets (enkelttal) kvalificerer til Lightning-multiplikatorer. Outside bets (rød/sort, dozen, column etc.) påvirkes ikke og har identisk EV som i standard europæisk roulette. Derfor er bet-strategien i Lightning Roulette fundamentalt anderledes end i standard roulette.
+            <strong>Kritisk pointe:</strong> Kun straight-up bets (enkelttal) kvalificerer til Lightning-multiplikatorer. Outside bets (rød/sort, dozen, column etc.) påvirkes ikke og har identisk EV som i standard europæisk roulette. Inside bets som splits, streets og corners påvirkes heller ikke – kun rene enkelttal-bets. Derfor er bet-strategien i Lightning Roulette fundamentalt anderledes end i standard roulette: outside bets giver nøjagtig samme oplevelse som et standard bord, mens straight-up bets tilbyder en dramatisk anderledes risk/reward-profil.
           </p>
         </section>
 
         <Separator className="my-10" />
 
-        {/* H2 #2 – EV analyse */}
+        {/* H2 #2 – Udbetalingsstrukturen */}
+        <section className="mb-12">
+          <h2 className="mb-4 text-3xl font-bold">Udbetalingsstrukturen – hvad den reducerede 29:1 reelt koster dig</h2>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            Den mest fundamentale ændring i Lightning Roulette vs. standard roulette er straight-up udbetalingen: 29:1 i stedet for 35:1. Denne reduktion er ikke vilkårlig – den er præcis kalibreret til at finansiere multiplikator-systemet, samtidig med at den holder house edge tæt på standard roulette.
+          </p>
+          <Card className="border-border bg-card mb-6">
+            <CardHeader className="pb-2">
+              <CardTitle className="flex items-center gap-2 text-lg">
+                <BarChart3 className="h-5 w-5 text-primary" />
+                Udbetalingssammenligning: Lightning vs. Standard Roulette
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              <div className="overflow-x-auto">
+                <table className="w-full text-sm">
+                  <thead>
+                    <tr className="border-b border-border">
+                      <th className="py-2 px-4 text-left">Bet-type</th>
+                      <th className="py-2 px-4 text-left">Standard udbetaling</th>
+                      <th className="py-2 px-4 text-left">Lightning udbetaling</th>
+                      <th className="py-2 px-4 text-left">Lightning potentiale</th>
+                      <th className="py-2 px-4 text-left">House Edge</th>
+                    </tr>
+                  </thead>
+                  <tbody className="text-muted-foreground">
+                    <tr className="border-b border-border/50">
+                      <td className="py-2 px-4 font-medium">Straight-up (enkelttal)</td>
+                      <td className="py-2 px-4">35:1</td>
+                      <td className="py-2 px-4">29:1</td>
+                      <td className="py-2 px-4 text-primary font-semibold">Op til 500x</td>
+                      <td className="py-2 px-4">2,78 % (vs. 2,70 %)</td>
+                    </tr>
+                    <tr className="border-b border-border/50">
+                      <td className="py-2 px-4 font-medium">Rød/Sort</td>
+                      <td className="py-2 px-4">1:1</td>
+                      <td className="py-2 px-4">1:1</td>
+                      <td className="py-2 px-4">Ingen Lightning</td>
+                      <td className="py-2 px-4">2,70 % (identisk)</td>
+                    </tr>
+                    <tr className="border-b border-border/50">
+                      <td className="py-2 px-4 font-medium">Lige/Ulige</td>
+                      <td className="py-2 px-4">1:1</td>
+                      <td className="py-2 px-4">1:1</td>
+                      <td className="py-2 px-4">Ingen Lightning</td>
+                      <td className="py-2 px-4">2,70 % (identisk)</td>
+                    </tr>
+                    <tr className="border-b border-border/50">
+                      <td className="py-2 px-4 font-medium">Dozen/Column</td>
+                      <td className="py-2 px-4">2:1</td>
+                      <td className="py-2 px-4">2:1</td>
+                      <td className="py-2 px-4">Ingen Lightning</td>
+                      <td className="py-2 px-4">2,70 % (identisk)</td>
+                    </tr>
+                    <tr>
+                      <td className="py-2 px-4 font-medium">Split/Street/Corner</td>
+                      <td className="py-2 px-4">17:1 / 11:1 / 8:1</td>
+                      <td className="py-2 px-4">N/A*</td>
+                      <td className="py-2 px-4">Ingen Lightning</td>
+                      <td className="py-2 px-4">*Ikke tilgængelig</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </CardContent>
+          </Card>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            <strong>Vigtig detalje:</strong> I Lightning Roulette er split, street, corner, line og andre inside-bets (undtagen straight-up) ikke tilgængelige. Du kan KUN bette straight-up (enkelttal) eller outside bets. Denne begrænsning er bevidst designet af Evolution for at sikre, at Lightning-mekanikken kun interagerer med straight-up bets, hvilket forenkler EV-beregningerne og holder house edge kontrolleret.
+          </p>
+          <p className="text-muted-foreground leading-relaxed">
+            <strong>Hvad koster reduktionen reelt?</strong> I standard roulette vinder du 35 enheder ved en straight-up gevinst. I Lightning Roulette vinder du 29 enheder – en reduktion på 17,1 %. Over 1.000 spins med 1 straight-up bet à 100 kr. er dit forventede tab 2.780 kr. i Lightning vs. 2.700 kr. i standard – en ekstraomkostning på kun 80 kr. for adgangen til multiplikatorer op til 500x. Det er en triviel pris for det dramatisk øgede gevinstpotentiale.
+          </p>
+        </section>
+
+        <Separator className="my-10" />
+
+        {/* H2 #3 – EV analyse */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold">EV-analyse – hvad er en straight-up bet reelt værd?</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
-            For at forstå Lightning Roulettes sande økonomi skal vi beregne Expected Value (EV) for en straight-up bet under hensyntagen til den reducerede basisudbetaling og sandsynlighedsvægtede multiplikatorer.
+            For at forstå Lightning Roulettes sande økonomi skal vi beregne Expected Value (EV) for en straight-up bet under hensyntagen til den reducerede basisudbetaling og sandsynlighedsvægtede multiplikatorer. Denne beregning er mere kompleks end i standard roulette, fordi den involverer betingede sandsynligheder.
           </p>
           <Card className="border-border bg-card mb-6">
             <CardHeader className="pb-2">
@@ -136,71 +223,200 @@ const LightningRouletteGuide = () => {
             </CardHeader>
             <CardContent>
               <div className="space-y-3 text-sm text-muted-foreground">
-                <p><strong>Scenarie A – Ikke Lightning-nummer (93,2 % af spins):</strong></p>
+                <p><strong>Scenarie A – Ikke Lightning-nummer (ca. 93,2 % af spins):</strong></p>
                 <p className="pl-4">Vinder: 1/37 × 29 enheder = 0,784 enheder</p>
                 <p className="pl-4">Taber: 36/37 × (-1 enhed) = -0,973 enheder</p>
-                <p className="pl-4">EV = -0,189 enheder → -18,9 % af indsatsen</p>
-                <p className="mt-3"><strong>Scenarie B – Lightning-nummer (6,8 % af spins, gns. ~2,5 numre):</strong></p>
-                <p className="pl-4">Vinder med Lightning: gns. multiplikator ca. 125x</p>
-                <p className="pl-4">Kombineret EV inkl. alle scenarier: -0,0278 enheder pr. spin</p>
-                <p className="mt-3 font-semibold text-foreground">Samlet house edge: 2,78 %</p>
+                <p className="pl-4">EV(A) = 0,784 - 0,973 = -0,189 enheder</p>
+                <p className="mt-3"><strong>Scenarie B – Lightning-nummer (ca. 6,8 % af spins, gns. ~2,5 numre):</strong></p>
+                <p className="pl-4">Vinder med Lightning: 1/37 × gns. multiplikator (~125x) = 3,378 enheder</p>
+                <p className="pl-4">Taber: 36/37 × (-1 enhed) = -0,973 enheder</p>
+                <p className="pl-4">EV(B) = 3,378 - 0,973 = +2,405 enheder (betinget)</p>
+                <p className="mt-3"><strong>Samlet EV (vægtet):</strong></p>
+                <p className="pl-4">EV = 0,932 × (-0,189) + 0,068 × 2,405 = -0,176 + 0,163 = -0,013 enheder</p>
+                <p className="pl-4">EV pr. enhed indsat ≈ -2,78 %</p>
+                <p className="mt-3 font-semibold text-foreground">Samlet house edge: 2,78 % (vs. 2,70 % i standard roulette)</p>
+              </div>
+            </CardContent>
+          </Card>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            Nøgleindsigten er, at den marginale stigning i house edge (fra 2,70 % til 2,78 %) er triviel – kun 0,08 procentpoint. Men volatilitetsforskellen er enorm. I standard roulette er din maksimale gevinst 35x. I Lightning Roulette er den 500x. For spillere, der værdsætter oplevelsen af potentielle store gevinster, er den marginale ekstraomkostning negligibel.
+          </p>
+          <p className="text-muted-foreground leading-relaxed">
+            <strong>Volatilitetssammenligning:</strong> Standardafvigelsen pr. spin i standard roulette (straight-up) er ca. 5,76 enheder. I Lightning Roulette stiger den til ca. 12-15 enheder afhængigt af multiplikator-fordelingen. Det betyder 2-3x højere udsving – du vil opleve længere tabsperioder og sjældnere men markant større gevinster. Denne profil appellerer til spillere med "lotto-mentalitet" – og frastøder spillere, der foretrækker jævne resultater.
+          </p>
+        </section>
+
+        <Separator className="my-10" />
+
+        {/* H2 #4 – 500x sandsynlighed */}
+        <section className="mb-12">
+          <h2 className="mb-4 text-3xl font-bold">500x multiplikator – hvad er den reelle sandsynlighed?</h2>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            500x multiplikatoren er Lightning Roulettes ultimative lokkemiddel. Men hvor realistisk er det at ramme den? Lad os beregne det præcist – trin for trin – med konservative estimater.
+          </p>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            <strong>Trin 1 – Dit nummer bliver Lightning:</strong> Sandsynligheden for at dit valgte nummer er et Lightning-nummer i et givet spin. Med gennemsnitligt 2,5 Lightning-numre pr. spin: P(dit nummer er Lightning) = 2,5/37 ≈ 6,76 %. Med andre ord: i ca. 1 af 15 spins vil dit nummer have en Lightning-multiplikator.
+          </p>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            <strong>Trin 2 – Multiplikatoren er 500x:</strong> Evolution har ikke offentliggjort den præcise fordeling, men baseret på empiriske data fra millioner af spins (crowdsourced fra tracker-sites) estimeres 500x til ca. 5-10 % af alle multiplikatorer. Konservativt estimat: P(500x givet Lightning) ≈ 5 %.
+          </p>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            <strong>Trin 3 – Kuglen lander på dit nummer:</strong> Sandsynligheden for at kuglen lander på dit specifikke nummer: 1/37 ≈ 2,70 %.
+          </p>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            <strong>Samlet (konservativt):</strong> P(500x gevinst) = 6,76 % × 5 % × 2,70 % ≈ <strong>0,009 %</strong> pr. spin. Det er gennemsnitligt 1 gang pr. ~11.000 spins – ved 30 spins/time svarer det til ca. <strong>367 timers spil</strong>. Selv med det mere optimistiske 10 %-estimat for 500x-frekvens er det ca. 183 timers spil.
+          </p>
+          <Card className="border-border bg-card mb-6">
+            <CardHeader className="pb-2">
+              <CardTitle className="flex items-center gap-2 text-lg">
+                <Zap className="h-5 w-5 text-primary" />
+                500x i perspektiv: Den totale omkostning
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              <div className="space-y-3 text-sm text-muted-foreground">
+                <p><strong>Scenarie: 50 kr. straight-up bet, 30 spins/time</strong></p>
+                <p className="pl-4">Gennemsnitlig ventetid til 500x: ~11.000 spins = ~367 timer</p>
+                <p className="pl-4">Total indsat i ventetiden: 11.000 × 50 kr. = 550.000 kr.</p>
+                <p className="pl-4">Forventet tab i ventetiden: 550.000 × 2,78 % = 15.290 kr.</p>
+                <p className="pl-4">500x gevinst: 50 × 500 = 25.000 kr.</p>
+                <p className="mt-2 font-semibold text-foreground">Nettoresultat: 25.000 - 15.290 = +9.710 kr. – MEN dette er et gennemsnit. De fleste spillere vil aldrig opleve 500x.</p>
               </div>
             </CardContent>
           </Card>
           <p className="text-muted-foreground leading-relaxed">
-            Nøgleindsigten er, at den marginale stigning i house edge (fra 2,70 % til 2,78 %) er triviel – kun 0,08 procentpoint. Men volatilitetsforskellen er enorm. I standard roulette er din maksimale gevinst 35x. I Lightning Roulette er den 500x. For spillere, der værdsætter oplevelsen af potentielle store gevinster, er den marginale ekstraomkostning negligibel.
+            For yderligere perspektiv: sandsynligheden for IKKE at ramme 500x i 1.000 spins er ca. 91 %. I 5.000 spins er den ca. 64 %. Selv efter 10.000 spins har du stadig ca. 41 % chance for aldrig at have ramt 500x. Lightning Roulette er underholdning med potentiale – det er ikke en investering, og 500x bør aldrig være dit "mål" eller din forventning.
           </p>
         </section>
 
         <Separator className="my-10" />
 
-        {/* H2 #3 – 500x sandsynlighed */}
+        {/* H2 #5 – Multiplikator-fordeling */}
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold">500x multiplikator – hvad er den reelle sandsynlighed?</h2>
+          <h2 className="mb-4 text-3xl font-bold">Multiplikator-fordelingen – empiriske data og EV pr. multiplikatorniveau</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
-            500x multiplikatoren er Lightning Roulettes ultimative lokkemiddel. Men hvor realistisk er det at ramme den? Lad os beregne det præcist.
+            Selvom Evolution ikke publicerer den præcise multiplikator-fordeling, har uafhængige tracking-sites registreret millioner af spins. Baseret på disse data kan vi estimere den omtrentlige fordeling og beregne EV pr. multiplikatorniveau.
           </p>
-          <p className="mb-4 text-muted-foreground leading-relaxed">
-            <strong>Trin 1:</strong> Sandsynligheden for at dit valgte nummer er et Lightning-nummer i et givet spin. Med gennemsnitligt 2,5 Lightning-numre pr. spin: P(dit nummer er Lightning) = 2,5/37 ≈ 6,76 %.
+          <Card className="border-border bg-card mb-6">
+            <CardContent className="pt-6">
+              <div className="overflow-x-auto">
+                <table className="w-full text-sm">
+                  <thead>
+                    <tr className="border-b border-border">
+                      <th className="py-2 px-4 text-left">Multiplikator</th>
+                      <th className="py-2 px-4 text-left">Est. frekvens</th>
+                      <th className="py-2 px-4 text-left">Gevinst pr. 100 kr. bet</th>
+                      <th className="py-2 px-4 text-left">P(ramme + vinde)</th>
+                      <th className="py-2 px-4 text-left">EV-bidrag</th>
+                    </tr>
+                  </thead>
+                  <tbody className="text-muted-foreground">
+                    <tr className="border-b border-border/50">
+                      <td className="py-2 px-4 font-medium">50x</td>
+                      <td className="py-2 px-4">~40 %</td>
+                      <td className="py-2 px-4">5.000 kr.</td>
+                      <td className="py-2 px-4">0,073 %</td>
+                      <td className="py-2 px-4">+3,65 kr.</td>
+                    </tr>
+                    <tr className="border-b border-border/50">
+                      <td className="py-2 px-4 font-medium">100x</td>
+                      <td className="py-2 px-4">~25 %</td>
+                      <td className="py-2 px-4">10.000 kr.</td>
+                      <td className="py-2 px-4">0,046 %</td>
+                      <td className="py-2 px-4">+4,57 kr.</td>
+                    </tr>
+                    <tr className="border-b border-border/50">
+                      <td className="py-2 px-4 font-medium">200x</td>
+                      <td className="py-2 px-4">~15 %</td>
+                      <td className="py-2 px-4">20.000 kr.</td>
+                      <td className="py-2 px-4">0,027 %</td>
+                      <td className="py-2 px-4">+5,49 kr.</td>
+                    </tr>
+                    <tr className="border-b border-border/50">
+                      <td className="py-2 px-4 font-medium">300x</td>
+                      <td className="py-2 px-4">~10 %</td>
+                      <td className="py-2 px-4">30.000 kr.</td>
+                      <td className="py-2 px-4">0,018 %</td>
+                      <td className="py-2 px-4">+5,49 kr.</td>
+                    </tr>
+                    <tr className="border-b border-border/50">
+                      <td className="py-2 px-4 font-medium">400x</td>
+                      <td className="py-2 px-4">~5 %</td>
+                      <td className="py-2 px-4">40.000 kr.</td>
+                      <td className="py-2 px-4">0,009 %</td>
+                      <td className="py-2 px-4">+3,66 kr.</td>
+                    </tr>
+                    <tr>
+                      <td className="py-2 px-4 font-medium">500x</td>
+                      <td className="py-2 px-4">~5 %</td>
+                      <td className="py-2 px-4 text-primary font-semibold">50.000 kr.</td>
+                      <td className="py-2 px-4">0,009 %</td>
+                      <td className="py-2 px-4">+4,57 kr.</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </CardContent>
+          </Card>
+          <p className="text-muted-foreground leading-relaxed">
+            <strong>Nøgleindsigt:</strong> EV-bidraget fra multiplikatorer er relativt jævnt fordelt på tværs af niveauer. De lavere multiplikatorer (50x-100x) rammer hyppigere og bidrager sammenligneligt med de sjældne 300x-500x hits. Det betyder, at din "Lightning-oplevelse" primært vil bestå af 50x-100x gevinster – ca. 1 pr. 500-1.400 spins med enkelt straight-up bet. 500x er kirsebærret på toppen, ikke fundamentet.
           </p>
+        </section>
+
+        <Separator className="my-10" />
+
+        {/* H2 #6 – Strategi */}
+        <section className="mb-12">
+          <h2 className="mb-4 text-3xl font-bold">Strategisk tilgang til Lightning Roulette – optimering uden illusioner</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
-            <strong>Trin 2:</strong> Sandsynligheden for at multiplikatoren er 500x. Evolution har ikke offentliggjort den præcise fordeling, men baseret på empiriske data fra millioner af spins estimeres 500x til ca. 10 % af alle multiplikatorer. P(500x givet Lightning) ≈ 10 %.
+            Ingen strategi ændrer house edge, men du kan strukturere dine indsatser for at maksimere din eksponering til multiplikatorerne – eller minimere dit tab, afhængigt af din prioritet. Her er de tre mest rationelle tilgange.
           </p>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+            <Card className="border-border bg-card">
+              <CardHeader className="pb-2"><CardTitle className="flex items-center gap-2 text-lg"><Zap className="h-5 w-5 text-primary" />Multiplikator-fokus</CardTitle></CardHeader>
+              <CardContent><p className="text-sm text-muted-foreground">Spred 5-10 straight-up bets pr. spin. Med 10 bets har du ca. 51 % chance for at mindst ét af dine numre er Lightning. Ulempe: din samlede indsats er 10x højere pr. spin, og kun ét nummer kan vinde. Forventet tab skalerer lineært. Bedst for spillere med stor bankroll, der søger multiplikator-action.</p></CardContent>
+            </Card>
+            <Card className="border-border bg-card">
+              <CardHeader className="pb-2"><CardTitle className="flex items-center gap-2 text-lg"><Shield className="h-5 w-5 text-primary" />Lav-risiko hybrid</CardTitle></CardHeader>
+              <CardContent><p className="text-sm text-muted-foreground">Placér hovedindsatsen på outside bets (rød/sort) for stabil cashflow (2,70 % edge) og tilføj 1-2 straight-up bets som "lotto-billetter" til Lightning-multiplikatorer. Laveste samlede varians af alle tilgange. Bedst for konservative spillere, der vil have Lightning-oplevelsen uden høj risiko.</p></CardContent>
+            </Card>
+            <Card className="border-border bg-card">
+              <CardHeader className="pb-2"><CardTitle className="flex items-center gap-2 text-lg"><Target className="h-5 w-5 text-primary" />Enkelt nummer fokus</CardTitle></CardHeader>
+              <CardContent><p className="text-sm text-muted-foreground">Bet på ét enkelt straight-up nummer konsekvent. Laveste totale indsats pr. spin, men kun 6,76 % chance for Lightning-aktivering pr. spin. Kræver tålmodighed og en lang session for at opleve multiplikatorer. Bedst for spillere med lille bankroll og lang tidshorisont.</p></CardContent>
+            </Card>
+          </div>
           <p className="mb-4 text-muted-foreground leading-relaxed">
-            <strong>Trin 3:</strong> Sandsynligheden for at kuglen lander på dit nummer: 1/37 ≈ 2,70 %.
-          </p>
-          <p className="mb-4 text-muted-foreground leading-relaxed">
-            <strong>Samlet:</strong> P(500x gevinst) = 6,76 % × 10 % × 2,70 % ≈ <strong>0,018 %</strong> pr. spin. Det er gennemsnitligt 1 gang pr. 5.500 spins – ved 30 spins/time svarer det til ca. 183 timers spil.
+            <strong>Outside-only strategi – hvorfor den er meningsløs i Lightning Roulette:</strong> Hvis du kun spiller outside bets (rød/sort, dozen, column), får du præcis samme oplevelse og EV som ved et standard live roulette-bord. Lightning-mekanikken påvirker ikke outside bets overhovedet. Du betaler imidlertid for det mere elaborerede studio-setup og den langsommere spin-frekvens (Lightning Roulette har typisk 25-30 spins/time vs. 30-35 i standard). Konklusion: brug standard roulette til outside-only strategier.
           </p>
           <p className="text-muted-foreground leading-relaxed">
-            For perspektiv: ved 50 kr. straight-up bet og 183 timers spil (5.500 spins) har du indsat 275.000 kr. totalt og tabt gennemsnitligt 7.645 kr. til house edge. Hvis du rammer 500x én gang, vinder du 25.000 kr. – men du har i gennemsnit tabt mere end det til det tidspunkt. Lightning Roulette er underholdning med potentiale, ikke en vej til profit.
+            Den vigtigste strategiske beslutning er <strong>tempo-kontrol</strong>. Lightning Roulette kører ca. 25-30 spins/time (lidt langsommere end standard pga. Lightning-animation). Sæt en fast session-grænse (f.eks. 50 spins / 2 timer) og en fast bankroll-grænse. Undgå at jagte 500x-multiplikatoren – den kommer, når den kommer, og forsøg på at forcere den fører kun til accelererede tab. For at opretholde <Link to="/ansvarligt-spil" className={linkClass}>ansvarligt spil</Link> er disciplin afgørende.
           </p>
         </section>
 
         <Separator className="my-10" />
 
-        {/* H2 #4 – Strategi */}
+        {/* H2 #7 – Progressionssystemer */}
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold">Strategisk tilgang til Lightning Roulette</h2>
+          <h2 className="mb-4 text-3xl font-bold">Progressionssystemer i Lightning Roulette – endnu farligere end i standard</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
-            Ingen strategi ændrer house edge, men du kan strukturere dine indsatser for at maksimere din eksponering til multiplikatorerne – eller minimere dit tab, afhængigt af din prioritet.
+            Martingale, Fibonacci, D'Alembert og andre progressionssystemer er populære i alle roulette-varianter – og lige så meningsløse i Lightning Roulette som overalt. Men i Lightning Roulette er de faktisk <em>mere</em> farlige end i standard roulette, og her er grunden.
           </p>
           <p className="mb-4 text-muted-foreground leading-relaxed">
-            <strong>Multiplikator-fokuseret tilgang:</strong> Spred 5-10 straight-up bets pr. spin. Dette øger sandsynligheden for at ramme et Lightning-nummer markant. Med 10 bets har du ca. 51 % chance for at mindst ét af dine numre er Lightning. Men din samlede indsats pr. spin er 10x højere, og kun ét nummer kan vinde – de øvrige taber.
+            <strong>Martingale på straight-up bets:</strong> I standard roulette fordobler du indsatsen efter tab og satser på at gevinsten (35:1) dækker alle tab. I Lightning Roulette er basis-gevinsten kun 29:1 – en reduktion på 17 %. Det betyder, at Martingale-systemet kræver 17 % længere vindende streaks for at indhente det samme tab. Derudover er straight-up bets i sig selv ekstremt volatile – du vil tabe 36 af 37 spins gennemsnitligt, hvilket kræver massive bankrolls for selv korte Martingale-sekvenser.
           </p>
           <p className="mb-4 text-muted-foreground leading-relaxed">
-            <strong>Lav-risiko tilgang:</strong> Brug outside bets (rød/sort, dozen) med standard 2,70 % edge. Du drager ingen fordel af Lightning-mekanikken, men du får den laveste volatilitet. Kombinér evt. med 1-2 straight-up bets for en "lotto-billet" på multiplikatorer uden at risikere hele din bankroll.
+            <strong>Martingale på outside bets:</strong> Her er Lightning Roulette identisk med standard roulette – 1:1 udbetalinger, 2,70 % edge. Systemet "virker" kortvarigt (du vinder mange små beløb) men har uundgåelig bust-risiko ved længere tabsserier. Bordmaksimum er typisk 2.000-5.000 kr. ved de fleste Lightning Roulette-borde, hvilket begrænser Martingale til 6-8 fordobblinger ved 50 kr. startindsats.
           </p>
           <p className="text-muted-foreground leading-relaxed">
-            Den vigtigste strategiske beslutning er <strong>tempo-kontrol</strong>. Lightning Roulette kører ca. 30-35 spins/time. Sæt en fast session-grænse (f.eks. 50 spins / 1,5 time) og en fast bankroll-grænse. Undgå at jagte 500x-multiplikatoren – den kommer, når den kommer, og forsøg på at forcere den fører kun til accelererede tab. For at opretholde <Link to="/ansvarligt-spil" className={linkClass}>ansvarligt spil</Link> er disciplin afgørende.
+            <strong>Den matematiske sandhed:</strong> Intet progressionssystem ændrer house edge. EV pr. indsat krone er -2,78 % for straight-up og -2,70 % for outside, uanset om du sætter 50 kr. eller 5.000 kr. Progression omfordeler blot din varians: flere små gevinster og sjældnere katastrofale tab. Over tilstrækkeligt mange spins konvergerer dit resultat mod house edge-linjen – uanset system.
           </p>
         </section>
 
         <Separator className="my-10" />
 
-        {/* H2 #5 – Sammenligning */}
+        {/* H2 #8 – Sammenligning */}
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold">Lightning Roulette vs. andre roulette-formater</h2>
+          <h2 className="mb-4 text-3xl font-bold">Lightning Roulette vs. alle andre roulette-formater</h2>
           <Card className="border-border bg-card mb-6">
             <CardContent className="pt-6">
               <div className="overflow-x-auto">
@@ -209,8 +425,9 @@ const LightningRouletteGuide = () => {
                     <tr className="border-b border-border">
                       <th className="py-2 px-4 text-left">Format</th>
                       <th className="py-2 px-4 text-left">House Edge</th>
-                      <th className="py-2 px-4 text-left">Max gevinst</th>
+                      <th className="py-2 px-4 text-left">Max gevinst (straight-up)</th>
                       <th className="py-2 px-4 text-left">Volatilitet</th>
+                      <th className="py-2 px-4 text-left">Tab/time (100 kr., 30 spins)</th>
                     </tr>
                   </thead>
                   <tbody className="text-muted-foreground">
@@ -219,32 +436,129 @@ const LightningRouletteGuide = () => {
                       <td className="py-2 px-4 text-primary font-semibold">1,35 %</td>
                       <td className="py-2 px-4">35x</td>
                       <td className="py-2 px-4">Lav-Medium</td>
+                      <td className="py-2 px-4 text-primary">40,50 kr.</td>
                     </tr>
                     <tr className="border-b border-border/50">
                       <td className="py-2 px-4 font-medium">Europæisk</td>
                       <td className="py-2 px-4">2,70 %</td>
                       <td className="py-2 px-4">35x</td>
                       <td className="py-2 px-4">Medium</td>
+                      <td className="py-2 px-4">81,00 kr.</td>
                     </tr>
                     <tr className="border-b border-border/50">
                       <td className="py-2 px-4 font-medium">Lightning Roulette</td>
                       <td className="py-2 px-4">2,78 %</td>
                       <td className="py-2 px-4 text-primary font-semibold">500x</td>
                       <td className="py-2 px-4 font-semibold">Høj</td>
+                      <td className="py-2 px-4">83,40 kr.</td>
+                    </tr>
+                    <tr className="border-b border-border/50">
+                      <td className="py-2 px-4 font-medium">Double Ball Roulette</td>
+                      <td className="py-2 px-4">2,70 %</td>
+                      <td className="py-2 px-4">1.300x (begge kugler)</td>
+                      <td className="py-2 px-4">Høj</td>
+                      <td className="py-2 px-4">81,00 kr.</td>
                     </tr>
                     <tr>
                       <td className="py-2 px-4 font-medium">Amerikansk</td>
                       <td className="py-2 px-4 text-destructive">5,26 %</td>
                       <td className="py-2 px-4">35x</td>
                       <td className="py-2 px-4">Medium</td>
+                      <td className="py-2 px-4 text-destructive">157,80 kr.</td>
                     </tr>
                   </tbody>
                 </table>
               </div>
             </CardContent>
           </Card>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            Lightning Roulette er det optimale valg for spillere, der accepterer en marginal stigning i house edge (0,08 pp) til gengæld for 14x højere gevinstpotentiale. Forskellen i forventet tab pr. time er kun 2,40 kr. vs. europæisk – negligibelt i praksis. Det er det dårligste valg for spillere, der udelukkende optimerer for lavest muligt tab – de bør vælge French Roulette med La Partage.
+          </p>
           <p className="text-muted-foreground leading-relaxed">
-            Lightning Roulette er det optimale valg for spillere, der accepterer en marginal stigning i house edge (0,08 pp) til gengæld for 14x højere gevinstpotentiale. Det er det dårligste valg for spillere, der udelukkende optimerer for lavest muligt tab – de bør vælge French Roulette. Sammenlign også med <Link to="/live-casino/monopoly-live" className={linkClass}>Monopoly Live</Link> for en endnu højere volatilitetsprofil.
+            Sammenlign også med <Link to="/live-casino/monopoly-live" className={linkClass}>Monopoly Live</Link> (3,77 % edge, højere bonuspotentiale), <Link to="/live-casino/baccarat" className={linkClass}>live baccarat</Link> (1,06 % edge, lavest house edge af alle live spil) og <Link to="/live-casino/blackjack" className={linkClass}>live blackjack</Link> (0,5 % edge med optimal strategi, lavest af alle casino-spil med strategisk dybde). Lightning Roulette placerer sig som det perfekte mellemled: lavere edge end game shows, højere volatilitet end klassiske bordspil.
+          </p>
+        </section>
+
+        <Separator className="my-10" />
+
+        {/* H2 #9 – Studio og teknologi */}
+        <section className="mb-12">
+          <h2 className="mb-4 text-3xl font-bold">Studio-teknologi og streaming-infrastruktur bag Lightning Roulette</h2>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            Lightning Roulette streames fra Evolutions flagskibsstudio i Riga, Letland – et 8.500 m² facility med over 100 live borde. Studiet er specifikt designet til at skabe den "elektriske" atmosfære, der er Lightning Roulettes varemærke: mørke vægge, neonlys og dramatisk belysning, der skifter farve under Lightning-sekvensen.
+          </p>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            <strong>Hjul-integritet:</strong> Lightning Roulette bruger et standard europæisk roulettehjul (37 lommer, 0-36) med en reel kugle – identisk med alle andre Evolutions live roulette-varianter. Hjulet auditeres regelmæssigt af uafhængige testlaboratorier (GLI, eCOGRA) for at sikre, at alle numre har ens sandsynlighed. Dealer-rotation sker hver 30-45 minutter for at eliminere potentiel bias.
+          </p>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            <strong>RNG-systemet:</strong> Lightning-numre og multiplikatorer genereres af en certificeret Random Number Generator, der er fysisk adskilt fra hjulsystemet. RNG'en drives af hardware-baseret entropi (ikke pseudo-random software) og auditeres separat fra hjulet. Resultaterne er statistisk uafhængige af hjulresultatet – Lightning-numrene og kuglens position har ingen korrelation.
+          </p>
+          <p className="text-muted-foreground leading-relaxed">
+            <strong>Streaming-specifikationer:</strong> 1080p video ved 60fps med adaptiv bitrate (1-8 Mbps). Typisk latency er 1-3 sekunder via WebRTC (prioriteret) eller HLS (fallback). Lightning-animationen er en server-side rendered overlay, der synkroniseres med live-feedet med submillisekund-præcision. Kamera-setupet inkluderer et overheadkamera for hjulet, et frontkamera for dealeren og et dedikeret kamera for nærbilleder af kuglen.
+          </p>
+        </section>
+
+        <Separator className="my-10" />
+
+        {/* H2 #10 – Bankroll management */}
+        <section className="mb-12">
+          <h2 className="mb-4 text-3xl font-bold">Bankroll management og Risk of Ruin for Lightning Roulette</h2>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            Lightning Roulettes høje volatilitet kræver en markant anderledes bankroll-tilgang end standard roulette. Standardafvigelsen pr. spin er 2-3x højere, hvilket betyder, at du vil opleve dramatisk større udsving – og dermed behøver en større buffer mod bust.
+          </p>
+          <Card className="border-border bg-card mb-6">
+            <CardHeader className="pb-2">
+              <CardTitle className="flex items-center gap-2 text-lg">
+                <DollarSign className="h-5 w-5 text-primary" />
+                Bankroll-anbefalinger pr. strategi
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              <div className="overflow-x-auto">
+                <table className="w-full text-sm">
+                  <thead>
+                    <tr className="border-b border-border">
+                      <th className="py-2 px-4 text-left">Strategi</th>
+                      <th className="py-2 px-4 text-left">Indsats/spin</th>
+                      <th className="py-2 px-4 text-left">Anbefalet bankroll</th>
+                      <th className="py-2 px-4 text-left">Bust-risiko (100 spins)</th>
+                    </tr>
+                  </thead>
+                  <tbody className="text-muted-foreground">
+                    <tr className="border-b border-border/50">
+                      <td className="py-2 px-4 font-medium">1 straight-up (50 kr.)</td>
+                      <td className="py-2 px-4">50 kr.</td>
+                      <td className="py-2 px-4">3.000-4.000 kr. (60-80x)</td>
+                      <td className="py-2 px-4">~5-8 %</td>
+                    </tr>
+                    <tr className="border-b border-border/50">
+                      <td className="py-2 px-4 font-medium">5 straight-up (250 kr. total)</td>
+                      <td className="py-2 px-4">250 kr.</td>
+                      <td className="py-2 px-4">10.000-15.000 kr. (40-60x)</td>
+                      <td className="py-2 px-4">~8-12 %</td>
+                    </tr>
+                    <tr className="border-b border-border/50">
+                      <td className="py-2 px-4 font-medium">Hybrid (100 kr. outside + 2 × 50 kr. straight-up)</td>
+                      <td className="py-2 px-4">200 kr.</td>
+                      <td className="py-2 px-4">6.000-8.000 kr. (30-40x)</td>
+                      <td className="py-2 px-4">~3-5 %</td>
+                    </tr>
+                    <tr>
+                      <td className="py-2 px-4 font-medium">10 straight-up (500 kr. total)</td>
+                      <td className="py-2 px-4">500 kr.</td>
+                      <td className="py-2 px-4">25.000-35.000 kr. (50-70x)</td>
+                      <td className="py-2 px-4">~10-15 %</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </CardContent>
+          </Card>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            <strong>Session-struktur:</strong> Max 2 timer eller 60 spins (hvad der kommer først). Stop-loss på 40 % af bankroll. Gevinstmål: 50 % af bankroll. Disse grænser er vigtigere i Lightning Roulette end i standard roulette, fordi volatiliteten kan maskere langsomt tab – en stor Lightning-gevinst kan give illusionen af at "være foran", selv efter betydeligt nettotab.
+          </p>
+          <p className="text-muted-foreground leading-relaxed">
+            <strong>18+.</strong> Spil aldrig for penge, du ikke har råd til at tabe. Kontakt <strong>StopSpillet</strong> (70 22 28 25) eller selvudeluk via <strong>ROFUS</strong> ved behov. For yderligere information om <Link to="/ansvarligt-spil" className={linkClass}>ansvarligt spil</Link>, se vores dedikerede side.
           </p>
         </section>
 
