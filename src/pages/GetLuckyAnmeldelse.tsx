@@ -1,5 +1,7 @@
 import { Link } from "react-router-dom";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
+import { RatingBreakdown } from "@/components/RatingBreakdown";
+import { CASINO_SCORES } from "@/lib/reviewScoring";
 import { AuthorBio } from "@/components/AuthorBio";
 import { FAQSection } from "@/components/FAQSection";
 import { SEO } from "@/components/SEO";
@@ -221,9 +223,7 @@ const GetLuckyAnmeldelse = () => {
           <p className="mb-4 text-muted-foreground leading-relaxed">GetLucky Casino er en solid, moderne platform, der leverer på sit kerneområde: spiludvalg. Med 1.500+ titler fra 30+ udbydere – inklusive trendende studier som Nolimit City og Hacksaw Gaming – er det et paradis for slots-entusiasten, der elsker at udforske nye spil. SkillOnNets 19 års erfaring sikrer en stabil, pålidelig platform med tredobbelt licensering og et modent sikkerhedssetup.</p>
           <p className="mb-4 text-muted-foreground leading-relaxed">Loyalitetsprogrammet er et positivt element, der belønner konsistens over størrelse og gør platformen tilgængelig for alle budgetter. Live casinoets lave minimumsindsatser er en unik fordel, og free spins-velkomsten fordelt over 5 dage er en smart retention-mekanik. Det er ikke den mest generøse bonus, men den er gennemtænkt.</p>
           <p className="mb-6 text-muted-foreground leading-relaxed">Vi rater GetLucky til 4.0/5. Det trækkes ned af langsommere udbetalingstider (op til 48 timer), manglende MobilePay-understøttelse, engelsktalende kundeservice og delte live casino-borde. Men for spilleren, der prioriterer spilvariation og et stabilt, tredobbelt reguleret miljø med et demokratisk loyalitetsprogram, er det et fremragende valg i et velbesat dansk marked. Læs mere om <Link to="/forfatter/jonas" className={linkClass}>forfatteren bag denne anmeldelse</Link>.</p>
-          <div className="grid grid-cols-2 sm:grid-cols-5 gap-4 mb-6">
-            {[{ label: "Spiludvalg", score: "9/10" }, { label: "Brugervenlighed", score: "8/10" }, { label: "Bonus", score: "7/10" }, { label: "Udbetaling", score: "6/10" }, { label: "Samlet", score: "4.0/5" }].map((i) => (<div key={i.label} className="rounded-lg border border-border bg-card p-4 text-center"><p className="text-xs text-muted-foreground uppercase mb-1">{i.label}</p><p className="text-2xl font-bold text-primary">{i.score}</p></div>))}
-          </div>
+          <RatingBreakdown scores={CASINO_SCORES["getlucky"].scores} total={CASINO_SCORES["getlucky"].total} />
           <div className="flex flex-col sm:flex-row gap-3">
             <Button asChild variant="outline" size="lg" className="flex-1"><Link to="/top-10-casino-online"><Trophy className="mr-2 h-5 w-5" />Se Top 10 Casinoer</Link></Button>
             <Button asChild variant="outline" size="lg" className="flex-1"><Link to="/casino-anmeldelser"><Star className="mr-2 h-5 w-5" />Alle Casino Anmeldelser</Link></Button>

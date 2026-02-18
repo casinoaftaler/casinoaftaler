@@ -1,5 +1,7 @@
 import { Link } from "react-router-dom";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
+import { RatingBreakdown } from "@/components/RatingBreakdown";
+import { CASINO_SCORES } from "@/lib/reviewScoring";
 import { AuthorBio } from "@/components/AuthorBio";
 import { FAQSection } from "@/components/FAQSection";
 import { SEO } from "@/components/SEO";
@@ -212,9 +214,7 @@ const CasinostuenAnmeldelse = () => {
           <h2 className="mb-4 text-3xl font-bold">Det endelige overblik</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">Casinostuen er en charmerende nicheplatform, der gør præcis, hvad den lover: et hyggeligt, 100% dansk casino med fair vilkår og overskuelig navigation. Det er ikke stedet for den erfarne spiller, der jager de nyeste releases eller de højeste bonusser – men det er et pålideligt udgangspunkt for nybegyndere og casual spillere, der vil holde det enkelt.</p>
           <p className="mb-6 text-muted-foreground leading-relaxed">Med en rating på 3.6/5 afspejler vores vurdering en platform, der gør det basale godt uden at skille sig markant ud. Spiludvalget er begrænset, designet er funktionelt men dateret, og udbetalingstiderne er gennemsnitlige. Men den danske identitet, den lave indgangsbarriere og de ærlige bonusvilkår gør Casinostuen til et solidt valg inden for sin niche. Læs mere om <Link to="/forfatter/jonas" className={linkClass}>forfatteren bag denne anmeldelse</Link>.</p>
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-6">
-            {[{ label: "Brugervenlighed", score: "8/10" }, { label: "Spiludvalg", score: "5/10" }, { label: "Bonus", score: "7/10" }, { label: "Samlet", score: "3.6/5" }].map((i) => (<div key={i.label} className="rounded-lg border border-border bg-card p-4 text-center"><p className="text-xs text-muted-foreground uppercase mb-1">{i.label}</p><p className="text-2xl font-bold text-primary">{i.score}</p></div>))}
-          </div>
+          <RatingBreakdown scores={CASINO_SCORES["casinostuen"].scores} total={CASINO_SCORES["casinostuen"].total} />
           <div className="flex flex-col sm:flex-row gap-3">
             <Button asChild variant="outline" size="lg" className="flex-1"><Link to="/top-10-casino-online"><Trophy className="mr-2 h-5 w-5" />Se Top 10 Casinoer</Link></Button>
             <Button asChild variant="outline" size="lg" className="flex-1"><Link to="/casino-anmeldelser"><Star className="mr-2 h-5 w-5" />Alle Casino Anmeldelser</Link></Button>

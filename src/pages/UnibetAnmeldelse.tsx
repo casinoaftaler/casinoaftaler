@@ -1,4 +1,6 @@
 import { Link } from "react-router-dom";
+import { RatingBreakdown } from "@/components/RatingBreakdown";
+import { CASINO_SCORES } from "@/lib/reviewScoring";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { AuthorBio } from "@/components/AuthorBio";
 import { FAQSection } from "@/components/FAQSection";
@@ -254,9 +256,7 @@ const UnibetAnmeldelse = () => {
           <p className="mb-4 text-muted-foreground leading-relaxed">Unibet er en af de mest komplette og troværdige platforme i Danmark. Ingen anden operatør tilbyder den samme kombination af casino, sportsbetting, poker og live casino under ét tag med den finansielle gennemsigtighed, som en børsnotering giver. Kindred Groups "Journey towards zero" understreger et genuint engagement i ansvarligt spil, og den danske licens sikrer fuld regulatorisk beskyttelse.</p>
           <p className="mb-4 text-muted-foreground leading-relaxed">Platformens styrke er dens alsidighed – og det er også dens svaghed. Unibet er en mesterspiller, der gør alt godt, men sjældent er den absolutte bedste i nogen enkelt kategori. Casinoudvalget er solidt men ikke det største. Sportsbetting er fremragende men bet365 har marginalt dybere markeder. Live casinoet er kvalitets men LeoVegas har flere borde. Velkomstbonussen er fair men specialiserede casinoer slår den.</p>
           <p className="mb-6 text-muted-foreground leading-relaxed">Hvis du ønsker én platform til alt – og du værdsætter den sikkerhed, der kommer med en børsnoteret operatør med 25+ års track record – er Unibet et fremragende valg. Det er den platform, vi anbefaler til den alsidige spiller, der ikke vil kompromittere på nogen front. Læs om <Link to="/forfatter/jonas" className={linkClass}>forfatteren</Link>.</p>
-          <div className="grid grid-cols-2 sm:grid-cols-5 gap-4 mb-6">
-            {[{ label: "Alsidighed", score: "10/10" }, { label: "Troværdighed", score: "10/10" }, { label: "Casino", score: "8/10" }, { label: "Sport", score: "9/10" }, { label: "Samlet", score: "4.4/5" }].map((i) => (<div key={i.label} className="rounded-lg border border-border bg-card p-4 text-center"><p className="text-xs text-muted-foreground uppercase mb-1">{i.label}</p><p className="text-2xl font-bold text-primary">{i.score}</p></div>))}
-          </div>
+          <RatingBreakdown scores={CASINO_SCORES["unibet"].scores} total={CASINO_SCORES["unibet"].total} />
           <div className="flex flex-col sm:flex-row gap-3">
             <Button asChild variant="outline" size="lg" className="flex-1"><Link to="/top-10-casino-online"><Trophy className="mr-2 h-5 w-5" />Se Top 10 Casinoer</Link></Button>
             <Button asChild variant="outline" size="lg" className="flex-1"><Link to="/casino-anmeldelser"><Star className="mr-2 h-5 w-5" />Alle Casino Anmeldelser</Link></Button>

@@ -1,5 +1,7 @@
 import { Link } from "react-router-dom";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
+import { RatingBreakdown } from "@/components/RatingBreakdown";
+import { CASINO_SCORES } from "@/lib/reviewScoring";
 import { AuthorBio } from "@/components/AuthorBio";
 import { FAQSection } from "@/components/FAQSection";
 import { SEO } from "@/components/SEO";
@@ -513,19 +515,7 @@ const Bet365Anmeldelse = () => {
             De reelle svagheder er begrænsede: en gennemsnitlig casino-velkomstbonus, engelsksproget kundeservice og et design, der prioriterer sport over casino. For den rette spiller – en der ønsker alt samlet ét sted med sport som fundament – er bet365 svær at forbigå. Læs om{" "}
             <Link to="/forfatter/jonas" className={linkClass}>forfatteren</Link>.
           </p>
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-6">
-            {[
-              { label: "Sportsbetting", score: "10/10" },
-              { label: "Casino", score: "8/10" },
-              { label: "Pålidelighed", score: "10/10" },
-              { label: "Samlet", score: "4.5/5" },
-            ].map((i) => (
-              <div key={i.label} className="rounded-lg border border-border bg-card p-4 text-center">
-                <p className="text-xs text-muted-foreground uppercase mb-1">{i.label}</p>
-                <p className="text-2xl font-bold text-primary">{i.score}</p>
-              </div>
-            ))}
-          </div>
+          <RatingBreakdown scores={CASINO_SCORES["bet365"].scores} total={CASINO_SCORES["bet365"].total} />
           <div className="flex flex-col sm:flex-row gap-3">
             <Button asChild variant="outline" size="lg" className="flex-1">
               <Link to="/top-10-casino-online">

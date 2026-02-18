@@ -1,5 +1,7 @@
 import { Link } from "react-router-dom";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
+import { RatingBreakdown } from "@/components/RatingBreakdown";
+import { CASINO_SCORES } from "@/lib/reviewScoring";
 import { AuthorBio } from "@/components/AuthorBio";
 import { FAQSection } from "@/components/FAQSection";
 import { SEO } from "@/components/SEO";
@@ -459,20 +461,7 @@ const SpilnuAnmeldelse = () => {
           <h2 className="mb-4 text-3xl font-bold">Det endelige billede – bingo-kongen med casino-ambitioner</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">Spilnu.dk er ikke et casino, der forsøger at være alt for alle – og det er præcis dets styrke. Platformen er Danmarks ubestridte bingo-destination med en loyal brugerbasis, et aktivt community, progressive jackpots og en tryghed, som kun et statsejet brand kan levere. Casino-sektionen er et fint supplement med alle de populære titler, men den kan ikke konkurrere med dedikerede casino-specialister på udvalg, innovation eller bonusaggressivitet.</p>
           <p className="mb-4 text-muted-foreground leading-relaxed">Vores samlede vurdering på 4.0 ud af 5 afspejler denne balance. Spilnu scorer exceptionelt på tryghed og bingo, men taber points på casino-dybde, bonusstruktur og udbetalingshastighed. For den rigtige spillerprofil – bingo-entusiasten, den casual spiller, den tryghedssøgende nybegynder – er Spilnu et fremragende valg. For spillere, der søger den ultimative casinooplevelse, er det et supplement – ikke en erstatning.</p>
-          <div className="grid grid-cols-2 sm:grid-cols-5 gap-4 mb-6">
-            {[
-              { label: "Tryghed", score: "10/10" },
-              { label: "Bingo", score: "9/10" },
-              { label: "Casino", score: "5/10" },
-              { label: "Support", score: "8/10" },
-              { label: "Samlet", score: "4.0/5" },
-            ].map((i) => (
-              <div key={i.label} className="rounded-lg border border-border bg-card p-4 text-center">
-                <p className="text-xs text-muted-foreground uppercase mb-1">{i.label}</p>
-                <p className="text-2xl font-bold text-primary">{i.score}</p>
-              </div>
-            ))}
-          </div>
+          <RatingBreakdown scores={CASINO_SCORES["spilnu"].scores} total={CASINO_SCORES["spilnu"].total} />
           <Card className="border-border bg-card border-l-4 border-l-primary">
             <CardContent className="pt-6 space-y-3">
               <p className="text-muted-foreground">Spil ansvarligt. Kontakt <a href="https://www.stopspillet.dk/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline font-medium">StopSpillet.dk</a> på tlf. 70 22 28 25 ved behov for rådgivning.</p>

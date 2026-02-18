@@ -1,5 +1,7 @@
 import { Link } from "react-router-dom";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
+import { RatingBreakdown } from "@/components/RatingBreakdown";
+import { CASINO_SCORES } from "@/lib/reviewScoring";
 import { AuthorBio } from "@/components/AuthorBio";
 import { FAQSection } from "@/components/FAQSection";
 import { SEO } from "@/components/SEO";
@@ -202,10 +204,7 @@ const RoyalCasinoAnmeldelse = () => {
 
         {/* Endelig Vurdering */}
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold">Det vigtigste – 4.3 ud af 5</h2>
-          <p className="mb-4 text-muted-foreground leading-relaxed">Royal Casino er det danske casino-markeds mest troværdige platform. Statsejerskabet, den parlamentariske kontrol og Danske Spils 75-årige historie giver en sikkerhedsgaranti, som ingen privat konkurrent kan tilbyde. Live casinoet med dansktalende dealers er det bedste i landet, MobilePay-udbetalinger fungerer hurtigt, og kundeservicen sætter den danske standard.</p>
-          <p className="mb-4 text-muted-foreground leading-relaxed">Svaghederne er tydelige: spiludvalget på 800 titler er halvdelen af, hvad LeoVegas tilbyder og en sjettedel af Videoslots'. Bonusstrategien er konservativ, og fraværet af internationale betalingsmetoder begrænser appellen. Men for den danske spiller, der prioriterer tryghed, live casino og en autentisk dansk oplevelse, er Royal Casino det rigtige valg – og det er der mange, der gør.</p>
-          <p className="text-muted-foreground leading-relaxed">Vores anbefaling: Opret en konto via MitID (det tager bogstaveligt talt et minut), indbetal minimum 50 kr. via MobilePay, og prøv et par sessioner på de danske live dealer-borde. Det er der, Royal Casino virkelig skinner. Hvis du efter en uge savner et bredere spiludvalg, kan du altid supplere med en konto hos <Link to="/casino-anmeldelser/videoslots" className={linkClass}>Videoslots</Link> eller <Link to="/casino-anmeldelser/leovegas" className={linkClass}>LeoVegas</Link>.</p>
+          <RatingBreakdown scores={CASINO_SCORES["royal-casino"].scores} total={CASINO_SCORES["royal-casino"].total} />
           <Card className="border-border bg-card border-l-4 border-l-primary mt-6"><CardContent className="pt-6 space-y-3"><p className="text-muted-foreground leading-relaxed">Spil altid ansvarligt. Kontakt <a href="https://www.stopspillet.dk/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline font-medium">StopSpillet.dk</a> på tlf. 70 22 28 25 (gratis, anonymt, tilgængeligt døgnet rundt).</p><p className="text-xs text-muted-foreground">18+ | Spil ansvarligt | Regler og vilkår gælder | Annoncering</p></CardContent></Card>
         </section>
 

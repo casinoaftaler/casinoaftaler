@@ -1,5 +1,7 @@
 import { Link } from "react-router-dom";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
+import { RatingBreakdown } from "@/components/RatingBreakdown";
+import { CASINO_SCORES } from "@/lib/reviewScoring";
 import { AuthorBio } from "@/components/AuthorBio";
 import { FAQSection } from "@/components/FAQSection";
 import { SEO } from "@/components/SEO";
@@ -246,9 +248,7 @@ const MrGreenAnmeldelse = () => {
           <p className="mb-4 text-muted-foreground leading-relaxed">Mr Green Casino er et af de mest veldesignede og ansvarlige casinoer på det danske marked. Green Gaming-værktøjet er branchemæssigt unikt og sætter en standard for spillerbeskyttelse, som resten af industrien bør aspirere til. Spiludvalget er kurateret til perfektion med en gennemsnitlig RTP, der overstiger markedsgennemsnittet. Brugeroplevelsen – fra desktop til mobilapp – er konsekvent poleret og æstetisk tilfredsstillende.</p>
           <p className="mb-4 text-muted-foreground leading-relaxed">Med 888 Holdings som moderselskab er den finansielle stabilitet og sikkerhed uovertruffen. Platformens svaghed er dens begrænsede bredde: intet sportsbetting, intet poker, og et spiludvalg, der er mindre end de mest volumintunge konkurrenter. Men for den spiller, der prioriterer kvalitet, design og ansvarligt spil, er Mr Green Casino vores topanbefaling uden forbehold.</p>
           <p className="mb-6 text-muted-foreground leading-relaxed">Læs om <Link to="/forfatter/jonas" className={linkClass}>forfatteren bag anmeldelsen</Link>.</p>
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-6">
-            {[{ label: "Sikkerhed", score: "10/10" }, { label: "Spiludvalg", score: "8/10" }, { label: "Design", score: "10/10" }, { label: "Samlet", score: "4.4/5" }].map((i) => (<div key={i.label} className="rounded-lg border border-border bg-card p-4 text-center"><p className="text-xs text-muted-foreground uppercase mb-1">{i.label}</p><p className="text-2xl font-bold text-primary">{i.score}</p></div>))}
-          </div>
+          <RatingBreakdown scores={CASINO_SCORES["mr-green"].scores} total={CASINO_SCORES["mr-green"].total} />
           <div className="flex flex-col sm:flex-row gap-3">
             <Button asChild variant="outline" size="lg" className="flex-1"><Link to="/top-10-casino-online"><Trophy className="mr-2 h-5 w-5" />Se Top 10 Casinoer</Link></Button>
             <Button asChild variant="outline" size="lg" className="flex-1"><Link to="/casino-anmeldelser"><Star className="mr-2 h-5 w-5" />Alle Casino Anmeldelser</Link></Button>

@@ -1,5 +1,7 @@
 import { Link } from "react-router-dom";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
+import { RatingBreakdown } from "@/components/RatingBreakdown";
+import { CASINO_SCORES } from "@/lib/reviewScoring";
 import { AuthorBio } from "@/components/AuthorBio";
 import { FAQSection } from "@/components/FAQSection";
 import { SEO } from "@/components/SEO";
@@ -290,14 +292,7 @@ const ComeOnAnmeldelse = () => {
           <h2 className="mb-4 text-3xl font-bold">Bundlinjen om ComeOn Casino</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">ComeOn Casino er den pålidelige all-rounder i den danske mellemklasse. Det er ikke det mest spændende casino, det mest innovative eller det bredeste i spiludvalg. Men det er et af de mest ærlige, gennemsigtige og brugervenlige. For spillere, der er trætte af skjulte bonusvilkår og ugennemsigtige kampagner, er ComeOn en velkommen kontrast.</p>
           <p className="mb-6 text-muted-foreground leading-relaxed">Med en rating på 4.2/5 anerkender vi ComeOns styrker i gennemsigtighed, hastighed og brugervenlighed – mens vi noterer begrænsninger i VIP-program og designpolering. Det er et casino, der gør det basale exceptionelt godt. Og nogen gange er det præcis, hvad man har brug for. Læs mere om <Link to="/forfatter/jonas" className={linkClass}>forfatteren bag denne anmeldelse</Link>.</p>
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-6">
-            {[{ label: "Sikkerhed", score: "9/10" }, { label: "Spiludvalg", score: "8/10" }, { label: "Bonus", score: "8/10" }, { label: "Samlet", score: "4.2/5" }].map((item) => (
-              <div key={item.label} className="rounded-lg border border-border bg-card p-4 text-center">
-                <p className="text-xs text-muted-foreground uppercase mb-1">{item.label}</p>
-                <p className="text-2xl font-bold text-primary">{item.score}</p>
-              </div>
-            ))}
-          </div>
+          <RatingBreakdown scores={CASINO_SCORES["comeon"].scores} total={CASINO_SCORES["comeon"].total} />
           <div className="flex flex-col sm:flex-row gap-3">
             <Button asChild variant="outline" size="lg" className="flex-1"><Link to="/top-10-casino-online"><Trophy className="mr-2 h-5 w-5" />Se Top 10 Casinoer</Link></Button>
             <Button asChild variant="outline" size="lg" className="flex-1"><Link to="/casino-anmeldelser"><Star className="mr-2 h-5 w-5" />Alle Casino Anmeldelser</Link></Button>

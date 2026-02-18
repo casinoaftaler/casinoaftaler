@@ -1,5 +1,7 @@
 import { Link } from "react-router-dom";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
+import { RatingBreakdown } from "@/components/RatingBreakdown";
+import { CASINO_SCORES } from "@/lib/reviewScoring";
 import { AuthorBio } from "@/components/AuthorBio";
 import { FAQSection } from "@/components/FAQSection";
 import { SEO } from "@/components/SEO";
@@ -494,21 +496,7 @@ const CampobetAnmeldelse = () => {
           <p className="mb-4 text-muted-foreground leading-relaxed">Campobet har imponeret os med en teknisk moden platform, en genuint spillervenlig bonusstruktur og en dual-platform tilgang, der leverer kvalitet i begge vertikaler. Den tredobbelte licensering giver ekstra tryghed, de ugentlige No-Sticky reload-bonusser skaber langsigtede incitamenter, og det brede betalingsudvalg sikrer fleksibilitet for alle danske spillere.</p>
           <p className="mb-4 text-muted-foreground leading-relaxed">Begrænsningerne – kundeservice primært på engelsk, manglende loyalitetsprogram og en minimumsindbetaling på 100 kr. – er reelle, men opvejes af platformens samlede styrker. For spillere der søger en one-stop-shop med både casino og sportsbetting i topkvalitet, er Campobet et af de stærkeste valg på det danske marked i 2026.</p>
 
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
-            {[
-              { label: "Bonus & vilkår", score: "9/10" },
-              { label: "Spiludvalg", score: "9/10" },
-              { label: "Sportsbetting", score: "8/10" },
-              { label: "Samlet vurdering", score: "4.8/5" },
-            ].map((s) => (
-              <Card key={s.label} className="border-border bg-card">
-                <CardContent className="pt-6 text-center">
-                  <p className="text-xs text-muted-foreground uppercase mb-1">{s.label}</p>
-                  <p className="text-2xl font-bold text-primary">{s.score}</p>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
+          <RatingBreakdown scores={CASINO_SCORES["campobet"].scores} total={CASINO_SCORES["campobet"].total} />
 
           <div className="flex justify-center">
             <Button onClick={handleBonusClick} size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 font-bold text-base px-8"><Gift className="mr-2 h-5 w-5" />Hent din No-Sticky bonus hos Campobet</Button>

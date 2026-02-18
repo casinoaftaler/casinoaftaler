@@ -1,5 +1,7 @@
 import { Link } from "react-router-dom";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
+import { RatingBreakdown } from "@/components/RatingBreakdown";
+import { CASINO_SCORES } from "@/lib/reviewScoring";
 import { AuthorBio } from "@/components/AuthorBio";
 import { FAQSection } from "@/components/FAQSection";
 import { SEO } from "@/components/SEO";
@@ -257,19 +259,7 @@ const StakeCasinoAnmeldelse = () => {
           <p className="mb-4 text-muted-foreground leading-relaxed">Vores foreløbige vurdering er 4.2 ud af 5 baseret på den internationale platform. Denne score kan ændre sig i begge retninger, når den danske version lancerer – opad hvis Stake formår at overføre sine unikke elementer, eller nedad hvis regulering udvander produktet for meget. Vi opdaterer denne anmeldelse til en fuldstændig evaluering med testdata fra den danske platform, så snart den er tilgængelig.</p>
           <p className="mb-4 text-muted-foreground leading-relaxed">Indtil da er vores anbefaling klar: vent. Spil ikke på den internationale Stake-platform uden dansk licens. Der er over 30 fremragende <Link to="/top-10-casino-online" className={linkClass}>danske casinoer</Link> at vælge imellem, og de tilbyder alle den spillerbeskyttelse, som du fortjener. Men hold øje med Stake – for når platformen lancerer i Danmark, kan den ændre spillereglerne for hele markedet.</p>
 
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mt-6">
-            {[
-              { label: "Innovation", score: "10/10" },
-              { label: "Spiludvalg", score: "9/10" },
-              { label: "DK-Parathed", score: "5/10" },
-              { label: "Foreløbig", score: "4.2/5" },
-            ].map((i) => (
-              <div key={i.label} className="rounded-lg border border-border bg-card p-4 text-center">
-                <p className="text-xs text-muted-foreground uppercase mb-1">{i.label}</p>
-                <p className="text-2xl font-bold text-primary">{i.score}</p>
-              </div>
-            ))}
-          </div>
+          <RatingBreakdown scores={CASINO_SCORES["stake-casino"].scores} total={CASINO_SCORES["stake-casino"].total} />
 
           <Card className="border-border bg-card border-l-4 border-l-primary mt-6">
             <CardContent className="pt-6 space-y-3">

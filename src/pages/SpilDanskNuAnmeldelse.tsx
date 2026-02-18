@@ -1,5 +1,7 @@
 import { Link } from "react-router-dom";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
+import { RatingBreakdown } from "@/components/RatingBreakdown";
+import { CASINO_SCORES } from "@/lib/reviewScoring";
 import { AuthorBio } from "@/components/AuthorBio";
 import { FAQSection } from "@/components/FAQSection";
 import { SEO } from "@/components/SEO";
@@ -336,11 +338,7 @@ const SpilDanskNuAnmeldelse = () => {
           <p className="mb-4 text-muted-foreground leading-relaxed">SpilDanskNu er det danske casino for spillere, der prioriterer tryghed, gennemsigtighed og fair vilkår over de største bonusbeløb og det bredeste spiludvalg. Den 5-dages bonusmodel er innovativ og gennemtænkt, Præmieshoppen leverer reel værdi, og den danske kundeservice fjerner enhver sprogbarriere. MobilePay-udbetalinger på under 5 timer sætter standarden for det danske marked.</p>
           <p className="mb-4 text-muted-foreground leading-relaxed">Begrænsningerne – ingen sportsbetting, kundeservice kun til kl. 23, og standard matchbonus (ikke No-Sticky) – er reelle, men de er bevidste valg fra en operatør, der har prioriteret fokus og enkelthed. For spillere der søger et pålideligt, dansk drevet casino med fair vilkår og kontante loyalitetsbelønninger, er SpilDanskNu et af de stærkeste valg i 2026.</p>
 
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
-            {[{ label: "Bonus & vilkår", score: "8/10" }, { label: "Spiludvalg", score: "8/10" }, { label: "Loyalitet", score: "9/10" }, { label: "Samlet", score: "4.6/5" }].map((s) => (
-              <Card key={s.label} className="border-border bg-card"><CardContent className="pt-6 text-center"><p className="text-xs text-muted-foreground uppercase mb-1">{s.label}</p><p className="text-2xl font-bold text-primary">{s.score}</p></CardContent></Card>
-            ))}
-          </div>
+          <RatingBreakdown scores={CASINO_SCORES["spildansknu"].scores} total={CASINO_SCORES["spildansknu"].total} />
 
           <div className="flex justify-center">
             <Button onClick={handleBonusClick} size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 font-bold text-base px-8"><Gift className="mr-2 h-5 w-5" />Hent din bonus hos SpilDanskNu</Button>

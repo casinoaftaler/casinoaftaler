@@ -1,5 +1,7 @@
 import { Link } from "react-router-dom";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
+import { RatingBreakdown } from "@/components/RatingBreakdown";
+import { CASINO_SCORES } from "@/lib/reviewScoring";
 import { AuthorBio } from "@/components/AuthorBio";
 import { FAQSection } from "@/components/FAQSection";
 import { SEO } from "@/components/SEO";
@@ -764,20 +766,7 @@ const SpilleautomatenAnmeldelse = () => {
             Det er ikke casinoet for alle – manglen på bordspil, sportsbetting og PayPal er reelle begrænsninger. Men for dedikerede slots-spillere, der værdsætter transparente vilkår, loyalitetsbelønninger og dansk drevet sikkerhed, er Spilleautomaten et af de stærkeste valg på markedet.
           </p>
 
-          <div className="grid grid-cols-2 sm:grid-cols-5 gap-4 mb-6">
-            {[
-              { label: "Bonus", score: "9/10" },
-              { label: "Spiludvalg", score: "8.5/10" },
-              { label: "Præmieshop", score: "9.5/10" },
-              { label: "Betalinger", score: "9/10" },
-              { label: "Samlet", score: "4.9/5" },
-            ].map((item) => (
-              <div key={item.label} className="rounded-lg border border-border bg-card p-4 text-center">
-                <p className="text-xs text-muted-foreground uppercase mb-1">{item.label}</p>
-                <p className="text-2xl font-bold text-primary">{item.score}</p>
-              </div>
-            ))}
-          </div>
+          <RatingBreakdown scores={CASINO_SCORES["spilleautomaten"].scores} total={CASINO_SCORES["spilleautomaten"].total} />
 
           <div className="flex flex-col sm:flex-row gap-3">
             <Button onClick={handleBonusClick} size="lg" className="flex-1 font-bold">

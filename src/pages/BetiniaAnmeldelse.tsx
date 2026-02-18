@@ -1,5 +1,7 @@
 import { Link } from "react-router-dom";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
+import { RatingBreakdown } from "@/components/RatingBreakdown";
+import { CASINO_SCORES } from "@/lib/reviewScoring";
 import { AuthorBio } from "@/components/AuthorBio";
 import { FAQSection } from "@/components/FAQSection";
 import { SEO } from "@/components/SEO";
@@ -919,20 +921,7 @@ const BetiniaAnmeldelse = () => {
             Svaghederne – fraværet af loyalitetsprogram, Skrill/Neteller-restriktionen og den manuelle bonusaktivering – er reelle, men ikke dealbreakers for de fleste spillere. Betinia er et casino der prioriterer gennemsigtighed og spillervenlige vilkår over pynt og VIP-glamour, og det er en prioritering vi respekterer.
           </p>
 
-          <div className="grid grid-cols-2 sm:grid-cols-5 gap-4 mb-6">
-            {[
-              { label: "Bonus", score: "9.5/10" },
-              { label: "Spiludvalg", score: "9/10" },
-              { label: "Sportsbetting", score: "8.5/10" },
-              { label: "Betalinger", score: "9.5/10" },
-              { label: "Samlet", score: "4.9/5" },
-            ].map((item) => (
-              <div key={item.label} className="rounded-lg border border-border bg-card p-4 text-center">
-                <p className="text-xs text-muted-foreground uppercase mb-1">{item.label}</p>
-                <p className="text-2xl font-bold text-primary">{item.score}</p>
-              </div>
-            ))}
-          </div>
+          <RatingBreakdown scores={CASINO_SCORES["betinia"].scores} total={CASINO_SCORES["betinia"].total} />
 
           <div className="flex flex-col sm:flex-row gap-3">
             <Button onClick={handleBonusClick} size="lg" className="flex-1 font-bold">
