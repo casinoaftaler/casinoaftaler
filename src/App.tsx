@@ -62,6 +62,11 @@ const Indskudsbonus = lazy(() => import("./pages/Indskudsbonus"));
 const BonusUdenIndbetaling = lazy(() => import("./pages/BonusUdenIndbetaling"));
 const BonusUdenOmsaetningskrav = lazy(() => import("./pages/BonusUdenOmsaetningskrav"));
 const LiveCasino = lazy(() => import("./pages/LiveCasino"));
+const LiveBlackjackGuide = lazy(() => import("./pages/live-casino/LiveBlackjackGuide"));
+const LiveRouletteGuide = lazy(() => import("./pages/live-casino/LiveRouletteGuide"));
+const LiveBaccaratGuide = lazy(() => import("./pages/live-casino/LiveBaccaratGuide"));
+const LightningRouletteGuide = lazy(() => import("./pages/live-casino/LightningRouletteGuide"));
+const MonopolyLiveGuide = lazy(() => import("./pages/live-casino/MonopolyLiveGuide"));
 const NoStickyBonus = lazy(() => import("./pages/NoStickyBonus"));
 const StickyBonus = lazy(() => import("./pages/StickyBonus"));
 const SpilleautomatenAnmeldelse = lazy(() => import("./pages/SpilleautomatenAnmeldelse"));
@@ -235,6 +240,11 @@ const App = () => (
                 <Route path="/no-sticky-bonus" element={<NoStickyBonus />} />
                 <Route path="/sticky-bonus" element={<StickyBonus />} />
                 <Route path="/live-casino" element={<LiveCasino />} />
+                <Route path="/live-casino/blackjack" element={<LiveBlackjackGuide />} />
+                <Route path="/live-casino/roulette" element={<LiveRouletteGuide />} />
+                <Route path="/live-casino/baccarat" element={<LiveBaccaratGuide />} />
+                <Route path="/live-casino/lightning-roulette" element={<LightningRouletteGuide />} />
+                <Route path="/live-casino/monopoly-live" element={<MonopolyLiveGuide />} />
                 <Route path="/spilleautomaten-anmeldelse" element={<SpilleautomatenAnmeldelse />} />
                 <Route path="/spildansknu-anmeldelse" element={<SpilDanskNuAnmeldelse />} />
                 <Route path="/campobet-anmeldelse" element={<CampobetAnmeldelse />} />

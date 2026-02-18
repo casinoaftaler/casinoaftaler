@@ -533,9 +533,20 @@ const LiveCasino = () => {
             </Card>
           </div>
 
-          <p className="text-muted-foreground leading-relaxed">
+          <p className="mb-6 text-muted-foreground leading-relaxed">
             Udover disse fire hovedkategorier finder du også live casino poker (Casino Hold'em, Three Card Poker), live craps, live Sic Bo og diverse nichetitler. De mest eventyrlystne kan udforske Football Studio, Mega Ball og Deal or No Deal – alle fra Evolution Gamings innovationslaboratorium.
           </p>
+
+          <div className="rounded-lg border border-border bg-card p-6">
+            <h3 className="mb-3 text-lg font-semibold">Dybdeguides til de mest populære live spil</h3>
+            <ul className="space-y-2 text-muted-foreground">
+              <li>→ <Link to="/live-casino/blackjack" className={linkClass}>Live blackjack regler og basisstrategi</Link> – 0,5 % house edge med optimal spil</li>
+              <li>→ <Link to="/live-casino/roulette" className={linkClass}>Live roulette bordtyper og edge-analyse</Link> – fra French (1,35 %) til Speed</li>
+              <li>→ <Link to="/live-casino/baccarat" className={linkClass}>Live baccarat banker edge-analyse</Link> – hvorfor banker altid er det optimale valg</li>
+              <li>→ <Link to="/live-casino/lightning-roulette" className={linkClass}>Lightning Roulette multiplikator-EV</Link> – matematikken bag 500x</li>
+              <li>→ <Link to="/live-casino/monopoly-live" className={linkClass}>Monopoly Live game show-analyse</Link> – bonusrunde og segmentfordeling</li>
+            </ul>
+          </div>
         </section>
 
         <Separator className="my-10" />

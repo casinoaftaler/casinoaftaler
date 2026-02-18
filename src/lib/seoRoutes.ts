@@ -72,7 +72,12 @@ export const seoRoutes: SeoRoute[] = [
   { path: "/casino-anmeldelser/marathonbet", changefreq: "weekly", priority: 0.9, lastmod: "2026-02-15" },
 
   // ── Casino Spil & Live ──
-  { path: "/live-casino", changefreq: "weekly", priority: 0.9, lastmod: "2026-02-11" },
+  { path: "/live-casino", changefreq: "weekly", priority: 0.9, lastmod: "2026-02-18" },
+  { path: "/live-casino/blackjack", changefreq: "weekly", priority: 0.8, lastmod: "2026-02-18" },
+  { path: "/live-casino/roulette", changefreq: "weekly", priority: 0.8, lastmod: "2026-02-18" },
+  { path: "/live-casino/baccarat", changefreq: "weekly", priority: 0.8, lastmod: "2026-02-18" },
+  { path: "/live-casino/lightning-roulette", changefreq: "weekly", priority: 0.8, lastmod: "2026-02-18" },
+  { path: "/live-casino/monopoly-live", changefreq: "weekly", priority: 0.8, lastmod: "2026-02-18" },
   { path: "/casinospil", changefreq: "weekly", priority: 0.9, lastmod: "2026-02-18" },
   { path: "/casinospil/spillemaskiner", changefreq: "daily", priority: 0.9, lastmod: "2026-02-18" },
   { path: "/casinospil/spillemaskiner/hoej-rtp", changefreq: "weekly", priority: 0.9, lastmod: "2026-02-18" },
