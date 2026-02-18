@@ -47,10 +47,9 @@ interface AuthorMetaBarProps {
   showFactCheck?: boolean;
   showVerified?: boolean;
   showAffiliateDisclaimer?: boolean;
-  factCheckDate?: string;
 }
 
-export function AuthorMetaBar({ author, date, readTime, showFactCheck = true, showVerified = false, showAffiliateDisclaimer = true, factCheckDate = "15. feb. 2026" }: AuthorMetaBarProps) {
+export function AuthorMetaBar({ author, date, readTime, showFactCheck = true, showVerified = false, showAffiliateDisclaimer = true }: AuthorMetaBarProps) {
   const authorInfo = author !== "redaktionen" ? authorConfig[author] : null;
 
   return (
@@ -127,9 +126,6 @@ export function AuthorMetaBar({ author, date, readTime, showFactCheck = true, sh
                 </span>
               </Link>
             ) : null}
-            {factCheckDate && (
-              <span className="text-xs text-muted-foreground">– {factCheckDate}</span>
-            )}
           </div>
         )}
       </div>

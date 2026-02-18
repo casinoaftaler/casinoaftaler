@@ -27,6 +27,8 @@ export const Header = memo(function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [expandedSection, setExpandedSection] = useState<string | null>(null);
   const [providersExpanded, setProvidersExpanded] = useState(false);
+  const [expandedSlots, setExpandedSlots] = useState(false);
+  const [expandedMobileSlots, setExpandedMobileSlots] = useState(false);
   const [paymentsExpanded, setPaymentsExpanded] = useState(false);
   const [reviewsExpanded, setReviewsExpanded] = useState(false);
   const [forfattereExpanded, setForfattereExpanded] = useState(false);
@@ -237,45 +239,59 @@ export const Header = memo(function Header() {
                     </Link>
                   </DropdownMenuItem>
                   <DropdownMenuSeparator />
-                  {[
-                    { to: "/casinospil/spillemaskiner/sweet-bonanza", label: "Sweet Bonanza" },
-                    { to: "/casinospil/spillemaskiner/book-of-dead", label: "Book of Dead" },
-                    { to: "/casinospil/spillemaskiner/gates-of-olympus", label: "Gates of Olympus" },
-                    { to: "/casinospil/spillemaskiner/starburst", label: "Starburst" },
-                    { to: "/casinospil/spillemaskiner/razor-shark", label: "Razor Shark" },
-                    { to: "/casinospil/spillemaskiner/big-bass-bonanza", label: "Big Bass Bonanza" },
-                    { to: "/casinospil/spillemaskiner/dead-or-alive-2", label: "Dead or Alive 2" },
-                    { to: "/casinospil/spillemaskiner/gonzos-quest", label: "Gonzo's Quest" },
-                    { to: "/casinospil/spillemaskiner/reactoonz", label: "Reactoonz" },
-                    { to: "/casinospil/spillemaskiner/money-train-3", label: "Money Train 3" },
-                    { to: "/casinospil/spillemaskiner/wolf-gold", label: "Wolf Gold" },
-                    { to: "/casinospil/spillemaskiner/the-dog-house", label: "The Dog House" },
-                    { to: "/casinospil/spillemaskiner/jammin-jars", label: "Jammin' Jars" },
-                    { to: "/casinospil/spillemaskiner/bonanza", label: "Bonanza" },
-                    { to: "/casinospil/spillemaskiner/fire-joker", label: "Fire Joker" },
-                    { to: "/casinospil/spillemaskiner/legacy-of-dead", label: "Legacy of Dead" },
-                    { to: "/casinospil/spillemaskiner/divine-fortune", label: "Divine Fortune" },
-                    { to: "/casinospil/spillemaskiner/eye-of-horus", label: "Eye of Horus" },
-                    { to: "/casinospil/spillemaskiner/buffalo-king", label: "Buffalo King" },
-                    { to: "/casinospil/spillemaskiner/sugar-rush", label: "Sugar Rush" },
-                    { to: "/casinospil/spillemaskiner/cleopatra", label: "Cleopatra" },
-                    { to: "/casinospil/spillemaskiner/mega-moolah", label: "Mega Moolah" },
-                    { to: "/casinospil/spillemaskiner/thunderstruck-ii", label: "Thunderstruck II" },
-                    { to: "/casinospil/spillemaskiner/immortal-romance", label: "Immortal Romance" },
-                    { to: "/casinospil/spillemaskiner/wild-west-gold", label: "Wild West Gold" },
-                    { to: "/casinospil/spillemaskiner/madame-destiny-megaways", label: "Madame Destiny Megaways" },
-                    { to: "/casinospil/spillemaskiner/extra-chilli-megaways", label: "Extra Chilli Megaways" },
-                    { to: "/casinospil/spillemaskiner/wanted-dead-or-a-wild", label: "Wanted Dead or a Wild" },
-                    { to: "/casinospil/spillemaskiner/chaos-crew", label: "Chaos Crew" },
-                    { to: "/casinospil/spillemaskiner/joker-strike", label: "Joker Strike" },
-                  ].map((item) => (
-                    <DropdownMenuItem key={item.to} asChild>
-                      <Link to={item.to} className="flex items-center gap-2">
-                        <Star className="h-3 w-3" />
-                        {item.label}
-                      </Link>
-                    </DropdownMenuItem>
-                  ))}
+                  {(() => {
+                    const allSlots = [
+                      { to: "/casinospil/spillemaskiner/sweet-bonanza", label: "Sweet Bonanza" },
+                      { to: "/casinospil/spillemaskiner/book-of-dead", label: "Book of Dead" },
+                      { to: "/casinospil/spillemaskiner/gates-of-olympus", label: "Gates of Olympus" },
+                      { to: "/casinospil/spillemaskiner/starburst", label: "Starburst" },
+                      { to: "/casinospil/spillemaskiner/razor-shark", label: "Razor Shark" },
+                      { to: "/casinospil/spillemaskiner/big-bass-bonanza", label: "Big Bass Bonanza" },
+                      { to: "/casinospil/spillemaskiner/dead-or-alive-2", label: "Dead or Alive 2" },
+                      { to: "/casinospil/spillemaskiner/gonzos-quest", label: "Gonzo's Quest" },
+                      { to: "/casinospil/spillemaskiner/reactoonz", label: "Reactoonz" },
+                      { to: "/casinospil/spillemaskiner/money-train-3", label: "Money Train 3" },
+                      { to: "/casinospil/spillemaskiner/wolf-gold", label: "Wolf Gold" },
+                      { to: "/casinospil/spillemaskiner/the-dog-house", label: "The Dog House" },
+                      { to: "/casinospil/spillemaskiner/jammin-jars", label: "Jammin' Jars" },
+                      { to: "/casinospil/spillemaskiner/bonanza", label: "Bonanza" },
+                      { to: "/casinospil/spillemaskiner/fire-joker", label: "Fire Joker" },
+                      { to: "/casinospil/spillemaskiner/legacy-of-dead", label: "Legacy of Dead" },
+                      { to: "/casinospil/spillemaskiner/divine-fortune", label: "Divine Fortune" },
+                      { to: "/casinospil/spillemaskiner/eye-of-horus", label: "Eye of Horus" },
+                      { to: "/casinospil/spillemaskiner/buffalo-king", label: "Buffalo King" },
+                      { to: "/casinospil/spillemaskiner/sugar-rush", label: "Sugar Rush" },
+                      { to: "/casinospil/spillemaskiner/cleopatra", label: "Cleopatra" },
+                      { to: "/casinospil/spillemaskiner/mega-moolah", label: "Mega Moolah" },
+                      { to: "/casinospil/spillemaskiner/thunderstruck-ii", label: "Thunderstruck II" },
+                      { to: "/casinospil/spillemaskiner/immortal-romance", label: "Immortal Romance" },
+                      { to: "/casinospil/spillemaskiner/wild-west-gold", label: "Wild West Gold" },
+                      { to: "/casinospil/spillemaskiner/madame-destiny-megaways", label: "Madame Destiny Megaways" },
+                      { to: "/casinospil/spillemaskiner/extra-chilli-megaways", label: "Extra Chilli Megaways" },
+                      { to: "/casinospil/spillemaskiner/wanted-dead-or-a-wild", label: "Wanted Dead or a Wild" },
+                      { to: "/casinospil/spillemaskiner/chaos-crew", label: "Chaos Crew" },
+                      { to: "/casinospil/spillemaskiner/joker-strike", label: "Joker Strike" },
+                    ];
+                    const visible = expandedSlots ? allSlots : allSlots.slice(0, 8);
+                    return (
+                      <>
+                        {visible.map((item) => (
+                          <DropdownMenuItem key={item.to} asChild>
+                            <Link to={item.to} className="flex items-center gap-2">
+                              <Star className="h-3 w-3" />
+                              {item.label}
+                            </Link>
+                          </DropdownMenuItem>
+                        ))}
+                        {!expandedSlots && (
+                          <DropdownMenuItem onSelect={(e) => { e.preventDefault(); setExpandedSlots(true); }} className="flex items-center gap-2 text-primary cursor-pointer">
+                            <ChevronDown className="h-3 w-3" />
+                            Vis alle ({allSlots.length - 8} mere)
+                          </DropdownMenuItem>
+                        )}
+                      </>
+                    );
+                  })()}
                 </DropdownMenuSubContent>
               </DropdownMenuSub>
               {[
@@ -877,44 +893,58 @@ export const Header = memo(function Header() {
                   <Star className="h-4 w-4" />
                   Spillemaskiner
                 </Link>
-                {[
-                  { to: "/casinospil/spillemaskiner/hoej-rtp", label: "Høj RTP Spillemaskiner" },
-                  { to: "/casinospil/spillemaskiner/sweet-bonanza", label: "Sweet Bonanza" },
-                  { to: "/casinospil/spillemaskiner/book-of-dead", label: "Book of Dead" },
-                  { to: "/casinospil/spillemaskiner/gates-of-olympus", label: "Gates of Olympus" },
-                  { to: "/casinospil/spillemaskiner/starburst", label: "Starburst" },
-                  { to: "/casinospil/spillemaskiner/razor-shark", label: "Razor Shark" },
-                  { to: "/casinospil/spillemaskiner/big-bass-bonanza", label: "Big Bass Bonanza" },
-                  { to: "/casinospil/spillemaskiner/dead-or-alive-2", label: "Dead or Alive 2" },
-                  { to: "/casinospil/spillemaskiner/gonzos-quest", label: "Gonzo's Quest" },
-                  { to: "/casinospil/spillemaskiner/reactoonz", label: "Reactoonz" },
-                  { to: "/casinospil/spillemaskiner/money-train-3", label: "Money Train 3" },
-                  { to: "/casinospil/spillemaskiner/wolf-gold", label: "Wolf Gold" },
-                  { to: "/casinospil/spillemaskiner/the-dog-house", label: "The Dog House" },
-                  { to: "/casinospil/spillemaskiner/jammin-jars", label: "Jammin' Jars" },
-                  { to: "/casinospil/spillemaskiner/bonanza", label: "Bonanza" },
-                  { to: "/casinospil/spillemaskiner/fire-joker", label: "Fire Joker" },
-                  { to: "/casinospil/spillemaskiner/legacy-of-dead", label: "Legacy of Dead" },
-                  { to: "/casinospil/spillemaskiner/divine-fortune", label: "Divine Fortune" },
-                  { to: "/casinospil/spillemaskiner/eye-of-horus", label: "Eye of Horus" },
-                  { to: "/casinospil/spillemaskiner/buffalo-king", label: "Buffalo King" },
-                  { to: "/casinospil/spillemaskiner/sugar-rush", label: "Sugar Rush" },
-                  { to: "/casinospil/spillemaskiner/cleopatra", label: "Cleopatra" },
-                  { to: "/casinospil/spillemaskiner/mega-moolah", label: "Mega Moolah" },
-                  { to: "/casinospil/spillemaskiner/thunderstruck-ii", label: "Thunderstruck II" },
-                  { to: "/casinospil/spillemaskiner/immortal-romance", label: "Immortal Romance" },
-                  { to: "/casinospil/spillemaskiner/wild-west-gold", label: "Wild West Gold" },
-                  { to: "/casinospil/spillemaskiner/madame-destiny-megaways", label: "Madame Destiny Megaways" },
-                  { to: "/casinospil/spillemaskiner/extra-chilli-megaways", label: "Extra Chilli Megaways" },
-                  { to: "/casinospil/spillemaskiner/wanted-dead-or-a-wild", label: "Wanted Dead or a Wild" },
-                  { to: "/casinospil/spillemaskiner/chaos-crew", label: "Chaos Crew" },
-                  { to: "/casinospil/spillemaskiner/joker-strike", label: "Joker Strike" },
-                ].map((item) => (
-                  <Link key={item.to} to={item.to} className="ml-10 flex items-center gap-2 py-2 text-sm text-muted-foreground transition-colors hover:text-primary" onClick={() => setMobileMenuOpen(false)}>
-                    <Star className="h-3 w-3" />
-                    {item.label}
-                  </Link>
-                ))}
+                {(() => {
+                  const allSlots = [
+                    { to: "/casinospil/spillemaskiner/hoej-rtp", label: "Høj RTP Spillemaskiner" },
+                    { to: "/casinospil/spillemaskiner/sweet-bonanza", label: "Sweet Bonanza" },
+                    { to: "/casinospil/spillemaskiner/book-of-dead", label: "Book of Dead" },
+                    { to: "/casinospil/spillemaskiner/gates-of-olympus", label: "Gates of Olympus" },
+                    { to: "/casinospil/spillemaskiner/starburst", label: "Starburst" },
+                    { to: "/casinospil/spillemaskiner/razor-shark", label: "Razor Shark" },
+                    { to: "/casinospil/spillemaskiner/big-bass-bonanza", label: "Big Bass Bonanza" },
+                    { to: "/casinospil/spillemaskiner/dead-or-alive-2", label: "Dead or Alive 2" },
+                    { to: "/casinospil/spillemaskiner/gonzos-quest", label: "Gonzo's Quest" },
+                    { to: "/casinospil/spillemaskiner/reactoonz", label: "Reactoonz" },
+                    { to: "/casinospil/spillemaskiner/money-train-3", label: "Money Train 3" },
+                    { to: "/casinospil/spillemaskiner/wolf-gold", label: "Wolf Gold" },
+                    { to: "/casinospil/spillemaskiner/the-dog-house", label: "The Dog House" },
+                    { to: "/casinospil/spillemaskiner/jammin-jars", label: "Jammin' Jars" },
+                    { to: "/casinospil/spillemaskiner/bonanza", label: "Bonanza" },
+                    { to: "/casinospil/spillemaskiner/fire-joker", label: "Fire Joker" },
+                    { to: "/casinospil/spillemaskiner/legacy-of-dead", label: "Legacy of Dead" },
+                    { to: "/casinospil/spillemaskiner/divine-fortune", label: "Divine Fortune" },
+                    { to: "/casinospil/spillemaskiner/eye-of-horus", label: "Eye of Horus" },
+                    { to: "/casinospil/spillemaskiner/buffalo-king", label: "Buffalo King" },
+                    { to: "/casinospil/spillemaskiner/sugar-rush", label: "Sugar Rush" },
+                    { to: "/casinospil/spillemaskiner/cleopatra", label: "Cleopatra" },
+                    { to: "/casinospil/spillemaskiner/mega-moolah", label: "Mega Moolah" },
+                    { to: "/casinospil/spillemaskiner/thunderstruck-ii", label: "Thunderstruck II" },
+                    { to: "/casinospil/spillemaskiner/immortal-romance", label: "Immortal Romance" },
+                    { to: "/casinospil/spillemaskiner/wild-west-gold", label: "Wild West Gold" },
+                    { to: "/casinospil/spillemaskiner/madame-destiny-megaways", label: "Madame Destiny Megaways" },
+                    { to: "/casinospil/spillemaskiner/extra-chilli-megaways", label: "Extra Chilli Megaways" },
+                    { to: "/casinospil/spillemaskiner/wanted-dead-or-a-wild", label: "Wanted Dead or a Wild" },
+                    { to: "/casinospil/spillemaskiner/chaos-crew", label: "Chaos Crew" },
+                    { to: "/casinospil/spillemaskiner/joker-strike", label: "Joker Strike" },
+                  ];
+                  const visible = expandedMobileSlots ? allSlots : allSlots.slice(0, 8);
+                  return (
+                    <>
+                      {visible.map((item) => (
+                        <Link key={item.to} to={item.to} className="ml-10 flex items-center gap-2 py-2 text-sm text-muted-foreground transition-colors hover:text-primary" onClick={() => setMobileMenuOpen(false)}>
+                          <Star className="h-3 w-3" />
+                          {item.label}
+                        </Link>
+                      ))}
+                      {!expandedMobileSlots && (
+                        <button onClick={() => setExpandedMobileSlots(true)} className="ml-10 flex items-center gap-2 py-2 text-sm text-primary transition-colors hover:text-primary/80">
+                          <ChevronDown className="h-3 w-3" />
+                          Vis alle ({allSlots.length - 8} mere)
+                        </button>
+                      )}
+                    </>
+                  );
+                })()}
                 {[
                   { to: "/casinospil/blackjack", label: "Blackjack" },
                   { to: "/casinospil/roulette", label: "Roulette" },
