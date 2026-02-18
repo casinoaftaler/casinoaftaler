@@ -403,7 +403,7 @@ export const Header = memo(function Header() {
               <DropdownMenuItem asChild>
                 <Link to="/saadan-tester-vi-casinoer" className="flex items-center gap-2">
                   <Scale className="h-4 w-4" />
-                  Sådan tester vi
+                   Sådan tester vi casinoer
                 </Link>
               </DropdownMenuItem>
               <DropdownMenuItem asChild>
@@ -1031,7 +1031,7 @@ export const Header = memo(function Header() {
                 </Link>
                 <Link to="/saadan-tester-vi-casinoer" className="ml-6 flex items-center gap-2 py-2.5 text-sm text-muted-foreground transition-colors hover:text-primary" onClick={() => setMobileMenuOpen(false)}>
                   <Scale className="h-4 w-4" />
-                  Sådan tester vi
+                   Sådan tester vi casinoer
                 </Link>
                 <Link to="/forretningsmodel" className="ml-6 flex items-center gap-2 py-2.5 text-sm text-muted-foreground transition-colors hover:text-primary" onClick={() => setMobileMenuOpen(false)}>
                   <BookOpen className="h-4 w-4" />
