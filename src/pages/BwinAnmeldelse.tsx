@@ -12,10 +12,10 @@ import { RelatedGuides } from "@/components/RelatedGuides";
 import { InlineCasinoCards } from "@/components/InlineCasinoCards";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
 import { buildArticleSchema, buildFaqSchema } from "@/lib/seo";
-import { QuickFactsProviders } from "@/components/QuickFactsProviders";
+import { QuickFactsProviders, QuickFactsLicense } from "@/components/QuickFactsProviders";
 import { CasinoReviewHero } from "@/components/CasinoReviewHero";
 import type { ReactNode } from "react";
-import { Star, Zap, Check, X, ShieldCheck, Trophy, Headphones, Target, Users, Wallet, Gamepad2 } from "lucide-react";
+import { Star, Zap, Check, X, ShieldCheck, Trophy, Headphones, Target, Users, Wallet, Gamepad2, TrendingUp } from "lucide-react";
 
 const linkClass = "text-primary underline hover:text-primary/80";
 
@@ -132,7 +132,7 @@ const BwinAnmeldelse = () => {
       </section>
 
       <div className="container py-8 md:py-12">
-        <AuthorMetaBar author="jonas" date="17-02-2026" readTime="22 Min." />
+        <AuthorMetaBar author="jonas" date="18-02-2026" readTime="33 Min." />
         <CasinoReviewHero slug="bwin" casinoName="bwin" />
 
         {/* Quick Facts */}
@@ -178,6 +178,7 @@ const BwinAnmeldelse = () => {
                 </div>
               </div>
               <QuickFactsProviders providers={["NetEnt", "Evolution Gaming", "Pragmatic Play", "Red Tiger", "Microgaming"]} />
+              <QuickFactsLicense licenseId="18-0019" />
             </CardContent>
           </Card>
         </section>
@@ -474,6 +475,65 @@ const BwinAnmeldelse = () => {
           <p className="text-muted-foreground leading-relaxed">
             For danske brugere tilbyder bwin standard-værktøjer som indbetalingsgrænser (daglige, ugentlige, månedlige), tabsgrænser, sessionsgrænser med automatiske påmindelser og mulighed for midlertidig eller permanent selvudelukkelse. Adgang til <a href="https://www.stopspillet.dk/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline font-medium">StopSpillet.dk</a> er integreret direkte i platformens ansvarligt spil-sektion. SSL-kryptering beskytter alle data og transaktioner, og alle pengetransaktioner håndteres via PCI DSS-certificerede betalingspartnere.
           </p>
+        </section>
+
+        <Separator className="my-10" />
+
+        {/* EV Analysis */}
+        <section className="mb-12">
+          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><TrendingUp className="h-7 w-7 text-primary" />Expected Value – er bwin matematisk fordelagtigt?</h2>
+          <p className="mb-4 text-muted-foreground leading-relaxed">For at vurdere den reelle værdi af bwin som gambling-platform analyserer vi den forventede værdi (EV) separat for casino og sport. bwins unikke position som hybrid-platform gør denne dobbelte analyse relevant – en ren casino-vurdering ville undervurdere platformens samlede proposition, da den primære værdiskabelse ligger i sportsvæddemål.</p>
+          <Card className="border-border bg-card border-l-4 border-l-primary mb-6">
+            <CardHeader><CardTitle className="flex items-center gap-2 text-xl"><TrendingUp className="h-6 w-6 text-primary" />3-trins EV-beregning – bwin (Casino + Sport)</CardTitle></CardHeader>
+            <CardContent className="space-y-4">
+              <div className="rounded-lg border border-border p-4">
+                <p className="font-semibold text-foreground mb-2">Trin 1: Casino-velkomstbonus EV</p>
+                <p className="text-sm text-muted-foreground">Indbetaling: 1.000 kr. → Matchbonus: 1.000 kr. (sticky)</p>
+                <p className="text-sm text-muted-foreground">Omsætningskrav: 10 × (1.000 + 1.000) = 20.000 kr.</p>
+                <p className="text-sm text-muted-foreground">Gennemsnitlig RTP: 96% → Forventet tab: 20.000 × 0,04 = 800 kr.</p>
+                <p className="text-sm text-muted-foreground">Casino-bonus EV: 1.000 - 800 = <strong className="text-primary">+200 kr.</strong></p>
+              </div>
+              <div className="rounded-lg border border-border p-4">
+                <p className="font-semibold text-foreground mb-2">Trin 2: Sportsvæddemål EV (årlig)</p>
+                <p className="text-sm text-muted-foreground">Gennemsnitlig odds-margin: 4% (bwins margin på populære markeder)</p>
+                <p className="text-sm text-muted-foreground">Med odds-boosts (typisk 10-20% forhøjelse): effektiv margin reduceret til ~2,5%</p>
+                <p className="text-sm text-muted-foreground">Månedlig omsætning: 3.000 kr. → Forventet tab: 75 kr./måned = 900 kr./år</p>
+                <p className="text-sm text-muted-foreground">Værdi af free bets og kampagner (estimeret): ~300 kr./år</p>
+                <p className="text-sm text-muted-foreground">Sports-netto EV: <strong className="text-primary">-600 kr./år</strong> (negativt, men lavere end mange konkurrenter)</p>
+              </div>
+              <div className="rounded-lg border border-border p-4">
+                <p className="font-semibold text-foreground mb-2">Trin 3: Samlet EV – hybridspiller (casino + sport)</p>
+                <p className="text-sm text-muted-foreground">Casino-bonus EV: +200 kr. + Sports-kampagne-EV: +300 kr. (free bets) - Sports-margin: -900 kr.</p>
+                <p className="text-sm text-foreground font-bold">Samlet første-års EV for hybridspiller: -400 kr. (casino-bonus opvejer delvist sports-marginen)</p>
+                <p className="text-sm text-muted-foreground mt-2">Ren casino-spiller EV: +200 kr. | Ren sportsspiller EV: -600 kr.</p>
+                <p className="text-sm text-muted-foreground">Til sammenligning: <Link to="/casino-anmeldelser/bet365" className={linkClass}>bet365</Link> ren sport: ~-700 kr./år, <Link to="/casino-anmeldelser/unibet" className={linkClass}>Unibet</Link> ren sport: ~-650 kr./år</p>
+              </div>
+            </CardContent>
+          </Card>
+          <p className="mb-4 text-muted-foreground leading-relaxed"><strong>Fortolkning:</strong> bwins matematiske profil afspejler dens position som sportsfokuseret platform. Den rene casino-EV (+200 kr.) er konkurrencedygtig men ikke exceptionel. Den reelle værdi for bwin-spillere ligger i sportsvæddemål – og her er bwins odds-margin på 4% for de populære markeder faktisk lavere end branchegennemsnittet på 5-6%. Det gør bwin til et matematisk bedre valg for sportsveddemål end mange konkurrenter, selv om samlet EV stadig er negativ (hvilket det altid er for sportsvæddemål over tid).</p>
+          <p className="text-muted-foreground leading-relaxed"><strong>Risk of Ruin – sport vs. casino:</strong> En vigtig forskel mellem sport og casino er variansprofilken. Sportsvæddemål med korrekt bankroll-management (max 5% af bankroll per væddemål) har en signifikant lavere Risk of Ruin end casino-spil, fordi dygtige væddere kan identificere value bets og reducere husfordelen. For den rene casino-spiller på bwin er RoR med 2.000 kr. bankroll og 20.000 kr. omsætningskrav ca. 38% – identisk med markedsgennemsnittet for 10x sticky bonusser. For sportsvæddere med disciplineret staking er RoR markant lavere – typisk under 10% over en sæson.</p>
+        </section>
+
+        <Separator className="my-10" />
+
+        {/* Entain strategi */}
+        <section className="mb-12">
+          <h2 className="mb-4 text-3xl font-bold">Entains strategi for 2026 – og hvad det betyder for bwin Danmark</h2>
+          <p className="mb-4 text-muted-foreground leading-relaxed">Entain plc gennemgår en strategisk transformation, der direkte påvirker bwins danske produkt. Selskabets "Transform, Build, Grow"-strategi for 2024-2027 fokuserer på tre pilarer: teknologisk modernisering (migrering til en fælles global platform), produktinnovation (forbedret live betting og casino-integration) og regulatorisk ekspansion (nye markeder i Nordamerika og Asien). For den danske bwin-bruger er konsekvenserne tydelige i flere konkrete forbedringer.</p>
+          <p className="mb-4 text-muted-foreground leading-relaxed">Den mest synlige ændring er den nye sportsapp, lanceret i Q4 2025 på det danske marked. Appen er bygget på Entains proprietære teknologiplatform og tilbyder markant hurtigere odds-opdateringer under live betting (under 0,5 sekunders latency), forbedret Bet Builder med grafisk interface og en ny "Multi-Sport View", der giver mulighed for at følge flere kampe samtidigt med picture-in-picture streaming. Det er en premium-oplevelse, der placerer bwin på niveau med bet365 – den hidtidige benchmark for live betting-apps.</p>
+          <p className="mb-4 text-muted-foreground leading-relaxed">Casino-sektionen er også under opgradering. Entain har indgået nye udbyder-aftaler, og vi forventer, at bwin Danmark tilføjer yderligere 200-300 spiltitler i løbet af 2026 – potentielt inklusive studier som ELK Studios og Push Gaming, der i dag mangler. Live casino-sektionen udbygges med flere eksklusive bwin-borde, herunder en dedikeret dansk roulette-variant med dansktalende dealer, planlagt til lancering i Q2 2026.</p>
+          <p className="text-muted-foreground leading-relaxed">Entains investering i ansvarligt spil-teknologi er også bemærkelsesværdig. Selskabets AI-drevne system "ARC" (Advanced Responsibility & Care) analyserer spilleadfærd i realtid og kan automatisk intervenere med proaktive beskeder, indbetalingsgrænse-forslag og tvungen pause, når risikoadfærd detekteres. ARC har reduceret antallet af spillere med problematisk adfærd med 25% på de markeder, hvor det er implementeret. Implementeringen på det danske marked forventes i H1 2026. For den danske regulator er det et positivt signal om Entains engagement i spillerbeskyttelse – og for spillere er det et ekstra sikkerhedsnet.</p>
+        </section>
+
+        <Separator className="my-10" />
+
+        {/* Poker deep dive */}
+        <section className="mb-12">
+          <h2 className="mb-4 text-3xl font-bold">PartyPoker-integrationen – den skjulte fordel</h2>
+          <p className="mb-4 text-muted-foreground leading-relaxed">En af bwins mest undervurderede fordele er integrationen med PartyPoker – verdens næststørste online pokernetværk efter PokerStars. For danske spillere, der interesserer sig for <Link to="/casinospil/poker" className={linkClass}>poker</Link>, er dette en unik dimension, som de færreste konkurrenter kan matche. Du kan tilgå PartyPokers fulde cash game- og turneringsudvalg via din bwin-konto, med sømløs wallet-integration og ensartet login.</p>
+          <p className="mb-4 text-muted-foreground leading-relaxed">PartyPokers spillerbase er markant større end de stand-alone pokertilbud hos danske konkurrenter. Det betyder mere action, flere bordtyper og turneringer, der kører 24/7. Cash games spænder fra micro-stakes (0,01/0,02 kr.) til high-stakes (100/200 kr.), og turneringsudvalget inkluderer daglige guaranteed-turneringer med præmiepuljer fra 1.000 kr. til 100.000+ kr. Den ugentlige MILLIONS Online-serie har præmiepuljer, der kan overstige 10 millioner kroner – skalatilgængelighed, som ingen rent dansk poker-site kan matche.</p>
+          <p className="mb-4 text-muted-foreground leading-relaxed">For den EV-bevidste spiller er poker fundamentalt anderledes end casino og sport, fordi husfordelen (rake) er lavere (typisk 3-5% af potterne, capped), og dygtige spillere kan generere positiv EV over tid. Med PartyPokers rakeback-program (op til 40% for aktive spillere) reduceres den effektive rake til 2-3% – markant lavere end enhver casino-husfordel. For en kompetent poker-spiller, der spiller 10.000 hænder om måneden, kan den årlige rakeback fra PartyPoker via bwin beløbe sig til 5.000-15.000 kr. – en reel indkomst, der gør bwin til den mest lukrative platform for pokerspecialisten.</p>
+          <p className="text-muted-foreground leading-relaxed">Sammenlignet med <Link to="/casino-anmeldelser/pokerstars" className={linkClass}>PokerStars</Link>, der er det største pokernetværk, tilbyder PartyPoker via bwin en generelt svagere spillerbase ("softer games") og et mere generøst loyalitetsprogram. PokerStars har bedre turnerings-software og et bredere MTT-udvalg, men PartyPokers cash games er ofte mere profitable for den gennemsnitlige vindende spiller. Valget afhænger af din poker-profil: turneringsspillere foretrækker typisk PokerStars, cash game-spillere foretrækker PartyPoker.</p>
         </section>
 
         <Separator className="my-10" />
