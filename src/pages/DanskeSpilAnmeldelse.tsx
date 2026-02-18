@@ -37,7 +37,7 @@ const DanskeSpilAnmeldelse = () => {
 
   const articleSchema = buildArticleSchema({ headline: "Danske Spil Casino Anmeldelse 2026 – Bonus, Spil & Sikkerhed", description: "Komplet og ærlig anmeldelse af Danske Spil Casino. Danmarks statsligt forankrede casino med dansk licens, bredt spiludvalg og hurtige udbetalinger.", url: "https://casinoaftaler.dk/casino-anmeldelser/danske-spil", datePublished: "2026-02-15", dateModified: "2026-02-17", authorName: "Jonas", authorUrl: "https://casinoaftaler.dk/forfatter/jonas", image: "https://casinoaftaler.dk/assets/heroes/danske-spil-hero.jpg" });
   const faqJsonLd = buildFaqSchema(danskeSpilFaqs);
-  const reviewJsonLd = { "@context": "https://schema.org", "@type": "Review", itemReviewed: { "@type": "Organization", name: "Danske Spil Casino", url: "https://www.danskespil.dk/casino" }, author: { "@type": "Organization", name: "Casinoaftaler" }, reviewRating: { "@type": "Rating", ratingValue: "4.5", bestRating: "5", worstRating: "1" }, reviewBody: "Danske Spil Casino er Danmarks mest troværdige online casino med dansk licens, statsligt ejerskab og et solidt spiludvalg fra topudbydere." };
+  const reviewJsonLd = { "@context": "https://schema.org", "@type": "Review", itemReviewed: { "@type": "Organization", name: "Danske Spil Casino", url: "https://www.danskespil.dk/casino" }, author: { "@type": "Organization", name: "Casinoaftaler" }, reviewRating: { "@type": "Rating", ratingValue: "4.4", bestRating: "5", worstRating: "1" }, reviewBody: "Danske Spil Casino er Danmarks mest troværdige online casino med dansk licens, statsligt ejerskab og et solidt spiludvalg fra topudbydere." };
 
   return (
     <>
