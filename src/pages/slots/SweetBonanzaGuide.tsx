@@ -80,12 +80,24 @@ const SweetBonanzaGuide = () => {
     ],
   };
 
+  const howToJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "HowTo",
+    name: "Sådan spiller du Sweet Bonanza",
+    step: [
+      { "@type": "HowToStep", position: 1, name: "Vælg indsats", text: "Juster din indsats fra 0,20 til 125 kr. pr. spin via +/- knapperne." },
+      { "@type": "HowToStep", position: 2, name: "Spin hjulene", text: "Tryk på spin-knappen eller aktiver autoplay for automatisk spinning." },
+      { "@type": "HowToStep", position: 3, name: "Aktivér bonusfunktion", text: "Land 4+ scatter-symboler for at trigge free spins med multiplikatorer, eller køb bonus for 100× indsatsen." },
+      { "@type": "HowToStep", position: 4, name: "Udbetal gevinst", text: "Hæv dine gevinster via casinoets betalingsmetoder når du er klar." },
+    ],
+  };
+
   return (
     <>
       <SEO
         title="Sweet Bonanza – RTP & Matematisk Analyse"
-        description="Dybdegående analyse af Sweet Bonanza: RTP-varianter, EV-beregninger, multiplikator-matematik og strategi for danske spillere."
-        jsonLd={[faqJsonLd, breadcrumbJsonLd, articleSchema]}
+        description="Sweet Bonanza analyse 2026: 96,48 % RTP, høj volatilitet, 21.175× max win og Tumble-multiplikatorer forklaret."
+        jsonLd={[faqJsonLd, breadcrumbJsonLd, articleSchema, howToJsonLd]}
       />
 
       {/* ── HERO ── */}

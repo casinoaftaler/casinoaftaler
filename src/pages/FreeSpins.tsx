@@ -321,12 +321,12 @@ const FreeSpins = () => {
               </CardHeader>
               <CardContent>
                 <p className="text-sm text-muted-foreground leading-relaxed">
-                  Free spins er næsten altid knyttet til specifikke
-                  spilleautomater valgt af casinoet. Det kan være populære
-                  titler som Starburst, Book of Dead eller Gonzo's Quest. Se
-                  det som en mulighed for at opdage nye favoritspil – men
-                  husk at tjekke, hvilke spil der er inkluderet, inden du
-                  accepterer bonussen.
+                   Free spins er næsten altid knyttet til specifikke
+                   spilleautomater valgt af casinoet. Populære titler inkluderer Starburst, Book of Dead og{" "}
+                   <Link to="/casinospil/spillemaskiner/big-bass-bonanza" className={linkClass}>Big Bass Bonanza</Link>. Se
+                   det som en mulighed for at opdage nye favoritspil – men
+                   husk at tjekke, hvilke spil der er inkluderet, inden du
+                   accepterer bonussen.
                 </p>
               </CardContent>
             </Card>

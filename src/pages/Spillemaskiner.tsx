@@ -19,6 +19,7 @@ import {
   Layers,
   Target,
   Star,
+  TrendingUp,
 } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import spillemaskinerHero from "@/assets/heroes/spillemaskiner-hero.jpg";
@@ -518,6 +519,28 @@ const Spillemaskiner = () => {
           <p className="text-muted-foreground leading-relaxed">
             <strong>Bonustip:</strong> Hvis du spiller med en aktiv <Link to="/casino-bonus" className={linkClass}>casino bonus</Link>, vælg automater med høj RTP og lav-medium volatilitet for den mest effektive gennemspilning af <Link to="/omsaetningskrav" className={linkClass}>omsætningskrav</Link>. Høj volatilitet kan give store gevinster, men den kan også tømme din bonussaldo hurtigt. Blood Suckers (98 % RTP, lav volatilitet) og Mega Joker (op til 99 % RTP) er klassikere til bonusgennemspilning – men tjek altid casinoets bonusvilkår, da visse høj-RTP slots kan være ekskluderet.
           </p>
+        </section>
+
+        {/* ── Mest populære slots lige nu ── */}
+        <section className="mb-12">
+          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><TrendingUp className="h-7 w-7 text-primary" /> Mest Populære Slots Lige Nu</h2>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            Disse fem spillemaskiner dominerer de danske casinoer i 2026 – en blanding af cluster-pays innovation, multiplikator-magi og progressiv jackpot-spænding:
+          </p>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 mb-4">
+            {[
+              { to: "/casinospil/spillemaskiner/sweet-bonanza", name: "Sweet Bonanza", desc: "96,48 % RTP · 21.175× max win · Cluster pays" },
+              { to: "/casinospil/spillemaskiner/gates-of-olympus", name: "Gates of Olympus", desc: "96,50 % RTP · 5.000× max win · Multiplikatorer" },
+              { to: "/casinospil/spillemaskiner/wanted-dead-or-a-wild", name: "Wanted Dead or a Wild", desc: "96,38 % RTP · 12.500× max win · Duel-mekanik" },
+              { to: "/casinospil/spillemaskiner/big-bass-bonanza", name: "Big Bass Bonanza", desc: "96,71 % RTP · 2.100× max win · Money Collect" },
+              { to: "/casinospil/spillemaskiner/mega-moolah", name: "Mega Moolah", desc: "88,12 % basis-RTP · Progressiv jackpot · Milliongevinster" },
+            ].map((slot) => (
+              <Link key={slot.to} to={slot.to} className="flex flex-col gap-1 rounded-lg border border-border bg-card p-4 hover:border-primary/50 transition-colors">
+                <span className="font-semibold text-foreground">{slot.name}</span>
+                <span className="text-xs text-muted-foreground">{slot.desc}</span>
+              </Link>
+            ))}
+          </div>
         </section>
 
         <Separator className="my-10" />

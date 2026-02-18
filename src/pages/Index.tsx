@@ -516,6 +516,50 @@ const Index = () => {
 
         <Separator className="my-10" />
 
+        {/* Nye Spillemaskiner 2026 – Crawl acceleration */}
+        <section className="mb-12">
+          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
+            <Gamepad2 className="h-7 w-7 text-primary" />
+            Nye Spillemaskiner 2026
+          </h2>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            Online spilleautomater udvikler sig konstant, og 2026 byder på en ny generation af populære titler med innovative mekanikker og imponerende gevinstpotentiale. Her er fem af de mest spillede spillemaskiner hos danske casinoer lige nu:
+          </p>
+          <ul className="space-y-2 mb-4">
+            <li className="flex items-center gap-2 text-muted-foreground">
+              <Sparkles className="h-4 w-4 text-primary flex-shrink-0" />
+              <Link to="/casinospil/spillemaskiner/sweet-bonanza" className="text-primary hover:underline font-medium">Sweet Bonanza</Link>
+              {" "}– Pragmatic Plays cluster-pays hit med 96,48 % RTP og 21.175× max win.
+            </li>
+            <li className="flex items-center gap-2 text-muted-foreground">
+              <Sparkles className="h-4 w-4 text-primary flex-shrink-0" />
+              <Link to="/casinospil/spillemaskiner/gates-of-olympus" className="text-primary hover:underline font-medium">Gates of Olympus</Link>
+              {" "}– Zeus' multiplikator-slot med op til 500× per spin og 96,50 % RTP.
+            </li>
+            <li className="flex items-center gap-2 text-muted-foreground">
+              <Sparkles className="h-4 w-4 text-primary flex-shrink-0" />
+              <Link to="/casinospil/spillemaskiner/wanted-dead-or-a-wild" className="text-primary hover:underline font-medium">Wanted Dead or a Wild</Link>
+              {" "}– Hacksaw Gamings westernslot med Duel at Dawn og 12.500× max win.
+            </li>
+            <li className="flex items-center gap-2 text-muted-foreground">
+              <Sparkles className="h-4 w-4 text-primary flex-shrink-0" />
+              <Link to="/casinospil/spillemaskiner/big-bass-bonanza" className="text-primary hover:underline font-medium">Big Bass Bonanza</Link>
+              {" "}– Money Collect-mekanikken fra Pragmatic Play med 96,71 % RTP.
+            </li>
+            <li className="flex items-center gap-2 text-muted-foreground">
+              <Sparkles className="h-4 w-4 text-primary flex-shrink-0" />
+              <Link to="/casinospil/spillemaskiner/mega-moolah" className="text-primary hover:underline font-medium">Mega Moolah</Link>
+              {" "}– Den progressive jackpot-legende fra Microgaming med milliongevinster.
+            </li>
+          </ul>
+          <p className="text-muted-foreground leading-relaxed">
+            Udforsk alle vores dybdegående analyser i{" "}
+            <Link to="/casinospil/spillemaskiner" className="text-primary hover:underline font-medium">den komplette spillemaskine-guide</Link>.
+          </p>
+        </section>
+
+        <Separator className="my-10" />
+
         {/* Ansvarligt Spil */}
         <section className="mb-12">
           <Card className="border-border bg-card border-l-4 border-l-primary">

@@ -40,9 +40,21 @@ const MegaMoolahGuide = () => {
     { "@type": "ListItem", position: 4, name: "Mega Moolah", item: `${SITE_URL}/casinospil/spillemaskiner/mega-moolah` },
   ]};
 
+  const howToJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "HowTo",
+    name: "Sådan spiller du Mega Moolah",
+    step: [
+      { "@type": "HowToStep", position: 1, name: "Vælg indsats", text: "Indstil din indsats – højere indsats øger sandsynligheden for jackpot-triggeren." },
+      { "@type": "HowToStep", position: 2, name: "Spin hjulene", text: "Tryk spin og spil det klassiske 5×3 grid med 25 gevinstlinjer." },
+      { "@type": "HowToStep", position: 3, name: "Aktivér jackpot-hjulet", text: "Jackpot-bonus trigges tilfældigt – spin jackpot-hjulet for chance for Mega, Major, Minor eller Mini jackpot." },
+      { "@type": "HowToStep", position: 4, name: "Udbetal gevinst", text: "Hæv dine gevinster via casinoets betalingsmetoder." },
+    ],
+  };
+
   return (
     <>
-      <SEO title="Mega Moolah – Jackpot & RTP-Analyse" description="Dybdegående analyse af Mega Moolah: progressiv jackpot-mekanik, 88,12 % basis-RTP, Guinness-rekord og EV-beregninger." jsonLd={[faqJsonLd, articleSchema, breadcrumbJsonLd]} />
+      <SEO title="Mega Moolah – Jackpot & RTP-Analyse" description="Mega Moolah 2026: 88,12 % basis-RTP, medium volatilitet, progressiv jackpot med milliongevinster og EV-analyse." jsonLd={[faqJsonLd, articleSchema, breadcrumbJsonLd, howToJsonLd]} />
       {/* ── HERO ── */}
       <section className="relative overflow-hidden py-12 text-white md:py-20" style={{ backgroundImage: "linear-gradient(135deg, hsl(260 70% 25%), hsl(250 60% 20%) 40%, hsl(210 80% 25%))" }}>
         <div className="container">

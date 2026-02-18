@@ -88,12 +88,24 @@ const BigBassBonanzaGuide = () => {
     ],
   };
 
+  const howToJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "HowTo",
+    name: "Sådan spiller du Big Bass Bonanza",
+    step: [
+      { "@type": "HowToStep", position: 1, name: "Vælg indsats", text: "Indstil din indsats fra 0,10 til 250 kr. pr. spin." },
+      { "@type": "HowToStep", position: 2, name: "Spin hjulene", text: "Tryk spin og observer fisker- og pengesymboler på hjulene." },
+      { "@type": "HowToStep", position: 3, name: "Aktivér Money Collect", text: "Land 3+ scatters for free spins, hvor fiskeren indsamler pengeværdier fra fiskesymboler." },
+      { "@type": "HowToStep", position: 4, name: "Udbetal gevinst", text: "Hæv dine gevinster via casinoets betalingsmetoder." },
+    ],
+  };
+
   return (
     <>
       <SEO
         title="Big Bass Bonanza – RTP & Fisker-Analyse"
-        description="Dybdegående analyse af Big Bass Bonanza: RTP 96,71 %, Money Collect-mekanik, free spins-matematik og strategisk vurdering."
-        jsonLd={[faqJsonLd, breadcrumbJsonLd, articleSchema]}
+        description="Big Bass Bonanza 2026: 96,71 % RTP, medium volatilitet, 2.100× max win og Money Collect-mekanikken forklaret."
+        jsonLd={[faqJsonLd, breadcrumbJsonLd, articleSchema, howToJsonLd]}
       />
 
       {/* ── HERO ── */}
