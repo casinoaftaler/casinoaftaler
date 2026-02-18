@@ -1,4 +1,5 @@
 import React from "react";
+import monopolyLiveHero from "@/assets/heroes/monopoly-live-hero.jpg";
 import { Link } from "react-router-dom";
 import { SEO } from "@/components/SEO";
 import { buildFaqSchema, buildArticleSchema, SITE_URL } from "@/lib/seo";
@@ -97,6 +98,8 @@ const MonopolyLiveGuide = () => {
 
       <div className="container py-8 md:py-12">
         <AuthorMetaBar author="jonas" date="18-02-2026" readTime="11 Min." />
+
+        <img src={monopolyLiveHero} alt="Monopoly Live game show hjul med Mr. Monopoly i et farverigt TV-studio" className="w-full max-h-[400px] object-cover rounded-xl mb-10" loading="eager" />
 
         <p className="mb-6 text-muted-foreground leading-relaxed">
           Denne side er en del af vores <Link to="/live-casino" className={linkClass}>komplette live casino guide</Link>. Her analyserer vi Monopoly Live specifikt – Evolutions populære game show, der kombinerer et live pengehjul med en immersiv 3D Monopoly-bonusrunde. For en bredere oversigt over game shows, se vores <Link to="/casinospil/game-shows" className={linkClass}>game show guide</Link>.
