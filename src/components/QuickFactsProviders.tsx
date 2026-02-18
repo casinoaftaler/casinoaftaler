@@ -75,7 +75,7 @@ export function QuickFactsLicense({ licenseId, authority = "Spillemyndigheden" }
         <span className="font-medium text-foreground">Dansk licens #{licenseId}</span>
         <span className="text-muted-foreground">–</span>
         <a
-          href="https://www.spillemyndigheden.dk/telefonbog"
+          href="https://www.spillemyndigheden.dk/tilladelsesindehavere"
           target="_blank"
           rel="noopener noreferrer"
           className="inline-flex items-center gap-1 text-primary underline hover:text-primary/80 text-xs"
