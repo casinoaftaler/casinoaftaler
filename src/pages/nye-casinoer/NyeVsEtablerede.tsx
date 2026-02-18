@@ -202,7 +202,7 @@ const NyeVsEtablerede = () => {
           </p>
         </section>
 
-        <InlineCasinoCards title="Anbefalede casinoer til danske spillere" count={4} />
+        <InlineCasinoCards title="Anbefalede casinoer til danske spillere" count={6} />
 
         <Separator className="my-10" />
 

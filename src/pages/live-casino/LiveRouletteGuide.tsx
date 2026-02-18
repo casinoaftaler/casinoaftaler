@@ -116,6 +116,8 @@ const LiveRouletteGuide = () => {
           Vores analyse bygger på observation af 1.500+ spins fordelt over 6 forskellige bordtyper hos danske licenserede casinoer i januar-februar 2026. Vi har dokumenteret tempoforskelle, latency, UI-kvalitet og dealerinteraktion på tværs af Evolution Gaming, Pragmatic Play Live og Playtech-platforme. Alt data er verificeret mod officielle RTP-specifikationer fra spiludviklerne.
         </p>
 
+        <InlineCasinoCards title="Bedste casinoer til live roulette" count={6} />
+
         {/* H2 #1 – Roulettens bordtyper */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold">Bordtyper i live roulette – en komplet dybdegående oversigt</h2>
@@ -485,7 +487,7 @@ const LiveRouletteGuide = () => {
           </p>
         </section>
 
-        <InlineCasinoCards count={1} />
+        
 
         <FAQSection title="Ofte stillede spørgsmål om live roulette" faqs={faqs} />
         <AuthorBio author="jonas" />

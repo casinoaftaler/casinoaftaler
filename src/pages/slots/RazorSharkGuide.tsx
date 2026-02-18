@@ -161,7 +161,7 @@ const RazorSharkGuide = () => {
           </p>
         </section>
 
-        <InlineCasinoCards title="Spil Razor Shark hos disse casinoer" count={4} />
+        <InlineCasinoCards title="Spil Razor Shark hos disse casinoer" count={6} />
 
         <Separator className="my-10" />
 

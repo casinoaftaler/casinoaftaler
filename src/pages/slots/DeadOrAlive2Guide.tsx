@@ -161,7 +161,7 @@ const DeadOrAlive2Guide = () => {
           </p>
         </section>
 
-        <InlineCasinoCards title="Spil Dead or Alive 2 på disse casinoer" count={4} />
+        <InlineCasinoCards title="Spil Dead or Alive 2 på disse casinoer" count={6} />
 
         <Separator className="my-10" />
 

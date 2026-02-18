@@ -189,7 +189,7 @@ const Casinospil = () => {
           </p>
         </section>
 
-        <InlineCasinoCards title="Anbefalede casinoer med bredt spiludvalg" count={4} />
+        <InlineCasinoCards title="Anbefalede casinoer med bredt spiludvalg" count={6} />
 
         {/* ═══════════════════════════════════════════
             SECTION 2: Spilleautomater

@@ -323,7 +323,7 @@ const Spiludviklere = () => {
           </div>
         </section>
 
-        <InlineCasinoCards title="Casinoer med det bredeste spiludvalg" count={4} />
+        <InlineCasinoCards title="Casinoer med det bredeste spiludvalg" count={6} />
 
         <Separator className="my-10" />
 

@@ -113,6 +113,8 @@ const MonopolyLiveGuide = () => {
           Denne side er en del af vores <Link to="/live-casino" className={linkClass}>komplette live casino guide</Link>. Her analyserer vi Monopoly Live specifikt – Evolutions populære game show, der kombinerer et live pengehjul med en immersiv 3D Monopoly-bonusrunde. Alt indhold er baseret på matematisk analyse og personlig erfaring fra 100+ timer med Monopoly Live-sessions. For en bredere oversigt over game shows, se vores <Link to="/casinospil/game-shows" className={linkClass}>game show guide</Link>.
         </p>
 
+        <InlineCasinoCards title="Spil Monopoly Live her" count={6} />
+
         {/* H2 #1 – Konceptet */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold">Monopoly Live – konceptet bag Evolutions mest ambitiøse game show</h2>
@@ -563,7 +565,7 @@ const MonopolyLiveGuide = () => {
           </p>
         </section>
 
-        <InlineCasinoCards count={1} />
+        
 
         <FAQSection title="Ofte stillede spørgsmål om Monopoly Live" faqs={faqs} />
         <AuthorBio author="jonas" />

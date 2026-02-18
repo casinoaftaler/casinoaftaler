@@ -263,6 +263,8 @@ const Betalingsmetoder = () => {
           </p>
         </section>
 
+        <InlineCasinoCards title="Casinoer med det bedste udvalg af betalingsmetoder" count={6} />
+
         {/* ═══════════════════════════════════════════
             SECTION 2: Central sammenligningstabel
             ═══════════════════════════════════════════ */}
@@ -302,7 +304,7 @@ const Betalingsmetoder = () => {
           </div>
         </section>
 
-        <InlineCasinoCards title="Casinoer med det bedste udvalg af betalingsmetoder" count={4} />
+        
 
         <Separator className="my-10" />
 
@@ -665,7 +667,7 @@ const Betalingsmetoder = () => {
           </div>
         </section>
 
-        <InlineCasinoCards title="Casinoer med hurtigste udbetalinger" count={4} />
+        
 
         <Separator className="my-10" />
 
