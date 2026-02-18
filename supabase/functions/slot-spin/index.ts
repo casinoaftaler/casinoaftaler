@@ -456,7 +456,16 @@ function calculateMultiExpandingBonusWins(
 
   const wins: LineWin[] = [];
 
-  // For each qualifying expanding symbol, calculate wins independently on its OWN partial grid
+  // First: calculate standard "connecting" line wins on the ORIGINAL grid
+  // (before any expansion). These are non-expanding payline wins that should
+  // be shown before the expanding animation.
+  const connectingWins = calculateStandardLineWins(originalGrid, symbols, betAmount);
+  // Tag connecting wins so client can distinguish them
+  for (const cw of connectingWins) {
+    wins.push(cw);
+  }
+
+  // Then: for each qualifying expanding symbol, calculate wins independently on its OWN partial grid
   for (const symbolId of qualifyingSymbolIds) {
     const sym = expandingSymbols.find((s) => s.id === symbolId);
     if (!sym) continue;
@@ -1066,6 +1075,8 @@ Deno.serve(async (req) => {
       const eligibleSymbols = symbols.filter((s: SlotSymbol) => !s.is_scatter);
       const expandingSymbol = getWeightedRandomSymbol(eligibleSymbols);
 
+      // Carry over any base-game win from the triggering spin into bonus_winnings
+      const carryOverWin = result.totalWin;
       const bonusInsert: Record<string, unknown> = {
         user_id: userId,
         is_active: true,
@@ -1073,7 +1084,7 @@ Deno.serve(async (req) => {
         total_free_spins: 10,
         expanding_symbol_id: expandingSymbol.id,
         expanding_symbol_name: expandingSymbol.name,
-        bonus_winnings: 0,
+        bonus_winnings: carryOverWin,
         game_id: gameId,
         bet_amount: bet,
       };
@@ -1106,7 +1117,7 @@ Deno.serve(async (req) => {
         totalFreeSpins: 10,
         expandingSymbolId: expandingSymbol.id,
         expandingSymbolName: expandingSymbol.name,
-        bonusWinnings: 0,
+        bonusWinnings: carryOverWin,
         betAmount: bet,
       } as Record<string, unknown>;
 
