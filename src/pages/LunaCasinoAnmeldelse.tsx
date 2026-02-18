@@ -103,7 +103,7 @@ const LunaCasinoAnmeldelse = () => {
     "@type": "Review",
     itemReviewed: { "@type": "Organization", name: "Luna Casino" },
     author: { "@type": "Organization", name: "Casinoaftaler" },
-    reviewRating: { "@type": "Rating", ratingValue: "4.6", bestRating: "5" },
+    reviewRating: { "@type": "Rating", ratingValue: "4.6", bestRating: "5", worstRating: "1" },
     reviewBody: "Luna Casino er Kvalitets-Kuratoren blandt danske casinoer – et bevidst kurateret casino med 100% bonus op til 500 kr., 10x omsætning, loyalitetsprogram med stigende levels, daglige bonuskampagner og et nøje udvalgt spiludvalg fra premium-udbydere.",
   };
 

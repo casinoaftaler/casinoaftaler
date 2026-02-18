@@ -126,7 +126,7 @@ const BetiniaAnmeldelse = () => {
       url: "https://www.betinia.dk",
     },
     author: { "@type": "Organization", name: "Casinoaftaler" },
-    reviewRating: { "@type": "Rating", ratingValue: "4.9", bestRating: "5" },
+    reviewRating: { "@type": "Rating", ratingValue: "4.9", bestRating: "5", worstRating: "1" },
     reviewBody:
       "Betinia er et dansk dual-motor casino med No-Sticky velkomstbonus på 100% op til 1.000 kr., 10x omsætning, sportsbetting med akkumulatorboost, over 40 spiludbydere og 19 betalingsmetoder.",
   };

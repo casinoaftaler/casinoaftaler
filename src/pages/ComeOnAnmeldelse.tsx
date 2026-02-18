@@ -83,7 +83,7 @@ const ComeOnAnmeldelse = () => {
     "@type": "Review",
     itemReviewed: { "@type": "Organization", name: "ComeOn Casino", url: "https://www.comeon.com/dk/" },
     author: { "@type": "Organization", name: "Casinoaftaler" },
-    reviewRating: { "@type": "Rating", ratingValue: "4.2", bestRating: "5" },
+    reviewRating: { "@type": "Rating", ratingValue: "4.2", bestRating: "5", worstRating: "1" },
     reviewBody: "ComeOn Casino er en solid og brugervenlig platform med dansk licens, et bredt spiludvalg og gennemsigtige bonusvilkår.",
   };
 
@@ -155,7 +155,7 @@ const ComeOnAnmeldelse = () => {
           <p className="mb-4 text-muted-foreground leading-relaxed">Vi indbetalte 1.000 kr. via <Link to="/betalingsmetoder/mobilepay" className={linkClass}>MobilePay</Link>. Transaktionen gik igennem på under 8 sekunder. Matchbonus på 1.000 kr. blev krediteret automatisk. Samlet saldo: 2.000 kr. Omsætningskrav: 20.000 kr. inden 30 dage. Vi noterede, at bonusvilkårene var synlige direkte i indbetalingsflowet – ingen skjulte links til "vilkår og betingelser".</p>
           <p className="mb-4 text-muted-foreground leading-relaxed">Vi spillede i fire sessions over en uge. Primære testspil: Book of Dead (<Link to="/spiludviklere/play-n-go" className={linkClass}>Play'n GO</Link>), Sweet Bonanza (<Link to="/spiludviklere/pragmatic-play" className={linkClass}>Pragmatic Play</Link>), Reactoonz (Play'n GO), Crazy Time (live) og Lightning Roulette (<Link to="/spiludviklere/evolution-gaming" className={linkClass}>Evolution Gaming</Link>). Alle slots loadede inden for 2–4 sekunder på desktop. Live casino-forbindelsen var stabil med minimal latency.</p>
           <p className="mb-4 text-muted-foreground leading-relaxed">Udbetalingstest: Vi anmodede om 800 kr. via MobilePay den 19. december klokken 10:15. Pengene landede samme dag klokken 00:22 – 14 timer i alt. Det er markant hurtigere end vores test af <Link to="/casino-anmeldelser/888-casino" className={linkClass}>888 Casino</Link> (31 timer) og <Link to="/casino-anmeldelser/getlucky" className={linkClass}>GetLucky</Link> (26 timer). ComeOns interne behandlingstid er tydeligvis optimeret.</p>
-          <p className="text-muted-foreground leading-relaxed">KYC-forløb: MitID dækkede identitetsverifikation. Ingen yderligere dokumentation blev anmodet – hverken ved oprettelse eller udbetaling. Det er den smidigste KYC-oplevelse i vores testbatch. Sammenlignet med 888 Casinos ekstra krav om betalingsmetode-dokumentation er ComeOns proces markant enklere.</p>
+          <p className="text-muted-foreground leading-relaxed">KYC-forløb: MitID dækkede identitetsverifikation. Ingen yderligere dokumentation blev anmodet – hverken ved oprettelse eller udbetaling. Det er den smidigste KYC-oplevelse i vores testbatch. Sammenlignet med 888 Casinos ekstra krav om betalingsmetode-dokumentation er ComeOns proces markant enklere. Læs mere om vores <Link to="/saadan-tester-vi-casinoer" className={linkClass}>testmetode</Link>.</p>
         </section>
 
         <Separator className="my-10" />
