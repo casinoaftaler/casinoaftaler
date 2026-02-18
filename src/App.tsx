@@ -110,6 +110,13 @@ const MoneyTrain3Guide = lazy(() => import("./pages/slots/MoneyTrain3Guide"));
 const WolfGoldGuide = lazy(() => import("./pages/slots/WolfGoldGuide"));
 const TheDogHouseGuide = lazy(() => import("./pages/slots/TheDogHouseGuide"));
 const JamminJarsGuide = lazy(() => import("./pages/slots/JamminJarsGuide"));
+const BonanzaGuide = lazy(() => import("./pages/slots/BonanzaGuide"));
+const FireJokerGuide = lazy(() => import("./pages/slots/FireJokerGuide"));
+const LegacyOfDeadGuide = lazy(() => import("./pages/slots/LegacyOfDeadGuide"));
+const DivineFortuneGuide = lazy(() => import("./pages/slots/DivineFortuneGuide"));
+const EyeOfHorusGuide = lazy(() => import("./pages/slots/EyeOfHorusGuide"));
+const BuffaloKingGuide = lazy(() => import("./pages/slots/BuffaloKingGuide"));
+const SugarRushGuide = lazy(() => import("./pages/slots/SugarRushGuide"));
 const NetEntGuide = lazy(() => import("./pages/NetEntGuide"));
 const PragmaticPlayGuide = lazy(() => import("./pages/PragmaticPlayGuide"));
 const RelaxGamingGuide = lazy(() => import("./pages/RelaxGamingGuide"));
@@ -273,6 +280,13 @@ const App = () => (
                 <Route path="/casinospil/spillemaskiner/wolf-gold" element={<WolfGoldGuide />} />
                 <Route path="/casinospil/spillemaskiner/the-dog-house" element={<TheDogHouseGuide />} />
                 <Route path="/casinospil/spillemaskiner/jammin-jars" element={<JamminJarsGuide />} />
+                <Route path="/casinospil/spillemaskiner/bonanza" element={<BonanzaGuide />} />
+                <Route path="/casinospil/spillemaskiner/fire-joker" element={<FireJokerGuide />} />
+                <Route path="/casinospil/spillemaskiner/legacy-of-dead" element={<LegacyOfDeadGuide />} />
+                <Route path="/casinospil/spillemaskiner/divine-fortune" element={<DivineFortuneGuide />} />
+                <Route path="/casinospil/spillemaskiner/eye-of-horus" element={<EyeOfHorusGuide />} />
+                <Route path="/casinospil/spillemaskiner/buffalo-king" element={<BuffaloKingGuide />} />
+                <Route path="/casinospil/spillemaskiner/sugar-rush" element={<SugarRushGuide />} />
                 <Route path="/casinospil/blackjack" element={<BlackjackGuide />} />
                 <Route path="/casinospil/roulette" element={<RouletteGuide />} />
                 <Route path="/casinospil/poker" element={<PokerGuide />} />
