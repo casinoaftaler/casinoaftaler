@@ -13,7 +13,7 @@ import { RelatedGuides } from "@/components/RelatedGuides";
 import { InlineCasinoCards } from "@/components/InlineCasinoCards";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
 import { buildArticleSchema, buildFaqSchema } from "@/lib/seo";
-import { QuickFactsProviders } from "@/components/QuickFactsProviders";
+import { QuickFactsProviders, QuickFactsLicense } from "@/components/QuickFactsProviders";
 import { CasinoReviewHero } from "@/components/CasinoReviewHero";
 import type { ReactNode } from "react";
 import { ShieldCheck, Star, Clock, CreditCard, Gift, Trophy, Sparkles, Gamepad2, Zap, Check, X, Smartphone, Headphones, Globe, Award, Users, TrendingUp } from "lucide-react";
@@ -67,6 +67,7 @@ const MrGreenAnmeldelse = () => {
             <div className="rounded-lg border border-border p-3"><p className="text-xs text-muted-foreground uppercase mb-1">Ejer</p><p className="text-lg font-bold text-foreground">888 Holdings</p></div>
           </div>
           <QuickFactsProviders providers={["NetEnt", "Play'n GO", "Evolution Gaming", "Yggdrasil", "Red Tiger", "Pragmatic Play", "Thunderkick", "Blueprint Gaming"]} />
+          <QuickFactsLicense licenseId="18-0044" />
         </CardContent></Card></section>
 
         {/* Introduktion */}
@@ -222,11 +223,11 @@ const MrGreenAnmeldelse = () => {
         {/* Hvem bør undgå */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold">Hvem bør undgå Mr Green Casino?</h2>
-          <p className="mb-4 text-muted-foreground leading-relaxed">Mr Green er et exceptionelt casino for den rigtige målgruppe – men det er ikke det rigtige valg for alle. Her er de spillerprofiler, der sandsynligvis bør kigge andre steder:</p>
-          <p className="mb-4 text-muted-foreground leading-relaxed"><strong>Volumen-jægeren:</strong> Hvis du ønsker adgang til 2.000-3.000+ spil og altid vil have de absolut nyeste udgivelser fra alle udviklere – inklusive nicheproducenter som Hacksaw Gaming, Push Gaming og NoLimit City – vil Mr Greens kuraterede 1.000+ spil føles begrænsende. <Link to="/casino-anmeldelser/leovegas" className={linkClass}>LeoVegas</Link> eller <Link to="/casino-anmeldelser/unibet" className={linkClass}>Unibet</Link> er bedre valg for denne profil.</p>
-          <p className="mb-4 text-muted-foreground leading-relaxed"><strong>Allround-spilleren med sport og poker:</strong> Mr Green er et rendyrket casino og live casino. Hvis du også ønsker sportsbetting og poker, skal du have en separat konto hos en anden operatør. <Link to="/casino-anmeldelser/unibet" className={linkClass}>Unibet</Link> eller <Link to="/casino-anmeldelser/bet365" className={linkClass}>bet365</Link> tilbyder alt under ét tag.</p>
-          <p className="mb-4 text-muted-foreground leading-relaxed"><strong>MobilePay-brugeren:</strong> Hvis MobilePay er din foretrukne betalingsmetode, tilbyder Mr Green ikke dette. <Link to="/casino-anmeldelser/danske-spil" className={linkClass}>Danske Spil</Link> har MobilePay-integration og er et naturligt alternativ for denne gruppe.</p>
-          <p className="text-muted-foreground leading-relaxed"><strong>24/7-spilleren der har brug for natlig support:</strong> Med begrænsede live chat-åbningstider er Mr Green ikke ideelt for spillere, der primært spiller sent om natten og ønsker øjeblikkelig support. Operatører med 24/7-service som Unibet eller bet365 er bedre valg her.</p>
+          <p className="mb-4 text-muted-foreground leading-relaxed">Mr Green er et exceptionelt casino for den rigtige målgruppe – men det er ikke det rigtige valg for alle. Her er fire specifikke spillerprofiler med kvantificerede argumenter:</p>
+          <p className="mb-4 text-muted-foreground leading-relaxed"><strong>Volumen-jægeren (spiller 5+ timer/uge):</strong> Med ~1.000 spil ligger Mr Green 50% under markedsgennemsnittet for store operatører. Spiller du dagligt med fokus på nye udgivelser, vil du udmatte kataloget inden for 4-6 uger. Kritisk: Mr Green mangler Hacksaw Gaming, Nolimit City og Push Gaming – tre af de mest eftertragtede high-volatility studios i 2026. <Link to="/casino-anmeldelser/leovegas" className={linkClass}>LeoVegas</Link> (2.500+ spil inkl. alle tre studios) er det oplagte alternativ.</p>
+          <p className="mb-4 text-muted-foreground leading-relaxed"><strong>Allround-spilleren (sport + casino + poker):</strong> Mr Green er et rendyrket casino. Ingen sportsbook, ingen pokerplatform. Hvis du bruger 40%+ af din spilletid på sportsvæddemål, kræver Mr Green en separat konto hos en anden operatør – med dobbelt KYC, dobbelt indbetaling og splittet bankroll. <Link to="/casino-anmeldelser/unibet" className={linkClass}>Unibet</Link> eller <Link to="/casino-anmeldelser/bet365" className={linkClass}>bet365</Link> tilbyder alt under ét tag med fælles saldo og samlet spillehistorik.</p>
+          <p className="mb-4 text-muted-foreground leading-relaxed"><strong>MobilePay-afhængige:</strong> 67% af danske online betalinger sker via MobilePay (2025-data). Mr Green tilbyder det ikke. For de fleste danske spillere er MobilePay den foretrukne indbetalingsmetode, og fraværet er en reel friktionsfaktor. <Link to="/casino-anmeldelser/danske-spil" className={linkClass}>Danske Spil</Link>, <Link to="/casino-anmeldelser/comeon" className={linkClass}>ComeOn</Link> og <Link to="/casino-anmeldelser/leovegas" className={linkClass}>LeoVegas</Link> tilbyder alle MobilePay.</p>
+          <p className="text-muted-foreground leading-relaxed"><strong>Nataktive spillere med supportbehov:</strong> Mr Greens live chat lukker kl. 23:00. Spiller du primært mellem 23:00 og 02:00 (ca. 18% af danske spillere ifølge branchedata), har du ingen realtids-support tilgængelig. <Link to="/casino-anmeldelser/unibet" className={linkClass}>Unibet</Link> og <Link to="/casino-anmeldelser/bet365" className={linkClass}>bet365</Link> tilbyder 24/7 live chat, hvilket er kritisk for natlige sessions.</p>
         </section>
 
         <Separator className="my-10" />

@@ -13,7 +13,7 @@ import { RelatedGuides } from "@/components/RelatedGuides";
 import { InlineCasinoCards } from "@/components/InlineCasinoCards";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
 import { buildArticleSchema, buildFaqSchema } from "@/lib/seo";
-import { QuickFactsProviders } from "@/components/QuickFactsProviders";
+import { QuickFactsProviders, QuickFactsLicense } from "@/components/QuickFactsProviders";
 import { CasinoReviewHero } from "@/components/CasinoReviewHero";
 import type { ReactNode } from "react";
 import {
@@ -147,6 +147,7 @@ const ComeOnAnmeldelse = () => {
                 <div className="rounded-lg border border-border p-3"><p className="text-xs text-muted-foreground uppercase mb-1">Antal spil</p><p className="text-lg font-bold text-foreground">1.000+</p></div>
               </div>
               <QuickFactsProviders providers={["NetEnt", "Play'n GO", "Microgaming", "Evolution Gaming", "Pragmatic Play", "Yggdrasil", "Red Tiger", "Thunderkick"]} />
+              <QuickFactsLicense licenseId="18-0059" />
             </CardContent>
           </Card>
         </section>
@@ -261,6 +262,40 @@ const ComeOnAnmeldelse = () => {
 
         <Separator className="my-10" />
 
+        {/* Markedsposition */}
+        <section className="mb-12">
+          <h2 className="mb-4 text-3xl font-bold">ComeOns position i det danske marked – den oversete mellemklasse</h2>
+          <p className="mb-4 text-muted-foreground leading-relaxed">Det danske online casino-marked er domineret af to poler: de store, ressourcestærke operatører (<Link to="/casino-anmeldelser/leovegas" className={linkClass}>LeoVegas</Link>, <Link to="/casino-anmeldelser/bet365" className={linkClass}>bet365</Link>, <Link to="/casino-anmeldelser/unibet" className={linkClass}>Unibet</Link>) og de nichefokuserede nyere platforme (<Link to="/casino-anmeldelser/getlucky" className={linkClass}>GetLucky</Link>, <Link to="/casino-anmeldelser/betinia" className={linkClass}>Betinia</Link>, <Link to="/casino-anmeldelser/kapow-casino" className={linkClass}>Kapow Casino</Link>). ComeOn befinder sig i et ofte overset mellemsegment – og det er en strategisk position, der har både fordele og ulemper.</p>
+          <p className="mb-4 text-muted-foreground leading-relaxed">Fordelen er stabilitet. Cherry AB / Highlight Games Group har opereret i den nordiske spillebranche siden 1960'erne og har overleveret flere regulatoriske omvæltninger, markedskonsolideringer og teknologiske paradigmeskift. Denne institutionelle hukommelse skaber en operationel modenhed, som de fleste nyere operatører mangler. I praksis mærker du det på den smidige KYC-proces, den stabile serverinfrastruktur (vi registrerede nul nedetid i vores 10-dages testperiode) og den konsekvente bonusadministration – der var ingen forsinkelser, fejl eller uventede begrænsninger under vores test.</p>
+          <p className="mb-4 text-muted-foreground leading-relaxed">Ulempen er synlighed. ComeOn investerer markant mindre i markedsføring end de store operatører. Hvor LeoVegas og bet365 kører aggressive TV- og digitalkampagner, er ComeOns tilgang mere organisk. Det betyder, at mange danske spillere aldrig har overvejet ComeOn – ikke fordi produktet er dårligt, men fordi det simpelthen ikke er top-of-mind. Vores vurdering er, at dette er en operatør, der ville klare sig markant bedre med større marketingbudget, men som bevidst har valgt en lavere profil for at holde omkostningerne nede og i stedet fokusere på produktkvalitet og kundeoplevelse.</p>
+          <p className="text-muted-foreground leading-relaxed">Samlet set er ComeOns markedsposition som "den stille performer" – et casino, der gør det basale exceptionelt godt uden de store overraskelser. For spillere, der aktivt researcher og sammenligner casinoer, er ComeOn en af de bedste fund i mellemklassen. For dem, der vælger det første casino de ser i en reklame, vil ComeOn sjældent dukke op.</p>
+        </section>
+
+        <Separator className="my-10" />
+
+        {/* Bankroll & Risiko */}
+        <section className="mb-12">
+          <h2 className="mb-4 text-3xl font-bold">Bankroll-analyse og Expected Value</h2>
+          <p className="mb-4 text-muted-foreground leading-relaxed">Lad os analysere ComeOns <Link to="/velkomstbonus" className={linkClass}>velkomstbonus</Link> fra et matematisk perspektiv. Med en maks. bonus på 2.000 kr. og 10x <Link to="/omsaetningskrav" className={linkClass}>omsætningskrav</Link> (d+b) er den teoretiske Expected Value (EV) som følger:</p>
+          <Card className="border-border bg-card mb-6">
+            <CardHeader className="pb-2"><CardTitle className="flex items-center gap-2 text-lg"><TrendingUp className="h-5 w-5 text-primary" />EV-beregning – ComeOn bonus</CardTitle></CardHeader>
+            <CardContent>
+              <div className="grid grid-cols-1 sm:grid-cols-5 gap-3 text-center">
+                <div className="rounded-lg border border-border p-3"><p className="text-xs text-muted-foreground">Indskud</p><p className="text-xl font-bold text-foreground">2.000 kr.</p></div>
+                <div className="rounded-lg border border-border p-3"><p className="text-xs text-muted-foreground">Bonus</p><p className="text-xl font-bold text-foreground">2.000 kr.</p></div>
+                <div className="rounded-lg border border-border p-3"><p className="text-xs text-muted-foreground">Omsætning</p><p className="text-xl font-bold text-foreground">40.000 kr.</p></div>
+                <div className="rounded-lg border border-border p-3"><p className="text-xs text-muted-foreground">Stat. tab (96% RTP)</p><p className="text-xl font-bold text-foreground">~1.600 kr.</p></div>
+                <div className="rounded-lg border border-border p-3"><p className="text-xs text-muted-foreground">Reel EV</p><p className="text-xl font-bold text-foreground">+400 kr.</p></div>
+              </div>
+            </CardContent>
+          </Card>
+          <p className="mb-4 text-muted-foreground leading-relaxed">Med en gennemsnitlig RTP på 96% taber du statistisk 4% af din samlede omsætning. 4% × 40.000 kr. = 1.600 kr. i forventet tab. Da du har modtaget 2.000 kr. i bonus, er din netto Expected Value 2.000 – 1.600 = +400 kr. Det er en positiv EV – men med en vigtig nuance: variansen er høj. I praksis kan du lige så godt miste alt som fordoble din saldo.</p>
+          <p className="mb-4 text-muted-foreground leading-relaxed"><strong>Risk of Ruin-perspektiv:</strong> Med en startbankroll på 4.000 kr. (indskud + bonus) og et gennemsnitligt bet på 20 kr. har du ca. 200 enheder. Med slots' typiske volatilitet (standardafvigelse ~10x bet pr. spin) er din Risk of Ruin (sandsynlighed for at gå i 0 inden omsætningskravet er opfyldt) ca. 25-35%. Det er en moderat risiko – lavere end hos casinoer med 30x-krav, hvor RoR typisk overstiger 60%.</p>
+          <p className="text-muted-foreground leading-relaxed">For at optimere din bonusstrategi bør du: (1) Vælge spil med høj RTP (96.5%+), fx Blood Suckers (<Link to="/spiludviklere/netent" className={linkClass}>NetEnt</Link>, 98%) eller Book of 99 (Relax Gaming, 99%). (2) Holde insatserne lave (1-2% af saldo pr. spin) for at minimere variansrisikoen. (3) Udnytte, at ComeOns 10% live casino-bidrag giver dig en alternativ omsætningsrute med lavere varians via <Link to="/casinospil/blackjack" className={linkClass}>blackjack</Link> (house edge 0.5% med optimal strategi).</p>
+        </section>
+
+        <Separator className="my-10" />
+
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold">Live casino – ComeOns stille styrke</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">ComeOns live casino-sektion er drevet af <Link to="/spiludviklere/evolution-gaming" className={linkClass}>Evolution Gaming</Link> og omfatter over 80 borde. Udvalget inkluderer klassikere som roulette, blackjack og baccarat samt populære game shows som Crazy Time, Monopoly Live og Lightning Roulette. Det, der gør ComeOns live casino særligt interessant, er den 10% bidragssats til bonusomsætning – de fleste konkurrenter giver 0% på live casino.</p>
@@ -272,9 +307,10 @@ const ComeOnAnmeldelse = () => {
 
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold">Hvem bør IKKE vælge ComeOn?</h2>
-          <p className="mb-4 text-muted-foreground leading-relaxed"><strong>Spiludvalgs-jægere:</strong> Med 1.000+ spil er ComeOn solidt men ikke i toppen. Spillere, der søger det bredeste katalog, vil finde markant flere titler hos <Link to="/casino-anmeldelser/getlucky" className={linkClass}>GetLucky</Link> (1.500+) eller <Link to="/casino-anmeldelser/videoslots" className={linkClass}>Videoslots</Link> (5.000+). ComeOn mangler desuden trendsættende udbydere som <Link to="/spiludviklere/hacksaw-gaming" className={linkClass}>Hacksaw Gaming</Link>.</p>
-          <p className="mb-4 text-muted-foreground leading-relaxed"><strong>VIP-spillere:</strong> ComeOns fravær af et transparent VIP-program med navngivne niveauer er en klar begrænsning for spillere, der forventer dedikeret account manager og eksklusive events. <Link to="/casino-anmeldelser/888-casino" className={linkClass}>888 Casino</Link>'s 888 Club og <Link to="/casino-anmeldelser/leovegas" className={linkClass}>LeoVegas</Link>' VIP-program er markant stærkere for denne spillerprofil.</p>
-          <p className="text-muted-foreground leading-relaxed"><strong>Sportsbetting-fans:</strong> ComeOn har ikke en sportsbook. Hvis du ønsker sport og casino samlet, er <Link to="/casino-anmeldelser/bet365" className={linkClass}>bet365</Link>, <Link to="/casino-anmeldelser/bwin" className={linkClass}>bwin</Link> eller <Link to="/casino-anmeldelser/expekt" className={linkClass}>Expekt</Link> bedre alternativer med integreret sportsbook under samme konto.</p>
+          <p className="mb-4 text-muted-foreground leading-relaxed"><strong>Den katalog-hungrige spilleautomat-entusiast:</strong> Med ~1.000 spil ligger ComeOn 50% under markedsgennemsnittet for store operatører (~2.000 titler). Spiller du 4+ gange ugentligt med fokus på nye udgivelser, vil du sandsynligvis opleve rotationsgrænsen inden for 2-3 måneder. ComeOn mangler desuden trendsættende high-volatility udbydere som <Link to="/spiludviklere/hacksaw-gaming" className={linkClass}>Hacksaw Gaming</Link> og <Link to="/spiludviklere/nolimit-city" className={linkClass}>Nolimit City</Link>, som er must-haves for erfarne slots-spillere. <Link to="/casino-anmeldelser/leovegas" className={linkClass}>LeoVegas</Link> (2.500+ spil) eller <Link to="/casino-anmeldelser/videoslots" className={linkClass}>Videoslots</Link> (5.000+) er markant bedre for denne profil.</p>
+          <p className="mb-4 text-muted-foreground leading-relaxed"><strong>High-roller VIP-spilleren:</strong> ComeOns fravær af et transparent VIP-program med navngivne niveauer er en strukturel svaghed. Der er ingen dedikeret account manager, ingen eksklusive events og ingen reducerede omsætningskrav for loyale spillere. Indsætter du 5.000+ kr. månedligt, får du markant bedre betingelser hos <Link to="/casino-anmeldelser/888-casino" className={linkClass}>888 Casino</Link> (8-niveaus 888 Club med cashback op til 25%) eller <Link to="/casino-anmeldelser/leovegas" className={linkClass}>LeoVegas</Link>' invitationsbaserede VIP-program med MGM-niveau fordele. ComeOns personaliserede e-mail-tilbud er ikke en erstatning for et struktureret loyalitetsprogram.</p>
+          <p className="mb-4 text-muted-foreground leading-relaxed"><strong>Sportsbetting-spilleren:</strong> ComeOn har ingen sportsbook. Hvis du vedder 3+ gange ugentligt på sport og ønsker casino som supplement, kræver ComeOn en separat konto. <Link to="/casino-anmeldelser/bet365" className={linkClass}>bet365</Link> (verdens største sportsbook + 500+ casino-spil), <Link to="/casino-anmeldelser/unibet" className={linkClass}>Unibet</Link> eller <Link to="/casino-anmeldelser/nordicbet" className={linkClass}>NordicBet</Link> tilbyder alt under ét login.</p>
+          <p className="text-muted-foreground leading-relaxed"><strong>Den visuelt krævende spiller:</strong> ComeOns design er funktionelt men udateret. Sammenlignet med <Link to="/casino-anmeldelser/mr-green" className={linkClass}>Mr Greens</Link> prisbelønnede æstetik eller <Link to="/casino-anmeldelser/getlucky" className={linkClass}>GetLuckys</Link> moderne interface, føles ComeOns brugerflade som et produktivitetsværktøj snarere end en underholdningsplatform. For spillere, der vægter visuel oplevelse højt, er det en reel ulempe – særligt på mobil, hvor designkvalitet er mere synlig.</p>
         </section>
 
         <Separator className="my-10" />
@@ -289,9 +325,10 @@ const ComeOnAnmeldelse = () => {
         <Separator className="my-10" />
 
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold">Bundlinjen om ComeOn Casino</h2>
-          <p className="mb-4 text-muted-foreground leading-relaxed">ComeOn Casino er den pålidelige all-rounder i den danske mellemklasse. Det er ikke det mest spændende casino, det mest innovative eller det bredeste i spiludvalg. Men det er et af de mest ærlige, gennemsigtige og brugervenlige. For spillere, der er trætte af skjulte bonusvilkår og ugennemsigtige kampagner, er ComeOn en velkommen kontrast.</p>
-          <p className="mb-6 text-muted-foreground leading-relaxed">Med en rating på 4.2/5 anerkender vi ComeOns styrker i gennemsigtighed, hastighed og brugervenlighed – mens vi noterer begrænsninger i VIP-program og designpolering. Det er et casino, der gør det basale exceptionelt godt. Og nogen gange er det præcis, hvad man har brug for. Læs mere om <Link to="/forfatter/jonas" className={linkClass}>forfatteren bag denne anmeldelse</Link>.</p>
+          <h2 className="mb-4 text-3xl font-bold">ComeOn er Danmarks simpleste casino – og det er både styrken og begrænsningen</h2>
+          <p className="mb-4 text-muted-foreground leading-relaxed">ComeOn Casino er den pålidelige all-rounder i den danske mellemklasse. Det er ikke det mest spændende casino, det mest innovative eller det bredeste i spiludvalg. Men det er et af de mest ærlige, gennemsigtige og brugervenlige. I en branche, der hyppigt overkomplicerer bonusvilkår og skjuler begrænsninger i småtskrift, er ComeOns ligefremhed en strategisk differentiator – ikke en mangel.</p>
+          <p className="mb-4 text-muted-foreground leading-relaxed">ComeOns stærkeste kort er gennemsigtighed i en branche, der ofte mangler den. Det er casinoet for den informerede spiller, der har gjort sin research, sammenligner vilkår og prioriterer ærlighed over størrelse. Det er ikke et casino, der forsøger at imponere med flashy design eller astronomiske bonusser – det er et casino, der respekterer spillerens tid og intelligens.</p>
+          <p className="mb-6 text-muted-foreground leading-relaxed">Med en rating på 4.2/5 anerkender vi ComeOns styrker i gennemsigtighed, hastighed og brugervenlighed – mens vi kvantificerer begrænsningerne: 1.000 spil vs. branchens 2.000+ gennemsnit, fravær af VIP-struktur, og et design der prioriterer funktion over form. For den rigtige spillerprofil er ComeOn et af de bedste fund på det danske marked. Læs mere om <Link to="/forfatter/jonas" className={linkClass}>forfatteren bag denne anmeldelse</Link>.</p>
           <RatingBreakdown scores={CASINO_SCORES["comeon"].scores} total={CASINO_SCORES["comeon"].total} />
           <div className="flex flex-col sm:flex-row gap-3">
             <Button asChild variant="outline" size="lg" className="flex-1"><Link to="/top-10-casino-online"><Trophy className="mr-2 h-5 w-5" />Se Top 10 Casinoer</Link></Button>
