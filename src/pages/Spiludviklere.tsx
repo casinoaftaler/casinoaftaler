@@ -3,7 +3,7 @@ import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { AuthorBio } from "@/components/AuthorBio";
 import { FAQSection } from "@/components/FAQSection";
 import { SEO } from "@/components/SEO";
-import { buildFaqSchema } from "@/lib/seo";
+import { buildFaqSchema, buildArticleSchema, SITE_URL } from "@/lib/seo";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
 import spiludviklereHero from "@/assets/heroes/spiludviklere-hero.jpg";
 import { RelatedGuides } from "@/components/RelatedGuides";
@@ -24,294 +24,120 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "@/components/ui/accordion";
-import {
   ShieldCheck,
   Zap,
   Gamepad2,
   Award,
   CheckCircle2,
   AlertTriangle,
-  ThumbsUp,
-  ThumbsDown,
   Star,
   Tv,
-  Dice5,
   Layers,
-  User,
-  CalendarDays,
+  ArrowRight,
+  Target,
+  TrendingUp,
+  BarChart3,
+  Users,
+  Building2,
+  Flame,
+  Sparkles,
+  Clock,
   BookOpen,
 } from "lucide-react";
 
-// FAQs are now JSX inside the component for internal links
-
-const gameTypes = [
-  {
-    category: "Spilleautomater",
-    icon: Gamepad2,
-    description:
-      "Spilleautomater er fundamentet i enhver online casinooplevelse. De spænder fra enkle 3-hjuls klassikere til avancerede video slots med unikke funktioner som Megaways og cascading reels.",
-    types: [
-      {
-        type: "Klassiske slots",
-        description: "Simple 3-hjuls spil med få funktioner",
-        examples: "Fire Joker, Mystery Joker",
-        rtp: "96-97%",
-      },
-      {
-        type: "Video slots",
-        description: "Moderne slots med avanceret grafik og temaer",
-        examples: "Starburst, Book of Dead",
-        rtp: "94-96%",
-      },
-      {
-        type: "Progressive jackpots",
-        description: "Spil med puljer, der vokser til en spiller vinder",
-        examples: "Mega Moolah, Hall of Gods",
-        rtp: "88-92%",
-      },
-    ],
-  },
-  {
-    category: "Bordspil",
-    icon: Dice5,
-    description:
-      "Bordspil kombinerer strategi og held, og byder på alt fra roulette og blackjack til baccarat. Online versioner leverer realistisk grafik og smidigt gameplay.",
-    types: [
-      {
-        type: "Roulette",
-        description: "Drejningens spænding med mange indsatsmuligheder",
-        examples: "Europæisk, Fransk, Amerikansk",
-        rtp: "94-98%",
-      },
-      {
-        type: "Blackjack",
-        description: "Strategisk spil mod dealeren",
-        examples: "Klassisk, Double Exposure, Speed",
-        rtp: "~99%",
-      },
-      {
-        type: "Baccarat",
-        description: "Enkelt spil med store satsmuligheder",
-        examples: "Klassisk, Punto Banco",
-        rtp: "98-99%",
-      },
-    ],
-  },
-  {
-    category: "Live Casino",
-    icon: Tv,
-    description:
-      "Live casino bringer den autentiske casinooplevelse direkte til din skærm med professionelle dealere og avanceret livestreaming-teknologi.",
-    types: [
-      {
-        type: "Live roulette",
-        description: "Interaktiv roulette med professionelle dealere",
-        examples: "Lightning Roulette",
-        rtp: "94-97%",
-      },
-      {
-        type: "Live blackjack",
-        description: "Strategisk spil i realtid mod dealere",
-        examples: "Infinite Blackjack",
-        rtp: "~99%",
-      },
-      {
-        type: "Game shows",
-        description: "Unikke spil med højt underholdningsniveau",
-        examples: "Crazy Time, Monopoly Live",
-        rtp: "90-96%",
-      },
-    ],
-  },
-  {
-    category: "Andre spiltyper",
-    icon: Layers,
-    description:
-      "Udover de klassiske kategorier tilbyder udviklerne nichespil som videopoker, skrabelodder og interaktive game shows.",
-    types: [
-      {
-        type: "Videopoker",
-        description: "Kombination af poker og spilleautomater",
-        examples: "Jacks or Better, Deuces Wild",
-        rtp: "~98%",
-      },
-      {
-        type: "Skrabelodder",
-        description: "Hurtige gevinster med et enkelt klik",
-        examples: "Diamond Strike Scratch",
-        rtp: "~95%",
-      },
-      {
-        type: "Game shows",
-        description: "Interaktive spil fyldt med underholdning",
-        examples: "Deal or No Deal",
-        rtp: "90-94%",
-      },
-    ],
-  },
+/* ─────────────────────────────────────────────
+   Central comparison table data
+   ───────────────────────────────────────────── */
+const developerComparison = [
+  { name: "NetEnt", founded: "1996", focus: "Video Slots", avgRtp: "95,5–96,5%", volatility: "Lav–Medium", bestKnown: "Starburst, Gonzo's Quest, Dead or Alive" },
+  { name: "Pragmatic Play", founded: "2015", focus: "Slots + Live Casino", avgRtp: "95,5–96,5%", volatility: "Medium–Høj", bestKnown: "Sweet Bonanza, Gates of Olympus, The Dog House" },
+  { name: "Evolution Gaming", founded: "2006", focus: "Live Casino", avgRtp: "94–99%", volatility: "Varierer", bestKnown: "Crazy Time, Lightning Roulette, MONOPOLY Live" },
+  { name: "Play'n GO", founded: "2005", focus: "Video Slots", avgRtp: "94,5–96,5%", volatility: "Medium", bestKnown: "Book of Dead, Reactoonz, Fire Joker" },
+  { name: "Hacksaw Gaming", founded: "2018", focus: "Slots + Instant Win", avgRtp: "96,0–96,5%", volatility: "Høj–Ekstrem", bestKnown: "Wanted Dead or a Wild, Chaos Crew, Stick 'Em" },
+  { name: "Nolimit City", founded: "2014", focus: "Video Slots", avgRtp: "96,0–96,5%", volatility: "Ekstrem", bestKnown: "Mental, San Quentin, Tombstone RIP" },
+  { name: "Relax Gaming", founded: "2010", focus: "Slots + Aggregering", avgRtp: "96,0–96,6%", volatility: "Medium–Høj", bestKnown: "Money Train 2/3, Temple Tumble, Dream Drop" },
+  { name: "Big Time Gaming", founded: "2011", focus: "Megaways Slots", avgRtp: "96,0–96,7%", volatility: "Høj", bestKnown: "Bonanza, Extra Chilli, White Rabbit" },
+  { name: "Microgaming", founded: "1994", focus: "Jackpot Slots", avgRtp: "92–96,5%", volatility: "Lav–Høj", bestKnown: "Mega Moolah, Immortal Romance, Thunderstruck II" },
+  { name: "Yggdrasil", founded: "2013", focus: "Video Slots", avgRtp: "95,5–97%", volatility: "Medium", bestKnown: "Vikings Go Berzerk, Valley of the Gods, Raptor DoubleMax" },
+  { name: "Red Tiger", founded: "2014", focus: "Jackpot Slots", avgRtp: "94,7–96,5%", volatility: "Lav–Medium", bestKnown: "Gonzo's Quest Megaways, Dragon's Luck, Piggy Riches MW" },
+  { name: "ELK Studios", founded: "2012", focus: "Premium Slots", avgRtp: "95–96,5%", volatility: "Medium–Høj", bestKnown: "Wild Toro, Kaiju Payment, Cygnus" },
 ];
 
-const developers = [
+/* ─────────────────────────────────────────────
+   Strategic teaser data
+   ───────────────────────────────────────────── */
+const developerTeasers = [
   {
     name: "NetEnt",
     slug: "netent",
     logo: netentLogo,
-    description:
-      "NetEnt er en af de mest anerkendte spiludviklere i branchen og kendte for deres høje kvalitet og kreative tilgang.",
-    games: [
-      "Gonzo's Quest – Revolutionerede slots med cascading reels",
-      "Starburst – Et simpelt, men utroligt populært slot",
-      "Dead or Alive – Kendt for høje gevinster og western-tema",
-    ],
-    highlight: "Synonym med kvalitet og innovation inden for slots",
+    teaser: "NetEnt (Nu en del af Evolution-koncernen) forbliver det mest ikoniske navn i slotbranchen – ikke på grund af volumen, men på grund af indflydelse. Starburst, lanceret i 2012, er fortsat verdens mest spillede online slot med en gennemsnitlig session-længde, der overstiger alle konkurrenter. NetEnts filosofi har altid prioriteret tilgængelighed: lav-til-medium volatilitet, intuitive brugergrænseflader og en gennemsnitlig RTP på 96,1%. Deres tekniske arv inkluderer populariseringen af cascading reels (Gonzo's Quest, 2011), cluster pays og den avancerede Avalanche-mekanik. For spillere, der søger stabile sessioner med jævne gevinster – særligt relevant for bonusomsætning – er NetEnts katalog et strategisk sikkert valg. Begrænsningen er, at deres spil sjældent leverer de eksplosive multiplikatorer, som high-volatility-jægere efterspørger.",
   },
   {
     name: "Pragmatic Play",
     slug: "pragmatic-play",
     logo: pragmaticPlayLogo,
-    description:
-      "Med en omfattende portefølje der spænder over slots, live casino og bingo, har Pragmatic Play etableret sig som en alsidig og pålidelig spiludvikler.",
-    games: [
-      "The Dog House Megaways – Underholdende slot med tusindvis af vinderkombinationer",
-      "Sweet Bonanza – Farverigt slot med multiplikatorer",
-      "Wolf Gold – Klassisk favorit med store jackpots",
-    ],
-    highlight: "Alsidig udvikler med fokus på spillerens behov",
-  },
-  {
-    name: "Relax Gaming",
-    slug: "relax-gaming",
-    logo: relaxGamingLogo,
-    description:
-      "Som en af de nyere stjerner har Relax Gaming hurtigt gjort sig bemærket med deres kreative tilgang og unikke mekanikker.",
-    games: [
-      "Money Train 2 – Actionfyldt slot med massive gevinstmuligheder",
-      "Temple Tumble Megaways – Tusindvis af vinderkombinationer",
-      "Iron Bank – Sjov og dynamisk titel med stor variation",
-    ],
-    highlight: "Innovativ udvikler der konstant skubber til grænserne",
-  },
-  {
-    name: "Play'n GO",
-    slug: "play-n-go",
-    logo: playNGoLogo,
-    description:
-      "Med en passion for innovation har Play'n GO leveret nogle af de mest populære spil til online casinoverdenen.",
-    games: [
-      "Book of Dead – Et af de mest populære slots med egyptisk tema",
-      "Fire Joker – En klassiker med moderne twists",
-      "Reactoonz – Et kaotisk og sjovt grid-slot",
-    ],
-    highlight: "Kreativitet kombineret med solide gevinster",
-  },
-  {
-    name: "Hacksaw Gaming",
-    slug: "hacksaw-gaming",
-    logo: hacksawGamingLogo,
-    description:
-      "Hacksaw Gaming er kendt for deres innovative tilgang til slots og instant win-spil med enkle, men engagerende mekanikker.",
-    games: [
-      "Chaos Crew – Unikt slot med edgy, punk-inspireret stil",
-      "Wanted Dead or a Wild – Western-slot med høj volatilitet",
-      "Cubes 2 – Farverig og kreativ titel",
-    ],
-    highlight: "Frisk tilføjelse til branchen med fokus på originalitet",
-  },
-  {
-    name: "Nolimit City",
-    slug: "nolimit-city",
-    logo: nolimitCityLogo,
-    description:
-      "Nolimit City er kendt for deres ekstreme volatilitet og unikke xWays- og xNudge-mekanikker, der giver helt nye spiloplevelser.",
-    games: [
-      "Mental – Kontroversielt slot med ekstrem volatilitet",
-      "Tombstone RIP – Western-tema med massive gevinstmuligheder",
-      "San Quentin – Banebrydende slot med xWays-mekanik",
-    ],
-    highlight: "Specialister i høj volatilitet og unikke mekanikker",
-  },
-  {
-    name: "Yggdrasil",
-    slug: "yggdrasil",
-    logo: yggdrasilLogo,
-    description:
-      "Yggdrasil er en innovativ spiludvikler der kombinerer fantastisk grafik med spændende gameplay og unikke funktioner.",
-    games: [
-      "Vikings Go Berzerk – Actionfyldt viking-slot",
-      "Valley of the Gods – Egyptisk eventyr med cluster pays",
-      "Raptor DoubleMax – Dinosaur-tema med DoubleMax-mekanik",
-    ],
-    highlight: "Fantastisk grafik og innovative spilmekanikker",
-  },
-  {
-    name: "Microgaming",
-    slug: "microgaming",
-    logo: microgamingLogo,
-    description:
-      "Microgaming er en pioner der var blandt de første til at lancere et online casino helt tilbage i 1994.",
-    games: [
-      "Mega Moolah – Progressiv jackpot der har skabt millionærer",
-      "Immortal Romance – Dramatisk slot med bonusfunktioner",
-      "Thunderstruck II – Populært spil med nordisk mytologi",
-    ],
-    highlight: "Banebrydende teknologi og konstant innovation",
-  },
-  {
-    name: "Red Tiger",
-    slug: "red-tiger",
-    logo: redTigerLogo,
-    description:
-      "Red Tiger Gaming er kendt for deres daglige jackpots og visuelt imponerende spilleautomater med innovative bonusfunktioner.",
-    games: [
-      "Gonzo's Quest Megaways – Megaways-version af klassikeren",
-      "Dragon's Luck – Asiatisk tema med mystery symbols",
-      "Piggy Riches Megaways – Populær Megaways-variant",
-    ],
-    highlight: "Daglige jackpots og visuelt imponerende spil",
-  },
-  {
-    name: "Big Time Gaming",
-    slug: "big-time-gaming",
-    logo: bigTimeGamingLogo,
-    description:
-      "Big Time Gaming er skaberne bag den banebrydende Megaways-mekanik, der har revolutioneret spilleautomatbranchen.",
-    games: [
-      "Bonanza Megaways – Den originale Megaways-slot",
-      "Extra Chilli – Populært mexicansk-tema slot",
-      "White Rabbit – Alice i Eventyrland med Megaways",
-    ],
-    highlight: "Opfindere af Megaways-mekanikken",
+    teaser: "Pragmatic Play er branchens mest produktive studie med en udgivelsesfrekvens på 6-8 nye titler pr. måned – et tempo, der overgår alle konkurrenter. Deres portefølje spænder fra slots (Sweet Bonanza, Gates of Olympus) over live casino (Mega Wheel, PowerUP Roulette) til bingo og virtuelle sportsbegivenheder. Den strategiske styrke ligger i alsidigheden: Pragmatic Play dækker hele volatilitetsspektret, fra lavrisiko-underholdning (The Dog House) til high-variance-oplevelser (Starlight Princess). Deres Tumble-mekanik og multiplikator-systemer har defineret en hel generation af cluster-pay slots. For casinospillere betyder Pragmatic Plays tilstedeværelse på et casino, at udvalget er bredt og opdateret. Ulempen er, at det høje udgivelsestempo kan resultere i kvalitetsvariation mellem titlerne.",
   },
   {
     name: "Evolution Gaming",
     slug: "evolution-gaming",
     logo: evolutionGamingLogo,
-    description:
-      "Evolution Gaming er verdens førende leverandør af live casino-spil med innovative game shows og professionelle dealere.",
-    games: [
-      "Crazy Time – Det ultimative live game show med 25.000x multiplikator",
-      "Lightning Roulette – Roulette med op til 500x multiplikatorer",
-      "MONOPOLY Live – Det ikoniske brætspil i live casino-format",
-    ],
-    highlight: "Absolut markedsleder inden for live casino",
+    teaser: "Evolution Gaming dominerer live casino-segmentet med en markedsandel, der gør dem til den ubestridte verdensleder. Deres innovation strækker sig langt ud over traditionel live roulette og blackjack: game show-formater som Crazy Time (25.000x multiplikator), Lightning Roulette (500x) og MONOPOLY Live har skabt en helt ny kategori af casinounderholdning. Teknisk opererer Evolution fra 15+ studier globalt med 4K-streaming, multi-angle kameraopsætninger og proprietære autentificeringssystemer. For danske spillere er Evolution synonymt med den autentiske casinooplevelse – professionelle dealere, interaktivt chat og splitsekunders responsivitet. Begrænsningen er, at Evolution primært fokuserer på live formater; deres RNG-slots (via NetEnt og Red Tiger, begge datterselskaber) er separate produktlinjer.",
+  },
+  {
+    name: "Play'n GO",
+    slug: "play-n-go",
+    logo: playNGoLogo,
+    teaser: "Play'n GO har opbygget en af branchens mest konsistente porteføljer med medium-volatilitet som kernefilosofi. Book of Dead (2016) er et af de mest omsatte spil i europæisk casinohistorie og fungerer som standarden for 'Book of'-genren. Deres styrke er balancen: RTP-værdier i intervallet 94,5-96,5% kombineret med engagerende bonusrunder, der hverken er for sjældne (som hos high-vol-udviklere) eller for hyppige (som hos low-vol-producenter). Play'n GOs tekniske platform understøtter desuden et avanceret regulatorisk compliance-framework, der sikrer tilgængelighed på tværs af alle licenserede markeder. For bonusjægere er Play'n GOs titler ideelle til omsætning – den moderate volatilitet strækker budgettet, mens bonusfrekvensen holder sessionen engagerende.",
+  },
+  {
+    name: "Hacksaw Gaming",
+    slug: "hacksaw-gaming",
+    logo: hacksawGamingLogo,
+    teaser: "Hacksaw Gaming repræsenterer den nye generation af spiludviklere: mobile-first design, ekstremt høj volatilitet og en visuel identitet, der bryder med branchens konventioner. Grundlagt i 2018 har de på rekordtid etableret sig som en af de mest eftertragtede udviklere blandt high-risk-spillere. Wanted Dead or a Wild (op til 12.500x) og Chaos Crew (op til 10.000x) demonstrerer filosofien: få, men massive gevinster med lange tørrperioder imellem. Hacksaws instant win-spil tilføjer en unik dimension med skrabelods-mekanikker i digitalt format. Den strategiske begrænsning er åbenlys: Hacksaws spil er ikke designet til spillere med lavt risikoappetit eller begrænset bankroll. Sessions kan være brutale, og den lave hit frequency kræver tålmodighed og budgetdisciplin.",
+  },
+  {
+    name: "Nolimit City",
+    slug: "nolimit-city",
+    logo: nolimitCityLogo,
+    teaser: "Nolimit City har positioneret sig i branchens yderkant med det mest ekstreme volatilitetsniveau af alle mainstream-udviklere. Deres proprietære mekanikker – xWays (dynamisk hjuludvidelse), xNudge (nudge med stigende multiplikatorer) og xSplit (symbolopdelning) – skaber gevinstpotentialer, der overstiger 50.000x indsatsen på titler som San Quentin og Mental. Det kontroversielle tematiske univers (fængsler, galskab, vold) er en bevidst differentiering, der tiltaler en specifik, dedikeret spillerbase. Matematisk opererer Nolimit City med en gennemsnitlig hit frequency på kun 15-18% – markant lavere end branchestandarden – men kompenserer med eksplosive bonusrunder. For den danske spiller er anbefalingen klar: Nolimit City er udelukkende for erfarne spillere med høj risikotolerance og solid bankroll-management.",
+  },
+  {
+    name: "Relax Gaming",
+    slug: "relax-gaming",
+    logo: relaxGamingLogo,
+    teaser: "Relax Gaming opererer i en dobbeltrolle: som både spiludvikler og aggregeringsplatform. Deres Silver Bullet-partnerprogram giver mindre studier adgang til distributionsnetværket, hvilket gør Relax til en gatekeeper for nye talenter i branchen. Egne titler som Money Train-serien (op til 50.000x i Money Train 3) og Dream Drop-jackpotsystemet har cementeret deres status som innovatorer. Dream Drop er særligt bemærkelsesværdig: et flertrins-jackpotsystem, der kan udløses i ethvert tilknyttet spil og allerede har udbetalt præmier over €10 millioner. For danske spillere tilbyder Relax Gaming en attraktiv kombination af medium-høj volatilitet med veldesignede bonusrunder og konsistente RTP-værdier omkring 96,2-96,6%.",
+  },
+  {
+    name: "Big Time Gaming",
+    slug: "big-time-gaming",
+    logo: bigTimeGamingLogo,
+    teaser: "Big Time Gaming (BTG) har ændret slot-branchen permanent med opfindelsen af Megaways-mekanikken i 2016. Konceptet er elegant: hvert hjul viser et tilfældigt antal symboler (typisk 2-7) pr. spin, hvilket skaber op til 117.649 unikke vinderkombinationer. Bonanza – den originale Megaways-slot – forbliver en reference for hele genren. BTGs forretningsmodel inkluderer licensering af Megaways til andre udviklere (Pragmatic Play, Red Tiger, NetEnt), hvilket har skabt et helt økosystem. For spillere tilbyder BTGs egne titler konsekvent høj volatilitet med stærke multiplikator-systemer og Feature Drop (bonus buy). Begrænsningen er det smalle katalog: BTG udgiver langt færre titler end Pragmatic Play eller NetEnt, hvilket kan begrænse variationen.",
+  },
+  {
+    name: "Microgaming",
+    slug: "microgaming",
+    logo: microgamingLogo,
+    teaser: "Microgaming er industriens ældste aktør – grundlagt i 1994, før de fleste spillere overhovedet havde internetadgang. Deres historiske bidrag er uovertruffen: det første online casino (The Gaming Club, 1994), den første mobile casino-software (2004) og verdens største progressive jackpot-netværk (Mega Moolah, med en verdensrekord-udbetaling på €19,4 millioner). I dag fungerer Microgaming primært som aggregeringsplatform, der distribuerer spil fra uafhængige studier. For danske spillere er Microgamings relevans knyttet til jackpot-spillene og det enorme katalog af ældre titler. Den strategiske begrænsning er, at nyere titler ofte kommer fra partnerstudier snarere end Microgamings eget udviklingshold, hvilket kan skabe inkonsistens i kvalitet.",
+  },
+  {
+    name: "Yggdrasil",
+    slug: "yggdrasil",
+    logo: yggdrasilLogo,
+    teaser: "Yggdrasil (opkaldt efter livets træ i nordisk mytologi) har differentieret sig med den bedste grafiske kvalitet i slotbranchen. Deres iSENSE 2.0+ framework leverer filmiske animationer og 3D-effekter, der overstiger branchestandarden markant. Tekniske innovationer inkluderer GigaBlox (kæmpesymboler op til 6x6), Splitz (dynamisk symbolopdelning) og MultiMAX (stigende multiplikatorer). Vikings Go Berzerk og Valley of the Gods er showcase-titler, der demonstrerer Yggdrasils filosofi: kvalitet over kvantitet. For spillere med fokus på visuel oplevelse og medium volatilitet er Yggdrasil et oplagt valg. Begrænsningen er, at den grafiske ambition kan resultere i længere loadtider på ældre enheder og svagere mobilforbindelser.",
+  },
+  {
+    name: "Red Tiger",
+    slug: "red-tiger",
+    logo: redTigerLogo,
+    teaser: "Red Tiger Gaming (nu en del af Evolution-koncernen) er specialister i jackpot-systemer og progressive mekanikker. Deres Daily Drop Jackpots garanterer daglige udbetalinger – et unikt koncept, der sikrer, at mindst én spiller vinder jackpotten inden midnat hver dag. Denne mekanisme øger spillerengagementet markant, fordi chancen for gevinst stiger eksponentielt jo tættere man kommer på deadline. Red Tigers portefølje kombinerer lav-til-medium volatilitet med visuelt polerede spil og hyppige bonusaktiveringer. Gonzo's Quest Megaways – en Megaways-version af NetEnts klassiker – demonstrerer synergierne inden for Evolution-koncernen. For casual spillere, der foretrækker stabile sessioner med regelmæssige jackpot-muligheder, er Red Tiger et fremragende valg.",
   },
   {
     name: "ELK Studios",
     slug: "elk-studios",
     logo: elkStudiosLogo,
-    description:
-      "ELK Studios er en svensk spiludvikler med fokus på kvalitet frem for kvantitet og innovative mekanikker som Avalanche.",
-    games: [
-      "Wild Toro – Flagskibstitel med Walking Wilds",
-      "Kaiju Payment – Innovativ slot med monster-tema",
-      "Cygnus – Avalanche-slot med 262.144 vinderkombinationer",
-    ],
-    highlight: "Prisbelønnet kvalitet og innovativ spildesign",
+    teaser: "ELK Studios er det svenske boutique-studie, der har valgt kvalitet som strategi: færre end 50 titler i kataloget, men hver eneste er håndværksmæssigt poleret til perfektion. Wild Toro – deres flagskibstitel – vandt den prestigefyldte 'Game of the Year'-pris og introducerede Walking Wilds i en spiltjenende komponent. ELK's Betting Strategies (forudprogrammerede indsatsmønstre som Optimizer, Leveller og Jumper) er en unik innovation, der automatiserer bankroll-management. For erfarne spillere, der værdsætter matematisk gennemtænkt spildesign over volumen, er ELK Studios et studiemæssigt topvalg. Begrænsningen er det begrænsede udvalg – casual spillere kan hurtigt udtømme kataloget.",
   },
 ];
 
@@ -321,63 +147,61 @@ const Spiludviklere = () => {
 
   const spiludviklereFaqs = [
     {
-      question: "Hvad gør en spiludvikler, og hvordan adskiller de sig fra casinooperatører?",
+      question: "Hvad er forskellen på en spiludvikler og et online casino?",
       answer: (
         <>
-          En spiludvikler (også kaldet game provider eller studio) er virksomheden, der designer, programmerer og producerer selve casinospillene – fra spilleautomater og bordspil til{" "}
-          <Link to="/live-casino" className="text-primary underline hover:text-primary/80">live casino</Link>-løsninger. Casinooperatøren driver derimod platformen, håndterer licenser, betalinger og kundeservice. Et moderne online casino samarbejder typisk med 20–40 forskellige spiludviklere for at tilbyde et bredt katalog. Udviklerne certificerer deres spil via uafhængige testlaboratorier (eCOGRA, iTech Labs, GLI) og licenserer dem via B2B-aftaler. De største udviklere som{" "}
-          <Link to="/spiludviklere/netent" className="text-primary underline hover:text-primary/80">NetEnt</Link> og{" "}
-          <Link to="/spiludviklere/pragmatic-play" className="text-primary underline hover:text-primary/80">Pragmatic Play</Link> har porteføljer med 200+ titler.
+          En spiludvikler (game provider) designer, programmerer og certificerer selve spillene – slots, bordspil og{" "}
+          <Link to="/live-casino" className="text-primary underline hover:text-primary/80">live casino</Link>-formater. Casinooperatøren driver platformen: licenser, betalinger, kundeservice og markedsføring. Et moderne casino samarbejder typisk med 20-40 udviklere via API-integration for at tilbyde et bredt katalog. Udvikleren bestemmer spillets matematik (RTP, volatilitet, hit frequency), mens casinoet bestemmer{" "}
+          <Link to="/velkomstbonus" className="text-primary underline hover:text-primary/80">bonusvilkår</Link> og indsatsgrænser. Spillemyndigheden regulerer begge parter separat.
         </>
       ),
     },
     {
-      question: "Hvad er RTP og hit frequency, og hvordan bruger jeg tallene til at vælge spil?",
-      answer: (
-        <>
-          RTP (Return to Player) angiver den procentvise tilbagebetaling over millioner af spins – fx betyder 96 % RTP, at casinoet statistisk beholder 4 % af alle indsatser. Hit frequency angiver, hvor ofte et spin resulterer i en gevinst – typisk 20–35 % for moderne video slots. Høj RTP + høj hit frequency giver jævne sessioner (fx Starburst: 96,09 % RTP, ~23 % hit frequency). Høj RTP + lav hit frequency giver sjældne, men store gevinster (fx Book of Dead: 96,21 % RTP, ~18 % hit frequency). Disse tal er relevante, når du vælger spil til{" "}
-          <Link to="/velkomstbonus" className="text-primary underline hover:text-primary/80">bonusomsætning</Link> – høj hit frequency hjælper med at strække budgettet.
-        </>
-      ),
-    },
-    {
-      question: "Hvilke innovative spilmekanikker har de største udviklere skabt?",
-      answer: (
-        <>
-          De vigtigste innovationer inkluderer: Megaways (opfundet af{" "}
-          <Link to="/spiludviklere/big-time-gaming" className="text-primary underline hover:text-primary/80">Big Time Gaming</Link>) med op til 117.649 dynamiske vinderkombinationer pr. spin. Cascading Reels/Avalanche (pioneeret af NetEnt i Gonzo's Quest) hvor vindende symboler forsvinder og erstattes af nye. xWays og xNudge fra{" "}
-          <Link to="/spiludviklere/nolimit-city" className="text-primary underline hover:text-primary/80">Nolimit City</Link>, der udvider hjulene dynamisk. Cluster Pays (Yggdrasil) der belønner grupper frem for linjer. Tumble-mekanik fra{" "}
-          <Link to="/spiludviklere/pragmatic-play" className="text-primary underline hover:text-primary/80">Pragmatic Play</Link> (Sweet Bonanza). Disse mekanikker har fundamentalt ændret, hvordan moderne slots fungerer.
-        </>
-      ),
-    },
-    {
-      question: "Er spil fra alle udviklere fair, og hvem kontrollerer tilfældigheden?",
+      question: "Kan et casino ændre RTP-værdien på et spil?",
       answer:
-        "Kun spil fra licenserede udviklere garanterer fairness. Alle spil hos danske casinoer bruger certificerede Random Number Generators (RNG), der testes regelmæssigt af uafhængige laboratorier som eCOGRA, iTech Labs og GLI (Gaming Laboratories International). Disse testorganisationer verificerer, at hvert spin er statistisk uafhængigt, at den offentliggjorte RTP er korrekt, og at bonusfunktioner aktiveres med den annoncerede frekvens. Spillemyndigheden kræver desuden, at alle spil på danske licenserede casinoer har gennemgået teknisk certificering. Resultatet er, at du kan stole på, at et spil med 96 % RTP faktisk betaler 96 % tilbage over tid – hverken casinoet eller udvikleren kan manipulere individuelle spins.",
+        "Ja, mange udviklere tilbyder RTP-konfigurationer, hvor casinoet kan vælge mellem 2-4 forudgodkendte RTP-niveauer. For eksempel tilbyder Play'n GO's Book of Dead konfigurationer på 94,25%, 96,21% og 86,18%. Alle konfigurationer er certificeret af uafhængige testlaboratorier, og Spillemyndigheden kræver, at den faktiske RTP offentliggøres. I praksis vælger de fleste danske licenserede casinoer den højeste konfiguration, da konkurrencepresset er intenst. Du kan typisk finde den aktuelle RTP i spillets informationsmenu (i-ikon). Vi anbefaler altid at tjekke dette, før du begynder at spille.",
     },
     {
-      question: "Hvordan påvirker valget af spiludvikler min casinooplevelse?",
+      question: "Hvad betyder høj og lav volatilitet i praksis for min bankroll?",
       answer: (
         <>
-          Valget af udviklere definerer din oplevelse markant. Hvis du foretrækker stabile sessioner med jævne gevinster, er{" "}
-          <Link to="/spiludviklere/netent" className="text-primary underline hover:text-primary/80">NetEnt</Link> og{" "}
-          <Link to="/spiludviklere/play-n-go" className="text-primary underline hover:text-primary/80">Play'n GO</Link> ideelle med overvejende medium-volatilitet. For adrenalin og potentielt massive gevinster er{" "}
-          <Link to="/spiludviklere/nolimit-city" className="text-primary underline hover:text-primary/80">Nolimit City</Link> og{" "}
-          <Link to="/spiludviklere/hacksaw-gaming" className="text-primary underline hover:text-primary/80">Hacksaw Gaming</Link> specialister i høj-volatilitet. For{" "}
-          <Link to="/live-casino" className="text-primary underline hover:text-primary/80">live casino</Link> er{" "}
-          <Link to="/spiludviklere/evolution-gaming" className="text-primary underline hover:text-primary/80">Evolution Gaming</Link> ubestridt markedsleder. Et godt casino bør samarbejde med minimum 15 udviklere for at sikre bredde i spillestile.
+          Volatilitet beskriver gevinstmønsteret: lav volatilitet giver hyppige, små gevinster (stabil bankroll), mens høj volatilitet giver sjældne, men potentielt massive gevinster (ustabil bankroll). Konkret: et lavvolatilt spil som Starburst (<Link to="/spiludviklere/netent" className="text-primary underline hover:text-primary/80">NetEnt</Link>) har en hit frequency på ~23% – du vinder på næsten hvert fjerde spin. Et højvolatilt spil som San Quentin (<Link to="/spiludviklere/nolimit-city" className="text-primary underline hover:text-primary/80">Nolimit City</Link>) har ~15% hit frequency, men bonusrunder kan udbetale 50.000x+ indsatsen. For bonusomsætning anbefales lav-medium volatilitet; for adrenalin og store gevinster anbefales høj volatilitet med tilstrækkelig bankroll (min. 200-500x indsatsen).
         </>
       ),
     },
     {
-      question: "Kan jeg spille alle udvikleres spil på mobilen, og er oplevelsen den samme?",
+      question: "Er alle spiludviklere på danske casinoer licenserede og kontrollerede?",
       answer: (
         <>
-          Stort set alle moderne spiludviklere udvikler med HTML5-teknologi, der sikrer fuld kompatibilitet på tværs af desktop, tablet og smartphone. Mobiloplevelsen er i mange tilfælde bedre end desktop, da spil som Sweet Bonanza og Book of Dead er designet med touch-interaktion i tankerne. Nogle ældre titler fra{" "}
-          <Link to="/spiludviklere/microgaming" className="text-primary underline hover:text-primary/80">Microgaming</Link> og NetEnt har tilpassede mobilversioner med forenklede menuer. Live casino fungerer også fejlfrit på mobil med automatisk videokvalitetsjustering. Du kan indbetale direkte via mobilvennlige metoder som{" "}
-          <Link to="/betalingsmetoder/mobilepay" className="text-primary underline hover:text-primary/80">MobilePay</Link> og{" "}
-          <Link to="/betalingsmetoder/apple-pay" className="text-primary underline hover:text-primary/80">Apple Pay</Link>.
+          Ja. Spillemyndigheden kræver, at alle spil på danske licenserede casinoer stammer fra certificerede udviklere. Certificeringen indebærer, at spillets RNG (Random Number Generator) er testet af uafhængige laboratorier som{" "}
+          <a href="https://www.ecogra.org/" target="_blank" rel="noopener noreferrer" className="text-primary underline hover:text-primary/80">eCOGRA</a>,{" "}
+          <a href="https://www.itechlabs.com/" target="_blank" rel="noopener noreferrer" className="text-primary underline hover:text-primary/80">iTech Labs</a> eller GLI (Gaming Laboratories International). Testene verificerer statistisk uafhængighed mellem spins, korrekt RTP-implementation og fair bonusaktivering. Denne regulering gælder ikke for udenlandske casinoer uden dansk licens – der er ingen garanti for spillets fairness.
+        </>
+      ),
+    },
+    {
+      question: "Hvilke spiludviklere er bedst til bonusomsætning?",
+      answer: (
+        <>
+          For effektiv{" "}
+          <Link to="/omsaetningskrav" className="text-primary underline hover:text-primary/80">bonusomsætning</Link> anbefales udviklere med høj RTP og medium-lav volatilitet:{" "}
+          <Link to="/spiludviklere/netent" className="text-primary underline hover:text-primary/80">NetEnt</Link> (Starburst: 96,09%, lav vol),{" "}
+          <Link to="/spiludviklere/play-n-go" className="text-primary underline hover:text-primary/80">Play'n GO</Link> (Fire Joker: 96,15%, lav vol) og{" "}
+          <Link to="/spiludviklere/red-tiger" className="text-primary underline hover:text-primary/80">Red Tiger</Link> (Dragon's Luck: 95,19%, lav vol). Undgå højvolatile udviklere som Nolimit City og Hacksaw Gaming til omsætning – risikoen for at tabe hele bankrollen, før kravet er opfyldt, er markant højere. Tjek også om casinoet begrænser indsatsstørrelse under bonusomsætning.
+        </>
+      ),
+    },
+    {
+      question: "Hvordan påvirker bonus buy-funktionen spillets RTP?",
+      answer:
+        "Bonus buy (Feature Drop, Ante Bet) giver dig mulighed for at købe direkte adgang til bonusrunden for en fast pris (typisk 50-100x indsatsen). RTP-værdien for bonus buy kan afvige fra basegame-RTP. For eksempel har Sweet Bonanza (Pragmatic Play) en basegame-RTP på 96,48%, mens bonus buy-RTP er 96,50% – næsten identisk. Dog har andre titler større afvigelser. Bonus buy eliminerer ikke house edge; den komprimerer blot variansen ved at fjerne basegame-spins og gå direkte til den volatile bonusrunde. Spillemyndigheden tillader bonus buy på danske casinoer, men nogle casinoer deaktiverer funktionen voluntært.",
+    },
+    {
+      question: "Hvad er Megaways, og hvorfor er det så populært?",
+      answer: (
+        <>
+          Megaways er en patenteret mekanik opfundet af{" "}
+          <Link to="/spiludviklere/big-time-gaming" className="text-primary underline hover:text-primary/80">Big Time Gaming</Link> i 2016. Konceptet er simpelt: hvert hjul viser et tilfældigt antal symboler (2-7) pr. spin, hvilket genererer op til 117.649 unikke vinderkombinationer – mod typisk 20-50 på en standard video slot. Populariteten skyldes, at Megaways fundamentalt ændrer spillets dynamik: ingen to spins er identiske, og gevinstpotentialet er dramatisk højere. BTG licenserer mekanikken til andre udviklere (Pragmatic Play, Red Tiger, NetEnt), hvilket har skabt et helt Megaways-økosystem med 200+ titler. Begrænsningen er den iboende høje volatilitet – Megaways-spil er ikke ideelle til spillere med lav risikotolerance.
         </>
       ),
     },
@@ -385,336 +209,191 @@ const Spiludviklere = () => {
 
   const faqJsonLd = buildFaqSchema(spiludviklereFaqs);
 
+  const articleSchema = buildArticleSchema({
+    headline: "Spiludviklere til Casino – Den Ultimative Brancheguide 2026",
+    description: "Strategisk guide til alle spiludviklere på danske casinoer. RTP-analyse, volatilitetsforklaring, matematisk gennemgang og sammenligning af 12 udviklere.",
+    url: `${SITE_URL}/spiludviklere`,
+    datePublished: "2026-01-15",
+    dateModified: "2026-02-18",
+    authorName: "Jonas",
+    authorUrl: `${SITE_URL}/forfatter/jonas`,
+  });
+
   return (
     <>
       <SEO
-        title="Spiludviklere – De Bedste Casino-Spiludviklere i Danmark 2026 | Casinoaftaler"
-        description="Lær alt om de største spiludviklere i casinobranchen. Fra NetEnt og Microgaming til Play'n GO – find ud af hvem der skaber dine favoritspil."
-        jsonLd={faqJsonLd}
+        title="Spiludviklere Casino 2026 – RTP, Volatilitet & Strategisk Guide"
+        description="Den ultimative guide til casino-spiludviklere i Danmark. Sammenlign RTP, volatilitet og matematik for NetEnt, Pragmatic Play, Evolution og 9 andre udviklere."
+        jsonLd={[faqJsonLd, articleSchema]}
       />
 
-      {/* Hero Section */}
+      {/* Hero */}
       <section
         className="relative overflow-hidden py-12 text-white md:py-20"
         style={{
           backgroundImage: heroBackgroundImage
             ? `linear-gradient(135deg, hsl(260 70% 25% / 0.95), hsl(210 80% 30% / 0.9)), url(${heroBackgroundImage})`
-            : 'linear-gradient(135deg, hsl(260 70% 25%), hsl(250 60% 20%) 40%, hsl(210 80% 25%))',
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
+            : "linear-gradient(135deg, hsl(260 70% 25%), hsl(250 60% 20%) 40%, hsl(210 80% 25%))",
+          backgroundSize: "cover",
+          backgroundPosition: "center",
         }}
       >
         <div className="container">
           <div className="mx-auto max-w-3xl text-center">
             <Badge variant="secondary" className="mb-4">
               <Gamepad2 className="mr-1.5 h-3.5 w-3.5" />
-              Guide til spiludviklere
+              Opdateret Februar 2026
             </Badge>
             <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">
-              Spiludviklere
+              Spiludviklere – Hvem Styrer Matematikken Bag Dine Casino-Spil?
             </h1>
             <p className="text-lg text-white/80">
-              Bag ethvert fantastisk casinospil står en spiludvikler med passion
-              for innovation, teknologi og underholdning. Lær de største navne
-              at kende, og find ud af hvem der skaber dine favoritspil.
+              RTP, volatilitet og spilmekanikker – forskellen mellem udviklere afgør dine vinderchancer. Vi analyserer alle 12 ledende studier med matematisk dybde og strategisk vejledning.
             </p>
           </div>
         </div>
       </section>
 
       <div className="container py-8 md:py-12">
-        <AuthorMetaBar author="jonas" date="11-02-2026" readTime="15 Min." />
+        <AuthorMetaBar author="jonas" date="18-02-2026" readTime="30 Min." />
 
         <div className="mb-10 overflow-hidden rounded-xl">
-          <img src={spiludviklereHero} alt="Spiludviklere – game studio med slot-spil på skærme" className="w-full h-auto object-cover max-h-[400px]" loading="eager" />
+          <img src={spiludviklereHero} alt="Spiludviklere – teknisk analyse af casino-spil og RNG-systemer" className="w-full h-auto object-cover max-h-[400px]" loading="eager" />
         </div>
 
-        {/* Intro */}
+        {/* ═══════════════════════════════════════════
+            SECTION 1: Strategisk intro
+            ═══════════════════════════════════════════ */}
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold">
-            Hvad er en spiludvikler?
-          </h2>
+          <h2 className="mb-4 text-3xl font-bold">RTP, volatilitet og matematik – hvorfor valg af spiludvikler direkte påvirker dine vinderchancer</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
-            Spiludviklere er drivkraften bag casinoverdenen – de kreative
-            hoveder der forvandler idéer til digitale spiloplevelser. Deres
-            arbejde strækker sig langt ud over at bygge et simpelt spil.
-            De designer hele oplevelsen fra bunden: skarpe visuelle
-            detaljer, fængslende lydeffekter, innovative funktioner og
-            glidende gameplay, der tilsammen skaber noget unikt og
-            engagerende. Spiludviklerne er også afgørende for, hvilke{" "}
-            <Link to="/velkomstbonus" className="text-primary underline hover:text-primary/80">velkomstbonusser</Link>{" "}
-            og{" "}
-            <Link to="/free-spins" className="text-primary underline hover:text-primary/80">free spins</Link>{" "}
-            casinoerne kan tilbyde, da det ofte er specifikke spil, der indgår i bonustilbud.
+            De fleste casinospillere vælger spil baseret på tema, grafik eller et navn, de genkender. Men den faktor, der har størst indflydelse på din langsigtede spilleroplevelse, er usynlig: den matematiske model bag spillet. Denne model – defineret af udvikleren, ikke casinoet – bestemmer, hvor ofte du vinder (hit frequency), hvor meget du vinder (multiplikator-struktur), og hvor stor en andel af alle indsatser der tilbagebetales over tid (RTP). To spil med identisk tema og grafik kan have radikalt forskellige matematiske profiler, fordi de er skabt af forskellige udviklere med forskellige design-filosofier.
           </p>
           <p className="mb-4 text-muted-foreground leading-relaxed">
-            Processen begynder med en idé – måske inspireret af
-            oldægyptisk mytologi, science fiction eller klassisk
-            casinoæstetik. Derefter arbejder designere, programmører og
-            lydproducenter tæt sammen. Programmørerne bygger spillets
-            fundament med avanceret teknologi som RNG (Random Number
-            Generator) for at sikre fuldstændig fairness, mens
-            lyddesignere tilfører den stemning, der suger spilleren ind i
-            universet.
+            Denne guide er ikke en overfladisk præsentation af studienavne og logoer. Den er en analytisk gennemgang af 12 ledende spiludviklere, der dækker det danske licenserede casinomarked, med fokus på den matematik, teknologi og regulering, der ligger bag spillene. Vi gennemgår, hvordan RTP beregnes, hvad volatilitet reelt betyder for din bankroll, og hvordan du strategisk matcher din spillestil med den rigtige udvikler. Læs også vores{" "}
+            <Link to="/casino-anmeldelser" className="text-primary underline hover:text-primary/80">casino anmeldelser</Link>{" "}
+            for at se, hvilke udviklere hvert casino samarbejder med.
           </p>
           <p className="text-muted-foreground leading-relaxed">
-            Spiludviklere er med andre ord ikke bare tekniske eksperter –
-            de er kunstnere og historiefortællere, der gør hvert eneste
-            spin til noget særligt. Når du spiller med en{" "}
-            <Link to="/indskudsbonus" className="text-primary underline hover:text-primary/80">indskudsbonus</Link>{" "}
-            eller{" "}
-            <Link to="/bonus-uden-indbetaling" className="text-primary underline hover:text-primary/80">bonus uden indbetaling</Link>,
-            er det spiludviklernes spil, du nyder godt af.
+            Forståelsen af spiludviklere er særligt relevant, når du aktiverer en{" "}
+            <Link to="/velkomstbonus" className="text-primary underline hover:text-primary/80">velkomstbonus</Link>{" "}
+            eller spiller med{" "}
+            <Link to="/free-spins" className="text-primary underline hover:text-primary/80">free spins</Link>: valget af spil – og dermed udvikler – afgør, om du effektivt kan opfylde{" "}
+            <Link to="/omsaetningskrav" className="text-primary underline hover:text-primary/80">omsætningskravene</Link>{" "}
+            eller risikerer at tabe bonussen, før du når i mål. Et lavvolatilt NetEnt-spil og et ekstremt volatilt Nolimit City-spil kræver fundamentalt forskellige bankroll-strategier – og den forskel defineres af udvikleren, ikke af casinoet.
           </p>
         </section>
 
-        <InlineCasinoCards title="Casinoer med de bedste spiludviklere" count={4} />
+        {/* ═══════════════════════════════════════════
+            SECTION 2: Central sammenligningstabel
+            ═══════════════════════════════════════════ */}
+        <section className="mb-12">
+          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
+            <BarChart3 className="h-7 w-7 text-primary" />
+            Sammenligning af alle 12 ledende spiludviklere
+          </h2>
+          <p className="mb-6 text-muted-foreground leading-relaxed">
+            Nedenstående tabel giver et makro-overblik over de vigtigste parametre for hver udvikler. RTP-intervallet afspejler spændet i deres katalog – individuelle titler kan afvige. Volatilitetsangivelsen er en generalisering af studiets dominerende profil.
+          </p>
+          <div className="overflow-x-auto rounded-lg border border-border">
+            <table className="w-full text-sm">
+              <thead>
+                <tr className="bg-muted/50">
+                  <th className="px-4 py-3 text-left font-semibold">Udvikler</th>
+                  <th className="px-4 py-3 text-left font-semibold">Grundlagt</th>
+                  <th className="px-4 py-3 text-left font-semibold">Fokus</th>
+                  <th className="px-4 py-3 text-left font-semibold">Gns. RTP</th>
+                  <th className="hidden md:table-cell px-4 py-3 text-left font-semibold">Volatilitet</th>
+                  <th className="hidden lg:table-cell px-4 py-3 text-left font-semibold">Bedst kendt for</th>
+                </tr>
+              </thead>
+              <tbody>
+                {developerComparison.map((dev, i) => (
+                  <tr key={dev.name} className={i % 2 === 0 ? "bg-card" : "bg-muted/20"}>
+                    <td className="px-4 py-3 font-medium">{dev.name}</td>
+                    <td className="px-4 py-3 text-muted-foreground">{dev.founded}</td>
+                    <td className="px-4 py-3 text-muted-foreground">{dev.focus}</td>
+                    <td className="px-4 py-3 text-muted-foreground">{dev.avgRtp}</td>
+                    <td className="hidden md:table-cell px-4 py-3 text-muted-foreground">{dev.volatility}</td>
+                    <td className="hidden lg:table-cell px-4 py-3 text-muted-foreground">{dev.bestKnown}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <InlineCasinoCards title="Casinoer med det bredeste spiludvalg" count={4} />
 
         <Separator className="my-10" />
 
-        {/* Why Important */}
+        {/* ═══════════════════════════════════════════
+            SECTION 3: Hvad laver en spiludvikler
+            ═══════════════════════════════════════════ */}
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold">
-            Hvorfor er spiludvikleren vigtig?
+          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
+            <Building2 className="h-7 w-7 text-primary" />
+            Hvad laver en spiludvikler egentlig? – Fra matematisk model til færdigt spil
           </h2>
-          <p className="mb-6 text-muted-foreground leading-relaxed">
-            Når du spinner hjulene eller satser på det rigtige nummer, tænker
-            du måske ikke over, hvem der står bag oplevelsen. Men
-            spiludvikleren er en afgørende brik, der bestemmer om spillet er
-            underholdende, retfærdigt og teknisk problemfrit. Kendte udviklere
-            som <Link to="/spiludviklere/netent" className="text-primary underline hover:text-primary/80">NetEnt</Link>, <Link to="/spiludviklere/play-n-go" className="text-primary underline hover:text-primary/80">Play'n GO</Link> og <Link to="/spiludviklere/microgaming" className="text-primary underline hover:text-primary/80">Microgaming</Link> er garanti for kvalitet og
-            tryghed. Valget af spiludvikler påvirker også, hvordan{" "}
-            <Link to="/omsaetningskrav" className="text-primary underline hover:text-primary/80">omsætningskrav</Link>{" "}
-            opfyldes, da forskellige spiltyper bidrager forskelligt.
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            En spiludvikler er den virksomhed, der designer, programmerer, tester og certificerer casinospil. Processen er langt mere kompleks end de fleste spillere forestiller sig – den involverer matematikere, softwareingeniører, grafiske designere, lydproducenter og compliance-specialister, der samarbejder i 6-18 måneder pr. titel.
           </p>
 
-          <div className="grid gap-4 md:grid-cols-2">
+          <div className="grid gap-4 md:grid-cols-2 mb-6">
             <Card>
               <CardHeader>
-                <CardTitle className="flex items-center gap-2 text-lg">
-                  <ShieldCheck className="h-5 w-5 text-primary" />
-                  Fairness og sikkerhed
+                <CardTitle className="flex items-center gap-2 text-base">
+                  <BarChart3 className="h-4 w-4 text-primary" />
+                  1. Matematisk modellering
                 </CardTitle>
               </CardHeader>
               <CardContent className="text-sm text-muted-foreground">
                 <p>
-                  Fairness er rygraden i ethvert vellykket casinospil. Udviklerne
-                  implementerer avanceret RNG-teknologi, der sikrer at hvert spin
-                  eller korttræk er 100% tilfældigt. Certificeringer fra
-                  myndigheder som Malta Gaming Authority (MGA) og UK Gambling
-                  Commission (UKGC) kræver løbende overvågning og test af
-                  uafhængige bureauer som eCOGRA.
+                  Spillets fundament er den matematiske model: en kombination af symbolfordeling (vægtning pr. hjul), gevinsttabel (multiplikatorer pr. kombination), bonusfrekvens og RTP-target. Matematikerne simulerer milliarder af spins for at verificere, at modellen producerer det ønskede RTP-niveau og volatilitetsprofil. Denne proces sikrer, at hvert spil er statistisk forudsigeligt over lange perioder, selvom individuelle sessioner kan variere dramatisk. De bedste udviklere beskæftiger ph.d.-niveau matematikere og statistikere.
                 </p>
               </CardContent>
             </Card>
-
-            <Card>
-              <CardHeader>
-                <CardTitle className="flex items-center gap-2 text-lg">
-                  <Zap className="h-5 w-5 text-primary" />
-                  Innovation og underholdning
-                </CardTitle>
-              </CardHeader>
-              <CardContent className="text-sm text-muted-foreground">
-                <p>
-                  De bedste udviklere hæver konstant barren med nye funktioner.
-                  Megaways-mekanikken revolutionerede slots med op til
-                  hundredtusindvis af vinderkombinationer. Cascading reels skaber
-                  kædereaktioner af gevinster. Det er denne kreativitet, der
-                  adskiller de bedste udviklere fra mængden.
-                </p>
-              </CardContent>
-            </Card>
-          </div>
-        </section>
-
-        <Separator className="my-10" />
-
-        {/* Game Types */}
-        <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold">
-            Typer af spil fra spiludviklere
-          </h2>
-          <p className="mb-6 text-muted-foreground leading-relaxed">
-            Spiludviklere skaber et bredt udvalg af spil der appellerer til
-            alle typer spillere. Fra klassiske slots til avancerede{" "}
-            <Link to="/live-casino" className="text-primary underline hover:text-primary/80">live casino</Link>-oplevelser
-            – hver kategori bringer noget unikt til bordet. Mange af disse spil
-            indgår i{" "}
-            <Link to="/free-spins" className="text-primary underline hover:text-primary/80">free spins</Link>-tilbud
-            og{" "}
-            <Link to="/velkomstbonus" className="text-primary underline hover:text-primary/80">velkomstbonusser</Link>.
-          </p>
-
-          <div className="space-y-6">
-            {gameTypes.map((category) => (
-              <Card key={category.category}>
-                <CardHeader>
-                  <CardTitle className="flex items-center gap-2 text-lg">
-                    <category.icon className="h-5 w-5 text-primary" />
-                    {category.category}
-                  </CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <p className="mb-4 text-sm text-muted-foreground">
-                    {category.description}
-                  </p>
-                  <div className="overflow-x-auto">
-                    <table className="w-full text-sm">
-                      <thead>
-                        <tr className="border-b border-border text-left">
-                          <th className="pb-2 pr-4 font-semibold">Type</th>
-                          <th className="pb-2 pr-4 font-semibold">Beskrivelse</th>
-                          <th className="pb-2 pr-4 font-semibold">Eksempler</th>
-                          <th className="pb-2 font-semibold">Gns. RTP</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        {category.types.map((type) => (
-                          <tr
-                            key={type.type}
-                            className="border-b border-border/50 last:border-0"
-                          >
-                            <td className="py-2 pr-4 font-medium">{type.type}</td>
-                            <td className="py-2 pr-4 text-muted-foreground">{type.description}</td>
-                            <td className="py-2 pr-4 text-muted-foreground">{type.examples}</td>
-                            <td className="py-2">
-                              <Badge variant="secondary">{type.rtp}</Badge>
-                            </td>
-                          </tr>
-                        ))}
-                      </tbody>
-                    </table>
-                  </div>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        </section>
-
-
-        <Separator className="my-10" />
-
-        {/* Known Developers */}
-        <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold">
-            Kendte spiludviklere i branchen
-          </h2>
-          <p className="mb-6 text-muted-foreground leading-relaxed">
-            De største navne i branchen har ikke kun givet os ikoniske spil,
-            men også revolutioneret måden vi spiller på. Her er et overblik
-            over de mest anerkendte spiludviklere og deres bedste titler.
-          </p>
-
-          <div className="grid gap-4 md:grid-cols-2">
-            {developers.map((dev) => (
-              <Card key={dev.name} className="group relative">
-                <CardHeader>
-                  <div className="flex items-center justify-between gap-3">
-                    <CardTitle className="flex items-center gap-2 text-lg">
-                      <Star className="h-5 w-5 text-primary" />
-                      {dev.name}
-                    </CardTitle>
-                    <img
-                      src={dev.logo}
-                      alt={`${dev.name} logo`}
-                      className="h-10 w-auto max-w-[100px] rounded object-contain md:h-12"
-                    />
-                  </div>
-                </CardHeader>
-                <CardContent className="space-y-3">
-                  <p className="text-sm text-muted-foreground">
-                    {dev.description}
-                  </p>
-                  <div>
-                    <p className="mb-1 text-sm font-semibold">
-                      Populære titler:
-                    </p>
-                    <ul className="space-y-1">
-                      {dev.games.map((game, i) => (
-                        <li
-                          key={i}
-                          className="flex items-start gap-2 text-sm text-muted-foreground"
-                        >
-                          <CheckCircle2 className="mt-0.5 h-3.5 w-3.5 flex-shrink-0 text-primary" />
-                          {game}
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                  <div className="flex items-center justify-between gap-2">
-                    <Badge variant="outline" className="text-xs">
-                      {dev.highlight}
-                    </Badge>
-                    <Link
-                      to={`/spiludviklere/${dev.slug}`}
-                      className="text-sm font-medium text-primary underline hover:text-primary/80"
-                    >
-                      Læs mere →
-                    </Link>
-                  </div>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        </section>
-
-        <Separator className="my-10" />
-
-        {/* How to Choose */}
-        <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold">
-            Hvordan vælger du den rigtige spiludvikler?
-          </h2>
-          <p className="mb-6 text-muted-foreground leading-relaxed">
-            Valget af spiludvikler kan gøre en stor forskel for din oplevelse.
-            En god spiludvikler betyder ikke kun spil af høj kvalitet, men
-            også retfærdighed, sikkerhed og spændende funktioner. Tjek også
-            vores guide til{" "}
-            <Link to="/betalingsmetoder" className="text-primary underline hover:text-primary/80">betalingsmetoder</Link>{" "}
-            for at sikre du bruger den bedste løsning til ind- og udbetalinger.
-          </p>
-
-          <div className="grid gap-4 md:grid-cols-3">
             <Card>
               <CardHeader>
                 <CardTitle className="flex items-center gap-2 text-base">
                   <ShieldCheck className="h-4 w-4 text-primary" />
-                  Licenser og certificeringer
+                  2. RNG-implementering
                 </CardTitle>
               </CardHeader>
               <CardContent className="text-sm text-muted-foreground">
-                Vælg udviklere med licens fra anerkendte myndigheder som MGA
-                eller UKGC. Licenserede udviklere anvender RNG-teknologi og
-                testes løbende af uafhængige bureauer som eCOGRA og iTech Labs.
+                <p>
+                  Random Number Generators (RNG) er den teknologiske kerne i ethvert casinospil. Moderne RNG'er bruger kryptografisk sikre pseudotilfældige algoritmer (typisk Fortuna eller Mersenne Twister med kryptografisk seeding), der genererer tal med en entropigrad, der er praktisk talt umulig at forudsige. Hvert spin genererer et nyt tilfældigt tal, der mapper til en specifik symbolkombination via den matematiske model. RNG'en opererer uafhængigt af tidligere resultater – der er ingen "hot" eller "cold" streaks i matematisk forstand, kun naturlig statistisk varians.
+                </p>
               </CardContent>
             </Card>
-
             <Card>
               <CardHeader>
                 <CardTitle className="flex items-center gap-2 text-base">
-                  <Gamepad2 className="h-4 w-4 text-primary" />
-                  Spiludvalg
+                  <Sparkles className="h-4 w-4 text-primary" />
+                  3. Spiloplevelse og design
                 </CardTitle>
               </CardHeader>
               <CardContent className="text-sm text-muted-foreground">
-                De bedste udviklere tilbyder noget for enhver smag. Kig efter
-                udviklere som <Link to="/spiludviklere/play-n-go" className="text-primary underline hover:text-primary/80">Play'n GO</Link> og <Link to="/spiludviklere/netent" className="text-primary underline hover:text-primary/80">NetEnt</Link> for slots, eller Evolution
-                Gaming for autentiske live casino-oplevelser.
+                <p>
+                  Oven på den matematiske motor bygger designteamet selve oplevelsen: temavalg, grafisk stil, animationer, lyddesign og brugergrænsefladeudvikling. HTML5-teknologi sikrer fuld cross-platform-kompatibilitet, men topstudier som{" "}
+                  <Link to="/spiludviklere/yggdrasil" className="text-primary underline hover:text-primary/80">Yggdrasil</Link> og{" "}
+                  <Link to="/spiludviklere/netent" className="text-primary underline hover:text-primary/80">NetEnt</Link> investerer i filmisk kvalitet med 3D-renderede animationer og orchestrale soundtracks, der engagerer spilleren udover selve gevinstmønsteret.
+                </p>
               </CardContent>
             </Card>
-
             <Card>
               <CardHeader>
                 <CardTitle className="flex items-center gap-2 text-base">
-                  <Zap className="h-4 w-4 text-primary" />
-                  Bonusfunktioner og teknologi
+                  <Award className="h-4 w-4 text-primary" />
+                  4. Certificering og regulering
                 </CardTitle>
               </CardHeader>
               <CardContent className="text-sm text-muted-foreground">
-                Moderne spil handler om funktionerne. Megaways-mekanikken,
-                cascading reels og live casino med VR-understøttelse skaber
-                fordybende oplevelser der går langt ud over det traditionelle.
+                <p>
+                  Før et spil kan lanceres på et dansk licenseret casino, skal det gennemgå certificering af uafhængige testlaboratorier som{" "}
+                  <a href="https://www.ecogra.org/" target="_blank" rel="noopener noreferrer" className="text-primary underline hover:text-primary/80">eCOGRA</a>,{" "}
+                  <a href="https://www.itechlabs.com/" target="_blank" rel="noopener noreferrer" className="text-primary underline hover:text-primary/80">iTech Labs</a> eller GLI. Testene verificerer RNG-integriteten, RTP-nøjagtigheden, bonusmekanikkernes fairness og spillets compliance med lokale regulatoriske krav. Spillemyndigheden kan til enhver tid kræve auditrapporter og gentest af aktive spil.
+                </p>
               </CardContent>
             </Card>
           </div>
@@ -722,80 +401,194 @@ const Spiludviklere = () => {
 
         <Separator className="my-10" />
 
-        {/* Pros and Cons */}
+        {/* ═══════════════════════════════════════════
+            SECTION 4: RTP & Volatilitet
+            ═══════════════════════════════════════════ */}
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold">
-            Fordele og ulemper ved spiludviklere
+          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
+            <TrendingUp className="h-7 w-7 text-primary" />
+            RTP og volatilitet – den matematiske virkelighed bag hvert spin
           </h2>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            RTP (Return to Player) og volatilitet er de to parametre, der definerer et spils matematiske profil. Forståelsen af disse begreber er afgørende for at træffe informerede beslutninger om spiludvalg – og for at undgå den mest udbredte misforståelse i casinobranchen.
+          </p>
 
-          <div className="grid gap-4 md:grid-cols-2">
+          <div className="rounded-lg border border-border bg-card p-5 mb-6">
+            <h3 className="font-semibold mb-3 text-lg">RTP – hvad 96% reelt betyder (og hvad det ikke betyder)</h3>
+            <p className="text-sm text-muted-foreground mb-3">
+              RTP angiver den statistisk forventede tilbagebetaling over en uendelig lang spilsession. Et spil med 96% RTP vil i gennemsnit tilbagebetale 96 kr. for hver 100 kr., der indsættes – men dette gennemsnit realiseres først over millioner af spins. I en typisk session på 200-500 spins er den faktiske tilbagebetaling underlagt massiv varians: du kan lige så godt ende med 40% som 250% tilbagebetaling i en enkelt session.
+            </p>
+            <p className="text-sm text-muted-foreground mb-3">
+              <strong>Den kritiske misforståelse:</strong> RTP er ikke en garanti for den enkelte spiller – det er et statistisk gennemsnit over hele spillerpopulationen. Forestil dig et rum med 1.000 spillere, der hver spiller 100 kr. på et 96% RTP-spil. Samlet set vil casinoet beholde ~4.000 kr. (4%). Men fordelingen er voldsomt skæv: de fleste spillere taber moderat, mens et fåtal vinder stort. RTP beskriver den samlede fordeling, ikke den individuelle oplevelse.
+            </p>
+            <p className="text-sm text-muted-foreground">
+              <strong>Udviklervariationer:</strong> RTP varierer markant mellem udviklere og inden for samme udviklers katalog.{" "}
+              <Link to="/spiludviklere/netent" className="text-primary underline hover:text-primary/80">NetEnt</Link> holder typisk 96,0-96,5%;{" "}
+              <Link to="/spiludviklere/play-n-go" className="text-primary underline hover:text-primary/80">Play'n GO</Link> har et bredere interval (94,5-96,5%); og{" "}
+              <Link to="/spiludviklere/microgaming" className="text-primary underline hover:text-primary/80">Microgaming</Link>s progressive jackpot-spil (Mega Moolah) opererer med lavere basis-RTP (88-92%), fordi en del af indsatsen kanaliseres til jackpot-puljen.
+            </p>
+          </div>
+
+          <div className="rounded-lg border border-border bg-card p-5 mb-6">
+            <h3 className="font-semibold mb-3 text-lg">Volatilitet – risikoprofilen bag hvert spin</h3>
+            <p className="text-sm text-muted-foreground mb-3">
+              Volatilitet (også kaldet varians) beskriver gevinstens fordeling: hvor ofte du vinder, og hvor store gevinsterne er i forhold til indsatsen. To spil kan have identisk RTP på 96%, men radikalt forskellige volatilitetsprofiler – og dermed radikalt forskellige spilleroplevelser:
+            </p>
+            <div className="overflow-x-auto rounded-lg border border-border my-4">
+              <table className="w-full text-sm">
+                <thead>
+                  <tr className="bg-muted/50">
+                    <th className="px-4 py-2 text-left font-semibold">Parameter</th>
+                    <th className="px-4 py-2 text-left font-semibold">Lav volatilitet</th>
+                    <th className="px-4 py-2 text-left font-semibold">Medium volatilitet</th>
+                    <th className="px-4 py-2 text-left font-semibold">Høj/Ekstrem volatilitet</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr className="bg-card">
+                    <td className="px-4 py-2 font-medium">Hit frequency</td>
+                    <td className="px-4 py-2 text-muted-foreground">25-35%</td>
+                    <td className="px-4 py-2 text-muted-foreground">20-25%</td>
+                    <td className="px-4 py-2 text-muted-foreground">12-18%</td>
+                  </tr>
+                  <tr className="bg-muted/20">
+                    <td className="px-4 py-2 font-medium">Maks. gevinst</td>
+                    <td className="px-4 py-2 text-muted-foreground">500-2.000x</td>
+                    <td className="px-4 py-2 text-muted-foreground">2.000-10.000x</td>
+                    <td className="px-4 py-2 text-muted-foreground">10.000-150.000x</td>
+                  </tr>
+                  <tr className="bg-card">
+                    <td className="px-4 py-2 font-medium">Bankroll-krav</td>
+                    <td className="px-4 py-2 text-muted-foreground">50-100x indsats</td>
+                    <td className="px-4 py-2 text-muted-foreground">100-200x indsats</td>
+                    <td className="px-4 py-2 text-muted-foreground">300-500x indsats</td>
+                  </tr>
+                  <tr className="bg-muted/20">
+                    <td className="px-4 py-2 font-medium">Typisk udvikler</td>
+                    <td className="px-4 py-2 text-muted-foreground">NetEnt, Red Tiger</td>
+                    <td className="px-4 py-2 text-muted-foreground">Play'n GO, Yggdrasil</td>
+                    <td className="px-4 py-2 text-muted-foreground">Nolimit City, Hacksaw</td>
+                  </tr>
+                  <tr className="bg-card">
+                    <td className="px-4 py-2 font-medium">Egnet til omsætning</td>
+                    <td className="px-4 py-2 text-muted-foreground">Ideel</td>
+                    <td className="px-4 py-2 text-muted-foreground">God</td>
+                    <td className="px-4 py-2 text-muted-foreground">Risikabelt</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <p className="text-sm text-muted-foreground">
+              <strong>Praktisk betydning:</strong> Hvis du spiller med en{" "}
+              <Link to="/velkomstbonus" className="text-primary underline hover:text-primary/80">velkomstbonus</Link> med 10x omsætningskrav, er et lavvolatilt spil det sikreste valg – den høje hit frequency strækker din saldo, mens du gradvist opfylder kravet. Vælger du et ekstremt volatilt spil, risikerer du at tabe hele bonussaldoen i en tørrperiode, før du når omsætningsmålet.
+            </p>
+          </div>
+
+          <div className="rounded-lg border border-border bg-card p-5">
+            <h3 className="font-semibold mb-3 text-lg">Hit frequency vs. gevinstmultiplikator – det omvendte forhold</h3>
+            <p className="text-sm text-muted-foreground">
+              Der er et fundamentalt matematisk forhold: hit frequency og gennemsnitlig gevinstmultiplikator er omvendt proportionale. Når et spil øger den maksimale gevinst (fx fra 5.000x til 50.000x), skal hit frequency eller gennemsnitlig gevinstsstørrelse nødvendigvis falde for at opretholde den samme RTP. Det er derfor, højvolatile spil fra{" "}
+              <Link to="/spiludviklere/nolimit-city" className="text-primary underline hover:text-primary/80">Nolimit City</Link> og{" "}
+              <Link to="/spiludviklere/hacksaw-gaming" className="text-primary underline hover:text-primary/80">Hacksaw Gaming</Link> har lange tørrperioder – det er en matematisk nødvendighed, ikke et designvalg. Forståelse af dette forhold er nøglen til at matche dit spilvalg med din risikotolerance og bankroll.
+            </p>
+          </div>
+        </section>
+
+        <Separator className="my-10" />
+
+        {/* ═══════════════════════════════════════════
+            SECTION 5: Kategorisering
+            ═══════════════════════════════════════════ */}
+        <section className="mb-12">
+          <h2 className="mb-4 text-3xl font-bold">De fem arketyper af casino-spiludviklere – en analytisk kategorisering</h2>
+          <p className="mb-6 text-muted-foreground leading-relaxed">
+            Ikke alle spiludviklere konkurrerer i det samme segment. De 12 ledende studier på det danske marked kan kategoriseres i fem distinkte arketyper, hver med en unik filosofi, målgruppe og matematisk profil. At forstå disse arketyper er det første skridt mod en informeret spillestrategi.
+          </p>
+
+          <div className="space-y-4">
             <Card className="border-primary/20">
               <CardHeader>
-                <CardTitle className="flex items-center gap-2 text-lg text-primary">
-                  <ThumbsUp className="h-5 w-5" />
-                  Fordele
+                <CardTitle className="flex items-center gap-2 text-lg">
+                  <Flame className="h-5 w-5 text-primary" />
+                  🎰 High-Volatility-Specialister – Nolimit City, Hacksaw Gaming
                 </CardTitle>
               </CardHeader>
-              <CardContent>
-                <ul className="space-y-2">
-                  <li className="flex items-start gap-2 text-sm text-muted-foreground">
-                    <CheckCircle2 className="mt-0.5 h-4 w-4 flex-shrink-0 text-primary" />
-                    <span>
-                      <strong>Innovation</strong> – Unikke funktioner som
-                      Megaways og cascading reels gør spillene mere spændende
-                    </span>
-                  </li>
-                  <li className="flex items-start gap-2 text-sm text-muted-foreground">
-                    <CheckCircle2 className="mt-0.5 h-4 w-4 flex-shrink-0 text-primary" />
-                    <span>
-                      <strong>Fairness</strong> – Licenserede udviklere
-                      certificeres af uafhængige testlaboratorier som{" "}
-                      <a href="https://www.ecogra.org/" target="_blank" rel="noopener noreferrer" className="text-primary underline hover:text-primary/80">eCOGRA</a> og{" "}
-                      <a href="https://www.itechlabs.com/" target="_blank" rel="noopener noreferrer" className="text-primary underline hover:text-primary/80">iTech Labs</a>, der verificerer RNG og RTP
-                    </span>
-                  </li>
-                  <li className="flex items-start gap-2 text-sm text-muted-foreground">
-                    <CheckCircle2 className="mt-0.5 h-4 w-4 flex-shrink-0 text-primary" />
-                    <span>
-                      <strong>Variation</strong> – Alt fra klassiske slots til
-                      live casino – der er noget for enhver smag
-                    </span>
-                  </li>
-                </ul>
+              <CardContent className="text-sm text-muted-foreground space-y-2">
+                <p>
+                  Disse studier designer spil til spillere, der accepterer lange tørrperioder til gengæld for potentielt livsendrende gevinster.{" "}
+                  <Link to="/spiludviklere/nolimit-city" className="text-primary underline hover:text-primary/80">Nolimit City</Link>s proprietære xWays/xNudge-mekanikker og{" "}
+                  <Link to="/spiludviklere/hacksaw-gaming" className="text-primary underline hover:text-primary/80">Hacksaw Gaming</Link>s stiliserede instant win-formater deler filosofien: komprimere hele gevinstpotentialet i sjældne, eksplosive bonusrunder. Gevinstlofter på 50.000-150.000x indsatsen er normen. Hit frequency: 12-18%.
+                </p>
+                <p><strong>Målgruppe:</strong> Erfarne spillere med høj risikotolerance, solid bankroll-management og forståelse for statistisk varians. Absolut frarådet til bonusomsætning.</p>
               </CardContent>
             </Card>
 
-            <Card className="border-destructive/20">
+            <Card className="border-primary/20">
               <CardHeader>
-                <CardTitle className="flex items-center gap-2 text-lg text-destructive">
-                  <ThumbsDown className="h-5 w-5" />
-                  Ulemper
+                <CardTitle className="flex items-center gap-2 text-lg">
+                  <Gamepad2 className="h-5 w-5 text-primary" />
+                  🎲 Klassiske Slot-Producenter – NetEnt, Play'n GO, Microgaming
                 </CardTitle>
               </CardHeader>
-              <CardContent>
-                <ul className="space-y-2">
-                  <li className="flex items-start gap-2 text-sm text-muted-foreground">
-                    <AlertTriangle className="mt-0.5 h-4 w-4 flex-shrink-0 text-destructive" />
-                    <span>
-                      <strong>RTP-variationer</strong> – Samme spil kan have
-                      forskellige udbetalingsprocenter afhængigt af casinoet
-                    </span>
-                  </li>
-                  <li className="flex items-start gap-2 text-sm text-muted-foreground">
-                    <AlertTriangle className="mt-0.5 h-4 w-4 flex-shrink-0 text-destructive" />
-                    <span>
-                      <strong>Ensartede spil</strong> – Nogle udviklere
-                      producerer mange titler med lignende temaer og funktioner
-                    </span>
-                  </li>
-                  <li className="flex items-start gap-2 text-sm text-muted-foreground">
-                    <AlertTriangle className="mt-0.5 h-4 w-4 flex-shrink-0 text-destructive" />
-                    <span>
-                      <strong>Høj volatilitet</strong> – Spillere med lavere
-                      budgetter kan føle sig overset
-                    </span>
-                  </li>
-                </ul>
+              <CardContent className="text-sm text-muted-foreground space-y-2">
+                <p>
+                  De tre grundpiller i online casinobranchen tilbyder brede kataloger med overvejende lav-til-medium volatilitet.{" "}
+                  <Link to="/spiludviklere/netent" className="text-primary underline hover:text-primary/80">NetEnt</Link> (Starburst, Gonzo's Quest),{" "}
+                  <Link to="/spiludviklere/play-n-go" className="text-primary underline hover:text-primary/80">Play'n GO</Link> (Book of Dead, Reactoonz) og{" "}
+                  <Link to="/spiludviklere/microgaming" className="text-primary underline hover:text-primary/80">Microgaming</Link> (Mega Moolah, Immortal Romance) prioriterer tilgængelighed, konsistens og bred appel. Deres spil har den højeste hit frequency og de mest forudsigelige sessions.
+                </p>
+                <p><strong>Målgruppe:</strong> Alle spillertyper, men særligt casual spillere, bonusjægere og spillere med moderate bankrolls. Ideelle til bonusomsætning.</p>
+              </CardContent>
+            </Card>
+
+            <Card className="border-primary/20">
+              <CardHeader>
+                <CardTitle className="flex items-center gap-2 text-lg">
+                  <Tv className="h-5 w-5 text-primary" />
+                  📺 Live Casino-Specialister – Evolution Gaming
+                </CardTitle>
+              </CardHeader>
+              <CardContent className="text-sm text-muted-foreground space-y-2">
+                <p>
+                  <Link to="/spiludviklere/evolution-gaming" className="text-primary underline hover:text-primary/80">Evolution Gaming</Link> dominerer live casino-segmentet med en markedsandel på over 70%. Deres innovation har skabt helt nye spilkategorier: game shows (Crazy Time, MONOPOLY Live), lightning-varianter med random multiplikatorer og first-person RNG-versioner af klassiske bordspil. Evolutionss tekniske infrastruktur – 15+ studier globalt, 4K-streaming, AI-drevet kvalitetskontrol – er uovertruffen. Med opkøbet af NetEnt og Red Tiger dækker Evolution-koncernen nu hele spektret fra{" "}
+                  <Link to="/live-casino" className="text-primary underline hover:text-primary/80">live casino</Link> til video slots.
+                </p>
+                <p><strong>Målgruppe:</strong> Spillere, der foretrækker den autentiske casinoatmosfære med professionelle dealere, interaktion og game show-underholdning.</p>
+              </CardContent>
+            </Card>
+
+            <Card className="border-primary/20">
+              <CardHeader>
+                <CardTitle className="flex items-center gap-2 text-lg">
+                  <Sparkles className="h-5 w-5 text-primary" />
+                  🎮 Feature-Drevne Innovatører – Big Time Gaming, Relax Gaming, Yggdrasil, ELK Studios
+                </CardTitle>
+              </CardHeader>
+              <CardContent className="text-sm text-muted-foreground space-y-2">
+                <p>
+                  Disse studier defineres af deres teknologiske innovationer snarere end en specifik volatilitetsprofil.{" "}
+                  <Link to="/spiludviklere/big-time-gaming" className="text-primary underline hover:text-primary/80">Big Time Gaming</Link> opfandt Megaways;{" "}
+                  <Link to="/spiludviklere/relax-gaming" className="text-primary underline hover:text-primary/80">Relax Gaming</Link> lancerede Dream Drop-jackpotsystemet;{" "}
+                  <Link to="/spiludviklere/yggdrasil" className="text-primary underline hover:text-primary/80">Yggdrasil</Link> introducerede GigaBlox og Splitz;{" "}
+                  <Link to="/spiludviklere/elk-studios" className="text-primary underline hover:text-primary/80">ELK Studios</Link> udviklede Betting Strategies. Deres fælles kendetegn er, at de konstant udfordrer branchens konventioner og skaber nye spilmekanikker, der licenseres af andre udviklere.
+                </p>
+                <p><strong>Målgruppe:</strong> Teknik-interesserede spillere, der søger nye gameplay-oplevelser og er villige til at udforske ukendte mekanikker.</p>
+              </CardContent>
+            </Card>
+
+            <Card className="border-primary/20">
+              <CardHeader>
+                <CardTitle className="flex items-center gap-2 text-lg">
+                  <Star className="h-5 w-5 text-primary" />
+                  🏛 Jackpot- og Legacy-Udviklere – Microgaming, Red Tiger
+                </CardTitle>
+              </CardHeader>
+              <CardContent className="text-sm text-muted-foreground space-y-2">
+                <p>
+                  <Link to="/spiludviklere/microgaming" className="text-primary underline hover:text-primary/80">Microgaming</Link>s progressive jackpot-netværk (Mega Moolah-serien) har udbetalt over €1,5 milliard i præmier siden lanceringen – inklusive verdensrekorden på €19,4 millioner fra et enkelt spin.{" "}
+                  <Link to="/spiludviklere/red-tiger" className="text-primary underline hover:text-primary/80">Red Tiger</Link>s Daily Drop Jackpots garanterer daglige udbetalinger, hvilket tilbyder en unik kombination af jackpot-spænding med forudsigelig udbetalingsfrekvens. Begge opererer med lavere basis-RTP (88-95%) for at finansiere jackpot-puljerne.
+                </p>
+                <p><strong>Målgruppe:</strong> Spillere, der drømmer om livsendrende enkeltgevinster og accepterer den lavere basis-RTP som "prisen" for jackpot-muligheden.</p>
               </CardContent>
             </Card>
           </div>
@@ -803,27 +596,252 @@ const Spiludviklere = () => {
 
         <Separator className="my-10" />
 
-        {/* Responsible Gaming */}
+        {/* ═══════════════════════════════════════════
+            SECTION 6: Beslutningsguide
+            ═══════════════════════════════════════════ */}
         <section className="mb-12">
+          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
+            <Target className="h-7 w-7 text-primary" />
+            Hvilken spiludvikler passer til din spillestil? – Strategisk matchmaking
+          </h2>
+          <p className="mb-6 text-muted-foreground leading-relaxed">
+            Dit valg af spiludvikler bør matche din spillestil, dit budget og dine forventninger. Her er en pragmatisk guide baseret på de mest typiske spillerprofiler:
+          </p>
+
+          <div className="grid gap-4 md:grid-cols-2">
+            <Card>
+              <CardHeader>
+                <CardTitle className="flex items-center gap-2 text-base">
+                  <TrendingUp className="h-4 w-4 text-primary" />
+                  "Jeg vil have store gevinster og kan tåle tørrperioder"
+                </CardTitle>
+              </CardHeader>
+              <CardContent className="text-sm text-muted-foreground space-y-2">
+                <p><strong>Anbefaling:</strong> <Link to="/spiludviklere/nolimit-city" className="text-primary underline hover:text-primary/80">Nolimit City</Link>, <Link to="/spiludviklere/hacksaw-gaming" className="text-primary underline hover:text-primary/80">Hacksaw Gaming</Link>, <Link to="/spiludviklere/big-time-gaming" className="text-primary underline hover:text-primary/80">Big Time Gaming</Link></p>
+                <p>Disse udviklere tilbyder gevinstpotentialer fra 10.000x til 150.000x indsatsen. Kræver minimum 300-500x indsatsen i bankroll for at absorbere de uundgåelige tørrperioder. Spil som San Quentin, Wanted Dead or a Wild og Bonanza Megaways er flagskibstitler for denne profil.</p>
+              </CardContent>
+            </Card>
+            <Card>
+              <CardHeader>
+                <CardTitle className="flex items-center gap-2 text-base">
+                  <Star className="h-4 w-4 text-primary" />
+                  "Jeg vil maksimere min bonusomsætning"
+                </CardTitle>
+              </CardHeader>
+              <CardContent className="text-sm text-muted-foreground space-y-2">
+                <p><strong>Anbefaling:</strong> <Link to="/spiludviklere/netent" className="text-primary underline hover:text-primary/80">NetEnt</Link>, <Link to="/spiludviklere/play-n-go" className="text-primary underline hover:text-primary/80">Play'n GO</Link>, <Link to="/spiludviklere/red-tiger" className="text-primary underline hover:text-primary/80">Red Tiger</Link></p>
+                <p>Lav-medium volatilitet og høj hit frequency strækker bonussaldoen. Starburst (96,09%, ~23% hit), Fire Joker (96,15%, ~25% hit) og Dragon's Luck (95,19%, lav vol) er ideelle. Undgå helt Nolimit City og Hacksaw Gaming under{" "}
+                  <Link to="/omsaetningskrav" className="text-primary underline hover:text-primary/80">omsætning</Link> – risikoen for tab er for høj.</p>
+              </CardContent>
+            </Card>
+            <Card>
+              <CardHeader>
+                <CardTitle className="flex items-center gap-2 text-base">
+                  <Tv className="h-4 w-4 text-primary" />
+                  "Jeg foretrækker live casino med rigtige dealere"
+                </CardTitle>
+              </CardHeader>
+              <CardContent className="text-sm text-muted-foreground space-y-2">
+                <p><strong>Anbefaling:</strong> <Link to="/spiludviklere/evolution-gaming" className="text-primary underline hover:text-primary/80">Evolution Gaming</Link></p>
+                <p>Der er reelt kun ét valg for den bedste live casino-oplevelse. Crazy Time, Lightning Roulette og Infinite Blackjack sætter standarden. Læs vores{" "}
+                  <Link to="/live-casino" className="text-primary underline hover:text-primary/80">live casino guide</Link> for den fulde gennemgang af formater og strategier.</p>
+              </CardContent>
+            </Card>
+            <Card>
+              <CardHeader>
+                <CardTitle className="flex items-center gap-2 text-base">
+                  <Users className="h-4 w-4 text-primary" />
+                  "Jeg er casual spiller og vil underholdes"
+                </CardTitle>
+              </CardHeader>
+              <CardContent className="text-sm text-muted-foreground space-y-2">
+                <p><strong>Anbefaling:</strong> <Link to="/spiludviklere/pragmatic-play" className="text-primary underline hover:text-primary/80">Pragmatic Play</Link>, <Link to="/spiludviklere/netent" className="text-primary underline hover:text-primary/80">NetEnt</Link>, <Link to="/spiludviklere/yggdrasil" className="text-primary underline hover:text-primary/80">Yggdrasil</Link></p>
+                <p>Pragmatic Plays brede portefølje dækker alle temaer og volatiliteter. NetEnt tilbyder de mest intuitive brugergrænseflader. Yggdrasils grafiske kvalitet giver den bedste visuelle oplevelse. Sweet Bonanza, Starburst og Vikings Go Berzerk er perfekte starttitler for nye spillere.</p>
+              </CardContent>
+            </Card>
+            <Card>
+              <CardHeader>
+                <CardTitle className="flex items-center gap-2 text-base">
+                  <Sparkles className="h-4 w-4 text-primary" />
+                  "Jeg vil prøve nye og innovative mekanikker"
+                </CardTitle>
+              </CardHeader>
+              <CardContent className="text-sm text-muted-foreground space-y-2">
+                <p><strong>Anbefaling:</strong> <Link to="/spiludviklere/big-time-gaming" className="text-primary underline hover:text-primary/80">Big Time Gaming</Link>, <Link to="/spiludviklere/elk-studios" className="text-primary underline hover:text-primary/80">ELK Studios</Link>, <Link to="/spiludviklere/relax-gaming" className="text-primary underline hover:text-primary/80">Relax Gaming</Link></p>
+                <p>Megaways, Avalanche, Betting Strategies og Dream Drop Jackpots – disse studier skubber konstant til grænserne. BTGs Bonanza, ELKs Wild Toro og Relax' Money Train 3 demonstrerer, hvordan teknologisk innovation kan ændre hele spiloplevelsen fundamentalt.</p>
+              </CardContent>
+            </Card>
+            <Card>
+              <CardHeader>
+                <CardTitle className="flex items-center gap-2 text-base">
+                  <Award className="h-4 w-4 text-primary" />
+                  "Jeg drømmer om en livsendrende jackpot"
+                </CardTitle>
+              </CardHeader>
+              <CardContent className="text-sm text-muted-foreground space-y-2">
+                <p><strong>Anbefaling:</strong> <Link to="/spiludviklere/microgaming" className="text-primary underline hover:text-primary/80">Microgaming</Link> (Mega Moolah), <Link to="/spiludviklere/relax-gaming" className="text-primary underline hover:text-primary/80">Relax Gaming</Link> (Dream Drop)</p>
+                <p>Mega Moolah er verdens mest vindende progressive jackpot-slot (€19,4M rekord). Dream Drop er det nyeste flertrins-jackpotsystem med garanteret udbetalinger inden puljen når €10M. Acceptér lavere basis-RTP som prisen for jackpot-muligheden, og sæt et fast budget pr. session.</p>
+              </CardContent>
+            </Card>
+          </div>
+        </section>
+
+        <InlineCasinoCards title="Casinoer med flest spiludviklere" count={4} />
+
+        <Separator className="my-10" />
+
+        {/* ═══════════════════════════════════════════
+            SECTION 7: Strategiske teasers
+            ═══════════════════════════════════════════ */}
+        <section className="mb-12">
+          <h2 className="mb-4 text-3xl font-bold">Dybdegående analyser af alle 12 spiludviklere</h2>
+          <p className="mb-6 text-muted-foreground leading-relaxed">
+            Hver udvikler har en unik filosofi, teknologisk styrke og målgruppe. Nedenstående er unikke strategiske analyser – klik videre til den fulde guide for 5.500+ ord med tekniske profiler, reelle testresultater og matematisk dybdeanalyse.
+          </p>
+
+          <div className="space-y-4">
+            {developerTeasers.map((dev) => (
+              <Card key={dev.slug} className="group">
+                <CardContent className="p-5">
+                  <div className="flex items-start gap-4">
+                    <img
+                      src={dev.logo}
+                      alt={`${dev.name} logo`}
+                      className="h-12 w-auto max-w-[100px] rounded object-contain flex-shrink-0 mt-1"
+                    />
+                    <div className="flex-1">
+                      <div className="flex items-center justify-between gap-2 mb-2">
+                        <h3 className="text-lg font-semibold">{dev.name}</h3>
+                        <Link
+                          to={`/spiludviklere/${dev.slug}`}
+                          className="text-sm font-medium text-primary underline hover:text-primary/80 flex items-center gap-1 flex-shrink-0"
+                        >
+                          Læs den fulde guide <ArrowRight className="h-3.5 w-3.5" />
+                        </Link>
+                      </div>
+                      <p className="text-sm text-muted-foreground leading-relaxed">{dev.teaser}</p>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </section>
+
+        <Separator className="my-10" />
+
+        {/* ═══════════════════════════════════════════
+            SECTION 8: Trends i branchen
+            ═══════════════════════════════════════════ */}
+        <section className="mb-12">
+          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
+            <Zap className="h-7 w-7 text-primary" />
+            Branchetrends 2026 – seks teknologier, der former fremtidens casinospil
+          </h2>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            Casinospil-industrien gennemgår en accelererende teknologisk transformation. De udviklere, der mestrer disse tendenser, vil definere spilleroplevelsen i de kommende år. Her er de seks vigtigste trends, der allerede påvirker det danske marked:
+          </p>
+
+          <div className="grid gap-4 md:grid-cols-2">
+            <div className="rounded-lg border border-border bg-card p-5">
+              <h3 className="font-semibold mb-2 flex items-center gap-2"><Flame className="h-4 w-4 text-primary" /> 1. Bonus Buy-mekanik – komprimeret volatilitet</h3>
+              <p className="text-sm text-muted-foreground">
+                Bonus buy (Feature Drop, Ante Bet) giver spillere direkte adgang til bonusrunden for en fast pris – typisk 50-100x indsatsen. Mekanikken, populariseret af{" "}
+                <Link to="/spiludviklere/big-time-gaming" className="text-primary underline hover:text-primary/80">Big Time Gaming</Link> og adopteret af Pragmatic Play, Nolimit City og Hacksaw Gaming, komprimerer volatiliteten: i stedet for at spille 200-500 basegame-spins, køber du direkte adgang til den volatile bonusrunde. Spillemyndigheden tillader bonus buy på danske casinoer, men funktionen er forbudt i enkelte europæiske markeder (UK, Spanien).
+              </p>
+            </div>
+            <div className="rounded-lg border border-border bg-card p-5">
+              <h3 className="font-semibold mb-2 flex items-center gap-2"><Layers className="h-4 w-4 text-primary" /> 2. Megaways-evolution – fra 117.649 til 1.000.000+ vinderkombinationer</h3>
+              <p className="text-sm text-muted-foreground">
+                Megaways-mekanikken har gennemgået en markant evolution siden lanceringen i 2016. Nyere varianter – Megaways Infinity, Ultra Megaways – udvider formatet med op til 1.000.000+ vinderkombinationer pr. spin via dynamiske hjulstrukturer og multi-level cascading. Licenseringen til andre udviklere har skabt et økosystem med 200+ Megaways-titler, men kvaliteten varierer – de bedste implementeringer forbliver hos BTG, Pragmatic Play og Red Tiger.
+              </p>
+            </div>
+            <div className="rounded-lg border border-border bg-card p-5">
+              <h3 className="font-semibold mb-2 flex items-center gap-2"><Zap className="h-4 w-4 text-primary" /> 3. Crash-spil og instant games – real-time beslutningstagning</h3>
+              <p className="text-sm text-muted-foreground">
+                Crash-spil (Aviator, Spaceman) repræsenterer en helt ny spilkategori: en multiplikator stiger i realtid, og spilleren skal cash-oute, før den "crasher". Beslutningen er aktiv – ikke passiv som i slots – hvilket tiltrækker en yngre, mere engageret demografi. Hacksaw Gamings instant win-portefølje og Pragmatic Plays Spaceman demonstrerer potentialet. Kategorien vokser med 40%+ årligt i det europæiske marked.
+              </p>
+            </div>
+            <div className="rounded-lg border border-border bg-card p-5">
+              <h3 className="font-semibold mb-2 flex items-center gap-2"><Sparkles className="h-4 w-4 text-primary" /> 4. Mobiloptimering 2.0 – touch-first og portrait-mode</h3>
+              <p className="text-sm text-muted-foreground">
+                Over 70% af alle casinospil-sessioner i Danmark sker på mobil. Nye titler designes nu "mobile-first" med portrait-mode (lodret skærm) som standard og touch-optimerede bonusmekanikker. Hacksaw Gaming og ELK Studios er frontløbere med grænseflader, der føles native på smartphones. Ældre titler fra NetEnt og Microgaming konverteres gradvist, men oplevelsen er stadig bedst på nyere spil, der er designet til touch fra bunden.
+              </p>
+            </div>
+            <div className="rounded-lg border border-border bg-card p-5">
+              <h3 className="font-semibold mb-2 flex items-center gap-2"><BookOpen className="h-4 w-4 text-primary" /> 5. Gamification og progression – langsigtede spillerforhold</h3>
+              <p className="text-sm text-muted-foreground">
+                Spiludviklere integrerer i stigende grad gamification-elementer: achievements, level-systemer, samlebare items og narrative progressioner, der spænder over flere sessioner. Pragmatic Plays "Drops &amp; Wins"-turnering og Red Tigers Daily Drop Jackpots er tidlige eksempler, der øger spillerretention og session-længde markant. Trenden bevæger sig mod "meta-game"-oplevelser, der giver spilleren en langsigtede fremgang udover individuelle spins.
+              </p>
+            </div>
+            <div className="rounded-lg border border-border bg-card p-5">
+              <h3 className="font-semibold mb-2 flex items-center gap-2"><BarChart3 className="h-4 w-4 text-primary" /> 6. AI-drevet spildesign og personalisering</h3>
+              <p className="text-sm text-muted-foreground">
+                Kunstig intelligens påvirker allerede spildesign-processen: AI-modeller simulerer milliarder af spins på timer (mod dages beregninger med traditionelle metoder), optimerer matematiske modeller og kan potentielt tilpasse volatilitetsprofiler til individuelle spillerpræferencer i realtid. Etiske og regulatoriske spørgsmål om AI-personalisering – specifikt risikoen for at øge problematisk spiladfærd – er et aktivt diskussionspunkt hos Spillemyndigheden og europæiske regulatorer.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <Separator className="my-10" />
+
+        {/* ═══════════════════════════════════════════
+            SECTION 9: Regulering & spillerbeskyttelse
+            ═══════════════════════════════════════════ */}
+        <section className="mb-12">
+          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
+            <ShieldCheck className="h-7 w-7 text-primary" />
+            Regulering og spillerbeskyttelse – Spillemyndighedens rolle i spilkvalitet
+          </h2>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            Det danske casinomarked reguleres af Spillemyndigheden, der stiller specifikke krav til både casinooperatører og spiludviklere. For udviklernes vedkommende fokuserer reguleringen på tre områder: teknisk certificering, RTP-transparens og ansvarligt spil-funktionalitet.
+          </p>
+
+          <div className="grid gap-4 md:grid-cols-2 mb-6">
+            <div className="flex items-start gap-3 rounded-lg border border-border bg-card p-4">
+              <ShieldCheck className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
+              <div>
+                <h3 className="font-semibold">Teknisk certificering</h3>
+                <p className="text-sm text-muted-foreground">Alle spil skal certificeres af et uafhængigt testlaboratorium (eCOGRA, iTech Labs, GLI) før lancering på det danske marked. Certificeringen dækker RNG-integritet (statistisk uafhængighed mellem spins), RTP-nøjagtighed (den faktiske tilbagebetaling matcher den annoncerede) og bonusmekanik-fairness (bonusrunder aktiveres med den dokumenterede frekvens). Spillemyndigheden kan til enhver tid kræve genuddannelse eller gentest.</p>
+              </div>
+            </div>
+            <div className="flex items-start gap-3 rounded-lg border border-border bg-card p-4">
+              <CheckCircle2 className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
+              <div>
+                <h3 className="font-semibold">RTP-transparens</h3>
+                <p className="text-sm text-muted-foreground">Danske licenserede casinoer er forpligtede til at offentliggøre den faktiske RTP-konfiguration for hvert spil. Spillere kan typisk finde denne information i spillets informationsmenu (i-ikon). Bemærk, at samme spil kan operere med forskellige RTP-konfigurationer hos forskellige casinoer – udviklerne tilbyder typisk 2-4 godkendte niveauer, og casinoet vælger det relevante niveau.</p>
+              </div>
+            </div>
+            <div className="flex items-start gap-3 rounded-lg border border-border bg-card p-4">
+              <AlertTriangle className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
+              <div>
+                <h3 className="font-semibold">Ansvarligt spil-funktioner</h3>
+                <p className="text-sm text-muted-foreground">Spillemyndigheden kræver, at alle spil understøtter session-reminders, indbetalingsgrænser og adgang til selvudelukkelse via{" "}
+                  <a href="https://www.rofus.nu/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline font-medium">ROFUS</a>. Spiludviklerne implementerer disse funktioner via standardiserede API'er, der integreres med casinoets platform. Derudover skal spil tydeligt vise aktuel indsats og gevinst, og auto-spin-funktioner skal have konfigurerbare tab-grænser.</p>
+              </div>
+            </div>
+            <div className="flex items-start gap-3 rounded-lg border border-border bg-card p-4">
+              <Building2 className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
+              <div>
+                <h3 className="font-semibold">Licenskrav til udviklere</h3>
+                <p className="text-sm text-muted-foreground">Spiludviklere, der opererer på det danske marked, skal enten holde en dansk B2B-licens eller operere under en anerkendt EU-licens (Malta MGA, Gibraltar). Spillemyndigheden opretholder en offentlig liste over godkendte spil og udviklere. Udviklere, der overtræder reglerne, risikerer suspension og bøder, der kan løbe op i millioner af kroner. Læs mere om{" "}
+                  <Link to="/casino-licenser" className="text-primary underline hover:text-primary/80">casino-licenser</Link>.</p>
+              </div>
+            </div>
+          </div>
+
           <Card className="border-primary/20 bg-primary/5">
             <CardHeader>
               <CardTitle className="flex items-center gap-2 text-xl">
                 <Award className="h-5 w-5 text-primary" />
-                Ansvarligt spil
+                Ansvarligt spil og spiludviklere
               </CardTitle>
             </CardHeader>
             <CardContent className="space-y-3 text-sm text-muted-foreground">
               <p>
-                Spil handler om underholdning og spænding – men det skal altid
-                ske med omtanke. Ansvarligt spil betyder, at du holder kontrol
-                over din spiloplevelse og sørger for, at det aldrig bliver en
-                byrde for dig selv eller din økonomi.
-              </p>
-              <p>
-                De bedste casinoer og spiludviklere støtter ansvarligt spil
-                ved at tilbyde værktøjer som indbetalingsgrænser,
-                selvudelukkelse og spilpauser. Hjælpen er altid lige ved
-                hånden gennem organisationer som StopSpillet og ROFUS.
+                Spiludviklere bærer et medansvar for ansvarligt spil. De implementerer session-reminders, tab-grænser for auto-spin og tydelige visninger af indsats og gevinst. Spillemyndigheden kræver, at alle spil understøtter ROFUS-integration og indbetalingsgrænser. Husk altid at sætte personlige grænser og spille med omtanke.{" "}
+                <Link to="/ansvarligt-spil" className="text-primary hover:underline font-medium">Læs mere om ansvarligt spil</Link>. Har du brug for hjælp, kontakt{" "}
+                <a href="https://www.stopspillet.dk/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline font-medium">StopSpillet.dk</a>. 18+ | Spil ansvarligt.
               </p>
             </CardContent>
           </Card>
@@ -831,57 +849,16 @@ const Spiludviklere = () => {
 
         <Separator className="my-10" />
 
-        {/* Summary */}
-        <section className="mb-12">
-          <h2 className="mb-6 text-3xl font-bold">
-            Det vigtigste om spiludviklere
-          </h2>
-          <div className="space-y-3">
-            {[
-              {
-                title: "Spiludviklere er kernen",
-                desc: "De skaber fundamentet for online casinooplevelsen med innovation og kreativitet.",
-              },
-              {
-                title: "Kendte navne sikrer kvalitet",
-                desc: "NetEnt, Microgaming, Play'n GO og andre topudviklere garanterer spil af højeste kvalitet.",
-
-              },
-              {
-                title: "Licenserede udviklere",
-                desc: "Regulerede udviklere sikrer fairness med RNG-teknologi og uafhængig testning.",
-              },
-              {
-                title: "Bredt spiludvalg",
-                desc: "Fra klassiske slots og bordspil til live casino og game shows – der er noget for enhver smag.",
-              },
-              {
-                title: "Moderne funktioner",
-                desc: "Megaways, cascading reels og VR-teknologi øger underholdningen markant.",
-              },
-            ].map((item) => (
-              <div
-                key={item.title}
-                className="flex items-start gap-3 rounded-lg border border-border bg-card p-4"
-              >
-                <CheckCircle2 className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
-                <div>
-                  <h3 className="font-semibold">{item.title}</h3>
-                  <p className="text-sm text-muted-foreground">{item.desc}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </section>
-
+        {/* ═══════════════════════════════════════════
+            FOOTER: AuthorBio → RelatedGuides → FAQ
+            ═══════════════════════════════════════════ */}
         <AuthorBio />
 
         <Separator className="my-10" />
 
         <RelatedGuides currentPath="/spiludviklere" />
 
-        {/* FAQ */}
-        <FAQSection title="Ofte stillede spørgsmål om spiludviklere" faqs={spiludviklereFaqs} />
+        <FAQSection title="Ofte stillede spørgsmål om casino-spiludviklere" faqs={spiludviklereFaqs} />
       </div>
     </>
   );
