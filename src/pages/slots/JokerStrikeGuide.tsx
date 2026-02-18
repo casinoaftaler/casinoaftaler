@@ -10,7 +10,7 @@ import { type ReactNode } from "react";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { Card, CardContent } from "@/components/ui/card";
-import { BarChart3, Calculator, Flame, Scale, AlertTriangle, Trophy, Zap, Star, Layers, Users, TrendingUp } from "lucide-react";
+import { Sparkles, BarChart3, Calculator, Flame, Scale, AlertTriangle, Trophy, Zap, Star, Layers, Users, TrendingUp } from "lucide-react";
 
 const linkClass = "text-primary underline underline-offset-4 hover:text-primary/80 transition-colors";
 
@@ -42,18 +42,19 @@ const JokerStrikeGuide = () => {
   return (
     <>
       <SEO title="Joker Strike – 98 % RTP & Hi Roller" description="Dybdegående analyse af Joker Strike: 98,11 % RTP med Hi Roller, lav volatilitet, 456× max win og gennemspilningsstrategi." jsonLd={[faqJsonLd, articleSchema, breadcrumbJsonLd]} />
-      <article className="mx-auto max-w-4xl px-4 py-12">
-        <header className="mb-8 text-center">
-          <div className="flex items-center justify-center gap-2 mb-4">
-            <Badge variant="secondary" className="text-xs">Ultra-Høj RTP</Badge>
-            <Badge variant="outline" className="text-xs">RTP 98,11 %</Badge>
-            <Badge variant="outline" className="text-xs">Lav Volatilitet</Badge>
+      {/* ── HERO ── */}
+      <section className="relative overflow-hidden py-12 text-white md:py-20" style={{ backgroundImage: "linear-gradient(135deg, hsl(260 70% 25%), hsl(250 60% 20%) 40%, hsl(210 80% 25%))" }}>
+        <div className="container">
+          <div className="mx-auto max-w-3xl text-center">
+            <Badge variant="secondary" className="mb-4"><Sparkles className="mr-1.5 h-3.5 w-3.5" /> Opdateret Februar 2026</Badge>
+            <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">Joker Strike – 98,11 % RTP & Hi Roller-Analyse</h1>
+            <p className="text-lg text-white/80">Quickspin's matematiske juvelen: en slot med 98,11 % RTP, der udfordrer selve konceptet om hvad en spillemaskine kan tilbyde.</p>
           </div>
-          <h1 className="text-4xl md:text-5xl font-bold mb-4 leading-tight">Joker Strike – 98,11 % RTP & Hi Roller-Analyse</h1>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">Quickspin's matematiske juvelen: en slot med 98,11 % RTP, der udfordrer selve konceptet om hvad en spillemaskine kan tilbyde. Er det en slot eller et finansielt instrument?</p>
-        </header>
+        </div>
+      </section>
+
+      <div className="container py-8 md:py-12">
         <AuthorMetaBar author="kevin" date="2026-02-18" readTime="14 min" />
-        <Separator className="my-8" />
 
         <section className="mb-10">
           <h2 className="text-2xl font-bold mb-4 flex items-center gap-2"><TrendingUp className="h-5 w-5 text-primary" />98,11 % RTP: Hvad Betyder Det I Praksis?</h2>
@@ -139,7 +140,7 @@ const JokerStrikeGuide = () => {
         <AuthorBio author="kevin" />
         <RelatedGuides currentPath="/casinospil/spillemaskiner/joker-strike" />
         <FAQSection title="Ofte Stillede Spørgsmål om Joker Strike" faqs={jokerStrikeFaqs} />
-      </article>
+      </div>
     </>
   );
 };

@@ -42,18 +42,19 @@ const BuffaloKingGuide = () => {
   return (
     <>
       <SEO title="Buffalo King – Multiplikator & Max Win-Analyse" description="Dybdegående analyse af Buffalo King: multiplikator-stacking, 93.750× max win, RTP 96,06 % og EV-beregninger for danske spillere." jsonLd={[faqJsonLd, articleSchema, breadcrumbJsonLd]} />
-      <article className="mx-auto max-w-4xl px-4 py-12">
-        <header className="mb-8 text-center">
-          <div className="flex items-center justify-center gap-2 mb-4">
-            <Badge variant="secondary" className="text-xs">Multiplikator-Stacking</Badge>
-            <Badge variant="outline" className="text-xs">RTP 96,06 %</Badge>
-            <Badge variant="outline" className="text-xs">Ekstremt Høj Volatilitet</Badge>
+      {/* ── HERO ── */}
+      <section className="relative overflow-hidden py-12 text-white md:py-20" style={{ backgroundImage: "linear-gradient(135deg, hsl(260 70% 25%), hsl(250 60% 20%) 40%, hsl(210 80% 25%))" }}>
+        <div className="container">
+          <div className="mx-auto max-w-3xl text-center">
+            <Badge variant="secondary" className="mb-4"><Sparkles className="mr-1.5 h-3.5 w-3.5" /> Opdateret Februar 2026</Badge>
+            <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">Buffalo King – Multiplikator-Stacking & Max Win-Analyse</h1>
+            <p className="text-lg text-white/80">Pragmatic Play's vildeste multiplikator-slot: en matematisk dekonstruktion af 93.750× max win-potentialet og den stacking-mekanik, der gør Buffalo King til en af markedets mest volatile titler.</p>
           </div>
-          <h1 className="text-4xl md:text-5xl font-bold mb-4 leading-tight">Buffalo King – Multiplikator-Stacking & Max Win-Analyse</h1>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">Pragmatic Play's vildeste multiplikator-slot: en matematisk dekonstruktion af 93.750× max win-potentialet og den stacking-mekanik, der gør Buffalo King til en af markedets mest volatile titler.</p>
-        </header>
+        </div>
+      </section>
+
+      <div className="container py-8 md:py-12">
         <AuthorMetaBar author="kevin" date="2026-02-18" readTime="18 min" />
-        <Separator className="my-8" />
 
         <section className="mb-10">
           <h2 className="text-2xl font-bold mb-4 flex items-center gap-2"><Zap className="h-5 w-5 text-primary" />Multiplikator-Stacking: Mekanikken Bag 93.750× Max Win</h2>
@@ -122,7 +123,7 @@ const BuffaloKingGuide = () => {
         <AuthorBio author="kevin" />
         <RelatedGuides currentPath="/casinospil/spillemaskiner/buffalo-king" />
         <FAQSection title="Ofte Stillede Spørgsmål om Buffalo King" faqs={buffaloKingFaqs} />
-      </article>
+      </div>
     </>
   );
 };

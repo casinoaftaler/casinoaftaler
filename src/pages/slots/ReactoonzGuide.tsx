@@ -106,24 +106,19 @@ const ReactoonzGuide = () => {
         jsonLd={[faqJsonLd, articleSchema, breadcrumbJsonLd]}
       />
 
-      <article className="mx-auto max-w-4xl px-4 py-12">
-        {/* Hero */}
-        <header className="mb-8 text-center">
-          <div className="flex items-center justify-center gap-2 mb-4">
-            <Badge variant="secondary" className="text-xs">Cluster Pays</Badge>
-            <Badge variant="outline" className="text-xs">RTP 96,51 %</Badge>
-            <Badge variant="outline" className="text-xs">Høj Volatilitet</Badge>
+      {/* ── HERO ── */}
+      <section className="relative overflow-hidden py-12 text-white md:py-20" style={{ backgroundImage: "linear-gradient(135deg, hsl(260 70% 25%), hsl(250 60% 20%) 40%, hsl(210 80% 25%))" }}>
+        <div className="container">
+          <div className="mx-auto max-w-3xl text-center">
+            <Badge variant="secondary" className="mb-4"><Sparkles className="mr-1.5 h-3.5 w-3.5" /> Opdateret Februar 2026</Badge>
+            <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">Reactoonz – Cluster Pays Analyse & Volatilitetsprofil</h1>
+            <p className="text-lg text-white/80">En matematisk gennemgang af Play'n GO's ikoniske 7×7 cluster pays-slot: Quantum-funktioner, kædegevinster og hvornår Gargantoon reelt leverer værdi.</p>
           </div>
-          <h1 className="text-4xl md:text-5xl font-bold mb-4 leading-tight">
-            Reactoonz – Cluster Pays Analyse & Volatilitetsprofil
-          </h1>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            En matematisk gennemgang af Play'n GO's ikoniske 7×7 cluster pays-slot: Quantum-funktioner, kædegevinster og hvornår Gargantoon reelt leverer værdi.
-          </p>
-        </header>
+        </div>
+      </section>
 
+      <div className="container py-8 md:py-12">
         <AuthorMetaBar author="kevin" date="2026-02-18" readTime="20 min" />
-        <Separator className="my-8" />
 
         {/* ── Udviklerkontekst ── */}
         <section className="mb-10">
@@ -530,7 +525,7 @@ const ReactoonzGuide = () => {
         <AuthorBio author="kevin" />
         <RelatedGuides currentPath="/casinospil/spillemaskiner/reactoonz" />
         <FAQSection title="Ofte Stillede Spørgsmål om Reactoonz" faqs={reactoonzFaqs} />
-      </article>
+      </div>
     </>
   );
 };

@@ -114,24 +114,19 @@ const WolfGoldGuide = () => {
         jsonLd={[faqJsonLd, articleSchema, breadcrumbJsonLd]}
       />
 
-      <article className="mx-auto max-w-4xl px-4 py-12">
-        {/* Hero */}
-        <header className="mb-8 text-center">
-          <div className="flex items-center justify-center gap-2 mb-4">
-            <Badge variant="secondary" className="text-xs">Money Respin</Badge>
-            <Badge variant="outline" className="text-xs">RTP 96,01 %</Badge>
-            <Badge variant="outline" className="text-xs">Medium-Høj Volatilitet</Badge>
+      {/* ── HERO ── */}
+      <section className="relative overflow-hidden py-12 text-white md:py-20" style={{ backgroundImage: "linear-gradient(135deg, hsl(260 70% 25%), hsl(250 60% 20%) 40%, hsl(210 80% 25%))" }}>
+        <div className="container">
+          <div className="mx-auto max-w-3xl text-center">
+            <Badge variant="secondary" className="mb-4"><Sparkles className="mr-1.5 h-3.5 w-3.5" /> Opdateret Februar 2026</Badge>
+            <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">Wolf Gold – Jackpot-Mekanik & RTP-Analyse</h1>
+            <p className="text-lg text-white/80">Pragmatic Play's mest ikoniske jackpot-slot: en teknisk gennemgang af Money Respin-systemet, Mega Symbol free spins og hvorfor Wolf Gold stadig definerer genren efter 9 år.</p>
           </div>
-          <h1 className="text-4xl md:text-5xl font-bold mb-4 leading-tight">
-            Wolf Gold – Jackpot-Mekanik & RTP-Analyse
-          </h1>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Pragmatic Play's mest ikoniske jackpot-slot: en teknisk gennemgang af Money Respin-systemet, Mega Symbol free spins og hvorfor Wolf Gold stadig definerer genren efter 9 år.
-          </p>
-        </header>
+        </div>
+      </section>
 
+      <div className="container py-8 md:py-12">
         <AuthorMetaBar author="kevin" date="2026-02-18" readTime="18 min" />
-        <Separator className="my-8" />
 
         {/* ── Segment First: Hvem er spillet til? ── */}
         <section className="mb-10">
@@ -413,7 +408,7 @@ const WolfGoldGuide = () => {
         <AuthorBio author="kevin" />
         <RelatedGuides currentPath="/casinospil/spillemaskiner/wolf-gold" />
         <FAQSection title="Ofte Stillede Spørgsmål om Wolf Gold" faqs={wolfGoldFaqs} />
-      </article>
+      </div>
     </>
   );
 };

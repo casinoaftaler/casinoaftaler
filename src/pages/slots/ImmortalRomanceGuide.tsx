@@ -42,18 +42,19 @@ const ImmortalRomanceGuide = () => {
   return (
     <>
       <SEO title="Immortal Romance – Wild Vine & RTP-Analyse" description="Dybdegående analyse af Immortal Romance: Chamber of Spins, 96,86 % RTP, Wild Vine og 12.150× max win for danske spillere." jsonLd={[faqJsonLd, articleSchema, breadcrumbJsonLd]} />
-      <article className="mx-auto max-w-4xl px-4 py-12">
-        <header className="mb-8 text-center">
-          <div className="flex items-center justify-center gap-2 mb-4">
-            <Badge variant="secondary" className="text-xs">Progressiv Bonus</Badge>
-            <Badge variant="outline" className="text-xs">RTP 96,86 %</Badge>
-            <Badge variant="outline" className="text-xs">Høj Volatilitet</Badge>
+      {/* ── HERO ── */}
+      <section className="relative overflow-hidden py-12 text-white md:py-20" style={{ backgroundImage: "linear-gradient(135deg, hsl(260 70% 25%), hsl(250 60% 20%) 40%, hsl(210 80% 25%))" }}>
+        <div className="container">
+          <div className="mx-auto max-w-3xl text-center">
+            <Badge variant="secondary" className="mb-4"><Sparkles className="mr-1.5 h-3.5 w-3.5" /> Opdateret Februar 2026</Badge>
+            <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">Immortal Romance – Chamber of Spins & EV-Analyse</h1>
+            <p className="text-lg text-white/80">Microgamings narrativ-drevne mesterværk: fire vampyrs kærlighedshistorier, fire progressive bonusniveauer og en af markedets højeste RTP'er ved 96,86 %.</p>
           </div>
-          <h1 className="text-4xl md:text-5xl font-bold mb-4 leading-tight">Immortal Romance – Chamber of Spins & EV-Analyse</h1>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">Microgamings narrativ-drevne mesterværk: fire vampyrs kærlighedshistorier, fire progressive bonusniveauer og en af markedets højeste RTP'er ved 96,86 %.</p>
-        </header>
+        </div>
+      </section>
+
+      <div className="container py-8 md:py-12">
         <AuthorMetaBar author="kevin" date="2026-02-18" readTime="17 min" />
-        <Separator className="my-8" />
 
         <section className="mb-10">
           <h2 className="text-2xl font-bold mb-4 flex items-center gap-2"><Flame className="h-5 w-5 text-primary" />Bonusfunktioner: Chamber of Spins Dekonstrueret</h2>
@@ -139,7 +140,7 @@ const ImmortalRomanceGuide = () => {
         <AuthorBio author="kevin" />
         <RelatedGuides currentPath="/casinospil/spillemaskiner/immortal-romance" />
         <FAQSection title="Ofte Stillede Spørgsmål om Immortal Romance" faqs={immortalRomanceFaqs} />
-      </article>
+      </div>
     </>
   );
 };
