@@ -127,7 +127,7 @@ const CampobetAnmeldelse = () => {
       url: "https://www.campobet.dk",
     },
     author: { "@type": "Organization", name: "Casinoaftaler" },
-    reviewRating: { "@type": "Rating", ratingValue: "4.8", bestRating: "5", worstRating: "1" },
+    reviewRating: { "@type": "Rating", ratingValue: "4.7", bestRating: "5", worstRating: "1" },
     reviewBody: "Campobet er et internationalt casino med dansk licens, No-Sticky velkomstbonus på 100% op til 1.000 kr., 10x omsætning, sportsbetting og tusindvis af spil.",
   };
 

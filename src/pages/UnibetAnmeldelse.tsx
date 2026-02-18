@@ -35,7 +35,7 @@ const UnibetAnmeldelse = () => {
   const heroBackgroundImage = siteSettings?.hero_background_image;
   const articleSchema = buildArticleSchema({ headline: "Unibet Anmeldelse 2026 – Casino, Sports & Poker i Danmark", description: "Komplet anmeldelse af Unibet. Kindred Group-ejet allround-platform med dansk licens, casino, sports, poker og live casino.", url: "https://casinoaftaler.dk/casino-anmeldelser/unibet", datePublished: "2026-02-15", dateModified: "2026-02-18", authorName: "Jonas", authorUrl: "https://casinoaftaler.dk/forfatter/jonas" });
   const faqJsonLd = buildFaqSchema(faqs);
-  const reviewJsonLd = { "@context": "https://schema.org", "@type": "Review", itemReviewed: { "@type": "Organization", name: "Unibet", url: "https://www.unibet.dk/" }, author: { "@type": "Organization", name: "Casinoaftaler" }, reviewRating: { "@type": "Rating", ratingValue: "4.4", bestRating: "5", worstRating: "1" }, reviewBody: "Unibet er en af de mest komplette spilleplatforme i Danmark med casino, sports, poker og live casino under Kindred Groups paraply." };
+  const reviewJsonLd = { "@context": "https://schema.org", "@type": "Review", itemReviewed: { "@type": "Organization", name: "Unibet", url: "https://www.unibet.dk/" }, author: { "@type": "Organization", name: "Casinoaftaler" }, reviewRating: { "@type": "Rating", ratingValue: "4.3", bestRating: "5", worstRating: "1" }, reviewBody: "Unibet er en af de mest komplette spilleplatforme i Danmark med casino, sports, poker og live casino under Kindred Groups paraply." };
 
   return (
     <>
