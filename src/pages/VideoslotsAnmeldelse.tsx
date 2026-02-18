@@ -221,7 +221,8 @@ const VideoslotsAnmeldelse = () => {
 
         {/* Endelig Vurdering */}
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold">Bundlinjen – 4.3 ud af 5</h2>
+          <RatingBreakdown scores={CASINO_SCORES["videoslots"].scores} total={CASINO_SCORES["videoslots"].total} />
+          <h2 className="mt-6 mb-4 text-3xl font-bold">Bundlinjen – 4.3 ud af 5</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">Videoslots Casino er ikke for alle – og det er netop styrken. Det er et casino bygget af slots-entusiaster til slots-entusiaster, med et kompromisløst fokus på spiludvalg, transparens og fair spillervilkår. Battle of Slots er en ægte innovation, Weekend Boosters er en matematisk solid cashback-mekanisme, og RTP-transparensen er unik i Danmark.</p>
           <p className="mb-4 text-muted-foreground leading-relaxed">Svaghederne er reelle: det funktionelle design taber til polerede konkurrenter, mobiloplevelsen er middelmådig, og den beskedne velkomstbonus vil ikke tiltrække bonusjægere. MobilePay-manglen er en overraskende udeladelse for det danske marked. Men for den spiller, der ved, hvad de vil have – og det er adgang til alle spil, hurtige udbetalinger og et community af ligesindede – er Videoslots det eneste rigtige valg i Danmark.</p>
           <p className="text-muted-foreground leading-relaxed">Vores anbefaling: Opret en konto, indbetal via Trustly, aktiver den beskedne bonus, og dyk ned i Battle of Slots. Hvis du efter en uge føler, at du har fundet dit casino-hjem, er Videoslots for dig. Hvis du savner æstetik, MobilePay og en app – kig mod <Link to="/casino-anmeldelser/leovegas" className={linkClass}>LeoVegas</Link> eller <Link to="/casino-anmeldelser/mr-green" className={linkClass}>Mr Green</Link> i stedet.</p>

@@ -754,7 +754,8 @@ const LunaCasinoAnmeldelse = () => {
 
         {/* ───── KONKLUSION ───── */}
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold">Endelig vurdering: 4.6 / 5 – Kvalitets-Kuratoren lever op til sit navn</h2>
+          <RatingBreakdown scores={CASINO_SCORES["luna-casino"].scores} total={CASINO_SCORES["luna-casino"].total} />
+          <h2 className="mt-6 mb-4 text-3xl font-bold">Endelig vurdering: 4.6 / 5 – Kvalitets-Kuratoren lever op til sit navn</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
             Efter 14 dages intensiv test bekræfter vi, at Luna Casino fortjener sin rolle som Kvalitets-Kuratoren blandt danske casinoer. Det er ikke det casino med flest spil, den højeste bonus eller de fleste betalingsmetoder – men det er et casino med en tydelig identitet og en gennemtænkt filosofi.
           </p>

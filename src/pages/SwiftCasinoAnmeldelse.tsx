@@ -782,7 +782,8 @@ const SwiftCasinoAnmeldelse = () => {
 
         {/* ───── KONKLUSION ───── */}
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold">Endelig vurdering: 4.7 / 5 – Data-Innovatøren leverer bredde og transparens</h2>
+          <RatingBreakdown scores={CASINO_SCORES["swift-casino"].scores} total={CASINO_SCORES["swift-casino"].total} />
+          <h2 className="mt-6 mb-4 text-3xl font-bold">Endelig vurdering: 4.7 / 5 – Data-Innovatøren leverer bredde og transparens</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
             Efter 14 dages intensiv test bekræfter vi, at Swift Casino fortjener sin position som Data-Innovatøren i det danske casinomarked. Det er et casino der har fundet sin niche ved at kombinere et massivt spiludvalg med innovative værktøjer og stærk betalingsinfrastruktur.
           </p>
