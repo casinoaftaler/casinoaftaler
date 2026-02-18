@@ -53,7 +53,7 @@ const spilleautomatenFaqs: { question: string; answer: ReactNode }[] = [
         Spilleautomaten drives af Winteq ApS, et dansk selskab med gyldig licens fra Spillemyndigheden (licensnr. 21-67980). Platformen benytter 256-bit SSL-kryptering til beskyttelse af alle transaktioner og persondata. Casinoet er fuldt tilsluttet{" "}
         <a href="https://www.rofus.nu/" target="_blank" rel="noopener noreferrer" className={linkClass}>ROFUS</a>{" "}
         (Register Over Frivilligt Udelukkede Spillere). Winteq ApS driver også Bingo.dk og{" "}
-        <Link to="/spildansknu-anmeldelse" className={linkClass}>SpilDanskNu</Link>, hvilket understreger deres erfaring og pålidelighed på det danske marked. Læs mere om{" "}
+        <Link to="/casino-anmeldelser/spildansknu" className={linkClass}>SpilDanskNu</Link>, hvilket understreger deres erfaring og pålidelighed på det danske marked. Læs mere om{" "}
         <Link to="/ansvarligt-spil" className={linkClass}>ansvarligt spil</Link>.
       </>
     ),
@@ -94,7 +94,7 @@ const spilleautomatenFaqs: { question: string; answer: ReactNode }[] = [
     answer: (
       <>
         Begge drives af Winteq ApS, men Spilleautomaten har en skarpere niche-profil: specialisering i spilleautomater med Præmieshoppen som unik loyalitetsfunktion. SpilDanskNu har et bredere spiludvalg og mere generel casinoprofil. Spilleautomatens 5-dages bonusmodel er unik, mens SpilDanskNu har en standard matchbonus. Begge har 10x omsætningskrav. Spilleautomaten har flere slots-specifikke kampagner, mens SpilDanskNu har et større live casino-udvalg. Læs vores{" "}
-        <Link to="/spildansknu-anmeldelse" className={linkClass}>SpilDanskNu-anmeldelse</Link> for en direkte sammenligning.
+        <Link to="/casino-anmeldelser/spildansknu" className={linkClass}>SpilDanskNu-anmeldelse</Link> for en direkte sammenligning.
       </>
     ),
   },
@@ -118,7 +118,7 @@ const SpilleautomatenAnmeldelse = () => {
   };
 
   const faqJsonLd = buildFaqSchema(spilleautomatenFaqs);
-  const articleSchema = buildArticleSchema({ headline: "Spilleautomaten Anmeldelse 2026 – 5-Dages Bonus & Præmieshop", description: "Komplet anmeldelse af Spilleautomaten.dk. 100% bonus op til 1.000 kr. over 5 dage, 10x omsætning, Præmieshop og hurtige udbetalinger.", url: "https://casinoaftaler.dk/spilleautomaten-anmeldelse", datePublished: "2026-02-15", dateModified: "2026-02-18", authorName: "Jonas", authorUrl: "https://casinoaftaler.dk/forfatter/jonas" });
+  const articleSchema = buildArticleSchema({ headline: "Spilleautomaten Anmeldelse 2026 – 5-Dages Bonus & Præmieshop", description: "Komplet anmeldelse af Spilleautomaten.dk. 100% bonus op til 1.000 kr. over 5 dage, 10x omsætning, Præmieshop og hurtige udbetalinger.", url: "https://casinoaftaler.dk/casino-anmeldelser/spilleautomaten", datePublished: "2026-02-15", dateModified: "2026-02-18", authorName: "Jonas", authorUrl: "https://casinoaftaler.dk/forfatter/jonas" });
 
   const reviewJsonLd = {
     "@context": "https://schema.org",
@@ -134,22 +134,12 @@ const SpilleautomatenAnmeldelse = () => {
       "Spilleautomaten er et dansk slots-specialiseret casino med 5-dages velkomstbonus op til 1.000 kr., 10x omsætning, Præmieshop med kontante præmier, 2.000+ spilleautomater og hurtige MobilePay-udbetalinger.",
   };
 
-  const breadcrumbJsonLd = {
-    "@context": "https://schema.org",
-    "@type": "BreadcrumbList",
-    itemListElement: [
-      { "@type": "ListItem", position: 1, name: "Forside", item: "https://casinoaftaler.dk/" },
-      { "@type": "ListItem", position: 2, name: "Top 10 Casino Online", item: "https://casinoaftaler.dk/top-10-casino-online" },
-      { "@type": "ListItem", position: 3, name: "Spilleautomaten Anmeldelse", item: "https://casinoaftaler.dk/spilleautomaten-anmeldelse" },
-    ],
-  };
-
   return (
     <>
       <SEO
         title="Spilleautomaten Anmeldelse 2026 – Bonus & Præmieshop"
         description="Komplet anmeldelse af Spilleautomaten.dk. 100% bonus op til 1.000 kr. fordelt over 5 dage, kun 10x omsætning, Præmieshop med kontante præmier og hurtige MobilePay-udbetalinger. Testet over 14 dage."
-        jsonLd={[articleSchema, faqJsonLd, reviewJsonLd, breadcrumbJsonLd]}
+        jsonLd={[articleSchema, faqJsonLd, reviewJsonLd]}
       />
 
       {/* Hero Section */}
@@ -263,7 +253,7 @@ const SpilleautomatenAnmeldelse = () => {
           </p>
           <p className="mb-4 text-muted-foreground leading-relaxed">
             Bag platformen står Winteq ApS, et dansk selskab der også driver{" "}
-            <Link to="/spildansknu-anmeldelse" className={linkClass}>SpilDanskNu</Link> og Bingo.dk. Det er ikke en debutant – Winteq har årelang erfaring med danske spillere og kender markedets krav intimt. Spilleautomaten blev lanceret i juli 2024 som Winteqs tredje danske brand, og strategien var klar fra dag ét: skab det bedste slots-casino i Danmark, ikke det største generalist-casino.
+            <Link to="/casino-anmeldelser/spildansknu" className={linkClass}>SpilDanskNu</Link> og Bingo.dk. Det er ikke en debutant – Winteq har årelang erfaring med danske spillere og kender markedets krav intimt. Spilleautomaten blev lanceret i juli 2024 som Winteqs tredje danske brand, og strategien var klar fra dag ét: skab det bedste slots-casino i Danmark, ikke det største generalist-casino.
           </p>
           <p className="mb-4 text-muted-foreground leading-relaxed">
             Den mest unikke funktion er Præmieshoppen – et loyalitetsprogram hvor optjente points kan konverteres til kontante bonusmidler, ikke blot gratis spins eller eksklusive turneringsinvitationer. Kombineret med en innovativ 5-dages velkomstbonus op til 1.000 kr. (kode VELKOMMEN1-5), kun 10x{" "}
@@ -785,7 +775,7 @@ const SpilleautomatenAnmeldelse = () => {
                 <h3 className="text-lg font-bold text-foreground mb-2">Spilleautomaten vs. SpilDanskNu (søster-brand)</h3>
                 <p className="text-sm text-muted-foreground leading-relaxed">
                   Begge drives af Winteq ApS med identiske licensvilkår. SpilDanskNu har et bredere spiludvalg med flere bordspil og et større live casino, mens Spilleautomaten vinder på Præmieshoppen (SpilDanskNu har sit eget loyalitetsprogram, men uden kontante præmier). Bonusstrukturerne adskiller sig markant: Spilleautomatens 5-dages model vs. SpilDanskNus standard matchbonus. For dedikerede slots-spillere er Spilleautomaten det bedre valg; for spillere der søger bredde, er{" "}
-                  <Link to="/spildansknu-anmeldelse" className={linkClass}>SpilDanskNu</Link> stærkere.
+                  <Link to="/casino-anmeldelser/spildansknu" className={linkClass}>SpilDanskNu</Link> stærkere.
                 </p>
               </CardContent>
             </Card>
@@ -803,7 +793,7 @@ const SpilleautomatenAnmeldelse = () => {
               <CardContent className="pt-6">
                 <h3 className="text-lg font-bold text-foreground mb-2">Spilleautomaten vs. Luna Casino</h3>
                 <p className="text-sm text-muted-foreground leading-relaxed">
-                  <Link to="/luna-casino-anmeldelse" className={linkClass}>Luna Casino</Link> deler filosofien om kvalitet over kvantitet, men med en bredere profil. Luna har et stigende loyalitetsprogram (niveauer vs. Spilleautomatens point-shop), daglige bonuskampagner og turneringer. Spilleautomaten vinder på kontante Præmieshop-belønninger, lavere minimumsindbetaling og den innovative 5-dages bonusmodel. Luna har et lidt større live casino. For spillere der primært søger slots med konkrete belønninger, er Spilleautomaten det bedre valg.
+                  <Link to="/casino-anmeldelser/luna-casino" className={linkClass}>Luna Casino</Link> deler filosofien om kvalitet over kvantitet, men med en bredere profil. Luna har et stigende loyalitetsprogram (niveauer vs. Spilleautomatens point-shop), daglige bonuskampagner og turneringer. Spilleautomaten vinder på kontante Præmieshop-belønninger, lavere minimumsindbetaling og den innovative 5-dages bonusmodel. Luna har et lidt større live casino. For spillere der primært søger slots med konkrete belønninger, er Spilleautomaten det bedre valg.
                 </p>
               </CardContent>
             </Card>
@@ -850,7 +840,7 @@ const SpilleautomatenAnmeldelse = () => {
 
         <Separator className="my-10" />
 
-        <RelatedGuides currentPath="/spilleautomaten-anmeldelse" />
+        <RelatedGuides currentPath="/casino-anmeldelser/spilleautomaten" />
 
         <FAQSection title="Ofte stillede spørgsmål om Spilleautomaten" faqs={spilleautomatenFaqs} />
       </div>

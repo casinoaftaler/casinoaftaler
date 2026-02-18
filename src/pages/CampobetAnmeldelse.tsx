@@ -116,7 +116,7 @@ const CampobetAnmeldelse = () => {
   };
 
   const faqJsonLd = buildFaqSchema(campobetFaqs);
-  const articleSchema = buildArticleSchema({ headline: "Campobet Anmeldelse 2026 – No-Sticky Bonus & Odds", description: "Komplet anmeldelse af Campobet. No-Sticky bonus op til 1.000 kr., 10x omsætning, sportsbetting og dansk licens.", url: "https://casinoaftaler.dk/campobet-anmeldelse", datePublished: "2026-02-15", dateModified: "2026-02-18", authorName: "Jonas", authorUrl: "https://casinoaftaler.dk/forfatter/jonas" });
+  const articleSchema = buildArticleSchema({ headline: "Campobet Anmeldelse 2026 – No-Sticky Bonus & Odds", description: "Komplet anmeldelse af Campobet. No-Sticky bonus op til 1.000 kr., 10x omsætning, sportsbetting og dansk licens.", url: "https://casinoaftaler.dk/casino-anmeldelser/campobet", datePublished: "2026-02-15", dateModified: "2026-02-18", authorName: "Jonas", authorUrl: "https://casinoaftaler.dk/forfatter/jonas" });
 
   const reviewJsonLd = {
     "@context": "https://schema.org",
@@ -131,22 +131,12 @@ const CampobetAnmeldelse = () => {
     reviewBody: "Campobet er et internationalt casino med dansk licens, No-Sticky velkomstbonus på 100% op til 1.000 kr., 10x omsætning, sportsbetting og tusindvis af spil.",
   };
 
-  const breadcrumbJsonLd = {
-    "@context": "https://schema.org",
-    "@type": "BreadcrumbList",
-    itemListElement: [
-      { "@type": "ListItem", position: 1, name: "Forside", item: "https://casinoaftaler.dk/" },
-      { "@type": "ListItem", position: 2, name: "Top 10 Casino Online", item: "https://casinoaftaler.dk/top-10-casino-online" },
-      { "@type": "ListItem", position: 3, name: "Campobet Anmeldelse", item: "https://casinoaftaler.dk/campobet-anmeldelse" },
-    ],
-  };
-
   return (
     <>
       <SEO
         title="Campobet Anmeldelse 2026 – No-Sticky Bonus"
         description="Komplet anmeldelse af Campobet.dk. 100% No-Sticky bonus op til 1.000 kr., kun 10x omsætning, sportsbetting, tusindvis af spil og hurtige udbetalinger. Læs vores ærlige vurdering."
-        jsonLd={[articleSchema, faqJsonLd, reviewJsonLd, breadcrumbJsonLd]}
+        jsonLd={[articleSchema, faqJsonLd, reviewJsonLd]}
       />
 
       {/* Hero */}
@@ -412,7 +402,7 @@ const CampobetAnmeldelse = () => {
         {/* Sportsbetting dybdegående */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold">Sportsbetting-sektionen – Fra Bet Builder til livebetting</h2>
-          <p className="mb-4 text-muted-foreground leading-relaxed">Campobets sportssektion er ikke en eftertanke tilføjet for at fylde en menu – det er en fuldt udfoldet sportsbetting-platform, der konkurrerer direkte med specialiserede bookmakers som <Link to="/nordicbet-anmeldelse" className={linkClass}>NordicBet</Link> og <Link to="/bet365-anmeldelse" className={linkClass}>bet365</Link>. Med ca. 40 sportsgrene, dybe markeder og avancerede funktioner som Bet Builder og livebetting er det en seriøs dual-platform.</p>
+          <p className="mb-4 text-muted-foreground leading-relaxed">Campobets sportssektion er ikke en eftertanke tilføjet for at fylde en menu – det er en fuldt udfoldet sportsbetting-platform, der konkurrerer direkte med specialiserede bookmakers som <Link to="/casino-anmeldelser/nordicbet" className={linkClass}>NordicBet</Link> og <Link to="/casino-anmeldelser/bet365" className={linkClass}>bet365</Link>. Med ca. 40 sportsgrene, dybe markeder og avancerede funktioner som Bet Builder og livebetting er det en seriøs dual-platform.</p>
           <p className="mb-4 text-muted-foreground leading-relaxed">Fodbold er naturligvis den primære sportsgren med dækning af alle store ligaer: Premier League, La Liga, Bundesliga, Serie A, Ligue 1, Superligaen, Champions League og Europa League. Markedsdybden er imponerende – en typisk Premier League-kamp tilbyder 200+ væddemålsmuligheder fordelt på resultat, handicap, over/under, begge hold scorer, antal hjørnespark, kort, spillermarkeder og mange flere. De danske ligaer er naturligvis også dækket med fokus på Superligaen og 1. Division.</p>
           <p className="mb-4 text-muted-foreground leading-relaxed">Bet Builder-funktionen er Campobets stærkeste sportsfeature. Du kan kombinere flere markeder inden for samme kamp – f.eks. "Begge hold scorer + Over 2,5 mål + Hjemmehold vinder" – og systemet beregner automatisk den kombinerede odds. Under vores test fungerede Bet Builder fejlfrit med op til 8 kombinerede valg pr. kupon. Odds-niveauet er konkurrencedygtigt og lå inden for 1-3 % af markedslederne i vores stikprøver.</p>
           <p className="mb-4 text-muted-foreground leading-relaxed">Livebetting-sektionen er responsiv med odds-opdateringer under 3 sekunders forsinkelse. Grafiske statistikker (boldbesiddelse, skud, hjørnespark) opdateres i realtid, hvilket giver et solidt datagrundlag for in-play væddemål. Cash-out er tilgængelig på de fleste pre-match og live væddemål, og vi oplevede ingen problemer med cash-out forsinkelser under vores tests.</p>
@@ -517,8 +507,8 @@ const CampobetAnmeldelse = () => {
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold">Hvem bør IKKE vælge Campobet?</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">Trods de mange fordele er Campobet ikke det rigtige valg for alle spillertyper. Her er en ærlig vurdering af, hvem der bør overveje alternativer:</p>
-          <p className="mb-4 text-muted-foreground leading-relaxed"><strong className="text-foreground">Spillere der kræver dansk kundeservice.</strong> Hvis det er vigtigt for dig at kommunikere med support på flydende dansk – uden oversættelsesprogram – er casinoer drevet af danske selskaber som <Link to="/spildansknu-anmeldelse" className={linkClass}>SpilDanskNu</Link> eller <Link to="/royal-casino-anmeldelse" className={linkClass}>Royal Casino</Link> bedre valg. Campobets internationale team er kompetent, men sprogbarrieren kan frustrere ved komplekse henvendelser.</p>
-          <p className="mb-4 text-muted-foreground leading-relaxed"><strong className="text-foreground">Loyalitets- og VIP-jægere.</strong> Campobet mangler et struktureret loyalitetsprogram med points, niveauer og personlige rewards. Spillere der prioriterer langsigtede belønningssystemer vil finde bedre tilbud hos <Link to="/leovegas-anmeldelse" className={linkClass}>LeoVegas</Link> med deres VIP-program eller <Link to="/luna-casino-anmeldelse" className={linkClass}>Luna Casino</Link> med deres stigende loyalitetsniveauer.</p>
+          <p className="mb-4 text-muted-foreground leading-relaxed"><strong className="text-foreground">Spillere der kræver dansk kundeservice.</strong> Hvis det er vigtigt for dig at kommunikere med support på flydende dansk – uden oversættelsesprogram – er casinoer drevet af danske selskaber som <Link to="/casino-anmeldelser/spildansknu" className={linkClass}>SpilDanskNu</Link> eller <Link to="/casino-anmeldelser/royal-casino" className={linkClass}>Royal Casino</Link> bedre valg. Campobets internationale team er kompetent, men sprogbarrieren kan frustrere ved komplekse henvendelser.</p>
+          <p className="mb-4 text-muted-foreground leading-relaxed"><strong className="text-foreground">Loyalitets- og VIP-jægere.</strong> Campobet mangler et struktureret loyalitetsprogram med points, niveauer og personlige rewards. Spillere der prioriterer langsigtede belønningssystemer vil finde bedre tilbud hos <Link to="/casino-anmeldelser/leovegas" className={linkClass}>LeoVegas</Link> med deres VIP-program eller <Link to="/casino-anmeldelser/luna-casino" className={linkClass}>Luna Casino</Link> med deres stigende loyalitetsniveauer.</p>
           <p className="mb-4 text-muted-foreground leading-relaxed"><strong className="text-foreground">Spillere med lav minimumsindbetaling.</strong> Campobets minimum på 100 kr. er højere end de 75 kr. som mange danske casinoer tilbyder. For budgetbevidste spillere kan det være en barriere, særligt ved aktivering af reload-bonusser der kræver samme minimum.</p>
           <p className="text-muted-foreground leading-relaxed"><strong className="text-foreground">E-sport-entusiaster.</strong> Selvom e-sport er tilgængeligt, er markedsdybden begrænset sammenlignet med specialiserede e-sport bookmakers. Spillere der primært fokuserer på CS2, LoL eller Valorant-væddemål vil finde dybere markeder andetsteds.</p>
         </section>
@@ -528,7 +518,7 @@ const CampobetAnmeldelse = () => {
         {/* Sammenligning */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold">Campobet vs. Betinia vs. bet365 – Dual-platform sammenligning</h2>
-          <p className="mb-4 text-muted-foreground leading-relaxed">Campobet konkurrerer primært med andre dual-platform casinoer, der tilbyder både casino og sportsbetting. De to mest relevante konkurrenter på det danske marked er <Link to="/betinia-anmeldelse" className={linkClass}>Betinia</Link> og <Link to="/bet365-anmeldelse" className={linkClass}>bet365</Link>. Her er en nuanceret sammenligning baseret på vores tests af alle tre platforme.</p>
+          <p className="mb-4 text-muted-foreground leading-relaxed">Campobet konkurrerer primært med andre dual-platform casinoer, der tilbyder både casino og sportsbetting. De to mest relevante konkurrenter på det danske marked er <Link to="/casino-anmeldelser/betinia" className={linkClass}>Betinia</Link> og <Link to="/casino-anmeldelser/bet365" className={linkClass}>bet365</Link>. Her er en nuanceret sammenligning baseret på vores tests af alle tre platforme.</p>
           <p className="mb-4 text-muted-foreground leading-relaxed"><strong className="text-foreground">Campobet vs. Betinia.</strong> Begge drives af Malta-baserede selskaber og deler mange ligheder: No-Sticky bonus, 10x omsætningskrav og integreret sportsbetting. Den primære forskel er, at Campobet har bredere betalingsmuligheder (PayPal, Zimpler, Paysafecard) og et marginalt større spiludvalg. Betinia kontrastiller med et bedre akkumulator-boost system og "Foran med 2"-funktionen er tilgængelig hos begge. Campobets ugentlige reload-bonusser er No-Sticky, mens Betinias primært er sports-fokuserede. Vælg Campobet for betalingsfleksibilitet, Betinia for sportsbonus-dybde.</p>
           <p className="mb-4 text-muted-foreground leading-relaxed"><strong className="text-foreground">Campobet vs. bet365.</strong> bet365 er den ubestridte markedsleder inden for sportsbetting med dybere markeder, hurtigere odds-opdateringer og et mere etableret brand. Campobets fordel ligger i casino-delen: No-Sticky bonus (bet365 har sticky), et bredere spiludvalg fra flere udbydere, og ugentlige reload-bonusser. Vælg bet365 for sportsspecialisering, Campobet for den bedste casino-sport hybrid.</p>
           <p className="text-muted-foreground leading-relaxed"><strong className="text-foreground">Campobets unikke position.</strong> Det der gør Campobet særligt attraktivt er den sjældne kombination af No-Sticky bonusstruktur, tredobbelt licensering og et spiludvalg der matcher de bedste rene casino-platforme – alt sammen kombineret med en sportssektion der konkurrerer med dedikerede bookmakers. Det er en dual-platform, der ikke kompromitterer på nogen af de to vertikaler.</p>
@@ -553,7 +543,7 @@ const CampobetAnmeldelse = () => {
         <InlineCasinoCards />
         <Separator className="my-10" />
         <AuthorBio author="jonas" />
-        <RelatedGuides currentPath="/campobet-anmeldelse" />
+        <RelatedGuides currentPath="/casino-anmeldelser/campobet" />
         <FAQSection title="Ofte stillede spørgsmål om Campobet" faqs={campobetFaqs} />
       </div>
     </>

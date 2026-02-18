@@ -44,7 +44,7 @@ const lunaFaqs: { question: string; answer: ReactNode }[] = [
     answer: (
       <>
         Luna Casino drives af SkillOnNet Limited, et veletableret selskab med gyldig dansk licens fra Spillemyndigheden (licensnr. 16-1066791). SkillOnNet driver også{" "}
-        <Link to="/swift-casino-anmeldelse" className={linkClass}>Swift Casino</Link> og har haft tilstedeværelse på det danske marked siden 2017. Platformen benytter 256-bit SSL-kryptering og er fuldt tilsluttet{" "}
+        <Link to="/casino-anmeldelser/swift-casino" className={linkClass}>Swift Casino</Link> og har haft tilstedeværelse på det danske marked siden 2017. Platformen benytter 256-bit SSL-kryptering og er fuldt tilsluttet{" "}
         <a href="https://www.rofus.nu/" target="_blank" rel="noopener noreferrer" className={linkClass}>ROFUS</a> for selvudelukkelse. Registrering sker via MitID, og alle spil er certificeret af uafhængige testorganisationer. Læs mere om{" "}
         <Link to="/ansvarligt-spil" className={linkClass}>ansvarligt spil</Link>.
       </>
@@ -98,7 +98,7 @@ const LunaCasinoAnmeldelse = () => {
   const handleBonusClick = () => { if (casino) getAffiliateRedirect(casino.slug, user?.id); };
 
   const faqJsonLd = buildFaqSchema(lunaFaqs);
-  const articleSchema = buildArticleSchema({ headline: "Luna Casino Anmeldelse 2026 – Kvalitets-Kuratoren", description: "Dybdegående anmeldelse af Luna Casino. 100% bonus op til 500 kr., 10x omsætning, loyalitetsprogram og kurateret spiludvalg.", url: "https://casinoaftaler.dk/luna-casino-anmeldelse", datePublished: "2026-02-15", dateModified: "2026-02-18", authorName: "Jonas", authorUrl: "https://casinoaftaler.dk/forfatter/jonas" });
+  const articleSchema = buildArticleSchema({ headline: "Luna Casino Anmeldelse 2026 – Kvalitets-Kuratoren", description: "Dybdegående anmeldelse af Luna Casino. 100% bonus op til 500 kr., 10x omsætning, loyalitetsprogram og kurateret spiludvalg.", url: "https://casinoaftaler.dk/casino-anmeldelser/luna-casino", datePublished: "2026-02-15", dateModified: "2026-02-18", authorName: "Jonas", authorUrl: "https://casinoaftaler.dk/forfatter/jonas" });
 
   const reviewJsonLd = {
     "@context": "https://schema.org",
@@ -109,22 +109,12 @@ const LunaCasinoAnmeldelse = () => {
     reviewBody: "Luna Casino er Kvalitets-Kuratoren blandt danske casinoer – et bevidst kurateret casino med 100% bonus op til 500 kr., 10x omsætning, loyalitetsprogram med stigende levels, daglige bonuskampagner og et nøje udvalgt spiludvalg fra premium-udbydere.",
   };
 
-  const breadcrumbJsonLd = {
-    "@context": "https://schema.org",
-    "@type": "BreadcrumbList",
-    itemListElement: [
-      { "@type": "ListItem", position: 1, name: "Forside", item: "https://casinoaftaler.dk/" },
-      { "@type": "ListItem", position: 2, name: "Casino Anmeldelser", item: "https://casinoaftaler.dk/casino-anmeldelser" },
-      { "@type": "ListItem", position: 3, name: "Luna Casino Anmeldelse", item: "https://casinoaftaler.dk/luna-casino-anmeldelse" },
-    ],
-  };
-
   return (
     <>
       <SEO
         title="Luna Casino Anmeldelse 2026 – Kurateret Kvalitet"
         description="Dybdegående anmeldelse af Luna Casino efter 14 dages test. 100% bonus op til 500 kr., kun 10x omsætning, loyalitetsprogram, daglige kampagner og kurateret spiludvalg. Komplet analyse."
-        jsonLd={[articleSchema, faqJsonLd, reviewJsonLd, breadcrumbJsonLd]}
+        jsonLd={[articleSchema, faqJsonLd, reviewJsonLd]}
       />
 
       <section
@@ -208,7 +198,7 @@ const LunaCasinoAnmeldelse = () => {
           </p>
           <p className="mb-4 text-muted-foreground leading-relaxed">
             Bag Luna Casino står SkillOnNet Limited, et selskab med gyldig dansk licens fra Spillemyndigheden (nr. 16-1066791) og mange års erfaring på det europæiske marked. SkillOnNet driver også{" "}
-            <Link to="/swift-casino-anmeldelse" className={linkClass}>Swift Casino</Link>, hvilket vidner om et veletableret selskab med dokumenteret pålidelighed. Mens Swift Casino satser på volumen med over 3.300 spil, har Luna Casino bevidst begrænset sit katalog til nøje udvalgte titler fra premium-udbydere som{" "}
+            <Link to="/casino-anmeldelser/swift-casino" className={linkClass}>Swift Casino</Link>, hvilket vidner om et veletableret selskab med dokumenteret pålidelighed. Mens Swift Casino satser på volumen med over 3.300 spil, har Luna Casino bevidst begrænset sit katalog til nøje udvalgte titler fra premium-udbydere som{" "}
             <Link to="/spiludviklere/netent" className={linkClass}>NetEnt</Link>,{" "}
             <Link to="/spiludviklere/pragmatic-play" className={linkClass}>Pragmatic Play</Link>,{" "}
             <Link to="/spiludviklere/play-n-go" className={linkClass}>Play'n GO</Link> og{" "}
@@ -486,7 +476,7 @@ const LunaCasinoAnmeldelse = () => {
           <h2 className="mb-4 text-3xl font-bold">Spiludvalget: Kvalitetskuratering som filosofi</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
             Her adskiller Luna Casino sig mest markant fra konkurrenterne. Hvor{" "}
-            <Link to="/swift-casino-anmeldelse" className={linkClass}>Swift Casino</Link> (samme operatør) tilbyder 3.300+ titler og{" "}
+            <Link to="/casino-anmeldelser/swift-casino" className={linkClass}>Swift Casino</Link> (samme operatør) tilbyder 3.300+ titler og{" "}
             <Link to="/casino-anmeldelser/bet365" className={linkClass}>bet365</Link> har 2.500+, har Luna Casino bevidst valgt et mindre, kurateret katalog. Hvert spil er nøje udvalgt fra premium-udbydere:
           </p>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
@@ -609,7 +599,7 @@ const LunaCasinoAnmeldelse = () => {
             <strong className="text-foreground">Den markante mangel: PayPal og Trustly.</strong> I 2026 er fraværet af{" "}
             <Link to="/betalingsmetoder/paypal" className={linkClass}>PayPal</Link> og{" "}
             <Link to="/betalingsmetoder/trustly" className={linkClass}>Trustly</Link> en reel ulempe. Begge metoder tilbyder hurtigere udbetalinger (ofte under 1 time) og bedre forbrugerbeskyttelse end traditionelle kortbetalinger. Hos konkurrenter som{" "}
-            <Link to="/swift-casino-anmeldelse" className={linkClass}>Swift Casino</Link> (samme operatør!) er begge tilgængelige – hvilket gør fraværet hos Luna Casino endnu mere bemærkelsesværdigt.
+            <Link to="/casino-anmeldelser/swift-casino" className={linkClass}>Swift Casino</Link> (samme operatør!) er begge tilgængelige – hvilket gør fraværet hos Luna Casino endnu mere bemærkelsesværdigt.
           </p>
           <p className="text-muted-foreground leading-relaxed">
             <strong className="text-foreground">Skrill-gebyret.</strong> 5 % gebyr på Skrill-indbetalinger er usædvanligt i det danske marked og bør bemærkes. Ved en indbetaling på 500 kr. mister du 25 kr. i gebyr alene. Vi anbefaler Visa/Mastercard eller MobilePay for at undgå unødvendige omkostninger.
@@ -647,7 +637,7 @@ const LunaCasinoAnmeldelse = () => {
           <h2 className="mb-4 text-3xl font-bold">Sikkerhed, licens og ansvarligt spil</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
             Luna Casino opererer med dansk licens fra Spillemyndigheden (nr. 16-1066791) udstedt til SkillOnNet Limited. Selskabet har haft tilstedeværelse på det danske marked siden 2017 og driver også{" "}
-            <Link to="/swift-casino-anmeldelse" className={linkClass}>Swift Casino</Link>, hvilket vidner om et veletableret og pålideligt selskab med dokumenteret erfaring.
+            <Link to="/casino-anmeldelser/swift-casino" className={linkClass}>Swift Casino</Link>, hvilket vidner om et veletableret og pålideligt selskab med dokumenteret erfaring.
           </p>
           <p className="mb-4 text-muted-foreground leading-relaxed">
             Alle transaktioner og personoplysninger beskyttes med 256-bit SSL-kryptering (TLS 1.3). Casinoet er fuldt tilsluttet{" "}
@@ -818,7 +808,7 @@ const LunaCasinoAnmeldelse = () => {
           <p className="mb-6 text-muted-foreground leading-relaxed">
             <strong className="text-foreground">Samlet vurdering:</strong> Luna Casino scorer 4.6 / 5. Det er et fremragende valg for kvalitetsbevidste spillere, der spiller regelmæssigt og ønsker at blive belønnet for det. Men hvis du prioriterer betalingsfleksibilitet, stor bonusmaksimum eller sportsbetting, bør du kigge mod{" "}
             <Link to="/casino-anmeldelser/bet365" className={linkClass}>bet365</Link>,{" "}
-            <Link to="/swift-casino-anmeldelse" className={linkClass}>Swift Casino</Link> eller{" "}
+            <Link to="/casino-anmeldelser/swift-casino" className={linkClass}>Swift Casino</Link> eller{" "}
             <Link to="/casino-anmeldelser/unibet" className={linkClass}>Unibet</Link>.
           </p>
           <div className="flex flex-col sm:flex-row justify-center gap-4">
@@ -836,7 +826,7 @@ const LunaCasinoAnmeldelse = () => {
         <Separator className="my-10" />
         <AuthorBio author="jonas" />
         <Separator className="my-10" />
-        <RelatedGuides currentPath="/luna-casino-anmeldelse" />
+        <RelatedGuides currentPath="/casino-anmeldelser/luna-casino" />
 
         <FAQSection title="Ofte stillede spørgsmål om Luna Casino" faqs={lunaFaqs} />
       </div>
