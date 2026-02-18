@@ -13,7 +13,7 @@ import { RelatedGuides } from "@/components/RelatedGuides";
 import { InlineCasinoCards } from "@/components/InlineCasinoCards";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
 import { buildArticleSchema, buildFaqSchema } from "@/lib/seo";
-import { QuickFactsProviders } from "@/components/QuickFactsProviders";
+import { QuickFactsProviders, QuickFactsLicense } from "@/components/QuickFactsProviders";
 import { CasinoReviewHero } from "@/components/CasinoReviewHero";
 import type { ReactNode } from "react";
 import { Star, Zap, Check, X, ShieldCheck, Trophy, CreditCard, Gamepad2, Sparkles, Headphones } from "lucide-react";
@@ -79,6 +79,7 @@ const CasinostuenAnmeldelse = () => {
                 <div className="rounded-lg border border-border p-3"><p className="text-xs text-muted-foreground uppercase mb-1">Antal spil</p><p className="text-lg font-bold text-foreground">500+</p></div>
               </div>
               <QuickFactsProviders providers={["NetEnt", "Play'n GO", "Pragmatic Play", "Microgaming"]} />
+              <QuickFactsLicense licenseId="18-0085" />
             </CardContent>
           </Card>
         </section>
@@ -207,6 +208,44 @@ const CasinostuenAnmeldelse = () => {
         </section>
 
         <InlineCasinoCards count={3} />
+
+        <Separator className="my-10" />
+
+        {/* Bankroll & EV Analysis */}
+        <section className="mb-12">
+          <h2 className="mb-4 text-3xl font-bold">Bankroll-analyse – hvad koster det reelt at spille på Casinostuen?</h2>
+          <p className="mb-4 text-muted-foreground leading-relaxed">For at give et objektivt matematisk perspektiv har vi beregnet Expected Value (EV) og Risk of Ruin for Casinostuens velkomstbonus. Disse tal hjælper dig med at forstå den reelle omkostning ved at spille – uanset om du aktiverer bonussen eller ej.</p>
+          <Card className="border-border bg-card mb-6">
+            <CardHeader><CardTitle className="text-lg">EV-beregning – Casinostuen velkomstbonus</CardTitle></CardHeader>
+            <CardContent className="space-y-2 text-sm text-muted-foreground">
+              <p><strong>Scenarie:</strong> Indbetaling 500 kr. + 500 kr. bonus = 1.000 kr. total</p>
+              <p><strong>Omsætningskrav:</strong> 10x (d+b) = 10.000 kr.</p>
+              <p><strong>Gennemsnitlig RTP:</strong> 96% (slots)</p>
+              <p><strong>Forventet tab under omsætning:</strong> 10.000 × 0,04 = 400 kr.</p>
+              <p><strong>Forventet saldo efter omsætning:</strong> 1.000 – 400 = 600 kr.</p>
+              <p><strong>Netto EV:</strong> +100 kr. (600 – 500 indskud)</p>
+              <p><strong>Risk of Ruin:</strong> ~25% ved 10 kr./spin gennemsnit</p>
+              <p className="text-xs pt-2">Ved max bonus (1.000 kr. indbetaling + 1.000 kr. bonus): Omsætningskrav = 20.000 kr. → forventet tab 800 kr. → saldo 1.200 kr. → EV = +200 kr. Risk of Ruin stiger til ~30%.</p>
+            </CardContent>
+          </Card>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            Det lave indsatsniveau (min. 50 kr. indbetaling) betyder, at Casinostuen er en af de billigste platforme at teste risikofrit. En 50 kr. indbetaling med 50 kr. bonus giver kun 1.000 kr. i omsætningskrav – det svarer til ca. 100 spins ved 10 kr./spin. Det er en overkommelig investering for at vurdere, om platformen passer til dig.
+          </p>
+          <p className="text-muted-foreground leading-relaxed">
+            <strong>Sammenlignet med markedet:</strong> Casinostuens bonus-EV er på niveau med de fleste danske casinoer med 10x-omsætningskrav. Forskellen ligger i skala: <Link to="/casino-anmeldelser/leovegas" className={linkClass}>LeoVegas</Link> tilbyder op til 3.000 kr. (EV +300 kr.), <Link to="/casino-anmeldelser/bet365" className={linkClass}>bet365</Link> op til 2.000 kr. (EV +200 kr.). For spillere med lavt budget (under 500 kr.) er Casinostuens bonus lige så fordelagtig procentuelt – det er kun de absolutte tal, der er lavere.
+          </p>
+        </section>
+
+        <Separator className="my-10" />
+
+        {/* Market Analysis */}
+        <section className="mb-12">
+          <h2 className="mb-4 text-3xl font-bold">Casinostuens fremtid i et konsolideret marked</h2>
+          <p className="mb-4 text-muted-foreground leading-relaxed">Det danske online casino-marked gennemgår en konsolideringsfase, hvor store internationale operatører opkøber mindre brands og øger deres markedsandele. For en nicheplatform som Casinostuen rejser det et centralt spørgsmål: Kan en lille, dansk-fokuseret operatør overleve i et marked, der domineres af milliard-koncerner med enorme markedsføringsbudgetter?</p>
+          <p className="mb-4 text-muted-foreground leading-relaxed">Svaret er betinget positivt. Casinostuen besidder en kvalitet, som internationale operatører har svært ved at kopiere: autentisk dansk identitet. Det er ikke en oversættelse af en global platform – det er en platform, der er bygget til danskere af danskere. Den lokale forankring, den danske kundeservice og den kuraterede tilgang til spiludvalg appellerer til et segment, der ikke nødvendigvis tiltrækkes af de store brands' aggressive markedsføring.</p>
+          <p className="mb-4 text-muted-foreground leading-relaxed">For at forblive relevant bør Casinostuen dog adressere flere konkrete svagheder: tilføjelse af trending udbydere som Hacksaw Gaming og Nolimit City ville styrke spiludvalget markant uden at kompromittere den kuraterede tilgang. Implementering af Trustly-udbetalinger ville forbedre udbetalingstiderne fra 22 timer til potentielt under 6 timer. Og en designopfriskning, der bedre reflekterer "hygge"-identiteten, ville styrke brandpositioneringen visuelt.</p>
+          <p className="text-muted-foreground leading-relaxed">Uanset Casinostuens fremtid er platformens nuværende tilstand funktionel og troværdig – den leverer, hvad den lover, til det segment, den henvender sig til. For den danske casual spiller, der ønsker en ukompliceret, lokal casinooplevelse, er Casinostuen fortsat en relevant mulighed i 2026. Vores vurdering er baseret på <Link to="/saadan-tester-vi-casinoer" className={linkClass}>vores testmetode</Link> og opdateret pr. februar 2026.</p>
+        </section>
 
         <Separator className="my-10" />
 

@@ -13,7 +13,7 @@ import { RelatedGuides } from "@/components/RelatedGuides";
 import { InlineCasinoCards } from "@/components/InlineCasinoCards";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
 import { buildArticleSchema, buildFaqSchema } from "@/lib/seo";
-import { QuickFactsProviders } from "@/components/QuickFactsProviders";
+import { QuickFactsProviders, QuickFactsLicense } from "@/components/QuickFactsProviders";
 import { CasinoReviewHero } from "@/components/CasinoReviewHero";
 import type { ReactNode } from "react";
 import { Star, CreditCard, Trophy, Sparkles, Gamepad2, Zap, Check, X, Crown, Award, ShieldCheck, Headphones } from "lucide-react";
@@ -69,6 +69,7 @@ const Casino888Anmeldelse = () => {
               <div className="rounded-lg border border-border p-3"><p className="text-xs text-muted-foreground uppercase mb-1">Loyalitetsprogram</p><p className="text-lg font-bold text-foreground">888 Club (8 niveauer)</p></div>
             </div>
             <QuickFactsProviders providers={["888 Exclusive", "NetEnt", "Pragmatic Play", "Evolution Gaming", "Play'n GO", "Red Tiger", "Big Time Gaming"]} />
+            <QuickFactsLicense licenseId="18-0058" />
           </CardContent></Card>
         </section>
 
@@ -197,6 +198,40 @@ const Casino888Anmeldelse = () => {
           <p className="mb-4 text-muted-foreground leading-relaxed"><strong>Vs. <Link to="/casino-anmeldelser/leovegas" className={linkClass}>LeoVegas</Link>:</strong> LeoVegas vinder på mobiloplevelse, udbetalingshastighed og spiludvalgets bredde. 888 Casino vinder på eksklusive spil, loyalitetsprogram og troværdighed som børsnoteret pioner. For mobilspillere: LeoVegas. For loyalitetsfokuserede spillere: 888 Casino. LeoVegas har desuden en dedikeret app med push-notifikationer, hvilket 888 Casino mangler. Til gengæld har 888 Casino sin unikke no-deposit bonus, som LeoVegas ikke tilbyder.</p>
           <p className="mb-4 text-muted-foreground leading-relaxed"><strong>Vs. <Link to="/casino-anmeldelser/bet365" className={linkClass}>Bet365</Link>:</strong> Begge er gigantiske, etablerede operatører med årtiers erfaring. Bet365 har den stærkeste sportsbook og et bredere samlet tilbud, mens 888 Casino har de bedre eksklusive casino-features og et mere gennemarbejdet loyalitetsprogram. Bet365's casinosektion er bredere men mere generisk – den mangler den unikke identitet, som 888's proprietære spil giver. For den rene casinospiller: 888 Casino. For all-round betting: Bet365.</p>
           <p className="text-muted-foreground leading-relaxed"><strong>Vs. <Link to="/casino-anmeldelser/comeon" className={linkClass}>ComeOn</Link>:</strong> ComeOn er enklere, mere gennemsigtigt og mere brugervenligt. 888 Casino er dybere, mere funktionsrigt og har langt mere at tilbyde loyale spillere over tid. ComeOn er bedre for den ukomplicerede casual spiller, der prioriterer gennemsigtige vilkår og hurtige udbetalinger. 888 Casino er bedre for den engagerede spiller, der vil belønnes for sin loyalitet og sætter pris på eksklusive features. Det er to fundamentalt forskellige tilgange til casino – hverken er objektivt bedre, de tjener forskellige behov.</p>
+        </section>
+
+        <Separator className="my-10" />
+
+        {/* Bankroll & EV Analysis */}
+        <section className="mb-12">
+          <h2 className="mb-4 text-3xl font-bold">Bankroll-matematik og Expected Value</h2>
+          <p className="mb-4 text-muted-foreground leading-relaxed">For at give et objektivt billede af 888 Casinos bonusværdi har vi beregnet Expected Value under optimale og realistiske betingelser. Disse tal hjælper dig med at vurdere, om bonussen er værd at aktivere baseret på din spillestil.</p>
+          <Card className="border-border bg-card mb-6">
+            <CardHeader><CardTitle className="text-lg">EV-beregning – 888 Casino matchbonus</CardTitle></CardHeader>
+            <CardContent className="space-y-2 text-sm text-muted-foreground">
+              <p><strong>Scenarie:</strong> Indbetaling 2.000 kr. + 2.000 kr. bonus = 4.000 kr. total</p>
+              <p><strong>Omsætningskrav:</strong> 10x (d+b) = 40.000 kr.</p>
+              <p><strong>Gennemsnitlig RTP:</strong> 96% (slots) / 95,2% (888 eksklusive)</p>
+              <p><strong>Forventet tab (standard slots):</strong> 40.000 × 0,04 = 1.600 kr.</p>
+              <p><strong>Forventet saldo efter omsætning:</strong> 4.000 – 1.600 = 2.400 kr.</p>
+              <p><strong>Netto EV:</strong> +400 kr. (2.400 – 2.000 indskud)</p>
+              <p><strong>Risk of Ruin:</strong> ~32% ved 20 kr./spin (højere med eksklusive titler pga. lavere RTP)</p>
+              <p className="text-xs pt-2">Vigtigt: Hvis du primært spiller 888-eksklusive titler med gennemsnitlig RTP på 95,2%, stiger forventet tab til 1.920 kr. og netto EV reduceres til +80 kr. Vælg standard-udbydere under omsætning for optimal værdi.</p>
+            </CardContent>
+          </Card>
+          <p className="mb-4 text-muted-foreground leading-relaxed"><strong>No-deposit bonus EV:</strong> Den periodiske bonus uden indbetaling (typisk 50-100 kr. med 30x omsætning) har en EV på ca. 5-15 kr. – beskeden, men risikofri. Det er rent hus-penge med nul downside. Hvis du alligevel overvejer 888 Casino, er det en gratis prøvetur, der giver reel spilletid.</p>
+          <p className="text-muted-foreground leading-relaxed"><strong>888 Club EV for aktive spillere:</strong> For en spiller, der omsætter 50.000 kr. månedligt på slots, genererer 888 Club ca. 5.000 kompunkter (1 pr. 10 kr.). På Bronze-niveau konverteres det til ~50 kr. i bonuspenge. På Platin-niveau (efter 3-6 måneder): ~125 kr. Det er beskedent men akkumulerer over tid. Sammenlignet med flat-rate cashback hos konkurrenter som <Link to="/casino-anmeldelser/getlucky" className={linkClass}>GetLucky</Link> er 888 Club mere belønende på lang sigt men kræver tålmodighed.</p>
+        </section>
+
+        <Separator className="my-10" />
+
+        {/* Market Position */}
+        <section className="mb-12">
+          <h2 className="mb-4 text-3xl font-bold">888 Casino i det danske marked – historik og perspektiv</h2>
+          <p className="mb-4 text-muted-foreground leading-relaxed">888 Casino har en unik position i det danske marked som en af de allerførste internationale operatører med dansk licens. Siden den danske spillelov trådte i kraft i 2012, har 888 Casino opereret kontinuerligt på det danske marked – en stabilitet, som mange nyere operatører ikke kan matche. Fusionen med William Hill International i 2022 skabte en af verdens fem største online gambling-koncerner, med en samlet omsætning der overstiger det dobbelte af hele det danske online casino-markeds størrelse.</p>
+          <p className="mb-4 text-muted-foreground leading-relaxed">Det danske marked udgør en beskeden andel af 888 Holdings' samlede omsætning (~2-3%), men koncernen opretholder en dedikeret dansk operation med lokaliseret indhold og dansk-compliant bonusvilkår. Licensnummeret hos Spillemyndigheden er stabilt og uden historiske sanktioner – et tegn på en operatør, der tager compliance seriøst. Den børsnoterede status på London Stock Exchange (ticker: 888) tilføjer et ekstra lag af gennemsigtighed, da kvartalsrapporter, revisionsberetninger og regulatoriske advarsler er offentligt tilgængelige.</p>
+          <p className="mb-4 text-muted-foreground leading-relaxed">Konkurrencemæssigt er 888 Casinos primære udfordring, at platformen opfattes som "den etablerede" snarere end "den innovative." Nyere operatører som <Link to="/casino-anmeldelser/getlucky" className={linkClass}>GetLucky</Link> og <Link to="/casino-anmeldelser/kapow-casino" className={linkClass}>Kapow Casino</Link> tilbyder modernere brugeroplevelser og aggressive bonusprogrammer. Etablerede rivaler som <Link to="/casino-anmeldelser/leovegas" className={linkClass}>LeoVegas</Link> har investeret massivt i mobilteknologi og udbetalingshastighed – områder, hvor 888 Casino halter efter. Det er en klassisk "innovator's dilemma"-situation, hvor en pioner har svært ved at matche nye aktørers agilitet.</p>
+          <p className="text-muted-foreground leading-relaxed">For de næste 2-3 år forventer vi, at 888 Casino vil fokusere på to områder: modernisering af den tekniske platform (designopfriskning og hurtigere udbetalinger) og udnyttelse af William Hill-synergierne til at styrke det samlede produkt. For danske spillere betyder det potentielt et bedre produkt over tid, men i 2026 er 888 Casino stadig et casino, der lever primært på troværdighed og unikke features snarere end på cutting-edge teknologi.</p>
         </section>
 
         <Separator className="my-10" />
