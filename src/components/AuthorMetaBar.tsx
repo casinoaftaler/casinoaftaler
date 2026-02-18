@@ -50,7 +50,7 @@ interface AuthorMetaBarProps {
   factCheckDate?: string;
 }
 
-export function AuthorMetaBar({ author, date, readTime, showFactCheck = true, showVerified = false, showAffiliateDisclaimer = true, factCheckDate }: AuthorMetaBarProps) {
+export function AuthorMetaBar({ author, date, readTime, showFactCheck = true, showVerified = false, showAffiliateDisclaimer = true, factCheckDate = "15. feb. 2026" }: AuthorMetaBarProps) {
   const authorInfo = author !== "redaktionen" ? authorConfig[author] : null;
 
   return (
