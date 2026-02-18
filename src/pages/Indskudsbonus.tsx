@@ -519,6 +519,97 @@ const Indskudsbonus = () => {
 
         <Separator className="my-10" />
 
+        {/* EV-analyse af indskudsbonus */}
+        <section className="mb-12">
+          <h2 className="mb-4 text-3xl font-bold">
+            Match-% vs. reel værdi: En matematisk analyse
+          </h2>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            En højere match-procent betyder ikke altid en bedre bonus. Den reelle værdi afhænger af samspillet mellem match-%, omsætningskrav og bonusstruktur (<Link to="/sticky-bonus" className={linkClass}>sticky</Link> vs. <Link to="/no-sticky-bonus" className={linkClass}>no-sticky</Link>). Her er tre typiske indskudsbonusser sammenlignet matematisk.
+          </p>
+
+          <div className="space-y-4">
+            <Card className="border-primary/30 bg-card">
+              <CardHeader className="pb-2">
+                <CardTitle className="flex items-center gap-2 text-lg">
+                  <Calculator className="h-5 w-5 text-primary" />
+                  100% match, 1.000 kr. max, no-sticky, 3x (b)
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <p className="text-sm text-muted-foreground leading-relaxed">
+                  Indbetaling 1.000 kr. + 1.000 kr. bonus. Omsætning: 3 × 1.000 = 3.000 kr. Tab: 3.000 × 0,04 = 120 kr. No-sticky: egne gevinster frie. <strong>EV = 880 kr.</strong> (88% af nominel værdi). Bedste scenarie for en indskudsbonus.
+                </p>
+              </CardContent>
+            </Card>
+
+            <Card className="border-border bg-card">
+              <CardHeader className="pb-2">
+                <CardTitle className="flex items-center gap-2 text-lg">
+                  <Calculator className="h-5 w-5 text-primary" />
+                  200% match, 2.000 kr. max, sticky, 10x (d+b)
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <p className="text-sm text-muted-foreground leading-relaxed">
+                  Indbetaling 1.000 kr. + 2.000 kr. bonus = 3.000 kr. saldo. Omsætning: 10 × 3.000 = 30.000 kr. Tab: 30.000 × 0,04 = 1.200 kr. Saldo: 3.000 – 1.200 = 1.800 kr. Minus bonus: <strong>EV = -200 kr. (negativ!)</strong>. Trods den store "2.000 kr." bonus taber du statistisk penge.
+                </p>
+              </CardContent>
+            </Card>
+
+            <Card className="border-border bg-card">
+              <CardHeader className="pb-2">
+                <CardTitle className="flex items-center gap-2 text-lg">
+                  <Calculator className="h-5 w-5 text-primary" />
+                  50% match, 500 kr. max, no-sticky, 1x (b)
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <p className="text-sm text-muted-foreground leading-relaxed">
+                  Indbetaling 1.000 kr. + 500 kr. bonus. Omsætning: 1 × 500 = 500 kr. Tab: 500 × 0,04 = 20 kr. <strong>EV = 480 kr.</strong> (96% af nominel værdi). Lavere match-%, men næsten fuld reel værdi. Beviser at lav match-% med gode vilkår slår høj match-% med dårlige.
+                </p>
+              </CardContent>
+            </Card>
+          </div>
+
+          <div className="mt-6 rounded-lg border border-primary/30 bg-accent/30 p-4">
+            <p className="text-sm text-muted-foreground">
+              <strong>Tommelfingerregel for indskudsbonusser:</strong> Prioritér altid omsætningskrav og bonusstruktur over match-%. En 50% no-sticky med 1x (b) er matematisk overlegen til en 200% sticky med 10x (d+b). Beregn altid EV før du accepterer en indskudsbonus.
+            </p>
+          </div>
+        </section>
+
+        <Separator className="my-10" />
+
+        {/* Spillerprofiler */}
+        <section className="mb-12">
+          <h2 className="mb-4 text-3xl font-bold">
+            Hvilken indskudsbonus passer til din spillertype?
+          </h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            {[
+              { title: "Slot-spilleren", desc: "Vælg indskudsbonus med 100% bidrag fra slots og lav omsætning. Med 96%+ RTP slots og ≤5x omsætning er din EV typisk 70-90% af bonusbeløbet. Kombinér gerne med free spins-pakke for maksimal spilletid.", icon: Sparkles },
+              { title: "Bordspil-entusiasten", desc: "Vær varsom. Med kun 10% bidrag fra bordspil kræver en 10x (d+b) bonus reelt 100x i bordspilsindsatser. Overvej bonus uden omsætningskrav eller cashback-bonusser, der giver mere fleksibilitet i spilvalg.", icon: Gamepad2 },
+              { title: "Den forsigtige spiller", desc: "Prioritér no-sticky bonusser med lav match-% og lav omsætning. Din indbetaling forbliver uberørt, og du kan hæve gevinster frit. En 50% match med 1x (b) er ideel – lav risiko, høj EV-procent.", icon: ShieldCheck },
+              { title: "Bonus-optimisten", desc: "Pas på med at jagte den højeste match-%. En 300% bonus lyder fantastisk, men med sticky-struktur og 10x (d+b) er den reelle værdi ofte negativ. Lad matematik – ikke markedsføring – styre dit valg.", icon: AlertTriangle },
+            ].map((item) => (
+              <Card key={item.title} className="border-border bg-card">
+                <CardHeader className="pb-2">
+                  <CardTitle className="flex items-center gap-2 text-base">
+                    <item.icon className="h-5 w-5 text-primary" />
+                    {item.title}
+                  </CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <p className="text-sm text-muted-foreground leading-relaxed">{item.desc}</p>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </section>
+
+        <Separator className="my-10" />
+
         {/* Indskudsbonus markedsoverblik */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold">

@@ -40,6 +40,7 @@ import {
   Users,
   BarChart3,
   ListChecks,
+  Calculator,
 } from "lucide-react";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
 
@@ -568,6 +569,92 @@ const Velkomstbonus = () => {
             er velkomstbonussen det ideelle udgangspunkt for alle, der vil
             have mest muligt ud af deres casinooplevelse fra dag ét.
           </p>
+        </section>
+
+        <Separator className="my-10" />
+
+        {/* EV-analyse af velkomstbonus */}
+        <section className="mb-12">
+          <h2 className="mb-4 text-3xl font-bold">
+            EV-analyse: Hvad er din velkomstbonus reelt værd?
+          </h2>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            Velkomstbonussens nominelle værdi (f.eks. "1.000 kr.") er næsten aldrig den reelle værdi. For at beregne Expected Value (EV) skal du indregne omsætningskrav, RTP og bonusstruktur. Her er de tre mest almindelige velkomstbonus-pakker sammenlignet.
+          </p>
+
+          <div className="space-y-4">
+            <Card className="border-primary/30 bg-card">
+              <CardHeader className="pb-2">
+                <CardTitle className="flex items-center gap-2 text-lg">
+                  <Calculator className="h-5 w-5 text-primary" />
+                  100% match op til 1.000 kr. + 50 free spins (no-sticky, 5x)
+                </CardTitle>
+              </CardHeader>
+              <CardContent className="space-y-2">
+                <p className="text-sm text-muted-foreground leading-relaxed">
+                  <strong>Match-EV:</strong> 1.000 kr. bonus, 5x omsætning = 5.000 kr. omsætning. Tab: 5.000 × 0,04 = 200 kr. No-sticky: bonus er separat, egne gevinster frie. <strong>Match-EV = 800 kr.</strong>
+                </p>
+                <p className="text-sm text-muted-foreground leading-relaxed">
+                  <strong>Free spins-EV:</strong> 50 spins á 2 kr. = 100 kr. × 0,96 = 96 kr. Med 5x omsætning: tab 96 × 5 × 0,04 = 19,20 kr. <strong>Spins-EV = 76,80 kr.</strong>
+                </p>
+                <p className="text-sm text-muted-foreground leading-relaxed">
+                  <strong>Total pakke-EV = 876,80 kr.</strong> af 1.100 kr. nominel værdi (79,7% reel værdi). Dette er en Elite-pakke.
+                </p>
+              </CardContent>
+            </Card>
+
+            <Card className="border-border bg-card">
+              <CardHeader className="pb-2">
+                <CardTitle className="flex items-center gap-2 text-lg">
+                  <Calculator className="h-5 w-5 text-primary" />
+                  200% match op til 2.000 kr. (<Link to="/sticky-bonus" className={linkClass}>sticky</Link>, 10x d+b)
+                </CardTitle>
+              </CardHeader>
+              <CardContent className="space-y-2">
+                <p className="text-sm text-muted-foreground leading-relaxed">
+                  <strong>Beregning:</strong> 1.000 kr. indbetaling + 2.000 kr. bonus = 3.000 kr. saldo. Omsætning: 10x × 3.000 = 30.000 kr. Tab: 30.000 × 0,04 = 1.200 kr. Saldo: 3.000 – 1.200 = 1.800 kr. Minus bonus: 1.800 – 2.000 = <strong>-200 kr. EV (negativ!)</strong>.
+                </p>
+                <p className="text-sm text-muted-foreground leading-relaxed">
+                  <strong>Konklusion:</strong> Trods den store "2.000 kr." bonus er denne pakke statistisk tabsgivende. Høj match-% med sticky + 10x (d+b) er ofte en fælde. Den no-sticky 100%-pakke ovenfor er markant bedre.
+                </p>
+              </CardContent>
+            </Card>
+          </div>
+
+          <div className="mt-6 rounded-lg border border-primary/30 bg-accent/30 p-4">
+            <p className="text-sm text-muted-foreground">
+              <strong>Tommelfingerregel:</strong> En velkomstbonus med no-sticky struktur og ≤5x omsætning er næsten altid bedre end en sticky bonus med højere match-%. Bonus-%, omsætningskrav og sticky/no-sticky struktur skal ALLE vurderes samlet – aldrig isoleret. Se vores <Link to="/casino-bonus" className={linkClass}>bonusoversigt</Link> for aktuelle sammenligninger.
+            </p>
+          </div>
+        </section>
+
+        <Separator className="my-10" />
+
+        {/* Spillerprofiler */}
+        <section className="mb-12">
+          <h2 className="mb-4 text-3xl font-bold">
+            Hvilken velkomstbonus passer til din spillertype?
+          </h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            {[
+              { title: "Ny spiller", desc: "Start med en no-deposit bonus eller en lav-risiko velkomstbonus (100% match, no-sticky, ≤5x). Fokus bør være på at lære platformen, ikke på at jage omsætningskrav. En bonus uden indbetaling er det sikreste valg.", icon: User },
+              { title: "Slot-entusiast", desc: "Vælg velkomstbonusser med mange free spins på høj-RTP slots. En pakke med 100 omsætningsfrie spins á 2 kr. er mere værd end 200% matchbonus med 10x krav. Spinværdi og omsætningskrav er dine nøgletal.", icon: Sparkles },
+              { title: "Strategisk spiller", desc: "Prioritér no-sticky bonus med lavest mulig omsætning. Beregn EV før accept. Den matematisk optimale strategi er at spille egne penge først (no-sticky), og kun bruge bonusmidler hvis du allerede er foran.", icon: Target },
+              { title: "High Roller", desc: "Kontakt casinoets VIP-afdeling for skræddersyet velkomstpakke. Standard velkomstbonusser (max 2.000-5.000 kr.) er utilstrækkelige for high roller-budgetter. VIP-velkomstpakker kan tilbyde 50.000+ kr. med individuelle vilkår.", icon: TrendingUp },
+            ].map((item) => (
+              <Card key={item.title} className="border-border bg-card">
+                <CardHeader className="pb-2">
+                  <CardTitle className="flex items-center gap-2 text-base">
+                    <item.icon className="h-5 w-5 text-primary" />
+                    {item.title}
+                  </CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <p className="text-sm text-muted-foreground leading-relaxed">{item.desc}</p>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
         </section>
 
         <Separator className="my-10" />

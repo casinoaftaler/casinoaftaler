@@ -36,6 +36,8 @@ import {
   Zap,
   Lock,
   TrendingUp,
+  Calculator,
+  Ban,
 } from "lucide-react";
 
 const linkClass = "text-primary underline hover:text-primary/80";
@@ -532,6 +534,103 @@ const FreeSpins = () => {
               </ul>
             </CardContent>
           </Card>
+        </section>
+
+        <Separator className="my-10" />
+
+        {/* EV-analyse af free spins */}
+        <section className="mb-12">
+          <h2 className="mb-4 text-3xl font-bold">
+            Matematisk værdianalyse: Hvad er free spins reelt værd?
+          </h2>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            Free spins' reelle værdi afhænger af tre faktorer: spinværdi, spillets RTP, og omsætningskrav. Formlen for reel værdi er: <strong>Reel værdi = (Antal spins × Spinværdi × RTP) ÷ (1 + Omsætningskrav × House Edge)</strong>. Lad os sammenligne tre typiske scenarier.
+          </p>
+
+          <div className="space-y-4">
+            <Card className="border-primary/30 bg-card">
+              <CardHeader className="pb-2">
+                <CardTitle className="flex items-center gap-2 text-lg">
+                  <Calculator className="h-5 w-5 text-primary" />
+                  50 free spins á 2 kr. med 0x omsætning
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <p className="text-sm text-muted-foreground leading-relaxed">
+                  <strong>Nominel værdi:</strong> 50 × 2 = 100 kr. <strong>RTP (96%):</strong> Forventet gevinst = 96 kr. <strong>Omsætning (0x):</strong> Hele beløbet kan hæves direkte. <strong>Reel EV = 96 kr.</strong> – dette er den bedste type free spins du kan finde. Gevinsterne er dine med det samme.
+                </p>
+              </CardContent>
+            </Card>
+
+            <Card className="border-border bg-card">
+              <CardHeader className="pb-2">
+                <CardTitle className="flex items-center gap-2 text-lg">
+                  <Calculator className="h-5 w-5 text-primary" />
+                  100 free spins á 1 kr. med 10x omsætning
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <p className="text-sm text-muted-foreground leading-relaxed">
+                  <strong>Nominel værdi:</strong> 100 × 1 = 100 kr. <strong>Forventet gevinst fra spins:</strong> 96 kr. <strong>Omsætning:</strong> 96 × 10 = 960 kr. <strong>Forventet tab under omsætning:</strong> 960 × 0,04 = 38,40 kr. <strong>Reel EV = 96 – 38,40 = 57,60 kr.</strong> – stadig OK, men 40% lavere end 0x-varianten.
+                </p>
+              </CardContent>
+            </Card>
+
+            <Card className="border-destructive/30 bg-card">
+              <CardHeader className="pb-2">
+                <CardTitle className="flex items-center gap-2 text-lg">
+                  <AlertTriangle className="h-5 w-5 text-destructive" />
+                  200 free spins á 0,50 kr. med 10x omsætning
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <p className="text-sm text-muted-foreground leading-relaxed">
+                  <strong>Nominel værdi:</strong> 200 × 0,50 = 100 kr. <strong>Forventet gevinst:</strong> 96 kr. Men spinværdi á 0,50 kr. giver typisk lavere gevinstfrekvens og smaller hits. <strong>Reel EV ≈ 55-58 kr.</strong> – samme som 100 spins á 1 kr., men med længere spilletid og mere varians. Kvantitet slår IKKE kvalitet ved free spins.
+                </p>
+              </CardContent>
+            </Card>
+          </div>
+
+          <div className="mt-6 rounded-lg border border-primary/30 bg-accent/30 p-4">
+            <p className="text-sm text-muted-foreground">
+              <strong>RTP-optimering ved free spins:</strong> Ikke alle slots har samme RTP. Blood Suckers (98%) giver markant bedre EV end Starburst (96,1%) over mange spins. Hvis du har valgfrihed i slot, vælg altid den højeste RTP. Forskellen på 96% og 98% RTP over 10x omsætning er ~20 kr. per 100 kr. i spin-værdi – det lyder småt, men akkumulerer over tid.
+            </p>
+          </div>
+        </section>
+
+        <Separator className="my-10" />
+
+        {/* Spillerprofiler */}
+        <section className="mb-12">
+          <h2 className="mb-4 text-3xl font-bold">
+            Hvem bør vælge free spins – og hvem bør undlade?
+          </h2>
+          <p className="mb-6 text-muted-foreground leading-relaxed">
+            Free spins passer ikke til alle spillertyper lige godt. Her er en segmenteret analyse af hvem der får mest ud af free spins-bonusser.
+          </p>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            {[
+              { title: "✅ Slot-entusiasten", desc: "Perfekt match. Free spins er designet til spilleautomater, og slot-elskeren får direkte adgang til sine yndlingsspil uden risiko. Optimal strategi: Vælg altid spins med højest spinværdi og lavest omsætningskrav.", icon: Sparkles },
+              { title: "✅ Den nye spiller", desc: "Ideel startbonus. Free spins giver risikofri introduktion til spilleautomater og casinoets platform. Ingen indbetaling nødvendig ved no-deposit free spins – perfekt til at teste uden forpligtelse.", icon: User },
+              { title: "✅ Bonusjægeren", desc: "Profitable ved korrekt selektion. Bonusjægeren fokuserer på 0x-omsætning free spins og høj-RTP slots. Med systematisk approach kan EV per tilbud nå 50-90% af den nominelle værdi.", icon: Target },
+              { title: "⚠️ Casual spilleren", desc: "Acceptabelt, men læs vilkårene. Free spins med omsætningskrav kræver yderligere spil – casual spilleren skal vurdere om tidsforbruget matcher den forventede gevinst (typisk 50-100 kr.).", icon: Clock },
+              { title: "❌ Bordspil-spilleren", desc: "Irrelevant. Free spins fungerer kun på slots – bordspil-entusiasten bør i stedet kigge efter cashback-bonusser eller no-deposit bonuspenge, der kan bruges på blackjack/roulette.", icon: Ban },
+              { title: "❌ High rolleren", desc: "Undervældende. Med typisk spinværdi på 1-5 kr. er free spins' samlede værdi (50-250 kr.) negligibel for high rollere. En matchbonus på 100% op til 5.000 kr. giver langt bedre EV per krone investeret tid.", icon: TrendingUp },
+            ].map((item) => (
+              <Card key={item.title} className="border-border bg-card">
+                <CardHeader className="pb-2">
+                  <CardTitle className="flex items-center gap-2 text-base">
+                    <item.icon className="h-5 w-5 text-primary" />
+                    {item.title}
+                  </CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <p className="text-sm text-muted-foreground leading-relaxed">{item.desc}</p>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
         </section>
 
         <Separator className="my-10" />
