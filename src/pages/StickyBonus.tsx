@@ -782,12 +782,56 @@ const StickyBonus = () => {
         </section>
 
         <Separator className="my-10" />
+
+        {/* Psykologien bag sticky bonusser */}
+        <section className="mb-12">
+          <h2 className="mb-4 text-3xl font-bold">
+            Psykologien bag sticky bonusser: Hvorfor de virker
+          </h2>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            Sticky bonusser udnytter flere veldokumenterede psykologiske mekanismer til at påvirke din spilleadfærd. At forstå disse mekanismer gør dig til en bedre og mere bevidst spiller. Den vigtigste mekanisme er "endowment-effekten" – det psykologiske princip at vi tilskriver ting vi "ejer" højere værdi end de har. Når du ser 2.000 kr. på din saldo (1.000 kr. egne + 1.000 kr. bonus), føles det som om du ejer 2.000 kr. – selvom halvdelen aldrig kan hæves direkte.
+          </p>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            <strong>Commitment and consistency:</strong> Når du først har accepteret en sticky bonus og begyndt omsætningen, aktiveres dit behov for konsistens. Du har "committed" dig til at gennemspille bonussen, og det føles forkert at stoppe – selv når din saldo falder og EV'en tyder på, at det er tid til at trække sig. Denne mekanisme er den primære årsag til at spillere gennemfører omsætningen med negative EV i stedet for at annullere bonussen.
+          </p>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            <strong>Loss aversion:</strong> Frygten for at "miste" bonusbeløbet er stærkere end glæden ved at vinde et tilsvarende beløb. Mange spillere accepterer en sticky bonus ikke fordi de vil have ekstra spilletid, men fordi de frygter at "gå glip af" en gratis fordel. Men "gratis" er relativt: en sticky bonus koster dig tid, risikoeksponering og potentielt hele din indbetaling.
+          </p>
+          <p className="text-muted-foreground leading-relaxed">
+            <strong>Modgiften er matematik:</strong> Erstat intuition med beregning. Beregn EV'en FØR du accepterer bonussen. Sæt et tidsbudget. Beslut på forhånd, hvornår du stopper – uanset omsætningsfremdrift. Og husk: at afslå en bonus er ALTID en gyldig beslutning.
+          </p>
+        </section>
+
+        <Separator className="my-10" />
+
+        {/* Global sammenligning */}
+        <section className="mb-12">
+          <h2 className="mb-4 text-3xl font-bold">
+            Internationalt perspektiv: Sticky bonusser verden over
+          </h2>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            Sticky bonusser er en global standard i casinoindustrien, men vilkårene varierer dramatisk mellem regulerede markeder. Det danske 10x-loft gør sticky bonusser markant mere spillervenlige end i de fleste andre jurisdiktioner. Her er en sammenligning der sætter den danske model i perspektiv:
+          </p>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            <strong>🇬🇧 Storbritannien (UKGC):</strong> Ingen lovfastsat øvre grænse for omsætningskrav. Typisk 30-40x (d+b) på sticky bonusser. Det betyder at en britisk sticky bonus på £500 med 35x kræver £35.000 i omsætning – 3,5x mere end den danske ækvivalent. Statistisk bust-rate: ~85% mod ~40% i Danmark.
+          </p>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            <strong>🇸🇪 Sverige (Spelinspektionen):</strong> Bonusser er kun tilladt som velkomstbonus ved første indbetaling – reload-bonusser og løbende sticky bonusser er forbudt. Den svenske regulering er mere restriktiv end den danske, men giver ikke nødvendigvis bedre spillerbeskyttelse – mange svenske spillere migrerer til <Link to="/casinoer/udenlandske-casinoer" className={linkClass}>udenlandske casinoer</Link> med endnu værre vilkår.
+          </p>
+          <p className="text-muted-foreground leading-relaxed">
+            <strong>🇩🇰 Danmarks unikke position:</strong> Det danske system rammer en balance: bonusser er tilladt og reguleret med rimelige lofter, hvilket giver spillerne reel værdi uden at tvinge dem til uregulerede markeder. Sticky bonusser under 10x (d+b) er statistisk profitable for spilleren ved RTP over 95% – en grænse de fleste populære slots opfylder.
+          </p>
+        </section>
+
+        <Separator className="my-10" />
+
+        {/* Ansvarligt spil */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold">
             Risikoen ved at gennemspille en stor saldo
           </h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
-            Fordi en Sticky Bonus låser hele din saldo bag omsætningskrav, kan det føre til længere spillesessioner end planlagt. Presset for at nå gennemspilningen inden tidsfristen kan forstærke impulsen til at øge indsatsen – en adfærd der sjældent ender godt. Sæt altid et tidsbudget ud over dit pengebudget.
+            Fordi en Sticky Bonus låser hele din saldo bag omsætningskrav, kan det føre til længere spillesessioner end planlagt. Presset for at nå gennemspilningen inden tidsfristen kan forstærke impulsen til at øge indsatsen – en adfærd der sjældent ender godt. Sæt altid et tidsbudget ud over dit pengebudget. En tommelfingerregel: planlæg 1 times spilletid per 3.000 kr. omsætning med 5 kr. gennemsnitlig indsats.
           </p>
           <p className="text-muted-foreground leading-relaxed">
             Hvis du oplever, at omsætningskravet bliver en stressfaktor frem for underholdning, er det klogeste træk at annullere bonussen og spille videre uden. Benyt{" "}
@@ -800,30 +844,33 @@ const StickyBonus = () => {
 
         <Separator className="my-10" />
 
-        {/* Konklusion */}
+        {/* Unik konklusion */}
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold">Konklusion: Er en sticky bonus det værd?</h2>
+          <h2 className="mb-4 text-3xl font-bold">Den nøgne sandhed om sticky bonusser</h2>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            En sticky bonus er et kompromis: du får et større spillebudget i bytte for at opgive fleksibilitet. Det er hverken et godt eller dårligt tilbud – det afhænger udelukkende af din spillestil, dine forventninger og din vilje til at gennemspille omsætningskravene. Her er den ærlige vurdering:
+          </p>
           <div className="space-y-3">
             {[
               {
                 icon: Gift,
-                title: "Større spillebudget",
-                desc: "Sticky Bonusser tilbyder ofte mere generøse beløb, der giver dig flere midler at spille for og udforske casinoets spiludvalg.",
+                title: "Sticky bonusser er industristandarden – forstå dem",
+                desc: "Over 80% af danske bonusser er sticky. Kan du ikke identificere en sticky bonus i vilkårene, vil du uundgåeligt acceptere en uden at vide det. Kig efter 'd+b', 'sammenblandet saldo' eller fravær af 'no-sticky/forfeitable' i vilkårene.",
+              },
+              {
+                icon: Calculator,
+                title: "EV er positiv – men marginen er lille",
+                desc: "Med danske vilkår (10x d+b) og 96% RTP er EV ca. 200 kr. per 1.000 kr. bonus – 20% reel værdi. Det er positivt, men ikke generøst. En no-sticky bonus med samme vilkår giver 2-3x højere EV. Vælg no-sticky når muligt.",
               },
               {
                 icon: Scale,
-                title: "Danske regler beskytter dig",
-                desc: "Spillemyndighedens loft på 10x omsætningskrav (d+b) sikrer rimelige vilkår. In-game gevinster tæller altid med.",
-              },
-              {
-                icon: AlertTriangle,
-                title: "Forstå betingelserne",
-                desc: "Omsætningskrav, tidsfrister, indsatsgrænser og gevinstloft påvirker alle bonussens reelle værdi. Læs altid vilkårene grundigt.",
+                title: "Danmark beskytter dig – men du skal stadig tænke selv",
+                desc: "Spillemyndighedens 10x-loft sikrer rimelige vilkår, men det fjerner ikke risikoen for tab. Selv med favorable danske vilkår kan du miste hele din indbetaling under omsætningen. Accepter aldrig en sticky bonus med penge du ikke har råd til at tabe.",
               },
               {
                 icon: ShieldCheck,
-                title: "Spil ansvarligt",
-                desc: "Sæt et budget, jagt aldrig tab, og benyt hjælpeværktøjer som StopSpillet.dk og ROFUS ved behov.",
+                title: "Spil ansvarligt – det er den eneste vindende strategi",
+                desc: "Omsætningskrav kan friste til længere sessioner end planlagt. Sæt tids- og pengebudgetter FØR du begynder. Brug casinoets indbetalingsgrænser. Kontakt ROFUS og StopSpillet.dk ved behov. 18+.",
               },
             ].map((item) => (
               <div

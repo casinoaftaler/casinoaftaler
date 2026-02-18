@@ -672,99 +672,45 @@ const BonusUdenOmsaetningskrav = () => {
 
         <Separator className="my-10" />
 
-        {/* === SEKTION 10: Spotting tips === */}
+        {/* Unik konklusion: Omsætningsfri */}
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold">
-            Sådan identificerer du de bedste omsætningsfrie bonusser
-          </h2>
-          <p className="mb-6 text-muted-foreground leading-relaxed">
-            Ikke alle omsætningsfrie bonusser er lige gode. Her er en systematisk tilgang til at evaluere og rangere tilbuddene:
+          <h2 className="mb-4 text-3xl font-bold">Dommen: Er omsætningsfrie bonusser fremtiden?</h2>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            Omsætningsfrie bonusser repræsenterer et paradigmeskifte i casinoindustrien: fra komplekse, låste midler til gennemsigtig, umiddelbar værdi. Selvom de nominelle beløb er mindre, er kvaliteten af hver bonuskrone markant højere. For den moderne spiller, der prioriterer gennemsigtighed og fleksibilitet, er dette guldstandarden.
           </p>
-
           <div className="space-y-3">
             {[
               {
-                title: "Beregn EV baseret på gevinstloft",
-                desc: "Den vigtigste beregning: (Bonusbeløb × forventet RTP) begrænset af gevinstloft. En 200 kr. bonus med 500 kr. loft har EV ≈ 192 kr. En 200 kr. bonus med 200 kr. loft har EV ≈ 192 kr. (men loftet rammer oftere). Højere gevinstloft = højere reel EV.",
-                icon: Calculator,
+                title: "Kvalitet over kvantitet",
+                desc: "100 kr. omsætningsfrit er ofte mere værd end 500 kr. med tunge omsætningskrav. Lær at se igennem de store tal og vurdere den reelle, udbetalbare værdi.",
+                icon: Diamond,
               },
               {
-                title: "Tjek spilvalget",
-                desc: "Er bonussen begrænset til én automat? Hvis ja, tjek dens RTP. Free spins på en 94% RTP-slot er markant mindre værd end på en 98% RTP-slot. Frihed til at vælge spil øger din EV med 2-4%.",
-                icon: Gamepad2,
+                title: "Den stressfrie oplevelse",
+                desc: "Værdien af at slippe for omsætningsstress kan ikke overvurderes. Du vinder, du hæver. Ingen lommeregner, ingen bekymring om udløbsdatoer. Det er ren spilleglæde.",
+                icon: Smile,
               },
               {
-                title: "Vurder tidsfristen",
-                desc: "En 24-timers frist kræver at du sætter tid af specifikt. En 30-dages frist giver fleksibilitet. Korte frister reducerer din EV, da du risikerer at glemme eller ikke nå bonussen.",
-                icon: Clock,
+                title: "Perfekt supplement",
+                desc: "Kombiner omsætningsfrie tilbud med traditionelle bonusser. Brug de omsætningsfrie til hurtige gevinster og de traditionelle til længere spillesessioner.",
+                icon: Plus,
               },
               {
-                title: "Kontroller indbetalingskrav",
-                desc: "Hvad koster det at aktivere bonussen? En 200 kr. omsætningsfri bonus der kræver 500 kr. indbetaling har en nettoomkostning på 500 kr. (din indbetaling). Sammenlign altid bonusværdien med indbetalingskravet.",
-                icon: CreditCard,
-              },
-              {
-                title: "Sammenlign på tværs",
-                desc: "Brug vores casino-sammenligninger til at evaluere omsætningsfrie tilbud side om side. Fokuser på EV per krone indbetalt – det giver det mest retvisende billede af bonussens reelle værdi.",
-                icon: BarChart3,
+                title: "Ansvarligt valg",
+                desc: "Uden omsætningskrav fjerner du incitamentet til at 'jage' gennemspilning. Det understøtter en sundere og mere kontrolleret spillestil. 18+.",
+                icon: ShieldCheck,
               },
             ].map((item) => (
-              <div key={item.title} className="flex items-start gap-3 rounded-lg border border-border bg-card p-4">
-                <item.icon className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
+              <div
+                key={item.title}
+                className="flex items-start gap-3 rounded-lg border border-primary/30 bg-accent/30 p-4"
+              >
+                <CheckCircle2 className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
                 <div>
                   <h3 className="font-semibold">{item.title}</h3>
                   <p className="text-sm text-muted-foreground">{item.desc}</p>
                 </div>
               </div>
-            ))}
-          </div>
-        </section>
-
-        <Separator className="my-10" />
-
-        {/* === SEKTION 11: Ansvarligt spil === */}
-        <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold">
-            Omsætningsfrie bonusser og ansvarlig spiladfærd
-          </h2>
-          <p className="mb-4 text-muted-foreground leading-relaxed">
-            Omsætningsfrie bonusser reducerer én risikofaktor (tab under gennemspilning), men de eliminerer ikke den grundlæggende risiko ved casinospil. Fordi du modtager gevinster direkte, kan den umiddelbare belønning forstærke lysten til at spille mere – og potentielt indbetale egne penge for at fortsætte oplevelsen.
-          </p>
-          <p className="mb-4 text-muted-foreground leading-relaxed">
-            Behandl altid omsætningsfrie bonusser som underholdning med potentiel gevinst – aldrig som en investering eller indtægtskilde. Sæt et fast budget for dine indbetalinger uafhængigt af bonustilbud, og hold dig strengt til det.
-          </p>
-          <p className="text-muted-foreground leading-relaxed">
-            Benyt{" "}
-            <a href="https://www.rofus.nu/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline font-medium">ROFUS</a>{" "}
-            til selvudelukkelse og{" "}
-            <a href="https://www.stopspillet.dk/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline font-medium">StopSpillet.dk</a>{" "}
-            til gratis rådgivning hvis du oplever problemer med din spiladfærd. 18+ | Spil ansvarligt.
-          </p>
-        </section>
-
-        <Separator className="my-10" />
-
-        {/* === SEKTION 12: Intern linking === */}
-        <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold">Dyk dybere ned i bonusverdenen</h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-            {[
-              { to: "/omsaetningskrav", label: "Omsætningskrav – Teknisk Guide", desc: "Dyb forståelse af gennemspilningskrav" },
-              { to: "/no-sticky-bonus", label: "No-Sticky Bonus", desc: "Bonusser med adskilt saldo-mekanik" },
-              { to: "/bonus-uden-indbetaling", label: "Bonus uden Indbetaling", desc: "Gratis bonusser helt uden indbetaling" },
-              { to: "/velkomstbonus", label: "Velkomstbonus Guide", desc: "Maksimer din første casino-bonus" },
-              { to: "/indskudsbonus", label: "Indskudsbonus", desc: "Matchbonusser og deres EV-profil" },
-              { to: "/free-spins", label: "Free Spins Guide", desc: "Alt om gratis spins på det danske marked" },
-              { to: "/sticky-bonus", label: "Sticky Bonus", desc: "Hvorfor du bør undgå sticky-modellen" },
-              { to: "/nye-casinoer/lav-wagering", label: "Casinoer med Lav Wagering", desc: "De laveste omsætningskrav i Danmark" },
-            ].map((link) => (
-              <Link key={link.to} to={link.to} className="flex items-start gap-3 rounded-lg border border-border bg-card p-4 transition-colors hover:border-primary/50 hover:bg-accent/50">
-                <ArrowRight className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
-                <div>
-                  <h3 className="font-semibold text-sm">{link.label}</h3>
-                  <p className="text-xs text-muted-foreground">{link.desc}</p>
-                </div>
-              </Link>
             ))}
           </div>
         </section>

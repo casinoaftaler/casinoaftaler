@@ -630,12 +630,88 @@ const Indskudsbonus = () => {
         </section>
 
         <Separator className="my-10" />
+
+        {/* Reload-bonusser */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold">
-            Undgå at lade bonussen styre dit indbetalingsmønster
+            Reload-bonusser: Indskudsbonussens tilbagevendende fætter
           </h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
-            En indskudsbonus kan friste til at indbetale mere end planlagt for at maksimere matchbeløbet. Det er en fælde – indbetal aldrig mere, end du ville have spillet for uden bonussen. Dit spillebudget bør fastlægges uafhængigt af bonustilbuddet.
+            Mens <Link to="/velkomstbonus" className={linkClass}>velkomstbonussen</Link> er en engangsforeteelse, er reload-bonusser tilbagevendende indskudsbonusser designet til at fastholde eksisterende spillere. Forstår du mekanikken, kan de udgøre en væsentlig del af din langsigtede bonusstrategi. Reload-bonusser tilbydes typisk ugentligt, månedligt eller ved særlige lejligheder (helligdage, store sportsbegivenheder, nye spil-lanceringer).
+          </p>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            <strong>Typiske vilkår for reload-bonusser:</strong> Match-procenten er lavere end velkomstbonussen – typisk 25-50% i stedet for 100%. Til gengæld har reload-bonusser ofte mere favorable vilkår: lavere omsætningskrav (3-5x vs. 10x), kortere gyldighedsperiode (7-14 dage) og højere maks-indsatsgrænse. Nogle casinoer tilbyder omsætningsfrie reload-spins som alternativ til kontantbonusser.
+          </p>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            <strong>EV-sammenligning:</strong> En reload-bonus på 50% match med 3x (b) omsætning har ofte højere EV per krone end en velkomstbonus med 100% match og 10x (d+b). Eksempel: 500 kr. indbetaling + 250 kr. reload (50% match). Omsætning: 250 × 3 = 750 kr. Tab: 750 × 0,04 = 30 kr. EV = 220 kr. (88% reel værdi). Sammenlign med velkomstbonussens typiske 60-80% reelle værdi – reload-bonussen er ofte matematisk overlegen.
+          </p>
+          <p className="text-muted-foreground leading-relaxed">
+            <strong>Strategisk tip:</strong> Hold øje med weekendkampagner og helligdags-tilbud. Mange danske casinoer tilbyder forstærkede reload-bonusser (75-100% match) i begrænset tid. Tilmeld dig casinoets nyhedsbrev og notifikationer for at modtage disse tidsbegrænsede tilbud, der kan være mere værdifulde end selve velkomstbonussen.
+          </p>
+        </section>
+
+        <Separator className="my-10" />
+
+        {/* Betalingsmetoder */}
+        <section className="mb-12">
+          <h2 className="mb-4 text-3xl font-bold">
+            Betalingsmetoder og bonusaktivering: Hvad du skal vide
+          </h2>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            Ikke alle <Link to="/betalingsmetoder" className={linkClass}>betalingsmetoder</Link> er skabt lige når det kommer til bonusaktivering. Din valgte indbetalingsmetode kan afgøre, om du modtager bonussen overhovedet – og i nogle tilfælde hvilke vilkår der gælder. Her er en teknisk gennemgang af de mest brugte metoder og deres bonuskompatibilitet.
+          </p>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            {[
+              { title: "MobilePay ✅ Fuld kompatibilitet", desc: "Danmarks foretrukne betalingsmetode kvalificerer næsten altid til bonusaktivering. Indbetalinger er øjeblikkelige og kræver ingen kortoplysninger hos casinoet. Visse casinoer tilbyder ekstra free spins ved MobilePay-indbetaling som differentiering.", icon: CheckCircle2 },
+              { title: "Visa/Mastercard ✅ Fuld kompatibilitet", desc: "Kort-indbetalinger kvalificerer universelt til alle indskudsbonusser. Udbetalinger via kort kan dog tage 1-3 bankdage. Sikkerhedstip: Brug altid 3D Secure-verifikation for ekstra beskyttelse ved online transaktioner.", icon: CreditCard },
+              { title: "Trustly ✅ Fuld kompatibilitet", desc: "Bank-til-bank overførsler via Trustly kvalificerer til bonusaktivering hos alle danske casinoer. Fordelen er hurtig udbetaling (ofte 1-2 timer) direkte til din bankkonto – ideel for spillere der vil hæve bonusgevinster hurtigt.", icon: CheckCircle2 },
+              { title: "Skrill/Neteller ⚠️ Ofte ekskluderet", desc: "E-wallets som Skrill og Neteller er hyppigt ekskluderet fra bonusaktivering. Grunden er historisk misbrug af bonusser via e-wallet-konti. Tjek ALTID vilkårene. Hvis din foretrukne metode er Skrill, overvej at bruge Trustly til bonusindbetalingen.", icon: AlertTriangle },
+            ].map((item) => (
+              <Card key={item.title} className="border-border bg-card">
+                <CardHeader className="pb-2">
+                  <CardTitle className="flex items-center gap-2 text-base">
+                    <item.icon className="h-5 w-5 text-primary" />
+                    {item.title}
+                  </CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <p className="text-sm text-muted-foreground leading-relaxed">{item.desc}</p>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </section>
+
+        <Separator className="my-10" />
+
+        {/* Skatteforhold */}
+        <section className="mb-12">
+          <h2 className="mb-4 text-3xl font-bold">
+            Indskudsbonus og skatteforhold i Danmark
+          </h2>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            Et ofte overset aspekt ved indskudsbonusser er skattebehandlingen. Gevinster fra <Link to="/casinoer/casino-og-skat" className={linkClass}>danske licenserede casinoer</Link> er skattefrie for spilleren – uanset om de stammer fra egne midler eller bonuspenge. Casinoet afregner 28% spilleafgift direkte til SKAT, og dette er allerede indregnet i spillenes RTP. Du modtager altid nettobeløbet.
+          </p>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            <strong>Udenlandske casinoer uden dansk licens:</strong> Her er situationen fundamentalt anderledes. Gevinster over 200 kr. fra udenlandske casinoer er skattepligtig indkomst, du selv skal indberette. En indskudsbonus på et udenlandsk casino kan derfor reelt koste dig op til 52% i skat af gevinsten – en faktor der dramatisk reducerer bonussens EV. Med en dansk bonus er hele gevinsten din; med en udenlandsk bonus beholder du potentielt kun halvdelen.
+          </p>
+          <p className="text-muted-foreground leading-relaxed">
+            <strong>Konklusion:</strong> Skattemæssigt er indskudsbonusser hos danske casinoer markant mere fordelagtige end udenlandske. En dansk 100% match med 10x omsætning og EV på 200 kr. giver dig 200 kr. netto. Den "samme" bonus på et udenlandsk casino giver dig 96-104 kr. netto efter skat – halvdelen. Licensering er en direkte økonomisk fordel for dig som spiller.
+          </p>
+        </section>
+
+        <Separator className="my-10" />
+
+        {/* Ansvarligt spil */}
+        <section className="mb-12">
+          <h2 className="mb-4 text-3xl font-bold">
+            Indbetalingsmønster og ansvarligt spil
+          </h2>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            En indskudsbonus kan friste til at indbetale mere end planlagt for at maksimere matchbeløbet. Det er en fælde – indbetal aldrig mere, end du ville have spillet for uden bonussen. Dit spillebudget bør fastlægges uafhængigt af bonustilbuddet. En tommelfingerregel: hvis du normalt spiller for 300 kr. per session, bør en bonus ikke ændre dette beløb.
+          </p>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            <strong>Casinoernes psykologiske strategi:</strong> Veldesignede bonusser bruger "anchoring" – de præsenterer et højt maksimumbeløb (f.eks. "op til 5.000 kr.") for at motivere dig til at indbetale mere end du ellers ville. Husk at du ikke skal ramme maksimum for at få værdi af bonussen. En 100% match på 300 kr. giver dig stadig 300 kr. ekstra at spille for.
           </p>
           <p className="text-muted-foreground leading-relaxed">
             Brug casinoets indbetalingsgrænser aktivt, og overvej{" "}
@@ -647,35 +723,33 @@ const Indskudsbonus = () => {
 
         <Separator className="my-10" />
 
-        {/* Bundlinjen */}
+        {/* Unik konklusion */}
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold">Bundlinjen</h2>
+          <h2 className="mb-4 text-3xl font-bold">Tre nøgletal der afgør din indskudsbonus' værdi</h2>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            Efter at have analyseret hundredvis af danske indskudsbonusser kan vi destillere værdivurderingen ned til tre tal, der afgør alt. Kender du disse tre nøgletal, kan du vurdere enhver indskudsbonus på under 30 sekunder.
+          </p>
           <div className="space-y-3">
             {[
               {
-                icon: DollarSign,
-                title: "Ekstra værdi for din indbetaling",
-                desc: "En indskudsbonus matcher din indbetaling og giver dig flere midler at spille for – typisk 100% op til et maksimumbeløb.",
+                icon: Percent,
+                title: "Nøgletal #1: Reel omsætningsfaktor",
+                desc: "Beregn den reelle omsætning i kroner: (Indbetaling + Bonus) × Omsætningskrav for (d+b), eller Bonus × Omsætningskrav for (b). Under 5.000 kr. total omsætning = god bonus. Over 15.000 kr. = overvej alternativer.",
+              },
+              {
+                icon: Calculator,
+                title: "Nøgletal #2: EV-procent",
+                desc: "EV divideret med bonusbeløb giver din EV-procent. Over 70% = exceptionel bonus. 40-70% = acceptabel. Under 40% = dårlig bonus. De bedste danske indskudsbonusser scorer 75-90% EV-procent.",
               },
               {
                 icon: Scale,
-                title: "Danske regler beskytter dig",
-                desc: "Spillemyndighedens loft på 10x omsætningskrav sikrer rimelige vilkår. In-game gevinster tæller altid med.",
-              },
-              {
-                icon: AlertTriangle,
-                title: "Læs betingelserne grundigt",
-                desc: "Maks. indsats, tidsfrister, udelukkede spil og betalingsmetoder påvirker alle bonussens reelle værdi.",
-              },
-              {
-                icon: ShieldCheck,
-                title: "Spil ansvarligt",
-                desc: "Sæt et budget, jagt aldrig tab, og benyt hjælpeværktøjer som StopSpillet.dk og ROFUS ved behov.",
+                title: "Nøgletal #3: Sticky/no-sticky-ratio",
+                desc: "No-sticky bonusser giver 2-3x højere EV end sticky bonusser med identiske vilkår. Hvis to bonusser har samme match-% og omsætning, vælg ALTID no-sticky. Denne ene faktor kan betyde forskellen på positiv og negativ EV.",
               },
             ].map((item) => (
               <div
                 key={item.title}
-                className="flex items-start gap-3 rounded-lg border border-border bg-card p-4"
+                className="flex items-start gap-3 rounded-lg border border-primary/30 bg-accent/30 p-4"
               >
                 <item.icon className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
                 <div>

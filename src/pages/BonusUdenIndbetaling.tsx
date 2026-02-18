@@ -686,99 +686,43 @@ const BonusUdenIndbetaling = () => {
 
         <Separator className="my-10" />
 
-        {/* === SEKTION 10: Strategi === */}
+        {/* Unik konklusion: No Deposit */}
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold">
-            Optimal strategi for no deposit bonusser
-          </h2>
-          <p className="mb-6 text-muted-foreground leading-relaxed">
-            Med den rette tilgang kan du øge dine chancer for at konvertere en no deposit bonus til reel gevinst. Her er en evidensbaseret strategi:
+          <h2 className="mb-4 text-3xl font-bold">Bundlinjen: Er en no deposit bonus din tid værd?</h2>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            Svaret er et rungende "ja" – men med et "men". Som casinospiller er en no deposit bonus den eneste situation hvor du har en matematisk fordel over huset. Din risiko er nul, og din potentielle gevinst er positiv. EV er lav (15-30 kr.), men uendelig i procent af din investering (som er 0 kr.).
           </p>
-
           <div className="space-y-3">
             {[
               {
-                title: "Vælg spil med RTP over 97%",
-                desc: "Hvert procentpoint i RTP sparer dig penge under omsætningen. Blood Suckers (98%), Mega Joker (99%) og 1429 Uncharted Seas (98,6%) er optimale valg, hvis de er tilladte. Undgå spil med RTP under 95% – de dræner bonussen for hurtigt.",
-                icon: BarChart3,
+                title: "Det ultimative testværktøj",
+                desc: "Brug no deposit bonusser til at teste nye casinoers platform, mobiloplevelse og support – ikke til at blive rig. Hvis du kan lide oplevelsen, overvej en indskudsbonus.",
+                icon: Eye,
               },
               {
-                title: "Brug altid minimumindsatsen",
-                desc: "Lavere indsats = flere spins = højere overlevelsesrate under omsætningen. Med 50 kr. bonus og 10x omsætning (500 kr.) giver 1 kr. indsats 500 spins vs. 10 kr. indsats giver kun 50 spins. Flere spins reducerer variansen og øger sandsynligheden for at overleve omsætningen.",
-                icon: Target,
+                title: "Matematisk overlegen",
+                desc: "Selv med stramme vilkår (10x omsætning, 500 kr. loft) er no deposit bonussen den eneste bonus med positiv EV uden finansiel risiko. Det er 'gratis penge' – hvis du arbejder for dem.",
               },
               {
-                title: "Forstå gevinstloftets effekt",
-                desc: "Hvis du rammer en stor gevinst tidligt, beregn om det er optimalt at fortsætte omsætningen eller stoppe (hvis vilkårene tillader det). Med 500 kr. gevinstloft og 700 kr. på kontoen risikerer du at spille saldoen ned – men kan aldrig hæve mere end 500 kr.",
-                icon: Calculator,
+                title: "Disciplin er nøglen",
+                desc: "For at konvertere bonussen skal du spille disciplineret: minimumindsats, høj RTP, og stop ved gevinstloftet. Uden disciplin er bonussen bare underholdning.",
               },
               {
-                title: "Prioriter lav volatilitet under omsætning",
-                desc: "Lav volatilitet giver hyppigere, mindre gevinster – ideelt for at overleve omsætningskrav. Gem høj volatilitet til fri spil. Under omsætning er overlevelse vigtigere end store gevinster.",
-                icon: TrendingUp,
-              },
-              {
-                title: "Sæt en tidsplan",
-                desc: "Med korte tidsfrister (24-72 timer) skal du planlægge hvornår du spiller. Afsæt en sammenhængende session, så du ikke glemmer bonussen. Bonusser der udløber er tabt potentiale.",
-                icon: Clock,
+                title: "Pas på gateway-effekten",
+                desc: "Vær bevidst om at bonussen er designet til at konvertere dig til betalende kunde. Sæt dine grænser før du begynder. Spil ansvarligt.",
+                icon: ShieldCheck,
               },
             ].map((item) => (
-              <div key={item.title} className="flex items-start gap-3 rounded-lg border border-border bg-card p-4">
-                <item.icon className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
+              <div
+                key={item.title}
+                className="flex items-start gap-3 rounded-lg border border-primary/30 bg-accent/30 p-4"
+              >
+                <CheckCircle2 className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
                 <div>
                   <h3 className="font-semibold">{item.title}</h3>
                   <p className="text-sm text-muted-foreground">{item.desc}</p>
                 </div>
               </div>
-            ))}
-          </div>
-        </section>
-
-        <Separator className="my-10" />
-
-        {/* === SEKTION 11: Ansvarligt spil === */}
-        <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold">
-            Risikoperspektivet: no deposit bonusser og spilleadfærd
-          </h2>
-          <p className="mb-4 text-muted-foreground leading-relaxed">
-            En no deposit bonus koster dig ikke penge, men den kan koste dig tid og opmærksomhed. Forskning viser at gratis bonusser kan fungere som en "gateway" til indbetalingsadfærd – casinoets mål med bonussen er netop at konvertere dig til en betalende spiller. Vær bevidst om denne dynamik.
-          </p>
-          <p className="mb-4 text-muted-foreground leading-relaxed">
-            Sæt realistiske forventninger: en no deposit bonus er en gratis prøvetur, ikke en indtægtskilde. Gennemsnitlig EV er 15-30 kr. per bonus – mindre end en time på en lavtlønnet jobtype. Hvis du mærker trang til at indbetale for at "jage" gevinster, er det et advarselssignal.
-          </p>
-          <p className="text-muted-foreground leading-relaxed">
-            Benyt{" "}
-            <a href="https://www.rofus.nu/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline font-medium">ROFUS</a>{" "}
-            til selvudelukkelse og{" "}
-            <a href="https://www.stopspillet.dk/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline font-medium">StopSpillet.dk</a>{" "}
-            for rådgivning, hvis du oplever problemer med spilleadfærd. Husk: 18+ | Spil ansvarligt.
-          </p>
-        </section>
-
-        <Separator className="my-10" />
-
-        {/* === SEKTION 12: Intern linking === */}
-        <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold">Udforsk relaterede bonusguides</h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-            {[
-              { to: "/omsaetningskrav", label: "Omsætningskrav – Komplet Guide", desc: "Alt om gennemspilningskrav på danske casinoer" },
-              { to: "/velkomstbonus", label: "Velkomstbonus Guide", desc: "Maksimer din første casinobonus" },
-              { to: "/indskudsbonus", label: "Indskudsbonus", desc: "Matchbonusser og deres reelle værdi" },
-              { to: "/no-sticky-bonus", label: "No-Sticky Bonus", desc: "Bonusser med adskilt saldo" },
-              { to: "/free-spins", label: "Free Spins Guide", desc: "Alt om gratis spins på danske casinoer" },
-              { to: "/bonus-uden-omsaetningskrav", label: "Bonus uden Omsætningskrav", desc: "Bonusser med øjeblikkelig udbetaling" },
-              { to: "/nye-casinoer/bonus-uden-indbetaling", label: "Nye Casinoer med No Deposit", desc: "De nyeste casinoer med gratis bonus" },
-              { to: "/nye-casinoer/lav-wagering", label: "Lav Wagering Casinoer", desc: "Casinoer med de laveste omsætningskrav" },
-            ].map((link) => (
-              <Link key={link.to} to={link.to} className="flex items-start gap-3 rounded-lg border border-border bg-card p-4 transition-colors hover:border-primary/50 hover:bg-accent/50">
-                <ArrowRight className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
-                <div>
-                  <h3 className="font-semibold text-sm">{link.label}</h3>
-                  <p className="text-xs text-muted-foreground">{link.desc}</p>
-                </div>
-              </Link>
             ))}
           </div>
         </section>
