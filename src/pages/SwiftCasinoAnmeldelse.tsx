@@ -11,7 +11,7 @@ import { InlineCasinoCards } from "@/components/InlineCasinoCards";
 import { useCasinos } from "@/hooks/useCasinos";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
 import { getAffiliateRedirect } from "@/lib/affiliateRedirect";
-import { buildFaqSchema } from "@/lib/seo";
+import { buildArticleSchema, buildFaqSchema } from "@/lib/seo";
 import { useAuth } from "@/hooks/useAuth";
 import { QuickFactsProviders, QuickFactsLogo } from "@/components/QuickFactsProviders";
 import type { ReactNode } from "react";
@@ -109,6 +109,7 @@ const SwiftCasinoAnmeldelse = () => {
   const handleBonusClick = () => { if (casino) getAffiliateRedirect(casino.slug, user?.id); };
 
   const faqJsonLd = buildFaqSchema(swiftFaqs);
+  const articleSchema = buildArticleSchema({ headline: "Swift Casino Anmeldelse 2026 – Hot Or Cold & 3.300+ Spil", description: "Dybdegående anmeldelse af Swift Casino. 100% bonus op til 500 kr., 10x omsætning, Hot Or Cold-funktion og 3.300+ spil.", url: "https://casinoaftaler.dk/swift-casino-anmeldelse", datePublished: "2026-02-15", dateModified: "2026-02-18", authorName: "Jonas", authorUrl: "https://casinoaftaler.dk/forfatter/jonas" });
 
   const reviewJsonLd = {
     "@context": "https://schema.org",
@@ -132,9 +133,9 @@ const SwiftCasinoAnmeldelse = () => {
   return (
     <>
       <SEO
-        title="Swift Casino Anmeldelse 2026 – Data-Innovatøren med Hot Or Cold & 3.300+ Spil"
+        title="Swift Casino Anmeldelse 2026 – Hot Or Cold"
         description="Dybdegående anmeldelse af Swift Casino efter 14 dages test. 100% bonus op til 500 kr. (kode SWIFT), 10x omsætning, 3.300+ spil, unik Hot Or Cold-funktion og PayPal/Trustly. Komplet analyse."
-        jsonLd={[faqJsonLd, reviewJsonLd, breadcrumbJsonLd]}
+        jsonLd={[articleSchema, faqJsonLd, reviewJsonLd, breadcrumbJsonLd]}
       />
 
       <section

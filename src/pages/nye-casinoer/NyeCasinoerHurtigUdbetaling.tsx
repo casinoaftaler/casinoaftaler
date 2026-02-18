@@ -242,7 +242,7 @@ const NyeCasinoerHurtigUdbetaling = () => {
           </div>
         </section>
 
-        <AuthorBio author="kevin" />
+        <AuthorBio author="jonas" />
         <RelatedGuides currentPath="/nye-casinoer/hurtig-udbetaling" />
         <FAQSection title="Ofte stillede spørgsmål om hurtige udbetalinger" faqs={faqs} />
       </div>

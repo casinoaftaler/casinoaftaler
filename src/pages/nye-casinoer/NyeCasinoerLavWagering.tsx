@@ -180,7 +180,7 @@ const NyeCasinoerLavWagering = () => {
           </div>
         </section>
 
-        <AuthorBio author="kevin" />
+        <AuthorBio author="jonas" />
         <RelatedGuides currentPath="/nye-casinoer/lav-wagering" />
         <FAQSection title="Ofte stillede spørgsmål om lav wagering" faqs={faqs} />
       </div>

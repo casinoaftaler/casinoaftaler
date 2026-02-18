@@ -222,7 +222,7 @@ const NyeVsEtablerede = () => {
           </div>
         </section>
 
-        <AuthorBio author="kevin" />
+        <AuthorBio author="jonas" />
         <RelatedGuides currentPath="/nye-casinoer/vs-etablerede" />
         <FAQSection title="Ofte stillede spørgsmål om nye vs. etablerede casinoer" faqs={faqs} />
       </div>

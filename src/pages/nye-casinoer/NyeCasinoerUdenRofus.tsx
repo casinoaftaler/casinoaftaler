@@ -248,7 +248,7 @@ const NyeCasinoerUdenRofus = () => {
 
         <InlineCasinoCards title="Licenserede alternativer vi anbefaler" count={4} />
 
-        <AuthorBio author="kevin" />
+        <AuthorBio author="jonas" />
         <RelatedGuides currentPath="/nye-casinoer/uden-rofus" />
         <FAQSection title="Ofte stillede spørgsmål om casinoer uden ROFUS" faqs={faqs} />
       </div>

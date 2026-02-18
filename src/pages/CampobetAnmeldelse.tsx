@@ -12,7 +12,7 @@ import { InlineCasinoCards } from "@/components/InlineCasinoCards";
 import { useCasinos } from "@/hooks/useCasinos";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
 import { getAffiliateRedirect } from "@/lib/affiliateRedirect";
-import { buildFaqSchema } from "@/lib/seo";
+import { buildArticleSchema, buildFaqSchema } from "@/lib/seo";
 import { useAuth } from "@/hooks/useAuth";
 import { QuickFactsProviders, QuickFactsLogo } from "@/components/QuickFactsProviders";
 import type { ReactNode } from "react";
@@ -114,6 +114,7 @@ const CampobetAnmeldelse = () => {
   };
 
   const faqJsonLd = buildFaqSchema(campobetFaqs);
+  const articleSchema = buildArticleSchema({ headline: "Campobet Anmeldelse 2026 – No-Sticky Bonus & Odds", description: "Komplet anmeldelse af Campobet. No-Sticky bonus op til 1.000 kr., 10x omsætning, sportsbetting og dansk licens.", url: "https://casinoaftaler.dk/campobet-anmeldelse", datePublished: "2026-02-15", dateModified: "2026-02-18", authorName: "Jonas", authorUrl: "https://casinoaftaler.dk/forfatter/jonas" });
 
   const reviewJsonLd = {
     "@context": "https://schema.org",
@@ -141,9 +142,9 @@ const CampobetAnmeldelse = () => {
   return (
     <>
       <SEO
-        title="Campobet Anmeldelse 2026 – No-Sticky Bonus, Odds & Vilkår | Casinoaftaler"
+        title="Campobet Anmeldelse 2026 – No-Sticky Bonus"
         description="Komplet anmeldelse af Campobet.dk. 100% No-Sticky bonus op til 1.000 kr., kun 10x omsætning, sportsbetting, tusindvis af spil og hurtige udbetalinger. Læs vores ærlige vurdering."
-        jsonLd={[faqJsonLd, reviewJsonLd, breadcrumbJsonLd]}
+        jsonLd={[articleSchema, faqJsonLd, reviewJsonLd, breadcrumbJsonLd]}
       />
 
       {/* Hero */}
