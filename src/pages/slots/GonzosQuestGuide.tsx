@@ -329,7 +329,7 @@ const GonzosQuestGuide = () => {
 
         <Separator className="my-10" />
 
-        <AuthorBio />
+        <AuthorBio author="kevin" />
 
         <RelatedGuides currentPath="/casinospil/spillemaskiner/gonzos-quest" />
 

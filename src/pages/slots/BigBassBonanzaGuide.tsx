@@ -356,7 +356,7 @@ const BigBassBonanzaGuide = () => {
 
         <Separator className="my-10" />
 
-        <AuthorBio />
+        <AuthorBio author="kevin" />
 
         <RelatedGuides currentPath="/casinospil/spillemaskiner/big-bass-bonanza" />
 
