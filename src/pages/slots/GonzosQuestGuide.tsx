@@ -97,7 +97,7 @@ const GonzosQuestGuide = () => {
       />
 
       {/* ── HERO ── */}
-      <section className="relative overflow-hidden py-12 text-white md:py-20" style={{ backgroundImage: "linear-gradient(135deg, hsl(45 70% 25%), hsl(35 80% 18%) 40%, hsl(25 60% 15%))" }}>
+      <section className="relative overflow-hidden py-12 text-white md:py-20" style={{ backgroundImage: "linear-gradient(135deg, hsl(260 70% 25%), hsl(250 60% 20%) 40%, hsl(210 80% 25%))" }}>
         <div className="container">
           <div className="mx-auto max-w-3xl text-center">
             <Badge variant="secondary" className="mb-4"><Trophy className="mr-1.5 h-3.5 w-3.5" /> Historisk Analyse</Badge>

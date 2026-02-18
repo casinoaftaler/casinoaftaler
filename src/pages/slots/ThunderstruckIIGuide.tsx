@@ -44,7 +44,7 @@ const ThunderstruckIIGuide = () => {
     <>
       <SEO title="Thunderstruck II – Bonus & RTP-Analyse" description="Dybdegående analyse af Thunderstruck II: Great Hall of Spins, 96,65 % RTP, fire bonusniveauer og matematisk EV-vurdering." jsonLd={[faqJsonLd, articleSchema, breadcrumbJsonLd]} />
 
-      <section className="relative overflow-hidden py-12 text-white md:py-20" style={{ backgroundImage: "linear-gradient(135deg, hsl(220 70% 30%), hsl(250 60% 25%) 40%, hsl(270 80% 20%))" }}>
+      <section className="relative overflow-hidden py-12 text-white md:py-20" style={{ backgroundImage: "linear-gradient(135deg, hsl(260 70% 25%), hsl(250 60% 20%) 40%, hsl(210 80% 25%))" }}>
         <div className="container">
           <div className="mx-auto max-w-3xl text-center">
             <Badge variant="secondary" className="mb-4"><Layers className="mr-1.5 h-3.5 w-3.5" /> Progressiv Bonus</Badge>
