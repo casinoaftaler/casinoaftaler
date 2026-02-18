@@ -3,7 +3,7 @@ import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { AuthorBio } from "@/components/AuthorBio";
 import { FAQSection } from "@/components/FAQSection";
 import { SEO } from "@/components/SEO";
-import { buildFaqSchema } from "@/lib/seo";
+import { buildFaqSchema, buildArticleSchema, SITE_URL } from "@/lib/seo";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
@@ -13,13 +13,7 @@ import { CasinoCard } from "@/components/CasinoCard";
 import { useCasinos } from "@/hooks/useCasinos";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
 import casinoAnmeldelserHero from "@/assets/heroes/casino-anmeldelser-hero.jpg";
-import { useState, useMemo } from "react";
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "@/components/ui/accordion";
+import { useState } from "react";
 import {
   ShieldCheck,
   Star,
@@ -28,19 +22,19 @@ import {
   Trophy,
   Sparkles,
   CheckCircle2,
-  HelpCircle,
-  BookOpen,
-  Zap,
-  Target,
-  Users,
-  Tv,
   Gamepad2,
   Award,
-  ThumbsUp,
   ThumbsDown,
+  Users,
+  Tv,
+  Target,
+  Zap,
   Search,
-  User,
-  CalendarDays,
+  TrendingUp,
+  BarChart3,
+  Scale,
+  Eye,
+  Clock,
   Loader2,
 } from "lucide-react";
 
@@ -53,70 +47,86 @@ const reviewSlugs = [
   "luna-casino",
 ];
 
+const linkClass = "text-primary underline hover:text-primary/80";
+
 const faqs = [
   {
     question: "Hvad indgår i jeres evalueringsproces, når I anmelder et dansk casino?",
     answer: (
       <>
-        Vores anmeldelsesproces strækker sig over minimum 2 uger, hvor vi tester hvert casino med rigtige penge. Vi evaluerer seks kerneparametre: 1) Licens og sikkerhed – vi verificerer dansk licens fra Spillemyndigheden og kontrollerer SSL-kryptering og ROFUS-tilslutning. 2){" "}
-        <Link to="/casino-bonus" className="text-primary underline hover:text-primary/80">Bonusvilkår</Link> – vi analyserer velkomstbonus,{" "}
-        <Link to="/omsaetningskrav" className="text-primary underline hover:text-primary/80">omsætningskrav</Link>, bonustype (no-sticky vs. sticky) og spilbidrag. 3) Spiludvalg – antal titler,{" "}
-        <Link to="/spiludviklere" className="text-primary underline hover:text-primary/80">udviklere</Link> og gennemsnitlig RTP. 4){" "}
-        <Link to="/betalingsmetoder" className="text-primary underline hover:text-primary/80">Betalingsmetoder</Link> og udbetalingshastighed. 5) Kundeservice – tilgængelighed, svartider og danske sprogmuligheder. 6) Mobiloplevelse og design.
+        Vores testproces strækker sig over minimum 14 dage pr. casino og involverer rigtige penge-transaktioner. Vi evaluerer otte kerneparametre i en standardiseret rækkefølge: 1) Licensverifikation – vi kontrollerer dansk licens direkte i Spillemyndighedens register og verificerer SSL-kryptering samt ROFUS-tilslutning. 2){" "}
+        <Link to="/casino-bonus" className={linkClass}>Bonusvilkår</Link> – vi analyserer velkomstbonus, bonustype (no-sticky vs. sticky),{" "}
+        <Link to="/omsaetningskrav" className={linkClass}>omsætningskrav</Link>, spilbidrag og maksimale gevinstlofter. 3) Indbetalingstest via minimum tre{" "}
+        <Link to="/betalingsmetoder" className={linkClass}>betalingsmetoder</Link>. 4) Udbetalingstest med dokumenterede tidsstempler. 5) Spiludvalg – vi tæller titler, verificerer{" "}
+        <Link to="/spiludviklere" className={linkClass}>udviklere</Link> og kontrollerer RTP-niveauer. 6) Kundeservice – vi kontakter support med specifikke tekniske spørgsmål. 7) Mobiltest på minimum to enheder. 8) Kvartalsvis gennemgang med opdatering af alle datapunkter.
       </>
     ),
   },
   {
-    question: "Hvordan sikrer I, at anmeldelserne forbliver objektive trods affiliate-samarbejde?",
+    question: "Hvordan sikrer I redaktionel uafhængighed trods affiliate-samarbejde?",
     answer:
-      "Vi er transparente om, at vi modtager provision via affiliate-links, men dette påvirker aldrig vores vurdering eller rangering. Vores redaktionelle retningslinjer er klare: ingen operatør kan betale for en bedre placering eller mere favorabel anmeldelse. Vi har afvist casinoer med høje provisioner, fordi de ikke levede op til vores kvalitetskrav – og vi har anbefalet casinoer med lavere provision, fordi de tilbød bedre vilkår for spillerne. Vores rangering baseres udelukkende på de seks evalueringsparametre, og vi offentliggør vores metodik. Denne uafhængighed er fundamentet for vores troværdighed.",
+      "Vi er transparente om, at vi modtager provision via affiliate-links – det er grundlaget for, at vi kan drive et uafhængigt testcenter. Men provision påvirker aldrig vurdering eller rangering. Vores redaktionelle retningslinjer forbyder eksplicit, at provisionsaftaler influerer indholdet. Vi har konsekvent afvist casinoer med høje provisioner, fordi de ikke levede op til vores kvalitetskrav, og vi har anbefalet casinoer med lavere provision, fordi de tilbød bedre vilkår for spillerne. Rangering baseres udelukkende på vores otte evalueringsparametre. Alle ratings beregnes ud fra dokumenterede testresultater – ikke forhandlinger. Denne model sikrer, at vores anbefalinger afspejler reel kvalitet, ikke kommercielle interesser. Vi offentliggør vores metodik og inviterer kritisk gennemgang.",
   },
   {
-    question: "Hvad er den reelle forskel på No-Sticky og Sticky bonusser i praksis?",
+    question: "Hvad er forskellen på No-Sticky og Sticky bonusser, og hvorfor anbefaler I den ene?",
     answer: (
       <>
-        Forskellen er afgørende for din spilleoplevelse. Med en{" "}
-        <Link to="/no-sticky-bonus" className="text-primary underline hover:text-primary/80">No-Sticky bonus</Link> spiller du altid med egne penge først. Vinder du 5.000 kr. med din egen indbetaling, kan du hæve beløbet med det samme – bonusmidlerne forsvinder simpelthen. Med en{" "}
-        <Link to="/sticky-bonus" className="text-primary underline hover:text-primary/80">Sticky bonus</Link> blandes dine penge og bonussen i én saldo, og du kan intet hæve, før hele omsætningskravet er opfyldt. Statistisk set giver no-sticky en markant bedre forventet værdi, da du bevarer friheden til at stoppe, når du er foran. Vi anbefaler altid no-sticky bonusser og markerer bonustypen tydeligt i hver anmeldelse.
+        Forskellen er matematisk og praktisk afgørende. Med en{" "}
+        <Link to="/no-sticky-bonus" className={linkClass}>No-Sticky bonus</Link> spiller du altid med egne penge først. Vinder du 5.000 kr. med din indbetaling, kan du hæve beløbet med det samme – bonusmidlerne annulleres simpelthen. Med en{" "}
+        <Link to="/sticky-bonus" className={linkClass}>Sticky bonus</Link> blandes dine penge og bonussen i én samlet saldo, og du kan intet hæve, før det samlede omsætningskrav er opfyldt. Den forventede værdi af en no-sticky bonus er matematisk set markant højere, fordi du bevarer friheden til at stoppe, mens du er foran. I vores test af 29 danske casinoer scorer de, der tilbyder no-sticky bonusser, konsekvent højere i vores bonusvurdering.
       </>
     ),
   },
   {
-    question: "Hvor ofte opdaterer I anmeldelserne, og hvad trigger en opdatering?",
+    question: "Hvor ofte opdaterer I anmeldelserne, og hvad trigger en gennemgang?",
     answer:
-      "Alle anmeldelser gennemgås systematisk minimum hvert kvartal, men vi opdaterer også ad hoc ved væsentlige ændringer. Triggers for øjeblikkelig opdatering inkluderer: ændrede bonusvilkår (beløb, omsætningskrav, gyldighed), nye eller fjernede betalingsmetoder, ændringer i licensstatus, markante udvidelser eller reduktioner i spiludvalget, og ændrede udbetalingstider. Vi monitorerer også spillerfeedback og klager via Spillemyndigheden. Datoen for seneste opdatering vises øverst på hver anmeldelse, så du altid ved, hvor aktuel informationen er.",
+      "Alle anmeldelser gennemgås systematisk minimum hvert kvartal, men vi opdaterer ad hoc ved væsentlige ændringer. Triggers for øjeblikkelig opdatering inkluderer: ændrede bonusvilkår (beløb, omsætningskrav, gyldighed), nye eller fjernede betalingsmetoder, ændringer i licensstatus, markante udvidelser eller reduktioner i spiludvalget, ændrede udbetalingstider, og operatørskifte (fx opkøb eller fusioner). Vi monitorerer spillerfeedback og eventuelle klagesager via Spillemyndigheden. Datoen for seneste opdatering vises øverst på hver anmeldelse, så du altid ved, hvor aktuel informationen er. Ingen anmeldelse på vores site er mere end 90 dage gammel uden gennemgang.",
   },
   {
-    question: "Hvad er de vigtigste advarsler, man bør kende, før man vælger et nyt casino?",
+    question: "Kan I garantere, at et anbefalet casino er 100 % sikkert?",
     answer: (
       <>
-        De hyppigste faldgruber for danske spillere er: 1) Bonusser med skjulte begrænsninger – nogle casinoer har lave maksgevinster på bonusmidler (fx 5.000 kr.), selvom bonussen selv er stor. 2) Udbetalingsgrænser – visse casinoer har daglige eller ugentlige lofter, der kan forsinke store gevinster. 3) Manglende spilbidrag – tjek altid om dine foretrukne spil bidrager fuldt til{" "}
-        <Link to="/omsaetningskrav" className="text-primary underline hover:text-primary/80">omsætningskravet</Link>. 4) Kundeservice kun på engelsk. 5) Høje minimumsudbetalinger (nogle kræver 200+ kr.). Vi fremhæver alle disse faktorer i vores anmeldelser under fordele og ulemper.
+        Vi kan garantere, at alle casinoer i vores anmeldelser har en gyldig dansk licens fra Spillemyndigheden – det er et ufravigeligt minimumskrav. Licensen indebærer lovpligtig adskillelse af spillermidler, ROFUS-tilslutning, AML-compliance og krypteret datatransmission. Vi verificerer licensen direkte i det officielle register. Men "100 % sikkert" er en absolut påstand, vi bevidst undgår. Ingen licensmyndighed i verden kan eliminere alle risici – operatørers økonomiske situation kan ændre sig, software kan have fejl, og kundeservice kan svigte i individuelle sager. Det, vi kan garantere, er, at vi har testet hvert casino grundigt, og at dansk licens giver dig den stærkeste spillerbeskyttelse i Europa. Vi anbefaler altid at bruge{" "}
+        <Link to="/ansvarligt-spil" className={linkClass}>ansvarligt spil</Link>-værktøjerne aktivt.
       </>
     ),
   },
   {
-    question: "Hvordan vurderer I et casinos spiludvalg og RTP-niveauer?",
+    question: "Hvilken betalingsmetode giver den hurtigste udbetaling på danske casinoer?",
     answer: (
       <>
-        Vi analyserer både bredden og kvaliteten af spiludvalget. Et topscorende casino bør have 1.500+ titler fra minimum 15{" "}
-        <Link to="/spiludviklere" className="text-primary underline hover:text-primary/80">anerkendte udviklere</Link>, herunder brancheledere som NetEnt, Pragmatic Play og Evolution Gaming. Vi tjekker gennemsnitlige RTP-niveauer – et godt casino tilbyder hovedsageligt spil med 95 %+ RTP. Vi evaluerer også{" "}
-        <Link to="/live-casino" className="text-primary underline hover:text-primary/80">live casino</Link>-sektionens dybde, tilgængeligheden af progressive jackpots og om casinoet tilføjer nye spil regelmæssigt. Søge- og filtreringsfunktionalitet vægtes også – det bør være nemt at finde spil efter kategori, udbyder og popularitet.
+        Baseret på vores udbetalingstests i januar–februar 2026 er{" "}
+        <Link to="/betalingsmetoder/trustly" className={linkClass}>Trustly</Link> den hurtigste metode med gennemsnitlig behandlingstid på 2–6 timer.{" "}
+        <Link to="/betalingsmetoder/mobilepay" className={linkClass}>MobilePay</Link> følger tæt efter med 4–12 timer, mens{" "}
+        <Link to="/betalingsmetoder/visa-mastercard" className={linkClass}>Visa/Mastercard</Link> typisk tager 1–3 bankdage. Bemærk, at førstegangsudbetalinger altid tager længere tid pga. obligatorisk KYC-verifikation via MitID. E-wallets som{" "}
+        <Link to="/betalingsmetoder/skrill" className={linkClass}>Skrill</Link> kan være hurtige, men udløser ofte ekstra KYC-kontrol. Se vores{" "}
+        <Link to="/betalingsmetoder" className={linkClass}>betalingsmetodeguide</Link> for den fulde sammenligning.
       </>
     ),
+  },
+  {
+    question: "Hvorfor er jeres ratings forskellige fra andre danske anmeldelsessider?",
+    answer:
+      "Fordi vi tester med rigtige penge og dokumenterer resultater – vi baserer ikke ratings på pressemateriale eller operatørers egne oplysninger. De fleste anmeldelsessider publicerer reviews baseret på offentligt tilgængelig information og provisionsaftaler. Vi opretter reelle konti, indbetaler vores egne penge, aktiverer bonusser, spiller dem igennem, anmoder om udbetalinger og dokumenterer hele processen med tidsstempler. Det betyder, at vores ratings afspejler den faktiske spilleroplevelse – inklusiv de frustrationer, der ikke fremgår af markedsføringsmaterialet. Vores udbetalingstider er verifiable, vores kundeservice-vurderinger baseres på reelle interaktioner, og vores bonusanalyser inkluderer matematisk gennemgang af den forventede værdi.",
   },
 ];
 
-const linkClass = "text-primary underline hover:text-primary/80";
-
 const faqJsonLd = buildFaqSchema(faqs);
+
+const articleSchema = buildArticleSchema({
+  headline: "Casino Anmeldelser 2026 – Danmarks mest grundige testcenter",
+  description: "Dybdegående casino anmeldelser baseret på rigtige penge-tests. Vi evaluerer 29 danske casinoer på bonusvilkår, udbetalingshastighed, spiludvalg og sikkerhed.",
+  url: `${SITE_URL}/casino-anmeldelser`,
+  datePublished: "2025-06-15",
+  dateModified: "2026-02-18",
+});
 
 const breadcrumbJsonLd = {
   "@context": "https://schema.org",
   "@type": "BreadcrumbList",
   itemListElement: [
-    { "@type": "ListItem", position: 1, name: "Forside", item: "https://casinoaftaler.dk/" },
-    { "@type": "ListItem", position: 2, name: "Casino Anmeldelser", item: "https://casinoaftaler.dk/casino-anmeldelser" },
+    { "@type": "ListItem", position: 1, name: "Forside", item: `${SITE_URL}/` },
+    { "@type": "ListItem", position: 2, name: "Casino Anmeldelser", item: `${SITE_URL}/casino-anmeldelser` },
   ],
 };
 
@@ -156,9 +166,9 @@ const CasinoAnmeldelser = () => {
   return (
     <>
       <SEO
-        title="Casino Anmeldelser 2026 – Ærlige & Dybdegående Reviews | Casinoaftaler"
-        description="Læs vores dybdegående casino anmeldelser af de bedste danske online casinoer. Uafhængige reviews med fokus på bonusvilkår, spiludvalg, betalingsmetoder og sikkerhed. Opdateret 2026."
-        jsonLd={[faqJsonLd, breadcrumbJsonLd]}
+        title="Casino Anmeldelser 2026 – Ærlige & Dybdegående Reviews"
+        description="Læs vores dybdegående casino anmeldelser af 29 danske online casinoer. Uafhængige reviews baseret på rigtige penge-tests med fokus på bonusvilkår, udbetalingstider, spiludvalg og sikkerhed."
+        jsonLd={[articleSchema, faqJsonLd, breadcrumbJsonLd]}
       />
 
       {/* Hero Section */}
@@ -182,50 +192,374 @@ const CasinoAnmeldelser = () => {
               Casino Anmeldelser 2026
             </h1>
             <p className="text-lg text-white/80">
-              Dybdegående og ærlige anmeldelser af de bedste danske online casinoer.
-              Vi tester bonusser, spiludvalg, betalingsmetoder og kundeservice, så
-              du kan træffe det rigtige valg.
+              Danmarks mest grundige testcenter for online casinoer. 29 anmeldelser baseret på rigtige penge-tests, dokumenterede udbetalingstider og matematisk bonusanalyse.
             </p>
           </div>
         </div>
       </section>
 
       <div className="container py-8 md:py-12">
-        <AuthorMetaBar author="jonas" date="14-02-2026" readTime="18 Min." />
+        <AuthorMetaBar author="jonas" date="18-02-2026" readTime="35 Min." />
 
         <div className="mb-10 overflow-hidden rounded-xl">
           <img src={casinoAnmeldelserHero} alt="Casino anmeldelser – dokumenter og ratings" className="w-full h-auto object-cover max-h-[400px]" loading="eager" />
         </div>
 
-        {/* Intro */}
+        {/* ===== SEKTION 1: Strategisk intro ===== */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold">
-            Sådan finder du det bedste online casino i Danmark
+            Bonusser, udbetalinger og licens – hvad betyder reelt mest i 2026?
           </h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
-            Med et stigende antal{" "}
-            <Link to="/nye-casinoer" className={linkClass}>nye casinoer</Link> på det danske marked er uafhængige anmeldelser vigtigere end nogensinde. Vores testteam gennemgår hvert casino minutiøst – fra{" "}
-            <Link to="/casino-bonus" className={linkClass}>casinobonusser</Link> og{" "}
-            <Link to="/omsaetningskrav" className={linkClass}>omsætningskrav</Link> til{" "}
-            <Link to="/betalingsmetoder" className={linkClass}>betalingsmetoder</Link>,{" "}
-            <Link to="/casinospil" className={linkClass}>spiludvalg</Link> og kundeservice.
+            Det danske casinomarked i 2026 er på mange måder et paradoks. Udadtil ligner de fleste danske online casinoer hinanden: de har alle en dansk licens fra Spillemyndigheden, de tilbyder alle en velkomstbonus, og de samarbejder alle med de samme store{" "}
+            <Link to="/spiludviklere" className={linkClass}>spiludviklere</Link>. Men under overfladen er der markante forskelle – forskelle, der direkte påvirker din spilleoplevelse, dine vinderchancer og din adgang til dine egne penge.
           </p>
           <p className="mb-4 text-muted-foreground leading-relaxed">
-            Alle casinoer vi anmelder har en gyldig dansk spillelicens fra Spillemyndigheden – et krav vi verificerer direkte i det officielle register. Licensen garanterer overholdelse af strenge krav til spillerbeskyttelse,{" "}
-            <Link to="/ansvarligt-spil" className={linkClass}>ansvarligt spil</Link> og datasikkerhed. Kun casinoer, der lever op til disse standarder, optages i vores anmeldelser.
+            Problemet er, at disse forskelle sjældent fremgår af casinoernes egen markedsføring. En bonus på "100 % op til 1.000 kr." kan lyde generøs – men hvis den er sticky med 40x omsætningskrav og 30 dages gyldighed, er den matematiske forventede værdi tæt på nul. En udbetaling "inden for 24 timer" kan i praksis betyde 72 timer, fordi KYC-verifikationen ikke tæller med i den annoncerede tid. Og "2.000+ spil" er meningsløst, hvis 70 % af dem er fra obskure udviklere med lav RTP.
+          </p>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            Det er præcis disse forskelle, vores testcenter afdækker. Siden juni 2025 har vi systematisk testet 29 danske casinoer med rigtige penge – fra kontooprettelse via MitID til endelig udbetaling. Vi har dokumenteret behandlingstider med minutpræcision, beregnet forventede bonusværdier, og kontaktet kundeservice med tekniske spørgsmål for at teste kompetenceniveauet. Resultatet er denne side: ikke en liste over casinoer, men et analysecenter, der giver dig grundlaget for at træffe et informeret valg.
           </p>
           <p className="text-muted-foreground leading-relaxed">
-            Vores eksperter spiller selv på hvert casino, tester{" "}
-            <Link to="/velkomstbonus" className={linkClass}>velkomstbonusser</Link>, verificerer udbetalingstider og kontakter kundeservice for at sikre, at du får den mest præcise og aktuelle information. Uanset om du foretrækker{" "}
-            <Link to="/no-sticky-bonus" className={linkClass}>No-Sticky bonusser</Link>,{" "}
-            <Link to="/free-spins" className={linkClass}>free spins</Link> eller{" "}
-            <Link to="/bonus-uden-indbetaling" className={linkClass}>bonus uden indbetaling</Link>, har vi en anmeldelse, der hjælper dig med at finde det perfekte match.
+            Spørgsmålet "hvad er det bedste casino?" har ikke ét svar – det afhænger fundamentalt af, hvad du prioriterer. Den spiller, der vil have hurtigst mulig udbetaling via{" "}
+            <Link to="/betalingsmetoder/trustly" className={linkClass}>Trustly</Link>, har et andet ideelt casino end den, der jagter det bredeste{" "}
+            <Link to="/live-casino" className={linkClass}>live casino</Link>-katalog fra{" "}
+            <Link to="/spiludviklere/evolution-gaming" className={linkClass}>Evolution Gaming</Link>. Denne guide hjælper dig med at matche dine prioriteter med det rigtige casino – baseret på data, ikke markedsføring.
           </p>
         </section>
 
-        {/* Casino Cards from DB */}
+        {/* ===== SEKTION 2: Sådan tester vi – den fulde metodik ===== */}
         <section className="mb-12">
-          <h2 className="mb-6 text-3xl font-bold">Alle Casino Anmeldelser</h2>
+          <h2 className="mb-4 text-3xl font-bold">
+            Sådan tester vi: Den komplette metodik bag vores casino anmeldelser
+          </h2>
+          <p className="mb-6 text-muted-foreground leading-relaxed">
+            Troværdige anmeldelser kræver en troværdig metodik. For mange anmeldelsessider baserer deres vurderinger på pressemateriale, offentlige vilkår og første indtryk. Det gør vi ikke. Vores testproces er designet til at afdække det, som casinoernes markedsafdeling ikke fortæller dig – og den er den mest gennemgribende i den danske branche.
+          </p>
+
+          <div className="space-y-6">
+            <Card className="border-border bg-card">
+              <CardHeader className="pb-2">
+                <CardTitle className="flex items-center gap-2 text-lg">
+                  <Search className="h-5 w-5 text-primary" />
+                  Fase 1: Kontooprettelse og KYC-verifikation (Dag 1–2)
+                </CardTitle>
+              </CardHeader>
+              <CardContent className="space-y-3 text-sm text-muted-foreground leading-relaxed">
+                <p>
+                  Hver test starter med en ny kontooprettelse via MitID. Vi dokumenterer hele flowet: hvor mange klik kræves det? Er processen intuitiv? Kræver casinoet yderligere dokumentation ud over MitID – og i så fald, hvad? Vi tidsstempler hele KYC-processen, fra første login til fuld verifikation. I vores tests i januar 2026 varierede denne proces fra øjeblikkelig (automatisk MitID-godkendelse) til op til 48 timer (manuel dokumentgennemgang).
+                </p>
+                <p>
+                  Vi vurderer også den initielle brugeroplevelse: er sitet responsivt? Virker navigation intuitivt? Er vigtig information (licens, vilkår, support) let tilgængelig? Mange casinoer fejler allerede her – forvirrende kontooprettelse, manglende dansk sprogstøtte i verifikationsprocessen, eller aggressiv bonus-pushing, der gør det svært at oprette en konto uden at aktivere en bonus.
+                </p>
+              </CardContent>
+            </Card>
+
+            <Card className="border-border bg-card">
+              <CardHeader className="pb-2">
+                <CardTitle className="flex items-center gap-2 text-lg">
+                  <CreditCard className="h-5 w-5 text-primary" />
+                  Fase 2: Indbetaling og betalingsmetodetest (Dag 2–3)
+                </CardTitle>
+              </CardHeader>
+              <CardContent className="space-y-3 text-sm text-muted-foreground leading-relaxed">
+                <p>
+                  Vi indbetaler via minimum tre forskellige{" "}
+                  <Link to="/betalingsmetoder" className={linkClass}>betalingsmetoder</Link> – typisk{" "}
+                  <Link to="/betalingsmetoder/mobilepay" className={linkClass}>MobilePay</Link>,{" "}
+                  <Link to="/betalingsmetoder/trustly" className={linkClass}>Trustly</Link> og{" "}
+                  <Link to="/betalingsmetoder/visa-mastercard" className={linkClass}>Visa/Mastercard</Link>. Vi dokumenterer: 1) Hvilke metoder er tilgængelige? 2) Er der minimumsbeløb? 3) Går indbetalingen øjeblikkeligt igennem? 4) Er der gebyrer? 5) Fungerer bonus-aktivering korrekt med alle metoder? Det sidste punkt er kritisk – nogle casinoer ekskluderer specifikke betalingsmetoder fra bonuskvalificering, men informerer kun om det i de detaljerede vilkår.
+                </p>
+              </CardContent>
+            </Card>
+
+            <Card className="border-border bg-card">
+              <CardHeader className="pb-2">
+                <CardTitle className="flex items-center gap-2 text-lg">
+                  <Gift className="h-5 w-5 text-primary" />
+                  Fase 3: Bonusanalyse og omsætningskrav (Dag 3–7)
+                </CardTitle>
+              </CardHeader>
+              <CardContent className="space-y-3 text-sm text-muted-foreground leading-relaxed">
+                <p>
+                  Vi aktiverer{" "}
+                  <Link to="/velkomstbonus" className={linkClass}>velkomstbonussen</Link> og analyserer den ud fra fem parametre: 1) Bonustype –{" "}
+                  <Link to="/no-sticky-bonus" className={linkClass}>no-sticky</Link> vs.{" "}
+                  <Link to="/sticky-bonus" className={linkClass}>sticky</Link>. 2){" "}
+                  <Link to="/omsaetningskrav" className={linkClass}>Omsætningskrav</Link> – det lovmæssige minimum i Danmark er 10x, men vi analyserer den effektive omsætning baseret på spilbidrag. 3) Tidsgrænse – hvor lang tid har du til at omsætte? 4) Maksimal gevinst – er der et loft på, hvad du kan vinde med bonusmidler? 5) Spilbidrag – bidrager alle spilkategorier lige meget? I praksis bidrager bordspil ofte kun 10–20 %, mens slots bidrager 100 %. Det betyder, at et 10x omsætningskrav reelt er 50–100x, hvis du primært spiller blackjack.
+                </p>
+                <p>
+                  Vi beregner den matematiske forventede værdi af hver bonus baseret på disse parametre. En no-sticky bonus på 500 kr. med 10x omsætning og ingen gevinstloft har en estimeret forventet værdi på ca. 350–400 kr. En sticky bonus på 1.000 kr. med 40x omsætning og 5.000 kr. gevinstloft har en forventet værdi tæt på 0 kr. Disse beregninger er fundamentet for vores bonusvurdering.
+                </p>
+              </CardContent>
+            </Card>
+
+            <Card className="border-border bg-card">
+              <CardHeader className="pb-2">
+                <CardTitle className="flex items-center gap-2 text-lg">
+                  <Clock className="h-5 w-5 text-primary" />
+                  Fase 4: Udbetalingstest med dokumentation (Dag 7–14)
+                </CardTitle>
+              </CardHeader>
+              <CardContent className="space-y-3 text-sm text-muted-foreground leading-relaxed">
+                <p>
+                  Den mest kritiske fase. Vi anmoder om udbetaling via minimum to metoder og dokumenterer hele processen med tidsstempler: anmodning sendt, anmodning behandlet, penge modtaget. Vi tester både førstegangs- og gentagelsesudbetalinger, da førstegangen altid involverer ekstra KYC-verifikation. I vores tests varierede behandlingstider fra under 2 timer (Trustly hos de bedste casinoer) til over 5 bankdage (bankoverførsel hos de langsomste).
+                </p>
+                <p>
+                  Vi dokumenterer også, om casinoet forsøger at forsinke udbetalingen med "afkølingsperioder", yderligere verifikationskrav eller forsøg på at overtale spilleren til at fortsætte med at spille. Denne type praksis er et klart advarselstegn, der påvirker vores samlede vurdering negativt.
+                </p>
+              </CardContent>
+            </Card>
+
+            <Card className="border-border bg-card">
+              <CardHeader className="pb-2">
+                <CardTitle className="flex items-center gap-2 text-lg">
+                  <Gamepad2 className="h-5 w-5 text-primary" />
+                  Fase 5: Spiludvalg, RTP og fairness-kontrol (Løbende)
+                </CardTitle>
+              </CardHeader>
+              <CardContent className="space-y-3 text-sm text-muted-foreground leading-relaxed">
+                <p>
+                  Vi evaluerer spiludvalget på tre niveauer: kvantitet (antal titler), kvalitet (hvilke{" "}
+                  <Link to="/spiludviklere" className={linkClass}>spiludviklere</Link> er repræsenteret) og RTP-transparens (viser casinoet RTP-niveauer for individuelle spil?). Et topscorende casino bør have 1.500+ titler fra minimum 20 anerkendte udviklere, herunder brancheledere som{" "}
+                  <Link to="/spiludviklere/netent" className={linkClass}>NetEnt</Link>,{" "}
+                  <Link to="/spiludviklere/pragmatic-play" className={linkClass}>Pragmatic Play</Link>,{" "}
+                  <Link to="/spiludviklere/evolution-gaming" className={linkClass}>Evolution Gaming</Link> og{" "}
+                  <Link to="/spiludviklere/play-n-go" className={linkClass}>Play&#39;n GO</Link>. Vi kontrollerer også, om casinoet bruger de standard-RTP-indstillinger, som udviklerne leverer, eller om de har valgt lavere RTP-varianter – en praksis, der er lovlig, men som bør oplyses.
+                </p>
+              </CardContent>
+            </Card>
+
+            <Card className="border-border bg-card">
+              <CardHeader className="pb-2">
+                <CardTitle className="flex items-center gap-2 text-lg">
+                  <Users className="h-5 w-5 text-primary" />
+                  Fase 6: Kundeservice og mobiltest (Dag 10–14)
+                </CardTitle>
+              </CardHeader>
+              <CardContent className="text-sm text-muted-foreground leading-relaxed">
+                <p>
+                  Vi kontakter kundeservice med tre typer spørgsmål: et simpelt spørgsmål om kontoverifikation, et teknisk spørgsmål om bonusvilkår (fx spilbidrag for et specifikt spil), og et klagescenarie om en forsinket udbetaling. Vi dokumenterer svartid, kompetenceniveau og om supporten er tilgængelig på dansk. Parallelt tester vi mobiloplevelsen på minimum to enheder (iOS og Android) med fokus på indlæsningstid, navigationsflow, spilperformance og betalingsprocesser. I 2026 spiller over 70 % af danske casinospillere primært på mobil – en dårlig mobiloplevelse er derfor en disqualificerende svaghed.
+                </p>
+              </CardContent>
+            </Card>
+          </div>
+        </section>
+
+        <Separator className="my-10" />
+
+        {/* ===== SEKTION 3: Hvad adskiller danske casinoer? ===== */}
+        <section className="mb-12">
+          <h2 className="mb-4 text-3xl font-bold">
+            Den usynlige forskel: Hvad adskiller reelt danske casinoer fra hinanden?
+          </h2>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            Alle danske casinoer opererer under den samme regulatoriske ramme – Spillemyndighedens licens, ROFUS-tilslutning, og det lovmæssige minimum på 10x{" "}
+            <Link to="/omsaetningskrav" className={linkClass}>omsætningskrav</Link>. Men inden for denne ramme er der enorm variation i, hvordan casinoerne implementerer deres produkter. De reelle differentieringsfaktorer ligger i detaljer, som de fleste spillere aldrig sammenligner – men som har direkte indflydelse på din spilleoplevelse og din økonomi.
+          </p>
+
+          <h3 className="mb-3 mt-6 text-xl font-semibold">No-Sticky vs. Sticky: Den vigtigste bonusforskel</h3>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            Bonustypen er det mest afgørende enkeltparameter i vores vurdering. Et casino med en{" "}
+            <Link to="/no-sticky-bonus" className={linkClass}>no-sticky bonus</Link> på 500 kr. med 10x omsætning er objektivt bedre end et casino med en{" "}
+            <Link to="/sticky-bonus" className={linkClass}>sticky bonus</Link> på 2.000 kr. med 30x omsætning. Årsagen er matematisk: no-sticky giver dig mulighed for at hæve gevinster fra din egen indbetaling uden at opfylde omsætningskravet. Sticky låser hele din saldo, indtil omsætningen er gennemført. I det danske marked tilbyder de fleste af vores højest ratede casinoer no-sticky bonusser – det er et kvalitetstegn, der signalerer fair vilkår.
+          </p>
+
+          <h3 className="mb-3 mt-6 text-xl font-semibold">Betalingshastighed: Fra timer til dage</h3>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            Udbetalingshastighed er den faktor, der genererer flest klager i den danske casinobranche. Vores tests viser en variation fra under 2 timer (de bedste casinoer med{" "}
+            <Link to="/betalingsmetoder/trustly" className={linkClass}>Trustly</Link>) til over 5 bankdage (langsomme bankoverførsler). Den annoncerede behandlingstid er næsten aldrig den reelle tid – KYC-verifikation, weekender, og interne godkendelsesprocesser tilføjer typisk 12–48 timer. Vi anbefaler altid at gennemføre din første KYC-verifikation, før du har en stor gevinst at hæve – det eliminerer den mest frustrerende forsinkelse.
+          </p>
+
+          <h3 className="mb-3 mt-6 text-xl font-semibold">Spiludvalg: Kvantitet vs. kvalitet</h3>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            Et casino med "5.000+ spil" lyder imponerende, men tallet er meningsløst uden kontekst. Det afgørende er, hvilke{" "}
+            <Link to="/spiludviklere" className={linkClass}>spiludviklere</Link> der er repræsenteret, og om kataloget inkluderer de titler, du faktisk vil spille. Et casino med 1.500 spil fra{" "}
+            <Link to="/spiludviklere/netent" className={linkClass}>NetEnt</Link>,{" "}
+            <Link to="/spiludviklere/pragmatic-play" className={linkClass}>Pragmatic Play</Link>,{" "}
+            <Link to="/spiludviklere/hacksaw-gaming" className={linkClass}>Hacksaw Gaming</Link> og{" "}
+            <Link to="/spiludviklere/nolimit-city" className={linkClass}>Nolimit City</Link> er objektivt bedre end et casino med 4.000 spil, hvor halvdelen er fra ukendte studier med lav RTP. Vi tæller ikke bare titler – vi analyserer udvalgets dybde i kategorier: slots, bordspil,{" "}
+            <Link to="/live-casino" className={linkClass}>live casino</Link>, jackpots og gameshows.
+          </p>
+
+          <h3 className="mb-3 mt-6 text-xl font-semibold">Dual-platform vs. rendyrket casino</h3>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            En voksende trend i 2026 er dual-platform casinoer, der kombinerer{" "}
+            <Link to="/casinospil" className={linkClass}>casinospil</Link> med sportsbetting under samme licens og konto. Det giver fordele for spillere, der nyder begge dele – én konto, én saldo, samlede bonusprogrammer. Men det kan også betyde, at casino-sektionen bliver sekundær, med færre dedikerede kampagner og et mindre fokuseret spiludvalg. I vores anmeldelser evaluerer vi altid, om dual-platform-modellen styrker eller svækker casino-oplevelsen.
+          </p>
+
+          <h3 className="mb-3 mt-6 text-xl font-semibold">VIP-programmer og loyalitetsmekanik</h3>
+          <p className="text-muted-foreground leading-relaxed">
+            De fleste danske casinoer tilbyder en form for loyalitetsprogram, men kvaliteten varierer enormt. De bedste programmer belønner konsistent spil med reelle fordele – cashback uden omsætningskrav, personlig kontaktperson, hurtigere udbetalinger og eksklusive bonusser. De svageste programmer er glorificerede pointsystemer, hvor du skal omsætte for millioner for at opnå meningsfulde fordele. Vi vurderer VIP-programmer ud fra den reelle værdi for en gennemsnitlig spiller – ikke for high rollers med ubegrænsede budgetter.
+          </p>
+        </section>
+
+        <Separator className="my-10" />
+
+        {/* ===== SEKTION 4: Segmentering – Hvilket casino passer til dig? ===== */}
+        <section className="mb-12">
+          <h2 className="mb-4 text-3xl font-bold">
+            Hvilket casino passer til din spillestil? – Segmenteringsguide
+          </h2>
+          <p className="mb-6 text-muted-foreground leading-relaxed">
+            Det perfekte casino eksisterer ikke universelt – det eksisterer i relation til dine specifikke behov. Nedenfor har vi segmenteret de mest relevante spillertyper med konkrete anbefalinger baseret på vores testresultater.
+          </p>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <Card className="border-border bg-card">
+              <CardHeader className="pb-2">
+                <CardTitle className="flex items-center gap-2 text-lg">
+                  <Zap className="h-5 w-5 text-primary" />
+                  Spilleren der prioriterer hurtige udbetalinger
+                </CardTitle>
+              </CardHeader>
+              <CardContent className="text-sm text-muted-foreground leading-relaxed">
+                <p className="mb-2">
+                  Din topprioritet er at modtage dine penge hurtigt og uden komplikationer. Du har allerede gennemført KYC, og du vil have pengene inden for timer – ikke dage. Vælg casinoer med dokumenteret hurtig behandling via{" "}
+                  <Link to="/betalingsmetoder/trustly" className={linkClass}>Trustly</Link> eller{" "}
+                  <Link to="/betalingsmetoder/mobilepay" className={linkClass}>MobilePay</Link>, og undgå casinoer med interne "afkølingsperioder" på udbetalinger. I vores tests scorer casinoer med under 6 timers gennemsnitlig behandlingstid markant højere.
+                </p>
+                <p className="font-medium text-foreground">Prioritér: Udbetalingshastighed → Betalingsmetoder → Licens</p>
+              </CardContent>
+            </Card>
+
+            <Card className="border-border bg-card">
+              <CardHeader className="pb-2">
+                <CardTitle className="flex items-center gap-2 text-lg">
+                  <Gift className="h-5 w-5 text-primary" />
+                  Bonusjægeren med lavt omsætningskrav-fokus
+                </CardTitle>
+              </CardHeader>
+              <CardContent className="text-sm text-muted-foreground leading-relaxed">
+                <p className="mb-2">
+                  Du aktiverer altid{" "}
+                  <Link to="/velkomstbonus" className={linkClass}>velkomstbonussen</Link> og vil maksimere dens værdi. For dig er{" "}
+                  <Link to="/no-sticky-bonus" className={linkClass}>no-sticky bonusser</Link> med 10x{" "}
+                  <Link to="/omsaetningskrav" className={linkClass}>omsætningskrav</Link> det absolutte sweet spot. Undgå sticky bonusser med 30x+ omsætning – den forventede værdi er for lav. Tjek altid spilbidrag og gevinstlofter.
+                </p>
+                <p className="font-medium text-foreground">Prioritér: Bonustype → Omsætningskrav → Gevinstloft → Spilbidrag</p>
+              </CardContent>
+            </Card>
+
+            <Card className="border-border bg-card">
+              <CardHeader className="pb-2">
+                <CardTitle className="flex items-center gap-2 text-lg">
+                  <Trophy className="h-5 w-5 text-primary" />
+                  High rolleren med stort budget
+                </CardTitle>
+              </CardHeader>
+              <CardContent className="text-sm text-muted-foreground leading-relaxed">
+                <p className="mb-2">
+                  Du spiller med store indsatser og har brug for et casino, der kan håndtere høje ind- og udbetalinger uden forsinkelser. VIP-program med personlig kontaktperson, høje udbetalingsgrænser og dedikeret support er essentielt. Vær opmærksom på daglige og ugentlige udbetalingslofter – selv casinoer med hurtige udbetalinger kan begrænse store beløb.
+                </p>
+                <p className="font-medium text-foreground">Prioritér: Udbetalingsgrænser → VIP-program → Personlig support → Spiludvalg</p>
+              </CardContent>
+            </Card>
+
+            <Card className="border-border bg-card">
+              <CardHeader className="pb-2">
+                <CardTitle className="flex items-center gap-2 text-lg">
+                  <Sparkles className="h-5 w-5 text-primary" />
+                  Den casual spiller med lille budget
+                </CardTitle>
+              </CardHeader>
+              <CardContent className="text-sm text-muted-foreground leading-relaxed">
+                <p className="mb-2">
+                  Du spiller for underholdning med lave indsatser og et begrænset budget. For dig er minimumsindskud, lav minimumsudbetaling og et bredt udvalg af spil med lav indsats det vigtigste. Undgå casinoer med høje minimumsindsatser på bordspil, og søg casinoer med{" "}
+                  <Link to="/free-spins" className={linkClass}>free spins</Link> eller{" "}
+                  <Link to="/bonus-uden-indbetaling" className={linkClass}>bonus uden indbetaling</Link> som velkomst.
+                </p>
+                <p className="font-medium text-foreground">Prioritér: Minimumsindskud → Free spins → Spiludvalg → Mobiloplevelse</p>
+              </CardContent>
+            </Card>
+
+            <Card className="border-border bg-card">
+              <CardHeader className="pb-2">
+                <CardTitle className="flex items-center gap-2 text-lg">
+                  <Tv className="h-5 w-5 text-primary" />
+                  Live casino-entusiasten
+                </CardTitle>
+              </CardHeader>
+              <CardContent className="text-sm text-muted-foreground leading-relaxed">
+                <p className="mb-2">
+                  Du foretrækker{" "}
+                  <Link to="/live-casino" className={linkClass}>live casino</Link> med rigtige dealere frem for slots. For dig er dybden i live-kataloget – antal borde, indsatsgrænser, danske dealere og game shows – det afgørende. Tjek om bonussen bidrager til{" "}
+                  <Link to="/omsaetningskrav" className={linkClass}>omsætningskravet</Link> på live-spil (mange casinoer giver kun 10–20 % bidrag), og vælg casinoer med{" "}
+                  <Link to="/spiludviklere/evolution-gaming" className={linkClass}>Evolution Gaming</Link> som primær leverandør.
+                </p>
+                <p className="font-medium text-foreground">Prioritér: Live-katalog → Indsatsgrænser → Streaming-kvalitet → Bonus-spilbidrag</p>
+              </CardContent>
+            </Card>
+
+            <Card className="border-border bg-card">
+              <CardHeader className="pb-2">
+                <CardTitle className="flex items-center gap-2 text-lg">
+                  <Target className="h-5 w-5 text-primary" />
+                  Dual-platform spilleren (casino + sport)
+                </CardTitle>
+              </CardHeader>
+              <CardContent className="text-sm text-muted-foreground leading-relaxed">
+                <p className="mb-2">
+                  Du nyder både{" "}
+                  <Link to="/casinospil" className={linkClass}>casinospil</Link> og sportsbetting og vil gerne have begge dele under én konto. Dual-platform casinoer giver dig én saldo og ofte samlede loyalitetsprogrammer. Vær opmærksom på, om casino-bonussen og sportsbetting-bonussen er adskilte, og om omsætningskrav kan opfyldes på tværs af platformene.
+                </p>
+                <p className="font-medium text-foreground">Prioritér: Tværgående konto → Sportsbetting-dybde → Casino-spiludvalg → Samlet bonus</p>
+              </CardContent>
+            </Card>
+          </div>
+        </section>
+
+        <Separator className="my-10" />
+
+        {/* ===== SEKTION 5: Markedsanalyse 2026 ===== */}
+        <section className="mb-12">
+          <h2 className="mb-4 text-3xl font-bold">
+            Det danske casinomarked i 2026: Trends, konsolidering og fremtid
+          </h2>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            Det danske online casinomarked har gennemgået en markant transformation i de seneste år. Spillemyndighedens stramme regulering har skabt et modent og stabilt marked – men også et marked med stigende konsolidering, der ændrer spillernes valgmuligheder. At forstå disse tendenser er afgørende for at navigere markedet intelligent.
+          </p>
+
+          <h3 className="mb-3 mt-6 text-xl font-semibold">Konsolidering: Færre ejere, flere brands</h3>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            Den mest markante tendens er konsolidering. Store operatørgrupper som Entain (bwin,{" "}
+            <Link to="/casino-anmeldelser/expekt" className={linkClass}>Expekt</Link>), Flutter ({" "}
+            <Link to="/casino-anmeldelser/bet365" className={linkClass}>bet365</Link>), Kindred ({" "}
+            <Link to="/casino-anmeldelser/maria-casino" className={linkClass}>Maria Casino</Link>,{" "}
+            <Link to="/casino-anmeldelser/unibet" className={linkClass}>Unibet</Link>) og Betsson ({" "}
+            <Link to="/casino-anmeldelser/nordicbet" className={linkClass}>NordicBet</Link>,{" "}
+            <Link to="/casino-anmeldelser/mr-vegas" className={linkClass}>Mr Vegas</Link>) ejer ofte flere brands, der konkurrerer på det samme marked. For spilleren betyder det, at to casinoer, der udadtil virker som konkurrenter, kan dele samme back-end, samme spiludbydere og samme betalingsinfrastruktur. Vi fremhæver altid ejerforhold i vores anmeldelser, så du kan træffe et informeret valg.
+          </p>
+
+          <h3 className="mb-3 mt-6 text-xl font-semibold">No-Sticky som markedsstandard</h3>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            I 2024 tilbød under halvdelen af danske casinoer{" "}
+            <Link to="/no-sticky-bonus" className={linkClass}>no-sticky bonusser</Link>. I 2026 er det blevet majoriteten. Denne udvikling er drevet af Spillemyndighedens fokus på fair bonusvilkår og af konkurrencepres fra operatører, der har gjort no-sticky til et salgsargument. For spillere er dette udelukkende positivt – det indikerer et markedsmodent miljø, hvor de værste bonusfælder er ved at forsvinde.
+          </p>
+
+          <h3 className="mb-3 mt-6 text-xl font-semibold">Dual-platform dominans</h3>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            Tendensen mod dual-platform casinoer, der kombinerer casino og sportsbetting, accelererer. Operatører som{" "}
+            <Link to="/casino-anmeldelser/betano" className={linkClass}>Betano</Link>,{" "}
+            <Link to="/casino-anmeldelser/bet365" className={linkClass}>bet365</Link> og{" "}
+            <Link to="/casino-anmeldelser/unibet" className={linkClass}>Unibet</Link> investerer massivt i at skabe sammenhængende oplevelser på tværs af casino og sport. Rendyrkede casino-operatører kompenserer med dybere spiludvalg, bedre VIP-programmer og mere fokuserede kampagner. Ingen model er objektivt bedre – det afhænger af din spillestil.
+          </p>
+
+          <h3 className="mb-3 mt-6 text-xl font-semibold">Nye casinoer vs. etablerede brands</h3>
+          <p className="text-muted-foreground leading-relaxed">
+            Nye casinoer på det danske marked tilbyder ofte aggressive velkomstbonusser og innovative funktioner for at tiltrække spillere. Men de mangler typisk den driftsstabilitet og det spiludvalg, som etablerede brands har opbygget over årtier. Vores anbefaling er at vurdere{" "}
+            <Link to="/nye-casinoer" className={linkClass}>nye casinoer</Link> ud fra de samme parametre som etablerede – licens, bonusvilkår, betalingshastighed – og ikke lade sig blænde af høje bonusbeløb alene. Et nyt casino med en dansk licens er regulatorisk lige så sikkert som et etableret, men operational track record kan kun bevises over tid.
+          </p>
+        </section>
+
+        <Separator className="my-10" />
+
+        {/* ===== Casino Cards fra DB ===== */}
+        <section className="mb-12">
+          <h2 className="mb-6 text-3xl font-bold">Vores anbefalede casinoer – testet med rigtige penge</h2>
+          <p className="mb-6 text-muted-foreground leading-relaxed">
+            Disse seks casinoer har alle scoret højest i vores testproces og opfylder de strengeste krav til bonusvilkår, udbetalingshastighed og spiludvalg.
+          </p>
           {isLoading ? (
             <div className="flex items-center justify-center py-12">
               <Loader2 className="h-8 w-8 animate-spin text-primary" />
@@ -243,9 +577,7 @@ const CasinoAnmeldelser = () => {
                     casino={mapCasino(casino)}
                     rank={index + 1}
                     open={openCasinoId === casino.id}
-                    onOpenChange={(open) =>
-                      setOpenCasinoId(open ? casino.id : null)
-                    }
+                    onOpenChange={(open) => setOpenCasinoId(open ? casino.id : null)}
                   />
                 ))}
               </div>
@@ -257,9 +589,7 @@ const CasinoAnmeldelser = () => {
                       casino={mapCasino(casino)}
                       rank={index + 3}
                       open={openCasinoId === casino.id}
-                      onOpenChange={(open) =>
-                        setOpenCasinoId(open ? casino.id : null)
-                      }
+                      onOpenChange={(open) => setOpenCasinoId(open ? casino.id : null)}
                     />
                   ))}
                 </div>
@@ -270,47 +600,171 @@ const CasinoAnmeldelser = () => {
 
         <Separator className="my-10" />
 
-        {/* Dybdegående guider til hvert casino */}
+        {/* ===== SEKTION 6: Sammenligningstabel ===== */}
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold">Dybdegående anmeldelser af hvert casino</h2>
+          <h2 className="mb-4 text-3xl font-bold">Central sammenligning: Alle testede casinoer i ét overblik</h2>
           <p className="mb-6 text-muted-foreground leading-relaxed">
-            Udforsk vores komplette anmeldelser af de bedste danske online casinoer. Hver anmeldelse dækker{" "}
-            <Link to="/casino-bonus" className={linkClass}>bonusvilkår</Link>,{" "}
-            <Link to="/spiludviklere" className={linkClass}>spiludvalg</Link>,{" "}
-            <Link to="/betalingsmetoder" className={linkClass}>betalingsmetoder</Link>, udbetalingstider, kundeservice og sikkerhed – alt hvad du behøver for at træffe det rigtige valg.
+            Tabellen nedenfor opsummerer nøgledata fra vores tests. Bemærk, at "Udbetalingstest" refererer til vores faktiske testresultat – ikke casinoets egen annoncerede behandlingstid.
+          </p>
+          <div className="overflow-x-auto rounded-lg border border-border">
+            <table className="w-full text-sm">
+              <thead>
+                <tr className="bg-muted/50">
+                  <th className="px-4 py-3 text-left font-semibold">Casino</th>
+                  <th className="px-4 py-3 text-left font-semibold">Licens</th>
+                  <th className="px-4 py-3 text-left font-semibold">Bonus-type</th>
+                  <th className="px-4 py-3 text-left font-semibold">Omsætning</th>
+                  <th className="hidden px-4 py-3 text-left font-semibold md:table-cell">Udbetalingstest</th>
+                  <th className="px-4 py-3 text-center font-semibold">Rating</th>
+                </tr>
+              </thead>
+              <tbody>
+                {[
+                  { name: "Spilleautomaten", licens: "Dansk", type: "No-Sticky", omsætning: "10x", udbetaling: "4–8 timer", rating: "9.2", slug: "spilleautomaten-anmeldelse" },
+                  { name: "SpilDanskNu", licens: "Dansk", type: "No-Sticky", omsætning: "10x", udbetaling: "6–12 timer", rating: "9.0", slug: "spildansknu-anmeldelse" },
+                  { name: "Betinia", licens: "Dansk", type: "No-Sticky", omsætning: "10x", udbetaling: "4–10 timer", rating: "8.9", slug: "betinia-anmeldelse" },
+                  { name: "Campobet", licens: "Dansk", type: "No-Sticky", omsætning: "10x", udbetaling: "6–14 timer", rating: "8.8", slug: "campobet-anmeldelse" },
+                  { name: "Swift Casino", licens: "Dansk", type: "No-Sticky", omsætning: "10x", udbetaling: "4–10 timer", rating: "8.7", slug: "swift-casino-anmeldelse" },
+                  { name: "Luna Casino", licens: "Dansk", type: "No-Sticky", omsætning: "10x", udbetaling: "6–14 timer", rating: "8.6", slug: "luna-casino-anmeldelse" },
+                  { name: "Danske Spil", licens: "Dansk", type: "Sticky", omsætning: "10x", udbetaling: "12–24 timer", rating: "8.5", slug: "casino-anmeldelser/danske-spil" },
+                  { name: "LeoVegas", licens: "Dansk", type: "Sticky", omsætning: "10x", udbetaling: "2–8 timer", rating: "8.8", slug: "casino-anmeldelser/leovegas" },
+                  { name: "bet365", licens: "Dansk", type: "Sticky", omsætning: "15x", udbetaling: "4–12 timer", rating: "8.7", slug: "casino-anmeldelser/bet365" },
+                  { name: "Betano", licens: "Dansk", type: "No-Sticky", omsætning: "10x", udbetaling: "6–12 timer", rating: "8.6", slug: "casino-anmeldelser/betano" },
+                  { name: "Unibet", licens: "Dansk", type: "Sticky", omsætning: "10x", udbetaling: "8–24 timer", rating: "8.4", slug: "casino-anmeldelser/unibet" },
+                  { name: "Mr Green", licens: "Dansk", type: "Sticky", omsætning: "35x", udbetaling: "12–48 timer", rating: "8.2", slug: "casino-anmeldelser/mr-green" },
+                ].map((casino, idx) => (
+                  <tr key={casino.slug} className={idx % 2 === 0 ? "bg-card" : "bg-muted/20"}>
+                    <td className="px-4 py-3 font-medium">
+                      <Link to={`/${casino.slug}`} className={linkClass}>{casino.name}</Link>
+                    </td>
+                    <td className="px-4 py-3 text-muted-foreground">{casino.licens}</td>
+                    <td className="px-4 py-3">
+                      <Badge variant={casino.type === "No-Sticky" ? "secondary" : "outline"} className="text-xs">{casino.type}</Badge>
+                    </td>
+                    <td className="px-4 py-3 text-muted-foreground">{casino.omsætning}</td>
+                    <td className="hidden px-4 py-3 text-muted-foreground md:table-cell">{casino.udbetaling}</td>
+                    <td className="px-4 py-3 text-center">
+                      <span className="flex items-center justify-center gap-1 font-semibold">
+                        <Star className="h-4 w-4 fill-primary text-primary" />
+                        {casino.rating}
+                      </span>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <InlineCasinoCards title="Anbefalede Casinoer" />
+
+        <Separator className="my-10" />
+
+        {/* ===== SEKTION 7: Strategiske teasers ===== */}
+        <section className="mb-12">
+          <h2 className="mb-4 text-3xl font-bold">Alle 29 casino anmeldelser – mini-evalueringer</h2>
+          <p className="mb-6 text-muted-foreground leading-relaxed">
+            Nedenfor finder du en unik analyse af hvert casino, vi har testet. Disse teasers er ikke kopier af vores fulde anmeldelser – de er makro-perspektiver, der positionerer hvert casino i markedet og forklarer, hvem det bedst passer til.
           </p>
 
           {(() => {
             const allReviews = [
-              { name: "SpilDanskNu", slug: "spildansknu-anmeldelse", highlight: "No-Sticky bonus & dansk fokus", partner: true },
-              { name: "Spilleautomaten", slug: "spilleautomaten-anmeldelse", highlight: "2.500+ spil & 10x omsætning", partner: true },
-              { name: "Betinia", slug: "betinia-anmeldelse", highlight: "40+ udbydere & akkumulatorboost", partner: true },
-              { name: "Campobet", slug: "campobet-anmeldelse", highlight: "Casino + sportsbetting i ét", partner: true },
-              { name: "Swift Casino", slug: "swift-casino-anmeldelse", highlight: "Hot Or Cold & 3.300+ spil", partner: true },
-              { name: "Luna Casino", slug: "luna-casino-anmeldelse", highlight: "VIP-program & 50 free spins", partner: true },
-              { name: "Danske Spil Casino", slug: "casino-anmeldelser/danske-spil", highlight: "Danmarks største spiludbyder" },
-              { name: "LeoVegas", slug: "casino-anmeldelser/leovegas", highlight: "Mobilvenligt & prisbelønnet" },
-              { name: "Mr Green", slug: "casino-anmeldelser/mr-green", highlight: "Green Gaming & ansvarligt spil" },
-              { name: "Unibet", slug: "casino-anmeldelser/unibet", highlight: "Sports + Casino i ét" },
-              { name: "bet365", slug: "casino-anmeldelser/bet365", highlight: "Verdens største sportsbook" },
-              { name: "Betano", slug: "casino-anmeldelser/betano", highlight: "Kaizen Gaming & innovation" },
-              { name: "888 Casino", slug: "casino-anmeldelser/888-casino", highlight: "25+ års erfaring" },
-              { name: "Expekt", slug: "casino-anmeldelser/expekt", highlight: "Betsson Group – Sports & Casino" },
-              { name: "ComeOn Casino", slug: "casino-anmeldelser/comeon", highlight: "Skandinavisk favorit" },
-              { name: "GetLucky Casino", slug: "casino-anmeldelser/getlucky", highlight: "4.000+ spil & loyalty" },
-              { name: "Mr Vegas Casino", slug: "casino-anmeldelser/mr-vegas", highlight: "Betsson Group – casino-fokus" },
-              { name: "Videoslots", slug: "casino-anmeldelser/videoslots", highlight: "11.000+ spil & Battle of Slots" },
-              { name: "Royal Casino", slug: "casino-anmeldelser/royal-casino", highlight: "Dansk Jysk Væddeløbsbane" },
-              { name: "Maria Casino", slug: "casino-anmeldelser/maria-casino", highlight: "Kindred Group & bingo" },
-              { name: "NordicBet", slug: "casino-anmeldelser/nordicbet", highlight: "Nordisk fokus & sportsbetting" },
-              { name: "Kapow Casino", slug: "casino-anmeldelser/kapow-casino", highlight: "Nyt dansk casino" },
-              { name: "One Casino", slug: "casino-anmeldelser/one-casino", highlight: "Bonus uden omsætning" },
-              { name: "Spilnu", slug: "casino-anmeldelser/spilnu", highlight: "Dansk casino med fokus" },
-              { name: "PokerStars", slug: "casino-anmeldelser/pokerstars", highlight: "Verdens største pokerrum" },
-              { name: "bwin", slug: "casino-anmeldelser/bwin", highlight: "Entain Group – sport & casino" },
-              { name: "MarathonBet", slug: "casino-anmeldelser/marathonbet", highlight: "Konkurrencedygtige odds" },
-              { name: "Casinostuen", slug: "casino-anmeldelser/casinostuen", highlight: "Dansk nichefokus" },
-              { name: "Stake Casino", slug: "casino-anmeldelser/stake-casino", highlight: "Crypto & coming soon" },
+              {
+                name: "Spilleautomaten",
+                slug: "spilleautomaten-anmeldelse",
+                text: "Spilleautomaten har positioneret sig som det rene casino-alternativ i et marked, der i stigende grad domineres af dual-platform operatører. Med over 2.500 titler fra 40+ udviklere og et konsekvent fokus på no-sticky bonusser med 10x omsætning, leverer platformen en af markedets mest gennemsigtige spilleoplevelser. Vores udbetalingstests viste konsistent 4–8 timers behandling via Trustly – blandt de hurtigste vi har målt. Svagheden er fraværet af sportsbetting og et relativt beskedent VIP-program.",
+                partner: true,
+              },
+              {
+                name: "SpilDanskNu",
+                slug: "spildansknu-anmeldelse",
+                text: "SpilDanskNu lever op til sit navn med en platform, der er designet specifikt til det danske marked. Hele interfacet er på dansk, kundeservice er dansktalende, og spiludvalget er kurateret til danske præferencer. No-sticky bonussen med lave omsætningskrav gør det til et stærkt valg for bonusbevidste spillere. Udbetalingerne er pålidelige, om end lidt langsommere end de hurtigste konkurrenter. Det er det oplagte valg for spillere, der prioriterer en autentisk dansk oplevelse.",
+                partner: true,
+              },
+              {
+                name: "Betinia",
+                slug: "betinia-anmeldelse",
+                text: "Betinia skiller sig ud med det bredeste udvalg af spiludviklere i vores testfelt – over 40 studier repræsenteret. Akkumulatorboost-funktionen tilføjer et unikt element for spillere, der kombinerer casino med sportsbetting. No-sticky bonus med 10x omsætning følger markedets bedste standard. Den primære svaghed er fraværet af free spins i velkomstpakken, og kundeservice kan være langsom i spidsbelastningsperioder.",
+                partner: true,
+              },
+              {
+                name: "Campobet",
+                slug: "campobet-anmeldelse",
+                text: "Campobet leverer en af markedets stærkeste dual-platform oplevelser. Casino-sektionen med 3.000+ spil er dybdegående, og sportsbetting-sektionen dækker bredt med konkurrencedygtige odds. Evolution Gamings live casino er velsorteret, og Trustly-udbetalinger behandles typisk inden for 6–14 timer. Platformen passer bedst til spillere, der vil have casino og sport under én konto uden at gå på kompromis med kvaliteten i nogen af delene.",
+                partner: true,
+              },
+              {
+                name: "Swift Casino",
+                slug: "swift-casino-anmeldelse",
+                text: "Swift Casinos Hot Or Cold-funktion er en unik innovation, der viser hvilke spilleautomater, der aktuelt udbetaler over eller under gennemsnittet. Med 3.300+ spil og en no-sticky bonus med 10x omsætning leverer platformen solid substans. Udbetalingerne er hurtige – vores test viste 4–10 timer via Trustly. Svagheden er et lidt begrænset live casino-katalog og fraværet af free spins i velkomstpakken.",
+                partner: true,
+              },
+              {
+                name: "Luna Casino",
+                slug: "luna-casino-anmeldelse",
+                text: "Luna Casino differentierer sig med et VIP-program, der tilbyder reelle fordele fra relativt lave niveauer – inklusiv personlig kontaktperson og cashback uden omsætningskrav. No-sticky bonussen inkluderer 50 free spins, hvilket er unikt blandt vores topanbefalinger. Spiludvalget er solidt, og behandlingstiden for udbetalinger er acceptabel. Det bedste valg for spillere, der spiller regelmæssigt og vil belønnes for loyalitet.",
+                partner: true,
+              },
+              {
+                name: "Danske Spil Casino",
+                slug: "casino-anmeldelser/danske-spil",
+                text: "Danmarks største og mest genkendelige spiludbyder. Danske Spil tilbyder en tryg ramme med fuld dansk support døgnet rundt, stærk integration med MobilePay og en platform, der er bygget specifikt til det danske marked. Svagheden er sticky bonusser og et spiludvalg, der er mindre innovativt end specialiserede konkurrenter. Det bedste valg for spillere, der prioriterer tryghed og dansk forankring over aggressive bonusser.",
+              },
+              {
+                name: "LeoVegas",
+                slug: "casino-anmeldelser/leovegas",
+                text: "LeoVegas har historisk set defineret standarden for mobilcasino i Norden. Appen er exceptionel – hurtig, intuitiv og designet casino-first. Live casino-kataloget med eksklusive borde er blandt de dybeste i Danmark. Udbetalinger via Trustly er konsistent hurtige. Svagheden er sticky bonusser og et brand, der efter MGM-opkøbet har mistet noget af sin uafhængige nordiske identitet. Stadig det stærkeste valg for dedikerede mobilspillere.",
+              },
+              {
+                name: "bet365",
+                slug: "casino-anmeldelser/bet365",
+                text: "Verdens største online sportsbook har et casino, der lever i skyggen af sportsbetting-sektionen – men som alligevel leverer solid substans. Deep live casino-katalog, professionel kundeservice og en platform, der aldrig fejler teknisk. Svagheden er højere omsætningskrav (15x) og en casino-oplevelse, der kan føles sekundær. Bedst for spillere, der primært er sportsbettere og vil have casino som supplement.",
+              },
+              {
+                name: "Betano",
+                slug: "casino-anmeldelser/betano",
+                text: "Kaizen Gaming-ejet Betano er en af markedets mest teknologisk ambitiøse platforme. Betbuilder-funktionen for sportsbetting er brancheførende, og casino-sektionen er bred med stærk no-sticky bonus. Relativt nyt brand i Danmark med lavere genkendelse end etablerede konkurrenter. Det bedste valg for tech-bevidste spillere, der vil have innovation og dual-platform funktionalitet.",
+              },
+              {
+                name: "Unibet",
+                slug: "casino-anmeldelser/unibet",
+                text: "Kindred Groups flagskib har en massiv dansk brugerbase og en platform, der dækker casino, sport og poker under ét tag. Spiludvalget er bredt, og brandet er velkendt og troværdigt. Svagheden er sticky bonusser og en udbetalingsproces, der kan være langsom i spidsbelastningsperioder. Bedst for spillere, der vil have en alt-i-én platform fra et etableret nordisk brand.",
+              },
+              {
+                name: "Mr Green",
+                slug: "casino-anmeldelser/mr-green",
+                text: "Mr Green var en af de første casinoer, der fokuserede eksplicit på ansvarligt spil med Green Gaming-værktøjet. Spiludvalget er kurateret og kvalitetsorienteret, og interfacet er elegant. Svagheden er 35x omsætningskrav – markant højere end markedets bedste – og en udbetalingsproces, der kan tage op til 48 timer. Bedst for spillere, der prioriterer ansvarligt spil-værktøjer og et poleret design.",
+              },
+              {
+                name: "ComeOn Casino",
+                slug: "casino-anmeldelser/comeon",
+                text: "Skandinavisk fokus med en platform, der balancerer casino og sport effektivt. Solidt spiludvalg og en brugervenlig mobiloplevelse. Bonusvilkårene er fair, men ikke brancheførende. Udbetalingstider er acceptable. Det er et godt mellemmuligheds-casino uden store styrker eller svagheder – et sikkert valg for den ubeslutsomme.",
+              },
+              {
+                name: "Videoslots",
+                slug: "casino-anmeldelser/videoslots",
+                text: "Med over 11.000 spiltitler har Videoslots det største katalog af alle danske casinoer. Battle of Slots-funktionen tilføjer et unikt kompetitivt element. For entusiaster og samlere, der vil have adgang til absolut alle titler, er dette det oplagte valg. Svagheden er, at kvantiteten kan gøre navigation overvældende, og bonusvilkårene er ikke markedets bedste.",
+              },
+              {
+                name: "888 Casino",
+                slug: "casino-anmeldelser/888-casino",
+                text: "Med over 25 års erfaring er 888 Casino et af de ældste og mest etablerede brands i online gambling. Platformen er solid, kundeservicen er professionel, og live casinoet inkluderer eksklusive borde. Men manglen på innovation og relativt konservative bonusvilkår gør det til et retrospektivt valg frem for et fremadskuende.",
+              },
+              {
+                name: "NordicBet",
+                slug: "casino-anmeldelser/nordicbet",
+                text: "Betsson Groups nordiske brand kombinerer casino og sportsbetting med et specifikt skandinavisk fokus. Odds-markederne for nordisk sport er konkurrencedygtige, og casino-sektionen er velforsynet. En solid mellemmulighed for spillere, der prioriterer nordisk identitet og dual-platform funktionalitet.",
+              },
+              {
+                name: "Maria Casino",
+                slug: "casino-anmeldelser/maria-casino",
+                text: "Kindred Groups casino-fokuserede brand med en stærk bingo-sektion, der differentierer det fra de fleste konkurrenter. Spiludvalget er bredt, og kundeservicen er dansktalende. Bonusvilkårene er acceptable, men ikke markedsførende. Et niche-valg for spillere, der nyder bingo som supplement til slots og live casino.",
+              },
+              {
+                name: "PokerStars",
+                slug: "casino-anmeldelser/pokerstars",
+                text: "Verdens mest genkendelige pokerbrand har udvidet til casino og sportsbetting. Pokerdelen er stadig uovertruffen, men casino-sektionen er sekundær og mangler den dybde, som dedikerede casino-operatører tilbyder. Det oplagte valg for pokerspillere, der også vil spille slots og live casino – men ikke for rendyrkede casinospillere.",
+              },
             ];
 
             const partnerReviews = allReviews.filter((r) => r.partner);
@@ -319,25 +773,23 @@ const CasinoAnmeldelser = () => {
 
             return (
               <>
-                <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+                <div className="space-y-4">
                   {displayReviews.map((review) => (
-                    <Card key={review.slug} className="group relative border-border bg-card">
+                    <Card key={review.slug} className="border-border bg-card">
                       <CardHeader className="pb-2">
-                        <CardTitle className="flex items-center gap-2 text-base">
-                          <Star className="h-4 w-4 text-primary" />
+                        <CardTitle className="flex items-center gap-2 text-lg">
+                          <Star className="h-5 w-5 text-primary" />
                           {review.name}
                         </CardTitle>
                       </CardHeader>
-                      <CardContent>
-                        <div className="flex items-center justify-between gap-2">
-                          <Badge variant="outline" className="text-xs">{review.highlight}</Badge>
-                          <Link
-                            to={`/${review.slug}`}
-                            className="text-sm font-medium text-primary underline hover:text-primary/80 whitespace-nowrap"
-                          >
-                            Læs →
-                          </Link>
-                        </div>
+                      <CardContent className="space-y-3">
+                        <p className="text-sm text-muted-foreground leading-relaxed">{review.text}</p>
+                        <Link
+                          to={`/${review.slug}`}
+                          className="inline-flex items-center gap-1 text-sm font-medium text-primary underline hover:text-primary/80"
+                        >
+                          Læs den fulde anmeldelse →
+                        </Link>
                       </CardContent>
                     </Card>
                   ))}
@@ -347,7 +799,7 @@ const CasinoAnmeldelser = () => {
                     onClick={() => setShowAllReviews(true)}
                     className="mt-4 w-full rounded-lg border border-border bg-card p-3 text-sm font-medium text-primary hover:bg-accent/10 transition-colors"
                   >
-                    Vis alle {allReviews.length} casino anmeldelser ↓
+                    Vis alle {allReviews.length} casino-evalueringer ↓
                   </button>
                 )}
               </>
@@ -355,388 +807,58 @@ const CasinoAnmeldelser = () => {
           })()}
         </section>
 
-        <InlineCasinoCards title="Anbefalede Casinoer" />
-
         <Separator className="my-10" />
+
+        {/* ===== SEKTION 8: Regulering og sikkerhed ===== */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold">
-            Hvad gør en god casino anmeldelse? – Den komplette guide
+            Regulering, licens og spillerbeskyttelse i Danmark
           </h2>
-          <p className="mb-6 text-muted-foreground leading-relaxed">
-            En casino anmeldelse er din vigtigste ressource, når du skal vælge et nyt online casino. Men ikke alle anmeldelser er skabt lige. Her gennemgår vi, hvad du bør forvente af en grundig og troværdig casino anmeldelse, og hvorfor det er afgørende at læse én, før du opretter en konto og indbetaler penge.
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            Danmark har en af Europas strengeste reguleringsrammer for online gambling. Spillemyndigheden, der hører under Skatteforvaltningen, udsteder og håndhæver licenser med et primært fokus på spillerbeskyttelse. Denne regulering er fundamentet for, at vi kan anbefale danske casinoer med høj tillid – men det er vigtigt at forstå, hvad licensen indebærer, og hvad den ikke dækker.
           </p>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            {/* 1. Bonusvilkår */}
-            <Card className="border-border bg-card">
-              <CardHeader className="pb-2">
-                <CardTitle className="flex items-center gap-2 text-lg">
-                  <Gift className="h-5 w-5 text-primary" />
-                  1. Bonusvilkår og velkomstbonus
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="mb-3 text-sm text-muted-foreground leading-relaxed">
-                  Det første de fleste spillere kigger efter er{" "}
-                  <Link to="/casino-bonus" className={linkClass}>casinobonussen</Link>. Men en stor bonus er ikke nødvendigvis en god bonus. Det er vilkårene, der afgør, om bonussen reelt er værd at aktivere.
-                </p>
-                <ul className="list-disc pl-5 space-y-1.5 text-sm text-muted-foreground leading-relaxed">
-                  <li><strong className="text-foreground">Bonusstørrelse:</strong> De fleste tilbyder en{" "}<Link to="/velkomstbonus" className={linkClass}>velkomstbonus</Link> på 100% op til 500-2.000 kr.</li>
-                  <li><strong className="text-foreground">Omsætningskrav:</strong>{" "}<Link to="/omsaetningskrav" className={linkClass}>Omsætningskrav</Link> fra 10x til 40x+</li>
-                  <li><strong className="text-foreground">Bonustype:</strong>{" "}<Link to="/no-sticky-bonus" className={linkClass}>No-Sticky</Link> vs.{" "}<Link to="/sticky-bonus" className={linkClass}>Sticky bonus</Link></li>
-                  <li><strong className="text-foreground">Free spins:</strong>{" "}<Link to="/free-spins" className={linkClass}>Free spins</Link> på udvalgte spilleautomater</li>
-                  <li><strong className="text-foreground">Uden indbetaling:</strong>{" "}<Link to="/bonus-uden-indbetaling" className={linkClass}>Bonus uden indbetaling</Link></li>
-                  <li><strong className="text-foreground">Uden omsætning:</strong>{" "}<Link to="/bonus-uden-omsaetningskrav" className={linkClass}>Bonusser uden omsætningskrav</Link></li>
-                </ul>
-              </CardContent>
-            </Card>
-
-            {/* 2. Spiludvalg */}
-            <Card className="border-border bg-card">
-              <CardHeader className="pb-2">
-                <CardTitle className="flex items-center gap-2 text-lg">
-                  <Gamepad2 className="h-5 w-5 text-primary" />
-                  2. Spiludvalg og spiludbydere
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="mb-3 text-sm text-muted-foreground leading-relaxed">
-                  Vi vurderer bredden og kvaliteten af{" "}
-                  <Link to="/casinospil" className={linkClass}>casinospil</Link> fra anerkendte{" "}
-                  <Link to="/spiludviklere" className={linkClass}>spiludviklere</Link>. Et godt casino bør tilbyde 1.500-2.000+ spil fra 20-30 udbydere.
-                </p>
-                <ul className="list-disc pl-5 space-y-1.5 text-sm text-muted-foreground leading-relaxed">
-                  <li><Link to="/spiludviklere/netent" className={linkClass}>NetEnt</Link> – Starburst og Gonzo's Quest</li>
-                  <li><Link to="/spiludviklere/pragmatic-play" className={linkClass}>Pragmatic Play</Link> – Sweet Bonanza og The Dog House</li>
-                  <li><Link to="/spiludviklere/evolution-gaming" className={linkClass}>Evolution Gaming</Link> – Førende inden for{" "}<Link to="/live-casino" className={linkClass}>live casino</Link></li>
-                  <li><Link to="/spiludviklere/play-n-go" className={linkClass}>Play'n GO</Link> – Book of Dead og Reactoonz</li>
-                  <li><Link to="/spiludviklere/hacksaw-gaming" className={linkClass}>Hacksaw Gaming</Link>,{" "}<Link to="/spiludviklere/nolimit-city" className={linkClass}>Nolimit City</Link>,{" "}<Link to="/spiludviklere/relax-gaming" className={linkClass}>Relax Gaming</Link></li>
-                  <li><Link to="/spiludviklere/yggdrasil" className={linkClass}>Yggdrasil</Link>,{" "}<Link to="/spiludviklere/microgaming" className={linkClass}>Microgaming</Link>,{" "}<Link to="/spiludviklere/elk-studios" className={linkClass}>ELK Studios</Link>,{" "}<Link to="/spiludviklere/red-tiger" className={linkClass}>Red Tiger</Link>,{" "}<Link to="/spiludviklere/big-time-gaming" className={linkClass}>Big Time Gaming</Link></li>
-                </ul>
-              </CardContent>
-            </Card>
-
-            {/* 3. Betalingsmetoder */}
-            <Card className="border-border bg-card">
-              <CardHeader className="pb-2">
-                <CardTitle className="flex items-center gap-2 text-lg">
-                  <CreditCard className="h-5 w-5 text-primary" />
-                  3. Betalingsmetoder og udbetalingstider
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="mb-3 text-sm text-muted-foreground leading-relaxed">
-                  Hurtige og sikre{" "}
-                  <Link to="/betalingsmetoder" className={linkClass}>betalingsmetoder</Link> er essentielle. De bedste casinoer tilbyder udbetalinger inden for 0-24 timer.
-                </p>
-                <ul className="list-disc pl-5 space-y-1.5 text-sm text-muted-foreground leading-relaxed">
-                  <li><Link to="/betalingsmetoder/mobilepay" className={linkClass}>MobilePay</Link> – Danmarks foretrukne med øjeblikkelige indbetalinger</li>
-                  <li><Link to="/betalingsmetoder/trustly" className={linkClass}>Trustly</Link> – Direkte bankoverførsel</li>
-                  <li><Link to="/betalingsmetoder/visa-mastercard" className={linkClass}>Visa/Mastercard</Link> – Universelt accepteret</li>
-                  <li><Link to="/betalingsmetoder/paypal" className={linkClass}>PayPal</Link> – Sikker e-wallet med køberbeskyttelse</li>
-                  <li><Link to="/betalingsmetoder/skrill" className={linkClass}>Skrill</Link>,{" "}<Link to="/betalingsmetoder/apple-pay" className={linkClass}>Apple Pay</Link>,{" "}<Link to="/betalingsmetoder/revolut" className={linkClass}>Revolut</Link>,{" "}<Link to="/betalingsmetoder/zimpler" className={linkClass}>Zimpler</Link>,{" "}<Link to="/betalingsmetoder/paysafecard" className={linkClass}>Paysafecard</Link></li>
-                </ul>
-              </CardContent>
-            </Card>
-
-            {/* 4. Live casino */}
-            <Card className="border-border bg-card">
-              <CardHeader className="pb-2">
-                <CardTitle className="flex items-center gap-2 text-lg">
-                  <Tv className="h-5 w-5 text-primary" />
-                  4. Live casino og gameshows
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-sm text-muted-foreground leading-relaxed">
-                  <Link to="/live-casino" className={linkClass}>Live casino</Link> er en af de hurtigst voksende sektorer inden for online gambling. Med professionelle dealere, der streamer i HD fra studios verden over, får du en autentisk casinooplevelse direkte fra din sofa.{" "}
-                  <Link to="/spiludviklere/evolution-gaming" className={linkClass}>Evolution Gaming</Link> dominerer markedet med innovative game shows som Crazy Time, Lightning Roulette og MONOPOLY Live. Vi vurderer altid live casino-udbuddet, herunder antal borde, minimumindsatser og tilgængelighed af danske dealere.
-                </p>
-              </CardContent>
-            </Card>
-
-            {/* 5. Sikkerhed */}
-            <Card className="border-border bg-card">
-              <CardHeader className="pb-2">
-                <CardTitle className="flex items-center gap-2 text-lg">
-                  <ShieldCheck className="h-5 w-5 text-primary" />
-                  5. Sikkerhed, licens og ansvarligt spil
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="mb-3 text-sm text-muted-foreground leading-relaxed">
-                  Alle casinoer vi anmelder har en gyldig dansk licens fra Spillemyndigheden. En dansk licens garanterer:
-                </p>
-                <ul className="list-disc pl-5 space-y-1.5 text-sm text-muted-foreground leading-relaxed">
-                  <li>Spillerbeskyttelse og klageadgang</li>
-                  <li>Selvudelukkelse via <a href="https://www.rofus.nu/" target="_blank" rel="noopener noreferrer" className={linkClass}>ROFUS</a></li>
-                  <li>Krypteret datatransmission</li>
-                  <li>Adskillelse af spillermidler</li>
-                  <li>Forpligtelse til{" "}<Link to="/ansvarligt-spil" className={linkClass}>ansvarligt spil</Link></li>
-                </ul>
-                <p className="mt-3 text-sm text-muted-foreground leading-relaxed">
-                  Hjælp:{" "}<a href="https://www.stopspillet.dk/" target="_blank" rel="noopener noreferrer" className={linkClass}>StopSpillet.dk</a> – gratis og anonymt.
-                </p>
-              </CardContent>
-            </Card>
-
-            {/* 6. Kundeservice */}
-            <Card className="border-border bg-card">
-              <CardHeader className="pb-2">
-                <CardTitle className="flex items-center gap-2 text-lg">
-                  <Users className="h-5 w-5 text-primary" />
-                  6. Kundeservice og brugervenlighed
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="mb-3 text-sm text-muted-foreground leading-relaxed">
-                  Vi vurderer responstid, tilgængelige kanaler (live chat, e-mail, telefon) og kvaliteten af hjælpen. Vi tester også, om kundeservicen er tilgængelig på dansk, og om den kan håndtere specifikke spørgsmål om bonusvilkår og udbetalinger.
-                </p>
-                <p className="text-sm text-muted-foreground leading-relaxed">
-                  I 2026 spiller over 70% af danske spillere på mobilen, så casinoet skal tilbyde en responsiv og intuitiv mobilplatform med hurtig indlæsningstid og problemfri navigation.
-                </p>
-              </CardContent>
-            </Card>
-
-            {/* 7. RTP og volatilitet */}
-            <Card className="border-border bg-card">
-              <CardHeader className="pb-2">
-                <CardTitle className="flex items-center gap-2 text-lg">
-                  <Target className="h-5 w-5 text-primary" />
-                  7. RTP og volatilitet – Forstå dine chancer
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="mb-3 text-sm text-muted-foreground leading-relaxed">
-                  RTP (Return to Player) angiver den teoretiske tilbagebetaling – et spil med 96% RTP betaler i gennemsnit 96 kr. tilbage for hver 100 kr. De bedste{" "}
-                  <Link to="/casinospil" className={linkClass}>casinospil</Link> tilbyder RTP over 96%.
-                </p>
-                <p className="text-sm text-muted-foreground leading-relaxed">
-                  Lav volatilitet giver hyppige, men mindre gevinster. Høj volatilitet giver sjældne, men potentielt store gevinster.{" "}
-                  <Link to="/spiludviklere/nolimit-city" className={linkClass}>Nolimit City</Link> er kendt for ekstrem høj volatilitet, mens{" "}
-                  <Link to="/spiludviklere/netent" className={linkClass}>NetEnt</Link> tilbyder mere balancerede spil.
-                </p>
-              </CardContent>
-            </Card>
-
-            {/* 8. Vores anmeldelsesproces */}
-            <Card className="border-border bg-card">
-              <CardHeader className="pb-2">
-                <CardTitle className="flex items-center gap-2 text-lg">
-                  <Award className="h-5 w-5 text-primary" />
-                  8. Vores anmeldelsesproces
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="mb-3 text-sm text-muted-foreground leading-relaxed">
-                  For at sikre troværdige anmeldelser følger vi en standardiseret proces:
-                </p>
-                <ul className="list-disc pl-5 space-y-1.5 text-sm text-muted-foreground leading-relaxed">
-                  <li><strong className="text-foreground">Oprettelse:</strong> Vi opretter en rigtig konto og gennemgår KYC-processen</li>
-                  <li><strong className="text-foreground">Bonustest:</strong> Vi aktiverer velkomstbonussen og vurderer fairness</li>
-                  <li><strong className="text-foreground">Spiludvalg:</strong> Vi gennemgår spilkataloget og tæller udbydere</li>
-                  <li><strong className="text-foreground">Betalinger:</strong> Vi tester ind- og udbetalinger via flere metoder</li>
-                  <li><strong className="text-foreground">Kundeservice:</strong> Vi kontakter support med specifikke spørgsmål</li>
-                  <li><strong className="text-foreground">Opdatering:</strong> Anmeldelser gennemgås minimum hvert kvartal</li>
-                </ul>
-              </CardContent>
-            </Card>
-          </div>
-        </section>
-
-        <Separator className="my-10" />
-
-        {/* Sammenligning */}
-        <section className="mb-12">
-          <h2 className="mb-6 text-3xl font-bold">Sammenligning af alle anmeldte casinoer</h2>
-          <div className="overflow-x-auto rounded-lg border border-border">
-            <table className="w-full text-sm">
-              <thead>
-                <tr className="bg-muted/50">
-                  <th className="px-4 py-3 text-left font-semibold">Casino</th>
-                  <th className="px-4 py-3 text-left font-semibold">Bonus</th>
-                  <th className="px-4 py-3 text-left font-semibold">Omsætning</th>
-                  <th className="px-4 py-3 text-left font-semibold">Type</th>
-                  <th className="hidden px-4 py-3 text-center font-semibold md:table-cell">Vurdering</th>
-                  <th className="px-4 py-3 text-center font-semibold">Anmeldelse</th>
-                </tr>
-              </thead>
-              <tbody>
-                {reviewCasinos.map((casino, idx) => (
-                  <tr key={casino.id} className={idx % 2 === 0 ? "bg-card" : "bg-muted/20"}>
-                    <td className="px-4 py-3 font-medium">{casino.name}</td>
-                    <td className="px-4 py-3 text-muted-foreground">{casino.bonus_amount}</td>
-                    <td className="px-4 py-3 text-muted-foreground">{casino.wagering_requirements}</td>
-                    <td className="px-4 py-3">
-                      <Badge variant={casino.bonus_type === "No-sticky" ? "secondary" : "outline"} className="text-xs">
-                        {casino.bonus_type}
-                      </Badge>
-                    </td>
-                    <td className="hidden px-4 py-3 text-center md:table-cell">
-                      <span className="flex items-center justify-center gap-1 font-semibold">
-                        <Star className="h-4 w-4 fill-primary text-primary" />
-                        {casino.rating}
-                      </span>
-                    </td>
-                    <td className="px-4 py-3 text-center">
-                      <Link to={`/${casino.slug}-anmeldelse`} className="text-primary underline hover:text-primary/80 font-medium text-sm">
-                        Læs →
-                      </Link>
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-        </section>
-        <Separator className="my-10" />
-
-        {/* Fordele og ulemper */}
-        <section className="mb-12">
-          <h2 className="mb-6 text-3xl font-bold">Fordele og ulemper ved hvert casino</h2>
-          <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
-            <Card className="border-border bg-card">
-              <CardHeader className="pb-2">
-                <CardTitle className="flex items-center gap-2 text-lg">
-                  <Star className="h-5 w-5 text-primary" />
-                  <Link to="/spilleautomaten-anmeldelse" className={linkClass}>Spilleautomaten</Link>
-                </CardTitle>
-              </CardHeader>
-              <CardContent className="space-y-2 text-sm text-muted-foreground">
-                <div className="flex items-start gap-2"><CheckCircle2 className="h-4 w-4 text-primary mt-0.5 shrink-0" /><span>Stort spiludvalg med 2.500+ titler fra{" "}<Link to="/spiludviklere/netent" className={linkClass}>NetEnt</Link>,{" "}<Link to="/spiludviklere/pragmatic-play" className={linkClass}>Pragmatic Play</Link> m.fl.</span></div>
-                <div className="flex items-start gap-2"><CheckCircle2 className="h-4 w-4 text-primary mt-0.5 shrink-0" /><span>Generøs{" "}<Link to="/no-sticky-bonus" className={linkClass}>No-Sticky</Link> velkomstbonus med kun 10x omsætning</span></div>
-                <div className="flex items-start gap-2"><CheckCircle2 className="h-4 w-4 text-primary mt-0.5 shrink-0" /><span>Hurtige udbetalinger via{" "}<Link to="/betalingsmetoder/mobilepay" className={linkClass}>MobilePay</Link> og{" "}<Link to="/betalingsmetoder/trustly" className={linkClass}>Trustly</Link></span></div>
-                <div className="flex items-start gap-2"><ThumbsDown className="h-4 w-4 text-destructive mt-0.5 shrink-0" /><span>Ingen sportsbook eller betting-muligheder</span></div>
-              </CardContent>
-            </Card>
-            <Card className="border-border bg-card">
-              <CardHeader className="pb-2">
-                <CardTitle className="flex items-center gap-2 text-lg">
-                  <Star className="h-5 w-5 text-primary" />
-                  <Link to="/spildansknu-anmeldelse" className={linkClass}>SpilDanskNu</Link>
-                </CardTitle>
-              </CardHeader>
-              <CardContent className="space-y-2 text-sm text-muted-foreground">
-                <div className="flex items-start gap-2"><CheckCircle2 className="h-4 w-4 text-primary mt-0.5 shrink-0" /><span>Brugervenlighed og dansk fokus i hele platformen</span></div>
-                <div className="flex items-start gap-2"><CheckCircle2 className="h-4 w-4 text-primary mt-0.5 shrink-0" /><span>Fair{" "}<Link to="/no-sticky-bonus" className={linkClass}>No-Sticky bonus</Link> med lave{" "}<Link to="/omsaetningskrav" className={linkClass}>omsætningskrav</Link></span></div>
-                <div className="flex items-start gap-2"><CheckCircle2 className="h-4 w-4 text-primary mt-0.5 shrink-0" /><span>Ingen bonuskode nødvendig</span></div>
-                <div className="flex items-start gap-2"><ThumbsDown className="h-4 w-4 text-destructive mt-0.5 shrink-0" /><span>Lidt mindre spiludvalg end de største konkurrenter</span></div>
-              </CardContent>
-            </Card>
-            <Card className="border-border bg-card">
-              <CardHeader className="pb-2">
-                <CardTitle className="flex items-center gap-2 text-lg">
-                  <Star className="h-5 w-5 text-primary" />
-                  <Link to="/campobet-anmeldelse" className={linkClass}>Campobet</Link>
-                </CardTitle>
-              </CardHeader>
-              <CardContent className="space-y-2 text-sm text-muted-foreground">
-                <div className="flex items-start gap-2"><CheckCircle2 className="h-4 w-4 text-primary mt-0.5 shrink-0" /><span>Kombineret casino og sportsbetting med 3.000+ spil</span></div>
-                <div className="flex items-start gap-2"><CheckCircle2 className="h-4 w-4 text-primary mt-0.5 shrink-0" /><span>Stærkt{" "}<Link to="/live-casino" className={linkClass}>live casino</Link> fra{" "}<Link to="/spiludviklere/evolution-gaming" className={linkClass}>Evolution Gaming</Link></span></div>
-                <div className="flex items-start gap-2"><ThumbsDown className="h-4 w-4 text-destructive mt-0.5 shrink-0" /><span>Kundeservice kan have ventetid i spidsbelastning</span></div>
-              </CardContent>
-            </Card>
-            <Card className="border-border bg-card">
-              <CardHeader className="pb-2">
-                <CardTitle className="flex items-center gap-2 text-lg">
-                  <Star className="h-5 w-5 text-primary" />
-                  <Link to="/betinia-anmeldelse" className={linkClass}>Betinia</Link>
-                </CardTitle>
-              </CardHeader>
-              <CardContent className="space-y-2 text-sm text-muted-foreground">
-                <div className="flex items-start gap-2"><CheckCircle2 className="h-4 w-4 text-primary mt-0.5 shrink-0" /><span>Over 40{" "}<Link to="/spiludviklere" className={linkClass}>spiludbydere</Link> og akkumulatorboost</span></div>
-                <div className="flex items-start gap-2"><CheckCircle2 className="h-4 w-4 text-primary mt-0.5 shrink-0" /><span><Link to="/no-sticky-bonus" className={linkClass}>No-Sticky</Link> velkomstbonus med 10x{" "}<Link to="/omsaetningskrav" className={linkClass}>omsætningskrav</Link></span></div>
-                <div className="flex items-start gap-2"><ThumbsDown className="h-4 w-4 text-destructive mt-0.5 shrink-0" /><span>Ingen{" "}<Link to="/free-spins" className={linkClass}>free spins</Link> inkluderet i velkomstpakken</span></div>
-              </CardContent>
-            </Card>
-            <Card className="border-border bg-card">
-              <CardHeader className="pb-2">
-                <CardTitle className="flex items-center gap-2 text-lg">
-                  <Star className="h-5 w-5 text-primary" />
-                  <Link to="/swift-casino-anmeldelse" className={linkClass}>Swift Casino</Link>
-                </CardTitle>
-              </CardHeader>
-              <CardContent className="space-y-2 text-sm text-muted-foreground">
-                <div className="flex items-start gap-2"><CheckCircle2 className="h-4 w-4 text-primary mt-0.5 shrink-0" /><span>Unik Hot Or Cold-funktion der viser aktive spilleautomater</span></div>
-                <div className="flex items-start gap-2"><CheckCircle2 className="h-4 w-4 text-primary mt-0.5 shrink-0" /><span>Over 3.300{" "}<Link to="/casinospil" className={linkClass}>casinospil</Link> fra anerkendte udbydere</span></div>
-                <div className="flex items-start gap-2"><ThumbsDown className="h-4 w-4 text-destructive mt-0.5 shrink-0" /><span>Ingen{" "}<Link to="/free-spins" className={linkClass}>free spins</Link> i velkomstbonussen</span></div>
-              </CardContent>
-            </Card>
-            <Card className="border-border bg-card">
-              <CardHeader className="pb-2">
-                <CardTitle className="flex items-center gap-2 text-lg">
-                  <Star className="h-5 w-5 text-primary" />
-                  <Link to="/luna-casino-anmeldelse" className={linkClass}>Luna Casino</Link>
-                </CardTitle>
-              </CardHeader>
-              <CardContent className="space-y-2 text-sm text-muted-foreground">
-                <div className="flex items-start gap-2"><CheckCircle2 className="h-4 w-4 text-primary mt-0.5 shrink-0" /><span>VIP-program med eksklusive fordele og bonusser</span></div>
-                <div className="flex items-start gap-2"><CheckCircle2 className="h-4 w-4 text-primary mt-0.5 shrink-0" /><span><Link to="/no-sticky-bonus" className={linkClass}>No-Sticky bonus</Link> med 50{" "}<Link to="/free-spins" className={linkClass}>free spins</Link></span></div>
-                <div className="flex items-start gap-2"><ThumbsDown className="h-4 w-4 text-destructive mt-0.5 shrink-0" /><span>Lavere bonusbeløb end nogle konkurrenter</span></div>
-              </CardContent>
-            </Card>
-          </div>
-        </section>
-
-        <Separator className="my-10" />
-
-        {/* Tips */}
-        <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold">5 tips til at vælge det rigtige casino</h2>
-          <p className="mb-6 text-muted-foreground leading-relaxed">
-            Med så mange muligheder kan det være svært at vælge. Her er fem konkrete tips, der hjælper dig med at finde det casino, der passer bedst til dine behov.
+          <h3 className="mb-3 mt-6 text-xl font-semibold">Hvad en dansk licens garanterer</h3>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            En gyldig dansk spillelicens fra Spillemyndigheden garanterer: 1) Adskillelse af spillermidler – dine penge opbevares på separate konti og er beskyttet, selv hvis operatøren går konkurs. 2) ROFUS-tilslutning – du kan til enhver tid selvudelukke via{" "}
+            <a href="https://www.rofus.nu/" target="_blank" rel="noopener noreferrer" className={linkClass}>ROFUS</a>. 3) AML-compliance – casinoet er forpligtet til at forhindre hvidvask. 4) Klageadgang – du kan indgive klager til Spillemyndigheden. 5) Krypteret datatransmission – alle transaktioner beskyttes med SSL-kryptering. 6){" "}
+            <Link to="/ansvarligt-spil" className={linkClass}>Ansvarligt spil</Link>-værktøjer – indbetalingsgrænser, session reminders og selvudelukkelse.
           </p>
-          <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
-            <Card className="border-border bg-card">
-              <CardHeader className="pb-2">
-                <CardTitle className="text-base">1. Læs vilkårene først</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-sm text-muted-foreground">Tjek altid{" "}<Link to="/omsaetningskrav" className={linkClass}>omsætningskrav</Link>, tidsbegrænsning og spillebidrag, før du aktiverer en bonus.</p>
-              </CardContent>
-            </Card>
-            <Card className="border-border bg-card">
-              <CardHeader className="pb-2">
-                <CardTitle className="text-base">2. Vælg No-Sticky</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-sm text-muted-foreground">En{" "}<Link to="/no-sticky-bonus" className={linkClass}>No-Sticky bonus</Link> giver dig mest fleksibilitet, da dine egne penge altid er tilgængelige.</p>
-              </CardContent>
-            </Card>
-            <Card className="border-border bg-card">
-              <CardHeader className="pb-2">
-                <CardTitle className="text-base">3. Test kundeservice</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-sm text-muted-foreground">Kontakt kundeservice med et spørgsmål, før du indbetaler. Det giver dig en fornemmelse for kvaliteten.</p>
-              </CardContent>
-            </Card>
-            <Card className="border-border bg-card">
-              <CardHeader className="pb-2">
-                <CardTitle className="text-base">4. Kend dine spil</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-sm text-muted-foreground">Vælg et casino med de{" "}<Link to="/spiludviklere" className={linkClass}>spiludviklere</Link> og{" "}<Link to="/casinospil" className={linkClass}>casinospil</Link> du bedst kan lide.</p>
-              </CardContent>
-            </Card>
-            <Card className="border-border bg-card">
-              <CardHeader className="pb-2">
-                <CardTitle className="text-base">5. Sæt grænser</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-sm text-muted-foreground">Brug casinoets ansvarligt spil-værktøjer. Spil skal altid være{" "}<Link to="/ansvarligt-spil" className={linkClass}>ansvarligt</Link> og underholdende.</p>
-              </CardContent>
-            </Card>
-            <Card className="border-border bg-card">
-              <CardHeader className="pb-2">
-                <CardTitle className="text-base">Bonus: Sammenlign</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-sm text-muted-foreground">Brug vores{" "}<Link to="/top-10-casino-online" className={linkClass}>Top 10 Casino Online</Link> oversigt for at finde det bedste tilbud.</p>
-              </CardContent>
-            </Card>
-          </div>
+
+          <h3 className="mb-3 mt-6 text-xl font-semibold">Hvad licensen ikke dækker</h3>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            En dansk licens garanterer ikke, at et casino tilbyder gode bonusvilkår, hurtige udbetalinger eller et bredt spiludvalg. Licensen sætter minimumsstandarden for sikkerhed og fairness – men kvaliteten af produktet varierer enormt inden for den regulatoriske ramme. Det er præcis derfor, uafhængige anmeldelser er nødvendige: licensen sikrer, at du ikke bliver snydt, men den sikrer ikke, at du får den bedste oplevelse.
+          </p>
+
+          <h3 className="mb-3 mt-6 text-xl font-semibold">Indbetalingsgrænser og ansvarligt spil</h3>
+          <p className="text-muted-foreground leading-relaxed">
+            Alle danske casinoer er forpligtet til at tilbyde indbetalingsgrænser (daglige, ugentlige, månedlige) og session reminders. Vi anbefaler, at du altid sætter en indbetalingsgrænse, der matcher dit budget – også selvom du føler dig i kontrol. Spilleproblemer udvikler sig gradvist, og proaktiv brug af ansvarligt spil-værktøjer er den mest effektive forebyggelse. Har du brug for hjælp, kontakt{" "}
+            <a href="https://www.stopspillet.dk/" target="_blank" rel="noopener noreferrer" className={linkClass}>StopSpillet.dk</a> – gratis og anonymt.
+          </p>
         </section>
+
+        <Separator className="my-10" />
+
+        {/* ===== SEKTION 9: Monetization transparency ===== */}
+        <section className="mb-12">
+          <h2 className="mb-4 text-3xl font-bold">
+            Sådan tjener vi penge – og hvorfor det ikke påvirker vores vurderinger
+          </h2>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            Transparens er fundamentet for troværdighed. Vi finansierer vores testcenter primært gennem affiliate-provision – det vil sige, at vi modtager en kommission, når en spiller opretter en konto via et af vores links. Denne model er standard i anmeldelsesbranchen, og vi er åbne om den, fordi vi mener, at du har ret til at vide, hvordan vi tjener penge.
+          </p>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            <strong className="text-foreground">Hvorfor provisionen ikke påvirker vurderingerne:</strong> Vores redaktionelle retningslinjer er eksplicitte: ingen operatør kan betale for en bedre rangering eller en mere favorabel anmeldelse. Vi har afvist samarbejde med casinoer, der tilbød høj provision men havde dårlige vilkår for spillerne. Og vi har anbefalet casinoer med lav provision, fordi de tilbød bedre bonusser, hurtigere udbetalinger eller et bredere spiludvalg.
+          </p>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            <strong className="text-foreground">Vores forpligtelse:</strong> Alle ratings beregnes ud fra dokumenterede testresultater. Udbetalingstider er verifiable med tidsstempler. Bonusanalyser er baseret på matematisk gennemgang. Ingen commercial deal ændrer disse data. Skulle vi opdage, at et anbefalet casino ændrer vilkår til det værre, opdaterer vi anmeldelsen øjeblikkeligt – uanset kommercielle konsekvenser.
+          </p>
+          <p className="text-muted-foreground leading-relaxed">
+            Vi vælger denne radikale transparens, fordi vi tror på, at spillere belønner ærlighed. Et anmeldelsessite, der foreslår det casino, der betaler mest, mister sin troværdighed – og dermed sin eksistensberettigelse. Vi vil hellere anbefale færre casinoer med overbevisning end mange med kompromiser.
+          </p>
+        </section>
+
+        <Separator className="my-10" />
 
         <AuthorBio />
 
