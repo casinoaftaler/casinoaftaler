@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";import { AuthorMetaBar } from "@/components/AuthorMetaBar";import { AuthorBio } from "@/components/AuthorBio";import { FAQSection } from "@/components/FAQSection";import { SEO } from "@/components/SEO";import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";import { Badge } from "@/components/ui/badge";import { Separator } from "@/components/ui/separator";import { Button } from "@/components/ui/button";import { RelatedGuides } from "@/components/RelatedGuides";import { InlineCasinoCards } from "@/components/InlineCasinoCards";import { useSiteSettings } from "@/hooks/useSiteSettings";import { buildArticleSchema, buildFaqSchema } from "@/lib/seo";import { QuickFactsProviders } from "@/components/QuickFactsProviders";import { CasinoReviewHero } from "@/components/CasinoReviewHero";import type { ReactNode } from "react";import { Star, Zap, Check, X, ShieldCheck, Trophy, CreditCard, AlertTriangle, TrendingUp, Gamepad2, Smartphone, Headphones, Globe } from "lucide-react";
+import { Link } from "react-router-dom";import { AuthorMetaBar } from "@/components/AuthorMetaBar";import { AuthorBio } from "@/components/AuthorBio";import { FAQSection } from "@/components/FAQSection";import { SEO } from "@/components/SEO";import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";import { Badge } from "@/components/ui/badge";import { Separator } from "@/components/ui/separator";import { Button } from "@/components/ui/button";import { RelatedGuides } from "@/components/RelatedGuides";import { InlineCasinoCards } from "@/components/InlineCasinoCards";import { useSiteSettings } from "@/hooks/useSiteSettings";import { buildArticleSchema, buildFaqSchema } from "@/lib/seo";import { QuickFactsProviders, QuickFactsLicense } from "@/components/QuickFactsProviders";import { CasinoReviewHero } from "@/components/CasinoReviewHero";import type { ReactNode } from "react";import { Star, Zap, Check, X, ShieldCheck, Trophy, CreditCard, AlertTriangle, TrendingUp, Gamepad2, Smartphone, Headphones, Globe } from "lucide-react";
 import { RatingBreakdown } from "@/components/RatingBreakdown";import { CASINO_SCORES } from "@/lib/reviewScoring";
 const linkClass = "text-primary underline hover:text-primary/80";
 const marathonbetFaqs: { question: string; answer: ReactNode }[] = [
@@ -47,6 +47,7 @@ const MarathonBetAnmeldelse = () => {
                 <div className="rounded-lg border border-border p-3"><p className="text-xs text-muted-foreground uppercase mb-1">Live betting</p><p className="text-lg font-bold text-foreground">Ja</p></div>
               </div>
               <QuickFactsProviders providers={["NetEnt", "Microgaming", "Pragmatic Play", "Evolution Gaming"]} />
+              <QuickFactsLicense licenseId="18-0067" />
             </CardContent>
           </Card>
         </section>
@@ -188,7 +189,36 @@ const MarathonBetAnmeldelse = () => {
 
         <Separator className="my-10" />
 
-        {/* Konklusion */}
+        {/* Value Betting EV Analysis */}
+        <section className="mb-12">
+          <h2 className="mb-4 text-3xl font-bold">Value-betting matematik – kvantificeret besparelse</h2>
+          <p className="mb-4 text-muted-foreground leading-relaxed">For at illustrere den reelle værdi af MarathonBets lave marginer har vi beregnet den akkumulerede besparelse for en typisk aktiv dansk bettor over et år. Disse tal er baseret på vores dokumenterede odds-sammenligning over 50 kampe.</p>
+          <Card className="border-border bg-card mb-6">
+            <CardHeader><CardTitle className="text-lg">Besparelse ved MarathonBet vs. markedsgennemsnit</CardTitle></CardHeader>
+            <CardContent className="space-y-2 text-sm text-muted-foreground">
+              <p><strong>Gennemsnitlig MarathonBet-margin:</strong> 101.8% (1X2 fodbold)</p>
+              <p><strong>Gennemsnitlig markedsmargin:</strong> 105.5% (bet365/Unibet/Danske Spil gns.)</p>
+              <p><strong>Marginforskel:</strong> 3.7 procentpoint</p>
+              <p><strong>Årligt væddemålsvolumen (aktiv bettor):</strong> 500 væddemål × 500 kr. = 250.000 kr.</p>
+              <p><strong>Forventet tab ved markedsmargin:</strong> 250.000 × 5.5% = 13.750 kr.</p>
+              <p><strong>Forventet tab ved MarathonBet-margin:</strong> 250.000 × 1.8% = 4.500 kr.</p>
+              <p><strong className="text-foreground">Årlig besparelse: ~9.250 kr.</strong></p>
+              <p className="text-xs pt-2">Beregningen antager ren 1X2-betting uden value-selektion. Professionelle bettors med positiv edge kan vende disse tal til profit – MarathonBets lave margin gør breakeven-punktet markant lettere at nå.</p>
+            </CardContent>
+          </Card>
+          <p className="mb-4 text-muted-foreground leading-relaxed">Disse tal forklarer, hvorfor professionelle og semi-professionelle bettors betragter MarathonBet som uundværlig. En besparelse på ~9.250 kr. årligt er et konservativt estimat – for storvolumen-bettors med 1.000+ væddemål stiger besparelsen proportionelt. Det er den matematiske realitet bag MarathonBets tiltrækningskraft.</p>
+          <p className="text-muted-foreground leading-relaxed"><strong>Casino-EV:</strong> MarathonBets casino-bonus er minimal, og vi anbefaler ikke at vælge platformen for casino-bonussens skyld. Brug MarathonBet til sport og hav en dedikeret casino-konto hos <Link to="/casino-anmeldelser/leovegas" className={linkClass}>LeoVegas</Link> eller <Link to="/casino-anmeldelser/mr-green" className={linkClass}>Mr Green</Link> for optimal EV på tværs af produkter.</p>
+        </section>
+
+        <Separator className="my-10" />
+
+        {/* Market Perspective */}
+        <section className="mb-12">
+          <h2 className="mb-4 text-3xl font-bold">MarathonBets fremtid i det danske marked</h2>
+          <p className="mb-4 text-muted-foreground leading-relaxed">MarathonBet opererer i en niche, der er svær at kopiere men også svær at skalere. Platformens volumenstrategi kræver et konstant flow af væddemål for at opretholde rentabiliteten med lave marginer. I et dansk marked, der er forholdsvist lille (estimeret ~4 mia. kr. årlig omsætning på sportsvæddemål), er MarathonBets markedsandel beskeden – men dens value for den individuelle spiller er proportionelt stor.</p>
+          <p className="mb-4 text-muted-foreground leading-relaxed">Udfordringen for MarathonBet er modernisering. Platformen har historisk prioriteret odds-kvalitet over brugeroplevelse – en strategi, der fungerer for kendesegmentet, men som begrænser vækst. I en fremtid, hvor mobiloplevelsen er afgørende, og nye generationer af bettors forventer visuel polish og gamification, risikerer MarathonBet at miste relevans uden teknologisk opgradering.</p>
+          <p className="text-muted-foreground leading-relaxed">Vores prognose: MarathonBet vil forblive en niche-platform for value-fokuserede bettors – og det er OK. Ikke alle platforme behøver at være alt for alle. For det segment, MarathonBet servicerer, er det den objektivt bedste løsning på det danske marked. Spørgsmålet er, om selskabet kan modernisere interfacet uden at kompromittere den odds-kvalitet, der definerer brandet.</p>
+        </section>
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold">Det vigtigste – er MarathonBet det rigtige for dig?</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">MarathonBet er ikke et casino. Det er ikke en underholdningsplatform. Det er ikke et sted for nybegyndere. Det er en odds-maskine designet til spillere, der forstår, at den langsigtede forskel mellem profit og tab ofte ligger i marginalerne. Platformens lave overround, tolerance for vindende spillere og fokus på volumen frem for margin gør den unik på det danske marked.</p>

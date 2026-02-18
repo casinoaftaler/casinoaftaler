@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";import { AuthorMetaBar } from "@/components/AuthorMetaBar";import { AuthorBio } from "@/components/AuthorBio";import { FAQSection } from "@/components/FAQSection";import { SEO } from "@/components/SEO";import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";import { Badge } from "@/components/ui/badge";import { Separator } from "@/components/ui/separator";import { Button } from "@/components/ui/button";import { RelatedGuides } from "@/components/RelatedGuides";import { InlineCasinoCards } from "@/components/InlineCasinoCards";import { useSiteSettings } from "@/hooks/useSiteSettings";import { buildArticleSchema, buildFaqSchema } from "@/lib/seo";import { QuickFactsProviders } from "@/components/QuickFactsProviders";import { CasinoReviewHero } from "@/components/CasinoReviewHero";import type { ReactNode } from "react";import { Star, Zap, Check, X, ShieldCheck, Trophy, CreditCard, AlertTriangle, Gamepad2, Smartphone, Headphones, Globe, Users, TrendingUp, Award } from "lucide-react";
+import { Link } from "react-router-dom";import { AuthorMetaBar } from "@/components/AuthorMetaBar";import { AuthorBio } from "@/components/AuthorBio";import { FAQSection } from "@/components/FAQSection";import { SEO } from "@/components/SEO";import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";import { Badge } from "@/components/ui/badge";import { Separator } from "@/components/ui/separator";import { Button } from "@/components/ui/button";import { RelatedGuides } from "@/components/RelatedGuides";import { InlineCasinoCards } from "@/components/InlineCasinoCards";import { useSiteSettings } from "@/hooks/useSiteSettings";import { buildArticleSchema, buildFaqSchema } from "@/lib/seo";import { QuickFactsProviders, QuickFactsLicense } from "@/components/QuickFactsProviders";import { CasinoReviewHero } from "@/components/CasinoReviewHero";import type { ReactNode } from "react";import { Star, Zap, Check, X, ShieldCheck, Trophy, CreditCard, AlertTriangle, Gamepad2, Smartphone, Headphones, Globe, Users, TrendingUp, Award } from "lucide-react";
 import { RatingBreakdown } from "@/components/RatingBreakdown";import { CASINO_SCORES } from "@/lib/reviewScoring";
 const linkClass = "text-primary underline hover:text-primary/80";
 const pokerstarsFaqs: { question: string; answer: ReactNode }[] = [
@@ -47,6 +47,7 @@ const PokerStarsAnmeldelse = () => {
                 <div className="rounded-lg border border-border p-3"><p className="text-xs text-muted-foreground uppercase mb-1">Turneringer</p><p className="text-lg font-bold text-foreground">100+ dagligt</p></div>
               </div>
               <QuickFactsProviders providers={["NetEnt", "Pragmatic Play", "Evolution Gaming", "Red Tiger", "Big Time Gaming", "Microgaming"]} />
+              <QuickFactsLicense licenseId="18-0029" />
             </CardContent>
           </Card>
         </section>
@@ -167,7 +168,36 @@ const PokerStarsAnmeldelse = () => {
 
         <Separator className="my-10" />
 
-        {/* Konklusion */}
+        {/* EV & Bankroll */}
+        <section className="mb-12">
+          <h2 className="mb-4 text-3xl font-bold">Poker-matematik – EV, rake og bankroll management</h2>
+          <p className="mb-4 text-muted-foreground leading-relaxed">For poker-spillere er Expected Value (EV) beregningen fundamentalt anderledes end for casino-spillere. I poker spiller du mod andre spillere, ikke mod huset – din EV afhænger af din skill-edge minus rake. Her er en realistisk analyse for danske PokerStars-spillere.</p>
+          <Card className="border-border bg-card mb-6">
+            <CardHeader><CardTitle className="text-lg">Rake-analyse – PokerStars NL50 Zoom</CardTitle></CardHeader>
+            <CardContent className="space-y-2 text-sm text-muted-foreground">
+              <p><strong>Rake:</strong> 5% med $2.00 cap per pot</p>
+              <p><strong>Gennemsnitlig pot size:</strong> ~$20</p>
+              <p><strong>Effektiv rake pr. hånd:</strong> ~$0.60 (3% af gennemsnitspotten)</p>
+              <p><strong>Hænder pr. time (Zoom):</strong> ~250</p>
+              <p><strong>Rake pr. time:</strong> ~$150 / ~1.050 kr.</p>
+              <p><strong>Stars Rewards return:</strong> ~3-5% af rake = ~$4.50-7.50 / time</p>
+              <p><strong>Netto rake pr. time:</strong> ~$142-145 / ~990-1.010 kr.</p>
+              <p className="text-xs pt-2">For at være profitable skal din win rate overstige rake-byrden. En 4 bb/100 winner på NL50 tjener ~$50/time brutto, minus ~$7.50 i netto rake = ~$42.50/time netto. Det kræver betydelig skill.</p>
+            </CardContent>
+          </Card>
+          <p className="mb-4 text-muted-foreground leading-relaxed"><strong>Casino-bonus EV:</strong> PokerStars' Stars Rewards-system erstatter traditionelle matchbonusser med personaliserede Chests. EV'en varierer baseret på dit aktivitetsniveau, men for en NL50-spiller der spiller 20 timer/uge estimerer vi en månedlig rewards-værdi på ~$150-250 – markant lavere end det gamle Supernova-program, men uden omsætningskrav.</p>
+          <p className="text-muted-foreground leading-relaxed"><strong>Bankroll-anbefaling:</strong> For NL50 anbefaler vi minimum 20 buy-ins ($1.000 / ~7.000 kr.) for cash games og 50 buy-ins for turneringer. PokerStars' segregerede spillermidler og Flutter-garantien gør det til den sikreste platform at opbevare en stor poker-bankroll.</p>
+        </section>
+
+        <Separator className="my-10" />
+
+        {/* Market & Future */}
+        <section className="mb-12">
+          <h2 className="mb-4 text-3xl font-bold">Online pokers fremtid – og PokerStars' rolle</h2>
+          <p className="mb-4 text-muted-foreground leading-relaxed">Online poker gennemgår en transformation drevet af to modsatrettede kræfter: faldende popularitet som primær gambling-form (overhalet af sportsvæddemål og slots) men stigende sofistikation blandt de tilbageværende spillere. For PokerStars betyder det en gradvis overgang fra den masseappeal, som Moneymaker-æraen bragte, til en mere specialiseret, skill-baseret platform med casino og sport som supplerende indtægtskilder.</p>
+          <p className="mb-4 text-muted-foreground leading-relaxed">Flutter Entertainments strategi for PokerStars fokuserer på tre søjler: 1) Fastholdelse af pokerkernens loyalitet via turneringsinnovation og softwareforbedringer, 2) Vækst i casino- og sportsprodukterne for at diversificere revenue, og 3) Ekspansion i nye markeder (særligt USA via Fox Bet-partnerskabet). For danske spillere er den vigtigste konsekvens, at PokerStars' poker-produkt forbliver det bedste i verden – det er Flutters flagskib og vil fortsat modtage massive investeringer.</p>
+          <p className="text-muted-foreground leading-relaxed">Vores vurdering: PokerStars er den eneste platform, der er uundværlig for danske pokerspillere. Casino og sport er gode supplementer, men ikke destinations-produkter. Hvis du spiller poker – uanset niveau – bør du have en PokerStars-konto. Det er ikke en anbefaling, det er en konstatering af markedsrealiteten.</p>
+        </section>
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold">Kort sagt – PokerStars er stadig kongen</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">PokerStars er uomgængeligt for enhver, der tager online poker seriøst. Spillernetværket, turneringsudvalget og softwaren er uovertrufne – og det er de relevante parametre, når du vurderer en poker-platform. Casino-afdelingen har vokset sig til et kompetent produkt, der kan stå alene for casual spillere. Udbetalinger er lynhurtige, og Flutter Entertainment-ejerskabet sikrer stabilitet i årtier frem.</p>

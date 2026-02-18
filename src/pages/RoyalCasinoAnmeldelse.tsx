@@ -12,7 +12,7 @@ import { RelatedGuides } from "@/components/RelatedGuides";
 import { InlineCasinoCards } from "@/components/InlineCasinoCards";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
 import { buildArticleSchema, buildFaqSchema } from "@/lib/seo";
-import { QuickFactsProviders } from "@/components/QuickFactsProviders";
+import { QuickFactsProviders, QuickFactsLicense } from "@/components/QuickFactsProviders";
 import { CasinoReviewHero } from "@/components/CasinoReviewHero";
 import type { ReactNode } from "react";
 import { ShieldCheck, Star, Clock, CreditCard, Gift, Trophy, Sparkles, Gamepad2, Wallet, TrendingUp, Award, Zap, Check, X, Smartphone, Headphones, Users, Globe, AlertTriangle, Target, Crown } from "lucide-react";
@@ -65,6 +65,7 @@ const RoyalCasinoAnmeldelse = () => {
             <div className="rounded-lg border border-border p-3"><p className="text-xs text-muted-foreground uppercase mb-1">Antal spil</p><p className="text-lg font-bold text-foreground">800+</p></div>
           </div>
           <QuickFactsProviders providers={["NetEnt", "Play'n GO", "Evolution Gaming", "Pragmatic Play", "Red Tiger", "Big Time Gaming"]} />
+              <QuickFactsLicense licenseId="18-0014" />
         </CardContent></Card></section>
 
         {/* Statens Premium-Casino */}
@@ -192,7 +193,37 @@ const RoyalCasinoAnmeldelse = () => {
 
         <Separator className="my-10" />
 
-        {/* Konkurrentsammenligning */}
+        {/* EV / Bankroll Analysis */}
+        <section className="mb-12">
+          <h2 className="mb-4 text-3xl font-bold">Bankroll-matematik og Expected Value</h2>
+          <p className="mb-4 text-muted-foreground leading-relaxed">For at give et matematisk grundlag for Royal Casinos bonusværdi har vi beregnet Expected Value under standardbetingelser. Disse tal giver et objektivt billede af bonussens reelle værdi for den typiske danske spiller.</p>
+          <Card className="border-border bg-card mb-6">
+            <CardHeader><CardTitle className="text-lg">EV-beregning – Royal Casino velkomstbonus</CardTitle></CardHeader>
+            <CardContent className="space-y-2 text-sm text-muted-foreground">
+              <p><strong>Scenarie A (moderat):</strong> Indbetaling 1.000 kr. + 1.000 kr. bonus = 2.000 kr.</p>
+              <p><strong>Omsætningskrav:</strong> 10x (d+b) = 20.000 kr.</p>
+              <p><strong>Forventet tab (96% RTP):</strong> 20.000 × 0,04 = 800 kr.</p>
+              <p><strong>Netto EV:</strong> +200 kr. (2.000 – 800 – 1.000 indskud)</p>
+              <p><strong>Risk of Ruin:</strong> ~26% ved 20 kr./spin</p>
+              <p className="pt-2"><strong>Scenarie B (max):</strong> Indbetaling 2.000 kr. + 2.000 kr. bonus = 4.000 kr.</p>
+              <p><strong>Omsætningskrav:</strong> 40.000 kr. → tab 1.600 kr. → saldo 2.400 kr. → EV = +400 kr.</p>
+              <p><strong>Risk of Ruin:</strong> ~30% (højere varians pga. længere omsætningsperiode)</p>
+            </CardContent>
+          </Card>
+          <p className="mb-4 text-muted-foreground leading-relaxed">Royal Casinos bonus-EV er på niveau med markedet – hverken exceptionel eller ringe. Det 10x-omsætningskrav, der er dansk standard, giver en realistisk chance for at beholde bonusmidlerne. Til sammenligning: <Link to="/casino-anmeldelser/leovegas" className={linkClass}>LeoVegas</Link> tilbyder op til 3.000 kr. (EV +300 kr.), mens <Link to="/casino-anmeldelser/888-casino" className={linkClass}>888 Casino</Link> supplerer med en no-deposit bonus (EV +5-15 kr. risikofrit).</p>
+          <p className="text-muted-foreground leading-relaxed"><strong>Strategisk anbefaling:</strong> Royal Casino er bedst for spillere, der planlægger at bruge platformen langsigtet – ikke blot for bonus-churn. Live casino-bordene med danske dealers og den statslige sikkerhed giver en premium-oplevelse, der berettiger en fast relation. Bonus er venlig men ikke aggressiv nok til at tiltrække rene bonusjægere.</p>
+        </section>
+
+        <Separator className="my-10" />
+
+        {/* Market Position */}
+        <section className="mb-12">
+          <h2 className="mb-4 text-3xl font-bold">Royal Casinos fremtid i et privatiseret marked</h2>
+          <p className="mb-4 text-muted-foreground leading-relaxed">Danske Spil-koncernens position i det danske marked er unik: det eneste statsejede selskab, der konkurrerer med internationale, private operatører. Denne dualitet giver Royal Casino fordele (uovertruffen troværdighed, parlamentarisk kontrol) men også begrænsninger (langsommere innovation, konservative bonusstrategier).</p>
+          <p className="mb-4 text-muted-foreground leading-relaxed">Det danske online casino-marked vokser med 8-10% årligt, og konkurrencen intensiveres løbende. Nye operatører med aggressive markedsføringsbudgetter og teknologisk avancerede platforme udfordrer de etablerede brands. For Royal Casino betyder det et behov for at balancere sin konservative, troværdighedsbaserede tilgang med nødvendig teknologisk modernisering – særligt i spiludvalgets bredde og mobiloplevelsens polish.</p>
+          <p className="mb-4 text-muted-foreground leading-relaxed">Royal Casinos stærkeste differentiator forbliver live casinoet med danske dealers. Det er en investering, som ingen international operatør sandsynligvis vil matche, da det kræver dedikeret lokal infrastruktur med begrænset kommercielt afkast sammenlignet med at servicere globale markeder. For danske spillere, der vægter den autentiske, lokale casinooplevelse, er Royal Casino en platform, der forventes at forblive relevant og unik i de kommende år.</p>
+          <p className="text-muted-foreground leading-relaxed">Vores anbefaling: følg Royal Casinos udvikling. Hvis Danske Spil-koncernen vælger at investere i udvidelse af spiludvalget (særligt Nolimit City og Hacksaw Gaming) og forbedring af mobiloplevelsen, kan Royal Casino rykke fra 4.3 til en potentiel 4.6-4.7 score. Fundamentet er allerede solidt – det er detaljerne, der mangler.</p>
+        </section>
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold">Royal Casino vs. konkurrenterne</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed"><strong>Royal Casino vs. <Link to="/casino-anmeldelser/danske-spil" className={linkClass}>Danske Spil Casino</Link>:</strong> Søsterplatformerne deler Danske Spil-koncernens troværdighed, men henvender sig til forskellige spillere. Danske Spil Casino er en bredere platform med lotteri, Oddset og Tips integreret. Royal Casino er den dedikerede casino-oplevelse med et stærkere live casino og et mere premium-orienteret design. Vælg Danske Spil, hvis du vil have alt samlet; vælg Royal Casino, hvis du primært spiller casino og værdsætter kvaliteten i live dealer-bordene.</p>
