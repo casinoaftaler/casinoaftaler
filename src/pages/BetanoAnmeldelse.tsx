@@ -122,7 +122,7 @@ const BetanoAnmeldelse = () => {
       url: "https://www.betano.dk/",
     },
     author: { "@type": "Organization", name: "Casinoaftaler" },
-    reviewRating: { "@type": "Rating", ratingValue: "4.2", bestRating: "5", worstRating: "1" },
+    reviewRating: { "@type": "Rating", ratingValue: "4.1", bestRating: "5", worstRating: "1" },
     reviewBody:
       "Betano er en teknologidrevet platform med stærk sportssektion og et casino, der stadig er under modning på det danske marked.",
   };

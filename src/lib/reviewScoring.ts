@@ -2,7 +2,7 @@
  * Central source of truth for all casino review scores.
  * 
  * Categories match the methodology at /saadan-tester-vi-casinoer:
- *   Sikkerhed & Licens: 30%
+ *   Sikkerhed & Licens: 25%
  *   Spiludvalg:         20%
  *   Bonus & Vilkår:     20%
  *   Udbetaling:         15%

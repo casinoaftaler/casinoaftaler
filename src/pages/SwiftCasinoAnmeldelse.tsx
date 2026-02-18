@@ -118,7 +118,7 @@ const SwiftCasinoAnmeldelse = () => {
     "@type": "Review",
     itemReviewed: { "@type": "Organization", name: "Swift Casino", url: "https://www.swiftcasino.dk/" },
     author: { "@type": "Organization", name: "Casinoaftaler" },
-    reviewRating: { "@type": "Rating", ratingValue: "4.7", bestRating: "5", worstRating: "1" },
+    reviewRating: { "@type": "Rating", ratingValue: "4.6", bestRating: "5", worstRating: "1" },
     reviewBody: "Swift Casino er Data-Innovatøren blandt danske casinoer – et veletableret casino med 3.300+ spil, 100% bonus op til 500 kr. med 10x omsætning, den unikke Hot Or Cold-funktion, PayPal/Trustly-support og hurtige udbetalinger.",
   };
 
