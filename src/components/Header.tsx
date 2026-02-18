@@ -241,6 +241,11 @@ export const Header = memo(function Header() {
                     { to: "/casinospil/spillemaskiner/sweet-bonanza", label: "Sweet Bonanza" },
                     { to: "/casinospil/spillemaskiner/book-of-dead", label: "Book of Dead" },
                     { to: "/casinospil/spillemaskiner/gates-of-olympus", label: "Gates of Olympus" },
+                    { to: "/casinospil/spillemaskiner/starburst", label: "Starburst" },
+                    { to: "/casinospil/spillemaskiner/razor-shark", label: "Razor Shark" },
+                    { to: "/casinospil/spillemaskiner/big-bass-bonanza", label: "Big Bass Bonanza" },
+                    { to: "/casinospil/spillemaskiner/dead-or-alive-2", label: "Dead or Alive 2" },
+                    { to: "/casinospil/spillemaskiner/gonzos-quest", label: "Gonzo's Quest" },
                   ].map((item) => (
                     <DropdownMenuItem key={item.to} asChild>
                       <Link to={item.to} className="flex items-center gap-2">
@@ -830,6 +835,11 @@ export const Header = memo(function Header() {
                   { to: "/casinospil/spillemaskiner/sweet-bonanza", label: "Sweet Bonanza" },
                   { to: "/casinospil/spillemaskiner/book-of-dead", label: "Book of Dead" },
                   { to: "/casinospil/spillemaskiner/gates-of-olympus", label: "Gates of Olympus" },
+                  { to: "/casinospil/spillemaskiner/starburst", label: "Starburst" },
+                  { to: "/casinospil/spillemaskiner/razor-shark", label: "Razor Shark" },
+                  { to: "/casinospil/spillemaskiner/big-bass-bonanza", label: "Big Bass Bonanza" },
+                  { to: "/casinospil/spillemaskiner/dead-or-alive-2", label: "Dead or Alive 2" },
+                  { to: "/casinospil/spillemaskiner/gonzos-quest", label: "Gonzo's Quest" },
                 ].map((item) => (
                   <Link key={item.to} to={item.to} className="ml-10 flex items-center gap-2 py-2 text-sm text-muted-foreground transition-colors hover:text-primary" onClick={() => setMobileMenuOpen(false)}>
                     <Star className="h-3 w-3" />
