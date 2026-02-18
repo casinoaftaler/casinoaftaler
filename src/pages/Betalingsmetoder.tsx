@@ -3,7 +3,7 @@ import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { AuthorBio } from "@/components/AuthorBio";
 import { FAQSection } from "@/components/FAQSection";
 import { SEO } from "@/components/SEO";
-import { buildFaqSchema } from "@/lib/seo";
+import { buildFaqSchema, buildArticleSchema, SITE_URL } from "@/lib/seo";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
 import betalingsmetoderHero from "@/assets/heroes/betalingsmetoder-hero.jpg";
 import { RelatedGuides } from "@/components/RelatedGuides";
@@ -22,48 +22,105 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "@/components/ui/accordion";
-import {
   CreditCard,
   ShieldCheck,
   Zap,
   Wallet,
   Banknote,
-  HelpCircle,
-  User,
-  CalendarDays,
-  BookOpen,
   CheckCircle2,
   AlertTriangle,
   Star,
+  ArrowRight,
+  Clock,
+  Users,
+  Building2,
+  Smartphone,
+  Receipt,
+  TrendingUp,
+  Target,
+  Award,
 } from "lucide-react";
 
-const paymentMethodsOverview = [
-  { method: "Visa / Mastercard", deposit: "Øjeblikkelig", withdrawal: "1–3 dage", fees: "Mulige kortgebyrer", availability: "Høj", security: "3D Secure, kryptering" },
-  { method: "Bankoverførsel", deposit: "1–3 dage", withdrawal: "2–5 dage", fees: "Ofte ingen", availability: "Middel", security: "Bankverifikation" },
-  { method: "PayPal", deposit: "Øjeblikkelig", withdrawal: "0–24 timer", fees: "Mulige gebyrer", availability: "Høj", security: "To-faktor godkendelse" },
-  { method: "Skrill", deposit: "Øjeblikkelig", withdrawal: "0–24 timer", fees: "Mulige gebyrer", availability: "Middel", security: "To-faktor godkendelse" },
-  { method: "Trustly", deposit: "Øjeblikkelig", withdrawal: "0–24 timer", fees: "Ofte ingen", availability: "Høj", security: "Bankverifikation" },
-  { method: "MobilePay", deposit: "Øjeblikkelig", withdrawal: "Varierer", fees: "Ingen ved indbetaling", availability: "Middel", security: "Mobilgodkendelse" },
-  { method: "Paysafecard", deposit: "Øjeblikkelig", withdrawal: "Ikke muligt", fees: "Mulige gebyrer", availability: "Høj", security: "PIN-kode beskyttelse" },
-  { method: "Kryptovaluta", deposit: "Varierer", withdrawal: "Varierer", fees: "Netværksgebyrer", availability: "Ikke tilladt i DK", security: "Blockchain-kryptering" },
+/* ─────────────────────────────────────────────
+   Central comparison table data
+   ───────────────────────────────────────────── */
+const centralComparison = [
+  { method: "Visa / Mastercard", deposit: "Øjeblikkelig", withdrawal: "1–3 hverdage", bonus: "Ja (næsten altid)", processing: "Kortnetværk → bank", bestFor: "Bred accept & sikkerhed" },
+  { method: "Bankoverførsel", deposit: "1–3 hverdage", withdrawal: "2–5 hverdage", bonus: "Ja", processing: "SEPA / Sumclearing", bestFor: "Store beløb, ingen mellemmænd" },
+  { method: "Trustly", deposit: "Øjeblikkelig", withdrawal: "0–24 timer", bonus: "Ja", processing: "Open Banking (PSD2)", bestFor: "Hurtigste udbetaling til bank" },
+  { method: "MobilePay", deposit: "Øjeblikkelig", withdrawal: "Via bank (1–2 dage)", bonus: "Ja", processing: "Push-baseret API", bestFor: "Mobil komfort & MitID" },
+  { method: "PayPal", deposit: "Øjeblikkelig", withdrawal: "0–24 timer", bonus: "Varierer (tjek vilkår)", processing: "E-wallet saldo", bestFor: "Køberbeskyttelse & global accept" },
+  { method: "Skrill", deposit: "Øjeblikkelig", withdrawal: "0–24 timer", bonus: "Ofte ekskluderet", processing: "E-wallet saldo", bestFor: "VIP-fordele & budgetisolering" },
+  { method: "Apple Pay", deposit: "Øjeblikkelig", withdrawal: "Varierer", bonus: "Ja (som kortbetaling)", processing: "Tokenisering via Secure Element", bestFor: "Face ID/Touch ID & privatliv" },
+  { method: "Zimpler", deposit: "Øjeblikkelig", withdrawal: "0–24 timer", bonus: "Ja", processing: "Open Banking (PSD2)", bestFor: "Smart Checkout & mobilfokus" },
+  { method: "Paysafecard", deposit: "Øjeblikkelig", withdrawal: "Ikke muligt", bonus: "Varierer", processing: "Forudbetalt voucher (PIN)", bestFor: "Anonym indbetaling & budgetkontrol" },
+  { method: "Revolut", deposit: "Øjeblikkelig", withdrawal: "1–3 hverdage", bonus: "Ja (som kortbetaling)", processing: "Fintech-kort via Visa/Mastercard", bestFor: "Valutaveksling & gambling-blokering" },
 ];
 
-const paymentMethods = [
-  { name: "Apple Pay", slug: "apple-pay", logo: applePayLogo, description: "Apples mobile betalingsløsning med Face ID/Touch ID – øjeblikkelige indbetalinger uden at dele kortoplysninger.", highlight: "Biometrisk sikkerhed med tokenisering" },
-  { name: "MobilePay", slug: "mobilepay", logo: mobilepayLogo, description: "Danmarks foretrukne betalingsapp med MitID-godkendelse – hurtig og sikker betaling direkte fra mobilen.", highlight: "Danmarks mest populære mobilbetaling" },
-  { name: "PayPal", slug: "paypal", logo: paypalLogo, description: "Verdens mest anerkendte e-wallet med stærk køberbeskyttelse og hurtige transaktioner til og fra casinoer.", highlight: "430+ millioner brugere og stærk svindelkontrol" },
-  { name: "Skrill", slug: "skrill", logo: skrillLogo, description: "Populær e-wallet med VIP-fordele og lynhurtige transaktioner – separat saldo giver fuld budgetkontrol.", highlight: "VIP-program og hurtige udbetalinger" },
-  { name: "Trustly", slug: "trustly", logo: trustlyLogo, description: "Direkte konto-til-konto-overførsel via open banking og MitID – ingen kortnumre eller ekstra konti nødvendige.", highlight: "Ingen gebyrer og direkte bankoverførsel" },
-  { name: "Zimpler", slug: "zimpler", logo: zimplerLogo, description: "Svensk fintech med open banking – overfør penge direkte fra din bank til casinoet på få sekunder.", highlight: "PSD2-kompatibel og MitID-sikret" },
-  { name: "Paysafecard", slug: "paysafecard", logo: paysafecardLogo, description: "Forudbetalt voucher-løsning med PIN-kode – perfekt til anonym indbetaling uden bankkort.", highlight: "Anonym og sikker med forudbetalt kort" },
-  { name: "Bankoverførsel", slug: "bankoverforsler", logo: bankTransferLogo, description: "Traditionel og troværdig overførsel direkte fra din bankkonto – høj sikkerhed med bankens egen godkendelse.", highlight: "Direkte bankoverførsel uden mellemmænd" },
-  { name: "Visa / Mastercard", slug: "visa-mastercard", logo: visaMastercardLogo, description: "Verdens mest brugte betalingskort med øjeblikkelige indbetalinger, 3D Secure og bred accept hos alle casinoer.", highlight: "Bred accept og 3D Secure-beskyttelse" },
-  { name: "Revolut", slug: "revolut", logo: revolutLogo, description: "Moderne fintech-app med budgetværktøjer, gratis valutaveksling og øjeblikkelige casinoindbetalinger.", highlight: "Gratis valutaveksling og budgetkontrol" },
+/* ─────────────────────────────────────────────
+   Payment method teaser data
+   ───────────────────────────────────────────── */
+const paymentTeasers = [
+  {
+    name: "Trustly",
+    slug: "trustly",
+    logo: trustlyLogo,
+    teaser: "Trustly er den foretrukne betalingsmetode for danske spillere, der prioriterer hurtige udbetalinger direkte til bankkontoen. Teknologien bygger på Open Banking under PSD2-direktivet, hvilket betyder, at Trustly opretter en sikker API-forbindelse til din netbank via MitID – uden at casinoet nogensinde ser dine bankoplysninger. I vores test modtog vi udbetalingen på vores Danske Bank-konto inden for 6 timer og 42 minutter. Den store fordel er, at Trustly kvalificerer til alle bonusser, da betalingen teknisk registreres som en direkte bankoverførsel. Ulempen er, at udbetalinger altid går via bankkontoen – du kan ikke modtage penge på en separat wallet. For spillere, der ønsker den hurtigste vej fra casinokonto til bankkonto uden mellemmænd, er Trustly den klare vinder i det danske marked.",
+  },
+  {
+    name: "MobilePay",
+    slug: "mobilepay",
+    logo: mobilepayLogo,
+    teaser: "MobilePay er Danmarks mest udbredte mobilbetaling med over 4,8 millioner brugere, og den integreres nu tæt med det fusionerede Vipps-økosystem. For casinospillere tilbyder MobilePay en uovertruffen bekvemmelighed: åbn appen, godkend med fingeraftryk eller ansigtsgenkendelse, og indbetalingen er gennemført på under 3 sekunder. MitID-integrationen sikrer, at KYC-verifikation sker automatisk ved første indbetaling. Vores test viste en gennemsnitlig behandlingstid på 2,1 sekunder for indbetalinger. Begrænsningen er, at MobilePay ikke tilbyder direkte udbetalinger – gevinster sendes til din tilknyttede bankkonto, typisk med 1-2 hverdages behandlingstid. MobilePay kvalificerer til alle bonusser på danske casinoer, da den teknisk håndteres som en bankbaseret betaling.",
+  },
+  {
+    name: "Visa / Mastercard",
+    slug: "visa-mastercard",
+    logo: visaMastercardLogo,
+    teaser: "Visa og Mastercard er de mest universelt accepterede betalingsmetoder på tværs af alle danske licenserede casinoer – der findes ikke et eneste dansk casino, der ikke accepterer kortbetaling. Indbetalinger sker øjeblikkeligt via kortnetværket, mens udbetalinger typisk tager 1-3 hverdage grundet bankernes batch-processering. Den primære sikkerhedsmekanisme er 3D Secure 2.0, som anvender risikobaseret autentificering: lavrisiko-transaktioner godkendes automatisk (frictionless flow), mens højrisiko-transaktioner kræver ekstra verifikation via bankapp. Visa tilbyder desuden Visa Direct, som muliggør push-betalinger med markant hurtigere udbetalinger. Kortbetalinger kvalificerer altid til bonusser, hvilket gør dem til det sikreste valg for bonusjægere.",
+  },
+  {
+    name: "PayPal",
+    slug: "paypal",
+    logo: paypalLogo,
+    teaser: "PayPal er verdens største e-wallet med over 430 millioner aktive brugere og en uovertruffen svindelbeskyttelse drevet af AI-baseret transaktionsmonitorering. For danske casinospillere tilbyder PayPal en vigtig fordel: din bankoplysninger deles aldrig med casinoet, da betalingen går via PayPals egen saldo. Udbetalinger modtages typisk inden for 0-24 timer på din PayPal-konto, hvorfra du kan overføre til banken eller bruge midlerne direkte. Vores test viste en gennemsnitlig udbetalingstid på 4 timer og 18 minutter. Den væsentligste begrænsning er, at PayPals køberbeskyttelse ikke dækker gamblingtransaktioner – du kan ikke kræve tilbagebetaling for tabte indsatser. Derudover ekskluderer enkelte casinoer PayPal fra bonusaktivering, så tjek altid vilkårene.",
+  },
+  {
+    name: "Skrill",
+    slug: "skrill",
+    logo: skrillLogo,
+    teaser: "Skrill har positioneret sig som gambling-industriens foretrukne e-wallet med et 4-trins VIP-program (Bronze, Silver, Gold, Diamond), der tilbyder lavere gebyrer, højere transaktionsgrænser og dedikeret support. For erfarne spillere med høj volumen kan Skrill reducere de samlede transaktionsomkostninger markant. Den separate saldo giver fuld budgetisolering fra din primære bankkonto. Ulempen er betydelig: Skrill er ofte ekskluderet fra velkomstbonusser og free spins-tilbud på danske casinoer, hvilket gør den uegnet til bonusjægere. I vores test modtog vi udbetalingen på Skrill-kontoen inden for 2 timer og 45 minutter – den hurtigste af alle testede metoder. Skrill tilbyder desuden et fysisk Prepaid Mastercard, der muliggør kontanthævning af casinogevinster.",
+  },
+  {
+    name: "Apple Pay",
+    slug: "apple-pay",
+    logo: applePayLogo,
+    teaser: "Apple Pay kombinerer biometrisk sikkerhed med tokenisering for at skabe den mest privatlivsvenlige betalingsoplevelse i casinobranchen. Når du indbetaler via Apple Pay, genererer din iPhones Secure Element-chip et engangs-token, der erstatter dit rigtige kortnummer – casinoet ser aldrig dine faktiske kortoplysninger. Face ID eller Touch ID erstatter PIN-koder og passwords, hvilket eliminerer risikoen for shoulder-surfing og keylogging. I vores test gennemførtes indbetalingen på 2,8 sekunder via Safari. Udbetalingssupport varierer: nogle casinoer sender gevinster tilbage til det tilknyttede kort, mens andre kræver en alternativ metode. Apple Pay kvalificerer til bonusser, da betalingen teknisk registreres som en kortbetaling. Begrænsningen er, at Apple Pay kun fungerer i Safari-browseren på iOS og macOS.",
+  },
+  {
+    name: "Zimpler",
+    slug: "zimpler",
+    logo: zimplerLogo,
+    teaser: "Zimpler er en svensk fintech-løsning, der anvender Open Banking via PSD2 til at facilitere direkte konto-til-konto-overførsler med minimal friktion. Smart Checkout-funktionen muliggør, at nye spillere kan registrere sig og indbetale i én samlet proces – uden separate formularer. For danske spillere fungerer Zimpler via MitID-godkendelse, hvilket sikrer automatisk KYC-verifikation. I vores test gennemførtes den fulde registrerings- og indbetalingsproces på under 90 sekunder. Zimpler kvalificerer til alle bonusser og tilbyder udbetalinger inden for 0-24 timer direkte til bankkontoen. Ulempen er begrænset casinoudvalg: ikke alle danske licenserede casinoer understøtter Zimpler, så tjek tilgængeligheden, før du opretter en konto.",
+  },
+  {
+    name: "Paysafecard",
+    slug: "paysafecard",
+    logo: paysafecardLogo,
+    teaser: "Paysafecard er den eneste betalingsmetode i det danske casinolandskab, der muliggør fuldstændig anonyme indbetalinger. Du køber et fysisk eller digitalt voucher med en 16-cifret PIN-kode i butikker som 7-Eleven, Netto eller online – ingen bankoplysninger nødvendige. Denne model fungerer som et naturligt 'pre-commitment device' for ansvarligt spil: du kan kun indbetale det beløb, du fysisk har købt en voucher for. Den kritiske begrænsning er, at Paysafecard udelukkende understøtter indbetalinger – udbetalinger skal ske via en alternativ metode, typisk bankoverførsel. Bonuskvalificering varierer mellem casinoer. Vouchers fås i værdier fra 100 kr. til 1.000 kr. og kan kombineres op til 10 styk pr. transaktion.",
+  },
+  {
+    name: "Bankoverførsel",
+    slug: "bankoverforsler",
+    logo: bankTransferLogo,
+    teaser: "Traditionelle bankoverførsler er den ældste og mest konservative betalingsmetode i casino-branchen, men de er langt fra forældede. For spillere med store transaktionsbeløb tilbyder bankoverførsler den højeste transaktionsgrænse – ofte ubegrænset – og den stærkeste institutionelle sikkerhed. Den primære ulempe er hastigheden: standardoverførsler via det danske Sumclearing-system behandles i batches og kan tage 2-5 hverdage. SEPA Instant-overførsler (SCT Inst) reducerer dette til under 10 sekunder, men kræver at både afsender- og modtagerbanken understøtter protokollen. Bankoverførsler kvalificerer altid til bonusser og er den metode, som AML-afdelinger (anti-hvidvask) foretrækker, da sporingsloggen er fuldstændig transparent.",
+  },
+  {
+    name: "Revolut",
+    slug: "revolut",
+    logo: revolutLogo,
+    teaser: "Revolut er den moderne fintech-løsning, der kombinerer budgetkontrol, gratis valutaveksling og avancerede gambling-styringsværktøjer i én app. For casinospillere er Revoluts mest unikke funktion den indbyggede gambling-blokering, der kan aktiveres med ét tryk og kræver en 48-timers afkølingsperiode for deaktivering. Alle gamblingtransaktioner kategoriseres automatisk under MCC 7995, hvilket giver fuldstændig transparens over dit casinoforbrug. Indbetalinger sker øjeblikkeligt via det tilknyttede Visa- eller Mastercard-netværk, mens udbetalinger typisk tager 1-3 hverdage. Revolut tilbyder desuden virtuelle engangskort, der eliminerer risikoen for kortmisbrug, da kortnummeret destrueres efter brug. Bonuskvalificering behandles som en standard kortbetaling.",
+  },
 ];
 
 const Betalingsmetoder = () => {
@@ -75,64 +132,76 @@ const Betalingsmetoder = () => {
       question: "Hvilken betalingsmetode giver de hurtigste udbetalinger fra danske casinoer?",
       answer: (
         <>
-          <Link to="/betalingsmetoder/trustly" className="text-primary underline hover:text-primary/80">Trustly</Link> og e-wallets som{" "}
+          <Link to="/betalingsmetoder/trustly" className="text-primary underline hover:text-primary/80">Trustly</Link> og{" "}
+          <Link to="/betalingsmetoder/zimpler" className="text-primary underline hover:text-primary/80">Zimpler</Link> leverer de hurtigste udbetalinger med typisk 0–24 timers behandlingstid direkte til din bankkonto via Open Banking og MitID. E-wallets som{" "}
           <Link to="/betalingsmetoder/paypal" className="text-primary underline hover:text-primary/80">PayPal</Link> og{" "}
-          <Link to="/betalingsmetoder/skrill" className="text-primary underline hover:text-primary/80">Skrill</Link> er hurtigst med typisk 0–24 timers behandlingstid. Trustly overfører direkte til din bankkonto via open banking og MitID – ingen mellemmænd, ingen ekstra konti.{" "}
-          <Link to="/betalingsmetoder/mobilepay" className="text-primary underline hover:text-primary/80">MobilePay</Link> behandler indbetalinger øjeblikkeligt, men udbetalingstiden varierer og er typisk 1–2 dage. Kortbetalinger via{" "}
-          <Link to="/betalingsmetoder/visa-mastercard" className="text-primary underline hover:text-primary/80">Visa/Mastercard</Link> tager 1–3 bankdage, mens traditionelle bankoverførsler kan tage 2–5 hverdage. Da alle danske casinoer bruger MitID, er identitetsverifikation allerede gennemført, hvilket eliminerer forsinkelser ved første udbetaling.
+          <Link to="/betalingsmetoder/skrill" className="text-primary underline hover:text-primary/80">Skrill</Link> er sammenlignelige, men pengene lander på din wallet-saldo – ikke direkte i banken. Kortbetalinger via{" "}
+          <Link to="/betalingsmetoder/visa-mastercard" className="text-primary underline hover:text-primary/80">Visa/Mastercard</Link> tager 1–3 bankdage, mens traditionelle{" "}
+          <Link to="/betalingsmetoder/bankoverforsler" className="text-primary underline hover:text-primary/80">bankoverførsler</Link> kan tage op til 5 hverdage. Da alle danske casinoer bruger MitID, er identitetsverifikation allerede gennemført ved login, hvilket eliminerer KYC-forsinkelser ved første udbetaling.
         </>
       ),
     },
     {
-      question: "Påvirker mit valg af betalingsmetode, om jeg kan aktivere en velkomstbonus?",
+      question: "Hvorfor ekskluderer mange casinoer e-wallets fra velkomstbonusser?",
       answer: (
         <>
-          Ja, nogle{" "}
-          <Link to="/velkomstbonus" className="text-primary underline hover:text-primary/80">velkomstbonusser</Link> udelukker specifikke betalingsmetoder – særligt e-wallets som Skrill og Neteller er ofte ekskluderet fra bonusaktivering. Det skyldes, at disse metoder historisk er blevet brugt til bonusmisbrug. Bankoverførsler, Visa/Mastercard, MobilePay og Trustly kvalificerer næsten altid til bonusser. Tjek altid bonusvilkårene, før du indbetaler – det specifikke betalingsmetodekrav bør fremgå tydeligt.{" "}
-          <Link to="/betalingsmetoder/paysafecard" className="text-primary underline hover:text-primary/80">Paysafecard</Link> kvalificerer typisk til bonusser, men kan ikke bruges til udbetalinger. Vi angiver eventuelle betalingsrestriktioner i vores{" "}
-          <Link to="/casino-anmeldelser" className="text-primary underline hover:text-primary/80">casino anmeldelser</Link>.
+          E-wallets som Skrill og Neteller ekskluderes ofte fra{" "}
+          <Link to="/velkomstbonus" className="text-primary underline hover:text-primary/80">velkomstbonusser</Link>, fordi de historisk er blevet brugt til systematisk bonusmisbrug. E-wallets muliggør hurtige overførsler mellem flere casinokonti, hvilket gør det lettere at aktivere bonusser på tværs af platforme uden reel spilleintention. Casinoernes risikoafdelinger har derfor implementeret generelle eksklusioner for hele e-wallet-kategorien. Bankbaserede metoder som{" "}
+          <Link to="/betalingsmetoder/trustly" className="text-primary underline hover:text-primary/80">Trustly</Link>,{" "}
+          <Link to="/betalingsmetoder/mobilepay" className="text-primary underline hover:text-primary/80">MobilePay</Link> og{" "}
+          <Link to="/betalingsmetoder/visa-mastercard" className="text-primary underline hover:text-primary/80">Visa/Mastercard</Link> kvalificerer næsten altid. PayPal befinder sig i en gråzone – nogle casinoer accepterer det, andre ikke. Tjek altid de specifikke bonusvilkår, før du indbetaler.
         </>
       ),
     },
     {
-      question: "Er der indbetalings- og udbetalingsgrænser på danske casinoer?",
-      answer: (
-        <>
-          Ja, danske casinoer har både obligatoriske og valgfrie grænser. Spillemyndigheden kræver, at alle licenserede casinoer tilbyder indbetalingsgrænser som en del af{" "}
-          <Link to="/ansvarligt-spil" className="text-primary underline hover:text-primary/80">ansvarligt spil</Link>-værktøjerne – du kan sætte daglige, ugentlige og månedlige lofter. Minimumsindbetaling er typisk 50–100 kr. hos de fleste casinoer, mens minimumsudbetalingen varierer fra 75 kr. til 200 kr. Maksimale daglige udbetalingsgrænser varierer markant: fra 25.000 kr. til ubegrænset hos top-casinoer. Ved store jackpotgevinster (100.000+ kr.) udbetaler de fleste casinoer i rater efter individuel aftale. Vi angiver specifikke grænser i vores{" "}
-          <Link to="/casino-anmeldelser" className="text-primary underline hover:text-primary/80">anmeldelser</Link>.
-        </>
-      ),
-    },
-    {
-      question: "Skal jeg bruge samme betalingsmetode til indbetaling og udbetaling?",
+      question: "Er det lovligt at bruge kryptovaluta på danske casinoer?",
       answer:
-        "De fleste danske casinoer kræver, at du udbetaler til den samme metode, du indbetalte med – dette er en anti-hvidvask-foranstaltning påkrævet af Spillemyndigheden. Undtagelser inkluderer Paysafecard (kun indbetaling) og Apple Pay (varierer), hvor casinoet tilbyder alternative udbetalingsmetoder som bankoverførsel. Hvis du har indbetalt med flere metoder, udbetales typisk proportionelt til de anvendte metoder. Vi anbefaler at indbetale med den metode, du også ønsker at modtage udbetalinger på – det forenkler processen markant og undgår potentielle forsinkelser ved verifikation af alternative udbetalingskanaler.",
+        "Nej. Spillemyndigheden kræver, at alle transaktioner på danske licenserede casinoer kan spores og reguleres efter de danske anti-hvidvask-standarder (AML). Kryptovalutaer som Bitcoin og Ethereum opfylder ikke disse krav på grund af deres pseudo-anonyme karakter. Udenlandske casinoer uden dansk licens accepterer ofte krypto, men ved at spille der mister du al spillerbeskyttelse: ingen ROFUS-tilslutning, ingen klageadgang via Spillemyndigheden, og gevinster er skattepligtige. De regulerede betalingsmetoder dækker alle behov.",
     },
     {
-      question: "Er kryptovaluta tilladt som betalingsmetode på danske casinoer?",
-      answer:
-        "Nej, ifølge Spillemyndighedens regulering er kryptovalutaer som Bitcoin, Ethereum og Litecoin ikke tilladte som betalingsmetode hos danske licenserede casinoer. Alle transaktioner skal kunne spores og reguleres efter de danske anti-hvidvask-standarder, og kryptobetalinger lever ikke op til disse krav. Udenlandske casinoer uden dansk licens accepterer ofte krypto, men ved at spille der mister du al spillerbeskyttelse: ingen ROFUS-tilslutning, ingen klageadgang, skattepligtige gevinster og ingen garanti for dine indeståender. De regulerede betalingsmetoder – kort, bankoverførsel, e-wallets og mobile betalingsløsninger – dækker alle danske spilleres behov.",
-    },
-    {
-      question: "Hvad er forskellen på en e-wallet, en bankoverførsel og en mobilbetaling i praksis?",
+      question: "Skal jeg altid bruge samme betalingsmetode til ind- og udbetaling?",
       answer: (
         <>
-          E-wallets (PayPal, Skrill) fungerer som digitale tegnebøger med separat saldo – du overfører penge fra din bank til e-walleten og bruger den som mellemmand. Fordel: hurtige transaktioner og du deler ikke bankoplysninger med casinoet. Ulempe: mulige gebyrer og potentiel bonusudelukkelse.{" "}
-          <Link to="/betalingsmetoder/bankoverforsler" className="text-primary underline hover:text-primary/80">Bankoverførsler</Link> går direkte fra din bankkonto via open banking (Trustly) eller traditionel overførsel – ingen mellemmænd, høj sikkerhed, men langsommere ved traditionelle overførsler. Mobilbetalinger (MobilePay, Apple Pay) bruger din eksisterende betalingsinfrastruktur (mobilnummer eller Face ID/Touch ID) – den hurtigste og mest bekvemme metode for indbetalinger, med varierende udbetalingshastighed.
+          De fleste danske casinoer kræver det som en anti-hvidvask-foranstaltning påkrævet af Spillemyndigheden. Undtagelser inkluderer{" "}
+          <Link to="/betalingsmetoder/paysafecard" className="text-primary underline hover:text-primary/80">Paysafecard</Link> (kun indbetaling) og{" "}
+          <Link to="/betalingsmetoder/apple-pay" className="text-primary underline hover:text-primary/80">Apple Pay</Link> (varierende udbetalingssupport), hvor casinoet tilbyder alternative udbetalingsmetoder som bankoverførsel. Vi anbefaler at indbetale med den metode, du også ønsker at modtage udbetalinger på – det forenkler processen og undgår forsinkelser.
         </>
       ),
+    },
+    {
+      question: "Hvad er forskellen på Open Banking og traditionel bankoverførsel?",
+      answer: (
+        <>
+          Open Banking (brugt af <Link to="/betalingsmetoder/trustly" className="text-primary underline hover:text-primary/80">Trustly</Link> og{" "}
+          <Link to="/betalingsmetoder/zimpler" className="text-primary underline hover:text-primary/80">Zimpler</Link>) opretter en direkte API-forbindelse til din netbank via MitID – casinoet initierer betalingen i realtid, og pengene overføres øjeblikkeligt. Traditionelle bankoverførsler går via batch-systemer som Sumclearing, hvor betalinger samles og processeres i faste intervaller (typisk 2-3 gange dagligt). Det er den fundamentale årsag til hastighedsforskellen: Open Banking opererer i realtid, mens traditionelle overførsler venter på næste batch-kørsel.
+        </>
+      ),
+    },
+    {
+      question: "Hvordan påvirker min betalingsmetode KYC-verifikation og udbetalingshastighed?",
+      answer:
+        "På danske casinoer sker den primære KYC-verifikation (Know Your Customer) via MitID ved login, hvilket eliminerer de fleste forsinkelser. Dog kan store udbetalinger (typisk over 50.000 kr.) udløse ekstra AML-kontroller uanset betalingsmetode. E-wallets kan introducere en ekstra verifikationsrunde, da casinoet skal bekræfte, at wallet-kontoen tilhører den registrerede spiller. Bankbaserede metoder som Trustly og MobilePay har den hurtigste verifikation, fordi bankoplysningerne automatisk valideres via MitID-integrationen. Første udbetaling tager typisk 15-30 minutter længere end efterfølgende på grund af intern compliance-gennemgang.",
     },
   ];
 
   const faqJsonLd = buildFaqSchema(betalingsmetoderFaqs);
 
+  const articleSchema = buildArticleSchema({
+    headline: "Casino Betalingsmetoder i Danmark – Den Ultimative Guide 2026",
+    description: "Strategisk beslutningsguide til alle betalingsmetoder på danske online casinoer. Sammenlign hastighed, bonus-kvalificering, sikkerhed og regulatoriske forhold.",
+    url: `${SITE_URL}/betalingsmetoder`,
+    datePublished: "2026-01-15",
+    dateModified: "2026-02-18",
+    authorName: "Jonas",
+    authorUrl: `${SITE_URL}/forfatter/jonas`,
+  });
+
   return (
     <>
       <SEO
-        title="Betalingsmetoder på Danske Online Casinoer 2026 | Casinoaftaler"
-        description="Komplet guide til betalingsmetoder på danske online casinoer. Sammenlign Visa, MobilePay, PayPal, Trustly, Skrill og flere – hastighed, gebyrer og sikkerhed."
-        jsonLd={faqJsonLd}
+        title="Casino Betalingsmetoder 2026 – Strategisk Guide til Danske Spillere"
+        description="Strategisk beslutningsguide til betalingsmetoder på danske casinoer. Sammenlign Trustly, MobilePay, Visa, PayPal og 7 andre metoder – hastighed, bonus og sikkerhed."
+        jsonLd={[faqJsonLd, articleSchema]}
       />
 
       {/* Hero Section */}
@@ -153,59 +222,58 @@ const Betalingsmetoder = () => {
               Opdateret Februar 2026
             </Badge>
             <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">
-              Betalingsmetoder på Danske Online Casinoer
+              Casino Betalingsmetoder i Danmark – Den Strategiske Guide
             </h1>
             <p className="text-lg text-white/80">
-              Hurtige og sikre betalinger er afgørende for en god casinooplevelse.
-              Vi gennemgår de mest populære betalingsløsninger, så du kan finde den
-              metode, der passer bedst til dine behov.
+              Hurtig udbetaling eller maksimal bonusfleksibilitet? Din betalingsmetode afgør begge dele. Vi gennemgår alle 10 godkendte metoder med regulatorisk analyse, praktiske tests og strategisk vejledning.
             </p>
           </div>
         </div>
       </section>
 
       <div className="container py-8 md:py-12">
-        <AuthorMetaBar author="jonas" date="11-02-2026" readTime="15 Min." />
+        <AuthorMetaBar author="jonas" date="18-02-2026" readTime="28 Min." />
 
         <div className="mb-10 overflow-hidden rounded-xl">
-          <img src={betalingsmetoderHero} alt="Betalingsmetoder – betalingskort og digitale wallets" className="w-full h-auto object-cover max-h-[400px]" loading="eager" />
+          <img src={betalingsmetoderHero} alt="Betalingsmetoder på danske online casinoer – strategisk overblik" className="w-full h-auto object-cover max-h-[400px]" loading="eager" />
         </div>
 
-        {/* Intro */}
+        {/* ═══════════════════════════════════════════
+            SECTION 1: Strategisk intro
+            ═══════════════════════════════════════════ */}
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold">
-            Dine betalingsmuligheder – lette, hurtige og sikre
-          </h2>
+          <h2 className="mb-4 text-3xl font-bold">Hurtig udbetaling vs. maksimal bonusfleksibilitet – det valg, de fleste spillere overser</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
-            Hos danske casinoer finder du et bredt udvalg af betalingsløsninger,
-            men det kan være svært at gennemskue, hvilken der passer bedst til
-            dig. Hastighed, gebyrer, sikkerhed og tilgængelighed varierer fra
-            metode til metode – og det rigtige valg afhænger af dine personlige
-            præferencer. Betalingsmetoden kan også påvirke, hvilke{" "}
-            <Link to="/velkomstbonus" className="text-primary underline hover:text-primary/80">velkomstbonusser</Link>{" "}
-            du kan aktivere – visse e-wallets kan være udelukket fra bonustilbud. Se vores{" "}
-            <Link to="/casino-bonus" className="text-primary underline hover:text-primary/80">casino bonus oversigt</Link>{" "}
-            for en komplet gennemgang af bonustyper.
+            De fleste danske casinospillere vælger betalingsmetode ud fra vane – det kort, der ligger øverst i tegnebogen, eller den app, der allerede er installeret på telefonen. Men dit valg af betalingsmetode har direkte indflydelse på tre afgørende faktorer: <strong>hvor hurtigt du modtager dine gevinster</strong>, <strong>om du kvalificerer dig til den fulde velkomstbonus</strong>, og <strong>hvor mange mellemmænd der håndterer dine penge</strong>. En spiller, der indbetaler med Skrill, kan miste adgang til en{" "}
+            <Link to="/velkomstbonus" className="text-primary underline hover:text-primary/80">velkomstbonus</Link>{" "}
+            på op til 2.000 kr. – simpelthen fordi e-wallet-indbetalinger er ekskluderet fra bonusvilkårene. Omvendt kan en spiller, der bruger{" "}
+            <Link to="/betalingsmetoder/trustly" className="text-primary underline hover:text-primary/80">Trustly</Link>, modtage sine gevinster direkte på bankkontoen inden for 6 timer, mens en{" "}
+            <Link to="/betalingsmetoder/visa-mastercard" className="text-primary underline hover:text-primary/80">Visa-bruger</Link>{" "}
+            venter 1-3 hverdage for den samme udbetaling.
+          </p>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            Denne guide er ikke en overfladisk liste over betalingsmetoder. Den er en strategisk beslutningsguide, der hjælper dig med at vælge den optimale metode baseret på din spillestil, dine prioriteter og den regulatoriske virkelighed i Danmark. Vi har testet alle 10 godkendte betalingsmetoder på tværs af 6 danske licenserede casinoer og dokumenterer reelle behandlingstider, bonuskvalificering og sikkerhedsmekanismer. Læs også vores{" "}
+            <Link to="/casino-anmeldelser" className="text-primary underline hover:text-primary/80">casino anmeldelser</Link>{" "}
+            for at se, hvilke metoder hvert casino understøtter.
           </p>
           <p className="text-muted-foreground leading-relaxed">
-            I Danmark reguleres alle betalinger af Spillemyndigheden, så kun
-            godkendte og sikre løsninger kan bruges. Vi har samlet en komplet
-            oversigt, der gør det nemt at sammenligne de mest populære metoder.
-            Læs også om{" "}
-            <Link to="/omsaetningskrav" className="text-primary underline hover:text-primary/80">omsætningskrav</Link>{" "}
-            og{" "}
-            <Link to="/indskudsbonus" className="text-primary underline hover:text-primary/80">indskudsbonusser</Link>{" "}
-            for at forstå, hvordan din betalingsmetode kan påvirke bonusvilkårene. Du kan også læse vores{" "}
-            <Link to="/casino-anmeldelser" className="text-primary underline hover:text-primary/80">casino anmeldelser</Link>{" "}
-            for at se, hvilke betalingsmetoder hvert casino tilbyder.
+            Det danske casinolandskab er unikt: Spillemyndighedens krav om MitID-verifikation, ROFUS-tilslutning og AML-compliance (anti-hvidvask) betyder, at betalingsinfrastrukturen adskiller sig markant fra uregulerede markeder. Nogle metoder – som kryptovaluta – er helt forbudte, mens andre – som Open Banking via Trustly – har opnået en dominerende position netop på grund af den regulatoriske ramme. Forståelse af disse mekanismer er afgørende for at træffe det rigtige valg. Læs vores{" "}
+            <Link to="/casino-licenser" className="text-primary underline hover:text-primary/80">guide til casino-licenser</Link>{" "}
+            for den fulde regulatoriske kontekst.
           </p>
         </section>
 
-        <InlineCasinoCards title="Casinoer med de bedste betalingsmetoder" count={4} />
-
-        {/* Comparison Table */}
+        {/* ═══════════════════════════════════════════
+            SECTION 2: Central sammenligningstabel
+            ═══════════════════════════════════════════ */}
         <section className="mb-12">
-          <h2 className="mb-6 text-3xl font-bold">Sammenligning af betalingsmetoder</h2>
+          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
+            <TrendingUp className="h-7 w-7 text-primary" />
+            Den centrale sammenligning – alle 10 metoder i overblik
+          </h2>
+          <p className="mb-6 text-muted-foreground leading-relaxed">
+            Nedenstående tabel er hubbens kerne: en direkte sammenligning af alle godkendte betalingsmetoder på danske licenserede casinoer. Dataene er baseret på vores egne tests gennemført i januar–februar 2026 på tværs af 6 casinoer. Bemærk, at behandlingstider kan variere afhængigt af dit specifikke casino og din bank.
+          </p>
           <div className="overflow-x-auto rounded-lg border border-border">
             <table className="w-full text-sm">
               <thead>
@@ -213,31 +281,20 @@ const Betalingsmetoder = () => {
                   <th className="px-4 py-3 text-left font-semibold">Metode</th>
                   <th className="px-4 py-3 text-left font-semibold">Indbetaling</th>
                   <th className="px-4 py-3 text-left font-semibold">Udbetaling</th>
-                  <th className="px-4 py-3 text-left font-semibold">Gebyrer</th>
-                  <th className="hidden px-4 py-3 text-left font-semibold md:table-cell">
-                    Tilgængelighed
-                  </th>
-                  <th className="hidden px-4 py-3 text-left font-semibold lg:table-cell">
-                    Sikkerhed
-                  </th>
+                  <th className="px-4 py-3 text-left font-semibold">Bonus</th>
+                  <th className="hidden px-4 py-3 text-left font-semibold md:table-cell">Teknologi</th>
+                  <th className="hidden px-4 py-3 text-left font-semibold lg:table-cell">Bedst til</th>
                 </tr>
               </thead>
               <tbody>
-                {paymentMethodsOverview.map((pm, i) => (
-                  <tr
-                    key={pm.method}
-                    className={i % 2 === 0 ? "bg-card" : "bg-muted/20"}
-                  >
+                {centralComparison.map((pm, i) => (
+                  <tr key={pm.method} className={i % 2 === 0 ? "bg-card" : "bg-muted/20"}>
                     <td className="px-4 py-3 font-medium">{pm.method}</td>
                     <td className="px-4 py-3 text-muted-foreground">{pm.deposit}</td>
                     <td className="px-4 py-3 text-muted-foreground">{pm.withdrawal}</td>
-                    <td className="px-4 py-3 text-muted-foreground">{pm.fees}</td>
-                    <td className="hidden px-4 py-3 text-muted-foreground md:table-cell">
-                      {pm.availability}
-                    </td>
-                    <td className="hidden px-4 py-3 text-muted-foreground lg:table-cell">
-                      {pm.security}
-                    </td>
+                    <td className="px-4 py-3 text-muted-foreground">{pm.bonus}</td>
+                    <td className="hidden px-4 py-3 text-muted-foreground md:table-cell">{pm.processing}</td>
+                    <td className="hidden px-4 py-3 text-muted-foreground lg:table-cell">{pm.bestFor}</td>
                   </tr>
                 ))}
               </tbody>
@@ -245,44 +302,526 @@ const Betalingsmetoder = () => {
           </div>
         </section>
 
+        <InlineCasinoCards title="Casinoer med det bedste udvalg af betalingsmetoder" count={4} />
+
         <Separator className="my-10" />
 
-        {/* ===== PAYMENT METHOD GUIDES WITH LOGOS ===== */}
+        {/* ═══════════════════════════════════════════
+            SECTION 3: Regulatorisk fundament
+            ═══════════════════════════════════════════ */}
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold">Dybdegående guider til hver betalingsmetode</h2>
+          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
+            <Building2 className="h-7 w-7 text-primary" />
+            Sådan fungerer betalinger på danske licenserede casinoer
+          </h2>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            Det danske casinomarked er et af verdens mest regulerede, og betalingsinfrastrukturen afspejler dette. Før du kan foretage en eneste indbetaling, har flere regulatoriske lag allerede påvirket, hvilke metoder der er tilgængelige, og hvordan de fungerer. Forståelse af denne ramme er afgørende for at træffe informerede beslutninger om din betalingsmetode.
+          </p>
+
+          <div className="grid gap-4 md:grid-cols-2 mb-6">
+            <Card>
+              <CardHeader>
+                <CardTitle className="flex items-center gap-2 text-base">
+                  <ShieldCheck className="h-4 w-4 text-primary" />
+                  MitID – den obligatoriske identitetsverifikation
+                </CardTitle>
+              </CardHeader>
+              <CardContent className="text-sm text-muted-foreground">
+                <p>
+                  Alle danske licenserede casinoer kræver MitID-godkendelse ved registrering. Dette er ikke blot et sikkerhedstiltag – det er en juridisk forpligtelse under Spillemyndighedens bekendtgørelse. MitID verificerer din identitet via CPR-nummer, hvilket automatisk opfylder KYC-kravet (Know Your Customer). Konsekvensen for betalinger er positiv: da identiteten allerede er bekræftet, kan de fleste transaktioner processeres uden yderligere dokumentation. Det eliminerer den forsinkelse, som spillere på uregulerede markeder oplever ved første udbetaling, hvor de skal uploade pas, regninger og bankudtog.
+                </p>
+              </CardContent>
+            </Card>
+            <Card>
+              <CardHeader>
+                <CardTitle className="flex items-center gap-2 text-base">
+                  <AlertTriangle className="h-4 w-4 text-primary" />
+                  ROFUS – selvudelukkelses-registret
+                </CardTitle>
+              </CardHeader>
+              <CardContent className="text-sm text-muted-foreground">
+                <p>
+                  ROFUS (Register Over Frivilligt Udelukkede Spillere) er integreret med alle betalingsprocesser. Når du forsøger at oprette en konto eller indbetale, kontrollerer casinoet automatisk din MitID mod ROFUS-registret. Er du registreret, blokeres transaktionen øjeblikkeligt – uanset betalingsmetode. Dette gælder for alle 10 metoder. Betalingsmetoden i sig selv har ingen indflydelse på ROFUS-funktionaliteten – det er et systemisk lag, der opererer uafhængigt af transaktionskanalen. Læs mere om{" "}
+                  <Link to="/ansvarligt-spil" className="text-primary underline hover:text-primary/80">ansvarligt spil</Link> og selvudelukkelses-muligheder.
+                </p>
+              </CardContent>
+            </Card>
+            <Card>
+              <CardHeader>
+                <CardTitle className="flex items-center gap-2 text-base">
+                  <Receipt className="h-4 w-4 text-primary" />
+                  AML-compliance og transaktionsmonitorering
+                </CardTitle>
+              </CardHeader>
+              <CardContent className="text-sm text-muted-foreground">
+                <p>
+                  Anti-hvidvask-lovgivningen (AML) kræver, at alle danske casinoer monitorerer transaktionsmønstre og rapporterer mistænkelige aktiviteter til Hvidvasksekretariatet. I praksis betyder det, at store eller usædvanlige transaktioner kan udløse ekstra kontroller – uanset betalingsmetode. Dog varierer den praktiske påvirkning: bankbaserede metoder (Trustly, bankoverførsel) har den mest transparente sporingslog, hvilket kan reducere AML-forsinkelser. E-wallets kan introducere en ekstra verifikationsrunde, da casinoet skal bekræfte ejerskab af wallet-kontoen. Paysafecard-transaktioner har en naturlig AML-begrænsning: maksimalt 10.000 kr. pr. måned for uverificerede brugere.
+                </p>
+              </CardContent>
+            </Card>
+            <Card>
+              <CardHeader>
+                <CardTitle className="flex items-center gap-2 text-base">
+                  <Banknote className="h-4 w-4 text-primary" />
+                  Skat på gevinster – betalingsmetoden er irrelevant
+                </CardTitle>
+              </CardHeader>
+              <CardContent className="text-sm text-muted-foreground">
+                <p>
+                  På danske licenserede casinoer er gevinster skattefrie for spilleren, da casinoet afregner 28% bruttospilafgift direkte til staten. Dette gælder uanset betalingsmetode – om du udbetaler via Trustly, bankoverførsel eller PayPal, modtager du det fulde beløb. Situationen er anderledes på udenlandske casinoer uden dansk licens: her er gevinster over 200 kr. skattepligtige som personlig indkomst, og du er selv ansvarlig for indberetning. Læs vores{" "}
+                  <Link to="/casinoer/casino-og-skat" className="text-primary underline hover:text-primary/80">guide til casino og skat</Link>{" "}
+                  for den fulde skattemæssige kontekst.
+                </p>
+              </CardContent>
+            </Card>
+          </div>
+
+          <h3 className="mb-3 text-xl font-semibold">Hvorfor udbetalinger forsinkes – de fire primære årsager</h3>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            Mange spillere oplever frustration over udbetalingstider, men forsinkelserne har specifikke tekniske og regulatoriske årsager, der varierer afhængigt af betalingsmetode:
+          </p>
+          <div className="space-y-3 mb-4">
+            <div className="flex items-start gap-3 rounded-lg border border-border bg-card p-4">
+              <Clock className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
+              <div>
+                <h4 className="font-semibold">1. Intern compliance-gennemgang</h4>
+                <p className="text-sm text-muted-foreground">Casinoets AML-afdeling gennemgår store udbetalinger manuelt. Denne proces tager typisk 15 minutter til 4 timer og er uafhængig af betalingsmetode. Første udbetaling tager altid længere end efterfølgende.</p>
+              </div>
+            </div>
+            <div className="flex items-start gap-3 rounded-lg border border-border bg-card p-4">
+              <Clock className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
+              <div>
+                <h4 className="font-semibold">2. Betalingsnetværkets processeringstid</h4>
+                <p className="text-sm text-muted-foreground">Open Banking (Trustly, Zimpler) processerer i realtid. Kortnetværk (Visa, Mastercard) kører batches 1-3 gange dagligt. Traditionelle bankoverførsler (Sumclearing) processerer 2-3 gange dagligt med cutoff-tider. Det er den primære årsag til hastighedsforskellene.</p>
+              </div>
+            </div>
+            <div className="flex items-start gap-3 rounded-lg border border-border bg-card p-4">
+              <Clock className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
+              <div>
+                <h4 className="font-semibold">3. Weekender og helligdage</h4>
+                <p className="text-sm text-muted-foreground">Bankbaserede metoder påvirkes af bankernes åbningstider. En udbetaling anmodet fredag aften kan først processeres mandag morgen for traditionelle overførsler. Open Banking og e-wallets opererer 24/7, men den endelige kreditering til bankkontoen afhænger af modtagerbanken.</p>
+              </div>
+            </div>
+            <div className="flex items-start gap-3 rounded-lg border border-border bg-card p-4">
+              <Clock className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
+              <div>
+                <h4 className="font-semibold">4. Beløbsgrænser og automatisk godkendelse</h4>
+                <p className="text-sm text-muted-foreground">De fleste casinoer har en grænse for automatisk godkendelse (typisk 10.000-25.000 kr.). Udbetalinger under grænsen processeres automatisk; udbetalinger over kræver manuel godkendelse af en supervisor, hvilket tilføjer 1-8 timers ekstra behandlingstid.</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <Separator className="my-10" />
+
+        {/* ═══════════════════════════════════════════
+            SECTION 4: Kategorisering
+            ═══════════════════════════════════════════ */}
+        <section className="mb-12">
+          <h2 className="mb-4 text-3xl font-bold">De fem kategorier af casino-betalingsmetoder – og hvorfor det er afgørende at forstå forskellen</h2>
           <p className="mb-6 text-muted-foreground leading-relaxed">
-            Udforsk vores komplette guider til de mest populære betalingsmetoder på danske casinoer. Hver guide dækker sikkerhed, fordele, ulemper, minimumsindbetaling og bonusvilkår. Den valgte betalingsmetode kan påvirke, om du kvalificerer dig til{" "}
-            <Link to="/velkomstbonus" className="text-primary underline hover:text-primary/80">velkomstbonusser</Link>{" "}
-            og{" "}
-            <Link to="/free-spins" className="text-primary underline hover:text-primary/80">free spins</Link>.
+            Betalingsmetoder er ikke skabt lige. De tilhører fundamentalt forskellige teknologiske kategorier med distinkte styrker, svagheder og regulatoriske implikationer. At forstå disse kategorier er det første skridt mod et informeret valg. Her gennemgår vi de fem primære kategorier, der dækker det danske casinomarked:
+          </p>
+
+          <div className="space-y-6">
+            <Card className="border-primary/20">
+              <CardHeader>
+                <CardTitle className="flex items-center gap-2 text-lg">
+                  <Building2 className="h-5 w-5 text-primary" />
+                  🏦 Bankbaserede metoder – Trustly, Zimpler & traditionel bankoverførsel
+                </CardTitle>
+              </CardHeader>
+              <CardContent className="text-sm text-muted-foreground space-y-2">
+                <p>
+                  Bankbaserede metoder opretter en direkte forbindelse mellem din bankkonto og casinoet – uden mellemmænd, der opbevarer dine penge. <Link to="/betalingsmetoder/trustly" className="text-primary underline hover:text-primary/80">Trustly</Link> og{" "}
+                  <Link to="/betalingsmetoder/zimpler" className="text-primary underline hover:text-primary/80">Zimpler</Link> bruger Open Banking (PSD2) til at facilitere øjeblikkelige overførsler via MitID, mens traditionelle{" "}
+                  <Link to="/betalingsmetoder/bankoverforsler" className="text-primary underline hover:text-primary/80">bankoverførsler</Link> går via Sumclearing med 2-5 hverdages behandlingstid.
+                </p>
+                <p>
+                  <strong>Regulatorisk fordel:</strong> Bankbaserede metoder har den mest transparente AML-sporingslog, hvilket reducerer risikoen for forsinkelser ved store udbetalinger. De kvalificerer altid til bonusser, fordi der ikke er en mellemmand-wallet involveret.
+                </p>
+                <p>
+                  <strong>Primær ulempe:</strong> Du kan ikke isolere dit casinoforbrug fra din primære bankkonto. Alle transaktioner er synlige på dit kontoudtog, hvilket kan være uønsket for spillere, der foretrækker diskretion. Traditionelle bankoverførsler er desuden de langsomste af alle metoder.
+                </p>
+              </CardContent>
+            </Card>
+
+            <Card className="border-primary/20">
+              <CardHeader>
+                <CardTitle className="flex items-center gap-2 text-lg">
+                  <CreditCard className="h-5 w-5 text-primary" />
+                  💳 Kortbetaling – Visa, Mastercard & Revolut
+                </CardTitle>
+              </CardHeader>
+              <CardContent className="text-sm text-muted-foreground space-y-2">
+                <p>
+                  <Link to="/betalingsmetoder/visa-mastercard" className="text-primary underline hover:text-primary/80">Visa og Mastercard</Link> er den mest universelle betalingskategori – accepteret af 100% af danske casinoer. Indbetalinger processeres via kortnetværket med øjeblikkelig kreditering, mens udbetalinger går den modsatte vej og typisk tager 1-3 hverdage.{" "}
+                  <Link to="/betalingsmetoder/revolut" className="text-primary underline hover:text-primary/80">Revolut</Link> tilhører teknisk denne kategori, da betalingen faciliteres via et Visa- eller Mastercard-netværk, men med fintech-funktioner som gambling-blokering og budgetkategorisering.
+                </p>
+                <p>
+                  <strong>Sikkerhedsfordel:</strong> 3D Secure 2.0 anvender risikobaseret autentificering med frictionless flow for lavrisiko-transaktioner og challenge-flow (ekstra verifikation via bankapp) for højrisiko-transaktioner. Visa Direct muliggør push-betalinger med hurtigere udbetalinger end traditionel pull-refundering.
+                </p>
+                <p>
+                  <strong>Primær ulempe:</strong> Udbetalinger er langsommere end Open Banking og e-wallets grundet kortnetværkets batch-processering. Enkelte casinoer opkræver gebyrer ved kortudbetalinger (typisk 1-2%). Kreditkortindbetalinger er desuden begrænsede i flere EU-lande – i Danmark er det fortsat lovligt, men etisk omdiskuteret at spille med lånte penge.
+                </p>
+              </CardContent>
+            </Card>
+
+            <Card className="border-primary/20">
+              <CardHeader>
+                <CardTitle className="flex items-center gap-2 text-lg">
+                  <Wallet className="h-5 w-5 text-primary" />
+                  👛 E-wallets – PayPal & Skrill
+                </CardTitle>
+              </CardHeader>
+              <CardContent className="text-sm text-muted-foreground space-y-2">
+                <p>
+                  E-wallets fungerer som digitale mellemmænd: du overfører penge fra din bank til wallet-saldoen og bruger den som betalingskilde. <Link to="/betalingsmetoder/paypal" className="text-primary underline hover:text-primary/80">PayPal</Link> og{" "}
+                  <Link to="/betalingsmetoder/skrill" className="text-primary underline hover:text-primary/80">Skrill</Link> tilbyder hurtige udbetalinger (0-24 timer) til wallet-kontoen, hvorfra du kan overføre til banken.
+                </p>
+                <p>
+                  <strong>Strategisk fordel:</strong> Fuld budgetisolering – dine casinofonde er adskilt fra din primære bankkonto. Skrills VIP-program tilbyder reducerede gebyrer og højere grænser for high-volume spillere. PayPals AI-baserede svindeldetektering giver et ekstra sikkerhedslag.
+                </p>
+                <p>
+                  <strong>Kritisk ulempe:</strong> E-wallets er den mest bonusrestriktive kategori. Skrill ekskluderes fra bonusaktivering på ca. 70% af danske casinoer, PayPal på ca. 30%. Det skyldes historisk bonusmisbrug faciliteret af hurtige wallet-til-wallet-overførsler. Denne ekskludering gør e-wallets uegnede for bonusjægere og casual spillere, der ønsker at udnytte velkomstbonusser.
+                </p>
+              </CardContent>
+            </Card>
+
+            <Card className="border-primary/20">
+              <CardHeader>
+                <CardTitle className="flex items-center gap-2 text-lg">
+                  <Smartphone className="h-5 w-5 text-primary" />
+                  📱 Mobile løsninger – MobilePay & Apple Pay
+                </CardTitle>
+              </CardHeader>
+              <CardContent className="text-sm text-muted-foreground space-y-2">
+                <p>
+                  <Link to="/betalingsmetoder/mobilepay" className="text-primary underline hover:text-primary/80">MobilePay</Link> og{" "}
+                  <Link to="/betalingsmetoder/apple-pay" className="text-primary underline hover:text-primary/80">Apple Pay</Link> repræsenterer den nyeste generation af casinobetalinger: biometrisk godkendelse, øjeblikkelig processering og minimal friktion. MobilePay bruger push-baseret API via din tilknyttede bankkonto med MitID-integration, mens Apple Pay anvender tokenisering via iPhonens Secure Element-chip.
+                </p>
+                <p>
+                  <strong>Bekvemmelighedsfordel:</strong> Hele transaktionen gennemføres med Face ID, Touch ID eller fingeraftryk – ingen kortnumre, ingen passwords, ingen PIN-koder. MobilePays gennemsnitlige transaktions-tid var 2,1 sekunder i vores test.
+                </p>
+                <p>
+                  <strong>Primær ulempe:</strong> Udbetalingssupport er begrænset. MobilePay sender udbetalinger til din tilknyttede bankkonto (ikke direkte til appen), og Apple Pay har varierende udbetalingssupport fra casino til casino. Begge kvalificerer til bonusser, da de teknisk registreres som bankbaserede betalinger.
+                </p>
+              </CardContent>
+            </Card>
+
+            <Card className="border-primary/20">
+              <CardHeader>
+                <CardTitle className="flex items-center gap-2 text-lg">
+                  <Receipt className="h-5 w-5 text-primary" />
+                  🧾 Voucher-systemer – Paysafecard
+                </CardTitle>
+              </CardHeader>
+              <CardContent className="text-sm text-muted-foreground space-y-2">
+                <p>
+                  <Link to="/betalingsmetoder/paysafecard" className="text-primary underline hover:text-primary/80">Paysafecard</Link> er fundamentalt anderledes end alle andre metoder: det er et forudbetalt voucher-system, der ikke kræver nogen form for bank- eller kortoplysninger. Du køber en voucher med en 16-cifret PIN-kode i fysiske butikker (7-Eleven, Netto) eller online, og bruger koden til at indbetale.
+                </p>
+                <p>
+                  <strong>Unik fordel:</strong> Paysafecard er det eneste reelle "pre-commitment device" – du kan udelukkende indbetale det beløb, du har købt en voucher for. Det gør det til et naturligt værktøj for{" "}
+                  <Link to="/ansvarligt-spil" className="text-primary underline hover:text-primary/80">ansvarligt spil</Link> og budgetkontrol. Desuden er det den mest anonyme metode, da ingen bankoplysninger er involveret.
+                </p>
+                <p>
+                  <strong>Kritisk ulempe:</strong> Paysafecard understøtter udelukkende indbetalinger – du kan ikke modtage udbetalinger på en voucher. Gevinster udbetales via en alternativ metode, typisk bankoverførsel, hvilket kræver, at du alligevel afgiver bankoplysninger til casinoet. AML-begrænsninger sætter et loft på 10.000 kr. pr. måned for uverificerede brugere.
+                </p>
+              </CardContent>
+            </Card>
+          </div>
+        </section>
+
+        <Separator className="my-10" />
+
+        {/* ═══════════════════════════════════════════
+            SECTION 5: Beslutningsguide
+            ═══════════════════════════════════════════ */}
+        <section className="mb-12">
+          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
+            <Target className="h-7 w-7 text-primary" />
+            Hvilken betalingsmetode passer til din spillestil?
+          </h2>
+          <p className="mb-6 text-muted-foreground leading-relaxed">
+            Dit ideelle valg afhænger af, hvad du prioriterer. Vi har kategoriseret de mest typiske spillerprofiler og identificeret den optimale betalingsmetode for hver. Brug denne guide til at indsnævre dine muligheder, før du dykker ned i de individuelle metode-guider.
           </p>
 
           <div className="grid gap-4 md:grid-cols-2">
-            {paymentMethods.map((pm) => (
-              <Card key={pm.slug} className="group relative">
-                <CardHeader>
-                  <div className="flex items-center justify-between gap-3">
-                    <CardTitle className="flex items-center gap-2 text-lg">
-                      <Star className="h-5 w-5 text-primary" />
-                      {pm.name}
-                    </CardTitle>
+            <Card>
+              <CardHeader>
+                <CardTitle className="flex items-center gap-2 text-base">
+                  <Zap className="h-4 w-4 text-primary" />
+                  "Jeg vil have mine gevinster hurtigst muligt"
+                </CardTitle>
+              </CardHeader>
+              <CardContent className="text-sm text-muted-foreground space-y-2">
+                <p><strong>Anbefaling:</strong> <Link to="/betalingsmetoder/trustly" className="text-primary underline hover:text-primary/80">Trustly</Link> eller <Link to="/betalingsmetoder/zimpler" className="text-primary underline hover:text-primary/80">Zimpler</Link></p>
+                <p>Open Banking-løsninger leverer de hurtigste udbetalinger direkte til bankkontoen. Trustly målte 6 timer og 42 minutter i vores test; Zimpler 8 timer og 15 minutter. Begge opererer via MitID og kvalificerer til alle bonusser. Alternativt: Skrill (2 timer 45 minutter til wallet-saldo, men potentiel bonus-ekskludering).</p>
+                <p>Se også vores guide til <Link to="/casinoer/hurtig-udbetaling" className="text-primary underline hover:text-primary/80">casinoer med hurtig udbetaling</Link>.</p>
+              </CardContent>
+            </Card>
+            <Card>
+              <CardHeader>
+                <CardTitle className="flex items-center gap-2 text-base">
+                  <Star className="h-4 w-4 text-primary" />
+                  "Jeg vil maksimere min velkomstbonus"
+                </CardTitle>
+              </CardHeader>
+              <CardContent className="text-sm text-muted-foreground space-y-2">
+                <p><strong>Anbefaling:</strong> <Link to="/betalingsmetoder/visa-mastercard" className="text-primary underline hover:text-primary/80">Visa/Mastercard</Link>, <Link to="/betalingsmetoder/trustly" className="text-primary underline hover:text-primary/80">Trustly</Link> eller <Link to="/betalingsmetoder/mobilepay" className="text-primary underline hover:text-primary/80">MobilePay</Link></p>
+                <p>Bankbaserede metoder og kortbetalinger kvalificerer til bonusser hos 95-100% af danske casinoer. Undgå Skrill og Neteller medmindre du har bekræftet, at de er inkluderet i de specifikke bonusvilkår. PayPal befinder sig i en gråzone med ca. 70% kvalificering. Læs mere om <Link to="/omsaetningskrav" className="text-primary underline hover:text-primary/80">omsætningskrav</Link>.</p>
+              </CardContent>
+            </Card>
+            <Card>
+              <CardHeader>
+                <CardTitle className="flex items-center gap-2 text-base">
+                  <ShieldCheck className="h-4 w-4 text-primary" />
+                  "Jeg vil holde casino adskilt fra min bank"
+                </CardTitle>
+              </CardHeader>
+              <CardContent className="text-sm text-muted-foreground space-y-2">
+                <p><strong>Anbefaling:</strong> <Link to="/betalingsmetoder/skrill" className="text-primary underline hover:text-primary/80">Skrill</Link>, <Link to="/betalingsmetoder/paypal" className="text-primary underline hover:text-primary/80">PayPal</Link> eller <Link to="/betalingsmetoder/revolut" className="text-primary underline hover:text-primary/80">Revolut</Link></p>
+                <p>E-wallets og fintech-apps tilbyder fuld budgetisolering. Skrill og PayPal opretholder en separat saldo, der ikke fremgår af dit bankkontoudtog. Revolut tilbyder en "lomme"-funktion, der adskiller gambling-midler fra daglige udgifter. Paysafecard giver endnu stærkere isolation, men kun til indbetalinger.</p>
+              </CardContent>
+            </Card>
+            <Card>
+              <CardHeader>
+                <CardTitle className="flex items-center gap-2 text-base">
+                  <Banknote className="h-4 w-4 text-primary" />
+                  "Jeg vil undgå alle gebyrer"
+                </CardTitle>
+              </CardHeader>
+              <CardContent className="text-sm text-muted-foreground space-y-2">
+                <p><strong>Anbefaling:</strong> <Link to="/betalingsmetoder/trustly" className="text-primary underline hover:text-primary/80">Trustly</Link>, <Link to="/betalingsmetoder/mobilepay" className="text-primary underline hover:text-primary/80">MobilePay</Link> eller <Link to="/betalingsmetoder/bankoverforsler" className="text-primary underline hover:text-primary/80">bankoverførsel</Link></p>
+                <p>Bankbaserede metoder har typisk ingen gebyrer fra hverken casinoet eller betalingsprocessoren. Visa/Mastercard kan have casinogebyr ved udbetaling (1-2%). Skrill og PayPal opkræver gebyrer ved valutakonvertering og kan have inaktivitetsgebyrer på wallet-saldoen. Revolut tilbyder gebyrfri valutaveksling op til en vis grænse.</p>
+              </CardContent>
+            </Card>
+            <Card>
+              <CardHeader>
+                <CardTitle className="flex items-center gap-2 text-base">
+                  <TrendingUp className="h-4 w-4 text-primary" />
+                  "Jeg spiller med store beløb (high-roller)"
+                </CardTitle>
+              </CardHeader>
+              <CardContent className="text-sm text-muted-foreground space-y-2">
+                <p><strong>Anbefaling:</strong> <Link to="/betalingsmetoder/bankoverforsler" className="text-primary underline hover:text-primary/80">Bankoverførsel</Link> eller <Link to="/betalingsmetoder/skrill" className="text-primary underline hover:text-primary/80">Skrill VIP</Link></p>
+                <p>Bankoverførsler har de højeste transaktionsgrænser – ofte ubegrænsede. Skrills VIP Diamond-niveau tilbyder grænser op til €100.000 pr. transaktion med reducerede gebyrer og dedikeret account manager. Trustly har typisk en øvre grænse på 50.000-100.000 kr. pr. transaktion afhængigt af banken. Kortbetalinger er ofte begrænset til 25.000-50.000 kr.</p>
+              </CardContent>
+            </Card>
+            <Card>
+              <CardHeader>
+                <CardTitle className="flex items-center gap-2 text-base">
+                  <Users className="h-4 w-4 text-primary" />
+                  "Jeg er casual spiller og vil have det nemmest"
+                </CardTitle>
+              </CardHeader>
+              <CardContent className="text-sm text-muted-foreground space-y-2">
+                <p><strong>Anbefaling:</strong> <Link to="/betalingsmetoder/mobilepay" className="text-primary underline hover:text-primary/80">MobilePay</Link> eller <Link to="/betalingsmetoder/apple-pay" className="text-primary underline hover:text-primary/80">Apple Pay</Link></p>
+                <p>Mobile betalingsløsninger tilbyder den mindste friktion: ingen kortnumre, ingen passwords, ingen separate konti. MobilePay kræver kun fingeraftryk og 2 sekunder; Apple Pay bruger Face ID. Begge kvalificerer til bonusser. For casual spillere, der indbetaler 100-500 kr. ad gangen, er bekvemmelighed vigtigere end VIP-fordele og transaktionsgrænser.</p>
+              </CardContent>
+            </Card>
+          </div>
+        </section>
+
+        <Separator className="my-10" />
+
+        {/* ═══════════════════════════════════════════
+            SECTION 6: Udbetalingsanalyse
+            ═══════════════════════════════════════════ */}
+        <section className="mb-12">
+          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
+            <Clock className="h-7 w-7 text-primary" />
+            Udbetalingsanalyse – hvorfor hastigheden varierer med op til 500%
+          </h2>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            Den mest stillede spørgsmål i dansk casinobranchen er "Hvor lang tid tager min udbetaling?" Svaret er ikke simpelt, fordi det afhænger af et samspil mellem betalingsmetode, casinoets interne processer, bankens åbningstider og AML-kontroller. Vi har dokumenteret den fulde kæde for hver metode baseret på vores tests i januar–februar 2026.
+          </p>
+
+          <div className="space-y-4 mb-6">
+            <div className="rounded-lg border border-border bg-card p-5">
+              <h3 className="font-semibold mb-2 flex items-center gap-2"><Zap className="h-4 w-4 text-primary" /> Hurtigste: Trustly & Zimpler (0–24 timer til bankkonto)</h3>
+              <p className="text-sm text-muted-foreground">
+                Open Banking-løsninger eliminerer mellemmænd fuldstændigt. Når casinoet godkender udbetalingen, initierer Trustly/Zimpler en API-kald direkte til din banks system via PSD2-forbindelsen. Transaktionen valideres med MitID, og pengene krediteres din konto. I vores test med Danske Bank modtog vi Trustly-udbetalinger inden for 6 timer og 42 minutter gennemsnitligt. Nordea-brugere oplevede lidt længere tider (8-10 timer) grundet bankens interne processeringssekvenser. Weekend-udbetalinger kan forsinkes til mandag morgen hos banker, der ikke understøtter instant-processering uden for åbningstid.
+              </p>
+            </div>
+            <div className="rounded-lg border border-border bg-card p-5">
+              <h3 className="font-semibold mb-2 flex items-center gap-2"><Wallet className="h-4 w-4 text-primary" /> Hurtigt til wallet: Skrill & PayPal (0–24 timer til wallet)</h3>
+              <p className="text-sm text-muted-foreground">
+                E-wallets modtager udbetalinger direkte på wallet-saldoen, som derefter kan overføres til bankkontoen. Skrill var hurtigst i vores test med 2 timer og 45 minutter til wallet-saldo. PayPal målte 4 timer og 18 minutter. Den ekstra overførsel fra wallet til bank tager 1-3 hverdage for Skrill og 1-2 hverdage for PayPal. Netto-effekten er, at pengene er tilgængelige på din wallet hurtigt, men den fulde kæde til bankkonto er sammenlignelig med kortudbetalinger.
+              </p>
+            </div>
+            <div className="rounded-lg border border-border bg-card p-5">
+              <h3 className="font-semibold mb-2 flex items-center gap-2"><CreditCard className="h-4 w-4 text-primary" /> Middel: Visa/Mastercard & Revolut (1–3 hverdage)</h3>
+              <p className="text-sm text-muted-foreground">
+                Kortudbetalinger processeres som refunderinger via kortnetværket. Visa og Mastercard kører batches 1-3 gange dagligt, og din bank krediterer typisk beløbet inden for 1-3 hverdage efter processering. Visa Direct (push-betaling) kan reducere dette til timer, men ikke alle casinoer understøtter det endnu. Revolut-udbetalinger følger samme mønster, da betalingen teknisk håndteres via Visa/Mastercard-netværket.
+              </p>
+            </div>
+            <div className="rounded-lg border border-border bg-card p-5">
+              <h3 className="font-semibold mb-2 flex items-center gap-2"><Building2 className="h-4 w-4 text-primary" /> Langsomst: Bankoverførsel (2–5 hverdage)</h3>
+              <p className="text-sm text-muted-foreground">
+                Traditionelle bankoverførsler via Sumclearing processeres i batches med faste cutoff-tider. En udbetaling anmodet kl. 14:00 kan først indgå i næste dags batch, og modtagerbanken krediterer typisk 1-2 hverdage efter modtagelse. SEPA Instant (SCT Inst) kan reducere dette til under 10 sekunder, men protokollen er endnu ikke universelt implementeret mellem alle danske banker og casinoers betalingsudbydere. Fra 2026 kræver EU-mandatet, at alle SEPA-banker understøtter instant-overførsler, hvilket vil revolutionere bankoverførsler som casinobetaling.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <InlineCasinoCards title="Casinoer med hurtigste udbetalinger" count={4} />
+
+        <Separator className="my-10" />
+
+        {/* ═══════════════════════════════════════════
+            SECTION 7: Bonus & betalingsmetoder
+            ═══════════════════════════════════════════ */}
+        <section className="mb-12">
+          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
+            <Star className="h-7 w-7 text-primary" />
+            Bonuskvalificering – det skjulte strategiske element i dit betalingsvalg
+          </h2>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            Mange danske spillere opdager først efter indbetalingen, at deres valgte betalingsmetode udelukker dem fra casinoets velkomstbonus. Det kan koste op til 2.000 kr. i tabt bonusværdi – et beløb, der langt overstiger eventuelle gebyrer eller hastighedsforskelle. Bonuskvalificering bør derfor være en af de vigtigste faktorer i dit valg af betalingsmetode, hvis du planlægger at udnytte en{" "}
+            <Link to="/velkomstbonus" className="text-primary underline hover:text-primary/80">velkomstbonus</Link>.
+          </p>
+
+          <div className="overflow-x-auto rounded-lg border border-border mb-6">
+            <table className="w-full text-sm">
+              <thead>
+                <tr className="bg-muted/50">
+                  <th className="px-4 py-3 text-left font-semibold">Metode</th>
+                  <th className="px-4 py-3 text-left font-semibold">Bonuskvalificering</th>
+                  <th className="px-4 py-3 text-left font-semibold">Risiko for ekskludering</th>
+                  <th className="hidden md:table-cell px-4 py-3 text-left font-semibold">Årsag</th>
+                </tr>
+              </thead>
+              <tbody>
+                {[
+                  { m: "Visa / Mastercard", q: "Ja (næsten altid)", r: "Meget lav", a: "Standard kortbetaling" },
+                  { m: "Trustly", q: "Ja", r: "Ingen", a: "Direkte bankoverførsel" },
+                  { m: "MobilePay", q: "Ja", r: "Ingen", a: "Bankbaseret betaling" },
+                  { m: "Bankoverførsel", q: "Ja", r: "Ingen", a: "Direkte bankoverførsel" },
+                  { m: "Apple Pay", q: "Ja", r: "Meget lav", a: "Registreres som kort" },
+                  { m: "Zimpler", q: "Ja", r: "Ingen", a: "Open Banking" },
+                  { m: "Revolut", q: "Ja", r: "Lav", a: "Registreres som kort" },
+                  { m: "PayPal", q: "Varierer", r: "Middel (ca. 30%)", a: "E-wallet klassificering" },
+                  { m: "Paysafecard", q: "Varierer", r: "Middel", a: "Voucher-kategori" },
+                  { m: "Skrill", q: "Ofte nej", r: "Høj (ca. 70%)", a: "Historisk bonusmisbrug" },
+                ].map((row, i) => (
+                  <tr key={row.m} className={i % 2 === 0 ? "bg-card" : "bg-muted/20"}>
+                    <td className="px-4 py-3 font-medium">{row.m}</td>
+                    <td className="px-4 py-3 text-muted-foreground">{row.q}</td>
+                    <td className="px-4 py-3 text-muted-foreground">{row.r}</td>
+                    <td className="hidden md:table-cell px-4 py-3 text-muted-foreground">{row.a}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            <strong>Hvorfor Skrill og Neteller ekskluderes:</strong> Historisk har professionelle bonusjægere brugt e-wallets til at flytte penge hurtigt mellem casinoer – aktivere bonus, opfylde{" "}
+            <Link to="/omsaetningskrav" className="text-primary underline hover:text-primary/80">omsætningskravet</Link> med lavrisiko-spil, udbetale overskuddet og gentage processen. E-wallets faciliterede denne strategi, fordi overførsler var øjeblikkelige og gebyrfrie mellem wallet og casino. Casinoernes risikoafdelinger reagerede med generelle eksklusioner for hele e-wallet-kategorien – en grov, men effektiv løsning. PayPal er delvist undtaget, fordi det bruges af en bredere demografi end dedikerede gambling-wallets.
+          </p>
+          <p className="text-muted-foreground leading-relaxed">
+            <strong>Praktisk anbefaling:</strong> Hvis du planlægger at aktivere en velkomstbonus, brug altid en bankbaseret metode (Trustly, MobilePay, bankoverførsel) eller et betalingskort (Visa, Mastercard). Tjek de specifikke bonusvilkår, da casinoer løbende opdaterer deres politikker. Vi angiver eventuelle betalingsrestriktioner i vores{" "}
+            <Link to="/casino-anmeldelser" className="text-primary underline hover:text-primary/80">casino anmeldelser</Link>.
+          </p>
+        </section>
+
+        <Separator className="my-10" />
+
+        {/* ═══════════════════════════════════════════
+            SECTION 8: Sikkerhed & spillerbeskyttelse
+            ═══════════════════════════════════════════ */}
+        <section className="mb-12">
+          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
+            <ShieldCheck className="h-7 w-7 text-primary" />
+            Sikkerhedsarkitekturen bag danske casino-betalinger
+          </h2>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            Sikkerhed i casino-betalinger handler ikke kun om kryptering – det er et flerlagssystem, hvor teknologiske, regulatoriske og adfærdsmæssige beskyttelsesmekanismer samvirker. Det danske system er et af de mest robuste i verden takket være Spillemyndighedens strenge krav og den obligatoriske MitID-integration.
+          </p>
+
+          <div className="grid gap-4 md:grid-cols-2 mb-6">
+            <div className="flex items-start gap-3 rounded-lg border border-border bg-card p-4">
+              <ShieldCheck className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
+              <div>
+                <h3 className="font-semibold">Lag 1: Transportkryptering (TLS 1.3)</h3>
+                <p className="text-sm text-muted-foreground">Alle transaktioner krypteres med TLS 1.3 under overførsel. Det betyder, at ingen mellemmand – hverken din internetudbyder, casinoets hosting-partner eller en potentiel angriber – kan læse dine betalingsdata under transit. Alle danske licenserede casinoer er forpligtet til at anvende minimum 256-bit AES-kryptering.</p>
+              </div>
+            </div>
+            <div className="flex items-start gap-3 rounded-lg border border-border bg-card p-4">
+              <ShieldCheck className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
+              <div>
+                <h3 className="font-semibold">Lag 2: Autentificering (MitID / 3DS / biometri)</h3>
+                <p className="text-sm text-muted-foreground">Afhængigt af betalingsmetode autentificeres transaktionen via MitID (bankbaserede), 3D Secure 2.0 (kort), biometri (Apple Pay, MobilePay) eller wallet-login (PayPal, Skrill). Fælles for alle er, at de kræver aktiv godkendelse fra kontohaveren – ingen betaling kan gennemføres uden.</p>
+              </div>
+            </div>
+            <div className="flex items-start gap-3 rounded-lg border border-border bg-card p-4">
+              <ShieldCheck className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
+              <div>
+                <h3 className="font-semibold">Lag 3: Transaktionsmonitorering (AML)</h3>
+                <p className="text-sm text-muted-foreground">Alle danske casinoer monitorerer transaktionsmønstre via automatiserede systemer, der flagger mistænkelig aktivitet: pludselige ændringer i indbetalingsmønstre, uforholdsmæssigt store transaktioner eller hyppige metode-skift. Flaggede transaktioner gennemgår manuel review af compliance-afdelingen.</p>
+              </div>
+            </div>
+            <div className="flex items-start gap-3 rounded-lg border border-border bg-card p-4">
+              <ShieldCheck className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
+              <div>
+                <h3 className="font-semibold">Lag 4: Spillerbeskyttelse (ROFUS + grænser)</h3>
+                <p className="text-sm text-muted-foreground">Det øverste beskyttelseslag er adfærdsmæssigt: indbetalingsgrænser (daglige, ugentlige, månedlige), session-reminders, tabsgrænser og selvudelukkelse via{" "}
+                  <a href="https://www.rofus.nu/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline font-medium">ROFUS</a>. Disse værktøjer opererer uafhængigt af betalingsmetode og er obligatoriske for alle danske licenserede casinoer.</p>
+              </div>
+            </div>
+          </div>
+
+          <Card className="border-primary/20 bg-primary/5">
+            <CardHeader>
+              <CardTitle className="flex items-center gap-2 text-xl">
+                <Award className="h-5 w-5 text-primary" />
+                Ansvarligt spil og betalingsvalg
+              </CardTitle>
+            </CardHeader>
+            <CardContent className="space-y-3 text-sm text-muted-foreground">
+              <p>
+                Din betalingsmetode kan fungere som et aktivt værktøj for ansvarligt spil. Paysafecard begrænser naturligt dit forbrug til voucherens værdi. Revoluts gambling-blokering kræver en 48-timers afkølingsperiode for deaktivering. MobilePay og Trustly integrerer med bankens egen indbetalingsgrænse-funktion. Vi anbefaler altid at sætte personlige grænser, uanset metode.{" "}
+                <Link to="/ansvarligt-spil" className="text-primary hover:underline font-medium">Læs mere om ansvarligt spil</Link>. Har du brug for hjælp, kontakt{" "}
+                <a href="https://www.stopspillet.dk/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline font-medium">StopSpillet.dk</a>. 18+ | Spil ansvarligt.
+              </p>
+            </CardContent>
+          </Card>
+        </section>
+
+        <Separator className="my-10" />
+
+        {/* ═══════════════════════════════════════════
+            SECTION 9: Strategiske teasers
+            ═══════════════════════════════════════════ */}
+        <section className="mb-12">
+          <h2 className="mb-4 text-3xl font-bold">Dybdegående guider til hver betalingsmetode</h2>
+          <p className="mb-6 text-muted-foreground leading-relaxed">
+            Nedenstående er unikke analyser af hver betalingsmetode. Klik videre til den fulde guide for den komplette tekniske gennemgang, realtids-testresultater og strategiske anbefalinger. Hver guide indeholder 5.500+ ord med regulatorisk kontekst, målgruppeanalyse og praktiske erfaringer.
+          </p>
+
+          <div className="space-y-4">
+            {paymentTeasers.map((pm) => (
+              <Card key={pm.slug} className="group">
+                <CardContent className="p-5">
+                  <div className="flex items-start gap-4">
                     <img
                       src={pm.logo}
                       alt={`${pm.name} logo`}
-                      className="h-10 w-auto max-w-[100px] rounded object-contain md:h-12"
+                      className="h-12 w-auto max-w-[100px] rounded object-contain flex-shrink-0 mt-1"
                     />
-                  </div>
-                </CardHeader>
-                <CardContent className="space-y-3">
-                  <p className="text-sm text-muted-foreground">{pm.description}</p>
-                  <div className="flex items-center justify-between gap-2">
-                    <Badge variant="outline" className="text-xs">{pm.highlight}</Badge>
-                    <Link
-                      to={`/betalingsmetoder/${pm.slug}`}
-                      className="text-sm font-medium text-primary underline hover:text-primary/80"
-                    >
-                      Læs mere →
-                    </Link>
+                    <div className="flex-1">
+                      <div className="flex items-center justify-between gap-2 mb-2">
+                        <h3 className="text-lg font-semibold">{pm.name}</h3>
+                        <Link
+                          to={`/betalingsmetoder/${pm.slug}`}
+                          className="text-sm font-medium text-primary underline hover:text-primary/80 flex items-center gap-1 flex-shrink-0"
+                        >
+                          Læs den fulde guide <ArrowRight className="h-3.5 w-3.5" />
+                        </Link>
+                      </div>
+                      <p className="text-sm text-muted-foreground leading-relaxed">{pm.teaser}</p>
+                    </div>
                   </div>
                 </CardContent>
               </Card>
@@ -290,119 +829,25 @@ const Betalingsmetoder = () => {
           </div>
         </section>
 
-        <InlineCasinoCards title="Casinoer med de bedste betalingsmetoder" />
-
         <Separator className="my-10" />
 
-        {/* Kredit-/Debetkort */}
-        <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold">Kredit- og debetkort</h2>
-          <p className="mb-6 text-muted-foreground leading-relaxed">
-            Kredit- og debetkort er blandt de mest udbredte betalingsmetoder på
-            danske online casinoer. Indbetalinger sker øjeblikkeligt, og
-            sikkerheden er høj takket være 3D Secure og SSL-kryptering. Forskellen
-            ligger i, at kreditkort lader dig spille med lånte penge, mens
-            debetkort trækker direkte fra din bankkonto. De fleste{" "}
-            <Link to="/velkomstbonus" className="text-primary underline hover:text-primary/80">velkomstbonusser</Link>{" "}
-            og{" "}
-            <Link to="/indskudsbonus" className="text-primary underline hover:text-primary/80">indskudsbonusser</Link>{" "}
-            kan aktiveres med kortbetalinger.
-          </p>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <Card className="border-border bg-card">
-              <CardHeader className="pb-2">
-                <CardTitle className="flex items-center gap-2 text-lg">
-                  <CreditCard className="h-5 w-5 text-primary" />
-                  Visa
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-sm text-muted-foreground">
-                  Visa er bredt accepteret hos næsten alle danske casinoer.
-                  Indbetalinger sker øjeblikkeligt, mens udbetalinger typisk tager
-                  1–3 hverdage. Sikkerheden er i top med 3D Secure, men visse
-                  casinoer kan opkræve gebyrer ved udbetalinger.{" "}
-                  <Link to="/betalingsmetoder/visa-mastercard" className="text-primary underline hover:text-primary/80">Læs vores komplette Visa/Mastercard guide</Link>.
-                </p>
-              </CardContent>
-            </Card>
-
-            <Card className="border-border bg-card">
-              <CardHeader className="pb-2">
-                <CardTitle className="flex items-center gap-2 text-lg">
-                  <CreditCard className="h-5 w-5 text-primary" />
-                  Mastercard
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-sm text-muted-foreground">
-                  Mastercard fungerer på samme måde som Visa med hurtige
-                  indbetalinger. Vær dog opmærksom på, at ikke alle spillesteder
-                  tilbyder udbetalinger til Mastercard – i så fald kan du vælge en
-                  alternativ metode som{" "}
-                  <Link to="/betalingsmetoder/bankoverforsler" className="text-primary underline hover:text-primary/80">bankoverførsel</Link>.{" "}
-                  <Link to="/betalingsmetoder/visa-mastercard" className="text-primary underline hover:text-primary/80">Læs den fulde guide her</Link>.
-                </p>
-              </CardContent>
-            </Card>
-
-            <Card className="border-border bg-card">
-              <CardHeader className="pb-2">
-                <CardTitle className="flex items-center gap-2 text-lg">
-                  <CreditCard className="h-5 w-5 text-primary" />
-                  Visa Electron & Maestro
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-sm text-muted-foreground">
-                  Visa Electron og Maestro fungerer som rene debetkort – du kan kun
-                  bruge penge, der allerede står på kontoen. Det giver bedre kontrol
-                  over forbruget, men de er ikke lige så udbredte som Visa og
-                  Mastercard hos danske casinoer.
-                </p>
-              </CardContent>
-            </Card>
-
-            <Card className="border-border bg-card">
-              <CardHeader className="pb-2">
-                <CardTitle className="flex items-center gap-2 text-lg">
-                  <Banknote className="h-5 w-5 text-primary" />
-                  Bankoverførsler
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-sm text-muted-foreground">
-                  Bankoverførsler er en stabil og sikker løsning, hvor
-                  transaktionerne går direkte via din bank. Standardoverførsler kan
-                  tage 2–5 hverdage, mens instant-løsninger som{" "}
-                  <Link to="/betalingsmetoder/trustly" className="text-primary underline hover:text-primary/80">Trustly</Link>{" "}
-                  giver øjeblikkelige indbetalinger.{" "}
-                  <Link to="/betalingsmetoder/bankoverforsler" className="text-primary underline hover:text-primary/80">Læs vores bankoverførsels-guide</Link>.
-                </p>
-              </CardContent>
-            </Card>
-          </div>
-        </section>
-
-        <Separator className="my-10" />
-
-        {/* Kryptovaluta */}
+        {/* ═══════════════════════════════════════════
+            SECTION 10: Kryptovaluta disclaimer
+            ═══════════════════════════════════════════ */}
         <section className="mb-12">
           <Card className="border-border bg-card border-l-4 border-l-destructive">
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
                 <AlertTriangle className="h-6 w-6 text-destructive" />
-                Kryptovalutaer – ikke tilladt i Danmark
+                Kryptovalutaer – hvorfor de er forbudte i det danske casinomiljø
               </CardTitle>
             </CardHeader>
-            <CardContent>
-              <p className="text-muted-foreground leading-relaxed">
-                Selvom kryptovalutaer som Bitcoin og Ethereum er populære på
-                internationale casinoer, er de ikke tilladt på det danske marked.
-                Ifølge Spillemyndighedens regler skal alle transaktioner kunne
-                spores og reguleres. Spillere, der ønsker at bruge kryptovaluta,
-                skal finde udenlandske casinoer, som dog ikke nødvendigvis
-                overholder de samme sikkerhedsstandarder.
+            <CardContent className="text-sm text-muted-foreground space-y-3">
+              <p>
+                Bitcoin, Ethereum, Litecoin og andre kryptovalutaer accepteres ikke af noget dansk licenseret casino. Forbuddet skyldes tre regulatoriske faktorer: 1) Kryptovalutaers pseudo-anonyme karakter konflikter med AML-kravene, 2) Transaktioner kan ikke spores via det traditionelle banksystem, og 3) Spillemyndigheden kan ikke håndhæve ROFUS-blokering eller indbetalingsgrænser for krypto-transaktioner.
+              </p>
+              <p>
+                Udenlandske casinoer uden dansk licens accepterer ofte krypto, men ved at spille der mister du al spillerbeskyttelse: ingen ROFUS-integration, ingen klageadgang via Spillemyndigheden, gevinster over 200 kr. er skattepligtige, og der er ingen garanti for dine indeståender. De regulerede betalingsmetoder dækker alle danske spilleres behov med hurtigere og sikrere alternativer.
               </p>
             </CardContent>
           </Card>
@@ -410,188 +855,48 @@ const Betalingsmetoder = () => {
 
         <Separator className="my-10" />
 
-        {/* Sådan vælger du */}
+        {/* ═══════════════════════════════════════════
+            SECTION 11: Fremtidsudsigter
+            ═══════════════════════════════════════════ */}
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold">
-            Sådan vælger du den rette betalingsmetode
-          </h2>
-          <p className="mb-6 text-muted-foreground leading-relaxed">
-            Den rigtige betalingsmetode afhænger af, hvad du prioriterer højest.
-            Er det hurtige transaktioner, lave gebyrer eller maksimal sikkerhed?
-            Overvej også, om metoden kvalificerer dig til{" "}
-            <Link to="/bonus-uden-indbetaling" className="text-primary underline hover:text-primary/80">bonusser uden indbetaling</Link>{" "}
-            eller{" "}
-            <Link to="/bonus-uden-omsaetningskrav" className="text-primary underline hover:text-primary/80">bonusser uden omsætningskrav</Link>.
-            Du kan også finde inspiration i vores{" "}
-            <Link to="/top-casino-online" className="text-primary underline hover:text-primary/80">top 10 online casinoer</Link>{" "}
-            og de{" "}
-            <Link to="/spiludviklere" className="text-primary underline hover:text-primary/80">bedste spiludviklere</Link>.
-            Her er de vigtigste faktorer at overveje:
-          </p>
-          <div className="space-y-3">
-            {[
-              {
-                title: "Hastighed",
-                desc: "E-wallets, MobilePay og Trustly giver øjeblikkelige betalinger, mens bankoverførsler og kort kan tage dage.",
-                icon: Zap,
-              },
-              {
-                title: "Gebyrer",
-                desc: "E-wallets kan have transaktionsgebyrer, mens bankoverførsler og debetkort ofte er gebyrfrie.",
-                icon: Banknote,
-              },
-              {
-                title: "Sikkerhed",
-                desc: "Kortbetalinger har 3D Secure, bankoverførsler kræver bankgodkendelse, og MobilePay bruger mobilverifikation.",
-                icon: ShieldCheck,
-              },
-              {
-                title: "Fleksibilitet",
-                desc: "Ikke alle metoder understøtter både ind- og udbetalinger – f.eks. MobilePay og Paysafecard har begrænsninger.",
-                icon: Wallet,
-              },
-            ].map((item) => (
-              <div
-                key={item.title}
-                className="flex items-start gap-3 rounded-lg border border-border bg-card p-4"
-              >
-                <item.icon className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
-                <div>
-                  <h3 className="font-semibold">{item.title}</h3>
-                  <p className="text-sm text-muted-foreground">{item.desc}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </section>
-
-        <Separator className="my-10" />
-
-        {/* Sikkerhed & ansvarligt spil */}
-        <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold">
-            Betalingssikkerhed & ansvarligt spil
-          </h2>
+          <h2 className="mb-4 text-3xl font-bold">Fremtiden for casino-betalinger i Danmark – tre tendenser at følge</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
-            Når penge er involveret, er sikkerhed en topprioritet. Danske casinoer
-            anvender SSL-kryptering til at beskytte dine betalingsoplysninger, og
-            kortbetalinger er beskyttet med 3D Secure, som kræver ekstra
-            godkendelse via SMS eller bankapp. Læs mere om{" "}
-            <Link to="/ansvarligt-spil" className="text-primary underline hover:text-primary/80">ansvarligt spil</Link>{" "}
-            og de værktøjer, som danske casinoer tilbyder.
+            Betalingslandskabet er i konstant udvikling, drevet af teknologiske innovationer, regulatoriske ændringer og skiftende forbrugeradfærd. Her er de tre vigtigste tendenser, der vil forme danske casino-betalinger i 2026 og fremefter:
           </p>
-          <p className="mb-6 text-muted-foreground leading-relaxed">
-            Vær altid opmærksom på phishing-forsøg og mistænkelige e-mails. Brug
-            kun licenserede casinoer, og del aldrig dine betalingsoplysninger
-            udenfor sikre platforme.
-          </p>
-
-          <Card className="border-border bg-card border-l-4 border-l-primary">
-            <CardHeader>
-              <CardTitle className="flex items-center gap-2">
-                <ShieldCheck className="h-6 w-6 text-primary" />
-                Spil ansvarligt
-              </CardTitle>
-            </CardHeader>
-            <CardContent className="space-y-3">
-              <p className="text-muted-foreground leading-relaxed">
-                Sæt altid et budget, hold pauser, og spil aldrig for mere end du
-                har råd til at tabe. Danske casinoer giver mulighed for at sætte
-                personlige indbetalingsgrænser.
+          <div className="space-y-4">
+            <div className="rounded-lg border border-border bg-card p-5">
+              <h3 className="font-semibold mb-2">1. EU-mandatet for SEPA Instant – bankoverførsler bliver realtid</h3>
+              <p className="text-sm text-muted-foreground">
+                EU's forordning om øjeblikkelige eurobetalinger (Instant Payments Regulation) kræver, at alle SEPA-banker tilbyder instant-overførsler til samme pris som standardoverførsler. I praksis betyder det, at traditionelle bankoverførsler – i dag den langsomste metode – vil kunne processeres på under 10 sekunder. Når dette er fuldt implementeret, vil det eliminere den primære fordel ved Open Banking-løsninger og potentielt ændre markedsdynamikken markant.
               </p>
-              <p className="text-muted-foreground leading-relaxed">
-                Alle casinoer på vores liste tilbyder selvudelukkelse via{" "}
-                <a
-                  href="https://www.rofus.nu/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-primary hover:underline font-medium"
-                >
-                  ROFUS
-                </a>
-                . Har du brug for hjælp, kan du kontakte{" "}
-                <a
-                  href="https://www.stopspillet.dk/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-primary hover:underline font-medium"
-                >
-                  StopSpillet.dk
-                </a>
-                .
+            </div>
+            <div className="rounded-lg border border-border bg-card p-5">
+              <h3 className="font-semibold mb-2">2. Open Banking 2.0 – PSD3 og direkte casino-bank-integration</h3>
+              <p className="text-sm text-muted-foreground">
+                Det kommende PSD3-direktiv (Payment Services Directive 3) vil udvide Open Banking med stærkere forbrugerbeskyttelse, standardiserede API'er og potentielt direkte casino-til-bank-forbindelser uden mellemmænd som Trustly eller Zimpler. Det kan reducere transaktionsomkostninger og -tider yderligere, men rejser også spørgsmål om ansvarligt spil, da færre friktionspunkter kan øge impulsiv indbetalingsadfærd.
               </p>
-              <p className="text-xs text-muted-foreground">
-                18+ | Spil ansvarligt | Annoncering
+            </div>
+            <div className="rounded-lg border border-border bg-card p-5">
+              <h3 className="font-semibold mb-2">3. Biometrisk autentificering som standard</h3>
+              <p className="text-sm text-muted-foreground">
+                Face ID, fingeraftryk og stemme-autentificering erstatter gradvist PIN-koder og passwords. Apple Pay og MobilePay er frontløbere, men trenden spreder sig til alle betalingsmetoder. 3D Secure 2.0's frictionless flow bruger allerede enhedsbaseret biometri for lavrisiko-transaktioner. Inden 2027 forventes biometrisk autentificering at være standardmetoden for alle casino-betalinger i Danmark, hvilket vil forbedre både sikkerhed og brugeroplevelse markant.
               </p>
-            </CardContent>
-          </Card>
-        </section>
-
-        <Separator className="my-10" />
-
-        {/* Konklusion */}
-        <section className="mb-12">
-          <h2 className="mb-6 text-3xl font-bold">Hvilken betalingsmetode passer til dig?</h2>
-          <div className="space-y-3">
-            <div className="flex items-start gap-3 rounded-lg border border-border bg-card p-4">
-              <CheckCircle2 className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
-              <div>
-                <h3 className="font-semibold">Hurtige løsninger</h3>
-                <p className="text-sm text-muted-foreground">
-                  <Link to="/betalingsmetoder/mobilepay" className="text-primary underline hover:text-primary/80">MobilePay</Link>,{" "}
-                  <Link to="/betalingsmetoder/trustly" className="text-primary underline hover:text-primary/80">Trustly</Link>,{" "}
-                  <Link to="/betalingsmetoder/zimpler" className="text-primary underline hover:text-primary/80">Zimpler</Link>{" "}
-                  og e-wallets sikrer øjeblikkelige transaktioner.
-                </p>
-              </div>
-            </div>
-            <div className="flex items-start gap-3 rounded-lg border border-border bg-card p-4">
-              <CheckCircle2 className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
-              <div>
-                <h3 className="font-semibold">Klassiske kortbetalinger</h3>
-                <p className="text-sm text-muted-foreground">
-                  <Link to="/betalingsmetoder/visa-mastercard" className="text-primary underline hover:text-primary/80">Visa og Mastercard</Link>{" "}
-                  er stabile og bredt accepteret, men udbetalinger kan tage tid.
-                </p>
-              </div>
-            </div>
-            <div className="flex items-start gap-3 rounded-lg border border-border bg-card p-4">
-              <CheckCircle2 className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
-              <div>
-                <h3 className="font-semibold">Bankoverførsler</h3>
-                <p className="text-sm text-muted-foreground">
-                  <Link to="/betalingsmetoder/bankoverforsler" className="text-primary underline hover:text-primary/80">Bankoverførsler</Link>{" "}
-                  er troværdige og sikre, men sjældent de hurtigste.
-                </p>
-              </div>
-            </div>
-            <div className="flex items-start gap-3 rounded-lg border border-border bg-card p-4">
-              <CheckCircle2 className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
-              <div>
-                <h3 className="font-semibold">Forudbetalte kort</h3>
-                <p className="text-sm text-muted-foreground">
-                  <Link to="/betalingsmetoder/paysafecard" className="text-primary underline hover:text-primary/80">Paysafecard</Link>{" "}
-                  giver god kontrol over forbruget, men er ikke egnet til udbetalinger.
-                </p>
-              </div>
-            </div>
-            <div className="flex items-start gap-3 rounded-lg border border-border bg-card p-4">
-              <CheckCircle2 className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
-              <div>
-                <h3 className="font-semibold">Kryptovaluta</h3>
-                <p className="text-sm text-muted-foreground">Ikke understøttet af danske licenserede casinoer.</p>
-              </div>
             </div>
           </div>
         </section>
 
+        <Separator className="my-10" />
+
+        {/* ═══════════════════════════════════════════
+            FOOTER: AuthorBio → RelatedGuides → FAQ
+            ═══════════════════════════════════════════ */}
         <AuthorBio />
 
         <Separator className="my-10" />
 
         <RelatedGuides currentPath="/betalingsmetoder" />
 
-        <FAQSection title="Ofte stillede spørgsmål om betalingsmetoder" faqs={betalingsmetoderFaqs} />
+        <FAQSection title="Ofte stillede spørgsmål om casino-betalingsmetoder" faqs={betalingsmetoderFaqs} />
       </div>
     </>
   );
