@@ -30,6 +30,8 @@ import {
   Smartphone,
   Headphones,
   TrendingUp,
+  Target,
+  BarChart3,
 } from "lucide-react";
 
 const linkClass = "text-primary underline hover:text-primary/80";
@@ -104,7 +106,7 @@ const BetanoAnmeldelse = () => {
       "Kritisk anmeldelse af Betano i Danmark. Kaizen Gaming-ejet platform med casino, sportsbook og avanceret teknologi testet i detaljer.",
     url: "https://casinoaftaler.dk/casino-anmeldelser/betano",
     datePublished: "2026-02-15",
-    dateModified: "2026-02-17",
+    dateModified: "2026-02-18",
     authorName: "Jonas",
     authorUrl: "https://casinoaftaler.dk/forfatter/jonas",
   });
@@ -161,7 +163,7 @@ const BetanoAnmeldelse = () => {
       </section>
 
       <div className="container py-8 md:py-12">
-        <AuthorMetaBar author="jonas" date="17-02-2026" readTime="19 Min." />
+        <AuthorMetaBar author="jonas" date="18-02-2026" readTime="34 Min." />
         <CasinoReviewHero slug="betano" casinoName="Betano" />
 
         {/* Hurtige fakta */}
@@ -470,33 +472,81 @@ const BetanoAnmeldelse = () => {
 
         <Separator className="my-10" />
 
-        {/* Hvem passer Betano til / hvem bør undgå */}
+        {/* Kaizen Gaming Corporate Deep-Dive */}
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold">Hvem passer Betano til – og hvem gør det ikke?</h2>
-          <p className="mb-4 text-muted-foreground leading-relaxed">
-            Betano passer til spillere, der søger en moderne platform med både casino og sportsbetting, og som prioriterer mobiloplevelse og teknologisk kvalitet. Det er et godt valg for spillere, der vil have en aktiv sportsbook med Bet Builder-funktionalitet, kombineret med et kompetent casino-katalog. Yngre, teknologivante spillere vil typisk føle sig hjemme på Betano – platformen føles frisk og aktuel, ikke støvet.
-          </p>
-          <p className="mb-4 text-muted-foreground leading-relaxed">
-            <strong>Hvem bør vælge anderledes?</strong> Dedikerede casino-spillere, der primært spiller slots og live casino, får mere dybde hos <Link to="/casino-anmeldelser/leovegas" className={linkClass}>LeoVegas</Link> eller <Link to="/casino-anmeldelser/videoslots" className={linkClass}>Videoslots</Link>. Spillere, der ønsker de absolut bredeste odds-markeder og live streaming, bør se på bet365. Og spillere, for hvem dansk kundeservice døgnet rundt er afgørende, bør overveje <Link to="/casino-anmeldelser/danske-spil" className={linkClass}>Danske Spil</Link>, der tilbyder netop det.
-          </p>
-          <p className="text-muted-foreground leading-relaxed">
-            Betano er heller ikke det oplagte valg for high rollers, der forventer et dedikeret VIP-program med personlig kontaktperson og eksklusive tilbud. Betanos VIP-struktur i Danmark er stadig under modning, og sammenlignet med etablerede VIP-programmer hos Unibet og bet365 er der et mærkbart gap. Det kan ændre sig over tid – Kaizen Gaming investerer aggressivt i vækst – men her og nu er det en begrænsning.
-          </p>
+          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><Globe className="h-7 w-7 text-primary" />Kaizen Gaming – den græske tech-disruptor bag Betano</h2>
+          <p className="mb-4 text-muted-foreground leading-relaxed">For at forstå Betanos potentiale og begrænsninger er det nødvendigt at forstå moderselskabet Kaizen Gaming. Grundlagt i 2012 i Athen af Georgios Daskalakis har Kaizen gennemgået en af de mest imponerende vækstrejser i europæisk online gambling. Fra en lokal græsk bookmaker til en multi-markeds operatør med licenser i 17+ lande, over 2.000 ansatte og en estimeret omsætning på €1+ mia. – alt opnået på godt et årti uden børsnotering og uden opkøb af eksisterende brands.</p>
+          <p className="mb-4 text-muted-foreground leading-relaxed">CVC Capital Partners – en af Europas største private equity-fonde med €185+ mia. under forvaltning – investerede i Kaizen Gaming i 2022. CVC's portefølje inkluderer brands som Formula 1, La Liga (den spanske fodboldliga), Tipico og Sisal. Investeringen validerer Kaizen's forretningsmodel og giver adgang til kapital, globale netværk og strategisk rådgivning. For danske spillere er den praktiske konsekvens, at Betano har seriøs finansiering bag sig – dette er ikke en startup der risikerer at lukke, det er en operatør med kapital til at investere i vækst i årtier.</p>
+          <p className="mb-4 text-muted-foreground leading-relaxed"><strong>Teknologi som DNA:</strong> Kaizen Gaming er fundamentalt et teknologiselskab der tilfældigvis opererer inden for gambling. Hele platformen – fra odds-engine til casino-frontend, fra betalingsinfrastruktur til risk management – er udviklet internt. Det er en sjældenhed i en branche, hvor de fleste operatører kører på tredjepartsløsninger fra Kambi (odds), EveryMatrix (casino-aggregation) eller SBTech (sportsbook). Kaizens in-house tilgang giver en fleksibilitet i produktudvikling, som de fleste konkurrenter ikke kan matche.</p>
+          <p className="text-muted-foreground leading-relaxed"><strong>Vækststrategi:</strong> Kaizen fokuserer på regulerede markeder med høj vækstpotentiale. Portugal, Rumænien, Brasilien, Nigeria og nu Skandinavien er kernemarkeder. I Brasilien er Betano allerede en af de tre største operatører – en position de opnåede på under tre år. Denne evne til hurtig markedspenetration er Kaizens stærkeste kort.</p>
         </section>
 
         <Separator className="my-10" />
 
-        {/* Sammenligning */}
+        {/* EV Deep-Dive */}
+        <section className="mb-12">
+          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><TrendingUp className="h-7 w-7 text-primary" />Avanceret EV-analyse: Bonusværdi og sportsvæddemål</h2>
+          <p className="mb-4 text-muted-foreground leading-relaxed">Vi har beregnet Expected Value (EV) på tværs af Betanos casino-bonus, sportsvæddemål og løbende kampagner for at give et matematisk funderet billede af platformens reelle værdi.</p>
+          <Card className="border-border bg-card mb-6">
+            <CardHeader><CardTitle className="text-lg">Casino-velkomstbonus EV (maks. indbetaling)</CardTitle></CardHeader>
+            <CardContent className="space-y-2 text-sm text-muted-foreground">
+              <p><strong>Indbetaling:</strong> 2.000 kr. → Matchbonus: 2.000 kr.</p>
+              <p><strong>Omsætningskrav:</strong> 10x (d+b) = (2.000 + 2.000) × 10 = 40.000 kr.</p>
+              <p><strong>Forventet tab under omsætning:</strong> 40.000 × 0,04 = 1.600 kr.</p>
+              <p><strong>Bonusværdi:</strong> 2.000 − 1.600 = <strong className="text-primary">+400 kr. EV</strong></p>
+              <p className="text-xs pt-2 italic">Moderat positiv EV. Sammenlignet med <Link to="/casino-anmeldelser/leovegas" className={linkClass}>LeoVegas</Link> (+510 kr.) og <Link to="/casino-anmeldelser/mr-green" className={linkClass}>Mr Green</Link> (+600 kr.) er Betanos bonus fair men ikke brancheførende.</p>
+            </CardContent>
+          </Card>
+          <Card className="border-border bg-card mb-6">
+            <CardHeader><CardTitle className="text-lg">Tre spillerprofiler – Månedlig EV hos Betano</CardTitle></CardHeader>
+            <CardContent className="space-y-4 text-sm text-muted-foreground">
+              <div>
+                <p className="font-semibold text-foreground mb-1">Casual casino-spiller (3-4 timer/uge, budget 500 kr./md.)</p>
+                <p>Forventet tab: ~80-120 kr./md. | Kampagne-EV: ~30-50 kr./md.</p>
+                <p>Estimeret netto-omkostning: <strong>~50-90 kr./md.</strong></p>
+              </div>
+              <div>
+                <p className="font-semibold text-foreground mb-1">Sport+casino kombinationsspiller (daglige bets + casino 2x/uge)</p>
+                <p>Sport-tab: ~500-900 kr./md. | Casino-tab: ~200-400 kr./md. | Kampagne-EV: ~200-300 kr./md.</p>
+                <p>Estimeret netto-omkostning: <strong>~500-1.000 kr./md.</strong></p>
+              </div>
+              <div>
+                <p className="font-semibold text-foreground mb-1">Mobil-first spiller (primært app, sport + live casino)</p>
+                <p>Live casino-tab: ~400-600 kr./md. | Streaming-værdi: ~100-150 kr./md.</p>
+                <p>Estimeret netto-omkostning: <strong>~300-550 kr./md.</strong></p>
+              </div>
+            </CardContent>
+          </Card>
+          <p className="text-muted-foreground leading-relaxed"><strong>Samlet vurdering:</strong> Betanos EV-profil er stærkest for den mobile kombinationsspiller, der bruger både sport og casino. Odds-marginen er konkurrencedygtig uden at være brancheførende, og casino-bonussen er positiv EV. Den reelle differentieringsfaktor er mobiloplevelsen.</p>
+        </section>
+
+        <Separator className="my-10" />
+
+        {/* Negative Segmentation */}
+        <section className="mb-12">
+          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><Target className="h-7 w-7 text-primary" />Hvem bør undgå Betano?</h2>
+          <p className="mb-4 text-muted-foreground leading-relaxed"><strong>Dedikerede casino-spillere:</strong> <Link to="/casino-anmeldelser/leovegas" className={linkClass}>LeoVegas</Link> (2.500+ spil, eksklusive live borde), <Link to="/casino-anmeldelser/videoslots" className={linkClass}>Videoslots</Link> (4.000+ titler) og <Link to="/casino-anmeldelser/mr-vegas" className={linkClass}>Mr Vegas</Link> giver en dybere rendyrket casino-oplevelse.</p>
+          <p className="mb-4 text-muted-foreground leading-relaxed"><strong>Seriøse bettors der jager laveste marginer:</strong> <Link to="/casino-anmeldelser/bet365" className={linkClass}>bet365</Link> har konsekvent 0,5-1,5 procentpoint lavere marginer – over et år sparer en aktiv bettor ~1.800 kr.</p>
+          <p className="mb-4 text-muted-foreground leading-relaxed"><strong>High rollers og VIP-spillere:</strong> Betanos VIP-program er under modning. <Link to="/casino-anmeldelser/leovegas" className={linkClass}>LeoVegas</Link>' MGM-VIP, <Link to="/casino-anmeldelser/unibet" className={linkClass}>Unibets</Link> loyalitetsprogram eller bet365's high-roller services er klart stærkere.</p>
+          <p className="text-muted-foreground leading-relaxed"><strong>Poker-spillere:</strong> Betano har ingen poker. <Link to="/casino-anmeldelser/pokerstars" className={linkClass}>PokerStars</Link> eller <Link to="/casino-anmeldelser/unibet" className={linkClass}>Unibet Poker</Link> er de eneste reelle alternativer med dansk licens.</p>
+        </section>
+
+        <Separator className="my-10" />
+
+        {/* Sammenligning – udvidet */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold">Betano sammenlignet med konkurrenterne</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
-            <strong>Mod Unibet:</strong> Begge tilbyder casino og sport under én konto, men de repræsenterer to forskellige filosofier. Unibet er den modne allrounder med 25+ års erfaring, et aktivt pokerrum og dyb brand-tillid i Norden. Betano er den unge udfordrer med hurtigere teknologi og en mere poleret mobiloplevelse. På odds er de tæt på hinanden; på casino-dybde vinder Unibet; på mobilapp-kvalitet vinder Betano. For spillere, der prioriterer poker, er valget enkelt – Unibet, da Betano ikke tilbyder det.
+            <strong>Mod Unibet:</strong> Unibet er den modne allrounder med 25+ års erfaring og pokerrum. Betano er den unge udfordrer med hurtigere teknologi og bedre mobiloplevelse. På odds er de tæt på hinanden; på mobilapp vinder Betano.
           </p>
           <p className="mb-4 text-muted-foreground leading-relaxed">
-            <strong>Mod bet365:</strong> Her er det David mod Goliath. bet365 har bredere odds-markeder, bedre live streaming og 20+ års opbygget infrastruktur. Betano har den bedre mobiloplevelse og dansktalende kundeservice. På casino er de tæt på hinanden i kvalitet, men bet365 har det større katalog. For den gennemsnitlige danske spiller, der ønsker sport og casino med dansk support, er Betano faktisk et bedre dagligdagsvalg end bet365 – men for den seriøse bettor er bet365 stadig standard.
+            <strong>Mod bet365:</strong> bet365 har bredere odds-markeder, bedre live streaming og 20+ års infrastruktur. Betano har bedre mobiloplevelse og dansk kundeservice. For daglige spillere med mobilfokus kan Betano faktisk være det bedre valg.
+          </p>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            <strong>Mod LeoVegas:</strong> LeoVegas er det bedste rene casino; Betano tilbyder sport oven i. Udelukkende casino → LeoVegas. Casino + sport i én app → Betano.
           </p>
           <p className="text-muted-foreground leading-relaxed">
-            <strong>Mod LeoVegas:</strong> Forskellige produkter til forskellige behov. LeoVegas er et rent casino med den bedste mobilcasino-oplevelse og et dybere live casino-katalog. Betano tilbyder sport oven i – en dimension, LeoVegas ikke har. Hvis du udelukkende spiller casino, vælg LeoVegas. Hvis du ønsker casino og sport i én app, vælg Betano. LeoVegas' velkomstbonus er typisk mere generøs, men Betanos løbende kampagner for sport kompenserer delvist.
+            <strong>Mod <Link to="/casino-anmeldelser/nordicbet" className={linkClass}>NordicBet</Link>:</strong> NordicBet (Betsson Group) har dybere nordisk erfaring og VIP-program. Betano vinder på mobilteknologi. For den teknologivante spiller → Betano; for den traditionelle nordiske sportsspiller → NordicBet.
           </p>
         </section>
 
