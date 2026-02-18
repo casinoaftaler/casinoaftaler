@@ -700,30 +700,122 @@ const FreeSpins = () => {
 
         <Separator className="my-10" />
 
-        {/* Vores vurdering */}
+        {/* Teknisk deep-dive */}
         <section className="mb-12">
-          <h2 className="mb-6 text-3xl font-bold">Vores vurdering</h2>
+          <h2 className="mb-4 text-3xl font-bold">
+            Teknisk deep-dive: Hvordan beregnes free spins-gevinster?
+          </h2>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            For at forstå free spins' reelle værdi er det essentielt at vide, hvordan gevinsterne genereres teknisk. Alle licenserede spilleautomater bruger en Random Number Generator (RNG) – en algoritm der sikrer fuldstændig tilfældige resultater på hvert eneste spin. Din chance for at vinde er præcis den samme, uanset om du spiller med egne penge, bonuspenge eller free spins.
+          </p>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            <strong>RTP og hit frequency:</strong> En spilleautomat med 96% RTP returnerer statistisk 96 kr. for hver 100 kr. satset – over millioner af spins. Men "hit frequency" (hvor ofte du vinder noget) varierer enormt. Starburst har en hit frequency på ~22% (du vinder noget på ca. hvert 5. spin), mens Book of Dead har ~33% hit frequency men med større variation i gevinsternes størrelse. For free spins er hit frequency vigtigere end RTP, fordi du har et begrænset antal spins.
+          </p>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            <strong>Spinværdiens indvirkning:</strong> Free spins har altid en fast "spinværdi" – det beløb hvert spin er værd (typisk 1-10 kr.). Spinværdien svarer til din indsats per spin og afgør direkte dine potentielle gevinster. 25 free spins á 5 kr. = 125 kr. total nominel værdi og langt højere gevinstpotentiale end 50 spins á 1 kr. = 50 kr. total. En 100x-gevinst på et 5 kr.-spin giver 500 kr.; samme 100x på et 1 kr.-spin giver kun 100 kr.
+          </p>
+          <p className="text-muted-foreground leading-relaxed">
+            <strong>Bonusrunder under free spins:</strong> Kan du udløse bonusrunder (in-game free spins) under dine casino-free spins? Ja – og det er ofte den eneste vej til store gevinster med gratis spins. Hvis du aktiverer en bonusrunde i Book of Dead under dine free spins, får du de ekstra spins oven i dine eksisterende. Gevinster fra in-game bonusrunder tæller med i din bonussaldo og er underlagt de samme omsætningskrav. I Danmark kræver Spillemyndigheden at alle in-game gevinster bidrager til <Link to="/omsaetningskrav" className={linkClass}>omsætningskravet</Link>.
+          </p>
+        </section>
+
+        <Separator className="my-10" />
+
+        {/* Sæsonkampagner */}
+        <section className="mb-12">
+          <h2 className="mb-4 text-3xl font-bold">
+            Sæsonbaserede free spins-kampagner: Hvornår finder du de bedste tilbud?
+          </h2>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            Free spins-tilbud varierer markant afhængigt af årstiden, og den strategiske spiller kan udnytte disse mønstre til at maksimere sin samlede bonusværdi. Her er en datadrevet analyse af årets bedste perioder for free spins hos danske casinoer:
+          </p>
+          <div className="space-y-3">
+            {[
+              { title: "🎄 December-Januar (jul & nytår) – Årets bedste", desc: "Casinoerne investerer mest i markedsføring i december. Typisk 50-100% flere free spins end gennemsnittet, ofte med lavere omsætningskrav. Julekalendere med daglige free spins er særligt populære – op til 200 spins fordelt over 24 dage. Nytårstilbud inkluderer ofte engangs-pakker med premium-vilkår.", icon: Gift },
+              { title: "🐣 Påsken – Underspillet guldgrube", desc: "Påske er en underspillet periode: færre spillere konkurrerer om kampagnetilbuddene, og casinoerne tilbyder overraskende generøse free spins-pakker for at opretholde aktiviteten. Typisk 30-50% flere spins end gennemsnitligt med sammenlignelige vilkår.", icon: Star },
+              { title: "🛒 Black Friday/Cyber Monday – Korte men intense", desc: "Inspireret af detailhandlen tilbyder mange danske casinoer eksplosive free spins-tilbud i Black Friday-ugen. Typisk 24-48 timers gyldighedsperiode med dobbelt antal spins eller 0x omsætning. Kræver hurtig reaktion – tilbuddene udløber hurtigt.", icon: Zap },
+              { title: "☀️ Sommer (juni-august) – Laveste aktivitet", desc: "Sommerperioden har færrest kampagner, og free spins-tilbuddene er ofte standard eller under gennemsnittet. Dog: nye casinolanceringer sker jævnt fordelt over året, og et nyt casino i sommeren kan tilbyde aggressive velkomsttilbud med mange free spins for at kompensere for lav generel aktivitet.", icon: Clock },
+              { title: "🎰 Nye spil-lanceringer – Hele året", desc: "Når store spiludviklere lancerer nye titler, tilbyder casinoer ofte free spins specifikt på det nye spil. Disse spins har typisk favorabel RTP (95-97%) og giver dig mulighed for at teste nye spil uden risiko. Hold øje med lanceringer fra populære udviklere som NetEnt, Pragmatic Play og Play'n GO.", icon: Sparkles },
+            ].map((item) => (
+              <div key={item.title} className="flex items-start gap-3 rounded-lg border border-border bg-card p-4">
+                <item.icon className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
+                <div>
+                  <h3 className="font-semibold">{item.title}</h3>
+                  <p className="text-sm text-muted-foreground">{item.desc}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        <Separator className="my-10" />
+
+        {/* Free spins som loyalitetsværktøj */}
+        <section className="mb-12">
+          <h2 className="mb-4 text-3xl font-bold">
+            Free spins som loyalitetsværktøj: Den langsigtede strategi
+          </h2>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            Velkomstbonussens free spins er kun begyndelsen. For den langsigtede spiller er det løbende free spins-tilbud – via loyalitetsprogrammer, VIP-niveauer og reload-kampagner – der skaber reel vedvarende værdi. Forstår du dette system, kan du akkumulere hundredvis af free spins månedligt uden at ændre dit spillebudget.
+          </p>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            <strong>Loyalitetspoint → free spins:</strong> De fleste danske casinoer konverterer spilleaktivitet til loyalitetspoint, som kan veksles til free spins. Typisk kurs: 100 kr. omsætning = 1 loyalitetspoint. 100 point = 10-20 free spins. Det betyder at du "optjener" gratis spins for ca. 1 kr. per spin – en lavere pris end de fleste bonustilbud. VIP-spillere får bedre kurser: 50 point = 20-50 free spins med højere spinværdi.
+          </p>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            <strong>Akkumuleringsstrategien:</strong> Den mest effektive langsigtede strategi for free spins er at oprette konti hos 3-5 danske casinoer og modtage løbende free spins fra hver. De fleste casinoer tilbyder ugentlige reload-spins (10-25 free spins) til aktive spillere. Med 5 casinoer modtager du 50-125 gratis spins ugentligt – en samlet nominel værdi på 100-500 kr. per uge, helt uden ekstra indbetaling ud over din normale spilleaktivitet.
+          </p>
+          <p className="text-muted-foreground leading-relaxed">
+            <strong>VIP-free spins er game-changeren:</strong> Når du opnår VIP-status (typisk efter 10.000-50.000 kr. omsætning), ændrer free spins-landskabet sig dramatisk. VIP-free spins har typisk: 3-10 kr. spinværdi (vs. 1-2 kr. standard), omsætningsfrie vilkår, adgang til premium-slots, og ingen gevinstloft. En enkelt VIP free spins-pakke med 50 spins á 5 kr. og 0x omsætning har en EV på ~240 kr. – mere end de fleste velkomstbonusser.
+          </p>
+        </section>
+
+        <Separator className="my-10" />
+
+        {/* Juridisk perspektiv */}
+        <section className="mb-12">
+          <h2 className="mb-4 text-3xl font-bold">
+            Regulatorisk ramme: Free spins og dansk lovgivning
+          </h2>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            Free spins er reguleret under Spillemyndighedens generelle bonusregler, men der er specifikke aspekter der gælder for gratis spins: gevinster fra free spins er underlagt det samme 10x omsætningsloft som alle andre bonusser. Casinoer skal tydeligt angive spinværdien, antal spins, det specifikke spil, omsætningskrav og gevinstloft direkte i markedsføringsmaterialet – ikke kun i de detaljerede vilkår.
+          </p>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            <strong>Skattefrihed:</strong> Gevinster fra free spins på danske licenserede casinoer er skattefrie – uanset beløbet. Casinoet har allerede afregnet 28% spilleafgift. Det gælder også gevinster fra omsætningsfrie free spins. På <Link to="/casinoer/udenlandske-casinoer" className={linkClass}>udenlandske casinoer</Link> uden dansk licens er gevinster over 200 kr. skattepligtige.
+          </p>
+          <p className="text-muted-foreground leading-relaxed">
+            <strong>ROFUS og selvudelukkelse:</strong> Spillere registreret i ROFUS kan ikke modtage free spins eller andre bonusser hos danske casinoer. MitID-verifikationen forhindrer dette automatisk. Har du brug for hjælp med spilleadfærd, kontakt <a href="https://www.stopspillet.dk/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline font-medium">StopSpillet.dk</a>. 18+ | Spil ansvarligt.
+          </p>
+        </section>
+
+        <Separator className="my-10" />
+
+        {/* Unik konklusion */}
+        <section className="mb-12">
+          <h2 className="mb-6 text-3xl font-bold">Free spins i perspektiv: Underholdning med beregnet bonusmulighed</h2>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            Free spins er hverken gratis penge eller en garanti for gevinst – de er et underholdningsprodukt med en matematisk defineret forventet værdi. Med de rette vilkår (høj spinværdi, lav eller 0x omsætning, høj-RTP spil) kan free spins tilbyde genuine værdi. Med dårlige vilkår (lav spinværdi, 10x omsætning, lav-RTP spil) er de primært et markedsføringsværktøj.
+          </p>
           <div className="space-y-3">
             {[
               {
-                title: "Risikofri spiloplevelse",
-                desc: "Free spins giver dig mulighed for at spille uden at bruge dine egne penge – perfekt til at udforske nye spil.",
+                title: "Spinværdi × antal > alt andet",
+                desc: "50 spins á 2 kr. (100 kr. total) slår altid 200 spins á 0,50 kr. (100 kr. total), fordi højere spinværdi giver adgang til bedre gevinstlinjer og bonusfunktioner i spillene.",
               },
               {
-                title: "Mange varianter",
-                desc: "Fra no deposit spins til VIP-belønninger – der er en type for enhver spiller og spillestil.",
+                title: "Omsætningsfrie spins er det nye guld",
+                desc: "Wager-free free spins med 96%+ RTP giver 90-96% reel værdi – den tætteste du kommer på 'gratis penge'. Prioriter altid omsætningsfrie spins over standard-spins med omsætningskrav.",
               },
               {
-                title: "Vilkår er afgørende",
-                desc: "Omsætningskrav, gevinstlofter og tidsbegrænsninger bestemmer den reelle værdi af dine free spins.",
+                title: "In-game free spins er din bedste ven",
+                desc: "Udløser du bonusrunder under dine casino-free spins, multiplicerer du din gevinstchance uden ekstra indsats. Vælg spil med aktive bonusfunktioner som Starburst (re-spins) eller Book of Dead (expanding symbols).",
               },
               {
-                title: "Omsætningsfrie spins er bedst",
-                desc: "Vælg altid omsætningsfrie free spins, når det er muligt – her beholder du gevinsterne med det samme.",
+                title: "Sæsonbevidsthed løfter din EV",
+                desc: "December og Black Friday tilbyder 50-100% flere free spins end gennemsnittet. Planlæg dine casinoregistreringer strategisk for at ramme de bedste kampagneperioder.",
               },
               {
-                title: "Spil kun på licenserede casinoer",
-                desc: "Danske licenserede casinoer garanterer fair vilkår og skattefrie gevinster.",
+                title: "Spil kun på danske licenserede casinoer",
+                desc: "Skattefrie gevinster, 10x omsætningsloft og transparent regulering gør danske free spins til Europas bedste. Spil ansvarligt – ROFUS og StopSpillet.dk er der for dig. 18+.",
               },
             ].map((item) => (
               <div

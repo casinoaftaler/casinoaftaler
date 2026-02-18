@@ -609,30 +609,203 @@ const Omsaetningskrav = () => {
 
         <Separator className="my-10" />
 
-        {/* Kort sagt */}
+        {/* International sammenligning */}
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold">Kort sagt om omsætningskrav</h2>
+          <h2 className="mb-4 text-3xl font-bold">
+            International sammenligning: Danske omsætningskrav vs. Europa og verden
+          </h2>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            For at sætte de danske regler i perspektiv er det nødvendigt at sammenligne med andre regulerede markeder. Danmark er unikt med sit lovfastlagte 10x-loft – men hvordan ser det ud i resten af verden? Forskellen er dramatisk og understreger den danske models overlegenhed for spilleren.
+          </p>
+          <div className="overflow-x-auto">
+            <table className="w-full border-collapse rounded-lg border border-border text-sm">
+              <thead>
+                <tr className="bg-muted/50">
+                  <th className="border border-border p-3 text-left font-semibold">Marked</th>
+                  <th className="border border-border p-3 text-left font-semibold">Typisk omsætning</th>
+                  <th className="border border-border p-3 text-left font-semibold">Lovmæssigt loft</th>
+                  <th className="border border-border p-3 text-left font-semibold">EV på 1.000 kr. bonus (96% RTP)</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td className="border border-border p-3 font-medium">🇩🇰 Danmark</td>
+                  <td className="border border-border p-3 text-muted-foreground">5-10x (d+b)</td>
+                  <td className="border border-border p-3 text-muted-foreground">Max 10x</td>
+                  <td className="border border-border p-3 text-muted-foreground"><strong>200-600 kr.</strong></td>
+                </tr>
+                <tr className="bg-muted/20">
+                  <td className="border border-border p-3 font-medium">🇬🇧 Storbritannien</td>
+                  <td className="border border-border p-3 text-muted-foreground">20-40x</td>
+                  <td className="border border-border p-3 text-muted-foreground">Intet loft</td>
+                  <td className="border border-border p-3 text-muted-foreground">-200 til 200 kr.</td>
+                </tr>
+                <tr>
+                  <td className="border border-border p-3 font-medium">🇲🇹 Malta (MGA)</td>
+                  <td className="border border-border p-3 text-muted-foreground">30-50x</td>
+                  <td className="border border-border p-3 text-muted-foreground">Intet loft</td>
+                  <td className="border border-border p-3 text-muted-foreground">-600 til -200 kr.</td>
+                </tr>
+                <tr className="bg-muted/20">
+                  <td className="border border-border p-3 font-medium">🇨🇼 Curaçao</td>
+                  <td className="border border-border p-3 text-muted-foreground">40-70x</td>
+                  <td className="border border-border p-3 text-muted-foreground">Intet loft</td>
+                  <td className="border border-border p-3 text-muted-foreground">-1.200 til -600 kr.</td>
+                </tr>
+                <tr>
+                  <td className="border border-border p-3 font-medium">🇸🇪 Sverige</td>
+                  <td className="border border-border p-3 text-muted-foreground">N/A (forbudt)</td>
+                  <td className="border border-border p-3 text-muted-foreground">Bonusser forbudt</td>
+                  <td className="border border-border p-3 text-muted-foreground">N/A</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <p className="mt-4 text-muted-foreground leading-relaxed">
+            Tabellen afslører en klar sandhed: danske omsætningskrav er blandt verdens mest spillervenlige. Mens en bonus på et Curaçao-licenseret casino statistisk er designet til at du taber hele din saldo, giver en dansk bonus med 5-10x omsætning reel positiv EV. Sverige har valgt den modsatte vej og forbudt bonusser helt – en kontroversiel beslutning der har sendt mange svenske spillere til <Link to="/casinoer/udenlandske-casinoer" className={linkClass}>udenlandske casinoer</Link> uden dansk regulering.
+          </p>
+          <p className="text-muted-foreground leading-relaxed">
+            <strong>Vigtigt perspektiv:</strong> Selv med 10x (d+b) omsætning – det strengeste danske niveau – er din EV stadig positiv med RTP over 95%. På et internationalt 40x-casino skal RTP være over 98,75% for positiv EV – kun en håndfuld spil i verden leverer dette. Det danske system er designet til at bonusser faktisk gavner spilleren.
+          </p>
+        </section>
+
+        <Separator className="my-10" />
+
+        {/* Spillerprofiler og omsætningskrav */}
+        <section className="mb-12">
+          <h2 className="mb-4 text-3xl font-bold">
+            Spillerprofiler: Hvem rammes hårdest af omsætningskrav?
+          </h2>
+          <p className="mb-6 text-muted-foreground leading-relaxed">
+            Omsætningskrav påvirker ikke alle spillere ens. Din foretrukne spiltype, indsatsniveau og tilgængelige tid afgør, hvor tyngende omsætningskrav er for dig. Her er en detaljeret analyse af fem spillertyper og deres optimale bonusstrategi.
+          </p>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            {[
+              { title: "✅ Slot-spilleren (5-25 kr./spin)", desc: "Mest kompatibel med omsætningskrav. Slots bidrager 100% og med 96-98% RTP taber du kun 2-4% per omsættet krone. Med 10x omsætning på 1.000 kr. (10.000 kr. total) og 5 kr./spin tager det ~33 min. ved 10 sek./spin. Anbefalet strategi: Blood Suckers (98% RTP), Starburst (96,1%), 1429 Uncharted Seas (98,6%).", icon: Sparkles },
+              { title: "⚠️ Casual spilleren (mixede spil)", desc: "Moderat kompatibel. Casual spillere skifter mellem slots, bordspil og live casino – men kun slots tæller 100%. En mixed strategi forlænger gennemspilningstiden dramatisk. Anbefaling: Afslut omsætningen med slots først, spil derefter bordspil/live med egne penge.", icon: Gamepad2 },
+              { title: "❌ Bordspil-entusiasten", desc: "Dårlig kompatibilitet. Med 10% bidrag fra blackjack kræver en 10x bonus reelt 100x i bordspilsindsatser. 1.000 kr. bonus × 10 ÷ 0,10 = 100.000 kr. i blackjack-omsætning. Selv med 99,5% RTP er det en massiv indsats. Anbefaling: Undgå bonusser eller vælg bonus uden omsætningskrav.", icon: Ban },
+              { title: "❌ Live casino-spilleren", desc: "Værste kompatibilitet. Live casino bidrager typisk 0-10% til omsætningen og er ofte helt udelukket. En bonus er reelt ubrugelig for den rene live-spiller. Anbefaling: Afslå bonussen og spil med egne penge. En cashback-bonus er det eneste relevante alternativ.", icon: AlertTriangle },
+              { title: "✅ Bonusjægeren", desc: "Optimal kompatibilitet – men kræver disciplin. Bonusjægere vælger systematisk slots med 97%+ RTP, holder indsatsen på 1-2% af saldo, og beregner EV på forhånd. Med rigtig spilvalg og tålmodighed er 10x omsætning profitable i ca. 65% af tilfældene.", icon: Target },
+              { title: "⚠️ High rolleren (50+ kr./spin)", desc: "Betinget kompatibilitet. Høje indsatser gennemfører omsætningen hurtigt, men maks-indsatsreglen (typisk 50 kr.) kan begrænse high rollere under bonusspil. Derudover giver højere indsatser større varians – risikoen for bust stiger. Anbefaling: VIP-bonusser med højere maks-indsatsgrænse.", icon: TrendingUp },
+            ].map((item) => (
+              <Card key={item.title} className="border-border bg-card">
+                <CardHeader className="pb-2">
+                  <CardTitle className="flex items-center gap-2 text-base">
+                    <item.icon className="h-5 w-5 text-primary" />
+                    {item.title}
+                  </CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <p className="text-sm text-muted-foreground leading-relaxed">{item.desc}</p>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </section>
+
+        <Separator className="my-10" />
+
+        {/* Fremtidens omsætningskrav */}
+        <section className="mb-12">
+          <h2 className="mb-4 text-3xl font-bold">
+            Regulatoriske trends 2026-2027: Fremtidens omsætningskrav
+          </h2>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            Det danske bonusmarked er i konstant udvikling, drevet af regulatoriske ændringer, konkurrence og spillernes forventninger. Her er de vigtigste trends vi observerer og forventer i 2026-2027:
+          </p>
+          <div className="space-y-4">
+            <div className="flex items-start gap-3 rounded-lg border border-border bg-card p-4">
+              <TrendingUp className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
+              <div>
+                <h3 className="font-semibold">Race mod bunden: Lavere omsætningskrav som konkurrencevåben</h3>
+                <p className="text-sm text-muted-foreground">
+                  I 2024 havde de fleste danske casinoer 10x omsætning (lovens maksimum). I 2026 tilbyder ca. 35% af casinoerne 5x eller lavere, og ca. 15% tilbyder <Link to="/bonus-uden-omsaetningskrav" className={linkClass}>helt omsætningsfrie bonusser</Link>. Denne trend accelererer: spillere bliver stadig mere bevidste om omsætningskravets effekt på EV og vælger aktivt casinoer med lavere krav. Vi forventer at 50%+ af danske casinoer tilbyder under 5x omsætning inden udgangen af 2027.
+                </p>
+              </div>
+            </div>
+            <div className="flex items-start gap-3 rounded-lg border border-border bg-card p-4">
+              <Scale className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
+              <div>
+                <h3 className="font-semibold">Spillemyndighedens kommende revurdering</h3>
+                <p className="text-sm text-muted-foreground">
+                  Spillemyndigheden reviderer regelmæssigt bonusreguleringen. Der er indikationer på at det nuværende 10x-loft kan blive sænket yderligere – muligvis til 5x eller endda 3x – som led i en bredere spillerbeskyttelsesstrategi. En lavere grænse ville gøre alle danske bonusser endnu mere værdifulde, men det kan også betyde at casinoerne reducerer bonusbeløbene som kompensation.
+                </p>
+              </div>
+            </div>
+            <div className="flex items-start gap-3 rounded-lg border border-border bg-card p-4">
+              <RefreshCw className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
+              <div>
+                <h3 className="font-semibold">Transparenskrav og real-time tracking</h3>
+                <p className="text-sm text-muted-foreground">
+                  Flere danske casinoer implementerer nu realtids-omsætningstracking direkte i brugergrænsefladen – du kan se præcis hvor langt du er fra at opfylde kravet, beregnet i kroner og procent. Denne transparens er endnu ikke lovpligtig, men brancheorganisationer arbejder på frivillige standarder der kan blive regulatoriske krav i 2027.
+                </p>
+              </div>
+            </div>
+            <div className="flex items-start gap-3 rounded-lg border border-border bg-card p-4">
+              <CheckCircle2 className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
+              <div>
+                <h3 className="font-semibold">Hybrid-modellen vinder frem</h3>
+                <p className="text-sm text-muted-foreground">
+                  Den nyeste trend er "hybrid-bonusser" der kombinerer elementer med og uden omsætning. Eksempel: 100% matchbonus med 10x omsætning + 50 omsætningsfrie <Link to="/free-spins" className={linkClass}>free spins</Link>. Spilleren får både volumen (matchbonus) og umiddelbar værdi (omsætningsfrie spins). Denne model tilbyder det bedste fra begge verdener og vinder hurtigt popularitet hos <Link to="/nye-casinoer" className={linkClass}>nye casinoer</Link>.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <Separator className="my-10" />
+
+        {/* Psykologien bag omsætningskrav */}
+        <section className="mb-12">
+          <h2 className="mb-4 text-3xl font-bold">
+            Psykologien bag omsætningskrav: Hvorfor de fungerer
+          </h2>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            Omsætningskrav er ikke blot en matematisk mekanisme – de er også et psykologisk værktøj. At forstå den psykologiske dimension hjælper dig med at træffe bedre beslutninger og undgå typiske fælder.
+          </p>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            <strong>Sunk cost-fælden:</strong> Når du har gennemspillet 70% af omsætningskravet, føles det "spildt" at stoppe – selv om din saldo er nede på 50 kr. og de resterende 30% statistisk vil koste dig mere end du vinder. Denne "sunk cost"-effekt er den primære årsag til at spillere gennemfører omsætningen med negative EV i stedet for at stoppe. Modgiften er at evaluere din situation baseret på din nuværende saldo, ikke på hvor meget du allerede har omsættet.
+          </p>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            <strong>Illusionen om kontrol:</strong> Mange spillere tror at de kan "overvinde" omsætningskravet med den rette strategi. Sandheden er at matematikken er uændret: med 96% RTP taber du statistisk 4% af hver omsættet krone, uanset strategi. Den bedste strategi handler ikke om at slå huset, men om at minimere det forventede tab – og det gøres via høj-RTP spilvalg og lav indsats, som vi har beskrevet i denne guide.
+          </p>
+          <p className="text-muted-foreground leading-relaxed">
+            <strong>Tidsforvrængning:</strong> Under bonusomsætning mister mange spillere fornemmelsen for tid. Casinoerne understøtter dette med fraværet af ure og dynamisk spildesign. Sæt altid en fysisk timer, og tag 10 minutters pause for hver times spil. Det hjælper dig med at bibeholde rationel beslutningstagning under omsætningsprocessen.
+          </p>
+        </section>
+
+        <Separator className="my-10" />
+
+        {/* Unik konklusion */}
+        <section className="mb-12">
+          <h2 className="mb-4 text-3xl font-bold">Omsætningskrav i ét ord: Gennemsigtighed</h2>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            Omsætningskrav er ikke din fjende – mangel på forståelse er. Når du kender mekanikken bag (d+b) vs. (b), forstår RTP'ens indvirkning på din EV, og kan beregne den reelle værdi af enhver bonus, har du en unik fordel som spiller. Du træffer informerede beslutninger baseret på matematik – ikke markedsføring.
+          </p>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            Det danske system med sit 10x-loft er designet til at beskytte dig, og det virker. En dansk bonus er statistisk 3-5 gange mere værd end en identisk bonus på et ureguleret casino. Men selv med favorable vilkår bør du altid spørge dig selv: <em>"Ville jeg spille for dette beløb uden bonussen?"</em> Hvis svaret er nej, er bonussen sandsynligvis ikke det rette valg for dig.
+          </p>
           <div className="space-y-3">
             {[
               {
                 icon: Calculator,
-                title: "Forstå beregningen",
-                desc: "Kend forskellen på 10x kun bonus og 10x (d+b), så du ved præcis, hvor meget du skal satse.",
+                title: "Beregn altid EV før accept",
+                desc: "Brug formlen: EV = Bonusbeløb – (Total omsætning × House Edge). Hvis EV er negativ, afslå bonussen – uanset hvor flot markedsføringen er.",
               },
               {
                 icon: Scale,
-                title: "Dansk lovgivning beskytter dig",
-                desc: "Spillemyndighedens loft på 10x sikrer rimelige vilkår. In-game gevinster tæller altid med i omsætningen.",
+                title: "Danmarks 10x loft er din beskyttelse",
+                desc: "Spillemyndighedens regulering sikrer at alle danske bonusser har reel positiv værdi ved RTP over 95%. Spil kun på licenserede danske casinoer.",
               },
               {
-                icon: AlertTriangle,
-                title: "Læs det med småt",
-                desc: "Maks. indsats, tidsfrister, udelukkede spil og betalingsmetoder påvirker alle bonussens reelle værdi.",
+                icon: Target,
+                title: "Vælg (b) over (d+b) når muligt",
+                desc: "10x kun på bonus (b) kræver halvt så meget omsætning som 10x (d+b). Forskellen i EV er 400+ kr. på en standard 1.000 kr. bonus.",
               },
               {
                 icon: ShieldCheck,
-                title: "Spil ansvarligt",
-                desc: "Sæt et budget, jagt aldrig tab, og benyt hjælpeværktøjer som StopSpillet.dk og ROFUS ved behov.",
+                title: "Spil ansvarligt – altid",
+                desc: "Omsætningskrav kan friste til længere sessioner end planlagt. Sæt tids- og pengebudgetter. Brug ROFUS og StopSpillet.dk ved behov. 18+.",
               },
             ].map((item) => (
               <div

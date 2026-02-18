@@ -703,35 +703,182 @@ const Velkomstbonus = () => {
 
         <Separator className="my-10" />
 
-        {/* Kort sagt */}
+        {/* Flertrinspakker analyseret */}
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold">Kort sagt</h2>
+          <h2 className="mb-4 text-3xl font-bold">
+            Flertrinspakker vs. enkeltbonus: Hvad giver mest værdi?
+          </h2>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            Mange danske casinoer tilbyder nu velkomstpakker fordelt over 2-4 indbetalinger. Spørgsmålet er: giver en flertrinspakke mere reel værdi end en enkeltstående velkomstbonus? Svaret afhænger af din spillestil, dit budget og din tålmodighed. Her er en matematisk sammenligning.
+          </p>
+          <div className="space-y-4">
+            <Card className="border-primary/30 bg-card">
+              <CardHeader className="pb-2">
+                <CardTitle className="flex items-center gap-2 text-lg">
+                  <Calculator className="h-5 w-5 text-primary" />
+                  Enkeltstående: 100% match op til 2.000 kr. (10x d+b)
+                </CardTitle>
+              </CardHeader>
+              <CardContent className="space-y-2">
+                <p className="text-sm text-muted-foreground leading-relaxed">
+                  <strong>Beregning:</strong> 2.000 kr. indbetaling + 2.000 kr. bonus = 4.000 kr. saldo. Omsætning: 10 × 4.000 = 40.000 kr. Tab: 40.000 × 0,04 = 1.600 kr. Saldo: 4.000 – 1.600 = 2.400 kr. Minus bonus: <strong>EV = 400 kr.</strong> (20% af nominel værdi).
+                </p>
+                <p className="text-sm text-muted-foreground leading-relaxed">
+                  <strong>Fordel:</strong> Alt overstået i én indbetaling. <strong>Ulempe:</strong> Høj total omsætning (40.000 kr.) og betydeligt tidskrav (~11 timer spilletid).
+                </p>
+              </CardContent>
+            </Card>
+
+            <Card className="border-primary/30 bg-card">
+              <CardHeader className="pb-2">
+                <CardTitle className="flex items-center gap-2 text-lg">
+                  <ListChecks className="h-5 w-5 text-primary" />
+                  Flertrinspakke: 3 × 100% match á 500 kr. (5x b)
+                </CardTitle>
+              </CardHeader>
+              <CardContent className="space-y-2">
+                <p className="text-sm text-muted-foreground leading-relaxed">
+                  <strong>Per trin:</strong> 500 kr. indbetaling + 500 kr. bonus. Omsætning: 5 × 500 = 2.500 kr. Tab: 2.500 × 0,04 = 100 kr. <strong>EV per trin = 400 kr.</strong> (80% af nominel værdi). <strong>Total EV over 3 trin = 1.200 kr.</strong>
+                </p>
+                <p className="text-sm text-muted-foreground leading-relaxed">
+                  <strong>Fordel:</strong> 3x højere total EV, lavere risiko per session, fleksibilitet til at stoppe. <strong>Ulempe:</strong> Kræver tre separate indbetalinger og mere tid totalt.
+                </p>
+              </CardContent>
+            </Card>
+          </div>
+          <p className="mt-4 text-muted-foreground leading-relaxed">
+            <strong>Konklusion:</strong> Flertrinspakker med lavere omsætning per trin er næsten altid matematisk overlegne. Dog kræver de disciplin: du skal faktisk gennemføre alle trin og undgå fristelsen til at indbetale for meget på ét trin. Hvis du foretrækker enkelhed, er en enkeltstående bonus med no-sticky struktur og ≤5x omsætning det bedste kompromis.
+          </p>
+        </section>
+
+        <Separator className="my-10" />
+
+        {/* International sammenligning */}
+        <section className="mb-12">
+          <h2 className="mb-4 text-3xl font-bold">
+            International sammenligning: Danske vs. udenlandske velkomstbonusser
+          </h2>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            Danmark tilbyder nogle af verdens bedste velkomstbonusser – ikke pga. de højeste beløb, men pga. de mest spillervenlige vilkår. Her er en sammenligning der illustrerer forskellen:
+          </p>
+          <div className="overflow-x-auto">
+            <table className="w-full border-collapse rounded-lg border border-border text-sm">
+              <thead>
+                <tr className="bg-muted/50">
+                  <th className="border border-border p-3 text-left font-semibold">Parameter</th>
+                  <th className="border border-border p-3 text-left font-semibold">🇩🇰 Dansk casino</th>
+                  <th className="border border-border p-3 text-left font-semibold">🇲🇹 MGA casino</th>
+                  <th className="border border-border p-3 text-left font-semibold">🇨🇼 Curaçao casino</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td className="border border-border p-3 font-medium">Typisk matchbonus</td>
+                  <td className="border border-border p-3 text-muted-foreground">100% op til 1.000 kr.</td>
+                  <td className="border border-border p-3 text-muted-foreground">100-200% op til €500</td>
+                  <td className="border border-border p-3 text-muted-foreground">200-400% op til €2.000</td>
+                </tr>
+                <tr className="bg-muted/20">
+                  <td className="border border-border p-3 font-medium">Omsætningskrav</td>
+                  <td className="border border-border p-3 text-muted-foreground">5-10x (max 10x)</td>
+                  <td className="border border-border p-3 text-muted-foreground">30-50x</td>
+                  <td className="border border-border p-3 text-muted-foreground">40-70x</td>
+                </tr>
+                <tr>
+                  <td className="border border-border p-3 font-medium">Reel EV (1.000 kr.)</td>
+                  <td className="border border-border p-3 text-muted-foreground"><strong>200-600 kr.</strong></td>
+                  <td className="border border-border p-3 text-muted-foreground">-200 til 100 kr.</td>
+                  <td className="border border-border p-3 text-muted-foreground">-1.000 til -400 kr.</td>
+                </tr>
+                <tr className="bg-muted/20">
+                  <td className="border border-border p-3 font-medium">Skattefrihed</td>
+                  <td className="border border-border p-3 text-muted-foreground">✅ Altid</td>
+                  <td className="border border-border p-3 text-muted-foreground">❌ Skattepligtig</td>
+                  <td className="border border-border p-3 text-muted-foreground">❌ Skattepligtig</td>
+                </tr>
+                <tr>
+                  <td className="border border-border p-3 font-medium">Spillerbeskyttelse</td>
+                  <td className="border border-border p-3 text-muted-foreground">✅ ROFUS + Spillemyndigheden</td>
+                  <td className="border border-border p-3 text-muted-foreground">⚠️ Begrænset</td>
+                  <td className="border border-border p-3 text-muted-foreground">❌ Minimal</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <p className="mt-4 text-muted-foreground leading-relaxed">
+            <strong>Perspektiv:</strong> En "lille" dansk velkomstbonus på 1.000 kr. med 5x omsætning er reelt mere værd end en "stor" udenlandsk bonus på €2.000 med 50x omsætning. Den danske bonus giver dig ~600 kr. reel EV skattefrit; den udenlandske bonus giver dig statistisk tab OG skattepligt på eventuelle gevinster. Størrelse er ikke alt – vilkårene er det.
+          </p>
+        </section>
+
+        <Separator className="my-10" />
+
+        {/* Velkomstbonus og ansvarligt spil */}
+        <section className="mb-12">
+          <h2 className="mb-4 text-3xl font-bold">
+            Velkomstbonus og ansvarlig spiladfærd
+          </h2>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            En velkomstbonus er designet til at motivere din første indbetaling – og netop derfor bør du stoppe op og vurdere, om beløbet passer dit budget. Indbetal aldrig mere end du ville have gjort uden bonussen. Dit spillebudget bør fastlægges uafhængigt af bonustilbuddet. Casinoernes "match op til X kr."-formulering skaber et psykologisk pres for at maksimere bonussen, men det er sjældent den klogeste strategi.
+          </p>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            <strong>Det bedste tidspunkt at vurdere en bonus:</strong> Før du overhovedet opretter en konto, bør du have besluttet: 1) Hvad er mit maksimale spillebudget? 2) Er jeg klar til at gennemspille omsætningskravene? 3) Passer bonustypen (<Link to="/sticky-bonus" className={linkClass}>sticky</Link> vs. <Link to="/no-sticky-bonus" className={linkClass}>no-sticky</Link>) min spillestil? Kan du ikke besvare alle tre spørgsmål, er du ikke klar til at tage imod en velkomstbonus.
+          </p>
+          <div className="rounded-lg border border-border bg-card p-4">
+            <div className="flex items-start gap-3">
+              <ShieldCheck className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
+              <div>
+                <h3 className="font-semibold">Hjælp og ressourcer</h3>
+                <p className="text-sm text-muted-foreground">
+                  Kontakt{" "}
+                  <a href="https://www.stopspillet.dk/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline font-medium">StopSpillet.dk</a>{" "}
+                  for fortrolig rådgivning, eller registrer dig i{" "}
+                  <a href="https://www.rofus.nu/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline font-medium">ROFUS</a>{" "}
+                  for selvudelukkelse. 18+ | Spil ansvarligt.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <Separator className="my-10" />
+
+        {/* Unik konklusion: Checklist */}
+        <section className="mb-12">
+          <h2 className="mb-4 text-3xl font-bold">Din velkomstbonus-checklist: Fem trin til det rigtige valg</h2>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            Før du accepterer en velkomstbonus, bør du gennemgå denne checklist. Hvert trin tager under ét minut – samlet kan de fem minutter spare dig for hundredvis af kroner i tabte bonusser og frustrerede spillesessioner.
+          </p>
           <div className="space-y-3">
             {[
               {
-                icon: CheckCircle2,
-                title: "Forstå bonustypen",
-                desc: "Kend forskellen på matchbonus, free spins og no deposit-tilbud, så du vælger det rette for dig.",
+                icon: Calculator,
+                title: "Trin 1: Beregn den reelle EV",
+                desc: "Brug formlen: EV = Bonusbeløb – (Total omsætning × House Edge). Hvis EV er under 30% af bonusbeløbet, er bonussen sandsynligvis ikke værd at tage. Husk at skelne mellem (b) og (d+b) omsætning – forskellen kan være tusindvis af kroner.",
               },
               {
-                icon: AlertTriangle,
-                title: "Læs vilkårene grundigt",
-                desc: "Omsætningskrav, tidsfrister og indsatsbegrænsninger er afgørende for bonussens reelle værdi.",
+                icon: Lock,
+                title: "Trin 2: Identificer bonusstruktur",
+                desc: "Er det sticky eller no-sticky? No-sticky giver dig frit spil med egne penge først og er 2-3x mere værdifuld. Finder du ikke ordet 'no-sticky' eller 'forfeitable' i vilkårene, er bonussen sticky som standard.",
               },
               {
-                icon: Target,
-                title: "Vælg spil strategisk",
-                desc: "Prioritér spilleautomater med høj RTP, da de bidrager 100% til omsætningskravet.",
+                icon: Clock,
+                title: "Trin 3: Tjek tidsfristen",
+                desc: "Har du realistisk tid til at gennemspille omsætningen inden for fristen? 10x (d+b) på 1.000 kr. bonus kræver 20.000 kr. omsætning = ~5-6 timer spilletid. Med 14 dages frist er det overkommeligt; med 3 dage kan det blive stressende.",
+              },
+              {
+                icon: Gamepad2,
+                title: "Trin 4: Verificer spilkompatibilitet",
+                desc: "Spiller du primært slots? Perfekt – de bidrager 100%. Bordspil? Kun 10%. Live casino? Ofte 0%. Vælg kun en velkomstbonus, hvis dine foretrukne spil bidrager effektivt til omsætningen.",
               },
               {
                 icon: ShieldCheck,
-                title: "Spil altid ansvarligt",
-                desc: "Sæt et budget, overhold det, og benyt dig af de hjælpeværktøjer, som casinoerne tilbyder.",
+                title: "Trin 5: Fastlæg dit budget FØRST",
+                desc: "Bestem hvor meget du ville have indbetalt UDEN bonussen. Indbetal præcis dette beløb. Bonussen er en ekstra fordel, ikke en grund til at ændre dit budget. Denne ene regel beskytter dig mod de fleste bonusfælder.",
               },
             ].map((item) => (
               <div
                 key={item.title}
-                className="flex items-start gap-3 rounded-lg border border-border bg-card p-4"
+                className="flex items-start gap-3 rounded-lg border border-primary/30 bg-accent/30 p-4"
               >
                 <item.icon className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
                 <div>
