@@ -683,17 +683,17 @@ const BonusUdenOmsaetningskrav = () => {
               {
                 title: "Kvalitet over kvantitet",
                 desc: "100 kr. omsætningsfrit er ofte mere værd end 500 kr. med tunge omsætningskrav. Lær at se igennem de store tal og vurdere den reelle, udbetalbare værdi.",
-                icon: Diamond,
+                icon: Sparkles,
               },
               {
                 title: "Den stressfrie oplevelse",
                 desc: "Værdien af at slippe for omsætningsstress kan ikke overvurderes. Du vinder, du hæver. Ingen lommeregner, ingen bekymring om udløbsdatoer. Det er ren spilleglæde.",
-                icon: Smile,
+                icon: Heart,
               },
               {
                 title: "Perfekt supplement",
                 desc: "Kombiner omsætningsfrie tilbud med traditionelle bonusser. Brug de omsætningsfrie til hurtige gevinster og de traditionelle til længere spillesessioner.",
-                icon: Plus,
+                icon: Gift,
               },
               {
                 title: "Ansvarligt valg",
