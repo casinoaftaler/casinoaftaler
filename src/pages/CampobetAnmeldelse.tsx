@@ -22,7 +22,7 @@ import { CasinoReviewHero } from "@/components/CasinoReviewHero";
 import {
   ShieldCheck, Star, Clock, CreditCard, Gift, Trophy, Sparkles,
   Zap, RotateCcw, Check, X, Globe, Target, TrendingUp, Award,
-  Gamepad2, Wallet, Headphones, Smartphone,
+  Gamepad2, Wallet, Headphones, Smartphone, BarChart3,
 } from "lucide-react";
 
 const linkClass = "text-primary underline hover:text-primary/80";
@@ -165,7 +165,7 @@ const CampobetAnmeldelse = () => {
       </section>
 
       <div className="container py-8 md:py-12">
-        <AuthorMetaBar author="jonas" date="17-02-2026" readTime="26 Min." />
+        <AuthorMetaBar author="jonas" date="18-02-2026" readTime="33 Min." />
         <CasinoReviewHero slug="campobet" casinoName="Campobet" />
 
         {/* Quick Facts */}
@@ -308,6 +308,51 @@ const CampobetAnmeldelse = () => {
               <p className="text-xs text-muted-foreground mt-3">Husk: Med No-Sticky spiller du altid først med din egen saldo. Omsætningskravet gælder kun bonusmidlerne. Læs vores guide til <Link to="/omsaetningskrav" className={linkClass}>omsætningskrav</Link>.</p>
             </CardContent>
           </Card>
+        </section>
+
+        <Separator className="my-10" />
+
+        {/* ───── EV OG RISK OF RUIN ───── */}
+        <section className="mb-12">
+          <h2 className="mb-4 text-3xl font-bold">Teknisk Analyse: EV og Risk of Ruin</h2>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            Som professionelle testere ser vi ikke kun på bonusbeløbet, men på den matematiske sandsynlighed for at gennemføre omsætningskravet. Campobets 10x krav er lavt, men varians spiller altid en rolle.
+          </p>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <Card className="border-border bg-card">
+              <CardHeader className="pb-2"><CardTitle className="flex items-center gap-2 text-lg"><BarChart3 className="h-5 w-5 text-primary" />Risk of Ruin (RoR)</CardTitle></CardHeader>
+              <CardContent>
+                <p className="text-sm text-muted-foreground mb-3">
+                  Hvad er sandsynligheden for at tabe hele bonussaldoen før omsætningskravet er mødt?
+                </p>
+                <div className="space-y-2 text-sm">
+                  <div className="flex justify-between p-2 rounded bg-muted/30"><span>Lav volatilitet (Starburst):</span> <span className="font-mono font-bold text-emerald-500">~12% RoR</span></div>
+                  <div className="flex justify-between p-2 rounded bg-muted/30"><span>Medium volatilitet (Book of Dead):</span> <span className="font-mono font-bold text-amber-500">~28% RoR</span></div>
+                  <div className="flex justify-between p-2 rounded bg-muted/30"><span>Høj volatilitet (San Quentin):</span> <span className="font-mono font-bold text-destructive">~65% RoR</span></div>
+                </div>
+                <p className="text-xs text-muted-foreground mt-3">
+                  *Beregnet med 10 kr. indsats pr. spin og 10x omsætning.
+                </p>
+              </CardContent>
+            </Card>
+
+            <Card className="border-border bg-card">
+              <CardHeader className="pb-2"><CardTitle className="flex items-center gap-2 text-lg"><TrendingUp className="h-5 w-5 text-primary" />Expected Value (EV)</CardTitle></CardHeader>
+              <CardContent>
+                <p className="text-sm text-muted-foreground mb-3">
+                  Hvor meget er bonussen statistisk set værd?
+                </p>
+                <div className="text-center py-4">
+                  <span className="text-4xl font-bold text-emerald-500">+260 kr.</span>
+                  <p className="text-xs text-muted-foreground mt-1">Ved 1.000 kr. bonus og 96,3% RTP.</p>
+                </div>
+                <p className="text-sm text-muted-foreground">
+                  Dette tal er identisk med konkurrenter som SpilDanskNu, men fordelen ved Campobet er No-Sticky strukturen, der reelt øger værdien yderligere, da du har en "gratis chance" med dine egne penge først.
+                </p>
+              </CardContent>
+            </Card>
+          </div>
         </section>
 
         <Separator className="my-10" />

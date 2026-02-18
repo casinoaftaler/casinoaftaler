@@ -21,8 +21,8 @@ import { CasinoReviewHero } from "@/components/CasinoReviewHero";
 import { QuickFactsProviders, QuickFactsLogo, QuickFactsLicense } from "@/components/QuickFactsProviders";
 import {
   ShieldCheck, Star, Clock, CreditCard, Gift, Trophy, Sparkles,
-  Zap, RotateCcw, Check, X, Award, TrendingUp,
-  Gamepad2, Headphones, Smartphone, Store,
+  Zap, RotateCcw, Check, X, Award, TrendingUp, BarChart3, Target,
+  Gamepad2, Headphones, Smartphone, Store, Calculator
 } from "lucide-react";
 
 const linkClass = "text-primary underline hover:text-primary/80";
@@ -64,7 +64,7 @@ const SpilDanskNuAnmeldelse = () => {
       </section>
 
       <div className="container py-8 md:py-12">
-        <AuthorMetaBar author="jonas" date="17-02-2026" readTime="26 Min." />
+        <AuthorMetaBar author="jonas" date="18-02-2026" readTime="32 Min." />
         <CasinoReviewHero slug="spildansknu" casinoName="SpilDanskNu" />
 
         {/* Quick Facts */}
@@ -188,9 +188,46 @@ const SpilDanskNuAnmeldelse = () => {
           </Card>
         </section>
 
-        <Separator className="my-10" />
+        {/* ───── EV ANALYSE ───── */}
+        <section className="mb-12">
+          <h2 className="mb-4 text-3xl font-bold">Matematisk Analyse: Er bonussen +EV?</h2>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            For at vurdere om en bonus er matematisk fordelagtig, beregner vi dens "Expected Value" (EV). Dette er ikke en garanti for gevinst, men et statistisk gennemsnit over millioner af simulationer. SpilDanskNus bonus er særligt interessant på grund af det lave omsætningskrav på 10x.
+          </p>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+            <Card className="border-border bg-card">
+              <CardHeader className="pb-2"><CardTitle className="flex items-center gap-2 text-lg"><Calculator className="h-5 w-5 text-primary" />Formlen</CardTitle></CardHeader>
+              <CardContent>
+                <div className="p-4 bg-muted/30 rounded-lg font-mono text-sm mb-3">
+                  EV = Bonus - (Omsætningskrav × House Edge)
+                </div>
+                <p className="text-sm text-muted-foreground">
+                  Vi antager en gennemsnitlig House Edge på 3,7% (RTP 96,3%) for spilleautomater hos SpilDanskNu.
+                </p>
+              </CardContent>
+            </Card>
+            
+            <Card className="border-border bg-card border-l-4 border-l-emerald-500">
+              <CardHeader className="pb-2"><CardTitle className="flex items-center gap-2 text-lg"><TrendingUp className="h-5 w-5 text-emerald-500" />Resultatet</CardTitle></CardHeader>
+              <CardContent>
+                <ul className="space-y-2 text-sm">
+                  <li className="flex justify-between"><span>Bonusbeløb:</span> <span className="font-bold">1.000 kr.</span></li>
+                  <li className="flex justify-between"><span>Omsætningskrav (10x d+b):</span> <span className="font-bold">20.000 kr.</span></li>
+                  <li className="flex justify-between"><span>Forventet tab (3,7%):</span> <span className="font-bold text-destructive">-740 kr.</span></li>
+                  <li className="flex justify-between border-t pt-2 mt-2"><span className="font-bold text-lg">Expected Value:</span> <span className="font-bold text-lg text-emerald-500">+260 kr.</span></li>
+                </ul>
+              </CardContent>
+            </Card>
+          </div>
 
-        {/* Loyalitetsprogram */}
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            <strong className="text-foreground">Konklusion:</strong> Med en positiv EV på +260 kr. er SpilDanskNus bonus matematisk fordelagtig. Det betyder, at hvis du spillede denne bonus tusindvis af gange, ville du i gennemsnit ende med 260 kr. i profit per gang. Dette er en af de højeste EV-værdier på det danske marked, primært drevet af det lave 10x omsætningskrav. Til sammenligning har en standard 10x (d+b) bonus på en side med lavere RTP (94%) en EV på kun +200 kr.
+          </p>
+          <p className="text-muted-foreground leading-relaxed">
+            <strong className="text-foreground">Varians-advarsel:</strong> Selv med positiv EV kan du tabe på kort sigt. Variansen på spilleautomater betyder, at dine resultater vil svinge markant omkring dette gennemsnit. Den 5-dages opdeling hjælper dog med at udglatte denne varians ved at give dig "flere skud" mod målet.
+          </p>
+        </section>
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold">Præmieshoppen – Loyalitet der konverterer til kontanter</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">SpilDanskNus loyalitetsprogram er en af platformens mest underværderede funktioner. I en branche hvor loyalitetsprogrammer ofte er komplicerede konstruktioner med uopnåelige tiers og bonusmidler pakket ind i yderligere omsætningskrav, tilbyder SpilDanskNu noget bemærkelsesværdigt enkelt: du spiller, du optjener points, og du indløser dem til kontante præmier i Præmieshoppen. Ingen bonusmidler med skjulte vilkår – rigtige penge du kan hæve.</p>
