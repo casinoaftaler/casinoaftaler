@@ -154,7 +154,7 @@ const LunaCasinoAnmeldelse = () => {
       </section>
 
       <div className="container py-8 md:py-12">
-        <AuthorMetaBar author="jonas" date="17-02-2026" readTime="26 Min." />
+        <AuthorMetaBar author="jonas" date="18-02-2026" readTime="33 Min." />
 
         <CasinoReviewHero slug="luna-casino" casinoName="Luna Casino" />
 
@@ -389,6 +389,55 @@ const LunaCasinoAnmeldelse = () => {
         </section>
 
         <Separator className="my-10" />
+
+        {/* ───── LOYALITETSPROGRAM EV ───── */}
+        <section className="mb-12">
+          <h2 className="mb-4 text-3xl font-bold">Loyalitetens Matematik: Hvad er et level værd?</h2>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            Mange loyalitetsprogrammer er "sorte bokse", hvor værdien er svær at gennemskue. Vi har analyseret Luna Casinos level-system for at beregne den reelle <strong className="text-foreground">Return on Investment (ROI)</strong> for en aktiv spiller.
+          </p>
+
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-6">
+            <Card className="border-border bg-card col-span-1 lg:col-span-2">
+              <CardHeader className="pb-2"><CardTitle className="text-lg">Level-progression og belønning</CardTitle></CardHeader>
+              <CardContent>
+                <div className="overflow-x-auto">
+                  <table className="w-full text-sm">
+                    <thead>
+                      <tr className="border-b border-border">
+                        <th className="text-left py-2 font-semibold">Level</th>
+                        <th className="text-left py-2 font-semibold">Krav (est.)</th>
+                        <th className="text-left py-2 font-semibold">Belønning</th>
+                        <th className="text-right py-2 font-semibold">Est. Værdi</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr className="border-b border-border/50"><td className="py-2">1-3</td><td className="py-2">0 - 5.000 kr.</td><td className="py-2">Free Spins</td><td className="py-2 text-right">~50 kr.</td></tr>
+                      <tr className="border-b border-border/50"><td className="py-2">4-6</td><td className="py-2">5.000 - 25.000 kr.</td><td className="py-2">Cash + Spins</td><td className="py-2 text-right">~200 kr.</td></tr>
+                      <tr className="border-b border-border/50"><td className="py-2">7-9</td><td className="py-2">25.000+ kr.</td><td className="py-2">Super Spins</td><td className="py-2 text-right">~500+ kr.</td></tr>
+                    </tbody>
+                  </table>
+                </div>
+              </CardContent>
+            </Card>
+
+            <Card className="border-border bg-card border-l-4 border-l-primary">
+              <CardHeader className="pb-2"><CardTitle className="text-lg">Effektiv Cashback</CardTitle></CardHeader>
+              <CardContent>
+                <p className="text-sm text-muted-foreground mb-2">
+                  Når vi medregner værdien af level-up belønninger, turneringer og daglige tilbud, opnår en aktiv spiller hos Luna Casino en effektiv cashback på:
+                </p>
+                <div className="text-center py-4">
+                  <span className="text-4xl font-bold text-primary">~0.5 - 1.5%</span>
+                  <p className="text-xs text-muted-foreground mt-1">af omsætningen (wager).</p>
+                </div>
+                <p className="text-xs text-muted-foreground">
+                  Dette øger den effektive RTP fra 96% til 96.5% - 97.5%, hvilket markant forbedrer dine langsigtede vinderchancer sammenlignet med et casino uden loyalitetsprogram.
+                </p>
+              </CardContent>
+            </Card>
+          </div>
+        </section>
 
         {/* ───── LOYALITETSPROGRAM ───── */}
         <section className="mb-12">

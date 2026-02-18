@@ -167,7 +167,7 @@ const SwiftCasinoAnmeldelse = () => {
       </section>
 
       <div className="container py-8 md:py-12">
-        <AuthorMetaBar author="jonas" date="17-02-2026" readTime="26 Min." />
+        <AuthorMetaBar author="jonas" date="18-02-2026" readTime="35 Min." />
 
         <CasinoReviewHero slug="swift-casino" casinoName="Swift Casino" />
 
@@ -398,6 +398,51 @@ const SwiftCasinoAnmeldelse = () => {
         </section>
 
         <Separator className="my-10" />
+
+        {/* ───── HOT OR COLD EV ANALYSE ───── */}
+        <section className="mb-12">
+          <h2 className="mb-4 text-3xl font-bold">Kan Hot Or Cold slå huset? En statistisk analyse</h2>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            Det store spørgsmål med Swift Casinos "Hot Or Cold" funktion er: Kan den bruges til at øge din <strong className="text-foreground">Expected Value (EV)</strong>? Vi har analyseret dataene matematisk.
+          </p>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+            <Card className="border-border bg-card">
+              <CardHeader className="pb-2"><CardTitle className="flex items-center gap-2 text-lg"><Flame className="h-5 w-5 text-orange-500" />Hypotesen: "Hot" Slots</CardTitle></CardHeader>
+              <CardContent>
+                <p className="text-sm text-muted-foreground mb-3">
+                  Teorien er, at en maskine der udbetaler meget ("Hot"), er i en "givende cyklus".
+                </p>
+                <div className="p-3 bg-muted/30 rounded border border-border">
+                  <span className="block text-xs font-bold text-destructive">Matematisk Fakta:</span>
+                  <span className="text-sm text-foreground">Hvert spin er en uafhængig begivenhed (Independent Event). En slot har ingen hukommelse. At den lige har udbetalt, ændrer ikke sandsynligheden for næste spin.</span>
+                </div>
+              </CardContent>
+            </Card>
+
+            <Card className="border-border bg-card">
+              <CardHeader className="pb-2"><CardTitle className="flex items-center gap-2 text-lg"><Activity className="h-5 w-5 text-blue-500" />Hypotesen: "Cold" Slots</CardTitle></CardHeader>
+              <CardContent>
+                <p className="text-sm text-muted-foreground mb-3">
+                  Teorien er, at en maskine der ikke har udbetalt længe ("Cold"), "skylder" en gevinst (Gambler's Fallacy).
+                </p>
+                <div className="p-3 bg-muted/30 rounded border border-border">
+                  <span className="block text-xs font-bold text-destructive">Matematisk Fakta:</span>
+                  <span className="text-sm text-foreground">RTP realiseres over millioner af spins. En "kold" periode øger ikke chancen for gevinst nu. RTP er et gennemsnit, ikke en gæld.</span>
+                </div>
+              </CardContent>
+            </Card>
+          </div>
+
+          <Card className="border-border bg-card border-l-4 border-l-primary">
+            <CardContent className="pt-6">
+              <h3 className="text-lg font-bold text-foreground mb-2">Vores konklusion</h3>
+              <p className="text-sm text-muted-foreground leading-relaxed">
+                Hot Or Cold-funktionen ændrer <strong>IKKE</strong> din EV. Din statistiske vinderchance er den samme (RTP 96%), uanset om spillet er markeret som Hot eller Cold. Værdien ligger udelukkende i underholdningen og i at se, hvad andre spillere oplever lige nu. Brug funktionen som et socialt barometer, ikke som et strategisk værktøj.
+              </p>
+            </CardContent>
+          </Card>
+        </section>
 
         {/* ───── HOT OR COLD DEEP-DIVE ───── */}
         <section className="mb-12">

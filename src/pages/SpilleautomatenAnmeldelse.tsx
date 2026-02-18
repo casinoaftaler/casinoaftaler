@@ -25,7 +25,7 @@ import {
   Gamepad2, Wallet, TrendingUp, Award, Zap, RotateCcw, Check, X,
   AlertTriangle, BarChart3, Layers, Timer, Shield, Flame, ArrowRight,
   Percent, DollarSign, Eye, Search, ShoppingBag, Tag, Target,
-  MessageSquare, Mail,
+  MessageSquare, Mail, Calculator
 } from "lucide-react";
 
 const linkClass = "text-primary underline hover:text-primary/80";
@@ -196,7 +196,7 @@ const SpilleautomatenAnmeldelse = () => {
       </section>
 
       <div className="container py-8 md:py-12">
-        <AuthorMetaBar author="jonas" date="17-02-2026" readTime="26 Min." />
+        <AuthorMetaBar author="jonas" date="18-02-2026" readTime="34 Min." />
 
         <CasinoReviewHero slug="spilleautomaten" casinoName="Spilleautomaten" />
 
@@ -467,6 +467,61 @@ const SpilleautomatenAnmeldelse = () => {
               </p>
             </CardContent>
           </Card>
+        </section>
+
+        {/* ───── EV ANALYSE ───── */}
+        <section className="mb-12">
+          <h2 className="mb-4 text-3xl font-bold">Matematisk Analyse: Din fordel hos Spilleautomaten</h2>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            Som dedikeret slots-casino er det afgørende at analysere Spilleautomatens bonus gennem en matematisk linse. Med en teoretisk tilbagebetalingsprocent (RTP) på ~96% på deres mest populære titler, kan vi beregne den præcise Expected Value (EV).
+          </p>
+          
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-6">
+            <Card className="border-border bg-card col-span-1 lg:col-span-2">
+              <CardHeader className="pb-2"><CardTitle className="flex items-center gap-2 text-lg"><Calculator className="h-5 w-5 text-primary" />EV-Beregning (5-dages samlet)</CardTitle></CardHeader>
+              <CardContent>
+                <div className="grid grid-cols-2 gap-4 text-sm">
+                  <div className="p-3 bg-muted/30 rounded border border-border">
+                    <span className="block text-xs text-muted-foreground uppercase">Indsats</span>
+                    <span className="font-bold text-foreground">1.000 kr.</span>
+                  </div>
+                  <div className="p-3 bg-muted/30 rounded border border-border">
+                    <span className="block text-xs text-muted-foreground uppercase">Bonus</span>
+                    <span className="font-bold text-foreground">1.000 kr.</span>
+                  </div>
+                  <div className="p-3 bg-muted/30 rounded border border-border">
+                    <span className="block text-xs text-muted-foreground uppercase">Omsætning</span>
+                    <span className="font-bold text-foreground">20.000 kr.</span>
+                  </div>
+                  <div className="p-3 bg-muted/30 rounded border border-border">
+                    <span className="block text-xs text-muted-foreground uppercase">House Edge</span>
+                    <span className="font-bold text-foreground">4.0%</span>
+                  </div>
+                </div>
+                <Separator className="my-4" />
+                <div className="flex justify-between items-center">
+                  <span className="text-muted-foreground">Forventet værdi (EV):</span>
+                  <span className="text-2xl font-bold text-emerald-500">+200 kr.</span>
+                </div>
+                <p className="text-xs text-muted-foreground mt-2">
+                  Beregning: 1000 - (20.000 * 0.04) = 200. Baseret på 96% RTP.
+                </p>
+              </CardContent>
+            </Card>
+            
+            <Card className="border-border bg-card border-l-4 border-l-amber-500">
+              <CardHeader className="pb-2"><CardTitle className="flex items-center gap-2 text-lg"><AlertTriangle className="h-5 w-5 text-amber-500" />Volatilitets-faktor</CardTitle></CardHeader>
+              <CardContent>
+                <p className="text-sm text-muted-foreground leading-relaxed">
+                  Selvom EV er positiv (+200 kr.), vil din faktiske oplevelse variere baseret på spillets volatilitet.
+                </p>
+                <ul className="mt-3 space-y-2 text-sm">
+                  <li className="flex items-center gap-2"><span className="h-2 w-2 rounded-full bg-emerald-500" /><span><strong>Lav varians (Starburst):</strong> Stabil saldo, tættere på EV.</span></li>
+                  <li className="flex items-center gap-2"><span className="h-2 w-2 rounded-full bg-destructive" /><span><strong>Høj varians (Hacksaw):</strong> Store udsving, risiko for at buste før omsætning.</span></li>
+                </ul>
+              </CardContent>
+            </Card>
+          </div>
         </section>
 
         <Separator className="my-10" />
