@@ -1,0 +1,145 @@
+import { Link } from "react-router-dom";
+import { AuthorMetaBar } from "@/components/AuthorMetaBar";
+import { AuthorBio } from "@/components/AuthorBio";
+import { FAQSection } from "@/components/FAQSection";
+import { SEO } from "@/components/SEO";
+import { buildFaqSchema, buildArticleSchema, SITE_URL } from "@/lib/seo";
+import { RelatedGuides } from "@/components/RelatedGuides";
+import { InlineCasinoCards } from "@/components/InlineCasinoCards";
+import { type ReactNode } from "react";
+import { Badge } from "@/components/ui/badge";
+import { Separator } from "@/components/ui/separator";
+import { Card, CardContent } from "@/components/ui/card";
+import { Sparkles, TrendingUp, BarChart3, Calculator, Flame, Scale, AlertTriangle, Trophy, Zap, Users, Layers } from "lucide-react";
+
+const linkClass = "text-primary underline underline-offset-4 hover:text-primary/80 transition-colors";
+
+const chaosCrewFaqs: { question: string; answer: ReactNode }[] = [
+  { question: "Hvad er RTP'en på Chaos Crew?", answer: "Chaos Crew har en RTP på 96,50 %, over branchens gennemsnit og kvalificerende til høj RTP-kategorien. House edge er 3,50 %. Reducerede versioner (94,50 %, 91,50 %) kan forekomme." },
+  { question: "Hvad er max win i Chaos Crew?", answer: "Max win er 10.000× din indsats. Det opnås primært i free spins-runden med akkumulerede sticky wilds og voksende multiplikatorer fra Cranky og Sketchy wild-symboler." },
+  { question: "Hvad er forskellen på Cranky og Sketchy wilds?", answer: "Cranky wilds har en fast multiplikator (2× eller 3×). Sketchy wilds har en tilfældig multiplikator, der kan ændre sig hvert spin (1× til 5×). Under free spins er begge typer sticky og akkumulerer, hvilket skaber eksplosivt potentiale med kombinerede multiplikatorer." },
+  { question: "Er Chaos Crew en Hacksaw Gaming-slot?", answer: "Ja, Hacksaw Gaming udviklede Chaos Crew og lancerede den i 2021. Det er en af Hacksaws mest populære titler takket være det unikke punk-tema og den innovative dual-wild mekanik." },
+  { question: "Hvordan fungerer bonus buy i Chaos Crew?", answer: (<>Chaos Crew tilbyder to bonus buy-muligheder: standard free spins (60× indsats) eller enhanced free spins (80× indsats) med garanteret minimum antal wild-symboler. Bonus buy er matematisk neutral (RTP forbliver 96,50 %) men kan være deaktiveret under <Link to="/spillemyndigheden" className={linkClass}>Spillemyndigheden</Link>s regulering.</>)},
+  { question: "Er Chaos Crew god til bonusgennemspilning?", answer: (<>Ja, den 96,50 % RTP gør den velegnet til <Link to="/casino-bonus" className={linkClass}>bonus</Link>-gennemspilning. Den høje volatilitet giver dog stor varians – anbefalet kun for spillere med tilstrækkelig bankroll-buffer. For mere stabil gennemspilning, overvej <Link to="/casinospil/spillemaskiner/fire-joker" className={linkClass}>Fire Joker</Link>.</>)},
+];
+
+const ChaosCrewGuide = () => {
+  const faqJsonLd = buildFaqSchema(chaosCrewFaqs);
+  const articleSchema = buildArticleSchema({
+    headline: "Chaos Crew – Dual Wild & Multiplikatorer",
+    description: "Komplet analyse af Chaos Crew: Cranky & Sketchy wilds, 96,50 % RTP, 10.000× max win og dual-multiplikator mekanik.",
+    url: `${SITE_URL}/casinospil/spillemaskiner/chaos-crew`,
+    datePublished: "2026-02-18", dateModified: "2026-02-18",
+    authorName: "Kevin", authorUrl: `${SITE_URL}/forfatter/kevin`,
+  });
+  const breadcrumbJsonLd = { "@context": "https://schema.org", "@type": "BreadcrumbList", itemListElement: [
+    { "@type": "ListItem", position: 1, name: "Forside", item: `${SITE_URL}/` },
+    { "@type": "ListItem", position: 2, name: "Casinospil", item: `${SITE_URL}/casinospil` },
+    { "@type": "ListItem", position: 3, name: "Spillemaskiner", item: `${SITE_URL}/casinospil/spillemaskiner` },
+    { "@type": "ListItem", position: 4, name: "Chaos Crew", item: `${SITE_URL}/casinospil/spillemaskiner/chaos-crew` },
+  ]};
+
+  return (
+    <>
+      <SEO title="Chaos Crew – Dual Wild & RTP-Analyse" description="Dybdegående analyse af Chaos Crew: Cranky & Sketchy wilds, 96,50 % RTP, sticky multiplikatorer og 10.000× max win." jsonLd={[faqJsonLd, articleSchema, breadcrumbJsonLd]} />
+      <article className="mx-auto max-w-4xl px-4 py-12">
+        <header className="mb-8 text-center">
+          <div className="flex items-center justify-center gap-2 mb-4">
+            <Badge variant="secondary" className="text-xs">Hacksaw Gaming</Badge>
+            <Badge variant="outline" className="text-xs">RTP 96,50 %</Badge>
+            <Badge variant="outline" className="text-xs">Høj Volatilitet</Badge>
+          </div>
+          <h1 className="text-4xl md:text-5xl font-bold mb-4 leading-tight">Chaos Crew – Dual Wild & Multiplikator-Analyse</h1>
+          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">Hacksaw Gaming's punk-anarkister Cranky og Sketchy: en matematisk analyse af den innovative dual-wild mekanik, sticky multiplikatorer og det kontrollerede kaos, der driver 10.000× max win.</p>
+        </header>
+        <AuthorMetaBar author="kevin" date="2026-02-18" readTime="15 min" />
+        <Separator className="my-8" />
+
+        <section className="mb-10">
+          <h2 className="text-2xl font-bold mb-4 flex items-center gap-2"><BarChart3 className="h-5 w-5 text-primary" />RTP, Volatilitet og Den Matematiske Motor</h2>
+          <Card className="mb-6"><CardContent className="pt-6">
+            <div className="grid grid-cols-2 md:grid-cols-3 gap-4 text-sm">
+              <div><span className="text-muted-foreground">Udvikler:</span><br /><strong>Hacksaw Gaming</strong></div>
+              <div><span className="text-muted-foreground">RTP:</span><br /><strong>96,50 %</strong></div>
+              <div><span className="text-muted-foreground">Volatilitet:</span><br /><strong>Høj (4/5)</strong></div>
+              <div><span className="text-muted-foreground">Max Win:</span><br /><strong>10.000×</strong></div>
+              <div><span className="text-muted-foreground">Grid:</span><br /><strong>5×5 (cluster pays)</strong></div>
+              <div><span className="text-muted-foreground">House Edge:</span><br /><strong>3,50 %</strong></div>
+            </div>
+          </CardContent></Card>
+          <p className="text-muted-foreground mb-4 leading-relaxed">Chaos Crew anvender et 5×5 cluster pays-grid, hvor gevinster dannes ved grupper af 5+ identiske symboler, der rører hinanden horisontalt eller vertikalt. Denne mekanik giver en fundamentalt anderledes gevinststruktur end traditionelle payline-slots: ingen faste gevinstlinjer, men i stedet organiske clustre, der kan danne sig overalt på griddet.</p>
+          <p className="text-muted-foreground mb-4 leading-relaxed">96,50 % RTP placerer Chaos Crew i <Link to="/casinospil/spillemaskiner/hoej-rtp" className={linkClass}>høj RTP</Link>-kategorien – en sjældenhed for Hacksaw Gaming-titler, der ofte opererer tæt på 96,00 %-grænsen. House edge på 3,50 % er konkurrencedygtig med <Link to="/spiludviklere/pragmatic-play" className={linkClass}>Pragmatic Play</Link>'s bedste tilbud og markant bedre end <Link to="/casinospil/spillemaskiner/wanted-dead-or-a-wild" className={linkClass}>Wanted Dead or a Wild</Link> (3,62 %).</p>
+          <p className="text-muted-foreground mb-4 leading-relaxed">Hit frequency estimeres til 20-25 %, lavere end standard slots men typisk for cluster pays-mekanik, der kræver 5+ sammenhængende symboler for en gevinst. Tumble-funktionen (cascading wins) kompenserer delvist: gevindende clustre fjernes, og nye symboler falder ned med mulighed for kæde-gevinster. Gennemsnitlig tumble-kæde er 1,3-1,6 pr. gevindende spin.</p>
+          <p className="text-muted-foreground leading-relaxed">Base game-RTP estimeres til 55-60 %, med de resterende 40-45 % allokeret til free spins. Denne fordeling er aggressiv for en high-volatility slot og indikerer, at bonusrunder er afgørende for den samlede matematiske performance – et karakteristisk Hacksaw Gaming-designvalg.</p>
+        </section>
+
+        <section className="mb-10">
+          <h2 className="text-2xl font-bold mb-4 flex items-center gap-2"><Zap className="h-5 w-5 text-primary" />Cranky & Sketchy: De To Wild-Typer</h2>
+          <p className="text-muted-foreground mb-4 leading-relaxed">Chaos Crew's innovation er dens dual-wild system med to fundamentalt forskellige wild-typer, der tilbyder kontrasterende risk/reward profiler. Cranky (den orange anarkist) har faste multiplikatorer – typisk 2× eller 3× – der forbliver konstante under hele bonusrunden. Sketchy (den blå rebel) har tilfældige multiplikatorer, der rerolles hvert spin mellem 1× og 5×.</p>
+          <p className="text-muted-foreground mb-4 leading-relaxed">Strategisk implikation: Cranky giver forudsigelig value – du ved præcis, hvad hver wild bidrager. Sketchy giver ustabil men potentielt højere value – en 5× Sketchy er mere værd end en 3× Cranky, men en 1× Sketchy er næsten værdiløs. Denne dualitet afspejler spillets overordnede tema: orden (Cranky) vs. kaos (Sketchy).</p>
+          <p className="text-muted-foreground mb-4 leading-relaxed">Under free spins er begge wild-typer sticky – de forbliver på griddet for resten af bonusrunden. Sticky wilds akkumulerer over tid, og deres multiplikatorer ganges sammen, når de indgår i samme gevinstcluster. To sticky wilds med 3× og 2× i samme cluster giver en samlet 6× multiplikator – og med 3-4+ sticky wilds kan den kombinerede multiplikator nå 20-50×+.</p>
+          <p className="text-muted-foreground leading-relaxed">Wild-landingsfrekvens under free spins estimeres til ca. 20-25 % pr. spin. Med 8-12 free spins kan du forvente 2-3 sticky wilds i gennemsnit – men variansen er enorm. Runder med 0-1 wilds producerer minimal return, mens runder med 5+ wilds (med høje multiplikatorer) kan ramme 500-5.000× indsatsen.</p>
+        </section>
+
+        <section className="mb-10">
+          <h2 className="text-2xl font-bold mb-4 flex items-center gap-2"><Flame className="h-5 w-5 text-primary" />Free Spins: Det Kontrollerede Kaos</h2>
+          <p className="text-muted-foreground mb-4 leading-relaxed">Free spins udløses ved landing af 3+ scatter-symboler (punk-skull): 3 scatters = 8 free spins, 4 scatters = 12. Trigger-frekvens estimeres til ca. 1 pr. 200-280 spins – moderat for en high-volatility slot. Under free spins er alle wilds sticky, og tumble-funktionen forbliver aktiv med akkumulerende gevinstpotentiale.</p>
+          <p className="text-muted-foreground mb-4 leading-relaxed">Gennemsnitlig bonusrunde-value estimeres til 30-60× indsatsen, med en median på 20-35×. Fordelingen er positivt skæv – sjældne runder med multiple high-multiplikator wilds trækker gennemsnittet op. Retrigger er muligt med 3+ scatters under free spins for yderligere 4-6 spins, men forekommer sjældent (estimeret 5-8 % pr. runde).</p>
+          <p className="text-muted-foreground leading-relaxed">Max win-scenariet (10.000×) kræver et grid tæt pakket med sticky wilds (Cranky og Sketchy) med høje multiplikatorer, kombineret med store gevinstclustre af premium-symboler. Sandsynligheden for max win estimeres til ca. 1 pr. 200.000-500.000 spins – sjældent men markant mere opnåeligt end ultra-volatile slots med 100.000×+ ceiling.</p>
+        </section>
+
+        <InlineCasinoCards />
+
+        <section className="mb-10">
+          <h2 className="text-2xl font-bold mb-4 flex items-center gap-2"><Calculator className="h-5 w-5 text-primary" />EV-Beregning: Anarkisternes Økonomi</h2>
+          <Card className="mb-6"><CardContent className="pt-6">
+            <h3 className="font-semibold mb-3">EV-scenarie: 500 spins à 4 kr.</h3>
+            <div className="grid grid-cols-2 gap-3 text-sm">
+              <div><span className="text-muted-foreground">Samlet indsats:</span><br /><strong>2.000 kr.</strong></div>
+              <div><span className="text-muted-foreground">Forventet return:</span><br /><strong>1.930 kr.</strong></div>
+              <div><span className="text-muted-foreground">Forventet tab (EV):</span><br /><strong>-70 kr.</strong></div>
+              <div><span className="text-muted-foreground">Realistisk interval:</span><br /><strong>-1.400 til +6.000 kr.</strong></div>
+            </div>
+          </CardContent></Card>
+          <p className="text-muted-foreground mb-4 leading-relaxed">Det realistiske interval afspejler den høje volatilitet – bred spredning med meningsfuld upside. Nedsiden (-1.400 kr.) forekommer i sessions med 0-1 bonustriggers og svage bonusrunder. Opsiden (+6.000 kr. / 3.000×) kræver en eksplosiv bonusrunde med multiple sticky wilds og høje multiplikatorer.</p>
+          <p className="text-muted-foreground leading-relaxed">For <Link to="/casino-bonus" className={linkClass}>bonus</Link>-gennemspilning er Chaos Crew et acceptabelt valg takket være den 96,50 % RTP. Den høje volatilitet giver dog uforudsigelige resultater. For stabile gennemspilninger, kombiner med lavere-volatile slots i din rotation.</p>
+        </section>
+
+        <section className="mb-10">
+          <h2 className="text-2xl font-bold mb-4 flex items-center gap-2"><Scale className="h-5 w-5 text-primary" />Chaos Crew vs. Andre Hacksaw-Titler</h2>
+          <Card className="mb-6"><CardContent className="pt-6">
+            <div className="overflow-x-auto">
+              <table className="w-full text-sm">
+                <thead><tr className="border-b"><th className="text-left py-2">Slot</th><th className="text-left py-2">RTP</th><th className="text-left py-2">Max Win</th><th className="text-left py-2">Volatilitet</th></tr></thead>
+                <tbody>
+                  <tr className="border-b"><td className="py-2 font-medium">Chaos Crew</td><td>96,50 %</td><td>10.000×</td><td>4/5</td></tr>
+                  <tr className="border-b"><td className="py-2"><Link to="/casinospil/spillemaskiner/wanted-dead-or-a-wild" className={linkClass}>Wanted Dead or a Wild</Link></td><td>96,38 %</td><td>12.500×</td><td>5/5</td></tr>
+                  <tr><td className="py-2">Chaos Crew 2</td><td>96,50 %</td><td>10.000×</td><td>4/5</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </CardContent></Card>
+          <p className="text-muted-foreground leading-relaxed">Chaos Crew tilbyder bedre RTP end Wanted Dead or a Wild og en mere håndterbar volatilitet (4/5 vs. 5/5). For spillere, der vil have Hacksaw Gaming-oplevelsen uden den brutale volatilitet i Wanted, er Chaos Crew det naturlige valg. Cluster pays-mekanikken giver en visuelt tilfredsstillende og anderledes spiloplevelse.</p>
+        </section>
+
+        <section className="mb-10">
+          <h2 className="text-2xl font-bold mb-4 flex items-center gap-2"><AlertTriangle className="h-5 w-5 text-primary" />Bankroll-Krav og Ansvarligt Spil</h2>
+          <p className="text-muted-foreground mb-4 leading-relaxed">Chaos Crew kræver en bankroll på minimum 250-350 spins (1.000-1.400 kr. ved 4 kr. indsats). Tabsstop anbefales ved 55 % af startkapitalen. Den høje volatilitet giver lange tørke-perioder i base game – forvent at bankrollen eroderer jævnt mellem bonusrunder.</p>
+          <p className="text-muted-foreground leading-relaxed">Husk altid <Link to="/ansvarligt-spil" className={linkClass}>ansvarligt spil</Link>-principper. Chaos Crew's punk-æstetik og hurtige gameplay kan friste til impulsivt spil – sæt dine grænser FØR du starter. Udforsk vores <Link to="/casinospil/spillemaskiner" className={linkClass}>spillemaskineguide</Link> for at finde slots med varierende risikoprofiler, og besøg <Link to="/free-spins" className={linkClass}>free spins</Link>-siden for aktuelle tilbud.</p>
+        </section>
+
+        <section className="mb-10">
+          <h2 className="text-2xl font-bold mb-4 flex items-center gap-2"><Trophy className="h-5 w-5 text-primary" />Kontrolleret Kaos med Matematisk Struktur</h2>
+          <p className="text-muted-foreground leading-relaxed">Chaos Crew er Hacksaw Gaming's mest tilgængelige high-volatility slot – en titel, der balancerer punk-anarki med matematisk disciplin. For danske spillere, der søger en unik cluster pays-oplevelse med god RTP og innovativ dual-wild mekanik, er Chaos Crew et fremragende tilskud til slot-repertoiret. Udforsk <Link to="/casinospil" className={linkClass}>flere casinospil</Link> for at finde din ideelle match.</p>
+        </section>
+
+        <Separator className="my-8" />
+        <AuthorBio author="kevin" />
+        <RelatedGuides currentPath="/casinospil/spillemaskiner/chaos-crew" />
+        <FAQSection title="Ofte Stillede Spørgsmål om Chaos Crew" faqs={chaosCrewFaqs} />
+      </article>
+    </>
+  );
+};
+
+export default ChaosCrewGuide;
