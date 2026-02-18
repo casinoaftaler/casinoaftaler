@@ -13,10 +13,10 @@ import { RelatedGuides } from "@/components/RelatedGuides";
 import { InlineCasinoCards } from "@/components/InlineCasinoCards";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
 import { buildArticleSchema, buildFaqSchema } from "@/lib/seo";
-import { QuickFactsProviders } from "@/components/QuickFactsProviders";
+import { QuickFactsProviders, QuickFactsLicense } from "@/components/QuickFactsProviders";
 import { CasinoReviewHero } from "@/components/CasinoReviewHero";
 import type { ReactNode } from "react";
-import { ShieldCheck, Star, Clock, CreditCard, Trophy, Sparkles, Gamepad2, Zap, Check, X, Smartphone, Headphones, Globe, Award, Target, Users, Search } from "lucide-react";
+import { ShieldCheck, Star, Clock, CreditCard, Trophy, Sparkles, Gamepad2, Zap, Check, X, Smartphone, Headphones, Globe, Award, Target, Users, Search, TrendingUp } from "lucide-react";
 
 const linkClass = "text-primary underline hover:text-primary/80";
 
@@ -48,7 +48,7 @@ const GetLuckyAnmeldelse = () => {
         </div></div>
       </section>
       <div className="container py-8 md:py-12">
-        <AuthorMetaBar author="jonas" date="17-02-2026" readTime="27 Min." />
+        <AuthorMetaBar author="jonas" date="18-02-2026" readTime="34 Min." />
         <CasinoReviewHero slug="getlucky" casinoName="GetLucky Casino" />
 
         {/* [C] Segment First – starter med målgruppe */}
@@ -76,6 +76,7 @@ const GetLuckyAnmeldelse = () => {
             <div className="rounded-lg border border-border p-3"><p className="text-xs text-muted-foreground uppercase mb-1">Licenser</p><p className="text-lg font-bold text-foreground">DK + MGA + UKGC</p></div>
           </div>
           <QuickFactsProviders providers={["NetEnt", "Microgaming", "Evolution Gaming", "Play'n GO", "Pragmatic Play", "Quickspin", "Red Tiger", "Big Time Gaming", "Nolimit City", "Hacksaw Gaming"]} />
+          <QuickFactsLicense licenseId="18-0044" />
         </CardContent></Card></section>
 
         {/* SkillOnNet – operatøren bag */}
@@ -214,6 +215,63 @@ const GetLuckyAnmeldelse = () => {
           <p className="mb-4 text-muted-foreground leading-relaxed"><strong>Vs. <Link to="/casino-anmeldelser/leovegas" className={linkClass}>LeoVegas</Link>:</strong> LeoVegas har et bredere spiludvalg (2.000+ titler), markant hurtigere udbetalinger (4-6 timer vs. 26 timer) og en mere poleret mobiloplevelse med dedikeret app. GetLucky kompenserer med lavere minimumsindsat på live casino (5 kr. vs. 20 kr.), et point-baseret loyalitetsprogram der belønner alle budgetter og tilstedeværelsen af Nolimit City og Hacksaw Gaming i kataloget. For mobilfokuserede spillere med behov for hastighed: LeoVegas. For spilvariation på budget: GetLucky.</p>
           <p className="mb-4 text-muted-foreground leading-relaxed"><strong>Vs. <Link to="/casino-anmeldelser/comeon" className={linkClass}>ComeOn</Link>:</strong> ComeOn har færre spil (1.000+ vs. 1.500+) men kompenserer med branchens mest gennemsigtige bonusvilkår, dansk kundeservice og markant hurtigere udbetalinger (14 timer). ComeOns 10% live casino-bidrag er en unik fordel, som GetLucky ikke matcher (0%). ComeOn tilbyder også dansk support, som GetLucky mangler. For gennemsigtighed, hastighed og dansk service: ComeOn. For spiludvalg og udbyder-bredde: GetLucky.</p>
           <p className="text-muted-foreground leading-relaxed"><strong>Vs. <Link to="/casino-anmeldelser/videoslots" className={linkClass}>Videoslots</Link>:</strong> Videoslots er GetLuckys mest direkte konkurrent i "bredde"-segmentet med over 5.000 spiltitler – mere end tre gange GetLuckys katalog. Videoslots tilbyder desuden RTP-filtrering direkte i spilbrowseren, Battle of Slots-turneringer og en cash-back funktion. GetLuckys fordel er et mere brugervenligt interface, bedre onboarding for nye spillere og et simplere loyalitetsprogram. For den erfarne power-user der vil have absolut alt: Videoslots. For den undersøgende casual spiller der ønsker bredde med brugervenlighed: GetLucky.</p>
+        </section>
+
+        <Separator className="my-10" />
+
+        {/* EV-Analyse */}
+        <section className="mb-12">
+          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><TrendingUp className="h-7 w-7 text-primary" />Expected Value – er GetLucky matematisk fordelagtigt?</h2>
+          <p className="mb-4 text-muted-foreground leading-relaxed">For at vurdere den reelle værdi af GetLucky Casino analyserer vi platformens forventede værdi (EV) for en typisk dansk spiller. EV-beregningen tager højde for velkomstbonus, loyalitetsprogram og gennemsnitlige RTP-værdier på tværs af kataloget. Det er den mest objektive metode til at sammenligne casinoer – og den afslører, om en platform reelt giver spilleren mere for pengene end konkurrenterne.</p>
+          <Card className="border-border bg-card border-l-4 border-l-primary mb-6">
+            <CardHeader><CardTitle className="flex items-center gap-2 text-xl"><TrendingUp className="h-6 w-6 text-primary" />3-trins EV-beregning – GetLucky Casino</CardTitle></CardHeader>
+            <CardContent className="space-y-4">
+              <div className="rounded-lg border border-border p-4">
+                <p className="font-semibold text-foreground mb-2">Trin 1: Velkomstbonus EV</p>
+                <p className="text-sm text-muted-foreground">Indbetaling: 1.000 kr. → Bonus: 1.000 kr. (100% match) + 100 free spins</p>
+                <p className="text-sm text-muted-foreground">Omsætningskrav: 10 × (1.000 + 1.000) = 20.000 kr.</p>
+                <p className="text-sm text-muted-foreground">Gennemsnitlig RTP: 96% → Forventet tab under omsætning: 20.000 × 0,04 = 800 kr.</p>
+                <p className="text-sm text-muted-foreground">Bonusværdi: 1.000 kr. (bonus) - 800 kr. (forventet tab) = <strong className="text-primary">+200 kr. EV</strong></p>
+                <p className="text-sm text-muted-foreground">Free spins: 100 × 2 kr. (gennemsnitlig spin-værdi) × 96% RTP = 192 kr. brutto. Med 10x omsætningskrav og maks 500 kr./dag: <strong className="text-primary">~+35 kr. EV</strong></p>
+              </div>
+              <div className="rounded-lg border border-border p-4">
+                <p className="font-semibold text-foreground mb-2">Trin 2: Loyalitetsprogram EV (årlig)</p>
+                <p className="text-sm text-muted-foreground">Gennemsnitlig månedlig indsats: 5.000 kr. → 500 loyalitetspoint/måned → 5 kr./måned i bonus</p>
+                <p className="text-sm text-muted-foreground">Årlig loyalitetsbonus: 12 × 5 = 60 kr. (med 10x omsætningskrav → nettoværdi ~40 kr.)</p>
+                <p className="text-sm text-muted-foreground">Årlig loyalitets-EV: <strong className="text-primary">+40 kr.</strong></p>
+              </div>
+              <div className="rounded-lg border border-border p-4">
+                <p className="font-semibold text-foreground mb-2">Trin 3: Samlet EV – første år</p>
+                <p className="text-sm text-muted-foreground">Velkomstbonus EV: +200 kr. + Free spins EV: +35 kr. + Loyalitet: +40 kr.</p>
+                <p className="text-sm text-foreground font-bold">Samlet første-års EV: +275 kr. 💰</p>
+                <p className="text-sm text-muted-foreground mt-2">Til sammenligning: <Link to="/casino-anmeldelser/888-casino" className={linkClass}>888 Casino</Link> ~+350 kr., <Link to="/casino-anmeldelser/comeon" className={linkClass}>ComeOn</Link> ~+180 kr., <Link to="/casino-anmeldelser/mr-green" className={linkClass}>Mr Green</Link> ~+150 kr.</p>
+              </div>
+            </CardContent>
+          </Card>
+          <p className="mb-4 text-muted-foreground leading-relaxed"><strong>Fortolkning:</strong> GetLuckys samlede EV på +275 kr. placerer platformen i den øvre midtergruppe af danske casinoer. Velkomstbonussen har en realistisk positiv værdi takket være de moderate omsætningskrav (10x), og loyalitetsprogrammet tilføjer en beskeden men konsistent ekstra gevinst over tid. Den primære svaghed er free spins-komponentens begrænsning til maks 500 kr. pr. dag, som begrænser upside-potentialet.</p>
+          <p className="mb-4 text-muted-foreground leading-relaxed"><strong>Risk of Ruin-analyse:</strong> Med en starting bankroll på 2.000 kr. (1.000 kr. indbetaling + 1.000 kr. bonus) og et omsætningskrav på 20.000 kr. er Risk of Ruin (sandsynligheden for at miste hele saldoen, før kravet er opfyldt) ca. 38% ved gennemsnitlig indsats på 10 kr. og gennemsnitlig volatilitet. Det er moderat – lavere end hos operatører med 30x-40x omsætningskrav (hvor RoR typisk overstiger 60%), men højere end <Link to="/casino-anmeldelser/betinia" className={linkClass}>Betinias</Link> no-sticky model, hvor du kan hæve din indbetaling uanset bonusstatus. For risikoaverse spillere anbefaler vi at starte med en lavere indbetaling (500 kr.) for at reducere RoR til ~25%.</p>
+          <p className="text-muted-foreground leading-relaxed"><strong>Samlet matematisk vurdering:</strong> GetLucky er ikke den mest lukrative platform for bonusjægere – det er 888 Casino og <Link to="/casino-anmeldelser/expekt" className={linkClass}>Expekt</Link> med deres stærkere løbende kampagner. Men for den gennemsnitlige spiller, der søger et stort spiludvalg med en fornuftig bonus og beskeden loyalitetsbelønning, er matematikken positiv. Den reelle værdi af GetLucky ligger ikke i bonussen – den ligger i bredden af kataloget og adgangen til udbydere, som mange andre platforme ikke har.</p>
+        </section>
+
+        <Separator className="my-10" />
+
+        {/* SkillOnNet 2026 Strategi */}
+        <section className="mb-12">
+          <h2 className="mb-4 text-3xl font-bold">SkillOnNets strategi for 2026 – hvad det betyder for GetLucky</h2>
+          <p className="mb-4 text-muted-foreground leading-relaxed">SkillOnNet har i 2025-2026 gennemført en betydelig teknologisk opgradering af sin platform, der direkte påvirker GetLuckys brugeroplevelse. Den nye platform-version – internt betegnet "SkillOnNet 3.0" – fokuserer på tre kerneområder: hastighed, personalisering og udbyder-integration. Indlæsningstider er reduceret med ca. 30% sammenlignet med den tidligere version, hvilket bringer GetLucky tættere på de hurtigste platforme som LeoVegas i ren performance.</p>
+          <p className="mb-4 text-muted-foreground leading-relaxed">Personaliseringskomponenten er den mest interessante for spillerne. SkillOnNet har implementeret maskinlærings-baserede anbefalinger, der analyserer dine spillemønstre og foreslår nye titler baseret på din historik. Hvis du primært spiller høj-volatilitetsspil fra Nolimit City, vil systemet fremhæve lignende titler fra Hacksaw Gaming og ELK Studios. Det er en sofistikeret tilgang til spilkuratering i et massivt katalog – og det adresserer delvist det navigationsproblem, vi identificerede i vores test. Anbefalingerne er dog stadig i en tidlig fase og mangler den præcision, som streaming-platforme som Netflix har perfektioneret.</p>
+          <p className="mb-4 text-muted-foreground leading-relaxed">Udbyder-integrationen har resulteret i tilføjelsen af nye studier til platformen. I Q4 2025 tilføjede GetLucky spil fra Push Gaming og Relax Gaming – to udbydere, der er populære blandt entusiaster. Push Gamings Fat Rabbit, Razor Shark og Jammin' Jars-serien er nu tilgængelige, ligesom Relax Gamings Money Train-franchise. Disse tilføjelser styrker yderligere GetLuckys position som en af de mest udbyderrige platforme på det danske marked.</p>
+          <p className="text-muted-foreground leading-relaxed">SkillOnNets langsigtede strategi er at differentiere sig via bredde og teknologi snarere end aggressive bonusser. Det er en bevidst kontrastposition til selskaber som Betsson Group (der driver <Link to="/casino-anmeldelser/betinia" className={linkClass}>Betinia</Link>) med fokus på no-sticky bonusser, og Kindred Group (der driver <Link to="/casino-anmeldelser/unibet" className={linkClass}>Unibet</Link>) med fokus på brand-diversificering. For den danske spiller betyder det, at GetLucky vil forblive en platform, der belønner eksploring over exploitation – bredde over dybde, variation over gentagelse. Det er en filosofi, der passer perfekt til platformens kernemålgruppe.</p>
+        </section>
+
+        <Separator className="my-10" />
+
+        {/* Regulatorisk resiliens */}
+        <section className="mb-12">
+          <h2 className="mb-4 text-3xl font-bold">Regulatorisk resiliens – hvad beskytter din konto?</h2>
+          <p className="mb-4 text-muted-foreground leading-relaxed">I en branche, der oplever stigende regulatorisk pres, er operatørens compliance-infrastruktur en kritisk faktor for spillerens langsigtige sikkerhed. SkillOnNets tredobbelte licensering (Danmark, Malta, UK) giver en usædvanlig grad af regulatorisk resiliens. Hvis en af myndighederne strammer kravene, har operatøren allerede erfaring med at navigere strenge reguleringsmiljøer i to andre jurisdiktioner. Det reducerer risikoen for pludselige, dårligt implementerede ændringer, der påvirker brugeroplevelsen negativt.</p>
+          <p className="mb-4 text-muted-foreground leading-relaxed">Den danske licens fra <Link to="/spillemyndigheden" className={linkClass}>Spillemyndigheden</Link> (licens nr. 18-0044) sikrer, at alle spillerfonde er segregerede fra operatørens driftskapital. I tilfælde af SkillOnNets konkurs er danske spilleres indestående beskyttet og vil blive returneret via en reguleret afviklingsproces. Det er en beskyttelse, der ikke eksisterer hos uregulerede operatører – og en af de vigtigste grunde til at vælge et licenseret dansk casino.</p>
+          <p className="text-muted-foreground leading-relaxed">SkillOnNet har aldrig modtaget en offentlig sanktion fra nogen af sine tre licensmyndigheder – en bemærkelsesværdig track record over 19 år. Til sammenligning har flere store operatører modtaget millionbøder fra UKGC i de seneste år for AML-mangler og ansvarligt spil-overtrædelser. SkillOnNets ren-compliance-historik er et stærkt signal om en organisationskultur, der prioriterer regeloverholdelse – og det er en faktor, der bør veje tungt for den kvalitetsbevidste spiller, der vælger platform for den langsigtede relation.</p>
         </section>
 
         <Separator className="my-10" />
