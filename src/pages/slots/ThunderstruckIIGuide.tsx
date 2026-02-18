@@ -42,29 +42,32 @@ const ThunderstruckIIGuide = () => {
   return (
     <>
       <SEO title="Thunderstruck II – Bonus & RTP-Analyse" description="Dybdegående analyse af Thunderstruck II: Great Hall of Spins, 96,65 % RTP, fire bonusniveauer og matematisk EV-vurdering." jsonLd={[faqJsonLd, articleSchema, breadcrumbJsonLd]} />
-      <article className="mx-auto max-w-4xl px-4 py-12">
-        <header className="mb-8 text-center">
-          <div className="flex items-center justify-center gap-2 mb-4">
-            <Badge variant="secondary" className="text-xs">Progressiv Bonus</Badge>
-            <Badge variant="outline" className="text-xs">RTP 96,65 %</Badge>
-            <Badge variant="outline" className="text-xs">Medium Volatilitet</Badge>
-          </div>
-          <h1 className="text-4xl md:text-5xl font-bold mb-4 leading-tight">Thunderstruck II – Progressive Bonusniveauer & RTP-Analyse</h1>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">Microgamings nordiske mesterværk: en slot der belønner loyalitet med fire progressivt stærkere bonusniveauer og en af markedets bedste RTP'er.</p>
-        </header>
-        <AuthorMetaBar author="kevin" date="2026-02-18" readTime="16 min" />
-        <Separator className="my-8" />
 
-        <section className="mb-10">
-          <h2 className="text-2xl font-bold mb-4 flex items-center gap-2"><Users className="h-5 w-5 text-primary" />Hvem Passer Thunderstruck II Til?</h2>
+      <section className="relative overflow-hidden py-12 text-white md:py-20" style={{ backgroundImage: "linear-gradient(135deg, hsl(220 70% 30%), hsl(250 60% 25%) 40%, hsl(270 80% 20%))" }}>
+        <div className="container">
+          <div className="mx-auto max-w-3xl text-center">
+            <Badge variant="secondary" className="mb-4"><Layers className="mr-1.5 h-3.5 w-3.5" /> Progressiv Bonus</Badge>
+            <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">Thunderstruck II</h1>
+            <p className="text-lg text-white/80">Microgamings nordiske mesterværk: en slot der belønner loyalitet med fire progressivt stærkere bonusniveauer og en af markedets bedste RTP'er.</p>
+          </div>
+        </div>
+      </section>
+
+      <div className="container py-8 md:py-12">
+        <AuthorMetaBar author="kevin" date="2026-02-18" readTime="16 min" />
+
+        <section className="mb-12">
+          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><Users className="h-7 w-7 text-primary" /> Hvem Passer Thunderstruck II Til?</h2>
           <p className="text-muted-foreground mb-4 leading-relaxed">Thunderstruck II er designet til en specifik spillerprofil: den tålmodige strateg, der foretrækker langsigtet progression over øjeblikkelig tilfredsstillelse. Den progressive bonus-mekanik (Great Hall of Spins) belønner direkte spillere, der investerer tid i at nå de højere bonusniveauer – en unik tilgang, der adskiller Thunderstruck II fra næsten alle andre slots på markedet.</p>
           <p className="text-muted-foreground mb-4 leading-relaxed">Med en RTP på 96,65 % og medium volatilitet tilbyder spillet en balance, der sjældent ses: tilstrækkelig regelmæssige gevinster til at holde sessionerne levende, kombineret med nok variabilitet i bonusrunderne til at bevare spænding. For danske spillere, der søger en 30-60 minutters session med godt value, er Thunderstruck II et topvalg – forudsat at du har tålmodigheden til at nå de avancerede bonusniveauer.</p>
           <p className="text-muted-foreground mb-4 leading-relaxed">Spillet er IKKE ideelt for jackpot-jægere (max win 8.000× er moderat) eller spillere, der søger ultra-simpel mekanik (de fire bonusniveauer kræver forståelse). For high-volatility-fans anbefaler vi i stedet <Link to="/casinospil/spillemaskiner/dead-or-alive-2" className={linkClass}>Dead or Alive 2</Link> eller <Link to="/casinospil/spillemaskiner/razor-shark" className={linkClass}>Razor Shark</Link>, der tilbyder mere eksplosive gevinstpotentialer.</p>
           <p className="text-muted-foreground leading-relaxed">Thunderstruck II's ideelle spiller er den, der værdsætter mekanisk dybde, forudsigelig EV, og en fornemmelse af progression. Nordisk mytologi-temaet er en bonus, men det er den matematiske struktur, der gør dette spil til en varig favorit bland kyndige spillere.</p>
         </section>
 
-        <section className="mb-10">
-          <h2 className="text-2xl font-bold mb-4 flex items-center gap-2"><Layers className="h-5 w-5 text-primary" />Great Hall of Spins: Fire Bonusniveauer Dekonstrueret</h2>
+        <Separator className="my-10" />
+
+        <section className="mb-12">
+          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><Layers className="h-7 w-7 text-primary" /> Great Hall of Spins: Fire Bonusniveauer Dekonstrueret</h2>
           <p className="text-muted-foreground mb-4 leading-relaxed">Great Hall of Spins er Thunderstruck II's kronjuvel – et progressivt bonussystem, der forbedres med hver trigger. Systemet anvender en kumulativ tæller, der tracker antallet af bonustriggers pr. session (eller pr. spilinstans, afhængig af implementering). De fire niveauer er:</p>
           <Card className="mb-6"><CardContent className="pt-6">
             <div className="space-y-4 text-sm">
@@ -78,8 +81,10 @@ const ThunderstruckIIGuide = () => {
           <p className="text-muted-foreground leading-relaxed">Free spins trigger-frekvens estimeres til ca. 1 pr. 90-120 spins. Med 4 triggers nødvendige for at nå Loki-niveauet kræves ca. 360-480 spins – og for Thor-niveauet (15+ triggers) kræves ca. 1.350-1.800 spins. Det er denne progression, der kræver den tålmodige spillerprofil, vi beskrev ovenfor.</p>
         </section>
 
-        <section className="mb-10">
-          <h2 className="text-2xl font-bold mb-4 flex items-center gap-2"><Calculator className="h-5 w-5 text-primary" />Teknisk Profil og Volatilitetsanalyse</h2>
+        <Separator className="my-10" />
+
+        <section className="mb-12">
+          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><Calculator className="h-7 w-7 text-primary" /> Teknisk Profil og Volatilitetsanalyse</h2>
           <Card className="mb-6"><CardContent className="pt-6">
             <div className="grid grid-cols-2 md:grid-cols-3 gap-4 text-sm">
               <div><span className="text-muted-foreground">Udvikler:</span><br /><strong>Microgaming</strong></div>
@@ -95,10 +100,14 @@ const ThunderstruckIIGuide = () => {
           <p className="text-muted-foreground leading-relaxed">Den medium volatilitet afspejler en balanceret gevinstfordeling: base game leverer konsistente, små gevinster, mens bonusrunderne (især Odin og Thor) producerer de større udbetalinger. Denne todelte struktur giver en jævnere bankroll-kurve end high-volatility slots, hvor 80 %+ af RTP'en er koncentreret i bonusrunder.</p>
         </section>
 
+        <Separator className="my-10" />
+
         <InlineCasinoCards />
 
-        <section className="mb-10">
-          <h2 className="text-2xl font-bold mb-4 flex items-center gap-2"><BarChart3 className="h-5 w-5 text-primary" />EV-Beregning og Sessionens Økonomi</h2>
+        <Separator className="my-10" />
+
+        <section className="mb-12">
+          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><BarChart3 className="h-7 w-7 text-primary" /> EV-Beregning og Sessionens Økonomi</h2>
           <Card className="mb-6"><CardContent className="pt-6">
             <h3 className="font-semibold mb-3">EV-scenarie: 500 spins à 4 kr.</h3>
             <div className="grid grid-cols-2 gap-3 text-sm">
@@ -112,29 +121,35 @@ const ThunderstruckIIGuide = () => {
           <p className="text-muted-foreground leading-relaxed">For <Link to="/casino-bonus" className={linkClass}>bonus</Link>-gennemspilning er Thunderstruck II et godt valg takket være den høje RTP og regelmæssige gevinstfordeling. Den medium volatilitet sikrer, at bankrollen sjældent kollapser under gennemspilning, hvilket giver en mere forudsigelig progression mod omsætningskravet.</p>
         </section>
 
-        <section className="mb-10">
-          <h2 className="text-2xl font-bold mb-4 flex items-center gap-2"><Scale className="h-5 w-5 text-primary" />Thunderstruck II vs. Immortal Romance</h2>
+        <Separator className="my-10" />
+
+        <section className="mb-12">
+          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><Scale className="h-7 w-7 text-primary" /> Thunderstruck II vs. Immortal Romance</h2>
           <p className="text-muted-foreground mb-4 leading-relaxed"><Link to="/casinospil/spillemaskiner/immortal-romance" className={linkClass}>Immortal Romance</Link> er Thunderstruck II's åndelige søster – begge fra Microgaming, begge med progressive bonusniveauer, og begge med fremragende RTP. Den primære forskel er volatilitet: Immortal Romance er højere (high vs. medium), med en mere skæv gevinstfordeling og højere max win (12.150× vs. 8.000×). For spillere, der foretrækker stabilitet, er Thunderstruck II det bedre valg; for dem, der søger større spænding, vinder Immortal Romance.</p>
           <p className="text-muted-foreground leading-relaxed">Begge slots deler den progressive bonusstruktur, men Immortal Romance's tema (vampyr-romantik) og grafik er mere moderne. For ren matematisk value er forskellen minimal – begge er blandt Microgamings bedste produkter og fortjener en plads i enhver kyndig spillers rotation.</p>
         </section>
 
-        <section className="mb-10">
-          <h2 className="text-2xl font-bold mb-4 flex items-center gap-2"><AlertTriangle className="h-5 w-5 text-primary" />Bankroll-Strategi og Ansvarligt Spil</h2>
+        <Separator className="my-10" />
+
+        <section className="mb-12">
+          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><AlertTriangle className="h-7 w-7 text-primary" /> Bankroll-Strategi og Ansvarligt Spil</h2>
           <p className="text-muted-foreground mb-4 leading-relaxed">Thunderstruck II's medium volatilitet kræver en bankroll på minimum 200-300 spins for en komfortabel session. Med en indsats på 4 kr. svarer dette til 800-1.200 kr. For spillere, der ønsker at nå Thor-niveauet (15+ bonustriggers), kræves 1.500+ spins (6.000+ kr.) – en betydelig investering, der kun anbefales til spillere med disciplinerede bankroll-strategier.</p>
           <p className="text-muted-foreground leading-relaxed">Tabsstop anbefales ved 50 % af startkapitalen. Thunderstruck II's jævne gevinstfordeling gør det usandsynligt at tabe hele bankrollen hurtigt, men den progressive natur kan friste spillere til at "jage" næste bonusniveau – en fristelse, der bør modstås med disciplin. Husk altid <Link to="/ansvarligt-spil" className={linkClass}>ansvarligt spil</Link>-principper.</p>
         </section>
 
-        <section className="mb-10">
-          <h2 className="text-2xl font-bold mb-4 flex items-center gap-2"><Trophy className="h-5 w-5 text-primary" />Thors Hammer Rammer Stadig Hårdt</h2>
+        <Separator className="my-10" />
+
+        <section className="mb-12">
+          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><Trophy className="h-7 w-7 text-primary" /> Thors Hammer Rammer Stadig Hårdt</h2>
           <p className="text-muted-foreground mb-4 leading-relaxed">Thunderstruck II er et testamente til tidløst spildesign. Over 15 år efter lanceringen forbliver den en af markedets mest respekterede slots – og den høje RTP, progressive bonus og balancerede volatilitet forklarer hvorfor. For danske spillere, der søger value, dybde og underholdning i én pakke, er Thunderstruck II svær at slå.</p>
           <p className="text-muted-foreground leading-relaxed">Udforsk vores <Link to="/casinospil/spillemaskiner" className={linkClass}>komplette spillemaskineguide</Link> for at finde andre høj-RTP titler, og tjek <Link to="/free-spins" className={linkClass}>free spins</Link>-siden for aktuelle tilbud på <Link to="/spiludviklere/microgaming" className={linkClass}>Microgaming</Link>-slots.</p>
         </section>
 
-        <Separator className="my-8" />
+        <Separator className="my-10" />
         <AuthorBio author="kevin" />
         <RelatedGuides currentPath="/casinospil/spillemaskiner/thunderstruck-ii" />
         <FAQSection title="Ofte Stillede Spørgsmål om Thunderstruck II" faqs={thunderstruckIIFaqs} />
-      </article>
+      </div>
     </>
   );
 };
