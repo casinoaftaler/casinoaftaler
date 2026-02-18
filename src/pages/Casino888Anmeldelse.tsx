@@ -16,7 +16,7 @@ import { buildArticleSchema, buildFaqSchema } from "@/lib/seo";
 import { QuickFactsProviders, QuickFactsLicense } from "@/components/QuickFactsProviders";
 import { CasinoReviewHero } from "@/components/CasinoReviewHero";
 import type { ReactNode } from "react";
-import { Star, CreditCard, Trophy, Sparkles, Gamepad2, Zap, Check, X, Crown, Award, ShieldCheck, Headphones } from "lucide-react";
+import { Star, CreditCard, Trophy, Sparkles, Gamepad2, Zap, Check, X, Crown, Award, ShieldCheck, Headphones, TrendingUp, BarChart3 } from "lucide-react";
 
 const linkClass = "text-primary underline hover:text-primary/80";
 
@@ -32,7 +32,7 @@ const faqs: { question: string; answer: ReactNode }[] = [
 const Casino888Anmeldelse = () => {
   const { data: siteSettings } = useSiteSettings();
   const heroBackgroundImage = siteSettings?.hero_background_image;
-  const articleSchema = buildArticleSchema({ headline: "888 Casino Anmeldelse 2026 – Pioneren i Online Casino", description: "Komplet anmeldelse af 888 Casino. Børsnoteret pioner med dansk licens, eksklusive spil og 888 Club loyalitetsprogram.", url: "https://casinoaftaler.dk/casino-anmeldelser/888-casino", datePublished: "2026-02-15", dateModified: "2026-02-17", authorName: "Jonas", authorUrl: "https://casinoaftaler.dk/forfatter/jonas" });
+  const articleSchema = buildArticleSchema({ headline: "888 Casino Anmeldelse 2026 – Pioneren i Online Casino", description: "Komplet anmeldelse af 888 Casino. Børsnoteret pioner med dansk licens, eksklusive spil og 888 Club loyalitetsprogram.", url: "https://casinoaftaler.dk/casino-anmeldelser/888-casino", datePublished: "2026-02-15", dateModified: "2026-02-18", authorName: "Jonas", authorUrl: "https://casinoaftaler.dk/forfatter/jonas" });
   const faqJsonLd = buildFaqSchema(faqs);
   const reviewJsonLd = { "@context": "https://schema.org", "@type": "Review", itemReviewed: { "@type": "Organization", name: "888 Casino", url: "https://www.888casino.dk/" }, author: { "@type": "Organization", name: "Casinoaftaler" }, reviewRating: { "@type": "Rating", ratingValue: "4.3", bestRating: "5", worstRating: "1" }, reviewBody: "888 Casino er en pioner inden for online gambling med eksklusivt spiludvalg, loyalitetsprogram og dansk licens." };
 
@@ -47,7 +47,7 @@ const Casino888Anmeldelse = () => {
         </div></div>
       </section>
       <div className="container py-8 md:py-12">
-        <AuthorMetaBar author="jonas" date="17-02-2026" readTime="24 Min." />
+        <AuthorMetaBar author="jonas" date="18-02-2026" readTime="34 Min." />
         <CasinoReviewHero slug="888casino" casinoName="888 Casino" />
 
         {/* [E] Kritisk First – starter med kritisk analyse */}
@@ -225,13 +225,77 @@ const Casino888Anmeldelse = () => {
 
         <Separator className="my-10" />
 
+        {/* William Hill Synergier */}
+        <section className="mb-12">
+          <h2 className="mb-4 text-3xl font-bold"><TrendingUp className="inline h-7 w-7 text-primary mr-2" />William Hill-fusionen – hvad betyder det for danske spillere?</h2>
+          <p className="mb-4 text-muted-foreground leading-relaxed">Fusionen mellem 888 Holdings og William Hill International i 2022 var en af de mest transformative begivenheder i online gambling-branchen i det seneste årti. Handlen, der var værdiansat til ca. £2,2 milliarder, skabte en global gigant med en samlet omsætning på over £3 milliarder og tilstedeværelse i mere end 20 regulerede markeder. For den danske spiller på 888 Casino har denne fusion konkrete implikationer – både positive og potentielt bekymrende.</p>
+          <p className="mb-4 text-muted-foreground leading-relaxed">På den positive side har fusionen givet 888 Casino adgang til William Hills omfattende teknologiske infrastruktur, inklusiv avancerede odds-motorer, personaliserings-AI og en bredere portefølje af spiludbyder-aftaler. I praksis har det allerede resulteret i et udvidet spiludvalg med titler fra udbydere, der tidligere var eksklusive for William Hill-platformen. Desuden har koncernens samlede forhandlingsstyrke overfor spiludbydere forbedret vilkårene – herunder de Enhanced RTP-versioner, som nu er tilgængelige på udvalgte slots. For en spiller, der omsætter 50.000 kr. årligt, kan en RTP-forbedring på 0,5% betyde en besparelse på 250 kr. i forventet tab.</p>
+          <p className="mb-4 text-muted-foreground leading-relaxed">Den potentielt bekymrende side er konsolidering. Når to store operatører fusionerer, reduceres konkurrencen – og i en branche, hvor konkurrence er den primære driver af innovation og spillervenlige vilkår, er det en strukturel risiko. Derudover har fusionsprocessen krævet betydelige ressourcer, der potentielt har forsinket platformmodernisering og produktudvikling. Det daterede designet, vi kritiserede tidligere, kan delvist tilskrives denne prioritering af integration over innovation i 2022-2024.</p>
+          <p className="text-muted-foreground leading-relaxed">Fremadrettet forventer analytikere, at 888/William Hill-koncernen vil fokusere på tre strategiske områder i 2026-2027: 1) Teknologisk konsolidering, hvor alle brands migreres til en fælles platform, 2) Expansion i regulerede markeder med særligt fokus på Nordamerika, og 3) AI-drevet personalisering af spilleroplevelsen. For danske 888 Casino-spillere betyder det sandsynligvis en redesignet platform inden udgangen af 2026 og bedre personaliserede kampagner baseret på spillehistorik og præferencer.</p>
+        </section>
+
+        <Separator className="my-10" />
+
+        {/* Årlig EV-beregning */}
+        <section className="mb-12">
+          <h2 className="mb-4 text-3xl font-bold"><BarChart3 className="inline h-7 w-7 text-primary mr-2" />Årlig spilværdi – hvad koster det reelt at være 888-spiller?</h2>
+          <p className="mb-4 text-muted-foreground leading-relaxed">For at give et komplet billede har vi beregnet den samlede årlige Expected Value for en typisk 888 Casino-spiller. Vi definerer tre spillerprofiler med realistiske aktivitetsniveauer og beregner nettoværdien af at spille på 888 Casino versus de nærmeste konkurrenter.</p>
+          <Card className="border-border bg-card border-l-4 border-l-primary mb-6">
+            <CardHeader><CardTitle className="flex items-center gap-2 text-xl"><TrendingUp className="h-6 w-6 text-primary" />Årlig EV-sammenligning: 888 Casino vs. markedet</CardTitle></CardHeader>
+            <CardContent className="space-y-4">
+              <div className="rounded-lg border border-border p-4">
+                <p className="font-semibold text-foreground mb-2">Casual spiller (5.000 kr./måned omsætning)</p>
+                <p className="text-sm text-muted-foreground">Forventet årligt tab (96% RTP): 60.000 × 0,04 = 2.400 kr.</p>
+                <p className="text-sm text-muted-foreground">Velkomstbonus EV: +400 kr. (engangs)</p>
+                <p className="text-sm text-muted-foreground">888 Club Bronze værdi: ~120 kr./år (600 points × 0,2 kr.)</p>
+                <p className="text-sm text-muted-foreground">No-deposit bonus: ~10 kr. (engangs)</p>
+                <p className="text-sm text-foreground font-bold mt-2">Samlet 1. års EV: -1.870 kr. (inkl. alle bonusser)</p>
+              </div>
+              <div className="rounded-lg border border-border p-4">
+                <p className="font-semibold text-foreground mb-2">Regelmæssig spiller (20.000 kr./måned omsætning)</p>
+                <p className="text-sm text-muted-foreground">Forventet årligt tab: 240.000 × 0,04 = 9.600 kr.</p>
+                <p className="text-sm text-muted-foreground">Velkomstbonus EV: +400 kr.</p>
+                <p className="text-sm text-muted-foreground">888 Club Guld/Platin værdi: ~600 kr./år</p>
+                <p className="text-sm text-muted-foreground">Løbende kampagner EV: ~300 kr./år</p>
+                <p className="text-sm text-foreground font-bold mt-2">Samlet 1. års EV: -8.300 kr. | Følgende år: -8.700 kr.</p>
+              </div>
+              <div className="rounded-lg border border-border p-4">
+                <p className="font-semibold text-foreground mb-2">Aktiv spiller (50.000 kr./måned omsætning)</p>
+                <p className="text-sm text-muted-foreground">Forventet årligt tab: 600.000 × 0,04 = 24.000 kr.</p>
+                <p className="text-sm text-muted-foreground">Velkomstbonus EV: +400 kr.</p>
+                <p className="text-sm text-muted-foreground">888 Club Prestige værdi: ~1.500 kr./år</p>
+                <p className="text-sm text-muted-foreground">VIP-kampagner + events: ~1.200 kr./år</p>
+                <p className="text-sm text-muted-foreground">Accelererede udbetalinger: Sparede ventetimer (subjektiv værdi)</p>
+                <p className="text-sm text-foreground font-bold mt-2">Samlet 1. års EV: -20.900 kr. | Følgende år: -21.300 kr.</p>
+              </div>
+              <div className="rounded-lg border border-border p-4 bg-muted/20">
+                <p className="font-semibold text-foreground mb-2">Konklusion</p>
+                <p className="text-sm text-muted-foreground">888 Club giver bedst værdi for aktive spillere med 20.000+ kr./måned i omsætning, hvor loyalitetsprogrammets stigende tiers kompenserer for en stigende andel af det forventede tab. For casual spillere er 888 Clubs værdi beskeden – flat-rate cashback hos <Link to="/casino-anmeldelser/getlucky" className={linkClass}>GetLucky</Link> giver bedre umiddelbar værdi.</p>
+              </div>
+            </CardContent>
+          </Card>
+          <p className="text-muted-foreground leading-relaxed"><strong>Risk of Ruin-perspektiv:</strong> Med en bankroll på 5.000 kr. og gennemsnitlig indsats på 25 kr. (2% pr. spin) er Risk of Ruin over 500 spins ca. 22% på standard slots (96% RTP) og ca. 28% på 888-eksklusive titler (95,2% RTP). Den lavere RTP på eksklusive titler har en målbar effekt: for hver 10.000 kr. indsat taber du statistisk 80 kr. ekstra sammenlignet med standard slots. Over et år med 60.000 kr. i omsætning er det ~480 kr. i ekstra forventet tab. Spil eksklusive titler for oplevelsens skyld – ikke under bonusomsætning.</p>
+        </section>
+
+        <Separator className="my-10" />
+
+        {/* 888 i det regulatoriske landskab */}
+        <section className="mb-12">
+          <h2 className="mb-4 text-3xl font-bold">888 Casino og dansk regulering – en stabil compliance-historik</h2>
+          <p className="mb-4 text-muted-foreground leading-relaxed">888 Holdings har en af de længste og reneste regulatoriske track records i branchen. Selskabet har haft dansk licens (nr. 18-0058) siden den danske spillelov trådte i kraft i 2012, og der er ingen registrerede sanktioner eller advarsler fra <Link to="/spillemyndigheden" className={linkClass}>Spillemyndigheden</Link> i den danske licenshistorik. Til sammenligning har flere andre internationale operatører modtaget bøder eller advarsler fra danske myndigheder for overtrædelse af markedsføringsregler eller compliance-krav.</p>
+          <p className="mb-4 text-muted-foreground leading-relaxed">I UK har 888 Holdings dog modtaget bøder – senest en £9,4 millioner bøde fra UK Gambling Commission i 2022 for manglende identifikation af potentielle hvidvask-transaktioner og utilstrækkeligt ansvarligt spil-overvågning. Selvom denne bøde var relateret til den britiske operation, understreger den vigtigheden af løbende compliance-investeringer – og det ekstra sikkerhedsnet, som Spillemyndighedens tilsyn giver danske spillere. Den danske regulering kræver strammere KYC via MitID, automatiske indbetalingsgrænser og ROFUS-tilslutning, hvilket eliminerer mange af de risici, der førte til UK-bøden.</p>
+          <p className="text-muted-foreground leading-relaxed">For danske spillere er konklusionen klar: 888 Casino er en regulatorisk pålidelig operatør i den danske kontekst. Børsnoteringen kræver transparens, den danske licens kræver compliance, og den rene danske track record bekræfter, at begge krav overholdes. Det er et af de stærkeste argumenter for at vælge en børsnoteret operatør frem for en privat ejet – du kan se præcis, hvad der foregår, og myndighederne holder et ekstra øje.</p>
+        </section>
+
+        <Separator className="my-10" />
+
         {/* Market Position */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold">888 Casino i det danske marked – historik og perspektiv</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">888 Casino har en unik position i det danske marked som en af de allerførste internationale operatører med dansk licens. Siden den danske spillelov trådte i kraft i 2012, har 888 Casino opereret kontinuerligt på det danske marked – en stabilitet, som mange nyere operatører ikke kan matche. Fusionen med William Hill International i 2022 skabte en af verdens fem største online gambling-koncerner, med en samlet omsætning der overstiger det dobbelte af hele det danske online casino-markeds størrelse.</p>
-          <p className="mb-4 text-muted-foreground leading-relaxed">Det danske marked udgør en beskeden andel af 888 Holdings' samlede omsætning (~2-3%), men koncernen opretholder en dedikeret dansk operation med lokaliseret indhold og dansk-compliant bonusvilkår. Licensnummeret hos Spillemyndigheden er stabilt og uden historiske sanktioner – et tegn på en operatør, der tager compliance seriøst. Den børsnoterede status på London Stock Exchange (ticker: 888) tilføjer et ekstra lag af gennemsigtighed, da kvartalsrapporter, revisionsberetninger og regulatoriske advarsler er offentligt tilgængelige.</p>
-          <p className="mb-4 text-muted-foreground leading-relaxed">Konkurrencemæssigt er 888 Casinos primære udfordring, at platformen opfattes som "den etablerede" snarere end "den innovative." Nyere operatører som <Link to="/casino-anmeldelser/getlucky" className={linkClass}>GetLucky</Link> og <Link to="/casino-anmeldelser/kapow-casino" className={linkClass}>Kapow Casino</Link> tilbyder modernere brugeroplevelser og aggressive bonusprogrammer. Etablerede rivaler som <Link to="/casino-anmeldelser/leovegas" className={linkClass}>LeoVegas</Link> har investeret massivt i mobilteknologi og udbetalingshastighed – områder, hvor 888 Casino halter efter. Det er en klassisk "innovator's dilemma"-situation, hvor en pioner har svært ved at matche nye aktørers agilitet.</p>
-          <p className="text-muted-foreground leading-relaxed">For de næste 2-3 år forventer vi, at 888 Casino vil fokusere på to områder: modernisering af den tekniske platform (designopfriskning og hurtigere udbetalinger) og udnyttelse af William Hill-synergierne til at styrke det samlede produkt. For danske spillere betyder det potentielt et bedre produkt over tid, men i 2026 er 888 Casino stadig et casino, der lever primært på troværdighed og unikke features snarere end på cutting-edge teknologi.</p>
+          <p className="mb-4 text-muted-foreground leading-relaxed">Det danske marked udgør en beskeden andel af 888 Holdings' samlede omsætning (~2-3%), men koncernen opretholder en dedikeret dansk operation med lokaliseret indhold og dansk-compliant bonusvilkår. Konkurrencemæssigt er 888 Casinos primære udfordring, at platformen opfattes som "den etablerede" snarere end "den innovative." Nyere operatører som <Link to="/casino-anmeldelser/getlucky" className={linkClass}>GetLucky</Link> og <Link to="/casino-anmeldelser/kapow-casino" className={linkClass}>Kapow Casino</Link> tilbyder modernere brugeroplevelser og aggressive bonusprogrammer.</p>
+          <p className="mb-4 text-muted-foreground leading-relaxed">Etablerede rivaler som <Link to="/casino-anmeldelser/leovegas" className={linkClass}>LeoVegas</Link> har investeret massivt i mobilteknologi og udbetalingshastighed – områder, hvor 888 Casino halter efter. Det er en klassisk "innovator's dilemma"-situation, hvor en pioner har svært ved at matche nye aktørers agilitet. For de næste 2-3 år forventer vi, at 888 Casino vil fokusere på modernisering af den tekniske platform og udnyttelse af William Hill-synergierne til at styrke det samlede produkt.</p>
+          <p className="text-muted-foreground leading-relaxed">For danske spillere betyder det potentielt et bedre produkt over tid, men i 2026 er 888 Casino stadig et casino, der lever primært på troværdighed og unikke features snarere end på cutting-edge teknologi. 888 Casino konkurrerer ikke mod de nyeste disruptors – det konkurrerer mod sin egen arv og potentialet til at modernisere uden at miste den identitet, der gør det unikt.</p>
         </section>
 
         <Separator className="my-10" />

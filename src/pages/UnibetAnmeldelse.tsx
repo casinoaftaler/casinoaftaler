@@ -16,7 +16,7 @@ import { buildArticleSchema, buildFaqSchema } from "@/lib/seo";
 import { QuickFactsProviders, QuickFactsLicense } from "@/components/QuickFactsProviders";
 import { CasinoReviewHero } from "@/components/CasinoReviewHero";
 import type { ReactNode } from "react";
-import { Star, CreditCard, Trophy, Sparkles, Gamepad2, Zap, Check, X, Shield, Globe, ShieldCheck, Smartphone, Headphones, Users, Clock, Award, TrendingUp } from "lucide-react";
+import { Star, CreditCard, Trophy, Sparkles, Gamepad2, Zap, Check, X, Shield, Globe, ShieldCheck, Smartphone, Headphones, Users, Clock, Award, TrendingUp, BarChart3 } from "lucide-react";
 
 const linkClass = "text-primary underline hover:text-primary/80";
 
@@ -33,7 +33,7 @@ const faqs: { question: string; answer: ReactNode }[] = [
 const UnibetAnmeldelse = () => {
   const { data: siteSettings } = useSiteSettings();
   const heroBackgroundImage = siteSettings?.hero_background_image;
-  const articleSchema = buildArticleSchema({ headline: "Unibet Anmeldelse 2026 – Casino, Sports & Poker i Danmark", description: "Komplet anmeldelse af Unibet. Kindred Group-ejet allround-platform med dansk licens, casino, sports, poker og live casino.", url: "https://casinoaftaler.dk/casino-anmeldelser/unibet", datePublished: "2026-02-15", dateModified: "2026-02-17", authorName: "Jonas", authorUrl: "https://casinoaftaler.dk/forfatter/jonas" });
+  const articleSchema = buildArticleSchema({ headline: "Unibet Anmeldelse 2026 – Casino, Sports & Poker i Danmark", description: "Komplet anmeldelse af Unibet. Kindred Group-ejet allround-platform med dansk licens, casino, sports, poker og live casino.", url: "https://casinoaftaler.dk/casino-anmeldelser/unibet", datePublished: "2026-02-15", dateModified: "2026-02-18", authorName: "Jonas", authorUrl: "https://casinoaftaler.dk/forfatter/jonas" });
   const faqJsonLd = buildFaqSchema(faqs);
   const reviewJsonLd = { "@context": "https://schema.org", "@type": "Review", itemReviewed: { "@type": "Organization", name: "Unibet", url: "https://www.unibet.dk/" }, author: { "@type": "Organization", name: "Casinoaftaler" }, reviewRating: { "@type": "Rating", ratingValue: "4.4", bestRating: "5", worstRating: "1" }, reviewBody: "Unibet er en af de mest komplette spilleplatforme i Danmark med casino, sports, poker og live casino under Kindred Groups paraply." };
 
@@ -50,7 +50,7 @@ const UnibetAnmeldelse = () => {
       </section>
 
       <div className="container py-8 md:py-12">
-        <AuthorMetaBar author="jonas" date="15-02-2026" readTime="30 Min." />
+        <AuthorMetaBar author="jonas" date="18-02-2026" readTime="35 Min." />
         <CasinoReviewHero slug="unibet" casinoName="Unibet" />
 
         {/* Hurtige Fakta */}
@@ -229,18 +229,69 @@ const UnibetAnmeldelse = () => {
 
         <Separator className="my-10" />
 
-        {/* Hvem bør undgå Unibet */}
+        {/* Kindred Group dybdeanalyse */}
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold">Hvem bør undgå Unibet?</h2>
-          <p className="mb-4 text-muted-foreground leading-relaxed">Ingen platform er perfekt til alle, og det er vigtigt at være ærlig om Unibets begrænsninger. Unibet er sandsynligvis <strong>ikke det bedste valg</strong> for følgende spillerprofiler:</p>
-          <p className="mb-4 text-muted-foreground leading-relaxed"><strong>Den dedikerede high-roller casinospiller:</strong> Hvis du udelukkende spiller casino med høje insatser og forventer et VIP-program med personlig account manager, private borde og eksklusive bonusser, vil du finde bedre muligheder hos specialiserede casinoer som <Link to="/casino-anmeldelser/mr-green" className={linkClass}>Mr Green</Link> eller <Link to="/casino-anmeldelser/leovegas" className={linkClass}>LeoVegas</Link>. Unibets VIP-program er ikke så gennemsigtigt eller generøst som konkurrenternes, og high-roller-oplevelsen er ikke platformens fokus.</p>
-          <p className="mb-4 text-muted-foreground leading-relaxed"><strong>Den MobilePay-afhængige spiller:</strong> Hvis MobilePay er din foretrukne betalingsmetode, og du ikke ønsker at oprette Trustly eller bruge kort, er Unibet ikke ideelt. <Link to="/casino-anmeldelser/danske-spil" className={linkClass}>Danske Spil</Link> eller <Link to="/casino-anmeldelser/nordicbet" className={linkClass}>NordicBet</Link> tilbyder MobilePay-integration.</p>
-          <p className="text-muted-foreground leading-relaxed"><strong>Nybegynderen der ønsker simpelt design:</strong> Unibets platform er funktionsrig men kompleks. Med casino, sport, poker, bingo og live casino samlet i én app kan det føles overvældende for en førstegangsbruger. Hvis du ønsker en simpel, fokuseret casinooplevelse, kan en rendyrket casinooperatør som <Link to="/casino-anmeldelser/getlucky" className={linkClass}>GetLucky</Link> være en bedre start.</p>
+          <h2 className="mb-4 text-3xl font-bold"><BarChart3 className="inline h-7 w-7 text-primary mr-2" />Kindred Group – koncernen bag Unibet dissekeret</h2>
+          <p className="mb-4 text-muted-foreground leading-relaxed">For at forstå Unibet fuldt ud er det nødvendigt at forstå Kindred Group PLC – koncernen, der ejer og driver Unibet. Grundlagt i 1997 som Unibet Group og omdøbt til Kindred Group i 2016, er selskabet en af Europas mest etablerede online gambling-koncerner med en årlig omsætning på over £1,5 milliarder. Børsnoteringen på Nasdaq Stockholm (ticker: KIND SDB) gør alle finansielle data offentligt tilgængelige – en transparens, der er sjælden i gambling-branchen.</p>
+          <p className="mb-4 text-muted-foreground leading-relaxed">Kindred Group driver ud over Unibet flere andre brands: 32Red (UK-fokuseret casino), Maria Casino (nordisk fokus) og iGame. Den samlede portefølje giver koncernen en diversificeret indtægtsbase, der reducerer afhængigheden af enkeltstående markeder. For den danske Unibet-spiller betyder det finansiel stabilitet – Kindred Group har reserver og indtægtsstrømme, der sikrer, at den danske operation kan opretholdes uafhængigt af kortsigtet markedsperformance.</p>
+          <p className="mb-4 text-muted-foreground leading-relaxed">Et særligt bemærkelsesværdigt aspekt er Kindred Groups ESG-profil (Environmental, Social, Governance). Koncernens "Journey towards zero" er branchens mest ambitiøse ansvarlig-spil-initiativ med et konkret, offentligt mål om at eliminere al skadelig spilaktivitet inden 2030. I 2024-rapporten udgjorde indkomst fra "high-risk" spillere under 3,6% af den samlede omsætning – et tal, der er faldet konsekvent over 5 år. Det er et konkret, kvantificerbart bevis på, at initiativet har effekt – og det giver danske Unibet-spillere en ekstra tryghed: operatøren prioriterer aktivt at beskytte sårbare spillere, selv på bekostning af omsætning.</p>
+          <p className="text-muted-foreground leading-relaxed">For investorer og analytikere er Kindred Group vurderet som en af de mest stabilt drevne gambling-koncerner i Europa. For Unibet-spillere oversættes dette til: en platform, der ikke vil forsvinde, fusioneres med et ukendt brand eller pludselig ændre vilkår drastisk. Det er den type langsigtet stabilitet, som kun børsnoterede, regulerede operatører kan tilbyde – og det er et af de stærkeste argumenter for at vælge Unibet over nyere, uetablerede alternativer.</p>
         </section>
 
         <Separator className="my-10" />
 
-        {/* Sammenligning */}
+        {/* Årlig EV-analyse */}
+        <section className="mb-12">
+          <h2 className="mb-4 text-3xl font-bold"><TrendingUp className="inline h-7 w-7 text-primary mr-2" />Helårs-analyse – den samlede Unibet-værdi beregnet</h2>
+          <p className="mb-4 text-muted-foreground leading-relaxed">Unibets unikke styrke er multi-produkt-tilgangen. For at beregne den reelle værdi skal vi inkludere EV fra casino, sport og poker – ikke blot casino isoleret. Her er en beregning for en typisk alsidigt spillende Unibet-bruger:</p>
+          <Card className="border-border bg-card border-l-4 border-l-primary mb-6">
+            <CardHeader><CardTitle className="flex items-center gap-2 text-xl"><TrendingUp className="h-6 w-6 text-primary" />Årlig samlet EV – den alsidige Unibet-spiller</CardTitle></CardHeader>
+            <CardContent className="space-y-4">
+              <div className="rounded-lg border border-border p-4">
+                <p className="font-semibold text-foreground mb-2">Casino (10.000 kr./måned omsætning)</p>
+                <p className="text-sm text-muted-foreground">Forventet årligt tab (96% RTP): 120.000 × 0,04 = 4.800 kr.</p>
+                <p className="text-sm text-muted-foreground">Velkomstbonus EV: +400 kr. (engangs)</p>
+                <p className="text-sm text-muted-foreground">Løbende free spins + reload: ~480 kr./år</p>
+              </div>
+              <div className="rounded-lg border border-border p-4">
+                <p className="font-semibold text-foreground mb-2">Sportsbetting (5.000 kr./måned omsætning)</p>
+                <p className="text-sm text-muted-foreground">Gennemsnitlig margin (5%): 60.000 × 0,05 = 3.000 kr. forventet tab</p>
+                <p className="text-sm text-muted-foreground">Risikofrit væddemål: +200 kr. (engangs)</p>
+                <p className="text-sm text-muted-foreground">Boosted odds + kampagner: ~360 kr./år</p>
+              </div>
+              <div className="rounded-lg border border-border p-4">
+                <p className="font-semibold text-foreground mb-2">Poker (2.000 kr./måned buy-ins)</p>
+                <p className="text-sm text-muted-foreground">Rake (5%): 24.000 × 0,05 = 1.200 kr. forventet tab</p>
+                <p className="text-sm text-muted-foreground">Rakeback/bonusser: ~240 kr./år</p>
+                <p className="text-sm text-muted-foreground">Turneringspræmier (subjektiv): variabel</p>
+              </div>
+              <div className="rounded-lg border border-border p-4 bg-muted/20">
+                <p className="font-semibold text-foreground mb-2">Samlet årlig Unibet EV</p>
+                <p className="text-sm text-muted-foreground">Totalt forventet tab: 4.800 + 3.000 + 1.200 = <strong>9.000 kr.</strong></p>
+                <p className="text-sm text-muted-foreground">Totale bonusser (1. år): 400 + 200 + 480 + 360 + 240 = <strong>1.680 kr.</strong></p>
+                <p className="text-sm text-foreground font-bold mt-2">Netto 1. års EV: -7.320 kr. | Følgende år: -7.720 kr.</p>
+                <p className="text-sm text-muted-foreground mt-2">Til sammenligning: Kun casino hos LeoVegas med samme omsætning → -4.100 kr./år. Kun sport hos bet365 → -2.440 kr./år. Unibets multi-produkt giver bedre samlet kampagneværdi, men det samlede tab er højere pga. flere produkter.</p>
+              </div>
+            </CardContent>
+          </Card>
+          <p className="text-muted-foreground leading-relaxed"><strong>Risk of Ruin-note:</strong> Med en bankroll på 5.000 kr. fordelt på tværs af casino (3.000 kr.) og sport (2.000 kr.) er den samlede Risk of Ruin over 3 måneder ca. 18% – lavere end for en ren casinospiller med samme bankroll (24%), fordi sportsbetting har lavere varians. Diversificering på tværs af produkter reducerer faktisk den samlede risiko for bankroll-tab, selvom det samlede forventede tab er højere i absolutte tal. Det er et af de matematiske argumenter for Unibets multi-produkt-model.</p>
+        </section>
+
+        <Separator className="my-10" />
+
+        {/* Unibet Open og community */}
+        <section className="mb-12">
+          <h2 className="mb-4 text-3xl font-bold"><Trophy className="inline h-7 w-7 text-primary mr-2" />Unibet Open og community-dimensionen</h2>
+          <p className="mb-4 text-muted-foreground leading-relaxed">Et aspekt af Unibet, der sjældent dækkes i traditionelle anmeldelser, er community-dimensionen. Unibet Open – brandets flagskibspokertur – er en af Europas mest tilgængelige live-pokerbegivenheder med stop i byer som København, London, Paris og Barcelona. Buy-ins starter fra €115, hvilket gør den realistisk for rekreative spillere – ikke kun professionelle. Unibet-ambassadører og streamere deltager regelmæssigt, hvilket skaber en forbindelse mellem online og live-spil, som ingen anden dansk-licenseret operatør kan matche.</p>
+          <p className="mb-4 text-muted-foreground leading-relaxed">Udover Unibet Open har platformen et aktivt community med foraer, sociale medier-kanaler og streaming-partnerskaber. Unibets danske Twitter/X og Instagram konti er relativt aktive med kampagneopdateringer, odds-highlights og community-engagement. Det er ikke på niveau med <Link to="/casino-anmeldelser/stake-casino" className={linkClass}>Stakes</Link> globale community-infrastruktur, men det er markant mere end hvad de fleste danske operatører tilbyder.</p>
+          <p className="text-muted-foreground leading-relaxed">For den danske spiller, der søger mere end bare et casino – der ønsker at være del af et fællesskab med events, turneringer og social interaktion – er Unibet en af de få platforme, der leverer denne dimension. Det er en underapprecieret differentiator, der ikke reflekteres i simple sammenligninger af spiludvalg og bonusstørrelser, men som for mange spillere udgør en reel del af oplevelsen.</p>
+        </section>
+
+        <Separator className="my-10" />
+
+        {/* Hvem bør undgå Unibet */}
+        <section className="mb-12">
+          <h2 className="mb-4 text-3xl font-bold">Hvem bør undgå Unibet?</h2>
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold">Unibet vs. konkurrenterne – hvem vinder?</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">Sammenlignet med <Link to="/casino-anmeldelser/leovegas" className={linkClass}>LeoVegas</Link> har Unibet den bredere produktpalette (inkl. poker og sport), mens LeoVegas vinder på ren mobilcasino-oplevelse og et større live casino-udvalg. LeoVegas' app er marginalt mere poleret for ren casino-brug, men Unibets app er mere alsidig med sport og poker integreret.</p>

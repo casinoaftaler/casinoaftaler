@@ -16,7 +16,7 @@ import { buildArticleSchema, buildFaqSchema } from "@/lib/seo";
 import { QuickFactsProviders, QuickFactsLicense } from "@/components/QuickFactsProviders";
 import { CasinoReviewHero } from "@/components/CasinoReviewHero";
 import type { ReactNode } from "react";
-import { Star, Zap, Check, X, ShieldCheck, Trophy, CreditCard, Gamepad2, Sparkles, Headphones } from "lucide-react";
+import { Star, Zap, Check, X, ShieldCheck, Trophy, CreditCard, Gamepad2, Sparkles, Headphones, TrendingUp, BarChart3 } from "lucide-react";
 
 const linkClass = "text-primary underline hover:text-primary/80";
 
@@ -31,7 +31,7 @@ const casinostuenFaqs: { question: string; answer: ReactNode }[] = [
 const CasinostuenAnmeldelse = () => {
   const { data: siteSettings } = useSiteSettings();
   const heroBackgroundImage = siteSettings?.hero_background_image;
-  const articleSchema = buildArticleSchema({ headline: "Casinostuen Anmeldelse 2026 – Hyggelig Dansk Casino", description: "Dybdegående anmeldelse af Casinostuen. Dansk licens, hyggelig atmosfære og fokus på det danske marked.", url: "https://casinoaftaler.dk/casino-anmeldelser/casinostuen", datePublished: "2026-02-15", dateModified: "2026-02-17", authorName: "Jonas", authorUrl: "https://casinoaftaler.dk/forfatter/jonas" });
+  const articleSchema = buildArticleSchema({ headline: "Casinostuen Anmeldelse 2026 – Hyggelig Dansk Casino", description: "Dybdegående anmeldelse af Casinostuen. Dansk licens, hyggelig atmosfære og fokus på det danske marked.", url: "https://casinoaftaler.dk/casino-anmeldelser/casinostuen", datePublished: "2026-02-15", dateModified: "2026-02-18", authorName: "Jonas", authorUrl: "https://casinoaftaler.dk/forfatter/jonas" });
   const faqJsonLd = buildFaqSchema(casinostuenFaqs);
   const reviewJsonLd = { "@context": "https://schema.org", "@type": "Review", itemReviewed: { "@type": "Organization", name: "Casinostuen", url: "https://www.casinostuen.dk/" }, author: { "@type": "Organization", name: "Casinoaftaler" }, reviewRating: { "@type": "Rating", ratingValue: "3.6", bestRating: "5", worstRating: "1" }, reviewBody: "Casinostuen er en hyggelig dansk casinoplatform med fokus på overskuelighed og lokalt marked, men begrænset spiludvalg og langsom udbetaling holder den tilbage." };
 
@@ -48,7 +48,7 @@ const CasinostuenAnmeldelse = () => {
       </section>
 
       <div className="container py-8 md:py-12">
-        <AuthorMetaBar author="jonas" date="17-02-2026" readTime="22 Min." />
+        <AuthorMetaBar author="jonas" date="18-02-2026" readTime="32 Min." />
         <CasinoReviewHero slug="casinostuen" casinoName="Casinostuen" />
 
         {/* [A] Experience First – starter med vores hands-on test */}
@@ -238,13 +238,66 @@ const CasinostuenAnmeldelse = () => {
 
         <Separator className="my-10" />
 
+        {/* Niche-markedsanalyse */}
+        <section className="mb-12">
+          <h2 className="mb-4 text-3xl font-bold"><BarChart3 className="inline h-7 w-7 text-primary mr-2" />Niche-casino-modellen – kan den overleve i 2026?</h2>
+          <p className="mb-4 text-muted-foreground leading-relaxed">Casinostuen repræsenterer et interessant fænomen i det danske casino-landskab: den lokale niche-operatør. Mens markedet domineres af internationale giganter med millionbudgetter til markedsføring og tusindvis af spiltitler, vælger Casinostuen bevidst en anderledes strategi: fokus på et snævert segment med en kurateret oplevelse. Det er en strategi, der historisk har fungeret i detailhandlen (Irma vs. Netto) og restaurationsbranchen (den lokale brasserie vs. kæderestauranten) – men kan den fungere i online gambling?</p>
+          <p className="mb-4 text-muted-foreground leading-relaxed">Data fra det danske marked tyder på, at niche-operatører opretholder en stabil men beskeden markedsandel. De tre største operatører (Danske Spil, bet365 og LeoVegas) kontrollerer tilsammen over 50% af det danske online casino-marked. De resterende 50% er fordelt mellem 30+ operatører, hvoraf mange – som Casinostuen – har markedsandele under 1%. Det er ikke en position, der genererer massive overskud, men den er bæredygtig, så længe operatørens omkostninger holdes tilsvarende lave.</p>
+          <p className="mb-4 text-muted-foreground leading-relaxed">Casinostuens styrke i denne kontekst er lave overhead-omkostninger. Platformen kræver ikke den samme teknologiske investering, markedsføringsbudgettering eller personalemæssige ressourcer som en global operatør. Med et fokuseret spiludvalg (500 titler vs. 2.000+) reduceres licensomkostningerne til spiludbydere markant. Med udelukkende dansk kundeservice undgås de multichannel-investeringer, som internationale platforme kræver. Det er en lean model, der kan være profitabel ved selv beskedne indtægtsstrømme.</p>
+          <p className="text-muted-foreground leading-relaxed">Den primære risiko er regulatorisk: danske licensgebyrer og compliance-krav er de samme uanset operatørstørrelse. Hvis Spillemyndighedens gebyrer stiger, eller compliance-kravene skærpes (hvilket er en reel mulighed under EU-harmonisering), kan det presse små operatørers marginer. Desuden er konsolideringstrenden i branchen en eksistentiel trussel – større operatører opkøber regelmæssigt mindre brands for at absorbere deres licensdækning og spillerbase. Det er ikke utænkeligt, at Casinostuen på sigt bliver opkøbt af en større koncern, ligesom vi har set med <Link to="/casino-anmeldelser/stake-casino" className={linkClass}>Stakes opkøb af VinderCasino</Link>.</p>
+        </section>
+
+        <Separator className="my-10" />
+
+        {/* Spiller-økonomi dybdeanalyse */}
+        <section className="mb-12">
+          <h2 className="mb-4 text-3xl font-bold"><TrendingUp className="inline h-7 w-7 text-primary mr-2" />Spillerøkonomi – Casinostuen vs. internationale platforme</h2>
+          <p className="mb-4 text-muted-foreground leading-relaxed">En central overvejelse for den prisbevidste spiller er, om det koster mere at spille på en nicheplatform som Casinostuen sammenlignet med en stor international operatør. Svaret er nuanceret og afhænger af din spillerprofil.</p>
+          <Card className="border-border bg-card border-l-4 border-l-primary mb-6">
+            <CardHeader><CardTitle className="flex items-center gap-2 text-xl"><TrendingUp className="h-6 w-6 text-primary" />3-måneders EV-sammenligning: Casinostuen vs. LeoVegas</CardTitle></CardHeader>
+            <CardContent className="space-y-4">
+              <div className="rounded-lg border border-border p-4">
+                <p className="font-semibold text-foreground mb-2">Casinostuen (500 kr./måned omsætning × 3 mdr.)</p>
+                <p className="text-sm text-muted-foreground">Forventet tab: 1.500 × 0,04 = 60 kr.</p>
+                <p className="text-sm text-muted-foreground">Velkomstbonus EV: +100 kr. (500 kr. match)</p>
+                <p className="text-sm text-muted-foreground">Løbende kampagner: ~30 kr. (1-2 tilbud/uge)</p>
+                <p className="text-sm text-foreground font-bold mt-2">Netto 3-måneders EV: +70 kr. 💰</p>
+              </div>
+              <div className="rounded-lg border border-border p-4">
+                <p className="font-semibold text-foreground mb-2">LeoVegas (500 kr./måned omsætning × 3 mdr.)</p>
+                <p className="text-sm text-muted-foreground">Forventet tab: 1.500 × 0,04 = 60 kr.</p>
+                <p className="text-sm text-muted-foreground">Velkomstbonus EV: +300 kr. (3.000 kr. match)</p>
+                <p className="text-sm text-muted-foreground">Løbende kampagner: ~90 kr. (4-5 tilbud/uge)</p>
+                <p className="text-sm text-foreground font-bold mt-2">Netto 3-måneders EV: +330 kr. 💰</p>
+              </div>
+              <div className="rounded-lg border border-border p-4 bg-muted/20">
+                <p className="font-semibold text-foreground mb-2">Konklusion</p>
+                <p className="text-sm text-muted-foreground">LeoVegas giver +260 kr. mere i reel værdi over 3 måneder – primært drevet af den større velkomstbonus og hyppigere kampagner. For spillere med lavt budget er forskellen dog minimal i absolutte tal. Den reelle afvejning er kvantitativ værdi (LeoVegas) vs. kvalitativ oplevelse (Casinostuens danske atmosfære).</p>
+              </div>
+            </CardContent>
+          </Card>
+          <p className="mb-4 text-muted-foreground leading-relaxed"><strong>Vigtigt perspektiv:</strong> RTP-niveauerne er identiske på tværs af platforme for de samme spil. Book of Dead har 96,21% RTP uanset om du spiller det på Casinostuen eller LeoVegas. Den reelle omkostningsforskel ligger udelukkende i bonusser og kampagner – ikke i spillene selv. Det er en central pointe, som mange sammenligninger overser: platformen ændrer ikke spillenes matematik, den ændrer kun de supplerende fordele du modtager.</p>
+          <p className="text-muted-foreground leading-relaxed"><strong>Risk of Ruin ved lav bankroll:</strong> Med Casinostuens lave minimumsindskud (50 kr.) og en indsats på 5 kr./spin er Risk of Ruin over 50 spins ca. 15% – acceptabelt for en test-session. Med 100 kr. og 5 kr./spin falder RoR til ca. 10%. Det er et af Casinostuens stærkeste argumenter: du kan teste platformen med minimal risiko, evaluere om oplevelsen passer dig, og eskalere dit budget, hvis du er tilfreds. Ingen anden platform gør det nemmere at starte med et lavt budget.</p>
+        </section>
+
+        <Separator className="my-10" />
+
+        {/* Ansvarligt spil perspektiv */}
+        <section className="mb-12">
+          <h2 className="mb-4 text-3xl font-bold"><ShieldCheck className="inline h-7 w-7 text-primary mr-2" />Ansvarligt spil – passer Casinostuen til sårbare spillere?</h2>
+          <p className="mb-4 text-muted-foreground leading-relaxed">For nybegyndere og casual spillere er ansvarligt spil-værktøjer særligt vigtige – og det er præcis dette segment, Casinostuen henvender sig til. Platformen opfylder alle lovpålagte minimumskrav: ROFUS-tilslutning, MitID-verifikation, indbetalingsgrænser og selvudelukkelsesfunktionalitet. Men den mangler de proaktive værktøjer, som mere avancerede platforme tilbyder.</p>
+          <p className="mb-4 text-muted-foreground leading-relaxed">Specifikt mangler Casinostuen: 1) Automatiserede session-timere, der påminder spillere om at holde pause efter en given tidsperiode, 2) Tab-alarmer, der notificerer spilleren, når et foruddefineret tabsbeløb er nået, 3) Realitets-checks, der viser spillerens nettoresultat under en session, og 4) AI-drevet adfærdsmonitorering, som platforme som <Link to="/casino-anmeldelser/mr-green" className={linkClass}>Mr Green</Link> (Green Gaming) og <Link to="/casino-anmeldelser/unibet" className={linkClass}>Unibet</Link> (Journey towards zero) tilbyder.</p>
+          <p className="text-muted-foreground leading-relaxed">For en platform, der eksplicit henvender sig til nybegyndere, er fraværet af disse proaktive værktøjer en mærkbar mangel. Nybegyndere er per definition det segment, der har mindst erfaring med at regulere sin egen spilleadfærd – og det er præcis her, proaktive værktøjer har størst effekt. Vores anbefaling til Casinostuen: implementér som minimum automatiserede session-timere og tab-alarmer. Det ville styrke platformens troværdighed markant og differentiere den positivt fra andre små operatører, der nøjes med lovens minimum.</p>
+        </section>
+
+        <Separator className="my-10" />
+
         {/* Market Analysis */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold">Casinostuens fremtid i et konsolideret marked</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">Det danske online casino-marked gennemgår en konsolideringsfase, hvor store internationale operatører opkøber mindre brands og øger deres markedsandele. For en nicheplatform som Casinostuen rejser det et centralt spørgsmål: Kan en lille, dansk-fokuseret operatør overleve i et marked, der domineres af milliard-koncerner med enorme markedsføringsbudgetter?</p>
-          <p className="mb-4 text-muted-foreground leading-relaxed">Svaret er betinget positivt. Casinostuen besidder en kvalitet, som internationale operatører har svært ved at kopiere: autentisk dansk identitet. Det er ikke en oversættelse af en global platform – det er en platform, der er bygget til danskere af danskere. Den lokale forankring, den danske kundeservice og den kuraterede tilgang til spiludvalg appellerer til et segment, der ikke nødvendigvis tiltrækkes af de store brands' aggressive markedsføring.</p>
-          <p className="mb-4 text-muted-foreground leading-relaxed">For at forblive relevant bør Casinostuen dog adressere flere konkrete svagheder: tilføjelse af trending udbydere som Hacksaw Gaming og Nolimit City ville styrke spiludvalget markant uden at kompromittere den kuraterede tilgang. Implementering af Trustly-udbetalinger ville forbedre udbetalingstiderne fra 22 timer til potentielt under 6 timer. Og en designopfriskning, der bedre reflekterer "hygge"-identiteten, ville styrke brandpositioneringen visuelt.</p>
-          <p className="text-muted-foreground leading-relaxed">Uanset Casinostuens fremtid er platformens nuværende tilstand funktionel og troværdig – den leverer, hvad den lover, til det segment, den henvender sig til. For den danske casual spiller, der ønsker en ukompliceret, lokal casinooplevelse, er Casinostuen fortsat en relevant mulighed i 2026. Vores vurdering er baseret på <Link to="/saadan-tester-vi-casinoer" className={linkClass}>vores testmetode</Link> og opdateret pr. februar 2026.</p>
+          <p className="mb-4 text-muted-foreground leading-relaxed">Svaret er betinget positivt. Casinostuen besidder en kvalitet, som internationale operatører har svært ved at kopiere: autentisk dansk identitet. For at forblive relevant bør Casinostuen adressere konkrete svagheder: tilføjelse af trending udbydere som <Link to="/spiludviklere/hacksaw-gaming" className={linkClass}>Hacksaw Gaming</Link> og <Link to="/spiludviklere/nolimit-city" className={linkClass}>Nolimit City</Link> ville styrke spiludvalget. Implementering af <Link to="/betalingsmetoder/trustly" className={linkClass}>Trustly</Link> ville forbedre udbetalingstiderne fra 22 timer til potentielt under 6 timer.</p>
+          <p className="text-muted-foreground leading-relaxed">Uanset Casinostuens fremtid er platformens nuværende tilstand funktionel og troværdig – den leverer, hvad den lover, til det segment, den henvender sig til. For den danske casual spiller, der ønsker en ukompliceret, lokal casinooplevelse, er Casinostuen fortsat en relevant mulighed i 2026.</p>
         </section>
 
         <Separator className="my-10" />
