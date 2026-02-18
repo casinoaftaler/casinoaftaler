@@ -263,6 +263,11 @@ export const Header = memo(function Header() {
                     { to: "/casinospil/spillemaskiner/thunderstruck-ii", label: "Thunderstruck II" },
                     { to: "/casinospil/spillemaskiner/immortal-romance", label: "Immortal Romance" },
                     { to: "/casinospil/spillemaskiner/wild-west-gold", label: "Wild West Gold" },
+                    { to: "/casinospil/spillemaskiner/madame-destiny-megaways", label: "Madame Destiny Megaways" },
+                    { to: "/casinospil/spillemaskiner/extra-chilli-megaways", label: "Extra Chilli Megaways" },
+                    { to: "/casinospil/spillemaskiner/wanted-dead-or-a-wild", label: "Wanted Dead or a Wild" },
+                    { to: "/casinospil/spillemaskiner/chaos-crew", label: "Chaos Crew" },
+                    { to: "/casinospil/spillemaskiner/joker-strike", label: "Joker Strike" },
                   ].map((item) => (
                     <DropdownMenuItem key={item.to} asChild>
                       <Link to={item.to} className="flex items-center gap-2">
@@ -874,6 +879,11 @@ export const Header = memo(function Header() {
                   { to: "/casinospil/spillemaskiner/thunderstruck-ii", label: "Thunderstruck II" },
                   { to: "/casinospil/spillemaskiner/immortal-romance", label: "Immortal Romance" },
                   { to: "/casinospil/spillemaskiner/wild-west-gold", label: "Wild West Gold" },
+                  { to: "/casinospil/spillemaskiner/madame-destiny-megaways", label: "Madame Destiny Megaways" },
+                  { to: "/casinospil/spillemaskiner/extra-chilli-megaways", label: "Extra Chilli Megaways" },
+                  { to: "/casinospil/spillemaskiner/wanted-dead-or-a-wild", label: "Wanted Dead or a Wild" },
+                  { to: "/casinospil/spillemaskiner/chaos-crew", label: "Chaos Crew" },
+                  { to: "/casinospil/spillemaskiner/joker-strike", label: "Joker Strike" },
                 ].map((item) => (
                   <Link key={item.to} to={item.to} className="ml-10 flex items-center gap-2 py-2 text-sm text-muted-foreground transition-colors hover:text-primary" onClick={() => setMobileMenuOpen(false)}>
                     <Star className="h-3 w-3" />
