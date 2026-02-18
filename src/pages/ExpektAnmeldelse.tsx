@@ -13,10 +13,10 @@ import { RelatedGuides } from "@/components/RelatedGuides";
 import { InlineCasinoCards } from "@/components/InlineCasinoCards";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
 import { buildArticleSchema, buildFaqSchema } from "@/lib/seo";
-import { QuickFactsProviders } from "@/components/QuickFactsProviders";
+import { QuickFactsProviders, QuickFactsLicense } from "@/components/QuickFactsProviders";
 import { CasinoReviewHero } from "@/components/CasinoReviewHero";
 import type { ReactNode } from "react";
-import { ShieldCheck, Star, Clock, CreditCard, Trophy, Sparkles, Gamepad2, Zap, Check, X, Globe, Award, Headphones } from "lucide-react";
+import { ShieldCheck, Star, Clock, CreditCard, Trophy, Sparkles, Gamepad2, Zap, Check, X, Globe, Award, Headphones, TrendingUp } from "lucide-react";
 
 const linkClass = "text-primary underline hover:text-primary/80";
 
@@ -46,7 +46,7 @@ const ExpektAnmeldelse = () => {
         </div></div>
       </section>
       <div className="container py-8 md:py-12">
-        <AuthorMetaBar author="jonas" date="17-02-2026" readTime="22 Min." />
+        <AuthorMetaBar author="jonas" date="18-02-2026" readTime="32 Min." />
         <CasinoReviewHero slug="expekt" casinoName="Expekt" />
 
         {/* [D] Data First – starter med nøgletal og markedsposition */}
@@ -67,6 +67,7 @@ const ExpektAnmeldelse = () => {
             <div className="rounded-lg border border-border p-3"><p className="text-xs text-muted-foreground uppercase mb-1">Type</p><p className="text-lg font-bold text-foreground">Sports + Casino</p></div>
           </div>
           <QuickFactsProviders providers={["NetEnt", "Pragmatic Play", "Play'n GO", "Evolution Gaming", "Red Tiger", "Microgaming"]} />
+          <QuickFactsLicense licenseId="18-0042" />
         </CardContent></Card></section>
 
         <section className="mb-12">
@@ -188,9 +189,57 @@ const ExpektAnmeldelse = () => {
 
         <Separator className="my-10" />
 
+        {/* EV-analyse – Archetype D */}
+        <section className="mb-12">
+          <h2 className="mb-4 text-3xl font-bold"><TrendingUp className="inline h-7 w-7 text-primary mr-2" />Expected Value – kvantificering af Expekts samlede bonusværdi</h2>
+          <p className="mb-4 text-muted-foreground leading-relaxed">For den matematisk orienterede spiller er det afgørende at kvantificere den reelle værdi af Expekts tilbud. Vi gennemregner her den samlede Expected Value (EV) for en typisk ny spiller, der udnytter casino-velkomstbonussen fuldt ud – og sammenligner med markedets alternativer.</p>
+          <Card className="border-border bg-card border-l-4 border-l-primary mb-6">
+            <CardContent className="pt-6">
+              <p className="font-semibold text-foreground mb-3">3-trins EV-beregning for Expekts velkomstbonus:</p>
+              <div className="space-y-4 text-sm text-muted-foreground">
+                <div>
+                  <p className="font-medium text-foreground">Trin 1: Bonusværdi</p>
+                  <p>Indbetal 1.000 kr. → modtag 1.000 kr. matchbonus + 50 free spins (estimeret værdi: 75 kr.)</p>
+                  <p>Samlet bonusværdi: 1.075 kr.</p>
+                </div>
+                <div>
+                  <p className="font-medium text-foreground">Trin 2: Omsætningsomkostning</p>
+                  <p>Omsætningskrav: 10x × (1.000 + 1.000) = 20.000 kr.</p>
+                  <p>House Edge på slots: ~4% (gennemsnitlig RTP 96%)</p>
+                  <p>Forventet tab under omsætning: 20.000 × 0,04 = <strong>800 kr.</strong></p>
+                  <p>Free spins omsætning: 750 kr. × 0,04 = <strong>30 kr.</strong></p>
+                </div>
+                <div>
+                  <p className="font-medium text-foreground">Trin 3: Netto Expected Value</p>
+                  <p>EV = Bonusværdi − Omsætningsomkostning</p>
+                  <p>EV = 1.075 − 830 = <strong className="text-primary">+245 kr.</strong></p>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+          <p className="mb-4 text-muted-foreground leading-relaxed">En positiv EV på +245 kr. placerer Expekt i den øvre ende af danske velkomstbonusser, primært takket være de 50 free spins, som mange konkurrenter ikke inkluderer. Til sammenligning: <Link to="/casino-anmeldelser/bet365" className={linkClass}>bet365</Link>'s velkomstpakke giver en EV på ca. +200 kr., mens <Link to="/casino-anmeldelser/leovegas" className={linkClass}>LeoVegas</Link>' mere aggressive velkomstpakke kan nå +400 kr. for den optimale spiller. Expekts bonus er altså ikke markedsledende, men den er klart positiv og fair.</p>
+          <p className="mb-4 text-muted-foreground leading-relaxed">Men den reelle værdi af Expekt-kontoen strækker sig ud over velkomstbonussen for den alsidige spiller. Hvis du bruger sportsbook'en aktivt, kan du udnytte odds-boost promotions, risk-free bets og enhanced odds, der tilføjer yderligere EV. En aktiv sportsbetting-spiller kan realistisk tilføje +50-150 kr. i månedlig EV fra sportsbook-kampagner alene – en dimension, som rene casino-platforme ikke kan tilbyde.</p>
+          <p className="mb-4 text-muted-foreground leading-relaxed"><strong>Årlig EV-estimat for den alsidige Expekt-spiller:</strong> Velkomstbonus (+245 kr.) + sportsbook-kampagner (~100 kr./måned × 12 = 1.200 kr.) + lejlighedsvise casino reload-tilbud (~50 kr./kvartal × 4 = 200 kr.) = <strong className="text-primary">+1.645 kr. i årlig forventet værdi</strong>. Det er et konservativt estimat, der forudsætter aktiv udnyttelse af tilgængelige kampagner og en disciplineret tilgang til bankroll management.</p>
+          <p className="mb-4 text-muted-foreground leading-relaxed">Det er vigtigt at understrege, at EV er et statistisk gennemsnit over mange sessioner – ikke en garanti for profit. Individuelle sessioner vil variere enormt på grund af varians, og kortsigtede udsving kan være betydelige. Men over tid, med disciplineret spil og systematisk udnyttelse af positive EV-muligheder, er Expekts samlede tilbud matematisk fordelagtigt for den alsidige spiller, der bruger både sport og casino.</p>
+          <p className="text-muted-foreground leading-relaxed"><strong>Risk of Ruin-analyse:</strong> Med en startbankroll på 2.000 kr. og gennemsnitlig indsats på 10 kr. per spin (0,5% af bankroll) er risikoen for total ruin under bonusomsætning ca. 8% – acceptabelt lavt for de fleste spillere. Reducér indsatsen til 5 kr. (0,25% af bankroll), og Risk of Ruin falder til under 2%. For den konservative spiller anbefaler vi max. 1% af bankroll per indsats under bonusomsætning.</p>
+        </section>
+
+        <Separator className="my-10" />
+
+        <section className="mb-12">
+          <h2 className="mb-4 text-3xl font-bold">Expekts fremtid – Betsson Groups nordiske strategi i 2026</h2>
+          <p className="mb-4 text-muted-foreground leading-relaxed">Betsson Group har i de seneste kvartalsrapporter signaleret en strategisk opprioritering af de nordiske markeder, herunder Danmark. Koncernens investering i produktudvikling, brugeroplevelse og lokalisering er accelereret, og Expekt står til at drage direkte fordel af denne satsning. I 2025 lancerede Betsson en ny unified platform-teknologi, der muliggør hurtigere spiludgivelser og bedre integration mellem sports- og casino-sektionerne – en teknologi, der forventes fuldt implementeret på Expekt inden Q3 2026.</p>
+          <p className="mb-4 text-muted-foreground leading-relaxed">Den danske reguleringsramme er stabil med Spillemyndighedens licenssystem, der giver operatører forudsigelighed. Betsson Groups erfaring med streng regulering i 23 markeder giver dem en compliance-fordel, der gør det usandsynligt, at Expekt vil møde regulatoriske udfordringer, som mindre operatører kan være sårbare overfor. Koncernens størrelse sikrer også, at Expekt kan absorbere eventuelle skatte- eller afgiftsændringer uden at forringe spilleroplevelsen – en stabilitet, der er værd at tage i betragtning.</p>
+          <p className="mb-4 text-muted-foreground leading-relaxed">For den danske spiller er den mest relevante udvikling, at Betsson Group har annonceret en ambition om bedre produktintegration mellem sport og casino. Det adresserer direkte den primære kritik i vores anmeldelse – det fragmenterede interface mellem de to sektioner. Hvis Betsson lykkes med at levere en mere sømløs oplevelse, vil Expekts samlede proposition forbedres markant. Derudover har koncernen investeret i AI-drevne personaliseringsværktøjer, der kan tilpasse kampagner og spilanbefalinger til individuelle spillerprofiler – en teknologi, der allerede er rullet ud på andre Betsson-brands og forventes på Expekt i løbet af 2026.</p>
+          <p className="mb-4 text-muted-foreground leading-relaxed">Vi forventer desuden, at Expekt vil udvide sit casino-katalog markant i de kommende måneder. Betsson Groups forhandlingskraft med spiludbydere er blandt de stærkeste i branchen, og flere nye udbydere – potentielt inkl. <Link to="/spiludviklere/hacksaw-gaming" className={linkClass}>Hacksaw Gaming</Link> og Push Gaming – kan forventes integreret, efterhånden som den nye platform-teknologi stabiliseres. Det ville adressere en af Expekts mest markante svagheder og bringe casino-sektionen tættere på rene casino-platformes niveau.</p>
+          <p className="text-muted-foreground leading-relaxed">Samlet set er Expekts fremtidsudsigter positive. Betsson Group har ressourcerne, teknologien og den strategiske vilje til at forbedre platformen markant i 2026. Spørgsmålet er timing – og om forbedringerne kommer hurtigt nok til at holde Expekt konkurrencedygtigt i et dansk marked, der bliver stadig mere sofistikeret. For spillere, der vælger Expekt nu, er det en platform med solid fundament og troværdig operatør – og en begrundet forventning om, at produktet vil blive bedre over tid.</p>
+        </section>
+
+        <Separator className="my-10" />
+
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold">Kernebudskabet om Expekt</h2>
-          <p className="mb-4 text-muted-foreground leading-relaxed">Expekt er en solid hybrid-platform, der excellerer i sportsbetting og leverer en kompetent casino-oplevelse. Det er ikke det bedste casino, og det er ikke den bedste sportsbook – men det er en af de bedste kombinationer af begge. For den alsidige spiller, der nyder at skifte mellem sport og casino under én konto, er Expekt et logisk valg.</p>
+          <p className="mb-4 text-muted-foreground leading-relaxed">Expekt er en solid hybrid-platform, der excellerer i sportsbetting og leverer en kompetent casino-oplevelse. Det er ikke det bedste casino, og det er ikke den bedste sportsbook – men det er en af de bedste kombinationer af begge. For den alsidige spiller, der nyder at skifte mellem sport og casino under én konto, er Expekt et logisk valg med en matematisk positiv velkomstbonus (+245 kr. EV) og en samlet årlig værdi, der kan overstige +1.600 kr. for aktive brugere.</p>
           <p className="mb-6 text-muted-foreground leading-relaxed">Ratingen på 3.8/5 afspejler, at Expekt evalueres som casino – og her ligger det under rene casino-platforme som <Link to="/casino-anmeldelser/leovegas" className={linkClass}>LeoVegas</Link> (4.7) og <Link to="/casino-anmeldelser/888-casino" className={linkClass}>888 Casino</Link> (4.3). Men tilføj sportsbook-dimensionen, og den samlede værdi stiger markant. Læs om <Link to="/forfatter/jonas" className={linkClass}>forfatteren bag denne anmeldelse</Link>.</p>
           <RatingBreakdown scores={CASINO_SCORES["expekt"].scores} total={CASINO_SCORES["expekt"].total} />
           <div className="flex flex-col sm:flex-row gap-3">

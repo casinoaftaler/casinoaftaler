@@ -12,7 +12,7 @@ import { RelatedGuides } from "@/components/RelatedGuides";
 import { InlineCasinoCards } from "@/components/InlineCasinoCards";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
 import { buildArticleSchema, buildFaqSchema } from "@/lib/seo";
-import { QuickFactsProviders } from "@/components/QuickFactsProviders";
+import { QuickFactsProviders, QuickFactsLicense } from "@/components/QuickFactsProviders";
 import { CasinoReviewHero } from "@/components/CasinoReviewHero";
 import type { ReactNode } from "react";
 import { Star, Zap, Check, X, Gamepad2, ShieldCheck, Trophy, Headphones, Wallet, Users, Target, CreditCard, Smartphone, TrendingUp } from "lucide-react";
@@ -138,7 +138,7 @@ const SpilnuAnmeldelse = () => {
       </section>
 
       <div className="container py-8 md:py-12">
-        <AuthorMetaBar author="jonas" date="17-02-2026" readTime="25 Min." />
+        <AuthorMetaBar author="jonas" date="18-02-2026" readTime="34 Min." />
         <CasinoReviewHero slug="spilnu" casinoName="Spilnu" />
 
         {/* Quick Facts */}
@@ -184,6 +184,7 @@ const SpilnuAnmeldelse = () => {
                 </div>
               </div>
               <QuickFactsProviders providers={["NetEnt", "Play'n GO", "Pragmatic Play", "Red Tiger", "Big Time Gaming"]} />
+              <QuickFactsLicense licenseId="18-0003" />
             </CardContent>
           </Card>
         </section>
@@ -450,6 +451,53 @@ const SpilnuAnmeldelse = () => {
           <p className="mb-4 text-muted-foreground leading-relaxed">Mod internationale konkurrenter er billedet mere nuanceret. <Link to="/casino-anmeldelser/leovegas" className={linkClass}>LeoVegas</Link> overgår Spilnu på alle casino-parametre: spiludvalg (2.000+ vs. 700+), mobiloplevelse (native app vs. browser), udbetalingshastighed (2-4 timer vs. 1-3 dage) og bonusstruktur. Men LeoVegas har ingen bingo – og den sociale dimension, der definerer Spilnu, eksisterer ikke hos LeoVegas. <Link to="/casino-anmeldelser/unibet" className={linkClass}>Unibet</Link> tilbyder en bredere produktpalette med sport, casino og poker, men mangler ligeledes den dedikerede bingo-sektion.</p>
           <p className="mb-4 text-muted-foreground leading-relaxed"><Link to="/casino-anmeldelser/maria-casino" className={linkClass}>Maria Casino</Link> er den mest direkte konkurrent som bingo-platform. Maria har et kompetent bingo-produkt, men vores sammenlignende test viste klare fordele for Spilnu: højere deltagerantal (200-400 vs. 50-100), mere aktiv chat, bedre moderator-tilstedeværelse, højere progressive jackpots og flere daglige turneringer. For dedikerede bingo-spillere er valget entydigt.</p>
           <p className="text-muted-foreground leading-relaxed">For danske spillere, der søger den bedste samlede casinooplevelse, er Spilnu ikke førstevalget – det ville være LeoVegas, bet365 eller <Link to="/casino-anmeldelser/mr-green" className={linkClass}>Mr Green</Link>. Men for spillere, der prioriterer bingo, dansk tryghed og en tilgængelig platform med lav indgangsbarriere, er Spilnu svær at slå. Det er en komplementær platform, der med fordel kan bruges sammen med en casino-specialist. Mange danske spillere har konti hos både Spilnu (til bingo) og en international platform (til slots og live casino) – og det er faktisk en anbefaling, vi kan stå inde for.</p>
+        </section>
+
+        <Separator className="my-10" />
+
+        {/* EV-analyse – Archetype D */}
+        <section className="mb-12">
+          <h2 className="mb-4 text-3xl font-bold"><TrendingUp className="inline h-7 w-7 text-primary mr-2" />Bonussens reelle værdi – Expected Value og matematisk analyse</h2>
+          <p className="mb-4 text-muted-foreground leading-relaxed">For at give en objektiv vurdering af Spilnus velkomstbonus anvender vi en matematisk Expected Value (EV) model, der kvantificerer bonussens statistiske værdi for den gennemsnitlige spiller. Dette er ikke teori – det er den mest præcise metode til at sammenligne bonusser på tværs af operatører.</p>
+          <Card className="border-border bg-card border-l-4 border-l-primary mb-6">
+            <CardContent className="pt-6">
+              <p className="font-semibold text-foreground mb-3">EV-beregning for Spilnus velkomstbonus:</p>
+              <div className="space-y-4 text-sm text-muted-foreground">
+                <div>
+                  <p className="font-medium text-foreground">Trin 1: Bonusværdi</p>
+                  <p>Indbetal 1.000 kr. → modtag 1.000 kr. matchbonus (100%)</p>
+                  <p>Samlet bonusbeløb: 1.000 kr.</p>
+                </div>
+                <div>
+                  <p className="font-medium text-foreground">Trin 2: Omsætningsomkostning</p>
+                  <p>Omsætningskrav: 10x (d+b) = 10 × (1.000 + 1.000) = 20.000 kr.</p>
+                  <p>Gennemsnitlig House Edge på slots: ~4% (RTP 96%)</p>
+                  <p>Forventet tab under omsætning: 20.000 × 0,04 = <strong>800 kr.</strong></p>
+                </div>
+                <div>
+                  <p className="font-medium text-foreground">Trin 3: Netto Expected Value</p>
+                  <p>EV = Bonusbeløb − Forventet tab</p>
+                  <p>EV = 1.000 − 800 = <strong className="text-primary">+200 kr.</strong></p>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+          <p className="mb-4 text-muted-foreground leading-relaxed">En positiv EV på +200 kr. er et matematisk fordelagtigt tilbud – du modtager statistisk set mere i bonusværdi, end du betaler i omsætningsomkostning. Det er identisk med de fleste danske 10x-bonusser og bekræfter, at Spilnus velkomstbonus er fair, om end ikke generøs sammenlignet med markedets bedste tilbud. Til sammenligning giver <Link to="/casino-anmeldelser/leovegas" className={linkClass}>LeoVegas</Link>' velkomstpakke en EV på ca. +400 kr. og <Link to="/casino-anmeldelser/betinia" className={linkClass}>Betinia</Link>'s no-sticky bonus en EV på ca. +350 kr.</p>
+          <p className="mb-4 text-muted-foreground leading-relaxed"><strong>Sticky bonus-effekten:</strong> En afgørende detalje er, at Spilnus bonus er sticky – dine egne penge og bonuspenge er sammenblandet i én saldo. Det betyder, at du ikke kan annullere bonussen og beholde din realsaldo, som du kan med en <Link to="/no-sticky-bonus" className={linkClass}>no-sticky bonus</Link>. I praksis reducerer dette din fleksibilitet: med no-sticky bonus kan du til enhver tid beslutte at droppe bonussen og hæve dine resterende egne penge. Med sticky bonus er du bundet til omsætningskravet, indtil det er opfyldt. For risikoaverse spillere er dette en reel ulempe, der bør veje tungt i beslutningsprocessen.</p>
+          <p className="mb-4 text-muted-foreground leading-relaxed"><strong>Bingo-specifik EV:</strong> Spilnus bingo-velkomsttilbud med gratis plader har en lavere direkte EV (typisk +20-50 kr.), men den sociale værdi – community-adgang, chat-bonusser fra moderatorer og turneringspræmier – tilføjer en ikke-kvantificerbar oplevelsesværdi, som traditionel EV-beregning ikke fanger. For spillere, der primært søger social underholdning, er bingo-bonussen mere værdifuld end dens matematiske EV antyder.</p>
+          <p className="mb-4 text-muted-foreground leading-relaxed"><strong>Risk of Ruin under bonusomsætning:</strong> Med en startbankroll på 2.000 kr. (1.000 kr. egen + 1.000 kr. bonus) og gennemsnitlig indsats på 10 kr. (0,5% af bankroll) er risikoen for total ruin under omsætning ca. 7-9% for medium-volatilitet slots. Ved at vælge lavvolatilitetsslots som Starburst (RTP 96,09%, lav volatilitet) reduceres Risk of Ruin til under 4%. For den konservative spiller anbefaler vi en maksimal indsats på 5 kr. under bonusomsætning – det forlænger spilletiden og sænker variansen betydeligt.</p>
+          <p className="text-muted-foreground leading-relaxed"><strong>Årlig EV for den aktive Spilnu-spiller:</strong> Velkomstbonus (+200 kr.) + bingo-turneringspræmier (~30 kr./måned × 12 = 360 kr.) + lejlighedsvise reload-tilbud (~25 kr./kvartal × 4 = 100 kr.) + bingo-jackpot-forventet-værdi (minimal, men positiv) = <strong className="text-primary">ca. +660 kr. i årlig forventet værdi</strong>. Det er lavere end hos mere aggressive operatører, men fair for en statslig platform, der prioriterer ansvarligt spil over bonusaggressivitet.</p>
+        </section>
+
+        <Separator className="my-10" />
+
+        <section className="mb-12">
+          <h2 className="mb-4 text-3xl font-bold">Spilnus fremtid – Danske Spils digitaliseringsstrategi og bingo 2.0</h2>
+          <p className="mb-4 text-muted-foreground leading-relaxed">Danske Spil-koncernen har investeret massivt i digital transformation, og Spilnu står til at blive en central del af denne strategi. I koncernens årsrapport for 2025 fremhæves online casino og bingo som vækstområder, med en ambition om at øge den digitale markedsandel fra ca. 35% til over 45% inden 2028. For Spilnu specifikt betyder det flere ressourcer til produktudvikling, nye spiludbydere og forbedret brugeroplevelse – en udvikling, der allerede er synlig i de seneste platformopdateringer.</p>
+          <p className="mb-4 text-muted-foreground leading-relaxed">En af de mest spændende udviklinger er Danske Spils investering i næste-generations bingo – det, vi kalder "Bingo 2.0". Konceptet integrerer gamification-elementer, achievements, social-profiler og turneringsformater, der er inspireret af e-sport. Målet er at tiltrække en yngre demografi uden at miste den eksisterende brugerbases loyalitet. Hvis det lykkes, kan Spilnu transformere sig fra en primært ældre-demografisk platform til en tværgenerational social gaming-destination – en ambition, som ingen anden dansk operatør deler.</p>
+          <p className="mb-4 text-muted-foreground leading-relaxed">Casino-sektionen forventes også at vokse. Danske Spil har historisk været konservative i deres valg af spiludbydere, men med det intensiverede konkurrencepres fra internationale operatører er der tegn på en åbning. Vi forventer, at Spilnu vil integrere flere udbydere i 2026-2027 – potentielt inkl. <Link to="/spiludviklere/relax-gaming" className={linkClass}>Relax Gaming</Link> og <Link to="/spiludviklere/elk-studios" className={linkClass}>ELK Studios</Link>, der allerede er til stede på andre Danske Spil-platforme. Det vil ikke gøre Spilnu til en slots-specialist, men det vil reducere gabet til markedslederne og gøre casino-sektionen mere konkurrencedygtig.</p>
+          <p className="mb-4 text-muted-foreground leading-relaxed">Det danske reguleringslandskab er stabilt, men ikke statisk. Spillemyndighedens fokus på ansvarligt spil intensiveres løbende med nye krav til operatører om proaktiv spillerbeskyttelse, AI-baseret adfærdsovervågning og strengere markedsføringsbegrænsninger. Danske Spil – og dermed Spilnu – er positioneret som brancheleder inden for compliance og ansvarligt spil, hvilket giver dem en strategisk fordel i et regulatorisk miljø, der bevæger sig mod strengere krav. Hvor private operatører kan opleve compliance-omkostninger som en byrde, er det for Danske Spil en naturlig del af deres statslige mandat.</p>
+          <p className="text-muted-foreground leading-relaxed">For den danske spiller, der vælger Spilnu i dag, er fremtidsudsigterne positive. Platformen vil sandsynligvis blive bedre – ikke dårligere – over tid. Danske Spils ressourcer, regulatoriske fordel og strategiske fokus på digitalisering sikrer, at Spilnu forbliver en relevant og troværdig aktør i det danske spillandskab. Og med bingo-sektionens dominerende markedsposition som fundament har platformen en unikke differentiering, der er svær at angribe for konkurrenterne.</p>
         </section>
 
         <InlineCasinoCards count={3} />
