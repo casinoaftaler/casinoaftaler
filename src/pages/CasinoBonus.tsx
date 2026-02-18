@@ -3,23 +3,17 @@ import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { AuthorBio } from "@/components/AuthorBio";
 import { FAQSection } from "@/components/FAQSection";
 import { SEO } from "@/components/SEO";
-import { buildFaqSchema } from "@/lib/seo";
+import { buildFaqSchema, buildArticleSchema, SITE_URL } from "@/lib/seo";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { CasinoCard } from "@/components/CasinoCard";
 import { RelatedGuides } from "@/components/RelatedGuides";
-
+import { InlineCasinoCards } from "@/components/InlineCasinoCards";
 import { useCasinos } from "@/hooks/useCasinos";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
 import { useState, type ReactNode } from "react";
 import casinoBonusHero from "@/assets/heroes/casino-bonus-hero.jpg";
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "@/components/ui/accordion";
 import {
   Sparkles,
   ShieldCheck,
@@ -32,10 +26,6 @@ import {
   TrendingUp,
   CheckCircle2,
   Loader2,
-  HelpCircle,
-  User,
-  CalendarDays,
-  BookOpen,
   Gift,
   RefreshCw,
   Zap,
@@ -43,55 +33,80 @@ import {
   Percent,
   ArrowRight,
   AlertTriangle,
+  Calculator,
+  Ban,
+  Target,
+  BarChart3,
+  Scale,
+  Eye,
+  BookOpen,
+  Lock,
+  Flame,
+  Info,
 } from "lucide-react";
 
 const linkClass = "text-primary underline hover:text-primary/80";
 
 const casinoBonusFaqs: { question: string; answer: ReactNode }[] = [
   {
-    question: "Hvordan sammenligner jeg casino bonusser effektivt?",
+    question: "Hvordan beregner jeg den reelle værdi af en casino bonus?",
     answer: (
       <>
-        Fokuser på fire nøgletal: 1) Matchprocent (100% er standard), 2) <Link to="/omsaetningskrav" className={linkClass}>Omsætningskrav</Link> (10x er Danmarks maksimum – lavere er bedre), 3) Bonustype (<Link to="/no-sticky-bonus" className={linkClass}>no-sticky</Link> er mest fordelagtig), og 4) Gyldighedsperiode (mindst 14 dage). Ignorer store overskrifter som "Op til 10.000 kr." – den effektive bonusværdi afhænger af vilkårene. En 500 kr. no-sticky bonus med 10x omsætning er mere værd end en 2.000 kr. sticky bonus med 10x omsætning, fordi du kan hæve egne gevinster undervejs.
+        Brug formlen: Reel værdi = Bonusbeløb – (Total omsætning × House Edge). For en 1.000 kr. bonus med 10x omsætning og 4% house edge: 1.000 – (20.000 × 0,04) = 200 kr. i forventet reel værdi. Jo lavere omsætningskrav og jo højere RTP på de spil du vælger, jo højere er den reelle bonusværdi. En <Link to="/no-sticky-bonus" className={linkClass}>no-sticky bonus</Link> øger værdien yderligere, fordi du kan hæve egne gevinster undervejs uden at miste bonussen. Sammenlign altid den matematiske værdi – ikke det annoncerede bonusbeløb.
       </>
     ),
   },
   {
-    question: "Hvad er forskellen mellem de fire hovedtyper af casino bonusser?",
+    question: "Hvad sker der, hvis jeg overtræder bonusvilkårene?",
+    answer: "Overtrædelse af bonusvilkår – som at overskride max. indsats under omsætning, spille udelukkede spil eller forsøge at hæve før omsætningskrav er opfyldt – kan resultere i konfiskation af hele bonussen og tilhørende gevinster. Casinoet har ret til at annullere din bonus uden varsel, hvis deres systemer registrerer regelovertrædelser. De fleste danske casinoer har automatiserede overvågningssystemer, der spotter overtrædelser i realtid. Vores bedste råd: Læs altid vilkårene grundigt, hold dig under max. indsats og spil udelukkende på kvalificerede spil under bonusomsætning.",
+  },
+  {
+    question: "Kan jeg have flere aktive casino bonusser samtidig?",
+    answer: "De fleste danske casinoer tillader kun én aktiv bonus ad gangen. Accepterer du en ny bonus, mens du har en igangværende, kan den gamle bonus og dens gevinster bortfalde. Nogle casinoer tilbyder dog separate bonusser for casino og sport, der kan eksistere parallelt. Tjek altid vilkårene for stacking af bonusser. Strategisk bør du fuldføre én bonus, før du accepterer den næste – ellers risikerer du at miste dine fremskridt.",
+  },
+  {
+    question: "Hvordan adskiller danske bonusvilkår sig fra internationale casinoer?",
     answer: (
       <>
-        <Link to="/velkomstbonus" className={linkClass}>Velkomstbonus</Link>: Matchbonus til nye spillere (mest generøs). <Link to="/free-spins" className={linkClass}>Free spins</Link>: Gratis omgange på specifikke slots. <Link to="/bonus-uden-indbetaling" className={linkClass}>No deposit bonus</Link>: Gratis midler uden indbetaling (lavest beløb, højest risikofrihed). <Link to="/indskudsbonus" className={linkClass}>Reload bonus</Link>: Matchbonus til eksisterende spillere (lavere matchprocent). Hver type har unikke fordele – vælg baseret på din spillestil og risikovillighed. Velkomstbonussen giver mest værdi per krone, men kan kun bruges én gang.
+        Danmark har de mest spillervenlige bonusvilkår i Europa takket være <a href="https://www.spillemyndigheden.dk/" target="_blank" rel="noopener noreferrer" className={linkClass}>Spillemyndighedens</a> regulering. Det danske 10x omsætningsloft er markant lavere end UK (typisk 35-50x), Malta (30-40x) og Curaçao (ofte 40-60x). Derudover kræver dansk lov, at vilkår præsenteres tydeligt, og at bonusmarkedsføring ikke er vildledende. Spillere hos danske casinoer har desuden klageadgang via Spillemyndigheden og kan selvudelukke via <a href="https://www.rofus.nu/" target="_blank" rel="noopener noreferrer" className={linkClass}>ROFUS</a>. Disse fordele eksisterer ikke på uregulerede markeder.
       </>
     ),
   },
   {
-    question: "Kan bonusvilkår ændre sig efter jeg har accepteret en bonus?",
-    answer: "Nej, de vilkår du accepterer ved bonusaktivering er bindende for den specifikke bonus. Casinoet kan ikke ændre omsætningskrav, gyldighedsperiode eller gevinstloft bagudrettet. Dog kan generelle bonusvilkår ændres for fremtidige tilbud. Gem altid en kopi af vilkårene (screenshot) ved aktivering. Spillemyndigheden kræver at alle vilkår er tydeligt præsenteret og tilgængelige. Hvis du oplever uretfærdige ændringer, kan du klage direkte til Spillemyndigheden.",
+    question: "Er det altid bedst at vælge den højeste match-procent?",
+    answer: "Nej – en højere match-procent er kun bedre, hvis de øvrige vilkår er sammenlignelige. En 200% bonus med sticky struktur og 10x omsætning (d+b) kræver mere total omsætning end en 100% no-sticky bonus med samme krav, fordi det samlede bonusbeløb er større. Fokuser på den samlede pakke: bonusstruktur (no-sticky foretrækkes), omsætningskrav, gyldighedsperiode, max. indsats og spilbidrag. En 100% no-sticky bonus med lave krav slår næsten altid en 300% sticky bonus matematisk.",
   },
   {
-    question: "Tæller alle spil lige meget til bonusomsætning?",
+    question: "Hvornår bør jeg afvise en casino bonus?",
     answer: (
       <>
-        Nej, spilbidrag varierer markant. <Link to="/casinospil" className={linkClass}>Spilleautomater</Link> bidrager typisk 100%, bordspil (blackjack, roulette) kun 10-20%, og <Link to="/live-casino" className={linkClass}>live casino</Link> er ofte 0-10%. Progressive jackpots kan være helt ekskluderet. Visse højvolatilitetsslots kan også have reduceret bidrag. Strategisk bør du udelukkende spille 100%-bidragsslots under bonusomsætning – alt andet forlænger gennemspilningstiden dramatisk.
+        Afvis en bonus hvis: 1) Den er sticky med høje omsætningskrav – du låser dine penge, 2) Gyldighedsperioden er for kort (under 14 dage) til realistisk at opfylde kravene, 3) Max. indsats er ekstremt lav (under 10 kr./spin), hvilket forlænger omsætningstiden dramatisk, 4) Du primært spiller <Link to="/live-casino" className={linkClass}>live casino</Link> eller bordspil, der typisk bidrager 0-10% til omsætning, eller 5) Bonussen har et gevinstloft, der begrænser dine potentielle udbetalinger. Husk: at spille uden bonus er altid en mulighed.
       </>
     ),
   },
   {
-    question: "Er alle casinoer på listen licenserede og sikre?",
+    question: "Hvorfor tilbyder casinoer overhovedet bonusser?",
+    answer: "Casino bonusser er en markedsføringsudgift for casinoer – de investerer i nye spillere med forventning om at tjene det ind over tid. Casinoer budgetterer typisk 30-50% af deres markedsføringsbudget til bonusser. Omsætningskravene sikrer, at bonussen ikke bare kan hæves direkte. Statistisk set er bonusser fordelagtige for casinoerne, fordi house edge over mange spins favoriserer huset. For spillere er bonusser dog stadig en reel fordel – forudsat at vilkårene er fair og du vælger de rigtige bonustyper.",
+  },
+  {
+    question: "Påvirker min betalingsmetode, hvilke bonusser jeg kan få?",
     answer: (
       <>
-        Ja, alle casinoer på Casinoaftaler.dk har gyldig dansk licens fra Spillemyndigheden. Det sikrer din beskyttelse som spiller – du kan altid selvudelukke via{" "}
-        <a href="https://www.rofus.nu/" target="_blank" rel="noopener noreferrer" className={linkClass}>ROFUS</a>, klage til Spillemyndigheden, og dine penge er beskyttet af regulatoriske krav. Casinoer uden dansk licens tilbyder ingen af disse garantier. Læs mere om <Link to="/ansvarligt-spil" className={linkClass}>ansvarligt spil</Link>.
+        Ja, visse <Link to="/betalingsmetoder" className={linkClass}>betalingsmetoder</Link> kan påvirke dine bonusmuligheder. Nogle casinoer ekskluderer Skrill og Neteller fra bonustilbud, da disse e-wallets historisk har været brugt til bonusmisbrug. <Link to="/betalingsmetoder/mobilepay" className={linkClass}>MobilePay</Link> og <Link to="/betalingsmetoder/trustly" className={linkClass}>Trustly</Link> er altid kvalificerede til danske bonusser. Visa og Mastercard er universelt accepterede. Tjek altid bonusvilkårenes afsnit om betalingsmetoder, før du indbetaler – det kan spare dig for en ubehagelig overraskelse.
       </>
     ),
   },
   {
-    question: "Hvornår er det bedst at bruge en casino bonus?",
-    answer: "De bedste tidspunkter for bonusudnyttelse er: 1) Ved din første registrering (velkomstbonussen er altid størst), 2) Under sæsonkampagner (jul, påske, Black Friday), og 3) Via VIP/loyalitetsprogrammer (bedre vilkår for aktive spillere). Undgå at jage bonusser dagligt – det fører let til overforbrug. Sæt et budget og brug bonusser som supplement, ikke som primær motivator. De mest disciplinerede spillere bruger bonusser strategisk 2-3 gange årligt ved de bedste tilbud.",
+    question: "Hvad er forskellen på 'bonus only' og 'deposit + bonus' omsætning?",
+    answer: (
+      <>
+        Det er en afgørende forskel. Ved "bonus only" (b) omsætning beregnes kravet kun på bonusbeløbet: en 1.000 kr. bonus med 10x kræver 10.000 kr. i omsætning. Ved "deposit + bonus" (d+b) beregnes kravet på begge: en 1.000 kr. indbetaling + 1.000 kr. bonus med 10x kræver 20.000 kr. – altså dobbelt så meget. De fleste danske casinoer bruger (d+b)-modellen, hvilket Spillemyndigheden har godkendt. Læs mere i vores <Link to="/omsaetningskrav" className={linkClass}>omsætningskrav-guide</Link>.
+      </>
+    ),
   },
   {
-    question: "Hvor ofte opdaterer I bonuslisten?",
-    answer: "Vi verificerer alle bonustilbud løbende – typisk dagligt eller ugentligt. Udløbne eller ændrede tilbud fjernes eller opdateres straks. Alle bonusser på siden er aktuelle og verificeret med direkte links til casinoernes officielle bonussider. Vi tester også selv nye tilbud ved at oprette konti og indbetale for at bekræfte at de annoncerede vilkår stemmer overens med det faktiske tilbud.",
+    question: "Kan man leve af at jage casino bonusser?",
+    answer: "Bonus-hunting som fuldtidsbeskæftigelse er hverken realistisk eller tilrådeligt. Selvom matematikken kan vise positiv EV på enkelte bonusser, er variansen enorm, og casinoer begrænser eller lukker aktivt konti, der udviser systematisk bonusjagt. Derudover er antal tilgængelige bonusser på det danske marked begrænset, da du kun kan oprette én konto pr. casino. Brug bonusser som et supplement til din underholdning – ikke som en indkomststrategi. Husk altid at spille ansvarligt og inden for dit budget.",
   },
 ];
 
@@ -134,31 +149,22 @@ const CasinoBonus = () => {
 
   const faqJsonLd = buildFaqSchema(casinoBonusFaqs);
 
-  const breadcrumbJsonLd = {
-    "@context": "https://schema.org",
-    "@type": "BreadcrumbList",
-    itemListElement: [
-      {
-        "@type": "ListItem",
-        position: 1,
-        name: "Forside",
-        item: "https://casinoaftaler.dk/",
-      },
-      {
-        "@type": "ListItem",
-        position: 2,
-        name: "Casino Bonus",
-        item: "https://casinoaftaler.dk/casino-bonus",
-      },
-    ],
-  };
+  const articleSchema = buildArticleSchema({
+    headline: "Bedste Casino Bonus 2026 – Find Din Perfekte Bonus i Danmark",
+    description: "Den ultimative guide til casino bonus i Danmark 2026. Sammenlign alle bonustyper, forstå omsætningskrav og find den bonus der giver mest reel værdi.",
+    url: `${SITE_URL}/casino-bonus`,
+    datePublished: "2025-06-01",
+    dateModified: "2026-02-18",
+    authorName: "Jonas",
+    authorUrl: `${SITE_URL}/forfatter/jonas`,
+  });
 
   return (
     <>
       <SEO
-        title="Bedste Casino Bonus 2026 – Find Din Perfekte Bonus i Danmark"
-        description="Den ultimative guide til casino bonus i Danmark 2026. Sammenlign de bedste casino bonusser, velkomstbonusser, free spins og no-sticky bonusser hos danske casinoer med licens. Find din perfekte casino bonus her."
-        jsonLd={[faqJsonLd, breadcrumbJsonLd]}
+        title="Bedste Casino Bonus 2026 – Komplet Guide til Alle Bonustyper"
+        description="Den ultimative guide til casino bonus i Danmark 2026. Sammenlign no-sticky, free spins, velkomstbonus og 7+ bonustyper. Matematiske analyser og strategier."
+        jsonLd={[faqJsonLd, articleSchema]}
       />
 
       {/* Hero Section */}
@@ -179,127 +185,138 @@ const CasinoBonus = () => {
               Opdateret Februar 2026
             </Badge>
             <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">
-            Bedste Casino Bonus 2026 – Din Komplette Guide
+              Casino Bonus 2026 – Danmarks Mest Komplette Bonusguide
             </h1>
             <p className="text-lg text-white/80">
-              Find den bedste casino bonus i Danmark. Vi har testet, sammenlignet
-              og rangeret alle casino bonusser på det danske marked, så du altid
-              finder den casino bonus, der giver dig mest værdi for pengene.
-              Uanset om du leder efter en velkomstbonus, free spins eller
-              no-sticky casino bonus – vi har dig dækket.
+              Alt du behøver at vide om casino bonusser i Danmark. Fra matematiske analyser og bonusfælder til strategiske anbefalinger for enhver spillertype. Vi dækker 10 bonustyper, omsætningsmodeller og markedstendenser – så du aldrig betaler overpris for din bonus igen.
             </p>
           </div>
         </div>
       </section>
 
       <div className="container py-8 md:py-12">
-        <AuthorMetaBar author="jonas" date="13-02-2026" readTime="12 Min." />
+        <AuthorMetaBar author="jonas" date="18-02-2026" readTime="35 Min." />
 
         <div className="mb-10 overflow-hidden rounded-xl">
-          <img src={casinoBonusHero} alt="Casino bonus – gyldne mønter og gaver" className="w-full h-auto object-cover max-h-[400px]" loading="eager" />
+          <img src={casinoBonusHero} alt="Casino bonus oversigt – sammenligning af bonustyper i Danmark 2026" className="w-full h-auto object-cover max-h-[400px]" loading="eager" />
         </div>
 
-        {/* Intro Section */}
+        {/* ========== 1. INTRODUKTION ========== */}
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold">
-            Hvad er en casino bonus, og hvorfor er det vigtigt?
-          </h2>
+          <h2 className="mb-4 text-3xl font-bold">Hvorfor casino bonusser stadig definerer det danske marked i 2026</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
-            En casino bonus er et tilbud fra et online casino, der giver dig
-            ekstra midler, gratis spins eller andre fordele oven i din
-            indbetaling. Casino bonusser er designet til at forbedre din spiloplevelse,
-            forlænge din spilletid og give dig flere chancer for at vinde. Den bedste
-            casino bonus kan fordoble eller endda tredoble din første indbetaling,
-            hvilket giver dig betydeligt mere at spille for.
+            Casino bonusser er langt mere end markedsføringstricks – de er det vigtigste konkurrenceparameter mellem danske casinoer i 2026. Mens produktudbuddet (spil, betalingsmetoder, mobile oplevelser) er konvergeret til et næsten identisk niveau, er bonusvilkårene det sted, hvor casinoerne reelt differentierer sig. For spilleren betyder det, at bonusvalget har direkte indflydelse på den matematiske forventede værdi af hver spillesession.
           </p>
           <p className="mb-4 text-muted-foreground leading-relaxed">
-            For danske spillere er en casino bonus en central del af oplevelsen
-            hos både{" "}
-            <Link to="/nye-casinoer" className={linkClass}>
-              nye casinoer
-            </Link>{" "}
-            og etablerede spillesteder. Når du vælger en casino bonus, er det
-            afgørende at forstå vilkårene – herunder omsætningskrav, gyldighedsperiode
-            og bonusstruktur. En god casino bonus kombinerer et generøst beløb med
-            fair vilkår, der reelt kan opfyldes.
+            Det danske bonuslandskab er unikt i europæisk sammenhæng. <a href="https://www.spillemyndigheden.dk/" target="_blank" rel="noopener noreferrer" className={linkClass}>Spillemyndighedens</a> regulering med et 10x omsætningsloft har skabt et marked, der er markant mere spillervenligt end nogen anden jurisdiktion i Europa. Til sammenligning opererer britiske casinoer typisk med 35-50x omsætningskrav, maltesiske med 30-40x og Curaçao-licenserede med op til 60x. Det danske loft beskytter spillere mod de mest aggressive bonusstrukturer, men det betyder ikke, at alle danske bonusser er lige gode. Forskellen mellem den bedste og den dårligste bonus på det danske marked kan udgøre hundreder af kroner i reel værdi.
           </p>
           <p className="mb-4 text-muted-foreground leading-relaxed">
-            Alle casino bonusser gennemgås grundigt og vurderes på fairness,
-            omsætningskrav, gyldighedsperiode og overordnet værdi. Kun bonusser
-            fra casinoer med gyldig dansk licens når listen – og omsætningskrav
-            overstiger aldrig det lovbestemte loft på 10x, som er fastsat af{" "}
-            <a href="https://www.spillemyndigheden.dk/" target="_blank" rel="noopener noreferrer" className="text-primary underline hover:text-primary/80">Spillemyndigheden</a>. Målet er at hjælpe dig med at finde den bedste casino bonus,
-            der passer til din spillestil – uanset om du foretrækker{" "}
-            <Link to="/no-sticky-bonus" className={linkClass}>
-              no-sticky bonusser
-            </Link>
-            , lavt{" "}
-            <Link to="/omsaetningskrav" className={linkClass}>
-              omsætningskrav
-            </Link>{" "}
-            eller{" "}
-            <Link to="/free-spins" className={linkClass}>
-              free spins
-            </Link>
-            .
+            Denne guide er bygget på princippet om, at markedsføring og reel værdi er to fundamentalt forskellige ting. Et casino kan annoncere "Op til 10.000 kr. i bonus!" – men den reelle matematiske værdi af det tilbud kan være under 500 kr., når man indregner omsætningskrav, bonusstruktur og spilbidrag. Vi giver dig værktøjerne til at beregne den faktiske værdi af ethvert bonustilbud, så du aldrig betaler overpris for din casino bonus.
           </p>
           <p className="text-muted-foreground leading-relaxed">
-            Det er vigtigt at forstå, at ikke alle casino bonusser er skabt lige. De
-            bedste casino bonusser kombinerer generøse beløb med retfærdige
-            vilkår, der faktisk kan opfyldes inden for bonusperioden. En casino bonus
-            med lave omsætningskrav og no-sticky struktur giver dig langt bedre
-            vinderchancer end en bonus med 50x gennemspilskrav. Læs videre
-            for at lære alt om de forskellige bonustyper og find den bedste casino bonus
-            til danske spillere i 2026.
+            Guiden dækker alle 10 primære bonustyper på det danske marked, med matematiske analyser, strategiske anbefalinger og en ærlig vurdering af, hvem der bør – og hvem der bør undlade at – bruge bonusser. Vi har testet over 25 danske casinoer i januar-februar 2026 med reelle indbetalinger for at verificere vilkårene i praksis. Det er ikke en markedsføringsguide – det er en beslutningsguide.
           </p>
         </section>
 
-        {/* Casino List */}
+        <Separator className="my-10" />
+
+        {/* ========== 2. BONUS-LANDSKABET I DANMARK 2026 ========== */}
         <section className="mb-12">
-          <h2 className="mb-6 text-3xl font-bold">
-            Bedste casino bonus – Top tilbud i Danmark 2026
-          </h2>
+          <h2 className="mb-4 text-3xl font-bold">Bonus-landskabet i Danmark: Regulering, begrænsninger og fordele i 2026</h2>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            For at forstå casino bonusser i Danmark skal man forstå det regulatoriske fundament, der former markedet. Spillemyndigheden administrerer den danske spillelovgivning og har implementeret en række regler, der specifikt adresserer bonusser og markedsføring. Disse regler er ikke blot bureaukrati – de har direkte indflydelse på den værdi, du som spiller får ud af hvert bonustilbud.
+          </p>
+
+          <h3 className="mb-3 mt-6 text-xl font-semibold">10x-loftet: Danmarks spillervenlige omsætningsregel</h3>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            Det mest markante element i dansk bonusregulering er omsætningsloftet på 10x (indskud + bonus). Det betyder, at et casino aldrig kan kræve, at du omsætter for mere end 10 gange det samlede beløb af din indbetaling plus bonus. For en indbetaling på 1.000 kr. med 1.000 kr. i bonus er det maksimale omsætningskrav altså 20.000 kr. I praksis vælger de fleste danske casinoer at operere på netop dette loft – 10x (d+b) – men enkelte tilbyder lavere krav eller endda <Link to="/bonus-uden-omsaetningskrav" className={linkClass}>bonusser helt uden omsætningskrav</Link>.
+          </p>
+
+          <h3 className="mb-3 mt-6 text-xl font-semibold">Markedsføringsregler og informationspligt</h3>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            Spillemyndigheden stiller strenge krav til, hvordan casinoer markedsfører bonusser. Alle væsentlige vilkår skal præsenteres tydeligt, inden spilleren accepterer en bonus. Det inkluderer omsætningskrav, gyldighedsperiode, spilbidrag og eventuelle max. indsatsbegrænsninger. Vildledende markedsføring – eksempelvis at fremhæve bonusbeløbet uden at nævne omsætningskravene – kan medføre sanktioner fra myndigheden, herunder bøder og i grove tilfælde inddragelse af licens.
+          </p>
+
+          <h3 className="mb-3 mt-6 text-xl font-semibold">Hvad er forbudt på det danske marked?</h3>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            Flere bonuspraksisser, der er udbredte internationalt, er forbudt eller stærkt begrænsede i Danmark. Casinoer må ikke tilbyde bonusser til spillere, der har selvudelukket via <a href="https://www.rofus.nu/" target="_blank" rel="noopener noreferrer" className={linkClass}>ROFUS</a>. Bonusser må ikke markedsføres aggressivt via push-notifikationer eller e-mail til inaktive spillere uden samtykke. "Sticky bonusser" med urimelige vilkår overvåges tæt, og casinoer kan ikke kræve indbetaling som betingelse for udbetaling af gevinster fra <Link to="/bonus-uden-indbetaling" className={linkClass}>no-deposit bonusser</Link>, medmindre det klart fremgår af vilkårene.
+          </p>
+
+          <h3 className="mb-3 mt-6 text-xl font-semibold">Danmark vs. udlandet: Konkret sammenligning</h3>
+          <div className="overflow-x-auto">
+            <table className="w-full text-sm border-collapse">
+              <thead>
+                <tr className="border-b border-border">
+                  <th className="py-3 px-4 text-left font-semibold">Jurisdiktion</th>
+                  <th className="py-3 px-4 text-left font-semibold">Max. omsætning</th>
+                  <th className="py-3 px-4 text-left font-semibold">Bonusregulering</th>
+                  <th className="py-3 px-4 text-left font-semibold">Spillerbeskyttelse</th>
+                </tr>
+              </thead>
+              <tbody className="text-muted-foreground">
+                <tr className="border-b border-border bg-primary/5">
+                  <td className="py-3 px-4 font-medium text-foreground">🇩🇰 Danmark</td>
+                  <td className="py-3 px-4">10x (d+b)</td>
+                  <td className="py-3 px-4">Stram – Spillemyndigheden</td>
+                  <td className="py-3 px-4">ROFUS, klageadgang, MitID</td>
+                </tr>
+                <tr className="border-b border-border">
+                  <td className="py-3 px-4 font-medium text-foreground">🇬🇧 Storbritannien</td>
+                  <td className="py-3 px-4">35-50x typisk</td>
+                  <td className="py-3 px-4">Moderat – UKGC</td>
+                  <td className="py-3 px-4">GamStop, IDV</td>
+                </tr>
+                <tr className="border-b border-border">
+                  <td className="py-3 px-4 font-medium text-foreground">🇲🇹 Malta (MGA)</td>
+                  <td className="py-3 px-4">30-40x typisk</td>
+                  <td className="py-3 px-4">Moderat</td>
+                  <td className="py-3 px-4">Selvudelukkelse</td>
+                </tr>
+                <tr className="border-b border-border">
+                  <td className="py-3 px-4 font-medium text-foreground">🇨🇼 Curaçao</td>
+                  <td className="py-3 px-4">40-60x typisk</td>
+                  <td className="py-3 px-4">Minimal</td>
+                  <td className="py-3 px-4">Begrænset</td>
+                </tr>
+                <tr>
+                  <td className="py-3 px-4 font-medium text-foreground">🇸🇪 Sverige</td>
+                  <td className="py-3 px-4">Kun velkomstbonus tilladt</td>
+                  <td className="py-3 px-4">Meget stram – SGA</td>
+                  <td className="py-3 px-4">Spelpaus</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <p className="mt-4 text-muted-foreground leading-relaxed">
+            Som tabellen viser, giver det danske marked en unik kombination: lavt omsætningsloft, stærk spillerbeskyttelse og stadig adgang til et bredt udvalg af bonustyper. Sverige har strengere bonusregler (kun én velkomstbonus, ingen løbende bonusser), mens Curaçao-markeder tilbyder høje bonusser med ekstremt krævende vilkår. For danske spillere er budskabet klart: spil hos casinoer med dansk licens for at nyde godt af verdens mest spillervenlige bonusregulering.
+          </p>
+        </section>
+
+        <Separator className="my-10" />
+
+        {/* ========== CASINO LIST ========== */}
+        <section className="mb-12">
+          <h2 className="mb-6 text-3xl font-bold">Bedste casino bonus – Top tilbud i Danmark 2026</h2>
           <p className="mb-6 text-muted-foreground leading-relaxed">
-            Herunder finder du vores håndplukkede liste over de bedste casino
-            bonusser på det danske marked. Alle casinoer har dansk licens, og vi
-            opdaterer listen løbende, så du altid har adgang til de nyeste og
-            mest attraktive tilbud.
+            Herunder finder du vores håndplukkede liste over de mest attraktive casino bonusser på det danske marked. Hvert casino er testet med reelle indbetalinger, og bonusvilkårene er verificeret direkte hos operatøren. Listen opdateres løbende, og vi prioriterer no-sticky bonusser med lave omsætningskrav.
           </p>
           {isLoading ? (
             <div className="flex items-center justify-center py-12">
               <Loader2 className="h-8 w-8 animate-spin text-primary" />
             </div>
           ) : activeCasinos.length === 0 ? (
-            <p className="py-8 text-center text-muted-foreground">
-              Ingen casino bonusser tilgængelige i øjeblikket.
-            </p>
+            <p className="py-8 text-center text-muted-foreground">Ingen casino bonusser tilgængelige i øjeblikket.</p>
           ) : (
             <div className="space-y-4">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4 items-start">
                 {activeCasinos.slice(0, 2).map((casino, index) => (
-                  <CasinoCard
-                    key={casino.id}
-                    casino={mapCasino(casino)}
-                    rank={index + 1}
-                    open={openCasinoId === casino.id}
-                    onOpenChange={(open) =>
-                      setOpenCasinoId(open ? casino.id : null)
-                    }
-                  />
+                  <CasinoCard key={casino.id} casino={mapCasino(casino)} rank={index + 1} open={openCasinoId === casino.id} onOpenChange={(open) => setOpenCasinoId(open ? casino.id : null)} />
                 ))}
               </div>
               {activeCasinos.length > 2 && (
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-4 items-start">
                   {activeCasinos.slice(2).map((casino, index) => (
-                    <CasinoCard
-                      key={casino.id}
-                      casino={mapCasino(casino)}
-                      rank={index + 3}
-                      open={openCasinoId === casino.id}
-                      onOpenChange={(open) =>
-                        setOpenCasinoId(open ? casino.id : null)
-                      }
-                    />
+                    <CasinoCard key={casino.id} casino={mapCasino(casino)} rank={index + 3} open={openCasinoId === casino.id} onOpenChange={(open) => setOpenCasinoId(open ? casino.id : null)} />
                   ))}
                 </div>
               )}
@@ -309,642 +326,304 @@ const CasinoBonus = () => {
 
         <Separator className="my-10" />
 
-        {/* Why Play With Bonus */}
+        {/* ========== 3. GENNEMGANG AF ALLE BONUSTYPER ========== */}
         <section className="mb-12">
-          <h2 className="mb-6 text-3xl font-bold">
-            Hvorfor spille med casino bonus?
-          </h2>
+          <h2 className="mb-4 text-3xl font-bold">Alle bonustyper på det danske marked – dybdegående analyse</h2>
           <p className="mb-6 text-muted-foreground leading-relaxed">
-            En casino bonus er mere end bare et fristende tilbud – den er en
-            mulighed for at styrke din spiloplevelse og potentielt øge dine
-            vinderchancer. Med en veludnyttet bonus kan du forlænge din spilletid,
-            udforske nye spil uden ekstra risiko og få mere værdi for dine penge.
-          </p>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-            <Card className="border-border bg-card">
-              <CardHeader className="pb-2">
-                <CardTitle className="flex items-center gap-2 text-lg">
-                  <Clock className="h-5 w-5 text-primary" />
-                  Forlænget spilletid
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-sm text-muted-foreground">
-                  Ekstra bonusmidler og{" "}
-                  <Link to="/free-spins" className={linkClass}>free spins</Link>{" "}
-                  giver dig flere runder på dine yndlingsspil, uden at du skal
-                  indbetale mere.
-                </p>
-              </CardContent>
-            </Card>
-
-            <Card className="border-border bg-card">
-              <CardHeader className="pb-2">
-                <CardTitle className="flex items-center gap-2 text-lg">
-                  <ShieldCheck className="h-5 w-5 text-primary" />
-                  Lavere risiko
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-sm text-muted-foreground">
-                  Med en{" "}
-                  <Link to="/no-sticky-bonus" className={linkClass}>
-                    no-sticky bonus
-                  </Link>{" "}
-                  spiller du med dine egne penge først. Bonussen fungerer som et
-                  sikkerhedsnet, hvis du taber din indbetaling.
-                </p>
-              </CardContent>
-            </Card>
-
-            <Card className="border-border bg-card">
-              <CardHeader className="pb-2">
-                <CardTitle className="flex items-center gap-2 text-lg">
-                  <Gamepad2 className="h-5 w-5 text-primary" />
-                  Opdag nye spil
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-sm text-muted-foreground">
-                  Bonusser målrettet specifikke titler giver dig en nem og
-                  risikofri måde at udforske nye spilleautomater og{" "}
-                  <Link to="/live-casino" className={linkClass}>live casino</Link>{" "}
-                  spil. Du kan også prøve vores egne{" "}
-                  <Link to="/community/slots" className={linkClass}>gratis spilleautomater i spillehallen</Link>{" "}
-                  og opleve bonusrunder og free spins helt uden risiko.
-                </p>
-              </CardContent>
-            </Card>
-
-            <Card className="border-border bg-card">
-              <CardHeader className="pb-2">
-                <CardTitle className="flex items-center gap-2 text-lg">
-                  <TrendingUp className="h-5 w-5 text-primary" />
-                  Bedre vinderchancer
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-sm text-muted-foreground">
-                  Flere runder betyder flere chancer for at ramme jackpot eller
-                  udløse bonusfunktioner i spilleautomater.
-                </p>
-              </CardContent>
-            </Card>
-
-            <Card className="border-border bg-card">
-              <CardHeader className="pb-2">
-                <CardTitle className="flex items-center gap-2 text-lg">
-                  <Trophy className="h-5 w-5 text-primary" />
-                  VIP & loyalitetsfordele
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-sm text-muted-foreground">
-                  Mange casinoer belønner faste spillere med reload-bonusser,
-                  cashback og eksklusive VIP-tilbud, der øger den langsigtede
-                  værdi.
-                </p>
-              </CardContent>
-            </Card>
-
-            <Card className="border-border bg-card">
-              <CardHeader className="pb-2">
-                <CardTitle className="flex items-center gap-2 text-lg">
-                  <DollarSign className="h-5 w-5 text-primary" />
-                  Mere værdi for pengene
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-sm text-muted-foreground">
-                  En 100% match-bonus fordobler din indbetaling og giver dig
-                  dobbelt så meget at spille for. Det er ren ekstra værdi oven i
-                  din indbetaling.
-                </p>
-              </CardContent>
-            </Card>
-          </div>
-        </section>
-
-        <Separator className="my-10" />
-
-        {/* Types of Casino Bonuses */}
-        <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold">
-            Typer af casino bonusser
-          </h2>
-          <p className="mb-6 text-muted-foreground leading-relaxed">
-            Der findes mange forskellige typer af casino bonusser på det danske
-            marked. Hver bonustype har sine fordele og vilkår, og det er vigtigt
-            at forstå forskellen, så du kan vælge den, der passer bedst til dig.
-            Her gennemgår vi de mest populære bonustyper.
+            Det danske casino-marked tilbyder et bredt spektrum af bonustyper, hver med unikke mekanismer, fordele og risici. Nedenfor gennemgår vi alle 10 primære bonustyper med fokus på reel værdi, spillerprofil-match og strategiske overvejelser. Hver sektion indeholder et direkte link til vores dedikerede dybdegående guide.
           </p>
 
-          <div className="space-y-6">
-            {/* Velkomstbonus */}
-            <Card className="border-border bg-card">
-              <CardHeader>
-                <CardTitle className="flex items-center gap-2">
-                  <Gift className="h-5 w-5 text-primary" />
-                  Velkomstbonus
-                </CardTitle>
-              </CardHeader>
-              <CardContent className="space-y-3">
-                <p className="text-muted-foreground leading-relaxed">
-                  Velkomstbonussen er det mest udbredte tilbud på det danske marked.
-                  Den gives til nye spillere ved deres første indbetaling og matcher
-                  typisk din indbetaling med 100%. Indbetaler du f.eks. 1.000 kr.,
-                  får du yderligere 1.000 kr. i bonus – altså 2.000 kr. at spille
-                  for. Nogle casinoer tilbyder trinvise velkomstpakker, der strækker
-                  sig over flere indbetalinger.
-                </p>
-                <Link
-                  to="/velkomstbonus"
-                  className="inline-flex items-center gap-1 text-sm font-medium text-primary hover:text-primary/80"
-                >
-                  Læs vores komplette velkomstbonus guide{" "}
-                  <ArrowRight className="h-4 w-4" />
-                </Link>
-              </CardContent>
-            </Card>
-
-            {/* Indskudsbonus */}
-            <Card className="border-border bg-card">
-              <CardHeader>
-                <CardTitle className="flex items-center gap-2">
-                  <CreditCard className="h-5 w-5 text-primary" />
-                  Indskudsbonus (Match Bonus)
-                </CardTitle>
-              </CardHeader>
-              <CardContent className="space-y-3">
-                <p className="text-muted-foreground leading-relaxed">
-                  En indskudsbonus aktiveres ved din indbetaling. Casinoet matcher
-                  en procentdel af dit indskud – typisk 100%, men det kan variere
-                  fra 50% til 200% eller mere. Det er den mest almindelige form
-                  for casinobonus og findes hos næsten alle danske spillesteder.
-                </p>
-                <Link
-                  to="/indskudsbonus"
-                  className="inline-flex items-center gap-1 text-sm font-medium text-primary hover:text-primary/80"
-                >
-                  Læs mere om indskudsbonusser{" "}
-                  <ArrowRight className="h-4 w-4" />
-                </Link>
-              </CardContent>
-            </Card>
-
-            {/* No-Sticky Bonus */}
-            <Card className="border-primary/50 bg-card">
-              <CardHeader>
-                <div className="mb-2 inline-flex rounded-full bg-primary/10 px-3 py-1 text-sm font-medium text-primary">
-                  Anbefalet
-                </div>
-                <CardTitle className="flex items-center gap-2">
-                  <Sparkles className="h-5 w-5 text-primary" />
-                  No-Sticky Bonus (Faldskærmsbonus)
-                </CardTitle>
-              </CardHeader>
-              <CardContent className="space-y-3">
-                <p className="text-muted-foreground leading-relaxed">
-                  No-sticky bonussen er den mest spillervenlige bonustype. Din
-                  indbetaling og bonus holdes adskilt – du spiller med dine egne
-                  penge først og kan hæve gevinster når som helst. Bonussen træder
-                  kun i kraft, hvis du mister din indbetaling, og fungerer dermed
-                  som et sikkerhedsnet. Vi anbefaler altid no-sticky bonusser
-                  frem for sticky, da de giver dig langt mere fleksibilitet.
-                </p>
-                <Link
-                  to="/no-sticky-bonus"
-                  className="inline-flex items-center gap-1 text-sm font-medium text-primary hover:text-primary/80"
-                >
-                  Læs vores dybdegående no-sticky guide{" "}
-                  <ArrowRight className="h-4 w-4" />
-                </Link>
-              </CardContent>
-            </Card>
-
-            {/* Sticky Bonus */}
-            <Card className="border-border bg-card">
-              <CardHeader>
-                <CardTitle className="flex items-center gap-2">
-                  <Star className="h-5 w-5 text-primary" />
-                  Sticky Bonus
-                </CardTitle>
-              </CardHeader>
-              <CardContent className="space-y-3">
-                <p className="text-muted-foreground leading-relaxed">
-                  Med en sticky bonus kombineres din indbetaling og bonus til én
-                  samlet saldo. Du kan ikke hæve noget, før du har opfyldt
-                  omsætningskravene. Sticky bonusser tilbyder ofte større beløb,
-                  men med højere risiko. De er bedst egnet til spillere, der
-                  planlægger længere spillesessioner.
-                </p>
-                <Link
-                  to="/sticky-bonus"
-                  className="inline-flex items-center gap-1 text-sm font-medium text-primary hover:text-primary/80"
-                >
-                  Læs mere om sticky bonusser{" "}
-                  <ArrowRight className="h-4 w-4" />
-                </Link>
-              </CardContent>
-            </Card>
-
-            {/* Free Spins */}
-            <Card className="border-border bg-card">
-              <CardHeader>
-                <CardTitle className="flex items-center gap-2">
-                  <RefreshCw className="h-5 w-5 text-primary" />
-                  Free Spins
-                </CardTitle>
-              </CardHeader>
-              <CardContent className="space-y-3">
-                <p className="text-muted-foreground leading-relaxed">
-                  Free spins er gratis omgange på udvalgte spilleautomater. De kan
-                  være en del af en velkomstpakke, gives som selvstændig bonus eller
-                  som no-deposit tilbud. Gevinster fra free spins er ofte underlagt
-                  omsætningskrav, men nogle casinoer tilbyder "kontant spins" helt
-                  uden krav.
-                </p>
-                <Link
-                  to="/free-spins"
-                  className="inline-flex items-center gap-1 text-sm font-medium text-primary hover:text-primary/80"
-                >
-                  Læs vores free spins guide{" "}
-                  <ArrowRight className="h-4 w-4" />
-                </Link>
-              </CardContent>
-            </Card>
-
-            {/* Bonus uden indbetaling */}
-            <Card className="border-border bg-card">
-              <CardHeader>
-                <CardTitle className="flex items-center gap-2">
-                  <Zap className="h-5 w-5 text-primary" />
-                  Bonus uden indbetaling (No Deposit)
-                </CardTitle>
-              </CardHeader>
-              <CardContent className="space-y-3">
-                <p className="text-muted-foreground leading-relaxed">
-                  En no-deposit bonus er særligt attraktiv, fordi den ikke kræver
-                  nogen indbetaling. Du modtager bonusmidler eller free spins blot
-                  ved at oprette en konto. Det er en risikofri måde at teste et
-                  nyt casino på, før du investerer dine egne penge.
-                </p>
-                <Link
-                  to="/bonus-uden-indbetaling"
-                  className="inline-flex items-center gap-1 text-sm font-medium text-primary hover:text-primary/80"
-                >
-                  Find bonusser uden indbetaling{" "}
-                  <ArrowRight className="h-4 w-4" />
-                </Link>
-              </CardContent>
-            </Card>
-
-            {/* Bonus uden omsætningskrav */}
-            <Card className="border-border bg-card">
-              <CardHeader>
-                <CardTitle className="flex items-center gap-2">
-                  <CheckCircle2 className="h-5 w-5 text-primary" />
-                  Bonus uden omsætningskrav
-                </CardTitle>
-              </CardHeader>
-              <CardContent className="space-y-3">
-                <p className="text-muted-foreground leading-relaxed">
-                  Den ultimative bonus for spillere – gevinster kan hæves med det
-                  samme, uden at du behøver omsætte for et bestemt beløb. Disse
-                  bonusser er sjældne, men utroligt værdifulde. Kontant spins og
-                  cash bonusser uden krav giver den bedste reelle værdi.
-                </p>
-                <Link
-                  to="/bonus-uden-omsaetningskrav"
-                  className="inline-flex items-center gap-1 text-sm font-medium text-primary hover:text-primary/80"
-                >
-                  Find bonusser uden omsætningskrav{" "}
-                  <ArrowRight className="h-4 w-4" />
-                </Link>
-              </CardContent>
-            </Card>
-
-            {/* Reload Bonus */}
-            <Card className="border-border bg-card">
-              <CardHeader>
-                <CardTitle className="flex items-center gap-2">
-                  <RefreshCw className="h-5 w-5 text-primary" />
-                  Reload-Bonus
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-muted-foreground leading-relaxed">
-                  Reload-bonusser er rettet mod eksisterende spillere og belønner
-                  efterfølgende indbetalinger. De fungerer som en match-bonus, men
-                  er typisk lavere end velkomstbonussen. Mange casinoer tilbyder
-                  ugentlige eller weekendbaserede reload-bonusser, der holder
-                  spilleglæden i gang.
-                </p>
-              </CardContent>
-            </Card>
-
-            {/* Cashback */}
-            <Card className="border-border bg-card">
-              <CardHeader>
-                <CardTitle className="flex items-center gap-2">
-                  <DollarSign className="h-5 w-5 text-primary" />
-                  Cashback-Bonus
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-muted-foreground leading-relaxed">
-                  Med en cashback-bonus får du en procentdel af dine tab
-                  tilbagebetalt – typisk 5-15%. Det fungerer som en forsikring
-                  mod tab og er særligt populær blandt high-roller spillere. Cashback
-                  udbetales ofte ugentligt og kan være fri for omsætningskrav.
-                </p>
-              </CardContent>
-            </Card>
-          </div>
-        </section>
-
-        <Separator className="my-10" />
-
-        {/* Understanding Wagering Requirements */}
-        <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold">
-            Forstå omsætningskrav
-          </h2>
-          <p className="mb-6 text-muted-foreground leading-relaxed">
-            Omsætningskrav (også kaldet gennemspilskrav) er den vigtigste faktor,
-            når du vurderer en casino bonus. De angiver, hvor mange gange du skal
-            omsætte bonusbeløbet, før du kan hæve eventuelle gevinster. Et lavt
-            omsætningskrav betyder bedre chancer for at beholde dine gevinster.
-          </p>
-
-          <Card className="mb-6 bg-muted/30">
-            <CardContent className="pt-6">
-              <h3 className="mb-3 font-semibold">Beregningseksempel</h3>
-              <p className="text-muted-foreground mb-2">
-                Du modtager en bonus på <strong>1.000 kr.</strong> med{" "}
-                <strong>10x omsætningskrav</strong>. Det betyder:
+          {/* No-Sticky Bonus */}
+          <Card className="mb-6 border-primary/50 bg-card">
+            <CardHeader>
+              <div className="mb-2 inline-flex rounded-full bg-primary/10 px-3 py-1 text-sm font-medium text-primary">Anbefalet bonustype</div>
+              <CardTitle className="flex items-center gap-2"><Sparkles className="h-5 w-5 text-primary" />No-Sticky Bonus (Faldskærmsbonus)</CardTitle>
+            </CardHeader>
+            <CardContent className="space-y-3">
+              <p className="text-muted-foreground leading-relaxed">
+                No-sticky bonussen er den objektivt bedste bonustype for spillere. Mekanismen er enkel: din indbetaling og bonus holdes i to separate saldi. Du spiller med dine egne penge først, og bonussen aktiveres kun, hvis du taber hele din indbetaling. Det betyder, at du kan hæve dine egne gevinster når som helst – uden at miste bonussen. Denne struktur eliminerer den største risiko ved traditionelle bonusser: at dine gevinster er låst bag omsætningskrav.
               </p>
-              <p className="text-lg font-semibold text-primary">
-                1.000 kr. × 10 = 10.000 kr. i samlede væddemål
+              <p className="text-muted-foreground leading-relaxed">
+                <strong>Fordele:</strong> Fuld kontrol over egne midler, lavere reel risiko, mulighed for at hæve gevinster undervejs. <strong>Ulemper:</strong> Bonusbeløbet kan kun bruges efter tab af indbetaling, og gevinster fra bonusdelen er stadig underlagt omsætningskrav. <strong>Passer til:</strong> Alle spillertyper – især nye spillere, bonusjægere og risikoaverse spillere.
               </p>
-              <p className="mt-2 text-sm text-muted-foreground">
-                Du skal altså placere væddemål for i alt 10.000 kr., før du kan
-                hæve dine gevinster.
+              <Link to="/no-sticky-bonus" className="inline-flex items-center gap-1 text-sm font-medium text-primary hover:text-primary/80">
+                Læs den komplette no-sticky bonus guide <ArrowRight className="h-4 w-4" />
+              </Link>
+            </CardContent>
+          </Card>
+
+          {/* Sticky Bonus */}
+          <Card className="mb-6 border-border bg-card">
+            <CardHeader>
+              <CardTitle className="flex items-center gap-2"><Lock className="h-5 w-5 text-primary" />Sticky Bonus (Traditionel Bonus)</CardTitle>
+            </CardHeader>
+            <CardContent className="space-y-3">
+              <p className="text-muted-foreground leading-relaxed">
+                En sticky bonus kombinerer din indbetaling og bonus til én samlet saldo. Du kan ikke hæve noget, før du har opfyldt omsætningskravene fuldt ud. Indbetaler du 1.000 kr. og modtager 1.000 kr. i sticky bonus med 10x omsætning, skal du omsætte 20.000 kr., før nogen form for udbetaling er mulig. Den psykologiske effekt er vigtig: mange spillere føler sig "tvunget" til at fortsætte med at spille for at nå omsætningskravet, hvilket kan føre til overforbrug.
+              </p>
+              <p className="text-muted-foreground leading-relaxed">
+                <strong>Fordele:</strong> Ofte højere bonusbeløb, større samlet saldo fra start. <strong>Ulemper:</strong> Ingen udbetaling før omsætning er fuldført, højere reel risiko, psykologisk pres for at "gennemspille". <strong>Passer til:</strong> Erfarne spillere med disciplin og højt budget, der planlægger lange spillesessioner.
+              </p>
+              <Link to="/sticky-bonus" className="inline-flex items-center gap-1 text-sm font-medium text-primary hover:text-primary/80">
+                Læs den komplette sticky bonus guide <ArrowRight className="h-4 w-4" />
+              </Link>
+            </CardContent>
+          </Card>
+
+          {/* Free Spins */}
+          <Card className="mb-6 border-border bg-card">
+            <CardHeader>
+              <CardTitle className="flex items-center gap-2"><RefreshCw className="h-5 w-5 text-primary" />Free Spins</CardTitle>
+            </CardHeader>
+            <CardContent className="space-y-3">
+              <p className="text-muted-foreground leading-relaxed">
+                Free spins er gratis omgange på udvalgte spilleautomater, typisk tildelt som del af en velkomstpakke eller som selvstændig kampagne. Værdien af free spins varierer enormt afhængigt af spinværdi, det valgte spil og eventuelle omsætningskrav på gevinster. Et tilbud på "100 free spins" kan betyde alt fra 10 kr. til 500 kr. i reel værdi – det afhænger af spinværdien (typisk 1-5 kr. pr. spin) og spillets RTP.
+              </p>
+              <p className="text-muted-foreground leading-relaxed">
+                <strong>Fordele:</strong> Risikofri afprøvning af nye spil, ingen krav om indbetaling ved no-deposit free spins. <strong>Ulemper:</strong> Ofte begrænset til specifikke spil, gevinster kan have omsætningskrav, lav spinværdi reducerer potentialet. <strong>Passer til:</strong> Slotsspillere, nye spillere der vil teste uden risiko.
+              </p>
+              <Link to="/free-spins" className="inline-flex items-center gap-1 text-sm font-medium text-primary hover:text-primary/80">
+                Læs den komplette free spins guide <ArrowRight className="h-4 w-4" />
+              </Link>
+            </CardContent>
+          </Card>
+
+          {/* Velkomstbonus */}
+          <Card className="mb-6 border-border bg-card">
+            <CardHeader>
+              <CardTitle className="flex items-center gap-2"><Gift className="h-5 w-5 text-primary" />Velkomstbonus</CardTitle>
+            </CardHeader>
+            <CardContent className="space-y-3">
+              <p className="text-muted-foreground leading-relaxed">
+                Velkomstbonussen er den mest generøse bonustype og tilbydes udelukkende til nye spillere ved deres første (og ofte anden og tredje) indbetaling. Standard på det danske marked er 100% match op til 1.000-2.000 kr. Nogle casinoer tilbyder trinvise pakker, der strækker sig over 2-4 indbetalinger med vekslende matchprocenter og free spins-tillæg. Velkomstbonussen er din eneste chance for at få maksimal bonusværdi fra et casino – brug den strategisk.
+              </p>
+              <p className="text-muted-foreground leading-relaxed">
+                <strong>Fordele:</strong> Højeste bonusbeløb, ofte kombineret med free spins. <strong>Ulemper:</strong> Kun tilgængelig én gang, kan ikke genaktiveres. <strong>Passer til:</strong> Alle nye spillere – vælg omhyggeligt, da du kun har én chance.
+              </p>
+              <Link to="/velkomstbonus" className="inline-flex items-center gap-1 text-sm font-medium text-primary hover:text-primary/80">
+                Læs den komplette velkomstbonus guide <ArrowRight className="h-4 w-4" />
+              </Link>
+            </CardContent>
+          </Card>
+
+          {/* Indskudsbonus */}
+          <Card className="mb-6 border-border bg-card">
+            <CardHeader>
+              <CardTitle className="flex items-center gap-2"><CreditCard className="h-5 w-5 text-primary" />Indskudsbonus (Match Bonus)</CardTitle>
+            </CardHeader>
+            <CardContent className="space-y-3">
+              <p className="text-muted-foreground leading-relaxed">
+                En indskudsbonus matcher en procentdel af din indbetaling – typisk 50-200%. Den grundlæggende mekanik er identisk med velkomstbonussen, men termen bruges bredere om alle bonusser, der kræver en indbetaling for aktivering. Den effektive bonusværdi afhænger af matchprocenten, omsætningsmodellen og din indbetalingsstørrelse. En 200% match lyder dobbelt så godt som 100%, men med (d+b)-omsætning kræver den 3x mere total omsætning – regnestykket er ikke altid intuitivt.
+              </p>
+              <p className="text-muted-foreground leading-relaxed">
+                <strong>Fordele:</strong> Forudsigelig mekanik, skalerer med din indbetaling. <strong>Ulemper:</strong> Kræver kapital, omsætningskrav gælder. <strong>Passer til:</strong> Spillere med klart budget der vil maksimere spilletid.
+              </p>
+              <Link to="/indskudsbonus" className="inline-flex items-center gap-1 text-sm font-medium text-primary hover:text-primary/80">
+                Læs den komplette indskudsbonus guide <ArrowRight className="h-4 w-4" />
+              </Link>
+            </CardContent>
+          </Card>
+
+          {/* Bonus uden indbetaling */}
+          <Card className="mb-6 border-border bg-card">
+            <CardHeader>
+              <CardTitle className="flex items-center gap-2"><Zap className="h-5 w-5 text-primary" />Bonus uden indbetaling (No Deposit)</CardTitle>
+            </CardHeader>
+            <CardContent className="space-y-3">
+              <p className="text-muted-foreground leading-relaxed">
+                No-deposit bonusser kræver ingen indbetaling – du modtager bonusmidler eller free spins blot ved at oprette en konto. De er typisk små (25-100 kr. eller 10-50 free spins), men de er helt risikofrie. Ulempen er, at gevinstloftet ofte er lavt (500-2.000 kr.), og omsætningskravene kan være relativt høje i forhold til bonusbeløbet. Trods det er no-deposit bonusser perfekte til at teste et nyt casino, før du binder dig med en indbetaling.
+              </p>
+              <p className="text-muted-foreground leading-relaxed">
+                <strong>Fordele:</strong> Nul risiko, gratis at prøve, ingen indbetaling krævet. <strong>Ulemper:</strong> Lavt bonusbeløb, gevinstloft, kan have højere effektive krav. <strong>Passer til:</strong> Nybegyndere og spillere der vil teste nye casinoer risikofrit.
+              </p>
+              <Link to="/bonus-uden-indbetaling" className="inline-flex items-center gap-1 text-sm font-medium text-primary hover:text-primary/80">
+                Find de bedste no-deposit bonusser <ArrowRight className="h-4 w-4" />
+              </Link>
+            </CardContent>
+          </Card>
+
+          {/* Bonus uden omsætningskrav */}
+          <Card className="mb-6 border-border bg-card">
+            <CardHeader>
+              <CardTitle className="flex items-center gap-2"><CheckCircle2 className="h-5 w-5 text-primary" />Bonus uden omsætningskrav</CardTitle>
+            </CardHeader>
+            <CardContent className="space-y-3">
+              <p className="text-muted-foreground leading-relaxed">
+                Den ultimative bonus for spillere: gevinster kan hæves med det samme, uden nogen form for omsætning. Disse bonusser er sjældne på det danske marked, men de repræsenterer den højeste reelle bonusværdi per krone. "Kontant spins" og cash bonusser uden krav har en reel værdi, der er tæt på den nominelle værdi – i modsætning til traditionelle bonusser, hvor omsætningskrav reducerer den effektive værdi med 60-80%. Udfordringen er, at beløbene typisk er lave.
+              </p>
+              <p className="text-muted-foreground leading-relaxed">
+                <strong>Fordele:</strong> Højeste reel værdi per krone, ingen omsætningskrav, øjeblikkelig udbetaling. <strong>Ulemper:</strong> Sjælden, lavt bonusbeløb, kan have gevinstloft. <strong>Passer til:</strong> Alle – der er bogstaveligt talt ingen ulempe, bortset fra det lave beløb.
+              </p>
+              <Link to="/bonus-uden-omsaetningskrav" className="inline-flex items-center gap-1 text-sm font-medium text-primary hover:text-primary/80">
+                Find bonusser uden omsætningskrav <ArrowRight className="h-4 w-4" />
+              </Link>
+            </CardContent>
+          </Card>
+
+          {/* Reload Bonus */}
+          <Card className="mb-6 border-border bg-card">
+            <CardHeader>
+              <CardTitle className="flex items-center gap-2"><RefreshCw className="h-5 w-5 text-primary" />Reload-Bonus</CardTitle>
+            </CardHeader>
+            <CardContent className="space-y-3">
+              <p className="text-muted-foreground leading-relaxed">
+                Reload-bonusser er rettet mod eksisterende spillere og belønner efterfølgende indbetalinger. De fungerer som en matchbonus, men med lavere matchprocent end velkomstbonussen – typisk 25-50%. Mange casinoer tilbyder ugentlige eller weekendbaserede reload-bonusser, og de bedste VIP-programmer inkluderer eksklusive reload-tilbud med forbedrede vilkår. Over tid kan reload-bonusser faktisk give mere samlet værdi end velkomstbonussen, da de kan bruges gentagne gange.
+              </p>
+              <p className="text-muted-foreground leading-relaxed">
+                <strong>Fordele:</strong> Gentagen bonusværdi, lavere matchprocent men fleksibel. <strong>Ulemper:</strong> Kræver løbende indbetalinger, lavere matchprocent. <strong>Passer til:</strong> Aktive spillere der vil maksimere langsigtet bonusværdi.
               </p>
             </CardContent>
           </Card>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <div className="flex items-start gap-3 rounded-lg border border-border bg-card p-4">
-              <CheckCircle2 className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
-              <div>
-                <h3 className="font-semibold">Under 10x – Fremragende</h3>
-                <p className="text-sm text-muted-foreground">
-                  De bedste vilkår på det danske marked. Meget realistisk at
-                  opfylde og giver reel værdi for spilleren.
-                </p>
-              </div>
-            </div>
-            <div className="flex items-start gap-3 rounded-lg border border-border bg-card p-4">
-              <CheckCircle2 className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
-              <div>
-                <h3 className="font-semibold">10x – Dansk standard</h3>
-                <p className="text-sm text-muted-foreground">
-                  Alle danske casinoer med licens fra Spillemyndigheden opererer med 10x omsætningskrav (indskud + bonus). Det er blandt de laveste i verden.
-                </p>
-              </div>
-            </div>
-            <div className="flex items-start gap-3 rounded-lg border border-border bg-card p-4">
-              <CheckCircle2 className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
-              <div>
-                <h3 className="font-semibold">0x – Uden omsætningskrav</h3>
-                <p className="text-sm text-muted-foreground">
-                  Nogle casinoer tilbyder bonusser helt uden omsætningskrav – du kan udbetale gevinster med det samme.
-                </p>
-              </div>
-            </div>
-          </div>
+          {/* Cashback */}
+          <Card className="mb-6 border-border bg-card">
+            <CardHeader>
+              <CardTitle className="flex items-center gap-2"><DollarSign className="h-5 w-5 text-primary" />Cashback-Bonus</CardTitle>
+            </CardHeader>
+            <CardContent className="space-y-3">
+              <p className="text-muted-foreground leading-relaxed">
+                Cashback returnerer en procentdel af dine nettotab – typisk 5-15% – som bonusmidler eller kontanter. Det fungerer som en forsikring mod tab og reducerer den effektive house edge. En 10% cashback på et nettotab af 1.000 kr. giver dig 100 kr. tilbage. De bedste cashback-tilbud udbetales som kontanter uden omsætningskrav, hvilket gør dem til en af de mest spillervenlige bonusformer. Cashback er særligt værdifuld for high rollers, der omsætter store beløb.
+              </p>
+              <p className="text-muted-foreground leading-relaxed">
+                <strong>Fordele:</strong> Reducerer nettotab, ofte uden omsætningskrav, automatisk. <strong>Ulemper:</strong> Kun relevant ved tab, kræver aktivt spil. <strong>Passer til:</strong> High rollers og faste spillere med højt volume.
+              </p>
+            </CardContent>
+          </Card>
 
-          <div className="mt-6">
-            <Link
-              to="/omsaetningskrav"
-              className="inline-flex items-center gap-1 text-sm font-medium text-primary hover:text-primary/80"
-            >
-              Læs vores komplette guide til omsætningskrav{" "}
-              <ArrowRight className="h-4 w-4" />
-            </Link>
-          </div>
+          {/* Sportsbonus */}
+          <Card className="mb-6 border-border bg-card">
+            <CardHeader>
+              <CardTitle className="flex items-center gap-2"><Trophy className="h-5 w-5 text-primary" />Sportsbonus (Odds Bonus)</CardTitle>
+            </CardHeader>
+            <CardContent className="space-y-3">
+              <p className="text-muted-foreground leading-relaxed">
+                Sportsbonusser matcher din indbetaling til brug på sportsvæddemål. De adskiller sig fra casinobonusser ved at have minimum odds-krav (typisk 1,80-2,00 for enkeltvæddemål) og separate omsætningsvilkår. Nogle casinoer tilbyder "risikofri væddemål", hvor dit indsatsbeløb refunderes som bonusmidler, hvis dit første væddemål taber. Sportsbonusser kan ikke bruges på casinospil og omvendt – de er fuldstændig adskilte produkter hos de fleste operatører.
+              </p>
+              <p className="text-muted-foreground leading-relaxed">
+                <strong>Fordele:</strong> Lavere effektive omsætningskrav, risikofri start. <strong>Ulemper:</strong> Minimum odds-krav, begrænset til sport, kræver bettingviden. <strong>Passer til:</strong> Dedikerede sportsbettere og multi-produkt spillere.
+              </p>
+            </CardContent>
+          </Card>
         </section>
 
         <Separator className="my-10" />
 
-        {/* How to Activate a Bonus */}
+        <InlineCasinoCards count={3} />
+
+        <Separator className="my-10" />
+
+        {/* ========== 4. BONUSMATEMATIK ========== */}
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold">
-            Trin for trin: Sådan aktiverer du en casino bonus
-          </h2>
-          <p className="mb-6 text-muted-foreground leading-relaxed">
-            Det er nemt at komme i gang med en casino bonus. Her guider vi dig
-            igennem processen, så du kan aktivere dit tilbud hurtigt og sikkert.
+          <h2 className="mb-4 text-3xl font-bold">Bonusmatematik – hvad er din bonus reelt værd?</h2>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            At forstå den matematiske værdi af en casino bonus er den vigtigste færdighed for enhver bonusspiller. Annoncerede bonusbeløb er markedsføring – den reelle værdi afhænger af omsætningskrav, bonusstruktur, spilbidrag og dit spilvalg. Her præsenterer vi de formler og cases, du har brug for.
           </p>
-          <div className="space-y-3">
+
+          <h3 className="mb-3 mt-6 text-xl font-semibold">Formel: Expected Value (EV) af en casino bonus</h3>
+          <Card className="mb-6 bg-muted/30">
+            <CardContent className="pt-6">
+              <p className="text-sm text-muted-foreground mb-2">Grundformel for bonusværdi:</p>
+              <p className="text-lg font-mono font-semibold text-primary mb-2">
+                EV = Bonusbeløb − (Total Omsætning × House Edge)
+              </p>
+              <p className="text-sm text-muted-foreground">
+                Hvor Total Omsætning = Bonusbeløb × Omsætningskrav (ved b-only) eller (Indbetaling + Bonus) × Omsætningskrav (ved d+b)
+              </p>
+            </CardContent>
+          </Card>
+
+          <h3 className="mb-3 mt-6 text-xl font-semibold">Case 1: No-sticky 100% bonus, 1.000 kr., 10x (d+b)</h3>
+          <Card className="mb-4 border-border bg-card">
+            <CardContent className="pt-6 space-y-2">
+              <p className="text-muted-foreground">Indbetaling: 1.000 kr. | Bonus: 1.000 kr. | Total omsætning: 20.000 kr.</p>
+              <p className="text-muted-foreground">Spil: Slots med 96% RTP (4% house edge)</p>
+              <p className="text-muted-foreground">Forventet tab under omsætning: 20.000 × 0,04 = <strong>800 kr.</strong></p>
+              <p className="text-muted-foreground">EV af bonus: 1.000 − 800 = <strong className="text-primary">+200 kr.</strong></p>
+              <p className="text-sm text-muted-foreground italic">Da bonussen er no-sticky, kan du desuden hæve eventuelle gevinster fra dine egne penge undervejs – den reelle EV er endnu højere.</p>
+            </CardContent>
+          </Card>
+
+          <h3 className="mb-3 mt-6 text-xl font-semibold">Case 2: Sticky 200% bonus, 1.000 kr., 10x (d+b)</h3>
+          <Card className="mb-4 border-border bg-card">
+            <CardContent className="pt-6 space-y-2">
+              <p className="text-muted-foreground">Indbetaling: 1.000 kr. | Bonus: 2.000 kr. | Total omsætning: 30.000 kr.</p>
+              <p className="text-muted-foreground">Spil: Slots med 96% RTP (4% house edge)</p>
+              <p className="text-muted-foreground">Forventet tab under omsætning: 30.000 × 0,04 = <strong>1.200 kr.</strong></p>
+              <p className="text-muted-foreground">EV af bonus: 2.000 − 1.200 = <strong className="text-primary">+800 kr.</strong></p>
+              <p className="text-sm text-muted-foreground italic">Men da bonussen er sticky, kan du ikke hæve noget, før alle 30.000 kr. er omsat. Variansen er enorm – du risikerer at miste alt.</p>
+            </CardContent>
+          </Card>
+
+          <h3 className="mb-3 mt-6 text-xl font-semibold">Case 3: 50 free spins á 2 kr. med 10x omsætning</h3>
+          <Card className="mb-4 border-border bg-card">
+            <CardContent className="pt-6 space-y-2">
+              <p className="text-muted-foreground">Samlet spinværdi: 100 kr. | Forventet gevinst (96% RTP): 96 kr.</p>
+              <p className="text-muted-foreground">Omsætning: 96 × 10 = 960 kr. | Tab under omsætning: 960 × 0,04 = 38,40 kr.</p>
+              <p className="text-muted-foreground">EV af free spins: 96 − 38,40 = <strong className="text-primary">~57,60 kr.</strong></p>
+              <p className="text-sm text-muted-foreground italic">50 free spins har altså en reel værdi på ca. 58 kr. – ikke 100 kr. som mange tror.</p>
+            </CardContent>
+          </Card>
+
+          <h3 className="mb-3 mt-6 text-xl font-semibold">RTP-valgets indflydelse på bonusværdi</h3>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            Dit valg af <Link to="/casinospil/spillemaskiner" className={linkClass}>spilleautomat</Link> har enorm indflydelse på bonusværdien. En slot med 97% RTP (3% house edge) versus 94% RTP (6% house edge) ændrer EV dramatisk. For case 1 ovenfor: Med 97% RTP falder tabet til 600 kr. (EV = +400 kr.), mens 94% RTP øger tabet til 1.200 kr. (EV = −200 kr. – bonussen er nu en nettonegativ!). Vælg altid spil med mindst 96% RTP under bonusomsætning.
+          </p>
+
+          <h3 className="mb-3 mt-6 text-xl font-semibold">Max. indsats og dens konsekvenser</h3>
+          <p className="text-muted-foreground leading-relaxed">
+            De fleste danske casinoer har en max. indsats på 25-50 kr. pr. spin under bonusomsætning. Overskridelse kan annullere hele bonussen og alle gevinster. Med 20.000 kr. i omsætningskrav og 25 kr. max. indsats skal du spille mindst 800 spins for at fuldføre omsætningen. Det tager typisk 2-4 timer – en realistisk tidsramme. Men med 10 kr. max. indsats kræves 2.000 spins, hvilket kan tage 6-10 timer. Factor dette ind, når du vurderer bonusværdien.
+          </p>
+        </section>
+
+        <Separator className="my-10" />
+
+        {/* ========== 5. TYPISKE BONUSFÆLDER ========== */}
+        <section className="mb-12">
+          <h2 className="mb-4 text-3xl font-bold">De 7 mest almindelige bonusfælder – og hvordan du undgår dem</h2>
+          <p className="mb-6 text-muted-foreground leading-relaxed">
+            Selv erfarne spillere kan falde i bonusfælder, der reducerer eller eliminerer værdien af et ellers attraktivt tilbud. Her gennemgår vi de syv hyppigste fælder baseret på vores egne test og de mest almindelige klager til Spillemyndigheden.
+          </p>
+
+          <div className="space-y-4">
             {[
               {
-                step: "1",
-                title: "Vælg et casino med en attraktiv bonus",
-                desc: "Sammenlign bonusser fra vores liste og vælg den, der passer til din spillestil. Kig efter lave omsætningskrav og no-sticky struktur.",
+                icon: Ban,
+                title: "1. Max. indsats-overtrædelse",
+                desc: "Den hyppigste årsag til konfiskeret bonus. Du spiller med 50 kr. pr. spin, men vilkårene tillader kun 25 kr. Casinoets system registrerer overtrædelsen – ofte først, når du anmoder om udbetaling. Resultat: bonus og gevinster annulleret. Tjek altid max. indsats i vilkårene, og hold dig under grænsen med margin."
               },
               {
-                step: "2",
-                title: "Opret en konto med NemID/MitID",
-                desc: "Alle danske casinoer kræver verifikation via NemID eller MitID. Processen tager typisk under 5 minutter og sikrer lovligt spil.",
+                icon: Gamepad2,
+                title: "2. Udelukkede spil",
+                desc: "Mange bonusser ekskluderer specifikke spil fra bidrag til omsætningskrav – typisk progressive jackpots, visse bordspil og live casino-spil. Hvis du spiller et udelukket spil, bidrager det 0% til din omsætning, og i værste fald kan det annullere bonussen. Tjek altid listen over kvalificerede spil."
               },
               {
-                step: "3",
-                title: "Foretag din første indbetaling",
-                desc: (
-                  <>
-                    Vælg din foretrukne{" "}
-                    <Link to="/betalingsmetoder" className={linkClass}>
-                      betalingsmetode
-                    </Link>{" "}
-                    – <Link to="/betalingsmetoder/mobilepay" className="text-primary underline hover:text-primary/80">MobilePay</Link>, <Link to="/betalingsmetoder/trustly" className="text-primary underline hover:text-primary/80">Trustly</Link>, Visa eller lignende. Tjek altid
-                    minimumsindbetaling for at aktivere bonussen.
-                  </>
-                ),
+                icon: Clock,
+                title: "3. Tidsbegrænsning undervurderet",
+                desc: "En bonus med 7 dages gyldighed kræver intensivt spil for at opfylde omsætningskravene. Med 20.000 kr. i krav og 25 kr. pr. spin skal du spille ca. 115 spins dagligt. Realistisk? Ja, men kun hvis du spiller hver dag. Vælg bonusser med mindst 30 dages gyldighed for komfortabel omsætning."
               },
               {
-                step: "4",
-                title: "Bonussen aktiveres automatisk",
-                desc: "De fleste bonusser krediteres automatisk efter din første indbetaling. Nogle kræver en bonuskode – tjek altid vilkårene.",
+                icon: Calculator,
+                title: "4. (d+b) vs. (b) misforståelse",
+                desc: "Mange spillere antager, at 10x omsætningskrav betyder 10x bonusbeløbet. Men de fleste danske casinoer bruger (d+b)-modellen, hvor kravet gælder indbetaling + bonus. En 1.000 kr. bonus med 10x (d+b) kræver 20.000 kr. i omsætning – dobbelt af, hvad de fleste forventer. Læs altid, om kravet er (b) eller (d+b)."
               },
               {
-                step: "5",
-                title: "Spil og opfyld omsætningskravene",
-                desc: "Brug bonusmidlerne på kvalificerede spil (typisk spilleautomater) og opfyld omsætningskravene inden for gyldighedsperioden.",
-              },
-            ].map((item) => (
-              <div
-                key={item.step}
-                className="flex items-start gap-3 rounded-lg border border-border bg-card p-4"
-              >
-                <span className="flex h-7 w-7 flex-shrink-0 items-center justify-center rounded-full bg-primary text-sm font-bold text-primary-foreground">
-                  {item.step}
-                </span>
-                <div>
-                  <h3 className="font-semibold">{item.title}</h3>
-                  <p className="text-sm text-muted-foreground">{typeof item.desc === "string" ? item.desc : item.desc}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </section>
-
-        <Separator className="my-10" />
-
-        {/* Bonus Terms and Conditions */}
-        <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold">
-            Bonusvilkår og vigtige begrænsninger
-          </h2>
-          <p className="mb-6 text-muted-foreground leading-relaxed">
-            Før du accepterer en casino bonus, er det afgørende at forstå de
-            tilhørende vilkår og betingelser. Her er de vigtigste punkter, du
-            bør være opmærksom på:
-          </p>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <div className="flex items-start gap-3 rounded-lg border border-border bg-card p-4">
-              <Percent className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
-              <div>
-                <h3 className="font-semibold">Omsætningskrav</h3>
-                <p className="text-sm text-muted-foreground">
-                  Angiver hvor mange gange du skal omsætte bonus (og evt.
-                  indbetaling) før udbetaling. Jo lavere, jo bedre.
-                </p>
-              </div>
-            </div>
-            <div className="flex items-start gap-3 rounded-lg border border-border bg-card p-4">
-              <Clock className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
-              <div>
-                <h3 className="font-semibold">Gyldighedsperiode</h3>
-                <p className="text-sm text-muted-foreground">
-                  De fleste bonusser har en tidsfrist (typisk 30-60 dage). Hvis
-                  du ikke opfylder kravene inden for fristen, bortfalder bonus
-                  og gevinster.
-                </p>
-              </div>
-            </div>
-            <div className="flex items-start gap-3 rounded-lg border border-border bg-card p-4">
-              <Gamepad2 className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
-              <div>
-                <h3 className="font-semibold">Spilbidrag</h3>
-                <p className="text-sm text-muted-foreground">
-                  Ikke alle spil bidrager lige meget. Spilleautomater tæller
-                  typisk 100%, mens bordspil og live casino ofte tæller 0-10%.
-                </p>
-              </div>
-            </div>
-            <div className="flex items-start gap-3 rounded-lg border border-border bg-card p-4">
-              <CreditCard className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
-              <div>
-                <h3 className="font-semibold">Min./Max. indbetaling</h3>
-                <p className="text-sm text-muted-foreground">
-                  Der er altid en minimumsindbetaling for at aktivere bonussen
-                  (typisk 100 kr.) og ofte et maksimum for bonusbeløbet.
-                </p>
-              </div>
-            </div>
-            <div className="flex items-start gap-3 rounded-lg border border-border bg-card p-4">
-              <DollarSign className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
-              <div>
-                <h3 className="font-semibold">Max. indsats under omsætning</h3>
-                <p className="text-sm text-muted-foreground">
-                  Mange casinoer har en maksimal indsats pr. spin mens du
-                  omsætter bonus (typisk 25-50 kr.). Overskridelse kan annullere
-                  bonussen.
-                </p>
-              </div>
-            </div>
-            <div className="flex items-start gap-3 rounded-lg border border-border bg-card p-4">
-              <TrendingUp className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
-              <div>
-                <h3 className="font-semibold">Max. udbetaling</h3>
-                <p className="text-sm text-muted-foreground">
-                  Nogle bonusser har et loft på, hvor meget du kan udbetale fra
-                  bonusgevinster. Tjek altid dette, inden du accepterer tilbuddet.
-                </p>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <Separator className="my-10" />
-
-        {/* Tips Section */}
-        <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold">
-            Tips til at vælge den rigtige casino bonus
-          </h2>
-          <p className="mb-6 text-muted-foreground leading-relaxed">
-            Med så mange bonusser at vælge imellem kan det være overvældende. Her
-            er vores bedste råd til at finde den bonus, der giver dig mest
-            værdi:
-          </p>
-          <div className="space-y-3">
-            {[
-              {
-                title: "Foretruk no-sticky frem for sticky",
-                desc: (
-                  <>
-                    <Link to="/no-sticky-bonus" className={linkClass}>
-                      No-sticky bonusser
-                    </Link>{" "}
-                    giver dig fleksibilitet til at hæve gevinster når som helst.
-                    Det er altid den bedste bonustype for spillere.
-                  </>
-                ),
+                icon: BarChart3,
+                title: "5. Spilbidrag-illusionen",
+                desc: "Du har en casinobonus og spiller roulette – men roulette bidrager kun 10% til omsætningen. Med 20.000 kr. i omsætningskrav skal du reelt omsætte 200.000 kr. på roulette for at opfylde kravet. Det er 10x mere end du troede. Spil altid 100%-bidragsslots under bonusomsætning."
               },
               {
-                title: "Kig efter lave omsætningskrav",
-                desc: (
-                  <>
-                    Jo lavere{" "}
-                    <Link to="/omsaetningskrav" className={linkClass}>
-                      omsætningskrav
-                    </Link>
-                    , jo bedre. Alle danske casinoer opererer med 10x, som er fastsat af Spillemyndigheden.
-                  </>
-                ),
+                icon: AlertTriangle,
+                title: "6. Sports minimum odds-krav",
+                desc: "Sportsbonusser har ofte et minimum odds-krav på 1,80-2,00 for enkeltvæddemål og endnu højere for kombinationer. Placerer du væddemål under minimum odds, tæller det ikke mod omsætningen. Mange spillere opdager dette først, når de har omsat tusindvis af kroner på lavt-odds favoritter, der ikke bidrager."
               },
               {
-                title: "Tjek gyldighedsperioden",
-                desc: "Sørg for at du har tid nok til at opfylde kravene. En bonus med 60 dages gyldighed er bedre end én med 7 dage.",
-              },
-              {
-                title: "Læs de fulde vilkår",
-                desc: "Tjek altid spilbidrag, max. indsats under omsætning og eventuel max. udbetaling. Djævlen er i detaljerne.",
-              },
-              {
-                title: "Sammenlign flere casinoer",
-                desc: (
-                  <>
-                    Brug vores oversigt til at sammenligne bonusser side om side.
-                    Tjek også vores{" "}
-                    <Link to="/top-10-casino-online" className={linkClass}>
-                      top 10 casino online
-                    </Link>{" "}
-                    for de bedste samlede oplevelser.
-                  </>
-                ),
+                icon: Eye,
+                title: "7. Gevinstloft (max. udbetaling)",
+                desc: "Nogle bonusser – særligt no-deposit og free spins – har et loft for, hvor meget du kan udbetale fra bonusgevinster. Et gevinstloft på 500 kr. betyder, at selv om du vinder 5.000 kr., kan du kun hæve 500 kr. Tjek altid gevinstloftet, især ved gratis bonusser – det ændrer den reelle EV fundamentalt."
               },
             ].map((item, idx) => (
-              <div
-                key={idx}
-                className="flex items-start gap-3 rounded-lg border border-border bg-card p-4"
-              >
-                <span className="flex h-7 w-7 flex-shrink-0 items-center justify-center rounded-full bg-primary text-sm font-bold text-primary-foreground">
-                  {idx + 1}
-                </span>
+              <div key={idx} className="flex items-start gap-3 rounded-lg border border-border bg-card p-4">
+                <item.icon className="mt-0.5 h-5 w-5 flex-shrink-0 text-destructive" />
                 <div>
                   <h3 className="font-semibold">{item.title}</h3>
                   <p className="text-sm text-muted-foreground">{item.desc}</p>
@@ -956,148 +635,116 @@ const CasinoBonus = () => {
 
         <Separator className="my-10" />
 
-        {/* How Casino Bonus Works in Denmark */}
+        {/* ========== 6. SAMMENLIGNINGSTABEL ========== */}
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold">
-            Sådan fungerer en casino bonus i Danmark
-          </h2>
-          <p className="mb-4 text-muted-foreground leading-relaxed">
-            En casino bonus i Danmark fungerer anderledes end i mange andre lande, fordi
-            det danske marked er reguleret af Spillemyndigheden. Alle casino bonusser
-            der tilbydes til danske spillere skal overholde strenge regler, hvilket
-            sikrer en fair og gennemsigtig oplevelse. Når du modtager en casino bonus
-            hos et dansk casino, er der altid klare vilkår og betingelser knyttet til
-            tilbuddet.
-          </p>
-          <p className="mb-4 text-muted-foreground leading-relaxed">
-            Den typiske casino bonus fungerer ved, at casinoet matcher din indbetaling
-            med en procentdel – oftest 100%. Det betyder, at hvis du indbetaler 1.000 kr.,
-            får du en casino bonus på yderligere 1.000 kr., så du har 2.000 kr. at
-            spille for. Denne type casino bonus kaldes en velkomstbonus og er den mest
-            populære bonusform på det danske marked. Nogle casino bonusser kan dog give
-            dig helt op til 200% eller 300% match, hvilket tredobler eller firdobler
-            din indbetaling.
-          </p>
-          <p className="mb-4 text-muted-foreground leading-relaxed">
-            Det er vigtigt at forstå, at en casino bonus ikke er "gratis penge". Hver
-            casino bonus kommer med omsætningskrav, der angiver, hvor mange gange du
-            skal spille for bonusbeløbet, før du kan hæve eventuelle gevinster. Alle
-            danske casinoer med licens fra Spillemyndigheden opererer med 10x omsætningskrav
-            (indskud + bonus), hvilket gør det danske marked til et af de mest spillervenlige i verden.
-          </p>
-          <p className="mb-4 text-muted-foreground leading-relaxed">
-            En vigtig faktor ved valg af casino bonus er bonusstrukturen. Der findes
-            grundlæggende to typer: <Link to="/no-sticky-bonus" className={linkClass}>no-sticky
-            casino bonus</Link> og <Link to="/sticky-bonus" className={linkClass}>sticky
-            casino bonus</Link>. Med en no-sticky casino bonus spiller du med dine egne
-            penge først, og bonussen fungerer som et sikkerhedsnet. Med en sticky casino
-            bonus blandes din indbetaling og bonus sammen, og du skal omsætte hele beløbet
-            før udbetaling. Vi anbefaler altid en no-sticky casino bonus, da den giver
-            dig langt mere kontrol over dine penge.
-          </p>
-          <p className="text-muted-foreground leading-relaxed">
-            Derudover tilbyder mange danske casinoer løbende casino bonusser til eksisterende
-            spillere i form af reload-bonusser, cashback og loyalitetsprogrammer. Disse
-            casino bonusser er typisk mindre end velkomstbonussen, men de holder
-            spilleglæden i gang og giver ekstra værdi over tid. Den bedste strategi
-            er at vælge et casino med en stærk velkomst casino bonus OG gode løbende
-            tilbud.
-          </p>
-        </section>
-
-        <Separator className="my-10" />
-
-        {/* Casino Bonus Strategies */}
-        <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold">
-            Strategier til at få mest ud af din casino bonus
-          </h2>
-          <p className="mb-4 text-muted-foreground leading-relaxed">
-            At vælge den rigtige casino bonus er kun halvdelen af kampen. For at
-            maksimere værdien af din casino bonus skal du også have en solid strategi.
-            Her deler vi vores bedste tips til at udnytte din casino bonus optimalt.
-          </p>
-
-          <h3 className="mb-3 mt-6 text-xl font-semibold">
-            Vælg spil med høj RTP til din casino bonus
-          </h3>
-          <p className="mb-4 text-muted-foreground leading-relaxed">
-            Når du spiller med en casino bonus, er det klogt at vælge spilleautomater
-            med høj Return to Player (RTP). Spil med en RTP på 96% eller højere giver
-            dig statistisk set bedre chancer for at beholde din casino bonus-saldo,
-            mens du omsætter. Populære højt-RTP-spil inkluderer titler fra{" "}
-            <Link to="/spiludviklere" className={linkClass}>førende spiludviklere</Link>{" "}
-            som <Link to="/spiludviklere/netent" className={linkClass}>NetEnt</Link>, <Link to="/spiludviklere/play-n-go" className={linkClass}>Play&apos;n GO</Link> og <Link to="/spiludviklere/pragmatic-play" className={linkClass}>Pragmatic Play</Link>. Undgå progressive jackpot-spil
-            under omsætning af din casino bonus, da de typisk har lavere RTP.
-          </p>
-
-          <h3 className="mb-3 mt-6 text-xl font-semibold">
-            Forstå spilbidrag ved casino bonus omsætning
-          </h3>
-          <p className="mb-4 text-muted-foreground leading-relaxed">
-            Ikke alle spil bidrager lige meget til omsætningen af din casino bonus.
-            Spilleautomater tæller typisk 100% mod omsætningskravene, mens bordspil
-            som blackjack og roulette kun tæller 10-20% – eller slet ikke. Hvis du
-            har en casino bonus med 10x omsætningskrav og spiller bordspil med 10%
-            bidrag, skal du reelt omsætte 100x dit bonusbeløb. Derfor anbefaler vi
-            altid at bruge din casino bonus på spilleautomater for hurtigst mulig
-            omsætning.
-          </p>
-
-          <h3 className="mb-3 mt-6 text-xl font-semibold">
-            Timing og bankroll management med casino bonus
-          </h3>
-          <p className="mb-4 text-muted-foreground leading-relaxed">
-            En ofte overset faktor ved casino bonus-spil er bankroll management.
-            Start med lave indsatser, når du omsætter din casino bonus, og øg gradvist,
-            hvis din saldo vokser. Mange casino bonusser har en max. indsats pr. spin
-            (typisk 25-50 kr.) under omsætning – overskrid aldrig denne grænse, da
-            det kan annullere hele din casino bonus og eventuelle gevinster.
-          </p>
-
-          <h3 className="mb-3 mt-6 text-xl font-semibold">
-            Sammenlign casino bonus tilbud grundigt
-          </h3>
-          <p className="text-muted-foreground leading-relaxed">
-            Den største casino bonus er ikke nødvendigvis den bedste casino bonus.
-            En casino bonus på 5.000 kr. med 50x omsætningskrav kan være mindre
-            værdifuld end en casino bonus på 1.000 kr. med 5x omsætningskrav. Beregn
-            altid den "reelle værdi" af en casino bonus ved at dividere bonusbeløbet
-            med omsætningskravet. En casino bonus på 2.000 kr. med 10x krav giver en
-            reel værdi på ca. 200 kr. – mens en casino bonus på 5.000 kr. med 50x
-            krav kun giver ca. 100 kr. i reel værdi.
-          </p>
-        </section>
-
-        <Separator className="my-10" />
-
-        {/* Casino Bonus for Different Player Types */}
-        <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold">
-            Den bedste casino bonus for hver spillertype
-          </h2>
+          <h2 className="mb-4 text-3xl font-bold">Bonustype-sammenligning: Risiko, krav og spillerprofil</h2>
           <p className="mb-6 text-muted-foreground leading-relaxed">
-            Forskellige spillere har forskellige behov, og den bedste casino bonus
-            afhænger af din spillestil og præferencer. Her gennemgår vi, hvilken
-            casino bonus der passer bedst til dig.
+            For at give dig et hurtigt overblik har vi samlet alle bonustyper i en sammenligningstabel. Brug den som reference, når du vurderer konkrete tilbud.
+          </p>
+          <div className="overflow-x-auto">
+            <table className="w-full text-sm border-collapse">
+              <thead>
+                <tr className="border-b border-border">
+                  <th className="py-3 px-3 text-left font-semibold">Bonustype</th>
+                  <th className="py-3 px-3 text-left font-semibold">Risiko</th>
+                  <th className="py-3 px-3 text-left font-semibold">Omsætningskrav</th>
+                  <th className="py-3 px-3 text-left font-semibold">Spillerprofil</th>
+                  <th className="py-3 px-3 text-left font-semibold">Fleksibilitet</th>
+                </tr>
+              </thead>
+              <tbody className="text-muted-foreground">
+                <tr className="border-b border-border">
+                  <td className="py-3 px-3 font-medium text-foreground">No-Sticky</td>
+                  <td className="py-3 px-3">🟢 Lav</td>
+                  <td className="py-3 px-3">10x (d+b)</td>
+                  <td className="py-3 px-3">Alle spillertyper</td>
+                  <td className="py-3 px-3">🟢 Høj</td>
+                </tr>
+                <tr className="border-b border-border">
+                  <td className="py-3 px-3 font-medium text-foreground">Sticky</td>
+                  <td className="py-3 px-3">🔴 Høj</td>
+                  <td className="py-3 px-3">10x (d+b)</td>
+                  <td className="py-3 px-3">Erfarne, højtbudget</td>
+                  <td className="py-3 px-3">🔴 Lav</td>
+                </tr>
+                <tr className="border-b border-border">
+                  <td className="py-3 px-3 font-medium text-foreground">Free Spins</td>
+                  <td className="py-3 px-3">🟢 Lav</td>
+                  <td className="py-3 px-3">0-10x</td>
+                  <td className="py-3 px-3">Slotsspillere</td>
+                  <td className="py-3 px-3">🟡 Middel</td>
+                </tr>
+                <tr className="border-b border-border">
+                  <td className="py-3 px-3 font-medium text-foreground">Velkomstbonus</td>
+                  <td className="py-3 px-3">🟡 Middel</td>
+                  <td className="py-3 px-3">10x (d+b)</td>
+                  <td className="py-3 px-3">Nye spillere</td>
+                  <td className="py-3 px-3">🟡 Middel</td>
+                </tr>
+                <tr className="border-b border-border">
+                  <td className="py-3 px-3 font-medium text-foreground">Indskudsbonus</td>
+                  <td className="py-3 px-3">🟡 Middel</td>
+                  <td className="py-3 px-3">10x (d+b)</td>
+                  <td className="py-3 px-3">Aktive spillere</td>
+                  <td className="py-3 px-3">🟡 Middel</td>
+                </tr>
+                <tr className="border-b border-border">
+                  <td className="py-3 px-3 font-medium text-foreground">No Deposit</td>
+                  <td className="py-3 px-3">🟢 Ingen</td>
+                  <td className="py-3 px-3">10x (typisk)</td>
+                  <td className="py-3 px-3">Nybegyndere</td>
+                  <td className="py-3 px-3">🟢 Høj</td>
+                </tr>
+                <tr className="border-b border-border">
+                  <td className="py-3 px-3 font-medium text-foreground">Uden omsætning</td>
+                  <td className="py-3 px-3">🟢 Ingen</td>
+                  <td className="py-3 px-3">0x</td>
+                  <td className="py-3 px-3">Alle</td>
+                  <td className="py-3 px-3">🟢 Maksimal</td>
+                </tr>
+                <tr className="border-b border-border">
+                  <td className="py-3 px-3 font-medium text-foreground">Reload</td>
+                  <td className="py-3 px-3">🟡 Middel</td>
+                  <td className="py-3 px-3">10x (d+b)</td>
+                  <td className="py-3 px-3">Faste spillere</td>
+                  <td className="py-3 px-3">🟡 Middel</td>
+                </tr>
+                <tr className="border-b border-border">
+                  <td className="py-3 px-3 font-medium text-foreground">Cashback</td>
+                  <td className="py-3 px-3">🟢 Lav</td>
+                  <td className="py-3 px-3">0-5x</td>
+                  <td className="py-3 px-3">High rollers</td>
+                  <td className="py-3 px-3">🟢 Høj</td>
+                </tr>
+                <tr>
+                  <td className="py-3 px-3 font-medium text-foreground">Sportsbonus</td>
+                  <td className="py-3 px-3">🟡 Middel</td>
+                  <td className="py-3 px-3">5-10x</td>
+                  <td className="py-3 px-3">Sportsbettere</td>
+                  <td className="py-3 px-3">🟡 Middel</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <Separator className="my-10" />
+
+        {/* ========== 7. HVILKEN BONUS SKAL DU VÆLGE? ========== */}
+        <section className="mb-12">
+          <h2 className="mb-4 text-3xl font-bold">Bonusvalg efter spillerprofil – hvem bør vælge hvad?</h2>
+          <p className="mb-6 text-muted-foreground leading-relaxed">
+            Der findes ikke én "bedste bonus" – den optimale bonus afhænger af din spillestil, risikoappetit, budget og foretrukne spilletyper. Her segmenterer vi anbefalingerne efter fem distinkte spillerprofiler.
           </p>
 
           <div className="space-y-4">
             <Card className="border-border bg-card">
               <CardContent className="pt-6">
                 <h3 className="mb-2 font-semibold flex items-center gap-2">
-                  <Users className="h-5 w-5 text-primary" />
-                  Casino bonus for nye spillere
+                  <Users className="h-5 w-5 text-primary" />Casual-spilleren (budget: 200-500 kr./måned)
                 </h3>
                 <p className="text-muted-foreground leading-relaxed">
-                  Som ny spiller bør du vælge en casino bonus med lav minimumsindbetaling
-                  og lave omsætningskrav. En no-sticky casino bonus er ideel, da den
-                  giver dig mulighed for at lære casinoet at kende uden stor risiko.
-                  Start med en casino bonus, der matcher din indbetaling 100%, og
-                  sørg for at omsætningskravene er under 15x. Mange{" "}
-                  <Link to="/nye-casinoer" className={linkClass}>nye casinoer</Link>{" "}
-                  tilbyder særligt attraktive casino bonusser for at tiltrække nye
-                  spillere.
+                  Du spiller for underholdningens skyld og vil have mest mulig spilletid for dit budget. <strong>Anbefalet:</strong> No-sticky velkomstbonus med 100% match. Start med minimumsindbetalingen og vælg slots med høj RTP og lav volatilitet for stabil spilletid. Undgå sticky bonusser – de låser dine penge og skaber unødvendigt pres. Supplér med gratis <Link to="/free-spins" className={linkClass}>free spins</Link>-kampagner for ekstra spilletid uden ekstra investering. Overvej også <Link to="/bonus-uden-indbetaling" className={linkClass}>no-deposit bonusser</Link> til at teste nye casinoer.
                 </p>
               </CardContent>
             </Card>
@@ -1105,16 +752,10 @@ const CasinoBonus = () => {
             <Card className="border-border bg-card">
               <CardContent className="pt-6">
                 <h3 className="mb-2 font-semibold flex items-center gap-2">
-                  <Trophy className="h-5 w-5 text-primary" />
-                  Casino bonus for erfarne spillere
+                  <Star className="h-5 w-5 text-primary" />High rolleren (budget: 5.000+ kr./måned)
                 </h3>
                 <p className="text-muted-foreground leading-relaxed">
-                  Erfarne spillere bør fokusere på casino bonusser med de bedste
-                  vilkår snarere end det højeste bonusbeløb. Kig efter en casino bonus
-                  med omsætningskrav under 10x, lang gyldighedsperiode og ingen max.
-                  udbetaling. En no-sticky casino bonus giver dig fuld kontrol og
-                  mulighed for at hæve store gevinster. Overvej også casino bonusser
-                  fra casinoer med stærke VIP-programmer for ekstra værdi over tid.
+                  Du omsætter store beløb og har brug for bonusser, der skalerer. <strong>Anbefalet:</strong> Cashback-programmer (5-15%) og VIP-reload bonusser med høje bonuslofter. Cashback reducerer din effektive house edge og giver automatisk kompensation ved tab. Undgå standard velkomstbonusser med lave lofter (1.000 kr.) – de er irrelevante ved dit volume. Kontakt casinoets VIP-afdeling direkte for skræddersyede tilbud, som ofte har bedre vilkår end standardprogrammet.
                 </p>
               </CardContent>
             </Card>
@@ -1122,17 +763,10 @@ const CasinoBonus = () => {
             <Card className="border-border bg-card">
               <CardContent className="pt-6">
                 <h3 className="mb-2 font-semibold flex items-center gap-2">
-                  <Gamepad2 className="h-5 w-5 text-primary" />
-                  Casino bonus for spilleautomatfans
+                  <Calculator className="h-5 w-5 text-primary" />Strategispilleren (EV-fokuseret)
                 </h3>
                 <p className="text-muted-foreground leading-relaxed">
-                  Hvis du elsker spilleautomater, er en casino bonus med{" "}
-                  <Link to="/free-spins" className={linkClass}>free spins</Link>{" "}
-                  perfekt til dig. Mange casino bonusser inkluderer 50-200 free spins
-                  på populære titler. Vælg en casino bonus, hvor free spins gives på
-                  spil med høj RTP, og hvor gevinster fra free spins har lave
-                  omsætningskrav. Den bedste casino bonus for slots-spillere kombinerer
-                  en matchbonus med et generøst antal free spins.
+                  Du vurderer bonusser udelukkende på matematisk værdi og er villig til at optimere hvert aspekt. <strong>Anbefalet:</strong> Bonusser uden <Link to="/omsaetningskrav" className={linkClass}>omsætningskrav</Link> (højeste reel-til-nominel ratio), efterfulgt af no-sticky bonusser med lavest mulig omsætning. Spil udelukkende slots med 97%+ RTP under omsætning. Beregn EV for hvert tilbud, og afvis bonusser med negativ EV. Overvej at udnytte reload-bonusser systematisk – over tid kan de give mere samlet EV end enkeltstående velkomstbonusser.
                 </p>
               </CardContent>
             </Card>
@@ -1140,16 +774,21 @@ const CasinoBonus = () => {
             <Card className="border-border bg-card">
               <CardContent className="pt-6">
                 <h3 className="mb-2 font-semibold flex items-center gap-2">
-                  <Star className="h-5 w-5 text-primary" />
-                  Casino bonus for high rollers
+                  <Target className="h-5 w-5 text-primary" />Bonusjægeren (multi-casino)
                 </h3>
                 <p className="text-muted-foreground leading-relaxed">
-                  High rollers har brug for en casino bonus med højt bonusloft og
-                  ingen max. udbetaling. Den bedste casino bonus for high rollers har
-                  typisk et bonusloft på 5.000-10.000 kr. eller mere. Kig efter
-                  casinoer med VIP-casino bonusser, personlige bonustilbud og dedikerede
-                  kontoadministratorer. En casino bonus med lave omsætningskrav er
-                  særligt vigtig for high rollers, da de omsætter større beløb.
+                  Du opretter konti på mange casinoer for at udnytte velkomstbonusser. <strong>Anbefalet:</strong> Prioritér no-sticky velkomstbonusser og kør dem systematisk igennem. Start med de bedste tilbud fra vores <Link to="/top-10-casino-online" className={linkClass}>top 10 liste</Link> og arbejd dig ned. Brug en tracker til at notere, hvilke casinoer du har brugt, og hvilke der stadig tilbyder bonus. Vær opmærksom på, at du kun kan have én konto pr. casino, og at casinoer kan begrænse spillere, der udviser systematisk bonusjagt.
+                </p>
+              </CardContent>
+            </Card>
+
+            <Card className="border-border bg-card">
+              <CardContent className="pt-6">
+                <h3 className="mb-2 font-semibold flex items-center gap-2">
+                  <Trophy className="h-5 w-5 text-primary" />Sportsbettoren
+                </h3>
+                <p className="text-muted-foreground leading-relaxed">
+                  Du fokuserer primært på sportsvæddemål og bruger casino som supplement. <strong>Anbefalet:</strong> Vælg casinoer med stærke sportsbonusser – risikofri væddemål og odds-boost er mere værdifulde end matchbonusser for bettere. Casinoer som <Link to="/casino-anmeldelser/unibet" className={linkClass}>Unibet</Link> og <Link to="/casino-anmeldelser/bet365" className={linkClass}>Bet365</Link> tilbyder separerede sport- og casinobonusser. Ignorer casinobonussen, medmindre du aktivt spiller casino – omsætningskrav for casinobonusser kan ikke opfyldes via sportsvæddemål.
                 </p>
               </CardContent>
             </Card>
@@ -1158,154 +797,92 @@ const CasinoBonus = () => {
 
         <Separator className="my-10" />
 
-        {/* Casino Bonus vs No Bonus */}
+        {/* ========== 8. MARKEDSANALYSE 2026 ========== */}
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold">
-            Casino bonus: Skal du spille med eller uden bonus?
-          </h2>
+          <h2 className="mb-4 text-3xl font-bold">Markedsanalyse: Hvordan bonuslandskabet har ændret sig i 2025-2026</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
-            Et spørgsmål mange danske spillere stiller sig er, om det overhovedet
-            er værd at aktivere en casino bonus. Svaret afhænger af din spillestil
-            og den specifikke casino bonus, der tilbydes. Her gennemgår vi fordele
-            og ulemper ved at spille med en casino bonus.
+            Det danske bonusmarked gennemgår en stille revolution. Flere strukturelle ændringer har gjort 2025-2026 til et vendepunkt for, hvordan casinoer designer og distribuerer bonusser. Her er de fem vigtigste trends, vi observerer baseret på vores løbende markedsovervågning.
           </p>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
-            <Card className="border-primary/50 bg-card">
-              <CardHeader className="pb-2">
-                <CardTitle className="text-lg flex items-center gap-2">
-                  <CheckCircle2 className="h-5 w-5 text-primary" />
-                  Fordele ved casino bonus
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <ul className="space-y-2 text-sm text-muted-foreground">
-                  <li>• Mere spilletid og flere chancer for gevinst med en casino bonus</li>
-                  <li>• En no-sticky casino bonus fungerer som gratis sikkerhedsnet</li>
-                  <li>• Casino bonus med free spins giver gratis runder på populære spil</li>
-                  <li>• En casino bonus kan fordoble eller tredoble din indbetaling</li>
-                  <li>• Mulighed for at teste nye casinoer med en casino bonus uden risiko</li>
-                </ul>
-              </CardContent>
-            </Card>
-            <Card className="border-border bg-card">
-              <CardHeader className="pb-2">
-                <CardTitle className="text-lg flex items-center gap-2">
-                  <AlertTriangle className="h-5 w-5 text-destructive" />
-                  Ulemper ved casino bonus
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <ul className="space-y-2 text-sm text-muted-foreground">
-                  <li>• Omsætningskrav kan binde dine gevinster til en casino bonus</li>
-                  <li>• Sticky casino bonus forhindrer udbetaling før omsætning</li>
-                  <li>• Max. indsats-regler gælder under casino bonus omsætning</li>
-                  <li>• Gyldighedsperiode kan presse dig til at spille hurtigere</li>
-                  <li>• Ikke alle spil bidrager 100% til casino bonus omsætning</li>
-                </ul>
-              </CardContent>
-            </Card>
+
+          <h3 className="mb-3 mt-6 text-xl font-semibold">No-sticky er blevet industristandard</h3>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            Hvor no-sticky bonusser i 2022-2023 var et differentierende premium-tilbud, er det i 2026 næsten universelt adopteret af danske casinoer. Spillere har stemt med fødderne – casinoer der fastholdt sticky-strukturen mistede markedsandele til no-sticky konkurrenter. I dag tilbyder over 80% af de danske casinoer med licens no-sticky som deres primære bonusstruktur. Det er en massiv forbedring for spillere og gør det danske marked endnu mere attraktivt.
+          </p>
+
+          <h3 className="mb-3 mt-6 text-xl font-semibold">Personaliserede bonusser erstatter one-size-fits-all</h3>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            De mest innovative casinoer bruger nu dataanalyse til at skræddersy bonustilbud baseret på individuelle spillemønstre. I stedet for at tilbyde den samme velkomstbonus til alle, modtager slotsspillere free spins-tunge pakker, high rollers cashback-tilbud og sportsbettere odds-boost. Denne personalisering øger bonusværdien for spilleren og konverteringsraten for casinoet – en win-win situation. <Link to="/casino-anmeldelser/leovegas" className={linkClass}>LeoVegas</Link> og <Link to="/casino-anmeldelser/betano" className={linkClass}>Betano</Link> er frontløbere i denne udvikling.
+          </p>
+
+          <h3 className="mb-3 mt-6 text-xl font-semibold">Bonusbeløbene er stabiliseret – vilkårene er forbedret</h3>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            De annoncerede bonusbeløb er ikke steget markant i 2025-2026 – standard er fortsat 100% op til 1.000-2.000 kr. Men vilkårene er forbedret. Gyldighedsperioder er forlænget (fra 14 til 30-60 dage), max. indsats-grænser er hævet, og flere casinoer tilbyder bonusser uden gevinstloft. Nettoresultatet er, at den reelle bonusværdi er steget, selvom de nominelle beløb er stabile.
+          </p>
+
+          <h3 className="mb-3 mt-6 text-xl font-semibold">Gamification og loyalitetsbonusser vokser</h3>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            Traditionelle reload-bonusser suppleres i stigende grad af gamification-elementer: lykkehjul, missioner, turneringspoint og leveling-systemer. Disse mekanismer giver spillere løbende bonusværdi uden formelle omsætningskrav. <Link to="/casino-anmeldelser/mr-vegas" className={linkClass}>Mr Vegas</Link> og <Link to="/casino-anmeldelser/betinia" className={linkClass}>Betinia</Link> har implementeret avancerede loyalitetsprogrammer, der belønner aktivt spil med kontante belønninger, free spins og eksklusive kampagner.
+          </p>
+
+          <h3 className="mb-3 mt-6 text-xl font-semibold">Øget gennemsigtighed i bonusmarkedsføring</h3>
+          <p className="text-muted-foreground leading-relaxed">
+            Spillemyndighedens skærpede tilsyn med bonusmarkedsføring har haft en målbar effekt. Færre casinoer bruger "Op til 10.000 kr.!"-overskrifter uden kontekst, og vilkår præsenteres tydeligere på bonussider. Denne udvikling styrker forbrugertilliden og gør det lettere for spillere at sammenligne tilbud baseret på reel værdi. Vi forventer, at denne trend accelererer i 2026-2027, efterhånden som regulatorisk pres øges.
+          </p>
+        </section>
+
+        <Separator className="my-10" />
+
+        {/* ========== 9. INTERN LINKING POWERHOUSE ========== */}
+        <section className="mb-12">
+          <h2 className="mb-4 text-3xl font-bold">Udforsk hele bonusuniverset – dine næste skridt</h2>
+          <p className="mb-6 text-muted-foreground leading-relaxed">
+            Denne oversigt er dit udgangspunkt. For dybdegående analyse af specifikke bonustyper, strategier og casinoanmeldelser, udforsk vores dedikerede guides:
+          </p>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+            {[
+              { to: "/no-sticky-bonus", label: "No-Sticky Bonus Guide", icon: Sparkles },
+              { to: "/sticky-bonus", label: "Sticky Bonus Guide", icon: Lock },
+              { to: "/free-spins", label: "Free Spins Guide", icon: RefreshCw },
+              { to: "/velkomstbonus", label: "Velkomstbonus Guide", icon: Gift },
+              { to: "/indskudsbonus", label: "Indskudsbonus Guide", icon: CreditCard },
+              { to: "/bonus-uden-indbetaling", label: "Bonus uden Indbetaling", icon: Zap },
+              { to: "/bonus-uden-omsaetningskrav", label: "Uden Omsætningskrav", icon: CheckCircle2 },
+              { to: "/omsaetningskrav", label: "Omsætningskrav Guide", icon: Percent },
+              { to: "/top-10-casino-online", label: "Top 10 Casino Online", icon: Trophy },
+              { to: "/casino-anmeldelser", label: "Casino Anmeldelser", icon: Star },
+              { to: "/betalingsmetoder", label: "Betalingsmetoder", icon: CreditCard },
+              { to: "/spiludviklere", label: "Spiludviklere", icon: Gamepad2 },
+            ].map((link) => (
+              <Link key={link.to} to={link.to} className="flex items-center gap-2 rounded-lg border border-border bg-card p-3 text-sm font-medium hover:border-primary/50 transition-colors">
+                <link.icon className="h-4 w-4 text-primary flex-shrink-0" />
+                {link.label}
+                <ArrowRight className="h-3 w-3 ml-auto text-muted-foreground" />
+              </Link>
+            ))}
           </div>
-          <p className="text-muted-foreground leading-relaxed">
-            Vores anbefaling: Vælg altid en casino bonus med{" "}
-            <Link to="/no-sticky-bonus" className={linkClass}>no-sticky struktur</Link>{" "}
-            og lave omsætningskrav. Med den rigtige casino bonus får du gratis ekstra
-            spilletid uden at kompromittere din fleksibilitet. Hvis et casino kun tilbyder
-            en sticky casino bonus med høje omsætningskrav, kan det være bedre at spille
-            uden bonus.
-          </p>
         </section>
 
         <Separator className="my-10" />
 
-        {/* Casino Bonus Trends 2026 */}
-        <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold">
-            Casino bonus trends i Danmark 2026
-          </h2>
-          <p className="mb-4 text-muted-foreground leading-relaxed">
-            Det danske casino bonus-marked udvikler sig konstant, og 2026 byder
-            på flere spændende trends. Her er de vigtigste tendenser inden for
-            casino bonus, som danske spillere bør kende til.
-          </p>
-          <p className="mb-4 text-muted-foreground leading-relaxed">
-            <strong>Lavere omsætningskrav:</strong> Flere og flere danske casinoer
-            tilbyder casino bonusser med omsætningskrav under 10x. Konkurrencen
-            om at tilbyde den bedste casino bonus presser kravene nedad, hvilket
-            er fantastisk for spillerne. Nogle casinoer tilbyder endda{" "}
-            <Link to="/bonus-uden-omsaetningskrav" className={linkClass}>
-              casino bonus helt uden omsætningskrav
-            </Link>.
-          </p>
-          <p className="mb-4 text-muted-foreground leading-relaxed">
-            <strong>No-sticky som standard:</strong> Den no-sticky casino bonus
-            er ved at blive den foretrukne bonusstruktur på det danske marked.
-            Flere casinoer skifter fra sticky til no-sticky casino bonus, da
-            spillerne foretrækker den øgede fleksibilitet og lavere risiko. Det er
-            en positiv udvikling for alle, der søger den bedste casino bonus.
-          </p>
-          <p className="mb-4 text-muted-foreground leading-relaxed">
-            <strong>Personaliserede casino bonusser:</strong> I 2026 ser vi flere
-            casinoer tilbyde skræddersyede casino bonusser baseret på din
-            spillehistorik og præferencer. I stedet for én standard casino bonus
-            kan du modtage et tilbud, der er tilpasset netop din spillestil – 
-            f.eks. en casino bonus med ekstra free spins, hvis du foretrækker
-            spilleautomater, eller cashback, hvis du er en high roller.
-          </p>
-          <p className="text-muted-foreground leading-relaxed">
-            <strong>Øget gennemsigtighed:</strong> Danske casinoer bliver bedre
-            til at kommunikere vilkårene for deres casino bonus klart og tydeligt.
-            Spillemyndigheden har skærpet kravene til bonusmarkedsføring, hvilket
-            betyder, at du altid kan forvente en fair og gennemsigtig casino bonus
-            hos licenserede danske casinoer.
-          </p>
-        </section>
-
-        <Separator className="my-10" />
+        {/* ========== ANSVARLIGT SPIL ========== */}
         <section className="mb-12">
           <Card className="border-border bg-card border-l-4 border-l-primary">
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
                 <ShieldCheck className="h-6 w-6 text-primary" />
-                Spil ansvarligt
+                Bonusser og ansvarligt spil
               </CardTitle>
             </CardHeader>
             <CardContent className="space-y-3">
               <p className="text-muted-foreground leading-relaxed">
-                Uanset hvilken bonus du vælger, er det vigtigt at spille
-                ansvarligt. Sæt altid et budget, hold pauser og spil aldrig for
-                mere, end du har råd til at tabe. En casino bonus bør ses som
-                underholdning – ikke som en indtægtskilde. Læs mere i vores
-                guide til{" "}
-                <Link to="/ansvarligt-spil" className={linkClass}>
-                  ansvarligt spil
-                </Link>
-                .
+                Casino bonusser bør altid behandles som underholdning – aldrig som en indtægtskilde eller en måde at "vinde penge" på. Omsætningskrav er designet til at sikre, at bonusser gennemspilles, og den matematiske fordel er altid hos casinoet på lang sigt. Sæt et månedligt budget, hold dig til det, og tag pauser. Brug aldrig bonusser som begrundelse for at indbetale mere, end du har råd til at tabe.
               </p>
               <p className="text-muted-foreground leading-relaxed">
-                Alle casinoer på vores liste har dansk licens og tilbyder
-                selvudelukkelsesmuligheder via{" "}
-                <a
-                  href="https://www.rofus.nu/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-primary hover:underline font-medium"
-                >
-                  ROFUS
-                </a>
-                . Har du brug for hjælp eller rådgivning, kan du kontakte{" "}
-                <a
-                  href="https://www.stopspillet.dk/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-primary hover:underline font-medium"
-                >
-                  StopSpillet.dk
-                </a>
-                .
+                Alle casinoer på vores liste har dansk licens og tilbyder selvudelukkelsesmuligheder via{" "}
+                <a href="https://www.rofus.nu/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline font-medium">ROFUS</a>. Har du brug for hjælp eller rådgivning, kan du kontakte{" "}
+                <a href="https://www.stopspillet.dk/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline font-medium">StopSpillet.dk</a> – døgnet rundt, gratis og anonymt. Læs mere i vores guide til <Link to="/ansvarligt-spil" className={linkClass}>ansvarligt spil</Link>.
               </p>
-              <p className="text-xs text-muted-foreground">
-                18+ | Spil ansvarligt | Annoncering
-              </p>
+              <p className="text-xs text-muted-foreground">18+ | Spil ansvarligt | Annoncering</p>
             </CardContent>
           </Card>
         </section>
@@ -1316,7 +893,7 @@ const CasinoBonus = () => {
 
         <RelatedGuides currentPath="/casino-bonus" />
 
-        <FAQSection title="Ofte stillede spørgsmål om casino bonus" faqs={casinoBonusFaqs} />
+        <FAQSection title="Ofte stillede spørgsmål om casino bonus i Danmark" faqs={casinoBonusFaqs} />
       </div>
     </>
   );
