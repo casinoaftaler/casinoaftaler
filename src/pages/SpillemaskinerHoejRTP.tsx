@@ -167,7 +167,7 @@ export default function SpillemaskinerHoejRTP() {
             Denne distinktion er fundamental: RTP beskriver spillets <em>forventede</em> adfærd, ikke spillerens <em>oplevede</em> adfærd. At forstå denne forskel er forskellen mellem at vælge spillemaskiner informeret og at misforstå, hvad tallene faktisk lover. Hele denne guide bygger på denne matematiske realitet – og undgår bevidst den forenkling, at "høj RTP = flere gevinster."
           </p>
           <p className="text-muted-foreground leading-relaxed">
-            Certificeringen af RTP udføres af uafhængige testlaboratorier som eCOGRA, iTech Labs og GLI. I Danmark overvåger Spillemyndigheden, at de oplyste RTP-værdier er korrekte, og at RNG-systemerne fungerer efter hensigten. Dette regulatoriske lag giver danske spillere en højere grad af sikkerhed end i uregulerede markeder, hvor RTP-oplysninger kan være upålidelige.
+            Certificeringen af RTP udføres af uafhængige testlaboratorier som eCOGRA, iTech Labs og GLI. I Danmark overvåger <a href="https://www.spillemyndigheden.dk/" target="_blank" rel="noopener noreferrer" className={linkClass}>Spillemyndigheden</a>, at de oplyste RTP-værdier er korrekte, og at RNG-systemerne fungerer efter hensigten. Dette regulatoriske lag giver danske spillere en højere grad af sikkerhed end i uregulerede markeder, hvor RTP-oplysninger kan være upålidelige.
           </p>
         </section>
 

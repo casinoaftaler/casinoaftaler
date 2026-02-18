@@ -338,9 +338,10 @@ function FeaturedCard({
               </div>
             </div>
 
-            {/* CTA Button */}
+            {/* CTA Button – affiliate (JS-redirect, non-crawlable) */}
             <Button 
               onClick={() => getAffiliateRedirect(casino.slug, user?.id)} 
+              data-sponsored="true"
               className={`group/btn relative mt-auto w-full rounded-full border-2 border-white bg-white/10 text-white hover:bg-white hover:text-gray-900 font-bold transition-all overflow-hidden ${
                 isTopRow ? "py-5 text-base" : "py-4 text-sm"
               }`}
@@ -499,6 +500,7 @@ function RegularCard({
             <div className="flex items-center gap-2 ml-auto">
               <Button 
                 onClick={() => getAffiliateRedirect(casino.slug, user?.id)} 
+                data-sponsored="true"
                 size="sm"
                 className="group/btn relative rounded-full border border-primary bg-transparent text-primary hover:bg-primary hover:text-primary-foreground font-semibold text-xs px-4 transition-all overflow-hidden"
               >

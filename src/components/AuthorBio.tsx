@@ -92,7 +92,7 @@ export function AuthorBio({ author = "jonas", showCommunity = true }: AuthorBioP
                     key={social.label}
                     href={social.href}
                     target="_blank"
-                    rel="nofollow noopener noreferrer"
+                    rel="noopener noreferrer"
                     className="inline-flex items-center gap-1 text-xs text-muted-foreground hover:text-primary transition-colors"
                   >
                     <ExternalLink className="h-3 w-3" />
