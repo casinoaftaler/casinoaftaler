@@ -246,6 +246,11 @@ export const Header = memo(function Header() {
                     { to: "/casinospil/spillemaskiner/big-bass-bonanza", label: "Big Bass Bonanza" },
                     { to: "/casinospil/spillemaskiner/dead-or-alive-2", label: "Dead or Alive 2" },
                     { to: "/casinospil/spillemaskiner/gonzos-quest", label: "Gonzo's Quest" },
+                    { to: "/casinospil/spillemaskiner/reactoonz", label: "Reactoonz" },
+                    { to: "/casinospil/spillemaskiner/money-train-3", label: "Money Train 3" },
+                    { to: "/casinospil/spillemaskiner/wolf-gold", label: "Wolf Gold" },
+                    { to: "/casinospil/spillemaskiner/the-dog-house", label: "The Dog House" },
+                    { to: "/casinospil/spillemaskiner/jammin-jars", label: "Jammin' Jars" },
                   ].map((item) => (
                     <DropdownMenuItem key={item.to} asChild>
                       <Link to={item.to} className="flex items-center gap-2">
@@ -840,6 +845,11 @@ export const Header = memo(function Header() {
                   { to: "/casinospil/spillemaskiner/big-bass-bonanza", label: "Big Bass Bonanza" },
                   { to: "/casinospil/spillemaskiner/dead-or-alive-2", label: "Dead or Alive 2" },
                   { to: "/casinospil/spillemaskiner/gonzos-quest", label: "Gonzo's Quest" },
+                  { to: "/casinospil/spillemaskiner/reactoonz", label: "Reactoonz" },
+                  { to: "/casinospil/spillemaskiner/money-train-3", label: "Money Train 3" },
+                  { to: "/casinospil/spillemaskiner/wolf-gold", label: "Wolf Gold" },
+                  { to: "/casinospil/spillemaskiner/the-dog-house", label: "The Dog House" },
+                  { to: "/casinospil/spillemaskiner/jammin-jars", label: "Jammin' Jars" },
                 ].map((item) => (
                   <Link key={item.to} to={item.to} className="ml-10 flex items-center gap-2 py-2 text-sm text-muted-foreground transition-colors hover:text-primary" onClick={() => setMobileMenuOpen(false)}>
                     <Star className="h-3 w-3" />

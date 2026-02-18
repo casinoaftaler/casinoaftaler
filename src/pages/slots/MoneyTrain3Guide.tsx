@@ -71,12 +71,13 @@ const moneyTrain3Faqs: { question: string; answer: ReactNode }[] = [
 const MoneyTrain3Guide = () => {
   const faqJsonLd = buildFaqSchema(moneyTrain3Faqs);
   const articleSchema = buildArticleSchema({
-    title: "Money Train 3 – Max Win Analyse & Bonusmekanik",
+    headline: "Money Train 3 – Max Win Analyse & Bonusmekanik",
     description: "Komplet analyse af Money Train 3: Money Cart-bonusrunde, max win 100.000×, RTP 96,10 %, volatilitetsprofil og strategisk EV-vurdering.",
+    url: `${SITE_URL}/casinospil/spillemaskiner/money-train-3`,
     datePublished: "2026-02-18",
     dateModified: "2026-02-18",
-    path: "/casinospil/spillemaskiner/money-train-3",
-    author: "Jonas",
+    authorName: "Jonas",
+    authorUrl: `${SITE_URL}/forfatter/jonas`,
   });
   const breadcrumbJsonLd = {
     "@context": "https://schema.org",
@@ -95,7 +96,6 @@ const MoneyTrain3Guide = () => {
         title="Money Train 3 – Max Win & Bonusanalyse"
         description="Dybdegående analyse af Money Train 3: Money Cart-bonusrunde, 100.000× max win, RTP 96,10 %, volatilitet og EV-beregninger for danske spillere."
         jsonLd={[faqJsonLd, articleSchema, breadcrumbJsonLd]}
-        canonical={`${SITE_URL}/casinospil/spillemaskiner/money-train-3`}
       />
 
       <article className="mx-auto max-w-4xl px-4 py-12">
@@ -114,7 +114,7 @@ const MoneyTrain3Guide = () => {
           </p>
         </header>
 
-        <AuthorMetaBar author="Jonas" dateModified="2026-02-18" />
+        <AuthorMetaBar author="jonas" date="2026-02-18" readTime="20 min" />
         <Separator className="my-8" />
 
         {/* ── Bonusfunktioner først (Anti-template: Bonus First) ── */}
@@ -391,7 +391,7 @@ const MoneyTrain3Guide = () => {
         </section>
 
         <Separator className="my-8" />
-        <AuthorBio author="Jonas" />
+        <AuthorBio author="jonas" />
         <RelatedGuides currentPath="/casinospil/spillemaskiner/money-train-3" />
         <FAQSection title="Ofte Stillede Spørgsmål om Money Train 3" faqs={moneyTrain3Faqs} />
       </article>
