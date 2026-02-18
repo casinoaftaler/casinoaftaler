@@ -75,7 +75,7 @@ export const seoRoutes: SeoRoute[] = [
   { path: "/live-casino", changefreq: "weekly", priority: 0.9, lastmod: "2026-02-11" },
   { path: "/casinospil", changefreq: "weekly", priority: 0.9, lastmod: "2026-02-18" },
   { path: "/casinospil/spillemaskiner", changefreq: "weekly", priority: 0.9, lastmod: "2026-02-18" },
-  { path: "/casinospil/spillemaskiner/hoej-rtp", changefreq: "weekly", priority: 0.9, lastmod: "2026-02-13" },
+  { path: "/casinospil/spillemaskiner/hoej-rtp", changefreq: "weekly", priority: 0.9, lastmod: "2026-02-18" },
   { path: "/casinospil/blackjack", changefreq: "weekly", priority: 0.9, lastmod: "2026-02-18" },
   { path: "/casinospil/roulette", changefreq: "weekly", priority: 0.9, lastmod: "2026-02-18" },
   { path: "/casinospil/poker", changefreq: "weekly", priority: 0.9, lastmod: "2026-02-18" },
