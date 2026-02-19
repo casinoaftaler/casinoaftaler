@@ -21,7 +21,7 @@ const faqs: { question: string; answer: ReactNode }[] = [
       Vi vurderer nye casinoer efter seks kerneparametre i vores <Link to="/saadan-tester-vi-casinoer" className={linkClass}>testmetode</Link>: sikkerhed og licens (30%), spiludvalg og kvalitet (20%), bonus og vilkår (20%), betalinger og udbetalingshastighed (15%), kundeservice (10%) og mobiloplevelse (5%). Kun casinoer med en samlet score på 8/10 eller højere kvalificerer sig til betegnelsen "bedste nye casinoer". Vi opretter reelle konti, indbetaler rigtige penge og tester over minimum 14 dage, før vi rangerer.
     </>
   )},
-  { question: "Hvad adskiller de bedste nye casinoer fra resten?", answer: "De bedste nye casinoer adskiller sig på tre afgørende parametre: 1) Bonusvilkår der reelt gavner spilleren – lave omsætningskrav (typisk 1x–5x), gennemsigtige vilkår uden skjulte betingelser og rimelige udbetalingsgrænser. 2) Teknisk eksekvering – fejlfri platform, hurtig loading (<2 sekunder), intuitivt design og instant-udbetalinger. 3) Operatørkvalitet – erfaren ledelse, proaktiv kundeservice og reel investering i ansvarligt spil-værktøjer. Casinoer der blot kopier andre uden at tilføre reel værdi, når aldrig vores topliste." },
+  { question: "Hvad adskiller de bedste nye casinoer fra resten?", answer: "De bedste nye casinoer adskiller sig på tre afgørende parametre: 1) Bonusvilkår der reelt gavner spilleren – omsætningskrav på 10x (det danske loft), og i udvalgte tilfælde 5x hos casinoer som GetLucky og ComeOn, gennemsigtige vilkår uden skjulte betingelser og rimelige udbetalingsgrænser. 2) Teknisk eksekvering – fejlfri platform, hurtig loading (<2 sekunder), intuitivt design og instant-udbetalinger. 3) Operatørkvalitet – erfaren ledelse, proaktiv kundeservice og reel investering i ansvarligt spil-værktøjer. Casinoer der blot kopier andre uden at tilføre reel værdi, når aldrig vores topliste." },
   { question: "Er det bedre at vælge et nyt eller etableret casino?", answer: (
     <>
       Det afhænger af dine prioriteter. Nye casinoer tilbyder typisk 20–50% bedre bonusvilkår, modernere teknisk platform og hurtigere udbetalinger. Etablerede casinoer har dokumenteret track record, bredere VIP-programmer og mere erfaren kundeservice. Sikkerhedsniveauet er identisk – begge kræver dansk licens med samme betingelser. Læs vores detaljerede <Link to="/nye-casinoer/vs-etablerede" className={linkClass}>sammenligning af nye og etablerede casinoer</Link>.
@@ -163,8 +163,8 @@ const BedsteNyeCasinoer = () => {
           </p>
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
             <div className="rounded-lg border border-border bg-card p-4 text-center">
-              <p className="text-2xl font-bold text-primary">1x–5x</p>
-              <p className="text-xs text-muted-foreground">typisk omsætningskrav</p>
+              <p className="text-2xl font-bold text-primary">10x</p>
+              <p className="text-xs text-muted-foreground">standard omsætningskrav (5x hos udvalgte)</p>
             </div>
             <div className="rounded-lg border border-border bg-card p-4 text-center">
               <p className="text-2xl font-bold text-primary">100–200%</p>
