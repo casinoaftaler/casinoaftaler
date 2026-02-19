@@ -18,6 +18,7 @@ import {
   Smartphone,
   Globe,
   BarChart3,
+  ShoppingCart,
 } from "lucide-react";
 import { LucideIcon } from "lucide-react";
 
@@ -119,6 +120,7 @@ const casinoGuidesSiblings: GuideLink[] = [
 const casinospilSiblings: GuideLink[] = [
   { to: "/casinospil/spillemaskiner", label: "Spillemaskiner", icon: Gamepad2, desc: "Guide til alle typer online slots" },
   { to: "/casinospil/spillemaskiner/hoej-rtp", label: "Høj RTP Slots", icon: BarChart3, desc: "Find spillemaskiner med bedst tilbagebetaling" },
+  { to: "/casinospil/spillemaskiner/bonus-buys", label: "Bonus Buys Guide", icon: ShoppingCart, desc: "Matematik og strategi bag buy feature" },
   { to: "/casinospil/blackjack", label: "Blackjack Regler", icon: Gamepad2, desc: "Komplet guide til online blackjack" },
   { to: "/casinospil/roulette", label: "Roulette Regler", icon: Target, desc: "Lær roulettens væddemål og varianter" },
   { to: "/casinospil/poker", label: "Poker Regler", icon: Gamepad2, desc: "Guide til casino poker og Video Poker" },

@@ -235,6 +235,12 @@ export const Header = memo(function Header() {
                       Høj RTP Spillemaskiner
                     </Link>
                   </DropdownMenuItem>
+                  <DropdownMenuItem asChild>
+                    <Link to="/casinospil/spillemaskiner/bonus-buys" className="flex items-center gap-2">
+                      <Star className="h-3 w-3" />
+                      Bonus Buys
+                    </Link>
+                  </DropdownMenuItem>
                   <DropdownMenuSeparator />
                   {(() => {
                     const allSlots = [

@@ -132,6 +132,7 @@ const ExtraChilliMegawaysGuide = lazy(() => import("./pages/slots/ExtraChilliMeg
 const WantedDeadOrAWildGuide = lazy(() => import("./pages/slots/WantedDeadOrAWildGuide"));
 const ChaosCrewGuide = lazy(() => import("./pages/slots/ChaosCrewGuide"));
 const JokerStrikeGuide = lazy(() => import("./pages/slots/JokerStrikeGuide"));
+const BonusBuysGuide = lazy(() => import("./pages/slots/BonusBuysGuide"));
 const NetEntGuide = lazy(() => import("./pages/NetEntGuide"));
 const PragmaticPlayGuide = lazy(() => import("./pages/PragmaticPlayGuide"));
 const RelaxGamingGuide = lazy(() => import("./pages/RelaxGamingGuide"));
@@ -319,6 +320,7 @@ const App = () => (
                 <Route path="/casinospil/spillemaskiner/wanted-dead-or-a-wild" element={<WantedDeadOrAWildGuide />} />
                 <Route path="/casinospil/spillemaskiner/chaos-crew" element={<ChaosCrewGuide />} />
                 <Route path="/casinospil/spillemaskiner/joker-strike" element={<JokerStrikeGuide />} />
+                <Route path="/casinospil/spillemaskiner/bonus-buys" element={<BonusBuysGuide />} />
                 <Route path="/casinospil/blackjack" element={<BlackjackGuide />} />
                 <Route path="/casinospil/roulette" element={<RouletteGuide />} />
                 <Route path="/casinospil/poker" element={<PokerGuide />} />
