@@ -85,7 +85,12 @@ export function SlotGame({ gameId = "book-of-fedesvin" }: SlotGameProps) {
   const effectiveBet = bonusState.isActive && bonusLoaded && bonusState.betAmount > 0
     ? bonusState.betAmount
     : bet;
-  const setBet = setBetRaw;
+  // Guard against bet changes during active bonus or while bonus state is loading
+  // This is the second layer of protection (UI is also disabled via bonusLoaded prop)
+  const setBet = useCallback((newBet: number) => {
+    if (!bonusLoaded || bonusState.isActive) return;
+    setBetRaw(newBet);
+  }, [bonusLoaded, bonusState.isActive]);
   const [isSpinning, setIsSpinning] = useState(false);
   const [grid, setGrid] = useState<string[][] | null>(null);
   const [lastResult, setLastResult] = useState<SpinResult | null>(null);
@@ -1212,6 +1217,7 @@ export function SlotGame({ gameId = "book-of-fedesvin" }: SlotGameProps) {
                 onAutoSpinCountChange={setAutoSpinCount}
                 autoSpinsRemaining={autoSpinsRemaining}
                 bonusState={bonusState}
+                bonusLoaded={bonusLoaded}
                 disabled={isSpinning || isSpinLocked}
                 isSpinLocked={isSpinLocked}
                 minBet={slotSettings.minBet}
