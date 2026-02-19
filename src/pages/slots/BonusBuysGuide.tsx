@@ -10,6 +10,16 @@ import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { Card, CardContent } from "@/components/ui/card";
 import heroImage from "@/assets/heroes/bonus-buys-hero.jpg";
+import imgSweetBonanza from "@/assets/heroes/sweet-bonanza-hero.jpg";
+import imgGatesOfOlympus from "@/assets/heroes/gates-of-olympus-hero.jpg";
+import imgWantedDeadOrAWild from "@/assets/heroes/wanted-dead-or-a-wild-hero.jpg";
+import imgBigBassBonanza from "@/assets/heroes/big-bass-bonanza-hero.jpg";
+import imgMadameDestiny from "@/assets/heroes/madame-destiny-megaways-hero.jpg";
+import imgExtraChilli from "@/assets/heroes/extra-chilli-megaways-hero.jpg";
+import imgChaosCrew from "@/assets/heroes/chaos-crew-hero.jpg";
+import imgBuffaloKing from "@/assets/heroes/buffalo-king-hero.jpg";
+import imgSugarRush from "@/assets/heroes/sugar-rush-hero.jpg";
+import imgWildWestGold from "@/assets/heroes/wild-west-gold-hero.jpg";
 import {
   ShoppingCart, TrendingUp, Target, Shield, Zap, BarChart3,
   Calculator, Flame, Scale, AlertTriangle, Trophy, DollarSign,
@@ -493,18 +503,27 @@ const BonusBuysGuide = () => {
 
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 mb-6">
             {[
-              { to: "/casinospil/spillemaskiner/sweet-bonanza", name: "Sweet Bonanza", provider: "Pragmatic Play", rtp: "96,51 %", volatility: "Meget høj", maxWin: "21.175x" },
-              { to: "/casinospil/spillemaskiner/gates-of-olympus", name: "Gates of Olympus", provider: "Pragmatic Play", rtp: "96,50 %", volatility: "Meget høj", maxWin: "5.000x" },
-              { to: "/casinospil/spillemaskiner/wanted-dead-or-a-wild", name: "Wanted Dead or a Wild", provider: "Hacksaw Gaming", rtp: "96,38 %", volatility: "Ekstrem", maxWin: "12.500x" },
-              { to: "/casinospil/spillemaskiner/big-bass-bonanza", name: "Big Bass Bonanza", provider: "Pragmatic Play", rtp: "96,71 %", volatility: "Høj", maxWin: "2.100x" },
-              { to: "/casinospil/spillemaskiner/madame-destiny-megaways", name: "Madame Destiny Megaways", provider: "Pragmatic Play", rtp: "96,58 %", volatility: "Høj", maxWin: "5.000x" },
-              { to: "/casinospil/spillemaskiner/extra-chilli-megaways", name: "Extra Chilli Megaways", provider: "Big Time Gaming", rtp: "96,20 %", volatility: "Ekstrem", maxWin: "50.000x" },
-              { to: "/casinospil/spillemaskiner/chaos-crew", name: "Chaos Crew", provider: "Hacksaw Gaming", rtp: "96,32 %", volatility: "Høj", maxWin: "10.000x" },
-              { to: "/casinospil/spillemaskiner/buffalo-king", name: "Buffalo King", provider: "Pragmatic Play", rtp: "96,06 %", volatility: "Høj", maxWin: "93.750x" },
-              { to: "/casinospil/spillemaskiner/sugar-rush", name: "Sugar Rush", provider: "Pragmatic Play", rtp: "96,50 %", volatility: "Høj", maxWin: "5.000x" },
-              { to: "/casinospil/spillemaskiner/wild-west-gold", name: "Wild West Gold", provider: "Pragmatic Play", rtp: "96,51 %", volatility: "Høj", maxWin: "10.000x" },
+              { to: "/casinospil/spillemaskiner/sweet-bonanza", name: "Sweet Bonanza", provider: "Pragmatic Play", rtp: "96,51 %", volatility: "Meget høj", maxWin: "21.175x", img: imgSweetBonanza },
+              { to: "/casinospil/spillemaskiner/gates-of-olympus", name: "Gates of Olympus", provider: "Pragmatic Play", rtp: "96,50 %", volatility: "Meget høj", maxWin: "5.000x", img: imgGatesOfOlympus },
+              { to: "/casinospil/spillemaskiner/wanted-dead-or-a-wild", name: "Wanted Dead or a Wild", provider: "Hacksaw Gaming", rtp: "96,38 %", volatility: "Ekstrem", maxWin: "12.500x", img: imgWantedDeadOrAWild },
+              { to: "/casinospil/spillemaskiner/big-bass-bonanza", name: "Big Bass Bonanza", provider: "Pragmatic Play", rtp: "96,71 %", volatility: "Høj", maxWin: "2.100x", img: imgBigBassBonanza },
+              { to: "/casinospil/spillemaskiner/madame-destiny-megaways", name: "Madame Destiny Megaways", provider: "Pragmatic Play", rtp: "96,58 %", volatility: "Høj", maxWin: "5.000x", img: imgMadameDestiny },
+              { to: "/casinospil/spillemaskiner/extra-chilli-megaways", name: "Extra Chilli Megaways", provider: "Big Time Gaming", rtp: "96,20 %", volatility: "Ekstrem", maxWin: "50.000x", img: imgExtraChilli },
+              { to: "/casinospil/spillemaskiner/chaos-crew", name: "Chaos Crew", provider: "Hacksaw Gaming", rtp: "96,32 %", volatility: "Høj", maxWin: "10.000x", img: imgChaosCrew },
+              { to: "/casinospil/spillemaskiner/buffalo-king", name: "Buffalo King", provider: "Pragmatic Play", rtp: "96,06 %", volatility: "Høj", maxWin: "93.750x", img: imgBuffaloKing },
+              { to: "/casinospil/spillemaskiner/sugar-rush", name: "Sugar Rush", provider: "Pragmatic Play", rtp: "96,50 %", volatility: "Høj", maxWin: "5.000x", img: imgSugarRush },
+              { to: "/casinospil/spillemaskiner/wild-west-gold", name: "Wild West Gold", provider: "Pragmatic Play", rtp: "96,51 %", volatility: "Høj", maxWin: "10.000x", img: imgWildWestGold },
             ].map((slot) => (
               <Card key={slot.to} className="overflow-hidden flex flex-col">
+                {/* Game image */}
+                <div className="relative h-44 overflow-hidden">
+                  <img
+                    src={slot.img}
+                    alt={slot.name}
+                    className="w-full h-full object-cover"
+                    loading="lazy"
+                  />
+                </div>
                 <CardContent className="pt-4 pb-0 flex-1">
                   <div className="mb-3">
                     <p className="font-bold text-base leading-tight">{slot.name}</p>
