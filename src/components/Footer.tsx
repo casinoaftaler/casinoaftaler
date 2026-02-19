@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { Gamepad2, Instagram, MessageCircle, Trophy, BookOpen, Shield, Scale, FileText, Cookie, ExternalLink, Sparkles, CreditCard, Target, Zap, Tv, Star, Dices, ClipboardList, Users } from "lucide-react";
+import { Gamepad2, Instagram, MessageCircle, Trophy, BookOpen, Shield, Scale, FileText, Cookie, ExternalLink, Sparkles, CreditCard, Target, Zap, Tv, Star, Dices, ClipboardList, Users, AlertTriangle } from "lucide-react";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
 
 export function Footer() {
@@ -340,7 +340,56 @@ export function Footer() {
           </div>
         </div>
 
+        {/* Compliance / Ansvarligt Spil sektion */}
         <div className="mt-8 border-t border-border pt-8">
+          <div className="flex flex-wrap items-center justify-center gap-6 md:gap-10">
+            {/* 18+ badge */}
+            <div className="flex items-center gap-2 text-muted-foreground">
+              <span className="flex h-10 w-10 items-center justify-center rounded-full border-2 border-primary bg-primary/10 text-sm font-bold text-primary">
+                18+
+              </span>
+              <span className="text-xs font-medium">Spil ansvarligt</span>
+            </div>
+
+            {/* StopSpillet */}
+            <a
+              href="https://www.stopspillet.dk/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-2 rounded-lg border border-border bg-muted/50 px-4 py-2 text-xs font-medium text-muted-foreground transition-colors hover:border-primary hover:text-foreground"
+            >
+              <Shield className="h-4 w-4 text-primary" />
+              StopSpillet.dk
+              <ExternalLink className="h-3 w-3" />
+            </a>
+
+            {/* ROFUS */}
+            <a
+              href="https://www.rofus.nu/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-2 rounded-lg border border-border bg-muted/50 px-4 py-2 text-xs font-medium text-muted-foreground transition-colors hover:border-primary hover:text-foreground"
+            >
+              <Scale className="h-4 w-4 text-primary" />
+              ROFUS.nu
+              <ExternalLink className="h-3 w-3" />
+            </a>
+
+            {/* Center for Ludomani */}
+            <a
+              href="https://ludomani.dk/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-2 rounded-lg border border-border bg-muted/50 px-4 py-2 text-xs font-medium text-muted-foreground transition-colors hover:border-primary hover:text-foreground"
+            >
+              <AlertTriangle className="h-4 w-4 text-primary" />
+              Center for Ludomani
+              <ExternalLink className="h-3 w-3" />
+            </a>
+          </div>
+        </div>
+
+        <div className="mt-6 border-t border-border pt-6">
           <p className="text-center text-xs text-muted-foreground">
             © {new Date().getFullYear()} {siteName}. Alle rettigheder forbeholdes.
             Spil kan være vanedannende. Spil venligst ansvarligt. 18+
