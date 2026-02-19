@@ -166,8 +166,22 @@ Deno.serve(async (req) => {
       console.log(`Deleted ${leaderboardDeleted} game results`);
     }
 
-    // Delete from slot_spins
+    // Reset slot_spins to max credits
     if (target === "spins" || target === "all") {
+      // First, get all users who have spin records so we can re-create them
+      const { data: existingSpins, error: fetchSpinsError } = await supabase
+        .from("slot_spins")
+        .select("user_id")
+        .neq("id", "00000000-0000-0000-0000-000000000000");
+
+      if (fetchSpinsError) {
+        console.error("Error fetching spins:", fetchSpinsError);
+        throw new Error(`Failed to fetch spins: ${fetchSpinsError.message}`);
+      }
+
+      const userIds = [...new Set((existingSpins || []).map(s => s.user_id))];
+
+      // Delete all spin records
       const { data: spinsData, error: spinsError } = await supabase
         .from("slot_spins")
         .delete()
@@ -181,6 +195,27 @@ Deno.serve(async (req) => {
       
       spinsDeleted = spinsData?.length || 0;
       console.log(`Deleted ${spinsDeleted} spin records`);
+
+      // Re-create spin records with default max credits (200) for today
+      if (userIds.length > 0) {
+        const today = new Date().toLocaleDateString("sv-SE", { timeZone: "Europe/Copenhagen" });
+        const newRecords = userIds.map(uid => ({
+          user_id: uid,
+          date: today,
+          spins_remaining: 200,
+        }));
+
+        const { error: insertError } = await supabase
+          .from("slot_spins")
+          .insert(newRecords);
+
+        if (insertError) {
+          console.error("Error re-creating spins:", insertError);
+          // Don't throw - deletion already succeeded
+        } else {
+          console.log(`Re-created ${newRecords.length} spin records with 200 credits`);
+        }
+      }
     }
 
     const result = {
