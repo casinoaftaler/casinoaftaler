@@ -20,6 +20,12 @@ import imgChaosCrew from "@/assets/heroes/chaos-crew-hero.jpg";
 import imgBuffaloKing from "@/assets/heroes/buffalo-king-hero.jpg";
 import imgSugarRush from "@/assets/heroes/sugar-rush-hero.jpg";
 import imgWildWestGold from "@/assets/heroes/wild-west-gold-hero.jpg";
+import imgMoneyTrain3 from "@/assets/heroes/money-train-3-hero.jpg";
+import imgRazorShark from "@/assets/heroes/razor-shark-hero.jpg";
+import imgJamminJars from "@/assets/heroes/jammin-jars-hero.jpg";
+import imgWolfGold from "@/assets/heroes/wolf-gold-hero.jpg";
+import imgDeadOrAlive2 from "@/assets/heroes/dead-or-alive-2-hero.jpg";
+import imgLegacyOfDead from "@/assets/heroes/legacy-of-dead-hero.jpg";
 import {
   ShoppingCart, TrendingUp, Target, Shield, Zap, BarChart3,
   Calculator, Flame, Scale, AlertTriangle, Trophy, DollarSign,
@@ -501,8 +507,9 @@ const BonusBuysGuide = () => {
             Vi har analyseret en række populære spillemaskiner med bonus buy-funktion i detalje. Klik på "Spil her" for at gå direkte til casinoet, eller "Se anmeldelse" for vores dybdegående matematiske analyse:
           </p>
 
-          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 mb-6">
-            {[
+          {/* Horizontal scroll: 3 rows visible, swipe right for more */}
+          {(() => {
+            const slots = [
               { to: "/casinospil/spillemaskiner/sweet-bonanza", name: "Sweet Bonanza", provider: "Pragmatic Play", rtp: "96,51 %", volatility: "Meget høj", maxWin: "21.175x", img: imgSweetBonanza },
               { to: "/casinospil/spillemaskiner/gates-of-olympus", name: "Gates of Olympus", provider: "Pragmatic Play", rtp: "96,50 %", volatility: "Meget høj", maxWin: "5.000x", img: imgGatesOfOlympus },
               { to: "/casinospil/spillemaskiner/wanted-dead-or-a-wild", name: "Wanted Dead or a Wild", provider: "Hacksaw Gaming", rtp: "96,38 %", volatility: "Ekstrem", maxWin: "12.500x", img: imgWantedDeadOrAWild },
@@ -513,61 +520,82 @@ const BonusBuysGuide = () => {
               { to: "/casinospil/spillemaskiner/buffalo-king", name: "Buffalo King", provider: "Pragmatic Play", rtp: "96,06 %", volatility: "Høj", maxWin: "93.750x", img: imgBuffaloKing },
               { to: "/casinospil/spillemaskiner/sugar-rush", name: "Sugar Rush", provider: "Pragmatic Play", rtp: "96,50 %", volatility: "Høj", maxWin: "5.000x", img: imgSugarRush },
               { to: "/casinospil/spillemaskiner/wild-west-gold", name: "Wild West Gold", provider: "Pragmatic Play", rtp: "96,51 %", volatility: "Høj", maxWin: "10.000x", img: imgWildWestGold },
-            ].map((slot) => (
-              <Card key={slot.to} className="overflow-hidden flex flex-col">
-                {/* Game image */}
-                <div className="relative h-44 overflow-hidden">
-                  <img
-                    src={slot.img}
-                    alt={slot.name}
-                    className="w-full h-full object-cover"
-                    loading="lazy"
-                  />
+              { to: "/casinospil/spillemaskiner/money-train-3", name: "Money Train 3", provider: "Relax Gaming", rtp: "96,30 %", volatility: "Ekstrem", maxWin: "100.000x", img: imgMoneyTrain3 },
+              { to: "/casinospil/spillemaskiner/razor-shark", name: "Razor Shark", provider: "Push Gaming", rtp: "96,70 %", volatility: "Høj", maxWin: "50.000x", img: imgRazorShark },
+              { to: "/casinospil/spillemaskiner/jammin-jars", name: "Jammin' Jars", provider: "Push Gaming", rtp: "96,83 %", volatility: "Høj", maxWin: "20.000x", img: imgJamminJars },
+              { to: "/casinospil/spillemaskiner/wolf-gold", name: "Wolf Gold", provider: "Pragmatic Play", rtp: "96,01 %", volatility: "Medium", maxWin: "2.500x", img: imgWolfGold },
+              { to: "/casinospil/spillemaskiner/dead-or-alive-2", name: "Dead or Alive 2", provider: "NetEnt", rtp: "96,82 %", volatility: "Ekstrem", maxWin: "100.000x", img: imgDeadOrAlive2 },
+              { to: "/casinospil/spillemaskiner/legacy-of-dead", name: "Legacy of Dead", provider: "Play'n GO", rtp: "96,58 %", volatility: "Høj", maxWin: "5.000x", img: imgLegacyOfDead },
+            ];
+            // Split into rows of 3 (columns), then render columns side by side
+            const ROWS = 3;
+            const numCols = Math.ceil(slots.length / ROWS);
+            const columns: typeof slots[] = Array.from({ length: numCols }, (_, col) =>
+              slots.slice(col * ROWS, col * ROWS + ROWS)
+            );
+            const SlotCard = ({ slot }: { slot: typeof slots[0] }) => (
+              <Card className="overflow-hidden flex flex-col" style={{ width: "220px", flexShrink: 0 }}>
+                <div className="h-36 overflow-hidden flex-shrink-0">
+                  <img src={slot.img} alt={slot.name} className="w-full h-full object-cover" loading="lazy" />
                 </div>
-                <CardContent className="pt-4 pb-0 flex-1">
-                  <div className="mb-3">
-                    <p className="font-bold text-base leading-tight">{slot.name}</p>
+                <CardContent className="pt-3 pb-0 flex-1">
+                  <div className="mb-2">
+                    <p className="font-bold text-sm leading-tight">{slot.name}</p>
                     <p className="text-xs text-muted-foreground">{slot.provider}</p>
                   </div>
-                  <div className="grid grid-cols-3 gap-1 mb-4 text-center border-t border-border pt-3">
+                  <div className="grid grid-cols-3 gap-1 mb-2 text-center border-t border-border pt-2">
                     <div>
-                      <p className="text-xs text-muted-foreground">Volatilitet</p>
-                      <p className="text-xs font-semibold">{slot.volatility}</p>
+                      <p className="text-[10px] text-muted-foreground">Volatilitet</p>
+                      <p className="text-[10px] font-semibold leading-tight">{slot.volatility}</p>
                     </div>
                     <div>
-                      <p className="text-xs text-muted-foreground">RTP</p>
-                      <p className="text-xs font-semibold">{slot.rtp}</p>
+                      <p className="text-[10px] text-muted-foreground">RTP</p>
+                      <p className="text-[10px] font-semibold">{slot.rtp}</p>
                     </div>
                     <div>
-                      <p className="text-xs text-muted-foreground">Maks. profit</p>
-                      <p className="text-xs font-semibold">{slot.maxWin}</p>
+                      <p className="text-[10px] text-muted-foreground">Maks.</p>
+                      <p className="text-[10px] font-semibold">{slot.maxWin}</p>
                     </div>
                   </div>
                 </CardContent>
-                <div className="px-6 pb-4 space-y-2">
+                <div className="px-3 pb-3 space-y-1.5">
                   <a
                     href="https://campobetdk.wermifal.com/?mid=311340_1840935"
                     target="_blank"
                     rel="noopener noreferrer nofollow sponsored"
-                    className="flex items-center justify-center gap-2 w-full rounded-md bg-primary py-2.5 text-sm font-semibold text-primary-foreground transition-opacity hover:opacity-90"
+                    className="flex items-center justify-center gap-1 w-full rounded-md bg-primary py-2 text-xs font-semibold text-primary-foreground transition-opacity hover:opacity-90"
                   >
-                    Spil her <ArrowRight className="h-4 w-4" />
+                    Spil her <ArrowRight className="h-3 w-3" />
                   </a>
                   <Link
                     to={slot.to}
-                    className="flex items-center justify-center w-full rounded-md border border-border py-2.5 text-sm font-medium transition-colors hover:bg-accent"
+                    className="flex items-center justify-center w-full rounded-md border border-border py-2 text-xs font-medium transition-colors hover:bg-accent"
                   >
                     Se anmeldelse
                   </Link>
-                  <p className="text-center text-[10px] text-muted-foreground leading-tight pt-1">
-                    18+ | Spil ansvarligt |{" "}
+                  <p className="text-center text-[9px] text-muted-foreground leading-tight">
+                    18+ |{" "}
                     <a href="https://www.rofus.nu" target="_blank" rel="noopener noreferrer" className="underline">Rofus.nu</a>
-                    {" "}| Selvdelukkelse via <a href="https://www.stopspillet.dk" target="_blank" rel="noopener noreferrer" className="underline">StopSpillet</a>
+                    {" "}|{" "}
+                    <a href="https://www.stopspillet.dk" target="_blank" rel="noopener noreferrer" className="underline">StopSpillet</a>
                   </p>
                 </div>
               </Card>
-            ))}
-          </div>
+            );
+            return (
+              <div className="overflow-x-auto pb-4 -mx-4 px-4 md:-mx-0 md:px-0 cursor-grab">
+                <div className="flex gap-4" style={{ width: "max-content" }}>
+                  {columns.map((col, colIdx) => (
+                    <div key={colIdx} className="flex flex-col gap-4">
+                      {col.map((slot) => (
+                        <SlotCard key={slot.to} slot={slot} />
+                      ))}
+                    </div>
+                  ))}
+                </div>
+              </div>
+            );
+          })()}
 
           <p className="text-muted-foreground leading-relaxed">
             Hver guide indeholder detaljerede EV-beregninger, RTP-sammenligning mellem standard og buy-feature, samt anbefalinger til bankroll-styring. Brug disse analyser til at træffe informerede beslutninger om, hvilke slots der tilbyder de bedste betingelser for bonus buy.
