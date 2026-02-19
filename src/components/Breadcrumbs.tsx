@@ -132,6 +132,7 @@ const routeLabels: Record<string, string> = {
   "/casinospil/spillemaskiner/wanted-dead-or-a-wild": "Wanted Dead or a Wild",
   "/casinospil/spillemaskiner/chaos-crew": "Chaos Crew",
   "/casinospil/spillemaskiner/joker-strike": "Joker Strike",
+  "/casinospil/spillemaskiner/bonus-buys": "Bonus Buys",
   "/casinospil/blackjack": "Blackjack",
   "/casinospil/roulette": "Roulette",
   "/casinospil/poker": "Poker",
