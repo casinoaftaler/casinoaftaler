@@ -507,7 +507,7 @@ const BonusBuysGuide = () => {
             Vi har analyseret en række populære spillemaskiner med bonus buy-funktion i detalje. Klik på "Spil her" for at gå direkte til casinoet, eller "Se anmeldelse" for vores dybdegående matematiske analyse:
           </p>
 
-          {/* Horizontal scroll: 3 rows visible, swipe right for more */}
+          {/* Horizontal scroll: exactly 3 per row, swipe right for more */}
           {(() => {
             const slots = [
               { to: "/casinospil/spillemaskiner/sweet-bonanza", name: "Sweet Bonanza", provider: "Pragmatic Play", rtp: "96,51 %", volatility: "Meget høj", maxWin: "21.175x", img: imgSweetBonanza },
@@ -527,14 +527,9 @@ const BonusBuysGuide = () => {
               { to: "/casinospil/spillemaskiner/dead-or-alive-2", name: "Dead or Alive 2", provider: "NetEnt", rtp: "96,82 %", volatility: "Ekstrem", maxWin: "100.000x", img: imgDeadOrAlive2 },
               { to: "/casinospil/spillemaskiner/legacy-of-dead", name: "Legacy of Dead", provider: "Play'n GO", rtp: "96,58 %", volatility: "Høj", maxWin: "5.000x", img: imgLegacyOfDead },
             ];
-            // Split into rows of 3 (columns), then render columns side by side
-            const ROWS = 3;
-            const numCols = Math.ceil(slots.length / ROWS);
-            const columns: typeof slots[] = Array.from({ length: numCols }, (_, col) =>
-              slots.slice(col * ROWS, col * ROWS + ROWS)
-            );
+
             const SlotCard = ({ slot }: { slot: typeof slots[0] }) => (
-              <Card className="overflow-hidden flex flex-col" style={{ width: "220px", flexShrink: 0 }}>
+              <Card className="overflow-hidden flex flex-col h-full">
                 <div className="h-36 overflow-hidden flex-shrink-0">
                   <img src={slot.img} alt={slot.name} className="w-full h-full object-cover" loading="lazy" />
                 </div>
@@ -582,15 +577,20 @@ const BonusBuysGuide = () => {
                 </div>
               </Card>
             );
+
             return (
-              <div className="overflow-x-auto pb-4 -mx-4 px-4 md:-mx-0 md:px-0 cursor-grab">
-                <div className="flex gap-4" style={{ width: "max-content" }}>
-                  {columns.map((col, colIdx) => (
-                    <div key={colIdx} className="flex flex-col gap-4">
-                      {col.map((slot) => (
-                        <SlotCard key={slot.to} slot={slot} />
-                      ))}
-                    </div>
+              <div className="overflow-x-auto pb-4">
+                <div
+                  style={{
+                    display: "grid",
+                    gridTemplateRows: "repeat(3, auto)",
+                    gridAutoFlow: "column",
+                    gridAutoColumns: "calc((100% - 2rem) / 3)",
+                    gap: "1rem",
+                  }}
+                >
+                  {slots.map((slot) => (
+                    <SlotCard key={slot.to} slot={slot} />
                   ))}
                 </div>
               </div>
