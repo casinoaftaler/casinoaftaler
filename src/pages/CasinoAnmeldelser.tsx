@@ -10,6 +10,7 @@ import { Separator } from "@/components/ui/separator";
 import { RelatedGuides } from "@/components/RelatedGuides";
 import { InlineCasinoCards } from "@/components/InlineCasinoCards";
 import { CasinoCard } from "@/components/CasinoCard";
+import { CASINO_SCORES } from "@/lib/reviewScoring";
 import { useCasinos } from "@/hooks/useCasinos";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
 import casinoAnmeldelserHero from "@/assets/heroes/casino-anmeldelser-hero.jpg";
@@ -143,7 +144,7 @@ const CasinoAnmeldelser = () => {
     id: casino.id,
     name: casino.name,
     slug: casino.slug,
-    rating: Number(casino.rating),
+    rating: CASINO_SCORES[casino.slug]?.total ?? Number(casino.rating),
     bonusTitle: casino.bonus_title,
     bonusAmount: casino.bonus_amount,
     bonusType: casino.bonus_type,

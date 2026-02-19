@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Loader2 } from "lucide-react";
 import { useCasinos } from "@/hooks/useCasinos";
 import { CasinoCard } from "@/components/CasinoCard";
+import { CASINO_SCORES } from "@/lib/reviewScoring";
 import { Separator } from "@/components/ui/separator";
 
 /** Only show casino cards for partner casinos */
@@ -39,7 +40,7 @@ export function InlineCasinoCards({
     id: casino.id,
     name: casino.name,
     slug: casino.slug,
-    rating: Number(casino.rating),
+    rating: CASINO_SCORES[casino.slug]?.total ?? Number(casino.rating),
     bonusTitle: casino.bonus_title,
     bonusAmount: casino.bonus_amount,
     bonusType: casino.bonus_type,

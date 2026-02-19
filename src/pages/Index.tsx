@@ -5,6 +5,7 @@ import { HeroSection } from "@/components/HeroSection";
 import { QuickNavSidebar } from "@/components/QuickNavBar";
 
 import { CasinoCard } from "@/components/CasinoCard";
+import { CASINO_SCORES } from "@/lib/reviewScoring";
 import { BonusTypeCards } from "@/components/BonusTypeCards";
 import { FAQSection } from "@/components/FAQSection";
 import { FilterTabs } from "@/components/FilterTabs";
@@ -77,7 +78,7 @@ const Index = () => {
     id: casino.id,
     name: casino.name,
     slug: casino.slug,
-    rating: Number(casino.rating),
+    rating: CASINO_SCORES[casino.slug]?.total ?? Number(casino.rating),
     bonusTitle: casino.bonus_title,
     bonusAmount: casino.bonus_amount,
     bonusType: casino.bonus_type,
