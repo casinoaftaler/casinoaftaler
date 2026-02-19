@@ -27,6 +27,7 @@ interface SlotControlPanelProps {
   onAutoSpinCountChange: (count: AutoSpinCount) => void;
   autoSpinsRemaining: number | null;
   bonusState: BonusState;
+  bonusLoaded?: boolean;
   disabled?: boolean;
   isSpinLocked?: boolean;
   minBet?: number;
@@ -51,6 +52,7 @@ export function SlotControlPanel({
   onAutoSpinCountChange,
   autoSpinsRemaining,
   bonusState,
+  bonusLoaded = true,
   disabled,
   isSpinLocked,
   minBet = 1,
@@ -67,13 +69,18 @@ export function SlotControlPanel({
     ? bonusState.freeSpinsRemaining > 0
     : canSpin;
 
+  // Disable bet controls during active bonus OR while bonus state is loading
+  // This prevents the race condition where a user can change bet after refresh
+  // before the bonus state has loaded from the database
+  const isBetLocked = !bonusLoaded || bonusState.isActive;
+
   return (
     <div className="flex w-full flex-row items-center justify-center gap-4">
       <VolumeControl className={cn(theme.accent, "flex-shrink-0")} />
       <BetControls
         bet={bet}
         onBetChange={onBetChange}
-        disabled={disabled || isSpinning || bonusState.isActive}
+        disabled={disabled || isSpinning || isBetLocked}
         minBet={minBet}
         maxBet={maxBet}
         showSpins={!bonusState.isActive}
