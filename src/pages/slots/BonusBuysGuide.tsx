@@ -523,13 +523,16 @@ const BonusBuysGuide = () => {
                     className="w-full h-full object-cover"
                     loading="lazy"
                   />
+                  {/* Dark overlay so any text on the image doesn't clash with our card text */}
+                  <div className="absolute inset-0 bg-black/40" />
+                  {/* Game name overlay on image */}
+                  <div className="absolute bottom-0 left-0 right-0 px-3 py-2 bg-gradient-to-t from-black/80 to-transparent">
+                    <p className="text-sm font-bold text-white leading-tight drop-shadow">{slot.name}</p>
+                    <p className="text-xs text-white/80">{slot.provider}</p>
+                  </div>
                 </div>
                 <CardContent className="pt-4 pb-0 flex-1">
-                  <div className="mb-3">
-                    <p className="font-bold text-base leading-tight">{slot.name}</p>
-                    <p className="text-xs text-muted-foreground">{slot.provider}</p>
-                  </div>
-                  <div className="grid grid-cols-3 gap-1 mb-4 text-center border-t border-border pt-3">
+                  <div className="grid grid-cols-3 gap-1 mb-4 text-center border-b border-border pb-3">
                     <div>
                       <p className="text-xs text-muted-foreground">Volatilitet</p>
                       <p className="text-xs font-semibold">{slot.volatility}</p>
