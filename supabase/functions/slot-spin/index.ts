@@ -888,7 +888,7 @@ Deno.serve(async (req) => {
               const [{ data: activeTournaments }, { data: allEntries }] = await Promise.all([
                 serviceClient
                   .from("tournaments")
-                  .select("id, exclude_from_global_leaderboard, max_credits")
+                  .select("id, exclude_from_global_leaderboard, max_credits, max_bet")
                   .in("id", participatingIds)
                   .contains("game_ids", [gameId])
                   .lte("starts_at", bonusNowISO)
@@ -902,6 +902,12 @@ Deno.serve(async (req) => {
 
               if (activeTournaments && activeTournaments.length > 0) {
                 await Promise.all(activeTournaments.map(async (t) => {
+                  // Enforce max_bet: skip tournament entry if bet exceeds max_bet
+                  if (t.max_bet && capturedBet > t.max_bet) {
+                    console.log(`[slot-spin] Bonus bet ${capturedBet} exceeds tournament max_bet ${t.max_bet} - skipping tournament entry`);
+                    return;
+                  }
+
                   if (t.exclude_from_global_leaderboard) {
                     if (t.max_credits) {
                       const totalUsed = (allEntries || [])
@@ -1186,7 +1192,7 @@ Deno.serve(async (req) => {
           const [{ data: activeTournaments }, { data: allEntries }] = await Promise.all([
             serviceClient
               .from("tournaments")
-              .select("id, exclude_from_global_leaderboard, max_credits")
+              .select("id, exclude_from_global_leaderboard, max_credits, max_bet")
               .in("id", participatingIds)
               .contains("game_ids", [gameId])
               .lte("starts_at", nowISO)
@@ -1201,6 +1207,12 @@ Deno.serve(async (req) => {
           if (activeTournaments && activeTournaments.length > 0) {
             // Upsert all tournament entries in parallel
             await Promise.all(activeTournaments.map(async (t) => {
+              // Enforce max_bet: skip tournament entry if bet exceeds max_bet
+              if (t.max_bet && bet > t.max_bet) {
+                console.log(`[slot-spin] Bet ${bet} exceeds tournament max_bet ${t.max_bet} for tournament ${t.id} - skipping tournament entry`);
+                return;
+              }
+
               if (t.exclude_from_global_leaderboard) {
                 if (t.max_credits) {
                   const totalUsed = (allEntries || [])

@@ -53,6 +53,7 @@ function CreateTournamentDialog() {
   const [separateLeaderboards, setSeparateLeaderboards] = useState(false);
   const [prizeText, setPrizeText] = useState("");
   const [maxCredits, setMaxCredits] = useState("");
+  const [maxBet, setMaxBet] = useState("");
   const [excludeFromGlobalLeaderboard, setExcludeFromGlobalLeaderboard] = useState(false);
   const [startsAt, setStartsAt] = useState("");
   const [endsAt, setEndsAt] = useState("");
@@ -75,8 +76,9 @@ function CreateTournamentDialog() {
         ends_at: new Date(endsAt).toISOString(),
         created_by: user.id,
         max_credits: maxCredits ? parseInt(maxCredits) : null,
+        max_bet: maxBet ? parseInt(maxBet) : null,
         exclude_from_global_leaderboard: excludeFromGlobalLeaderboard,
-      });
+      } as any);
       toast.success("Turnering oprettet!");
       setOpen(false);
       setTitle("");
@@ -85,6 +87,7 @@ function CreateTournamentDialog() {
       setSeparateLeaderboards(false);
       setPrizeText("");
       setMaxCredits("");
+      setMaxBet("");
       setExcludeFromGlobalLeaderboard(false);
       setStartsAt("");
       setEndsAt("");
@@ -124,6 +127,10 @@ function CreateTournamentDialog() {
           <div className="space-y-2">
             <Label htmlFor="t-maxcredits">Maks credits per deltager</Label>
             <Input id="t-maxcredits" type="number" value={maxCredits} onChange={(e) => setMaxCredits(e.target.value)} placeholder="Ingen begrænsning" />
+          </div>
+          <div className="space-y-2">
+            <Label htmlFor="t-maxbet">Maks bet per spin</Label>
+            <Input id="t-maxbet" type="number" min={1} max={100} value={maxBet} onChange={(e) => setMaxBet(e.target.value)} placeholder="Ingen begrænsning (fx 2)" />
           </div>
           <div className="space-y-2">
             <Label>Spillemaskiner *</Label>
@@ -180,6 +187,7 @@ function EditTournamentDialog({ tournament }: { tournament: Tournament }) {
   const [description, setDescription] = useState(tournament.description || "");
   const [prizeText, setPrizeText] = useState(tournament.prize_text || "");
   const [maxCredits, setMaxCredits] = useState(tournament.max_credits?.toString() || "");
+  const [maxBet, setMaxBet] = useState((tournament as any).max_bet?.toString() || "");
   const [excludeFromGlobalLeaderboard, setExcludeFromGlobalLeaderboard] = useState(tournament.exclude_from_global_leaderboard ?? false);
   const [gameIds, setGameIds] = useState<string[]>(tournament.game_ids);
   const [separateLeaderboards, setSeparateLeaderboards] = useState(tournament.separate_leaderboards);
@@ -203,8 +211,9 @@ function EditTournamentDialog({ tournament }: { tournament: Tournament }) {
         starts_at: new Date(startsAt).toISOString(),
         ends_at: new Date(endsAt).toISOString(),
         max_credits: maxCredits ? parseInt(maxCredits) : null,
+        max_bet: maxBet ? parseInt(maxBet) : null,
         exclude_from_global_leaderboard: excludeFromGlobalLeaderboard,
-      });
+      } as any);
       toast.success("Turnering opdateret!");
       setOpen(false);
     } catch {
@@ -243,6 +252,10 @@ function EditTournamentDialog({ tournament }: { tournament: Tournament }) {
           <div className="space-y-2">
             <Label htmlFor="e-maxcredits">Maks credits per deltager</Label>
             <Input id="e-maxcredits" type="number" value={maxCredits} onChange={(e) => setMaxCredits(e.target.value)} placeholder="Ingen begrænsning" />
+          </div>
+          <div className="space-y-2">
+            <Label htmlFor="e-maxbet">Maks bet per spin</Label>
+            <Input id="e-maxbet" type="number" min={1} max={100} value={maxBet} onChange={(e) => setMaxBet(e.target.value)} placeholder="Ingen begrænsning (fx 2)" />
           </div>
           <div className="space-y-2">
             <Label>Spillemaskiner *</Label>
