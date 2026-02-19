@@ -1,5 +1,6 @@
 import { Link, useNavigate } from "react-router-dom";
 import { ThemeToggle } from "./ThemeToggle";
+import casinoaftalerLogo from "@/assets/casinoaftaler-logo.png";
 import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
@@ -101,12 +102,8 @@ export const Header = memo(function Header() {
     <header className="sticky top-0 z-50 w-full border-b border-border bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="container flex h-16 items-center justify-between">
         <Link to="/" className="flex items-center gap-2 flex-shrink-0">
-          <div className="flex h-8 w-8 sm:h-10 sm:w-10 flex-shrink-0 items-center justify-center rounded-lg bg-primary overflow-hidden">
-            {headerIconUrl ? (
-              <img src={headerIconUrl} alt="Site icon" width={40} height={40} className="h-full w-full object-cover" />
-            ) : (
-              <Gamepad2 className="h-5 w-5 sm:h-6 sm:w-6 text-primary-foreground" />
-            )}
+          <div className="flex h-8 w-8 sm:h-10 sm:w-10 flex-shrink-0 items-center justify-center rounded-lg overflow-hidden">
+            <img src={headerIconUrl || casinoaftalerLogo} alt="Site icon" width={40} height={40} className="h-full w-full object-cover" loading="eager" fetchPriority="high" />
           </div>
           <span className="text-sm sm:text-xl font-bold whitespace-nowrap">{siteName}</span>
         </Link>

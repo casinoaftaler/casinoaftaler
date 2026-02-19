@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { Gamepad2, Instagram, MessageCircle, Trophy, BookOpen, Shield, Scale, FileText, Cookie, ExternalLink, Sparkles, CreditCard, Target, Zap, Tv, Star, Dices, ClipboardList, Users, AlertTriangle } from "lucide-react";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
+import casinoaftalerLogo from "@/assets/casinoaftaler-logo.png";
 
 export function Footer() {
   const { data: siteSettings } = useSiteSettings();
@@ -22,12 +23,8 @@ export function Footer() {
         <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6">
           <div className="space-y-4">
             <Link to="/" className="flex items-center gap-2">
-              <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-primary overflow-hidden">
-                {headerIcon ? (
-                  <img src={headerIcon} alt={siteName} className="h-full w-full object-cover" />
-                ) : (
-                  <Gamepad2 className="h-6 w-6 text-primary-foreground" />
-                )}
+              <div className="flex h-10 w-10 items-center justify-center rounded-lg overflow-hidden">
+                <img src={headerIcon || casinoaftalerLogo} alt={siteName} className="h-full w-full object-cover" loading="lazy" />
               </div>
               <span className="text-xl font-bold">{siteName}</span>
             </Link>
