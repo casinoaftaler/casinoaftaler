@@ -197,7 +197,7 @@ export default function Highlights() {
       <SEO
         title="Highlights & Community Clips | Casinoaftaler"
         description="Se de bedste øjeblikke fra vores streams og community. Twitch clips, YouTube videoer og bruger-indsendte highlights samlet ét sted."
-        noindex
+        
       />
       <CommunityPageLayout
         title="Highlights"

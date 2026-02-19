@@ -3,8 +3,8 @@ Allow: /
 Disallow: /auth
 Disallow: /profil
 Disallow: /admin
-Disallow: /community
-Disallow: /highlights
+Disallow: /community/slots
+Disallow: /community/spillehal
 Disallow: /butik
 Disallow: /u/
 
@@ -13,8 +13,8 @@ Allow: /
 Disallow: /auth
 Disallow: /profil
 Disallow: /admin
-Disallow: /community
-Disallow: /highlights
+Disallow: /community/slots
+Disallow: /community/spillehal
 Disallow: /butik
 Disallow: /u/
 
@@ -29,8 +29,8 @@ Allow: /
 Disallow: /auth
 Disallow: /profil
 Disallow: /admin
-Disallow: /community
-Disallow: /highlights
+Disallow: /community/slots
+Disallow: /community/spillehal
 Disallow: /butik
 Disallow: /u/
 
