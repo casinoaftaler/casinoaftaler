@@ -9,6 +9,7 @@ import { type ReactNode } from "react";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { Card, CardContent } from "@/components/ui/card";
+import heroImage from "@/assets/heroes/bonus-buys-hero.jpg";
 import {
   ShoppingCart, TrendingUp, Target, Shield, Zap, BarChart3,
   Calculator, Flame, Scale, AlertTriangle, Trophy, DollarSign,
@@ -115,24 +116,23 @@ const BonusBuysGuide = () => {
         jsonLd={[articleSchema, faqJsonLd, breadcrumbJsonLd, howToJsonLd]}
       />
 
-      <article className="container max-w-4xl py-8">
-        {/* Hero */}
-        <header className="mb-8">
-          <Badge variant="outline" className="mb-4 gap-1.5">
-            <ShoppingCart className="h-3.5 w-3.5" />
-            Spillemaskine-mekanik
-          </Badge>
-          <h1 className="text-4xl font-bold tracking-tight mb-4">
-            Bonus Buys – Hvad Er Det, og Er Det Matematisk Fornuftigt?
-          </h1>
-          <p className="text-xl text-muted-foreground leading-relaxed">
-            Bonus buy-funktionen lader dig springe ventetiden over og købe dig direkte ind i bonusrunden. Men hvad betaler du <em>reelt</em> for den genvej? Denne guide dykker ned i matematikken, risikoprofilen og strategien bag buy features – og afslører, hvorfor det sjældent er den optimale beslutning.
-          </p>
-        </header>
+      {/* ── HERO ── */}
+      <section className="relative overflow-hidden py-12 text-white md:py-20" style={{ backgroundImage: "linear-gradient(135deg, hsl(260 70% 25%), hsl(250 60% 20%) 40%, hsl(210 80% 25%))" }}>
+        <div className="container">
+          <div className="mx-auto max-w-3xl text-center">
+            <Badge variant="secondary" className="mb-4"><ShoppingCart className="mr-1.5 h-3.5 w-3.5" /> Spillemaskine-mekanik</Badge>
+            <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">Bonus Buys – Guide, Matematik & Strategi</h1>
+            <p className="text-lg text-white/80">Hvad betaler du reelt for genvej til bonusrunden? En matematisk analyse af buy features i moderne spillemaskiner.</p>
+          </div>
+        </div>
+      </section>
 
-        <AuthorMetaBar author="jonas" date="2026-02-19" readTime="22 min" showFactCheck showVerified />
+      <div className="container py-8 md:py-12">
+        <AuthorMetaBar author="jonas" date="19-02-2026" readTime="22 Min." />
 
-        <Separator className="my-8" />
+        <div className="mb-10 overflow-hidden rounded-xl">
+          <img src={heroImage} className="w-full h-auto object-cover max-h-[400px]" alt="Bonus buy guide til spillemaskiner" loading="eager" />
+        </div>
 
         {/* H2: Hvad er Bonus Buys? */}
         <section className="mb-12">
@@ -778,7 +778,7 @@ const BonusBuysGuide = () => {
         <RelatedGuides currentPath="/casinospil/spillemaskiner/bonus-buys" />
 
         <FAQSection title="Ofte Stillede Spørgsmål om Bonus Buys" faqs={bonusBuyFaqs} />
-      </article>
+      </div>
     </>
   );
 };
