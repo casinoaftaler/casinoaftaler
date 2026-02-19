@@ -22,8 +22,12 @@ const authorData = {
     bio: "Jonas er grundlægger af Casinoaftaler.dk og har streamet online casino i over 4 år. Med daglig erfaring fra slots og live casino deler han ærlige anmeldelser og opdateret viden om det danske casinomarked.",
     socials: [
       { href: "https://www.twitch.tv/fedesvinsejer", label: "Twitch" },
+      { href: "https://www.youtube.com/@fedesvinsejer", label: "YouTube" },
+      { href: "https://discord.gg/ZD4YdSeY", label: "Discord" },
       { href: "https://www.instagram.com/jonastheill", label: "Instagram" },
-      { href: "https://www.facebook.com/jonas.theill/", label: "Facebook" },
+      { href: "https://www.linkedin.com/in/info-casinoaftaler-5782203b1/", label: "LinkedIn" },
+      { href: "https://x.com/casinoaftaler", label: "X" },
+      { href: "https://www.snapchat.com/@fedesvinsejer", label: "Snapchat" },
     ],
   },
   kevin: {
@@ -34,7 +38,11 @@ const authorData = {
     badge: "Casino-streamer & IT medansvarlig",
     role: "IT Medansvarlig hos Casinoaftaler.dk & Casino-streamer",
     bio: "Kevin er IT medansvarlig hos Casinoaftaler.dk og har streamet online casino i over 3 år. Med sin rolige og afslappede stil bidrager han til community, indhold og udvikling af platformen.",
-    socials: [],
+    socials: [
+      { href: "https://www.twitch.tv/fedesvinsejer", label: "Twitch" },
+      { href: "https://www.youtube.com/@fedesvinsejer", label: "YouTube" },
+      { href: "https://discord.gg/ZD4YdSeY", label: "Discord" },
+    ],
   },
 } as const;
 
