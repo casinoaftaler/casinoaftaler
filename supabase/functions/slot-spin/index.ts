@@ -698,7 +698,7 @@ Deno.serve(async (req) => {
     // Handle bonus spin (symbols already loaded from parallel fetch above)
     if (isBonusSpin) {
       // Get bonus state filtered by game_id
-      const { data: bonusData, error: bonusError } = await supabase
+      const { data: bonusData, error: bonusError } = await serviceClient
         .from("slot_bonus_state")
         .select("*")
         .eq("user_id", userId)
