@@ -5,7 +5,7 @@ import nolimitHero from "@/assets/heroes/nolimit-city-hero.jpg";
 
 const NolimitCityGuide = () => (
   <ProviderPage
-    seoTitle="Nolimit City – Alt om Spiludvikleren 2026 | Casinoaftaler"
+    seoTitle="Nolimit City Spillemaskiner – xWays & High Vol (2026)"
     seoDescription="Komplet guide til Nolimit City – opkøbt af Evolution for €340M. xWays, xNudge, xBomb-patenter. San Quentin xWays: 2.084.000x maks. gevinst."
     name="Nolimit City"
     heroSubtitle="Nolimit City har redefineret high-volatility slots med patenterede mekanikker som xWays, xNudge og xBomb. Opkøbt af Evolution Gaming for €340 millioner – en anerkendelse af deres unikke position."

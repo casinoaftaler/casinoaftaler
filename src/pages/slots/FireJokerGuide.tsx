@@ -78,7 +78,7 @@ const FireJokerGuide = () => {
   return (
     <>
       <SEO
-        title="Fire Joker – Klassisk Slot & RTP-Analyse"
+        title="Fire Joker Spilleautomat – RTP 96,15% & Klassiker (2026)"
         description="Dybdegående analyse af Fire Joker: Respin of Fire, Wheel of Multipliers, RTP 96,15 %, lav-medium volatilitet og EV-beregninger."
         jsonLd={[faqJsonLd, articleSchema, breadcrumbJsonLd]}
       />

@@ -54,7 +54,7 @@ const MegaMoolahGuide = () => {
 
   return (
     <>
-      <SEO title="Mega Moolah – Jackpot & RTP-Analyse" description="Mega Moolah 2026: 88,12 % basis-RTP, medium volatilitet, progressiv jackpot med milliongevinster og EV-analyse." jsonLd={[faqJsonLd, articleSchema, breadcrumbJsonLd, howToJsonLd]} />
+      <SEO title="Mega Moolah Spilleautomat – Jackpot & RTP-Analyse (2026)" description="Mega Moolah 2026: 88,12 % basis-RTP, medium volatilitet, progressiv jackpot med milliongevinster og EV-analyse." jsonLd={[faqJsonLd, articleSchema, breadcrumbJsonLd, howToJsonLd]} />
       {/* ── HERO ── */}
       <section className="relative overflow-hidden py-12 text-white md:py-20" style={{ backgroundImage: "linear-gradient(135deg, hsl(260 70% 25%), hsl(250 60% 20%) 40%, hsl(210 80% 25%))" }}>
         <div className="container">

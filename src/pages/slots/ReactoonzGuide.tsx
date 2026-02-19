@@ -102,7 +102,7 @@ const ReactoonzGuide = () => {
   return (
     <>
       <SEO
-        title="Reactoonz – Cluster Pays & RTP-Analyse"
+        title="Reactoonz Spilleautomat – RTP 96,51% & Cluster Pays"
         description="Komplet analyse af Reactoonz: cluster pays-mekanik, Quantum-system, RTP 96,51 %, volatilitetsprofil og strategisk EV-vurdering for danske spillere."
         jsonLd={[faqJsonLd, articleSchema, breadcrumbJsonLd]}
       />

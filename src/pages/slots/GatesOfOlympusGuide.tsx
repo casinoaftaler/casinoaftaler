@@ -91,7 +91,7 @@ const GatesOfOlympusGuide = () => {
   return (
     <>
       <SEO
-        title="Gates of Olympus – Multiplikator & EV-Analyse"
+        title="Gates of Olympus Spilleautomat – RTP & Multiplier (2026)"
         description="Gates of Olympus 2026: 96,50 % RTP, høj volatilitet, 5.000× max win og multiplikator-matematik forklaret."
         jsonLd={[faqJsonLd, breadcrumbJsonLd, articleSchema, howToJsonLd]}
       />

@@ -83,7 +83,7 @@ const RazorSharkGuide = () => {
   return (
     <>
       <SEO
-        title="Razor Shark – RTP, Max Win & Analyse"
+        title="Razor Shark Spilleautomat – RTP 96,70% & Max Win (2026)"
         description="Komplet analyse af Razor Shark: RTP 96,70 %, max win 50.000x, Mystery Stack-mekanik og volatilitetsanalyse for danske spillere."
         jsonLd={[faqJsonLd, breadcrumbJsonLd, articleSchema]}
       />

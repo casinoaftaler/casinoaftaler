@@ -42,7 +42,7 @@ const ImmortalRomanceGuide = () => {
 
   return (
     <>
-      <SEO title="Immortal Romance – Wild Vine & RTP-Analyse" description="Dybdegående analyse af Immortal Romance: Chamber of Spins, 96,86 % RTP, Wild Vine og 12.150× max win for danske spillere." jsonLd={[faqJsonLd, articleSchema, breadcrumbJsonLd]} />
+      <SEO title="Immortal Romance Spilleautomat – RTP 96,86% (2026)" description="Dybdegående analyse af Immortal Romance: Chamber of Spins, 96,86 % RTP, Wild Vine og 12.150× max win for danske spillere." jsonLd={[faqJsonLd, articleSchema, breadcrumbJsonLd]} />
       {/* ── HERO ── */}
       <section className="relative overflow-hidden py-12 text-white md:py-20" style={{ backgroundImage: "linear-gradient(135deg, hsl(260 70% 25%), hsl(250 60% 20%) 40%, hsl(210 80% 25%))" }}>
         <div className="container">

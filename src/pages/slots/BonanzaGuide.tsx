@@ -86,7 +86,7 @@ const BonanzaGuide = () => {
   return (
     <>
       <SEO
-        title="Bonanza Megaways – Megaways-Analyse & RTP"
+        title="Bonanza Megaways Spilleautomat – RTP & Cascading Wins"
         description="Komplet analyse af Bonanza Megaways: 117.649 gevinstlinjer, cascading wins, ubegrænset multiplier under free spins, RTP 96,00 % og EV-beregninger."
         jsonLd={[faqJsonLd, articleSchema, breadcrumbJsonLd]}
       />
