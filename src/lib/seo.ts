@@ -51,6 +51,14 @@ export const organizationSchema = {
   },
 };
 
+/** Ensure date string is full ISO 8601 with CET timezone for Google validation. */
+function toIso8601WithTz(date: string): string {
+  // Already has time component (T)
+  if (date.includes("T")) return date;
+  // Date-only → append midnight CET (+01:00)
+  return `${date}T00:00:00+01:00`;
+}
+
 /**
  * Generate Article JSON-LD schema with all required fields.
  */
@@ -70,8 +78,8 @@ export function buildArticleSchema(opts: {
     headline: opts.headline,
     description: opts.description,
     image: opts.image || `${SITE_URL}/og-image.png`,
-    datePublished: opts.datePublished,
-    dateModified: opts.dateModified,
+    datePublished: toIso8601WithTz(opts.datePublished),
+    dateModified: toIso8601WithTz(opts.dateModified),
     mainEntityOfPage: {
       "@type": "WebPage",
       "@id": opts.url,
