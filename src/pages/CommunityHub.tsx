@@ -149,7 +149,7 @@ export default function CommunityHub() {
       <SEO
         title="Community – Gratis Slots, Turneringer & Bonus Spins"
         description="Spil gratis slots, deltag i turneringer og optjen points i Casinoaftaler.dk's community. Vind spins og præmier hver dag."
-        noindex
+        
       />
       <CommunityPageLayout
         title="Community"
