@@ -7,6 +7,7 @@ import { buildFaqSchema, SITE_URL } from "@/lib/seo";
 import { FAQSection } from "@/components/FAQSection";
 import { RelatedGuides } from "@/components/RelatedGuides";
 import { CasinoCard } from "@/components/CasinoCard";
+import { CASINO_SCORES } from "@/lib/reviewScoring";
 import { useCasinos } from "@/hooks/useCasinos";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -185,7 +186,7 @@ export default function ForfatterKevin() {
     id: casino.id,
     name: casino.name,
     slug: casino.slug,
-    rating: Number(casino.rating),
+    rating: CASINO_SCORES[casino.slug]?.total ?? Number(casino.rating),
     bonusTitle: casino.bonus_title,
     bonusAmount: casino.bonus_amount,
     bonusType: casino.bonus_type,

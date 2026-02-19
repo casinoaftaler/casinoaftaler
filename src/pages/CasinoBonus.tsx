@@ -8,6 +8,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { CasinoCard } from "@/components/CasinoCard";
+import { CASINO_SCORES } from "@/lib/reviewScoring";
 import { RelatedGuides } from "@/components/RelatedGuides";
 import { InlineCasinoCards } from "@/components/InlineCasinoCards";
 import { useCasinos } from "@/hooks/useCasinos";
@@ -127,7 +128,7 @@ const CasinoBonus = () => {
     id: casino.id,
     name: casino.name,
     slug: casino.slug,
-    rating: Number(casino.rating),
+    rating: CASINO_SCORES[casino.slug]?.total ?? Number(casino.rating),
     bonusTitle: casino.bonus_title,
     bonusAmount: casino.bonus_amount,
     bonusType: casino.bonus_type,
