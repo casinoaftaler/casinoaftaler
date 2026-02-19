@@ -32,6 +32,10 @@
 </head>
 
   <body>
+    <script>
+      // Prevent dark-mode flash: apply theme class before React renders
+      try{if(localStorage.getItem("theme")==="dark")document.documentElement.classList.add("dark")}catch(e){}
+    </script>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
   </body>
