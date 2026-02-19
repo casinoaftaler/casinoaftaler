@@ -269,12 +269,31 @@ export default function Forfatter() {
 
   const faqJsonLd = buildFaqSchema(faqs);
 
+  const videoSchema = {
+    "@context": "https://schema.org",
+    "@type": "VideoObject",
+    name: "Jonas' bedste highlights – Casinoaftaler.dk",
+    description: "Se Jonas' bedste casino-highlights og streamingøjeblikke fra Casinoaftaler.dk.",
+    thumbnailUrl: "https://img.youtube.com/vi/ZKDrnL7373o/maxresdefault.jpg",
+    uploadDate: "2025-01-15T12:00:00+01:00",
+    contentUrl: "https://www.youtube.com/watch?v=ZKDrnL7373o",
+    embedUrl: "https://www.youtube.com/embed/ZKDrnL7373o",
+    publisher: {
+      "@type": "Organization",
+      name: "Casinoaftaler.dk",
+      logo: {
+        "@type": "ImageObject",
+        url: "https://casinoaftaler.dk/favicon-48x48.png",
+      },
+    },
+  };
+
   return (
     <>
       <SEO
         title="Jonas – Forfatter & Grundlægger | Casinoaftaler.dk"
         description="Mød Jonas, grundlæggeren af Casinoaftaler.dk og casino-streamer på Twitch. Læs om hans baggrund, streamingstil og passion for casinospil."
-        jsonLd={[faqJsonLd, personSchema]}
+        jsonLd={[faqJsonLd, personSchema, videoSchema]}
       />
 
       {/* Hero */}
