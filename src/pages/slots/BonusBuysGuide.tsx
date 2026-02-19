@@ -515,7 +515,7 @@ const BonusBuysGuide = () => {
               { to: "/casinospil/spillemaskiner/wild-west-gold", name: "Wild West Gold", provider: "Pragmatic Play", rtp: "96,51 %", volatility: "Høj", maxWin: "10.000x", img: imgWildWestGold },
             ].map((slot) => (
               <Card key={slot.to} className="overflow-hidden flex flex-col">
-                {/* Game image */}
+                {/* Game image with name overlay */}
                 <div className="relative h-44 overflow-hidden">
                   <img
                     src={slot.img}
@@ -523,12 +523,12 @@ const BonusBuysGuide = () => {
                     className="w-full h-full object-cover"
                     loading="lazy"
                   />
-                </div>
-                <CardContent className="pt-4 pb-0 flex-1">
-                  <div className="mb-3">
-                    <p className="font-bold text-base leading-tight">{slot.name}</p>
-                    <p className="text-xs text-muted-foreground">{slot.provider}</p>
+                  <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent px-3 pt-6 pb-2.5">
+                    <p className="font-bold text-sm leading-tight text-white drop-shadow">{slot.name}</p>
+                    <p className="text-xs text-white/75">{slot.provider}</p>
                   </div>
+                </div>
+                <CardContent className="pt-3 pb-0 flex-1">
                   <div className="grid grid-cols-3 gap-1 mb-4 text-center border-t border-border pt-3">
                     <div>
                       <p className="text-xs text-muted-foreground">Volatilitet</p>
