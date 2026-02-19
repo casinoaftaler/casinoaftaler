@@ -1240,6 +1240,7 @@ export type Database = {
           exclude_from_global_leaderboard: boolean
           game_ids: string[]
           id: string
+          max_bet: number | null
           max_credits: number | null
           prize_text: string | null
           separate_leaderboards: boolean
@@ -1255,6 +1256,7 @@ export type Database = {
           exclude_from_global_leaderboard?: boolean
           game_ids?: string[]
           id?: string
+          max_bet?: number | null
           max_credits?: number | null
           prize_text?: string | null
           separate_leaderboards?: boolean
@@ -1270,6 +1272,7 @@ export type Database = {
           exclude_from_global_leaderboard?: boolean
           game_ids?: string[]
           id?: string
+          max_bet?: number | null
           max_credits?: number | null
           prize_text?: string | null
           separate_leaderboards?: boolean
