@@ -22,12 +22,16 @@ const MAX_WINS = 10;
 const MIN_MULTIPLIER = 100;
 const ANTI_SPAM_MS = 30_000;
 const STORAGE_KEY = "live_big_wins";
+const WIN_TTL_MS = 10 * 60 * 1000; // 10 minutes
 
 function loadPersistedWins(): BigWin[] {
   try {
     const raw = localStorage.getItem(STORAGE_KEY);
     if (!raw) return [];
-    return JSON.parse(raw) as BigWin[];
+    const wins = JSON.parse(raw) as BigWin[];
+    // Filter out wins older than 10 minutes on load
+    const now = Date.now();
+    return wins.filter((w) => now - w.timestamp < WIN_TTL_MS);
   } catch {
     return [];
   }
@@ -42,6 +46,19 @@ function persistWins(wins: BigWin[]) {
 export function useLiveBigWins() {
   const [wins, setWins] = useState<BigWin[]>(() => loadPersistedWins());
   const lastUserTimestamp = useRef<Map<string, number>>(new Map());
+
+  // Auto-remove wins older than 10 minutes
+  useEffect(() => {
+    const interval = setInterval(() => {
+      const now = Date.now();
+      setWins((prev) => {
+        const next = prev.filter((w) => now - w.timestamp < WIN_TTL_MS);
+        if (next.length !== prev.length) persistWins(next);
+        return next;
+      });
+    }, 60_000); // check every minute
+    return () => clearInterval(interval);
+  }, []);
 
   const addWin = useCallback((win: BigWin) => {
     const now = Date.now();
