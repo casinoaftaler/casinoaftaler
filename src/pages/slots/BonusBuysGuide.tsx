@@ -23,9 +23,7 @@ import imgWildWestGold from "@/assets/heroes/wild-west-gold-hero.jpg";
 import imgMoneyTrain3 from "@/assets/heroes/money-train-3-hero.jpg";
 import imgRazorShark from "@/assets/heroes/razor-shark-hero.jpg";
 import imgJamminJars from "@/assets/heroes/jammin-jars-hero.jpg";
-import imgWolfGold from "@/assets/heroes/wolf-gold-hero.jpg";
 import imgDeadOrAlive2 from "@/assets/heroes/dead-or-alive-2-hero.jpg";
-import imgLegacyOfDead from "@/assets/heroes/legacy-of-dead-hero.jpg";
 import {
   ShoppingCart, TrendingUp, Target, Shield, Zap, BarChart3,
   Calculator, Flame, Scale, AlertTriangle, Trophy, DollarSign,
@@ -46,11 +44,8 @@ const SLOT_DATA = [
   { to: "/casinospil/spillemaskiner/money-train-3", name: "Money Train 3", provider: "Relax Gaming", rtp: "96,30 %", volatility: "Ekstrem", maxWin: "100.000x", img: imgMoneyTrain3 },
   { to: "/casinospil/spillemaskiner/razor-shark", name: "Razor Shark", provider: "Push Gaming", rtp: "96,70 %", volatility: "Høj", maxWin: "50.000x", img: imgRazorShark },
   { to: "/casinospil/spillemaskiner/jammin-jars", name: "Jammin' Jars", provider: "Push Gaming", rtp: "96,83 %", volatility: "Høj", maxWin: "20.000x", img: imgJamminJars },
-  { to: "/casinospil/spillemaskiner/wolf-gold", name: "Wolf Gold", provider: "Pragmatic Play", rtp: "96,01 %", volatility: "Medium", maxWin: "2.500x", img: imgWolfGold },
   { to: "/casinospil/spillemaskiner/dead-or-alive-2", name: "Dead or Alive 2", provider: "NetEnt", rtp: "96,82 %", volatility: "Ekstrem", maxWin: "100.000x", img: imgDeadOrAlive2 },
-  { to: "/casinospil/spillemaskiner/legacy-of-dead", name: "Legacy of Dead", provider: "Play'n GO", rtp: "96,58 %", volatility: "Høj", maxWin: "5.000x", img: imgLegacyOfDead },
 ];
-
 // Chunk into pages of 9 (3 rows × 3 cols)
 const PAGE_SIZE = 9;
 
