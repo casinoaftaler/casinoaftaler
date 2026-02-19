@@ -460,7 +460,7 @@ const BonusBuysGuide = () => {
                 <Badge variant="outline" className="mb-3 text-primary border-primary">Standard segment</Badge>
                 <p className="text-3xl font-bold mb-2">100x</p>
                 <p className="text-sm text-muted-foreground">Mest udbredt pris. Standard for Pragmatic Play og mange Hacksaw-titler med høj volatilitet.</p>
-                <p className="text-xs text-muted-foreground mt-2">Eksempler: Sweet Bonanza, Gates of Olympus, Dog House</p>
+                <p className="text-xs text-muted-foreground mt-2">Eksempler: Sweet Bonanza, Gates of Olympus, Big Bass Bonanza</p>
               </CardContent>
             </Card>
             <Card>
@@ -501,8 +501,8 @@ const BonusBuysGuide = () => {
               { to: "/casinospil/spillemaskiner/extra-chilli-megaways", name: "Extra Chilli Megaways", provider: "BTG", price: "50x", maxWin: "50.000x" },
               { to: "/casinospil/spillemaskiner/chaos-crew", name: "Chaos Crew", provider: "Hacksaw", price: "80x", maxWin: "10.000x" },
               { to: "/casinospil/spillemaskiner/buffalo-king", name: "Buffalo King", provider: "Pragmatic Play", price: "100x", maxWin: "4.000x" },
-              { to: "/casinospil/spillemaskiner/the-dog-house", name: "The Dog House", provider: "Pragmatic Play", price: "100x", maxWin: "6.750x" },
-              { to: "/casinospil/spillemaskiner/joker-strike", name: "Joker Strike", provider: "Quickspin", price: "Varies", maxWin: "456x" },
+              { to: "/casinospil/spillemaskiner/sugar-rush", name: "Sugar Rush", provider: "Pragmatic Play", price: "100x", maxWin: "5.000x" },
+              { to: "/casinospil/spillemaskiner/wild-west-gold", name: "Wild West Gold", provider: "Pragmatic Play", price: "100x", maxWin: "10.000x" },
             ].map((slot) => (
               <Link key={slot.to} to={slot.to} className="group">
                 <Card className="h-full transition-colors group-hover:border-primary/50">
