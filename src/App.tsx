@@ -357,7 +357,7 @@ const App = () => (
                 <Route 
                   path="/community/slots" 
                   element={
-                    <Suspense fallback={<SlotPageLoading />}>
+                    <Suspense fallback={<PageFallback />}>
                       <GameLibrary />
                     </Suspense>
                   } 
