@@ -84,7 +84,7 @@ const nyeCasinoerFaqs: { question: string; answer: ReactNode }[] = [
     question: "Hvad er den reelle bonusværdi hos nye casinoer sammenlignet med etablerede?",
     answer: (
       <>
-        Vores data viser, at nye casinoer i gennemsnit tilbyder 35-50% højere reel bonusværdi end etablerede spillesteder. Det skyldes primært lavere <Link to="/omsaetningskrav" className={linkClass}>omsætningskrav</Link> (typisk 1x-5x vs. 10x hos etablerede) og højere match-procenter. En typisk velkomstbonus hos et nyt casino på 2.000 kr. med 1x omsætning har en forventet reel værdi på ca. 1.900 kr., mens en tilsvarende bonus på 5.000 kr. med 10x omsætning hos et etableret casino har en forventet værdi på ca. 2.750 kr. trods det nominelt højere beløb. Se vores detaljerede analyse i guiden til <Link to="/nye-casinoer/lav-wagering" className={linkClass}>nye casinoer med lav wagering</Link>.
+        Vores data viser, at nye casinoer i gennemsnit tilbyder højere reel bonusværdi end etablerede spillesteder. De fleste nye casinoer benytter det danske loft på 10x <Link to="/omsaetningskrav" className={linkClass}>omsætningskrav</Link>, mens udvalgte casinoer som GetLucky og ComeOn tilbyder 5x. Kombineret med højere match-procenter giver dette bedre vilkår. Se vores detaljerede analyse i guiden til <Link to="/nye-casinoer/lav-wagering" className={linkClass}>nye casinoer med lav wagering</Link>.
       </>
     ),
   },
@@ -473,7 +473,7 @@ const NyeCasinoer = () => {
             <strong>No-Sticky Bonus (Forfeit Bonus)</strong> er den mest spillervenlige bonustype og dominerer hos nye casinoer i 2026. Med en <Link to="/no-sticky-bonus" className={linkClass}>no-sticky bonus</Link> holdes dine rigtige penge og bonusmidler adskilt. Du spiller altid med dine egne penge først, og bonusmidlerne aktiveres kun, når din saldo når nul. Det kritiske: du kan til enhver tid hæve resterende rigtige penge og blot forfejte bonussen. Denne struktur eliminerer den "indfangede kapital"-problematik, der plager traditionelle sticky bonusser, og giver spilleren reel kontrol over sine midler.
           </p>
           <p className="mb-4 text-muted-foreground leading-relaxed">
-            <strong>Lav wagering (1x-5x omsætning)</strong> er en anden trend der præger nye casinoer. Det lovpligtige danske loft er 10x, men mange nye casinoer tilbyder markant lavere krav – typisk 1x-5x. Forskellen i reel bonusværdi er dramatisk: en bonus på 2.000 kr. med 1x omsætning kræver, at du satser 2.000 kr. totalt, mens samme bonus med 10x kræver 20.000 kr. i samlede indsatser. Med en gennemsnitlig RTP på 96% taber du statistisk set 80 kr. ved 1x omsætning vs. 800 kr. ved 10x – en tidobling af den forventede omkostning. Se vores komplette analyse i <Link to="/nye-casinoer/lav-wagering" className={linkClass}>nye casinoer med lav wagering</Link>.
+            <strong>Lav wagering hos udvalgte casinoer</strong> er en fordel at holde øje med. Det lovpligtige danske loft er 10x, som de fleste nye casinoer benytter. Dog tilbyder udvalgte casinoer som GetLucky og ComeOn kun 5x omsætning. Forskellen i reel bonusværdi er mærkbar: en bonus på 2.000 kr. med 5x omsætning kræver 10.000 kr. i spil, mens 10x kræver 20.000 kr. Med en gennemsnitlig RTP på 96% taber du statistisk set 400 kr. ved 5x vs. 800 kr. ved 10x. Se vores komplette analyse i <Link to="/nye-casinoer/lav-wagering" className={linkClass}>nye casinoer med lav wagering</Link>.
           </p>
           <p className="mb-4 text-muted-foreground leading-relaxed">
             <strong>Bonus uden indbetaling</strong> er det ultimative lavrisiko-tilbud. Nogle nye casinoer giver dig <Link to="/nye-casinoer/bonus-uden-indbetaling" className={linkClass}>gratis bonus ved oprettelse</Link> – typisk 50-200 kr. i bonusmidler eller 20-50 free spins – helt uden at du behøver at indbetale. Disse bonusser har typisk højere omsætningskrav (5x-10x) og lavere udbetalingsgrænser, men de giver dig mulighed for at teste casinoet risikofrit. For nye casinoer er det en strategi til at reducere barrieren for førstegangsspillere.
@@ -484,7 +484,7 @@ const NyeCasinoer = () => {
 
           <div className="grid grid-cols-1 sm:grid-cols-4 gap-3 my-6">
             {[
-              { value: "1x–5x", label: "Typisk omsætningskrav hos nye casinoer" },
+              { value: "10x", label: "Standard omsætningskrav hos nye casinoer" },
               { value: "100–200%", label: "Match på første indbetaling" },
               { value: "50–200", label: "Free spins i velkomstpakke" },
               { value: "42%", label: "Højere reel bonusværdi vs. etablerede" },
@@ -873,7 +873,7 @@ const NyeCasinoer = () => {
               <tbody className="divide-y divide-border">
                 {[
                   ["Velkomstbonus (reel værdi)", "42% højere gns.", "Normaliseret", "🆕 Nye"],
-                  ["Omsætningskrav", "1x–5x typisk", "5x–10x typisk", "🆕 Nye"],
+                  ["Omsætningskrav", "10x (5x hos udvalgte)", "10x typisk", "⚖️ Uafgjort"],
                   ["Udbetalingshastighed", "5 min. – 6 timer", "1 time – 24 timer", "🆕 Nye"],
                   ["Spiludvalg (bredde)", "1.500–3.000 titler", "2.000–5.000 titler", "🏛️ Etablerede"],
                   ["Live casino-dækning", "Evolution + 1-2 andre", "Evolution + 3-4 andre", "🏛️ Etablerede"],
@@ -912,7 +912,7 @@ const NyeCasinoer = () => {
             Det danske marked for nye casinoer er i 2026 mere dynamisk, innovativt og spillervenligt end nogensinde. Med 10-12 forventede nye lanceringer, stadigt lavere omsætningskrav, og teknologisk innovation der gør spiloplevelsen hurtigere og mere engagerende, er det en attraktiv tid at udforske nye spillesteder. Men det kræver en informeret tilgang – ikke alle nye casinoer fortjener din opmærksomhed, og selv de bedste har iboende begrænsninger sammenlignet med etablerede spillesteder.
           </p>
           <p className="mb-4 text-muted-foreground leading-relaxed">
-            Vores analyse viser, at nye casinoer konsekvent tilbyder bedre kortsigtede vilkår: højere reel bonusværdi (42% over gennemsnit), lavere omsætningskrav (1x-5x vs. 10x), hurtigere udbetalinger (Trustly under 5 minutter), og modernere brugeroplevelser med mobile-first design. Den matematiske fordel er reel og dokumenterbar – en bonus med 1x omsætning bevarer 96% af sin nominelle værdi, mod kun 60% ved 10x omsætning.
+            Vores analyse viser, at nye casinoer konsekvent tilbyder bedre kortsigtede vilkår: højere reel bonusværdi, konkurrencedygtige omsætningskrav (10x som standard, 5x hos GetLucky og ComeOn), hurtigere udbetalinger (Trustly under 5 minutter), og modernere brugeroplevelser med mobile-first design. Udvalgte casinoer med 5x omsætning bevarer ca. 80% af bonusværdien, mod ca. 60% ved 10x omsætning.
           </p>
           <p className="mb-4 text-muted-foreground leading-relaxed">
             Men disse fordele skal vejes mod de reelle ulemper: manglende operationel track record, umodne VIP-programmer, potentielt skiftende bonusvilkår og mindre erfarne supportteams. Dansk licens eliminerer de alvorligste risici, men det eliminerer ikke alle – og en forsigtig, testorienteret tilgang er altid tilrådelig.

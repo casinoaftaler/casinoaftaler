@@ -23,7 +23,7 @@ const faqs: { question: string; answer: ReactNode }[] = [
   )},
   { question: "Har nye casinoer bedre bonusser?", answer: (
     <>
-      Generelt ja. Nye casinoer investerer aggressivt i velkomstpakker for at tiltrække spillere. Vi ser typisk 20-50% højere bonusbeløb og markant lavere <Link to="/omsaetningskrav" className={linkClass}>omsætningskrav</Link> (1x-5x vs. 8x-10x) hos nye casinoer sammenlignet med etablerede. Den reelle bonusværdi er derfor ofte betydeligt højere. Se vores guide til <Link to="/nye-casinoer/lav-wagering" className={linkClass}>nye casinoer med lav wagering</Link>.
+      Generelt ja. Nye casinoer investerer aggressivt i velkomstpakker for at tiltrække spillere. Vi ser typisk 20-50% højere bonusbeløb og konkurrencedygtige <Link to="/omsaetningskrav" className={linkClass}>omsætningskrav</Link> på 10x (det danske loft). Enkelte casinoer som GetLucky og ComeOn skiller sig ud med kun 5x omsætning. Den reelle bonusværdi er derfor ofte betydeligt højere. Se vores guide til <Link to="/nye-casinoer/lav-wagering" className={linkClass}>nye casinoer med lav wagering</Link>.
     </>
   )},
   { question: "Er nye casinoer lige så sikre?", answer: "Ja, sikkerhedsniveauet er identisk. Både nye og etablerede casinoer med dansk licens skal opfylde de samme krav fra Spillemyndigheden: bankgaranti på minimum 5 mio. kr., ROFUS-tilslutning, RNG-certificering og SSL-kryptering. Licensen garanterer et minimum sikkerhedsniveau uanset casinoets alder. Nye casinoer gennemgår faktisk en skærpet ansøgningsproces." },
@@ -89,7 +89,7 @@ const NyeVsEtablerede = () => {
                 <CardTitle className="flex items-center gap-2 text-lg"><Sparkles className="h-5 w-5 text-primary" />Nye Casinoer</CardTitle>
               </CardHeader>
               <CardContent className="text-sm text-muted-foreground space-y-2">
-                <p><strong>Bonus:</strong> Typisk 100-200% match, 1x-5x omsætning</p>
+                <p><strong>Bonus:</strong> Typisk 100-200% match, 10x omsætning (5x hos udvalgte)</p>
                 <p><strong>Udbetalinger:</strong> Under 5 min. via Trustly/MobilePay</p>
                 <p><strong>Spil:</strong> 500-2.000 titler, nyeste releases</p>
                 <p><strong>Mobil:</strong> Mobile-first, optimeret fra dag ét</p>

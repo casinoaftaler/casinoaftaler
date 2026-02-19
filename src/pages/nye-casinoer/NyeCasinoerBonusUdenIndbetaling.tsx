@@ -149,7 +149,7 @@ const NyeCasinoerBonusUdenIndbetaling = () => {
           </p>
           <div className="space-y-3">
             {[
-              { title: "Omsætningskrav (wagering)", desc: "Jo lavere, jo bedre. Danske casinoer har et loft på 10x, men de bedste nye casinoer tilbyder 1x-5x. Se vores guide til nye casinoer med lav wagering." },
+              { title: "Omsætningskrav (wagering)", desc: "Jo lavere, jo bedre. Danske casinoer har et loft på 10x, som de fleste nye casinoer benytter. Udvalgte casinoer som GetLucky og ComeOn tilbyder 5x. Se vores guide til nye casinoer med lav wagering." },
               { title: "Udbetalingsgrænse", desc: "Mange no-deposit bonusser har en max-udbetaling på 500-1.000 kr. Jo højere grænsen er, jo mere værd er bonussen i praksis." },
               { title: "Tidsfrist", desc: "De fleste no-deposit bonusser udløber efter 7-30 dage. Sørg for, at du har tid til at opfylde omsætningskravene inden fristen." },
               { title: "Spilrestriktioner", desc: "Free spins er ofte begrænset til én specifik spilleautomat. Bonuspenge kan have vægtede spilbidrag – f.eks. tæller bordspil kun 10% mod omsætningskravet." },
