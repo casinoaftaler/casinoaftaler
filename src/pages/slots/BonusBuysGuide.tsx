@@ -487,34 +487,66 @@ const BonusBuysGuide = () => {
             <Trophy className="h-7 w-7 text-primary" />
             Slots med bonus buy – vores analyser
           </h2>
-          <p className="text-muted-foreground leading-relaxed mb-4">
-            Vi har analyseret en række populære spillemaskiner med bonus buy-funktion i detalje. Hver guide dækker RTP-varianter, matematisk analyse, volatilitetsprofil og strategiske anbefalinger. Her er vores udvalgte analyser af de mest spillede bonus buy-slots i Danmark:
+          <p className="text-muted-foreground leading-relaxed mb-8">
+            Vi har analyseret en række populære spillemaskiner med bonus buy-funktion i detalje. Klik på "Spil her" for at gå direkte til casinoet, eller "Se anmeldelse" for vores dybdegående matematiske analyse:
           </p>
 
-          <div className="grid gap-3 sm:grid-cols-2 mb-6">
+          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 mb-6">
             {[
-              { to: "/casinospil/spillemaskiner/sweet-bonanza", name: "Sweet Bonanza", provider: "Pragmatic Play", price: "100x", maxWin: "21.175x" },
-              { to: "/casinospil/spillemaskiner/gates-of-olympus", name: "Gates of Olympus", provider: "Pragmatic Play", price: "100x", maxWin: "5.000x" },
-              { to: "/casinospil/spillemaskiner/wanted-dead-or-a-wild", name: "Wanted Dead or a Wild", provider: "Hacksaw", price: "100–250x", maxWin: "12.500x" },
-              { to: "/casinospil/spillemaskiner/big-bass-bonanza", name: "Big Bass Bonanza", provider: "Pragmatic Play", price: "100x", maxWin: "2.100x" },
-              { to: "/casinospil/spillemaskiner/madame-destiny-megaways", name: "Madame Destiny Megaways", provider: "Pragmatic Play", price: "100x", maxWin: "5.000x" },
-              { to: "/casinospil/spillemaskiner/extra-chilli-megaways", name: "Extra Chilli Megaways", provider: "BTG", price: "50x", maxWin: "50.000x" },
-              { to: "/casinospil/spillemaskiner/chaos-crew", name: "Chaos Crew", provider: "Hacksaw", price: "80x", maxWin: "10.000x" },
-              { to: "/casinospil/spillemaskiner/buffalo-king", name: "Buffalo King", provider: "Pragmatic Play", price: "100x", maxWin: "4.000x" },
-              { to: "/casinospil/spillemaskiner/sugar-rush", name: "Sugar Rush", provider: "Pragmatic Play", price: "100x", maxWin: "5.000x" },
-              { to: "/casinospil/spillemaskiner/wild-west-gold", name: "Wild West Gold", provider: "Pragmatic Play", price: "100x", maxWin: "10.000x" },
+              { to: "/casinospil/spillemaskiner/sweet-bonanza", name: "Sweet Bonanza", provider: "Pragmatic Play", rtp: "96,51 %", volatility: "Meget høj", maxWin: "21.175x" },
+              { to: "/casinospil/spillemaskiner/gates-of-olympus", name: "Gates of Olympus", provider: "Pragmatic Play", rtp: "96,50 %", volatility: "Meget høj", maxWin: "5.000x" },
+              { to: "/casinospil/spillemaskiner/wanted-dead-or-a-wild", name: "Wanted Dead or a Wild", provider: "Hacksaw Gaming", rtp: "96,38 %", volatility: "Ekstrem", maxWin: "12.500x" },
+              { to: "/casinospil/spillemaskiner/big-bass-bonanza", name: "Big Bass Bonanza", provider: "Pragmatic Play", rtp: "96,71 %", volatility: "Høj", maxWin: "2.100x" },
+              { to: "/casinospil/spillemaskiner/madame-destiny-megaways", name: "Madame Destiny Megaways", provider: "Pragmatic Play", rtp: "96,58 %", volatility: "Høj", maxWin: "5.000x" },
+              { to: "/casinospil/spillemaskiner/extra-chilli-megaways", name: "Extra Chilli Megaways", provider: "Big Time Gaming", rtp: "96,20 %", volatility: "Ekstrem", maxWin: "50.000x" },
+              { to: "/casinospil/spillemaskiner/chaos-crew", name: "Chaos Crew", provider: "Hacksaw Gaming", rtp: "96,32 %", volatility: "Høj", maxWin: "10.000x" },
+              { to: "/casinospil/spillemaskiner/buffalo-king", name: "Buffalo King", provider: "Pragmatic Play", rtp: "96,06 %", volatility: "Høj", maxWin: "93.750x" },
+              { to: "/casinospil/spillemaskiner/sugar-rush", name: "Sugar Rush", provider: "Pragmatic Play", rtp: "96,50 %", volatility: "Høj", maxWin: "5.000x" },
+              { to: "/casinospil/spillemaskiner/wild-west-gold", name: "Wild West Gold", provider: "Pragmatic Play", rtp: "96,51 %", volatility: "Høj", maxWin: "10.000x" },
             ].map((slot) => (
-              <Link key={slot.to} to={slot.to} className="group">
-                <Card className="h-full transition-colors group-hover:border-primary/50">
-                  <CardContent className="pt-4 pb-4">
-                    <div className="flex items-center justify-between mb-1">
-                      <p className="font-semibold group-hover:text-primary transition-colors">{slot.name}</p>
-                      <ArrowRight className="h-4 w-4 text-muted-foreground group-hover:text-primary transition-colors" />
+              <Card key={slot.to} className="overflow-hidden flex flex-col">
+                <CardContent className="pt-4 pb-0 flex-1">
+                  <div className="mb-3">
+                    <p className="font-bold text-base leading-tight">{slot.name}</p>
+                    <p className="text-xs text-muted-foreground">{slot.provider}</p>
+                  </div>
+                  <div className="grid grid-cols-3 gap-1 mb-4 text-center border-t border-border pt-3">
+                    <div>
+                      <p className="text-xs text-muted-foreground">Volatilitet</p>
+                      <p className="text-xs font-semibold">{slot.volatility}</p>
                     </div>
-                    <p className="text-xs text-muted-foreground">{slot.provider} · Buy: {slot.price} · Max: {slot.maxWin}</p>
-                  </CardContent>
-                </Card>
-              </Link>
+                    <div>
+                      <p className="text-xs text-muted-foreground">RTP</p>
+                      <p className="text-xs font-semibold">{slot.rtp}</p>
+                    </div>
+                    <div>
+                      <p className="text-xs text-muted-foreground">Maks. profit</p>
+                      <p className="text-xs font-semibold">{slot.maxWin}</p>
+                    </div>
+                  </div>
+                </CardContent>
+                <div className="px-6 pb-4 space-y-2">
+                  <a
+                    href="https://campobetdk.wermifal.com/?mid=311340_1840935"
+                    target="_blank"
+                    rel="noopener noreferrer nofollow sponsored"
+                    className="flex items-center justify-center gap-2 w-full rounded-md bg-primary py-2.5 text-sm font-semibold text-primary-foreground transition-opacity hover:opacity-90"
+                  >
+                    Spil her <ArrowRight className="h-4 w-4" />
+                  </a>
+                  <Link
+                    to={slot.to}
+                    className="flex items-center justify-center w-full rounded-md border border-border py-2.5 text-sm font-medium transition-colors hover:bg-accent"
+                  >
+                    Se anmeldelse
+                  </Link>
+                  <p className="text-center text-[10px] text-muted-foreground leading-tight pt-1">
+                    18+ | Spil ansvarligt |{" "}
+                    <a href="https://www.rofus.nu" target="_blank" rel="noopener noreferrer" className="underline">Rofus.nu</a>
+                    {" "}| Selvdelukkelse via <a href="https://www.stopspillet.dk" target="_blank" rel="noopener noreferrer" className="underline">StopSpillet</a>
+                  </p>
+                </div>
+              </Card>
             ))}
           </div>
 
