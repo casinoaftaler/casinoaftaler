@@ -5,13 +5,14 @@ import { useSiteSettings } from "@/hooks/useSiteSettings";
 import { useTwitchStatus } from "@/hooks/useTwitchStatus";
 
 export function HeroSection() {
-  const { data: siteSettings } = useSiteSettings();
+  const { data: siteSettings, isLoading: settingsLoading } = useSiteSettings();
   const { data: twitchStatus } = useTwitchStatus(siteSettings?.twitch_url);
   
   const heroTitle = siteSettings?.hero_title || "Online Casino i Danmark – Sammenlign og Vælg Rigtigt";
   const heroSubtitle = siteSettings?.hero_subtitle || "Uafhængige anmeldelser og sammenligninger af danske online casinoer. Vi tester spiludvalg, udbetalinger, vilkår og sikkerhed, så du kan træffe det bedste valg.";
   const heroBackgroundImage = siteSettings?.hero_background_image;
   const isLive = twitchStatus?.isLive ?? false;
+  const contentReady = !settingsLoading;
 
   return (
     <section 
@@ -25,7 +26,7 @@ export function HeroSection() {
       }}
     >
       <div className="container relative z-10">
-        <div className="mx-auto max-w-3xl text-center">
+        <div className={`mx-auto max-w-3xl text-center transition-opacity duration-200 ${contentReady ? 'opacity-100' : 'opacity-0'}`}>
           {/* Twitch Live Indicator – always reserves space */}
           <div className="mb-6 min-h-[40px]">
             {siteSettings?.twitch_url && (
