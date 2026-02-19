@@ -83,7 +83,7 @@ const DeadOrAlive2Guide = () => {
   return (
     <>
       <SEO
-        title="Dead or Alive 2 – Max Win & Volatilitet"
+        title="Dead or Alive 2 Spilleautomat – Max Win 111.111× & RTP"
         description="Komplet analyse af Dead or Alive 2: RTP 96,82 %, max win 111.111x, tre free spins-modes og strategisk valg for danske spillere."
         jsonLd={[faqJsonLd, breadcrumbJsonLd, articleSchema]}
       />

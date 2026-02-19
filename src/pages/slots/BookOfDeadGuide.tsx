@@ -83,7 +83,7 @@ const BookOfDeadGuide = () => {
   return (
     <>
       <SEO
-        title="Book of Dead – Risikoprofil & RTP-Analyse"
+        title="Book of Dead Spilleautomat – RTP 96,21% & Free Spins"
         description="Komplet analyse af Book of Dead: expanding symbols-matematik, EV-beregninger, bonus-compatibility og hvem spillet passer til."
         jsonLd={[faqJsonLd, breadcrumbJsonLd, articleSchema]}
       />

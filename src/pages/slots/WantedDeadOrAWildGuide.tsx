@@ -54,7 +54,7 @@ const WantedDeadOrAWildGuide = () => {
 
   return (
     <>
-      <SEO title="Wanted Dead or a Wild – Duel & RTP" description="Wanted Dead or a Wild 2026: 96,38 % RTP, ekstremt høj volatilitet, 12.500× max win og Duel at Dawn forklaret." jsonLd={[faqJsonLd, articleSchema, breadcrumbJsonLd, howToJsonLd]} />
+      <SEO title="Wanted Dead or a Wild – RTP 96,38% & Max Win (2026)" description="Wanted Dead or a Wild 2026: 96,38 % RTP, ekstremt høj volatilitet, 12.500× max win og Duel at Dawn forklaret." jsonLd={[faqJsonLd, articleSchema, breadcrumbJsonLd, howToJsonLd]} />
 
       <section className="relative overflow-hidden py-12 text-white md:py-20" style={{ backgroundImage: "linear-gradient(135deg, hsl(260 70% 25%), hsl(250 60% 20%) 40%, hsl(210 80% 25%))" }}>
         <div className="container">

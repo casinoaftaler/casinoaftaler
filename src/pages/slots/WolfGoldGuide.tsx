@@ -110,7 +110,7 @@ const WolfGoldGuide = () => {
   return (
     <>
       <SEO
-        title="Wolf Gold – Jackpot & RTP-Analyse"
+        title="Wolf Gold Spilleautomat – RTP 96,01% & Jackpot (2026)"
         description="Komplet analyse af Wolf Gold: Money Respin-jackpot, Mega Symbols free spins, RTP 96,01 %, volatilitetsprofil og EV-beregninger for danske spillere."
         jsonLd={[faqJsonLd, articleSchema, breadcrumbJsonLd]}
       />

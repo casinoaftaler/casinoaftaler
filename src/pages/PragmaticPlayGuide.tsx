@@ -5,7 +5,7 @@ import pragmaticPlayHero from "@/assets/heroes/pragmatic-play-hero.jpg";
 
 const PragmaticPlayGuide = () => (
   <ProviderPage
-    seoTitle="Pragmatic Play – Alt om Spiludvikleren 2026 | Casinoaftaler"
+    seoTitle="Pragmatic Play Spillemaskiner – Bedste Spil & RTP (2026)"
     seoDescription="Komplet guide til Pragmatic Play – high-volume spiludvikler med 250+ titler. Sweet Bonanza, Gates of Olympus, 6-8 nye spil/måned. RTP 94-96,5%."
     name="Pragmatic Play"
     heroSubtitle="Pragmatic Play har taget casinobranchen med storm med en alsidig portefølje der spænder fra spilleautomater til live casino og bingo – med 6-8 nye udgivelser hver måned."
