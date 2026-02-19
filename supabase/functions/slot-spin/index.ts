@@ -6,6 +6,38 @@ const corsHeaders = {
     "authorization, x-client-info, apikey, content-type, x-supabase-client-platform, x-supabase-client-platform-version, x-supabase-client-runtime, x-supabase-client-runtime-version",
 };
 
+// ============================================================
+// Module-level cache (survives across requests in same Deno instance)
+// Eliminates repeated DB calls for static data like symbols/settings
+// ============================================================
+interface CacheEntry<T> { data: T; fetchedAt: number; }
+const symbolsCache = new Map<string, CacheEntry<unknown[]>>();
+const settingsCache = new Map<string, CacheEntry<number>>();
+const SYMBOL_CACHE_TTL_MS = 5 * 60 * 1000;
+const SETTINGS_CACHE_TTL_MS = 5 * 60 * 1000;
+
+// Singleton service client (avoids re-creating TCP connections on every request)
+let _serviceClient: ReturnType<typeof createClient> | null = null;
+function getServiceClient() {
+  if (!_serviceClient) {
+    _serviceClient = createClient(
+      Deno.env.get("SUPABASE_URL")!,
+      Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!
+    );
+  }
+  return _serviceClient;
+}
+
+// Decode JWT locally — no network round-trip to validate user
+function decodeJwtPayload(token: string): Record<string, unknown> | null {
+  try {
+    const parts = token.split(".");
+    if (parts.length !== 3) return null;
+    const payload = parts[1].replace(/-/g, "+").replace(/_/g, "/");
+    return JSON.parse(atob(payload));
+  } catch { return null; }
+}
+
 // Pay line patterns (5 reels, values represent row index 0-2)
 const PAY_LINES = [
   [1, 1, 1, 1, 1], // Line 1: middle row
@@ -573,31 +605,25 @@ Deno.serve(async (req) => {
       );
     }
 
-    const supabase = createClient(
-      Deno.env.get("SUPABASE_URL")!,
-      Deno.env.get("SUPABASE_ANON_KEY")!,
-      { global: { headers: { Authorization: authHeader } } }
-    );
-
-    // Service role client for privileged write operations
-    // This bypasses RLS - all validation is done above (auth + session checks)
-    const serviceClient = createClient(
-      Deno.env.get("SUPABASE_URL")!,
-      Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!
-    );
-
-    // Validate user
+    // Decode JWT locally — no network round-trip needed
     const token = authHeader.replace("Bearer ", "");
-    const { data: claimsData, error: claimsError } = await supabase.auth.getClaims(token);
-    
-    if (claimsError || !claimsData?.claims) {
+    const claims = decodeJwtPayload(token);
+    if (!claims?.sub || typeof claims.sub !== "string") {
       return new Response(
         JSON.stringify({ error: "Unauthorized" }),
         { status: 401, headers: { ...corsHeaders, "Content-Type": "application/json" } }
       );
     }
+    if (claims.exp && typeof claims.exp === "number" && claims.exp < Date.now() / 1000) {
+      return new Response(
+        JSON.stringify({ error: "Token expired" }),
+        { status: 401, headers: { ...corsHeaders, "Content-Type": "application/json" } }
+      );
+    }
+    const userId = claims.sub;
 
-    const userId = claimsData.claims.sub;
+    // Use singleton service client (avoids creating new TCP connections)
+    const serviceClient = getServiceClient();
 
     // Parse request body
     const body = await req.json();
@@ -614,27 +640,45 @@ Deno.serve(async (req) => {
       );
     }
 
-    // Parallelize independent reads: session, symbols, profile, settings
-    const [sessionRes, symbolsRes, profileRes, settingsRes] = await Promise.all([
-      supabase
+    // Get symbols from module-level cache (eliminates DB call for warm instances)
+    let symbols: SlotSymbol[];
+    const symCached = symbolsCache.get(gameId);
+    if (symCached && Date.now() - symCached.fetchedAt < SYMBOL_CACHE_TTL_MS) {
+      symbols = symCached.data as SlotSymbol[];
+    } else {
+      const { data: fetchedSymbols, error: symErr } = await serviceClient
+        .from("slot_symbols").select("*").eq("game_id", gameId).order("position");
+      if (symErr || !fetchedSymbols || fetchedSymbols.length === 0) {
+        return new Response(JSON.stringify({ error: "Failed to load symbols" }),
+          { status: 500, headers: { ...corsHeaders, "Content-Type": "application/json" } });
+      }
+      symbols = fetchedSymbols as SlotSymbol[];
+      symbolsCache.set(gameId, { data: symbols, fetchedAt: Date.now() });
+    }
+
+    // Get daily spins setting from cache (eliminates DB call for warm instances)
+    let dailySpinsValue: number;
+    const settingsCached = settingsCache.get("slot_daily_spins");
+    if (settingsCached && Date.now() - settingsCached.fetchedAt < SETTINGS_CACHE_TTL_MS) {
+      dailySpinsValue = settingsCached.data;
+    } else {
+      const { data: sd } = await serviceClient
+        .from("site_settings").select("value").eq("key", "slot_daily_spins").maybeSingle();
+      dailySpinsValue = parseInt(sd?.value || "200", 10);
+      settingsCache.set("slot_daily_spins", { data: dailySpinsValue, fetchedAt: Date.now() });
+    }
+
+    // Parallelize the remaining per-user reads: session check + profile
+    const [sessionRes, profileRes] = await Promise.all([
+      serviceClient
         .from("slot_active_sessions")
         .select("session_id")
         .eq("user_id", userId)
         .maybeSingle(),
-      supabase
-        .from("slot_symbols")
-        .select("*")
-        .eq("game_id", gameId)
-        .order("position"),
-      supabase
+      serviceClient
         .from("profiles")
         .select("bonus_spins_permanent, twitch_badges")
         .eq("user_id", userId)
-        .maybeSingle(),
-      supabase
-        .from("site_settings")
-        .select("value")
-        .eq("key", "slot_daily_spins")
         .maybeSingle(),
     ]);
 
@@ -647,18 +691,9 @@ Deno.serve(async (req) => {
       );
     }
 
-    // Validate symbols
-    const symbols = symbolsRes.data;
-    const symbolsError = symbolsRes.error;
-    if (symbolsError || !symbols || symbols.length === 0) {
-      console.error(`[slot-spin] Failed to load symbols for gameId=${gameId}:`, symbolsError);
-      return new Response(
-        JSON.stringify({ error: "Failed to load symbols" }),
-        { status: 500, headers: { ...corsHeaders, "Content-Type": "application/json" } }
-      );
-    }
-
     const isRiseOfFedesvin = gameId === "rise-of-fedesvin";
+
+
 
     // Handle bonus spin (symbols already loaded from parallel fetch above)
     if (isBonusSpin) {
@@ -958,13 +993,12 @@ Deno.serve(async (req) => {
     }).format(now);
     const today = todayParts;
     
-    // Profile and settings already fetched in parallel above
+    // Profile and settings already fetched/cached above
     const bonusSpinsPermanent = profileRes.data?.bonus_spins_permanent || 0;
     const isSubscriber = !!(profileRes.data as any)?.twitch_badges?.is_subscriber;
     const subBonus = isSubscriber ? SUBSCRIBER_BONUS : 0;
     const capLimit = isSubscriber ? SUBSCRIBER_MAX_SPINS_CAP : MAX_SPINS_CAP;
-    const dailySpins = parseInt(settingsRes.data?.value || "200", 10);
-    const maxSpins = Math.min(dailySpins + subBonus + bonusSpinsPermanent, capLimit);
+    const maxSpins = Math.min(dailySpinsValue + subBonus + bonusSpinsPermanent, capLimit);
 
     // Get or create today's spin record with carry-over logic
     // First check if today's record exists
