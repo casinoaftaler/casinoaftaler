@@ -33,7 +33,7 @@ export const organizationSchema = {
   url: SITE_URL,
   logo: {
     "@type": "ImageObject",
-    url: "https://zhpbqqhtgnblaugrqhqi.supabase.co/storage/v1/object/public/casino-logos/header-icon.jpg",
+    url: `${SITE_URL}/favicon-48x48.png`,
     width: 192,
     height: 192,
   },
@@ -95,7 +95,7 @@ export function buildArticleSchema(opts: {
       url: SITE_URL,
       logo: {
         "@type": "ImageObject",
-        url: "https://zhpbqqhtgnblaugrqhqi.supabase.co/storage/v1/object/public/casino-logos/header-icon.jpg",
+        url: `${SITE_URL}/favicon-48x48.png`,
         width: 192,
         height: 192,
       },
