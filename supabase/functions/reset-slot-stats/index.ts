@@ -196,14 +196,40 @@ Deno.serve(async (req) => {
       spinsDeleted = spinsData?.length || 0;
       console.log(`Deleted ${spinsDeleted} spin records`);
 
-      // Re-create spin records with default max credits (200) for today
+      // Re-create spin records with each user's correct max credits for today
       if (userIds.length > 0) {
         const today = new Date().toLocaleDateString("sv-SE", { timeZone: "Europe/Copenhagen" });
-        const newRecords = userIds.map(uid => ({
-          user_id: uid,
-          date: today,
-          spins_remaining: 200,
-        }));
+
+        // Fetch bonus_spins_permanent + twitch_badges for each user to calculate their max
+        const { data: profiles } = await supabase
+          .from("profiles")
+          .select("user_id, bonus_spins_permanent, twitch_badges")
+          .in("user_id", userIds);
+
+        const profileMap = new Map(
+          (profiles || []).map(p => [p.user_id, p])
+        );
+
+        const BASE_CREDITS = 200;
+        const SUBSCRIBER_BONUS = 100;
+        const MAX_CAP = 220;
+        const SUBSCRIBER_MAX_CAP = 320;
+
+        const newRecords = userIds.map(uid => {
+          const profile = profileMap.get(uid);
+          const bonus = profile?.bonus_spins_permanent || 0;
+          const badges = profile?.twitch_badges as any;
+          const isSub = !!badges?.is_subscriber;
+          const subBonus = isSub ? SUBSCRIBER_BONUS : 0;
+          const cap = isSub ? SUBSCRIBER_MAX_CAP : MAX_CAP;
+          const maxCredits = Math.min(BASE_CREDITS + subBonus + bonus, cap);
+
+          return {
+            user_id: uid,
+            date: today,
+            spins_remaining: maxCredits,
+          };
+        });
 
         const { error: insertError } = await supabase
           .from("slot_spins")
@@ -211,9 +237,8 @@ Deno.serve(async (req) => {
 
         if (insertError) {
           console.error("Error re-creating spins:", insertError);
-          // Don't throw - deletion already succeeded
         } else {
-          console.log(`Re-created ${newRecords.length} spin records with 200 credits`);
+          console.log(`Re-created ${newRecords.length} spin records with personalized max credits`);
         }
       }
     }
