@@ -368,7 +368,7 @@ const LunaCasinoAnmeldelse = () => {
           </Card>
 
           <p className="mb-4 text-muted-foreground leading-relaxed">
-            <strong className="text-foreground">Sammenligning med branchen.</strong> Hos et casino med 35x omsætningskrav (branchegennemsnittet) ville den samme 500 kr. bonus kræve 35.000 kr. i omsætning med et forventet tab på 1.400 kr. – du ville miste hele din bonus plus 400 kr. af egne midler. Luna Casinos 10x krav giver en dramatisk bedre forventet værdi.
+            <strong className="text-foreground">Sammenligning med markedet.</strong> I markeder uden for Danmark ses omsætningskrav på 30-50x, hvor den samme 500 kr. bonus kan kræve op til 50.000 kr. i omsætning med et forventet tab der overstiger hele saldoen. Luna Casinos 10x krav (det lovpligtige danske maksimum) giver en dramatisk bedre forventet værdi og er et kvalitetstegn for en dansklicenseret operatør.
           </p>
           <p className="mb-4 text-muted-foreground leading-relaxed">
             <strong className="text-foreground">Vigtige bonusregler:</strong> Maks. indsats med bonus er 50 kr. pr. spin. Kun spilleautomater bidrager 100 % til omsætningskravet – bordspil bidrager 10 %, og live casino-spil bidrager typisk 0 %. Bonussen er ikke "No-Sticky", hvilket betyder at du ikke kan udbetale egne midler separat fra bonusmidler under gennemspilningen. Gyldigheden er 60 dage – dobbelt så lang som mange konkurrenter, der typisk giver 30 dage.
