@@ -74,8 +74,8 @@ export const JONAS_SAME_AS = [
 ];
 
 export const KEVIN_SAME_AS = [
-  "https://www.linkedin.com/in/info-casinoaftaler-5782203b1/",
-  "https://www.instagram.com/casinoaftaler",
+  "https://www.twitch.tv/kevin_casinoaftaler",
+  "https://www.instagram.com/kevin.casinoaftaler",
   "https://www.facebook.com/casinoaftaler",
 ];
 
@@ -83,15 +83,17 @@ export const KEVIN_SAME_AS = [
 const JONAS_PERSON_ID = `${SITE_URL}/forfatter/jonas#person`;
 
 function buildPersonEntity(authorName: string, authorUrl: string, authorSameAs: string[]) {
+  const isKevin = authorName === "Kevin";
   return {
     "@type": "Person",
     "@id": `${authorUrl}#person`,
-    name: authorName === "Jonas" ? "Jonas Theill" : authorName === "Kevin" ? "Kevin" : authorName,
+    name: isKevin ? "Kevin" : "Jonas Theill",
     url: authorUrl,
-    jobTitle: "Casino Bonus Ekspert",
+    jobTitle: isKevin ? "Casino Streamer & IT-medansvarlig" : "Casino Bonus Ekspert",
     worksFor: {
       "@type": "Organization",
-      name: "Casinoaftaler",
+      "@id": `${SITE_URL}/#organization`,
+      name: "Casinoaftaler.dk",
       url: SITE_URL,
     },
     sameAs: authorSameAs,
@@ -147,6 +149,7 @@ export function buildArticleSchema(opts: {
     },
     publisher: {
       "@type": "Organization",
+      "@id": `${SITE_URL}/#organization`,
       name: "Casinoaftaler.dk",
       url: SITE_URL,
       logo: {

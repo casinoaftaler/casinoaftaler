@@ -191,6 +191,17 @@ export const EXCLUDED_PREFIXES = [
 ];
 
 /**
+ * Manual parent overrides for pages whose URL doesn't reflect their
+ * logical position in the hierarchy (e.g. root-level orphans).
+ *
+ * Key: the page's pathname
+ * Value: ordered list of ancestor { name, path } to inject between Forside and the page itself.
+ */
+const PARENT_OVERRIDES: Record<string, { name: string; path: string }[]> = {
+  "/licenserede-casinoer": [{ name: "Casinoer", path: "/casinoer" }],
+};
+
+/**
  * Returns ordered breadcrumb items for a given pathname,
  * or null when breadcrumbs should not be shown (homepage, excluded routes).
  */
@@ -205,10 +216,18 @@ export function getBreadcrumbItems(
     routeLabels[pathname] ||
     pathname.replace(/^\//, "").replace(/-/g, " ");
 
-  const segments = pathname.split("/").filter(Boolean);
   const items: { name: string; path: string }[] = [
     { name: "Forside", path: "/" },
   ];
+
+  // Inject manual parent chain if defined
+  if (PARENT_OVERRIDES[pathname]) {
+    items.push(...PARENT_OVERRIDES[pathname]);
+    items.push({ name: label, path: pathname });
+    return items;
+  }
+
+  const segments = pathname.split("/").filter(Boolean);
 
   if (segments.length > 1) {
     let currentPath = "";
