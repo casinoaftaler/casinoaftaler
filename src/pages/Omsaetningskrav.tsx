@@ -4,7 +4,7 @@ import { AuthorBio } from "@/components/AuthorBio";
 import { Link } from "react-router-dom";
 import { FAQSection } from "@/components/FAQSection";
 import { SEO } from "@/components/SEO";
-import { buildFaqSchema, buildArticleSchema, SITE_URL } from "@/lib/seo";
+import { buildFaqSchema, buildArticleSchema, buildVideoSchema, SITE_URL } from "@/lib/seo";
 import omsaetningskravHero from "@/assets/heroes/omsaetningskrav-hero.jpg";
 import { RelatedGuides } from "@/components/RelatedGuides";
 import { InlineCasinoCards } from "@/components/InlineCasinoCards";
@@ -112,12 +112,19 @@ const Omsaetningskrav = () => {
     videoId: "3tXFTjmgdcE",
   });
 
+  const videoJsonLd = buildVideoSchema(`${SITE_URL}/omsaetningskrav`, "3tXFTjmgdcE", {
+    title: "Omsætningskrav på danske casinoer – Hvad er det?",
+    description: "Jonas forklarer omsætningskrav, hvordan de beregnes, og hvad Danmarks lovpligtige 10x-loft betyder for dig som spiller.",
+    uploadDate: "2026-02-20",
+    duration: "PT1M30S",
+  });
+
   return (
     <>
       <SEO
         title="Omsætningskrav – Komplet Guide til Gennemspilningskrav 2026 | Casinoaftaler"
         description="Alt du skal vide om omsætningskrav på danske casinoer. Hvad de betyder, hvordan de beregnes, strategier og tips til at opfylde dem effektivt."
-        jsonLd={[faqJsonLd, articleJsonLd]}
+        jsonLd={[faqJsonLd, articleJsonLd, videoJsonLd]}
       />
 
       {/* Hero Section */}

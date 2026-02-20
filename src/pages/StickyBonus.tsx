@@ -5,7 +5,7 @@ import { InlineCasinoCards } from "@/components/InlineCasinoCards";
 import { Link } from "react-router-dom";
 import { FAQSection } from "@/components/FAQSection";
 import { SEO } from "@/components/SEO";
-import { buildFaqSchema, buildArticleSchema, SITE_URL } from "@/lib/seo";
+import { buildFaqSchema, buildArticleSchema, buildVideoSchema, SITE_URL } from "@/lib/seo";
 import stickyBonusHero from "@/assets/heroes/sticky-bonus-hero.jpg";
 
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -108,12 +108,20 @@ const StickyBonus = () => {
     videoId: "yUAcefgYfkc",
   });
 
+  const videoJsonLd = buildVideoSchema(`${SITE_URL}/sticky-bonus`, "yUAcefgYfkc", {
+    title: "Hvad er en Sticky Bonus på danske casinoer?",
+    description: "Jonas gennemgår hvad en sticky bonus er, hvordan bonusmidler og indbetaling sammenblandes, og hvad det betyder for dine udbetalingsmuligheder på danske casinoer.",
+    uploadDate: "2026-02-20",
+    duration: "PT1M1S",
+    viewCount: 8,
+  });
+
   return (
     <>
       <SEO
         title="Sticky Bonus – Komplet Guide til Klæbende Bonusser 2026 | Casinoaftaler"
         description="Forstå Sticky Bonusser hos danske casinoer. Lær hvordan klæbende bonusser fungerer, omsætningskrav, strategier og sammenligning med No-Sticky Bonusser."
-        jsonLd={[faqJsonLd, articleJsonLd]}
+        jsonLd={[faqJsonLd, articleJsonLd, videoJsonLd]}
       />
 
       {/* Hero Section */}
