@@ -246,7 +246,7 @@ const FreeSpins = () => {
             videoId="q4jeGo9TPEk"
             title="Hvad er Free Spins på danske casinoer?"
             description="En komplet forklaring af free spins på danske casinoer – hvad de er, hvordan de virker, typer af free spins, omsætningskrav og tips til at få mest ud af dine gratis spins."
-            uploadDate="2026-02-18"
+            uploadDate="2026-02-20"
             contentUrl="https://casinoaftaler.dk/free-spins"
           />
 

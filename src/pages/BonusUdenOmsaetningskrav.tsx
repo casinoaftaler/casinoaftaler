@@ -185,7 +185,7 @@ const BonusUdenOmsaetningskrav = () => {
             videoId="7JQ3nFTasoQ"
             title="Hvad er en bonus uden omsætningskrav?"
             description="Vi forklarer præcis hvad en bonus uden omsætningskrav er, hvordan den adskiller sig fra traditionelle bonusser, og hvad gevinstloftet betyder for din reelle bonus-EV. Inkl. regneeksempler og tips til at finde de bedste tilbud."
-            uploadDate="2026-02-18"
+            uploadDate="2026-02-20"
             contentUrl="https://casinoaftaler.dk/bonus-uden-omsaetningskrav"
           />
 
