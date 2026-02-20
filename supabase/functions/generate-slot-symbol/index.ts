@@ -620,6 +620,285 @@ COMPOSITION:
 ${RISE_BASE_STYLE}`;
 }
 
+// ===== GATES OF FEDESVIN (Olympus/Greek theme) =====
+
+const GATES_BASE_STYLE = `
+STYLE REQUIREMENTS (MANDATORY - MUST FOLLOW EXACTLY):
+- Art style: High-quality digital painting, semi-realistic with stylized mythological elements
+- Rendering: Smooth gradients, divine light effects, polished game art quality
+- Color palette: Celestial blues, radiant golds, marble whites, and electric lightning accents
+- Lighting: Dramatic golden-white divine rim lighting, with electric blue lightning flashes
+- Detail level: High detail on the main subject, slightly softer background
+
+BACKGROUND REQUIREMENTS (MANDATORY):
+- Mount Olympus temple interior background
+- Massive marble columns with Greek ionic/corinthian capitals
+- Bright blue sky with divine golden clouds visible between columns
+- Subtle lightning bolts crackling in the background
+- Golden divine light flooding in from above
+- Slightly blurred/depth-of-field background to make the symbol pop
+- The background must fill the ENTIRE canvas edge-to-edge
+- NO white borders, NO white edges, NO margins anywhere
+
+FORMAT: Square 1:1 aspect ratio, suitable for a slot machine symbol.
+`;
+
+const GATES_PREMIUM_FRAME = `
+FRAME/BORDER REQUIREMENTS (MANDATORY):
+- Add an ornate GOLDEN Greek/Olympian-style frame/border around the ENTIRE image
+- The frame MUST touch ALL FOUR EDGES of the image (no gaps at edges)
+- Frame width: approximately 5-8% of the image on each side
+- Frame design: Intricate golden border with Greek meander/key patterns
+- Frame color: Radiant polished gold with subtle blue lightning energy accents
+- Corner decorations: Small golden laurel wreath motifs with lightning bolt accents
+- The frame should have depth and dimension (3D appearance)
+- Inner edge of frame: subtle golden divine glow effect
+- The artwork must extend FULLY to the inner edge of the frame (no gaps)
+- CRITICAL: The outer edge of the frame must be FLUSH with the image boundary
+`;
+
+const GATES_SCATTER_FRAME = `
+FRAME/BORDER REQUIREMENTS (MANDATORY):
+- Add an ornate RED Olympian-style frame/border around the ENTIRE image
+- The frame MUST touch ALL FOUR EDGES of the image (no gaps at edges)
+- Frame width: approximately 5-8% of the image on each side
+- Frame design: Intricate deep crimson border with Greek meander patterns carved into it
+- Frame color: Rich crimson/ruby red with subtle golden trim on the edges
+- Corner decorations: Small golden lightning bolt motifs with ruby red gems
+- The frame should have depth and dimension (3D appearance)
+- Inner edge of frame: subtle red glow effect with golden highlights
+- The artwork must extend FULLY to the inner edge of the frame (no gaps)
+- CRITICAL: The outer edge of the frame must be FLUSH with the image boundary
+`;
+
+// ===== GATES OF FEDESVIN PROMPTS =====
+
+function getPromptForGatesSymbol(name: string, isScatter: boolean): string {
+  const normalizedName = name.toLowerCase().trim();
+
+  // Scatter symbol - the cat as Zeus
+  if (isScatter || normalizedName.includes("fedesvin") || normalizedName.includes("zeus") || normalizedName.includes("scatter")) {
+    return `Create a slot machine symbol for a Greek mythology/Olympus-themed game called "Gates of Fedesvin".
+
+MAIN SUBJECT (MUST KEEP EXACTLY AS DESCRIBED):
+- A CHUBBY/FAT gray and white cat (similar to British Shorthair) sitting comfortably
+- The cat has green eyes and a sweet, slightly smug expression
+- The cat wears a golden Greek laurel wreath crown on its head
+- A decorative golden collar with blue sapphire gems around the cat's neck
+- The cat is holding a glowing lightning bolt in one paw
+- The cat is sitting ON TOP of a marble throne with golden Greek engravings
+- Divine golden light and small lightning sparks emanating around the cat
+- The cat looks powerful yet adorable, like a tiny Zeus
+
+COMPOSITION:
+- FULL ART: The cat and throne must fill the ENTIRE frame edge-to-edge
+- Cat and throne centered as the main focus
+- Golden divine light and lightning emanating from behind
+- NO empty space - the artwork extends to all edges
+
+${GATES_SCATTER_FRAME}
+
+${GATES_BASE_STYLE}
+
+This is a "Zeus" themed scatter/wild symbol for a Greek mythology slot game.`;
+  }
+
+  // Red Gem
+  if (normalizedName.includes("red") && normalizedName.includes("gem") || normalizedName === "red gem") {
+    return `Create a slot machine symbol for a Greek mythology/Olympus-themed game.
+
+MAIN SUBJECT:
+- A brilliant, large faceted RUBY gemstone as the central focus
+- Rich, deep crimson red color with internal fire and brilliance
+- Set in an ornate golden Greek-style setting with meander/key pattern border
+- Tiny lightning energy crackling INSIDE the gem, visible through the facets
+- The gem emits a warm red divine glow
+- 3D appearance with realistic light refraction and sparkle
+
+COMPOSITION:
+- Gem centered and filling approximately 70% of the frame
+- Golden setting framing the gem elegantly
+- Red divine light radiating outward
+
+${GATES_PREMIUM_FRAME}
+
+${GATES_BASE_STYLE}`;
+  }
+
+  // Purple Gem
+  if (normalizedName.includes("purple") && normalizedName.includes("gem") || normalizedName === "purple gem") {
+    return `Create a slot machine symbol for a Greek mythology/Olympus-themed game.
+
+MAIN SUBJECT:
+- A brilliant, large faceted AMETHYST gemstone as the central focus
+- Rich, deep royal purple color with divine inner glow
+- Set in an ornate golden Greek-style setting with Greek key pattern border
+- Subtle divine purple energy swirling inside the gem
+- The gem emits an ethereal purple glow
+- 3D appearance with realistic light refraction and sparkle
+
+COMPOSITION:
+- Gem centered and filling approximately 70% of the frame
+- Golden setting framing the gem elegantly
+- Purple divine light radiating outward
+
+${GATES_PREMIUM_FRAME}
+
+${GATES_BASE_STYLE}`;
+  }
+
+  // Green Gem
+  if (normalizedName.includes("green") && normalizedName.includes("gem") || normalizedName === "green gem") {
+    return `Create a slot machine symbol for a Greek mythology/Olympus-themed game.
+
+MAIN SUBJECT:
+- A brilliant, large faceted EMERALD gemstone as the central focus
+- Rich, vibrant green color with celestial inner light
+- Set in an ornate golden setting with olive branch motifs
+- Subtle celestial green energy glowing inside the gem
+- The gem emits an ethereal green glow
+- 3D appearance with realistic light refraction and sparkle
+
+COMPOSITION:
+- Gem centered and filling approximately 70% of the frame
+- Golden olive branch setting framing the gem elegantly
+- Green celestial light radiating outward
+
+${GATES_PREMIUM_FRAME}
+
+${GATES_BASE_STYLE}`;
+  }
+
+  // Blue Gem
+  if (normalizedName.includes("blue") && normalizedName.includes("gem") || normalizedName === "blue gem") {
+    return `Create a slot machine symbol for a Greek mythology/Olympus-themed game.
+
+MAIN SUBJECT:
+- A brilliant, large faceted SAPPHIRE gemstone as the central focus
+- Rich, deep electric blue color with lightning energy inside
+- Set in an ornate golden setting with trident motif accents
+- Electric blue lightning energy crackling inside the gem
+- The gem emits a powerful blue electric glow
+- 3D appearance with realistic light refraction and sparkle
+
+COMPOSITION:
+- Gem centered and filling approximately 70% of the frame
+- Golden trident-motif setting framing the gem elegantly
+- Blue electric light radiating outward
+
+${GATES_PREMIUM_FRAME}
+
+${GATES_BASE_STYLE}`;
+  }
+
+  // Gold Cup / Chalice
+  if (normalizedName.includes("cup") || normalizedName.includes("kylix")) {
+    return `Create a slot machine symbol for a Greek mythology/Olympus-themed game.
+
+MAIN SUBJECT:
+- An ornate golden Greek chalice/kylix (drinking cup) as the central focus
+- Made of polished, radiant gold with a metallic sheen
+- Greek meander/key pattern engraved around the rim
+- Decorated with divine engravings of lightning bolts and laurel wreaths
+- Small sapphire and ruby gems inlaid at key points
+- Divine golden light emanating from within the cup
+- 3D appearance with depth and dimension
+
+COMPOSITION:
+- Cup centered and filling approximately 70% of the frame
+- Golden divine glow surrounding the cup
+
+${GATES_PREMIUM_FRAME}
+
+${GATES_BASE_STYLE}`;
+  }
+
+  // Gold Ring
+  if (normalizedName.includes("ring")) {
+    return `Create a slot machine symbol for a Greek mythology/Olympus-themed game.
+
+MAIN SUBJECT:
+- An ornate golden Greek-style signet ring as the central focus
+- Made of polished, radiant gold with intricate craftsmanship
+- Ring features a laurel wreath design carved into the face
+- Subtle Greek key pattern engraved around the band
+- Small lightning bolt motif accents
+- Divine golden glow emanating from the ring
+- 3D appearance with depth and dimension
+
+COMPOSITION:
+- Ring centered and filling approximately 70% of the frame
+- Slight angle to show the face and band detail
+- Golden divine light behind it
+
+${GATES_PREMIUM_FRAME}
+
+${GATES_BASE_STYLE}`;
+  }
+
+  // Hourglass
+  if (normalizedName.includes("hourglass") || normalizedName.includes("timer")) {
+    return `Create a slot machine symbol for a Greek mythology/Olympus-themed game.
+
+MAIN SUBJECT:
+- A golden hourglass as the central focus
+- Frame made of polished gold with Greek meander pattern engravings
+- Top and bottom caps are ornate marble with golden trim
+- The sand inside is golden and celestial, glowing with divine light
+- Tiny lightning sparks mixed with the falling sand
+- Greek laurel decorations on the frame joints
+- 3D appearance with depth and dimension
+
+COMPOSITION:
+- Hourglass centered and filling approximately 70% of the frame
+- Golden celestial light emanating from the sand
+- Divine glow surrounding the hourglass
+
+${GATES_PREMIUM_FRAME}
+
+${GATES_BASE_STYLE}`;
+  }
+
+  // Chalice / Amphora
+  if (normalizedName.includes("chalice") || normalizedName.includes("amphora") || normalizedName.includes("goblet")) {
+    return `Create a slot machine symbol for a Greek mythology/Olympus-themed game.
+
+MAIN SUBJECT:
+- A golden Greek amphora/goblet as the central focus
+- Made of polished, radiant gold with elaborate craftsmanship
+- Decorated with Zeus lightning bolt motifs engraved into the surface
+- Handles shaped like golden serpents or eagles
+- Greek meander pattern around the rim and base
+- Small sapphire gems inlaid between the lightning motifs
+- Divine golden light emanating from within
+- 3D appearance with depth and dimension
+
+COMPOSITION:
+- Amphora centered and filling approximately 70% of the frame
+- Golden divine glow surrounding the vessel
+
+${GATES_PREMIUM_FRAME}
+
+${GATES_BASE_STYLE}`;
+  }
+
+  // Default fallback - generic Olympus symbol
+  return `Create a slot machine symbol for a Greek mythology/Olympus-themed game.
+
+MAIN SUBJECT:
+- A ${name} themed icon rendered in ancient Greek/Olympian style
+- Made of or decorated with polished gold and marble
+- Rich details with sapphire blue and lightning accents
+- Greek meander and laurel decorative elements
+- 3D appearance with depth and dimension
+
+COMPOSITION:
+- Subject centered and filling approximately 70% of the frame
+- Should appear as a precious divine Greek artifact
+
+${GATES_BASE_STYLE}`;
+}
+
 // ===== MAIN HANDLER =====
 
 serve(async (req) => {
@@ -697,11 +976,19 @@ serve(async (req) => {
     console.log(`Generating symbol for: ${symbol.name} (is_scatter: ${symbol.is_scatter}, game_id: ${symbol.game_id})`);
 
     // Route to correct prompt set based on game_id
-    const prompt = symbol.game_id === "rise-of-fedesvin"
-      ? getPromptForRiseSymbol(symbol.name, symbol.is_scatter)
-      : getPromptForSymbol(symbol.name, symbol.is_scatter);
+    let prompt: string;
+    if (symbol.game_id === "rise-of-fedesvin") {
+      prompt = getPromptForRiseSymbol(symbol.name, symbol.is_scatter);
+    } else if (symbol.game_id === "gates-of-fedesvin") {
+      prompt = getPromptForGatesSymbol(symbol.name, symbol.is_scatter);
+    } else {
+      prompt = getPromptForSymbol(symbol.name, symbol.is_scatter);
+    }
 
-    console.log(`Using ${symbol.game_id === "rise-of-fedesvin" ? "Rise of Fedesvin" : "Book of Fedesvin"} prompt for: ${symbol.name}`);
+    const themeLabel = symbol.game_id === "rise-of-fedesvin" ? "Rise of Fedesvin"
+      : symbol.game_id === "gates-of-fedesvin" ? "Gates of Fedesvin"
+      : "Book of Fedesvin";
+    console.log(`Using ${themeLabel} prompt for: ${symbol.name}`);
 
     const LOVABLE_API_KEY = Deno.env.get("LOVABLE_API_KEY");
     if (!LOVABLE_API_KEY) {
