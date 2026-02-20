@@ -4,6 +4,7 @@ import defaultTitleImage from "@/assets/slots/book-of-fedesvin-title.png";
 import riseTitleImage from "@/assets/slots/rise/title-logo.png";
 import defaultSlotBackground from "@/assets/slots/slot-background.jpg";
 import riseSlotBackground from "@/assets/slots/rise/background.jpg";
+import gatesSlotBackground from "@/assets/slots/gates/background.jpg";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
 import { useSlotSymbols } from "@/hooks/useSlotSymbols";
 import { useSlotSymbolPreloader } from "@/hooks/useSlotSymbolPreloader";
@@ -85,15 +86,19 @@ export function SlotLoadingScreen({ onComplete, gameId = "book-of-fedesvin" }: S
   const { data: soundFiles } = useSlotSoundFiles(gameId);
   const theme = getSlotTheme(gameId);
   const isWizard = gameId === "rise-of-fedesvin";
+  const isOlympus = gameId === "gates-of-fedesvin";
   
-  const titleKey = isWizard ? "rise_of_fedesvin_title_image" : "slot_title_image";
+  const titleKey = gameId === "book-of-fedesvin" ? "slot_title_image"
+    : `${gameId.replace(/-/g, "_")}_title_image`;
   const titleImage = siteSettings?.[titleKey] || (isWizard ? riseTitleImage : defaultTitleImage);
 
-  const bgKey = isWizard ? "rise_of_fedesvin_background_image" : "slot_background_image";
-  const gameDefaultBackground = isWizard ? riseSlotBackground : defaultSlotBackground;
+  const bgKey = gameId === "book-of-fedesvin" ? "slot_background_image"
+    : `${gameId.replace(/-/g, "_")}_background_image`;
+  const gameDefaultBackground = isOlympus ? gatesSlotBackground : isWizard ? riseSlotBackground : defaultSlotBackground;
   const backgroundImage = siteSettings?.[bgKey] || gameDefaultBackground;
 
-  const frameKey = isWizard ? "rise_of_fedesvin_frame_image" : "slot_machine_frame_image";
+  const frameKey = gameId === "book-of-fedesvin" ? "slot_machine_frame_image"
+    : `${gameId.replace(/-/g, "_")}_frame_image`;
   const frameImage = siteSettings?.[frameKey] || siteSettings?.slot_machine_frame_image;
   
   // ── Image preloading ──────────────────────────────────────────────
