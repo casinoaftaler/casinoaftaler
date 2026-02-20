@@ -196,8 +196,7 @@ export default function Highlights() {
     <>
       <SEO
         title="Highlights & Community Clips | Casinoaftaler"
-        description="Se de bedste øjeblikke fra vores streams og community. Twitch clips, YouTube videoer og bruger-indsendte highlights samlet ét sted."
-        
+        description="Se de bedste casino stream-øjeblikke og bruger-indsendte highlights. Twitch clips, YouTube videoer og community clips samlet ét sted."
       />
       <CommunityPageLayout
         title="Highlights"
@@ -206,6 +205,55 @@ export default function Highlights() {
         badgeIcon={Sparkles}
       >
         <div className="py-8 md:py-12">
+
+          {/* ── Redaktionel intro ── */}
+          <div className="max-w-3xl mx-auto mb-10 px-2">
+            <div className="flex items-center gap-2 mb-3">
+              <BookOpen className="h-4 w-4 text-primary" />
+              <span className="text-sm font-medium text-muted-foreground uppercase tracking-wide">Redaktionel intro</span>
+            </div>
+            <h2 className="text-xl md:text-2xl font-bold mb-4">
+              Hvad er Highlights & Community Clips?
+            </h2>
+            <div className="space-y-3 text-muted-foreground leading-relaxed text-sm md:text-base">
+              <p>
+                Highlights-sektionen er vores kurerede samling af de bedste casino-øjeblikke fra Jonas og kevins streams
+                på Twitch og YouTube. Her finder du alt fra episke bonus-åbninger og massive multipliers til sjove fejltagelser
+                og uforglemmelige reaktioner – præcis som de skete, live.
+              </p>
+              <p>
+                Community Clips-fanen er stedet, hvor <strong>du og resten af vores community</strong> kan dele jeres egne
+                highlight-øjeblikke. Har du ramt en 500x på Gates of Olympus? Landet en sjælden bonus-buy med maksimal udbetaling?
+                Del det med fællesskabet – godkendte clips belønnes med ekstra spins til vores{" "}
+                <Link to="/community/spin-the-reel" className="text-primary underline hover:text-primary/80">Spin the Reel</Link>-funktion.
+              </p>
+              <p>
+                Alle indsendte clips gennemgår en godkendelsesproces. Vi verificerer at indholdet er ægte, og at det
+                lever op til vores retningslinjer for ansvarligt spil. Vi viser ikke indhold der glorificerer
+                uforsvarligt spil eller store tab.
+              </p>
+              <p>
+                Vil du se de nyeste casino-videoer fra vores stream, kan du også følge os direkte på{" "}
+                <a href="https://www.twitch.tv/fedesvinsejer" className="text-primary underline hover:text-primary/80" target="_blank" rel="noopener noreferrer">Twitch</a>{" "}og{" "}
+                <a href="https://www.youtube.com/@casinoaftaler" className="text-primary underline hover:text-primary/80" target="_blank" rel="noopener noreferrer">YouTube</a>.
+              </p>
+            </div>
+            <div className="flex flex-wrap gap-3 mt-5 text-xs text-muted-foreground">
+              <span className="flex items-center gap-1.5">
+                <User className="h-3.5 w-3.5 text-primary" />
+                Kurateret af Jonas & Kevin
+              </span>
+              <span className="flex items-center gap-1.5">
+                <CalendarDays className="h-3.5 w-3.5 text-primary" />
+                Opdateres løbende
+              </span>
+              <span className="flex items-center gap-1.5">
+                <BookOpen className="h-3.5 w-3.5 text-primary" />
+                Bruger-indsendte clips godkendes manuelt
+              </span>
+            </div>
+          </div>
+
           <Tabs defaultValue={defaultTab} className="w-full">
             <div className="flex justify-center mb-8">
               <TabsList>
@@ -235,3 +283,4 @@ export default function Highlights() {
     </>
   );
 }
+

@@ -27,10 +27,13 @@ export function SEO({ title, description, type = "website", image, noindex, json
   const canonicalUrl = getCanonicalUrl(pathname);
   const formattedTitle = formatTitle(title);
 
-  // Truncate description to 160 chars for SEO best practice
-  const safeDescription = description.length > 160
-    ? description.slice(0, 157) + "..."
-    : description;
+  // Truncate description to 160 chars at a word boundary for SEO best practice
+  const safeDescription = (() => {
+    if (description.length <= 160) return description;
+    const truncated = description.slice(0, 157);
+    const lastSpace = truncated.lastIndexOf(" ");
+    return (lastSpace > 100 ? truncated.slice(0, lastSpace) : truncated) + "…";
+  })();
 
   const rawJsonLd = jsonLd
     ? Array.isArray(jsonLd) ? jsonLd : [jsonLd]
