@@ -1,4 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!--
+  AUTO-GENERATED from src/lib/seoRoutes.ts via the Vite sitemapPlugin (vite.config.ts).
+  DO NOT EDIT MANUALLY. Add/remove URLs in seoRoutes.ts only.
+  At build time this file is overwritten with a fresh copy in /dist.
+  Total URLs: 168 (exact mirror of seoRoutes.ts – no manual drift possible)
+-->
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://casinoaftaler.dk/</loc>
@@ -548,7 +554,7 @@
   </url>
   <url>
     <loc>https://casinoaftaler.dk/casino-bonus</loc>
-    <lastmod>2026-02-18</lastmod>
+    <lastmod>2026-02-20</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
@@ -748,7 +754,7 @@
     <loc>https://casinoaftaler.dk/casinoer</loc>
     <lastmod>2026-02-20</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
+    <priority>0.8</priority>
   </url>
   <url>
     <loc>https://casinoaftaler.dk/casinoer/hurtig-udbetaling</loc>
@@ -805,6 +811,24 @@
     <priority>0.9</priority>
   </url>
   <url>
+    <loc>https://casinoaftaler.dk/community</loc>
+    <lastmod>2026-02-20</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://casinoaftaler.dk/community/slots</loc>
+    <lastmod>2026-02-20</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://casinoaftaler.dk/highlights</loc>
+    <lastmod>2026-02-20</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
     <loc>https://casinoaftaler.dk/ansvarligt-spil</loc>
     <lastmod>2026-02-14</lastmod>
     <changefreq>monthly</changefreq>
@@ -842,7 +866,7 @@
   </url>
   <url>
     <loc>https://casinoaftaler.dk/forfatter/jonas</loc>
-    <lastmod>2026-02-17</lastmod>
+    <lastmod>2026-02-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
@@ -875,17 +899,5 @@
     <lastmod>2026-02-11</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
-  </url>
-  <url>
-    <loc>https://casinoaftaler.dk/community</loc>
-    <lastmod>2026-02-19</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://casinoaftaler.dk/highlights</loc>
-    <lastmod>2026-02-19</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
   </url>
 </urlset>
