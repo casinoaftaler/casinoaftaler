@@ -47,7 +47,7 @@ const gatesOfOlympusFaqs: { question: string; answer: ReactNode }[] = [
     question: "Kan Gates of Olympus bruges til bonusomsætning?",
     answer: (
       <>
-        Ja, med forbehold. Med 96,50 % RTP er den marginalt bedre end <Link to="/casinospil/spillemaskiner/book-of-dead" className={linkClass}>Book of Dead</Link> (96,21 %) rent RTP-mæssigt. Men den højere volatilitet øger bust-risikoen under wagering. Break-even-punktet for en bonus med 96,50 % RTP er ca. 28,6x wagering – bonusser med lavere krav end dette er matematisk fordelagtige. For <Link to="/omsaetningskrav" className={linkClass}>omsætningskrav</Link> over 30x anbefaler vi en slot med lavere volatilitet.
+        Ja, med forbehold. Med 96,50 % RTP er den marginalt bedre end <Link to="/casinospil/spillemaskiner/book-of-dead" className={linkClass}>Book of Dead</Link> (96,21 %) rent RTP-mæssigt. Men den højere volatilitet øger bust-risikoen under wagering. Break-even-punktet for en bonus med 96,50 % RTP er ca. 28,6x wagering – med det danske lovkrav på 10x er oddset markant i spillerens favør. For <Link to="/omsaetningskrav" className={linkClass}>omsætningskrav</Link> over 30x (relevant for udenlandske casinoer) anbefaler vi en slot med lavere volatilitet.
       </>
     ),
   },
