@@ -58,11 +58,11 @@ const MORE_SLOTS = [
     status: "coming-soon" as const,
   },
   {
-    id: "fedesvin-of-olympus",
-    title: "Fedesvin of Olympus",
+    id: "gates-of-fedesvin",
+    title: "Gates of Fedesvin",
     description: "Besteg Olympen og vind gudernes gunst! Cascading wins og multiplicerende lyn-gevinster.",
     image: olympusImage,
-    href: "#",
+    href: "/community/slots/gates-of-fedesvin",
     status: "coming-soon" as const,
   },
 ];
