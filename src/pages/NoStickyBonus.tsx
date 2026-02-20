@@ -36,6 +36,7 @@ import {
 } from "lucide-react";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
 import { RelatedGuides } from "@/components/RelatedGuides";
+import { YoutubeEmbed } from "@/components/YoutubeEmbed";
 
 const linkClass = "text-primary underline hover:text-primary/80";
 
@@ -156,6 +157,14 @@ const NoStickyBonus = () => {
         <div className="mb-10 overflow-hidden rounded-xl">
           <img src={noStickyHero} alt="No-sticky bonus – matematisk analyse og frihed" className="w-full h-auto object-cover max-h-[400px]" loading="eager" />
         </div>
+
+        <YoutubeEmbed
+          videoId="yUAcefgYfkc"
+          title="Hvad er en No-Sticky Bonus på danske casinoer?"
+          description="Vi forklarer præcis hvad en no-sticky bonus er, hvordan adskillelsen af penge fungerer, og hvorfor det er den mest spillervenlige bonustype på det danske marked."
+          uploadDate="2026-02-18"
+          contentUrl="https://casinoaftaler.dk/no-sticky-bonus"
+        />
 
         {/* ===== S1: Strategisk intro ===== */}
         <section className="mb-12">

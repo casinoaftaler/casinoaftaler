@@ -40,6 +40,7 @@ import {
 } from "lucide-react";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
 import { RelatedGuides } from "@/components/RelatedGuides";
+import { YoutubeEmbed } from "@/components/YoutubeEmbed";
 import type { ReactNode } from "react";
 
 const linkClass = "text-primary underline hover:text-primary/80";
@@ -160,6 +161,14 @@ const BonusUdenOmsaetningskrav = () => {
         <div className="mb-10 overflow-hidden rounded-xl">
           <img src={bonusUdenOmsaetningHero} alt="Bonus uden omsætningskrav – teknisk EV-analyse af omsætningsfrie bonusser 2026" className="w-full h-auto object-cover max-h-[400px]" loading="eager" />
         </div>
+
+        <YoutubeEmbed
+          videoId="7JQ3nFTasoQ"
+          title="Hvad er en bonus uden omsætningskrav?"
+          description="Vi forklarer præcis hvad en bonus uden omsætningskrav er, hvordan den adskiller sig fra traditionelle bonusser, og hvad gevinstloftet betyder for din reelle bonus-EV. Inkl. regneeksempler og tips til at finde de bedste tilbud."
+          uploadDate="2026-02-18"
+          contentUrl="https://casinoaftaler.dk/bonus-uden-omsaetningskrav"
+        />
 
         {/* === SEKTION 1: Mekanisk breakdown === */}
         <section className="mb-12">

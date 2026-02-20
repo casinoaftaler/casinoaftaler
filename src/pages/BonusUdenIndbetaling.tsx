@@ -40,6 +40,7 @@ import {
 } from "lucide-react";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
 import { RelatedGuides } from "@/components/RelatedGuides";
+import { YoutubeEmbed } from "@/components/YoutubeEmbed";
 import type { ReactNode } from "react";
 
 const linkClass = "text-primary underline hover:text-primary/80";
@@ -164,6 +165,14 @@ const BonusUdenIndbetaling = () => {
         <div className="mb-10 overflow-hidden rounded-xl">
           <img src={bonusUdenIndbetalingHero} alt="Bonus uden indbetaling – teknisk analyse af no deposit bonusser i Danmark 2026" className="w-full h-auto object-cover max-h-[400px]" loading="eager" />
         </div>
+
+        <YoutubeEmbed
+          videoId="XhbLda1HyOs"
+          title="Hvad er en bonus uden indbetaling?"
+          description="Vi gennemgår hvad en bonus uden indbetaling (no deposit bonus) er, de fire varianter, EV-analyse af gevinstlofter og omsætningskrav, og hvordan du finder og aktiverer de bedste tilbud hos danske casinoer i 2026."
+          uploadDate="2026-02-18"
+          contentUrl="https://casinoaftaler.dk/bonus-uden-indbetaling"
+        />
 
         {/* Cross-link to nye casinoer sub */}
         <div className="mb-8 rounded-lg border border-primary/30 bg-accent/30 p-4">

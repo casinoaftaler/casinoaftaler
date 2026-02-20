@@ -17,6 +17,7 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
+import { YoutubeEmbed } from "@/components/YoutubeEmbed";
 import {
   Sparkles,
   ShieldCheck,
@@ -187,6 +188,14 @@ const FreeSpins = () => {
         <div className="mb-10 overflow-hidden rounded-xl">
           <img src={freeSpinsHero} alt="Free spins – farverige spilleautomater med mønter" className="w-full h-auto object-cover max-h-[400px]" loading="eager" />
         </div>
+
+        <YoutubeEmbed
+          videoId="q4jeGo9TPEk"
+          title="Hvad er Free Spins på danske casinoer?"
+          description="En komplet forklaring af free spins på danske casinoer – hvad de er, hvordan de virker, typer af free spins, omsætningskrav og tips til at få mest ud af dine gratis spins."
+          uploadDate="2026-02-18"
+          contentUrl="https://casinoaftaler.dk/free-spins"
+        />
 
         {/* Intro */}
         <section className="mb-12">
