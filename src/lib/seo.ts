@@ -62,6 +62,22 @@ function toIso8601WithTz(date: string): string {
 /**
  * Generate Article JSON-LD schema with all required fields.
  */
+const JONAS_SAME_AS = [
+  "https://www.twitch.tv/fedesvinsejer",
+  "https://www.youtube.com/@fedesvinsejer",
+  "https://discord.gg/ZD4YdSeY",
+  "https://www.instagram.com/jonastheill",
+  "https://www.linkedin.com/in/info-casinoaftaler-5782203b1/",
+  "https://x.com/casinoaftaler",
+  "https://www.snapchat.com/@fedesvinsejer",
+];
+
+const KEVIN_SAME_AS = [
+  "https://www.twitch.tv/fedesvinsejer",
+  "https://www.youtube.com/@fedesvinsejer",
+  "https://discord.gg/ZD4YdSeY",
+];
+
 export function buildArticleSchema(opts: {
   headline: string;
   description: string;
@@ -70,8 +86,16 @@ export function buildArticleSchema(opts: {
   dateModified: string;
   authorName?: string;
   authorUrl?: string;
+  /** Defaults to Jonas's sameAs list. Pass KEVIN_SAME_AS or custom array to override. */
+  authorSameAs?: string[];
   image?: string;
 }) {
+  const authorName = opts.authorName || "Jonas";
+  const authorUrl = opts.authorUrl || `${SITE_URL}/forfatter/jonas`;
+  const authorId = `${authorUrl}#person`;
+  const authorSameAs = opts.authorSameAs
+    ?? (authorName === "Kevin" ? KEVIN_SAME_AS : JONAS_SAME_AS);
+
   return {
     "@context": "https://schema.org",
     "@type": "Article",
@@ -86,8 +110,10 @@ export function buildArticleSchema(opts: {
     },
     author: {
       "@type": "Person",
-      name: opts.authorName || "Jonas",
-      url: opts.authorUrl || `${SITE_URL}/forfatter/jonas`,
+      "@id": authorId,
+      name: authorName,
+      url: authorUrl,
+      sameAs: authorSameAs,
     },
     publisher: {
       "@type": "Organization",
@@ -102,6 +128,8 @@ export function buildArticleSchema(opts: {
     },
   };
 }
+
+export { JONAS_SAME_AS, KEVIN_SAME_AS };
 
 /**
  * Extract plain text from a React node for use in structured data.

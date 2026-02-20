@@ -4,7 +4,7 @@ import { AuthorBio } from "@/components/AuthorBio";
 import { Link } from "react-router-dom";
 import { FAQSection } from "@/components/FAQSection";
 import { SEO } from "@/components/SEO";
-import { buildFaqSchema } from "@/lib/seo";
+import { buildFaqSchema, buildArticleSchema, SITE_URL } from "@/lib/seo";
 import { RelatedGuides } from "@/components/RelatedGuides";
 import freeSpinsHero from "@/assets/heroes/free-spins-hero.jpg";
 import { InlineCasinoCards } from "@/components/InlineCasinoCards";
@@ -134,17 +134,13 @@ const freeSpinsTypes = [
 const FreeSpins = () => {
   const faqJsonLd = buildFaqSchema(freeSpinsFaqs);
 
-  const articleJsonLd = {
-    "@context": "https://schema.org",
-    "@type": "Article",
+  const articleJsonLd = buildArticleSchema({
     headline: "Free Spins – Komplet Guide til Gratis Spins 2026",
     description: "Alt du skal vide om free spins på danske casinoer. Typer, omsætningskrav, betingelser og strategier.",
-    author: { "@type": "Person", name: "Jonas", url: "https://casinoaftaler.dk/forfatter/jonas" },
-    publisher: { "@type": "Organization", name: "Casinoaftaler.dk", url: "https://casinoaftaler.dk", logo: { "@type": "ImageObject", url: "https://casinoaftaler.dk/favicon-48x48.png", width: 192, height: 192 } },
+    url: `${SITE_URL}/free-spins`,
     datePublished: "2025-06-01",
     dateModified: "2026-02-20",
-    mainEntityOfPage: { "@type": "WebPage", "@id": "https://casinoaftaler.dk/free-spins" },
-  };
+  });
 
   return (
     <>

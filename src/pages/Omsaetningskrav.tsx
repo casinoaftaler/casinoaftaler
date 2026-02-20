@@ -4,7 +4,7 @@ import { AuthorBio } from "@/components/AuthorBio";
 import { Link } from "react-router-dom";
 import { FAQSection } from "@/components/FAQSection";
 import { SEO } from "@/components/SEO";
-import { buildFaqSchema } from "@/lib/seo";
+import { buildFaqSchema, buildArticleSchema, SITE_URL } from "@/lib/seo";
 import omsaetningskravHero from "@/assets/heroes/omsaetningskrav-hero.jpg";
 import { RelatedGuides } from "@/components/RelatedGuides";
 import { InlineCasinoCards } from "@/components/InlineCasinoCards";
@@ -103,17 +103,13 @@ const Omsaetningskrav = () => {
 
   const faqJsonLd = buildFaqSchema(omsaetningskravFaqs);
 
-  const articleJsonLd = {
-    "@context": "https://schema.org",
-    "@type": "Article",
+  const articleJsonLd = buildArticleSchema({
     headline: "Omsætningskrav – Komplet Guide til Gennemspilningskrav 2026",
     description: "Alt du skal vide om omsætningskrav på danske casinoer. Beregning, strategier og tips.",
-    author: { "@type": "Person", name: "Jonas", url: "https://casinoaftaler.dk/forfatter/jonas" },
-    publisher: { "@type": "Organization", name: "Casinoaftaler.dk", url: "https://casinoaftaler.dk", logo: { "@type": "ImageObject", url: "https://casinoaftaler.dk/favicon-48x48.png", width: 192, height: 192 } },
+    url: `${SITE_URL}/omsaetningskrav`,
     datePublished: "2025-06-01",
     dateModified: "2026-02-20",
-    mainEntityOfPage: { "@type": "WebPage", "@id": "https://casinoaftaler.dk/omsaetningskrav" },
-  };
+  });
 
   return (
     <>
