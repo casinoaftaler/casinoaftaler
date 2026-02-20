@@ -59,8 +59,8 @@ const noStickyFaqs: { question: string; answer: string | React.ReactNode }[] = [
     question: "Er det altid bedst at vælge No-Sticky over Sticky?",
     answer: (
       <>
-        For de fleste spillere ja – men der er matematiske edge cases. Hvis du udelukkende planlægger at gennemspille hele omsætningskravet uden at hæve undervejs, giver en sticky bonus med højere beløb (fx 200% match) mere bankroll og dermed større sandsynlighed for at overleve variansen. Men for spillere, der ønsker fleksibilitet til at stoppe mens de er foran, er no-sticky altid overlegen. I Danmark, hvor{" "}
-        <Link to="/omsaetningskrav" className={linkClass}>omsætningskravet</Link> er loft til 10x, er no-sticky-fordelen endnu større, fordi gennemspilningen er realistisk – du mister ikke nødvendigvis alt under omsætning.
+        For de fleste spillere ja. I Danmark tilbyder alle casinoer 100% match op til 1.000 kr. – det er det lovmæssige maksimum – så matchprocenten varierer ikke. Forskellen er udelukkende bonusstrukturen (sticky vs. no-sticky). For spillere, der ønsker fleksibilitet til at stoppe mens de er foran, er no-sticky altid overlegen. I Danmark, hvor{" "}
+        <Link to="/omsaetningskrav" className={linkClass}>omsætningskravet</Link> er loftet til 10x, er no-sticky-fordelen endnu større, fordi gennemspilningen er realistisk – du mister ikke nødvendigvis alt under omsætning.
       </>
     ),
   },
@@ -376,7 +376,7 @@ const NoStickyBonus = () => {
                 {[
                   { param: "Midler adskilt?", ns: "✅ Ja", st: "❌ Nej", of: "N/A", fs: "N/A" },
                   { param: "Hæv egne gevinster?", ns: "✅ Altid", st: "❌ Først efter omsætning", of: "✅ Altid", fs: "❌ Efter omsætning" },
-                  { param: "Typisk bonusbeløb", ns: "100% match", st: "100-200% match", of: "50-200 kr.", fs: "10-200 spins" },
+                  { param: "Typisk bonusbeløb", ns: "100% match", st: "100% match", of: "50-200 kr.", fs: "10-200 spins" },
                   { param: "Omsætningskrav", ns: "10x (kun bonus)", st: "10x (d+b)", of: "0x", fs: "10x på gevinst" },
                   { param: "Forventet værdi", ns: "~68% af bonus", st: "~40% af bonus", of: "~85% af bonus", fs: "Varierer" },
                   { param: "Risikoprofil", ns: "Lav-medium", st: "Medium-høj", of: "Meget lav", fs: "Lav" },
@@ -397,7 +397,7 @@ const NoStickyBonus = () => {
           <h3 className="mb-3 mt-6 text-xl font-semibold">No-Sticky vs. Sticky Bonus</h3>
           <p className="mb-4 text-muted-foreground leading-relaxed">
             Den mest relevante sammenligning, da begge er matchbonusser. Forskellen er udelukkende i midlernes adskillelse. En{" "}
-            <Link to="/sticky-bonus" className={linkClass}>sticky bonus</Link> låser hele din saldo – du kan ikke hæve noget, heller ikke gevinster fra din egen indbetaling, før alt er gennemspillet. Med No-Sticky bevarer du altid kontrollen over dine egne penge. Da alle danske casinoer tilbyder 100% match (dansk lovmæssigt maksimum), er den eneste reelle forskel bonusstrukturen – og No-Sticky er næsten altid matematisk overlegen.
+            <Link to="/sticky-bonus" className={linkClass}>sticky bonus</Link> låser hele din saldo – du kan ikke hæve noget, heller ikke gevinster fra din egen indbetaling, før alt er gennemspillet. Med No-Sticky bevarer du altid kontrollen over dine egne penge. Alle danske casinoer tilbyder 100% match op til 1.000 kr. (det lovmæssige maksimum), så den eneste reelle forskel er bonusstrukturen – og No-Sticky er matematisk overlegen.
           </p>
 
           <h3 className="mb-3 mt-6 text-xl font-semibold">No-Sticky vs. Bonus uden Omsætningskrav</h3>
