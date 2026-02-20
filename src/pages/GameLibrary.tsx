@@ -46,6 +46,15 @@ const FEATURED_SLOTS = [
     priority: "secondary" as const,
     imagePosition: "center 30%",
   },
+  {
+    id: "gates-of-fedesvin",
+    title: "Gates of Fedesvin",
+    description: "Besteg Olympen og vind gudernes gunst! Cascading wins og multiplicerende lyn-gevinster.",
+    image: olympusImage,
+    href: "/community/slots/gates-of-fedesvin",
+    badge: "⚡ NY",
+    priority: "secondary" as const,
+  },
 ];
 
 const MORE_SLOTS = [
@@ -55,14 +64,6 @@ const MORE_SLOTS = [
     description: "Oplev den franske elegance med roulette-inspirerede bonusrunder og luksuriøse gevinster.",
     image: leFedesvinImage,
     href: "#",
-    status: "coming-soon" as const,
-  },
-  {
-    id: "gates-of-fedesvin",
-    title: "Gates of Fedesvin",
-    description: "Besteg Olympen og vind gudernes gunst! Cascading wins og multiplicerende lyn-gevinster.",
-    image: olympusImage,
-    href: "/community/slots/gates-of-fedesvin",
     status: "coming-soon" as const,
   },
 ];
