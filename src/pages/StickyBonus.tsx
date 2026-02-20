@@ -188,6 +188,8 @@ const StickyBonus = () => {
             videoId="yUAcefgYfkc"
             title="Hvad er en Sticky Bonus på danske casinoer?"
             description="Jonas gennemgår hvad en sticky bonus er, hvordan bonusmidler og indbetaling sammenblandes, og hvad det betyder for dine udbetalingsmuligheder på danske casinoer."
+            duration="PT1M1S"
+            viewCount={8}
             uploadDate="2026-02-20"
             contentUrl="https://casinoaftaler.dk/sticky-bonus"
           />

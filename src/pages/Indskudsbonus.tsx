@@ -189,6 +189,8 @@ const Indskudsbonus = () => {
             videoId="hMHHVA6vH0Y"
             title="Hvad er en indskudsbonus på danske casinoer?"
             description="Vi forklarer hvad en indskudsbonus (matchbonus) er på danske casinoer, hvordan den aktiveres, hvad omsætningskrav betyder for din reelle bonusværdi, og hvilke betingelser du skal kende til."
+            duration="PT1M2S"
+            viewCount={3}
             uploadDate="2026-02-20"
             contentUrl="https://casinoaftaler.dk/indskudsbonus"
           />

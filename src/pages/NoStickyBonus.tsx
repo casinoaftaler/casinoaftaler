@@ -186,6 +186,8 @@ const NoStickyBonus = () => {
             videoId="WOowRz6hnH8"
             title="Hvad er en No-Sticky Bonus på danske casinoer?"
             description="Vi forklarer præcis hvad en no-sticky bonus er, hvordan adskillelsen af penge fungerer, og hvorfor det er den mest spillervenlige bonustype på det danske marked."
+            duration="PT1M14S"
+            viewCount={2}
             uploadDate="2026-02-20"
             contentUrl="https://casinoaftaler.dk/no-sticky-bonus"
           />
