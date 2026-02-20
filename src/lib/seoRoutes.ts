@@ -161,6 +161,7 @@ export const seoRoutes: SeoRoute[] = [
   { path: "/betalingsmetoder/revolut", changefreq: "monthly", priority: 0.7, lastmod: "2026-02-11" },
 
   // ── Casino Guides ──
+  { path: "/casinoer", changefreq: "weekly", priority: 0.8, lastmod: "2026-02-20" },
   { path: "/casinoer/hurtig-udbetaling", changefreq: "weekly", priority: 0.9, lastmod: "2026-02-15" },
   { path: "/casinoer/hoej-rtp", changefreq: "weekly", priority: 0.9, lastmod: "2026-02-15" },
   { path: "/casinoer/crypto-casino", changefreq: "weekly", priority: 0.9, lastmod: "2026-02-15" },
@@ -172,8 +173,9 @@ export const seoRoutes: SeoRoute[] = [
   { path: "/casinoer/casino-og-skat", changefreq: "weekly", priority: 0.9, lastmod: "2026-02-15" },
 
   // ── Community & Highlights ──
-  { path: "/community", changefreq: "daily", priority: 0.6, lastmod: "2026-02-19" },
-  { path: "/highlights", changefreq: "daily", priority: 0.6, lastmod: "2026-02-19" },
+  { path: "/community", changefreq: "daily", priority: 0.6, lastmod: "2026-02-20" },
+  { path: "/community/slots", changefreq: "daily", priority: 0.6, lastmod: "2026-02-20" },
+  { path: "/highlights", changefreq: "daily", priority: 0.6, lastmod: "2026-02-20" },
 
   // ── Info & Ansvarligt Spil ──
   { path: "/ansvarligt-spil", changefreq: "monthly", priority: 0.6, lastmod: "2026-02-14" },
