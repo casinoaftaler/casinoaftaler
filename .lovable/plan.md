@@ -1,98 +1,47 @@
 
 
-# Enable Gates of Fedesvin + Password Lock + AI Symbol Prompts
+# Gradual Spin Animation (Left to Right) for Gates of Fedesvin
 
-## Overview
+## Current Behavior
+When spinning, the grid simply dims to 80% opacity and shows a centered loading spinner. No visual motion per column.
 
-Three changes needed:
-1. Remove `coming-soon` status from Gates of Fedesvin in GameLibrary
-2. Set up password lock (database settings + update edge function)
-3. Add Gates of Fedesvin prompt routing in the AI symbol generator
+## Proposed Animation
 
----
+Each of the 6 columns will animate independently with a staggered delay (left to right):
+1. **Spin start**: Columns shuffle/scramble their symbols rapidly, starting from column 0, then column 1 (after ~100ms delay), etc.
+2. **While waiting for server response**: Columns cycle through random symbols continuously with a vertical blur effect.
+3. **Spin stop**: Once the server result arrives, columns stop one by one from left to right, each column's final symbols dropping into place with a bounce.
 
-## 1. GameLibrary Update
+### Visual Details
+- Each column gets a rapid vertical translate animation (symbols sliding down) during the spin phase
+- Stagger delay: ~120ms per column (so column 5 starts ~600ms after column 0)
+- Stop sequence: same left-to-right stagger when landing
+- Landing bounce: a subtle scale/translateY overshoot on each column stop
+- Motion blur: slight CSS blur during fast movement, clearing on stop
 
-Move "Gates of Fedesvin" from `MORE_SLOTS` array to `FEATURED_SLOTS` array (or simply remove the `coming-soon` status). The entry already has the correct `href` pointing to `/community/slots/gates-of-fedesvin`.
+## Technical Approach
 
-**File**: `src/pages/GameLibrary.tsx`
-- Remove the Gates of Fedesvin entry from `MORE_SLOTS`
-- Add it to the featured slots section without the `coming-soon` status
+### File: `src/components/slots/GatesSlotGame.tsx`
 
-## 2. Password Lock Setup
+1. **New state**: Track per-column spin status with `columnSpinState: ('idle' | 'spinning' | 'stopping' | 'landed')[]` (array of 6)
+2. **Spin start sequence**: When `tumblePhase` becomes `'spinning'`, stagger column starts left to right using `setTimeout` with `col * 120ms` delay
+3. **Random symbol cycling**: Each spinning column displays rapidly cycling random symbols (using `requestAnimationFrame` or `setInterval` at ~80ms) picked from the symbols pool
+4. **Server response handling**: Once `processTumbleSteps` receives data, trigger column stops left to right with stagger delays, setting final symbols per column
+5. **Remove the `Loader2` spinner overlay** -- replace with the animated grid
 
-### 2a. Database: Add password + lock settings
+### File: `src/styles/gates-animations.css`
 
-Insert two new `site_settings` entries:
-- `gates_of_fedesvin_password` = a password value (e.g. "gatesoffedesvin2026")
-- Update `gates_of_fedesvin_locked` from `"false"` to `"true"`
+Add new keyframes:
+- `gates-column-spin`: Rapid downward translate loop for the cycling effect
+- `gates-column-land`: Bounce-in from above when a column stops
+- `gates-column-blur`: Motion blur during spin, clearing on stop
 
-### 2b. Update `verify-slot-password` Edge Function
+### Grid Rendering Changes
 
-The edge function currently only supports `book-of-fedesvin` and `rise-of-fedesvin`. Add `gates-of-fedesvin` to:
-- `validGameIds` array
-- `passwordKeyMap` dictionary mapping to `"gates_of_fedesvin_password"`
+Instead of rendering the grid cells directly when spinning, each column will be wrapped in a container that:
+- During spin: shows a vertically scrolling strip of random symbols (similar to `SlotReel` but simplified for the grid format)
+- On stop: transitions to the final symbol with a drop-bounce animation
+- The column wrapper handles its own animation state based on `columnSpinState[col]`
 
-**File**: `supabase/functions/verify-slot-password/index.ts`
-
-### 2c. `useSlotPageAccess` -- Already Done
-
-The hook already has `gates-of-fedesvin` in `GAME_SETTINGS_KEYS` from a previous change, so no update needed.
-
-## 3. AI Symbol Generation Prompts
-
-### 3a. Add Gates of Fedesvin theme constants
-
-Add new style/frame constants for the Olympus/Zeus theme:
-- `GATES_BASE_STYLE`: Blue sky, marble columns, cloud-and-lightning aesthetic
-- `GATES_PREMIUM_FRAME`: Golden Olympian frame with Greek motifs
-- `GATES_SCATTER_FRAME`: Red frame (same style as other scatters)
-
-### 3b. Create `getPromptForGatesSymbol(name, isScatter)` function
-
-Prompt mappings for the 9 symbols:
-
-| Symbol | Prompt Theme |
-|--------|-------------|
-| **Zeus (scatter)** | The SAME chubby gray/white cat (British Shorthair) but dressed as Zeus -- wearing a Greek laurel wreath, holding a lightning bolt, sitting on a marble throne. Red scatter frame. |
-| **Red Gem** | A brilliant faceted ruby gem with golden setting, lightning energy inside |
-| **Purple Gem** | An amethyst gem with golden Greek-key setting, divine purple glow |
-| **Green Gem** | An emerald gem with golden olive branch setting, celestial green light |
-| **Blue Gem** | A sapphire gem with golden trident-motif setting, electric blue energy |
-| **Gold Cup** | An ornate golden Greek chalice/kylix with divine engravings |
-| **Gold Ring** | A golden Greek-style ring with laurel wreath design |
-| **Hourglass** | A golden hourglass with marble and celestial sand |
-| **Chalice** | A golden Greek amphora/goblet with Zeus lightning motifs |
-
-The scatter prompt will use the exact same cat description (chubby/fat gray and white cat, British Shorthair, green eyes, sweet slightly smug expression) but adapted to Greek/Olympus theme instead of Egyptian.
-
-### 3c. Update prompt routing
-
-In the main handler (line ~700), update the routing logic:
-```
-if game_id === "rise-of-fedesvin" -> getPromptForRiseSymbol
-else if game_id === "gates-of-fedesvin" -> getPromptForGatesSymbol
-else -> getPromptForSymbol (default Egyptian)
-```
-
-**File**: `supabase/functions/generate-slot-symbol/index.ts`
-
----
-
-## Technical Details
-
-### Files Modified
-
-1. **`src/pages/GameLibrary.tsx`** -- Move Gates of Fedesvin out of coming-soon
-2. **`supabase/functions/verify-slot-password/index.ts`** -- Add gates-of-fedesvin game ID support
-3. **`supabase/functions/generate-slot-symbol/index.ts`** -- Add Gates theme constants and prompt function
-
-### Database Changes (via data insert tool, not migration)
-
-- INSERT `gates_of_fedesvin_password` into `site_settings`
-- UPDATE `gates_of_fedesvin_locked` to `"true"` in `site_settings`
-
-### Edge Function Deployments
-
-Both `verify-slot-password` and `generate-slot-symbol` will need redeployment after changes.
+This keeps the existing tumble/win logic untouched -- only the initial spin visual is enhanced.
 
