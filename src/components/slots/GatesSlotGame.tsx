@@ -19,6 +19,7 @@ import {
 } from "@/lib/gatesGameLogic";
 import type { SlotSymbol } from "@/lib/slotGameLogic";
 import { GatesColumn, type ColumnSpinState, type CellAnimState } from "./GatesColumn";
+import { AnimatedWinCounter } from "./AnimatedWinCounter";
 
 const SYMBOL_SIZE = 100;
 const SYMBOL_GAP = 4;
@@ -57,6 +58,10 @@ export function GatesSlotGame({ gameId = "gates-of-fedesvin" }: GatesSlotGamePro
   const [cellAnimStates, setCellAnimStates] = useState<Map<number, CellAnimState>>(new Map());
   const [runningWin, setRunningWin] = useState(0);
   const [runningMultiplier, setRunningMultiplier] = useState(0);
+  const [screenShake, setScreenShake] = useState<'none' | 'normal' | 'intense'>('none');
+  const [showLightningFlash, setShowLightningFlash] = useState(false);
+  const [isSlowMotion, setIsSlowMotion] = useState(false);
+  const [tumbleChainLength, setTumbleChainLength] = useState(0);
   
   // Bonus state
   const [isBonusActive, setIsBonusActive] = useState(false);
@@ -113,17 +118,25 @@ export function GatesSlotGame({ gameId = "gates-of-fedesvin" }: GatesSlotGamePro
 
   // Process tumble steps with full visual animation sequence
   const processTumbleSteps = useCallback(async (steps: TumbleStep[]) => {
+    let winningStepCount = 0;
+    
     for (let i = 0; i < steps.length; i++) {
       const step = steps[i];
       setCurrentTumbleStep(i);
       
       if (i === 0) {
-        // First step grid is already set by the landing sequence
-        // Just show it briefly before checking wins
         await new Promise(r => setTimeout(r, 200));
       }
 
       if (step.wins.length > 0) {
+        winningStepCount++;
+        setTumbleChainLength(winningStepCount);
+        
+        // Activate slow-motion on long chains (4+ winning tumbles)
+        if (winningStepCount >= 4 && !isSlowMotion) {
+          setIsSlowMotion(true);
+        }
+        
         // 1. Highlight winning symbols with glow + pulse
         setTumblePhase('showing-wins');
         const winPositions = new Set(step.winningPositions);
@@ -133,10 +146,23 @@ export function GatesSlotGame({ gameId = "gates-of-fedesvin" }: GatesSlotGamePro
         // Increment running win counter
         setRunningWin(prev => prev + step.stepWin);
         
-        // Accumulate multiplier orbs
+        // Accumulate multiplier orbs + trigger screen shake on big multipliers
         if (step.multiplierOrbs.length > 0) {
           const orbSum = step.multiplierOrbs.reduce((sum, o) => sum + o.value, 0);
           setRunningMultiplier(prev => prev + orbSum);
+          
+          // Screen shake + lightning on 50x+ multiplier orb
+          const maxOrb = Math.max(...step.multiplierOrbs.map(o => o.value));
+          if (maxOrb >= 100) {
+            setScreenShake('intense');
+            setShowLightningFlash(true);
+            slotSounds.playBigWin();
+            setTimeout(() => { setScreenShake('none'); setShowLightningFlash(false); }, 800);
+          } else if (maxOrb >= 50) {
+            setScreenShake('normal');
+            setShowLightningFlash(true);
+            setTimeout(() => { setScreenShake('none'); setShowLightningFlash(false); }, 600);
+          }
         }
         
         // Mark winning cells
@@ -146,8 +172,9 @@ export function GatesSlotGame({ gameId = "gates-of-fedesvin" }: GatesSlotGamePro
         }
         setCellAnimStates(winAnims);
         
-        // Hold win highlight
-        await new Promise(r => setTimeout(r, 1000));
+        // Hold win highlight (longer in slow-motion)
+        const holdTime = isSlowMotion ? 1400 : 1000;
+        await new Promise(r => setTimeout(r, holdTime));
         
         // 2. Remove winning symbols with fade/pop animation
         setTumblePhase('tumbling');
@@ -157,23 +184,18 @@ export function GatesSlotGame({ gameId = "gates-of-fedesvin" }: GatesSlotGamePro
         }
         setCellAnimStates(removeAnims);
         
-        // Wait for removal animation
-        await new Promise(r => setTimeout(r, 400));
+        // Wait for removal animation (longer in slow-motion)
+        const removeTime = isSlowMotion ? 600 : 400;
+        await new Promise(r => setTimeout(r, removeTime));
         
         // 3. Clear winning positions and prepare next grid
         setWinningPositions(new Set());
         
-        // If there's a next step, set its grid (symbols have fallen + filled)
         if (i + 1 < steps.length) {
           const nextGrid = steps[i + 1].grid;
-          
-          // Determine which cells are new (dropped in from above) vs shifted down
-          // Compare current grid to next grid to find changed positions
-          const currentGrid = step.grid;
           const dropAnims = new Map<number, CellAnimState>();
           
           for (let col = 0; col < GATES_COLS; col++) {
-            // Count how many were removed in this column
             let removedInCol = 0;
             for (let row = 0; row < GATES_ROWS; row++) {
               const flat = col * GATES_ROWS + row;
@@ -183,12 +205,10 @@ export function GatesSlotGame({ gameId = "gates-of-fedesvin" }: GatesSlotGamePro
             }
             
             if (removedInCol > 0) {
-              // Top N cells are new (filled from above)
               for (let row = 0; row < removedInCol; row++) {
                 const flat = col * GATES_ROWS + row;
                 dropAnims.set(flat, 'filling');
               }
-              // Remaining cells shifted down (gravity)
               for (let row = removedInCol; row < GATES_ROWS; row++) {
                 const flat = col * GATES_ROWS + row;
                 dropAnims.set(flat, 'dropping');
@@ -199,21 +219,21 @@ export function GatesSlotGame({ gameId = "gates-of-fedesvin" }: GatesSlotGamePro
           setGrid(nextGrid);
           setCellAnimStates(dropAnims);
           
-          // Wait for drop/gravity animation
-          await new Promise(r => setTimeout(r, 500));
+          const dropTime = isSlowMotion ? 700 : 500;
+          await new Promise(r => setTimeout(r, dropTime));
         }
         
-        // Clear all cell animations
         setCellAnimStates(new Map());
       } else {
-        // No wins in this step - just show multiplier orbs briefly
         setMultiplierOrbs(step.multiplierOrbs);
         await new Promise(r => setTimeout(r, 300));
       }
     }
-    // Ensure clean state at end
+    // Clean up
     setCellAnimStates(new Map());
-  }, []);
+    setIsSlowMotion(false);
+    setTumbleChainLength(0);
+  }, [isSlowMotion]);
 
   const handleSpin = useCallback(async () => {
     if (spinLockRef.current || !symbols || !user || isSpinning) return;
@@ -234,6 +254,10 @@ export function GatesSlotGame({ gameId = "gates-of-fedesvin" }: GatesSlotGamePro
     setIsWinAnimating(false);
     setWinningPositions(new Set());
     setMultiplierOrbs([]);
+    setScreenShake('none');
+    setShowLightningFlash(false);
+    setIsSlowMotion(false);
+    setTumbleChainLength(0);
     serverResultRef.current = null;
 
     // Stagger column spin start (left to right)
@@ -431,6 +455,9 @@ export function GatesSlotGame({ gameId = "gates-of-fedesvin" }: GatesSlotGamePro
         </div>
       )}
 
+      {/* Lightning flash overlay */}
+      {showLightningFlash && <div className="gates-lightning-overlay" />}
+
       {/* Win celebration */}
       {isWinAnimating && winAmount > 0 && (
         <WinCelebration
@@ -447,7 +474,11 @@ export function GatesSlotGame({ gameId = "gates-of-fedesvin" }: GatesSlotGamePro
         className={cn(
           "relative rounded-xl border-2 overflow-hidden",
           "bg-gradient-to-b from-blue-950/95 via-slate-950/90 to-blue-950/95",
-          "border-blue-500/30"
+          "border-blue-500/30",
+          screenShake === 'normal' && "gates-shake",
+          screenShake === 'intense' && "gates-shake-intense",
+          isSlowMotion && "gates-slow-motion",
+          tumbleChainLength >= 3 && "gates-intensity-high"
         )}
         style={{
           width: gridWidth,
@@ -485,17 +516,18 @@ export function GatesSlotGame({ gameId = "gates-of-fedesvin" }: GatesSlotGamePro
         </div>
       </div>
 
-      {/* Running win counter during tumbles */}
+      {/* Running win counter during tumbles - with animated counting */}
       {runningWin > 0 && tumblePhase !== 'idle' && (
         <div className={cn(
-          "flex items-center gap-3 px-6 py-2 rounded-full border font-bold text-lg gates-multiplier-bump",
+          "flex items-center gap-3 px-6 py-2 rounded-full border font-bold text-lg",
           "bg-gradient-to-r from-yellow-900/80 to-amber-950/80",
-          "border-yellow-500/50 text-yellow-100 animate-pulse"
+          "border-yellow-500/50 text-yellow-100",
+          tumbleChainLength >= 3 && "gates-counter-glow"
         )}>
-          <span>GEVINST: {runningWin.toLocaleString()} POINT</span>
+          <span>GEVINST: <AnimatedWinCounter targetValue={runningWin} className="gates-counter-bump" /> POINT</span>
           {runningMultiplier > 0 && (
-            <span className="text-blue-300 border-l border-yellow-500/30 pl-3">
-              MULTIPLIER: x{runningMultiplier}
+            <span className="text-blue-300 border-l border-yellow-500/30 pl-3 gates-multiplier-land">
+              MULTIPLIER: x<AnimatedWinCounter targetValue={runningMultiplier} duration={600} />
             </span>
           )}
         </div>
@@ -507,7 +539,7 @@ export function GatesSlotGame({ gameId = "gates-of-fedesvin" }: GatesSlotGamePro
           "px-6 py-2 rounded-full border font-bold text-lg",
           "bg-gradient-to-r from-blue-900/80 to-blue-950/80",
           "border-blue-500/40 text-blue-100",
-          runningMultiplier > 0 && "border-yellow-500/50"
+          runningMultiplier > 0 && "border-yellow-500/50 gates-counter-glow"
         )}>
           GEVINST: {winAmount.toLocaleString()} POINT
           {runningMultiplier > 0 && (
