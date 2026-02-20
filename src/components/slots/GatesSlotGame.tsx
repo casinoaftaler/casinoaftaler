@@ -18,7 +18,7 @@ import {
   flatToColRow, type GatesWin, type MultiplierOrb, type TumbleStep,
 } from "@/lib/gatesGameLogic";
 import type { SlotSymbol } from "@/lib/slotGameLogic";
-import { GatesColumn, type ColumnSpinState } from "./GatesColumn";
+import { GatesColumn, type ColumnSpinState, type CellAnimState } from "./GatesColumn";
 
 const SYMBOL_SIZE = 100;
 const SYMBOL_GAP = 4;
@@ -54,6 +54,7 @@ export function GatesSlotGame({ gameId = "gates-of-fedesvin" }: GatesSlotGamePro
   );
   const columnStopTimersRef = useRef<NodeJS.Timeout[]>([]);
   const serverResultRef = useRef<any>(null);
+  const [cellAnimStates, setCellAnimStates] = useState<Map<number, CellAnimState>>(new Map());
   
   // Bonus state
   const [isBonusActive, setIsBonusActive] = useState(false);
@@ -108,33 +109,99 @@ export function GatesSlotGame({ gameId = "gates-of-fedesvin" }: GatesSlotGamePro
     if (isAutoSpinning) stopAutoSpin(); else startAutoSpin();
   }, [isAutoSpinning, stopAutoSpin, startAutoSpin]);
 
-  // Process tumble steps sequentially
+  // Process tumble steps with full visual animation sequence
   const processTumbleSteps = useCallback(async (steps: TumbleStep[]) => {
     for (let i = 0; i < steps.length; i++) {
       const step = steps[i];
       setCurrentTumbleStep(i);
-      setGrid(step.grid);
       
+      if (i === 0) {
+        // First step grid is already set by the landing sequence
+        // Just show it briefly before checking wins
+        await new Promise(r => setTimeout(r, 200));
+      }
+
       if (step.wins.length > 0) {
-        // Show winning positions
+        // 1. Highlight winning symbols with glow + pulse
         setTumblePhase('showing-wins');
-        setWinningPositions(new Set(step.winningPositions));
+        const winPositions = new Set(step.winningPositions);
+        setWinningPositions(winPositions);
         setMultiplierOrbs(step.multiplierOrbs);
         
-        // Wait for win highlight animation
-        await new Promise(r => setTimeout(r, 1200));
+        // Mark winning cells
+        const winAnims = new Map<number, CellAnimState>();
+        for (const pos of step.winningPositions) {
+          winAnims.set(pos, 'winning');
+        }
+        setCellAnimStates(winAnims);
         
-        // Tumble phase - remove winning symbols
+        // Hold win highlight
+        await new Promise(r => setTimeout(r, 1000));
+        
+        // 2. Remove winning symbols with fade/pop animation
         setTumblePhase('tumbling');
-        await new Promise(r => setTimeout(r, 600));
+        const removeAnims = new Map<number, CellAnimState>();
+        for (const pos of step.winningPositions) {
+          removeAnims.set(pos, 'removing');
+        }
+        setCellAnimStates(removeAnims);
         
+        // Wait for removal animation
+        await new Promise(r => setTimeout(r, 400));
+        
+        // 3. Clear winning positions and prepare next grid
         setWinningPositions(new Set());
+        
+        // If there's a next step, set its grid (symbols have fallen + filled)
+        if (i + 1 < steps.length) {
+          const nextGrid = steps[i + 1].grid;
+          
+          // Determine which cells are new (dropped in from above) vs shifted down
+          // Compare current grid to next grid to find changed positions
+          const currentGrid = step.grid;
+          const dropAnims = new Map<number, CellAnimState>();
+          
+          for (let col = 0; col < GATES_COLS; col++) {
+            // Count how many were removed in this column
+            let removedInCol = 0;
+            for (let row = 0; row < GATES_ROWS; row++) {
+              const flat = col * GATES_ROWS + row;
+              if (step.winningPositions.includes(flat)) {
+                removedInCol++;
+              }
+            }
+            
+            if (removedInCol > 0) {
+              // Top N cells are new (filled from above)
+              for (let row = 0; row < removedInCol; row++) {
+                const flat = col * GATES_ROWS + row;
+                dropAnims.set(flat, 'filling');
+              }
+              // Remaining cells shifted down (gravity)
+              for (let row = removedInCol; row < GATES_ROWS; row++) {
+                const flat = col * GATES_ROWS + row;
+                dropAnims.set(flat, 'dropping');
+              }
+            }
+          }
+          
+          setGrid(nextGrid);
+          setCellAnimStates(dropAnims);
+          
+          // Wait for drop/gravity animation
+          await new Promise(r => setTimeout(r, 500));
+        }
+        
+        // Clear all cell animations
+        setCellAnimStates(new Map());
       } else {
-        // No wins - just show the final grid briefly
+        // No wins in this step - just show multiplier orbs briefly
         setMultiplierOrbs(step.multiplierOrbs);
         await new Promise(r => setTimeout(r, 300));
       }
     }
+    // Ensure clean state at end
+    setCellAnimStates(new Map());
   }, []);
 
   const handleSpin = useCallback(async () => {
@@ -391,6 +458,7 @@ export function GatesSlotGame({ gameId = "gates-of-fedesvin" }: GatesSlotGamePro
                 symbolsById={symbolsById}
                 finalSymbolIds={colSymbolIds}
                 winningPositions={winningPositions}
+                cellAnimStates={cellAnimStates}
                 multiplierOrbAt={orbFinder}
                 tumblePhase={tumblePhase}
               />
