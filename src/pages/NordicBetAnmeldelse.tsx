@@ -57,7 +57,7 @@ const NordicBetAnmeldelse = () => {
             <CardHeader><CardTitle className="flex items-center gap-2 text-xl"><Zap className="h-6 w-6 text-primary" />Hurtige Fakta – NordicBet</CardTitle></CardHeader>
             <CardContent>
               <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
-                <div className="rounded-lg border border-border p-3"><p className="text-xs text-muted-foreground uppercase mb-1">Casino Bonus</p><p className="text-lg font-bold text-foreground">Op til 2.000 kr.</p></div>
+                <div className="rounded-lg border border-border p-3"><p className="text-xs text-muted-foreground uppercase mb-1">Casino Bonus</p><p className="text-lg font-bold text-foreground">Op til 1.000 kr.</p></div>
                 <div className="rounded-lg border border-border p-3"><p className="text-xs text-muted-foreground uppercase mb-1">Omsætningskrav</p><p className="text-lg font-bold text-foreground">10x (d+b)</p></div>
                 <div className="rounded-lg border border-border p-3"><p className="text-xs text-muted-foreground uppercase mb-1">Licens</p><p className="text-lg font-bold text-foreground">Spillemyndigheden</p></div>
                 <div className="rounded-lg border border-border p-3"><p className="text-xs text-muted-foreground uppercase mb-1">Ejer</p><p className="text-lg font-bold text-foreground">Betsson Group</p></div>
@@ -156,7 +156,7 @@ const NordicBetAnmeldelse = () => {
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold">Bonusvilkår – gennemgang og perspektiv</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
-            NordicBet tilbyder separate <Link to="/velkomstbonus" className={linkClass}>velkomstbonusser</Link> for sport og casino. Casino-bonussen matcher din første indbetaling 100 % op til 2.000 kr. med et <Link to="/omsaetningskrav" className={linkClass}>omsætningskrav</Link> på 10x (indskud + bonus). Sportsbonussen opererer med andre vilkår og inkluderer typisk et risikofrit væddemål.
+            NordicBet tilbyder separate <Link to="/velkomstbonus" className={linkClass}>velkomstbonusser</Link> for sport og casino. Casino-bonussen matcher din første indbetaling 100 % op til 1.000 kr. med et <Link to="/omsaetningskrav" className={linkClass}>omsætningskrav</Link> på 10x (indskud + bonus). Sportsbonussen opererer med andre vilkår og inkluderer typisk et risikofrit væddemål.
           </p>
           <p className="mb-4 text-muted-foreground leading-relaxed">
             <strong>Regneeksempel (casinobonus):</strong> Du indbetaler 1.000 kr. og modtager 1.000 kr. i bonus. Omsætningskravet beregnes som (1.000 + 1.000) × 10 = 20.000 kr. Med gennemsnitlig RTP på 96 % og ren slots-spil kan du statistisk forvente at have ca. 800 kr. tilbage. Bonussen er en sticky bonus – dine egne penge og bonuspenge blandes, og du kan ikke hæve noget, før kravet er opfyldt.

@@ -266,7 +266,7 @@ const CasinostuenAnmeldelse = () => {
               <div className="rounded-lg border border-border p-4">
                 <p className="font-semibold text-foreground mb-2">LeoVegas (500 kr./måned omsætning × 3 mdr.)</p>
                 <p className="text-sm text-muted-foreground">Forventet tab: 1.500 × 0,04 = 60 kr.</p>
-                <p className="text-sm text-muted-foreground">Velkomstbonus EV: +300 kr. (3.000 kr. match)</p>
+                <p className="text-sm text-muted-foreground">Velkomstbonus EV: +200 kr. (1.000 kr. match)</p>
                 <p className="text-sm text-muted-foreground">Løbende kampagner: ~90 kr. (4-5 tilbud/uge)</p>
                 <p className="text-sm text-foreground font-bold mt-2">Netto 3-måneders EV: +330 kr. 💰</p>
               </div>
