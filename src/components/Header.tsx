@@ -112,6 +112,7 @@ export const Header = memo(function Header() {
         <nav className="hidden items-center gap-4 xl:gap-6 lg:flex whitespace-nowrap">
           <DropdownMenu modal={false}>
             <DropdownMenuTrigger className="flex items-center gap-1.5 text-sm font-medium transition-colors hover:text-primary">
+              <Landmark className="h-4 w-4" />
               Casinoer <ChevronDown className="h-4 w-4" />
             </DropdownMenuTrigger>
             <DropdownMenuContent align="center" className="bg-popover z-50">
@@ -173,6 +174,7 @@ export const Header = memo(function Header() {
           </DropdownMenu>
           <DropdownMenu modal={false}>
             <DropdownMenuTrigger className="flex items-center gap-1.5 text-sm font-medium transition-colors hover:text-primary">
+              <Sparkles className="h-4 w-4" />
               Nye Casinoer <ChevronDown className="h-4 w-4" />
             </DropdownMenuTrigger>
             <DropdownMenuContent align="center" className="bg-popover z-50">
@@ -206,6 +208,7 @@ export const Header = memo(function Header() {
           </DropdownMenu>
           <DropdownMenu modal={false}>
             <DropdownMenuTrigger className="flex items-center gap-1.5 text-sm font-medium transition-colors hover:text-primary">
+              <Dices className="h-4 w-4" />
               Casinospil <ChevronDown className="h-4 w-4" />
             </DropdownMenuTrigger>
             <DropdownMenuContent align="center" className="bg-popover z-50">
@@ -318,6 +321,7 @@ export const Header = memo(function Header() {
           </DropdownMenu>
           <DropdownMenu modal={false}>
             <DropdownMenuTrigger className="flex items-center gap-1.5 text-sm font-medium transition-colors hover:text-primary">
+              <Tv className="h-4 w-4" />
               Live Casino <ChevronDown className="h-4 w-4" />
             </DropdownMenuTrigger>
             <DropdownMenuContent align="center" className="bg-popover">
