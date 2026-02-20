@@ -189,26 +189,6 @@ const Velkomstbonus = () => {
             Hvad er en velkomstbonus?
           </h2>
 
-          <YoutubeEmbed
-            videoId="oK5PvebkvGY"
-            title="Hvad er en velkomstbonus på danske casinoer?"
-            description="Vi gennemgår hvad en velkomstbonus er, de forskellige typer (matchbonus, free spins, no deposit), hvordan omsætningskrav fungerer, og hvad du skal kigge efter for at vælge den bedste velkomstbonus."
-            uploadDate="2026-02-18"
-            contentUrl="https://casinoaftaler.dk/velkomstbonus"
-          />
-
-          <div className="mb-6 rounded-lg border border-border bg-muted/30 p-5">
-            <h3 className="mb-2 text-lg font-semibold">
-              Her gennemgår vores streamer og forfatter Jonas, hvad en velkomstbonus er
-            </h3>
-            <p className="text-muted-foreground leading-relaxed">
-              Jonas gennemgår de fire typer velkomstbonusser, hvad omsætningskrav betyder for bonussens reelle værdi, og hvordan du som ny spiller vælger det rigtige tilbud. Videoen er del af vores bonusunivers med guides om{" "}
-              <Link to="/indskudsbonus" className={linkClass}>indskudsbonus</Link>,{" "}
-              <Link to="/free-spins" className={linkClass}>free spins</Link> og{" "}
-              <Link to="/bonus-uden-indbetaling" className={linkClass}>bonus uden indbetaling</Link>.
-            </p>
-          </div>
-
           <p className="mb-4 text-muted-foreground leading-relaxed">
             Din første indbetaling hos et nyt casino afgør hele din bonusoplevelse – og forskellen mellem et godt og et dårligt valg kan være tusindvis af kroner. En velkomstbonus matcher typisk din indbetaling med ekstra penge eller{" "}
             <Link to="/free-spins" className="text-primary underline hover:text-primary/80">
@@ -241,7 +221,7 @@ const Velkomstbonus = () => {
             </Link>{" "}
             kan du sammenligne alle typer og finde det tilbud, der matcher din spillestil bedst.
           </p>
-          <p className="text-muted-foreground leading-relaxed">
+          <p className="mb-8 text-muted-foreground leading-relaxed">
             Vil du forstå bonusmekanikker i praksis, inden du investerer rigtige penge?
             Prøv vores{" "}
             <Link to="/community/slots" className="text-primary underline hover:text-primary/80">
@@ -249,6 +229,26 @@ const Velkomstbonus = () => {
             </Link>
             , hvor du kan opleve free spins og bonusrunder helt risikofrit.
           </p>
+
+          <YoutubeEmbed
+            videoId="oK5PvebkvGY"
+            title="Hvad er en velkomstbonus på danske casinoer?"
+            description="Vi gennemgår hvad en velkomstbonus er, de forskellige typer (matchbonus, free spins, no deposit), hvordan omsætningskrav fungerer, og hvad du skal kigge efter for at vælge den bedste velkomstbonus."
+            uploadDate="2026-02-18"
+            contentUrl="https://casinoaftaler.dk/velkomstbonus"
+          />
+
+          <div className="rounded-lg border border-border bg-muted/30 p-5">
+            <h3 className="mb-2 text-lg font-semibold">
+              Her gennemgår vores streamer og forfatter Jonas, hvad en velkomstbonus er
+            </h3>
+            <p className="text-muted-foreground leading-relaxed">
+              Jonas gennemgår de fire typer velkomstbonusser, hvad omsætningskrav betyder for bonussens reelle værdi, og hvordan du som ny spiller vælger det rigtige tilbud. Videoen er del af vores bonusunivers med guides om{" "}
+              <Link to="/indskudsbonus" className={linkClass}>indskudsbonus</Link>,{" "}
+              <Link to="/free-spins" className={linkClass}>free spins</Link> og{" "}
+              <Link to="/bonus-uden-indbetaling" className={linkClass}>bonus uden indbetaling</Link>.
+            </p>
+          </div>
         </section>
 
         <InlineCasinoCards title="Bedste casinoer med velkomstbonus" count={6} />

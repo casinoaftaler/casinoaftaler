@@ -180,6 +180,19 @@ const BonusUdenIndbetaling = () => {
             Hvad er en bonus uden indbetaling – og hvordan fungerer mekanikken?
           </h2>
 
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            En bonus uden indbetaling – også kaldet no deposit bonus – er et casinotilbud, hvor du modtager gratis spillemidler blot ved at oprette en konto. Du skal ikke indsætte penge. Konceptet er enkelt: casinoet tager den fulde risiko, og du får en risikofri prøvetur. Men bag den simple facade gemmer sig en præcis mekanisk struktur, som afgør bonussens reelle værdi.
+          </p>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            Teknisk set fungerer en no deposit bonus via en bonuskonto, der er adskilt fra din rigtige saldo. Når du opretter din konto og verificerer via MitID, krediteres bonusmidlerne automatisk – eller du aktiverer dem med en bonuskode. Fra dette øjeblik starter tidsfristen, og alle vilkår træder i kraft. Dine indsatser trækkes fra bonuskontoen, og gevinster tilføjes samme konto. Først når <Link to="/omsaetningskrav" className={linkClass}>omsætningskravene</Link> er opfyldt, overføres midlerne til din udbetalbare saldo.
+          </p>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            I modsætning til en <Link to="/indskudsbonus" className={linkClass}>indskudsbonus</Link> eller <Link to="/velkomstbonus" className={linkClass}>velkomstbonus</Link> kræver en no deposit bonus ingen indbetaling overhovedet. Det adskiller den fundamentalt fra alle andre bonustyper: din egen saldo er altid nul, så du kan aldrig tabe egne penge. Til gengæld kompenserer casinoet med strammere vilkår – især gevinstlofter, som vi analyserer nedenfor.
+          </p>
+          <p className="mb-8 text-muted-foreground leading-relaxed">
+            Forskellen til en <Link to="/no-sticky-bonus" className={linkClass}>no-sticky bonus</Link> er også vigtig at forstå: ved en no-sticky bonus indbetaler du og har to separate saldi (din egen + bonus). Ved en no deposit bonus eksisterer kun bonussaldoen. Det betyder at hele din spilaktivitet sker på casinoets penge – en unik mekanisme i bonusverdenen.
+          </p>
+
           <YoutubeEmbed
             videoId="XhbLda1HyOs"
             title="Hvad er en bonus uden indbetaling?"
@@ -188,7 +201,7 @@ const BonusUdenIndbetaling = () => {
             contentUrl="https://casinoaftaler.dk/bonus-uden-indbetaling"
           />
 
-          <div className="mb-6 rounded-lg border border-border bg-muted/30 p-5">
+          <div className="rounded-lg border border-border bg-muted/30 p-5">
             <h3 className="mb-2 text-lg font-semibold">
               Her gennemgår vores streamer og forfatter Jonas, hvad en bonus uden indbetaling er
             </h3>
@@ -199,19 +212,6 @@ const BonusUdenIndbetaling = () => {
               <Link to="/omsaetningskrav" className={linkClass}>omsætningskrav</Link>.
             </p>
           </div>
-
-          <p className="mb-4 text-muted-foreground leading-relaxed">
-            En bonus uden indbetaling – også kaldet no deposit bonus – er et casinotilbud, hvor du modtager gratis spillemidler blot ved at oprette en konto. Du skal ikke indsætte penge. Konceptet er enkelt: casinoet tager den fulde risiko, og du får en risikofri prøvetur. Men bag den simple facade gemmer sig en præcis mekanisk struktur, som afgør bonussens reelle værdi.
-          </p>
-          <p className="mb-4 text-muted-foreground leading-relaxed">
-            Teknisk set fungerer en no deposit bonus via en bonuskonto, der er adskilt fra din rigtige saldo. Når du opretter din konto og verificerer via MitID, krediteres bonusmidlerne automatisk – eller du aktiverer dem med en bonuskode. Fra dette øjeblik starter tidsfristen, og alle vilkår træder i kraft. Dine indsatser trækkes fra bonuskontoen, og gevinster tilføjes samme konto. Først når <Link to="/omsaetningskrav" className={linkClass}>omsætningskravene</Link> er opfyldt, overføres midlerne til din udbetalbare saldo.
-          </p>
-          <p className="mb-4 text-muted-foreground leading-relaxed">
-            I modsætning til en <Link to="/indskudsbonus" className={linkClass}>indskudsbonus</Link> eller <Link to="/velkomstbonus" className={linkClass}>velkomstbonus</Link> kræver en no deposit bonus ingen indbetaling overhovedet. Det adskiller den fundamentalt fra alle andre bonustyper: din egen saldo er altid nul, så du kan aldrig tabe egne penge. Til gengæld kompenserer casinoet med strammere vilkår – især gevinstlofter, som vi analyserer nedenfor.
-          </p>
-          <p className="text-muted-foreground leading-relaxed">
-            Forskellen til en <Link to="/no-sticky-bonus" className={linkClass}>no-sticky bonus</Link> er også vigtig at forstå: ved en no-sticky bonus indbetaler du og har to separate saldi (din egen + bonus). Ved en no deposit bonus eksisterer kun bonussaldoen. Det betyder at hele din spilaktivitet sker på casinoets penge – en unik mekanisme i bonusverdenen.
-          </p>
         </section>
 
         <InlineCasinoCards title="Casinoer med no deposit bonus" count={6} />
