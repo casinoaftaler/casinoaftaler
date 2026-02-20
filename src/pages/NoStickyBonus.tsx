@@ -183,10 +183,10 @@ const NoStickyBonus = () => {
           </p>
 
           <YoutubeEmbed
-            videoId="yUAcefgYfkc"
+            videoId="WOowRz6hnH8"
             title="Hvad er en No-Sticky Bonus på danske casinoer?"
             description="Vi forklarer præcis hvad en no-sticky bonus er, hvordan adskillelsen af penge fungerer, og hvorfor det er den mest spillervenlige bonustype på det danske marked."
-            uploadDate="2026-02-18"
+            uploadDate="2026-02-20"
             contentUrl="https://casinoaftaler.dk/no-sticky-bonus"
           />
 
@@ -195,7 +195,7 @@ const NoStickyBonus = () => {
               Her gennemgår vores streamer og forfatter Jonas, hvad en no-sticky bonus er
             </h3>
             <p className="text-muted-foreground leading-relaxed">
-              Jonas forklarer præcis hvad en no-sticky bonus er, og hvordan den tekniske adskillelse af din indbetaling og bonusmidler fungerer. Videoen er en del af vores dybdegående indhold om{" "}
+              <Link to="/forfatter/jonas" className={linkClass}>Jonas</Link> forklarer præcis hvad en no-sticky bonus er, og hvordan den tekniske adskillelse af din indbetaling og bonusmidler fungerer. Videoen er en del af vores dybdegående indhold om{" "}
               <Link to="/casino-bonus" className={linkClass}>casino bonusser</Link>,{" "}
               <Link to="/omsaetningskrav" className={linkClass}>omsætningskrav</Link> og{" "}
               <Link to="/bonus-uden-omsaetningskrav" className={linkClass}>bonusser uden omsætningskrav</Link>.
