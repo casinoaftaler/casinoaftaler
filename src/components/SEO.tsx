@@ -1,6 +1,7 @@
 import { Helmet } from "react-helmet-async";
 import { useLocation } from "react-router-dom";
 import { SITE_URL, SITE_NAME, SITE_BRAND, getCanonicalUrl } from "@/lib/seo";
+import { buildBreadcrumbListSchema } from "@/lib/breadcrumbs";
 
 interface SEOProps {
   title: string;
@@ -35,9 +36,14 @@ export function SEO({ title, description, type = "website", image, noindex, json
     return (lastSpace > 100 ? truncated.slice(0, lastSpace) : truncated) + "…";
   })();
 
-  const rawJsonLd = jsonLd
-    ? Array.isArray(jsonLd) ? jsonLd : [jsonLd]
-    : [];
+  // Build BreadcrumbList and inject it alongside page-level jsonLd so it
+  // gets absorbed into the unified @graph when an Article @graph is present.
+  const breadcrumbSchema = !noindex ? buildBreadcrumbListSchema(pathname) : null;
+
+  const rawJsonLd: Record<string, unknown>[] = [
+    ...(jsonLd ? (Array.isArray(jsonLd) ? jsonLd : [jsonLd]) : []),
+    ...(breadcrumbSchema ? [breadcrumbSchema] : []),
+  ];
 
   /**
    * Merge all jsonLd items into a single unified @graph.
