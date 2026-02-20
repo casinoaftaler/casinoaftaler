@@ -10,6 +10,8 @@ interface SlotPageAccessSettings {
   isLocked: boolean;
 }
 
+const GATES_SESSION_STORAGE_KEY = "gates_slot_page_access_granted";
+
 const GAME_SETTINGS_KEYS: Record<string, { lockedKey: string; sessionKey: string }> = {
   "book-of-fedesvin": {
     lockedKey: "slot_page_locked",
@@ -18,6 +20,10 @@ const GAME_SETTINGS_KEYS: Record<string, { lockedKey: string; sessionKey: string
   "rise-of-fedesvin": {
     lockedKey: "rise_of_fedesvin_locked",
     sessionKey: RISE_SESSION_STORAGE_KEY,
+  },
+  "gates-of-fedesvin": {
+    lockedKey: "gates_of_fedesvin_locked",
+    sessionKey: GATES_SESSION_STORAGE_KEY,
   },
 };
 
