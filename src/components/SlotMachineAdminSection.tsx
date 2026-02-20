@@ -16,6 +16,7 @@ import { SlotSoundGeneratorSection } from "@/components/slots/SlotSoundGenerator
 import { BatchSoundGenerator } from "@/components/slots/BatchSoundGenerator";
 import { GatesGameSettingsAdmin } from "@/components/slots/GatesGameSettingsAdmin";
 import { LivePlayersAdminSection } from "@/components/LivePlayersAdminSection";
+import { TournamentAdminSection } from "@/components/TournamentAdminSection";
 import { SlotRequestsAdminSection } from "@/components/SlotRequestsAdminSection";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
@@ -1469,7 +1470,7 @@ const GAME_OPTIONS = [
   { id: "gates-of-fedesvin", label: "Gates of Fedesvin" },
 ] as const;
 
-const GLOBAL_TABS = ["spins", "points", "combined-stats", "live-players", "requests"] as const;
+const GLOBAL_TABS = ["spins", "points", "combined-stats", "live-players", "requests", "tournaments"] as const;
 
 export function SlotMachineAdminSection() {
   const [selectedGame, setSelectedGame] = useState("book-of-fedesvin");
@@ -1524,6 +1525,10 @@ export function SlotMachineAdminSection() {
             <Gamepad2 className="h-3.5 w-3.5" />
             Requests
           </TabsTrigger>
+          <TabsTrigger value="tournaments" className="gap-1">
+            <Trophy className="h-3.5 w-3.5" />
+            Turneringer
+          </TabsTrigger>
         </TabsList>
 
         <TabsContent value="symbols">
@@ -1554,6 +1559,10 @@ export function SlotMachineAdminSection() {
 
         <TabsContent value="requests">
           <SlotRequestsAdminSection />
+        </TabsContent>
+
+        <TabsContent value="tournaments">
+          <TournamentAdminSection />
         </TabsContent>
       </Tabs>
     </div>
