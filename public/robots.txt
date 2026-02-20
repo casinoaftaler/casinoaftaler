@@ -1,22 +1,32 @@
 User-agent: Googlebot
 Allow: /
+Allow: /community$
+Allow: /community/slots$
 Disallow: /auth
 Disallow: /profil
 Disallow: /admin
-Disallow: /community/slots
-Disallow: /community/spillehal
 Disallow: /butik
 Disallow: /u/
+Disallow: /community/leaderboard
+Disallow: /community/rewards
+Disallow: /community/spin-the-reel
+Disallow: /community/spillehal
+Disallow: /community/slots/
 
 User-agent: Bingbot
 Allow: /
+Allow: /community$
+Allow: /community/slots$
 Disallow: /auth
 Disallow: /profil
 Disallow: /admin
-Disallow: /community/slots
-Disallow: /community/spillehal
 Disallow: /butik
 Disallow: /u/
+Disallow: /community/leaderboard
+Disallow: /community/rewards
+Disallow: /community/spin-the-reel
+Disallow: /community/spillehal
+Disallow: /community/slots/
 
 User-agent: Twitterbot
 Allow: /
@@ -26,12 +36,17 @@ Allow: /
 
 User-agent: *
 Allow: /
+Allow: /community$
+Allow: /community/slots$
 Disallow: /auth
 Disallow: /profil
 Disallow: /admin
-Disallow: /community/slots
-Disallow: /community/spillehal
 Disallow: /butik
 Disallow: /u/
+Disallow: /community/leaderboard
+Disallow: /community/rewards
+Disallow: /community/spin-the-reel
+Disallow: /community/spillehal
+Disallow: /community/slots/
 
 Sitemap: https://casinoaftaler.dk/sitemap.xml

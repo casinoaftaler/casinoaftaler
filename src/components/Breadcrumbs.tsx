@@ -4,6 +4,7 @@ import { Helmet } from "react-helmet-async";
 
 const routeLabels: Record<string, string> = {
   "/": "Forside",
+  // Nye Casinoer
   "/nye-casinoer": "Nye Casinoer",
   "/nye-casinoer/2026": "Nye Casinoer 2026",
   "/nye-casinoer/dansk-licens": "Med Dansk Licens",
@@ -15,12 +16,14 @@ const routeLabels: Record<string, string> = {
   "/nye-casinoer/lav-wagering": "Lav Wagering",
   "/nye-casinoer/bedste": "Bedste Nye Casinoer",
   "/nye-casinoer/vs-etablerede": "Nye vs. Etablerede",
+  // Live Casino
   "/live-casino": "Live Casino",
   "/live-casino/blackjack": "Live Blackjack",
   "/live-casino/roulette": "Live Roulette",
   "/live-casino/baccarat": "Live Baccarat",
   "/live-casino/lightning-roulette": "Lightning Roulette",
   "/live-casino/monopoly-live": "Monopoly Live",
+  // Casino Bonus
   "/casino-bonus": "Casino Bonus",
   "/free-spins": "Free Spins",
   "/velkomstbonus": "Velkomstbonus",
@@ -30,6 +33,7 @@ const routeLabels: Record<string, string> = {
   "/bonus-uden-omsaetningskrav": "Bonus uden Omsætningskrav",
   "/no-sticky-bonus": "No-Sticky Bonus",
   "/sticky-bonus": "Sticky Bonus",
+  // Betalingsmetoder
   "/betalingsmetoder": "Betalingsmetoder",
   "/betalingsmetoder/apple-pay": "Apple Pay",
   "/betalingsmetoder/mobilepay": "MobilePay",
@@ -41,6 +45,7 @@ const routeLabels: Record<string, string> = {
   "/betalingsmetoder/bankoverforsler": "Bankoverførsler",
   "/betalingsmetoder/visa-mastercard": "Visa / Mastercard",
   "/betalingsmetoder/revolut": "Revolut",
+  // Spiludviklere
   "/spiludviklere": "Spiludviklere",
   "/spiludviklere/netent": "NetEnt",
   "/spiludviklere/pragmatic-play": "Pragmatic Play",
@@ -54,6 +59,7 @@ const routeLabels: Record<string, string> = {
   "/spiludviklere/big-time-gaming": "Big Time Gaming",
   "/spiludviklere/elk-studios": "ELK Studios",
   "/spiludviklere/evolution-gaming": "Evolution Gaming",
+  // Ansvarligt Spil & Info
   "/ansvarligt-spil": "Ansvarligt Spil",
   "/om": "Om Casinoaftaler.dk",
   "/forretningsmodel": "Forretningsmodel",
@@ -62,13 +68,19 @@ const routeLabels: Record<string, string> = {
   "/privatlivspolitik": "Privatlivspolitik",
   "/terms": "Vilkår",
   "/cookies": "Cookies",
-  "/butik": "Butik",
   "/highlights": "Highlights",
+  // Forfattere
   "/forfatter": "Forfattere",
-  "/forfatter/jonas": "Jonas",
+  "/forfatter/jonas": "Jonas Theill",
   "/forfatter/kevin": "Kevin",
+  // Spillemyndighed & Licenser
   "/spillemyndigheden": "Spillemyndigheden",
+  "/casino-licenser": "Casino Licenser",
+  "/licenserede-casinoer": "Licenserede Casinoer",
+  "/saadan-tester-vi-casinoer": "Sådan Tester Vi Casinoer",
+  // Top Lister
   "/top-10-casino-online": "Top 10 Casino Online",
+  // Casino Anmeldelser
   "/casino-anmeldelser": "Casino Anmeldelser",
   "/casino-anmeldelser/spilleautomaten": "Spilleautomaten",
   "/casino-anmeldelser/campobet": "Campobet",
@@ -99,6 +111,7 @@ const routeLabels: Record<string, string> = {
   "/casino-anmeldelser/pokerstars": "PokerStars",
   "/casino-anmeldelser/bwin": "bwin",
   "/casino-anmeldelser/marathonbet": "MarathonBet",
+  // Casinospil
   "/casinospil": "Casinospil",
   "/casinospil/spillemaskiner": "Spillemaskiner",
   "/casinospil/spillemaskiner/hoej-rtp": "Høj RTP",
@@ -141,29 +154,34 @@ const routeLabels: Record<string, string> = {
   "/casinospil/roulette-strategi": "Roulette Strategi",
   "/casinospil/online-lotteri": "Online Lotteri",
   "/casinospil/game-shows": "Game Shows",
+  // Casinoer guides
   "/casinoer": "Casinoer",
   "/casinoer/hurtig-udbetaling": "Hurtig Udbetaling",
   "/casinoer/hoej-rtp": "Høj RTP",
   "/casinoer/crypto-casino": "Crypto Casino",
-  "/licenserede-casinoer": "Licenserede Casinoer",
   "/casinoer/vr-casinoer": "VR Casinoer",
   "/casinoer/mobil-casinoer": "Mobil Casinoer",
   "/casinoer/spil-casino-for-sjov": "Spil Casino for Sjov",
   "/casinoer/casino-og-skat": "Casino og Skat",
-  "/casino-licenser": "Casino Licenser",
-  "/saadan-tester-vi-casinoer": "Sådan Tester Vi Casinoer",
+  // Community (kun indexerbare sider)
+  "/community": "Community",
+  "/community/slots": "Spillehal",
 };
 
 const BASE_URL = "https://casinoaftaler.dk";
+
+// Paths where breadcrumbs should NOT render
+const EXCLUDED_PATHS = new Set(["/community/leaderboard", "/community/rewards", "/community/spin-the-reel"]);
+const EXCLUDED_PREFIXES = ["/casino/", "/auth", "/admin", "/profil", "/u/", "/community/slots/"];
 
 export function Breadcrumbs() {
   const location = useLocation();
   const pathname = location.pathname;
 
-  // Don't show breadcrumbs on home page or community/slot pages
-  if (pathname === "/" || pathname === "/community" || pathname.startsWith("/community/") || pathname.startsWith("/casino/") || pathname.startsWith("/auth") || pathname.startsWith("/admin") || pathname.startsWith("/profil") || pathname.startsWith("/u/")) {
-    return null;
-  }
+  // Don't show breadcrumbs on home page or excluded paths
+  if (pathname === "/") return null;
+  if (EXCLUDED_PATHS.has(pathname)) return null;
+  if (EXCLUDED_PREFIXES.some((prefix) => pathname.startsWith(prefix))) return null;
 
   const label = routeLabels[pathname] || pathname.replace(/^\//, "").replace(/-/g, " ");
 
@@ -174,7 +192,6 @@ export function Breadcrumbs() {
   ];
 
   if (segments.length > 1) {
-    // Add intermediate segments (e.g. /casinospil for /casinospil/spillemaskiner)
     let currentPath = "";
     for (let i = 0; i < segments.length - 1; i++) {
       currentPath += `/${segments[i]}`;
