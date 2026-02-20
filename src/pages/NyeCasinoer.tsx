@@ -479,13 +479,13 @@ const NyeCasinoer = () => {
             <strong>Bonus uden indbetaling</strong> er det ultimative lavrisiko-tilbud. Nogle nye casinoer giver dig <Link to="/nye-casinoer/bonus-uden-indbetaling" className={linkClass}>gratis bonus ved oprettelse</Link> – typisk 50-200 kr. i bonusmidler eller 20-50 free spins – helt uden at du behøver at indbetale. Disse bonusser har typisk højere omsætningskrav (5x-10x) og lavere udbetalingsgrænser, men de giver dig mulighed for at teste casinoet risikofrit. For nye casinoer er det en strategi til at reducere barrieren for førstegangsspillere.
           </p>
           <p className="mb-4 text-muted-foreground leading-relaxed">
-            <strong>Early acquisition bonusser</strong> er en ny trend i 2026, hvor casinoer tilbyder forbedrede vilkår til de første 500-1.000 spillere der registrerer sig. Disse kan inkludere eksklusivt lavere omsætningskrav (fx 1x i stedet for de normale 3x), højere match-procenter eller ekstra free spins. Det er en win-win: casinoet får tidlige ambassadører der genererer mund-til-mund-markedsføring, og spilleren får exceptionelle vilkår. Vi noterer altid, hvis et casino kører early acquisition-kampagner i vores anmeldelser.
+            <strong>Early acquisition bonusser</strong> er en ny trend i 2026, hvor casinoer tilbyder forbedrede vilkår til de første 500-1.000 spillere der registrerer sig. Disse kan inkludere eksklusivt lavere omsætningskrav (fx 5x i stedet for de normale 10x), eller ekstra free spins. Det er en win-win: casinoet får tidlige ambassadører der genererer mund-til-mund-markedsføring, og spilleren får exceptionelle vilkår. Vi noterer altid, hvis et casino kører early acquisition-kampagner i vores anmeldelser.
           </p>
 
           <div className="grid grid-cols-1 sm:grid-cols-4 gap-3 my-6">
             {[
               { value: "10x", label: "Standard omsætningskrav hos nye casinoer" },
-              { value: "100–200%", label: "Match på første indbetaling" },
+              { value: "100%", label: "Match på første indbetaling (op til 1.000 kr.)" },
               { value: "50–200", label: "Free spins i velkomstpakke" },
               { value: "42%", label: "Højere reel bonusværdi vs. etablerede" },
             ].map((stat, i) => (
