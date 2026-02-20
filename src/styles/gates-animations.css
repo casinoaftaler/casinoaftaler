@@ -1,19 +1,27 @@
 /* Gates of Fedesvin - Slot Animations */
 /* Tumble/cascade mechanics, multiplier orbs, lightning effects */
 
-/* Symbol removal animation (shrink + sparkle) */
+/* Symbol removal animation (scale up + flash + shrink to nothing) */
 @keyframes tumble-remove {
   0% { transform: scale(1); opacity: 1; filter: brightness(1); }
-  30% { transform: scale(1.15); opacity: 1; filter: brightness(1.8); }
-  100% { transform: scale(0); opacity: 0; filter: brightness(2); }
+  20% { transform: scale(1.2); opacity: 1; filter: brightness(2); }
+  100% { transform: scale(0); opacity: 0; filter: brightness(2.5); }
 }
 
-/* Symbol drop-in from above with bounce */
+/* Symbol drop-in from above with bounce (for new symbols filling gaps) */
 @keyframes tumble-drop {
   0% { transform: translateY(-120%); opacity: 0; }
-  60% { transform: translateY(8%); opacity: 1; }
-  80% { transform: translateY(-4%); }
+  50% { transform: translateY(6%); opacity: 1; }
+  75% { transform: translateY(-3%); }
   100% { transform: translateY(0); opacity: 1; }
+}
+
+/* Gravity shift for existing symbols moving down to fill gaps */
+@keyframes tumble-gravity {
+  0% { transform: translateY(var(--gravity-offset, -104px)); }
+  60% { transform: translateY(4px); }
+  80% { transform: translateY(-2px); }
+  100% { transform: translateY(0); }
 }
 
 /* Gravity drop for existing symbols shifting down */
