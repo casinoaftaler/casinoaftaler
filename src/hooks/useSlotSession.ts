@@ -37,10 +37,10 @@ const getOrCreateSessionId = (): string => {
   return sessionId;
 };
 
-// Heartbeat interval (10 seconds)
-const HEARTBEAT_INTERVAL = 10000;
-// Session timeout (30 seconds)
-const SESSION_TIMEOUT = 30000;
+// Heartbeat interval (30 seconds - reduced from 10s for lower DB write pressure)
+const HEARTBEAT_INTERVAL = 30000;
+// Session timeout (90 seconds - 3x heartbeat interval)
+const SESSION_TIMEOUT = 90000;
 
 interface SlotSessionState {
   isSessionActive: boolean;

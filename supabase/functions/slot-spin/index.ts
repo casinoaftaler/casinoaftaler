@@ -668,8 +668,8 @@ Deno.serve(async (req) => {
       settingsCache.set("slot_daily_spins", { data: dailySpinsValue, fetchedAt: Date.now() });
     }
 
-    // Parallelize the remaining per-user reads: session check + profile
-    const [sessionRes, profileRes] = await Promise.all([
+    // Parallelize ALL per-user reads: session check + profile + bonus state
+    const [sessionRes, profileRes, bonusRes] = await Promise.all([
       serviceClient
         .from("slot_active_sessions")
         .select("session_id")
@@ -680,6 +680,15 @@ Deno.serve(async (req) => {
         .select("bonus_spins_permanent, twitch_badges")
         .eq("user_id", userId)
         .maybeSingle(),
+      // Pre-fetch bonus state (used only for bonus spins, but avoids sequential read)
+      isBonusSpin
+        ? serviceClient
+            .from("slot_bonus_state")
+            .select("*")
+            .eq("user_id", userId)
+            .eq("game_id", gameId)
+            .maybeSingle()
+        : Promise.resolve({ data: null, error: null }),
     ]);
 
     // Validate session (anti-multi-device)
@@ -695,15 +704,10 @@ Deno.serve(async (req) => {
 
 
 
-    // Handle bonus spin (symbols already loaded from parallel fetch above)
+    // Handle bonus spin (bonus state already fetched in parallel above)
     if (isBonusSpin) {
-      // Get bonus state filtered by game_id
-      const { data: bonusData, error: bonusError } = await serviceClient
-        .from("slot_bonus_state")
-        .select("*")
-        .eq("user_id", userId)
-        .eq("game_id", gameId)
-        .maybeSingle();
+      const bonusData = bonusRes.data;
+      const bonusError = bonusRes.error;
 
       if (bonusError || !bonusData || !bonusData.is_active || bonusData.free_spins_remaining <= 0) {
         return new Response(
@@ -988,7 +992,7 @@ Deno.serve(async (req) => {
       );
     }
 
-    // Normal spin - validate spins remaining
+    // Normal spin - use atomic RPC for spin deduction
     // Use Danish timezone (Europe/Copenhagen) for date boundary
     const now = new Date();
     const todayParts = new Intl.DateTimeFormat("sv-SE", {
@@ -1006,88 +1010,24 @@ Deno.serve(async (req) => {
     const capLimit = isSubscriber ? SUBSCRIBER_MAX_SPINS_CAP : MAX_SPINS_CAP;
     const maxSpins = Math.min(dailySpinsValue + subBonus + bonusSpinsPermanent, capLimit);
 
-    // Get or create today's spin record with carry-over logic
-    // First check if today's record exists
-    let { data: spinsData, error: fetchError } = await serviceClient
-      .from("slot_spins")
-      .select("*")
-      .eq("user_id", userId)
-      .eq("date", today)
-      .maybeSingle();
+    // Atomic spin deduction via RPC (handles init + carry-over + deduction in 1 call)
+    const { data: newRemaining, error: rpcError } = await serviceClient
+      .rpc("deduct_spin", {
+        p_user_id: userId,
+        p_date: today,
+        p_bet: bet,
+        p_max_spins: maxSpins,
+      });
 
-    if (fetchError) {
-      console.error("Failed to fetch today's spins:", fetchError);
+    if (rpcError) {
+      console.error("deduct_spin RPC error:", rpcError);
       return new Response(
-        JSON.stringify({ error: "Failed to read spins data" }),
+        JSON.stringify({ error: "Failed to deduct spins" }),
         { status: 500, headers: { ...corsHeaders, "Content-Type": "application/json" } }
       );
     }
 
-    if (!spinsData) {
-      // No record for today - check previous day's balance for carry-over
-      const { data: previousRecord } = await serviceClient
-        .from("slot_spins")
-        .select("spins_remaining")
-        .eq("user_id", userId)
-        .lt("date", today)
-        .order("date", { ascending: false })
-        .limit(1)
-        .maybeSingle();
-
-      let startValue: number;
-      if (!previousRecord) {
-        startValue = maxSpins;
-      } else if (previousRecord.spins_remaining >= maxSpins) {
-        // Carry over as-is — do NOT reduce gifted/rewarded balances
-        startValue = previousRecord.spins_remaining;
-      } else {
-        startValue = maxSpins;
-      }
-
-      const { error: upsertError } = await serviceClient
-        .from("slot_spins")
-        .upsert(
-          { user_id: userId, date: today, spins_remaining: startValue },
-          { onConflict: "user_id,date", ignoreDuplicates: true }
-        );
-
-      if (upsertError) {
-        console.error("Upsert error:", upsertError);
-        return new Response(
-          JSON.stringify({ error: "Failed to initialize spins" }),
-          { status: 500, headers: { ...corsHeaders, "Content-Type": "application/json" } }
-        );
-      }
-
-      // Fetch the created record
-      const { data: newSpins, error: newFetchError } = await serviceClient
-        .from("slot_spins")
-        .select("*")
-        .eq("user_id", userId)
-        .eq("date", today)
-        .single();
-
-      if (newFetchError || !newSpins) {
-        console.error("Failed to fetch spins after upsert:", newFetchError);
-        return new Response(
-          JSON.stringify({ error: "Failed to read spins data" }),
-          { status: 500, headers: { ...corsHeaders, "Content-Type": "application/json" } }
-        );
-      }
-
-      spinsData = newSpins;
-    }
-
-    if (fetchError || !spinsData) {
-      console.error("Failed to fetch spins after upsert:", fetchError);
-      return new Response(
-        JSON.stringify({ error: "Failed to read spins data" }),
-        { status: 500, headers: { ...corsHeaders, "Content-Type": "application/json" } }
-      );
-    }
-
-    // Validate user has enough spins
-    if (spinsData.spins_remaining < bet) {
+    if (newRemaining === -1) {
       return new Response(
         JSON.stringify({ error: "Not enough spins remaining" }),
         { status: 400, headers: { ...corsHeaders, "Content-Type": "application/json" } }
@@ -1097,20 +1037,6 @@ Deno.serve(async (req) => {
     // Generate spin result
     const grid = generateGrid(symbols, false);
     const result = calculateSpinResult(grid, symbols, bet);
-
-    // Deduct spins (atomic update)
-    const { error: updateError } = await serviceClient
-      .from("slot_spins")
-      .update({ spins_remaining: spinsData.spins_remaining - bet })
-      .eq("id", spinsData.id)
-      .eq("spins_remaining", spinsData.spins_remaining); // Optimistic locking
-
-    if (updateError) {
-      return new Response(
-        JSON.stringify({ error: "Failed to update spins - please retry" }),
-        { status: 409, headers: { ...corsHeaders, "Content-Type": "application/json" } }
-      );
-    }
 
     // If bonus triggered, create bonus state
     let bonusState = null;
@@ -1260,7 +1186,7 @@ Deno.serve(async (req) => {
       JSON.stringify({
         success: true,
         result,
-        spinsRemaining: spinsData.spins_remaining - bet,
+        spinsRemaining: newRemaining,
         maxSpins,
         bonusState,
       }),
