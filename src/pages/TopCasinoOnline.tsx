@@ -599,8 +599,8 @@ const TopCasinoOnline = () => {
               <CardContent>
                 <p className="text-sm text-muted-foreground">
                   En <Link to="/indskudsbonus" className={linkClass}>indskudsbonus</Link>{" "}
-                  aktiveres ved din indbetaling. Den mest typiske variant er en 100% match, men nogle casinoer tilbyder 200% eller endda 300% match på den første indbetaling. Husk altid at tjekke{" "}
-                  <Link to="/omsaetningskrav" className={linkClass}>omsætningskravene</Link>.
+                  aktiveres ved din indbetaling. I Danmark er standarden 100% match op til 1.000 kr. – indbetaler du 1.000 kr., får du 1.000 kr. ekstra. Husk altid at tjekke{" "}
+                  <Link to="/omsaetningskrav" className={linkClass}>omsætningskravene</Link> (max 10x på danske casinoer).
                 </p>
               </CardContent>
             </Card>

@@ -629,15 +629,15 @@ const Velkomstbonus = () => {
               <CardHeader className="pb-2">
                 <CardTitle className="flex items-center gap-2 text-lg">
                   <Calculator className="h-5 w-5 text-primary" />
-                  200% match op til 2.000 kr. (<Link to="/sticky-bonus" className={linkClass}>sticky</Link>, 10x d+b)
+                  100% match op til 1.000 kr. (<Link to="/sticky-bonus" className={linkClass}>sticky</Link>, 10x d+b)
                 </CardTitle>
               </CardHeader>
               <CardContent className="space-y-2">
                 <p className="text-sm text-muted-foreground leading-relaxed">
-                  <strong>Beregning:</strong> 1.000 kr. indbetaling + 2.000 kr. bonus = 3.000 kr. saldo. Omsætning: 10x × 3.000 = 30.000 kr. Tab: 30.000 × 0,04 = 1.200 kr. Saldo: 3.000 – 1.200 = 1.800 kr. Minus bonus: 1.800 – 2.000 = <strong>-200 kr. EV (negativ!)</strong>.
+                  <strong>Beregning:</strong> 1.000 kr. indbetaling + 1.000 kr. bonus = 2.000 kr. saldo. Omsætning: 10x × 2.000 = 20.000 kr. Tab: 20.000 × 0,04 = 800 kr. Saldo: 2.000 – 800 = 1.200 kr. Minus bonus: 1.200 – 1.000 = <strong>+200 kr. EV</strong>.
                 </p>
                 <p className="text-sm text-muted-foreground leading-relaxed">
-                  <strong>Konklusion:</strong> Trods den store "2.000 kr." bonus er denne pakke statistisk tabsgivende. Høj match-% med sticky + 10x (d+b) er ofte en fælde. Den no-sticky 100%-pakke ovenfor er markant bedre.
+                  <strong>Konklusion:</strong> Sticky 10x (d+b) med 100% match giver svag positiv EV. Men du kan ikke hæve dine egne penge undervejs – alt er låst til omsætningen er fuldført. Den no-sticky 100%-pakke ovenfor er markant bedre pga. fleksibiliteten.
                 </p>
               </CardContent>
             </Card>
@@ -738,15 +738,15 @@ const Velkomstbonus = () => {
               <CardHeader className="pb-2">
                 <CardTitle className="flex items-center gap-2 text-lg">
                   <Calculator className="h-5 w-5 text-primary" />
-                  Enkeltstående: 100% match op til 2.000 kr. (10x d+b)
+                  Enkeltstående: 100% match op til 1.000 kr. (10x d+b)
                 </CardTitle>
               </CardHeader>
               <CardContent className="space-y-2">
                 <p className="text-sm text-muted-foreground leading-relaxed">
-                  <strong>Beregning:</strong> 2.000 kr. indbetaling + 2.000 kr. bonus = 4.000 kr. saldo. Omsætning: 10 × 4.000 = 40.000 kr. Tab: 40.000 × 0,04 = 1.600 kr. Saldo: 4.000 – 1.600 = 2.400 kr. Minus bonus: <strong>EV = 400 kr.</strong> (20% af nominel værdi).
+                  <strong>Beregning:</strong> 1.000 kr. indbetaling + 1.000 kr. bonus = 2.000 kr. saldo. Omsætning: 10 × 2.000 = 20.000 kr. Tab: 20.000 × 0,04 = 800 kr. Saldo: 2.000 – 800 = 1.200 kr. Minus bonus: <strong>EV = 200 kr.</strong> (20% af nominel bonusværdi).
                 </p>
                 <p className="text-sm text-muted-foreground leading-relaxed">
-                  <strong>Fordel:</strong> Alt overstået i én indbetaling. <strong>Ulempe:</strong> Høj total omsætning (40.000 kr.) og betydeligt tidskrav (~11 timer spilletid).
+                  <strong>Fordel:</strong> Alt overstået i én indbetaling. <strong>Ulempe:</strong> Høj total omsætning (20.000 kr.) og betydeligt tidskrav (~5-6 timer spilletid).
                 </p>
               </CardContent>
             </Card>

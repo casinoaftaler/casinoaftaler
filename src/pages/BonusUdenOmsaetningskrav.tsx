@@ -70,7 +70,7 @@ const faqs: { question: string; answer: ReactNode }[] = [
     question: "Hvad er forskellen på en omsætningsfri bonus og en no-sticky bonus?",
     answer: (
       <>
-        En <Link to="/no-sticky-bonus" className={linkClass}>no-sticky bonus</Link> adskiller din indbetaling og bonus i to separate saldi – du spiller først med din egen indbetaling, og bonus aktiveres kun hvis din saldo når nul. Bonusdelen har stadig omsætningskrav (typisk 1-10x). En omsætningsfri bonus eliminerer omsætningskravet helt: gevinster kan hæves direkte. Konverteringsraten er 100% for omsætningsfri (op til gevinstloft) vs. ca. 40-60% for no-sticky. Men no-sticky giver dig adgang til langt større bonusbeløb (op til 5.000 kr. vs. typisk 100-500 kr. omsætningsfri).
+        En <Link to="/no-sticky-bonus" className={linkClass}>no-sticky bonus</Link> adskiller din indbetaling og bonus i to separate saldi – du spiller først med din egen indbetaling, og bonus aktiveres kun hvis din saldo når nul. Bonusdelen har stadig omsætningskrav (typisk 5-10x). En omsætningsfri bonus eliminerer omsætningskravet helt: gevinster kan hæves direkte. Konverteringsraten er 100% for omsætningsfri (op til gevinstloft) vs. ca. 40-60% for no-sticky. Men no-sticky giver dig adgang til casinoets fulde bonusbeløb (op til 1.000 kr.) vs. typisk 100-500 kr. for omsætningsfri bonusser.
       </>
     ),
   },
@@ -437,7 +437,7 @@ const BonusUdenOmsaetningskrav = () => {
                 icon: CreditCard,
                 desc: (
                   <>
-                    En <Link to="/indskudsbonus" className={linkClass}>indskudsbonus</Link> med 100% match og 10x omsætning giver højere nominelt bonusbeløb (op til 5.000 kr.), men omsætningskostnaden reducerer EV med 30-40%. Omsætningsfri giver lavere beløb men 100% konvertering. <strong>Tommelfingerregel:</strong> En omsætningsfri bonus på X kr. ≈ en traditionel bonus på 1,6 × X kr. med 10x omsætning.
+                    En <Link to="/indskudsbonus" className={linkClass}>indskudsbonus</Link> med 100% match og 10x omsætning giver op til 1.000 kr. i bonus (dansk lovmæssigt maksimum), men omsætningskostnaden reducerer EV med 30-40%. Omsætningsfri giver lavere beløb men 100% konvertering. <strong>Tommelfingerregel:</strong> En omsætningsfri bonus på X kr. ≈ en traditionel bonus på 1,6 × X kr. med 10x omsætning.
                   </>
                 ),
               },
