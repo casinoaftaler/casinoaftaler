@@ -1,98 +1,295 @@
 
 
-# Revamped "Big Win" and "Epic Win" Animations for Rise of Fedesvin
+# Gates of Fedesvin -- New Slot Game (Gates of Olympus Clone)
 
 ## Overview
 
-The current win celebration is fairly basic: falling particles, a gradient text overlay, a screen flash, and a pulsing border. We'll upgrade it with significantly more dramatic, layered effects -- especially for the wizard theme on Rise of Fedesvin.
+This is a major new game that requires a **fundamentally different game engine** from the existing Book of Fedesvin and Rise of Fedesvin. Gates of Olympus uses completely different mechanics:
+
+**Current games (Book/Rise):** 5 reels x 3 rows, 10 pay lines, consecutive-from-left wins, expanding symbols in bonus.
+
+**Gates of Fedesvin (new):** 6 reels x 5 rows, "Pay Anywhere" (cluster pays), Tumble/Cascade mechanic, random multiplier symbols, cumulative multipliers in free spins.
 
 ---
 
-## What Changes
+## Gates of Olympus Core Mechanics
 
-### 1. New CSS Keyframes (slot-animations.css)
+### Base Game
+- **Grid**: 6 columns x 5 rows (30 symbol positions)
+- **Pay Anywhere**: No pay lines. Match 8+ identical symbols ANYWHERE on the grid to win
+- **Tumble Feature**: After a win, winning symbols are removed and new symbols fall from above. Tumbles continue until no new wins form. This is the signature mechanic.
+- **Multiplier Symbols**: Random multiplier orbs (2x, 3x, 5x, 10x, 15x, 25x, 50x, 100x, 250x, 500x) can land alongside regular symbols. Their values are summed and applied to the total win of that spin round (after all tumbles complete).
+- **Scatter**: Zeus scatter symbol. 4+ scatters trigger free spins.
 
-Add these new animations:
+### Free Spins (Bonus)
+- **15 free spins** on trigger (4+ scatters)
+- **Retrigger**: 3+ scatters during free spins = +5 free spins
+- **Cumulative Multiplier**: ALL multiplier symbol values during the entire free spins round are summed into a running total multiplier. Each winning tumble has this total multiplier applied. This is what makes big wins possible.
+- **Example**: If multipliers of 5x, 3x, 2x land during several tumbles, the running multiplier becomes 10x (5+3+2). The next win is multiplied by 10x.
 
-- **`shockwave`**: A rapidly expanding, fading ring from the center (wizard purple). Creates an "impact" feel on Big/Epic Win entry.
-- **`lightning-flash`**: A multi-step full-screen white flash that pulses 2-3 times rapidly. Used for Epic Win only.
-- **`text-glow-breathe`**: Continuous breathing glow on the win text (larger shadow pulse). More dramatic than current `glow-pulse`.
-- **`orb-float`**: Slower, randomized floating path for background ambient orbs during the celebration hold phase.
-- **`ring-expand`**: Concentric rings that expand outward from center, giving a "power burst" effect.
-- **`rune-orbit`**: Runes orbiting around the win text in a circular path.
+### Symbol Payout Structure (Pay Anywhere, based on count)
 
-### 2. Revamped WinCelebration.tsx
+| Symbol | 8+ | 10+ | 12+ |
+|--------|-----|------|------|
+| Premium (gems) | Low | Medium | High |
+| Common (cups, rings) | Lower | Low | Medium |
 
-#### New Particle Types
-- **`lightning`** (wizard Epic Win only): Short jagged bolt shapes rendered via CSS clip-path, flashing brightly.
-- **`ring`** (wizard Big/Mega/Epic): Expanding concentric circles from center.
+---
 
-#### New Visual Layers (in render order)
+## Implementation Plan
 
-1. **Shockwave ring** (Big Win+): A single expanding purple ring on entry, using the `ring-expand` keyframe. Fires once.
-2. **Lightning flash overlay** (Epic Win only): Full-screen multi-pulse white/purple flash on entry (replaces the basic single flash).
-3. **Ambient orb layer** (Big Win+): 6-10 large, soft-glow orbs floating slowly in the background using `orb-float`. These persist during the entire celebration.
-4. **Rune orbit ring** (Mega/Epic): 6-8 runes orbiting the win text in a circle using `rune-orbit`.
-5. **Particle burst** (existing, enhanced): 50% more particles for wizard. Epic Win gets a second wave of particles at delay 0.8s.
-6. **Win text** (existing, enhanced): Larger font sizes, stronger `text-glow-breathe` animation, and a subtle `scale` bounce loop during the pulse phase.
-7. **Vignette overlay** (Big Win+): Dark vignette around edges to focus attention on center. Fades in with the celebration.
+### Phase 1: Database Setup
 
-#### Enhanced Text Styling (Wizard)
-- Epic Win text: 20% larger, pink-to-purple-to-cyan gradient with faster `gradient-shift`.
-- Mega Win text: Purple-to-violet gradient with breathing glow shadow.
-- The "POINT!" counter gets a subtle scale bounce on each number change.
+**1a. Add symbols for "gates-of-fedesvin" to `slot_symbols` table**
 
-#### Timing Adjustments
-- Epic Win: pulse phase extended from 750ms to 1200ms (more time to appreciate).
-- Mega Win: pulse phase extended to 900ms.
-- Fade-out uses scale-down + blur for a more cinematic exit.
+Insert ~10 symbols with `game_id = 'gates-of-fedesvin'`:
+- **Premium**: Red Gem, Purple Gem, Green Gem, Blue Gem (high payouts)
+- **Common**: Gold Cup, Gold Ring, Hourglass, Chalice (lower payouts)
+- **Scatter**: Zeus/Lightning scatter
+- **Note**: Multiplier orbs are NOT symbols in the grid -- they are randomly generated overlays
 
-### 3. Summary of New Effects per Tier
+The symbol table needs new payout columns since Gates uses 8/10/12 match counts instead of 2/3/4/5. We'll add `multiplier_8`, `multiplier_10`, `multiplier_12` columns, or repurpose existing `multiplier_3`/`multiplier_4`/`multiplier_5` as "tier 1/2/3" payouts for this game.
 
-```text
-+----------------+-------------+-------------+-------------+
-| Effect         | Big Win     | Mega Win    | Epic Win    |
-+----------------+-------------+-------------+-------------+
-| Shockwave ring | 1 ring      | 2 rings     | 3 rings     |
-| Lightning      | --          | --          | 3 bolts     |
-| Ambient orbs   | 4 orbs      | 6 orbs      | 10 orbs     |
-| Rune orbit     | --          | 6 runes     | 8 runes     |
-| Particles      | 52 (1.3x)   | 78 (1.3x)   | 100+ (1.3x) |
-| Particle waves | 1           | 1           | 2           |
-| Vignette       | light       | medium      | heavy       |
-| Text size bump | --          | --          | +20%        |
-| Pulse duration | 750ms       | 900ms       | 1200ms      |
-| Exit effect    | scale+fade  | scale+fade  | scale+blur  |
-+----------------+-------------+-------------+-------------+
+**Approach**: Repurpose existing columns to avoid schema changes:
+- `multiplier_3` = payout for 8-9 matches
+- `multiplier_4` = payout for 10-11 matches  
+- `multiplier_5` = payout for 12+ matches
+- `multiplier_2` = unused (0)
+
+**1b. Add access settings**
+
+Add entries to `site_settings`:
+- `gates_of_fedesvin_locked`: "false"
+- `gates_of_fedesvin_background_image`: (URL)
+
+**1c. Update `useSlotPageAccess` with new game key**
+
+### Phase 2: Game Logic (New Engine)
+
+**2a. Create `src/lib/gatesGameLogic.ts`**
+
+Completely new game logic file:
+
+```
+- GRID_COLS = 6, GRID_ROWS = 5
+- generateGatesGrid(symbols, isBonusSpin): string[][] (6x5)
+- countSymbolMatches(grid, symbols): Map<symbolId, count>
+- calculateGatesWins(grid, symbols, betAmount): { wins, multiplierTotal }
+  - For each symbol type, count occurrences across entire grid
+  - 8-9 matches = tier 1 payout
+  - 10-11 matches = tier 2 payout
+  - 12+ matches = tier 3 payout
+- applyTumble(grid, winningSymbolIds, symbols): { newGrid, tumbledPositions }
+  - Remove winning symbols
+  - Drop symbols down to fill gaps
+  - Generate new random symbols for empty positions at top
+- generateMultiplierOrbs(grid): { positions, values }[]
+  - Random chance to place multiplier orbs on the grid
+  - Values: [2, 3, 5, 10, 15, 25, 50, 100, 250, 500] with weighted distribution
+- calculateFullSpinResult(grid, symbols, betAmount, isBonusSpin, runningMultiplier):
+  - Loop: check wins -> apply multipliers -> tumble -> repeat
+  - Return: all tumble steps, total win, multiplier values, bonus trigger
 ```
 
+**2b. Create `src/lib/gatesBonusLogic.ts`**
+
+Bonus-specific logic:
+- Cumulative multiplier tracking across the entire free spins session
+- Retrigger detection (3+ scatters during free spins = +5 spins)
+- Running multiplier applied to each tumble win
+
+### Phase 3: Backend (Edge Function)
+
+**3a. Extend `slot-spin/index.ts`**
+
+Add a `gates-of-fedesvin` code path in the edge function:
+
+- Different grid generation (6x5 instead of 5x3)
+- Pay-anywhere win calculation instead of pay-line
+- Tumble loop: generate grid -> check wins -> remove winners -> drop new symbols -> repeat
+- Multiplier orb generation and application
+- Bonus mode: track cumulative multiplier in `slot_bonus_state`
+- Return tumble sequence to frontend for animation
+
+The response structure for Gates will include:
+```typescript
+interface GatesSpinResult {
+  tumbleSteps: Array<{
+    grid: string[][];           // Grid state at this step
+    wins: GatesWin[];           // Winning clusters
+    winningPositions: number[]; // Flat indices of winning symbols
+    multiplierOrbs: Array<{ position: number; value: number }>;
+    stepWin: number;            // Win for this tumble step
+  }>;
+  totalWin: number;
+  bonusTriggered: boolean;
+  scatterCount: number;
+  totalMultiplier: number;      // Sum of all multiplier orbs this spin
+}
+```
+
+### Phase 4: Frontend Components
+
+**4a. Create `src/components/slots/GatesSlotGame.tsx`**
+
+New main game component (based on SlotGame.tsx but heavily modified):
+
+- **6x5 grid layout** instead of 5x3
+- **Tumble animation system**: After reels land, winning symbols flash/highlight, then disappear with a particle effect, remaining symbols drop down, new symbols fall from above
+- **Multiplier orb rendering**: Glowing orbs with value text that appear on the grid
+- **Running multiplier display**: A prominent counter showing the current total multiplier (especially important during free spins)
+- **No pay lines** (WinLines component not used)
+- **No expanding symbols** (BonusSymbolBar/BonusSymbolPicker not used)
+
+Key differences from SlotGame.tsx:
+- Reel animation: Instead of spinning reels, symbols fall/drop (tumble mechanic)
+- Win display: Highlight winning clusters (all positions, not lines)
+- Sequential tumbles: Animate win -> remove -> drop -> new symbols -> check again
+- Multiplier orb animation: Orbs float/pulse on winning positions
+
+**4b. Create `src/components/slots/GatesSlotReel.tsx`**
+
+New reel component for 6x5 grid with tumble support:
+- 5 rows per reel (instead of 3)
+- Tumble animation: symbols that win flash and dissolve, then gravity pulls remaining symbols down
+- New symbols appear at top with a "drop-in" animation
+- Smaller symbol sizes to fit 6x5 grid
+
+**4c. Create `src/components/slots/GatesWinDisplay.tsx`**
+
+Cluster-based win highlighting:
+- Highlight all matching symbols across the grid (not line-based)
+- Show cluster count (e.g., "12x Diamond!")
+- Multiplier orb values animate and collect into a total
+
+**4d. Create `src/components/slots/GatesBonusOverlay.tsx`**
+
+Simplified bonus overlay (no symbol picker needed):
+- Trigger screen: Zeus/lightning themed, shows "15 FREE SPINS"
+- Running multiplier display during free spins
+- Complete screen: Shows total multiplier applied and total winnings
+
+**4e. Create `src/components/slots/GatesBonusStatusBar.tsx`**
+
+Shows:
+- Free spins remaining / total
+- Current cumulative multiplier (e.g., "TOTAL MULTI: x47")
+- Bonus winnings so far
+
+**4f. Create `src/components/slots/GatesMultiplierDisplay.tsx`**
+
+Floating multiplier orb component:
+- Renders orbs on winning positions
+- Values animate and fly to a "total multiplier" counter
+- Lightning/glow effects
+
+### Phase 5: Theme and Styling
+
+**5a. Add Olympus theme to `src/lib/slotTheme.ts`**
+
+New `olympusTheme: SlotTheme` with blue/white/gold/lightning color palette:
+- Blues (sky/Zeus), golds, white lightning accents
+- Cloud/marble aesthetic
+
+**5b. Create `src/styles/gates-animations.css`**
+
+New animations specific to Gates:
+- `tumble-remove`: Symbol shrinks/fades with sparkle
+- `tumble-drop`: Symbol falls from above with bounce
+- `multiplier-orb-pulse`: Glowing orb animation
+- `multiplier-collect`: Orb value flies to total counter
+- `lightning-strike`: Zeus lightning effect for big wins
+- `cloud-drift`: Ambient cloud particles
+
+**5c. Intro/Loading screens**
+
+- `SlotLoadingScreen` already supports `gameId` -- add `gates-of-fedesvin` assets
+- `SlotIntroScreen` already supports `gameId` -- add Olympus-themed intro
+
+### Phase 6: Page and Routing
+
+**6a. Create `src/pages/GatesOfFedesvin.tsx`**
+
+New page following the pattern of `RiseOfFedesvin.tsx`:
+- Uses `GatesSlotGame` instead of `SlotGame`
+- Olympus background image
+- Blue/gold theme colors
+- `GAME_ID = "gates-of-fedesvin"`
+
+**6b. Update routing in `App.tsx`**
+
+Add route: `/community/slots/gates-of-fedesvin`
+
+**6c. Update `GameLibrary.tsx`**
+
+Move "Fedesvin of Olympus" from `MORE_SLOTS` (coming soon) to `FEATURED_SLOTS` and rename to "Gates of Fedesvin". Update href to point to the new route.
+
+### Phase 7: Hooks
+
+**7a. Extend `useSlotSymbols.ts`**
+
+Already supports `gameId` parameter -- no changes needed.
+
+**7b. Extend `useBonusGameSync.ts`**
+
+Add support for Gates-style bonus state:
+- `cumulativeMultiplier` field in bonus state
+- No expanding symbol logic (cumulative multiplier replaces it)
+
+**7c. Extend `useSlotPageAccess.ts`**
+
+Add `gates-of-fedesvin` entry to `GAME_SETTINGS_KEYS`.
+
 ---
 
-## Technical Details
+## Technical Challenges
 
-### Files Modified
+### 1. Tumble Animation Sequencing
+The tumble mechanic requires displaying a multi-step animation sequence:
+1. Show initial grid
+2. Highlight winning symbols (flash/glow)
+3. Remove winning symbols (dissolve animation)
+4. Drop remaining symbols down (gravity animation)
+5. New symbols appear at top (drop-in animation)
+6. Check for new wins -- if found, go to step 2
+7. When no more wins, show total and apply multipliers
 
-1. **`src/styles/slot-animations.css`** -- Add 6 new `@keyframes` declarations (shockwave, lightning-flash, text-glow-breathe, orb-float, ring-expand, rune-orbit).
+This is fundamentally different from the current spin-and-stop mechanic and requires a new animation state machine.
 
-2. **`src/components/slots/WinCelebration.tsx`** -- Major rework:
-   - New particle types in the `Particle` interface (`lightning`, `ring`).
-   - New state: `showShockwave`, ambient orbs array.
-   - New render layers: shockwave div, ambient orbs, rune orbit container, vignette overlay, enhanced lightning flash.
-   - Extended pulse/fade timings for Mega and Epic.
-   - Enhanced text styling with stronger gradients and glow for wizard theme.
-   - Second particle wave for Epic Win (delayed burst).
+### 2. Grid Size Change (6x5 vs 5x3)
+The current reel system is built around 5 reels x 3 rows. The new game needs 6x5, which affects:
+- Symbol sizing (must be smaller)
+- Layout calculations
+- Frame dimensions
+- Mobile responsiveness
 
-### Performance Considerations
+### 3. Server Response Structure
+The server must return the ENTIRE tumble sequence so the client can replay it step by step. This is more data than the current single-grid response.
 
-- Ambient orbs use CSS-only animations (no JS RAF loop) -- minimal CPU cost.
-- Shockwave and lightning are single-fire animations that auto-remove via `onAnimationEnd`.
-- Total particle count increase is modest (~30% more for wizard).
-- All new effects use `pointer-events-none` and `will-change: transform, opacity` for GPU acceleration.
+---
 
-### No Changes To
+## Estimated Scope
 
-- `SlotGame.tsx` (same props interface)
-- `useAnimatedCounter.ts` (unchanged)
-- `WinDisplay.tsx` (unchanged)
-- Backend / Edge Functions (purely visual change)
+This is equivalent to building a second game engine. The files that can be shared with existing games:
+- Theme system (`slotTheme.ts`) -- extended
+- Sound system (`slotSoundEffects.ts`) -- extended
+- Loading/Intro screens -- extended
+- Page layout (`SlotPageLayout.tsx`) -- reused
+- Leaderboard (`SlotLeaderboard.tsx`) -- reused
+- Control panel -- partially reused (bet controls, volume, autospin)
+- Session management -- reused
+
+Files that are NEW or heavily modified:
+- `gatesGameLogic.ts` -- NEW (core game engine)
+- `gatesBonusLogic.ts` -- NEW (bonus logic)
+- `GatesSlotGame.tsx` -- NEW (main component)
+- `GatesSlotReel.tsx` -- NEW (reel with tumble)
+- `GatesWinDisplay.tsx` -- NEW (cluster wins)
+- `GatesBonusOverlay.tsx` -- NEW
+- `GatesBonusStatusBar.tsx` -- NEW
+- `GatesMultiplierDisplay.tsx` -- NEW
+- `gates-animations.css` -- NEW
+- `GatesOfFedesvin.tsx` -- NEW (page)
+- `slot-spin/index.ts` -- EXTENDED (new game path)
+- Database migration -- NEW (symbols + settings)
 
