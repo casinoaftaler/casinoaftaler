@@ -1550,6 +1550,15 @@ export type Database = {
         Args: { p_section: string; p_today: string; p_user_id: string }
         Returns: Json
       }
+      deduct_spin: {
+        Args: {
+          p_bet: number
+          p_date: string
+          p_max_spins: number
+          p_user_id: string
+        }
+        Returns: number
+      }
       get_admin_users_with_email: {
         Args: never
         Returns: {

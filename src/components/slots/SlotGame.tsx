@@ -130,6 +130,16 @@ export function SlotGame({ gameId = "book-of-fedesvin" }: SlotGameProps) {
   
   const winLinesTimeoutRef = useRef<NodeJS.Timeout | null>(null);
   
+  // Debounced leaderboard invalidation (5s cooldown to avoid thundering herd)
+  const leaderboardInvalidateRef = useRef<NodeJS.Timeout | null>(null);
+  const debouncedLeaderboardInvalidate = useCallback(() => {
+    if (leaderboardInvalidateRef.current) return; // Already scheduled
+    leaderboardInvalidateRef.current = setTimeout(() => {
+      queryClient.invalidateQueries({ queryKey: ["slot-leaderboard"] });
+      leaderboardInvalidateRef.current = null;
+    }, 5000);
+  }, [queryClient]);
+  
   // Track stopped reels for tease-mode timing
   const stoppedReelsRef = useRef<Set<number>>(new Set());
   const pendingResultRef = useRef<SpinResult | null>(null);
@@ -482,7 +492,7 @@ export function SlotGame({ gameId = "book-of-fedesvin" }: SlotGameProps) {
       // Bonus result is now recorded server-side in the slot-spin edge function
       // when free_spins_remaining reaches 0. Just invalidate the leaderboard cache.
       if (winnings > 0) {
-        queryClient.invalidateQueries({ queryKey: ["slot-leaderboard"] });
+        debouncedLeaderboardInvalidate();
       }
       
       setBonusTotalWinnings(winnings);
@@ -978,7 +988,10 @@ export function SlotGame({ gameId = "book-of-fedesvin" }: SlotGameProps) {
         }
       }
       
-      queryClient.invalidateQueries({ queryKey: ["slot-leaderboard"] });
+      // Debounced leaderboard invalidation - only on wins (MV refreshes every 60s anyway)
+      if (result.totalWin > 0) {
+        debouncedLeaderboardInvalidate();
+      }
       
       setIsSpinning(false);
       setTeaseReels([]);
