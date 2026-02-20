@@ -87,7 +87,7 @@ const stickyFaqs: { question: string; answer: string | React.ReactNode }[] = [
     question: "Hvad er de typiske vilkår for en sticky bonus i Danmark?",
     answer: (
       <>
-        Standard danske sticky bonus-vilkår: 100% match op til 500-2.000 kr., 10x (d+b) omsætningskrav, 14-30 dages gyldighedsperiode, 25-50 kr. maks. indsats per spin, spilleautomater bidrager 100%, bordspil 10-20%, live casino 0-10%. Gevinstloft varierer fra 5.000 til 50.000 kr. Spillemyndighedens regulering sikrer at disse vilkår er gennemsigtige – casinoer er forpligtede til at vise dem tydeligt. Sammenlign altid med <Link to="/bonus-uden-omsaetningskrav" className={linkClass}>omsætningsfrie alternativer</Link> for at vurdere reel værdi.
+        Standard danske sticky bonus-vilkår: 100% match op til 1.000 kr. (Spillemyndighedens maksimum), 10x (d+b) omsætningskrav, 14-30 dages gyldighedsperiode, 25-50 kr. maks. indsats per spin, spilleautomater bidrager 100%, bordspil 10-20%, live casino 0-10%. Gevinstloft varierer fra 5.000 til 50.000 kr. Spillemyndighedens regulering sikrer at disse vilkår er gennemsigtige – casinoer er forpligtede til at vise dem tydeligt. Sammenlign altid med <Link to="/bonus-uden-omsaetningskrav" className={linkClass}>omsætningsfrie alternativer</Link> for at vurdere reel værdi.
       </>
     ),
   },
@@ -684,18 +684,18 @@ const StickyBonus = () => {
               <CardHeader className="pb-2">
                 <CardTitle className="flex items-center gap-2 text-lg">
                   <Calculator className="h-5 w-5 text-primary" />
-                  Scenarie 2: Lavt omsætningskrav (3x d+b)
+                  Scenarie 2: Lavt omsætningskrav (5x d+b) – ComeOn/GetLucky niveau
                 </CardTitle>
               </CardHeader>
               <CardContent className="space-y-2">
                 <p className="text-sm text-muted-foreground leading-relaxed">
-                  <strong>Input:</strong> Indbetaling 500 kr. + 500 kr. bonus = 1.000 kr. saldo. Omsætningskrav: 3x (d+b) = 3.000 kr. total omsætning. Slot RTP: 97% (house edge 3%).
+                  <strong>Input:</strong> Indbetaling 1.000 kr. + 1.000 kr. bonus = 2.000 kr. saldo. Omsætningskrav: 5x (d+b) = 10.000 kr. total omsætning. Slot RTP: 97% (house edge 3%).
                 </p>
                 <p className="text-sm text-muted-foreground leading-relaxed">
-                  <strong>Beregning:</strong> Forventet tab = 3.000 × 0,03 = 90 kr. Forventet saldo = 1.000 – 90 = 910 kr. Minus bonus (500 kr.) = <strong>410 kr. netto EV</strong>.
+                  <strong>Beregning:</strong> Forventet tab = 10.000 × 0,03 = 300 kr. Forventet saldo = 2.000 – 300 = 1.700 kr. Minus bonus (1.000 kr.) = <strong>700 kr. netto EV</strong>.
                 </p>
                 <p className="text-sm text-muted-foreground leading-relaxed">
-                  <strong>Konklusion:</strong> Med 3x omsætning og høj-RTP slot er bonussens reelle værdi 410 kr. af de 500 kr. annoncerede – 82% reel værdi. Dette viser hvorfor lave omsætningskrav er afgørende for <Link to="/nye-casinoer/lav-wagering" className={linkClass}>bonusværdien</Link>.
+                  <strong>Konklusion:</strong> Med 5x omsætning og høj-RTP slot er bonussens reelle værdi 700 kr. af de 1.000 kr. annoncerede – 70% reel værdi. Det er det laveste lovlige omsætningskrav på det danske marked (ComeOn og GetLucky). Dette viser hvorfor lave omsætningskrav er afgørende for <Link to="/nye-casinoer/lav-wagering" className={linkClass}>bonusværdien</Link>.
                 </p>
               </CardContent>
             </Card>

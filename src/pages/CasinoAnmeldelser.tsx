@@ -363,7 +363,7 @@ const CasinoAnmeldelser = () => {
           <p className="mb-4 text-muted-foreground leading-relaxed">
             Bonustypen er det mest afgørende enkeltparameter i vores vurdering. Et casino med en{" "}
             <Link to="/no-sticky-bonus" className={linkClass}>no-sticky bonus</Link> på 500 kr. med 10x omsætning er objektivt bedre end et casino med en{" "}
-            <Link to="/sticky-bonus" className={linkClass}>sticky bonus</Link> på 2.000 kr. med 30x omsætning. Årsagen er matematisk: no-sticky giver dig mulighed for at hæve gevinster fra din egen indbetaling uden at opfylde omsætningskravet. Sticky låser hele din saldo, indtil omsætningen er gennemført. I det danske marked tilbyder de fleste af vores højest ratede casinoer no-sticky bonusser – det er et kvalitetstegn, der signalerer fair vilkår.
+            <Link to="/sticky-bonus" className={linkClass}>sticky bonus</Link> på 1.000 kr. med 10x omsætning (det danske lovmæssige maksimum). Årsagen er matematisk: no-sticky giver dig mulighed for at hæve gevinster fra din egen indbetaling uden at opfylde omsætningskravet. Sticky låser hele din saldo, indtil omsætningen er gennemført. I det danske marked tilbyder de fleste af vores højest ratede casinoer no-sticky bonusser – det er et kvalitetstegn, der signalerer fair vilkår.
           </p>
 
           <h3 className="mb-3 mt-6 text-xl font-semibold">Betalingshastighed: Fra timer til dage</h3>
