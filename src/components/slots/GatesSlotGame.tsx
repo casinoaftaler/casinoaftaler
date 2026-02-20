@@ -55,6 +55,7 @@ export function GatesSlotGame({ gameId = "gates-of-fedesvin" }: GatesSlotGamePro
   const columnStopTimersRef = useRef<NodeJS.Timeout[]>([]);
   const serverResultRef = useRef<any>(null);
   const [cellAnimStates, setCellAnimStates] = useState<Map<number, CellAnimState>>(new Map());
+  const [runningWin, setRunningWin] = useState(0);
   
   // Bonus state
   const [isBonusActive, setIsBonusActive] = useState(false);
@@ -127,6 +128,9 @@ export function GatesSlotGame({ gameId = "gates-of-fedesvin" }: GatesSlotGamePro
         const winPositions = new Set(step.winningPositions);
         setWinningPositions(winPositions);
         setMultiplierOrbs(step.multiplierOrbs);
+        
+        // Increment running win counter
+        setRunningWin(prev => prev + step.stepWin);
         
         // Mark winning cells
         const winAnims = new Map<number, CellAnimState>();
@@ -215,6 +219,7 @@ export function GatesSlotGame({ gameId = "gates-of-fedesvin" }: GatesSlotGamePro
     setIsSpinning(true);
     setTumblePhase('spinning');
     setWinAmount(0);
+    setRunningWin(0);
     setIsWinAnimating(false);
     setWinningPositions(new Set());
     setMultiplierOrbs([]);
@@ -467,8 +472,19 @@ export function GatesSlotGame({ gameId = "gates-of-fedesvin" }: GatesSlotGamePro
         </div>
       </div>
 
-      {/* Win display */}
-      {winAmount > 0 && !isSpinning && (
+      {/* Running win counter during tumbles */}
+      {runningWin > 0 && tumblePhase !== 'idle' && (
+        <div className={cn(
+          "px-6 py-2 rounded-full border font-bold text-lg gates-multiplier-bump",
+          "bg-gradient-to-r from-yellow-900/80 to-amber-950/80",
+          "border-yellow-500/50 text-yellow-100 animate-pulse"
+        )}>
+          GEVINST: {runningWin.toLocaleString()} POINT
+        </div>
+      )}
+
+      {/* Final win display */}
+      {winAmount > 0 && !isSpinning && tumblePhase === 'idle' && (
         <div className={cn(
           "px-6 py-2 rounded-full border font-bold text-lg",
           "bg-gradient-to-r from-blue-900/80 to-blue-950/80",
