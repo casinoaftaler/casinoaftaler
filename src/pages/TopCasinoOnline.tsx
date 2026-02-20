@@ -359,7 +359,7 @@ const TopCasinoOnline = () => {
                   Vi analyserer{" "}
                   <Link to="/velkomstbonus" className={linkClass}>velkomstbonusser</Link>,{" "}
                   <Link to="/omsaetningskrav" className={linkClass}>omsætningskrav</Link>,{" "}
-                  gyldighed og gennemsigtighed. Et casino med en bonus på 1.000 kr. og x10 omsætningskrav scorer typisk højere end ét med x50 krav – fordi det er mere spillervenligt.
+                  gyldighed og gennemsigtighed. Et casino med en bonus på 1.000 kr. og x10 omsætningskrav scorer typisk højere end ét med x10 krav og dårlige bonusvilkår – fordi det er mere spillervenligt.
                 </p>
               </CardContent>
             </Card>
@@ -1058,7 +1058,7 @@ const TopCasinoOnline = () => {
                 step: "2",
                 title: "Sammenlign bonusvilkår – ikke kun bonusstørrelse",
                 desc: (
-                  <>En bonus på 1.000 kr. med x10 omsætningskrav er langt mere værdifuld end 5.000 kr. med x50 krav. Fokusér på{" "}
+                  <>En bonus på 1.000 kr. med x5 omsætningskrav (GetLucky/ComeOn) er langt mere værdifuld end 1.000 kr. med x10 krav. Fokusér på{" "}
                     <Link to="/omsaetningskrav" className={linkClass}>omsætningskrav</Link>, gyldighed og spillerestrictioner.</>
                 ),
               },

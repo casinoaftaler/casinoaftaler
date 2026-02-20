@@ -89,7 +89,7 @@ const NyeVsEtablerede = () => {
                 <CardTitle className="flex items-center gap-2 text-lg"><Sparkles className="h-5 w-5 text-primary" />Nye Casinoer</CardTitle>
               </CardHeader>
               <CardContent className="text-sm text-muted-foreground space-y-2">
-                <p><strong>Bonus:</strong> Typisk 100-200% match, 10x omsætning (5x hos udvalgte)</p>
+                <p><strong>Bonus:</strong> 100% match op til 1.000 kr., 10x omsætning (5x hos GetLucky/ComeOn)</p>
                 <p><strong>Udbetalinger:</strong> Under 5 min. via Trustly/MobilePay</p>
                 <p><strong>Spil:</strong> 500-2.000 titler, nyeste releases</p>
                 <p><strong>Mobil:</strong> Mobile-first, optimeret fra dag ét</p>

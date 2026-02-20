@@ -36,7 +36,7 @@ const faqs: { question: string; answer: ReactNode }[] = [
     question: "Hvilke bonusser tilbyder nye casinoer i 2026?",
     answer: (
       <>
-        Nye casinoer i 2026 konkurrerer intensivt på <Link to="/velkomstbonus" className={linkClass}>velkomstbonusser</Link>. De mest almindelige tilbud inkluderer: match-bonusser op til 2.000–5.000 kr. (typisk 100–200% af din første indbetaling), 50–200 <Link to="/free-spins" className={linkClass}>free spins</Link> på populære spilleautomater, og kombinationspakker fordelt over de første 2–3 indbetalinger. En stigende trend er <Link to="/bonus-uden-omsaetningskrav" className={linkClass}>bonusser uden omsætningskrav</Link>, hvor alle gevinster er dine fra første spin. Se vores oversigt over <Link to="/nye-casinoer/lav-wagering" className={linkClass}>nye casinoer med lav wagering</Link> for de bedste bonusvilkår.
+        Nye casinoer i 2026 konkurrerer intensivt på <Link to="/velkomstbonus" className={linkClass}>velkomstbonusser</Link>. De mest almindelige tilbud inkluderer: match-bonusser på 100% op til 1.000 kr. (indbetaler du 1.000 kr., får du 1.000 kr. oveni), 50–200 <Link to="/free-spins" className={linkClass}>free spins</Link> på populære spilleautomater, og kombinationspakker fordelt over de første 2–3 indbetalinger. En stigende trend er <Link to="/bonus-uden-omsaetningskrav" className={linkClass}>bonusser uden omsætningskrav</Link>, hvor alle gevinster er dine fra første spin. Se vores oversigt over <Link to="/nye-casinoer/lav-wagering" className={linkClass}>nye casinoer med lav wagering</Link> for de bedste bonusvilkår.
       </>
     ),
   },
@@ -238,7 +238,7 @@ const NyeCasinoer2026 = () => {
           </p>
           <div className="space-y-3">
             {[
-              { title: "Høj match, moderat wagering", desc: "Det klassiske tilbud: 100–200% match op til 2.000–5.000 kr. med 5x–10x omsætningskrav. Giver mest bonuspenge, men kræver mere spil for at frigøre gevinster. Bedst for spillere der planlægger længere sessioner." },
+              { title: "Høj match, moderat wagering", desc: "Det klassiske tilbud: 100% match op til 1.000 kr. med 5x–10x omsætningskrav. Indbetaler du 1.000 kr. får du 1.000 kr. i bonus = 2.000 kr. i alt. Giver mest bonuspenge, men kræver mere spil for at frigøre gevinster. Bedst for spillere der planlægger længere sessioner." },
               { title: "Lav match, ingen wagering", desc: "En stigende trend: 25–50% match eller faste bonuspenge, men helt uden omsætningskrav. Alle gevinster er dine fra første spin. Lavere nominelt beløb, men reelt ofte mere værdifuldt. Se vores guide til nye casinoer med lav wagering." },
               { title: "Free spins-pakker", desc: "50–200 free spins på udvalgte spilleautomater, ofte fordelt over flere dage. Typisk på populære titler som Book of Dead, Starburst eller Gates of Olympus. Gevinster underlagt omsætningskrav (max 10x i Danmark)." },
             ].map((item) => (

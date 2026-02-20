@@ -167,8 +167,8 @@ const BedsteNyeCasinoer = () => {
               <p className="text-xs text-muted-foreground">standard omsætningskrav (5x hos udvalgte)</p>
             </div>
             <div className="rounded-lg border border-border bg-card p-4 text-center">
-              <p className="text-2xl font-bold text-primary">100–200%</p>
-              <p className="text-xs text-muted-foreground">match på første indbetaling</p>
+              <p className="text-2xl font-bold text-primary">100%</p>
+              <p className="text-xs text-muted-foreground">match op til 1.000 kr. på første indbetaling</p>
             </div>
             <div className="rounded-lg border border-border bg-card p-4 text-center">
               <p className="text-2xl font-bold text-primary">50–200</p>
