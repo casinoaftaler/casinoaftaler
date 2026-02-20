@@ -210,7 +210,7 @@ const RoyalCasinoAnmeldelse = () => {
               <p><strong>Risk of Ruin:</strong> ~30% (højere varians pga. længere omsætningsperiode)</p>
             </CardContent>
           </Card>
-          <p className="mb-4 text-muted-foreground leading-relaxed">Royal Casinos bonus-EV er på niveau med markedet – hverken exceptionel eller ringe. Det 10x-omsætningskrav, der er dansk standard, giver en realistisk chance for at beholde bonusmidlerne. Til sammenligning: <Link to="/casino-anmeldelser/leovegas" className={linkClass}>LeoVegas</Link> tilbyder op til 3.000 kr. (EV +300 kr.), mens <Link to="/casino-anmeldelser/888-casino" className={linkClass}>888 Casino</Link> supplerer med en no-deposit bonus (EV +5-15 kr. risikofrit).</p>
+          <p className="mb-4 text-muted-foreground leading-relaxed">Royal Casinos bonus-EV er på niveau med markedet – hverken exceptionel eller ringe. Det 10x-omsætningskrav, der er dansk standard, giver en realistisk chance for at beholde bonusmidlerne. Til sammenligning: <Link to="/casino-anmeldelser/leovegas" className={linkClass}>LeoVegas</Link> tilbyder op til 1.000 kr. + 100 FS (EV +290 kr.), mens <Link to="/casino-anmeldelser/888-casino" className={linkClass}>888 Casino</Link> supplerer med en no-deposit bonus (EV +5-15 kr. risikofrit).</p>
           <p className="text-muted-foreground leading-relaxed"><strong>Strategisk anbefaling:</strong> Royal Casino er bedst for spillere, der planlægger at bruge platformen langsigtet – ikke blot for bonus-churn. Live casino-bordene med danske dealers og den statslige sikkerhed giver en premium-oplevelse, der berettiger en fast relation. Bonus er venlig men ikke aggressiv nok til at tiltrække rene bonusjægere.</p>
         </section>
 

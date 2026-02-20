@@ -232,7 +232,7 @@ const CasinostuenAnmeldelse = () => {
             Det lave indsatsniveau (min. 50 kr. indbetaling) betyder, at Casinostuen er en af de billigste platforme at teste risikofrit. En 50 kr. indbetaling med 50 kr. bonus giver kun 1.000 kr. i omsætningskrav – det svarer til ca. 100 spins ved 10 kr./spin. Det er en overkommelig investering for at vurdere, om platformen passer til dig.
           </p>
           <p className="text-muted-foreground leading-relaxed">
-            <strong>Sammenlignet med markedet:</strong> Casinostuens bonus-EV er på niveau med de fleste danske casinoer med 10x-omsætningskrav. Forskellen ligger i skala: <Link to="/casino-anmeldelser/leovegas" className={linkClass}>LeoVegas</Link> tilbyder op til 3.000 kr. (EV +300 kr.), <Link to="/casino-anmeldelser/bet365" className={linkClass}>bet365</Link> op til 2.000 kr. (EV +200 kr.). For spillere med lavt budget (under 500 kr.) er Casinostuens bonus lige så fordelagtig procentuelt – det er kun de absolutte tal, der er lavere.
+            <strong>Sammenlignet med markedet:</strong> Casinostuens bonus-EV er på niveau med de fleste danske casinoer med 10x-omsætningskrav. Alle danske casinoer er lovmæssigt begrænset til maks. 1.000 kr. i bonus – det er absolutte tal, der aldrig varierer. For spillere med lavt budget (under 500 kr.) er Casinostuens bonus lige så fordelagtig procentuelt. ComeOn og GetLucky skiller sig ud med kun 5x omsætning som det laveste på markedet.
           </p>
         </section>
 

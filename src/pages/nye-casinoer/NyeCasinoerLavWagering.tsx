@@ -121,8 +121,8 @@ const NyeCasinoerLavWagering = () => {
           </div>
           <div className="space-y-3">
             {[
-              { scenario: "2.000 kr. bonus med 5x wagering (GetLucky/ComeOn)", calculation: "2.000 × (1 – 0,04 × 5) = 1.600 kr. reel værdi", pct: "80%" },
-              { scenario: "3.000 kr. bonus med 10x wagering (standard)", calculation: "3.000 × (1 – 0,04 × 10) = 1.800 kr. reel værdi", pct: "60%" },
+              { scenario: "1.000 kr. bonus med 5x wagering (GetLucky/ComeOn)", calculation: "1.000 × (1 – 0,04 × 5) = 800 kr. reel værdi", pct: "80%" },
+              { scenario: "1.000 kr. bonus med 10x wagering (dansk standard)", calculation: "1.000 × (1 – 0,04 × 10) = 600 kr. reel værdi", pct: "60%" },
               { scenario: "500 kr. bonus med 0x wagering", calculation: "500 × (1 – 0) = 500 kr. reel værdi", pct: "100%" },
             ].map((item) => (
               <div key={item.scenario} className="flex items-start gap-3 rounded-lg border border-border bg-card p-4">
