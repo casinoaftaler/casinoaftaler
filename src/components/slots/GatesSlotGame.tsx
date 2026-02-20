@@ -227,7 +227,10 @@ export function GatesSlotGame({ gameId = "gates-of-fedesvin" }: GatesSlotGamePro
     setTumblePhase('spinning');
     setWinAmount(0);
     setRunningWin(0);
-    setRunningMultiplier(0);
+    // In bonus, keep cumulative multiplier across spins; in base game, reset
+    if (!isBonusSpin) {
+      setRunningMultiplier(0);
+    }
     setIsWinAnimating(false);
     setWinningPositions(new Set());
     setMultiplierOrbs([]);
@@ -325,6 +328,8 @@ export function GatesSlotGame({ gameId = "gates-of-fedesvin" }: GatesSlotGamePro
               setTotalFreeSpins(bs.totalFreeSpins);
               setBonusWinnings(bs.bonusWinnings || 0);
               setCumulativeMultiplier(bs.cumulativeMultiplier || 0);
+              // Sync running multiplier with server's cumulative value for next spin
+              setRunningMultiplier(bs.cumulativeMultiplier || 0);
               
               if (bs.freeSpinsRemaining <= 0) {
                 setShowBonusComplete(true);
