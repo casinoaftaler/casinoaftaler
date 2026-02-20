@@ -40,13 +40,13 @@ export function AutospinRow({
       "border-2", theme.borderAccentStrong,
       "shadow-[inset_0_1px_0_rgba(255,255,255,0.1),0_4px_12px_rgba(0,0,0,0.4)]"
     )}>
-      {!isAutoSpinning && (
+      <div className={cn("w-[72px]", isAutoSpinning && "hidden")}>
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
             <Button
               variant="outline"
               className={cn(
-                "h-10 px-3 text-sm font-bold border-2 bg-gradient-to-b",
+                "h-10 w-full px-3 text-sm font-bold border-2 bg-gradient-to-b",
                 theme.borderAccentStrong, theme.panelFrom, theme.panelTo,
                 theme.accentLight,
                 "shadow-[inset_0_1px_0_rgba(255,255,255,0.1),0_4px_12px_rgba(0,0,0,0.3)]"
@@ -71,7 +71,7 @@ export function AutospinRow({
             ))}
           </DropdownMenuContent>
         </DropdownMenu>
-      )}
+      </div>
 
       <Button
         variant={isAutoSpinning ? "destructive" : "outline"}
