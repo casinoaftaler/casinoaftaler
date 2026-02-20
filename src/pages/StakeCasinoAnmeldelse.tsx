@@ -38,7 +38,7 @@ const StakeCasinoAnmeldelse = () => {
     "@context": "https://schema.org",
     "@type": "Review",
     itemReviewed: { "@type": "Organization", name: "Stake Casino", url: "https://stake.dk/" },
-    author: { "@type": "Organization", name: "Casinoaftaler" },
+    author: { "@type": "Person", "@id": "https://casinoaftaler.dk/forfatter/jonas#person" },
     reviewRating: { "@type": "Rating", ratingValue: "4.1", bestRating: "5", worstRating: "1" },
     reviewBody: "Komplet anmeldelse af Stake Casino Danmark. Innovativt crypto-casino med proprietære spil, stærkt community og nu dansk licens via VinderCasino-opkøbet.",
   };

@@ -118,7 +118,7 @@ const Bet365Anmeldelse = () => {
       name: "bet365",
       url: "https://www.bet365.dk/",
     },
-    author: { "@type": "Organization", name: "Casinoaftaler" },
+    author: { "@type": "Person", "@id": "https://casinoaftaler.dk/forfatter/jonas#person" },
     reviewRating: { "@type": "Rating", ratingValue: "4.4", bestRating: "5", worstRating: "1" },
     reviewBody:
       "bet365 er primært en sportsbook-gigant med et solidt casino-tillæg. Stærkest på sportsbetting og live streaming, men casino-oplevelsen kan virke sekundær.",

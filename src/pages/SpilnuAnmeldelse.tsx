@@ -99,7 +99,7 @@ const SpilnuAnmeldelse = () => {
     "@context": "https://schema.org",
     "@type": "Review",
     itemReviewed: { "@type": "Organization", name: "Spilnu.dk", url: "https://www.spilnu.dk/" },
-    author: { "@type": "Organization", name: "Casinoaftaler" },
+    author: { "@type": "Person", "@id": "https://casinoaftaler.dk/forfatter/jonas#person" },
     reviewRating: { "@type": "Rating", ratingValue: "3.9", bestRating: "5", worstRating: "1" },
     reviewBody: "Spilnu er Danmarks foretrukne platform for online bingo med et aktivt community og statslig sikkerhed. Casino-sektionen er et solidt supplement, men kan ikke konkurrere med dedikerede casino-specialister på bredde eller innovation.",
   };
