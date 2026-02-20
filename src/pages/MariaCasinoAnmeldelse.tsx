@@ -199,24 +199,24 @@ const MariaCasinoAnmeldelse = () => {
             <CardHeader><CardTitle className="flex items-center gap-2 text-lg"><TrendingUp className="h-5 w-5 text-primary" />EV-beregning: Maria Casino velkomstbonus</CardTitle></CardHeader>
             <CardContent className="space-y-3">
               <div className="rounded-lg bg-secondary/50 p-4 font-mono text-sm space-y-1">
-                <p className="text-foreground"><strong>Scenarie:</strong> Maksimal indbetaling 2.000 kr.</p>
-                <p className="text-foreground">Bonus: 2.000 kr. (100 % match)</p>
-                <p className="text-foreground">Total spillesaldo: 4.000 kr.</p>
-                <p className="text-foreground">Omsætningskrav: 10x × 4.000 = 40.000 kr.</p>
-                <p className="text-foreground">Forventet tab (96 % RTP): 0,04 × 40.000 = <strong>1.600 kr.</strong></p>
-                <p className="text-foreground">Netto bonusværdi: 2.000 − 1.600 = <strong>+400 kr. EV</strong></p>
+                <p className="text-foreground"><strong>Scenarie:</strong> Maksimal indbetaling 1.000 kr. (dansk lovloft: max 1.000 kr. match)</p>
+                <p className="text-foreground">Bonus: 1.000 kr. (100 % match op til 1.000 kr.)</p>
+                <p className="text-foreground">Total spillesaldo: 2.000 kr.</p>
+                <p className="text-foreground">Omsætningskrav: 10x × 2.000 = 20.000 kr.</p>
+                <p className="text-foreground">Forventet tab (96 % RTP): 0,04 × 20.000 = <strong>800 kr.</strong></p>
+                <p className="text-foreground">Netto bonusværdi: 1.000 − 800 = <strong>+200 kr. EV</strong></p>
                 <p className="text-foreground mt-2"><strong>Bingo-bonus EV (alternativ omsætning):</strong></p>
                 <p className="text-foreground">Bingo RTP: ~85-92 % (varierer pr. rum)</p>
-                <p className="text-foreground">Forventet tab ved 88 % RTP: 0,12 × 40.000 = 4.800 kr.</p>
-                <p className="text-foreground">Netto bonusværdi via bingo: 2.000 − 4.800 = <strong>−2.800 kr. EV</strong></p>
+                <p className="text-foreground">Forventet tab ved 88 % RTP: 0,12 × 20.000 = 2.400 kr.</p>
+                <p className="text-foreground">Netto bonusværdi via bingo: 1.000 − 2.400 = <strong>−1.400 kr. EV</strong></p>
                 <p className="text-muted-foreground mt-2 text-xs">Konklusion: Omsæt altid via slots (96 % RTP) – ikke via bingo – for at maksimere bonusværdien.</p>
               </div>
             </CardContent>
           </Card>
           <p className="mb-4 text-muted-foreground leading-relaxed">Ovenstående beregning illustrerer en vigtig pointe: selvom bingo bidrager 100 % til omsætningskravet, er det matematisk suboptimalt at omsætte bonusmidler via bingo på grund af den lavere RTP. En smart strategi er at omsætte bonussen via slots med høj RTP (Starburst 96,09 %, Blood Suckers 98,0 %, Thunderstruck II 96,65 %) og derefter bruge egne midler til bingo, hvor underholdningsværdien – ikke EV – er det primære formål.</p>
-          <p className="mb-4 text-muted-foreground leading-relaxed"><strong>Risk of Ruin-analyse:</strong> Med en startbankroll på 4.000 kr. (2.000 kr. indskud + 2.000 kr. bonus) og et gennemsnitligt bet på 10 kr. pr. spin har du 400 spins inden du rammer nul. Med en standardafvigelse på ca. 15x bet (typisk for medium-volatilitet slots) er din Risk of Ruin under omsætningsperioden cirka 35 %. Det betyder, at cirka 1 ud af 3 spillere vil miste hele bankrollen under omsætning – en risiko, der er vigtig at være opmærksom på, uanset hvor "fair" omsætningskravet virker.</p>
+          <p className="mb-4 text-muted-foreground leading-relaxed"><strong>Risk of Ruin-analyse:</strong> Med en startbankroll på 2.000 kr. (1.000 kr. indskud + 1.000 kr. bonus) og et gennemsnitligt bet på 10 kr. pr. spin har du 200 spins inden du rammer nul. Med en standardafvigelse på ca. 15x bet (typisk for medium-volatilitet slots) er din Risk of Ruin under omsætningsperioden cirka 35 %. Det betyder, at cirka 1 ud af 3 spillere vil miste hele bankrollen under omsætning – en risiko, der er vigtig at være opmærksom på, uanset hvor "fair" omsætningskravet virker.</p>
           <p className="mb-4 text-muted-foreground leading-relaxed"><strong>Loyalitetsprogrammets EV:</strong> Maria Casinos VIP-program tilbyder point der konverteres til bonuspenge. Konverteringsraten er typisk 1 point per 10 kr. indsat og 100 point = 1 kr. i bonuspenge. Det giver en effektiv cashback på 0,1 % – markant lavere end <Link to="/casino-anmeldelser/888-casino" className={linkClass}>888 Casinos</Link> VIP-program (op til 0,5 %) men bedre end mange platforme der slet ikke tilbyder løbende cashback. Fra Gold-niveau stiger cashback-raten til cirka 0,15 %, og Platinum-medlemmer kan forhandle individuelle deals der potentielt bringer den over 0,2 %.</p>
-          <p className="text-muted-foreground leading-relaxed">Den samlede EV for en ny Maria Casino-spiller med maksimal bonus er altså cirka +400 kr. fra velkomstbonussen plus 0,1-0,15 % løbende cashback via loyalitetsprogrammet. Det er gennemsnitligt for det danske marked – hverken dårligt eller exceptionelt. Maria Casinos reelle værdi ligger ikke i matematisk bonusoptimering, men i den unikke bingo-oplevelse og den inkluderende platform, der gør spil tilgængeligt for en bredere demografik end de fleste konkurrenter.</p>
+          <p className="text-muted-foreground leading-relaxed"><p className="text-muted-foreground leading-relaxed">Den samlede EV for en ny Maria Casino-spiller med maksimal bonus er altså cirka +200 kr. fra velkomstbonussen plus 0,1-0,15 % løbende cashback via loyalitetsprogrammet. Det er gennemsnitligt for det danske marked – hverken dårligt eller exceptionelt. Maria Casinos reelle værdi ligger ikke i matematisk bonusoptimering, men i den unikke bingo-oplevelse og den inkluderende platform, der gør spil tilgængeligt for en bredere demografik end de fleste konkurrenter.</p> plus 0,1-0,15 % løbende cashback via loyalitetsprogrammet. Det er gennemsnitligt for det danske marked – hverken dårligt eller exceptionelt. Maria Casinos reelle værdi ligger ikke i matematisk bonusoptimering, men i den unikke bingo-oplevelse og den inkluderende platform, der gør spil tilgængeligt for en bredere demografik end de fleste konkurrenter.</p>
         </section>
 
         <Separator className="my-10" />

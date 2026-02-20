@@ -629,10 +629,10 @@ const CasinoAnmeldelser = () => {
                   { name: "Luna Casino", licens: "Dansk", type: "No-Sticky", omsætning: "10x", udbetaling: "6–14 timer", rating: "8.6", slug: "casino-anmeldelser/luna-casino" },
                   { name: "Danske Spil", licens: "Dansk", type: "Sticky", omsætning: "10x", udbetaling: "12–24 timer", rating: "8.5", slug: "casino-anmeldelser/danske-spil" },
                   { name: "LeoVegas", licens: "Dansk", type: "Sticky", omsætning: "10x", udbetaling: "2–8 timer", rating: "8.8", slug: "casino-anmeldelser/leovegas" },
-                  { name: "bet365", licens: "Dansk", type: "Sticky", omsætning: "15x", udbetaling: "4–12 timer", rating: "8.7", slug: "casino-anmeldelser/bet365" },
+                  { name: "bet365", licens: "Dansk", type: "Sticky", omsætning: "10x", udbetaling: "4–12 timer", rating: "8.7", slug: "casino-anmeldelser/bet365" },
                   { name: "Betano", licens: "Dansk", type: "No-Sticky", omsætning: "10x", udbetaling: "6–12 timer", rating: "8.6", slug: "casino-anmeldelser/betano" },
                   { name: "Unibet", licens: "Dansk", type: "Sticky", omsætning: "10x", udbetaling: "8–24 timer", rating: "8.4", slug: "casino-anmeldelser/unibet" },
-                  { name: "Mr Green", licens: "Dansk", type: "Sticky", omsætning: "35x", udbetaling: "12–48 timer", rating: "8.2", slug: "casino-anmeldelser/mr-green" },
+                  { name: "Mr Green", licens: "Dansk", type: "Sticky", omsætning: "10x", udbetaling: "12–48 timer", rating: "8.2", slug: "casino-anmeldelser/mr-green" },
                 ].map((casino, idx) => (
                   <tr key={casino.slug} className={idx % 2 === 0 ? "bg-card" : "bg-muted/20"}>
                     <td className="px-4 py-3 font-medium">
@@ -732,7 +732,7 @@ const CasinoAnmeldelser = () => {
               {
                 name: "Mr Green",
                 slug: "casino-anmeldelser/mr-green",
-                text: "Mr Green var en af de første casinoer, der fokuserede eksplicit på ansvarligt spil med Green Gaming-værktøjet. Spiludvalget er kurateret og kvalitetsorienteret, og interfacet er elegant. Svagheden er 35x omsætningskrav – markant højere end markedets bedste – og en udbetalingsproces, der kan tage op til 48 timer. Bedst for spillere, der prioriterer ansvarligt spil-værktøjer og et poleret design.",
+                text: "Mr Green var en af de første casinoer, der fokuserede eksplicit på ansvarligt spil med Green Gaming-værktøjet. Spiludvalget er kurateret og kvalitetsorienteret, og interfacet er elegant. Svagheden er det begrænsede spiludvalg (1.000+ vs. konkurrenters 2.000+), fraværet af MobilePay og en udbetalingsproces, der kan tage op til 48 timer. Omsætningskravet er 10x (dansk lovstandard). Bedst for spillere, der prioriterer ansvarligt spil-værktøjer og et poleret design.",
               },
               {
                 name: "ComeOn Casino",

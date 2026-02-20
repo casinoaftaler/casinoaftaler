@@ -210,15 +210,15 @@ const BookOfDeadGuide = () => {
             Book of Dead er en af de mest brugte slots til <Link to="/casino-bonus" className={linkClass}>bonusomsætning</Link> i Danmark. Lad os beregne præcis hvorfor med konkrete EV-eksempler:
           </p>
 
-          <h3 className="text-xl font-semibold mt-6 mb-3">Scenarie: Velkomstbonus 100 % op til 1.000 kr. med 30x wagering</h3>
+          <h3 className="text-xl font-semibold mt-6 mb-3">Scenarie: Velkomstbonus 100 % op til 1.000 kr. med 10x wagering (dansk standard)</h3>
           <Card className="mb-4">
             <CardContent className="pt-6">
-              <p className="text-sm text-muted-foreground mb-2"><strong>EV-beregning:</strong></p>
-              <p className="text-sm text-muted-foreground">Bonusbeløb: 1.000 kr.</p>
-              <p className="text-sm text-muted-foreground">Total omsætning: 1.000 × 30 = 30.000 kr.</p>
-              <p className="text-sm text-muted-foreground">Forventet tab: 30.000 × (1 − 0,9621) = 30.000 × 0,0379 = <strong>1.137 kr.</strong></p>
-              <p className="text-sm text-muted-foreground">Net EV: 1.000 − 1.137 = <strong>−137 kr.</strong></p>
-              <p className="text-sm text-muted-foreground mt-2">Marginalt negativ – men variansen gør, at ca. 40–45 % af spillere ender i profit.</p>
+              <p className="text-sm text-muted-foreground mb-2"><strong>EV-beregning (dansk standard – 10x omsætningskrav):</strong></p>
+              <p className="text-sm text-muted-foreground">Bonusbeløb: 1.000 kr. | Indbetaling: 1.000 kr. | Samlet saldo: 2.000 kr.</p>
+              <p className="text-sm text-muted-foreground">Total omsætning: 2.000 × 10 = 20.000 kr. (omsætning på d+b)</p>
+              <p className="text-sm text-muted-foreground">Forventet tab: 20.000 × (1 − 0,9621) = 20.000 × 0,0379 = <strong>758 kr.</strong></p>
+              <p className="text-sm text-muted-foreground">Net EV: 2.000 − 758 = 1.242 kr. | Bonus EV: 1.242 − 1.000 (indbetaling) = <strong>+242 kr.</strong></p>
+              <p className="text-sm text-muted-foreground mt-2">Positivt – dansk 10x lovloft er markant mere spillervenligt end internationale 30–50x krav.</p>
             </CardContent>
           </Card>
 
@@ -234,8 +234,8 @@ const BookOfDeadGuide = () => {
               </thead>
               <tbody>
                 <tr className="border-b"><td className="py-2">RTP</td><td className="py-2 text-right">96,21 %</td><td className="py-2 text-right">96,48 %</td></tr>
-                <tr className="border-b"><td className="py-2">Forventet tab (30x/1.000 kr.)</td><td className="py-2 text-right">1.137 kr.</td><td className="py-2 text-right">1.056 kr.</td></tr>
-                <tr className="border-b"><td className="py-2">Net EV</td><td className="py-2 text-right">−137 kr.</td><td className="py-2 text-right">−56 kr.</td></tr>
+                <tr className="border-b"><td className="py-2">Forventet tab (10x/2.000 kr. d+b)</td><td className="py-2 text-right">758 kr.</td><td className="py-2 text-right">704 kr.</td></tr>
+                <tr className="border-b"><td className="py-2">Bonus EV</td><td className="py-2 text-right">+242 kr.</td><td className="py-2 text-right">+296 kr.</td></tr>
                 <tr className="border-b"><td className="py-2">Bust-risiko under wagering</td><td className="py-2 text-right">~15 %</td><td className="py-2 text-right">~25 %</td></tr>
                 <tr className="border-b"><td className="py-2">Profit-sandsynlighed</td><td className="py-2 text-right">~40–45 %</td><td className="py-2 text-right">~35–40 %</td></tr>
               </tbody>
