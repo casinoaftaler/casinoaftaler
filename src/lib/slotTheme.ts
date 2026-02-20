@@ -273,9 +273,97 @@ const wizardTheme: SlotTheme = {
   leaderboardGlowShadow: "shadow-[0_0_30px_rgba(168,85,247,0.1)]",
 };
 
+const olympusTheme: SlotTheme = {
+  accent: "text-blue-400",
+  accentLight: "text-blue-300",
+  accentDark: "text-blue-500",
+  accentMuted: "text-blue-500/70",
+  
+  bgAccent: "bg-blue-500/20",
+  bgAccentStrong: "bg-blue-500/30",
+  
+  borderAccent: "border-blue-500/30",
+  borderAccentStrong: "border-blue-600/50",
+  
+  panelFrom: "from-blue-950/90",
+  panelVia: "via-blue-900/70",
+  panelTo: "to-blue-950/90",
+  
+  btnFrom: "from-blue-800/60",
+  btnVia: "",
+  btnTo: "to-blue-950/60",
+  btnHoverFrom: "hover:from-blue-700/70",
+  btnHoverTo: "hover:to-blue-900/70",
+  
+  spinBtnGradient: "bg-[radial-gradient(ellipse_at_30%_20%,_hsl(210,80%,70%)_0%,_hsl(215,75%,56%)_25%,_hsl(220,70%,45%)_50%,_hsl(225,65%,35%)_75%,_hsl(230,60%,25%)_100%)]",
+  spinBtnBorder: "border-blue-400/80",
+  spinBtnShadow: "shadow-[inset_0_2px_4px_rgba(170,200,255,0.6),inset_0_-3px_6px_rgba(20,60,120,0.4),0_0_25px_rgba(59,130,246,0.5),0_6px_20px_rgba(0,0,0,0.5)]",
+  spinBtnShadowMd: "md:shadow-[inset_0_3px_6px_rgba(170,200,255,0.6),inset_0_-4px_8px_rgba(20,60,120,0.4),0_0_35px_rgba(59,130,246,0.6),0_8px_25px_rgba(0,0,0,0.5)]",
+  spinBtnHoverShadow: "hover:shadow-[inset_0_2px_4px_rgba(170,200,255,0.8),inset_0_-3px_6px_rgba(20,60,120,0.3),0_0_50px_rgba(59,130,246,0.8),0_8px_30px_rgba(0,0,0,0.5)] hover:border-blue-300",
+  spinBtnActiveShadow: "active:shadow-[inset_0_4px_12px_rgba(10,40,80,0.5),0_0_20px_rgba(59,130,246,0.4)]",
+  spinBtnText: "text-blue-950",
+  spinBtnTextShadow: "[text-shadow:0_1px_0_rgba(170,200,255,0.8),0_-1px_0_rgba(20,60,120,0.3)]",
+  spinBtnRingBorder: "border-t-blue-200/90 border-r-blue-400/50",
+  spinBtnIconColor: "text-blue-900",
+  
+  dropShadowGlow: "drop-shadow-[0_0_4px_rgba(59,130,246,0.5)]",
+  dropShadowGlowStrong: "drop-shadow-[0_0_8px_rgba(59,130,246,0.6)]",
+  
+  winBarShadow: "shadow-[inset_0_1px_0_rgba(59,130,246,0.3),0_0_20px_rgba(59,130,246,0.3),0_4px_12px_rgba(0,0,0,0.4)]",
+  winBarGlowShadow: "shadow-[inset_0_1px_0_rgba(59,130,246,0.4),0_0_30px_rgba(59,130,246,0.5),0_4px_12px_rgba(0,0,0,0.4)]",
+  
+  dialogBg: "bg-gradient-to-b from-blue-950 via-blue-900/95 to-blue-950",
+  dialogBorder: "border-2 border-blue-600/50",
+  dialogShadow: "shadow-[0_0_40px_rgba(59,130,246,0.3),0_8px_32px_rgba(0,0,0,0.5)]",
+  
+  frameDropShadow: `drop-shadow(0 0 20px rgba(0,0,0,0.6)) 
+                     drop-shadow(0 0 40px rgba(0,0,0,0.4)) 
+                     drop-shadow(0 0 80px rgba(0,0,0,0.3))
+                     drop-shadow(0 4px 30px rgba(59,130,246,0.15))`,
+  
+  frameBorderColor: "border-blue-400",
+  
+  leaderboardCardBorder: "border-blue-500/30",
+  leaderboardCardBg: "bg-gradient-to-b from-blue-950/95 via-black/90 to-blue-950/95",
+  leaderboardHeaderBorder: "border-blue-500/10",
+  leaderboardTitleText: "text-blue-100",
+  leaderboardIconBg: "bg-blue-500/20",
+  leaderboardIconColor: "text-blue-500",
+  leaderboardTopRowBg: "bg-gradient-to-r from-blue-500/10 to-transparent",
+  leaderboardUserRing: "ring-blue-500/50",
+  leaderboardUserBg: "bg-blue-500/10",
+  leaderboardUserBadgeBorder: "border-blue-500/50",
+  leaderboardUserBadgeText: "text-blue-400",
+  leaderboardUserBadgeBg: "bg-blue-500/10",
+  leaderboardNameText: "text-blue-100",
+  leaderboardPointsText: "text-blue-500",
+  leaderboardSpinsText: "text-blue-100",
+  leaderboardShowAllText: "text-blue-500",
+  leaderboardShowAllHoverText: "hover:text-blue-400",
+  leaderboardShowAllHoverBg: "hover:bg-blue-500/10",
+  leaderboardShowAllBorder: "border-blue-500/30",
+  leaderboardEmptyIconColor: "text-blue-500/50",
+  leaderboardEmptyText: "text-blue-100/80",
+  leaderboardEmptySubtext: "text-blue-100/60",
+  leaderboardDialogBg: "bg-gradient-to-b from-blue-950/98 via-black/95 to-blue-950/98",
+  leaderboardDialogBorder: "border-blue-500/30",
+  leaderboardDialogTitleText: "text-blue-100",
+  leaderboardTabsBg: "bg-blue-950/50",
+  leaderboardTabActive: "data-[state=active]:bg-blue-500/20",
+  leaderboardTabActiveText: "data-[state=active]:text-blue-100",
+  leaderboardSearchBg: "bg-blue-950/50",
+  leaderboardSearchBorder: "border-blue-500/20",
+  leaderboardSearchText: "text-blue-100",
+  leaderboardSearchPlaceholder: "placeholder:text-blue-100/40",
+  leaderboardSearchRing: "focus-visible:ring-blue-500/30",
+  leaderboardSeparator: "bg-blue-500/20",
+  leaderboardGlowShadow: "shadow-[0_0_30px_rgba(59,130,246,0.1)]",
+};
+
 const themes: Record<string, SlotTheme> = {
   "book-of-fedesvin": egyptianTheme,
   "rise-of-fedesvin": wizardTheme,
+  "gates-of-fedesvin": olympusTheme,
 };
 
 export function getSlotTheme(gameId: string = "book-of-fedesvin"): SlotTheme {

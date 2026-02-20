@@ -92,6 +92,241 @@ interface BonusSpinResult extends SpinResult {
   expandingWinGroups?: Array<{ symbolId: string; reels: number[]; wins: LineWin[] }>;
 }
 
+// ============================================================
+// Gates of Fedesvin types and logic
+// ============================================================
+const GATES_COLS = 6;
+const GATES_ROWS = 5;
+const GATES_MIN_MATCH = 8;
+const GATES_SCATTER_TRIGGER = 4;
+const GATES_SCATTER_RETRIGGER = 3;
+const GATES_FREE_SPINS_INITIAL = 15;
+const GATES_FREE_SPINS_RETRIGGER = 5;
+
+const GATES_MULTIPLIER_VALUES = [2, 3, 5, 10, 15, 25, 50, 100, 250, 500];
+const GATES_MULTIPLIER_WEIGHTS = [30, 25, 20, 12, 6, 3, 2, 1, 0.7, 0.3];
+const GATES_MULTIPLIER_CHANCE_BASE = 0.08;
+const GATES_MULTIPLIER_CHANCE_BONUS = 0.12;
+
+interface GatesWin {
+  symbolId: string;
+  symbolName: string;
+  count: number;
+  payout: number;
+  positions: number[];
+}
+
+interface GatesMultiplierOrb {
+  position: number;
+  value: number;
+}
+
+interface GatesTumbleStep {
+  grid: string[][];
+  wins: GatesWin[];
+  winningPositions: number[];
+  multiplierOrbs: GatesMultiplierOrb[];
+  stepWin: number;
+}
+
+interface GatesSpinResult {
+  tumbleSteps: GatesTumbleStep[];
+  totalWin: number;
+  bonusTriggered: boolean;
+  scatterCount: number;
+  totalMultiplier: number;
+  initialGrid: string[][];
+}
+
+function generateGatesGrid(symbols: SlotSymbol[], isBonusSpin: boolean): string[][] {
+  const grid: string[][] = [];
+  for (let col = 0; col < GATES_COLS; col++) {
+    const column: string[] = [];
+    for (let row = 0; row < GATES_ROWS; row++) {
+      const sym = getRandomSymbol(symbols, [], isBonusSpin);
+      column.push(sym.id);
+    }
+    grid.push(column);
+  }
+  return grid;
+}
+
+function pickGatesMultiplierValue(): number {
+  const totalWeight = GATES_MULTIPLIER_WEIGHTS.reduce((a, b) => a + b, 0);
+  let r = secureRandom() * totalWeight;
+  for (let i = 0; i < GATES_MULTIPLIER_VALUES.length; i++) {
+    r -= GATES_MULTIPLIER_WEIGHTS[i];
+    if (r <= 0) return GATES_MULTIPLIER_VALUES[i];
+  }
+  return GATES_MULTIPLIER_VALUES[0];
+}
+
+function generateGatesMultiplierOrbs(grid: string[][], isBonusSpin: boolean): GatesMultiplierOrb[] {
+  const chance = isBonusSpin ? GATES_MULTIPLIER_CHANCE_BONUS : GATES_MULTIPLIER_CHANCE_BASE;
+  const orbs: GatesMultiplierOrb[] = [];
+  for (let col = 0; col < GATES_COLS; col++) {
+    for (let row = 0; row < GATES_ROWS; row++) {
+      if (secureRandom() < chance) {
+        orbs.push({
+          position: col * GATES_ROWS + row,
+          value: pickGatesMultiplierValue(),
+        });
+      }
+    }
+  }
+  return orbs;
+}
+
+function countGatesSymbolMatches(grid: string[][]): Map<string, { count: number; positions: number[] }> {
+  const matches = new Map<string, { count: number; positions: number[] }>();
+  for (let col = 0; col < GATES_COLS; col++) {
+    for (let row = 0; row < GATES_ROWS; row++) {
+      const id = grid[col][row];
+      const flat = col * GATES_ROWS + row;
+      if (!matches.has(id)) matches.set(id, { count: 0, positions: [] });
+      const e = matches.get(id)!;
+      e.count++;
+      e.positions.push(flat);
+    }
+  }
+  return matches;
+}
+
+function calculateGatesWins(grid: string[][], symbols: SlotSymbol[], betAmount: number): GatesWin[] {
+  const matches = countGatesSymbolMatches(grid);
+  const symbolsById = new Map(symbols.map(s => [s.id, s]));
+  const wins: GatesWin[] = [];
+  
+  for (const [symbolId, { count, positions }] of matches) {
+    const sym = symbolsById.get(symbolId);
+    if (!sym || sym.is_scatter) continue;
+    if (count < GATES_MIN_MATCH) continue;
+    
+    let multiplier = 0;
+    if (count >= 12) multiplier = sym.multiplier_5;
+    else if (count >= 10) multiplier = sym.multiplier_4;
+    else if (count >= 8) multiplier = sym.multiplier_3;
+    
+    if (multiplier > 0) {
+      wins.push({ symbolId, symbolName: sym.name, count, payout: multiplier * betAmount, positions });
+    }
+  }
+  return wins;
+}
+
+function countGatesScatters(grid: string[][], symbols: SlotSymbol[]): number {
+  const scatter = symbols.find(s => s.is_scatter);
+  if (!scatter) return 0;
+  let count = 0;
+  for (const col of grid) {
+    for (const id of col) {
+      if (id === scatter.id) count++;
+    }
+  }
+  return count;
+}
+
+function applyGatesTumble(grid: string[][], winningPositions: number[], symbols: SlotSymbol[], isBonusSpin: boolean): string[][] {
+  const newGrid = grid.map(col => [...col]);
+  
+  // Group winning positions by column
+  const removedByCol = new Map<number, Set<number>>();
+  for (const pos of winningPositions) {
+    const col = Math.floor(pos / GATES_ROWS);
+    const row = pos % GATES_ROWS;
+    if (!removedByCol.has(col)) removedByCol.set(col, new Set());
+    removedByCol.get(col)!.add(row);
+  }
+  
+  // For each column, remove winning symbols and drop remaining down
+  for (const [col, removedRows] of removedByCol) {
+    const remaining: string[] = [];
+    for (let row = 0; row < GATES_ROWS; row++) {
+      if (!removedRows.has(row)) {
+        remaining.push(newGrid[col][row]);
+      }
+    }
+    
+    // Fill from top with new random symbols
+    const needed = GATES_ROWS - remaining.length;
+    const newSymbols: string[] = [];
+    for (let i = 0; i < needed; i++) {
+      const sym = getRandomSymbol(symbols, [], isBonusSpin);
+      newSymbols.push(sym.id);
+    }
+    
+    // New symbols on top, remaining on bottom
+    newGrid[col] = [...newSymbols, ...remaining];
+  }
+  
+  return newGrid;
+}
+
+function calculateGatesFullSpin(
+  symbols: SlotSymbol[],
+  betAmount: number,
+  isBonusSpin: boolean,
+  runningMultiplier: number = 0
+): GatesSpinResult {
+  let grid = generateGatesGrid(symbols, isBonusSpin);
+  const initialGrid = grid.map(col => [...col]);
+  const tumbleSteps: GatesTumbleStep[] = [];
+  let totalRawWin = 0;
+  let totalMultiplier = runningMultiplier;
+  let maxTumbles = 50; // safety cap
+  
+  // Check scatters on initial grid only
+  const scatterCount = countGatesScatters(grid, symbols);
+  const bonusTriggered = isBonusSpin 
+    ? scatterCount >= GATES_SCATTER_RETRIGGER 
+    : scatterCount >= GATES_SCATTER_TRIGGER;
+  
+  while (maxTumbles-- > 0) {
+    const wins = calculateGatesWins(grid, symbols, betAmount);
+    const orbs = generateGatesMultiplierOrbs(grid, isBonusSpin);
+    
+    // Collect all winning positions
+    const winningPositions = new Set<number>();
+    for (const w of wins) {
+      for (const p of w.positions) winningPositions.add(p);
+    }
+    
+    const stepWin = wins.reduce((sum, w) => sum + w.payout, 0);
+    
+    // Sum multiplier orbs
+    const orbMultiplierSum = orbs.reduce((sum, o) => sum + o.value, 0);
+    totalMultiplier += orbMultiplierSum;
+    
+    tumbleSteps.push({
+      grid: grid.map(col => [...col]),
+      wins,
+      winningPositions: Array.from(winningPositions),
+      multiplierOrbs: orbs,
+      stepWin,
+    });
+    
+    totalRawWin += stepWin;
+    
+    // If no wins, tumble sequence ends
+    if (wins.length === 0) break;
+    
+    // Apply tumble - remove winning symbols and drop new ones
+    grid = applyGatesTumble(grid, Array.from(winningPositions), symbols, isBonusSpin);
+  }
+  
+  // Apply total multiplier to raw win
+  const totalWin = totalMultiplier > 0 ? totalRawWin * totalMultiplier : totalRawWin;
+  
+  return {
+    tumbleSteps,
+    totalWin,
+    bonusTriggered,
+    scatterCount,
+    totalMultiplier,
+    initialGrid,
+  };
+}
+
 const DEFAULT_SYMBOL_WEIGHT = 10;
     const MAX_SPINS_CAP = 220;
     const SUBSCRIBER_MAX_SPINS_CAP = 320;
@@ -701,7 +936,59 @@ Deno.serve(async (req) => {
     }
 
     const isRiseOfFedesvin = gameId === "rise-of-fedesvin";
+    const isGatesOfFedesvin = gameId === "gates-of-fedesvin";
 
+    // ============================================================
+    // GATES OF FEDESVIN - completely different game engine
+    // ============================================================
+    if (isGatesOfFedesvin) {
+      if (isBonusSpin) {
+        const bonusData = bonusRes.data;
+        if (bonusRes.error || !bonusData || !bonusData.is_active || bonusData.free_spins_remaining <= 0) {
+          return new Response(JSON.stringify({ error: "No active bonus or no free spins remaining" }),
+            { status: 400, headers: { ...corsHeaders, "Content-Type": "application/json" } });
+        }
+        const lockedBet = Number(bonusData.bet_amount);
+        if (lockedBet > 0) bet = lockedBet;
+        const cumulativeMultiplier = Number(bonusData.expanding_symbol_name || "0");
+        const gatesResult = calculateGatesFullSpin(symbols, bet, true, cumulativeMultiplier);
+        const isRetrigger = gatesResult.scatterCount >= GATES_SCATTER_RETRIGGER;
+        const newFreeSpins = isRetrigger ? bonusData.free_spins_remaining - 1 + GATES_FREE_SPINS_RETRIGGER : bonusData.free_spins_remaining - 1;
+        const newTotalFreeSpins = isRetrigger ? bonusData.total_free_spins + GATES_FREE_SPINS_RETRIGGER : bonusData.total_free_spins;
+        const newBonusWinnings = Number(bonusData.bonus_winnings) + gatesResult.totalWin;
+        await serviceClient.from("slot_bonus_state").update({
+          free_spins_remaining: newFreeSpins, total_free_spins: newTotalFreeSpins,
+          bonus_winnings: newBonusWinnings, expanding_symbol_name: String(gatesResult.totalMultiplier),
+        }).eq("user_id", userId).eq("game_id", gameId);
+        if (newFreeSpins <= 0 && newBonusWinnings > 0) {
+          (async () => { try { await serviceClient.from("slot_game_results").insert({ user_id: userId, bet_amount: bet, win_amount: 0, is_bonus_triggered: false, bonus_win_amount: newBonusWinnings, game_id: gameId }); } catch (e) { console.error("[slot-spin] Gates bonus bg err:", e); } })();
+        }
+        return new Response(JSON.stringify({ success: true, result: gatesResult, bonusState: { freeSpinsRemaining: newFreeSpins, totalFreeSpins: newTotalFreeSpins, bonusWinnings: newBonusWinnings, cumulativeMultiplier: gatesResult.totalMultiplier, betAmount: bet, isRetrigger } }),
+          { headers: { ...corsHeaders, "Content-Type": "application/json" } });
+      }
+      // Gates normal spin
+      const nowG = new Date();
+      const todayG = new Intl.DateTimeFormat("sv-SE", { timeZone: "Europe/Copenhagen", year: "numeric", month: "2-digit", day: "2-digit" }).format(nowG);
+      const bonusSpinsPerm = profileRes.data?.bonus_spins_permanent || 0;
+      const isSub = !!(profileRes.data as any)?.twitch_badges?.is_subscriber;
+      const subBon = isSub ? SUBSCRIBER_BONUS : 0;
+      const capLim = isSub ? SUBSCRIBER_MAX_SPINS_CAP : MAX_SPINS_CAP;
+      const maxSp = Math.min(dailySpinsValue + subBon + bonusSpinsPerm, capLim);
+      const { data: newRem, error: rpcErr } = await serviceClient.rpc("deduct_spin", { p_user_id: userId, p_date: todayG, p_bet: bet, p_max_spins: maxSp });
+      if (rpcErr) return new Response(JSON.stringify({ error: "Failed to deduct spins" }), { status: 500, headers: { ...corsHeaders, "Content-Type": "application/json" } });
+      if (newRem === -1) return new Response(JSON.stringify({ error: "Not enough spins remaining" }), { status: 400, headers: { ...corsHeaders, "Content-Type": "application/json" } });
+      const gatesResult = calculateGatesFullSpin(symbols, bet, false);
+      let gatesBonusState = null;
+      if (gatesResult.bonusTriggered) {
+        await serviceClient.from("slot_bonus_state").delete().eq("user_id", userId).eq("game_id", gameId);
+        await serviceClient.from("slot_bonus_state").insert({ user_id: userId, is_active: true, free_spins_remaining: GATES_FREE_SPINS_INITIAL, total_free_spins: GATES_FREE_SPINS_INITIAL, expanding_symbol_name: "0", bonus_winnings: gatesResult.totalWin, game_id: gameId, bet_amount: bet });
+        gatesBonusState = { isActive: true, freeSpinsRemaining: GATES_FREE_SPINS_INITIAL, totalFreeSpins: GATES_FREE_SPINS_INITIAL, bonusWinnings: gatesResult.totalWin, cumulativeMultiplier: 0, betAmount: bet };
+      }
+      (async () => { try { await serviceClient.from("slot_game_results").insert({ user_id: userId, bet_amount: bet, win_amount: gatesResult.totalWin, is_bonus_triggered: gatesResult.bonusTriggered, bonus_win_amount: 0, game_id: gameId }); } catch (e) { console.error("[slot-spin] Gates bg err:", e); } })();
+      return new Response(JSON.stringify({ success: true, result: gatesResult, spinsRemaining: newRem, maxSpins: maxSp, bonusState: gatesBonusState }),
+        { headers: { ...corsHeaders, "Content-Type": "application/json" } });
+    }
+    // END GATES OF FEDESVIN
 
 
     // Handle bonus spin (bonus state already fetched in parallel above)
