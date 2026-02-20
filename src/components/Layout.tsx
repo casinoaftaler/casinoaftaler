@@ -17,6 +17,7 @@ export function Layout() {
   const { isBanned, banLoading } = useBanCheck();
   
   const hideFooter = location.pathname.startsWith("/community/slots/");
+  const isCommunityPage = location.pathname.startsWith("/community") || location.pathname.startsWith("/profil") || location.pathname.startsWith("/auth");
 
   if (isBanned && !banLoading) {
     return <BannedScreen />;
@@ -33,7 +34,7 @@ export function Layout() {
       {!hideFooter && <Footer />}
       <CookieConsent />
       <BackToTop />
-      <TwitchLivePlayer />
+      {isCommunityPage && <TwitchLivePlayer />}
       <ProfileCompletionPrompt />
     </div>
   );

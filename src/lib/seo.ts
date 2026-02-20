@@ -74,10 +74,9 @@ export const JONAS_SAME_AS = [
 ];
 
 export const KEVIN_SAME_AS = [
-  "https://www.twitch.tv/fedesvinsejer",
-  "https://www.youtube.com/@fedesvinsejer",
   "https://www.linkedin.com/in/info-casinoaftaler-5782203b1/",
   "https://www.instagram.com/casinoaftaler",
+  "https://www.facebook.com/casinoaftaler",
 ];
 
 /** Canonical Person entity for Jonas Theill – reused across all article pages. */

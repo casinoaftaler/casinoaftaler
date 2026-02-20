@@ -181,7 +181,7 @@ export default function GameLibrary() {
                       description={game.description}
                       image={game.image}
                       href={game.href}
-                      badge={game.status === "coming-soon" && !isAdmin ? "⏳ KOMMER SNART" : isAdmin ? "🔓 ADMIN" : undefined}
+                      badge={game.status === "coming-soon" ? (isAdmin ? "🔓 ADMIN" : "⏳ KOMMER SNART") : undefined}
                       disabled={game.status === "coming-soon" && !isAdmin}
                     />
                   </div>
