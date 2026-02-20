@@ -148,3 +148,29 @@
 .gates-cloud {
   animation: cloud-drift 8s ease-in-out infinite;
 }
+
+/* Column spin animation */
+@keyframes gates-column-cycle {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(8px); }
+}
+
+@keyframes gates-symbol-land-bounce {
+  0% { transform: translateY(-30px); opacity: 0; }
+  50% { transform: translateY(4px); opacity: 1; }
+  70% { transform: translateY(-2px); }
+  100% { transform: translateY(0); opacity: 1; }
+}
+
+.gates-column-spinning {
+  filter: blur(0.5px);
+  animation: gates-column-cycle 0.08s linear infinite alternate;
+}
+
+.gates-column-landing {
+  filter: blur(0);
+}
+
+.gates-symbol-land {
+  animation: gates-symbol-land-bounce 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+}
