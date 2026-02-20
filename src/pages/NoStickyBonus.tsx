@@ -158,19 +158,32 @@ const NoStickyBonus = () => {
           <img src={noStickyHero} alt="No-sticky bonus – matematisk analyse og frihed" className="w-full h-auto object-cover max-h-[400px]" loading="eager" />
         </div>
 
-        <YoutubeEmbed
-          videoId="yUAcefgYfkc"
-          title="Hvad er en No-Sticky Bonus på danske casinoer?"
-          description="Vi forklarer præcis hvad en no-sticky bonus er, hvordan adskillelsen af penge fungerer, og hvorfor det er den mest spillervenlige bonustype på det danske marked."
-          uploadDate="2026-02-18"
-          contentUrl="https://casinoaftaler.dk/no-sticky-bonus"
-        />
-
         {/* ===== S1: Strategisk intro ===== */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold">
             Hvorfor No-Sticky er den eneste bonustype, der respekterer din bankroll
           </h2>
+
+          <YoutubeEmbed
+            videoId="yUAcefgYfkc"
+            title="Hvad er en No-Sticky Bonus på danske casinoer?"
+            description="Vi forklarer præcis hvad en no-sticky bonus er, hvordan adskillelsen af penge fungerer, og hvorfor det er den mest spillervenlige bonustype på det danske marked."
+            uploadDate="2026-02-18"
+            contentUrl="https://casinoaftaler.dk/no-sticky-bonus"
+          />
+
+          <div className="mb-6 rounded-lg border border-border bg-muted/30 p-5">
+            <h3 className="mb-2 text-lg font-semibold">
+              Her gennemgår vores streamer og forfatter Jonas, hvad en no-sticky bonus er
+            </h3>
+            <p className="text-muted-foreground leading-relaxed">
+              Jonas forklarer præcis hvad en no-sticky bonus er, og hvordan den tekniske adskillelse af din indbetaling og bonusmidler fungerer. Videoen er en del af vores dybdegående indhold om{" "}
+              <Link to="/casino-bonus" className={linkClass}>casino bonusser</Link>,{" "}
+              <Link to="/omsaetningskrav" className={linkClass}>omsætningskrav</Link> og{" "}
+              <Link to="/bonus-uden-omsaetningskrav" className={linkClass}>bonusser uden omsætningskrav</Link>.
+            </p>
+          </div>
+
           <p className="mb-4 text-muted-foreground leading-relaxed">
             I et marked fyldt med bonusser, der lover meget men leverer lidt, står No-Sticky Bonussen i en klasse for sig. Det er den eneste bonustype, der giver dig fuldstændig frihed til at hæve gevinster vundet med dine egne penge – uden at skulle opfylde et eneste{" "}
             <Link to="/omsaetningskrav" className={linkClass}>omsætningskrav</Link> først. Denne frihed er ikke bare et markedsføringsgreb – den har konkret matematisk værdi, som vi dokumenterer i denne analyse.

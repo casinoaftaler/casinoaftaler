@@ -189,19 +189,32 @@ const FreeSpins = () => {
           <img src={freeSpinsHero} alt="Free spins – farverige spilleautomater med mønter" className="w-full h-auto object-cover max-h-[400px]" loading="eager" />
         </div>
 
-        <YoutubeEmbed
-          videoId="q4jeGo9TPEk"
-          title="Hvad er Free Spins på danske casinoer?"
-          description="En komplet forklaring af free spins på danske casinoer – hvad de er, hvordan de virker, typer af free spins, omsætningskrav og tips til at få mest ud af dine gratis spins."
-          uploadDate="2026-02-18"
-          contentUrl="https://casinoaftaler.dk/free-spins"
-        />
-
         {/* Intro */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold">
             Sådan vælger du de bedste free spins i 2026
           </h2>
+
+          <YoutubeEmbed
+            videoId="q4jeGo9TPEk"
+            title="Hvad er Free Spins på danske casinoer?"
+            description="En komplet forklaring af free spins på danske casinoer – hvad de er, hvordan de virker, typer af free spins, omsætningskrav og tips til at få mest ud af dine gratis spins."
+            uploadDate="2026-02-18"
+            contentUrl="https://casinoaftaler.dk/free-spins"
+          />
+
+          <div className="mb-6 rounded-lg border border-border bg-muted/30 p-5">
+            <h3 className="mb-2 text-lg font-semibold">
+              Her gennemgår vores streamer og forfatter Jonas, hvad free spins er
+            </h3>
+            <p className="text-muted-foreground leading-relaxed">
+              Jonas gennemgår de forskellige typer af free spins, hvad omsætningskrav betyder for din reelle gevinst, og hvornår gratis spins faktisk er pengene værd. Videoen supplerer vores guides om{" "}
+              <Link to="/velkomstbonus" className={linkClass}>velkomstbonus</Link>,{" "}
+              <Link to="/indskudsbonus" className={linkClass}>indskudsbonus</Link> og{" "}
+              <Link to="/bonus-uden-indbetaling" className={linkClass}>bonus uden indbetaling</Link>.
+            </p>
+          </div>
+
           <p className="mb-4 text-muted-foreground leading-relaxed">
             Ikke alle free spins er lige meget værd – 50 spins á 2 kr. med 0x omsætning slår 200 spins á 0,50 kr. med 10x krav hver gang. Gratis spins er omgange på spilleautomater, hvor du spiller uden at bruge din egen saldo, men gevinsterne er typisk underlagt{" "}
             <Link to="/omsaetningskrav" className="text-primary underline hover:text-primary/80">

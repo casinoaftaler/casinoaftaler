@@ -152,19 +152,32 @@ const Indskudsbonus = () => {
           <img src={indskudsbonusHero} alt="Indskudsbonus – gyldne mønter og deposit bonus" className="w-full h-auto object-cover max-h-[400px]" loading="eager" />
         </div>
 
-        <YoutubeEmbed
-          videoId="hMHHVA6vH0Y"
-          title="Hvad er en indskudsbonus på danske casinoer?"
-          description="Vi forklarer hvad en indskudsbonus (matchbonus) er på danske casinoer, hvordan den aktiveres, hvad omsætningskrav betyder for din reelle bonusværdi, og hvilke betingelser du skal kende til."
-          uploadDate="2026-02-18"
-          contentUrl="https://casinoaftaler.dk/indskudsbonus"
-        />
-
         {/* Intro */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold">
             Indskudsbonus i praksis: Et regneeksempel
           </h2>
+
+          <YoutubeEmbed
+            videoId="hMHHVA6vH0Y"
+            title="Hvad er en indskudsbonus på danske casinoer?"
+            description="Vi forklarer hvad en indskudsbonus (matchbonus) er på danske casinoer, hvordan den aktiveres, hvad omsætningskrav betyder for din reelle bonusværdi, og hvilke betingelser du skal kende til."
+            uploadDate="2026-02-18"
+            contentUrl="https://casinoaftaler.dk/indskudsbonus"
+          />
+
+          <div className="mb-6 rounded-lg border border-border bg-muted/30 p-5">
+            <h3 className="mb-2 text-lg font-semibold">
+              Her gennemgår vores streamer og forfatter Jonas, hvad en indskudsbonus er
+            </h3>
+            <p className="text-muted-foreground leading-relaxed">
+              Jonas forklarer indskudsbonussens mekanik med konkrete regneeksempler – hvad en 100% matchbonus faktisk er værd, og hvad du skal tjekke i vilkårene inden du aktiverer. Videoen supplerer vores guides om{" "}
+              <Link to="/velkomstbonus" className={linkClass}>velkomstbonus</Link>,{" "}
+              <Link to="/omsaetningskrav" className={linkClass}>omsætningskrav</Link> og{" "}
+              <Link to="/free-spins" className={linkClass}>free spins</Link>.
+            </p>
+          </div>
+
           <p className="mb-4 text-muted-foreground leading-relaxed">
             Med en indbetaling på 500 kr. og 100 % match får du 1.000 kr. at spille for – men hvad er bonussen reelt værd efter omsætningskravene? En indskudsbonus (også kaldet matchbonus) matcher din indbetaling med en procentdel og bruges ofte som{" "}
             <Link to="/velkomstbonus" className="text-primary underline hover:text-primary/80">
