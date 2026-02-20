@@ -46,18 +46,17 @@ const FEATURED_SLOTS = [
     priority: "secondary" as const,
     imagePosition: "center 30%",
   },
+];
+
+const MORE_SLOTS = [
   {
     id: "gates-of-fedesvin",
     title: "Gates of Fedesvin",
     description: "Besteg Olympen og vind gudernes gunst! Cascading wins og multiplicerende lyn-gevinster.",
     image: olympusImage,
     href: "/community/slots/gates-of-fedesvin",
-    badge: "⚡ NY",
-    priority: "secondary" as const,
+    status: "coming-soon" as const,
   },
-];
-
-const MORE_SLOTS = [
   {
     id: "le-fedesvin",
     title: "Le Fedesvin",
@@ -69,7 +68,7 @@ const MORE_SLOTS = [
 ];
 
 export default function GameLibrary() {
-  const { user, loading } = useAuth();
+  const { user, loading, isAdmin } = useAuth();
 
   if (loading) {
     return (
@@ -182,8 +181,8 @@ export default function GameLibrary() {
                       description={game.description}
                       image={game.image}
                       href={game.href}
-                      badge={game.status === "coming-soon" ? "⏳ KOMMER SNART" : undefined}
-                      disabled={game.status === "coming-soon"}
+                      badge={game.status === "coming-soon" && !isAdmin ? "⏳ KOMMER SNART" : isAdmin ? "🔓 ADMIN" : undefined}
+                      disabled={game.status === "coming-soon" && !isAdmin}
                     />
                   </div>
                 ))}
