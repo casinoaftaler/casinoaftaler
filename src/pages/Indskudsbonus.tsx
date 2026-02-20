@@ -102,6 +102,7 @@ const Indskudsbonus = () => {
     url: `${SITE_URL}/indskudsbonus`,
     datePublished: "2025-06-01",
     dateModified: "2026-02-20",
+    videoId: "hMHHVA6vH0Y",
   });
 
   return (
@@ -188,7 +189,7 @@ const Indskudsbonus = () => {
             duration="PT1M2S"
             viewCount={3}
             uploadDate="2026-02-20"
-            contentUrl="https://casinoaftaler.dk/indskudsbonus"
+            articleUrl="https://casinoaftaler.dk/indskudsbonus"
           />
 
           <div className="rounded-lg border border-border bg-muted/30 p-5">

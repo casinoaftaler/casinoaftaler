@@ -133,6 +133,7 @@ const Velkomstbonus = () => {
     url: `${SITE_URL}/velkomstbonus`,
     datePublished: "2025-06-01",
     dateModified: "2026-02-20",
+    videoId: "oK5PvebkvGY",
   });
 
   return (
@@ -233,7 +234,7 @@ const Velkomstbonus = () => {
             duration="PT1M11S"
             viewCount={3}
             uploadDate="2026-02-20"
-            contentUrl="https://casinoaftaler.dk/velkomstbonus"
+            articleUrl="https://casinoaftaler.dk/velkomstbonus"
           />
 
           <div className="rounded-lg border border-border bg-muted/30 p-5">

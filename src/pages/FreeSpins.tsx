@@ -140,6 +140,7 @@ const FreeSpins = () => {
     url: `${SITE_URL}/free-spins`,
     datePublished: "2025-06-01",
     dateModified: "2026-02-20",
+    videoId: "q4jeGo9TPEk",
   });
 
   return (
@@ -245,7 +246,7 @@ const FreeSpins = () => {
             duration="PT57S"
             viewCount={4}
             uploadDate="2026-02-20"
-            contentUrl="https://casinoaftaler.dk/free-spins"
+            articleUrl="https://casinoaftaler.dk/free-spins"
           />
 
           <div className="rounded-lg border border-border bg-muted/30 p-5">

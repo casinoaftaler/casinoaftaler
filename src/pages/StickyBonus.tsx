@@ -105,6 +105,7 @@ const StickyBonus = () => {
     url: `${SITE_URL}/sticky-bonus`,
     datePublished: "2025-06-01",
     dateModified: "2026-02-20",
+    videoId: "yUAcefgYfkc",
   });
 
   return (
@@ -187,7 +188,7 @@ const StickyBonus = () => {
             duration="PT1M1S"
             viewCount={8}
             uploadDate="2026-02-20"
-            contentUrl="https://casinoaftaler.dk/sticky-bonus"
+            articleUrl="https://casinoaftaler.dk/sticky-bonus"
           />
 
           <div className="rounded-lg border border-border bg-muted/30 p-5">

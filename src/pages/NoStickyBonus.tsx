@@ -114,6 +114,7 @@ const NoStickyBonus = () => {
     url: `${SITE_URL}/no-sticky-bonus`,
     datePublished: "2025-06-01",
     dateModified: "2026-02-20",
+    videoId: "WOowRz6hnH8",
   });
 
   return (
@@ -189,7 +190,7 @@ const NoStickyBonus = () => {
             duration="PT1M14S"
             viewCount={2}
             uploadDate="2026-02-20"
-            contentUrl="https://casinoaftaler.dk/no-sticky-bonus"
+            articleUrl="https://casinoaftaler.dk/no-sticky-bonus"
           />
 
           <div className="rounded-lg border border-border bg-muted/30 p-5">
