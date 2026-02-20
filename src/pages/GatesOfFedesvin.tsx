@@ -30,7 +30,7 @@ const GAME_ID = "gates-of-fedesvin";
 type LoadingPhase = 'loading' | 'intro' | 'ready';
 
 export default function GatesOfFedesvin() {
-  const { user, loading } = useAuth();
+  const { user, loading, isAdmin } = useAuth();
   const { data: siteSettings } = useSiteSettings();
   const { data: casinos } = useCasinos();
   
@@ -108,6 +108,28 @@ export default function GatesOfFedesvin() {
             </p>
             <Button asChild size="lg" className="bg-[#9146FF] hover:bg-[#772ce8]">
               <Link to="/auth">Log ind med Twitch</Link>
+            </Button>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  if (!isAdmin) {
+    return (
+      <div className="min-h-[calc(100vh-4rem)] relative">
+        <PageBackground />
+        <div className="container py-16">
+          <div className="max-w-md mx-auto text-center space-y-6 bg-card/80 backdrop-blur-sm p-8 rounded-xl border border-blue-500/20">
+            <div className="h-20 w-20 mx-auto rounded-full bg-amber-500/20 flex items-center justify-center">
+              <Gamepad2 className="h-10 w-10 text-amber-400" />
+            </div>
+            <h1 className="text-2xl font-bold">Kommer snart!</h1>
+            <p className="text-muted-foreground">
+              Gates of Fedesvin er under udvikling og vil snart være tilgængelig for alle spillere.
+            </p>
+            <Button asChild variant="outline" size="lg">
+              <Link to="/community/slots">Tilbage til spillehallen</Link>
             </Button>
           </div>
         </div>
