@@ -13,6 +13,7 @@ import { SlotSoundAdminSection } from "@/components/slots/SlotSoundAdminSection"
 
 import { SlotSoundFilesSection } from "@/components/slots/SlotSoundFilesSection";
 import { SlotSoundGeneratorSection } from "@/components/slots/SlotSoundGeneratorSection";
+import { BatchSoundGenerator } from "@/components/slots/BatchSoundGenerator";
 import { LivePlayersAdminSection } from "@/components/LivePlayersAdminSection";
 import { SlotRequestsAdminSection } from "@/components/SlotRequestsAdminSection";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
@@ -994,6 +995,9 @@ function SettingsTab({ gameId }: { gameId?: string }) {
 
       {/* AI Sound Generator */}
       <SlotSoundGeneratorSection gameId={gameId} />
+
+      {/* Batch Sound Generator for Gates */}
+      {gameId === "gates-of-fedesvin" && <BatchSoundGenerator gameId={gameId} />}
 
       {/* Custom Sound Files */}
       <SlotSoundFilesSection gameId={gameId} />
