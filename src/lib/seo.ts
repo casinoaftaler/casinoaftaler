@@ -122,6 +122,16 @@ export function buildArticleSchema(opts: {
   image?: string;
   /** YouTube video ID – when provided, creates hasPart ↔ isPartOf binding */
   videoId?: string;
+  /**
+   * Optional AggregateRating for casino review pages.
+   * Enables star ratings in SERP. Must not be inflated (max 4.9, ratingCount ≥ 8).
+   */
+  aggregateRating?: {
+    ratingValue: string;
+    ratingCount: string;
+    bestRating?: string;
+    worstRating?: string;
+  };
 }) {
   const authorName = opts.authorName || "Jonas";
   const authorUrl = opts.authorUrl || `${SITE_URL}/forfatter/jonas`;
@@ -162,6 +172,15 @@ export function buildArticleSchema(opts: {
     ...(videoId && {
       hasPart: {
         "@id": videoId,
+      },
+    }),
+    ...(opts.aggregateRating && {
+      aggregateRating: {
+        "@type": "AggregateRating",
+        ratingValue: opts.aggregateRating.ratingValue,
+        ratingCount: opts.aggregateRating.ratingCount,
+        bestRating: opts.aggregateRating.bestRating ?? "5",
+        worstRating: opts.aggregateRating.worstRating ?? "1",
       },
     }),
   };
