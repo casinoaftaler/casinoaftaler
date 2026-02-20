@@ -3,6 +3,23 @@ import { useLocation } from "react-router-dom";
 import { SITE_URL, SITE_NAME, SITE_BRAND, getCanonicalUrl } from "@/lib/seo";
 import { buildBreadcrumbListSchema } from "@/lib/breadcrumbs";
 
+/** WebSite + SearchAction schema for Sitelinks Searchbox eligibility. */
+const websiteSchema = {
+  "@type": "WebSite",
+  "@id": `${SITE_URL}/#website`,
+  url: SITE_URL,
+  name: SITE_NAME,
+  publisher: { "@id": `${SITE_URL}/#organization` },
+  potentialAction: {
+    "@type": "SearchAction",
+    target: {
+      "@type": "EntryPoint",
+      urlTemplate: `${SITE_URL}/casino-anmeldelser?q={search_term_string}`,
+    },
+    "query-input": "required name=search_term_string",
+  },
+};
+
 interface SEOProps {
   title: string;
   description: string;
@@ -43,6 +60,8 @@ export function SEO({ title, description, type = "website", image, noindex, json
   const rawJsonLd: Record<string, unknown>[] = [
     ...(jsonLd ? (Array.isArray(jsonLd) ? jsonLd : [jsonLd]) : []),
     ...(breadcrumbSchema ? [breadcrumbSchema] : []),
+    // Inject WebSite + SearchAction on homepage only (avoids duplication)
+    ...(pathname === "/" ? [websiteSchema as Record<string, unknown>] : []),
   ];
 
   /**
