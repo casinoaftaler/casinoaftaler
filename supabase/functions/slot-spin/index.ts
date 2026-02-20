@@ -97,16 +97,52 @@ interface BonusSpinResult extends SpinResult {
 // ============================================================
 const GATES_COLS = 6;
 const GATES_ROWS = 5;
-const GATES_MIN_MATCH = 8;
-const GATES_SCATTER_TRIGGER = 4;
-const GATES_SCATTER_RETRIGGER = 3;
-const GATES_FREE_SPINS_INITIAL = 15;
-const GATES_FREE_SPINS_RETRIGGER = 5;
+
+// These are defaults; actual values come from site_settings via getGatesSettings()
+let GATES_MIN_MATCH = 8;
+let GATES_SCATTER_TRIGGER = 4;
+let GATES_SCATTER_RETRIGGER = 3;
+let GATES_FREE_SPINS_INITIAL = 15;
+let GATES_FREE_SPINS_RETRIGGER = 5;
+let GATES_MULTIPLIER_CHANCE_BASE = 0.04;
+let GATES_MULTIPLIER_CHANCE_BONUS = 0.14;
 
 const GATES_MULTIPLIER_VALUES = [2, 3, 5, 10, 15, 25, 50, 100, 250, 500];
 const GATES_MULTIPLIER_WEIGHTS = [30, 25, 20, 12, 6, 3, 2, 1, 0.7, 0.3];
-const GATES_MULTIPLIER_CHANCE_BASE = 0.04;  // Very low in base game
-const GATES_MULTIPLIER_CHANCE_BONUS = 0.14; // Noticeably higher in free spins
+
+// Cache for gates settings from DB
+const gatesSettingsCache: { data: Record<string, string> | null; fetchedAt: number } = { data: null, fetchedAt: 0 };
+const GATES_SETTINGS_CACHE_TTL = 5 * 60 * 1000;
+
+async function loadGatesSettings(serviceClient: ReturnType<typeof createClient>) {
+  const now = Date.now();
+  if (gatesSettingsCache.data && (now - gatesSettingsCache.fetchedAt) < GATES_SETTINGS_CACHE_TTL) {
+    return;
+  }
+  const { data, error } = await serviceClient
+    .from("site_settings")
+    .select("key, value")
+    .in("key", [
+      "gates_multiplier_chance_base", "gates_multiplier_chance_bonus",
+      "gates_min_match", "gates_scatter_trigger", "gates_scatter_retrigger",
+      "gates_free_spins_initial", "gates_free_spins_retrigger",
+    ]);
+  if (!error && data) {
+    const map: Record<string, string> = {};
+    data.forEach((s: { key: string; value: string | null }) => { map[s.key] = s.value || ""; });
+    gatesSettingsCache.data = map;
+    gatesSettingsCache.fetchedAt = now;
+    
+    // Apply values with fallbacks
+    GATES_MIN_MATCH = parseInt(map.gates_min_match || "8", 10);
+    GATES_SCATTER_TRIGGER = parseInt(map.gates_scatter_trigger || "4", 10);
+    GATES_SCATTER_RETRIGGER = parseInt(map.gates_scatter_retrigger || "3", 10);
+    GATES_FREE_SPINS_INITIAL = parseInt(map.gates_free_spins_initial || "15", 10);
+    GATES_FREE_SPINS_RETRIGGER = parseInt(map.gates_free_spins_retrigger || "5", 10);
+    GATES_MULTIPLIER_CHANCE_BASE = parseFloat(map.gates_multiplier_chance_base || "0.04");
+    GATES_MULTIPLIER_CHANCE_BONUS = parseFloat(map.gates_multiplier_chance_bonus || "0.14");
+  }
+}
 
 interface GatesWin {
   symbolId: string;
@@ -949,6 +985,9 @@ Deno.serve(async (req) => {
     // GATES OF FEDESVIN - completely different game engine
     // ============================================================
     if (isGatesOfFedesvin) {
+      // Load Gates settings from DB (cached 5 min)
+      await loadGatesSettings(serviceClient);
+      
       if (isBonusSpin) {
         const bonusData = bonusRes.data;
         if (bonusRes.error || !bonusData || !bonusData.is_active || bonusData.free_spins_remaining <= 0) {
