@@ -198,7 +198,7 @@ const Indskudsbonus = () => {
               Her gennemgår vores streamer og forfatter Jonas, hvad en indskudsbonus er
             </h3>
             <p className="text-muted-foreground leading-relaxed">
-              Jonas forklarer indskudsbonussens mekanik med konkrete regneeksempler – hvad en 100% matchbonus faktisk er værd, og hvad du skal tjekke i vilkårene inden du aktiverer. Videoen supplerer vores guides om{" "}
+              <Link to="/forfatter/jonas" className={linkClass}>Jonas</Link> forklarer indskudsbonussens mekanik med konkrete regneeksempler – hvad en 100% matchbonus faktisk er værd, og hvad du skal tjekke i vilkårene inden du aktiverer. Videoen supplerer vores guides om{" "}
               <Link to="/velkomstbonus" className={linkClass}>velkomstbonus</Link>,{" "}
               <Link to="/omsaetningskrav" className={linkClass}>omsætningskrav</Link> og{" "}
               <Link to="/free-spins" className={linkClass}>free spins</Link>.

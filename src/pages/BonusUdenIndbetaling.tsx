@@ -206,7 +206,7 @@ const BonusUdenIndbetaling = () => {
               Her gennemgår vores streamer og forfatter Jonas, hvad en bonus uden indbetaling er
             </h3>
             <p className="text-muted-foreground leading-relaxed">
-              Jonas dissekerer no deposit bonus-mekanikken – gevinstloftets skjulte effekt, de fire varianter og præcis hvornår en gratis bonus er pengene værd. Videoen er del af vores bonusunivers med guides om{" "}
+              <Link to="/forfatter/jonas" className={linkClass}>Jonas</Link> dissekerer no deposit bonus-mekanikken – gevinstloftets skjulte effekt, de fire varianter og præcis hvornår en gratis bonus er pengene værd. Videoen er del af vores bonusunivers med guides om{" "}
               <Link to="/bonus-uden-omsaetningskrav" className={linkClass}>bonus uden omsætningskrav</Link>,{" "}
               <Link to="/velkomstbonus" className={linkClass}>velkomstbonus</Link> og{" "}
               <Link to="/omsaetningskrav" className={linkClass}>omsætningskrav</Link>.

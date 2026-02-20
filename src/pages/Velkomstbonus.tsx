@@ -243,7 +243,7 @@ const Velkomstbonus = () => {
               Her gennemgår vores streamer og forfatter Jonas, hvad en velkomstbonus er
             </h3>
             <p className="text-muted-foreground leading-relaxed">
-              Jonas gennemgår de fire typer velkomstbonusser, hvad omsætningskrav betyder for bonussens reelle værdi, og hvordan du som ny spiller vælger det rigtige tilbud. Videoen er del af vores bonusunivers med guides om{" "}
+              <Link to="/forfatter/jonas" className={linkClass}>Jonas</Link> gennemgår de fire typer velkomstbonusser, hvad omsætningskrav betyder for bonussens reelle værdi, og hvordan du som ny spiller vælger det rigtige tilbud. Videoen er del af vores bonusunivers med guides om{" "}
               <Link to="/indskudsbonus" className={linkClass}>indskudsbonus</Link>,{" "}
               <Link to="/free-spins" className={linkClass}>free spins</Link> og{" "}
               <Link to="/bonus-uden-indbetaling" className={linkClass}>bonus uden indbetaling</Link>.

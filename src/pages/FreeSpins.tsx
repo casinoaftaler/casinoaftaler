@@ -255,7 +255,7 @@ const FreeSpins = () => {
               Her gennemgår vores streamer og forfatter Jonas, hvad free spins er
             </h3>
             <p className="text-muted-foreground leading-relaxed">
-              Jonas gennemgår de forskellige typer af free spins, hvad omsætningskrav betyder for din reelle gevinst, og hvornår gratis spins faktisk er pengene værd. Videoen supplerer vores guides om{" "}
+              <Link to="/forfatter/jonas" className={linkClass}>Jonas</Link> gennemgår de forskellige typer af free spins, hvad omsætningskrav betyder for din reelle gevinst, og hvornår gratis spins faktisk er pengene værd. Videoen supplerer vores guides om{" "}
               <Link to="/velkomstbonus" className={linkClass}>velkomstbonus</Link>,{" "}
               <Link to="/indskudsbonus" className={linkClass}>indskudsbonus</Link> og{" "}
               <Link to="/bonus-uden-indbetaling" className={linkClass}>bonus uden indbetaling</Link>.
