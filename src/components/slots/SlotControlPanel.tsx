@@ -3,6 +3,7 @@ import { BetControls } from "./BetControls";
 import { AutospinRow } from "./AutospinRow";
 import { VolumeControl } from "./VolumeControl";
 import { PayTable } from "./PayTable";
+import { GatesPayTable } from "./GatesPayTable";
 import { SmallWinBar } from "./SmallWinBar";
 import { Gamepad2 } from "lucide-react";
 import { cn } from "@/lib/utils";
@@ -137,7 +138,11 @@ export function SlotControlPanel({
         gameId={gameId}
       />
       <div className="flex-shrink-0">
-        <PayTable gameId={gameId} bet={bet} />
+        {gameId === "gates-of-fedesvin" ? (
+          <GatesPayTable gameId={gameId} bet={bet} />
+        ) : (
+          <PayTable gameId={gameId} bet={bet} />
+        )}
       </div>
     </div>
   );
