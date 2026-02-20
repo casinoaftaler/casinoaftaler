@@ -152,7 +152,6 @@ export const SlotReel = React.memo(function SlotReel({
       const strip = buildReelStrip();
       setReelStrip(strip);
       const startOffset = (strip.length - 3) * TOTAL_SYMBOL_HEIGHT;
-      const maxOffset = startOffset;
       const startTime = performance.now();
       const spinDuration = teaseMode ? 3000 : reelSlowdownMs;
       const animate = (currentTime: number) => {
@@ -160,8 +159,8 @@ export const SlotReel = React.memo(function SlotReel({
         const progress = Math.min(elapsed / spinDuration, 1);
         const easeOut = teaseMode ? 1 - Math.pow(1 - progress, 5) : 1 - Math.pow(1 - progress, 2);
         const currentOffset = startOffset * (1 - easeOut);
-        const blurProgress = 1 - (currentOffset / maxOffset);
-        const blur = Math.max(0, 8 * (1 - blurProgress * blurProgress));
+        // Skip blur during tease to avoid expensive per-frame filter repaints
+        const blur = teaseMode ? 0 : Math.max(0, 8 * (1 - Math.pow(easeOut, 2)));
         applyOffset(currentOffset, blur, true);
         if (progress < 1) {
           animationRef.current = requestAnimationFrame(animate);
@@ -204,12 +203,13 @@ export const SlotReel = React.memo(function SlotReel({
 
   const isAnimating = spinState === "spinning" || spinState === "stopping";
 
+  // Use simple static shadows instead of animated box-shadow keyframes to avoid repaint lag
   const fakeLoopGlow = isWizard
-    ? "shadow-[0_0_15px_rgba(168,85,247,0.3),0_0_25px_rgba(168,85,247,0.15)] animate-pulse"
-    : "shadow-[0_0_15px_rgba(251,191,36,0.3),0_0_25px_rgba(251,191,36,0.15)] animate-pulse";
+    ? "shadow-[0_0_12px_rgba(168,85,247,0.25)]"
+    : "shadow-[0_0_12px_rgba(251,191,36,0.25)]";
   const activeTeaseGlow = isWizard
-    ? "shadow-[0_0_30px_rgba(168,85,247,0.9),0_0_60px_rgba(168,85,247,0.6),0_0_90px_rgba(168,85,247,0.3)] animate-[glow-intense-wizard_0.5s_ease-in-out_infinite]"
-    : "shadow-[0_0_30px_rgba(251,191,36,0.9),0_0_60px_rgba(251,191,36,0.6),0_0_90px_rgba(251,191,36,0.3)] animate-[glow-intense_0.5s_ease-in-out_infinite]";
+    ? "shadow-[0_0_20px_rgba(168,85,247,0.7),0_0_40px_rgba(168,85,247,0.3)] ring-2 ring-purple-400/50"
+    : "shadow-[0_0_20px_rgba(251,191,36,0.7),0_0_40px_rgba(251,191,36,0.3)] ring-2 ring-amber-400/50";
 
   // Memoize spinning strip symbols to avoid re-creating JSX on every render
   const spinningStripJsx = useMemo(() => {
