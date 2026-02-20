@@ -1,8 +1,10 @@
 import { useEffect } from "react";
 import introImage from "@/assets/slots/slot-intro-screen.jpg";
 import riseIntroImage from "@/assets/slots/rise/intro-screen.jpg";
+import gatesIntroImage from "@/assets/slots/gates/intro-screen.jpg";
 import defaultSlotBackground from "@/assets/slots/slot-background.jpg";
 import riseSlotBackground from "@/assets/slots/rise/background.jpg";
+import gatesSlotBackground from "@/assets/slots/gates/background.jpg";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
 import { slotSounds } from "@/lib/slotSoundEffects";
 import { cn } from "@/lib/utils";
@@ -16,6 +18,13 @@ interface SlotIntroScreenProps {
 const GAME_INTRO_IMAGES: Record<string, string> = {
   "book-of-fedesvin": introImage,
   "rise-of-fedesvin": riseIntroImage,
+  "gates-of-fedesvin": gatesIntroImage,
+};
+
+const GAME_DEFAULT_BACKGROUNDS: Record<string, string> = {
+  "book-of-fedesvin": defaultSlotBackground,
+  "rise-of-fedesvin": riseSlotBackground,
+  "gates-of-fedesvin": gatesSlotBackground,
 };
 
 export function SlotIntroScreen({ onStart, gameId = "book-of-fedesvin" }: SlotIntroScreenProps) {
@@ -23,11 +32,12 @@ export function SlotIntroScreen({ onStart, gameId = "book-of-fedesvin" }: SlotIn
   const theme = getSlotTheme(gameId);
 
   const isWizard = gameId === "rise-of-fedesvin";
+  const isOlympus = gameId === "gates-of-fedesvin";
 
   const bgKey = gameId === "book-of-fedesvin"
     ? "slot_background_image"
     : `${gameId.replace(/-/g, "_")}_background_image`;
-  const gameDefaultBackground = isWizard ? riseSlotBackground : defaultSlotBackground;
+  const gameDefaultBackground = GAME_DEFAULT_BACKGROUNDS[gameId] || defaultSlotBackground;
   const backgroundImage = siteSettings?.[bgKey] || gameDefaultBackground;
   const currentIntroImage = GAME_INTRO_IMAGES[gameId] || introImage;
 
@@ -47,6 +57,9 @@ export function SlotIntroScreen({ onStart, gameId = "book-of-fedesvin" }: SlotIn
       <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-black/60 to-black/90 -z-10" />
       {isWizard && (
         <div className="absolute inset-0 bg-gradient-to-b from-purple-900/30 via-transparent to-indigo-900/20 -z-10" />
+      )}
+      {isOlympus && (
+        <div className="absolute inset-0 bg-gradient-to-b from-blue-900/30 via-transparent to-amber-900/20 -z-10" />
       )}
       
       {/* Content */}
@@ -73,17 +86,21 @@ export function SlotIntroScreen({ onStart, gameId = "book-of-fedesvin" }: SlotIn
                 : "border-amber-500/30 group-hover:border-amber-500/50"
             )}
             style={{
-              boxShadow: isWizard
-                ? '0 0 40px rgba(168,85,247,0.3), 0 0 80px rgba(168,85,247,0.15), 0 0 120px rgba(168,85,247,0.08)'
-                : '0 0 40px rgba(251,191,36,0.3), 0 0 80px rgba(251,191,36,0.15), 0 0 120px rgba(251,191,36,0.08)'
+              boxShadow: isOlympus
+                ? '0 0 40px rgba(59,130,246,0.3), 0 0 80px rgba(251,191,36,0.15), 0 0 120px rgba(59,130,246,0.08)'
+                : isWizard
+                  ? '0 0 40px rgba(168,85,247,0.3), 0 0 80px rgba(168,85,247,0.15), 0 0 120px rgba(168,85,247,0.08)'
+                  : '0 0 40px rgba(251,191,36,0.3), 0 0 80px rgba(251,191,36,0.15), 0 0 120px rgba(251,191,36,0.08)'
             }}
           />
           {/* Click to play hint */}
           <div className={cn(
             "absolute bottom-4 left-1/2 -translate-x-1/2 px-6 py-2 rounded-full backdrop-blur-md text-sm font-medium animate-pulse",
-            isWizard
-              ? "bg-purple-500/20 border border-purple-500/40 text-purple-100"
-              : "bg-amber-500/20 border border-amber-500/40 text-amber-100"
+            isOlympus
+              ? "bg-blue-500/20 border border-amber-400/40 text-amber-100"
+              : isWizard
+                ? "bg-purple-500/20 border border-purple-500/40 text-purple-100"
+                : "bg-amber-500/20 border border-amber-500/40 text-amber-100"
           )}>
             Klik for at spille
           </div>
