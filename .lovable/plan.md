@@ -1,51 +1,45 @@
 
 
-# Update Symbol Rarities and Pay Table for Gates of Fedesvin
+# Redesign Gates Pay Table to Match Reference Layout
 
 ## Overview
 
-Two changes are needed:
-1. Re-categorize symbols so all gems are "common" and the non-gem items (Gold Cup, Gold Ring, Hourglass, Chalice) are "premium"
-2. Create a Gates-specific pay table that shows pay-anywhere mechanics (8+, 10+, 12+ matches) instead of the payline-based columns (2x, 3x, 4x, 5x) used by the other slot games
+Redesign the `GatesPayTable` component to match the reference image layout (card-based grid instead of table rows) and update all symbol payouts in the database to match the reference values.
 
-## 1. Database: Update Symbol Rarities
+## 1. Database: Update All Symbol Multipliers
 
-Update the `slot_symbols` table for `gates-of-fedesvin`:
+Update `slot_symbols` for `gates-of-fedesvin` to match the reference image payouts (based on 1 credit bet):
 
-| Symbol | Current Rarity | New Rarity |
-|--------|---------------|------------|
-| Red Gem | premium | common |
-| Purple Gem | premium | common |
-| Green Gem | premium | common |
-| Blue Gem | premium | common |
-| Yellow Gem | common | common |
-| Gold Cup | common | premium |
-| Gold Ring | common | premium |
-| Hourglass | common | premium |
-| Chalice | common | premium |
-| Zeus (Scatter) | scatter | scatter (unchanged) |
+| Symbol | Rarity | 8-9 (m3) | 10-11 (m4) | 12-30 (m5) |
+|--------|--------|----------|------------|------------|
+| Gold Cup | premium | 10.00 | 25.00 | 50.00 |
+| Gold Ring | premium | 2.50 | 10.00 | 25.00 |
+| Hourglass | premium | 2.00 | 5.00 | 15.00 |
+| Chalice | premium | 1.50 | 2.00 | 12.00 |
+| Red Gem | common | 1.00 | 1.50 | 10.00 |
+| Purple Gem | common | 0.80 | 1.20 | 8.00 |
+| Green Gem | common | 0.50 | 1.00 | 5.00 |
+| Blue Gem | common | 0.40 | 0.90 | 4.00 |
+| Yellow Gem | common | 0.25 | 0.75 | 2.00 |
+| Zeus (Scatter) | scatter | 3.00 | 5.00 | 100.00 |
 
-This will be done via SQL UPDATE statements on the `slot_symbols` table.
+## 2. Redesign GatesPayTable Component
 
-## 2. New Component: GatesPayTable
+Replace the current table-based layout with a card-grid layout matching the reference:
 
-Create `src/components/slots/GatesPayTable.tsx` -- a pay table specific to the Gates game that shows:
+- **Header**: "GAME RULES" title
+- **Description**: "Symbols pay anywhere on the screen. The total number of the same symbol on the screen at the end of a spin determines the value of the win."
+- **Premium row**: 4 symbol cards in a horizontal row, each showing:
+  - Symbol image (larger, centered)
+  - Three payout lines: `12 - 30  $XX.XX`, `10 - 11  $XX.XX`, `8 - 9  $XX.XX`
+  - Each card has a bordered box appearance
+- **Common row**: 5 symbol cards in a horizontal row, same card format
+- **Scatter section**: Symbol image with payout lines for 6, 5, 4 counts plus description text
 
-- **Premium symbols** (Gold Cup, Gold Ring, Hourglass, Chalice): Higher payouts, displayed with columns for 8+, 10+, 12+ matches
-- **Common symbols** (all 5 gems): Lower payouts, displayed with columns for 8+, 10+, 12+ matches
-- **Scatter** (Zeus): Shown separately with bonus trigger info (4+ scatters trigger free spins)
-- **Multiplier info**: Section explaining multiplier orbs (2x-500x) that appear during tumbles
-- **Game rules**: "Pay Anywhere" mechanic explanation instead of "10 gevinstlinjer"
+Each card will be a small bordered box with the symbol image on top and payout lines below, styled with the dark theme to match the reference.
 
-The column headers will be **8+**, **10+**, **12+** (mapping to `multiplier_3`, `multiplier_4`, `multiplier_5` from the database).
+## 3. Files Changed
 
-## 3. Wire Up the Gates Pay Table
-
-Modify `src/components/slots/SlotControlPanel.tsx` to conditionally render `GatesPayTable` when `gameId` is `"gates-of-fedesvin"`, and the standard `PayTable` for other games.
-
-## Files Changed
-
-- **Database**: UPDATE rarity values for 8 symbols in `slot_symbols`
-- **New file**: `src/components/slots/GatesPayTable.tsx`
-- **Modified**: `src/components/slots/SlotControlPanel.tsx` (conditional import)
+- **Database**: UPDATE multiplier values for all 10 symbols
+- **Modified**: `src/components/slots/GatesPayTable.tsx` (complete redesign of layout from table to card grid)
 
