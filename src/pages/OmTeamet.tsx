@@ -41,9 +41,10 @@ const OmTeamet = () => {
   const organizationJsonLd = {
     "@context": "https://schema.org",
     "@type": "Organization",
+    "@id": "https://casinoaftaler.dk/#organization",
     name: "Casinoaftaler.dk",
     url: "https://casinoaftaler.dk",
-    dateModified: "2026-02-17",
+    dateModified: "2026-02-20",
     logo: {
       "@type": "ImageObject",
       url: "https://casinoaftaler.dk/favicon-48x48.png",
@@ -55,19 +56,20 @@ const OmTeamet = () => {
     foundingDate: "2021",
     founder: {
       "@type": "Person",
-      name: "Jonas",
+      "@id": "https://casinoaftaler.dk/forfatter/jonas#person",
+      name: "Jonas Theill",
       url: "https://casinoaftaler.dk/forfatter/jonas",
     },
     employee: [
       {
         "@type": "Person",
+        "@id": "https://casinoaftaler.dk/forfatter/kevin#person",
         name: "Kevin",
         url: "https://casinoaftaler.dk/forfatter/kevin",
-        jobTitle: "Streamer, Forfatter og Medudvikler",
+        jobTitle: "Casino Streamer & IT-medansvarlig",
       },
     ],
     sameAs: [
-      "https://www.twitch.tv/fedesvinsejer",
       "https://www.youtube.com/@casinoaftaler",
       "https://www.instagram.com/casinoaftaler",
       "https://www.facebook.com/casinoaftaler",
