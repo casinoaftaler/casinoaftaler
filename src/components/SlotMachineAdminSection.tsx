@@ -14,6 +14,7 @@ import { SlotSoundAdminSection } from "@/components/slots/SlotSoundAdminSection"
 import { SlotSoundFilesSection } from "@/components/slots/SlotSoundFilesSection";
 import { SlotSoundGeneratorSection } from "@/components/slots/SlotSoundGeneratorSection";
 import { BatchSoundGenerator } from "@/components/slots/BatchSoundGenerator";
+import { GatesGameSettingsAdmin } from "@/components/slots/GatesGameSettingsAdmin";
 import { LivePlayersAdminSection } from "@/components/LivePlayersAdminSection";
 import { SlotRequestsAdminSection } from "@/components/SlotRequestsAdminSection";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
@@ -732,6 +733,8 @@ function SettingsTab({ gameId }: { gameId?: string }) {
     pagePassword: "",
     riseLocked: true,
     risePassword: "",
+    gatesLocked: true,
+    gatesPassword: "",
     spinLoopMs: 600,
     reelStaggerMs: 150,
     reelSlowdownMs: 300,
@@ -747,6 +750,8 @@ function SettingsTab({ gameId }: { gameId?: string }) {
         pagePassword: settings.pagePassword,
         riseLocked: settings.riseLocked,
         risePassword: settings.risePassword,
+        gatesLocked: settings.gatesLocked,
+        gatesPassword: settings.gatesPassword,
         spinLoopMs: settings.spinLoopMs,
         reelStaggerMs: settings.reelStaggerMs,
         reelSlowdownMs: settings.reelSlowdownMs,
@@ -850,6 +855,49 @@ function SettingsTab({ gameId }: { gameId?: string }) {
         </CardContent>
       </Card>
 
+      {/* Page Access Control - Gates of Fedesvin */}
+      <Card>
+        <CardHeader>
+          <CardTitle className="flex items-center gap-2">
+            <Lock className="h-5 w-5" />
+            Adgangskontrol — Gates of Fedesvin
+          </CardTitle>
+        </CardHeader>
+        <CardContent className="space-y-6">
+          <div className="flex items-center justify-between">
+            <div className="space-y-1">
+              <Label htmlFor="gates-locked" className="font-medium">Lås Gates of Fedesvin</Label>
+              <p className="text-sm text-muted-foreground">
+                Når aktiveret, skal brugere indtaste et password for at få adgang.
+              </p>
+            </div>
+            <Switch
+              id="gates-locked"
+              checked={formData.gatesLocked}
+              onCheckedChange={(checked) => {
+                setFormData({ ...formData, gatesLocked: checked });
+                updateSettings.mutate({ gatesLocked: checked });
+              }}
+            />
+          </div>
+
+          {formData.gatesLocked && (
+            <div className="space-y-2 pt-2 border-t">
+              <Label htmlFor="gates-password">Adgangskode</Label>
+              <Input
+                id="gates-password"
+                type="text"
+                value={formData.gatesPassword}
+                onChange={(e) => setFormData({ ...formData, gatesPassword: e.target.value })}
+                placeholder="Indtast adgangskode..."
+              />
+            </div>
+          )}
+        </CardContent>
+      </Card>
+
+      {/* Gates Game Mechanics Settings */}
+      {activeGameId === "gates-of-fedesvin" && <GatesGameSettingsAdmin />}
       {/* Animation Timing */}
       <Card>
         <CardHeader>
@@ -1418,6 +1466,7 @@ function StatisticsTab({ gameId }: { gameId?: string }) {
 const GAME_OPTIONS = [
   { id: "book-of-fedesvin", label: "Book of Fedesvin" },
   { id: "rise-of-fedesvin", label: "Rise of Fedesvin" },
+  { id: "gates-of-fedesvin", label: "Gates of Fedesvin" },
 ] as const;
 
 const GLOBAL_TABS = ["spins", "points", "combined-stats", "live-players", "requests"] as const;
