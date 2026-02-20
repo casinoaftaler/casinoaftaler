@@ -56,7 +56,7 @@ const faqs: { question: string; answer: ReactNode }[] = [
     question: "Kan ulovlige casinoer tilbyde bedre bonusser end danske?",
     answer: (
       <>
-        Nominelt kan ulovlige casinoer tilbyde højere bonusbeløb, men den reelle værdi er typisk lavere. En bonus på 10.000 kr. med 50x omsætningskrav kræver 500.000 kr. i spil, før du kan hæve. Til sammenligning kræver en dansk bonus på 2.000 kr. med 10x omsætning kun 20.000 kr. i spil. Den danske bonus har markant højere sandsynlighed for at resultere i reel udbetaling. Se vores guide til <Link to="/nye-casinoer/lav-wagering" className={linkClass}>nye casinoer med lav wagering</Link>.
+        Nominelt kan ulovlige casinoer tilbyde højere bonusbeløb, men den reelle værdi er typisk lavere. En udenlandsk bonus på 5.000 kr. med 50x omsætningskrav kræver 250.000 kr. i spil, før du kan hæve. Til sammenligning kræver en dansk bonus på 1.000 kr. med 10x omsætning (d+b) kun 20.000 kr. i spil. Den danske bonus har markant højere sandsynlighed for at resultere i reel udbetaling – og er skattefri. Se vores guide til <Link to="/nye-casinoer/lav-wagering" className={linkClass}>nye casinoer med lav wagering</Link>.
       </>
     ),
   },

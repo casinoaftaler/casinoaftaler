@@ -251,28 +251,28 @@ const GatesOfOlympusGuide = () => {
             </CardContent>
           </Card>
 
-          <h3 className="text-xl font-semibold mt-6 mb-3">Scenarie 2: <Link to="/velkomstbonus" className={linkClass}>Velkomstbonus</Link> 100 % op til 2.000 kr. (25x wagering)</h3>
+          <h3 className="text-xl font-semibold mt-6 mb-3">Scenarie 2: <Link to="/velkomstbonus" className={linkClass}>Velkomstbonus</Link> 100% op til 1.000 kr. (10x wagering, dansk standard)</h3>
           <Card className="mb-4">
             <CardContent className="pt-6">
-              <p className="text-sm text-muted-foreground">Bonus: 2.000 kr. | Total omsætning: 50.000 kr.</p>
-              <p className="text-sm text-muted-foreground">Forventet tab: 50.000 × 0,035 = <strong>1.750 kr.</strong></p>
-              <p className="text-sm text-muted-foreground">Net EV: 2.000 − 1.750 = <strong>+250 kr. (positiv!)</strong></p>
-              <p className="text-sm text-muted-foreground mt-1">Med 25x wagering er bonussen matematisk fordelagtig med Gates of Olympus.</p>
+              <p className="text-sm text-muted-foreground">Bonus: 1.000 kr. | Indbetaling: 1.000 kr. | Total omsætning (10x d+b): 20.000 kr.</p>
+              <p className="text-sm text-muted-foreground">Forventet tab: 20.000 × 0,035 = <strong>700 kr.</strong></p>
+              <p className="text-sm text-muted-foreground">Net EV: 1.000 − 700 = <strong>+300 kr. (positiv!)</strong></p>
+              <p className="text-sm text-muted-foreground mt-1">Med dansk max 10x wagering er bonussen matematisk fordelagtig med Gates of Olympus.</p>
             </CardContent>
           </Card>
 
-          <h3 className="text-xl font-semibold mt-6 mb-3">Scenarie 3: <Link to="/bonus-uden-indbetaling" className={linkClass}>Bonus uden indbetaling</Link> (50 kr., 40x wagering)</h3>
+          <h3 className="text-xl font-semibold mt-6 mb-3">Scenarie 3: <Link to="/bonus-uden-indbetaling" className={linkClass}>Bonus uden indbetaling</Link> (50 kr., 10x wagering, dansk max)</h3>
           <Card className="mb-6">
             <CardContent className="pt-6">
-              <p className="text-sm text-muted-foreground">Bonus: 50 kr. | Total omsætning: 2.000 kr.</p>
-              <p className="text-sm text-muted-foreground">Forventet tab: 2.000 × 0,035 = <strong>70 kr.</strong></p>
-              <p className="text-sm text-muted-foreground">Net EV: 50 − 70 = <strong>−20 kr. (negativ)</strong></p>
-              <p className="text-sm text-muted-foreground mt-1">Selv med gratis bonus er 40x wagering for højt for profitabel omsætning. Men du risikerer intet.</p>
+              <p className="text-sm text-muted-foreground">Bonus: 50 kr. | Total omsætning (10x): 500 kr.</p>
+              <p className="text-sm text-muted-foreground">Forventet tab: 500 × 0,035 = <strong>17,50 kr.</strong></p>
+              <p className="text-sm text-muted-foreground">Net EV: 50 − 17,50 = <strong>+32,50 kr. (positiv)</strong></p>
+              <p className="text-sm text-muted-foreground mt-1">Med dansk 10x loft er no-deposit bonusser realistiske at omsætte. Du risikerer intet.</p>
             </CardContent>
           </Card>
 
           <p className="text-muted-foreground leading-relaxed">
-            Break-even-punktet for Gates of Olympus er ca. 28,6x wagering (1 / 0,035 = 28,57). Enhver bonus med lavere omsætningskrav end 28,6x er matematisk fordelagtig. Med danske <Link to="/casino-bonus" className={linkClass}>casino bonusser</Link> der typisk ligger på 20–35x, befinder Gates of Olympus sig ofte i grænseområdet – det kræver en individuel vurdering pr. bonustilbud.
+            På det danske marked er maksimum 10x wagering ved lov. Gates of Olympus' høje RTP på 96,50% (house edge 3,5%) gør spillet velegnet til bonusomsætning – enhver dansk bonus med 10x eller lavere er matematisk fordelagtig her.
           </p>
         </section>
 

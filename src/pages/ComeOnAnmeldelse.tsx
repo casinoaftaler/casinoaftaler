@@ -40,7 +40,7 @@ const comeonFaqs: { question: string; answer: ReactNode }[] = [
       <>
         Minimumsindbetalingen hos ComeOn er 100 kr. Du kan indbetale via <Link to="/betalingsmetoder/mobilepay" className={linkClass}>MobilePay</Link>,{" "}
         <Link to="/betalingsmetoder/trustly" className={linkClass}>Trustly</Link>, <Link to="/betalingsmetoder/visa-mastercard" className={linkClass}>Visa/Mastercard</Link> og{" "}
-        <Link to="/betalingsmetoder/skrill" className={linkClass}>Skrill</Link>. Registrering sker via MitID og tager under to minutter. <Link to="/velkomstbonus" className={linkClass}>Velkomstbonussen</Link> på 100% op til 2.000 kr. aktiveres automatisk. Med det danske standard <Link to="/omsaetningskrav" className={linkClass}>omsætningskrav</Link> på 10x (d+b) skal en indbetaling på 1.000 kr. + 1.000 kr. bonus omsættes for 20.000 kr. inden 30 dage.
+        <Link to="/betalingsmetoder/skrill" className={linkClass}>Skrill</Link>. Registrering sker via MitID og tager under to minutter. <Link to="/velkomstbonus" className={linkClass}>Velkomstbonussen</Link> på 100% op til 1.000 kr. aktiveres automatisk. Indbetaler du 1.000 kr., får du 1.000 kr. i bonus. Med ComeOns lave 5x <Link to="/omsaetningskrav" className={linkClass}>omsætningskrav</Link> (d+b) skal de 2.000 kr. (indskud + bonus) omsættes for 10.000 kr. inden 30 dage.
       </>
     ),
   },
@@ -276,21 +276,21 @@ const ComeOnAnmeldelse = () => {
         {/* Bankroll & Risiko */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold">Bankroll-analyse og Expected Value</h2>
-          <p className="mb-4 text-muted-foreground leading-relaxed">Lad os analysere ComeOns <Link to="/velkomstbonus" className={linkClass}>velkomstbonus</Link> fra et matematisk perspektiv. Med en maks. bonus på 2.000 kr. og 5x <Link to="/omsaetningskrav" className={linkClass}>omsætningskrav</Link> (d+b) er den teoretiske Expected Value (EV) som følger:</p>
+          <p className="mb-4 text-muted-foreground leading-relaxed">Lad os analysere ComeOns <Link to="/velkomstbonus" className={linkClass}>velkomstbonus</Link> fra et matematisk perspektiv. Med en maks. bonus på 1.000 kr. og 5x <Link to="/omsaetningskrav" className={linkClass}>omsætningskrav</Link> (d+b) er den teoretiske Expected Value (EV) som følger:</p>
           <Card className="border-border bg-card mb-6">
             <CardHeader className="pb-2"><CardTitle className="flex items-center gap-2 text-lg"><TrendingUp className="h-5 w-5 text-primary" />EV-beregning – ComeOn bonus</CardTitle></CardHeader>
             <CardContent>
               <div className="grid grid-cols-1 sm:grid-cols-5 gap-3 text-center">
-                <div className="rounded-lg border border-border p-3"><p className="text-xs text-muted-foreground">Indskud</p><p className="text-xl font-bold text-foreground">2.000 kr.</p></div>
-                <div className="rounded-lg border border-border p-3"><p className="text-xs text-muted-foreground">Bonus</p><p className="text-xl font-bold text-foreground">2.000 kr.</p></div>
-                <div className="rounded-lg border border-border p-3"><p className="text-xs text-muted-foreground">Omsætning</p><p className="text-xl font-bold text-foreground">20.000 kr.</p></div>
-                <div className="rounded-lg border border-border p-3"><p className="text-xs text-muted-foreground">Stat. tab (96% RTP)</p><p className="text-xl font-bold text-foreground">~800 kr.</p></div>
-                <div className="rounded-lg border border-border p-3"><p className="text-xs text-muted-foreground">Reel EV</p><p className="text-xl font-bold text-foreground">+1.200 kr.</p></div>
+                <div className="rounded-lg border border-border p-3"><p className="text-xs text-muted-foreground">Indskud</p><p className="text-xl font-bold text-foreground">1.000 kr.</p></div>
+                <div className="rounded-lg border border-border p-3"><p className="text-xs text-muted-foreground">Bonus</p><p className="text-xl font-bold text-foreground">1.000 kr.</p></div>
+                <div className="rounded-lg border border-border p-3"><p className="text-xs text-muted-foreground">Omsætning (5x d+b)</p><p className="text-xl font-bold text-foreground">10.000 kr.</p></div>
+                <div className="rounded-lg border border-border p-3"><p className="text-xs text-muted-foreground">Stat. tab (96% RTP)</p><p className="text-xl font-bold text-foreground">~400 kr.</p></div>
+                <div className="rounded-lg border border-border p-3"><p className="text-xs text-muted-foreground">Reel EV</p><p className="text-xl font-bold text-foreground">+600 kr.</p></div>
               </div>
             </CardContent>
           </Card>
-          <p className="mb-4 text-muted-foreground leading-relaxed">Med en gennemsnitlig RTP på 96% taber du statistisk 4% af din samlede omsætning. 4% × 20.000 kr. = 800 kr. i forventet tab. Da du har modtaget 2.000 kr. i bonus, er din netto Expected Value 2.000 – 800 = +1.200 kr. Det er en markant positiv EV – og en af de bedste bonusværdier på det danske marked takket være det lave 5x omsætningskrav.</p>
-          <p className="mb-4 text-muted-foreground leading-relaxed"><strong>Risk of Ruin-perspektiv:</strong> Med en startbankroll på 4.000 kr. (indskud + bonus) og et gennemsnitligt bet på 20 kr. har du ca. 200 enheder. Med slots' typiske volatilitet er din Risk of Ruin (sandsynlighed for at gå i 0 inden omsætningskravet er opfyldt) ca. 15-20% med 5x krav. Det er lavt – markant lavere end hos casinoer med 10x-krav (~35%) eller 30x-krav (~60%+).</p>
+          <p className="mb-4 text-muted-foreground leading-relaxed">Med en gennemsnitlig RTP på 96% taber du statistisk 4% af din samlede omsætning. 4% × 10.000 kr. = 400 kr. i forventet tab. Da du har modtaget 1.000 kr. i bonus, er din netto Expected Value 1.000 – 400 = +600 kr. Det er en markant positiv EV – og en af de bedste bonusværdier på det danske marked takket være det lave 5x omsætningskrav.</p>
+          <p className="mb-4 text-muted-foreground leading-relaxed"><strong>Risk of Ruin-perspektiv:</strong> Med en startbankroll på 2.000 kr. (indskud + bonus) og et gennemsnitligt bet på 10 kr. har du ca. 200 enheder. Med slots' typiske volatilitet er din Risk of Ruin (sandsynlighed for at gå i 0 inden omsætningskravet er opfyldt) ca. 15-20% med 5x krav. Det er lavt – markant lavere end hos casinoer med 10x-krav (~35%).</p>
           <p className="text-muted-foreground leading-relaxed">For at optimere din bonusstrategi bør du: (1) Vælge spil med høj RTP (96.5%+), fx Blood Suckers (<Link to="/spiludviklere/netent" className={linkClass}>NetEnt</Link>, 98%) eller Book of 99 (Relax Gaming, 99%). (2) Holde insatserne lave (1-2% af saldo pr. spin) for at minimere variansrisikoen. (3) Udnytte, at ComeOns 10% live casino-bidrag giver dig en alternativ omsætningsrute med lavere varians via <Link to="/casinospil/blackjack" className={linkClass}>blackjack</Link> (house edge 0.5% med optimal strategi). Med 5x omsætningskrav er ComeOn en af de mest attraktive bonusser at omsætte på det danske marked.</p>
         </section>
 

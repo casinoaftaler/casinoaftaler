@@ -542,14 +542,14 @@ const CasinoBonus = () => {
             </CardContent>
           </Card>
 
-          <h3 className="mb-3 mt-6 text-xl font-semibold">Case 2: Sticky 200% bonus, 1.000 kr., 10x (d+b)</h3>
+          <h3 className="mb-3 mt-6 text-xl font-semibold">Case 2: Sticky 100% bonus, 1.000 kr., 10x (d+b)</h3>
           <Card className="mb-4 border-border bg-card">
             <CardContent className="pt-6 space-y-2">
-              <p className="text-muted-foreground">Indbetaling: 1.000 kr. | Bonus: 2.000 kr. | Total omsætning: 30.000 kr.</p>
+              <p className="text-muted-foreground">Indbetaling: 1.000 kr. | Bonus: 1.000 kr. | Total omsætning: 20.000 kr.</p>
               <p className="text-muted-foreground">Spil: Slots med 96% RTP (4% house edge)</p>
-              <p className="text-muted-foreground">Forventet tab under omsætning: 30.000 × 0,04 = <strong>1.200 kr.</strong></p>
-              <p className="text-muted-foreground">EV af bonus: 2.000 − 1.200 = <strong className="text-primary">+800 kr.</strong></p>
-              <p className="text-sm text-muted-foreground italic">Men da bonussen er sticky, kan du ikke hæve noget, før alle 30.000 kr. er omsat. Variansen er enorm – du risikerer at miste alt.</p>
+              <p className="text-muted-foreground">Forventet tab under omsætning: 20.000 × 0,04 = <strong>800 kr.</strong></p>
+              <p className="text-muted-foreground">EV af bonus: 1.000 − 800 = <strong className="text-primary">+200 kr.</strong></p>
+              <p className="text-sm text-muted-foreground italic">Da bonussen er sticky, kan du ikke hæve noget, før alle 20.000 kr. er omsat. Variansen er stor – du risikerer at miste alt. No-Sticky er strukturelt overlegen.</p>
             </CardContent>
           </Card>
 

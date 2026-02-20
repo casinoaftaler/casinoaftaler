@@ -450,7 +450,7 @@ const BonusUdenIndbetaling = () => {
                 icon: CreditCard,
                 desc: (
                   <>
-                    <Link to="/indskudsbonus" className={linkClass}>Indskudsbonussen</Link> kræver din egen indbetaling (typisk 100-1.000 kr.) men giver en matchbonus på 100-200%. EV er markant højere i absolutte tal – en 1.000 kr. 100% match med 10x omsætning giver EV ≈ 800-900 kr. vs. no deposit's 15-30 kr. Men indskudsbonussen har reel risiko: du kan tabe din indbetaling. No deposit bonussen er 100% risikofri. <strong>Konklusion:</strong> Indskudsbonus for erfarne spillere, no deposit for nybegyndere og test.
+                    <Link to="/indskudsbonus" className={linkClass}>Indskudsbonussen</Link> kræver din egen indbetaling (typisk 100-1.000 kr.) og giver en matchbonus på 100% (dansk standard). EV er markant højere i absolutte tal – en 1.000 kr. 100% match med 10x omsætning giver EV ≈ 200 kr. vs. no deposit's 15-30 kr. Men indskudsbonussen har reel risiko: du kan tabe din indbetaling. No deposit bonussen er 100% risikofri. <strong>Konklusion:</strong> Indskudsbonus for erfarne spillere, no deposit for nybegyndere og test.
                   </>
                 ),
               },

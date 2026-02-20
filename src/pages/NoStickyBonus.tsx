@@ -397,7 +397,7 @@ const NoStickyBonus = () => {
           <h3 className="mb-3 mt-6 text-xl font-semibold">No-Sticky vs. Sticky Bonus</h3>
           <p className="mb-4 text-muted-foreground leading-relaxed">
             Den mest relevante sammenligning, da begge er matchbonusser. Forskellen er udelukkende i midlernes adskillelse. En{" "}
-            <Link to="/sticky-bonus" className={linkClass}>sticky bonus</Link> låser hele din saldo – du kan ikke hæve noget, heller ikke gevinster fra din egen indbetaling, før alt er gennemspillet. Med No-Sticky bevarer du altid kontrollen over dine egne penge. Den eneste situation, hvor sticky er bedre, er hvis du modtager en markant højere matchprocent (200% vs. 100%), OG du under alle omstændigheder planlægger at gennemspille alt. For alle andre scenarier er No-Sticky matematisk overlegen.
+            <Link to="/sticky-bonus" className={linkClass}>sticky bonus</Link> låser hele din saldo – du kan ikke hæve noget, heller ikke gevinster fra din egen indbetaling, før alt er gennemspillet. Med No-Sticky bevarer du altid kontrollen over dine egne penge. Da alle danske casinoer tilbyder 100% match (dansk lovmæssigt maksimum), er den eneste reelle forskel bonusstrukturen – og No-Sticky er næsten altid matematisk overlegen.
           </p>
 
           <h3 className="mb-3 mt-6 text-xl font-semibold">No-Sticky vs. Bonus uden Omsætningskrav</h3>

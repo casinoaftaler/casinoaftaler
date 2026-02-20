@@ -246,7 +246,7 @@ const Betalingsmetoder = () => {
           <p className="mb-4 text-muted-foreground leading-relaxed">
             De fleste danske casinospillere vælger betalingsmetode ud fra vane – det kort, der ligger øverst i tegnebogen, eller den app, der allerede er installeret på telefonen. Men dit valg af betalingsmetode har direkte indflydelse på tre afgørende faktorer: <strong>hvor hurtigt du modtager dine gevinster</strong>, <strong>om du kvalificerer dig til den fulde velkomstbonus</strong>, og <strong>hvor mange mellemmænd der håndterer dine penge</strong>. En spiller, der indbetaler med Skrill, kan miste adgang til en{" "}
             <Link to="/velkomstbonus" className="text-primary underline hover:text-primary/80">velkomstbonus</Link>{" "}
-            på op til 2.000 kr. – simpelthen fordi e-wallet-indbetalinger er ekskluderet fra bonusvilkårene. Omvendt kan en spiller, der bruger{" "}
+            på op til 1.000 kr. – simpelthen fordi e-wallet-indbetalinger er ekskluderet fra bonusvilkårene. Omvendt kan en spiller, der bruger{" "}
             <Link to="/betalingsmetoder/trustly" className="text-primary underline hover:text-primary/80">Trustly</Link>, modtage sine gevinster direkte på bankkontoen inden for 6 timer, mens en{" "}
             <Link to="/betalingsmetoder/visa-mastercard" className="text-primary underline hover:text-primary/80">Visa-bruger</Link>{" "}
             venter 1-3 hverdage for den samme udbetaling.
@@ -680,7 +680,7 @@ const Betalingsmetoder = () => {
             Bonuskvalificering – det skjulte strategiske element i dit betalingsvalg
           </h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
-            Mange danske spillere opdager først efter indbetalingen, at deres valgte betalingsmetode udelukker dem fra casinoets velkomstbonus. Det kan koste op til 2.000 kr. i tabt bonusværdi – et beløb, der langt overstiger eventuelle gebyrer eller hastighedsforskelle. Bonuskvalificering bør derfor være en af de vigtigste faktorer i dit valg af betalingsmetode, hvis du planlægger at udnytte en{" "}
+            Mange danske spillere opdager først efter indbetalingen, at deres valgte betalingsmetode udelukker dem fra casinoets velkomstbonus. Det kan koste op til 1.000 kr. i tabt bonusværdi – et beløb, der langt overstiger eventuelle gebyrer eller hastighedsforskelle. Bonuskvalificering bør derfor være en af de vigtigste faktorer i dit valg af betalingsmetode, hvis du planlægger at udnytte en{" "}
             <Link to="/velkomstbonus" className="text-primary underline hover:text-primary/80">velkomstbonus</Link>.
           </p>
 
