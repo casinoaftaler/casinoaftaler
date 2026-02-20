@@ -43,6 +43,7 @@ import {
   Calculator,
 } from "lucide-react";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
+import { YoutubeEmbed } from "@/components/YoutubeEmbed";
 
 const linkClass = "text-primary underline hover:text-primary/80";
 
@@ -181,6 +182,14 @@ const Velkomstbonus = () => {
         <div className="mb-10 overflow-hidden rounded-xl">
           <img src={velkomstbonusHero} alt="Velkomstbonus – gaveboks med casino chips" className="w-full h-auto object-cover max-h-[400px]" loading="eager" />
         </div>
+
+        <YoutubeEmbed
+          videoId="oK5PvebkvGY"
+          title="Hvad er en velkomstbonus på danske casinoer?"
+          description="Vi gennemgår hvad en velkomstbonus er, de forskellige typer (matchbonus, free spins, no deposit), hvordan omsætningskrav fungerer, og hvad du skal kigge efter for at vælge den bedste velkomstbonus."
+          uploadDate="2026-02-18"
+          contentUrl="https://casinoaftaler.dk/velkomstbonus"
+        />
 
         {/* Intro */}
         <section className="mb-12">

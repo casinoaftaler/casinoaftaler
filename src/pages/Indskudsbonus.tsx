@@ -43,6 +43,7 @@ import {
 } from "lucide-react";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
 import { RelatedGuides } from "@/components/RelatedGuides";
+import { YoutubeEmbed } from "@/components/YoutubeEmbed";
 
 const linkClass = "text-primary underline hover:text-primary/80";
 
@@ -150,6 +151,14 @@ const Indskudsbonus = () => {
         <div className="mb-10 overflow-hidden rounded-xl">
           <img src={indskudsbonusHero} alt="Indskudsbonus – gyldne mønter og deposit bonus" className="w-full h-auto object-cover max-h-[400px]" loading="eager" />
         </div>
+
+        <YoutubeEmbed
+          videoId="hMHHVA6vH0Y"
+          title="Hvad er en indskudsbonus på danske casinoer?"
+          description="Vi forklarer hvad en indskudsbonus (matchbonus) er på danske casinoer, hvordan den aktiveres, hvad omsætningskrav betyder for din reelle bonusværdi, og hvilke betingelser du skal kende til."
+          uploadDate="2026-02-18"
+          contentUrl="https://casinoaftaler.dk/indskudsbonus"
+        />
 
         {/* Intro */}
         <section className="mb-12">

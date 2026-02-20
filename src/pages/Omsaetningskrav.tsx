@@ -41,6 +41,7 @@ import {
   Percent,
 } from "lucide-react";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
+import { YoutubeEmbed } from "@/components/YoutubeEmbed";
 
 const linkClass = "text-primary underline hover:text-primary/80";
 
@@ -157,6 +158,14 @@ const Omsaetningskrav = () => {
         <div className="mb-10 overflow-hidden rounded-xl">
           <img src={omsaetningskravHero} alt="Omsætningskrav – lommeregner og casino chips" className="w-full h-auto object-cover max-h-[400px]" loading="eager" />
         </div>
+
+        <YoutubeEmbed
+          videoId="3tXFTjmgdcE"
+          title="Hvad er omsætningskrav på danske casinoer?"
+          description="Vi forklarer hvad omsætningskrav (wagering requirements) er på danske casinoer, hvordan de beregnes, og hvilke strategier du kan bruge til at opfylde dem effektivt. Inkl. gennemgang af Danmarks lovkrav om max 10x."
+          uploadDate="2026-02-18"
+          contentUrl="https://casinoaftaler.dk/omsaetningskrav"
+        />
 
         {/* Intro - Hvad betyder omsætningskrav */}
         <section className="mb-12">
