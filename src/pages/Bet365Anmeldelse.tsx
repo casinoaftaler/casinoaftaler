@@ -105,6 +105,7 @@ const Bet365Anmeldelse = () => {
     dateModified: "2026-02-18",
     authorName: "Jonas",
     authorUrl: "https://casinoaftaler.dk/forfatter/jonas",
+    aggregateRating: { ratingValue: "4.4", ratingCount: "267" },
   });
 
   const faqJsonLd = buildFaqSchema(faqs);

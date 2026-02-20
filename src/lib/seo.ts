@@ -237,6 +237,7 @@ export function buildVideoSchema(
     },
     publisher: {
       "@type": "Organization",
+      "@id": `${SITE_URL}/#organization`,
       name: "Casinoaftaler.dk",
       url: SITE_URL,
       logo: {

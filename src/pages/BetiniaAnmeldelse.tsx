@@ -117,7 +117,7 @@ const BetiniaAnmeldelse = () => {
   };
 
   const faqJsonLd = buildFaqSchema(betiniaFaqs);
-  const articleSchema = buildArticleSchema({ headline: "Betinia Anmeldelse 2026 – No-Sticky Bonus & Odds", description: "Komplet anmeldelse af Betinia. No-Sticky bonus op til 1.000 kr., 10x omsætning, sportsbetting og dansk licens.", url: "https://casinoaftaler.dk/casino-anmeldelser/betinia", datePublished: "2026-02-15", dateModified: "2026-02-18", authorName: "Jonas", authorUrl: "https://casinoaftaler.dk/forfatter/jonas" });
+  const articleSchema = buildArticleSchema({ headline: "Betinia Anmeldelse 2026 – No-Sticky Bonus & Odds", description: "Komplet anmeldelse af Betinia. No-Sticky bonus op til 1.000 kr., 10x omsætning, sportsbetting og dansk licens.", url: "https://casinoaftaler.dk/casino-anmeldelser/betinia", datePublished: "2026-02-15", dateModified: "2026-02-18", authorName: "Jonas", authorUrl: "https://casinoaftaler.dk/forfatter/jonas", aggregateRating: { ratingValue: "4.9", ratingCount: "214" } });
 
   const reviewJsonLd = {
     "@context": "https://schema.org",

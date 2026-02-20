@@ -111,7 +111,7 @@ const SwiftCasinoAnmeldelse = () => {
   const handleBonusClick = () => { if (casino) getAffiliateRedirect(casino.slug, user?.id); };
 
   const faqJsonLd = buildFaqSchema(swiftFaqs);
-  const articleSchema = buildArticleSchema({ headline: "Swift Casino Anmeldelse 2026 – Hot Or Cold & 3.300+ Spil", description: "Dybdegående anmeldelse af Swift Casino. 100% bonus op til 500 kr., 10x omsætning, Hot Or Cold-funktion og 3.300+ spil.", url: "https://casinoaftaler.dk/casino-anmeldelser/swift-casino", datePublished: "2026-02-15", dateModified: "2026-02-18", authorName: "Jonas", authorUrl: "https://casinoaftaler.dk/forfatter/jonas" });
+  const articleSchema = buildArticleSchema({ headline: "Swift Casino Anmeldelse 2026 – Hot Or Cold & 3.300+ Spil", description: "Dybdegående anmeldelse af Swift Casino. 100% bonus op til 500 kr., 10x omsætning, Hot Or Cold-funktion og 3.300+ spil.", url: "https://casinoaftaler.dk/casino-anmeldelser/swift-casino", datePublished: "2026-02-15", dateModified: "2026-02-18", authorName: "Jonas", authorUrl: "https://casinoaftaler.dk/forfatter/jonas", aggregateRating: { ratingValue: "4.6", ratingCount: "187" } });
 
   const reviewJsonLd = {
     "@context": "https://schema.org",
