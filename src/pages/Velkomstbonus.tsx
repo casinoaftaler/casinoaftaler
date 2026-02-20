@@ -4,7 +4,7 @@ import { AuthorBio } from "@/components/AuthorBio";
 import { Link } from "react-router-dom";
 import { FAQSection } from "@/components/FAQSection";
 import { SEO } from "@/components/SEO";
-import { buildFaqSchema, buildArticleSchema, SITE_URL } from "@/lib/seo";
+import { buildFaqSchema, buildArticleSchema, buildVideoSchema, SITE_URL } from "@/lib/seo";
 import { RelatedGuides } from "@/components/RelatedGuides";
 import velkomstbonusHero from "@/assets/heroes/velkomstbonus-hero.jpg";
 import { InlineCasinoCards } from "@/components/InlineCasinoCards";
@@ -136,12 +136,19 @@ const Velkomstbonus = () => {
     videoId: "oK5PvebkvGY",
   });
 
+  const videoJsonLd = buildVideoSchema(`${SITE_URL}/velkomstbonus`, "oK5PvebkvGY", {
+    title: "Velkomstbonus på danske casinoer – Hvad du skal vide",
+    description: "Jonas gennemgår hvad en velkomstbonus er, de forskellige typer og hvad du skal tjekke inden du aktiverer din første bonus på et dansk casino.",
+    uploadDate: "2026-02-20",
+    duration: "PT1M30S",
+  });
+
   return (
     <>
       <SEO
         title="Velkomstbonus – Komplet Guide til Casino Velkomstbonusser 2026 | Casinoaftaler"
         description="Alt du skal vide om velkomstbonusser på danske casinoer. Typer, omsætningskrav, betingelser og tips til at vælge den bedste velkomstbonus."
-        jsonLd={[faqJsonLd, articleJsonLd]}
+        jsonLd={[faqJsonLd, articleJsonLd, videoJsonLd]}
       />
 
       {/* Hero Section */}

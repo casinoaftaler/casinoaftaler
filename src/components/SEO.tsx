@@ -32,9 +32,41 @@ export function SEO({ title, description, type = "website", image, noindex, json
     ? description.slice(0, 157) + "..."
     : description;
 
-  const jsonLdArray = jsonLd
+  const rawJsonLd = jsonLd
     ? Array.isArray(jsonLd) ? jsonLd : [jsonLd]
     : [];
+
+  /**
+   * Merge all jsonLd items into a single unified @graph.
+   * Any item that already has a @graph array gets its entities extracted.
+   * Standalone entities (VideoObject, FAQPage, etc.) are appended to the same graph.
+   * This ensures Google receives one coherent knowledge graph per page.
+   */
+  const mergedJsonLd = (() => {
+    if (rawJsonLd.length === 0) return null;
+    const hasGraph = rawJsonLd.some(
+      (item) => item["@graph"] && Array.isArray(item["@graph"])
+    );
+    if (!hasGraph) {
+      // No @graph found – keep as-is (single or multiple standalone scripts)
+      return null;
+    }
+    const entities: Record<string, unknown>[] = [];
+    for (const item of rawJsonLd) {
+      if (item["@graph"] && Array.isArray(item["@graph"])) {
+        entities.push(...(item["@graph"] as Record<string, unknown>[]));
+      } else {
+        // Standalone entity (e.g. VideoObject, FAQPage) → absorb into @graph
+        const { "@context": _ctx, ...rest } = item as Record<string, unknown>;
+        void _ctx;
+        entities.push(rest);
+      }
+    }
+    return { "@context": "https://schema.org", "@graph": entities };
+  })();
+
+  // When merging failed or no @graph exists, fall back to individual scripts
+  const standaloneScripts = mergedJsonLd ? [] : rawJsonLd;
 
   return (
     <Helmet>
@@ -63,7 +95,15 @@ export function SEO({ title, description, type = "website", image, noindex, json
       <meta name="twitter:description" content={safeDescription} />
       {image && <meta name="twitter:image" content={image} />}
 
-      {jsonLdArray.map((schema, i) => (
+      {/* Single unified @graph – preferred path */}
+      {mergedJsonLd && (
+        <script type="application/ld+json">
+          {JSON.stringify(mergedJsonLd)}
+        </script>
+      )}
+
+      {/* Fallback: standalone scripts when no @graph is present */}
+      {standaloneScripts.map((schema, i) => (
         <script key={i} type="application/ld+json">
           {JSON.stringify(schema)}
         </script>

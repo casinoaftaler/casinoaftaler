@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { Gamepad2, Instagram, MessageCircle, Trophy, BookOpen, Shield, Scale, FileText, Cookie, ExternalLink, Sparkles, CreditCard, Target, Zap, Tv, Star, Dices, ClipboardList, Users, AlertTriangle } from "lucide-react";
+import { Gamepad2, Instagram, MessageCircle, Trophy, BookOpen, Shield, Scale, FileText, Cookie, ExternalLink, Sparkles, CreditCard, Target, Zap, Tv, Star, Dices, ClipboardList, Users, AlertTriangle, Gift } from "lucide-react";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
 import casinoaftalerLogo from "@/assets/casinoaftaler-logo.png";
 
@@ -215,6 +215,30 @@ export function Footer() {
                 <Link to="/no-sticky-bonus" className="flex items-center gap-2 text-muted-foreground transition-colors hover:text-foreground">
                   <Zap className="h-4 w-4" />
                   No-Sticky Bonus
+                </Link>
+              </li>
+              <li>
+                <Link to="/sticky-bonus" className="flex items-center gap-2 text-muted-foreground transition-colors hover:text-foreground">
+                  <Target className="h-4 w-4" />
+                  Sticky Bonus
+                </Link>
+              </li>
+              <li>
+                <Link to="/indskudsbonus" className="flex items-center gap-2 text-muted-foreground transition-colors hover:text-foreground">
+                  <CreditCard className="h-4 w-4" />
+                  Indskudsbonus
+                </Link>
+              </li>
+              <li>
+                <Link to="/bonus-uden-indbetaling" className="flex items-center gap-2 text-muted-foreground transition-colors hover:text-foreground">
+                  <Gift className="h-4 w-4" />
+                  Bonus uden Indbetaling
+                </Link>
+              </li>
+              <li>
+                <Link to="/bonus-uden-omsaetningskrav" className="flex items-center gap-2 text-muted-foreground transition-colors hover:text-foreground">
+                  <Sparkles className="h-4 w-4" />
+                  Bonus u. Omsætningskrav
                 </Link>
               </li>
               <li>

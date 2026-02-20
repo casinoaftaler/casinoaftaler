@@ -3,7 +3,7 @@ import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { AuthorBio } from "@/components/AuthorBio";
 import { FAQSection } from "@/components/FAQSection";
 import { SEO } from "@/components/SEO";
-import { buildFaqSchema, buildArticleSchema, SITE_URL } from "@/lib/seo";
+import { buildFaqSchema, buildArticleSchema, buildVideoSchema, SITE_URL } from "@/lib/seo";
 import bonusUdenIndbetalingHero from "@/assets/heroes/bonus-uden-indbetaling-hero.jpg";
 import { InlineCasinoCards } from "@/components/InlineCasinoCards";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -123,12 +123,19 @@ const BonusUdenIndbetaling = () => {
     videoId: "XhbLda1HyOs",
   });
 
+  const videoJsonLd = buildVideoSchema(`${SITE_URL}/bonus-uden-indbetaling`, "XhbLda1HyOs", {
+    title: "Bonus uden Indbetaling – No Deposit Bonus forklaret",
+    description: "Jonas forklarer hvad en bonus uden indbetaling er, hvordan den aktiveres, og hvad du skal være opmærksom på for at undgå faldgruber.",
+    uploadDate: "2026-02-20",
+    duration: "PT1M20S",
+  });
+
   return (
     <>
       <SEO
         title="Bonus uden Indbetaling – No Deposit Bonus Guide (2026)"
         description="Komplet teknisk guide til no deposit bonus hos danske casinoer. EV-analyse, regneeksempler, faldgruber og strategier for at maksimere din bonus uden indbetaling."
-        jsonLd={[faqJsonLd, articleJsonLd]}
+        jsonLd={[faqJsonLd, articleJsonLd, videoJsonLd]}
       />
 
       {/* Hero Section */}

@@ -81,6 +81,7 @@ export const seoRoutes: SeoRoute[] = [
   { path: "/casinospil", changefreq: "weekly", priority: 0.9, lastmod: "2026-02-18" },
   { path: "/casinospil/spillemaskiner", changefreq: "daily", priority: 0.9, lastmod: "2026-02-18" },
   { path: "/casinospil/spillemaskiner/hoej-rtp", changefreq: "weekly", priority: 0.9, lastmod: "2026-02-18" },
+  { path: "/casinospil/spillemaskiner/bonus-buys", changefreq: "weekly", priority: 0.8, lastmod: "2026-02-20" },
   { path: "/casinospil/spillemaskiner/sweet-bonanza", changefreq: "weekly", priority: 0.8, lastmod: "2026-02-18" },
   { path: "/casinospil/spillemaskiner/book-of-dead", changefreq: "weekly", priority: 0.8, lastmod: "2026-02-18" },
   { path: "/casinospil/spillemaskiner/gates-of-olympus", changefreq: "weekly", priority: 0.8, lastmod: "2026-02-18" },

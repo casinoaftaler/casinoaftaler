@@ -4,7 +4,7 @@ import { AuthorBio } from "@/components/AuthorBio";
 import { Link } from "react-router-dom";
 import { FAQSection } from "@/components/FAQSection";
 import { SEO } from "@/components/SEO";
-import { buildFaqSchema, buildArticleSchema, SITE_URL } from "@/lib/seo";
+import { buildFaqSchema, buildArticleSchema, buildVideoSchema, SITE_URL } from "@/lib/seo";
 import indskudsbonusHero from "@/assets/heroes/indskudsbonus-hero.jpg";
 import { InlineCasinoCards } from "@/components/InlineCasinoCards";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -105,12 +105,19 @@ const Indskudsbonus = () => {
     videoId: "hMHHVA6vH0Y",
   });
 
+  const videoJsonLd = buildVideoSchema(`${SITE_URL}/indskudsbonus`, "hMHHVA6vH0Y", {
+    title: "Indskudsbonus – Matchbonus forklaret på dansk",
+    description: "Jonas gennemgår hvad en indskudsbonus er, og hvordan matchbonusser fungerer hos danske casinoer.",
+    uploadDate: "2026-02-20",
+    duration: "PT1M30S",
+  });
+
   return (
     <>
       <SEO
         title="Indskudsbonus – Komplet Guide til Matchbonusser 2026 | Casinoaftaler"
         description="Alt du skal vide om indskudsbonusser hos danske casinoer. Lær hvordan matchbonusser fungerer, betingelser, aktivering og strategier for at maksimere din bonus."
-        jsonLd={[faqJsonLd, articleJsonLd]}
+        jsonLd={[faqJsonLd, articleJsonLd, videoJsonLd]}
       />
 
       {/* Hero Section */}

@@ -4,7 +4,7 @@ import { AuthorBio } from "@/components/AuthorBio";
 import { Link } from "react-router-dom";
 import { FAQSection } from "@/components/FAQSection";
 import { SEO } from "@/components/SEO";
-import { buildFaqSchema, buildArticleSchema, SITE_URL } from "@/lib/seo";
+import { buildFaqSchema, buildArticleSchema, buildVideoSchema, SITE_URL } from "@/lib/seo";
 import { RelatedGuides } from "@/components/RelatedGuides";
 import freeSpinsHero from "@/assets/heroes/free-spins-hero.jpg";
 import { InlineCasinoCards } from "@/components/InlineCasinoCards";
@@ -143,12 +143,19 @@ const FreeSpins = () => {
     videoId: "q4jeGo9TPEk",
   });
 
+  const videoJsonLd = buildVideoSchema(`${SITE_URL}/free-spins`, "q4jeGo9TPEk", {
+    title: "Free Spins på danske casinoer – Komplet guide",
+    description: "Jonas gennemgår alt om free spins på danske casinoer: typer, omsætningskrav, betingelser og strategier til at maksimere værdien af dine gratis spins.",
+    uploadDate: "2026-02-20",
+    duration: "PT1M30S",
+  });
+
   return (
     <>
       <SEO
         title="Free Spins – Komplet Guide til Gratis Spins 2026 | Casinoaftaler"
         description="Alt du skal vide om free spins på danske casinoer. Typer, omsætningskrav, betingelser og strategier til at få mest ud af dine gratis spins."
-        jsonLd={[faqJsonLd, articleJsonLd]}
+        jsonLd={[faqJsonLd, articleJsonLd, videoJsonLd]}
       />
 
       {/* Hero Section */}

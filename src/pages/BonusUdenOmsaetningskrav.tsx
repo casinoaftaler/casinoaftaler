@@ -3,7 +3,7 @@ import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { AuthorBio } from "@/components/AuthorBio";
 import { FAQSection } from "@/components/FAQSection";
 import { SEO } from "@/components/SEO";
-import { buildFaqSchema, buildArticleSchema, SITE_URL } from "@/lib/seo";
+import { buildFaqSchema, buildArticleSchema, buildVideoSchema, SITE_URL } from "@/lib/seo";
 import bonusUdenOmsaetningHero from "@/assets/heroes/bonus-uden-omsaetning-hero.jpg";
 import { InlineCasinoCards } from "@/components/InlineCasinoCards";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -119,12 +119,19 @@ const BonusUdenOmsaetningskrav = () => {
     videoId: "7JQ3nFTasoQ",
   });
 
+  const videoJsonLd = buildVideoSchema(`${SITE_URL}/bonus-uden-omsaetningskrav`, "7JQ3nFTasoQ", {
+    title: "Bonus uden Omsætningskrav – Hvad er det og hvordan virker det?",
+    description: "Jonas forklarer hvad en bonus uden omsætningskrav er, og hvad der adskiller den fra en standard velkomstbonus på et dansk casino.",
+    uploadDate: "2026-02-20",
+    duration: "PT1M30S",
+  });
+
   return (
     <>
       <SEO
         title="Bonus uden Omsætningskrav – Komplet Guide (2026)"
         description="Alt om bonusser uden omsætningskrav hos danske casinoer. EV-konvertering, regneeksempler, faldgruber og strategier for at maksimere din omsætningsfrie bonus."
-        jsonLd={[faqJsonLd, articleJsonLd]}
+        jsonLd={[faqJsonLd, articleJsonLd, videoJsonLd]}
       />
 
       {/* Hero Section */}

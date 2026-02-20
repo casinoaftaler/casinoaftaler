@@ -4,7 +4,7 @@ import { AuthorBio } from "@/components/AuthorBio";
 import { Link } from "react-router-dom";
 import { FAQSection } from "@/components/FAQSection";
 import { SEO } from "@/components/SEO";
-import { buildFaqSchema, buildArticleSchema, SITE_URL } from "@/lib/seo";
+import { buildFaqSchema, buildArticleSchema, buildVideoSchema, SITE_URL } from "@/lib/seo";
 import noStickyHero from "@/assets/heroes/no-sticky-hero.jpg";
 import { InlineCasinoCards } from "@/components/InlineCasinoCards";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -117,12 +117,20 @@ const NoStickyBonus = () => {
     videoId: "WOowRz6hnH8",
   });
 
+  const videoJsonLd = buildVideoSchema(`${SITE_URL}/no-sticky-bonus`, "WOowRz6hnH8", {
+    title: "Hvad er en No-Sticky Bonus på danske casinoer?",
+    description: "Vi forklarer præcis hvad en no-sticky bonus er, hvordan adskillelsen af penge fungerer, og hvorfor det er den mest spillervenlige bonustype på det danske marked.",
+    uploadDate: "2026-02-20",
+    duration: "PT1M14S",
+    viewCount: 2,
+  });
+
   return (
     <>
       <SEO
         title="No-Sticky Bonus – Matematisk Analyse & Guide 2026"
         description="Dyb matematisk analyse af No-Sticky Bonusser på danske casinoer. Regneeksempler, strategi, sammenligning med Sticky og omsætningsfri bonus. Opdateret 2026."
-        jsonLd={[faqJsonLd, articleJsonLd]}
+        jsonLd={[faqJsonLd, articleJsonLd, videoJsonLd]}
       />
 
       {/* Hero */}
