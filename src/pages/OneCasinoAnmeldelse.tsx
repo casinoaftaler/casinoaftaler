@@ -90,7 +90,7 @@ const OneCasinoAnmeldelse = () => {
     "@context": "https://schema.org",
     "@type": "Review",
     itemReviewed: { "@type": "Organization", name: "One Casino", url: "https://www.onecasino.dk/" },
-    author: { "@type": "Organization", name: "Casinoaftaler" },
+    author: { "@type": "Person", "@id": "https://casinoaftaler.dk/forfatter/jonas#person" },
     reviewRating: { "@type": "Rating", ratingValue: "3.5", bestRating: "5", worstRating: "1" },
     reviewBody: "One Casino er en niche-platform med eksklusive in-house spil og en ukompliceret tilgang. Stærk differentiering via unikke spiltitler, men begrænset i bredde, hastighed og betalingsmuligheder.",
   };

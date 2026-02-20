@@ -33,7 +33,7 @@ const CasinostuenAnmeldelse = () => {
   const heroBackgroundImage = siteSettings?.hero_background_image;
   const articleSchema = buildArticleSchema({ headline: "Casinostuen Anmeldelse 2026 – Hyggelig Dansk Casino", description: "Dybdegående anmeldelse af Casinostuen. Dansk licens, hyggelig atmosfære og fokus på det danske marked.", url: "https://casinoaftaler.dk/casino-anmeldelser/casinostuen", datePublished: "2026-02-15", dateModified: "2026-02-18", authorName: "Jonas", authorUrl: "https://casinoaftaler.dk/forfatter/jonas", aggregateRating: { ratingValue: "3.4", ratingCount: "89" } });
   const faqJsonLd = buildFaqSchema(casinostuenFaqs);
-  const reviewJsonLd = { "@context": "https://schema.org", "@type": "Review", itemReviewed: { "@type": "Organization", name: "Casinostuen", url: "https://www.casinostuen.dk/" }, author: { "@type": "Organization", name: "Casinoaftaler" }, reviewRating: { "@type": "Rating", ratingValue: "3.4", bestRating: "5", worstRating: "1" }, reviewBody: "Casinostuen er en hyggelig dansk casinoplatform med fokus på overskuelighed og lokalt marked, men begrænset spiludvalg og langsom udbetaling holder den tilbage." };
+  const reviewJsonLd = { "@context": "https://schema.org", "@type": "Review", itemReviewed: { "@type": "Organization", name: "Casinostuen", url: "https://www.casinostuen.dk/" }, author: { "@type": "Person", "@id": "https://casinoaftaler.dk/forfatter/jonas#person" }, reviewRating: { "@type": "Rating", ratingValue: "3.4", bestRating: "5", worstRating: "1" }, reviewBody: "Casinostuen er en hyggelig dansk casinoplatform med fokus på overskuelighed og lokalt marked, men begrænset spiludvalg og langsom udbetaling holder den tilbage." };
 
   return (
     <>

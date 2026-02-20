@@ -94,7 +94,7 @@ const BwinAnmeldelse = () => {
     "@context": "https://schema.org",
     "@type": "Review",
     itemReviewed: { "@type": "Organization", name: "bwin", url: "https://www.bwin.dk/" },
-    author: { "@type": "Organization", name: "Casinoaftaler" },
+    author: { "@type": "Person", "@id": "https://casinoaftaler.dk/forfatter/jonas#person" },
     reviewRating: { "@type": "Rating", ratingValue: "3.9", bestRating: "5", worstRating: "1" },
   };
 

@@ -34,7 +34,7 @@ const LeoVegasAnmeldelse = () => {
   const heroBackgroundImage = siteSettings?.hero_background_image;
   const articleSchema = buildArticleSchema({ headline: "LeoVegas Anmeldelse 2026 – King of Mobile Casino i Danmark", description: "Komplet anmeldelse af LeoVegas Casino. MGM-ejet mobilcasino med dansk licens, 2.500+ spil og prisbevindende mobiloplevelse.", url: "https://casinoaftaler.dk/casino-anmeldelser/leovegas", datePublished: "2026-02-15", dateModified: "2026-02-18", authorName: "Jonas", authorUrl: "https://casinoaftaler.dk/forfatter/jonas", aggregateRating: { ratingValue: "4.5", ratingCount: "241" } });
   const faqJsonLd = buildFaqSchema(faqs);
-  const reviewJsonLd = { "@context": "https://schema.org", "@type": "Review", itemReviewed: { "@type": "Organization", name: "LeoVegas Casino", url: "https://www.leovegas.dk/" }, author: { "@type": "Organization", name: "Casinoaftaler" }, reviewRating: { "@type": "Rating", ratingValue: "4.5", bestRating: "5", worstRating: "1" }, reviewBody: "LeoVegas Casino er markedsledende inden for mobilcasino med 2.500+ spil, MGM-ejerskab og dansk licens. Prisbevindende mobiloplevelse." };
+  const reviewJsonLd = { "@context": "https://schema.org", "@type": "Review", itemReviewed: { "@type": "Organization", name: "LeoVegas Casino", url: "https://www.leovegas.dk/" }, author: { "@type": "Person", "@id": "https://casinoaftaler.dk/forfatter/jonas#person" }, reviewRating: { "@type": "Rating", ratingValue: "4.5", bestRating: "5", worstRating: "1" }, reviewBody: "LeoVegas Casino er markedsledende inden for mobilcasino med 2.500+ spil, MGM-ejerskab og dansk licens. Prisbevindende mobiloplevelse." };
 
   return (
     <>

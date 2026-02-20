@@ -128,7 +128,7 @@ const SpilleautomatenAnmeldelse = () => {
       name: "Spilleautomaten",
       url: "https://www.spilleautomaten.dk",
     },
-    author: { "@type": "Organization", name: "Casinoaftaler" },
+    author: { "@type": "Person", "@id": "https://casinoaftaler.dk/forfatter/jonas#person" },
     reviewRating: { "@type": "Rating", ratingValue: "4.8", bestRating: "5", worstRating: "1" },
     reviewBody:
       "Spilleautomaten er et dansk slots-specialiseret casino med 5-dages velkomstbonus op til 1.000 kr., 10x omsætning, Præmieshop med kontante præmier, 2.000+ spilleautomater og hurtige MobilePay-udbetalinger.",
