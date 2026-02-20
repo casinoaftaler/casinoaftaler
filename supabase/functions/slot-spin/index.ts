@@ -961,7 +961,8 @@ Deno.serve(async (req) => {
           bonus_winnings: newBonusWinnings, expanding_symbol_name: String(gatesResult.totalMultiplier),
         }).eq("user_id", userId).eq("game_id", gameId);
         if (newFreeSpins <= 0 && newBonusWinnings > 0) {
-          (async () => { try { await serviceClient.from("slot_game_results").insert({ user_id: userId, bet_amount: bet, win_amount: 0, is_bonus_triggered: false, bonus_win_amount: newBonusWinnings, game_id: gameId }); } catch (e) { console.error("[slot-spin] Gates bonus bg err:", e); } })();
+          // DEMO MODE: Skip leaderboard recording for Gates
+          // (async () => { try { await serviceClient.from("slot_game_results").insert({ user_id: userId, bet_amount: bet, win_amount: 0, is_bonus_triggered: false, bonus_win_amount: newBonusWinnings, game_id: gameId }); } catch (e) { console.error("[slot-spin] Gates bonus bg err:", e); } })();
         }
         return new Response(JSON.stringify({ success: true, result: gatesResult, bonusState: { freeSpinsRemaining: newFreeSpins, totalFreeSpins: newTotalFreeSpins, bonusWinnings: newBonusWinnings, cumulativeMultiplier: gatesResult.totalMultiplier, betAmount: bet, isRetrigger } }),
           { headers: { ...corsHeaders, "Content-Type": "application/json" } });
@@ -984,7 +985,8 @@ Deno.serve(async (req) => {
         await serviceClient.from("slot_bonus_state").insert({ user_id: userId, is_active: true, free_spins_remaining: GATES_FREE_SPINS_INITIAL, total_free_spins: GATES_FREE_SPINS_INITIAL, expanding_symbol_name: "0", bonus_winnings: gatesResult.totalWin, game_id: gameId, bet_amount: bet });
         gatesBonusState = { isActive: true, freeSpinsRemaining: GATES_FREE_SPINS_INITIAL, totalFreeSpins: GATES_FREE_SPINS_INITIAL, bonusWinnings: gatesResult.totalWin, cumulativeMultiplier: 0, betAmount: bet };
       }
-      (async () => { try { await serviceClient.from("slot_game_results").insert({ user_id: userId, bet_amount: bet, win_amount: gatesResult.totalWin, is_bonus_triggered: gatesResult.bonusTriggered, bonus_win_amount: 0, game_id: gameId }); } catch (e) { console.error("[slot-spin] Gates bg err:", e); } })();
+      // DEMO MODE: Skip leaderboard recording for Gates
+      // (async () => { try { await serviceClient.from("slot_game_results").insert({ user_id: userId, bet_amount: bet, win_amount: gatesResult.totalWin, is_bonus_triggered: gatesResult.bonusTriggered, bonus_win_amount: 0, game_id: gameId }); } catch (e) { console.error("[slot-spin] Gates bg err:", e); } })();
       return new Response(JSON.stringify({ success: true, result: gatesResult, spinsRemaining: newRem, maxSpins: maxSp, bonusState: gatesBonusState }),
         { headers: { ...corsHeaders, "Content-Type": "application/json" } });
     }
