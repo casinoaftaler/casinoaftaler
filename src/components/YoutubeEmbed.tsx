@@ -7,6 +7,10 @@ interface YoutubeEmbedProps {
   description: string;
   /** ISO 8601 upload date, e.g. "2026-02-18" */
   uploadDate: string;
+  /** ISO 8601 duration, e.g. "PT1M14S" – required for Google video rich results */
+  duration: string;
+  /** Total view count – used in interactionStatistic for Google rich results */
+  viewCount?: number;
   /** Thumbnail URL – defaults to YouTube's maxresdefault */
   thumbnailUrl?: string;
   /** Canonical page URL for schema's embedUrl context */
@@ -23,6 +27,8 @@ export function YoutubeEmbed({
   title,
   description,
   uploadDate,
+  duration,
+  viewCount,
   thumbnailUrl,
   contentUrl,
 }: YoutubeEmbedProps) {
@@ -37,8 +43,16 @@ export function YoutubeEmbed({
     description: description,
     thumbnailUrl: thumb,
     uploadDate: uploadDate,
+    duration: duration,
     embedUrl: embedUrl,
     contentUrl: watchUrl,
+    ...(viewCount !== undefined && {
+      interactionStatistic: {
+        "@type": "InteractionCounter",
+        interactionType: { "@type": "WatchAction" },
+        userInteractionCount: viewCount,
+      },
+    }),
     publisher: {
       "@type": "Organization",
       name: "Casinoaftaler.dk",

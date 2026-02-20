@@ -234,6 +234,8 @@ const Velkomstbonus = () => {
             videoId="oK5PvebkvGY"
             title="Hvad er en velkomstbonus på danske casinoer?"
             description="Vi gennemgår hvad en velkomstbonus er, de forskellige typer (matchbonus, free spins, no deposit), hvordan omsætningskrav fungerer, og hvad du skal kigge efter for at vælge den bedste velkomstbonus."
+            duration="PT1M11S"
+            viewCount={3}
             uploadDate="2026-02-20"
             contentUrl="https://casinoaftaler.dk/velkomstbonus"
           />
