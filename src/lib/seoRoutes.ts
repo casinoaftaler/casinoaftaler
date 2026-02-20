@@ -181,7 +181,7 @@ export const seoRoutes: SeoRoute[] = [
   { path: "/forretningsmodel", changefreq: "monthly", priority: 0.6, lastmod: "2026-02-15" },
   { path: "/redaktionel-politik", changefreq: "monthly", priority: 0.6, lastmod: "2026-02-15" },
   { path: "/kontakt", changefreq: "monthly", priority: 0.5, lastmod: "2026-02-11" },
-  { path: "/forfatter/jonas", changefreq: "monthly", priority: 0.6, lastmod: "2026-02-17" },
+  { path: "/forfatter/jonas", changefreq: "monthly", priority: 0.6, lastmod: "2026-02-20" },
   { path: "/forfatter/kevin", changefreq: "monthly", priority: 0.6, lastmod: "2026-02-17" },
   { path: "/saadan-tester-vi-casinoer", changefreq: "monthly", priority: 0.8, lastmod: "2026-02-15" },
   { path: "/privatlivspolitik", changefreq: "yearly", priority: 0.3, lastmod: "2026-02-11" },
