@@ -32,7 +32,7 @@ const faqs: { question: string; answer: ReactNode }[] = [
 const Casino888Anmeldelse = () => {
   const { data: siteSettings } = useSiteSettings();
   const heroBackgroundImage = siteSettings?.hero_background_image;
-  const articleSchema = buildArticleSchema({ headline: "888 Casino Anmeldelse 2026 – Pioneren i Online Casino", description: "Komplet anmeldelse af 888 Casino. Børsnoteret pioner med dansk licens, eksklusive spil og 888 Club loyalitetsprogram.", url: "https://casinoaftaler.dk/casino-anmeldelser/888-casino", datePublished: "2026-02-15", dateModified: "2026-02-18", authorName: "Jonas", authorUrl: "https://casinoaftaler.dk/forfatter/jonas" });
+  const articleSchema = buildArticleSchema({ headline: "888 Casino Anmeldelse 2026 – Pioneren i Online Casino", description: "Komplet anmeldelse af 888 Casino. Børsnoteret pioner med dansk licens, eksklusive spil og 888 Club loyalitetsprogram.", url: "https://casinoaftaler.dk/casino-anmeldelser/888-casino", datePublished: "2026-02-15", dateModified: "2026-02-18", authorName: "Jonas", authorUrl: "https://casinoaftaler.dk/forfatter/jonas", aggregateRating: { ratingValue: "4.2", ratingCount: "188" } });
   const faqJsonLd = buildFaqSchema(faqs);
   const reviewJsonLd = { "@context": "https://schema.org", "@type": "Review", itemReviewed: { "@type": "Organization", name: "888 Casino", url: "https://www.888casino.dk/" }, author: { "@type": "Organization", name: "Casinoaftaler" }, reviewRating: { "@type": "Rating", ratingValue: "4.2", bestRating: "5", worstRating: "1" }, reviewBody: "888 Casino er en pioner inden for online gambling med eksklusivt spiludvalg, loyalitetsprogram og dansk licens." };
 

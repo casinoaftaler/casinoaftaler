@@ -92,6 +92,7 @@ const SpilnuAnmeldelse = () => {
     dateModified: "2026-02-17",
     authorName: "Jonas",
     authorUrl: "https://casinoaftaler.dk/forfatter/jonas",
+    aggregateRating: { ratingValue: "3.9", ratingCount: "143" },
   });
   const faqJsonLd = buildFaqSchema(spilnuFaqs);
   const reviewJsonLd = {

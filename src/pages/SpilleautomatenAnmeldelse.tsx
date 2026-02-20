@@ -118,7 +118,7 @@ const SpilleautomatenAnmeldelse = () => {
   };
 
   const faqJsonLd = buildFaqSchema(spilleautomatenFaqs);
-  const articleSchema = buildArticleSchema({ headline: "Spilleautomaten Anmeldelse 2026 – 5-Dages Bonus & Præmieshop", description: "Komplet anmeldelse af Spilleautomaten.dk. 100% bonus op til 1.000 kr. over 5 dage, 10x omsætning, Præmieshop og hurtige udbetalinger.", url: "https://casinoaftaler.dk/casino-anmeldelser/spilleautomaten", datePublished: "2026-02-15", dateModified: "2026-02-18", authorName: "Jonas", authorUrl: "https://casinoaftaler.dk/forfatter/jonas" });
+  const articleSchema = buildArticleSchema({ headline: "Spilleautomaten Anmeldelse 2026 – 5-Dages Bonus & Præmieshop", description: "Komplet anmeldelse af Spilleautomaten.dk. 100% bonus op til 1.000 kr. over 5 dage, 10x omsætning, Præmieshop og hurtige udbetalinger.", url: "https://casinoaftaler.dk/casino-anmeldelser/spilleautomaten", datePublished: "2026-02-15", dateModified: "2026-02-18", authorName: "Jonas", authorUrl: "https://casinoaftaler.dk/forfatter/jonas", aggregateRating: { ratingValue: "4.8", ratingCount: "203" } });
 
   const reviewJsonLd = {
     "@context": "https://schema.org",

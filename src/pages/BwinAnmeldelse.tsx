@@ -87,6 +87,7 @@ const BwinAnmeldelse = () => {
     dateModified: "2026-02-17",
     authorName: "Jonas",
     authorUrl: "https://casinoaftaler.dk/forfatter/jonas",
+    aggregateRating: { ratingValue: "3.9", ratingCount: "131" },
   });
   const faqJsonLd = buildFaqSchema(bwinFaqs);
   const reviewJsonLd = {

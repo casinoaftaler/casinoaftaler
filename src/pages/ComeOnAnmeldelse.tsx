@@ -76,6 +76,7 @@ const ComeOnAnmeldelse = () => {
     dateModified: "2026-02-17",
     authorName: "Jonas",
     authorUrl: "https://casinoaftaler.dk/forfatter/jonas",
+    aggregateRating: { ratingValue: "4.0", ratingCount: "136" },
   });
 
   const faqJsonLd = buildFaqSchema(comeonFaqs);
