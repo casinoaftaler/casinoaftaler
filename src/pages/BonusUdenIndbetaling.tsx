@@ -197,7 +197,7 @@ const BonusUdenIndbetaling = () => {
             videoId="XhbLda1HyOs"
             title="Hvad er en bonus uden indbetaling?"
             description="Vi gennemgår hvad en bonus uden indbetaling (no deposit bonus) er, de fire varianter, EV-analyse af gevinstlofter og omsætningskrav, og hvordan du finder og aktiverer de bedste tilbud hos danske casinoer i 2026."
-            uploadDate="2026-02-18"
+            uploadDate="2026-02-20"
             contentUrl="https://casinoaftaler.dk/bonus-uden-indbetaling"
           />
 
