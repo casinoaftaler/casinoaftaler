@@ -3,7 +3,7 @@ import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { AuthorBio } from "@/components/AuthorBio";
 import { FAQSection } from "@/components/FAQSection";
 import { SEO } from "@/components/SEO";
-import { buildFaqSchema } from "@/lib/seo";
+import { buildFaqSchema, buildArticleSchema, SITE_URL } from "@/lib/seo";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
@@ -169,15 +169,26 @@ const TopCasinoOnline = () => {
 
   const faqJsonLd = buildFaqSchema(topCasinoFaqs);
 
-  const articleJsonLd = {
+  const articleJsonLd = buildArticleSchema({
+    headline: "Top 10 Online Casino i Danmark 2026 – Bedste Online Casinoer",
+    description: "Komplet guide til de 10 bedste online casinoer i Danmark 2026. Sammenlign bonusser, spiludvalg, betalingsmetoder og udbetalingstider.",
+    url: `${SITE_URL}/top-10-casino-online`,
+    datePublished: "2026-01-15",
+    dateModified: "2026-02-13",
+  });
+
+  // ItemList schema for SERP carousel eligibility
+  const itemListJsonLd = {
     "@context": "https://schema.org",
-    "@type": "Article",
-    "headline": "Top 10 Online Casino i Danmark 2026 – Bedste Online Casinoer",
-    "author": { "@type": "Organization", "name": "Casinoaftaler" },
-    "publisher": { "@type": "Organization", "name": "Casinoaftaler" },
-    "datePublished": "2026-01-15",
-    "dateModified": "2026-02-13",
-    "description": "Komplet guide til de 10 bedste online casinoer i Danmark 2026. Sammenlign bonusser, spiludvalg, betalingsmetoder og udbetalingstider.",
+    "@type": "ItemList",
+    name: "Top 10 Online Casinoer i Danmark 2026",
+    numberOfItems: topCasinos.length,
+    itemListElement: topCasinos.map((casino, i) => ({
+      "@type": "ListItem",
+      position: i + 1,
+      name: casino.name,
+      url: `${SITE_URL}/casino-anmeldelser/${casino.slug}`,
+    })),
   };
 
   return (
@@ -185,7 +196,7 @@ const TopCasinoOnline = () => {
       <SEO
         title="Top 10 Casino Online 2026 – Bedste Online Casinoer i Danmark"
         description="Opdateret top 10 liste over de bedste online casinoer i Danmark 2026. Sammenlign bonusser, free spins, betalingsmetoder og vilkår hos danske casinoer med licens."
-        jsonLd={[faqJsonLd, articleJsonLd]}
+        jsonLd={[articleJsonLd, faqJsonLd, itemListJsonLd]}
       />
 
       {/* Hero Section */}
