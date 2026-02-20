@@ -109,6 +109,7 @@ const Omsaetningskrav = () => {
     url: `${SITE_URL}/omsaetningskrav`,
     datePublished: "2025-06-01",
     dateModified: "2026-02-20",
+    videoId: "3tXFTjmgdcE",
   });
 
   return (
@@ -213,7 +214,7 @@ const Omsaetningskrav = () => {
             duration="PT1M18S"
             viewCount={3}
             uploadDate="2026-02-20"
-            contentUrl="https://casinoaftaler.dk/omsaetningskrav"
+            articleUrl="https://casinoaftaler.dk/omsaetningskrav"
           />
 
           <div className="rounded-lg border border-border bg-muted/30 p-5">

@@ -115,9 +115,8 @@ const BonusUdenOmsaetningskrav = () => {
     description: "Alt om bonusser uden omsætningskrav på danske casinoer. EV-analyse, regneeksempler, sammenligning og strategier.",
     url: `${SITE_URL}/bonus-uden-omsaetningskrav`,
     datePublished: "2025-06-01",
-    dateModified: "2026-02-18",
-    authorName: "Jonas",
-    authorUrl: `${SITE_URL}/forfatter/jonas`,
+    dateModified: "2026-02-20",
+    videoId: "7JQ3nFTasoQ",
   });
 
   return (
@@ -188,7 +187,7 @@ const BonusUdenOmsaetningskrav = () => {
             duration="PT51S"
             viewCount={5}
             uploadDate="2026-02-20"
-            contentUrl="https://casinoaftaler.dk/bonus-uden-omsaetningskrav"
+            articleUrl="https://casinoaftaler.dk/bonus-uden-omsaetningskrav"
           />
 
           <div className="rounded-lg border border-border bg-muted/30 p-5">

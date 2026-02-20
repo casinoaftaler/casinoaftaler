@@ -1,5 +1,6 @@
 import { Helmet } from "react-helmet-async";
 import { Play } from "lucide-react";
+import { buildVideoSchema } from "@/lib/seo";
 
 interface YoutubeEmbedProps {
   videoId: string;
@@ -13,12 +14,20 @@ interface YoutubeEmbedProps {
   viewCount?: number;
   /** Thumbnail URL – defaults to YouTube's maxresdefault */
   thumbnailUrl?: string;
-  /** Canonical page URL for schema's embedUrl context */
+  /**
+   * Canonical article URL (no trailing slash) – used to generate @id and isPartOf binding.
+   * e.g. "https://casinoaftaler.dk/sticky-bonus"
+   * Replaces the old contentUrl prop.
+   */
+  articleUrl?: string;
+  /** @deprecated Use articleUrl instead. Kept for backward compatibility. */
   contentUrl?: string;
 }
 
 /**
  * Renders a responsive YouTube embed with full VideoObject JSON-LD schema.
+ * When articleUrl is provided, the VideoObject gets an explicit @id and
+ * isPartOf binding to the parent Article entity.
  * Covers all Google Rich Results requirements:
  * - name, description, thumbnailUrl, uploadDate, embedUrl, contentUrl
  */
@@ -30,42 +39,13 @@ export function YoutubeEmbed({
   duration,
   viewCount,
   thumbnailUrl,
-  contentUrl,
+  articleUrl,
 }: YoutubeEmbedProps) {
-  const embedUrl = `https://www.youtube.com/embed/${videoId}`;
-  const watchUrl = `https://www.youtube.com/watch?v=${videoId}`;
-  const thumb = thumbnailUrl || `https://i.ytimg.com/vi/${videoId}/maxresdefault.jpg`;
-
-  const videoSchema = {
-    "@context": "https://schema.org",
-    "@type": "VideoObject",
-    name: title,
-    description: description,
-    thumbnailUrl: thumb,
-    uploadDate: uploadDate,
-    duration: duration,
-    embedUrl: embedUrl,
-    contentUrl: watchUrl,
-    ...(viewCount !== undefined && {
-      interactionStatistic: {
-        "@type": "InteractionCounter",
-        interactionType: { "@type": "WatchAction" },
-        userInteractionCount: viewCount,
-      },
-    }),
-    publisher: {
-      "@type": "Organization",
-      name: "Casinoaftaler.dk",
-      url: "https://casinoaftaler.dk",
-      logo: {
-        "@type": "ImageObject",
-        url: "https://casinoaftaler.dk/favicon-48x48.png",
-        width: 192,
-        height: 192,
-      },
-    },
-    ...(contentUrl && { mainEntityOfPage: { "@type": "WebPage", "@id": contentUrl } }),
-  };
+  const videoSchema = buildVideoSchema(
+    articleUrl || `https://casinoaftaler.dk`,
+    videoId,
+    { title, description, uploadDate, duration, viewCount, thumbnailUrl }
+  );
 
   return (
     <>
@@ -83,7 +63,7 @@ export function YoutubeEmbed({
         {/* 16:9 responsive iframe */}
         <div className="relative w-full" style={{ paddingBottom: "56.25%" }}>
           <iframe
-            src={`${embedUrl}?rel=0&modestbranding=1`}
+            src={`https://www.youtube.com/embed/${videoId}?rel=0&modestbranding=1`}
             title={title}
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
             allowFullScreen

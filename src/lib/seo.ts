@@ -60,24 +60,52 @@ function toIso8601WithTz(date: string): string {
 }
 
 /**
- * Generate Article JSON-LD schema with all required fields.
+ * Jonas Theill – canonical sameAs list (7 social profiles).
+ * Discord excluded for stronger Knowledge Graph disambiguation signal.
  */
-const JONAS_SAME_AS = [
+export const JONAS_SAME_AS = [
   "https://www.twitch.tv/fedesvinsejer",
   "https://www.youtube.com/@fedesvinsejer",
-  "https://discord.gg/ZD4YdSeY",
   "https://www.instagram.com/jonastheill",
   "https://www.linkedin.com/in/info-casinoaftaler-5782203b1/",
   "https://x.com/casinoaftaler",
   "https://www.snapchat.com/@fedesvinsejer",
+  "https://www.facebook.com/casinoaftaler",
 ];
 
-const KEVIN_SAME_AS = [
+export const KEVIN_SAME_AS = [
   "https://www.twitch.tv/fedesvinsejer",
   "https://www.youtube.com/@fedesvinsejer",
-  "https://discord.gg/ZD4YdSeY",
 ];
 
+/** Canonical Person entity for Jonas Theill – reused across all article pages. */
+const JONAS_PERSON_ID = `${SITE_URL}/forfatter/jonas#person`;
+
+function buildPersonEntity(authorName: string, authorUrl: string, authorSameAs: string[]) {
+  return {
+    "@type": "Person",
+    "@id": `${authorUrl}#person`,
+    name: authorName === "Jonas" ? "Jonas Theill" : authorName === "Kevin" ? "Kevin" : authorName,
+    url: authorUrl,
+    jobTitle: "Casino Bonus Ekspert",
+    worksFor: {
+      "@type": "Organization",
+      name: "Casinoaftaler",
+      url: SITE_URL,
+    },
+    sameAs: authorSameAs,
+  };
+}
+
+/**
+ * Generate Article + Person JSON-LD as a unified @graph.
+ * Optionally links to a VideoObject via hasPart if videoId is provided.
+ *
+ * Usage:
+ *   buildArticleSchema({ headline, description, url, datePublished, dateModified })
+ *   // with video binding:
+ *   buildArticleSchema({ ..., videoId: "abc123" })
+ */
 export function buildArticleSchema(opts: {
   headline: string;
   description: string;
@@ -89,16 +117,21 @@ export function buildArticleSchema(opts: {
   /** Defaults to Jonas's sameAs list. Pass KEVIN_SAME_AS or custom array to override. */
   authorSameAs?: string[];
   image?: string;
+  /** YouTube video ID – when provided, creates hasPart ↔ isPartOf binding */
+  videoId?: string;
 }) {
   const authorName = opts.authorName || "Jonas";
   const authorUrl = opts.authorUrl || `${SITE_URL}/forfatter/jonas`;
-  const authorId = `${authorUrl}#person`;
   const authorSameAs = opts.authorSameAs
     ?? (authorName === "Kevin" ? KEVIN_SAME_AS : JONAS_SAME_AS);
 
-  return {
-    "@context": "https://schema.org",
+  const articleId = `${opts.url}#article`;
+  const personId = `${authorUrl}#person`;
+  const videoId = opts.videoId ? `${opts.url}#video` : undefined;
+
+  const article = {
     "@type": "Article",
+    "@id": articleId,
     headline: opts.headline,
     description: opts.description,
     image: opts.image || `${SITE_URL}/og-image.png`,
@@ -109,11 +142,7 @@ export function buildArticleSchema(opts: {
       "@id": opts.url,
     },
     author: {
-      "@type": "Person",
-      "@id": authorId,
-      name: authorName,
-      url: authorUrl,
-      sameAs: authorSameAs,
+      "@id": personId,
     },
     publisher: {
       "@type": "Organization",
@@ -126,10 +155,85 @@ export function buildArticleSchema(opts: {
         height: 192,
       },
     },
+    ...(videoId && {
+      hasPart: {
+        "@id": videoId,
+      },
+    }),
+  };
+
+  const person = buildPersonEntity(authorName, authorUrl, authorSameAs);
+
+  const graph: Record<string, unknown>[] = [article, person];
+
+  return {
+    "@context": "https://schema.org",
+    "@graph": graph,
   };
 }
 
-export { JONAS_SAME_AS, KEVIN_SAME_AS };
+/**
+ * Build a VideoObject entity with explicit @id and isPartOf binding to its Article.
+ * Inject this separately via SEO jsonLd prop alongside the @graph from buildArticleSchema.
+ *
+ * @param articleUrl  – canonical URL of the parent article (no trailing slash)
+ * @param videoId     – YouTube video ID
+ * @param opts        – VideoObject metadata
+ */
+export function buildVideoSchema(
+  articleUrl: string,
+  videoId: string,
+  opts: {
+    title: string;
+    description: string;
+    uploadDate: string;
+    duration: string;
+    viewCount?: number;
+    thumbnailUrl?: string;
+  }
+) {
+  const videoEntityId = `${articleUrl}#video`;
+  const articleEntityId = `${articleUrl}#article`;
+  const embedUrl = `https://www.youtube.com/embed/${videoId}`;
+  const watchUrl = `https://www.youtube.com/watch?v=${videoId}`;
+  const thumb = opts.thumbnailUrl || `https://i.ytimg.com/vi/${videoId}/maxresdefault.jpg`;
+
+  return {
+    "@context": "https://schema.org",
+    "@type": "VideoObject",
+    "@id": videoEntityId,
+    name: opts.title,
+    description: opts.description,
+    thumbnailUrl: thumb,
+    uploadDate: toIso8601WithTz(opts.uploadDate),
+    duration: opts.duration,
+    embedUrl: embedUrl,
+    contentUrl: watchUrl,
+    isPartOf: {
+      "@id": articleEntityId,
+    },
+    publisher: {
+      "@type": "Organization",
+      name: "Casinoaftaler.dk",
+      url: SITE_URL,
+      logo: {
+        "@type": "ImageObject",
+        url: `${SITE_URL}/favicon-48x48.png`,
+        width: 192,
+        height: 192,
+      },
+    },
+    ...(opts.viewCount !== undefined && {
+      interactionStatistic: {
+        "@type": "InteractionCounter",
+        interactionType: { "@type": "WatchAction" },
+        userInteractionCount: opts.viewCount,
+      },
+    }),
+  };
+}
+
+export { JONAS_PERSON_ID };
 
 /**
  * Extract plain text from a React node for use in structured data.

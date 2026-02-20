@@ -63,7 +63,7 @@ const NyeCasinoerBonusUdenIndbetaling = () => {
     description: "Find nye casinoer med gratis bonus uden indbetaling. Free spins og bonuspenge ved oprettelse hos nye danske spillesteder.",
     url: `${SITE_URL}/nye-casinoer/bonus-uden-indbetaling`,
     datePublished: "2026-01-30",
-    dateModified: "2026-02-16",
+    dateModified: "2026-02-20",
     authorName: "Jonas",
     authorUrl: `${SITE_URL}/forfatter/jonas`,
   });
