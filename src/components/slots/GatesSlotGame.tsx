@@ -164,7 +164,13 @@ export function GatesSlotGame({ gameId = "gates-of-fedesvin" }: GatesSlotGamePro
         
         if (totalWin > 0) {
           setIsWinAnimating(true);
-          slotSounds.playWin(totalWin, bet);
+          if (totalWin >= bet * 10) {
+            slotSounds.playBigWin();
+          } else if (totalWin >= bet * 3) {
+            slotSounds.playMediumWin();
+          } else {
+            slotSounds.playSmallWin();
+          }
           // Invalidate leaderboard
           queryClient.invalidateQueries({ queryKey: ["slot-leaderboard"] });
         }
@@ -293,9 +299,10 @@ export function GatesSlotGame({ gameId = "gates-of-fedesvin" }: GatesSlotGamePro
       {/* Win celebration */}
       {isWinAnimating && winAmount > 0 && (
         <WinCelebration
+          isActive={true}
           winAmount={winAmount}
-          betAmount={bet}
-          onComplete={() => setIsWinAnimating(false)}
+          bet={bet}
+          onAnimationComplete={() => setIsWinAnimating(false)}
           gameId={gameId}
         />
       )}
@@ -405,14 +412,14 @@ export function GatesSlotGame({ gameId = "gates-of-fedesvin" }: GatesSlotGamePro
           canSpin={canSpin}
           spinsRemaining={spinsRemaining}
           maxSpins={maxSpins}
-          hasEnoughSpins={hasEnoughSpins}
           isAutoSpinning={isAutoSpinning}
           autoSpinCount={autoSpinCount}
           autoSpinsRemaining={autoSpinsRemaining}
           onAutoSpinCountChange={setAutoSpinCount}
-          onToggleAutoSpin={toggleAutoSpin}
-          isBonusSpin={isBonusActive}
+          onAutoSpinToggle={toggleAutoSpin}
+          bonusState={{ isActive: isBonusActive, freeSpinsRemaining: 0 }}
           bonusLoaded={true}
+          winAmount={winAmount}
           gameId={gameId}
         />
       </div>
