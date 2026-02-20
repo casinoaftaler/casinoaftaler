@@ -4,7 +4,7 @@ import { AuthorBio } from "@/components/AuthorBio";
 import { Link } from "react-router-dom";
 import { FAQSection } from "@/components/FAQSection";
 import { SEO } from "@/components/SEO";
-import { buildFaqSchema } from "@/lib/seo";
+import { buildFaqSchema, buildArticleSchema, SITE_URL } from "@/lib/seo";
 import indskudsbonusHero from "@/assets/heroes/indskudsbonus-hero.jpg";
 import { InlineCasinoCards } from "@/components/InlineCasinoCards";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -96,17 +96,13 @@ const Indskudsbonus = () => {
 
   const faqJsonLd = buildFaqSchema(indskudsbonusFaqs);
 
-  const articleJsonLd = {
-    "@context": "https://schema.org",
-    "@type": "Article",
+  const articleJsonLd = buildArticleSchema({
     headline: "Indskudsbonus – Komplet Guide til Matchbonusser 2026",
     description: "Alt du skal vide om indskudsbonusser hos danske casinoer. Matchbonusser, betingelser og strategier.",
-    author: { "@type": "Person", name: "Jonas", url: "https://casinoaftaler.dk/forfatter/jonas" },
-    publisher: { "@type": "Organization", name: "Casinoaftaler.dk", url: "https://casinoaftaler.dk", logo: { "@type": "ImageObject", url: "https://casinoaftaler.dk/favicon-48x48.png", width: 192, height: 192 } },
+    url: `${SITE_URL}/indskudsbonus`,
     datePublished: "2025-06-01",
     dateModified: "2026-02-20",
-    mainEntityOfPage: { "@type": "WebPage", "@id": "https://casinoaftaler.dk/indskudsbonus" },
-  };
+  });
 
   return (
     <>

@@ -5,7 +5,7 @@ import { InlineCasinoCards } from "@/components/InlineCasinoCards";
 import { Link } from "react-router-dom";
 import { FAQSection } from "@/components/FAQSection";
 import { SEO } from "@/components/SEO";
-import { buildFaqSchema } from "@/lib/seo";
+import { buildFaqSchema, buildArticleSchema, SITE_URL } from "@/lib/seo";
 import stickyBonusHero from "@/assets/heroes/sticky-bonus-hero.jpg";
 
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -99,17 +99,13 @@ const StickyBonus = () => {
 
   const faqJsonLd = buildFaqSchema(stickyFaqs);
 
-  const articleJsonLd = {
-    "@context": "https://schema.org",
-    "@type": "Article",
+  const articleJsonLd = buildArticleSchema({
     headline: "Sticky Bonus – Komplet Guide til Klæbende Bonusser 2026",
     description: "Alt om Sticky Bonusser hos danske casinoer. Forstå hvordan de fungerer, betingelser, fordele og ulemper.",
-    author: { "@type": "Person", name: "Jonas", url: "https://casinoaftaler.dk/forfatter/jonas" },
-    publisher: { "@type": "Organization", name: "Casinoaftaler.dk", url: "https://casinoaftaler.dk", logo: { "@type": "ImageObject", url: "https://casinoaftaler.dk/favicon-48x48.png", width: 192, height: 192 } },
+    url: `${SITE_URL}/sticky-bonus`,
     datePublished: "2025-06-01",
     dateModified: "2026-02-20",
-    mainEntityOfPage: { "@type": "WebPage", "@id": "https://casinoaftaler.dk/sticky-bonus" },
-  };
+  });
 
   return (
     <>
