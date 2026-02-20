@@ -162,19 +162,32 @@ const BonusUdenOmsaetningskrav = () => {
           <img src={bonusUdenOmsaetningHero} alt="Bonus uden omsætningskrav – teknisk EV-analyse af omsætningsfrie bonusser 2026" className="w-full h-auto object-cover max-h-[400px]" loading="eager" />
         </div>
 
-        <YoutubeEmbed
-          videoId="7JQ3nFTasoQ"
-          title="Hvad er en bonus uden omsætningskrav?"
-          description="Vi forklarer præcis hvad en bonus uden omsætningskrav er, hvordan den adskiller sig fra traditionelle bonusser, og hvad gevinstloftet betyder for din reelle bonus-EV. Inkl. regneeksempler og tips til at finde de bedste tilbud."
-          uploadDate="2026-02-18"
-          contentUrl="https://casinoaftaler.dk/bonus-uden-omsaetningskrav"
-        />
-
         {/* === SEKTION 1: Mekanisk breakdown === */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold">
             Anatomien af en bonus uden omsætningskrav
           </h2>
+
+          <YoutubeEmbed
+            videoId="7JQ3nFTasoQ"
+            title="Hvad er en bonus uden omsætningskrav?"
+            description="Vi forklarer præcis hvad en bonus uden omsætningskrav er, hvordan den adskiller sig fra traditionelle bonusser, og hvad gevinstloftet betyder for din reelle bonus-EV. Inkl. regneeksempler og tips til at finde de bedste tilbud."
+            uploadDate="2026-02-18"
+            contentUrl="https://casinoaftaler.dk/bonus-uden-omsaetningskrav"
+          />
+
+          <div className="mb-6 rounded-lg border border-border bg-muted/30 p-5">
+            <h3 className="mb-2 text-lg font-semibold">
+              Her gennemgår vores streamer og forfatter Jonas, hvad en bonus uden omsætningskrav er
+            </h3>
+            <p className="text-muted-foreground leading-relaxed">
+              Jonas gennemgår den omsætningsfrie bonus fra bunden – mekanikken bag 100% gevinstkonvertering, hvad gevinstloftet reelt betyder for din EV, og hvornår det er bedre end en traditionel bonus. Videoen er del af vores bonusunivers med guides om{" "}
+              <Link to="/no-sticky-bonus" className={linkClass}>no-sticky bonus</Link>,{" "}
+              <Link to="/omsaetningskrav" className={linkClass}>omsætningskrav</Link> og{" "}
+              <Link to="/casino-bonus" className={linkClass}>casino bonus</Link>.
+            </p>
+          </div>
+
           <p className="mb-4 text-muted-foreground leading-relaxed">
             En bonus uden omsætningskrav – også kaldet omsætningsfri bonus eller "wager-free bonus" – er den mest spillervenlige bonustype på markedet. Mekanikken er enkel: du modtager bonusmidler, og alle gevinster fra disse midler kan hæves direkte. Der er ingen gennemspilningskrav, ingen omsætningsformler, ingen "x gange bonus"-beregninger. Gevinsten er din fra det øjeblik den rammer din konto.
           </p>

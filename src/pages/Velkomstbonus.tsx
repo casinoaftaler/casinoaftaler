@@ -183,19 +183,32 @@ const Velkomstbonus = () => {
           <img src={velkomstbonusHero} alt="Velkomstbonus – gaveboks med casino chips" className="w-full h-auto object-cover max-h-[400px]" loading="eager" />
         </div>
 
-        <YoutubeEmbed
-          videoId="oK5PvebkvGY"
-          title="Hvad er en velkomstbonus på danske casinoer?"
-          description="Vi gennemgår hvad en velkomstbonus er, de forskellige typer (matchbonus, free spins, no deposit), hvordan omsætningskrav fungerer, og hvad du skal kigge efter for at vælge den bedste velkomstbonus."
-          uploadDate="2026-02-18"
-          contentUrl="https://casinoaftaler.dk/velkomstbonus"
-        />
-
         {/* Intro */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold">
             Hvad er en velkomstbonus?
           </h2>
+
+          <YoutubeEmbed
+            videoId="oK5PvebkvGY"
+            title="Hvad er en velkomstbonus på danske casinoer?"
+            description="Vi gennemgår hvad en velkomstbonus er, de forskellige typer (matchbonus, free spins, no deposit), hvordan omsætningskrav fungerer, og hvad du skal kigge efter for at vælge den bedste velkomstbonus."
+            uploadDate="2026-02-18"
+            contentUrl="https://casinoaftaler.dk/velkomstbonus"
+          />
+
+          <div className="mb-6 rounded-lg border border-border bg-muted/30 p-5">
+            <h3 className="mb-2 text-lg font-semibold">
+              Her gennemgår vores streamer og forfatter Jonas, hvad en velkomstbonus er
+            </h3>
+            <p className="text-muted-foreground leading-relaxed">
+              Jonas gennemgår de fire typer velkomstbonusser, hvad omsætningskrav betyder for bonussens reelle værdi, og hvordan du som ny spiller vælger det rigtige tilbud. Videoen er del af vores bonusunivers med guides om{" "}
+              <Link to="/indskudsbonus" className={linkClass}>indskudsbonus</Link>,{" "}
+              <Link to="/free-spins" className={linkClass}>free spins</Link> og{" "}
+              <Link to="/bonus-uden-indbetaling" className={linkClass}>bonus uden indbetaling</Link>.
+            </p>
+          </div>
+
           <p className="mb-4 text-muted-foreground leading-relaxed">
             Din første indbetaling hos et nyt casino afgør hele din bonusoplevelse – og forskellen mellem et godt og et dårligt valg kan være tusindvis af kroner. En velkomstbonus matcher typisk din indbetaling med ekstra penge eller{" "}
             <Link to="/free-spins" className="text-primary underline hover:text-primary/80">

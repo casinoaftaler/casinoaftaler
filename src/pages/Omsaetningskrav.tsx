@@ -159,19 +159,32 @@ const Omsaetningskrav = () => {
           <img src={omsaetningskravHero} alt="Omsætningskrav – lommeregner og casino chips" className="w-full h-auto object-cover max-h-[400px]" loading="eager" />
         </div>
 
-        <YoutubeEmbed
-          videoId="3tXFTjmgdcE"
-          title="Hvad er omsætningskrav på danske casinoer?"
-          description="Vi forklarer hvad omsætningskrav (wagering requirements) er på danske casinoer, hvordan de beregnes, og hvilke strategier du kan bruge til at opfylde dem effektivt. Inkl. gennemgang af Danmarks lovkrav om max 10x."
-          uploadDate="2026-02-18"
-          contentUrl="https://casinoaftaler.dk/omsaetningskrav"
-        />
-
         {/* Intro - Hvad betyder omsætningskrav */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold">
             Hvad betyder omsætningskrav?
           </h2>
+
+          <YoutubeEmbed
+            videoId="3tXFTjmgdcE"
+            title="Hvad er omsætningskrav på danske casinoer?"
+            description="Vi forklarer hvad omsætningskrav (wagering requirements) er på danske casinoer, hvordan de beregnes, og hvilke strategier du kan bruge til at opfylde dem effektivt. Inkl. gennemgang af Danmarks lovkrav om max 10x."
+            uploadDate="2026-02-18"
+            contentUrl="https://casinoaftaler.dk/omsaetningskrav"
+          />
+
+          <div className="mb-6 rounded-lg border border-border bg-muted/30 p-5">
+            <h3 className="mb-2 text-lg font-semibold">
+              Her gennemgår vores streamer og forfatter Jonas, hvad omsætningskrav er
+            </h3>
+            <p className="text-muted-foreground leading-relaxed">
+              Jonas forklarer omsætningskrav fra bunden – hvad de betyder, hvordan du beregner dem, og hvilke strategier der hjælper dig til at opfylde dem effektivt. Videoen er del af vores samlede guide til{" "}
+              <Link to="/casino-bonus" className={linkClass}>casino bonusser</Link>,{" "}
+              <Link to="/no-sticky-bonus" className={linkClass}>no-sticky bonusser</Link> og{" "}
+              <Link to="/bonus-uden-omsaetningskrav" className={linkClass}>bonusser uden omsætningskrav</Link>.
+            </p>
+          </div>
+
           <p className="mb-4 text-muted-foreground leading-relaxed">
             Omsætningskrav – også kendt som gennemspilningskrav eller
             gennemspilskrav – refererer til det antal gange, en bonus

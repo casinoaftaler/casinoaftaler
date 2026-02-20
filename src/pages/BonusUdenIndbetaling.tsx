@@ -166,14 +166,6 @@ const BonusUdenIndbetaling = () => {
           <img src={bonusUdenIndbetalingHero} alt="Bonus uden indbetaling – teknisk analyse af no deposit bonusser i Danmark 2026" className="w-full h-auto object-cover max-h-[400px]" loading="eager" />
         </div>
 
-        <YoutubeEmbed
-          videoId="XhbLda1HyOs"
-          title="Hvad er en bonus uden indbetaling?"
-          description="Vi gennemgår hvad en bonus uden indbetaling (no deposit bonus) er, de fire varianter, EV-analyse af gevinstlofter og omsætningskrav, og hvordan du finder og aktiverer de bedste tilbud hos danske casinoer i 2026."
-          uploadDate="2026-02-18"
-          contentUrl="https://casinoaftaler.dk/bonus-uden-indbetaling"
-        />
-
         {/* Cross-link to nye casinoer sub */}
         <div className="mb-8 rounded-lg border border-primary/30 bg-accent/30 p-4">
           <p className="text-sm text-muted-foreground">
@@ -187,6 +179,27 @@ const BonusUdenIndbetaling = () => {
           <h2 className="mb-4 text-3xl font-bold">
             Hvad er en bonus uden indbetaling – og hvordan fungerer mekanikken?
           </h2>
+
+          <YoutubeEmbed
+            videoId="XhbLda1HyOs"
+            title="Hvad er en bonus uden indbetaling?"
+            description="Vi gennemgår hvad en bonus uden indbetaling (no deposit bonus) er, de fire varianter, EV-analyse af gevinstlofter og omsætningskrav, og hvordan du finder og aktiverer de bedste tilbud hos danske casinoer i 2026."
+            uploadDate="2026-02-18"
+            contentUrl="https://casinoaftaler.dk/bonus-uden-indbetaling"
+          />
+
+          <div className="mb-6 rounded-lg border border-border bg-muted/30 p-5">
+            <h3 className="mb-2 text-lg font-semibold">
+              Her gennemgår vores streamer og forfatter Jonas, hvad en bonus uden indbetaling er
+            </h3>
+            <p className="text-muted-foreground leading-relaxed">
+              Jonas dissekerer no deposit bonus-mekanikken – gevinstloftets skjulte effekt, de fire varianter og præcis hvornår en gratis bonus er pengene værd. Videoen er del af vores bonusunivers med guides om{" "}
+              <Link to="/bonus-uden-omsaetningskrav" className={linkClass}>bonus uden omsætningskrav</Link>,{" "}
+              <Link to="/velkomstbonus" className={linkClass}>velkomstbonus</Link> og{" "}
+              <Link to="/omsaetningskrav" className={linkClass}>omsætningskrav</Link>.
+            </p>
+          </div>
+
           <p className="mb-4 text-muted-foreground leading-relaxed">
             En bonus uden indbetaling – også kaldet no deposit bonus – er et casinotilbud, hvor du modtager gratis spillemidler blot ved at oprette en konto. Du skal ikke indsætte penge. Konceptet er enkelt: casinoet tager den fulde risiko, og du får en risikofri prøvetur. Men bag den simple facade gemmer sig en præcis mekanisk struktur, som afgør bonussens reelle værdi.
           </p>
