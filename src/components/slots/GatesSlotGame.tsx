@@ -8,7 +8,6 @@ import { useAuth } from "@/hooks/useAuth";
 import { useQueryClient } from "@tanstack/react-query";
 import { slotSounds } from "@/lib/slotSoundEffects";
 import { SlotControlPanel } from "./SlotControlPanel";
-import { SlotSymbol as SlotSymbolComponent } from "./SlotSymbol";
 import { WinCelebration } from "./WinCelebration";
 import { Loader2 } from "lucide-react";
 import { toast } from "sonner";
@@ -19,6 +18,7 @@ import {
   flatToColRow, type GatesWin, type MultiplierOrb, type TumbleStep,
 } from "@/lib/gatesGameLogic";
 import type { SlotSymbol } from "@/lib/slotGameLogic";
+import { GatesColumn, type ColumnSpinState } from "./GatesColumn";
 
 const SYMBOL_SIZE = 100;
 const SYMBOL_GAP = 4;
@@ -49,6 +49,11 @@ export function GatesSlotGame({ gameId = "gates-of-fedesvin" }: GatesSlotGamePro
   const [totalMultiplier, setTotalMultiplier] = useState(0);
   const [tumblePhase, setTumblePhase] = useState<'idle' | 'spinning' | 'showing-wins' | 'tumbling'>('idle');
   const [currentTumbleStep, setCurrentTumbleStep] = useState(0);
+  const [columnSpinStates, setColumnSpinStates] = useState<ColumnSpinState[]>(
+    Array(GATES_COLS).fill('idle')
+  );
+  const columnStopTimersRef = useRef<NodeJS.Timeout[]>([]);
+  const serverResultRef = useRef<any>(null);
   
   // Bonus state
   const [isBonusActive, setIsBonusActive] = useState(false);
@@ -77,6 +82,7 @@ export function GatesSlotGame({ gameId = "gates-of-fedesvin" }: GatesSlotGamePro
   useEffect(() => {
     return () => {
       if (autoSpinTimeoutRef.current) clearTimeout(autoSpinTimeoutRef.current);
+      columnStopTimersRef.current.forEach(t => clearTimeout(t));
     };
   }, []);
 
@@ -145,6 +151,19 @@ export function GatesSlotGame({ gameId = "gates-of-fedesvin" }: GatesSlotGamePro
     setIsWinAnimating(false);
     setWinningPositions(new Set());
     setMultiplierOrbs([]);
+    serverResultRef.current = null;
+
+    // Stagger column spin start (left to right)
+    const STAGGER_MS = 120;
+    for (let c = 0; c < GATES_COLS; c++) {
+      setTimeout(() => {
+        setColumnSpinStates(prev => {
+          const next = [...prev];
+          next[c] = 'spinning';
+          return next;
+        });
+      }, c * STAGGER_MS);
+    }
 
     slotSounds.playSpinStart();
 
@@ -153,12 +172,43 @@ export function GatesSlotGame({ gameId = "gates-of-fedesvin" }: GatesSlotGamePro
       if (!response) throw new Error("Spin failed");
 
       const result = response.result as any;
-      
-      if (result.tumbleSteps) {
-        // Gates-style result
-        await processTumbleSteps(result.tumbleSteps);
+
+      // Stop columns left to right with stagger
+      await new Promise<void>((resolve) => {
+        if (result.tumbleSteps && result.tumbleSteps.length > 0) {
+          // Set the initial grid from the first tumble step
+          setGrid(result.tumbleSteps[0].grid);
+        }
         
-        setTotalMultiplier(result.totalMultiplier || 0);
+        let landed = 0;
+        for (let c = 0; c < GATES_COLS; c++) {
+          const timer = setTimeout(() => {
+            setColumnSpinStates(prev => {
+              const next = [...prev];
+              next[c] = 'landing';
+              return next;
+            });
+            // After landing animation, mark as landed
+            setTimeout(() => {
+              setColumnSpinStates(prev => {
+                const next = [...prev];
+                next[c] = 'landed';
+                return next;
+              });
+              landed++;
+              if (landed === GATES_COLS) resolve();
+            }, 400);
+          }, c * STAGGER_MS);
+          columnStopTimersRef.current.push(timer);
+        }
+      });
+
+      // All columns landed — reset to idle
+      setColumnSpinStates(Array(GATES_COLS).fill('idle'));
+
+      if (result.tumbleSteps) {
+        
+        await processTumbleSteps(result.tumbleSteps);
         const totalWin = result.totalWin || 0;
         setWinAmount(totalWin);
         
@@ -320,71 +370,33 @@ export function GatesSlotGame({ gameId = "gates-of-fedesvin" }: GatesSlotGamePro
           boxShadow: '0 0 40px rgba(59,130,246,0.2), 0 0 80px rgba(59,130,246,0.1)',
         }}
       >
-        {/* Grid of symbols */}
+        {/* Grid of symbols - column-based rendering */}
         <div 
-          className="relative"
+          className="relative flex"
           style={{ 
-            display: 'grid',
-            gridTemplateColumns: `repeat(${GATES_COLS}, ${SYMBOL_SIZE}px)`,
-            gridTemplateRows: `repeat(${GATES_ROWS}, ${SYMBOL_SIZE}px)`,
             gap: `${SYMBOL_GAP}px`,
             padding: `${SYMBOL_GAP}px`,
           }}
         >
-          {grid && Array.from({ length: GATES_ROWS }).map((_, row) => (
-            Array.from({ length: GATES_COLS }).map((_, col) => {
-              const symbolId = grid[col]?.[row];
-              const symbol = symbolId ? symbolsById.get(symbolId) : null;
-              const flatIndex = col * GATES_ROWS + row;
-              const isWinning = winningPositions.has(flatIndex);
-              const orb = multiplierOrbs.find(o => o.position === flatIndex);
-              
-              return (
-                <div 
-                  key={`${col}-${row}`}
-                  className={cn(
-                    "relative rounded-lg overflow-hidden transition-all duration-300",
-                    "bg-blue-950/50 border border-blue-500/10",
-                    isWinning && "gates-win-highlight",
-                    tumblePhase === 'spinning' && "opacity-80",
-                  )}
-                  style={{ width: SYMBOL_SIZE, height: SYMBOL_SIZE }}
-                >
-                  {symbol && (
-                    <div className="w-full h-full flex items-center justify-center">
-                      {symbol.image_url ? (
-                        <img 
-                          src={symbol.image_url} 
-                          alt={symbol.name}
-                          className="w-[85%] h-[85%] object-contain"
-                          draggable={false}
-                        />
-                      ) : (
-                        <span className="text-2xl font-bold text-blue-200">{symbol.name.charAt(0)}</span>
-                      )}
-                    </div>
-                  )}
-                  
-                  {/* Multiplier orb overlay */}
-                  {orb && (
-                    <div className="absolute inset-0 flex items-center justify-center z-10 gates-multiplier-pulse">
-                      <div className="bg-gradient-to-br from-blue-500 to-purple-600 rounded-full w-12 h-12 flex items-center justify-center border-2 border-yellow-400/80 shadow-lg">
-                        <span className="text-sm font-black text-yellow-200">{orb.value}x</span>
-                      </div>
-                    </div>
-                  )}
-                </div>
-              );
-            })
-          ))}
-        </div>
+          {Array.from({ length: GATES_COLS }).map((_, col) => {
+            const colSymbolIds = grid ? grid[col] || [] : [];
+            const orbFinder = (flatIndex: number) => multiplierOrbs.find(o => o.position === flatIndex);
 
-        {/* Spinning overlay */}
-        {tumblePhase === 'spinning' && (
-          <div className="absolute inset-0 flex items-center justify-center bg-black/20 z-20">
-            <Loader2 className="h-12 w-12 animate-spin text-blue-400" />
-          </div>
-        )}
+            return (
+              <GatesColumn
+                key={col}
+                col={col}
+                spinState={columnSpinStates[col]}
+                symbols={symbols}
+                symbolsById={symbolsById}
+                finalSymbolIds={colSymbolIds}
+                winningPositions={winningPositions}
+                multiplierOrbAt={orbFinder}
+                tumblePhase={tumblePhase}
+              />
+            );
+          })}
+        </div>
       </div>
 
       {/* Win display */}
