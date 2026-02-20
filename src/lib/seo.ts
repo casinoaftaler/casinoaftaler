@@ -29,6 +29,7 @@ export const getCanonicalUrl = (pathname: string): string => {
 export const organizationSchema = {
   "@context": "https://schema.org",
   "@type": "Organization",
+  "@id": `${SITE_URL}/#organization`,
   name: "Casinoaftaler.dk",
   url: SITE_URL,
   logo: {
@@ -38,7 +39,6 @@ export const organizationSchema = {
     height: 192,
   },
   sameAs: [
-    "https://www.twitch.tv/fedesvinsejer",
     "https://www.youtube.com/@casinoaftaler",
     "https://www.instagram.com/casinoaftaler",
     "https://www.facebook.com/casinoaftaler",

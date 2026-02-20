@@ -106,11 +106,16 @@ const Index = () => {
         jsonLd={{
           "@context": "https://schema.org",
           "@type": "Organization",
-          name: "Casinoaftaler",
+          "@id": "https://casinoaftaler.dk/#organization",
+          name: "Casinoaftaler.dk",
           url: "https://casinoaftaler.dk",
           description: "Danmarks uafhængige sammenligningstjeneste for online casinoer med dansk licens.",
-          foundingDate: "2025",
-          sameAs: [],
+          foundingDate: "2021",
+          sameAs: [
+            "https://www.youtube.com/@casinoaftaler",
+            "https://www.instagram.com/casinoaftaler",
+            "https://www.facebook.com/casinoaftaler",
+          ],
         }}
       />
 
