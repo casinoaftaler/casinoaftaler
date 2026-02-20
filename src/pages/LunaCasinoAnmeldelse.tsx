@@ -296,7 +296,7 @@ const LunaCasinoAnmeldelse = () => {
               <CardContent>
                 <ul className="space-y-2">
                   {[
-                    "Maks. bonus på 500 kr. – lavere end bet365 (1.000 kr.) og Unibet (2.000 kr.)",
+                    "Maks. bonus på 500 kr. – lavere end bet365 (1.000 kr.) og Unibet (1.000 kr.)",
                     "Mindre spiludvalg end de største casinoer (design-valg, ikke mangel)",
                     "Ingen sportsbetting tilgængelig",
                     "Begrænsede betalingsmetoder: ingen PayPal eller Trustly",
