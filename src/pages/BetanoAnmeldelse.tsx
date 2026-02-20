@@ -52,7 +52,7 @@ const faqs: { question: string; answer: ReactNode }[] = [
     question: "Hvad er Betanos velkomstbonus?",
     answer: (
       <>
-        Betano tilbyder en <Link to="/velkomstbonus" className={linkClass}>matchbonus</Link> op til 2.000 kr.
+        Betano tilbyder en <Link to="/velkomstbonus" className={linkClass}>matchbonus</Link> op til 1.000 kr.
         til nye casino-spillere. <Link to="/omsaetningskrav" className={linkClass}>Omsætningskravet</Link>{" "}
         er 10x (indskud + bonus). Sportsspillere modtager et separat risikofrit væddemål.
       </>
@@ -230,7 +230,7 @@ const BetanoAnmeldelse = () => {
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold">Bonussen – konkurrencedygtig, men ikke aggressiv</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
-            Betano tilbyder en <Link to="/velkomstbonus" className={linkClass}>matchbonus</Link> op til 2.000 kr. til nye casino-spillere med <Link to="/free-spins" className={linkClass}>free spins</Link> oven i. <Link to="/omsaetningskrav" className={linkClass}>Omsætningskravet</Link> er 10x på indskud plus bonus – det danske lovmæssige maksimum. Sportsspillere får et separat risikofrit væddemål til den første indsats.
+            Betano tilbyder en <Link to="/velkomstbonus" className={linkClass}>matchbonus</Link> op til 1.000 kr. til nye casino-spillere med <Link to="/free-spins" className={linkClass}>free spins</Link> oven i. <Link to="/omsaetningskrav" className={linkClass}>Omsætningskravet</Link> er 10x på indskud plus bonus – det danske lovmæssige maksimum. Sportsspillere får et separat risikofrit væddemål til den første indsats.
           </p>
           <p className="mb-4 text-muted-foreground leading-relaxed">
             Lad os sætte bonussen i perspektiv med et konkret eksempel: Du indbetaler 1.000 kr. og modtager 1.000 kr. i bonus. Dit omsætningskrav er 20.000 kr. (10x af 2.000 kr.). Hvis du spiller på slots med en gennemsnitlig RTP på 96%, vil du statistisk set have 19.200 kr. tilbage efter at have omsæt de 20.000 kr. – et forventet tab på 800 kr. mod en bonus på 1.000 kr. Det giver en teoretisk nettoværdi på ca. 200 kr. Det er ikke dårligt, men heller ikke noget, der ændrer dit spillebudget fundamentalt.
@@ -490,10 +490,10 @@ const BetanoAnmeldelse = () => {
           <Card className="border-border bg-card mb-6">
             <CardHeader><CardTitle className="text-lg">Casino-velkomstbonus EV (maks. indbetaling)</CardTitle></CardHeader>
             <CardContent className="space-y-2 text-sm text-muted-foreground">
-              <p><strong>Indbetaling:</strong> 2.000 kr. → Matchbonus: 2.000 kr.</p>
-              <p><strong>Omsætningskrav:</strong> 10x (d+b) = (2.000 + 2.000) × 10 = 40.000 kr.</p>
-              <p><strong>Forventet tab under omsætning:</strong> 40.000 × 0,04 = 1.600 kr.</p>
-              <p><strong>Bonusværdi:</strong> 2.000 − 1.600 = <strong className="text-primary">+400 kr. EV</strong></p>
+              <p><strong>Indbetaling:</strong> 1.000 kr. → Matchbonus: 1.000 kr.</p>
+              <p><strong>Omsætningskrav:</strong> 10x (d+b) = (1.000 + 1.000) × 10 = 20.000 kr.</p>
+              <p><strong>Forventet tab under omsætning:</strong> 20.000 × 0,04 = 800 kr.</p>
+              <p><strong>Bonusværdi:</strong> 1.000 − 800 = <strong className="text-primary">+200 kr. EV</strong></p>
               <p className="text-xs pt-2 italic">Moderat positiv EV. Sammenlignet med <Link to="/casino-anmeldelser/leovegas" className={linkClass}>LeoVegas</Link> (+510 kr.) og <Link to="/casino-anmeldelser/mr-green" className={linkClass}>Mr Green</Link> (+600 kr.) er Betanos bonus fair men ikke brancheførende.</p>
             </CardContent>
           </Card>

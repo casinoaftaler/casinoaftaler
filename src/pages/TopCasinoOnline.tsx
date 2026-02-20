@@ -87,7 +87,7 @@ const topCasinoFaqs: { question: string; answer: ReactNode }[] = [
     question: "Hvad er den reelle forskel på et nyt casino og et etableret casino i Danmark?",
     answer: (
       <>
-        <Link to="/nye-casinoer" className={linkClass}>Nye casinoer</Link> tilbyder typisk mere aggressive velkomstbonusser (op til 2.000 kr.) og moderne brugergrænseflader designet til mobile-first oplevelser. De har ofte nyere spiludviklere i kataloget og innovativ funktionalitet som gamification-elementer. Etablerede casinoer har derimod dokumenteret track record, veletablerede loyalitetsprogrammer, større spiludvalg (3.000+ titler) og hurtigere udbetalingsprocesser. Sikkerhedsmæssigt er der ingen forskel – begge typer kræver identisk dansk licens med samme strenge krav. Vi anbefaler at vælge baseret på, hvad der er vigtigst for dig: friske bonusser eller dokumenteret stabilitet.
+        <Link to="/nye-casinoer" className={linkClass}>Nye casinoer</Link> tilbyder typisk mere aggressive velkomstbonusser (op til 1.000 kr.) og moderne brugergrænseflader designet til mobile-first oplevelser. De har ofte nyere spiludviklere i kataloget og innovativ funktionalitet som gamification-elementer. Etablerede casinoer har derimod dokumenteret track record, veletablerede loyalitetsprogrammer, større spiludvalg (3.000+ titler) og hurtigere udbetalingsprocesser. Sikkerhedsmæssigt er der ingen forskel – begge typer kræver identisk dansk licens med samme strenge krav. Vi anbefaler at vælge baseret på, hvad der er vigtigst for dig: friske bonusser eller dokumenteret stabilitet.
       </>
     ),
   },

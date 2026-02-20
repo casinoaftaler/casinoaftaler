@@ -209,10 +209,10 @@ const CasinoBonus = () => {
             Casino bonusser er langt mere end markedsføringstricks – de er det vigtigste konkurrenceparameter mellem danske casinoer i 2026. Mens produktudbuddet (spil, betalingsmetoder, mobile oplevelser) er konvergeret til et næsten identisk niveau, er bonusvilkårene det sted, hvor casinoerne reelt differentierer sig. For spilleren betyder det, at bonusvalget har direkte indflydelse på den matematiske forventede værdi af hver spillesession.
           </p>
           <p className="mb-4 text-muted-foreground leading-relaxed">
-            Det danske bonuslandskab er unikt i europæisk sammenhæng. <a href="https://www.spillemyndigheden.dk/" target="_blank" rel="noopener noreferrer" className={linkClass}>Spillemyndighedens</a> regulering med et 10x omsætningsloft har skabt et marked, der er markant mere spillervenligt end nogen anden jurisdiktion i Europa. Til sammenligning opererer britiske casinoer typisk med 35-50x omsætningskrav, maltesiske med 30-40x og Curaçao-licenserede med op til 60x. Det danske loft beskytter spillere mod de mest aggressive bonusstrukturer, men det betyder ikke, at alle danske bonusser er lige gode. Forskellen mellem den bedste og den dårligste bonus på det danske marked kan udgøre hundreder af kroner i reel værdi.
+            Det danske bonuslandskab er unikt i europæisk sammenhæng. <a href="https://www.spillemyndigheden.dk/" target="_blank" rel="noopener noreferrer" className={linkClass}>Spillemyndighedens</a> regulering med et 10x omsætningsloft har skabt et marked, der er markant mere spillervenligt end nogen anden jurisdiktion i Europa. Til sammenligning opererer britiske casinoer typisk med 35-50x omsætningskrav, maltesiske med 30-40x og Curaçao-licenserede med op til 60x. Det danske loft beskytter spillere mod de mest aggressive bonusstrukturer.
           </p>
           <p className="mb-4 text-muted-foreground leading-relaxed">
-            Denne guide er bygget på princippet om, at markedsføring og reel værdi er to fundamentalt forskellige ting. Et casino kan annoncere "Op til 10.000 kr. i bonus!" – men den reelle matematiske værdi af det tilbud kan være under 500 kr., når man indregner omsætningskrav, bonusstruktur og spilbidrag. Vi giver dig værktøjerne til at beregne den faktiske værdi af ethvert bonustilbud, så du aldrig betaler overpris for din casino bonus.
+            Denne guide er bygget på princippet om, at markedsføring og reel værdi er to fundamentalt forskellige ting. Et casino kan annoncere "100% op til 1.000 kr." – men den reelle matematiske værdi af det tilbud kan være under 200 kr., når man indregner omsætningskrav, bonusstruktur og spilbidrag. Vi giver dig værktøjerne til at beregne den faktiske værdi af ethvert bonustilbud, så du aldrig betaler overpris for din casino bonus.
           </p>
           <p className="text-muted-foreground leading-relaxed">
             Guiden dækker alle 10 primære bonustyper på det danske marked, med matematiske analyser, strategiske anbefalinger og en ærlig vurdering af, hvem der bør – og hvem der bør undlade at – bruge bonusser. Vi har testet over 25 danske casinoer i januar-februar 2026 med reelle indbetalinger for at verificere vilkårene i praksis. Det er ikke en markedsføringsguide – det er en beslutningsguide.
@@ -416,7 +416,7 @@ const CasinoBonus = () => {
             </CardHeader>
             <CardContent className="space-y-3">
               <p className="text-muted-foreground leading-relaxed">
-                En indskudsbonus matcher en procentdel af din indbetaling – typisk 50-200%. Den grundlæggende mekanik er identisk med velkomstbonussen, men termen bruges bredere om alle bonusser, der kræver en indbetaling for aktivering. Den effektive bonusværdi afhænger af matchprocenten, omsætningsmodellen og din indbetalingsstørrelse. En 200% match lyder dobbelt så godt som 100%, men med (d+b)-omsætning kræver den 3x mere total omsætning – regnestykket er ikke altid intuitivt.
+                En indskudsbonus matcher en procentdel af din indbetaling – typisk 100% (op til 1.000 kr.). Den grundlæggende mekanik er identisk med velkomstbonussen, men termen bruges bredere om alle bonusser, der kræver en indbetaling for aktivering. Den effektive bonusværdi afhænger af matchprocenten, omsætningsmodellen og din indbetalingsstørrelse.
               </p>
               <p className="text-muted-foreground leading-relaxed">
                 <strong>Fordele:</strong> Forudsigelig mekanik, skalerer med din indbetaling. <strong>Ulemper:</strong> Kræver kapital, omsætningskrav gælder. <strong>Passer til:</strong> Spillere med klart budget der vil maksimere spilletid.
@@ -434,7 +434,7 @@ const CasinoBonus = () => {
             </CardHeader>
             <CardContent className="space-y-3">
               <p className="text-muted-foreground leading-relaxed">
-                No-deposit bonusser kræver ingen indbetaling – du modtager bonusmidler eller free spins blot ved at oprette en konto. De er typisk små (25-100 kr. eller 10-50 free spins), men de er helt risikofrie. Ulempen er, at gevinstloftet ofte er lavt (500-2.000 kr.), og omsætningskravene kan være relativt høje i forhold til bonusbeløbet. Trods det er no-deposit bonusser perfekte til at teste et nyt casino, før du binder dig med en indbetaling.
+                No-deposit bonusser kræver ingen indbetaling – du modtager bonusmidler eller free spins blot ved at oprette en konto. De er typisk små (25-100 kr. eller 10-50 free spins), men de er helt risikofrie. Ulempen er, at gevinstloftet ofte er lavt (500-1.000 kr.), og omsætningskravene kan være relativt høje i forhold til bonusbeløbet. Trods det er no-deposit bonusser perfekte til at teste et nyt casino, før du binder dig med en indbetaling.
               </p>
               <p className="text-muted-foreground leading-relaxed">
                 <strong>Fordele:</strong> Nul risiko, gratis at prøve, ingen indbetaling krævet. <strong>Ulemper:</strong> Lavt bonusbeløb, gevinstloft, kan have højere effektive krav. <strong>Passer til:</strong> Nybegyndere og spillere der vil teste nye casinoer risikofrit.

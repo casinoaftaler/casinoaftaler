@@ -52,7 +52,7 @@ const indskudsbonusFaqs: { question: string; answer: string | React.ReactNode }[
     question: "Hvad er den typiske matchprocent på danske indskudsbonusser?",
     answer: (
       <>
-        De fleste danske casinoer tilbyder 100% match på den første indbetaling – altså krone-for-krone op til et maksimum (typisk 500-2.000 kr.). Enkelte casinoer tilbyder 150-200% match for at differentiere sig, men disse har ofte strengere vilkår eller lavere maksimumbeløb. Velkomstpakker fordelt over flere indbetalinger kan samlet give op til 5.000 kr. i bonus. Sammenlign altid den totale pakkeværdi – ikke kun første indbetalings match. Tjek også om <Link to="/free-spins" className={linkClass}>free spins</Link> er inkluderet.
+        De fleste danske casinoer tilbyder 100% match på den første indbetaling – altså krone-for-krone op til et maksimum på 1.000 kr. (lovkrav). Enkelte casinoer tilbyder velkomstpakker fordelt over flere indbetalinger. Sammenlign altid den totale pakkeværdi – ikke kun første indbetalings match. Tjek også om <Link to="/free-spins" className={linkClass}>free spins</Link> er inkluderet.
       </>
     ),
   },
@@ -569,12 +569,12 @@ const Indskudsbonus = () => {
               <CardHeader className="pb-2">
                 <CardTitle className="flex items-center gap-2 text-lg">
                   <Calculator className="h-5 w-5 text-primary" />
-                  200% match, 2.000 kr. max, sticky, 10x (d+b)
+                  100% match, 1.000 kr. max, sticky, 10x (d+b)
                 </CardTitle>
               </CardHeader>
               <CardContent>
                 <p className="text-sm text-muted-foreground leading-relaxed">
-                  Indbetaling 1.000 kr. + 2.000 kr. bonus = 3.000 kr. saldo. Omsætning: 10 × 3.000 = 30.000 kr. Tab: 30.000 × 0,04 = 1.200 kr. Saldo: 3.000 – 1.200 = 1.800 kr. Minus bonus: <strong>EV = -200 kr. (negativ!)</strong>. Trods den store "2.000 kr." bonus taber du statistisk penge.
+                  Indbetaling 1.000 kr. + 1.000 kr. bonus = 2.000 kr. saldo. Omsætning: 10 × 2.000 = 20.000 kr. Tab: 20.000 × 0,04 = 800 kr. Saldo: 2.000 – 800 = 1.200 kr. Minus bonus: <strong>EV = 200 kr.</strong>.
                 </p>
               </CardContent>
             </Card>
@@ -596,7 +596,7 @@ const Indskudsbonus = () => {
 
           <div className="mt-6 rounded-lg border border-primary/30 bg-accent/30 p-4">
             <p className="text-sm text-muted-foreground">
-              <strong>Tommelfingerregel for indskudsbonusser:</strong> Prioritér altid omsætningskrav og bonusstruktur over match-%. En 50% no-sticky med 1x (b) er matematisk overlegen til en 200% sticky med 10x (d+b). Beregn altid EV før du accepterer en indskudsbonus.
+              <strong>Tommelfingerregel for indskudsbonusser:</strong> Prioritér altid omsætningskrav og bonusstruktur over match-%. En 50% no-sticky med 1x (b) kan være matematisk overlegen til en 100% sticky med 10x (d+b). Beregn altid EV før du accepterer en indskudsbonus.
             </p>
           </div>
         </section>
@@ -613,7 +613,7 @@ const Indskudsbonus = () => {
               { title: "Slot-spilleren", desc: "Vælg indskudsbonus med 100% bidrag fra slots og lav omsætning. Med 96%+ RTP slots og ≤5x omsætning er din EV typisk 70-90% af bonusbeløbet. Kombinér gerne med free spins-pakke for maksimal spilletid.", icon: Sparkles },
               { title: "Bordspil-entusiasten", desc: "Vær varsom. Med kun 10% bidrag fra bordspil kræver en 10x (d+b) bonus reelt 100x i bordspilsindsatser. Overvej bonus uden omsætningskrav eller cashback-bonusser, der giver mere fleksibilitet i spilvalg.", icon: Gamepad2 },
               { title: "Den forsigtige spiller", desc: "Prioritér no-sticky bonusser med lav match-% og lav omsætning. Din indbetaling forbliver uberørt, og du kan hæve gevinster frit. En 50% match med 1x (b) er ideel – lav risiko, høj EV-procent.", icon: ShieldCheck },
-              { title: "Bonus-optimisten", desc: "Pas på med at jagte den højeste match-%. En 300% bonus lyder fantastisk, men med sticky-struktur og 10x (d+b) er den reelle værdi ofte negativ. Lad matematik – ikke markedsføring – styre dit valg.", icon: AlertTriangle },
+              { title: "Bonus-optimisten", desc: "Pas på med at jagte den højeste bonus. En 1.000 kr. bonus lyder fantastisk, men med sticky-struktur og 10x (d+b) er den reelle værdi lavere end man tror. Lad matematik – ikke markedsføring – styre dit valg.", icon: AlertTriangle },
             ].map((item) => (
               <Card key={item.title} className="border-border bg-card">
                 <CardHeader className="pb-2">
@@ -641,7 +641,7 @@ const Indskudsbonus = () => {
             Indskudsbonus er fortsat den mest populære bonustype på det danske casinomarked i 2026. Næsten alle danske casinoer bruger en indskudsbonus som deres primære <Link to="/velkomstbonus" className="text-primary underline hover:text-primary/80">velkomstbonus</Link>, og konkurrencen om at tilbyde den bedste indskudsbonus presser vilkårene i en stadig mere spillervenlig retning.
           </p>
           <p className="mb-4 text-muted-foreground leading-relaxed">
-            Den typiske indskudsbonus i Danmark tilbyder 100% match op til 1.000-2.000 kr. med omsætningskrav på 5-10x. Nogle casinoer differentierer sig med indskudsbonusser på 200% eller endda 300% match, mens andre fokuserer på at tilbyde de lavest mulige <Link to="/omsaetningskrav" className="text-primary underline hover:text-primary/80">omsætningskrav</Link>. Den bedste indskudsbonus balancerer et generøst matchbeløb med fair vilkår.
+            Den typiske indskudsbonus i Danmark tilbyder 100% match op til 1.000 kr. med omsætningskrav på 5-10x. Det er det maksimale beløb tilladt ved lov for en velkomstbonus. Den bedste indskudsbonus balancerer et generøst matchbeløb med fair vilkår.
           </p>
           <p className="mb-4 text-muted-foreground leading-relaxed">
             En vigtig udvikling er, at flere indskudsbonusser nu tilbydes med <Link to="/no-sticky-bonus" className="text-primary underline hover:text-primary/80">no-sticky struktur</Link>, som holder din indbetaling adskilt fra bonusmidlerne. Det betyder, at du kan hæve gevinster fra din egen indbetaling uden omsætningskrav – en klar fordel i forhold til den traditionelle <Link to="/sticky-bonus" className="text-primary underline hover:text-primary/80">sticky indskudsbonus</Link>.

@@ -52,7 +52,7 @@ const velkomstbonusFaqs: { question: string; answer: string | React.ReactNode }[
     question: "Hvad gør en velkomstbonus bedre end andre bonustyper?",
     answer: (
       <>
-        Velkomstbonussen er typisk det mest generøse tilbud et casino giver – matchprocenten er højest (ofte 100-200%), og free spins-antallet er størst. Til sammenligning giver reload-bonusser sjældent mere end 50% match og færre spins. Grunden er enkel: casinoet investerer i din acquisition. Danske velkomstbonusser har desuden fordelen af Spillemyndighedens 10x-loft på <Link to="/omsaetningskrav" className={linkClass}>omsætningskrav</Link>, hvilket gør dem markant mere fordelagtige end internationale tilbud med 40-70x krav.
+        Velkomstbonussen er typisk det mest generøse tilbud et casino giver – matchprocenten er højest (oftest 100%), og free spins-antallet er størst. Til sammenligning giver reload-bonusser sjældent mere end 50% match og færre spins. Grunden er enkel: casinoet investerer i din acquisition. Danske velkomstbonusser har desuden fordelen af Spillemyndighedens 10x-loft på <Link to="/omsaetningskrav" className={linkClass}>omsætningskrav</Link>, hvilket gør dem markant mere fordelagtige end internationale tilbud med 40-70x krav.
       </>
     ),
   },
@@ -645,7 +645,7 @@ const Velkomstbonus = () => {
 
           <div className="mt-6 rounded-lg border border-primary/30 bg-accent/30 p-4">
             <p className="text-sm text-muted-foreground">
-              <strong>Tommelfingerregel:</strong> En velkomstbonus med no-sticky struktur og ≤5x omsætning er næsten altid bedre end en sticky bonus med højere match-%. Bonus-%, omsætningskrav og sticky/no-sticky struktur skal ALLE vurderes samlet – aldrig isoleret. Se vores <Link to="/casino-bonus" className={linkClass}>bonusoversigt</Link> for aktuelle sammenligninger.
+              <strong>Tommelfingerregel:</strong> En velkomstbonus med no-sticky struktur og ≤5x omsætning er næsten altid bedre end en sticky bonus med højere beløb. Bonus-%, omsætningskrav og sticky/no-sticky struktur skal ALLE vurderes samlet – aldrig isoleret. Se vores <Link to="/casino-bonus" className={linkClass}>bonusoversigt</Link> for aktuelle sammenligninger.
             </p>
           </div>
         </section>
@@ -660,9 +660,9 @@ const Velkomstbonus = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {[
               { title: "Ny spiller", desc: "Start med en no-deposit bonus eller en lav-risiko velkomstbonus (100% match, no-sticky, ≤5x). Fokus bør være på at lære platformen, ikke på at jage omsætningskrav. En bonus uden indbetaling er det sikreste valg.", icon: User },
-              { title: "Slot-entusiast", desc: "Vælg velkomstbonusser med mange free spins på høj-RTP slots. En pakke med 100 omsætningsfrie spins á 2 kr. er mere værd end 200% matchbonus med 10x krav. Spinværdi og omsætningskrav er dine nøgletal.", icon: Sparkles },
+              { title: "Slot-entusiast", desc: "Vælg velkomstbonusser med mange free spins på høj-RTP slots. En pakke med 100 omsætningsfrie spins á 2 kr. er mere værd end en standard matchbonus med høje krav. Spinværdi og omsætningskrav er dine nøgletal.", icon: Sparkles },
               { title: "Strategisk spiller", desc: "Prioritér no-sticky bonus med lavest mulig omsætning. Beregn EV før accept. Den matematisk optimale strategi er at spille egne penge først (no-sticky), og kun bruge bonusmidler hvis du allerede er foran.", icon: Target },
-              { title: "High Roller", desc: "Kontakt casinoets VIP-afdeling for skræddersyet velkomstpakke. Standard velkomstbonusser (max 2.000-5.000 kr.) er utilstrækkelige for high roller-budgetter. VIP-velkomstpakker kan tilbyde 50.000+ kr. med individuelle vilkår.", icon: TrendingUp },
+              { title: "High Roller", desc: "Kontakt casinoets VIP-afdeling. Standard velkomstbonusser (max 1.000 kr.) er ofte utilstrækkelige for high roller-budgetter. Nogle casinoer kan tilbyde skræddersyede vilkår inden for lovens rammer.", icon: TrendingUp },
             ].map((item) => (
               <Card key={item.title} className="border-border bg-card">
                 <CardHeader className="pb-2">
@@ -687,10 +687,10 @@ const Velkomstbonus = () => {
             Velkomstbonus i Danmark 2026 – Sådan vælger du den bedste
           </h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
-            I 2026 tilbyder næsten alle danske casinoer en velkomstbonus til nye spillere. Konkurrencen om at tilbyde den bedste velkomstbonus er hårdere end nogensinde, hvilket er godt nyt for spillerne. Den typiske velkomstbonus på det danske marked er en 100% matchbonus op til 1.000-2.000 kr., ofte kombineret med <Link to="/free-spins" className="text-primary underline hover:text-primary/80">free spins</Link> på populære spilleautomater.
+            I 2026 tilbyder næsten alle danske casinoer en velkomstbonus til nye spillere. Konkurrencen om at tilbyde den bedste velkomstbonus er hårdere end nogensinde, hvilket er godt nyt for spillerne. Den typiske velkomstbonus på det danske marked er en 100% matchbonus op til 1.000 kr. (lovpligtigt maksimum), ofte kombineret med <Link to="/free-spins" className="text-primary underline hover:text-primary/80">free spins</Link> på populære spilleautomater.
           </p>
           <p className="mb-4 text-muted-foreground leading-relaxed">
-            Når du vælger en velkomstbonus, bør du fokusere på vilkårene frem for bonusbeløbet alene. En velkomstbonus på 1.000 kr. med 5x omsætningskrav er langt mere værdifuld end en velkomstbonus på 5.000 kr. med 10x (d+b) krav. Kig efter velkomstbonusser med <Link to="/no-sticky-bonus" className="text-primary underline hover:text-primary/80">no-sticky struktur</Link>, da de giver dig fleksibilitet til at hæve gevinster fra dine egne penge uden omsætningskrav.
+            Når du vælger en velkomstbonus, bør du fokusere på vilkårene frem for bonusbeløbet alene. En velkomstbonus på 1.000 kr. med 5x omsætningskrav er langt mere værdifuld end en velkomstbonus på 1.000 kr. med 10x (d+b) krav. Kig efter velkomstbonusser med <Link to="/no-sticky-bonus" className="text-primary underline hover:text-primary/80">no-sticky struktur</Link>, da de giver dig fleksibilitet til at hæve gevinster fra dine egne penge uden omsætningskrav.
           </p>
           <p className="mb-4 text-muted-foreground leading-relaxed">
             En velkomstbonus er din eneste chance for at få det bedste tilbud fra et casino, da den kun kan bruges én gang. Derfor anbefaler vi at sammenligne velkomstbonusser grundigt, før du vælger. Overvej hvilken bonustype der passer bedst til din spillestil: En ren matchbonus giver mest ekstra spillekapital, mens en velkomstbonus med free spins er ideel, hvis du elsker spilleautomater.

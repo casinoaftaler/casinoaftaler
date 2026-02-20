@@ -304,7 +304,7 @@ const SwiftCasinoAnmeldelse = () => {
               <CardContent>
                 <ul className="space-y-2">
                   {[
-                    "Maks. bonus på 500 kr. – lavere end bet365 (1.000 kr.) og Unibet (2.000 kr.)",
+                    "Maks. bonus på 500 kr. – lavere end bet365 (1.000 kr.) og Unibet (1.000 kr.)",
                     "Bonuskode SWIFT er påkrævet – nemt at glemme",
                     "Ingen sportsbetting tilgængelig",
                     "Min. udbetaling 200 kr. – højere end branchegennemsnittet (100 kr.)",
