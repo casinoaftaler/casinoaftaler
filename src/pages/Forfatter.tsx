@@ -652,7 +652,101 @@ export default function Forfatter() {
 
         <Separator className="my-10" />
 
-        {/* Bedste Highlights fra Jonas */}
+        {/* 🎬 YouTube guides af Jonas */}
+        <section className="mb-12">
+          <div className="mb-6 flex items-center gap-2">
+            <Play className="h-7 w-7 text-primary fill-primary" />
+            <h2 className="text-3xl font-bold">YouTube-guides af Jonas</h2>
+          </div>
+          <p className="mb-6 text-muted-foreground leading-relaxed">
+            Jonas har produceret en serie af undervisningsvideoer, der forklarer de vigtigste begreber inden for casino-bonusser. Klik på en video for at læse den fulde guide.
+          </p>
+          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+            {[
+              {
+                videoId: "WOowRz6hnH8",
+                title: "Hvad er en No-Sticky Bonus?",
+                path: "/no-sticky-bonus",
+                category: "Bonus",
+              },
+              {
+                videoId: "yUAcefgYfkc",
+                title: "Hvad er en Sticky Bonus?",
+                path: "/sticky-bonus",
+                category: "Bonus",
+              },
+              {
+                videoId: "q4jeGo9TPEk",
+                title: "Hvad er Free Spins?",
+                path: "/free-spins",
+                category: "Free Spins",
+              },
+              {
+                videoId: "3tXFTjmgdcE",
+                title: "Hvad er omsætningskrav?",
+                path: "/omsaetningskrav",
+                category: "Guide",
+              },
+              {
+                videoId: "oK5PvebkvGY",
+                title: "Hvad er en Velkomstbonus?",
+                path: "/velkomstbonus",
+                category: "Bonus",
+              },
+              {
+                videoId: "hMHHVA6vH0Y",
+                title: "Hvad er en Indskudsbonus?",
+                path: "/indskudsbonus",
+                category: "Bonus",
+              },
+              {
+                videoId: "7JQ3nFTasoQ",
+                title: "Hvad er bonus uden omsætningskrav?",
+                path: "/bonus-uden-omsaetningskrav",
+                category: "Bonus",
+              },
+              {
+                videoId: "XhbLda1HyOs",
+                title: "Hvad er bonus uden indbetaling?",
+                path: "/bonus-uden-indbetaling",
+                category: "Bonus",
+              },
+            ].map((video) => (
+              <Link
+                key={video.videoId}
+                to={video.path}
+                className="group flex flex-col overflow-hidden rounded-xl border border-border bg-card transition-all duration-200 hover:-translate-y-1 hover:shadow-lg hover:shadow-primary/10 hover:border-primary/30"
+              >
+                {/* Thumbnail */}
+                <div className="relative aspect-video w-full overflow-hidden bg-muted">
+                  <img
+                    src={`https://i.ytimg.com/vi/${video.videoId}/mqdefault.jpg`}
+                    alt={video.title}
+                    className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
+                    loading="lazy"
+                  />
+                  {/* Play overlay */}
+                  <div className="absolute inset-0 flex items-center justify-center bg-black/30 opacity-0 transition-opacity duration-200 group-hover:opacity-100">
+                    <div className="flex h-12 w-12 items-center justify-center rounded-full bg-primary/90 shadow-lg">
+                      <Play className="h-5 w-5 fill-primary-foreground text-primary-foreground ml-0.5" />
+                    </div>
+                  </div>
+                </div>
+                {/* Info */}
+                <div className="flex flex-1 flex-col gap-1.5 p-4">
+                  <Badge variant="secondary" className="w-fit text-xs">
+                    {video.category}
+                  </Badge>
+                  <h3 className="text-sm font-semibold leading-snug group-hover:text-primary transition-colors">
+                    {video.title}
+                  </h3>
+                </div>
+              </Link>
+            ))}
+          </div>
+        </section>
+
+        <Separator className="my-10" />
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
             <Play className="h-7 w-7 text-primary" />
