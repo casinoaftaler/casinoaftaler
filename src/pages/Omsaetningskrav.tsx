@@ -165,26 +165,6 @@ const Omsaetningskrav = () => {
             Hvad betyder omsætningskrav?
           </h2>
 
-          <YoutubeEmbed
-            videoId="3tXFTjmgdcE"
-            title="Hvad er omsætningskrav på danske casinoer?"
-            description="Vi forklarer hvad omsætningskrav (wagering requirements) er på danske casinoer, hvordan de beregnes, og hvilke strategier du kan bruge til at opfylde dem effektivt. Inkl. gennemgang af Danmarks lovkrav om max 10x."
-            uploadDate="2026-02-18"
-            contentUrl="https://casinoaftaler.dk/omsaetningskrav"
-          />
-
-          <div className="mb-6 rounded-lg border border-border bg-muted/30 p-5">
-            <h3 className="mb-2 text-lg font-semibold">
-              Her gennemgår vores streamer og forfatter Jonas, hvad omsætningskrav er
-            </h3>
-            <p className="text-muted-foreground leading-relaxed">
-              Jonas forklarer omsætningskrav fra bunden – hvad de betyder, hvordan du beregner dem, og hvilke strategier der hjælper dig til at opfylde dem effektivt. Videoen er del af vores samlede guide til{" "}
-              <Link to="/casino-bonus" className={linkClass}>casino bonusser</Link>,{" "}
-              <Link to="/no-sticky-bonus" className={linkClass}>no-sticky bonusser</Link> og{" "}
-              <Link to="/bonus-uden-omsaetningskrav" className={linkClass}>bonusser uden omsætningskrav</Link>.
-            </p>
-          </div>
-
           <p className="mb-4 text-muted-foreground leading-relaxed">
             Omsætningskrav – også kendt som gennemspilningskrav eller
             gennemspilskrav – refererer til det antal gange, en bonus
@@ -219,7 +199,7 @@ const Omsaetningskrav = () => {
             </Link>
             , der adskiller dine egne penge fra bonuspengene.
           </p>
-          <p className="text-muted-foreground leading-relaxed">
+          <p className="mb-8 text-muted-foreground leading-relaxed">
             Omsætningskrav er et centralt emne i vores{" "}
             <Link to="/casino-bonus" className="text-primary underline hover:text-primary/80">
               casino bonus oversigt
@@ -229,6 +209,26 @@ const Omsaetningskrav = () => {
               gratis spillehal
             </Link>.
           </p>
+
+          <YoutubeEmbed
+            videoId="3tXFTjmgdcE"
+            title="Hvad er omsætningskrav på danske casinoer?"
+            description="Vi forklarer hvad omsætningskrav (wagering requirements) er på danske casinoer, hvordan de beregnes, og hvilke strategier du kan bruge til at opfylde dem effektivt. Inkl. gennemgang af Danmarks lovkrav om max 10x."
+            uploadDate="2026-02-18"
+            contentUrl="https://casinoaftaler.dk/omsaetningskrav"
+          />
+
+          <div className="rounded-lg border border-border bg-muted/30 p-5">
+            <h3 className="mb-2 text-lg font-semibold">
+              Her gennemgår vores streamer og forfatter Jonas, hvad omsætningskrav er
+            </h3>
+            <p className="text-muted-foreground leading-relaxed">
+              Jonas forklarer omsætningskrav fra bunden – hvad de betyder, hvordan du beregner dem, og hvilke strategier der hjælper dig til at opfylde dem effektivt. Videoen er del af vores samlede guide til{" "}
+              <Link to="/casino-bonus" className={linkClass}>casino bonusser</Link>,{" "}
+              <Link to="/no-sticky-bonus" className={linkClass}>no-sticky bonusser</Link> og{" "}
+              <Link to="/bonus-uden-omsaetningskrav" className={linkClass}>bonusser uden omsætningskrav</Link>.
+            </p>
+          </div>
         </section>
 
         <InlineCasinoCards title="Casinoer med lave omsætningskrav" count={6} />

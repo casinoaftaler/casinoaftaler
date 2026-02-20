@@ -158,26 +158,6 @@ const Indskudsbonus = () => {
             Indskudsbonus i praksis: Et regneeksempel
           </h2>
 
-          <YoutubeEmbed
-            videoId="hMHHVA6vH0Y"
-            title="Hvad er en indskudsbonus på danske casinoer?"
-            description="Vi forklarer hvad en indskudsbonus (matchbonus) er på danske casinoer, hvordan den aktiveres, hvad omsætningskrav betyder for din reelle bonusværdi, og hvilke betingelser du skal kende til."
-            uploadDate="2026-02-18"
-            contentUrl="https://casinoaftaler.dk/indskudsbonus"
-          />
-
-          <div className="mb-6 rounded-lg border border-border bg-muted/30 p-5">
-            <h3 className="mb-2 text-lg font-semibold">
-              Her gennemgår vores streamer og forfatter Jonas, hvad en indskudsbonus er
-            </h3>
-            <p className="text-muted-foreground leading-relaxed">
-              Jonas forklarer indskudsbonussens mekanik med konkrete regneeksempler – hvad en 100% matchbonus faktisk er værd, og hvad du skal tjekke i vilkårene inden du aktiverer. Videoen supplerer vores guides om{" "}
-              <Link to="/velkomstbonus" className={linkClass}>velkomstbonus</Link>,{" "}
-              <Link to="/omsaetningskrav" className={linkClass}>omsætningskrav</Link> og{" "}
-              <Link to="/free-spins" className={linkClass}>free spins</Link>.
-            </p>
-          </div>
-
           <p className="mb-4 text-muted-foreground leading-relaxed">
             Med en indbetaling på 500 kr. og 100 % match får du 1.000 kr. at spille for – men hvad er bonussen reelt værd efter omsætningskravene? En indskudsbonus (også kaldet matchbonus) matcher din indbetaling med en procentdel og bruges ofte som{" "}
             <Link to="/velkomstbonus" className="text-primary underline hover:text-primary/80">
@@ -185,7 +165,7 @@ const Indskudsbonus = () => {
             </Link>{" "}
             til nye spillere, men tilbydes også som reload-tilbud til loyale kunder.
           </p>
-          <p className="text-muted-foreground leading-relaxed">
+          <p className="mb-8 text-muted-foreground leading-relaxed">
             En indskudsbonus kaldes også for en matchbonus, da den netop
             matcher en procentdel af din indbetaling. Det er en central del af vores samlede <Link to="/casino-bonus" className="text-primary underline hover:text-primary/80">casino bonus oversigt</Link>. Alle indskudsbonusser
             kommer med{" "}
@@ -204,6 +184,26 @@ const Indskudsbonus = () => {
             </Link>
             . Du kan også optjene ekstra bonus spins ved at deltage i vores <Link to="/community/rewards" className="text-primary underline hover:text-primary/80">rewards program</Link>.
           </p>
+
+          <YoutubeEmbed
+            videoId="hMHHVA6vH0Y"
+            title="Hvad er en indskudsbonus på danske casinoer?"
+            description="Vi forklarer hvad en indskudsbonus (matchbonus) er på danske casinoer, hvordan den aktiveres, hvad omsætningskrav betyder for din reelle bonusværdi, og hvilke betingelser du skal kende til."
+            uploadDate="2026-02-18"
+            contentUrl="https://casinoaftaler.dk/indskudsbonus"
+          />
+
+          <div className="rounded-lg border border-border bg-muted/30 p-5">
+            <h3 className="mb-2 text-lg font-semibold">
+              Her gennemgår vores streamer og forfatter Jonas, hvad en indskudsbonus er
+            </h3>
+            <p className="text-muted-foreground leading-relaxed">
+              Jonas forklarer indskudsbonussens mekanik med konkrete regneeksempler – hvad en 100% matchbonus faktisk er værd, og hvad du skal tjekke i vilkårene inden du aktiverer. Videoen supplerer vores guides om{" "}
+              <Link to="/velkomstbonus" className={linkClass}>velkomstbonus</Link>,{" "}
+              <Link to="/omsaetningskrav" className={linkClass}>omsætningskrav</Link> og{" "}
+              <Link to="/free-spins" className={linkClass}>free spins</Link>.
+            </p>
+          </div>
         </section>
 
         <InlineCasinoCards title="Bedste casinoer med indskudsbonus" count={6} />

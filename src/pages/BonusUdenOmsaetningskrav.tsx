@@ -168,6 +168,19 @@ const BonusUdenOmsaetningskrav = () => {
             Anatomien af en bonus uden omsætningskrav
           </h2>
 
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            En bonus uden omsætningskrav – også kaldet omsætningsfri bonus eller "wager-free bonus" – er den mest spillervenlige bonustype på markedet. Mekanikken er enkel: du modtager bonusmidler, og alle gevinster fra disse midler kan hæves direkte. Der er ingen gennemspilningskrav, ingen omsætningsformler, ingen "x gange bonus"-beregninger. Gevinsten er din fra det øjeblik den rammer din konto.
+          </p>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            Men "uden omsætningskrav" betyder ikke "uden vilkår". Teknisk set erstatter casinoet omsætningskravet med andre kontrolmekanismer – primært gevinstloftet, som fungerer som en øvre grænse for din potentielle udbetaling. Det er denne mekanisme der gør bonussen økonomisk bæredygtig for casinoet: de risikerer aldrig mere end gevinstloftet per spiller.
+          </p>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            Sammenlign med en traditionel bonus med <Link to="/omsaetningskrav" className={linkClass}>omsætningskrav</Link>: her reducerer gennemspilningen din EV gradvist (hvert spin under omsætning koster dig statistisk penge via house edge). Ved en omsætningsfri bonus sker denne reduktion ikke – men gevinstloftet begrænser opsiden i stedet. Det er to fundamentalt forskellige risikostyringsmodeller, og forståelsen af denne forskel er nøglen til at vælge den rigtige bonustype.
+          </p>
+          <p className="mb-8 text-muted-foreground leading-relaxed">
+            Forskellen til en <Link to="/bonus-uden-indbetaling" className={linkClass}>bonus uden indbetaling</Link> er vigtig: en no deposit bonus kan godt have omsætningskrav (og har det typisk). En omsætningsfri bonus kræver derimod næsten altid en indbetaling. De to egenskaber (ingen indbetaling vs. ingen omsætning) er uafhængige – og de sjældne bonusser der kombinerer begge er de mest værdifulde på markedet.
+          </p>
+
           <YoutubeEmbed
             videoId="7JQ3nFTasoQ"
             title="Hvad er en bonus uden omsætningskrav?"
@@ -176,7 +189,7 @@ const BonusUdenOmsaetningskrav = () => {
             contentUrl="https://casinoaftaler.dk/bonus-uden-omsaetningskrav"
           />
 
-          <div className="mb-6 rounded-lg border border-border bg-muted/30 p-5">
+          <div className="rounded-lg border border-border bg-muted/30 p-5">
             <h3 className="mb-2 text-lg font-semibold">
               Her gennemgår vores streamer og forfatter Jonas, hvad en bonus uden omsætningskrav er
             </h3>
@@ -187,19 +200,6 @@ const BonusUdenOmsaetningskrav = () => {
               <Link to="/casino-bonus" className={linkClass}>casino bonus</Link>.
             </p>
           </div>
-
-          <p className="mb-4 text-muted-foreground leading-relaxed">
-            En bonus uden omsætningskrav – også kaldet omsætningsfri bonus eller "wager-free bonus" – er den mest spillervenlige bonustype på markedet. Mekanikken er enkel: du modtager bonusmidler, og alle gevinster fra disse midler kan hæves direkte. Der er ingen gennemspilningskrav, ingen omsætningsformler, ingen "x gange bonus"-beregninger. Gevinsten er din fra det øjeblik den rammer din konto.
-          </p>
-          <p className="mb-4 text-muted-foreground leading-relaxed">
-            Men "uden omsætningskrav" betyder ikke "uden vilkår". Teknisk set erstatter casinoet omsætningskravet med andre kontrolmekanismer – primært gevinstloftet, som fungerer som en øvre grænse for din potentielle udbetaling. Det er denne mekanisme der gør bonussen økonomisk bæredygtig for casinoet: de risikerer aldrig mere end gevinstloftet per spiller.
-          </p>
-          <p className="mb-4 text-muted-foreground leading-relaxed">
-            Sammenlign med en traditionel bonus med <Link to="/omsaetningskrav" className={linkClass}>omsætningskrav</Link>: her reducerer gennemspilningen din EV gradvist (hvert spin under omsætning koster dig statistisk penge via house edge). Ved en omsætningsfri bonus sker denne reduktion ikke – men gevinstloftet begrænser opsiden i stedet. Det er to fundamentalt forskellige risikostyringsmodeller, og forståelsen af denne forskel er nøglen til at vælge den rigtige bonustype.
-          </p>
-          <p className="text-muted-foreground leading-relaxed">
-            Forskellen til en <Link to="/bonus-uden-indbetaling" className={linkClass}>bonus uden indbetaling</Link> er vigtig: en no deposit bonus kan godt have omsætningskrav (og har det typisk). En omsætningsfri bonus kræver derimod næsten altid en indbetaling. De to egenskaber (ingen indbetaling vs. ingen omsætning) er uafhængige – og de sjældne bonusser der kombinerer begge er de mest værdifulde på markedet.
-          </p>
         </section>
 
         <InlineCasinoCards title="Casinoer med omsætningsfrie bonusser" count={6} />

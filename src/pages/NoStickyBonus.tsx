@@ -164,26 +164,6 @@ const NoStickyBonus = () => {
             Hvorfor No-Sticky er den eneste bonustype, der respekterer din bankroll
           </h2>
 
-          <YoutubeEmbed
-            videoId="yUAcefgYfkc"
-            title="Hvad er en No-Sticky Bonus på danske casinoer?"
-            description="Vi forklarer præcis hvad en no-sticky bonus er, hvordan adskillelsen af penge fungerer, og hvorfor det er den mest spillervenlige bonustype på det danske marked."
-            uploadDate="2026-02-18"
-            contentUrl="https://casinoaftaler.dk/no-sticky-bonus"
-          />
-
-          <div className="mb-6 rounded-lg border border-border bg-muted/30 p-5">
-            <h3 className="mb-2 text-lg font-semibold">
-              Her gennemgår vores streamer og forfatter Jonas, hvad en no-sticky bonus er
-            </h3>
-            <p className="text-muted-foreground leading-relaxed">
-              Jonas forklarer præcis hvad en no-sticky bonus er, og hvordan den tekniske adskillelse af din indbetaling og bonusmidler fungerer. Videoen er en del af vores dybdegående indhold om{" "}
-              <Link to="/casino-bonus" className={linkClass}>casino bonusser</Link>,{" "}
-              <Link to="/omsaetningskrav" className={linkClass}>omsætningskrav</Link> og{" "}
-              <Link to="/bonus-uden-omsaetningskrav" className={linkClass}>bonusser uden omsætningskrav</Link>.
-            </p>
-          </div>
-
           <p className="mb-4 text-muted-foreground leading-relaxed">
             I et marked fyldt med bonusser, der lover meget men leverer lidt, står No-Sticky Bonussen i en klasse for sig. Det er den eneste bonustype, der giver dig fuldstændig frihed til at hæve gevinster vundet med dine egne penge – uden at skulle opfylde et eneste{" "}
             <Link to="/omsaetningskrav" className={linkClass}>omsætningskrav</Link> først. Denne frihed er ikke bare et markedsføringsgreb – den har konkret matematisk værdi, som vi dokumenterer i denne analyse.
@@ -195,12 +175,32 @@ const NoStickyBonus = () => {
           <p className="mb-4 text-muted-foreground leading-relaxed">
             Men "spillervenlig" er ikke det samme som "uden betingelser". No-Sticky Bonusser har stadig omsætningskrav på bonusdelen, gevinstlofter, tidsbegrænsninger og spilbidragsregler. Forskellen er, at disse begrænsninger kun rammer dig, hvis du har mistet din egen indbetaling – de forhindrer dig aldrig i at hæve gevinster vundet med dine egne penge. Denne asymmetri er fundamentet for hele bonustypens matematiske fordel.
           </p>
-          <p className="text-muted-foreground leading-relaxed">
+          <p className="mb-8 text-muted-foreground leading-relaxed">
             No-Sticky er en central kategori i vores{" "}
             <Link to="/casino-bonus" className={linkClass}>casino bonus oversigt</Link>, hvor vi sammenligner alle bonustyper side om side. For at forstå den fulde kontekst anbefaler vi også at læse om{" "}
             <Link to="/velkomstbonus" className={linkClass}>velkomstbonusser</Link> og{" "}
             <Link to="/bonus-uden-omsaetningskrav" className={linkClass}>bonusser uden omsætningskrav</Link>, som udgør No-Sticky-bonussens nærmeste alternativer.
           </p>
+
+          <YoutubeEmbed
+            videoId="yUAcefgYfkc"
+            title="Hvad er en No-Sticky Bonus på danske casinoer?"
+            description="Vi forklarer præcis hvad en no-sticky bonus er, hvordan adskillelsen af penge fungerer, og hvorfor det er den mest spillervenlige bonustype på det danske marked."
+            uploadDate="2026-02-18"
+            contentUrl="https://casinoaftaler.dk/no-sticky-bonus"
+          />
+
+          <div className="rounded-lg border border-border bg-muted/30 p-5">
+            <h3 className="mb-2 text-lg font-semibold">
+              Her gennemgår vores streamer og forfatter Jonas, hvad en no-sticky bonus er
+            </h3>
+            <p className="text-muted-foreground leading-relaxed">
+              Jonas forklarer præcis hvad en no-sticky bonus er, og hvordan den tekniske adskillelse af din indbetaling og bonusmidler fungerer. Videoen er en del af vores dybdegående indhold om{" "}
+              <Link to="/casino-bonus" className={linkClass}>casino bonusser</Link>,{" "}
+              <Link to="/omsaetningskrav" className={linkClass}>omsætningskrav</Link> og{" "}
+              <Link to="/bonus-uden-omsaetningskrav" className={linkClass}>bonusser uden omsætningskrav</Link>.
+            </p>
+          </div>
         </section>
 
         <InlineCasinoCards title="Bedste casinoer med No-Sticky Bonus" count={6} />
