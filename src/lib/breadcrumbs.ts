@@ -200,6 +200,13 @@ export const EXCLUDED_PREFIXES = [
 const PARENT_OVERRIDES: Record<string, { name: string; path: string }[]> = {
   "/licenserede-casinoer": [{ name: "Casinoer", path: "/casinoer" }],
 
+  // Casinoer cluster – orphan pages bound to /casinoer hub
+  "/casino-licenser": [{ name: "Casinoer", path: "/casinoer" }],
+  "/spillemyndigheden": [{ name: "Casinoer", path: "/casinoer" }],
+
+  // Top-10 bound to casino-anmeldelser hub
+  "/top-10-casino-online": [{ name: "Casino Anmeldelser", path: "/casino-anmeldelser" }],
+
   // Bonus cluster – all bound to /casino-bonus hub
   "/free-spins": [{ name: "Casino Bonus", path: "/casino-bonus" }],
   "/velkomstbonus": [{ name: "Casino Bonus", path: "/casino-bonus" }],

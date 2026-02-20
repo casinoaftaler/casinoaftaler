@@ -161,16 +161,17 @@ export const seoRoutes: SeoRoute[] = [
   { path: "/betalingsmetoder/revolut", changefreq: "monthly", priority: 0.7, lastmod: "2026-02-11" },
 
   // ── Casino Guides ──
-  { path: "/casinoer", changefreq: "weekly", priority: 0.8, lastmod: "2026-02-20" },
-  { path: "/casinoer/hurtig-udbetaling", changefreq: "weekly", priority: 0.9, lastmod: "2026-02-15" },
-  { path: "/casinoer/hoej-rtp", changefreq: "weekly", priority: 0.9, lastmod: "2026-02-15" },
-  { path: "/casinoer/crypto-casino", changefreq: "weekly", priority: 0.9, lastmod: "2026-02-15" },
-  { path: "/licenserede-casinoer", changefreq: "weekly", priority: 0.9, lastmod: "2026-02-15" },
-  { path: "/casino-licenser", changefreq: "monthly", priority: 0.9, lastmod: "2026-02-17" },
-  { path: "/casinoer/vr-casinoer", changefreq: "weekly", priority: 0.9, lastmod: "2026-02-15" },
-  { path: "/casinoer/mobil-casinoer", changefreq: "weekly", priority: 0.9, lastmod: "2026-02-15" },
-  { path: "/casinoer/spil-casino-for-sjov", changefreq: "weekly", priority: 0.9, lastmod: "2026-02-15" },
-  { path: "/casinoer/casino-og-skat", changefreq: "weekly", priority: 0.9, lastmod: "2026-02-15" },
+  // Hub is 0.9 – all spokes capped at 0.8 to maintain strict crawl hierarchy
+  { path: "/casinoer", changefreq: "weekly", priority: 0.9, lastmod: "2026-02-20" },
+  { path: "/casinoer/hurtig-udbetaling", changefreq: "weekly", priority: 0.8, lastmod: "2026-02-15" },
+  { path: "/casinoer/hoej-rtp", changefreq: "weekly", priority: 0.8, lastmod: "2026-02-15" },
+  { path: "/casinoer/crypto-casino", changefreq: "weekly", priority: 0.8, lastmod: "2026-02-15" },
+  { path: "/licenserede-casinoer", changefreq: "weekly", priority: 0.8, lastmod: "2026-02-15" },
+  { path: "/casino-licenser", changefreq: "monthly", priority: 0.8, lastmod: "2026-02-17" },
+  { path: "/casinoer/vr-casinoer", changefreq: "weekly", priority: 0.8, lastmod: "2026-02-15" },
+  { path: "/casinoer/mobil-casinoer", changefreq: "weekly", priority: 0.8, lastmod: "2026-02-15" },
+  { path: "/casinoer/spil-casino-for-sjov", changefreq: "weekly", priority: 0.8, lastmod: "2026-02-15" },
+  { path: "/casinoer/casino-og-skat", changefreq: "weekly", priority: 0.8, lastmod: "2026-02-15" },
 
   // ── Community & Highlights ──
   { path: "/community", changefreq: "daily", priority: 0.6, lastmod: "2026-02-20" },
