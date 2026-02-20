@@ -714,7 +714,7 @@ const SwiftCasinoAnmeldelse = () => {
           </p>
           <div className="space-y-4">
             {[
-              { title: "Spillere der vil have en høj velkomstbonus", desc: "Maks. 500 kr. i bonus er lavt sammenlignet med bet365 (1.000 kr.) og Unibet (2.000 kr.). Hvis bonusmaksimum er din primære beslutningsfaktor, bør du kigge andetsteds." },
+              { title: "Spillere der vil have en høj velkomstbonus", desc: "Maks. 500 kr. i bonus er lavt sammenlignet med de fleste konkurrenter der alle maksimalt tilbyder 1.000 kr. (dansk lovmæssigt loft). Hvis bonusmaksimum er din primære beslutningsfaktor, bør du kigge andetsteds." },
               { title: "Spillere der foretrækker kuratering over bredde", desc: "3.300+ spil kan føles overvældende. Hvis du foretrækker et nøje udvalgt katalog med kun premium-titler, er søstercasinoet Luna Casino et bedre valg." },
               { title: "Sportsbettere", desc: "Swift Casino er udelukkende et casino. For kombineret casino og sportsbetting, overvej bet365, Betinia eller Unibet." },
               { title: "High-rollers med store bonusbehov", desc: "Med 500 kr. maks. bonus og 200 kr. minimumsudbetaling er Swift Casino designet til casual og mid-range spillere. High-rollers finder bedre vilkår hos bet365 eller Unibet." },
