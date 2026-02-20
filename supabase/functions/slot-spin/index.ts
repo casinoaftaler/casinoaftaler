@@ -161,11 +161,15 @@ function pickGatesMultiplierValue(): number {
   return GATES_MULTIPLIER_VALUES[0];
 }
 
-function generateGatesMultiplierOrbs(grid: string[][], isBonusSpin: boolean): GatesMultiplierOrb[] {
+function generateGatesMultiplierOrbs(grid: string[][], isBonusSpin: boolean, symbols: SlotSymbol[]): GatesMultiplierOrb[] {
   const chance = isBonusSpin ? GATES_MULTIPLIER_CHANCE_BONUS : GATES_MULTIPLIER_CHANCE_BASE;
+  const scatterSymbol = symbols.find(s => s.is_scatter);
+  const scatterId = scatterSymbol?.id;
   const orbs: GatesMultiplierOrb[] = [];
   for (let col = 0; col < GATES_COLS; col++) {
     for (let row = 0; row < GATES_ROWS; row++) {
+      // Never place multiplier orbs on scatter positions
+      if (scatterId && grid[col][row] === scatterId) continue;
       if (secureRandom() < chance) {
         orbs.push({
           position: col * GATES_ROWS + row,
@@ -283,7 +287,6 @@ function calculateGatesFullSpin(
   
   while (maxTumbles-- > 0) {
     const wins = calculateGatesWins(grid, symbols, betAmount);
-    const orbs = generateGatesMultiplierOrbs(grid, isBonusSpin);
     
     // Collect all winning positions
     const winningPositions = new Set<number>();
@@ -293,9 +296,13 @@ function calculateGatesFullSpin(
     
     const stepWin = wins.reduce((sum, w) => sum + w.payout, 0);
     
-    // Sum multiplier orbs
-    const orbMultiplierSum = orbs.reduce((sum, o) => sum + o.value, 0);
-    totalMultiplier += orbMultiplierSum;
+    // Only generate multiplier orbs on winning tumble steps
+    let orbs: GatesMultiplierOrb[] = [];
+    if (wins.length > 0) {
+      orbs = generateGatesMultiplierOrbs(grid, isBonusSpin, symbols);
+      const orbMultiplierSum = orbs.reduce((sum, o) => sum + o.value, 0);
+      totalMultiplier += orbMultiplierSum;
+    }
     
     tumbleSteps.push({
       grid: grid.map(col => [...col]),

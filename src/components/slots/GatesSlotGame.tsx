@@ -56,6 +56,7 @@ export function GatesSlotGame({ gameId = "gates-of-fedesvin" }: GatesSlotGamePro
   const serverResultRef = useRef<any>(null);
   const [cellAnimStates, setCellAnimStates] = useState<Map<number, CellAnimState>>(new Map());
   const [runningWin, setRunningWin] = useState(0);
+  const [runningMultiplier, setRunningMultiplier] = useState(0);
   
   // Bonus state
   const [isBonusActive, setIsBonusActive] = useState(false);
@@ -131,6 +132,12 @@ export function GatesSlotGame({ gameId = "gates-of-fedesvin" }: GatesSlotGamePro
         
         // Increment running win counter
         setRunningWin(prev => prev + step.stepWin);
+        
+        // Accumulate multiplier orbs
+        if (step.multiplierOrbs.length > 0) {
+          const orbSum = step.multiplierOrbs.reduce((sum, o) => sum + o.value, 0);
+          setRunningMultiplier(prev => prev + orbSum);
+        }
         
         // Mark winning cells
         const winAnims = new Map<number, CellAnimState>();
@@ -220,6 +227,7 @@ export function GatesSlotGame({ gameId = "gates-of-fedesvin" }: GatesSlotGamePro
     setTumblePhase('spinning');
     setWinAmount(0);
     setRunningWin(0);
+    setRunningMultiplier(0);
     setIsWinAnimating(false);
     setWinningPositions(new Set());
     setMultiplierOrbs([]);
@@ -475,11 +483,16 @@ export function GatesSlotGame({ gameId = "gates-of-fedesvin" }: GatesSlotGamePro
       {/* Running win counter during tumbles */}
       {runningWin > 0 && tumblePhase !== 'idle' && (
         <div className={cn(
-          "px-6 py-2 rounded-full border font-bold text-lg gates-multiplier-bump",
+          "flex items-center gap-3 px-6 py-2 rounded-full border font-bold text-lg gates-multiplier-bump",
           "bg-gradient-to-r from-yellow-900/80 to-amber-950/80",
           "border-yellow-500/50 text-yellow-100 animate-pulse"
         )}>
-          GEVINST: {runningWin.toLocaleString()} POINT
+          <span>GEVINST: {runningWin.toLocaleString()} POINT</span>
+          {runningMultiplier > 0 && (
+            <span className="text-blue-300 border-l border-yellow-500/30 pl-3">
+              MULTIPLIER: x{runningMultiplier}
+            </span>
+          )}
         </div>
       )}
 
@@ -489,11 +502,11 @@ export function GatesSlotGame({ gameId = "gates-of-fedesvin" }: GatesSlotGamePro
           "px-6 py-2 rounded-full border font-bold text-lg",
           "bg-gradient-to-r from-blue-900/80 to-blue-950/80",
           "border-blue-500/40 text-blue-100",
-          totalMultiplier > 1 && "border-yellow-500/50"
+          runningMultiplier > 0 && "border-yellow-500/50"
         )}>
           GEVINST: {winAmount.toLocaleString()} POINT
-          {totalMultiplier > 1 && (
-            <span className="text-yellow-400 ml-2">(x{totalMultiplier})</span>
+          {runningMultiplier > 0 && (
+            <span className="text-yellow-400 ml-2">(x{runningMultiplier})</span>
           )}
         </div>
       )}
