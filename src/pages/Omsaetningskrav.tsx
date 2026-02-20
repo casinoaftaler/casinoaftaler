@@ -223,7 +223,7 @@ const Omsaetningskrav = () => {
               Her gennemgår vores streamer og forfatter Jonas, hvad omsætningskrav er
             </h3>
             <p className="text-muted-foreground leading-relaxed">
-              Jonas forklarer omsætningskrav fra bunden – hvad de betyder, hvordan du beregner dem, og hvilke strategier der hjælper dig til at opfylde dem effektivt. Videoen er del af vores samlede guide til{" "}
+              <Link to="/forfatter/jonas" className={linkClass}>Jonas</Link> forklarer omsætningskrav fra bunden – hvad de betyder, hvordan du beregner dem, og hvilke strategier der hjælper dig til at opfylde dem effektivt. Videoen er del af vores samlede guide til{" "}
               <Link to="/casino-bonus" className={linkClass}>casino bonusser</Link>,{" "}
               <Link to="/no-sticky-bonus" className={linkClass}>no-sticky bonusser</Link> og{" "}
               <Link to="/bonus-uden-omsaetningskrav" className={linkClass}>bonusser uden omsætningskrav</Link>.

@@ -194,7 +194,7 @@ const BonusUdenOmsaetningskrav = () => {
               Her gennemgår vores streamer og forfatter Jonas, hvad en bonus uden omsætningskrav er
             </h3>
             <p className="text-muted-foreground leading-relaxed">
-              Jonas gennemgår den omsætningsfrie bonus fra bunden – mekanikken bag 100% gevinstkonvertering, hvad gevinstloftet reelt betyder for din EV, og hvornår det er bedre end en traditionel bonus. Videoen er del af vores bonusunivers med guides om{" "}
+              <Link to="/forfatter/jonas" className={linkClass}>Jonas</Link> gennemgår den omsætningsfrie bonus fra bunden – mekanikken bag 100% gevinstkonvertering, hvad gevinstloftet reelt betyder for din EV, og hvornår det er bedre end en traditionel bonus. Videoen er del af vores bonusunivers med guides om{" "}
               <Link to="/no-sticky-bonus" className={linkClass}>no-sticky bonus</Link>,{" "}
               <Link to="/omsaetningskrav" className={linkClass}>omsætningskrav</Link> og{" "}
               <Link to="/casino-bonus" className={linkClass}>casino bonus</Link>.
