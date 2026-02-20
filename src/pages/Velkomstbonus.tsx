@@ -132,11 +132,11 @@ const Velkomstbonus = () => {
     "@type": "Article",
     headline: "Velkomstbonus – Komplet Guide til Casino Velkomstbonusser 2026",
     description: "Alt du skal vide om velkomstbonusser på danske casinoer. Typer, omsætningskrav og tips.",
-    author: { "@type": "Organization", name: "Casinoaftaler" },
-    publisher: { "@type": "Organization", name: "Casinoaftaler" },
+    author: { "@type": "Person", name: "Jonas", url: "https://casinoaftaler.dk/forfatter/jonas" },
+    publisher: { "@type": "Organization", name: "Casinoaftaler.dk", url: "https://casinoaftaler.dk", logo: { "@type": "ImageObject", url: "https://casinoaftaler.dk/favicon-48x48.png", width: 192, height: 192 } },
     datePublished: "2025-06-01",
-    dateModified: "2026-02-11",
-    mainEntityOfPage: "https://casinoaftaler.dk/velkomstbonus",
+    dateModified: "2026-02-20",
+    mainEntityOfPage: { "@type": "WebPage", "@id": "https://casinoaftaler.dk/velkomstbonus" },
   };
 
   return (

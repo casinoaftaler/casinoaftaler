@@ -104,11 +104,11 @@ const StickyBonus = () => {
     "@type": "Article",
     headline: "Sticky Bonus – Komplet Guide til Klæbende Bonusser 2026",
     description: "Alt om Sticky Bonusser hos danske casinoer. Forstå hvordan de fungerer, betingelser, fordele og ulemper.",
-    author: { "@type": "Organization", name: "Casinoaftaler" },
-    publisher: { "@type": "Organization", name: "Casinoaftaler" },
+    author: { "@type": "Person", name: "Jonas", url: "https://casinoaftaler.dk/forfatter/jonas" },
+    publisher: { "@type": "Organization", name: "Casinoaftaler.dk", url: "https://casinoaftaler.dk", logo: { "@type": "ImageObject", url: "https://casinoaftaler.dk/favicon-48x48.png", width: 192, height: 192 } },
     datePublished: "2025-06-01",
-    dateModified: "2026-02-11",
-    mainEntityOfPage: "https://casinoaftaler.dk/sticky-bonus",
+    dateModified: "2026-02-20",
+    mainEntityOfPage: { "@type": "WebPage", "@id": "https://casinoaftaler.dk/sticky-bonus" },
   };
 
   return (
