@@ -105,8 +105,8 @@ const GATES_FREE_SPINS_RETRIGGER = 5;
 
 const GATES_MULTIPLIER_VALUES = [2, 3, 5, 10, 15, 25, 50, 100, 250, 500];
 const GATES_MULTIPLIER_WEIGHTS = [30, 25, 20, 12, 6, 3, 2, 1, 0.7, 0.3];
-const GATES_MULTIPLIER_CHANCE_BASE = 0.08;
-const GATES_MULTIPLIER_CHANCE_BONUS = 0.12;
+const GATES_MULTIPLIER_CHANCE_BASE = 0.04;  // Very low in base game
+const GATES_MULTIPLIER_CHANCE_BONUS = 0.14; // Noticeably higher in free spins
 
 interface GatesWin {
   symbolId: string;
