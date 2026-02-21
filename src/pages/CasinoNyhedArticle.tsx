@@ -1,10 +1,12 @@
+import { useMemo } from "react";
 import { useParams, Link, Navigate } from "react-router-dom";
 import { SEO } from "@/components/SEO";
 
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { AuthorBio } from "@/components/AuthorBio";
+import { FAQSection } from "@/components/FAQSection";
 import { useNewsArticle, usePublishedNews } from "@/hooks/useCasinoNews";
-import { SITE_URL } from "@/lib/seo";
+import { SITE_URL, buildFaqSchema } from "@/lib/seo";
 import { CalendarDays, Loader2, Newspaper } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
@@ -18,6 +20,37 @@ const CasinoNyhedArticle = () => {
   const relatedArticles = (latestNews?.articles ?? [])
     .filter((a) => a.slug !== slug)
     .slice(0, 3);
+
+  // Extract FAQ from HTML content and split into structured data + clean content
+  const { contentWithoutFaq, faqs } = useMemo(() => {
+    if (!article?.content) return { contentWithoutFaq: "", faqs: [] };
+
+    const html = article.content;
+    // Find the FAQ heading and everything after it
+    const faqHeadingRegex = /<h2[^>]*>\s*FAQ\s*<\/h2>/i;
+    const match = html.match(faqHeadingRegex);
+
+    if (!match || match.index === undefined) {
+      return { contentWithoutFaq: html, faqs: [] };
+    }
+
+    const beforeFaq = html.slice(0, match.index);
+    const faqHtml = html.slice(match.index + match[0].length);
+
+    // Parse Q&A pairs from <p><strong>Question</strong><br/>Answer</p> pattern
+    const parsedFaqs: { question: string; answer: string }[] = [];
+    const pRegex = /<p>\s*<strong>(.*?)<\/strong>\s*<br\s*\/?>\s*([\s\S]*?)<\/p>/gi;
+    let pMatch;
+    while ((pMatch = pRegex.exec(faqHtml)) !== null) {
+      const question = pMatch[1].replace(/<[^>]*>/g, "").trim();
+      const answer = pMatch[2].replace(/<[^>]*>/g, "").trim();
+      if (question && answer) {
+        parsedFaqs.push({ question, answer });
+      }
+    }
+
+    return { contentWithoutFaq: beforeFaq, faqs: parsedFaqs };
+  }, [article?.content]);
 
   if (isLoading) {
     return (
@@ -93,6 +126,10 @@ const CasinoNyhedArticle = () => {
     ],
   };
 
+  // Build FAQ schema if FAQs exist
+  const faqJsonLd = faqs.length > 0 ? buildFaqSchema(faqs) : null;
+  const jsonLdSchemas = faqJsonLd ? [newsArticleSchema, faqJsonLd] : newsArticleSchema;
+
   return (
     <>
       <SEO
@@ -101,7 +138,7 @@ const CasinoNyhedArticle = () => {
         type="article"
         image={article.featured_image || undefined}
         noindex={article.status === "draft"}
-        jsonLd={newsArticleSchema}
+        jsonLd={jsonLdSchemas}
         breadcrumbLabel={article.title}
       />
 
@@ -153,11 +190,19 @@ const CasinoNyhedArticle = () => {
           </div>
         )}
 
-        {/* Article Content - render HTML content */}
+        {/* Article Content - render HTML content (without FAQ) */}
         <section
           className="prose prose-lg dark:prose-invert max-w-none mb-12 [&>h2]:text-3xl [&>h2]:font-bold [&>h2]:mt-12 [&>h2]:mb-4 [&>h3]:text-2xl [&>h3]:font-bold [&>h3]:mt-10 [&>h3]:mb-3 [&>p]:mb-5 [&>p]:leading-relaxed [&>p]:text-muted-foreground [&>ul]:mb-5 [&>ol]:mb-5 [&>h2:first-of-type]:mt-0"
-          dangerouslySetInnerHTML={{ __html: article.content }}
+          dangerouslySetInnerHTML={{ __html: contentWithoutFaq }}
         />
+
+        {/* Structured FAQ Accordion */}
+        {faqs.length > 0 && (
+          <FAQSection
+            title="Ofte Stillede Spørgsmål"
+            faqs={faqs}
+          />
+        )}
 
         <Separator className="my-8" />
 
