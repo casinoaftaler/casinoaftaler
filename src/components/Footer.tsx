@@ -315,6 +315,12 @@ export function Footer() {
                   Om Casinoaftaler.dk
                 </Link>
               </li>
+              <li>
+                <Link to="/kontakt" className="flex items-center gap-2 text-muted-foreground transition-colors hover:text-foreground">
+                  <ExternalLink className="h-4 w-4" />
+                  Kontakt
+                </Link>
+              </li>
             </ul>
           </div>
 
