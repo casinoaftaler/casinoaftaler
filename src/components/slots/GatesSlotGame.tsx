@@ -17,6 +17,7 @@ import {
   GATES_COLS, GATES_ROWS, generateGatesDisplayGrid,
   flatToColRow, type GatesWin, type MultiplierOrb, type TumbleStep,
 } from "@/lib/gatesGameLogic";
+import { isMultiplierSymbol, getMultiplierValue } from "@/lib/gatesMultiplierSymbols";
 import type { SlotSymbol } from "@/lib/slotGameLogic";
 import { GatesColumn, type ColumnSpinState, type CellAnimState } from "./GatesColumn";
 import { AnimatedWinCounter } from "./AnimatedWinCounter";
@@ -47,7 +48,7 @@ export function GatesSlotGame({ gameId = "gates-of-fedesvin" }: GatesSlotGamePro
   const [winAmount, setWinAmount] = useState(0);
   const [isWinAnimating, setIsWinAnimating] = useState(false);
   const [winningPositions, setWinningPositions] = useState<Set<number>>(new Set());
-  const [multiplierOrbs, setMultiplierOrbs] = useState<MultiplierOrb[]>([]);
+  const [multiplierOrbs, setMultiplierOrbs] = useState<MultiplierOrb[]>([]); // kept for type compat
   const [totalMultiplier, setTotalMultiplier] = useState(0);
   const [tumblePhase, setTumblePhase] = useState<'idle' | 'spinning' | 'showing-wins' | 'tumbling'>('idle');
   const [currentTumbleStep, setCurrentTumbleStep] = useState(0);
@@ -160,12 +161,11 @@ export function GatesSlotGame({ gameId = "gates-of-fedesvin" }: GatesSlotGamePro
         setTumblePhase('showing-wins');
         const winPositions = new Set(step.winningPositions);
         setWinningPositions(winPositions);
-        setMultiplierOrbs(step.multiplierOrbs);
         
         // Increment running win counter
         setRunningWin(prev => prev + step.stepWin);
         
-        // Accumulate multiplier orbs + trigger screen shake on big multipliers
+        // Accumulate multiplier orbs (now read from grid) + trigger screen shake
         if (step.multiplierOrbs.length > 0) {
           const orbSum = step.multiplierOrbs.reduce((sum, o) => sum + o.value, 0);
           setRunningMultiplier(prev => prev + orbSum);
@@ -184,10 +184,14 @@ export function GatesSlotGame({ gameId = "gates-of-fedesvin" }: GatesSlotGamePro
           }
         }
         
-        // Mark winning cells
+        // Mark winning cells + multiplier cells for highlight
         const winAnims = new Map<number, CellAnimState>();
         for (const pos of step.winningPositions) {
           winAnims.set(pos, 'winning');
+        }
+        // Also highlight multiplier symbols being collected
+        for (const orb of step.multiplierOrbs) {
+          winAnims.set(orb.position, 'winning');
         }
         setCellAnimStates(winAnims);
         
@@ -195,10 +199,15 @@ export function GatesSlotGame({ gameId = "gates-of-fedesvin" }: GatesSlotGamePro
         const holdTime = isSlowMotion ? 1400 : 1000;
         await new Promise(r => setTimeout(r, holdTime));
         
-        // 2. Remove winning symbols with fade/pop animation
+        // 2. Remove winning symbols AND collected multipliers with fade/pop animation
         setTumblePhase('tumbling');
         const removeAnims = new Map<number, CellAnimState>();
-        for (const pos of step.winningPositions) {
+        // All positions being removed (winning + collected multipliers)
+        const allRemovedPositions = new Set(step.winningPositions);
+        for (const orb of step.multiplierOrbs) {
+          allRemovedPositions.add(orb.position);
+        }
+        for (const pos of allRemovedPositions) {
           removeAnims.set(pos, 'removing');
         }
         setCellAnimStates(removeAnims);
@@ -220,7 +229,7 @@ export function GatesSlotGame({ gameId = "gates-of-fedesvin" }: GatesSlotGamePro
             let removedInCol = 0;
             for (let row = 0; row < GATES_ROWS; row++) {
               const flat = col * GATES_ROWS + row;
-              if (step.winningPositions.includes(flat)) {
+              if (allRemovedPositions.has(flat)) {
                 removedInCol++;
               }
             }
@@ -251,7 +260,7 @@ export function GatesSlotGame({ gameId = "gates-of-fedesvin" }: GatesSlotGamePro
         setCellAnimStates(new Map());
         setCellDropOffsets(new Map());
       } else {
-        setMultiplierOrbs(step.multiplierOrbs);
+        // No win - multipliers persist on grid (no action needed, they're in the grid data)
         await new Promise(r => setTimeout(r, 300));
       }
     }
@@ -516,7 +525,6 @@ export function GatesSlotGame({ gameId = "gates-of-fedesvin" }: GatesSlotGamePro
         >
           {Array.from({ length: GATES_COLS }).map((_, col) => {
             const colSymbolIds = grid ? grid[col] || [] : [];
-            const orbFinder = (flatIndex: number) => multiplierOrbs.find(o => o.position === flatIndex);
 
             return (
               <GatesColumn
@@ -529,7 +537,6 @@ export function GatesSlotGame({ gameId = "gates-of-fedesvin" }: GatesSlotGamePro
                 winningPositions={winningPositions}
                 cellAnimStates={cellAnimStates}
                 cellDropOffsets={cellDropOffsets}
-                multiplierOrbAt={orbFinder}
                 tumblePhase={tumblePhase}
               />
             );

@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef, useCallback } from "react";
 import { cn } from "@/lib/utils";
 import { GATES_ROWS } from "@/lib/gatesGameLogic";
+import { isMultiplierSymbol, getMultiplierImageUrl, getMultiplierSymbolInfo } from "@/lib/gatesMultiplierSymbols";
 import type { SlotSymbol } from "@/lib/slotGameLogic";
 
 const SYMBOL_SIZE = 100;
@@ -22,7 +23,6 @@ interface GatesColumnProps {
   cellAnimStates: Map<number, CellAnimState>;
   /** Per-cell gravity drop offset in pixels (flat-indexed) */
   cellDropOffsets: Map<number, number>;
-  multiplierOrbAt: (flatIndex: number) => { value: number } | undefined;
   tumblePhase: string;
 }
 
@@ -35,7 +35,6 @@ export const GatesColumn = React.memo(function GatesColumn({
   winningPositions,
   cellAnimStates,
   cellDropOffsets,
-  multiplierOrbAt,
   tumblePhase,
 }: GatesColumnProps) {
   const [cyclingIds, setCyclingIds] = useState<string[]>([]);
@@ -82,11 +81,13 @@ export const GatesColumn = React.memo(function GatesColumn({
     >
       {Array.from({ length: GATES_ROWS }).map((_, row) => {
         const symbolId = displayIds[row];
-        const symbol = symbolId ? symbolsById.get(symbolId) : null;
+        const isMult = symbolId ? isMultiplierSymbol(symbolId) : false;
+        const symbol = !isMult && symbolId ? symbolsById.get(symbolId) : null;
+        const multInfo = isMult && symbolId ? getMultiplierSymbolInfo(symbolId) : null;
+        const multImageUrl = isMult && symbolId ? getMultiplierImageUrl(symbolId) : null;
         const flatIndex = col * GATES_ROWS + row;
         const isWinning = winningPositions.has(flatIndex);
         const cellAnim = cellAnimStates.get(flatIndex) || 'idle';
-        const orb = multiplierOrbAt(flatIndex);
 
         return (
           <div
@@ -110,8 +111,8 @@ export const GatesColumn = React.memo(function GatesColumn({
                 cellAnim === 'filling' ? `${row * 40}ms` : undefined,
             } as React.CSSProperties}
           >
-            {/* Hide symbol during removal animation end */}
-            {cellAnim !== 'removing' && symbol && (
+            {/* Regular symbol rendering */}
+            {cellAnim !== 'removing' && symbol && !isMult && (
               <div className="w-full h-full flex items-center justify-center">
                 {symbol.image_url ? (
                   <img
@@ -125,8 +126,21 @@ export const GatesColumn = React.memo(function GatesColumn({
                 )}
               </div>
             )}
-            {/* Show symbol during removal with pop animation */}
-            {cellAnim === 'removing' && symbol && (
+            
+            {/* Multiplier symbol rendering - first-class grid citizen */}
+            {cellAnim !== 'removing' && isMult && multImageUrl && (
+              <div className="w-full h-full flex items-center justify-center gates-multiplier-pulse">
+                <img
+                  src={multImageUrl}
+                  alt={multInfo?.label || 'Multiplier'}
+                  className="w-[90%] h-[90%] object-contain"
+                  draggable={false}
+                />
+              </div>
+            )}
+
+            {/* Removal animation for regular symbols */}
+            {cellAnim === 'removing' && symbol && !isMult && (
               <div className="w-full h-full flex items-center justify-center gates-tumble-remove">
                 {symbol.image_url ? (
                   <img
@@ -141,11 +155,15 @@ export const GatesColumn = React.memo(function GatesColumn({
               </div>
             )}
 
-            {orb && (
-              <div className="absolute inset-0 flex items-center justify-center z-10 gates-multiplier-pulse">
-                <div className="bg-gradient-to-br from-blue-500 to-purple-600 rounded-full w-12 h-12 flex items-center justify-center border-2 border-yellow-400/80 shadow-lg">
-                  <span className="text-sm font-black text-yellow-200">{orb.value}x</span>
-                </div>
+            {/* Removal animation for multiplier symbols (collected) */}
+            {cellAnim === 'removing' && isMult && multImageUrl && (
+              <div className="w-full h-full flex items-center justify-center gates-tumble-remove">
+                <img
+                  src={multImageUrl}
+                  alt={multInfo?.label || 'Multiplier'}
+                  className="w-[90%] h-[90%] object-contain"
+                  draggable={false}
+                />
               </div>
             )}
           </div>
