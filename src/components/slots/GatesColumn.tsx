@@ -4,8 +4,8 @@ import { GATES_ROWS } from "@/lib/gatesGameLogic";
 import { isMultiplierSymbol, getMultiplierImageUrl, getMultiplierSymbolInfo } from "@/lib/gatesMultiplierSymbols";
 import type { SlotSymbol } from "@/lib/slotGameLogic";
 
-const SYMBOL_WIDTH = 110;
-const SYMBOL_HEIGHT = 85;
+const SYMBOL_WIDTH = 140;
+const SYMBOL_HEIGHT = 108;
 const CYCLE_INTERVAL = 70;
 
 export type ColumnSpinState = 'idle' | 'spinning' | 'landing' | 'landed';
@@ -82,7 +82,7 @@ export const GatesColumn = React.memo(function GatesColumn({
         isLanding && "gates-column-landing",
         tumblePhase !== 'idle' && tumblePhase !== 'spinning' ? "overflow-visible" : "overflow-hidden",
       )}
-      style={{ gap: 4 }}
+      style={{ gap: 5 }}
     >
       {Array.from({ length: GATES_ROWS }).map((_, row) => {
         const symbolId = displayIds[row];
