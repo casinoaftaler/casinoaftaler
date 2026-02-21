@@ -89,12 +89,26 @@ function buildPersonEntity(authorName: string, authorUrl: string, authorSameAs: 
     "@id": `${authorUrl}#person`,
     name: isKevin ? "Kevin" : "Jonas Theill",
     url: authorUrl,
+    image: isKevin
+      ? `${SITE_URL}/kevin-avatar.webp`
+      : `${SITE_URL}/jonas-avatar.webp`,
     jobTitle: isKevin ? "Casino Streamer & IT-medansvarlig" : "Casino Bonus Ekspert",
+    knowsAbout: isKevin
+      ? ["online casino", "casino streaming", "betalingsmetoder", "spiludviklere", "IT-sikkerhed"]
+      : ["online casino", "iGaming", "casino bonus", "spillemaskiner", "RTP", "ansvarligt spil"],
+    nationality: {
+      "@type": "Country",
+      name: "Denmark",
+    },
     worksFor: {
       "@type": "Organization",
       "@id": `${SITE_URL}/#organization`,
       name: "Casinoaftaler.dk",
       url: SITE_URL,
+    },
+    memberOf: {
+      "@type": "Organization",
+      "@id": `${SITE_URL}/#organization`,
     },
     sameAs: authorSameAs,
   };
