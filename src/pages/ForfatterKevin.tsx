@@ -3,7 +3,7 @@ import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { AuthorBio } from "@/components/AuthorBio";
 import { Link } from "react-router-dom";
 import { SEO } from "@/components/SEO";
-import { buildFaqSchema, SITE_URL } from "@/lib/seo";
+import { buildFaqSchema, SITE_URL, KEVIN_SAME_AS } from "@/lib/seo";
 import { FAQSection } from "@/components/FAQSection";
 import { RelatedGuides } from "@/components/RelatedGuides";
 import { CasinoCard } from "@/components/CasinoCard";
@@ -133,30 +133,24 @@ const expertiseItems = [
 const personSchema = {
   "@context": "https://schema.org",
   "@type": "Person",
+  "@id": `${SITE_URL}/forfatter/kevin#person`,
   name: "Kevin",
   url: `${SITE_URL}/forfatter/kevin`,
-  image: "https://zhpbqqhtgnblaugrqhqi.supabase.co/storage/v1/object/public/casino-logos/kevin-forfatter.png",
-  jobTitle: "Streamer, Forfatter og Medudvikler",
+  image: `${SITE_URL}/kevin-avatar.webp`,
+  jobTitle: "Casino Streamer & IT-medansvarlig",
+  knowsAbout: ["online casino", "casino streaming", "betalingsmetoder", "spiludviklere", "IT-sikkerhed"],
+  nationality: { "@type": "Country", name: "Denmark" },
   worksFor: {
     "@type": "Organization",
+    "@id": `${SITE_URL}/#organization`,
     name: "Casinoaftaler.dk",
     url: SITE_URL,
   },
   memberOf: {
     "@type": "Organization",
-    name: "Casinoaftaler.dk",
-    url: SITE_URL,
+    "@id": `${SITE_URL}/#organization`,
   },
-  sameAs: [
-    "https://www.twitch.tv/fedesvinansen",
-  ],
-  knowsAbout: [
-    "Online Casino",
-    "Casinospil",
-    "Bonusvilkår",
-    "Slot-analyse",
-    "Community Engagement",
-  ],
+  sameAs: KEVIN_SAME_AS,
   description:
     "Kevin er streamer og forfatter på Casinoaftaler.dk med fokus på casinospil, bonusanalyse og teknisk udvikling af platformen.",
 };

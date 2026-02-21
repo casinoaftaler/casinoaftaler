@@ -66,6 +66,7 @@ const OmTeamet = () => {
         "@id": "https://casinoaftaler.dk/forfatter/kevin#person",
         name: "Kevin",
         url: "https://casinoaftaler.dk/forfatter/kevin",
+        image: "https://casinoaftaler.dk/kevin-avatar.webp",
         jobTitle: "Casino Streamer & IT-medansvarlig",
       },
     ],
