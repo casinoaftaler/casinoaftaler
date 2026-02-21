@@ -5,7 +5,7 @@ import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { AuthorBio } from "@/components/AuthorBio";
 import { useNewsArticle, usePublishedNews } from "@/hooks/useCasinoNews";
 import { SITE_URL } from "@/lib/seo";
-import { CalendarDays, Loader2 } from "lucide-react";
+import { CalendarDays, Loader2, Newspaper } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 
@@ -47,7 +47,7 @@ const CasinoNyhedArticle = () => {
 
   const articleUrl = `${SITE_URL}/casino-nyheder/${article.slug}`;
 
-  // Build NewsArticle schema in @graph
+  // Build NewsArticle + BreadcrumbList schema in @graph
   const newsArticleSchema = {
     "@context": "https://schema.org",
     "@graph": [
@@ -79,7 +79,6 @@ const CasinoNyhedArticle = () => {
           },
         },
       },
-      // Person entity reference – reuse canonical @id
       {
         "@type": "Person",
         "@id": `${SITE_URL}/forfatter/jonas#person`,
@@ -106,24 +105,33 @@ const CasinoNyhedArticle = () => {
         breadcrumbLabel={article.title}
       />
 
+      {/* Gradient Hero Section */}
+      <section
+        className="relative overflow-hidden py-12 text-white md:py-20"
+        style={{
+          background:
+            "linear-gradient(135deg, hsl(260 70% 25%), hsl(250 60% 20%) 40%, hsl(210 80% 25%))",
+        }}
+      >
+        <div className="container">
+          <div className="mx-auto max-w-3xl text-center">
+            <Badge variant="secondary" className="mb-4">
+              <Newspaper className="mr-1.5 h-3.5 w-3.5" />
+              {article.category}
+            </Badge>
+            <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">
+              {article.title}
+            </h1>
+            {article.excerpt && (
+              <p className="text-lg text-white/80">{article.excerpt}</p>
+            )}
+          </div>
+        </div>
+      </section>
+
       <Breadcrumbs dynamicLabel={article.title} />
 
       <article className="container py-8 max-w-4xl">
-        <header className="mb-6">
-          <div className="flex items-center gap-2 mb-3">
-            <Badge variant="secondary">{article.category}</Badge>
-            {article.tags?.map((tag) => (
-              <Badge key={tag} variant="outline" className="text-xs">{tag}</Badge>
-            ))}
-          </div>
-          <h1 className="text-3xl font-bold md:text-4xl lg:text-5xl leading-tight">
-            {article.title}
-          </h1>
-          {article.excerpt && (
-            <p className="mt-4 text-lg text-muted-foreground">{article.excerpt}</p>
-          )}
-        </header>
-
         <AuthorMetaBar
           author="jonas"
           date={publishedDate}
@@ -132,12 +140,16 @@ const CasinoNyhedArticle = () => {
           showAffiliateDisclaimer={false}
         />
 
+        {/* Hero Image */}
         {article.featured_image && (
-          <img
-            src={article.featured_image}
-            alt={article.title}
-            className="w-full rounded-xl mb-8 aspect-video object-cover"
-          />
+          <div className="mb-10 overflow-hidden rounded-xl">
+            <img
+              src={article.featured_image}
+              alt={article.title}
+              className="w-full h-auto object-cover max-h-[400px]"
+              loading="eager"
+            />
+          </div>
         )}
 
         {/* Article Content - render HTML content */}
