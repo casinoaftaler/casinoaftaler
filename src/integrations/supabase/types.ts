@@ -14,6 +14,57 @@ export type Database = {
   }
   public: {
     Tables: {
+      casino_compliance: {
+        Row: {
+          bonus_compliant: boolean
+          bonus_max_amount: number
+          bonus_wager_requirement: number
+          casino_name: string
+          casino_slug: string
+          compliance_score: number
+          created_at: string
+          id: string
+          last_checked: string
+          license_number: string
+          license_status: Database["public"]["Enums"]["license_status"]
+          notes: string | null
+          source_url: string
+          updated_at: string
+        }
+        Insert: {
+          bonus_compliant?: boolean
+          bonus_max_amount?: number
+          bonus_wager_requirement?: number
+          casino_name: string
+          casino_slug: string
+          compliance_score?: number
+          created_at?: string
+          id?: string
+          last_checked?: string
+          license_number?: string
+          license_status?: Database["public"]["Enums"]["license_status"]
+          notes?: string | null
+          source_url?: string
+          updated_at?: string
+        }
+        Update: {
+          bonus_compliant?: boolean
+          bonus_max_amount?: number
+          bonus_wager_requirement?: number
+          casino_name?: string
+          casino_slug?: string
+          compliance_score?: number
+          created_at?: string
+          id?: string
+          last_checked?: string
+          license_number?: string
+          license_status?: Database["public"]["Enums"]["license_status"]
+          notes?: string | null
+          source_url?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
       casino_news: {
         Row: {
           author_id: string
@@ -1652,6 +1703,7 @@ export type Database = {
     Enums: {
       app_role: "admin" | "user" | "casino_owner"
       clip_status: "pending" | "approved" | "rejected"
+      license_status: "valid" | "suspended" | "revoked"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -1781,6 +1833,7 @@ export const Constants = {
     Enums: {
       app_role: ["admin", "user", "casino_owner"],
       clip_status: ["pending", "approved", "rejected"],
+      license_status: ["valid", "suspended", "revoked"],
     },
   },
 } as const
