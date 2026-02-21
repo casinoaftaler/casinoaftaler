@@ -76,6 +76,7 @@ export const GatesColumn = React.memo(function GatesColumn({
         "flex flex-col transition-[filter] duration-200",
         isSpinning && "gates-column-spinning",
         isLanding && "gates-column-landing",
+        tumblePhase !== 'idle' && tumblePhase !== 'spinning' ? "overflow-visible" : "overflow-hidden",
       )}
       style={{ gap: 4 }}
     >
@@ -93,7 +94,8 @@ export const GatesColumn = React.memo(function GatesColumn({
           <div
             key={row}
             className={cn(
-              "relative rounded-lg overflow-hidden",
+              "relative rounded-lg",
+              (cellAnim === 'dropping' || cellAnim === 'filling') ? "overflow-visible" : "overflow-hidden",
               "bg-blue-950/50 border border-blue-500/10",
               isWinning && "gates-win-highlight",
               isLanding && "gates-symbol-land",
