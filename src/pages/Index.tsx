@@ -31,6 +31,7 @@ import {
   ArrowRight,
   Search,
   Scale,
+  Newspaper,
 } from "lucide-react";
 
 const PARTNER_SLUGS = ["spildansknu", "spilleautomaten", "betinia", "campobet", "swift-casino", "luna-casino"];
@@ -468,6 +469,24 @@ const Index = () => {
             <Link to="/casino-anmeldelser" className="text-primary hover:underline font-medium">casino anmeldelser</Link>
             {" "}for at finde det online casino, der matcher dine præferencer.
           </p>
+        </section>
+
+        <Separator className="my-10" />
+
+        {/* Casino Nyheder sektion */}
+        <section className="mb-12">
+          <h2 className="mb-4 text-3xl font-bold">Casino Nyheder</h2>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            Hold dig opdateret med de seneste nyheder, analyser og ændringer fra det danske online casino-marked. Vi dækker licensudstedelser, bonusændringer, nye lanceringer og lovgivning – alt sammen med fokus på, hvad det betyder for dig som dansk spiller.
+          </p>
+          <Link
+            to="/casino-nyheder"
+            className="inline-flex items-center gap-2 rounded-lg border border-border bg-card px-4 py-3 text-sm font-medium transition-colors hover:border-primary hover:text-primary"
+          >
+            <Newspaper className="h-4 w-4 text-primary flex-shrink-0" />
+            Se alle casino nyheder
+            <ArrowRight className="h-4 w-4" />
+          </Link>
         </section>
 
         <Separator className="my-10" />

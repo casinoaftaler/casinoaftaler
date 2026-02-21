@@ -19,12 +19,16 @@ const CasinoNyheder = () => {
   const total = data?.total ?? 0;
   const totalPages = Math.ceil(total / ARTICLES_PER_PAGE);
 
+  const latestModified = articles.length > 0
+    ? (articles[0].updated_at || articles[0].published_at || new Date().toISOString())
+    : new Date().toISOString();
+
   const articleSchema = buildArticleSchema({
     headline: "Casino Nyheder 2026 – Seneste Opdateringer fra Danske Online Casinoer",
     description: "Hold dig opdateret med de seneste casino nyheder, analyser og opdateringer fra det danske casinomarked. Licenser, bonusændringer og lovgivning.",
     url: `${SITE_URL}/casino-nyheder`,
     datePublished: "2026-02-21",
-    dateModified: "2026-02-21",
+    dateModified: latestModified,
   });
 
   // Find the most recently published article date
@@ -87,7 +91,7 @@ const CasinoNyheder = () => {
 
         <AuthorMetaBar
           author="jonas"
-          date="21. februar 2026"
+          date={latestDate || "21. februar 2026"}
           readTime="Løbende opdateret"
           showFactCheck={true}
           showAffiliateDisclaimer={false}
@@ -149,6 +153,8 @@ const CasinoNyheder = () => {
                     <img
                       src={article.featured_image}
                       alt={article.title}
+                      width={600}
+                      height={192}
                       className="mb-4 h-48 w-full rounded-lg object-cover"
                       loading="lazy"
                     />

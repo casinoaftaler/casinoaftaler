@@ -142,6 +142,8 @@ const CasinoNyhedArticle = () => {
             <img
               src={article.featured_image}
               alt={article.title}
+              width={1200}
+              height={400}
               className="w-full h-auto object-cover max-h-[400px]"
               loading="eager"
             />

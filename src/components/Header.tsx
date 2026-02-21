@@ -13,7 +13,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { ChevronDown, Gamepad2, LogOut, Mail, Menu, User, X, Dices, Gift, BookOpen, Users, ShoppingBag, Video, ShieldCheck, Sparkles, Layers, Moon, Sun, Coins, UserCircle, Trophy, Ticket, CreditCard, MoreHorizontal, RefreshCw, DollarSign, Zap, Tv, Star, Scale, BarChart3, Smartphone, Globe, Heart, Landmark, RotateCw } from "lucide-react";
+import { ChevronDown, Gamepad2, LogOut, Mail, Menu, User, X, Dices, Gift, BookOpen, Users, ShoppingBag, Video, ShieldCheck, Sparkles, Layers, Moon, Sun, Coins, UserCircle, Trophy, Ticket, CreditCard, MoreHorizontal, RefreshCw, DollarSign, Zap, Tv, Star, Scale, BarChart3, Smartphone, Globe, Heart, Landmark, RotateCw, Newspaper } from "lucide-react";
 import { useState, useEffect, memo } from "react";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
 import { useTwitchStatus } from "@/hooks/useTwitchStatus";
@@ -463,6 +463,12 @@ export const Header = memo(function Header() {
                 <Link to="/kontakt" className="flex items-center gap-2">
                   <Mail className="h-4 w-4" />
                   Kontakt
+                </Link>
+              </DropdownMenuItem>
+              <DropdownMenuItem asChild>
+                <Link to="/casino-nyheder" className="flex items-center gap-2">
+                  <Newspaper className="h-4 w-4" />
+                  Casino Nyheder
                 </Link>
               </DropdownMenuItem>
               <DropdownMenuSub>
@@ -1093,6 +1099,10 @@ export const Header = memo(function Header() {
                 <Link to="/kontakt" className="ml-6 flex items-center gap-2 py-2.5 text-sm text-muted-foreground transition-colors hover:text-primary" onClick={() => setMobileMenuOpen(false)}>
                   <Mail className="h-4 w-4" />
                   Kontakt
+                </Link>
+                <Link to="/casino-nyheder" className="ml-6 flex items-center gap-2 py-2.5 text-sm text-muted-foreground transition-colors hover:text-primary" onClick={() => setMobileMenuOpen(false)}>
+                  <Newspaper className="h-4 w-4" />
+                  Casino Nyheder
                 </Link>
                 <button
                   onClick={() => setForfattereExpanded(!forfattereExpanded)}
