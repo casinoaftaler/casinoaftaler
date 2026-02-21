@@ -56,6 +56,7 @@ export function GatesSlotGame({ gameId = "gates-of-fedesvin" }: GatesSlotGamePro
   const columnStopTimersRef = useRef<NodeJS.Timeout[]>([]);
   const serverResultRef = useRef<any>(null);
   const [cellAnimStates, setCellAnimStates] = useState<Map<number, CellAnimState>>(new Map());
+  const [cellDropOffsets, setCellDropOffsets] = useState<Map<number, number>>(new Map());
   const [runningWin, setRunningWin] = useState(0);
   const [runningMultiplier, setRunningMultiplier] = useState(0);
   const [screenShake, setScreenShake] = useState<'none' | 'normal' | 'intense'>('none');
@@ -194,6 +195,8 @@ export function GatesSlotGame({ gameId = "gates-of-fedesvin" }: GatesSlotGamePro
         if (i + 1 < steps.length) {
           const nextGrid = steps[i + 1].grid;
           const dropAnims = new Map<number, CellAnimState>();
+          const offsets = new Map<number, number>();
+          const CELL_HEIGHT = 104; // SYMBOL_SIZE + GAP
           
           for (let col = 0; col < GATES_COLS; col++) {
             let removedInCol = 0;
@@ -205,25 +208,30 @@ export function GatesSlotGame({ gameId = "gates-of-fedesvin" }: GatesSlotGamePro
             }
             
             if (removedInCol > 0) {
+              // Top rows = brand new symbols dropping in from above
               for (let row = 0; row < removedInCol; row++) {
                 const flat = col * GATES_ROWS + row;
                 dropAnims.set(flat, 'filling');
               }
+              // Remaining rows = surviving symbols that shift down with gravity
               for (let row = removedInCol; row < GATES_ROWS; row++) {
                 const flat = col * GATES_ROWS + row;
                 dropAnims.set(flat, 'dropping');
+                offsets.set(flat, removedInCol * CELL_HEIGHT);
               }
             }
           }
           
           setGrid(nextGrid);
           setCellAnimStates(dropAnims);
+          setCellDropOffsets(offsets);
           
           const dropTime = isSlowMotion ? 700 : 500;
           await new Promise(r => setTimeout(r, dropTime));
         }
         
         setCellAnimStates(new Map());
+        setCellDropOffsets(new Map());
       } else {
         setMultiplierOrbs(step.multiplierOrbs);
         await new Promise(r => setTimeout(r, 300));
@@ -231,6 +239,7 @@ export function GatesSlotGame({ gameId = "gates-of-fedesvin" }: GatesSlotGamePro
     }
     // Clean up
     setCellAnimStates(new Map());
+    setCellDropOffsets(new Map());
     setIsSlowMotion(false);
     setTumbleChainLength(0);
   }, [isSlowMotion]);
@@ -508,6 +517,7 @@ export function GatesSlotGame({ gameId = "gates-of-fedesvin" }: GatesSlotGamePro
                 finalSymbolIds={colSymbolIds}
                 winningPositions={winningPositions}
                 cellAnimStates={cellAnimStates}
+                cellDropOffsets={cellDropOffsets}
                 multiplierOrbAt={orbFinder}
                 tumblePhase={tumblePhase}
               />
