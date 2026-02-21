@@ -26,8 +26,11 @@ export const FREE_SPINS_BY_SCATTER: Record<number, number> = { 4: 10, 5: 12, 6: 
 export const FREE_SPINS_RETRIGGER = 5;
 
 // Multiplier orb values and their weights
-export const MULTIPLIER_VALUES = [2, 3, 5, 10, 15, 25, 50, 100, 250, 500];
-export const MULTIPLIER_WEIGHTS = [30, 25, 20, 12, 6, 3, 2, 1, 0.7, 0.3];
+export const MULTIPLIER_VALUES = [2, 3, 5, 10, 15, 25, 50, 100];
+export const MULTIPLIER_WEIGHTS = [30, 25, 20, 12, 6, 3, 2, 1];
+
+// Re-export multiplier helpers for convenience
+export { isMultiplierSymbol, getMultiplierValue } from './gatesMultiplierSymbols';
 
 // Chance of multiplier orbs appearing on a spin (percentage of cells)
 export const MULTIPLIER_CHANCE_BASE = 0.08; // 8% per cell in base game

@@ -107,8 +107,8 @@ let GATES_FREE_SPINS_RETRIGGER = 5;
 let GATES_MULTIPLIER_CHANCE_BASE = 0.04;
 let GATES_MULTIPLIER_CHANCE_BONUS = 0.14;
 
-const GATES_MULTIPLIER_VALUES = [2, 3, 5, 10, 15, 25, 50, 100, 250, 500];
-const GATES_MULTIPLIER_WEIGHTS = [30, 25, 20, 12, 6, 3, 2, 1, 0.7, 0.3];
+const GATES_MULTIPLIER_VALUES = [2, 3, 5, 10, 15, 25, 50, 100];
+const GATES_MULTIPLIER_WEIGHTS = [30, 25, 20, 12, 6, 3, 2, 1];
 
 // Cache for gates settings from DB
 const gatesSettingsCache: { data: Record<string, string> | null; fetchedAt: number } = { data: null, fetchedAt: 0 };
@@ -174,17 +174,15 @@ interface GatesSpinResult {
   initialGrid: string[][];
 }
 
-function generateGatesGrid(symbols: SlotSymbol[], isBonusSpin: boolean): string[][] {
-  const grid: string[][] = [];
-  for (let col = 0; col < GATES_COLS; col++) {
-    const column: string[] = [];
-    for (let row = 0; row < GATES_ROWS; row++) {
-      const sym = getRandomSymbol(symbols, [], isBonusSpin);
-      column.push(sym.id);
-    }
-    grid.push(column);
-  }
-  return grid;
+// Helper to check if a grid cell ID is a multiplier symbol
+function isMultSymbol(id: string): boolean {
+  return id.startsWith("mult_");
+}
+
+// Helper to extract multiplier value from "mult_5x" -> 5
+function getMultValue(id: string): number {
+  const match = id.match(/^mult_(\d+)x$/);
+  return match ? parseInt(match[1], 10) : 0;
 }
 
 function pickGatesMultiplierValue(): number {
@@ -197,24 +195,43 @@ function pickGatesMultiplierValue(): number {
   return GATES_MULTIPLIER_VALUES[0];
 }
 
-function generateGatesMultiplierOrbs(grid: string[][], isBonusSpin: boolean, symbols: SlotSymbol[]): GatesMultiplierOrb[] {
+function generateGatesGrid(symbols: SlotSymbol[], isBonusSpin: boolean): string[][] {
   const chance = isBonusSpin ? GATES_MULTIPLIER_CHANCE_BONUS : GATES_MULTIPLIER_CHANCE_BASE;
   const scatterSymbol = symbols.find(s => s.is_scatter);
-  const scatterId = scatterSymbol?.id;
-  const orbs: GatesMultiplierOrb[] = [];
+  const grid: string[][] = [];
   for (let col = 0; col < GATES_COLS; col++) {
+    const column: string[] = [];
     for (let row = 0; row < GATES_ROWS; row++) {
-      // Never place multiplier orbs on scatter positions
-      if (scatterId && grid[col][row] === scatterId) continue;
-      if (secureRandom() < chance) {
-        orbs.push({
-          position: col * GATES_ROWS + row,
-          value: pickGatesMultiplierValue(),
-        });
+      const sym = getRandomSymbol(symbols, [], isBonusSpin);
+      // Chance to replace with a multiplier (never replace scatters)
+      if (!scatterSymbol || sym.id !== scatterSymbol.id) {
+        if (secureRandom() < chance) {
+          const multVal = pickGatesMultiplierValue();
+          column.push(`mult_${multVal}x`);
+          continue;
+        }
       }
+      column.push(sym.id);
+    }
+    grid.push(column);
+  }
+  return grid;
+}
+
+// Place multipliers on new symbols filling after a tumble
+function fillWithMultipliers(symbols: SlotSymbol[], count: number, isBonusSpin: boolean): string[] {
+  const chance = isBonusSpin ? GATES_MULTIPLIER_CHANCE_BONUS : GATES_MULTIPLIER_CHANCE_BASE;
+  const result: string[] = [];
+  for (let i = 0; i < count; i++) {
+    if (secureRandom() < chance) {
+      const multVal = pickGatesMultiplierValue();
+      result.push(`mult_${multVal}x`);
+    } else {
+      const sym = getRandomSymbol(symbols, [], isBonusSpin);
+      result.push(sym.id);
     }
   }
-  return orbs;
+  return result;
 }
 
 function countGatesSymbolMatches(grid: string[][]): Map<string, { count: number; positions: number[] }> {
@@ -222,6 +239,8 @@ function countGatesSymbolMatches(grid: string[][]): Map<string, { count: number;
   for (let col = 0; col < GATES_COLS; col++) {
     for (let row = 0; row < GATES_ROWS; row++) {
       const id = grid[col][row];
+      // Skip multiplier symbols - they don't count toward matches
+      if (isMultSymbol(id)) continue;
       const flat = col * GATES_ROWS + row;
       if (!matches.has(id)) matches.set(id, { count: 0, positions: [] });
       const e = matches.get(id)!;
@@ -266,19 +285,22 @@ function countGatesScatters(grid: string[][], symbols: SlotSymbol[]): number {
   return count;
 }
 
-function applyGatesTumble(grid: string[][], winningPositions: number[], symbols: SlotSymbol[], isBonusSpin: boolean): string[][] {
+function applyGatesTumble(grid: string[][], winningPositions: number[], multiplierPositions: number[], symbols: SlotSymbol[], isBonusSpin: boolean): string[][] {
   const newGrid = grid.map(col => [...col]);
   
-  // Group winning positions by column
+  // Combine winning + collected multiplier positions for removal
+  const allRemoved = new Set([...winningPositions, ...multiplierPositions]);
+  
+  // Group removed positions by column
   const removedByCol = new Map<number, Set<number>>();
-  for (const pos of winningPositions) {
+  for (const pos of allRemoved) {
     const col = Math.floor(pos / GATES_ROWS);
     const row = pos % GATES_ROWS;
     if (!removedByCol.has(col)) removedByCol.set(col, new Set());
     removedByCol.get(col)!.add(row);
   }
   
-  // For each column, remove winning symbols and drop remaining down
+  // For each column, remove symbols and drop remaining down
   for (const [col, removedRows] of removedByCol) {
     const remaining: string[] = [];
     for (let row = 0; row < GATES_ROWS; row++) {
@@ -287,19 +309,28 @@ function applyGatesTumble(grid: string[][], winningPositions: number[], symbols:
       }
     }
     
-    // Fill from top with new random symbols
+    // Fill from top with new random symbols (which may include multipliers)
     const needed = GATES_ROWS - remaining.length;
-    const newSymbols: string[] = [];
-    for (let i = 0; i < needed; i++) {
-      const sym = getRandomSymbol(symbols, [], isBonusSpin);
-      newSymbols.push(sym.id);
-    }
+    const newSymbols = fillWithMultipliers(symbols, needed, isBonusSpin);
     
     // New symbols on top, remaining on bottom
     newGrid[col] = [...newSymbols, ...remaining];
   }
   
   return newGrid;
+}
+
+function scanGridMultipliers(grid: string[][]): GatesMultiplierOrb[] {
+  const orbs: GatesMultiplierOrb[] = [];
+  for (let col = 0; col < GATES_COLS; col++) {
+    for (let row = 0; row < GATES_ROWS; row++) {
+      const id = grid[col][row];
+      if (isMultSymbol(id)) {
+        orbs.push({ position: col * GATES_ROWS + row, value: getMultValue(id) });
+      }
+    }
+  }
+  return orbs;
 }
 
 function calculateGatesFullSpin(
@@ -332,13 +363,19 @@ function calculateGatesFullSpin(
     
     const stepWin = wins.reduce((sum, w) => sum + w.payout, 0);
     
-    // Only generate multiplier orbs on winning tumble steps
-    let orbs: GatesMultiplierOrb[] = [];
-    if (wins.length > 0) {
-      orbs = generateGatesMultiplierOrbs(grid, isBonusSpin, symbols);
+    // Scan grid for multiplier symbols present in this step
+    const orbs = scanGridMultipliers(grid);
+    
+    // Multiplier collection: only when there's a win AND multipliers are on grid
+    let collectedMultPositions: number[] = [];
+    if (wins.length > 0 && orbs.length > 0) {
+      // Collect all multiplier values into the bank
       const orbMultiplierSum = orbs.reduce((sum, o) => sum + o.value, 0);
       totalMultiplier += orbMultiplierSum;
+      // Mark multiplier positions for removal (collected)
+      collectedMultPositions = orbs.map(o => o.position);
     }
+    // If no win, multipliers persist on the grid (collectedMultPositions stays empty)
     
     tumbleSteps.push({
       grid: grid.map(col => [...col]),
@@ -353,8 +390,8 @@ function calculateGatesFullSpin(
     // If no wins, tumble sequence ends
     if (wins.length === 0) break;
     
-    // Apply tumble - remove winning symbols and drop new ones
-    grid = applyGatesTumble(grid, Array.from(winningPositions), symbols, isBonusSpin);
+    // Apply tumble - remove winning symbols AND collected multiplier symbols
+    grid = applyGatesTumble(grid, Array.from(winningPositions), collectedMultPositions, symbols, isBonusSpin);
   }
   
   // Apply total multiplier to raw win
