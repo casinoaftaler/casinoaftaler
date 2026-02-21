@@ -1,7 +1,6 @@
 <!doctype html>
 <html lang="da">
   <head>
-    <script id="Cookiebot" src="https://consent.cookiebot.com/uc.js" data-cbid="5dab5139-0720-46ba-98ec-e264ced24bcb" data-blockingmode="auto" type="text/javascript" async></script>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="author" content="Casinoaftaler" />
@@ -16,15 +15,9 @@
     <link rel="dns-prefetch" href="https://zhpbqqhtgnblaugrqhqi.supabase.co" />
     <link rel="preconnect" href="https://zhpbqqhtgnblaugrqhqi.supabase.co" crossorigin />
 
-    <!-- Preload critical font (Inter 400/700 used site-wide) -->
-    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap&font-display=swap" onload="this.onload=null;this.rel='stylesheet'" />
-    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap&font-display=swap" /></noscript>
-
-    <!-- Defer non-critical fonts -->
-    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Lora:wght@400;500;600;700&display=swap&font-display=swap" onload="this.onload=null;this.rel='stylesheet'" />
-    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lora:wght@400;500;600;700&display=swap&font-display=swap" /></noscript>
-    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap&font-display=swap" onload="this.onload=null;this.rel='stylesheet'" />
-    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap&font-display=swap" onload="this.onload=null;this.rel='stylesheet'" /></noscript>
+    <!-- Single consolidated Google Fonts request -->
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Lora:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" onload="this.onload=null;this.rel='stylesheet'" />
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Lora:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" /></noscript>
 
     <!-- Default fallback – overridden per-page by react-helmet-async -->
     <title>Casinoaftaler</title>
@@ -38,5 +31,7 @@
     </script>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
+    <!-- Cookiebot loaded after main content to avoid render-blocking -->
+    <script id="Cookiebot" src="https://consent.cookiebot.com/uc.js" data-cbid="5dab5139-0720-46ba-98ec-e264ced24bcb" data-blockingmode="auto" type="text/javascript" defer></script>
   </body>
 </html>
