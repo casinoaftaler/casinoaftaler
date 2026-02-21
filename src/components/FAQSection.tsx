@@ -50,22 +50,22 @@ const defaultFaqs: FAQ[] = [
 export const FAQSection = React.forwardRef<HTMLElement, FAQSectionProps>(function FAQSection({ title = "Ofte Stillede Spørgsmål", faqs = defaultFaqs }, ref) {
   return (
     <section ref={ref} className="mb-12">
-      <h2 className="mb-6 text-3xl font-bold flex items-center gap-2">
-        <HelpCircle className="h-8 w-8 text-primary" />
-        {title}
-      </h2>
-      <div>
-        <Accordion type="single" collapsible className="space-y-4">
+      <div className="rounded-xl border border-border bg-card p-6 md:p-8">
+        <h2 className="mb-6 text-3xl font-bold flex items-center gap-2">
+          <HelpCircle className="h-8 w-8 text-primary" />
+          {title}
+        </h2>
+        <Accordion type="single" collapsible className="space-y-3">
           {faqs.map((faq, index) => (
             <AccordionItem
               key={index}
               value={`item-${index}`}
-              className="rounded-lg border border-border bg-card px-6"
+              className="rounded-lg border border-border bg-background px-6"
             >
-              <AccordionTrigger className="text-left hover:no-underline">
+              <AccordionTrigger className="text-left font-semibold hover:no-underline py-5">
                 {faq.question}
               </AccordionTrigger>
-              <AccordionContent className="text-muted-foreground leading-relaxed">
+              <AccordionContent className="text-muted-foreground leading-relaxed text-base pb-5">
                 {faq.answer}
               </AccordionContent>
             </AccordionItem>
