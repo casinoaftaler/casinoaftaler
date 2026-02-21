@@ -1,76 +1,44 @@
 
+# Replace Fake Loop Spin with Drop-Off / Drop-In Animation
 
-## Fix Gravity Drop Animation for Surviving Symbols
+## What Changes
+Instead of the current blurry cycling effect when spinning, the Gates of Fedesvin slot will use a two-phase animation:
 
-### Problem
-The current code calculates the gravity offset incorrectly. It assumes ALL surviving symbols in a column dropped by the same amount (`removedInCol * CELL_HEIGHT`), but in reality each survivor drops a different distance depending on how many removed cells were below it.
+1. **Drop-off phase**: Current symbols slide down and off the bottom of the grid (staggered per column, left to right)
+2. **Empty grid**: Brief pause with an empty grid
+3. **Drop-in phase**: New result symbols drop in from the top (staggered per column, left to right, with a bounce landing)
 
-**Example:** Column with rows 0-4 containing A B C D E, where B (row 1) and D (row 3) are removed:
-- After compaction: [new1] [new2] A C E
-- A (was row 0, now row 2) dropped 2 rows
-- C (was row 2, now row 3) dropped 1 row
-- E (was row 4, now row 4) dropped 0 rows -- should NOT animate at all
+## Technical Details
 
-The current code gives all three survivors the same offset of `2 * CELL_HEIGHT`, which is wrong and causes the "frozen then jump" effect.
+### 1. New Column Spin States
+Add two new states to `ColumnSpinState` in `GatesColumn.tsx`:
+- `'dropping-off'` -- current symbols animate downward off-screen
+- `'dropping-in'` -- new symbols animate in from above
 
-### Solution
+### 2. CSS Animations (`src/styles/gates-animations.css`)
+- **`gates-drop-off`**: Translates symbols downward (e.g. `translateY(120%)`) with opacity fade, duration ~350ms, ease-in
+- **`gates-drop-in`**: Starts above (`translateY(-120%)`, opacity 0), lands at rest position with a slight bounce, duration ~400ms, cubic-bezier overshoot
+- Remove or keep `gates-column-spinning` / `gates-column-cycle` (no longer used by Gates, but keep if used elsewhere)
 
-**File: `src/components/slots/GatesSlotGame.tsx` (lines ~298-331)**
+### 3. GatesColumn.tsx Changes
+- When state is `'dropping-off'`: render the current `finalSymbolIds` symbols wrapped with the drop-off CSS class, staggered per row (`row * 50ms` delay)
+- When state is `'dropping-in'`: render the new `finalSymbolIds` (already updated by parent) with the drop-in CSS class, staggered per row (`row * 40ms` delay)
+- Remove the `cyclingIds` / `setInterval` random cycling logic (no longer needed)
 
-Replace the per-column drop calculation with accurate per-survivor offsets:
+### 4. GatesSlotGame.tsx Spin Flow Changes
+In `handleSpin`, replace the current spin sequence:
 
-```text
-For each column:
-  1. Collect the list of surviving row indices (in order, top to bottom)
-  2. New symbols fill the top `removedInCol` rows -> 'filling' animation
-  3. Each survivor[i] moves to new row = removedInCol + i
-     - dropRows = newRow - oldRow
-     - If dropRows > 0: set 'dropping' with offset = dropRows * CELL_HEIGHT
-     - If dropRows == 0: NO animation (symbol stays in place)
-```
+**Current flow:**
+1. Set columns to `'spinning'` (staggered) -- triggers fast random cycling
+2. Wait for server response
+3. Set columns to `'landing'` then `'landed'` (staggered)
 
-This ensures:
-- Symbols that didn't move get no animation at all (no freeze/jump)
-- Each survivor gets its own correct drop distance
-- The visual result matches Gates of Olympus: symbols fall naturally by exactly the gap distance beneath them
+**New flow:**
+1. Set columns to `'dropping-off'` (staggered, ~120ms apart)
+2. Wait for all drop-off animations to finish (~350ms + stagger)
+3. Fire server request in parallel during drop-off (or await if not yet returned)
+4. Set the new grid from server result
+5. Set columns to `'dropping-in'` (staggered, ~120ms apart)
+6. After drop-in completes, set to `'idle'`
 
-### CSS Animation (no change needed)
-The `tumble-gravity` keyframe already reads `--gravity-offset` per cell, so once the offset values are correct the animation will be smooth.
-
-### Technical Detail
-
-Replace the survivor loop (approx lines 316-329) with:
-
-```typescript
-// Collect surviving rows in this column (original positions)
-const survivorRows: number[] = [];
-for (let row = 0; row < GATES_ROWS; row++) {
-  const flat = col * GATES_ROWS + row;
-  if (!allRemovedPositions.has(flat)) {
-    survivorRows.push(row);
-  }
-}
-
-// New symbols fill top rows
-for (let row = 0; row < removedInCol; row++) {
-  const flat = col * GATES_ROWS + row;
-  dropAnims.set(flat, 'filling');
-}
-
-// Each survivor compacts to bottom: survivor[i] -> new row (removedInCol + i)
-for (let i = 0; i < survivorRows.length; i++) {
-  const oldRow = survivorRows[i];
-  const newRow = removedInCol + i;
-  const dropRows = newRow - oldRow;
-  if (dropRows > 0) {
-    const flat = col * GATES_ROWS + newRow;
-    dropAnims.set(flat, 'dropping');
-    offsets.set(flat, dropRows * CELL_HEIGHT);
-  }
-  // dropRows === 0 means no movement, no animation needed
-}
-```
-
-### Files to modify
-- `src/components/slots/GatesSlotGame.tsx` -- fix the per-cell gravity offset calculation
-
+The server request will be fired at the same time as the drop-off starts (in parallel), so there's no added latency -- the new grid will be ready by the time drop-off finishes.
