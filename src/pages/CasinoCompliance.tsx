@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { Shield, CheckCircle, AlertTriangle, XCircle, ExternalLink, Scale, Clock, FileCheck, HelpCircle } from "lucide-react";
+import { Shield, CheckCircle, AlertTriangle, XCircle, ExternalLink, Scale, Clock, FileCheck, HelpCircle, Sparkles } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
@@ -7,8 +7,10 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@
 import { Skeleton } from "@/components/ui/skeleton";
 import { SEO } from "@/components/SEO";
 import { FAQSection } from "@/components/FAQSection";
+import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { useCasinoCompliance } from "@/hooks/useCasinoCompliance";
 import { SITE_URL } from "@/lib/seo";
+import complianceHero from "@/assets/heroes/casino-compliance-hero.jpg";
 
 const faqs = [
   {
@@ -135,38 +137,46 @@ export default function CasinoCompliance() {
         jsonLd={schemas}
       />
 
-      <div className="container max-w-6xl py-8 md:py-12">
-        {/* Hero */}
-        <header className="mb-10">
-          <div className="flex items-center gap-3 mb-4">
-            <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-primary/10">
-              <Shield className="h-6 w-6 text-primary" />
-            </div>
-            <div>
-              <h1 className="text-2xl font-bold md:text-3xl lg:text-4xl">
-                Live Compliance Dashboard – Danske Online Casinoer
-              </h1>
-            </div>
-          </div>
-          <p className="text-muted-foreground max-w-3xl">
-            Opdateres dagligt. Data verificeret mod{" "}
-            <a
-              href="https://spillemyndigheden.dk/tilladelsesindehavere"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-primary underline hover:text-primary/80"
-            >
-              Spillemyndigheden
-            </a>
-            .
-          </p>
-          {latestCheck && (
-            <p className="text-sm text-muted-foreground mt-2 flex items-center gap-1.5">
-              <Clock className="h-4 w-4" />
-              Sidst opdateret: {new Date(latestCheck).toLocaleDateString("da-DK", { year: "numeric", month: "long", day: "numeric", hour: "2-digit", minute: "2-digit" })}
+      <section
+        className="relative overflow-hidden py-12 text-white md:py-20"
+        style={{ backgroundImage: "linear-gradient(135deg, hsl(260 70% 25%), hsl(250 60% 20%) 40%, hsl(210 80% 25%))" }}
+      >
+        <div className="container">
+          <div className="mx-auto max-w-3xl text-center">
+            <Badge variant="secondary" className="mb-4">
+              <Shield className="mr-1.5 h-3.5 w-3.5" /> Compliance Dashboard
+            </Badge>
+            <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">
+              Live Compliance Dashboard – Danske Online Casinoer
+            </h1>
+            <p className="text-lg text-white/80">
+              Opdateres dagligt. Data verificeret mod{" "}
+              <a
+                href="https://spillemyndigheden.dk/tilladelsesindehavere"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-white underline hover:text-white/70"
+              >
+                Spillemyndigheden
+              </a>
+              .
             </p>
-          )}
-        </header>
+            {latestCheck && (
+              <p className="mt-3 text-sm text-white/60 flex items-center justify-center gap-1.5">
+                <Clock className="h-4 w-4" />
+                Sidst opdateret: {new Date(latestCheck).toLocaleDateString("da-DK", { year: "numeric", month: "long", day: "numeric", hour: "2-digit", minute: "2-digit" })}
+              </p>
+            )}
+          </div>
+        </div>
+      </section>
+
+      <div className="container max-w-6xl py-8 md:py-12">
+        <AuthorMetaBar author="jonas" date="21-02-2026" readTime="5 Min." />
+
+        <div className="mb-10 overflow-hidden rounded-xl">
+          <img src={complianceHero} alt="Compliance dashboard for danske online casinoer med skjold og retfærdighedsvægt" className="w-full h-auto object-cover max-h-[400px]" loading="eager" />
+        </div>
 
         {/* Summary Cards */}
         <div className="grid gap-4 sm:grid-cols-3 mb-10">
