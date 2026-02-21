@@ -61,7 +61,7 @@ Deno.serve(async (req) => {
     for (const casino of casinos || []) {
       const casinoSlug = casino.slug;
       const casinoName = casino.name;
-      const scrapeUrl = `https://spillemyndigheden.dk/telefonbog?title=${encodeURIComponent(casinoName)}`;
+      const scrapeUrl = `https://www.spillemyndigheden.dk/tilladelsesindehavere`;
       const requestStart = Date.now();
 
       let scrapeStatus: 'success' | 'failed' | 'partial' = 'failed';
