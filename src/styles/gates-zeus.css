@@ -10,34 +10,6 @@
   animation: gates-zeus-breathe 3s ease-in-out infinite;
 }
 
-/* Eye glow pulse (idle) */
-@keyframes gates-zeus-eye-pulse-idle {
-  0%, 100% { opacity: 0.6; }
-  50% { opacity: 1; }
-}
-
-.gates-zeus-eye-idle {
-  animation: gates-zeus-eye-pulse-idle 4s ease-in-out infinite;
-}
-
-/* Arm idle sway */
-@keyframes gates-zeus-arm-sway-left {
-  0%, 100% { transform: rotate(-5deg); }
-  50% { transform: rotate(-8deg); }
-}
-@keyframes gates-zeus-arm-sway-right {
-  0%, 100% { transform: rotate(5deg); }
-  50% { transform: rotate(8deg); }
-}
-
-.gates-zeus-arm-idle-left {
-  animation: gates-zeus-arm-sway-left 3.5s ease-in-out infinite;
-}
-.gates-zeus-arm-idle-right {
-  animation: gates-zeus-arm-sway-right 3.5s ease-in-out infinite;
-  animation-delay: 0.3s;
-}
-
 /* === SPIN STATE — alert, leaning forward === */
 @keyframes gates-zeus-spin-lean {
   0%, 100% { transform: translateY(-1px) scale(1.02); }
@@ -48,11 +20,7 @@
   animation: gates-zeus-spin-lean 1.5s ease-in-out infinite;
 }
 
-.gates-zeus-eye-spin {
-  animation: gates-zeus-eye-pulse-idle 1.5s ease-in-out infinite;
-}
-
-/* === WIN STATE — excited, arms raised === */
+/* === WIN STATE — excited bounce === */
 @keyframes gates-zeus-win-bounce {
   0%, 100% { transform: translateY(0) scale(1.05); }
   30% { transform: translateY(-5px) scale(1.08); }
@@ -61,32 +29,6 @@
 
 .gates-zeus-win {
   animation: gates-zeus-win-bounce 0.8s ease-out infinite;
-}
-
-@keyframes gates-zeus-eye-win-flash {
-  0%, 100% { opacity: 0.8; transform: scale(1); }
-  50% { opacity: 1; transform: scale(1.3); }
-}
-
-.gates-zeus-eye-win {
-  animation: gates-zeus-eye-win-flash 0.6s ease-in-out infinite;
-}
-
-@keyframes gates-zeus-arm-raise-left {
-  0%, 100% { transform: rotate(-15deg); }
-  50% { transform: rotate(-35deg); }
-}
-@keyframes gates-zeus-arm-raise-right {
-  0%, 100% { transform: rotate(15deg); }
-  50% { transform: rotate(35deg); }
-}
-
-.gates-zeus-arm-win-left {
-  animation: gates-zeus-arm-raise-left 0.8s ease-in-out infinite;
-}
-.gates-zeus-arm-win-right {
-  animation: gates-zeus-arm-raise-right 0.8s ease-in-out infinite;
-  animation-delay: 0.1s;
 }
 
 /* === CLIMAX STATE — power pose, full intensity === */
@@ -103,31 +45,37 @@
   animation: gates-zeus-climax-power 1.2s ease-out forwards;
 }
 
-@keyframes gates-zeus-eye-climax-blaze {
-  0%, 100% { opacity: 1; transform: scale(1.2); box-shadow: 0 0 8px rgba(250, 204, 21, 0.8); }
-  50% { opacity: 1; transform: scale(1.6); box-shadow: 0 0 14px rgba(250, 204, 21, 1); }
+/* === IMAGE FILTER INTENSITY CLASSES === */
+.gates-zeus-img-idle {
+  filter: brightness(0.9) drop-shadow(0 0 8px rgba(139, 92, 246, 0.3));
+  transition: filter 400ms ease-out;
 }
 
-.gates-zeus-eye-climax {
-  animation: gates-zeus-eye-climax-blaze 0.4s ease-in-out infinite;
+.gates-zeus-img-spin {
+  filter: brightness(1.0) drop-shadow(0 0 12px rgba(59, 130, 246, 0.4));
+  transition: filter 300ms ease-out;
 }
 
-@keyframes gates-zeus-arm-climax-raise {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(-60deg); }
+.gates-zeus-img-win {
+  filter: brightness(1.15) drop-shadow(0 0 16px rgba(250, 204, 21, 0.5));
+  transition: filter 200ms ease-out;
 }
 
-.gates-zeus-arm-climax {
-  animation: gates-zeus-arm-climax-raise 0.4s ease-out forwards;
+.gates-zeus-img-climax {
+  filter: brightness(1.3) drop-shadow(0 0 24px rgba(250, 204, 21, 0.8));
+  transition: filter 150ms ease-out;
 }
 
-.gates-zeus-arm-right.gates-zeus-arm-climax {
-  animation-name: gates-zeus-arm-climax-raise-right;
+.gates-zeus-img-bonus {
+  filter: brightness(1.2) drop-shadow(0 0 20px rgba(250, 204, 21, 0.6)) drop-shadow(0 0 40px rgba(139, 92, 246, 0.3));
 }
 
-@keyframes gates-zeus-arm-climax-raise-right {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(60deg); }
+.gates-zeus-img-bonus.gates-zeus-img-win {
+  filter: brightness(1.3) drop-shadow(0 0 24px rgba(250, 204, 21, 0.7)) drop-shadow(0 0 40px rgba(139, 92, 246, 0.4));
+}
+
+.gates-zeus-img-bonus.gates-zeus-img-climax {
+  filter: brightness(1.4) drop-shadow(0 0 30px rgba(250, 204, 21, 0.9)) drop-shadow(0 0 50px rgba(139, 92, 246, 0.5));
 }
 
 /* === AURA BACKGROUNDS === */
