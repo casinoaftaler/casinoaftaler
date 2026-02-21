@@ -524,9 +524,7 @@ export function GatesSlotGame({ gameId = "gates-of-fedesvin" }: GatesSlotGamePro
       const totalDropInTime = DROP_IN_DURATION + lastColumnDelay;
       await new Promise(r => setTimeout(r, totalDropInTime));
 
-      // Quick reel stop flash after final column lands
-      setShowReelFlash(true);
-      setTimeout(() => setShowReelFlash(false), 80);
+      // Reel stop flash removed (was too flashy)
 
       // All columns landed — reset to idle
       setColumnSpinStates(Array(GATES_COLS).fill('idle'));
@@ -824,8 +822,7 @@ export function GatesSlotGame({ gameId = "gates-of-fedesvin" }: GatesSlotGamePro
           height: gridHeight,
         }}
       >
-        {/* Reel stop flash */}
-        {showReelFlash && <div className="gates-reel-stop-flash" />}
+        {/* Reel stop flash removed */}
         {/* Grid of symbols - column-based rendering */}
         <div 
           className="relative flex"
