@@ -34,6 +34,7 @@ export function SlotSoundFilesSection({ gameId = "book-of-fedesvin" }: SlotSound
     scatterSound2: null,
     scatterSound3: null,
     scatterCelebrationSound: null,
+    symbolHighlightSound: null,
   });
 
   useEffect(() => {
