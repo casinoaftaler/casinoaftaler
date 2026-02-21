@@ -28,6 +28,7 @@ import { AnimatedWinCounter } from "./AnimatedWinCounter";
 import { BonusEntrySequence } from "./BonusEntrySequence";
 import { GatesRetriggerOverlay } from "./GatesRetriggerOverlay";
 import { GatesBonusEndOverlay } from "./GatesBonusEndOverlay";
+import { useGatesIntensity } from "@/hooks/useGatesIntensity";
 
 const SYMBOL_WIDTH = 140;
 const SYMBOL_HEIGHT = 108;
@@ -100,6 +101,8 @@ export function GatesSlotGame({ gameId = "gates-of-fedesvin" }: GatesSlotGamePro
   const [autoSpinsRemaining, setAutoSpinsRemaining] = useState<number | null>(null);
   const autoSpinTimeoutRef = useRef<NodeJS.Timeout | null>(null);
   const shouldStopAutoSpinRef = useRef(false);
+  const [spinPressed, setSpinPressed] = useState(false);
+  const [showReelFlash, setShowReelFlash] = useState(false);
 
   // Initialize grid
   useEffect(() => {
@@ -473,7 +476,7 @@ export function GatesSlotGame({ gameId = "gates-of-fedesvin" }: GatesSlotGamePro
         setGrid(result.tumbleSteps[0].grid);
       }
 
-      // Phase 2: Drop-in — stagger columns left to right
+      // Phase 2: Drop-in — stagger columns left to right with column stop sounds
       for (let c = 0; c < GATES_COLS; c++) {
         setTimeout(() => {
           setColumnSpinStates(prev => {
@@ -481,12 +484,18 @@ export function GatesSlotGame({ gameId = "gates-of-fedesvin" }: GatesSlotGamePro
             next[c] = 'dropping-in';
             return next;
           });
+          // Play column stop thud per column
+          slotSounds.playColumnStop();
         }, c * STAGGER_MS);
       }
 
       // Wait for all drop-in animations to complete
       const totalDropInTime = DROP_IN_DURATION + (GATES_COLS - 1) * STAGGER_MS;
       await new Promise(r => setTimeout(r, totalDropInTime));
+
+      // Quick reel stop flash after final column lands
+      setShowReelFlash(true);
+      setTimeout(() => setShowReelFlash(false), 80);
 
       // All columns landed — reset to idle
       setColumnSpinStates(Array(GATES_COLS).fill('idle'));
@@ -619,6 +628,21 @@ export function GatesSlotGame({ gameId = "gates-of-fedesvin" }: GatesSlotGamePro
     }
   }, [bonusAutoSpinPending, isBonusActive, isSpinning, handleSpin]);
 
+  // Visual intensity state
+  const { intensityState } = useGatesIntensity({
+    tumblePhase,
+    tumbleChainLength,
+    winAmount: runningWin,
+    bet,
+  });
+
+  // Spin button press animation
+  const handleSpinWithPress = useCallback(async () => {
+    setSpinPressed(true);
+    setTimeout(() => setSpinPressed(false), 200);
+    handleSpin();
+  }, [handleSpin]);
+
   if (symbolsLoading || !symbols) {
     return (
       <div className="flex items-center justify-center py-20">
@@ -631,7 +655,12 @@ export function GatesSlotGame({ gameId = "gates-of-fedesvin" }: GatesSlotGamePro
   const gridHeight = GATES_ROWS * (SYMBOL_HEIGHT + SYMBOL_GAP) + SYMBOL_GAP;
 
   return (
-    <div className="flex flex-col items-center gap-4">
+    <div className="flex flex-col items-center gap-4" data-intensity={intensityState}>
+      {/* Ambient lightning overlay */}
+      <div className="gates-lightning-ambient" />
+      {/* Ambient glow background */}
+      <div className="gates-ambient-glow" />
+
       {/* Bonus bar - only in bonus (free spins + multiplier shown above grid) */}
       {isBonusActive && (
         <div className="w-full flex justify-center animate-fade-in">
@@ -705,9 +734,10 @@ export function GatesSlotGame({ gameId = "gates-of-fedesvin" }: GatesSlotGamePro
       {/* Main game grid */}
       <div 
         className={cn(
-          "relative rounded-xl border-2 overflow-hidden",
+          "gates-grid-container relative rounded-xl border-2 overflow-hidden",
           "bg-gradient-to-b from-blue-950/95 via-slate-950/90 to-blue-950/95",
           "border-blue-500/30",
+          "gates-grid-intensity-glow",
           screenShake === 'normal' && "gates-shake",
           screenShake === 'intense' && "gates-shake-intense",
           isSlowMotion && "gates-slow-motion",
@@ -716,9 +746,10 @@ export function GatesSlotGame({ gameId = "gates-of-fedesvin" }: GatesSlotGamePro
         style={{
           width: gridWidth,
           height: gridHeight,
-          boxShadow: '0 0 40px rgba(59,130,246,0.2), 0 0 80px rgba(59,130,246,0.1)',
         }}
       >
+        {/* Reel stop flash */}
+        {showReelFlash && <div className="gates-reel-stop-flash" />}
         {/* Grid of symbols - column-based rendering */}
         <div 
           className="relative flex"
@@ -796,7 +827,7 @@ export function GatesSlotGame({ gameId = "gates-of-fedesvin" }: GatesSlotGamePro
         <GatesControlBar
           bet={bet}
           onBetChange={setBet}
-          onSpin={handleSpin}
+          onSpin={handleSpinWithPress}
           isSpinning={isSpinning || tumblePhase !== 'idle'}
           isSpinLocked={spinLockRef.current}
           canSpin={canSpin}

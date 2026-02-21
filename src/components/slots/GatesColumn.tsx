@@ -78,7 +78,7 @@ export const GatesColumn = React.memo(function GatesColumn({
               (cellAnim === 'dropping' || cellAnim === 'filling' || cellAnim === 'exploding' || applyDropOff || applyDropIn) ? "overflow-visible" : "overflow-hidden",
               "bg-blue-950/50 border border-blue-500/10",
               isWinning && "gates-win-highlight",
-              isLanding && "gates-symbol-land",
+              isLanding && "gates-column-stop-impact",
               applyDropOff && "gates-drop-off",
               applyDropIn && "gates-drop-in",
               cellAnim === 'winning' && "gates-gold-highlight",
