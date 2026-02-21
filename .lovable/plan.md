@@ -1,61 +1,76 @@
 
 
-## Redesign Gates of Fedesvin Control Bar
+## Fix Gravity Drop Animation for Surviving Symbols
 
-### Current Problem
-The control bar has too many separate boxes (Volume, BetControls, Spin button, AutospinRow, PayTable) all in a row, making it look cramped and cluttered. The autospin section takes up a lot of space with its dropdown + button combo.
+### Problem
+The current code calculates the gravity offset incorrectly. It assumes ALL surviving symbols in a column dropped by the same amount (`removedInCol * CELL_HEIGHT`), but in reality each survivor drops a different distance depending on how many removed cells were below it.
 
-### Desired Layout (based on reference image)
-A single, clean horizontal bar with these elements inline from left to right:
+**Example:** Column with rows 0-4 containing A B C D E, where B (row 1) and D (row 3) are removed:
+- After compaction: [new1] [new2] A C E
+- A (was row 0, now row 2) dropped 2 rows
+- C (was row 2, now row 3) dropped 1 row
+- E (was row 4, now row 4) dropped 0 rows -- should NOT animate at all
 
-**Left side:** PayTable button (rules) | Volume button  
-**Center-left:** Credits display (spins remaining)  
-**Center:** Bet display with +/- controls  
-**Center-right:** (space)  
-**Right:** Spin button (circular, with auto-spin count shown inside when active)
+The current code gives all three survivors the same offset of `2 * CELL_HEIGHT`, which is wrong and causes the "frozen then jump" effect.
 
-The auto-spin becomes a single button that opens a small popover/overlay where you pick the count and start. While auto-spinning, the spin button itself shows remaining spins.
+### Solution
 
-### Technical Changes
+**File: `src/components/slots/GatesSlotGame.tsx` (lines ~298-331)**
 
-**1. New component: `GatesControlBar.tsx`**
-A Gates-specific control bar replacing `SlotControlPanel` for this game. Layout:
-- Single horizontal bar with `bg-gradient-to-b from-blue-950/90 to-slate-950/90` and rounded corners
-- Left cluster: PayTable icon button + Volume icon button (compact, no labels)
-- Center-left: Credits counter showing `spinsRemaining / maxSpins`
-- Center: Bet section - label "BET", value with +/- buttons
-- Right: Circular spin button (~64-72px) that shows:
-  - "SPIN" normally
-  - Spinning animation during spin
-  - "FREE" during bonus
-  - Auto-spin remaining count (e.g. "23") when auto-spinning
-  - "INGEN SPINS" when out of credits
-
-**2. New component: `AutoSpinPopover.tsx`**
-A small popover triggered by a turbo/auto button next to the spin button:
-- Shows count options (10, 25, 50, 100, Infinite) as selectable chips/buttons
-- "START" button to begin auto-spinning
-- When auto-spinning, the same button shows "STOP" with remaining count
-
-**3. Update `GatesSlotGame.tsx`**
-- Replace `SlotControlPanel` usage with the new `GatesControlBar` component
-- Remove the `max-w-[700px]` constraint
-- Pass all existing props to the new component
-
-**4. Keep `SlotControlPanel` unchanged**
-The existing panel continues to work for "Book of Fedesvin" and other games.
-
-### Layout Sketch
+Replace the per-column drop calculation with accurate per-survivor offsets:
 
 ```text
-+------------------------------------------------------------------------+
-| [i] [Vol]  |  Credits: 87/100  |  BET  [-] 5 [+]  |  [Auto] [SPIN]  |
-+------------------------------------------------------------------------+
+For each column:
+  1. Collect the list of surviving row indices (in order, top to bottom)
+  2. New symbols fill the top `removedInCol` rows -> 'filling' animation
+  3. Each survivor[i] moves to new row = removedInCol + i
+     - dropRows = newRow - oldRow
+     - If dropRows > 0: set 'dropping' with offset = dropRows * CELL_HEIGHT
+     - If dropRows == 0: NO animation (symbol stays in place)
 ```
 
-During auto-spin, the spin button shows the remaining count inside it. During bonus, credits section is hidden and the spin button shows "FREE".
+This ensures:
+- Symbols that didn't move get no animation at all (no freeze/jump)
+- Each survivor gets its own correct drop distance
+- The visual result matches Gates of Olympus: symbols fall naturally by exactly the gap distance beneath them
 
-### Files to Create/Modify
-- **Create:** `src/components/slots/GatesControlBar.tsx` - new clean horizontal bar
-- **Create:** `src/components/slots/AutoSpinPopover.tsx` - popover for auto-spin config
-- **Modify:** `src/components/slots/GatesSlotGame.tsx` - swap control panel component
+### CSS Animation (no change needed)
+The `tumble-gravity` keyframe already reads `--gravity-offset` per cell, so once the offset values are correct the animation will be smooth.
+
+### Technical Detail
+
+Replace the survivor loop (approx lines 316-329) with:
+
+```typescript
+// Collect surviving rows in this column (original positions)
+const survivorRows: number[] = [];
+for (let row = 0; row < GATES_ROWS; row++) {
+  const flat = col * GATES_ROWS + row;
+  if (!allRemovedPositions.has(flat)) {
+    survivorRows.push(row);
+  }
+}
+
+// New symbols fill top rows
+for (let row = 0; row < removedInCol; row++) {
+  const flat = col * GATES_ROWS + row;
+  dropAnims.set(flat, 'filling');
+}
+
+// Each survivor compacts to bottom: survivor[i] -> new row (removedInCol + i)
+for (let i = 0; i < survivorRows.length; i++) {
+  const oldRow = survivorRows[i];
+  const newRow = removedInCol + i;
+  const dropRows = newRow - oldRow;
+  if (dropRows > 0) {
+    const flat = col * GATES_ROWS + newRow;
+    dropAnims.set(flat, 'dropping');
+    offsets.set(flat, dropRows * CELL_HEIGHT);
+  }
+  // dropRows === 0 means no movement, no animation needed
+}
+```
+
+### Files to modify
+- `src/components/slots/GatesSlotGame.tsx` -- fix the per-cell gravity offset calculation
+
