@@ -88,6 +88,12 @@ const CasinoNyheder = () => {
 
         <Separator className="mb-8" />
 
+        {/* Section Header */}
+        <div className="mb-8">
+          <h2 className="text-2xl font-bold mb-2">Seneste casino-nyheder</h2>
+          <p className="text-muted-foreground">Korte analyser og opdateringer fra det danske online casino-marked.</p>
+        </div>
+
         {/* Article List */}
         {isLoading ? (
           <div className="grid gap-6 md:grid-cols-2">
