@@ -3007,6 +3007,50 @@ class SlotSoundEffects {
       this.windAmbienceGain = null;
     }
   }
+
+  // Scatter tease rising pitch sound (2-3 scatters visible)
+  playScatterTease(scatterCount: number) {
+    if (!this.canPlayBonusSound()) return;
+    const ctx = this.getContext();
+    const now = ctx.currentTime;
+
+    // Rising pitch sweep — higher pitch for more scatters
+    const baseFreq = scatterCount >= 3 ? 400 : 300;
+    const endFreq = scatterCount >= 3 ? 1200 : 800;
+    const duration = scatterCount >= 3 ? 0.8 : 0.6;
+
+    const osc = ctx.createOscillator();
+    const gain = ctx.createGain();
+    osc.connect(gain);
+    gain.connect(ctx.destination);
+
+    osc.type = 'sine';
+    osc.frequency.setValueAtTime(baseFreq, now);
+    osc.frequency.exponentialRampToValueAtTime(endFreq, now + duration);
+
+    gain.gain.setValueAtTime(0.15 * this.volume, now);
+    gain.gain.setValueAtTime(0.2 * this.volume, now + duration * 0.5);
+    gain.gain.exponentialRampToValueAtTime(0.001, now + duration + 0.2);
+
+    osc.start(now);
+    osc.stop(now + duration + 0.25);
+
+    // Add shimmer overtone
+    const shimmer = ctx.createOscillator();
+    const shimmerGain = ctx.createGain();
+    shimmer.connect(shimmerGain);
+    shimmerGain.connect(ctx.destination);
+
+    shimmer.type = 'triangle';
+    shimmer.frequency.setValueAtTime(baseFreq * 2.5, now);
+    shimmer.frequency.exponentialRampToValueAtTime(endFreq * 2, now + duration);
+
+    shimmerGain.gain.setValueAtTime(0.06 * this.volume, now);
+    shimmerGain.gain.exponentialRampToValueAtTime(0.001, now + duration + 0.1);
+
+    shimmer.start(now);
+    shimmer.stop(now + duration + 0.15);
+  }
 }
 
 // Singleton instance

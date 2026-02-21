@@ -188,3 +188,76 @@
       0 0 80px var(--grid-glow-color, rgba(59, 130, 246, 0.1));
   }
 }
+
+/* ===== SCATTER TEASE GLOW ===== */
+@keyframes gates-scatter-tease-glow {
+  0% {
+    filter: brightness(1);
+    box-shadow: 0 0 0 rgba(250, 204, 21, 0);
+  }
+  20% {
+    filter: brightness(1.3);
+    box-shadow: 0 0 15px rgba(250, 204, 21, 0.4);
+  }
+  50% {
+    filter: brightness(1.6) drop-shadow(0 0 10px rgba(250, 204, 21, 0.7));
+    box-shadow: 0 0 25px rgba(250, 204, 21, 0.6), 0 0 50px rgba(139, 92, 246, 0.3);
+  }
+  70% {
+    filter: brightness(1.4);
+    box-shadow: 0 0 20px rgba(250, 204, 21, 0.5);
+  }
+  100% {
+    filter: brightness(1.2);
+    box-shadow: 0 0 12px rgba(250, 204, 21, 0.3);
+  }
+}
+
+.gates-scatter-tease {
+  animation: gates-scatter-tease-glow 1s ease-in-out forwards;
+  z-index: 10;
+}
+
+/* Enhanced tease for 3 scatters (near-trigger) */
+.gates-scatter-tease-intense {
+  animation: gates-scatter-tease-glow-intense 1.2s ease-in-out forwards;
+  z-index: 10;
+}
+
+@keyframes gates-scatter-tease-glow-intense {
+  0% {
+    filter: brightness(1);
+    box-shadow: 0 0 0 rgba(250, 204, 21, 0);
+    transform: scale(1);
+  }
+  15% {
+    filter: brightness(1.4);
+    box-shadow: 0 0 20px rgba(250, 204, 21, 0.5);
+    transform: scale(1.03);
+  }
+  40% {
+    filter: brightness(1.8) drop-shadow(0 0 14px rgba(250, 204, 21, 0.8));
+    box-shadow: 0 0 35px rgba(250, 204, 21, 0.7), 0 0 60px rgba(139, 92, 246, 0.4);
+    transform: scale(1.06);
+  }
+  60% {
+    filter: brightness(1.5);
+    box-shadow: 0 0 25px rgba(250, 204, 21, 0.5);
+    transform: scale(1.04);
+  }
+  80% {
+    filter: brightness(1.3);
+    transform: scale(1.02);
+  }
+  100% {
+    filter: brightness(1);
+    box-shadow: 0 0 8px rgba(250, 204, 21, 0.2);
+    transform: scale(1);
+  }
+}
+
+/* Slow-motion effect on final column during scatter tease */
+.gates-column-slow-stop {
+  animation-duration: 600ms !important;
+  animation-timing-function: cubic-bezier(0.25, 0.1, 0.25, 1) !important;
+}

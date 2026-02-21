@@ -477,8 +477,20 @@ export function GatesSlotGame({ gameId = "gates-of-fedesvin" }: GatesSlotGamePro
         setGrid(result.tumbleSteps[0].grid);
       }
 
+      // Pre-detect scatters for slow-motion tease on final columns
+      let scatterTeaseActive = false;
+      if (result.tumbleSteps && result.tumbleSteps.length > 0 && symbols) {
+        const { count: preScatterCount } = countGatesScatters(result.tumbleSteps[0].grid, symbols);
+        scatterTeaseActive = preScatterCount >= 2;
+      }
+
       // Phase 2: Drop-in — stagger columns left to right with column stop sounds
+      // Apply slow-motion on final 2 columns when scatter tease is active
       for (let c = 0; c < GATES_COLS; c++) {
+        const isSlowColumn = scatterTeaseActive && c >= GATES_COLS - 2;
+        const delay = isSlowColumn
+          ? (GATES_COLS - 2) * STAGGER_MS + (c - (GATES_COLS - 2)) * (STAGGER_MS * 2.5)
+          : c * STAGGER_MS;
         setTimeout(() => {
           setColumnSpinStates(prev => {
             const next = [...prev];
@@ -487,11 +499,14 @@ export function GatesSlotGame({ gameId = "gates-of-fedesvin" }: GatesSlotGamePro
           });
           // Play column stop thud per column
           slotSounds.playColumnStop();
-        }, c * STAGGER_MS);
+        }, delay);
       }
 
-      // Wait for all drop-in animations to complete
-      const totalDropInTime = DROP_IN_DURATION + (GATES_COLS - 1) * STAGGER_MS;
+      // Wait for all drop-in animations to complete (account for slow columns)
+      const lastColumnDelay = scatterTeaseActive
+        ? (GATES_COLS - 2) * STAGGER_MS + 1 * (STAGGER_MS * 2.5)
+        : (GATES_COLS - 1) * STAGGER_MS;
+      const totalDropInTime = DROP_IN_DURATION + lastColumnDelay;
       await new Promise(r => setTimeout(r, totalDropInTime));
 
       // Quick reel stop flash after final column lands
@@ -500,6 +515,30 @@ export function GatesSlotGame({ gameId = "gates-of-fedesvin" }: GatesSlotGamePro
 
       // All columns landed — reset to idle
       setColumnSpinStates(Array(GATES_COLS).fill('idle'));
+
+      // Scatter tease: detect 2-3 scatters and highlight them before proceeding
+      if (result.tumbleSteps && result.tumbleSteps.length > 0 && symbols) {
+        const firstGrid = result.tumbleSteps[0].grid;
+        const { count: scatterCount, positions: scatterPositions } = countGatesScatters(firstGrid, symbols);
+        
+        if (scatterCount >= 2 && scatterCount <= 3) {
+          // Apply scatter tease glow to detected scatter positions
+          const teaseAnims = new Map<number, CellAnimState>();
+          const teaseClass = scatterCount >= 3 ? 'scatter-tease-intense' : 'scatter-tease';
+          scatterPositions.forEach(pos => teaseAnims.set(pos, teaseClass as CellAnimState));
+          setCellAnimStates(teaseAnims);
+          
+          // Play rising pitch tease sound
+          slotSounds.playScatterTease(scatterCount);
+          
+          // Hold tease visual — longer for 3 scatters
+          const teaseDuration = scatterCount >= 3 ? 1200 : 800;
+          await new Promise(r => setTimeout(r, teaseDuration));
+          
+          // Clear tease animations
+          setCellAnimStates(new Map());
+        }
+      }
 
       if (result.tumbleSteps) {
         
