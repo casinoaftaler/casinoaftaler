@@ -28,7 +28,8 @@ import { BonusEntrySequence } from "./BonusEntrySequence";
 import { GatesRetriggerOverlay } from "./GatesRetriggerOverlay";
 import { GatesBonusEndOverlay } from "./GatesBonusEndOverlay";
 
-const SYMBOL_SIZE = 100;
+const SYMBOL_WIDTH = 110;
+const SYMBOL_HEIGHT = 85;
 const SYMBOL_GAP = 4;
 
 type AutoSpinCount = 10 | 25 | 50 | 100 | "infinite";
@@ -292,7 +293,7 @@ export function GatesSlotGame({ gameId = "gates-of-fedesvin" }: GatesSlotGamePro
           const nextGrid = steps[i + 1].grid;
           const dropAnims = new Map<number, CellAnimState>();
           const offsets = new Map<number, number>();
-          const CELL_HEIGHT = 104; // SYMBOL_SIZE + GAP
+          const CELL_HEIGHT = SYMBOL_HEIGHT + SYMBOL_GAP; // 89
           
           for (let col = 0; col < GATES_COLS; col++) {
             let removedInCol = 0;
@@ -566,8 +567,8 @@ export function GatesSlotGame({ gameId = "gates-of-fedesvin" }: GatesSlotGamePro
     );
   }
 
-  const gridWidth = GATES_COLS * (SYMBOL_SIZE + SYMBOL_GAP) + SYMBOL_GAP;
-  const gridHeight = GATES_ROWS * (SYMBOL_SIZE + SYMBOL_GAP) + SYMBOL_GAP;
+  const gridWidth = GATES_COLS * (SYMBOL_WIDTH + SYMBOL_GAP) + SYMBOL_GAP;
+  const gridHeight = GATES_ROWS * (SYMBOL_HEIGHT + SYMBOL_GAP) + SYMBOL_GAP;
 
   return (
     <div className="flex flex-col items-center gap-4">

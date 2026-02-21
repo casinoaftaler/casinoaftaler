@@ -4,7 +4,8 @@ import { GATES_ROWS } from "@/lib/gatesGameLogic";
 import { isMultiplierSymbol, getMultiplierImageUrl, getMultiplierSymbolInfo } from "@/lib/gatesMultiplierSymbols";
 import type { SlotSymbol } from "@/lib/slotGameLogic";
 
-const SYMBOL_SIZE = 100;
+const SYMBOL_WIDTH = 110;
+const SYMBOL_HEIGHT = 85;
 const CYCLE_INTERVAL = 70;
 
 export type ColumnSpinState = 'idle' | 'spinning' | 'landing' | 'landed';
@@ -110,9 +111,9 @@ export const GatesColumn = React.memo(function GatesColumn({
               cellAnim === 'scatter-pulse' && "gates-scatter-trigger-pulse",
             )}
             style={{
-              width: SYMBOL_SIZE,
-              height: SYMBOL_SIZE,
-              '--gravity-offset': cellAnim === 'dropping' ? `${-(cellDropOffsets.get(flatIndex) || 104)}px` : undefined,
+              width: SYMBOL_WIDTH,
+              height: SYMBOL_HEIGHT,
+              '--gravity-offset': cellAnim === 'dropping' ? `${-(cellDropOffsets.get(flatIndex) || (SYMBOL_HEIGHT + 4))}px` : undefined,
               animationDelay: isLanding ? `${row * 50}ms` : 
                 cellAnim === 'dropping' ? `${row * 40}ms` :
                 cellAnim === 'filling' ? `${row * 40}ms` : undefined,
