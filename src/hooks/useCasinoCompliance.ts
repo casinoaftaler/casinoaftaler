@@ -19,6 +19,8 @@ export interface CasinoComplianceRow {
   last_checked: string;
   source_url: string;
   notes: string | null;
+  license_last_scraped_at: string | null;
+  scrape_status: "success" | "failed" | "partial" | "pending";
 }
 
 export function useCasinoCompliance() {

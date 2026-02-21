@@ -226,6 +226,10 @@ function formatFieldChanged(field: string): string {
     case "license_status": return "Licensstatus";
     case "bonus_max_amount": return "Maks. bonus";
     case "bonus_wager_requirement": return "Omsætningskrav";
+    case "license_source_url": return "Licens-kilde";
+    case "bonus_source_url": return "Bonus-kilde";
+    case "license_holder_name": return "Licensindehaver";
+    case "scrape_status": return "Scrape-status";
     default: return field;
   }
 }
@@ -242,6 +246,36 @@ function formatValue(field: string, value: string): string {
   if (field === "bonus_max_amount") return `${value} kr.`;
   if (field === "bonus_wager_requirement") return `${value}x`;
   return value;
+}
+
+function ScrapeStatusBadge({ row }: { row: CasinoComplianceRow }) {
+  const scrapeDate = row.license_last_scraped_at
+    ? new Date(row.license_last_scraped_at).toLocaleDateString("da-DK", { day: "numeric", month: "short", year: "numeric" })
+    : null;
+
+  if (row.scrape_status === "success" && scrapeDate) {
+    return (
+      <Badge className="bg-emerald-500/20 text-emerald-700 dark:text-emerald-400 border-emerald-500/30 gap-1 text-[10px]">
+        <CheckCircle className="h-2.5 w-2.5" />
+        Live-verificeret ({scrapeDate})
+      </Badge>
+    );
+  }
+  if (row.scrape_status === "failed" || row.scrape_status === "partial") {
+    return (
+      <Badge className="bg-amber-500/20 text-amber-700 dark:text-amber-400 border-amber-500/30 gap-1 text-[10px]">
+        <AlertTriangle className="h-2.5 w-2.5" />
+        {row.scrape_status === "failed" ? "Verifikation mislykkedes" : "Manuel gennemgang kræves"}
+        {scrapeDate && ` – seneste: ${scrapeDate}`}
+      </Badge>
+    );
+  }
+  return (
+    <Badge variant="outline" className="gap-1 text-[10px]">
+      <Clock className="h-2.5 w-2.5" />
+      Afventer verifikation
+    </Badge>
+  );
 }
 
 // ─── Filter/Sort types ───────────────────────────────────────────────
@@ -500,6 +534,7 @@ export default function CasinoCompliance() {
                       <TableHead className="text-center">Bonus OK?</TableHead>
                       <TableHead className="text-center">Wager</TableHead>
                       <TableHead className="text-center">Score</TableHead>
+                      <TableHead className="text-center">Status</TableHead>
                       <TableHead className="text-center">Verificér</TableHead>
                     </TableRow>
                   </TableHeader>
@@ -536,6 +571,7 @@ export default function CasinoCompliance() {
                         </TableCell>
                         <TableCell className="text-center text-sm">{row.bonus_wager_requirement}x</TableCell>
                         <TableCell className="text-center"><ScoreBadge score={row.compliance_score} /></TableCell>
+                        <TableCell className="text-center"><ScrapeStatusBadge row={row} /></TableCell>
                         <TableCell className="text-center">
                           <div className="flex items-center justify-center gap-2">
                             <Tooltip>

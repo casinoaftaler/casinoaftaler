@@ -80,3 +80,6 @@ verify_jwt = false
 
 [functions.compliance-export]
 verify_jwt = false
+
+[functions.refresh-compliance-data]
+verify_jwt = false
