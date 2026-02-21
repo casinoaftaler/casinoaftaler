@@ -105,7 +105,7 @@ let GATES_SCATTER_RETRIGGER = 3;
 let GATES_FREE_SPINS_INITIAL = 15;
 let GATES_FREE_SPINS_RETRIGGER = 5;
 let GATES_MULTIPLIER_CHANCE_BASE = 0.04;
-let GATES_MULTIPLIER_CHANCE_BONUS = 0.056; // 40% higher than base
+let GATES_MULTIPLIER_CHANCE_BONUS = 0.05; // ~5% per cell in bonus
 const GATES_BONUS_PREMIUM_WEIGHT_BOOST = 1.10; // +10% premium symbol weight in bonus
 
 const GATES_MULTIPLIER_VALUES = [2, 3, 5, 10, 15, 25, 50, 100];
@@ -147,7 +147,7 @@ async function loadGatesSettings(serviceClient: ReturnType<typeof createClient>)
     GATES_FREE_SPINS_INITIAL = parseInt(map.gates_free_spins_initial || "15", 10);
     GATES_FREE_SPINS_RETRIGGER = parseInt(map.gates_free_spins_retrigger || "5", 10);
     GATES_MULTIPLIER_CHANCE_BASE = parseFloat(map.gates_multiplier_chance_base || "0.04");
-    GATES_MULTIPLIER_CHANCE_BONUS = parseFloat(map.gates_multiplier_chance_bonus || "0.14");
+    GATES_MULTIPLIER_CHANCE_BONUS = parseFloat(map.gates_multiplier_chance_bonus || "0.05");
   }
 }
 
@@ -222,17 +222,29 @@ async function getGatesRandomSymbol(symbols: SlotSymbol[], isBonusSpin: boolean,
 async function generateGatesGrid(symbols: SlotSymbol[], isBonusSpin: boolean, prng: SeededPRNG, spinType: GatesSpinType = 'both'): Promise<string[][]> {
   const chance = isBonusSpin ? GATES_MULTIPLIER_CHANCE_BONUS : GATES_MULTIPLIER_CHANCE_BASE;
   const scatterSymbol = symbols.find(s => s.is_scatter);
+  const nonScatterSymbols = symbols.filter(s => !s.is_scatter);
   const grid: string[][] = [];
   for (let col = 0; col < GATES_COLS; col++) {
     const column: string[] = [];
+    let hasScatter = false; // Cap: max 1 scatter per reel
     for (let row = 0; row < GATES_ROWS; row++) {
-      const sym = await getGatesRandomSymbol(symbols, isBonusSpin, prng);
+      let sym = await getGatesRandomSymbol(symbols, isBonusSpin, prng);
+
+      // Cap scatters to 1 per column: if scatter already placed, re-roll without scatter
+      if (scatterSymbol && sym.id === scatterSymbol.id && hasScatter) {
+        sym = await getGatesRandomSymbol(nonScatterSymbols, isBonusSpin, prng);
+      }
 
       // Multiplier spin: replace scatters with multipliers
       if (spinType === 'multiplier' && scatterSymbol && sym.id === scatterSymbol.id) {
         const multVal = await pickGatesMultiplierValue(prng);
         column.push(`mult_${multVal}x`);
         continue;
+      }
+
+      // Track scatter placement
+      if (scatterSymbol && sym.id === scatterSymbol.id) {
+        hasScatter = true;
       }
 
       // Scatter spin: never place multipliers
