@@ -77,7 +77,7 @@ Du skriver præcise, faktuelle nyhedsartikler om det danske online casino-marked
 - Undgå hallucinationer – basér dig på den research du modtager
 - INGEN affiliate-links eller kommercielle CTA'er
 - INGEN generisk AI-sprog ("i en verden hvor...", "det er vigtigt at bemærke...")
-- Minimum 800 ord, maximum 1500 ord
+- Minimum 900 ord, maximum 1500 ord
 - Du SKAL altid skrive en artikel baseret på den research der gives dig. Afvis KUN hvis researchen er HELT tom eller irrelevant.
 
 📌 GODKENDTE KATEGORIER (vælg kun én):
@@ -110,7 +110,7 @@ Du MÅ bruge disse som kilder hvis de er relevante for artiklen.
 🧵 STRUKTUR (OBLIGATORISK):
 1) Headline: [Emne] – Hvad det betyder for danske spillere i 2026 (max 60 tegn)
 2) Intro: 2-3 sætninger om hvorfor dette er vigtigt
-3) Body (800-1200 ord) med <h2> sektioner:
+3) Body (900-1200 ord) med <h2> sektioner:
    - Hvad der skete (med kildehenvisninger)
    - Kontekst i dansk marked
    - Konsekvenser for spillerne
@@ -173,10 +173,8 @@ async function isReachable(url: string): Promise<boolean> {
       headers: { "User-Agent": "CasinoAftalerBot/1.0 (source-verification)" },
     });
     clearTimeout(timeout);
-    // Accept 200-399 (some sites redirect or return 301/302)
     return response.status >= 200 && response.status < 400;
   } catch {
-    // Fallback: try GET if HEAD fails (some servers block HEAD)
     try {
       const controller = new AbortController();
       const timeout = setTimeout(() => controller.abort(), 8000);
@@ -186,7 +184,7 @@ async function isReachable(url: string): Promise<boolean> {
         headers: { "User-Agent": "CasinoAftalerBot/1.0 (source-verification)" },
       });
       clearTimeout(timeout);
-      await response.text(); // consume body
+      await response.text();
       return response.status >= 200 && response.status < 400;
     } catch {
       return false;
@@ -197,7 +195,7 @@ async function isReachable(url: string): Promise<boolean> {
 function isRecent(dateString: string): boolean {
   try {
     const published = new Date(dateString);
-    if (isNaN(published.getTime())) return true; // if unparseable, don't reject on this alone
+    if (isNaN(published.getTime())) return true;
     const now = new Date();
     const diffDays = (now.getTime() - published.getTime()) / (1000 * 60 * 60 * 24);
     return diffDays <= 30;
@@ -215,7 +213,6 @@ interface SourceEntry {
 function normalizeSourceUrl(url: string): string {
   try {
     const parsed = new URL(url);
-    // Remove trailing slash and fragment for comparison
     return `${parsed.protocol}//${parsed.hostname}${parsed.pathname}`.replace(/\/$/, "").toLowerCase();
   } catch {
     return url.toLowerCase();
@@ -227,6 +224,8 @@ interface ValidationResult {
   failedChecks: string[];
   warnings: string[];
   validatedSources: SourceEntry[];
+  domainResults: Record<string, boolean>;
+  recencyResults: Record<string, boolean>;
 }
 
 async function validateSources(
@@ -235,11 +234,13 @@ async function validateSources(
 ): Promise<ValidationResult> {
   const failedChecks: string[] = [];
   const warnings: string[] = [];
+  const domainResults: Record<string, boolean> = {};
+  const recencyResults: Record<string, boolean> = {};
 
-  // ── GUARDRAIL 1: Minimum 1 source ──
-  if (!sources || sources.length < 1) {
-    failedChecks.push(`Minimum 1 kilde påkrævet, kun ${sources?.length ?? 0} fundet`);
-    return { passed: false, failedChecks, warnings, validatedSources: [] };
+  // GUARDRAIL: Minimum 2 sources (upgraded from 1)
+  if (!sources || sources.length < 2) {
+    failedChecks.push(`Minimum 2 kilder påkrævet, kun ${sources?.length ?? 0} fundet`);
+    return { passed: false, failedChecks, warnings, validatedSources: [], domainResults, recencyResults };
   }
 
   const validSources: SourceEntry[] = [];
@@ -251,19 +252,20 @@ async function validateSources(
       continue;
     }
 
-    // ── GUARDRAIL 3: URL format (must be HTTPS) ──
     if (!isValidUrl(srcUrl)) {
       failedChecks.push(`Ugyldig URL format (kræver HTTPS): ${srcUrl}`);
+      domainResults[srcUrl] = false;
       continue;
     }
 
-    // ── GUARDRAIL 2: Whitelist domain validation ──
-    if (!isAllowedDomain(srcUrl)) {
+    const domainOk = isAllowedDomain(srcUrl);
+    domainResults[srcUrl] = domainOk;
+    if (!domainOk) {
       failedChecks.push(`Ikke-whitelistet domæne: ${srcUrl}`);
       continue;
     }
 
-    // ── GUARDRAIL 6: Source cross-reference (warning only, not blocking) ──
+    // Citation cross-reference (warning only)
     if (perplexityCitations.length > 0) {
       const normalizedSrc = normalizeSourceUrl(srcUrl);
       const matchesPerplexity = perplexityCitations.some((citation) => {
@@ -273,23 +275,22 @@ async function validateSources(
           normalizedCitation.startsWith(normalizedSrc) ||
           new URL(srcUrl).hostname === new URL(citation).hostname;
       });
-
       if (!matchesPerplexity) {
         warnings.push(`Kilde ikke direkte fra Perplexity søgning (men på whitelist): ${srcUrl}`);
-        // No longer a hard fail — whitelist + reachability is sufficient
       }
     }
 
-    // ── GUARDRAIL 5: Recency validation ──
-    if (source.published_date && !isRecent(source.published_date)) {
+    // Recency check
+    const recentOk = source.published_date ? isRecent(source.published_date) : true;
+    recencyResults[srcUrl] = recentOk;
+    if (!recentOk) {
       warnings.push(`Kilde muligvis forældet (> 30 dage): ${srcUrl}`);
-      // Warning only, not a hard fail
     }
 
     validSources.push(typeof source === "string" ? { url: source } : source);
   }
 
-  // ── GUARDRAIL 4: HTTP reachability check ──
+  // Reachability check
   const reachabilityResults = await Promise.all(
     validSources.map(async (source) => {
       const reachable = await isReachable(source.url);
@@ -306,40 +307,94 @@ async function validateSources(
     }
   }
 
-  // ── GUARDRAIL 7: Final acceptance – must have ≥ 1 fully validated source ──
-  if (reachableSources.length < 1) {
+  // HARD: Must have ≥ 2 fully validated sources
+  if (reachableSources.length < 2) {
     failedChecks.push(
-      `Kun ${reachableSources.length} verificerede kilder efter validering (minimum 1 påkrævet)`
+      `Kun ${reachableSources.length} verificerede kilder efter validering (minimum 2 påkrævet)`
     );
-    return { passed: false, failedChecks, warnings, validatedSources: reachableSources };
+    return { passed: false, failedChecks, warnings, validatedSources: reachableSources, domainResults, recencyResults };
   }
 
   return {
-    passed: reachableSources.length >= 1,
+    passed: true,
     failedChecks,
     warnings,
     validatedSources: reachableSources,
+    domainResults,
+    recencyResults,
   };
 }
 
 // ═══════════════════════════════════════════════════════════
-// PERPLEXITY SEARCH
+// DUPLICATE DETECTION (String similarity ≥ 75%)
+// ═══════════════════════════════════════════════════════════
+
+function similarity(a: string, b: string): number {
+  const aNorm = a.toLowerCase().trim();
+  const bNorm = b.toLowerCase().trim();
+  if (aNorm === bNorm) return 1;
+  
+  const aWords = new Set(aNorm.split(/\s+/));
+  const bWords = new Set(bNorm.split(/\s+/));
+  const intersection = [...aWords].filter(w => bWords.has(w)).length;
+  const union = new Set([...aWords, ...bWords]).size;
+  return union === 0 ? 0 : intersection / union;
+}
+
+interface DuplicateCheckResult {
+  isDuplicate: boolean;
+  matchedTitle?: string;
+  similarityScore?: number;
+  reason?: string;
+}
+
+function checkDuplicate(
+  newTitle: string,
+  newCategory: string,
+  recentArticles: { title: string; slug: string; category: string }[]
+): DuplicateCheckResult {
+  for (const existing of recentArticles) {
+    const score = similarity(newTitle, existing.title);
+    if (score >= 0.75) {
+      return {
+        isDuplicate: true,
+        matchedTitle: existing.title,
+        similarityScore: Math.round(score * 100),
+        reason: `Titel-lighed ${Math.round(score * 100)}% med "${existing.title}"`,
+      };
+    }
+  }
+
+  // Check category saturation (max 2 per category in 30 days)
+  const sameCat = recentArticles.filter(a => a.category === newCategory);
+  if (sameCat.length >= 3) {
+    return {
+      isDuplicate: true,
+      reason: `Kategori "${newCategory}" har allerede ${sameCat.length} artikler de sidste 30 dage`,
+    };
+  }
+
+  return { isDuplicate: false };
+}
+
+// ═══════════════════════════════════════════════════════════
+// PERPLEXITY SEARCH (sonar-pro)
 // ═══════════════════════════════════════════════════════════
 
 interface PerplexityResult {
   content: string;
   citations: string[];
+  model: string;
+  responseTimeMs: number;
 }
 
 async function searchForSources(topic: string): Promise<PerplexityResult> {
   const PERPLEXITY_KEY = Deno.env.get("PERPLEXITY_API_KEY");
+  const startTime = Date.now();
 
   if (!PERPLEXITY_KEY) {
     console.log("No Perplexity key – skipping source research");
-    return {
-      content: "Ingen ekstern søgning tilgængelig.",
-      citations: [],
-    };
+    return { content: "Ingen ekstern søgning tilgængelig.", citations: [], model: "none", responseTimeMs: 0 };
   }
 
   try {
@@ -364,50 +419,71 @@ async function searchForSources(topic: string): Promise<PerplexityResult> {
         ],
         search_recency_filter: "month",
         search_domain_filter: [
-          "spillemyndigheden.dk",
-          "dr.dk",
-          "tv2.dk",
-          "borsen.dk",
-          "finans.dk",
-          "igamingbusiness.com",
-          "sbcnews.co.uk",
-          "egr.global",
-          "gamblinginsider.com",
-          "calvinayre.com",
-          "gambling.com",
-          "yogonet.com",
-          "reuters.com",
-          "bloomberg.com",
-          "casino.org",
+          "spillemyndigheden.dk", "dr.dk", "tv2.dk", "borsen.dk", "finans.dk",
+          "igamingbusiness.com", "sbcnews.co.uk", "egr.global", "gamblinginsider.com",
+          "calvinayre.com", "gambling.com", "yogonet.com", "reuters.com", "bloomberg.com", "casino.org",
         ],
       }),
     });
 
+    const responseTimeMs = Date.now() - startTime;
+
     if (!response.ok) {
       const errText = await response.text();
-      console.error("Perplexity search failed:", errText);
-      return { content: "Søgning fejlede.", citations: [] };
+      const status = response.status;
+      console.error(`Perplexity search failed [${status}]:`, errText);
+
+      // HARD FAIL on rate limit or payment issues
+      if (status === 429 || status === 402) {
+        throw new Error(`Perplexity ${status}: ${status === 429 ? "Rate limit" : "Payment required"}`);
+      }
+
+      return { content: "Søgning fejlede.", citations: [], model: "sonar-pro", responseTimeMs };
     }
 
     const data = await response.json();
-    console.log("Perplexity raw response keys:", Object.keys(data));
-    console.log("Perplexity citations:", JSON.stringify(data.citations || []));
-    console.log("Perplexity search_results count:", data.search_results?.length);
-    console.log("Perplexity search_results sample:", JSON.stringify((data.search_results || []).slice(0, 3)));
-    console.log("Perplexity choices count:", data.choices?.length);
     const content = data.choices?.[0]?.message?.content || "";
-    // Use citations if available, otherwise extract URLs from search_results
     let citations: string[] = data.citations || [];
     if (citations.length === 0 && data.search_results?.length > 0) {
       citations = data.search_results.map((r: any) => r.url).filter(Boolean);
-      console.log("Using search_results URLs as citations:", citations.length);
     }
 
-    return { content, citations };
+    return { content, citations, model: "sonar-pro", responseTimeMs };
   } catch (err) {
     console.error("Perplexity error:", err);
-    return { content: "Søgning fejlede.", citations: [] };
+    throw err; // Propagate – no silent fallback
   }
+}
+
+// ═══════════════════════════════════════════════════════════
+// AUDIT LOG HELPER
+// ═══════════════════════════════════════════════════════════
+
+async function writeAuditLog(
+  supabase: any,
+  log: {
+    model_used: string;
+    search_query: string;
+    topic_index: number;
+    article_id?: string;
+    guardrail_pass: boolean;
+    rejection_reason?: string;
+    citation_urls: string[];
+    sources_provided: number;
+    sources_validated: number;
+    recency_check_result?: any;
+    domain_validation_result?: any;
+    tokens_used?: number;
+    response_time_ms?: number;
+    perplexity_citations_count: number;
+    perplexity_model: string;
+    ai_model: string;
+    duplicate_check_result?: any;
+    validation_warnings: string[];
+  }
+) {
+  const { error } = await supabase.from("news_generation_logs").insert(log);
+  if (error) console.error("Audit log insert error:", error);
 }
 
 // ═══════════════════════════════════════════════════════════
@@ -419,20 +495,42 @@ Deno.serve(async (req) => {
     return new Response(null, { headers: corsHeaders });
   }
 
-  try {
-    const supabaseUrl = Deno.env.get("SUPABASE_URL")!;
-    const supabaseKey = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!;
-    const LOVABLE_API_KEY = Deno.env.get("LOVABLE_API_KEY");
-    const supabase = createClient(supabaseUrl, supabaseKey);
+  const startTime = Date.now();
+  const supabaseUrl = Deno.env.get("SUPABASE_URL")!;
+  const supabaseKey = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!;
+  const LOVABLE_API_KEY = Deno.env.get("LOVABLE_API_KEY");
+  const supabase = createClient(supabaseUrl, supabaseKey);
 
+  // Helper to fail with audit log
+  const failWithLog = async (reason: string, extra: Partial<Parameters<typeof writeAuditLog>[1]> = {}) => {
+    await writeAuditLog(supabase, {
+      model_used: "sonar-pro",
+      search_query: extra.search_query || "unknown",
+      topic_index: extra.topic_index ?? -1,
+      guardrail_pass: false,
+      rejection_reason: reason,
+      citation_urls: extra.citation_urls || [],
+      sources_provided: extra.sources_provided ?? 0,
+      sources_validated: extra.sources_validated ?? 0,
+      perplexity_citations_count: extra.perplexity_citations_count ?? 0,
+      perplexity_model: "sonar-pro",
+      ai_model: extra.ai_model || "google/gemini-2.5-flash",
+      validation_warnings: extra.validation_warnings || [],
+      response_time_ms: Date.now() - startTime,
+      ...extra,
+    });
+    return new Response(
+      JSON.stringify({ success: false, rejected: true, reason }),
+      { headers: { ...corsHeaders, "Content-Type": "application/json" } }
+    );
+  };
+
+  try {
     if (!LOVABLE_API_KEY) {
-      return new Response(
-        JSON.stringify({ success: false, error: "LOVABLE_API_KEY not configured" }),
-        { status: 500, headers: { ...corsHeaders, "Content-Type": "application/json" } }
-      );
+      return await failWithLog("LOVABLE_API_KEY not configured");
     }
 
-    // Check how many drafts/articles were created this week (max 2)
+    // ═══ GUARDRAIL: Max 2 articles per week ═══
     const weekAgo = new Date();
     weekAgo.setDate(weekAgo.getDate() - 7);
 
@@ -442,13 +540,10 @@ Deno.serve(async (req) => {
       .gte("created_at", weekAgo.toISOString());
 
     if ((weekCount ?? 0) >= 2) {
-      return new Response(
-        JSON.stringify({ success: false, message: "Max 2 artikler pr. uge nået" }),
-        { headers: { ...corsHeaders, "Content-Type": "application/json" } }
-      );
+      return await failWithLog("Max 2 artikler pr. uge nået", { search_query: "n/a" });
     }
 
-    // Get recent articles to avoid duplicate topics
+    // Get recent articles for duplicate detection
     const monthAgo = new Date();
     monthAgo.setDate(monthAgo.getDate() - 30);
 
@@ -459,25 +554,27 @@ Deno.serve(async (req) => {
 
     const recentTopics = (recentArticles || []).map((a: any) => `"${a.title}"`).join(", ");
 
-    // Pick a random topic to search for
-    const searchQuery = TOPIC_SEARCHES[Math.floor(Math.random() * TOPIC_SEARCHES.length)];
+    // Pick random topic
+    const topicIndex = Math.floor(Math.random() * TOPIC_SEARCHES.length);
+    const searchQuery = TOPIC_SEARCHES[topicIndex];
 
-    // ═══ Step 1: Research real sources via Perplexity ═══
+    // ═══ Step 1: Research via Perplexity sonar-pro ═══
     console.log("Researching topic:", searchQuery);
-    const perplexityResult = await searchForSources(searchQuery);
+    let perplexityResult: PerplexityResult;
+    try {
+      perplexityResult = await searchForSources(searchQuery);
+    } catch (err) {
+      const msg = err instanceof Error ? err.message : "Perplexity error";
+      return await failWithLog(`Perplexity fejl: ${msg}`, { search_query: searchQuery, topic_index: topicIndex });
+    }
 
-    // HARD GUARDRAIL: Reject if no Perplexity citations found
+    // HARD GUARDRAIL: No citations = no article
     if (perplexityResult.citations.length === 0) {
-      console.log("REJECTED: No Perplexity citations returned");
-      return new Response(
-        JSON.stringify({
-          success: false,
-          rejected: true,
-          reason: "Ingen verificerbare kilder fundet via søgning. Artikel afvist.",
-          validation: { failedChecks: ["Perplexity returnerede 0 citations"], warnings: [] },
-        }),
-        { headers: { ...corsHeaders, "Content-Type": "application/json" } }
-      );
+      return await failWithLog("Ingen Perplexity citations returneret", {
+        search_query: searchQuery,
+        topic_index: topicIndex,
+        perplexity_citations_count: 0,
+      });
     }
 
     const sourceResearchText = `RESEARCH RESULTATER:\n${perplexityResult.content}\n\nKILDER FUNDET:\n${perplexityResult.citations.map((c: string, i: number) => `${i + 1}. ${c}`).join("\n")}`;
@@ -514,29 +611,19 @@ VIGTIGT: I "sources" arrayet SKAL du returnere objekter med "url" og "title" fel
 
     if (!aiResponse.ok) {
       const errText = await aiResponse.text();
-      console.error("AI generation failed:", aiResponse.status, errText);
-
-      if (aiResponse.status === 429) {
-        return new Response(
-          JSON.stringify({ success: false, error: "Rate limit – prøv igen om et minut" }),
-          { status: 429, headers: { ...corsHeaders, "Content-Type": "application/json" } }
-        );
-      }
-      if (aiResponse.status === 402) {
-        return new Response(
-          JSON.stringify({ success: false, error: "Ingen AI-credits tilgængelige" }),
-          { status: 402, headers: { ...corsHeaders, "Content-Type": "application/json" } }
-        );
-      }
-
-      return new Response(
-        JSON.stringify({ success: false, error: "AI generation failed" }),
-        { status: 500, headers: { ...corsHeaders, "Content-Type": "application/json" } }
-      );
+      const status = aiResponse.status;
+      console.error(`AI generation failed [${status}]:`, errText);
+      return await failWithLog(`AI gateway fejl: HTTP ${status}`, {
+        search_query: searchQuery,
+        topic_index: topicIndex,
+        perplexity_citations_count: perplexityResult.citations.length,
+        citation_urls: perplexityResult.citations,
+      });
     }
 
     const aiData = await aiResponse.json();
     const rawContent = aiData.choices?.[0]?.message?.content || "";
+    const tokensUsed = aiData.usage?.total_tokens;
 
     // Parse JSON from AI response
     let articleData: any;
@@ -544,19 +631,20 @@ VIGTIGT: I "sources" arrayet SKAL du returnere objekter med "url" og "title" fel
       const jsonMatch = rawContent.match(/```json\s*([\s\S]*?)\s*```/) || rawContent.match(/\{[\s\S]*\}/);
       const jsonStr = jsonMatch?.[1] || jsonMatch?.[0] || rawContent;
       articleData = JSON.parse(jsonStr);
-    } catch (parseErr) {
-      console.error("Failed to parse AI response:", rawContent.substring(0, 500));
-      return new Response(
-        JSON.stringify({ success: false, error: "AI returnerede ugyldigt format" }),
-        { status: 500, headers: { ...corsHeaders, "Content-Type": "application/json" } }
-      );
+    } catch {
+      return await failWithLog("AI returnerede ugyldigt JSON format", {
+        search_query: searchQuery,
+        topic_index: topicIndex,
+        tokens_used: tokensUsed,
+        perplexity_citations_count: perplexityResult.citations.length,
+        citation_urls: perplexityResult.citations,
+      });
     }
 
-    // Check if AI rejected the draft — log but retry with less strict prompt
+    // Check if AI self-rejected – retry once
     if (articleData.rejection_reason && !articleData.title) {
-      console.log("AI self-rejected, retrying with relaxed prompt:", articleData.rejection_reason);
+      console.log("AI self-rejected, retrying:", articleData.rejection_reason);
       
-      // Retry with a more direct prompt
       const retryResponse = await fetch("https://ai.gateway.lovable.dev/v1/chat/completions", {
         method: "POST",
         headers: {
@@ -590,41 +678,47 @@ Returnér UDELUKKENDE valid JSON (ingen markdown code blocks). Sæt ALDRIG rejec
         const retryData = await retryResponse.json();
         const retryContent = retryData.choices?.[0]?.message?.content || "";
         try {
-          const retryMatch = retryContent.match(/\`\`\`json\s*([\s\S]*?)\s*\`\`\`/) || retryContent.match(/\{[\s\S]*\}/);
+          const retryMatch = retryContent.match(/```json\s*([\s\S]*?)\s*```/) || retryContent.match(/\{[\s\S]*\}/);
           const retryStr = retryMatch?.[1] || retryMatch?.[0] || retryContent;
           articleData = JSON.parse(retryStr);
-          console.log("Retry succeeded, got article:", articleData.title);
         } catch {
-          console.error("Retry parse failed:", retryContent.substring(0, 300));
-          return new Response(
-            JSON.stringify({ success: false, error: "AI retry også fejlet" }),
-            { status: 500, headers: { ...corsHeaders, "Content-Type": "application/json" } }
-          );
+          return await failWithLog("AI retry parse fejlede", {
+            search_query: searchQuery, topic_index: topicIndex,
+            perplexity_citations_count: perplexityResult.citations.length,
+            citation_urls: perplexityResult.citations,
+          });
         }
       } else {
-        const errText = await retryResponse.text();
-        console.error("Retry failed:", errText);
+        await retryResponse.text();
       }
       
-      // If still rejected after retry, give up
       if (articleData.rejection_reason && !articleData.title) {
-        return new Response(
-          JSON.stringify({
-            success: false,
-            rejected: true,
-            reason: articleData.rejection_reason,
-          }),
-          { headers: { ...corsHeaders, "Content-Type": "application/json" } }
-        );
+        return await failWithLog(`AI afviste: ${articleData.rejection_reason}`, {
+          search_query: searchQuery, topic_index: topicIndex,
+          perplexity_citations_count: perplexityResult.citations.length,
+          citation_urls: perplexityResult.citations,
+        });
       }
     }
 
-    // Validate minimum content length
-    if (!articleData.content || articleData.content.length < 800) {
-      return new Response(
-        JSON.stringify({ success: false, error: "Genereret artikel for kort (< 800 tegn)" }),
-        { status: 400, headers: { ...corsHeaders, "Content-Type": "application/json" } }
-      );
+    // ═══ GUARDRAIL: Min 900 words ═══
+    const wordCount = (articleData.content || "").replace(/<[^>]+>/g, "").split(/\s+/).filter(Boolean).length;
+    if (wordCount < 900) {
+      return await failWithLog(`Artikel for kort: ${wordCount} ord (minimum 900)`, {
+        search_query: searchQuery, topic_index: topicIndex, tokens_used: tokensUsed,
+        perplexity_citations_count: perplexityResult.citations.length,
+        citation_urls: perplexityResult.citations,
+      });
+    }
+
+    // ═══ GUARDRAIL: No affiliate links ═══
+    const contentLower = (articleData.content || "").toLowerCase();
+    if (contentLower.includes("affiliate") || contentLower.includes("ref=") || contentLower.includes("tracking")) {
+      return await failWithLog("Affiliate-links detekteret i indhold", {
+        search_query: searchQuery, topic_index: topicIndex, tokens_used: tokensUsed,
+        perplexity_citations_count: perplexityResult.citations.length,
+        citation_urls: perplexityResult.citations,
+      });
     }
 
     // Validate category
@@ -633,61 +727,51 @@ Returnér UDELUKKENDE valid JSON (ingen markdown code blocks). Sæt ALDRIG rejec
       articleData.category = "regulering";
     }
 
-    // ═══════════════════════════════════════════════════════
-    // ═══ HARD GUARDRAILS: Server-side source validation ═══
-    // ═══════════════════════════════════════════════════════
+    // ═══ DUPLICATE CHECK ═══
+    const dupCheck = checkDuplicate(articleData.title, articleData.category, recentArticles || []);
+    if (dupCheck.isDuplicate) {
+      return await failWithLog(`Duplikat: ${dupCheck.reason}`, {
+        search_query: searchQuery, topic_index: topicIndex, tokens_used: tokensUsed,
+        perplexity_citations_count: perplexityResult.citations.length,
+        citation_urls: perplexityResult.citations,
+        duplicate_check_result: dupCheck,
+      });
+    }
 
-    // Normalize sources from AI (handle both string[] and object[])
+    // ═══ SOURCE VALIDATION (Hard guardrails) ═══
     let rawSources: SourceEntry[] = (articleData.sources || []).map((s: any) => {
       if (typeof s === "string") return { url: s };
       return { url: s.url, title: s.title, published_date: s.published_date };
     }).filter((s: SourceEntry) => s.url);
 
-    // FALLBACK: If AI returned no sources, use whitelisted Perplexity citations
-    if (rawSources.length === 0 && perplexityResult.citations.length > 0) {
-      console.log("AI returned 0 sources – falling back to Perplexity citations");
-      rawSources = perplexityResult.citations
-        .filter((url: string) => isAllowedDomain(url))
+    // Fallback to Perplexity citations if AI returned insufficient sources
+    if (rawSources.length < 2 && perplexityResult.citations.length > 0) {
+      console.log("AI returned < 2 sources – augmenting with Perplexity citations");
+      const existingUrls = new Set(rawSources.map(s => normalizeSourceUrl(s.url)));
+      const fallbackSources = perplexityResult.citations
+        .filter((url: string) => isAllowedDomain(url) && !existingUrls.has(normalizeSourceUrl(url)))
         .map((url: string) => ({ url, title: new URL(url).hostname }));
-      console.log(`Fallback sources from Perplexity: ${rawSources.length}`);
+      rawSources = [...rawSources, ...fallbackSources];
     }
-
-    console.log(`Source validation: ${rawSources.length} sources vs ${perplexityResult.citations.length} Perplexity citations`);
 
     const validationResult = await validateSources(rawSources, perplexityResult.citations);
 
-    // Log all validation details
-    if (validationResult.failedChecks.length > 0) {
-      console.log("VALIDATION FAILURES:", validationResult.failedChecks);
-    }
-    if (validationResult.warnings.length > 0) {
-      console.log("VALIDATION WARNINGS:", validationResult.warnings);
-    }
-
-    // ── GUARDRAIL 7: FINAL ACCEPTANCE RULE ──
-    if (!validationResult.passed || validationResult.validatedSources.length < 1) {
-      console.log("ARTICLE REJECTED by source validation");
-      return new Response(
-        JSON.stringify({
-          success: false,
-          rejected: true,
-          reason: "Kildevalidering fejlet – artikel afvist",
-          validation: {
-            failedChecks: validationResult.failedChecks,
-            warnings: validationResult.warnings,
-            sourcesProvided: rawSources.length,
-            sourcesValidated: validationResult.validatedSources.length,
-            perplexityCitations: perplexityResult.citations.length,
-          },
-        }),
-        { headers: { ...corsHeaders, "Content-Type": "application/json" } }
-      );
+    if (!validationResult.passed) {
+      return await failWithLog("Kildevalidering fejlet – artikel afvist", {
+        search_query: searchQuery, topic_index: topicIndex, tokens_used: tokensUsed,
+        perplexity_citations_count: perplexityResult.citations.length,
+        citation_urls: perplexityResult.citations,
+        sources_provided: rawSources.length,
+        sources_validated: validationResult.validatedSources.length,
+        domain_validation_result: validationResult.domainResults,
+        recency_check_result: validationResult.recencyResults,
+        validation_warnings: validationResult.warnings,
+      });
     }
 
-    // ═══ Generate hero image via Lovable AI ═══
+    // ═══ Generate hero image ═══
     let featuredImageUrl: string | null = null;
     try {
-      console.log("Generating hero image for:", articleData.title);
       const imagePrompt = `Professional news article hero image for a Danish online casino industry article titled "${articleData.title}". Modern, clean editorial style. Dark purple and blue tones. No text overlay. 16:9 aspect ratio. Ultra high resolution.`;
       
       const imageResponse = await fetch("https://ai.gateway.lovable.dev/v1/chat/completions", {
@@ -708,7 +792,6 @@ Returnér UDELUKKENDE valid JSON (ingen markdown code blocks). Sæt ALDRIG rejec
         const base64Image = imageData.choices?.[0]?.message?.images?.[0]?.image_url?.url;
         
         if (base64Image) {
-          // Extract base64 data and upload to Supabase Storage
           const base64Data = base64Image.replace(/^data:image\/\w+;base64,/, "");
           const imageBytes = Uint8Array.from(atob(base64Data), (c) => c.charCodeAt(0));
           const fileName = `${articleData.slug}-${Date.now()}.png`;
@@ -718,21 +801,15 @@ Returnér UDELUKKENDE valid JSON (ingen markdown code blocks). Sæt ALDRIG rejec
             .upload(fileName, imageBytes, { contentType: "image/png", upsert: true });
 
           if (!uploadErr) {
-            const { data: publicUrl } = supabase.storage
-              .from("news-images")
-              .getPublicUrl(fileName);
+            const { data: publicUrl } = supabase.storage.from("news-images").getPublicUrl(fileName);
             featuredImageUrl = publicUrl.publicUrl;
-            console.log("Hero image uploaded:", featuredImageUrl);
-          } else {
-            console.error("Image upload error:", uploadErr);
           }
         }
       } else {
-        console.error("Image generation failed:", imageResponse.status);
+        await imageResponse.text();
       }
     } catch (imgErr) {
       console.error("Image generation error:", imgErr);
-      // Non-blocking — article still gets created without image
     }
 
     // ═══ All guardrails passed – Insert as DRAFT ═══
@@ -755,14 +832,38 @@ Returnér UDELUKKENDE valid JSON (ingen markdown code blocks). Sæt ALDRIG rejec
       .single();
 
     if (insertErr) {
-      console.error("Insert error:", insertErr);
-      return new Response(
-        JSON.stringify({ success: false, error: insertErr.message }),
-        { status: 500, headers: { ...corsHeaders, "Content-Type": "application/json" } }
-      );
+      return await failWithLog(`DB insert fejl: ${insertErr.message}`, {
+        search_query: searchQuery, topic_index: topicIndex, tokens_used: tokensUsed,
+        perplexity_citations_count: perplexityResult.citations.length,
+        citation_urls: perplexityResult.citations,
+        sources_provided: rawSources.length,
+        sources_validated: validationResult.validatedSources.length,
+      });
     }
 
-    // Create admin notification with validation summary
+    // ═══ SUCCESS: Write audit log ═══
+    const totalResponseTime = Date.now() - startTime;
+    await writeAuditLog(supabase, {
+      model_used: "sonar-pro",
+      search_query: searchQuery,
+      topic_index: topicIndex,
+      article_id: inserted.id,
+      guardrail_pass: true,
+      citation_urls: perplexityResult.citations,
+      sources_provided: rawSources.length,
+      sources_validated: validationResult.validatedSources.length,
+      recency_check_result: validationResult.recencyResults,
+      domain_validation_result: validationResult.domainResults,
+      tokens_used: tokensUsed,
+      response_time_ms: totalResponseTime,
+      perplexity_citations_count: perplexityResult.citations.length,
+      perplexity_model: perplexityResult.model,
+      ai_model: "google/gemini-2.5-flash",
+      duplicate_check_result: dupCheck,
+      validation_warnings: validationResult.warnings,
+    });
+
+    // Admin notification
     const validationSummary = validationResult.warnings.length > 0
       ? ` ⚠️ ${validationResult.warnings.length} advarsel(er).`
       : "";
@@ -774,8 +875,9 @@ Returnér UDELUKKENDE valid JSON (ingen markdown code blocks). Sæt ALDRIG rejec
 
     console.log(
       "Draft created:", inserted.id,
-      "| Verified sources:", validationResult.validatedSources.length,
-      "| Warnings:", validationResult.warnings.length
+      "| Sources:", validationResult.validatedSources.length,
+      "| Words:", wordCount,
+      "| Time:", totalResponseTime, "ms"
     );
 
     return new Response(
@@ -784,19 +886,46 @@ Returnér UDELUKKENDE valid JSON (ingen markdown code blocks). Sæt ALDRIG rejec
         articleId: inserted.id,
         title: articleData.title,
         category: articleData.category,
+        wordCount,
         sources: validationResult.validatedSources,
         validation: {
           passed: true,
           sourcesValidated: validationResult.validatedSources.length,
           warnings: validationResult.warnings,
+          duplicateCheck: dupCheck,
+        },
+        audit: {
+          model: "sonar-pro",
+          responseTimeMs: totalResponseTime,
+          tokensUsed: tokensUsed,
         },
       }),
       { headers: { ...corsHeaders, "Content-Type": "application/json" } }
     );
   } catch (err) {
     console.error("Error:", err);
+    const reason = err instanceof Error ? err.message : "Unknown error";
+    // Best-effort audit log on crash
+    try {
+      await writeAuditLog(supabase, {
+        model_used: "sonar-pro",
+        search_query: "crash",
+        topic_index: -1,
+        guardrail_pass: false,
+        rejection_reason: `Crash: ${reason}`,
+        citation_urls: [],
+        sources_provided: 0,
+        sources_validated: 0,
+        perplexity_citations_count: 0,
+        perplexity_model: "sonar-pro",
+        ai_model: "google/gemini-2.5-flash",
+        validation_warnings: [],
+        response_time_ms: Date.now() - startTime,
+      });
+    } catch { /* ignore audit log failure on crash */ }
+
     return new Response(
-      JSON.stringify({ success: false, error: err instanceof Error ? err.message : "Unknown error" }),
+      JSON.stringify({ success: false, error: reason }),
       { status: 500, headers: { ...corsHeaders, "Content-Type": "application/json" } }
     );
   }

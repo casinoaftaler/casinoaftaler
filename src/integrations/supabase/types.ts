@@ -689,6 +689,86 @@ export type Database = {
           },
         ]
       }
+      news_generation_logs: {
+        Row: {
+          ai_model: string | null
+          article_id: string | null
+          citation_urls: string[] | null
+          created_at: string
+          domain_validation_result: Json | null
+          duplicate_check_result: Json | null
+          generation_timestamp: string
+          guardrail_pass: boolean
+          id: string
+          model_used: string
+          perplexity_citations_count: number | null
+          perplexity_model: string | null
+          recency_check_result: Json | null
+          rejection_reason: string | null
+          response_time_ms: number | null
+          search_query: string | null
+          sources_provided: number | null
+          sources_validated: number | null
+          tokens_used: number | null
+          topic_index: number | null
+          validation_warnings: string[] | null
+        }
+        Insert: {
+          ai_model?: string | null
+          article_id?: string | null
+          citation_urls?: string[] | null
+          created_at?: string
+          domain_validation_result?: Json | null
+          duplicate_check_result?: Json | null
+          generation_timestamp?: string
+          guardrail_pass?: boolean
+          id?: string
+          model_used?: string
+          perplexity_citations_count?: number | null
+          perplexity_model?: string | null
+          recency_check_result?: Json | null
+          rejection_reason?: string | null
+          response_time_ms?: number | null
+          search_query?: string | null
+          sources_provided?: number | null
+          sources_validated?: number | null
+          tokens_used?: number | null
+          topic_index?: number | null
+          validation_warnings?: string[] | null
+        }
+        Update: {
+          ai_model?: string | null
+          article_id?: string | null
+          citation_urls?: string[] | null
+          created_at?: string
+          domain_validation_result?: Json | null
+          duplicate_check_result?: Json | null
+          generation_timestamp?: string
+          guardrail_pass?: boolean
+          id?: string
+          model_used?: string
+          perplexity_citations_count?: number | null
+          perplexity_model?: string | null
+          recency_check_result?: Json | null
+          rejection_reason?: string | null
+          response_time_ms?: number | null
+          search_query?: string | null
+          sources_provided?: number | null
+          sources_validated?: number | null
+          tokens_used?: number | null
+          topic_index?: number | null
+          validation_warnings?: string[] | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "news_generation_logs_article_id_fkey"
+            columns: ["article_id"]
+            isOneToOne: false
+            referencedRelation: "casino_news"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       notifications: {
         Row: {
           created_at: string
