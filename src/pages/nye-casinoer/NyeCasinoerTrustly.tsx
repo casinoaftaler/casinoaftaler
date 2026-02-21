@@ -9,7 +9,7 @@ import { InlineCasinoCards } from "@/components/InlineCasinoCards";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { Landmark, Sparkles, CheckCircle2, Zap, ShieldCheck } from "lucide-react";
-import { buildArticleSchema, buildFaqSchema, SITE_URL } from "@/lib/seo";
+import { buildArticleSchema, buildFaqSchema, buildHowToSchema, SITE_URL } from "@/lib/seo";
 import type { ReactNode } from "react";
 
 const linkClass = "text-primary underline hover:text-primary/80";
@@ -53,10 +53,23 @@ const NyeCasinoerTrustly = () => {
   });
 
   const faqSchema = buildFaqSchema(faqs);
+  const howToSchema = buildHowToSchema({
+    url: `${SITE_URL}/nye-casinoer/trustly`,
+    name: "Sådan bruger du Trustly på et nyt casino",
+    description: "Trin-for-trin guide til indbetaling med Trustly via Pay N Play hos nye danske casinoer.",
+    totalTime: "PT1M",
+    steps: [
+      { name: "Vælg Trustly", text: "Ved registrering eller indbetaling vælger du Trustly som betalingsmetode. Du viderestilles til Trustlys sikre betalingsvindue." },
+      { name: "Vælg din bank", text: "Vælg din bank fra listen over danske banker. Alle større danske banker understøttes, inklusiv Danske Bank, Nordea, Jyske Bank og Nykredit." },
+      { name: "Log ind med MitID", text: "Verificér dig med MitID – enten via MitID-appen eller chip/kodelæser. Casinoet får aldrig adgang til dine bankoplysninger." },
+      { name: "Godkend betalingen", text: "Bekræft beløbet og godkend overførslen. Pengene overføres direkte fra din bankkonto til casinoet." },
+      { name: "Spil med det samme", text: "Din indbetaling krediteres øjeblikkeligt, og din konto er klar. Ved Pay N Play oprettes din konto automatisk i samme trin." },
+    ],
+  });
 
   return (
     <>
-      <SEO title="Nye Casinoer med Trustly – Pay N Play Casino 2026" description="Find nye casinoer med Trustly Pay N Play i 2026. Instant-indbetalinger, hurtige udbetalinger og ingen separat konto krævet." jsonLd={[articleSchema, faqSchema]} />
+      <SEO title="Nye Casinoer med Trustly – Pay N Play Casino 2026" description="Find nye casinoer med Trustly Pay N Play i 2026. Instant-indbetalinger, hurtige udbetalinger og ingen separat konto krævet." jsonLd={[articleSchema, faqSchema, howToSchema]} />
 
       <section className="relative overflow-hidden py-12 text-white md:py-20" style={{ background: 'linear-gradient(135deg, hsl(260 70% 25%), hsl(250 60% 20%) 40%, hsl(210 80% 25%))' }}>
         <div className="container"><div className="mx-auto max-w-3xl text-center">

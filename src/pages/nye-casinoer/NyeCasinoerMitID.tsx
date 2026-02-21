@@ -9,7 +9,7 @@ import { InlineCasinoCards } from "@/components/InlineCasinoCards";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { ShieldCheck, Sparkles, CheckCircle2, Smartphone, Zap } from "lucide-react";
-import { buildArticleSchema, buildFaqSchema, SITE_URL } from "@/lib/seo";
+import { buildArticleSchema, buildFaqSchema, buildHowToSchema, SITE_URL } from "@/lib/seo";
 import type { ReactNode } from "react";
 
 const linkClass = "text-primary underline hover:text-primary/80";
@@ -34,10 +34,23 @@ const faqs: { question: string; answer: ReactNode }[] = [
 const NyeCasinoerMitID = () => {
   const articleSchema = buildArticleSchema({ headline: "Nye Casinoer med MitID – Sikker Verifikation 2026", description: "Nye casinoer med hurtig MitID-verifikation. Opret konto på under 2 minutter hos nye danske spillesteder.", url: `${SITE_URL}/nye-casinoer/mitid`, datePublished: "2026-02-05", dateModified: "2026-02-16", authorName: "Jonas", authorUrl: `${SITE_URL}/forfatter/jonas` });
   const faqSchema = buildFaqSchema(faqs);
+  const howToSchema = buildHowToSchema({
+    url: `${SITE_URL}/nye-casinoer/mitid`,
+    name: "Sådan opretter du konto med MitID på et nyt casino",
+    description: "Trin-for-trin guide til at oprette en verificeret casinokonto med MitID på under 2 minutter.",
+    totalTime: "PT2M",
+    steps: [
+      { name: "Klik 'Opret konto'", text: "Besøg det nye casino og klik på oprettelsesknappen. Casinoet viderestiller dig til MitID-verifikation." },
+      { name: "Åbn MitID-appen", text: "Du modtager en notifikation i MitID-appen på din smartphone. Alternativt kan du bruge MitID med chip/kodelæser." },
+      { name: "Godkend verifikation", text: "Swipe i MitID-appen for at godkende. Casinoet modtager kun dit navn og alder – ikke bankoplysninger eller CPR-nummer." },
+      { name: "ROFUS-kontrol", text: "Casinoet checker automatisk ROFUS-registret. Hvis du er registreret, kan du ikke oprette en konto." },
+      { name: "Konto oprettet", text: "Din konto er nu oprettet og verificeret. Du kan indbetale og spille med det samme – ingen yderligere dokumentation krævet." },
+    ],
+  });
 
   return (
     <>
-      <SEO title="Nye Casinoer med MitID – Hurtig Verifikation 2026" description="Find nye casinoer med MitID-verifikation i 2026. Opret konto på under 2 minutter med sikker digital identifikation." jsonLd={[articleSchema, faqSchema]} />
+      <SEO title="Nye Casinoer med MitID – Hurtig Verifikation 2026" description="Find nye casinoer med MitID-verifikation i 2026. Opret konto på under 2 minutter med sikker digital identifikation." jsonLd={[articleSchema, faqSchema, howToSchema]} />
 
       <section className="relative overflow-hidden py-12 text-white md:py-20" style={{ background: 'linear-gradient(135deg, hsl(260 70% 25%), hsl(250 60% 20%) 40%, hsl(210 80% 25%))' }}>
         <div className="container"><div className="mx-auto max-w-3xl text-center">

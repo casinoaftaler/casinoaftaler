@@ -272,6 +272,16 @@ const MobilePayGuide = () => {
         )},
       ]}
       currentPath="/betalingsmetoder/mobilepay"
+      howToSteps={[
+        { name: "Gå til casinoets kasse", text: "Log ind på dit casino og naviger til indbetalingssektionen. Vælg MobilePay som betalingsmetode." },
+        { name: "Indtast mobilnummer og beløb", text: "Indtast dit registrerede MobilePay-mobilnummer og det ønskede indbetalingsbeløb." },
+        { name: "Godkend i MobilePay-appen", text: "Du modtager en push-notifikation i MobilePay-appen inden for 1-2 sekunder. Swipe for at godkende betalingen." },
+        { name: "Bekræft med MitID ved større beløb", text: "Ved indbetalinger over bankens grænse (typisk 10.000 kr.) kræves yderligere MitID-godkendelse." },
+        { name: "Saldoen opdateres øjeblikkeligt", text: "Din casinosaldo opdateres inden for 5-12 sekunder fra start til slut. Du kan spille med det samme." },
+      ]}
+      howToSchemaName="Sådan indbetaler du med MobilePay på et dansk casino"
+      howToSchemaDescription="Trin-for-trin guide til MobilePay-indbetaling hos danske casinoer med dansk licens."
+      howToSchemaTotalTime="PT1M"
     />
   );
 };
