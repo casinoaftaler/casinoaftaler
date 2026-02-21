@@ -45,6 +45,18 @@ const ALLOWED_DOMAINS = [
   "politiken.dk",
   "information.dk",
   "nyheder.tv2.dk",
+  "bold.dk",
+  "spilxperten.com",
+  "casinopenge.dk",
+  "videnskab.dk",
+  "europarl.europa.eu",
+  "ec.europa.eu",
+  "bbc.com",
+  "bbc.co.uk",
+  "theguardian.com",
+  "calvinayre.com",
+  "vegasslotsonline.com",
+  "casino.org",
 ];
 
 const TOPIC_SEARCHES = [
@@ -338,12 +350,12 @@ async function searchForSources(topic: string): Promise<PerplexityResult> {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        model: "sonar",
+        model: "sonar-pro",
         messages: [
           {
             role: "system",
             content:
-              "Du er en research-assistent. Find de seneste faktuelle nyheder om det givne emne relateret til dansk online casino/gambling. Returnér kun verificerede fakta med præcise kildelinks. Fokusér på: Spillemyndigheden, Reuters, Børsen, Finans.dk, GamingIndustry.biz, iGamingBusiness, SBC News. Skriv på dansk.",
+              "Du er en research-assistent. Find de seneste faktuelle nyheder om det givne emne relateret til dansk online casino/gambling. Returnér kun verificerede fakta med præcise kildelinks. Fokusér på: Spillemyndigheden, Reuters, Børsen, Finans.dk, DR, TV2, GamingIndustry.biz, iGamingBusiness, SBC News, EGR Global, Gambling Insider, CalvinAyre. Skriv på dansk.",
           },
           {
             role: "user",
@@ -351,6 +363,23 @@ async function searchForSources(topic: string): Promise<PerplexityResult> {
           },
         ],
         search_recency_filter: "month",
+        search_domain_filter: [
+          "spillemyndigheden.dk",
+          "dr.dk",
+          "tv2.dk",
+          "borsen.dk",
+          "finans.dk",
+          "igamingbusiness.com",
+          "sbcnews.co.uk",
+          "egr.global",
+          "gamblinginsider.com",
+          "calvinayre.com",
+          "gambling.com",
+          "yogonet.com",
+          "reuters.com",
+          "bloomberg.com",
+          "casino.org",
+        ],
       }),
     });
 
@@ -609,12 +638,21 @@ Returnér UDELUKKENDE valid JSON (ingen markdown code blocks). Sæt ALDRIG rejec
     // ═══════════════════════════════════════════════════════
 
     // Normalize sources from AI (handle both string[] and object[])
-    const rawSources: SourceEntry[] = (articleData.sources || []).map((s: any) => {
+    let rawSources: SourceEntry[] = (articleData.sources || []).map((s: any) => {
       if (typeof s === "string") return { url: s };
       return { url: s.url, title: s.title, published_date: s.published_date };
-    });
+    }).filter((s: SourceEntry) => s.url);
 
-    console.log(`Source validation: ${rawSources.length} AI sources vs ${perplexityResult.citations.length} Perplexity citations`);
+    // FALLBACK: If AI returned no sources, use whitelisted Perplexity citations
+    if (rawSources.length === 0 && perplexityResult.citations.length > 0) {
+      console.log("AI returned 0 sources – falling back to Perplexity citations");
+      rawSources = perplexityResult.citations
+        .filter((url: string) => isAllowedDomain(url))
+        .map((url: string) => ({ url, title: new URL(url).hostname }));
+      console.log(`Fallback sources from Perplexity: ${rawSources.length}`);
+    }
+
+    console.log(`Source validation: ${rawSources.length} sources vs ${perplexityResult.citations.length} Perplexity citations`);
 
     const validationResult = await validateSources(rawSources, perplexityResult.citations);
 
