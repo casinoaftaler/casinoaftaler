@@ -6,7 +6,7 @@ import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { AuthorBio } from "@/components/AuthorBio";
 import { FAQSection } from "@/components/FAQSection";
 import { useNewsArticle, usePublishedNews } from "@/hooks/useCasinoNews";
-import { SITE_URL, buildFaqSchema } from "@/lib/seo";
+import { buildArticleSchema, buildFaqSchema, SITE_URL } from "@/lib/seo";
 import { CalendarDays, Loader2, Newspaper } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
@@ -72,63 +72,24 @@ const CasinoNyhedArticle = () => {
       })
     : "Ikke publiceret";
 
-  const updatedDate = new Date(article.updated_at).toLocaleDateString("da-DK", {
-    day: "numeric",
-    month: "long",
-    year: "numeric",
-  });
-
   const articleUrl = `${SITE_URL}/casino-nyheder/${article.slug}`;
 
-  // Build NewsArticle + BreadcrumbList schema in @graph
-  const newsArticleSchema = {
-    "@context": "https://schema.org",
-    "@graph": [
-      {
-        "@type": "NewsArticle",
-        "@id": `${articleUrl}#article`,
-        headline: article.meta_title || article.title,
-        description: article.meta_description || article.excerpt || "",
-        image: article.featured_image || `${SITE_URL}/og-image.png`,
-        datePublished: article.published_at || article.created_at,
-        dateModified: article.updated_at,
-        mainEntityOfPage: {
-          "@type": "WebPage",
-          "@id": articleUrl,
-        },
-        author: {
-          "@id": `${SITE_URL}/forfatter/jonas#person`,
-        },
-        publisher: {
-          "@type": "Organization",
-          "@id": `${SITE_URL}/#organization`,
-          name: "Casinoaftaler.dk",
-          url: SITE_URL,
-          logo: {
-            "@type": "ImageObject",
-            url: `${SITE_URL}/favicon-48x48.png`,
-            width: 192,
-            height: 192,
-          },
-        },
-      },
-      {
-        "@type": "Person",
-        "@id": `${SITE_URL}/forfatter/jonas#person`,
-        name: "Jonas Theill",
-        url: `${SITE_URL}/forfatter/jonas`,
-        jobTitle: "Casino Bonus Ekspert",
-        worksFor: {
-          "@type": "Organization",
-          "@id": `${SITE_URL}/#organization`,
-        },
-      },
-    ],
-  };
+  // Build NewsArticle schema using the centralized builder with full Person + Organization entities
+  const newsArticleSchema = buildArticleSchema({
+    articleType: "NewsArticle",
+    headline: article.meta_title || article.title,
+    description: article.meta_description || article.excerpt || "",
+    url: articleUrl,
+    datePublished: article.published_at || article.created_at,
+    dateModified: article.updated_at,
+    image: article.featured_image || undefined,
+  });
 
-  // Build FAQ schema if FAQs exist
+  // Build FAQ schema if FAQs exist and merge with article schema
   const faqJsonLd = faqs.length > 0 ? buildFaqSchema(faqs) : null;
-  const jsonLdSchemas = faqJsonLd ? [newsArticleSchema, faqJsonLd] : newsArticleSchema;
+  const jsonLdSchemas = faqJsonLd
+    ? [newsArticleSchema, faqJsonLd]
+    : newsArticleSchema;
 
   return (
     <>
@@ -141,9 +102,6 @@ const CasinoNyhedArticle = () => {
         jsonLd={jsonLdSchemas}
         breadcrumbLabel={article.title}
       />
-
-
-
 
       {/* Gradient Hero Section */}
       <section

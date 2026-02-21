@@ -174,10 +174,8 @@ export const seoRoutes: SeoRoute[] = [
   { path: "/casinoer/casino-og-skat", changefreq: "weekly", priority: 0.8, lastmod: "2026-02-15" },
 
   // ── Casino Nyheder ──
+  // Hub only – article entries are dynamically generated in sitemap-news.xml
   { path: "/casino-nyheder", changefreq: "daily", priority: 0.9, lastmod: "2026-02-21" },
-  { path: "/casino-nyheder/spillemyndigheden-udsteder-ny-licens-2026", changefreq: "weekly", priority: 0.8, lastmod: "2026-02-19" },
-  { path: "/casino-nyheder/trustly-aendrer-udbetalingsflow-2026", changefreq: "weekly", priority: 0.8, lastmod: "2026-02-20" },
-  { path: "/casino-nyheder/nye-casinoer-februar-2026-analyse", changefreq: "weekly", priority: 0.8, lastmod: "2026-02-21" },
 
   // ── Community & Highlights ──
   { path: "/community", changefreq: "daily", priority: 0.6, lastmod: "2026-02-20" },
