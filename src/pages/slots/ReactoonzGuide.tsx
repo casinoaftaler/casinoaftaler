@@ -47,7 +47,7 @@ const reactoonzFaqs: { question: string; answer: ReactNode }[] = [
     question: "Kan Reactoonz spilles med bonuspenge, og hvad med omsætningskrav?",
     answer: (
       <>
-        Ja, Reactoonz er generelt tilgængelig med <Link to="/casino-bonus" className={linkClass}>bonuspenge</Link> på danske casinoer. Med en volatilitet klassificeret som høj og en max win på 4.570× bør du dog være opmærksom på <Link to="/omsaetningskrav" className={linkClass}>omsætningskrav</Link>. En typisk 30× wagering på en 500 kr. bonus kræver 15.000 kr. i samlet indsats. Med Reactoonz' hit frequency på cirka 28 % og den høje volatilitet kan din saldo svinge markant under omsætningen. En <Link to="/bonus-uden-omsaetningskrav" className={linkClass}>bonus uden omsætningskrav</Link> er ideel til denne type spil.
+        Ja, Reactoonz er generelt tilgængelig med <Link to="/casino-bonus" className={linkClass}>bonuspenge</Link> på danske casinoer. Med Danmarks lovmæssige 10x omsætningskrav og en 1.000 kr. bonus kræves 10.000 kr. i samlet indsats. Det forventede tab er 10.000 × 3,49 % = 349 kr. – en positiv EV på +651 kr. Den høje volatilitet kan dog give markante saldoudsving under omsætningen. En <Link to="/bonus-uden-omsaetningskrav" className={linkClass}>bonus uden omsætningskrav</Link> er ideel til denne type spil.
       </>
     ),
   },
@@ -345,10 +345,10 @@ const ReactoonzGuide = () => {
             Reactoonz er generelt tilgængelig for bonusspil på de fleste danske casinoer, men dens wagering-effektivitet er et nuanceret emne. Med en volatilitet klassificeret som høj kan Reactoonz generere markante saldoudsving under omsætning af <Link to="/casino-bonus" className={linkClass}>bonuspenge</Link>.
           </p>
           <p className="text-muted-foreground leading-relaxed mb-4">
-            En typisk <Link to="/velkomstbonus" className={linkClass}>velkomstbonus</Link> med 30× wagering på en 500 kr. bonus kræver 15.000 kr. i samlet indsats. Med Reactoonz' hit frequency på ~28 % kan du forvente gevinster på cirka 4.200 af de 15.000 kr. i samlet indsats (baseret på RTP). Det statistiske tab under omsætningen er 15.000 × 3,49 % = 523,50 kr. – hvilket efterlader dig med en forventet bonusværdi på cirka -23,50 kr. (500 – 523,50).
+            Med Danmarks lovmæssige 10x <Link to="/velkomstbonus" className={linkClass}>omsætningskrav</Link> og en 1.000 kr. bonus kræves 10.000 kr. i samlet indsats. Det statistiske tab under omsætningen er 10.000 × 3,49 % = 349 kr. – hvilket giver en forventet bonusværdi på +651 kr. (1.000 – 349). Dette er en markant positiv EV, der gør Reactoonz til en stærk wagering-kandidat.
           </p>
           <p className="text-muted-foreground leading-relaxed mb-4">
-            Denne negative EV er typisk for bonusspil med 30× wagering, men Reactoonz' progressive Quantum-system giver en realistisk chance for at "slå" EV'en. Hvis Gargantoon-funktionen udløses under omsætningen (sandsynlighed: ~40-60 % over 1.500 spins), kan en enkelt stor gevinst vende hele sessionen til positiv EV.
+            Med det danske 10x omsætningskrav er EV'en allerede markant positiv (+651 kr.), og Reactoonz' progressive Quantum-system forstærker dette yderligere. Hvis Gargantoon-funktionen udløses under omsætningen (sandsynlighed: ~40-60 % over 1.000 spins), kan en enkelt stor gevinst løfte den reelle return langt over den teoretiske EV.
           </p>
           <p className="text-muted-foreground leading-relaxed">
             For optimal bonusstrategi anbefaler vi at søge <Link to="/bonus-uden-omsaetningskrav" className={linkClass}>bonusser uden omsætningskrav</Link> eller <Link to="/no-sticky-bonus" className={linkClass}>non-sticky bonusser</Link>, der tillader hævning af echtgeld-gevinster uden først at gennemspille bonusbeløbet. <Link to="/free-spins" className={linkClass}>Free spins</Link> på Reactoonz er sjældne men ekstremt værdifulde, da de eliminerer indsatsrisikoen helt.
