@@ -129,9 +129,9 @@ const CasinoNyhedArticle = () => {
         </div>
       </section>
 
-      <Breadcrumbs dynamicLabel={article.title} />
+      <div className="container py-8 md:py-12 max-w-4xl">
+        <Breadcrumbs dynamicLabel={article.title} />
 
-      <article className="container py-8 max-w-4xl">
         <AuthorMetaBar
           author="jonas"
           date={publishedDate}
@@ -153,8 +153,8 @@ const CasinoNyhedArticle = () => {
         )}
 
         {/* Article Content - render HTML content */}
-        <div
-          className="prose prose-lg dark:prose-invert max-w-none mb-12"
+        <section
+          className="prose prose-lg dark:prose-invert max-w-none mb-12 [&>h2]:mt-10 [&>h2]:mb-4 [&>h3]:mt-8 [&>h3]:mb-3 [&>p]:mb-4 [&>ul]:mb-4 [&>ol]:mb-4"
           dangerouslySetInnerHTML={{ __html: article.content }}
         />
 
@@ -190,7 +190,7 @@ const CasinoNyhedArticle = () => {
         )}
 
         <AuthorBio author="jonas" showCommunity={false} />
-      </article>
+      </div>
     </>
   );
 };
