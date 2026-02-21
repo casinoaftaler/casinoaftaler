@@ -1,78 +1,57 @@
 
 
-## Multiplier System Overhaul for Gates of Fedesvin
+## Split Base Game into Scatter Spins and Multiplier Spins
 
-### Problem
-Currently, multiplier orbs are rendered as small circles **on top of** regular symbols (overlayed at `z-10`). They don't have their own dedicated grid positions -- they just float over whatever symbol is underneath.
+Currently, both scatters and multipliers can appear on any base game spin. This plan separates them into two mutually exclusive spin types:
 
-### What Changes
+- **Scatter Spin (90%)** -- Scatters can land normally, but multipliers never appear.
+- **Multiplier Spin (10%)** -- Multipliers can land (using the existing chance-per-cell logic), but scatters are excluded. Wherever a scatter would have been placed, a multiplier is placed instead.
 
-**1. Multiplier symbols become first-class grid citizens**
-
-Instead of overlaying multiplier orbs on top of regular symbols, multiplier symbols will **occupy their own cells** in the grid. When a multiplier lands, it replaces what would have been a regular symbol in that position.
-
-Multiplier values: **2x, 3x, 5x, 10x, 15x, 25x, 50x, 100x** (removing 250x and 500x from current set).
-
-**2. AI-generated images for each multiplier**
-
-Create 8 unique multiplier symbol images using the AI image generator, stored in Supabase Storage. These will be visually distinct "orb" or "lightning orb" style symbols with the multiplier value baked in.
-
-**3. Server-side logic changes (Edge Function: `slot-spin`)**
-
-- `generateGatesGrid` / `applyGatesTumble`: When filling new symbols, there's a chance (controlled by `gates_multiplier_chance_base` / `gates_multiplier_chance_bonus`) that a cell gets a **multiplier marker** instead of a regular symbol.
-- Multiplier cells are stored as special IDs in the grid (e.g. `"mult_2x"`, `"mult_3x"`, etc.) so the client knows to render the multiplier image.
-- Multiplier cells are **not** counted toward pay-anywhere symbol matches (they are neutral).
-- When a tumble step results in a win AND multiplier symbols are present on the grid, the multiplier values are added to the Bonus Multiplier Bank, and those multiplier cells are removed (collected) along with winning symbols.
-- If no win occurs, multiplier symbols stay on the grid.
-
-**4. Client-side rendering changes**
-
-- **`GatesColumn.tsx`**: Detect multiplier symbol IDs (prefixed `mult_`) and render the corresponding multiplier image instead of the orb overlay. Remove the current orb overlay logic entirely.
-- **`GatesSlotGame.tsx`**: Update the multiplier collection animation -- when multipliers are collected on a win, show a "fly to bank" animation. The `multiplierOrbs` state becomes the list of multiplier positions found on the grid.
-
-**5. Bonus mode multiplier persistence**
-
-Already implemented: `runningMultiplier` / `cumulativeMultiplier` persists across all free spins. The server passes `runningMultiplier` into `calculateGatesFullSpin` during bonus. No changes needed here.
+This only applies to the **base game**. Bonus spins remain unchanged (multipliers land freely, scatters can retrigger).
 
 ---
 
-### Technical Details
+### Changes
 
-#### New multiplier symbol IDs
+**File: `supabase/functions/slot-spin/index.ts`**
+
+1. **Add a spin-type constant** -- `GATES_MULTIPLIER_SPIN_CHANCE = 0.10` (10% of base spins are multiplier spins).
+
+2. **Modify `generateGatesGrid`** to accept a `spinType` parameter (`'scatter' | 'multiplier'`), determined by a single PRNG roll before grid generation:
+   - **Scatter spin**: Skip all multiplier placement logic (never insert `mult_*` IDs). Scatters land normally via weighted symbol selection.
+   - **Multiplier spin**: After picking each symbol, if it is a scatter, replace it with a randomly picked multiplier (`mult_Nx`). Additionally, the existing per-cell multiplier chance still applies to non-scatter cells.
+
+3. **Modify `fillWithMultipliers`** (used during tumbles) to respect the same spin type for the entire tumble chain -- if the initial spin was a scatter spin, new fill symbols never include multipliers; if it was a multiplier spin, scatters in fill symbols are replaced with multipliers.
+
+4. **Modify `calculateGatesFullSpin`** to determine the spin type once at the start (PRNG roll) and pass it through to grid generation and tumble fills. Bonus spins bypass this logic entirely (both can appear as today).
+
+---
+
+### Technical Detail
+
+```text
+calculateGatesFullSpin(symbols, bet, isBonusSpin, ...)
+  |
+  |-- if NOT isBonusSpin:
+  |     roll = prng.next()
+  |     spinType = roll < 0.10 ? 'multiplier' : 'scatter'
+  |-- else:
+  |     spinType = 'both' (no restriction)
+  |
+  |-- generateGatesGrid(symbols, isBonusSpin, prng, spinType)
+  |     for each cell:
+  |       if spinType == 'scatter':
+  |         never place mult_* symbols
+  |       if spinType == 'multiplier':
+  |         if picked symbol is scatter -> replace with mult_Nx
+  |         else -> normal chance to place mult_* still applies
+  |       if spinType == 'both':
+  |         existing behavior (bonus)
+  |
+  |-- tumble loop:
+  |     fillWithMultipliers(..., spinType)
+  |       same rules as generateGatesGrid per spinType
 ```
-"mult_2x", "mult_3x", "mult_5x", "mult_10x", "mult_15x", "mult_25x", "mult_50x", "mult_100x"
-```
 
-These are NOT stored in the `slot_symbols` table. They are virtual/hardcoded IDs recognized by both server and client.
-
-#### Server changes (`supabase/functions/slot-spin/index.ts`)
-
-1. Update `GATES_MULTIPLIER_VALUES` to `[2, 3, 5, 10, 15, 25, 50, 100]`.
-2. Rewrite `generateGatesMultiplierOrbs` -> `placeMultipliersOnGrid`: Instead of generating a separate orbs array, directly inject `"mult_Nx"` IDs into the grid cells.
-3. In `calculateGatesFullSpin`, after generating/tumbling the grid:
-   - Scan for `mult_*` cells to build the multiplier orbs list for the client.
-   - On a winning step, mark multiplier cells for removal (collected into the bank).
-   - On a non-winning step, multiplier cells persist.
-4. `calculateGatesWins` and `countGatesSymbolMatches` already skip non-matching symbols, but add explicit exclusion for `mult_*` IDs.
-
-#### Client changes
-
-1. **`GatesColumn.tsx`**: Replace the orb overlay block (lines 144-150) with inline multiplier symbol rendering. If the symbolId starts with `"mult_"`, render the multiplier image from a static URL map instead of looking it up in `symbolsById`.
-2. **`GatesSlotGame.tsx`**: Simplify multiplier orb state -- the grid itself now contains multiplier positions. The `multiplierOrbAt` function reads directly from the grid.
-3. **`gatesGameLogic.ts`**: Update `MULTIPLIER_VALUES` to the new set of 8 values. Add a helper `isMultiplierSymbol(id: string)` and `getMultiplierValue(id: string)`.
-4. **`generateGatesDisplayGrid`**: Ensure display grid never generates `mult_*` IDs (already fine since it uses `symbols` array).
-
-#### Multiplier images
-
-Create an edge function call or manual admin action to generate 8 multiplier orb images via the existing `generate-slot-symbol` function, or create them as static assets. They'll be stored at predictable URLs in the `slot-symbols` bucket.
-
-#### Files to modify
-- `supabase/functions/slot-spin/index.ts` -- Core multiplier placement logic
-- `src/components/slots/GatesColumn.tsx` -- Render multiplier symbols as grid cells
-- `src/components/slots/GatesSlotGame.tsx` -- Simplify orb state management
-- `src/lib/gatesGameLogic.ts` -- Update constants, add helpers
-- `src/styles/gates-animations.css` -- Add multiplier collection animation
-
-#### Files to create
-- `src/lib/gatesMultiplierSymbols.ts` -- Multiplier symbol ID/image/value mappings
+No client-side changes required -- the client already renders whatever grid the server returns. No database changes needed.
 
