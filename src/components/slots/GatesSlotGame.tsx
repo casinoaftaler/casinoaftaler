@@ -72,6 +72,8 @@ export function GatesSlotGame({ gameId = "gates-of-fedesvin" }: GatesSlotGamePro
   const [cumulativeMultiplier, setCumulativeMultiplier] = useState(0);
   const [showBonusTrigger, setShowBonusTrigger] = useState(false);
   const [showBonusComplete, setShowBonusComplete] = useState(false);
+  const showBonusTriggerRef = useRef(false);
+  const showBonusCompleteRef = useRef(false);
 
   const spinLockRef = useRef(false);
   const [isAutoSpinning, setIsAutoSpinning] = useState(false);
@@ -246,7 +248,7 @@ export function GatesSlotGame({ gameId = "gates-of-fedesvin" }: GatesSlotGamePro
 
   const handleSpin = useCallback(async () => {
     if (spinLockRef.current || !symbols || !user || isSpinning) return;
-    if (showBonusTrigger || showBonusComplete) return;
+    if (showBonusTriggerRef.current || showBonusCompleteRef.current) return;
     
     const isBonusSpin = isBonusActive && freeSpinsRemaining > 0;
     if (!isBonusSpin && !hasEnoughSpins(bet)) return;
@@ -348,8 +350,10 @@ export function GatesSlotGame({ gameId = "gates-of-fedesvin" }: GatesSlotGamePro
             if (!isBonusActive && bs.freeSpinsRemaining > 0) {
               // New bonus triggered
               setShowBonusTrigger(true);
+              showBonusTriggerRef.current = true;
               setTimeout(() => {
                 setShowBonusTrigger(false);
+                showBonusTriggerRef.current = false;
                 setIsBonusActive(true);
                 setFreeSpinsRemaining(bs.freeSpinsRemaining);
                 setTotalFreeSpins(bs.totalFreeSpins);
@@ -366,8 +370,10 @@ export function GatesSlotGame({ gameId = "gates-of-fedesvin" }: GatesSlotGamePro
               
               if (bs.freeSpinsRemaining <= 0) {
                 setShowBonusComplete(true);
+                showBonusCompleteRef.current = true;
                 setTimeout(() => {
                   setShowBonusComplete(false);
+                  showBonusCompleteRef.current = false;
                   setIsBonusActive(false);
                   setCumulativeMultiplier(0);
                 }, 4000);
@@ -399,11 +405,11 @@ export function GatesSlotGame({ gameId = "gates-of-fedesvin" }: GatesSlotGamePro
         autoSpinTimeoutRef.current = setTimeout(() => handleSpin(), 1500);
       }
     }
-  }, [symbols, user, isSpinning, bet, isBonusActive, freeSpinsRemaining, hasEnoughSpins, serverSpin, processTumbleSteps, queryClient, isAutoSpinning, autoSpinsRemaining, stopAutoSpin, showBonusTrigger, showBonusComplete]);
+  }, [symbols, user, isSpinning, bet, isBonusActive, freeSpinsRemaining, hasEnoughSpins, serverSpin, processTumbleSteps, queryClient, isAutoSpinning, autoSpinsRemaining, stopAutoSpin]);
 
   // Auto-spin trigger
   useEffect(() => {
-    if (isAutoSpinning && !isSpinning && !showBonusTrigger && !showBonusComplete) {
+    if (isAutoSpinning && !isSpinning && !showBonusTriggerRef.current && !showBonusCompleteRef.current) {
       autoSpinTimeoutRef.current = setTimeout(() => handleSpin(), 800);
     }
   }, [isAutoSpinning]);
