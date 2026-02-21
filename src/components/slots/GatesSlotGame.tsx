@@ -477,22 +477,50 @@ export function GatesSlotGame({ gameId = "gates-of-fedesvin" }: GatesSlotGamePro
 
   return (
     <div className="flex flex-col items-center gap-4">
-      {/* Bonus status bar */}
+      {/* Prominent free spins counter - top center */}
       {isBonusActive && (
-        <div className={cn(
-          "w-full max-w-[700px] flex items-center justify-between px-4 py-2 rounded-lg border",
-          "bg-gradient-to-r from-blue-950/90 via-blue-900/80 to-blue-950/90",
-          "border-blue-500/30 text-blue-100"
-        )}>
-          <span className="text-sm font-medium">
-            Free Spins: <span className="text-blue-400 font-bold">{freeSpinsRemaining}/{totalFreeSpins}</span>
-          </span>
-          <span className="text-sm font-medium">
-            Multiplier: <span className="text-yellow-400 font-bold">x{cumulativeMultiplier}</span>
-          </span>
-          <span className="text-sm font-medium">
-            Bonus: <span className="text-green-400 font-bold">{bonusWinnings.toLocaleString()}</span>
-          </span>
+        <div className="w-full flex flex-col items-center gap-1 animate-fade-in">
+          {/* Main spins counter */}
+          <div className={cn(
+            "relative flex items-center gap-6 px-8 py-3 rounded-2xl border-2",
+            "bg-gradient-to-b from-yellow-900/90 via-amber-950/95 to-yellow-950/90",
+            "border-yellow-500/60",
+            "shadow-[0_0_30px_rgba(250,204,21,0.3),0_0_60px_rgba(250,204,21,0.15)]",
+            "animate-[bonus-bar-glow_2s_ease-in-out_infinite]"
+          )}>
+            {/* Free spins label + count */}
+            <div className="flex flex-col items-center">
+              <span className="text-[10px] uppercase tracking-widest text-yellow-500/80 font-semibold">Free Spins</span>
+              <div className="flex items-baseline gap-1">
+                <span className="text-4xl font-black text-yellow-300 drop-shadow-[0_0_12px_rgba(250,204,21,0.8)] tabular-nums">
+                  {freeSpinsRemaining}
+                </span>
+                <span className="text-lg text-yellow-500/60 font-bold">/ {totalFreeSpins}</span>
+              </div>
+            </div>
+
+            {/* Divider */}
+            <div className="w-px h-10 bg-yellow-500/30" />
+
+            {/* Cumulative multiplier */}
+            <div className="flex flex-col items-center">
+              <span className="text-[10px] uppercase tracking-widest text-blue-400/80 font-semibold">Multiplier</span>
+              <span className="text-2xl font-black text-blue-300 drop-shadow-[0_0_10px_rgba(59,130,246,0.7)] tabular-nums">
+                x{cumulativeMultiplier}
+              </span>
+            </div>
+
+            {/* Divider */}
+            <div className="w-px h-10 bg-yellow-500/30" />
+
+            {/* Bonus winnings */}
+            <div className="flex flex-col items-center">
+              <span className="text-[10px] uppercase tracking-widest text-green-400/80 font-semibold">Gevinst</span>
+              <span className="text-2xl font-black text-green-300 drop-shadow-[0_0_10px_rgba(74,222,128,0.7)] tabular-nums">
+                {bonusWinnings.toLocaleString()}
+              </span>
+            </div>
+          </div>
         </div>
       )}
 
