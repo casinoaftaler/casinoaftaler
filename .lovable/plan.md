@@ -1,44 +1,61 @@
 
 
-## Fix: Limit Scatters to 1 Per Reel + Reduce Bonus Multipliers
+## Redesign Gates of Fedesvin Control Bar
 
-### Problem 1: Multiple scatters per reel
-The `generateGatesGrid` function picks symbols independently for each cell in a column. If the RNG rolls a scatter symbol more than once in the same column, multiple scatters land on that reel. Real "Gates of Olympus" style games cap scatters at 1 per reel.
+### Current Problem
+The control bar has too many separate boxes (Volume, BetControls, Spin button, AutospinRow, PayTable) all in a row, making it look cramped and cluttered. The autospin section takes up a lot of space with its dropdown + button combo.
 
-### Problem 2: Too many multipliers in bonus
-The bonus multiplier chance is configured at 14% per cell (from the database setting `gates_multiplier_chance_bonus`). On a 30-cell grid, that averages ~4 multiplier orbs per spin, which is excessive. A more balanced value would be around 5-6% (roughly 1-2 multipliers per spin on average).
+### Desired Layout (based on reference image)
+A single, clean horizontal bar with these elements inline from left to right:
 
----
+**Left side:** PayTable button (rules) | Volume button  
+**Center-left:** Credits display (spins remaining)  
+**Center:** Bet display with +/- controls  
+**Center-right:** (space)  
+**Right:** Spin button (circular, with auto-spin count shown inside when active)
 
-### Changes
+The auto-spin becomes a single button that opens a small popover/overlay where you pick the count and start. While auto-spinning, the spin button itself shows remaining spins.
 
-**File: `supabase/functions/slot-spin/index.ts`**
+### Technical Changes
 
-1. **Cap scatters to 1 per reel** in `generateGatesGrid`:
-   - Track whether a scatter has already been placed in the current column
-   - If a scatter is rolled but one already exists in that column, re-roll (pick a new non-scatter symbol instead)
-   - This applies to both base game and bonus spins
+**1. New component: `GatesControlBar.tsx`**
+A Gates-specific control bar replacing `SlotControlPanel` for this game. Layout:
+- Single horizontal bar with `bg-gradient-to-b from-blue-950/90 to-slate-950/90` and rounded corners
+- Left cluster: PayTable icon button + Volume icon button (compact, no labels)
+- Center-left: Credits counter showing `spinsRemaining / maxSpins`
+- Center: Bet section - label "BET", value with +/- buttons
+- Right: Circular spin button (~64-72px) that shows:
+  - "SPIN" normally
+  - Spinning animation during spin
+  - "FREE" during bonus
+  - Auto-spin remaining count (e.g. "23") when auto-spinning
+  - "INGEN SPINS" when out of credits
 
-2. **Lower default bonus multiplier chance** from `0.056` to `0.05` (5%) as the code default, and update the database setting from `0.14` to `0.056` (5.6%) to bring it in line with the intended design (~1-2 multipliers per bonus spin on average).
+**2. New component: `AutoSpinPopover.tsx`**
+A small popover triggered by a turbo/auto button next to the spin button:
+- Shows count options (10, 25, 50, 100, Infinite) as selectable chips/buttons
+- "START" button to begin auto-spinning
+- When auto-spinning, the same button shows "STOP" with remaining count
 
-**Database migration:**
-- Update `site_settings` row for `gates_multiplier_chance_bonus` from `0.14` to `0.056`.
+**3. Update `GatesSlotGame.tsx`**
+- Replace `SlotControlPanel` usage with the new `GatesControlBar` component
+- Remove the `max-w-[700px]` constraint
+- Pass all existing props to the new component
 
-### Technical Details
+**4. Keep `SlotControlPanel` unchanged**
+The existing panel continues to work for "Book of Fedesvin" and other games.
 
-Scatter cap implementation in `generateGatesGrid`:
+### Layout Sketch
+
+```text
++------------------------------------------------------------------------+
+| [i] [Vol]  |  Credits: 87/100  |  BET  [-] 5 [+]  |  [Auto] [SPIN]  |
++------------------------------------------------------------------------+
 ```
-for each column:
-  let hasScatter = false
-  for each row:
-    sym = getRandomSymbol(...)
-    if sym is scatter and hasScatter:
-      // Re-roll without scatter
-      sym = getRandomSymbol(symbols excluding scatter, ...)
-    if sym is scatter:
-      hasScatter = true
-    // ... rest of multiplier logic
-```
 
-The same 1-scatter-per-column rule will also apply to the `fillWithMultipliers` function (new symbols dropping in after a tumble), since scatters could theoretically fill into a column that already has one. However, in the current code scatters are excluded from fill symbols, so this is already handled.
+During auto-spin, the spin button shows the remaining count inside it. During bonus, credits section is hidden and the spin button shows "FREE".
 
+### Files to Create/Modify
+- **Create:** `src/components/slots/GatesControlBar.tsx` - new clean horizontal bar
+- **Create:** `src/components/slots/AutoSpinPopover.tsx` - popover for auto-spin config
+- **Modify:** `src/components/slots/GatesSlotGame.tsx` - swap control panel component
