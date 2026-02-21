@@ -269,7 +269,7 @@ Deno.serve(async (req) => {
         // Only update license fields on successful scrape
         updateData.license_status = licenseStatus;
         updateData.license_holder_name = licenseHolderName;
-        updateData.license_source_url = scrapeUrl;
+        // NOTE: license_source_url is NOT overwritten here – it is manually curated per casino
         updateData.license_verified_at = now;
 
         // Check for status change alerts
