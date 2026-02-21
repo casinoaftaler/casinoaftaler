@@ -14,6 +14,114 @@ export type Database = {
   }
   public: {
     Tables: {
+      casino_compliance: {
+        Row: {
+          bonus_compliant: boolean
+          bonus_max_amount: number
+          bonus_source_url: string
+          bonus_verified_at: string | null
+          bonus_wager_requirement: number
+          casino_name: string
+          casino_slug: string
+          compliance_score: number
+          created_at: string
+          id: string
+          last_checked: string
+          license_holder_name: string | null
+          license_last_scraped_at: string | null
+          license_number: string
+          license_source_url: string
+          license_status: Database["public"]["Enums"]["license_status"]
+          license_verified_at: string | null
+          notes: string | null
+          scrape_status: string
+          source_url: string
+          updated_at: string
+        }
+        Insert: {
+          bonus_compliant?: boolean
+          bonus_max_amount?: number
+          bonus_source_url?: string
+          bonus_verified_at?: string | null
+          bonus_wager_requirement?: number
+          casino_name: string
+          casino_slug: string
+          compliance_score?: number
+          created_at?: string
+          id?: string
+          last_checked?: string
+          license_holder_name?: string | null
+          license_last_scraped_at?: string | null
+          license_number?: string
+          license_source_url?: string
+          license_status?: Database["public"]["Enums"]["license_status"]
+          license_verified_at?: string | null
+          notes?: string | null
+          scrape_status?: string
+          source_url?: string
+          updated_at?: string
+        }
+        Update: {
+          bonus_compliant?: boolean
+          bonus_max_amount?: number
+          bonus_source_url?: string
+          bonus_verified_at?: string | null
+          bonus_wager_requirement?: number
+          casino_name?: string
+          casino_slug?: string
+          compliance_score?: number
+          created_at?: string
+          id?: string
+          last_checked?: string
+          license_holder_name?: string | null
+          license_last_scraped_at?: string | null
+          license_number?: string
+          license_source_url?: string
+          license_status?: Database["public"]["Enums"]["license_status"]
+          license_verified_at?: string | null
+          notes?: string | null
+          scrape_status?: string
+          source_url?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      casino_compliance_history: {
+        Row: {
+          casino_slug: string
+          change_type: string
+          changed_at: string
+          created_at: string
+          field_changed: string
+          id: string
+          new_value: string
+          old_value: string
+          source_url: string
+        }
+        Insert: {
+          casino_slug: string
+          change_type: string
+          changed_at?: string
+          created_at?: string
+          field_changed: string
+          id?: string
+          new_value: string
+          old_value: string
+          source_url?: string
+        }
+        Update: {
+          casino_slug?: string
+          change_type?: string
+          changed_at?: string
+          created_at?: string
+          field_changed?: string
+          id?: string
+          new_value?: string
+          old_value?: string
+          source_url?: string
+        }
+        Relationships: []
+      }
       casino_news: {
         Row: {
           author_id: string
@@ -387,6 +495,57 @@ export type Database = {
           url?: string
           user_id?: string
           validation_notes?: string | null
+        }
+        Relationships: []
+      }
+      compliance_scrape_logs: {
+        Row: {
+          casino_name: string
+          casino_slug: string
+          created_at: string
+          duration_ms: number | null
+          error_message: string | null
+          id: string
+          license_type_found: string | null
+          matched_name: string | null
+          raw_snippet: string | null
+          response_code: number | null
+          scrape_url: string
+          severity: string
+          similarity_score: number | null
+          status: string
+        }
+        Insert: {
+          casino_name: string
+          casino_slug: string
+          created_at?: string
+          duration_ms?: number | null
+          error_message?: string | null
+          id?: string
+          license_type_found?: string | null
+          matched_name?: string | null
+          raw_snippet?: string | null
+          response_code?: number | null
+          scrape_url: string
+          severity?: string
+          similarity_score?: number | null
+          status?: string
+        }
+        Update: {
+          casino_name?: string
+          casino_slug?: string
+          created_at?: string
+          duration_ms?: number | null
+          error_message?: string | null
+          id?: string
+          license_type_found?: string | null
+          matched_name?: string | null
+          raw_snippet?: string | null
+          response_code?: number | null
+          scrape_url?: string
+          severity?: string
+          similarity_score?: number | null
+          status?: string
         }
         Relationships: []
       }
@@ -1652,6 +1811,7 @@ export type Database = {
     Enums: {
       app_role: "admin" | "user" | "casino_owner"
       clip_status: "pending" | "approved" | "rejected"
+      license_status: "valid" | "suspended" | "revoked"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -1781,6 +1941,7 @@ export const Constants = {
     Enums: {
       app_role: ["admin", "user", "casino_owner"],
       clip_status: ["pending", "approved", "rejected"],
+      license_status: ["valid", "suspended", "revoked"],
     },
   },
 } as const
