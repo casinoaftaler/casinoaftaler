@@ -192,7 +192,6 @@ export const seoRoutes: SeoRoute[] = [
   { path: "/forfatter/jonas", changefreq: "monthly", priority: 0.6, lastmod: "2026-02-20" },
   { path: "/forfatter/kevin", changefreq: "monthly", priority: 0.6, lastmod: "2026-02-17" },
   { path: "/saadan-tester-vi-casinoer", changefreq: "monthly", priority: 0.8, lastmod: "2026-02-15" },
-  { path: "/casino-compliance", changefreq: "daily", priority: 0.9, lastmod: "2026-02-21" },
   { path: "/privatlivspolitik", changefreq: "yearly", priority: 0.3, lastmod: "2026-02-11" },
   { path: "/terms", changefreq: "yearly", priority: 0.3, lastmod: "2026-02-11" },
   { path: "/cookies", changefreq: "yearly", priority: 0.3, lastmod: "2026-02-11" },

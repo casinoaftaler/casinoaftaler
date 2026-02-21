@@ -319,12 +319,6 @@ export function Footer() {
                 </Link>
               </li>
               <li>
-                <Link to="/casino-compliance" className="flex items-center gap-2 text-muted-foreground transition-colors hover:text-foreground">
-                  <Shield className="h-4 w-4" />
-                  Compliance Dashboard
-                </Link>
-              </li>
-              <li>
                 <Link to="/om" className="flex items-center gap-2 text-muted-foreground transition-colors hover:text-foreground">
                   <Users className="h-4 w-4" />
                   Om Casinoaftaler.dk

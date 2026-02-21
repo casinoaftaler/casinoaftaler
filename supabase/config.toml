@@ -74,12 +74,3 @@ verify_jwt = false
 
 [functions.generate-game-music]
 verify_jwt = false
-
-[functions.update-casino-compliance]
-verify_jwt = false
-
-[functions.compliance-export]
-verify_jwt = false
-
-[functions.refresh-compliance-data]
-verify_jwt = false
