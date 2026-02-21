@@ -43,7 +43,7 @@ const gonzosQuestFaqs: { question: string; answer: ReactNode }[] = [
     question: "Er Gonzo's Quest god til wagering?",
     answer: (
       <>
-        Gonzo's Quest er en acceptabel wagering-kandidat med caveats. RTP'en på 95,97 % er lidt under gennemsnittet, og house edge på 4,03 % giver et forventet tab på 1.209 kr. for 30x wagering af en 1.000 kr. <Link to="/velkomstbonus" className={linkClass}>bonus</Link>. Det er dyrere end alternativer med 96,50 %+ RTP. Dog er volatiliteten moderat nok til at holde bust-risikoen kontrollerbar (~22 %). For wagering med lave krav (under 25x) kan den fungere.
+        Gonzo's Quest er en acceptabel wagering-kandidat med caveats. RTP'en på 95,97 % er lidt under gennemsnittet, og house edge på 4,03 % giver et forventet tab på 403 kr. for 10x wagering af en 1.000 kr. <Link to="/velkomstbonus" className={linkClass}>bonus</Link> (10.000 kr. total omsætning). Bonusværdien er +597 kr. – klart positiv med det danske 10x-krav. Dog er RTP'en lavere end alternativer med 96,50 %+, og volatiliteten er moderat nok til at holde bust-risikoen kontrollerbar (~12 %).
       </>
     ),
   },
@@ -207,7 +207,7 @@ const GonzosQuestGuide = () => {
             Lad os adressere elefanten i rummet: Gonzo's Quest har en RTP, der er ca. 0,5 procentpoint under branchens gennemsnit. Det er ikke dramatisk, men over mange spins akkumulerer forskellen. Over 1.000 spins á 10 kr. er det forventede tab 403 kr. – ca. 50 kr. mere end en 96,48 %-slot og 85 kr. mere end Dead or Alive 2.
           </p>
           <p className="mb-4 text-muted-foreground leading-relaxed">
-            For casual spillere, der spiller 200–300 spins pr. session, er denne forskel marginal – inden for variansens naturlige svingninger. Men for systematiske spillere eller wagering-scenarier er det en reel omkostning. For 30x wagering af en 1.000 kr. bonus: 30.000 × 0,0403 = 1.209 kr. forventet tab, sammenlignet med 954 kr. for Dead or Alive 2 og 987 kr. for Big Bass Bonanza.
+            For casual spillere, der spiller 200–300 spins pr. session, er denne forskel marginal – inden for variansens naturlige svingninger. Men for systematiske spillere eller wagering-scenarier er det en reel omkostning. Med det danske 10x omsætningskrav og en 1.000 kr. bonus: 10.000 × 0,0403 = 403 kr. forventet tab (EV: +597 kr.), sammenlignet med 318 kr. tab for Dead or Alive 2 og 329 kr. for Big Bass Bonanza.
           </p>
           <p className="text-muted-foreground leading-relaxed">
             Vores vurdering: RTP'en er ikke en dealbreaker, men den er en faktor at overveje. Hvis du har valget mellem Gonzo's Quest og et moderne alternativ med højere RTP og lignende gameplay, er alternativet matematisk overlegen. Men hvis du nyder Gonzo's Quests unikke Avalanche-følelse med stigende multiplikatorer, er de ekstra 0,5 % house edge en rimelig pris for oplevelsen.

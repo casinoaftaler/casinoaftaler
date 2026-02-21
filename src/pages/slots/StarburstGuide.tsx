@@ -43,7 +43,7 @@ const starburstFaqs: { question: string; answer: ReactNode }[] = [
     question: "Kan man bruge Starburst til at opfylde omsætningskrav?",
     answer: (
       <>
-        Ja, Starburst er en af de mest populære slots til wagering på grund af dens lave volatilitet og stabile gevinstfrekvens. Med en RTP på 96,09 % og en hit-rate på ca. 23 % kan du forvente en langsom, kontrolleret nedgang af din saldo. For en bonus på 1.000 kr. med 30x <Link to="/omsaetningskrav" className={linkClass}>omsætningskrav</Link> (30.000 kr. total wagering) er dit forventede tab ca. 1.173 kr. – altså mere end bonussen er værd. Lavere omsætningskrav (under 25x) gør Starburst til en bedre wagering-kandidat.
+        Ja, Starburst er en af de mest populære slots til wagering på grund af dens lave volatilitet og stabile gevinstfrekvens. Med en RTP på 96,09 % og en hit-rate på ca. 23 % kan du forvente en langsom, kontrolleret nedgang af din saldo. Med det danske 10x <Link to="/omsaetningskrav" className={linkClass}>omsætningskrav</Link> og en 1.000 kr. bonus (10.000 kr. total wagering) er dit forventede tab ca. 391 kr. – bonusværdien er +609 kr., klart positiv. Starbursts lave volatilitet gør den til en af de sikreste wagering-kandidater.
       </>
     ),
   },
@@ -215,7 +215,7 @@ const StarburstGuide = () => {
           </div>
 
           <p className="mb-4 text-muted-foreground leading-relaxed">
-            Over 1.000 spins er forskellen mellem Starburst (96,09 %) og en standard 96,48 %-slot kun 39 kr. – ikke katastrofalt. Men over mange tusinde spins (typisk for wagering-scenarier) akkumulerer forskellen. Ved 30.000 kr. wagering (typisk for en 1.000 kr. bonus med 30x krav) er det forventede tab 1.173 kr. på Starburst vs. 1.056 kr. på en 96,48 %-slot – en forskel på 117 kr.
+            Over 1.000 spins er forskellen mellem Starburst (96,09 %) og en standard 96,48 %-slot kun 39 kr. – ikke katastrofalt. Men over mange tusinde spins (typisk for wagering-scenarier) akkumulerer forskellen. Med det danske 10x omsætningskrav og en 1.000 kr. bonus (10.000 kr. wagering) er det forventede tab 391 kr. på Starburst vs. 352 kr. på en 96,48 %-slot – en forskel på 39 kr.
           </p>
           <p className="text-muted-foreground leading-relaxed">
             Starbursts lave volatilitet kompenserer dog delvist for den lidt lavere RTP i wagering-scenarier. Fordi gevinstfrekvensen er høj og variansen lav, er risikoen for at gå bust (tabe hele saldoen) under wagering lavere end på en høj-volatilitets slot med samme RTP. I praksis betyder det, at din faktiske chance for at fuldføre omsætningskravene kan være højere med Starburst end med en teknisk set bedre RTP-slot med høj volatilitet.
@@ -250,10 +250,10 @@ const StarburstGuide = () => {
             Starburst er en af de mest populære slots til at opfylde <Link to="/omsaetningskrav" className={linkClass}>omsætningskrav</Link>, og det er ikke uden grund. Dens kombination af lav volatilitet og acceptable RTP gør den til en forudsigelig wagering-maskine. Men er den faktisk det bedste valg? Lad os beregne det.
           </p>
           <p className="mb-4 text-muted-foreground leading-relaxed">
-            For en typisk <Link to="/velkomstbonus" className={linkClass}>velkomstbonus</Link> på 1.000 kr. med 30x omsætningskrav skal du wagere 30.000 kr. total. Med Starbursts house edge på 3,91 % er dit forventede tab: 30.000 × 0,0391 = 1.173 kr. Da bonussen kun er 1.000 kr. værd, er EV negativ med -173 kr. Det betyder, at du statistisk set mister 173 kr. af dine egne penge ud over bonusværdien.
+            Med det danske 10x omsætningskrav og en typisk <Link to="/velkomstbonus" className={linkClass}>velkomstbonus</Link> på 1.000 kr. skal du wagere 10.000 kr. total. Med Starbursts house edge på 3,91 % er dit forventede tab: 10.000 × 0,0391 = 391 kr. Bonusværdien er +609 kr. – klart positiv EV med det danske lovkrav.
           </p>
           <p className="mb-4 text-muted-foreground leading-relaxed">
-            Sammenlign med en slot med 96,50 % RTP: 30.000 × 0,035 = 1.050 kr. forventet tab – altså EV på -50 kr. Og med en <Link to="/casinospil/spillemaskiner/hoej-rtp" className={linkClass}>høj-RTP slot</Link> på 97 %: 30.000 × 0,03 = 900 kr. – positiv EV på +100 kr. Starburst er altså ikke det optimale wagering-valg rent matematisk, men dens lave volatilitet reducerer risikoen for total bust – og det har en værdi, der ikke fanges af ren EV.
+            Sammenlign med en slot med 96,50 % RTP: 10.000 × 0,035 = 350 kr. forventet tab – EV på +650 kr. Og med en <Link to="/casinospil/spillemaskiner/hoej-rtp" className={linkClass}>høj-RTP slot</Link> på 97 %: 10.000 × 0,03 = 300 kr. – EV på +700 kr. Starburst er altså ikke det optimale wagering-valg rent matematisk, men dens lave volatilitet reducerer risikoen for total bust – og det har en værdi, der ikke fanges af ren EV.
           </p>
 
           <div className="overflow-x-auto mb-6">
@@ -262,7 +262,7 @@ const StarburstGuide = () => {
                 <tr className="border-b">
                   <th className="py-2 text-left font-semibold">Slot</th>
                   <th className="py-2 text-right font-semibold">RTP</th>
-                  <th className="py-2 text-right font-semibold">Forventet tab (30x / 1.000 kr.)</th>
+                  <th className="py-2 text-right font-semibold">Forventet tab (10x / 1.000 kr.)</th>
                   <th className="py-2 text-right font-semibold">EV</th>
                   <th className="py-2 text-right font-semibold">Bust-risiko</th>
                 </tr>
@@ -271,23 +271,23 @@ const StarburstGuide = () => {
                 <tr className="border-b">
                   <td className="py-2">Starburst (96,09 %)</td>
                   <td className="py-2 text-right">96,09 %</td>
-                  <td className="py-2 text-right">1.173 kr.</td>
-                  <td className="py-2 text-right">-173 kr.</td>
-                  <td className="py-2 text-right">~15 %</td>
+                  <td className="py-2 text-right">391 kr.</td>
+                  <td className="py-2 text-right text-primary">+609 kr.</td>
+                  <td className="py-2 text-right">~5 %</td>
                 </tr>
                 <tr className="border-b">
                   <td className="py-2">Sweet Bonanza (96,48 %)</td>
                   <td className="py-2 text-right">96,48 %</td>
-                  <td className="py-2 text-right">1.056 kr.</td>
-                  <td className="py-2 text-right">-56 kr.</td>
-                  <td className="py-2 text-right">~35 %</td>
+                  <td className="py-2 text-right">352 kr.</td>
+                  <td className="py-2 text-right text-primary">+648 kr.</td>
+                  <td className="py-2 text-right">~12 %</td>
                 </tr>
                 <tr className="border-b">
                   <td className="py-2">Høj-RTP slot (97,00 %)</td>
                   <td className="py-2 text-right">97,00 %</td>
-                  <td className="py-2 text-right">900 kr.</td>
-                  <td className="py-2 text-right">+100 kr.</td>
-                  <td className="py-2 text-right">~25 %</td>
+                  <td className="py-2 text-right">300 kr.</td>
+                  <td className="py-2 text-right text-primary">+700 kr.</td>
+                  <td className="py-2 text-right">~8 %</td>
                 </tr>
               </tbody>
             </table>
