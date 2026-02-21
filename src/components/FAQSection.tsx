@@ -1,4 +1,4 @@
-import { ReactNode } from "react";
+import React, { ReactNode } from "react";
 import { HelpCircle } from "lucide-react";
 import {
   Accordion,
@@ -47,9 +47,9 @@ const defaultFaqs: FAQ[] = [
   },
 ];
 
-export function FAQSection({ title = "Ofte Stillede Spørgsmål", faqs = defaultFaqs }: FAQSectionProps) {
+export const FAQSection = React.forwardRef<HTMLElement, FAQSectionProps>(function FAQSection({ title = "Ofte Stillede Spørgsmål", faqs = defaultFaqs }, ref) {
   return (
-    <section className="mb-12">
+    <section ref={ref} className="mb-12">
       <h2 className="mb-6 text-3xl font-bold flex items-center gap-2">
         <HelpCircle className="h-8 w-8 text-primary" />
         {title}
@@ -74,4 +74,4 @@ export function FAQSection({ title = "Ofte Stillede Spørgsmål", faqs = default
       </div>
     </section>
   );
-}
+});

@@ -1,3 +1,4 @@
+import React from "react";
 import { Link } from "react-router-dom";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
@@ -351,14 +352,14 @@ interface RelatedGuidesProps {
   maxLinks?: number;
 }
 
-export function RelatedGuides({ currentPath, maxLinks = 5 }: RelatedGuidesProps) {
+export const RelatedGuides = React.forwardRef<HTMLElement, RelatedGuidesProps>(function RelatedGuides({ currentPath, maxLinks = 5 }, ref) {
   const { guides, subtitle } = getContextualGuides(currentPath);
   const filteredLinks = guides.filter((link) => link.to !== currentPath).slice(0, maxLinks);
 
   return (
     <>
       <Separator className="my-10" />
-      <section className="mb-12">
+      <section ref={ref} className="mb-12">
         <h2 className="mb-4 text-3xl font-bold">
           <BookOpen className="mr-2 inline h-7 w-7 text-primary" />
           Relaterede Guides
@@ -384,4 +385,4 @@ export function RelatedGuides({ currentPath, maxLinks = 5 }: RelatedGuidesProps)
       </section>
     </>
   );
-}
+});
