@@ -90,7 +90,7 @@ export function SlotControlPanel({
         spinsLoading={spinsLoading}
         gameId={gameId}
       />
-      <SmallWinBar amount={winAmount} gameId={gameId} />
+      {gameId !== 'gates-of-fedesvin' && <SmallWinBar amount={winAmount} gameId={gameId} />}
       <Button
         className={cn(
           "rounded-full aspect-square flex-shrink-0",
