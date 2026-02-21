@@ -171,7 +171,7 @@ export default function CasinoCompliance() {
         </div>
       </section>
 
-      <div className="container max-w-6xl py-8 md:py-12">
+      <div className="container py-8 md:py-12">
         <AuthorMetaBar author="jonas" date="21-02-2026" readTime="5 Min." />
 
         <div className="mb-10 overflow-hidden rounded-xl">
