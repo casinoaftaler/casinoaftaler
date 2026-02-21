@@ -29,6 +29,7 @@ import { BonusEntrySequence } from "./BonusEntrySequence";
 import { GatesRetriggerOverlay } from "./GatesRetriggerOverlay";
 import { GatesBonusEndOverlay } from "./GatesBonusEndOverlay";
 import { useGatesIntensity } from "@/hooks/useGatesIntensity";
+import { GatesZeusCharacter } from "./GatesZeusCharacter";
 
 const SYMBOL_WIDTH = 140;
 const SYMBOL_HEIGHT = 108;
@@ -660,6 +661,9 @@ export function GatesSlotGame({ gameId = "gates-of-fedesvin" }: GatesSlotGamePro
       <div className="gates-lightning-ambient" />
       {/* Ambient glow background */}
       <div className="gates-ambient-glow" />
+
+      {/* Zeus character - top center */}
+      <GatesZeusCharacter intensityState={intensityState} chainLevel={tumbleChainLength} />
 
       {/* Bonus bar - only in bonus (free spins + multiplier shown above grid) */}
       {isBonusActive && (
