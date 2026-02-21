@@ -112,7 +112,7 @@ function SortableSymbolRow({ symbol, onEdit, spawnPercentage }: SortableSymbolRo
           <span className="text-amber-500 font-medium">Vægt: {symbol.weight}</span>
           <span className="text-primary font-medium ml-2">({spawnPercentage.toFixed(2)}%)</span>
           {" | "}
-          {symbol.rarity === 'premium' && `2×: ${symbol.multiplier_2}x | `}3×: {symbol.multiplier_3}x | 4×: {symbol.multiplier_4}x | 5×: {symbol.multiplier_5}x
+          {symbol.rarity === 'premium' && `2×: ${symbol.multiplier_2}x | `}{symbol.multiplier_3}x | {symbol.multiplier_4}x | {symbol.multiplier_5}x
         </div>
       </div>
 
@@ -128,9 +128,11 @@ interface EditSymbolDialogProps {
   open: boolean;
   onClose: () => void;
   allSymbols: SlotSymbol[];
+  gameId?: string;
 }
 
-function EditSymbolDialog({ symbol, open, onClose, allSymbols }: EditSymbolDialogProps) {
+function EditSymbolDialog({ symbol, open, onClose, allSymbols, gameId }: EditSymbolDialogProps) {
+  const isGates = gameId === 'gates-of-fedesvin';
   const { updateSymbol } = useSlotSymbolsAdmin();
   const [isGeneratingAI, setIsGeneratingAI] = useState(false);
   const [formData, setFormData] = useState({
@@ -360,7 +362,7 @@ function EditSymbolDialog({ symbol, open, onClose, allSymbols }: EditSymbolDialo
               <p className="text-xs text-muted-foreground">I bonus runde</p>
             </div>
             <div className="space-y-2">
-              <Label htmlFor="mult-2">2× Multi</Label>
+              <Label htmlFor="mult-2">{isGates ? (symbol?.is_scatter ? 'Scatter placeholder' : 'Unused') : '2× Multi'}</Label>
               <Input
                 id="mult-2"
                 type="number"
@@ -368,13 +370,14 @@ function EditSymbolDialog({ symbol, open, onClose, allSymbols }: EditSymbolDialo
                 min="0"
                 value={formData.multiplier_2}
                 onChange={(e) => setFormData({ ...formData, multiplier_2: e.target.value })}
+                disabled={isGates}
               />
-              <p className="text-xs text-muted-foreground">Kun premium</p>
+              <p className="text-xs text-muted-foreground">{isGates ? 'Ikke brugt i Gates' : 'Kun premium'}</p>
             </div>
           </div>
           <div className="grid grid-cols-3 gap-4">
             <div className="space-y-2">
-              <Label htmlFor="mult-3">3× Multi</Label>
+              <Label htmlFor="mult-3">{isGates ? (symbol?.is_scatter ? '4 Scatter' : '8-9 stk') : '3× Multi'}</Label>
               <Input
                 id="mult-3"
                 type="number"
@@ -385,7 +388,7 @@ function EditSymbolDialog({ symbol, open, onClose, allSymbols }: EditSymbolDialo
               />
             </div>
             <div className="space-y-2">
-              <Label htmlFor="mult-4">4× Multi</Label>
+              <Label htmlFor="mult-4">{isGates ? (symbol?.is_scatter ? '5 Scatter' : '10-11 stk') : '4× Multi'}</Label>
               <Input
                 id="mult-4"
                 type="number"
@@ -396,7 +399,7 @@ function EditSymbolDialog({ symbol, open, onClose, allSymbols }: EditSymbolDialo
               />
             </div>
             <div className="space-y-2">
-              <Label htmlFor="mult-5">5× Multi</Label>
+              <Label htmlFor="mult-5">{isGates ? (symbol?.is_scatter ? '6+ Scatter' : '12-30 stk') : '5× Multi'}</Label>
               <Input
                 id="mult-5"
                 type="number"
@@ -668,6 +671,7 @@ function SymbolsTab({ gameId = "book-of-fedesvin" }: { gameId?: string }) {
         open={!!editingSymbol}
         onClose={() => setEditingSymbol(null)}
         allSymbols={orderedSymbols}
+        gameId={gameId}
       />
     </div>
   );
