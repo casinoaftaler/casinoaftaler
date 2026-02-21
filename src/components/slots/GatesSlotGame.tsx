@@ -293,9 +293,10 @@ export function GatesSlotGame({ gameId = "gates-of-fedesvin" }: GatesSlotGamePro
           const nextGrid = steps[i + 1].grid;
           const dropAnims = new Map<number, CellAnimState>();
           const offsets = new Map<number, number>();
-          const CELL_HEIGHT = SYMBOL_HEIGHT + SYMBOL_GAP; // 89
+          const CELL_HEIGHT = SYMBOL_HEIGHT + SYMBOL_GAP;
           
           for (let col = 0; col < GATES_COLS; col++) {
+            // Count how many were removed in this column
             let removedInCol = 0;
             for (let row = 0; row < GATES_ROWS; row++) {
               const flat = col * GATES_ROWS + row;
@@ -305,24 +306,35 @@ export function GatesSlotGame({ gameId = "gates-of-fedesvin" }: GatesSlotGamePro
             }
             
             if (removedInCol > 0) {
-              // Top rows = brand new symbols dropping in from above
+              // In the NEXT grid, the top `removedInCol` rows are new symbols
+              // They should drop in from above
               for (let row = 0; row < removedInCol; row++) {
                 const flat = col * GATES_ROWS + row;
                 dropAnims.set(flat, 'filling');
               }
-              // Remaining rows = surviving symbols that shift down with gravity
+              
+              // The remaining rows are survivors that shifted down.
+              // Each survivor needs a gravity offset = how many rows it shifted.
+              // Since survivors compact downward, a survivor now at row `r`
+              // was previously at row `r - removedInCol` (approximately).
+              // But we need per-cell accuracy: count removed cells above each
+              // survivor's NEW position. Since new symbols are at the top,
+              // all survivors are below them and shifted by `removedInCol`.
               for (let row = removedInCol; row < GATES_ROWS; row++) {
                 const flat = col * GATES_ROWS + row;
+                // This survivor moved down by `removedInCol` rows
+                // so it starts at offset -(removedInCol * CELL_HEIGHT) and drops to 0
                 dropAnims.set(flat, 'dropping');
                 offsets.set(flat, removedInCol * CELL_HEIGHT);
               }
             }
+            // Columns with no removals: no animation needed, symbols stay in place
           }
           
           setGrid(nextGrid);
           setCellAnimStates(dropAnims);
           setCellDropOffsets(offsets);
-          setAnimationEpoch(prev => prev + 1); // force CSS animation restart
+          setAnimationEpoch(prev => prev + 1);
           
           const dropTime = isSlowMotion ? 700 : 500;
           await new Promise(r => setTimeout(r, dropTime));

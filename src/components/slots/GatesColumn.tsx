@@ -96,7 +96,7 @@ export const GatesColumn = React.memo(function GatesColumn({
 
         return (
           <div
-            key={`${row}-${cellAnim === 'dropping' || cellAnim === 'filling' ? animationEpoch : 'stable'}`}
+            key={`${row}-${(cellAnim === 'dropping' || cellAnim === 'filling') ? animationEpoch : 'stable'}-${cellAnim}`}
             className={cn(
               "relative rounded-lg",
               (cellAnim === 'dropping' || cellAnim === 'filling') ? "overflow-visible" : "overflow-hidden",
@@ -115,7 +115,6 @@ export const GatesColumn = React.memo(function GatesColumn({
               height: SYMBOL_HEIGHT,
               '--gravity-offset': cellAnim === 'dropping' ? `${-(cellDropOffsets.get(flatIndex) || (SYMBOL_HEIGHT + 4))}px` : undefined,
               animationDelay: isLanding ? `${row * 50}ms` : 
-                cellAnim === 'dropping' ? `${row * 40}ms` :
                 cellAnim === 'filling' ? `${row * 40}ms` : undefined,
             } as React.CSSProperties}
           >
