@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { Shield, CheckCircle, AlertTriangle, XCircle, ExternalLink, Scale, Clock, FileCheck, HelpCircle, Sparkles } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { AuthorBio } from "@/components/AuthorBio";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
@@ -379,6 +380,10 @@ export default function CasinoCompliance() {
 
         {/* FAQ */}
         <FAQSection title="Ofte Stillede Spørgsmål om Casino Compliance" faqs={faqs} />
+
+        <Separator className="my-10" />
+
+        <AuthorBio author="jonas" />
       </div>
     </>
   );
