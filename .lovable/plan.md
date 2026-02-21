@@ -1,85 +1,44 @@
 
-# Fix alle 7 issues fra /casino-nyheder produktionsvalidering
 
-## Overblik
-Planen adresserer 3 kritiske fejl og 4 warnings fundet i produktionsvalideringen af casino-nyheder sektionen.
+## Fix: Limit Scatters to 1 Per Reel + Reduce Bonus Multipliers
 
----
+### Problem 1: Multiple scatters per reel
+The `generateGatesGrid` function picks symbols independently for each cell in a column. If the RNG rolls a scatter symbol more than once in the same column, multiple scatters land on that reel. Real "Gates of Olympus" style games cap scatters at 1 per reel.
 
-## 1. Header: Tilfoej Casino Nyheder link (KRITISK)
-Tilfoej "Casino Nyheder" som et direkte link i "Mere" dropdown-menuen i desktop-navigationen, placeret efter "Kontakt" og foer "Forfattere". Tilfoej ogsaa i mobil-menuen.
-
-**Fil:** `src/components/Header.tsx`
-- Desktop: Tilfoej `DropdownMenuItem` med `Newspaper` ikon og link til `/casino-nyheder` i "Mere" dropdown (efter Kontakt, linje ~463)
-- Mobil: Tilfoej tilsvarende link i mobil-menuen
+### Problem 2: Too many multipliers in bonus
+The bonus multiplier chance is configured at 14% per cell (from the database setting `gates_multiplier_chance_bonus`). On a 30-cell grid, that averages ~4 multiplier orbs per spin, which is excessive. A more balanced value would be around 5-6% (roughly 1-2 multipliers per spin on average).
 
 ---
 
-## 2. Forside: Tilfoej Casino Nyheder sektion (KRITISK)
-Tilfoej en kort "Seneste Casino Nyheder" sektion paa forsiden med link til hubben. Placeres efter "Casino Anmeldelser" sektionen (linje ~471).
+### Changes
 
-**Fil:** `src/pages/Index.tsx`
-- Tilfoej en ny sektion med H2 "Casino Nyheder" og et afsnit med kontekst
-- Inkluder et `Link` til `/casino-nyheder` hubben
-- Sikrer crawl-dybde 1 fra forsiden
+**File: `supabase/functions/slot-spin/index.ts`**
 
----
+1. **Cap scatters to 1 per reel** in `generateGatesGrid`:
+   - Track whether a scatter has already been placed in the current column
+   - If a scatter is rolled but one already exists in that column, re-roll (pick a new non-scatter symbol instead)
+   - This applies to both base game and bonus spins
 
-## 3. QuickNavBar: Tilfoej Casino Nyheder (WARNING)
-Tilfoej Casino Nyheder til sidebar-navigationen.
+2. **Lower default bonus multiplier chance** from `0.056` to `0.05` (5%) as the code default, and update the database setting from `0.14` to `0.056` (5.6%) to bring it in line with the intended design (~1-2 multipliers per bonus spin on average).
 
-**Fil:** `src/components/QuickNavBar.tsx`
-- Tilfoej `{ label: "Casino Nyheder", to: "/casino-nyheder", icon: anmeldelserIcon }` til `navItems` arrayet
+**Database migration:**
+- Update `site_settings` row for `gates_multiplier_chance_bonus` from `0.14` to `0.056`.
 
----
+### Technical Details
 
-## 4. robots.txt: Brug venlig sitemap-news URL (WARNING)
-Erstat den raa Supabase URL med en mere SEO-venlig reference. Da edge function URL'en er den faktiske endpoint, behold den men tilfoej en kommentar. Alternativt: ingen aendring nødvendig, da Google kan crawle begge formater. Men for konsistens, behold som den er (dette er funktionelt korrekt).
+Scatter cap implementation in `generateGatesGrid`:
+```
+for each column:
+  let hasScatter = false
+  for each row:
+    sym = getRandomSymbol(...)
+    if sym is scatter and hasScatter:
+      // Re-roll without scatter
+      sym = getRandomSymbol(symbols excluding scatter, ...)
+    if sym is scatter:
+      hasScatter = true
+    // ... rest of multiplier logic
+```
 
-**Fil:** `public/robots.txt`
-- Ingen aendring nødvendig - URL'en fungerer korrekt og Google crawler den fint
+The same 1-scatter-per-column rule will also apply to the `fillWithMultipliers` function (new symbols dropping in after a tumble), since scatters could theoretically fill into a column that already has one. However, in the current code scatters are excluded from fill symbols, so this is already handled.
 
----
-
-## 5. Hero images: Tilfoej width/height attributter (WARNING)
-Tilfoej eksplicitte `width` og `height` attributter paa hero-billeder for at forhindre CLS.
-
-**Fil:** `src/pages/CasinoNyhedArticle.tsx`
-- Tilfoej `width={1200} height={400}` paa hero image (linje ~142-148)
-
-**Fil:** `src/pages/CasinoNyheder.tsx`
-- Tilfoej `width={600} height={192}` paa article card images (linje ~149-154)
-
----
-
-## 6. Hub-datoer: Goer dynamiske (WARNING)
-Erstat hardcoded datoer i hub-sidens schema og AuthorMetaBar med dynamiske vaerdier baseret paa seneste artikel.
-
-**Fil:** `src/pages/CasinoNyheder.tsx`
-- Beregn `latestModified` fra `articles[0]?.updated_at` eller `published_at`
-- Brug dynamisk dato i `buildArticleSchema({ datePublished, dateModified })`
-- Brug dynamisk dato i `AuthorMetaBar date={...}`
-
----
-
-## 7. AuthorBio billeder: Tilfoej width/height (WARNING)
-Author-billederne har allerede `width={176} height={176}` i AuthorBio.tsx. Men AuthorMetaBar bruger ogsaa forfatter-billeder - verificer at de ogsaa har dimensioner.
-
-**Fil:** `src/components/AuthorMetaBar.tsx`
-- Verificer og tilfoej `width`/`height` attributter paa forfatter-avatarer
-
----
-
-## Teknisk Opsummering
-
-| # | Problem | Fil(er) | Type |
-|---|---------|---------|------|
-| 1 | Manglende header-link | Header.tsx | Kritisk |
-| 2 | Manglende forside-link | Index.tsx | Kritisk |
-| 3 | Manglende QuickNav-link | QuickNavBar.tsx | Warning |
-| 4 | robots.txt URL | Ingen aendring | OK |
-| 5 | Hero image CLS | CasinoNyhedArticle.tsx, CasinoNyheder.tsx | Warning |
-| 6 | Hardcoded hub-datoer | CasinoNyheder.tsx | Warning |
-| 7 | Author avatar dimensioner | AuthorMetaBar.tsx | Warning |
-
-Samlet: 5 filer aendres, 0 nye filer, 0 database-migrationer.
