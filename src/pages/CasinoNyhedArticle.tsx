@@ -1,5 +1,6 @@
 import { useParams, Link, Navigate } from "react-router-dom";
 import { SEO } from "@/components/SEO";
+import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { AuthorBio } from "@/components/AuthorBio";
 import { useNewsArticle, usePublishedNews } from "@/hooks/useCasinoNews";
@@ -102,7 +103,10 @@ const CasinoNyhedArticle = () => {
         image={article.featured_image || undefined}
         noindex={article.status === "draft"}
         jsonLd={newsArticleSchema}
+        breadcrumbLabel={article.title}
       />
+
+      <Breadcrumbs dynamicLabel={article.title} />
 
       <article className="container py-8 max-w-4xl">
         <header className="mb-6">

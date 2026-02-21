@@ -230,13 +230,15 @@ const PARENT_OVERRIDES: Record<string, { name: string; path: string }[]> = {
  * or null when breadcrumbs should not be shown (homepage, excluded routes).
  */
 export function getBreadcrumbItems(
-  pathname: string
+  pathname: string,
+  dynamicLabel?: string
 ): { name: string; path: string }[] | null {
   if (pathname === "/") return null;
   if (EXCLUDED_PATHS.has(pathname)) return null;
   if (EXCLUDED_PREFIXES.some((prefix) => pathname.startsWith(prefix))) return null;
 
   const label =
+    dynamicLabel ||
     routeLabels[pathname] ||
     pathname.replace(/^\//, "").replace(/-/g, " ");
 
@@ -273,14 +275,16 @@ export function getBreadcrumbItems(
  * Designed to be absorbed into the unified @graph in SEO.tsx.
  */
 export function buildBreadcrumbListSchema(
-  pathname: string
+  pathname: string,
+  dynamicLabel?: string
 ): Record<string, unknown> | null {
-  const items = getBreadcrumbItems(pathname);
+  const items = getBreadcrumbItems(pathname, dynamicLabel);
   if (!items) return null;
 
   return {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
+    "@id": `${BASE_URL}${pathname === "/" ? "" : pathname}#breadcrumb`,
     itemListElement: items.map((item, index) => ({
       "@type": "ListItem",
       position: index + 1,
