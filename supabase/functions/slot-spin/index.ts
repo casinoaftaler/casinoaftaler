@@ -105,7 +105,8 @@ let GATES_SCATTER_RETRIGGER = 3;
 let GATES_FREE_SPINS_INITIAL = 15;
 let GATES_FREE_SPINS_RETRIGGER = 5;
 let GATES_MULTIPLIER_CHANCE_BASE = 0.04;
-let GATES_MULTIPLIER_CHANCE_BONUS = 0.14;
+let GATES_MULTIPLIER_CHANCE_BONUS = 0.056; // 40% higher than base
+const GATES_BONUS_PREMIUM_WEIGHT_BOOST = 1.10; // +10% premium symbol weight in bonus
 
 const GATES_MULTIPLIER_VALUES = [2, 3, 5, 10, 15, 25, 50, 100];
 const GATES_MULTIPLIER_WEIGHTS = [30, 25, 20, 12, 6, 3, 2, 1];
@@ -195,6 +196,24 @@ function pickGatesMultiplierValue(): number {
   return GATES_MULTIPLIER_VALUES[0];
 }
 
+function getGatesRandomSymbol(symbols: SlotSymbol[], isBonusSpin: boolean): SlotSymbol {
+  const getWeight = (s: SlotSymbol) => {
+    const base = isBonusSpin ? (s.bonus_weight || s.weight || DEFAULT_SYMBOL_WEIGHT) : (s.weight || DEFAULT_SYMBOL_WEIGHT);
+    // In bonus, boost premium symbol weight by 10%
+    if (isBonusSpin && s.rarity === 'premium') {
+      return base * GATES_BONUS_PREMIUM_WEIGHT_BOOST;
+    }
+    return base;
+  };
+  const totalWeight = symbols.reduce((sum, s) => sum + getWeight(s), 0);
+  let random = secureRandom() * totalWeight;
+  for (const sym of symbols) {
+    random -= getWeight(sym);
+    if (random <= 0) return sym;
+  }
+  return symbols[symbols.length - 1];
+}
+
 function generateGatesGrid(symbols: SlotSymbol[], isBonusSpin: boolean): string[][] {
   const chance = isBonusSpin ? GATES_MULTIPLIER_CHANCE_BONUS : GATES_MULTIPLIER_CHANCE_BASE;
   const scatterSymbol = symbols.find(s => s.is_scatter);
@@ -202,7 +221,7 @@ function generateGatesGrid(symbols: SlotSymbol[], isBonusSpin: boolean): string[
   for (let col = 0; col < GATES_COLS; col++) {
     const column: string[] = [];
     for (let row = 0; row < GATES_ROWS; row++) {
-      const sym = getRandomSymbol(symbols, [], isBonusSpin);
+      const sym = getGatesRandomSymbol(symbols, isBonusSpin);
       // Chance to replace with a multiplier (never replace scatters)
       if (!scatterSymbol || sym.id !== scatterSymbol.id) {
         if (secureRandom() < chance) {
@@ -227,7 +246,7 @@ function fillWithMultipliers(symbols: SlotSymbol[], count: number, isBonusSpin: 
       const multVal = pickGatesMultiplierValue();
       result.push(`mult_${multVal}x`);
     } else {
-      const sym = getRandomSymbol(symbols, [], isBonusSpin);
+      const sym = getGatesRandomSymbol(symbols, isBonusSpin);
       result.push(sym.id);
     }
   }
