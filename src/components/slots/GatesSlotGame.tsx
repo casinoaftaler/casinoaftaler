@@ -564,53 +564,64 @@ export function GatesSlotGame({ gameId = "gates-of-fedesvin" }: GatesSlotGamePro
 
   return (
     <div className="flex flex-col items-center gap-4">
-      {/* Prominent free spins counter - top center */}
-      {isBonusActive && (
-        <div className="w-full flex flex-col items-center gap-1 animate-fade-in">
-          {/* Main spins counter */}
-          <div className={cn(
-            "relative flex items-center gap-6 px-8 py-3 rounded-2xl border-2",
-            "bg-gradient-to-b from-yellow-900/90 via-amber-950/95 to-yellow-950/90",
-            "border-yellow-500/60",
-            "shadow-[0_0_30px_rgba(250,204,21,0.3),0_0_60px_rgba(250,204,21,0.15)]",
-            "animate-[bonus-bar-glow_2s_ease-in-out_infinite]"
-          )}>
-            {/* Free spins label + count */}
-            <div className="flex flex-col items-center">
-              <span className="text-[10px] uppercase tracking-widest text-yellow-500/80 font-semibold">Free Spins</span>
-              <div className="flex items-baseline gap-1">
-                <AnimatedSpinCounter
-                  value={freeSpinsRemaining}
-                  className="text-4xl font-black text-yellow-300 drop-shadow-[0_0_12px_rgba(250,204,21,0.8)] tabular-nums"
-                />
-                <span className="text-lg text-yellow-500/60 font-bold">/ {totalFreeSpins}</span>
+      {/* Always-visible win display + bonus bar */}
+      <div className="w-full flex flex-col items-center gap-1 animate-fade-in">
+        <div className={cn(
+          "relative flex items-center gap-6 px-8 py-3 rounded-2xl border-2",
+          isBonusActive
+            ? "bg-gradient-to-b from-yellow-900/90 via-amber-950/95 to-yellow-950/90 border-yellow-500/60 shadow-[0_0_30px_rgba(250,204,21,0.3),0_0_60px_rgba(250,204,21,0.15)] animate-[bonus-bar-glow_2s_ease-in-out_infinite]"
+            : "bg-gradient-to-b from-blue-950/80 via-slate-950/80 to-blue-950/80 border-blue-500/30"
+        )}>
+          {/* Free spins - only in bonus */}
+          {isBonusActive && (
+            <>
+              <div className="flex flex-col items-center">
+                <span className="text-[10px] uppercase tracking-widest text-yellow-500/80 font-semibold">Free Spins</span>
+                <div className="flex items-baseline gap-1">
+                  <AnimatedSpinCounter
+                    value={freeSpinsRemaining}
+                    className="text-4xl font-black text-yellow-300 drop-shadow-[0_0_12px_rgba(250,204,21,0.8)] tabular-nums"
+                  />
+                  <span className="text-lg text-yellow-500/60 font-bold">/ {totalFreeSpins}</span>
+                </div>
               </div>
-            </div>
+              <div className="w-px h-10 bg-yellow-500/30" />
+            </>
+          )}
 
-            {/* Divider */}
-            <div className="w-px h-10 bg-yellow-500/30" />
+          {/* Cumulative multiplier - only in bonus */}
+          {isBonusActive && (
+            <>
+              <div className="flex flex-col items-center">
+                <span className="text-[10px] uppercase tracking-widest text-blue-400/80 font-semibold">Multiplier</span>
+                <span className="text-2xl font-black text-blue-300 drop-shadow-[0_0_10px_rgba(59,130,246,0.7)] tabular-nums">
+                  x{tumblePhase !== 'idle' ? runningMultiplier : cumulativeMultiplier}
+                </span>
+              </div>
+              <div className="w-px h-10 bg-yellow-500/30" />
+            </>
+          )}
 
-            {/* Cumulative multiplier */}
-            <div className="flex flex-col items-center">
-              <span className="text-[10px] uppercase tracking-widest text-blue-400/80 font-semibold">Multiplier</span>
-              <span className="text-2xl font-black text-blue-300 drop-shadow-[0_0_10px_rgba(59,130,246,0.7)] tabular-nums">
-                x{tumblePhase !== 'idle' ? runningMultiplier : cumulativeMultiplier}
-              </span>
-            </div>
-
-            {/* Divider */}
-            <div className="w-px h-10 bg-yellow-500/30" />
-
-            {/* Bonus winnings */}
-            <div className="flex flex-col items-center">
-              <span className="text-[10px] uppercase tracking-widest text-green-400/80 font-semibold">Gevinst</span>
-              <span className="text-2xl font-black text-green-300 drop-shadow-[0_0_10px_rgba(74,222,128,0.7)] tabular-nums">
-                {(tumblePhase !== 'idle' ? (bonusWinnings + runningWin) : bonusWinnings).toLocaleString()}
-              </span>
-            </div>
+          {/* Gevinst - always visible */}
+          <div className="flex flex-col items-center">
+            <span className={cn(
+              "text-[10px] uppercase tracking-widest font-semibold",
+              isBonusActive ? "text-green-400/80" : "text-green-400/70"
+            )}>Gevinst</span>
+            <span className={cn(
+              "text-2xl font-black tabular-nums",
+              isBonusActive
+                ? "text-green-300 drop-shadow-[0_0_10px_rgba(74,222,128,0.7)]"
+                : "text-green-300/90 drop-shadow-[0_0_8px_rgba(74,222,128,0.5)]"
+            )}>
+              {isBonusActive
+                ? (tumblePhase !== 'idle' ? (bonusWinnings + runningWin) : bonusWinnings).toLocaleString()
+                : (tumblePhase !== 'idle' ? runningWin : winAmount).toLocaleString()
+              }
+            </span>
           </div>
         </div>
-      )}
+      </div>
 
       {/* Bonus entry sequence */}
       <BonusEntrySequence
@@ -704,37 +715,7 @@ export function GatesSlotGame({ gameId = "gates-of-fedesvin" }: GatesSlotGamePro
         </div>
       </div>
 
-      {/* Running win counter during tumbles - with animated counting */}
-      {runningWin > 0 && tumblePhase !== 'idle' && (
-        <div className={cn(
-          "flex items-center gap-3 px-6 py-2 rounded-full border font-bold text-lg",
-          "bg-gradient-to-r from-yellow-900/80 to-amber-950/80",
-          "border-yellow-500/50 text-yellow-100",
-          tumbleChainLength >= 3 && "gates-counter-glow"
-        )}>
-          <span>GEVINST: <AnimatedWinCounter targetValue={runningWin} className="gates-counter-bump" /> POINT</span>
-          {runningMultiplier > 0 && (
-            <span className="text-blue-300 border-l border-yellow-500/30 pl-3 gates-multiplier-land">
-              MULTIPLIER: x<AnimatedWinCounter targetValue={runningMultiplier} duration={600} />
-            </span>
-          )}
-        </div>
-      )}
-
-      {/* Final win display */}
-      {winAmount > 0 && !isSpinning && tumblePhase === 'idle' && (
-        <div className={cn(
-          "px-6 py-2 rounded-full border font-bold text-lg",
-          "bg-gradient-to-r from-blue-900/80 to-blue-950/80",
-          "border-blue-500/40 text-blue-100",
-          runningMultiplier > 0 && "border-yellow-500/50 gates-counter-glow"
-        )}>
-          GEVINST: {winAmount.toLocaleString()} POINT
-          {runningMultiplier > 0 && (
-            <span className="text-yellow-400 ml-2">(x{runningMultiplier})</span>
-          )}
-        </div>
-      )}
+      {/* Running win counter removed - consolidated into top Gevinst bar */}
 
       {/* Control panel */}
       <div className="w-full max-w-[700px]">
