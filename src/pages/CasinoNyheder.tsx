@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { SEO } from "@/components/SEO";
-import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { usePublishedNews } from "@/hooks/useCasinoNews";
 import { buildArticleSchema, SITE_URL } from "@/lib/seo";
@@ -35,7 +34,6 @@ const CasinoNyheder = () => {
         description="Hold dig opdateret med de seneste casino nyheder fra Danmark. Nye licenser, bonusændringer, betalingsmetoder og lovgivning fra Spillemyndigheden."
         jsonLd={articleSchema}
       />
-      <Breadcrumbs />
 
       <main className="container py-8">
         <header className="mb-8">
