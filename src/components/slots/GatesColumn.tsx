@@ -10,7 +10,7 @@ const SYMBOL_HEIGHT = 108;
 export type ColumnSpinState = 'idle' | 'spinning' | 'landing' | 'landed' | 'dropping-off' | 'dropping-in';
 
 /** Per-cell animation state for tumble visuals */
-export type CellAnimState = 'idle' | 'winning' | 'removing' | 'exploding' | 'dropping' | 'filling' | 'collecting' | 'scatter-pulse';
+export type CellAnimState = 'idle' | 'winning' | 'removing' | 'exploding' | 'dropping' | 'filling' | 'collecting' | 'scatter-pulse' | 'scatter-tease' | 'scatter-tease-intense';
 
 interface GatesColumnProps {
   col: number;
@@ -88,6 +88,8 @@ export const GatesColumn = React.memo(function GatesColumn({
               cellAnim === 'dropping' && "gates-gravity-bounce",
               cellAnim === 'filling' && "gates-lightning-fill",
               cellAnim === 'scatter-pulse' && "gates-scatter-trigger-pulse",
+              cellAnim === 'scatter-tease' && "gates-scatter-tease",
+              cellAnim === 'scatter-tease-intense' && "gates-scatter-tease-intense",
             )}
             style={{
               width: SYMBOL_WIDTH,
