@@ -198,7 +198,7 @@ export default function GatesOfFedesvin() {
         </Button>
       </div>
       
-      <div className="xl:flex-1 flex items-start justify-center overflow-hidden">
+      <div className="xl:flex-1 flex items-center justify-center overflow-hidden">
         <div 
           className="slot-viewport-container"
           style={{
