@@ -28,11 +28,13 @@ export type Database = {
           id: string
           last_checked: string
           license_holder_name: string | null
+          license_last_scraped_at: string | null
           license_number: string
           license_source_url: string
           license_status: Database["public"]["Enums"]["license_status"]
           license_verified_at: string | null
           notes: string | null
+          scrape_status: string
           source_url: string
           updated_at: string
         }
@@ -49,11 +51,13 @@ export type Database = {
           id?: string
           last_checked?: string
           license_holder_name?: string | null
+          license_last_scraped_at?: string | null
           license_number?: string
           license_source_url?: string
           license_status?: Database["public"]["Enums"]["license_status"]
           license_verified_at?: string | null
           notes?: string | null
+          scrape_status?: string
           source_url?: string
           updated_at?: string
         }
@@ -70,11 +74,13 @@ export type Database = {
           id?: string
           last_checked?: string
           license_holder_name?: string | null
+          license_last_scraped_at?: string | null
           license_number?: string
           license_source_url?: string
           license_status?: Database["public"]["Enums"]["license_status"]
           license_verified_at?: string | null
           notes?: string | null
+          scrape_status?: string
           source_url?: string
           updated_at?: string
         }
@@ -489,6 +495,57 @@ export type Database = {
           url?: string
           user_id?: string
           validation_notes?: string | null
+        }
+        Relationships: []
+      }
+      compliance_scrape_logs: {
+        Row: {
+          casino_name: string
+          casino_slug: string
+          created_at: string
+          duration_ms: number | null
+          error_message: string | null
+          id: string
+          license_type_found: string | null
+          matched_name: string | null
+          raw_snippet: string | null
+          response_code: number | null
+          scrape_url: string
+          severity: string
+          similarity_score: number | null
+          status: string
+        }
+        Insert: {
+          casino_name: string
+          casino_slug: string
+          created_at?: string
+          duration_ms?: number | null
+          error_message?: string | null
+          id?: string
+          license_type_found?: string | null
+          matched_name?: string | null
+          raw_snippet?: string | null
+          response_code?: number | null
+          scrape_url: string
+          severity?: string
+          similarity_score?: number | null
+          status?: string
+        }
+        Update: {
+          casino_name?: string
+          casino_slug?: string
+          created_at?: string
+          duration_ms?: number | null
+          error_message?: string | null
+          id?: string
+          license_type_found?: string | null
+          matched_name?: string | null
+          raw_snippet?: string | null
+          response_code?: number | null
+          scrape_url?: string
+          severity?: string
+          similarity_score?: number | null
+          status?: string
         }
         Relationships: []
       }
