@@ -203,7 +203,25 @@ export function GatesSlotGame({ gameId = "gates-of-fedesvin" }: GatesSlotGamePro
         const holdTime = isSlowMotion ? 1400 : 1000;
         await new Promise(r => setTimeout(r, holdTime));
         
-        // 2. Remove winning symbols AND collected multipliers with fade/pop animation
+        // 2. Fly multipliers to bank FIRST (before removing winning symbols)
+        if (step.multiplierOrbs.length > 0) {
+          const collectAnims = new Map<number, CellAnimState>();
+          // Keep winning symbols highlighted while multipliers fly
+          for (const pos of step.winningPositions) {
+            collectAnims.set(pos, 'winning');
+          }
+          // Multipliers get the fly-to-bank animation
+          for (const orb of step.multiplierOrbs) {
+            collectAnims.set(orb.position, 'collecting');
+          }
+          setCellAnimStates(collectAnims);
+          
+          // Wait for fly animation
+          const flyTime = isSlowMotion ? 900 : 700;
+          await new Promise(r => setTimeout(r, flyTime));
+        }
+        
+        // 3. Remove winning symbols with fade/pop animation
         setTumblePhase('tumbling');
         const removeAnims = new Map<number, CellAnimState>();
         // All positions being removed (winning + collected multipliers)
