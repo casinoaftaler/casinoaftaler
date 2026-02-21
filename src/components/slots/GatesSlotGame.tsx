@@ -228,14 +228,19 @@ export function GatesSlotGame({ gameId = "gates-of-fedesvin" }: GatesSlotGamePro
           }
         }
         
-        // Mark winning cells + multiplier cells for highlight
+        // Check if this is the last winning step (next step has no wins or doesn't exist)
+        const isLastWinningStep = (i + 1 >= steps.length) || (steps[i + 1].wins.length === 0);
+        
+        // Mark winning cells for highlight (multipliers only highlighted on last winning step)
         const winAnims = new Map<number, CellAnimState>();
         for (const pos of step.winningPositions) {
           winAnims.set(pos, 'winning');
         }
-        // Also highlight multiplier symbols being collected
-        for (const orb of step.multiplierOrbs) {
-          winAnims.set(orb.position, 'winning');
+        // Only highlight multiplier symbols when they'll actually be collected (last winning step)
+        if (isLastWinningStep) {
+          for (const orb of step.multiplierOrbs) {
+            winAnims.set(orb.position, 'winning');
+          }
         }
         setCellAnimStates(winAnims);
         
@@ -243,8 +248,8 @@ export function GatesSlotGame({ gameId = "gates-of-fedesvin" }: GatesSlotGamePro
         const holdTime = isSlowMotion ? 1400 : 1000;
         await new Promise(r => setTimeout(r, holdTime));
         
-        // 2. Fly multipliers to bank FIRST (before removing winning symbols)
-        if (step.multiplierOrbs.length > 0) {
+        // 2. Fly multipliers to bank ONLY on last winning step
+        if (isLastWinningStep && step.multiplierOrbs.length > 0) {
           const collectAnims = new Map<number, CellAnimState>();
           // Keep winning symbols highlighted while multipliers fly
           for (const pos of step.winningPositions) {
@@ -264,10 +269,12 @@ export function GatesSlotGame({ gameId = "gates-of-fedesvin" }: GatesSlotGamePro
         // 3. Remove winning symbols with fade/pop animation
         setTumblePhase('tumbling');
         const removeAnims = new Map<number, CellAnimState>();
-        // All positions being removed (winning + collected multipliers)
+        // Only winning positions are removed; multipliers only removed on last winning step
         const allRemovedPositions = new Set(step.winningPositions);
-        for (const orb of step.multiplierOrbs) {
-          allRemovedPositions.add(orb.position);
+        if (isLastWinningStep) {
+          for (const orb of step.multiplierOrbs) {
+            allRemovedPositions.add(orb.position);
+          }
         }
         for (const pos of allRemovedPositions) {
           removeAnims.set(pos, 'removing');
@@ -686,7 +693,7 @@ export function GatesSlotGame({ gameId = "gates-of-fedesvin" }: GatesSlotGamePro
       {/* Gevinst bar - always visible, above control panel */}
       <div className="w-full flex justify-center">
         <div className={cn(
-          "flex items-center px-6 py-2 rounded-xl border",
+          "flex items-center gap-4 px-6 py-2 rounded-xl border",
           isBonusActive
             ? "bg-gradient-to-b from-yellow-900/60 via-amber-950/70 to-yellow-950/60 border-yellow-500/40"
             : "bg-gradient-to-b from-blue-950/60 via-slate-950/60 to-blue-950/60 border-blue-500/20"
@@ -708,6 +715,18 @@ export function GatesSlotGame({ gameId = "gates-of-fedesvin" }: GatesSlotGamePro
               }
             </span>
           </div>
+          {/* Tumble win - shown during active tumbles in bonus */}
+          {isBonusActive && tumblePhase !== 'idle' && runningWin > 0 && (
+            <>
+              <div className="w-px h-8 bg-yellow-500/30" />
+              <div className="flex flex-col items-center">
+                <span className="text-[10px] uppercase tracking-widest font-semibold text-yellow-400/70">Tumble</span>
+                <span className="text-lg font-bold tabular-nums text-yellow-300 drop-shadow-[0_0_8px_rgba(250,204,21,0.5)]">
+                  +{runningWin.toLocaleString()}
+                </span>
+              </div>
+            </>
+          )}
         </div>
       </div>
       {/* Control panel */}
