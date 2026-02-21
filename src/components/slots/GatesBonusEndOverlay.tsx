@@ -1,5 +1,6 @@
 import React, { useEffect, useState, useRef } from "react";
 import { cn } from "@/lib/utils";
+import { slotSounds } from "@/lib/slotSoundEffects";
 
 interface GatesBonusEndOverlayProps {
   isActive: boolean;
@@ -9,6 +10,8 @@ interface GatesBonusEndOverlayProps {
   onComplete: () => void;
 }
 
+type EndPhase = 'storm-peak' | 'calm' | 'fade-in' | 'counting' | 'hold' | 'done';
+
 export function GatesBonusEndOverlay({
   isActive,
   totalWin,
@@ -16,21 +19,72 @@ export function GatesBonusEndOverlay({
   totalSpins,
   onComplete,
 }: GatesBonusEndOverlayProps) {
-  const [phase, setPhase] = useState<'fade-in' | 'counting' | 'hold' | 'done'>('fade-in');
+  const [phase, setPhase] = useState<EndPhase>('storm-peak');
   const [displayedWin, setDisplayedWin] = useState(0);
+  const [thunderFlash, setThunderFlash] = useState(false);
   const animFrameRef = useRef<number | null>(null);
+  const thunderIntervalRef = useRef<NodeJS.Timeout | null>(null);
+
+  // Determine win tier for effects
+  const winTier = totalWin >= 5000 ? 'very-large' : totalWin >= 1000 ? 'large' : totalWin >= 200 ? 'medium' : 'small';
 
   useEffect(() => {
     if (!isActive) {
-      setPhase('fade-in');
+      setPhase('storm-peak');
       setDisplayedWin(0);
       return;
     }
 
-    setPhase('fade-in');
-    const t1 = setTimeout(() => setPhase('counting'), 600);
-    return () => clearTimeout(t1);
-  }, [isActive]);
+    // Phase 1: Storm peak (0-600ms) — bright flash, Zeus pose
+    setPhase('storm-peak');
+    
+    const t0 = setTimeout(() => {
+      // Phase 2: Calm transition (600-1400ms)
+      setPhase('calm');
+    }, 600);
+
+    const t1 = setTimeout(() => {
+      // Phase 3: Fade in content (1400-2000ms)
+      setPhase('fade-in');
+    }, 1400);
+
+    const t2 = setTimeout(() => {
+      // Phase 4: Count up
+      setPhase('counting');
+      // Play win swell for larger wins
+      if (winTier !== 'small') {
+        slotSounds.playBonusWinSwell();
+      }
+    }, 2000);
+
+    return () => {
+      clearTimeout(t0);
+      clearTimeout(t1);
+      clearTimeout(t2);
+    };
+  }, [isActive, winTier]);
+
+  // Thunder flashes during count-up for medium+ wins
+  useEffect(() => {
+    if (phase !== 'counting') {
+      if (thunderIntervalRef.current) clearInterval(thunderIntervalRef.current);
+      return;
+    }
+    if (winTier === 'small') return;
+
+    const interval = winTier === 'very-large' ? 300 : winTier === 'large' ? 500 : 800;
+    thunderIntervalRef.current = setInterval(() => {
+      setThunderFlash(true);
+      if (winTier === 'large' || winTier === 'very-large') {
+        slotSounds.playBonusThunderCrack();
+      }
+      setTimeout(() => setThunderFlash(false), 100);
+    }, interval);
+
+    return () => {
+      if (thunderIntervalRef.current) clearInterval(thunderIntervalRef.current);
+    };
+  }, [phase, winTier]);
 
   // Animated count-up
   useEffect(() => {
@@ -38,19 +92,19 @@ export function GatesBonusEndOverlay({
 
     const duration = Math.min(2500, Math.max(1000, totalWin * 2));
     const startTime = performance.now();
-    const startVal = 0;
 
     const tick = (now: number) => {
       const elapsed = now - startTime;
       const progress = Math.min(elapsed / duration, 1);
-      // Ease-out curve
       const eased = 1 - Math.pow(1 - progress, 3);
-      setDisplayedWin(Math.round(startVal + (totalWin - startVal) * eased));
+      setDisplayedWin(Math.round(totalWin * eased));
 
       if (progress < 1) {
         animFrameRef.current = requestAnimationFrame(tick);
       } else {
         setDisplayedWin(totalWin);
+        // Final thunder hit
+        slotSounds.playMultiplierSlam();
         setTimeout(() => setPhase('hold'), 300);
       }
     };
@@ -77,29 +131,54 @@ export function GatesBonusEndOverlay({
     <div className={cn(
       "fixed inset-0 z-50 flex items-center justify-center",
       "transition-opacity duration-500",
-      phase === 'fade-in' ? "opacity-0" : "opacity-100"
+      phase === 'storm-peak' ? "opacity-100" : "opacity-100"
     )}>
-      {/* Backdrop */}
-      <div className="absolute inset-0 bg-black/85 backdrop-blur-sm" />
+      {/* Storm peak flash */}
+      {phase === 'storm-peak' && (
+        <div className="absolute inset-0 bg-white/50 animate-pulse z-20" />
+      )}
 
-      {/* Content */}
-      <div className="relative z-10 flex flex-col items-center gap-6 px-8">
+      {/* Thunder flashes during count */}
+      {thunderFlash && (
+        <div className="absolute inset-0 bg-white/30 z-20" />
+      )}
+
+      {/* Backdrop — transitions from stormy to calm */}
+      <div className={cn(
+        "absolute inset-0 transition-all duration-1000",
+        phase === 'storm-peak' ? "bg-purple-950/90 backdrop-blur-sm" :
+        phase === 'calm' ? "bg-black/80 backdrop-blur-sm" :
+        "bg-black/85 backdrop-blur-sm"
+      )} />
+
+      {/* Camera shake for large wins during count */}
+      <div className={cn(
+        "relative z-10 flex flex-col items-center gap-6 px-8",
+        phase === 'counting' && (winTier === 'large' || winTier === 'very-large') && "gates-shake"
+      )}>
         {/* Title */}
         <div className={cn(
           "text-3xl font-black tracking-widest uppercase",
           "bg-gradient-to-r from-yellow-400 via-amber-300 to-yellow-400",
           "bg-clip-text text-transparent",
           "drop-shadow-[0_0_30px_rgba(234,179,8,0.6)]",
-          "animate-fade-in"
+          "transition-opacity duration-500",
+          (phase === 'fade-in' || phase === 'counting' || phase === 'hold') ? "opacity-100" : "opacity-0"
         )}>
           Bonus Færdig!
         </div>
 
         {/* Decorative line */}
-        <div className="w-48 h-px bg-gradient-to-r from-transparent via-yellow-500/60 to-transparent" />
+        <div className={cn(
+          "w-48 h-px bg-gradient-to-r from-transparent via-yellow-500/60 to-transparent transition-opacity duration-500",
+          (phase === 'fade-in' || phase === 'counting' || phase === 'hold') ? "opacity-100" : "opacity-0"
+        )} />
 
-        {/* Win amount - large animated counter */}
-        <div className="flex flex-col items-center gap-1">
+        {/* Win amount */}
+        <div className={cn(
+          "flex flex-col items-center gap-1 transition-opacity duration-500",
+          (phase === 'counting' || phase === 'hold') ? "opacity-100" : "opacity-0"
+        )}>
           <div className="text-lg font-medium text-blue-300/70 uppercase tracking-wider">
             Total Gevinst
           </div>
@@ -116,7 +195,10 @@ export function GatesBonusEndOverlay({
         </div>
 
         {/* Stats row */}
-        <div className="flex items-center gap-8 mt-2">
+        <div className={cn(
+          "flex items-center gap-8 mt-2 transition-opacity duration-500",
+          (phase === 'counting' || phase === 'hold') ? "opacity-100" : "opacity-0"
+        )}>
           <div className="flex flex-col items-center">
             <span className="text-sm text-blue-400/60 uppercase tracking-wider">Multiplier</span>
             <span className="text-2xl font-bold text-blue-200">

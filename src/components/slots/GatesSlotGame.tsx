@@ -245,6 +245,13 @@ export function GatesSlotGame({ gameId = "gates-of-fedesvin" }: GatesSlotGamePro
         if (isLastWinningStep && step.multiplierOrbs.length > 0) {
           const orbSum = step.multiplierOrbs.reduce((sum, o) => sum + o.value, 0);
           setRunningMultiplier(prev => prev + orbSum);
+          // Enhanced multiplier collection in bonus: thunder boom + screen pulse
+          if (isBonusActive) {
+            slotSounds.playMultiplierSlam();
+            setScreenShake('normal');
+            setShowLightningFlash(true);
+            setTimeout(() => { setScreenShake('none'); setShowLightningFlash(false); }, 500);
+          }
         }
         
         // Mark winning cells for highlight (multipliers only highlighted on last winning step)
@@ -404,7 +411,7 @@ export function GatesSlotGame({ gameId = "gates-of-fedesvin" }: GatesSlotGamePro
     setCellDropOffsets(new Map());
     setIsSlowMotion(false);
     setTumbleChainLength(0);
-  }, [isSlowMotion]);
+  }, [isSlowMotion, isBonusActive]);
 
   // Client seed + nonce for provably fair RNG
   const clientSeedRef = useRef<string>(crypto.randomUUID());
@@ -497,8 +504,16 @@ export function GatesSlotGame({ gameId = "gates-of-fedesvin" }: GatesSlotGamePro
             next[c] = 'dropping-in';
             return next;
           });
-          // Play column stop thud per column
-          slotSounds.playColumnStop();
+          // Play column stop — heavier sound in bonus mode
+          if (isBonusSpin) {
+            if (c === GATES_COLS - 1) {
+              slotSounds.playBonusThunderCrack();
+            } else {
+              slotSounds.playBonusColumnStop();
+            }
+          } else {
+            slotSounds.playColumnStop();
+          }
         }, delay);
       }
 
@@ -584,11 +599,17 @@ export function GatesSlotGame({ gameId = "gates-of-fedesvin" }: GatesSlotGamePro
               
               setShowBonusTrigger(true);
               showBonusTriggerRef.current = true;
-              // Reset counters for bonus entry
+              // Reset counters for bonus entry + screen shake
+              setScreenShake('intense');
+              setShowLightningFlash(true);
+              setTimeout(() => { setScreenShake('none'); setShowLightningFlash(false); }, 600);
               setRunningWin(0);
               setRunningMultiplier(0);
             } else if (bs.isRetrigger) {
-              // Retrigger during bonus — show retrigger overlay
+              // Retrigger during bonus — climax + screen shake before overlay
+              setScreenShake('intense');
+              setShowLightningFlash(true);
+              setTimeout(() => { setScreenShake('none'); setShowLightningFlash(false); }, 500);
               setShowRetrigger(true);
               showRetriggerRef.current = true;
               // Reconcile with server values
@@ -607,6 +628,10 @@ export function GatesSlotGame({ gameId = "gates-of-fedesvin" }: GatesSlotGamePro
               setRunningMultiplier(bs.cumulativeMultiplier || 0);
               
               if (bs.freeSpinsRemaining <= 0) {
+                // Brief climax before bonus end overlay
+                setScreenShake('intense');
+                setShowLightningFlash(true);
+                setTimeout(() => { setScreenShake('none'); setShowLightningFlash(false); }, 800);
                 setShowBonusComplete(true);
                 showBonusCompleteRef.current = true;
               }
@@ -634,7 +659,7 @@ export function GatesSlotGame({ gameId = "gates-of-fedesvin" }: GatesSlotGamePro
 
       // Auto-spin: bonus free spins always auto-spin, or manual auto-spin
       if (isBonusActive && freeSpinsRemaining > 0 && !showBonusTriggerRef.current && !showBonusCompleteRef.current && !showRetriggerRef.current) {
-        autoSpinTimeoutRef.current = setTimeout(() => handleSpin(), 1200);
+        autoSpinTimeoutRef.current = setTimeout(() => handleSpin(), 500);
       } else if (isAutoSpinning && !shouldStopAutoSpinRef.current) {
         if (autoSpinsRemaining !== null) {
           const newCount = autoSpinsRemaining - 1;
@@ -669,11 +694,13 @@ export function GatesSlotGame({ gameId = "gates-of-fedesvin" }: GatesSlotGamePro
   }, [bonusAutoSpinPending, isBonusActive, isSpinning, handleSpin]);
 
   // Visual intensity state
-  const { intensityState } = useGatesIntensity({
+  const { intensityState, bonusIntensityTier } = useGatesIntensity({
     tumblePhase,
     tumbleChainLength,
     winAmount: runningWin,
     bet,
+    isBonusActive,
+    cumulativeMultiplier,
   });
 
   // Spin button press animation
@@ -695,14 +722,20 @@ export function GatesSlotGame({ gameId = "gates-of-fedesvin" }: GatesSlotGamePro
   const gridHeight = GATES_ROWS * (SYMBOL_HEIGHT + SYMBOL_GAP) + SYMBOL_GAP;
 
   return (
-    <div className="flex flex-col items-center gap-4" data-intensity={intensityState}>
+    <div
+      className="flex flex-col items-center gap-4"
+      data-intensity={intensityState}
+      data-bonus={isBonusActive ? "true" : "false"}
+      data-mult-tier={bonusIntensityTier}
+      data-last-spin={isBonusActive && freeSpinsRemaining === 1 ? "true" : "false"}
+    >
       {/* Ambient lightning overlay */}
       <div className="gates-lightning-ambient" />
       {/* Ambient glow background */}
       <div className="gates-ambient-glow" />
 
       {/* Zeus character - top center */}
-      <GatesZeusCharacter intensityState={intensityState} chainLevel={tumbleChainLength} />
+      <GatesZeusCharacter intensityState={intensityState} chainLevel={tumbleChainLength} isBonusActive={isBonusActive} />
 
       {/* Bonus bar - only in bonus (free spins + multiplier shown above grid) */}
       {isBonusActive && (

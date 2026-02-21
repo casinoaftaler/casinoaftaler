@@ -5,18 +5,22 @@ import type { IntensityState } from "@/hooks/useGatesIntensity";
 interface GatesZeusCharacterProps {
   intensityState: IntensityState;
   chainLevel: number;
+  isBonusActive?: boolean;
 }
 
-export function GatesZeusCharacter({ intensityState, chainLevel }: GatesZeusCharacterProps) {
+export function GatesZeusCharacter({ intensityState, chainLevel, isBonusActive = false }: GatesZeusCharacterProps) {
   return (
     <div className={cn(
       "gates-zeus-wrapper relative flex items-center justify-center",
       "w-[120px] h-[100px]",
+      // Bonus: Zeus floats slightly higher
+      isBonusActive && "transform -translate-y-1",
     )}>
       {/* Background aura glow */}
       <div className={cn(
         "gates-zeus-aura absolute inset-0 rounded-full",
-        intensityState === 'idle' && "gates-zeus-aura-idle",
+        intensityState === 'idle' && !isBonusActive && "gates-zeus-aura-idle",
+        intensityState === 'idle' && isBonusActive && "gates-zeus-aura-win", // bonus idle = win-level aura
         intensityState === 'spin' && "gates-zeus-aura-spin",
         intensityState === 'win' && "gates-zeus-aura-win",
         intensityState === 'climax' && "gates-zeus-aura-climax",
@@ -25,7 +29,8 @@ export function GatesZeusCharacter({ intensityState, chainLevel }: GatesZeusChar
       {/* Zeus body silhouette */}
       <div className={cn(
         "gates-zeus-body relative z-10 flex flex-col items-center",
-        intensityState === 'idle' && "gates-zeus-idle",
+        intensityState === 'idle' && !isBonusActive && "gates-zeus-idle",
+        intensityState === 'idle' && isBonusActive && "gates-zeus-win", // bonus idle = energized
         intensityState === 'spin' && "gates-zeus-spin",
         intensityState === 'win' && "gates-zeus-win",
         intensityState === 'climax' && "gates-zeus-climax",
@@ -37,21 +42,25 @@ export function GatesZeusCharacter({ intensityState, chainLevel }: GatesZeusChar
             "bg-gradient-to-b from-slate-300 via-slate-400 to-slate-500",
             "shadow-[0_0_12px_rgba(147,197,253,0.3)]",
           )}>
-            {/* Eyes */}
+            {/* Eyes — brighter in bonus at all states */}
             <div className="absolute top-[14px] left-[10px] flex gap-[8px]">
               <div className={cn(
                 "gates-zeus-eye w-[5px] h-[5px] rounded-full",
-                intensityState === 'idle' && "bg-blue-300/70 gates-zeus-eye-idle",
+                intensityState === 'idle' && !isBonusActive && "bg-blue-300/70 gates-zeus-eye-idle",
+                intensityState === 'idle' && isBonusActive && "bg-yellow-300 gates-zeus-eye-win shadow-[0_0_8px_rgba(250,204,21,0.7)]",
                 intensityState === 'spin' && "bg-blue-200 gates-zeus-eye-spin",
                 intensityState === 'win' && "bg-yellow-300 gates-zeus-eye-win shadow-[0_0_6px_rgba(250,204,21,0.6)]",
                 intensityState === 'climax' && "bg-yellow-200 gates-zeus-eye-climax shadow-[0_0_10px_rgba(250,204,21,0.9)]",
+                isBonusActive && intensityState !== 'idle' && "shadow-[0_0_12px_rgba(250,204,21,0.9)]",
               )} />
               <div className={cn(
                 "gates-zeus-eye w-[5px] h-[5px] rounded-full",
-                intensityState === 'idle' && "bg-blue-300/70 gates-zeus-eye-idle",
+                intensityState === 'idle' && !isBonusActive && "bg-blue-300/70 gates-zeus-eye-idle",
+                intensityState === 'idle' && isBonusActive && "bg-yellow-300 gates-zeus-eye-win shadow-[0_0_8px_rgba(250,204,21,0.7)]",
                 intensityState === 'spin' && "bg-blue-200 gates-zeus-eye-spin",
                 intensityState === 'win' && "bg-yellow-300 gates-zeus-eye-win shadow-[0_0_6px_rgba(250,204,21,0.6)]",
                 intensityState === 'climax' && "bg-yellow-200 gates-zeus-eye-climax shadow-[0_0_10px_rgba(250,204,21,0.9)]",
+                isBonusActive && intensityState !== 'idle' && "shadow-[0_0_12px_rgba(250,204,21,0.9)]",
               )} />
             </div>
             {/* Beard */}
@@ -62,7 +71,7 @@ export function GatesZeusCharacter({ intensityState, chainLevel }: GatesZeusChar
             "absolute -top-2 left-1/2 -translate-x-1/2 w-8 h-3",
             "bg-gradient-to-t from-yellow-600 to-yellow-400",
             "clip-crown",
-            intensityState === 'climax' && "shadow-[0_0_12px_rgba(250,204,21,0.7)]",
+            (intensityState === 'climax' || isBonusActive) && "shadow-[0_0_12px_rgba(250,204,21,0.7)]",
           )} style={{ clipPath: 'polygon(10% 100%, 0% 30%, 25% 60%, 50% 0%, 75% 60%, 100% 30%, 90% 100%)' }} />
         </div>
 
@@ -77,7 +86,8 @@ export function GatesZeusCharacter({ intensityState, chainLevel }: GatesZeusChar
             <div className={cn(
               "gates-zeus-arm-left w-2 h-8 rounded-full bg-gradient-to-b from-slate-400 to-slate-500",
               "origin-top",
-              intensityState === 'idle' && "gates-zeus-arm-idle-left",
+              intensityState === 'idle' && !isBonusActive && "gates-zeus-arm-idle-left",
+              intensityState === 'idle' && isBonusActive && "gates-zeus-arm-win-left",
               intensityState === 'win' && "gates-zeus-arm-win-left",
               intensityState === 'climax' && "gates-zeus-arm-climax",
             )} />
@@ -85,7 +95,8 @@ export function GatesZeusCharacter({ intensityState, chainLevel }: GatesZeusChar
             <div className={cn(
               "gates-zeus-arm-right w-2 h-8 rounded-full bg-gradient-to-b from-slate-400 to-slate-500",
               "origin-top",
-              intensityState === 'idle' && "gates-zeus-arm-idle-right",
+              intensityState === 'idle' && !isBonusActive && "gates-zeus-arm-idle-right",
+              intensityState === 'idle' && isBonusActive && "gates-zeus-arm-win-right",
               intensityState === 'win' && "gates-zeus-arm-win-right",
               intensityState === 'climax' && "gates-zeus-arm-climax",
             )} />
@@ -95,14 +106,18 @@ export function GatesZeusCharacter({ intensityState, chainLevel }: GatesZeusChar
         </div>
       </div>
 
-      {/* Hand lightning crackers (idle random + climax constant) */}
+      {/* Hand lightning crackers — constant in bonus mode */}
       <div className={cn(
         "gates-zeus-lightning-hands absolute z-20",
         "pointer-events-none",
-        intensityState === 'idle' && "gates-zeus-crackle-idle",
-        intensityState === 'spin' && "opacity-0",
-        intensityState === 'win' && "gates-zeus-crackle-win",
-        intensityState === 'climax' && "gates-zeus-crackle-climax",
+        isBonusActive
+          ? "gates-zeus-crackle-climax" // constant lightning in bonus
+          : cn(
+              intensityState === 'idle' && "gates-zeus-crackle-idle",
+              intensityState === 'spin' && "opacity-0",
+              intensityState === 'win' && "gates-zeus-crackle-win",
+              intensityState === 'climax' && "gates-zeus-crackle-climax",
+            ),
       )}>
         {/* Left spark */}
         <div className="absolute -left-6 top-10 w-3 h-3 gates-zeus-spark" />

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { cn } from "@/lib/utils";
 
-type BonusEntryPhase = 'lightning' | 'fadeout' | 'temple' | 'spins-reveal' | 'done';
+type BonusEntryPhase = 'freeze' | 'lightning' | 'fadeout' | 'temple' | 'spins-reveal' | 'done';
 
 interface BonusEntrySequenceProps {
   isActive: boolean;
@@ -10,41 +10,47 @@ interface BonusEntrySequenceProps {
 }
 
 export function BonusEntrySequence({ isActive, freeSpinsAwarded, onComplete }: BonusEntrySequenceProps) {
-  const [phase, setPhase] = useState<BonusEntryPhase>('lightning');
+  const [phase, setPhase] = useState<BonusEntryPhase>('freeze');
   const [spinsCountUp, setSpinsCountUp] = useState(0);
 
   useEffect(() => {
     if (!isActive) {
-      setPhase('lightning');
+      setPhase('freeze');
       setSpinsCountUp(0);
       return;
     }
 
-    // Phase 1: Lightning strike (0-800ms)
-    setPhase('lightning');
+    // Phase 0: Freeze (0-200ms) — grid freeze visual
+    setPhase('freeze');
+
+    const t0 = setTimeout(() => {
+      // Phase 1: Lightning strike (200-500ms)
+      setPhase('lightning');
+    }, 200);
 
     const t1 = setTimeout(() => {
-      // Phase 2: Fade out base background (800-1600ms)
+      // Phase 2: Fade out base background (500-1100ms)
       setPhase('fadeout');
-    }, 800);
+    }, 500);
 
     const t2 = setTimeout(() => {
-      // Phase 3: Storm Temple background appears (1600-2400ms)
+      // Phase 3: Storm Temple background appears (1100-1700ms)
       setPhase('temple');
-    }, 1600);
+    }, 1100);
 
     const t3 = setTimeout(() => {
-      // Phase 4: Free spins count-up reveal (2400-4400ms)
+      // Phase 4: Free spins count-up reveal (1700-3700ms)
       setPhase('spins-reveal');
-    }, 2400);
+    }, 1700);
 
     const t4 = setTimeout(() => {
       // Sequence complete
       setPhase('done');
       onComplete();
-    }, 5000);
+    }, 4500);
 
     return () => {
+      clearTimeout(t0);
       clearTimeout(t1);
       clearTimeout(t2);
       clearTimeout(t3);
@@ -73,22 +79,30 @@ export function BonusEntrySequence({ isActive, freeSpinsAwarded, onComplete }: B
 
   return (
     <div className="fixed inset-0 z-50 pointer-events-auto">
+      {/* Phase 0: Freeze overlay — brief white flash */}
+      <div className={cn(
+        "absolute inset-0 z-5 bg-white/20 transition-opacity duration-100",
+        phase === 'freeze' ? "opacity-100" : "opacity-0"
+      )} />
+
       {/* Lightning strikes - Phase 1 */}
       <div className={cn(
-        "absolute inset-0 z-10 transition-opacity duration-300",
+        "absolute inset-0 z-10 transition-opacity duration-200",
         phase === 'lightning' ? "opacity-100" : "opacity-0"
       )}>
+        {/* Strong white flash */}
+        <div className="absolute inset-0 bg-white/60 animate-pulse" />
         {/* Multiple lightning bolts */}
         <div className="absolute inset-0 bonus-lightning-flash" />
         <div className="absolute top-0 left-1/4 w-1 h-full bonus-lightning-bolt" style={{ animationDelay: '0ms' }} />
-        <div className="absolute top-0 left-1/2 w-1 h-full bonus-lightning-bolt" style={{ animationDelay: '150ms' }} />
-        <div className="absolute top-0 left-3/4 w-1 h-full bonus-lightning-bolt" style={{ animationDelay: '300ms' }} />
+        <div className="absolute top-0 left-1/2 w-1 h-full bonus-lightning-bolt" style={{ animationDelay: '100ms' }} />
+        <div className="absolute top-0 left-3/4 w-1 h-full bonus-lightning-bolt" style={{ animationDelay: '200ms' }} />
       </div>
 
       {/* Base background fade-out overlay - Phase 2 */}
       <div className={cn(
         "absolute inset-0 z-20 bg-black transition-opacity duration-800",
-        phase === 'lightning' ? "opacity-0" :
+        phase === 'freeze' || phase === 'lightning' ? "opacity-0" :
         phase === 'fadeout' ? "opacity-90" : "opacity-0"
       )} />
 
@@ -97,7 +111,7 @@ export function BonusEntrySequence({ isActive, freeSpinsAwarded, onComplete }: B
         "absolute inset-0 z-30 transition-opacity duration-1000",
         (phase === 'temple' || phase === 'spins-reveal' || phase === 'done') ? "opacity-100" : "opacity-0"
       )}>
-        {/* Storm temple environment */}
+        {/* Storm temple environment — darker purple for bonus */}
         <div className="absolute inset-0 bg-gradient-to-b from-indigo-950 via-purple-950 to-slate-950" />
         
         {/* Animated storm clouds */}
@@ -127,10 +141,10 @@ export function BonusEntrySequence({ isActive, freeSpinsAwarded, onComplete }: B
         {/* Zeus bolt icon */}
         <div className="text-8xl mb-4 bonus-zeus-entrance">⚡</div>
 
-        {/* FREE SPINS title */}
+        {/* FREE SPINS AWARDED title */}
         <div className="bonus-title-entrance">
-          <h2 className="text-5xl sm:text-7xl font-black tracking-wider text-transparent bg-clip-text bg-gradient-to-r from-yellow-300 via-yellow-100 to-yellow-300 bonus-text-glow">
-            FREE SPINS
+          <h2 className="text-4xl sm:text-6xl font-black tracking-wider text-transparent bg-clip-text bg-gradient-to-r from-yellow-300 via-yellow-100 to-yellow-300 bonus-text-glow">
+            FREE SPINS AWARDED
           </h2>
         </div>
 
