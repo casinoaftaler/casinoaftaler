@@ -87,6 +87,8 @@ class SlotSoundEffects {
 
   // Mobile audio unlock tracking
   private audioUnlocked: boolean = false;
+  private windAmbienceNode: AudioBufferSourceNode | null = null;
+  private windAmbienceGain: GainNode | null = null;
 
   // Configurable sound settings
   private soundSettings: SlotSoundSettings = {
@@ -2880,6 +2882,129 @@ class SlotSoundEffects {
       
       purr.start(now + 0.2);
       purr.stop(now + 0.85);
+    }
+  }
+  // Column stop thud sound (soft impact per column landing)
+  playColumnStop() {
+    if (!this.canPlayEffect()) return;
+    const ctx = this.getContext();
+    const now = ctx.currentTime;
+
+    const osc = ctx.createOscillator();
+    const gain = ctx.createGain();
+    const filter = ctx.createBiquadFilter();
+
+    osc.connect(filter);
+    filter.connect(gain);
+    gain.connect(ctx.destination);
+
+    osc.frequency.setValueAtTime(120, now);
+    osc.frequency.exponentialRampToValueAtTime(40, now + 0.08);
+    osc.type = 'sine';
+
+    filter.type = 'lowpass';
+    filter.frequency.value = 200;
+
+    gain.gain.setValueAtTime(0.2 * this.volume, now);
+    gain.gain.exponentialRampToValueAtTime(0.001, now + 0.12);
+
+    osc.start(now);
+    osc.stop(now + 0.15);
+  }
+
+  // Deep thunder for climax state (chain 3+)
+  playDeepThunder() {
+    if (!this.canPlayEffect()) return;
+    const ctx = this.getContext();
+    const now = ctx.currentTime;
+
+    // Low frequency rumble
+    const osc = ctx.createOscillator();
+    const osc2 = ctx.createOscillator();
+    const gain = ctx.createGain();
+    const filter = ctx.createBiquadFilter();
+
+    osc.connect(filter);
+    osc2.connect(filter);
+    filter.connect(gain);
+    gain.connect(ctx.destination);
+
+    osc.frequency.setValueAtTime(50, now);
+    osc.frequency.exponentialRampToValueAtTime(25, now + 0.8);
+    osc.type = 'sine';
+
+    osc2.frequency.setValueAtTime(35, now);
+    osc2.frequency.exponentialRampToValueAtTime(18, now + 1);
+    osc2.type = 'triangle';
+
+    filter.type = 'lowpass';
+    filter.frequency.value = 150;
+
+    gain.gain.setValueAtTime(0.35 * this.volume, now);
+    gain.gain.linearRampToValueAtTime(0.25 * this.volume, now + 0.3);
+    gain.gain.exponentialRampToValueAtTime(0.001, now + 1.2);
+
+    osc.start(now);
+    osc2.start(now);
+    osc.stop(now + 1.3);
+    osc2.stop(now + 1.3);
+  }
+
+  // Wind ambience loop (filtered white noise)
+  playWindAmbience() {
+    if (!this.enabled) return;
+    if (this.windAmbienceNode) return; // Already playing
+
+    const ctx = this.getContext();
+    // Generate white noise buffer
+    const bufferSize = ctx.sampleRate * 4;
+    const buffer = ctx.createBuffer(1, bufferSize, ctx.sampleRate);
+    const data = buffer.getChannelData(0);
+    for (let i = 0; i < bufferSize; i++) {
+      data[i] = (Math.random() * 2 - 1) * 0.5;
+    }
+
+    const source = ctx.createBufferSource();
+    source.buffer = buffer;
+    source.loop = true;
+
+    const filter = ctx.createBiquadFilter();
+    filter.type = 'bandpass';
+    filter.frequency.value = 400;
+    filter.Q.value = 0.5;
+
+    const gain = ctx.createGain();
+    gain.gain.setValueAtTime(0, ctx.currentTime);
+    gain.gain.linearRampToValueAtTime(0.04 * this.volume, ctx.currentTime + 2);
+
+    source.connect(filter);
+    filter.connect(gain);
+    gain.connect(ctx.destination);
+
+    source.start();
+    this.windAmbienceNode = source;
+    this.windAmbienceGain = gain;
+  }
+
+  stopWindAmbience() {
+    if (this.windAmbienceNode) {
+      try {
+        if (this.windAmbienceGain) {
+          const ctx = this.audioContext;
+          if (ctx) {
+            this.windAmbienceGain.gain.linearRampToValueAtTime(0, ctx.currentTime + 1);
+            setTimeout(() => {
+              try { this.windAmbienceNode?.stop(); } catch {}
+              this.windAmbienceNode = null;
+              this.windAmbienceGain = null;
+            }, 1100);
+            return;
+          }
+        }
+        this.windAmbienceNode.stop();
+      } catch {}
+      this.windAmbienceNode = null;
+      this.windAmbienceGain = null;
     }
   }
 }

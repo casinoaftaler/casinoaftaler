@@ -1,0 +1,190 @@
+/* ===== GATES VISUAL INTENSITY SYSTEM ===== */
+/* CSS custom properties driven by data-intensity attribute */
+
+/* State variable definitions */
+[data-intensity="idle"] {
+  --lightning-opacity: 0;
+  --ambient-glow: 0.2;
+  --grid-glow: 0.1;
+  --grid-glow-color: rgba(59, 130, 246, 0.15);
+}
+
+[data-intensity="spin"] {
+  --lightning-opacity: 0.15;
+  --ambient-glow: 0.35;
+  --grid-glow: 0.2;
+  --grid-glow-color: rgba(59, 130, 246, 0.25);
+}
+
+[data-intensity="win"] {
+  --lightning-opacity: 0.3;
+  --ambient-glow: 0.5;
+  --grid-glow: 0.4;
+  --grid-glow-color: rgba(250, 204, 21, 0.3);
+}
+
+[data-intensity="climax"] {
+  --lightning-opacity: 0.6;
+  --ambient-glow: 0.7;
+  --grid-glow: 0.6;
+  --grid-glow-color: rgba(250, 204, 21, 0.5);
+}
+
+/* Smooth transitions between states */
+[data-intensity] {
+  transition: --lightning-opacity 400ms ease-out,
+              --ambient-glow 400ms ease-out,
+              --grid-glow 400ms ease-out;
+}
+
+/* ===== AMBIENT LIGHTNING OVERLAY ===== */
+.gates-lightning-ambient {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 50;
+  background: radial-gradient(
+    ellipse at 50% 10%,
+    rgba(147, 197, 253, 0.4),
+    rgba(59, 130, 246, 0.15),
+    transparent 70%
+  );
+  opacity: var(--lightning-opacity, 0);
+  animation: gates-ambient-lightning-flicker 8s ease-in-out infinite;
+  transition: opacity 400ms ease-out;
+}
+
+@keyframes gates-ambient-lightning-flicker {
+  0%, 100% { opacity: var(--lightning-opacity, 0); }
+  8% { opacity: calc(var(--lightning-opacity, 0) * 1.8); }
+  10% { opacity: calc(var(--lightning-opacity, 0) * 0.3); }
+  12% { opacity: calc(var(--lightning-opacity, 0) * 1.5); }
+  14% { opacity: var(--lightning-opacity, 0); }
+  50% { opacity: var(--lightning-opacity, 0); }
+  78% { opacity: var(--lightning-opacity, 0); }
+  80% { opacity: calc(var(--lightning-opacity, 0) * 1.6); }
+  82% { opacity: calc(var(--lightning-opacity, 0) * 0.4); }
+  84% { opacity: calc(var(--lightning-opacity, 0) * 1.2); }
+  86% { opacity: var(--lightning-opacity, 0); }
+}
+
+/* ===== AMBIENT GLOW BACKGROUND ===== */
+.gates-ambient-glow {
+  position: absolute;
+  inset: -40px;
+  pointer-events: none;
+  z-index: -1;
+  background: radial-gradient(
+    ellipse at 50% 40%,
+    rgba(139, 92, 246, 0.25),
+    rgba(59, 130, 246, 0.15),
+    transparent 65%
+  );
+  opacity: var(--ambient-glow, 0.2);
+  animation: gates-ambient-glow-pulse 4s ease-in-out infinite;
+  transition: opacity 500ms ease-out;
+}
+
+@keyframes gates-ambient-glow-pulse {
+  0%, 100% { opacity: var(--ambient-glow, 0.2); transform: scale(1); }
+  50% { opacity: calc(var(--ambient-glow, 0.2) * 1.15); transform: scale(1.02); }
+}
+
+/* ===== GRID FRAME GLOW ===== */
+.gates-grid-intensity-glow {
+  box-shadow:
+    0 0 calc(20px + 40px * var(--grid-glow, 0.1)) var(--grid-glow-color, rgba(59, 130, 246, 0.15)),
+    0 0 calc(40px + 80px * var(--grid-glow, 0.1)) var(--grid-glow-color, rgba(59, 130, 246, 0.1)),
+    inset 0 0 calc(10px + 15px * var(--grid-glow, 0.1)) rgba(59, 130, 246, 0.05);
+  transition: box-shadow 400ms ease-out;
+}
+
+/* ===== IDLE SPARKLE ===== */
+@keyframes gates-idle-sparkle {
+  0%, 85%, 100% { filter: brightness(1); }
+  90% { filter: brightness(1.4) drop-shadow(0 0 6px rgba(250, 204, 21, 0.4)); }
+  95% { filter: brightness(1.1); }
+}
+
+[data-intensity="idle"] .gates-grid-cell:nth-child(3n+1) {
+  animation: gates-idle-sparkle 7s ease-in-out infinite;
+  animation-delay: 0s;
+}
+[data-intensity="idle"] .gates-grid-cell:nth-child(5n+2) {
+  animation: gates-idle-sparkle 9s ease-in-out infinite;
+  animation-delay: 2s;
+}
+[data-intensity="idle"] .gates-grid-cell:nth-child(7n+4) {
+  animation: gates-idle-sparkle 6s ease-in-out infinite;
+  animation-delay: 4s;
+}
+
+/* ===== SPIN BUTTON PRESS ===== */
+@keyframes gates-spin-press {
+  0% { transform: scale(1); }
+  30% { transform: scale(0.92); }
+  60% { transform: scale(1.02); filter: brightness(1.3) drop-shadow(0 0 12px rgba(250, 204, 21, 0.6)); }
+  100% { transform: scale(1); filter: brightness(1); }
+}
+
+.gates-spin-press {
+  animation: gates-spin-press 0.2s ease-out;
+}
+
+/* ===== CLIMAX ZOOM ===== */
+@keyframes gates-climax-zoom {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.03); }
+  100% { transform: scale(1.03); }
+}
+
+[data-intensity="climax"] .gates-grid-container {
+  animation: gates-climax-zoom 0.6s ease-out forwards;
+  transform-origin: center;
+}
+
+/* Return to normal scale on non-climax */
+[data-intensity="idle"] .gates-grid-container,
+[data-intensity="spin"] .gates-grid-container,
+[data-intensity="win"] .gates-grid-container {
+  transform: scale(1);
+  transition: transform 500ms ease-out;
+}
+
+/* ===== COLUMN STOP IMPACT ===== */
+@keyframes gates-column-stop-impact {
+  0% { filter: brightness(1); }
+  30% { filter: brightness(1.6) drop-shadow(0 0 8px rgba(250, 204, 21, 0.5)); }
+  100% { filter: brightness(1); }
+}
+
+.gates-column-stop-impact {
+  animation: gates-column-stop-impact 0.15s ease-out;
+}
+
+/* ===== REEL STOP FLASH ===== */
+.gates-reel-stop-flash {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 60;
+  background: rgba(255, 255, 255, 0.5);
+  animation: gates-reel-flash-fade 0.08s ease-out forwards;
+}
+
+@keyframes gates-reel-flash-fade {
+  0% { opacity: 0.7; }
+  100% { opacity: 0; }
+}
+
+/* ===== GRID GLOW PULSE (golden border animation) ===== */
+@keyframes gates-grid-glow-pulse {
+  0%, 100% {
+    box-shadow: 0 0 20px var(--grid-glow-color, rgba(59, 130, 246, 0.15));
+  }
+  50% {
+    box-shadow:
+      0 0 40px var(--grid-glow-color, rgba(59, 130, 246, 0.25)),
+      0 0 80px var(--grid-glow-color, rgba(59, 130, 246, 0.1));
+  }
+}
