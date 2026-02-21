@@ -1,44 +1,97 @@
 
-# Replace Fake Loop Spin with Drop-Off / Drop-In Animation
 
-## What Changes
-Instead of the current blurry cycling effect when spinning, the Gates of Fedesvin slot will use a two-phase animation:
+# Enhanced Win Animation Sequence for Gates of Fedesvin
 
-1. **Drop-off phase**: Current symbols slide down and off the bottom of the grid (staggered per column, left to right)
-2. **Empty grid**: Brief pause with an empty grid
-3. **Drop-in phase**: New result symbols drop in from the top (staggered per column, left to right, with a bounce landing)
+Upgrade the tumble animation pipeline from the current simple highlight-and-remove flow to a dramatic 4-step cinematic sequence with gold glows, spark explosions, gravity drops, and lightning trail fills.
+
+---
+
+## Current vs. New Animation Flow
+
+```text
+CURRENT:
+  Winning cells glow (gates-win-highlight) -> Remove (scale to 0) -> Gravity drop + Fill
+
+NEW (4 Steps):
+  Step 1: Gold Highlight (pulsing aura + electric outline)
+  Step 2: Explosion (burst into sparks, dissolve outward)
+  Step 3: Gravity Drop (remaining symbols fall with bounce + clack sound)
+  Step 4: New Symbols (fall from above with lightning trails + landing flash)
+```
+
+---
+
+## Changes
+
+### 1. New CSS Animations (gates-animations.css)
+
+Add new keyframes and utility classes:
+
+- **`gates-win-gold-highlight`** -- Replaces existing highlight with brighter gold glow, pulsing aura, and electric outline (via `::after` pseudo-element with animated border). Background lightning slightly brighter during this phase.
+- **`gates-symbol-explode`** -- New explosion animation: symbol scales up, emits sparks (radial gradient burst), then fragments dissolve outward with opacity fade. More dramatic than the current simple `tumble-remove`.
+- **`gates-gravity-bounce`** -- Enhanced gravity drop with a more pronounced bounce on landing and a slight squash effect.
+- **`gates-fill-lightning-trail`** -- New symbols fall in with a lightning streak trail (blue/white drop-shadow trail) and a bright flash on landing (brightness spike at the end of the animation).
+
+### 2. New Cell Animation States (GatesColumn.tsx)
+
+Add new `CellAnimState` values:
+- `'exploding'` -- Maps to the new `gates-symbol-explode` class (replaces `'removing'` for this game)
+
+Update the cell className mapping to use the new animation classes, and add a `::before` spark particle pseudo-element for the exploding state.
+
+### 3. Updated Tumble Orchestration (GatesSlotGame.tsx)
+
+Modify the tumble step loop timing:
+
+- **Step 1 (Highlight)**: Keep the existing `'winning'` state but increase hold time slightly (1200ms base, 1600ms slow-motion) to let the gold glow + electric outline breathe.
+- **Step 2 (Explosion)**: Use new `'exploding'` state instead of `'removing'`. Increase removal animation time (500ms base, 800ms slow-motion). Play a crackling sound effect.
+- **Step 3 (Gravity Drop)**: Add a short pause (150ms) after explosion before gravity starts. Play a "clack" impact sound when symbols land. Use enhanced bounce animation.
+- **Step 4 (New Symbols Fill)**: Use the new lightning-trail fill animation. Add a brief flash overlay when new symbols land. Add a slight pause (200ms) after fill before checking next tumble.
+
+### 4. Sound Effects (slotSoundEffects or useSpinSounds)
+
+Add two new sound triggers using the existing Web Audio oscillator system:
+- **`playCrackle()`** -- Short crackling/electric burst sound (white noise + high frequency oscillators) played during symbol explosion.
+- **`playClack()`** -- Short percussive impact sound (low frequency thud) played when gravity-dropping symbols land.
+
+---
 
 ## Technical Details
 
-### 1. New Column Spin States
-Add two new states to `ColumnSpinState` in `GatesColumn.tsx`:
-- `'dropping-off'` -- current symbols animate downward off-screen
-- `'dropping-in'` -- new symbols animate in from above
+### New CSS Keyframes
 
-### 2. CSS Animations (`src/styles/gates-animations.css`)
-- **`gates-drop-off`**: Translates symbols downward (e.g. `translateY(120%)`) with opacity fade, duration ~350ms, ease-in
-- **`gates-drop-in`**: Starts above (`translateY(-120%)`, opacity 0), lands at rest position with a slight bounce, duration ~400ms, cubic-bezier overshoot
-- Remove or keep `gates-column-spinning` / `gates-column-cycle` (no longer used by Gates, but keep if used elsewhere)
+**Gold highlight with electric outline:**
+- Brighter gold glow (`drop-shadow` with `rgba(250, 204, 21, 0.9)`)
+- Scale pulse between 1.0 and 1.1
+- `::after` pseudo-element with animated dashed border that rotates
 
-### 3. GatesColumn.tsx Changes
-- When state is `'dropping-off'`: render the current `finalSymbolIds` symbols wrapped with the drop-off CSS class, staggered per row (`row * 50ms` delay)
-- When state is `'dropping-in'`: render the new `finalSymbolIds` (already updated by parent) with the drop-in CSS class, staggered per row (`row * 40ms` delay)
-- Remove the `cyclingIds` / `setInterval` random cycling logic (no longer needed)
+**Explosion:**
+- 0-20%: Scale up to 1.3, brightness to 2.5
+- 20-60%: Radial burst (box-shadow expands), fragments scatter (opacity fades)
+- 60-100%: Scale to 0, full transparency
+- Duration: 500ms
 
-### 4. GatesSlotGame.tsx Spin Flow Changes
-In `handleSpin`, replace the current spin sequence:
+**Lightning trail fill:**
+- Symbols enter from `translateY(-150%)` with bright blue `drop-shadow` trail
+- At 70% mark: flash of white (brightness(3)) simulating landing flash
+- Then settle with standard bounce
+- Duration: 550ms
 
-**Current flow:**
-1. Set columns to `'spinning'` (staggered) -- triggers fast random cycling
-2. Wait for server response
-3. Set columns to `'landing'` then `'landed'` (staggered)
+### Orchestration Timing (base / slow-motion)
 
-**New flow:**
-1. Set columns to `'dropping-off'` (staggered, ~120ms apart)
-2. Wait for all drop-off animations to finish (~350ms + stagger)
-3. Fire server request in parallel during drop-off (or await if not yet returned)
-4. Set the new grid from server result
-5. Set columns to `'dropping-in'` (staggered, ~120ms apart)
-6. After drop-in completes, set to `'idle'`
+| Phase | Base | Slow Motion |
+|-------|------|-------------|
+| Step 1: Gold highlight hold | 1200ms | 1600ms |
+| Step 2: Explosion duration | 500ms | 800ms |
+| Pause after explosion | 150ms | 250ms |
+| Step 3: Gravity drop | 500ms | 700ms |
+| Step 4: Fill with trails | 550ms | 800ms |
+| Post-fill pause | 200ms | 300ms |
 
-The server request will be fired at the same time as the drop-off starts (in parallel), so there's no added latency -- the new grid will be ready by the time drop-off finishes.
+### Files Modified
+
+1. **`src/styles/gates-animations.css`** -- New keyframes + utility classes
+2. **`src/components/slots/GatesColumn.tsx`** -- New `'exploding'` state, updated class mappings, pseudo-element for sparks
+3. **`src/components/slots/GatesSlotGame.tsx`** -- Updated tumble loop timing and state transitions
+4. **`src/lib/slotSoundEffects.ts`** -- New `playCrackle()` and `playClack()` methods (or equivalent in existing sound system)
+
