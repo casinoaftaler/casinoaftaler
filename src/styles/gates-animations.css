@@ -329,7 +329,7 @@
   animation-duration: 1s;
 }
 
-/* Column spin animation */
+/* Column spin animation (legacy — kept for other games) */
 @keyframes gates-column-cycle {
   0% { transform: translateY(0); }
   100% { transform: translateY(8px); }
@@ -353,6 +353,31 @@
 
 .gates-symbol-land {
   animation: gates-symbol-land-bounce 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+}
+
+/* ===== Drop-off / Drop-in spin animations (Gates) ===== */
+
+/* Symbols slide down and off the bottom of the grid */
+@keyframes gates-drop-off {
+  0% { transform: translateY(0); opacity: 1; }
+  70% { opacity: 0.6; }
+  100% { transform: translateY(140%); opacity: 0; }
+}
+
+/* Symbols drop in from above with bounce */
+@keyframes gates-drop-in {
+  0% { transform: translateY(-140%); opacity: 0; }
+  50% { transform: translateY(5%); opacity: 1; }
+  75% { transform: translateY(-3%); }
+  100% { transform: translateY(0); opacity: 1; }
+}
+
+.gates-drop-off {
+  animation: gates-drop-off 0.35s ease-in forwards;
+}
+
+.gates-drop-in {
+  animation: gates-drop-in 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) both;
 }
 
 /* ===== BONUS ENTRY SEQUENCE ===== */
