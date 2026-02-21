@@ -23,6 +23,7 @@ import { GatesColumn, type ColumnSpinState, type CellAnimState } from "./GatesCo
 import { AnimatedWinCounter } from "./AnimatedWinCounter";
 import { BonusEntrySequence } from "./BonusEntrySequence";
 import { GatesRetriggerOverlay } from "./GatesRetriggerOverlay";
+import { GatesBonusEndOverlay } from "./GatesBonusEndOverlay";
 
 const SYMBOL_SIZE = 100;
 const SYMBOL_GAP = 4;
@@ -403,12 +404,6 @@ export function GatesSlotGame({ gameId = "gates-of-fedesvin" }: GatesSlotGamePro
               if (bs.freeSpinsRemaining <= 0) {
                 setShowBonusComplete(true);
                 showBonusCompleteRef.current = true;
-                setTimeout(() => {
-                  setShowBonusComplete(false);
-                  showBonusCompleteRef.current = false;
-                  setIsBonusActive(false);
-                  setCumulativeMultiplier(0);
-                }, 4000);
               }
             }
           }
@@ -497,16 +492,22 @@ export function GatesSlotGame({ gameId = "gates-of-fedesvin" }: GatesSlotGamePro
         onComplete={handleRetriggerComplete}
       />
 
-      {/* Bonus complete overlay */}
-      {showBonusComplete && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm">
-          <div className="text-center space-y-4 animate-fade-in">
-            <div className="text-4xl font-black text-yellow-400">Bonus Færdig!</div>
-            <div className="text-5xl font-bold text-blue-100">{bonusWinnings.toLocaleString()} POINT</div>
-            <div className="text-lg text-blue-300/80">Total Multiplier: x{cumulativeMultiplier}</div>
-          </div>
-        </div>
-      )}
+      {/* Bonus complete overlay - animated count-up */}
+      <GatesBonusEndOverlay
+        isActive={showBonusComplete}
+        totalWin={bonusWinnings}
+        totalMultiplier={cumulativeMultiplier}
+        totalSpins={totalFreeSpins}
+        onComplete={() => {
+          setShowBonusComplete(false);
+          showBonusCompleteRef.current = false;
+          setIsBonusActive(false);
+          setCumulativeMultiplier(0);
+          setRunningMultiplier(0);
+          setBonusWinnings(0);
+          setRunningWin(0);
+        }}
+      />
 
       {/* Lightning flash overlay */}
       {showLightningFlash && <div className="gates-lightning-overlay" />}
