@@ -20,6 +20,8 @@ interface GatesColumnProps {
   winningPositions: Set<number>;
   /** Per-cell animation states (flat-indexed) */
   cellAnimStates: Map<number, CellAnimState>;
+  /** Per-cell gravity drop offset in pixels (flat-indexed) */
+  cellDropOffsets: Map<number, number>;
   multiplierOrbAt: (flatIndex: number) => { value: number } | undefined;
   tumblePhase: string;
 }
@@ -32,6 +34,7 @@ export const GatesColumn = React.memo(function GatesColumn({
   finalSymbolIds,
   winningPositions,
   cellAnimStates,
+  cellDropOffsets,
   multiplierOrbAt,
   tumblePhase,
 }: GatesColumnProps) {
@@ -95,16 +98,17 @@ export const GatesColumn = React.memo(function GatesColumn({
               isLanding && "gates-symbol-land",
               cellAnim === 'winning' && "gates-win-highlight",
               cellAnim === 'removing' && "gates-tumble-remove",
-              cellAnim === 'dropping' && "gates-tumble-drop",
+              cellAnim === 'dropping' && "gates-tumble-gravity",
               cellAnim === 'filling' && "gates-tumble-drop",
             )}
             style={{
               width: SYMBOL_SIZE,
               height: SYMBOL_SIZE,
+              '--gravity-offset': cellAnim === 'dropping' ? `${-(cellDropOffsets.get(flatIndex) || 104)}px` : undefined,
               animationDelay: isLanding ? `${row * 50}ms` : 
                 cellAnim === 'dropping' ? `${row * 40}ms` :
                 cellAnim === 'filling' ? `${row * 40}ms` : undefined,
-            }}
+            } as React.CSSProperties}
           >
             {/* Hide symbol during removal animation end */}
             {cellAnim !== 'removing' && symbol && (
