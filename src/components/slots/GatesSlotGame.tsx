@@ -255,6 +255,24 @@ export function GatesSlotGame({ gameId = "gates-of-fedesvin" }: GatesSlotGamePro
         
         // 2. Fly multipliers to bank ONLY on last winning step
         if (isLastWinningStep && step.multiplierOrbs.length > 0) {
+          // --- Pause between win display and multiplier explosion ---
+          const preMultDelay = isSlowMotion ? 800 : 600;
+          await new Promise(r => setTimeout(r, preMultDelay));
+          
+          // First: highlight multiplier orbs with a pulsing glow before collecting
+          const pulseAnims = new Map<number, CellAnimState>();
+          for (const pos of step.winningPositions) {
+            pulseAnims.set(pos, 'winning');
+          }
+          for (const orb of step.multiplierOrbs) {
+            pulseAnims.set(orb.position, 'winning');
+          }
+          setCellAnimStates(pulseAnims);
+          
+          // Hold the multiplier highlight pulse
+          const pulseHoldTime = isSlowMotion ? 700 : 500;
+          await new Promise(r => setTimeout(r, pulseHoldTime));
+          
           const collectAnims = new Map<number, CellAnimState>();
           // Keep winning symbols highlighted while multipliers fly
           for (const pos of step.winningPositions) {
