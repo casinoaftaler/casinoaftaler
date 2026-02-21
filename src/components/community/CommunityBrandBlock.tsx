@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { ArrowRight } from "lucide-react";
-import jonasImage from "@/assets/jonas-forfatter.png";
-import kevinImage from "@/assets/kevin-forfatter.png";
+import jonasImage from "@/assets/jonas-forfatter.webp";
+import kevinImage from "@/assets/kevin-forfatter.webp";
 import "@/styles/community-micro.css";
 
 export function CommunityBrandBlock() {

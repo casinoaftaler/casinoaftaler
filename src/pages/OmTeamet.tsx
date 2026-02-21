@@ -28,8 +28,8 @@ import {
   Zap,
 } from "lucide-react";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
-import jonasImage from "@/assets/jonas-forfatter.png";
-import kevinImage from "@/assets/kevin-forfatter.png";
+import jonasImage from "@/assets/jonas-forfatter.webp";
+import kevinImage from "@/assets/kevin-forfatter.webp";
 import { RelatedGuides } from "@/components/RelatedGuides";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import omHeroImage from "@/assets/heroes/om-hero.png";

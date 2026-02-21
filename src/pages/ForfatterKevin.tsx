@@ -35,7 +35,7 @@ import {
   ChevronRight,
   Code,
 } from "lucide-react";
-import kevinImage from "@/assets/kevin-forfatter.png";
+import kevinImage from "@/assets/kevin-forfatter.webp";
 
 const FEATURED_SLUGS = ["betinia", "campobet", "spildansknu"];
 

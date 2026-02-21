@@ -2,8 +2,8 @@ import { Link } from "react-router-dom";
 import { ExternalLink, BadgeCheck } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { CommunityPromoSection } from "@/components/CommunityPromoSection";
-import jonasImage from "@/assets/jonas-forfatter.png";
-import kevinImage from "@/assets/kevin-forfatter.png";
+import jonasImage from "@/assets/jonas-forfatter.webp";
+import kevinImage from "@/assets/kevin-forfatter.webp";
 
 interface AuthorBioProps {
   author?: "jonas" | "kevin";
