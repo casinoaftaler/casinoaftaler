@@ -15,6 +15,7 @@ import { SlotSoundFilesSection } from "@/components/slots/SlotSoundFilesSection"
 import { SlotSoundGeneratorSection } from "@/components/slots/SlotSoundGeneratorSection";
 import { BatchSoundGenerator } from "@/components/slots/BatchSoundGenerator";
 import { GatesGameSettingsAdmin } from "@/components/slots/GatesGameSettingsAdmin";
+import { MultiplierSymbolsAdmin } from "@/components/slots/MultiplierSymbolsAdmin";
 import { LivePlayersAdminSection } from "@/components/LivePlayersAdminSection";
 import { TournamentAdminSection } from "@/components/TournamentAdminSection";
 import { SlotRequestsAdminSection } from "@/components/SlotRequestsAdminSection";
@@ -904,6 +905,7 @@ function SettingsTab({ gameId }: { gameId?: string }) {
 
       {/* Gates Game Mechanics Settings */}
       {activeGameId === "gates-of-fedesvin" && <GatesGameSettingsAdmin />}
+      {activeGameId === "gates-of-fedesvin" && <MultiplierSymbolsAdmin />}
 
       {/* Game Position Offset */}
       <Card>

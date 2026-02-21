@@ -1,7 +1,7 @@
 import React from "react";
 import { cn } from "@/lib/utils";
 import { GATES_ROWS } from "@/lib/gatesGameLogic";
-import { isMultiplierSymbol, getMultiplierImageUrl, getMultiplierSymbolInfo } from "@/lib/gatesMultiplierSymbols";
+import { isMultiplierSymbol, getMultiplierSymbolInfo, type MultiplierSymbolInfo } from "@/lib/gatesMultiplierSymbols";
 import type { SlotSymbol } from "@/lib/slotGameLogic";
 
 const SYMBOL_WIDTH = 140;
@@ -26,6 +26,8 @@ interface GatesColumnProps {
   tumblePhase: string;
   /** Incremented each tumble step to force CSS animation restarts */
   animationEpoch?: number;
+  /** DB-fetched multiplier symbols map (id -> info) */
+  multiplierSymbolsMap?: Map<string, MultiplierSymbolInfo>;
 }
 
 export const GatesColumn = React.memo(function GatesColumn({
@@ -39,6 +41,7 @@ export const GatesColumn = React.memo(function GatesColumn({
   cellDropOffsets,
   tumblePhase,
   animationEpoch = 0,
+  multiplierSymbolsMap,
 }: GatesColumnProps) {
   const isDroppingOff = spinState === 'dropping-off';
   const isDroppingIn = spinState === 'dropping-in';
@@ -57,8 +60,8 @@ export const GatesColumn = React.memo(function GatesColumn({
         const symbolId = finalSymbolIds[row];
         const isMult = symbolId ? isMultiplierSymbol(symbolId) : false;
         const symbol = !isMult && symbolId ? symbolsById.get(symbolId) : null;
-        const multInfo = isMult && symbolId ? getMultiplierSymbolInfo(symbolId) : null;
-        const multImageUrl = isMult && symbolId ? getMultiplierImageUrl(symbolId) : null;
+        const multInfo = isMult && symbolId ? (multiplierSymbolsMap?.get(symbolId) || getMultiplierSymbolInfo(symbolId)) : null;
+        const multImageUrl = multInfo?.imageUrl || null;
         const flatIndex = col * GATES_ROWS + row;
         const isWinning = winningPositions.has(flatIndex);
         const cellAnim = cellAnimStates.get(flatIndex) || 'idle';
@@ -81,7 +84,7 @@ export const GatesColumn = React.memo(function GatesColumn({
               cellAnim === 'winning' && "gates-gold-highlight",
               cellAnim === 'removing' && "gates-tumble-remove",
               cellAnim === 'exploding' && "gates-symbol-explode",
-              cellAnim === 'collecting' && "gates-multiplier-fly-to-bank",
+              cellAnim === 'collecting' && isMult && "",
               cellAnim === 'dropping' && "gates-gravity-bounce",
               cellAnim === 'filling' && "gates-lightning-fill",
               cellAnim === 'scatter-pulse' && "gates-scatter-trigger-pulse",
@@ -115,7 +118,7 @@ export const GatesColumn = React.memo(function GatesColumn({
             
             {/* Multiplier symbol rendering - first-class grid citizen */}
             {cellAnim !== 'removing' && cellAnim !== 'exploding' && cellAnim !== 'collecting' && isMult && multImageUrl && (
-              <div className="w-full h-full flex items-center justify-center gates-multiplier-pulse">
+              <div className="w-full h-full flex items-center justify-center">
                 <img
                   src={multImageUrl}
                   alt={multInfo?.label || 'Multiplier'}
@@ -127,7 +130,7 @@ export const GatesColumn = React.memo(function GatesColumn({
 
             {/* Multiplier fly-to-bank collection animation */}
             {cellAnim === 'collecting' && isMult && multImageUrl && (
-              <div className="w-full h-full flex items-center justify-center gates-multiplier-fly-to-bank">
+              <div className="w-full h-full flex items-center justify-center">
                 <img
                   src={multImageUrl}
                   alt={multInfo?.label || 'Multiplier'}

@@ -1,5 +1,6 @@
 import React, { useState, useCallback, useRef, useEffect, useMemo } from "react";
 import { useSlotSymbols } from "@/hooks/useSlotSymbols";
+import { useMultiplierSymbols } from "@/hooks/useMultiplierSymbols";
 import { useSlotSpins } from "@/hooks/useSlotSpins";
 import { useSlotSettings } from "@/hooks/useSlotSettings";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
@@ -42,11 +43,17 @@ export function GatesSlotGame({ gameId = "gates-of-fedesvin" }: GatesSlotGamePro
   const { user } = useAuth();
   const queryClient = useQueryClient();
   const { data: symbols, isLoading: symbolsLoading } = useSlotSymbols(gameId);
+  const { data: multSymbols } = useMultiplierSymbols();
   const { spinsRemaining, maxSpins, canSpin, hasEnoughSpins } = useSlotSpins();
   const { settings: slotSettings } = useSlotSettings();
   const { data: siteSettings } = useSiteSettings();
   const { spin: serverSpin } = useServerSpin(gameId);
   const theme = getSlotTheme(gameId);
+
+  const multiplierSymbolsMap = useMemo(() => {
+    if (!multSymbols) return undefined;
+    return new Map(multSymbols.map(s => [s.id, s]));
+  }, [multSymbols]);
 
   const [bet, setBet] = useState(1);
   const [isSpinning, setIsSpinning] = useState(false);
@@ -736,6 +743,7 @@ export function GatesSlotGame({ gameId = "gates-of-fedesvin" }: GatesSlotGamePro
                 cellDropOffsets={cellDropOffsets}
                 tumblePhase={tumblePhase}
                 animationEpoch={animationEpoch}
+                multiplierSymbolsMap={multiplierSymbolsMap}
               />
             );
           })}
