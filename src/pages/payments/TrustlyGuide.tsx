@@ -207,6 +207,14 @@ const TrustlyGuide = () => {
         { question: "Hvad hvis min Trustly-transaktion fejler efter MitID-godkendelse?", answer: "I sjældne tilfælde kan en Trustly-transaktion fejle efter MitID-godkendelse – typisk pga. utilstrækkelig saldo, bankens daglige overførselsgrænse eller midlertidige tekniske problemer. Pengene trækkes aldrig fra din konto, medmindre transaktionen gennemføres fuldt ud. Hvis beløbet trækkes men ikke krediteres din casinokonto, kontakt casinoets kundeservice med transaktionsreferencen – problemet løses typisk inden for 24 timer." },
       ]}
       currentPath="/betalingsmetoder/trustly"
+      howToName="Sådan indbetaler du med Trustly på et dansk casino"
+      howToTotalTime="PT3M"
+      howToSteps={[
+        { name: "Vælg Trustly som betalingsmetode", text: "Gå til casinoets kassesektion og vælg Trustly (eller 'Bankoverførsel') som indbetalingsmetode." },
+        { name: "Indtast indbetalingsbeløb", text: "Angiv det beløb, du ønsker at indbetale. Minimum er typisk 100 kr. hos danske casinoer." },
+        { name: "Log ind med MitID", text: "Du omdirigeres til Trustlys betalingsvindue, hvor du logger ind med MitID via app eller kodelæser." },
+        { name: "Vælg din bank og godkend", text: "Vælg din bank fra listen, bekræft overførslen og godkend med MitID. Pengene krediteres øjeblikkeligt." },
+      ]}
     />
   );
 };
