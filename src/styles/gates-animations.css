@@ -444,6 +444,19 @@
 }
 
 /* Duration utilities for transitions */
+/* Free spin decrement flip+bounce */
+@keyframes gates-spin-decrement {
+  0% { transform: rotateX(0) scale(1); opacity: 1; }
+  30% { transform: rotateX(-90deg) scale(0.8); opacity: 0.4; }
+  60% { transform: rotateX(0) scale(1.15); opacity: 1; }
+  80% { transform: rotateX(0) scale(0.95); }
+  100% { transform: rotateX(0) scale(1); }
+}
+
+.gates-spin-decrement {
+  animation: gates-spin-decrement 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
 .duration-800 {
   transition-duration: 800ms;
 }

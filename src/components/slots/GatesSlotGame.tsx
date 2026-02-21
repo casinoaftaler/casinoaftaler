@@ -8,6 +8,7 @@ import { useAuth } from "@/hooks/useAuth";
 import { useQueryClient } from "@tanstack/react-query";
 import { slotSounds } from "@/lib/slotSoundEffects";
 import { SlotControlPanel } from "./SlotControlPanel";
+import { AnimatedSpinCounter } from "./AnimatedSpinCounter";
 import { WinCelebration } from "./WinCelebration";
 import { Loader2 } from "lucide-react";
 import { toast } from "sonner";
@@ -499,9 +500,10 @@ export function GatesSlotGame({ gameId = "gates-of-fedesvin" }: GatesSlotGamePro
             <div className="flex flex-col items-center">
               <span className="text-[10px] uppercase tracking-widest text-yellow-500/80 font-semibold">Free Spins</span>
               <div className="flex items-baseline gap-1">
-                <span className="text-4xl font-black text-yellow-300 drop-shadow-[0_0_12px_rgba(250,204,21,0.8)] tabular-nums">
-                  {freeSpinsRemaining}
-                </span>
+                <AnimatedSpinCounter
+                  value={freeSpinsRemaining}
+                  className="text-4xl font-black text-yellow-300 drop-shadow-[0_0_12px_rgba(250,204,21,0.8)] tabular-nums"
+                />
                 <span className="text-lg text-yellow-500/60 font-bold">/ {totalFreeSpins}</span>
               </div>
             </div>
