@@ -5,6 +5,7 @@ import anmeldelserIcon from "@/assets/nav-icons/anmeldelser-icon.jpg";
 import casinospilIcon from "@/assets/nav-icons/casinospil-icon.jpg";
 import liveCasinoIcon from "@/assets/nav-icons/live-casino-icon.jpg";
 import { SpillehalPromoBanner } from "./SpillehalPromoBanner";
+import { LatestNewsSidebar } from "./LatestNewsSidebar";
 
 const navItems = [
   { label: "Spillehal", to: "/community/slots", icon: spillehalIcon },
@@ -42,6 +43,7 @@ export function QuickNavSidebar() {
           </Link>
         ))}
       </nav>
+      <LatestNewsSidebar />
       <SpillehalPromoBanner />
     </div>
   );
