@@ -4,6 +4,7 @@ import { useSlotSpins } from "@/hooks/useSlotSpins";
 import { useSlotSettings } from "@/hooks/useSlotSettings";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
 import { supabase } from "@/integrations/supabase/client";
+import { getTodayDanish } from "@/lib/danishDate";
 import { useServerSpin } from "@/hooks/useServerSpin";
 import { useAuth } from "@/hooks/useAuth";
 import { useQueryClient } from "@tanstack/react-query";
@@ -353,6 +354,10 @@ export function GatesSlotGame({ gameId = "gates-of-fedesvin" }: GatesSlotGamePro
     if (!isBonusSpin) {
       setRunningMultiplier(0);
     }
+    // Optimistically decrement free spins counter immediately
+    if (isBonusSpin) {
+      setFreeSpinsRemaining(prev => Math.max(0, prev - 1));
+    }
     setIsWinAnimating(false);
     setWinningPositions(new Set());
     setMultiplierOrbs([]);
@@ -467,12 +472,14 @@ export function GatesSlotGame({ gameId = "gates-of-fedesvin" }: GatesSlotGamePro
               // Retrigger during bonus — show retrigger overlay
               setShowRetrigger(true);
               showRetriggerRef.current = true;
+              // Reconcile with server values
               setFreeSpinsRemaining(bs.freeSpinsRemaining);
               setTotalFreeSpins(bs.totalFreeSpins);
               setBonusWinnings(bs.bonusWinnings || 0);
               setCumulativeMultiplier(bs.cumulativeMultiplier || 0);
               setRunningMultiplier(bs.cumulativeMultiplier || 0);
             } else {
+              // Reconcile with authoritative server values
               setFreeSpinsRemaining(bs.freeSpinsRemaining);
               setTotalFreeSpins(bs.totalFreeSpins);
               setBonusWinnings(bs.bonusWinnings || 0);
@@ -488,8 +495,13 @@ export function GatesSlotGame({ gameId = "gates-of-fedesvin" }: GatesSlotGamePro
           }
         }
 
-        // Update spins remaining
+        // Update spins remaining immediately via cache + refetch
         if (response.spinsRemaining !== undefined) {
+          const today = getTodayDanish();
+          queryClient.setQueryData(
+            ["slot-spins", user?.id, today],
+            (old: any) => old ? { ...old, spins_remaining: response.spinsRemaining } : old
+          );
           queryClient.invalidateQueries({ queryKey: ["slot-spins"] });
         }
       }
@@ -580,7 +592,7 @@ export function GatesSlotGame({ gameId = "gates-of-fedesvin" }: GatesSlotGamePro
             <div className="flex flex-col items-center">
               <span className="text-[10px] uppercase tracking-widest text-blue-400/80 font-semibold">Multiplier</span>
               <span className="text-2xl font-black text-blue-300 drop-shadow-[0_0_10px_rgba(59,130,246,0.7)] tabular-nums">
-                x{cumulativeMultiplier}
+                x{tumblePhase !== 'idle' ? runningMultiplier : cumulativeMultiplier}
               </span>
             </div>
 
@@ -591,7 +603,7 @@ export function GatesSlotGame({ gameId = "gates-of-fedesvin" }: GatesSlotGamePro
             <div className="flex flex-col items-center">
               <span className="text-[10px] uppercase tracking-widest text-green-400/80 font-semibold">Gevinst</span>
               <span className="text-2xl font-black text-green-300 drop-shadow-[0_0_10px_rgba(74,222,128,0.7)] tabular-nums">
-                {bonusWinnings.toLocaleString()}
+                {(tumblePhase !== 'idle' ? (bonusWinnings + runningWin) : bonusWinnings).toLocaleString()}
               </span>
             </div>
           </div>
