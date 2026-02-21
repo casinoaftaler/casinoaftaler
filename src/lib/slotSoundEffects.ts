@@ -1213,6 +1213,88 @@ class SlotSoundEffects {
     noise.stop(now + 0.1);
   }
 
+  // Crackling electric burst for symbol explosions
+  playCrackle() {
+    if (!this.canPlayEffect()) return;
+    
+    const ctx = this.getContext();
+    const now = ctx.currentTime;
+    
+    // White noise burst
+    const bufferSize = ctx.sampleRate * 0.15;
+    const noiseBuffer = ctx.createBuffer(1, bufferSize, ctx.sampleRate);
+    const output = noiseBuffer.getChannelData(0);
+    for (let i = 0; i < bufferSize; i++) {
+      output[i] = Math.random() * 2 - 1;
+    }
+    
+    const noise = ctx.createBufferSource();
+    noise.buffer = noiseBuffer;
+    
+    // High-pass filter for crackle texture
+    const filter = ctx.createBiquadFilter();
+    filter.type = 'highpass';
+    filter.frequency.value = 3000;
+    
+    const noiseGain = ctx.createGain();
+    noiseGain.gain.setValueAtTime(0.25 * this.volume, now);
+    noiseGain.gain.exponentialRampToValueAtTime(0.001, now + 0.15);
+    
+    noise.connect(filter);
+    filter.connect(noiseGain);
+    noiseGain.connect(ctx.destination);
+    noise.start(now);
+    noise.stop(now + 0.15);
+    
+    // High frequency zaps
+    for (let i = 0; i < 3; i++) {
+      const osc = ctx.createOscillator();
+      const gain = ctx.createGain();
+      osc.connect(gain);
+      gain.connect(ctx.destination);
+      osc.frequency.value = 4000 + Math.random() * 3000;
+      osc.type = 'sawtooth';
+      const t = now + i * 0.04;
+      gain.gain.setValueAtTime(0.12 * this.volume, t);
+      gain.gain.exponentialRampToValueAtTime(0.001, t + 0.05);
+      osc.start(t);
+      osc.stop(t + 0.05);
+    }
+  }
+
+  // Percussive clack for symbol landing impact
+  playClack() {
+    if (!this.canPlayEffect()) return;
+    
+    const ctx = this.getContext();
+    const now = ctx.currentTime;
+    
+    // Low frequency thud
+    const osc = ctx.createOscillator();
+    const gain = ctx.createGain();
+    osc.connect(gain);
+    gain.connect(ctx.destination);
+    osc.frequency.setValueAtTime(150, now);
+    osc.frequency.exponentialRampToValueAtTime(50, now + 0.1);
+    osc.type = 'sine';
+    gain.gain.setValueAtTime(0.3 * this.volume, now);
+    gain.gain.exponentialRampToValueAtTime(0.001, now + 0.12);
+    osc.start(now);
+    osc.stop(now + 0.12);
+    
+    // Short click transient
+    const click = ctx.createOscillator();
+    const clickGain = ctx.createGain();
+    click.connect(clickGain);
+    clickGain.connect(ctx.destination);
+    click.frequency.value = 800;
+    click.type = 'square';
+    clickGain.gain.setValueAtTime(0.15 * this.volume, now);
+    clickGain.gain.exponentialRampToValueAtTime(0.001, now + 0.03);
+    click.start(now);
+    click.stop(now + 0.03);
+  }
+
   // Small win - golden coins with Egyptian harp
   playSmallWin() {
     if (!this.canPlayEffect()) return;

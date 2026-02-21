@@ -10,7 +10,7 @@ const SYMBOL_HEIGHT = 108;
 export type ColumnSpinState = 'idle' | 'spinning' | 'landing' | 'landed' | 'dropping-off' | 'dropping-in';
 
 /** Per-cell animation state for tumble visuals */
-export type CellAnimState = 'idle' | 'winning' | 'removing' | 'dropping' | 'filling' | 'collecting' | 'scatter-pulse';
+export type CellAnimState = 'idle' | 'winning' | 'removing' | 'exploding' | 'dropping' | 'filling' | 'collecting' | 'scatter-pulse';
 
 interface GatesColumnProps {
   col: number;
@@ -72,17 +72,18 @@ export const GatesColumn = React.memo(function GatesColumn({
             key={`${row}-${(cellAnim === 'dropping' || cellAnim === 'filling') ? animationEpoch : 'stable'}-${cellAnim}-${applyDropOff ? 'off' : applyDropIn ? 'in' : ''}`}
             className={cn(
               "relative rounded-lg",
-              (cellAnim === 'dropping' || cellAnim === 'filling' || applyDropOff || applyDropIn) ? "overflow-visible" : "overflow-hidden",
+              (cellAnim === 'dropping' || cellAnim === 'filling' || cellAnim === 'exploding' || applyDropOff || applyDropIn) ? "overflow-visible" : "overflow-hidden",
               "bg-blue-950/50 border border-blue-500/10",
               isWinning && "gates-win-highlight",
               isLanding && "gates-symbol-land",
               applyDropOff && "gates-drop-off",
               applyDropIn && "gates-drop-in",
-              cellAnim === 'winning' && "gates-win-highlight",
+              cellAnim === 'winning' && "gates-gold-highlight",
               cellAnim === 'removing' && "gates-tumble-remove",
+              cellAnim === 'exploding' && "gates-symbol-explode",
               cellAnim === 'collecting' && "gates-multiplier-fly-to-bank",
-              cellAnim === 'dropping' && "gates-tumble-gravity",
-              cellAnim === 'filling' && "gates-tumble-drop",
+              cellAnim === 'dropping' && "gates-gravity-bounce",
+              cellAnim === 'filling' && "gates-lightning-fill",
               cellAnim === 'scatter-pulse' && "gates-scatter-trigger-pulse",
             )}
             style={{
@@ -97,7 +98,7 @@ export const GatesColumn = React.memo(function GatesColumn({
             } as React.CSSProperties}
           >
             {/* Regular symbol rendering */}
-            {cellAnim !== 'removing' && symbol && !isMult && (
+            {cellAnim !== 'removing' && cellAnim !== 'exploding' && symbol && !isMult && (
               <div className="w-full h-full flex items-center justify-center">
                 {symbol.image_url ? (
                   <img
@@ -113,7 +114,7 @@ export const GatesColumn = React.memo(function GatesColumn({
             )}
             
             {/* Multiplier symbol rendering - first-class grid citizen */}
-            {cellAnim !== 'removing' && cellAnim !== 'collecting' && isMult && multImageUrl && (
+            {cellAnim !== 'removing' && cellAnim !== 'exploding' && cellAnim !== 'collecting' && isMult && multImageUrl && (
               <div className="w-full h-full flex items-center justify-center gates-multiplier-pulse">
                 <img
                   src={multImageUrl}
@@ -136,9 +137,9 @@ export const GatesColumn = React.memo(function GatesColumn({
               </div>
             )}
 
-            {/* Removal animation for regular symbols */}
-            {cellAnim === 'removing' && symbol && !isMult && (
-              <div className="w-full h-full flex items-center justify-center gates-tumble-remove">
+            {/* Removal/explosion animation for regular symbols */}
+            {(cellAnim === 'removing' || cellAnim === 'exploding') && symbol && !isMult && (
+              <div className={cn("w-full h-full flex items-center justify-center", cellAnim === 'exploding' ? "gates-symbol-explode" : "gates-tumble-remove")}>
                 {symbol.image_url ? (
                   <img
                     src={symbol.image_url}
@@ -152,9 +153,9 @@ export const GatesColumn = React.memo(function GatesColumn({
               </div>
             )}
 
-            {/* Removal animation for multiplier symbols (collected) */}
-            {cellAnim === 'removing' && isMult && multImageUrl && (
-              <div className="w-full h-full flex items-center justify-center gates-tumble-remove">
+            {/* Removal/explosion animation for multiplier symbols */}
+            {(cellAnim === 'removing' || cellAnim === 'exploding') && isMult && multImageUrl && (
+              <div className={cn("w-full h-full flex items-center justify-center", cellAnim === 'exploding' ? "gates-symbol-explode" : "gates-tumble-remove")}>
                 <img
                   src={multImageUrl}
                   alt={multInfo?.label || 'Multiplier'}

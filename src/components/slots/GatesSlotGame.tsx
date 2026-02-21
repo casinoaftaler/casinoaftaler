@@ -249,8 +249,8 @@ export function GatesSlotGame({ gameId = "gates-of-fedesvin" }: GatesSlotGamePro
         }
         setCellAnimStates(winAnims);
         
-        // Hold win highlight (longer in slow-motion)
-        const holdTime = isSlowMotion ? 1400 : 1000;
+        // Hold gold highlight (Step 1 — longer for dramatic effect)
+        const holdTime = isSlowMotion ? 1600 : 1200;
         await new Promise(r => setTimeout(r, holdTime));
         
         // 2. Fly multipliers to bank ONLY on last winning step
@@ -289,7 +289,7 @@ export function GatesSlotGame({ gameId = "gates-of-fedesvin" }: GatesSlotGamePro
           await new Promise(r => setTimeout(r, flyTime));
         }
         
-        // 3. Remove winning symbols with fade/pop animation
+        // Step 2: EXPLOSION — symbols burst into sparks
         setTumblePhase('tumbling');
         const removeAnims = new Map<number, CellAnimState>();
         // Only winning positions are removed; multipliers only removed on last winning step
@@ -300,15 +300,20 @@ export function GatesSlotGame({ gameId = "gates-of-fedesvin" }: GatesSlotGamePro
           }
         }
         for (const pos of allRemovedPositions) {
-          removeAnims.set(pos, 'removing');
+          removeAnims.set(pos, 'exploding');
         }
         setCellAnimStates(removeAnims);
         
-        // Wait for removal animation (longer in slow-motion)
-        const removeTime = isSlowMotion ? 600 : 400;
+        // Play crackling explosion sound
+        slotSounds.playCrackle();
+        
+        // Wait for explosion animation (longer in slow-motion)
+        const removeTime = isSlowMotion ? 800 : 500;
         await new Promise(r => setTimeout(r, removeTime));
         
-        // 3. Clear winning positions and prepare next grid
+        // Step 3: Clear winning positions — pause after explosion before gravity
+        const postExplodePause = isSlowMotion ? 250 : 150;
+        await new Promise(r => setTimeout(r, postExplodePause));
         setWinningPositions(new Set());
         
         if (i + 1 < steps.length) {
@@ -364,8 +369,16 @@ export function GatesSlotGame({ gameId = "gates-of-fedesvin" }: GatesSlotGamePro
           setCellDropOffsets(offsets);
           setAnimationEpoch(prev => prev + 1);
           
+          // Play clack sound when symbols land
+          slotSounds.playClack();
+          
+          // Step 3: Gravity drop timing
           const dropTime = isSlowMotion ? 700 : 500;
           await new Promise(r => setTimeout(r, dropTime));
+          
+          // Step 4: Post-fill pause
+          const postFillPause = isSlowMotion ? 300 : 200;
+          await new Promise(r => setTimeout(r, postFillPause));
         }
         
         setCellAnimStates(new Map());
