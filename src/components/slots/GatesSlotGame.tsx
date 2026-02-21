@@ -9,7 +9,7 @@ import { useServerSpin } from "@/hooks/useServerSpin";
 import { useAuth } from "@/hooks/useAuth";
 import { useQueryClient } from "@tanstack/react-query";
 import { slotSounds } from "@/lib/slotSoundEffects";
-import { SlotControlPanel } from "./SlotControlPanel";
+import { GatesControlBar } from "./GatesControlBar";
 import { AnimatedSpinCounter } from "./AnimatedSpinCounter";
 import { WinCelebration } from "./WinCelebration";
 import { Loader2 } from "lucide-react";
@@ -718,8 +718,8 @@ export function GatesSlotGame({ gameId = "gates-of-fedesvin" }: GatesSlotGamePro
       {/* Running win counter removed - consolidated into top Gevinst bar */}
 
       {/* Control panel */}
-      <div className="w-full max-w-[700px]">
-        <SlotControlPanel
+      <div className="w-full">
+        <GatesControlBar
           bet={bet}
           onBetChange={setBet}
           onSpin={handleSpin}
