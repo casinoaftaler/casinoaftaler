@@ -10,7 +10,7 @@ const CYCLE_INTERVAL = 70;
 export type ColumnSpinState = 'idle' | 'spinning' | 'landing' | 'landed';
 
 /** Per-cell animation state for tumble visuals */
-export type CellAnimState = 'idle' | 'winning' | 'removing' | 'dropping' | 'filling' | 'collecting';
+export type CellAnimState = 'idle' | 'winning' | 'removing' | 'dropping' | 'filling' | 'collecting' | 'scatter-pulse';
 
 interface GatesColumnProps {
   col: number;
@@ -104,6 +104,7 @@ export const GatesColumn = React.memo(function GatesColumn({
               cellAnim === 'collecting' && "gates-multiplier-fly-to-bank",
               cellAnim === 'dropping' && "gates-tumble-gravity",
               cellAnim === 'filling' && "gates-tumble-drop",
+              cellAnim === 'scatter-pulse' && "gates-scatter-trigger-pulse",
             )}
             style={{
               width: SYMBOL_SIZE,

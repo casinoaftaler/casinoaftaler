@@ -15,7 +15,7 @@ import { toast } from "sonner";
 import { cn } from "@/lib/utils";
 import { getSlotTheme } from "@/lib/slotTheme";
 import {
-  GATES_COLS, GATES_ROWS, generateGatesDisplayGrid,
+  GATES_COLS, GATES_ROWS, generateGatesDisplayGrid, countGatesScatters,
   flatToColRow, type GatesWin, type MultiplierOrb, type TumbleStep,
 } from "@/lib/gatesGameLogic";
 import { isMultiplierSymbol, getMultiplierValue } from "@/lib/gatesMultiplierSymbols";
@@ -406,8 +406,22 @@ export function GatesSlotGame({ gameId = "gates-of-fedesvin" }: GatesSlotGamePro
           const bs = response.bonusState as any;
           if (bs.isActive !== undefined) {
             if (!isBonusActive && bs.freeSpinsRemaining > 0) {
-              // New bonus triggered — start entry sequence
+              // New bonus triggered — highlight scatters before entry sequence
               pendingBonusStateRef.current = bs;
+              
+              // Find scatter positions on the current grid and pulse them
+              if (grid && symbols) {
+                const { positions: scatterPos } = countGatesScatters(grid, symbols);
+                if (scatterPos.length > 0) {
+                  const scatterAnims = new Map<number, CellAnimState>();
+                  scatterPos.forEach(pos => scatterAnims.set(pos, 'scatter-pulse'));
+                  setCellAnimStates(scatterAnims);
+                  // Show scatters pulsing for 1.5s, then show bonus entry
+                  await new Promise(r => setTimeout(r, 1500));
+                  setCellAnimStates(new Map());
+                }
+              }
+              
               setShowBonusTrigger(true);
               showBonusTriggerRef.current = true;
               // Reset counters for bonus entry
