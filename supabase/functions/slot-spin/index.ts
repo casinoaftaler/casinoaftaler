@@ -1027,9 +1027,10 @@ Deno.serve(async (req) => {
       const gatesResult = calculateGatesFullSpin(symbols, bet, false);
       let gatesBonusState = null;
       if (gatesResult.bonusTriggered) {
+        const awardedSpins = gatesResult.scatterCount >= 6 ? 15 : gatesResult.scatterCount >= 5 ? 12 : 10;
         await serviceClient.from("slot_bonus_state").delete().eq("user_id", userId).eq("game_id", gameId);
-        await serviceClient.from("slot_bonus_state").insert({ user_id: userId, is_active: true, free_spins_remaining: GATES_FREE_SPINS_INITIAL, total_free_spins: GATES_FREE_SPINS_INITIAL, expanding_symbol_name: "0", bonus_winnings: gatesResult.totalWin, game_id: gameId, bet_amount: bet });
-        gatesBonusState = { isActive: true, freeSpinsRemaining: GATES_FREE_SPINS_INITIAL, totalFreeSpins: GATES_FREE_SPINS_INITIAL, bonusWinnings: gatesResult.totalWin, cumulativeMultiplier: 0, betAmount: bet };
+        await serviceClient.from("slot_bonus_state").insert({ user_id: userId, is_active: true, free_spins_remaining: awardedSpins, total_free_spins: awardedSpins, expanding_symbol_name: "0", bonus_winnings: gatesResult.totalWin, game_id: gameId, bet_amount: bet });
+        gatesBonusState = { isActive: true, freeSpinsRemaining: awardedSpins, totalFreeSpins: awardedSpins, bonusWinnings: gatesResult.totalWin, cumulativeMultiplier: 0, betAmount: bet };
       }
       // DEMO MODE: Skip leaderboard recording for Gates
       // (async () => { try { await serviceClient.from("slot_game_results").insert({ user_id: userId, bet_amount: bet, win_amount: gatesResult.totalWin, is_bonus_triggered: gatesResult.bonusTriggered, bonus_win_amount: 0, game_id: gameId }); } catch (e) { console.error("[slot-spin] Gates bg err:", e); } })();

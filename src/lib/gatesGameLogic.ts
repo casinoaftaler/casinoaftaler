@@ -21,7 +21,8 @@ export const MIN_MATCH_COUNT = 8;
 // Scatter count needed for free spins
 export const SCATTER_TRIGGER_COUNT = 4;
 export const SCATTER_RETRIGGER_COUNT = 3;
-export const FREE_SPINS_INITIAL = 15;
+// Free spins awarded by scatter count: 4→10, 5→12, 6→15
+export const FREE_SPINS_BY_SCATTER: Record<number, number> = { 4: 10, 5: 12, 6: 15 };
 export const FREE_SPINS_RETRIGGER = 5;
 
 // Multiplier orb values and their weights
