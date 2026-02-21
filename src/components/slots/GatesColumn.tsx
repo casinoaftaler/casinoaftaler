@@ -48,7 +48,8 @@ export const GatesColumn = React.memo(function GatesColumn({
     <div
       className={cn(
         "flex flex-col transition-[filter] duration-200",
-        tumblePhase !== 'idle' && tumblePhase !== 'spinning' ? "overflow-visible" : "overflow-hidden",
+        (isDroppingOff || isDroppingIn) ? "overflow-visible" :
+        (tumblePhase !== 'idle' && tumblePhase !== 'spinning') ? "overflow-visible" : "overflow-hidden",
       )}
       style={{ gap: 5 }}
     >
@@ -62,17 +63,21 @@ export const GatesColumn = React.memo(function GatesColumn({
         const isWinning = winningPositions.has(flatIndex);
         const cellAnim = cellAnimStates.get(flatIndex) || 'idle';
 
+        // Only apply drop-off/drop-in when there's no tumble cell animation active
+        const applyDropOff = isDroppingOff && cellAnim === 'idle';
+        const applyDropIn = isDroppingIn && cellAnim === 'idle';
+
         return (
           <div
-            key={`${row}-${(cellAnim === 'dropping' || cellAnim === 'filling') ? animationEpoch : 'stable'}-${cellAnim}`}
+            key={`${row}-${(cellAnim === 'dropping' || cellAnim === 'filling') ? animationEpoch : 'stable'}-${cellAnim}-${applyDropOff ? 'off' : applyDropIn ? 'in' : ''}`}
             className={cn(
               "relative rounded-lg",
-              (cellAnim === 'dropping' || cellAnim === 'filling') ? "overflow-visible" : "overflow-hidden",
+              (cellAnim === 'dropping' || cellAnim === 'filling' || applyDropOff || applyDropIn) ? "overflow-visible" : "overflow-hidden",
               "bg-blue-950/50 border border-blue-500/10",
               isWinning && "gates-win-highlight",
               isLanding && "gates-symbol-land",
-              isDroppingOff && "gates-drop-off",
-              isDroppingIn && "gates-drop-in",
+              applyDropOff && "gates-drop-off",
+              applyDropIn && "gates-drop-in",
               cellAnim === 'winning' && "gates-win-highlight",
               cellAnim === 'removing' && "gates-tumble-remove",
               cellAnim === 'collecting' && "gates-multiplier-fly-to-bank",
@@ -84,8 +89,8 @@ export const GatesColumn = React.memo(function GatesColumn({
               width: SYMBOL_WIDTH,
               height: SYMBOL_HEIGHT,
               '--gravity-offset': cellAnim === 'dropping' ? `${-(cellDropOffsets.get(flatIndex) || (SYMBOL_HEIGHT + 4))}px` : undefined,
-              animationDelay: isDroppingOff ? `${row * 40}ms` :
-                isDroppingIn ? `${row * 50}ms` :
+              animationDelay: applyDropOff ? `${row * 40}ms` :
+                applyDropIn ? `${row * 50}ms` :
                 isLanding ? `${row * 50}ms` : 
                 cellAnim === 'filling' ? `${row * 40}ms` :
                 cellAnim === 'dropping' ? `${row * 30}ms` : undefined,
