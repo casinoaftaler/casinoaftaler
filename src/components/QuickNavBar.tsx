@@ -14,6 +14,7 @@ const navItems = [
   { label: "Casino Anmeldelser", to: "/casino-anmeldelser", icon: anmeldelserIcon },
   { label: "Casinospil", to: "/casinospil", icon: casinospilIcon },
   { label: "Live Casino", to: "/live-casino", icon: liveCasinoIcon },
+  { label: "Casino Nyheder", to: "/casino-nyheder", icon: anmeldelserIcon },
 ];
 
 export function QuickNavSidebar() {
