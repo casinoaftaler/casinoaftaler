@@ -105,6 +105,9 @@ const CasinoNyhedArticle = () => {
         breadcrumbLabel={article.title}
       />
 
+      {/* Breadcrumb - above hero, like guide pages */}
+      <Breadcrumbs dynamicLabel={article.title} />
+
       {/* Gradient Hero Section */}
       <section
         className="relative overflow-hidden py-12 text-white md:py-20"
@@ -130,7 +133,6 @@ const CasinoNyhedArticle = () => {
       </section>
 
       <div className="container py-8 md:py-12">
-        <Breadcrumbs dynamicLabel={article.title} />
         <AuthorMetaBar
           author="jonas"
           date={publishedDate}
