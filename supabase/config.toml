@@ -74,3 +74,6 @@ verify_jwt = false
 
 [functions.generate-game-music]
 verify_jwt = false
+
+[functions.generate-zeus-sprite]
+verify_jwt = false
