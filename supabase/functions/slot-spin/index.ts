@@ -472,13 +472,8 @@ async function calculateGatesFullSpin(
     // Scan grid for multiplier symbols present in this step
     const orbs = scanGridMultipliers(grid);
     
-    // Multiplier collection: only when there's a win AND multipliers are on grid
-    let collectedMultPositions: number[] = [];
-    if (wins.length > 0 && orbs.length > 0) {
-      const orbMultiplierSum = orbs.reduce((sum, o) => sum + o.value, 0);
-      totalMultiplier += orbMultiplierSum;
-      collectedMultPositions = orbs.map(o => o.position);
-    }
+    // Record orbs for visual display but do NOT collect/remove them yet
+    // Multipliers persist on the grid until the tumble sequence ends
     
     tumbleSteps.push({
       grid: grid.map(col => [...col]),
@@ -493,14 +488,26 @@ async function calculateGatesFullSpin(
     // If no wins, tumble sequence ends
     if (wins.length === 0) break;
     
-    // Apply tumble - remove winning symbols AND collected multiplier symbols
-    grid = await applyGatesTumble(grid, Array.from(winningPositions), collectedMultPositions, symbols, isBonusSpin, prng, spinType);
+    // Apply tumble - remove ONLY winning symbols, NOT multipliers (they persist)
+    grid = await applyGatesTumble(grid, Array.from(winningPositions), [], symbols, isBonusSpin, prng, spinType);
     
     // Re-check scatters after tumble (new scatters may have dropped in)
     const newScatterCount = countGatesScatters(grid, symbols);
     if (newScatterCount > scatterCount) scatterCount = newScatterCount;
   }
   
+  // After all tumbles: collect ALL multipliers that are still on the grid
+  // They explode simultaneously after the last win
+  if (totalRawWin > 0) {
+    // Find the last winning step to attach collected orbs for the client animation
+    const lastWinIdx = tumbleSteps.length - 1; // last step is always the no-win step
+    const finalOrbs = scanGridMultipliers(grid);
+    if (finalOrbs.length > 0) {
+      const orbSum = finalOrbs.reduce((sum, o) => sum + o.value, 0);
+      totalMultiplier += orbSum;
+    }
+  }
+
   // Determine bonus trigger after all tumbles (scatters accumulated across all grids)
   const bonusTriggered = isBonusSpin 
     ? scatterCount >= GATES_SCATTER_RETRIGGER 

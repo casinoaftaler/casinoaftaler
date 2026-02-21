@@ -210,12 +210,13 @@ export function GatesSlotGame({ gameId = "gates-of-fedesvin" }: GatesSlotGamePro
         // Increment running win counter
         setRunningWin(prev => prev + step.stepWin);
         
-        // Accumulate multiplier orbs (now read from grid) + trigger screen shake
+        // Check if this is the last winning step (next step has no wins or doesn't exist)
+        const isLastWinningStep = (i + 1 >= steps.length) || (steps[i + 1].wins.length === 0);
+        
+        // Show multiplier orbs visually but don't accumulate yet (they persist on grid)
+        // Only accumulate + collect on the last winning step
         if (step.multiplierOrbs.length > 0) {
-          const orbSum = step.multiplierOrbs.reduce((sum, o) => sum + o.value, 0);
-          setRunningMultiplier(prev => prev + orbSum);
-          
-          // Screen shake + lightning on 50x+ multiplier orb
+          // Screen shake + lightning on 50x+ multiplier orb (visual only)
           const maxOrb = Math.max(...step.multiplierOrbs.map(o => o.value));
           if (maxOrb >= 100) {
             setScreenShake('intense');
@@ -229,8 +230,11 @@ export function GatesSlotGame({ gameId = "gates-of-fedesvin" }: GatesSlotGamePro
           }
         }
         
-        // Check if this is the last winning step (next step has no wins or doesn't exist)
-        const isLastWinningStep = (i + 1 >= steps.length) || (steps[i + 1].wins.length === 0);
+        // Accumulate multiplier to bank ONLY on the last winning step
+        if (isLastWinningStep && step.multiplierOrbs.length > 0) {
+          const orbSum = step.multiplierOrbs.reduce((sum, o) => sum + o.value, 0);
+          setRunningMultiplier(prev => prev + orbSum);
+        }
         
         // Mark winning cells for highlight (multipliers only highlighted on last winning step)
         const winAnims = new Map<number, CellAnimState>();
