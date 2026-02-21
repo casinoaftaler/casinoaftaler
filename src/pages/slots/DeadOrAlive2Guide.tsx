@@ -41,7 +41,7 @@ const doa2Faqs: { question: string; answer: ReactNode }[] = [
   },
   {
     question: "Er Dead or Alive 2 for volatil til wagering?",
-    answer: "Ja, generelt er Dead or Alive 2 for volatil til systematisk wagering – især i High Noon Saloon mode. Bust-risikoen for standard wagering-scenarier (30x krav) estimeres til 35–45 %. Dog kan Train Heist mode reducere dette til ca. 25 %, og med den høje RTP på 96,82 % er den forventede værdi bedre end de fleste alternativer. Erfarne wagering-spillere med tilstrækkeligt budget kan overveje den.",
+    answer: "Dead or Alive 2 er volatil, men med Danmarks lovmæssige 10x omsætningskrav er den matematisk stærk. Den høje RTP på 96,82 % giver positiv EV (+682 kr. på en 1.000 kr. bonus). Dog er bust-risikoen ved High Noon Saloon mode ca. 15–20 % selv ved 10x wagering pga. ekstrem volatilitet. Train Heist mode reducerer dette til ca. 8–10 %. For spillere med tilstrækkeligt budget er Dead or Alive 2 en af de bedste wagering-slots.",
   },
   {
     question: "Hvem har udviklet Dead or Alive 2?",

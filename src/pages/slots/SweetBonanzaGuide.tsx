@@ -322,17 +322,17 @@ const SweetBonanzaGuide = () => {
             </CardContent>
           </Card>
 
-          <h3 className="text-xl font-semibold mt-6 mb-3">Scenarie 2: Med omsætningsbonus (30x wagering)</h3>
+          <h3 className="text-xl font-semibold mt-6 mb-3">Scenarie 2: Med omsætningsbonus (10x wagering)</h3>
           <p className="mb-4 text-muted-foreground leading-relaxed">
-            Bonus: 1.000 kr. | <Link to="/omsaetningskrav" className={linkClass}>Omsætningskrav</Link>: 30x | Total omsætning: 30.000 kr. | RTP: 96,48 %
+            Bonus: 1.000 kr. | <Link to="/omsaetningskrav" className={linkClass}>Omsætningskrav</Link>: 10x | Total omsætning: 10.000 kr. | RTP: 96,48 %
           </p>
           <Card className="mb-4">
             <CardContent className="pt-6">
               <p className="text-sm text-muted-foreground mb-2"><strong>EV-beregning:</strong></p>
-              <p className="text-sm text-muted-foreground">Forventet tab under omsætning = 30.000 × (1 − 0,9648) = 30.000 × 0,0352 = <strong>1.056 kr.</strong></p>
-              <p className="text-sm text-muted-foreground">Bonusværdi = 1.000 − 1.056 = <strong>−56 kr. (negativ EV!)</strong></p>
-              <p className="text-sm text-muted-foreground mt-2">Med 30x wagering og 96,48 % RTP er Sweet Bonanza bonussen marginalt negativ.</p>
-              <p className="text-sm text-muted-foreground">Med 91,76 % RTP: tab = 30.000 × 0,0824 = 2.472 kr. → EV = −1.472 kr. (katastrofalt)</p>
+              <p className="text-sm text-muted-foreground">Forventet tab under omsætning = 10.000 × (1 − 0,9648) = 10.000 × 0,0352 = <strong>352 kr.</strong></p>
+              <p className="text-sm text-muted-foreground">Bonusværdi = 1.000 − 352 = <strong>+648 kr. (positiv EV!)</strong></p>
+              <p className="text-sm text-muted-foreground mt-2">Med 10x wagering og 96,48 % RTP er Sweet Bonanza bonussen klart positiv – en af de stærkeste bonuskandidater.</p>
+              <p className="text-sm text-muted-foreground">Med 91,76 % RTP: tab = 10.000 × 0,0824 = 824 kr. → EV = +176 kr. (stadig positiv!)</p>
             </CardContent>
           </Card>
 
@@ -364,13 +364,13 @@ const SweetBonanzaGuide = () => {
             Sweet Bonanzas egnethed til bonusomsætning afhænger af tre faktorer: RTP-versionen, bonustype og omsætningskrav. Her er den matematiske virkelighed:
           </p>
           <p className="mb-4 text-muted-foreground leading-relaxed">
-            Med en standard <Link to="/velkomstbonus" className={linkClass}>velkomstbonus</Link> på 100 % op til 1.000 kr. med 30x omsætningskrav og Sweet Bonanzas 96,48 % RTP, er den forventede bonusværdi marginalt negativ (ca. −56 kr. som beregnet ovenfor). Men dette er gennemsnittet – variansen er enorm. Ca. 35–40 % af spillere vil ende i profit efter at have opfyldt omsætningskravene, mens 60–65 % vil tabe bonussen og en del af deres egen indbetaling.
+            Med en standard <Link to="/velkomstbonus" className={linkClass}>velkomstbonus</Link> på 100 % op til 1.000 kr. med 10x omsætningskrav (dansk lovkrav) og Sweet Bonanzas 96,48 % RTP, er den forventede bonusværdi klart positiv (+648 kr. som beregnet ovenfor). Den høje volatilitet betyder dog stor varians – ca. 55–60 % af spillere vil ende i profit efter at have opfyldt omsætningskravene, mens 40–45 % vil tabe bonussen.
           </p>
           <p className="mb-4 text-muted-foreground leading-relaxed">
             Sweet Bonanza er et middelmådigt valg til wagering sammenlignet med <Link to="/casinospil/spillemaskiner/book-of-dead" className={linkClass}>Book of Dead</Link> (96,21 % RTP men lavere volatilitet, som giver mere forudsigelige resultater under omsætning) eller slots med endnu højere RTP. Den høje volatilitet er et tveægget sværd: du kan fuldføre omsætningen med en massiv gevinst, men du kan også bust din bankroll hurtigt.
           </p>
           <p className="text-muted-foreground leading-relaxed">
-            Vores anbefaling: Sweet Bonanza er bedst egnet til <Link to="/bonus-uden-indbetaling" className={linkClass}>bonusser uden indbetaling</Link> (ingen risiko for egne penge), <Link to="/no-sticky-bonus" className={linkClass}>no-sticky bonusser</Link> (du kan udbetale egen balance uanset bonus) og free spins-bonusser med lave eller ingen omsætningskrav. Undgå at bruge Sweet Bonanza til aggressiv wagering med 35x+ krav – den matematiske fordel er for tynd.
+            Vores anbefaling: Med Danmarks lovmæssige 10x omsætningskrav er Sweet Bonanza en stærk bonuskandidat med klart positiv EV. Den er især velegnet til <Link to="/bonus-uden-indbetaling" className={linkClass}>bonusser uden indbetaling</Link> (ingen risiko for egne penge), <Link to="/no-sticky-bonus" className={linkClass}>no-sticky bonusser</Link> (du kan udbetale egen balance uanset bonus) og free spins-bonusser. Den høje volatilitet giver risiko for hurtig bust, men den matematiske fordel er solid ved 10x wagering.
           </p>
         </section>
 
@@ -401,7 +401,7 @@ const SweetBonanzaGuide = () => {
                 <ul className="space-y-2 text-sm text-muted-foreground">
                   <li>• <strong>Casual spillere med lille budget</strong> – du kan bust hurtigt uden bonus-trigger</li>
                   <li>• <strong>Spillere der søger jævne, hyppige gevinster</strong> – prøv Starburst i stedet</li>
-                  <li>• <strong>Aggressiv wagering</strong> med høje omsætningskrav (35x+)</li>
+                  <li>• <strong>Spillere der foretrækker lav varians</strong> under bonusomsætning – vælg Book of Dead i stedet</li>
                   <li>• <strong>Spillere med lavt frustrationstolerancetærskel</strong> – tørrperioder er lange</li>
                 </ul>
               </CardContent>
