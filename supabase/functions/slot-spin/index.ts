@@ -430,11 +430,9 @@ async function calculateGatesFullSpin(
   let totalMultiplier = runningMultiplier;
   let maxTumbles = 50; // safety cap
   
-  // Check scatters on initial grid only
-  const scatterCount = countGatesScatters(grid, symbols);
-  const bonusTriggered = isBonusSpin 
-    ? scatterCount >= GATES_SCATTER_RETRIGGER 
-    : scatterCount >= GATES_SCATTER_TRIGGER;
+  // Track max scatter count across all grids (initial + after each tumble)
+  // Scatters that drop in during tumbles count toward bonus trigger
+  let scatterCount = countGatesScatters(grid, symbols);
   
   while (maxTumbles-- > 0) {
     const wins = calculateGatesWins(grid, symbols, betAmount);
@@ -473,8 +471,17 @@ async function calculateGatesFullSpin(
     
     // Apply tumble - remove winning symbols AND collected multiplier symbols
     grid = await applyGatesTumble(grid, Array.from(winningPositions), collectedMultPositions, symbols, isBonusSpin, prng, spinType);
+    
+    // Re-check scatters after tumble (new scatters may have dropped in)
+    const newScatterCount = countGatesScatters(grid, symbols);
+    if (newScatterCount > scatterCount) scatterCount = newScatterCount;
   }
   
+  // Determine bonus trigger after all tumbles (scatters accumulated across all grids)
+  const bonusTriggered = isBonusSpin 
+    ? scatterCount >= GATES_SCATTER_RETRIGGER 
+    : scatterCount >= GATES_SCATTER_TRIGGER;
+
   // Apply total multiplier to raw win
   const totalWin = totalMultiplier > 0 ? totalRawWin * totalMultiplier : totalRawWin;
   
