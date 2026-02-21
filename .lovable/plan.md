@@ -1,154 +1,129 @@
 
 
-# Global Visual Intensity States for Gates of Fedesvin (Base Game)
+# Global Bonus Rule for Gates of Fedesvin
 
-Create a dynamic visual intensity system that drives lightning, glow, audio ambience, and camera motion through 4 escalating states, making each spin feel like a dramatic arc from calm to climax.
+Add a comprehensive bonus-mode visual system that makes free spins feel darker, more electric, and escalating -- intensity does NOT fully reset between spins.
 
 ---
 
-## Overview
+## Architecture
 
-A new `VisualIntensityState` system will wrap the game grid and respond to game phase changes (idle, spinning, winning, climax). Each state controls CSS custom properties that drive lightning frequency, ambient glow brightness, grid frame glow, screen shake, and audio ambience layers -- all through a single `data-intensity` attribute on the game wrapper.
+The existing `useGatesIntensity` hook and `data-intensity` CSS system will be extended with a new **bonus dimension**. A `data-bonus` attribute on the game wrapper enables bonus-specific CSS overrides, while a new `bonusIntensityFloor` concept prevents intensity from dropping below "win" level between bonus spins.
 
 ```text
-Idle (calm) --> Spin (energy rising) --> Win/Tumble (escalation) --> Climax (peak) --> Reset to Idle
+Base Game:  idle -> spin -> win -> climax -> idle (full reset)
+Bonus Mode: idle -> spin -> win -> climax -> win (floor, never drops to idle)
+            Each spin escalates further based on cumulative multiplier + spin count
 ```
-
----
-
-## State Definitions
-
-| State | Trigger | Lightning | Glow | Camera | Audio Layer |
-|-------|---------|-----------|------|--------|-------------|
-| **idle** | No spin active | Flicker every 6-10s | Low purple/blue ambient | None | Wind ambience |
-| **spin** | Spin button pressed | Frequent flashes | +15% brightness | None | Whoosh + increased thunder |
-| **win** | Win detected, tumbles 1-2 | +20% brightness, crackle flashes | Gold glow around grid | Minimal shake | Crackle + impact sounds |
-| **climax** | Tumble chain 3+ or big multiplier | Constant storm, bright flashes | Intense gold + blue | Shake + 3% zoom | Deep thunder + bass |
-
----
-
-## Implementation Plan
-
-### 1. New file: `src/hooks/useGatesIntensity.ts`
-
-A custom hook that derives the current intensity state from existing game state variables:
-
-- `tumblePhase` (idle, spinning, showing-wins, tumbling)
-- `tumbleChainLength` (number of consecutive winning tumbles)
-- `screenShake` (none, normal, intense)
-- `winAmount` and `bet` (for win tier calculation)
-
-Returns: `{ intensityState: 'idle' | 'spin' | 'win' | 'climax', chainLevel: number }`
-
-Logic:
-- `tumblePhase === 'idle'` --> `idle`
-- `tumblePhase === 'spinning'` --> `spin`
-- `tumblePhase === 'showing-wins' || 'tumbling'` with `chainLength < 3` --> `win`
-- `chainLength >= 3` OR `winAmount >= bet * 20` --> `climax`
-
-### 2. New CSS: `src/styles/gates-intensity.css`
-
-CSS custom properties driven by `data-intensity` attribute on game wrapper:
-
-```css
-[data-intensity="idle"]   { --lightning-opacity: 0; --ambient-glow: 0.2; --grid-glow: 0.1; }
-[data-intensity="spin"]   { --lightning-opacity: 0.15; --ambient-glow: 0.35; --grid-glow: 0.2; }
-[data-intensity="win"]    { --lightning-opacity: 0.3; --ambient-glow: 0.5; --grid-glow: 0.4; }
-[data-intensity="climax"] { --lightning-opacity: 0.6; --ambient-glow: 0.7; --grid-glow: 0.6; }
-```
-
-Includes:
-- **Ambient lightning overlay**: A `::before` pseudo-element on the game wrapper with random flicker animation, opacity driven by `--lightning-opacity`.
-- **Grid frame glow**: `box-shadow` on the grid container scaling with `--grid-glow`.
-- **Background glow pulse**: Radial gradient overlay scaling with `--ambient-glow`.
-- **Camera zoom**: `transform: scale(1.03)` applied at climax via `data-intensity="climax"`.
-- **Idle sparkle**: A subtle random sparkle animation on grid cells every ~5s (CSS-only, via `nth-child` stagger).
-- **Spin-press button animation**: Scale 0.92 -> 1.0 with gold flash (200ms).
-
-Keyframes added:
-- `gates-ambient-lightning-flicker` (random opacity pulses)
-- `gates-idle-sparkle` (subtle shimmer on random symbols)
-- `gates-grid-glow-pulse` (golden glow on grid border)
-- `gates-spin-press` (button press feedback)
-- `gates-climax-zoom` (subtle 3% zoom in)
-
-### 3. Update: `src/components/slots/GatesSlotGame.tsx`
-
-- Import `useGatesIntensity` hook.
-- Derive `intensityState` from current game state.
-- Add `data-intensity={intensityState}` to the outermost game wrapper div.
-- Add ambient lightning overlay div (always rendered, opacity driven by CSS variable).
-- Add ambient glow background div (purple/blue radial gradient, opacity driven by intensity).
-- Update grid container to use dynamic `box-shadow` via CSS variable for grid frame glow.
-- On climax state: apply `gates-climax-zoom` class to grid for subtle 3% scale.
-- Update column stop logic: add `gates-column-stop-impact` class per column with stagger delay (0/70/140/210/280/350ms) and quick flash overlay (80ms) after final column lands.
-- On spin button press: add momentary `gates-spin-press` class (200ms).
-
-### 4. Update: `src/components/slots/GatesSlotGame.tsx` - Tumble orchestration timing
-
-Adjust the `processTumbleSteps` timings per the spec:
-
-| Phase | Current | New (base) |
-|-------|---------|------------|
-| Step 1: Highlight | 1200ms | 300ms |
-| Step 2: Explosion | 500ms | 300ms |
-| Step 3: Gravity drop | 500ms | 400ms |
-| Step 4: New symbols fill | 200ms pause | 300ms + 200ms pause |
-
-Chain escalation logic (already partially exists):
-- `chainLength >= 3`: Apply `gates-climax-zoom` (3% zoom), play deeper thunder
-- `chainLength >= 4`: Enable slow-motion (150ms added to each phase), add lightning strike flash
-
-### 5. Update: `src/styles/gates-animations.css`
-
-- Add `gates-column-stop-impact` keyframe (brief golden flash pulse on column stop).
-- Add `gates-reel-stop-flash` (white overlay 80ms after final reel stops).
-- Update `gates-intensity-high` to scale with chain level (more intense glow at higher chains).
-
-### 6. Update: `src/lib/slotSoundEffects.ts`
-
-Add new ambient/intensity-driven methods:
-
-- `playColumnStop()`: Soft thud/impact sound per column landing (staggered).
-- `playDeepThunder()`: Deeper bass thunder for climax state (chain 3+).
-- `playWindAmbience()` / `stopWindAmbience()`: Ambient wind loop (low volume, continuous during idle).
-
-These use the existing Web Audio API oscillator pattern. Wind ambience uses filtered white noise. Thunder uses low-frequency oscillator bursts.
-
-### 7. Update: `src/components/slots/GatesColumn.tsx`
-
-- Add `gates-column-stop-impact` class when `spinState === 'landing'` (replaces generic `gates-symbol-land`).
-- Each column gets staggered stop delay already handled by parent; the CSS class just adds the visual impact pulse.
-
-### 8. No-win reset behavior
-
-In `GatesSlotGame.tsx`, after columns land and no win is detected:
-- Wait 400ms pause.
-- Intensity state automatically returns to `idle` (driven by `tumblePhase === 'idle'`).
-- All visual effects (glow, lightning, shake) smoothly transition back via CSS transitions (500ms ease-out).
 
 ---
 
 ## Files to Create
 
-1. `src/hooks/useGatesIntensity.ts` -- Intensity state derivation hook
-2. `src/styles/gates-intensity.css` -- All intensity-driven CSS variables, keyframes, and utility classes
+### 1. `src/styles/gates-bonus-intensity.css`
+Bonus-specific CSS overrides layered on top of the existing intensity system:
+
+- **`[data-bonus="true"]` overrides**: Darker background tones, stronger lightning, brighter grid glow at every state
+- **Bonus idle floor**: `[data-bonus="true"][data-intensity="idle"]` gets win-level values instead of true idle (lightning stays at 0.25, glow at 0.4)
+- **Bonus grid styling**: Purple-tinted border, stronger box-shadow, electric arc animations on grid edges
+- **Bonus spin button**: Purple-gold gradient glow with electric spark pseudo-elements
+- **Bonus multiplier counter glow**: Scales glow intensity with `data-mult-tier` attribute (low/mid/high/extreme)
+- **Bonus column stop**: Stronger impact with purple lightning spark instead of golden flash
+- **Bonus tumble escalation**: Each chain level gets progressively more intense highlights/particles via CSS
+- **Bonus last-spin indicator**: Red-gold pulsing glow on the free spins counter when `data-last-spin="true"`
+- **Retrigger peak**: Instant storm peak animation class
+
+### 2. No new hooks needed
+Extend `useGatesIntensity` inline to accept `isBonusActive` and `cumulativeMultiplier`.
+
+---
 
 ## Files to Modify
 
-3. `src/components/slots/GatesSlotGame.tsx` -- Wire intensity state, add ambient overlays, update timings
-4. `src/styles/gates-animations.css` -- Column stop impact, reel flash keyframes
-5. `src/lib/slotSoundEffects.ts` -- Column stop, deep thunder, wind ambience sounds
-6. `src/components/slots/GatesColumn.tsx` -- Column stop impact class
-7. `src/pages/GatesOfFedesvin.tsx` -- Import `gates-intensity.css`
+### 3. `src/hooks/useGatesIntensity.ts`
+- Add `isBonusActive: boolean` and `cumulativeMultiplier: number` to params
+- New return field: `bonusIntensityTier: 'low' | 'mid' | 'high' | 'extreme'` based on cumulative multiplier value
+- In bonus mode: intensity floor is `'win'` instead of `'idle'` when `tumblePhase === 'idle'`
+- Climax triggers earlier in bonus (chain >= 2 instead of 3, or winAmount >= bet * 10 instead of 20)
+
+### 4. `src/components/slots/GatesSlotGame.tsx`
+- Add `data-bonus={isBonusActive ? "true" : "false"}` to game wrapper div
+- Add `data-mult-tier={bonusIntensityTier}` for multiplier counter glow scaling
+- Add `data-last-spin={isBonusActive && freeSpinsRemaining === 1 ? "true" : "false"}` for last-spin visual
+- **Bonus auto-spin delay**: Reduce pause between bonus spins from 1200ms to 500ms (spec says 500ms)
+- **Bonus tumble escalation**: Apply stronger screen shake earlier in bonus (chain >= 2 instead of >= 3)
+- **Bonus column stop**: Play stronger impact sound in bonus via a new `playBonusColumnStop()` call
+- **Bonus multiplier collection**: Add thunder boom + screen pulse on multiplier collection in bonus (existing flow, add `setScreenShake('normal')` and `setShowLightningFlash(true)` around multiplier fly phase)
+- **Bonus end sequence**: After `showBonusComplete` is set, set intensity to climax briefly before the overlay takes over
+- **Retrigger visual**: When retrigger detected, briefly set intensity to climax + screen shake before showing retrigger overlay
+
+### 5. `src/styles/gates-intensity.css`
+- No changes needed; bonus overrides go in the new file
+
+### 6. `src/lib/slotSoundEffects.ts`
+Add bonus-specific sound methods:
+- `playBonusColumnStop()`: Heavier thud with electric crackle overtone
+- `playBonusThunderCrack()`: Sharp thunder crack for final column in bonus
+- `playMultiplierSlam()`: Deep bass boom when multiplier hits the counter
+- `playBonusWinSwell()`: Orchestral/choir swell for large bonus wins (ascending chord)
+
+### 7. `src/components/slots/BonusEntrySequence.tsx`
+- Add Phase 1 (Freeze 200ms): Grid freeze visual (already handled by spin lock)
+- Enhance Phase 2 (Lightning): Stronger flash, screen shake class on mount
+- Add Phase 3 (Environment Shift): Transition background darker, show multiplier counter reset
+- Keep existing spins-reveal phase but add "FREE SPINS AWARDED" gold animated text
+
+### 8. `src/components/slots/GatesBonusEndOverlay.tsx`
+- Add storm peak phase before count-up (Zeus lightning pose, bright flash)
+- Add calm transition phase (storm reduces, clouds lighten)
+- Enhance count-up with win-tier-based effects:
+  - Small: fast gold count
+  - Medium: thunder flash every 0.5s
+  - Large: camera shake + lightning during count
+  - Very large: storm chaos + bright flashes
+- Add final thunder hit at end of count
+
+### 9. `src/components/slots/GatesZeusCharacter.tsx`
+- Accept new prop `isBonusActive: boolean`
+- In bonus idle: Zeus floats slightly higher (translate-y offset)
+- In bonus mode: Eyes glow brighter at all states, lightning crackle is constant (not random interval)
+- Bonus climax: More dramatic arm raise animation
+
+### 10. `src/pages/GatesOfFedesvin.tsx`
+- Add `import "@/styles/gates-bonus-intensity.css";`
+
+---
+
+## Detailed Bonus Behavior Changes
+
+### Between Free Spins (the key differentiator)
+- Storm does NOT fully calm: `useGatesIntensity` returns `'win'` as floor instead of `'idle'` when bonus is active and `tumblePhase === 'idle'`
+- Multiplier counter stays glowing via CSS `[data-bonus="true"] .bonus-multiplier-counter`
+- Zeus remains energized via `isBonusActive` prop
+- Auto-spin delay reduced to 500ms
+
+### Bonus Tumble Escalation (stronger than base)
+- First tumble: Brighter highlights (CSS override for `[data-bonus="true"] .gates-win-highlight`)
+- Second tumble: Lightning flash behind Zeus, camera shake begins
+- Third tumble: Zeus aggressive pose, grid bright pulse
+- Fourth+: 150ms slow-motion (already exists at chain 4), heavy thunder, screen glow pulses
+
+### Multiplier Collection in Bonus (enhanced)
+- On landing: Purple lightning burst (additional CSS class `gates-bonus-mult-landing`)
+- On collection: Existing fly animation + new `playMultiplierSlam()` sound + screen pulse + counter flash white on impact
+- Storm intensifies after each collected multiplier (driven by `bonusIntensityTier` scaling)
+
+### Last Free Spin
+- Free spin counter pulses red-gold via `data-last-spin="true"` CSS
+- Storm slightly intensifies
+- Zeus animation more dramatic
 
 ---
 
 ## Technical Notes
 
-- All intensity transitions use CSS `transition` properties (300-500ms) for smooth state changes, not JavaScript animation loops.
-- The `data-intensity` attribute pattern avoids prop drilling and keeps the CSS self-contained.
-- Wind ambience audio is a filtered white noise node that runs continuously at low volume; it's started/stopped based on the intensity hook lifecycle.
-- The climax zoom uses `transform-origin: center` to scale from the grid center.
-- Column stop stagger (0/70/140/210/280/350ms) is applied via `animationDelay` inline styles, matching the existing pattern in the codebase.
+- All bonus overrides use CSS specificity via `[data-bonus="true"]` selector, layered on top of existing intensity system -- no base game changes needed
+- The `bonusIntensityTier` (low/mid/high/extreme) is derived from cumulative multiplier: 0-10x = low, 11-25x = mid, 26-50x = high, 51+ = extreme
+- Bonus auto-spin 500ms delay replaces the current 1200ms in the `finally` block of `handleSpin`
+- Sound methods follow existing Web Audio API oscillator pattern in `slotSoundEffects.ts`
 
