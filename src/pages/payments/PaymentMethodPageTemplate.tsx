@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { FAQSection } from "@/components/FAQSection";
 import { SEO } from "@/components/SEO";
-import { buildFaqSchema, buildArticleSchema, SITE_URL } from "@/lib/seo";
+import { buildFaqSchema, buildArticleSchema, buildHowToSchema, SITE_URL } from "@/lib/seo";
 import { AuthorBio } from "@/components/AuthorBio";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
 import { RelatedGuides } from "@/components/RelatedGuides";
@@ -70,6 +70,11 @@ interface PaymentMethodPageProps {
   currentPath: string;
   responsibleGamingText?: string;
   additionalSections?: AdditionalSection[];
+  /** Optional HowTo steps – when provided, generates HowTo JSON-LD in the @graph */
+  howToSteps?: { name: string; text: string }[];
+  howToSchemaName?: string;
+  howToSchemaDescription?: string;
+  howToSchemaTotalTime?: string;
 }
 
 const paymentLinks = [
@@ -132,6 +137,10 @@ export function PaymentMethodPage({
   currentPath,
   responsibleGamingText,
   additionalSections,
+  howToSteps,
+  howToSchemaName,
+  howToSchemaDescription,
+  howToSchemaTotalTime,
 }: PaymentMethodPageProps) {
   const { data: siteSettings } = useSiteSettings();
   const heroBackgroundImage = siteSettings?.hero_background;
@@ -148,9 +157,19 @@ export function PaymentMethodPage({
     authorUrl: `${SITE_URL}/forfatter/kevin`,
   });
 
+  const howToJsonLd = howToSteps?.length ? buildHowToSchema({
+    url: `${SITE_URL}${currentPath}`,
+    name: howToSchemaName || `Sådan bruger du ${name} på et dansk casino`,
+    description: howToSchemaDescription || `Trin-for-trin guide til indbetaling og udbetaling med ${name} hos danske casinoer.`,
+    totalTime: howToSchemaTotalTime,
+    steps: howToSteps,
+  }) : null;
+
+  const jsonLdArray = [faqJsonLd, articleSchema, ...(howToJsonLd ? [howToJsonLd] : [])];
+
   return (
     <>
-      <SEO title={seoTitle} description={seoDescription} jsonLd={[faqJsonLd, articleSchema]} />
+      <SEO title={seoTitle} description={seoDescription} jsonLd={jsonLdArray} />
 
       <section
         className="relative overflow-hidden py-12 text-white md:py-20"
