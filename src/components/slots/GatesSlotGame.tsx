@@ -22,6 +22,7 @@ import type { SlotSymbol } from "@/lib/slotGameLogic";
 import { GatesColumn, type ColumnSpinState, type CellAnimState } from "./GatesColumn";
 import { AnimatedWinCounter } from "./AnimatedWinCounter";
 import { BonusEntrySequence } from "./BonusEntrySequence";
+import { GatesRetriggerOverlay } from "./GatesRetriggerOverlay";
 
 const SYMBOL_SIZE = 100;
 const SYMBOL_GAP = 4;
@@ -74,8 +75,10 @@ export function GatesSlotGame({ gameId = "gates-of-fedesvin" }: GatesSlotGamePro
   const [cumulativeMultiplier, setCumulativeMultiplier] = useState(0);
   const [showBonusTrigger, setShowBonusTrigger] = useState(false);
   const [showBonusComplete, setShowBonusComplete] = useState(false);
+  const [showRetrigger, setShowRetrigger] = useState(false);
   const showBonusTriggerRef = useRef(false);
   const showBonusCompleteRef = useRef(false);
+  const showRetriggerRef = useRef(false);
   const pendingBonusStateRef = useRef<any>(null);
 
   const spinLockRef = useRef(false);
@@ -273,7 +276,7 @@ export function GatesSlotGame({ gameId = "gates-of-fedesvin" }: GatesSlotGamePro
 
   const handleSpin = useCallback(async () => {
     if (spinLockRef.current || !symbols || !user || isSpinning) return;
-    if (showBonusTriggerRef.current || showBonusCompleteRef.current) return;
+    if (showBonusTriggerRef.current || showBonusCompleteRef.current || showRetriggerRef.current) return;
     
     const isBonusSpin = isBonusActive && freeSpinsRemaining > 0;
     if (!isBonusSpin && !hasEnoughSpins(bet)) return;
@@ -380,6 +383,15 @@ export function GatesSlotGame({ gameId = "gates-of-fedesvin" }: GatesSlotGamePro
               // Reset counters for bonus entry
               setRunningWin(0);
               setRunningMultiplier(0);
+            } else if (bs.isRetrigger) {
+              // Retrigger during bonus — show retrigger overlay
+              setShowRetrigger(true);
+              showRetriggerRef.current = true;
+              setFreeSpinsRemaining(bs.freeSpinsRemaining);
+              setTotalFreeSpins(bs.totalFreeSpins);
+              setBonusWinnings(bs.bonusWinnings || 0);
+              setCumulativeMultiplier(bs.cumulativeMultiplier || 0);
+              setRunningMultiplier(bs.cumulativeMultiplier || 0);
             } else {
               setFreeSpinsRemaining(bs.freeSpinsRemaining);
               setTotalFreeSpins(bs.totalFreeSpins);
@@ -427,9 +439,14 @@ export function GatesSlotGame({ gameId = "gates-of-fedesvin" }: GatesSlotGamePro
     }
   }, [symbols, user, isSpinning, bet, isBonusActive, freeSpinsRemaining, hasEnoughSpins, serverSpin, processTumbleSteps, queryClient, isAutoSpinning, autoSpinsRemaining, stopAutoSpin]);
 
+  const handleRetriggerComplete = useCallback(() => {
+    setShowRetrigger(false);
+    showRetriggerRef.current = false;
+  }, []);
+
   // Auto-spin trigger
   useEffect(() => {
-    if (isAutoSpinning && !isSpinning && !showBonusTriggerRef.current && !showBonusCompleteRef.current) {
+    if (isAutoSpinning && !isSpinning && !showBonusTriggerRef.current && !showBonusCompleteRef.current && !showRetriggerRef.current) {
       autoSpinTimeoutRef.current = setTimeout(() => handleSpin(), 800);
     }
   }, [isAutoSpinning]);
@@ -471,6 +488,13 @@ export function GatesSlotGame({ gameId = "gates-of-fedesvin" }: GatesSlotGamePro
         isActive={showBonusTrigger}
         freeSpinsAwarded={pendingBonusStateRef.current?.freeSpinsRemaining || 15}
         onComplete={handleBonusEntryComplete}
+      />
+
+      {/* Retrigger overlay */}
+      <GatesRetriggerOverlay
+        isActive={showRetrigger}
+        spinsAwarded={5}
+        onComplete={handleRetriggerComplete}
       />
 
       {/* Bonus complete overlay */}
