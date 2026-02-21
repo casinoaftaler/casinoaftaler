@@ -173,6 +173,9 @@ export const seoRoutes: SeoRoute[] = [
   { path: "/casinoer/spil-casino-for-sjov", changefreq: "weekly", priority: 0.8, lastmod: "2026-02-15" },
   { path: "/casinoer/casino-og-skat", changefreq: "weekly", priority: 0.8, lastmod: "2026-02-15" },
 
+  // ── Casino Nyheder ──
+  { path: "/casino-nyheder", changefreq: "daily", priority: 0.9, lastmod: "2026-02-21" },
+
   // ── Community & Highlights ──
   { path: "/community", changefreq: "daily", priority: 0.6, lastmod: "2026-02-20" },
   { path: "/community/slots", changefreq: "daily", priority: 0.6, lastmod: "2026-02-20" },

@@ -167,6 +167,8 @@ const GameShowsGuide = lazy(() => import("./pages/casinospil/GameShowsGuide"));
 const Forfatter = lazy(() => import("./pages/Forfatter"));
 const ForfatterKevin = lazy(() => import("./pages/ForfatterKevin"));
 const SaadanTesterVi = lazy(() => import("./pages/SaadanTesterVi"));
+const CasinoNyheder = lazy(() => import("./pages/CasinoNyheder"));
+const CasinoNyhedArticle = lazy(() => import("./pages/CasinoNyhedArticle"));
 
 const NotFound = lazy(() => import("./pages/NotFound"));
 const CasinoerHub = lazy(() => import("./pages/casinoer/CasinoerHub"));
@@ -257,6 +259,8 @@ const App = () => (
                 <Route path="/saadan-tester-vi-casinoer" element={<SaadanTesterVi />} />
                 
                 <Route path="/kontakt" element={<Kontakt />} />
+                <Route path="/casino-nyheder" element={<CasinoNyheder />} />
+                <Route path="/casino-nyheder/:slug" element={<CasinoNyhedArticle />} />
                 
                 <Route path="/casino-bonus" element={<CasinoBonus />} />
                 <Route path="/ansvarligt-spil" element={<AnsvarligtSpil />} />

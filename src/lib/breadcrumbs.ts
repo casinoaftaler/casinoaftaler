@@ -169,6 +169,8 @@ export const routeLabels: Record<string, string> = {
   "/casinoer/mobil-casinoer": "Mobil Casinoer",
   "/casinoer/spil-casino-for-sjov": "Spil Casino for Sjov",
   "/casinoer/casino-og-skat": "Casino og Skat",
+  // Casino Nyheder
+  "/casino-nyheder": "Casino Nyheder",
   // Community (kun indexerbare sider)
   "/community": "Community",
   "/community/slots": "Spillehal",

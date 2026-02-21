@@ -193,6 +193,15 @@ export function Footer() {
                   Spiludviklere
                 </Link>
               </li>
+              <li>
+                <Link
+                  to="/casino-nyheder"
+                  className="flex items-center gap-2 text-muted-foreground transition-colors hover:text-foreground"
+                >
+                  <BookOpen className="h-4 w-4" />
+                  Casino Nyheder
+                </Link>
+              </li>
             </ul>
           </div>
 
