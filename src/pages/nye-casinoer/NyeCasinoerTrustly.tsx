@@ -179,6 +179,43 @@ const NyeCasinoerTrustly = () => {
           </div>
         </section>
 
+        <section className="mb-12">
+          <h2 className="mb-4 text-3xl font-bold">Trustly vs. andre betalingsmetoder</h2>
+          <p className="mb-4 text-muted-foreground leading-relaxed">Her er en sammenligning af Trustly med andre populære betalingsmetoder hos nye danske casinoer:</p>
+          <div className="overflow-x-auto rounded-lg border border-border">
+            <table className="w-full text-sm">
+              <thead>
+                <tr className="border-b border-border bg-muted/50">
+                  <th className="px-4 py-3 text-left font-semibold">Metode</th>
+                  <th className="px-4 py-3 text-left font-semibold">Indbetaling</th>
+                  <th className="px-4 py-3 text-left font-semibold">Udbetaling</th>
+                  <th className="px-4 py-3 text-left font-semibold">Gebyrer</th>
+                  <th className="px-4 py-3 text-left font-semibold">Konto krævet</th>
+                </tr>
+              </thead>
+              <tbody>
+                {[
+                  { method: "Trustly", deposit: "Instant", withdrawal: "5 min", fees: "Ingen", account: "Nej" },
+                  { method: "MobilePay", deposit: "Instant", withdrawal: "1–24 timer", fees: "Ingen", account: "Ja (app)" },
+                  { method: "Visa/Mastercard", deposit: "Instant", withdrawal: "1–3 dage", fees: "Evt. gebyr", account: "Nej" },
+                  { method: "PayPal", deposit: "Instant", withdrawal: "1–24 timer", fees: "Ingen", account: "Ja" },
+                  { method: "Bankoverførsel", deposit: "1–3 dage", withdrawal: "2–5 dage", fees: "Evt. gebyr", account: "Nej" },
+                ].map((row) => (
+                  <tr key={row.method} className="border-b border-border last:border-0">
+                    <td className="px-4 py-3 font-medium">{row.method}</td>
+                    <td className="px-4 py-3 text-muted-foreground">{row.deposit}</td>
+                    <td className="px-4 py-3 text-muted-foreground">{row.withdrawal}</td>
+                    <td className="px-4 py-3 text-muted-foreground">{row.fees}</td>
+                    <td className="px-4 py-3 text-muted-foreground">{row.account}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <Separator className="my-10" />
+
         <AuthorBio author="jonas" />
         <RelatedGuides currentPath="/nye-casinoer/trustly" />
         <FAQSection title="Ofte stillede spørgsmål om Trustly og nye casinoer" faqs={faqs} />
