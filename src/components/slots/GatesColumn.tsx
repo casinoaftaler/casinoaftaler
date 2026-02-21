@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef, useCallback } from "react";
+import React from "react";
 import { cn } from "@/lib/utils";
 import { GATES_ROWS } from "@/lib/gatesGameLogic";
 import { isMultiplierSymbol, getMultiplierImageUrl, getMultiplierSymbolInfo } from "@/lib/gatesMultiplierSymbols";
@@ -6,9 +6,8 @@ import type { SlotSymbol } from "@/lib/slotGameLogic";
 
 const SYMBOL_WIDTH = 140;
 const SYMBOL_HEIGHT = 108;
-const CYCLE_INTERVAL = 70;
 
-export type ColumnSpinState = 'idle' | 'spinning' | 'landing' | 'landed';
+export type ColumnSpinState = 'idle' | 'spinning' | 'landing' | 'landed' | 'dropping-off' | 'dropping-in';
 
 /** Per-cell animation state for tumble visuals */
 export type CellAnimState = 'idle' | 'winning' | 'removing' | 'dropping' | 'filling' | 'collecting' | 'scatter-pulse';
@@ -41,51 +40,20 @@ export const GatesColumn = React.memo(function GatesColumn({
   tumblePhase,
   animationEpoch = 0,
 }: GatesColumnProps) {
-  const [cyclingIds, setCyclingIds] = useState<string[]>([]);
-  const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
-
-  const pickRandom = useCallback(() => {
-    if (!symbols.length) return [];
-    const ids: string[] = [];
-    for (let r = 0; r < GATES_ROWS; r++) {
-      ids.push(symbols[Math.floor(Math.random() * symbols.length)].id);
-    }
-    return ids;
-  }, [symbols]);
-
-  useEffect(() => {
-    if (spinState === 'spinning') {
-      setCyclingIds(pickRandom());
-      intervalRef.current = setInterval(() => {
-        setCyclingIds(pickRandom());
-      }, CYCLE_INTERVAL);
-    } else {
-      if (intervalRef.current) {
-        clearInterval(intervalRef.current);
-        intervalRef.current = null;
-      }
-    }
-    return () => {
-      if (intervalRef.current) clearInterval(intervalRef.current);
-    };
-  }, [spinState, pickRandom]);
-
-  const isSpinning = spinState === 'spinning';
+  const isDroppingOff = spinState === 'dropping-off';
+  const isDroppingIn = spinState === 'dropping-in';
   const isLanding = spinState === 'landing';
-  const displayIds = isSpinning ? cyclingIds : finalSymbolIds;
 
   return (
     <div
       className={cn(
         "flex flex-col transition-[filter] duration-200",
-        isSpinning && "gates-column-spinning",
-        isLanding && "gates-column-landing",
         tumblePhase !== 'idle' && tumblePhase !== 'spinning' ? "overflow-visible" : "overflow-hidden",
       )}
       style={{ gap: 5 }}
     >
       {Array.from({ length: GATES_ROWS }).map((_, row) => {
-        const symbolId = displayIds[row];
+        const symbolId = finalSymbolIds[row];
         const isMult = symbolId ? isMultiplierSymbol(symbolId) : false;
         const symbol = !isMult && symbolId ? symbolsById.get(symbolId) : null;
         const multInfo = isMult && symbolId ? getMultiplierSymbolInfo(symbolId) : null;
@@ -103,6 +71,8 @@ export const GatesColumn = React.memo(function GatesColumn({
               "bg-blue-950/50 border border-blue-500/10",
               isWinning && "gates-win-highlight",
               isLanding && "gates-symbol-land",
+              isDroppingOff && "gates-drop-off",
+              isDroppingIn && "gates-drop-in",
               cellAnim === 'winning' && "gates-win-highlight",
               cellAnim === 'removing' && "gates-tumble-remove",
               cellAnim === 'collecting' && "gates-multiplier-fly-to-bank",
@@ -114,7 +84,9 @@ export const GatesColumn = React.memo(function GatesColumn({
               width: SYMBOL_WIDTH,
               height: SYMBOL_HEIGHT,
               '--gravity-offset': cellAnim === 'dropping' ? `${-(cellDropOffsets.get(flatIndex) || (SYMBOL_HEIGHT + 4))}px` : undefined,
-              animationDelay: isLanding ? `${row * 50}ms` : 
+              animationDelay: isDroppingOff ? `${row * 40}ms` :
+                isDroppingIn ? `${row * 50}ms` :
+                isLanding ? `${row * 50}ms` : 
                 cellAnim === 'filling' ? `${row * 40}ms` :
                 cellAnim === 'dropping' ? `${row * 30}ms` : undefined,
             } as React.CSSProperties}

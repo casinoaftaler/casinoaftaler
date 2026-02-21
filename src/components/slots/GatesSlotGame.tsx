@@ -399,13 +399,16 @@ export function GatesSlotGame({ gameId = "gates-of-fedesvin" }: GatesSlotGamePro
     setTumbleChainLength(0);
     serverResultRef.current = null;
 
-    // Stagger column spin start (left to right)
-    const STAGGER_MS = 120;
+    // Phase 1: Drop-off — stagger columns left to right
+    const STAGGER_MS = 80;
+    const DROP_OFF_DURATION = 350; // matches CSS .gates-drop-off duration
+    const DROP_IN_DURATION = 400; // matches CSS .gates-drop-in duration
+
     for (let c = 0; c < GATES_COLS; c++) {
       setTimeout(() => {
         setColumnSpinStates(prev => {
           const next = [...prev];
-          next[c] = 'spinning';
+          next[c] = 'dropping-off';
           return next;
         });
       }, c * STAGGER_MS);
@@ -414,41 +417,38 @@ export function GatesSlotGame({ gameId = "gates-of-fedesvin" }: GatesSlotGamePro
     slotSounds.playSpinStart();
 
     try {
-      // Step 2: Server request with clientSeed + nonce for provably fair RNG
-      const response = await serverSpin(bet, isBonusSpin, clientSeedRef.current, nonceRef.current);
+      // Fire server request in parallel with drop-off animation
+      const serverPromise = serverSpin(bet, isBonusSpin, clientSeedRef.current, nonceRef.current);
+
+      // Wait for all drop-off animations to complete
+      const totalDropOffTime = DROP_OFF_DURATION + (GATES_COLS - 1) * STAGGER_MS;
+      await new Promise(r => setTimeout(r, totalDropOffTime));
+
+      // Grid is now visually empty — wait for server result
+      const response = await serverPromise;
       if (!response) throw new Error("Spin failed");
 
       const result = response.result as any;
 
-      // Stop columns left to right with stagger
-      await new Promise<void>((resolve) => {
-        if (result.tumbleSteps && result.tumbleSteps.length > 0) {
-          // Set the initial grid from the first tumble step
-          setGrid(result.tumbleSteps[0].grid);
-        }
-        
-        let landed = 0;
-        for (let c = 0; c < GATES_COLS; c++) {
-          const timer = setTimeout(() => {
-            setColumnSpinStates(prev => {
-              const next = [...prev];
-              next[c] = 'landing';
-              return next;
-            });
-            // After landing animation, mark as landed
-            setTimeout(() => {
-              setColumnSpinStates(prev => {
-                const next = [...prev];
-                next[c] = 'landed';
-                return next;
-              });
-              landed++;
-              if (landed === GATES_COLS) resolve();
-            }, 400);
-          }, c * STAGGER_MS);
-          columnStopTimersRef.current.push(timer);
-        }
-      });
+      // Set the new grid data
+      if (result.tumbleSteps && result.tumbleSteps.length > 0) {
+        setGrid(result.tumbleSteps[0].grid);
+      }
+
+      // Phase 2: Drop-in — stagger columns left to right
+      for (let c = 0; c < GATES_COLS; c++) {
+        setTimeout(() => {
+          setColumnSpinStates(prev => {
+            const next = [...prev];
+            next[c] = 'dropping-in';
+            return next;
+          });
+        }, c * STAGGER_MS);
+      }
+
+      // Wait for all drop-in animations to complete
+      const totalDropInTime = DROP_IN_DURATION + (GATES_COLS - 1) * STAGGER_MS;
+      await new Promise(r => setTimeout(r, totalDropInTime));
 
       // All columns landed — reset to idle
       setColumnSpinStates(Array(GATES_COLS).fill('idle'));
