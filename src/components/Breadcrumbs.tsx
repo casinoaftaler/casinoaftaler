@@ -3,12 +3,29 @@ import { ChevronRight, Home } from "lucide-react";
 import { getBreadcrumbItems } from "@/lib/breadcrumbs";
 
 /**
- * Renders the visual breadcrumb <nav>.
- * JSON-LD (BreadcrumbList) is now injected via SEO.tsx into the unified @graph.
+ * Dynamic route prefixes where the global breadcrumb should NOT render,
+ * because the page itself renders <Breadcrumbs dynamicLabel="..." />.
  */
-export function Breadcrumbs() {
+const DYNAMIC_PREFIXES = ["/casino-nyheder/"];
+
+interface BreadcrumbsProps {
+  /** Override the last breadcrumb label for dynamic pages (e.g. article title). */
+  dynamicLabel?: string;
+}
+
+/**
+ * Renders the visual breadcrumb <nav>.
+ * JSON-LD (BreadcrumbList) is injected via SEO.tsx into the unified @graph.
+ */
+export function Breadcrumbs({ dynamicLabel }: BreadcrumbsProps = {}) {
   const { pathname } = useLocation();
-  const items = getBreadcrumbItems(pathname);
+
+  // When rendered globally (no dynamicLabel), skip dynamic routes
+  if (!dynamicLabel && DYNAMIC_PREFIXES.some((p) => pathname.startsWith(p))) {
+    return null;
+  }
+
+  const items = getBreadcrumbItems(pathname, dynamicLabel);
 
   if (!items) return null;
 

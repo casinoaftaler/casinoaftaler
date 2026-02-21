@@ -27,6 +27,8 @@ interface SEOProps {
   image?: string;
   noindex?: boolean;
   jsonLd?: Record<string, unknown> | Record<string, unknown>[];
+  /** Override the last breadcrumb label (for dynamic pages like news articles). */
+  breadcrumbLabel?: string;
 }
 
 /**
@@ -40,7 +42,7 @@ function formatTitle(raw: string): string {
   return `${stripped} | ${SITE_BRAND}`;
 }
 
-export function SEO({ title, description, type = "website", image, noindex, jsonLd }: SEOProps) {
+export function SEO({ title, description, type = "website", image, noindex, jsonLd, breadcrumbLabel }: SEOProps) {
   const { pathname } = useLocation();
   const canonicalUrl = getCanonicalUrl(pathname);
   const formattedTitle = formatTitle(title);
@@ -55,7 +57,7 @@ export function SEO({ title, description, type = "website", image, noindex, json
 
   // Build BreadcrumbList and inject it alongside page-level jsonLd so it
   // gets absorbed into the unified @graph when an Article @graph is present.
-  const breadcrumbSchema = !noindex ? buildBreadcrumbListSchema(pathname) : null;
+  const breadcrumbSchema = !noindex ? buildBreadcrumbListSchema(pathname, breadcrumbLabel) : null;
 
   const rawJsonLd: Record<string, unknown>[] = [
     ...(jsonLd ? (Array.isArray(jsonLd) ? jsonLd : [jsonLd]) : []),
