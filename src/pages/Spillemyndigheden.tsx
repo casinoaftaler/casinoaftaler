@@ -18,7 +18,7 @@ const keyFacts = [
   { label: "Placering", value: "Odense, Danmark" },
   { label: "Antal medarbejdere", value: "100+" },
   { label: "Ressorterer under", value: "Skatteministeriet" },
-  { label: "Blokerede sider (2024)", value: "83 ulovlige spillesider" },
+  { label: "Blokerede sider (2025)", value: "178 ulovlige spillesider" },
   { label: "Officiel hjemmeside", value: "spillemyndigheden.dk" },
 ];
 
@@ -26,17 +26,17 @@ const licensTypes = [
   {
     title: "Online Casino",
     description: "Dækker alle former for online casinospil, herunder spilleautomater, bordspil og live casino. Kræver dokumentation for teknisk sikkerhed, ansvarligt spil og anti-hvidvask.",
-    fee: "Ca. 285.800 kr.",
+    fee: "Ca. 343.300 kr.",
   },
   {
     title: "Væddemål (Betting)",
     description: "Licens til online sportsbetting og væddemål. Operatøren skal bevise fair odds, korrekt udbetaling og overholdelse af dansk lov.",
-    fee: "Ca. 285.800 kr.",
+    fee: "Ca. 343.300 kr.",
   },
   {
     title: "Kombineret Licens",
     description: "Casino- og væddemålslicens samlet i én. Den mest omfattende licenstype, der kræver fuld overholdelse af begge regelsæt.",
-    fee: "Ca. 400.100 kr.",
+    fee: "Ca. 480.600 kr.",
   },
   {
     title: "Landbaseret Casino",
@@ -90,7 +90,7 @@ const spillemyndighedenFaqs: { question: string; answer: string | React.ReactNod
   {
     question: "Hvad risikerer jeg ved at spille på et casino uden dansk licens?",
     answer:
-      "Konsekvenserne er vidtrækkende. Du mister adgang til ROFUS-selvudelukkelse, klageadgang via Spillemyndigheden og garantien for, at dine indbetalinger og gevinster er sikre. Ulicenserede casinoer er ikke forpligtet til at bruge certificerede tilfældighedsgeneratorer (RNG), hvilket betyder, at spilresultater potentielt kan manipuleres. Gevinster fra ulicenserede casinoer er desuden skattepligtige i Danmark, i modsætning til skattefri gevinster fra licenserede operatører. Spillemyndigheden blokkerede 83 ulovlige spillesider i 2024 alene, og tallet stiger hvert år. Der er også ingen garanti for, at dine persondata håndteres forsvarligt.",
+      "Konsekvenserne er vidtrækkende. Du mister adgang til ROFUS-selvudelukkelse, klageadgang via Spillemyndigheden og garantien for, at dine indbetalinger og gevinster er sikre. Ulicenserede casinoer er ikke forpligtet til at bruge certificerede tilfældighedsgeneratorer (RNG), hvilket betyder, at spilresultater potentielt kan manipuleres. Gevinster fra ulicenserede casinoer er desuden skattepligtige i Danmark, i modsætning til skattefri gevinster fra licenserede operatører. Spillemyndigheden blokkerede 178 ulovlige spillesider i 2025, og tallet stiger hvert år. Der er også ingen garanti for, at dine persondata håndteres forsvarligt.",
   },
   {
     question: "Hvad er ROFUS, og hvordan fungerer selvudelukkelsessystemet teknisk?",
@@ -119,7 +119,7 @@ const spillemyndighedenFaqs: { question: string; answer: string | React.ReactNod
   {
     question: "Hvad koster en dansk spillelicens, og hvilke økonomiske forpligtelser har operatørerne?",
     answer:
-      "En online casinolicens koster ca. 285.800 kr. i ansøgningsgebyr, mens en kombineret casino- og væddemålslicens koster ca. 400.100 kr. Ud over licensgebyret betaler operatørerne en afgift på 28 % af bruttospilleindtægten (GGR) – det vil sige forskellen mellem spillernes indsatser og udbetalte gevinster. Det er denne afgift, der gør gevinster skattefri for spillerne. Operatørerne skal desuden stille en bankgaranti på minimum 750.000 kr. som sikkerhed for spillernes indeståender. De samlede etableringsomkostninger for en ny dansk casinolicens – inklusiv teknisk certificering, juridisk rådgivning og compliance-setup – estimeres typisk til 2–5 millioner kr.",
+      "En online casinolicens koster ca. 343.300 kr. i ansøgningsgebyr, mens en kombineret casino- og væddemålslicens koster ca. 480.600 kr. Ud over licensgebyret betaler operatørerne en afgift på 28 % af bruttospilleindtægten (GGR) – det vil sige forskellen mellem spillernes indsatser og udbetalte gevinster. Det er denne afgift, der gør gevinster skattefri for spillerne. Operatørerne skal desuden stille en bankgaranti på minimum 750.000 kr. som sikkerhed for spillernes indeståender. De samlede etableringsomkostninger for en ny dansk casinolicens – inklusiv teknisk certificering, juridisk rådgivning og compliance-setup – estimeres typisk til 2–5 millioner kr.",
   },
 ];
 
@@ -274,7 +274,7 @@ const Spillemyndigheden = () => {
               </CardHeader>
               <CardContent>
                 <p className="text-sm text-muted-foreground leading-relaxed">
-                  En central del af Spillemyndighedens arbejde er at bekæmpe ulovlige spillesider, der opererer uden dansk licens. Myndigheden samarbejder med danske internetudbydere og politiet for aktivt at blokere adgangen til disse sider. I 2024 blokerede Spillemyndigheden 83 ulovlige spillesider – det højeste antal nogensinde. Denne indsats sikrer, at danske spillere kanaliseres hen til licenserede og trygge platforme, hvor de er beskyttet af loven.
+                  En central del af Spillemyndighedens arbejde er at bekæmpe ulovlige spillesider, der opererer uden dansk licens. Myndigheden samarbejder med danske internetudbydere og politiet for aktivt at blokere adgangen til disse sider. I 2025 blokerede Spillemyndigheden 178 ulovlige spillesider – det højeste antal nogensinde. Denne indsats sikrer, at danske spillere kanaliseres hen til licenserede og trygge platforme, hvor de er beskyttet af loven.
                 </p>
               </CardContent>
             </Card>
