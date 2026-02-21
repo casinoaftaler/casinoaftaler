@@ -10,7 +10,7 @@ const CYCLE_INTERVAL = 70;
 export type ColumnSpinState = 'idle' | 'spinning' | 'landing' | 'landed';
 
 /** Per-cell animation state for tumble visuals */
-export type CellAnimState = 'idle' | 'winning' | 'removing' | 'dropping' | 'filling';
+export type CellAnimState = 'idle' | 'winning' | 'removing' | 'dropping' | 'filling' | 'collecting';
 
 interface GatesColumnProps {
   col: number;
@@ -99,6 +99,7 @@ export const GatesColumn = React.memo(function GatesColumn({
               isLanding && "gates-symbol-land",
               cellAnim === 'winning' && "gates-win-highlight",
               cellAnim === 'removing' && "gates-tumble-remove",
+              cellAnim === 'collecting' && "gates-multiplier-fly-to-bank",
               cellAnim === 'dropping' && "gates-tumble-gravity",
               cellAnim === 'filling' && "gates-tumble-drop",
             )}
@@ -128,8 +129,20 @@ export const GatesColumn = React.memo(function GatesColumn({
             )}
             
             {/* Multiplier symbol rendering - first-class grid citizen */}
-            {cellAnim !== 'removing' && isMult && multImageUrl && (
+            {cellAnim !== 'removing' && cellAnim !== 'collecting' && isMult && multImageUrl && (
               <div className="w-full h-full flex items-center justify-center gates-multiplier-pulse">
+                <img
+                  src={multImageUrl}
+                  alt={multInfo?.label || 'Multiplier'}
+                  className="w-[90%] h-[90%] object-contain"
+                  draggable={false}
+                />
+              </div>
+            )}
+
+            {/* Multiplier fly-to-bank collection animation */}
+            {cellAnim === 'collecting' && isMult && multImageUrl && (
+              <div className="w-full h-full flex items-center justify-center gates-multiplier-fly-to-bank">
                 <img
                   src={multImageUrl}
                   alt={multInfo?.label || 'Multiplier'}
