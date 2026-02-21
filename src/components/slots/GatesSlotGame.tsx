@@ -450,6 +450,8 @@ export function GatesSlotGame({ gameId = "gates-of-fedesvin" }: GatesSlotGamePro
                   const scatterAnims = new Map<number, CellAnimState>();
                   scatterPos.forEach(pos => scatterAnims.set(pos, 'scatter-pulse'));
                   setCellAnimStates(scatterAnims);
+                  // Play scatter celebration sound during pulse
+                  slotSounds.playScatterCelebration();
                   // Show scatters pulsing for 1.5s, then show bonus entry
                   await new Promise(r => setTimeout(r, 1500));
                   setCellAnimStates(new Map());
