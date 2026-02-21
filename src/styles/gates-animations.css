@@ -281,7 +281,7 @@
 }
 
 .gates-column-spinning {
-  filter: blur(0.5px);
+  filter: blur(3px);
   animation: gates-column-cycle 0.08s linear infinite alternate;
 }
 
