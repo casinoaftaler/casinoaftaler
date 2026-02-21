@@ -65,6 +65,42 @@ export type Database = {
         }
         Relationships: []
       }
+      casino_compliance_history: {
+        Row: {
+          casino_slug: string
+          change_type: string
+          changed_at: string
+          created_at: string
+          field_changed: string
+          id: string
+          new_value: string
+          old_value: string
+          source_url: string
+        }
+        Insert: {
+          casino_slug: string
+          change_type: string
+          changed_at?: string
+          created_at?: string
+          field_changed: string
+          id?: string
+          new_value: string
+          old_value: string
+          source_url?: string
+        }
+        Update: {
+          casino_slug?: string
+          change_type?: string
+          changed_at?: string
+          created_at?: string
+          field_changed?: string
+          id?: string
+          new_value?: string
+          old_value?: string
+          source_url?: string
+        }
+        Relationships: []
+      }
       casino_news: {
         Row: {
           author_id: string

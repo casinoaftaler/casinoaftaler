@@ -77,3 +77,6 @@ verify_jwt = false
 
 [functions.update-casino-compliance]
 verify_jwt = false
+
+[functions.compliance-export]
+verify_jwt = false
