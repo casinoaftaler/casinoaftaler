@@ -38,3 +38,4 @@ Disallow: /butik
 Disallow: /u/
 
 Sitemap: https://casinoaftaler.dk/sitemap.xml
+Sitemap: https://zhpbqqhtgnblaugrqhqi.supabase.co/functions/v1/sitemap-news

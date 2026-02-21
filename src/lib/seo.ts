@@ -129,6 +129,8 @@ export function buildArticleSchema(opts: {
   url: string;
   datePublished: string;
   dateModified: string;
+  /** Override @type – defaults to "Article". Use "NewsArticle" for news. */
+  articleType?: string;
   authorName?: string;
   authorUrl?: string;
   /** Defaults to Jonas's sameAs list. Pass KEVIN_SAME_AS or custom array to override. */
@@ -157,7 +159,7 @@ export function buildArticleSchema(opts: {
   const videoId = opts.videoId ? `${opts.url}#video` : undefined;
 
   const article = {
-    "@type": "Article",
+    "@type": opts.articleType || "Article",
     "@id": articleId,
     headline: opts.headline,
     description: opts.description,
