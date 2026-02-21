@@ -710,17 +710,15 @@ This is a "Zeus" themed scatter/wild symbol for a Greek mythology slot game.`;
 MAIN SUBJECT:
 - A brilliant, large faceted RUBY gemstone as the central focus
 - Rich, deep crimson red color with internal fire and brilliance
-- Set in an ornate golden Greek-style setting with meander/key pattern border
 - Tiny lightning energy crackling INSIDE the gem, visible through the facets
 - The gem emits a warm red divine glow
 - 3D appearance with realistic light refraction and sparkle
+- The gemstone should be the ONLY focus, floating freely with NO border, NO frame, NO setting around it
 
 COMPOSITION:
 - Gem centered and filling approximately 70% of the frame
-- Golden setting framing the gem elegantly
 - Red divine light radiating outward
-
-${GATES_PREMIUM_FRAME}
+- NO border or frame around the gem — it must appear borderless against the background
 
 ${GATES_BASE_STYLE}`;
   }
@@ -732,17 +730,15 @@ ${GATES_BASE_STYLE}`;
 MAIN SUBJECT:
 - A brilliant, large faceted AMETHYST gemstone as the central focus
 - Rich, deep royal purple color with divine inner glow
-- Set in an ornate golden Greek-style setting with Greek key pattern border
 - Subtle divine purple energy swirling inside the gem
 - The gem emits an ethereal purple glow
 - 3D appearance with realistic light refraction and sparkle
+- The gemstone should be the ONLY focus, floating freely with NO border, NO frame, NO setting around it
 
 COMPOSITION:
 - Gem centered and filling approximately 70% of the frame
-- Golden setting framing the gem elegantly
 - Purple divine light radiating outward
-
-${GATES_PREMIUM_FRAME}
+- NO border or frame around the gem — it must appear borderless against the background
 
 ${GATES_BASE_STYLE}`;
   }
@@ -754,17 +750,15 @@ ${GATES_BASE_STYLE}`;
 MAIN SUBJECT:
 - A brilliant, large faceted EMERALD gemstone as the central focus
 - Rich, vibrant green color with celestial inner light
-- Set in an ornate golden setting with olive branch motifs
 - Subtle celestial green energy glowing inside the gem
 - The gem emits an ethereal green glow
 - 3D appearance with realistic light refraction and sparkle
+- The gemstone should be the ONLY focus, floating freely with NO border, NO frame, NO setting around it
 
 COMPOSITION:
 - Gem centered and filling approximately 70% of the frame
-- Golden olive branch setting framing the gem elegantly
 - Green celestial light radiating outward
-
-${GATES_PREMIUM_FRAME}
+- NO border or frame around the gem — it must appear borderless against the background
 
 ${GATES_BASE_STYLE}`;
   }
@@ -776,17 +770,15 @@ ${GATES_BASE_STYLE}`;
 MAIN SUBJECT:
 - A brilliant, large faceted SAPPHIRE gemstone as the central focus
 - Rich, deep electric blue color with lightning energy inside
-- Set in an ornate golden setting with trident motif accents
 - Electric blue lightning energy crackling inside the gem
 - The gem emits a powerful blue electric glow
 - 3D appearance with realistic light refraction and sparkle
+- The gemstone should be the ONLY focus, floating freely with NO border, NO frame, NO setting around it
 
 COMPOSITION:
 - Gem centered and filling approximately 70% of the frame
-- Golden trident-motif setting framing the gem elegantly
 - Blue electric light radiating outward
-
-${GATES_PREMIUM_FRAME}
+- NO border or frame around the gem — it must appear borderless against the background
 
 ${GATES_BASE_STYLE}`;
   }
