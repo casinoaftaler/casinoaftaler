@@ -31,7 +31,7 @@ interface GatesSettings {
 
 const DEFAULTS: GatesSettings = {
   multiplierChanceBase: 0.04,
-  multiplierChanceBonus: 0.14,
+  multiplierChanceBonus: 0.056,
   minMatch: 8,
   scatterTrigger: 4,
   scatterRetrigger: 3,
