@@ -58,6 +58,11 @@ const faqs = [
 function buildSchemas(lastChecked: string | null, complianceData: CasinoComplianceRow[] | undefined) {
   const dateModified = lastChecked ? new Date(lastChecked).toISOString().split("T")[0] : "2026-02-21";
 
+  // Collect unique license source URLs as citations
+  const citations = complianceData
+    ? [...new Set(complianceData.map(c => c.license_source_url).filter(Boolean))]
+    : [];
+
   const datasetSchema = {
     "@type": "Dataset",
     "@id": `${SITE_URL}/casino-compliance#dataset`,
@@ -68,6 +73,12 @@ function buildSchemas(lastChecked: string | null, complianceData: CasinoComplian
     license: "https://creativecommons.org/licenses/by-nc/4.0/",
     temporalCoverage: dateModified,
     spatialCoverage: "Denmark",
+    citation: citations,
+    includedInDataCatalog: {
+      "@type": "DataCatalog",
+      name: "Spillemyndigheden – Tilladelsesindehavere",
+      url: "https://spillemyndigheden.dk/tilladelsesindehavere",
+    },
     distribution: {
       "@type": "DataDownload",
       encodingFormat: "text/csv",
@@ -526,9 +537,53 @@ export default function CasinoCompliance() {
                         <TableCell className="text-center text-sm">{row.bonus_wager_requirement}x</TableCell>
                         <TableCell className="text-center"><ScoreBadge score={row.compliance_score} /></TableCell>
                         <TableCell className="text-center">
-                          <a href={row.source_url} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 text-xs text-muted-foreground hover:text-primary">
-                            <ExternalLink className="h-3 w-3" />Verificér
-                          </a>
+                          <div className="flex items-center justify-center gap-2">
+                            <Tooltip>
+                              <TooltipTrigger asChild>
+                                <a
+                                  href={row.license_source_url}
+                                  target="_blank"
+                                  rel="nofollow noopener noreferrer"
+                                  className="inline-flex items-center gap-1 text-xs text-emerald-600 dark:text-emerald-400 hover:underline"
+                                >
+                                  <Shield className="h-3 w-3" />Licens
+                                </a>
+                              </TooltipTrigger>
+                              <TooltipContent side="top" className="max-w-xs">
+                                <p className="text-xs">
+                                  Kilde: Spillemyndigheden<br />
+                                  {row.license_holder_name && <>Indehaver: {row.license_holder_name}<br /></>}
+                                  Sidst verificeret: {row.license_verified_at ? new Date(row.license_verified_at).toLocaleDateString("da-DK") : "–"}
+                                  {row.license_verified_at && (() => {
+                                    const days = Math.floor((Date.now() - new Date(row.license_verified_at).getTime()) / 86400000);
+                                    return days > 7 ? <><br /><span className="text-amber-500 font-medium">⚠ Opdatering anbefales ({days} dage siden)</span></> : null;
+                                  })()}
+                                </p>
+                              </TooltipContent>
+                            </Tooltip>
+                            <Tooltip>
+                              <TooltipTrigger asChild>
+                                <a
+                                  href={row.bonus_source_url}
+                                  target="_blank"
+                                  rel="nofollow noopener noreferrer"
+                                  className="inline-flex items-center gap-1 text-xs text-blue-600 dark:text-blue-400 hover:underline"
+                                >
+                                  <FileCheck className="h-3 w-3" />Bonus
+                                </a>
+                              </TooltipTrigger>
+                              <TooltipContent side="top" className="max-w-xs">
+                                <p className="text-xs">
+                                  Kilde: Officiel bonus-side<br />
+                                  Sidst verificeret: {row.bonus_verified_at ? new Date(row.bonus_verified_at).toLocaleDateString("da-DK") : "–"}
+                                  {row.bonus_verified_at && (() => {
+                                    const days = Math.floor((Date.now() - new Date(row.bonus_verified_at).getTime()) / 86400000);
+                                    return days > 7 ? <><br /><span className="text-amber-500 font-medium">⚠ Opdatering anbefales ({days} dage siden)</span></> : null;
+                                  })()}
+                                </p>
+                              </TooltipContent>
+                            </Tooltip>
+                          </div>
                         </TableCell>
                       </TableRow>
                     ))}

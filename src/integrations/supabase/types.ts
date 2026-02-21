@@ -18,6 +18,8 @@ export type Database = {
         Row: {
           bonus_compliant: boolean
           bonus_max_amount: number
+          bonus_source_url: string
+          bonus_verified_at: string | null
           bonus_wager_requirement: number
           casino_name: string
           casino_slug: string
@@ -25,8 +27,11 @@ export type Database = {
           created_at: string
           id: string
           last_checked: string
+          license_holder_name: string | null
           license_number: string
+          license_source_url: string
           license_status: Database["public"]["Enums"]["license_status"]
+          license_verified_at: string | null
           notes: string | null
           source_url: string
           updated_at: string
@@ -34,6 +39,8 @@ export type Database = {
         Insert: {
           bonus_compliant?: boolean
           bonus_max_amount?: number
+          bonus_source_url?: string
+          bonus_verified_at?: string | null
           bonus_wager_requirement?: number
           casino_name: string
           casino_slug: string
@@ -41,8 +48,11 @@ export type Database = {
           created_at?: string
           id?: string
           last_checked?: string
+          license_holder_name?: string | null
           license_number?: string
+          license_source_url?: string
           license_status?: Database["public"]["Enums"]["license_status"]
+          license_verified_at?: string | null
           notes?: string | null
           source_url?: string
           updated_at?: string
@@ -50,6 +60,8 @@ export type Database = {
         Update: {
           bonus_compliant?: boolean
           bonus_max_amount?: number
+          bonus_source_url?: string
+          bonus_verified_at?: string | null
           bonus_wager_requirement?: number
           casino_name?: string
           casino_slug?: string
@@ -57,8 +69,11 @@ export type Database = {
           created_at?: string
           id?: string
           last_checked?: string
+          license_holder_name?: string | null
           license_number?: string
+          license_source_url?: string
           license_status?: Database["public"]["Enums"]["license_status"]
+          license_verified_at?: string | null
           notes?: string | null
           source_url?: string
           updated_at?: string
