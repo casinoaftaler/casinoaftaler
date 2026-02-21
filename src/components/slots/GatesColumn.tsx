@@ -24,6 +24,8 @@ interface GatesColumnProps {
   /** Per-cell gravity drop offset in pixels (flat-indexed) */
   cellDropOffsets: Map<number, number>;
   tumblePhase: string;
+  /** Incremented each tumble step to force CSS animation restarts */
+  animationEpoch?: number;
 }
 
 export const GatesColumn = React.memo(function GatesColumn({
@@ -36,6 +38,7 @@ export const GatesColumn = React.memo(function GatesColumn({
   cellAnimStates,
   cellDropOffsets,
   tumblePhase,
+  animationEpoch = 0,
 }: GatesColumnProps) {
   const [cyclingIds, setCyclingIds] = useState<string[]>([]);
   const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
@@ -92,7 +95,7 @@ export const GatesColumn = React.memo(function GatesColumn({
 
         return (
           <div
-            key={row}
+            key={`${row}-${cellAnim === 'dropping' || cellAnim === 'filling' ? animationEpoch : 'stable'}`}
             className={cn(
               "relative rounded-lg",
               (cellAnim === 'dropping' || cellAnim === 'filling') ? "overflow-visible" : "overflow-hidden",

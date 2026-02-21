@@ -68,6 +68,7 @@ export function GatesSlotGame({ gameId = "gates-of-fedesvin" }: GatesSlotGamePro
   const [runningMultiplier, setRunningMultiplier] = useState(0);
   const [screenShake, setScreenShake] = useState<'none' | 'normal' | 'intense'>('none');
   const [showLightningFlash, setShowLightningFlash] = useState(false);
+  const [animationEpoch, setAnimationEpoch] = useState(0); // force CSS animation restarts
   const [isSlowMotion, setIsSlowMotion] = useState(false);
   const [tumbleChainLength, setTumbleChainLength] = useState(0);
   
@@ -313,6 +314,7 @@ export function GatesSlotGame({ gameId = "gates-of-fedesvin" }: GatesSlotGamePro
           setGrid(nextGrid);
           setCellAnimStates(dropAnims);
           setCellDropOffsets(offsets);
+          setAnimationEpoch(prev => prev + 1); // force CSS animation restart
           
           const dropTime = isSlowMotion ? 700 : 500;
           await new Promise(r => setTimeout(r, dropTime));
@@ -695,6 +697,7 @@ export function GatesSlotGame({ gameId = "gates-of-fedesvin" }: GatesSlotGamePro
                 cellAnimStates={cellAnimStates}
                 cellDropOffsets={cellDropOffsets}
                 tumblePhase={tumblePhase}
+                animationEpoch={animationEpoch}
               />
             );
           })}
