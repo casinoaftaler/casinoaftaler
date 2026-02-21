@@ -127,6 +127,8 @@ export function GatesSlotGame({ gameId = "gates-of-fedesvin" }: GatesSlotGamePro
     if (isAutoSpinning) stopAutoSpin(); else startAutoSpin();
   }, [isAutoSpinning, stopAutoSpin, startAutoSpin]);
 
+  const [bonusAutoSpinPending, setBonusAutoSpinPending] = useState(false);
+
   const handleBonusEntryComplete = useCallback(() => {
     const bs = pendingBonusStateRef.current;
     setShowBonusTrigger(false);
@@ -138,6 +140,7 @@ export function GatesSlotGame({ gameId = "gates-of-fedesvin" }: GatesSlotGamePro
       setBonusWinnings(0);
       setCumulativeMultiplier(0);
       pendingBonusStateRef.current = null;
+      setBonusAutoSpinPending(true);
     }
   }, []);
 
@@ -448,8 +451,10 @@ export function GatesSlotGame({ gameId = "gates-of-fedesvin" }: GatesSlotGamePro
       setTumblePhase('idle');
       spinLockRef.current = false;
 
-      // Auto-spin
-      if (isAutoSpinning && !shouldStopAutoSpinRef.current) {
+      // Auto-spin: bonus free spins always auto-spin, or manual auto-spin
+      if (isBonusActive && freeSpinsRemaining > 0 && !showBonusTriggerRef.current && !showBonusCompleteRef.current && !showRetriggerRef.current) {
+        autoSpinTimeoutRef.current = setTimeout(() => handleSpin(), 1200);
+      } else if (isAutoSpinning && !shouldStopAutoSpinRef.current) {
         if (autoSpinsRemaining !== null) {
           const newCount = autoSpinsRemaining - 1;
           setAutoSpinsRemaining(newCount);
@@ -463,14 +468,24 @@ export function GatesSlotGame({ gameId = "gates-of-fedesvin" }: GatesSlotGamePro
   const handleRetriggerComplete = useCallback(() => {
     setShowRetrigger(false);
     showRetriggerRef.current = false;
+    // Auto-spin after retrigger overlay closes
+    setBonusAutoSpinPending(true);
   }, []);
 
-  // Auto-spin trigger
+  // Auto-spin trigger (manual auto-spin)
   useEffect(() => {
     if (isAutoSpinning && !isSpinning && !showBonusTriggerRef.current && !showBonusCompleteRef.current && !showRetriggerRef.current) {
       autoSpinTimeoutRef.current = setTimeout(() => handleSpin(), 800);
     }
   }, [isAutoSpinning]);
+
+  // Bonus auto-spin trigger (after entry/retrigger overlay)
+  useEffect(() => {
+    if (bonusAutoSpinPending && isBonusActive && !isSpinning) {
+      setBonusAutoSpinPending(false);
+      autoSpinTimeoutRef.current = setTimeout(() => handleSpin(), 800);
+    }
+  }, [bonusAutoSpinPending, isBonusActive, isSpinning, handleSpin]);
 
   if (symbolsLoading || !symbols) {
     return (
