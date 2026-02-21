@@ -30,19 +30,34 @@ export function LatestNewsSidebar() {
         <Link
           key={article.id}
           to={`/casino-nyheder/${article.slug}`}
-          className="group flex flex-col gap-0.5 rounded-lg px-2 py-2 transition-colors hover:bg-accent"
+          className="group flex gap-2.5 rounded-lg px-2 py-2 transition-colors hover:bg-accent"
         >
-          <span className="text-sm font-semibold text-foreground group-hover:text-primary transition-colors line-clamp-2 leading-tight">
-            {article.title}
-          </span>
-          {article.published_at && (
-            <span className="text-[11px] text-muted-foreground">
-              {new Date(article.published_at).toLocaleDateString("da-DK", {
-                day: "numeric",
-                month: "short",
-              })}
-            </span>
+          {article.featured_image ? (
+            <img
+              src={article.featured_image}
+              alt=""
+              width={56}
+              height={56}
+              className="h-14 w-14 shrink-0 rounded-md object-cover"
+            />
+          ) : (
+            <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-md bg-muted">
+              <Newspaper className="h-5 w-5 text-muted-foreground" />
+            </div>
           )}
+          <div className="flex flex-col gap-0.5 min-w-0">
+            <span className="text-sm font-semibold text-foreground group-hover:text-primary transition-colors line-clamp-2 leading-tight">
+              {article.title}
+            </span>
+            {article.published_at && (
+              <span className="text-[11px] text-muted-foreground">
+                {new Date(article.published_at).toLocaleDateString("da-DK", {
+                  day: "numeric",
+                  month: "short",
+                })}
+              </span>
+            )}
+          </div>
         </Link>
       ))}
       <Link
