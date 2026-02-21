@@ -774,210 +774,132 @@ function SettingsTab({ gameId }: { gameId?: string }) {
 
   return (
     <div className="space-y-6">
-      {/* Page Access Control - Book of Fedesvin */}
-      <Card>
-        <CardHeader>
-          <CardTitle className="flex items-center gap-2">
-            <Lock className="h-5 w-5" />
-            Adgangskontrol — Book of Fedesvin
-          </CardTitle>
-        </CardHeader>
-        <CardContent className="space-y-6">
-          <div className="flex items-center justify-between">
-            <div className="space-y-1">
-              <Label htmlFor="page-locked" className="font-medium">Lås Book of Fedesvin</Label>
-              <p className="text-sm text-muted-foreground">
-                Når aktiveret, skal brugere indtaste et password for at få adgang.
-              </p>
-            </div>
-            <Switch
-              id="page-locked"
-              checked={formData.pageLocked}
-              onCheckedChange={(checked) => {
-                setFormData({ ...formData, pageLocked: checked });
-                updateSettings.mutate({ pageLocked: checked });
-              }}
-            />
-          </div>
-
-          {formData.pageLocked && (
-            <div className="space-y-2 pt-2 border-t">
-              <Label htmlFor="page-password">Adgangskode</Label>
-              <Input
-                id="page-password"
-                type="text"
-                value={formData.pagePassword}
-                onChange={(e) => setFormData({ ...formData, pagePassword: e.target.value })}
-                placeholder="Indtast adgangskode..."
+      {/* Page Access Control - only show for active game */}
+      {activeGameId === "book-of-fedesvin" && (
+        <Card>
+          <CardHeader>
+            <CardTitle className="flex items-center gap-2">
+              <Lock className="h-5 w-5" />
+              Adgangskontrol — Book of Fedesvin
+            </CardTitle>
+          </CardHeader>
+          <CardContent className="space-y-6">
+            <div className="flex items-center justify-between">
+              <div className="space-y-1">
+                <Label htmlFor="page-locked" className="font-medium">Lås Book of Fedesvin</Label>
+                <p className="text-sm text-muted-foreground">
+                  Når aktiveret, skal brugere indtaste et password for at få adgang.
+                </p>
+              </div>
+              <Switch
+                id="page-locked"
+                checked={formData.pageLocked}
+                onCheckedChange={(checked) => {
+                  setFormData({ ...formData, pageLocked: checked });
+                  updateSettings.mutate({ pageLocked: checked });
+                }}
               />
             </div>
-          )}
-        </CardContent>
-      </Card>
+            {formData.pageLocked && (
+              <div className="space-y-2 pt-2 border-t">
+                <Label htmlFor="page-password">Adgangskode</Label>
+                <Input
+                  id="page-password"
+                  type="text"
+                  value={formData.pagePassword}
+                  onChange={(e) => setFormData({ ...formData, pagePassword: e.target.value })}
+                  placeholder="Indtast adgangskode..."
+                />
+              </div>
+            )}
+          </CardContent>
+        </Card>
+      )}
 
-      {/* Page Access Control - Rise of Fedesvin */}
-      <Card>
-        <CardHeader>
-          <CardTitle className="flex items-center gap-2">
-            <Lock className="h-5 w-5" />
-            Adgangskontrol — Rise of Fedesvin
-          </CardTitle>
-        </CardHeader>
-        <CardContent className="space-y-6">
-          <div className="flex items-center justify-between">
-            <div className="space-y-1">
-              <Label htmlFor="rise-locked" className="font-medium">Lås Rise of Fedesvin</Label>
-              <p className="text-sm text-muted-foreground">
-                Når aktiveret, skal brugere indtaste et password for at få adgang.
-              </p>
-            </div>
-            <Switch
-              id="rise-locked"
-              checked={formData.riseLocked}
-              onCheckedChange={(checked) => {
-                setFormData({ ...formData, riseLocked: checked });
-                updateSettings.mutate({ riseLocked: checked });
-              }}
-            />
-          </div>
-
-          {formData.riseLocked && (
-            <div className="space-y-2 pt-2 border-t">
-              <Label htmlFor="rise-password">Adgangskode</Label>
-              <Input
-                id="rise-password"
-                type="text"
-                value={formData.risePassword}
-                onChange={(e) => setFormData({ ...formData, risePassword: e.target.value })}
-                placeholder="Indtast adgangskode..."
+      {activeGameId === "rise-of-fedesvin" && (
+        <Card>
+          <CardHeader>
+            <CardTitle className="flex items-center gap-2">
+              <Lock className="h-5 w-5" />
+              Adgangskontrol — Rise of Fedesvin
+            </CardTitle>
+          </CardHeader>
+          <CardContent className="space-y-6">
+            <div className="flex items-center justify-between">
+              <div className="space-y-1">
+                <Label htmlFor="rise-locked" className="font-medium">Lås Rise of Fedesvin</Label>
+                <p className="text-sm text-muted-foreground">
+                  Når aktiveret, skal brugere indtaste et password for at få adgang.
+                </p>
+              </div>
+              <Switch
+                id="rise-locked"
+                checked={formData.riseLocked}
+                onCheckedChange={(checked) => {
+                  setFormData({ ...formData, riseLocked: checked });
+                  updateSettings.mutate({ riseLocked: checked });
+                }}
               />
             </div>
-          )}
-        </CardContent>
-      </Card>
+            {formData.riseLocked && (
+              <div className="space-y-2 pt-2 border-t">
+                <Label htmlFor="rise-password">Adgangskode</Label>
+                <Input
+                  id="rise-password"
+                  type="text"
+                  value={formData.risePassword}
+                  onChange={(e) => setFormData({ ...formData, risePassword: e.target.value })}
+                  placeholder="Indtast adgangskode..."
+                />
+              </div>
+            )}
+          </CardContent>
+        </Card>
+      )}
 
-      {/* Page Access Control - Gates of Fedesvin */}
-      <Card>
-        <CardHeader>
-          <CardTitle className="flex items-center gap-2">
-            <Lock className="h-5 w-5" />
-            Adgangskontrol — Gates of Fedesvin
-          </CardTitle>
-        </CardHeader>
-        <CardContent className="space-y-6">
-          <div className="flex items-center justify-between">
-            <div className="space-y-1">
-              <Label htmlFor="gates-locked" className="font-medium">Lås Gates of Fedesvin</Label>
-              <p className="text-sm text-muted-foreground">
-                Når aktiveret, skal brugere indtaste et password for at få adgang.
-              </p>
-            </div>
-            <Switch
-              id="gates-locked"
-              checked={formData.gatesLocked}
-              onCheckedChange={(checked) => {
-                setFormData({ ...formData, gatesLocked: checked });
-                updateSettings.mutate({ gatesLocked: checked });
-              }}
-            />
-          </div>
-
-          {formData.gatesLocked && (
-            <div className="space-y-2 pt-2 border-t">
-              <Label htmlFor="gates-password">Adgangskode</Label>
-              <Input
-                id="gates-password"
-                type="text"
-                value={formData.gatesPassword}
-                onChange={(e) => setFormData({ ...formData, gatesPassword: e.target.value })}
-                placeholder="Indtast adgangskode..."
+      {activeGameId === "gates-of-fedesvin" && (
+        <Card>
+          <CardHeader>
+            <CardTitle className="flex items-center gap-2">
+              <Lock className="h-5 w-5" />
+              Adgangskontrol — Gates of Fedesvin
+            </CardTitle>
+          </CardHeader>
+          <CardContent className="space-y-6">
+            <div className="flex items-center justify-between">
+              <div className="space-y-1">
+                <Label htmlFor="gates-locked" className="font-medium">Lås Gates of Fedesvin</Label>
+                <p className="text-sm text-muted-foreground">
+                  Når aktiveret, skal brugere indtaste et password for at få adgang.
+                </p>
+              </div>
+              <Switch
+                id="gates-locked"
+                checked={formData.gatesLocked}
+                onCheckedChange={(checked) => {
+                  setFormData({ ...formData, gatesLocked: checked });
+                  updateSettings.mutate({ gatesLocked: checked });
+                }}
               />
             </div>
-          )}
-        </CardContent>
-      </Card>
+            {formData.gatesLocked && (
+              <div className="space-y-2 pt-2 border-t">
+                <Label htmlFor="gates-password">Adgangskode</Label>
+                <Input
+                  id="gates-password"
+                  type="text"
+                  value={formData.gatesPassword}
+                  onChange={(e) => setFormData({ ...formData, gatesPassword: e.target.value })}
+                  placeholder="Indtast adgangskode..."
+                />
+              </div>
+            )}
+          </CardContent>
+        </Card>
+      )}
 
       {/* Gates Game Mechanics Settings */}
       {activeGameId === "gates-of-fedesvin" && <GatesGameSettingsAdmin />}
-      {/* Animation Timing */}
-      <Card>
-        <CardHeader>
-          <CardTitle className="flex items-center gap-2">
-            <Timer className="h-5 w-5" />
-            Animation Timing
-          </CardTitle>
-          <CardDescription>
-            Juster hastigheden på hjulenes rotation og landing.
-          </CardDescription>
-        </CardHeader>
-        <CardContent className="space-y-6">
-          <div className="space-y-4">
-            <div className="space-y-2">
-              <div className="flex items-center justify-between">
-                <Label htmlFor="spin-loop-ms">Spin Hastighed</Label>
-                <span className="text-sm text-muted-foreground font-mono">{formData.spinLoopMs}ms</span>
-              </div>
-              <Slider
-                id="spin-loop-ms"
-                min={200}
-                max={800}
-                step={50}
-                value={[formData.spinLoopMs]}
-                onValueChange={(value) => setFormData({ ...formData, spinLoopMs: value[0] })}
-              />
-              <p className="text-xs text-muted-foreground">
-                Lavere værdi = hurtigere spinning. Standard: 400ms
-              </p>
-            </div>
-
-            <div className="space-y-2">
-              <div className="flex items-center justify-between">
-                <Label htmlFor="reel-stagger-ms">Hjul Landing Forsinkelse</Label>
-                <span className="text-sm text-muted-foreground font-mono">{formData.reelStaggerMs}ms</span>
-              </div>
-              <Slider
-                id="reel-stagger-ms"
-                min={0}
-                max={500}
-                step={25}
-                value={[formData.reelStaggerMs]}
-                onValueChange={(value) => setFormData({ ...formData, reelStaggerMs: value[0] })}
-              />
-              <p className="text-xs text-muted-foreground">
-                Tid mellem hvert hjul stopper. 0 = samtidigt, 150ms = kaskade effekt
-              </p>
-            </div>
-
-            <div className="space-y-2">
-              <div className="flex items-center justify-between">
-                <Label htmlFor="reel-slowdown-ms">Hjul Slowdown Hastighed</Label>
-                <span className="text-sm text-muted-foreground font-mono">{formData.reelSlowdownMs}ms</span>
-              </div>
-              <Slider
-                id="reel-slowdown-ms"
-                min={100}
-                max={800}
-                step={50}
-                value={[formData.reelSlowdownMs]}
-                onValueChange={(value) => setFormData({ ...formData, reelSlowdownMs: value[0] })}
-              />
-              <p className="text-xs text-muted-foreground">
-                Hvor lang tid hvert hjul bruger på at bremse ned. Lavere = hurtigere landing.
-              </p>
-            </div>
-          </div>
-
-          <Button 
-            onClick={handleSave} 
-            disabled={updateSettings.isPending}
-            variant="outline"
-            className="w-full"
-          >
-            {updateSettings.isPending && <Loader2 className="h-4 w-4 mr-2 animate-spin" />}
-            Gem Animation Indstillinger
-          </Button>
-        </CardContent>
-      </Card>
 
       {/* Game Position Offset */}
       <Card>
