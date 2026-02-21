@@ -60,11 +60,6 @@ const CasinoNyheder = () => {
             <p className="mb-6 text-base text-white/80 md:text-lg">
               Seneste nyt, analyser og opdateringer fra det danske casinomarked
             </p>
-            {latestDate && (
-              <p className="text-sm text-white/60">
-                Senest opdateret: {latestDate}
-              </p>
-            )}
           </div>
         </div>
         {/* Decorative elements */}
@@ -87,14 +82,14 @@ const CasinoNyheder = () => {
 
         <AuthorMetaBar
           author="jonas"
-          date="21. februar 2026"
+          date={latestDate || "21. februar 2026"}
           readTime="Løbende opdateret"
           showFactCheck={true}
           showAffiliateDisclaimer={false}
         />
 
-        {/* SEO Intro */}
-        <section className="prose prose-lg dark:prose-invert max-w-none mb-12">
+        {/* SEO Intro – constrained reading width */}
+        <section className="prose prose-lg dark:prose-invert max-w-4xl mb-10 mt-8">
           <p>
             Velkommen til Casino Nyheder – din kilde til aktuelle opdateringer fra det danske online casino-landskab. 
             Her dækker vi alt fra nye licensudstedelser fra <Link to="/spillemyndigheden" className="text-primary hover:underline">Spillemyndigheden</Link> og 
@@ -114,7 +109,7 @@ const CasinoNyheder = () => {
           </p>
         </section>
 
-        <Separator className="mb-8" />
+        <Separator className="my-10" />
 
         {/* Section Header */}
         <div className="mb-8">
@@ -143,7 +138,7 @@ const CasinoNyheder = () => {
                 <Link
                   key={article.id}
                   to={`/casino-nyheder/${article.slug}`}
-                  className="group rounded-xl border border-border bg-card p-6 transition-all hover:border-primary/50 hover:shadow-md"
+                  className="group rounded-xl border border-border bg-card p-6 transition-all duration-200 hover:border-primary/40 hover:shadow-lg hover:-translate-y-0.5"
                 >
                   {article.featured_image && (
                     <img
