@@ -103,7 +103,7 @@ export const GatesColumn = React.memo(function GatesColumn({
                   <img
                     src={symbol.image_url}
                     alt={symbol.name}
-                    className="w-[85%] h-[85%] object-contain"
+                    className="w-[95%] h-[95%] object-contain"
                     draggable={false}
                   />
                 ) : (
