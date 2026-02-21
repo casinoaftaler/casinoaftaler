@@ -1,57 +1,41 @@
 
 
-## Split Base Game into Scatter Spins and Multiplier Spins
+## Fix: Tumble Drop Animation Clipped by Overflow
 
-Currently, both scatters and multipliers can appear on any base game spin. This plan separates them into two mutually exclusive spin types:
+### Root Cause
 
-- **Scatter Spin (90%)** -- Scatters can land normally, but multipliers never appear.
-- **Multiplier Spin (10%)** -- Multipliers can land (using the existing chance-per-cell logic), but scatters are excluded. Wherever a scatter would have been placed, a multiplier is placed instead.
+Each cell in the grid has `overflow-hidden` applied (GatesColumn.tsx, line 96). During the tumble sequence:
 
-This only applies to the **base game**. Bonus spins remain unchanged (multipliers land freely, scatters can retrigger).
+- **New symbols** use `tumble-drop`, starting at `translateY(-120%)` (above the cell)
+- **Surviving symbols** use `tumble-gravity`, starting at a negative `translateY` offset
 
----
+Because `overflow: hidden` clips content outside the cell bounds, the symbols are invisible while positioned above, then appear instantly when they reach `translateY(0)`. This makes it look like the entire grid "refreshes" rather than symbols dropping.
 
-### Changes
+### Fix
 
-**File: `supabase/functions/slot-spin/index.ts`**
+**File: `src/components/slots/GatesColumn.tsx`**
 
-1. **Add a spin-type constant** -- `GATES_MULTIPLIER_SPIN_CHANCE = 0.10` (10% of base spins are multiplier spins).
+1. Remove the permanent `overflow-hidden` from each cell's className.
+2. Conditionally apply `overflow-hidden` only when the cell is NOT in a `dropping` or `filling` animation state. During those states, use `overflow-visible` so the translate animation is visible.
+3. Apply `overflow-hidden` on the **column container** instead during idle/spinning states to keep things tidy, and switch to `overflow-visible` during the tumble phase.
 
-2. **Modify `generateGatesGrid`** to accept a `spinType` parameter (`'scatter' | 'multiplier'`), determined by a single PRNG roll before grid generation:
-   - **Scatter spin**: Skip all multiplier placement logic (never insert `mult_*` IDs). Scatters land normally via weighted symbol selection.
-   - **Multiplier spin**: After picking each symbol, if it is a scatter, replace it with a randomly picked multiplier (`mult_Nx`). Additionally, the existing per-cell multiplier chance still applies to non-scatter cells.
+Concrete change on the cell `div` (around line 95-104):
 
-3. **Modify `fillWithMultipliers`** (used during tumbles) to respect the same spin type for the entire tumble chain -- if the initial spin was a scatter spin, new fill symbols never include multipliers; if it was a multiplier spin, scatters in fill symbols are replaced with multipliers.
+```tsx
+// Before:
+"relative rounded-lg overflow-hidden",
 
-4. **Modify `calculateGatesFullSpin`** to determine the spin type once at the start (PRNG roll) and pass it through to grid generation and tumble fills. Bonus spins bypass this logic entirely (both can appear as today).
-
----
-
-### Technical Detail
-
-```text
-calculateGatesFullSpin(symbols, bet, isBonusSpin, ...)
-  |
-  |-- if NOT isBonusSpin:
-  |     roll = prng.next()
-  |     spinType = roll < 0.10 ? 'multiplier' : 'scatter'
-  |-- else:
-  |     spinType = 'both' (no restriction)
-  |
-  |-- generateGatesGrid(symbols, isBonusSpin, prng, spinType)
-  |     for each cell:
-  |       if spinType == 'scatter':
-  |         never place mult_* symbols
-  |       if spinType == 'multiplier':
-  |         if picked symbol is scatter -> replace with mult_Nx
-  |         else -> normal chance to place mult_* still applies
-  |       if spinType == 'both':
-  |         existing behavior (bonus)
-  |
-  |-- tumble loop:
-  |     fillWithMultipliers(..., spinType)
-  |       same rules as generateGatesGrid per spinType
+// After:
+"relative rounded-lg",
+(cellAnim === 'dropping' || cellAnim === 'filling') ? "overflow-visible" : "overflow-hidden",
 ```
 
-No client-side changes required -- the client already renders whatever grid the server returns. No database changes needed.
+And on the column container (around line 74-80), allow overflow during tumble:
+
+```tsx
+// Add to the column div className:
+tumblePhase !== 'idle' && tumblePhase !== 'spinning' ? "overflow-visible" : "overflow-hidden",
+```
+
+No CSS changes needed -- the keyframes are already correct; they were just being clipped.
 
