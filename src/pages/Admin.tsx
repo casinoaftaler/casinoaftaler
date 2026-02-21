@@ -40,7 +40,7 @@ import {
 } from "@/components/ui/alert-dialog";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
-import { Plus, Trash2, LogOut, Star, Loader2, Pencil, GripVertical, Gift, ShoppingBag, BarChart3, Settings, Users, Video, Gamepad2, Bell, Sparkles, Ticket, Menu, ChevronDown } from "lucide-react";
+import { Plus, Trash2, LogOut, Star, Loader2, Pencil, GripVertical, Gift, ShoppingBag, BarChart3, Settings, Users, Video, Gamepad2, Bell, Sparkles, Ticket, Menu, ChevronDown, Shield } from "lucide-react";
 import { AdminUserManagement } from "@/components/AdminUserManagement";
 import { HighlightsAdminSection } from "@/components/HighlightsAdminSection";
 import { CombinedAnalyticsDashboard } from "@/components/CombinedAnalyticsDashboard";
@@ -58,6 +58,7 @@ import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/component
 import { ThemeToggle } from "@/components/ThemeToggle";
 import { RedeemCodesAdminSection } from "@/components/RedeemCodesAdminSection";
 import { NewsAdminSection } from "@/components/NewsAdminSection";
+import { FactCheckAdminSection } from "@/components/FactCheckAdminSection";
 import { useQueryClient } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
@@ -763,6 +764,7 @@ function AdminDashboard() {
     { value: "codes", label: "Koder", icon: Ticket },
     { value: "notifications", label: "Notifikationer", icon: Bell },
     { value: "analytics", label: "Analytics", icon: BarChart3 },
+    { value: "factcheck", label: "Fact-Check", icon: Shield },
     { value: "settings", label: "Indstillinger", icon: Settings },
     { value: "users", label: "Brugere", icon: Users },
   ];
@@ -867,7 +869,7 @@ function AdminDashboard() {
 
       <main className="container py-8">
         <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
-            <TabsList className="hidden lg:grid w-full grid-cols-9 mb-8 h-auto">
+            <TabsList className="hidden lg:grid w-full grid-cols-10 mb-8 h-auto">
               {navItems.map((item) => (
                 <TabsTrigger key={item.value} value={item.value} className="flex items-center gap-2 py-3">
                   <item.icon className="h-4 w-4" />
@@ -1023,6 +1025,11 @@ function AdminDashboard() {
               <p className="text-muted-foreground">Send notifikationer til alle brugere.</p>
             </div>
             <NotificationsAdminSection />
+          </TabsContent>
+
+          {/* Fact-Check Tab */}
+          <TabsContent value="factcheck">
+            <FactCheckAdminSection />
           </TabsContent>
 
           {/* Indstillinger Tab */}
