@@ -2,6 +2,7 @@ import "@/styles/slot-animations.css";
 import "@/styles/gates-animations.css";
 import "@/styles/gates-intensity.css";
 import "@/styles/gates-zeus.css";
+import "@/styles/gates-bonus-intensity.css";
 import { useState, useCallback, useEffect } from "react";
 import { slotSounds } from "@/lib/slotSoundEffects";
 import { SEO } from "@/components/SEO";

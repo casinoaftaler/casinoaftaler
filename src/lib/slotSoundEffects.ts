@@ -3008,6 +3008,145 @@ class SlotSoundEffects {
     }
   }
 
+  // --- BONUS-SPECIFIC SOUNDS ---
+
+  // Heavier column stop for bonus mode (thud + electric crackle)
+  playBonusColumnStop() {
+    if (!this.canPlayBonusSound()) return;
+    const ctx = this.getContext();
+    const now = ctx.currentTime;
+
+    // Heavy thud
+    const osc = ctx.createOscillator();
+    const gain = ctx.createGain();
+    const filter = ctx.createBiquadFilter();
+    osc.connect(filter);
+    filter.connect(gain);
+    gain.connect(ctx.destination);
+
+    osc.type = 'sine';
+    osc.frequency.setValueAtTime(80, now);
+    osc.frequency.exponentialRampToValueAtTime(30, now + 0.15);
+    filter.type = 'lowpass';
+    filter.frequency.value = 250;
+    gain.gain.setValueAtTime(0.3 * this.volume, now);
+    gain.gain.exponentialRampToValueAtTime(0.001, now + 0.2);
+    osc.start(now);
+    osc.stop(now + 0.25);
+
+    // Electric crackle overtone
+    const crackle = ctx.createOscillator();
+    const crackleGain = ctx.createGain();
+    crackle.connect(crackleGain);
+    crackleGain.connect(ctx.destination);
+    crackle.type = 'sawtooth';
+    crackle.frequency.setValueAtTime(800, now);
+    crackle.frequency.exponentialRampToValueAtTime(200, now + 0.1);
+    crackleGain.gain.setValueAtTime(0.08 * this.volume, now);
+    crackleGain.gain.exponentialRampToValueAtTime(0.001, now + 0.12);
+    crackle.start(now);
+    crackle.stop(now + 0.15);
+  }
+
+  // Sharp thunder crack for final column in bonus
+  playBonusThunderCrack() {
+    if (!this.canPlayBonusSound()) return;
+    const ctx = this.getContext();
+    const now = ctx.currentTime;
+
+    const osc = ctx.createOscillator();
+    const osc2 = ctx.createOscillator();
+    const gain = ctx.createGain();
+    osc.connect(gain);
+    osc2.connect(gain);
+    gain.connect(ctx.destination);
+
+    osc.type = 'sawtooth';
+    osc.frequency.setValueAtTime(200, now);
+    osc.frequency.exponentialRampToValueAtTime(40, now + 0.4);
+
+    osc2.type = 'square';
+    osc2.frequency.setValueAtTime(150, now);
+    osc2.frequency.exponentialRampToValueAtTime(25, now + 0.5);
+
+    gain.gain.setValueAtTime(0.25 * this.volume, now);
+    gain.gain.linearRampToValueAtTime(0.15 * this.volume, now + 0.1);
+    gain.gain.exponentialRampToValueAtTime(0.001, now + 0.6);
+
+    osc.start(now);
+    osc2.start(now);
+    osc.stop(now + 0.65);
+    osc2.stop(now + 0.65);
+  }
+
+  // Deep bass boom when multiplier hits the counter
+  playMultiplierSlam() {
+    if (!this.canPlayBonusSound()) return;
+    const ctx = this.getContext();
+    const now = ctx.currentTime;
+
+    const osc = ctx.createOscillator();
+    const gain = ctx.createGain();
+    const filter = ctx.createBiquadFilter();
+    osc.connect(filter);
+    filter.connect(gain);
+    gain.connect(ctx.destination);
+
+    osc.type = 'sine';
+    osc.frequency.setValueAtTime(60, now);
+    osc.frequency.exponentialRampToValueAtTime(20, now + 0.3);
+    filter.type = 'lowpass';
+    filter.frequency.value = 180;
+
+    gain.gain.setValueAtTime(0.4 * this.volume, now);
+    gain.gain.linearRampToValueAtTime(0.2 * this.volume, now + 0.15);
+    gain.gain.exponentialRampToValueAtTime(0.001, now + 0.5);
+
+    osc.start(now);
+    osc.stop(now + 0.55);
+
+    // Impact transient
+    const click = ctx.createOscillator();
+    const clickGain = ctx.createGain();
+    click.connect(clickGain);
+    clickGain.connect(ctx.destination);
+    click.type = 'triangle';
+    click.frequency.setValueAtTime(2000, now);
+    click.frequency.exponentialRampToValueAtTime(500, now + 0.03);
+    clickGain.gain.setValueAtTime(0.15 * this.volume, now);
+    clickGain.gain.exponentialRampToValueAtTime(0.001, now + 0.05);
+    click.start(now);
+    click.stop(now + 0.06);
+  }
+
+  // Orchestral/choir swell for large bonus wins (ascending chord)
+  playBonusWinSwell() {
+    if (!this.canPlayBonusSound()) return;
+    const ctx = this.getContext();
+    const now = ctx.currentTime;
+
+    // Ascending chord: C4, E4, G4, C5
+    const freqs = [261.63, 329.63, 392.00, 523.25];
+    freqs.forEach((freq, i) => {
+      const osc = ctx.createOscillator();
+      const gain = ctx.createGain();
+      osc.connect(gain);
+      gain.connect(ctx.destination);
+
+      osc.type = i < 2 ? 'sine' : 'triangle';
+      osc.frequency.setValueAtTime(freq * 0.98, now + i * 0.15);
+      osc.frequency.linearRampToValueAtTime(freq, now + i * 0.15 + 0.3);
+
+      gain.gain.setValueAtTime(0, now);
+      gain.gain.linearRampToValueAtTime(0.12 * this.volume, now + i * 0.15 + 0.2);
+      gain.gain.setValueAtTime(0.12 * this.volume, now + 1.5);
+      gain.gain.exponentialRampToValueAtTime(0.001, now + 2.5);
+
+      osc.start(now + i * 0.15);
+      osc.stop(now + 2.6);
+    });
+  }
+
   // Scatter tease rising pitch sound (2-3 scatters visible)
   playScatterTease(scatterCount: number) {
     if (!this.canPlayBonusSound()) return;
