@@ -186,9 +186,9 @@ function getMultValue(id: string): number {
   return match ? parseInt(match[1], 10) : 0;
 }
 
-function pickGatesMultiplierValue(): number {
+async function pickGatesMultiplierValue(prng: SeededPRNG): Promise<number> {
   const totalWeight = GATES_MULTIPLIER_WEIGHTS.reduce((a, b) => a + b, 0);
-  let r = secureRandom() * totalWeight;
+  let r = (await prng.next()) * totalWeight;
   for (let i = 0; i < GATES_MULTIPLIER_VALUES.length; i++) {
     r -= GATES_MULTIPLIER_WEIGHTS[i];
     if (r <= 0) return GATES_MULTIPLIER_VALUES[i];
@@ -196,17 +196,16 @@ function pickGatesMultiplierValue(): number {
   return GATES_MULTIPLIER_VALUES[0];
 }
 
-function getGatesRandomSymbol(symbols: SlotSymbol[], isBonusSpin: boolean): SlotSymbol {
+async function getGatesRandomSymbol(symbols: SlotSymbol[], isBonusSpin: boolean, prng: SeededPRNG): Promise<SlotSymbol> {
   const getWeight = (s: SlotSymbol) => {
     const base = isBonusSpin ? (s.bonus_weight || s.weight || DEFAULT_SYMBOL_WEIGHT) : (s.weight || DEFAULT_SYMBOL_WEIGHT);
-    // In bonus, boost premium symbol weight by 10%
     if (isBonusSpin && s.rarity === 'premium') {
       return base * GATES_BONUS_PREMIUM_WEIGHT_BOOST;
     }
     return base;
   };
   const totalWeight = symbols.reduce((sum, s) => sum + getWeight(s), 0);
-  let random = secureRandom() * totalWeight;
+  let random = (await prng.next()) * totalWeight;
   for (const sym of symbols) {
     random -= getWeight(sym);
     if (random <= 0) return sym;
@@ -214,18 +213,17 @@ function getGatesRandomSymbol(symbols: SlotSymbol[], isBonusSpin: boolean): Slot
   return symbols[symbols.length - 1];
 }
 
-function generateGatesGrid(symbols: SlotSymbol[], isBonusSpin: boolean): string[][] {
+async function generateGatesGrid(symbols: SlotSymbol[], isBonusSpin: boolean, prng: SeededPRNG): Promise<string[][]> {
   const chance = isBonusSpin ? GATES_MULTIPLIER_CHANCE_BONUS : GATES_MULTIPLIER_CHANCE_BASE;
   const scatterSymbol = symbols.find(s => s.is_scatter);
   const grid: string[][] = [];
   for (let col = 0; col < GATES_COLS; col++) {
     const column: string[] = [];
     for (let row = 0; row < GATES_ROWS; row++) {
-      const sym = getGatesRandomSymbol(symbols, isBonusSpin);
-      // Chance to replace with a multiplier (never replace scatters)
+      const sym = await getGatesRandomSymbol(symbols, isBonusSpin, prng);
       if (!scatterSymbol || sym.id !== scatterSymbol.id) {
-        if (secureRandom() < chance) {
-          const multVal = pickGatesMultiplierValue();
+        if ((await prng.next()) < chance) {
+          const multVal = await pickGatesMultiplierValue(prng);
           column.push(`mult_${multVal}x`);
           continue;
         }
@@ -238,15 +236,15 @@ function generateGatesGrid(symbols: SlotSymbol[], isBonusSpin: boolean): string[
 }
 
 // Place multipliers on new symbols filling after a tumble
-function fillWithMultipliers(symbols: SlotSymbol[], count: number, isBonusSpin: boolean): string[] {
+async function fillWithMultipliers(symbols: SlotSymbol[], count: number, isBonusSpin: boolean, prng: SeededPRNG): Promise<string[]> {
   const chance = isBonusSpin ? GATES_MULTIPLIER_CHANCE_BONUS : GATES_MULTIPLIER_CHANCE_BASE;
   const result: string[] = [];
   for (let i = 0; i < count; i++) {
-    if (secureRandom() < chance) {
-      const multVal = pickGatesMultiplierValue();
+    if ((await prng.next()) < chance) {
+      const multVal = await pickGatesMultiplierValue(prng);
       result.push(`mult_${multVal}x`);
     } else {
-      const sym = getGatesRandomSymbol(symbols, isBonusSpin);
+      const sym = await getGatesRandomSymbol(symbols, isBonusSpin, prng);
       result.push(sym.id);
     }
   }
@@ -304,7 +302,7 @@ function countGatesScatters(grid: string[][], symbols: SlotSymbol[]): number {
   return count;
 }
 
-function applyGatesTumble(grid: string[][], winningPositions: number[], multiplierPositions: number[], symbols: SlotSymbol[], isBonusSpin: boolean): string[][] {
+async function applyGatesTumble(grid: string[][], winningPositions: number[], multiplierPositions: number[], symbols: SlotSymbol[], isBonusSpin: boolean, prng: SeededPRNG): Promise<string[][]> {
   const newGrid = grid.map(col => [...col]);
   
   // Combine winning + collected multiplier positions for removal
@@ -330,7 +328,7 @@ function applyGatesTumble(grid: string[][], winningPositions: number[], multipli
     
     // Fill from top with new random symbols (which may include multipliers)
     const needed = GATES_ROWS - remaining.length;
-    const newSymbols = fillWithMultipliers(symbols, needed, isBonusSpin);
+    const newSymbols = await fillWithMultipliers(symbols, needed, isBonusSpin, prng);
     
     // New symbols on top, remaining on bottom
     newGrid[col] = [...newSymbols, ...remaining];
@@ -352,13 +350,14 @@ function scanGridMultipliers(grid: string[][]): GatesMultiplierOrb[] {
   return orbs;
 }
 
-function calculateGatesFullSpin(
+async function calculateGatesFullSpin(
   symbols: SlotSymbol[],
   betAmount: number,
   isBonusSpin: boolean,
-  runningMultiplier: number = 0
-): GatesSpinResult {
-  let grid = generateGatesGrid(symbols, isBonusSpin);
+  runningMultiplier: number = 0,
+  prng: SeededPRNG
+): Promise<GatesSpinResult> {
+  let grid = await generateGatesGrid(symbols, isBonusSpin, prng);
   const initialGrid = grid.map(col => [...col]);
   const tumbleSteps: GatesTumbleStep[] = [];
   let totalRawWin = 0;
@@ -388,13 +387,10 @@ function calculateGatesFullSpin(
     // Multiplier collection: only when there's a win AND multipliers are on grid
     let collectedMultPositions: number[] = [];
     if (wins.length > 0 && orbs.length > 0) {
-      // Collect all multiplier values into the bank
       const orbMultiplierSum = orbs.reduce((sum, o) => sum + o.value, 0);
       totalMultiplier += orbMultiplierSum;
-      // Mark multiplier positions for removal (collected)
       collectedMultPositions = orbs.map(o => o.position);
     }
-    // If no win, multipliers persist on the grid (collectedMultPositions stays empty)
     
     tumbleSteps.push({
       grid: grid.map(col => [...col]),
@@ -410,7 +406,7 @@ function calculateGatesFullSpin(
     if (wins.length === 0) break;
     
     // Apply tumble - remove winning symbols AND collected multiplier symbols
-    grid = applyGatesTumble(grid, Array.from(winningPositions), collectedMultPositions, symbols, isBonusSpin);
+    grid = await applyGatesTumble(grid, Array.from(winningPositions), collectedMultPositions, symbols, isBonusSpin, prng);
   }
   
   // Apply total multiplier to raw win
@@ -432,11 +428,45 @@ const DEFAULT_SYMBOL_WEIGHT = 10;
     const SUBSCRIBER_BONUS = 100;
     const ABSOLUTE_MAX_CREDITS = 1000;
 
-// Secure random number generator
+// Secure random number generator (fallback for non-Gates games)
 function secureRandom(): number {
   const array = new Uint32Array(1);
   crypto.getRandomValues(array);
   return array[0] / (0xffffffff + 1);
+}
+
+// ============================================================
+// Seeded PRNG for provably fair outcomes (Gates of Fedesvin)
+// Uses SHA-256(serverSecret + userId + clientSeed + nonce) as seed
+// Each call to next() hashes the internal state to produce the next value
+// ============================================================
+class SeededPRNG {
+  private state: Uint8Array;
+  private offset: number = 0;
+
+  constructor(seed: Uint8Array) {
+    this.state = seed;
+  }
+
+  static async create(serverSecret: string, userId: string, clientSeed: string, nonce: number): Promise<SeededPRNG> {
+    const encoder = new TextEncoder();
+    const data = encoder.encode(`${serverSecret}:${userId}:${clientSeed}:${nonce}`);
+    const hash = await crypto.subtle.digest("SHA-256", data);
+    return new SeededPRNG(new Uint8Array(hash));
+  }
+
+  async next(): Promise<number> {
+    // If we've consumed all 32 bytes (8 floats), re-hash to get more
+    if (this.offset + 4 > this.state.length) {
+      const hash = await crypto.subtle.digest("SHA-256", this.state);
+      this.state = new Uint8Array(hash);
+      this.offset = 0;
+    }
+    const view = new DataView(this.state.buffer, this.state.byteOffset + this.offset, 4);
+    const value = view.getUint32(0) / (0xffffffff + 1);
+    this.offset += 4;
+    return value;
+  }
 }
 
 function getRandomSymbol(
@@ -961,8 +991,16 @@ Deno.serve(async (req) => {
 
     // Parse request body
     const body = await req.json();
-    let { bet, sessionId, isBonusSpin, gameId: rawGameId } = body;
+    let { bet, sessionId, isBonusSpin, gameId: rawGameId, clientSeed, nonce } = body;
     const gameId = rawGameId || "book-of-fedesvin";
+
+    // Validate clientSeed and nonce for provably fair RNG
+    if (typeof clientSeed !== "string" || clientSeed.length === 0 || clientSeed.length > 128) {
+      clientSeed = "default";
+    }
+    if (typeof nonce !== "number" || nonce < 0 || !Number.isFinite(nonce)) {
+      nonce = 0;
+    }
 
     console.log(`[slot-spin] gameId=${gameId}, bet=${bet}, isBonusSpin=${isBonusSpin}, userId=${userId}`);
 
@@ -1044,6 +1082,10 @@ Deno.serve(async (req) => {
       // Load Gates settings from DB (cached 5 min)
       await loadGatesSettings(serviceClient);
       
+      // Create provably fair PRNG from serverSecret + userId + clientSeed + nonce
+      const serverSecret = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY") || "default-server-secret";
+      const prng = await SeededPRNG.create(serverSecret, userId, clientSeed, nonce);
+      
       if (isBonusSpin) {
         const bonusData = bonusRes.data;
         if (bonusRes.error || !bonusData || !bonusData.is_active || bonusData.free_spins_remaining <= 0) {
@@ -1053,7 +1095,7 @@ Deno.serve(async (req) => {
         const lockedBet = Number(bonusData.bet_amount);
         if (lockedBet > 0) bet = lockedBet;
         const cumulativeMultiplier = Number(bonusData.expanding_symbol_name || "0");
-        const gatesResult = calculateGatesFullSpin(symbols, bet, true, cumulativeMultiplier);
+        const gatesResult = await calculateGatesFullSpin(symbols, bet, true, cumulativeMultiplier, prng);
         const isRetrigger = gatesResult.scatterCount >= GATES_SCATTER_RETRIGGER;
         const newFreeSpins = isRetrigger ? bonusData.free_spins_remaining - 1 + GATES_FREE_SPINS_RETRIGGER : bonusData.free_spins_remaining - 1;
         const newTotalFreeSpins = isRetrigger ? bonusData.total_free_spins + GATES_FREE_SPINS_RETRIGGER : bonusData.total_free_spins;
@@ -1080,7 +1122,7 @@ Deno.serve(async (req) => {
       const { data: newRem, error: rpcErr } = await serviceClient.rpc("deduct_spin", { p_user_id: userId, p_date: todayG, p_bet: bet, p_max_spins: maxSp });
       if (rpcErr) return new Response(JSON.stringify({ error: "Failed to deduct spins" }), { status: 500, headers: { ...corsHeaders, "Content-Type": "application/json" } });
       if (newRem === -1) return new Response(JSON.stringify({ error: "Not enough spins remaining" }), { status: 400, headers: { ...corsHeaders, "Content-Type": "application/json" } });
-      const gatesResult = calculateGatesFullSpin(symbols, bet, false);
+      const gatesResult = await calculateGatesFullSpin(symbols, bet, false, 0, prng);
       let gatesBonusState = null;
       if (gatesResult.bonusTriggered) {
         const awardedSpins = gatesResult.scatterCount >= 6 ? 15 : gatesResult.scatterCount >= 5 ? 12 : 10;

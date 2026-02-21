@@ -293,7 +293,12 @@ export function GatesSlotGame({ gameId = "gates-of-fedesvin" }: GatesSlotGamePro
     setTumbleChainLength(0);
   }, [isSlowMotion]);
 
+  // Client seed + nonce for provably fair RNG
+  const clientSeedRef = useRef<string>(crypto.randomUUID());
+  const nonceRef = useRef<number>(0);
+
   const handleSpin = useCallback(async () => {
+    // Step 1: Lock inputs — prevent any duplicate calls
     if (spinLockRef.current || !symbols || !user || isSpinning) return;
     if (showBonusTriggerRef.current || showBonusCompleteRef.current || showRetriggerRef.current) return;
     
@@ -301,6 +306,7 @@ export function GatesSlotGame({ gameId = "gates-of-fedesvin" }: GatesSlotGamePro
     if (!isBonusSpin && !hasEnoughSpins(bet)) return;
 
     spinLockRef.current = true;
+    nonceRef.current += 1;
     setIsSpinning(true);
     setTumblePhase('spinning');
     setWinAmount(0);
@@ -333,7 +339,8 @@ export function GatesSlotGame({ gameId = "gates-of-fedesvin" }: GatesSlotGamePro
     slotSounds.playSpinStart();
 
     try {
-      const response = await serverSpin(bet, isBonusSpin);
+      // Step 2: Server request with clientSeed + nonce for provably fair RNG
+      const response = await serverSpin(bet, isBonusSpin, clientSeedRef.current, nonceRef.current);
       if (!response) throw new Error("Spin failed");
 
       const result = response.result as any;
@@ -654,6 +661,7 @@ export function GatesSlotGame({ gameId = "gates-of-fedesvin" }: GatesSlotGamePro
           onBetChange={setBet}
           onSpin={handleSpin}
           isSpinning={isSpinning || tumblePhase !== 'idle'}
+          isSpinLocked={spinLockRef.current}
           canSpin={canSpin}
           spinsRemaining={spinsRemaining}
           maxSpins={maxSpins}
