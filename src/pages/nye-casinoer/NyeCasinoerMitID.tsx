@@ -32,12 +32,27 @@ const faqs: { question: string; answer: ReactNode }[] = [
 ];
 
 const NyeCasinoerMitID = () => {
-  const articleSchema = buildArticleSchema({ headline: "Nye Casinoer med MitID – Sikker Verifikation 2026", description: "Nye casinoer med hurtig MitID-verifikation. Opret konto på under 2 minutter hos nye danske spillesteder.", url: `${SITE_URL}/nye-casinoer/mitid`, datePublished: "2026-02-05", dateModified: "2026-02-16", authorName: "Jonas", authorUrl: `${SITE_URL}/forfatter/jonas` });
+  const articleSchema = buildArticleSchema({ headline: "Nye Casinoer med MitID – Sikker Verifikation 2026", description: "Nye casinoer med hurtig MitID-verifikation. Opret konto på under 2 minutter hos nye danske spillesteder.", url: `${SITE_URL}/nye-casinoer/mitid`, datePublished: "2026-02-05", dateModified: "2026-02-21", authorName: "Jonas", authorUrl: `${SITE_URL}/forfatter/jonas` });
   const faqSchema = buildFaqSchema(faqs);
+
+  const howToSchema = {
+    "@context": "https://schema.org",
+    "@type": "HowTo",
+    "@id": `${SITE_URL}/nye-casinoer/mitid#howto`,
+    name: "Sådan opretter du en casinokonto med MitID",
+    description: "Trin-for-trin guide til at oprette en konto hos et nyt dansk casino med MitID-verifikation.",
+    totalTime: "PT2M",
+    step: [
+      { "@type": "HowToStep", position: 1, name: "Vælg et nyt casino med dansk licens", text: "Find et nyt casino fra vores liste over licenserede spillesteder med MitID-integration." },
+      { "@type": "HowToStep", position: 2, name: "Klik 'Opret konto'", text: "Tryk på registreringsknappen på casinoets forside for at starte kontooprettelsen." },
+      { "@type": "HowToStep", position: 3, name: "Verificér med MitID", text: "Log ind med MitID-appen eller kodelæser. Casinoet verificerer automatisk din identitet og ROFUS-status." },
+      { "@type": "HowToStep", position: 4, name: "Indbetal og spil", text: "Vælg betalingsmetode, indbetal og begynd at spille. Hele processen tager under 2 minutter." },
+    ],
+  };
 
   return (
     <>
-      <SEO title="Nye Casinoer med MitID – Hurtig Verifikation 2026" description="Find nye casinoer med MitID-verifikation i 2026. Opret konto på under 2 minutter med sikker digital identifikation." jsonLd={[articleSchema, faqSchema]} />
+      <SEO title="Nye Casinoer med MitID – Hurtig Verifikation 2026" description="Find nye casinoer med MitID-verifikation i 2026. Opret konto på under 2 minutter med sikker digital identifikation." jsonLd={[articleSchema, faqSchema, howToSchema]} />
 
       <section className="relative overflow-hidden py-12 text-white md:py-20" style={{ background: 'linear-gradient(135deg, hsl(260 70% 25%), hsl(250 60% 20%) 40%, hsl(210 80% 25%))' }}>
         <div className="container"><div className="mx-auto max-w-3xl text-center">

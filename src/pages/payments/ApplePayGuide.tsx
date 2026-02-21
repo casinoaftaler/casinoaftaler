@@ -301,6 +301,14 @@ const ApplePayGuide = () => {
         },
       ]}
       currentPath="/betalingsmetoder/apple-pay"
+      howToName="Sådan indbetaler du med Apple Pay på et dansk casino"
+      howToTotalTime="PT2M"
+      howToSteps={[
+        { name: "Tilføj kort til Apple Wallet", text: "Sørg for, at dit Visa eller Mastercard er tilføjet til Apple Wallet på din iPhone, iPad eller Mac." },
+        { name: "Vælg Apple Pay i casinoets kasse", text: "Gå til indbetalingssektionen og vælg Apple Pay som betalingsmetode." },
+        { name: "Indtast indbetalingsbeløb", text: "Angiv det ønskede beløb. Minimum er typisk 50-100 kr. hos danske casinoer." },
+        { name: "Godkend med Face ID eller Touch ID", text: "Bekræft betalingen med Face ID, Touch ID eller din enheds adgangskode. Pengene krediteres øjeblikkeligt." },
+      ]}
     />
   );
 };

@@ -279,6 +279,14 @@ const VisaMastercardGuide = () => {
         )},
       ]}
       currentPath="/betalingsmetoder/visa-mastercard"
+      howToName="Sådan indbetaler du med Visa eller Mastercard på et dansk casino"
+      howToTotalTime="PT3M"
+      howToSteps={[
+        { name: "Vælg Visa/Mastercard i kassen", text: "Gå til casinoets indbetalingssektion og vælg Visa eller Mastercard som betalingsmetode." },
+        { name: "Indtast kortoplysninger", text: "Udfyld kortnummer, udløbsdato og CVV-kode. Mange casinoer gemmer kortet til fremtidige indbetalinger." },
+        { name: "Gennemfør 3D Secure-godkendelse", text: "Bekræft betalingen via din banks 3D Secure-system (Verified by Visa eller Mastercard SecureCode) med SMS-kode eller bankapp." },
+        { name: "Beløbet krediteres din konto", text: "Indbetalingen vises øjeblikkeligt på din casinokonto efter godkendelse." },
+      ]}
     />
   );
 };

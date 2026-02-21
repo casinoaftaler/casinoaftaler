@@ -290,6 +290,14 @@ const ZimplerGuide = () => {
         { question: "Hvad sker der, hvis min bank er nede under en Zimpler-betaling?", answer: "Hvis din banks PSD2-API er utilgængeligt (driftsforstyrrelser, vedligeholdelse), vil Zimpler vise en fejlmeddelelse og foreslå, at du prøver igen senere. Ingen penge trækkes ved mislykkede transaktioner. Vi oplevede dette én gang i vores test med Nordea og kunne gennemføre betalingen efter 5 minutters ventetid. Har du brug for øjeblikkelig indbetaling under en bankafbrydelse, kan du bruge et alternativ som Visa/Mastercard eller Apple Pay." },
       ]}
       currentPath="/betalingsmetoder/zimpler"
+      howToName="Sådan indbetaler du med Zimpler på et dansk casino"
+      howToTotalTime="PT3M"
+      howToSteps={[
+        { name: "Vælg Zimpler som betalingsmetode", text: "Gå til casinoets kassesektion og vælg Zimpler fra listen over tilgængelige betalingsmetoder." },
+        { name: "Indtast dit mobilnummer", text: "Angiv dit danske mobilnummer. Zimpler sender en verifikationskode via SMS." },
+        { name: "Verificér med MitID og vælg bank", text: "Log ind med MitID, vælg din bank og godkend overførslen direkte fra din bankkonto." },
+        { name: "Pengene krediteres øjeblikkeligt", text: "Indbetalingen behandles i realtid og vises på din casinokonto inden for sekunder." },
+      ]}
     />
   );
 };

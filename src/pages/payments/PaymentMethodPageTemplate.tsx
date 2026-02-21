@@ -42,6 +42,11 @@ interface AdditionalSection {
   position: "after-intro" | "after-whatis" | "after-security" | "after-howto";
 }
 
+interface HowToStep {
+  name: string;
+  text: string;
+}
+
 interface PaymentMethodPageProps {
   seoTitle: string;
   seoDescription: string;
@@ -70,6 +75,12 @@ interface PaymentMethodPageProps {
   currentPath: string;
   responsibleGamingText?: string;
   additionalSections?: AdditionalSection[];
+  /** Structured HowTo steps for JSON-LD schema (min 3 steps). */
+  howToSteps?: HowToStep[];
+  /** Human-readable name for the HowTo, e.g. "Sådan indbetaler du med Trustly" */
+  howToName?: string;
+  /** Estimated total time in ISO 8601 duration, e.g. "PT5M" */
+  howToTotalTime?: string;
 }
 
 const paymentLinks = [
@@ -132,6 +143,9 @@ export function PaymentMethodPage({
   currentPath,
   responsibleGamingText,
   additionalSections,
+  howToSteps,
+  howToName,
+  howToTotalTime,
 }: PaymentMethodPageProps) {
   const { data: siteSettings } = useSiteSettings();
   const heroBackgroundImage = siteSettings?.hero_background;
@@ -143,14 +157,31 @@ export function PaymentMethodPage({
     description: seoDescription,
     url: `${SITE_URL}${currentPath}`,
     datePublished: "2026-02-15",
-    dateModified: "2026-02-17",
+    dateModified: "2026-02-21",
     authorName: "Kevin",
     authorUrl: `${SITE_URL}/forfatter/kevin`,
   });
 
+  const howToJsonLd = howToSteps && howToSteps.length >= 3 ? {
+    "@context": "https://schema.org",
+    "@type": "HowTo",
+    "@id": `${SITE_URL}${currentPath}#howto`,
+    name: howToName || `Sådan bruger du ${name} på casino`,
+    description: seoDescription,
+    ...(howToTotalTime ? { totalTime: howToTotalTime } : {}),
+    step: howToSteps.map((s, i) => ({
+      "@type": "HowToStep" as const,
+      position: i + 1,
+      name: s.name,
+      text: s.text,
+    })),
+  } : null;
+
+  const jsonLdSchemas = [faqJsonLd, articleSchema, ...(howToJsonLd ? [howToJsonLd] : [])];
+
   return (
     <>
-      <SEO title={seoTitle} description={seoDescription} jsonLd={[faqJsonLd, articleSchema]} />
+      <SEO title={seoTitle} description={seoDescription} jsonLd={jsonLdSchemas} />
 
       <section
         className="relative overflow-hidden py-12 text-white md:py-20"

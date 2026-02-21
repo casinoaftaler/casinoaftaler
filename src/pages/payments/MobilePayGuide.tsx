@@ -272,6 +272,14 @@ const MobilePayGuide = () => {
         )},
       ]}
       currentPath="/betalingsmetoder/mobilepay"
+      howToName="Sådan indbetaler du med MobilePay på et dansk casino"
+      howToTotalTime="PT2M"
+      howToSteps={[
+        { name: "Vælg MobilePay som betalingsmetode", text: "Gå til casinoets kassesektion og vælg MobilePay fra listen over tilgængelige betalingsmetoder." },
+        { name: "Indtast beløb og mobilnummer", text: "Angiv det ønskede indbetalingsbeløb og dit mobilnummer tilknyttet MobilePay." },
+        { name: "Godkend i MobilePay-appen", text: "Åbn MobilePay-appen på din telefon, gennemgå betalingsanmodningen og swipe for at godkende." },
+        { name: "Pengene krediteres øjeblikkeligt", text: "Beløbet indsættes på din casinokonto inden for få sekunder efter godkendelse." },
+      ]}
     />
   );
 };
