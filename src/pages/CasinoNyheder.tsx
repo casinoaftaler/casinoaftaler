@@ -53,10 +53,11 @@ const CasinoNyheder = () => {
       >
         <div className="container relative z-10">
           <div className="mx-auto max-w-3xl text-center">
+            <div className="mb-6 min-h-[40px]" />
             <h1 className="mb-4 text-3xl font-bold tracking-tight md:text-4xl lg:text-5xl">
               Casino Nyheder 2026
             </h1>
-            <p className="mb-2 text-base text-white/80 md:text-lg">
+            <p className="mb-6 text-base text-white/80 md:text-lg">
               Seneste nyt, analyser og opdateringer fra det danske casinomarked
             </p>
             {latestDate && (
