@@ -3,6 +3,7 @@ import { useSlotSymbols } from "@/hooks/useSlotSymbols";
 import { useSlotSpins } from "@/hooks/useSlotSpins";
 import { useSlotSettings } from "@/hooks/useSlotSettings";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
+import { supabase } from "@/integrations/supabase/client";
 import { useServerSpin } from "@/hooks/useServerSpin";
 import { useAuth } from "@/hooks/useAuth";
 import { useQueryClient } from "@tanstack/react-query";
@@ -104,6 +105,39 @@ export function GatesSlotGame({ gameId = "gates-of-fedesvin" }: GatesSlotGamePro
       columnStopTimersRef.current.forEach(t => clearTimeout(t));
     };
   }, []);
+
+  // Load persisted bonus state on mount (resume if user left mid-bonus)
+  const [bonusLoaded, setBonusLoaded] = useState(false);
+  useEffect(() => {
+    if (!user?.id || bonusLoaded) return;
+    const load = async () => {
+      try {
+        const { data, error } = await supabase
+          .from("slot_bonus_state")
+          .select("*")
+          .eq("user_id", user.id)
+          .eq("game_id", gameId)
+          .maybeSingle();
+
+        if (!error && data && data.is_active && data.free_spins_remaining > 0) {
+          setIsBonusActive(true);
+          setFreeSpinsRemaining(data.free_spins_remaining);
+          setTotalFreeSpins(data.total_free_spins);
+          setBonusWinnings(Number(data.bonus_winnings) || 0);
+          setBet(Number(data.bet_amount) || 1);
+          // expanding_symbol_name is repurposed to store cumulative multiplier
+          setCumulativeMultiplier(Number(data.expanding_symbol_name) || 0);
+          setRunningMultiplier(Number(data.expanding_symbol_name) || 0);
+          // Trigger auto-spin to resume bonus
+          setBonusAutoSpinPending(true);
+        }
+      } catch (err) {
+        console.error("Failed to load Gates bonus state:", err);
+      }
+      setBonusLoaded(true);
+    };
+    load();
+  }, [user?.id, gameId, bonusLoaded]);
 
   const symbolsById = useMemo(() => {
     if (!symbols) return new Map<string, SlotSymbol>();
@@ -702,7 +736,7 @@ export function GatesSlotGame({ gameId = "gates-of-fedesvin" }: GatesSlotGamePro
           onAutoSpinCountChange={setAutoSpinCount}
           onAutoSpinToggle={toggleAutoSpin}
           bonusState={{ isActive: isBonusActive, freeSpinsRemaining: 0 }}
-          bonusLoaded={true}
+          bonusLoaded={bonusLoaded}
           winAmount={winAmount}
           gameId={gameId}
         />
