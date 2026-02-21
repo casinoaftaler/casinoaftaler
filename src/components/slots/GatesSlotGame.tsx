@@ -28,9 +28,9 @@ import { BonusEntrySequence } from "./BonusEntrySequence";
 import { GatesRetriggerOverlay } from "./GatesRetriggerOverlay";
 import { GatesBonusEndOverlay } from "./GatesBonusEndOverlay";
 
-const SYMBOL_WIDTH = 110;
-const SYMBOL_HEIGHT = 85;
-const SYMBOL_GAP = 4;
+const SYMBOL_WIDTH = 140;
+const SYMBOL_HEIGHT = 108;
+const SYMBOL_GAP = 5;
 
 type AutoSpinCount = 10 | 25 | 50 | 100 | "infinite";
 
