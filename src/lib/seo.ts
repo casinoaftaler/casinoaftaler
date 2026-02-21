@@ -274,33 +274,6 @@ export function buildVideoSchema(
 export { JONAS_PERSON_ID };
 
 /**
- * Build a HowTo schema entity for step-by-step guides.
- * Returns without @context so it merges cleanly into an existing @graph.
- * Pass it alongside buildArticleSchema output in the SEO jsonLd array.
- */
-export function buildHowToSchema(opts: {
-  url: string;
-  name: string;
-  description: string;
-  totalTime?: string;
-  steps: { name: string; text: string }[];
-}) {
-  return {
-    "@type": "HowTo",
-    "@id": `${opts.url}#howto`,
-    name: opts.name,
-    description: opts.description,
-    ...(opts.totalTime && { totalTime: opts.totalTime }),
-    step: opts.steps.map((s, i) => ({
-      "@type": "HowToStep",
-      position: i + 1,
-      name: s.name,
-      text: s.text,
-    })),
-  };
-}
-
-/**
  * Extract plain text from a React node for use in structured data.
  * Handles strings, numbers, arrays, and React elements with children.
  */
