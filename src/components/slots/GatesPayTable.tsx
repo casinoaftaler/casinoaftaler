@@ -14,7 +14,7 @@ import { getSlotTheme } from "@/lib/slotTheme";
 
 const formatPayout = (multiplier: number, bet: number): string => {
   const payout = multiplier * bet;
-  return Number.isInteger(payout) ? `$${payout}.00` : `$${payout.toFixed(2)}`;
+  return Number.isInteger(payout) ? `${payout}` : `${parseFloat(payout.toFixed(2))}`;
 };
 
 interface GatesPayTableProps {
