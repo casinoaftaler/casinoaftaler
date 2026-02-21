@@ -252,29 +252,124 @@ function ScrapeStatusBadge({ row }: { row: CasinoComplianceRow }) {
   const scrapeDate = row.license_last_scraped_at
     ? new Date(row.license_last_scraped_at).toLocaleDateString("da-DK", { day: "numeric", month: "short", year: "numeric" })
     : null;
+  const daysSinceScrape = row.license_last_scraped_at
+    ? Math.floor((Date.now() - new Date(row.license_last_scraped_at).getTime()) / 86400000)
+    : null;
 
-  if (row.scrape_status === "success" && scrapeDate) {
+  // Niveau 1 – Faktisk problem (RØD)
+  if (row.license_status === "suspended" || row.license_status === "revoked") {
     return (
-      <Badge className="bg-emerald-500/20 text-emerald-700 dark:text-emerald-400 border-emerald-500/30 gap-1 text-[10px]">
-        <CheckCircle className="h-2.5 w-2.5" />
-        Live-verificeret ({scrapeDate})
-      </Badge>
+      <Tooltip>
+        <TooltipTrigger asChild>
+          <span className="cursor-help">
+            <Badge variant="destructive" className="gap-1 text-[10px]">
+              <XCircle className="h-2.5 w-2.5" />
+              Ikke compliant
+            </Badge>
+          </span>
+        </TooltipTrigger>
+        <TooltipContent side="top" className="max-w-xs">
+          <p className="text-xs">
+            Licensstatus: {row.license_status === "suspended" ? "Suspenderet" : "Tilbagekaldt"}<br />
+            {scrapeDate && <>Sidst verificeret: {scrapeDate}<br /></>}
+            <a href={row.license_source_url} target="_blank" rel="noopener noreferrer" className="text-primary underline">Kilde</a><br />
+            <span className="text-muted-foreground">Systemet ændrer aldrig status ved verifikationsfejl.</span>
+          </p>
+        </TooltipContent>
+      </Tooltip>
     );
   }
-  if (row.scrape_status === "failed" || row.scrape_status === "partial") {
+
+  // Niveau 2 – Live-verificeret (GRØN, success ≤ 7 dage)
+  if (row.scrape_status === "success" && daysSinceScrape !== null && daysSinceScrape <= 7) {
     return (
-      <Badge className="bg-amber-500/20 text-amber-700 dark:text-amber-400 border-amber-500/30 gap-1 text-[10px]">
-        <AlertTriangle className="h-2.5 w-2.5" />
-        {row.scrape_status === "failed" ? "Verifikation mislykkedes" : "Manuel gennemgang kræves"}
-        {scrapeDate && ` – seneste: ${scrapeDate}`}
-      </Badge>
+      <Tooltip>
+        <TooltipTrigger asChild>
+          <span className="cursor-help">
+            <Badge className="bg-emerald-500/20 text-emerald-700 dark:text-emerald-400 border-emerald-500/30 gap-1 text-[10px]">
+              <CheckCircle className="h-2.5 w-2.5" />
+              Live-verificeret ({scrapeDate})
+            </Badge>
+          </span>
+        </TooltipTrigger>
+        <TooltipContent side="top" className="max-w-xs">
+          <p className="text-xs">
+            Sidst verificeret: {scrapeDate}<br />
+            Scrape-status: Success<br />
+            <a href={row.license_source_url} target="_blank" rel="noopener noreferrer" className="text-primary underline">Kilde</a><br />
+            <span className="text-muted-foreground">Systemet ændrer aldrig status ved verifikationsfejl.</span>
+          </p>
+        </TooltipContent>
+      </Tooltip>
     );
   }
+
+  // Niveau 3 – Stadig gyldig (GRØN, failed men ≤ 30 dage)
+  if (daysSinceScrape !== null && daysSinceScrape <= 30) {
+    return (
+      <Tooltip>
+        <TooltipTrigger asChild>
+          <span className="cursor-help">
+            <Badge className="bg-emerald-500/20 text-emerald-700 dark:text-emerald-400 border-emerald-500/30 gap-1 text-[10px]">
+              <CheckCircle className="h-2.5 w-2.5" />
+              Verificeret (seneste: {scrapeDate})
+            </Badge>
+          </span>
+        </TooltipTrigger>
+        <TooltipContent side="top" className="max-w-xs">
+          <p className="text-xs">
+            Sidst verificeret: {scrapeDate}<br />
+            Scrape-status: Automatiseret adgang midlertidigt begrænset<br />
+            <a href={row.license_source_url} target="_blank" rel="noopener noreferrer" className="text-primary underline">Kilde</a><br />
+            <span className="text-muted-foreground">Systemet ændrer aldrig status ved verifikationsfejl.</span>
+          </p>
+        </TooltipContent>
+      </Tooltip>
+    );
+  }
+
+  // Niveau 4 – Automatisk adgang begrænset (GUL, > 30 dage)
+  if (daysSinceScrape !== null && daysSinceScrape > 30) {
+    return (
+      <Tooltip>
+        <TooltipTrigger asChild>
+          <span className="cursor-help">
+            <Badge className="bg-amber-500/20 text-amber-700 dark:text-amber-400 border-amber-500/30 gap-1 text-[10px]">
+              <AlertTriangle className="h-2.5 w-2.5" />
+              Automatisk adgang begrænset – seneste: {scrapeDate}
+            </Badge>
+          </span>
+        </TooltipTrigger>
+        <TooltipContent side="top" className="max-w-xs">
+          <p className="text-xs">
+            Sidst verificeret: {scrapeDate} ({daysSinceScrape} dage siden)<br />
+            Scrape-status: Regulatoren begrænser automatiseret adgang<br />
+            <a href={row.license_source_url} target="_blank" rel="noopener noreferrer" className="text-primary underline">Kilde</a><br />
+            <span className="text-muted-foreground">Systemet ændrer aldrig status ved verifikationsfejl.</span>
+          </p>
+        </TooltipContent>
+      </Tooltip>
+    );
+  }
+
+  // Niveau 5 – Første kørsel (ingen scrape-dato)
   return (
-    <Badge variant="outline" className="gap-1 text-[10px]">
-      <Clock className="h-2.5 w-2.5" />
-      Afventer verifikation
-    </Badge>
+    <Tooltip>
+      <TooltipTrigger asChild>
+        <span className="cursor-help">
+          <Badge variant="outline" className="gap-1 text-[10px]">
+            <Clock className="h-2.5 w-2.5" />
+            Afventer første verificering
+          </Badge>
+        </span>
+      </TooltipTrigger>
+      <TooltipContent side="top" className="max-w-xs">
+        <p className="text-xs">
+          Scrape-status: Afventer<br />
+          <span className="text-muted-foreground">Systemet ændrer aldrig status ved verifikationsfejl.</span>
+        </p>
+      </TooltipContent>
+    </Tooltip>
   );
 }
 
@@ -368,6 +463,14 @@ export default function CasinoCompliance() {
 
         <div className="mb-10 overflow-hidden rounded-xl">
           <img src={complianceHero} alt="Compliance dashboard for danske online casinoer med skjold og retfærdighedsvægt" className="w-full h-auto object-cover max-h-[400px]" loading="eager" />
+        </div>
+
+        {/* ═══ GLOBAL INFO BAR ═══ */}
+        <div className="flex items-start gap-3 rounded-lg border border-border bg-muted/50 px-4 py-3 mb-8">
+          <Info className="h-5 w-5 text-primary mt-0.5 shrink-0" />
+          <p className="text-sm text-muted-foreground">
+            Data verificeres dagligt mod Spillemyndighedens register. Automatisk adgang kan være begrænset, hvorfor systemet viser senest kendte verificerede data.
+          </p>
         </div>
 
         {/* ═══ REALTIME STATUS BADGE ═══ */}
