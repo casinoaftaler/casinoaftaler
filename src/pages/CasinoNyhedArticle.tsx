@@ -1,10 +1,9 @@
 import { useParams, Link, Navigate } from "react-router-dom";
 import { SEO } from "@/components/SEO";
-import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { AuthorBio } from "@/components/AuthorBio";
 import { useNewsArticle, usePublishedNews } from "@/hooks/useCasinoNews";
-import { buildArticleSchema, buildFaqSchema, SITE_URL } from "@/lib/seo";
+import { SITE_URL } from "@/lib/seo";
 import { CalendarDays, Loader2 } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
@@ -104,7 +103,6 @@ const CasinoNyhedArticle = () => {
         noindex={article.status === "draft"}
         jsonLd={newsArticleSchema}
       />
-      <Breadcrumbs />
 
       <article className="container py-8 max-w-4xl">
         <header className="mb-6">
