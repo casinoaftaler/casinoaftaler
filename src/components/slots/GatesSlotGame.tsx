@@ -20,6 +20,7 @@ import {
 import type { SlotSymbol } from "@/lib/slotGameLogic";
 import { GatesColumn, type ColumnSpinState, type CellAnimState } from "./GatesColumn";
 import { AnimatedWinCounter } from "./AnimatedWinCounter";
+import { BonusEntrySequence } from "./BonusEntrySequence";
 
 const SYMBOL_SIZE = 100;
 const SYMBOL_GAP = 4;
@@ -74,6 +75,7 @@ export function GatesSlotGame({ gameId = "gates-of-fedesvin" }: GatesSlotGamePro
   const [showBonusComplete, setShowBonusComplete] = useState(false);
   const showBonusTriggerRef = useRef(false);
   const showBonusCompleteRef = useRef(false);
+  const pendingBonusStateRef = useRef<any>(null);
 
   const spinLockRef = useRef(false);
   const [isAutoSpinning, setIsAutoSpinning] = useState(false);
@@ -118,6 +120,20 @@ export function GatesSlotGame({ gameId = "gates-of-fedesvin" }: GatesSlotGamePro
   const toggleAutoSpin = useCallback(() => {
     if (isAutoSpinning) stopAutoSpin(); else startAutoSpin();
   }, [isAutoSpinning, stopAutoSpin, startAutoSpin]);
+
+  const handleBonusEntryComplete = useCallback(() => {
+    const bs = pendingBonusStateRef.current;
+    setShowBonusTrigger(false);
+    showBonusTriggerRef.current = false;
+    if (bs) {
+      setIsBonusActive(true);
+      setFreeSpinsRemaining(bs.freeSpinsRemaining);
+      setTotalFreeSpins(bs.totalFreeSpins);
+      setBonusWinnings(0);
+      setCumulativeMultiplier(0);
+      pendingBonusStateRef.current = null;
+    }
+  }, []);
 
   // Process tumble steps with full visual animation sequence
   const processTumbleSteps = useCallback(async (steps: TumbleStep[]) => {
@@ -348,18 +364,13 @@ export function GatesSlotGame({ gameId = "gates-of-fedesvin" }: GatesSlotGamePro
           const bs = response.bonusState as any;
           if (bs.isActive !== undefined) {
             if (!isBonusActive && bs.freeSpinsRemaining > 0) {
-              // New bonus triggered
+              // New bonus triggered — start entry sequence
+              pendingBonusStateRef.current = bs;
               setShowBonusTrigger(true);
               showBonusTriggerRef.current = true;
-              setTimeout(() => {
-                setShowBonusTrigger(false);
-                showBonusTriggerRef.current = false;
-                setIsBonusActive(true);
-                setFreeSpinsRemaining(bs.freeSpinsRemaining);
-                setTotalFreeSpins(bs.totalFreeSpins);
-                setBonusWinnings(bs.bonusWinnings || 0);
-                setCumulativeMultiplier(bs.cumulativeMultiplier || 0);
-              }, 3000);
+              // Reset counters for bonus entry
+              setRunningWin(0);
+              setRunningMultiplier(0);
             } else {
               setFreeSpinsRemaining(bs.freeSpinsRemaining);
               setTotalFreeSpins(bs.totalFreeSpins);
@@ -446,18 +457,12 @@ export function GatesSlotGame({ gameId = "gates-of-fedesvin" }: GatesSlotGamePro
         </div>
       )}
 
-      {/* Bonus trigger overlay */}
-      {showBonusTrigger && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm">
-          <div className="text-center space-y-4 animate-fade-in">
-            <div className="text-6xl font-black text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-yellow-300 to-blue-400 animate-pulse">
-              ⚡ FREE SPINS ⚡
-            </div>
-            <div className="text-3xl font-bold text-blue-100">15 Gratis Spins!</div>
-            <div className="text-lg text-blue-300/80">Alle multipliers akkumuleres!</div>
-          </div>
-        </div>
-      )}
+      {/* Bonus entry sequence */}
+      <BonusEntrySequence
+        isActive={showBonusTrigger}
+        freeSpinsAwarded={pendingBonusStateRef.current?.freeSpinsRemaining || 15}
+        onComplete={handleBonusEntryComplete}
+      />
 
       {/* Bonus complete overlay */}
       {showBonusComplete && (
