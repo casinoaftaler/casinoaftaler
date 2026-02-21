@@ -154,7 +154,7 @@ const CasinoNyhedArticle = () => {
 
         {/* Article Content - render HTML content */}
         <section
-          className="prose prose-lg dark:prose-invert max-w-none mb-12 [&>h2]:mt-10 [&>h2]:mb-4 [&>h3]:mt-8 [&>h3]:mb-3 [&>p]:mb-4 [&>ul]:mb-4 [&>ol]:mb-4"
+          className="prose prose-lg dark:prose-invert max-w-none mb-12 [&>h2]:text-3xl [&>h2]:font-bold [&>h2]:mt-12 [&>h2]:mb-4 [&>h3]:text-2xl [&>h3]:font-bold [&>h3]:mt-10 [&>h3]:mb-3 [&>p]:mb-5 [&>p]:leading-relaxed [&>p]:text-muted-foreground [&>ul]:mb-5 [&>ol]:mb-5 [&>h2:first-of-type]:mt-0"
           dangerouslySetInnerHTML={{ __html: article.content }}
         />
 
