@@ -227,6 +227,7 @@ async function generateGatesGrid(symbols: SlotSymbol[], isBonusSpin: boolean, pr
   for (let col = 0; col < GATES_COLS; col++) {
     const column: string[] = [];
     let hasScatter = false; // Cap: max 1 scatter per reel
+    let hasMultiplier = false; // Cap: max 1 multiplier per reel
     for (let row = 0; row < GATES_ROWS; row++) {
       let sym = await getGatesRandomSymbol(symbols, isBonusSpin, prng);
 
@@ -235,10 +236,17 @@ async function generateGatesGrid(symbols: SlotSymbol[], isBonusSpin: boolean, pr
         sym = await getGatesRandomSymbol(nonScatterSymbols, isBonusSpin, prng);
       }
 
-      // Multiplier spin: replace scatters with multipliers
+      // Multiplier spin: replace scatters with multipliers (but cap 1 per reel)
       if (spinType === 'multiplier' && scatterSymbol && sym.id === scatterSymbol.id) {
-        const multVal = await pickGatesMultiplierValue(prng);
-        column.push(`mult_${multVal}x`);
+        if (!hasMultiplier) {
+          const multVal = await pickGatesMultiplierValue(prng);
+          column.push(`mult_${multVal}x`);
+          hasMultiplier = true;
+        } else {
+          // Already have a multiplier in this column, place a regular symbol
+          sym = await getGatesRandomSymbol(nonScatterSymbols, isBonusSpin, prng);
+          column.push(sym.id);
+        }
         continue;
       }
 
@@ -253,11 +261,12 @@ async function generateGatesGrid(symbols: SlotSymbol[], isBonusSpin: boolean, pr
         continue;
       }
 
-      // 'both' (bonus) or 'multiplier' spin: normal multiplier chance on non-scatter cells
+      // 'both' (bonus) or 'multiplier' spin: normal multiplier chance on non-scatter cells (cap 1 per reel)
       if (!scatterSymbol || sym.id !== scatterSymbol.id) {
-        if ((await prng.next()) < chance) {
+        if (!hasMultiplier && (await prng.next()) < chance) {
           const multVal = await pickGatesMultiplierValue(prng);
           column.push(`mult_${multVal}x`);
+          hasMultiplier = true;
           continue;
         }
       }
@@ -276,8 +285,11 @@ async function fillWithMultipliers(symbols: SlotSymbol[], count: number, isBonus
   
   // Check if this column already has a scatter among survivors
   const colAlreadyHasScatter = scatterSymbol ? existingColSymbols.some(id => id === scatterSymbol.id) : false;
+  // Check if this column already has a multiplier among survivors
+  const colAlreadyHasMultiplier = existingColSymbols.some(id => id.startsWith('mult_'));
   
   const result: string[] = [];
+  let resultHasMultiplier = false;
   for (let i = 0; i < count; i++) {
     // Scatter spin: never place multipliers in fill
     if (spinType === 'scatter') {
@@ -296,16 +308,24 @@ async function fillWithMultipliers(symbols: SlotSymbol[], count: number, isBonus
       continue;
     }
 
-    // Multiplier spin: replace any scatter with a multiplier
+    // Multiplier spin: replace any scatter with a multiplier (cap 1 per reel)
     if (spinType === 'multiplier') {
-      if ((await prng.next()) < chance) {
+      const canPlaceMult = !colAlreadyHasMultiplier && !resultHasMultiplier;
+      if (canPlaceMult && (await prng.next()) < chance) {
         const multVal = await pickGatesMultiplierValue(prng);
         result.push(`mult_${multVal}x`);
+        resultHasMultiplier = true;
       } else {
         const sym = await getGatesRandomSymbol(symbols, isBonusSpin, prng);
-        if (scatterSymbol && sym.id === scatterSymbol.id) {
+        if (scatterSymbol && sym.id === scatterSymbol.id && canPlaceMult) {
           const multVal = await pickGatesMultiplierValue(prng);
           result.push(`mult_${multVal}x`);
+          resultHasMultiplier = true;
+        } else if (scatterSymbol && sym.id === scatterSymbol.id) {
+          // Can't place multiplier, place regular symbol
+          const nonScatter = symbols.filter(s => !s.is_scatter);
+          const idx = Math.floor((await prng.next()) * nonScatter.length);
+          result.push(nonScatter[idx].id);
         } else {
           result.push(sym.id);
         }
@@ -313,10 +333,11 @@ async function fillWithMultipliers(symbols: SlotSymbol[], count: number, isBonus
       continue;
     }
 
-    // 'both' (bonus): existing behavior but prevent duplicate scatters
-    if ((await prng.next()) < chance) {
+    // 'both' (bonus): existing behavior but prevent duplicate scatters & cap 1 multiplier per reel
+    if (!colAlreadyHasMultiplier && !resultHasMultiplier && (await prng.next()) < chance) {
       const multVal = await pickGatesMultiplierValue(prng);
       result.push(`mult_${multVal}x`);
+      resultHasMultiplier = true;
     } else {
       let sym = await getGatesRandomSymbol(symbols, isBonusSpin, prng);
       const resultHasScatter = scatterSymbol ? result.some(id => id === scatterSymbol.id) : false;
