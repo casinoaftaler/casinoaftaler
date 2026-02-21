@@ -44,18 +44,45 @@ const CasinoNyheder = () => {
         jsonLd={articleSchema}
       />
 
-      <main className="container py-8">
-        <header className="mb-8">
-          <h1 className="text-3xl font-bold md:text-4xl lg:text-5xl">Casino Nyheder 2026</h1>
-          <p className="mt-3 text-lg text-muted-foreground max-w-3xl">
-            Seneste nyt, analyser og opdateringer fra det danske casinomarked
-          </p>
-          {latestDate && (
-            <p className="mt-2 text-sm text-muted-foreground">
-              Senest opdateret: {latestDate}
+      {/* Gradient Hero Section */}
+      <section
+        className="relative overflow-hidden py-8 text-white md:py-12 min-h-[280px] md:min-h-[320px]"
+        style={{
+          background: 'linear-gradient(135deg, hsl(260 70% 25%), hsl(250 60% 20%) 40%, hsl(210 80% 25%))',
+        }}
+      >
+        <div className="container relative z-10">
+          <div className="mx-auto max-w-3xl text-center">
+            <h1 className="mb-4 text-3xl font-bold tracking-tight md:text-4xl lg:text-5xl">
+              Casino Nyheder 2026
+            </h1>
+            <p className="mb-2 text-base text-white/80 md:text-lg">
+              Seneste nyt, analyser og opdateringer fra det danske casinomarked
             </p>
-          )}
-        </header>
+            {latestDate && (
+              <p className="text-sm text-white/60">
+                Senest opdateret: {latestDate}
+              </p>
+            )}
+          </div>
+        </div>
+        {/* Decorative elements */}
+        <div className="absolute left-0 top-0 h-full w-full opacity-20">
+          <div className="absolute left-10 top-10 h-32 w-32 rounded-full bg-[hsl(210_80%_60%)] blur-xl" style={{ animation: "float 6s ease-in-out infinite" }} />
+          <div className="absolute bottom-10 right-10 h-48 w-48 rounded-full bg-[hsl(260_70%_60%)] blur-xl" style={{ animation: "float 8s ease-in-out infinite 1s" }} />
+          <div className="absolute left-1/3 top-1/2 h-24 w-24 rounded-full bg-[hsl(230_70%_50%)] blur-xl" style={{ animation: "float 7s ease-in-out infinite 0.5s" }} />
+        </div>
+        <style>{`
+          @keyframes float {
+            0%, 100% { transform: translateY(0) translateX(0); }
+            25% { transform: translateY(-15px) translateX(5px); }
+            50% { transform: translateY(-8px) translateX(-5px); }
+            75% { transform: translateY(-20px) translateX(3px); }
+          }
+        `}</style>
+      </section>
+
+      <main className="container py-8">
 
         <AuthorMetaBar
           author="jonas"
