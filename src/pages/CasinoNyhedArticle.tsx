@@ -114,6 +114,7 @@ const CasinoNyhedArticle = () => {
         }}
       >
         <div className="container">
+          <Breadcrumbs dynamicLabel={article.title} />
           <div className="mx-auto max-w-3xl text-center">
             <Badge variant="secondary" className="mb-4">
               <Newspaper className="mr-1.5 h-3.5 w-3.5" />
@@ -129,9 +130,7 @@ const CasinoNyhedArticle = () => {
         </div>
       </section>
 
-      <div className="container py-8 md:py-12 max-w-4xl">
-        <Breadcrumbs dynamicLabel={article.title} />
-
+      <div className="container py-8 md:py-12">
         <AuthorMetaBar
           author="jonas"
           date={publishedDate}
