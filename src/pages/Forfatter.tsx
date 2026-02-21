@@ -3,7 +3,7 @@ import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { AuthorBio } from "@/components/AuthorBio";
 import { Link } from "react-router-dom";
 import { SEO } from "@/components/SEO";
-import { buildFaqSchema, SITE_URL } from "@/lib/seo";
+import { buildFaqSchema, SITE_URL, JONAS_SAME_AS } from "@/lib/seo";
 import { FAQSection } from "@/components/FAQSection";
 import { RelatedGuides } from "@/components/RelatedGuides";
 import { CasinoCard } from "@/components/CasinoCard";
@@ -187,37 +187,29 @@ const expertiseItems = [
   { icon: ShieldCheck, label: "Fokus på ansvarligt spil" },
 ];
 
-/** Person JSON-LD schema for Jonas */
+/** Person JSON-LD schema for Jonas – canonical definition matching buildPersonEntity */
 const personSchema = {
   "@context": "https://schema.org",
   "@type": "Person",
-  name: "Jonas Theill Adsersen",
+  "@id": `${SITE_URL}/forfatter/jonas#person`,
+  name: "Jonas Theill",
   alternateName: "Fedesvinsejer",
   url: `${SITE_URL}/forfatter/jonas`,
-  image: "https://zhpbqqhtgnblaugrqhqi.supabase.co/storage/v1/object/public/casino-logos/jonas-forfatter.png",
-  jobTitle: "Founder & Casino Anmelder",
+  image: `${SITE_URL}/jonas-avatar.webp`,
+  jobTitle: "Casino Bonus Ekspert",
+  knowsAbout: ["online casino", "iGaming", "casino bonus", "spillemaskiner", "RTP", "ansvarligt spil"],
+  nationality: { "@type": "Country", name: "Denmark" },
   worksFor: {
     "@type": "Organization",
+    "@id": `${SITE_URL}/#organization`,
     name: "Casinoaftaler.dk",
     url: SITE_URL,
   },
   memberOf: {
     "@type": "Organization",
-    name: "Casinoaftaler.dk",
-    url: SITE_URL,
+    "@id": `${SITE_URL}/#organization`,
   },
-  sameAs: [
-    "https://www.twitch.tv/fedesvinsejer",
-    "https://www.youtube.com/@casinoaftaler",
-    "https://www.instagram.com/casinoaftaler",
-  ],
-  knowsAbout: [
-    "Online Casino",
-    "Casino Bonus",
-    "Ansvarligt Spil",
-    "Spillemaskiner",
-    "Live Casino",
-  ],
+  sameAs: JONAS_SAME_AS,
   description:
     "Jonas er grundlæggeren af Casinoaftaler.dk og en af Danmarks mest engagerende casino-streamere med over 4 års erfaring.",
 };

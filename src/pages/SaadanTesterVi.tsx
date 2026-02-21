@@ -162,9 +162,7 @@ const webPageJsonLd = {
     url: "https://casinoaftaler.dk",
   },
   author: {
-    "@type": "Person",
-    name: "Jonas",
-    url: "https://casinoaftaler.dk/forfatter/jonas",
+    "@id": "https://casinoaftaler.dk/forfatter/jonas#person",
   },
   breadcrumb: {
     "@type": "BreadcrumbList",
