@@ -7,6 +7,11 @@ export interface CasinoComplianceRow {
   casino_name: string;
   license_number: string;
   license_status: "valid" | "suspended" | "revoked";
+  license_holder_name: string | null;
+  license_source_url: string;
+  license_verified_at: string | null;
+  bonus_source_url: string;
+  bonus_verified_at: string | null;
   bonus_max_amount: number;
   bonus_wager_requirement: number;
   bonus_compliant: boolean;

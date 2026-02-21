@@ -50,14 +50,25 @@ Deno.serve(async (req) => {
         (licenseStatus === 'valid' ? 50 : 0) +
         (bonusCompliant ? 50 : 0);
 
+      // Build casino-specific source URLs
+      const casinoSlug = casino.slug;
+      const encodedName = encodeURIComponent(casino.name);
+      const licenseSourceUrl = `https://spillemyndigheden.dk/telefonbog?title=${encodedName}`;
+      const bonusSourceUrl = `https://casinoaftaler.dk/casino-anmeldelser/${casinoSlug}`;
+
       // Upsert compliance record
       const { error: upsertError } = await adminClient
         .from('casino_compliance')
         .upsert(
           {
-            casino_slug: casino.slug,
+            casino_slug: casinoSlug,
             casino_name: casino.name,
             license_status: licenseStatus,
+            license_holder_name: casino.name,
+            license_source_url: licenseSourceUrl,
+            license_verified_at: now,
+            bonus_source_url: bonusSourceUrl,
+            bonus_verified_at: now,
             bonus_max_amount: bonusMax,
             bonus_wager_requirement: wagerReq,
             bonus_compliant: bonusCompliant,
@@ -69,7 +80,7 @@ Deno.serve(async (req) => {
         );
 
       if (upsertError) {
-        console.error(`Failed to upsert ${casino.slug}:`, upsertError.message);
+        console.error(`Failed to upsert ${casinoSlug}:`, upsertError.message);
         continue;
       }
       updated++;

@@ -18,14 +18,14 @@ Deno.serve(async (req) => {
 
     const { data, error } = await client
       .from('casino_compliance')
-      .select('casino_name, license_status, bonus_max_amount, bonus_wager_requirement, compliance_score, last_checked')
+      .select('casino_name, license_status, license_holder_name, license_source_url, license_verified_at, bonus_max_amount, bonus_wager_requirement, bonus_source_url, bonus_verified_at, compliance_score, last_checked')
       .order('casino_name');
 
     if (error) throw error;
 
-    const header = 'casino_name,license_status,bonus_max_amount,wager_requirement,compliance_score,last_checked';
+    const header = 'casino_name,license_status,license_holder,license_source_url,license_verified_at,bonus_max_amount,wager_requirement,bonus_source_url,bonus_verified_at,compliance_score,last_checked';
     const rows = (data || []).map(r =>
-      `"${r.casino_name}",${r.license_status},${r.bonus_max_amount},${r.bonus_wager_requirement},${r.compliance_score},${r.last_checked}`
+      `"${r.casino_name}",${r.license_status},"${r.license_holder_name || ''}","${r.license_source_url}",${r.license_verified_at || ''},${r.bonus_max_amount},${r.bonus_wager_requirement},"${r.bonus_source_url}",${r.bonus_verified_at || ''},${r.compliance_score},${r.last_checked}`
     );
     const csv = [header, ...rows].join('\n');
 
