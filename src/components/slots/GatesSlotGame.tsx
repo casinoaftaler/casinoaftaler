@@ -306,26 +306,32 @@ export function GatesSlotGame({ gameId = "gates-of-fedesvin" }: GatesSlotGamePro
             }
             
             if (removedInCol > 0) {
-              // In the NEXT grid, the top `removedInCol` rows are new symbols
-              // They should drop in from above
+              // Collect surviving rows in this column (original positions)
+              const survivorRows: number[] = [];
+              for (let row = 0; row < GATES_ROWS; row++) {
+                const flat = col * GATES_ROWS + row;
+                if (!allRemovedPositions.has(flat)) {
+                  survivorRows.push(row);
+                }
+              }
+
+              // New symbols fill the top `removedInCol` rows
               for (let row = 0; row < removedInCol; row++) {
                 const flat = col * GATES_ROWS + row;
                 dropAnims.set(flat, 'filling');
               }
-              
-              // The remaining rows are survivors that shifted down.
-              // Each survivor needs a gravity offset = how many rows it shifted.
-              // Since survivors compact downward, a survivor now at row `r`
-              // was previously at row `r - removedInCol` (approximately).
-              // But we need per-cell accuracy: count removed cells above each
-              // survivor's NEW position. Since new symbols are at the top,
-              // all survivors are below them and shifted by `removedInCol`.
-              for (let row = removedInCol; row < GATES_ROWS; row++) {
-                const flat = col * GATES_ROWS + row;
-                // This survivor moved down by `removedInCol` rows
-                // so it starts at offset -(removedInCol * CELL_HEIGHT) and drops to 0
-                dropAnims.set(flat, 'dropping');
-                offsets.set(flat, removedInCol * CELL_HEIGHT);
+
+              // Each survivor compacts to bottom: survivor[i] -> new row (removedInCol + i)
+              for (let i = 0; i < survivorRows.length; i++) {
+                const oldRow = survivorRows[i];
+                const newRow = removedInCol + i;
+                const dropRows = newRow - oldRow;
+                if (dropRows > 0) {
+                  const flat = col * GATES_ROWS + newRow;
+                  dropAnims.set(flat, 'dropping');
+                  offsets.set(flat, dropRows * CELL_HEIGHT);
+                }
+                // dropRows === 0 means no movement, no animation needed
               }
             }
             // Columns with no removals: no animation needed, symbols stay in place
