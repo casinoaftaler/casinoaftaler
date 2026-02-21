@@ -53,6 +53,8 @@ interface SpinRequest {
   sessionId: string;
   isBonusSpin: boolean;
   gameId: string;
+  clientSeed: string;
+  nonce: number;
 }
 
 // Get session ID from sessionStorage
@@ -81,6 +83,8 @@ export function useServerSpin(gameId: string = "book-of-fedesvin") {
           sessionId: request.sessionId,
           isBonusSpin: request.isBonusSpin,
           gameId: request.gameId,
+          clientSeed: request.clientSeed,
+          nonce: request.nonce,
         },
       });
 
@@ -128,7 +132,7 @@ export function useServerSpin(gameId: string = "book-of-fedesvin") {
     },
   });
 
-  const spin = async (bet: number, isBonusSpin: boolean): Promise<SpinResponse | null> => {
+  const spin = async (bet: number, isBonusSpin: boolean, clientSeed?: string, nonce?: number): Promise<SpinResponse | null> => {
     const sessionId = getSessionId();
     
     try {
@@ -137,6 +141,8 @@ export function useServerSpin(gameId: string = "book-of-fedesvin") {
         sessionId,
         isBonusSpin,
         gameId,
+        clientSeed: clientSeed || crypto.randomUUID(),
+        nonce: nonce || 0,
       });
       return result;
     } catch (error) {
