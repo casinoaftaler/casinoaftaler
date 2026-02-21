@@ -783,6 +783,26 @@ COMPOSITION:
 ${GATES_BASE_STYLE}`;
   }
 
+  // Yellow Gem
+  if (normalizedName.includes("yellow") && normalizedName.includes("gem") || normalizedName === "yellow gem") {
+    return `Create a slot machine symbol for a Greek mythology/Olympus-themed game.
+
+MAIN SUBJECT:
+- A brilliant, large faceted TOPAZ/CITRINE gemstone as the central focus
+- Rich, warm golden-yellow color with radiant inner fire
+- Divine golden energy swirling inside the gem
+- The gem emits a warm golden celestial glow
+- 3D appearance with realistic light refraction and sparkle
+- The gemstone should be the ONLY focus, floating freely with NO border, NO frame, NO setting around it
+
+COMPOSITION:
+- Gem centered and filling approximately 70% of the frame
+- Golden divine light radiating outward
+- NO border or frame around the gem — it must appear borderless against the background
+
+${GATES_BASE_STYLE}`;
+  }
+
   // Gold Cup / Chalice
   if (normalizedName.includes("cup") || normalizedName.includes("kylix")) {
     return `Create a slot machine symbol for a Greek mythology/Olympus-themed game.
