@@ -111,6 +111,12 @@ const GATES_BONUS_PREMIUM_WEIGHT_BOOST = 1.10; // +10% premium symbol weight in 
 const GATES_MULTIPLIER_VALUES = [2, 3, 5, 10, 15, 25, 50, 100];
 const GATES_MULTIPLIER_WEIGHTS = [30, 25, 20, 12, 6, 3, 2, 1];
 
+// Chance that a base game spin is a "multiplier spin" (no scatters, multipliers land instead)
+const GATES_MULTIPLIER_SPIN_CHANCE = 0.10;
+
+// Spin type: scatter = scatters can land, no multipliers; multiplier = multipliers can land, no scatters; both = bonus (unchanged)
+type GatesSpinType = 'scatter' | 'multiplier' | 'both';
+
 // Cache for gates settings from DB
 const gatesSettingsCache: { data: Record<string, string> | null; fetchedAt: number } = { data: null, fetchedAt: 0 };
 const GATES_SETTINGS_CACHE_TTL = 5 * 60 * 1000;
@@ -213,7 +219,7 @@ async function getGatesRandomSymbol(symbols: SlotSymbol[], isBonusSpin: boolean,
   return symbols[symbols.length - 1];
 }
 
-async function generateGatesGrid(symbols: SlotSymbol[], isBonusSpin: boolean, prng: SeededPRNG): Promise<string[][]> {
+async function generateGatesGrid(symbols: SlotSymbol[], isBonusSpin: boolean, prng: SeededPRNG, spinType: GatesSpinType = 'both'): Promise<string[][]> {
   const chance = isBonusSpin ? GATES_MULTIPLIER_CHANCE_BONUS : GATES_MULTIPLIER_CHANCE_BASE;
   const scatterSymbol = symbols.find(s => s.is_scatter);
   const grid: string[][] = [];
@@ -221,6 +227,21 @@ async function generateGatesGrid(symbols: SlotSymbol[], isBonusSpin: boolean, pr
     const column: string[] = [];
     for (let row = 0; row < GATES_ROWS; row++) {
       const sym = await getGatesRandomSymbol(symbols, isBonusSpin, prng);
+
+      // Multiplier spin: replace scatters with multipliers
+      if (spinType === 'multiplier' && scatterSymbol && sym.id === scatterSymbol.id) {
+        const multVal = await pickGatesMultiplierValue(prng);
+        column.push(`mult_${multVal}x`);
+        continue;
+      }
+
+      // Scatter spin: never place multipliers
+      if (spinType === 'scatter') {
+        column.push(sym.id);
+        continue;
+      }
+
+      // 'both' (bonus) or 'multiplier' spin: normal multiplier chance on non-scatter cells
       if (!scatterSymbol || sym.id !== scatterSymbol.id) {
         if ((await prng.next()) < chance) {
           const multVal = await pickGatesMultiplierValue(prng);
@@ -236,10 +257,36 @@ async function generateGatesGrid(symbols: SlotSymbol[], isBonusSpin: boolean, pr
 }
 
 // Place multipliers on new symbols filling after a tumble
-async function fillWithMultipliers(symbols: SlotSymbol[], count: number, isBonusSpin: boolean, prng: SeededPRNG): Promise<string[]> {
+async function fillWithMultipliers(symbols: SlotSymbol[], count: number, isBonusSpin: boolean, prng: SeededPRNG, spinType: GatesSpinType = 'both'): Promise<string[]> {
   const chance = isBonusSpin ? GATES_MULTIPLIER_CHANCE_BONUS : GATES_MULTIPLIER_CHANCE_BASE;
+  const scatterSymbol = symbols.find(s => s.is_scatter);
   const result: string[] = [];
   for (let i = 0; i < count; i++) {
+    // Scatter spin: never place multipliers in fill
+    if (spinType === 'scatter') {
+      const sym = await getGatesRandomSymbol(symbols, isBonusSpin, prng);
+      result.push(sym.id);
+      continue;
+    }
+
+    // Multiplier spin: replace any scatter with a multiplier
+    if (spinType === 'multiplier') {
+      if ((await prng.next()) < chance) {
+        const multVal = await pickGatesMultiplierValue(prng);
+        result.push(`mult_${multVal}x`);
+      } else {
+        const sym = await getGatesRandomSymbol(symbols, isBonusSpin, prng);
+        if (scatterSymbol && sym.id === scatterSymbol.id) {
+          const multVal = await pickGatesMultiplierValue(prng);
+          result.push(`mult_${multVal}x`);
+        } else {
+          result.push(sym.id);
+        }
+      }
+      continue;
+    }
+
+    // 'both' (bonus): existing behavior
     if ((await prng.next()) < chance) {
       const multVal = await pickGatesMultiplierValue(prng);
       result.push(`mult_${multVal}x`);
@@ -302,7 +349,7 @@ function countGatesScatters(grid: string[][], symbols: SlotSymbol[]): number {
   return count;
 }
 
-async function applyGatesTumble(grid: string[][], winningPositions: number[], multiplierPositions: number[], symbols: SlotSymbol[], isBonusSpin: boolean, prng: SeededPRNG): Promise<string[][]> {
+async function applyGatesTumble(grid: string[][], winningPositions: number[], multiplierPositions: number[], symbols: SlotSymbol[], isBonusSpin: boolean, prng: SeededPRNG, spinType: GatesSpinType = 'both'): Promise<string[][]> {
   const newGrid = grid.map(col => [...col]);
   
   // Combine winning + collected multiplier positions for removal
@@ -326,9 +373,9 @@ async function applyGatesTumble(grid: string[][], winningPositions: number[], mu
       }
     }
     
-    // Fill from top with new random symbols (which may include multipliers)
+    // Fill from top with new random symbols (respecting spinType)
     const needed = GATES_ROWS - remaining.length;
-    const newSymbols = await fillWithMultipliers(symbols, needed, isBonusSpin, prng);
+    const newSymbols = await fillWithMultipliers(symbols, needed, isBonusSpin, prng, spinType);
     
     // New symbols on top, remaining on bottom
     newGrid[col] = [...newSymbols, ...remaining];
@@ -357,7 +404,14 @@ async function calculateGatesFullSpin(
   runningMultiplier: number = 0,
   prng: SeededPRNG
 ): Promise<GatesSpinResult> {
-  let grid = await generateGatesGrid(symbols, isBonusSpin, prng);
+  // Determine spin type: base game splits into scatter/multiplier spins; bonus allows both
+  let spinType: GatesSpinType = 'both';
+  if (!isBonusSpin) {
+    const spinTypeRoll = await prng.next();
+    spinType = spinTypeRoll < GATES_MULTIPLIER_SPIN_CHANCE ? 'multiplier' : 'scatter';
+  }
+
+  let grid = await generateGatesGrid(symbols, isBonusSpin, prng, spinType);
   const initialGrid = grid.map(col => [...col]);
   const tumbleSteps: GatesTumbleStep[] = [];
   let totalRawWin = 0;
@@ -406,7 +460,7 @@ async function calculateGatesFullSpin(
     if (wins.length === 0) break;
     
     // Apply tumble - remove winning symbols AND collected multiplier symbols
-    grid = await applyGatesTumble(grid, Array.from(winningPositions), collectedMultPositions, symbols, isBonusSpin, prng);
+    grid = await applyGatesTumble(grid, Array.from(winningPositions), collectedMultPositions, symbols, isBonusSpin, prng, spinType);
   }
   
   // Apply total multiplier to raw win
