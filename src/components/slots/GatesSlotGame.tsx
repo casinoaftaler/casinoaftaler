@@ -217,6 +217,7 @@ export function GatesSlotGame({ gameId = "gates-of-fedesvin" }: GatesSlotGamePro
         setTumblePhase('showing-wins');
         const winPositions = new Set(step.winningPositions);
         setWinningPositions(winPositions);
+        slotSounds.playSymbolHighlight();
         
         // Increment running win counter
         setRunningWin(prev => prev + step.stepWin);

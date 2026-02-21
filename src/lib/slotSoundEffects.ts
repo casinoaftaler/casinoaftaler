@@ -42,6 +42,7 @@ export interface CustomSoundFiles {
   scatterSound2?: string | null;
   scatterSound3?: string | null;
   scatterCelebrationSound?: string | null;
+  symbolHighlightSound?: string | null;
 }
 
 // localStorage key for persisting audio settings
@@ -201,7 +202,7 @@ class SlotSoundEffects {
       'bigWinSound', 'bonusTriggerSound', 'bonusWinSound',
       'bonusSymbolScrollSound', 'bonusSymbolSelectedSound',
       'scatterSound1', 'scatterSound2', 'scatterSound3',
-      'scatterCelebrationSound'
+      'scatterCelebrationSound', 'symbolHighlightSound'
     ];
 
     soundKeys.forEach(key => {
@@ -3145,6 +3146,65 @@ class SlotSoundEffects {
       osc.start(now + i * 0.15);
       osc.stop(now + 2.6);
     });
+  }
+
+  // Symbol highlight sound — plays when winning symbols light up before exploding
+  playSymbolHighlight() {
+    if (!this.canPlayEffect()) return;
+    
+    // Try custom sound first
+    if (this.playCustomSound('symbolHighlightSound', 0.7)) return;
+    
+    const ctx = this.getContext();
+    const now = ctx.currentTime;
+
+    // Bright crystalline chime — rising shimmer that says "these symbols are about to pop"
+    const osc1 = ctx.createOscillator();
+    const osc2 = ctx.createOscillator();
+    const gain = ctx.createGain();
+    const filter = ctx.createBiquadFilter();
+
+    osc1.connect(filter);
+    osc2.connect(filter);
+    filter.connect(gain);
+    gain.connect(ctx.destination);
+
+    // Two detuned sine waves for sparkle
+    osc1.type = 'sine';
+    osc1.frequency.setValueAtTime(1200, now);
+    osc1.frequency.exponentialRampToValueAtTime(2400, now + 0.15);
+
+    osc2.type = 'triangle';
+    osc2.frequency.setValueAtTime(1800, now);
+    osc2.frequency.exponentialRampToValueAtTime(3200, now + 0.12);
+
+    filter.type = 'bandpass';
+    filter.frequency.value = 2000;
+    filter.Q.value = 1.5;
+
+    gain.gain.setValueAtTime(0.18 * this.volume, now);
+    gain.gain.setValueAtTime(0.22 * this.volume, now + 0.06);
+    gain.gain.exponentialRampToValueAtTime(0.001, now + 0.3);
+
+    osc1.start(now);
+    osc1.stop(now + 0.35);
+    osc2.start(now);
+    osc2.stop(now + 0.3);
+
+    // Sub-thud anticipation layer
+    const thud = ctx.createOscillator();
+    const thudGain = ctx.createGain();
+    thud.connect(thudGain);
+    thudGain.connect(ctx.destination);
+
+    thud.type = 'sine';
+    thud.frequency.setValueAtTime(180, now);
+    thud.frequency.exponentialRampToValueAtTime(80, now + 0.15);
+    thudGain.gain.setValueAtTime(0.1 * this.volume, now);
+    thudGain.gain.exponentialRampToValueAtTime(0.001, now + 0.2);
+
+    thud.start(now);
+    thud.stop(now + 0.25);
   }
 
   // Scatter tease rising pitch sound (2-3 scatters visible)
