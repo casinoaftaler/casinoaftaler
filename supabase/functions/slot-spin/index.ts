@@ -269,14 +269,29 @@ async function generateGatesGrid(symbols: SlotSymbol[], isBonusSpin: boolean, pr
 }
 
 // Place multipliers on new symbols filling after a tumble
-async function fillWithMultipliers(symbols: SlotSymbol[], count: number, isBonusSpin: boolean, prng: SeededPRNG, spinType: GatesSpinType = 'both'): Promise<string[]> {
+// existingColSymbols: the surviving symbols already in this column (used to prevent duplicate scatters)
+async function fillWithMultipliers(symbols: SlotSymbol[], count: number, isBonusSpin: boolean, prng: SeededPRNG, spinType: GatesSpinType = 'both', existingColSymbols: string[] = []): Promise<string[]> {
   const chance = isBonusSpin ? GATES_MULTIPLIER_CHANCE_BONUS : GATES_MULTIPLIER_CHANCE_BASE;
   const scatterSymbol = symbols.find(s => s.is_scatter);
+  
+  // Check if this column already has a scatter among survivors
+  const colAlreadyHasScatter = scatterSymbol ? existingColSymbols.some(id => id === scatterSymbol.id) : false;
+  
   const result: string[] = [];
   for (let i = 0; i < count; i++) {
     // Scatter spin: never place multipliers in fill
     if (spinType === 'scatter') {
-      const sym = await getGatesRandomSymbol(symbols, isBonusSpin, prng);
+      let sym = await getGatesRandomSymbol(symbols, isBonusSpin, prng);
+      // Prevent duplicate scatter in this column
+      const resultHasScatter = scatterSymbol ? result.some(id => id === scatterSymbol.id) : false;
+      if (scatterSymbol && sym.id === scatterSymbol.id && (colAlreadyHasScatter || resultHasScatter)) {
+        // Re-roll without scatter
+        const nonScatter = symbols.filter(s => !s.is_scatter);
+        if (nonScatter.length > 0) {
+          const idx = Math.floor((await prng.next()) * nonScatter.length);
+          sym = nonScatter[idx];
+        }
+      }
       result.push(sym.id);
       continue;
     }
@@ -298,12 +313,20 @@ async function fillWithMultipliers(symbols: SlotSymbol[], count: number, isBonus
       continue;
     }
 
-    // 'both' (bonus): existing behavior
+    // 'both' (bonus): existing behavior but prevent duplicate scatters
     if ((await prng.next()) < chance) {
       const multVal = await pickGatesMultiplierValue(prng);
       result.push(`mult_${multVal}x`);
     } else {
-      const sym = await getGatesRandomSymbol(symbols, isBonusSpin, prng);
+      let sym = await getGatesRandomSymbol(symbols, isBonusSpin, prng);
+      const resultHasScatter = scatterSymbol ? result.some(id => id === scatterSymbol.id) : false;
+      if (scatterSymbol && sym.id === scatterSymbol.id && (colAlreadyHasScatter || resultHasScatter)) {
+        const nonScatter = symbols.filter(s => !s.is_scatter);
+        if (nonScatter.length > 0) {
+          const idx = Math.floor((await prng.next()) * nonScatter.length);
+          sym = nonScatter[idx];
+        }
+      }
       result.push(sym.id);
     }
   }
@@ -386,8 +409,9 @@ async function applyGatesTumble(grid: string[][], winningPositions: number[], mu
     }
     
     // Fill from top with new random symbols (respecting spinType)
+    // Pass surviving symbols so fillWithMultipliers can prevent duplicate scatters
     const needed = GATES_ROWS - remaining.length;
-    const newSymbols = await fillWithMultipliers(symbols, needed, isBonusSpin, prng, spinType);
+    const newSymbols = await fillWithMultipliers(symbols, needed, isBonusSpin, prng, spinType, remaining);
     
     // New symbols on top, remaining on bottom
     newGrid[col] = [...newSymbols, ...remaining];
