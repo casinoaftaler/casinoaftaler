@@ -20,27 +20,41 @@ const CasinoNyheder = () => {
   const totalPages = Math.ceil(total / ARTICLES_PER_PAGE);
 
   const articleSchema = buildArticleSchema({
-    headline: "Casino Nyheder – Seneste fra det Danske Casinomarked",
-    description: "Hold dig opdateret med de seneste casino nyheder fra Danmark. Nye licenser, bonusændringer, lovgivning og teknologitrends.",
+    headline: "Casino Nyheder 2026 – Seneste Opdateringer fra Danske Online Casinoer",
+    description: "Hold dig opdateret med de seneste casino nyheder, analyser og opdateringer fra det danske casinomarked. Licenser, bonusændringer og lovgivning.",
     url: `${SITE_URL}/casino-nyheder`,
     datePublished: "2026-02-21",
     dateModified: "2026-02-21",
   });
 
+  // Find the most recently published article date
+  const latestDate = articles.length > 0 && articles[0].published_at
+    ? new Date(articles[0].published_at).toLocaleDateString("da-DK", {
+        day: "numeric",
+        month: "long",
+        year: "numeric",
+      })
+    : null;
+
   return (
     <>
       <SEO
-        title="Casino Nyheder – Seneste fra det Danske Casinomarked"
-        description="Hold dig opdateret med de seneste casino nyheder fra Danmark. Nye licenser, bonusændringer, betalingsmetoder og lovgivning fra Spillemyndigheden."
+        title="Casino Nyheder 2026 – Seneste Opdateringer fra Danske Online Casinoer"
+        description="Hold dig opdateret med de seneste casino nyheder, analyser og opdateringer fra det danske casinomarked. Nye licenser, bonusændringer, betalingsmetoder og lovgivning."
         jsonLd={articleSchema}
       />
 
       <main className="container py-8">
         <header className="mb-8">
-          <h1 className="text-3xl font-bold md:text-4xl lg:text-5xl">Casino Nyheder</h1>
+          <h1 className="text-3xl font-bold md:text-4xl lg:text-5xl">Casino Nyheder 2026</h1>
           <p className="mt-3 text-lg text-muted-foreground max-w-3xl">
-            Seneste nyt og analyser fra det danske casinomarked
+            Seneste nyt, analyser og opdateringer fra det danske casinomarked
           </p>
+          {latestDate && (
+            <p className="mt-2 text-sm text-muted-foreground">
+              Senest opdateret: {latestDate}
+            </p>
+          )}
         </header>
 
         <AuthorMetaBar
@@ -85,7 +99,7 @@ const CasinoNyheder = () => {
           <div className="py-16 text-center">
             <Newspaper className="mx-auto h-12 w-12 text-muted-foreground/50" />
             <p className="mt-4 text-lg text-muted-foreground">
-              Der er endnu ingen publicerede nyheder. Kom snart tilbage!
+              Første opdateringer udgives snart. Vi publicerer nye analyser hver tirsdag og fredag.
             </p>
           </div>
         ) : (
