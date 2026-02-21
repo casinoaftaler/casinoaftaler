@@ -1194,6 +1194,33 @@ export type Database = {
         }
         Relationships: []
       }
+      slot_multiplier_symbols: {
+        Row: {
+          created_at: string
+          id: string
+          image_url: string | null
+          label: string
+          position: number
+          value: number
+        }
+        Insert: {
+          created_at?: string
+          id: string
+          image_url?: string | null
+          label: string
+          position?: number
+          value: number
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          image_url?: string | null
+          label?: string
+          position?: number
+          value?: number
+        }
+        Relationships: []
+      }
       slot_points_audit_log: {
         Row: {
           action_type: string
