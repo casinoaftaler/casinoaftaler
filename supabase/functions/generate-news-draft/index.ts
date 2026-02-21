@@ -684,6 +684,57 @@ Returnér UDELUKKENDE valid JSON (ingen markdown code blocks). Sæt ALDRIG rejec
       );
     }
 
+    // ═══ Generate hero image via Lovable AI ═══
+    let featuredImageUrl: string | null = null;
+    try {
+      console.log("Generating hero image for:", articleData.title);
+      const imagePrompt = `Professional news article hero image for a Danish online casino industry article titled "${articleData.title}". Modern, clean editorial style. Dark purple and blue tones. No text overlay. 16:9 aspect ratio. Ultra high resolution.`;
+      
+      const imageResponse = await fetch("https://ai.gateway.lovable.dev/v1/chat/completions", {
+        method: "POST",
+        headers: {
+          Authorization: `Bearer ${LOVABLE_API_KEY}`,
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          model: "google/gemini-2.5-flash-image",
+          messages: [{ role: "user", content: imagePrompt }],
+          modalities: ["image", "text"],
+        }),
+      });
+
+      if (imageResponse.ok) {
+        const imageData = await imageResponse.json();
+        const base64Image = imageData.choices?.[0]?.message?.images?.[0]?.image_url?.url;
+        
+        if (base64Image) {
+          // Extract base64 data and upload to Supabase Storage
+          const base64Data = base64Image.replace(/^data:image\/\w+;base64,/, "");
+          const imageBytes = Uint8Array.from(atob(base64Data), (c) => c.charCodeAt(0));
+          const fileName = `${articleData.slug}-${Date.now()}.png`;
+          
+          const { error: uploadErr } = await supabase.storage
+            .from("news-images")
+            .upload(fileName, imageBytes, { contentType: "image/png", upsert: true });
+
+          if (!uploadErr) {
+            const { data: publicUrl } = supabase.storage
+              .from("news-images")
+              .getPublicUrl(fileName);
+            featuredImageUrl = publicUrl.publicUrl;
+            console.log("Hero image uploaded:", featuredImageUrl);
+          } else {
+            console.error("Image upload error:", uploadErr);
+          }
+        }
+      } else {
+        console.error("Image generation failed:", imageResponse.status);
+      }
+    } catch (imgErr) {
+      console.error("Image generation error:", imgErr);
+      // Non-blocking — article still gets created without image
+    }
+
     // ═══ All guardrails passed – Insert as DRAFT ═══
     const { data: inserted, error: insertErr } = await supabase
       .from("casino_news")
@@ -696,6 +747,7 @@ Returnér UDELUKKENDE valid JSON (ingen markdown code blocks). Sæt ALDRIG rejec
         tags: articleData.tags || [],
         meta_title: articleData.meta_title,
         meta_description: articleData.meta_description,
+        featured_image: featuredImageUrl,
         status: "draft",
         author_id: "jonas",
       })
