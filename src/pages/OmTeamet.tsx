@@ -47,9 +47,9 @@ const OmTeamet = () => {
     dateModified: "2026-02-20",
     logo: {
       "@type": "ImageObject",
-      url: "https://casinoaftaler.dk/favicon-48x48.png",
-      width: 192,
-      height: 192,
+      url: "https://casinoaftaler.dk/icon-512x512.png",
+      width: 512,
+      height: 512,
     },
     description:
       "Casinoaftaler.dk er en dansk casino-guide med fokus på gennemsigtighed, testmetoder og ansvarligt spil.",

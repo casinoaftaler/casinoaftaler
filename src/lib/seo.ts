@@ -34,9 +34,9 @@ export const organizationSchema = {
   url: SITE_URL,
   logo: {
     "@type": "ImageObject",
-    url: `${SITE_URL}/favicon-48x48.png`,
-    width: 192,
-    height: 192,
+    url: `${SITE_URL}/icon-512x512.png`,
+    width: 512,
+    height: 512,
   },
   sameAs: [
     "https://www.youtube.com/@casinoaftaler",
@@ -180,9 +180,9 @@ export function buildArticleSchema(opts: {
       url: SITE_URL,
       logo: {
         "@type": "ImageObject",
-        url: `${SITE_URL}/favicon-48x48.png`,
-        width: 192,
-        height: 192,
+        url: `${SITE_URL}/icon-512x512.png`,
+        width: 512,
+        height: 512,
       },
     },
     ...(videoId && {
@@ -258,9 +258,9 @@ export function buildVideoSchema(
       url: SITE_URL,
       logo: {
         "@type": "ImageObject",
-        url: `${SITE_URL}/favicon-48x48.png`,
-        width: 192,
-        height: 192,
+        url: `${SITE_URL}/icon-512x512.png`,
+        width: 512,
+        height: 512,
       },
     },
     ...(opts.viewCount !== undefined && {
