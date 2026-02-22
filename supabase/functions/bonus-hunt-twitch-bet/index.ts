@@ -5,11 +5,21 @@ Deno.serve(async (req: Request) => {
     const url = new URL(req.url);
     console.log('Full URL:', req.url);
     console.log('All params:', Object.fromEntries(url.searchParams.entries()));
-    const twitchUsername = url.searchParams.get('user')?.toLowerCase()?.trim();
-    const cmd = url.searchParams.get('cmd')?.toLowerCase()?.trim();
-    const argsRaw = url.searchParams.get('args')?.trim() || '';
 
-    if (!twitchUsername) return new Response('Mangler brugernavn.');
+    // Support both 'user' and 'sender' params
+    const twitchUsername = (url.searchParams.get('user') || url.searchParams.get('sender'))?.toLowerCase()?.trim();
+    const cmd = url.searchParams.get('cmd')?.toLowerCase()?.trim();
+
+    // Support both 'args' (single string) and 'arg1'/'arg2' (individual args from SE)
+    let argsRaw = url.searchParams.get('args')?.trim() || '';
+    if (!argsRaw || argsRaw.includes('$(')) {
+      // Fallback to individual arg params if args wasn't resolved
+      const arg1 = url.searchParams.get('arg1')?.trim() || '';
+      const arg2 = url.searchParams.get('arg2')?.trim() || '';
+      argsRaw = [arg1, arg2].filter(Boolean).join(' ');
+    }
+
+    if (!twitchUsername || twitchUsername.includes('$(')) return new Response('Mangler brugernavn.');
     if (!cmd || !['gtw', 'avgx', 'credits'].includes(cmd)) return new Response('Ugyldig kommando.');
 
     const supabaseUrl = Deno.env.get('SUPABASE_URL')!;
