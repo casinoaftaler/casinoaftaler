@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -9,14 +9,7 @@ import { Badge } from "@/components/ui/badge";
 import { Switch } from "@/components/ui/switch";
 import { Separator } from "@/components/ui/separator";
 import { toast } from "sonner";
-import { Loader2, Plus, Trophy, Target, Coins, Users, CheckCircle, XCircle } from "lucide-react";
-import {
-  Dialog,
-  DialogContent,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from "@/components/ui/dialog";
+import { Loader2, Plus, Trophy, Target, Coins, CheckCircle, Zap } from "lucide-react";
 import {
   AlertDialog,
   AlertDialogAction,
@@ -28,18 +21,24 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
+import { useBonusHuntData } from "@/hooks/useBonusHuntData";
 
-function useBonusHuntSessions() {
+// Fetch the session matching the current hunt number (if any)
+function useSessionForHunt(huntNumber?: number) {
   return useQuery({
-    queryKey: ['admin-bonus-hunt-sessions'],
+    queryKey: ['admin-bonus-hunt-session-for-hunt', huntNumber],
     queryFn: async () => {
+      if (!huntNumber) return null;
       const { data, error } = await supabase
         .from('bonus_hunt_sessions' as any)
         .select('*')
-        .order('created_at', { ascending: false });
+        .eq('hunt_number', huntNumber)
+        .maybeSingle();
       if (error) throw error;
-      return (data || []) as any[];
+      return data as any;
     },
+    enabled: !!huntNumber,
+    refetchInterval: 10000,
   });
 }
 
@@ -63,12 +62,11 @@ function useBonusHuntBetCounts(sessionId?: string) {
   });
 }
 
-function CreateSessionForm({ onClose }: { onClose: () => void }) {
+// Simplified form — only bet limits and prizes
+function CreateSessionForm({ huntNumber, huntId, onClose }: { huntNumber: number; huntId: string; onClose: () => void }) {
   const queryClient = useQueryClient();
   const [loading, setLoading] = useState(false);
   const [form, setForm] = useState({
-    streamsystem_hunt_id: "",
-    hunt_number: "",
     gtw_min_bet: "1",
     gtw_max_bet: "50",
     avgx_min_bet: "1",
@@ -90,8 +88,8 @@ function CreateSessionForm({ onClose }: { onClose: () => void }) {
       if (!user) throw new Error("Not authenticated");
 
       const { error } = await (supabase.from('bonus_hunt_sessions' as any) as any).insert({
-        streamsystem_hunt_id: form.streamsystem_hunt_id,
-        hunt_number: parseInt(form.hunt_number),
+        streamsystem_hunt_id: huntId,
+        hunt_number: huntNumber,
         gtw_min_bet: parseInt(form.gtw_min_bet),
         gtw_max_bet: parseInt(form.gtw_max_bet),
         avgx_min_bet: parseInt(form.avgx_min_bet),
@@ -102,8 +100,8 @@ function CreateSessionForm({ onClose }: { onClose: () => void }) {
       });
 
       if (error) throw error;
-      toast.success("Bonus Hunt session oprettet!");
-      queryClient.invalidateQueries({ queryKey: ['admin-bonus-hunt-sessions'] });
+      toast.success(`Betting session for Hunt #${huntNumber} oprettet!`);
+      queryClient.invalidateQueries({ queryKey: ['admin-bonus-hunt-session-for-hunt'] });
       onClose();
     } catch (e: any) {
       toast.error(e.message);
@@ -120,18 +118,6 @@ function CreateSessionForm({ onClose }: { onClose: () => void }) {
 
   return (
     <form onSubmit={handleSubmit} className="space-y-4">
-      <div className="grid grid-cols-2 gap-4">
-        <div className="space-y-2">
-          <Label>StreamSystem Hunt ID</Label>
-          <Input value={form.streamsystem_hunt_id} onChange={e => setForm({ ...form, streamsystem_hunt_id: e.target.value })} required placeholder="f.eks. abc123..." />
-        </div>
-        <div className="space-y-2">
-          <Label>Hunt Nummer</Label>
-          <Input type="number" value={form.hunt_number} onChange={e => setForm({ ...form, hunt_number: e.target.value })} required placeholder="f.eks. 1367" />
-        </div>
-      </div>
-
-      <Separator />
       <h4 className="font-semibold text-sm">Bet Grænser</h4>
       <div className="grid grid-cols-2 gap-4">
         <div className="space-y-2">
@@ -169,13 +155,13 @@ function CreateSessionForm({ onClose }: { onClose: () => void }) {
 
       <Button type="submit" className="w-full" disabled={loading}>
         {loading && <Loader2 className="h-4 w-4 animate-spin mr-2" />}
-        Opret Session
+        Opret Betting Session
       </Button>
     </form>
   );
 }
 
-function SessionCard({ session }: { session: any }) {
+function SessionControls({ session }: { session: any }) {
   const queryClient = useQueryClient();
   const { data: counts } = useBonusHuntBetCounts(session.id);
   const [loading, setLoading] = useState<string | null>(null);
@@ -189,7 +175,7 @@ function SessionCard({ session }: { session: any }) {
       const { error } = await (supabase.from('bonus_hunt_sessions' as any) as any).update(update).eq('id', session.id);
       if (error) throw error;
       toast.success(`${type.toUpperCase()} betting ${value ? 'åbnet' : 'lukket'}`);
-      queryClient.invalidateQueries({ queryKey: ['admin-bonus-hunt-sessions'] });
+      queryClient.invalidateQueries({ queryKey: ['admin-bonus-hunt-session-for-hunt'] });
     } catch (e: any) {
       toast.error(e.message);
     } finally {
@@ -214,7 +200,7 @@ function SessionCard({ session }: { session: any }) {
       if (data?.error) { toast.error(data.error); return; }
 
       toast.success("Hunt settled!");
-      queryClient.invalidateQueries({ queryKey: ['admin-bonus-hunt-sessions'] });
+      queryClient.invalidateQueries({ queryKey: ['admin-bonus-hunt-session-for-hunt'] });
     } catch (e: any) {
       toast.error(e.message);
     } finally {
@@ -222,150 +208,155 @@ function SessionCard({ session }: { session: any }) {
     }
   };
 
-  const statusColor = {
-    upcoming: 'bg-blue-500/20 text-blue-400',
-    betting_open: 'bg-green-500/20 text-green-400',
-    betting_closed: 'bg-yellow-500/20 text-yellow-400',
-    completed: 'bg-muted text-muted-foreground',
-  }[session.status] || 'bg-muted text-muted-foreground';
-
   return (
-    <Card>
-      <CardHeader className="pb-3">
-        <div className="flex items-center justify-between">
-          <CardTitle className="text-lg">Bonus Hunt #{session.hunt_number}</CardTitle>
-          <Badge className={statusColor}>{session.status}</Badge>
+    <div className="space-y-4">
+      {/* Stats */}
+      <div className="grid grid-cols-3 gap-3 text-sm">
+        <div className="flex items-center gap-1.5">
+          <Trophy className="h-4 w-4 text-muted-foreground" />
+          <span>GTW: {counts?.gtw || 0} bets</span>
         </div>
-      </CardHeader>
-      <CardContent className="space-y-4">
-        {/* Stats */}
-        <div className="grid grid-cols-3 gap-3 text-sm">
-          <div className="flex items-center gap-1.5">
-            <Trophy className="h-4 w-4 text-muted-foreground" />
-            <span>GTW: {counts?.gtw || 0} bets</span>
-          </div>
-          <div className="flex items-center gap-1.5">
-            <Target className="h-4 w-4 text-muted-foreground" />
-            <span>AVG X: {counts?.avgx || 0} bets</span>
-          </div>
-          <div className="flex items-center gap-1.5">
-            <Coins className="h-4 w-4 text-muted-foreground" />
-            <span>Pot: {counts?.avgxPot || 0}</span>
-          </div>
+        <div className="flex items-center gap-1.5">
+          <Target className="h-4 w-4 text-muted-foreground" />
+          <span>AVG X: {counts?.avgx || 0} bets</span>
         </div>
+        <div className="flex items-center gap-1.5">
+          <Coins className="h-4 w-4 text-muted-foreground" />
+          <span>Pot: {counts?.avgxPot || 0}</span>
+        </div>
+      </div>
 
-        {/* Betting toggles */}
-        {session.status !== 'completed' && (
-          <>
-            <Separator />
-            <div className="grid grid-cols-2 gap-4">
-              <div className="flex items-center justify-between">
-                <Label className="text-sm">GTW Betting</Label>
-                <Switch
-                  checked={session.gtw_betting_open}
-                  onCheckedChange={v => toggleBetting('gtw', v)}
-                  disabled={loading === 'gtw'}
-                />
-              </div>
-              <div className="flex items-center justify-between">
-                <Label className="text-sm">AVG X Betting</Label>
-                <Switch
-                  checked={session.avgx_betting_open}
-                  onCheckedChange={v => toggleBetting('avgx', v)}
-                  disabled={loading === 'avgx'}
-                />
-              </div>
+      {session.status !== 'completed' && (
+        <>
+          <Separator />
+          <div className="grid grid-cols-2 gap-4">
+            <div className="flex items-center justify-between">
+              <Label className="text-sm">GTW Betting</Label>
+              <Switch
+                checked={session.gtw_betting_open}
+                onCheckedChange={v => toggleBetting('gtw', v)}
+                disabled={loading === 'gtw'}
+              />
             </div>
-
-            {/* Bet limits info */}
-            <div className="text-xs text-muted-foreground grid grid-cols-2 gap-2">
-              <span>GTW: {session.gtw_min_bet}-{session.gtw_max_bet} credits</span>
-              <span>AVG X: {session.avgx_min_bet}-{session.avgx_max_bet} credits</span>
+            <div className="flex items-center justify-between">
+              <Label className="text-sm">AVG X Betting</Label>
+              <Switch
+                checked={session.avgx_betting_open}
+                onCheckedChange={v => toggleBetting('avgx', v)}
+                disabled={loading === 'avgx'}
+              />
             </div>
-
-            {/* Settlement */}
-            <Separator />
-            <h4 className="font-semibold text-sm">Settle Hunt</h4>
-            <div className="grid grid-cols-2 gap-3">
-              <div className="space-y-1">
-                <Label className="text-xs">End Balance</Label>
-                <Input type="number" step="0.01" value={endBalance} onChange={e => setEndBalance(e.target.value)} placeholder="f.eks. 45000" />
-              </div>
-              <div className="space-y-1">
-                <Label className="text-xs">Average X</Label>
-                <Input type="number" step="0.01" value={averageX} onChange={e => setAverageX(e.target.value)} placeholder="f.eks. 95.5" />
-              </div>
-            </div>
-
-            <AlertDialog>
-              <AlertDialogTrigger asChild>
-                <Button variant="default" className="w-full" disabled={loading === 'settle'}>
-                  {loading === 'settle' ? <Loader2 className="h-4 w-4 animate-spin mr-2" /> : <CheckCircle className="h-4 w-4 mr-2" />}
-                  Settle & Afslut Hunt
-                </Button>
-              </AlertDialogTrigger>
-              <AlertDialogContent>
-                <AlertDialogHeader>
-                  <AlertDialogTitle>Settle Bonus Hunt #{session.hunt_number}?</AlertDialogTitle>
-                  <AlertDialogDescription>
-                    Dette vil beregne vindere, fordele præmier og lukke betting. Handlingen kan ikke fortrydes.
-                  </AlertDialogDescription>
-                </AlertDialogHeader>
-                <AlertDialogFooter>
-                  <AlertDialogCancel>Annuller</AlertDialogCancel>
-                  <AlertDialogAction onClick={handleSettle}>Settle</AlertDialogAction>
-                </AlertDialogFooter>
-              </AlertDialogContent>
-            </AlertDialog>
-          </>
-        )}
-
-        {/* Completed info */}
-        {session.status === 'completed' && (
-          <div className="text-sm space-y-1">
-            {session.end_balance && <p>End Balance: <strong>{session.end_balance}</strong></p>}
-            {session.average_x && <p>Average X: <strong>{session.average_x}x</strong></p>}
-            {session.winning_group && <p>Vindende Gruppe: <strong>{session.winning_group}</strong></p>}
           </div>
-        )}
-      </CardContent>
-    </Card>
+
+          <div className="text-xs text-muted-foreground grid grid-cols-2 gap-2">
+            <span>GTW: {session.gtw_min_bet}-{session.gtw_max_bet} credits</span>
+            <span>AVG X: {session.avgx_min_bet}-{session.avgx_max_bet} credits</span>
+          </div>
+
+          <Separator />
+          <h4 className="font-semibold text-sm">Settle Hunt</h4>
+          <div className="grid grid-cols-2 gap-3">
+            <div className="space-y-1">
+              <Label className="text-xs">End Balance</Label>
+              <Input type="number" step="0.01" value={endBalance} onChange={e => setEndBalance(e.target.value)} placeholder="f.eks. 45000" />
+            </div>
+            <div className="space-y-1">
+              <Label className="text-xs">Average X</Label>
+              <Input type="number" step="0.01" value={averageX} onChange={e => setAverageX(e.target.value)} placeholder="f.eks. 95.5" />
+            </div>
+          </div>
+
+          <AlertDialog>
+            <AlertDialogTrigger asChild>
+              <Button variant="default" className="w-full" disabled={loading === 'settle'}>
+                {loading === 'settle' ? <Loader2 className="h-4 w-4 animate-spin mr-2" /> : <CheckCircle className="h-4 w-4 mr-2" />}
+                Settle & Afslut Hunt
+              </Button>
+            </AlertDialogTrigger>
+            <AlertDialogContent>
+              <AlertDialogHeader>
+                <AlertDialogTitle>Settle Bonus Hunt #{session.hunt_number}?</AlertDialogTitle>
+                <AlertDialogDescription>
+                  Dette vil beregne vindere, fordele præmier og lukke betting. Handlingen kan ikke fortrydes.
+                </AlertDialogDescription>
+              </AlertDialogHeader>
+              <AlertDialogFooter>
+                <AlertDialogCancel>Annuller</AlertDialogCancel>
+                <AlertDialogAction onClick={handleSettle}>Settle</AlertDialogAction>
+              </AlertDialogFooter>
+            </AlertDialogContent>
+          </AlertDialog>
+        </>
+      )}
+
+      {session.status === 'completed' && (
+        <div className="text-sm space-y-1">
+          {session.end_balance && <p>End Balance: <strong>{session.end_balance}</strong></p>}
+          {session.average_x && <p>Average X: <strong>{session.average_x}x</strong></p>}
+          {session.winning_group && <p>Vindende Gruppe: <strong>{session.winning_group}</strong></p>}
+        </div>
+      )}
+    </div>
   );
 }
 
 export function BonusHuntAdminSection() {
-  const { data: sessions, isLoading } = useBonusHuntSessions();
-  const [dialogOpen, setDialogOpen] = useState(false);
+  const { data: huntData, isLoading: huntLoading } = useBonusHuntData();
+  const huntNumber = huntData?.visibleId;
+  const { data: session, isLoading: sessionLoading } = useSessionForHunt(huntNumber);
+  const [showCreateForm, setShowCreateForm] = useState(false);
+
+  const isLoading = huntLoading || sessionLoading;
+
+  const statusLabel = huntData?.status === 'completed' ? 'Afsluttet' : 'Aktiv';
+  const statusColor = huntData?.status === 'completed'
+    ? 'bg-muted text-muted-foreground'
+    : 'bg-green-500/20 text-green-400';
 
   return (
     <div className="space-y-6">
-      <div className="flex items-center justify-between">
-        <div>
-          <h2 className="text-2xl font-bold">Bonus Hunt</h2>
-          <p className="text-muted-foreground">Administrer bonus hunt sessions og betting.</p>
-        </div>
-        <Dialog open={dialogOpen} onOpenChange={setDialogOpen}>
-          <DialogTrigger asChild>
-            <Button><Plus className="h-4 w-4 mr-2" /> Ny Session</Button>
-          </DialogTrigger>
-          <DialogContent className="max-w-lg">
-            <DialogHeader>
-              <DialogTitle>Opret Bonus Hunt Session</DialogTitle>
-            </DialogHeader>
-            <CreateSessionForm onClose={() => setDialogOpen(false)} />
-          </DialogContent>
-        </Dialog>
+      <div>
+        <h2 className="text-2xl font-bold">Bonus Hunt</h2>
+        <p className="text-muted-foreground">Administrer betting for den aktive bonus hunt.</p>
       </div>
 
       {isLoading ? (
         <div className="flex justify-center py-12"><Loader2 className="h-8 w-8 animate-spin text-primary" /></div>
+      ) : !huntData ? (
+        <Card><CardContent className="py-12 text-center text-muted-foreground">Kunne ikke hente aktiv hunt fra StreamSystem.</CardContent></Card>
       ) : (
-        <div className="space-y-4">
-          {sessions?.map((s: any) => <SessionCard key={s.id} session={s} />)}
-          {sessions?.length === 0 && (
-            <Card><CardContent className="py-12 text-center text-muted-foreground">Ingen sessions endnu. Opret en ny!</CardContent></Card>
-          )}
-        </div>
+        <Card>
+          <CardHeader className="pb-3">
+            <div className="flex items-center justify-between">
+              <CardTitle className="text-lg flex items-center gap-2">
+                <Zap className="h-5 w-5 text-primary" />
+                Bonus Hunt #{huntNumber}
+              </CardTitle>
+              <Badge className={statusColor}>{statusLabel}</Badge>
+            </div>
+            <div className="text-sm text-muted-foreground grid grid-cols-3 gap-2 pt-2">
+              <span>Slots: {huntData.stats.totalBonuses}</span>
+              <span>Åbnet: {huntData.stats.openedBonuses}/{huntData.stats.totalBonuses}</span>
+              <span>Start: {huntData.stats.startBalance.toLocaleString()}</span>
+            </div>
+          </CardHeader>
+          <CardContent>
+            {session ? (
+              <SessionControls session={session} />
+            ) : showCreateForm ? (
+              <CreateSessionForm
+                huntNumber={huntNumber!}
+                huntId={huntData.id}
+                onClose={() => setShowCreateForm(false)}
+              />
+            ) : (
+              <Button onClick={() => setShowCreateForm(true)} className="w-full">
+                <Plus className="h-4 w-4 mr-2" />
+                Opret Betting Session for Hunt #{huntNumber}
+              </Button>
+            )}
+          </CardContent>
+        </Card>
       )}
     </div>
   );
