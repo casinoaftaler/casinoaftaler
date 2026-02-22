@@ -58,9 +58,9 @@ Deno.serve(async (req: Request) => {
     if (cmd === 'gtw') {
       if (!session.gtw_betting_open) return reply('@' + twitchUsername + ', GTW betting er lukket.');
       const parts = argsRaw.split(/\s+/).filter(Boolean);
-      if (parts.length === 0) return reply('@' + twitchUsername + ', skriv: !gtw <dit gæt> [credits] — Eksempel: !gtw 45000 eller !gtw 45000 10');
+      if (parts.length === 0) return reply('@' + twitchUsername + ', skriv: !gtw (gæt) (bet) — Eksempel: !gtw 45000 10');
       const guessAmount = parseFloat(parts[0]);
-      if (isNaN(guessAmount) || guessAmount <= 0) return reply('@' + twitchUsername + ', ugyldigt gæt. Skriv et tal, f.eks. !gtw 45000');
+      if (isNaN(guessAmount) || guessAmount <= 0) return reply('@' + twitchUsername + ', skriv: !gtw (gæt) (bet) — Eksempel: !gtw 45000 10');
       const betAmount = parts.length >= 2 ? parseInt(parts[1]) : session.gtw_min_bet;
       if (isNaN(betAmount) || betAmount <= 0) return reply('@' + twitchUsername + ', ugyldigt credit-beløb. Skriv et tal, f.eks. !gtw 45000 10');
       if (betAmount < session.gtw_min_bet || betAmount > session.gtw_max_bet) {
