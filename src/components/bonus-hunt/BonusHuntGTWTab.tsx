@@ -16,8 +16,8 @@ interface Props {
 }
 
 export function BonusHuntGTWTab({ session, bets, userId, onBetPlaced }: Props) {
-  const [guessAmount, setGuessAmount] = useState("");
-  const [betAmount, setBetAmount] = useState("");
+  const [guessAmount, setGuessAmount] = useState(() => "");
+  const [betAmount, setBetAmount] = useState(() => "");
   const [loading, setLoading] = useState(false);
 
   const userBet = bets.find(b => b.user_id === userId);
@@ -35,8 +35,8 @@ export function BonusHuntGTWTab({ session, bets, userId, onBetPlaced }: Props) {
   const top10 = isSettled ? rankedBets.slice(0, 10) : [];
 
   const handlePlaceBet = async () => {
-    const guess = parseFloat(guessAmount);
-    const bet = parseInt(betAmount);
+    const guess = parseFloat(guessAmount || (userBet ? String(userBet.guess_amount) : ''));
+    const bet = parseInt(betAmount || (userBet ? String(userBet.bet_amount) : ''));
     if (!guess || guess <= 0 || !bet || bet <= 0) {
       toast.error("Udfyld begge felter med gyldige tal");
       return;
@@ -59,9 +59,7 @@ export function BonusHuntGTWTab({ session, bets, userId, onBetPlaced }: Props) {
         return;
       }
 
-      toast.success(`GTW bet placeret! Credits tilbage: ${data.creditsRemaining}`);
-      setGuessAmount("");
-      setBetAmount("");
+      toast.success(data.updated ? `GTW bet opdateret! Credits tilbage: ${data.creditsRemaining}` : `GTW bet placeret! Credits tilbage: ${data.creditsRemaining}`);
       onBetPlaced();
     } catch (e: any) {
       toast.error(e.message || "Fejl ved placering af bet");
@@ -158,29 +156,29 @@ export function BonusHuntGTWTab({ session, bets, userId, onBetPlaced }: Props) {
         </Card>
       )}
 
-      {/* Betting form */}
-      {isOpen && !userBet && userId && (
+      {/* Betting form - show when betting open and user is logged in */}
+      {isOpen && userId && (
         <Card>
           <CardContent className="p-4 space-y-3">
-            <h4 className="text-sm font-semibold">Placer dit gæt</h4>
+            <h4 className="text-sm font-semibold">{userBet ? 'Opdater dit gæt' : 'Placer dit gæt'}</h4>
             <div className="space-y-2">
               <Input
                 type="number"
                 placeholder="End balance gæt (kr)"
-                value={guessAmount}
+                value={guessAmount || (userBet ? String(userBet.guess_amount) : '')}
                 onChange={e => setGuessAmount(e.target.value)}
               />
               <Input
                 type="number"
                 placeholder={`Credits (${session.gtw_min_bet}-${session.gtw_max_bet})`}
-                value={betAmount}
+                value={betAmount || (userBet ? String(userBet.bet_amount) : '')}
                 onChange={e => setBetAmount(e.target.value)}
                 min={session.gtw_min_bet}
                 max={session.gtw_max_bet}
               />
               <Button onClick={handlePlaceBet} disabled={loading} className="w-full">
                 {loading ? <Loader2 className="h-4 w-4 animate-spin mr-2" /> : null}
-                Placer GTW Bet
+                {userBet ? 'Opdater GTW Bet' : 'Placer GTW Bet'}
               </Button>
             </div>
           </CardContent>
@@ -195,9 +193,9 @@ export function BonusHuntGTWTab({ session, bets, userId, onBetPlaced }: Props) {
         </Card>
       )}
 
-      {userBet && (
+      {!isOpen && userBet && (
         <Badge variant="outline" className="w-full justify-center py-2">
-          ✅ Du har allerede placeret dit GTW bet
+          ✅ Dit GTW bet er låst
         </Badge>
       )}
 
