@@ -22,7 +22,7 @@ export function BonusHuntGTWTab({ session, bets, userId, onBetPlaced }: Props) {
 
   const userBet = bets.find(b => b.user_id === userId);
   const isOpen = session?.gtw_betting_open;
-  const prizes = (session?.gtw_prizes || []) as Array<{ place: number; points: number }>;
+  const prizes = (session?.gtw_prizes || []) as Array<{ place: number; points: number; credits?: number }>;
 
   const rankedBets = [...bets]
     .sort((a, b) => {
@@ -113,7 +113,12 @@ export function BonusHuntGTWTab({ session, bets, userId, onBetPlaced }: Props) {
                   <span className="text-muted-foreground">
                     {getRankIcon(p.place)} plads
                   </span>
-                  <span className="font-medium">{p.points} points</span>
+                  <span className="font-medium">
+                    {[
+                      p.points > 0 ? `${p.points} points` : '',
+                      p.credits && p.credits > 0 ? `${p.credits} credits` : '',
+                    ].filter(Boolean).join(' + ') || '—'}
+                  </span>
                 </div>
               ))}
             </div>

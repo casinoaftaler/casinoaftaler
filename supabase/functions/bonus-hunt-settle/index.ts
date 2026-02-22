@@ -74,7 +74,8 @@ serve(async (req) => {
           .map(bet => ({ ...bet, difference: Math.abs(bet.guess_amount - endBalance) }))
           .sort((a, b) => a.difference - b.difference);
 
-        const prizes = (session.gtw_prizes as Array<{ place: number; points: number }>) || [];
+        const prizes = (session.gtw_prizes as Array<{ place: number; points: number; credits?: number }>) || [];
+        const today = new Date().toISOString().split('T')[0];
 
         for (let i = 0; i < ranked.length; i++) {
           const bet = ranked[i];
@@ -86,10 +87,43 @@ serve(async (req) => {
             .update({ difference: bet.difference, rank, prize_points: prize?.points || 0 })
             .eq('id', bet.id);
 
+          // Award credits if prize has credits
+          if (prize && prize.credits && prize.credits > 0) {
+            try {
+              const { data: spinsRow } = await adminClient
+                .from('slot_spins')
+                .select('id, spins_remaining')
+                .eq('user_id', bet.user_id)
+                .eq('date', today)
+                .single();
+
+              if (spinsRow) {
+                await adminClient
+                  .from('slot_spins')
+                  .update({ spins_remaining: spinsRow.spins_remaining + prize.credits })
+                  .eq('id', spinsRow.id);
+              } else {
+                await adminClient
+                  .from('slot_spins')
+                  .insert({ user_id: bet.user_id, date: today, spins_remaining: 200 + prize.credits });
+              }
+
+              await adminClient
+                .from('credit_allocation_log')
+                .insert({
+                  user_id: bet.user_id,
+                  amount: prize.credits,
+                  source: 'bonus_hunt_gtw',
+                  note: `GTW ${rank}. plads: ${prize.credits} credits`,
+                });
+            } catch (e) {
+              console.error(`Failed to award credits to user ${bet.user_id}:`, e);
+            }
+          }
+
           // Award SE points if prize exists
           if (prize && prize.points > 0 && seJwtToken) {
             try {
-              // Get user's twitch_username
               const { data: profile } = await adminClient
                 .from('profiles')
                 .select('twitch_username')
@@ -97,7 +131,6 @@ serve(async (req) => {
                 .single();
 
               if (profile?.twitch_username) {
-                // Get SE channel ID from site_settings
                 const { data: channelSetting } = await adminClient
                   .from('site_settings')
                   .select('value')

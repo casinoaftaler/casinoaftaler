@@ -72,11 +72,11 @@ function CreateSessionForm({ huntNumber, huntId, onClose }: { huntNumber: number
     avgx_min_bet: "1",
     avgx_max_bet: "50",
     prizes: [
-      { place: 1, points: 300 },
-      { place: 2, points: 200 },
-      { place: 3, points: 100 },
-      { place: 4, points: 75 },
-      { place: 5, points: 50 },
+      { place: 1, points: 300, credits: 0 },
+      { place: 2, points: 200, credits: 0 },
+      { place: 3, points: 100, credits: 0 },
+      { place: 4, points: 75, credits: 0 },
+      { place: 5, points: 50, credits: 0 },
     ],
   });
 
@@ -110,9 +110,9 @@ function CreateSessionForm({ huntNumber, huntId, onClose }: { huntNumber: number
     }
   };
 
-  const updatePrize = (index: number, points: number) => {
+  const updatePrize = (index: number, field: 'points' | 'credits', value: number) => {
     const prizes = [...form.prizes];
-    prizes[index] = { ...prizes[index], points };
+    prizes[index] = { ...prizes[index], [field]: value };
     setForm({ ...form, prizes });
   };
 
@@ -139,16 +139,18 @@ function CreateSessionForm({ huntNumber, huntId, onClose }: { huntNumber: number
       </div>
 
       <Separator />
-      <h4 className="font-semibold text-sm">GTW Præmier (SE Points)</h4>
+      <h4 className="font-semibold text-sm">GTW Præmier</h4>
       <div className="space-y-2">
         {form.prizes.map((p, i) => (
           <div key={i} className="flex items-center gap-2">
             <span className="text-sm w-12">{p.place}. plads</span>
-            <Input type="number" value={p.points} onChange={e => updatePrize(i, parseInt(e.target.value) || 0)} className="w-24" />
-            <span className="text-xs text-muted-foreground">points</span>
+            <Input type="number" value={p.points} onChange={e => updatePrize(i, 'points', parseInt(e.target.value) || 0)} className="w-20" />
+            <span className="text-xs text-muted-foreground">SE pts</span>
+            <Input type="number" value={p.credits} onChange={e => updatePrize(i, 'credits', parseInt(e.target.value) || 0)} className="w-20" />
+            <span className="text-xs text-muted-foreground">credits</span>
           </div>
         ))}
-        <Button type="button" variant="outline" size="sm" onClick={() => setForm({ ...form, prizes: [...form.prizes, { place: form.prizes.length + 1, points: 25 }] })}>
+        <Button type="button" variant="outline" size="sm" onClick={() => setForm({ ...form, prizes: [...form.prizes, { place: form.prizes.length + 1, points: 25, credits: 0 }] })}>
           <Plus className="h-3 w-3 mr-1" /> Tilføj plads
         </Button>
       </div>
