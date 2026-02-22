@@ -3,6 +3,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
+import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
 import { Loader2, Users, Coins } from "lucide-react";
@@ -200,6 +201,40 @@ export function BonusHuntAvgXTab({ session, bets, userId, onBetPlaced }: Props) 
         <Badge variant="outline" className="w-full justify-center py-2">
           AVG X betting er lukket
         </Badge>
+      )}
+
+      {/* Participants list */}
+      {bets.length > 0 && (
+        <Card>
+          <CardContent className="p-4">
+            <h4 className="text-sm font-semibold mb-2">Deltagere ({bets.length})</h4>
+            <div className="space-y-1 max-h-60 overflow-y-auto">
+              {bets.map(bet => (
+                <div
+                  key={bet.id}
+                  className={`flex items-center gap-2 text-sm py-1 ${
+                    bet.user_id === userId ? 'text-primary font-semibold' : ''
+                  }`}
+                >
+                  <Avatar className="h-5 w-5 shrink-0">
+                    {bet.avatar_url && <AvatarImage src={bet.avatar_url} />}
+                    <AvatarFallback className="text-[9px]">
+                      {(bet.display_name || '?')[0].toUpperCase()}
+                    </AvatarFallback>
+                  </Avatar>
+                  <span className="truncate flex-1 min-w-0">{bet.display_name || 'Anonym'}</span>
+                  <Badge variant="outline" className="text-xs shrink-0">
+                    Gruppe {bet.group_letter}
+                  </Badge>
+                  <span className="text-xs text-muted-foreground shrink-0">{bet.bet_amount} credits</span>
+                  {bet.winnings !== null && bet.winnings > 0 && (
+                    <Badge variant="default" className="text-xs shrink-0">+{bet.winnings}</Badge>
+                  )}
+                </div>
+              ))}
+            </div>
+          </CardContent>
+        </Card>
       )}
     </div>
   );
