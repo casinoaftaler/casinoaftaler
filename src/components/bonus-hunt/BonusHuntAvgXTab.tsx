@@ -50,8 +50,9 @@ export function BonusHuntAvgXTab({ session, bets, userId, onBetPlaced }: Props) 
   }, [bets]);
 
   const handlePlaceBet = async () => {
-    const bet = parseInt(betAmount);
-    if (!selectedGroup || !bet || bet <= 0) {
+    const bet = parseInt(betAmount || (userBet ? String(userBet.bet_amount) : ''));
+    const group = selectedGroup || (userBet ? userBet.group_letter : null);
+    if (!group || !bet || bet <= 0) {
       toast.error("Vælg en gruppe og angiv bet amount");
       return;
     }
@@ -63,7 +64,7 @@ export function BonusHuntAvgXTab({ session, bets, userId, onBetPlaced }: Props) 
           sessionId: session.id,
           betType: 'avgx',
           betAmount: bet,
-          groupLetter: selectedGroup,
+          groupLetter: group,
         },
       });
 
@@ -73,9 +74,7 @@ export function BonusHuntAvgXTab({ session, bets, userId, onBetPlaced }: Props) 
         return;
       }
 
-      toast.success(`AVG X bet på gruppe ${selectedGroup} placeret!`);
-      setBetAmount("");
-      setSelectedGroup(null);
+      toast.success(data.updated ? `AVG X bet opdateret! Gruppe: ${selectedGroup}` : `AVG X bet på gruppe ${selectedGroup} placeret!`);
       onBetPlaced();
     } catch (e: any) {
       toast.error(e.message || "Fejl ved placering af bet");
@@ -97,13 +96,13 @@ export function BonusHuntAvgXTab({ session, bets, userId, onBetPlaced }: Props) 
           return (
             <button
               key={g.letter}
-              onClick={() => isOpen && !userBet && setSelectedGroup(g.letter)}
+              onClick={() => isOpen && userId && setSelectedGroup(g.letter)}
               className={`
                 flex flex-col items-center gap-0.5 p-2 rounded-lg border text-xs transition-all
                 ${isWinner ? 'ring-2 ring-green-500 bg-green-500/20' : ''}
                 ${isSelected ? 'ring-2 ring-primary' : ''}
                 ${g.color}
-                ${isOpen && !userBet ? 'cursor-pointer hover:scale-105' : 'cursor-default'}
+                ${isOpen && userId ? 'cursor-pointer hover:scale-105' : 'cursor-default'}
               `}
             >
               <span className="font-bold text-base">{g.letter}</span>
@@ -166,24 +165,24 @@ export function BonusHuntAvgXTab({ session, bets, userId, onBetPlaced }: Props) 
         </Card>
       )}
 
-      {/* Betting form */}
-      {isOpen && !userBet && userId && (
+      {/* Betting form - show when betting open and user logged in */}
+      {isOpen && userId && (
         <Card>
           <CardContent className="p-4 space-y-3">
             <h4 className="text-sm font-semibold">
-              {selectedGroup ? `Bet på Gruppe ${selectedGroup}` : 'Vælg en gruppe ovenfor'}
+              {selectedGroup ? `${userBet ? 'Opdater' : 'Bet på'} Gruppe ${selectedGroup}` : (userBet ? `Dit bet: Gruppe ${userBet.group_letter} — Vælg ny gruppe ovenfor` : 'Vælg en gruppe ovenfor')}
             </h4>
             <Input
               type="number"
               placeholder={`Credits (${session.avgx_min_bet}-${session.avgx_max_bet})`}
-              value={betAmount}
+              value={betAmount || (userBet ? String(userBet.bet_amount) : '')}
               onChange={e => setBetAmount(e.target.value)}
               min={session.avgx_min_bet}
               max={session.avgx_max_bet}
             />
-            <Button onClick={handlePlaceBet} disabled={loading || !selectedGroup} className="w-full">
+            <Button onClick={handlePlaceBet} disabled={loading || (!selectedGroup && !userBet)} className="w-full">
               {loading ? <Loader2 className="h-4 w-4 animate-spin mr-2" /> : null}
-              Placer AVG X Bet
+              {userBet ? 'Opdater AVG X Bet' : 'Placer AVG X Bet'}
             </Button>
           </CardContent>
         </Card>

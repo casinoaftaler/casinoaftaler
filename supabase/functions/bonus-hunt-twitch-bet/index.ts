@@ -15,7 +15,6 @@ serve(async (req) => {
     const serviceRoleKey = Deno.env.get('SUPABASE_SERVICE_ROLE_KEY')!;
     const admin = createClient(supabaseUrl, serviceRoleKey);
 
-    // Look up user by twitch username
     const { data: profile, error: profileError } = await admin
       .from('profiles')
       .select('user_id, twitch_username')
@@ -27,16 +26,15 @@ serve(async (req) => {
     }
 
     const userId = profile.user_id;
+    const today = new Date().toISOString().split('T')[0];
 
     if (cmd === 'gtw') {
-      // Parse args: <guess_amount> [bet_amount]
       const parts = argsRaw.split(/\s+/).filter(Boolean);
       if (parts.length === 0) return new Response(`❌ @${twitchUsername}, brug: !gtw <beløb> [credits]. Fx: !gtw 45000`);
 
       const guessAmount = parseFloat(parts[0]);
       if (isNaN(guessAmount) || guessAmount <= 0) return new Response(`❌ @${twitchUsername}, ugyldigt gæt-beløb.`);
 
-      // Find latest session
       const { data: session } = await admin
         .from('bonus_hunt_sessions')
         .select('*')
@@ -56,51 +54,71 @@ serve(async (req) => {
         return new Response(`❌ @${twitchUsername}, bet skal være mellem ${session.gtw_min_bet} og ${session.gtw_max_bet} credits.`);
       }
 
-      // Check existing bet
       const { data: existing } = await admin
         .from('bonus_hunt_gtw_bets')
-        .select('id')
+        .select('id, bet_amount')
         .eq('session_id', session.id)
         .eq('user_id', userId)
         .maybeSingle();
 
-      if (existing) return new Response(`❌ @${twitchUsername}, du har allerede placeret et GTW bet på denne hunt.`);
+      if (existing) {
+        // Update existing bet
+        const diff = betAmount - existing.bet_amount;
 
-      // Deduct credits
-      const today = new Date().toISOString().split('T')[0];
-      const { data: remaining, error: deductError } = await admin.rpc('deduct_spin', {
-        p_user_id: userId,
-        p_date: today,
-        p_bet: betAmount,
-        p_max_spins: 200,
-      });
+        if (diff > 0) {
+          const { data: remaining, error: deductError } = await admin.rpc('deduct_spin', {
+            p_user_id: userId, p_date: today, p_bet: diff, p_max_spins: 200,
+          });
+          if (deductError || remaining === -1) {
+            return new Response(`❌ @${twitchUsername}, ikke nok credits.`);
+          }
+          const { error: updateError } = await admin
+            .from('bonus_hunt_gtw_bets')
+            .update({ guess_amount: guessAmount, bet_amount: betAmount })
+            .eq('id', existing.id);
+          if (updateError) {
+            await admin.from('slot_spins').update({ spins_remaining: remaining + diff }).eq('user_id', userId).eq('date', today);
+            return new Response(`❌ @${twitchUsername}, fejl ved opdatering. Credits refunderet.`);
+          }
+        } else if (diff < 0) {
+          const refund = Math.abs(diff);
+          const { data: currentSpins } = await admin
+            .from('slot_spins').select('spins_remaining').eq('user_id', userId).eq('date', today).maybeSingle();
+          const newBalance = (currentSpins?.spins_remaining || 0) + refund;
+          await admin.from('slot_spins').update({ spins_remaining: newBalance }).eq('user_id', userId).eq('date', today);
+          const { error: updateError } = await admin
+            .from('bonus_hunt_gtw_bets')
+            .update({ guess_amount: guessAmount, bet_amount: betAmount })
+            .eq('id', existing.id);
+          if (updateError) {
+            await admin.from('slot_spins').update({ spins_remaining: newBalance - refund }).eq('user_id', userId).eq('date', today);
+            return new Response(`❌ @${twitchUsername}, fejl ved opdatering. Credits refunderet.`);
+          }
+        } else {
+          await admin.from('bonus_hunt_gtw_bets').update({ guess_amount: guessAmount }).eq('id', existing.id);
+        }
 
-      if (deductError || remaining === -1) {
-        return new Response(`❌ @${twitchUsername}, ikke nok credits.`);
-      }
+        return new Response(`✅ @${twitchUsername}, dit GTW bet er opdateret! Gæt: ${guessAmount.toLocaleString('da-DK')} kr (${betAmount} credits)`);
 
-      // Place bet
-      const { error: insertError } = await admin
-        .from('bonus_hunt_gtw_bets')
-        .insert({
-          session_id: session.id,
-          user_id: userId,
-          guess_amount: guessAmount,
-          bet_amount: betAmount,
+      } else {
+        // New bet
+        const { data: remaining, error: deductError } = await admin.rpc('deduct_spin', {
+          p_user_id: userId, p_date: today, p_bet: betAmount, p_max_spins: 200,
         });
-
-      if (insertError) {
-        // Refund
-        await admin.from('slot_spins').update({
-          spins_remaining: remaining + betAmount,
-        }).eq('user_id', userId).eq('date', today);
-        return new Response(`❌ @${twitchUsername}, fejl ved bet. Credits refunderet.`);
+        if (deductError || remaining === -1) {
+          return new Response(`❌ @${twitchUsername}, ikke nok credits.`);
+        }
+        const { error: insertError } = await admin
+          .from('bonus_hunt_gtw_bets')
+          .insert({ session_id: session.id, user_id: userId, guess_amount: guessAmount, bet_amount: betAmount });
+        if (insertError) {
+          await admin.from('slot_spins').update({ spins_remaining: remaining + betAmount }).eq('user_id', userId).eq('date', today);
+          return new Response(`❌ @${twitchUsername}, fejl ved bet. Credits refunderet.`);
+        }
+        return new Response(`✅ @${twitchUsername}, dit GTW bet er placeret! Gæt: ${guessAmount.toLocaleString('da-DK')} kr (${betAmount} credits brugt)`);
       }
-
-      return new Response(`✅ @${twitchUsername}, dit GTW bet er placeret! Gæt: ${guessAmount.toLocaleString('da-DK')} kr (${betAmount} credits brugt)`);
 
     } else if (cmd === 'avgx') {
-      // Parse args: <group_letter> [bet_amount]
       const parts = argsRaw.split(/\s+/).filter(Boolean);
       if (parts.length === 0) return new Response(`❌ @${twitchUsername}, brug: !avgx <gruppe> [credits]. Fx: !avgx F`);
 
@@ -110,7 +128,6 @@ serve(async (req) => {
         return new Response(`❌ @${twitchUsername}, ugyldig gruppe. Vælg A-J.`);
       }
 
-      // Find latest session
       const { data: session } = await admin
         .from('bonus_hunt_sessions')
         .select('*')
@@ -130,48 +147,69 @@ serve(async (req) => {
         return new Response(`❌ @${twitchUsername}, bet skal være mellem ${session.avgx_min_bet} og ${session.avgx_max_bet} credits.`);
       }
 
-      // Check existing bet
       const { data: existing } = await admin
         .from('bonus_hunt_avgx_bets')
-        .select('id')
+        .select('id, bet_amount')
         .eq('session_id', session.id)
         .eq('user_id', userId)
         .maybeSingle();
 
-      if (existing) return new Response(`❌ @${twitchUsername}, du har allerede placeret et AVG X bet på denne hunt.`);
+      if (existing) {
+        // Update existing bet
+        const diff = betAmount - existing.bet_amount;
 
-      // Deduct credits
-      const today = new Date().toISOString().split('T')[0];
-      const { data: remaining, error: deductError } = await admin.rpc('deduct_spin', {
-        p_user_id: userId,
-        p_date: today,
-        p_bet: betAmount,
-        p_max_spins: 200,
-      });
+        if (diff > 0) {
+          const { data: remaining, error: deductError } = await admin.rpc('deduct_spin', {
+            p_user_id: userId, p_date: today, p_bet: diff, p_max_spins: 200,
+          });
+          if (deductError || remaining === -1) {
+            return new Response(`❌ @${twitchUsername}, ikke nok credits.`);
+          }
+          const { error: updateError } = await admin
+            .from('bonus_hunt_avgx_bets')
+            .update({ group_letter: groupLetter, bet_amount: betAmount })
+            .eq('id', existing.id);
+          if (updateError) {
+            await admin.from('slot_spins').update({ spins_remaining: remaining + diff }).eq('user_id', userId).eq('date', today);
+            return new Response(`❌ @${twitchUsername}, fejl ved opdatering. Credits refunderet.`);
+          }
+        } else if (diff < 0) {
+          const refund = Math.abs(diff);
+          const { data: currentSpins } = await admin
+            .from('slot_spins').select('spins_remaining').eq('user_id', userId).eq('date', today).maybeSingle();
+          const newBalance = (currentSpins?.spins_remaining || 0) + refund;
+          await admin.from('slot_spins').update({ spins_remaining: newBalance }).eq('user_id', userId).eq('date', today);
+          const { error: updateError } = await admin
+            .from('bonus_hunt_avgx_bets')
+            .update({ group_letter: groupLetter, bet_amount: betAmount })
+            .eq('id', existing.id);
+          if (updateError) {
+            await admin.from('slot_spins').update({ spins_remaining: newBalance - refund }).eq('user_id', userId).eq('date', today);
+            return new Response(`❌ @${twitchUsername}, fejl ved opdatering. Credits refunderet.`);
+          }
+        } else {
+          await admin.from('bonus_hunt_avgx_bets').update({ group_letter: groupLetter }).eq('id', existing.id);
+        }
 
-      if (deductError || remaining === -1) {
-        return new Response(`❌ @${twitchUsername}, ikke nok credits.`);
-      }
+        return new Response(`✅ @${twitchUsername}, dit AVG X bet er opdateret! Gruppe: ${groupLetter} (${betAmount} credits)`);
 
-      // Place bet
-      const { error: insertError } = await admin
-        .from('bonus_hunt_avgx_bets')
-        .insert({
-          session_id: session.id,
-          user_id: userId,
-          group_letter: groupLetter,
-          bet_amount: betAmount,
+      } else {
+        // New bet
+        const { data: remaining, error: deductError } = await admin.rpc('deduct_spin', {
+          p_user_id: userId, p_date: today, p_bet: betAmount, p_max_spins: 200,
         });
-
-      if (insertError) {
-        // Refund
-        await admin.from('slot_spins').update({
-          spins_remaining: remaining + betAmount,
-        }).eq('user_id', userId).eq('date', today);
-        return new Response(`❌ @${twitchUsername}, fejl ved bet. Credits refunderet.`);
+        if (deductError || remaining === -1) {
+          return new Response(`❌ @${twitchUsername}, ikke nok credits.`);
+        }
+        const { error: insertError } = await admin
+          .from('bonus_hunt_avgx_bets')
+          .insert({ session_id: session.id, user_id: userId, group_letter: groupLetter, bet_amount: betAmount });
+        if (insertError) {
+          await admin.from('slot_spins').update({ spins_remaining: remaining + betAmount }).eq('user_id', userId).eq('date', today);
+          return new Response(`❌ @${twitchUsername}, fejl ved bet. Credits refunderet.`);
+        }
+        return new Response(`✅ @${twitchUsername}, dit AVG X bet er placeret! Gruppe: ${groupLetter} (${betAmount} credits brugt)`);
       }
-
-      return new Response(`✅ @${twitchUsername}, dit AVG X bet er placeret! Gruppe: ${groupLetter} (${betAmount} credits brugt)`);
     }
 
     return new Response('❌ Ukendt kommando.');
