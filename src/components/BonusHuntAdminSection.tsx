@@ -9,7 +9,7 @@ import { Badge } from "@/components/ui/badge";
 import { Switch } from "@/components/ui/switch";
 import { Separator } from "@/components/ui/separator";
 import { toast } from "sonner";
-import { Loader2, Plus, Trophy, Target, Coins, CheckCircle, Zap } from "lucide-react";
+import { Loader2, Plus, Trophy, Target, Coins, CheckCircle, Zap, Pencil, Save } from "lucide-react";
 import {
   AlertDialog,
   AlertDialogAction,
@@ -169,6 +169,53 @@ function SessionControls({ session }: { session: any }) {
   const [loading, setLoading] = useState<string | null>(null);
   const [endBalance, setEndBalance] = useState("");
   const [averageX, setAverageX] = useState("");
+  const [editingPrizes, setEditingPrizes] = useState(false);
+  const [editPrizes, setEditPrizes] = useState<{ place: number; points: number; credits: number }[]>([]);
+  const [editBetLimits, setEditBetLimits] = useState({
+    gtw_min_bet: "",
+    gtw_max_bet: "",
+    avgx_min_bet: "",
+    avgx_max_bet: "",
+  });
+
+  const startEditing = () => {
+    const prizes = Array.isArray(session.gtw_prizes) ? session.gtw_prizes : [];
+    setEditPrizes(prizes.map((p: any) => ({ place: p.place, points: p.points || 0, credits: p.credits || 0 })));
+    setEditBetLimits({
+      gtw_min_bet: String(session.gtw_min_bet),
+      gtw_max_bet: String(session.gtw_max_bet),
+      avgx_min_bet: String(session.avgx_min_bet),
+      avgx_max_bet: String(session.avgx_max_bet),
+    });
+    setEditingPrizes(true);
+  };
+
+  const saveEdits = async () => {
+    setLoading('edit');
+    try {
+      const { error } = await (supabase.from('bonus_hunt_sessions' as any) as any).update({
+        gtw_prizes: editPrizes,
+        gtw_min_bet: parseInt(editBetLimits.gtw_min_bet),
+        gtw_max_bet: parseInt(editBetLimits.gtw_max_bet),
+        avgx_min_bet: parseInt(editBetLimits.avgx_min_bet),
+        avgx_max_bet: parseInt(editBetLimits.avgx_max_bet),
+      }).eq('id', session.id);
+      if (error) throw error;
+      toast.success("Indstillinger opdateret!");
+      queryClient.invalidateQueries({ queryKey: ['admin-bonus-hunt-session-for-hunt'] });
+      setEditingPrizes(false);
+    } catch (e: any) {
+      toast.error(e.message);
+    } finally {
+      setLoading(null);
+    }
+  };
+
+  const updateEditPrize = (index: number, field: 'points' | 'credits', value: number) => {
+    const prizes = [...editPrizes];
+    prizes[index] = { ...prizes[index], [field]: value };
+    setEditPrizes(prizes);
+  };
 
   const toggleBetting = async (type: 'gtw' | 'avgx', value: boolean) => {
     setLoading(type);
@@ -254,6 +301,73 @@ function SessionControls({ session }: { session: any }) {
             <span>GTW: {session.gtw_min_bet}-{session.gtw_max_bet} credits</span>
             <span>AVG X: {session.avgx_min_bet}-{session.avgx_max_bet} credits</span>
           </div>
+
+          <Separator />
+          {!editingPrizes ? (
+            <div className="space-y-2">
+              <div className="flex items-center justify-between">
+                <h4 className="font-semibold text-sm">GTW Præmier</h4>
+                <Button variant="outline" size="sm" onClick={startEditing}>
+                  <Pencil className="h-3 w-3 mr-1" /> Rediger
+                </Button>
+              </div>
+              <div className="space-y-1 text-sm">
+                {Array.isArray(session.gtw_prizes) && session.gtw_prizes.map((p: any, i: number) => (
+                  <div key={i} className="flex gap-2 text-muted-foreground">
+                    <span>{p.place}. plads:</span>
+                    <span>{p.points} SE pts</span>
+                    {p.credits > 0 && <span>+ {p.credits} credits</span>}
+                  </div>
+                ))}
+              </div>
+            </div>
+          ) : (
+            <div className="space-y-3">
+              <h4 className="font-semibold text-sm">Rediger Bet Grænser</h4>
+              <div className="grid grid-cols-2 gap-3">
+                <div className="space-y-1">
+                  <Label className="text-xs">GTW Min</Label>
+                  <Input type="number" value={editBetLimits.gtw_min_bet} onChange={e => setEditBetLimits({ ...editBetLimits, gtw_min_bet: e.target.value })} />
+                </div>
+                <div className="space-y-1">
+                  <Label className="text-xs">GTW Max</Label>
+                  <Input type="number" value={editBetLimits.gtw_max_bet} onChange={e => setEditBetLimits({ ...editBetLimits, gtw_max_bet: e.target.value })} />
+                </div>
+                <div className="space-y-1">
+                  <Label className="text-xs">AVG X Min</Label>
+                  <Input type="number" value={editBetLimits.avgx_min_bet} onChange={e => setEditBetLimits({ ...editBetLimits, avgx_min_bet: e.target.value })} />
+                </div>
+                <div className="space-y-1">
+                  <Label className="text-xs">AVG X Max</Label>
+                  <Input type="number" value={editBetLimits.avgx_max_bet} onChange={e => setEditBetLimits({ ...editBetLimits, avgx_max_bet: e.target.value })} />
+                </div>
+              </div>
+
+              <h4 className="font-semibold text-sm">Rediger GTW Præmier</h4>
+              <div className="space-y-2">
+                {editPrizes.map((p, i) => (
+                  <div key={i} className="flex items-center gap-2">
+                    <span className="text-sm w-12">{p.place}. plads</span>
+                    <Input type="number" value={p.points} onChange={e => updateEditPrize(i, 'points', parseInt(e.target.value) || 0)} className="w-20" />
+                    <span className="text-xs text-muted-foreground">SE pts</span>
+                    <Input type="number" value={p.credits} onChange={e => updateEditPrize(i, 'credits', parseInt(e.target.value) || 0)} className="w-20" />
+                    <span className="text-xs text-muted-foreground">credits</span>
+                  </div>
+                ))}
+                <Button type="button" variant="outline" size="sm" onClick={() => setEditPrizes([...editPrizes, { place: editPrizes.length + 1, points: 25, credits: 0 }])}>
+                  <Plus className="h-3 w-3 mr-1" /> Tilføj plads
+                </Button>
+              </div>
+
+              <div className="flex gap-2">
+                <Button onClick={saveEdits} disabled={loading === 'edit'} className="flex-1">
+                  {loading === 'edit' ? <Loader2 className="h-4 w-4 animate-spin mr-2" /> : <Save className="h-4 w-4 mr-2" />}
+                  Gem ændringer
+                </Button>
+                <Button variant="outline" onClick={() => setEditingPrizes(false)}>Annuller</Button>
+              </div>
+            </div>
+          )}
 
           <Separator />
           <h4 className="font-semibold text-sm">Settle Hunt</h4>
