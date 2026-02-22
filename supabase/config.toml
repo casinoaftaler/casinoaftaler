@@ -89,3 +89,6 @@ verify_jwt = false
 
 [functions.bonus-hunt-twitch-bet]
 verify_jwt = false
+
+[functions.scrape-daily-offers]
+verify_jwt = false

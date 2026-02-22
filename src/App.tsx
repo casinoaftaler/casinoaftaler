@@ -58,6 +58,7 @@ const PublicProfile = lazy(() => import("./pages/PublicProfile"));
 const Betalingsmetoder = lazy(() => import("./pages/Betalingsmetoder"));
 const Spiludviklere = lazy(() => import("./pages/Spiludviklere"));
 const FreeSpins = lazy(() => import("./pages/FreeSpins"));
+const FreeSpinsIDag = lazy(() => import("./pages/FreeSpinsIDag"));
 const Velkomstbonus = lazy(() => import("./pages/Velkomstbonus"));
 const Omsaetningskrav = lazy(() => import("./pages/Omsaetningskrav"));
 const Indskudsbonus = lazy(() => import("./pages/Indskudsbonus"));
@@ -274,6 +275,7 @@ const App = () => (
                 <Route path="/betalingsmetoder" element={<Betalingsmetoder />} />
                 <Route path="/spiludviklere" element={<Spiludviklere />} />
                 <Route path="/free-spins" element={<FreeSpins />} />
+                <Route path="/free-spins-i-dag" element={<FreeSpinsIDag />} />
                 <Route path="/velkomstbonus" element={<Velkomstbonus />} />
                 <Route path="/omsaetningskrav" element={<Omsaetningskrav />} />
                 <Route path="/indskudsbonus" element={<Indskudsbonus />} />

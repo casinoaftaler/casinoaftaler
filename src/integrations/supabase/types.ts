@@ -367,6 +367,7 @@ export type Database = {
         Row: {
           affiliate_url: string | null
           bonus_amount: string
+          bonus_page_url: string | null
           bonus_title: string
           bonus_type: string
           cons: string[] | null
@@ -394,6 +395,7 @@ export type Database = {
         Insert: {
           affiliate_url?: string | null
           bonus_amount: string
+          bonus_page_url?: string | null
           bonus_title: string
           bonus_type?: string
           cons?: string[] | null
@@ -421,6 +423,7 @@ export type Database = {
         Update: {
           affiliate_url?: string | null
           bonus_amount?: string
+          bonus_page_url?: string | null
           bonus_title?: string
           bonus_type?: string
           cons?: string[] | null
@@ -765,6 +768,81 @@ export type Database = {
           user_id?: string
         }
         Relationships: []
+      }
+      daily_free_spins_offers: {
+        Row: {
+          casino_id: string | null
+          casino_name: string
+          casino_slug: string
+          created_at: string
+          free_spins_count: number | null
+          id: string
+          is_active: boolean
+          is_manually_added: boolean
+          min_deposit: string | null
+          offer_description: string | null
+          offer_title: string
+          offer_type: string
+          scrape_source_url: string | null
+          scraped_at: string
+          updated_at: string
+          valid_until: string | null
+          wagering_requirement: string | null
+        }
+        Insert: {
+          casino_id?: string | null
+          casino_name: string
+          casino_slug: string
+          created_at?: string
+          free_spins_count?: number | null
+          id?: string
+          is_active?: boolean
+          is_manually_added?: boolean
+          min_deposit?: string | null
+          offer_description?: string | null
+          offer_title: string
+          offer_type?: string
+          scrape_source_url?: string | null
+          scraped_at?: string
+          updated_at?: string
+          valid_until?: string | null
+          wagering_requirement?: string | null
+        }
+        Update: {
+          casino_id?: string | null
+          casino_name?: string
+          casino_slug?: string
+          created_at?: string
+          free_spins_count?: number | null
+          id?: string
+          is_active?: boolean
+          is_manually_added?: boolean
+          min_deposit?: string | null
+          offer_description?: string | null
+          offer_title?: string
+          offer_type?: string
+          scrape_source_url?: string | null
+          scraped_at?: string
+          updated_at?: string
+          valid_until?: string | null
+          wagering_requirement?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "daily_free_spins_offers_casino_id_fkey"
+            columns: ["casino_id"]
+            isOneToOne: false
+            referencedRelation: "casinos"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "daily_free_spins_offers_casino_id_fkey"
+            columns: ["casino_id"]
+            isOneToOne: false
+            referencedRelation: "casinos_public"
+            referencedColumns: ["id"]
+          },
+        ]
       }
       highlight_categories: {
         Row: {
