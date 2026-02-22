@@ -69,7 +69,9 @@ export default function BonusHunt() {
                   slots={huntData.slots}
                   huntNumber={huntData.visibleId}
                   huntDate={huntDate}
+                  latestHuntNumber={latestHuntNumber}
                   onNavigate={handleNavigate}
+                  onJumpToHunt={(num) => setHuntIdOverride(num || undefined)}
                 />
                 <BonusHuntFooter stats={huntData.stats} />
               </div>

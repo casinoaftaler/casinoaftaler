@@ -2,13 +2,16 @@ import { useState, useMemo } from "react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { ChevronLeft, ChevronRight, ChevronsLeft, ChevronsRight, Search, ArrowUpDown } from "lucide-react";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import type { BonusHuntSlot } from "@/hooks/useBonusHuntData";
 
 interface Props {
   slots: BonusHuntSlot[];
   huntNumber: number;
   huntDate: string;
+  latestHuntNumber: number;
   onNavigate?: (direction: 'first' | 'prev' | 'next' | 'last') => void;
+  onJumpToHunt?: (huntNumber: number) => void;
 }
 
 type SortKey = 'index' | 'slot' | 'bet' | 'multiplier' | 'win';
@@ -16,7 +19,7 @@ type SortDir = 'asc' | 'desc';
 
 const PAGE_SIZE = 10;
 
-export function BonusHuntSlotTable({ slots, huntNumber, huntDate, onNavigate }: Props) {
+export function BonusHuntSlotTable({ slots, huntNumber, huntDate, latestHuntNumber, onNavigate, onJumpToHunt }: Props) {
   const [search, setSearch] = useState("");
   const [page, setPage] = useState(0);
   const [sortKey, setSortKey] = useState<SortKey>('index');
@@ -56,16 +59,32 @@ export function BonusHuntSlotTable({ slots, huntNumber, huntDate, onNavigate }: 
   return (
     <div className="flex flex-col gap-3">
       {/* Hunt navigation */}
-      <div className="flex items-center justify-center gap-2">
+      <div className="flex items-center justify-center gap-2 flex-wrap">
         <Button variant="ghost" size="icon" className="h-8 w-8" onClick={() => onNavigate?.('first')}>
           <ChevronsLeft className="h-4 w-4" />
         </Button>
         <Button variant="ghost" size="icon" className="h-8 w-8" onClick={() => onNavigate?.('prev')}>
           <ChevronLeft className="h-4 w-4" />
         </Button>
-        <span className="text-sm font-semibold px-3 py-1 bg-muted rounded-md">
-          BONUS HUNT #{huntNumber} {huntDate}
-        </span>
+        <Select
+          value={String(huntNumber)}
+          onValueChange={(val) => {
+            const num = parseInt(val, 10);
+            if (num === latestHuntNumber) onJumpToHunt?.(undefined as any);
+            else onJumpToHunt?.(num);
+          }}
+        >
+          <SelectTrigger className="w-auto min-w-[200px] h-8 text-sm font-semibold">
+            <SelectValue />
+          </SelectTrigger>
+          <SelectContent className="max-h-[300px]">
+            {Array.from({ length: latestHuntNumber }, (_, i) => latestHuntNumber - i).map(num => (
+              <SelectItem key={num} value={String(num)}>
+                BONUS HUNT #{num} {num === huntNumber ? huntDate : ''}
+              </SelectItem>
+            ))}
+          </SelectContent>
+        </Select>
         <Button variant="ghost" size="icon" className="h-8 w-8" onClick={() => onNavigate?.('next')}>
           <ChevronRight className="h-4 w-4" />
         </Button>
