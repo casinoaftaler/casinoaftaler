@@ -80,9 +80,13 @@ async function fetchBonusHuntData(huntId?: number): Promise<BonusHuntData> {
 
   const endVal = huntData.end || null;
 
+  // Parse visibleId from name field (e.g. "Bonus Hunt #1367" -> 1367)
+  const parsedVisibleId = huntData.visibleId
+    || (huntData.name ? parseInt(huntData.name.replace(/\D/g, ''), 10) || 0 : 0);
+
   return {
     id: huntData.id || '',
-    visibleId: huntData.visibleId || 0,
+    visibleId: parsedVisibleId,
     date: huntData.createdAt ? new Date(huntData.createdAt * 1000).toISOString() : '',
     status: huntData.played ? 'completed' : 'active',
     slots,
