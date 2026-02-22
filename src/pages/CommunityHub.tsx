@@ -55,16 +55,6 @@ const SECTIONS = [
     image: turneringerImg,
   },
   {
-    title: "Highlights",
-    description:
-      "Se de bedste øjeblikke fra streams og community. Twitch clips, YouTube videoer og bruger-indsendte highlights.",
-    href: "/highlights",
-    icon: Video,
-    badge: "Clips & Streams",
-    badgeColor: "bg-blue-500/15 text-blue-600 dark:text-blue-400 border-blue-500/30",
-    image: highlightsImg,
-  },
-  {
     title: "Bonus Hunt",
     description:
       "Følg live bonus hunts, gæt end balance og bet på average multiplier grupper. Vind points og credits!",
@@ -73,6 +63,16 @@ const SECTIONS = [
     badge: "Live Betting",
     badgeColor: "bg-indigo-500/15 text-indigo-600 dark:text-indigo-400 border-indigo-500/30",
     image: bonusHuntImg,
+  },
+  {
+    title: "Highlights",
+    description:
+      "Se de bedste øjeblikke fra streams og community. Twitch clips, YouTube videoer og bruger-indsendte highlights.",
+    href: "/highlights",
+    icon: Video,
+    badge: "Clips & Streams",
+    badgeColor: "bg-blue-500/15 text-blue-600 dark:text-blue-400 border-blue-500/30",
+    image: highlightsImg,
   },
   {
     title: "Rewards Program",
