@@ -1,42 +1,58 @@
 
 
-## Simplify Bonus Hunt Admin Panel
+## Twitch Chat Commands + Website Betting for Bonus Hunt
 
-The current admin panel requires manually entering a "StreamSystem Hunt ID" and hunt number when creating a session. Instead, the admin panel should **automatically detect the current active bonus hunt** from the StreamSystem API and just let you manage betting (open/close) and set prizes.
+This plan adds Twitch chat integration so users can type `!gtw` and `!avgx` commands in chat, while also ensuring the website betting forms work correctly.
 
-### What Changes
+### How It Works
 
-**1. Auto-detect current hunt from StreamSystem API**
-- When the admin panel loads, it will call the `bonus-hunt-proxy` edge function (no huntId = latest hunt) to get the current active hunt's data (name, hunt number, internal ID).
-- Display this as the "Current Active Hunt" at the top of the admin section.
+StreamElements custom commands will call a new backend function when users type `!gtw` or `!avgx` in Twitch chat. The function looks up the user by their Twitch username, finds the active betting session, and places the bet -- using the same credit system as the website.
 
-**2. Simplified session creation**
-- Remove the "Ny Session" dialog with manual StreamSystem Hunt ID and Hunt Number inputs.
-- Replace with a single button like "Opret Session for Hunt #X" that auto-fills the hunt number and StreamSystem ID from the detected active hunt.
-- Only keep the configurable fields: bet limits (GTW/AVG X min/max) and GTW prizes.
+### Changes
 
-**3. Make `streamsystem_hunt_id` optional in the database**
-- The StreamSystem API ID can be derived from the API response automatically, so we store it but don't ask the admin to type it.
+**1. New Edge Function: `bonus-hunt-twitch-bet`**
+
+A public endpoint (no auth token needed, called by StreamElements) that:
+- Accepts `twitchUsername`, `command` (gtw/avgx), and arguments (guess amount or group letter)
+- Looks up the user in `profiles` by `twitch_username`
+- Finds the active `bonus_hunt_sessions` where betting is open
+- Uses a fixed bet amount (e.g. the session's min_bet, since Twitch chat can't easily handle multiple params) OR accepts a bet amount as an optional param
+- Deducts credits via `deduct_spin` and inserts the bet
+- Returns a text response that StreamElements displays in chat
+
+Command format:
+- `!gtw 45000` -- guess end balance is 45,000 kr (uses min bet as credit cost)
+- `!gtw 45000 10` -- guess 45,000 kr with 10 credits
+- `!avgx F` -- bet on group F (uses min bet)
+- `!avgx F 10` -- bet on group F with 10 credits
+
+**2. StreamElements Custom Commands Setup**
+
+You'll need to set up two custom commands in StreamElements dashboard:
+- `!gtw` -> `$(customapi.https://<project-url>/functions/v1/bonus-hunt-twitch-bet?user=$(user)&cmd=gtw&args=$(querystring))`
+- `!avgx` -> `$(customapi.https://<project-url>/functions/v1/bonus-hunt-twitch-bet?user=$(user)&cmd=avgx&args=$(querystring))`
+
+**3. Website Betting Forms (already exist)**
+
+The GTW and AVG X tabs on the Bonus Hunt page already have betting forms. No changes needed -- they call `bonus-hunt-place-bet` which handles validation and credit deduction.
 
 ### Technical Details
 
-**`src/components/BonusHuntAdminSection.tsx`:**
-- Add a query to fetch current hunt via `bonus-hunt-proxy` (same as the public page does).
-- Show a "Current Hunt" info card with hunt number, status, slot count.
-- Replace `CreateSessionForm` with a simplified version that auto-fills `hunt_number` and `streamsystem_hunt_id` from the API response. The admin only sets bet limits and prizes.
-- If a session already exists for the current hunt number, show that session's controls instead of a "create" button.
+**`supabase/functions/bonus-hunt-twitch-bet/index.ts`:**
+- No JWT verification (called by StreamElements `$(customapi)`)
+- Parses query params: `user` (Twitch username), `cmd` (gtw/avgx), `args` (space-separated arguments)
+- Looks up user via `profiles.twitch_username`
+- Finds active session where the relevant betting is open
+- Validates: not already bet, valid guess/group, sufficient credits
+- Returns plain text (not JSON) for StreamElements to display in chat
+- Uses service role client for all DB operations
 
-**`supabase/functions/bonus-hunt-proxy/index.ts`:**
-- No changes needed -- calling without `huntId` already returns the latest/active hunt.
+**`supabase/config.toml`:**
+- Add `[functions.bonus-hunt-twitch-bet]` with `verify_jwt = false`
 
-**Database:**
-- No schema changes needed. The `streamsystem_hunt_id` and `hunt_number` columns stay, they're just auto-populated from the API instead of manually entered.
-
-### Admin Flow After Changes
-
-1. Open Bonus Hunt admin tab
-2. See "Active Hunt: Bonus Hunt #X" with live stats from StreamSystem
-3. If no betting session exists for this hunt: click "Opret Betting Session" (only configure bet limits and prizes)
-4. Toggle GTW/AVG X betting open/close
-5. When hunt ends: enter end balance / average X and settle
+**Security considerations:**
+- The endpoint is public but only allows placing bets (spending the user's own credits)
+- A malicious caller would need to know a valid Twitch username and would only be spending that user's credits
+- This is acceptable since StreamElements commands are public by nature
+- Rate limiting is inherently handled by StreamElements command cooldowns
 
