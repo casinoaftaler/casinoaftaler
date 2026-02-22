@@ -1,0 +1,150 @@
+import { useState, useMemo } from "react";
+import { Input } from "@/components/ui/input";
+import { Button } from "@/components/ui/button";
+import { ChevronLeft, ChevronRight, ChevronsLeft, ChevronsRight, Search, ArrowUpDown } from "lucide-react";
+import type { BonusHuntSlot } from "@/hooks/useBonusHuntData";
+
+interface Props {
+  slots: BonusHuntSlot[];
+  huntNumber: number;
+  huntDate: string;
+  onNavigate?: (direction: 'first' | 'prev' | 'next' | 'last') => void;
+}
+
+type SortKey = 'index' | 'slot' | 'bet' | 'multiplier' | 'win';
+type SortDir = 'asc' | 'desc';
+
+const PAGE_SIZE = 10;
+
+export function BonusHuntSlotTable({ slots, huntNumber, huntDate, onNavigate }: Props) {
+  const [search, setSearch] = useState("");
+  const [page, setPage] = useState(0);
+  const [sortKey, setSortKey] = useState<SortKey>('index');
+  const [sortDir, setSortDir] = useState<SortDir>('asc');
+
+  const filtered = useMemo(() => {
+    const q = search.toLowerCase();
+    return slots
+      .map((s, i) => ({ ...s, index: i + 1 }))
+      .filter(s => !q || s.slot.toLowerCase().includes(q) || s.provider.toLowerCase().includes(q));
+  }, [slots, search]);
+
+  const sorted = useMemo(() => {
+    return [...filtered].sort((a, b) => {
+      let cmp = 0;
+      switch (sortKey) {
+        case 'index': cmp = a.index - b.index; break;
+        case 'slot': cmp = a.slot.localeCompare(b.slot); break;
+        case 'bet': cmp = a.bet - b.bet; break;
+        case 'multiplier': cmp = a.multiplier - b.multiplier; break;
+        case 'win': cmp = a.win - b.win; break;
+      }
+      return sortDir === 'asc' ? cmp : -cmp;
+    });
+  }, [filtered, sortKey, sortDir]);
+
+  const totalPages = Math.max(1, Math.ceil(sorted.length / PAGE_SIZE));
+  const pageSlots = sorted.slice(page * PAGE_SIZE, (page + 1) * PAGE_SIZE);
+
+  const toggleSort = (key: SortKey) => {
+    if (sortKey === key) setSortDir(d => d === 'asc' ? 'desc' : 'asc');
+    else { setSortKey(key); setSortDir('asc'); }
+  };
+
+  const formatNum = (n: number) => n >= 1000 ? `${(n / 1000).toFixed(1)}k` : n.toFixed(2);
+
+  return (
+    <div className="flex flex-col gap-3">
+      {/* Hunt navigation */}
+      <div className="flex items-center justify-center gap-2">
+        <Button variant="ghost" size="icon" className="h-8 w-8" onClick={() => onNavigate?.('first')}>
+          <ChevronsLeft className="h-4 w-4" />
+        </Button>
+        <Button variant="ghost" size="icon" className="h-8 w-8" onClick={() => onNavigate?.('prev')}>
+          <ChevronLeft className="h-4 w-4" />
+        </Button>
+        <span className="text-sm font-semibold px-3 py-1 bg-muted rounded-md">
+          BONUS HUNT #{huntNumber} {huntDate}
+        </span>
+        <Button variant="ghost" size="icon" className="h-8 w-8" onClick={() => onNavigate?.('next')}>
+          <ChevronRight className="h-4 w-4" />
+        </Button>
+        <Button variant="ghost" size="icon" className="h-8 w-8" onClick={() => onNavigate?.('last')}>
+          <ChevronsRight className="h-4 w-4" />
+        </Button>
+      </div>
+
+      {/* Search */}
+      <div className="relative">
+        <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+        <Input
+          placeholder="Find Slot or Provider"
+          value={search}
+          onChange={e => { setSearch(e.target.value); setPage(0); }}
+          className="pl-9"
+        />
+      </div>
+
+      {/* Table */}
+      <div className="border border-border rounded-lg overflow-hidden">
+        <table className="w-full text-sm">
+          <thead className="bg-muted/50">
+            <tr>
+              {(['index', 'slot', 'bet', 'multiplier', 'win'] as SortKey[]).map(key => (
+                <th
+                  key={key}
+                  className="px-3 py-2 text-left font-medium text-muted-foreground cursor-pointer hover:text-foreground transition-colors"
+                  onClick={() => toggleSort(key)}
+                >
+                  <span className="flex items-center gap-1">
+                    {key === 'index' ? '#' : key === 'multiplier' ? 'X' : key.charAt(0).toUpperCase() + key.slice(1)}
+                    <ArrowUpDown className="h-3 w-3" />
+                  </span>
+                </th>
+              ))}
+            </tr>
+          </thead>
+          <tbody className="divide-y divide-border">
+            {pageSlots.map(slot => (
+              <tr key={slot.index} className={`hover:bg-muted/30 ${slot.opened ? '' : 'opacity-60'}`}>
+                <td className="px-3 py-2 font-mono text-xs">{slot.index}</td>
+                <td className="px-3 py-2">
+                  <div className="font-medium">{slot.slot}</div>
+                  <div className="text-xs text-muted-foreground">{slot.provider}</div>
+                </td>
+                <td className="px-3 py-2 font-mono">{slot.bet.toFixed(2)} kr</td>
+                <td className="px-3 py-2 font-mono">
+                  {slot.opened ? (
+                    <span className={slot.multiplier >= 2 ? 'text-green-500' : slot.multiplier > 0 ? 'text-foreground' : 'text-destructive'}>
+                      {slot.multiplier.toFixed(2)}x
+                    </span>
+                  ) : '—'}
+                </td>
+                <td className="px-3 py-2 font-mono">
+                  {slot.opened ? `${formatNum(slot.win)} kr` : '—'}
+                </td>
+              </tr>
+            ))}
+            {pageSlots.length === 0 && (
+              <tr><td colSpan={5} className="px-3 py-8 text-center text-muted-foreground">Ingen slots fundet</td></tr>
+            )}
+          </tbody>
+        </table>
+      </div>
+
+      {/* Pagination */}
+      <div className="flex items-center justify-between text-xs text-muted-foreground">
+        <span>{filtered.length} slots</span>
+        <div className="flex items-center gap-1">
+          <Button variant="ghost" size="sm" disabled={page === 0} onClick={() => setPage(p => p - 1)}>
+            <ChevronLeft className="h-3 w-3" />
+          </Button>
+          <span>{page + 1} / {totalPages}</span>
+          <Button variant="ghost" size="sm" disabled={page >= totalPages - 1} onClick={() => setPage(p => p + 1)}>
+            <ChevronRight className="h-3 w-3" />
+          </Button>
+        </div>
+      </div>
+    </div>
+  );
+}

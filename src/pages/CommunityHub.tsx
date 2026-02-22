@@ -19,6 +19,7 @@ import {
   RotateCw,
   ArrowRight,
   Users,
+  Target,
 } from "lucide-react";
 import { useAuth } from "@/hooks/useAuth";
 
@@ -28,6 +29,7 @@ import highlightsImg from "@/assets/community/highlights-card.jpg";
 import rewardsImg from "@/assets/community/rewards-card.jpg";
 import butikImg from "@/assets/community/butik-card.jpg";
 import spinTheReelImg from "@/assets/community/spin-the-reel-card.jpg";
+import bonusHuntImg from "@/assets/community/bonus-hunt-card.jpg";
 import "@/styles/energy-sweep.css";
 import "@/styles/community-micro.css";
 
@@ -61,6 +63,16 @@ const SECTIONS = [
     badge: "Clips & Streams",
     badgeColor: "bg-blue-500/15 text-blue-600 dark:text-blue-400 border-blue-500/30",
     image: highlightsImg,
+  },
+  {
+    title: "Bonus Hunt",
+    description:
+      "Følg live bonus hunts, gæt end balance og bet på average multiplier grupper. Vind points og credits!",
+    href: "/community/bonus-hunt",
+    icon: Target,
+    badge: "Live Betting",
+    badgeColor: "bg-indigo-500/15 text-indigo-600 dark:text-indigo-400 border-indigo-500/30",
+    image: bonusHuntImg,
   },
   {
     title: "Rewards Program",
