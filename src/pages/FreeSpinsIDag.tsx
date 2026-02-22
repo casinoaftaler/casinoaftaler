@@ -5,6 +5,7 @@ import { SEO } from "@/components/SEO";
 import { buildFaqSchema, buildArticleSchema, SITE_URL } from "@/lib/seo";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { AuthorBio } from "@/components/AuthorBio";
+import heroImage from "@/assets/heroes/free-spins-i-dag-hero.jpg";
 import { RelatedGuides } from "@/components/RelatedGuides";
 import { FAQSection } from "@/components/FAQSection";
 import { Card, CardContent } from "@/components/ui/card";
@@ -19,7 +20,6 @@ import {
   AlertTriangle,
   Star,
   RefreshCw,
-  CalendarDays,
 } from "lucide-react";
 import { format } from "date-fns";
 import { da } from "date-fns/locale";
@@ -122,48 +122,42 @@ const FreeSpinsIDag = () => {
         title={`Free Spins i Dag – ${todayFormatted} | Bedste Tilbud`}
         description={`Opdateret dagligt: Se ${freeSpinsOffers.length}+ free spins tilbud fra danske casinoer. Find gratis spins med lave omsætningskrav – sidst opdateret ${todayFormatted}.`}
         jsonLd={schemaMarkup}
+        breadcrumbLabel="Free Spins i Dag"
       />
 
-      <article className="max-w-4xl mx-auto px-4 py-8">
-        {/* Hero */}
-        <header className="mb-8">
-          <div className="flex items-center gap-2 text-sm text-muted-foreground mb-3">
-            <Link to="/" className={linkClass}>Forside</Link>
-            <span>/</span>
-            <Link to="/casino-bonus" className={linkClass}>Casino Bonus</Link>
-            <span>/</span>
-            <Link to="/free-spins" className={linkClass}>Free Spins</Link>
-            <span>/</span>
-            <span className="text-foreground">I Dag</span>
-          </div>
-
-          <div className="bg-gradient-to-br from-primary/10 via-primary/5 to-background rounded-2xl p-6 md:p-10 border border-primary/20">
-            <div className="flex items-center gap-3 mb-4">
-              <div className="p-3 rounded-xl bg-primary/20">
-                <Sparkles className="h-8 w-8 text-primary" />
-              </div>
-              <div>
-                <h1 className="text-3xl md:text-4xl font-bold text-foreground">
-                  Free Spins i Dag
-                </h1>
-                <p className="text-muted-foreground flex items-center gap-2 mt-1">
-                  <CalendarDays className="h-4 w-4" />
-                  Opdateret: {lastUpdated}
-                </p>
-              </div>
-            </div>
-            <p className="text-lg text-muted-foreground max-w-2xl">
+      <section
+        className="relative overflow-hidden py-12 text-white md:py-20"
+        style={{
+          backgroundImage: 'linear-gradient(135deg, hsl(260 70% 25%), hsl(250 60% 20%) 40%, hsl(210 80% 25%))',
+        }}
+      >
+        <div className="container">
+          <div className="mx-auto max-w-3xl text-center">
+            <Badge variant="secondary" className="mb-4">
+              <Sparkles className="mr-1.5 h-3.5 w-3.5" />
+              Opdateret {todayFormatted}
+            </Badge>
+            <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">
+              Free Spins i Dag – Daglige Tilbud
+            </h1>
+            <p className="text-lg text-white/80">
               Se dagens bedste free spins tilbud fra licenserede danske casinoer. Vi scanner
               automatisk casinoernes bonussider hver morgen, så du altid får de nyeste tilbud.
             </p>
           </div>
-        </header>
+        </div>
+      </section>
 
+      <div className="container py-8 md:py-12">
         <AuthorMetaBar
           author="jonas"
           date={todayFormatted}
           readTime="3 min."
         />
+
+        <div className="mb-10 overflow-hidden rounded-xl">
+          <img src={heroImage} alt="Free Spins i Dag – daglige tilbud fra danske casinoer" className="w-full h-auto object-cover max-h-[400px]" loading="eager" />
+        </div>
 
         {/* Quick stats */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 my-8">
@@ -373,7 +367,7 @@ const FreeSpinsIDag = () => {
         <Separator className="my-10" />
 
         <AuthorBio author="jonas" />
-      </article>
+      </div>
     </>
   );
 };
