@@ -8,7 +8,7 @@ Deno.serve(async (req: Request) => {
     const argsRaw = url.searchParams.get('args')?.trim() || '';
 
     if (!twitchUsername) return new Response('Mangler brugernavn.');
-    if (!cmd || (cmd !== 'gtw' && cmd !== 'avgx')) return new Response('Ugyldig kommando.');
+    if (!cmd || !['gtw', 'avgx', 'credits'].includes(cmd)) return new Response('Ugyldig kommando.');
 
     const supabaseUrl = Deno.env.get('SUPABASE_URL')!;
     const serviceRoleKey = Deno.env.get('SUPABASE_SERVICE_ROLE_KEY')!;
@@ -26,6 +26,12 @@ Deno.serve(async (req: Request) => {
 
     const userId = profile.user_id;
     const today = new Date().toISOString().split('T')[0];
+
+    if (cmd === 'credits') {
+      const { data: spins } = await admin.from('slot_spins').select('spins_remaining').eq('user_id', userId).eq('date', today).maybeSingle();
+      const credits = spins?.spins_remaining ?? 0;
+      return new Response('@' + twitchUsername + ', du har ' + credits + ' credits i dag.');
+    }
 
     const { data: session } = await admin
       .from('bonus_hunt_sessions')
