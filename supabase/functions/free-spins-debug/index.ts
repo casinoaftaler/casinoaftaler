@@ -21,106 +21,88 @@ Deno.serve(async (req) => {
       .select("*", { count: "exact", head: true })
       .eq("is_active", true);
 
-    // 2. Casinos with website_url
-    const { count: casinosWithUrl } = await admin
+    // 2. Casinos with .dk website_url
+    const { data: casinosWithUrl } = await admin
       .from("casinos")
-      .select("*", { count: "exact", head: true })
+      .select("name, website_url")
       .eq("is_active", true)
       .not("website_url", "is", null);
 
-    // 3. Casinos with bonus_page_url
-    const { count: casinosWithBonusUrl } = await admin
-      .from("casinos")
-      .select("*", { count: "exact", head: true })
-      .eq("is_active", true)
-      .not("bonus_page_url", "is", null);
+    const dkDomainCasinos = (casinosWithUrl || []).filter((c) => {
+      try {
+        return new URL(c.website_url!).hostname.endsWith(".dk");
+      } catch { return false; }
+    });
 
-    // 4. Casinos with actual free_spins data
-    const { count: casinosWithSpins } = await admin
-      .from("casinos")
-      .select("*", { count: "exact", head: true })
-      .eq("is_active", true)
-      .not("free_spins", "is", null)
-      .neq("free_spins", "N/A");
+    const nonDkCasinos = (casinosWithUrl || []).filter((c) => {
+      try {
+        return !new URL(c.website_url!).hostname.endsWith(".dk");
+      } catch { return false; }
+    });
 
-    // 5. Active campaigns in free_spin_campaigns
+    // 3. All campaigns
+    const { count: totalCampaigns } = await admin
+      .from("free_spin_campaigns")
+      .select("*", { count: "exact", head: true });
+
     const { count: activeCampaigns } = await admin
       .from("free_spin_campaigns")
       .select("*", { count: "exact", head: true })
       .eq("is_active", true);
 
-    // 6. Total campaigns ever
-    const { count: totalCampaigns } = await admin
+    // 4. Campaign breakdown
+    const { data: activeCampaignData } = await admin
       .from("free_spin_campaigns")
-      .select("*", { count: "exact", head: true });
+      .select("casino_name, casino_slug, title, spin_count, offer_type, source_type, source_url, last_checked, is_active")
+      .eq("is_active", true)
+      .order("spin_count", { ascending: false });
 
-    // 7. Active daily_free_spins_offers (legacy)
+    const byType: Record<string, number> = {};
+    const bySource: Record<string, number> = {};
+    for (const c of activeCampaignData || []) {
+      byType[c.offer_type] = (byType[c.offer_type] || 0) + 1;
+      bySource[c.source_type] = (bySource[c.source_type] || 0) + 1;
+    }
+
+    // 5. Legacy table
     const { count: legacyActive } = await admin
       .from("daily_free_spins_offers")
       .select("*", { count: "exact", head: true })
       .eq("is_active", true);
 
-    // 8. Campaign breakdown by type
-    const { data: campaignsByType } = await admin
-      .from("free_spin_campaigns")
-      .select("offer_type")
-      .eq("is_active", true);
-
-    const typeBreakdown: Record<string, number> = {};
-    for (const c of campaignsByType || []) {
-      typeBreakdown[c.offer_type] = (typeBreakdown[c.offer_type] || 0) + 1;
-    }
-
-    // 9. Campaign breakdown by source
-    const { data: campaignsBySource } = await admin
-      .from("free_spin_campaigns")
-      .select("source_type")
-      .eq("is_active", true);
-
-    const sourceBreakdown: Record<string, number> = {};
-    for (const c of campaignsBySource || []) {
-      sourceBreakdown[c.source_type] = (sourceBreakdown[c.source_type] || 0) + 1;
-    }
-
-    // 10. Latest scrape info
+    // 6. Latest scrape
     const { data: latestCampaign } = await admin
       .from("free_spin_campaigns")
       .select("last_checked, casino_name")
       .order("last_checked", { ascending: false })
       .limit(1);
 
-    // 11. Sample active campaigns
-    const { data: sampleCampaigns } = await admin
-      .from("free_spin_campaigns")
-      .select("casino_name, title, spin_count, offer_type, source_type, source_url, last_checked")
-      .eq("is_active", true)
-      .order("spin_count", { ascending: false })
-      .limit(10);
-
     const report = {
       timestamp: new Date().toISOString(),
       casinos: {
         total_active: totalCasinos,
-        with_website_url: casinosWithUrl,
-        with_bonus_page_url: casinosWithBonusUrl,
-        with_free_spins_data: casinosWithSpins,
+        with_website_url: casinosWithUrl?.length || 0,
+        dk_domain_count: dkDomainCasinos.length,
+        dk_domains: dkDomainCasinos.map((c) => ({ name: c.name, url: c.website_url })),
+        non_dk_domains: nonDkCasinos.map((c) => ({ name: c.name, url: c.website_url })),
       },
       campaigns: {
-        active: activeCampaigns,
         total_ever: totalCampaigns,
+        active: activeCampaigns,
         legacy_active: legacyActive,
-        by_type: typeBreakdown,
-        by_source: sourceBreakdown,
+        by_type: byType,
+        by_source: bySource,
+        shown_on_frontend: activeCampaigns,
       },
+      active_campaigns: activeCampaignData || [],
       latest_scrape: latestCampaign?.[0] || null,
-      sample_active_campaigns: sampleCampaigns || [],
       diagnosis: {
         has_firecrawl: !!Deno.env.get("FIRECRAWL_API_KEY"),
-        issue_no_website_urls: (casinosWithUrl || 0) === 0
-          ? "CRITICAL: No casinos have website_url set. The scraper cannot crawl any sites."
+        issue_no_dk_casinos: dkDomainCasinos.length === 0
+          ? "CRITICAL: No casinos have .dk domains. Add website_url for Danish casinos."
           : null,
         issue_no_campaigns: (activeCampaigns || 0) === 0
-          ? "No active campaigns found. Run the scraper or add manual entries."
+          ? "No active campaigns. Run the scraper or add manual entries."
           : null,
       },
     };
