@@ -115,8 +115,8 @@ Du MÅ bruge disse som kilder hvis de er relevante for artiklen.
    - Kontekst i dansk marked
    - Konsekvenser for spillerne
    - Ekspertanalyse
-4) Fact Box med kildelinks som bullets
-5) FAQ: 2-3 spørgsmål med faktuelle svar
+4) FAQ: 2-3 spørgsmål med faktuelle svar
+VIGTIGT: Tilføj IKKE en "Kilder" sektion i artiklen. Kilder skal KUN returneres i JSON sources-arrayet til intern validering.
 
 Brug HTML tags: <p>, <h2>, <h3>, <ul>, <li>, <strong>, <a href="...">
 Alle kildehenvisninger skal være <a href="URL" target="_blank" rel="noopener">Kildenavn</a>
@@ -812,17 +812,8 @@ Returnér UDELUKKENDE valid JSON (ingen markdown code blocks). Sæt ALDRIG rejec
       console.error("Image generation error:", imgErr);
     }
 
-    // ═══ Append sources section to article content ═══
-    let finalContent = articleData.content || "";
-    if (validationResult.validatedSources.length > 0) {
-      const sourcesHtml = validationResult.validatedSources
-        .map((s: SourceEntry) => {
-          const displayName = s.title || new URL(s.url).hostname.replace(/^www\./, "");
-          return `<li><a href="${s.url}" target="_blank" rel="noopener noreferrer">${displayName}</a></li>`;
-        })
-        .join("\n");
-      finalContent += `\n<h2>Kilder</h2>\n<ul>\n${sourcesHtml}\n</ul>`;
-    }
+    // Use article content as-is (no sources section appended)
+    const finalContent = articleData.content || "";
 
     // ═══ All guardrails passed – Insert as DRAFT ═══
     const { data: inserted, error: insertErr } = await supabase
