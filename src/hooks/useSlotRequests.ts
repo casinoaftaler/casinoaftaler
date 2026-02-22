@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
 import { useAuth } from "@/hooks/useAuth";
@@ -39,17 +40,32 @@ export function useMySlotRequests() {
 }
 
 export function useAllSlotRequests() {
+  const queryClient = useQueryClient();
+
+  useEffect(() => {
+    const channel = supabase
+      .channel('admin-slot-requests')
+      .on(
+        'postgres_changes',
+        { event: '*', schema: 'public', table: 'slot_requests' },
+        () => {
+          queryClient.invalidateQueries({ queryKey: ["all-slot-requests"] });
+        }
+      )
+      .subscribe();
+
+    return () => { supabase.removeChannel(channel); };
+  }, [queryClient]);
+
   return useQuery({
     queryKey: ["all-slot-requests"],
     queryFn: async () => {
-      // Get all requests
       const { data: requests, error } = await supabase
         .from("slot_requests" as any)
         .select("*")
         .order("created_at", { ascending: false });
       if (error) throw error;
 
-      // Get profiles for display names
       const userIds = [...new Set((requests as any[]).map((r: any) => r.user_id))];
       const { data: profiles } = await supabase
         .from("profiles")
