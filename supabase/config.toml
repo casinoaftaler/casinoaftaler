@@ -92,3 +92,6 @@ verify_jwt = false
 
 [functions.scrape-daily-offers]
 verify_jwt = false
+
+[functions.free-spins-debug]
+verify_jwt = false
