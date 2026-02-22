@@ -36,17 +36,17 @@ serve(async (req) => {
       const guessAmount = parseFloat(parts[0]);
       if (isNaN(guessAmount) || guessAmount <= 0) return new Response(`❌ @${twitchUsername}, ugyldigt gæt-beløb.`);
 
-      // Find active session with GTW betting open
+      // Find latest session
       const { data: session } = await admin
         .from('bonus_hunt_sessions')
         .select('*')
-        .eq('gtw_betting_open', true)
         .in('status', ['upcoming', 'active'])
         .order('created_at', { ascending: false })
         .limit(1)
         .maybeSingle();
 
-      if (!session) return new Response(`❌ @${twitchUsername}, GTW betting er lukket.`);
+      if (!session) return new Response(`⏳ @${twitchUsername}, der er ingen aktiv bonus hunt lige nu. Vent venligst!`);
+      if (!session.gtw_betting_open) return new Response(`⏳ @${twitchUsername}, GTW betting er lukket lige nu. Vent på at den åbner!`);
 
       const betAmount = parts.length >= 2 ? parseInt(parts[1]) : session.gtw_min_bet;
       if (isNaN(betAmount) || betAmount <= 0 || !Number.isInteger(betAmount)) {
@@ -110,17 +110,17 @@ serve(async (req) => {
         return new Response(`❌ @${twitchUsername}, ugyldig gruppe. Vælg A-J.`);
       }
 
-      // Find active session with AVG X betting open
+      // Find latest session
       const { data: session } = await admin
         .from('bonus_hunt_sessions')
         .select('*')
-        .eq('avgx_betting_open', true)
         .in('status', ['upcoming', 'active'])
         .order('created_at', { ascending: false })
         .limit(1)
         .maybeSingle();
 
-      if (!session) return new Response(`❌ @${twitchUsername}, AVG X betting er lukket.`);
+      if (!session) return new Response(`⏳ @${twitchUsername}, der er ingen aktiv bonus hunt lige nu. Vent venligst!`);
+      if (!session.avgx_betting_open) return new Response(`⏳ @${twitchUsername}, AVG X betting er lukket lige nu. Vent på at den åbner!`);
 
       const betAmount = parts.length >= 2 ? parseInt(parts[1]) : session.avgx_min_bet;
       if (isNaN(betAmount) || betAmount <= 0 || !Number.isInteger(betAmount)) {
