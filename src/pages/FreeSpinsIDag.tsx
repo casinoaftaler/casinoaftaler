@@ -24,20 +24,6 @@ import { da } from "date-fns/locale";
 
 const linkClass = "text-primary underline hover:text-primary/80";
 
-const FREE_SPINS_KEYWORDS = [
-  "free spins", "free spin", "gratis spins", "gratis spin",
-  "fs", "freespin", "freespins", "spins uden indbetaling",
-  "bonus spins", "ekstra spins",
-];
-
-function isFreeSpinsOffer(offer: RawOffer): boolean {
-  // Must have free_spins_count > 0
-  if (offer.free_spins_count && offer.free_spins_count > 0) return true;
-  // Or keyword match in title/description
-  const text = `${offer.offer_title} ${offer.offer_description || ""}`.toLowerCase();
-  return FREE_SPINS_KEYWORDS.some((kw) => text.includes(kw));
-}
-
 const freeSpinsIDagFaqs = [
   {
     question: "Hvordan finder I de daglige free spins tilbud?",
@@ -61,19 +47,23 @@ const freeSpinsIDagFaqs = [
   },
 ];
 
-interface RawOffer {
+interface CampaignOffer {
   id: string;
   casino_id: string | null;
   casino_name: string;
   casino_slug: string;
-  offer_title: string;
-  offer_description: string | null;
-  free_spins_count: number | null;
+  title: string;
+  description: string | null;
+  spin_count: number;
   min_deposit: string | null;
   wagering_requirement: string | null;
-  valid_until: string | null;
+  expiry_date: string | null;
   offer_type: string;
-  scraped_at: string;
+  last_checked: string;
+  score: number;
+  requires_deposit: boolean;
+  for_new_players: boolean;
+  for_existing_players: boolean;
 }
 
 // ─── Count-up animation hook ───
@@ -129,72 +119,54 @@ const offerTypeBadgeConfig: Record<string, { label: string; icon: React.ReactNod
   vip: { label: "VIP", icon: <Award className="h-3 w-3" />, className: "bg-amber-500/20 text-amber-400 border-amber-500/30" },
 };
 
+/** Pick best offer per casino (highest score), return sorted by score desc */
+function getBestPerCasino(campaigns: CampaignOffer[]): CampaignOffer[] {
+  const bestMap = new Map<string, CampaignOffer>();
+  for (const c of campaigns) {
+    const existing = bestMap.get(c.casino_slug);
+    if (!existing || (c.score ?? 0) > (existing.score ?? 0)) {
+      bestMap.set(c.casino_slug, c);
+    }
+  }
+  return Array.from(bestMap.values()).sort((a, b) => (b.score ?? 0) - (a.score ?? 0));
+}
+
 const FreeSpinsIDag = () => {
   const todayFormatted = format(new Date(), "d. MMMM yyyy", { locale: da });
   const { data: casinos } = useCasinos();
 
-  // Query the new free_spin_campaigns table (primary source)
-  const { data: campaigns, isLoading: loadingCampaigns } = useQuery({
+  // Query free_spin_campaigns – only spin_count > 0
+  const { data: campaigns, isLoading } = useQuery({
     queryKey: ["free-spin-campaigns"],
     queryFn: async () => {
       const { data, error } = await supabase
         .from("free_spin_campaigns")
         .select("*")
         .eq("is_active", true)
-        .order("spin_count", { ascending: false });
+        .gt("spin_count", 0)
+        .order("score", { ascending: false });
       if (error) throw error;
-      return data;
+      return (data || []) as CampaignOffer[];
     },
     staleTime: 5 * 60 * 1000,
   });
 
-  // Fallback: also query legacy table
-  const { data: rawOffers, isLoading: loadingLegacy } = useQuery({
-    queryKey: ["daily-free-spins-offers"],
-    queryFn: async () => {
-      const { data, error } = await supabase
-        .from("daily_free_spins_offers")
-        .select("*")
-        .eq("is_active", true)
-        .order("free_spins_count", { ascending: false, nullsFirst: false });
-      if (error) throw error;
-      return data as RawOffer[];
-    },
-    staleTime: 5 * 60 * 1000,
-    enabled: !campaigns || campaigns.length === 0,
-  });
+  // 1 best offer per casino, ranked by score
+  const bestOffers = campaigns ? getBestPerCasino(campaigns) : [];
+  
+  // All campaigns (for category sections) – still deduplicated per casino
+  const allCampaigns = campaigns || [];
 
-  const isLoading = loadingCampaigns || ((!campaigns || campaigns.length === 0) && loadingLegacy);
+  // Categorize from ALL campaigns (not just best-per-casino)
+  const noDepositOffers = getBestPerCasino(allCampaigns.filter((o) => o.offer_type === "no_deposit"));
+  const welcomeOffers = getBestPerCasino(allCampaigns.filter((o) => o.offer_type === "welcome"));
+  const existingOffers = getBestPerCasino(allCampaigns.filter((o) => ["daily", "existing", "weekend", "vip"].includes(o.offer_type)));
 
-  // Map campaigns to a unified format — all campaigns from aggregator sources are pre-validated Danish
-  const allFreeSpins: RawOffer[] = (campaigns && campaigns.length > 0)
-    ? campaigns.map((c) => ({
-          id: c.id,
-          casino_id: c.casino_id,
-          casino_name: c.casino_name,
-          casino_slug: c.casino_slug,
-          offer_title: c.title,
-          offer_description: c.description,
-          free_spins_count: c.spin_count,
-          min_deposit: c.min_deposit,
-          wagering_requirement: c.wagering_requirement,
-          valid_until: c.expiry_date,
-          offer_type: c.offer_type,
-          scraped_at: c.last_checked,
-        }))
-    : (rawOffers?.filter(isFreeSpinsOffer) || []);
-
-  // Categorize
-  const noDepositOffers = allFreeSpins.filter((o) => o.offer_type === "no_deposit");
-  const welcomeOffers = allFreeSpins.filter((o) => o.offer_type === "welcome");
-  const existingOffers = allFreeSpins.filter((o) => ["daily", "existing", "weekend", "vip"].includes(o.offer_type));
-
-  // Featured = highest free spins count (already filtered to DK-only)
-  const featured = allFreeSpins.length > 0 ? allFreeSpins[0] : null;
-  const remainingOffers = allFreeSpins.slice(1);
+  // Featured = highest score overall
+  const featured = bestOffers.length > 0 ? bestOffers[0] : null;
 
   // Stats
-  const totalCount = allFreeSpins.length;
+  const totalCount = bestOffers.length;
   const noDepCount = noDepositOffers.length;
   const existingCount = existingOffers.length;
 
@@ -206,10 +178,6 @@ const FreeSpinsIDag = () => {
   const getCasinoLogo = (slug: string) => casinos?.find((c) => c.slug === slug)?.logo_url || null;
   const getCasinoAffiliate = (slug: string) => casinos?.find((c) => c.slug === slug)?.affiliate_url || null;
 
-  const lastUpdated = rawOffers?.[0]?.scraped_at
-    ? format(new Date(rawOffers[0].scraped_at), "d. MMMM yyyy 'kl.' HH:mm", { locale: da })
-    : todayFormatted;
-
   const schemaMarkup = [
     buildArticleSchema({
       headline: `Free Spins i Dag – ${todayFormatted}`,
@@ -220,15 +188,14 @@ const FreeSpinsIDag = () => {
       authorName: "Jonas",
     }),
     buildFaqSchema(freeSpinsIDagFaqs.map((f) => ({ question: f.question, answer: f.answer }))),
-    // ItemList schema
     {
       "@type": "ItemList",
       name: `Free Spins Tilbud – ${todayFormatted}`,
       numberOfItems: totalCount,
-      itemListElement: allFreeSpins.slice(0, 10).map((o, i) => ({
+      itemListElement: bestOffers.slice(0, 10).map((o, i) => ({
         "@type": "ListItem",
         position: i + 1,
-        name: o.offer_title,
+        name: o.title,
         url: `${SITE_URL}/casino-anmeldelser/${o.casino_slug}`,
       })),
     },
@@ -279,7 +246,7 @@ const FreeSpinsIDag = () => {
 
         {/* ─── Statistics ─── */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-10">
-          <StatCard icon={<Sparkles className="h-5 w-5 text-primary" />} value={animatedTotal} label="Free spins tilbud i dag" />
+          <StatCard icon={<Sparkles className="h-5 w-5 text-primary" />} value={animatedTotal} label="Casinoer med free spins" />
           <StatCard icon={<Zap className="h-5 w-5 text-green-400" />} value={animatedNoDep} label="Uden indbetaling" />
           <StatCard icon={<Users className="h-5 w-5 text-amber-400" />} value={animatedExisting} label="For eksisterende spillere" />
           <Card className="text-center border-border/50">
@@ -320,24 +287,23 @@ const FreeSpinsIDag = () => {
               </Card>
             ))}
           </div>
-        ) : allFreeSpins.length === 0 ? (
-          /* Empty state */
+        ) : bestOffers.length === 0 ? (
           <div className="text-center py-16 px-4">
             <div className="inline-flex items-center justify-center w-20 h-20 rounded-full bg-muted/50 mb-6">
               <Clock className="h-10 w-10 text-muted-foreground" />
             </div>
-            <h3 className="text-xl font-bold mb-3">Der er ingen free spins i dag</h3>
+            <h3 className="text-xl font-bold mb-3">Ingen aktive free spins i dag</h3>
             <p className="text-muted-foreground max-w-md mx-auto mb-4">
               Vi opdaterer automatisk hver morgen kl. 07:00 CET. Tjek igen i morgen for de nyeste free spins tilbud fra danske casinoer.
             </p>
             <div className="flex items-center justify-center gap-2 text-sm text-muted-foreground">
               <RefreshCw className="h-4 w-4" />
-              <span>Sidst tjekket: {lastUpdated}</span>
+              <span>Opdateres dagligt kl. 07:00</span>
             </div>
           </div>
         ) : (
           <>
-            {/* Featured "Dagens Bedste" */}
+            {/* Featured "Dagens Bedste" – highest score */}
             {featured && (
               <FeaturedOfferCard
                 offer={featured}
@@ -346,7 +312,7 @@ const FreeSpinsIDag = () => {
               />
             )}
 
-            {/* Section: Free Spins for Nye Spillere */}
+            {/* Section: Free Spins for Nye Spillere (1 per casino) */}
             {welcomeOffers.length > 0 && (
               <OfferSection
                 title="Free Spins for Nye Spillere"
@@ -357,7 +323,7 @@ const FreeSpinsIDag = () => {
               />
             )}
 
-            {/* Section: Free Spins for Eksisterende Spillere */}
+            {/* Section: Free Spins for Eksisterende Spillere (1 per casino) */}
             {existingOffers.length > 0 && (
               <OfferSection
                 title="Free Spins for Eksisterende Spillere"
@@ -368,23 +334,12 @@ const FreeSpinsIDag = () => {
               />
             )}
 
-            {/* Section: Uden Indbetaling */}
+            {/* Section: Uden Indbetaling (1 per casino) */}
             {noDepositOffers.length > 0 && (
               <OfferSection
                 title="Free Spins Uden Indbetaling"
                 icon={<Zap className="h-5 w-5 text-green-400" />}
                 offers={noDepositOffers.filter((o) => o.id !== featured?.id)}
-                getCasinoLogo={getCasinoLogo}
-                getCasinoAffiliate={getCasinoAffiliate}
-              />
-            )}
-
-            {/* If everything was "featured", show remaining */}
-            {welcomeOffers.length === 0 && existingOffers.length === 0 && noDepositOffers.length === 0 && remainingOffers.length > 0 && (
-              <OfferSection
-                title="Alle Free Spins Tilbud"
-                icon={<Sparkles className="h-5 w-5 text-primary" />}
-                offers={remainingOffers}
                 getCasinoLogo={getCasinoLogo}
                 getCasinoAffiliate={getCasinoAffiliate}
               />
@@ -467,7 +422,7 @@ function StatCard({ icon, value, label }: { icon: React.ReactNode; value: number
 }
 
 // ─── Featured Offer ───
-function FeaturedOfferCard({ offer, logoUrl, affiliateUrl }: { offer: RawOffer; logoUrl: string | null; affiliateUrl: string | null }) {
+function FeaturedOfferCard({ offer, logoUrl, affiliateUrl }: { offer: CampaignOffer; logoUrl: string | null; affiliateUrl: string | null }) {
   const badge = offerTypeBadgeConfig[offer.offer_type] || offerTypeBadgeConfig.welcome;
   return (
     <div className="relative mb-10 rounded-2xl overflow-hidden"
@@ -479,7 +434,6 @@ function FeaturedOfferCard({ offer, logoUrl, affiliateUrl }: { offer: RawOffer; 
         </Badge>
       </div>
       <div className="p-6 pt-14 md:p-8 md:pt-16 flex flex-col md:flex-row items-center gap-6">
-        {/* Logo */}
         {logoUrl && (
           <div className="flex-shrink-0">
             <img
@@ -490,7 +444,6 @@ function FeaturedOfferCard({ offer, logoUrl, affiliateUrl }: { offer: RawOffer; 
             />
           </div>
         )}
-        {/* Info */}
         <div className="flex-1 text-center md:text-left">
           <div className="flex items-center justify-center md:justify-start gap-2 mb-2">
             <Link to={`/casino-anmeldelser/${offer.casino_slug}`} className="text-xl font-bold text-white hover:text-primary transition-colors">
@@ -501,10 +454,10 @@ function FeaturedOfferCard({ offer, logoUrl, affiliateUrl }: { offer: RawOffer; 
             </span>
           </div>
           <div className="text-4xl md:text-5xl font-extrabold text-white mb-2">
-            {offer.free_spins_count || "?"} <span className="text-primary">Free Spins</span>
+            {offer.spin_count} <span className="text-primary">Free Spins</span>
           </div>
-          {offer.offer_description && (
-            <p className="text-sm text-white/70 max-w-lg line-clamp-2 mb-3">{offer.offer_description}</p>
+          {offer.description && (
+            <p className="text-sm text-white/70 max-w-lg line-clamp-2 mb-3">{offer.description}</p>
           )}
           <div className="flex flex-wrap items-center justify-center md:justify-start gap-4 text-xs text-white/60">
             {offer.wagering_requirement && (
@@ -513,10 +466,9 @@ function FeaturedOfferCard({ offer, logoUrl, affiliateUrl }: { offer: RawOffer; 
             {offer.min_deposit && (
               <span className="flex items-center gap-1"><CreditCard className="h-3 w-3" /> Min: {offer.min_deposit}</span>
             )}
-            {offer.valid_until && <Countdown validUntil={offer.valid_until} />}
+            {offer.expiry_date && <Countdown validUntil={offer.expiry_date} />}
           </div>
         </div>
-        {/* CTA */}
         <div className="flex-shrink-0">
           {affiliateUrl ? (
             <a href={affiliateUrl} target="_blank" rel="noopener noreferrer nofollow">
@@ -541,7 +493,7 @@ function FeaturedOfferCard({ offer, logoUrl, affiliateUrl }: { offer: RawOffer; 
 function OfferSection({
   title, icon, offers, getCasinoLogo, getCasinoAffiliate,
 }: {
-  title: string; icon: React.ReactNode; offers: RawOffer[];
+  title: string; icon: React.ReactNode; offers: CampaignOffer[];
   getCasinoLogo: (slug: string) => string | null;
   getCasinoAffiliate: (slug: string) => string | null;
 }) {
@@ -566,15 +518,14 @@ function OfferSection({
 }
 
 // ─── Offer Card ───
-function OfferCard({ offer, logoUrl, affiliateUrl }: { offer: RawOffer; logoUrl: string | null; affiliateUrl: string | null }) {
+function OfferCard({ offer, logoUrl, affiliateUrl }: { offer: CampaignOffer; logoUrl: string | null; affiliateUrl: string | null }) {
   const badge = offerTypeBadgeConfig[offer.offer_type] || offerTypeBadgeConfig.welcome;
-  const isExpiringSoon = offer.valid_until && differenceInHours(new Date(offer.valid_until), new Date()) < 24;
+  const isExpiringSoon = offer.expiry_date && differenceInHours(new Date(offer.expiry_date), new Date()) < 24;
 
   return (
     <Card className="group hover:border-primary/40 transition-all duration-300 border-border/50 hover:shadow-lg hover:shadow-primary/5">
       <CardContent className="p-4 md:p-5">
         <div className="flex items-center gap-4">
-          {/* Logo */}
           <div className="flex-shrink-0">
             {logoUrl ? (
               <img
@@ -590,7 +541,6 @@ function OfferCard({ offer, logoUrl, affiliateUrl }: { offer: RawOffer; logoUrl:
             )}
           </div>
 
-          {/* Middle */}
           <div className="flex-1 min-w-0">
             <div className="flex items-center gap-2 mb-1 flex-wrap">
               <Link
@@ -609,7 +559,7 @@ function OfferCard({ offer, logoUrl, affiliateUrl }: { offer: RawOffer; logoUrl:
               )}
             </div>
             <div className="text-xl md:text-2xl font-extrabold text-primary mb-0.5">
-              {offer.free_spins_count} Free Spins
+              {offer.spin_count} Free Spins
             </div>
             <div className="flex flex-wrap gap-3 text-xs text-muted-foreground">
               {offer.wagering_requirement && (
@@ -618,11 +568,10 @@ function OfferCard({ offer, logoUrl, affiliateUrl }: { offer: RawOffer; logoUrl:
               {offer.min_deposit && (
                 <span className="flex items-center gap-1"><CreditCard className="h-3 w-3" /> {offer.min_deposit}</span>
               )}
-              {offer.valid_until && <Countdown validUntil={offer.valid_until} />}
+              {offer.expiry_date && <Countdown validUntil={offer.expiry_date} />}
             </div>
           </div>
 
-          {/* CTA */}
           <div className="flex-shrink-0 hidden sm:block">
             {affiliateUrl ? (
               <a href={affiliateUrl} target="_blank" rel="noopener noreferrer nofollow">
