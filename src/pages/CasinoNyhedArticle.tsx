@@ -37,11 +37,20 @@ const CasinoNyhedArticle = () => {
     const beforeFaq = html.slice(0, match.index);
     const faqHtml = html.slice(match.index + match[0].length);
 
+    // Extract content AFTER FAQ section (e.g. Kilder) by finding the next <h2>
+    const nextH2Match = faqHtml.match(/<h2[^>]*>/i);
+    const afterFaqContent = nextH2Match && nextH2Match.index !== undefined
+      ? faqHtml.slice(nextH2Match.index)
+      : "";
+    const faqOnlyHtml = nextH2Match && nextH2Match.index !== undefined
+      ? faqHtml.slice(0, nextH2Match.index)
+      : faqHtml;
+
     // Parse Q&A pairs from <p><strong>Question</strong><br/>Answer</p> pattern
     const parsedFaqs: { question: string; answer: string }[] = [];
     const pRegex = /<p>\s*<strong>(.*?)<\/strong>\s*<br\s*\/?>\s*([\s\S]*?)<\/p>/gi;
     let pMatch;
-    while ((pMatch = pRegex.exec(faqHtml)) !== null) {
+    while ((pMatch = pRegex.exec(faqOnlyHtml)) !== null) {
       const question = pMatch[1].replace(/<[^>]*>/g, "").trim();
       const answer = pMatch[2].replace(/<[^>]*>/g, "").trim();
       if (question && answer) {
@@ -49,7 +58,7 @@ const CasinoNyhedArticle = () => {
       }
     }
 
-    return { contentWithoutFaq: beforeFaq, faqs: parsedFaqs };
+    return { contentWithoutFaq: beforeFaq + afterFaqContent, faqs: parsedFaqs };
   }, [article?.content]);
 
   if (isLoading) {
