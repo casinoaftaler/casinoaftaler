@@ -28,6 +28,8 @@
     <script>
       // Prevent dark-mode flash: apply theme class before React renders
       try{if(localStorage.getItem("theme")==="dark")document.documentElement.classList.add("dark")}catch(e){}
+      // Signal to Prerender that the page is not yet ready
+      window.prerenderReady = false;
     </script>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>

@@ -9,8 +9,11 @@ root.render(<App />);
 // prerenderer knows the page is fully rendered and ready to capture.
 // In normal browsers this is a harmless no-op.
 if (typeof window !== "undefined") {
-  const dispatch = () =>
+  const dispatch = () => {
     document.dispatchEvent(new Event("prerender-ready"));
+    // Signal to Prerender.io that the page is fully rendered
+    (window as any).prerenderReady = true;
+  };
   if ("requestIdleCallback" in window) {
     (window as any).requestIdleCallback(dispatch, { timeout: 4000 });
   } else {
