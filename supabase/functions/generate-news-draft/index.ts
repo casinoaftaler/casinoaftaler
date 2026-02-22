@@ -812,6 +812,18 @@ Returnér UDELUKKENDE valid JSON (ingen markdown code blocks). Sæt ALDRIG rejec
       console.error("Image generation error:", imgErr);
     }
 
+    // ═══ Append sources section to article content ═══
+    let finalContent = articleData.content || "";
+    if (validationResult.validatedSources.length > 0) {
+      const sourcesHtml = validationResult.validatedSources
+        .map((s: SourceEntry) => {
+          const displayName = s.title || new URL(s.url).hostname.replace(/^www\./, "");
+          return `<li><a href="${s.url}" target="_blank" rel="noopener noreferrer">${displayName}</a></li>`;
+        })
+        .join("\n");
+      finalContent += `\n<h2>Kilder</h2>\n<ul>\n${sourcesHtml}\n</ul>`;
+    }
+
     // ═══ All guardrails passed – Insert as DRAFT ═══
     const { data: inserted, error: insertErr } = await supabase
       .from("casino_news")
@@ -819,7 +831,7 @@ Returnér UDELUKKENDE valid JSON (ingen markdown code blocks). Sæt ALDRIG rejec
         title: articleData.title,
         slug: articleData.slug,
         excerpt: articleData.excerpt,
-        content: articleData.content,
+        content: finalContent,
         category: articleData.category,
         tags: articleData.tags || [],
         meta_title: articleData.meta_title,
