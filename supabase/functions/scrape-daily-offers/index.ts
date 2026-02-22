@@ -5,122 +5,106 @@ const corsHeaders = {
   "Access-Control-Allow-Headers": "authorization, x-client-info, apikey, content-type",
 };
 
-// ─── Expanded Danish keyword list ───
-const FREE_SPINS_KEYWORDS = [
-  "free spins", "free spin", "gratis spins", "gratis spin",
-  "fs ", "freespin", "freespins", "spins uden indbetaling",
-  "bonus spins", "ekstra spins", "daglige spins",
-  "spin gratis", "spil og vind free spins", "dagens spin",
-  "lykkehjul", "spin & win", "spin and win",
-  "gratis chancer", "cash spins", "spin og vind",
-  "ugens spil", "weekend spins", "mandags spins",
-  "turnering med free spins", "fredags spins",
-  "bonus runder", "ekstra chancer",
+// ─── Aggregator sources (authoritative Danish free spin lists) ───
+const AGGREGATOR_URLS = [
+  "https://www.casinopenge.dk/free-spins-i-dag",
+  "https://www.spilxperten.com/casino/dagens-free-spins/",
+  "https://www.casinoonline.dk/freespin/",
 ];
 
-// ─── Danish content validation keywords ───
-const DANISH_CONTENT_MARKERS = [
-  "spillemyndigheden", "rofus", "spil ansvarligt",
-  "18+", "indbetaling", "omsætningskrav", "gennemspilning",
-  "velkomstbonus", "danske spillere", "dansk licens",
-  "spilnu", "bonuskode", "kr.", "dkk",
-];
-
-// ─── Priority paths to crawl ───
-const CRAWL_PATHS = [
-  "/kampagner", "/free-spins", "/bonus",
-  "/tilbud", "/promotions", "/da/kampagner",
-  "/da/bonus", "/da/free-spins",
-];
+// ─── Casino name → slug mapping (covers common variations) ───
+const CASINO_NAME_MAP: Record<string, string> = {
+  "royal casino": "royal-casino",
+  "royalcasino": "royal-casino",
+  "kapow casino": "kapow-casino",
+  "kapow": "kapow-casino",
+  "kapowcasino": "kapow-casino",
+  "leovegas": "leovegas",
+  "leo vegas": "leovegas",
+  "mr green": "mr-green",
+  "mr. green": "mr-green",
+  "mrgreen": "mr-green",
+  "comeon": "comeon",
+  "come on": "comeon",
+  "bet365": "bet365",
+  "bet365 casino": "bet365",
+  "unibet": "unibet",
+  "unibet casino": "unibet",
+  "888 casino": "888-casino",
+  "888casino": "888-casino",
+  "betano": "betano",
+  "betano casino": "betano",
+  "expekt": "expekt",
+  "spilnu": "spilnu",
+  "spilnu.dk": "spilnu",
+  "casinostuen": "casinostuen",
+  "onecasino": "onecasino",
+  "one casino": "onecasino",
+  "nordicbet": "nordicbet",
+  "nordic bet": "nordicbet",
+  "videoslots": "videoslots",
+  "pokerstars": "pokerstars",
+  "pokerstars casino": "pokerstars",
+  "mr vegas": "mr-vegas",
+  "stake": "stake",
+  "tivoli casino": "tivoli-casino",
+  "casino copenhagen": "casino-copenhagen",
+};
 
 interface CasinoRow {
   id: string;
   name: string;
   slug: string;
-  website_url: string | null;
-  bonus_page_url: string | null;
-  bonus_title: string;
-  bonus_amount: string;
-  free_spins: string | null;
-  wagering_requirements: string;
-  min_deposit: string;
   affiliate_url: string | null;
   logo_url: string | null;
 }
 
-interface DetectedCampaign {
-  casino_id: string;
+interface ParsedOffer {
   casino_name: string;
   casino_slug: string;
   title: string;
-  description: string | null;
+  description: string;
   spin_count: number;
+  offer_type: string;
   for_new_players: boolean;
   for_existing_players: boolean;
   requires_deposit: boolean;
   wagering_requirement: string | null;
   min_deposit: string | null;
-  expiry_date: string | null;
-  source_type: string;
-  source_url: string | null;
-  is_active: boolean;
-  offer_type: string;
-  casino_logo_url: string | null;
-  affiliate_url: string | null;
+  expiry_info: string | null;
+  source_url: string;
 }
 
-function containsFreeSpinsKeyword(text: string): boolean {
-  const lower = text.toLowerCase();
-  return FREE_SPINS_KEYWORDS.some((kw) => lower.includes(kw));
-}
-
-/** Check if content appears to be Danish / for Danish market */
-function isDanishContent(text: string): boolean {
-  const lower = text.toLowerCase();
-  let score = 0;
-  for (const marker of DANISH_CONTENT_MARKERS) {
-    if (lower.includes(marker)) score++;
+/** Resolve casino name to slug */
+function resolveSlug(name: string): string | null {
+  const lower = name.toLowerCase().trim();
+  if (CASINO_NAME_MAP[lower]) return CASINO_NAME_MAP[lower];
+  // Partial match
+  for (const [key, slug] of Object.entries(CASINO_NAME_MAP)) {
+    if (lower.includes(key) || key.includes(lower)) return slug;
   }
-  // At least 2 Danish markers = likely Danish content
-  return score >= 2;
-}
-
-/** Check if URL is a .dk domain or /da/ path */
-function isDanishUrl(url: string): boolean {
-  try {
-    const u = new URL(url);
-    if (u.hostname.endsWith(".dk")) return true;
-    if (u.pathname.startsWith("/da/") || u.pathname.startsWith("/da")) return true;
-    return false;
-  } catch {
-    return false;
-  }
-}
-
-function detectSpinCount(text: string): number[] {
-  const regex = /(\d+)\s*(?:gratis\s*)?(?:free\s*)?(?:bonus\s*)?(?:cash\s*)?(?:spins?|chancer)/gi;
-  const counts: number[] = [];
-  for (const m of text.matchAll(regex)) {
-    const n = parseInt(m[1], 10);
-    if (n > 0 && n <= 5000) counts.push(n);
-  }
-  return [...new Set(counts)];
-}
-
-function detectWagering(text: string): string | null {
-  const m = text.match(/(\d+)\s*x\s*(?:gennemspilning|omsætning|wagering|gennemspils|gange)/i);
-  if (m) return `${m[1]}x`;
-  const m2 = text.match(/(\d+)x/i);
-  if (m2) return `${m2[1]}x`;
   return null;
 }
 
-function detectMinDeposit(text: string): string | null {
-  const m = text.match(/(?:min(?:imum)?\.?\s*(?:ind(?:betaling|skud))?|deposit)\s*:?\s*(\d+)\s*(?:kr|dkk)/i);
-  if (m) return `${m[1]} kr.`;
-  return null;
+/** Extract spin count from text */
+function extractSpinCount(text: string): number {
+  // Try specific patterns first
+  const patterns = [
+    /(\d+)\s*(?:gratis\s*)?(?:free\s*)?(?:cash\s*)?(?:bonus\s*)?(?:spins?|chancer)/i,
+    /(?:få|hent|modtag)\s+(\d+)\s+(?:free\s*)?(?:spins?|chancer)/i,
+    /(\d+)\s*(?:gratis\s*)?chancer/i,
+  ];
+  for (const p of patterns) {
+    const m = text.match(p);
+    if (m) {
+      const n = parseInt(m[1], 10);
+      if (n > 0 && n <= 5000) return n;
+    }
+  }
+  return 0;
 }
 
+/** Classify offer type */
 function classifyOffer(text: string): { type: string; forNew: boolean; forExisting: boolean; requiresDeposit: boolean } {
   const lower = text.toLowerCase();
   let type = "welcome";
@@ -128,94 +112,232 @@ function classifyOffer(text: string): { type: string; forNew: boolean; forExisti
   let forExisting = false;
   let requiresDeposit = true;
 
-  if (/uden\s*indbetaling|no\s*deposit|gratis\s*uden/i.test(lower)) {
-    type = "no_deposit";
-    requiresDeposit = false;
-    forNew = true;
-  } else if (/daglig|daily|i\s*dag|hver\s*dag|dagens\s*spin|mandags|mandag/i.test(lower)) {
-    type = "daily";
-    forExisting = true;
+  if (/uden\s*indbetaling|no\s*deposit/i.test(lower)) {
+    type = "no_deposit"; requiresDeposit = false; forNew = true;
+  } else if (/mandag|mandags/i.test(lower)) {
+    type = "daily"; forExisting = true;
+  } else if (/daglig|daily|i\s*dag|hver\s*dag|dagens/i.test(lower)) {
+    type = "daily"; forExisting = true;
   } else if (/weekend|fredag|lørdag|søndag/i.test(lower)) {
-    type = "weekend";
-    forExisting = true;
-  } else if (/vip|loyal|eksisterende|ugens\s*spil/i.test(lower)) {
-    type = "existing";
-    forExisting = true;
-  } else if (/velkomst|welcome|ny\s*spiller|nye\s*spillere|tilmeld/i.test(lower)) {
-    type = "welcome";
-    forNew = true;
-  } else if (/lykkehjul|spin\s*&\s*win|spin\s*and\s*win|spin\s*og\s*vind/i.test(lower)) {
-    type = "daily";
-    forExisting = true;
-  } else if (/turnering/i.test(lower)) {
-    type = "existing";
-    forExisting = true;
+    type = "weekend"; forExisting = true;
+  } else if (/lykkehjul|spin\s*og\s*vind/i.test(lower)) {
+    type = "daily"; forExisting = true;
+  } else if (/eksisterende|ugens\s*spil/i.test(lower)) {
+    type = "existing"; forExisting = true;
+  } else if (/velkomst|nye\s*kunder|nye\s*spillere|ved\s*registrering|første\s*indbetaling/i.test(lower)) {
+    type = "welcome"; forNew = true;
   }
 
-  if (/nye\s*spillere/i.test(lower)) forNew = true;
-  if (/eksisterende\s*spillere|alle\s*spillere/i.test(lower)) forExisting = true;
-  if (/alle\s*spillere/i.test(lower)) forNew = true;
+  if (/nye\s*(?:og\s*)?eksisterende|eksisterende\s*(?:og\s*)?nye|alle\s*(?:spillere|kunder)/i.test(lower)) {
+    forNew = true; forExisting = true;
+  }
+  if (/nye\s*(?:spillere|kunder)/i.test(lower)) forNew = true;
+  if (/eksisterende\s*(?:spillere|kunder)/i.test(lower)) forExisting = true;
 
   return { type, forNew, forExisting, requiresDeposit };
 }
 
-function cleanText(text: string): string {
-  return text.replace(/[#*_\[\]()]/g, "").replace(/\s+/g, " ").replace(/\n+/g, " ").trim();
+/** Detect wagering from text */
+function detectWagering(text: string): string | null {
+  const m = text.match(/(\d+)\s*(?:x|gange)\s*(?:gennemspil|omsætning)/i);
+  if (m) return `${m[1]}x`;
+  const m2 = text.match(/uden\s*(?:gennemspils?krav|omsætningskrav)/i);
+  if (m2) return "Ingen";
+  return null;
 }
 
-/** Extract campaigns from markdown content */
-function extractCampaignsFromMarkdown(
-  markdown: string,
-  casino: CasinoRow,
-  sourceUrl: string
-): DetectedCampaign[] {
-  const campaigns: DetectedCampaign[] = [];
-  if (!containsFreeSpinsKeyword(markdown)) return campaigns;
+/** Detect min deposit */
+function detectMinDeposit(text: string): string | null {
+  const m = text.match(/(?:indbetal(?:ing)?|deposit)\s*(?:på\s*)?(?:mindst\s*)?(\d+)\s*kr/i);
+  if (m) return `${m[1]} kr.`;
+  return null;
+}
 
-  const spinCounts = detectSpinCount(markdown);
-  if (spinCounts.length === 0) return campaigns;
+/** Detect expiry */
+function detectExpiry(text: string): string | null {
+  const m = text.match(/(?:slutter|udløb|gyldigt?\s*(?:til|fra|indtil))[^.]*?(\d{1,2})\.\s*(\w+)\s*(?:20\d{2})?/i);
+  if (m) return m[0].substring(0, 80);
+  const m2 = text.match(/(?:hver\s*mandag|hver\s*dag|ugentlig|løbende)/i);
+  if (m2) return m2[0];
+  return null;
+}
 
-  const seenCounts = new Set<number>();
-  const regex = /(\d+)\s*(?:gratis\s*)?(?:free\s*)?(?:bonus\s*)?(?:cash\s*)?(?:spins?|chancer)/gi;
+// ─── Casinopenge.dk parser ───
+function parseCasinopenge(markdown: string, sourceUrl: string): ParsedOffer[] {
+  const offers: ParsedOffer[] = [];
+  // Split by "## [" headings which are offer titles
+  const sections = markdown.split(/(?=## \[)/);
 
-  for (const match of markdown.matchAll(regex)) {
-    const count = parseInt(match[1], 10);
-    if (count <= 0 || count > 5000 || seenCounts.has(count)) continue;
-    seenCounts.add(count);
+  for (const section of sections) {
+    if (section.length < 30) continue;
 
-    const idx = match.index || 0;
-    const context = markdown.substring(
-      Math.max(0, idx - 300),
-      Math.min(markdown.length, idx + 300)
-    );
+    // Extract casino name from image alt or logo reference
+    let casinoName = "";
+    const logoMatch = section.match(/!\[([^\]]+)\]\([^)]*casino-logo[^)]*\)/i);
+    if (logoMatch) casinoName = logoMatch[1];
+    if (!casinoName) {
+      const altMatch = section.match(/!\[([^\]]+)\]/);
+      if (altMatch && altMatch[1].length < 40) casinoName = altMatch[1];
+    }
 
-    const classification = classifyOffer(context);
-    const wager = detectWagering(context);
-    const minDep = detectMinDeposit(context);
+    const slug = resolveSlug(casinoName);
+    if (!slug) continue;
 
-    campaigns.push({
-      casino_id: casino.id,
-      casino_name: casino.name,
-      casino_slug: casino.slug,
-      title: `${count} Free Spins hos ${casino.name}`,
-      description: cleanText(context).substring(0, 400),
-      spin_count: count,
+    // Extract title
+    const titleMatch = section.match(/## \[([^\]]+)\]/);
+    const title = titleMatch ? titleMatch[1] : "";
+
+    const spinCount = extractSpinCount(section);
+    if (spinCount === 0 && !title.toLowerCase().includes("spin") && !title.toLowerCase().includes("chancer") && !title.toLowerCase().includes("lykkehjul")) continue;
+
+    const classification = classifyOffer(section);
+    const cleanDesc = section
+      .replace(/!\[[^\]]*\]\([^)]*\)/g, "")
+      .replace(/\[[^\]]*\]\([^)]*\)/g, "")
+      .replace(/[#*_]/g, "")
+      .replace(/\s+/g, " ")
+      .trim()
+      .substring(0, 400);
+
+    offers.push({
+      casino_name: casinoName,
+      casino_slug: slug,
+      title: title || `${spinCount} Free Spins hos ${casinoName}`,
+      description: cleanDesc,
+      spin_count: spinCount,
+      offer_type: classification.type,
       for_new_players: classification.forNew,
       for_existing_players: classification.forExisting,
       requires_deposit: classification.requiresDeposit,
-      wagering_requirement: wager,
-      min_deposit: minDep,
-      expiry_date: null,
-      source_type: "scraped",
+      wagering_requirement: detectWagering(section),
+      min_deposit: detectMinDeposit(section),
+      expiry_info: detectExpiry(section),
       source_url: sourceUrl,
-      is_active: true,
-      offer_type: classification.type,
-      casino_logo_url: casino.logo_url,
-      affiliate_url: casino.affiliate_url,
     });
   }
+  return offers;
+}
 
-  return campaigns;
+// ─── Spilxperten.com parser ───
+function parseSpilxperten(markdown: string, sourceUrl: string): ParsedOffer[] {
+  const offers: ParsedOffer[] = [];
+  // Split by table rows (each offer is a table block starting with | )
+  const tableBlocks = markdown.split(/\n\|\s*---\s*\|\n/);
+
+  for (const block of tableBlocks) {
+    if (block.length < 40) continue;
+
+    // Detect casino from links or image alts
+    let casinoName = "";
+    const casinoLinkMatch = block.match(/\[([^\]]*(?:Casino|Bet365|Unibet|LeoVegas|Mr Green|Kapow|Betano|Spilnu|Casinostuen|Royal)[^\]]*)\]/i);
+    if (casinoLinkMatch) casinoName = casinoLinkMatch[1].replace(/\*/g, "").trim();
+    if (!casinoName) {
+      const altMatch = block.match(/!\[[^\]]*\]\([^)]*(?:royal|kapow|bet365|unibet|leovegas|mr-green|betano|spilnu|casinostuen)[^)]*\)/i);
+      if (altMatch) {
+        const nameFromUrl = altMatch[0].match(/(?:royal|kapow|bet365|unibet|leovegas|mr-green|betano|spilnu|casinostuen)/i);
+        if (nameFromUrl) casinoName = nameFromUrl[0];
+      }
+    }
+    // Also try extracting from besoeg/ links
+    const besoegMatch = block.match(/besoeg\/([a-z0-9-]+)/i);
+    if (!casinoName && besoegMatch) {
+      casinoName = besoegMatch[1].replace(/-/g, " ");
+    }
+
+    const slug = resolveSlug(casinoName);
+    if (!slug) continue;
+
+    // Extract title from bold text or first line
+    const titleMatch = block.match(/\|\s*([^|]*(?:free\s*spins?|chancer|cash\s*spins?|lykkehjul|gratis|prize|lodtrækning)[^|]*)\s*\|/i);
+    const title = titleMatch ? titleMatch[1].replace(/[*💥🔥🎁💰😍]/g, "").replace(/\s+/g, " ").trim() : "";
+
+    const spinCount = extractSpinCount(block);
+    const classification = classifyOffer(block);
+
+    if (spinCount === 0 && !block.toLowerCase().includes("lykkehjul") && !block.toLowerCase().includes("prize") && !block.toLowerCase().includes("lodtrækning")) continue;
+
+    const cleanDesc = block
+      .replace(/!\[[^\]]*\]\([^)]*\)/g, "")
+      .replace(/\[[^\]]*\]\([^)]*\)/g, "")
+      .replace(/[#*_|]/g, "")
+      .replace(/\s+/g, " ")
+      .trim()
+      .substring(0, 400);
+
+    offers.push({
+      casino_name: casinoName,
+      casino_slug: slug,
+      title: title || `${spinCount} Free Spins hos ${casinoName}`,
+      description: cleanDesc,
+      spin_count: spinCount,
+      offer_type: classification.type,
+      for_new_players: classification.forNew,
+      for_existing_players: classification.forExisting,
+      requires_deposit: classification.requiresDeposit,
+      wagering_requirement: detectWagering(block),
+      min_deposit: detectMinDeposit(block),
+      expiry_info: detectExpiry(block),
+      source_url: sourceUrl,
+    });
+  }
+  return offers;
+}
+
+// ─── CasinoOnline.dk parser ───
+function parseCasinoonline(markdown: string, sourceUrl: string): ParsedOffer[] {
+  const offers: ParsedOffer[] = [];
+  // Split by table blocks (offer tables start with | BONUS or | FREE SPINS)
+  const tableBlocks = markdown.split(/\n\|\s*(?:BONUS|FREE SPINS)[^|]*\|/i);
+
+  for (const block of tableBlocks) {
+    if (block.length < 40) continue;
+
+    // Detect casino from "HOS XXXX CASINO" pattern
+    let casinoName = "";
+    const hosMatch = block.match(/HOS\s+([A-ZÆØÅ][A-ZÆØÅ\s]+)\s*(?:CASINO)?/i);
+    if (hosMatch) casinoName = hosMatch[1].trim();
+    if (!casinoName) {
+      const goMatch = block.match(/casinoonline\.dk\/go\/([a-z_]+)/i);
+      if (goMatch) casinoName = goMatch[1].replace(/_/g, " ");
+    }
+
+    const slug = resolveSlug(casinoName);
+    if (!slug) continue;
+
+    // Extract title from bracketed text
+    const titleMatch = block.match(/\[([^\]]*(?:FREE|GRATIS|SPINS|CASH|MANDAGS|LYKKEHJUL)[^\]]*)\]/i);
+    const title = titleMatch ? titleMatch[1] : "";
+
+    const spinCount = extractSpinCount(block);
+    const classification = classifyOffer(block);
+
+    if (spinCount === 0 && !block.toLowerCase().includes("lykkehjul") && !block.toLowerCase().includes("bonus")) continue;
+
+    const cleanDesc = block
+      .replace(/!\[[^\]]*\]\([^)]*\)/g, "")
+      .replace(/\[[^\]]*\]\([^)]*\)/g, "")
+      .replace(/[#*_|]/g, "")
+      .replace(/\s+/g, " ")
+      .trim()
+      .substring(0, 400);
+
+    offers.push({
+      casino_name: casinoName,
+      casino_slug: slug,
+      title: title || `Free Spins hos ${casinoName}`,
+      description: cleanDesc,
+      spin_count: spinCount,
+      offer_type: classification.type,
+      for_new_players: classification.forNew,
+      for_existing_players: classification.forExisting,
+      requires_deposit: classification.requiresDeposit,
+      wagering_requirement: detectWagering(block),
+      min_deposit: detectMinDeposit(block),
+      expiry_info: detectExpiry(block),
+      source_url: sourceUrl,
+    });
+  }
+  return offers;
 }
 
 Deno.serve(async (req) => {
@@ -228,179 +350,145 @@ Deno.serve(async (req) => {
     const serviceRoleKey = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!;
     const firecrawlKey = Deno.env.get("FIRECRAWL_API_KEY");
 
+    if (!firecrawlKey) {
+      return new Response(
+        JSON.stringify({ error: "FIRECRAWL_API_KEY not configured" }),
+        { status: 500, headers: { ...corsHeaders, "Content-Type": "application/json" } }
+      );
+    }
+
     const admin = createClient(supabaseUrl, serviceRoleKey);
 
-    // Fetch all active casinos
-    const { data: casinos, error: casinoError } = await admin
+    // Fetch casino data for ID/logo/affiliate mapping
+    const { data: casinos } = await admin
       .from("casinos")
-      .select("id, name, slug, website_url, bonus_page_url, bonus_title, bonus_amount, free_spins, wagering_requirements, min_deposit, affiliate_url, logo_url")
-      .eq("is_active", true)
-      .order("position");
+      .select("id, name, slug, affiliate_url, logo_url")
+      .eq("is_active", true);
 
-    if (casinoError) throw casinoError;
+    const casinoMap = new Map<string, CasinoRow>();
+    for (const c of (casinos || []) as CasinoRow[]) {
+      casinoMap.set(c.slug, c);
+    }
 
-    console.log(`Found ${casinos?.length || 0} active casinos`);
+    console.log(`Loaded ${casinoMap.size} casinos for mapping`);
 
-    const allCampaigns: DetectedCampaign[] = [];
-    const scrapeResults: { casino: string; method: string; urls_tried: number; campaigns_found: number; is_dk_domain: boolean; danish_content: boolean; error?: string }[] = [];
+    // ─── Scrape all 3 aggregator sites ───
+    const allParsedOffers: ParsedOffer[] = [];
+    const scrapeResults: { source: string; status: string; offers_found: number; error?: string }[] = [];
 
-    const casinoList = (casinos || []) as CasinoRow[];
-    
-    // Prioritize .dk domains first
-    const dkCasinos = casinoList.filter((c) => c.website_url && isDanishUrl(c.website_url));
-    const otherCasinos = casinoList.filter((c) => c.website_url && !isDanishUrl(c.website_url));
-    const noCrawl = casinoList.filter((c) => !c.website_url);
+    const scrapePromises = AGGREGATOR_URLS.map(async (url) => {
+      try {
+        console.log(`Scraping aggregator: ${url}`);
+        const resp = await fetch("https://api.firecrawl.dev/v1/scrape", {
+          method: "POST",
+          headers: {
+            "Authorization": `Bearer ${firecrawlKey}`,
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ url, formats: ["markdown"], onlyMainContent: true, waitFor: 5000 }),
+        });
 
-    // Process .dk domains first (all of them), then other domains
-    const crawlOrder = [...dkCasinos, ...otherCasinos];
-    const BATCH_SIZE = 5;
-
-    for (let batchStart = 0; batchStart < crawlOrder.length; batchStart += BATCH_SIZE) {
-      const batch = crawlOrder.slice(batchStart, batchStart + BATCH_SIZE);
-
-      const batchResults = await Promise.allSettled(
-        batch.map(async (casino) => {
-          let casinoCampaigns: DetectedCampaign[] = [];
-          const isDk = isDanishUrl(casino.website_url!);
-
-          if (firecrawlKey) {
-            const urlsToScrape: string[] = [];
-            if (casino.bonus_page_url) urlsToScrape.push(casino.bonus_page_url);
-            
-            const baseUrl = casino.website_url!.replace(/\/$/, "");
-            for (const path of CRAWL_PATHS) {
-              const url = baseUrl + path;
-              if (!urlsToScrape.includes(url)) urlsToScrape.push(url);
-            }
-
-            const maxUrls = Math.min(urlsToScrape.length, 4);
-            const scrapePromises = urlsToScrape.slice(0, maxUrls).map(async (url) => {
-              try {
-                const resp = await fetch("https://api.firecrawl.dev/v1/scrape", {
-                  method: "POST",
-                  headers: {
-                    "Authorization": `Bearer ${firecrawlKey}`,
-                    "Content-Type": "application/json",
-                  },
-                  body: JSON.stringify({ url, formats: ["markdown"], onlyMainContent: true, waitFor: 3000 }),
-                });
-
-                if (resp.ok) {
-                  const d = await resp.json();
-                  const md = d?.data?.markdown || d?.markdown || "";
-                  if (md) {
-                    // For non-.dk domains, validate Danish content
-                    if (!isDk && !isDanishContent(md)) {
-                      console.log(`Skipping non-Danish content from ${url}`);
-                      return [] as DetectedCampaign[];
-                    }
-                    return extractCampaignsFromMarkdown(md, casino, url);
-                  }
-                } else {
-                  await resp.text();
-                }
-              } catch { /* skip */ }
-              return [] as DetectedCampaign[];
-            });
-
-            const results = await Promise.allSettled(scrapePromises);
-            let foundDanish = false;
-            for (const r of results) {
-              if (r.status === "fulfilled" && r.value.length > 0) {
-                casinoCampaigns.push(...r.value);
-                foundDanish = true;
-              }
-            }
-
-            scrapeResults.push({
-              casino: casino.name,
-              method: "multi_path_crawl",
-              urls_tried: maxUrls,
-              campaigns_found: casinoCampaigns.length,
-              is_dk_domain: isDk,
-              danish_content: foundDanish,
-            });
-          }
-
-          // Fallback to DB data
-          if (casinoCampaigns.length === 0) {
-            const fallback = buildFallbackCampaign(casino);
-            if (fallback) {
-              casinoCampaigns.push(fallback);
-              scrapeResults.push({ casino: casino.name, method: "database_fallback", urls_tried: 0, campaigns_found: 1, is_dk_domain: isDk, danish_content: true });
-            } else {
-              scrapeResults.push({ casino: casino.name, method: "no_data", urls_tried: 0, campaigns_found: 0, is_dk_domain: isDk, danish_content: false });
-            }
-          }
-
-          // Deduplicate by spin_count
-          const seen = new Set<number>();
-          for (const c of casinoCampaigns) {
-            if (!seen.has(c.spin_count)) {
-              seen.add(c.spin_count);
-              allCampaigns.push(c);
-            }
-          }
-        })
-      );
-
-      for (let i = 0; i < batchResults.length; i++) {
-        const r = batchResults[i];
-        if (r.status === "rejected") {
-          console.error(`Error processing ${batch[i].name}:`, r.reason);
-          scrapeResults.push({ casino: batch[i].name, method: "error", urls_tried: 0, campaigns_found: 0, is_dk_domain: false, danish_content: false, error: String(r.reason) });
+        if (!resp.ok) {
+          const errText = await resp.text();
+          console.error(`Firecrawl error for ${url}: ${resp.status} ${errText}`);
+          return { url, markdown: "", error: `HTTP ${resp.status}` };
         }
+
+        const d = await resp.json();
+        const md = d?.data?.markdown || d?.markdown || "";
+        console.log(`Got ${md.length} chars from ${url}`);
+        return { url, markdown: md, error: null };
+      } catch (e) {
+        console.error(`Error scraping ${url}:`, e);
+        return { url, markdown: "", error: String(e) };
       }
+    });
+
+    const scrapeData = await Promise.all(scrapePromises);
+
+    // ─── Parse each source ───
+    for (const { url, markdown, error } of scrapeData) {
+      if (error || !markdown) {
+        scrapeResults.push({ source: url, status: "error", offers_found: 0, error: error || "Empty response" });
+        continue;
+      }
+
+      let parsed: ParsedOffer[] = [];
+      if (url.includes("casinopenge.dk")) {
+        parsed = parseCasinopenge(markdown, url);
+      } else if (url.includes("spilxperten.com")) {
+        parsed = parseSpilxperten(markdown, url);
+      } else if (url.includes("casinoonline.dk")) {
+        parsed = parseCasinoonline(markdown, url);
+      }
+
+      scrapeResults.push({ source: url, status: "ok", offers_found: parsed.length });
+      allParsedOffers.push(...parsed);
     }
 
-    // Process non-crawlable casinos (DB fallback only)
-    for (const casino of noCrawl) {
-      const fallback = buildFallbackCampaign(casino);
-      if (fallback) {
-        allCampaigns.push(fallback);
-        scrapeResults.push({ casino: casino.name, method: "database_fallback", urls_tried: 0, campaigns_found: 1, is_dk_domain: false, danish_content: true });
-      } else {
-        scrapeResults.push({ casino: casino.name, method: "no_data", urls_tried: 0, campaigns_found: 0, is_dk_domain: false, danish_content: false });
-      }
+    console.log(`Total parsed offers: ${allParsedOffers.length}`);
+
+    // ─── Deduplicate by casino_slug + title similarity ───
+    const uniqueOffers: ParsedOffer[] = [];
+    const seenKeys = new Set<string>();
+
+    for (const offer of allParsedOffers) {
+      // Key: slug + spin_count + first 30 chars of title
+      const key = `${offer.casino_slug}:${offer.spin_count}:${offer.title.substring(0, 30).toLowerCase()}`;
+      if (seenKeys.has(key)) continue;
+      seenKeys.add(key);
+      uniqueOffers.push(offer);
     }
 
-    // ─── Deactivate old scraped campaigns ───
-    const { error: deactivateError } = await admin
-      .from("free_spin_campaigns")
-      .update({ is_active: false })
-      .eq("source_type", "scraped");
+    console.log(`Unique offers after dedup: ${uniqueOffers.length}`);
 
-    if (deactivateError) console.error("Error deactivating old campaigns:", deactivateError);
+    // ─── Map to campaign records ───
+    const campaigns = uniqueOffers
+      .map((offer) => {
+        const casino = casinoMap.get(offer.casino_slug);
+        return {
+          casino_id: casino?.id || null,
+          casino_name: casino?.name || offer.casino_name,
+          casino_slug: offer.casino_slug,
+          title: offer.title,
+          description: offer.description,
+          spin_count: offer.spin_count,
+          for_new_players: offer.for_new_players,
+          for_existing_players: offer.for_existing_players,
+          requires_deposit: offer.requires_deposit,
+          wagering_requirement: offer.wagering_requirement,
+          min_deposit: offer.min_deposit,
+          expiry_date: null,
+          source_type: "aggregator",
+          source_url: offer.source_url,
+          is_active: true,
+          offer_type: offer.offer_type,
+          casino_logo_url: casino?.logo_url || null,
+          affiliate_url: casino?.affiliate_url || null,
+          last_checked: new Date().toISOString(),
+        };
+      })
+      .filter((c) => casinoMap.has(c.casino_slug)); // Only include casinos we have in our DB
 
-    // Also deactivate old database fallbacks so they get refreshed
-    await admin
-      .from("free_spin_campaigns")
-      .update({ is_active: false })
-      .eq("source_type", "database");
+    console.log(`Campaigns to insert (matched to DB casinos): ${campaigns.length}`);
+
+    // ─── Deactivate old campaigns ───
+    await admin.from("free_spin_campaigns").update({ is_active: false }).in("source_type", ["scraped", "aggregator", "database"]);
 
     // ─── Insert new campaigns ───
-    if (allCampaigns.length > 0) {
-      const { error: insertError } = await admin
-        .from("free_spin_campaigns")
-        .insert(allCampaigns.map((c) => ({
-          ...c,
-          last_checked: new Date().toISOString(),
-        })));
-
+    if (campaigns.length > 0) {
+      const { error: insertError } = await admin.from("free_spin_campaigns").insert(campaigns);
       if (insertError) {
         console.error("Error inserting campaigns:", insertError);
         throw insertError;
       }
     }
 
-    // ─── Sync to daily_free_spins_offers for backward compat ───
-    await admin
-      .from("daily_free_spins_offers")
-      .update({ is_active: false })
-      .eq("is_manually_added", false);
+    // ─── Sync to legacy table ───
+    await admin.from("daily_free_spins_offers").update({ is_active: false }).eq("is_manually_added", false);
 
-    if (allCampaigns.length > 0) {
-      const legacyOffers = allCampaigns.map((c) => ({
+    if (campaigns.length > 0) {
+      const legacyOffers = campaigns.map((c) => ({
         casino_id: c.casino_id,
         casino_name: c.casino_name,
         casino_slug: c.casino_slug,
@@ -409,35 +497,34 @@ Deno.serve(async (req) => {
         free_spins_count: c.spin_count,
         min_deposit: c.min_deposit,
         wagering_requirement: c.wagering_requirement,
-        valid_until: c.expiry_date,
+        valid_until: null,
         offer_type: c.offer_type,
         is_active: true,
         is_manually_added: false,
         scraped_at: new Date().toISOString(),
         scrape_source_url: c.source_url,
       }));
-
       await admin.from("daily_free_spins_offers").insert(legacyOffers);
     }
 
-    const dkCampaigns = allCampaigns.filter((c) => {
-      const casino = casinoList.find((cas) => cas.id === c.casino_id);
-      return casino?.website_url && isDanishUrl(casino.website_url);
+    const summary = {
+      success: true,
+      totalOffersFound: allParsedOffers.length,
+      uniqueOffers: uniqueOffers.length,
+      campaignsInserted: campaigns.length,
+      scrapeResults,
+      campaignsBySource: scrapeResults.map((s) => `${s.source}: ${s.offers_found} offers`),
+      campaignsByCasino: campaigns.reduce((acc, c) => {
+        acc[c.casino_slug] = (acc[c.casino_slug] || 0) + 1;
+        return acc;
+      }, {} as Record<string, number>),
+    };
+
+    console.log("Done:", JSON.stringify(summary, null, 2));
+
+    return new Response(JSON.stringify(summary), {
+      headers: { ...corsHeaders, "Content-Type": "application/json" },
     });
-
-    console.log(`Done: ${allCampaigns.length} campaigns (${dkCampaigns.length} from .dk domains) from ${casinos?.length || 0} casinos`);
-
-    return new Response(
-      JSON.stringify({
-        success: true,
-        totalCampaigns: allCampaigns.length,
-        dkDomainCampaigns: dkCampaigns.length,
-        casinosProcessed: casinos?.length || 0,
-        dkCasinosProcessed: dkCasinos.length,
-        scrapeResults,
-      }),
-      { headers: { ...corsHeaders, "Content-Type": "application/json" } }
-    );
   } catch (error) {
     console.error("Error in scrape-daily-offers:", error);
     return new Response(
@@ -446,37 +533,3 @@ Deno.serve(async (req) => {
     );
   }
 });
-
-/** Build a campaign from existing database fields if free_spins is populated */
-function buildFallbackCampaign(casino: CasinoRow): DetectedCampaign | null {
-  if (!casino.free_spins || casino.free_spins === "N/A" || casino.free_spins.trim() === "") {
-    return null;
-  }
-
-  const count = parseInt(casino.free_spins.replace(/\D/g, ""), 10);
-  if (isNaN(count) || count <= 0) return null;
-
-  const combined = `${casino.bonus_title} ${casino.free_spins}`.toLowerCase();
-  const classification = classifyOffer(combined);
-
-  return {
-    casino_id: casino.id,
-    casino_name: casino.name,
-    casino_slug: casino.slug,
-    title: `${casino.free_spins} Free Spins hos ${casino.name}`,
-    description: `${casino.name} tilbyder ${casino.free_spins} free spins. Omsætningskrav: ${casino.wagering_requirements}.`,
-    spin_count: count,
-    for_new_players: classification.forNew,
-    for_existing_players: classification.forExisting,
-    requires_deposit: classification.requiresDeposit,
-    wagering_requirement: casino.wagering_requirements,
-    min_deposit: casino.min_deposit,
-    expiry_date: null,
-    source_type: "database",
-    source_url: null,
-    is_active: true,
-    offer_type: classification.type,
-    casino_logo_url: casino.logo_url,
-    affiliate_url: casino.affiliate_url,
-  };
-}

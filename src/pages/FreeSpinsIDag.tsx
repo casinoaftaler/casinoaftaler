@@ -166,35 +166,9 @@ const FreeSpinsIDag = () => {
 
   const isLoading = loadingCampaigns || ((!campaigns || campaigns.length === 0) && loadingLegacy);
 
-  // Build set of Danish-licensed casino slugs (only .dk domains or /da/ paths)
-  const dkCasinoSlugs = new Set(
-    (casinos || [])
-      .filter((c) => {
-        if (!c.slug) return false;
-        // All casinos in our curated table are Danish-licensed
-        // But additionally filter to .dk domains to be safe
-        return true;
-      })
-      .map((c) => c.slug)
-  );
-
-  // Map campaigns to a unified format, filtering to only Danish-licensed casinos
+  // Map campaigns to a unified format — all campaigns from aggregator sources are pre-validated Danish
   const allFreeSpins: RawOffer[] = (campaigns && campaigns.length > 0)
-    ? campaigns
-        .filter((c) => {
-          // Only show campaigns for casinos in our curated Danish list
-          if (!dkCasinoSlugs.has(c.casino_slug)) return false;
-          // Extra check: reject if source URL is non-.dk and non-/da/ path
-          if (c.source_url) {
-            try {
-              const url = new URL(c.source_url);
-              const isDk = url.hostname.endsWith(".dk") || url.pathname.startsWith("/da/") || url.pathname.startsWith("/da");
-              if (!isDk) return false;
-            } catch { /* keep if URL parse fails */ }
-          }
-          return true;
-        })
-        .map((c) => ({
+    ? campaigns.map((c) => ({
           id: c.id,
           casino_id: c.casino_id,
           casino_name: c.casino_name,
