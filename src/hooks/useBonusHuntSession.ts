@@ -2,7 +2,6 @@ import { useQuery } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
 
 export function useBonusHuntSession() {
-  // Get the latest/active session
   return useQuery({
     queryKey: ['bonus-hunt-session'],
     queryFn: async () => {
@@ -20,6 +19,22 @@ export function useBonusHuntSession() {
   });
 }
 
+async function enrichBetsWithProfiles(bets: any[]) {
+  if (!bets.length) return bets;
+  const userIds = [...new Set(bets.map(b => b.user_id))];
+  const { data: profiles } = await supabase
+    .from('profiles_leaderboard')
+    .select('user_id, display_name, avatar_url')
+    .in('user_id', userIds);
+
+  const profileMap = new Map((profiles || []).map(p => [p.user_id, p]));
+  return bets.map(b => ({
+    ...b,
+    display_name: profileMap.get(b.user_id)?.display_name || null,
+    avatar_url: profileMap.get(b.user_id)?.avatar_url || null,
+  }));
+}
+
 export function useBonusHuntGtwBets(sessionId?: string) {
   return useQuery({
     queryKey: ['bonus-hunt-gtw-bets', sessionId],
@@ -32,7 +47,7 @@ export function useBonusHuntGtwBets(sessionId?: string) {
         .order('created_at', { ascending: true });
 
       if (error) throw error;
-      return (data || []) as any[];
+      return enrichBetsWithProfiles((data || []) as any[]);
     },
     enabled: !!sessionId,
     refetchInterval: 10000,
@@ -51,7 +66,7 @@ export function useBonusHuntAvgxBets(sessionId?: string) {
         .order('created_at', { ascending: true });
 
       if (error) throw error;
-      return (data || []) as any[];
+      return enrichBetsWithProfiles((data || []) as any[]);
     },
     enabled: !!sessionId,
     refetchInterval: 10000,

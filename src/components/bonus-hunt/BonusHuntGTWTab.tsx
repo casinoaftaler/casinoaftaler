@@ -3,7 +3,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { useAuth } from "@/hooks/useAuth";
+import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
 import { Loader2, Trophy } from "lucide-react";
@@ -24,13 +24,15 @@ export function BonusHuntGTWTab({ session, bets, userId, onBetPlaced }: Props) {
   const isOpen = session?.gtw_betting_open;
   const prizes = (session?.gtw_prizes || []) as Array<{ place: number; points: number }>;
 
-  // Sort bets by rank or difference
   const rankedBets = [...bets]
     .sort((a, b) => {
       if (a.rank && b.rank) return a.rank - b.rank;
       if (a.difference !== null && b.difference !== null) return a.difference - b.difference;
       return 0;
     });
+
+  const isSettled = rankedBets.some(b => b.difference !== null && b.difference !== undefined);
+  const top10 = isSettled ? rankedBets.slice(0, 10) : [];
 
   const handlePlaceBet = async () => {
     const guess = parseFloat(guessAmount);
@@ -66,6 +68,13 @@ export function BonusHuntGTWTab({ session, bets, userId, onBetPlaced }: Props) {
     } finally {
       setLoading(false);
     }
+  };
+
+  const getRankIcon = (rank: number) => {
+    if (rank === 1) return '🥇';
+    if (rank === 2) return '🥈';
+    if (rank === 3) return '🥉';
+    return `${rank}.`;
   };
 
   return (
@@ -104,9 +113,44 @@ export function BonusHuntGTWTab({ session, bets, userId, onBetPlaced }: Props) {
               {prizes.map(p => (
                 <div key={p.place} className="flex justify-between text-sm">
                   <span className="text-muted-foreground">
-                    {p.place === 1 ? '🥇' : p.place === 2 ? '🥈' : p.place === 3 ? '🥉' : `${p.place}.`} plads
+                    {getRankIcon(p.place)} plads
                   </span>
                   <span className="font-medium">{p.points} points</span>
+                </div>
+              ))}
+            </div>
+          </CardContent>
+        </Card>
+      )}
+
+      {/* Top 10 Results (only when settled) */}
+      {isSettled && top10.length > 0 && (
+        <Card className="border-amber-500/30">
+          <CardContent className="p-4">
+            <h4 className="text-sm font-semibold mb-3 flex items-center gap-2">
+              <Trophy className="h-4 w-4 text-amber-500" />
+              Top 10 Resultater
+            </h4>
+            <div className="space-y-2">
+              {top10.map((bet, i) => (
+                <div
+                  key={bet.id}
+                  className={`flex items-center gap-2 text-sm py-1.5 px-2 rounded ${
+                    bet.user_id === userId ? 'bg-primary/10 text-primary font-semibold' : ''
+                  }`}
+                >
+                  <span className="w-8 text-center shrink-0">{getRankIcon(bet.rank || i + 1)}</span>
+                  <Avatar className="h-6 w-6 shrink-0">
+                    {bet.avatar_url && <AvatarImage src={bet.avatar_url} />}
+                    <AvatarFallback className="text-[10px]">
+                      {(bet.display_name || '?')[0].toUpperCase()}
+                    </AvatarFallback>
+                  </Avatar>
+                  <span className="truncate flex-1">{bet.display_name || 'Anonym'}</span>
+                  <span className="shrink-0">{Number(bet.guess_amount).toLocaleString('da-DK')} kr</span>
+                  <span className="text-xs text-muted-foreground shrink-0">
+                    {Number(bet.difference).toLocaleString('da-DK')} kr gap
+                  </span>
                 </div>
               ))}
             </div>
@@ -163,10 +207,22 @@ export function BonusHuntGTWTab({ session, bets, userId, onBetPlaced }: Props) {
           <h4 className="text-sm font-semibold mb-2">Leaderboard ({bets.length} deltagere)</h4>
           <div className="space-y-1 max-h-60 overflow-y-auto">
             {rankedBets.slice(0, 20).map((bet, i) => (
-              <div key={bet.id} className={`flex justify-between text-sm py-1 ${bet.user_id === userId ? 'text-primary font-semibold' : ''}`}>
-                <span className="text-muted-foreground">{bet.rank || i + 1}.</span>
-                <span>{Number(bet.guess_amount).toLocaleString('da-DK')} kr</span>
-                <span className="text-xs">
+              <div
+                key={bet.id}
+                className={`flex items-center gap-2 text-sm py-1 ${
+                  bet.user_id === userId ? 'text-primary font-semibold' : ''
+                }`}
+              >
+                <span className="text-muted-foreground w-6 shrink-0">{bet.rank || i + 1}.</span>
+                <Avatar className="h-5 w-5 shrink-0">
+                  {bet.avatar_url && <AvatarImage src={bet.avatar_url} />}
+                  <AvatarFallback className="text-[9px]">
+                    {(bet.display_name || '?')[0].toUpperCase()}
+                  </AvatarFallback>
+                </Avatar>
+                <span className="truncate flex-1 min-w-0">{bet.display_name || 'Anonym'}</span>
+                <span className="shrink-0">{Number(bet.guess_amount).toLocaleString('da-DK')} kr</span>
+                <span className="text-xs text-muted-foreground shrink-0">
                   {bet.difference !== null ? `${Number(bet.difference).toLocaleString('da-DK')} kr gap` : `${bet.bet_amount} credits`}
                 </span>
               </div>
