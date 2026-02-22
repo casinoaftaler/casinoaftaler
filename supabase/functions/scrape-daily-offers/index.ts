@@ -5,18 +5,32 @@ const corsHeaders = {
   "Access-Control-Allow-Headers": "authorization, x-client-info, apikey, content-type",
 };
 
-// ─── Expanded keyword list ───
+// ─── Expanded Danish keyword list ───
 const FREE_SPINS_KEYWORDS = [
   "free spins", "free spin", "gratis spins", "gratis spin",
   "fs ", "freespin", "freespins", "spins uden indbetaling",
   "bonus spins", "ekstra spins", "daglige spins",
   "spin gratis", "spil og vind free spins", "dagens spin",
   "lykkehjul", "spin & win", "spin and win",
+  "gratis chancer", "cash spins", "spin og vind",
+  "ugens spil", "weekend spins", "mandags spins",
+  "turnering med free spins", "fredags spins",
+  "bonus runder", "ekstra chancer",
 ];
 
-// ─── Priority paths to crawl (reduced for speed) ───
+// ─── Danish content validation keywords ───
+const DANISH_CONTENT_MARKERS = [
+  "spillemyndigheden", "rofus", "spil ansvarligt",
+  "18+", "indbetaling", "omsætningskrav", "gennemspilning",
+  "velkomstbonus", "danske spillere", "dansk licens",
+  "spilnu", "bonuskode", "kr.", "dkk",
+];
+
+// ─── Priority paths to crawl ───
 const CRAWL_PATHS = [
   "/kampagner", "/free-spins", "/bonus",
+  "/tilbud", "/promotions", "/da/kampagner",
+  "/da/bonus", "/da/free-spins",
 ];
 
 interface CasinoRow {
@@ -60,8 +74,31 @@ function containsFreeSpinsKeyword(text: string): boolean {
   return FREE_SPINS_KEYWORDS.some((kw) => lower.includes(kw));
 }
 
+/** Check if content appears to be Danish / for Danish market */
+function isDanishContent(text: string): boolean {
+  const lower = text.toLowerCase();
+  let score = 0;
+  for (const marker of DANISH_CONTENT_MARKERS) {
+    if (lower.includes(marker)) score++;
+  }
+  // At least 2 Danish markers = likely Danish content
+  return score >= 2;
+}
+
+/** Check if URL is a .dk domain or /da/ path */
+function isDanishUrl(url: string): boolean {
+  try {
+    const u = new URL(url);
+    if (u.hostname.endsWith(".dk")) return true;
+    if (u.pathname.startsWith("/da/") || u.pathname.startsWith("/da")) return true;
+    return false;
+  } catch {
+    return false;
+  }
+}
+
 function detectSpinCount(text: string): number[] {
-  const regex = /(\d+)\s*(?:gratis\s*)?(?:free\s*)?(?:bonus\s*)?spins?/gi;
+  const regex = /(\d+)\s*(?:gratis\s*)?(?:free\s*)?(?:bonus\s*)?(?:cash\s*)?(?:spins?|chancer)/gi;
   const counts: number[] = [];
   for (const m of text.matchAll(regex)) {
     const n = parseInt(m[1], 10);
@@ -95,24 +132,26 @@ function classifyOffer(text: string): { type: string; forNew: boolean; forExisti
     type = "no_deposit";
     requiresDeposit = false;
     forNew = true;
-  } else if (/daglig|daily|i\s*dag|hver\s*dag|dagens\s*spin/i.test(lower)) {
+  } else if (/daglig|daily|i\s*dag|hver\s*dag|dagens\s*spin|mandags|mandag/i.test(lower)) {
     type = "daily";
     forExisting = true;
-  } else if (/weekend/i.test(lower)) {
+  } else if (/weekend|fredag|lørdag|søndag/i.test(lower)) {
     type = "weekend";
     forExisting = true;
-  } else if (/vip|loyal|eksisterende/i.test(lower)) {
+  } else if (/vip|loyal|eksisterende|ugens\s*spil/i.test(lower)) {
     type = "existing";
     forExisting = true;
   } else if (/velkomst|welcome|ny\s*spiller|nye\s*spillere|tilmeld/i.test(lower)) {
     type = "welcome";
     forNew = true;
-  } else if (/lykkehjul|spin\s*&\s*win|spin\s*and\s*win/i.test(lower)) {
+  } else if (/lykkehjul|spin\s*&\s*win|spin\s*and\s*win|spin\s*og\s*vind/i.test(lower)) {
     type = "daily";
+    forExisting = true;
+  } else if (/turnering/i.test(lower)) {
+    type = "existing";
     forExisting = true;
   }
 
-  // Text mentions both
   if (/nye\s*spillere/i.test(lower)) forNew = true;
   if (/eksisterende\s*spillere|alle\s*spillere/i.test(lower)) forExisting = true;
   if (/alle\s*spillere/i.test(lower)) forNew = true;
@@ -136,9 +175,8 @@ function extractCampaignsFromMarkdown(
   const spinCounts = detectSpinCount(markdown);
   if (spinCounts.length === 0) return campaigns;
 
-  // Split into sections and find contexts around each spin count
   const seenCounts = new Set<number>();
-  const regex = /(\d+)\s*(?:gratis\s*)?(?:free\s*)?(?:bonus\s*)?spins?/gi;
+  const regex = /(\d+)\s*(?:gratis\s*)?(?:free\s*)?(?:bonus\s*)?(?:cash\s*)?(?:spins?|chancer)/gi;
 
   for (const match of markdown.matchAll(regex)) {
     const count = parseInt(match[1], 10);
@@ -192,7 +230,7 @@ Deno.serve(async (req) => {
 
     const admin = createClient(supabaseUrl, serviceRoleKey);
 
-    // Fetch all active casinos with website_url
+    // Fetch all active casinos
     const { data: casinos, error: casinoError } = await admin
       .from("casinos")
       .select("id, name, slug, website_url, bonus_page_url, bonus_title, bonus_amount, free_spins, wagering_requirements, min_deposit, affiliate_url, logo_url")
@@ -204,34 +242,38 @@ Deno.serve(async (req) => {
     console.log(`Found ${casinos?.length || 0} active casinos`);
 
     const allCampaigns: DetectedCampaign[] = [];
-    const scrapeResults: { casino: string; method: string; urls_tried: number; campaigns_found: number; error?: string }[] = [];
+    const scrapeResults: { casino: string; method: string; urls_tried: number; campaigns_found: number; is_dk_domain: boolean; danish_content: boolean; error?: string }[] = [];
 
-    // Process casinos in parallel batches of 5, limit crawling to top 15 casinos
     const casinoList = (casinos || []) as CasinoRow[];
-    const crawlableCasinos = casinoList.filter((c) => c.website_url);
-    const nonCrawlable = casinoList.filter((c) => !c.website_url);
+    
+    // Prioritize .dk domains first
+    const dkCasinos = casinoList.filter((c) => c.website_url && isDanishUrl(c.website_url));
+    const otherCasinos = casinoList.filter((c) => c.website_url && !isDanishUrl(c.website_url));
+    const noCrawl = casinoList.filter((c) => !c.website_url);
+
+    // Process .dk domains first (all of them), then other domains
+    const crawlOrder = [...dkCasinos, ...otherCasinos];
     const BATCH_SIZE = 5;
 
-    // Process crawlable casinos (limit to first 15 for speed)
-    const crawlBatch = crawlableCasinos.slice(0, 15);
-
-    for (let batchStart = 0; batchStart < crawlBatch.length; batchStart += BATCH_SIZE) {
-      const batch = crawlBatch.slice(batchStart, batchStart + BATCH_SIZE);
+    for (let batchStart = 0; batchStart < crawlOrder.length; batchStart += BATCH_SIZE) {
+      const batch = crawlOrder.slice(batchStart, batchStart + BATCH_SIZE);
 
       const batchResults = await Promise.allSettled(
         batch.map(async (casino) => {
           let casinoCampaigns: DetectedCampaign[] = [];
+          const isDk = isDanishUrl(casino.website_url!);
 
-          if (casino.website_url && firecrawlKey) {
+          if (firecrawlKey) {
             const urlsToScrape: string[] = [];
             if (casino.bonus_page_url) urlsToScrape.push(casino.bonus_page_url);
+            
+            const baseUrl = casino.website_url!.replace(/\/$/, "");
             for (const path of CRAWL_PATHS) {
-              const url = casino.website_url.replace(/\/$/, "") + path;
+              const url = baseUrl + path;
               if (!urlsToScrape.includes(url)) urlsToScrape.push(url);
             }
 
-            // Scrape up to 3 URLs per casino in parallel
-            const maxUrls = Math.min(urlsToScrape.length, 3);
+            const maxUrls = Math.min(urlsToScrape.length, 4);
             const scrapePromises = urlsToScrape.slice(0, maxUrls).map(async (url) => {
               try {
                 const resp = await fetch("https://api.firecrawl.dev/v1/scrape", {
@@ -240,24 +282,33 @@ Deno.serve(async (req) => {
                     "Authorization": `Bearer ${firecrawlKey}`,
                     "Content-Type": "application/json",
                   },
-                  body: JSON.stringify({ url, formats: ["markdown"], onlyMainContent: true, waitFor: 2000 }),
+                  body: JSON.stringify({ url, formats: ["markdown"], onlyMainContent: true, waitFor: 3000 }),
                 });
 
                 if (resp.ok) {
                   const d = await resp.json();
                   const md = d?.data?.markdown || d?.markdown || "";
-                  if (md) return extractCampaignsFromMarkdown(md, casino, url);
+                  if (md) {
+                    // For non-.dk domains, validate Danish content
+                    if (!isDk && !isDanishContent(md)) {
+                      console.log(`Skipping non-Danish content from ${url}`);
+                      return [] as DetectedCampaign[];
+                    }
+                    return extractCampaignsFromMarkdown(md, casino, url);
+                  }
                 } else {
-                  await resp.text(); // consume body
+                  await resp.text();
                 }
               } catch { /* skip */ }
               return [] as DetectedCampaign[];
             });
 
             const results = await Promise.allSettled(scrapePromises);
+            let foundDanish = false;
             for (const r of results) {
               if (r.status === "fulfilled" && r.value.length > 0) {
                 casinoCampaigns.push(...r.value);
+                foundDanish = true;
               }
             }
 
@@ -266,6 +317,8 @@ Deno.serve(async (req) => {
               method: "multi_path_crawl",
               urls_tried: maxUrls,
               campaigns_found: casinoCampaigns.length,
+              is_dk_domain: isDk,
+              danish_content: foundDanish,
             });
           }
 
@@ -274,9 +327,9 @@ Deno.serve(async (req) => {
             const fallback = buildFallbackCampaign(casino);
             if (fallback) {
               casinoCampaigns.push(fallback);
-              scrapeResults.push({ casino: casino.name, method: "database_fallback", urls_tried: 0, campaigns_found: 1 });
+              scrapeResults.push({ casino: casino.name, method: "database_fallback", urls_tried: 0, campaigns_found: 1, is_dk_domain: isDk, danish_content: true });
             } else {
-              scrapeResults.push({ casino: casino.name, method: "no_data", urls_tried: 0, campaigns_found: 0 });
+              scrapeResults.push({ casino: casino.name, method: "no_data", urls_tried: 0, campaigns_found: 0, is_dk_domain: isDk, danish_content: false });
             }
           }
 
@@ -291,24 +344,23 @@ Deno.serve(async (req) => {
         })
       );
 
-      // Log errors
       for (let i = 0; i < batchResults.length; i++) {
         const r = batchResults[i];
         if (r.status === "rejected") {
           console.error(`Error processing ${batch[i].name}:`, r.reason);
-          scrapeResults.push({ casino: batch[i].name, method: "error", urls_tried: 0, campaigns_found: 0, error: String(r.reason) });
+          scrapeResults.push({ casino: batch[i].name, method: "error", urls_tried: 0, campaigns_found: 0, is_dk_domain: false, danish_content: false, error: String(r.reason) });
         }
       }
     }
 
-    // Process remaining non-crawlable casinos (DB fallback only)
-    for (const casino of [...nonCrawlable, ...crawlableCasinos.slice(15)]) {
+    // Process non-crawlable casinos (DB fallback only)
+    for (const casino of noCrawl) {
       const fallback = buildFallbackCampaign(casino);
       if (fallback) {
         allCampaigns.push(fallback);
-        scrapeResults.push({ casino: casino.name, method: "database_fallback", urls_tried: 0, campaigns_found: 1 });
+        scrapeResults.push({ casino: casino.name, method: "database_fallback", urls_tried: 0, campaigns_found: 1, is_dk_domain: false, danish_content: true });
       } else {
-        scrapeResults.push({ casino: casino.name, method: "no_data", urls_tried: 0, campaigns_found: 0 });
+        scrapeResults.push({ casino: casino.name, method: "no_data", urls_tried: 0, campaigns_found: 0, is_dk_domain: false, danish_content: false });
       }
     }
 
@@ -319,6 +371,12 @@ Deno.serve(async (req) => {
       .eq("source_type", "scraped");
 
     if (deactivateError) console.error("Error deactivating old campaigns:", deactivateError);
+
+    // Also deactivate old database fallbacks so they get refreshed
+    await admin
+      .from("free_spin_campaigns")
+      .update({ is_active: false })
+      .eq("source_type", "database");
 
     // ─── Insert new campaigns ───
     if (allCampaigns.length > 0) {
@@ -335,7 +393,7 @@ Deno.serve(async (req) => {
       }
     }
 
-    // ─── Also sync to daily_free_spins_offers for backward compat ───
+    // ─── Sync to daily_free_spins_offers for backward compat ───
     await admin
       .from("daily_free_spins_offers")
       .update({ is_active: false })
@@ -362,13 +420,20 @@ Deno.serve(async (req) => {
       await admin.from("daily_free_spins_offers").insert(legacyOffers);
     }
 
-    console.log(`Done: ${allCampaigns.length} campaigns from ${casinos?.length || 0} casinos`);
+    const dkCampaigns = allCampaigns.filter((c) => {
+      const casino = casinoList.find((cas) => cas.id === c.casino_id);
+      return casino?.website_url && isDanishUrl(casino.website_url);
+    });
+
+    console.log(`Done: ${allCampaigns.length} campaigns (${dkCampaigns.length} from .dk domains) from ${casinos?.length || 0} casinos`);
 
     return new Response(
       JSON.stringify({
         success: true,
         totalCampaigns: allCampaigns.length,
+        dkDomainCampaigns: dkCampaigns.length,
         casinosProcessed: casinos?.length || 0,
+        dkCasinosProcessed: dkCasinos.length,
         scrapeResults,
       }),
       { headers: { ...corsHeaders, "Content-Type": "application/json" } }
