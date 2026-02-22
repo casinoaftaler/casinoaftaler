@@ -1,58 +1,43 @@
 
 
-## Twitch Chat Commands + Website Betting for Bonus Hunt
+## Add Display Names to GTW and AVG X Leaderboards
 
-This plan adds Twitch chat integration so users can type `!gtw` and `!avgx` commands in chat, while also ensuring the website betting forms work correctly.
-
-### How It Works
-
-StreamElements custom commands will call a new backend function when users type `!gtw` or `!avgx` in Twitch chat. The function looks up the user by their Twitch username, finds the active betting session, and places the bet -- using the same credit system as the website.
+Currently the leaderboards only show guess amounts and credits without identifying who placed the bets. This plan adds user display names (and avatars) to both leaderboards, plus a "Top 10 Closest Guesses" section for completed hunts.
 
 ### Changes
 
-**1. New Edge Function: `bonus-hunt-twitch-bet`**
+**1. `src/hooks/useBonusHuntSession.ts` -- Enrich bets with profile data**
 
-A public endpoint (no auth token needed, called by StreamElements) that:
-- Accepts `twitchUsername`, `command` (gtw/avgx), and arguments (guess amount or group letter)
-- Looks up the user in `profiles` by `twitch_username`
-- Finds the active `bonus_hunt_sessions` where betting is open
-- Uses a fixed bet amount (e.g. the session's min_bet, since Twitch chat can't easily handle multiple params) OR accepts a bet amount as an optional param
-- Deducts credits via `deduct_spin` and inserts the bet
-- Returns a text response that StreamElements displays in chat
+Update `useBonusHuntGtwBets` and `useBonusHuntAvgxBets` to fetch the corresponding `profiles_leaderboard` rows for all bet user_ids, then merge `display_name` and `avatar_url` onto each bet object. This uses the existing `profiles_leaderboard` public view (no RLS needed).
 
-Command format:
-- `!gtw 45000` -- guess end balance is 45,000 kr (uses min bet as credit cost)
-- `!gtw 45000 10` -- guess 45,000 kr with 10 credits
-- `!avgx F` -- bet on group F (uses min bet)
-- `!avgx F 10` -- bet on group F with 10 credits
+**2. `src/components/bonus-hunt/BonusHuntGTWTab.tsx` -- Show names + Top 10 results**
 
-**2. StreamElements Custom Commands Setup**
+- In the leaderboard section, display the user's `display_name` (or "Anonym") next to each bet row.
+- Add a "Top 10 Resultater" section that only appears when the hunt is completed (when `difference` values exist / session status is completed). This shows the 10 closest guesses with rank medals, display names, guess amounts, and gap.
+- Highlight the current user's row.
 
-You'll need to set up two custom commands in StreamElements dashboard:
-- `!gtw` -> `$(customapi.https://<project-url>/functions/v1/bonus-hunt-twitch-bet?user=$(user)&cmd=gtw&args=$(querystring))`
-- `!avgx` -> `$(customapi.https://<project-url>/functions/v1/bonus-hunt-twitch-bet?user=$(user)&cmd=avgx&args=$(querystring))`
+**3. `src/components/bonus-hunt/BonusHuntAvgXTab.tsx` -- Show names in bet list**
 
-**3. Website Betting Forms (already exist)**
-
-The GTW and AVG X tabs on the Bonus Hunt page already have betting forms. No changes needed -- they call `bonus-hunt-place-bet` which handles validation and credit deduction.
+- Add a participants list per group (or a general list) showing display names alongside their group letter and bet amount.
+- When the hunt is settled, show winners with their display names and winnings.
 
 ### Technical Details
 
-**`supabase/functions/bonus-hunt-twitch-bet/index.ts`:**
-- No JWT verification (called by StreamElements `$(customapi)`)
-- Parses query params: `user` (Twitch username), `cmd` (gtw/avgx), `args` (space-separated arguments)
-- Looks up user via `profiles.twitch_username`
-- Finds active session where the relevant betting is open
-- Validates: not already bet, valid guess/group, sufficient credits
-- Returns plain text (not JSON) for StreamElements to display in chat
-- Uses service role client for all DB operations
+The `profiles_leaderboard` view already exists with columns `user_id`, `display_name`, `avatar_url` and has no RLS restrictions (public view). No database changes are needed.
 
-**`supabase/config.toml`:**
-- Add `[functions.bonus-hunt-twitch-bet]` with `verify_jwt = false`
+The enrichment approach in the hooks:
+1. Fetch bets as before
+2. Collect unique `user_id` values
+3. Query `profiles_leaderboard` for those user_ids
+4. Map display names onto bet objects before returning
 
-**Security considerations:**
-- The endpoint is public but only allows placing bets (spending the user's own credits)
-- A malicious caller would need to know a valid Twitch username and would only be spending that user's credits
-- This is acceptable since StreamElements commands are public by nature
-- Rate limiting is inherently handled by StreamElements command cooldowns
+This keeps the components simple -- they just read `bet.display_name` and `bet.avatar_url`.
+
+### File Summary
+
+| File | Change |
+|------|--------|
+| `src/hooks/useBonusHuntSession.ts` | Enrich GTW and AVG X bets with `display_name` and `avatar_url` from `profiles_leaderboard` |
+| `src/components/bonus-hunt/BonusHuntGTWTab.tsx` | Show display names in leaderboard rows; add Top 10 results card when hunt is settled |
+| `src/components/bonus-hunt/BonusHuntAvgXTab.tsx` | Show display names in a participants/winners list |
 
