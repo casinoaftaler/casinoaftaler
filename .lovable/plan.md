@@ -1,43 +1,59 @@
 
 
-## Add Display Names to GTW and AVG X Leaderboards
+## Allow Users to Change Their Bet (While Betting is Open)
 
-Currently the leaderboards only show guess amounts and credits without identifying who placed the bets. This plan adds user display names (and avatars) to both leaderboards, plus a "Top 10 Closest Guesses" section for completed hunts.
+Currently, both edge functions and UI block users from placing a second bet ("You have already placed a bet"). This plan changes the behavior so users can **update** their existing bet while betting is open, but still enforces 1 bet per user per category.
 
 ### Changes
 
-**1. `src/hooks/useBonusHuntSession.ts` -- Enrich bets with profile data**
+**1. `supabase/functions/bonus-hunt-place-bet/index.ts` -- Update instead of reject**
 
-Update `useBonusHuntGtwBets` and `useBonusHuntAvgxBets` to fetch the corresponding `profiles_leaderboard` rows for all bet user_ids, then merge `display_name` and `avatar_url` onto each bet object. This uses the existing `profiles_leaderboard` public view (no RLS needed).
+For both GTW and AVG X: when an existing bet is found and betting is open, **update** the existing bet instead of returning an error. Handle the credit difference (refund old bet amount, charge new bet amount).
 
-**2. `src/components/bonus-hunt/BonusHuntGTWTab.tsx` -- Show names + Top 10 results**
+- If existing bet found: calculate credit difference (`newBet - oldBet`), deduct/refund the difference, then update the row
+- If no existing bet: deduct credits and insert as before
 
-- In the leaderboard section, display the user's `display_name` (or "Anonym") next to each bet row.
-- Add a "Top 10 Resultater" section that only appears when the hunt is completed (when `difference` values exist / session status is completed). This shows the 10 closest guesses with rank medals, display names, guess amounts, and gap.
-- Highlight the current user's row.
+**2. `supabase/functions/bonus-hunt-twitch-bet/index.ts` -- Same update logic for Twitch**
 
-**3. `src/components/bonus-hunt/BonusHuntAvgXTab.tsx` -- Show names in bet list**
+Apply the same "update if exists" logic for Twitch chat commands, with appropriate Danish messages like `"Dit GTW bet er opdateret!"`.
 
-- Add a participants list per group (or a general list) showing display names alongside their group letter and bet amount.
-- When the hunt is settled, show winners with their display names and winnings.
+**3. `src/components/bonus-hunt/BonusHuntGTWTab.tsx` -- Show edit form when bet exists and betting open**
+
+- When the user has an existing bet AND betting is open, show the form pre-filled with their current guess/bet amounts and a "Opdater GTW Bet" button
+- When betting is closed, just show the existing bet info (no edit option)
+
+**4. `src/components/bonus-hunt/BonusHuntAvgXTab.tsx` -- Show edit form when bet exists and betting open**
+
+- When the user has an existing bet AND betting is open, allow selecting a new group and show the form with an "Opdater AVG X Bet" button
+- When betting is closed, show existing bet info only
 
 ### Technical Details
 
-The `profiles_leaderboard` view already exists with columns `user_id`, `display_name`, `avatar_url` and has no RLS restrictions (public view). No database changes are needed.
+**Credit handling on update (edge functions):**
 
-The enrichment approach in the hooks:
-1. Fetch bets as before
-2. Collect unique `user_id` values
-3. Query `profiles_leaderboard` for those user_ids
-4. Map display names onto bet objects before returning
+```text
+oldBet = existing.bet_amount
+diff = newBetAmount - oldBet
 
-This keeps the components simple -- they just read `bet.display_name` and `bet.avatar_url`.
+if diff > 0:
+    deduct_spin(diff)  -- charge the extra
+elif diff < 0:
+    refund abs(diff)   -- give back credits
+else:
+    no credit change
+
+UPDATE the bet row with new values
+```
+
+**UI changes summary:**
+- GTW: The condition `isOpen && !userBet` becomes `isOpen && userId` (show form whether or not bet exists). Pre-fill inputs if `userBet` exists. Button text changes to "Opdater" vs "Placer".
+- AVG X: Same pattern -- allow group re-selection and amount change when bet exists and betting is open.
 
 ### File Summary
 
 | File | Change |
 |------|--------|
-| `src/hooks/useBonusHuntSession.ts` | Enrich GTW and AVG X bets with `display_name` and `avatar_url` from `profiles_leaderboard` |
-| `src/components/bonus-hunt/BonusHuntGTWTab.tsx` | Show display names in leaderboard rows; add Top 10 results card when hunt is settled |
-| `src/components/bonus-hunt/BonusHuntAvgXTab.tsx` | Show display names in a participants/winners list |
-
+| `supabase/functions/bonus-hunt-place-bet/index.ts` | Update existing bets instead of rejecting; handle credit diff |
+| `supabase/functions/bonus-hunt-twitch-bet/index.ts` | Update existing bets via Twitch; handle credit diff |
+| `src/components/bonus-hunt/BonusHuntGTWTab.tsx` | Show edit form when betting open + bet exists |
+| `src/components/bonus-hunt/BonusHuntAvgXTab.tsx` | Show edit form when betting open + bet exists |
