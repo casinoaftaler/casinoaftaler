@@ -3,6 +3,8 @@ import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
 Deno.serve(async (req: Request) => {
   try {
     const url = new URL(req.url);
+    console.log('Full URL:', req.url);
+    console.log('All params:', Object.fromEntries(url.searchParams.entries()));
     const twitchUsername = url.searchParams.get('user')?.toLowerCase()?.trim();
     const cmd = url.searchParams.get('cmd')?.toLowerCase()?.trim();
     const argsRaw = url.searchParams.get('args')?.trim() || '';
