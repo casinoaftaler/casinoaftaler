@@ -251,10 +251,10 @@ const FreeSpinsIDag = () => {
 
       {/* ─── Hero ─── */}
       <section
-        className="relative overflow-hidden py-20 md:py-32 text-white"
+        className="relative overflow-hidden py-10 md:py-16 text-white"
         style={{
           backgroundImage: `linear-gradient(135deg, hsl(260 70% 18% / 0.95), hsl(250 60% 12% / 0.93) 40%, hsl(210 80% 18% / 0.92)), url(${heroImage})`,
-          backgroundSize: '103%',
+          backgroundSize: 'cover',
           backgroundPosition: 'center',
           backgroundAttachment: 'fixed',
         }}
@@ -267,7 +267,7 @@ const FreeSpinsIDag = () => {
 
         <div className="container relative z-10">
           <div className="mx-auto max-w-3xl text-center">
-            <div className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 backdrop-blur-sm px-4 py-2 text-sm font-medium mb-6 animate-fade-in">
+            <div className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 backdrop-blur-sm px-3 py-1.5 text-xs font-medium mb-4 animate-fade-in">
               <span className="relative flex h-2.5 w-2.5">
                 <span className="absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75 animate-ping" />
                 <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-green-400" />
@@ -278,14 +278,14 @@ const FreeSpinsIDag = () => {
               }
             </div>
 
-            <h1 className="mb-5 text-4xl font-extrabold tracking-tight md:text-5xl lg:text-6xl animate-fade-in [animation-delay:100ms]">
+            <h1 className="mb-3 text-3xl font-extrabold tracking-tight md:text-4xl lg:text-5xl animate-fade-in [animation-delay:100ms]">
               <span className="text-white">Free Spins i Dag</span>
-              <br />
-              <span className="fs-hero-count bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent text-5xl md:text-6xl lg:text-7xl">
+              {" – "}
+              <span className="fs-hero-count bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
                 {totalCount > 0 ? `${totalCount} Aktive Tilbud` : "Alle Aktuelle Tilbud"}
               </span>
             </h1>
-            <p className="mb-8 text-base md:text-lg text-white/75 max-w-xl mx-auto animate-fade-in [animation-delay:200ms]">
+            <p className="mb-5 text-sm md:text-base text-white/75 max-w-lg mx-auto animate-fade-in [animation-delay:200ms]">
               Kun danske licenserede casinoer – ét bedste tilbud per casino, rangeret efter vores score-system.
             </p>
             <div className="flex flex-wrap justify-center gap-3 animate-fade-in [animation-delay:300ms]">
@@ -306,20 +306,12 @@ const FreeSpinsIDag = () => {
         </div>
       </section>
 
-      {/* ─── Meta bar directly under hero ─── */}
-      <div className="border-b border-border/50 bg-muted/20">
-        <div className="container py-3">
+      {/* ─── Compact meta + trust inline ─── */}
+      <div className="border-b border-border/30">
+        <div className="container py-2.5 flex flex-wrap items-center justify-between gap-2 text-xs text-muted-foreground">
           <AuthorMetaBar author="jonas" date={todayFormatted} readTime="3 min." />
-        </div>
-      </div>
-
-      {/* ─── Trust bar ─── */}
-      <div className="bg-muted/10 border-b border-border/30">
-        <div className="container py-3">
-          <div className="flex items-center gap-3 text-xs text-muted-foreground flex-wrap">
-            <span className="inline-flex items-center gap-1.5 font-medium"><ShieldCheck className="h-4 w-4 text-primary" /> Kun DK-licenserede casinoer</span>
-            <span className="text-border">|</span>
-            <span className="inline-flex items-center gap-1"><CheckCircle2 className="h-3.5 w-3.5 text-green-500" /> Spillemyndigheden-godkendt</span>
+          <div className="flex items-center gap-2 flex-wrap">
+            <span className="inline-flex items-center gap-1"><ShieldCheck className="h-3.5 w-3.5 text-primary" /> DK-licenseret</span>
             <span className="text-border">|</span>
             <span className="inline-flex items-center gap-1"><AlertTriangle className="h-3.5 w-3.5 text-amber-500" /> 18+</span>
             <span className="text-border">|</span>
@@ -328,9 +320,9 @@ const FreeSpinsIDag = () => {
         </div>
       </div>
 
-      <div className="container py-6 md:py-8">
+      <div className="container py-4 md:py-6">
         {/* ─── Statistics ─── */}
-        <div ref={statsRef} className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-6">
+        <div ref={statsRef} className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-4">
           <StatCard icon={<Sparkles className="h-5 w-5 text-primary" />} value={animatedTotal} label="Casinoer med free spins" revealed={statsRevealed} delay={0} />
           <StatCard icon={<Zap className="h-5 w-5 text-green-400" />} value={animatedNoDep} label="Uden indbetaling" revealed={statsRevealed} delay={100} />
           <StatCard icon={<Users className="h-5 w-5 text-amber-400" />} value={animatedExisting} label="For eksisterende spillere" revealed={statsRevealed} delay={200} />
@@ -352,7 +344,7 @@ const FreeSpinsIDag = () => {
         </div>
 
         {/* ─── Filter Tabs ─── */}
-        <div className="flex flex-wrap gap-2 mb-6" role="group" aria-label="Filtrer free spins tilbud" id="free-spins-list">
+        <div className="flex flex-wrap gap-2 mb-4" role="group" aria-label="Filtrer free spins tilbud" id="free-spins-list">
           {filterConfig.map((f) => (
             <button
               key={f.id}
