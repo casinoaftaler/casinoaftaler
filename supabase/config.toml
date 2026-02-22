@@ -86,3 +86,6 @@ verify_jwt = false
 
 [functions.generate-zeus-sprite]
 verify_jwt = false
+
+[functions.bonus-hunt-twitch-bet]
+verify_jwt = false
