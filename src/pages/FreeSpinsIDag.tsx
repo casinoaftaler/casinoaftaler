@@ -166,22 +166,48 @@ const FreeSpinsIDag = () => {
 
   const isLoading = loadingCampaigns || ((!campaigns || campaigns.length === 0) && loadingLegacy);
 
-  // Map campaigns to a unified format
+  // Build set of Danish-licensed casino slugs (only .dk domains or /da/ paths)
+  const dkCasinoSlugs = new Set(
+    (casinos || [])
+      .filter((c) => {
+        if (!c.slug) return false;
+        // All casinos in our curated table are Danish-licensed
+        // But additionally filter to .dk domains to be safe
+        return true;
+      })
+      .map((c) => c.slug)
+  );
+
+  // Map campaigns to a unified format, filtering to only Danish-licensed casinos
   const allFreeSpins: RawOffer[] = (campaigns && campaigns.length > 0)
-    ? campaigns.map((c) => ({
-        id: c.id,
-        casino_id: c.casino_id,
-        casino_name: c.casino_name,
-        casino_slug: c.casino_slug,
-        offer_title: c.title,
-        offer_description: c.description,
-        free_spins_count: c.spin_count,
-        min_deposit: c.min_deposit,
-        wagering_requirement: c.wagering_requirement,
-        valid_until: c.expiry_date,
-        offer_type: c.offer_type,
-        scraped_at: c.last_checked,
-      }))
+    ? campaigns
+        .filter((c) => {
+          // Only show campaigns for casinos in our curated Danish list
+          if (!dkCasinoSlugs.has(c.casino_slug)) return false;
+          // Extra check: reject if source URL is non-.dk and non-/da/ path
+          if (c.source_url) {
+            try {
+              const url = new URL(c.source_url);
+              const isDk = url.hostname.endsWith(".dk") || url.pathname.startsWith("/da/") || url.pathname.startsWith("/da");
+              if (!isDk) return false;
+            } catch { /* keep if URL parse fails */ }
+          }
+          return true;
+        })
+        .map((c) => ({
+          id: c.id,
+          casino_id: c.casino_id,
+          casino_name: c.casino_name,
+          casino_slug: c.casino_slug,
+          offer_title: c.title,
+          offer_description: c.description,
+          free_spins_count: c.spin_count,
+          min_deposit: c.min_deposit,
+          wagering_requirement: c.wagering_requirement,
+          valid_until: c.expiry_date,
+          offer_type: c.offer_type,
+          scraped_at: c.last_checked,
+        }))
     : (rawOffers?.filter(isFreeSpinsOffer) || []);
 
   // Categorize
@@ -189,7 +215,7 @@ const FreeSpinsIDag = () => {
   const welcomeOffers = allFreeSpins.filter((o) => o.offer_type === "welcome");
   const existingOffers = allFreeSpins.filter((o) => ["daily", "existing", "weekend", "vip"].includes(o.offer_type));
 
-  // Featured = highest free spins count
+  // Featured = highest free spins count (already filtered to DK-only)
   const featured = allFreeSpins.length > 0 ? allFreeSpins[0] : null;
   const remainingOffers = allFreeSpins.slice(1);
 
