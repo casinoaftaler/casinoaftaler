@@ -309,9 +309,20 @@ serve(async (req) => {
     }
 
     // Generate a magic link for the user to establish a session
+    // IMPORTANT: Use the email from the existing auth user, not from Twitch API,
+    // because the auth user may have been created with a placeholder email
+    const { data: authUser, error: authUserError } = await supabaseAdmin.auth.admin.getUserById(userId);
+    if (authUserError || !authUser?.user?.email) {
+      console.error("Failed to fetch auth user for magic link:", authUserError);
+      return new Response(
+        JSON.stringify({ error: "Failed to generate session" }),
+        { status: 500, headers: { ...corsHeaders, "Content-Type": "application/json" } }
+      );
+    }
+
     const { data: linkData, error: linkError } = await supabaseAdmin.auth.admin.generateLink({
       type: "magiclink",
-      email: twitchUser.email || `${twitchUser.id}@twitch.placeholder`,
+      email: authUser.user.email,
     });
 
     if (linkError) {
