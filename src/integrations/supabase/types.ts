@@ -14,6 +14,148 @@ export type Database = {
   }
   public: {
     Tables: {
+      bonus_hunt_avgx_bets: {
+        Row: {
+          bet_amount: number
+          created_at: string
+          group_letter: string
+          id: string
+          session_id: string
+          user_id: string
+          winnings: number | null
+        }
+        Insert: {
+          bet_amount: number
+          created_at?: string
+          group_letter: string
+          id?: string
+          session_id: string
+          user_id: string
+          winnings?: number | null
+        }
+        Update: {
+          bet_amount?: number
+          created_at?: string
+          group_letter?: string
+          id?: string
+          session_id?: string
+          user_id?: string
+          winnings?: number | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "bonus_hunt_avgx_bets_session_id_fkey"
+            columns: ["session_id"]
+            isOneToOne: false
+            referencedRelation: "bonus_hunt_sessions"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      bonus_hunt_gtw_bets: {
+        Row: {
+          bet_amount: number
+          created_at: string
+          difference: number | null
+          guess_amount: number
+          id: string
+          prize_points: number | null
+          rank: number | null
+          session_id: string
+          user_id: string
+        }
+        Insert: {
+          bet_amount: number
+          created_at?: string
+          difference?: number | null
+          guess_amount: number
+          id?: string
+          prize_points?: number | null
+          rank?: number | null
+          session_id: string
+          user_id: string
+        }
+        Update: {
+          bet_amount?: number
+          created_at?: string
+          difference?: number | null
+          guess_amount?: number
+          id?: string
+          prize_points?: number | null
+          rank?: number | null
+          session_id?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "bonus_hunt_gtw_bets_session_id_fkey"
+            columns: ["session_id"]
+            isOneToOne: false
+            referencedRelation: "bonus_hunt_sessions"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      bonus_hunt_sessions: {
+        Row: {
+          average_x: number | null
+          avgx_betting_open: boolean
+          avgx_max_bet: number
+          avgx_min_bet: number
+          created_at: string
+          created_by: string
+          end_balance: number | null
+          gtw_betting_open: boolean
+          gtw_max_bet: number
+          gtw_min_bet: number
+          gtw_prizes: Json
+          hunt_number: number
+          id: string
+          status: string
+          streamsystem_hunt_id: string
+          updated_at: string
+          winning_group: string | null
+        }
+        Insert: {
+          average_x?: number | null
+          avgx_betting_open?: boolean
+          avgx_max_bet?: number
+          avgx_min_bet?: number
+          created_at?: string
+          created_by: string
+          end_balance?: number | null
+          gtw_betting_open?: boolean
+          gtw_max_bet?: number
+          gtw_min_bet?: number
+          gtw_prizes?: Json
+          hunt_number: number
+          id?: string
+          status?: string
+          streamsystem_hunt_id: string
+          updated_at?: string
+          winning_group?: string | null
+        }
+        Update: {
+          average_x?: number | null
+          avgx_betting_open?: boolean
+          avgx_max_bet?: number
+          avgx_min_bet?: number
+          created_at?: string
+          created_by?: string
+          end_balance?: number | null
+          gtw_betting_open?: boolean
+          gtw_max_bet?: number
+          gtw_min_bet?: number
+          gtw_prizes?: Json
+          hunt_number?: number
+          id?: string
+          status?: string
+          streamsystem_hunt_id?: string
+          updated_at?: string
+          winning_group?: string | null
+        }
+        Relationships: []
+      }
       casino_compliance: {
         Row: {
           bonus_compliant: boolean

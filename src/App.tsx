@@ -49,6 +49,7 @@ const SlotMachine = lazy(() => import("./pages/SlotMachine"));
 const RiseOfFedesvin = lazy(() => import("./pages/RiseOfFedesvin"));
 const GatesOfFedesvin = lazy(() => import("./pages/GatesOfFedesvin"));
 const SpinTheReel = lazy(() => import("./pages/SpinTheReel"));
+const BonusHunt = lazy(() => import("./pages/BonusHunt"));
 const Admin = lazy(() => import("./pages/Admin"));
 const Auth = lazy(() => import("./pages/Auth"));
 const AuthCallback = lazy(() => import("./pages/AuthCallback"));
@@ -395,6 +396,7 @@ const App = () => (
                 <Route path="/community/leaderboard" element={<Leaderboard />} />
                 <Route path="/community/rewards" element={<RewardsProgram />} />
                 <Route path="/community/spin-the-reel" element={<Suspense fallback={null}><SpinTheReel /></Suspense>} />
+                <Route path="/community/bonus-hunt" element={<Suspense fallback={null}><BonusHunt /></Suspense>} />
                 <Route 
                   path="/community/slots" 
                   element={
