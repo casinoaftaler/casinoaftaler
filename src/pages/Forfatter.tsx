@@ -275,7 +275,9 @@ export default function Forfatter() {
       name: "Casinoaftaler.dk",
       logo: {
         "@type": "ImageObject",
-        url: "https://casinoaftaler.dk/favicon-48x48.png",
+        url: "https://casinoaftaler.dk/icon-512x512.png",
+        width: 512,
+        height: 512,
       },
     },
   };
