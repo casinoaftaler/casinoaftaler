@@ -242,10 +242,14 @@ const FreeSpinsIDag = () => {
         breadcrumbLabel="Free Spins i Dag"
       />
 
-      {/* ─── Hero ─── */}
+      {/* ─── Hero with background image ─── */}
       <section
         className="relative overflow-hidden py-12 text-white md:py-20"
-        style={{ backgroundImage: 'linear-gradient(135deg, hsl(260 70% 25%), hsl(250 60% 20%) 40%, hsl(210 80% 25%))' }}
+        style={{
+          backgroundImage: `linear-gradient(135deg, hsl(260 70% 25% / 0.92), hsl(250 60% 20% / 0.88) 40%, hsl(210 80% 25% / 0.9)), url(${heroImage})`,
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+        }}
       >
         <div className="container">
           <div className="mx-auto max-w-3xl text-center">
@@ -268,9 +272,6 @@ const FreeSpinsIDag = () => {
       <div className="container py-8 md:py-12">
         <AuthorMetaBar author="jonas" date={todayFormatted} readTime="3 min." />
 
-        <div className="mb-8 overflow-hidden rounded-xl">
-          <img src={heroImage} alt="Free Spins i Dag – alle aktuelle free spins tilbud hos danske casinoer" className="w-full h-auto object-cover max-h-[400px]" loading="eager" />
-        </div>
 
         {/* Affiliate + trust disclaimer */}
         <div className="flex items-center gap-2 text-xs text-muted-foreground mb-6 p-3 rounded-lg bg-muted/30 border border-border/50">
