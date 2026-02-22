@@ -173,12 +173,10 @@ function toDate(ts: string): string {
   return new Date(ts).toISOString().split("T")[0];
 }
 
-function urlEntry(loc: string, lastmod: string, changefreq: string, priority: number): string {
+function urlEntry(loc: string, lastmod: string): string {
   return `  <url>
     <loc>${loc}</loc>
     <lastmod>${lastmod}</lastmod>
-    <changefreq>${changefreq}</changefreq>
-    <priority>${priority.toFixed(1)}</priority>
   </url>`;
 }
 
@@ -254,26 +252,16 @@ Deno.serve(async (req) => {
       }
 
       const loc = route.path === "/" ? SITE_URL + "/" : SITE_URL + route.path;
-      urls.push(urlEntry(loc, lastmod, route.changefreq, route.priority));
+      urls.push(urlEntry(loc, lastmod));
     }
 
     // 2. Casino Nyheder hub (dynamic lastmod)
-    urls.push(urlEntry(
-      `${SITE_URL}/casino-nyheder`,
-      hubLastmod,
-      "daily",
-      0.9
-    ));
+    urls.push(urlEntry(`${SITE_URL}/casino-nyheder`, hubLastmod));
 
     // 3. Individual news articles (dynamic)
     for (const article of articles || []) {
       const lastmod = toDate(article.updated_at);
-      urls.push(urlEntry(
-        `${SITE_URL}/casino-nyheder/${article.slug}`,
-        lastmod,
-        "weekly",
-        0.8
-      ));
+      urls.push(urlEntry(`${SITE_URL}/casino-nyheder/${article.slug}`, lastmod));
     }
 
     const sitemap = `<?xml version="1.0" encoding="UTF-8"?>

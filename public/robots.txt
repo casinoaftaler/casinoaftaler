@@ -37,4 +37,5 @@ Disallow: /admin
 Disallow: /butik
 Disallow: /u/
 
+Sitemap: https://casinoaftaler.dk/sitemap.xml
 Sitemap: https://casinoaftaler.dk/sitemap-index.xml
