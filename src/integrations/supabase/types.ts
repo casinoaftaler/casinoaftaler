@@ -391,6 +391,7 @@ export type Database = {
           updated_at: string
           validity: string
           wagering_requirements: string
+          website_url: string | null
         }
         Insert: {
           affiliate_url?: string | null
@@ -419,6 +420,7 @@ export type Database = {
           updated_at?: string
           validity?: string
           wagering_requirements?: string
+          website_url?: string | null
         }
         Update: {
           affiliate_url?: string | null
@@ -447,6 +449,7 @@ export type Database = {
           updated_at?: string
           validity?: string
           wagering_requirements?: string
+          website_url?: string | null
         }
         Relationships: []
       }
@@ -837,6 +840,96 @@ export type Database = {
           },
           {
             foreignKeyName: "daily_free_spins_offers_casino_id_fkey"
+            columns: ["casino_id"]
+            isOneToOne: false
+            referencedRelation: "casinos_public"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      free_spin_campaigns: {
+        Row: {
+          affiliate_url: string | null
+          casino_id: string | null
+          casino_logo_url: string | null
+          casino_name: string
+          casino_slug: string
+          created_at: string
+          description: string | null
+          expiry_date: string | null
+          for_existing_players: boolean
+          for_new_players: boolean
+          id: string
+          is_active: boolean
+          last_checked: string
+          min_deposit: string | null
+          offer_type: string
+          requires_deposit: boolean
+          source_type: string
+          source_url: string | null
+          spin_count: number
+          title: string
+          updated_at: string
+          wagering_requirement: string | null
+        }
+        Insert: {
+          affiliate_url?: string | null
+          casino_id?: string | null
+          casino_logo_url?: string | null
+          casino_name: string
+          casino_slug: string
+          created_at?: string
+          description?: string | null
+          expiry_date?: string | null
+          for_existing_players?: boolean
+          for_new_players?: boolean
+          id?: string
+          is_active?: boolean
+          last_checked?: string
+          min_deposit?: string | null
+          offer_type?: string
+          requires_deposit?: boolean
+          source_type?: string
+          source_url?: string | null
+          spin_count?: number
+          title: string
+          updated_at?: string
+          wagering_requirement?: string | null
+        }
+        Update: {
+          affiliate_url?: string | null
+          casino_id?: string | null
+          casino_logo_url?: string | null
+          casino_name?: string
+          casino_slug?: string
+          created_at?: string
+          description?: string | null
+          expiry_date?: string | null
+          for_existing_players?: boolean
+          for_new_players?: boolean
+          id?: string
+          is_active?: boolean
+          last_checked?: string
+          min_deposit?: string | null
+          offer_type?: string
+          requires_deposit?: boolean
+          source_type?: string
+          source_url?: string | null
+          spin_count?: number
+          title?: string
+          updated_at?: string
+          wagering_requirement?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "free_spin_campaigns_casino_id_fkey"
+            columns: ["casino_id"]
+            isOneToOne: false
+            referencedRelation: "casinos"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "free_spin_campaigns_casino_id_fkey"
             columns: ["casino_id"]
             isOneToOne: false
             referencedRelation: "casinos_public"
