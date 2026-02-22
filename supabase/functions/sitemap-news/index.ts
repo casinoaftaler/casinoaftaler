@@ -166,9 +166,7 @@ const staticRoutes: Array<{
   { path: "/forfatter/jonas", changefreq: "monthly", priority: 0.6, lastmod: "2026-02-20" },
   { path: "/forfatter/kevin", changefreq: "monthly", priority: 0.6, lastmod: "2026-02-17" },
   { path: "/saadan-tester-vi-casinoer", changefreq: "monthly", priority: 0.8, lastmod: "2026-02-15" },
-  { path: "/privatlivspolitik", changefreq: "yearly", priority: 0.3, lastmod: "2026-02-11" },
-  { path: "/terms", changefreq: "yearly", priority: 0.3, lastmod: "2026-02-11" },
-  { path: "/cookies", changefreq: "yearly", priority: 0.3, lastmod: "2026-02-11" },
+  { path: "/casino-compliance", changefreq: "daily", priority: 0.7, lastmod: "2026-02-20" },
 ];
 
 function toDate(ts: string): string {
@@ -211,6 +209,17 @@ Deno.serve(async (req) => {
 
     if (casinoErr) throw casinoErr;
 
+    // ── Fetch compliance last_checked for /casino-compliance lastmod ──
+    const { data: complianceRows } = await supabase
+      .from("casino_compliance")
+      .select("last_checked")
+      .order("last_checked", { ascending: false })
+      .limit(1);
+
+    const complianceLastmod = complianceRows?.[0]
+      ? toDate(complianceRows[0].last_checked)
+      : undefined;
+
     // Build a lookup: slug → lastmod date
     const casinoLastmod: Record<string, string> = {};
     for (const c of casinos || []) {
@@ -237,6 +246,11 @@ Deno.serve(async (req) => {
       const reviewMatch = route.path.match(/^\/casino-anmeldelser\/(.+)$/);
       if (reviewMatch && casinoLastmod[reviewMatch[1]]) {
         lastmod = casinoLastmod[reviewMatch[1]];
+      }
+
+      // Override lastmod for /casino-compliance with latest compliance check
+      if (route.path === "/casino-compliance" && complianceLastmod) {
+        lastmod = complianceLastmod;
       }
 
       const loc = route.path === "/" ? SITE_URL + "/" : SITE_URL + route.path;
@@ -271,7 +285,7 @@ ${urls.join("\n")}
       headers: {
         ...corsHeaders,
         "Content-Type": "application/xml; charset=utf-8",
-        "Cache-Control": "public, max-age=3600, s-maxage=3600",
+        "Cache-Control": "public, max-age=3600, s-maxage=3600, stale-while-revalidate=600",
       },
     });
   } catch (err) {
