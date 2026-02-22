@@ -20,7 +20,7 @@ Deno.serve(async (req: Request) => {
     }
 
     if (!twitchUsername || twitchUsername.includes('$(')) return reply('Mangler brugernavn.');
-    if (!cmd || !['gtw', 'avgx', 'credits'].includes(cmd)) return reply('Ugyldig kommando.');
+    if (!cmd || !['gtw', 'avgx', 'credits'].includes(cmd)) return reply('@' + (twitchUsername || 'bruger') + ', ugyldige kommandoer: !gtw <beløb> [credits] | !avgx <gruppe> [credits] | !credits');
 
     const supabaseUrl = Deno.env.get('SUPABASE_URL')!;
     const serviceRoleKey = Deno.env.get('SUPABASE_SERVICE_ROLE_KEY')!;
@@ -58,13 +58,13 @@ Deno.serve(async (req: Request) => {
     if (cmd === 'gtw') {
       if (!session.gtw_betting_open) return reply('@' + twitchUsername + ', GTW betting er lukket.');
       const parts = argsRaw.split(/\s+/).filter(Boolean);
-      if (parts.length === 0) return reply('@' + twitchUsername + ', brug: !gtw <beløb> [credits]');
+      if (parts.length === 0) return reply('@' + twitchUsername + ', skriv: !gtw <dit gæt> [credits] — Eksempel: !gtw 45000 eller !gtw 45000 10');
       const guessAmount = parseFloat(parts[0]);
-      if (isNaN(guessAmount) || guessAmount <= 0) return reply('@' + twitchUsername + ', ugyldigt gæt.');
+      if (isNaN(guessAmount) || guessAmount <= 0) return reply('@' + twitchUsername + ', ugyldigt gæt. Skriv et tal, f.eks. !gtw 45000');
       const betAmount = parts.length >= 2 ? parseInt(parts[1]) : session.gtw_min_bet;
-      if (isNaN(betAmount) || betAmount <= 0) return reply('@' + twitchUsername + ', ugyldigt credit-beløb.');
+      if (isNaN(betAmount) || betAmount <= 0) return reply('@' + twitchUsername + ', ugyldigt credit-beløb. Skriv et tal, f.eks. !gtw 45000 10');
       if (betAmount < session.gtw_min_bet || betAmount > session.gtw_max_bet) {
-        return reply('@' + twitchUsername + ', bet mellem ' + session.gtw_min_bet + '-' + session.gtw_max_bet + ' credits.');
+        return reply('@' + twitchUsername + ', credits skal være mellem ' + session.gtw_min_bet + '-' + session.gtw_max_bet + '. Eksempel: !gtw 45000 ' + session.gtw_min_bet);
       }
       const { data: existing } = await admin.from('bonus_hunt_gtw_bets').select('id, bet_amount').eq('session_id', session.id).eq('user_id', userId).maybeSingle();
       if (existing) {
@@ -97,13 +97,13 @@ Deno.serve(async (req: Request) => {
     if (cmd === 'avgx') {
       if (!session.avgx_betting_open) return reply('@' + twitchUsername + ', AVG X betting er lukket.');
       const parts = argsRaw.split(/\s+/).filter(Boolean);
-      if (parts.length === 0) return reply('@' + twitchUsername + ', brug: !avgx <gruppe> [credits]');
+      if (parts.length === 0) return reply('@' + twitchUsername + ', skriv: !avgx <gruppe> [credits] — Eksempel: !avgx A eller !avgx B 10');
       const groupLetter = parts[0].toUpperCase();
-      if (!['A','B','C','D','E','F','G','H','I','J'].includes(groupLetter)) return reply('@' + twitchUsername + ', ugyldig gruppe. Vælg A-J.');
+      if (!['A','B','C','D','E','F','G','H','I','J'].includes(groupLetter)) return reply('@' + twitchUsername + ', ugyldig gruppe. Vælg A-J. Eksempel: !avgx A');
       const betAmount = parts.length >= 2 ? parseInt(parts[1]) : session.avgx_min_bet;
-      if (isNaN(betAmount) || betAmount <= 0) return reply('@' + twitchUsername + ', ugyldigt credit-beløb.');
+      if (isNaN(betAmount) || betAmount <= 0) return reply('@' + twitchUsername + ', ugyldigt credit-beløb. Skriv et tal, f.eks. !avgx A 10');
       if (betAmount < session.avgx_min_bet || betAmount > session.avgx_max_bet) {
-        return reply('@' + twitchUsername + ', bet mellem ' + session.avgx_min_bet + '-' + session.avgx_max_bet + ' credits.');
+        return reply('@' + twitchUsername + ', credits skal være mellem ' + session.avgx_min_bet + '-' + session.avgx_max_bet + '. Eksempel: !avgx A ' + session.avgx_min_bet);
       }
       const { data: existing } = await admin.from('bonus_hunt_avgx_bets').select('id, bet_amount').eq('session_id', session.id).eq('user_id', userId).maybeSingle();
       if (existing) {
