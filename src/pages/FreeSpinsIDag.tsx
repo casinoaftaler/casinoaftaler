@@ -17,7 +17,7 @@ import { useCasinos } from "@/hooks/useCasinos";
 import {
   Sparkles, Clock, ShieldCheck, AlertTriangle, Star, RefreshCw,
   Flame, Timer, CreditCard, RotateCcw, Award, CheckCircle2,
-  Users, Zap, Gift,
+  Users, Zap, Gift, Filter,
 } from "lucide-react";
 import { format, differenceInHours, differenceInMinutes } from "date-fns";
 import { da } from "date-fns/locale";
@@ -27,23 +27,27 @@ const linkClass = "text-primary underline hover:text-primary/80";
 const freeSpinsIDagFaqs = [
   {
     question: "Hvordan finder I de daglige free spins tilbud?",
-    answer: "Vi scanner dagligt vores partner-casinoers bonussider for at finde de nyeste og bedste free spins tilbud til danske spillere. Tilbuddene opdateres automatisk hver morgen kl. 07:00.",
+    answer: "Vi scanner dagligt danske aggregator-sites som Casinopenge.dk og Spilxperten.com for at finde de nyeste og bedste free spins tilbud til danske spillere. Tilbuddene opdateres automatisk hver morgen kl. 07:00.",
   },
   {
     question: "Er free spins tilbuddene kun for nye spillere?",
-    answer: "Nej! Mange casinoer tilbyder free spins til både nye og eksisterende spillere. Vi markerer tydeligt om et tilbud er en velkomstbonus eller et dagligt/ugentligt tilbud.",
+    answer: "Nej! Mange casinoer tilbyder free spins til både nye og eksisterende spillere. Vi markerer tydeligt om et tilbud er en velkomstbonus eller et dagligt/ugentligt tilbud til eksisterende spillere.",
   },
   {
     question: "Har free spins omsætningskrav?",
-    answer: "Ja, de fleste free spins kommer med omsætningskrav. Vi angiver altid omsætningskravet ved hvert tilbud, så du kan vælge det bedste tilbud baseret på dine præferencer.",
+    answer: "Ja, de fleste free spins kommer med omsætningskrav. Vi angiver altid omsætningskravet ved hvert tilbud, så du kan vælge det bedste tilbud baseret på dine præferencer. Vi viser kun verificerede omsætningskrav.",
   },
   {
     question: "Kan jeg få free spins uden indbetaling?",
-    answer: "Ja, nogle casinoer tilbyder free spins helt uden indbetaling. Se vores dedikerede guide til bonus uden indbetaling for alle aktuelle tilbud.",
+    answer: "Ja, nogle casinoer tilbyder free spins helt uden indbetaling. Brug filteret 'Uden indbetaling' øverst for at se alle aktuelle tilbud uden indbetalingskrav.",
   },
   {
     question: "Hvor ofte opdateres denne side?",
-    answer: "Siden opdateres automatisk hver dag kl. 07:00 CET. Vi scanner casinoernes bonussider og præsenterer de nyeste tilbud, så du altid har adgang til de mest aktuelle free spins deals.",
+    answer: "Siden opdateres automatisk hver dag kl. 07:00 CET. Vi scanner flere danske aggregator-sites og præsenterer de nyeste tilbud, så du altid har adgang til de mest aktuelle free spins deals.",
+  },
+  {
+    question: "Hvorfor vises kun ét tilbud per casino?",
+    answer: "Vi viser det bedste tilbud per casino baseret på vores score-system, der tager højde for antal spins, omsætningskrav og om der kræves indbetaling. Du kan se alle kampagner for et specifikt casino ved at klikke på casinoets navn.",
   },
 ];
 
@@ -65,6 +69,16 @@ interface CampaignOffer {
   for_new_players: boolean;
   for_existing_players: boolean;
 }
+
+// ─── Filter types ───
+type FilterType = "all" | "new" | "existing" | "no_deposit";
+
+const filterConfig: { id: FilterType; label: string; icon: React.ReactNode }[] = [
+  { id: "all", label: "Alle Tilbud", icon: <Sparkles className="h-3.5 w-3.5" /> },
+  { id: "new", label: "Nye Spillere", icon: <Star className="h-3.5 w-3.5" /> },
+  { id: "existing", label: "Eksisterende", icon: <Users className="h-3.5 w-3.5" /> },
+  { id: "no_deposit", label: "Uden Indbetaling", icon: <Zap className="h-3.5 w-3.5" /> },
+];
 
 // ─── Count-up animation hook ───
 function useCountUp(target: number, duration = 1200): number {
@@ -113,8 +127,8 @@ function Countdown({ validUntil }: { validUntil: string }) {
 const offerTypeBadgeConfig: Record<string, { label: string; icon: React.ReactNode; className: string }> = {
   no_deposit: { label: "Uden indbetaling", icon: <Zap className="h-3 w-3" />, className: "bg-green-500/20 text-green-400 border-green-500/30" },
   welcome: { label: "Nye spillere", icon: <Star className="h-3 w-3" />, className: "bg-purple-500/20 text-purple-400 border-purple-500/30" },
-  daily: { label: "Eksisterende spiller", icon: <Users className="h-3 w-3" />, className: "bg-amber-500/20 text-amber-400 border-amber-500/30" },
-  existing: { label: "Eksisterende spiller", icon: <Users className="h-3 w-3" />, className: "bg-amber-500/20 text-amber-400 border-amber-500/30" },
+  daily: { label: "Eksisterende", icon: <Users className="h-3 w-3" />, className: "bg-amber-500/20 text-amber-400 border-amber-500/30" },
+  existing: { label: "Eksisterende", icon: <Users className="h-3 w-3" />, className: "bg-amber-500/20 text-amber-400 border-amber-500/30" },
   weekend: { label: "Weekend", icon: <Gift className="h-3 w-3" />, className: "bg-blue-500/20 text-blue-400 border-blue-500/30" },
   vip: { label: "VIP", icon: <Award className="h-3 w-3" />, className: "bg-amber-500/20 text-amber-400 border-amber-500/30" },
 };
@@ -131,9 +145,24 @@ function getBestPerCasino(campaigns: CampaignOffer[]): CampaignOffer[] {
   return Array.from(bestMap.values()).sort((a, b) => (b.score ?? 0) - (a.score ?? 0));
 }
 
+/** Apply filter to campaigns */
+function applyFilter(campaigns: CampaignOffer[], filter: FilterType): CampaignOffer[] {
+  switch (filter) {
+    case "new":
+      return campaigns.filter((c) => c.for_new_players || c.offer_type === "welcome");
+    case "existing":
+      return campaigns.filter((c) => c.for_existing_players || ["daily", "existing", "weekend"].includes(c.offer_type));
+    case "no_deposit":
+      return campaigns.filter((c) => !c.requires_deposit || c.offer_type === "no_deposit");
+    default:
+      return campaigns;
+  }
+}
+
 const FreeSpinsIDag = () => {
   const todayFormatted = format(new Date(), "d. MMMM yyyy", { locale: da });
   const { data: casinos } = useCasinos();
+  const [activeFilter, setActiveFilter] = useState<FilterType>("all");
 
   // Query free_spin_campaigns – only spin_count > 0
   const { data: campaigns, isLoading } = useQuery({
@@ -151,24 +180,24 @@ const FreeSpinsIDag = () => {
     staleTime: 5 * 60 * 1000,
   });
 
-  // 1 best offer per casino, ranked by score
-  const bestOffers = campaigns ? getBestPerCasino(campaigns) : [];
-  
-  // All campaigns (for category sections) – still deduplicated per casino
-  const allCampaigns = campaigns || [];
+  // Apply filter then deduplicate: 1 best offer per casino
+  const filteredCampaigns = campaigns ? applyFilter(campaigns, activeFilter) : [];
+  const bestOffers = getBestPerCasino(filteredCampaigns);
 
-  // Categorize from ALL campaigns (not just best-per-casino)
-  const noDepositOffers = getBestPerCasino(allCampaigns.filter((o) => o.offer_type === "no_deposit"));
-  const welcomeOffers = getBestPerCasino(allCampaigns.filter((o) => o.offer_type === "welcome"));
-  const existingOffers = getBestPerCasino(allCampaigns.filter((o) => ["daily", "existing", "weekend", "vip"].includes(o.offer_type)));
+  // Featured = highest score with wagering <= 40x (from all, not filtered)
+  const allBest = campaigns ? getBestPerCasino(campaigns) : [];
+  const featured = allBest.find((o) => {
+    if (o.wagering_requirement) {
+      const wm = o.wagering_requirement.match(/(\d+)/);
+      if (wm && parseInt(wm[1], 10) > 40) return false;
+    }
+    return true;
+  }) || allBest[0] || null;
 
-  // Featured = highest score overall
-  const featured = bestOffers.length > 0 ? bestOffers[0] : null;
-
-  // Stats
-  const totalCount = bestOffers.length;
-  const noDepCount = noDepositOffers.length;
-  const existingCount = existingOffers.length;
+  // Stats (from all campaigns, not filtered)
+  const totalCount = allBest.length;
+  const noDepCount = campaigns ? getBestPerCasino(campaigns.filter((o) => o.offer_type === "no_deposit" || !o.requires_deposit)).length : 0;
+  const existingCount = campaigns ? getBestPerCasino(campaigns.filter((o) => ["daily", "existing", "weekend"].includes(o.offer_type))).length : 0;
 
   const animatedTotal = useCountUp(totalCount);
   const animatedNoDep = useCountUp(noDepCount);
@@ -192,20 +221,23 @@ const FreeSpinsIDag = () => {
       "@type": "ItemList",
       name: `Free Spins Tilbud – ${todayFormatted}`,
       numberOfItems: totalCount,
-      itemListElement: bestOffers.slice(0, 10).map((o, i) => ({
+      itemListElement: allBest.slice(0, 10).map((o, i) => ({
         "@type": "ListItem",
         position: i + 1,
-        name: o.title,
+        name: `${o.casino_name} – ${o.spin_count} Free Spins`,
         url: `${SITE_URL}/casino-anmeldelser/${o.casino_slug}`,
       })),
     },
   ];
 
+  // Offers to display (exclude featured from list to avoid duplication)
+  const displayOffers = bestOffers.filter((o) => o.id !== featured?.id);
+
   return (
     <>
       <SEO
-        title={`Free Spins i Dag – ${todayFormatted} | Alle Tilbud`}
-        description={`Vi viser alle aktuelle free spins hos danske licenserede casinoer – opdateret ${todayFormatted}. Find ${totalCount} tilbud for nye og eksisterende spillere.`}
+        title={`Free Spins i Dag (2026) – Gratis Spins Uden Indbetaling`}
+        description={`Opdateret dagligt: ${totalCount} danske free spins tilbud – til nye og eksisterende spillere. Sammenlign omsætningskrav og find de bedste free spins uden indbetaling.`}
         jsonLd={schemaMarkup}
         breadcrumbLabel="Free Spins i Dag"
       />
@@ -225,7 +257,9 @@ const FreeSpinsIDag = () => {
               Free Spins i Dag – Alle Aktuelle Tilbud
             </h1>
             <p className="text-lg text-white/80">
-              Vi viser alle aktuelle free spins hos danske licenserede casinoer – både for nye og eksisterende spillere. Opdateres automatisk hver morgen kl. 07:00.
+              Kun danske licenserede casinoer. Opdateres automatisk kl. 07:00.
+              <br className="hidden md:block" />
+              {totalCount > 0 && <span className="font-medium text-white">{totalCount} aktive tilbud</span>}
             </p>
           </div>
         </div>
@@ -235,17 +269,17 @@ const FreeSpinsIDag = () => {
         <AuthorMetaBar author="jonas" date={todayFormatted} readTime="3 min." />
 
         <div className="mb-8 overflow-hidden rounded-xl">
-          <img src={heroImage} alt="Free Spins i Dag – alle aktuelle free spins tilbud" className="w-full h-auto object-cover max-h-[400px]" loading="eager" />
+          <img src={heroImage} alt="Free Spins i Dag – alle aktuelle free spins tilbud hos danske casinoer" className="w-full h-auto object-cover max-h-[400px]" loading="eager" />
         </div>
 
-        {/* Affiliate disclaimer */}
+        {/* Affiliate + trust disclaimer */}
         <div className="flex items-center gap-2 text-xs text-muted-foreground mb-6 p-3 rounded-lg bg-muted/30 border border-border/50">
           <ShieldCheck className="h-4 w-4 flex-shrink-0" />
-          <span>Denne side indeholder affiliate-links. Alle casinoer er licenseret af <Link to="/spillemyndigheden" className={linkClass}>Spillemyndigheden</Link> og overholder dansk lovgivning. 18+ | <Link to="/ansvarligt-spil" className={linkClass}>Spil ansvarligt</Link></span>
+          <span>Kun danske licenserede casinoer. Alle er godkendt af <Link to="/spillemyndigheden" className={linkClass}>Spillemyndigheden</Link>. 18+ | <Link to="/ansvarligt-spil" className={linkClass}>Spil ansvarligt</Link></span>
         </div>
 
         {/* ─── Statistics ─── */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-10">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
           <StatCard icon={<Sparkles className="h-5 w-5 text-primary" />} value={animatedTotal} label="Casinoer med free spins" />
           <StatCard icon={<Zap className="h-5 w-5 text-green-400" />} value={animatedNoDep} label="Uden indbetaling" />
           <StatCard icon={<Users className="h-5 w-5 text-amber-400" />} value={animatedExisting} label="For eksisterende spillere" />
@@ -260,6 +294,27 @@ const FreeSpinsIDag = () => {
           </Card>
         </div>
 
+        {/* ─── Filter Tabs ─── */}
+        <div className="flex flex-wrap gap-2 mb-8" role="group" aria-label="Filtrer free spins tilbud">
+          {filterConfig.map((f) => (
+            <button
+              key={f.id}
+              onClick={() => setActiveFilter(f.id)}
+              aria-pressed={activeFilter === f.id}
+              className={`inline-flex items-center gap-1.5 rounded-full border px-4 py-2 text-sm font-medium transition-colors ${
+                activeFilter === f.id
+                  ? "border-primary bg-primary text-primary-foreground"
+                  : "border-border bg-card text-foreground hover:border-primary/50"
+              }`}
+            >
+              {f.icon} {f.label}
+              {f.id === "all" && totalCount > 0 && (
+                <span className="ml-1 text-xs opacity-75">({totalCount})</span>
+              )}
+            </button>
+          ))}
+        </div>
+
         {/* ─── Intro SEO text ─── */}
         <section className="prose prose-lg dark:prose-invert max-w-none mb-10">
           <h2 className="flex items-center gap-2">
@@ -268,10 +323,12 @@ const FreeSpinsIDag = () => {
           </h2>
           <p>
             Velkommen til vores dagligt opdaterede oversigt over alle free spins tilbud hos danske licenserede casinoer.
-            Vi scanner automatisk casinoernes bonussider hver morgen kl. 07:00, så du altid ser de nyeste tilbud.
-            Her finder du free spins for nye spillere, eksisterende spillere og free spins uden indbetaling.
+            Vi scanner automatisk danske aggregator-sites hver morgen kl. 07:00 og viser kun det bedste tilbud per casino,
+            rangeret efter vores score-system der tager højde for antal spins, omsætningskrav og om der kræves indbetaling.
           </p>
           <p>
+            Alle casinoer er licenserede af{" "}
+            <Link to="/spillemyndigheden" className={linkClass}>Spillemyndigheden</Link> og overholder dansk lovgivning.
             Vi anbefaler altid at læse{" "}
             <Link to="/omsaetningskrav" className={linkClass}>omsætningskravene</Link>{" "}
             grundigt, før du accepterer et tilbud.
@@ -292,19 +349,26 @@ const FreeSpinsIDag = () => {
             <div className="inline-flex items-center justify-center w-20 h-20 rounded-full bg-muted/50 mb-6">
               <Clock className="h-10 w-10 text-muted-foreground" />
             </div>
-            <h3 className="text-xl font-bold mb-3">Ingen aktive free spins i dag</h3>
+            <h3 className="text-xl font-bold mb-3">
+              {activeFilter === "all"
+                ? "Ingen aktive free spins i dag"
+                : `Ingen tilbud matcher filteret "${filterConfig.find((f) => f.id === activeFilter)?.label}"`}
+            </h3>
             <p className="text-muted-foreground max-w-md mx-auto mb-4">
-              Vi opdaterer automatisk hver morgen kl. 07:00 CET. Tjek igen i morgen for de nyeste free spins tilbud fra danske casinoer.
+              {activeFilter === "all"
+                ? "Vi opdaterer automatisk hver morgen kl. 07:00 CET. Tjek igen i morgen for de nyeste free spins tilbud."
+                : "Prøv et andet filter eller tjek igen senere."}
             </p>
-            <div className="flex items-center justify-center gap-2 text-sm text-muted-foreground">
-              <RefreshCw className="h-4 w-4" />
-              <span>Opdateres dagligt kl. 07:00</span>
-            </div>
+            {activeFilter !== "all" && (
+              <Button variant="outline" onClick={() => setActiveFilter("all")}>
+                Vis alle tilbud
+              </Button>
+            )}
           </div>
         ) : (
           <>
-            {/* Featured "Dagens Bedste" – highest score */}
-            {featured && (
+            {/* Featured "Dagens Bedste" – highest score, wagering <= 40x */}
+            {featured && activeFilter === "all" && (
               <FeaturedOfferCard
                 offer={featured}
                 logoUrl={getCasinoLogo(featured.casino_slug)}
@@ -312,38 +376,24 @@ const FreeSpinsIDag = () => {
               />
             )}
 
-            {/* Section: Free Spins for Nye Spillere (1 per casino) */}
-            {welcomeOffers.length > 0 && (
-              <OfferSection
-                title="Free Spins for Nye Spillere"
-                icon={<Star className="h-5 w-5 text-purple-400" />}
-                offers={welcomeOffers.filter((o) => o.id !== featured?.id)}
-                getCasinoLogo={getCasinoLogo}
-                getCasinoAffiliate={getCasinoAffiliate}
-              />
-            )}
-
-            {/* Section: Free Spins for Eksisterende Spillere (1 per casino) */}
-            {existingOffers.length > 0 && (
-              <OfferSection
-                title="Free Spins for Eksisterende Spillere"
-                icon={<Users className="h-5 w-5 text-amber-400" />}
-                offers={existingOffers.filter((o) => o.id !== featured?.id)}
-                getCasinoLogo={getCasinoLogo}
-                getCasinoAffiliate={getCasinoAffiliate}
-              />
-            )}
-
-            {/* Section: Uden Indbetaling (1 per casino) */}
-            {noDepositOffers.length > 0 && (
-              <OfferSection
-                title="Free Spins Uden Indbetaling"
-                icon={<Zap className="h-5 w-5 text-green-400" />}
-                offers={noDepositOffers.filter((o) => o.id !== featured?.id)}
-                getCasinoLogo={getCasinoLogo}
-                getCasinoAffiliate={getCasinoAffiliate}
-              />
-            )}
+            {/* Offer list – 1 per casino, ranked by score */}
+            <section className="mb-10">
+              <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
+                <Filter className="h-5 w-5 text-primary" />
+                {activeFilter === "all" ? "Alle Free Spins Tilbud" : filterConfig.find((f) => f.id === activeFilter)?.label}
+                {" "}({displayOffers.length + (featured && activeFilter === "all" ? 0 : 0)})
+              </h2>
+              <div className="space-y-3">
+                {displayOffers.map((offer) => (
+                  <OfferCard
+                    key={offer.id}
+                    offer={offer}
+                    logoUrl={getCasinoLogo(offer.casino_slug)}
+                    affiliateUrl={getCasinoAffiliate(offer.casino_slug)}
+                  />
+                ))}
+              </div>
+            </section>
           </>
         )}
 
@@ -359,7 +409,7 @@ const FreeSpinsIDag = () => {
             Ikke alle free spins er skabt lige. Her er de vigtigste faktorer at overveje:
           </p>
           <ul>
-            <li><strong>Omsætningskrav:</strong> Jo lavere omsætningskrav, desto lettere er det at omsætte dine gevinster. Under 30x er generelt godt.</li>
+            <li><strong>Omsætningskrav:</strong> Jo lavere omsætningskrav, desto lettere er det at omsætte dine gevinster. Under 10x er generelt godt i Danmark.</li>
             <li><strong>Antal free spins:</strong> Flere spins giver flere chancer, men tjek spinværdien og hvilke spil de gælder til.</li>
             <li><strong>Spinværdi:</strong> En free spin på 1 kr. er mere værd end 0,10 kr. – tjek altid den faktiske spinværdi.</li>
             <li><strong>Tidsbegrænsning:</strong> De fleste free spins skal bruges inden for 7-30 dage.</li>
@@ -372,7 +422,8 @@ const FreeSpinsIDag = () => {
           <p>
             Alle casinoer på denne side er licenserede af{" "}
             <Link to="/spillemyndigheden" className={linkClass}>Spillemyndigheden</Link>{" "}
-            og opererer lovligt i Danmark. Vi anbefaler altid{" "}
+            og opererer lovligt i Danmark. Bonusser er underlagt en maksimal grænse på 1.000 kr. og maksimalt 10x omsætningskrav jf. dansk lovgivning.
+            Vi anbefaler altid{" "}
             <Link to="/ansvarligt-spil" className={linkClass}>ansvarligt spil</Link>.
           </p>
 
@@ -390,10 +441,11 @@ const FreeSpinsIDag = () => {
 
         {/* Trust signals */}
         <div className="flex flex-wrap items-center gap-3 text-xs text-muted-foreground mb-8">
-          <span className="inline-flex items-center gap-1"><CheckCircle2 className="h-3.5 w-3.5 text-green-500" /> MitID-verificeret</span>
-          <span className="inline-flex items-center gap-1"><ShieldCheck className="h-3.5 w-3.5 text-blue-500" /> Spillemyndigheden</span>
-          <span className="inline-flex items-center gap-1"><AlertTriangle className="h-3.5 w-3.5 text-amber-500" /> ROFUS-registreret</span>
+          <span className="inline-flex items-center gap-1"><CheckCircle2 className="h-3.5 w-3.5 text-green-500" /> Kun DK-licenserede casinoer</span>
+          <span className="inline-flex items-center gap-1"><ShieldCheck className="h-3.5 w-3.5 text-blue-500" /> Spillemyndigheden-godkendt</span>
+          <span className="inline-flex items-center gap-1"><AlertTriangle className="h-3.5 w-3.5 text-amber-500" /> 18+</span>
           <span className="inline-flex items-center gap-1"><Award className="h-3.5 w-3.5 text-primary" /> Redaktørens faktatjek</span>
+          <span className="inline-flex items-center gap-1"><RefreshCw className="h-3.5 w-3.5 text-muted-foreground" /> Sidst opdateret: {todayFormatted}</span>
         </div>
 
         <Separator className="my-10" />
@@ -456,15 +508,15 @@ function FeaturedOfferCard({ offer, logoUrl, affiliateUrl }: { offer: CampaignOf
           <div className="text-4xl md:text-5xl font-extrabold text-white mb-2">
             {offer.spin_count} <span className="text-primary">Free Spins</span>
           </div>
-          {offer.description && (
-            <p className="text-sm text-white/70 max-w-lg line-clamp-2 mb-3">{offer.description}</p>
-          )}
           <div className="flex flex-wrap items-center justify-center md:justify-start gap-4 text-xs text-white/60">
             {offer.wagering_requirement && (
-              <span className="flex items-center gap-1"><RotateCcw className="h-3 w-3" /> {offer.wagering_requirement}</span>
+              <span className="flex items-center gap-1">Omsætningskrav: {offer.wagering_requirement}</span>
             )}
             {offer.min_deposit && (
-              <span className="flex items-center gap-1"><CreditCard className="h-3 w-3" /> Min: {offer.min_deposit}</span>
+              <span className="flex items-center gap-1"><CreditCard className="h-3 w-3" /> Min. indbetaling: {offer.min_deposit}</span>
+            )}
+            {!offer.requires_deposit && (
+              <span className="flex items-center gap-1 text-green-400 font-medium"><Zap className="h-3 w-3" /> Ingen indbetaling</span>
             )}
             {offer.expiry_date && <Countdown validUntil={offer.expiry_date} />}
           </div>
@@ -486,34 +538,6 @@ function FeaturedOfferCard({ offer, logoUrl, affiliateUrl }: { offer: CampaignOf
         </div>
       </div>
     </div>
-  );
-}
-
-// ─── Section component ───
-function OfferSection({
-  title, icon, offers, getCasinoLogo, getCasinoAffiliate,
-}: {
-  title: string; icon: React.ReactNode; offers: CampaignOffer[];
-  getCasinoLogo: (slug: string) => string | null;
-  getCasinoAffiliate: (slug: string) => string | null;
-}) {
-  if (offers.length === 0) return null;
-  return (
-    <section className="mb-10">
-      <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
-        {icon} {title} ({offers.length})
-      </h2>
-      <div className="space-y-3">
-        {offers.map((offer) => (
-          <OfferCard
-            key={offer.id}
-            offer={offer}
-            logoUrl={getCasinoLogo(offer.casino_slug)}
-            affiliateUrl={getCasinoAffiliate(offer.casino_slug)}
-          />
-        ))}
-      </div>
-    </section>
   );
 }
 
@@ -552,6 +576,11 @@ function OfferCard({ offer, logoUrl, affiliateUrl }: { offer: CampaignOffer; log
               <span className={`inline-flex items-center gap-1 text-[10px] px-1.5 py-0.5 rounded-full border ${badge.className}`}>
                 {badge.icon} {badge.label}
               </span>
+              {!offer.requires_deposit && (
+                <span className="inline-flex items-center gap-1 text-[10px] px-1.5 py-0.5 rounded-full border bg-green-500/20 text-green-400 border-green-500/30">
+                  <Zap className="h-2.5 w-2.5" /> Uden indbetaling
+                </span>
+              )}
               {isExpiringSoon && (
                 <Badge variant="destructive" className="text-[10px] px-1.5 py-0">
                   <Timer className="h-2.5 w-2.5 mr-0.5" /> Udløber i dag
@@ -563,7 +592,7 @@ function OfferCard({ offer, logoUrl, affiliateUrl }: { offer: CampaignOffer; log
             </div>
             <div className="flex flex-wrap gap-3 text-xs text-muted-foreground">
               {offer.wagering_requirement && (
-                <span className="flex items-center gap-1"><RotateCcw className="h-3 w-3" /> {offer.wagering_requirement}</span>
+                <span>Omsætningskrav: {offer.wagering_requirement}</span>
               )}
               {offer.min_deposit && (
                 <span className="flex items-center gap-1"><CreditCard className="h-3 w-3" /> {offer.min_deposit}</span>

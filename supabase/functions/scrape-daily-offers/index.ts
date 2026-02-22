@@ -85,7 +85,7 @@ function resolveSlug(name: string): string | null {
   return null;
 }
 
-/** Extract spin count from text */
+/** Extract spin count from text – STRICT: 1-1000 range */
 function extractSpinCount(text: string): number {
   const patterns = [
     /(\d+)\s*(?:gratis\s*)?(?:free\s*)?(?:cash\s*)?(?:bonus\s*)?(?:spins?|chancer)/i,
@@ -96,7 +96,7 @@ function extractSpinCount(text: string): number {
     const m = text.match(p);
     if (m) {
       const n = parseInt(m[1], 10);
-      if (n > 0 && n <= 5000) return n;
+      if (n > 0 && n <= 1000) return n;
     }
   }
   return 0;
@@ -135,25 +135,21 @@ function classifyOffer(text: string): { type: string; forNew: boolean; forExisti
   return { type, forNew, forExisting, requiresDeposit };
 }
 
-/** Detect wagering from text – CONTEXT-BASED only */
+/** Detect wagering from text – CONTEXT-BASED only, max 100x */
 function detectWagering(text: string): string | null {
-  // Only match wagering when it's in context of "omsætningskrav" or "gennemspil"
-  const contextMatch = text.match(/(?:omsætningskrav|gennemspil|omsætning)[^\d]*(\d+)\s*(?:x|gange)/i);
+  const contextMatch = text.match(/(?:omsætningskrav|gennemspil|omsætning|wagering)[^\d]*(\d+)\s*(?:x|gange)/i);
   if (contextMatch) {
     const val = parseInt(contextMatch[1], 10);
     if (val > 0 && val <= 100) return `${val}x`;
-    return null; // > 100x is invalid
+    return null;
   }
-  // Also match "Xx gennemspil/omsætning"
-  const reverseMatch = text.match(/(\d+)\s*(?:x|gange)\s*(?:gennemspil|omsætning|omsætningskrav)/i);
+  const reverseMatch = text.match(/(\d+)\s*(?:x|gange)\s*(?:gennemspil|omsætning|omsætningskrav|wagering)/i);
   if (reverseMatch) {
     const val = parseInt(reverseMatch[1], 10);
     if (val > 0 && val <= 100) return `${val}x`;
     return null;
   }
-  // "Uden omsætningskrav"
-  const noWager = text.match(/uden\s*(?:gennemspils?krav|omsætningskrav)/i);
-  if (noWager) return "Ingen";
+  if (/uden\s*(?:gennemspils?krav|omsætningskrav)/i.test(text)) return "Ingen";
   return null;
 }
 
@@ -177,7 +173,6 @@ function detectExpiry(text: string): string | null {
 function calculateScore(offer: ParsedOffer): number {
   let score = offer.spin_count;
   
-  // Subtract wagering penalty
   if (offer.wagering_requirement && offer.wagering_requirement !== "Ingen") {
     const wagerMatch = offer.wagering_requirement.match(/(\d+)/);
     if (wagerMatch) {
@@ -185,12 +180,26 @@ function calculateScore(offer: ParsedOffer): number {
     }
   }
   
-  // Bonus for no deposit
   if (!offer.requires_deposit) {
     score += 50;
   }
+
+  if (offer.for_existing_players) {
+    score += 10;
+  }
   
   return score;
+}
+
+/** Clean markdown to plain description */
+function cleanDescription(text: string): string {
+  return text
+    .replace(/!\[[^\]]*\]\([^)]*\)/g, "")
+    .replace(/\[[^\]]*\]\([^)]*\)/g, "")
+    .replace(/[#*_|]/g, "")
+    .replace(/\s+/g, " ")
+    .trim()
+    .substring(0, 400);
 }
 
 // ─── Casinopenge.dk parser ───
@@ -216,23 +225,15 @@ function parseCasinopenge(markdown: string, sourceUrl: string): ParsedOffer[] {
     const title = titleMatch ? titleMatch[1] : "";
 
     const spinCount = extractSpinCount(section);
-    // ★ STRICT: skip if spin_count is 0
     if (spinCount <= 0) continue;
 
     const classification = classifyOffer(section);
-    const cleanDesc = section
-      .replace(/!\[[^\]]*\]\([^)]*\)/g, "")
-      .replace(/\[[^\]]*\]\([^)]*\)/g, "")
-      .replace(/[#*_]/g, "")
-      .replace(/\s+/g, " ")
-      .trim()
-      .substring(0, 400);
 
     offers.push({
       casino_name: casinoName,
       casino_slug: slug,
       title: title || `${spinCount} Free Spins hos ${casinoName}`,
-      description: cleanDesc,
+      description: cleanDescription(section),
       spin_count: spinCount,
       offer_type: classification.type,
       for_new_players: classification.forNew,
@@ -277,23 +278,15 @@ function parseSpilxperten(markdown: string, sourceUrl: string): ParsedOffer[] {
     const title = titleMatch ? titleMatch[1].replace(/[*💥🔥🎁💰😍]/g, "").replace(/\s+/g, " ").trim() : "";
 
     const spinCount = extractSpinCount(block);
-    // ★ STRICT: skip if spin_count is 0
     if (spinCount <= 0) continue;
 
     const classification = classifyOffer(block);
-    const cleanDesc = block
-      .replace(/!\[[^\]]*\]\([^)]*\)/g, "")
-      .replace(/\[[^\]]*\]\([^)]*\)/g, "")
-      .replace(/[#*_|]/g, "")
-      .replace(/\s+/g, " ")
-      .trim()
-      .substring(0, 400);
 
     offers.push({
       casino_name: casinoName,
       casino_slug: slug,
       title: title || `${spinCount} Free Spins hos ${casinoName}`,
-      description: cleanDesc,
+      description: cleanDescription(block),
       spin_count: spinCount,
       offer_type: classification.type,
       for_new_players: classification.forNew,
@@ -331,23 +324,15 @@ function parseCasinoonline(markdown: string, sourceUrl: string): ParsedOffer[] {
     const title = titleMatch ? titleMatch[1] : "";
 
     const spinCount = extractSpinCount(block);
-    // ★ STRICT: skip if spin_count is 0
     if (spinCount <= 0) continue;
 
     const classification = classifyOffer(block);
-    const cleanDesc = block
-      .replace(/!\[[^\]]*\]\([^)]*\)/g, "")
-      .replace(/\[[^\]]*\]\([^)]*\)/g, "")
-      .replace(/[#*_|]/g, "")
-      .replace(/\s+/g, " ")
-      .trim()
-      .substring(0, 400);
 
     offers.push({
       casino_name: casinoName,
       casino_slug: slug,
       title: title || `Free Spins hos ${casinoName}`,
-      description: cleanDesc,
+      description: cleanDescription(block),
       spin_count: spinCount,
       offer_type: classification.type,
       for_new_players: classification.forNew,
@@ -394,7 +379,7 @@ Deno.serve(async (req) => {
 
     console.log(`Loaded ${casinoMap.size} casinos for mapping`);
 
-    // ─── Scrape all 3 aggregator sites ───
+    // ─── Scrape all aggregator sites ───
     const allParsedOffers: ParsedOffer[] = [];
     const scrapeResults: { source: string; status: string; offers_found: number; error?: string }[] = [];
 
@@ -492,7 +477,7 @@ Deno.serve(async (req) => {
           score,
         };
       })
-      .filter((c) => casinoMap.has(c.casino_slug)); // Only include casinos we have in our DB
+      .filter((c) => casinoMap.has(c.casino_slug));
 
     console.log(`Campaigns to insert (matched to DB casinos): ${campaigns.length}`);
 
