@@ -15,16 +15,30 @@ interface CasinoToScrape {
   free_spins: string;
   wagering_requirements: string;
   min_deposit: string;
+  affiliate_url: string | null;
+  logo_url: string | null;
 }
 
 interface ParsedOffer {
   offer_title: string;
   offer_description: string;
-  free_spins_count: number | null;
+  free_spins_count: number;
   min_deposit: string | null;
   wagering_requirement: string | null;
   valid_until: string | null;
   offer_type: string;
+}
+
+/** Keywords that indicate free spins content */
+const FREE_SPINS_KEYWORDS = [
+  "free spins", "free spin", "gratis spins", "gratis spin",
+  "fs", "freespin", "freespins", "spins uden indbetaling",
+  "bonus spins", "ekstra spins", "daglige spins",
+];
+
+function containsFreeSpinsKeyword(text: string): boolean {
+  const lower = text.toLowerCase();
+  return FREE_SPINS_KEYWORDS.some((kw) => lower.includes(kw));
 }
 
 Deno.serve(async (req) => {
@@ -39,10 +53,9 @@ Deno.serve(async (req) => {
 
     const admin = createClient(supabaseUrl, serviceRoleKey);
 
-    // 1. Get all active casinos
     const { data: casinos, error: casinoError } = await admin
       .from("casinos")
-      .select("id, name, slug, bonus_page_url, bonus_title, bonus_amount, free_spins, wagering_requirements, min_deposit")
+      .select("id, name, slug, bonus_page_url, bonus_title, bonus_amount, free_spins, wagering_requirements, min_deposit, affiliate_url, logo_url")
       .eq("is_active", true)
       .order("position");
 
@@ -60,7 +73,7 @@ Deno.serve(async (req) => {
         // Method 1: Scrape bonus page URL if available (using Firecrawl)
         if (casino.bonus_page_url && firecrawlKey) {
           console.log(`Scraping ${casino.name}: ${casino.bonus_page_url}`);
-          
+
           const scrapeResponse = await fetch("https://api.firecrawl.dev/v1/scrape", {
             method: "POST",
             headers: {
@@ -79,10 +92,12 @@ Deno.serve(async (req) => {
             const scrapeData = await scrapeResponse.json();
             const markdown = scrapeData?.data?.markdown || scrapeData?.markdown || "";
 
-            if (markdown) {
-              // Parse the scraped content for free spins offers
+            if (markdown && containsFreeSpinsKeyword(markdown)) {
               offers = parseOffersFromMarkdown(markdown, casino.name);
               scrapeResults.push({ casino: casino.name, method: "firecrawl", success: true });
+            } else {
+              console.log(`No free spins keywords found in scraped content for ${casino.name}`);
+              scrapeResults.push({ casino: casino.name, method: "firecrawl_no_fs", success: true });
             }
           } else {
             const errText = await scrapeResponse.text();
@@ -91,10 +106,12 @@ Deno.serve(async (req) => {
           }
         }
 
-        // Method 2: Fall back to existing database data
+        // Method 2: Fall back to existing database data ONLY if free_spins field has a real value
         if (offers.length === 0) {
           offers = buildOffersFromExistingData(casino);
-          scrapeResults.push({ casino: casino.name, method: "database_fallback", success: true });
+          if (offers.length > 0) {
+            scrapeResults.push({ casino: casino.name, method: "database_fallback", success: true });
+          }
         }
 
         // Add all offers for this casino
@@ -122,7 +139,7 @@ Deno.serve(async (req) => {
       }
     }
 
-    // 3. Deactivate old auto-scraped offers (keep manual ones)
+    // Deactivate old auto-scraped offers (keep manual ones)
     const { error: deactivateError } = await admin
       .from("daily_free_spins_offers")
       .update({ is_active: false })
@@ -132,7 +149,7 @@ Deno.serve(async (req) => {
       console.error("Error deactivating old offers:", deactivateError);
     }
 
-    // 4. Insert new offers
+    // Insert new offers (only if we have any)
     if (allOffers.length > 0) {
       const { error: insertError } = await admin
         .from("daily_free_spins_offers")
@@ -144,7 +161,7 @@ Deno.serve(async (req) => {
       }
     }
 
-    console.log(`Successfully processed ${allOffers.length} offers from ${casinos?.length || 0} casinos`);
+    console.log(`Successfully processed ${allOffers.length} free spins offers from ${casinos?.length || 0} casinos`);
 
     return new Response(
       JSON.stringify({
@@ -165,35 +182,32 @@ Deno.serve(async (req) => {
 });
 
 /**
- * Parse markdown content from a casino's bonus page to extract free spins offers
+ * Parse markdown content from a casino's bonus page to extract ONLY free spins offers
  */
 function parseOffersFromMarkdown(markdown: string, casinoName: string): ParsedOffer[] {
   const offers: ParsedOffer[] = [];
-  const lowerMd = markdown.toLowerCase();
 
-  // Look for free spins mentions
-  const freeSpinsRegex = /(\d+)\s*(?:gratis\s*)?(?:free\s*)?spins?/gi;
+  const freeSpinsRegex = /(\d+)\s*(?:gratis\s*)?(?:free\s*)?(?:bonus\s*)?spins?/gi;
   const matches = [...markdown.matchAll(freeSpinsRegex)];
 
   if (matches.length > 0) {
-    // Deduplicate by count
     const seenCounts = new Set<number>();
-    
+
     for (const match of matches) {
       const count = parseInt(match[1], 10);
       if (count > 0 && count <= 5000 && !seenCounts.has(count)) {
         seenCounts.add(count);
 
-        // Try to find surrounding context for the offer
         const idx = match.index || 0;
         const context = markdown.substring(Math.max(0, idx - 200), Math.min(markdown.length, idx + 200));
 
         // Detect offer type
         let offerType = "welcome";
-        if (/uden\s*indbetaling|no\s*deposit/i.test(context)) offerType = "no_deposit";
-        else if (/daglig|daily|i\s*dag/i.test(context)) offerType = "daily";
+        if (/uden\s*indbetaling|no\s*deposit|gratis\s*uden/i.test(context)) offerType = "no_deposit";
+        else if (/daglig|daily|i\s*dag|hver\s*dag/i.test(context)) offerType = "daily";
         else if (/weekend/i.test(context)) offerType = "weekend";
-        else if (/vip|loyal/i.test(context)) offerType = "vip";
+        else if (/vip|loyal|eksisterende/i.test(context)) offerType = "existing";
+        else if (/velkomst|welcome|ny\s*spiller|nye\s*spillere/i.test(context)) offerType = "welcome";
 
         // Try to find wagering requirement
         let wager: string | null = null;
@@ -218,18 +232,34 @@ function parseOffersFromMarkdown(markdown: string, casinoName: string): ParsedOf
     }
   }
 
-  // Also look for bonus offers without explicit free spins count
-  if (offers.length === 0 && /bonus|velkomst|tilbud/i.test(lowerMd)) {
-    const bonusMatch = markdown.match(/(\d+%)\s*(?:bonus|match|op\s*til)/i);
-    if (bonusMatch) {
+  return offers;
+}
+
+/**
+ * Build offers from existing casino data ONLY if the casino actually has free spins
+ */
+function buildOffersFromExistingData(casino: CasinoToScrape): ParsedOffer[] {
+  const offers: ParsedOffer[] = [];
+
+  // Only create an offer if free_spins has a real numeric value (not "N/A")
+  if (casino.free_spins && casino.free_spins !== "N/A" && casino.free_spins.trim() !== "") {
+    const count = parseInt(casino.free_spins.replace(/\D/g, ""), 10);
+    if (!isNaN(count) && count > 0) {
+      // Determine type based on keywords in the title/description
+      let offerType = "welcome";
+      const combined = `${casino.bonus_title} ${casino.free_spins}`.toLowerCase();
+      if (/uden\s*indbetaling|no\s*deposit/i.test(combined)) offerType = "no_deposit";
+      else if (/daglig|daily/i.test(combined)) offerType = "daily";
+      else if (/eksisterende|existing|loyal/i.test(combined)) offerType = "existing";
+
       offers.push({
-        offer_title: `${bonusMatch[1]} Bonus hos ${casinoName}`,
-        offer_description: `Få ${bonusMatch[1]} bonus hos ${casinoName}. Se vilkår og betingelser på casinoets hjemmeside.`,
-        free_spins_count: null,
-        min_deposit: null,
-        wagering_requirement: null,
+        offer_title: `${casino.free_spins} Free Spins hos ${casino.name}`,
+        offer_description: `${casino.name} tilbyder ${casino.free_spins} free spins som en del af deres velkomstpakke. Omsætningskrav: ${casino.wagering_requirements}.`,
+        free_spins_count: count,
+        min_deposit: casino.min_deposit,
+        wagering_requirement: casino.wagering_requirements,
         valid_until: null,
-        offer_type: "welcome",
+        offer_type: offerType,
       });
     }
   }
@@ -237,45 +267,6 @@ function parseOffersFromMarkdown(markdown: string, casinoName: string): ParsedOf
   return offers;
 }
 
-/**
- * Build offers from existing casino data in our database as fallback
- */
-function buildOffersFromExistingData(casino: CasinoToScrape): ParsedOffer[] {
-  const offers: ParsedOffer[] = [];
-
-  // Parse free_spins field
-  if (casino.free_spins && casino.free_spins !== "N/A") {
-    const count = parseInt(casino.free_spins.replace(/\D/g, ""), 10);
-    offers.push({
-      offer_title: `${casino.free_spins} Free Spins hos ${casino.name}`,
-      offer_description: `${casino.name} tilbyder ${casino.free_spins} free spins som en del af deres velkomstpakke. ${casino.bonus_amount ? `Derudover kan du få ${casino.bonus_amount} i bonus.` : ""} Omsætningskrav: ${casino.wagering_requirements}.`,
-      free_spins_count: isNaN(count) ? null : count,
-      min_deposit: casino.min_deposit,
-      wagering_requirement: casino.wagering_requirements,
-      valid_until: null,
-      offer_type: "welcome",
-    });
-  }
-
-  // Always include the main bonus offer
-  if (casino.bonus_amount && casino.bonus_title) {
-    offers.push({
-      offer_title: `${casino.bonus_title} hos ${casino.name}`,
-      offer_description: `${casino.name} tilbyder ${casino.bonus_amount}. Minimumsindbetaling: ${casino.min_deposit}. Omsætningskrav: ${casino.wagering_requirements}.`,
-      free_spins_count: null,
-      min_deposit: casino.min_deposit,
-      wagering_requirement: casino.wagering_requirements,
-      valid_until: null,
-      offer_type: "welcome",
-    });
-  }
-
-  return offers;
-}
-
-/**
- * Clean scraped context to create a readable description
- */
 function cleanContext(text: string): string {
   return text
     .replace(/[#*_\[\]()]/g, "")
