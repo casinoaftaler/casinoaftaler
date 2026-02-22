@@ -14,6 +14,51 @@ export type Database = {
   }
   public: {
     Tables: {
+      bonus_hunt_archives: {
+        Row: {
+          api_data: Json
+          average_x: number | null
+          created_at: string
+          end_balance: number | null
+          hunt_name: string | null
+          hunt_number: number
+          hunt_status: string | null
+          id: string
+          opened_slots: number | null
+          start_balance: number | null
+          total_slots: number | null
+          updated_at: string
+        }
+        Insert: {
+          api_data: Json
+          average_x?: number | null
+          created_at?: string
+          end_balance?: number | null
+          hunt_name?: string | null
+          hunt_number: number
+          hunt_status?: string | null
+          id?: string
+          opened_slots?: number | null
+          start_balance?: number | null
+          total_slots?: number | null
+          updated_at?: string
+        }
+        Update: {
+          api_data?: Json
+          average_x?: number | null
+          created_at?: string
+          end_balance?: number | null
+          hunt_name?: string | null
+          hunt_number?: number
+          hunt_status?: string | null
+          id?: string
+          opened_slots?: number | null
+          start_balance?: number | null
+          total_slots?: number | null
+          updated_at?: string
+        }
+        Relationships: []
+      }
       bonus_hunt_avgx_bets: {
         Row: {
           bet_amount: number

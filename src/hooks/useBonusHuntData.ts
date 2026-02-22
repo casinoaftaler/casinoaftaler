@@ -1,4 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
+import { supabase } from "@/integrations/supabase/client";
 
 export interface BonusHuntSlot {
   slot: string;
@@ -35,19 +36,7 @@ export interface BonusHuntData {
   };
 }
 
-async function fetchBonusHuntData(huntId?: number): Promise<BonusHuntData> {
-  const projectId = import.meta.env.VITE_SUPABASE_PROJECT_ID;
-  const url = new URL(`https://${projectId}.supabase.co/functions/v1/bonus-hunt-proxy`);
-  if (huntId) url.searchParams.set('huntId', String(huntId));
-
-  const response = await fetch(url.toString(), {
-    headers: { 'apikey': import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY },
-  });
-
-  if (!response.ok) throw new Error('Failed to fetch bonus hunt data');
-  const raw = await response.json();
-
-  // The API returns { data: { slots: [...], id, visibleId, ... } }
+function parseHuntResponse(raw: any): BonusHuntData {
   const huntData = raw.data || raw;
   const rawSlots = huntData.slots || [];
 
@@ -68,7 +57,6 @@ async function fetchBonusHuntData(huntId?: number): Promise<BonusHuntData> {
   const openedSlots = slots.filter(s => s.opened);
   const totalBets = slots.reduce((sum, s) => sum + s.bet, 0);
   const avgBet = slots.length > 0 ? totalBets / slots.length : 0;
-  const totalWins = openedSlots.reduce((sum, s) => sum + s.win, 0);
 
   const multipliersOpen = openedSlots.filter(s => s.multiplier > 0);
   const avgX = multipliersOpen.length > 0
@@ -77,10 +65,8 @@ async function fetchBonusHuntData(huntId?: number): Promise<BonusHuntData> {
 
   const startBalance = huntData.start || totalBets;
   const breakEvenX = totalBets > 0 ? startBalance / totalBets : 0;
-
   const endVal = huntData.end || null;
 
-  // Parse visibleId from name field (e.g. "Bonus Hunt #1367" -> 1367)
   const parsedVisibleId = huntData.visibleId
     || (huntData.name ? parseInt(huntData.name.replace(/\D/g, ''), 10) || 0 : 0);
 
@@ -93,7 +79,7 @@ async function fetchBonusHuntData(huntId?: number): Promise<BonusHuntData> {
     stats: {
       totalBonuses: slots.length,
       openedBonuses: openedSlots.length,
-      startBalance: startBalance,
+      startBalance,
       endBalance: endVal,
       targetBalance: huntData.targetBalance || 0,
       averageBet: Math.round(avgBet * 100) / 100,
@@ -111,11 +97,57 @@ async function fetchBonusHuntData(huntId?: number): Promise<BonusHuntData> {
   };
 }
 
+async function fetchBonusHuntData(huntId?: number, latestHuntNumber?: number): Promise<BonusHuntData> {
+  const projectId = import.meta.env.VITE_SUPABASE_PROJECT_ID;
+  const url = new URL(`https://${projectId}.supabase.co/functions/v1/bonus-hunt-proxy`);
+
+  if (huntId) {
+    url.searchParams.set('huntId', String(huntId));
+    // If browsing a past hunt (not the latest), prefer archive
+    if (latestHuntNumber && huntId < latestHuntNumber) {
+      url.searchParams.set('archive', 'true');
+    }
+  }
+
+  const response = await fetch(url.toString(), {
+    headers: { 'apikey': import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY },
+  });
+
+  if (!response.ok) throw new Error('Failed to fetch bonus hunt data');
+  const raw = await response.json();
+  return parseHuntResponse(raw);
+}
+
+async function fetchLatestHuntNumber(): Promise<number> {
+  const { data } = await supabase
+    .from('bonus_hunt_archives')
+    .select('hunt_number')
+    .order('hunt_number', { ascending: false })
+    .limit(1)
+    .maybeSingle();
+
+  return data?.hunt_number || 1;
+}
+
 export function useBonusHuntData(huntId?: number) {
+  const { data: latestHuntNumber } = useQuery({
+    queryKey: ['bonus-hunt-latest-number'],
+    queryFn: fetchLatestHuntNumber,
+    staleTime: 60000,
+  });
+
   return useQuery({
-    queryKey: ['bonus-hunt-data', huntId],
-    queryFn: () => fetchBonusHuntData(huntId),
-    refetchInterval: 30000,
-    staleTime: 15000,
+    queryKey: ['bonus-hunt-data', huntId, latestHuntNumber],
+    queryFn: () => fetchBonusHuntData(huntId, latestHuntNumber),
+    refetchInterval: huntId && latestHuntNumber && huntId < latestHuntNumber ? false : 30000,
+    staleTime: huntId && latestHuntNumber && huntId < latestHuntNumber ? 300000 : 15000,
+  });
+}
+
+export function useLatestHuntNumber() {
+  return useQuery({
+    queryKey: ['bonus-hunt-latest-number'],
+    queryFn: fetchLatestHuntNumber,
+    staleTime: 60000,
   });
 }

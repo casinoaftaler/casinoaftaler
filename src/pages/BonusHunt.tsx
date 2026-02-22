@@ -6,7 +6,7 @@ import { BonusHuntStatsTab } from "@/components/bonus-hunt/BonusHuntStatsTab";
 import { BonusHuntGTWTab } from "@/components/bonus-hunt/BonusHuntGTWTab";
 import { BonusHuntAvgXTab } from "@/components/bonus-hunt/BonusHuntAvgXTab";
 import { BonusHuntFooter } from "@/components/bonus-hunt/BonusHuntFooter";
-import { useBonusHuntData } from "@/hooks/useBonusHuntData";
+import { useBonusHuntData, useLatestHuntNumber } from "@/hooks/useBonusHuntData";
 import { useBonusHuntSession, useBonusHuntGtwBets, useBonusHuntAvgxBets } from "@/hooks/useBonusHuntSession";
 import { useAuth } from "@/hooks/useAuth";
 import { useQueryClient } from "@tanstack/react-query";
@@ -18,6 +18,7 @@ export default function BonusHunt() {
   const queryClient = useQueryClient();
   const [huntIdOverride, setHuntIdOverride] = useState<number | undefined>();
 
+  const { data: latestHuntNumber = 1 } = useLatestHuntNumber();
   const { data: huntData, isLoading: huntLoading } = useBonusHuntData(huntIdOverride);
   const { data: session } = useBonusHuntSession();
   const { data: gtwBets = [] } = useBonusHuntGtwBets(session?.id);
@@ -30,14 +31,14 @@ export default function BonusHunt() {
 
   const handleNavigate = useCallback((dir: 'first' | 'prev' | 'next' | 'last') => {
     if (!huntData) return;
-    const current = huntIdOverride || huntData.visibleId;
+    const current = huntIdOverride || huntData.visibleId || latestHuntNumber;
     switch (dir) {
-      case 'prev': setHuntIdOverride(Math.max(1, current - 1)); break;
-      case 'next': setHuntIdOverride(current + 1); break;
+      case 'prev': if (current > 1) setHuntIdOverride(current - 1); break;
+      case 'next': if (current < latestHuntNumber) setHuntIdOverride(current + 1); else setHuntIdOverride(undefined); break;
       case 'first': setHuntIdOverride(1); break;
       case 'last': setHuntIdOverride(undefined); break;
     }
-  }, [huntData, huntIdOverride]);
+  }, [huntData, huntIdOverride, latestHuntNumber]);
 
   const huntDate = huntData?.date
     ? new Date(huntData.date).toLocaleDateString('da-DK', { day: 'numeric', month: 'short' }).toUpperCase()
