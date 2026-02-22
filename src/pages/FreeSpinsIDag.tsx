@@ -14,10 +14,11 @@ import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { Link } from "react-router-dom";
 import { useCasinos } from "@/hooks/useCasinos";
+import { useScrollReveal } from "@/hooks/useScrollReveal";
 import {
   Sparkles, Clock, ShieldCheck, AlertTriangle, Star, RefreshCw,
   Flame, Timer, CreditCard, RotateCcw, Award, CheckCircle2,
-  Users, Zap, Gift, Filter,
+  Users, Zap, Gift, Filter, ArrowRight,
 } from "lucide-react";
 import { format, differenceInHours, differenceInMinutes } from "date-fns";
 import { da } from "date-fns/locale";
@@ -70,7 +71,6 @@ interface CampaignOffer {
   for_existing_players: boolean;
 }
 
-// ─── Filter types ───
 type FilterType = "all" | "new" | "existing" | "no_deposit";
 
 const filterConfig: { id: FilterType; label: string; icon: React.ReactNode }[] = [
@@ -98,6 +98,17 @@ function useCountUp(target: number, duration = 1200): number {
     return () => cancelAnimationFrame(ref.current);
   }, [target, duration]);
   return count;
+}
+
+// ─── Time ago helper ───
+function timeAgo(dateStr: string): string {
+  const now = new Date();
+  const date = new Date(dateStr);
+  const hrs = differenceInHours(now, date);
+  const mins = differenceInMinutes(now, date) % 60;
+  if (hrs > 24) return `${Math.floor(hrs / 24)} dage siden`;
+  if (hrs > 0) return `${hrs} timer siden`;
+  return `${mins} min. siden`;
 }
 
 // ─── Countdown component ───
@@ -133,7 +144,6 @@ const offerTypeBadgeConfig: Record<string, { label: string; icon: React.ReactNod
   vip: { label: "VIP", icon: <Award className="h-3 w-3" />, className: "bg-amber-500/20 text-amber-400 border-amber-500/30" },
 };
 
-/** Pick best offer per casino (highest score), return sorted by score desc */
 function getBestPerCasino(campaigns: CampaignOffer[]): CampaignOffer[] {
   const bestMap = new Map<string, CampaignOffer>();
   for (const c of campaigns) {
@@ -145,7 +155,6 @@ function getBestPerCasino(campaigns: CampaignOffer[]): CampaignOffer[] {
   return Array.from(bestMap.values()).sort((a, b) => (b.score ?? 0) - (a.score ?? 0));
 }
 
-/** Apply filter to campaigns */
 function applyFilter(campaigns: CampaignOffer[], filter: FilterType): CampaignOffer[] {
   switch (filter) {
     case "new":
@@ -163,8 +172,9 @@ const FreeSpinsIDag = () => {
   const todayFormatted = format(new Date(), "d. MMMM yyyy", { locale: da });
   const { data: casinos } = useCasinos();
   const [activeFilter, setActiveFilter] = useState<FilterType>("all");
+  const { ref: statsRef, revealed: statsRevealed } = useScrollReveal();
+  const { ref: cardsRef, revealed: cardsRevealed } = useScrollReveal();
 
-  // Query free_spin_campaigns – only spin_count > 0
   const { data: campaigns, isLoading } = useQuery({
     queryKey: ["free-spin-campaigns"],
     queryFn: async () => {
@@ -180,11 +190,9 @@ const FreeSpinsIDag = () => {
     staleTime: 5 * 60 * 1000,
   });
 
-  // Apply filter then deduplicate: 1 best offer per casino
   const filteredCampaigns = campaigns ? applyFilter(campaigns, activeFilter) : [];
   const bestOffers = getBestPerCasino(filteredCampaigns);
 
-  // Featured = highest score with wagering <= 40x (from all, not filtered)
   const allBest = campaigns ? getBestPerCasino(campaigns) : [];
   const featured = allBest.find((o) => {
     if (o.wagering_requirement) {
@@ -194,18 +202,18 @@ const FreeSpinsIDag = () => {
     return true;
   }) || allBest[0] || null;
 
-  // Stats (from all campaigns, not filtered)
   const totalCount = allBest.length;
   const noDepCount = campaigns ? getBestPerCasino(campaigns.filter((o) => o.offer_type === "no_deposit" || !o.requires_deposit)).length : 0;
   const existingCount = campaigns ? getBestPerCasino(campaigns.filter((o) => ["daily", "existing", "weekend"].includes(o.offer_type))).length : 0;
 
-  const animatedTotal = useCountUp(totalCount);
-  const animatedNoDep = useCountUp(noDepCount);
-  const animatedExisting = useCountUp(existingCount);
+  const animatedTotal = useCountUp(statsRevealed ? totalCount : 0);
+  const animatedNoDep = useCountUp(statsRevealed ? noDepCount : 0);
+  const animatedExisting = useCountUp(statsRevealed ? existingCount : 0);
 
-  // Casino lookup for logos
   const getCasinoLogo = (slug: string) => casinos?.find((c) => c.slug === slug)?.logo_url || null;
   const getCasinoAffiliate = (slug: string) => casinos?.find((c) => c.slug === slug)?.affiliate_url || null;
+
+  const latestChecked = campaigns?.[0]?.last_checked;
 
   const schemaMarkup = [
     buildArticleSchema({
@@ -230,7 +238,6 @@ const FreeSpinsIDag = () => {
     },
   ];
 
-  // Offers to display (exclude featured from list to avoid duplication)
   const displayOffers = bestOffers.filter((o) => o.id !== featured?.id);
 
   return (
@@ -242,70 +249,105 @@ const FreeSpinsIDag = () => {
         breadcrumbLabel="Free Spins i Dag"
       />
 
-      {/* ─── Hero with background image ─── */}
+      {/* ─── Hero – taller, parallax, floating elements ─── */}
       <section
-        className="relative overflow-hidden py-12 text-white md:py-20"
+        className="relative overflow-hidden py-16 md:py-28 text-white"
         style={{
-          backgroundImage: `linear-gradient(135deg, hsl(260 70% 25% / 0.92), hsl(250 60% 20% / 0.88) 40%, hsl(210 80% 25% / 0.9)), url(${heroImage})`,
+          backgroundImage: `linear-gradient(135deg, hsl(260 70% 20% / 0.94), hsl(250 60% 15% / 0.92) 40%, hsl(210 80% 20% / 0.9)), url(${heroImage})`,
           backgroundSize: 'cover',
           backgroundPosition: 'center',
+          backgroundAttachment: 'fixed',
         }}
       >
-        <div className="container">
+        {/* Floating glow orbs */}
+        <div className="absolute inset-0 overflow-hidden pointer-events-none">
+          <div className="fs-orb fs-orb-1" />
+          <div className="fs-orb fs-orb-2" />
+          <div className="fs-orb fs-orb-3" />
+        </div>
+
+        <div className="container relative z-10">
           <div className="mx-auto max-w-3xl text-center">
-            <Badge variant="secondary" className="mb-4">
-              <Sparkles className="mr-1.5 h-3.5 w-3.5" />
-              Opdateret {todayFormatted}
-            </Badge>
-            <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">
-              Free Spins i Dag – Alle Aktuelle Tilbud
+            {/* Live badge */}
+            <div className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 backdrop-blur-sm px-4 py-2 text-sm font-medium mb-6 animate-fade-in">
+              <span className="relative flex h-2.5 w-2.5">
+                <span className="absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75 animate-ping" />
+                <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-green-400" />
+              </span>
+              {latestChecked
+                ? <span>Opdateret {timeAgo(latestChecked)}</span>
+                : <span>Opdateret {todayFormatted}</span>
+              }
+            </div>
+
+            <h1 className="mb-5 text-4xl font-extrabold tracking-tight md:text-5xl lg:text-6xl animate-fade-in [animation-delay:100ms]">
+              <span className="text-white">Free Spins i Dag</span>
+              <br />
+              <span className="bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
+                {totalCount > 0 ? `${totalCount} Aktive Tilbud` : "Alle Aktuelle Tilbud"}
+              </span>
             </h1>
-            <p className="text-lg text-white/80">
-              Kun danske licenserede casinoer. Opdateres automatisk kl. 07:00.
-              <br className="hidden md:block" />
-              {totalCount > 0 && <span className="font-medium text-white">{totalCount} aktive tilbud</span>}
+            <p className="mb-8 text-base md:text-lg text-white/75 max-w-xl mx-auto animate-fade-in [animation-delay:200ms]">
+              Kun danske licenserede casinoer – ét bedste tilbud per casino, rangeret efter vores score-system.
             </p>
+            <div className="flex flex-wrap justify-center gap-3 animate-fade-in [animation-delay:300ms]">
+              <Button size="lg" asChild className="fs-cta-glow font-bold shadow-lg shadow-primary/30 hover:shadow-primary/50 transition-all duration-300 hover:scale-105">
+                <a href="#free-spins-list">
+                  <Sparkles className="mr-2 h-5 w-5" />
+                  Se Alle Tilbud
+                </a>
+              </Button>
+              <Button size="lg" variant="outline" asChild className="bg-white/10 border-white/25 text-white hover:bg-white/20 transition-all duration-300 hover:scale-105 backdrop-blur-sm">
+                <a href="#free-spins-list">
+                  <Zap className="mr-2 h-5 w-5" />
+                  Uden Indbetaling
+                </a>
+              </Button>
+            </div>
           </div>
         </div>
       </section>
 
       <div className="container py-8 md:py-12">
-        <AuthorMetaBar author="jonas" date={todayFormatted} readTime="3 min." />
-
-
-        {/* Affiliate + trust disclaimer */}
+        {/* Trust bar */}
         <div className="flex items-center gap-2 text-xs text-muted-foreground mb-6 p-3 rounded-lg bg-muted/30 border border-border/50">
           <ShieldCheck className="h-4 w-4 flex-shrink-0" />
           <span>Kun danske licenserede casinoer. Alle er godkendt af <Link to="/spillemyndigheden" className={linkClass}>Spillemyndigheden</Link>. 18+ | <Link to="/ansvarligt-spil" className={linkClass}>Spil ansvarligt</Link></span>
         </div>
 
-        {/* ─── Statistics ─── */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
-          <StatCard icon={<Sparkles className="h-5 w-5 text-primary" />} value={animatedTotal} label="Casinoer med free spins" />
-          <StatCard icon={<Zap className="h-5 w-5 text-green-400" />} value={animatedNoDep} label="Uden indbetaling" />
-          <StatCard icon={<Users className="h-5 w-5 text-amber-400" />} value={animatedExisting} label="For eksisterende spillere" />
-          <Card className="text-center border-border/50">
+        {/* ─── Statistics with hover glow ─── */}
+        <div ref={statsRef} className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
+          <StatCard icon={<Sparkles className="h-5 w-5 text-primary" />} value={animatedTotal} label="Casinoer med free spins" revealed={statsRevealed} delay={0} />
+          <StatCard icon={<Zap className="h-5 w-5 text-green-400" />} value={animatedNoDep} label="Uden indbetaling" revealed={statsRevealed} delay={100} />
+          <StatCard icon={<Users className="h-5 w-5 text-amber-400" />} value={animatedExisting} label="For eksisterende spillere" revealed={statsRevealed} delay={200} />
+          <Card className={`text-center border-border/50 group hover:border-primary/40 hover:shadow-lg hover:shadow-primary/5 transition-all duration-300 ${statsRevealed ? 'animate-fade-in [animation-delay:300ms]' : 'opacity-0'}`}>
             <CardContent className="pt-5 pb-4">
               <div className="flex items-center justify-center gap-1.5 mb-1">
-                <RefreshCw className="h-5 w-5 text-primary" />
+                <RefreshCw className="h-5 w-5 text-primary group-hover:animate-spin" style={{ animationDuration: '2s' }} />
                 <span className="text-lg font-bold text-primary">07:00</span>
               </div>
-              <div className="text-xs text-muted-foreground">Opdateres dagligt</div>
+              <div className="flex items-center justify-center gap-1.5 text-xs text-muted-foreground">
+                <span className="relative flex h-2 w-2">
+                  <span className="absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75 animate-ping" />
+                  <span className="relative inline-flex h-2 w-2 rounded-full bg-green-400" />
+                </span>
+                Opdateres dagligt
+              </div>
             </CardContent>
           </Card>
         </div>
 
         {/* ─── Filter Tabs ─── */}
-        <div className="flex flex-wrap gap-2 mb-8" role="group" aria-label="Filtrer free spins tilbud">
+        <div className="flex flex-wrap gap-2 mb-8" role="group" aria-label="Filtrer free spins tilbud" id="free-spins-list">
           {filterConfig.map((f) => (
             <button
               key={f.id}
               onClick={() => setActiveFilter(f.id)}
               aria-pressed={activeFilter === f.id}
-              className={`inline-flex items-center gap-1.5 rounded-full border px-4 py-2 text-sm font-medium transition-colors ${
+              className={`inline-flex items-center gap-1.5 rounded-full border px-4 py-2 text-sm font-medium transition-all duration-250 ${
                 activeFilter === f.id
-                  ? "border-primary bg-primary text-primary-foreground"
-                  : "border-border bg-card text-foreground hover:border-primary/50"
+                  ? "border-primary bg-primary text-primary-foreground shadow-md shadow-primary/20"
+                  : "border-border bg-card text-foreground hover:border-primary/50 hover:shadow-sm"
               }`}
             >
               {f.icon} {f.label}
@@ -315,26 +357,6 @@ const FreeSpinsIDag = () => {
             </button>
           ))}
         </div>
-
-        {/* ─── Intro SEO text ─── */}
-        <section className="prose prose-lg dark:prose-invert max-w-none mb-10">
-          <h2 className="flex items-center gap-2">
-            <Sparkles className="h-6 w-6 text-primary" />
-            Dagens Free Spins – {todayFormatted}
-          </h2>
-          <p>
-            Velkommen til vores dagligt opdaterede oversigt over alle free spins tilbud hos danske licenserede casinoer.
-            Vi scanner automatisk danske aggregator-sites hver morgen kl. 07:00 og viser kun det bedste tilbud per casino,
-            rangeret efter vores score-system der tager højde for antal spins, omsætningskrav og om der kræves indbetaling.
-          </p>
-          <p>
-            Alle casinoer er licenserede af{" "}
-            <Link to="/spillemyndigheden" className={linkClass}>Spillemyndigheden</Link> og overholder dansk lovgivning.
-            Vi anbefaler altid at læse{" "}
-            <Link to="/omsaetningskrav" className={linkClass}>omsætningskravene</Link>{" "}
-            grundigt, før du accepterer et tilbud.
-          </p>
-        </section>
 
         {/* ─── Content ─── */}
         {isLoading ? (
@@ -368,7 +390,7 @@ const FreeSpinsIDag = () => {
           </div>
         ) : (
           <>
-            {/* Featured "Dagens Bedste" – highest score, wagering <= 40x */}
+            {/* Featured "Dagens Bedste" */}
             {featured && activeFilter === "all" && (
               <FeaturedOfferCard
                 offer={featured}
@@ -377,29 +399,55 @@ const FreeSpinsIDag = () => {
               />
             )}
 
-            {/* Offer list – 1 per casino, ranked by score */}
-            <section className="mb-10">
-              <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
+            {/* Offer grid – 2 cols on desktop */}
+            <section className="mb-10" ref={cardsRef}>
+              <h2 className="text-2xl font-bold mb-5 flex items-center gap-2">
                 <Filter className="h-5 w-5 text-primary" />
                 {activeFilter === "all" ? "Alle Free Spins Tilbud" : filterConfig.find((f) => f.id === activeFilter)?.label}
-                {" "}({displayOffers.length + (featured && activeFilter === "all" ? 0 : 0)})
+                {" "}({displayOffers.length})
               </h2>
-              <div className="space-y-3">
-                {displayOffers.map((offer) => (
-                  <OfferCard
+              <div className="grid gap-4 md:grid-cols-2">
+                {displayOffers.map((offer, idx) => (
+                  <div
                     key={offer.id}
-                    offer={offer}
-                    logoUrl={getCasinoLogo(offer.casino_slug)}
-                    affiliateUrl={getCasinoAffiliate(offer.casino_slug)}
-                  />
+                    className={cardsRevealed ? "animate-fade-in" : "opacity-0"}
+                    style={{ animationDelay: `${idx * 80}ms` }}
+                  >
+                    <OfferCard
+                      offer={offer}
+                      logoUrl={getCasinoLogo(offer.casino_slug)}
+                      affiliateUrl={getCasinoAffiliate(offer.casino_slug)}
+                    />
+                  </div>
                 ))}
               </div>
             </section>
           </>
         )}
 
-        {/* ─── SEO content ─── */}
         <Separator className="my-10" />
+
+        {/* ─── SEO content moved lower ─── */}
+        <AuthorMetaBar author="jonas" date={todayFormatted} readTime="3 min." />
+
+        <section className="prose prose-lg dark:prose-invert max-w-none mb-10 mt-6">
+          <h2 className="flex items-center gap-2">
+            <Sparkles className="h-6 w-6 text-primary" />
+            Dagens Free Spins – {todayFormatted}
+          </h2>
+          <p>
+            Velkommen til vores dagligt opdaterede oversigt over alle free spins tilbud hos danske licenserede casinoer.
+            Vi scanner automatisk danske aggregator-sites hver morgen kl. 07:00 og viser kun det bedste tilbud per casino,
+            rangeret efter vores score-system der tager højde for antal spins, omsætningskrav og om der kræves indbetaling.
+          </p>
+          <p>
+            Alle casinoer er licenserede af{" "}
+            <Link to="/spillemyndigheden" className={linkClass}>Spillemyndigheden</Link> og overholder dansk lovgivning.
+            Vi anbefaler altid at læse{" "}
+            <Link to="/omsaetningskrav" className={linkClass}>omsætningskravene</Link>{" "}
+            grundigt, før du accepterer et tilbud.
+          </p>
+        </section>
 
         <section className="prose prose-lg dark:prose-invert max-w-none mb-10">
           <h2 className="flex items-center gap-2">
@@ -455,17 +503,99 @@ const FreeSpinsIDag = () => {
         <Separator className="my-10" />
         <AuthorBio author="jonas" />
       </div>
+
+      {/* Page-scoped animations */}
+      <style>{`
+        .fs-orb {
+          position: absolute;
+          border-radius: 9999px;
+          filter: blur(60px);
+          opacity: 0.18;
+          will-change: transform;
+        }
+        .fs-orb-1 {
+          width: 220px; height: 220px;
+          background: hsl(260 70% 60%);
+          top: 10%; left: 5%;
+          animation: fs-float 8s ease-in-out infinite;
+        }
+        .fs-orb-2 {
+          width: 300px; height: 300px;
+          background: hsl(210 80% 55%);
+          bottom: 5%; right: 5%;
+          animation: fs-float 10s ease-in-out infinite 1.5s;
+        }
+        .fs-orb-3 {
+          width: 160px; height: 160px;
+          background: hsl(230 70% 50%);
+          top: 50%; left: 40%;
+          animation: fs-float 7s ease-in-out infinite 0.8s;
+        }
+        @keyframes fs-float {
+          0%, 100% { transform: translateY(0) translateX(0) scale(1); }
+          25% { transform: translateY(-18px) translateX(8px) scale(1.03); }
+          50% { transform: translateY(-6px) translateX(-10px) scale(0.98); }
+          75% { transform: translateY(-22px) translateX(5px) scale(1.02); }
+        }
+        .fs-cta-glow {
+          position: relative;
+          overflow: hidden;
+        }
+        .fs-cta-glow::after {
+          content: '';
+          position: absolute;
+          top: -50%; left: -50%;
+          width: 200%; height: 200%;
+          background: linear-gradient(
+            115deg,
+            transparent 20%,
+            hsl(0 0% 100% / 0.15) 40%,
+            hsl(0 0% 100% / 0.25) 50%,
+            hsl(0 0% 100% / 0.15) 60%,
+            transparent 80%
+          );
+          animation: fs-shimmer 3s ease-in-out infinite;
+        }
+        @keyframes fs-shimmer {
+          0% { transform: translateX(-100%); }
+          100% { transform: translateX(100%); }
+        }
+        .fs-featured-glow {
+          position: relative;
+        }
+        .fs-featured-glow::before {
+          content: '';
+          position: absolute;
+          inset: -2px;
+          border-radius: 1rem;
+          background: linear-gradient(135deg, hsl(260 70% 50% / 0.3), hsl(210 80% 50% / 0.2));
+          z-index: -1;
+          filter: blur(12px);
+          opacity: 0;
+          transition: opacity 0.3s ease;
+        }
+        .fs-featured-glow:hover::before {
+          opacity: 1;
+        }
+        .animate-fade-in {
+          animation: fs-fade-in 0.5s ease-out both;
+        }
+        @keyframes fs-fade-in {
+          from { opacity: 0; transform: translateY(12px); }
+          to { opacity: 1; transform: translateY(0); }
+        }
+      `}</style>
     </>
   );
 };
 
 // ─── Stat Card ───
-function StatCard({ icon, value, label }: { icon: React.ReactNode; value: number; label: string }) {
+function StatCard({ icon, value, label, revealed, delay }: { icon: React.ReactNode; value: number; label: string; revealed: boolean; delay: number }) {
   return (
-    <Card className="text-center border-border/50 hover:border-primary/30 transition-colors">
+    <Card className={`text-center border-border/50 group hover:border-primary/40 hover:shadow-lg hover:shadow-primary/5 transition-all duration-300 hover:-translate-y-1 ${revealed ? 'animate-fade-in' : 'opacity-0'}`} style={{ animationDelay: `${delay}ms` }}>
       <CardContent className="pt-5 pb-4">
         <div className="flex items-center justify-center gap-1.5 mb-1">
-          {icon}
+          <span className="group-hover:scale-110 transition-transform duration-300">{icon}</span>
           <span className="text-2xl font-bold text-foreground">{value}</span>
         </div>
         <div className="text-xs text-muted-foreground">{label}</div>
@@ -478,21 +608,25 @@ function StatCard({ icon, value, label }: { icon: React.ReactNode; value: number
 function FeaturedOfferCard({ offer, logoUrl, affiliateUrl }: { offer: CampaignOffer; logoUrl: string | null; affiliateUrl: string | null }) {
   const badge = offerTypeBadgeConfig[offer.offer_type] || offerTypeBadgeConfig.welcome;
   return (
-    <div className="relative mb-10 rounded-2xl overflow-hidden"
+    <div
+      className="fs-featured-glow relative mb-10 rounded-2xl overflow-hidden group hover:-translate-y-1.5 transition-all duration-300 hover:shadow-2xl hover:shadow-primary/10"
       style={{ backgroundImage: 'linear-gradient(135deg, hsl(260 50% 18%), hsl(250 40% 14%) 50%, hsl(210 60% 18%))' }}
     >
-      <div className="absolute top-4 left-4">
-        <Badge className="bg-orange-500/90 text-white border-0 text-sm font-bold px-3 py-1">
+      {/* Glow behind spin count */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-64 h-64 rounded-full bg-primary/10 blur-[80px] pointer-events-none" />
+
+      <div className="absolute top-4 left-4 z-10">
+        <Badge className="bg-orange-500/90 text-white border-0 text-sm font-bold px-3 py-1 shadow-lg shadow-orange-500/30">
           <Flame className="h-3.5 w-3.5 mr-1" /> Dagens Bedste
         </Badge>
       </div>
-      <div className="p-6 pt-14 md:p-8 md:pt-16 flex flex-col md:flex-row items-center gap-6">
+      <div className="relative p-6 pt-14 md:p-8 md:pt-16 flex flex-col md:flex-row items-center gap-6">
         {logoUrl && (
-          <div className="flex-shrink-0">
+          <div className="flex-shrink-0 group-hover:scale-105 transition-transform duration-300">
             <img
               src={logoUrl}
               alt={offer.casino_name}
-              className="w-16 h-16 md:w-20 md:h-20 rounded-full object-cover border-2 border-white/20"
+              className="w-16 h-16 md:w-20 md:h-20 rounded-full object-cover border-2 border-white/20 shadow-lg"
               loading="lazy"
             />
           </div>
@@ -507,7 +641,7 @@ function FeaturedOfferCard({ offer, logoUrl, affiliateUrl }: { offer: CampaignOf
             </span>
           </div>
           <div className="text-4xl md:text-5xl font-extrabold text-white mb-2">
-            {offer.spin_count} <span className="text-primary">Free Spins</span>
+            <span className="fs-spin-number">{offer.spin_count}</span> <span className="text-primary">Free Spins</span>
           </div>
           <div className="flex flex-wrap items-center justify-center md:justify-start gap-4 text-xs text-white/60">
             {offer.wagering_requirement && (
@@ -525,14 +659,16 @@ function FeaturedOfferCard({ offer, logoUrl, affiliateUrl }: { offer: CampaignOf
         <div className="flex-shrink-0">
           {affiliateUrl ? (
             <a href={affiliateUrl} target="_blank" rel="noopener noreferrer nofollow">
-              <Button size="lg" className="text-base font-bold shadow-lg shadow-primary/30 hover:shadow-primary/50 transition-shadow">
+              <Button size="lg" className="fs-cta-glow text-base font-bold shadow-lg shadow-primary/30 group-hover:shadow-primary/50 group-hover:scale-105 transition-all duration-300">
                 <Sparkles className="h-4 w-4 mr-2" /> Få Free Spins
+                <ArrowRight className="h-4 w-4 ml-1" />
               </Button>
             </a>
           ) : (
             <Link to={`/casino-anmeldelser/${offer.casino_slug}`}>
-              <Button size="lg" className="text-base font-bold">
+              <Button size="lg" className="fs-cta-glow text-base font-bold group-hover:scale-105 transition-all duration-300">
                 <Sparkles className="h-4 w-4 mr-2" /> Se Tilbud
+                <ArrowRight className="h-4 w-4 ml-1" />
               </Button>
             </Link>
           )}
@@ -548,10 +684,10 @@ function OfferCard({ offer, logoUrl, affiliateUrl }: { offer: CampaignOffer; log
   const isExpiringSoon = offer.expiry_date && differenceInHours(new Date(offer.expiry_date), new Date()) < 24;
 
   return (
-    <Card className="group hover:border-primary/40 transition-all duration-300 border-border/50 hover:shadow-lg hover:shadow-primary/5">
+    <Card className="group hover:border-primary/40 hover:-translate-y-1 transition-all duration-300 border-border/50 hover:shadow-lg hover:shadow-primary/10">
       <CardContent className="p-4 md:p-5">
         <div className="flex items-center gap-4">
-          <div className="flex-shrink-0">
+          <div className="flex-shrink-0 group-hover:scale-105 transition-transform duration-300">
             {logoUrl ? (
               <img
                 src={logoUrl}
@@ -605,13 +741,13 @@ function OfferCard({ offer, logoUrl, affiliateUrl }: { offer: CampaignOffer; log
           <div className="flex-shrink-0 hidden sm:block">
             {affiliateUrl ? (
               <a href={affiliateUrl} target="_blank" rel="noopener noreferrer nofollow">
-                <Button className="group-hover:shadow-md group-hover:shadow-primary/20 transition-shadow">
-                  Få Free Spins
+                <Button className="fs-cta-glow group-hover:shadow-md group-hover:shadow-primary/20 group-hover:scale-105 transition-all duration-300">
+                  Få Free Spins <ArrowRight className="h-3.5 w-3.5 ml-1" />
                 </Button>
               </a>
             ) : (
               <Link to={`/casino-anmeldelser/${offer.casino_slug}`}>
-                <Button variant="outline">Se Tilbud</Button>
+                <Button variant="outline" className="group-hover:border-primary/50 transition-colors">Se Tilbud</Button>
               </Link>
             )}
           </div>
@@ -621,7 +757,7 @@ function OfferCard({ offer, logoUrl, affiliateUrl }: { offer: CampaignOffer; log
         <div className="sm:hidden mt-3">
           {affiliateUrl ? (
             <a href={affiliateUrl} target="_blank" rel="noopener noreferrer nofollow" className="block">
-              <Button className="w-full">Få Free Spins</Button>
+              <Button className="w-full fs-cta-glow">Få Free Spins <ArrowRight className="h-3.5 w-3.5 ml-1" /></Button>
             </a>
           ) : (
             <Link to={`/casino-anmeldelser/${offer.casino_slug}`} className="block">
