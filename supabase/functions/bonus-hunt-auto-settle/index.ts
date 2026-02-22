@@ -1,0 +1,215 @@
+import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
+
+const corsHeaders = {
+  'Access-Control-Allow-Origin': '*',
+  'Access-Control-Allow-Headers': 'authorization, x-client-info, apikey, content-type, x-supabase-client-platform, x-supabase-client-platform-version, x-supabase-client-runtime, x-supabase-client-runtime-version',
+};
+
+const STREAMSYSTEM_BASE = "https://www.streamsystem.bet/api/bonushunt/data";
+const STREAMER_ID = "959262659";
+
+Deno.serve(async (req) => {
+  if (req.method === 'OPTIONS') {
+    return new Response(null, { headers: corsHeaders });
+  }
+
+  try {
+    const supabaseUrl = Deno.env.get('SUPABASE_URL')!;
+    const serviceRoleKey = Deno.env.get('SUPABASE_SERVICE_ROLE_KEY')!;
+    const seJwtToken = Deno.env.get('STREAMELEMENTS_JWT_TOKEN');
+    const admin = createClient(supabaseUrl, serviceRoleKey);
+
+    // Find active/upcoming sessions that haven't been settled yet
+    const { data: sessions, error: sessError } = await admin
+      .from('bonus_hunt_sessions')
+      .select('*')
+      .in('status', ['upcoming', 'active'])
+      .order('created_at', { ascending: false });
+
+    if (sessError || !sessions || sessions.length === 0) {
+      return new Response(JSON.stringify({ message: 'No active sessions to check' }), {
+        headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+      });
+    }
+
+    const results: any[] = [];
+
+    for (const session of sessions) {
+      // Fetch the hunt data from the API using hunt_number
+      const apiUrl = `${STREAMSYSTEM_BASE}/${STREAMER_ID}?visibleId=${session.hunt_number}`;
+      const response = await fetch(apiUrl, { headers: { 'Accept': 'application/json' } });
+
+      if (!response.ok) {
+        results.push({ huntNumber: session.hunt_number, status: 'api_error', code: response.status });
+        continue;
+      }
+
+      const raw = await response.json();
+      const huntData = raw?.data;
+
+      if (!huntData) {
+        results.push({ huntNumber: session.hunt_number, status: 'no_data' });
+        continue;
+      }
+
+      // Check if the hunt is completed
+      if (!huntData.played) {
+        results.push({ huntNumber: session.hunt_number, status: 'still_active' });
+        continue;
+      }
+
+      const endBalance = huntData.end || null;
+      const stats = huntData.statistics || {};
+      const averageX = stats.runAverage ? parseFloat(stats.runAverage) : null;
+
+      if (!endBalance && !averageX) {
+        results.push({ huntNumber: session.hunt_number, status: 'completed_but_no_data' });
+        continue;
+      }
+
+      // --- Auto-settle: same logic as bonus-hunt-settle ---
+
+      const settleResults: Record<string, unknown> = {};
+      const today = new Date().toISOString().split('T')[0];
+
+      // --- Settle GTW ---
+      if (endBalance) {
+        const { data: gtwBets } = await admin
+          .from('bonus_hunt_gtw_bets')
+          .select('*')
+          .eq('session_id', session.id);
+
+        if (gtwBets && gtwBets.length > 0) {
+          const ranked = gtwBets
+            .map((bet: any) => ({ ...bet, difference: Math.abs(bet.guess_amount - endBalance) }))
+            .sort((a: any, b: any) => a.difference - b.difference);
+
+          const prizes = (session.gtw_prizes as Array<{ place: number; points: number; credits?: number }>) || [];
+
+          for (let i = 0; i < ranked.length; i++) {
+            const bet = ranked[i];
+            const rank = i + 1;
+            const prize = prizes.find((p: any) => p.place === rank);
+
+            await admin
+              .from('bonus_hunt_gtw_bets')
+              .update({ difference: bet.difference, rank, prize_points: prize?.points || 0 })
+              .eq('id', bet.id);
+
+            // Award credits
+            if (prize && prize.credits && prize.credits > 0) {
+              try {
+                const { data: spinsRow } = await admin
+                  .from('slot_spins')
+                  .select('id, spins_remaining')
+                  .eq('user_id', bet.user_id)
+                  .eq('date', today)
+                  .single();
+
+                if (spinsRow) {
+                  await admin.from('slot_spins').update({ spins_remaining: spinsRow.spins_remaining + prize.credits }).eq('id', spinsRow.id);
+                } else {
+                  await admin.from('slot_spins').insert({ user_id: bet.user_id, date: today, spins_remaining: 200 + prize.credits });
+                }
+
+                await admin.from('credit_allocation_log').insert({
+                  user_id: bet.user_id, amount: prize.credits, source: 'bonus_hunt_gtw',
+                  note: `GTW ${rank}. plads: ${prize.credits} credits (auto-settle)`,
+                });
+              } catch (e) {
+                console.error(`Failed to award credits to user ${bet.user_id}:`, e);
+              }
+            }
+
+            // Award SE points
+            if (prize && prize.points > 0 && seJwtToken) {
+              try {
+                const { data: profile } = await admin.from('profiles').select('twitch_username').eq('user_id', bet.user_id).single();
+                if (profile?.twitch_username) {
+                  const { data: channelSetting } = await admin.from('site_settings').select('value').eq('key', 'streamelements_channel_id').single();
+                  if (channelSetting?.value) {
+                    await fetch(`https://api.streamelements.com/kappa/v2/points/${channelSetting.value}/${profile.twitch_username}/${prize.points}`, {
+                      method: 'PUT',
+                      headers: { 'Authorization': `Bearer ${seJwtToken}`, 'Content-Type': 'application/json' },
+                    });
+                  }
+                }
+              } catch (e) {
+                console.error(`Failed to award SE points to user ${bet.user_id}:`, e);
+              }
+            }
+          }
+
+          settleResults.gtw = { settled: ranked.length, topGuess: ranked[0]?.guess_amount };
+        }
+
+        await admin.from('bonus_hunt_sessions').update({ end_balance: endBalance }).eq('id', session.id);
+      }
+
+      // --- Settle AVG X ---
+      if (averageX) {
+        let winningGroup: string;
+        if (averageX < 60) winningGroup = 'A';
+        else if (averageX < 70) winningGroup = 'B';
+        else if (averageX < 80) winningGroup = 'C';
+        else if (averageX < 90) winningGroup = 'D';
+        else if (averageX < 100) winningGroup = 'E';
+        else if (averageX < 110) winningGroup = 'F';
+        else if (averageX < 120) winningGroup = 'G';
+        else if (averageX < 130) winningGroup = 'H';
+        else if (averageX < 140) winningGroup = 'I';
+        else winningGroup = 'J';
+
+        const { data: allAvgxBets } = await admin
+          .from('bonus_hunt_avgx_bets')
+          .select('*')
+          .eq('session_id', session.id);
+
+        if (allAvgxBets && allAvgxBets.length > 0) {
+          const totalPot = allAvgxBets.reduce((sum: number, b: any) => sum + b.bet_amount, 0);
+          const winners = allAvgxBets.filter((b: any) => b.group_letter === winningGroup);
+          const totalWinnerBets = winners.reduce((sum: number, b: any) => sum + b.bet_amount, 0);
+
+          for (const bet of allAvgxBets) {
+            if (bet.group_letter === winningGroup && totalWinnerBets > 0) {
+              const share = Math.floor((bet.bet_amount / totalWinnerBets) * totalPot);
+              await admin.from('bonus_hunt_avgx_bets').update({ winnings: share }).eq('id', bet.id);
+
+              if (share > 0) {
+                const { data: spinsRow } = await admin.from('slot_spins').select('id, spins_remaining').eq('user_id', bet.user_id).eq('date', today).single();
+                if (spinsRow) {
+                  await admin.from('slot_spins').update({ spins_remaining: spinsRow.spins_remaining + share }).eq('id', spinsRow.id);
+                } else {
+                  await admin.from('slot_spins').insert({ user_id: bet.user_id, date: today, spins_remaining: 200 + share });
+                }
+                await admin.from('credit_allocation_log').insert({
+                  user_id: bet.user_id, amount: share, source: 'bonus_hunt_avgx',
+                  note: `AVG X win: group ${winningGroup}, share ${share} credits (auto-settle)`,
+                });
+              }
+            } else {
+              await admin.from('bonus_hunt_avgx_bets').update({ winnings: 0 }).eq('id', bet.id);
+            }
+          }
+
+          settleResults.avgx = { winningGroup, totalPot, winnersCount: winners.length };
+        }
+
+        await admin.from('bonus_hunt_sessions').update({ average_x: averageX, winning_group: winningGroup!, status: 'completed' }).eq('id', session.id);
+      }
+
+      // Close betting and mark completed
+      await admin.from('bonus_hunt_sessions').update({ gtw_betting_open: false, avgx_betting_open: false, status: 'completed' }).eq('id', session.id);
+
+      results.push({ huntNumber: session.hunt_number, status: 'auto_settled', ...settleResults });
+    }
+
+    return new Response(JSON.stringify({ success: true, results }), {
+      headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+    });
+  } catch (error) {
+    return new Response(JSON.stringify({ error: error.message }), {
+      status: 500, headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+    });
+  }
+});
