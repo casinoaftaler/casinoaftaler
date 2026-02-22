@@ -4,13 +4,15 @@
  * Used by:
  *  - The Vite sitemap plugin (build-time sitemap.xml generation)
  *  - Potentially future prerender or SSR pipelines
- *
- * Rules:
- *  - Only pages that use <SEO /> without noindex belong here.
- *  - Community, auth, profile, admin, shop and highlight pages are excluded.
- *  - Canonical URLs are derived from SITE_URL + path.
- *  - lastmod should match the dateModified in the page's Article schema.
- */
+  *
+  * Rules:
+  *  - Only pages that use <SEO /> without noindex belong here.
+  *  - Community, auth, profile, admin, shop and highlight pages are excluded.
+  *  - Canonical URLs are derived from SITE_URL + path.
+  *  - lastmod should match the dateModified in the page's Article schema.
+  *  - IMPORTANT: When editing any page component, always update the corresponding
+  *    lastmod date here to today's date (YYYY-MM-DD) to signal freshness to Google.
+  */
 
 export interface SeoRoute {
   /** Absolute path, e.g. "/casino-bonus" */
@@ -25,7 +27,7 @@ export interface SeoRoute {
 
 export const seoRoutes: SeoRoute[] = [
   // ── Forside ──
-  { path: "/", changefreq: "daily", priority: 1.0, lastmod: "2026-02-16" },
+  { path: "/", changefreq: "daily", priority: 1.0, lastmod: "2026-02-22" },
 
   // ── Casino Anmeldelser ──
   { path: "/casino-anmeldelser", changefreq: "weekly", priority: 0.9, lastmod: "2026-02-15" },
@@ -178,9 +180,9 @@ export const seoRoutes: SeoRoute[] = [
   { path: "/casino-nyheder", changefreq: "daily", priority: 0.9, lastmod: "2026-02-21" },
 
   // ── Community & Highlights ──
-  { path: "/community", changefreq: "daily", priority: 0.6, lastmod: "2026-02-20" },
-  { path: "/community/slots", changefreq: "daily", priority: 0.6, lastmod: "2026-02-20" },
-  { path: "/highlights", changefreq: "daily", priority: 0.6, lastmod: "2026-02-20" },
+  { path: "/community", changefreq: "daily", priority: 0.6, lastmod: "2026-02-22" },
+  { path: "/community/slots", changefreq: "daily", priority: 0.6, lastmod: "2026-02-22" },
+  { path: "/highlights", changefreq: "daily", priority: 0.6, lastmod: "2026-02-22" },
 
   // ── Info & Ansvarligt Spil ──
   { path: "/ansvarligt-spil", changefreq: "monthly", priority: 0.6, lastmod: "2026-02-14" },
