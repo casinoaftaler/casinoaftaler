@@ -79,7 +79,6 @@ interface ParsedOffer {
 function resolveSlug(name: string): string | null {
   const lower = name.toLowerCase().trim();
   if (CASINO_NAME_MAP[lower]) return CASINO_NAME_MAP[lower];
-  // Partial match
   for (const [key, slug] of Object.entries(CASINO_NAME_MAP)) {
     if (lower.includes(key) || key.includes(lower)) return slug;
   }
@@ -88,7 +87,6 @@ function resolveSlug(name: string): string | null {
 
 /** Extract spin count from text */
 function extractSpinCount(text: string): number {
-  // Try specific patterns first
   const patterns = [
     /(\d+)\s*(?:gratis\s*)?(?:free\s*)?(?:cash\s*)?(?:bonus\s*)?(?:spins?|chancer)/i,
     /(?:få|hent|modtag)\s+(\d+)\s+(?:free\s*)?(?:spins?|chancer)/i,
@@ -137,12 +135,25 @@ function classifyOffer(text: string): { type: string; forNew: boolean; forExisti
   return { type, forNew, forExisting, requiresDeposit };
 }
 
-/** Detect wagering from text */
+/** Detect wagering from text – CONTEXT-BASED only */
 function detectWagering(text: string): string | null {
-  const m = text.match(/(\d+)\s*(?:x|gange)\s*(?:gennemspil|omsætning)/i);
-  if (m) return `${m[1]}x`;
-  const m2 = text.match(/uden\s*(?:gennemspils?krav|omsætningskrav)/i);
-  if (m2) return "Ingen";
+  // Only match wagering when it's in context of "omsætningskrav" or "gennemspil"
+  const contextMatch = text.match(/(?:omsætningskrav|gennemspil|omsætning)[^\d]*(\d+)\s*(?:x|gange)/i);
+  if (contextMatch) {
+    const val = parseInt(contextMatch[1], 10);
+    if (val > 0 && val <= 100) return `${val}x`;
+    return null; // > 100x is invalid
+  }
+  // Also match "Xx gennemspil/omsætning"
+  const reverseMatch = text.match(/(\d+)\s*(?:x|gange)\s*(?:gennemspil|omsætning|omsætningskrav)/i);
+  if (reverseMatch) {
+    const val = parseInt(reverseMatch[1], 10);
+    if (val > 0 && val <= 100) return `${val}x`;
+    return null;
+  }
+  // "Uden omsætningskrav"
+  const noWager = text.match(/uden\s*(?:gennemspils?krav|omsætningskrav)/i);
+  if (noWager) return "Ingen";
   return null;
 }
 
@@ -162,16 +173,34 @@ function detectExpiry(text: string): string | null {
   return null;
 }
 
+/** Calculate score for ranking */
+function calculateScore(offer: ParsedOffer): number {
+  let score = offer.spin_count;
+  
+  // Subtract wagering penalty
+  if (offer.wagering_requirement && offer.wagering_requirement !== "Ingen") {
+    const wagerMatch = offer.wagering_requirement.match(/(\d+)/);
+    if (wagerMatch) {
+      score -= parseInt(wagerMatch[1], 10) * 2;
+    }
+  }
+  
+  // Bonus for no deposit
+  if (!offer.requires_deposit) {
+    score += 50;
+  }
+  
+  return score;
+}
+
 // ─── Casinopenge.dk parser ───
 function parseCasinopenge(markdown: string, sourceUrl: string): ParsedOffer[] {
   const offers: ParsedOffer[] = [];
-  // Split by "## [" headings which are offer titles
   const sections = markdown.split(/(?=## \[)/);
 
   for (const section of sections) {
     if (section.length < 30) continue;
 
-    // Extract casino name from image alt or logo reference
     let casinoName = "";
     const logoMatch = section.match(/!\[([^\]]+)\]\([^)]*casino-logo[^)]*\)/i);
     if (logoMatch) casinoName = logoMatch[1];
@@ -183,12 +212,12 @@ function parseCasinopenge(markdown: string, sourceUrl: string): ParsedOffer[] {
     const slug = resolveSlug(casinoName);
     if (!slug) continue;
 
-    // Extract title
     const titleMatch = section.match(/## \[([^\]]+)\]/);
     const title = titleMatch ? titleMatch[1] : "";
 
     const spinCount = extractSpinCount(section);
-    if (spinCount === 0 && !title.toLowerCase().includes("spin") && !title.toLowerCase().includes("chancer") && !title.toLowerCase().includes("lykkehjul")) continue;
+    // ★ STRICT: skip if spin_count is 0
+    if (spinCount <= 0) continue;
 
     const classification = classifyOffer(section);
     const cleanDesc = section
@@ -221,13 +250,11 @@ function parseCasinopenge(markdown: string, sourceUrl: string): ParsedOffer[] {
 // ─── Spilxperten.com parser ───
 function parseSpilxperten(markdown: string, sourceUrl: string): ParsedOffer[] {
   const offers: ParsedOffer[] = [];
-  // Split by table rows (each offer is a table block starting with | )
   const tableBlocks = markdown.split(/\n\|\s*---\s*\|\n/);
 
   for (const block of tableBlocks) {
     if (block.length < 40) continue;
 
-    // Detect casino from links or image alts
     let casinoName = "";
     const casinoLinkMatch = block.match(/\[([^\]]*(?:Casino|Bet365|Unibet|LeoVegas|Mr Green|Kapow|Betano|Spilnu|Casinostuen|Royal)[^\]]*)\]/i);
     if (casinoLinkMatch) casinoName = casinoLinkMatch[1].replace(/\*/g, "").trim();
@@ -238,7 +265,6 @@ function parseSpilxperten(markdown: string, sourceUrl: string): ParsedOffer[] {
         if (nameFromUrl) casinoName = nameFromUrl[0];
       }
     }
-    // Also try extracting from besoeg/ links
     const besoegMatch = block.match(/besoeg\/([a-z0-9-]+)/i);
     if (!casinoName && besoegMatch) {
       casinoName = besoegMatch[1].replace(/-/g, " ");
@@ -247,15 +273,14 @@ function parseSpilxperten(markdown: string, sourceUrl: string): ParsedOffer[] {
     const slug = resolveSlug(casinoName);
     if (!slug) continue;
 
-    // Extract title from bold text or first line
     const titleMatch = block.match(/\|\s*([^|]*(?:free\s*spins?|chancer|cash\s*spins?|lykkehjul|gratis|prize|lodtrækning)[^|]*)\s*\|/i);
     const title = titleMatch ? titleMatch[1].replace(/[*💥🔥🎁💰😍]/g, "").replace(/\s+/g, " ").trim() : "";
 
     const spinCount = extractSpinCount(block);
+    // ★ STRICT: skip if spin_count is 0
+    if (spinCount <= 0) continue;
+
     const classification = classifyOffer(block);
-
-    if (spinCount === 0 && !block.toLowerCase().includes("lykkehjul") && !block.toLowerCase().includes("prize") && !block.toLowerCase().includes("lodtrækning")) continue;
-
     const cleanDesc = block
       .replace(/!\[[^\]]*\]\([^)]*\)/g, "")
       .replace(/\[[^\]]*\]\([^)]*\)/g, "")
@@ -286,13 +311,11 @@ function parseSpilxperten(markdown: string, sourceUrl: string): ParsedOffer[] {
 // ─── CasinoOnline.dk parser ───
 function parseCasinoonline(markdown: string, sourceUrl: string): ParsedOffer[] {
   const offers: ParsedOffer[] = [];
-  // Split by table blocks (offer tables start with | BONUS or | FREE SPINS)
   const tableBlocks = markdown.split(/\n\|\s*(?:BONUS|FREE SPINS)[^|]*\|/i);
 
   for (const block of tableBlocks) {
     if (block.length < 40) continue;
 
-    // Detect casino from "HOS XXXX CASINO" pattern
     let casinoName = "";
     const hosMatch = block.match(/HOS\s+([A-ZÆØÅ][A-ZÆØÅ\s]+)\s*(?:CASINO)?/i);
     if (hosMatch) casinoName = hosMatch[1].trim();
@@ -304,15 +327,14 @@ function parseCasinoonline(markdown: string, sourceUrl: string): ParsedOffer[] {
     const slug = resolveSlug(casinoName);
     if (!slug) continue;
 
-    // Extract title from bracketed text
     const titleMatch = block.match(/\[([^\]]*(?:FREE|GRATIS|SPINS|CASH|MANDAGS|LYKKEHJUL)[^\]]*)\]/i);
     const title = titleMatch ? titleMatch[1] : "";
 
     const spinCount = extractSpinCount(block);
+    // ★ STRICT: skip if spin_count is 0
+    if (spinCount <= 0) continue;
+
     const classification = classifyOffer(block);
-
-    if (spinCount === 0 && !block.toLowerCase().includes("lykkehjul") && !block.toLowerCase().includes("bonus")) continue;
-
     const cleanDesc = block
       .replace(/!\[[^\]]*\]\([^)]*\)/g, "")
       .replace(/\[[^\]]*\]\([^)]*\)/g, "")
@@ -426,26 +448,27 @@ Deno.serve(async (req) => {
       allParsedOffers.push(...parsed);
     }
 
-    console.log(`Total parsed offers: ${allParsedOffers.length}`);
+    console.log(`Total parsed offers (all spin_count > 0): ${allParsedOffers.length}`);
 
-    // ─── Deduplicate by casino_slug + title similarity ───
-    const uniqueOffers: ParsedOffer[] = [];
-    const seenKeys = new Set<string>();
+    // ─── Deduplicate: keep BEST offer per casino_slug + offer_type ───
+    const bestPerCasinoType = new Map<string, ParsedOffer>();
 
     for (const offer of allParsedOffers) {
-      // Key: slug + spin_count + first 30 chars of title
-      const key = `${offer.casino_slug}:${offer.spin_count}:${offer.title.substring(0, 30).toLowerCase()}`;
-      if (seenKeys.has(key)) continue;
-      seenKeys.add(key);
-      uniqueOffers.push(offer);
+      const key = `${offer.casino_slug}:${offer.offer_type}`;
+      const existing = bestPerCasinoType.get(key);
+      if (!existing || calculateScore(offer) > calculateScore(existing)) {
+        bestPerCasinoType.set(key, offer);
+      }
     }
 
-    console.log(`Unique offers after dedup: ${uniqueOffers.length}`);
+    const uniqueOffers = Array.from(bestPerCasinoType.values());
+    console.log(`Unique offers after dedup (best per casino+type): ${uniqueOffers.length}`);
 
     // ─── Map to campaign records ───
     const campaigns = uniqueOffers
       .map((offer) => {
         const casino = casinoMap.get(offer.casino_slug);
+        const score = calculateScore(offer);
         return {
           casino_id: casino?.id || null,
           casino_name: casino?.name || offer.casino_name,
@@ -466,14 +489,15 @@ Deno.serve(async (req) => {
           casino_logo_url: casino?.logo_url || null,
           affiliate_url: casino?.affiliate_url || null,
           last_checked: new Date().toISOString(),
+          score,
         };
       })
       .filter((c) => casinoMap.has(c.casino_slug)); // Only include casinos we have in our DB
 
     console.log(`Campaigns to insert (matched to DB casinos): ${campaigns.length}`);
 
-    // ─── Deactivate old campaigns ───
-    await admin.from("free_spin_campaigns").update({ is_active: false }).in("source_type", ["scraped", "aggregator", "database"]);
+    // ─── TRUNCATE old campaigns (clean slate) ───
+    await admin.from("free_spin_campaigns").delete().in("source_type", ["scraped", "aggregator", "database"]);
 
     // ─── Insert new campaigns ───
     if (campaigns.length > 0) {
@@ -485,7 +509,7 @@ Deno.serve(async (req) => {
     }
 
     // ─── Sync to legacy table ───
-    await admin.from("daily_free_spins_offers").update({ is_active: false }).eq("is_manually_added", false);
+    await admin.from("daily_free_spins_offers").delete().eq("is_manually_added", false);
 
     if (campaigns.length > 0) {
       const legacyOffers = campaigns.map((c) => ({
@@ -513,7 +537,6 @@ Deno.serve(async (req) => {
       uniqueOffers: uniqueOffers.length,
       campaignsInserted: campaigns.length,
       scrapeResults,
-      campaignsBySource: scrapeResults.map((s) => `${s.source}: ${s.offers_found} offers`),
       campaignsByCasino: campaigns.reduce((acc, c) => {
         acc[c.casino_slug] = (acc[c.casino_slug] || 0) + 1;
         return acc;

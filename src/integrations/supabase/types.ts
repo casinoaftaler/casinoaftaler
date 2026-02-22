@@ -865,6 +865,7 @@ export type Database = {
           min_deposit: string | null
           offer_type: string
           requires_deposit: boolean
+          score: number
           source_type: string
           source_url: string | null
           spin_count: number
@@ -889,6 +890,7 @@ export type Database = {
           min_deposit?: string | null
           offer_type?: string
           requires_deposit?: boolean
+          score?: number
           source_type?: string
           source_url?: string | null
           spin_count?: number
@@ -913,6 +915,7 @@ export type Database = {
           min_deposit?: string | null
           offer_type?: string
           requires_deposit?: boolean
+          score?: number
           source_type?: string
           source_url?: string | null
           spin_count?: number
