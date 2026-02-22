@@ -133,7 +133,23 @@ const FreeSpinsIDag = () => {
   const todayFormatted = format(new Date(), "d. MMMM yyyy", { locale: da });
   const { data: casinos } = useCasinos();
 
-  const { data: rawOffers, isLoading } = useQuery({
+  // Query the new free_spin_campaigns table (primary source)
+  const { data: campaigns, isLoading: loadingCampaigns } = useQuery({
+    queryKey: ["free-spin-campaigns"],
+    queryFn: async () => {
+      const { data, error } = await supabase
+        .from("free_spin_campaigns")
+        .select("*")
+        .eq("is_active", true)
+        .order("spin_count", { ascending: false });
+      if (error) throw error;
+      return data;
+    },
+    staleTime: 5 * 60 * 1000,
+  });
+
+  // Fallback: also query legacy table
+  const { data: rawOffers, isLoading: loadingLegacy } = useQuery({
     queryKey: ["daily-free-spins-offers"],
     queryFn: async () => {
       const { data, error } = await supabase
@@ -145,10 +161,28 @@ const FreeSpinsIDag = () => {
       return data as RawOffer[];
     },
     staleTime: 5 * 60 * 1000,
+    enabled: !campaigns || campaigns.length === 0,
   });
 
-  // CRITICAL: Only show free spins offers, never general bonuses
-  const allFreeSpins = rawOffers?.filter(isFreeSpinsOffer) || [];
+  const isLoading = loadingCampaigns || ((!campaigns || campaigns.length === 0) && loadingLegacy);
+
+  // Map campaigns to a unified format
+  const allFreeSpins: RawOffer[] = (campaigns && campaigns.length > 0)
+    ? campaigns.map((c) => ({
+        id: c.id,
+        casino_id: c.casino_id,
+        casino_name: c.casino_name,
+        casino_slug: c.casino_slug,
+        offer_title: c.title,
+        offer_description: c.description,
+        free_spins_count: c.spin_count,
+        min_deposit: c.min_deposit,
+        wagering_requirement: c.wagering_requirement,
+        valid_until: c.expiry_date,
+        offer_type: c.offer_type,
+        scraped_at: c.last_checked,
+      }))
+    : (rawOffers?.filter(isFreeSpinsOffer) || []);
 
   // Categorize
   const noDepositOffers = allFreeSpins.filter((o) => o.offer_type === "no_deposit");
