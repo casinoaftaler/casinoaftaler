@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
+import { CasinoLatestNews } from "@/components/CasinoLatestNews";
 import {
   Gift,
   Sparkles,
@@ -111,7 +112,7 @@ const casinoGuidesSiblings: GuideLink[] = [
   { to: "/casinoer/hurtig-udbetaling", label: "Hurtig Udbetaling", icon: Zap, desc: "Casinoer med de hurtigste udbetalinger" },
   { to: "/casinoer/hoej-rtp", label: "Høj RTP", icon: BarChart3, desc: "Casinoer med bedst tilbagebetaling" },
   { to: "/casinoer/crypto-casino", label: "Crypto Casino", icon: Globe, desc: "Bitcoin og krypto-gambling" },
-  { to: "/licenserede-casinoer", label: "Licenserede Casinoer", icon: ShieldCheck, desc: "Sikre casinoer med dansk licens" },
+  { to: "/casino-licenser", label: "Licenserede Casinoer", icon: ShieldCheck, desc: "Sikre casinoer med dansk licens" },
   { to: "/casinoer/vr-casinoer", label: "VR Casinoer", icon: Gamepad2, desc: "Virtual reality casino-oplevelser" },
   { to: "/casinoer/mobil-casinoer", label: "Mobil Casinoer", icon: Zap, desc: "Casino på din smartphone" },
   { to: "/casinoer/spil-casino-for-sjov", label: "Spil for Sjov", icon: Sparkles, desc: "Gratis casinospil uden risiko" },
@@ -356,8 +357,17 @@ export const RelatedGuides = React.forwardRef<HTMLElement, RelatedGuidesProps>(f
   const { guides, subtitle } = getContextualGuides(currentPath);
   const filteredLinks = guides.filter((link) => link.to !== currentPath).slice(0, maxLinks);
 
+  // Extract casino name for review pages to show latest news
+  const isReviewPage = currentPath.startsWith("/casino-anmeldelser/") && currentPath !== "/casino-anmeldelser";
+  const casinoNameForNews = isReviewPage
+    ? allReviews.find(r => r.to === currentPath)?.label || ""
+    : "";
+
   return (
     <>
+      {isReviewPage && casinoNameForNews && (
+        <CasinoLatestNews casinoName={casinoNameForNews} />
+      )}
       <Separator className="my-10" />
       <section ref={ref} className="mb-12">
         <h2 className="mb-4 text-3xl font-bold">

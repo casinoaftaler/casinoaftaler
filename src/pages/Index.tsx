@@ -293,6 +293,8 @@ const Index = () => {
             <Link to="/velkomstbonus" className="text-primary hover:underline font-medium">velkomstbonusser</Link>
             ,{" "}
             <Link to="/free-spins" className="text-primary hover:underline font-medium">free spins</Link>
+            {", "}
+            <Link to="/free-spins-i-dag" className="text-primary hover:underline font-medium">dagens free spins tilbud</Link>
             {" "}og{" "}
             <Link to="/bonus-uden-omsaetningskrav" className="text-primary hover:underline font-medium">bonusser uden omsætningskrav</Link>.
           </p>

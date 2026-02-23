@@ -808,7 +808,7 @@ const FreeSpins = () => {
             Free spins er reguleret under Spillemyndighedens generelle bonusregler, men der er specifikke aspekter der gælder for gratis spins: gevinster fra free spins er underlagt det samme 10x omsætningsloft som alle andre bonusser. Casinoer skal tydeligt angive spinværdien, antal spins, det specifikke spil, omsætningskrav og gevinstloft direkte i markedsføringsmaterialet – ikke kun i de detaljerede vilkår.
           </p>
           <p className="mb-4 text-muted-foreground leading-relaxed">
-            <strong>Skattefrihed:</strong> Gevinster fra free spins på danske licenserede casinoer er skattefrie – uanset beløbet. Casinoet har allerede afregnet 28% spilleafgift. Det gælder også gevinster fra omsætningsfrie free spins. På <Link to="/casinoer/udenlandske-casinoer" className={linkClass}>udenlandske casinoer</Link> uden dansk licens er gevinster over 200 kr. skattepligtige.
+            <strong>Skattefrihed:</strong> Gevinster fra free spins på danske licenserede casinoer er skattefrie – uanset beløbet. Casinoet har allerede afregnet 28% spilleafgift. Det gælder også gevinster fra omsætningsfrie free spins. På <Link to="/casino-licenser" className={linkClass}>udenlandske casinoer</Link> uden dansk licens er gevinster over 200 kr. skattepligtige.
           </p>
           <p className="text-muted-foreground leading-relaxed">
             <strong>ROFUS og selvudelukkelse:</strong> Spillere registreret i ROFUS kan ikke modtage free spins eller andre bonusser hos danske casinoer. MitID-verifikationen forhindrer dette automatisk. Har du brug for hjælp med spilleadfærd, kontakt <a href="https://www.stopspillet.dk/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline font-medium">StopSpillet.dk</a>. 18+ | Spil ansvarligt.
@@ -863,6 +863,23 @@ const FreeSpins = () => {
         <AuthorBio />
 
         <Separator className="my-10" />
+
+        <section className="mb-8">
+          <Card className="border-primary/20 bg-primary/5">
+            <CardContent className="flex items-center gap-4 p-6">
+              <Sparkles className="h-8 w-8 text-primary flex-shrink-0" />
+              <div>
+                <h3 className="font-semibold text-lg mb-1">Se dagens aktuelle free spins tilbud</h3>
+                <p className="text-sm text-muted-foreground mb-2">
+                  Opdateret dagligt med verificerede kampagner fra danske licenserede casinoer.
+                </p>
+                <Link to="/free-spins-i-dag" className="text-primary font-medium hover:underline inline-flex items-center gap-1">
+                  Gå til Free Spins i Dag →
+                </Link>
+              </div>
+            </CardContent>
+          </Card>
+        </section>
 
         <RelatedGuides currentPath="/free-spins" />
 

@@ -142,6 +142,15 @@ export function Footer() {
             <ul className="space-y-2 text-sm">
               <li>
                 <Link
+                  to="/casinoer"
+                  className="flex items-center gap-2 text-muted-foreground transition-colors hover:text-foreground"
+                >
+                  <Star className="h-4 w-4" />
+                  Alle Casinoer
+                </Link>
+              </li>
+              <li>
+                <Link
                   to="/top-10-casino-online"
                   className="flex items-center gap-2 text-muted-foreground transition-colors hover:text-foreground"
                 >
@@ -165,6 +174,15 @@ export function Footer() {
                 >
                   <BookOpen className="h-4 w-4" />
                   Casino Bonus Oversigt
+                </Link>
+              </li>
+              <li>
+                <Link
+                  to="/free-spins-i-dag"
+                  className="flex items-center gap-2 text-muted-foreground transition-colors hover:text-foreground"
+                >
+                  <Sparkles className="h-4 w-4" />
+                  Free Spins i Dag
                 </Link>
               </li>
               <li>
