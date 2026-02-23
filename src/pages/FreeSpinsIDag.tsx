@@ -28,82 +28,6 @@ import { da } from "date-fns/locale";
 
 const linkClass = "text-primary underline hover:text-primary/80";
 
-// ─── Text cleaning pipeline ───
-function cleanScrapedText(raw: string | null | undefined): string {
-  if (!raw) return "";
-  let text = raw;
-  // Step 1: HTML artifacts
-  text = text.replace(/<br\s*\/?>/gi, "\n");
-  text = text.replace(/<[^>]*>/g, "");
-  text = text.replace(/&nbsp;/gi, " ");
-  text = text.replace(/&amp;/gi, "&");
-  text = text.replace(/&lt;/gi, "<");
-  text = text.replace(/&gt;/gi, ">");
-  text = text.replace(/&quot;/gi, '"');
-  text = text.replace(/&#39;/gi, "'");
-  // Step 2: Markdown leftovers
-  text = text.replace(/^\s*#{1,6}\s+/gm, "");
-  text = text.replace(/^[\s]*[-*]{3,}\s*$/gm, "");
-  text = text.replace(/\*{2,3}([^*]+)\*{2,3}/g, "$1");
-  text = text.replace(/__([^_]+)__/g, "$1");
-  text = text.replace(/(?<!\w)\*(?!\s)([^*\n]+)(?<!\s)\*(?!\w)/g, "$1");
-  text = text.replace(/^\s*\*\s*$/gm, "");
-  // Step 3: Normalize whitespace
-  text = text.replace(/[^\S\n]+/g, " ");
-  text = text.replace(/\n{3,}/g, "\n\n");
-  text = text.split("\n").map(l => l.trim()).filter(l => l.length > 0).join("\n");
-  return text.trim();
-}
-
-// ─── Extract structured terms from raw text ───
-interface StructuredTerms {
-  game: string | null;
-  requirement: string | null;
-  who: string | null;
-  expiry: string | null;
-  conditions: string[];
-  fullText: string;
-}
-
-function extractStructuredTerms(raw: string | null | undefined): StructuredTerms {
-  const cleaned = cleanScrapedText(raw);
-  const lines = cleaned.split("\n");
-  const result: StructuredTerms = { game: null, requirement: null, who: null, expiry: null, conditions: [], fullText: cleaned };
-
-  for (const line of lines) {
-    const lower = line.toLowerCase();
-    if (!result.game && (lower.includes("spil:") || lower.includes("gælder") || lower.includes("slot:") || lower.includes("game:"))) {
-      result.game = line.replace(/^[^:]*:\s*/i, "").trim();
-    } else if (!result.requirement && (lower.includes("omsætning") || lower.includes("wagering") || lower.includes("gennemspil"))) {
-      result.requirement = line.replace(/^[^:]*:\s*/i, "").trim();
-    } else if (!result.who && (lower.includes("hvem") || lower.includes("nye spillere") || lower.includes("eksisterende") || lower.includes("eligib"))) {
-      result.who = line.replace(/^[^:]*:\s*/i, "").trim();
-    } else if (!result.expiry && (lower.includes("udløb") || lower.includes("gyldig") || lower.includes("expir") || lower.includes("valid"))) {
-      result.expiry = line.replace(/^[^:]*:\s*/i, "").trim();
-    } else if (line.length > 5) {
-      result.conditions.push(line);
-    }
-  }
-  return result;
-}
-
-// ─── Render cleaned text with line breaks ───
-function CleanedText({ text, className, maxLines }: { text: string | null | undefined; className?: string; maxLines?: number }) {
-  const cleaned = cleanScrapedText(text);
-  if (!cleaned) return null;
-  const clampClass = maxLines ? `line-clamp-${maxLines}` : "";
-  return (
-    <p className={`${className || ""} ${clampClass}`}>
-      {cleaned.split("\n").map((line, i, arr) => (
-        <React.Fragment key={i}>
-          {line}
-          {i < arr.length - 1 && <br />}
-        </React.Fragment>
-      ))}
-    </p>
-  );
-}
-
 const freeSpinsIDagFaqs = [
   {
     question: "Hvordan finder I de daglige free spins tilbud?",
@@ -157,6 +81,12 @@ interface CampaignOffer {
   last_verified_at: string | null;
   campaign_period_start: string | null;
   campaign_period_end: string | null;
+  // New structured fields
+  deposit_amount: number | null;
+  eligible_players: string | null;
+  campaign_type: string | null;
+  summary: string | null;
+  full_terms_clean: string | null;
 }
 
 type FilterType = "all" | "new" | "existing" | "no_deposit";
@@ -168,7 +98,7 @@ const filterConfig: { id: FilterType; label: string; icon: React.ReactNode }[] =
   { id: "no_deposit", label: "Uden Indbetaling", icon: <Zap className="h-3.5 w-3.5" /> },
 ];
 
-// ─── Count-up animation hook ───
+// ─── Hooks ───
 function useCountUp(target: number, duration = 1200): number {
   const [count, setCount] = useState(0);
   const ref = useRef<number>(0);
@@ -188,7 +118,6 @@ function useCountUp(target: number, duration = 1200): number {
   return count;
 }
 
-// ─── Time ago helper ───
 function timeAgo(dateStr: string): string {
   const now = new Date();
   const date = new Date(dateStr);
@@ -199,7 +128,6 @@ function timeAgo(dateStr: string): string {
   return `${mins} min. siden`;
 }
 
-// ─── Countdown component ───
 function Countdown({ validUntil }: { validUntil: string }) {
   const [timeLeft, setTimeLeft] = useState("");
   const [isUrgent, setIsUrgent] = useState(false);
@@ -217,9 +145,7 @@ function Countdown({ validUntil }: { validUntil: string }) {
     const i = setInterval(update, 60000);
     return () => clearInterval(i);
   }, [validUntil]);
-
   if (timeLeft === "Udløbet") return null;
-
   return (
     <span className={`inline-flex items-center gap-1 text-xs font-medium ${isUrgent ? "text-destructive animate-pulse" : "text-muted-foreground"}`}>
       <Timer className="h-3 w-3" /> {timeLeft}
@@ -232,36 +158,44 @@ function Countdown({ validUntil }: { validUntil: string }) {
 const offerTypeBadgeConfig: Record<string, { label: string; icon: React.ReactNode; className: string }> = {
   no_deposit: { label: "Uden indbetaling", icon: <Zap className="h-3 w-3" />, className: "bg-green-500/20 text-green-400 border-green-500/30" },
   welcome: { label: "Nye spillere", icon: <Star className="h-3 w-3" />, className: "bg-purple-500/20 text-purple-400 border-purple-500/30" },
-  daily: { label: "Eksisterende", icon: <Users className="h-3 w-3" />, className: "bg-amber-500/20 text-amber-400 border-amber-500/30" },
+  daily: { label: "Dagligt", icon: <RefreshCw className="h-3 w-3" />, className: "bg-amber-500/20 text-amber-400 border-amber-500/30" },
   existing: { label: "Eksisterende", icon: <Users className="h-3 w-3" />, className: "bg-amber-500/20 text-amber-400 border-amber-500/30" },
+  weekly: { label: "Ugentligt", icon: <RefreshCw className="h-3 w-3" />, className: "bg-blue-500/20 text-blue-400 border-blue-500/30" },
   weekend: { label: "Weekend", icon: <Gift className="h-3 w-3" />, className: "bg-blue-500/20 text-blue-400 border-blue-500/30" },
   vip: { label: "VIP", icon: <Award className="h-3 w-3" />, className: "bg-amber-500/20 text-amber-400 border-amber-500/30" },
+  other: { label: "Tilbud", icon: <Sparkles className="h-3 w-3" />, className: "bg-primary/20 text-primary border-primary/30" },
 };
 
+// ─── Helpers ───
 function getBestPerCasino(campaigns: CampaignOffer[]): CampaignOffer[] {
   const bestMap = new Map<string, CampaignOffer>();
   for (const c of campaigns) {
     const existing = bestMap.get(c.casino_slug);
-    if (!existing || (c.score ?? 0) > (existing.score ?? 0)) {
-      bestMap.set(c.casino_slug, c);
-    }
+    if (!existing || (c.score ?? 0) > (existing.score ?? 0)) bestMap.set(c.casino_slug, c);
   }
   return Array.from(bestMap.values()).sort((a, b) => (b.score ?? 0) - (a.score ?? 0));
 }
 
 function applyFilter(campaigns: CampaignOffer[], filter: FilterType): CampaignOffer[] {
   switch (filter) {
-    case "new":
-      return campaigns.filter((c) => c.for_new_players || c.offer_type === "welcome");
-    case "existing":
-      return campaigns.filter((c) => c.for_existing_players || ["daily", "existing", "weekend"].includes(c.offer_type));
-    case "no_deposit":
-      return campaigns.filter((c) => !c.requires_deposit || c.offer_type === "no_deposit");
-    default:
-      return campaigns;
+    case "new": return campaigns.filter(c => c.for_new_players || c.offer_type === "welcome");
+    case "existing": return campaigns.filter(c => c.for_existing_players || ["daily", "existing", "weekend", "weekly"].includes(c.offer_type));
+    case "no_deposit": return campaigns.filter(c => !c.requires_deposit || c.offer_type === "no_deposit");
+    default: return campaigns;
   }
 }
 
+function getEligibilityLabel(offer: CampaignOffer): string | null {
+  if (offer.eligible_players === "new") return "Nye spillere";
+  if (offer.eligible_players === "existing") return "Eksisterende spillere";
+  if (offer.eligible_players === "all") return "Alle spillere";
+  if (offer.for_new_players && offer.for_existing_players) return "Alle spillere";
+  if (offer.for_new_players) return "Nye spillere";
+  if (offer.for_existing_players) return "Eksisterende spillere";
+  return null;
+}
+
+// ─── Main Page ───
 const FreeSpinsIDag = () => {
   const todayFormatted = format(new Date(), "d. MMMM yyyy", { locale: da });
   const { data: casinos } = useCasinos();
@@ -280,9 +214,8 @@ const FreeSpinsIDag = () => {
         .gte("confidence_score", 60)
         .order("score", { ascending: false });
       if (error) throw error;
-      // Filter out expired campaigns client-side as well
       const now = new Date();
-      return ((data || []) as CampaignOffer[]).filter((c) => {
+      return ((data || []) as unknown as CampaignOffer[]).filter(c => {
         if (c.expiry_date && new Date(c.expiry_date) < now) return false;
         return true;
       });
@@ -292,9 +225,8 @@ const FreeSpinsIDag = () => {
 
   const filteredCampaigns = campaigns ? applyFilter(campaigns, activeFilter) : [];
   const bestOffers = getBestPerCasino(filteredCampaigns);
-
   const allBest = campaigns ? getBestPerCasino(campaigns) : [];
-  const featured = allBest.find((o) => {
+  const featured = allBest.find(o => {
     if (o.wagering_requirement) {
       const wm = o.wagering_requirement.match(/(\d+)/);
       if (wm && parseInt(wm[1], 10) > 40) return false;
@@ -303,16 +235,15 @@ const FreeSpinsIDag = () => {
   }) || allBest[0] || null;
 
   const totalCount = allBest.length;
-  const noDepCount = campaigns ? getBestPerCasino(campaigns.filter((o) => o.offer_type === "no_deposit" || !o.requires_deposit)).length : 0;
-  const existingCount = campaigns ? getBestPerCasino(campaigns.filter((o) => ["daily", "existing", "weekend"].includes(o.offer_type))).length : 0;
+  const noDepCount = campaigns ? getBestPerCasino(campaigns.filter(o => o.offer_type === "no_deposit" || !o.requires_deposit)).length : 0;
+  const existingCount = campaigns ? getBestPerCasino(campaigns.filter(o => ["daily", "existing", "weekend", "weekly"].includes(o.offer_type))).length : 0;
 
   const animatedTotal = useCountUp(statsRevealed ? totalCount : 0);
   const animatedNoDep = useCountUp(statsRevealed ? noDepCount : 0);
   const animatedExisting = useCountUp(statsRevealed ? existingCount : 0);
 
-  const getCasinoLogo = (slug: string) => casinos?.find((c) => c.slug === slug)?.logo_url || null;
-  const getCasinoAffiliate = (slug: string) => casinos?.find((c) => c.slug === slug)?.affiliate_url || null;
-
+  const getCasinoLogo = (slug: string) => casinos?.find(c => c.slug === slug)?.logo_url || null;
+  const getCasinoAffiliate = (slug: string) => casinos?.find(c => c.slug === slug)?.affiliate_url || null;
   const latestChecked = campaigns?.[0]?.last_checked;
 
   const schemaMarkup = [
@@ -324,35 +255,20 @@ const FreeSpinsIDag = () => {
       dateModified: new Date().toISOString().split("T")[0],
       authorName: "Jonas",
     }),
-    buildFaqSchema(freeSpinsIDagFaqs.map((f) => ({ question: f.question, answer: f.answer }))),
+    buildFaqSchema(freeSpinsIDagFaqs.map(f => ({ question: f.question, answer: f.answer }))),
     {
       "@type": "ItemList",
       name: `Free Spins Tilbud – ${todayFormatted}`,
       numberOfItems: totalCount,
       itemListElement: allBest.slice(0, 10).map((o, i) => ({
-        "@type": "ListItem",
-        position: i + 1,
+        "@type": "ListItem", position: i + 1,
         name: `${o.casino_name} – ${o.spin_count} Free Spins`,
         url: `${SITE_URL}/casino-anmeldelser/${o.casino_slug}`,
       })),
     },
-    // Offer structured data for SEO
-    ...allBest.slice(0, 5).map((o) => ({
-      "@type": "Offer",
-      name: `${o.spin_count} Free Spins – ${o.casino_name}`,
-      description: o.short_terms_summary || o.title,
-      priceCurrency: "DKK",
-      price: "0",
-      availability: "https://schema.org/InStock",
-      validThrough: o.expiry_date || undefined,
-      seller: {
-        "@type": "Organization",
-        name: o.casino_name,
-      },
-    })),
   ];
 
-  const displayOffers = bestOffers.filter((o) => o.id !== featured?.id);
+  const displayOffers = bestOffers.filter(o => o.id !== featured?.id);
 
   return (
     <>
@@ -368,9 +284,7 @@ const FreeSpinsIDag = () => {
         className="relative overflow-hidden py-10 md:py-16 text-white"
         style={{
           backgroundImage: `linear-gradient(135deg, hsl(260 70% 18% / 0.95), hsl(250 60% 12% / 0.93) 40%, hsl(210 80% 18% / 0.92)), url(${heroImage})`,
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-          backgroundAttachment: 'fixed',
+          backgroundSize: 'cover', backgroundPosition: 'center', backgroundAttachment: 'fixed',
         }}
       >
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
@@ -386,15 +300,11 @@ const FreeSpinsIDag = () => {
                 <span className="absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75 animate-ping" />
                 <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-green-400" />
               </span>
-              {latestChecked
-                ? <span>Opdateret {timeAgo(latestChecked)}</span>
-                : <span>Opdateret {todayFormatted}</span>
-              }
+              {latestChecked ? <span>Opdateret {timeAgo(latestChecked)}</span> : <span>Opdateret {todayFormatted}</span>}
             </div>
 
             <h1 className="mb-3 text-3xl font-extrabold tracking-tight md:text-4xl lg:text-5xl animate-fade-in [animation-delay:100ms]">
-              <span className="text-white">Free Spins i Dag</span>
-              {" – "}
+              <span className="text-white">Free Spins i Dag</span>{" – "}
               <span className="fs-hero-count bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
                 {totalCount > 0 ? `${totalCount} Aktive Tilbud` : "Alle Aktuelle Tilbud"}
               </span>
@@ -404,16 +314,10 @@ const FreeSpinsIDag = () => {
             </p>
             <div className="flex flex-wrap justify-center gap-3 animate-fade-in [animation-delay:300ms]">
               <Button size="lg" asChild className="fs-cta-glow font-bold shadow-lg shadow-primary/30 hover:shadow-primary/50 hover:scale-[1.03] transition-all duration-250">
-                <a href="#free-spins-list">
-                  <Sparkles className="mr-2 h-5 w-5" />
-                  Se Alle Tilbud
-                </a>
+                <a href="#free-spins-list"><Sparkles className="mr-2 h-5 w-5" />Se Alle Tilbud</a>
               </Button>
               <Button size="lg" variant="outline" asChild className="bg-white/10 border-white/25 text-white hover:bg-white/20 hover:scale-[1.03] transition-all duration-250 backdrop-blur-sm">
-                <a href="#free-spins-list">
-                  <Zap className="mr-2 h-5 w-5" />
-                  Uden Indbetaling
-                </a>
+                <a href="#free-spins-list"><Zap className="mr-2 h-5 w-5" />Uden Indbetaling</a>
               </Button>
             </div>
           </div>
@@ -423,10 +327,8 @@ const FreeSpinsIDag = () => {
       {/* ─── Meta + Trust bar ─── */}
       <div className="border-b border-border/30">
         <div className="container py-3">
-          <div className="flex flex-col gap-2">
-            <div className="text-xs text-muted-foreground">
-              <AuthorMetaBar author="jonas" date={todayFormatted} readTime="3 min." />
-            </div>
+          <div className="text-xs text-muted-foreground">
+            <AuthorMetaBar author="jonas" date={todayFormatted} readTime="3 min." />
           </div>
         </div>
       </div>
@@ -456,7 +358,7 @@ const FreeSpinsIDag = () => {
 
         {/* ─── Filter Tabs ─── */}
         <div className="flex flex-wrap gap-2 mb-4" role="group" aria-label="Filtrer free spins tilbud" id="free-spins-list">
-          {filterConfig.map((f) => (
+          {filterConfig.map(f => (
             <button
               key={f.id}
               onClick={() => setActiveFilter(f.id)}
@@ -468,9 +370,7 @@ const FreeSpinsIDag = () => {
               }`}
             >
               {f.icon} {f.label}
-              {f.id === "all" && totalCount > 0 && (
-                <span className="ml-1 text-xs opacity-75">({totalCount})</span>
-              )}
+              {f.id === "all" && totalCount > 0 && <span className="ml-1 text-xs opacity-75">({totalCount})</span>}
             </button>
           ))}
         </div>
@@ -478,10 +378,8 @@ const FreeSpinsIDag = () => {
         {/* ─── Content ─── */}
         {isLoading ? (
           <div className="space-y-4">
-            {[1, 2, 3].map((i) => (
-              <Card key={i} className="animate-pulse border-border/50">
-                <CardContent className="h-36" />
-              </Card>
+            {[1, 2, 3].map(i => (
+              <Card key={i} className="animate-pulse border-border/50"><CardContent className="h-36" /></Card>
             ))}
           </div>
         ) : bestOffers.length === 0 ? (
@@ -490,51 +388,28 @@ const FreeSpinsIDag = () => {
               <Clock className="h-10 w-10 text-muted-foreground" />
             </div>
             <h3 className="text-xl font-bold mb-3">
-              {activeFilter === "all"
-                ? "Ingen aktive free spins i dag"
-                : `Ingen tilbud matcher filteret "${filterConfig.find((f) => f.id === activeFilter)?.label}"`}
+              {activeFilter === "all" ? "Ingen aktive free spins i dag" : `Ingen tilbud matcher filteret "${filterConfig.find(f => f.id === activeFilter)?.label}"`}
             </h3>
             <p className="text-muted-foreground max-w-md mx-auto mb-4">
-              {activeFilter === "all"
-                ? "Vi opdaterer automatisk hver morgen kl. 07:00 CET. Tjek igen i morgen for de nyeste free spins tilbud."
-                : "Prøv et andet filter eller tjek igen senere."}
+              {activeFilter === "all" ? "Vi opdaterer automatisk hver morgen kl. 07:00 CET." : "Prøv et andet filter eller tjek igen senere."}
             </p>
-            {activeFilter !== "all" && (
-              <Button variant="outline" onClick={() => setActiveFilter("all")}>
-                Vis alle tilbud
-              </Button>
-            )}
+            {activeFilter !== "all" && <Button variant="outline" onClick={() => setActiveFilter("all")}>Vis alle tilbud</Button>}
           </div>
         ) : (
           <>
-            {/* Featured "Dagens Bedste" */}
             {featured && activeFilter === "all" && (
-              <FeaturedOfferCard
-                offer={featured}
-                logoUrl={getCasinoLogo(featured.casino_slug)}
-                affiliateUrl={getCasinoAffiliate(featured.casino_slug)}
-              />
+              <FeaturedOfferCard offer={featured} logoUrl={getCasinoLogo(featured.casino_slug)} affiliateUrl={getCasinoAffiliate(featured.casino_slug)} />
             )}
 
-            {/* Offer grid – 2 cols on desktop */}
             <section className="mb-8 py-6 rounded-xl bg-muted/15" ref={cardsRef}>
               <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
                 <Filter className="h-5 w-5 text-primary" />
-                {activeFilter === "all" ? "Alle Free Spins Tilbud" : filterConfig.find((f) => f.id === activeFilter)?.label}
-                {" "}({displayOffers.length})
+                {activeFilter === "all" ? "Alle Free Spins Tilbud" : filterConfig.find(f => f.id === activeFilter)?.label} ({displayOffers.length})
               </h2>
               <div className="grid gap-3 md:grid-cols-2">
                 {displayOffers.map((offer, idx) => (
-                  <div
-                    key={offer.id}
-                    className={cardsRevealed ? "animate-fade-in" : "opacity-0"}
-                    style={{ animationDelay: `${idx * 80}ms` }}
-                  >
-                    <OfferCard
-                      offer={offer}
-                      logoUrl={getCasinoLogo(offer.casino_slug)}
-                      affiliateUrl={getCasinoAffiliate(offer.casino_slug)}
-                    />
+                  <div key={offer.id} className={cardsRevealed ? "animate-fade-in" : "opacity-0"} style={{ animationDelay: `${idx * 80}ms` }}>
+                    <OfferCard offer={offer} logoUrl={getCasinoLogo(offer.casino_slug)} affiliateUrl={getCasinoAffiliate(offer.casino_slug)} />
                   </div>
                 ))}
               </div>
@@ -544,12 +419,11 @@ const FreeSpinsIDag = () => {
 
         <Separator className="my-8" />
 
-        {/* SEO content – structured guide */}
+        {/* SEO content */}
         <div className="mt-4">
           <section className="mb-8">
             <h2 className="flex items-center gap-2 text-xl font-bold text-foreground mb-3">
-              <Sparkles className="h-5 w-5 text-primary" />
-              Dagens Free Spins – {todayFormatted}
+              <Sparkles className="h-5 w-5 text-primary" />Dagens Free Spins – {todayFormatted}
             </h2>
             <p className="text-sm leading-[1.75] text-muted-foreground">
               Opdateret oversigt over free spins hos danske casinoer. Vi scraper direkte fra casinoernes kampagnesider og bruger aggregator-data som supplement – kun kampagner med tilstrækkelig datakvalitet (confidence score ≥ 60) vises. Rangeret efter spins, <Link to="/omsaetningskrav" className={linkClass}>omsætningskrav</Link> og indbetalingskrav.
@@ -558,33 +432,19 @@ const FreeSpinsIDag = () => {
 
           <section className="mb-8 rounded-xl border border-border/40 bg-card/50 p-5 md:p-6">
             <h3 className="flex items-center gap-2 text-base font-semibold text-foreground mb-4">
-              <ShieldCheck className="h-5 w-5 text-primary" />
-              Sådan vælger du det bedste tilbud
+              <ShieldCheck className="h-5 w-5 text-primary" />Sådan vælger du det bedste tilbud
             </h3>
             <ul className="grid gap-2.5 text-sm leading-[1.7] text-muted-foreground">
-              <li className="flex gap-2">
-                <CheckCircle2 className="h-4 w-4 text-primary mt-0.5 flex-shrink-0" />
-                <span><span className="text-primary font-medium">Omsætningskrav</span> – under 10x er godt. Jo lavere, desto lettere at omsætte gevinster.</span>
-              </li>
-              <li className="flex gap-2">
-                <CheckCircle2 className="h-4 w-4 text-primary mt-0.5 flex-shrink-0" />
-                <span><span className="text-primary font-medium">Spinværdi</span> – en free spin på 1 kr. slår 0,10 kr. Tjek den faktiske værdi.</span>
-              </li>
-              <li className="flex gap-2">
-                <CheckCircle2 className="h-4 w-4 text-primary mt-0.5 flex-shrink-0" />
-                <span><span className="text-primary font-medium">Antal spins</span> – flere chancer, men tjek hvilke spil de gælder til.</span>
-              </li>
-              <li className="flex gap-2">
-                <CheckCircle2 className="h-4 w-4 text-primary mt-0.5 flex-shrink-0" />
-                <span><span className="text-primary font-medium">Tidsbegrænsning</span> – de fleste skal bruges inden for 7–30 dage.</span>
-              </li>
+              <li className="flex gap-2"><CheckCircle2 className="h-4 w-4 text-primary mt-0.5 flex-shrink-0" /><span><span className="text-primary font-medium">Omsætningskrav</span> – under 10x er godt. Jo lavere, desto lettere at omsætte gevinster.</span></li>
+              <li className="flex gap-2"><CheckCircle2 className="h-4 w-4 text-primary mt-0.5 flex-shrink-0" /><span><span className="text-primary font-medium">Spinværdi</span> – en free spin på 1 kr. slår 0,10 kr. Tjek den faktiske værdi.</span></li>
+              <li className="flex gap-2"><CheckCircle2 className="h-4 w-4 text-primary mt-0.5 flex-shrink-0" /><span><span className="text-primary font-medium">Antal spins</span> – flere chancer, men tjek hvilke spil de gælder til.</span></li>
+              <li className="flex gap-2"><CheckCircle2 className="h-4 w-4 text-primary mt-0.5 flex-shrink-0" /><span><span className="text-primary font-medium">Tidsbegrænsning</span> – de fleste skal bruges inden for 7–30 dage.</span></li>
             </ul>
           </section>
 
           <section className="mb-8 rounded-xl border border-border/40 bg-card/50 p-5 md:p-6">
             <h3 className="flex items-center gap-2 text-base font-semibold text-foreground mb-3">
-              <AlertTriangle className="h-5 w-5 text-primary" />
-              Vigtigt at vide
+              <AlertTriangle className="h-5 w-5 text-primary" />Vigtigt at vide
             </h3>
             <p className="text-sm leading-[1.75] text-muted-foreground">
               Alle casinoer er licenserede af <Link to="/spillemyndigheden" className={linkClass}>Spillemyndigheden</Link>. Bonusser er maks. 1.000 kr. med maks. 10x omsætningskrav jf. dansk lovgivning. Vi anbefaler altid <Link to="/ansvarligt-spil" className={linkClass}>ansvarligt spil</Link>.
@@ -593,38 +453,23 @@ const FreeSpinsIDag = () => {
 
           <section className="mb-8">
             <h3 className="flex items-center gap-2 text-base font-semibold text-foreground mb-4">
-              <Star className="h-5 w-5 text-primary" />
-              Typer af free spins
+              <Star className="h-5 w-5 text-primary" />Typer af free spins
             </h3>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-              <div className="rounded-xl border border-border/40 bg-card/50 p-4 flex gap-3 items-start">
-                <div className="rounded-lg bg-primary/10 p-2 flex-shrink-0"><Gift className="h-4 w-4 text-primary" /></div>
-                <div>
-                  <p className="text-sm font-medium text-foreground mb-0.5">Velkomst free spins</p>
-                  <p className="text-xs leading-relaxed text-muted-foreground">Del af en velkomstpakke til nye spillere.</p>
+              {[
+                { icon: Gift, title: "Velkomst free spins", desc: "Del af en velkomstpakke til nye spillere." },
+                { icon: Zap, title: "Uden indbetaling", desc: <>Kræver ingen indbetaling – <Link to="/bonus-uden-indbetaling" className={linkClass}>spins ved registrering</Link>.</> },
+                { icon: RefreshCw, title: "Daglige/ugentlige", desc: "Løbende tilbud til eksisterende spillere." },
+                { icon: Award, title: "VIP free spins", desc: "Eksklusive tilbud til loyale spillere." },
+              ].map(({ icon: Icon, title, desc }) => (
+                <div key={title} className="rounded-xl border border-border/40 bg-card/50 p-4 flex gap-3 items-start">
+                  <div className="rounded-lg bg-primary/10 p-2 flex-shrink-0"><Icon className="h-4 w-4 text-primary" /></div>
+                  <div>
+                    <p className="text-sm font-medium text-foreground mb-0.5">{title}</p>
+                    <p className="text-xs leading-relaxed text-muted-foreground">{desc}</p>
+                  </div>
                 </div>
-              </div>
-              <div className="rounded-xl border border-border/40 bg-card/50 p-4 flex gap-3 items-start">
-                <div className="rounded-lg bg-primary/10 p-2 flex-shrink-0"><Zap className="h-4 w-4 text-primary" /></div>
-                <div>
-                  <p className="text-sm font-medium text-foreground mb-0.5">Uden indbetaling</p>
-                  <p className="text-xs leading-relaxed text-muted-foreground">Kræver ingen indbetaling – <Link to="/bonus-uden-indbetaling" className={linkClass}>spins ved registrering</Link>.</p>
-                </div>
-              </div>
-              <div className="rounded-xl border border-border/40 bg-card/50 p-4 flex gap-3 items-start">
-                <div className="rounded-lg bg-primary/10 p-2 flex-shrink-0"><RefreshCw className="h-4 w-4 text-primary" /></div>
-                <div>
-                  <p className="text-sm font-medium text-foreground mb-0.5">Daglige/ugentlige</p>
-                  <p className="text-xs leading-relaxed text-muted-foreground">Løbende tilbud til eksisterende spillere.</p>
-                </div>
-              </div>
-              <div className="rounded-xl border border-border/40 bg-card/50 p-4 flex gap-3 items-start">
-                <div className="rounded-lg bg-primary/10 p-2 flex-shrink-0"><Award className="h-4 w-4 text-primary" /></div>
-                <div>
-                  <p className="text-sm font-medium text-foreground mb-0.5">VIP free spins</p>
-                  <p className="text-xs leading-relaxed text-muted-foreground">Eksklusive tilbud til loyale spillere.</p>
-                </div>
-              </div>
+              ))}
             </div>
           </section>
 
@@ -641,89 +486,34 @@ const FreeSpinsIDag = () => {
         <AuthorBio author="jonas" />
       </div>
 
-      {/* Page-scoped animations */}
       <style>{`
-        .fs-orb {
-          position: absolute;
-          border-radius: 9999px;
-          filter: blur(60px);
-          opacity: 0.18;
-          will-change: transform;
-        }
-        .fs-orb-1 {
-          width: 220px; height: 220px;
-          background: hsl(260 70% 60%);
-          top: 10%; left: 5%;
-          animation: fs-float 8s ease-in-out infinite;
-        }
-        .fs-orb-2 {
-          width: 300px; height: 300px;
-          background: hsl(210 80% 55%);
-          bottom: 5%; right: 5%;
-          animation: fs-float 10s ease-in-out infinite 1.5s;
-        }
-        .fs-orb-3 {
-          width: 160px; height: 160px;
-          background: hsl(230 70% 50%);
-          top: 50%; left: 40%;
-          animation: fs-float 7s ease-in-out infinite 0.8s;
-        }
+        .fs-orb { position: absolute; border-radius: 9999px; filter: blur(60px); opacity: 0.18; will-change: transform; }
+        .fs-orb-1 { width: 220px; height: 220px; background: hsl(260 70% 60%); top: 10%; left: 5%; animation: fs-float 8s ease-in-out infinite; }
+        .fs-orb-2 { width: 300px; height: 300px; background: hsl(210 80% 55%); bottom: 5%; right: 5%; animation: fs-float 10s ease-in-out infinite 1.5s; }
+        .fs-orb-3 { width: 160px; height: 160px; background: hsl(230 70% 50%); top: 50%; left: 40%; animation: fs-float 7s ease-in-out infinite 0.8s; }
         @keyframes fs-float {
           0%, 100% { transform: translateY(0) translateX(0) scale(1); }
           25% { transform: translateY(-18px) translateX(8px) scale(1.03); }
           50% { transform: translateY(-6px) translateX(-10px) scale(0.98); }
           75% { transform: translateY(-22px) translateX(5px) scale(1.02); }
         }
-        .fs-cta-glow {
-          position: relative;
-          overflow: hidden;
-        }
+        .fs-cta-glow { position: relative; overflow: hidden; }
         .fs-cta-glow::after {
-          content: '';
-          position: absolute;
-          top: -50%; left: -50%;
-          width: 200%; height: 200%;
-          background: linear-gradient(
-            115deg,
-            transparent 20%,
-            hsl(0 0% 100% / 0.15) 40%,
-            hsl(0 0% 100% / 0.25) 50%,
-            hsl(0 0% 100% / 0.15) 60%,
-            transparent 80%
-          );
+          content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%;
+          background: linear-gradient(115deg, transparent 20%, hsl(0 0% 100% / 0.15) 40%, hsl(0 0% 100% / 0.25) 50%, hsl(0 0% 100% / 0.15) 60%, transparent 80%);
           animation: fs-shimmer 3s ease-in-out infinite;
         }
-        @keyframes fs-shimmer {
-          0% { transform: translateX(-100%); }
-          100% { transform: translateX(100%); }
-        }
-        .fs-featured-glow {
-          position: relative;
-        }
+        @keyframes fs-shimmer { 0% { transform: translateX(-100%); } 100% { transform: translateX(100%); } }
+        .fs-featured-glow { position: relative; }
         .fs-featured-glow::before {
-          content: '';
-          position: absolute;
-          inset: -2px;
-          border-radius: 1rem;
+          content: ''; position: absolute; inset: -2px; border-radius: 1rem;
           background: linear-gradient(135deg, hsl(260 70% 50% / 0.3), hsl(210 80% 50% / 0.2));
-          z-index: -1;
-          filter: blur(12px);
-          opacity: 0;
-          transition: opacity 0.3s ease;
+          z-index: -1; filter: blur(12px); opacity: 0; transition: opacity 0.3s ease;
         }
-        .fs-featured-glow:hover::before {
-          opacity: 1;
-        }
-        .fs-hero-count {
-          text-shadow: 0 0 40px hsl(260 70% 60% / 0.4), 0 0 80px hsl(210 80% 55% / 0.2);
-        }
-        .animate-fade-in {
-          animation: fs-fade-in 0.5s ease-out both;
-        }
-        @keyframes fs-fade-in {
-          from { opacity: 0; transform: translateY(12px); }
-          to { opacity: 1; transform: translateY(0); }
-        }
+        .fs-featured-glow:hover::before { opacity: 1; }
+        .fs-hero-count { text-shadow: 0 0 40px hsl(260 70% 60% / 0.4), 0 0 80px hsl(210 80% 55% / 0.2); }
+        .animate-fade-in { animation: fs-fade-in 0.5s ease-out both; }
+        @keyframes fs-fade-in { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
       `}</style>
     </>
   );
@@ -744,10 +534,11 @@ function StatCard({ icon, value, label, revealed, delay }: { icon: React.ReactNo
   );
 }
 
-// ─── Featured Offer ───
+// ─── Featured Offer (structured data only) ───
 function FeaturedOfferCard({ offer, logoUrl, affiliateUrl }: { offer: CampaignOffer; logoUrl: string | null; affiliateUrl: string | null }) {
   const badge = offerTypeBadgeConfig[offer.offer_type] || offerTypeBadgeConfig.welcome;
   const verifiedRecently = offer.last_verified_at && differenceInHours(new Date(), new Date(offer.last_verified_at)) < 48;
+  const eligibility = getEligibilityLabel(offer);
 
   return (
     <div
@@ -783,38 +574,37 @@ function FeaturedOfferCard({ offer, logoUrl, affiliateUrl }: { offer: CampaignOf
             </span>
           </div>
 
-          {/* Campaign title */}
-          <p className="text-sm text-white/70 mb-1">{offer.title}</p>
-
-          <div className="text-4xl md:text-5xl font-extrabold text-white mb-2">
+          <div className="text-4xl md:text-5xl font-extrabold text-white mb-3">
             <span>{offer.spin_count}</span> <span className="text-primary">Free Spins</span>
           </div>
 
-          {/* Enriched data grid */}
-          <div className="flex flex-wrap items-center justify-center md:justify-start gap-x-5 gap-y-1 text-xs text-white/60">
+          {/* Structured metadata tags */}
+          <div className="flex flex-wrap items-center justify-center md:justify-start gap-x-5 gap-y-1.5 text-xs text-white/60">
             {offer.game_name && (
               <span className="flex items-center gap-1"><Gamepad2 className="h-3 w-3" /> {offer.game_name}</span>
             )}
             {offer.wagering_requirement && (
               <span className="flex items-center gap-1"><RotateCcw className="h-3 w-3" /> {offer.wagering_requirement}</span>
             )}
-            {offer.required_action && (
-              <span className="flex items-center gap-1"><CreditCard className="h-3 w-3" /> {offer.required_action}</span>
-            )}
-            {!offer.requires_deposit && (
+            {!offer.requires_deposit ? (
               <span className="flex items-center gap-1 text-green-400 font-medium"><Zap className="h-3 w-3" /> Ingen indbetaling</span>
+            ) : offer.min_deposit && (
+              <span className="flex items-center gap-1"><CreditCard className="h-3 w-3" /> Min. {offer.min_deposit}</span>
+            )}
+            {eligibility && (
+              <span className="flex items-center gap-1"><Users className="h-3 w-3" /> {eligibility}</span>
             )}
             {offer.spin_value && (
               <span className="flex items-center gap-1"><Award className="h-3 w-3" /> {offer.spin_value}/spin</span>
             )}
-            {offer.expiry_date && <Countdown validUntil={offer.expiry_date} />}
+            {offer.expiry_date && (
+              <span className="flex items-center gap-1"><CalendarClock className="h-3 w-3" /> <Countdown validUntil={offer.expiry_date} /></span>
+            )}
           </div>
 
-          {/* Short terms summary */}
-          {offer.short_terms_summary && (
-          <div className="mt-2 text-xs text-white/40 line-clamp-2 whitespace-pre-line">
-            {cleanScrapedText(offer.short_terms_summary)}
-          </div>
+          {/* Summary from structured data */}
+          {(offer.summary || offer.description) && (
+            <p className="mt-2 text-xs text-white/40 line-clamp-2">{offer.summary || offer.description}</p>
           )}
         </div>
 
@@ -822,15 +612,13 @@ function FeaturedOfferCard({ offer, logoUrl, affiliateUrl }: { offer: CampaignOf
           {affiliateUrl ? (
             <a href={affiliateUrl} target="_blank" rel="noopener noreferrer nofollow">
               <Button size="lg" className="fs-cta-glow text-base font-bold shadow-lg shadow-primary/30 group-hover:shadow-primary/50 group-hover:scale-105 transition-all duration-300">
-                <Sparkles className="h-4 w-4 mr-2" /> Få Free Spins
-                <ArrowRight className="h-4 w-4 ml-1" />
+                <Sparkles className="h-4 w-4 mr-2" /> Få Free Spins <ArrowRight className="h-4 w-4 ml-1" />
               </Button>
             </a>
           ) : (
             <Link to={`/casino-anmeldelser/${offer.casino_slug}`}>
               <Button size="lg" className="fs-cta-glow text-base font-bold group-hover:scale-105 transition-all duration-300">
-                <Sparkles className="h-4 w-4 mr-2" /> Se Tilbud
-                <ArrowRight className="h-4 w-4 ml-1" />
+                <Sparkles className="h-4 w-4 mr-2" /> Se Tilbud <ArrowRight className="h-4 w-4 ml-1" />
               </Button>
             </Link>
           )}
@@ -840,13 +628,11 @@ function FeaturedOfferCard({ offer, logoUrl, affiliateUrl }: { offer: CampaignOf
   );
 }
 
-// ─── Offer Card (enriched with expandable T&C) ───
+// ─── Offer Card (structured data only – no frontend text parsing) ───
 function OfferCard({ offer, logoUrl, affiliateUrl }: { offer: CampaignOffer; logoUrl: string | null; affiliateUrl: string | null }) {
   const badge = offerTypeBadgeConfig[offer.offer_type] || offerTypeBadgeConfig.welcome;
   const isExpiringSoon = offer.expiry_date && differenceInHours(new Date(offer.expiry_date), new Date()) < 48;
-  const eligibility = offer.for_new_players && offer.for_existing_players
-    ? "Alle spillere"
-    : offer.for_new_players ? "Nye spillere" : offer.for_existing_players ? "Eksisterende spillere" : null;
+  const eligibility = getEligibilityLabel(offer);
   const verifiedRecently = offer.last_verified_at && differenceInHours(new Date(), new Date(offer.last_verified_at)) < 48;
 
   return (
@@ -872,18 +658,11 @@ function OfferCard({ offer, logoUrl, affiliateUrl }: { offer: CampaignOffer; log
                 {badge.icon} {badge.label}
               </span>
               {verifiedRecently && (
-                <TooltipProvider>
-                  <Tooltip>
-                    <TooltipTrigger>
-                      <span className="inline-flex items-center gap-0.5 text-[10px] px-1.5 py-0.5 rounded-full border bg-green-500/10 text-green-400 border-green-500/20">
-                        <ShieldCheck className="h-2.5 w-2.5" /> Verificeret
-                      </span>
-                    </TooltipTrigger>
-                    <TooltipContent>
-                      <p className="text-xs">Sidst verificeret: {offer.last_verified_at ? timeAgo(offer.last_verified_at) : "Ukendt"}</p>
-                    </TooltipContent>
-                  </Tooltip>
-                </TooltipProvider>
+                <TooltipProvider><Tooltip><TooltipTrigger>
+                  <span className="inline-flex items-center gap-0.5 text-[10px] px-1.5 py-0.5 rounded-full border bg-green-500/10 text-green-400 border-green-500/20">
+                    <ShieldCheck className="h-2.5 w-2.5" /> Verificeret
+                  </span>
+                </TooltipTrigger><TooltipContent><p className="text-xs">Sidst verificeret: {offer.last_verified_at ? timeAgo(offer.last_verified_at) : "Ukendt"}</p></TooltipContent></Tooltip></TooltipProvider>
               )}
               {isExpiringSoon && (
                 <span className="inline-flex items-center gap-0.5 text-[10px] px-1.5 py-0.5 rounded-full border bg-destructive/10 text-destructive border-destructive/20 animate-pulse">
@@ -891,8 +670,6 @@ function OfferCard({ offer, logoUrl, affiliateUrl }: { offer: CampaignOffer; log
                 </span>
               )}
             </div>
-            {/* Campaign title */}
-            <p className="text-xs text-muted-foreground mt-0.5 truncate">{offer.title}</p>
           </div>
           <div className="text-right flex-shrink-0">
             <div className="text-2xl font-extrabold text-primary leading-tight">{offer.spin_count}</div>
@@ -900,7 +677,7 @@ function OfferCard({ offer, logoUrl, affiliateUrl }: { offer: CampaignOffer; log
           </div>
         </div>
 
-        {/* Mid: Enriched data grid */}
+        {/* Structured metadata tags – directly from DB fields, NO text parsing */}
         <div className="grid grid-cols-2 gap-x-4 gap-y-1.5 text-xs text-muted-foreground mb-3">
           {offer.game_name && (
             <div className="flex items-center gap-1.5">
@@ -908,10 +685,15 @@ function OfferCard({ offer, logoUrl, affiliateUrl }: { offer: CampaignOffer; log
               <span className="truncate">{offer.game_name}</span>
             </div>
           )}
-          {offer.required_action && (
+          {!offer.requires_deposit ? (
+            <div className="flex items-center gap-1.5 text-green-400">
+              <Zap className="h-3 w-3 flex-shrink-0" />
+              <span className="font-medium">Ingen indbetaling</span>
+            </div>
+          ) : offer.min_deposit && (
             <div className="flex items-center gap-1.5">
               <CreditCard className="h-3 w-3 text-primary/60 flex-shrink-0" />
-              <span className="truncate">{offer.required_action}</span>
+              <span>Min. {offer.min_deposit}</span>
             </div>
           )}
           {offer.wagering_requirement && (
@@ -938,99 +720,34 @@ function OfferCard({ offer, logoUrl, affiliateUrl }: { offer: CampaignOffer; log
               <Countdown validUntil={offer.expiry_date} />
             </div>
           )}
-          {!offer.requires_deposit && (
-            <div className="flex items-center gap-1.5 text-green-400">
-              <Zap className="h-3 w-3 flex-shrink-0" />
-              <span className="font-medium">Ingen indbetaling</span>
-            </div>
-          )}
         </div>
 
-        {/* Bottom: Short terms + Expandable T&C + CTA */}
-        {offer.short_terms_summary && (
-          <CleanedText text={offer.short_terms_summary} className="text-[11px] text-muted-foreground/70 mb-2" maxLines={2} />
+        {/* Expandable full terms – clean text from DB, not parsed */}
+        {offer.full_terms_clean && (
+          <Collapsible>
+            <CollapsibleTrigger className="flex items-center gap-1 text-[11px] text-primary/70 hover:text-primary transition-colors mb-2">
+              <ChevronDown className="h-3 w-3" /> Se alle vilkår
+            </CollapsibleTrigger>
+            <CollapsibleContent>
+              <div className="rounded-lg border border-border/30 bg-muted/20 p-4 text-xs text-muted-foreground mb-2 max-w-[650px]" style={{ lineHeight: '1.7', fontSize: '14px' }}>
+                {offer.full_terms_clean.split("\n").map((line, i) => (
+                  <p key={i} className="mb-1">{line}</p>
+                ))}
+              </div>
+            </CollapsibleContent>
+          </Collapsible>
         )}
 
-        {/* Expandable full description / terms */}
-        {offer.description && (() => {
-          const terms = extractStructuredTerms(offer.description);
-          const hasStructured = terms.game || terms.requirement || terms.who || terms.expiry;
-          return (
-            <Collapsible>
-              <CollapsibleTrigger className="flex items-center gap-1 text-[11px] text-primary/70 hover:text-primary transition-colors mb-2">
-                <ChevronDown className="h-3 w-3" />
-                Vis vilkår & betingelser
-              </CollapsibleTrigger>
-              <CollapsibleContent>
-                <div className="rounded-lg border border-border/30 bg-muted/20 p-4 text-xs text-muted-foreground mb-2 max-w-[650px]" style={{ lineHeight: '1.7' }}>
-                  {hasStructured && (
-                    <div className="space-y-2 mb-3">
-                      {terms.game && (
-                        <div className="flex items-start gap-2">
-                          <Gamepad2 className="h-3.5 w-3.5 text-primary/60 mt-0.5 flex-shrink-0" />
-                          <span><span className="font-semibold text-foreground/80">Spil:</span> {terms.game}</span>
-                        </div>
-                      )}
-                      {terms.requirement && (
-                        <div className="flex items-start gap-2">
-                          <RotateCcw className="h-3.5 w-3.5 text-primary/60 mt-0.5 flex-shrink-0" />
-                          <span><span className="font-semibold text-foreground/80">Krav:</span> {terms.requirement}</span>
-                        </div>
-                      )}
-                      {terms.who && (
-                        <div className="flex items-start gap-2">
-                          <Users className="h-3.5 w-3.5 text-primary/60 mt-0.5 flex-shrink-0" />
-                          <span><span className="font-semibold text-foreground/80">Hvem:</span> {terms.who}</span>
-                        </div>
-                      )}
-                      {terms.expiry && (
-                        <div className="flex items-start gap-2">
-                          <CalendarClock className="h-3.5 w-3.5 text-primary/60 mt-0.5 flex-shrink-0" />
-                          <span><span className="font-semibold text-foreground/80">Udløber:</span> {terms.expiry}</span>
-                        </div>
-                      )}
-                    </div>
-                  )}
-                  {terms.conditions.length > 0 && (
-                    <>
-                      {hasStructured && <Separator className="my-2" />}
-                      <div className="space-y-1 text-muted-foreground/70">
-                        {terms.conditions.map((c, i) => (
-                          <p key={i}>{c}</p>
-                        ))}
-                      </div>
-                    </>
-                  )}
-                  {!hasStructured && terms.conditions.length === 0 && (
-                    <p className="whitespace-pre-line">{terms.fullText}</p>
-                  )}
-                </div>
-              </CollapsibleContent>
-            </Collapsible>
-          );
-        })()}
-
-        {/* Verified + Source + CTA row */}
+        {/* Footer */}
         <div className="flex items-center justify-between mt-1">
           <div className="flex items-center gap-2 text-[10px] text-muted-foreground/50">
             {offer.last_verified_at && (
-              <span className="flex items-center gap-0.5">
-                <Clock className="h-2.5 w-2.5" /> {timeAgo(offer.last_verified_at)}
-              </span>
+              <span className="flex items-center gap-0.5"><Clock className="h-2.5 w-2.5" /> {timeAgo(offer.last_verified_at)}</span>
             )}
             {offer.source_type === "direct" && (
-              <TooltipProvider>
-                <Tooltip>
-                  <TooltipTrigger>
-                    <span className="flex items-center gap-0.5 text-green-500/60">
-                      <Info className="h-2.5 w-2.5" /> Direkte kilde
-                    </span>
-                  </TooltipTrigger>
-                  <TooltipContent>
-                    <p className="text-xs">Data hentet direkte fra casinoets hjemmeside</p>
-                  </TooltipContent>
-                </Tooltip>
-              </TooltipProvider>
+              <TooltipProvider><Tooltip><TooltipTrigger>
+                <span className="flex items-center gap-0.5 text-green-500/60"><Info className="h-2.5 w-2.5" /> Direkte kilde</span>
+              </TooltipTrigger><TooltipContent><p className="text-xs">Data hentet direkte fra casinoets hjemmeside</p></TooltipContent></Tooltip></TooltipProvider>
             )}
           </div>
           {affiliateUrl ? (

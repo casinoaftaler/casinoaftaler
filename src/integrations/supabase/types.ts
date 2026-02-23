@@ -852,6 +852,7 @@ export type Database = {
           affiliate_url: string | null
           campaign_period_end: string | null
           campaign_period_start: string | null
+          campaign_type: string | null
           casino_id: string | null
           casino_logo_url: string | null
           casino_name: string
@@ -859,10 +860,13 @@ export type Database = {
           confidence_score: number | null
           created_at: string
           dedup_key: string | null
+          deposit_amount: number | null
           description: string | null
+          eligible_players: string | null
           expiry_date: string | null
           for_existing_players: boolean
           for_new_players: boolean
+          full_terms_clean: string | null
           game_name: string | null
           id: string
           is_active: boolean
@@ -878,6 +882,7 @@ export type Database = {
           source_url: string | null
           spin_count: number
           spin_value: string | null
+          summary: string | null
           title: string
           updated_at: string
           wagering_requirement: string | null
@@ -886,6 +891,7 @@ export type Database = {
           affiliate_url?: string | null
           campaign_period_end?: string | null
           campaign_period_start?: string | null
+          campaign_type?: string | null
           casino_id?: string | null
           casino_logo_url?: string | null
           casino_name: string
@@ -893,10 +899,13 @@ export type Database = {
           confidence_score?: number | null
           created_at?: string
           dedup_key?: string | null
+          deposit_amount?: number | null
           description?: string | null
+          eligible_players?: string | null
           expiry_date?: string | null
           for_existing_players?: boolean
           for_new_players?: boolean
+          full_terms_clean?: string | null
           game_name?: string | null
           id?: string
           is_active?: boolean
@@ -912,6 +921,7 @@ export type Database = {
           source_url?: string | null
           spin_count?: number
           spin_value?: string | null
+          summary?: string | null
           title: string
           updated_at?: string
           wagering_requirement?: string | null
@@ -920,6 +930,7 @@ export type Database = {
           affiliate_url?: string | null
           campaign_period_end?: string | null
           campaign_period_start?: string | null
+          campaign_type?: string | null
           casino_id?: string | null
           casino_logo_url?: string | null
           casino_name?: string
@@ -927,10 +938,13 @@ export type Database = {
           confidence_score?: number | null
           created_at?: string
           dedup_key?: string | null
+          deposit_amount?: number | null
           description?: string | null
+          eligible_players?: string | null
           expiry_date?: string | null
           for_existing_players?: boolean
           for_new_players?: boolean
+          full_terms_clean?: string | null
           game_name?: string | null
           id?: string
           is_active?: boolean
@@ -946,6 +960,7 @@ export type Database = {
           source_url?: string | null
           spin_count?: number
           spin_value?: string | null
+          summary?: string | null
           title?: string
           updated_at?: string
           wagering_requirement?: string | null
