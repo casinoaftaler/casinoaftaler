@@ -25,7 +25,7 @@ export interface SeoRoute {
   lastmod?: string;
 }
 
-export const seoRoutes: SeoRoute[] = [
+export const seoRoutes: SeoRoute[] = ([
   // ── Forside ──
   { path: "/", changefreq: "daily", priority: 1.0, lastmod: "2026-02-22" },
 
@@ -199,4 +199,10 @@ export const seoRoutes: SeoRoute[] = [
   { path: "/terms", changefreq: "yearly", priority: 0.3, lastmod: "2026-02-11" },
   { path: "/cookies", changefreq: "yearly", priority: 0.3, lastmod: "2026-02-11" },
 
-];
+] as const).map((route): SeoRoute => {
+  // Auto-set lastmod to today for daily-changing pages (free-spins-i-dag, casino-nyheder, etc.)
+  if (route.changefreq === "daily") {
+    return { ...route, lastmod: new Date().toISOString().split("T")[0] };
+  }
+  return { ...route };
+});
