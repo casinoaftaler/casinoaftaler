@@ -340,22 +340,37 @@ function cleanDescription(text: string): string {
     .substring(0, 400);
 }
 
-/** Clean HTML from scraped text */
-function cleanHtml(text: string | null): string | null {
+/** Full sanitization pipeline for scraped text */
+function sanitizeText(text: string | null): string | null {
   if (!text) return null;
-  let cleaned = text;
-  cleaned = cleaned.replace(/<br\s*\/?>/gi, "\n");
-  cleaned = cleaned.replace(/<[^>]*>/g, "");
-  cleaned = cleaned.replace(/&nbsp;/gi, " ");
-  cleaned = cleaned.replace(/&amp;/gi, "&");
-  cleaned = cleaned.replace(/&lt;/gi, "<");
-  cleaned = cleaned.replace(/&gt;/gi, ">");
-  cleaned = cleaned.replace(/&quot;/gi, '"');
-  cleaned = cleaned.replace(/&#39;/gi, "'");
-  cleaned = cleaned.replace(/[^\S\n]+/g, " ");
-  cleaned = cleaned.replace(/\n{3,}/g, "\n\n");
-  cleaned = cleaned.split("\n").map(l => l.trim()).filter(l => l.length > 0).join("\n");
-  return cleaned.trim() || null;
+  let s = text;
+  // Step 1: HTML artifacts
+  s = s.replace(/<br\s*\/?>/gi, "\n");
+  s = s.replace(/<[^>]*>/g, "");
+  s = s.replace(/&nbsp;/gi, " ");
+  s = s.replace(/&amp;/gi, "&");
+  s = s.replace(/&lt;/gi, "<");
+  s = s.replace(/&gt;/gi, ">");
+  s = s.replace(/&quot;/gi, '"');
+  s = s.replace(/&#39;/gi, "'");
+  // Step 2: Markdown leftovers
+  s = s.replace(/^\s*#{1,6}\s+/gm, "");        // ### headings
+  s = s.replace(/^[\s]*[-*]{3,}\s*$/gm, "");    // --- or ***  horizontal rules
+  s = s.replace(/\*{2,3}([^*]+)\*{2,3}/g, "$1");// **bold** / ***bolditalic***
+  s = s.replace(/__([^_]+)__/g, "$1");           // __underline__
+  s = s.replace(/(?<!\w)\*(?!\s)([^*\n]+)(?<!\s)\*(?!\w)/g, "$1"); // *italic*
+  s = s.replace(/^\s*\*\s*$/gm, "");            // standalone *
+  // Step 3: Normalize whitespace
+  s = s.replace(/[^\S\n]+/g, " ");
+  s = s.replace(/\n{3,}/g, "\n\n");
+  s = s.split("\n").map(l => l.trim()).filter(l => l.length > 0).join("\n");
+  return s.trim() || null;
+}
+
+/** Check if text still contains raw artifacts (penalize confidence) */
+function hasRawArtifacts(text: string | null): boolean {
+  if (!text) return false;
+  return /(<[^>]*>|\*{2,}|#{2,}|&nbsp;|&amp;|&lt;|&gt;)/.test(text);
 }
 
 /** Enrich a parsed offer with additional extracted data */
@@ -368,10 +383,14 @@ function enrichOffer(offer: ParsedOffer, rawText: string): ParsedOffer {
   if (!offer.campaign_period_end) offer.campaign_period_end = period.end;
   offer.short_terms_summary = buildTermsSummary(offer);
   offer.confidence_score = calculateConfidence(offer);
-  // Clean HTML from text fields before storage
-  offer.description = cleanHtml(offer.description);
-  offer.short_terms_summary = cleanHtml(offer.short_terms_summary);
-  offer.title = cleanHtml(offer.title) || offer.title;
+  // Sanitize all text fields before storage
+  offer.title = sanitizeText(offer.title) || offer.title;
+  offer.description = sanitizeText(offer.description);
+  offer.short_terms_summary = sanitizeText(offer.short_terms_summary);
+  // Penalize confidence if artifacts remain after cleaning
+  if (hasRawArtifacts(offer.description) || hasRawArtifacts(offer.title)) {
+    offer.confidence_score = Math.max(0, (offer.confidence_score ?? 0) - 20);
+  }
   return offer;
 }
 

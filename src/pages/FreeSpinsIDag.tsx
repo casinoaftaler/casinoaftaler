@@ -32,22 +32,25 @@ const linkClass = "text-primary underline hover:text-primary/80";
 function cleanScrapedText(raw: string | null | undefined): string {
   if (!raw) return "";
   let text = raw;
-  // Convert <br>, <br/>, <br /> to newlines
+  // Step 1: HTML artifacts
   text = text.replace(/<br\s*\/?>/gi, "\n");
-  // Strip remaining HTML tags
   text = text.replace(/<[^>]*>/g, "");
-  // Decode HTML entities
   text = text.replace(/&nbsp;/gi, " ");
   text = text.replace(/&amp;/gi, "&");
   text = text.replace(/&lt;/gi, "<");
   text = text.replace(/&gt;/gi, ">");
   text = text.replace(/&quot;/gi, '"');
   text = text.replace(/&#39;/gi, "'");
-  // Collapse whitespace (but preserve newlines)
+  // Step 2: Markdown leftovers
+  text = text.replace(/^\s*#{1,6}\s+/gm, "");
+  text = text.replace(/^[\s]*[-*]{3,}\s*$/gm, "");
+  text = text.replace(/\*{2,3}([^*]+)\*{2,3}/g, "$1");
+  text = text.replace(/__([^_]+)__/g, "$1");
+  text = text.replace(/(?<!\w)\*(?!\s)([^*\n]+)(?<!\s)\*(?!\w)/g, "$1");
+  text = text.replace(/^\s*\*\s*$/gm, "");
+  // Step 3: Normalize whitespace
   text = text.replace(/[^\S\n]+/g, " ");
-  // Collapse multiple newlines
   text = text.replace(/\n{3,}/g, "\n\n");
-  // Trim each line
   text = text.split("\n").map(l => l.trim()).filter(l => l.length > 0).join("\n");
   return text.trim();
 }
