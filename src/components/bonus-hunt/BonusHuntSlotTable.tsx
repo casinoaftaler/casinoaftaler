@@ -5,7 +5,7 @@ import { ChevronLeft, ChevronRight, ChevronsLeft, ChevronsRight, Search, ArrowUp
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { BonusHuntSlotPopoverContent } from "./BonusHuntSlotInfoDialog";
-import { useProviderOverrides } from "@/hooks/useSlotCatalog";
+import { useProviderOverrides, useSlotCatalogProviderMap } from "@/hooks/useSlotCatalog";
 import type { BonusHuntSlot } from "@/hooks/useBonusHuntData";
 
 interface Props {
@@ -30,23 +30,32 @@ export function BonusHuntSlotTable({ slots, huntNumber, huntDate, latestHuntNumb
   
 
   const { data: overrides } = useProviderOverrides();
+  const { data: catalogProviderMap } = useSlotCatalogProviderMap();
 
   // Build override lookup map
   const overrideMap = useMemo(() => {
     const map = new Map<string, string>();
-    overrides?.forEach(o => map.set(o.slot_name, o.provider_override));
+    overrides?.forEach(o => map.set(o.slot_name.toLowerCase(), o.provider_override));
     return map;
   }, [overrides]);
 
-  // Apply provider overrides to slots
+  // Apply provider overrides + slot_catalog fallback to slots
   const slotsWithOverrides = useMemo(() => {
     return slots.map(s => {
-      if (s.provider === 'Custom Slot' && overrideMap.has(s.slot)) {
-        return { ...s, provider: overrideMap.get(s.slot)! };
+      if (s.provider === 'Custom Slot') {
+        const key = s.slot.toLowerCase();
+        // 1. Check manual provider overrides first
+        if (overrideMap.has(key)) {
+          return { ...s, provider: overrideMap.get(key)! };
+        }
+        // 2. Fall back to slot_catalog provider
+        if (catalogProviderMap?.has(key)) {
+          return { ...s, provider: catalogProviderMap.get(key)! };
+        }
       }
       return s;
     });
-  }, [slots, overrideMap]);
+  }, [slots, overrideMap, catalogProviderMap]);
 
   const filtered = useMemo(() => {
     const q = search.toLowerCase();
