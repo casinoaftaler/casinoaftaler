@@ -1,50 +1,45 @@
-import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { useSlotCatalogEntry } from "@/hooks/useSlotCatalog";
-import { Loader2 } from "lucide-react";
+import { Loader2, Percent, BarChart3, Star, Trophy, Zap } from "lucide-react";
+import { Button } from "@/components/ui/button";
 
 interface Props {
-  slotName: string | null;
-  onClose: () => void;
+  slotName: string;
 }
 
-export function BonusHuntSlotInfoDialog({ slotName, onClose }: Props) {
+export function BonusHuntSlotPopoverContent({ slotName }: Props) {
   const { data: slot, isLoading } = useSlotCatalogEntry(slotName);
 
   return (
-    <Dialog open={!!slotName} onOpenChange={(open) => !open && onClose()}>
-      <DialogContent className="max-w-md">
-        <DialogHeader>
-          <DialogTitle>{slotName}</DialogTitle>
-        </DialogHeader>
+    <div className="w-[260px] bg-[#0a0e1a] border border-border/30 rounded-lg p-4 shadow-xl">
+      <h3 className="font-bold text-sm text-foreground mb-3 truncate">{slotName}</h3>
 
-        {isLoading ? (
-          <div className="flex justify-center py-8">
-            <Loader2 className="h-6 w-6 animate-spin text-muted-foreground" />
-          </div>
-        ) : !slot ? (
-          <p className="text-sm text-muted-foreground py-4">
-            Ingen data fundet for denne slot. Admins kan tilføje info i Slot Katalog.
-          </p>
-        ) : (
-          <div className="grid grid-cols-2 gap-4 text-sm">
-            <InfoRow label="Provider" value={slot.provider || '—'} />
-            <InfoRow label="RTP" value={slot.rtp ? `${slot.rtp}%` : '—'} />
-            <InfoRow label="Volatilitet" value={slot.volatility || '—'} />
-            <InfoRow label="Max Potentiale" value={slot.max_potential || '—'} />
-            <InfoRow label="Vores Højeste Gevinst" value={slot.highest_win ? `${slot.highest_win.toLocaleString('da-DK')} kr` : '—'} />
-            <InfoRow label="Vores Højeste X" value={slot.highest_x ? `${slot.highest_x}x` : '—'} />
-          </div>
-        )}
-      </DialogContent>
-    </Dialog>
+      {isLoading ? (
+        <div className="flex justify-center py-4">
+          <Loader2 className="h-5 w-5 animate-spin text-muted-foreground" />
+        </div>
+      ) : (
+        <div className="flex flex-col gap-2.5">
+          <InfoRow icon={<Percent className="h-3.5 w-3.5 text-pink-500" />} label="RTP" value={slot?.rtp ? `${slot.rtp}%` : '—'} />
+          <InfoRow icon={<BarChart3 className="h-3.5 w-3.5 text-blue-500" />} label="Volatilitet" value={slot?.volatility || '—'} />
+          <InfoRow icon={<Star className="h-3.5 w-3.5 text-orange-500" />} label="Max Potentiale" value={slot?.max_potential || '—'} />
+          <InfoRow icon={<Trophy className="h-3.5 w-3.5 text-green-500" />} label="Vores Højeste Gevinst" value={slot?.highest_win ? `${slot.highest_win.toLocaleString('da-DK')} kr` : '—'} />
+          <InfoRow icon={<Zap className="h-3.5 w-3.5 text-purple-500" />} label="Vores Højeste X" value={slot?.highest_x ? `${slot.highest_x}x` : '—'} />
+        </div>
+      )}
+
+      <Button variant="outline" size="sm" className="w-full mt-3 text-xs h-7 border-border/30">
+        MORE INFO
+      </Button>
+    </div>
   );
 }
 
-function InfoRow({ label, value }: { label: string; value: string }) {
+function InfoRow({ icon, label, value }: { icon: React.ReactNode; label: string; value: string }) {
   return (
-    <div>
-      <div className="text-muted-foreground text-xs">{label}</div>
-      <div className="font-medium">{value}</div>
+    <div className="flex items-center gap-2 text-xs">
+      {icon}
+      <span className="text-muted-foreground flex-1">{label}</span>
+      <span className="font-medium text-foreground">{value}</span>
     </div>
   );
 }

@@ -3,7 +3,8 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { ChevronLeft, ChevronRight, ChevronsLeft, ChevronsRight, Search, ArrowUpDown } from "lucide-react";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { BonusHuntSlotInfoDialog } from "./BonusHuntSlotInfoDialog";
+import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
+import { BonusHuntSlotPopoverContent } from "./BonusHuntSlotInfoDialog";
 import { useProviderOverrides } from "@/hooks/useSlotCatalog";
 import type { BonusHuntSlot } from "@/hooks/useBonusHuntData";
 
@@ -26,7 +27,7 @@ export function BonusHuntSlotTable({ slots, huntNumber, huntDate, latestHuntNumb
   const [page, setPage] = useState(0);
   const [sortKey, setSortKey] = useState<SortKey>('index');
   const [sortDir, setSortDir] = useState<SortDir>('asc');
-  const [selectedSlot, setSelectedSlot] = useState<string | null>(null);
+  
 
   const { data: overrides } = useProviderOverrides();
 
@@ -150,13 +151,17 @@ export function BonusHuntSlotTable({ slots, huntNumber, huntDate, latestHuntNumb
               <tr key={slot.index} className={`hover:bg-muted/30 ${slot.opened ? '' : 'opacity-60'}`}>
                 <td className="px-3 py-2 font-mono text-xs">{slot.index}</td>
                 <td className="px-3 py-2">
-                  <button
-                    className="text-left hover:underline cursor-pointer"
-                    onClick={() => setSelectedSlot(slot.slot)}
-                  >
-                    <div className="font-medium">{slot.slot}</div>
-                    <div className="text-xs text-muted-foreground">{slot.provider}</div>
-                  </button>
+                  <Popover>
+                    <PopoverTrigger asChild>
+                      <button className="text-left hover:underline cursor-pointer">
+                        <div className="font-medium">{slot.slot}</div>
+                        <div className="text-xs text-muted-foreground">{slot.provider}</div>
+                      </button>
+                    </PopoverTrigger>
+                    <PopoverContent side="right" align="start" className="w-auto p-0 border-0 bg-transparent shadow-none">
+                      <BonusHuntSlotPopoverContent slotName={slot.slot} />
+                    </PopoverContent>
+                  </Popover>
                 </td>
                 <td className="px-3 py-2 font-mono">{slot.bet.toFixed(2)} kr</td>
                 <td className="px-3 py-2 font-mono">
@@ -191,9 +196,6 @@ export function BonusHuntSlotTable({ slots, huntNumber, huntDate, latestHuntNumb
           </Button>
         </div>
       </div>
-
-      {/* Slot Info Dialog */}
-      <BonusHuntSlotInfoDialog slotName={selectedSlot} onClose={() => setSelectedSlot(null)} />
     </div>
   );
 }
