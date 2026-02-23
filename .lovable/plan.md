@@ -1,40 +1,50 @@
 
-## Replace Slot Info Dialog with Inline Popover
 
-Replace the full-screen dialog overlay with a small popover card that appears next to the clicked slot name, matching the dark card design from the reference screenshot.
+## Auto-populate and Auto-update Slot Catalog
 
-### Changes
+### What this does
 
-**1. Rewrite `BonusHuntSlotInfoDialog.tsx` -> `BonusHuntSlotPopover.tsx`**
+1. **Backfill from Bonus Hunt #2** -- Extract all 32 slots from the archived hunt data and insert them into the slot catalog with their provider names, RTP, and win/multiplier records.
 
-Replace the Dialog-based component with a Popover-based component using the existing `@radix-ui/react-popover`. The popover will:
-- Appear anchored next to the slot name that was clicked
-- Use a dark background (`bg-[#0a0e1a]`) with a subtle border
-- Display the slot name as a bold header
-- Show 5 rows with colored icons matching the reference:
-  - RTP (pink/red icon) 
-  - Volatilitet (blue chart icon)
-  - Max Potentiale (orange star icon)
-  - Vores Hojeste Gevinst (green icon)
-  - Vores Hojeste X (purple icon)
-- Each row shows label + value (or dash when no data)
-- A "MORE INFO" button at the bottom (placeholder for future use)
-- Width ~260px, compact padding
+2. **Auto-sync on every hunt** -- Update the `bonus-hunt-proxy` edge function so that every time it fetches hunt data, it automatically upserts slots into `slot_catalog`, updating `highest_win` and `highest_x` only when new records are beaten. This means the catalog grows automatically as new bonus hunts happen.
 
-**2. Update `BonusHuntSlotTable.tsx`**
+3. **Auto-sync on settlement** -- Update the `bonus-hunt-auto-settle` edge function to also sync slot data when a hunt completes, ensuring all final results are captured.
 
-- Remove the Dialog import and the `selectedSlot` state
-- Wrap each slot name cell in a `Popover` + `PopoverTrigger` instead of a plain button
-- The `PopoverContent` renders the new slot info card inline
-- Each row manages its own popover open/close state via Radix
+All slots will immediately appear in the admin panel's "Slot Katalog" tab where you can manually edit RTP, volatility, max potential, and other fields.
 
-### Technical approach
+---
 
-Instead of a single shared dialog controlled by `selectedSlot` state, each table row will have its own `Popover` wrapping the slot name button. This ensures the popover appears right next to the clicked element without needing position calculations.
+### Technical Details
+
+**Step 1: Backfill Bonus Hunt #2 data (database insert)**
+
+Parse the 32 slots from the archived API data and insert them into `slot_catalog` using `ON CONFLICT (slot_name) DO UPDATE` to set `highest_win` and `highest_x` only if the new values are higher. Provider names from the API (including "Custom Slot" entries that have provider overrides) will be used. RTP data available from the API will also be included.
+
+Slots from Hunt #2:
+- Sweet Bonanza 1000 (Custom Slot, win: 43, x: 43)
+- Sweet Bonanza (Pragmatic Play, RTP: 96.48, win: 20, x: 20)
+- Rise of Merlin (Play'n Go, RTP: 96.58, win: 155, x: 155)
+- Book of Dead (Play'n Go, RTP: 96.21, win: 27, x: 27)
+- Starlight Princess 1000 (Pragmatic Play, win: 790, x: 395) -- highest win in the hunt
+- ...and 27 more slots
+
+**Step 2: Update `bonus-hunt-proxy` edge function**
+
+Add a slot catalog sync step after the existing archive upsert logic. For each slot in the hunt data:
+- Extract `slot.name`, `slot.provider`, `slot.rtp` from the API response
+- Calculate multiplier as `win / bet` (when played)
+- Check `bonus_hunt_provider_overrides` table for provider name corrections
+- Upsert into `slot_catalog` using SQL: only update `highest_win` if new win is higher, only update `highest_x` if new multiplier is higher
+- Provider and RTP are set on insert but not overwritten on update (so admin edits are preserved)
+
+**Step 3: Update `bonus-hunt-auto-settle` edge function**
+
+Add the same slot catalog sync logic when a hunt is auto-settled, ensuring completed hunts always update the catalog with final results.
 
 ### Files to modify
-- `src/components/bonus-hunt/BonusHuntSlotInfoDialog.tsx` -- rewrite as popover content component
-- `src/components/bonus-hunt/BonusHuntSlotTable.tsx` -- replace dialog usage with inline popovers
+- `supabase/functions/bonus-hunt-proxy/index.ts` -- add slot catalog sync after archive upsert
+- `supabase/functions/bonus-hunt-auto-settle/index.ts` -- add slot catalog sync when hunt completes
 
-### Files to delete
-- None (we reuse the existing file)
+### Data operation
+- Insert ~32 slots from Bonus Hunt #2 into `slot_catalog` via the database insert tool
+
