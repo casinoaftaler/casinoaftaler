@@ -2369,6 +2369,16 @@ export type Database = {
         Returns: undefined
       }
       refresh_slot_leaderboard: { Args: never; Returns: undefined }
+      upsert_slot_catalog: {
+        Args: {
+          p_multiplier?: number
+          p_provider: string
+          p_rtp?: number
+          p_slot_name: string
+          p_win?: number
+        }
+        Returns: undefined
+      }
       upsert_tournament_entry: {
         Args: {
           p_bet: number
