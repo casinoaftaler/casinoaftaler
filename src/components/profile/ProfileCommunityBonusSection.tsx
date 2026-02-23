@@ -2,7 +2,8 @@ import { useState } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
-import { Gift, Sparkles, Video } from "lucide-react";
+import { Gift, Video } from "lucide-react";
+import { CreditCoin } from "@/components/CreditCoin";
 import { useCommunityBonusSpins } from "@/hooks/useCommunityBonusSpins";
 import { ActivateBonusSpinsDialog } from "./ActivateBonusSpinsDialog";
 
@@ -48,7 +49,7 @@ export function ProfileCommunityBonusSection({ className }: ProfileCommunityBonu
             </div>
             <div className="rounded-lg border border-border bg-muted/30 p-3 text-center">
               <div className="flex items-center justify-center gap-1">
-                <Sparkles className="h-4 w-4 text-primary" />
+                <CreditCoin size="md" />
                 <p className="text-2xl font-bold text-primary">{remaining}</p>
               </div>
               <p className="text-xs text-muted-foreground">Uaktiverede</p>
@@ -70,7 +71,7 @@ export function ProfileCommunityBonusSection({ className }: ProfileCommunityBonu
           {/* Activate button */}
           {remaining > 0 && (
             <Button onClick={() => setDialogOpen(true)} className="w-full" size="sm">
-              <Sparkles className="h-4 w-4 mr-2" />
+              <CreditCoin size="md" className="mr-2" />
               Aktiver Credits ({remaining} tilgængelige)
             </Button>
           )}

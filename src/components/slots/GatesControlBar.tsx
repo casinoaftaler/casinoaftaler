@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
-import { Minus, Plus, Gamepad2, Sparkles } from "lucide-react";
+import { Minus, Plus, Gamepad2 } from "lucide-react";
+import { CreditCoin } from "@/components/CreditCoin";
 import { cn } from "@/lib/utils";
 import { VolumeControl } from "./VolumeControl";
 import { GatesPayTable } from "./GatesPayTable";
@@ -139,7 +140,7 @@ export function GatesControlBar({
       {!bonusState.isActive && (
         <>
           <div className="flex items-center gap-1.5 flex-shrink-0">
-            <Sparkles className={cn("h-3.5 w-3.5", theme.accentMuted)} />
+            <CreditCoin size="sm" />
             {spinsLoading ? (
               <span className={cn("text-xs animate-pulse", theme.accentMuted)}>...</span>
             ) : (

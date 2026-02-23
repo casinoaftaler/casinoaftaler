@@ -1,5 +1,6 @@
 import { Progress } from "@/components/ui/progress";
-import { Sparkles, Check, X } from "lucide-react";
+import { Check, X } from "lucide-react";
+import { CreditCoin } from "@/components/CreditCoin";
 import { SectionCompletionStatus, SPINS_PER_SECTION } from "@/hooks/useProfileRewards";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
@@ -39,10 +40,11 @@ export function ProfileRewardsProgress({
       <CardHeader className="pb-3 bg-gradient-to-r from-primary/5 to-primary/10">
         <div className="flex items-center justify-between">
           <CardTitle className="flex items-center gap-2 text-lg">
-            <Sparkles className="h-5 w-5 text-primary" />
+            <CreditCoin size="lg" />
             Profilfremskridt
           </CardTitle>
           <div className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-background/80 border">
+            <CreditCoin size="sm" />
             <span className="text-lg font-bold text-primary">{bonusSpinsPermanent}</span>
             <span className="text-sm text-muted-foreground">/ {maxSpins} credits</span>
           </div>
@@ -107,7 +109,7 @@ export function ProfileRewardsProgress({
                       : "text-muted-foreground"
                   }`}
                 >
-                  +{SPINS_PER_SECTION} credits
+                  <CreditCoin size="sm" className="mr-0.5" />+{SPINS_PER_SECTION} credits
                 </div>
               </div>
             );
