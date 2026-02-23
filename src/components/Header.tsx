@@ -117,6 +117,13 @@ export const Header = memo(function Header() {
             </DropdownMenuTrigger>
             <DropdownMenuContent align="center" className="bg-popover z-50">
               <DropdownMenuItem asChild>
+                <Link to="/casinoer" className="flex items-center gap-2 font-medium">
+                  <Landmark className="h-4 w-4" />
+                  Alle Casinoer
+                </Link>
+              </DropdownMenuItem>
+              <DropdownMenuSeparator />
+              <DropdownMenuItem asChild>
                 <Link to="/top-10-casino-online" className="flex items-center gap-2">
                   <Trophy className="h-4 w-4" />
                   Top 10 Online Casino
@@ -135,7 +142,7 @@ export const Header = memo(function Header() {
                 </Link>
               </DropdownMenuItem>
               <DropdownMenuItem asChild>
-                <Link to="/licenserede-casinoer" className="flex items-center gap-2">
+                <Link to="/casino-licenser" className="flex items-center gap-2">
                   <ShieldCheck className="h-4 w-4" />
                   Licenserede Casinoer
                 </Link>
@@ -377,6 +384,12 @@ export const Header = memo(function Header() {
                 <Link to="/free-spins" className="flex items-center gap-2">
                   <Sparkles className="h-4 w-4" />
                   Free Spins
+                </Link>
+              </DropdownMenuItem>
+              <DropdownMenuItem asChild>
+                <Link to="/free-spins-i-dag" className="flex items-center gap-2">
+                  <Sparkles className="h-4 w-4" />
+                  Free Spins i Dag
                 </Link>
               </DropdownMenuItem>
               <DropdownMenuItem asChild>
@@ -813,6 +826,10 @@ export const Header = memo(function Header() {
             </button>
             {expandedSection === "casino" && (
               <div className="flex flex-col border-b border-border/50 bg-muted/30">
+                <Link to="/casinoer" className="ml-6 flex items-center gap-2 py-2.5 text-sm font-medium text-foreground transition-colors hover:text-primary" onClick={() => setMobileMenuOpen(false)}>
+                  <Landmark className="h-4 w-4" />
+                  Alle Casinoer
+                </Link>
                 <Link to="/top-10-casino-online" className="ml-6 flex items-center gap-2 py-2.5 text-sm text-muted-foreground transition-colors hover:text-primary" onClick={() => setMobileMenuOpen(false)}>
                   <Trophy className="h-4 w-4" />
                   Top 10 Online Casino
@@ -825,7 +842,7 @@ export const Header = memo(function Header() {
                   <BarChart3 className="h-4 w-4" />
                   Høj RTP
                 </Link>
-                <Link to="/licenserede-casinoer" className="ml-6 flex items-center gap-2 py-2.5 text-sm text-muted-foreground transition-colors hover:text-primary" onClick={() => setMobileMenuOpen(false)}>
+                <Link to="/casino-licenser" className="ml-6 flex items-center gap-2 py-2.5 text-sm text-muted-foreground transition-colors hover:text-primary" onClick={() => setMobileMenuOpen(false)}>
                   <ShieldCheck className="h-4 w-4" />
                   Licenserede Casinoer
                 </Link>
@@ -1035,6 +1052,7 @@ export const Header = memo(function Header() {
                   { to: "/no-sticky-bonus", icon: <Sparkles className="h-4 w-4" />, label: "No-Sticky Bonusser" },
                   { to: "/sticky-bonus", icon: <Gift className="h-4 w-4" />, label: "Sticky Bonusser" },
                   { to: "/free-spins", icon: <Sparkles className="h-4 w-4" />, label: "Free Spins" },
+                  { to: "/free-spins-i-dag", icon: <Sparkles className="h-4 w-4" />, label: "Free Spins i Dag" },
                   { to: "/velkomstbonus", icon: <Gift className="h-4 w-4" />, label: "Velkomstbonus" },
                   { to: "/omsaetningskrav", icon: <RefreshCw className="h-4 w-4" />, label: "Omsætningskrav" },
                   { to: "/indskudsbonus", icon: <DollarSign className="h-4 w-4" />, label: "Indskudsbonus" },

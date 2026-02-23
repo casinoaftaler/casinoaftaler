@@ -177,7 +177,7 @@ const CasinoerHub = lazy(() => import("./pages/casinoer/CasinoerHub"));
 const HurtigUdbetalingGuide = lazy(() => import("./pages/casinoer/HurtigUdbetalingGuide"));
 const HoejRTPGuide = lazy(() => import("./pages/casinoer/HoejRTPGuide"));
 const CryptoCasinoGuide = lazy(() => import("./pages/casinoer/CryptoCasinoGuide"));
-const LicenseredeCasinoerGuide = lazy(() => import("./pages/casinoer/LicenseredeCasinoerGuide"));
+// LicenseredeCasinoerGuide now redirects to CasinoLicenser
 const VRCasinoerGuide = lazy(() => import("./pages/casinoer/VRCasinoerGuide"));
 const MobilCasinoerGuide = lazy(() => import("./pages/casinoer/MobilCasinoerGuide"));
 const SpilForSjovGuide = lazy(() => import("./pages/casinoer/SpilForSjovGuide"));
@@ -325,7 +325,7 @@ const App = () => (
                 <Route path="/casinoer/hurtig-udbetaling" element={<HurtigUdbetalingGuide />} />
                 <Route path="/casinoer/hoej-rtp" element={<HoejRTPGuide />} />
                 <Route path="/casinoer/crypto-casino" element={<CryptoCasinoGuide />} />
-                <Route path="/licenserede-casinoer" element={<LicenseredeCasinoerGuide />} />
+                <Route path="/licenserede-casinoer" element={<Navigate to="/casino-licenser" replace />} />
                 <Route path="/casino-licenser" element={<CasinoLicenser />} />
                 <Route path="/casinoer/vr-casinoer" element={<VRCasinoerGuide />} />
                 <Route path="/casinoer/mobil-casinoer" element={<MobilCasinoerGuide />} />

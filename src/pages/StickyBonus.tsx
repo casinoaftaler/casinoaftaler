@@ -844,7 +844,7 @@ const StickyBonus = () => {
             <strong>🇬🇧 Storbritannien (UKGC):</strong> Ingen lovfastsat øvre grænse for omsætningskrav. Typisk 30-40x (d+b) på sticky bonusser. Det betyder at en britisk sticky bonus på £500 med 35x kræver £35.000 i omsætning – 3,5x mere end den danske ækvivalent. Statistisk bust-rate: ~85% mod ~40% i Danmark.
           </p>
           <p className="mb-4 text-muted-foreground leading-relaxed">
-            <strong>🇸🇪 Sverige (Spelinspektionen):</strong> Bonusser er kun tilladt som velkomstbonus ved første indbetaling – reload-bonusser og løbende sticky bonusser er forbudt. Den svenske regulering er mere restriktiv end den danske, men giver ikke nødvendigvis bedre spillerbeskyttelse – mange svenske spillere migrerer til <Link to="/casinoer/udenlandske-casinoer" className={linkClass}>udenlandske casinoer</Link> med endnu værre vilkår.
+            <strong>🇸🇪 Sverige (Spelinspektionen):</strong> Bonusser er kun tilladt som velkomstbonus ved første indbetaling – reload-bonusser og løbende sticky bonusser er forbudt. Den svenske regulering er mere restriktiv end den danske, men giver ikke nødvendigvis bedre spillerbeskyttelse – mange svenske spillere migrerer til <Link to="/casino-licenser" className={linkClass}>udenlandske casinoer</Link> med endnu værre vilkår.
           </p>
           <p className="text-muted-foreground leading-relaxed">
             <strong>🇩🇰 Danmarks unikke position:</strong> Det danske system rammer en balance: bonusser er tilladt og reguleret med rimelige lofter, hvilket giver spillerne reel værdi uden at tvinge dem til uregulerede markeder. Sticky bonusser under 10x (d+b) er statistisk profitable for spilleren ved RTP over 95% – en grænse de fleste populære slots opfylder.

@@ -49,12 +49,10 @@ const CASINO_VARIANTS: Record<string, string[]> = {
 const GUIDE_VARIANTS: Record<string, string[]> = {
   "/casino-bonus": ["casino bonus", "casinobonus", "velkomstbonus"],
   "/omsaetningskrav": ["omsætningskrav", "omsaetningskrav", "gennemspilskrav"],
-  "/rtp": ["RTP", "return to player"],
-  "/volatilitet": ["volatilitet", "varians"],
   "/spillemyndigheden": ["Spillemyndigheden"],
-  "/rofus": ["ROFUS"],
-  "/dansk-licens": ["dansk licens", "danske licenser", "dansk spillelicens"],
+  "/casino-licenser": ["dansk licens", "danske licenser", "dansk spillelicens", "ROFUS", "licenserede casinoer"],
   "/saadan-tester-vi-casinoer": ["sådan tester vi", "saadan tester vi", "hvordan tester vi"],
+  "/ansvarligt-spil": ["ansvarligt spil", "ludomani", "spilleafhængighed"],
 };
 
 /**

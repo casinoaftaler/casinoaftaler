@@ -690,7 +690,7 @@ const Omsaetningskrav = () => {
             </table>
           </div>
           <p className="mt-4 text-muted-foreground leading-relaxed">
-            Tabellen afslører en klar sandhed: danske omsætningskrav er blandt verdens mest spillervenlige. Mens en bonus på et Curaçao-licenseret casino statistisk er designet til at du taber hele din saldo, giver en dansk bonus med 5-10x omsætning reel positiv EV. Sverige har valgt den modsatte vej og forbudt bonusser helt – en kontroversiel beslutning der har sendt mange svenske spillere til <Link to="/casinoer/udenlandske-casinoer" className={linkClass}>udenlandske casinoer</Link> uden dansk regulering.
+            Tabellen afslører en klar sandhed: danske omsætningskrav er blandt verdens mest spillervenlige. Mens en bonus på et Curaçao-licenseret casino statistisk er designet til at du taber hele din saldo, giver en dansk bonus med 5-10x omsætning reel positiv EV. Sverige har valgt den modsatte vej og forbudt bonusser helt – en kontroversiel beslutning der har sendt mange svenske spillere til <Link to="/casino-licenser" className={linkClass}>udenlandske casinoer</Link> uden dansk regulering.
           </p>
           <p className="text-muted-foreground leading-relaxed">
             <strong>Vigtigt perspektiv:</strong> Selv med 10x (d+b) omsætning – det strengeste danske niveau – er din EV stadig positiv med RTP over 95%. På et internationalt 40x-casino skal RTP være over 98,75% for positiv EV – kun en håndfuld spil i verden leverer dette. Det danske system er designet til at bonusser faktisk gavner spilleren.
