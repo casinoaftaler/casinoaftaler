@@ -33,7 +33,7 @@ export function QuickNavSidebar() {
           >
             <img
               src={item.icon}
-              alt=""
+              alt={item.label}
               className="h-8 w-8 rounded-md object-cover flex-shrink-0"
               loading="lazy"
             />
