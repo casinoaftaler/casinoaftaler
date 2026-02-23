@@ -122,7 +122,6 @@ const Index = () => {
       />
 
       <HeroSection />
-      <WhyTrustUs />
 
       {/* Top Casinos Section with sidebar */}
       <section id="top-casinos" className="py-8 md:py-12">
@@ -197,6 +196,8 @@ const Index = () => {
           )}
         </div>
       </section>
+
+      <WhyTrustUs />
 
       {/* === SEO Content Sections === */}
       <div className="container py-8 md:py-12">
