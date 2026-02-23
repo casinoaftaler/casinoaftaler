@@ -61,44 +61,44 @@ export function StickyCTA({ casinoSlug, casinoName, bonusText, logoUrl }: Sticky
       style={{ transform: visible ? "translateY(0)" : "translateY(100%)" }}
     >
       {/* Desktop */}
-      <div className="container hidden md:flex items-center justify-between py-3 max-h-[90px]">
-        <div className="flex items-center gap-4">
+      <div className="container hidden md:flex items-center justify-between py-4 h-[100px]">
+        <div className="flex items-center gap-5">
           {logoUrl && (
             <img
               src={logoUrl}
               alt={`${casinoName} logo`}
-              className="h-10 w-10 rounded-lg object-contain"
+              className="h-12 w-12 rounded-lg object-contain"
               loading="lazy"
             />
           )}
           <div>
-            <p className="text-sm font-semibold">{casinoName}</p>
-            <p className="text-xs text-muted-foreground">{bonusText}</p>
+            <p className="text-base font-semibold">{casinoName}</p>
+            <p className="text-lg font-bold text-foreground">{bonusText}</p>
           </div>
         </div>
-        <div className="flex items-center gap-4">
+        <div className="flex items-center gap-5">
           <span className="text-xs text-muted-foreground">18+ | Spil ansvarligt</span>
-          <Button onClick={handleClick} size="sm" className="font-bold px-6" data-sponsored="true">
-            HENT BONUS
+          <Button onClick={handleClick} size="lg" className="font-bold text-base min-w-[180px] shadow-md" data-sponsored="true">
+            HENT BONUS NU
           </Button>
         </div>
       </div>
 
       {/* Mobile */}
-      <div className="container flex md:hidden items-center justify-between py-2.5 max-h-[70px]">
-        <div className="flex items-center gap-3">
+      <div className="container flex md:hidden items-center justify-between py-3 min-h-[75px]">
+        <div className="flex items-center gap-3 min-w-0">
           {logoUrl && (
             <img
               src={logoUrl}
               alt={`${casinoName} logo`}
-              className="h-8 w-8 rounded-lg object-contain"
+              className="h-9 w-9 rounded-lg object-contain flex-shrink-0"
               loading="lazy"
             />
           )}
-          <p className="text-sm font-semibold">{casinoName}</p>
+          <p className="text-sm font-bold truncate">{bonusText}</p>
         </div>
-        <Button onClick={handleClick} size="sm" className="font-bold px-4" data-sponsored="true">
-          HENT BONUS
+        <Button onClick={handleClick} className="font-bold px-5 flex-shrink-0 min-w-[40%] shadow-md" data-sponsored="true">
+          HENT BONUS NU
         </Button>
       </div>
     </div>
