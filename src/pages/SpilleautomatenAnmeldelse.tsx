@@ -845,7 +845,7 @@ const SpilleautomatenAnmeldelse = () => {
 
         <FAQSection title="Ofte stillede spørgsmål om Spilleautomaten" faqs={spilleautomatenFaqs} />
       </div>
-      {casino && <StickyCTA casinoSlug={casino.slug} casinoName={casino.name} bonusText={casino.bonus_amount} logoUrl={casino.logo_url} />}
+      {casino && <StickyCTA casinoSlug={casino.slug} casinoName={casino.name} bonusAmount={casino.bonus_amount} bonusType={casino.bonus_type} freeSpins={casino.free_spins} wageringRequirements={casino.wagering_requirements} rating={casino.rating} logoUrl={casino.logo_url} isRecommended={casino.is_recommended} isHot={casino.is_hot} />}
     </>
   );
 };
