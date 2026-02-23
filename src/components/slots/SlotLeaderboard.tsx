@@ -75,7 +75,7 @@ function LeaderboardRow({
       </div>
 
       {/* Bottom row: Stats in 4 columns */}
-      <div className="grid grid-cols-4 gap-3 text-sm pl-9">
+      <div className="grid grid-cols-4 gap-4 text-sm pl-2">
         <div className="text-center">
           <p className={cn("font-bold", theme.leaderboardPointsText)}>{getDisplayWinnings(entry, period).toLocaleString()}</p>
           <p className="text-[10px] text-muted-foreground">point</p>
