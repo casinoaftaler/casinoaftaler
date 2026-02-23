@@ -103,8 +103,8 @@ const Index = () => {
   return (
     <>
       <SEO
-        title="Bedste Online Casinoer i Danmark 2026"
-        description="Sammenlign de bedste online casinoer i Danmark. Uafhængige anmeldelser, licenstjek og ærlige vurderinger af spiludvalg, udbetalinger og sikkerhed."
+        title="Online Casinoer med Bonus – Nye Casinoer 2026"
+        description="Find de bedste online casinoer med bonus og dansk licens. Sammenlign nye casinoer, live casino, free spins og spil ansvarligt med vores uafhængige anmeldelser."
         jsonLd={{
           "@context": "https://schema.org",
           "@type": "Organization",
