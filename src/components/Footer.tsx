@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { Gamepad2, Instagram, MessageCircle, Trophy, BookOpen, Shield, Scale, FileText, Cookie, ExternalLink, Sparkles, CreditCard, Target, Zap, Tv, Star, Dices, ClipboardList, Users, AlertTriangle, Gift, Newspaper } from "lucide-react";
+import { Gamepad2, Instagram, MessageCircle, Trophy, BookOpen, Shield, Scale, FileText, Cookie, ExternalLink, Sparkles, CreditCard, Target, Zap, Tv, Star, Dices, ClipboardList, Users, AlertTriangle, Gift, Newspaper, Map, PenTool } from "lucide-react";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
 import { useLatestNews } from "@/hooks/useLatestNews";
 import casinoaftalerLogo from "@/assets/casinoaftaler-logo.png";
@@ -347,6 +347,18 @@ export function Footer() {
                 <Link to="/kontakt" className="flex items-center gap-2 text-muted-foreground transition-colors hover:text-foreground">
                   <ExternalLink className="h-4 w-4" />
                   Kontakt
+                </Link>
+              </li>
+              <li>
+                <Link to="/forfatter/jonas" className="flex items-center gap-2 text-muted-foreground transition-colors hover:text-foreground">
+                  <PenTool className="h-4 w-4" />
+                  Skribenter
+                </Link>
+              </li>
+              <li>
+                <Link to="/sitemap" className="flex items-center gap-2 text-muted-foreground transition-colors hover:text-foreground">
+                  <Map className="h-4 w-4" />
+                  Sitemap
                 </Link>
               </li>
             </ul>

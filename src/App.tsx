@@ -32,6 +32,7 @@ const OmTeamet = lazy(() => import("./pages/OmTeamet"));
 const Forretningsmodel = lazy(() => import("./pages/Forretningsmodel"));
 const RedaktionelPolitik = lazy(() => import("./pages/RedaktionelPolitik"));
 const Kontakt = lazy(() => import("./pages/Contact"));
+const SitemapPage = lazy(() => import("./pages/Sitemap"));
 
 const AnsvarligtSpil = lazy(() => import("./pages/ResponsibleGaming"));
 const Spillemyndigheden = lazy(() => import("./pages/Spillemyndigheden"));
@@ -261,6 +262,7 @@ const App = () => (
                 <Route path="/saadan-tester-vi-casinoer" element={<SaadanTesterVi />} />
                 
                 <Route path="/kontakt" element={<Kontakt />} />
+                <Route path="/sitemap" element={<SitemapPage />} />
                 <Route path="/nyheder" element={<Navigate to="/casino-nyheder" replace />} />
                 <Route path="/casino-nyheder" element={<CasinoNyheder />} />
                 <Route path="/casino-nyheder/:slug" element={<CasinoNyhedArticle />} />
