@@ -293,7 +293,7 @@ function SlotFormDialog({ open, onClose, onSave, initialData, isPending }: {
                   placeholder="Skriv provider navn..."
                   autoFocus
                 />
-                <Button type="button" variant="outline" size="sm" onClick={() => { setCustomProvider(false); if (isCustomValue && !form.provider.trim()) setForm({ ...form, provider: '' }); }}>
+                <Button type="button" variant="outline" size="sm" onClick={() => { setCustomProvider(false); setProviderOpen(true); if (isCustomValue && !form.provider.trim()) setForm({ ...form, provider: '' }); }}>
                   Liste
                 </Button>
               </div>
