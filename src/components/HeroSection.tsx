@@ -16,7 +16,7 @@ export function HeroSection() {
 
   return (
     <section 
-      className="relative overflow-hidden py-8 text-white md:py-12 min-h-[280px] md:min-h-[320px]"
+      className="relative overflow-hidden py-6 text-white md:py-8 max-h-[85vh] md:max-h-[70vh]"
       style={{
         backgroundImage: heroBackgroundImage 
           ? `linear-gradient(135deg, hsl(260 70% 25% / 0.95), hsl(210 80% 30% / 0.9)), url(${heroBackgroundImage})`
