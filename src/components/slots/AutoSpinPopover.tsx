@@ -3,6 +3,7 @@ import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover
 import { Infinity, Zap, Square } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useState } from "react";
+import type { SlotTheme } from "@/lib/slotTheme";
 
 type AutoSpinCount = 10 | 25 | 50 | 100 | "infinite";
 
@@ -13,6 +14,7 @@ interface AutoSpinPopoverProps {
   onToggle: () => void;
   autoSpinsRemaining: number | null;
   disabled?: boolean;
+  theme: SlotTheme;
 }
 
 const counts: AutoSpinCount[] = [10, 25, 50, 100, "infinite"];
@@ -24,6 +26,7 @@ export function AutoSpinPopover({
   onToggle,
   autoSpinsRemaining,
   disabled,
+  theme,
 }: AutoSpinPopoverProps) {
   const [open, setOpen] = useState(false);
 
@@ -51,20 +54,27 @@ export function AutoSpinPopover({
         <Button
           variant="ghost"
           size="icon"
-          className="h-10 w-10 rounded-lg bg-blue-800/40 border border-blue-500/30 text-blue-300 hover:bg-blue-700/50 hover:text-blue-200"
+          className={cn(
+            "h-10 w-10 rounded-lg border",
+            theme.autoSpinBtnBg,
+            theme.autoSpinBtnBorder,
+            theme.autoSpinBtnText,
+            theme.autoSpinBtnHoverBg,
+            theme.autoSpinBtnHoverText
+          )}
           disabled={disabled}
         >
           <Zap className="h-4 w-4" />
         </Button>
       </PopoverTrigger>
       <PopoverContent
-        className="w-52 p-3 bg-blue-950/95 border-blue-500/30 backdrop-blur-md"
+        className={cn("w-52 p-3 backdrop-blur-md", theme.autoSpinPopoverBg, theme.autoSpinPopoverBorder)}
         align="center"
         side="top"
         sideOffset={8}
       >
         <div className="space-y-3">
-          <span className="text-xs font-semibold uppercase tracking-wider text-blue-300">
+          <span className={cn("text-xs font-semibold uppercase tracking-wider", theme.autoSpinLabelText)}>
             Auto Spin
           </span>
           <div className="grid grid-cols-3 gap-1.5">
@@ -75,8 +85,8 @@ export function AutoSpinPopover({
                 className={cn(
                   "h-8 rounded-md text-xs font-bold transition-all border",
                   autoSpinCount === count
-                    ? "bg-blue-500/30 border-blue-400/50 text-blue-200"
-                    : "bg-blue-900/40 border-blue-500/20 text-blue-400/70 hover:bg-blue-800/40 hover:text-blue-300"
+                    ? cn(theme.autoSpinCountActiveBg, theme.autoSpinCountActiveBorder, theme.autoSpinCountActiveText)
+                    : cn(theme.autoSpinCountBg, theme.autoSpinCountBorder, theme.autoSpinCountText, theme.autoSpinCountHoverBg, theme.autoSpinCountHoverText)
                 )}
               >
                 {count === "infinite" ? <Infinity className="h-3.5 w-3.5 mx-auto" /> : count}
@@ -84,7 +94,7 @@ export function AutoSpinPopover({
             ))}
           </div>
           <Button
-            className="w-full h-8 text-xs font-bold bg-blue-600/80 hover:bg-blue-500/80 text-white border border-blue-400/30"
+            className={cn("w-full h-8 text-xs font-bold text-white border", theme.autoSpinStartBg, theme.autoSpinStartHoverBg, theme.autoSpinStartBorder)}
             onClick={handleStart}
             disabled={disabled}
           >

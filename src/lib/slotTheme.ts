@@ -97,6 +97,27 @@ export interface SlotTheme {
   leaderboardSearchRing: string;
   leaderboardSeparator: string;
   leaderboardGlowShadow: string;
+  
+  // Auto-spin popover
+  autoSpinBtnBg: string;
+  autoSpinBtnBorder: string;
+  autoSpinBtnText: string;
+  autoSpinBtnHoverBg: string;
+  autoSpinBtnHoverText: string;
+  autoSpinPopoverBg: string;
+  autoSpinPopoverBorder: string;
+  autoSpinCountActiveBg: string;
+  autoSpinCountActiveBorder: string;
+  autoSpinCountActiveText: string;
+  autoSpinCountBg: string;
+  autoSpinCountBorder: string;
+  autoSpinCountText: string;
+  autoSpinCountHoverBg: string;
+  autoSpinCountHoverText: string;
+  autoSpinStartBg: string;
+  autoSpinStartHoverBg: string;
+  autoSpinStartBorder: string;
+  autoSpinLabelText: string;
 }
 
 const egyptianTheme: SlotTheme = {
@@ -184,6 +205,26 @@ const egyptianTheme: SlotTheme = {
   leaderboardSearchRing: "focus-visible:ring-amber-500/30",
   leaderboardSeparator: "bg-amber-500/20",
   leaderboardGlowShadow: "shadow-[0_0_30px_rgba(251,191,36,0.1)]",
+  
+  autoSpinBtnBg: "bg-amber-800/40",
+  autoSpinBtnBorder: "border-amber-500/30",
+  autoSpinBtnText: "text-amber-300",
+  autoSpinBtnHoverBg: "hover:bg-amber-700/50",
+  autoSpinBtnHoverText: "hover:text-amber-200",
+  autoSpinPopoverBg: "bg-amber-950/95",
+  autoSpinPopoverBorder: "border-amber-500/30",
+  autoSpinCountActiveBg: "bg-amber-500/30",
+  autoSpinCountActiveBorder: "border-amber-400/50",
+  autoSpinCountActiveText: "text-amber-200",
+  autoSpinCountBg: "bg-amber-900/40",
+  autoSpinCountBorder: "border-amber-500/20",
+  autoSpinCountText: "text-amber-400/70",
+  autoSpinCountHoverBg: "hover:bg-amber-800/40",
+  autoSpinCountHoverText: "hover:text-amber-300",
+  autoSpinStartBg: "bg-amber-600/80",
+  autoSpinStartHoverBg: "hover:bg-amber-500/80",
+  autoSpinStartBorder: "border-amber-400/30",
+  autoSpinLabelText: "text-amber-300",
 };
 
 const wizardTheme: SlotTheme = {
@@ -271,6 +312,26 @@ const wizardTheme: SlotTheme = {
   leaderboardSearchRing: "focus-visible:ring-purple-500/30",
   leaderboardSeparator: "bg-purple-500/20",
   leaderboardGlowShadow: "shadow-[0_0_30px_rgba(168,85,247,0.1)]",
+  
+  autoSpinBtnBg: "bg-purple-800/40",
+  autoSpinBtnBorder: "border-purple-500/30",
+  autoSpinBtnText: "text-purple-300",
+  autoSpinBtnHoverBg: "hover:bg-purple-700/50",
+  autoSpinBtnHoverText: "hover:text-purple-200",
+  autoSpinPopoverBg: "bg-purple-950/95",
+  autoSpinPopoverBorder: "border-purple-500/30",
+  autoSpinCountActiveBg: "bg-purple-500/30",
+  autoSpinCountActiveBorder: "border-purple-400/50",
+  autoSpinCountActiveText: "text-purple-200",
+  autoSpinCountBg: "bg-purple-900/40",
+  autoSpinCountBorder: "border-purple-500/20",
+  autoSpinCountText: "text-purple-400/70",
+  autoSpinCountHoverBg: "hover:bg-purple-800/40",
+  autoSpinCountHoverText: "hover:text-purple-300",
+  autoSpinStartBg: "bg-purple-600/80",
+  autoSpinStartHoverBg: "hover:bg-purple-500/80",
+  autoSpinStartBorder: "border-purple-400/30",
+  autoSpinLabelText: "text-purple-300",
 };
 
 const olympusTheme: SlotTheme = {
@@ -358,6 +419,26 @@ const olympusTheme: SlotTheme = {
   leaderboardSearchRing: "focus-visible:ring-blue-500/30",
   leaderboardSeparator: "bg-blue-500/20",
   leaderboardGlowShadow: "shadow-[0_0_30px_rgba(59,130,246,0.1)]",
+  
+  autoSpinBtnBg: "bg-blue-800/40",
+  autoSpinBtnBorder: "border-blue-500/30",
+  autoSpinBtnText: "text-blue-300",
+  autoSpinBtnHoverBg: "hover:bg-blue-700/50",
+  autoSpinBtnHoverText: "hover:text-blue-200",
+  autoSpinPopoverBg: "bg-blue-950/95",
+  autoSpinPopoverBorder: "border-blue-500/30",
+  autoSpinCountActiveBg: "bg-blue-500/30",
+  autoSpinCountActiveBorder: "border-blue-400/50",
+  autoSpinCountActiveText: "text-blue-200",
+  autoSpinCountBg: "bg-blue-900/40",
+  autoSpinCountBorder: "border-blue-500/20",
+  autoSpinCountText: "text-blue-400/70",
+  autoSpinCountHoverBg: "hover:bg-blue-800/40",
+  autoSpinCountHoverText: "hover:text-blue-300",
+  autoSpinStartBg: "bg-blue-600/80",
+  autoSpinStartHoverBg: "hover:bg-blue-500/80",
+  autoSpinStartBorder: "border-blue-400/30",
+  autoSpinLabelText: "text-blue-300",
 };
 
 const themes: Record<string, SlotTheme> = {
