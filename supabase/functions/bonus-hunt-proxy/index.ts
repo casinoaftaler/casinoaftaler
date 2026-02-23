@@ -34,8 +34,6 @@ async function syncSlotCatalog(supabase: any, huntData: any) {
     const bet = entry.bet || 1;
     const multiplier = win > 0 && bet > 0 ? Math.round((win / bet) * 100) / 100 : 0;
 
-    if (win <= 0) continue; // Skip unplayed or zero-win slots
-
     // Upsert: only update highest_win/highest_x if new values are higher
     // Provider and RTP set on insert only (preserve admin edits)
     const { error } = await supabase.rpc('upsert_slot_catalog', {

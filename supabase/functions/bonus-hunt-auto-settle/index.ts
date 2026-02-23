@@ -32,8 +32,6 @@ async function syncSlotCatalog(admin: any, huntData: any) {
     const bet = entry.bet || 1;
     const multiplier = win > 0 && bet > 0 ? Math.round((win / bet) * 100) / 100 : 0;
 
-    if (win <= 0) continue;
-
     // Upsert with GREATEST to only update records
     await admin
       .from('slot_catalog')
