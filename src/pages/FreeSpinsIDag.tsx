@@ -432,7 +432,7 @@ const FreeSpinsIDag = () => {
         <Separator className="my-8" />
 
         {/* SEO content – structured guide */}
-        <div className="mx-auto max-w-3xl mt-4">
+        <div className="mt-4">
           {/* Intro */}
           <section className="mb-8">
             <h2 className="flex items-center gap-2 text-xl font-bold text-foreground mb-3">
