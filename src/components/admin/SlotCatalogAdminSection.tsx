@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -6,7 +6,10 @@ import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle, AlertDialogTrigger } from "@/components/ui/alert-dialog";
-import { Plus, Trash2, Pencil, Search, Loader2 } from "lucide-react";
+import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
+import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList } from "@/components/ui/command";
+import { Plus, Trash2, Pencil, Search, Loader2, Check, ChevronsUpDown } from "lucide-react";
+import { cn } from "@/lib/utils";
 import { toast } from "sonner";
 import {
   useSlotCatalog,
@@ -230,6 +233,24 @@ interface SlotFormData {
   highest_x: number;
 }
 
+const PROVIDER_PRESETS = [
+  "Big Time Gaming",
+  "Blueprint Gaming",
+  "ELK Studios",
+  "Evolution Gaming",
+  "Hacksaw Gaming",
+  "NetEnt",
+  "Nolimit City",
+  "Play'n GO",
+  "Pragmatic Play",
+  "Push Gaming",
+  "Quickspin",
+  "Red Tiger",
+  "Relax Gaming",
+  "Thunderkick",
+  "Yggdrasil",
+];
+
 function SlotFormDialog({ open, onClose, onSave, initialData, isPending }: {
   open: boolean;
   onClose: () => void;
@@ -237,18 +258,22 @@ function SlotFormDialog({ open, onClose, onSave, initialData, isPending }: {
   initialData?: SlotFormData;
   isPending: boolean;
 }) {
-  const [form, setForm] = useState<SlotFormData>(initialData || {
-    slot_name: '', provider: '', rtp: null, volatility: null, max_potential: null, highest_win: 0, highest_x: 0,
-  });
+  const emptyForm: SlotFormData = { slot_name: '', provider: '', rtp: null, volatility: null, max_potential: null, highest_win: 0, highest_x: 0 };
+  const [form, setForm] = useState<SlotFormData>(initialData || emptyForm);
+  const [providerOpen, setProviderOpen] = useState(false);
+  const [customProvider, setCustomProvider] = useState(false);
 
-  // Reset form when dialog opens with new data
-  const handleOpenChange = (isOpen: boolean) => {
-    if (!isOpen) onClose();
-    else setForm(initialData || { slot_name: '', provider: '', rtp: null, volatility: null, max_potential: null, highest_win: 0, highest_x: 0 });
-  };
+  useEffect(() => {
+    if (open) {
+      setForm(initialData || emptyForm);
+      setCustomProvider(false);
+    }
+  }, [open, initialData]);
+
+  const isCustomValue = form.provider && !PROVIDER_PRESETS.includes(form.provider);
 
   return (
-    <Dialog open={open} onOpenChange={handleOpenChange}>
+    <Dialog open={open} onOpenChange={(isOpen) => { if (!isOpen) onClose(); }}>
       <DialogContent>
         <DialogHeader>
           <DialogTitle>{initialData ? 'Rediger Slot' : 'Tilføj Slot'}</DialogTitle>
@@ -260,7 +285,50 @@ function SlotFormDialog({ open, onClose, onSave, initialData, isPending }: {
           </div>
           <div className="space-y-1">
             <Label>Provider</Label>
-            <Input value={form.provider} onChange={e => setForm({ ...form, provider: e.target.value })} />
+            {customProvider || isCustomValue ? (
+              <div className="flex gap-2">
+                <Input
+                  value={form.provider}
+                  onChange={e => setForm({ ...form, provider: e.target.value })}
+                  placeholder="Skriv provider navn..."
+                  autoFocus
+                />
+                <Button type="button" variant="outline" size="sm" onClick={() => { setCustomProvider(false); if (isCustomValue && !form.provider.trim()) setForm({ ...form, provider: '' }); }}>
+                  Liste
+                </Button>
+              </div>
+            ) : (
+              <Popover open={providerOpen} onOpenChange={setProviderOpen}>
+                <PopoverTrigger asChild>
+                  <Button variant="outline" role="combobox" aria-expanded={providerOpen} className="w-full justify-between font-normal">
+                    {form.provider || "Vælg provider..."}
+                    <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
+                  </Button>
+                </PopoverTrigger>
+                <PopoverContent className="w-[--radix-popover-trigger-width] p-0" align="start">
+                  <Command>
+                    <CommandInput placeholder="Søg provider..." />
+                    <CommandList>
+                      <CommandEmpty>Ingen fundet</CommandEmpty>
+                      <CommandGroup>
+                        {PROVIDER_PRESETS.map(p => (
+                          <CommandItem key={p} value={p} onSelect={() => { setForm({ ...form, provider: p }); setProviderOpen(false); }}>
+                            <Check className={cn("mr-2 h-4 w-4", form.provider === p ? "opacity-100" : "opacity-0")} />
+                            {p}
+                          </CommandItem>
+                        ))}
+                      </CommandGroup>
+                      <CommandGroup>
+                        <CommandItem onSelect={() => { setCustomProvider(true); setProviderOpen(false); }}>
+                          <Plus className="mr-2 h-4 w-4" />
+                          Tilføj custom provider...
+                        </CommandItem>
+                      </CommandGroup>
+                    </CommandList>
+                  </Command>
+                </PopoverContent>
+              </Popover>
+            )}
           </div>
           <div className="grid grid-cols-2 gap-3">
             <div className="space-y-1">
