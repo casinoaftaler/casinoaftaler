@@ -6,7 +6,8 @@ import { Badge } from "@/components/ui/badge";
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
-import { Loader2, Users, Coins } from "lucide-react";
+import { Loader2, Users } from "lucide-react";
+import { CreditCoin } from "@/components/CreditCoin";
 
 const GROUPS = [
   { letter: 'A', range: '0-59x', color: 'bg-red-500/20 text-red-400 border-red-500/40' },
@@ -118,9 +119,9 @@ export function BonusHuntAvgXTab({ session, bets, userId, onBetPlaced }: Props) 
         <Card>
           <CardContent className="p-3 text-center">
             <p className="text-xs text-muted-foreground mb-1 flex items-center justify-center gap-1">
-              <Coins className="h-3 w-3" /> Total Pot
+              <CreditCoin size="sm" /> Total Pot
             </p>
-            <p className="text-lg font-bold">{totalPot} credits</p>
+            <p className="text-lg font-bold flex items-center justify-center gap-1"><CreditCoin size="lg" />{totalPot}</p>
           </CardContent>
         </Card>
         <Card>
@@ -140,11 +141,11 @@ export function BonusHuntAvgXTab({ session, bets, userId, onBetPlaced }: Props) 
             <div className="flex justify-between items-center">
               <div>
                 <p className="text-xs text-muted-foreground">Dit Bet</p>
-                <p className="font-semibold">Gruppe {userBet.group_letter} — {userBet.bet_amount} credits</p>
+                <p className="font-semibold flex items-center gap-1">Gruppe {userBet.group_letter} — <CreditCoin size="sm" />{userBet.bet_amount}</p>
               </div>
               {userBet.winnings !== null && (
                 <Badge variant={userBet.winnings > 0 ? "default" : "secondary"}>
-                  {userBet.winnings > 0 ? `+${userBet.winnings} credits` : 'Tabt'}
+                  {userBet.winnings > 0 ? <span className="flex items-center gap-1">+<CreditCoin size="sm" />{userBet.winnings}</span> : 'Tabt'}
                 </Badge>
               )}
             </div>
@@ -225,9 +226,9 @@ export function BonusHuntAvgXTab({ session, bets, userId, onBetPlaced }: Props) 
                   <Badge variant="outline" className="text-xs shrink-0">
                     Gruppe {bet.group_letter}
                   </Badge>
-                  <span className="text-xs text-muted-foreground shrink-0">{bet.bet_amount} credits</span>
+                  <span className="text-xs text-muted-foreground shrink-0 flex items-center gap-0.5"><CreditCoin size="sm" />{bet.bet_amount}</span>
                   {bet.winnings !== null && bet.winnings > 0 && (
-                    <Badge variant="default" className="text-xs shrink-0">+{bet.winnings}</Badge>
+                    <Badge variant="default" className="text-xs shrink-0 flex items-center gap-0.5">+<CreditCoin size="sm" />{bet.winnings}</Badge>
                   )}
                 </div>
               ))}
