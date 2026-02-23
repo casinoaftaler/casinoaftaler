@@ -43,6 +43,21 @@ const CASINO_VARIANTS: Record<string, string[]> = {
 };
 
 /**
+ * Guide pages with their keyword variants for auto-linking.
+ * Max 2 guide links per article.
+ */
+const GUIDE_VARIANTS: Record<string, string[]> = {
+  "/casino-bonus": ["casino bonus", "casinobonus", "velkomstbonus"],
+  "/omsaetningskrav": ["omsætningskrav", "omsaetningskrav", "gennemspilskrav"],
+  "/rtp": ["RTP", "return to player"],
+  "/volatilitet": ["volatilitet", "varians"],
+  "/spillemyndigheden": ["Spillemyndigheden"],
+  "/rofus": ["ROFUS"],
+  "/dansk-licens": ["dansk licens", "danske licenser", "dansk spillelicens"],
+  "/saadan-tester-vi-casinoer": ["sådan tester vi", "saadan tester vi", "hvordan tester vi"],
+};
+
+/**
  * Check if a position in HTML is inside an existing <a> tag, heading, or alt attribute.
  * We do this by scanning backwards for unclosed tags.
  */
@@ -81,22 +96,29 @@ function isInsideForbiddenContext(html: string, pos: number): boolean {
 /**
  * Check if a link to this casino review already exists in the HTML.
  */
-function hasExistingLink(html: string, slug: string): boolean {
-  const reviewUrl = `/casino-anmeldelser/${slug}`;
-  return html.includes(reviewUrl);
+function hasExistingLink(html: string, url: string): boolean {
+  return html.includes(url);
 }
 
 /**
- * Insert a single internal link for the first valid occurrence of a casino name.
+ * Count existing internal links in the article body text (not nav/header).
+ */
+function countExistingInternalLinks(html: string): number {
+  const matches = html.match(/<a\s+[^>]*href="\//g);
+  return matches ? matches.length : 0;
+}
+
+/**
+ * Insert a single internal link for the first valid occurrence of a keyword.
  * Returns the modified HTML or null if no change was made.
  */
 function insertLink(
   html: string,
-  slug: string,
+  url: string,
   variants: string[]
 ): string | null {
   // Skip if link already exists
-  if (hasExistingLink(html, slug)) return null;
+  if (hasExistingLink(html, url)) return null;
 
   for (const name of variants) {
     // Build regex for word-boundary match (case-insensitive)
@@ -110,7 +132,7 @@ function insertLink(
     const match = regex.exec(html);
     if (!match || match.index === undefined) continue;
 
-    // The actual casino name position in the full string
+    // The actual name position in the full string
     const fullMatchStart = match.index;
     const textBeforeName = match[1];
     const matchedName = match[2];
@@ -120,7 +142,7 @@ function insertLink(
     if (isInsideForbiddenContext(html, nameStart)) continue;
 
     // Insert the link
-    const link = `<a href="/casino-anmeldelser/${slug}">${matchedName}</a>`;
+    const link = `<a href="${url}">${matchedName}</a>`;
     const result =
       html.slice(0, nameStart) + link + html.slice(nameStart + matchedName.length);
 
@@ -177,14 +199,36 @@ Deno.serve(async (req) => {
       let modified = false;
       const linkedSlugs: string[] = [];
 
+      // Over-linking guard: skip if article already has 3+ internal links
+      const existingLinkCount = countExistingInternalLinks(html);
+      if (existingLinkCount >= 3) {
+        console.log(`Skipping "${article.slug}": already has ${existingLinkCount} internal links`);
+        continue;
+      }
+
+      // Phase 1: Casino links
       for (const [slug, variants] of Object.entries(casinosToProcess)) {
         if (!variants || variants.length === 0) continue;
 
-        const result = insertLink(html, slug, variants);
+        const result = insertLink(html, `/casino-anmeldelser/${slug}`, variants);
         if (result) {
           html = result;
           modified = true;
-          linkedSlugs.push(slug);
+          linkedSlugs.push(`casino:${slug}`);
+        }
+      }
+
+      // Phase 2: Guide links (max 2 per article)
+      let guideLinksAdded = 0;
+      for (const [guidePath, variants] of Object.entries(GUIDE_VARIANTS)) {
+        if (guideLinksAdded >= 2) break;
+
+        const result = insertLink(html, guidePath, variants);
+        if (result) {
+          html = result;
+          modified = true;
+          guideLinksAdded++;
+          linkedSlugs.push(`guide:${guidePath}`);
         }
       }
 
