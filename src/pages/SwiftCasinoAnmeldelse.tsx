@@ -13,6 +13,7 @@ import { InlineCasinoCards } from "@/components/InlineCasinoCards";
 import { useCasinos } from "@/hooks/useCasinos";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
 import { getAffiliateRedirect } from "@/lib/affiliateRedirect";
+import { StickyCTA } from "@/components/StickyCTA";
 import { buildArticleSchema, buildFaqSchema } from "@/lib/seo";
 import { useAuth } from "@/hooks/useAuth";
 import { QuickFactsProviders, QuickFactsLogo, QuickFactsLicense } from "@/components/QuickFactsProviders";
@@ -853,6 +854,7 @@ const SwiftCasinoAnmeldelse = () => {
 
         <FAQSection title="Ofte stillede spørgsmål om Swift Casino" faqs={swiftFaqs} />
       </div>
+      {casino && <StickyCTA casinoSlug={casino.slug} casinoName={casino.name} bonusText={casino.bonus_amount} logoUrl={casino.logo_url} />}
     </>
   );
 };

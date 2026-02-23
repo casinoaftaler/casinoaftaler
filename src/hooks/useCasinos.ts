@@ -30,12 +30,13 @@ export interface Casino {
   position: number;
   logo_url: string | null;
   affiliate_url: string | null;
+  has_affiliate: boolean;
   game_providers: GameProvider[];
   created_at: string;
   updated_at: string;
 }
 
-export type CasinoInsert = Omit<Casino, "id" | "created_at" | "updated_at" | "position" | "is_recommended" | "is_hot" | "logo_url" | "affiliate_url" | "game_providers"> & { 
+export type CasinoInsert = Omit<Casino, "id" | "created_at" | "updated_at" | "position" | "is_recommended" | "is_hot" | "logo_url" | "affiliate_url" | "game_providers" | "has_affiliate"> & { 
   is_recommended?: boolean;
   is_hot?: boolean;
   logo_url?: string | null; 
@@ -59,6 +60,7 @@ export function useCasinos(includeInactive = false) {
           if (error) throw error;
           return (data || []).map(casino => ({
             ...casino,
+            has_affiliate: !!casino.affiliate_url,
             game_providers: (casino.game_providers as unknown as GameProvider[]) || []
           })) as Casino[];
         }
@@ -74,7 +76,8 @@ export function useCasinos(includeInactive = false) {
       // Map game_providers from JSON to typed array and add null affiliate_url
       return (data || []).map(casino => ({
         ...casino,
-        affiliate_url: null, // Not exposed in public view
+        affiliate_url: null,
+        has_affiliate: !!(casino as any).has_affiliate,
         game_providers: (casino.game_providers as unknown as GameProvider[]) || []
       })) as Casino[];
     },
