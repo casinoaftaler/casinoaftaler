@@ -83,7 +83,10 @@ export function useCreateSlotCatalogEntry() {
       if (error) throw error;
       return data;
     },
-    onSuccess: () => qc.invalidateQueries({ queryKey: ['slot-catalog'] }),
+    onSuccess: () => {
+      qc.invalidateQueries({ queryKey: ['slot-catalog'] });
+      qc.invalidateQueries({ queryKey: ['slot-catalog-all'] });
+    },
   });
 }
 
@@ -100,7 +103,10 @@ export function useUpdateSlotCatalogEntry() {
       if (error) throw error;
       return data;
     },
-    onSuccess: () => qc.invalidateQueries({ queryKey: ['slot-catalog'] }),
+    onSuccess: () => {
+      qc.invalidateQueries({ queryKey: ['slot-catalog'] });
+      qc.invalidateQueries({ queryKey: ['slot-catalog-all'] });
+    },
   });
 }
 
@@ -114,7 +120,10 @@ export function useDeleteSlotCatalogEntry() {
         .eq('id', id);
       if (error) throw error;
     },
-    onSuccess: () => qc.invalidateQueries({ queryKey: ['slot-catalog'] }),
+    onSuccess: () => {
+      qc.invalidateQueries({ queryKey: ['slot-catalog'] });
+      qc.invalidateQueries({ queryKey: ['slot-catalog-all'] });
+    },
   });
 }
 
