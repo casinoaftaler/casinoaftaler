@@ -7,7 +7,7 @@ import { BonusStatusBar } from "./BonusStatusBar";
 import { BonusSymbolBar } from "./BonusSymbolBar";
 import { SlotMachineFrame } from "./SlotMachineFrame";
 import { WinCelebration } from "./WinCelebration";
-import { SlotControlPanel } from "./SlotControlPanel";
+import { GatesControlBar } from "./GatesControlBar";
 import { useSlotSymbols } from "@/hooks/useSlotSymbols";
 import { useSlotSymbolPreloader } from "@/hooks/useSlotSymbolPreloader";
 import { useSlotSpins } from "@/hooks/useSlotSpins";
@@ -1212,37 +1212,30 @@ export function SlotGame({ gameId = "book-of-fedesvin" }: SlotGameProps) {
               )}
             </div>
             
-            <div className={cn(
-              "rounded-xl backdrop-blur-md border p-3 shadow-lg",
-              gameId === "rise-of-fedesvin" 
-                ? "bg-purple-950/40 border-purple-500/20" 
-                : "bg-amber-950/40 border-amber-500/20"
-            )}>
-              <SlotControlPanel
-                bet={effectiveBet}
-                onBetChange={setBet}
-                onSpin={handleSpin}
-                onAutoSpinToggle={toggleAutoSpin}
-                isSpinning={isSpinning}
-                canSpin={canSpin}
-                isAutoSpinning={isAutoSpinning}
-                autoSpinCount={autoSpinCount}
-                onAutoSpinCountChange={setAutoSpinCount}
-                autoSpinsRemaining={autoSpinsRemaining}
-                bonusState={bonusState}
-                bonusLoaded={bonusLoaded}
-                disabled={isSpinning || isSpinLocked}
-                isSpinLocked={isSpinLocked}
-                minBet={slotSettings.minBet}
-                maxBet={slotSettings.maxBet}
-                spinsRemaining={spinsRemaining}
-                maxSpins={maxSpins}
-                spinsLoading={false}
-                showBonusTrigger={showBonusTrigger}
-                winAmount={winAmount}
-                gameId={gameId}
-              />
-            </div>
+            <GatesControlBar
+              bet={effectiveBet}
+              onBetChange={setBet}
+              onSpin={handleSpin}
+              onAutoSpinToggle={toggleAutoSpin}
+              isSpinning={isSpinning}
+              canSpin={canSpin}
+              isAutoSpinning={isAutoSpinning}
+              autoSpinCount={autoSpinCount}
+              onAutoSpinCountChange={setAutoSpinCount}
+              autoSpinsRemaining={autoSpinsRemaining}
+              bonusState={bonusState}
+              bonusLoaded={bonusLoaded}
+              disabled={isSpinning || isSpinLocked}
+              isSpinLocked={isSpinLocked}
+              minBet={slotSettings.minBet}
+              maxBet={slotSettings.maxBet}
+              spinsRemaining={spinsRemaining}
+              maxSpins={maxSpins}
+              spinsLoading={false}
+              showBonusTrigger={showBonusTrigger}
+              winAmount={winAmount}
+              gameId={gameId}
+            />
           </div>
 
           {/* No spins message */}
