@@ -4,13 +4,15 @@ import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { AuthorBio } from "@/components/AuthorBio";
 import { RelatedGuides } from "@/components/RelatedGuides";
 import { FAQSection } from "@/components/FAQSection";
+import { InlineCasinoCards } from "@/components/InlineCasinoCards";
 import { buildArticleSchema, buildFaqSchema, SITE_URL } from "@/lib/seo";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
+import casinoerHubHero from "@/assets/heroes/casinoer-hub-hero.jpg";
 import {
   Zap, ShieldCheck, Monitor, Globe, Calculator, Smartphone,
-  ArrowRight, Trophy, Star, ChevronRight,
+  ChevronRight, Trophy, Star, Layers,
 } from "lucide-react";
 
 const linkClass = "text-primary underline hover:text-primary/80";
@@ -129,32 +131,59 @@ export default function CasinoerHub() {
         jsonLd={jsonLd}
       />
 
-      <div className="container mx-auto px-4 py-8 max-w-4xl">
+      {/* Hero Section */}
+      <section
+        className="relative overflow-hidden py-12 text-white md:py-20"
+        style={{
+          backgroundImage: 'linear-gradient(135deg, hsl(260 70% 25%), hsl(250 60% 20%) 40%, hsl(210 80% 25%))',
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+        }}
+      >
+        <div className="container">
+          <div className="mx-auto max-w-3xl text-center">
+            <Badge variant="secondary" className="mb-4">
+              <Layers className="mr-1.5 h-3.5 w-3.5" />
+              Casino Guide Hub
+            </Badge>
+            <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">
+              Casinoer – Alt du skal vide
+            </h1>
+            <p className="text-lg text-white/80">
+              Denne hub samler alle vores dybdegående guides om specifikke casino-kategorier.
+              Uanset om du leder efter hurtig udbetaling, høj RTP eller information om skat på gevinster – her finder du det analytiske fundament.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <div className="container py-8 md:py-12">
         <AuthorMetaBar
           author="jonas"
           date="2026-02-20"
           readTime="5 min"
         />
 
-        <div className="mb-8">
-          <Badge variant="secondary" className="mb-3">Casino Guide Hub</Badge>
-          <h1 className="text-3xl md:text-4xl font-bold mb-4">
-            Casinoer – Alt du skal vide
-          </h1>
-          <p className="text-lg text-muted-foreground leading-relaxed">
-            Denne hub samler alle vores dybdegående guides om specifikke casino-kategorier.
-            Uanset om du leder efter{" "}
-            <Link to="/casinoer/hurtig-udbetaling" className={linkClass}>hurtig udbetaling</Link>,{" "}
-            <Link to="/casinoer/hoej-rtp" className={linkClass}>høj RTP</Link> eller information om{" "}
-            <Link to="/casinoer/casino-og-skat" className={linkClass}>skat på gevinster</Link> – her finder du det analytiske fundament.
-          </p>
+        <div className="mb-10 overflow-hidden rounded-xl">
+          <img
+            src={casinoerHubHero}
+            alt="Casino guide hub – kompas med casino chips og spillekort"
+            className="w-full h-auto object-cover max-h-[400px]"
+            loading="eager"
+          />
         </div>
 
-        <Separator className="my-8" />
-
-        {/* Subcategory grid */}
+        {/* Intro Section */}
         <section className="mb-12">
-          <h2 className="text-2xl font-bold mb-6">Alle Casino-Kategorier</h2>
+          <h2 className="mb-4 text-3xl font-bold">Alle Casino-Kategorier</h2>
+          <p className="mb-6 text-muted-foreground leading-relaxed">
+            Nedenfor finder du alle vores specialguides opdelt efter tema. Hver guide dækker en specifik casino-kategori med
+            dybdegående analyser, sammenligninger og konkrete anbefalinger baseret på reelle tests. Fra{" "}
+            <Link to="/casinoer/hurtig-udbetaling" className={linkClass}>hurtig udbetaling</Link> til{" "}
+            <Link to="/casinoer/hoej-rtp" className={linkClass}>høj RTP</Link> og{" "}
+            <Link to="/casinoer/casino-og-skat" className={linkClass}>skat på gevinster</Link>.
+          </p>
+
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {SUBCATEGORIES.map((cat) => {
               const Icon = cat.icon;
@@ -187,9 +216,11 @@ export default function CasinoerHub() {
           </div>
         </section>
 
+        <Separator className="my-10" />
+
         {/* Editorial context */}
-        <section className="mb-12 prose prose-sm max-w-none">
-          <h2 className="text-2xl font-bold mb-4 not-prose">Hvad adskiller et godt dansk casino fra et middelmådigt?</h2>
+        <section className="mb-12">
+          <h2 className="text-3xl font-bold mb-4">Hvad adskiller et godt dansk casino fra et middelmådigt?</h2>
           <p className="text-muted-foreground leading-relaxed mb-4">
             Det er let at falde for et flashy design og en stor velkomstbonus. Men det der reelt definerer et
             kvalitetscasino er tre ting: <strong>licens</strong>, <strong>udbetalingshastighed</strong> og <strong>RTP-transparens</strong>.
@@ -207,7 +238,7 @@ export default function CasinoerHub() {
             <Link to="/casinoer/hurtig-udbetaling" className={linkClass}>guide til hurtig udbetaling</Link> for en
             fuld sammenligning.
           </p>
-          <p className="text-muted-foreground leading-relaxed mb-4">
+          <p className="text-muted-foreground leading-relaxed">
             RTP (Return to Player) angiver den matematiske returnering af et spil over tid. Et casino der aktivt
             promoverer spil med RTP under 94% uden at oplyse det, prioriterer ikke din oplevelse. Vores{" "}
             <Link to="/casinoer/hoej-rtp" className={linkClass}>RTP-guide</Link> giver dig de konkrete tal og de
@@ -215,7 +246,7 @@ export default function CasinoerHub() {
           </p>
         </section>
 
-        <Separator className="my-8" />
+        <InlineCasinoCards title="Anbefalede Casinoer" />
 
         <FAQSection
           title="Ofte stillede spørgsmål om casinoer"
