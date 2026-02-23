@@ -3,6 +3,8 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { ChevronLeft, ChevronRight, ChevronsLeft, ChevronsRight, Search, ArrowUpDown } from "lucide-react";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { BonusHuntSlotInfoDialog } from "./BonusHuntSlotInfoDialog";
+import { useProviderOverrides } from "@/hooks/useSlotCatalog";
 import type { BonusHuntSlot } from "@/hooks/useBonusHuntData";
 
 interface Props {
@@ -24,13 +26,33 @@ export function BonusHuntSlotTable({ slots, huntNumber, huntDate, latestHuntNumb
   const [page, setPage] = useState(0);
   const [sortKey, setSortKey] = useState<SortKey>('index');
   const [sortDir, setSortDir] = useState<SortDir>('asc');
+  const [selectedSlot, setSelectedSlot] = useState<string | null>(null);
+
+  const { data: overrides } = useProviderOverrides();
+
+  // Build override lookup map
+  const overrideMap = useMemo(() => {
+    const map = new Map<string, string>();
+    overrides?.forEach(o => map.set(o.slot_name, o.provider_override));
+    return map;
+  }, [overrides]);
+
+  // Apply provider overrides to slots
+  const slotsWithOverrides = useMemo(() => {
+    return slots.map(s => {
+      if (s.provider === 'Custom Slot' && overrideMap.has(s.slot)) {
+        return { ...s, provider: overrideMap.get(s.slot)! };
+      }
+      return s;
+    });
+  }, [slots, overrideMap]);
 
   const filtered = useMemo(() => {
     const q = search.toLowerCase();
-    return slots
+    return slotsWithOverrides
       .map((s, i) => ({ ...s, index: i + 1 }))
       .filter(s => !q || s.slot.toLowerCase().includes(q) || s.provider.toLowerCase().includes(q));
-  }, [slots, search]);
+  }, [slotsWithOverrides, search]);
 
   const sorted = useMemo(() => {
     return [...filtered].sort((a, b) => {
@@ -97,7 +119,7 @@ export function BonusHuntSlotTable({ slots, huntNumber, huntDate, latestHuntNumb
       <div className="relative">
         <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
         <Input
-          placeholder="Find Slot or Provider"
+          placeholder="Find Slot eller Provider"
           value={search}
           onChange={e => { setSearch(e.target.value); setPage(0); }}
           className="pl-9"
@@ -128,8 +150,13 @@ export function BonusHuntSlotTable({ slots, huntNumber, huntDate, latestHuntNumb
               <tr key={slot.index} className={`hover:bg-muted/30 ${slot.opened ? '' : 'opacity-60'}`}>
                 <td className="px-3 py-2 font-mono text-xs">{slot.index}</td>
                 <td className="px-3 py-2">
-                  <div className="font-medium">{slot.slot}</div>
-                  <div className="text-xs text-muted-foreground">{slot.provider}</div>
+                  <button
+                    className="text-left hover:underline cursor-pointer"
+                    onClick={() => setSelectedSlot(slot.slot)}
+                  >
+                    <div className="font-medium">{slot.slot}</div>
+                    <div className="text-xs text-muted-foreground">{slot.provider}</div>
+                  </button>
                 </td>
                 <td className="px-3 py-2 font-mono">{slot.bet.toFixed(2)} kr</td>
                 <td className="px-3 py-2 font-mono">
@@ -164,6 +191,9 @@ export function BonusHuntSlotTable({ slots, huntNumber, huntDate, latestHuntNumb
           </Button>
         </div>
       </div>
+
+      {/* Slot Info Dialog */}
+      <BonusHuntSlotInfoDialog slotName={selectedSlot} onClose={() => setSelectedSlot(null)} />
     </div>
   );
 }

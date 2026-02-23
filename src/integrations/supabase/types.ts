@@ -141,6 +141,27 @@ export type Database = {
           },
         ]
       }
+      bonus_hunt_provider_overrides: {
+        Row: {
+          created_at: string
+          id: string
+          provider_override: string
+          slot_name: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          provider_override: string
+          slot_name: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          provider_override?: string
+          slot_name?: string
+        }
+        Relationships: []
+      }
       bonus_hunt_sessions: {
         Row: {
           average_x: number | null
@@ -1561,6 +1582,45 @@ export type Database = {
           total_free_spins?: number
           updated_at?: string
           user_id?: string
+        }
+        Relationships: []
+      }
+      slot_catalog: {
+        Row: {
+          created_at: string
+          highest_win: number | null
+          highest_x: number | null
+          id: string
+          max_potential: string | null
+          provider: string
+          rtp: number | null
+          slot_name: string
+          updated_at: string
+          volatility: string | null
+        }
+        Insert: {
+          created_at?: string
+          highest_win?: number | null
+          highest_x?: number | null
+          id?: string
+          max_potential?: string | null
+          provider?: string
+          rtp?: number | null
+          slot_name: string
+          updated_at?: string
+          volatility?: string | null
+        }
+        Update: {
+          created_at?: string
+          highest_win?: number | null
+          highest_x?: number | null
+          id?: string
+          max_potential?: string | null
+          provider?: string
+          rtp?: number | null
+          slot_name?: string
+          updated_at?: string
+          volatility?: string | null
         }
         Relationships: []
       }
