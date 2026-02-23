@@ -203,6 +203,7 @@ export function GatesControlBar({
         onToggle={onAutoSpinToggle}
         autoSpinsRemaining={autoSpinsRemaining}
         disabled={!canSpinNow || showBonusTrigger}
+        theme={theme}
       />
 
       {/* Spin button */}
