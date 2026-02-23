@@ -1,45 +1,42 @@
 
 
-## Fix Slot Katalog Edit + Provider Dropdown
+## Automatisk provider-synkronisering for slot_catalog
 
-### Problem 1: Can't save changes when editing
-The edit dialog initializes its form state once on mount. When you click edit on a slot, the form state is set from `initialData` only during the initial render. If `initialData` changes (e.g. editing a different slot), the form doesn't update. This means the form shows stale data and the save button may not work correctly.
+### Problem
+Der er to bugs i den nuvaerende synkronisering:
 
-**Fix:** Add a `useEffect` that syncs the form state whenever `initialData` or `open` changes.
+1. **Uaabnede slots springes over**: Koden har `if (win <= 0) continue`, saa nye slots der endnu ikke er aabnet i en bonus hunt faar aldrig deres provider gemt i kataloget.
+2. **Provider opdateres aldrig**: Database-funktionen `upsert_slot_catalog` opdaterer kun `highest_win` og `highest_x` paa eksisterende raekker -- provider forbliver "Custom Slot" selvom API'en returnerer det rigtige navn.
 
-### Problem 2: Provider should be a dropdown
-Replace the plain text `<Input>` for provider with a combobox that has preset providers and a "custom" option.
+Der er aktuelt 4 slots med "Custom Slot" som provider i databasen.
 
-**Provider presets (alphabetical):**
-- Big Time Gaming
-- Blueprint Gaming
-- ELK Studios
-- Evolution Gaming
-- Hacksaw Gaming
-- NetEnt
-- Nolimit City
-- Play'n GO
-- Pragmatic Play
-- Push Gaming
-- Quickspin
-- Red Tiger
-- Relax Gaming
-- Thunderkick
-- Yggdrasil
+### Loesning
 
-The combobox will allow selecting from the list or typing a custom provider name.
+**1. Opdater database-funktionen `upsert_slot_catalog`**
+- Tilfoej logik saa provider opdateres naar den eksisterende vaerdi er "Custom Slot" eller "Unknown"
+- RTP opdateres ogsaa hvis den eksisterende vaerdi er NULL
 
-### Technical changes
+```text
+ON CONFLICT (slot_name) DO UPDATE SET
+  provider = CASE 
+    WHEN slot_catalog.provider IN ('Custom Slot', 'Unknown') 
+    THEN EXCLUDED.provider 
+    ELSE slot_catalog.provider 
+  END,
+  rtp = COALESCE(slot_catalog.rtp, EXCLUDED.rtp),
+  highest_win = GREATEST(...),
+  highest_x = GREATEST(...)
+```
 
-**File: `src/components/admin/SlotCatalogAdminSection.tsx`**
+**2. Opdater Edge Functions (bonus-hunt-proxy og bonus-hunt-auto-settle)**
+- Fjern `if (win <= 0) continue` begransningen saa ALLE slots (ogsaa uaabnede) faar deres provider og RTP synkroniseret
+- For uaabnede slots saettes `highest_win` og `highest_x` til 0 (saa GREATEST-logikken bevarer eksisterende rekorder)
 
-1. Add a `useEffect` in `SlotFormDialog` that updates `form` state when `initialData` or `open` changes -- this fixes the save bug.
+**3. Ret eksisterende data**
+- Koer en engangs-opdatering der retter de 4 eksisterende "Custom Slot" raekker baseret paa data fra `bonus_hunt_provider_overrides` tabellen
 
-2. Replace the provider `<Input>` with a `Popover` + `Command` (cmdk) combobox pattern:
-   - Shows a searchable list of preset providers
-   - Has a "Tilføj custom..." option at the bottom that lets you type a new provider
-   - Displays the currently selected provider in the trigger button
-   - When a preset is selected, it sets `form.provider`
-   - When "custom" is selected, it switches to a text input for free-form entry
+### Filer der aendres
+- Database-migration: Opdater `upsert_slot_catalog` funktionen
+- `supabase/functions/bonus-hunt-proxy/index.ts`: Fjern win-check, synk alle slots
+- `supabase/functions/bonus-hunt-auto-settle/index.ts`: Samme aendring
 
-No database or edge function changes needed.
