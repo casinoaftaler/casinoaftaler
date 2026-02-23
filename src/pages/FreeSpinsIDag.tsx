@@ -28,6 +28,79 @@ import { da } from "date-fns/locale";
 
 const linkClass = "text-primary underline hover:text-primary/80";
 
+// ─── Text cleaning pipeline ───
+function cleanScrapedText(raw: string | null | undefined): string {
+  if (!raw) return "";
+  let text = raw;
+  // Convert <br>, <br/>, <br /> to newlines
+  text = text.replace(/<br\s*\/?>/gi, "\n");
+  // Strip remaining HTML tags
+  text = text.replace(/<[^>]*>/g, "");
+  // Decode HTML entities
+  text = text.replace(/&nbsp;/gi, " ");
+  text = text.replace(/&amp;/gi, "&");
+  text = text.replace(/&lt;/gi, "<");
+  text = text.replace(/&gt;/gi, ">");
+  text = text.replace(/&quot;/gi, '"');
+  text = text.replace(/&#39;/gi, "'");
+  // Collapse whitespace (but preserve newlines)
+  text = text.replace(/[^\S\n]+/g, " ");
+  // Collapse multiple newlines
+  text = text.replace(/\n{3,}/g, "\n\n");
+  // Trim each line
+  text = text.split("\n").map(l => l.trim()).filter(l => l.length > 0).join("\n");
+  return text.trim();
+}
+
+// ─── Extract structured terms from raw text ───
+interface StructuredTerms {
+  game: string | null;
+  requirement: string | null;
+  who: string | null;
+  expiry: string | null;
+  conditions: string[];
+  fullText: string;
+}
+
+function extractStructuredTerms(raw: string | null | undefined): StructuredTerms {
+  const cleaned = cleanScrapedText(raw);
+  const lines = cleaned.split("\n");
+  const result: StructuredTerms = { game: null, requirement: null, who: null, expiry: null, conditions: [], fullText: cleaned };
+
+  for (const line of lines) {
+    const lower = line.toLowerCase();
+    if (!result.game && (lower.includes("spil:") || lower.includes("gælder") || lower.includes("slot:") || lower.includes("game:"))) {
+      result.game = line.replace(/^[^:]*:\s*/i, "").trim();
+    } else if (!result.requirement && (lower.includes("omsætning") || lower.includes("wagering") || lower.includes("gennemspil"))) {
+      result.requirement = line.replace(/^[^:]*:\s*/i, "").trim();
+    } else if (!result.who && (lower.includes("hvem") || lower.includes("nye spillere") || lower.includes("eksisterende") || lower.includes("eligib"))) {
+      result.who = line.replace(/^[^:]*:\s*/i, "").trim();
+    } else if (!result.expiry && (lower.includes("udløb") || lower.includes("gyldig") || lower.includes("expir") || lower.includes("valid"))) {
+      result.expiry = line.replace(/^[^:]*:\s*/i, "").trim();
+    } else if (line.length > 5) {
+      result.conditions.push(line);
+    }
+  }
+  return result;
+}
+
+// ─── Render cleaned text with line breaks ───
+function CleanedText({ text, className, maxLines }: { text: string | null | undefined; className?: string; maxLines?: number }) {
+  const cleaned = cleanScrapedText(text);
+  if (!cleaned) return null;
+  const clampClass = maxLines ? `line-clamp-${maxLines}` : "";
+  return (
+    <p className={`${className || ""} ${clampClass}`}>
+      {cleaned.split("\n").map((line, i, arr) => (
+        <React.Fragment key={i}>
+          {line}
+          {i < arr.length - 1 && <br />}
+        </React.Fragment>
+      ))}
+    </p>
+  );
+}
+
 const freeSpinsIDagFaqs = [
   {
     question: "Hvordan finder I de daglige free spins tilbud?",
@@ -736,7 +809,9 @@ function FeaturedOfferCard({ offer, logoUrl, affiliateUrl }: { offer: CampaignOf
 
           {/* Short terms summary */}
           {offer.short_terms_summary && (
-            <p className="mt-2 text-xs text-white/40 line-clamp-2">{offer.short_terms_summary}</p>
+          <div className="mt-2 text-xs text-white/40 line-clamp-2 whitespace-pre-line">
+            {cleanScrapedText(offer.short_terms_summary)}
+          </div>
           )}
         </div>
 
@@ -870,23 +945,67 @@ function OfferCard({ offer, logoUrl, affiliateUrl }: { offer: CampaignOffer; log
 
         {/* Bottom: Short terms + Expandable T&C + CTA */}
         {offer.short_terms_summary && (
-          <p className="text-[11px] text-muted-foreground/70 line-clamp-2 mb-2">{offer.short_terms_summary}</p>
+          <CleanedText text={offer.short_terms_summary} className="text-[11px] text-muted-foreground/70 mb-2" maxLines={2} />
         )}
 
         {/* Expandable full description / terms */}
-        {offer.description && (
-          <Collapsible>
-            <CollapsibleTrigger className="flex items-center gap-1 text-[11px] text-primary/70 hover:text-primary transition-colors mb-2">
-              <ChevronDown className="h-3 w-3" />
-              Vis vilkår & betingelser
-            </CollapsibleTrigger>
-            <CollapsibleContent>
-              <div className="rounded-lg bg-muted/30 p-3 text-[11px] text-muted-foreground leading-relaxed mb-2 max-h-32 overflow-y-auto">
-                {offer.description}
-              </div>
-            </CollapsibleContent>
-          </Collapsible>
-        )}
+        {offer.description && (() => {
+          const terms = extractStructuredTerms(offer.description);
+          const hasStructured = terms.game || terms.requirement || terms.who || terms.expiry;
+          return (
+            <Collapsible>
+              <CollapsibleTrigger className="flex items-center gap-1 text-[11px] text-primary/70 hover:text-primary transition-colors mb-2">
+                <ChevronDown className="h-3 w-3" />
+                Vis vilkår & betingelser
+              </CollapsibleTrigger>
+              <CollapsibleContent>
+                <div className="rounded-lg border border-border/30 bg-muted/20 p-4 text-xs text-muted-foreground mb-2 max-w-[650px]" style={{ lineHeight: '1.7' }}>
+                  {hasStructured && (
+                    <div className="space-y-2 mb-3">
+                      {terms.game && (
+                        <div className="flex items-start gap-2">
+                          <Gamepad2 className="h-3.5 w-3.5 text-primary/60 mt-0.5 flex-shrink-0" />
+                          <span><span className="font-semibold text-foreground/80">Spil:</span> {terms.game}</span>
+                        </div>
+                      )}
+                      {terms.requirement && (
+                        <div className="flex items-start gap-2">
+                          <RotateCcw className="h-3.5 w-3.5 text-primary/60 mt-0.5 flex-shrink-0" />
+                          <span><span className="font-semibold text-foreground/80">Krav:</span> {terms.requirement}</span>
+                        </div>
+                      )}
+                      {terms.who && (
+                        <div className="flex items-start gap-2">
+                          <Users className="h-3.5 w-3.5 text-primary/60 mt-0.5 flex-shrink-0" />
+                          <span><span className="font-semibold text-foreground/80">Hvem:</span> {terms.who}</span>
+                        </div>
+                      )}
+                      {terms.expiry && (
+                        <div className="flex items-start gap-2">
+                          <CalendarClock className="h-3.5 w-3.5 text-primary/60 mt-0.5 flex-shrink-0" />
+                          <span><span className="font-semibold text-foreground/80">Udløber:</span> {terms.expiry}</span>
+                        </div>
+                      )}
+                    </div>
+                  )}
+                  {terms.conditions.length > 0 && (
+                    <>
+                      {hasStructured && <Separator className="my-2" />}
+                      <div className="space-y-1 text-muted-foreground/70">
+                        {terms.conditions.map((c, i) => (
+                          <p key={i}>{c}</p>
+                        ))}
+                      </div>
+                    </>
+                  )}
+                  {!hasStructured && terms.conditions.length === 0 && (
+                    <p className="whitespace-pre-line">{terms.fullText}</p>
+                  )}
+                </div>
+              </CollapsibleContent>
+            </Collapsible>
+          );
+        })()}
 
         {/* Verified + Source + CTA row */}
         <div className="flex items-center justify-between mt-1">
