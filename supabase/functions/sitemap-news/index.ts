@@ -169,6 +169,8 @@ const staticRoutes: Array<{
   { path: "/casino-compliance", changefreq: "daily", priority: 0.7, lastmod: "2026-02-20" },
 ];
 
+const TODAY = new Date().toISOString().split("T")[0];
+
 function toDate(ts: string): string {
   return new Date(ts).toISOString().split("T")[0];
 }
@@ -238,8 +240,8 @@ Deno.serve(async (req) => {
 
     // 1. Static routes (with dynamic casino lastmod override)
     for (const route of staticRoutes) {
-      let lastmod = route.lastmod;
-
+      // Auto-set daily-changing pages to today's date
+      let lastmod = route.changefreq === "daily" ? TODAY : route.lastmod;
       // Override lastmod for casino review pages with DB updated_at
       const reviewMatch = route.path.match(/^\/casino-anmeldelser\/(.+)$/);
       if (reviewMatch && casinoLastmod[reviewMatch[1]]) {
