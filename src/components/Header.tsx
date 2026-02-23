@@ -707,9 +707,12 @@ export const Header = memo(function Header() {
 
         <div className="flex items-center gap-2">
           {/* Theme toggle - hidden on mobile, shown on desktop */}
-          <div className="hidden lg:block">
-            <ThemeToggle />
-          </div>
+          {/* Theme toggle - only show standalone when NOT logged in */}
+          {!user && (
+            <div className="hidden lg:block">
+              <ThemeToggle />
+            </div>
+          )}
           
           {/* Notification bell for logged-in users */}
           {!authLoading && user && <NotificationDropdown />}
@@ -720,12 +723,6 @@ export const Header = memo(function Header() {
               <DropdownMenu modal={false}>
                 <DropdownMenuTrigger asChild>
                   <Button variant="ghost" className="relative flex h-auto items-center gap-2 rounded-full px-2 py-1">
-                    {creditsData && (
-                      <span className="flex items-center gap-1 text-xs font-semibold text-primary">
-                        <CreditCoin size="sm" />
-                        {creditsData.spins_remaining.toLocaleString("da-DK")}
-                      </span>
-                    )}
                     <Avatar className="h-8 w-8">
                       <AvatarImage src={profile?.avatar_url || undefined} alt={profile?.display_name || "Bruger"} />
                       <AvatarFallback>
@@ -738,19 +735,27 @@ export const Header = memo(function Header() {
                   </Button>
                 </DropdownMenuTrigger>
                 <DropdownMenuContent align="end" className="w-56">
-                  <div className="flex items-center gap-2 p-2">
-                    <Avatar className="h-8 w-8">
-                      <AvatarImage src={profile?.avatar_url || undefined} alt={profile?.display_name || "Bruger"} />
-                      <AvatarFallback>
-                        <User className="h-4 w-4" />
-                      </AvatarFallback>
-                    </Avatar>
-                    <div className="flex flex-col">
-                      <span className="text-sm font-medium">{profile?.display_name || "Bruger"}</span>
-                      {profile?.twitch_username && (
-                        <span className="text-xs text-muted-foreground">@{profile.twitch_username}</span>
-                      )}
+                  <div className="flex items-center justify-between p-2">
+                    <div className="flex items-center gap-2">
+                      <Avatar className="h-8 w-8">
+                        <AvatarImage src={profile?.avatar_url || undefined} alt={profile?.display_name || "Bruger"} />
+                        <AvatarFallback>
+                          <User className="h-4 w-4" />
+                        </AvatarFallback>
+                      </Avatar>
+                      <div className="flex flex-col">
+                        <span className="text-sm font-medium">{profile?.display_name || "Bruger"}</span>
+                        {profile?.twitch_username && (
+                          <span className="text-xs text-muted-foreground">@{profile.twitch_username}</span>
+                        )}
+                      </div>
                     </div>
+                    {creditsData && (
+                      <span className="flex items-center gap-1 text-xs font-semibold text-primary">
+                        <CreditCoin size="sm" />
+                        {creditsData.spins_remaining.toLocaleString("da-DK")}
+                      </span>
+                    )}
                   </div>
                   <DropdownMenuSeparator />
                   <DropdownMenuItem onClick={() => navigate("/profil")} className="cursor-pointer">
@@ -761,7 +766,7 @@ export const Header = memo(function Header() {
                     <Ticket className="mr-2 h-4 w-4" />
                     Indløs Kode
                   </DropdownMenuItem>
-                  <DropdownMenuItem onClick={toggleTheme} className="cursor-pointer sm:hidden">
+                  <DropdownMenuItem onClick={toggleTheme} className="cursor-pointer">
                     {isDark ? (
                       <>
                         <Sun className="mr-2 h-4 w-4" />
