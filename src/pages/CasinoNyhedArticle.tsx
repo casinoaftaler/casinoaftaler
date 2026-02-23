@@ -5,6 +5,7 @@ import { SEO } from "@/components/SEO";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { AuthorBio } from "@/components/AuthorBio";
 import { FAQSection } from "@/components/FAQSection";
+import { RelatedCasinos } from "@/components/RelatedCasinos";
 import { useNewsArticle, usePublishedNews } from "@/hooks/useCasinoNews";
 import { buildArticleSchema, buildFaqSchema, SITE_URL } from "@/lib/seo";
 import { CalendarDays, Loader2, Newspaper } from "lucide-react";
@@ -172,6 +173,9 @@ const CasinoNyhedArticle = () => {
             faqs={faqs}
           />
         )}
+
+        {/* Related Casinos - SEO internal linking */}
+        <RelatedCasinos content={article.content} category={article.category} />
 
         <Separator className="my-8" />
 

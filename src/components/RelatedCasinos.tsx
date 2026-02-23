@@ -1,0 +1,136 @@
+import { useMemo } from "react";
+import { Link } from "react-router-dom";
+import { Star } from "lucide-react";
+import { CASINO_SCORES } from "@/lib/reviewScoring";
+import { useQuery } from "@tanstack/react-query";
+import { supabase } from "@/integrations/supabase/client";
+
+/**
+ * Maps casino slugs (from CASINO_SCORES, which have review pages) to
+ * search terms that may appear in article content.
+ * Uses the DB name as primary match + common variants.
+ */
+const CASINO_NAME_VARIANTS: Record<string, string[]> = {
+  betinia: ["Betinia"],
+  spilleautomaten: ["Spilleautomaten"],
+  campobet: ["Campobet"],
+  "swift-casino": ["Swift Casino", "Swift"],
+  "luna-casino": ["Luna Casino"],
+  spildansknu: ["SpilDanskNu", "Spil Dansk Nu"],
+  leovegas: ["LeoVegas", "Leo Vegas"],
+  "danske-spil": ["Danske Spil"],
+  bet365: ["bet365", "Bet365"],
+  "mr-green": ["Mr Green", "MrGreen", "Mr. Green"],
+  unibet: ["Unibet"],
+  "royal-casino": ["Royal Casino"],
+  pokerstars: ["PokerStars"],
+  "888casino": ["888casino", "888 Casino"],
+  videoslots: ["Videoslots"],
+  comeon: ["ComeOn", "Come On"],
+  betano: ["Betano"],
+  "stake-casino": ["Stake Casino", "Stake"],
+  nordicbet: ["NordicBet", "Nordic Bet"],
+  bwin: ["bwin", "Bwin"],
+  "mr-vegas": ["Mr Vegas", "MrVegas", "Mr. Vegas"],
+  "maria-casino": ["Maria Casino"],
+  getlucky: ["GetLucky", "Get Lucky"],
+  spilnu: ["Spilnu", "Spil Nu"],
+  "kapow-casino": ["Kapow Casino", "Kapow"],
+  marathonbet: ["MarathonBet", "Marathon Bet"],
+  expekt: ["Expekt"],
+  onecasino: ["OneCasino", "One Casino"],
+  casinostuen: ["Casinostuen"],
+};
+
+interface RelatedCasinosProps {
+  /** The raw HTML content of the article */
+  content: string;
+  /** Article category for fallback matching */
+  category?: string;
+}
+
+export function RelatedCasinos({ content, category }: RelatedCasinosProps) {
+  // Fetch casino data (logo_url, name) from DB
+  const { data: casinos } = useQuery({
+    queryKey: ["casinos-for-related"],
+    queryFn: async () => {
+      const { data, error } = await supabase
+        .from("casinos")
+        .select("slug, name, logo_url, rating")
+        .eq("is_active", true);
+      if (error) throw error;
+      return data;
+    },
+    staleTime: 10 * 60 * 1000,
+  });
+
+  const matched = useMemo(() => {
+    if (!casinos || !content) return [];
+
+    // Strip HTML tags for cleaner text matching
+    const plainText = content.replace(/<[^>]*>/g, " ");
+
+    const found: { slug: string; name: string; logo_url: string | null; rating: number }[] = [];
+
+    for (const [slug, variants] of Object.entries(CASINO_NAME_VARIANTS)) {
+      // Only include casinos that have a review page (exist in CASINO_SCORES)
+      if (!CASINO_SCORES[slug]) continue;
+
+      const casinoDb = casinos.find((c) => c.slug === slug);
+      if (!casinoDb) continue;
+
+      // Check if any variant name appears in the article text
+      const isMatch = variants.some((name) => {
+        // Use word boundary-like check to avoid partial matches
+        const escaped = name.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+        const regex = new RegExp(`\\b${escaped}\\b`, "i");
+        return regex.test(plainText);
+      });
+
+      if (isMatch) {
+        found.push({
+          slug,
+          name: casinoDb.name,
+          logo_url: casinoDb.logo_url,
+          rating: CASINO_SCORES[slug].total,
+        });
+      }
+    }
+
+    // Sort by rating descending, take max 3
+    return found.sort((a, b) => b.rating - a.rating).slice(0, 3);
+  }, [content, casinos]);
+
+  if (matched.length === 0) return null;
+
+  return (
+    <section className="mb-10">
+      <h2 className="text-2xl font-bold mb-4">Relaterede casinoer</h2>
+      <div className="grid gap-3 sm:grid-cols-3">
+        {matched.map((casino) => (
+          <Link
+            key={casino.slug}
+            to={`/casino-anmeldelser/${casino.slug}`}
+            className="flex items-center gap-3 rounded-lg border border-border bg-card p-3 transition-all hover:border-primary/50 hover:shadow-sm"
+          >
+            {casino.logo_url && (
+              <img
+                src={casino.logo_url}
+                alt={casino.name}
+                className="h-10 w-10 rounded-md object-cover"
+                loading="lazy"
+              />
+            )}
+            <div className="min-w-0 flex-1">
+              <span className="font-semibold text-sm block truncate">{casino.name}</span>
+              <span className="flex items-center gap-1 text-xs text-muted-foreground">
+                <Star className="h-3 w-3 fill-primary text-primary" />
+                {casino.rating.toFixed(1)}
+              </span>
+            </div>
+          </Link>
+        ))}
+      </div>
+    </section>
+  );
+}
