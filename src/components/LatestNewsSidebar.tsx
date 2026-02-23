@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { Newspaper, ArrowRight } from "lucide-react";
 import { usePublishedNews } from "@/hooks/useCasinoNews";
+import { optimizeStorageImage } from "@/lib/imageOptimization";
 
 export function LatestNewsSidebar() {
   const { data, isLoading } = usePublishedNews(1, 2);
@@ -34,10 +35,11 @@ export function LatestNewsSidebar() {
         >
           {article.featured_image ? (
             <img
-              src={article.featured_image}
+              src={optimizeStorageImage(article.featured_image, 112) ?? article.featured_image}
               alt=""
               width={56}
               height={56}
+              loading="lazy"
               className="h-14 w-14 shrink-0 rounded-md object-cover"
             />
           ) : (

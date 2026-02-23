@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { Star, Flame, Check, ChevronDown, Gift, RotateCcw, Clock, Wallet, Calendar, Percent, Coins, Zap, BookOpen } from "lucide-react";
 import { getAffiliateRedirect } from "@/lib/affiliateRedirect";
+import { optimizeStorageImage } from "@/lib/imageOptimization";
 import { useAuth } from "@/hooks/useAuth";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -174,7 +175,7 @@ function CasinoInfoContent({ casino, variant }: { casino: Casino; variant: "feat
               <div key={index} className="flex flex-col items-center">
                 {provider.logo_url ? (
                   <img 
-                    src={provider.logo_url} 
+                    src={optimizeStorageImage(provider.logo_url, 160) ?? provider.logo_url} 
                     alt={provider.name} 
                     width={80}
                     height={32}
@@ -257,7 +258,7 @@ function FeaturedCard({
             <div className="flex-shrink-0">
               {casino.logoUrl ? (
                 <img
-                  src={casino.logoUrl}
+                  src={optimizeStorageImage(casino.logoUrl, isTopRow ? 192 : 160) ?? casino.logoUrl}
                   alt={casino.name}
                   width={isTopRow ? 96 : 80}
                   height={isTopRow ? 96 : 80}
@@ -439,7 +440,7 @@ function RegularCard({
             <div className="flex-shrink-0">
               {casino.logoUrl ? (
                 <img
-                  src={casino.logoUrl}
+                  src={optimizeStorageImage(casino.logoUrl, 192) ?? casino.logoUrl}
                   alt={casino.name}
                   width={96}
                   height={96}

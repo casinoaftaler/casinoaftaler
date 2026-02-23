@@ -4,6 +4,7 @@ import { SEO } from "@/components/SEO";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { usePublishedNews } from "@/hooks/useCasinoNews";
 import { buildArticleSchema, SITE_URL } from "@/lib/seo";
+import { optimizeStorageImage } from "@/lib/imageOptimization";
 import { CalendarDays, ChevronLeft, ChevronRight, Newspaper } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -151,7 +152,7 @@ const CasinoNyheder = () => {
                 >
                   {article.featured_image && (
                     <img
-                      src={article.featured_image}
+                      src={optimizeStorageImage(article.featured_image, 600) ?? article.featured_image}
                       alt={article.title}
                       width={600}
                       height={192}
