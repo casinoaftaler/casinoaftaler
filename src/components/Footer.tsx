@@ -1,11 +1,12 @@
 import { Link } from "react-router-dom";
-import { Gamepad2, Instagram, MessageCircle, Trophy, BookOpen, Shield, Scale, FileText, Cookie, ExternalLink, Sparkles, CreditCard, Target, Zap, Tv, Star, Dices, ClipboardList, Users, AlertTriangle, Gift } from "lucide-react";
+import { Gamepad2, Instagram, MessageCircle, Trophy, BookOpen, Shield, Scale, FileText, Cookie, ExternalLink, Sparkles, CreditCard, Target, Zap, Tv, Star, Dices, ClipboardList, Users, AlertTriangle, Gift, Newspaper } from "lucide-react";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
+import { useLatestNews } from "@/hooks/useLatestNews";
 import casinoaftalerLogo from "@/assets/casinoaftaler-logo.png";
 
 export function Footer() {
   const { data: siteSettings } = useSiteSettings();
-  
+  const { data: latestNews } = useLatestNews(3);
   const siteName = siteSettings?.site_name || "Casinoaftaler.dk";
   const headerIcon = siteSettings?.header_icon || undefined;
   const discordUrl = siteSettings?.discord_url;
@@ -20,7 +21,7 @@ export function Footer() {
   return (
     <footer className="border-t border-border bg-card">
       <div className="container py-12">
-        <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6">
+        <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-7">
           <div className="space-y-4">
             <Link to="/" className="flex items-center gap-2">
               <div className="flex h-10 w-10 items-center justify-center rounded-lg overflow-hidden">
@@ -374,6 +375,37 @@ export function Footer() {
               </li>
             </ul>
           </div>
+
+          {/* Seneste opdateringer - SEO freshness signal */}
+          {latestNews && latestNews.length > 0 && (
+            <div>
+              <h4 className="mb-4 text-sm font-semibold flex items-center gap-2">
+                <Newspaper className="h-4 w-4 text-primary" />
+                Seneste opdateringer
+              </h4>
+              <ul className="space-y-2 text-sm">
+                {latestNews.map((article) => (
+                  <li key={article.slug}>
+                    <Link
+                      to={`/casino-nyheder/${article.slug}`}
+                      className="text-muted-foreground transition-colors hover:text-foreground"
+                    >
+                      <span className="line-clamp-2">{article.title}</span>
+                      {article.published_at && (
+                        <span className="block text-xs text-muted-foreground/70 mt-0.5">
+                          {new Date(article.published_at).toLocaleDateString("da-DK", {
+                            day: "numeric",
+                            month: "short",
+                            year: "numeric",
+                          })}
+                        </span>
+                      )}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
         </div>
 
         {/* Compliance / Ansvarligt Spil sektion */}
