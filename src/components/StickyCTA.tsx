@@ -41,7 +41,10 @@ export function StickyCTA({
       ? footer.getBoundingClientRect().top < window.innerHeight
       : false;
 
-    setVisible(scrollPercent >= 0.12 && !footerInView);
+    const isMobile = window.innerWidth < 1024;
+    const threshold = isMobile ? 0.05 : 0.10;
+
+    setVisible(scrollPercent >= threshold && !footerInView);
   }, []);
 
   useEffect(() => {
