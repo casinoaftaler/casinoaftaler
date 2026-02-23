@@ -255,8 +255,14 @@ export function useEndTournament() {
         .update({ status: "ended", ends_at: new Date().toISOString() })
         .eq("id", tournamentId);
       if (error) throw error;
+
+      // Trigger clawback of unused tournament credits
+      await supabase.functions.invoke("update-tournament-status");
     },
-    onSuccess: () => queryClient.invalidateQueries({ queryKey: ["tournaments"] }),
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["tournaments"] });
+      queryClient.invalidateQueries({ queryKey: ["slot-spins"] });
+    },
   });
 }
 
