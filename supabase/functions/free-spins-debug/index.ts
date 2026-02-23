@@ -50,32 +50,53 @@ Deno.serve(async (req) => {
       .select("*", { count: "exact", head: true })
       .eq("is_active", true);
 
-    // 4. Campaign breakdown
+    // 4. Campaign breakdown with enriched data
     const { data: activeCampaignData } = await admin
       .from("free_spin_campaigns")
-      .select("casino_name, casino_slug, title, spin_count, offer_type, source_type, source_url, last_checked, is_active")
+      .select("casino_name, casino_slug, title, spin_count, offer_type, source_type, source_url, last_checked, is_active, game_name, required_action, spin_value, confidence_score, last_verified_at, expiry_date, dedup_key")
       .eq("is_active", true)
       .order("spin_count", { ascending: false });
 
     const byType: Record<string, number> = {};
     const bySource: Record<string, number> = {};
+    const byConfidence: Record<string, number> = { high: 0, medium: 0, low: 0 };
+    let expiredButActive = 0;
+    const now = new Date();
+
     for (const c of activeCampaignData || []) {
       byType[c.offer_type] = (byType[c.offer_type] || 0) + 1;
       bySource[c.source_type] = (bySource[c.source_type] || 0) + 1;
+      const cs = c.confidence_score || 0;
+      if (cs >= 80) byConfidence.high++;
+      else if (cs >= 60) byConfidence.medium++;
+      else byConfidence.low++;
+      if (c.expiry_date && new Date(c.expiry_date) < now) expiredButActive++;
     }
 
-    // 5. Legacy table
+    // 5. Low confidence campaigns (hidden from public)
+    const lowConfidenceCampaigns = (activeCampaignData || []).filter((c) => (c.confidence_score || 0) < 60);
+
+    // 6. Expired campaigns
+    const { count: expiredCount } = await admin
+      .from("free_spin_campaigns")
+      .select("*", { count: "exact", head: true })
+      .eq("is_active", false);
+
+    // 7. Legacy table
     const { count: legacyActive } = await admin
       .from("daily_free_spins_offers")
       .select("*", { count: "exact", head: true })
       .eq("is_active", true);
 
-    // 6. Latest scrape
+    // 8. Latest scrape
     const { data: latestCampaign } = await admin
       .from("free_spin_campaigns")
       .select("last_checked, casino_name")
       .order("last_checked", { ascending: false })
       .limit(1);
+
+    // 9. Dedup analysis
+    const dedupKeys = new Set((activeCampaignData || []).map((c) => c.dedup_key).filter(Boolean));
 
     const report = {
       timestamp: new Date().toISOString(),
@@ -89,12 +110,25 @@ Deno.serve(async (req) => {
       campaigns: {
         total_ever: totalCampaigns,
         active: activeCampaigns,
+        expired: expiredCount,
         legacy_active: legacyActive,
         by_type: byType,
         by_source: bySource,
-        shown_on_frontend: activeCampaigns,
+        by_confidence: byConfidence,
+        shown_on_frontend: (activeCampaignData || []).filter((c) => (c.confidence_score || 0) >= 60 && c.spin_count > 0).length,
+        expired_but_still_active: expiredButActive,
+        unique_dedup_keys: dedupKeys.size,
       },
-      active_campaigns: activeCampaignData || [],
+      low_confidence_hidden: lowConfidenceCampaigns.map((c) => ({
+        casino: c.casino_name,
+        title: c.title,
+        confidence: c.confidence_score,
+        source: c.source_type,
+      })),
+      active_campaigns: (activeCampaignData || []).map((c) => ({
+        ...c,
+        confidence_label: (c.confidence_score || 0) >= 80 ? "HIGH" : (c.confidence_score || 0) >= 60 ? "MEDIUM" : "LOW (hidden)",
+      })),
       latest_scrape: latestCampaign?.[0] || null,
       diagnosis: {
         has_firecrawl: !!Deno.env.get("FIRECRAWL_API_KEY"),
@@ -103,6 +137,12 @@ Deno.serve(async (req) => {
           : null,
         issue_no_campaigns: (activeCampaigns || 0) === 0
           ? "No active campaigns. Run the scraper or add manual entries."
+          : null,
+        issue_expired_active: expiredButActive > 0
+          ? `WARNING: ${expiredButActive} campaigns are expired but still marked active. Run scraper to clean up.`
+          : null,
+        issue_low_confidence: lowConfidenceCampaigns.length > 0
+          ? `INFO: ${lowConfidenceCampaigns.length} campaigns hidden due to low confidence score (<60).`
           : null,
       },
     };
