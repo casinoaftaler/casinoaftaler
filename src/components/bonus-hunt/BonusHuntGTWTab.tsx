@@ -7,6 +7,7 @@ import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
 import { Loader2, Trophy } from "lucide-react";
+import { CreditCoin } from "@/components/CreditCoin";
 
 interface Props {
   session: any;
@@ -113,11 +114,11 @@ export function BonusHuntGTWTab({ session, bets, userId, onBetPlaced }: Props) {
                   <span className="text-muted-foreground">
                     {getRankIcon(p.place)} plads
                   </span>
-                  <span className="font-medium">
-                    {[
-                      p.points > 0 ? `${p.points} points` : '',
-                      p.credits && p.credits > 0 ? `${p.credits} credits` : '',
-                    ].filter(Boolean).join(' + ') || '—'}
+                  <span className="font-medium flex items-center gap-1">
+                    {p.points > 0 && <span>{p.points} points</span>}
+                    {p.points > 0 && p.credits && p.credits > 0 && <span>+</span>}
+                    {p.credits && p.credits > 0 ? <><CreditCoin size="sm" />{p.credits}</> : null}
+                    {!(p.points > 0) && !(p.credits && p.credits > 0) && '—'}
                   </span>
                 </div>
               ))}
