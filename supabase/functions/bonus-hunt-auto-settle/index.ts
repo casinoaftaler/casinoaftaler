@@ -8,6 +8,45 @@ const corsHeaders = {
 const STREAMSYSTEM_BASE = "https://www.streamsystem.bet/api/bonushunt/data";
 const STREAMER_ID = "959262659";
 
+async function syncSlotCatalog(admin: any, huntData: any) {
+  const slots = huntData?.slots;
+  if (!Array.isArray(slots) || slots.length === 0) return;
+
+  const { data: overrides } = await admin
+    .from('bonus_hunt_provider_overrides')
+    .select('slot_name, provider_override');
+
+  const overrideMap = new Map(
+    (overrides || []).map((o: any) => [o.slot_name, o.provider_override])
+  );
+
+  for (const entry of slots) {
+    const slotInfo = entry.slot || {};
+    const slotName = slotInfo.name;
+    if (!slotName) continue;
+
+    const rawProvider = slotInfo.provider || 'Unknown';
+    const provider = overrideMap.get(slotName) || rawProvider;
+    const rtp = slotInfo.rtp && slotInfo.rtp > 0 ? slotInfo.rtp : null;
+    const win = entry.played ? (entry.win || 0) : 0;
+    const bet = entry.bet || 1;
+    const multiplier = win > 0 && bet > 0 ? Math.round((win / bet) * 100) / 100 : 0;
+
+    if (win <= 0) continue;
+
+    // Upsert with GREATEST to only update records
+    await admin
+      .from('slot_catalog')
+      .upsert({
+        slot_name: slotName,
+        provider: provider,
+        rtp: rtp,
+        highest_win: win,
+        highest_x: multiplier,
+      }, { onConflict: 'slot_name' });
+  }
+}
+
 Deno.serve(async (req) => {
   if (req.method === 'OPTIONS') {
     return new Response(null, { headers: corsHeaders });
@@ -35,7 +74,6 @@ Deno.serve(async (req) => {
     const results: any[] = [];
 
     for (const session of sessions) {
-      // Fetch the hunt data from the API using hunt_number
       const apiUrl = `${STREAMSYSTEM_BASE}/${STREAMER_ID}?visibleId=${session.hunt_number}`;
       const response = await fetch(apiUrl, { headers: { 'Accept': 'application/json' } });
 
@@ -52,7 +90,6 @@ Deno.serve(async (req) => {
         continue;
       }
 
-      // Check if the hunt is completed
       if (!huntData.played) {
         results.push({ huntNumber: session.hunt_number, status: 'still_active' });
         continue;
@@ -67,8 +104,14 @@ Deno.serve(async (req) => {
         continue;
       }
 
-      // --- Auto-settle: same logic as bonus-hunt-settle ---
+      // Sync slot catalog with final results
+      try {
+        await syncSlotCatalog(admin, huntData);
+      } catch (e) {
+        console.error('Slot catalog sync error during settle:', e);
+      }
 
+      // --- Auto-settle: same logic as bonus-hunt-settle ---
       const settleResults: Record<string, unknown> = {};
       const today = new Date().toISOString().split('T')[0];
 
@@ -96,7 +139,6 @@ Deno.serve(async (req) => {
               .update({ difference: bet.difference, rank, prize_points: prize?.points || 0 })
               .eq('id', bet.id);
 
-            // Award credits
             if (prize && prize.credits && prize.credits > 0) {
               try {
                 const { data: spinsRow } = await admin
@@ -121,7 +163,6 @@ Deno.serve(async (req) => {
               }
             }
 
-            // Award SE points
             if (prize && prize.points > 0 && seJwtToken) {
               try {
                 const { data: profile } = await admin.from('profiles').select('twitch_username').eq('user_id', bet.user_id).single();
@@ -198,7 +239,6 @@ Deno.serve(async (req) => {
         await admin.from('bonus_hunt_sessions').update({ average_x: averageX, winning_group: winningGroup!, status: 'completed' }).eq('id', session.id);
       }
 
-      // Close betting and mark completed
       await admin.from('bonus_hunt_sessions').update({ gtw_betting_open: false, avgx_betting_open: false, status: 'completed' }).eq('id', session.id);
 
       results.push({ huntNumber: session.hunt_number, status: 'auto_settled', ...settleResults });

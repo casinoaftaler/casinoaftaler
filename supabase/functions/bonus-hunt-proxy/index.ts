@@ -9,6 +9,58 @@ const corsHeaders = {
 const STREAMSYSTEM_BASE = "https://www.streamsystem.bet/api/bonushunt/data";
 const STREAMER_ID = "959262659";
 
+async function syncSlotCatalog(supabase: any, huntData: any) {
+  const slots = huntData?.slots;
+  if (!Array.isArray(slots) || slots.length === 0) return;
+
+  // Fetch provider overrides
+  const { data: overrides } = await supabase
+    .from('bonus_hunt_provider_overrides')
+    .select('slot_name, provider_override');
+
+  const overrideMap = new Map(
+    (overrides || []).map((o: any) => [o.slot_name, o.provider_override])
+  );
+
+  for (const entry of slots) {
+    const slotInfo = entry.slot || {};
+    const slotName = slotInfo.name;
+    if (!slotName) continue;
+
+    const rawProvider = slotInfo.provider || 'Unknown';
+    const provider = overrideMap.get(slotName) || rawProvider;
+    const rtp = slotInfo.rtp && slotInfo.rtp > 0 ? slotInfo.rtp : null;
+    const win = entry.played ? (entry.win || 0) : 0;
+    const bet = entry.bet || 1;
+    const multiplier = win > 0 && bet > 0 ? Math.round((win / bet) * 100) / 100 : 0;
+
+    if (win <= 0) continue; // Skip unplayed or zero-win slots
+
+    // Upsert: only update highest_win/highest_x if new values are higher
+    // Provider and RTP set on insert only (preserve admin edits)
+    const { error } = await supabase.rpc('upsert_slot_catalog', {
+      p_slot_name: slotName,
+      p_provider: provider,
+      p_rtp: rtp,
+      p_win: win,
+      p_multiplier: multiplier,
+    });
+
+    // Fallback if RPC doesn't exist yet - use raw upsert
+    if (error) {
+      await supabase
+        .from('slot_catalog')
+        .upsert({
+          slot_name: slotName,
+          provider: provider,
+          rtp: rtp,
+          highest_win: win,
+          highest_x: multiplier,
+        }, { onConflict: 'slot_name' });
+    }
+  }
+}
+
 serve(async (req) => {
   if (req.method === 'OPTIONS') {
     return new Response(null, { headers: corsHeaders });
@@ -92,6 +144,13 @@ serve(async (req) => {
             end_balance: huntData.end || null,
             average_x: stats.runAverage ? parseFloat(stats.runAverage) : null,
           }, { onConflict: 'hunt_number' });
+      }
+
+      // Auto-sync slots to catalog
+      try {
+        await syncSlotCatalog(supabase, huntData);
+      } catch (e) {
+        console.error('Slot catalog sync error:', e);
       }
     }
 
