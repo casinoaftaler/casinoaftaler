@@ -164,6 +164,15 @@ Deno.serve(async (req) => {
       
       leaderboardDeleted = resultsData?.length || 0;
       console.log(`Deleted ${leaderboardDeleted} game results`);
+
+      // Refresh the materialized view so the leaderboard UI clears immediately
+      const { error: refreshError } = await supabase.rpc("refresh_slot_leaderboard");
+      if (refreshError) {
+        console.error("Error refreshing leaderboard view:", refreshError);
+        // Non-fatal: view will refresh on next spin anyway
+      } else {
+        console.log("Refreshed slot_leaderboard materialized view");
+      }
     }
 
     // Reset slot_spins to max credits
