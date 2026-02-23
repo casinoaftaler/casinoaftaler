@@ -12,13 +12,16 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
+import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 import { Link } from "react-router-dom";
 import { useCasinos } from "@/hooks/useCasinos";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 import {
   Sparkles, Clock, ShieldCheck, AlertTriangle, Star, RefreshCw,
   Flame, Timer, CreditCard, RotateCcw, Award, CheckCircle2,
-  Users, Zap, Gift, Filter, ArrowRight,
+  Users, Zap, Gift, Filter, ArrowRight, ChevronDown, Info,
+  Gamepad2, CalendarClock,
 } from "lucide-react";
 import { format, differenceInHours, differenceInMinutes } from "date-fns";
 import { da } from "date-fns/locale";
@@ -28,7 +31,7 @@ const linkClass = "text-primary underline hover:text-primary/80";
 const freeSpinsIDagFaqs = [
   {
     question: "Hvordan finder I de daglige free spins tilbud?",
-    answer: "Vi scanner dagligt danske aggregator-sites som Casinopenge.dk og Spilxperten.com for at finde de nyeste og bedste free spins tilbud til danske spillere. Tilbuddene opdateres automatisk hver morgen kl. 07:00.",
+    answer: "Vi scanner dagligt danske casinoers kampagnesider direkte samt aggregator-sites som Casinopenge.dk og Spilxperten.com. Direkte kilder prioriteres for højere datakvalitet. Tilbuddene opdateres automatisk hver morgen kl. 07:00.",
   },
   {
     question: "Er free spins tilbuddene kun for nye spillere?",
@@ -44,11 +47,11 @@ const freeSpinsIDagFaqs = [
   },
   {
     question: "Hvor ofte opdateres denne side?",
-    answer: "Siden opdateres automatisk hver dag kl. 07:00 CET. Vi scanner flere danske aggregator-sites og præsenterer de nyeste tilbud, så du altid har adgang til de mest aktuelle free spins deals.",
+    answer: "Siden opdateres automatisk hver dag kl. 07:00 CET med fuld scraping, og igen kl. 18:00 med hurtig verificering. Udløbne kampagner fjernes automatisk.",
   },
   {
-    question: "Hvorfor vises kun ét tilbud per casino?",
-    answer: "Vi viser det bedste tilbud per casino baseret på vores score-system, der tager højde for antal spins, omsætningskrav og om der kræves indbetaling. Du kan se alle kampagner for et specifikt casino ved at klikke på casinoets navn.",
+    question: "Hvad betyder 'confidence score'?",
+    answer: "Hver kampagne får en confidence score baseret på datakomplethed (0-100). Kampagner med score under 60 vises ikke. Direkte kilder fra casinoernes egne sider giver højere score end aggregator-data.",
   },
 ];
 
@@ -69,7 +72,7 @@ interface CampaignOffer {
   requires_deposit: boolean;
   for_new_players: boolean;
   for_existing_players: boolean;
-  // Enriched fields
+  source_type: string;
   game_name: string | null;
   required_action: string | null;
   spin_value: string | null;
@@ -123,22 +126,28 @@ function timeAgo(dateStr: string): string {
 // ─── Countdown component ───
 function Countdown({ validUntil }: { validUntil: string }) {
   const [timeLeft, setTimeLeft] = useState("");
+  const [isUrgent, setIsUrgent] = useState(false);
   useEffect(() => {
     const update = () => {
       const end = new Date(validUntil);
       const now = new Date();
-      if (end <= now) { setTimeLeft("Udløbet"); return; }
+      if (end <= now) { setTimeLeft("Udløbet"); setIsUrgent(false); return; }
       const hrs = differenceInHours(end, now);
       const mins = differenceInMinutes(end, now) % 60;
+      setIsUrgent(hrs < 48);
       setTimeLeft(hrs > 24 ? `${Math.floor(hrs / 24)}d ${hrs % 24}t` : `${hrs}t ${mins}m`);
     };
     update();
     const i = setInterval(update, 60000);
     return () => clearInterval(i);
   }, [validUntil]);
+
+  if (timeLeft === "Udløbet") return null;
+
   return (
-    <span className="inline-flex items-center gap-1 text-xs font-medium text-destructive">
+    <span className={`inline-flex items-center gap-1 text-xs font-medium ${isUrgent ? "text-destructive animate-pulse" : "text-muted-foreground"}`}>
       <Timer className="h-3 w-3" /> {timeLeft}
+      {isUrgent && <span className="text-[10px] font-bold uppercase tracking-wide">Snart!</span>}
     </span>
   );
 }
@@ -192,9 +201,15 @@ const FreeSpinsIDag = () => {
         .select("*")
         .eq("is_active", true)
         .gt("spin_count", 0)
+        .gte("confidence_score", 60)
         .order("score", { ascending: false });
       if (error) throw error;
-      return (data || []) as CampaignOffer[];
+      // Filter out expired campaigns client-side as well
+      const now = new Date();
+      return ((data || []) as CampaignOffer[]).filter((c) => {
+        if (c.expiry_date && new Date(c.expiry_date) < now) return false;
+        return true;
+      });
     },
     staleTime: 5 * 60 * 1000,
   });
@@ -245,6 +260,20 @@ const FreeSpinsIDag = () => {
         url: `${SITE_URL}/casino-anmeldelser/${o.casino_slug}`,
       })),
     },
+    // Offer structured data for SEO
+    ...allBest.slice(0, 5).map((o) => ({
+      "@type": "Offer",
+      name: `${o.spin_count} Free Spins – ${o.casino_name}`,
+      description: o.short_terms_summary || o.title,
+      priceCurrency: "DKK",
+      price: "0",
+      availability: "https://schema.org/InStock",
+      validThrough: o.expiry_date || undefined,
+      seller: {
+        "@type": "Organization",
+        name: o.casino_name,
+      },
+    })),
   ];
 
   const displayOffers = bestOffers.filter((o) => o.id !== featured?.id);
@@ -295,7 +324,7 @@ const FreeSpinsIDag = () => {
               </span>
             </h1>
             <p className="mb-5 text-sm md:text-base text-white/75 max-w-lg mx-auto animate-fade-in [animation-delay:200ms]">
-              Kun danske licenserede casinoer – ét bedste tilbud per casino, rangeret efter vores score-system.
+              Verificerede kampagner fra danske licenserede casinoer – direkte fra kilderne.
             </p>
             <div className="flex flex-wrap justify-center gap-3 animate-fade-in [animation-delay:300ms]">
               <Button size="lg" asChild className="fs-cta-glow font-bold shadow-lg shadow-primary/30 hover:shadow-primary/50 hover:scale-[1.03] transition-all duration-250">
@@ -319,7 +348,6 @@ const FreeSpinsIDag = () => {
       <div className="border-b border-border/30">
         <div className="container py-3">
           <div className="flex flex-col gap-2">
-            {/* Row 1: Author meta */}
             <div className="text-xs text-muted-foreground">
               <AuthorMetaBar author="jonas" date={todayFormatted} readTime="3 min." />
             </div>
@@ -412,7 +440,7 @@ const FreeSpinsIDag = () => {
               />
             )}
 
-            {/* Offer grid – 2 cols on desktop, contrast bg */}
+            {/* Offer grid – 2 cols on desktop */}
             <section className="mb-8 py-6 rounded-xl bg-muted/15" ref={cardsRef}>
               <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
                 <Filter className="h-5 w-5 text-primary" />
@@ -442,18 +470,16 @@ const FreeSpinsIDag = () => {
 
         {/* SEO content – structured guide */}
         <div className="mt-4">
-          {/* Intro */}
           <section className="mb-8">
             <h2 className="flex items-center gap-2 text-xl font-bold text-foreground mb-3">
               <Sparkles className="h-5 w-5 text-primary" />
               Dagens Free Spins – {todayFormatted}
             </h2>
             <p className="text-sm leading-[1.75] text-muted-foreground">
-              Opdateret oversigt over free spins hos danske casinoer. Vi scanner aggregator-sites hver morgen kl. 07:00 og viser kun det bedste tilbud per casino – rangeret efter spins, <Link to="/omsaetningskrav" className={linkClass}>omsætningskrav</Link> og indbetalingskrav.
+              Opdateret oversigt over free spins hos danske casinoer. Vi scraper direkte fra casinoernes kampagnesider og bruger aggregator-data som supplement – kun kampagner med tilstrækkelig datakvalitet (confidence score ≥ 60) vises. Rangeret efter spins, <Link to="/omsaetningskrav" className={linkClass}>omsætningskrav</Link> og indbetalingskrav.
             </p>
           </section>
 
-          {/* Sådan vælger du */}
           <section className="mb-8 rounded-xl border border-border/40 bg-card/50 p-5 md:p-6">
             <h3 className="flex items-center gap-2 text-base font-semibold text-foreground mb-4">
               <ShieldCheck className="h-5 w-5 text-primary" />
@@ -479,7 +505,6 @@ const FreeSpinsIDag = () => {
             </ul>
           </section>
 
-          {/* Vigtigt at vide */}
           <section className="mb-8 rounded-xl border border-border/40 bg-card/50 p-5 md:p-6">
             <h3 className="flex items-center gap-2 text-base font-semibold text-foreground mb-3">
               <AlertTriangle className="h-5 w-5 text-primary" />
@@ -490,7 +515,6 @@ const FreeSpinsIDag = () => {
             </p>
           </section>
 
-          {/* Typer af free spins – 2x2 grid */}
           <section className="mb-8">
             <h3 className="flex items-center gap-2 text-base font-semibold text-foreground mb-4">
               <Star className="h-5 w-5 text-primary" />
@@ -528,7 +552,6 @@ const FreeSpinsIDag = () => {
             </div>
           </section>
 
-          {/* Trust footer */}
           <div className="flex flex-wrap items-center gap-3 text-xs text-muted-foreground mb-6">
             <span className="inline-flex items-center gap-1"><Award className="h-3.5 w-3.5 text-primary" /> Redaktørens faktatjek</span>
             <span className="inline-flex items-center gap-1"><RefreshCw className="h-3.5 w-3.5 text-muted-foreground" /> Sidst opdateret: {todayFormatted}</span>
@@ -648,28 +671,30 @@ function StatCard({ icon, value, label, revealed, delay }: { icon: React.ReactNo
 // ─── Featured Offer ───
 function FeaturedOfferCard({ offer, logoUrl, affiliateUrl }: { offer: CampaignOffer; logoUrl: string | null; affiliateUrl: string | null }) {
   const badge = offerTypeBadgeConfig[offer.offer_type] || offerTypeBadgeConfig.welcome;
+  const verifiedRecently = offer.last_verified_at && differenceInHours(new Date(), new Date(offer.last_verified_at)) < 48;
+
   return (
     <div
       className="fs-featured-glow relative mb-10 rounded-2xl overflow-hidden group hover:-translate-y-1.5 transition-all duration-300 hover:shadow-2xl hover:shadow-primary/10"
       style={{ backgroundImage: 'linear-gradient(135deg, hsl(260 50% 18%), hsl(250 40% 14%) 50%, hsl(210 60% 18%))' }}
     >
-      {/* Glow behind spin count */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-64 h-64 rounded-full bg-primary/10 blur-[80px] pointer-events-none" />
 
-      <div className="absolute top-4 left-4 z-10">
+      <div className="absolute top-4 left-4 z-10 flex gap-2">
         <Badge className="bg-orange-500/90 text-white border-0 text-sm font-bold px-3 py-1 shadow-lg shadow-orange-500/30">
           <Flame className="h-3.5 w-3.5 mr-1" /> Dagens Bedste
         </Badge>
+        {verifiedRecently && (
+          <Badge className="bg-green-500/20 text-green-400 border-green-500/30 text-xs px-2 py-1">
+            <ShieldCheck className="h-3 w-3 mr-1" /> Verificeret
+          </Badge>
+        )}
       </div>
+
       <div className="relative p-6 pt-14 md:p-8 md:pt-16 flex flex-col md:flex-row items-center gap-6">
         {logoUrl && (
           <div className="flex-shrink-0 group-hover:scale-105 transition-transform duration-300">
-            <img
-              src={logoUrl}
-              alt={offer.casino_name}
-              className="w-16 h-16 md:w-20 md:h-20 rounded-full object-cover border-2 border-white/20 shadow-lg"
-              loading="lazy"
-            />
+            <img src={logoUrl} alt={offer.casino_name} className="w-16 h-16 md:w-20 md:h-20 rounded-full object-cover border-2 border-white/20 shadow-lg" loading="lazy" />
           </div>
         )}
         <div className="flex-1 text-center md:text-left">
@@ -681,22 +706,40 @@ function FeaturedOfferCard({ offer, logoUrl, affiliateUrl }: { offer: CampaignOf
               {badge.icon} {badge.label}
             </span>
           </div>
+
+          {/* Campaign title */}
+          <p className="text-sm text-white/70 mb-1">{offer.title}</p>
+
           <div className="text-4xl md:text-5xl font-extrabold text-white mb-2">
-            <span className="fs-spin-number">{offer.spin_count}</span> <span className="text-primary">Free Spins</span>
+            <span>{offer.spin_count}</span> <span className="text-primary">Free Spins</span>
           </div>
-          <div className="flex flex-wrap items-center justify-center md:justify-start gap-4 text-xs text-white/60">
-            {offer.wagering_requirement && (
-              <span className="flex items-center gap-1">Omsætningskrav: {offer.wagering_requirement}</span>
+
+          {/* Enriched data grid */}
+          <div className="flex flex-wrap items-center justify-center md:justify-start gap-x-5 gap-y-1 text-xs text-white/60">
+            {offer.game_name && (
+              <span className="flex items-center gap-1"><Gamepad2 className="h-3 w-3" /> {offer.game_name}</span>
             )}
-            {offer.min_deposit && (
-              <span className="flex items-center gap-1"><CreditCard className="h-3 w-3" /> Min. indbetaling: {offer.min_deposit}</span>
+            {offer.wagering_requirement && (
+              <span className="flex items-center gap-1"><RotateCcw className="h-3 w-3" /> {offer.wagering_requirement}</span>
+            )}
+            {offer.required_action && (
+              <span className="flex items-center gap-1"><CreditCard className="h-3 w-3" /> {offer.required_action}</span>
             )}
             {!offer.requires_deposit && (
               <span className="flex items-center gap-1 text-green-400 font-medium"><Zap className="h-3 w-3" /> Ingen indbetaling</span>
             )}
+            {offer.spin_value && (
+              <span className="flex items-center gap-1"><Award className="h-3 w-3" /> {offer.spin_value}/spin</span>
+            )}
             {offer.expiry_date && <Countdown validUntil={offer.expiry_date} />}
           </div>
+
+          {/* Short terms summary */}
+          {offer.short_terms_summary && (
+            <p className="mt-2 text-xs text-white/40 line-clamp-2">{offer.short_terms_summary}</p>
+          )}
         </div>
+
         <div className="flex-shrink-0">
           {affiliateUrl ? (
             <a href={affiliateUrl} target="_blank" rel="noopener noreferrer nofollow">
@@ -719,10 +762,10 @@ function FeaturedOfferCard({ offer, logoUrl, affiliateUrl }: { offer: CampaignOf
   );
 }
 
-// ─── Offer Card (enriched) ───
+// ─── Offer Card (enriched with expandable T&C) ───
 function OfferCard({ offer, logoUrl, affiliateUrl }: { offer: CampaignOffer; logoUrl: string | null; affiliateUrl: string | null }) {
   const badge = offerTypeBadgeConfig[offer.offer_type] || offerTypeBadgeConfig.welcome;
-  const isExpiringSoon = offer.expiry_date && differenceInHours(new Date(offer.expiry_date), new Date()) < 24;
+  const isExpiringSoon = offer.expiry_date && differenceInHours(new Date(offer.expiry_date), new Date()) < 48;
   const eligibility = offer.for_new_players && offer.for_existing_players
     ? "Alle spillere"
     : offer.for_new_players ? "Nye spillere" : offer.for_existing_players ? "Eksisterende spillere" : null;
@@ -737,113 +780,154 @@ function OfferCard({ offer, logoUrl, affiliateUrl }: { offer: CampaignOffer; log
             {logoUrl ? (
               <img src={logoUrl} alt={offer.casino_name} className="w-11 h-11 rounded-full object-cover border border-border/50" loading="lazy" />
             ) : (
-              <div className="w-11 h-11 rounded-full bg-muted flex items-center justify-center">
-                <Sparkles className="h-4 w-4 text-muted-foreground" />
+              <div className="w-11 h-11 rounded-full bg-muted flex items-center justify-center text-lg font-bold text-muted-foreground">
+                {offer.casino_name.charAt(0)}
               </div>
             )}
           </div>
           <div className="flex-1 min-w-0">
-            <div className="flex items-center gap-2 flex-wrap mb-0.5">
+            <div className="flex items-center gap-2 flex-wrap">
               <Link to={`/casino-anmeldelser/${offer.casino_slug}`} className="font-bold text-sm text-foreground hover:text-primary transition-colors truncate">
                 {offer.casino_name}
               </Link>
-              <span className={`inline-flex items-center gap-1 text-[10px] px-1.5 py-0.5 rounded-full border ${badge.className}`}>
+              <span className={`inline-flex items-center gap-0.5 text-[10px] px-1.5 py-0.5 rounded-full border ${badge.className}`}>
                 {badge.icon} {badge.label}
               </span>
-              {!offer.requires_deposit && (
-                <span className="inline-flex items-center gap-1 text-[10px] px-1.5 py-0.5 rounded-full border bg-green-500/20 text-green-400 border-green-500/30">
-                  <Zap className="h-2.5 w-2.5" /> Uden indbetaling
-                </span>
+              {verifiedRecently && (
+                <TooltipProvider>
+                  <Tooltip>
+                    <TooltipTrigger>
+                      <span className="inline-flex items-center gap-0.5 text-[10px] px-1.5 py-0.5 rounded-full border bg-green-500/10 text-green-400 border-green-500/20">
+                        <ShieldCheck className="h-2.5 w-2.5" /> Verificeret
+                      </span>
+                    </TooltipTrigger>
+                    <TooltipContent>
+                      <p className="text-xs">Sidst verificeret: {offer.last_verified_at ? timeAgo(offer.last_verified_at) : "Ukendt"}</p>
+                    </TooltipContent>
+                  </Tooltip>
+                </TooltipProvider>
               )}
               {isExpiringSoon && (
-                <Badge variant="destructive" className="text-[10px] px-1.5 py-0">
-                  <Timer className="h-2.5 w-2.5 mr-0.5" /> Udløber snart
-                </Badge>
+                <span className="inline-flex items-center gap-0.5 text-[10px] px-1.5 py-0.5 rounded-full border bg-destructive/10 text-destructive border-destructive/20 animate-pulse">
+                  <Timer className="h-2.5 w-2.5" /> Snart!
+                </span>
               )}
             </div>
             {/* Campaign title */}
-            <p className="text-xs text-muted-foreground truncate">{offer.title}</p>
+            <p className="text-xs text-muted-foreground mt-0.5 truncate">{offer.title}</p>
+          </div>
+          <div className="text-right flex-shrink-0">
+            <div className="text-2xl font-extrabold text-primary leading-tight">{offer.spin_count}</div>
+            <div className="text-[10px] text-muted-foreground font-medium">Free Spins</div>
           </div>
         </div>
 
-        {/* Spin count + game */}
-        <div className="flex items-baseline gap-2 mb-2.5">
-          <span className="text-xl font-extrabold text-primary">{offer.spin_count} Free Spins</span>
-          {offer.game_name && (
-            <span className="text-xs text-muted-foreground">på {offer.game_name}</span>
-          )}
-        </div>
-
-        {/* Mid: Details grid */}
+        {/* Mid: Enriched data grid */}
         <div className="grid grid-cols-2 gap-x-4 gap-y-1.5 text-xs text-muted-foreground mb-3">
-          {offer.required_action && (
+          {offer.game_name && (
             <div className="flex items-center gap-1.5">
-              <CreditCard className="h-3 w-3 text-primary flex-shrink-0" />
-              <span className="truncate">{offer.required_action}</span>
+              <Gamepad2 className="h-3 w-3 text-primary/60 flex-shrink-0" />
+              <span className="truncate">{offer.game_name}</span>
             </div>
           )}
-          {!offer.required_action && offer.min_deposit && (
+          {offer.required_action && (
             <div className="flex items-center gap-1.5">
-              <CreditCard className="h-3 w-3 text-primary flex-shrink-0" />
-              <span>Min. {offer.min_deposit}</span>
+              <CreditCard className="h-3 w-3 text-primary/60 flex-shrink-0" />
+              <span className="truncate">{offer.required_action}</span>
             </div>
           )}
           {offer.wagering_requirement && (
             <div className="flex items-center gap-1.5">
-              <RotateCcw className="h-3 w-3 text-primary flex-shrink-0" />
+              <RotateCcw className="h-3 w-3 text-primary/60 flex-shrink-0" />
               <span>Omsætning: {offer.wagering_requirement}</span>
             </div>
           )}
           {eligibility && (
             <div className="flex items-center gap-1.5">
-              <Users className="h-3 w-3 text-primary flex-shrink-0" />
+              <Users className="h-3 w-3 text-primary/60 flex-shrink-0" />
               <span>{eligibility}</span>
             </div>
           )}
           {offer.spin_value && (
             <div className="flex items-center gap-1.5">
-              <Sparkles className="h-3 w-3 text-primary flex-shrink-0" />
-              <span>Værdi: {offer.spin_value}/spin</span>
+              <Award className="h-3 w-3 text-primary/60 flex-shrink-0" />
+              <span>{offer.spin_value}/spin</span>
             </div>
           )}
           {offer.expiry_date && (
             <div className="flex items-center gap-1.5">
-              <Timer className="h-3 w-3 text-primary flex-shrink-0" />
+              <CalendarClock className="h-3 w-3 text-primary/60 flex-shrink-0" />
               <Countdown validUntil={offer.expiry_date} />
+            </div>
+          )}
+          {!offer.requires_deposit && (
+            <div className="flex items-center gap-1.5 text-green-400">
+              <Zap className="h-3 w-3 flex-shrink-0" />
+              <span className="font-medium">Ingen indbetaling</span>
             </div>
           )}
         </div>
 
-        {/* Bottom: Terms summary + CTA */}
-        <div className="flex items-end justify-between gap-3">
-          <div className="flex-1 min-w-0">
-            {offer.short_terms_summary && (
-              <p className="text-[11px] text-muted-foreground/70 line-clamp-2 leading-relaxed">
-                {offer.short_terms_summary}
-              </p>
-            )}
-            {verifiedRecently && (
-              <span className="inline-flex items-center gap-1 text-[10px] text-primary/70 mt-1">
-                <CheckCircle2 className="h-2.5 w-2.5" /> Verificeret
+        {/* Bottom: Short terms + Expandable T&C + CTA */}
+        {offer.short_terms_summary && (
+          <p className="text-[11px] text-muted-foreground/70 line-clamp-2 mb-2">{offer.short_terms_summary}</p>
+        )}
+
+        {/* Expandable full description / terms */}
+        {offer.description && (
+          <Collapsible>
+            <CollapsibleTrigger className="flex items-center gap-1 text-[11px] text-primary/70 hover:text-primary transition-colors mb-2">
+              <ChevronDown className="h-3 w-3" />
+              Vis vilkår & betingelser
+            </CollapsibleTrigger>
+            <CollapsibleContent>
+              <div className="rounded-lg bg-muted/30 p-3 text-[11px] text-muted-foreground leading-relaxed mb-2 max-h-32 overflow-y-auto">
+                {offer.description}
+              </div>
+            </CollapsibleContent>
+          </Collapsible>
+        )}
+
+        {/* Verified + Source + CTA row */}
+        <div className="flex items-center justify-between mt-1">
+          <div className="flex items-center gap-2 text-[10px] text-muted-foreground/50">
+            {offer.last_verified_at && (
+              <span className="flex items-center gap-0.5">
+                <Clock className="h-2.5 w-2.5" /> {timeAgo(offer.last_verified_at)}
               </span>
             )}
-          </div>
-          <div className="flex-shrink-0">
-            {affiliateUrl ? (
-              <a href={affiliateUrl} target="_blank" rel="noopener noreferrer nofollow">
-                <Button size="sm" className="fs-cta-glow group-hover:shadow-md group-hover:shadow-primary/20 group-hover:scale-105 transition-all duration-300">
-                  Hent Spins <ArrowRight className="h-3 w-3 ml-1" />
-                </Button>
-              </a>
-            ) : (
-              <Link to={`/casino-anmeldelser/${offer.casino_slug}`}>
-                <Button size="sm" variant="outline" className="group-hover:border-primary/50 transition-colors">Se Tilbud</Button>
-              </Link>
+            {offer.source_type === "direct" && (
+              <TooltipProvider>
+                <Tooltip>
+                  <TooltipTrigger>
+                    <span className="flex items-center gap-0.5 text-green-500/60">
+                      <Info className="h-2.5 w-2.5" /> Direkte kilde
+                    </span>
+                  </TooltipTrigger>
+                  <TooltipContent>
+                    <p className="text-xs">Data hentet direkte fra casinoets hjemmeside</p>
+                  </TooltipContent>
+                </Tooltip>
+              </TooltipProvider>
             )}
           </div>
+          {affiliateUrl ? (
+            <a href={affiliateUrl} target="_blank" rel="noopener noreferrer nofollow">
+              <Button size="sm" className="text-xs font-semibold group-hover:scale-105 transition-transform">
+                Se Tilbud <ArrowRight className="h-3 w-3 ml-1" />
+              </Button>
+            </a>
+          ) : (
+            <Link to={`/casino-anmeldelser/${offer.casino_slug}`}>
+              <Button size="sm" variant="outline" className="text-xs font-semibold group-hover:scale-105 transition-transform">
+                Se Tilbud <ArrowRight className="h-3 w-3 ml-1" />
+              </Button>
+            </Link>
+          )}
         </div>
       </CardContent>
     </Card>
   );
 }
+
 export default FreeSpinsIDag;
