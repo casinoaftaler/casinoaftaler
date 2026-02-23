@@ -431,70 +431,99 @@ const FreeSpinsIDag = () => {
 
         <Separator className="my-8" />
 
-        {/* SEO content */}
+        {/* SEO content – structured guide */}
+        <div className="mx-auto max-w-3xl mt-4">
+          {/* Intro */}
+          <section className="mb-8">
+            <h2 className="flex items-center gap-2 text-xl font-bold text-foreground mb-3">
+              <Sparkles className="h-5 w-5 text-primary" />
+              Dagens Free Spins – {todayFormatted}
+            </h2>
+            <p className="text-sm leading-[1.75] text-muted-foreground">
+              Opdateret oversigt over free spins hos danske casinoer. Vi scanner aggregator-sites hver morgen kl. 07:00 og viser kun det bedste tilbud per casino – rangeret efter spins, <Link to="/omsaetningskrav" className={linkClass}>omsætningskrav</Link> og indbetalingskrav.
+            </p>
+          </section>
 
-        <section className="prose prose-lg dark:prose-invert max-w-none mb-8 mt-4">
-          <h2 className="flex items-center gap-2">
-            <Sparkles className="h-6 w-6 text-primary" />
-            Dagens Free Spins – {todayFormatted}
-          </h2>
-          <p>
-            Velkommen til vores dagligt opdaterede oversigt over alle free spins tilbud hos danske licenserede casinoer.
-            Vi scanner automatisk danske aggregator-sites hver morgen kl. 07:00 og viser kun det bedste tilbud per casino,
-            rangeret efter vores score-system der tager højde for antal spins, omsætningskrav og om der kræves indbetaling.
-          </p>
-          <p>
-            Alle casinoer er licenserede af{" "}
-            <Link to="/spillemyndigheden" className={linkClass}>Spillemyndigheden</Link> og overholder dansk lovgivning.
-            Vi anbefaler altid at læse{" "}
-            <Link to="/omsaetningskrav" className={linkClass}>omsætningskravene</Link>{" "}
-            grundigt, før du accepterer et tilbud.
-          </p>
-        </section>
+          {/* Sådan vælger du */}
+          <section className="mb-8 rounded-xl border border-border/40 bg-card/50 p-5 md:p-6">
+            <h3 className="flex items-center gap-2 text-base font-semibold text-foreground mb-4">
+              <ShieldCheck className="h-5 w-5 text-primary" />
+              Sådan vælger du det bedste tilbud
+            </h3>
+            <ul className="grid gap-2.5 text-sm leading-[1.7] text-muted-foreground">
+              <li className="flex gap-2">
+                <CheckCircle2 className="h-4 w-4 text-primary mt-0.5 flex-shrink-0" />
+                <span><span className="text-primary font-medium">Omsætningskrav</span> – under 10x er godt. Jo lavere, desto lettere at omsætte gevinster.</span>
+              </li>
+              <li className="flex gap-2">
+                <CheckCircle2 className="h-4 w-4 text-primary mt-0.5 flex-shrink-0" />
+                <span><span className="text-primary font-medium">Spinværdi</span> – en free spin på 1 kr. slår 0,10 kr. Tjek den faktiske værdi.</span>
+              </li>
+              <li className="flex gap-2">
+                <CheckCircle2 className="h-4 w-4 text-primary mt-0.5 flex-shrink-0" />
+                <span><span className="text-primary font-medium">Antal spins</span> – flere chancer, men tjek hvilke spil de gælder til.</span>
+              </li>
+              <li className="flex gap-2">
+                <CheckCircle2 className="h-4 w-4 text-primary mt-0.5 flex-shrink-0" />
+                <span><span className="text-primary font-medium">Tidsbegrænsning</span> – de fleste skal bruges inden for 7–30 dage.</span>
+              </li>
+            </ul>
+          </section>
 
-        <section className="prose prose-lg dark:prose-invert max-w-none mb-8">
-          <h2 className="flex items-center gap-2">
-            <ShieldCheck className="h-6 w-6 text-primary" />
-            Sådan Vælger Du det Bedste Free Spins Tilbud
-          </h2>
-          <p>
-            Ikke alle free spins er skabt lige. Her er de vigtigste faktorer at overveje:
-          </p>
-          <ul>
-            <li><strong>Omsætningskrav:</strong> Jo lavere omsætningskrav, desto lettere er det at omsætte dine gevinster. Under 10x er generelt godt i Danmark.</li>
-            <li><strong>Antal free spins:</strong> Flere spins giver flere chancer, men tjek spinværdien og hvilke spil de gælder til.</li>
-            <li><strong>Spinværdi:</strong> En free spin på 1 kr. er mere værd end 0,10 kr. – tjek altid den faktiske spinværdi.</li>
-            <li><strong>Tidsbegrænsning:</strong> De fleste free spins skal bruges inden for 7-30 dage.</li>
-          </ul>
+          {/* Vigtigt at vide */}
+          <section className="mb-8 rounded-xl border border-border/40 bg-card/50 p-5 md:p-6">
+            <h3 className="flex items-center gap-2 text-base font-semibold text-foreground mb-3">
+              <AlertTriangle className="h-5 w-5 text-primary" />
+              Vigtigt at vide
+            </h3>
+            <p className="text-sm leading-[1.75] text-muted-foreground">
+              Alle casinoer er licenserede af <Link to="/spillemyndigheden" className={linkClass}>Spillemyndigheden</Link>. Bonusser er maks. 1.000 kr. med maks. 10x omsætningskrav jf. dansk lovgivning. Vi anbefaler altid <Link to="/ansvarligt-spil" className={linkClass}>ansvarligt spil</Link>.
+            </p>
+          </section>
 
-          <h2 className="flex items-center gap-2">
-            <AlertTriangle className="h-6 w-6 text-primary" />
-            Vigtigt at Vide Om Free Spins
-          </h2>
-          <p>
-            Alle casinoer på denne side er licenserede af{" "}
-            <Link to="/spillemyndigheden" className={linkClass}>Spillemyndigheden</Link>{" "}
-            og opererer lovligt i Danmark. Bonusser er underlagt en maksimal grænse på 1.000 kr. og maksimalt 10x omsætningskrav jf. dansk lovgivning.
-            Vi anbefaler altid{" "}
-            <Link to="/ansvarligt-spil" className={linkClass}>ansvarligt spil</Link>.
-          </p>
+          {/* Typer af free spins – 2x2 grid */}
+          <section className="mb-8">
+            <h3 className="flex items-center gap-2 text-base font-semibold text-foreground mb-4">
+              <Star className="h-5 w-5 text-primary" />
+              Typer af free spins
+            </h3>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              <div className="rounded-xl border border-border/40 bg-card/50 p-4 flex gap-3 items-start">
+                <div className="rounded-lg bg-primary/10 p-2 flex-shrink-0"><Gift className="h-4 w-4 text-primary" /></div>
+                <div>
+                  <p className="text-sm font-medium text-foreground mb-0.5">Velkomst free spins</p>
+                  <p className="text-xs leading-relaxed text-muted-foreground">Del af en velkomstpakke til nye spillere.</p>
+                </div>
+              </div>
+              <div className="rounded-xl border border-border/40 bg-card/50 p-4 flex gap-3 items-start">
+                <div className="rounded-lg bg-primary/10 p-2 flex-shrink-0"><Zap className="h-4 w-4 text-primary" /></div>
+                <div>
+                  <p className="text-sm font-medium text-foreground mb-0.5">Uden indbetaling</p>
+                  <p className="text-xs leading-relaxed text-muted-foreground">Kræver ingen indbetaling – <Link to="/bonus-uden-indbetaling" className={linkClass}>spins ved registrering</Link>.</p>
+                </div>
+              </div>
+              <div className="rounded-xl border border-border/40 bg-card/50 p-4 flex gap-3 items-start">
+                <div className="rounded-lg bg-primary/10 p-2 flex-shrink-0"><RefreshCw className="h-4 w-4 text-primary" /></div>
+                <div>
+                  <p className="text-sm font-medium text-foreground mb-0.5">Daglige/ugentlige</p>
+                  <p className="text-xs leading-relaxed text-muted-foreground">Løbende tilbud til eksisterende spillere.</p>
+                </div>
+              </div>
+              <div className="rounded-xl border border-border/40 bg-card/50 p-4 flex gap-3 items-start">
+                <div className="rounded-lg bg-primary/10 p-2 flex-shrink-0"><Award className="h-4 w-4 text-primary" /></div>
+                <div>
+                  <p className="text-sm font-medium text-foreground mb-0.5">VIP free spins</p>
+                  <p className="text-xs leading-relaxed text-muted-foreground">Eksklusive tilbud til loyale spillere.</p>
+                </div>
+              </div>
+            </div>
+          </section>
 
-          <h2 className="flex items-center gap-2">
-            <Star className="h-6 w-6 text-primary" />
-            Typer af Free Spins
-          </h2>
-          <ul>
-            <li><strong>Velkomst free spins:</strong> Del af en velkomstpakke til nye spillere.</li>
-            <li><strong><Link to="/bonus-uden-indbetaling" className={linkClass}>Free spins uden indbetaling</Link>:</strong> Kræver ingen indbetaling – spins ved registrering.</li>
-            <li><strong>Daglige/ugentlige free spins:</strong> Løbende tilbud til eksisterende spillere.</li>
-            <li><strong>VIP free spins:</strong> Eksklusive tilbud til loyale spillere.</li>
-          </ul>
-        </section>
-
-        {/* Trust signals */}
-        <div className="flex flex-wrap items-center gap-3 text-xs text-muted-foreground mb-6">
-          <span className="inline-flex items-center gap-1"><Award className="h-3.5 w-3.5 text-primary" /> Redaktørens faktatjek</span>
-          <span className="inline-flex items-center gap-1"><RefreshCw className="h-3.5 w-3.5 text-muted-foreground" /> Sidst opdateret: {todayFormatted}</span>
+          {/* Trust footer */}
+          <div className="flex flex-wrap items-center gap-3 text-xs text-muted-foreground mb-6">
+            <span className="inline-flex items-center gap-1"><Award className="h-3.5 w-3.5 text-primary" /> Redaktørens faktatjek</span>
+            <span className="inline-flex items-center gap-1"><RefreshCw className="h-3.5 w-3.5 text-muted-foreground" /> Sidst opdateret: {todayFormatted}</span>
+          </div>
         </div>
 
         <Separator className="my-8" />
