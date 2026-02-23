@@ -103,7 +103,7 @@ const Index = () => {
   return (
     <>
       <SEO
-        title="Online Casino Danmark – Sammenlign Bedste Casinoer 2026"
+        title="Bedste Online Casinoer i Danmark 2026"
         description="Sammenlign de bedste online casinoer i Danmark. Uafhængige anmeldelser, licenstjek og ærlige vurderinger af spiludvalg, udbetalinger og sikkerhed."
         jsonLd={{
           "@context": "https://schema.org",
