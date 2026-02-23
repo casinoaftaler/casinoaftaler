@@ -885,15 +885,7 @@ Returnér UDELUKKENDE valid JSON (ingen markdown code blocks). Sæt ALDRIG rejec
       validation_warnings: validationResult.warnings,
     });
 
-    // Admin notification
-    const validationSummary = validationResult.warnings.length > 0
-      ? ` ⚠️ ${validationResult.warnings.length} advarsel(er).`
-      : "";
-
-    await supabase.from("notifications").insert({
-      title: "Ny nyhedskladde klar til review",
-      message: `AI-genereret kladde: "${articleData.title}" – ${validationResult.validatedSources.length} verificerede kilder. Alle guardrails bestået.${validationSummary}`,
-    });
+    // Log to console only (no user-facing notification)
 
     console.log(
       "Draft created:", inserted.id,
