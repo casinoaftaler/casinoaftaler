@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { Award, BookOpen } from "lucide-react";
+import { Award, BookOpen, ShieldCheck } from "lucide-react";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
 import { useTwitchStatus } from "@/hooks/useTwitchStatus";
 
@@ -8,8 +8,8 @@ export function HeroSection() {
   const { data: siteSettings, isLoading: settingsLoading } = useSiteSettings();
   const { data: twitchStatus } = useTwitchStatus(siteSettings?.twitch_url);
   
-  const heroTitle = siteSettings?.hero_title || "Få vejledning til de bedste bonusser her.";
-  const heroSubtitle = siteSettings?.hero_subtitle || "De Bedste Casino Bonusser – Spil Mere for Mindre. Vi hjælper dig med at finde den perfekte bonus til din spillestil.";
+  const heroTitle = siteSettings?.hero_title || "Sammenlign Danmarks bedste online casinoer – testet og verificeret";
+  const heroSubtitle = siteSettings?.hero_subtitle || "Vi har analyseret 29+ danske casinoer med licens fra Spillemyndigheden. Se hvilke der scorer højest på bonus, udbetalingstid og spiludvalg.";
   const heroBackgroundImage = siteSettings?.hero_background_image;
   const isLive = twitchStatus?.isLive ?? false;
   const contentReady = !settingsLoading;
@@ -60,11 +60,26 @@ export function HeroSection() {
           <p className="mb-6 text-base text-white/80 md:text-lg">
             {heroSubtitle}
           </p>
+          {/* Social proof bar */}
+          <div className="mb-6 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-sm text-white/70">
+            <span className="flex items-center gap-1.5">
+              <ShieldCheck className="h-4 w-4 text-green-400" />
+              29+ casinoer testet
+            </span>
+            <span className="flex items-center gap-1.5">
+              <Award className="h-4 w-4 text-yellow-400" />
+              100% dansk licens
+            </span>
+            <span className="flex items-center gap-1.5">
+              <BookOpen className="h-4 w-4 text-blue-300" />
+              Opdateret feb. 2026
+            </span>
+          </div>
           <div className="flex flex-wrap justify-center gap-4">
             <Button size="lg" asChild className="transition-all duration-300 hover:scale-105 hover:shadow-lg">
               <a href="#top-casinos">
                 <Award className="mr-2 h-5 w-5" />
-                Se Bedste Bonusser
+                Se Top 10 Casinoer
               </a>
             </Button>
             <Button size="lg" variant="outline" asChild className="bg-transparent border-white/30 text-white hover:bg-white/10 transition-all duration-300 hover:scale-105 hover:shadow-lg">

@@ -261,6 +261,7 @@ const App = () => (
                 <Route path="/saadan-tester-vi-casinoer" element={<SaadanTesterVi />} />
                 
                 <Route path="/kontakt" element={<Kontakt />} />
+                <Route path="/nyheder" element={<Navigate to="/casino-nyheder" replace />} />
                 <Route path="/casino-nyheder" element={<CasinoNyheder />} />
                 <Route path="/casino-nyheder/:slug" element={<CasinoNyhedArticle />} />
                 
