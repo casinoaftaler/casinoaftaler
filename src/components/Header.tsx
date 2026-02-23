@@ -14,6 +14,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { ChevronDown, Gamepad2, LogOut, Mail, Menu, User, X, Dices, Gift, BookOpen, Users, ShoppingBag, Video, ShieldCheck, Sparkles, Layers, Moon, Sun, Coins, UserCircle, Trophy, Ticket, CreditCard, MoreHorizontal, RefreshCw, DollarSign, Zap, Tv, Star, Scale, BarChart3, Smartphone, Globe, Heart, Landmark, RotateCw, Newspaper } from "lucide-react";
+import { CreditCoin } from "@/components/CreditCoin";
 import { useState, useEffect, memo } from "react";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
 import { useTwitchStatus } from "@/hooks/useTwitchStatus";
@@ -721,7 +722,7 @@ export const Header = memo(function Header() {
                   <Button variant="ghost" className="relative flex h-auto items-center gap-2 rounded-full px-2 py-1">
                     {creditsData && (
                       <span className="flex items-center gap-1 text-xs font-semibold text-primary">
-                        <Coins className="h-3.5 w-3.5" />
+                        <CreditCoin size="sm" />
                         {creditsData.spins_remaining.toLocaleString("da-DK")}
                       </span>
                     )}
