@@ -134,7 +134,7 @@ export function BonusHuntSlotTable({ slots, huntNumber, huntDate, latestHuntNumb
                 <td className="px-3 py-2 font-mono">{slot.bet.toFixed(2)} kr</td>
                 <td className="px-3 py-2 font-mono">
                   {slot.opened ? (
-                    <span className={slot.multiplier >= 2 ? 'text-green-500' : slot.multiplier > 0 ? 'text-foreground' : 'text-destructive'}>
+                    <span className={slot.multiplier >= 100 ? 'text-green-500' : slot.multiplier <= 20 ? 'text-red-500' : 'text-foreground'}>
                       {slot.multiplier.toFixed(2)}x
                     </span>
                   ) : '—'}
