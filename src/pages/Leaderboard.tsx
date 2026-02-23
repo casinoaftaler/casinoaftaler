@@ -7,6 +7,8 @@ import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Trophy, Medal, Award, Crown, Sparkles, Gamepad2, ArrowRight, LogIn, Clock, Timer, Gift, User, CalendarDays, BookOpen } from "lucide-react";
+import { TwitchBadgesInline } from "@/components/TwitchBadges";
+import type { TwitchBadges as TwitchBadgesType } from "@/hooks/useTwitchBadges";
 import { RelatedGuides } from "@/components/RelatedGuides";
 import { CommunityNav } from "@/components/community/CommunityNav";
 import { CommunitySeoBridge } from "@/components/community/CommunitySeoBridge";
@@ -96,7 +98,10 @@ function LeaderboardRow({ entry, rank, isCurrentUser, maxCredits }: { entry: Tou
           avatarClassName={cn("h-8 w-8", rank <= 3 && "ring-2 ring-offset-2 ring-offset-background", rank === 1 && "ring-amber-400", rank === 2 && "ring-gray-400", rank === 3 && "ring-amber-600")}
         />
         <div className="flex-1 min-w-0">
-          <p className={cn("font-medium truncate", rank <= 3 ? "text-foreground" : "text-muted-foreground")}>{entry.display_name || "Anonym"}</p>
+          <div className="flex items-center gap-1.5">
+            <p className={cn("font-medium truncate", rank <= 3 ? "text-foreground" : "text-muted-foreground")}>{entry.display_name || "Anonym"}</p>
+            <TwitchBadgesInline badges={entry.twitch_badges as unknown as TwitchBadgesType | null} />
+          </div>
           <div className="flex items-center gap-2">
             <p className="text-xs text-muted-foreground">{entry.total_spins.toLocaleString()} spins</p>
             {isCurrentUser && maxCredits && (

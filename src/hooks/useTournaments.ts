@@ -31,6 +31,7 @@ export interface TournamentEntry {
   updated_at: string;
   display_name?: string;
   avatar_url?: string;
+  twitch_badges?: Record<string, unknown> | null;
 }
 
 function computeStatus(t: { starts_at: string; ends_at: string; status: string }): string {
@@ -186,7 +187,7 @@ export function useTournamentLeaderboard(tournamentId: string | undefined, gameI
       if (userIds.length > 0) {
         const { data: profiles } = await supabase
           .from("profiles_leaderboard")
-          .select("user_id, display_name, avatar_url")
+          .select("user_id, display_name, avatar_url, twitch_badges")
           .in("user_id", userIds);
 
         const profileMap = new Map(
@@ -197,6 +198,7 @@ export function useTournamentLeaderboard(tournamentId: string | undefined, gameI
           if (profile) {
             entry.display_name = profile.display_name || "Anonym";
             entry.avatar_url = profile.avatar_url || undefined;
+            entry.twitch_badges = (profile as any).twitch_badges as Record<string, unknown> | null;
           } else {
             entry.display_name = "Anonym";
           }

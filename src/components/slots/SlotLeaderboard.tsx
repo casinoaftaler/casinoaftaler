@@ -9,11 +9,13 @@ import { Trophy, Medal, Award, Users, Search } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { useSlotLeaderboard, type LeaderboardEntry } from "@/hooks/useSlotLeaderboard";
 import { UserProfileLink } from "@/components/UserProfileLink";
+import { TwitchBadgesInline } from "@/components/TwitchBadges";
 import { cn } from "@/lib/utils";
 import { getSlotTheme, type SlotTheme } from "@/lib/slotTheme";
 import { useAuth } from "@/hooks/useAuth";
 import { LogIn } from "lucide-react";
 import { Link } from "react-router-dom";
+import type { TwitchBadges as TwitchBadgesType } from "@/hooks/useTwitchBadges";
 
 function getDisplayWinnings(entry: LeaderboardEntry, period: "daily" | "weekly" | "monthly" | "alltime"): number {
   if (period === "daily") return entry.daily_winnings ?? 0;
@@ -67,6 +69,7 @@ function LeaderboardRow({
         <p className={cn("font-medium flex-1 truncate", theme.leaderboardNameText)}>
           {entry.display_name}
         </p>
+        <TwitchBadgesInline badges={entry.twitch_badges as unknown as TwitchBadgesType | null} />
         {isCurrentUser && (
           <Badge variant="outline" className={cn("text-xs", theme.leaderboardUserBadgeBorder, theme.leaderboardUserBadgeText, theme.leaderboardUserBadgeBg)}>
             Du

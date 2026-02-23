@@ -14,6 +14,7 @@ export interface LeaderboardEntry {
   monthly_winnings: number;
   display_name?: string;
   avatar_url?: string;
+  twitch_badges?: Record<string, unknown> | null;
 }
 
 export interface CurrentUserLeaderboard {
@@ -71,12 +72,12 @@ export function useSlotLeaderboard(period: "daily" | "weekly" | "monthly" | "all
       // Fetch profiles for display names
       const userIds = (data || []).map(d => d.user_id).filter(Boolean) as string[];
       
-      let profileMap = new Map<string, { display_name: string | null; avatar_url: string | null }>();
+      let profileMap = new Map<string, { display_name: string | null; avatar_url: string | null; twitch_badges?: unknown }>();
       
       if (userIds.length > 0) {
         const { data: profiles } = await supabase
           .from("profiles_leaderboard")
-          .select("user_id, display_name, avatar_url")
+          .select("user_id, display_name, avatar_url, twitch_badges")
           .in("user_id", userIds)
           .limit(100);
 
@@ -97,6 +98,7 @@ export function useSlotLeaderboard(period: "daily" | "weekly" | "monthly" | "all
           monthly_winnings: row.monthly_winnings || 0,
           display_name: profile?.display_name || "Anonym",
           avatar_url: profile?.avatar_url || undefined,
+          twitch_badges: profile?.twitch_badges as Record<string, unknown> | null,
         };
       });
 
@@ -128,7 +130,7 @@ export function useSlotLeaderboard(period: "daily" | "weekly" | "monthly" | "all
           if (userData) {
             const { data: userProfile } = await supabase
               .from("profiles_leaderboard")
-              .select("user_id, display_name, avatar_url")
+              .select("user_id, display_name, avatar_url, twitch_badges")
               .eq("user_id", currentUserId)
               .maybeSingle();
 
@@ -152,6 +154,7 @@ export function useSlotLeaderboard(period: "daily" | "weekly" | "monthly" | "all
               monthly_winnings: userData.monthly_winnings || 0,
               display_name: userProfile?.display_name || "Anonym",
               avatar_url: userProfile?.avatar_url || undefined,
+              twitch_badges: (userProfile as any)?.twitch_badges as Record<string, unknown> | null,
             };
 
             currentUser = {
