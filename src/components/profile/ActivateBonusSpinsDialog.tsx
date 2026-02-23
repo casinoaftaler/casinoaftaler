@@ -3,7 +3,8 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription, Di
 import { Button } from "@/components/ui/button";
 import { Slider } from "@/components/ui/slider";
 import { Input } from "@/components/ui/input";
-import { AlertTriangle, Sparkles } from "lucide-react";
+import { AlertTriangle } from "lucide-react";
+import { CreditCoin } from "@/components/CreditCoin";
 
 interface ActivateBonusSpinsDialogProps {
   open: boolean;
@@ -38,7 +39,7 @@ export function ActivateBonusSpinsDialog({
       <DialogContent className="sm:max-w-md">
         <DialogHeader>
           <DialogTitle className="flex items-center gap-2">
-            <Sparkles className="h-5 w-5 text-primary" />
+            <CreditCoin size="lg" />
             Aktiver Bonus Credits
           </DialogTitle>
           <DialogDescription>
