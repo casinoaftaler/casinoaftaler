@@ -340,6 +340,24 @@ function cleanDescription(text: string): string {
     .substring(0, 400);
 }
 
+/** Clean HTML from scraped text */
+function cleanHtml(text: string | null): string | null {
+  if (!text) return null;
+  let cleaned = text;
+  cleaned = cleaned.replace(/<br\s*\/?>/gi, "\n");
+  cleaned = cleaned.replace(/<[^>]*>/g, "");
+  cleaned = cleaned.replace(/&nbsp;/gi, " ");
+  cleaned = cleaned.replace(/&amp;/gi, "&");
+  cleaned = cleaned.replace(/&lt;/gi, "<");
+  cleaned = cleaned.replace(/&gt;/gi, ">");
+  cleaned = cleaned.replace(/&quot;/gi, '"');
+  cleaned = cleaned.replace(/&#39;/gi, "'");
+  cleaned = cleaned.replace(/[^\S\n]+/g, " ");
+  cleaned = cleaned.replace(/\n{3,}/g, "\n\n");
+  cleaned = cleaned.split("\n").map(l => l.trim()).filter(l => l.length > 0).join("\n");
+  return cleaned.trim() || null;
+}
+
 /** Enrich a parsed offer with additional extracted data */
 function enrichOffer(offer: ParsedOffer, rawText: string): ParsedOffer {
   if (!offer.game_name) offer.game_name = extractGameName(rawText);
@@ -350,6 +368,10 @@ function enrichOffer(offer: ParsedOffer, rawText: string): ParsedOffer {
   if (!offer.campaign_period_end) offer.campaign_period_end = period.end;
   offer.short_terms_summary = buildTermsSummary(offer);
   offer.confidence_score = calculateConfidence(offer);
+  // Clean HTML from text fields before storage
+  offer.description = cleanHtml(offer.description);
+  offer.short_terms_summary = cleanHtml(offer.short_terms_summary);
+  offer.title = cleanHtml(offer.title) || offer.title;
   return offer;
 }
 
