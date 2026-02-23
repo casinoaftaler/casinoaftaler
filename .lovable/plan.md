@@ -1,21 +1,35 @@
 
 
-## Fix: Deploy the Twitch Bet Function
+## Unified Control Bar for All Slot Games
 
-### Problem
-The `bonus-hunt-twitch-bet` backend function was never successfully deployed. When your Twitch bot calls it, it gets a 404 (not found) error, which is why no confirmation message appears in chat.
+Replace the current `SlotControlPanel` used by Book of Fedesvin and Rise of Fedesvin with the compact, horizontal `GatesControlBar` layout that Gates of Fedesvin already uses.
 
-### Solution
-Deploy the `bonus-hunt-twitch-bet` function. The code is already correct with all the right messages -- it just needs to be deployed to make it live.
+### What Changes
 
-### What This Fixes
-- Users typing `!gtw 45000` in Twitch chat will now get a confirmation like: `"Dit GTW bet er placeret! Gat: 45.000 kr (X credits brugt)"`
-- Users typing `!avgx F` will get: `"Dit AVG X bet er placeret! Gruppe: F (X credits brugt)"`
-- Updates to existing bets will show: `"Dit GTW/AVG X bet er opdateret!"`
-- Error cases (no credits, betting closed, unregistered) will also show proper messages
+**1. SlotGame.tsx** (used by Book of Fedesvin and Rise of Fedesvin)
+- Replace the `SlotControlPanel` import with `GatesControlBar`
+- Swap the component in the render, passing the same props
+- Remove the themed wrapper `<div>` around it (the GatesControlBar has its own styling built in)
+
+**2. GatesControlBar.tsx** — Theme Support
+- Currently the GatesControlBar has hardcoded blue/slate colors (designed for Gates only)
+- Update it to use the existing `getSlotTheme(gameId)` system so it picks up the correct colors per game:
+  - Book of Fedesvin: amber/gold Egyptian theme
+  - Rise of Fedesvin: purple/violet wizard theme
+  - Gates of Fedesvin: blue/slate Olympus theme (current default)
+- This affects: panel gradient, borders, text colors, spin button gradient/shadow, bet button colors, and credit display colors
+
+**3. GatesControlBar.tsx** — PayTable Routing
+- The bar currently always renders `GatesPayTable`. Update to conditionally render:
+  - `PayTable` for book-of-fedesvin and rise-of-fedesvin
+  - `GatesPayTable` for gates-of-fedesvin
+
+**4. SlotControlPanel.tsx** — Cleanup (optional)
+- This component will no longer be imported anywhere and can be removed, along with `BetControls.tsx`, `AutospinRow.tsx`, and `SmallWinBar.tsx` if they are not used elsewhere
 
 ### Technical Details
-- The file `supabase/functions/bonus-hunt-twitch-bet/index.ts` exists and the code is complete
-- The function just needs to be deployed to the backend
-- No code changes are needed -- only deployment
+
+The `GatesControlBar` and `SlotControlPanel` share the exact same prop interface, so no changes are needed in the parent `SlotGame.tsx` beyond swapping the component name and removing the wrapper div.
+
+Theme integration will use the existing `getSlotTheme(gameId)` function which already defines colors for all three games. The GatesControlBar's hardcoded Tailwind classes (e.g. `from-blue-950/90`, `text-blue-400`, `border-blue-500/25`) will be replaced with theme-derived values.
 
