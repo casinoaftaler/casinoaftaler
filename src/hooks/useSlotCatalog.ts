@@ -36,6 +36,27 @@ export function useProviderOverrides() {
   });
 }
 
+// Fetch slot_catalog provider map for bonus hunt display (lightweight)
+export function useSlotCatalogProviderMap() {
+  return useQuery({
+    queryKey: ['slot-catalog-provider-map'],
+    queryFn: async () => {
+      const { data, error } = await supabase
+        .from('slot_catalog')
+        .select('slot_name, provider');
+      if (error) throw error;
+      const map = new Map<string, string>();
+      data?.forEach(row => {
+        if (row.provider && row.provider !== 'Custom Slot') {
+          map.set(row.slot_name.toLowerCase(), row.provider);
+        }
+      });
+      return map;
+    },
+    staleTime: 300000,
+  });
+}
+
 // Fetch a single slot from the catalog by name
 export function useSlotCatalogEntry(slotName: string | null) {
   return useQuery({
