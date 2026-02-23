@@ -404,7 +404,7 @@ const FreeSpinsIDag = () => {
             )}
 
             {/* Offer grid – 2 cols on desktop, contrast bg */}
-            <section className="mb-8 -mx-4 md:-mx-6 px-4 md:px-6 py-6 rounded-xl bg-muted/15" ref={cardsRef}>
+            <section className="mb-8 py-6 rounded-xl bg-muted/15" ref={cardsRef}>
               <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
                 <Filter className="h-5 w-5 text-primary" />
                 {activeFilter === "all" ? "Alle Free Spins Tilbud" : filterConfig.find((f) => f.id === activeFilter)?.label}
