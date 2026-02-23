@@ -1,54 +1,49 @@
 
+## Make AutoSpinPopover Use Dynamic Slot Theme Colors
 
-## Add Fedesvin Credit Coin Icon Across All Credit Displays
+The `AutoSpinPopover` component currently has all its colors hardcoded to blue (the Gates/Olympus theme). It needs to accept the `SlotTheme` and use theme-appropriate colors so it matches the Egyptian (amber) theme for Book of Fedesvin, the wizard (purple) theme for Rise of Fedesvin, and the Olympus (blue) theme for Gates of Fedesvin.
 
-Save the uploaded coin image as a project asset and create a tiny reusable `CreditCoin` component, then replace the current generic icons (Sparkles, Zap) with this coin wherever credits are displayed.
+### Changes
 
-### New Files
+**1. Add auto-spin theme fields to `SlotTheme` in `src/lib/slotTheme.ts`**
 
-**1. Copy coin image to `src/assets/fedesvin-credit-coin.png`**
+Add 8 new fields to the `SlotTheme` interface for the auto-spin button and popover:
+- `autoSpinBtnBg` -- trigger button background (e.g. `bg-amber-800/40`)
+- `autoSpinBtnBorder` -- trigger button border (e.g. `border-amber-500/30`)
+- `autoSpinBtnText` -- trigger button text color (e.g. `text-amber-300`)
+- `autoSpinBtnHoverBg` -- trigger hover bg
+- `autoSpinBtnHoverText` -- trigger hover text
+- `autoSpinPopoverBg` -- popover background
+- `autoSpinPopoverBorder` -- popover border
+- `autoSpinCountActiveBg` / `autoSpinCountActiveBorder` / `autoSpinCountActiveText` -- selected count chip
+- `autoSpinCountBg` / `autoSpinCountBorder` / `autoSpinCountText` / `autoSpinCountHoverBg` / `autoSpinCountHoverText` -- unselected count chip
+- `autoSpinStartBg` / `autoSpinStartHoverBg` / `autoSpinStartBorder` -- START button
+- `autoSpinLabelText` -- "Auto Spin" label text
 
-**2. Create `src/components/CreditCoin.tsx`**
-- A simple reusable component that renders the coin image at a configurable size
-- Default size: 16x16px (`h-4 w-4`)
-- Props: `size` (sm/md/lg) and optional `className`
+Then populate these for all three themes (egyptianTheme with amber, wizardTheme with purple, olympusTheme with blue -- keeping current blue values).
 
-### Files to Update
+**2. Update `AutoSpinPopover` in `src/components/slots/AutoSpinPopover.tsx`**
 
-**3. `src/components/slots/GatesControlBar.tsx`** (all 3 slot games use this now)
-- Replace the `Sparkles` icon in the Credits section (line 142) with `CreditCoin`
+- Add a `theme: SlotTheme` prop (import `SlotTheme` from slotTheme)
+- Replace every hardcoded blue class with the corresponding `theme.autoSpin*` field
+- The stop button (red) stays unchanged since red is universal for "stop"
 
-**4. `src/components/spin-the-reel/UserStatsBar.tsx`**
-- Replace the `Zap` icon next to "Slot Credits" (line 30) with `CreditCoin`
+**3. Update `GatesControlBar` in `src/components/slots/GatesControlBar.tsx`**
 
-**5. `src/components/profile/ProfileCommunityBonusSection.tsx`**
-- Replace the `Sparkles` icon next to "Uaktiverede" count (line 51) with `CreditCoin`
-- Replace the `Sparkles` icon in the "Aktiver Credits" button (line 73) with `CreditCoin`
-
-**6. `src/components/profile/ProfileRewardsProgress.tsx`**
-- Replace the `Sparkles` icon in the header (line 42) with `CreditCoin`
-- Add a small coin next to the credits counter text (line 46-47)
-- Add a small coin next to each "+5 credits" label (line 110)
-
-**7. `src/components/profile/ActivateBonusSpinsDialog.tsx`**
-- Replace the `Sparkles` icon in the dialog title (line 41) with `CreditCoin`
-
-**8. `src/components/profile/ProfileSlotRequestStats.tsx`**
-- Add a small coin next to "Credits Optjent" value (line 57)
+- Pass `theme={theme}` to the `<AutoSpinPopover>` component (theme is already available in this component via `getSlotTheme(gameId)`)
 
 ### Technical Details
 
-The `CreditCoin` component will be:
-```tsx
-import coinImage from "@/assets/fedesvin-credit-coin.png";
-import { cn } from "@/lib/utils";
+The mapping from hardcoded to themed classes:
 
-const SIZES = { sm: "h-3.5 w-3.5", md: "h-4 w-4", lg: "h-5 w-5" };
+| Current hardcoded | Theme field |
+|---|---|
+| `bg-blue-800/40` | `theme.autoSpinBtnBg` |
+| `border-blue-500/30` | `theme.autoSpinBtnBorder` |
+| `text-blue-300` | `theme.autoSpinBtnText` |
+| `bg-blue-950/95` | `theme.autoSpinPopoverBg` |
+| `bg-blue-500/30 border-blue-400/50 text-blue-200` | active count chip fields |
+| `bg-blue-900/40 border-blue-500/20 text-blue-400/70` | inactive count chip fields |
+| `bg-blue-600/80` | START button bg |
 
-export function CreditCoin({ size = "md", className }) {
-  return <img src={coinImage} alt="" className={cn(SIZES[size], "inline-block", className)} />;
-}
-```
-
-This keeps changes minimal -- just swapping icon components -- while giving a consistent branded credit identity across the entire site.
-
+For the Egyptian theme these become amber equivalents, for the wizard theme purple equivalents, and for Olympus they stay blue (no visual change on Gates).
