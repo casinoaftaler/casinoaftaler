@@ -170,33 +170,33 @@ export function StickyCTA({
       </div>
 
       {/* Mobile */}
-      <div className="container flex lg:hidden flex-col py-2.5 max-h-[110px] gap-1.5">
-        {/* Row 1: Logo + Name + Rating */}
-        <div className="flex items-center gap-2.5">
+      <div className="container flex lg:hidden items-center gap-2.5 py-2 h-[76px]">
+        {/* Left: Logo + Name + Rating */}
+        <div className="flex items-center gap-2 min-w-0 shrink">
           {logoUrl && (
             <img
               src={logoUrl}
               alt={`${casinoName} logo`}
-              className="h-9 w-auto max-w-[44px] rounded-lg object-contain flex-shrink-0"
+              className="h-[48px] w-auto max-w-[52px] rounded-lg object-contain flex-shrink-0"
               loading="lazy"
             />
           )}
-          <span className="text-sm font-bold text-foreground truncate">{casinoName}</span>
-          <div className="flex items-center gap-0.5 flex-shrink-0 ml-auto">
-            <Star className="h-3 w-3 fill-primary text-primary" />
-            <span className="text-xs font-semibold text-foreground">{rating.toFixed(1)}</span>
+          <div className="min-w-0">
+            <div className="flex items-center gap-1">
+              <span className="text-sm font-bold text-foreground truncate">{casinoName}</span>
+              <Star className="h-3 w-3 fill-primary text-primary flex-shrink-0" />
+              <span className="text-xs font-semibold text-foreground flex-shrink-0">{rating.toFixed(1)}</span>
+            </div>
+            <p className="text-[11px] text-muted-foreground truncate">
+              {bonusPercent} op til {bonusAmount}
+            </p>
           </div>
         </div>
 
-        {/* Row 2: Bonus text */}
-        <p className="text-xs font-semibold text-muted-foreground truncate">
-          {bonusPercent} op til {bonusAmount} + {freeSpins || "0"} free spins
-        </p>
-
-        {/* Row 3: CTA */}
+        {/* Right: CTA */}
         <Button
           onClick={handleClick}
-          className="w-full font-bold h-9 shadow-md"
+          className="font-bold text-sm px-4 h-10 flex-shrink-0 max-w-[50%] shadow-md ml-auto"
           data-sponsored="true"
         >
           HENT BONUS NU
