@@ -501,6 +501,13 @@ Deno.serve(async (req) => {
   const LOVABLE_API_KEY = Deno.env.get("LOVABLE_API_KEY");
   const supabase = createClient(supabaseUrl, supabaseKey);
 
+  // Check for force flag to skip weekly limit
+  let forceGenerate = false;
+  try {
+    const body = await req.clone().json();
+    forceGenerate = body?.force === true;
+  } catch { /* no body or invalid json */ }
+
   // Helper to fail with audit log
   const failWithLog = async (reason: string, extra: Partial<Parameters<typeof writeAuditLog>[1]> = {}) => {
     await writeAuditLog(supabase, {
@@ -531,16 +538,18 @@ Deno.serve(async (req) => {
     }
 
     // ═══ GUARDRAIL: Max 2 articles per week ═══
-    const weekAgo = new Date();
-    weekAgo.setDate(weekAgo.getDate() - 7);
+    if (!forceGenerate) {
+      const weekAgo = new Date();
+      weekAgo.setDate(weekAgo.getDate() - 7);
 
-    const { count: weekCount } = await supabase
-      .from("casino_news")
-      .select("*", { count: "exact", head: true })
-      .gte("created_at", weekAgo.toISOString());
+      const { count: weekCount } = await supabase
+        .from("casino_news")
+        .select("*", { count: "exact", head: true })
+        .gte("created_at", weekAgo.toISOString());
 
-    if ((weekCount ?? 0) >= 2) {
-      return await failWithLog("Max 2 artikler pr. uge nået", { search_query: "n/a" });
+      if ((weekCount ?? 0) >= 2) {
+        return await failWithLog("Max 2 artikler pr. uge nået", { search_query: "n/a" });
+      }
     }
 
     // Get recent articles for duplicate detection
@@ -713,7 +722,17 @@ Returnér UDELUKKENDE valid JSON (ingen markdown code blocks). Sæt ALDRIG rejec
 
     // ═══ GUARDRAIL: No affiliate links ═══
     const contentLower = (articleData.content || "").toLowerCase();
-    if (contentLower.includes("affiliate") || contentLower.includes("ref=") || contentLower.includes("tracking")) {
+    const affiliatePatterns = [
+      "affiliate-link", "affiliatelink", "affiliate link",
+      "?ref=", "&ref=",
+      "tracking-link", "trackinglink",
+      "utm_source=", "utm_medium=",
+      "tilmeld dig via vores link",
+      "brug vores link",
+    ];
+    const hasAffiliate = affiliatePatterns.some((p) => contentLower.includes(p))
+      || /href\s*=\s*["'][^"']*(\?|&)(ref|aff|partner|click_?id)=/i.test(articleData.content || "");
+    if (hasAffiliate) {
       return await failWithLog("Affiliate-links detekteret i indhold", {
         search_query: searchQuery, topic_index: topicIndex, tokens_used: tokensUsed,
         perplexity_citations_count: perplexityResult.citations.length,
