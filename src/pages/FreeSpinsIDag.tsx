@@ -314,19 +314,13 @@ const FreeSpinsIDag = () => {
             <div className="text-xs text-muted-foreground">
               <AuthorMetaBar author="jonas" date={todayFormatted} readTime="3 min." />
             </div>
-            {/* Row 2: Disclaimer + Trust badges aligned */}
-            <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1.5 text-[11px] text-muted-foreground/70">
-              <p className="italic leading-snug">
-                Nogle links på denne side er affiliate-links. Det betyder, at vi kan modtage provision – uden ekstra omkostning for dig.{" "}
-                <Link to="/om-os" className={linkClass}>Sådan fungerer det.</Link>
-              </p>
-              <div className="flex items-center gap-2 flex-shrink-0">
-                <span className="inline-flex items-center gap-1"><ShieldCheck className="h-3.5 w-3.5 text-primary" /> DK-licenseret</span>
-                <span className="text-border">|</span>
-                <span className="inline-flex items-center gap-1"><AlertTriangle className="h-3.5 w-3.5 text-amber-500" /> 18+</span>
-                <span className="text-border">|</span>
-                <Link to="/ansvarligt-spil" className={linkClass}>Spil ansvarligt</Link>
-              </div>
+            {/* Row 2: Trust badges */}
+            <div className="flex items-center gap-2 text-[11px] text-muted-foreground/70">
+              <span className="inline-flex items-center gap-1"><ShieldCheck className="h-3.5 w-3.5 text-primary" /> DK-licenseret</span>
+              <span className="text-border">|</span>
+              <span className="inline-flex items-center gap-1"><AlertTriangle className="h-3.5 w-3.5 text-amber-500" /> 18+</span>
+              <span className="text-border">|</span>
+              <Link to="/ansvarligt-spil" className={linkClass}>Spil ansvarligt</Link>
             </div>
           </div>
         </div>
