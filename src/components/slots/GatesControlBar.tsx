@@ -144,10 +144,7 @@ export function GatesControlBar({
             {spinsLoading ? (
               <span className={cn("text-xs animate-pulse", theme.accentMuted)}>...</span>
             ) : (
-              <span className="text-sm font-bold tabular-nums">
-                <span className={theme.accentLight}>{spinsRemaining}</span>
-                <span className={cn(theme.accentMuted)}>/{maxSpins}</span>
-              </span>
+              <span className={cn("text-sm font-bold tabular-nums", theme.accentLight)}>{spinsRemaining}</span>
             )}
           </div>
           <div className={cn("w-px h-8 flex-shrink-0", theme.bgAccent)} />
