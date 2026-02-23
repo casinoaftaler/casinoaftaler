@@ -75,22 +75,22 @@ function LeaderboardRow({
       </div>
 
       {/* Bottom row: Stats in 4 columns */}
-      <div className="flex items-center justify-between text-sm pl-9">
+      <div className="grid grid-cols-4 gap-3 text-sm pl-9">
         <div className="text-center">
           <p className={cn("font-bold", theme.leaderboardPointsText)}>{getDisplayWinnings(entry, period).toLocaleString()}</p>
-          <p className="text-xs text-muted-foreground">point</p>
+          <p className="text-[10px] text-muted-foreground">point</p>
         </div>
         <div className="text-center">
           <p className={cn("font-medium", theme.leaderboardSpinsText)}>{entry.total_spins.toLocaleString()}</p>
-          <p className="text-xs text-muted-foreground">credits</p>
+          <p className="text-[10px] text-muted-foreground">credits</p>
         </div>
         <div className="text-center">
           <p className="font-medium text-blue-400">{entry.total_bonuses.toLocaleString()}</p>
-          <p className="text-xs text-muted-foreground">bonusser</p>
+          <p className="text-[10px] text-muted-foreground">bonusser</p>
         </div>
         <div className="text-center">
           <p className="font-bold text-green-400">{formattedMultiplier}</p>
-          <p className="text-xs text-muted-foreground">bedste</p>
+          <p className="text-[10px] text-muted-foreground">bedste</p>
         </div>
       </div>
     </div>
