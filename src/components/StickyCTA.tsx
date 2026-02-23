@@ -110,7 +110,7 @@ export function StickyCTA({
             <img
               src={logoUrl}
               alt={`${casinoName} logo`}
-              className="h-14 w-14 rounded-xl object-contain bg-background/50 p-1"
+              className="h-[68px] w-auto max-w-[80px] rounded-xl object-contain bg-background/50 p-1.5"
               loading="lazy"
             />
           )}
@@ -177,7 +177,7 @@ export function StickyCTA({
             <img
               src={logoUrl}
               alt={`${casinoName} logo`}
-              className="h-8 w-8 rounded-lg object-contain flex-shrink-0"
+              className="h-9 w-auto max-w-[44px] rounded-lg object-contain flex-shrink-0"
               loading="lazy"
             />
           )}
