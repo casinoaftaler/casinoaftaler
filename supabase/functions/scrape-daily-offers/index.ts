@@ -5,14 +5,14 @@ const corsHeaders = {
   "Access-Control-Allow-Headers": "authorization, x-client-info, apikey, content-type",
 };
 
-// ─── Aggregator sources (authoritative Danish free spin lists) ───
+// ─── Aggregator sources ───
 const AGGREGATOR_URLS = [
   "https://www.casinopenge.dk/free-spins-i-dag",
   "https://www.spilxperten.com/casino/dagens-free-spins/",
   "https://www.casinoonline.dk/freespin/",
 ];
 
-// ─── Casino name → slug mapping (covers common variations) ───
+// ─── Casino name → slug mapping ───
 const CASINO_NAME_MAP: Record<string, string> = {
   "royal casino": "royal-casino",
   "royalcasino": "royal-casino",
@@ -73,6 +73,14 @@ interface ParsedOffer {
   min_deposit: string | null;
   expiry_info: string | null;
   source_url: string;
+  // New enriched fields
+  game_name: string | null;
+  required_action: string | null;
+  spin_value: string | null;
+  short_terms_summary: string | null;
+  campaign_period_start: string | null;
+  campaign_period_end: string | null;
+  confidence_score: number;
 }
 
 /** Resolve casino name to slug */
@@ -135,7 +143,7 @@ function classifyOffer(text: string): { type: string; forNew: boolean; forExisti
   return { type, forNew, forExisting, requiresDeposit };
 }
 
-/** Detect wagering from text – CONTEXT-BASED only, max 100x */
+/** Detect wagering from text */
 function detectWagering(text: string): string | null {
   const contextMatch = text.match(/(?:omsætningskrav|gennemspil|omsætning|wagering)[^\d]*(\d+)\s*(?:x|gange)/i);
   if (contextMatch) {
@@ -169,26 +177,121 @@ function detectExpiry(text: string): string | null {
   return null;
 }
 
+/** Extract game name from text */
+function extractGameName(text: string): string | null {
+  // Common patterns: "på [Game Name]", "i [Game Name]", "til [Game Name]"
+  const patterns = [
+    /(?:free\s*spins?\s*(?:på|i|til)\s+)([A-ZÆØÅ][a-zæøåA-ZÆØÅ0-9\s&':!-]{2,40})(?:\s*(?:slot|spillemaskine|automat|!|\.|,))/i,
+    /(?:spins?\s*(?:på|i|til)\s+)([A-ZÆØÅ][a-zæøåA-ZÆØÅ0-9\s&':!-]{2,40})(?:\s*(?:slot|spillemaskine|!|\.|,|\s*$))/i,
+    /(?:spil(?:let)?|game|slot)[:\s]+([A-ZÆØÅ][a-zæøåA-ZÆØÅ0-9\s&':!-]{2,40})/i,
+  ];
+  for (const p of patterns) {
+    const m = text.match(p);
+    if (m) return m[1].trim();
+  }
+  return null;
+}
+
+/** Extract required action */
+function extractRequiredAction(text: string): string | null {
+  const patterns = [
+    /(?:krav|betingelse|for at)[:\s]*([^.]{10,80})/i,
+    /(?:spil\s+for|indsats\s+på)\s+(\d+\s*kr[^.]{0,40})/i,
+    /(?:indbetal)\s+(?:mindst\s+)?(\d+\s*kr[^.]{0,40})/i,
+  ];
+  for (const p of patterns) {
+    const m = text.match(p);
+    if (m) return m[1].trim().substring(0, 100);
+  }
+  // Fallback: deposit requirement as action
+  const dep = detectMinDeposit(text);
+  if (dep) return `Indbetal ${dep}`;
+  return null;
+}
+
+/** Extract spin value */
+function extractSpinValue(text: string): string | null {
+  const m = text.match(/(?:spin\s*værdi|spinværdi|pr\.?\s*spin|per\s*spin|værdi\s*pr)[:\s]*(\d+(?:[.,]\d+)?)\s*kr/i);
+  if (m) return `${m[1]} kr.`;
+  const m2 = text.match(/(\d+(?:[.,]\d+)?)\s*kr\.?\s*(?:pr|per|\/)\s*spin/i);
+  if (m2) return `${m2[1]} kr.`;
+  return null;
+}
+
+/** Build short terms summary */
+function buildTermsSummary(offer: Partial<ParsedOffer>): string | null {
+  const parts: string[] = [];
+  if (offer.wagering_requirement) parts.push(`Omsætningskrav: ${offer.wagering_requirement}`);
+  if (offer.min_deposit) parts.push(`Min. indbetaling: ${offer.min_deposit}`);
+  if (offer.spin_value) parts.push(`Spinværdi: ${offer.spin_value}`);
+  if (offer.expiry_info) parts.push(`Udløb: ${offer.expiry_info}`);
+  if (!offer.requires_deposit) parts.push("Ingen indbetaling krævet");
+  return parts.length > 0 ? parts.join(" · ") : null;
+}
+
+/** Parse campaign period dates */
+function extractPeriodDates(text: string): { start: string | null; end: string | null } {
+  // "fra d. 20. februar til d. 27. februar"
+  const periodMatch = text.match(/fra\s+(?:d\.\s*)?(\d{1,2})\.\s*(\w+)(?:\s*\d{4})?\s*(?:til|–|-)\s*(?:d\.\s*)?(\d{1,2})\.\s*(\w+)/i);
+  if (periodMatch) {
+    const startDate = parseDanishDate(periodMatch[1], periodMatch[2]);
+    const endDate = parseDanishDate(periodMatch[3], periodMatch[4]);
+    return { start: startDate, end: endDate };
+  }
+  return { start: null, end: null };
+}
+
+const DANISH_MONTHS: Record<string, number> = {
+  januar: 0, februar: 1, marts: 2, april: 3, maj: 4, juni: 5,
+  juli: 6, august: 7, september: 8, oktober: 9, november: 10, december: 11,
+  jan: 0, feb: 1, mar: 2, apr: 3, jun: 5, jul: 6, aug: 7, sep: 8, okt: 9, nov: 10, dec: 11,
+};
+
+function parseDanishDate(day: string, month: string): string | null {
+  const monthLower = month.toLowerCase();
+  const monthNum = DANISH_MONTHS[monthLower];
+  if (monthNum === undefined) return null;
+  const year = new Date().getFullYear();
+  const d = new Date(year, monthNum, parseInt(day, 10));
+  // If date is in the past by more than 30 days, assume next year
+  if (d.getTime() < Date.now() - 30 * 86400000) {
+    d.setFullYear(year + 1);
+  }
+  return d.toISOString();
+}
+
+/** Calculate confidence score based on data completeness */
+function calculateConfidence(offer: ParsedOffer): number {
+  let score = 30; // base
+  if (offer.spin_count > 0) score += 15;
+  if (offer.wagering_requirement) score += 10;
+  if (offer.min_deposit) score += 5;
+  if (offer.game_name) score += 10;
+  if (offer.required_action) score += 5;
+  if (offer.spin_value) score += 10;
+  if (offer.expiry_info) score += 5;
+  if (offer.for_new_players || offer.for_existing_players) score += 5;
+  if (offer.short_terms_summary) score += 5;
+  return Math.min(score, 100);
+}
+
 /** Calculate score for ranking */
 function calculateScore(offer: ParsedOffer): number {
   let score = offer.spin_count;
-  
   if (offer.wagering_requirement && offer.wagering_requirement !== "Ingen") {
     const wagerMatch = offer.wagering_requirement.match(/(\d+)/);
-    if (wagerMatch) {
-      score -= parseInt(wagerMatch[1], 10) * 2;
-    }
+    if (wagerMatch) score -= parseInt(wagerMatch[1], 10) * 2;
   }
-  
-  if (!offer.requires_deposit) {
-    score += 50;
-  }
-
-  if (offer.for_existing_players) {
-    score += 10;
-  }
-  
+  if (!offer.requires_deposit) score += 50;
+  if (offer.for_existing_players) score += 10;
   return score;
+}
+
+/** Generate dedup key */
+function generateDedupKey(casinoSlug: string, title: string, expiryInfo: string | null): string {
+  const normalizedTitle = title.toLowerCase().replace(/[^a-zæøå0-9]/g, "").substring(0, 60);
+  const expiry = expiryInfo ? expiryInfo.toLowerCase().replace(/[^a-zæøå0-9]/g, "").substring(0, 30) : "none";
+  return `${casinoSlug}:${normalizedTitle}:${expiry}`;
 }
 
 /** Clean markdown to plain description */
@@ -200,6 +303,33 @@ function cleanDescription(text: string): string {
     .replace(/\s+/g, " ")
     .trim()
     .substring(0, 400);
+}
+
+/** Enrich a parsed offer with additional extracted data */
+function enrichOffer(offer: ParsedOffer, rawText: string): ParsedOffer {
+  offer.game_name = extractGameName(rawText);
+  offer.required_action = extractRequiredAction(rawText);
+  offer.spin_value = extractSpinValue(rawText);
+  const period = extractPeriodDates(rawText);
+  offer.campaign_period_start = period.start;
+  offer.campaign_period_end = period.end;
+  offer.short_terms_summary = buildTermsSummary(offer);
+  offer.confidence_score = calculateConfidence(offer);
+  return offer;
+}
+
+function createBaseOffer(casinoName: string, slug: string, sourceUrl: string): Omit<ParsedOffer, 'title' | 'description' | 'spin_count' | 'offer_type' | 'for_new_players' | 'for_existing_players' | 'requires_deposit' | 'wagering_requirement' | 'min_deposit' | 'expiry_info' | 'confidence_score'> {
+  return {
+    casino_name: casinoName,
+    casino_slug: slug,
+    source_url: sourceUrl,
+    game_name: null,
+    required_action: null,
+    spin_value: null,
+    short_terms_summary: null,
+    campaign_period_start: null,
+    campaign_period_end: null,
+  };
 }
 
 // ─── Casinopenge.dk parser ───
@@ -229,9 +359,8 @@ function parseCasinopenge(markdown: string, sourceUrl: string): ParsedOffer[] {
 
     const classification = classifyOffer(section);
 
-    offers.push({
-      casino_name: casinoName,
-      casino_slug: slug,
+    const offer: ParsedOffer = {
+      ...createBaseOffer(casinoName, slug, sourceUrl),
       title: title || `${spinCount} Free Spins hos ${casinoName}`,
       description: cleanDescription(section),
       spin_count: spinCount,
@@ -242,8 +371,10 @@ function parseCasinopenge(markdown: string, sourceUrl: string): ParsedOffer[] {
       wagering_requirement: detectWagering(section),
       min_deposit: detectMinDeposit(section),
       expiry_info: detectExpiry(section),
-      source_url: sourceUrl,
-    });
+      confidence_score: 30,
+    };
+
+    offers.push(enrichOffer(offer, section));
   }
   return offers;
 }
@@ -282,9 +413,8 @@ function parseSpilxperten(markdown: string, sourceUrl: string): ParsedOffer[] {
 
     const classification = classifyOffer(block);
 
-    offers.push({
-      casino_name: casinoName,
-      casino_slug: slug,
+    const offer: ParsedOffer = {
+      ...createBaseOffer(casinoName, slug, sourceUrl),
       title: title || `${spinCount} Free Spins hos ${casinoName}`,
       description: cleanDescription(block),
       spin_count: spinCount,
@@ -295,8 +425,10 @@ function parseSpilxperten(markdown: string, sourceUrl: string): ParsedOffer[] {
       wagering_requirement: detectWagering(block),
       min_deposit: detectMinDeposit(block),
       expiry_info: detectExpiry(block),
-      source_url: sourceUrl,
-    });
+      confidence_score: 30,
+    };
+
+    offers.push(enrichOffer(offer, block));
   }
   return offers;
 }
@@ -328,9 +460,8 @@ function parseCasinoonline(markdown: string, sourceUrl: string): ParsedOffer[] {
 
     const classification = classifyOffer(block);
 
-    offers.push({
-      casino_name: casinoName,
-      casino_slug: slug,
+    const offer: ParsedOffer = {
+      ...createBaseOffer(casinoName, slug, sourceUrl),
       title: title || `Free Spins hos ${casinoName}`,
       description: cleanDescription(block),
       spin_count: spinCount,
@@ -341,8 +472,10 @@ function parseCasinoonline(markdown: string, sourceUrl: string): ParsedOffer[] {
       wagering_requirement: detectWagering(block),
       min_deposit: detectMinDeposit(block),
       expiry_info: detectExpiry(block),
-      source_url: sourceUrl,
-    });
+      confidence_score: 30,
+    };
+
+    offers.push(enrichOffer(offer, block));
   }
   return offers;
 }
@@ -435,25 +568,28 @@ Deno.serve(async (req) => {
 
     console.log(`Total parsed offers (all spin_count > 0): ${allParsedOffers.length}`);
 
-    // ─── Deduplicate: keep BEST offer per casino_slug + offer_type ───
-    const bestPerCasinoType = new Map<string, ParsedOffer>();
+    // ─── Deduplicate using dedup_key: casino_slug + title + expiry ───
+    const bestPerDedup = new Map<string, ParsedOffer>();
 
     for (const offer of allParsedOffers) {
-      const key = `${offer.casino_slug}:${offer.offer_type}`;
-      const existing = bestPerCasinoType.get(key);
+      const dedupKey = generateDedupKey(offer.casino_slug, offer.title, offer.expiry_info);
+      const existing = bestPerDedup.get(dedupKey);
       if (!existing || calculateScore(offer) > calculateScore(existing)) {
-        bestPerCasinoType.set(key, offer);
+        bestPerDedup.set(dedupKey, offer);
       }
     }
 
-    const uniqueOffers = Array.from(bestPerCasinoType.values());
-    console.log(`Unique offers after dedup (best per casino+type): ${uniqueOffers.length}`);
+    const uniqueOffers = Array.from(bestPerDedup.values());
+    console.log(`Unique offers after dedup: ${uniqueOffers.length}`);
 
     // ─── Map to campaign records ───
+    const now = new Date().toISOString();
     const campaigns = uniqueOffers
+      .filter((o) => o.spin_count > 0) // Never insert 0-spin campaigns
       .map((offer) => {
         const casino = casinoMap.get(offer.casino_slug);
         const score = calculateScore(offer);
+        const dedupKey = generateDedupKey(offer.casino_slug, offer.title, offer.expiry_info);
         return {
           casino_id: casino?.id || null,
           casino_name: casino?.name || offer.casino_name,
@@ -466,15 +602,25 @@ Deno.serve(async (req) => {
           requires_deposit: offer.requires_deposit,
           wagering_requirement: offer.wagering_requirement,
           min_deposit: offer.min_deposit,
-          expiry_date: null,
+          expiry_date: offer.campaign_period_end || null,
           source_type: "aggregator",
           source_url: offer.source_url,
           is_active: true,
           offer_type: offer.offer_type,
           casino_logo_url: casino?.logo_url || null,
           affiliate_url: casino?.affiliate_url || null,
-          last_checked: new Date().toISOString(),
+          last_checked: now,
           score,
+          // New enriched fields
+          game_name: offer.game_name,
+          required_action: offer.required_action,
+          spin_value: offer.spin_value,
+          short_terms_summary: offer.short_terms_summary,
+          campaign_period_start: offer.campaign_period_start,
+          campaign_period_end: offer.campaign_period_end,
+          confidence_score: offer.confidence_score,
+          last_verified_at: now,
+          dedup_key: dedupKey,
         };
       })
       .filter((c) => casinoMap.has(c.casino_slug));
@@ -510,7 +656,7 @@ Deno.serve(async (req) => {
         offer_type: c.offer_type,
         is_active: true,
         is_manually_added: false,
-        scraped_at: new Date().toISOString(),
+        scraped_at: now,
         scrape_source_url: c.source_url,
       }));
       await admin.from("daily_free_spins_offers").insert(legacyOffers);

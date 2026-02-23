@@ -850,75 +850,102 @@ export type Database = {
       free_spin_campaigns: {
         Row: {
           affiliate_url: string | null
+          campaign_period_end: string | null
+          campaign_period_start: string | null
           casino_id: string | null
           casino_logo_url: string | null
           casino_name: string
           casino_slug: string
+          confidence_score: number | null
           created_at: string
+          dedup_key: string | null
           description: string | null
           expiry_date: string | null
           for_existing_players: boolean
           for_new_players: boolean
+          game_name: string | null
           id: string
           is_active: boolean
           last_checked: string
+          last_verified_at: string | null
           min_deposit: string | null
           offer_type: string
+          required_action: string | null
           requires_deposit: boolean
           score: number
+          short_terms_summary: string | null
           source_type: string
           source_url: string | null
           spin_count: number
+          spin_value: string | null
           title: string
           updated_at: string
           wagering_requirement: string | null
         }
         Insert: {
           affiliate_url?: string | null
+          campaign_period_end?: string | null
+          campaign_period_start?: string | null
           casino_id?: string | null
           casino_logo_url?: string | null
           casino_name: string
           casino_slug: string
+          confidence_score?: number | null
           created_at?: string
+          dedup_key?: string | null
           description?: string | null
           expiry_date?: string | null
           for_existing_players?: boolean
           for_new_players?: boolean
+          game_name?: string | null
           id?: string
           is_active?: boolean
           last_checked?: string
+          last_verified_at?: string | null
           min_deposit?: string | null
           offer_type?: string
+          required_action?: string | null
           requires_deposit?: boolean
           score?: number
+          short_terms_summary?: string | null
           source_type?: string
           source_url?: string | null
           spin_count?: number
+          spin_value?: string | null
           title: string
           updated_at?: string
           wagering_requirement?: string | null
         }
         Update: {
           affiliate_url?: string | null
+          campaign_period_end?: string | null
+          campaign_period_start?: string | null
           casino_id?: string | null
           casino_logo_url?: string | null
           casino_name?: string
           casino_slug?: string
+          confidence_score?: number | null
           created_at?: string
+          dedup_key?: string | null
           description?: string | null
           expiry_date?: string | null
           for_existing_players?: boolean
           for_new_players?: boolean
+          game_name?: string | null
           id?: string
           is_active?: boolean
           last_checked?: string
+          last_verified_at?: string | null
           min_deposit?: string | null
           offer_type?: string
+          required_action?: string | null
           requires_deposit?: boolean
           score?: number
+          short_terms_summary?: string | null
           source_type?: string
           source_url?: string | null
           spin_count?: number
+          spin_value?: string | null
           title?: string
           updated_at?: string
           wagering_requirement?: string | null

@@ -69,6 +69,15 @@ interface CampaignOffer {
   requires_deposit: boolean;
   for_new_players: boolean;
   for_existing_players: boolean;
+  // Enriched fields
+  game_name: string | null;
+  required_action: string | null;
+  spin_value: string | null;
+  short_terms_summary: string | null;
+  confidence_score: number | null;
+  last_verified_at: string | null;
+  campaign_period_start: string | null;
+  campaign_period_end: string | null;
 }
 
 type FilterType = "all" | "new" | "existing" | "no_deposit";
@@ -710,36 +719,32 @@ function FeaturedOfferCard({ offer, logoUrl, affiliateUrl }: { offer: CampaignOf
   );
 }
 
-// ─── Offer Card ───
+// ─── Offer Card (enriched) ───
 function OfferCard({ offer, logoUrl, affiliateUrl }: { offer: CampaignOffer; logoUrl: string | null; affiliateUrl: string | null }) {
   const badge = offerTypeBadgeConfig[offer.offer_type] || offerTypeBadgeConfig.welcome;
   const isExpiringSoon = offer.expiry_date && differenceInHours(new Date(offer.expiry_date), new Date()) < 24;
+  const eligibility = offer.for_new_players && offer.for_existing_players
+    ? "Alle spillere"
+    : offer.for_new_players ? "Nye spillere" : offer.for_existing_players ? "Eksisterende spillere" : null;
+  const verifiedRecently = offer.last_verified_at && differenceInHours(new Date(), new Date(offer.last_verified_at)) < 48;
 
   return (
     <Card className="group hover:border-primary/40 hover:-translate-y-1 transition-all duration-300 border-border/50 hover:shadow-lg hover:shadow-primary/10">
       <CardContent className="p-4 md:p-5">
-        <div className="flex items-center gap-4">
+        {/* Top: Casino + Title + Badges */}
+        <div className="flex items-start gap-3 mb-3">
           <div className="flex-shrink-0 group-hover:scale-105 transition-transform duration-300">
             {logoUrl ? (
-              <img
-                src={logoUrl}
-                alt={offer.casino_name}
-                className="w-12 h-12 md:w-14 md:h-14 rounded-full object-cover border border-border/50"
-                loading="lazy"
-              />
+              <img src={logoUrl} alt={offer.casino_name} className="w-11 h-11 rounded-full object-cover border border-border/50" loading="lazy" />
             ) : (
-              <div className="w-12 h-12 md:w-14 md:h-14 rounded-full bg-muted flex items-center justify-center">
-                <Sparkles className="h-5 w-5 text-muted-foreground" />
+              <div className="w-11 h-11 rounded-full bg-muted flex items-center justify-center">
+                <Sparkles className="h-4 w-4 text-muted-foreground" />
               </div>
             )}
           </div>
-
           <div className="flex-1 min-w-0">
-            <div className="flex items-center gap-2 mb-1 flex-wrap">
-              <Link
-                to={`/casino-anmeldelser/${offer.casino_slug}`}
-                className="font-bold text-foreground hover:text-primary transition-colors truncate"
-              >
+            <div className="flex items-center gap-2 flex-wrap mb-0.5">
+              <Link to={`/casino-anmeldelser/${offer.casino_slug}`} className="font-bold text-sm text-foreground hover:text-primary transition-colors truncate">
                 {offer.casino_name}
               </Link>
               <span className={`inline-flex items-center gap-1 text-[10px] px-1.5 py-0.5 rounded-full border ${badge.className}`}>
@@ -752,54 +757,93 @@ function OfferCard({ offer, logoUrl, affiliateUrl }: { offer: CampaignOffer; log
               )}
               {isExpiringSoon && (
                 <Badge variant="destructive" className="text-[10px] px-1.5 py-0">
-                  <Timer className="h-2.5 w-2.5 mr-0.5" /> Udløber i dag
+                  <Timer className="h-2.5 w-2.5 mr-0.5" /> Udløber snart
                 </Badge>
               )}
             </div>
-            <div className="text-xl md:text-2xl font-extrabold text-primary mb-0.5">
-              {offer.spin_count} Free Spins
-            </div>
-            <div className="flex flex-wrap gap-3 text-xs text-muted-foreground">
-              {offer.wagering_requirement && (
-                <span>Omsætningskrav: {offer.wagering_requirement}</span>
-              )}
-              {offer.min_deposit && (
-                <span className="flex items-center gap-1"><CreditCard className="h-3 w-3" /> {offer.min_deposit}</span>
-              )}
-              {offer.expiry_date && <Countdown validUntil={offer.expiry_date} />}
-            </div>
+            {/* Campaign title */}
+            <p className="text-xs text-muted-foreground truncate">{offer.title}</p>
           </div>
+        </div>
 
-          <div className="flex-shrink-0 hidden sm:block">
+        {/* Spin count + game */}
+        <div className="flex items-baseline gap-2 mb-2.5">
+          <span className="text-xl font-extrabold text-primary">{offer.spin_count} Free Spins</span>
+          {offer.game_name && (
+            <span className="text-xs text-muted-foreground">på {offer.game_name}</span>
+          )}
+        </div>
+
+        {/* Mid: Details grid */}
+        <div className="grid grid-cols-2 gap-x-4 gap-y-1.5 text-xs text-muted-foreground mb-3">
+          {offer.required_action && (
+            <div className="flex items-center gap-1.5">
+              <CreditCard className="h-3 w-3 text-primary flex-shrink-0" />
+              <span className="truncate">{offer.required_action}</span>
+            </div>
+          )}
+          {!offer.required_action && offer.min_deposit && (
+            <div className="flex items-center gap-1.5">
+              <CreditCard className="h-3 w-3 text-primary flex-shrink-0" />
+              <span>Min. {offer.min_deposit}</span>
+            </div>
+          )}
+          {offer.wagering_requirement && (
+            <div className="flex items-center gap-1.5">
+              <RotateCcw className="h-3 w-3 text-primary flex-shrink-0" />
+              <span>Omsætning: {offer.wagering_requirement}</span>
+            </div>
+          )}
+          {eligibility && (
+            <div className="flex items-center gap-1.5">
+              <Users className="h-3 w-3 text-primary flex-shrink-0" />
+              <span>{eligibility}</span>
+            </div>
+          )}
+          {offer.spin_value && (
+            <div className="flex items-center gap-1.5">
+              <Sparkles className="h-3 w-3 text-primary flex-shrink-0" />
+              <span>Værdi: {offer.spin_value}/spin</span>
+            </div>
+          )}
+          {offer.expiry_date && (
+            <div className="flex items-center gap-1.5">
+              <Timer className="h-3 w-3 text-primary flex-shrink-0" />
+              <Countdown validUntil={offer.expiry_date} />
+            </div>
+          )}
+        </div>
+
+        {/* Bottom: Terms summary + CTA */}
+        <div className="flex items-end justify-between gap-3">
+          <div className="flex-1 min-w-0">
+            {offer.short_terms_summary && (
+              <p className="text-[11px] text-muted-foreground/70 line-clamp-2 leading-relaxed">
+                {offer.short_terms_summary}
+              </p>
+            )}
+            {verifiedRecently && (
+              <span className="inline-flex items-center gap-1 text-[10px] text-primary/70 mt-1">
+                <CheckCircle2 className="h-2.5 w-2.5" /> Verificeret
+              </span>
+            )}
+          </div>
+          <div className="flex-shrink-0">
             {affiliateUrl ? (
               <a href={affiliateUrl} target="_blank" rel="noopener noreferrer nofollow">
-                <Button className="fs-cta-glow group-hover:shadow-md group-hover:shadow-primary/20 group-hover:scale-105 transition-all duration-300">
-                  Få Free Spins <ArrowRight className="h-3.5 w-3.5 ml-1" />
+                <Button size="sm" className="fs-cta-glow group-hover:shadow-md group-hover:shadow-primary/20 group-hover:scale-105 transition-all duration-300">
+                  Hent Spins <ArrowRight className="h-3 w-3 ml-1" />
                 </Button>
               </a>
             ) : (
               <Link to={`/casino-anmeldelser/${offer.casino_slug}`}>
-                <Button variant="outline" className="group-hover:border-primary/50 transition-colors">Se Tilbud</Button>
+                <Button size="sm" variant="outline" className="group-hover:border-primary/50 transition-colors">Se Tilbud</Button>
               </Link>
             )}
           </div>
-        </div>
-
-        {/* Mobile CTA */}
-        <div className="sm:hidden mt-3">
-          {affiliateUrl ? (
-            <a href={affiliateUrl} target="_blank" rel="noopener noreferrer nofollow" className="block">
-              <Button className="w-full fs-cta-glow">Få Free Spins <ArrowRight className="h-3.5 w-3.5 ml-1" /></Button>
-            </a>
-          ) : (
-            <Link to={`/casino-anmeldelser/${offer.casino_slug}`} className="block">
-              <Button variant="outline" className="w-full">Se Tilbud</Button>
-            </Link>
-          )}
         </div>
       </CardContent>
     </Card>
   );
 }
-
 export default FreeSpinsIDag;
