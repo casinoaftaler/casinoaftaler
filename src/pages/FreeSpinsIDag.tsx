@@ -201,14 +201,14 @@ const FreeSpinsIDag = () => {
   const { data: casinos } = useCasinos();
   const [activeFilter, setActiveFilter] = useState<FilterType>("all");
   const { ref: statsRef, revealed: statsRevealed } = useScrollReveal();
-  const { ref: cardsRef, revealed: cardsRevealed } = useScrollReveal();
+  // cardsRef removed – cards now always animate-fade-in immediately
 
   const { data: campaigns, isLoading } = useQuery({
     queryKey: ["free-spin-campaigns"],
     queryFn: async () => {
       const { data, error } = await supabase
         .from("free_spin_campaigns")
-        .select("*")
+        .select("id,casino_id,casino_name,casino_slug,title,description,spin_count,min_deposit,wagering_requirement,expiry_date,offer_type,last_checked,score,requires_deposit,for_new_players,for_existing_players,source_type,game_name,required_action,spin_value,short_terms_summary,confidence_score,last_verified_at,campaign_period_start,campaign_period_end,deposit_amount,eligible_players,campaign_type,summary,full_terms_clean")
         .eq("is_active", true)
         .gt("spin_count", 0)
         .gte("confidence_score", 60)
@@ -401,14 +401,14 @@ const FreeSpinsIDag = () => {
               <FeaturedOfferCard offer={featured} logoUrl={getCasinoLogo(featured.casino_slug)} affiliateUrl={getCasinoAffiliate(featured.casino_slug)} />
             )}
 
-            <section className="mb-8 py-6 rounded-xl bg-muted/15" ref={cardsRef}>
+            <section className="mb-8 py-6 rounded-xl bg-muted/15">
               <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
                 <Filter className="h-5 w-5 text-primary" />
                 {activeFilter === "all" ? "Alle Free Spins Tilbud" : filterConfig.find(f => f.id === activeFilter)?.label} ({displayOffers.length})
               </h2>
               <div className="grid gap-3 md:grid-cols-2">
                 {displayOffers.map((offer, idx) => (
-                  <div key={offer.id} className={cardsRevealed ? "animate-fade-in" : "opacity-0"} style={{ animationDelay: `${idx * 80}ms` }}>
+                  <div key={offer.id} className="animate-fade-in" style={{ animationDelay: `${idx * 60}ms` }}>
                     <OfferCard offer={offer} logoUrl={getCasinoLogo(offer.casino_slug)} affiliateUrl={getCasinoAffiliate(offer.casino_slug)} />
                   </div>
                 ))}
