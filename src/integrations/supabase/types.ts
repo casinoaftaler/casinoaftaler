@@ -2098,6 +2098,7 @@ export type Database = {
           features: string[] | null
           free_spins: string | null
           game_providers: Json | null
+          has_affiliate: boolean | null
           id: string | null
           is_active: boolean | null
           is_hot: boolean | null
@@ -2124,6 +2125,7 @@ export type Database = {
           features?: string[] | null
           free_spins?: string | null
           game_providers?: Json | null
+          has_affiliate?: never
           id?: string | null
           is_active?: boolean | null
           is_hot?: boolean | null
@@ -2150,6 +2152,7 @@ export type Database = {
           features?: string[] | null
           free_spins?: string | null
           game_providers?: Json | null
+          has_affiliate?: never
           id?: string | null
           is_active?: boolean | null
           is_hot?: boolean | null
