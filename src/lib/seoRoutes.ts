@@ -198,6 +198,7 @@ export const seoRoutes: SeoRoute[] = ([
   { path: "/privatlivspolitik", changefreq: "yearly", priority: 0.3, lastmod: "2026-02-11" },
   { path: "/terms", changefreq: "yearly", priority: 0.3, lastmod: "2026-02-11" },
   { path: "/cookies", changefreq: "yearly", priority: 0.3, lastmod: "2026-02-11" },
+  { path: "/sitemap", changefreq: "weekly", priority: 0.4, lastmod: "2026-02-23" },
 
 ] as const).map((route): SeoRoute => {
   // Auto-set lastmod to today for daily-changing pages (free-spins-i-dag, casino-nyheder, etc.)
