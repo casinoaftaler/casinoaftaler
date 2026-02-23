@@ -1,35 +1,54 @@
 
 
-## Unified Control Bar for All Slot Games
+## Add Fedesvin Credit Coin Icon Across All Credit Displays
 
-Replace the current `SlotControlPanel` used by Book of Fedesvin and Rise of Fedesvin with the compact, horizontal `GatesControlBar` layout that Gates of Fedesvin already uses.
+Save the uploaded coin image as a project asset and create a tiny reusable `CreditCoin` component, then replace the current generic icons (Sparkles, Zap) with this coin wherever credits are displayed.
 
-### What Changes
+### New Files
 
-**1. SlotGame.tsx** (used by Book of Fedesvin and Rise of Fedesvin)
-- Replace the `SlotControlPanel` import with `GatesControlBar`
-- Swap the component in the render, passing the same props
-- Remove the themed wrapper `<div>` around it (the GatesControlBar has its own styling built in)
+**1. Copy coin image to `src/assets/fedesvin-credit-coin.png`**
 
-**2. GatesControlBar.tsx** — Theme Support
-- Currently the GatesControlBar has hardcoded blue/slate colors (designed for Gates only)
-- Update it to use the existing `getSlotTheme(gameId)` system so it picks up the correct colors per game:
-  - Book of Fedesvin: amber/gold Egyptian theme
-  - Rise of Fedesvin: purple/violet wizard theme
-  - Gates of Fedesvin: blue/slate Olympus theme (current default)
-- This affects: panel gradient, borders, text colors, spin button gradient/shadow, bet button colors, and credit display colors
+**2. Create `src/components/CreditCoin.tsx`**
+- A simple reusable component that renders the coin image at a configurable size
+- Default size: 16x16px (`h-4 w-4`)
+- Props: `size` (sm/md/lg) and optional `className`
 
-**3. GatesControlBar.tsx** — PayTable Routing
-- The bar currently always renders `GatesPayTable`. Update to conditionally render:
-  - `PayTable` for book-of-fedesvin and rise-of-fedesvin
-  - `GatesPayTable` for gates-of-fedesvin
+### Files to Update
 
-**4. SlotControlPanel.tsx** — Cleanup (optional)
-- This component will no longer be imported anywhere and can be removed, along with `BetControls.tsx`, `AutospinRow.tsx`, and `SmallWinBar.tsx` if they are not used elsewhere
+**3. `src/components/slots/GatesControlBar.tsx`** (all 3 slot games use this now)
+- Replace the `Sparkles` icon in the Credits section (line 142) with `CreditCoin`
+
+**4. `src/components/spin-the-reel/UserStatsBar.tsx`**
+- Replace the `Zap` icon next to "Slot Credits" (line 30) with `CreditCoin`
+
+**5. `src/components/profile/ProfileCommunityBonusSection.tsx`**
+- Replace the `Sparkles` icon next to "Uaktiverede" count (line 51) with `CreditCoin`
+- Replace the `Sparkles` icon in the "Aktiver Credits" button (line 73) with `CreditCoin`
+
+**6. `src/components/profile/ProfileRewardsProgress.tsx`**
+- Replace the `Sparkles` icon in the header (line 42) with `CreditCoin`
+- Add a small coin next to the credits counter text (line 46-47)
+- Add a small coin next to each "+5 credits" label (line 110)
+
+**7. `src/components/profile/ActivateBonusSpinsDialog.tsx`**
+- Replace the `Sparkles` icon in the dialog title (line 41) with `CreditCoin`
+
+**8. `src/components/profile/ProfileSlotRequestStats.tsx`**
+- Add a small coin next to "Credits Optjent" value (line 57)
 
 ### Technical Details
 
-The `GatesControlBar` and `SlotControlPanel` share the exact same prop interface, so no changes are needed in the parent `SlotGame.tsx` beyond swapping the component name and removing the wrapper div.
+The `CreditCoin` component will be:
+```tsx
+import coinImage from "@/assets/fedesvin-credit-coin.png";
+import { cn } from "@/lib/utils";
 
-Theme integration will use the existing `getSlotTheme(gameId)` function which already defines colors for all three games. The GatesControlBar's hardcoded Tailwind classes (e.g. `from-blue-950/90`, `text-blue-400`, `border-blue-500/25`) will be replaced with theme-derived values.
+const SIZES = { sm: "h-3.5 w-3.5", md: "h-4 w-4", lg: "h-5 w-5" };
+
+export function CreditCoin({ size = "md", className }) {
+  return <img src={coinImage} alt="" className={cn(SIZES[size], "inline-block", className)} />;
+}
+```
+
+This keeps changes minimal -- just swapping icon components -- while giving a consistent branded credit identity across the entire site.
 
