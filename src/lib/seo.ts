@@ -190,15 +190,8 @@ export function buildArticleSchema(opts: {
         "@id": videoId,
       },
     }),
-    ...(opts.aggregateRating && {
-      aggregateRating: {
-        "@type": "AggregateRating",
-        ratingValue: opts.aggregateRating.ratingValue,
-        ratingCount: opts.aggregateRating.ratingCount,
-        bestRating: opts.aggregateRating.bestRating ?? "5",
-        worstRating: opts.aggregateRating.worstRating ?? "1",
-      },
-    }),
+    // NOTE: aggregateRating is NOT valid on Article type per Google.
+    // Use buildReviewSchema() to attach it to the Review's itemReviewed instead.
   };
 
   const person = buildPersonEntity(authorName, authorUrl, authorSameAs);
@@ -208,6 +201,45 @@ export function buildArticleSchema(opts: {
   return {
     "@context": "https://schema.org",
     "@graph": graph,
+  };
+}
+
+/**
+ * Build a Review JSON-LD with AggregateRating on itemReviewed.
+ * This is the correct placement per Google's structured data spec.
+ */
+export function buildReviewSchema(opts: {
+  itemName: string;
+  itemUrl: string;
+  ratingValue: string;
+  ratingCount: string;
+  reviewBody: string;
+  authorUrl?: string;
+}) {
+  const authorUrl = opts.authorUrl || `${SITE_URL}/forfatter/jonas`;
+  return {
+    "@context": "https://schema.org",
+    "@type": "Review",
+    itemReviewed: {
+      "@type": "Organization",
+      name: opts.itemName,
+      url: opts.itemUrl,
+      aggregateRating: {
+        "@type": "AggregateRating",
+        ratingValue: opts.ratingValue,
+        ratingCount: opts.ratingCount,
+        bestRating: "5",
+        worstRating: "1",
+      },
+    },
+    author: { "@type": "Person", "@id": `${authorUrl}#person` },
+    reviewRating: {
+      "@type": "Rating",
+      ratingValue: opts.ratingValue,
+      bestRating: "5",
+      worstRating: "1",
+    },
+    reviewBody: opts.reviewBody,
   };
 }
 
