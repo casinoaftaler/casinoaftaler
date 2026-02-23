@@ -15,14 +15,8 @@ const AGGREGATOR_URLS = [
 // ─── Direct casino paths to crawl ───
 const CASINO_PATHS = [
   "/kampagner",
-  "/kampagner/",
-  "/bonus",
-  "/bonus/",
-  "/free-spins",
-  "/free-spins/",
   "/promotions",
-  "/offers",
-  "/tilbud",
+  "/bonus",
 ];
 
 // ─── Casino name → slug mapping ───
@@ -653,9 +647,12 @@ Deno.serve(async (req) => {
     const allParsedOffers: ParsedOffer[] = [];
     const scrapeResults: { source: string; type: string; status: string; offers_found: number; error?: string }[] = [];
 
-    // ─── PHASE 1: Direct casino scraping (priority) ───
-    const casinosWithUrl = Array.from(casinoMap.values()).filter((c) => c.website_url);
-    console.log(`Phase 1: Direct scraping ${casinosWithUrl.length} casinos with website_url`);
+    // ─── PHASE 1: Direct casino scraping (only .dk domains for speed) ───
+    const casinosWithUrl = Array.from(casinoMap.values()).filter((c) => {
+      if (!c.website_url) return false;
+      try { return new URL(c.website_url).hostname.endsWith(".dk"); } catch { return false; }
+    });
+    console.log(`Phase 1: Direct scraping ${casinosWithUrl.length} .dk casinos`);
 
     // Process in batches of 5 to avoid rate limits
     const BATCH_SIZE = 5;
