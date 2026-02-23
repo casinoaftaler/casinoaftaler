@@ -15,6 +15,8 @@ import {
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { ChevronDown, Gamepad2, LogOut, Mail, Menu, User, X, Dices, Gift, BookOpen, Users, ShoppingBag, Video, ShieldCheck, Sparkles, Layers, Moon, Sun, Coins, UserCircle, Trophy, Ticket, CreditCard, MoreHorizontal, RefreshCw, DollarSign, Zap, Tv, Star, Scale, BarChart3, Smartphone, Globe, Heart, Landmark, RotateCw, Newspaper } from "lucide-react";
 import { CreditCoin } from "@/components/CreditCoin";
+import { TwitchBadgesInline } from "@/components/TwitchBadges";
+import type { TwitchBadges as TwitchBadgesType } from "@/hooks/useTwitchBadges";
 import { useState, useEffect, memo } from "react";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
 import { useTwitchStatus } from "@/hooks/useTwitchStatus";
@@ -732,6 +734,10 @@ export const Header = memo(function Header() {
                     <span className="hidden text-sm font-medium sm:inline">
                       {profile?.display_name || profile?.twitch_username || "Bruger"}
                     </span>
+                    <TwitchBadgesInline
+                      badges={profile?.twitch_badges as unknown as TwitchBadgesType | null}
+                      className="hidden sm:flex"
+                    />
                   </Button>
                 </DropdownMenuTrigger>
                 <DropdownMenuContent align="end" className="w-56">
@@ -744,7 +750,10 @@ export const Header = memo(function Header() {
                         </AvatarFallback>
                       </Avatar>
                       <div className="flex flex-col">
-                        <span className="text-sm font-medium">{profile?.display_name || "Bruger"}</span>
+                        <div className="flex items-center gap-1.5">
+                          <span className="text-sm font-medium">{profile?.display_name || "Bruger"}</span>
+                          <TwitchBadgesInline badges={profile?.twitch_badges as unknown as TwitchBadgesType | null} />
+                        </div>
                         {profile?.twitch_username && (
                           <span className="text-xs text-muted-foreground">@{profile.twitch_username}</span>
                         )}
