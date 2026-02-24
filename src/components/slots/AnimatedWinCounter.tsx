@@ -46,11 +46,15 @@ export function AnimatedWinCounter({ targetValue, duration = 1200, className }: 
         rafRef.current = requestAnimationFrame(tick);
       } else {
         setDisplayValue(targetValue);
-        // Trigger bump animation on completion
+        // Trigger bump animation on completion without forced reflow
         if (bumpRef.current) {
-          bumpRef.current.classList.remove('gates-counter-bump');
-          void bumpRef.current.offsetWidth; // force reflow
-          bumpRef.current.classList.add('gates-counter-bump');
+          const el = bumpRef.current;
+          el.classList.remove('gates-counter-bump');
+          requestAnimationFrame(() => {
+            requestAnimationFrame(() => {
+              el.classList.add('gates-counter-bump');
+            });
+          });
         }
       }
     };
