@@ -422,7 +422,7 @@ export function Footer() {
                     >
                       <span className="line-clamp-2">{article.title}</span>
                       {article.published_at && (
-                        <span className="block text-xs text-muted-foreground/70 mt-0.5">
+                        <span className="block text-xs text-muted-foreground mt-0.5">
                           {new Date(article.published_at).toLocaleDateString("da-DK", {
                             day: "numeric",
                             month: "short",
