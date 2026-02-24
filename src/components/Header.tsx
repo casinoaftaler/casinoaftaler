@@ -661,7 +661,7 @@ export const Header = memo(function Header() {
                 <Users className="h-4 w-4" />
                 Community
               </Link>
-              <DropdownMenuTrigger className="transition-colors hover:text-primary p-1">
+              <DropdownMenuTrigger className="transition-colors hover:text-primary p-1" aria-label="Community undermenu">
                 <ChevronDown className="h-4 w-4" />
               </DropdownMenuTrigger>
             </div>
