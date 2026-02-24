@@ -15,6 +15,7 @@ export function HeroBackground() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const particlesRef = useRef<Particle[]>([]);
   const rafRef = useRef<number>(0);
+  const sizeRef = useRef({ w: 0, h: 0 });
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -24,32 +25,34 @@ export function HeroBackground() {
     if (!ctx) return;
 
     const resize = () => {
-      canvas.width = canvas.offsetWidth * window.devicePixelRatio;
-      canvas.height = canvas.offsetHeight * window.devicePixelRatio;
+      const cw = canvas.clientWidth;
+      const ch = canvas.clientHeight;
+      sizeRef.current = { w: cw, h: ch };
+      canvas.width = cw * window.devicePixelRatio;
+      canvas.height = ch * window.devicePixelRatio;
       ctx.scale(window.devicePixelRatio, window.devicePixelRatio);
     };
     resize();
 
+    const { w: iw, h: ih } = sizeRef.current;
     particlesRef.current = Array.from({ length: PARTICLE_COUNT }, () => ({
-      x: Math.random() * canvas.offsetWidth,
-      y: Math.random() * canvas.offsetHeight,
+      x: Math.random() * iw,
+      y: Math.random() * ih,
       size: 1 + Math.random() * 2,
       speedY: -0.15 - Math.random() * 0.4,
       speedX: (Math.random() - 0.5) * 0.25,
       opacity: 0.15 + Math.random() * 0.35,
     }));
 
-    const w = () => canvas.offsetWidth;
-    const h = () => canvas.offsetHeight;
-
     const animate = () => {
-      ctx.clearRect(0, 0, w(), h());
+      const { w, h } = sizeRef.current;
+      ctx.clearRect(0, 0, w, h);
       for (const p of particlesRef.current) {
         p.y += p.speedY;
         p.x += p.speedX;
-        if (p.y < -10) { p.y = h() + 10; p.x = Math.random() * w(); }
-        if (p.x < -10) p.x = w() + 10;
-        if (p.x > w() + 10) p.x = -10;
+        if (p.y < -10) { p.y = h + 10; p.x = Math.random() * w; }
+        if (p.x < -10) p.x = w + 10;
+        if (p.x > w + 10) p.x = -10;
 
         ctx.beginPath();
         ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
