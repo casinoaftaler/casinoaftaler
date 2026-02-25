@@ -2,8 +2,6 @@ import { useMemo } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { CalendarDays, BookOpen, CheckCircle } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
-import jonasImage from "@/assets/jonas-forfatter.webp";
-import kevinImage from "@/assets/kevin-forfatter.webp";
 
 const DISCLAIMER_VARIANTS = [
   <>Denne side indeholder affiliate-links. Vi modtager provision, hvis du opretter en konto via vores links – det påvirker ikke vores vurdering. <Link to="/forretningsmodel" className="underline hover:text-primary">Læs mere om vores model</Link>.</>,
@@ -36,8 +34,8 @@ function AffiliateDisclaimer() {
 }
 
 const authorConfig = {
-  jonas: { name: "Jonas", image: jonasImage, alt: "Jonas – Fedesvinsejer", link: "/forfatter/jonas" },
-  kevin: { name: "Kevin", image: kevinImage, alt: "Kevin – Casino-streamer", link: "/forfatter/kevin" },
+  jonas: { name: "Jonas", image: "/jonas-avatar.webp", alt: "Jonas – Fedesvinsejer", link: "/forfatter/jonas" },
+  kevin: { name: "Kevin", image: "/kevin-avatar.webp", alt: "Kevin – Casino-streamer", link: "/forfatter/kevin" },
 } as const;
 
 interface AuthorMetaBarProps {
@@ -66,6 +64,7 @@ export function AuthorMetaBar({ author, date, readTime, showFactCheck = true, sh
                   alt={authorInfo.alt}
                   width={24}
                   height={24}
+                  loading="lazy"
                   className="h-6 w-6 rounded-full object-cover object-top ring-1 ring-border group-hover:ring-primary transition-colors"
                 />
                 <span className="font-medium text-foreground group-hover:text-primary transition-colors">
@@ -107,7 +106,7 @@ export function AuthorMetaBar({ author, date, readTime, showFactCheck = true, sh
               <Link to="/forfatter/kevin" className="flex items-center gap-1.5 group">
                 <span>Af:</span>
                 <img
-                  src={kevinImage}
+                  src="/kevin-avatar.webp"
                   alt="Kevin – Casino-streamer & IT Medansvarlig"
                   width={24}
                   height={24}
@@ -121,7 +120,7 @@ export function AuthorMetaBar({ author, date, readTime, showFactCheck = true, sh
               <Link to="/forfatter/jonas" className="flex items-center gap-1.5 group">
                 <span>Af:</span>
                 <img
-                  src={jonasImage}
+                  src="/jonas-avatar.webp"
                   alt="Jonas – Fedesvinsejer"
                   width={24}
                   height={24}
