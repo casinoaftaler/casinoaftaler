@@ -169,7 +169,7 @@ export const seoRoutes: SeoRoute[] = ([
   { path: "/casinoer/hurtig-udbetaling", changefreq: "weekly", priority: 0.8, lastmod: "2026-02-15" },
   { path: "/casinoer/hoej-rtp", changefreq: "weekly", priority: 0.8, lastmod: "2026-02-15" },
   { path: "/casinoer/crypto-casino", changefreq: "weekly", priority: 0.8, lastmod: "2026-02-15" },
-  { path: "/licenserede-casinoer", changefreq: "weekly", priority: 0.8, lastmod: "2026-02-15" },
+  // /licenserede-casinoer excluded – 301 redirects to /casino-licenser
   { path: "/casino-licenser", changefreq: "monthly", priority: 0.8, lastmod: "2026-02-17" },
   { path: "/casinoer/vr-casinoer", changefreq: "weekly", priority: 0.8, lastmod: "2026-02-15" },
   { path: "/casinoer/mobil-casinoer", changefreq: "weekly", priority: 0.8, lastmod: "2026-02-15" },
