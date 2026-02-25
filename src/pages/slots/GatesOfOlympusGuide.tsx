@@ -6,6 +6,7 @@ import { FAQSection } from "@/components/FAQSection";
 import { SEO } from "@/components/SEO";
 import { buildFaqSchema, buildArticleSchema, SITE_URL } from "@/lib/seo";
 import { RelatedGuides } from "@/components/RelatedGuides";
+import { SlotProviderLink } from "@/components/SlotProviderLink";
 import { InlineCasinoCards } from "@/components/InlineCasinoCards";
 import { type ReactNode } from "react";
 import { Badge } from "@/components/ui/badge";
@@ -432,6 +433,7 @@ const GatesOfOlympusGuide = () => {
 
         <AuthorBio />
 
+        <SlotProviderLink slotSlug="gates-of-olympus" />
         <RelatedGuides currentPath="/casinospil/spillemaskiner/gates-of-olympus" />
 
         <FAQSection title="Ofte Stillede Spørgsmål om Gates of Olympus" faqs={gatesOfOlympusFaqs} />

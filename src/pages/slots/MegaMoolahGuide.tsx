@@ -6,6 +6,7 @@ import { FAQSection } from "@/components/FAQSection";
 import { SEO } from "@/components/SEO";
 import { buildFaqSchema, buildArticleSchema, SITE_URL } from "@/lib/seo";
 import { RelatedGuides } from "@/components/RelatedGuides";
+import { SlotProviderLink } from "@/components/SlotProviderLink";
 import { InlineCasinoCards } from "@/components/InlineCasinoCards";
 import { type ReactNode } from "react";
 import { Badge } from "@/components/ui/badge";
@@ -132,6 +133,7 @@ const MegaMoolahGuide = () => {
 
         <Separator className="my-8" />
         <AuthorBio author="kevin" />
+        <SlotProviderLink slotSlug="mega-moolah" />
         <RelatedGuides currentPath="/casinospil/spillemaskiner/mega-moolah" />
         <FAQSection title="Ofte Stillede Spørgsmål om Mega Moolah" faqs={megaMoolahFaqs} />
       </div>

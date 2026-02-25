@@ -5,6 +5,7 @@ import { FAQSection } from "@/components/FAQSection";
 import { SEO } from "@/components/SEO";
 import { buildFaqSchema, buildArticleSchema, SITE_URL } from "@/lib/seo";
 import { RelatedGuides } from "@/components/RelatedGuides";
+import { SlotProviderLink } from "@/components/SlotProviderLink";
 import { type ReactNode, useState } from "react";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
@@ -877,6 +878,7 @@ const BonusBuysGuide = () => {
 
         <AuthorBio author="jonas" />
 
+        <SlotProviderLink slotSlug="bonus-buys" />
         <RelatedGuides currentPath="/casinospil/spillemaskiner/bonus-buys" />
 
         <FAQSection title="Ofte Stillede Spørgsmål om Bonus Buys" faqs={bonusBuyFaqs} />

@@ -6,6 +6,7 @@ import { FAQSection } from "@/components/FAQSection";
 import { SEO } from "@/components/SEO";
 import { buildFaqSchema, buildArticleSchema, SITE_URL } from "@/lib/seo";
 import { RelatedGuides } from "@/components/RelatedGuides";
+import { SlotProviderLink } from "@/components/SlotProviderLink";
 import { InlineCasinoCards } from "@/components/InlineCasinoCards";
 import { type ReactNode } from "react";
 import { Badge } from "@/components/ui/badge";
@@ -139,6 +140,7 @@ const SugarRushGuide = () => {
 
         <Separator className="my-8" />
         <AuthorBio author="jonas" />
+        <SlotProviderLink slotSlug="sugar-rush" />
         <RelatedGuides currentPath="/casinospil/spillemaskiner/sugar-rush" />
         <FAQSection title="Ofte Stillede Spørgsmål om Sugar Rush" faqs={sugarRushFaqs} />
       </div>

@@ -6,6 +6,7 @@ import { FAQSection } from "@/components/FAQSection";
 import { SEO } from "@/components/SEO";
 import { buildFaqSchema, buildArticleSchema, SITE_URL } from "@/lib/seo";
 import { RelatedGuides } from "@/components/RelatedGuides";
+import { SlotProviderLink } from "@/components/SlotProviderLink";
 import { InlineCasinoCards } from "@/components/InlineCasinoCards";
 import { type ReactNode } from "react";
 import { Badge } from "@/components/ui/badge";
@@ -336,6 +337,7 @@ const TheDogHouseGuide = () => {
 
         <Separator className="my-8" />
         <AuthorBio author="jonas" />
+        <SlotProviderLink slotSlug="the-dog-house" />
         <RelatedGuides currentPath="/casinospil/spillemaskiner/the-dog-house" />
         <FAQSection title="Ofte Stillede Spørgsmål om The Dog House" faqs={theDogHouseFaqs} />
       </div>

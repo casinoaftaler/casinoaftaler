@@ -6,6 +6,7 @@ import { FAQSection } from "@/components/FAQSection";
 import { SEO } from "@/components/SEO";
 import { buildFaqSchema, buildArticleSchema, SITE_URL } from "@/lib/seo";
 import { RelatedGuides } from "@/components/RelatedGuides";
+import { SlotProviderLink } from "@/components/SlotProviderLink";
 import { InlineCasinoCards } from "@/components/InlineCasinoCards";
 import { type ReactNode } from "react";
 import { Badge } from "@/components/ui/badge";
@@ -137,6 +138,7 @@ const ImmortalRomanceGuide = () => {
 
         <Separator className="my-8" />
         <AuthorBio author="kevin" />
+        <SlotProviderLink slotSlug="immortal-romance" />
         <RelatedGuides currentPath="/casinospil/spillemaskiner/immortal-romance" />
         <FAQSection title="Ofte Stillede Spørgsmål om Immortal Romance" faqs={immortalRomanceFaqs} />
       </div>

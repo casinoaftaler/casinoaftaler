@@ -6,6 +6,7 @@ import { FAQSection } from "@/components/FAQSection";
 import { SEO } from "@/components/SEO";
 import { buildFaqSchema, buildArticleSchema, SITE_URL } from "@/lib/seo";
 import { RelatedGuides } from "@/components/RelatedGuides";
+import { SlotProviderLink } from "@/components/SlotProviderLink";
 import { InlineCasinoCards } from "@/components/InlineCasinoCards";
 import { type ReactNode } from "react";
 import { Badge } from "@/components/ui/badge";
@@ -146,6 +147,7 @@ const ThunderstruckIIGuide = () => {
 
         <Separator className="my-10" />
         <AuthorBio author="kevin" />
+        <SlotProviderLink slotSlug="thunderstruck-ii" />
         <RelatedGuides currentPath="/casinospil/spillemaskiner/thunderstruck-ii" />
         <FAQSection title="Ofte Stillede Spørgsmål om Thunderstruck II" faqs={thunderstruckIIFaqs} />
       </div>

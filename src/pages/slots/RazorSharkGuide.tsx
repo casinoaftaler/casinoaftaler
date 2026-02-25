@@ -6,6 +6,7 @@ import { FAQSection } from "@/components/FAQSection";
 import { SEO } from "@/components/SEO";
 import { buildFaqSchema, buildArticleSchema, SITE_URL } from "@/lib/seo";
 import { RelatedGuides } from "@/components/RelatedGuides";
+import { SlotProviderLink } from "@/components/SlotProviderLink";
 import { InlineCasinoCards } from "@/components/InlineCasinoCards";
 import { type ReactNode } from "react";
 import { Badge } from "@/components/ui/badge";
@@ -313,6 +314,7 @@ const RazorSharkGuide = () => {
 
         <AuthorBio />
 
+        <SlotProviderLink slotSlug="razor-shark" />
         <RelatedGuides currentPath="/casinospil/spillemaskiner/razor-shark" />
 
         <FAQSection title="Ofte Stillede Spørgsmål om Razor Shark" faqs={razorSharkFaqs} />

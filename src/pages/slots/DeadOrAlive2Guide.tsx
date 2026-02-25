@@ -6,6 +6,7 @@ import { FAQSection } from "@/components/FAQSection";
 import { SEO } from "@/components/SEO";
 import { buildFaqSchema, buildArticleSchema, SITE_URL } from "@/lib/seo";
 import { RelatedGuides } from "@/components/RelatedGuides";
+import { SlotProviderLink } from "@/components/SlotProviderLink";
 import { InlineCasinoCards } from "@/components/InlineCasinoCards";
 import { type ReactNode } from "react";
 import { Badge } from "@/components/ui/badge";
@@ -294,6 +295,7 @@ const DeadOrAlive2Guide = () => {
 
         <AuthorBio />
 
+        <SlotProviderLink slotSlug="dead-or-alive-2" />
         <RelatedGuides currentPath="/casinospil/spillemaskiner/dead-or-alive-2" />
 
         <FAQSection title="Ofte Stillede Spørgsmål om Dead or Alive 2" faqs={doa2Faqs} />
