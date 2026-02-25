@@ -1,8 +1,8 @@
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Gamepad2, ArrowRight } from "lucide-react";
-import spillehalPromo from "@/assets/spillehal-promo.webp";
-import risePromo from "@/assets/rise-of-fedesvin-promo.webp";
+import spillehalPromo from "@/assets/spillehal-promo-small.webp";
+import risePromo from "@/assets/rise-of-fedesvin-promo-small.webp";
 
 function PromoBanner({ to, image, alt, label, title }: { to: string; image: string; alt: string; label: string; title: string }) {
   return (

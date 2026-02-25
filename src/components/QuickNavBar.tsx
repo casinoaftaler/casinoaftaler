@@ -1,9 +1,9 @@
 import { Link } from "react-router-dom";
-import spillehalIcon from "@/assets/nav-icons/spillehal-icon.jpg";
-import nyeCasinoerIcon from "@/assets/nav-icons/nye-casinoer-icon.jpg";
-import anmeldelserIcon from "@/assets/nav-icons/anmeldelser-icon.jpg";
-import casinospilIcon from "@/assets/nav-icons/casinospil-icon.jpg";
-import liveCasinoIcon from "@/assets/nav-icons/live-casino-icon.jpg";
+import spillehalIcon from "@/assets/nav-icons/spillehal-icon-sm.jpg";
+import nyeCasinoerIcon from "@/assets/nav-icons/nye-casinoer-icon-sm.jpg";
+import anmeldelserIcon from "@/assets/nav-icons/anmeldelser-icon-sm.jpg";
+import casinospilIcon from "@/assets/nav-icons/casinospil-icon-sm.jpg";
+import liveCasinoIcon from "@/assets/nav-icons/live-casino-icon-sm.jpg";
 import { SpillehalPromoBanner } from "./SpillehalPromoBanner";
 import { LatestNewsSidebar } from "./LatestNewsSidebar";
 
