@@ -94,7 +94,7 @@ const ComeOnAnmeldelse = () => {
   return (
     <>
       <SEO
-        title="ComeOn Casino Anmeldelse 2026 – Bonus, Spil & Udbetaling | Casinoaftaler"
+        title="ComeOn Anmeldelse 2026 – Hurtige Udbetalinger & Dansk Licens"
         description="Komplet anmeldelse af ComeOn Casino. Dansk licens, 1.000+ spil, hurtige udbetalinger og gennemsigtige bonusvilkår. Læs vores ærlige vurdering."
         jsonLd={[articleSchema, faqJsonLd, reviewJsonLd]}
       />

@@ -14,12 +14,12 @@ const faqs: { question: string; answer: ReactNode }[] = [
 const MrVegasAnmeldelse = () => {
   const { data: siteSettings } = useSiteSettings();
   const heroBackgroundImage = siteSettings?.hero_background_image;
-  const articleSchema = buildArticleSchema({ headline: "Mr Vegas Casino Anmeldelse 2026 – Bonus, Spil & Betsson-kvalitet", description: "Komplet anmeldelse af Mr Vegas Casino. Betsson Group-casino med dansk licens, 3.000+ spil og generøs velkomstbonus.", url: "https://casinoaftaler.dk/casino-anmeldelser/mr-vegas", datePublished: "2026-02-15", dateModified: "2026-02-17", authorName: "Jonas", authorUrl: "https://casinoaftaler.dk/forfatter/jonas", aggregateRating: { ratingValue: "3.9", ratingCount: "128" } });
+  const articleSchema = buildArticleSchema({ headline: "Mr Vegas Anmeldelse 2026 – 3.000+ Spil fra Betsson", description: "Komplet anmeldelse af Mr Vegas Casino. Betsson Group-casino med dansk licens, 3.000+ spil og generøs velkomstbonus.", url: "https://casinoaftaler.dk/casino-anmeldelser/mr-vegas", datePublished: "2026-02-15", dateModified: "2026-02-17", authorName: "Jonas", authorUrl: "https://casinoaftaler.dk/forfatter/jonas", aggregateRating: { ratingValue: "3.9", ratingCount: "128" } });
   const faqJsonLd = buildFaqSchema(faqs);
   const reviewJsonLd = { "@context": "https://schema.org", "@type": "Review", itemReviewed: { "@type": "Organization", name: "Mr Vegas Casino", url: "https://www.mrvegas.com/da/" }, author: { "@type": "Person", "@id": "https://casinoaftaler.dk/forfatter/jonas#person" }, reviewRating: { "@type": "Rating", ratingValue: "3.9", bestRating: "5", worstRating: "1" }, reviewBody: "Mr Vegas Casino drives af Betsson Group og tilbyder 3.000+ spil, generøs velkomstbonus og pålidelige udbetalinger med dansk licens." };
   return (
     <>
-      <SEO title="Mr Vegas Casino Anmeldelse 2026 – Bonus, Spil & Vurdering | Casinoaftaler" description="Komplet anmeldelse af Mr Vegas Casino fra Betsson Group. 3.000+ spil, generøs velkomstbonus, dansk licens og hurtige udbetalinger." jsonLd={[articleSchema, faqJsonLd, reviewJsonLd]} />
+      <SEO title="Mr Vegas Anmeldelse 2026 – 3.000+ Spil fra Betsson" description="Komplet anmeldelse af Mr Vegas Casino fra Betsson Group. 3.000+ spil, generøs velkomstbonus, dansk licens og hurtige udbetalinger." jsonLd={[articleSchema, faqJsonLd, reviewJsonLd]} />
       <section className="relative overflow-hidden py-12 text-white md:py-20" style={{ backgroundImage: heroBackgroundImage ? `linear-gradient(135deg, hsl(260 70% 25% / 0.95), hsl(210 80% 30% / 0.9)), url(${heroBackgroundImage})` : "linear-gradient(135deg, hsl(260 70% 25%), hsl(250 60% 20%) 40%, hsl(210 80% 25%))", backgroundSize: "cover", backgroundPosition: "center" }}>
         <div className="container"><div className="mx-auto max-w-3xl text-center">
           <Badge variant="secondary" className="mb-4"><Star className="mr-1.5 h-3.5 w-3.5" />4.1 / 5 – Betsson-kvalitet</Badge>

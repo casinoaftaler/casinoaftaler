@@ -5,7 +5,7 @@ import zimplerHero from "@/assets/heroes/zimpler-hero.jpg";
 const ZimplerGuide = () => {
   return (
     <PaymentMethodPage
-      seoTitle="Zimpler Casino – Komplet Guide til Zimpler på Danske Casinoer 2026 | Casinoaftaler"
+      seoTitle="Zimpler Casino 2026 – Open Banking uden Gebyrer"
       seoDescription="Alt om Zimpler på danske casinoer. Svensk fintech med open banking, MitID-sikkerhed, ingen gebyrer og øjeblikkelige konto-til-konto-overførsler."
       name="Zimpler"
       heroImage={zimplerHero}

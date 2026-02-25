@@ -5,7 +5,7 @@ import bankTransferHero from "@/assets/heroes/bank-transfer-hero.jpg";
 const BankTransferGuide = () => {
   return (
     <PaymentMethodPage
-      seoTitle="Bankoverførsel Casino – Komplet Guide til Bankoverførsler på Danske Casinoer 2026 | Casinoaftaler"
+      seoTitle="Bankoverførsel Casino 2026 – Sikker men Langsom"
       seoDescription="Alt om bankoverførsler på danske casinoer. Direkte banktransaktioner, sikkerhed, behandlingstider, gebyrer og sammenligninger med hurtigere alternativer."
       name="Bankoverførsel"
       heroImage={bankTransferHero}
