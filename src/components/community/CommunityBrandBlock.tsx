@@ -1,7 +1,5 @@
 import { Link } from "react-router-dom";
 import { ArrowRight } from "lucide-react";
-import jonasImage from "@/assets/jonas-forfatter.webp";
-import kevinImage from "@/assets/kevin-forfatter.webp";
 import "@/styles/community-micro.css";
 
 export function CommunityBrandBlock() {
@@ -11,17 +9,23 @@ export function CommunityBrandBlock() {
         <div className="flex gap-5 shrink-0">
           <Link to="/forfatter/jonas" className="flex flex-col items-center gap-2 group">
             <img
-              src={jonasImage}
+              src="/jonas-avatar.webp"
               alt="Jonas – medstifter af Casinoaftaler.dk"
               className="h-32 w-32 rounded-full object-cover object-top ring-2 ring-primary/30 transition-all group-hover:ring-primary/60"
+              loading="lazy"
+              width={128}
+              height={128}
             />
             <span className="text-sm font-medium text-muted-foreground group-hover:text-foreground transition-colors">Jonas</span>
           </Link>
           <Link to="/forfatter/kevin" className="flex flex-col items-center gap-2 group">
             <img
-              src={kevinImage}
+              src="/kevin-avatar.webp"
               alt="Kevin – medstifter af Casinoaftaler.dk"
               className="h-32 w-32 rounded-full object-cover ring-2 ring-primary/30 transition-all group-hover:ring-primary/60"
+              loading="lazy"
+              width={128}
+              height={128}
             />
             <span className="text-sm font-medium text-muted-foreground group-hover:text-foreground transition-colors">Kevin</span>
           </Link>
