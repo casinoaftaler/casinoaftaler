@@ -3,6 +3,7 @@ import { useQuery } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
 import { SEO } from "@/components/SEO";
 import { buildFaqSchema, buildArticleSchema, SITE_URL } from "@/lib/seo";
+import { getTodayDanish } from "@/lib/danishDate";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { AuthorBio } from "@/components/AuthorBio";
 import heroImage from "@/assets/heroes/free-spins-i-dag-hero.jpg";
@@ -252,7 +253,7 @@ const FreeSpinsIDag = () => {
       description: `Alle aktuelle free spins hos danske licenserede casinoer – opdateret ${todayFormatted}. Nye og eksisterende spillere.`,
       url: `${SITE_URL}/free-spins-i-dag`,
       datePublished: "2026-02-22",
-      dateModified: new Date().toISOString().split("T")[0],
+      dateModified: getTodayDanish(),
       authorName: "Jonas",
     }),
     buildFaqSchema(freeSpinsIDagFaqs.map(f => ({ question: f.question, answer: f.answer }))),
