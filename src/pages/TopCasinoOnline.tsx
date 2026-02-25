@@ -12,6 +12,7 @@ import { CASINO_SCORES } from "@/lib/reviewScoring";
 import { RelatedGuides } from "@/components/RelatedGuides";
 
 import { InlineCasinoCards } from "@/components/InlineCasinoCards";
+import { TopCasinoReviewLink } from "@/components/TopCasinoReviewLinks";
 import { useCasinos } from "@/hooks/useCasinos";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
 import topCasinoHero from "@/assets/heroes/top-casino-hero.jpg";
@@ -273,59 +274,67 @@ const TopCasinoOnline = () => {
             <div className="space-y-4">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4 items-start">
                 {topCasinos.slice(0, 2).map((casino, index) => (
-                  <CasinoCard
-                    key={casino.id}
-                    casino={mapCasino(casino)}
-                    rank={index + 1}
-                    open={openCasinoId === casino.id}
-                    onOpenChange={(open) =>
-                      setOpenCasinoId(open ? casino.id : null)
-                    }
-                  />
-                ))}
-              </div>
-              {topCasinos.length > 2 && (
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-4 items-start">
-                  {topCasinos.slice(2, 5).map((casino, index) => (
+                  <div key={casino.id}>
                     <CasinoCard
-                      key={casino.id}
                       casino={mapCasino(casino)}
-                      rank={index + 3}
+                      rank={index + 1}
                       open={openCasinoId === casino.id}
                       onOpenChange={(open) =>
                         setOpenCasinoId(open ? casino.id : null)
                       }
                     />
+                    <TopCasinoReviewLink slug={casino.slug} name={casino.name} />
+                  </div>
+                ))}
+              </div>
+              {topCasinos.length > 2 && (
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-4 items-start">
+                  {topCasinos.slice(2, 5).map((casino, index) => (
+                    <div key={casino.id}>
+                      <CasinoCard
+                        casino={mapCasino(casino)}
+                        rank={index + 3}
+                        open={openCasinoId === casino.id}
+                        onOpenChange={(open) =>
+                          setOpenCasinoId(open ? casino.id : null)
+                        }
+                      />
+                      <TopCasinoReviewLink slug={casino.slug} name={casino.name} />
+                    </div>
                   ))}
                 </div>
               )}
               {topCasinos.length > 5 && (
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-4 items-start">
                   {topCasinos.slice(5, 8).map((casino, index) => (
-                    <CasinoCard
-                      key={casino.id}
-                      casino={mapCasino(casino)}
-                      rank={index + 6}
-                      open={openCasinoId === casino.id}
-                      onOpenChange={(open) =>
-                        setOpenCasinoId(open ? casino.id : null)
-                      }
-                    />
+                    <div key={casino.id}>
+                      <CasinoCard
+                        casino={mapCasino(casino)}
+                        rank={index + 6}
+                        open={openCasinoId === casino.id}
+                        onOpenChange={(open) =>
+                          setOpenCasinoId(open ? casino.id : null)
+                        }
+                      />
+                      <TopCasinoReviewLink slug={casino.slug} name={casino.name} />
+                    </div>
                   ))}
                 </div>
               )}
               {topCasinos.length > 8 && (
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4 items-start">
                   {topCasinos.slice(8, 10).map((casino, index) => (
-                    <CasinoCard
-                      key={casino.id}
-                      casino={mapCasino(casino)}
-                      rank={index + 9}
-                      open={openCasinoId === casino.id}
-                      onOpenChange={(open) =>
-                        setOpenCasinoId(open ? casino.id : null)
-                      }
-                    />
+                    <div key={casino.id}>
+                      <CasinoCard
+                        casino={mapCasino(casino)}
+                        rank={index + 9}
+                        open={openCasinoId === casino.id}
+                        onOpenChange={(open) =>
+                          setOpenCasinoId(open ? casino.id : null)
+                        }
+                      />
+                      <TopCasinoReviewLink slug={casino.slug} name={casino.name} />
+                    </div>
                   ))}
                 </div>
               )}

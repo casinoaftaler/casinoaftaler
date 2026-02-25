@@ -11,6 +11,7 @@ import { Separator } from "@/components/ui/separator";
 import { Button } from "@/components/ui/button";
 import { RelatedGuides } from "@/components/RelatedGuides";
 import { InlineCasinoCards } from "@/components/InlineCasinoCards";
+import { RelatedReviews } from "@/components/RelatedReviews";
 import { useCasinos } from "@/hooks/useCasinos";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
 import { getAffiliateRedirect } from "@/lib/affiliateRedirect";
@@ -930,6 +931,8 @@ const BetiniaAnmeldelse = () => {
         </section>
 
         <Separator className="my-10" />
+
+        <RelatedReviews currentSlug="betinia" />
 
         <InlineCasinoCards
           title="Andre anbefalede casinoer"
