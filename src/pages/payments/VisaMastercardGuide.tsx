@@ -5,7 +5,7 @@ import visaMastercardHero from "@/assets/heroes/visa-mastercard-hero.jpg";
 const VisaMastercardGuide = () => {
   return (
     <PaymentMethodPage
-      seoTitle="Visa og Mastercard Casino – Komplet Guide til Kortbetaling på Danske Casinoer 2026 | Casinoaftaler"
+      seoTitle="Visa & Mastercard Casino 2026 – Kortbetaling Guide"
       seoDescription="Alt om Visa og Mastercard på danske casinoer. 3D Secure, øjeblikkelige indbetalinger, gebyrer, bonusregler og de bedste kortbetalings-casinoer i Danmark."
       name="Visa / Mastercard"
       heroImage={visaMastercardHero}

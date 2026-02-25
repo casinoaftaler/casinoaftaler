@@ -34,13 +34,13 @@ const getluckyFaqs: { question: string; answer: ReactNode }[] = [
 const GetLuckyAnmeldelse = () => {
   const { data: siteSettings } = useSiteSettings();
   const heroBackgroundImage = siteSettings?.hero_background_image;
-  const articleSchema = buildArticleSchema({ headline: "GetLucky Casino Anmeldelse 2026 – Bonus, Spil & Vurdering", description: "Komplet anmeldelse af GetLucky Casino. 1.500+ spil, dansk licens og loyalitetsprogram.", url: "https://casinoaftaler.dk/casino-anmeldelser/getlucky", datePublished: "2026-02-15", dateModified: "2026-02-17", authorName: "Jonas", authorUrl: "https://casinoaftaler.dk/forfatter/jonas", aggregateRating: { ratingValue: "3.8", ratingCount: "119" } });
+  const articleSchema = buildArticleSchema({ headline: "GetLucky Anmeldelse 2026 – 1.500+ Spil & Loyalitetsprogram", description: "Komplet anmeldelse af GetLucky Casino. 1.500+ spil, dansk licens og loyalitetsprogram.", url: "https://casinoaftaler.dk/casino-anmeldelser/getlucky", datePublished: "2026-02-15", dateModified: "2026-02-17", authorName: "Jonas", authorUrl: "https://casinoaftaler.dk/forfatter/jonas", aggregateRating: { ratingValue: "3.8", ratingCount: "119" } });
   const faqJsonLd = buildFaqSchema(getluckyFaqs);
   const reviewJsonLd = { "@context": "https://schema.org", "@type": "Review", itemReviewed: { "@type": "Organization", name: "GetLucky Casino", url: "https://www.getlucky.com/da/" }, author: { "@type": "Person", "@id": "https://casinoaftaler.dk/forfatter/jonas#person" }, reviewRating: { "@type": "Rating", ratingValue: "3.8", bestRating: "5", worstRating: "1" }, reviewBody: "GetLucky Casino byder på et massivt spiludvalg med over 1.500 titler, dansk licens og et loyalitetsprogram der belønner aktive spillere." };
 
   return (
     <>
-      <SEO title="GetLucky Casino Anmeldelse 2026 – Bonus, Spil & Vurdering | Casinoaftaler" description="Komplet anmeldelse af GetLucky Casino. 1.500+ spil, dansk licens, loyalitetsprogram og gennemsigtige vilkår. Læs vores ærlige vurdering." jsonLd={[articleSchema, faqJsonLd, reviewJsonLd]} />
+      <SEO title="GetLucky Anmeldelse 2026 – 1.500+ Spil & Loyalitetsprogram" description="Komplet anmeldelse af GetLucky Casino. 1.500+ spil, dansk licens, loyalitetsprogram og gennemsigtige vilkår. Læs vores ærlige vurdering." jsonLd={[articleSchema, faqJsonLd, reviewJsonLd]} />
       <section className="relative overflow-hidden py-12 text-white md:py-20" style={{ backgroundImage: heroBackgroundImage ? `linear-gradient(135deg, hsl(260 70% 25% / 0.95), hsl(210 80% 30% / 0.9)), url(${heroBackgroundImage})` : "linear-gradient(135deg, hsl(260 70% 25%), hsl(250 60% 20%) 40%, hsl(210 80% 25%))", backgroundSize: "cover", backgroundPosition: "center" }}>
         <div className="container"><div className="mx-auto max-w-3xl text-center">
           <Badge variant="secondary" className="mb-4"><Star className="mr-1.5 h-3.5 w-3.5" />4.0 / 5 – Stort Spiludvalg</Badge>

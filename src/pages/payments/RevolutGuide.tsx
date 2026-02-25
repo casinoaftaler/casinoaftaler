@@ -5,7 +5,7 @@ import revolutHero from "@/assets/heroes/revolut-hero.jpg";
 const RevolutGuide = () => {
   return (
     <PaymentMethodPage
-      seoTitle="Revolut Casino – Komplet Guide til Revolut på Danske Casinoer 2026 | Casinoaftaler"
+      seoTitle="Revolut Casino 2026 – Digital Bank til Casino?"
       seoDescription="Alt om Revolut på danske casinoer. Digital bank med øjeblikkelige overførsler, valutaveksling, budgetværktøjer og de bedste Revolut casinoer i Danmark."
       name="Revolut"
       heroImage={revolutHero}

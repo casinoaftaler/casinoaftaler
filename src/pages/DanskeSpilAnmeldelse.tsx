@@ -42,7 +42,7 @@ const DanskeSpilAnmeldelse = () => {
 
   return (
     <>
-      <SEO title="Danske Spil Casino Anmeldelse 2026 – Bonus, Spil & Sikkerhed | Casinoaftaler" description="Komplet anmeldelse af Danske Spil Casino. Danmarks statsligt forankrede casino med dansk licens, bredt spiludvalg, hurtige udbetalinger og høj sikkerhed. Læs vores ærlige vurdering." jsonLd={[articleSchema, faqJsonLd, reviewJsonLd]} />
+      <SEO title="Danske Spil Anmeldelse 2026 – Danmarks Tryggeste Casino" description="Komplet anmeldelse af Danske Spil Casino. Danmarks statsligt forankrede casino med dansk licens, bredt spiludvalg, hurtige udbetalinger og høj sikkerhed. Læs vores ærlige vurdering." jsonLd={[articleSchema, faqJsonLd, reviewJsonLd]} />
 
       {/* Hero */}
       <section className="relative overflow-hidden py-12 text-white md:py-20" style={{ backgroundImage: heroBackgroundImage ? `linear-gradient(135deg, hsl(260 70% 25% / 0.95), hsl(210 80% 30% / 0.9)), url(${heroBackgroundImage})` : "linear-gradient(135deg, hsl(260 70% 25%), hsl(250 60% 20%) 40%, hsl(210 80% 25%))", backgroundSize: "cover", backgroundPosition: "center" }}>

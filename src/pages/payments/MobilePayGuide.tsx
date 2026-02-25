@@ -5,7 +5,7 @@ import mobilePayHero from "@/assets/heroes/mobilepay-hero.jpg";
 const MobilePayGuide = () => {
   return (
     <PaymentMethodPage
-      seoTitle="MobilePay Casino – Komplet Guide til MobilePay på Danske Casinoer 2026 | Casinoaftaler"
+      seoTitle="MobilePay Casino 2026 – Betal på 10 Sekunder"
       seoDescription="Dybdegående analyse af MobilePay på danske casinoer: dansk regulering, Vipps-fusionen, vores test på tre casinoer, bonusregler, beløbsgrænser og sammenligning med Trustly."
       name="MobilePay"
       heroImage={mobilePayHero}

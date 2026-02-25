@@ -5,7 +5,7 @@ import paysafecardHero from "@/assets/heroes/paysafecard-hero.jpg";
 const PaysafecardGuide = () => {
   return (
     <PaymentMethodPage
-      seoTitle="Paysafecard Casino – Komplet Guide til Paysafecard på Danske Casinoer 2026 | Casinoaftaler"
+      seoTitle="Paysafecard Casino 2026 – Anonym Indbetaling"
       seoDescription="Alt om Paysafecard på danske casinoer. Forudbetalt og anonym indbetaling, sikkerhed, begrænsninger og de bedste Paysafecard casinoer i Danmark."
       name="Paysafecard"
       heroImage={paysafecardHero}
