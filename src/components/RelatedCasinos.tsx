@@ -97,6 +97,34 @@ export function RelatedCasinos({ content, category }: RelatedCasinosProps) {
       }
     }
 
+    // If fewer than 2 matches, fill with top-rated reviews (rotation via date-based offset)
+    if (found.length < 2) {
+      const allSlugs = Object.keys(CASINO_SCORES).filter(
+        (s) => !found.some((f) => f.slug === s)
+      );
+      // Rotate based on day-of-year
+      const dayOfYear = Math.floor(
+        (Date.now() - new Date(new Date().getFullYear(), 0, 0).getTime()) / 86400000
+      );
+      const sorted = allSlugs
+        .map((s) => ({ slug: s, score: CASINO_SCORES[s].total }))
+        .sort((a, b) => b.score - a.score);
+      const offset = (dayOfYear * 2) % Math.max(sorted.length, 1);
+      const rotated = [...sorted.slice(offset), ...sorted.slice(0, offset)];
+
+      for (const item of rotated) {
+        if (found.length >= 3) break;
+        const casinoDb = casinos.find((c) => c.slug === item.slug);
+        if (!casinoDb) continue;
+        found.push({
+          slug: item.slug,
+          name: casinoDb.name,
+          logo_url: casinoDb.logo_url,
+          rating: item.score,
+        });
+      }
+    }
+
     // Sort by rating descending, take max 3
     return found.sort((a, b) => b.rating - a.rating).slice(0, 3);
   }, [content, casinos]);
@@ -105,7 +133,10 @@ export function RelatedCasinos({ content, category }: RelatedCasinosProps) {
 
   return (
     <section className="mb-10">
-      <h2 className="text-2xl font-bold mb-4">Relaterede casinoer</h2>
+      <h2 className="text-2xl font-bold mb-4">Relaterede casinoer nævnt i denne artikel</h2>
+      <p className="text-sm text-muted-foreground mb-3">
+        Læs vores dybdegående anmeldelser for at sammenligne vilkår, bonusser og spiludvalg:
+      </p>
       <div className="grid gap-3 sm:grid-cols-3">
         {matched.map((casino) => (
           <Link
