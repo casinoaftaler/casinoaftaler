@@ -1,6 +1,8 @@
 {
-  "name": "Casinoaftaler.dk",
+  "name": "Casinoaftaler.dk – Din guide til online casinoer",
   "short_name": "Casinoaftaler",
+  "description": "Casinoaftaler.dk – uafhængige casino anmeldelser, bonusguides og nyheder for danske spillere.",
+  "lang": "da",
   "icons": [
     {
       "src": "/favicon.png",
