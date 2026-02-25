@@ -1,6 +1,6 @@
 import { Link, useNavigate } from "react-router-dom";
 import { ThemeToggle } from "./ThemeToggle";
-import casinoaftalerLogo from "@/assets/casinoaftaler-logo.png";
+import casinoaftalerLogo from "@/assets/casinoaftaler-logo.webp";
 import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
