@@ -8,6 +8,7 @@ import { QuickNavSidebar } from "@/components/QuickNavBar";
 import { CasinoCard } from "@/components/CasinoCard";
 import { CASINO_SCORES } from "@/lib/reviewScoring";
 import { BonusTypeCards } from "@/components/BonusTypeCards";
+import { PopularReviewsSection } from "@/components/PopularReviewsSection";
 import { FAQSection } from "@/components/FAQSection";
 import { FilterTabs } from "@/components/FilterTabs";
 import { useCasinos } from "@/hooks/useCasinos";
@@ -306,6 +307,10 @@ const Index = () => {
         </section>
 
         <BonusTypeCards />
+
+        <Separator className="my-10" />
+
+        <PopularReviewsSection />
 
         <Separator className="my-10" />
 
