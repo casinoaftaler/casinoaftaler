@@ -10,9 +10,9 @@ import { SlotPageLoading } from "./components/slots/SlotPageLoading";
 
 import Index from "./pages/Index";
 
-// Eager-load most visited pages to avoid Suspense flash
-import CasinoBonus from "./pages/CasinoBonus";
-import NyeCasinoer from "./pages/NyeCasinoer";
+// Lazy-load all pages except Index for smaller initial bundle
+const CasinoBonus = lazy(() => import("./pages/CasinoBonus"));
+const NyeCasinoer = lazy(() => import("./pages/NyeCasinoer"));
 const NyeCasinoer2026 = lazy(() => import("./pages/nye-casinoer/NyeCasinoer2026"));
 const NyeCasinoerDanskLicens = lazy(() => import("./pages/nye-casinoer/NyeCasinoerDanskLicens"));
 const NyeCasinoerUdenRofus = lazy(() => import("./pages/nye-casinoer/NyeCasinoerUdenRofus"));
@@ -24,7 +24,7 @@ const NyeCasinoerLavWagering = lazy(() => import("./pages/nye-casinoer/NyeCasino
 const BedsteNyeCasinoer = lazy(() => import("./pages/nye-casinoer/BedsteNyeCasinoer"));
 const NyeVsEtablerede = lazy(() => import("./pages/nye-casinoer/NyeVsEtablerede"));
 const CasinoLicenser = lazy(() => import("./pages/CasinoLicenser"));
-import TopCasinoOnline from "./pages/TopCasinoOnline";
+const TopCasinoOnline = lazy(() => import("./pages/TopCasinoOnline"));
 
 // Lazy load remaining pages
 const CasinoSlugRedirect = lazy(() => import("./components/CasinoSlugRedirect"));
