@@ -105,7 +105,7 @@ export function AuthorMetaBar({ author, date, readTime, showFactCheck = true, sh
               <Link to="/forfatter/kevin" className="flex items-center gap-1.5 group">
                 <span>Af:</span>
                 <img
-                  src={kevinImage}
+                  src="/kevin-avatar.webp"
                   alt="Kevin – Casino-streamer & IT Medansvarlig"
                   width={24}
                   height={24}
@@ -119,7 +119,7 @@ export function AuthorMetaBar({ author, date, readTime, showFactCheck = true, sh
               <Link to="/forfatter/jonas" className="flex items-center gap-1.5 group">
                 <span>Af:</span>
                 <img
-                  src={jonasImage}
+                  src="/jonas-avatar.webp"
                   alt="Jonas – Fedesvinsejer"
                   width={24}
                   height={24}
