@@ -1,24 +1,47 @@
 
 
-## Clawback af ubrugte credits ved admin-afslutning af turneringer
+# Fix: Scrape-daily-offers timeout-problem
 
-### Problem
-Naar en admin manuelt afslutter en turnering via admin-panelet, opdateres kun status og `ends_at` i databasen. Den kreditclawback-logik, der fjerner ubrugte turneringscredits fra brugernes saldo, koerer kun i `update-tournament-status` edge function (som er en cron-baseret funktion). Det betyder at brugere beholder ubrugte turneringscredits naar en admin afslutter manuelt.
+## Problem
+`scrape-daily-offers` edge function timeout'er konsekvent fordi den:
+1. Scraper 24 casinosider sekventielt (i batches af 5)
+2. Korer AI-analyse (Gemini) pa hvert resultat
+3. Derefter scraper aggregator-sider
+4. Alt dette skal ske inden for edge function timeout (~300 sek)
 
-### Loesning
-Opdater `useEndTournament` hookens mutation til ogsaa at kalde `update-tournament-status` edge function efter status-opdateringen. Denne funktion indeholder allerede al clawback-logik og vil automatisk behandle den netop afsluttede turnering.
+Funktionen nar aldrig til databaseskrivningen (linje 593+), sa ingen nye data gemmes.
 
-### Tekniske detaljer
+## Losning: Skip aggregator-fase og reducer AI-kald
 
-**Fil: `src/hooks/useTournaments.ts`** - `useEndTournament` mutation
+Da Phase 1 allerede finder 9 kampagner fra direkte scraping, er den mest effektive fix at:
 
-Nuvaerende logik:
-1. Opdater tournament status til "ended" og ends_at til nu
+1. **Gor Phase 2 (aggregator) valgfri** - Skip aggregatorer som standard, da direkte scraping allerede dAkker de vigtigste casinoer
+2. **Tilf0j tidslimit-check** - Inden hver batch, tjek om der er nok tid tilbage. Hvis ikke, ga direkte til dedup + DB-skrivning med de kampagner der allerede er fundet
+3. **Reducer batch-ventetid** - Gor Firecrawl-kald hurtigere med kortere timeout per side
 
-Ny logik:
-1. Opdater tournament status til "ended" og ends_at til nu (uaendret)
-2. Kald `update-tournament-status` edge function, som automatisk finder turneringer med status "ended" og koerer clawback
-3. Invalidate ogsaa `slot-spins` query saa brugerens credit-visning opdateres
+### Tekniske aendringer i `supabase/functions/scrape-daily-offers/index.ts`:
 
-Denne tilgang genbruger den eksisterende, testede clawback-logik uden duplikering. Edge function'en haandterer allerede alle edge cases: beregning af ubrugte credits, fradrag fra dagens saldo, opdatering af tracking-raekker, og logning.
+**Aendring 1: Tilf0j tidsgraense-logik (omkring linje 456)**
+```text
+const START_TIME = Date.now();
+const MAX_RUNTIME_MS = 240_000; // 4 min safety margin (edge fn max ~5 min)
+
+function hasTimeLeft() {
+  return (Date.now() - START_TIME) < MAX_RUNTIME_MS;
+}
+```
+
+**Aendring 2: Tjek tid for hver batch (linje 467-490)**
+Tilf0j `if (!hasTimeLeft()) break;` for batch-loopet, sa funktionen stopper med at scrape flere sider nar tiden lober ud og gar direkte til dedup + insert.
+
+**Aendring 3: Gor aggregator-fase betinget (linje 495-519)**
+Wrap Phase 2 i `if (hasTimeLeft()) { ... }` sa den kun korer hvis der er tid tilovers.
+
+**Aendring 4: Sikr at DB-skrivning altid nar at kore**
+Flyt `console.log` og DB-operationer (linje 593-644) sa de altid eksekveres, uanset om alle faser er faerdige.
+
+## Resultat
+- Funktionen vil altid na at gemme de kampagner den har fundet, selv hvis den ikke nar alle sider
+- "2 dage siden" problemet forsvinder, da `last_checked` opdateres ved hver korrsel
+- Ingen risiko for at miste eksisterende data (gammel data slettes forst nar ny data er klar)
 
