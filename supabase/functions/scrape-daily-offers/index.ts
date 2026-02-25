@@ -456,6 +456,11 @@ Deno.serve(async (req) => {
     const allCampaigns: StructuredCampaign[] = [];
     const scrapeResults: { source: string; type: string; status: string; offers: number; error?: string }[] = [];
 
+    // ─── Time-limit logic ───
+    const START_TIME = Date.now();
+    const MAX_RUNTIME_MS = 240_000; // 4 min safety margin
+    function hasTimeLeft() { return (Date.now() - START_TIME) < MAX_RUNTIME_MS; }
+
     // ─── PHASE 1: Direct casino scraping ───
     const casinosWithUrl = Array.from(casinoMap.values()).filter(c => {
       if (!c.website_url) return false;
@@ -465,6 +470,10 @@ Deno.serve(async (req) => {
 
     const BATCH_SIZE = 5;
     for (let i = 0; i < casinosWithUrl.length; i += BATCH_SIZE) {
+      if (!hasTimeLeft()) {
+        console.log(`Time limit reached after ${Math.round((Date.now() - START_TIME) / 1000)}s, stopping Phase 1 early`);
+        break;
+      }
       const batch = casinosWithUrl.slice(i, i + BATCH_SIZE);
       const results = await Promise.all(batch.map(async (casino) => {
         try {
@@ -492,30 +501,38 @@ Deno.serve(async (req) => {
     const directCount = allCampaigns.length;
     console.log(`Phase 1 done: ${directCount} direct campaigns`);
 
-    // ─── PHASE 2: Aggregator scraping ───
-    const casinosWithDirect = new Set(allCampaigns.map(c => c.casino_slug));
-    console.log(`Phase 2: Aggregator scraping`);
+    // ─── PHASE 2: Aggregator scraping (only if time remains) ───
+    if (hasTimeLeft()) {
+      const casinosWithDirect = new Set(allCampaigns.map(c => c.casino_slug));
+      console.log(`Phase 2: Aggregator scraping (${Math.round((MAX_RUNTIME_MS - (Date.now() - START_TIME)) / 1000)}s remaining)`);
 
-    for (const url of AGGREGATOR_URLS) {
-      try {
-        const md = await scrapeAggregator(url, firecrawlKey);
-        if (!md || md.length < 100) {
-          scrapeResults.push({ source: url, type: "aggregator", status: "error", offers: 0, error: "Empty" });
-          continue;
+      for (const url of AGGREGATOR_URLS) {
+        if (!hasTimeLeft()) {
+          console.log(`Time limit reached, skipping remaining aggregators`);
+          break;
         }
+        try {
+          const md = await scrapeAggregator(url, firecrawlKey);
+          if (!md || md.length < 100) {
+            scrapeResults.push({ source: url, type: "aggregator", status: "error", offers: 0, error: "Empty" });
+            continue;
+          }
 
-        const sections = splitIntoCasinoSections(md);
-        let count = 0;
-        for (const section of sections) {
-          if (casinosWithDirect.has(section.slug)) continue;
-          const campaigns = await extractStructuredOffers(section.text, section.casinoName, section.slug, "aggregator");
-          allCampaigns.push(...campaigns);
-          count += campaigns.length;
+          const sections = splitIntoCasinoSections(md);
+          let count = 0;
+          for (const section of sections) {
+            if (casinosWithDirect.has(section.slug)) continue;
+            const campaigns = await extractStructuredOffers(section.text, section.casinoName, section.slug, "aggregator");
+            allCampaigns.push(...campaigns);
+            count += campaigns.length;
+          }
+          scrapeResults.push({ source: url, type: "aggregator", status: "ok", offers: count });
+        } catch (e) {
+          scrapeResults.push({ source: url, type: "aggregator", status: "error", offers: 0, error: String(e) });
         }
-        scrapeResults.push({ source: url, type: "aggregator", status: "ok", offers: count });
-      } catch (e) {
-        scrapeResults.push({ source: url, type: "aggregator", status: "error", offers: 0, error: String(e) });
       }
+    } else {
+      console.log(`Skipping Phase 2 (aggregators) - no time left after ${Math.round((Date.now() - START_TIME) / 1000)}s`);
     }
 
     console.log(`Total campaigns: ${allCampaigns.length}`);
