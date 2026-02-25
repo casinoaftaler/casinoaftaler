@@ -2,8 +2,6 @@ import { useMemo } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { CalendarDays, BookOpen, CheckCircle } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
-import jonasImage from "@/assets/jonas-forfatter.webp";
-import kevinImage from "@/assets/kevin-forfatter.webp";
 
 const DISCLAIMER_VARIANTS = [
   <>Denne side indeholder affiliate-links. Vi modtager provision, hvis du opretter en konto via vores links – det påvirker ikke vores vurdering. <Link to="/forretningsmodel" className="underline hover:text-primary">Læs mere om vores model</Link>.</>,
