@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";import { AuthorMetaBar } from "@/components/AuthorMetaBar";import { AuthorBio } from "@/components/AuthorBio";import { FAQSection } from "@/components/FAQSection";import { SEO } from "@/components/SEO";import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";import { Badge } from "@/components/ui/badge";import { Separator } from "@/components/ui/separator";import { Button } from "@/components/ui/button";import { RelatedGuides } from "@/components/RelatedGuides";import { InlineCasinoCards } from "@/components/InlineCasinoCards";import { useSiteSettings } from "@/hooks/useSiteSettings";import { buildArticleSchema, buildFaqSchema } from "@/lib/seo";import { QuickFactsProviders, QuickFactsLicense } from "@/components/QuickFactsProviders";import { CasinoReviewHero } from "@/components/CasinoReviewHero";import type { ReactNode } from "react";import { Star, Zap, Check, X, ShieldCheck, Trophy, CreditCard, AlertTriangle, Gamepad2, Smartphone, Headphones, Globe, Users, TrendingUp, Award } from "lucide-react";
 import { RatingBreakdown } from "@/components/RatingBreakdown";import { CASINO_SCORES } from "@/lib/reviewScoring";
+import { RelatedReviews } from "@/components/RelatedReviews";
 const linkClass = "text-primary underline hover:text-primary/80";
 const pokerstarsFaqs: { question: string; answer: ReactNode }[] = [
   { question: "Er PokerStars lovligt i Danmark?", answer: (<>Ja, PokerStars opererer med dansk licens fra <Link to="/spillemyndigheden" className={linkClass}>Spillemyndigheden</Link> og er tilsluttet <a href="https://www.rofus.nu/" target="_blank" rel="noopener noreferrer" className={linkClass}>ROFUS</a>. PokerStars har haft dansk licens i mange år og er en af de mest etablerede online poker-platforme på det danske marked. Ejeren Flutter Entertainment er verdens største online gambling-selskab og børsnoteret på London Stock Exchange og NYSE.</>) },
@@ -293,6 +294,7 @@ const PokerStarsAnmeldelse = () => {
           </div>
         </section>
 
+        <RelatedReviews currentSlug="pokerstars" />
         <InlineCasinoCards count={3} />
         <Separator className="my-10" />
         <AuthorBio author="jonas" />

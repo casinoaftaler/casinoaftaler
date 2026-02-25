@@ -11,6 +11,7 @@ import { Separator } from "@/components/ui/separator";
 import { Button } from "@/components/ui/button";
 import { RelatedGuides } from "@/components/RelatedGuides";
 import { InlineCasinoCards } from "@/components/InlineCasinoCards";
+import { RelatedReviews } from "@/components/RelatedReviews";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
 import { buildArticleSchema, buildFaqSchema } from "@/lib/seo";
 import { QuickFactsProviders, QuickFactsLicense } from "@/components/QuickFactsProviders";
@@ -207,6 +208,7 @@ const CasinostuenAnmeldelse = () => {
           <p className="text-muted-foreground leading-relaxed"><strong>Den overordnede konklusion:</strong> Casinostuen konkurrerer ikke på volumen, hastighed eller VIP-funktioner. Det konkurrerer på nærhed, enkelhed og lokal forankring. I et marked domineret af internationale giganter er der stadig plads til den lille, hyggelige platform – forudsat at den kender sit segment og leverer kvalitet inden for det. Casinostuen gør præcis det.</p>
         </section>
 
+        <RelatedReviews currentSlug="casinostuen" />
         <InlineCasinoCards count={3} />
 
         <Separator className="my-10" />

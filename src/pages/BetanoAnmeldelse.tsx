@@ -11,6 +11,7 @@ import { Separator } from "@/components/ui/separator";
 import { Button } from "@/components/ui/button";
 import { RelatedGuides } from "@/components/RelatedGuides";
 import { InlineCasinoCards } from "@/components/InlineCasinoCards";
+import { RelatedReviews } from "@/components/RelatedReviews";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
 import { buildArticleSchema, buildFaqSchema } from "@/lib/seo";
 import { QuickFactsProviders } from "@/components/QuickFactsProviders";
@@ -580,6 +581,7 @@ const BetanoAnmeldelse = () => {
           </div>
         </section>
 
+        <RelatedReviews currentSlug="betano" />
         <InlineCasinoCards title="Andre anbefalede casinoer" count={6} excludeSlugs={["betano"]} />
         <AuthorBio />
         <Separator className="my-10" />

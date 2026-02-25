@@ -10,6 +10,7 @@ import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { RelatedGuides } from "@/components/RelatedGuides";
 import { InlineCasinoCards } from "@/components/InlineCasinoCards";
+import { RelatedReviews } from "@/components/RelatedReviews";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
 import { buildArticleSchema, buildFaqSchema } from "@/lib/seo";
 import { QuickFactsProviders, QuickFactsLicense } from "@/components/QuickFactsProviders";
@@ -478,6 +479,7 @@ const OneCasinoAnmeldelse = () => {
           <p className="text-muted-foreground leading-relaxed">For spillere, der overvejer One Casino i dag, er den mest realistiske prognose: platformen vil forblive en niche-aktør med et specifikt appeal. Den vil sandsynligvis ikke blive en mainstream-konkurrent, men den vil heller ikke forsvinde – Betreels Ltd har opereret stabilt i over et årti, og det eksklusive spilunivers tiltrækker en loyal, om end lille, spillerbase. Gratisbonussen gør det risikofrit at teste, og for den rette spiller er One Casino en unik oplevelse, der beriger casinolandskabet med variation og originalitet.</p>
         </section>
 
+        <RelatedReviews currentSlug="onecasino" />
         <InlineCasinoCards count={3} />
 
         <Separator className="my-10" />
