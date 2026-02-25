@@ -1,3 +1,4 @@
+import { useState, useEffect } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
 
@@ -25,8 +26,19 @@ function extractChannelName(twitchUrl: string): string | null {
   }
 }
 
+/**
+ * Delays the Twitch API call so it doesn't block initial page render.
+ * The call fires after a 3-second idle period.
+ */
 export function useTwitchStatus(twitchUrl: string | null | undefined) {
   const channelName = twitchUrl ? extractChannelName(twitchUrl) : null;
+  const [ready, setReady] = useState(false);
+
+  useEffect(() => {
+    if (!channelName) return;
+    const id = setTimeout(() => setReady(true), 3000);
+    return () => clearTimeout(id);
+  }, [channelName]);
 
   return useQuery({
     queryKey: ["twitch-status", channelName],
@@ -49,7 +61,7 @@ export function useTwitchStatus(twitchUrl: string | null | undefined) {
 
       return data || { isLive: false, stream: null };
     },
-    enabled: !!channelName,
+    enabled: !!channelName && ready,
     refetchInterval: (query) => {
       const isLive = query.state.data?.isLive;
       return isLive ? 60 * 1000 : 3 * 60 * 1000;
