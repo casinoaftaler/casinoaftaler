@@ -74,8 +74,11 @@ export const JONAS_SAME_AS = [
 ];
 
 export const KEVIN_SAME_AS = [
-  "https://www.twitch.tv/kevin_casinoaftaler",
-  "https://www.instagram.com/kevin.casinoaftaler",
+  "https://www.twitch.tv/kevinsylence",
+  "https://www.youtube.com/@KevinSylence",
+  "https://www.linkedin.com/in/kevin-s%C3%B8rensen-76308819b/",
+  "https://www.instagram.com/kevinsylence/",
+  "https://x.com/KevinSylence",
   // facebook.com/casinoaftaler belongs to the Organization entity – not added here
 ];
 
