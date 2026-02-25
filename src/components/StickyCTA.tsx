@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback, useRef } from "react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { getAffiliateRedirect } from "@/lib/affiliateRedirect";
@@ -33,24 +33,35 @@ export function StickyCTA({
 }: StickyCTAProps) {
   const { user } = useAuth();
   const [visible, setVisible] = useState(false);
+  const rafRef = useRef<number>(0);
 
   const handleScroll = useCallback(() => {
-    const scrollPercent = window.scrollY / (document.documentElement.scrollHeight - window.innerHeight);
-    const footer = document.querySelector("footer");
-    const footerInView = footer
-      ? footer.getBoundingClientRect().top < window.innerHeight
-      : false;
+    if (rafRef.current) return;
+    rafRef.current = requestAnimationFrame(() => {
+      rafRef.current = 0;
+      const docEl = document.documentElement;
+      const scrollableHeight = docEl.scrollHeight - window.innerHeight;
+      if (scrollableHeight <= 0) return;
+      const scrollPercent = window.scrollY / scrollableHeight;
+      const footer = document.querySelector("footer");
+      const footerInView = footer
+        ? footer.getBoundingClientRect().top < window.innerHeight
+        : false;
 
-    const isMobile = window.innerWidth < 1024;
-    const threshold = isMobile ? 0.05 : 0.10;
+      const isMobile = window.innerWidth < 1024;
+      const threshold = isMobile ? 0.05 : 0.10;
 
-    setVisible(scrollPercent >= threshold && !footerInView);
+      setVisible(scrollPercent >= threshold && !footerInView);
+    });
   }, []);
 
   useEffect(() => {
     window.addEventListener("scroll", handleScroll, { passive: true });
     handleScroll();
-    return () => window.removeEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      if (rafRef.current) cancelAnimationFrame(rafRef.current);
+    };
   }, [handleScroll]);
 
   const handleClick = () => {
