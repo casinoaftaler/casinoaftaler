@@ -6,6 +6,7 @@ import { FAQSection } from "@/components/FAQSection";
 import { SEO } from "@/components/SEO";
 import { buildFaqSchema, buildArticleSchema, SITE_URL } from "@/lib/seo";
 import { RelatedGuides } from "@/components/RelatedGuides";
+import { SlotProviderLink } from "@/components/SlotProviderLink";
 import { InlineCasinoCards } from "@/components/InlineCasinoCards";
 import { type ReactNode } from "react";
 import { Badge } from "@/components/ui/badge";
@@ -266,6 +267,7 @@ const LegacyOfDeadGuide = () => {
 
         <Separator className="my-8" />
         <AuthorBio author="jonas" />
+        <SlotProviderLink slotSlug="legacy-of-dead" />
         <RelatedGuides currentPath="/casinospil/spillemaskiner/legacy-of-dead" />
         <FAQSection title="Ofte Stillede Spørgsmål om Legacy of Dead" faqs={legacyOfDeadFaqs} />
       </div>

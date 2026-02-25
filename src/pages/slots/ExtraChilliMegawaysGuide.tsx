@@ -6,6 +6,7 @@ import { FAQSection } from "@/components/FAQSection";
 import { SEO } from "@/components/SEO";
 import { buildFaqSchema, buildArticleSchema, SITE_URL } from "@/lib/seo";
 import { RelatedGuides } from "@/components/RelatedGuides";
+import { SlotProviderLink } from "@/components/SlotProviderLink";
 import { InlineCasinoCards } from "@/components/InlineCasinoCards";
 import { type ReactNode } from "react";
 import { Badge } from "@/components/ui/badge";
@@ -141,6 +142,7 @@ const ExtraChilliMegawaysGuide = () => {
 
         <Separator className="my-10" />
         <AuthorBio author="kevin" />
+        <SlotProviderLink slotSlug="extra-chilli-megaways" />
         <RelatedGuides currentPath="/casinospil/spillemaskiner/extra-chilli-megaways" />
         <FAQSection title="Ofte Stillede Spørgsmål om Extra Chilli Megaways" faqs={extraChilliFaqs} />
       </div>
