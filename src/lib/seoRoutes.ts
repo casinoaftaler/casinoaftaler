@@ -1,9 +1,9 @@
+import { getTodayDanish } from "./danishDate";
+
 /**
  * Central registry of all SEO-indexable routes.
  *
  * Used by:
- *  - The Vite sitemap plugin (build-time sitemap.xml generation)
- *  - Potentially future prerender or SSR pipelines
   *
   * Rules:
   *  - Only pages that use <SEO /> without noindex belong here.
@@ -201,9 +201,9 @@ export const seoRoutes: SeoRoute[] = ([
   { path: "/sitemap", changefreq: "weekly", priority: 0.4, lastmod: "2026-02-23" },
 
 ] as const).map((route): SeoRoute => {
-  // Auto-set lastmod to today for daily-changing pages (free-spins-i-dag, casino-nyheder, etc.)
+  // Auto-set lastmod to today (Danish timezone) for daily-changing pages
   if (route.changefreq === "daily") {
-    return { ...route, lastmod: new Date().toISOString().split("T")[0] };
+    return { ...route, lastmod: getTodayDanish() };
   }
   return { ...route };
 });
