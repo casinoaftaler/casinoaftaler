@@ -8,6 +8,7 @@ import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { AuthorBio } from "@/components/AuthorBio";
 import heroImage from "@/assets/heroes/free-spins-i-dag-hero.jpg";
 import { RelatedGuides } from "@/components/RelatedGuides";
+import { FreeSpinsMoneyPageLinks } from "@/components/FreeSpinsMoneyPageLinks";
 import { FAQSection } from "@/components/FAQSection";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -419,6 +420,11 @@ const FreeSpinsIDag = () => {
         )}
 
         <Separator className="my-8" />
+
+        {/* Money-page routing: dofollow links to casino reviews */}
+        {allBest.length >= 3 && (
+          <FreeSpinsMoneyPageLinks campaigns={allBest} />
+        )}
 
         {/* SEO content */}
         <div className="mt-4">

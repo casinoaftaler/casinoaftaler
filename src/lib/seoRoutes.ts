@@ -27,7 +27,7 @@ export interface SeoRoute {
 
 export const seoRoutes: SeoRoute[] = ([
   // ── Forside ──
-  { path: "/", changefreq: "daily", priority: 1.0, lastmod: "2026-02-22" },
+  { path: "/", changefreq: "daily", priority: 1.0 },
 
   // ── Casino Anmeldelser ──
   { path: "/casino-anmeldelser", changefreq: "weekly", priority: 0.9, lastmod: "2026-02-15" },

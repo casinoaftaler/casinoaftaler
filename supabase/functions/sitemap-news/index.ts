@@ -67,6 +67,19 @@ ${urls.join("\n")}
 
     const now = new Date();
 
+    // Ping Google sitemap if there are fresh articles (debounced server-side)
+    if (urls.length > 0) {
+      try {
+        await fetch(
+          `https://www.google.com/ping?sitemap=${encodeURIComponent(`${SITE_URL}/sitemap.xml`)}`,
+          { method: "GET" }
+        );
+        console.log("Sitemap ping sent to Google");
+      } catch (e) {
+        console.warn("Sitemap ping failed:", e);
+      }
+    }
+
     return new Response(sitemap, {
       headers: {
         ...corsHeaders,

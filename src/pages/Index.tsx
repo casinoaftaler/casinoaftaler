@@ -4,6 +4,8 @@ import { SEO } from "@/components/SEO";
 import { HeroSection } from "@/components/HeroSection";
 import { WhyTrustUs } from "@/components/WhyTrustUs";
 import { QuickNavSidebar } from "@/components/QuickNavBar";
+import { TodayUpdatedSection } from "@/components/TodayUpdatedSection";
+import { WeeklyRotationReviews } from "@/components/WeeklyRotationReviews";
 
 import { CasinoCard } from "@/components/CasinoCard";
 import { CASINO_SCORES } from "@/lib/reviewScoring";
@@ -12,6 +14,9 @@ import { PopularReviewsSection } from "@/components/PopularReviewsSection";
 import { FAQSection } from "@/components/FAQSection";
 import { FilterTabs } from "@/components/FilterTabs";
 import { useCasinos } from "@/hooks/useCasinos";
+import { useQuery } from "@tanstack/react-query";
+import { supabase } from "@/integrations/supabase/client";
+import { getTodayDanish } from "@/lib/danishDate";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
 import { Button } from "@/components/ui/button";
@@ -42,6 +47,32 @@ const Index = () => {
   const [activeFilter, setActiveFilter] = useState("all");
   const [openCasinoId, setOpenCasinoId] = useState<string | null>(null);
   const { data: casinos, isLoading } = useCasinos();
+
+  // Fetch latest news article date for dynamic dateModified
+  const { data: latestNewsDate } = useQuery({
+    queryKey: ["homepage-latest-news-date"],
+    queryFn: async () => {
+      const { data } = await supabase
+        .from("casino_news")
+        .select("published_at")
+        .eq("status", "published")
+        .order("published_at", { ascending: false })
+        .limit(1)
+        .maybeSingle();
+      return data?.published_at || null;
+    },
+    staleTime: 5 * 60 * 1000,
+  });
+
+  // Homepage dateModified = latest of today (for free-spins daily) or latest news
+  const homepageDateModified = (() => {
+    const today = getTodayDanish();
+    if (latestNewsDate) {
+      const newsDate = latestNewsDate.split("T")[0];
+      return newsDate > today ? newsDate : today;
+    }
+    return today;
+  })();
 
   useEffect(() => {
     setOpenCasinoId(null);
@@ -108,21 +139,36 @@ const Index = () => {
         description="Find de bedste online casinoer med bonus og dansk licens. Sammenlign nye casinoer, live casino, free spins og spil ansvarligt med vores uafhængige anmeldelser."
         jsonLd={{
           "@context": "https://schema.org",
-          "@type": "Organization",
-          "@id": "https://casinoaftaler.dk/#organization",
-          name: "Casinoaftaler.dk",
-          url: "https://casinoaftaler.dk",
-          description: "Danmarks uafhængige sammenligningstjeneste for online casinoer med dansk licens.",
-          foundingDate: "2021",
-          sameAs: [
-            "https://www.youtube.com/@casinoaftaler",
-            "https://www.instagram.com/casinoaftaler",
-            "https://www.facebook.com/casinoaftaler",
+          "@graph": [
+            {
+              "@type": "Organization",
+              "@id": "https://casinoaftaler.dk/#organization",
+              name: "Casinoaftaler.dk",
+              url: "https://casinoaftaler.dk",
+              description: "Danmarks uafhængige sammenligningstjeneste for online casinoer med dansk licens.",
+              foundingDate: "2021",
+              sameAs: [
+                "https://www.youtube.com/@casinoaftaler",
+                "https://www.instagram.com/casinoaftaler",
+                "https://www.facebook.com/casinoaftaler",
+              ],
+            },
+            {
+              "@type": "WebPage",
+              "@id": "https://casinoaftaler.dk/#webpage",
+              url: "https://casinoaftaler.dk",
+              name: "Online Casinoer med Bonus – Nye Casinoer 2026",
+              dateModified: `${homepageDateModified}T00:00:00+01:00`,
+              isPartOf: { "@id": "https://casinoaftaler.dk/#organization" },
+            },
           ],
         }}
       />
 
       <HeroSection />
+
+      {/* Opdateret i dag – freshness signal above fold */}
+      <TodayUpdatedSection />
 
       {/* Top Casinos Section with sidebar */}
       <section id="top-casinos" className="py-8 md:py-12">
@@ -311,6 +357,11 @@ const Index = () => {
         <Separator className="my-10" />
 
         <PopularReviewsSection />
+
+        <Separator className="my-10" />
+
+        {/* Weekly Rotation – distributes crawl equity over time */}
+        <WeeklyRotationReviews />
 
         <Separator className="my-10" />
 
