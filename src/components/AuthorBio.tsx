@@ -39,9 +39,11 @@ const authorData = {
     role: "IT Medansvarlig hos Casinoaftaler.dk & Casino-streamer",
     bio: "Kevin er IT medansvarlig hos Casinoaftaler.dk og har streamet online casino i over 3 år. Med sin rolige og afslappede stil bidrager han til community, indhold og udvikling af platformen.",
     socials: [
-      { href: "https://www.twitch.tv/fedesvinsejer", label: "Twitch" },
-      { href: "https://www.youtube.com/@fedesvinsejer", label: "YouTube" },
-      { href: "https://discord.gg/ZD4YdSeY", label: "Discord" },
+      { href: "https://www.twitch.tv/kevinsylence", label: "Twitch" },
+      { href: "https://www.youtube.com/@KevinSylence", label: "YouTube" },
+      { href: "https://www.instagram.com/kevinsylence/", label: "Instagram" },
+      { href: "https://www.linkedin.com/in/kevin-s%C3%B8rensen-76308819b/", label: "LinkedIn" },
+      { href: "https://x.com/KevinSylence", label: "X" },
     ],
   },
 } as const;
