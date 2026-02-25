@@ -11,6 +11,7 @@ import { Separator } from "@/components/ui/separator";
 import { Button } from "@/components/ui/button";
 import { RelatedGuides } from "@/components/RelatedGuides";
 import { InlineCasinoCards } from "@/components/InlineCasinoCards";
+import { RelatedReviews } from "@/components/RelatedReviews";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
 import { buildArticleSchema, buildFaqSchema } from "@/lib/seo";
 import { QuickFactsProviders, QuickFactsLicense } from "@/components/QuickFactsProviders";
@@ -247,6 +248,7 @@ const ExpektAnmeldelse = () => {
             <Button asChild variant="outline" size="lg" className="flex-1"><Link to="/casino-anmeldelser"><Star className="mr-2 h-5 w-5" />Alle Casino Anmeldelser</Link></Button>
           </div>
         </section>
+        <RelatedReviews currentSlug="expekt" />
         <InlineCasinoCards title="Andre anbefalede casinoer" count={6} excludeSlugs={["expekt"]} />
         <AuthorBio /><Separator className="my-10" />
         <FAQSection faqs={faqs} />

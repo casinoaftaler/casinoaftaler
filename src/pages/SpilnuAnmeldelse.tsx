@@ -10,6 +10,7 @@ import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { RelatedGuides } from "@/components/RelatedGuides";
 import { InlineCasinoCards } from "@/components/InlineCasinoCards";
+import { RelatedReviews } from "@/components/RelatedReviews";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
 import { buildArticleSchema, buildFaqSchema } from "@/lib/seo";
 import { QuickFactsProviders, QuickFactsLicense } from "@/components/QuickFactsProviders";
@@ -501,6 +502,7 @@ const SpilnuAnmeldelse = () => {
           <p className="text-muted-foreground leading-relaxed">For den danske spiller, der vælger Spilnu i dag, er fremtidsudsigterne positive. Platformen vil sandsynligvis blive bedre – ikke dårligere – over tid. Danske Spils ressourcer, regulatoriske fordel og strategiske fokus på digitalisering sikrer, at Spilnu forbliver en relevant og troværdig aktør i det danske spillandskab. Og med bingo-sektionens dominerende markedsposition som fundament har platformen en unikke differentiering, der er svær at angribe for konkurrenterne.</p>
         </section>
 
+        <RelatedReviews currentSlug="spilnu" />
         <InlineCasinoCards count={3} />
 
         <Separator className="my-10" />

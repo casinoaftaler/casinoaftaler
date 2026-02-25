@@ -672,24 +672,6 @@ export const Header = memo(function Header() {
                   Spillehal
                 </Link>
               </DropdownMenuItem>
-              <DropdownMenuItem asChild>
-                <Link to="/community/leaderboard" className="flex items-center gap-2">
-                  <Trophy className="h-4 w-4" />
-                  Turneringer
-                </Link>
-              </DropdownMenuItem>
-              <DropdownMenuItem asChild>
-                <Link to="/community/spin-the-reel" className="flex items-center gap-2">
-                  <RotateCw className="h-4 w-4" />
-                  Spin the Reel
-                </Link>
-              </DropdownMenuItem>
-              <DropdownMenuItem asChild>
-                <Link to="/community/rewards" className="flex items-center gap-2">
-                  <Gift className="h-4 w-4" />
-                  Rewards Program
-                </Link>
-              </DropdownMenuItem>
               <DropdownMenuSeparator />
               <DropdownMenuItem asChild>
                 <Link to="/highlights" className="flex items-center gap-2">
@@ -1329,9 +1311,6 @@ export const Header = memo(function Header() {
                 <div className="flex flex-col bg-muted/30 pb-2">
                   {[
                     { to: "/community/slots", icon: <Coins className="h-4 w-4" />, label: "Spillehal" },
-                    { to: "/community/leaderboard", icon: <Trophy className="h-4 w-4" />, label: "Turneringer" },
-                    { to: "/community/spin-the-reel", icon: <RotateCw className="h-4 w-4" />, label: "Spin the Reel" },
-                    { to: "/community/rewards", icon: <Gift className="h-4 w-4" />, label: "Rewards Program" },
                     { to: "/highlights", icon: <Video className="h-4 w-4" />, label: "Highlights" },
                     { to: "/butik", icon: <ShoppingBag className="h-4 w-4" />, label: "Butik" },
                   ].map((item) => (

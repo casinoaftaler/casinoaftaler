@@ -10,6 +10,7 @@ import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { RelatedGuides } from "@/components/RelatedGuides";
 import { InlineCasinoCards } from "@/components/InlineCasinoCards";
+import { RelatedReviews } from "@/components/RelatedReviews";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
 import { buildArticleSchema, buildFaqSchema } from "@/lib/seo";
 import { QuickFactsProviders, QuickFactsLicense } from "@/components/QuickFactsProviders";
@@ -553,6 +554,7 @@ const BwinAnmeldelse = () => {
           </p>
         </section>
 
+        <RelatedReviews currentSlug="bwin" />
         <InlineCasinoCards count={3} />
 
         <Separator className="my-10" />
