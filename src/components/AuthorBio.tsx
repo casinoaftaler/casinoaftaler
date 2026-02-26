@@ -4,9 +4,10 @@ import { Button } from "@/components/ui/button";
 import { CommunityPromoSection } from "@/components/CommunityPromoSection";
 import jonasImage from "@/assets/jonas-forfatter.webp";
 import kevinImage from "@/assets/kevin-forfatter.webp";
+import ajseImage from "@/assets/ajse-avatar.png";
 
 interface AuthorBioProps {
-  author?: "jonas" | "kevin";
+  author?: "jonas" | "kevin" | "ajse";
   /** Set to false if CommunityPromoSection is already rendered elsewhere on the page */
   showCommunity?: boolean;
 }
@@ -45,6 +46,16 @@ const authorData = {
       { href: "https://www.linkedin.com/in/kevin-s%C3%B8rensen-76308819b/", label: "LinkedIn" },
       { href: "https://x.com/KevinSylence", label: "X" },
     ],
+  },
+  ajse: {
+    name: "Ajse",
+    image: ajseImage,
+    alt: "Ajse – Nyhedsredaktør hos Casinoaftaler.dk",
+    link: "/forfatter/ajse",
+    badge: "Nyhedsredaktør",
+    role: "Nyhedsredaktør hos Casinoaftaler.dk",
+    bio: "Ajse er nyhedsredaktør på Casinoaftaler.dk og skriver om nyheder, regulering og tendenser i det danske casinomarked. Hun sikrer, at læserne altid er opdateret med de seneste udviklinger.",
+    socials: [],
   },
 } as const;
 
