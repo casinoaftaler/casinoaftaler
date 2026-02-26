@@ -151,6 +151,7 @@ const OmTeamet = () => {
     { icon: Clock, value: "7+", label: "Års samlet streaming-erfaring" },
     { icon: Trophy, value: "30+", label: "Testede danske casinoer" },
     { icon: Tv, value: "7000+", label: "Timers live streaming" },
+    { icon: BookOpen, value: "50+", label: "Skrevne artikler i alt" },
     { icon: Users, value: "Aktivt", label: "Engageret community" },
   ];
 
@@ -371,7 +372,7 @@ const OmTeamet = () => {
             <Zap className="h-7 w-7 text-primary" />
             Teamet i tal
           </h2>
-          <div className="grid grid-cols-2 gap-4 md:grid-cols-4">
+          <div className="grid grid-cols-2 gap-4 md:grid-cols-5">
             {stats.map((stat) => (
               <Card key={stat.label} className="border-border bg-card text-center">
                 <CardContent className="p-6">
