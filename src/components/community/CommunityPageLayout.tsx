@@ -37,6 +37,8 @@ export function CommunityPageLayout({
           <img
             src={communityHero}
             alt=""
+            width={1920}
+            height={1080}
             className="absolute inset-0 w-full h-full object-cover"
             aria-hidden="true"
           />
