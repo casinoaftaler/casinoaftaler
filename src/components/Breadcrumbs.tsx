@@ -31,24 +31,24 @@ export function Breadcrumbs({ dynamicLabel }: BreadcrumbsProps = {}) {
 
   return (
     <nav aria-label="Breadcrumb" className="container py-3">
-      <ol className="flex items-center gap-1.5 text-sm text-muted-foreground">
+      <ol className="flex items-center gap-1.5 text-sm text-muted-foreground flex-wrap">
         {items.map((item, index) => (
-          <li key={item.path} className="flex items-center gap-1.5">
-            {index > 0 && <ChevronRight className="h-3.5 w-3.5" />}
+          <li key={item.path} className="flex items-center gap-1.5 min-w-0">
+            {index > 0 && <ChevronRight className="h-3.5 w-3.5 flex-shrink-0" />}
             {index === items.length - 1 ? (
-              <span className="font-medium text-foreground">{item.name}</span>
+              <span className="font-medium text-foreground truncate">{item.name}</span>
             ) : index === 0 ? (
               <Link
                 to={item.path}
-                className="flex items-center gap-1 hover:text-foreground transition-colors"
+                className="flex items-center gap-1 hover:text-foreground transition-colors flex-shrink-0"
               >
                 <Home className="h-3.5 w-3.5" />
-                <span>{item.name}</span>
+                <span className="hidden sm:inline">{item.name}</span>
               </Link>
             ) : (
               <Link
                 to={item.path}
-                className="hover:text-foreground transition-colors"
+                className="hover:text-foreground transition-colors truncate max-w-[120px] sm:max-w-none"
               >
                 {item.name}
               </Link>

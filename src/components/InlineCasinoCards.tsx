@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import { Loader2 } from "lucide-react";
 import { useCasinos } from "@/hooks/useCasinos";
 import { CasinoCard } from "@/components/CasinoCard";
@@ -29,11 +29,49 @@ export function InlineCasinoCards({
   count = 6,
   excludeSlugs = [],
 }: InlineCasinoCardsProps) {
+  const sentinelRef = useRef<HTMLDivElement>(null);
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    const el = sentinelRef.current;
+    if (!el) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+          observer.disconnect();
+        }
+      },
+      { rootMargin: "300px" }
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
+
+  return (
+    <div ref={sentinelRef}>
+      {isVisible ? (
+        <InlineCasinoCardsInner title={title} count={count} excludeSlugs={excludeSlugs} />
+      ) : (
+        <>
+          <Separator className="my-10" />
+          <section className="mb-12" style={{ minHeight: '320px' }} />
+        </>
+      )}
+    </div>
+  );
+}
+
+function InlineCasinoCardsInner({
+  title,
+  count,
+  excludeSlugs,
+}: Required<Pick<InlineCasinoCardsProps, 'title' | 'count'>> & Pick<InlineCasinoCardsProps, 'excludeSlugs'>) {
   const { data: casinos, isLoading } = useCasinos();
   const [openCasinoId, setOpenCasinoId] = useState<string | null>(null);
 
   const displayCasinos = (casinos ?? [])
-    .filter((c) => PARTNER_SLUGS.includes(c.slug) && !excludeSlugs.includes(c.slug))
+    .filter((c) => PARTNER_SLUGS.includes(c.slug) && !(excludeSlugs ?? []).includes(c.slug))
     .slice(0, count);
 
   const mapCasino = (casino: (typeof displayCasinos)[0]) => ({
