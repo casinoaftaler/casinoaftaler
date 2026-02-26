@@ -167,7 +167,7 @@ function getContextualGuides(currentPath: string): { guides: GuideLink[]; subtit
         { to: "/kontakt", label: "Kontakt", icon: Globe, desc: "Kontakt teamet bag Casinoaftaler.dk" },
         { to: "/forfatter/jonas", label: "Jonas – Forfatter", icon: BookOpen, desc: "Grundlægger og casino-streamer" },
         { to: "/forfatter/kevin", label: "Kevin – Forfatter", icon: BookOpen, desc: "Casino-streamer og IT medansvarlig" },
-        { to: "/forfatter/ajse", label: "Ajse – Forfatter", icon: BookOpen, desc: "Nyhedsredaktør" },
+        { to: "/forfatter/ajse", label: "Ajse – Forfatter", icon: BookOpen, desc: "Juridisk redaktør & casinoanalytiker" },
         { to: "/ansvarligt-spil", label: "Ansvarligt Spil", icon: ShieldCheck, desc: "Spil sikkert og ansvarligt" },
         { to: "/spillemyndigheden", label: "Spillemyndigheden", icon: Landmark, desc: "Danmarks tilsynsmyndighed for spil" },
       ],
@@ -193,7 +193,7 @@ function getContextualGuides(currentPath: string): { guides: GuideLink[]; subtit
     return {
       guides: [
         { to: "/forfatter/jonas", label: "Jonas – Grundlægger", icon: BookOpen, desc: "Grundlægger af Casinoaftaler.dk" },
-        { to: "/forfatter/ajse", label: "Ajse – Nyhedsredaktør", icon: BookOpen, desc: "Nyhedsredaktør på Casinoaftaler.dk" },
+        { to: "/forfatter/ajse", label: "Ajse – Juridisk redaktør", icon: BookOpen, desc: "Juridisk redaktør på Casinoaftaler.dk" },
         { to: "/om", label: "Om Casinoaftaler.dk", icon: BookOpen, desc: "Mød teamet bag Casinoaftaler.dk" },
         { to: "/saadan-tester-vi-casinoer", label: "Sådan tester vi casinoer", icon: ShieldCheck, desc: "Vores testmetode og vurderingskriterier" },
         { to: "/ansvarligt-spil", label: "Ansvarligt Spil", icon: ShieldCheck, desc: "Spil sikkert og ansvarligt" },
