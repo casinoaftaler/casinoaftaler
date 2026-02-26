@@ -7,7 +7,7 @@ import { buildFaqSchema, SITE_URL } from "@/lib/seo";
 import { FAQSection } from "@/components/FAQSection";
 import { RelatedGuides } from "@/components/RelatedGuides";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
-import { usePublishedNews } from "@/hooks/useCasinoNews";
+import { usePublishedNewsByAuthor } from "@/hooks/useCasinoNews";
 import { optimizeStorageImage } from "@/lib/imageOptimization";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -129,7 +129,7 @@ const personSchema = {
 
 export default function ForfatterAjse() {
   const { data: siteSettings } = useSiteSettings();
-  const { data: newsData } = usePublishedNews(1, 100);
+  const { data: newsData } = usePublishedNewsByAuthor("ajse", 1, 100);
   const [articlePage, setArticlePage] = useState(0);
   const heroBackgroundImage = siteSettings?.hero_background;
 
@@ -197,7 +197,7 @@ export default function ForfatterAjse() {
       </section>
 
       <div className="container py-8 md:py-12">
-        <AuthorMetaBar author="ajse" date="26-02-2026" readTime="5 Min." showVerified />
+        <AuthorMetaBar author="jonas" date="26-02-2026" readTime="5 Min." showVerified />
 
         {/* Profile card */}
         <section className="mb-12">

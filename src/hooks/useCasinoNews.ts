@@ -41,6 +41,28 @@ export function usePublishedNews(page = 1, perPage = 10) {
   });
 }
 
+export function usePublishedNewsByAuthor(authorId: string, page = 1, perPage = 100) {
+  return useQuery({
+    queryKey: ["casino-news", "published", "author", authorId, page, perPage],
+    queryFn: async () => {
+      const from = (page - 1) * perPage;
+      const to = from + perPage - 1;
+
+      const { data, error, count } = await supabase
+        .from("casino_news")
+        .select("*", { count: "exact" })
+        .eq("status", "published")
+        .eq("author_id", authorId)
+        .order("published_at", { ascending: false })
+        .range(from, to);
+
+      if (error) throw error;
+      return { articles: (data ?? []) as CasinoNewsArticle[], total: count ?? 0 };
+    },
+    enabled: !!authorId,
+  });
+}
+
 export function useNewsArticle(slug: string) {
   return useQuery({
     queryKey: ["casino-news", "article", slug],

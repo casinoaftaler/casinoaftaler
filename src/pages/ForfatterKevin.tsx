@@ -1,4 +1,6 @@
 import { useState, useCallback } from "react";
+import { usePublishedNewsByAuthor } from "@/hooks/useCasinoNews";
+import { optimizeStorageImage } from "@/lib/imageOptimization";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { AuthorBio } from "@/components/AuthorBio";
 import { Link } from "react-router-dom";
@@ -162,6 +164,8 @@ export default function ForfatterKevin() {
   const [openCasinoId, setOpenCasinoId] = useState<string | null>(null);
   const [articlePage, setArticlePage] = useState(0);
   const heroBackgroundImage = siteSettings?.hero_background;
+  const { data: kevinNewsData } = usePublishedNewsByAuthor("kevin", 1, 100);
+  const kevinNews = kevinNewsData?.articles ?? [];
 
   const ARTICLES_PER_PAGE = 8;
   const totalArticlePages = Math.ceil(kevinArticles.length / ARTICLES_PER_PAGE);
@@ -578,6 +582,54 @@ export default function ForfatterKevin() {
             ))}
           </div>
         </section>
+
+        {/* Casino Nyheder af Kevin (dynamisk fra database) */}
+        {kevinNews.length > 0 && (
+          <>
+            <Separator className="my-10" />
+            <section className="mb-12">
+              <h2 className="text-3xl font-bold flex items-center gap-2 mb-6">
+                <FileText className="h-7 w-7 text-primary" />
+                Casino Nyheder af Kevin
+              </h2>
+              <div className="grid gap-4 md:grid-cols-2">
+                {kevinNews.map((article) => (
+                  <Link
+                    key={article.slug}
+                    to={`/casino-nyheder/${article.slug}`}
+                    className="group flex gap-4 rounded-xl border border-border bg-card p-4 transition-all duration-200 hover:-translate-y-1 hover:shadow-lg hover:shadow-primary/10 hover:border-primary/30"
+                  >
+                    {article.featured_image && (
+                      <img
+                        src={optimizeStorageImage(article.featured_image, 120, 70) || article.featured_image}
+                        alt={article.title}
+                        className="h-20 w-28 shrink-0 rounded-lg object-cover"
+                        loading="lazy"
+                      />
+                    )}
+                    <div className="flex flex-col min-w-0">
+                      <div className="mb-1 flex items-center gap-2">
+                        <Badge variant="secondary" className="text-xs">Nyhed</Badge>
+                        {article.published_at && (
+                          <span className="flex items-center gap-1 text-xs text-muted-foreground">
+                            <Clock className="h-3 w-3" />
+                            {new Date(article.published_at).toLocaleDateString("da-DK")}
+                          </span>
+                        )}
+                      </div>
+                      <h3 className="text-base font-semibold group-hover:text-primary transition-colors mb-1 line-clamp-2">
+                        {article.title}
+                      </h3>
+                      {article.excerpt && (
+                        <p className="text-sm text-muted-foreground line-clamp-1">{article.excerpt}</p>
+                      )}
+                    </div>
+                  </Link>
+                ))}
+              </div>
+            </section>
+          </>
+        )}
 
         <Separator className="my-10" />
 
