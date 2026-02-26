@@ -173,8 +173,9 @@ export function StickyCTA({
         <div className="flex flex-col items-center gap-1.5 shrink-0">
           <Button
             onClick={handleClick}
+            variant="cta"
             size="lg"
-            className="font-bold text-base min-w-[200px] h-12 shadow-lg"
+            className="text-base min-w-[200px] h-12"
             data-sponsored="true"
           >
             HENT BONUS NU
@@ -210,7 +211,8 @@ export function StickyCTA({
         {/* Right: CTA */}
         <Button
           onClick={handleClick}
-          className="font-bold text-sm px-4 h-10 flex-shrink-0 max-w-[50%] shadow-md ml-auto"
+          variant="cta"
+          className="text-sm px-4 h-10 flex-shrink-0 max-w-[50%] ml-auto"
           data-sponsored="true"
         >
           HENT BONUS NU
