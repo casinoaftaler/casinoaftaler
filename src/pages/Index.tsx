@@ -167,9 +167,6 @@ const Index = () => {
 
       <HeroSection />
 
-      {/* Opdateret i dag – freshness signal above fold */}
-      <TodayUpdatedSection />
-
       {/* Top Casinos Section with sidebar */}
       <section id="top-casinos" className="py-8 md:py-12">
         <div className="container relative">
@@ -243,6 +240,9 @@ const Index = () => {
           )}
         </div>
       </section>
+
+      {/* Opdateret i dag – under casinokort */}
+      <TodayUpdatedSection />
 
       <WhyTrustUs />
 
