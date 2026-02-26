@@ -44,7 +44,7 @@ const MegaMoolahGuide = () => {
       { "@type": "HowToStep", position: 1, name: "Vælg indsats", text: "Indstil din indsats – højere indsats øger sandsynligheden for jackpot-triggeren." },
       { "@type": "HowToStep", position: 2, name: "Spin hjulene", text: "Tryk spin og spil det klassiske 5×3 grid med 25 gevinstlinjer." },
       { "@type": "HowToStep", position: 3, name: "Aktivér jackpot-hjulet", text: "Jackpot-bonus trigges tilfældigt – spin jackpot-hjulet for chance for Mega, Major, Minor eller Mini jackpot." },
-      { "@type": "HowToStep", position: 4, name: "Udbetal gevinst", text: "Hæv dine gevinster via casinoets betalingsmetoder." },
+      { "@type": "HowToStep", position: 4, name: "Udbetal gevinst", text: "Ved jackpot-gevinst kontakter casinoet dig – øvrige gevinster hæves via kassen." },
     ],
   };
 
@@ -65,7 +65,7 @@ const MegaMoolahGuide = () => {
       <div className="container py-8 md:py-12">
         <AuthorMetaBar author="kevin" date="2026-02-18" readTime="17 min" />
         <div className="mb-10 overflow-hidden rounded-xl">
-          <img src={heroImage} className="w-full h-auto object-cover max-h-[400px]" alt="Mega Moolah spillemaskine" />
+          <img src={heroImage} width="1920" height="1080" className="w-full h-auto object-cover max-h-[400px]" alt="Mega Moolah spillemaskine" loading="eager" />
         </div>
 
         <section className="mb-10">

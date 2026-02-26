@@ -101,7 +101,7 @@ const LegacyOfDeadGuide = () => {
       <div className="container py-8 md:py-12">
         <AuthorMetaBar author="jonas" date="2026-02-18" readTime="19 min" />
         <div className="mb-10 overflow-hidden rounded-xl">
-          <img src={heroImage} className="w-full h-auto object-cover max-h-[400px]" alt="Legacy of Dead spillemaskine" />
+          <img src={heroImage} width="1920" height="1080" className="w-full h-auto object-cover max-h-[400px]" alt="Legacy of Dead spillemaskine" loading="eager" />
         </div>
 
         {/* ── Experience First: Book of Dead-arven ── */}

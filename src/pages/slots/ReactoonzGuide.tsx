@@ -99,7 +99,7 @@ const ReactoonzGuide = () => {
       { name: "Spin griddet", text: "Tryk spin og observer cluster-kombinationer på det 7×7 grid." },
       { name: "Opbyg Quantum-meter", text: "Cascade-gevinster fylder de fire Quantum-meters, der udløser specielle funktioner." },
       { name: "Aktivér Gargantoon", text: "Fyld alle fire meters for at udløse det massive 3×3 wild-symbol." },
-      { name: "Udbetal gevinst", text: "Hæv dine gevinster via casinoets betalingsmetoder." },
+      { name: "Udbetal gevinst", text: "Hæv din saldo hurtigt via Trustly, bankoverførsel eller andre godkendte metoder." },
     ],
   });
 
@@ -125,7 +125,7 @@ const ReactoonzGuide = () => {
       <div className="container py-8 md:py-12">
         <AuthorMetaBar author="kevin" date="2026-02-18" readTime="20 min" />
         <div className="mb-10 overflow-hidden rounded-xl">
-          <img src={heroImage} className="w-full h-auto object-cover max-h-[400px]" alt="Reactoonz spillemaskine" />
+          <img src={heroImage} width="1920" height="1080" className="w-full h-auto object-cover max-h-[400px]" alt="Reactoonz spillemaskine" loading="eager" />
         </div>
 
         {/* ── Udviklerkontekst ── */}

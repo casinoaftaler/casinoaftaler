@@ -91,7 +91,7 @@ const MoneyTrain3Guide = () => {
       { name: "Spin hjulene", text: "Tryk spin og observer bonus-symboler på det 4×5 grid." },
       { name: "Aktivér Money Cart", text: "Land 3+ bonus-symboler for at starte Money Cart-bonusrunden med respins." },
       { name: "Saml modifiers", text: "Under Money Cart udvides griddet til 4×7 og hvert nyt symbol nulstiller respins." },
-      { name: "Udbetal gevinst", text: "Hæv dine gevinster via casinoets betalingsmetoder." },
+      { name: "Udbetal gevinst", text: "Hæv din gevinst sikkert via Trustly, bankoverførsel eller din foretrukne metode." },
     ],
   });
 
@@ -117,7 +117,7 @@ const MoneyTrain3Guide = () => {
       <div className="container py-8 md:py-12">
         <AuthorMetaBar author="jonas" date="2026-02-18" readTime="20 min" />
         <div className="mb-10 overflow-hidden rounded-xl">
-          <img src={heroImage} className="w-full h-auto object-cover max-h-[400px]" alt="Money Train 3 spillemaskine" />
+          <img src={heroImage} width="1920" height="1080" className="w-full h-auto object-cover max-h-[400px]" alt="Money Train 3 spillemaskine" loading="eager" />
         </div>
 
         {/* ── Bonusfunktioner først (Anti-template: Bonus First) ── */}

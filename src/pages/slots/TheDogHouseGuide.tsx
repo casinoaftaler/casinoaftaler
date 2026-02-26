@@ -91,7 +91,7 @@ const TheDogHouseGuide = () => {
       { name: "Spin hjulene", text: "Tryk spin og observer wild-symboler med multiplikatorer (2x eller 3x)." },
       { name: "Aktivér Free Spins", text: "Land 3+ scatter-symboler for free spins med sticky wilds." },
       { name: "Saml multiplikatorer", text: "Sticky wilds med 2x og 3x ganges sammen – to 3x wilds giver 9x gevinst." },
-      { name: "Udbetal gevinst", text: "Hæv dine gevinster via casinoets betalingsmetoder." },
+      { name: "Udbetal gevinst", text: "Naviger til kassen og træk din saldo ud via en af de tilgængelige betalingsløsninger." },
     ],
   });
 
@@ -117,7 +117,7 @@ const TheDogHouseGuide = () => {
       <div className="container py-8 md:py-12">
         <AuthorMetaBar author="jonas" date="2026-02-18" readTime="18 min" />
         <div className="mb-10 overflow-hidden rounded-xl">
-          <img src={heroImage} className="w-full h-auto object-cover max-h-[400px]" alt="The Dog House spillemaskine" />
+          <img src={heroImage} width="1920" height="1080" className="w-full h-auto object-cover max-h-[400px]" alt="The Dog House spillemaskine" loading="eager" />
         </div>
 
         {/* ── Data First: RTP & Teknisk profil ── */}

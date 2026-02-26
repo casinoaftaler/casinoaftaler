@@ -80,7 +80,7 @@ const RazorSharkGuide = () => {
       { name: "Spin hjulene", text: "Tryk spin og observer Mystery Stack-symbolerne på det 5×4 grid." },
       { name: "Aktivér Nudge & Reveal", text: "Når Mystery Stacks lander, kan de afsløre Golden Shark eller multiplikatorer." },
       { name: "Udløs Free Spins", text: "Land 3+ scatter-hajer for 5–15 free spins med høje multiplikatorer." },
-      { name: "Udbetal gevinst", text: "Hæv dine gevinster via casinoets betalingsmetoder." },
+      { name: "Udbetal gevinst", text: "Overfør dine gevinster direkte til din bankkonto eller e-wallet." },
     ],
   });
 
@@ -106,7 +106,7 @@ const RazorSharkGuide = () => {
       <div className="container py-8 md:py-12">
         <AuthorMetaBar author="jonas" date="18-02-2026" readTime="24 Min." />
         <div className="mb-10 overflow-hidden rounded-xl">
-          <img src={heroImage} className="w-full h-auto object-cover max-h-[400px]" alt="Razor Shark spillemaskine" />
+          <img src={heroImage} width="1920" height="1080" className="w-full h-auto object-cover max-h-[400px]" alt="Razor Shark spillemaskine" loading="eager" />
         </div>
 
         {/* ── ÅBNINGSVINKEL: FEATURE-MEKANIK ANALYSE ── */}

@@ -80,7 +80,7 @@ const DeadOrAlive2Guide = () => {
       { name: "Spin hjulene", text: "Tryk spin og observer Wild West-symbolerne på det 5×3 grid." },
       { name: "Aktivér Free Spins", text: "Land 3+ scatter-symboler for at vælge mellem Train Heist, Old Saloon eller High Noon Saloon." },
       { name: "Vælg bonusmode", text: "Vælg din risikoprofil: lav (Train Heist), medium (Old Saloon) eller ekstrem (High Noon Saloon)." },
-      { name: "Udbetal gevinst", text: "Hæv dine gevinster via casinoets betalingsmetoder." },
+      { name: "Udbetal gevinst", text: "Vælg din foretrukne betalingsmetode og hæv gevinsten fra casinoets kasse." },
     ],
   });
 
@@ -106,7 +106,7 @@ const DeadOrAlive2Guide = () => {
       <div className="container py-8 md:py-12">
         <AuthorMetaBar author="jonas" date="18-02-2026" readTime="26 Min." />
         <div className="mb-10 overflow-hidden rounded-xl">
-          <img src={heroImage} className="w-full h-auto object-cover max-h-[400px]" alt="Dead or Alive 2 spillemaskine" />
+          <img src={heroImage} width="1920" height="1080" className="w-full h-auto object-cover max-h-[400px]" alt="Dead or Alive 2 spillemaskine" loading="eager" />
         </div>
 
         {/* ── ÅBNINGSVINKEL: MAX WIN FOKUS ── */}
