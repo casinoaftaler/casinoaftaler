@@ -1,0 +1,1 @@
+ALTER TABLE casino_news ALTER COLUMN author_id SET DEFAULT 'ajse';
