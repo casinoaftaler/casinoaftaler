@@ -115,8 +115,8 @@ const ResponsibleGaming = () => {
     "@type": "Article",
     headline: "Ansvarligt Spil – Hjælp og Ressourcer",
     description: "Lær om ansvarligt spil. Find advarselstegn, tips til at bevare kontrollen, selvudelukkelse via ROFUS og hjælp fra StopSpillet og Center for Ludomani.",
-    author: { "@type": "Organization", name: "Casinoaftaler" },
-    publisher: { "@type": "Organization", name: "Casinoaftaler" },
+    author: { "@type": "Person", name: "Ajse", url: "https://casinoaftaler.dk/forfatter/ajse" },
+    publisher: { "@type": "Organization", name: "Casinoaftaler.dk" },
     datePublished: "2025-06-01",
     dateModified: "2026-02-14",
     mainEntityOfPage: "https://casinoaftaler.dk/ansvarligt-spil",
@@ -159,7 +159,7 @@ const ResponsibleGaming = () => {
       </section>
 
       <div className="container py-8 md:py-12">
-        <AuthorMetaBar author="kevin" date="14-02-2026" readTime="5 Min." />
+        <AuthorMetaBar author="ajse" date="14-02-2026" readTime="5 Min." />
 
         <div className="mb-10 overflow-hidden rounded-xl">
           <img src={responsibleGamingHero} alt="Ansvarligt spil – tillid og sikkerhed ved casinospil" className="w-full h-auto object-cover max-h-[400px]" loading="eager" />
@@ -308,7 +308,7 @@ const ResponsibleGaming = () => {
 
         <FAQSection title="Ofte Stillede Spørgsmål om Ansvarligt Spil" faqs={responsibleGamingFaqs} />
 
-        <AuthorBio author="kevin" showCommunity={false} />
+        <AuthorBio author="ajse" showCommunity={false} />
 
         <RelatedGuides currentPath="/ansvarligt-spil" />
       </div>

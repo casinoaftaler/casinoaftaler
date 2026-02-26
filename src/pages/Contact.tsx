@@ -197,7 +197,7 @@ export default function Contact() {
       </section>
 
       <div className="container py-8 md:py-12">
-        <AuthorMetaBar author="kevin" date="2026-02-16" readTime="3 min" showAffiliateDisclaimer={false} />
+        <AuthorMetaBar author="ajse" date="2026-02-16" readTime="3 min" showAffiliateDisclaimer={false} />
 
         <div className="mb-10 overflow-hidden rounded-xl">
           <img src={contactHero} alt="Kontakt os – professionelt kontor" className="w-full h-auto object-cover max-h-[400px]" loading="eager" />
@@ -407,7 +407,7 @@ export default function Contact() {
 
         <FAQSection title="Ofte stillede spørgsmål" faqs={contactFaqs} />
 
-        <AuthorBio author="kevin" showCommunity={false} />
+        <AuthorBio author="ajse" showCommunity={false} />
       </div>
     </>
   );
