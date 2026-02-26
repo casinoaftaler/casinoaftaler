@@ -82,6 +82,11 @@ export const KEVIN_SAME_AS = [
   // facebook.com/casinoaftaler belongs to the Organization entity – not added here
 ];
 
+export const AJSE_SAME_AS = [
+  "https://www.linkedin.com/in/ajse-serifovski-587b25278/",
+  "https://www.instagram.com/serifoaaa/",
+];
+
 /** Canonical Person entity for Jonas Theill – reused across all article pages. */
 const JONAS_PERSON_ID = `${SITE_URL}/forfatter/jonas#person`;
 
@@ -164,7 +169,7 @@ export function buildArticleSchema(opts: {
   const authorName = opts.authorName || "Jonas";
   const authorUrl = opts.authorUrl || `${SITE_URL}/forfatter/jonas`;
   const authorSameAs = opts.authorSameAs
-    ?? (authorName === "Kevin" ? KEVIN_SAME_AS : JONAS_SAME_AS);
+    ?? (authorName === "Kevin" ? KEVIN_SAME_AS : authorName === "Ajse" ? AJSE_SAME_AS : JONAS_SAME_AS);
 
   const articleId = `${opts.url}#article`;
   const personId = `${authorUrl}#person`;

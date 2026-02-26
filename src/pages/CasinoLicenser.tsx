@@ -72,7 +72,7 @@ const CasinoLicenser = () => {
     description: "Komplet guide til casino-licenser: Dansk licens, MGA, Curaçao og UK. Forstå forskellen og hvad det betyder for din sikkerhed.",
     url: `${SITE_URL}/casino-licenser`,
     datePublished: "2026-02-16",
-    dateModified: "2026-02-17",
+    dateModified: "2026-02-26",
     authorName: "Ajse",
     authorUrl: `${SITE_URL}/forfatter/ajse`,
   });
@@ -98,7 +98,8 @@ const CasinoLicenser = () => {
       </section>
 
       <div className="container py-8 md:py-12">
-        <AuthorMetaBar author="ajse" date="16-02-2026" readTime="14 Min." />
+        <AuthorMetaBar author="ajse" date="26-02-2026" readTime="14 Min." />
+        <p className="text-sm text-muted-foreground mt-2 mb-6">Juridisk gennemgået og opdateret af Ajse, juridisk redaktør hos Casinoaftaler.dk.</p>
 
         <div className="mb-10 overflow-hidden rounded-xl">
           <img src={casinoLicenserHero} alt="Casino licenser – danske og udenlandske licenser forklaret" className="w-full h-auto object-cover max-h-[400px]" loading="eager" />

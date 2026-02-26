@@ -108,7 +108,9 @@ const Omsaetningskrav = () => {
     description: "Alt du skal vide om omsætningskrav på danske casinoer. Beregning, strategier og tips.",
     url: `${SITE_URL}/omsaetningskrav`,
     datePublished: "2025-06-01",
-    dateModified: "2026-02-20",
+    dateModified: "2026-02-26",
+    authorName: "Ajse",
+    authorUrl: `${SITE_URL}/forfatter/ajse`,
     videoId: "3tXFTjmgdcE",
   });
 
@@ -157,7 +159,8 @@ const Omsaetningskrav = () => {
       </section>
 
       <div className="container py-8 md:py-12">
-        <AuthorMetaBar author="jonas" date="20-02-2026" readTime="12 Min." />
+        <AuthorMetaBar author="ajse" date="26-02-2026" readTime="12 Min." />
+        <p className="text-sm text-muted-foreground mt-2 mb-6">Juridisk gennemgået og opdateret af Ajse, juridisk redaktør hos Casinoaftaler.dk.</p>
 
         <div className="mb-10 overflow-hidden rounded-xl">
           <img src={omsaetningskravHero} alt="Omsætningskrav – lommeregner og casino chips" className="w-full h-auto object-cover max-h-[400px]" loading="eager" />
@@ -850,7 +853,7 @@ const Omsaetningskrav = () => {
           </div>
         </section>
 
-        <AuthorBio />
+        <AuthorBio author="ajse" />
 
         <Separator className="my-10" />
 
