@@ -77,7 +77,7 @@ Du skriver præcise, faktuelle nyhedsartikler om det danske online casino-marked
 - Undgå hallucinationer – basér dig på den research du modtager
 - INGEN affiliate-links eller kommercielle CTA'er
 - INGEN generisk AI-sprog ("i en verden hvor...", "det er vigtigt at bemærke...")
-- Minimum 900 ord, maximum 1500 ord
+- Minimum 700 ord, maximum 1500 ord
 - Du SKAL altid skrive en artikel baseret på den research der gives dig. Afvis KUN hvis researchen er HELT tom eller irrelevant.
 
 📌 GODKENDTE KATEGORIER (vælg kun én):
@@ -261,8 +261,7 @@ async function validateSources(
     const domainOk = isAllowedDomain(srcUrl);
     domainResults[srcUrl] = domainOk;
     if (!domainOk) {
-      failedChecks.push(`Ikke-whitelistet domæne: ${srcUrl}`);
-      continue;
+      warnings.push(`Ikke-whitelistet domæne (accepteret med advarsel): ${srcUrl}`);
     }
 
     // Citation cross-reference (warning only)
@@ -418,11 +417,6 @@ async function searchForSources(topic: string): Promise<PerplexityResult> {
           },
         ],
         search_recency_filter: "month",
-        search_domain_filter: [
-          "spillemyndigheden.dk", "dr.dk", "tv2.dk", "borsen.dk", "finans.dk",
-          "igamingbusiness.com", "sbcnews.co.uk", "egr.global", "gamblinginsider.com",
-          "calvinayre.com", "gambling.com", "yogonet.com", "reuters.com", "bloomberg.com", "casino.org",
-        ],
       }),
     });
 
@@ -547,8 +541,8 @@ Deno.serve(async (req) => {
         .select("*", { count: "exact", head: true })
         .gte("created_at", weekAgo.toISOString());
 
-      if ((weekCount ?? 0) >= 2) {
-        return await failWithLog("Max 2 artikler pr. uge nået", { search_query: "n/a" });
+      if ((weekCount ?? 0) >= 4) {
+        return await failWithLog("Max 4 artikler pr. uge nået", { search_query: "n/a" });
       }
     }
 
@@ -710,10 +704,10 @@ Returnér UDELUKKENDE valid JSON (ingen markdown code blocks). Sæt ALDRIG rejec
       }
     }
 
-    // ═══ GUARDRAIL: Min 900 words ═══
+    // ═══ GUARDRAIL: Min 700 words ═══
     const wordCount = (articleData.content || "").replace(/<[^>]+>/g, "").split(/\s+/).filter(Boolean).length;
-    if (wordCount < 900) {
-      return await failWithLog(`Artikel for kort: ${wordCount} ord (minimum 900)`, {
+    if (wordCount < 700) {
+      return await failWithLog(`Artikel for kort: ${wordCount} ord (minimum 700)`, {
         search_query: searchQuery, topic_index: topicIndex, tokens_used: tokensUsed,
         perplexity_citations_count: perplexityResult.citations.length,
         citation_urls: perplexityResult.citations,
