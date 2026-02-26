@@ -129,7 +129,7 @@ export const seoRoutes: SeoRoute[] = ([
   { path: "/free-spins", changefreq: "weekly", priority: 0.8, lastmod: "2026-02-22" },
   { path: "/free-spins-i-dag", changefreq: "daily", priority: 0.9, lastmod: "2026-02-22" },
   { path: "/indskudsbonus", changefreq: "weekly", priority: 0.8, lastmod: "2026-02-20" },
-  { path: "/omsaetningskrav", changefreq: "monthly", priority: 0.8, lastmod: "2026-02-20" },
+  { path: "/omsaetningskrav", changefreq: "monthly", priority: 0.8, lastmod: "2026-02-26" },
   { path: "/bonus-uden-indbetaling", changefreq: "weekly", priority: 0.8, lastmod: "2026-02-20" },
   { path: "/bonus-uden-omsaetningskrav", changefreq: "weekly", priority: 0.8, lastmod: "2026-02-20" },
   { path: "/no-sticky-bonus", changefreq: "weekly", priority: 0.8, lastmod: "2026-02-20" },
@@ -170,7 +170,7 @@ export const seoRoutes: SeoRoute[] = ([
   { path: "/casinoer/hoej-rtp", changefreq: "weekly", priority: 0.8, lastmod: "2026-02-15" },
   { path: "/casinoer/crypto-casino", changefreq: "weekly", priority: 0.8, lastmod: "2026-02-15" },
   // /licenserede-casinoer excluded – 301 redirects to /casino-licenser
-  { path: "/casino-licenser", changefreq: "monthly", priority: 0.8, lastmod: "2026-02-17" },
+  { path: "/casino-licenser", changefreq: "monthly", priority: 0.8, lastmod: "2026-02-26" },
   { path: "/casinoer/vr-casinoer", changefreq: "weekly", priority: 0.8, lastmod: "2026-02-15" },
   { path: "/casinoer/mobil-casinoer", changefreq: "weekly", priority: 0.8, lastmod: "2026-02-15" },
   { path: "/casinoer/spil-casino-for-sjov", changefreq: "weekly", priority: 0.8, lastmod: "2026-02-15" },
@@ -186,8 +186,8 @@ export const seoRoutes: SeoRoute[] = ([
   { path: "/highlights", changefreq: "daily", priority: 0.6, lastmod: "2026-02-22" },
 
   // ── Info & Ansvarligt Spil ──
-  { path: "/ansvarligt-spil", changefreq: "monthly", priority: 0.6, lastmod: "2026-02-14" },
-  { path: "/spillemyndigheden", changefreq: "monthly", priority: 0.7, lastmod: "2026-02-14" },
+  { path: "/ansvarligt-spil", changefreq: "monthly", priority: 0.6, lastmod: "2026-02-26" },
+  { path: "/spillemyndigheden", changefreq: "monthly", priority: 0.7, lastmod: "2026-02-26" },
   { path: "/om", changefreq: "monthly", priority: 0.6, lastmod: "2026-02-26" },
   { path: "/forretningsmodel", changefreq: "monthly", priority: 0.6, lastmod: "2026-02-15" },
   { path: "/redaktionel-politik", changefreq: "monthly", priority: 0.6, lastmod: "2026-02-15" },

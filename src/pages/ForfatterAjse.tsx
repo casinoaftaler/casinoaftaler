@@ -525,6 +525,7 @@ export default function ForfatterAjse() {
                 { to: "/ansvarligt-spil", label: "Ansvarligt Spil", desc: "Ressourcer til ansvarligt spil" },
                 { to: "/casino-licenser", label: "Casino Licenser", desc: "Guide til danske casinolicenser" },
                 { to: "/spillemyndigheden", label: "Spillemyndigheden", desc: "Danmarks regulering af online spil" },
+                { to: "/omsaetningskrav", label: "Omsætningskrav", desc: "Komplet guide til gennemspilningskrav" },
                 { to: "/kontakt", label: "Kontakt", desc: "Kontakt Casinoaftaler.dk" },
                 { to: "/casino-nyheder", label: "Casino Nyheder", desc: "Seneste nyheder fra branchen" },
               ].map((page) => (

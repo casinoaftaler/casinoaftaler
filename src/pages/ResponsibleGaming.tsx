@@ -12,7 +12,7 @@ import { AuthorBio } from "@/components/AuthorBio";
 import { RelatedGuides } from "@/components/RelatedGuides";
 import { FAQSection } from "@/components/FAQSection";
 import { SEO } from "@/components/SEO";
-import { buildFaqSchema } from "@/lib/seo";
+import { buildFaqSchema, buildArticleSchema, SITE_URL } from "@/lib/seo";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
 
 const warningSignItems = [
@@ -110,17 +110,15 @@ const ResponsibleGaming = () => {
 
   const faqJsonLd = buildFaqSchema(responsibleGamingFaqs);
 
-  const articleJsonLd = {
-    "@context": "https://schema.org",
-    "@type": "Article",
+  const articleJsonLd = buildArticleSchema({
     headline: "Ansvarligt Spil – Hjælp og Ressourcer",
     description: "Lær om ansvarligt spil. Find advarselstegn, tips til at bevare kontrollen, selvudelukkelse via ROFUS og hjælp fra StopSpillet og Center for Ludomani.",
-    author: { "@type": "Person", name: "Ajse", url: "https://casinoaftaler.dk/forfatter/ajse" },
-    publisher: { "@type": "Organization", name: "Casinoaftaler.dk" },
+    url: `${SITE_URL}/ansvarligt-spil`,
     datePublished: "2025-06-01",
-    dateModified: "2026-02-14",
-    mainEntityOfPage: "https://casinoaftaler.dk/ansvarligt-spil",
-  };
+    dateModified: "2026-02-26",
+    authorName: "Ajse",
+    authorUrl: `${SITE_URL}/forfatter/ajse`,
+  });
 
   return (
     <>
@@ -159,7 +157,8 @@ const ResponsibleGaming = () => {
       </section>
 
       <div className="container py-8 md:py-12">
-        <AuthorMetaBar author="ajse" date="14-02-2026" readTime="5 Min." />
+        <AuthorMetaBar author="ajse" date="26-02-2026" readTime="5 Min." />
+        <p className="text-sm text-muted-foreground mt-2 mb-6">Juridisk gennemgået og opdateret af Ajse, juridisk redaktør hos Casinoaftaler.dk.</p>
 
         <div className="mb-10 overflow-hidden rounded-xl">
           <img src={responsibleGamingHero} alt="Ansvarligt spil – tillid og sikkerhed ved casinospil" className="w-full h-auto object-cover max-h-[400px]" loading="eager" />
