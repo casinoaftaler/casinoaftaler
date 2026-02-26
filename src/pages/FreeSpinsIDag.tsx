@@ -618,13 +618,13 @@ function FeaturedOfferCard({ offer, logoUrl, affiliateUrl }: { offer: CampaignOf
         <div className="flex-shrink-0">
           {affiliateUrl ? (
             <a href={affiliateUrl} target="_blank" rel="noopener noreferrer nofollow">
-              <Button size="lg" className="fs-cta-glow text-base font-bold shadow-lg shadow-primary/30 group-hover:shadow-primary/50 group-hover:scale-105 transition-all duration-300">
+              <Button variant="cta" size="lg" className="text-base group-hover:scale-105 transition-all duration-300">
                 <Sparkles className="h-4 w-4 mr-2" /> Få Free Spins <ArrowRight className="h-4 w-4 ml-1" />
               </Button>
             </a>
           ) : (
             <Link to={`/casino-anmeldelser/${offer.casino_slug}`}>
-              <Button size="lg" className="fs-cta-glow text-base font-bold group-hover:scale-105 transition-all duration-300">
+              <Button variant="cta" size="lg" className="text-base group-hover:scale-105 transition-all duration-300">
                 <Sparkles className="h-4 w-4 mr-2" /> Se Tilbud <ArrowRight className="h-4 w-4 ml-1" />
               </Button>
             </Link>
@@ -759,13 +759,13 @@ function OfferCard({ offer, logoUrl, affiliateUrl }: { offer: CampaignOffer; log
           </div>
           {affiliateUrl ? (
             <a href={affiliateUrl} target="_blank" rel="noopener noreferrer nofollow">
-              <Button size="sm" className="text-xs font-semibold group-hover:scale-105 transition-transform">
+              <Button variant="cta" size="sm" className="text-xs font-semibold group-hover:scale-105 transition-transform">
                 Se Tilbud <ArrowRight className="h-3 w-3 ml-1" />
               </Button>
             </a>
           ) : (
             <Link to={`/casino-anmeldelser/${offer.casino_slug}`}>
-              <Button size="sm" variant="outline" className="text-xs font-semibold group-hover:scale-105 transition-transform">
+              <Button variant="cta" size="sm" className="text-xs font-semibold group-hover:scale-105 transition-transform">
                 Se Tilbud <ArrowRight className="h-3 w-3 ml-1" />
               </Button>
             </Link>
