@@ -358,3 +358,39 @@ export function buildFaqSchema(faqs: { question: string; answer: unknown }[]) {
     })),
   };
 }
+
+/**
+ * Generate HowTo JSON-LD schema for step-by-step guides.
+ * Used selectively on slot guides and payment method pages for rich snippet eligibility.
+ *
+ * @param opts.name       – Human-readable title, e.g. "Sådan spiller du Book of Dead"
+ * @param opts.steps      – Array of { name, text } objects (minimum 3 steps)
+ * @param opts.pageUrl    – Canonical URL of the page (used for @id)
+ * @param opts.description – Optional description for the HowTo
+ * @param opts.totalTime  – Optional ISO 8601 duration, e.g. "PT5M"
+ */
+export function buildHowToSchema(opts: {
+  name: string;
+  steps: { name: string; text: string }[];
+  pageUrl: string;
+  description?: string;
+  totalTime?: string;
+}) {
+  if (opts.steps.length < 3) {
+    console.warn("buildHowToSchema: at least 3 steps required for valid HowTo markup");
+  }
+  return {
+    "@context": "https://schema.org",
+    "@type": "HowTo",
+    "@id": `${opts.pageUrl}#howto`,
+    name: opts.name,
+    ...(opts.description ? { description: opts.description } : {}),
+    ...(opts.totalTime ? { totalTime: opts.totalTime } : {}),
+    step: opts.steps.map((s, i) => ({
+      "@type": "HowToStep" as const,
+      position: i + 1,
+      name: s.name,
+      text: s.text,
+    })),
+  };
+}
