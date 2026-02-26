@@ -79,6 +79,7 @@ const providerSiblings: GuideLink[] = [
 ];
 
 const allReviews: GuideLink[] = [
+  { to: "/casino-anmeldelser/888-casino", label: "888 Casino", icon: Star, desc: "Poker-tradition og eksklusive spil" },
   { to: "/casino-anmeldelser/bet365", label: "bet365", icon: Star, desc: "Komplet sportsbook og casino" },
   { to: "/casino-anmeldelser/betano", label: "Betano", icon: Trophy, desc: "Moderne casino med stærk bonus" },
   { to: "/casino-anmeldelser/betinia", label: "Betinia", icon: Trophy, desc: "Moderne casino med store bonusser" },
@@ -86,6 +87,7 @@ const allReviews: GuideLink[] = [
   { to: "/casino-anmeldelser/campobet", label: "Campobet", icon: Star, desc: "Casino og sportsbetting i ét" },
   { to: "/casino-anmeldelser/casinostuen", label: "Casinostuen", icon: Gamepad2, desc: "Dansk casino med loyalitetsprogram" },
   { to: "/casino-anmeldelser/comeon", label: "ComeOn", icon: Zap, desc: "Enkelt casino med hurtige udbetalinger" },
+  { to: "/casino-anmeldelser/danske-spil", label: "Danske Spil", icon: Landmark, desc: "Danmarks største spiludbyder" },
   { to: "/casino-anmeldelser/expekt", label: "Expekt", icon: Star, desc: "Nordisk sportsbook og casino" },
   { to: "/casino-anmeldelser/getlucky", label: "GetLucky", icon: Sparkles, desc: "Casino med bred spiludvalg" },
   { to: "/casino-anmeldelser/kapow-casino", label: "Kapow Casino", icon: Zap, desc: "Nyt dansk casino med unikke features" },
