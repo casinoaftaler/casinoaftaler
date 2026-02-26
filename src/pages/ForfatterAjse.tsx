@@ -81,8 +81,8 @@ const expertiseItems = [
 ];
 
 const personalFacts = [
-  { label: "Yndlingsslot", value: "Sugar Rush 1000x" },
-  { label: "Største øjeblik", value: "Under en live stream foreslog Ajse et Super Bonus Buy på Sugar Rush 1000x, som endte i 11.300x – et gyldent community-øjeblik." },
+  { label: "Yndlingsslot", value: "Sugar Rush 1000" },
+  { label: "Største øjeblik", value: "Under en live stream foreslog Ajse et Super Bonus Buy på Sugar Rush 1000. Det endte i 11.300x – et gyldent community-øjeblik." },
   { label: "Top 3 casinoer", value: "Spilleautomaten, SpilDanskNu & Campobet" },
   { label: "Aktiv på Twitch", value: "Siden 2022" },
   { label: "Yndlingssnack", value: "Ben & Jerry's og mørk chokolade" },
@@ -399,16 +399,16 @@ export default function ForfatterAjse() {
             <Heart className="h-7 w-7 text-primary" />
             Personligt
           </h2>
-          <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
             {personalFacts.map((fact) => (
               <div
                 key={fact.label}
-                className="flex items-start gap-3 rounded-lg border border-border bg-card p-4"
+                className="flex items-start gap-3 rounded-xl border border-border bg-card p-5 min-h-[5rem] transition-all duration-200 hover:-translate-y-1 hover:shadow-lg hover:shadow-primary/10 hover:border-primary/30"
               >
-                <Star className="mt-0.5 h-4 w-4 shrink-0 text-primary" />
+                <Star className="mt-0.5 h-5 w-5 shrink-0 text-primary" />
                 <div>
                   <p className="text-xs text-muted-foreground">{fact.label}</p>
-                  <p className="text-sm font-medium">{fact.value}</p>
+                  <p className="text-sm font-medium leading-relaxed">{fact.value}</p>
                 </div>
               </div>
             ))}
