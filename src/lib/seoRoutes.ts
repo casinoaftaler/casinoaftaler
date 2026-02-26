@@ -188,7 +188,7 @@ export const seoRoutes: SeoRoute[] = ([
   // ── Info & Ansvarligt Spil ──
   { path: "/ansvarligt-spil", changefreq: "monthly", priority: 0.6, lastmod: "2026-02-14" },
   { path: "/spillemyndigheden", changefreq: "monthly", priority: 0.7, lastmod: "2026-02-14" },
-  { path: "/om", changefreq: "monthly", priority: 0.6, lastmod: "2026-02-11" },
+  { path: "/om", changefreq: "monthly", priority: 0.6, lastmod: "2026-02-26" },
   { path: "/forretningsmodel", changefreq: "monthly", priority: 0.6, lastmod: "2026-02-15" },
   { path: "/redaktionel-politik", changefreq: "monthly", priority: 0.6, lastmod: "2026-02-15" },
   { path: "/kontakt", changefreq: "monthly", priority: 0.5, lastmod: "2026-02-11" },
